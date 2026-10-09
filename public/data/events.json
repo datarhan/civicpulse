@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-08T11:38:49.030Z",
+  "generatedAt": "2026-10-09T11:33:48.478Z",
   "source": {
     "url": "https://www.ribarroja.es/es/eventos/rss.xml",
     "platform": "Drupal RSS (oficial)"
@@ -451,16 +451,6 @@
       "image": "https://www.ribarroja.es/sites/www.ribarroja.es/files/styles/interior_contenido_/public/20260831%20ruega%20por%20nosotras_0.jpg?itok=RxIqXymc"
     },
     {
-      "id": "b0floj",
-      "title": "Cine 'Street fighter'",
-      "link": "https://www.ribarroja.es/es/evento/cine-%27street-fighter%27",
-      "eventDate": "2026-11-27T21:00:00.000Z",
-      "eventDateText": "27 de noviembre de 2026 22:00",
-      "publishedDate": "2026-08-31T06:59:21.000Z",
-      "excerpt": "&nbsp;",
-      "image": "https://www.ribarroja.es/sites/www.ribarroja.es/files/styles/interior_contenido_/public/20260831%20street%20figher.jpg?itok=6L6IBGPm"
-    },
-    {
       "id": "1b50gro",
       "title": "Cine 'La patrulla canina, la dino película'",
       "link": "https://www.ribarroja.es/es/evento/cine-%27la-patrulla-canina%2C-la-dino-pel%C3%ADcula%27",
@@ -469,6 +459,16 @@
       "publishedDate": "2026-08-31T07:02:51.000Z",
       "excerpt": "&nbsp;",
       "image": "https://www.ribarroja.es/sites/www.ribarroja.es/files/styles/interior_contenido_/public/20260831%20la%20patrulla%20canina.jpg?itok=WsYVKN2v"
+    },
+    {
+      "id": "b0floj",
+      "title": "Cine 'Street fighter'",
+      "link": "https://www.ribarroja.es/es/evento/cine-%27street-fighter%27",
+      "eventDate": "2026-12-04T21:00:00.000Z",
+      "eventDateText": "04 de diciembre de 2026 22:00",
+      "publishedDate": "2026-08-31T06:59:21.000Z",
+      "excerpt": "&nbsp;",
+      "image": "https://www.ribarroja.es/sites/www.ribarroja.es/files/styles/interior_contenido_/public/20260831%20street%20figher.jpg?itok=6L6IBGPm"
     },
     {
       "id": "wwhu0k",
@@ -481,11 +481,11 @@
       "image": "https://www.ribarroja.es/sites/www.ribarroja.es/files/styles/interior_contenido_/public/20260831%20wildwood-2.jpg?itok=7EuWyVL6"
     },
     {
-      "id": "1k72tgg",
+      "id": "lj10u0",
       "title": "Cine 'Los juegos del hambre, Amanecer en la cosecha'",
-      "link": "https://www.ribarroja.es/es/evento/cine-%27los-juegos-del-hambre%2C-amanecer-en-la-cosecha%27-0",
-      "eventDate": "2026-12-06T17:00:00.000Z",
-      "eventDateText": "06 de diciembre de 2026 18:00",
+      "link": "https://www.ribarroja.es/es/evento/cine-%27los-juegos-del-hambre%2C-amanecer-en-la-cosecha%27",
+      "eventDate": "2026-12-06T18:00:00.000Z",
+      "eventDateText": "06 de diciembre de 2026 19:00",
       "publishedDate": "2026-08-31T07:12:24.000Z",
       "excerpt": "&nbsp;",
       "image": "https://www.ribarroja.es/sites/www.ribarroja.es/files/styles/interior_contenido_/public/20260831%20los%20juegos%20del%20hambre_0.jpg?itok=C-JZ4cvj"

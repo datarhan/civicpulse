@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-08T11:38:40.340Z",
+  "generatedAt": "2026-10-09T11:33:41.082Z",
   "source": {
     "posts": "https://participa.ribarroja.es/wp-json/wp/v2/posts?per_page=100&_fields=id,date,title,link,excerpt,content,categories,slug,status",
     "categories": "https://participa.ribarroja.es/wp-json/wp/v2/categories?per_page=100",
@@ -21,8 +21,10 @@
       "link": "https://participa.ribarroja.es/barometro-de-servicios-publicos-riba-roja-1t-2026/",
       "date": "2026-04-21T13:19:25",
       "excerpt": "El Barómetro de Servicios Públicos de Riba-roja da voz a la ciudadanía para entender como se vive, qué preocupa y que se puede mejorar en el municipio. Realizado durante el primer trimestre de 2026, este estudio ofrece una mirada actual y directa sobre la calidad de vida y el funcionamiento de los servicios públicos. Más […]",
-      "categories": [],
-      "kind": "other"
+      "categories": [
+        "Encuestas"
+      ],
+      "kind": "survey"
     },
     {
       "id": 3130,
@@ -77,10 +79,8 @@
       "link": "https://participa.ribarroja.es/coneix-sent-i-participa-en-ods-participa-en-la-validacion-de-acciones-agenda-urbana-de-riba-roja-de-turia/",
       "date": "2024-07-03T13:23:59",
       "excerpt": "El Ayuntamiento de Riba-roja está implantando la Agenda Urbana, estrategia que incluirá las principales propuestas para conseguir que el municipio sea próspero, sostenible y cohesionado. Esta consulta se pone en marcha con la finalidad de validar las actuaciones y priorizar su puesta en marcha. Para esto se pide puntuar las acciones de los tres bloques […]",
-      "categories": [
-        "Encuestas"
-      ],
-      "kind": "survey"
+      "categories": [],
+      "kind": "other"
     },
     {
       "id": 3051,
