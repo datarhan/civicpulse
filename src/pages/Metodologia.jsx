@@ -1627,11 +1627,24 @@ export default function Metodologia() {
               <li>
                 <strong>La evidencia la elige ella</strong>: nombra el registro por su enlace —un
                 contrato adjudicado o formalizado de la Plataforma de Contratación del Sector
-                Público, o una convocatoria de la Base de Datos Nacional de Subvenciones— y la
-                herramienta comprueba que está en los datos que publicamos; si el enlace lleva a un
-                expediente de varios lotes, tiene que decir cuál. La fila de evidencia la escribe la
-                herramienta desde el propio registro —título, adjudicataria, importe y fecha—, no
-                quien firma.
+                Público, una convocatoria de la Base de Datos Nacional de Subvenciones o, desde
+                octubre de 2026, un punto del orden del día de un pleno, tal como lo publica el
+                Ayuntamiento— y la herramienta comprueba que está en los datos que publicamos; si el
+                enlace lleva a un expediente de varios lotes, tiene que decir cuál, y si lleva a una
+                sesión, qué punto. La fila de evidencia la escribe la herramienta desde el propio
+                registro —título, adjudicataria, importe y fecha; o la sesión, su fecha, su parte y
+                el título entero del punto—, no quien firma.
+              </li>
+              {/* 10-10-2026: una declaración sobre lo que se llevó a un pleno sólo la
+                  sostiene un orden del día o un acta, y de actas no hay corpus
+                  (src/scraper/subida-firmada.ts, `comprobarRegistrosConLaDeclaracion`). */}
+              <li>
+                <strong>Un orden del día sostiene que algo se llevó a una sesión</strong>, con ese
+                título y en esa parte; no que se aprobara, ni una cifra, ni lo que se dijo en el
+                debate. Por eso su fila nunca dice «aprobado», y un orden del día posterior a la
+                declaración no la sostiene. Y si la declaración trae una cifra que ningún registro
+                citado dice —un orden del día o una convocatoria no dicen importes; un contrato, el
+                suyo—, la subida no pasa de <em>parcial</em>.
               </li>
               <li>
                 <strong>La explicación también la escribe ella</strong>, desde ese registro, y dice

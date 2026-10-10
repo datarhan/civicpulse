@@ -163,6 +163,7 @@ export const CORPUS_IDS = [
   'prior-claims',
   'factcheck',
   'boe',
+  'plenos-agendas',
 ] as const
 
 export type CorpusId = (typeof CORPUS_IDS)[number]
@@ -301,6 +302,7 @@ const CORPUS_DE_KIND: Record<string, CorpusId> = {
   'prior-claim': 'prior-claims',
   factcheck: 'factcheck',
   boe: 'boe',
+  agenda: 'plenos-agendas',
 }
 
 /**

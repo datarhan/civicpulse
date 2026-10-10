@@ -468,6 +468,7 @@ overwrites it. Change the bot's SQLite instead.
 - **Pipeline** — `pleno-agenda.ts` → `plenos-agendas.json`
 - **Source** — Scrapes each individual session's convocatoria HTML on `ribarroja.es`, extracts the ORDEN DEL DÍA, splits into {resolutiva / informativa / ruegos}, resolves department + expediente tuples
 - **Surfaces** — `/plenos` — `TopDepartmentsCard` + inline "Ver orden del día" expander per session
+- **Cited by** — `subir-veredicto --evidencia <session link> --punto <n>` (since 2026-10-10): a signed raise may cite one agenda item as evidence (kind `agenda`, corpus `plenos-agendas`). The row is written from the record — session, date, part and the item's whole title — and never says «aprobado»; a later session cannot support an earlier statement, and with a figure in the statement no agenda row reaches `verificado` (`comprobarRegistrosConLaDeclaracion` in `src/scraper/subida-firmada.ts`)
 
 ### Open job vacancies
 
