@@ -272,12 +272,29 @@ describe('lo servido: cada bajada dice quién la decidió', () => {
     expect(discrepan).toEqual([])
     const conFirmaCruda = servidas.filter((it) => 'editor' in it.verification)
     expect(conFirmaCruda.map((it) => it.claim.id)).toEqual([])
-    const fueraDelCanal = servidas.filter(
-      (it) =>
-        ('downgradedBy' in it.verification || 'reasonSignedBy' in it.verification) &&
-        it.verification.source !== 'curator-downgrade',
-    )
+    // `downgradedBy` sólo lo lleva una bajada de curador. `reasonSignedBy`, también
+    // la explicación firmada de una retractación del motor (vía 1, #269): sólo en
+    // sin-datos y con la firma de la última enmienda de su entrada. Las primeras
+    // de verdad se firmaron el 10-10-2026.
+    const firmadaDelMotor = (it) => {
+      const v = it.verification
+      const e = overlay.entries[it.claim.id]
+      return (
+        v.source === 'verdict-engine' &&
+        v.verdict === 'sin-datos' &&
+        e?.source === 'verdict-engine' &&
+        v.reasonSignedBy === ultimaEnmienda(e)?.editor
+      )
+    }
+    const fueraDelCanal = servidas.filter((it) => {
+      const v = it.verification
+      if (v.source === 'curator-downgrade') return false
+      if ('downgradedBy' in v) return true
+      return 'reasonSignedBy' in v && !firmadaDelMotor(it)
+    })
     expect(fueraDelCanal.map((it) => it.claim.id)).toEqual([])
+    // Mide algo: hay explicaciones del motor firmadas, y viajan con su firma.
+    expect(servidas.filter(firmadaDelMotor).length).toBeGreaterThan(0)
   })
 })
 

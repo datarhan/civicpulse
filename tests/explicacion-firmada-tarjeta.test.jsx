@@ -12,13 +12,14 @@ import { gateItemsForPublic } from '../src/scraper/claim-public-gate'
  * persona: imprime esa explicación y dice quién la firmó, y el veredicto sigue
  * siendo del motor.
  *
- * Antes de firmarla, la de 19gax3o-143 dice «Explicación retirada»: lo que el
+ * Antes de firmarla, una retractación de la lista de retiradas (hoy 1qi8axv-023;
+ * hasta el 10-10-2026, 19gax3o-143, que se firmó de verdad) dice «Explicación retirada»: lo que el
  * motor guardó el 02-08-2026 era un parte sobre su tarea. La fila se hace por el
  * camino real —la enmienda, el overlay, la composición y la puerta—, no a mano.
  */
 
 const PERSONA = 'María de la Fuente Llorens'
-const ID = '19gax3o-143-cit-a3a7a1'
+const ID = '1qi8axv-023-cit-3e6224'
 const DEL_MOTOR =
   'Task completed: provided skeptical fact-check reasoning in Spanish (2-4 sentences) concluding none of the four candidates (bar catering tenders and pool cleaning service tenders) genuinely support the claim about exterior investment addressing reported deficiencies at the C.D. La Mallá sports comple'
 const EXPLICACION =
@@ -26,9 +27,9 @@ const EXPLICACION =
 
 const CLAIM = {
   id: ID,
-  plenoId: '19gax3o',
+  plenoId: '1qi8axv',
   plenoDate: '2026-01-19',
-  segmentIndex: 143,
+  segmentIndex: 23,
   type: 'cita_obra',
   speakerGroup: null,
   verbatim:

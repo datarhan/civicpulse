@@ -52,7 +52,7 @@ const MARCAS_DE_CHARLA =
  * 04-10-2026 y salió de la lista con su explicación nueva. Ésta es de las 20 que
  * se quedan: re-derivada, el modelo ve ahora respaldo, y la decide un curador.
  */
-const CHARLA = '19gax3o-143-cit-a3a7a1'
+const CHARLA = '1qi8axv-023-cit-3e6224'
 /**
  * Un resumen del motor que se queda: dice «la respuesta del Ayuntamiento», que
  * es de lo que trata la cita, no de la tarea del modelo.
