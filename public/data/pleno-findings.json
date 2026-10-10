@@ -1,6 +1,6 @@
 {
   "version": "1.0",
-  "generatedAt": "2026-10-05T22:48:13.620Z",
+  "generatedAt": "2026-10-10T19:35:13.908Z",
   "legalNotice": "Este registro recoge hallazgos editoriales sobre las intervenciones de los plenos. Los redacta un proceso automático a partir de declaraciones extraídas de la transcripción, salvo los que llevan la firma de una persona, y cada ficha indica quién la editó: un nombre como «auto-curation-v1» significa que el título y el resumen los escribió una máquina, no una persona. Cada hallazgo cita una o más afirmaciones literales (verbatim) del pleno y los documentos municipales que confirman o contradicen cada afirmación. Las réplicas de los grupos políticos se publican íntegras y sin editar.",
   "contactUrl": "https://github.com/datarhan/civicpulse/issues/new/choose",
   "methodologyUrl": "/metodologia",
@@ -898,7 +898,7 @@
       "plenoId": "10yl550",
       "plenoDate": "2026-05-11",
       "title": "Debate sobre la Fira de Comercio en el pleno del 2026-05-11",
-      "summary": "Durante el pleno del 2026-05-11, el grupo PP afirmó que el gobierno afectó la Fira de Comercio, mientras que, según la transcripción anterior de la sesión —cuyo literal no consta en la revisada—, el PSOE señaló las críticas de la oposición sobre la no realización de la edición de 2025. En el debate se defendió además el impacto positivo de la campaña de 2024.",
+      "summary": "Durante el pleno del 2026-05-11, el grupo PP afirmó que el gobierno afectó la Fira de Comercio, mientras que, según la transcripción anterior de la sesión —cuyo literal no consta en la revisada—, el PSOE señaló las críticas de la oposición sobre la no realización de la edición de 2025. En el debate se leyó además, textualmente, la valoración de la campaña de 2024 de la que se dio cuenta al pleno en julio de ese año, según la cual fue «recibida muy positivamente».",
       "severity": "informational",
       "sourceClaimIds": [
         "10yl550-263-cit-a0a379",
@@ -998,6 +998,14 @@
           "reason": "El sumario llamaba «un grupo no identificado» a quien pronuncia una cita que la ficha no atribuye a ningún grupo. Esa fórmula sustituyó el 1-08 al valor de relleno del extractor y, como ya dice el motivo firmado el 30-09-2026 en f-2026-01-19-afi-5238db, afirma que no se sabe quién habla; junto a un grupo nombrado, además, se lee como otro grupo distinto. La ficha no dice ninguna de las dos cosas: rotula la cita «sin atribuir». La frase dice ahora lo que se dijo en impersonal, sin atribuirlo a nadie ni contar intervenciones. Sale también «Por su parte», que tras nombrar a dos grupos la presentaba como la de un tercero.",
           "editor": "civicpulse-curator",
           "correctedAt": "2026-10-05T22:48:10.361Z"
+        },
+        {
+          "field": "summary",
+          "original": "Durante el pleno del 2026-05-11, el grupo PP afirmó que el gobierno afectó la Fira de Comercio, mientras que, según la transcripción anterior de la sesión —cuyo literal no consta en la revisada—, el PSOE señaló las críticas de la oposición sobre la no realización de la edición de 2025. En el debate se defendió además el impacto positivo de la campaña de 2024.",
+          "corrected": "Durante el pleno del 2026-05-11, el grupo PP afirmó que el gobierno afectó la Fira de Comercio, mientras que, según la transcripción anterior de la sesión —cuyo literal no consta en la revisada—, el PSOE señaló las críticas de la oposición sobre la no realización de la edición de 2025. En el debate se leyó además, textualmente, la valoración de la campaña de 2024 de la que se dio cuenta al pleno en julio de ese año, según la cual fue «recibida muy positivamente».",
+          "reason": "La frase decía que en el debate se defendió el impacto positivo de la campaña de 2024, y la cita en que descansa no es una defensa sino una lectura. Quien interviene anuncia que reproduce textualmente la valoración de esa campaña de la que se dio cuenta al pleno en julio de 2024 (transcripción, 11.879,5–11.892,7 s) y la lee (11.893,2–11.937,9 s); después la contrapone a lo que se dice ahora y, en su última intervención, aclara que leía textualmente la propuesta de 2024 y que el éxito lo decía el gobierno (12.110,6–12.118,7 y 12.854,4–12.889,4 s). La frase dice ahora lo que se hizo, en impersonal: la ficha no atribuye esa cita a ningún grupo.",
+          "editor": "civicpulse-curator",
+          "correctedAt": "2026-10-10T19:35:13.583Z"
         }
       ]
     },
@@ -3262,100 +3270,6 @@
       ]
     },
     {
-      "id": "f-2025-12-01-cit-66709b",
-      "plenoId": "qz6weg",
-      "plenoDate": "2025-12-01",
-      "title": "Debate sobre transparencia en el pleno de Riba-roja de Túria del 2025-12-01",
-      "summary": "Durante la sesión, una intervención sin atribuir señala la necesidad de publicar el convenio en el portal de transparencia municipal. Además, el PSOE manifiesta que la propuesta de acuerdo a debate parte de una demanda ciudadana. Este debate se relaciona con el registro titulado \"Servicio para la desarrollo, implantación y mantenimiento de un Portal de Transparencia, por procedimiento abierto súper simplificado, mejor relación calidad-precio, único criterio\".",
-      "severity": "informational",
-      "sourceClaimIds": [
-        "qz6weg-058-cit-66709b",
-        "qz6weg-183-acu-b1025e",
-        "qz6weg-185-acu-cb9c22",
-        "qz6weg-061-cit-2a0511"
-      ],
-      "quotes": [
-        {
-          "text": "publicar el convenio en el portal de transparencia municipal",
-          "speakerGroup": null,
-          "sourceClaimId": "qz6weg-058-cit-66709b"
-        },
-        {
-          "text": "nosotros hemos dicho que no. O sea, ustedes.",
-          "speakerGroup": "PSOE",
-          "sourceClaimId": "qz6weg-183-acu-b1025e"
-        },
-        {
-          "text": "Me sorprende porque ya existe el Consejo Económico, y es donde están las asociaciones tanto de empresarios como de comerciantes.",
-          "speakerGroup": "PSOE",
-          "sourceClaimId": "qz6weg-185-acu-cb9c22"
-        },
-        {
-          "text": "Avui duem a ple una proposta d'acord que parteix d'una demanda ciutadana",
-          "speakerGroup": "PSOE",
-          "sourceClaimId": "qz6weg-061-cit-2a0511"
-        }
-      ],
-      "crossChecked": [
-        {
-          "kind": "tender",
-          "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=mV0QInbOtkfnSoTX3z%2F7wA%3D%3D",
-          "snippet": "Servicio para la desarrollo, implantación y mantenimiento de un Portal de Transparencia, por procedimiento abierto súper simplificado, mejor relación calidad-precio, único criterio de adjudicación, con condición especial de ejecuci"
-        },
-        {
-          "kind": "tender",
-          "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=oE58TiRVCfAZDGvgaZEVxQ%3D%3D",
-          "snippet": "Servicio de asistencia técnica y apoyo para el control y supervisión sobre la prestación del contrato de recogida de RSU, poda y voluminosos en el municipio de Riba-roja de Túria. · Ayuntamiento de Riba-roja de Túria · AUDITESA AUDITORES…"
-        },
-        {
-          "kind": "tender",
-          "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=tlQQxKywqlerz3GQd5r6SQ%3D%3D",
-          "snippet": "Contrato de obras de escollera de piedra en la zona de Paretotes en Riba-roja de Túria, por procedimiento abierto súper simplificado de tramitación anticipada, un solo criterio de adjudicación, con condición especial de ejecución de cará…"
-        },
-        {
-          "kind": "tender",
-          "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=CoV0my168pwuf4aBO%2BvQlQ%3D%3D",
-          "snippet": "Aprobación del expediente administrativo y adjudicación del contrato privado de seguro flota vehículos basado en el Acuerdo Marco para la contratación de determinados seguros por la Central de Contratación de la FEMP. Lote nº 6 Flota veh…"
-        },
-        {
-          "kind": "pleno-video",
-          "ref": "https://www.youtube.com/watch?v=fmbfOgTHGYs",
-          "snippet": "Vídeo del pleno 2025-12-01 · YouTube"
-        }
-      ],
-      "contradiction": [],
-      "relatedPromiseIds": [],
-      "curatorName": "auto-curation-v1",
-      "publishedAt": "2026-07-03",
-      "response": null,
-      "corrections": [
-        {
-          "field": "summary",
-          "original": "Durante la sesión, el grupo Otro señala la necesidad de publicar el convenio en el portal de transparencia municipal. Por su parte, el PSOE manifiesta que la propuesta de acuerdo a debate parte de una demanda ciudadana. Este debate se relaciona con el registro titulado \"Servicio para la desarrollo, implantación y mantenimiento de un Portal de Transparencia, por procedimiento abierto súper simplificado, mejor relación calidad-precio, único criterio\".",
-          "corrected": "Durante la sesión, un grupo no identificado señala la necesidad de publicar el convenio en el portal de transparencia municipal. Por su parte, el PSOE manifiesta que la propuesta de acuerdo a debate parte de una demanda ciudadana. Este debate se relaciona con el registro titulado \"Servicio para la desarrollo, implantación y mantenimiento de un Portal de Transparencia, por procedimiento abierto súper simplificado, mejor relación calidad-precio, único criterio\".",
-          "reason": "\"Otro\" no era el nombre de ningún grupo municipal: era el valor de relleno que el extractor usaba cuando no podía determinar quién hablaba. Publicado como si fuera un grupo, atribuía declaraciones a una formación inexistente. Se sustituye por una descripción neutra; la atribución real sigue sin determinarse.",
-          "editor": "civicpulse-curator",
-          "correctedAt": "2026-08-01T18:55:19.159Z"
-        },
-        {
-          "field": "quote.3.text",
-          "original": "Hoy tenemos a pleno una propuesta de acuerdo que parte de una demanda ciudadana",
-          "corrected": "Avui duem a ple una proposta d'acord que parteix d'una demanda ciutadana",
-          "reason": "Reanclaje a la transcripción vigente de la sesión. El literal publicado procedía del motor que se sustituyó al re-transcribir, que degradaba el reconocimiento y, en la mayoría de estos casos, traducía al castellano intervenciones pronunciadas en valencià: lo que se publicaba como verbatim no era lo que se dijo. Se restituye el pasaje de la transcripción vigente, la misma intervención y el mismo alcance, comprobado como subcadena literal del fichero. Donde el idioma cambia en pantalla, ese cambio es la fidelidad recuperada, no una edición de estilo.",
-          "editor": "civicpulse-curator",
-          "correctedAt": "2026-08-10T12:54:20.494Z"
-        },
-        {
-          "field": "summary",
-          "original": "Durante la sesión, un grupo no identificado señala la necesidad de publicar el convenio en el portal de transparencia municipal. Por su parte, el PSOE manifiesta que la propuesta de acuerdo a debate parte de una demanda ciudadana. Este debate se relaciona con el registro titulado \"Servicio para la desarrollo, implantación y mantenimiento de un Portal de Transparencia, por procedimiento abierto súper simplificado, mejor relación calidad-precio, único criterio\".",
-          "corrected": "Durante la sesión, una intervención sin atribuir señala la necesidad de publicar el convenio en el portal de transparencia municipal. Además, el PSOE manifiesta que la propuesta de acuerdo a debate parte de una demanda ciudadana. Este debate se relaciona con el registro titulado \"Servicio para la desarrollo, implantación y mantenimiento de un Portal de Transparencia, por procedimiento abierto súper simplificado, mejor relación calidad-precio, único criterio\".",
-          "reason": "El sumario llamaba «un grupo no identificado» a quien pronuncia una cita que la ficha no atribuye a ningún grupo. Esa fórmula sustituyó el 1-08 al valor de relleno del extractor y, como ya dice el motivo firmado el 30-09-2026 en f-2026-01-19-afi-5238db, afirma que no se sabe quién habla; junto a un grupo nombrado, además, se lee como otro grupo distinto. La ficha no dice ninguna de las dos cosas: rotula la cita «sin atribuir», y así lo dice ahora el sumario, sin atribuirla a nadie ni contar quién habla. Sale también «Por su parte», que oponía a esa intervención la del grupo nombrado como si fueran de grupos distintos.",
-          "editor": "civicpulse-curator",
-          "correctedAt": "2026-10-05T22:48:12.809Z"
-        }
-      ]
-    },
-    {
       "id": "f-2025-12-01-cit-bef239",
       "plenoId": "qz6weg",
       "plenoDate": "2025-12-01",
@@ -4481,6 +4395,18 @@
       "severity": "informational",
       "plenoId": "19gax3o",
       "plenoDate": "2026-01-19"
+    },
+    {
+      "findingId": "f-2025-12-01-cit-66709b",
+      "reason": "Fundía tres puntos distintos del orden del día en un debate que la sesión no contiene. La primera cita es el cuarto punto de la propuesta de acuerdo del convenio con la mancomunidad comarcal, que se aprobó por unanimidad sin otra intervención que su presentación (transcripción, 4.699,5 s; resultado de la votación, 4.858,8–4.864,5 s). La cita con la que el sumario explicaba el origen de esa propuesta abre en realidad el punto siguiente, el de memoria democrática: la presidencia lo anuncia en 4.866–4.870 s y la cita está en 4.882,6 s. Las otras dos son del debate de una moción sobre autónomos (9.816,5 y 9.917,9 s), y el sumario no las usaba. Cerraba además con un vínculo a un contrato formalizado en 2022 que ninguna cita menciona. Sin el tema, el puente y el vínculo no queda un hallazgo que corregir, sino tres puntos sin relación, y publicarlos sería un hallazgo nuevo, con su propio identificador y sus propias pruebas.",
+      "editor": "civicpulse-curator",
+      "retractedAt": "2026-10-10T19:35:13.906Z",
+      "digest": "hallazgo · sha256:3d933a2a1d2b",
+      "quoteCount": 4,
+      "crossCheckedCount": 5,
+      "severity": "informational",
+      "plenoId": "qz6weg",
+      "plenoDate": "2025-12-01"
     }
   ]
 }
