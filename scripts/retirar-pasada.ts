@@ -31,7 +31,9 @@
  * cuenta cómo se midieron. Ahí no hay trabajo que destruir, porque no lo hubo;
  * la declaración vuelve a ser la que lo decide, y `decidirDevolucion` pone las
  * guardas: sólo la entrada tal como se midió, y nunca si la base diría más que
- * `sin-datos`. Cada declarada sale en el parte con su desenlace (regla 2).
+ * `sin-datos`. Cada declarada sale en el parte con su desenlace (regla 2). Ni
+ * una cuya explicación firmó después una persona (`--amend-reason`): la enmienda
+ * conserva canal, rótulo y fecha, y sin esa guarda la borraría.
  */
 import { existsSync, readFileSync, writeFileSync } from 'node:fs'
 import { TRINQUETE } from '../src/scraper/trinquete'
@@ -50,6 +52,7 @@ function arg(name: string): string | null {
 const DESENLACE: Record<Extract<Devolucion, { accion: 'dejar' }>['porque'], string> = {
   'ya-no-esta': 'ya no está en el overlay',
   'otra-entrada': 'otra entrada, escrita después de medirla: no se toca',
+  'explicacion-firmada': 'su explicación la firmó una persona: no se devuelve',
   'sin-base': 'sin declaración en la base: no se sabe qué afloraría',
   'la-base-subiria': 'la base subiría el veredicto: se queda, la mira una persona',
 }
@@ -85,6 +88,7 @@ async function devolverSinJuicio(dry: boolean): Promise<void> {
   process.stdout.write(
     `[retirar] --sin-juicio · ${declaradas.length} declarada(s) · devueltas ${devueltas.length} · ` +
       `ya no están ${cuenta('ya-no-esta')} · otra entrada ${cuenta('otra-entrada')} · ` +
+      `explicación firmada ${cuenta('explicacion-firmada')} · ` +
       `sin base ${cuenta('sin-base')} · la base subiría ${cuenta('la-base-subiria')}\n`,
   )
   // Una línea por id con su desenlace, salvo las que ya se devolvieron: ésas ya

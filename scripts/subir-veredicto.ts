@@ -48,33 +48,26 @@ import { etiquetaVerificador } from '../src/lib/claim-provenance.js'
 import { RESUMENES_RETIRADOS } from '../src/lib/resumenes-retirados.js'
 import type { ClaimVerdict } from '../src/scraper/claim-verdicts'
 import type { ClaimEvidence } from '../src/scraper/claim-verifier'
-import { COLA_SUGERENCIAS_NLI } from '../src/scraper/entrada-de-pasada'
-import { claseDeFirma, rechazoDeFirma } from '../src/scraper/firma-de-persona'
-import { isFrozen } from '../src/scraper/promises'
+import { rechazoDeFirma } from '../src/scraper/firma-de-persona'
 import {
   evidenciaDelRegistro,
   retirarSubida,
   subirVeredicto,
   type EvidenciaPedida,
 } from '../src/scraper/subida-firmada'
-import { cotejarCompose, type Overlay, type VerifiedItem } from '../src/scraper/verified-merge'
-import { idsSinProcedencia } from './chunk-pleno-claims'
-import { loadSupersededTexts, TRANSCRIPTS_DIR } from './lib/transcript-corpus'
+import type { Overlay } from '../src/scraper/verified-merge'
 import {
-  BASE,
-  OVERLAY,
-  VERIFIED,
-  cargarCapas,
-  componer,
-  declaracionesCambiadas,
-  rebuildVerified,
-  type Capas,
-} from './verified-rebuild'
+  compuestaSoloEsta,
+  congeladoHasta,
+  constaEnSuSesion,
+  declaracionEn,
+  leerComposicion,
+  resumenesDeMaquina,
+} from './lib/antes-de-firmar'
+import { OVERLAY, rebuildVerified } from './verified-rebuild'
 
-const PROMISES = resolve('public/data/promises.json')
 const TENDERS = resolve('public/data/tenders.json')
 const BDNS = resolve('public/data/bdns.json')
-const COLA_NLI = resolve(COLA_SUGERENCIAS_NLI)
 
 const VEREDICTOS_DE_SUBIDA = ['parcial', 'verificado']
 
@@ -167,22 +160,6 @@ function texto(nombre: string, enLinea: string | undefined, fichero: string | un
   return enLinea
 }
 
-/**
- * Hasta cuándo dura la suspensión electoral, o `null` si no la hay. Como en
- * `relabel-attribution`: un promises.json que falta o no se deja leer es «no
- * congelado», nunca un fallo.
- */
-function congeladoHasta(): string | null {
-  if (!existsSync(PROMISES)) return null
-  try {
-    const raw = JSON.parse(readFileSync(PROMISES, 'utf8')) as { frozenUntil?: string | null }
-    const frozenUntil = raw.frozenUntil ?? null
-    return isFrozen({ frozenUntil }) ? frozenUntil : null
-  } catch {
-    return null
-  }
-}
-
 function leerJson(path: string, que: string): unknown {
   if (!existsSync(path)) salir(1, `falta ${path} (${que})`)
   try {
@@ -190,35 +167,6 @@ function leerJson(path: string, que: string): unknown {
   } catch (err) {
     salir(1, `${path} no se deja leer: ${(err as Error).message}`)
   }
-}
-
-/**
- * Lo que una máquina escribió sobre esta declaración y la persona no puede
- * firmar como suyo: el resumen de la base, el de una entrada del overlay que no
- * firmó una persona, y la propuesta de NLI si la cola está en disco. Una cola que
- * no se deja leer se dice: no cotejar contra ella no es cotejar y no hallar nada.
- */
-function resumenesDeMaquina(claimId: string, base: VerifiedItem, overlay: Overlay): string[] {
-  const out = [base.verification.summary]
-  const entrada = overlay.entries[claimId]
-  if (entrada && claseDeFirma(entrada.editor) !== 'persona') {
-    out.push(entrada.verification.summary, entrada.reason ?? '')
-  }
-  if (existsSync(COLA_NLI)) {
-    try {
-      const cola = JSON.parse(readFileSync(COLA_NLI, 'utf8')) as {
-        entries?: Record<string, { verification?: { summary?: string } }>
-      }
-      const propuesta = cola.entries?.[claimId]?.verification?.summary
-      if (typeof propuesta === 'string') out.push(propuesta)
-    } catch (err) {
-      process.stderr.write(
-        `[subir] AVISO: ${COLA_SUGERENCIAS_NLI} no se deja leer (${(err as Error).message}); ` +
-          'el resumen no se ha cotejado con la propuesta de NLI\n',
-      )
-    }
-  }
-  return out.filter((t) => typeof t === 'string' && t.trim() !== '')
 }
 
 async function main() {
@@ -262,63 +210,17 @@ async function main() {
     }
   }
 
-  if (!existsSync(BASE)) {
-    salir(
-      1,
-      `falta la base (${BASE}), que está gitignorada: cópiala del checkout principal o ` +
-        'regénerala con `npm run verify:pleno-claims -- --base-only`',
-    )
-  }
-  if (!existsSync(VERIFIED)) salir(1, `falta ${VERIFIED}, que va comiteado`)
-
-  const base = JSON.parse(readFileSync(BASE, 'utf8')) as {
-    generatedAt?: string
-    items: VerifiedItem[]
-  }
-  const publicado = JSON.parse(readFileSync(VERIFIED, 'utf8')) as {
-    generatedAt?: string
-    items: VerifiedItem[]
-  }
-  const cotejo = cotejarCompose({
-    baseGeneratedAt: base.generatedAt ?? null,
-    publicadoGeneratedAt: publicado.generatedAt ?? null,
-  })
-  if (cotejo.estado !== 'coincide') {
-    salir(
-      1,
-      `lo publicado no es la composición de la base en disco (${cotejo.estado}): ${cotejo.motivo} ` +
-        'Subir ahora recompondría también eso, sin que nadie lo mirara.',
-    )
-  }
-
-  let capas: Capas
-  try {
-    capas = cargarCapas()
-  } catch (err) {
-    salir(1, `los ficheros que se componen no validan: ${(err as Error).message}`)
-  }
-
-  const enBase = base.items.find((it) => it.claim.id === claimId)
-  const enPublicado = publicado.items.find((it) => it.claim.id === claimId)
-  if (!enBase) salir(1, `${claimId} no está en la base`)
-  if (!enPublicado) salir(1, `${claimId} no está en lo publicado`)
+  const c = leerComposicion(salir, 'Subir')
+  const { enBase, enPublicado } = declaracionEn(c, claimId, salir)
 
   const stamp = new Date().toISOString()
   let nuevo: Overlay
   try {
     if (o.retirar) {
-      nuevo = retirarSubida(capas.overlay, { claimId, motivo: escrito, editor: o.editor }, stamp)
+      nuevo = retirarSubida(c.capas.overlay, { claimId, motivo: escrito, editor: o.editor }, stamp)
     } else {
       // La misma pregunta que la puerta de publicación, con sus mismos textos.
-      const sinProcedencia = idsSinProcedencia(
-        [enPublicado],
-        (plenoId) => {
-          const p = resolve(TRANSCRIPTS_DIR, `${plenoId}.txt`)
-          return existsSync(p) ? readFileSync(p, 'utf8') : null
-        },
-        (plenoId) => loadSupersededTexts(plenoId),
-      )
-      if (sinProcedencia.has(claimId)) {
+      if (!constaEnSuSesion(enPublicado)) {
         salir(
           1,
           `${claimId}: su literal no consta en ninguna transcripción de su sesión, y la puerta de ` +
@@ -333,7 +235,7 @@ async function main() {
       const evidencia: ClaimEvidence[] = []
       for (const pedida of o.evidencias) evidencia.push(evidenciaDelRegistro(pedida, corpus))
       nuevo = subirVeredicto(
-        capas.overlay,
+        c.capas.overlay,
         {
           claimId,
           veredicto: o.veredicto as ClaimVerdict,
@@ -344,7 +246,7 @@ async function main() {
         {
           tipo: String(enPublicado.claim.type),
           publicado: enPublicado.verification.verdict,
-          resumenesDeMaquina: resumenesDeMaquina(claimId, enBase, capas.overlay),
+          resumenesDeMaquina: resumenesDeMaquina(claimId, enBase, c.capas.overlay, '[subir]'),
         },
         stamp,
       )
@@ -355,21 +257,7 @@ async function main() {
 
   // El alcance: recomponer con el overlay nuevo sólo puede cambiar esta
   // declaración. Cualquier otra fila que se moviera la republicaría esta firma.
-  let compuestas: VerifiedItem[]
-  try {
-    compuestas = componer(base.items, { ...capas, overlay: nuevo }).items
-  } catch (err) {
-    salir(1, `rechazado al componer: ${(err as Error).message}`)
-  }
-  const ajenas = declaracionesCambiadas(publicado.items, compuestas).filter((id) => id !== claimId)
-  if (ajenas.length > 0) {
-    salir(
-      1,
-      `recomponer movería ${ajenas.length} declaración(es) además de ${claimId} ` +
-        `(${ajenas.slice(0, 5).join(', ')}${ajenas.length > 5 ? '…' : ''}): lo publicado no es ` +
-        'sólo la composición de lo que hay en disco. Arréglalo antes, por su vía.',
-    )
-  }
+  const compuestas = compuestaSoloEsta(c, nuevo, claimId, salir)
 
   const despues = compuestas.find((it) => it.claim.id === claimId)
   const antes = enPublicado.verification.verdict

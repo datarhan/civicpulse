@@ -1479,15 +1479,16 @@ export default function Metodologia() {
             mejor— <strong>sin mover el veredicto</strong>: la enmienda la firma siempre una persona
             con su nombre, que la tarjeta da («motivo firmado por…»), y queda en la propia entrada,
             con la fecha, el porqué y una huella del motivo anterior que permite cotejarlo con el
-            historial público del repositorio. Enmendar el motivo reescribe la explicación, no la
-            decisión: una rebaja automática con el motivo firmado por una persona sigue siendo una
-            rebaja automática. Las decisiones de segunda pasada y de curación viven en una capa
-            («overlay») separada del veredicto determinista base, de modo que recalcular la base
-            nunca borra esas decisiones. Desde agosto de 2026 el <em>tipo</em> de una declaración se
-            corrige por la misma vía: cuando el extractor archiva como{' '}
-            <code>acusacion_publica</code> algo que no acusa a nadie —el caso que estrenó la
-            herramienta fue una defensa de la constitucionalidad de una ley estatal—, un curador lo
-            reclasifica con motivo verbatim en un registro propio (
+            historial público del repositorio. No se enmienda ninguno durante el periodo electoral,
+            ni cuando lo publicado no es la composición de lo que hay en disco. Enmendar el motivo
+            reescribe la explicación, no la decisión: una rebaja automática con el motivo firmado
+            por una persona sigue siendo una rebaja automática. Las decisiones de segunda pasada y
+            de curación viven en una capa («overlay») separada del veredicto determinista base, de
+            modo que recalcular la base nunca borra esas decisiones. Desde agosto de 2026 el{' '}
+            <em>tipo</em> de una declaración se corrige por la misma vía: cuando el extractor
+            archiva como <code>acusacion_publica</code> algo que no acusa a nadie —el caso que
+            estrenó la herramienta fue una defensa de la constitucionalidad de una ley estatal—, un
+            curador lo reclasifica con motivo verbatim en un registro propio (
             <code>pleno-claim-reclassifications.json</code>), y la herramienta sólo acepta
             movimientos que <strong>alejan</strong> de la acusación, nunca hacia ella: convertir una
             declaración en acusación agravaría lo que se afirma de quien habló, que es exactamente
@@ -1575,19 +1576,41 @@ export default function Metodologia() {
             declaración queda apartada para que la mire una persona. En la corrida del 2 de agosto
             de 2026 una parte de esas explicaciones no hablaba de la declaración sino del encargo
             del propio modelo («Task completed: reasoned in Spanish…»): la tarjeta no las imprime y
-            dice «Explicación retirada». Desde finales de septiembre de 2026 el motor no juzga sobre
-            un razonamiento así, ni sobre uno vacío —la declaración conserva su veredicto y se
-            vuelve a intentar—, y el overlay no deja escribirlo. Las pasadas de junio y agosto de
-            2026 anotaban además mal dos cosas. Una declaración sin candidatos que enseñar al modelo
-            volvía con el veredicto del comparador determinista y quedaba registrada como
-            retractación del motor, aunque el modelo no la hubiera visto; y cuando el modelo sí la
-            juzgaba sin respaldo, la explicación que se guardaba era la frase estándar del
-            comparador («No se encontró registro…»), no su razonamiento. Desde finales de septiembre
-            de 2026 lo que el modelo no ve no se escribe como suyo ni cuenta como juzgado, y la
-            retractación guarda lo que el modelo razonó. Las que se anotaron sin que el modelo las
-            viera se devuelven al veredicto del comparador determinista —«sin datos» en todas, así
-            que ninguna cambia de veredicto, sólo de firma—, y las demás se vuelven a derivar para
-            que la explicación sea la del modelo.
+            dice «Explicación retirada» mientras una persona no escriba la suya (
+            <a href="#explicacion-firmada" style={{ color: 'var(--civic)' }}>
+              explicación firmada
+            </a>
+            ). Desde finales de septiembre de 2026 el motor no juzga sobre un razonamiento así, ni
+            sobre uno vacío —la declaración conserva su veredicto y se vuelve a intentar—, y el
+            overlay no deja escribirlo. Las pasadas de junio y agosto de 2026 anotaban además mal
+            dos cosas. Una declaración sin candidatos que enseñar al modelo volvía con el veredicto
+            del comparador determinista y quedaba registrada como retractación del motor, aunque el
+            modelo no la hubiera visto; y cuando el modelo sí la juzgaba sin respaldo, la
+            explicación que se guardaba era la frase estándar del comparador («No se encontró
+            registro…»), no su razonamiento. Desde finales de septiembre de 2026 lo que el modelo no
+            ve no se escribe como suyo ni cuenta como juzgado, y la retractación guarda lo que el
+            modelo razonó. Las que se anotaron sin que el modelo las viera se devuelven al veredicto
+            del comparador determinista —«sin datos» en todas, así que ninguna cambia de veredicto,
+            sólo de firma—, y las demás se vuelven a derivar para que la explicación sea la del
+            modelo.
+          </li>
+          {/* La vía nació el 10-10-2026: cuatro retractaciones del motor publicaban
+              «Explicación retirada», y la explicación que una lectura del 06-10
+              había escrito desde los registros no tenía por dónde publicarse
+              (`enmendarMotivoDeBajada`, src/scraper/verified-merge.ts). */}
+          <li id="explicacion-firmada" style={{ scrollMarginTop: 24 }}>
+            <strong>Explicación firmada (sin mover el veredicto).</strong> Cuando la explicación de
+            una retractación del motor no sirve —un parte del modelo sobre su encargo, o un
+            razonamiento que no dice lo que muestran los registros—, una persona puede escribir
+            otra, con su nombre, desde los registros que leyó. El veredicto sigue siendo el del
+            motor, <em>sin datos</em>, y la tarjeta lo dice: «verificador LLM · explicación firmada
+            por…». Es la misma enmienda que la del motivo de una rebaja: queda en la entrada del
+            motor, con la fecha, el porqué y una huella de la explicación anterior, y lo que decidió
+            el motor —su registro, su rótulo y su fecha— no se toca. La herramienta rechaza una
+            explicación que sea la de una máquina tal cual, no la acepta durante el periodo
+            electoral ni sobre una acusación pública, y ninguna pasada automática la reescribe
+            después: el motor se salta las que firmó una persona. «Fuentes comprobadas» sigue
+            diciendo lo que apuntó el motor; lo que la persona leyó lo dice su explicación.
           </li>
           {/* La vía nació el 05-10-2026, de una lectura del día anterior: ocho
               declaraciones que el motor había retractado tenían un registro que

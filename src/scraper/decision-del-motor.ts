@@ -7,7 +7,12 @@
  */
 import type { ClaimVerdict } from './claim-verifier'
 import type { RunRecorder } from './run-manifest'
-import type { ApplyEntry, OverlayEntry } from './verified-merge'
+import {
+  explicacionFirmadaPor,
+  type ApplyEntry,
+  type Overlay,
+  type OverlayEntry,
+} from './verified-merge'
 import { recortarResumen, RESUMEN_MAX, type SinDatosPorque } from './claim-verifier-engine'
 import { charlaDeTarea } from './charla-de-tarea'
 
@@ -146,7 +151,10 @@ export function decidirRederivacion(r: {
 /** Lo que hace `retirar-pasada -- --sin-juicio` con una retractación declarada. */
 export type Devolucion =
   | { accion: 'devolver' }
-  | { accion: 'dejar'; porque: 'ya-no-esta' | 'otra-entrada' | 'sin-base' | 'la-base-subiria' }
+  | {
+      accion: 'dejar'
+      porque: 'ya-no-esta' | 'otra-entrada' | 'explicacion-firmada' | 'sin-base' | 'la-base-subiria'
+    }
 
 /**
  * Devolver al determinista una retractación que el motor escribió sin que el
@@ -167,7 +175,14 @@ export type Devolucion =
  */
 export function decidirDevolucion(r: {
   medida: { editor: string; appliedAt: string }
-  entrada: { source: string; editor?: string; appliedAt: string } | undefined
+  entrada:
+    | {
+        source: string
+        editor?: string
+        appliedAt: string
+        reasonAmendments?: OverlayEntry['reasonAmendments']
+      }
+    | undefined
   veredictoBase: ClaimVerdict | undefined
 }): Devolucion {
   if (!r.entrada) return { accion: 'dejar', porque: 'ya-no-esta' }
@@ -176,6 +191,10 @@ export function decidirDevolucion(r: {
     r.entrada.editor === r.medida.editor &&
     r.entrada.appliedAt === r.medida.appliedAt
   if (!esLaMedida) return { accion: 'dejar', porque: 'otra-entrada' }
+  // Una enmienda conserva canal, rótulo y fecha, así que la entrada sigue
+  // pareciendo la medida; pero su explicación la firmó una persona, y quitarla
+  // la borraría sin que nadie lo decidiera.
+  if (explicacionFirmadaPor(r.entrada)) return { accion: 'dejar', porque: 'explicacion-firmada' }
   if (r.veredictoBase === undefined) return { accion: 'dejar', porque: 'sin-base' }
   if (r.veredictoBase !== 'sin-datos') return { accion: 'dejar', porque: 'la-base-subiria' }
   return { accion: 'devolver' }
@@ -199,6 +218,8 @@ export type MotivoSinRecorte =
   | 'motivo-sin-el-resumen'
   /** Lo recortado sigue hablando de la tarea del modelo. */
   | 'charla'
+  /** Su explicación la reescribió una persona: no es la del motor. */
+  | 'explicacion-firmada'
 
 export type Recorte =
   | { accion: 'recortar'; entrada: ApplyEntry; resumen: string }
@@ -216,6 +237,7 @@ export const MOTIVO_SIN_RECORTE_EN_EL_PARTE: Readonly<Record<MotivoSinRecorte, s
   'no-es-un-recorte': 'el recorte no es un prefijo de lo publicado',
   'motivo-sin-el-resumen': 'el motivo no acaba en el resumen',
   charla: 'charla, no se recorta',
+  'explicacion-firmada': 'explicación firmada por una persona, no se recorta',
 }
 
 const normalizarEspacios = (t: string) => t.replace(/\s+/g, ' ').trim()
@@ -267,6 +289,7 @@ export function decidirRecorte(a: {
 }): Recorte {
   const e = a.entrada
   if (!e || e.source !== 'verdict-engine') return { accion: 'dejar', porque: 'no-es-del-motor' }
+  if (explicacionFirmadaPor(e)) return { accion: 'dejar', porque: 'explicacion-firmada' }
   if (a.razonamientos.length === 0) return { accion: 'dejar', porque: 'sin-razonamiento' }
   const publicado = e.verification.summary
   const razonamiento = a.razonamientos.find((r) => r.slice(0, RESUMEN_MAX) === publicado)
@@ -290,4 +313,33 @@ export function decidirRecorte(a: {
       ...(e.editor ? { editor: e.editor } : {}),
     },
   }
+}
+
+// ─── Qué retractaciones pide una lista (`--ids`, `--recortar`) ───────────────
+
+/**
+ * Las retractaciones del motor de una lista pedida, que son las únicas que
+ * `--ids` re-deriva y `--recortar` recorta: re-derivar o recortar otra cosa
+ * sería tocar, con una vía pensada para corregir una explicación del motor, lo
+ * que escribió otra etapa.
+ *
+ * Y, desde el 10-10-2026, aparte las que llevan la explicación que firmó una
+ * persona (`enmendarMotivoDeBajada`): siguen siendo del motor, pero lo que
+ * publican ya no lo escribió él, y una pasada no reescribe lo que firmó una
+ * persona. Tres cubos que no se funden (DATA_INTEGRITY regla 2).
+ */
+export function retractacionesDelMotor(
+  pedidos: readonly string[],
+  overlay: Overlay,
+): { pedidos: number; targets: string[]; conExplicacionFirmada: string[]; noDelMotor: string[] } {
+  const targets: string[] = []
+  const conExplicacionFirmada: string[] = []
+  const noDelMotor: string[] = []
+  for (const id of pedidos) {
+    const e = overlay?.entries?.[id]
+    if (e?.source !== 'verdict-engine') noDelMotor.push(id)
+    else if (explicacionFirmadaPor(e)) conExplicacionFirmada.push(id)
+    else targets.push(id)
+  }
+  return { pedidos: pedidos.length, targets, conExplicacionFirmada, noDelMotor }
 }
