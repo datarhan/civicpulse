@@ -184,6 +184,10 @@ export const EVIDENCE_KINDS = [
   // a un pleno sólo la sostiene un orden del día o un acta, y de actas no hay
   // corpus (src/scraper/subida-firmada.ts).
   'agenda',
+  // La licitación de un sistema dinámico de adquisición (tenders.json), que no
+  // tiene contrato propio: sus contratos son los derivados. Sólo la cita la
+  // subida firmada, desde el 10-10-2026; `tender` la rotularía «Contrato».
+  'licitacion',
 ] as const
 
 export type EvidenceKind = (typeof EVIDENCE_KINDS)[number]

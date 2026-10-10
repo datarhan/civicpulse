@@ -46,6 +46,12 @@
  *    que diga un importe una declaración con cifra no llega a `verificado`
  *    (`comprobarRegistrosConLaDeclaracion`). Diseño:
  *    docs/superpowers/specs/2026-10-10-orden-del-dia-evidencia-design.md.
+ *  · Y la licitación de un sistema dinámico de adquisición, que no tiene
+ *    contrato propio: sus contratos son los derivados, y para lo que se dice del
+ *    SDA la licitación es el registro. La fila dice el título entero, el
+ *    expediente y la fecha de apertura; nunca el estado, el importe estimado ni
+ *    «adjudicado». La fecha y el importe, como en el orden del día. Diseño:
+ *    docs/superpowers/specs/2026-10-10-licitacion-sda-design.md.
  *  · Un resumen de menos de 20 caracteres, con charla de la tarea de un modelo, o
  *    que es el de una máquina tal cual.
  *  · Sin evidencia: el suelo vale también para una persona.
@@ -108,8 +114,8 @@ export interface RegistroDeLaSubida {
   fila: ClaimEvidence
   /**
    * La fecha que acota lo que el registro puede sostener: la de la sesión de un
-   * orden del día. `null` en un contrato o una convocatoria, que esta vía nunca
-   * acotó por fecha.
+   * orden del día, o la apertura de la licitación de un SDA. `null` en un
+   * contrato o una convocatoria, que esta vía nunca acotó por fecha.
    */
   fecha: string | null
   /** ¿Dice la fila un importe? Sólo un contrato con el suyo. */
@@ -131,6 +137,99 @@ interface FilaContrato {
 interface FilaLicitacion {
   permalink?: string
   documentNumber?: string | null
+  title?: string
+  openProposalsDate?: string | null
+}
+
+/**
+ * Un enlace de PLACSP comparado sin su codificación: el mismo registro llega a
+ * tenders.json como `deeplink:detalle_licitacion` y como `deeplink%3Adetalle_…`
+ * (ESDA1/2025, dos filas). Sólo para reconocer la licitación de un SDA: los
+ * contratos se siguen buscando por su enlace tal cual.
+ */
+function mismoEnlace(a: unknown, b: string): boolean {
+  if (typeof a !== 'string') return false
+  const llano = (u: string) => {
+    try {
+      return decodeURIComponent(u)
+    } catch {
+      return u
+    }
+  }
+  return llano(a) === llano(b)
+}
+
+/** Sin tildes ni mayúsculas ni espacios de más, para comparar el comienzo de un título. */
+const sinTildes = (s: unknown) =>
+  espacios(s)
+    .normalize('NFD')
+    .replace(/[\u0300-\u036f]/g, '')
+    .toLowerCase()
+
+/**
+ * ¿Es la licitación de un sistema dinámico de adquisición? Por el comienzo de su
+ * título, que es como las publica el Ayuntamiento (12 en tenders.json el
+ * 06-10-2026). La de un contrato derivado empieza por «Contrato…» aunque nombre
+ * el SDA, y no lo es: ésa tiene su contrato. Un SDA titulado de otro modo no se
+ * reconoce y se niega, que es el lado seguro.
+ */
+const esLicitacionDeSda = (l: FilaLicitacion) =>
+  sinTildes(l.title).startsWith('sistema dinamico de adquisicion')
+
+/**
+ * La fila de la licitación de un SDA: el título entero, el expediente y la fecha
+ * de apertura de ofertas. Nunca el estado —en un SDA no dice nada: ESDA2/2022
+ * está «abandoned» con 45 contratos derivados, y las dos filas de ESDA1/2025
+ * dicen «abandoned» y «provisionally_awarded»—, nunca el importe —es un techo
+ * estimado para toda la vida del SDA, no dinero gastado— y nunca «adjudicado».
+ */
+function registroDeLicitacionDeSda(
+  filas: FilaLicitacion[],
+  enlace: string,
+  lotePedido: number | null,
+): RegistroDeLaSubida {
+  if (lotePedido != null) {
+    throw new Error(
+      `--lote ${lotePedido}, pero ${enlace} es la licitación de un sistema dinámico de ` +
+        'adquisición, que no tiene lotes que elegir',
+    )
+  }
+  const firma = (l: FilaLicitacion) =>
+    JSON.stringify([
+      espacios(l.title),
+      espacios(l.documentNumber),
+      String(l.openProposalsDate ?? '').slice(0, 10),
+    ])
+  if (new Set(filas.map(firma)).size > 1) {
+    throw new Error(
+      `${enlace}: las ${filas.length} filas de este registro en tenders.json no dicen lo mismo ` +
+        '(título, expediente o fecha de apertura), y no se sabe cuál citar',
+    )
+  }
+  const [l] = filas
+  const apertura = String(l.openProposalsDate ?? '').slice(0, 10)
+  const fecha = dia(apertura)
+  if (!fecha) {
+    throw new Error(
+      `${enlace}: la licitación no tiene fecha de apertura en tenders.json, y sin ella no se ` +
+        'sabe si es anterior a lo que se dijo',
+    )
+  }
+  const titulo = espacios(l.title)
+  const expediente = espacios(l.documentNumber)
+  const propia = filas.find((f) => f.permalink === enlace) ?? l
+  return {
+    fila: {
+      kind: 'licitacion',
+      ref: String(propia.permalink),
+      snippet:
+        `Licitación de un sistema dinámico de adquisición · ${titulo} · ` +
+        `${expediente ? `expediente ${expediente} · ` : ''}ofertas desde el ${fecha}`,
+      stance: 'checked',
+    },
+    fecha: apertura,
+    diceImporte: false,
+  }
 }
 
 interface FilaBdns {
@@ -377,11 +476,23 @@ export function registroDeLaSubida(
   const expediente = espacios(licitaciones.find((l) => l?.documentNumber)?.documentNumber) || null
 
   if (contratos.length === 0) {
+    // La licitación de un SDA, con cualquiera de las codificaciones de su enlace,
+    // y sin ningún contrato que lleve a él con ninguna: ésa es el registro.
+    const delRegistro = lista<FilaLicitacion>(tenders?.tenders).filter((r) =>
+      mismoEnlace(r?.permalink, enlace),
+    )
+    const algunContrato = lista<FilaContrato>(tenders?.contracts).some((r) =>
+      mismoEnlace(r?.permalink, enlace),
+    )
+    if (delRegistro.length > 0 && !algunContrato && delRegistro.every(esLicitacionDeSda)) {
+      return registroDeLicitacionDeSda(delRegistro, enlace, lotePedido)
+    }
     if (licitaciones.length > 0) {
       throw new Error(
         `${enlace} es una licitación${expediente ? ` (${expediente})` : ''} sin contrato ` +
-          'adjudicado ni formalizado en tenders.json: esta vía cita un contrato adjudicado o una ' +
-          'convocatoria de la BDNS',
+          'adjudicado ni formalizado en tenders.json: esta vía cita un contrato adjudicado, una ' +
+          'convocatoria de la BDNS, un punto del orden del día o la licitación de un sistema ' +
+          'dinámico de adquisición',
       )
     }
     throw new Error(
