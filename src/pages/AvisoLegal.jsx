@@ -249,10 +249,17 @@ export default function AvisoLegal() {
           aparece aludido.
         </p>
         <p>
-          Durante el periodo electoral (LOREG art. 50) no se sube ningún veredicto. Una subida se
-          puede retirar en cualquier momento, también con firma y motivo, y retirarla devuelve el
-          veredicto que había antes. Cualquier grupo o cargo aludido puede pedir la rectificación
-          por las vías descritas más arriba, con los mismos plazos.
+          <strong>Una explicación firmada no sube nada.</strong> Una persona también puede
+          reescribir, con su nombre, la explicación de un veredicto que la revisión automática dejó
+          en «sin datos», desde los registros que leyó. El veredicto sigue siendo el de la revisión;
+          la tarjeta dice quién firmó la explicación («explicación firmada por…»), y quien la firma
+          responde de ella.
+        </p>
+        <p>
+          Durante el periodo electoral (LOREG art. 50) no se sube ningún veredicto ni se reescribe
+          ninguna explicación. Una subida se puede retirar en cualquier momento, también con firma y
+          motivo, y retirarla devuelve el veredicto que había antes. Cualquier grupo o cargo aludido
+          puede pedir la rectificación por las vías descritas más arriba, con los mismos plazos.
         </p>
       </Card>
 
@@ -271,8 +278,8 @@ export default function AvisoLegal() {
           </li>
           <li>Los estados publicados quedan congelados a la fecha de inicio del periodo.</li>
           <li>
-            No se sube ningún veredicto de una declaración de pleno; retirar una subida ya firmada
-            sigue siendo posible.
+            No se sube ningún veredicto de una declaración de pleno ni se reescribe su explicación;
+            retirar una subida ya firmada sigue siendo posible.
           </li>
           <li>
             El pleno principal del sitio, incluidas las páginas <code>/presupuesto</code>,{' '}

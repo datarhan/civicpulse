@@ -39,8 +39,10 @@
  *     coordinador, porque en la tarjeta podía leerse como si el motor la
  *     afirmara.
  *   · Cada entrada fija el COMIENZO del texto retirado, no sólo la fila. Cuando
- *     el overlay se corrija con `downgrade-verdict`, el texto nuevo se imprime
- *     solo, y tests/claim-ledger-resumen.test.jsx pide quitar la entrada.
+ *     el overlay se corrija con `downgrade-verdict` —desde el 10-10-2026, la
+ *     explicación firmada de una persona: `--amend-reason` sobre la retractación
+ *     del motor—, el texto nuevo se imprime solo, y
+ *     tests/claim-ledger-resumen.test.jsx pide quitar la entrada.
  *   · Un comienzo y no una huella: `fnv32` vive en src/scraper/hash.ts, que
  *     importa node:crypto y no puede ir al navegador, y no se copia. Cuarenta
  *     caracteres bastan para saber si el texto cambió, y quien revise la lista
