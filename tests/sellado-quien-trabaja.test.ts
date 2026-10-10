@@ -60,6 +60,12 @@ describe('todo nodo que refresh no reconstruye tiene quien lo selle', () => {
 
 describe('dónde va el sello dentro de la tubería', () => {
   const sh = leer('scripts/hallazgos-pipeline.sh')
+  // El bloque que abre CUALQUIER extracción buena: `EXTRACTIONS` suma la de un
+  // pleno recién transcrito y la re-extracción tras un mapa. Hasta el
+  // 06-10-2026 se llamaba `NEW`, y el parte lo rotulaba «transcribed»; qué abre
+  // de verdad esta puerta lo comprueba, corriendo la tubería,
+  // tests/scripts/cron-git-safety.test.ts («cada recuento del parte…»).
+  const PUERTA = 'if [ "$EXTRACTIONS" -gt 0 ]; then'
 
   it('el fichero existe y trae el sello', () => {
     expect(sh).not.toBe('')
@@ -80,8 +86,8 @@ describe('dónde va el sello dentro de la tubería', () => {
       mapa,
     )
     // Y concretamente: dentro del bloque que se dispara con CUALQUIER
-    // extracción buena, que es lo que `NEW` cuenta.
-    const bloque = sh.indexOf('if [ "$NEW" -gt 0 ]; then')
+    // extracción buena.
+    const bloque = sh.indexOf(PUERTA)
     expect(bloque).toBeGreaterThan(-1)
     expect(sello).toBeGreaterThan(bloque)
   })
@@ -90,10 +96,7 @@ describe('dónde va el sello dentro de la tubería', () => {
     // La otra mitad del contrato, y la que impide que esto se convierta en un
     // sello automático: una pasada sin extracciones no ha hecho nada que
     // sellar, y decir lo contrario sería peor que no sellar.
-    const bloque = sh.slice(
-      sh.indexOf('if [ "$NEW" -gt 0 ]; then'),
-      sh.indexOf('no new extractions — skipping verify'),
-    )
+    const bloque = sh.slice(sh.indexOf(PUERTA), sh.indexOf('no new extractions — skipping verify'))
     expect(bloque).toContain('--stamp pleno-claims-suggestions.json')
   })
 
