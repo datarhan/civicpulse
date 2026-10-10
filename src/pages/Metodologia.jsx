@@ -2454,7 +2454,12 @@ export default function Metodologia() {
             nominativas).
           </li>
           <li>
-            <strong>BDNS</strong> — base nacional de subvenciones.
+            <strong>BDNS</strong> — base nacional de subvenciones: las convocatorias que nombran
+            Riba-roja. La búsqueda trae también Riba-roja d&apos;Ebre (Tarragona), así que una
+            convocatoria de otro organismo sólo se publica si la sitúa aquí la propia BDNS: una
+            concesión al NIF del Ayuntamiento o la región de su ficha (Comunitat Valenciana o
+            provincia de Valencia). La que no se puede situar se aparta, con su motivo, en{' '}
+            <code>bdns.json</code>.
           </li>
           <li>
             <strong>Presupuesto CONPREL (MinHac)</strong> — capítulos de gasto e ingreso anuales.
