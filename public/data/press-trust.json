@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-09T11:40:18.719Z",
+  "generatedAt": "2026-10-10T04:47:46.933Z",
   "windowDays": 30,
   "articles": [
     {
@@ -1004,30 +1004,13 @@
         "opinionFraction": 0
       },
       "score": 3
-    },
-    {
-      "articleId": "h2cshb",
-      "articleFingerprint": "e93t0c",
-      "outlet": "Ayuntamiento de Riba-roja de Túria",
-      "outletHost": "ribarroja.es",
-      "url": "https://www.ribarroja.es/es/noticia/riba-roja-inicia-el-curso-escolar-con-3.375-alumnos-apoyando-a-las-familias-un-a%C3%B1o-m%C3%A1s-con-el-bono-vuelve-al-cole",
-      "date": "2026-09-09T12:42:33.000Z",
-      "indicators": {
-        "localCoverage": true,
-        "datedArticle": true,
-        "municipalSourceMatch": null,
-        "corroboratedAcrossOutlets": false,
-        "factualClaimsPresent": false,
-        "opinionFraction": 0
-      },
-      "score": 2
     }
   ],
   "outlets": [
     {
       "outlet": "Ayuntamiento de Riba-roja de Túria",
       "outletHost": "ribarroja.es",
-      "articleCount": 21,
+      "articleCount": 20,
       "verdictCounts": {
         "verificado": 0,
         "parcial": 1,
@@ -1035,7 +1018,7 @@
         "sin-datos": 8,
         "promesa-repetida": 0
       },
-      "meanTrustScore": 2.62,
+      "meanTrustScore": 2.65,
       "verifiedRatio": 0,
       "contradictedRatio": null
     },
@@ -1266,7 +1249,7 @@
     }
   ],
   "builtFrom": {
-    "plenos-agendas.json": "02d4380bba81",
+    "plenos-agendas.json": "da21c22ffc56",
     "press-claims-verified.json": "5f440b22045d",
     "press.json": "fef8d13746f1",
     "promises.json": "b5dbe1ebae83"

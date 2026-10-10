@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-09T11:40:18.737Z",
+  "generatedAt": "2026-10-10T04:47:46.970Z",
   "windowDays": 14,
   "items": [
     {
@@ -36,22 +36,15 @@
       "label": "Ruegos y preguntas",
       "date": "2026-10-05",
       "keyword": ""
-    },
-    {
-      "kind": "promise",
-      "refId": "ac-psoe-1bkbwjs",
-      "label": "Sensorización de contenedores de residuos para control en tiempo real del llenado",
-      "date": "2026-09-25",
-      "keyword": ""
     }
   ],
   "stats": {
     "plenoItemsUncovered": 5,
-    "promisesUncovered": 1,
-    "candidatesExamined": 10
+    "promisesUncovered": 0,
+    "candidatesExamined": 9
   },
   "builtFrom": {
-    "plenos-agendas.json": "02d4380bba81",
+    "plenos-agendas.json": "da21c22ffc56",
     "press-claims-verified.json": "5f440b22045d",
     "press.json": "fef8d13746f1",
     "promises.json": "b5dbe1ebae83"
