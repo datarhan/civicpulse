@@ -295,8 +295,22 @@ test.describe('Landing (/)', () => {
 
     // Close the open popup first: an open Leaflet popup swallows the next click.
     await page.keyboard.press('Escape')
+    // Y el primer punto de barrio que no tapa nada, por lo mismo que el pin de
+    // arriba: el 10-10-2026 el primero quedó bajo otra capa y el clic no abría
+    // su ficha. Un punto de barrio es HTML (un divIcon), así que vale que el
+    // centro caiga en él o en algo suyo.
+    const barrioLibre = await page.locator('.cp-osm-neigh-dot').evaluateAll((ds) =>
+      ds.findIndex((d) => {
+        const r = d.getBoundingClientRect()
+        const encima = document.elementFromPoint(r.left + r.width / 2, r.top + r.height / 2)
+        return encima !== null && (encima === d || d.contains(encima))
+      }),
+    )
+    expect(barrioLibre, 'ningún punto de barrio queda a la vista sin tapar').toBeGreaterThanOrEqual(
+      0,
+    )
     await expect(async () => {
-      await page.locator('.cp-osm-neigh-dot').first().click({ force: true })
+      await page.locator('.cp-osm-neigh-dot').nth(barrioLibre).click({ force: true })
       await expect(
         page
           .locator('.leaflet-popup-content')
