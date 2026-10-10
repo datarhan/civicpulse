@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-09T11:40:01.240Z",
+  "generatedAt": "2026-10-10T10:55:14.282Z",
   "frozen": false,
   "frozenUntil": null,
   "notice": "Sugerencias generadas automáticamente. Requieren aprobación humana antes de aplicarse al estado de cada promesa.",
@@ -41,7 +41,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-10-09T11:40:01.144Z"
+      "generatedAt": "2026-10-10T10:55:14.179Z"
     },
     {
       "promiseId": "ac-psoe-jfg7bc",
@@ -60,7 +60,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-10-09T11:40:01.144Z"
+      "generatedAt": "2026-10-10T10:55:14.179Z"
     },
     {
       "promiseId": "ac-psoe-1ah9zqk",
@@ -79,49 +79,23 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-10-09T11:40:01.144Z"
+      "generatedAt": "2026-10-10T10:55:14.179Z"
     },
     {
       "promiseId": "ac-psoe-ppa53a",
       "proposedStatus": "documentada",
-      "confidence": 0.4,
-      "reasoning": [
-        {
-          "url": "https://news.google.com/rss/articles/CBMi1wFBVV95cUxPVmlicEE2Z25xZi15c1NmMnNCdWRjSTlDbGlZU1BGLS1XYmVveU05OGZQYUFGN2tOS2lDajIwSGRac1Y1aklEdE5JYnFTWW9qTXdGM2hkMTc4bVFVc082bXRzeGoyMGJWV2RLOTYwaW0zTlE3NlRhTXVmaWd4VnhfSGNrcGx6cm55WlhxY1RBWmtlYlNfNUpBbjJwdHBJMXlHMi1OSk5iYVpNQVR2VGZuSlJIRWJnMXpkWHpSM3ZrZlhFUzdHWThJTDZFTUM3djhxbjAyN2VvWdIB3AFBVV95cUxQM3JzY0N1Q0NkQ3plTUNwclRWZXNxOTFzLXBVdldaYWpaTnA1Q3g2Y000RzdEUHBiN0NwODdmRFhDaDhzUW9la3dIUTNEaGZqMldXLU00Q3U0OUpuVGt5Uk81OXJLOGNLelZQZzZJeUE2UjZmVHRQREtobi1mbkFnSTNKRDlYSDhOTUNoTUVIcDlQa1J2akE4NGVXcVJVUEFGNmNHT1pDSEl2WWxrRnYwZXllQWh6NURpUURlRzR1OWZSVnI4c1dpQ1VabFd2aWlwbXNTLURfRzlCMFlk?oc=5",
-          "date": "2026-06-16",
-          "quote": "Riba-roja de Túria repartirá más de 2000 helados gratis a los asistentes de Cinema d'Estiu",
-          "kind": "press",
-          "publisher": "Levante-EMV",
-          "matchedKeywords": [
-            "helado",
-            "cinema",
-            "estiu",
-            "asistent"
-          ]
-        }
-      ],
+      "confidence": 0,
+      "reasoning": [],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-10-09T11:40:01.144Z"
+      "generatedAt": "2026-10-10T10:55:14.179Z"
     },
     {
       "promiseId": "ac-psoe-1m04lfw",
       "proposedStatus": "documentada",
-      "confidence": 0.175,
-      "reasoning": [
-        {
-          "url": "https://news.google.com/rss/articles/CBMi1wFBVV95cUxPVmlicEE2Z25xZi15c1NmMnNCdWRjSTlDbGlZU1BGLS1XYmVveU05OGZQYUFGN2tOS2lDajIwSGRac1Y1aklEdE5JYnFTWW9qTXdGM2hkMTc4bVFVc082bXRzeGoyMGJWV2RLOTYwaW0zTlE3NlRhTXVmaWd4VnhfSGNrcGx6cm55WlhxY1RBWmtlYlNfNUpBbjJwdHBJMXlHMi1OSk5iYVpNQVR2VGZuSlJIRWJnMXpkWHpSM3ZrZlhFUzdHWThJTDZFTUM3djhxbjAyN2VvWdIB3AFBVV95cUxQM3JzY0N1Q0NkQ3plTUNwclRWZXNxOTFzLXBVdldaYWpaTnA1Q3g2Y000RzdEUHBiN0NwODdmRFhDaDhzUW9la3dIUTNEaGZqMldXLU00Q3U0OUpuVGt5Uk81OXJLOGNLelZQZzZJeUE2UjZmVHRQREtobi1mbkFnSTNKRDlYSDhOTUNoTUVIcDlQa1J2akE4NGVXcVJVUEFGNmNHT1pDSEl2WWxrRnYwZXllQWh6NURpUURlRzR1OWZSVnI4c1dpQ1VabFd2aWlwbXNTLURfRzlCMFlk?oc=5",
-          "date": "2026-06-16",
-          "quote": "Riba-roja de Túria repartirá más de 2000 helados gratis a los asistentes de Cinema d'Estiu",
-          "kind": "press",
-          "publisher": "Levante-EMV",
-          "matchedKeywords": [
-            "cinema",
-            "estiu"
-          ]
-        }
-      ],
+      "confidence": 0,
+      "reasoning": [],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-10-09T11:40:01.144Z"
+      "generatedAt": "2026-10-10T10:55:14.179Z"
     },
     {
       "promiseId": "ac-psoe-sysee8",
@@ -140,7 +114,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-10-09T11:40:01.144Z"
+      "generatedAt": "2026-10-10T10:55:14.179Z"
     },
     {
       "promiseId": "ac-psoe-1ryndd8",
@@ -177,7 +151,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-10-09T11:40:01.144Z"
+      "generatedAt": "2026-10-10T10:55:14.179Z"
     },
     {
       "promiseId": "ac-psoe-43brfs",
@@ -242,7 +216,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-10-09T11:40:01.144Z"
+      "generatedAt": "2026-10-10T10:55:14.179Z"
     },
     {
       "promiseId": "ac-psoe-17y448o",
@@ -317,7 +291,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-10-09T11:40:01.144Z"
+      "generatedAt": "2026-10-10T10:55:14.179Z"
     },
     {
       "promiseId": "ac-psoe-1bkbwjs",
@@ -372,7 +346,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-10-09T11:40:01.144Z"
+      "generatedAt": "2026-10-10T10:55:14.179Z"
     },
     {
       "promiseId": "ac-psoe-1xeq50",
@@ -407,7 +381,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-10-09T11:40:01.144Z"
+      "generatedAt": "2026-10-10T10:55:14.179Z"
     }
   ],
   "llmEvidence": [],

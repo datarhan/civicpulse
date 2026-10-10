@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-09T11:33:41.082Z",
+  "generatedAt": "2026-10-10T10:51:08.864Z",
   "source": {
     "posts": "https://participa.ribarroja.es/wp-json/wp/v2/posts?per_page=100&_fields=id,date,title,link,excerpt,content,categories,slug,status",
     "categories": "https://participa.ribarroja.es/wp-json/wp/v2/categories?per_page=100",
@@ -9,8 +9,8 @@
   "stats": {
     "total": 7,
     "activities": 2,
-    "surveys": 2,
-    "other": 3,
+    "surveys": 1,
+    "other": 4,
     "latestDate": "2026-04-21T13:19:25"
   },
   "items": [
@@ -21,10 +21,8 @@
       "link": "https://participa.ribarroja.es/barometro-de-servicios-publicos-riba-roja-1t-2026/",
       "date": "2026-04-21T13:19:25",
       "excerpt": "El Barómetro de Servicios Públicos de Riba-roja da voz a la ciudadanía para entender como se vive, qué preocupa y que se puede mejorar en el municipio. Realizado durante el primer trimestre de 2026, este estudio ofrece una mirada actual y directa sobre la calidad de vida y el funcionamiento de los servicios públicos. Más […]",
-      "categories": [
-        "Encuestas"
-      ],
-      "kind": "survey"
+      "categories": [],
+      "kind": "other"
     },
     {
       "id": 3130,
