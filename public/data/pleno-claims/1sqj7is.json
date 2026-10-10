@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-10T20:05:05.863Z",
+  "generatedAt": "2026-10-10T20:46:14.930Z",
   "version": "1",
   "plenoId": "1sqj7is",
   "plenoDate": "2026-03-09",
@@ -2136,16 +2136,26 @@
       },
       "verification": {
         "claimId": "1sqj7is-081-cit-50c5bb",
-        "verdict": "sin-datos",
-        "summary": "Task completed: provided the requested 2-4 sentence skeptical reasoning in Spanish about whether candidates support the claim, without issuing a final verdict, per instructions.",
-        "evidence": [],
-        "checkedAgainst": [
-          "verdict-engine"
+        "verdict": "verificado",
+        "summary": "El orden del día de la sesión anterior, la ordinaria del 9 de febrero de 2026, llevó en su punto 2 el acuerdo de someter a información pública la versión inicial del PRI de la UE Santa Rosa 2 (expediente 5543/2020/GEN).",
+        "evidence": [
+          {
+            "kind": "agenda",
+            "ref": "https://regmeet.com/aytoribarroja/participaciones/c5b270a763686e776039618cc709f3a6?idioma=castellano",
+            "snippet": "Orden del día del pleno ordinario del 09-02-2026 · parte resolutiva · punto 2: Expedient: 5543/2020/GEN, Acord relatiu al sotmetiment a informació pública de la versió inicial del PRI de la UE Santa Rosa 2",
+            "stance": "checked"
+          }
         ],
-        "confidence": 0.2,
-        "source": "verdict-engine"
+        "checkedAgainst": [
+          "plenos-agendas"
+        ],
+        "derivedBy": [
+          "curator-upgrade"
+        ],
+        "source": "curator-upgrade",
+        "raisedBy": "Sergei Lutchenko"
       },
-      "visibility": "toggle"
+      "visibility": "shown"
     },
     {
       "claim": {

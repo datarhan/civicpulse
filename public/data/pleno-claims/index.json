@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-10T20:05:05.863Z",
+  "generatedAt": "2026-10-10T20:46:14.930Z",
   "version": "1",
   "plenos": [
     {
@@ -241,9 +241,10 @@
       "plenoDate": "2026-03-09",
       "chunkPath": "pleno-claims/1sqj7is.json",
       "itemCount": 89,
-      "toggleCount": 89,
+      "toggleCount": 88,
       "byVerdict": {
-        "sin-datos": 89
+        "sin-datos": 88,
+        "verificado": 1
       },
       "byType": {
         "promesa": 21,
@@ -260,7 +261,7 @@
         "medio-ambiente": 2,
         "vivienda": 12
       },
-      "bytes": 137394
+      "bytes": 137974
     },
     {
       "plenoId": "rx4hb4",
@@ -400,10 +401,10 @@
       "plenoDate": "2025-12-01",
       "chunkPath": "pleno-claims/qz6weg.json",
       "itemCount": 431,
-      "toggleCount": 430,
+      "toggleCount": 429,
       "byVerdict": {
-        "sin-datos": 430,
-        "parcial": 1
+        "sin-datos": 429,
+        "parcial": 2
       },
       "byType": {
         "cita_obra": 114,
@@ -427,7 +428,7 @@
         "movilidad": 2,
         "seguridad": 1
       },
-      "bytes": 589445
+      "bytes": 591143
     },
     {
       "plenoId": "1du4rf5",
@@ -662,9 +663,9 @@
     "items": 4962,
     "plenos": 23,
     "byVerdict": {
-      "sin-datos": 4932,
-      "parcial": 21,
-      "verificado": 9
+      "sin-datos": 4930,
+      "parcial": 22,
+      "verificado": 10
     },
     "byTopicVerdict": {
       "fiscal": {
@@ -680,9 +681,9 @@
         "parcial": 1
       },
       "urbanismo": {
-        "sin-datos": 905,
-        "parcial": 5,
-        "verificado": 3
+        "sin-datos": 903,
+        "parcial": 6,
+        "verificado": 4
       },
       "other": {
         "sin-datos": 409
@@ -742,8 +743,8 @@
         "cita_obra": {
           "total": 1627,
           "sinCorpus": 6,
-          "comprobadoSinHallar": 1101,
-          "noConsta": 520
+          "comprobadoSinHallar": 1103,
+          "noConsta": 518
         },
         "valoracion_politica": {
           "total": 4,
@@ -774,8 +775,8 @@
         "urbanismo": {
           "total": 913,
           "sinCorpus": 234,
-          "comprobadoSinHallar": 475,
-          "noConsta": 204
+          "comprobadoSinHallar": 477,
+          "noConsta": 202
         },
         "other": {
           "total": 409,
@@ -833,13 +834,14 @@
         }
       },
       "corpus": {
-        "tenders": 1576,
+        "tenders": 1577,
         "tenders-ted": 1563,
         "bdns": 485,
         "budget": 483,
         "promises": 493,
         "curator-downgrade": 41,
-        "verdict-engine": 540
+        "verdict-engine": 538,
+        "plenos-agendas": 2
       },
       "porClaseDocumental": {
         "porClase": {
@@ -869,7 +871,7 @@
     "sinDatosPorque": {
       "sinCorpus": 2025,
       "comprobadoSinHallar": 2044,
-      "noConsta": 863
+      "noConsta": 861
     }
   }
 }
