@@ -1570,13 +1570,19 @@ export default function Metodologia() {
                 eran el título del registro (src/scraper/conclusion-sin-respaldo.ts). */}
             Desde el 5 de octubre de 2026, cuando ese razonamiento concluye que ningún candidato
             respalda la declaración, ése es el veredicto: antes, el paso que lo formatea podía
-            convertir «sólo hay una coincidencia de tema» en <em>parcial</em>. Y cuando lo único que
-            el modelo cita es el título de un registro, el motor no lo da por respaldo, pero tampoco
-            retracta ni reescribe la explicación con un razonamiento que defiende lo contrario: la
-            declaración queda apartada para que la mire una persona. En la corrida del 2 de agosto
-            de 2026 una parte de esas explicaciones no hablaba de la declaración sino del encargo
-            del propio modelo («Task completed: reasoned in Spanish…»): la tarjeta no las imprime y
-            dice «Explicación retirada» mientras una persona no escriba la suya (
+            convertir «sólo hay una coincidencia de tema» en <em>parcial</em>.{' '}
+            {/* 10-10-2026: el recorte por el principio publicaba bajo la cita la repetición
+                de la declaración, sin el porqué, en 51 de 56 razonamientos medidos
+                (tests/fixtures/motor-corte-conclusion_2026-10-10.json). */}
+            La explicación lleva entonces la frase en que lo concluye, y no sólo el arranque del
+            razonamiento: ése repite la declaración y, solo bajo la cita, se leía como si el motor
+            la afirmara. Y cuando lo único que el modelo cita es el título de un registro, el motor
+            no lo da por respaldo, pero tampoco retracta ni reescribe la explicación con un
+            razonamiento que defiende lo contrario: la declaración queda apartada para que la mire
+            una persona. En la corrida del 2 de agosto de 2026 una parte de esas explicaciones no
+            hablaba de la declaración sino del encargo del propio modelo («Task completed: reasoned
+            in Spanish…»): la tarjeta no las imprime y dice «Explicación retirada» mientras una
+            persona no escriba la suya (
             <a href="#explicacion-firmada" style={{ color: 'var(--civic)' }}>
               explicación firmada
             </a>

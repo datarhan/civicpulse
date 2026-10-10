@@ -117,13 +117,25 @@ export const CLASES_SIN_RESPALDO: readonly ClaseSinRespaldo[] = [
 ]
 
 /**
+ * La primera clase que reconoce una conclusión «sin respaldo» en el
+ * razonamiento, y dónde casa; o `null`. Dónde, porque la explicación que publica
+ * la retractación es la frase de esa conclusión (claim-verifier-engine.ts).
+ */
+export function dondeConcluye(
+  razonamiento: string | null | undefined,
+): { nombre: string; indice: number } | null {
+  if (!razonamiento) return null
+  for (const { nombre, patron } of CLASES_SIN_RESPALDO) {
+    const m = patron.exec(razonamiento)
+    if (m) return { nombre, indice: m.index }
+  }
+  return null
+}
+
+/**
  * El nombre de la primera clase que reconoce una conclusión «sin respaldo» en
  * el razonamiento, o `null`.
  */
 export function conclusionSinRespaldo(razonamiento: string | null | undefined): string | null {
-  if (!razonamiento) return null
-  for (const { nombre, patron } of CLASES_SIN_RESPALDO) {
-    if (patron.test(razonamiento)) return nombre
-  }
-  return null
+  return dondeConcluye(razonamiento)?.nombre ?? null
 }
