@@ -386,7 +386,19 @@ const expectWithdrawn = (id: string): void => {
  * pasa a «sin atribuir», como la ficha. Tres entradas más de la misma firma; en LOTE_3 cambia sólo
  * lo que su fila mide en la prosa viva, y la guarda del relleno vigila también esta fórmula.
  */
-const TOTAL_CORRECTIONS = 252
+/*
+ * 252 → 250 (bloque «66709b y a0a379, releídas contra la transcripción»).
+ * Dos fichas que nunca pasaron por un lote. `f-2025-12-01-cit-66709b` se retira entera con
+ * `retract-finding`: fundía tres puntos distintos del orden del día en un debate que la sesión no
+ * contiene, explicaba una propuesta con la frase que abre el punto siguiente y cerraba con un
+ * vínculo a un contrato que ninguna cita menciona. Sin todo eso no quedaba un hallazgo que
+ * corregir, y la retirada se lleva sus tres filas de bitácora. `f-2026-05-11-cit-a0a379` gana una
+ * (`correct-pleno-finding`, editor `civicpulse-curator`): su sumario decía que en el debate «se
+ * defendió» el impacto positivo de la campaña de 2024, y su cita es la lectura de la valoración de
+ * la que se dio cuenta al pleno en julio de 2024. En LOTE_1 cambia sólo lo que la fila de a0a379
+ * mide en la prosa viva, y el suelo de citas atribuidas baja tres.
+ */
+const TOTAL_CORRECTIONS = 250
 const TOTAL_REMOVALS = 40
 
 /** One row of a review batch's fixture: enough to locate its own entries. */
@@ -960,8 +972,10 @@ const LOTE_1: Lote1Case[] = [
     priorCorrections: 1,
     // The retracted expediente is `void` with a final amount of zero, and the
     // fact in dispute here is whether an edition of the fira happened at all.
-    drops: ['alquiler de vallas de seguridad'],
-    keeps: ['el impacto positivo de la campaña de 2024', 'la edición de 2025'],
+    // «se defendió» daba por postura del debate una lectura: la de la valoración de la campaña
+    // de 2024 de la que se dio cuenta al pleno en julio de ese año (bloque «252 → 250»).
+    drops: ['alquiler de vallas de seguridad', 'se defendió'],
+    keeps: ['la valoración de la campaña de 2024', 'la edición de 2025'],
     refs: [
       'tender|Contrato de servicio de puesta a disposi',
       'tender|Contrato de servicio alumbrado ornamenta',
@@ -3556,7 +3570,9 @@ describe('published pleno findings — one verbatim is one bloc', () => {
     // «184 → 208»). De 80 a 67, y el suelo queda justo por debajo.
     // Y tres más, de grupos de un solo concejal o de otro grupo: `25e6ea` [0], `947479` [1]
     // y `b00839` [0] (bloque «salvedad C+D, +8»). El suelo baja tres.
-    expect(attributed.length).toBeGreaterThan(63)
+    // Y tres con la ficha entera de `66709b`, que se retira (bloque «252 → 250»). De 64 a 61, y
+    // el suelo baja tres.
+    expect(attributed.length).toBeGreaterThan(60)
     expect(findAttributionConflicts(items)).toEqual([])
   })
 })
@@ -4238,5 +4254,61 @@ describe('la grabación del pleno no se publica como documento cotejado', () => 
     const i18n = readFileSync(resolve('src/i18n.jsx'), 'utf8')
     const veces = i18n.split("'findings.refs.provenance'").length - 1
     expect(veces, 'castellano y valenciano').toBe(2)
+  })
+})
+
+/*
+ * Bloque «252 → 250». Dos fichas que nunca pasaron por un lote, releídas contra la transcripción
+ * vigente de su sesión.
+ *
+ * `f-2025-12-01-cit-66709b` se titulaba como un debate que la sesión no contiene. Sus cuatro citas
+ * son de tres puntos distintos del orden del día; la frase con la que el sumario explicaba una
+ * propuesta abre el punto siguiente, y cerraba con un vínculo a un contrato que ninguna cita
+ * menciona. Quitado todo eso no quedaba un hallazgo que corregir, sino tres puntos sin relación, y
+ * un titular que les cuadrara sería un hallazgo nuevo, con su propio identificador: se retira. La
+ * lápida guarda la huella de la ficha que se fue —rehecha con `findingTombstone` sobre el fichero
+ * anterior a la retirada—, nunca su prosa; el motivo dice en qué segundos de la transcripción
+ * descansa cada parte.
+ *
+ * `f-2026-05-11-cit-a0a379` decía que en el debate «se defendió» el impacto positivo de la campaña
+ * de 2024. Su cita [2] es una lectura: quien interviene anuncia que reproduce textualmente la
+ * valoración de la que se dio cuenta al pleno en julio de 2024, la lee y, en su última intervención,
+ * aclara que leía la propuesta de 2024 y que el éxito lo decía el gobierno. El sumario dice ahora
+ * eso, en impersonal, como la ficha, que no atribuye la cita.
+ */
+describe('published pleno findings — 66709b y a0a379, releídas contra la transcripción', () => {
+  it('66709b se retiró entera, con su huella y un motivo anclado en la transcripción', () => {
+    const id = 'f-2025-12-01-cit-66709b'
+    expect(items.some((f) => f.id === id)).toBe(false)
+    expectWithdrawn(id)
+    const r = (snapshot.retractions ?? []).find((x) => x.findingId === id)!
+    expect(r.digest).toBe('hallazgo · sha256:3d933a2a1d2b')
+    expect([r.quoteCount, r.crossCheckedCount]).toEqual([4, 5])
+    expect([r.plenoId, r.plenoDate, r.severity]).toEqual(['qz6weg', '2025-12-01', 'informational'])
+    for (const s of ['4.699,5 s', '4.866–4.870 s', '4.882,6 s', '9.816,5', '9.917,9']) {
+      expect(r.reason, `el motivo no cita ${s}`).toContain(s)
+    }
+  })
+
+  it('a0a379 dice que la valoración de 2024 se leyó, no que se defendiera', () => {
+    const f = byId('f-2026-05-11-cit-a0a379')
+    expect(f.summary).toContain('se leyó además, textualmente, la valoración de la campaña de 2024')
+    expect(f.summary).not.toContain('se defendió')
+    // Lo que entrecomilla está en su cita [2], que la ficha no atribuye a ningún grupo, y tal cual
+    // en la transcripción vigente.
+    expect(f.quotes[2].speakerGroup).toBeNull()
+    expect(f.quotes[2].text).toContain('recibida muy positivamente')
+    expect(f.summary).toContain('«recibida muy positivamente»')
+    expect(
+      normaliseForQuoteMatch(transcriptOf(f.plenoId)).includes(
+        normaliseForQuoteMatch('recibida muy positivamente'),
+      ),
+    ).toBe(true)
+    const log = f.corrections ?? []
+    const fila = log[log.length - 1]
+    expect(fila.field).toBe('summary')
+    for (const s of ['11.879,5', '11.893,2', '12.110,6', '12.854,4']) {
+      expect(fila.reason, `el motivo no cita ${s}`).toContain(s)
+    }
   })
 })

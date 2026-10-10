@@ -1,10 +1,10 @@
 {
   "_comment": "DERIVADO, no curado. Dos cosas por cada literal publicado en /hallazgos. (1) `quotes[id][i].status`: de qué transcripción procede — de la vigente, sólo de la que se sustituyó al re-transcribir la sesión, o de ninguna de las dos de forma concluyente. (2) `quotes[id][i].gate`: qué haría con la afirmación que sostiene esa cita la puerta editorial de src/scraper/claim-public-gate.ts, que gobierna /plenos y que /hallazgos no consultaba — `shown`, `toggle` o `hidden`, su propio vocabulario. Ninguna de las dos modifica una cita y ninguna es una corrección: el único escritor de public/data/pleno-findings.json sigue siendo `npm run correct-pleno-finding`. Se regenera con `npm run compute:finding-quote-provenance`.",
   "version": "finding-quote-provenance-v2",
-  "generatedAt": "2026-10-10T10:56:22.461Z",
+  "generatedAt": "2026-10-10T19:35:14.838Z",
   "source": {
     "findings": "public/data/pleno-findings.json",
-    "findingsGeneratedAt": "2026-10-05T22:48:13.620Z",
+    "findingsGeneratedAt": "2026-10-10T19:35:13.908Z",
     "transcripts": "public/data/pleno-transcripts",
     "superseded": "public/data/pleno-transcripts/superseded"
   },
@@ -59,26 +59,26 @@
       }
     ],
     "stats": {
-      "citasConClaim": 126,
+      "citasConClaim": 122,
       "citasSinClaim": 0,
       "porContraste": {
         "shown": 3,
-        "toggle": 91,
-        "hidden": 32
+        "toggle": 88,
+        "hidden": 31
       },
       "baseDisponible": true,
       "citasConVeredictoDeOverlay": 20,
-      "citasReclasificadasPorElOverlay": 24,
-      "hallazgosSinCitaMostrable": 37,
+      "citasReclasificadasPorElOverlay": 23,
+      "hallazgosSinCitaMostrable": 36,
       "hallazgosSoloConCitasOcultas": 0,
       "claimsEnCorpus": 7564,
       "entradasDeOverlay": 1321
     }
   },
   "stats": {
-    "findings": 40,
-    "quotes": 126,
-    "enVigente": 106,
+    "findings": 39,
+    "quotes": 122,
+    "enVigente": 102,
     "soloEnSustituida": 20,
     "sinDeterminar": 0,
     "sinDeterminarPorTranscripcionMasCorta": 0,
@@ -589,24 +589,6 @@
         "gate": "toggle"
       }
     ],
-    "f-2025-12-01-cit-66709b": [
-      {
-        "status": "en-vigente",
-        "gate": "toggle"
-      },
-      {
-        "status": "en-vigente",
-        "gate": "hidden"
-      },
-      {
-        "status": "en-vigente",
-        "gate": "toggle"
-      },
-      {
-        "status": "en-vigente",
-        "gate": "toggle"
-      }
-    ],
     "f-2025-12-01-cit-bef239": [
       {
         "status": "solo-en-sustituida",
@@ -746,7 +728,7 @@
   },
   "unresolved": [],
   "builtFrom": {
-    "pleno-findings.json": "67f73d9341a5",
+    "pleno-findings.json": "c3fed4c53e4e",
     "pleno-claims-verified.json": "8df2a068ef6e",
     "pleno-claims-overlay.json": "1a48a7fce78e",
     "pleno-transcripts/": "8c59df9da87e"
