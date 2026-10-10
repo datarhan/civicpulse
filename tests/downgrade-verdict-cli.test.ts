@@ -15,6 +15,7 @@ import { tmpdir } from 'node:os'
 import { join, resolve } from 'node:path'
 
 import { rechazoDeMarcador } from '../src/scraper/firma-de-persona'
+import { mergeVerified } from '../src/scraper/verified-merge'
 
 // Import dinámico: si la guarda de `main()` fallara, importar el script
 // ejecutaría la CLI dentro del proceso de pruebas, y es mejor que falle este
@@ -405,35 +406,69 @@ describe('downgrade-verdict · ejecutado', () => {
         evidence: [],
         checkedAgainst: ['curator-downgrade'],
       }
+      const entradas = {
+        [ID]: {
+          verification,
+          source: 'curator-downgrade',
+          reason: MOTIVO_EN,
+          editor: 'ai-gold-review',
+          appliedAt: '2026-06-24T07:41:17.000Z',
+        },
+      }
       const overlay =
         JSON.stringify(
-          {
-            version: 1,
-            generatedAt: '2026-09-21T05:53:59.613Z',
-            entries: {
-              [ID]: {
-                verification,
-                source: 'curator-downgrade',
-                reason: MOTIVO_EN,
-                editor: 'ai-gold-review',
-                appliedAt: '2026-06-24T07:41:17.000Z',
-              },
-            },
-          },
+          { version: 1, generatedAt: '2026-09-21T05:53:59.613Z', entries: entradas },
           null,
           2,
         ) + '\n'
+      // Desde el 10-10-2026 la enmienda comprueba antes que lo publicado es la
+      // composición de la base en disco, como la subida firmada: hace falta la
+      // base, y lo publicado lleva su sello.
+      const base = {
+        generatedAt: '2026-09-28T07:54:32.262Z',
+        items: [
+          {
+            claim: {
+              id: ID,
+              plenoId: '19gax3o',
+              plenoDate: '2026-01-19',
+              segmentIndex: 19,
+              type: 'afirmacion_numerica',
+              speakerGroup: null,
+              verbatim: LITERAL,
+              context: 'Contexto.',
+              topic: 'urbanismo',
+              entities: {},
+              confidence: 0.9,
+              reasoning: 'Prueba.',
+              requiresHumanApproval: true,
+            },
+            verification: {
+              claimId: ID,
+              verdict: 'contradicho',
+              summary: 'Contradicho por el comparador.',
+              evidence: [],
+              checkedAgainst: ['tenders'],
+            },
+          },
+        ],
+      }
       const verified =
         JSON.stringify(
           {
-            generatedAt: '2026-09-28T07:54:32.262Z',
-            items: [
-              { claim: { id: ID }, verification: { ...verification, source: 'curator-downgrade' } },
-            ],
+            generatedAt: base.generatedAt,
+            items: mergeVerified(
+              base.items as never,
+              { version: 1, generatedAt: '', entries: entradas } as never,
+            ),
           },
           null,
           2,
         ) + '\n'
+      writeFileSync(
+        join(data, 'pleno-claims-verified-base.json'),
+        JSON.stringify(base, null, 2) + '\n',
+      )
       writeFileSync(join(data, 'pleno-claims-overlay.json'), overlay)
       writeFileSync(join(data, 'pleno-claims-verified.json'), verified)
 

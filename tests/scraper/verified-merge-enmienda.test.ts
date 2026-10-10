@@ -197,11 +197,15 @@ describe('enmendarMotivoDeBajada', () => {
     > = [
       ['no hay bajada que enmendar', () => ({ overlay: overlayCon({}) }), /no hay ninguna bajada/],
       [
-        'la entrada no es de un curador: el motivo de una pasada es el razonamiento de la máquina',
+        // Desde el 10-10-2026 una retractación del motor sí admite la explicación
+        // firmada de una persona (tests/explicacion-firmada.test.ts); el veredicto
+        // fuerte de una pasada, no.
+        'la entrada es de una pasada que publica un veredicto fuerte, no una bajada ni una retractación',
         () => ({
           overlay: overlayCon({
-            [ID]: { ...bajada(), source: 'verdict-engine', editor: 'verdict-engine:claude-code' },
+            [ID]: { ...bajada(MOTIVO_EN, 'parcial'), source: 'llm', editor: 'llm-second-pass' },
           }),
+          extra: { veredicto: 'parcial' },
         }),
         /bajada de curador/,
       ],
@@ -315,8 +319,9 @@ describe('validateOverlay — enmiendas de motivo', () => {
   const otra = { previous: HUELLA_ES, reason: PORQUE, editor: FIRMA, amendedAt: HOY }
   it.each<[string, OverlayEntry, RegExp]>([
     [
-      'enmiendas en una entrada que no es de un curador',
-      enmendada({ source: 'verdict-engine', editor: 'verdict-engine:claude-code' }),
+      // Las de una retractación del motor, en tests/explicacion-firmada.test.ts.
+      'enmiendas en una entrada que no es de un curador ni del motor',
+      enmendada({ source: 'llm', editor: 'llm-second-pass' }),
       /bajada de curador/,
     ],
     ['una lista vacía', enmendada({ reasonAmendments: [] }), /no vacía/],
