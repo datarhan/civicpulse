@@ -237,21 +237,32 @@ export async function semanticShortlist(
 }
 
 /**
- * Hybrid mode: union of two shortlists, deduped by `ref`, sorted by
- * `similarity` desc, capped at `topK`. Used when
- * `VERIFIER_SHORTLIST=hybrid` so we get the union of lexical + semantic
- * recall without doubling the LLM's input window.
+ * Hybrid mode: union of two shortlists, sorted by `similarity` desc, capped at
+ * `topK`. Used when `VERIFIER_SHORTLIST=hybrid` so we get the union of
+ * lexical + semantic recall without doubling the LLM's input window.
+ *
+ * Un candidato se repite cuando trae lo mismo que otro: tipo, enlace y snippet,
+ * que es lo que lee el modelo. Hasta el 06-10-2026 bastaba el enlace, y los
+ * lotes de un expediente comparten el suyo —el permalink de PLACSP es del
+ * expediente—: de 136/2025 sólo sobrevivía uno, Garbialdi o Auditesa, y con él
+ * su licitación. Las dos mitades componen igual el snippet de un mismo contrato
+ * (snippet-de-contrato.ts), así que el mismo registro traído por las dos sigue
+ * saliendo una vez, con la similitud mayor. El precio: si el corpus guarda el
+ * snippet de antes de que cambiara la fila, el registro sale dos veces —una por
+ * mitad— hasta que `embed:verifier-corpus` lo refresca, cosa que hace sin
+ * ninguna llamada (`planDelCorpus`).
  */
 export function mergeShortlists(lists: CandidateShortlist[][], topK: number): CandidateShortlist[] {
-  const byRef = new Map<string, CandidateShortlist>()
+  const porCandidato = new Map<string, CandidateShortlist>()
   for (const list of lists) {
     for (const item of list) {
-      const existing = byRef.get(item.ref)
+      const clave = JSON.stringify([item.kind, item.ref, item.snippet])
+      const existing = porCandidato.get(clave)
       if (!existing || item.similarity > existing.similarity) {
-        byRef.set(item.ref, item)
+        porCandidato.set(clave, item)
       }
     }
   }
-  const merged = [...byRef.values()].sort((a, b) => b.similarity - a.similarity)
+  const merged = [...porCandidato.values()].sort((a, b) => b.similarity - a.similarity)
   return merged.slice(0, topK)
 }

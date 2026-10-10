@@ -1307,7 +1307,7 @@ export function shortlistCandidates(inputs: VerifierInputs, topK = 8): Candidate
 // `shortlistCandidates()`. The dispatcher honours the `VERIFIER_SHORTLIST`
 // env var so a single switch reroutes the verifier to a semantic backend
 // without touching the verifier itself. Defaults to hybrid (lexical ∪
-// semantic, deduped by ref) — falls back to lexical with a stderr warning
+// semantic, deduped by kind + ref + snippet) — falls back to lexical with a stderr warning
 // when the embed cache or OPENAI_API_KEY isn't available, so the upgrade
 // is opportunistic and never blocks a verify run.
 
@@ -1430,7 +1430,8 @@ export async function getShortlist(
 
   if (mode === 'semantic') return semantic.slice(0, topK)
 
-  // Hybrid: union with lexical, dedup by ref, take top K by similarity.
+  // Hybrid: union with lexical, dedup by kind + ref + snippet (two lots of one
+  // expediente share a ref), take top K by similarity.
   const lexical = shortlistCandidates(inputs, topK * 2)
   return semanticModule.mergeShortlists([semantic, lexical], topK)
 }
