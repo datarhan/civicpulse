@@ -83,11 +83,19 @@ tiene contrato propio: sus contratos son los derivados.
 
 ## Riesgo
 
-- **Una licitación prueba el procedimiento y su alcance declarado.**
-  - En qz6weg-184 el resumen preparado decía «respalda que se aprobó poco antes». El registro
-    muestra una licitación abierta el 08-08-2025, no una aprobación «aquí».
-  - La instrucción del pleno sobre el SDA (6321/2025/GEN) se aprobó el 09-03-2026, después.
-  - El resumen se reescribe antes de firmar.
+- **Una licitación prueba el procedimiento y su alcance declarado,** no que lo aprobara un
+  pleno, que se use ni ninguna cifra.
+- **qz6weg-184 (hallado el 10-10-2026, al preparar esta vía).** La lectura del 06-10 no vio que
+  el pleno del 28-07-2025 (anrfd5) llevó, en su parte resolutiva, el punto 4: «Expedient
+  3913/2025/GEN, Inici i aprovació de la implementació d'un Sistema Dinàmic d'Adquisició per a la
+  contractació de servicis d'arquitectura i enginyeria … obert a altres entitats públiques
+  mitjançant el sistema de compra conjunta esporàdica».
+  - **Lo que se cita.** Su subida cita las dos cosas: ese punto (vía 2) y la licitación, abierta
+    el 08-08-2025.
+  - **Lo que dice el resumen.** «Se llevó al pleno», no «se aprobó»: el resultado no está en
+    ningún registro.
+  - **La instrucción del 09-03-2026** (1sqj7is, punto 4) es otra cosa, posterior: regula el
+    procedimiento.
 - **Un SDA con otro título.** Reconocer por el comienzo del título deja fuera un SDA titulado de
   otro modo, que se niega: es el lado seguro.
 
