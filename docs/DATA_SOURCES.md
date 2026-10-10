@@ -360,6 +360,7 @@ overwrites it. Change the bot's SQLite instead.
 ### Contracts + tenders
 
 - **Pipeline** — `tenders.ts` → `tenders.json`
+- **Cited by `subir-veredicto`** — an awarded or formalized contract (kind `tender`) and, since 2026-10-10, the tender of a dynamic purchasing system (_sistema dinámico de adquisición_), which has no contract of its own (kind `licitacion`, same corpus). The SDA row is written from the record — whole title, expediente, opening date — and never prints the status (meaningless for an SDA here: ESDA2/2022 is `abandoned` with 45 derived contracts) or the estimated value (a multi-year ceiling, not spend). Recognized by the title's start; its link matches in either encoding, since ESDA1/2025 is two rows (`deeplink:` and `deeplink%3A`)
 - **Source** — **Gobierto** SQL-over-HTTP API at `ribalicita.ribarroja.es/api/v1/data/data.csv?sql=select * from {contratos,licitaciones}` — public mirror of PLACSP. Parser keeps the full row incl. `duration`/`estimatedValue`/`contractorType` and the winner (`assignee`, NOT `contractor` = the buyer).
 - **Surfaces** — `/presupuesto` (`Últimos contratos adjudicados`); Direction D editorial column (`LiveContracts`); the shared `ContractCard` (winner + baja% + CPV label + procedimiento + nº licitadores) on the landing `PlacePopup` + `/presupuesto` `ZoneDrilldown`
 

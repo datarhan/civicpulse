@@ -1629,11 +1629,14 @@ export default function Metodologia() {
                 contrato adjudicado o formalizado de la Plataforma de Contratación del Sector
                 Público, una convocatoria de la Base de Datos Nacional de Subvenciones o, desde
                 octubre de 2026, un punto del orden del día de un pleno, tal como lo publica el
-                Ayuntamiento— y la herramienta comprueba que está en los datos que publicamos; si el
-                enlace lleva a un expediente de varios lotes, tiene que decir cuál, y si lleva a una
-                sesión, qué punto. La fila de evidencia la escribe la herramienta desde el propio
-                registro —título, adjudicataria, importe y fecha; o la sesión, su fecha, su parte y
-                el título entero del punto—, no quien firma.
+                Ayuntamiento, o la licitación de un sistema dinámico de adquisición, que no tiene
+                contrato propio: sus contratos son los derivados— y la herramienta comprueba que
+                está en los datos que publicamos; si el enlace lleva a un expediente de varios
+                lotes, tiene que decir cuál, y si lleva a una sesión, qué punto. La fila de
+                evidencia la escribe la herramienta desde el propio registro —título, adjudicataria,
+                importe y fecha; la sesión, su fecha, su parte y el título entero del punto; o el
+                título entero de la licitación, su expediente y la fecha en que se abrió—, no quien
+                firma.
               </li>
               {/* 10-10-2026: una declaración sobre lo que se llevó a un pleno sólo la
                   sostiene un orden del día o un acta, y de actas no hay corpus
@@ -1645,6 +1648,19 @@ export default function Metodologia() {
                 declaración no la sostiene. Y si la declaración trae una cifra que ningún registro
                 citado dice —un orden del día o una convocatoria no dicen importes; un contrato, el
                 suyo—, la subida no pasa de <em>parcial</em>.
+              </li>
+              {/* 10-10-2026: un SDA no se adjudica como un contrato; para lo que se dice
+                  de él, la licitación es el registro (src/scraper/subida-firmada.ts). */}
+              <li>
+                <strong>
+                  La licitación de un sistema dinámico de adquisición sostiene que el Ayuntamiento
+                  lo abrió
+                </strong>
+                , con ese objeto y ese alcance —por ejemplo, abierto a otras entidades públicas—,
+                desde esa fecha; no que lo aprobara un pleno, ni que se esté usando, ni ninguna
+                cifra. Su fila no dice el estado de la licitación, que en un sistema así no dice
+                nada, ni su importe, que es un techo estimado para años y no dinero gastado. Le
+                valen las mismas reglas de fecha y de cifra que a un orden del día.
               </li>
               <li>
                 <strong>La explicación también la escribe ella</strong>, desde ese registro, y dice

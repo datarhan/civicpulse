@@ -303,6 +303,7 @@ const CORPUS_DE_KIND: Record<string, CorpusId> = {
   factcheck: 'factcheck',
   boe: 'boe',
   agenda: 'plenos-agendas',
+  licitacion: 'tenders',
 }
 
 /**
