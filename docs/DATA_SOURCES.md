@@ -379,6 +379,7 @@ overwrites it. Change the bot's SQLite instead.
 
 - **Pipeline** — `bdns.ts` → `bdns.json`
 - **Source** — MinHac **BDNS** REST endpoint `/bdnstrans/api/convocatorias/busqueda?vpd=GE&descripcion=riba-roja`, paginated
+- **Filter** — the search also returns Riba-roja d'Ebre (Tarragona). A convocatoria not convoked by the Ayuntamiento is kept only if a BDNS field places it here: a concesión to the council's NIF `P4621600H` (not `P4621400C`, which is Real's) or a NUTS region in ES52/ES523 on its ficha. Anything else goes to `descartadas` with its reason (`ubicarConvocatoria`, `src/scraper/bdns.ts`); the CLI refuses to write if more than a quarter of received rows cannot be placed
 - **Surfaces** — `/presupuesto` (`Subvenciones · BDNS` card)
 
 ### Population (Total / Hombres / Mujeres)
