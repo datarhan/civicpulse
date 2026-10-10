@@ -267,10 +267,15 @@ function sinDatos(
   evidence: ClaimEvidence[],
   sinDatosPorque: SinDatosPorque,
 ): EngineResult {
-  // Si lo concluye el razonamiento, la explicación es la frase de esa conclusión.
+  // Si lo concluye el razonamiento y el recorte de siempre se deja la conclusión
+  // fuera, la explicación es la frase de esa conclusión. Si el recorte ya la
+  // lleva —un razonamiento que cabe entero—, dice además por qué: se queda.
+  const recorte = recortarResumen(reasoning)
   const summary =
-    (sinDatosPorque === 'razonamiento' && resumenDeLaConclusion(reasoning)) ||
-    recortarResumen(reasoning)
+    (sinDatosPorque === 'razonamiento' &&
+      !conclusionSinRespaldo(recorte) &&
+      resumenDeLaConclusion(reasoning)) ||
+    recorte
   return {
     verification: {
       claimId,
