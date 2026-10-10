@@ -23,6 +23,7 @@ import { tmpdir } from 'node:os'
 import { dirname, join, relative, resolve } from 'node:path'
 import { describe, expect, it } from 'vitest'
 import { mergeVerified, type VerifiedItem } from '../src/scraper/verified-merge'
+import { RESUMENES_RETIRADOS } from '../src/lib/resumenes-retirados.js'
 
 const RAIZ = resolve(__dirname, '..')
 const TSX = join(RAIZ, 'node_modules/tsx/dist/cli.mjs')
@@ -275,8 +276,13 @@ describe(
         })
 
         expect(r.stdout).toContain(`explicación firmada por ${PERSONA}`)
-        // Está en la lista de explicaciones retiradas: la orden lo recuerda.
-        expect(r.stdout).toContain('resumenes-retirados.js')
+        // La orden recuerda quitarla de src/lib/resumenes-retirados.js sólo si
+        // está en esa lista, que es código y no del montaje: 19gax3o-143 salió
+        // de ella el 10-10-2026, al firmarse su explicación de verdad. Se
+        // comprueba contra la lista vigente, en los dos sentidos.
+        const enLaLista = Object.prototype.hasOwnProperty.call(RESUMENES_RETIRADOS, RETRACTADA)
+        if (enLaLista) expect(r.stdout).toContain('resumenes-retirados.js')
+        else expect(r.stdout).not.toContain('resumenes-retirados.js')
       } finally {
         limpiar(dir)
       }

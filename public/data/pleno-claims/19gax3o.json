@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-06T12:01:24.607Z",
+  "generatedAt": "2026-10-10T20:05:05.863Z",
   "version": "1",
   "plenoId": "19gax3o",
   "plenoDate": "2026-01-19",
@@ -7569,13 +7569,14 @@
       "verification": {
         "claimId": "19gax3o-143-cit-a3a7a1",
         "verdict": "sin-datos",
-        "summary": "Task completed: provided skeptical fact-check reasoning in Spanish (2-4 sentences) concluding none of the four candidates (bar catering tenders and pool cleaning service tenders) genuinely support the claim about exterior investment addressing reported deficiencies at the C.D. La Mallá sports comple",
+        "summary": "La transcripción vigente lo dice en futuro: el exterior «va a tener» una inversión de este gobierno, de un millón de euros, este año. Ningún registro cotejado es esa inversión: la pavimentación del paseo Pacadar entre el complejo y el pabellón se adjudicó en 2023 y 2024 (93.023,59 € y 50.260,40 €), y la reforma del edificio La Mallà licitada en 2026 no tiene contrato adjudicado.",
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
         ],
         "confidence": 0.2,
-        "source": "verdict-engine"
+        "source": "verdict-engine",
+        "reasonSignedBy": "Sergei Lutchenko"
       },
       "visibility": "toggle"
     },

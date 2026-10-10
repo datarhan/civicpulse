@@ -1,6 +1,6 @@
 {
   "generatedAt": "2026-10-04T07:37:32.197Z",
-  "composedAt": "2026-10-06T12:01:23.311Z",
+  "composedAt": "2026-10-10T20:05:04.587Z",
   "source": {
     "description": "Fact-check verdicts for every pleno-claims-suggestions.json entry. Cross-references against tenders / BDNS / budget / promises. Pure deterministic — no LLM judgement.",
     "contract": "Machine-written verdicts; a curator reviews before surfacing contradicho or promesa-repetida editorially."
@@ -60957,13 +60957,14 @@
       "verification": {
         "claimId": "ma87e0-195-cit-436a7e",
         "verdict": "sin-datos",
-        "summary": "Task completed: provided skeptical reasoning in Spanish (2-4 sentences) about whether candidates genuinely support the claim, without issuing a verdict, as requested. No coding skill applies here since this is a fact-checking/reasoning task, not a software engineering task.",
+        "summary": "Los registros cotejados son contratos del Ayuntamiento para el pabellón cubierto del CEIP Mas d'Escoto: la fase I de las obras (2019, 83.265,61 €) y la redacción del proyecto (2021, 30.555,55 €). No dicen nada de la Generalitat ni de a quién corresponde la obra, que es lo que se afirma.",
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
         ],
         "confidence": 0.2,
-        "source": "verdict-engine"
+        "source": "verdict-engine",
+        "reasonSignedBy": "Sergei Lutchenko"
       }
     },
     {
@@ -64027,14 +64028,15 @@
       "verification": {
         "claimId": "1sqj7is-065-cit-c33f08",
         "verdict": "sin-datos",
-        "summary": "La afirmación es una valoración política y subjetiva: el SDA es \"pionero\", \"nos ha funcionado muy bien\" y \"nos traen más dinero\" por presupuestos y vecinos. No contiene cifras, fechas ni sujetos concretos que contrastar.",
+        "summary": "Es una valoración: que el sistema dinámico de adquisición sea pionero, funcione bien o traiga más dinero no lo establece ningún registro. Los contratos derivados del SDA sólo muestran que el sistema existe y se usa.",
         "evidence": [],
         "checkedAgainst": [],
         "derivedBy": [
           "verdict-engine"
         ],
         "confidence": 0.2,
-        "source": "verdict-engine"
+        "source": "verdict-engine",
+        "reasonSignedBy": "Sergei Lutchenko"
       }
     },
     {
@@ -92560,13 +92562,14 @@
       "verification": {
         "claimId": "19gax3o-143-cit-a3a7a1",
         "verdict": "sin-datos",
-        "summary": "Task completed: provided skeptical fact-check reasoning in Spanish (2-4 sentences) concluding none of the four candidates (bar catering tenders and pool cleaning service tenders) genuinely support the claim about exterior investment addressing reported deficiencies at the C.D. La Mallá sports comple",
+        "summary": "La transcripción vigente lo dice en futuro: el exterior «va a tener» una inversión de este gobierno, de un millón de euros, este año. Ningún registro cotejado es esa inversión: la pavimentación del paseo Pacadar entre el complejo y el pabellón se adjudicó en 2023 y 2024 (93.023,59 € y 50.260,40 €), y la reforma del edificio La Mallà licitada en 2026 no tiene contrato adjudicado.",
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
         ],
         "confidence": 0.2,
-        "source": "verdict-engine"
+        "source": "verdict-engine",
+        "reasonSignedBy": "Sergei Lutchenko"
       }
     },
     {

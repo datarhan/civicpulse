@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-06T12:01:24.607Z",
+  "generatedAt": "2026-10-10T20:05:05.863Z",
   "version": "1",
   "plenoId": "1sqj7is",
   "plenoDate": "2026-03-09",
@@ -1437,14 +1437,15 @@
       "verification": {
         "claimId": "1sqj7is-065-cit-c33f08",
         "verdict": "sin-datos",
-        "summary": "La afirmación es una valoración política y subjetiva: el SDA es \"pionero\", \"nos ha funcionado muy bien\" y \"nos traen más dinero\" por presupuestos y vecinos. No contiene cifras, fechas ni sujetos concretos que contrastar.",
+        "summary": "Es una valoración: que el sistema dinámico de adquisición sea pionero, funcione bien o traiga más dinero no lo establece ningún registro. Los contratos derivados del SDA sólo muestran que el sistema existe y se usa.",
         "evidence": [],
         "checkedAgainst": [],
         "derivedBy": [
           "verdict-engine"
         ],
         "confidence": 0.2,
-        "source": "verdict-engine"
+        "source": "verdict-engine",
+        "reasonSignedBy": "Sergei Lutchenko"
       },
       "visibility": "toggle"
     },
