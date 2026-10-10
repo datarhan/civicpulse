@@ -1,6 +1,6 @@
 {
   "_comment": "Measured precision per action class. Read by src/scraper/automation-policy.ts.\nA class with no row here CANNOT publish unattended.\n\nThe gate compares the WILSON LOWER BOUND of the proportion against the bar, not\nthe raw precision: a point estimate from a small sample cannot say which side of\nthe bar it is on. So a precision AT the bar never clears it, and one near it needs\na large sample. Raising `sample` honestly is the way through; there is no other.\n\nWrite via `npm run record-measurement`, never by hand — the CLI re-validates the\nwhole set, and a precision typed as 95 instead of 0.95 is dropped rather than\ntreated as clearing the bar.",
-  "generatedAt": "2026-10-05T19:11:02.213Z",
+  "generatedAt": "2026-10-10T21:11:56.617Z",
   "measurements": [
     {
       "key": "finding.informational.bloc",
@@ -28,11 +28,11 @@
     },
     {
       "key": "verdict.engine.sin-datos",
-      "precision": 0.92,
-      "sample": 39,
-      "measuredAt": "2026-06-24T00:00:00.000Z",
-      "against": "verdict engine, gpt-5.4-mini",
-      "method": "eval:verifier --verifier engine (gpt-5.4-mini; engine-no-consistency dio la misma tabla) contra tests/fixtures/verifier-gold.json, cuyas 64 etiquetas puso un modelo (Claude Opus 4.8, ai-opus-4.8, 23 y 24-06-2026), sin revisión humana registrada; coincidencia con esas etiquetas, no acierto: de los 39 sin-datos del motor, 36 coinciden. Una respuesta fija «sin-datos» coincidiría en 53 de 64. No describe la pasada de agosto de 2026: se configuró con Claude Code y, por el respaldo de la cadena, en parte la contestó gpt-4o-mini (457 retractaciones, medido el 05-10-2026 contra una copia de .llm-cache); ninguno de los dos se midió contra esta muestra. Queda como registro: retractar es nivel A y no depende de esta cifra."
+      "precision": 0.83,
+      "sample": 53,
+      "measuredAt": "2026-10-10T21:11:56.612Z",
+      "against": "motor de veredictos (engine-no-consistency), claude-code sonnet, engine-reason-v2 / engine-extract-v1, main 6d2ecd8c, corpus del verificador de 1.091 filas (10-10-2026)",
+      "method": "eval:verifier --verifier engine-no-consistency, como corre producción (claude-code, sonnet; cadena sólo claude-code, LLM_ZERO_COST_ONLY=1; 62 llamadas, 10-10-2026), sobre main 6d2ecd8c tras #249, #259, #264, #265 y #267, contra tests/fixtures/verifier-gold.json, cuyas 64 etiquetas puso un modelo (Claude Opus 4.8, ai-opus-4.8, 23 y 24-06-2026), sin revisión humana registrada; coincidencia con esas etiquetas, no acierto. Cuenta los sin-datos que concluyó el propio modelo, en el razonamiento o en la extracción, que son los que una retractación escribe: de 53, 44 coinciden. Sobre esas mismas 53 filas, una respuesta fija «sin-datos» coincidiría igual: en esta muestra el motor no distingue. eval:verifier imprime 53 de 62 porque suma 3 filas que ya no están en la instantánea (rx4hb4-442, -458 y -459), 4 que el modelo no juzgó (1 sin candidatos, 3 fuera de la política) y 2 de la regla del título, que se apartan; las 9 llevan la etiqueta sin-datos. El motor no dio ningún parcial ni verificado: las 9 discrepancias son etiquetas parcial o verificado de «el tema existe» donde el razonamiento concluye que ningún candidato respalda lo dicho, el criterio que #249 dejó de contar como respaldo. Sustituye a la de 24-06-2026 (gpt-5.4-mini, 36 de 39), que contaba como eval:verifier."
     }
   ]
 }
