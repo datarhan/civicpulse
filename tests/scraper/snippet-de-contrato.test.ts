@@ -1,7 +1,7 @@
 import { describe, it, expect } from 'vitest'
 import { readFileSync } from 'node:fs'
 import { resolve } from 'node:path'
-import { buildTenderRows } from '../../scripts/embed-verifier-corpus'
+import { buildTenderRows, CLAVE_DE_LICITACION } from '../../scripts/embed-verifier-corpus'
 import { shortlistCandidates } from '../../src/scraper/claim-verifier'
 import { looselyContains } from '../../src/scraper/claim-verifier-llm'
 import { procurementStatusKind } from '../../src/lib/contract-status.js'
@@ -168,13 +168,17 @@ describe('sobre el snapshot publicado', () => {
 
   it('ningún contrato pierde un hecho: estado, importes, adjudicataria y fechas llegan enteros', () => {
     const filas = buildTenderRows(T)
-    // El corpus toma la primera fila de cada id, contratos antes que licitaciones.
+    // Una fila del corpus por fila de la fuente: los contratos por su id, las
+    // licitaciones con su clave, que es la del corpus y no una copia.
     const fuente = new Map<string, Record<string, unknown>>()
-    for (const r of [...T.contracts, ...T.tenders] as Record<string, unknown>[])
-      if (!fuente.has(String(r.id))) fuente.set(String(r.id), r)
+    for (const r of T.contracts as Record<string, unknown>[]) fuente.set(String(r.id), r)
+    for (const r of T.tenders as Record<string, unknown>[])
+      fuente.set(CLAVE_DE_LICITACION + String(r.id), r)
     const conHechosPerdidos: string[] = []
     for (const f of filas) {
-      const r = fuente.get(f.sourceId)!
+      const r = fuente.get(f.sourceId)
+      expect(r, `${f.sourceId} sin fila en tenders.json`).toBeDefined()
+      if (!r) continue
       if (faltan(f.snippet, hechosDeLaFila(r)).length) conHechosPerdidos.push(f.sourceId)
       // `unknown` es el centinela de Gobierto: «no consta», nunca un estado.
       expect(f.snippet, f.sourceId).not.toMatch(/\bunknown\b/)

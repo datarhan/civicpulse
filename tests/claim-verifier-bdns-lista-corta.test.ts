@@ -131,10 +131,10 @@ describe('cada fila es alcanzable por su propia descripción', () => {
 /**
  * Una convocatoria llega al modelo igual, la traiga la mitad que la traiga.
  *
- * `mergeShortlists` funde la mitad semántica y la léxica por `ref` y se queda con
- * la de más similitud. Con dos compositores, el mismo registro llegaría al modelo
- * de dos maneras según qué mitad ganara: el defecto que snippet-de-contrato.ts
- * arregló para los contratos. El del corpus es la referencia: el 06-10-2026 las
+ * `mergeShortlists` junta la mitad semántica y la léxica por tipo, enlace y
+ * snippet. Con dos compositores, el mismo registro llegaría al modelo dos veces,
+ * una por mitad (con la fusión por `ref` de antes, de una de dos maneras según qué
+ * mitad ganara): el defecto que snippet-de-contrato.ts arregló para los contratos. El del corpus es la referencia: el 06-10-2026 las
  * 178 filas `bdns` de `.embed-cache/verifier-corpus.jsonl` del checkout principal
  * traían el snippet y el enlace que compone `buildBdnsRows`, sin excepción.
  */

@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-06T11:32:06.817Z",
+  "generatedAt": "2026-10-10T10:50:46.909Z",
   "source": {
     "url": "https://www.boe.es/datosabiertos/api/boe/sumario/{YYYYMMDD}",
     "matchPattern": "riba-roja | ribarroja | ribaroja (case-insensitive)",
@@ -7,11 +7,25 @@
   },
   "stats": {
     "daysFetched": 26,
-    "daysWithMatches": 0,
+    "daysWithMatches": 1,
     "daysFailed": 0,
     "daysRequested": 30,
-    "total": 0,
-    "byDepartamento": {}
+    "total": 1,
+    "byDepartamento": {
+      "MINISTERIO DE TRANSPORTES Y MOVILIDAD SOSTENIBLE": 1
+    }
   },
-  "items": []
+  "items": [
+    {
+      "id": "61574f73c605",
+      "identificador": "BOE-B-2026-32648",
+      "publicacionDate": "2026-10-08T00:00:00.000Z",
+      "departamento": "MINISTERIO DE TRANSPORTES Y MOVILIDAD SOSTENIBLE",
+      "seccion": "V. Anuncios. - A. Contratación del Sector Público",
+      "epigrafe": "",
+      "titulo": "Anuncio de corrección de errores de: Dirección General de Carreteras. Objeto: 30.599/26; RE-V-26002 Proyecto de trazado y construcción: Mejoras Funcionales y de seguridad vial y medidas de integración ambiental. Conexión entre la A-3 Y LA A-7 (BY-PASS). TT.MM. De Chiva, Cheste, Loriguilla, Riba-Roja De Túria y Manises. Provincia de Valencia. Expediente: B30264626002.",
+      "urlHtml": "https://www.boe.es/diario_boe/txt.php?id=BOE-B-2026-32648",
+      "urlPdf": "https://www.boe.es/boe/dias/2026/10/08/pdfs/BOE-B-2026-32648.pdf"
+    }
+  ]
 }

@@ -1,6 +1,6 @@
 {
   "plenoId": "toa3rc",
-  "generatedAt": "2026-10-05T07:44:38.719Z",
+  "generatedAt": "2026-10-08T07:32:34.865Z",
   "model": "gemini-3.5-flash",
   "promptVersion": "speaker-map-v2",
   "chunkSeconds": 600,
@@ -688,6 +688,30 @@
       "end": 479,
       "speaker": "c00/SPEAKER_00",
       "text": "Simplement volia desitjar-vos a tot el poble i a vosaltres també, els portaveus, els regidors, pues que tinguen"
+    },
+    {
+      "start": 600,
+      "end": 608.5,
+      "speaker": "c01/SPEAKER_00",
+      "text": "i bon cap d'any i que sabeu que n'hi ha una festa en la plaça, que els que estiguen presents pues saludarem i que tingueu molta salut tots i que passeu una bona nit i cap d'any. Salut."
+    },
+    {
+      "start": 608.5,
+      "end": 610.1,
+      "speaker": "c01/SPEAKER_01",
+      "text": "Bona nit."
+    },
+    {
+      "start": 610.1,
+      "end": 611.5,
+      "speaker": "c01/SPEAKER_02",
+      "text": "Bona nit."
+    },
+    {
+      "start": 611.5,
+      "end": 613,
+      "speaker": "c01/SPEAKER_03",
+      "text": "Bona nit."
     }
   ],
   "rows": [],
@@ -710,14 +734,9 @@
   ],
   "stats": {
     "chunksExpected": 2,
-    "chunksTranscribed": 1,
-    "failedChunks": [
-      {
-        "chunk": 1,
-        "why": "never attempted (call budget spent; resumes next run)"
-      }
-    ],
-    "labelsSeen": 3,
+    "chunksTranscribed": 2,
+    "failedChunks": [],
+    "labelsSeen": 4,
     "rowsAccepted": 0,
     "rowsRejected": 3,
     "rejectedBy": {
@@ -726,6 +745,6 @@
     },
     "attemptedThisRun": 1,
     "apiCalls": 1,
-    "coverage": 0.915344926428434
+    "coverage": 0.9401872730747172
   }
 }
