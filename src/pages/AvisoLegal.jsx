@@ -234,18 +234,20 @@ export default function AvisoLegal() {
         <p>
           <strong>Con qué evidencia.</strong> Quien sube cita el registro público que lo sostiene
           —un contrato adjudicado de la Plataforma de Contratación del Sector Público, una
-          convocatoria de la Base de Datos Nacional de Subvenciones o un punto del orden del día de
-          un pleno, tal como lo publica el Ayuntamiento—, enlazado en la tarjeta. La descripción de
-          ese registro la escribe la herramienta desde el propio registro, no la persona; la
-          explicación bajo la cita la escribe la persona, y nunca se publica tal cual la de una
-          máquina.
+          convocatoria de la Base de Datos Nacional de Subvenciones, un punto del orden del día de
+          un pleno, tal como lo publica el Ayuntamiento, o la licitación de un sistema dinámico de
+          adquisición—, enlazado en la tarjeta. La descripción de ese registro la escribe la
+          herramienta desde el propio registro, no la persona; la explicación bajo la cita la
+          escribe la persona, y nunca se publica tal cual la de una máquina.
         </p>
         <p>
           <strong>Qué afirma, y qué no.</strong> Un veredicto subido afirma que el registro citado
           sostiene lo que dice su explicación; en un «parcial», la explicación dice también lo que
           el registro no establece. Un punto del orden del día afirma que el asunto se llevó a esa
-          sesión, no que se aprobara ni que una cifra sea cierta. No afirma que todo lo dicho en la
-          intervención sea cierto, ni califica a quien lo dijo.{' '}
+          sesión, no que se aprobara ni que una cifra sea cierta; la licitación de un sistema
+          dinámico de adquisición, que el Ayuntamiento lo abrió con ese alcance, no que lo aprobara
+          un pleno ni que se use. No afirma que todo lo dicho en la intervención sea cierto, ni
+          califica a quien lo dijo.{' '}
           <strong>Nunca se sube por esta vía una acusación pública</strong>: lo que se afirma de
           alguien con datos va en un hallazgo, con sus documentos y el derecho de réplica de quien
           aparece aludido.
