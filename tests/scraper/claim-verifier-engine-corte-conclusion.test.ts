@@ -110,6 +110,18 @@ describe('la explicación de un sin-datos que concluye el razonamiento', () => {
     }
   })
 
+  it('si el recorte de siempre ya lleva la conclusión —el razonamiento cabe entero—, se publica ése', async () => {
+    // Entero, el razonamiento dice por qué no hay respaldo; su última frase sola, no.
+    const razonamiento =
+      'La afirmación dice que el polideportivo se reformó en 2024. ' +
+      'El candidato [0] es el contrato de limpieza del polideportivo, de 2023, y no habla de ninguna reforma. ' +
+      'Ningún candidato respalda la afirmación.'
+    expect(razonamiento.length).toBeLessThanOrEqual(RESUMEN_MAX)
+    const r = await juzgar(FILAS[0].claim, FILAS[0].candidatos, comoAquelDia(razonamiento))
+    expect(r!.sinDatosPorque).toBe('razonamiento')
+    expect(r!.verification.summary).toBe(razonamiento)
+  })
+
   it('una conclusión más larga que el tope se corta tras una palabra entera y lo dice con «…»', async () => {
     const larga =
       'Ningún candidato respalda genuinamente la afirmación: ' +
@@ -117,7 +129,11 @@ describe('la explicación de un sin-datos que concluye el razonamiento', () => {
       'de los polígonos industriales del término, con importes y fechas que no guardan relación con la obra ' +
       'que se menciona en el pleno ni con el plazo que el orador atribuye a la Generalitat para terminarla antes del verano.'
     expect(larga.length).toBeGreaterThan(RESUMEN_MAX)
-    const razonamiento = `La afirmación habla de una obra. ${larga}`
+    // Como los de verdad: arranca repitiendo la declaración, y el recorte de
+    // siempre se queda en esa frase, sin la conclusión.
+    const razonamiento =
+      'La afirmación habla de una obra de reforma en el pabellón municipal que, según el orador, ' +
+      `la Generalitat debía haber terminado antes del verano pasado. ${larga}`
     const r = await juzgar(FILAS[0].claim, FILAS[0].candidatos, comoAquelDia(razonamiento))
     const s = r!.verification.summary
     expect(s.length).toBeLessThanOrEqual(RESUMEN_MAX)
