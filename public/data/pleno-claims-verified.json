@@ -1,6 +1,6 @@
 {
   "generatedAt": "2026-10-04T07:37:32.197Z",
-  "composedAt": "2026-10-10T20:05:04.587Z",
+  "composedAt": "2026-10-10T20:46:13.802Z",
   "source": {
     "description": "Fact-check verdicts for every pleno-claims-suggestions.json entry. Cross-references against tenders / BDNS / budget / promises. Pure deterministic — no LLM judgement.",
     "contract": "Machine-written verdicts; a curator reviews before surfacing contradicho or promesa-repetida editorially."
@@ -8,16 +8,16 @@
   "stats": {
     "total": 7564,
     "byVerdict": {
-      "verificado": 9,
-      "parcial": 21,
+      "verificado": 10,
+      "parcial": 22,
       "contradicho": 0,
-      "sin-datos": 7534,
+      "sin-datos": 7532,
       "promesa-repetida": 0
     },
     "sinDatosPorque": {
       "sinCorpus": 3331,
       "comprobadoSinHallar": 3035,
-      "noConsta": 1168
+      "noConsta": 1166
     }
   },
   "items": [
@@ -64628,14 +64628,24 @@
       },
       "verification": {
         "claimId": "1sqj7is-081-cit-50c5bb",
-        "verdict": "sin-datos",
-        "summary": "Task completed: provided the requested 2-4 sentence skeptical reasoning in Spanish about whether candidates support the claim, without issuing a final verdict, per instructions.",
-        "evidence": [],
-        "checkedAgainst": [
-          "verdict-engine"
+        "verdict": "verificado",
+        "summary": "El orden del día de la sesión anterior, la ordinaria del 9 de febrero de 2026, llevó en su punto 2 el acuerdo de someter a información pública la versión inicial del PRI de la UE Santa Rosa 2 (expediente 5543/2020/GEN).",
+        "evidence": [
+          {
+            "kind": "agenda",
+            "ref": "https://regmeet.com/aytoribarroja/participaciones/c5b270a763686e776039618cc709f3a6?idioma=castellano",
+            "snippet": "Orden del día del pleno ordinario del 09-02-2026 · parte resolutiva · punto 2: Expedient: 5543/2020/GEN, Acord relatiu al sotmetiment a informació pública de la versió inicial del PRI de la UE Santa Rosa 2",
+            "stance": "checked"
+          }
         ],
-        "confidence": 0.2,
-        "source": "verdict-engine"
+        "checkedAgainst": [
+          "plenos-agendas"
+        ],
+        "derivedBy": [
+          "curator-upgrade"
+        ],
+        "source": "curator-upgrade",
+        "raisedBy": "Sergei Lutchenko"
       }
     },
     {
@@ -119781,14 +119791,31 @@
       },
       "verification": {
         "claimId": "qz6weg-184-cit-8629f9",
-        "verdict": "sin-datos",
-        "summary": "Task was a Spanish-language fact-checking reasoning exercise (not a coding/agentic task), so I answered directly in the response body with 2-4 sentences of skeptical reasoning per the instructions, without issuing a verdict. Candidate [0] offers partial/indirect topical support for the SDA portion o",
-        "evidence": [],
-        "checkedAgainst": [
-          "verdict-engine"
+        "verdict": "parcial",
+        "summary": "En el pleno del 28 de julio de 2025 se llevó, en su parte resolutiva (punto 4), el inicio y la aprobación de la implementación de un sistema dinámico de adquisición de servicios de arquitectura e ingeniería «obert a altres entitats públiques mitjançant el sistema de compra conjunta esporàdica», y el 8 de agosto se abrió su licitación (ESDA1/2025). Respalda que se llevó al pleno pocos meses antes y que se abre a otras entidades públicas; ningún registro habla de una «bolsa de autónomos».",
+        "evidence": [
+          {
+            "kind": "agenda",
+            "ref": "https://regmeet.com/aytoribarroja/participaciones/7535bbb91c8fde347ad861f293126633?idioma=castellano",
+            "snippet": "Orden del día del pleno ordinario del 28-07-2025 · parte resolutiva · punto 4: Expedient 3913/2025/GEN, Inici i aprovació de la implementació d'un Sistema Dinàmic d'Adquisició per a la contractació de servicis d'arquitectura i enginyeria, consultoria i assistència tècnica a les diferents àrees municipals obert a altres entitats públiques mitjançant el sistema de compra conjunta esporàdica",
+            "stance": "checked"
+          },
+          {
+            "kind": "licitacion",
+            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=2N0awhGNBRR%2FR5QFTlaM4A%3D%3D",
+            "snippet": "Licitación de un sistema dinámico de adquisición · Sistema Dinámico de Adquisición para la contratación de SERVICIOS de ARQUITECTURA E INGENIERIA, CONSULTORIA Y ASISTENCIA TÉCNICA a las diferentes áreas municipales abierto a otras entidades públicas mediante el sistema de compra conjunta esporádica con condición especial de ejecución de carácter social y medioambiental contribuyendo al cumplimiento del ODS 9 (ESDA1/2025) · expediente ESDA1/2025 · ofertas desde el 08-08-2025",
+            "stance": "checked"
+          }
         ],
-        "confidence": 0.2,
-        "source": "verdict-engine"
+        "checkedAgainst": [
+          "plenos-agendas",
+          "tenders"
+        ],
+        "derivedBy": [
+          "curator-upgrade"
+        ],
+        "source": "curator-upgrade",
+        "raisedBy": "Sergei Lutchenko"
       }
     },
     {
