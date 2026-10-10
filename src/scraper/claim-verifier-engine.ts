@@ -40,7 +40,7 @@ import { shouldSkipLlmVerification, parseCite, looselyContains } from './claim-v
 import { stripSimilarityAnnotation } from '../llm/candidate-annotation'
 import { corpusDeEvidencia } from './claim-verdicts'
 import { charlaDeTarea } from './charla-de-tarea'
-import { conclusionSinRespaldo } from './conclusion-sin-respaldo'
+import { conclusionSinRespaldo, dondeConcluye } from './conclusion-sin-respaldo'
 
 /**
  * El razonamiento habla de la tarea del modelo y no de la declaración: no es
@@ -114,24 +114,15 @@ function quedaAlgoAbierto(t: string): boolean {
 }
 
 /**
- * La explicación del motor, recortada al tope sin partir una palabra.
- *
- * Se guardaba `reasoning.slice(0, 300)`, y la tarjeta la pinta tal cual: el
- * 04-10-2026, de las 293 explicaciones re-derivadas para #185 y #196, 289
- * acababan a media palabra («…de servicios cuyo», «…(Ecnor). No»), y una frase
- * cortada puede decir lo contrario de la entera. Ahora: la última frase entera
- * que cabe; un punto tras una abreviatura («Sr.», «art.») o una inicial no acaba
- * frase, ni el que cae dentro de un paréntesis o unas comillas abiertos, y el de
- * una cifra (11.553,08) no va seguido de espacio. Si no cabe
- * ninguna frase —o la única que cabe es muy corta—, se corta tras una palabra
- * entera y se dice con «…».
+ * Dónde acaba cada frase de `t`, ya con los espacios normalizados: el índice
+ * justo tras su signo y sus cierres. Un punto tras una abreviatura («Sr.»,
+ * «art.») o una inicial no acaba frase, ni el que cae dentro de un paréntesis o
+ * unas comillas abiertos, y el de una cifra (11.553,08) no va seguido de espacio.
  */
-export function recortarResumen(texto: string, max = RESUMEN_MAX): string {
-  const t = texto.replace(/\s+/g, ' ').trim()
-  if (t.length <= max) return t
-  let fin = -1
+function finesDeFrase(t: string): number[] {
+  const fines: number[] = []
   const finDeFrase = /[.!?]["»”)]*(?= )/g
-  for (let m = finDeFrase.exec(t); m && m.index + m[0].length <= max; m = finDeFrase.exec(t)) {
+  for (let m = finDeFrase.exec(t); m; m = finDeFrase.exec(t)) {
     if (m[0][0] === '.') {
       const antes = t
         .slice(0, m.index)
@@ -140,13 +131,52 @@ export function recortarResumen(texto: string, max = RESUMEN_MAX): string {
       if (antes && (antes.length === 1 || ABREVIATURAS.has(antes))) continue
     }
     if (quedaAlgoAbierto(t.slice(0, m.index + m[0].length))) continue
-    fin = m.index + m[0].length
+    fines.push(m.index + m[0].length)
   }
+  return fines
+}
+
+/**
+ * La explicación del motor, recortada al tope sin partir una palabra.
+ *
+ * Se guardaba `reasoning.slice(0, 300)`, y la tarjeta la pinta tal cual: el
+ * 04-10-2026, de las 293 explicaciones re-derivadas para #185 y #196, 289
+ * acababan a media palabra («…de servicios cuyo», «…(Ecnor). No»), y una frase
+ * cortada puede decir lo contrario de la entera. Ahora: la última frase entera
+ * que cabe (`finesDeFrase`). Si no cabe ninguna frase —o la única que cabe es
+ * muy corta—, se corta tras una palabra entera y se dice con «…».
+ */
+export function recortarResumen(texto: string, max = RESUMEN_MAX): string {
+  const t = texto.replace(/\s+/g, ' ').trim()
+  if (t.length <= max) return t
+  const fin = Math.max(-1, ...finesDeFrase(t).filter((f) => f <= max))
   if (fin >= max / 3) return t.slice(0, fin)
   const corte = t.slice(0, max - 1)
   const espacio = corte.lastIndexOf(' ')
   const entero = espacio > 0 ? corte.slice(0, espacio) : corte
   return entero.replace(/[\s,;:(«"“-]+$/u, '') + '…'
+}
+
+/**
+ * La explicación de un `sin-datos` que concluye el razonamiento: la frase donde
+ * el modelo concluye que nada respalda la declaración (`dondeConcluye`), con el
+ * mismo tope que `recortarResumen`; o `null` si no concluye.
+ *
+ * El razonamiento empieza repitiendo la declaración y concluye al final, así que
+ * recortarlo por el principio publicaba bajo la cita una frase que la repite —y
+ * que se lee como si el motor la afirmara— sin decir por qué se retracta. Medido
+ * el 10-10-2026 sobre los 56 razonamientos «sin respaldo» de esa noche
+ * (tests/fixtures/motor-corte-conclusion_2026-10-10.json): el recorte llevaba la
+ * conclusión en 5, y la frase de la conclusión cabe en el tope en las 56.
+ */
+export function resumenDeLaConclusion(razonamiento: string, max = RESUMEN_MAX): string | null {
+  const t = razonamiento.replace(/\s+/g, ' ').trim()
+  const donde = dondeConcluye(t)
+  if (!donde) return null
+  const fines = finesDeFrase(t)
+  const inicio = fines.filter((f) => f <= donde.indice).pop() ?? 0
+  const fin = fines.find((f) => f > donde.indice) ?? t.length
+  return recortarResumen(t.slice(inicio, fin), max)
 }
 
 export interface EngineCite {
@@ -237,11 +267,15 @@ function sinDatos(
   evidence: ClaimEvidence[],
   sinDatosPorque: SinDatosPorque,
 ): EngineResult {
+  // Si lo concluye el razonamiento, la explicación es la frase de esa conclusión.
+  const summary =
+    (sinDatosPorque === 'razonamiento' && resumenDeLaConclusion(reasoning)) ||
+    recortarResumen(reasoning)
   return {
     verification: {
       claimId,
       verdict: 'sin-datos',
-      summary: recortarResumen(reasoning),
+      summary,
       evidence,
       checkedAgainst: corpusDeEvidencia(evidence),
       derivedBy: ['verdict-engine'],
