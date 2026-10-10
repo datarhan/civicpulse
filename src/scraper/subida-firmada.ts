@@ -37,6 +37,15 @@
  *  · Un registro que no está en el corpus, un enlace de varios lotes sin decir
  *    cuál, o un contrato que no está adjudicado ni formalizado: la fila diría
  *    «adjudicado» de algo que no lo está.
+ *  · Desde el 10-10-2026, también un punto del orden del día de un pleno
+ *    (`plenos-agendas.json`): una declaración sobre lo que se llevó a un pleno
+ *    sólo la sostiene un orden del día o un acta, y de actas no hay corpus. La
+ *    sesión se nombra por su enlace y el punto con `--punto`; la fila dice la
+ *    sesión, su fecha, su parte y el título entero, y nunca que se aprobara. Un
+ *    orden del día posterior a la declaración no la sostiene, y sin un registro
+ *    que diga un importe una declaración con cifra no llega a `verificado`
+ *    (`comprobarRegistrosConLaDeclaracion`). Diseño:
+ *    docs/superpowers/specs/2026-10-10-orden-del-dia-evidencia-design.md.
  *  · Un resumen de menos de 20 caracteres, con charla de la tarea de un modelo, o
  *    que es el de una máquina tal cual.
  *  · Sin evidencia: el suelo vale también para una persona.
@@ -50,6 +59,7 @@
  */
 import { isCommittedContract } from '../lib/contract-status.js'
 import { charlaDeTarea } from './charla-de-tarea'
+import type { PlenoSection } from './pleno-agenda'
 import { corpusDeEvidencia, esTextoDeMaquina, type ClaimVerdict } from './claim-verdicts'
 import type { ClaimEvidence, ClaimVerification } from './claim-verifier'
 import { rechazoDeFirma } from './firma-de-persona'
@@ -67,18 +77,43 @@ export const CANAL_DE_LA_SUBIDA = 'curator-upgrade' as const
 
 // ─── La evidencia: la elige la persona, la escribe el registro ──────────────
 
-/** Los dos ficheros del corpus de los que esta vía cita registros, tal cual. */
+/** Los ficheros del corpus de los que esta vía cita registros, tal cual. */
 export interface CorpusCitable {
   /** `public/data/tenders.json`: `contracts` (adjudicaciones) y `tenders` (licitaciones). */
   tenders: unknown
   /** `public/data/bdns.json`. */
   bdns: unknown
+  /**
+   * `public/data/plenos-agendas.json`, los órdenes del día de los plenos. Sin él,
+   * una sesión no está en el corpus.
+   */
+  agendas?: unknown
 }
 
-/** Un registro pedido por su enlace público y, si el enlace lleva a varios lotes, el lote. */
+/**
+ * Un registro pedido por su enlace público y, si el enlace lleva a varios lotes,
+ * el lote; si lleva a una sesión del pleno, el punto de su orden del día.
+ */
 export interface EvidenciaPedida {
   enlace: string
   lote: number | null
+  punto?: number | null
+}
+
+/**
+ * Un registro citado: su fila, y lo que de él hace falta para saber qué puede
+ * sostener de una declaración (`comprobarRegistrosConLaDeclaracion`).
+ */
+export interface RegistroDeLaSubida {
+  fila: ClaimEvidence
+  /**
+   * La fecha que acota lo que el registro puede sostener: la de la sesión de un
+   * orden del día. `null` en un contrato o una convocatoria, que esta vía nunca
+   * acotó por fecha.
+   */
+  fecha: string | null
+  /** ¿Dice la fila un importe? Sólo un contrato con el suyo. */
+  diceImporte: boolean
 }
 
 interface FilaContrato {
@@ -105,6 +140,43 @@ interface FilaBdns {
   sourceUrl?: string
   url?: string
 }
+
+interface FilaPunto {
+  number?: number
+  title?: string
+  section?: PlenoSection
+}
+
+interface FilaSesion {
+  id?: string
+  date?: string
+  kind?: string
+  link?: string
+  agenda?: FilaPunto[]
+}
+
+/**
+ * La parte del orden del día, como la publica la convocatoria —«PARTE
+ * RESOLUTIVA», «PARTE DE INFORMACIÓN, IMPULSO Y CONTROL…», «Ruegos y
+ * preguntas»—, o `null` si no la dice: entonces la fila no nombra ninguna.
+ */
+const PARTE_DEL_ORDEN_DEL_DIA: Record<PlenoSection, string | null> = {
+  resolutiva: 'parte resolutiva',
+  informativa: 'parte de información y control',
+  ruegos: 'ruegos y preguntas',
+  apertura: null,
+  otro: null,
+}
+
+/** El tipo de sesión, como lo dice el índice de plenos; uno que no conste no se nombra. */
+const TIPO_DE_SESION: Readonly<Record<string, string>> = {
+  ordinario: 'pleno ordinario',
+  extraordinario: 'pleno extraordinario',
+  urgente: 'pleno urgente',
+}
+
+/** El enlace sin su consulta (`?idioma=…`) ni la barra final: una sesión es su ruta. */
+const sinConsulta = (url: string) => url.split(/[?#]/)[0].replace(/\/+$/, '')
 
 /**
  * El tope de un snippet publicado: el de `toPublishedSnippet` (claim-verifier.ts)
@@ -180,22 +252,99 @@ function lineaDeLote(f: FilaContrato): string {
   )
 }
 
+/** Una línea por punto, para que quien firma elija el suyo. */
+function lineaDePunto(p: FilaPunto): string {
+  const titulo = espacios(p.title)
+  return `  · punto ${p.number ?? '¿?'} · ${titulo.length > 80 ? `${titulo.slice(0, 80)}…` : titulo}`
+}
+
 /**
- * La fila de evidencia del registro que nombra `enlace`, escrita desde el
- * registro. Lanza, con el porqué, si el registro no se puede citar por esta vía.
+ * La fila de un punto del orden del día: la sesión, su fecha, su parte, el
+ * número y el título entero, tal y como lo publica la convocatoria —en su
+ * lengua—. Nunca dice que se aprobara: el resultado es otro registro, con otra
+ * procedencia. El título no se corta: es el registro, y hay puntos de casi 900
+ * caracteres cuyo objeto está al final.
+ */
+function registroDelOrdenDelDia(
+  sesion: FilaSesion,
+  enlace: string,
+  pedida: EvidenciaPedida,
+): RegistroDeLaSubida {
+  if (pedida.lote != null) {
+    throw new Error(
+      `--lote ${pedida.lote}, pero ${enlace} es una sesión del pleno: el punto de su orden del ` +
+        'día se elige con --punto <n>',
+    )
+  }
+  const puntos = lista<FilaPunto>(sesion.agenda)
+  const pedido = pedida.punto ?? null
+  if (pedido == null) {
+    throw new Error(
+      `${enlace} es una sesión del pleno con ${puntos.length} punto(s) en su orden del día, y el ` +
+        `enlace solo no dice cuál citas: elígelo con --punto <n>.\n${puntos.map(lineaDePunto).join('\n')}`,
+    )
+  }
+  const punto = puntos.find((p) => p?.number === pedido)
+  if (!punto) {
+    throw new Error(
+      `${enlace} no tiene un punto ${pedido}; los que tiene:\n${puntos.map(lineaDePunto).join('\n')}`,
+    )
+  }
+  const fecha = dia(sesion.date)
+  if (!fecha) {
+    throw new Error(
+      `${enlace}: la sesión no tiene fecha en plenos-agendas.json, y sin ella no se sabe si es ` +
+        'anterior a lo que se dijo',
+    )
+  }
+  const titulo = espacios(punto.title)
+  if (!titulo) throw new Error(`${enlace}: el punto ${pedido} no tiene título que citar`)
+  const tipo = TIPO_DE_SESION[String(sesion.kind)] ?? 'pleno'
+  const parte = punto.section ? PARTE_DEL_ORDEN_DEL_DIA[punto.section] : null
+  return {
+    fila: {
+      kind: 'agenda',
+      ref: String(sesion.link),
+      snippet:
+        `Orden del día del ${tipo} del ${fecha}${parte ? ` · ${parte}` : ''} · ` +
+        `punto ${pedido}: ${titulo}`,
+      stance: 'checked',
+    },
+    fecha: String(sesion.date).slice(0, 10),
+    diceImporte: false,
+  }
+}
+
+/**
+ * El registro que nombra `enlace`, con su fila escrita desde el registro. Lanza,
+ * con el porqué, si el registro no se puede citar por esta vía.
  *
  * El `snippet` nunca lo teclea quien firma: un resumen puede equivocarse, y
  * entonces lo dice su firma; una fila que dijera del registro lo que el registro
  * no dice sería otra cosa.
  */
-export function evidenciaDelRegistro(
+export function registroDeLaSubida(
   pedida: EvidenciaPedida,
   corpus: CorpusCitable,
-): ClaimEvidence {
+): RegistroDeLaSubida {
   const enlace = (pedida.enlace ?? '').trim()
   const lotePedido = pedida.lote
   if (!/^https?:\/\//.test(enlace)) {
     throw new Error(`«${enlace}» no es un enlace: el registro se nombra por su enlace público`)
+  }
+
+  const agendas = corpus.agendas as { plenos?: unknown } | null | undefined
+  const sesion = lista<FilaSesion>(agendas?.plenos).find(
+    (r) => typeof r?.link === 'string' && sinConsulta(r.link) === sinConsulta(enlace),
+  )
+  if (sesion) return registroDelOrdenDelDia(sesion, enlace, pedida)
+  if (pedida.punto != null) {
+    // «No está entre los órdenes del día», no «no es una sesión»: sin
+    // plenos-agendas.json en disco no se sabe qué es.
+    throw new Error(
+      `--punto ${pedida.punto}, pero ${enlace} no está entre los órdenes del día del corpus ` +
+        '(plenos-agendas.json): --punto elige un punto del orden del día de una sesión del pleno',
+    )
   }
 
   const bdns = corpus.bdns as { items?: unknown } | null
@@ -209,10 +358,14 @@ export function evidenciaDelRegistro(
     const fecha = dia(convocatoria.date)
     const cola = `convocatoria BDNS ${convocatoria.bdnsCode ?? '¿?'}${fecha ? ` del ${fecha}` : ''}`
     return {
-      kind: 'bdns',
-      ref: enlace,
-      snippet: conTitulo(espacios(convocatoria.description), cola),
-      stance: 'checked',
+      fila: {
+        kind: 'bdns',
+        ref: enlace,
+        snippet: conTitulo(espacios(convocatoria.description), cola),
+        stance: 'checked',
+      },
+      fecha: null,
+      diceImporte: false,
     }
   }
 
@@ -232,7 +385,8 @@ export function evidenciaDelRegistro(
       )
     }
     throw new Error(
-      `${enlace} no está en tenders.json ni en bdns.json: esta vía sólo cita registros del corpus publicado`,
+      `${enlace} no está en tenders.json, ni en bdns.json, ni entre los órdenes del día: esta ` +
+        'vía sólo cita registros del corpus publicado',
     )
   }
 
@@ -266,10 +420,68 @@ export function evidenciaDelRegistro(
     )
   }
   return {
-    kind: 'tender',
-    ref: enlace,
-    snippet: filaDeContrato(fila, contratos.length > 1, expediente),
-    stance: 'checked',
+    fila: {
+      kind: 'tender',
+      ref: enlace,
+      snippet: filaDeContrato(fila, contratos.length > 1, expediente),
+      stance: 'checked',
+    },
+    fecha: null,
+    diceImporte: positivo(fila.finalAmount) != null || positivo(fila.finalAmountNoTaxes) != null,
+  }
+}
+
+/** La fila de evidencia del registro que nombra `enlace` (`registroDeLaSubida`). */
+export function evidenciaDelRegistro(
+  pedida: EvidenciaPedida,
+  corpus: CorpusCitable,
+): ClaimEvidence {
+  return registroDeLaSubida(pedida, corpus).fila
+}
+
+/**
+ * Lo que los registros citados pueden sostener de la declaración que se sube.
+ * Lanza, con el porqué, si no llegan:
+ *
+ *  · un registro con fecha —la sesión de un orden del día— posterior a la
+ *    declaración no sostiene lo que se dijo antes de él; una promesa cumplida es
+ *    otra afirmación, y se sigue en /promesas;
+ *  · si la declaración trae una cifra y ninguna fila citada dice un importe, la
+ *    subida no llega a `verificado`: un orden del día o una convocatoria no
+ *    establecen la cifra. `parcial` sí, y el resumen dice que no consta.
+ *
+ * Sin la fecha de la declaración no se sabe si un registro con fecha es
+ * posterior, y no se sube.
+ */
+export function comprobarRegistrosConLaDeclaracion(
+  registros: readonly RegistroDeLaSubida[],
+  declaracion: { fecha: string | null; conImporte: boolean },
+  veredicto: ClaimVerdict,
+): void {
+  const dicha = declaracion.fecha ? String(declaracion.fecha).slice(0, 10) : null
+  for (const r of registros) {
+    if (r.fecha == null) continue
+    if (dicha == null) {
+      throw new Error(
+        `${r.fila.ref}: la declaración no tiene fecha, y sin ella no se sabe si el registro es posterior`,
+      )
+    }
+    if (r.fecha > dicha) {
+      throw new Error(
+        `${r.fila.ref}: el registro es del ${dia(r.fecha)}, posterior a la declaración ` +
+          `(${dia(dicha)}): no sostiene lo que se dijo antes de él`,
+      )
+    }
+  }
+  if (
+    declaracion.conImporte &&
+    veredicto === 'verificado' &&
+    !registros.some((r) => r.diceImporte)
+  ) {
+    throw new Error(
+      'la declaración cita un importe y ningún registro citado dice uno: no llega a verificado. ' +
+        'Como mucho, parcial, y el resumen dice que la cifra no consta.',
+    )
   }
 }
 

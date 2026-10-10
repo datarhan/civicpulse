@@ -626,8 +626,11 @@ export function validateOverlay(o: Overlay): void {
   }
 }
 
-/** Las clases de evidencia que una subida firmada puede citar: las de esta vía. */
-const KINDS_DE_LA_SUBIDA: readonly string[] = ['tender', 'bdns']
+/**
+ * Las clases de evidencia que una subida firmada puede citar: las de esta vía.
+ * Desde el 10-10-2026, también un punto del orden del día de un pleno.
+ */
+const KINDS_DE_LA_SUBIDA: readonly string[] = ['tender', 'bdns', 'agenda']
 
 /**
  * Una subida firmada, escrita por la CLI o a mano: el validador no se fía de
@@ -671,7 +674,8 @@ function validarSubida(id: string, e: OverlayEntry): void {
     const at = `${donde}.evidence[${i}]`
     if (!KINDS_DE_LA_SUBIDA.includes(ev?.kind)) {
       throw new Error(
-        `${at}: una subida firmada cita un contrato o una convocatoria de la BDNS, no ${String(ev?.kind)}`,
+        `${at}: una subida firmada cita un contrato, una convocatoria de la BDNS o un punto del ` +
+          `orden del día de un pleno, no ${String(ev?.kind)}`,
       )
     }
     if (typeof ev.ref !== 'string' || !/^https?:\/\//.test(ev.ref)) {

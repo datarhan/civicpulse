@@ -5,7 +5,7 @@
  * retira una subida suya.
  *
  *   npm run subir-veredicto -- <claimId> <parcial|verificado> \
- *       --evidencia '<enlace del registro>' [--lote <n>] [--evidencia '<otro>' …] \
+ *       --evidencia '<enlace del registro>' [--lote <n> | --punto <n>] [--evidencia '<otro>' …] \
  *       --resumen-de <fichero> --editor "<Nombre Apellido>" [--dry-run]
  *   npm run subir-veredicto -- --retirar <claimId> \
  *       --motivo-de <fichero> --editor "<Nombre Apellido>" [--dry-run]
@@ -33,8 +33,13 @@
  *  · la declaración tiene que constar en alguna transcripción de su sesión: la
  *    que no consta la retiene la puerta (`idsSinProcedencia`, la misma pregunta
  *    que hace `chunk-pleno-claims`);
- *  · cada `--evidencia` tiene que estar en el corpus (`evidenciaDelRegistro`), y
- *    la fila la escribe el registro;
+ *  · cada `--evidencia` tiene que estar en el corpus (`registroDeLaSubida`), y
+ *    la fila la escribe el registro: un contrato (con `--lote` si el enlace lleva
+ *    a varios), una convocatoria de la BDNS o, desde el 10-10-2026, un punto del
+ *    orden del día de un pleno (`--punto`);
+ *  · un orden del día posterior a la declaración no la sostiene, y una
+ *    declaración con cifra no llega a `verificado` si ningún registro citado dice
+ *    un importe (`comprobarRegistrosConLaDeclaracion`);
  *  · el resumen no puede ser el de una máquina: el de la base, el de una entrada
  *    del overlay que no firmó una persona, o la propuesta de NLI de esa
  *    declaración si la cola está en disco.
@@ -50,7 +55,8 @@ import type { ClaimVerdict } from '../src/scraper/claim-verdicts'
 import type { ClaimEvidence } from '../src/scraper/claim-verifier'
 import { rechazoDeFirma } from '../src/scraper/firma-de-persona'
 import {
-  evidenciaDelRegistro,
+  comprobarRegistrosConLaDeclaracion,
+  registroDeLaSubida,
   retirarSubida,
   subirVeredicto,
   type EvidenciaPedida,
@@ -68,12 +74,13 @@ import { OVERLAY, rebuildVerified } from './verified-rebuild'
 
 const TENDERS = resolve('public/data/tenders.json')
 const BDNS = resolve('public/data/bdns.json')
+const AGENDAS = resolve('public/data/plenos-agendas.json')
 
 const VEREDICTOS_DE_SUBIDA = ['parcial', 'verificado']
 
 const USO =
   'uso: npm run subir-veredicto -- <claimId> <parcial|verificado> \\\n' +
-  "         --evidencia '<enlace del registro>' [--lote <n>] [--evidencia '<otro>' …] \\\n" +
+  "         --evidencia '<enlace del registro>' [--lote <n> | --punto <n>] [--evidencia '<otro>' …] \\\n" +
   '         --resumen-de <fichero> --editor "<Nombre Apellido>" [--dry-run]\n' +
   '     npm run subir-veredicto -- --retirar <claimId> --motivo-de <fichero> \\\n' +
   '         --editor "<Nombre Apellido>" [--dry-run]\n'
@@ -111,6 +118,14 @@ function parse(argv: string[]): Orden {
       else if (!Number.isInteger(n) || n < 1)
         o.errores.push(`--lote «${argv[i]}»: un número de lote, 1 o más`)
       else ultima.lote = n
+    } else if (a === '--punto') {
+      const n = Number(argv[++i])
+      const ultima = o.evidencias[o.evidencias.length - 1]
+      if (!ultima) o.errores.push('--punto va detrás de la --evidencia cuya sesión elige')
+      else if (ultima.punto != null) o.errores.push('cada --evidencia lleva como mucho un --punto')
+      else if (!Number.isInteger(n) || n < 1)
+        o.errores.push(`--punto «${argv[i]}»: un número de punto del orden del día, 1 o más`)
+      else ultima.punto = n
     } else if (a === '--resumen') o.resumen = argv[++i]
     else if (a === '--resumen-de') o.resumenDe = argv[++i]
     else if (a === '--motivo') o.motivo = argv[++i]
@@ -231,9 +246,19 @@ async function main() {
       const corpus = {
         tenders: leerJson(TENDERS, 'los contratos'),
         bdns: leerJson(BDNS, 'las convocatorias de la BDNS'),
+        // Sin él, una sesión no está en el corpus: lo dice `registroDeLaSubida`.
+        agendas: existsSync(AGENDAS) ? leerJson(AGENDAS, 'los órdenes del día') : null,
       }
-      const evidencia: ClaimEvidence[] = []
-      for (const pedida of o.evidencias) evidencia.push(evidenciaDelRegistro(pedida, corpus))
+      const registros = o.evidencias.map((pedida) => registroDeLaSubida(pedida, corpus))
+      comprobarRegistrosConLaDeclaracion(
+        registros,
+        {
+          fecha: enPublicado.claim.plenoDate ?? null,
+          conImporte: enPublicado.claim.entities?.amountEuros != null,
+        },
+        o.veredicto as ClaimVerdict,
+      )
+      const evidencia: ClaimEvidence[] = registros.map((r) => r.fila)
       nuevo = subirVeredicto(
         c.capas.overlay,
         {

@@ -41,6 +41,7 @@ function EvidenceRow({ e, cifra }) {
       budget: 'Presupuesto',
       promise: 'Promesa documentada',
       'prior-claim': 'Pleno anterior',
+      agenda: 'Orden del día',
     }[e.kind] || e.kind
   const body = (
     <>

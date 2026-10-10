@@ -179,6 +179,11 @@ export const EVIDENCE_KINDS = [
   'prior-claim',
   'factcheck',
   'boe',
+  // Un punto del orden del día de un pleno (plenos-agendas.json). Sólo lo cita
+  // la subida firmada, desde el 10-10-2026: una declaración sobre lo que se llevó
+  // a un pleno sólo la sostiene un orden del día o un acta, y de actas no hay
+  // corpus (src/scraper/subida-firmada.ts).
+  'agenda',
 ] as const
 
 export type EvidenceKind = (typeof EVIDENCE_KINDS)[number]
