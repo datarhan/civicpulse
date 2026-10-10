@@ -23,7 +23,7 @@
  */
 import { ALLOWED_CLAIM_TYPES, type ClaimType, type PlenoClaim } from './pleno-claim'
 import type { ClaimVerdict, ClaimVerification, ClaimEvidence } from './claim-verifier'
-import { corpusDeEvidencia, corpusReales } from './claim-verdicts'
+import { corpusDeEvidencia, corpusReales, esTextoDeMaquina } from './claim-verdicts'
 import { charlaDeTarea } from './charla-de-tarea'
 // Sólo valor: trinquete.ts importa de aquí únicamente tipos, así que no hay
 // ciclo en ejecución.
@@ -84,6 +84,8 @@ export interface VerificacionPublicada extends ClaimVerification {
    * Quién firmó la última enmienda del motivo, si la hay: siempre una persona
    * con su nombre (`validarEnmiendas`). Es otra firma que la de la bajada: la
    * de quien reescribió la explicación, no la de quien decidió el veredicto.
+   * Desde el 10-10-2026 la lleva también una retractación del motor cuya
+   * explicación reescribió una persona (`enmendarMotivoDeBajada`).
    */
   reasonSignedBy?: string
   /**
@@ -264,8 +266,11 @@ function publicadaDesde(e: OverlayEntry): VerificacionPublicada {
   if (e.source === 'curator-upgrade') {
     return typeof e.editor === 'string' ? { ...v, raisedBy: e.editor } : v
   }
-  if (e.source !== 'curator-downgrade') return v
   const ultima = e.reasonAmendments?.[e.reasonAmendments.length - 1]
+  // La explicación de una retractación del motor que reescribió una persona:
+  // el veredicto sigue siendo del motor, y viaja quién firmó la explicación.
+  if (e.source === 'verdict-engine') return ultima ? { ...v, reasonSignedBy: ultima.editor } : v
+  if (e.source !== 'curator-downgrade') return v
   return {
     ...v,
     downgradedBy: claseDeFirma(e.editor),
@@ -737,16 +742,52 @@ function validarRetirada(id: string, e: OverlayEntry): void {
 const FECHA_ISO = /^\d{4}-\d{2}-\d{2}/
 
 /**
+ * Lo que una enmienda sustituye: en una bajada de curador, su motivo, que es
+ * también el resumen que imprime la tarjeta; en una retractación del motor, la
+ * explicación que publica, porque su `reason` es el registro de lo que decidió
+ * el motor y no se reescribe a nombre de nadie.
+ */
+function textoEnmendable(e: Pick<OverlayEntry, 'source' | 'reason' | 'verification'>): string {
+  return e.source === 'verdict-engine' ? (e.verification.summary ?? '') : (e.reason ?? '')
+}
+
+/**
+ * Quién firmó la explicación que publica esta entrada, si la reescribió una
+ * persona —la firma de su última enmienda—, o `null` si es la que escribió su
+ * canal. Lo que firmó una persona no lo reescribe una pasada: lo miran el
+ * overlay al escribir y el motor al elegir qué re-deriva, recorta o devuelve
+ * (decision-del-motor.ts).
+ */
+export function explicacionFirmadaPor(
+  e: Pick<OverlayEntry, 'reasonAmendments'> | null | undefined,
+): string | null {
+  const lista = e?.reasonAmendments
+  const ultima = Array.isArray(lista) ? lista[lista.length - 1] : undefined
+  return typeof ultima?.editor === 'string' ? ultima.editor : null
+}
+
+/**
  * Las enmiendas de una entrada, escritas a mano o por la CLI: el validador no
- * se fía de ninguna. Las mismas reglas que las de /hallazgos, más dos que sólo
- * tiene el overlay: únicamente las lleva una bajada de curador, y la tarjeta
- * imprime el RESUMEN, así que tiene que ser el motivo enmendado.
+ * se fía de ninguna. Las mismas reglas que las de /hallazgos, más las que sólo
+ * tiene el overlay: las lleva una bajada de curador —y la tarjeta imprime el
+ * RESUMEN, así que tiene que ser el motivo enmendado— o, desde el 10-10-2026,
+ * una retractación del motor en `sin-datos`, cuya explicación reescribió una
+ * persona. En ésa lo enmendado es el resumen: su `reason` es el registro del
+ * motor y no se toca.
  */
 function validarEnmiendas(id: string, e: OverlayEntry): void {
   const donde = `[overlay] ${id}`
-  if (e.source !== 'curator-downgrade') {
+  const delMotor = e.source === 'verdict-engine'
+  if (e.source !== 'curator-downgrade' && !delMotor) {
     throw new Error(
-      `${donde}: sólo una bajada de curador lleva enmiendas de motivo (esta entrada es de ${e.source})`,
+      `${donde}: sólo una bajada de curador o una retractación del motor lleva enmiendas ` +
+        `(esta entrada es de ${e.source})`,
+    )
+  }
+  if (delMotor && e.verification.verdict !== 'sin-datos') {
+    throw new Error(
+      `${donde}: una retractación del motor sólo lleva una explicación firmada en sin-datos ` +
+        `(publica ${e.verification.verdict})`,
     )
   }
   const lista = e.reasonAmendments
@@ -786,12 +827,12 @@ function validarEnmiendas(id: string, e: OverlayEntry): void {
     }
     previa = cuando
   })
-  if (lista[lista.length - 1].previous === reasonDigest(e.reason ?? '')) {
+  if (lista[lista.length - 1].previous === reasonDigest(textoEnmendable(e))) {
     throw new Error(
       `${donde}: la última enmienda no cambió nada — su huella es la del motivo vigente`,
     )
   }
-  if (e.verification.summary !== e.reason) {
+  if (!delMotor && e.verification.summary !== e.reason) {
     throw new Error(
       `${donde}: el resumen publicado no es el motivo enmendado, y la tarjeta imprime el resumen`,
     )
@@ -988,6 +1029,19 @@ export function applyOverlayEntries(
           '`npm run subir-veredicto -- --retirar` o `npm run downgrade-verdict`.',
       )
     }
+    // Tampoco la explicación que reescribió una persona: el motivo enmendado de
+    // una bajada o la explicación firmada de una retractación del motor. Una
+    // re-derivación la sustituiría entera con el razonamiento de una máquina.
+    // Sólo la cambia otra persona: otra enmienda, otra bajada, una subida
+    // firmada o una retirada.
+    const firmoLaExplicacion = explicacionFirmadaPor(previa)
+    if (firmoLaExplicacion && e.source !== 'curator-downgrade' && !etapa?.firmaEnLaEntrada) {
+      throw new Error(
+        `[overlay] ${e.claimId}: «${e.source}» sustituiría la explicación que firmó ` +
+          `${firmoLaExplicacion}. Lo que firmó una persona sólo lo cambia una persona: otra ` +
+          'enmienda (`npm run downgrade-verdict -- --amend-reason`), una subida firmada o una retirada.',
+      )
+    }
     if (
       previa &&
       esSubida(previa.verification.verdict, e.verification.verdict) &&
@@ -1084,6 +1138,12 @@ export interface EnmiendaPedida {
   porque: string
   /** Una persona, con su nombre (`firma-de-persona.ts`). */
   editor: string
+  /**
+   * Textos de una máquina sobre esta declaración —el resumen de la base, la
+   * propuesta de NLI…— que la persona no puede firmar como suyos. Los pasa la
+   * CLI; lo que ya escribió el canal de la entrada lo mira la función.
+   */
+  resumenesDeMaquina?: readonly string[]
 }
 
 /**
@@ -1103,7 +1163,27 @@ export interface EnmiendaPedida {
  * persona y la fecha. Una bajada NUEVA sobre la misma declaración reemplaza la
  * entrada entera, enmiendas incluidas: es otra decisión, con su propio motivo.
  *
- * Puro: devuelve un overlay nuevo y la huella del motivo sustituido.
+ * ── Y la explicación de una retractación del motor (10-10-2026) ─────────────
+ *
+ * Una retractación del motor publica bajo la cita lo que razonó el motor, y en
+ * cuatro de la corrida del 02-08-2026 —19gax3o-143, 1sqj7is-081, ma87e0-195 y
+ * qz6weg-184— era un parte sobre su tarea: la tarjeta dice «Explicación
+ * retirada» (src/lib/resumenes-retirados.js). La lectura del 06-10-2026 dejó
+ * escrita la de cada una desde los registros, y ninguna vía podía publicarla.
+ *
+ * La misma enmienda, en la entrada del motor, con una diferencia: lo que se
+ * enmienda es la explicación que se publica (`verification.summary`). El
+ * `reason` —«verdict-engine (…) re-judged …»—, el rótulo, la fecha y las
+ * correcciones de rótulo se quedan: la decisión sigue siendo del motor, y
+ * escribir ahí las palabras de una persona se las atribuiría a él. Sólo en
+ * `sin-datos`, el único veredicto que emite el motor.
+ *
+ * En las dos, la explicación nueva no puede ser el texto de una máquina
+ * (`esTextoDeMaquina`): ni lo que ya escribió el canal de la entrada si no lo
+ * firmó una persona, ni lo que pase la CLI. Diseño y decisiones del operador:
+ * docs/superpowers/specs/2026-10-10-explicacion-firmada-design.md.
+ *
+ * Puro: devuelve un overlay nuevo y la huella del texto sustituido.
  */
 export function enmendarMotivoDeBajada(
   overlay: Overlay,
@@ -1114,14 +1194,22 @@ export function enmendarMotivoDeBajada(
   const donde = `[overlay] ${claimId}`
   const e = overlay?.entries?.[claimId]
   if (!e) throw new Error(`${donde}: no hay ninguna bajada en el overlay, ni motivo que enmendar`)
-  if (e.source !== 'curator-downgrade') {
+  const delMotor = e.source === 'verdict-engine'
+  if (e.source !== 'curator-downgrade' && !delMotor) {
     throw new Error(
-      `${donde}: la entrada es de ${e.source}, no una bajada de curador; sólo se enmienda el motivo que firmó un curador`,
+      `${donde}: la entrada es de ${e.source}; sólo se enmienda el motivo de una bajada de ` +
+        'curador o la explicación de una retractación del motor',
     )
   }
   if (e.verification.verdict !== pedida.veredicto) {
     throw new Error(
       `${donde}: la bajada publica ${e.verification.verdict}, no ${pedida.veredicto}: la orden se preparó para otro estado`,
+    )
+  }
+  if (delMotor && e.verification.verdict !== 'sin-datos') {
+    throw new Error(
+      `${donde}: una retractación del motor sólo se explica en sin-datos, y ésta publica ` +
+        e.verification.verdict,
     )
   }
   const rechazo = rechazoDeFirma(pedida.editor)
@@ -1130,18 +1218,19 @@ export function enmendarMotivoDeBajada(
       `${donde}: una enmienda de motivo la firma una persona, con su nombre: ${rechazo}`,
     )
   }
-  if (e.verification.summary !== e.reason) {
+  if (!delMotor && e.verification.summary !== e.reason) {
     throw new Error(
       `${donde}: la bajada publica un resumen distinto de su motivo, y no se sabría cuál se enmienda`,
     )
   }
+  const vigente = textoEnmendable(e)
   const motivo = (pedida.motivo ?? '').trim()
   if (motivo.length < 20) {
     throw new Error(
       `${donde}: el motivo nuevo tiene que tener ≥20 caracteres, como cualquier motivo`,
     )
   }
-  if (motivo === (e.reason ?? '').trim()) {
+  if (motivo === vigente.trim()) {
     throw new Error(
       `${donde}: el motivo ya es ese texto; una enmienda que no cambia nada no se registra`,
     )
@@ -1150,6 +1239,21 @@ export function enmendarMotivoDeBajada(
   if (charla) {
     throw new Error(
       `${donde}: el motivo nuevo habla de la tarea del modelo (${charla}), no de la declaración`,
+    )
+  }
+  // Lo que ya escribió el canal de la entrada, mientras no lo haya reescrito una
+  // persona: el razonamiento del motor —y su `reason`, que lo repite—, o el
+  // motivo de una bajada que firmó un proceso.
+  const firmado = explicacionFirmadaPor(e) !== null
+  const deMaquina = [
+    ...(!firmado && claseDeFirma(e.editor) !== 'persona' ? [vigente] : []),
+    ...(delMotor ? [e.reason ?? ''] : []),
+    ...(pedida.resumenesDeMaquina ?? []),
+  ]
+  if (esTextoDeMaquina(motivo, deMaquina)) {
+    throw new Error(
+      `${donde}: el motivo nuevo es el texto de una máquina tal cual. Lo escribe quien firma, ` +
+        'desde los registros que leyó.',
     )
   }
   const porque = (pedida.porque ?? '').trim()
@@ -1173,26 +1277,31 @@ export function enmendarMotivoDeBajada(
     )
   }
 
-  const previous = reasonDigest(e.reason)
-  const entrada: OverlayEntry = {
-    verification: { ...e.verification, summary: motivo },
-    source: e.source,
-    reason: motivo,
-    ...(e.editor ? { editor: e.editor } : {}),
-    appliedAt: e.appliedAt,
-    // Enmendar el motivo no deshace la retirada: sin esto, reescribir la
-    // explicación volvería a publicar la declaración.
-    ...(e.retirada ? { retirada: e.retirada } : {}),
-    reasonAmendments: [
-      ...anteriores,
-      {
-        previous,
-        reason: porque,
-        editor: pedida.editor.normalize('NFC').replace(/\s+/g, ' ').trim(),
-        amendedAt: stampIso,
-      },
-    ],
-  }
+  const previous = reasonDigest(vigente)
+  const reasonAmendments = [
+    ...anteriores,
+    {
+      previous,
+      reason: porque,
+      editor: pedida.editor.normalize('NFC').replace(/\s+/g, ' ').trim(),
+      amendedAt: stampIso,
+    },
+  ]
+  const entrada: OverlayEntry = delMotor
+    ? // Todo lo que decidió el motor se queda, en su sitio: la enmienda va al
+      // final, y el overlay comiteado no se reordena.
+      { ...e, verification: { ...e.verification, summary: motivo }, reasonAmendments }
+    : {
+        verification: { ...e.verification, summary: motivo },
+        source: e.source,
+        reason: motivo,
+        ...(e.editor ? { editor: e.editor } : {}),
+        appliedAt: e.appliedAt,
+        // Enmendar el motivo no deshace la retirada: sin esto, reescribir la
+        // explicación volvería a publicar la declaración.
+        ...(e.retirada ? { retirada: e.retirada } : {}),
+        reasonAmendments,
+      }
   const next: Overlay = {
     version: overlay.version,
     generatedAt: stampIso,

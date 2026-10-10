@@ -106,6 +106,21 @@ function rotuloDeSubida(v) {
     : 'subido; no consta quién lo firmó'
 }
 
+/**
+ * La explicación de una retractación del motor que reescribió una persona
+ * (`downgrade-verdict --amend-reason`, verified-merge.ts): el veredicto sigue
+ * siendo del motor, y la tarjeta dice quién firmó la explicación, como dice
+ * quién firmó el motivo enmendado de una bajada. Sólo se fía de lo que
+ * `mergeVerified` estampa con el canal del motor —`reasonSignedBy`—, y vuelve a
+ * mirar que la firma nombre a una persona.
+ */
+function conExplicacionFirmada(rotulo, v) {
+  const firma = v?.source === 'verdict-engine' ? v?.reasonSignedBy : undefined
+  return typeof firma === 'string' && nombraAUnaPersona(firma)
+    ? `${rotulo} · explicación firmada por ${firma}`
+    : rotulo
+}
+
 const lista = (x) => (Array.isArray(x) ? x : [])
 
 /**
@@ -152,7 +167,7 @@ export function etiquetaVerificador(v) {
   if (clases.includes('persona')) return rotuloDeSubida(v)
   const clase = clases[0]
   // Una clase sin rótulo tampoco hereda el de «determinista».
-  if (clase) return ROTULO_DE_CLASE[clase] ?? SIN_VERIFICADOR
+  if (clase) return conExplicacionFirmada(ROTULO_DE_CLASE[clase] ?? SIN_VERIFICADOR, v)
   if (esCotejoDeterminista(v)) return 'verificador determinista'
   // Nada anotado, o algo que no se puede nombrar. Ninguno de los dos puede
   // heredar la etiqueta de los que sí.

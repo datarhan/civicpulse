@@ -25,6 +25,16 @@
  * nombra a una persona, comprobado antes de leer nada. El porqué, en
  * `enmendarMotivoDeBajada` (src/scraper/verified-merge.ts).
  *
+ * Desde el 10-10-2026 enmienda también la EXPLICACIÓN de una retractación del
+ * motor en sin-datos: la que publica, no el registro del motor
+ * (docs/superpowers/specs/2026-10-10-explicacion-firmada-design.md). Y antes
+ * de escribir, toda enmienda pasa por las comprobaciones de la subida firmada
+ * (scripts/lib/antes-de-firmar.ts): con la suspensión electoral activa no se
+ * enmienda nada; lo publicado tiene que ser la composición de la base en disco;
+ * la declaración, estar en la base y en lo publicado; y recomponer, cambiar sólo
+ * esa declaración. La explicación del motor, además, ni de una acusación ni de
+ * una declaración que la puerta retiene.
+ *
  * ── `--literal-no-dicho` ────────────────────────────────────────────────────
  *
  *   npm run downgrade-verdict -- <claimId> sin-datos --literal-no-dicho \
@@ -49,6 +59,16 @@
 import { readFileSync, writeFileSync, existsSync } from 'node:fs'
 import { resolve } from 'node:path'
 import { pathToFileURL } from 'node:url'
+import { etiquetaVerificador } from '../src/lib/claim-provenance.js'
+import { RESUMENES_RETIRADOS } from '../src/lib/resumenes-retirados.js'
+import {
+  compuestaSoloEsta,
+  congeladoHasta,
+  constaEnSuSesion,
+  declaracionEn,
+  leerComposicion,
+  resumenesDeMaquina,
+} from './lib/antes-de-firmar'
 import { loadOverlay, rebuildVerified, OVERLAY, VERIFIED } from './verified-rebuild'
 import {
   applyOverlayEntries,
@@ -180,30 +200,93 @@ function escribirYRecomponer(overlay: Overlay, hecho: string): void {
     })
 }
 
-function enmendar(orden: Extract<Orden, { modo: 'enmendar' }>): void {
+function salir(codigo: number, mensaje: string): never {
+  process.stderr.write(`[downgrade] ${mensaje}\n`)
+  process.exit(codigo)
+}
+
+/**
+ * La enmienda: el motivo de una bajada o la explicación de una retractación del
+ * motor, tras las comprobaciones de toda firma en el overlay.
+ */
+async function enmendar(orden: Extract<Orden, { modo: 'enmendar' }>): Promise<void> {
   const { claimId, veredicto, motivo, porque, editor } = orden
+  const congelado = congeladoHasta()
+  if (congelado) {
+    salir(
+      1,
+      `LOREG: la suspensión electoral está activa hasta ${congelado}; no se enmienda ningún ` +
+        'motivo ni ninguna explicación. `npm run freeze:status`',
+    )
+  }
+  const c = leerComposicion(salir, 'Enmendar')
+  const { enBase, enPublicado } = declaracionEn(c, claimId, salir)
+  if (c.capas.overlay.entries[claimId]?.source === 'verdict-engine') {
+    if (String(enPublicado.claim.type) === 'acusacion_publica') {
+      salir(
+        1,
+        `${claimId}: es una acusación pública. Lo que se publica de ella sigue las reglas de ` +
+          '/hallazgos —una ficha con sus documentos cotejados y el derecho de réplica del grupo ' +
+          'aludido—, no esta vía.',
+      )
+    }
+    if (!constaEnSuSesion(enPublicado)) {
+      salir(
+        1,
+        `${claimId}: su literal no consta en ninguna transcripción de su sesión, y la puerta de ` +
+          'publicación la retiene: su explicación no se leería en ninguna parte. Primero se ' +
+          'reancla (`npm run triage:claim-reanchor`).',
+      )
+    }
+  }
   let hecho: { overlay: Overlay; previous: string }
   try {
     hecho = enmendarMotivoDeBajada(
-      loadOverlay(),
-      { claimId, veredicto, motivo, porque, editor },
+      c.capas.overlay,
+      {
+        claimId,
+        veredicto,
+        motivo,
+        porque,
+        editor,
+        resumenesDeMaquina: resumenesDeMaquina(claimId, enBase, c.capas.overlay, '[downgrade]'),
+      },
       new Date().toISOString(),
     )
   } catch (err) {
-    process.stderr.write(`[downgrade] rejected: ${(err as Error).message}\n`)
-    process.exit(1)
+    salir(1, `rejected: ${(err as Error).message}`)
+  }
+  const compuestas = compuestaSoloEsta(c, hecho.overlay, claimId, salir)
+  const despues = compuestas.find((it) => it.claim.id === claimId)
+  process.stdout.write(JSON.stringify(hecho.overlay.entries[claimId], null, 2) + '\n')
+  if (despues) {
+    process.stdout.write(
+      `[downgrade] la tarjeta dirá: «Veredicto: ${etiquetaVerificador(despues.verification)}» · ` +
+        'ninguna otra declaración cambia\n',
+    )
   }
   if (orden.dryRun) {
-    process.stdout.write(JSON.stringify(hecho.overlay.entries[claimId], null, 2) + '\n')
     process.stdout.write(
       `[downgrade] --dry-run: la enmienda de ${claimId} valida (${veredicto}, el veredicto no se mueve; ` +
         `motivo anterior ${hecho.previous}). No se ha escrito nada.\n`,
     )
     return
   }
-  escribirYRecomponer(
-    hecho.overlay,
-    `[downgrade] ${claimId}: motivo enmendado (${veredicto}, el veredicto no se mueve) · editor=${editor} · motivo anterior ${hecho.previous}`,
+  writeFileSync(OVERLAY, JSON.stringify(hecho.overlay, null, 2) + '\n')
+  try {
+    await rebuildVerified()
+  } catch (err) {
+    salir(1, `overlay written but rebuild FAILED: ${(err as Error).message}`)
+  }
+  const retirado = Object.prototype.hasOwnProperty.call(RESUMENES_RETIRADOS, claimId)
+  process.stdout.write(
+    `[downgrade] ${claimId}: motivo enmendado (${veredicto}, el veredicto no se mueve) · ` +
+      `editor=${editor} · motivo anterior ${hecho.previous} · overlay + verified.json updated\n` +
+      '  Queda `npm run refresh` (los nodos que leen verified.json).\n' +
+      (retirado
+        ? `  ${claimId} está en src/lib/resumenes-retirados.js: su explicación ya no es la retirada,\n` +
+          '  así que quítalo de la lista en el mismo commit (tests/claim-ledger-resumen.test.jsx lo pide).\n'
+        : ''),
   )
 }
 
@@ -307,7 +390,7 @@ function retirar(
   )
 }
 
-function main(): void {
+async function main(): Promise<void> {
   let orden: Orden
   try {
     orden = leerOrden(process.argv.slice(2))
@@ -315,6 +398,9 @@ function main(): void {
     process.stderr.write(`[downgrade] ${(err as Error).message}\n`)
     process.exit(2)
   }
+  // La enmienda lee lo que necesita con las comprobaciones de toda firma: una
+  // entrada huérfana dice que no está en la base, no que «no se encontró».
+  if (orden.modo === 'enmendar') return enmendar(orden)
   if (!existsSync(VERIFIED)) {
     process.stderr.write(`[downgrade] ${VERIFIED} missing — run verify:pleno-claims first\n`)
     process.exit(1)
@@ -327,9 +413,13 @@ function main(): void {
     process.stderr.write(`[downgrade] claim ${orden.claimId} not found\n`)
     process.exit(1)
   }
-  if (orden.modo === 'enmendar') enmendar(orden)
-  else if (orden.modo === 'retirar') retirar(orden, item)
+  if (orden.modo === 'retirar') retirar(orden, item)
   else bajar(orden, item.verification)
 }
 
-if (process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href) main()
+if (process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href) {
+  main().catch((err) => {
+    process.stderr.write(`[downgrade] FATAL: ${err instanceof Error ? err.message : String(err)}\n`)
+    process.exit(1)
+  })
+}

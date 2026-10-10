@@ -451,3 +451,32 @@ export function esResumenCasi(texto: unknown): boolean {
 export function leyoContratos(checkedAgainst?: readonly unknown[] | null): boolean {
   return corpusReales(checkedAgainst).some((c) => c === 'tenders' || c === 'tenders-ted')
 }
+
+// ─── El texto de una máquina ────────────────────────────────────────────────
+//
+// Las dos vías en que una persona escribe lo que la tarjeta imprime bajo la
+// cita —la subida firmada (subida-firmada.ts) y la explicación firmada de una
+// retractación del motor (`enmendarMotivoDeBajada`, verified-merge.ts)— se
+// niegan a firmar como suyo lo que escribió una máquina. Vivía en la primera;
+// está aquí para que las dos pregunten lo mismo.
+
+/** Por debajo de esto, que un texto contenga a otro no dice nada: lo comparte cualquiera. */
+const COPIA_MINIMA = 40
+
+const llano = (s: string) => s.normalize('NFC').replace(/\s+/g, ' ').trim().toLowerCase()
+
+/**
+ * ¿Es esto el texto de una máquina? Igual a uno de los que se le pasan —sin
+ * distinguir mayúsculas ni espacios—, o conteniéndolo entero si es largo, o de
+ * la familia del «no se encontró registro» del verificador, que no hace falta
+ * pasar.
+ */
+export function esTextoDeMaquina(texto: string, deMaquina: readonly unknown[]): boolean {
+  if (esResumenSinRegistro(texto) || esResumenCasi(texto)) return true
+  const r = llano(texto)
+  return deMaquina.some((t) => {
+    if (typeof t !== 'string' || t.trim() === '') return false
+    const m = llano(t)
+    return m === r || (m.length >= COPIA_MINIMA && r.includes(m))
+  })
+}

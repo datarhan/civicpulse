@@ -50,12 +50,7 @@
  */
 import { isCommittedContract } from '../lib/contract-status.js'
 import { charlaDeTarea } from './charla-de-tarea'
-import {
-  corpusDeEvidencia,
-  esResumenCasi,
-  esResumenSinRegistro,
-  type ClaimVerdict,
-} from './claim-verdicts'
+import { corpusDeEvidencia, esTextoDeMaquina, type ClaimVerdict } from './claim-verdicts'
 import type { ClaimEvidence, ClaimVerification } from './claim-verifier'
 import { rechazoDeFirma } from './firma-de-persona'
 import { TRINQUETE } from './trinquete'
@@ -308,26 +303,6 @@ export interface Observado {
 
 /** Lo que se firma se escribe sin espacios de más: la tarjeta lo imprime en un párrafo. */
 const enUnaLinea = (s: unknown) => espacios(s)
-const llano = (s: string) => espacios(s.normalize('NFC')).toLowerCase()
-
-/** Por debajo de esto, que un texto contenga a otro no dice nada: lo comparte cualquiera. */
-const COPIA_MINIMA = 40
-
-/**
- * ¿Es esto el texto de una máquina? Igual a uno de los que se le pasan —sin
- * distinguir mayúsculas ni espacios—, o conteniéndolo entero si es largo, o de
- * la familia del «no se encontró registro» del verificador, que no hace falta
- * pasar.
- */
-function esDeMaquina(resumen: string, deMaquina: readonly string[]): boolean {
-  if (esResumenSinRegistro(resumen) || esResumenCasi(resumen)) return true
-  const r = llano(resumen)
-  return deMaquina.some((t) => {
-    if (typeof t !== 'string' || t.trim() === '') return false
-    const m = llano(t)
-    return m === r || (m.length >= COPIA_MINIMA && r.includes(m))
-  })
-}
 
 /**
  * La entrada de una subida firmada, escrita en el overlay por la vía de
@@ -371,7 +346,7 @@ export function subirVeredicto(
       `${donde}: el resumen habla de la tarea de un modelo (${charla}), no de la declaración`,
     )
   }
-  if (esDeMaquina(resumen, observado.resumenesDeMaquina)) {
+  if (esTextoDeMaquina(resumen, observado.resumenesDeMaquina)) {
     throw new Error(
       `${donde}: el resumen es el de una máquina tal cual. Lo escribe quien firma, desde el ` +
         'registro que cita: la verificación del motor ha llegado a contradecir al registro.',

@@ -80,6 +80,7 @@ import {
   decidirRederivacion,
   decidirRetractacion,
   MOTIVO_SIN_RECORTE_EN_EL_PARTE,
+  retractacionesDelMotor,
   type MotivoSinJuicio,
   type MotivoSinRecorte,
 } from '../src/scraper/decision-del-motor'
@@ -100,7 +101,7 @@ import {
 } from '../src/llm/client'
 import { EngineReasoningSchema } from '../src/llm/schemas'
 import { ENGINE_REASON_VERSION, ENGINE_REASON_VERSIONES_ANTERIORES } from '../src/llm/prompts'
-import { startRun, formatManifest } from '../src/scraper/run-manifest'
+import { startRun, formatManifest, type RunRecorder } from '../src/scraper/run-manifest'
 import { loadOverlay, rebuildVerified, OVERLAY } from './verified-rebuild'
 import { applyOverlayEntries, type ApplyEntry, type Overlay } from '../src/scraper/verified-merge'
 
@@ -151,27 +152,32 @@ function parseArgs(argv: string[]): Args {
 }
 
 /**
- * Los ids de `fichero` (uno por línea; `#` comenta) que son retractaciones del
- * motor. Re-derivar o recortar otra cosa sería tocar con una vía pensada para
- * corregir una explicación del motor lo que escribió otra etapa.
+ * Las retractaciones del motor que pide `fichero` (un id por línea; `#`
+ * comenta), con `retractacionesDelMotor` (decision-del-motor.ts). Lo que no es
+ * del motor se dice; lo que lleva la explicación que firmó una persona se dice y
+ * se cuenta como saltado con su motivo: está en la lista, y no se toca.
  */
-function retractacionesDelMotor(
+function retractacionesPedidas(
   fichero: string,
   overlay: Overlay,
+  run: RunRecorder,
 ): { pedidos: number; targets: string[] } {
-  const pedidos = readFileSync(fichero, 'utf8')
+  const ids = readFileSync(fichero, 'utf8')
     .split('\n')
     .map((l) => l.trim())
     .filter((l) => l && !l.startsWith('#'))
-  const targets: string[] = []
-  for (const id of pedidos) {
-    if (overlay.entries[id]?.source !== 'verdict-engine') {
-      process.stderr.write(`[verify-engine] --ids: ${id} no es una retractación del motor\n`)
-      continue
-    }
-    targets.push(id)
+  const r = retractacionesDelMotor(ids, overlay)
+  for (const id of r.noDelMotor) {
+    process.stderr.write(`[verify-engine] --ids: ${id} no es una retractación del motor\n`)
   }
-  return { pedidos: pedidos.length, targets }
+  for (const id of r.conExplicacionFirmada) {
+    process.stderr.write(
+      `[verify-engine] --ids: ${id}: su explicación la firmó una persona; no se re-deriva ni se recorta\n`,
+    )
+    run.attempt()
+    run.skip('explicación firmada por una persona')
+  }
+  return { pedidos: r.pedidos, targets: r.targets }
 }
 
 async function main() {
@@ -210,7 +216,7 @@ async function main() {
   if (args.ids) {
     // Sólo retractaciones del motor: re-derivar otra cosa sería juzgar por
     // primera vez con una vía pensada para corregir una explicación.
-    const pedidas = retractacionesDelMotor(args.ids, overlay)
+    const pedidas = retractacionesPedidas(args.ids, overlay, run)
     targets.push(...pedidas.targets)
     process.stderr.write(
       `[verify-engine] --ids: ${targets.length} de ${pedidas.pedidos} retractaciones del motor a re-derivar (model ${MODEL})\n`,
@@ -523,7 +529,7 @@ async function recortar(args: Args): Promise<void> {
     model: MODEL,
   })
   let overlay = loadOverlay()
-  const { pedidos, targets } = retractacionesDelMotor(args.ids, overlay)
+  const { pedidos, targets } = retractacionesPedidas(args.ids, overlay, run)
   process.stderr.write(
     `[verify-engine] --recortar: ${targets.length} de ${pedidos} retractaciones del motor, sin llamadas\n`,
   )
