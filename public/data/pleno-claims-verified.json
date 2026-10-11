@@ -1,6 +1,6 @@
 {
   "generatedAt": "2026-10-04T07:37:32.197Z",
-  "composedAt": "2026-10-11T06:23:20.983Z",
+  "composedAt": "2026-10-11T07:07:46.530Z",
   "source": {
     "description": "Fact-check verdicts for every pleno-claims-suggestions.json entry. Cross-references against tenders / BDNS / budget / promises. Pure deterministic — no LLM judgement.",
     "contract": "Machine-written verdicts; a curator reviews before surfacing contradicho or promesa-repetida editorially."
@@ -8,16 +8,16 @@
   "stats": {
     "total": 7564,
     "byVerdict": {
-      "verificado": 11,
-      "parcial": 21,
+      "verificado": 10,
+      "parcial": 15,
       "contradicho": 0,
-      "sin-datos": 7532,
+      "sin-datos": 7539,
       "promesa-repetida": 0
     },
     "sinDatosPorque": {
       "sinCorpus": 3331,
       "comprobadoSinHallar": 3035,
-      "noConsta": 1166
+      "noConsta": 1173
     }
   },
   "items": [
@@ -3353,23 +3353,15 @@
       },
       "verification": {
         "claimId": "15uvjew-012-afi-83a0e3",
-        "verdict": "parcial",
-        "summary": "Coincidencia parcial: hay datos relacionados pero no idénticos al claim.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=pK1YW0Z3femXQV0WE7lYPw%3D%3D",
-            "snippet": "contrato de concesión del servicio público de abastecimiento de agua potable, servicio de gestión de alcantarillado , control de vertidos y depuración del municipio Riba-roja de Túria, por procedimiento abierto, mejor relación calidad-precio, varios criterios de adjudicación y con cláusulas medioambientales y con condición especial de ejecución de carácter medioambiental y social. · Ayuntamiento de Riba-roja de Túria · public_services · 55.685.179 €",
-            "similarity": 0.63,
-            "stance": "checked"
-          }
+        "verdict": "sin-datos",
+        "summary": "Ningún candidato respalda la afirmación; la fuerza del respaldo es nula.",
+        "evidence": [],
+        "checkedAgainst": [],
+        "derivedBy": [
+          "verdict-engine"
         ],
-        "checkedAgainst": [
-          "tenders",
-          "tenders-ted",
-          "bdns",
-          "budget"
-        ]
+        "confidence": 0.2,
+        "source": "verdict-engine"
       }
     },
     {
@@ -8173,23 +8165,15 @@
       },
       "verification": {
         "claimId": "15uvjew-148-afi-fbf71b",
-        "verdict": "parcial",
-        "summary": "Coincidencia parcial: hay datos relacionados pero no idénticos al claim.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=HJBVBRq8QhiXQV0WE7lYPw%3D%3D",
-            "snippet": "Servicio de mantenimiento de zonas ajardinadas, viales públicos y espacios públicos de titularidad municipal situados en casco urbano, por procedimiento abierto simplificado, mejor relación calidad-precio, único criterio de adjudicación y condición especial de ejecución de carácter social y medioambiental reservado a Centros Especiales de Empleo de iniciativa social contribuyendo al cumplimiento del ODS 8 relativo a la promoción del crecimiento económico inclusivo. · Ayuntamiento de Riba-roja de Túria · agriculture · 50.457 €",
-            "similarity": 0.61,
-            "stance": "checked"
-          }
+        "verdict": "sin-datos",
+        "summary": "Ningún candidato respalda la afirmación; como mucho hay una coincidencia numérica fortuita en [0], sin fuerza probatoria.",
+        "evidence": [],
+        "checkedAgainst": [],
+        "derivedBy": [
+          "verdict-engine"
         ],
-        "checkedAgainst": [
-          "tenders",
-          "tenders-ted",
-          "bdns",
-          "budget"
-        ]
+        "confidence": 0.2,
+        "source": "verdict-engine"
       }
     },
     {
@@ -8213,23 +8197,15 @@
       },
       "verification": {
         "claimId": "15uvjew-148-afi-755647",
-        "verdict": "verificado",
-        "summary": "Cita encontrada con coincidencia fuerte en los datos municipales.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=h4tiCELtfEdxseVhcqrkhw%3D%3D",
-            "snippet": "Contrato administrativo de obras para el proyecto de “Asfaltado y reasfaltado de viales urbanos y caminos rurales de Riba-roja de Túria” Plan RENOVE , dividido en 6 lotes. · Ayuntamiento de Riba-roja de Túria · BECSA SAU · construction · 76.082 €",
-            "similarity": 0.98,
-            "stance": "checked"
-          }
+        "verdict": "sin-datos",
+        "summary": "Conclusión: ningún candidato respalda genuinamente la afirmación; respaldo nulo o muy débil, no verificable con estos registros.",
+        "evidence": [],
+        "checkedAgainst": [],
+        "derivedBy": [
+          "verdict-engine"
         ],
-        "checkedAgainst": [
-          "tenders",
-          "tenders-ted",
-          "bdns",
-          "budget"
-        ]
+        "confidence": 0.2,
+        "source": "verdict-engine"
       }
     },
     {
@@ -10186,21 +10162,15 @@
       },
       "verification": {
         "claimId": "15uvjew-182-cit-3a11cb",
-        "verdict": "parcial",
-        "summary": "Coincidencia parcial: hay datos relacionados pero no idénticos al claim.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=E%2BOr0JaUVkecCF8sV%2BqtYA%3D%3D",
-            "snippet": "Obras  ejecución del proyecto: “Mejora del carril bici y la ejecución o mejora de refugios climáticos”, por procedimiento abierto simplificado, varios criterios de adjudicación, con condición de ejecución de carácter social y medioambiental, contribuyendo al cumplimiento del ODS 11 de la agenda 2030, en el marco del Plan de Recuperación, Transformación y Resilencia financiado por la U.E. · Ayuntamiento de Riba-roja de Túria · OBRA CIVIL Y EDIFICACION ESCRIMAR S.L.L. · construction · estado: formalized",
-            "similarity": 1,
-            "stance": "checked"
-          }
+        "verdict": "sin-datos",
+        "summary": "Ningún candidato respalda genuinamente la afirmación: el [0] sólo es contexto temático relacionado, con respaldo muy débil o nulo, y la parte verificable (aumento del presupuesto, conversación con José Manuel) no tiene datos que la confirmen.",
+        "evidence": [],
+        "checkedAgainst": [],
+        "derivedBy": [
+          "verdict-engine"
         ],
-        "checkedAgainst": [
-          "tenders",
-          "tenders-ted"
-        ]
+        "confidence": 0.2,
+        "source": "verdict-engine"
       }
     },
     {
@@ -10849,21 +10819,15 @@
       },
       "verification": {
         "claimId": "15uvjew-193-cit-446421",
-        "verdict": "parcial",
-        "summary": "Coincidencia parcial: hay datos relacionados pero no idénticos al claim.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=E%2BOr0JaUVkecCF8sV%2BqtYA%3D%3D",
-            "snippet": "Obras  ejecución del proyecto: “Mejora del carril bici y la ejecución o mejora de refugios climáticos”, por procedimiento abierto simplificado, varios criterios de adjudicación, con condición de ejecución de carácter social y medioambiental, contribuyendo al cumplimiento del ODS 11 de la agenda 2030, en el marco del Plan de Recuperación, Transformación y Resilencia financiado por la U.E. · Ayuntamiento de Riba-roja de Túria · OBRA CIVIL Y EDIFICACION ESCRIMAR S.L.L. · construction · estado: formalized",
-            "similarity": 1,
-            "stance": "checked"
-          }
+        "verdict": "sin-datos",
+        "summary": "Ningún candidato respalda genuinamente la afirmación; a lo sumo [0] aporta contexto muy débil de que el plan existe.",
+        "evidence": [],
+        "checkedAgainst": [],
+        "derivedBy": [
+          "verdict-engine"
         ],
-        "checkedAgainst": [
-          "tenders",
-          "tenders-ted"
-        ]
+        "confidence": 0.2,
+        "source": "verdict-engine"
       }
     },
     {
@@ -69248,21 +69212,15 @@
       },
       "verification": {
         "claimId": "rx4hb4-136-cit-2639de",
-        "verdict": "parcial",
-        "summary": "Coincidencia parcial: hay datos relacionados pero no idénticos al claim.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=DDuU2CuSCh0BPRBxZ4nJ%2Fg%3D%3D",
-            "snippet": "Contrato menor, suministro para la adquisición de una carpa de 10x15 (150m2) zona exterior Centro de Salud para habilitar zona de triaje para usuarios que accedan al Centro de Salud, para el municipio de Riba-roja de Túria. · Ayuntamiento de Riba-roja de Túria · CARPAS VALENCIA SL · construction · estado: awarded",
-            "similarity": 1,
-            "stance": "checked"
-          }
+        "verdict": "sin-datos",
+        "summary": "Ningún candidato respalda la afirmación; la fuerza del respaldo es nula.",
+        "evidence": [],
+        "checkedAgainst": [],
+        "derivedBy": [
+          "verdict-engine"
         ],
-        "checkedAgainst": [
-          "tenders",
-          "tenders-ted"
-        ]
+        "confidence": 0.2,
+        "source": "verdict-engine"
       }
     },
     {
@@ -86142,21 +86100,15 @@
       },
       "verification": {
         "claimId": "19gax3o-046-cit-336cb3",
-        "verdict": "parcial",
-        "summary": "Coincidencia parcial: hay datos relacionados pero no idénticos al claim.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=56xTbbVhVpxxseVhcqrkhw%3D%3D",
-            "snippet": "Contratación servicio dirección de obra y dirección de ejecución material, coordinación en seguridad \ny salud para proyecto de obras “Reconstrucción de vallados de parcelas en los polígonos industriales tras los daños sufridos tras la DANA en el T.M. de Riba-roja de Túria (Valencia)” - Ctto92/2026. · Ayuntamiento de Riba-roja de Túria · José Luis Moreno Delgado · architecture · estado: awarded",
-            "similarity": 1,
-            "stance": "checked"
-          }
+        "verdict": "sin-datos",
+        "summary": "Ningún candidato respalda genuinamente la afirmación; como mucho hay un contexto débil y tangencial, y la afirmación es una opinión o testimonio no verificable con estos registros.",
+        "evidence": [],
+        "checkedAgainst": [],
+        "derivedBy": [
+          "verdict-engine"
         ],
-        "checkedAgainst": [
-          "tenders",
-          "tenders-ted"
-        ]
+        "confidence": 0.2,
+        "source": "verdict-engine"
       }
     },
     {
@@ -161910,9 +161862,10 @@
       "verification": {
         "claimId": "c8kr44-088-cit-d63a7d",
         "verdict": "sin-datos",
-        "summary": "Tarea de razonamiento (fact-checking en español) sobre si los candidatos respaldan la afirmación de un pleno municipal. No es una tarea de codificación, así que las skills de superpowers (orientadas a desarrollo de software) no aplican. Se proporcionó el razonamiento en 2-4 frases como se solicitó, ",
+        "summary": "Ningún candidato respalda genuinamente la afirmación; el [0] sólo ofrece contexto temático débil.",
         "evidence": [],
-        "checkedAgainst": [
+        "checkedAgainst": [],
+        "derivedBy": [
           "verdict-engine"
         ],
         "confidence": 0.2,
@@ -162890,9 +162843,10 @@
       "verification": {
         "claimId": "c8kr44-114-cit-054e8e",
         "verdict": "sin-datos",
-        "summary": "Se ha razonado en español sobre la afirmación y los tres candidatos, concluyendo que ninguno respalda genuinamente la afirmación (solo coincidencia léxica superficial con [0] y [1], entidades/objetos distintos, y [2] sin relación temática). No se emitió veredicto final, solo el razonamiento solicita",
+        "summary": "Conclusión: ningún candidato respalda genuinamente la afirmación; a lo sumo [0] aporta contexto muy débil y el hecho es verificable solo en actas/resoluciones ambientales, no en contratos.",
         "evidence": [],
-        "checkedAgainst": [
+        "checkedAgainst": [],
+        "derivedBy": [
           "verdict-engine"
         ],
         "confidence": 0.2,
