@@ -271,53 +271,43 @@ test.describe('Landing (/)', () => {
     // honest fix; a longer timeout on the assertion would only have widened the
     // window on a click that never registered.
     //
-    // Y se pulsa el primer pin que no tapa nada. Los pines salen en el orden de
-    // tender-geo.json, que la nocturna reordena: el 06-10-2026 el primero quedó
-    // debajo del punto de un barrio (Urbanització La Llobatera), el clic caía en
-    // el punto y abría la ficha del barrio, y esta prueba se puso roja sin que
-    // cambiara la página.
-    const libre = await page.locator('path.cp-money-pin').evaluateAll((ps) =>
-      ps.findIndex((p) => {
-        const r = p.getBoundingClientRect()
-        return document.elementFromPoint(r.left + r.width / 2, r.top + r.height / 2) === p
-      }),
-    )
-    expect(libre, 'ningún pin de contrato queda a la vista sin tapar').toBeGreaterThanOrEqual(0)
-    await expect(async () => {
-      await page.locator('path.cp-money-pin').nth(libre).click({ force: true })
-      await expect(
-        page
-          .locator('.leaflet-popup-content')
-          .getByText(/Adjudicatario/i)
-          .first(),
-      ).toBeVisible({ timeout: 2500 })
-    }).toPass({ timeout: 15000 })
-
-    // Close the open popup first: an open Leaflet popup swallows the next click.
-    await page.keyboard.press('Escape')
-    // Y el primer punto de barrio que no tapa nada, por lo mismo que el pin de
-    // arriba: el 10-10-2026 el primero quedó bajo otra capa y el clic no abría
-    // su ficha. Un punto de barrio es HTML (un divIcon), así que vale que el
-    // centro caiga en él o en algo suyo.
-    const barrioLibre = await page.locator('.cp-osm-neigh-dot').evaluateAll((ds) =>
-      ds.findIndex((d) => {
-        const r = d.getBoundingClientRect()
-        const encima = document.elementFromPoint(r.left + r.width / 2, r.top + r.height / 2)
-        return encima !== null && (encima === d || d.contains(encima))
-      }),
-    )
-    expect(barrioLibre, 'ningún punto de barrio queda a la vista sin tapar').toBeGreaterThanOrEqual(
-      0,
-    )
-    await expect(async () => {
-      await page.locator('.cp-osm-neigh-dot').nth(barrioLibre).click({ force: true })
-      await expect(
-        page
-          .locator('.leaflet-popup-content')
-          .getByText(/Población/i)
-          .first(),
-      ).toBeVisible({ timeout: 2500 })
-    }).toPass({ timeout: 15000 })
+    // Y se pulsa el primer pin, o punto de barrio, que no tapa nada. Los pines
+    // salen en el orden de tender-geo.json, que la nocturna reordena: el
+    // 06-10-2026 el primero quedó debajo del punto de un barrio (Urbanització La
+    // Llobatera), el clic caía en el punto y abría la ficha del barrio, y esta
+    // prueba se puso roja sin que cambiara la página; el 10-10-2026 le pasó lo
+    // mismo al primer punto de barrio. Un punto de barrio es HTML (un divIcon),
+    // así que vale que el centro caiga en él o en algo suyo.
+    //
+    // Cerrar la ficha abierta y elegir el elemento van DENTRO del reintento.
+    // Escape no siempre la cierra (el mapa no tiene el foco), y su auto-pan
+    // sigue moviendo el mapa: el 11-10-2026 se eligió el punto en mitad del
+    // desplazamiento, al hacer clic el pin de La Llobatera ya estaba encima, el
+    // clic reabría la ficha del contrato y los tres reintentos fallaban igual
+    // (1 de 12 en local). Medido una sola vez fuera del reintento, el mismo
+    // índice viejo se repetía en cada intento. El aspa se pulsa con un evento y
+    // no con un clic en sus coordenadas: una ficha alta llega hasta arriba del
+    // mapa y deja el aspa debajo de la cinta «DIRECTO», que se llevaba el clic.
+    const pulsaElPrimeroLibre = (selector: string, enLaFicha: RegExp) =>
+      expect(async () => {
+        const aspa = page.locator('.leaflet-popup-close-button')
+        if (await aspa.count()) await aspa.first().dispatchEvent('click')
+        await expect(page.locator('.leaflet-popup')).toHaveCount(0, { timeout: 1000 })
+        const libre = await page.locator(selector).evaluateAll((els) =>
+          els.findIndex((el) => {
+            const r = el.getBoundingClientRect()
+            const encima = document.elementFromPoint(r.left + r.width / 2, r.top + r.height / 2)
+            return encima !== null && el.contains(encima)
+          }),
+        )
+        expect(libre, `ningún ${selector} queda a la vista sin tapar`).toBeGreaterThanOrEqual(0)
+        await page.locator(selector).nth(libre).click({ force: true })
+        await expect(
+          page.locator('.leaflet-popup-content').getByText(enLaFicha).first(),
+        ).toBeVisible({ timeout: 2500 })
+      }).toPass({ timeout: 15000 })
+    await pulsaElPrimeroLibre('path.cp-money-pin', /Adjudicatario/i)
+    await pulsaElPrimeroLibre('.cp-osm-neigh-dot', /Población/i)
 
     // The retired "Tren L9" schematic-train chip is gone; toggling its
     // replacement "Quejas" mounts the citizen-complaint heat layer and shows

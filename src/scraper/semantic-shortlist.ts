@@ -12,6 +12,7 @@
  */
 
 import { existsSync, readFileSync } from 'node:fs'
+import { dirname, join } from 'node:path'
 import type { PlenoClaim } from './pleno-claim'
 import type { CandidateShortlist } from './claim-verifier'
 
@@ -52,6 +53,14 @@ export interface Corpus {
    * that produced the corpus instead of just the number.
    */
   model?: string
+  /**
+   * Dónde se guardan los vectores de consulta que se comparan con este corpus
+   * (cache-de-consultas.ts). Lo pone `loadCorpus`, junto al fichero. Un corpus
+   * armado a mano no lo lleva y no guarda nada: las pruebas los arman con el
+   * `sourcePath` del de verdad, y derivarlo de ahí escribiría vectores de
+   * mentira en la caché del checkout.
+   */
+  dirDeConsultas?: string
 }
 
 export class CorpusLoadError extends Error {
@@ -92,7 +101,7 @@ export function loadCorpus(path: string): Corpus {
   }
   const modelPath = `${path}.model`
   const model = existsSync(modelPath) ? readFileSync(modelPath, 'utf8').trim() : undefined
-  return { rows, sourcePath: path, model }
+  return { rows, sourcePath: path, model, dirDeConsultas: join(dirname(path), 'consultas') }
 }
 
 function isCorpusRow(o: unknown): o is CorpusRow {
