@@ -1,10 +1,10 @@
 {
   "_comment": "DERIVADO, no curado. Dos cosas por cada literal publicado en /hallazgos. (1) `quotes[id][i].status`: de qué transcripción procede — de la vigente, sólo de la que se sustituyó al re-transcribir la sesión, o de ninguna de las dos de forma concluyente. (2) `quotes[id][i].gate`: qué haría con la afirmación que sostiene esa cita la puerta editorial de src/scraper/claim-public-gate.ts, que gobierna /plenos y que /hallazgos no consultaba — `shown`, `toggle` o `hidden`, su propio vocabulario. Ninguna de las dos modifica una cita y ninguna es una corrección: el único escritor de public/data/pleno-findings.json sigue siendo `npm run correct-pleno-finding`. Se regenera con `npm run compute:finding-quote-provenance`.",
   "version": "finding-quote-provenance-v2",
-  "generatedAt": "2026-10-11T15:19:39.731Z",
+  "generatedAt": "2026-10-11T17:11:41.786Z",
   "source": {
     "findings": "public/data/pleno-findings.json",
-    "findingsGeneratedAt": "2026-10-10T19:35:13.908Z",
+    "findingsGeneratedAt": "2026-10-11T17:11:01.893Z",
     "transcripts": "public/data/pleno-transcripts",
     "superseded": "public/data/pleno-transcripts/superseded"
   },
@@ -78,12 +78,12 @@
   "stats": {
     "findings": 39,
     "quotes": 122,
-    "enVigente": 102,
-    "soloEnSustituida": 20,
+    "enVigente": 103,
+    "soloEnSustituida": 19,
     "sinDeterminar": 0,
     "sinDeterminarPorTranscripcionMasCorta": 0,
     "sinDeterminarPorFaltaDeTranscripcion": 0,
-    "findingsConCitaMarcada": 14,
+    "findingsConCitaMarcada": 13,
     "sesionesConCitas": 11,
     "sesionesRetranscritas": 10,
     "sesionesNoComparables": 1,
@@ -313,7 +313,7 @@
         "gate": "toggle"
       },
       {
-        "status": "solo-en-sustituida",
+        "status": "en-vigente",
         "gate": "hidden"
       }
     ],
@@ -728,7 +728,7 @@
   },
   "unresolved": [],
   "builtFrom": {
-    "pleno-findings.json": "c3fed4c53e4e",
+    "pleno-findings.json": "754d5bb9a864",
     "pleno-claims-verified.json": "df1273cdc9d7",
     "pleno-claims-overlay.json": "a820f9752c09",
     "pleno-transcripts/": "8c59df9da87e"

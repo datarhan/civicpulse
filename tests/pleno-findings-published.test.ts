@@ -398,7 +398,15 @@ const expectWithdrawn = (id: string): void => {
  * la que se dio cuenta al pleno en julio de 2024. En LOTE_1 cambia sólo lo que la fila de a0a379
  * mide en la prosa viva, y el suelo de citas atribuidas baja tres.
  */
-const TOTAL_CORRECTIONS = 250
+/*
+ * 250 → 253 (bloque «a0a379, reanclada a la vigente»).
+ * Tres filas más en `f-2026-05-11-cit-a0a379`, todas de `correct-pleno-finding`. Su cita [2] decía
+ * el nombre de la campaña en castellano donde la transcripción vigente lo dice en valencià, y su cita
+ * [3] —la ambigua `a20` del reanclaje del 2026-08-10— sólo constaba en la transcripción anterior: las
+ * dos se reanclan al pasaje de la vigente. La tercera fila quita del sumario la salvedad que la [3]
+ * deja sin objeto. La [3] pasa a `RESUELTAS_DESPUES`, y lote 5 deja de buscarla por su texto.
+ */
+const TOTAL_CORRECTIONS = 253
 const TOTAL_REMOVALS = 40
 
 /** One row of a review batch's fixture: enough to locate its own entries. */
@@ -3474,7 +3482,9 @@ describe('published pleno findings — lote 5, attributions the corpus itself re
     // transcript supports. Retracting both would have been the cleanup
     // destroying the finding rather than repairing it.
     const other = byId('f-2026-05-11-cit-a0a379')
-    const survivor = other.quotes.find((q) => q.text.includes('trajo una noticia'))
+    // Por su declaración de origen y no por su texto: desde el 2026-10-11 la cita lleva el literal
+    // de la transcripción vigente, en valencià (bloque «a0a379, reanclada a la vigente»).
+    const survivor = other.quotes.find((q) => q.sourceClaimId === '10yl550-293-acu-8785eb')
     expect(survivor?.speakerGroup).toBe('PSOE')
     // …and untouched by lote 5: its log still opens with the three entries it
     // had before, and lote 5 appended none of its own. Read as a window rather
@@ -3487,9 +3497,13 @@ describe('published pleno findings — lote 5, attributions the corpus itself re
       'summary',
       'crossChecked.1',
     ])
-    // And what came after did not touch the row this block is about: the fira
-    // sentence is still the text lote 5 left, still marked, never re-anchored.
-    expect(other.corrections?.slice(3).every((c) => c.field !== 'quote.3.text')).toBe(true)
+    // And what came after touched the row this block is about once, and only to re-anchor it: the
+    // single later `quote.3.text` entry replaced exactly the text lote 5 left (its digest is the
+    // `a20` row of the 2026-08-10 batch) and kept its bloc.
+    const reanclajes = (other.corrections ?? []).slice(3).filter((c) => c.field === 'quote.3.text')
+    expect(reanclajes).toHaveLength(1)
+    expect(sha256Short(reanclajes[0].original)).toBe('50d3272f3ce7')
+    expect(survivor?.text).toBe(reanclajes[0].corrected)
   })
 })
 
@@ -3958,6 +3972,9 @@ const RESUELTAS_DESPUES = new Map<string, { field: string; correctedAt: string; 
       huella: 'cita · sha256:76e747d41af3',
     },
   ],
+  // Y otra (bloque «a0a379, reanclada a la vigente»): la misma intervención consta en la vigente, en
+  // valencià, y la cita se reancló a ese pasaje. Su atribución no estaba contradicha.
+  ['a20', { field: 'quote.3.text', correctedAt: '2026-10-11T17:11:01.592Z' }],
 ])
 
 /**
@@ -4304,11 +4321,99 @@ describe('published pleno findings — 66709b y a0a379, releídas contra la tran
         normaliseForQuoteMatch('recibida muy positivamente'),
       ),
     ).toBe(true)
-    const log = f.corrections ?? []
-    const fila = log[log.length - 1]
+    // La fila de aquel día, y no la última: el 2026-10-11 se añadieron otras (bloque «a0a379,
+    // reanclada a la vigente»).
+    const fila = (f.corrections ?? []).find((c) => c.correctedAt === '2026-10-10T19:35:13.583Z')!
     expect(fila.field).toBe('summary')
     for (const s of ['11.879,5', '11.893,2', '12.110,6', '12.854,4']) {
       expect(fila.reason, `el motivo no cita ${s}`).toContain(s)
     }
+  })
+})
+
+/*
+ * Bloque «a0a379, reanclada a la vigente». Las dos citas de `f-2026-05-11-cit-a0a379` cuyo literal no
+ * era el de la transcripción vigente de su sesión, reancladas al pasaje de la vigente con
+ * `correct-pleno-finding --field quote.<i>.text`.
+ *
+ * La [2] es la lectura de la valoración de la campaña de 2024 (11.893,2–11.904,2 s). Su literal decía
+ * el nombre de la campaña en castellano, como lo dejó el motor sustituido, y la vigente lo dice en
+ * valencià; el cotejador de la casa la daba por presente porque compara por tramos de ocho palabras.
+ * La [3] es la ambigua `a20` del reanclaje del 2026-08-10: sólo constaba en la transcripción anterior,
+ * que la traducía, y la misma intervención está en la vigente en valencià (12.490,5–12.498,7 s). Acaba
+ * antes que la anterior, porque en la vigente la corta otra voz y su final no se entiende. La puerta
+ * editorial la retiene, así que aquí va por su huella y nunca por su texto: el repositorio es público.
+ *
+ * La tercera fila quita del sumario la salvedad «según la transcripción anterior», que la [3] dejó sin
+ * objeto. Ni el grupo de ninguna cita ni el resto de la ficha cambian.
+ */
+describe('published pleno findings — a0a379, reanclada a la vigente', () => {
+  const ID = 'f-2026-05-11-cit-a0a379'
+  const DIA = '2026-10-11'
+  const lineaDe = (plenoId: string, desde: string) =>
+    transcriptOf(plenoId)
+      .split('\n')
+      .find((l) => l.startsWith(`[${desde} → `))
+
+  it('las dos citas son subcadena EXACTA de su línea de la transcripción vigente', () => {
+    const f = byId(ID)
+    expect(f.quotes[2].text).toBe(
+      'la campaña 22 Fira del Comerç 2024 fue recibida muy positivamente, tanto por la ciudadanía como por los comercios y establecimientos de hostelería y restauración',
+    )
+    expect(sha256Short(f.quotes[3].text)).toBe('55ac167e1374')
+    // Byte a byte, en la línea de su marca de tiempo: más estricto que el pasaje normalizado.
+    expect(lineaDe(f.plenoId, '11893.2')).toContain(f.quotes[2].text)
+    expect(lineaDe(f.plenoId, '12490.5')).toContain(f.quotes[3].text)
+    for (const i of [2, 3]) {
+      expect(quoteAppearsIn(f.quotes[i].text, transcriptOf(f.plenoId))).toBe(true)
+    }
+    // Ninguna otra cita ni ningún grupo se movió.
+    expect(f.quotes.map((q) => q.speakerGroup)).toEqual([null, 'PP', null, 'PSOE'])
+    expect(f.quotes.map((q) => q.sourceClaimId)).toEqual([
+      '10yl550-263-cit-a0a379',
+      '10yl550-278-acu-ac00a4',
+      '10yl550-280-cit-ab3a68',
+      '10yl550-293-acu-8785eb',
+    ])
+  })
+
+  it('cada reanclaje es una fila firmada que sustituye el literal anterior y cita sus segundos', () => {
+    const log = (byId(ID).corrections ?? []).filter((c) => c.correctedAt.startsWith(DIA))
+    expect(log.map((c) => c.field)).toEqual(['quote.2.text', 'quote.3.text', 'summary'])
+    const [c2, c3, sumario] = log
+    expect(sha256Short(c2.original)).toBe('faac7a3522f5')
+    expect(sha256Short(c3.original)).toBe('50d3272f3ce7')
+    expect(c2.reason).toContain('11.893,2–11.904,2 s')
+    expect(c3.reason).toContain('12.490,5–12.498,7 s')
+    expect(sumario.reason).toContain('12.490,5–12.498,7 s')
+    for (const c of log) {
+      expect(c.reason.trim().length).toBeGreaterThanOrEqual(20)
+      expect(c.editor.trim().length).toBeGreaterThan(1)
+    }
+    // El motivo de la [3] se publica junto a una cita retenida: no lleva su literal, ni el viejo.
+    expect(normaliseForQuoteMatch(c3.reason)).not.toContain(normaliseForQuoteMatch(c3.corrected))
+    expect(quoteAppearsIn(c3.original, c3.reason)).toBe(false)
+  })
+
+  it('ninguna cita de la ficha sigue marcada, y el sumario ya no dice que la [3] falte en la revisada', () => {
+    const f = byId(ID)
+    expect(PROVENANCE.quotes[ID].map((q) => q.status)).toEqual([
+      'en-vigente',
+      'en-vigente',
+      'en-vigente',
+      'en-vigente',
+    ])
+    expect(f.summary).not.toContain('transcripción anterior')
+    expect(f.summary).toContain('mientras que el PSOE señaló las críticas de la oposición')
+    // Lo único que salió del sumario es la salvedad.
+    const sumario = (f.corrections ?? []).find(
+      (c) => c.field === 'summary' && c.correctedAt.startsWith(DIA),
+    )!
+    expect(
+      sumario.original.replace(
+        ', según la transcripción anterior de la sesión —cuyo literal no consta en la revisada—,',
+        '',
+      ),
+    ).toBe(sumario.corrected)
   })
 })
