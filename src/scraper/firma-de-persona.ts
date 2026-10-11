@@ -232,7 +232,12 @@ export const nombraAUnaPersona = (editor: string): boolean => rechazoDeFirma(edi
  * de `override-speaker-assignment`: una promoción publica y es tier C, y
  * firmada con el hueco salía con el hueco por curador. Su hueco es el de su
  * línea de uso, el mismo que imprimen `suggest:place-geocode`,
- * `suggest:officials-social` y la cola de `draft:indicadores`.
+ * `suggest:officials-social` y la cola de `draft:indicadores`. Hasta el
+ * 11-10-2026, también el `--curator` de `promote-area-fit`, que firma las filas
+ * y avisos del encaje declarado de /cargos/:slug —su validador sólo pide que
+ * `curatedBy` no esté vacío, y el panel /curator le pasa lo que se escriba— y
+ * trae `"<nombre>"` en su línea de uso, y el de `backfill:self-declared`, que
+ * firma la línea que añade al `curatorNotes` servido de journalist-reports.json.
  * tests/firma-sin-rellenar-cli.test.ts las lanza una a una.
  *
  * No pide una persona: esas vías las firma el operador con la cuenta de rol
