@@ -2539,14 +2539,15 @@ export default function Metodologia() {
             convocatoria de otro organismo sólo se publica si la sitúa aquí la propia BDNS: una
             concesión al NIF del Ayuntamiento o la región de su ficha (Comunitat Valenciana o
             provincia de Valencia). La que no se puede situar se aparta, con su motivo, en{' '}
-            <code>bdns.json</code>. Lo que el Ayuntamiento recibe se lee además por su NIF
+            <code>bdns.json</code>. Lo concedido al Ayuntamiento se lee además por su NIF
             (P4621600H): una convocatoria abierta a todos los municipios no nombra a ninguno. Cada
-            concesión es una fila, con su importe; los euros son lo concedido, no lo cobrado, y se
-            suman sólo ahí, porque una convocatoria puede dar varias concesiones. La consulta por el
-            NIF no devuelve las concesiones más antiguas (/presupuesto dice desde qué año); las
-            recibidas anteriores siguen llegando sólo por el nombre. Las convocatorias que sólo
-            aparecen por el NIF no entran todavía en el contraste del verificador: añadirlas movía
-            veredictos hacia arriba por parecido de palabras, y eso se mide antes de hacerlo.
+            concesión es una fila, con su importe; los euros son lo concedido (los pagos son otro
+            registro de la BDNS) y se suman sólo ahí, porque una convocatoria puede dar varias
+            concesiones. La consulta por el NIF no devuelve las concesiones más antiguas
+            (/presupuesto dice desde qué año); las recibidas anteriores siguen llegando sólo por el
+            nombre. Las convocatorias que sólo aparecen por el NIF no entran todavía en el contraste
+            del verificador: añadirlas movía veredictos hacia arriba por parecido de palabras, y eso
+            se mide antes de hacerlo.
           </li>
           <li>
             <strong>Presupuesto CONPREL (MinHac)</strong> — capítulos de gasto e ingreso anuales.
