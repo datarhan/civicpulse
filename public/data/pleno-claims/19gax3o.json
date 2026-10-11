@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-11T06:23:22.199Z",
+  "generatedAt": "2026-10-11T07:07:47.709Z",
   "version": "1",
   "plenoId": "19gax3o",
   "plenoDate": "2026-01-19",
@@ -2534,23 +2534,17 @@
       },
       "verification": {
         "claimId": "19gax3o-046-cit-336cb3",
-        "verdict": "parcial",
-        "summary": "Coincidencia parcial: hay datos relacionados pero no idénticos al claim.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=56xTbbVhVpxxseVhcqrkhw%3D%3D",
-            "snippet": "Contratación servicio dirección de obra y dirección de ejecución material, coordinación en seguridad \ny salud para proyecto de obras “Reconstrucción de vallados de parcelas en los polígonos industriales tras los daños sufridos tras la DANA en el T.M. de Riba-roja de Túria (Valencia)” - Ctto92/2026. · Ayuntamiento de Riba-roja de Túria · José Luis Moreno Delgado · architecture · estado: awarded",
-            "similarity": 1,
-            "stance": "checked"
-          }
+        "verdict": "sin-datos",
+        "summary": "Ningún candidato respalda genuinamente la afirmación; como mucho hay un contexto débil y tangencial, y la afirmación es una opinión o testimonio no verificable con estos registros.",
+        "evidence": [],
+        "checkedAgainst": [],
+        "derivedBy": [
+          "verdict-engine"
         ],
-        "checkedAgainst": [
-          "tenders",
-          "tenders-ted"
-        ]
+        "confidence": 0.2,
+        "source": "verdict-engine"
       },
-      "visibility": "shown"
+      "visibility": "toggle"
     },
     {
       "claim": {

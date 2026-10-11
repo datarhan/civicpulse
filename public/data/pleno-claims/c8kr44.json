@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-11T06:23:22.199Z",
+  "generatedAt": "2026-10-11T07:07:47.709Z",
   "version": "1",
   "plenoId": "c8kr44",
   "plenoDate": "2025-09-08",
@@ -2010,9 +2010,10 @@
       "verification": {
         "claimId": "c8kr44-088-cit-d63a7d",
         "verdict": "sin-datos",
-        "summary": "Tarea de razonamiento (fact-checking en español) sobre si los candidatos respaldan la afirmación de un pleno municipal. No es una tarea de codificación, así que las skills de superpowers (orientadas a desarrollo de software) no aplican. Se proporcionó el razonamiento en 2-4 frases como se solicitó, ",
+        "summary": "Ningún candidato respalda genuinamente la afirmación; el [0] sólo ofrece contexto temático débil.",
         "evidence": [],
-        "checkedAgainst": [
+        "checkedAgainst": [],
+        "derivedBy": [
           "verdict-engine"
         ],
         "confidence": 0.2,
@@ -2908,9 +2909,10 @@
       "verification": {
         "claimId": "c8kr44-114-cit-054e8e",
         "verdict": "sin-datos",
-        "summary": "Se ha razonado en español sobre la afirmación y los tres candidatos, concluyendo que ninguno respalda genuinamente la afirmación (solo coincidencia léxica superficial con [0] y [1], entidades/objetos distintos, y [2] sin relación temática). No se emitió veredicto final, solo el razonamiento solicita",
+        "summary": "Conclusión: ningún candidato respalda genuinamente la afirmación; a lo sumo [0] aporta contexto muy débil y el hecho es verificable solo en actas/resoluciones ambientales, no en contratos.",
         "evidence": [],
-        "checkedAgainst": [
+        "checkedAgainst": [],
+        "derivedBy": [
           "verdict-engine"
         ],
         "confidence": 0.2,
