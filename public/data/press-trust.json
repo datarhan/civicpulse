@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-10T10:55:29.156Z",
+  "generatedAt": "2026-10-11T04:47:56.391Z",
   "windowDays": 30,
   "articles": [
     {
@@ -1055,30 +1055,13 @@
         "opinionFraction": 0
       },
       "score": 2
-    },
-    {
-      "articleId": "1p0chgo",
-      "articleFingerprint": "zeuxbp",
-      "outlet": "Ayuntamiento de Riba-roja de Túria",
-      "outletHost": "ribarroja.es",
-      "url": "https://www.ribarroja.es/es/noticia/riba-roja-inicia-el-curso-con-una-unidad-espec%C3%ADfica-en-centro-ordinario-%28ueco%29-para-el-alumnado-de-secundaria",
-      "date": "2026-09-10T12:00:05.000Z",
-      "indicators": {
-        "localCoverage": true,
-        "datedArticle": true,
-        "municipalSourceMatch": null,
-        "corroboratedAcrossOutlets": false,
-        "factualClaimsPresent": false,
-        "opinionFraction": 0
-      },
-      "score": 2
     }
   ],
   "outlets": [
     {
       "outlet": "Ayuntamiento de Riba-roja de Túria",
       "outletHost": "ribarroja.es",
-      "articleCount": 20,
+      "articleCount": 19,
       "verdictCounts": {
         "verificado": 0,
         "parcial": 1,
@@ -1086,7 +1069,7 @@
         "sin-datos": 8,
         "promesa-repetida": 0
       },
-      "meanTrustScore": 2.6,
+      "meanTrustScore": 2.63,
       "verifiedRatio": 0,
       "contradictedRatio": null
     },
@@ -1302,7 +1285,7 @@
     }
   ],
   "builtFrom": {
-    "plenos-agendas.json": "ed39667d6c86",
+    "plenos-agendas.json": "64b9640ebe7b",
     "press-claims-verified.json": "5f440b22045d",
     "press.json": "4378d74d8caa",
     "promises.json": "b5dbe1ebae83"
