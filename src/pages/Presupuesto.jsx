@@ -1380,6 +1380,12 @@ function ContratacionBanda() {
   const spanBdns = yearSpan(
     (bdns?.items ?? []).filter((i) => i.direction === 'granted').map((i) => i.date),
   )
+  // Lo recibido se cuenta en CONCESIONES y en euros concedidos, no en
+  // convocatorias: una convocatoria de la Diputación da ocho concesiones al
+  // Ayuntamiento. Antes la nota sumaba las recibidas a las municipales en un
+  // «{total} en total» que contaba convocatorias de dos poblaciones distintas.
+  const concBdns = bdns?.stats?.concesiones
+  const spanConc = yearSpan((bdns?.concesiones ?? []).map((c) => c.fecha))
   const rangoMenores = committedAwardYearSpan(contratos)
   const spanMenores = rangoMenores
     ? rangoMenores.from === rangoMenores.to
@@ -1447,10 +1453,15 @@ function ContratacionBanda() {
       href: '#subvenciones',
       eyebrow: t('presupuesto.contra.bdns'),
       cifra: num(bdns.stats.granted),
-      nota: rellena(t('presupuesto.contra.bdns.nota'), {
-        span: spanBdns ? ` ${spanBdns}` : '',
-        total: num(bdns.stats.total),
-      }),
+      nota:
+        rellena(t('presupuesto.contra.bdns.nota'), { span: spanBdns ? ` ${spanBdns}` : '' }) +
+        (concBdns?.total > 0
+          ? rellena(t('presupuesto.contra.bdns.recibidas'), {
+              n: num(concBdns.total),
+              span: spanConc ? ` ${spanConc}` : '',
+              importe: eurM(concBdns.importe, 1),
+            })
+          : ''),
       enlace: t('presupuesto.contra.bdns.link'),
     })
   }
@@ -1489,13 +1500,18 @@ function RealSubsidies() {
   if (loading || error || !data) return null
   const items = (data.items || []).filter((i) => i.direction === 'granted').slice(0, 6)
   if (items.length === 0) return null
+  const conc = data.stats?.concesiones
+  const concesiones = (data.concesiones || []).slice(0, 5)
+  const spanConc = yearSpan((data.concesiones || []).map((c) => c.fecha))
   return (
     <Card id="subvenciones" style={{ scrollMarginTop: 24 }}>
       <SectionHead
-        eyebrow={rellena(t('presupuesto.subvenciones.eyebrow'), {
-          total: data.stats.total,
-          municipales: data.stats.granted,
-        })}
+        eyebrow={
+          rellena(t('presupuesto.subvenciones.eyebrow'), { municipales: num(data.stats.granted) }) +
+          (conc?.total > 0
+            ? rellena(t('presupuesto.subvenciones.eyebrow.recibidas'), { n: num(conc.total) })
+            : '')
+        }
         title={t('presupuesto.subvenciones.titulo')}
       />
       <div
@@ -1531,6 +1547,67 @@ function RealSubsidies() {
           </div>
         </div>
       ))}
+      {conc?.total > 0 && concesiones.length > 0 && (
+        <div style={{ marginTop: 18 }} data-bdns-recibidas>
+          <div style={EYEBROW}>{t('presupuesto.subvenciones.recibidas.titulo')}</div>
+          <p
+            style={{
+              fontSize: 'var(--fs-aux)',
+              lineHeight: 1.5,
+              color: 'var(--ink70)',
+              margin: '4px 0 6px',
+              maxWidth: '68ch',
+            }}
+          >
+            {rellena(t('presupuesto.subvenciones.recibidas.texto'), {
+              n: num(conc.total),
+              span: spanConc ? ` ${spanConc}` : '',
+              conv: num(conc.convocatorias),
+              importe: eurM(conc.importe, 1),
+              desde: conc.desde ? conc.desde.slice(0, 4) : '—',
+            })}
+          </p>
+          {concesiones.map((c, i) => (
+            <div
+              key={c.id}
+              style={{
+                padding: '10px 0',
+                borderBottom: i === concesiones.length - 1 ? 'none' : '1px solid var(--border2)',
+              }}
+            >
+              <div
+                style={{
+                  display: 'flex',
+                  gap: 8,
+                  alignItems: 'baseline',
+                  flexWrap: 'wrap',
+                  marginBottom: 2,
+                }}
+              >
+                <span className="mono" style={{ fontSize: 'var(--fs-aux)', fontWeight: 600 }}>
+                  {typeof c.importe === 'number' ? eur0(c.importe) : '—'}
+                </span>
+                <span
+                  className="mono"
+                  style={{ fontSize: 'var(--fs-micro)', color: 'var(--ink50)' }}
+                >
+                  {fmtDateCompacta(c.fecha, locale)} · BDNS {c.bdnsCode}
+                </span>
+              </div>
+              <div style={{ fontSize: 'var(--fs-aux)', lineHeight: 1.4 }}>
+                <ExtLink href={c.sourceUrl} style={{ color: 'inherit', textDecoration: 'none' }}>
+                  {c.convocatoria.length > 180
+                    ? c.convocatoria.slice(0, 180) + '…'
+                    : c.convocatoria}
+                </ExtLink>
+              </div>
+              <div style={{ fontSize: 'var(--fs-micro)', color: 'var(--ink50)', marginTop: 2 }}>
+                {c.organ}
+              </div>
+            </div>
+          ))}
+        </div>
+      )}
     </Card>
   )
 }
