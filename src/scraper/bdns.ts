@@ -100,75 +100,30 @@ export function parseBdnsConvocatorias(json: string): BdnsItem[] {
     const code = String(r.numeroConvocatoria || '').trim()
     if (!code || seen.has(code)) continue
     seen.add(code)
-    out.push(itemDeFila(r, code))
+
+    // The Ayuntamiento appears in nivel2/nivel3 when it's the granting
+    // body; records whose levels don't name the municipality as the
+    // convocant (e.g. a Generalitat-level call to which the Ayto might
+    // apply) count as "received", and `ubicarConvocatoria` decides whether
+    // they are about this Riba-roja at all.
+    const nivel3 = (r.nivel3 ?? '').toUpperCase()
+    const isGranted = plegar(r.nivel2) === plegar(MUNICIPIO_BDNS) && /AYUNTAMIENTO/.test(nivel3)
+
+    out.push({
+      id: r.id,
+      bdnsCode: code,
+      description: (r.descripcion || '').trim(),
+      date: parseDate(r.fechaRecepcion),
+      organ: [r.nivel1, r.nivel2, r.nivel3].filter(Boolean).join(' · '),
+      level1: r.nivel1,
+      level2: r.nivel2 ?? null,
+      direction: isGranted ? 'granted' : 'received',
+      sourceUrl: `https://www.pap.hacienda.gob.es/bdnstrans/GE/es/convocatoria/${code}`,
+    })
   }
 
-  out.sort(masRecienteAntes)
+  out.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
   return out
-}
-
-function masRecienteAntes(a: BdnsItem, b: BdnsItem): number {
-  return new Date(b.date).getTime() - new Date(a.date).getTime()
-}
-
-function convocatoriaUrl(code: string): string {
-  return `https://www.pap.hacienda.gob.es/bdnstrans/GE/es/convocatoria/${code}`
-}
-
-function itemDeFila(r: Raw, code: string): BdnsItem {
-  // The Ayuntamiento appears in nivel2/nivel3 when it's the granting
-  // body; records whose levels don't name the municipality as the
-  // convocant (e.g. a Generalitat-level call to which the Ayto might
-  // apply) count as "received", and `ubicarConvocatoria` decides whether
-  // they are about this Riba-roja at all.
-  const nivel3 = (r.nivel3 ?? '').toUpperCase()
-  const isGranted = plegar(r.nivel2) === plegar(MUNICIPIO_BDNS) && /AYUNTAMIENTO/.test(nivel3)
-
-  return {
-    id: r.id,
-    bdnsCode: code,
-    description: (r.descripcion || '').trim(),
-    date: parseDate(r.fechaRecepcion),
-    organ: [r.nivel1, r.nivel2, r.nivel3].filter(Boolean).join(' · '),
-    level1: r.nivel1,
-    level2: r.nivel2 ?? null,
-    direction: isGranted ? 'granted' : 'received',
-    sourceUrl: convocatoriaUrl(code),
-  }
-}
-
-/**
- * La ficha de una convocatoria (/convocatorias?vpd=GE&numConv=) como la fila
- * que daría la búsqueda: el mismo `id`, la misma fecha de recepción, el mismo
- * órgano. Es como entra en `items` la convocatoria de una concesión que la
- * búsqueda por nombre no trajo. Sin código o sin fecha, null: una fila sin
- * fecha se ordenaría como de 1970 y la contaría `yearSpan`.
- */
-export function itemDeFicha(ficha: unknown): BdnsItem | null {
-  const f = ficha as {
-    id?: unknown
-    codigoBDNS?: unknown
-    descripcion?: unknown
-    fechaRecepcion?: unknown
-    organo?: { nivel1?: unknown; nivel2?: unknown; nivel3?: unknown } | null
-  } | null
-  if (!f || typeof f !== 'object') return null
-  const code = typeof f.codigoBDNS === 'string' ? f.codigoBDNS.trim() : ''
-  const fecha = typeof f.fechaRecepcion === 'string' ? f.fechaRecepcion : ''
-  if (!code || !fecha || typeof f.id !== 'number') return null
-  const nivel = (v: unknown) => (typeof v === 'string' ? v : null)
-  return itemDeFila(
-    {
-      id: f.id,
-      numeroConvocatoria: code,
-      descripcion: typeof f.descripcion === 'string' ? f.descripcion : '',
-      fechaRecepcion: fecha,
-      nivel1: nivel(f.organo?.nivel1) ?? '',
-      nivel2: nivel(f.organo?.nivel2),
-      nivel3: nivel(f.organo?.nivel3),
-    },
-    code,
-  )
 }
 
 /** Sin tildes, en mayúsculas y con los espacios plegados: así compara la BDNS. */
@@ -347,14 +302,21 @@ export function rechazoDeLaCorrida(separacion: {
 // 2022 (2015–2021: cero filas), así que las siete recibidas más viejas siguen
 // viniendo sólo de la búsqueda por nombre.
 //
-// Dos unidades, cada una en su sitio, para no contar dos veces:
-//  · `concesiones`: una fila por CONCESIÓN, con su importe. Los euros se suman
-//    aquí y sólo aquí. Una convocatoria puede tener varias (la 754381, el Plan
-//    Abierto de Inversiones de la Diputación, ocho).
-//  · `items`: una fila por CONVOCATORIA, como siempre. La de una concesión entra
-//    una vez, como recibida, sin importe: la línea con que el verificador lee
-//    una convocatoria (snippet-de-bdns.ts) no cambia, porque cambiarla se mide
-//    con llamadas reales antes de fusionar.
+// Las concesiones van en su propio bloque, `concesiones`: una fila por
+// CONCESIÓN, con su importe. Los euros se suman aquí y sólo aquí; una
+// convocatoria puede tener varias (la 754381, el Plan Abierto de Inversiones de
+// la Diputación, ocho).
+//
+// Sus convocatorias NO entran en `items`, que es lo que lee el verificador
+// (claim-verifier.ts y el corpus de embed-verifier-corpus.ts). Medido el
+// 11-10-2026 sobre las 7.564 afirmaciones de pleno publicadas: con las 114
+// convocatorias nuevas en `items`, el tramo determinista subía 14 de
+// `sin-datos` a `parcial` y no bajaba ninguna, varias por puro solapamiento de
+// palabras —«plan de contratación 2026» contra una convocatoria de empleo de
+// LABORA—. Un veredicto automático no sube sin una precisión medida
+// (automation-policy.ts), así que ampliar lo que lee el verificador es otro
+// paso, con su medición. Hasta entonces `items` sigue siendo lo que trae la
+// búsqueda por nombre, y `stats.received` cuenta esas convocatorias.
 //
 // El importe es lo CONCEDIDO, no lo cobrado: los pagos son otro registro de la
 // BDNS. La prosa que lo enseñe dice «concedido».
@@ -370,7 +332,7 @@ export const INSTRUMENTO_SUBVENCION = 'SUBVENCION Y ENTREGA DINERARIA SIN CONTRA
 export interface ConcesionRecibida {
   id: number
   codConcesion: string
-  /** El código de su convocatoria: la clave que la une a `items`. */
+  /** El código de su convocatoria. */
   bdnsCode: string
   convocatoria: string
   /** `fechaConcesion`, a medianoche UTC. */
@@ -408,6 +370,9 @@ interface RawConcesion {
 }
 
 const texto = (v: unknown): string => (typeof v === 'string' ? v.trim() : '')
+
+const convocatoriaUrl = (code: string) =>
+  `https://www.pap.hacienda.gob.es/bdnstrans/GE/es/convocatoria/${code}`
 
 /**
  * Las concesiones de /concesiones/busqueda?nifCif=NIF_AYUNTAMIENTO: acepta las
@@ -505,7 +470,7 @@ const TECHO_FALTANTES = 0.1
  */
 export function rechazoDeLasConcesiones(
   leidas: ConcesionesLeidas,
-  contexto: { anterior?: number | null; sinFicha?: readonly string[] } = {},
+  contexto: { anterior?: number | null } = {},
 ): string | null {
   const { concesiones, ajenas, declaradas } = leidas
   const n = concesiones.length
@@ -530,43 +495,5 @@ export function rechazoDeLasConcesiones(
   if (anterior != null && n < anterior * (1 - TECHO_CAIDA_CONCESIONES)) {
     return `${n} concesiones, frente a ${anterior} en el snapshot anterior: cae más de la mitad`
   }
-  const sinFicha = contexto.sinFicha?.length ?? 0
-  if (sinFicha > TECHO_FALTANTES * resumen.convocatorias) {
-    return `${sinFicha} de ${resumen.convocatorias} convocatorias con concesión se quedaron sin ficha`
-  }
   return null
-}
-
-/**
- * Las convocatorias de las concesiones, unidas a las que ya se publican. Cada
- * convocatoria entra una vez: la que ya traía la búsqueda conserva su fila; la
- * nueva entra con la de su ficha (`itemDeFicha`). Una concesión al NIF sitúa
- * su convocatoria aquí —la regla 2 de `ubicarConvocatoria`—, así que si la
- * búsqueda la había apartado, deja de estarlo. Sin ficha legible no entra en
- * `items`, y se dice cuál: sus concesiones siguen en `concesiones`.
- */
-export function unirConcesiones(
-  separacion: { propias: BdnsItem[]; descartadas: Descartada[] },
-  concesiones: ConcesionRecibida[],
-  fichas: ReadonlyMap<string, unknown>,
-): { propias: BdnsItem[]; descartadas: Descartada[]; anadidas: string[]; sinFicha: string[] } {
-  const codigos = [...new Set(concesiones.map((c) => c.bdnsCode))]
-  const yaEstan = new Set(separacion.propias.map((i) => i.bdnsCode))
-  const propias = [...separacion.propias]
-  const anadidas: string[] = []
-  const sinFicha: string[] = []
-  for (const code of codigos) {
-    if (yaEstan.has(code)) continue
-    const item = itemDeFicha(fichas.get(code))
-    if (!item || item.bdnsCode !== code) {
-      sinFicha.push(code)
-      continue
-    }
-    propias.push(item)
-    anadidas.push(code)
-  }
-  propias.sort(masRecienteAntes)
-  const situadas = new Set(anadidas)
-  const descartadas = separacion.descartadas.filter((d) => !situadas.has(d.bdnsCode))
-  return { propias, descartadas, anadidas, sinFicha }
 }
