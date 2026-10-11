@@ -9,6 +9,8 @@
  *       --resumen-de <fichero> --editor "<Nombre Apellido>" [--dry-run]
  *   npm run subir-veredicto -- --retirar <claimId> \
  *       --motivo-de <fichero> --editor "<Nombre Apellido>" [--dry-run]
+ *   npm run subir-veredicto -- --backfill-sustituye <commit> <claimId>… \
+ *       --editor "<firma>" [--dry-run]
  *
  * (`--resumen "<texto>"` y `--motivo "<texto>"` también valen; el fichero existe
  * porque el bash 3.2 de macOS rompe `$(cat <<…)` cuando el texto lleva
@@ -44,8 +46,19 @@
  *    del overlay que no firmó una persona, o la propuesta de NLI de esa
  *    declaración si la cola está en disco.
  *
+ * `--backfill-sustituye` no sube nada: devuelve a subidas ya escritas la entrada
+ * que sustituyeron (`sustituye`), que la vía tiraba antes del 11-10-2026, leída
+ * del overlay en <commit> (`recuperarSustituida`). Es mecánica y se rehace desde
+ * git, así que la firma una persona o la cuenta de rol (`rechazoDeMarcador`),
+ * como `corregir-rotulo-motor`. El commit tiene que ser un antepasado de HEAD, y
+ * componer la base en disco con el overlay nuevo tiene que dar lo mismo que con
+ * el de ahora: lo publicado no cambia, sólo el registro. No pide que lo
+ * publicado sea la composición de esa base (`cotejarCompose`), como subir: no
+ * recompone nada, y la pregunta es qué cambia el overlay, no qué cambia la base.
+ *
  * Nunca corre sola: no la llama ningún runner, cron ni nocturna.
  */
+import { execFileSync } from 'node:child_process'
 import { existsSync, readFileSync, writeFileSync } from 'node:fs'
 import { resolve } from 'node:path'
 
@@ -53,15 +66,16 @@ import { etiquetaVerificador } from '../src/lib/claim-provenance.js'
 import { RESUMENES_RETIRADOS } from '../src/lib/resumenes-retirados.js'
 import type { ClaimVerdict } from '../src/scraper/claim-verdicts'
 import type { ClaimEvidence } from '../src/scraper/claim-verifier'
-import { rechazoDeFirma } from '../src/scraper/firma-de-persona'
+import { rechazoDeFirma, rechazoDeMarcador } from '../src/scraper/firma-de-persona'
 import {
   comprobarRegistrosConLaDeclaracion,
+  recuperarSustituida,
   registroDeLaSubida,
   retirarSubida,
   subirVeredicto,
   type EvidenciaPedida,
 } from '../src/scraper/subida-firmada'
-import type { Overlay } from '../src/scraper/verified-merge'
+import type { Overlay, VerifiedItem } from '../src/scraper/verified-merge'
 import {
   compuestaSoloEsta,
   congeladoHasta,
@@ -70,7 +84,15 @@ import {
   leerComposicion,
   resumenesDeMaquina,
 } from './lib/antes-de-firmar'
-import { OVERLAY, rebuildVerified } from './verified-rebuild'
+import {
+  BASE,
+  cargarCapas,
+  componer,
+  declaracionesCambiadas,
+  OVERLAY,
+  rebuildVerified,
+  type Capas,
+} from './verified-rebuild'
 
 const TENDERS = resolve('public/data/tenders.json')
 const BDNS = resolve('public/data/bdns.json')
@@ -83,12 +105,17 @@ const USO =
   "         --evidencia '<enlace del registro>' [--lote <n> | --punto <n>] [--evidencia '<otro>' …] \\\n" +
   '         --resumen-de <fichero> --editor "<Nombre Apellido>" [--dry-run]\n' +
   '     npm run subir-veredicto -- --retirar <claimId> --motivo-de <fichero> \\\n' +
-  '         --editor "<Nombre Apellido>" [--dry-run]\n'
+  '         --editor "<Nombre Apellido>" [--dry-run]\n' +
+  '     npm run subir-veredicto -- --backfill-sustituye <commit> <claimId>… \\\n' +
+  '         --editor "<firma>" [--dry-run]\n'
 
 interface Orden {
   claimId?: string
   veredicto?: string
   retirar: boolean
+  /** El commit de `--backfill-sustituye`; los posicionales son las declaraciones. */
+  backfill?: string
+  ids: string[]
   evidencias: EvidenciaPedida[]
   resumen?: string
   resumenDe?: string
@@ -101,13 +128,15 @@ interface Orden {
 }
 
 function parse(argv: string[]): Orden {
-  const o: Orden = { retirar: false, evidencias: [], dryRun: false, errores: [] }
+  const o: Orden = { retirar: false, ids: [], evidencias: [], dryRun: false, errores: [] }
   const posicionales: string[] = []
   for (let i = 0; i < argv.length; i++) {
     const a = argv[i]
     if (a === '--retirar') {
       o.retirar = true
       o.claimId = argv[++i]
+    } else if (a === '--backfill-sustituye') {
+      o.backfill = argv[++i] ?? ''
     } else if (a === '--evidencia') {
       o.evidencias.push({ enlace: argv[++i] ?? '', lote: null })
     } else if (a === '--lote') {
@@ -135,7 +164,17 @@ function parse(argv: string[]): Orden {
     else if (a.startsWith('--')) o.errores.push(`opción desconocida: ${a}`)
     else posicionales.push(a)
   }
-  if (o.retirar) {
+  if (o.backfill != null) {
+    o.ids = posicionales
+    if (o.retirar) o.errores.push('--backfill-sustituye no va con --retirar')
+    if (!o.backfill || o.backfill.startsWith('--'))
+      o.errores.push('--backfill-sustituye lleva el commit del que se recupera')
+    if (posicionales.length === 0) o.errores.push('--backfill-sustituye lleva las declaraciones')
+    if (o.evidencias.length > 0 || o.resumen != null || o.resumenDe != null)
+      o.errores.push('--backfill-sustituye no sube nada: ni --evidencia ni resumen')
+    if (o.motivo != null || o.motivoDe != null)
+      o.errores.push('--backfill-sustituye no retira nada: sin --motivo')
+  } else if (o.retirar) {
     if (posicionales.length > 0)
       o.errores.push(`--retirar no lleva veredicto (${posicionales.join(' ')})`)
     if (o.evidencias.length > 0) o.errores.push('--retirar no cita registros: baja a lo que había')
@@ -184,8 +223,107 @@ function leerJson(path: string, que: string): unknown {
   }
 }
 
+/** `git …` en este checkout; su salida, o el mensaje de la orden si falla. */
+function git(args: string[], que: string): string {
+  try {
+    return execFileSync('git', args, { encoding: 'utf8', maxBuffer: 256 * 1024 * 1024 })
+  } catch (err) {
+    salir(1, `${que}: git ${args[0]} falló (${(err as Error).message.split('\n')[0]})`)
+  }
+}
+
+/**
+ * `--backfill-sustituye`: devuelve a cada subida la entrada que sustituyó, leída
+ * del overlay en <commit>. No recompone: componer con el overlay nuevo tiene que
+ * dar lo mismo, byte a byte, que con el de ahora, o no se escribe.
+ */
+function recuperar(o: Orden): void {
+  const hueco = rechazoDeMarcador(o.editor ?? '')
+  if (hueco) salir(2, `--editor: ${hueco}`)
+  if (o.errores.length > 0) {
+    process.stderr.write(USO)
+    salir(2, o.errores.join('; '))
+  }
+  const commit = git(['rev-parse', '--verify', `${o.backfill}^{commit}`], '<commit>').trim()
+  try {
+    execFileSync('git', ['merge-base', '--is-ancestor', commit, 'HEAD'])
+  } catch {
+    salir(1, `${commit} no es un antepasado de HEAD: no es la historia de este overlay`)
+  }
+  const ruta = 'public/data/pleno-claims-overlay.json'
+  let antes: Overlay
+  try {
+    antes = JSON.parse(git(['show', `${commit}:${ruta}`], ruta)) as Overlay
+  } catch (err) {
+    salir(1, `${ruta} en ${commit} no se deja leer: ${(err as Error).message}`)
+  }
+
+  if (!existsSync(BASE)) {
+    salir(1, `falta la base (${BASE}), que está gitignorada: sin ella no se ve qué compone`)
+  }
+  const base = (JSON.parse(readFileSync(BASE, 'utf8')) as { items: VerifiedItem[] }).items
+  let capas: Capas
+  try {
+    capas = cargarCapas()
+  } catch (err) {
+    salir(1, `los ficheros que se componen no validan: ${(err as Error).message}`)
+  }
+  const stamp = new Date().toISOString()
+  let nuevo = capas.overlay
+  for (const id of o.ids) {
+    const anterior = antes.entries?.[id]
+    if (!anterior) salir(1, `${id}: no tiene entrada en el overlay de ${commit.slice(0, 8)}`)
+    try {
+      nuevo = recuperarSustituida(nuevo, id, anterior, { commit, editor: o.editor ?? '' }, stamp)
+    } catch (err) {
+      salir(1, `rechazado: ${(err as Error).message}`)
+    }
+  }
+  let ahora: VerifiedItem[]
+  let despues: VerifiedItem[]
+  try {
+    ahora = componer(base, capas).items
+    despues = componer(base, { ...capas, overlay: nuevo }).items
+  } catch (err) {
+    salir(1, `rechazado al componer: ${(err as Error).message}`)
+  }
+  // Que no se mueva nada sólo dice algo si cada una se compuso.
+  const compuestas = new Set(despues.map((it) => it.claim.id))
+  const fuera = o.ids.filter((id) => !compuestas.has(id))
+  if (fuera.length > 0) {
+    salir(1, `${fuera.join(', ')}: no está en la base en disco, y no se ve qué compone`)
+  }
+  const movidas = declaracionesCambiadas(ahora, despues)
+  if (movidas.length > 0) {
+    salir(
+      1,
+      `recomponer movería ${movidas.length} declaración(es) (${movidas.slice(0, 5).join(', ')}): ` +
+        'recuperar el registro no puede cambiar lo publicado',
+    )
+  }
+  for (const id of o.ids) {
+    process.stdout.write(
+      JSON.stringify({ [id]: { sustituye: nuevo.entries[id].sustituye } }, null, 2) + '\n',
+    )
+  }
+  process.stdout.write(
+    `[subir] ${o.ids.length} subida(s) recuperan lo que sustituyeron, de ${commit.slice(0, 8)} ` +
+      `(${o.editor}) · ninguna declaración publicada cambia\n`,
+  )
+  if (o.dryRun) {
+    process.stdout.write('[subir] --dry-run: no se ha escrito nada\n')
+    return
+  }
+  writeFileSync(OVERLAY, JSON.stringify(nuevo, null, 2) + '\n')
+  process.stdout.write(
+    '[subir] overlay escrito. Queda `npm run refresh` (la huella del overlay) y\n' +
+      '  `npm run check:verified-compose`.\n',
+  )
+}
+
 async function main() {
   const o = parse(process.argv.slice(2))
+  if (o.backfill != null) return recuperar(o)
 
   // Antes de leer nada: quién firma.
   if (!o.editor) salir(2, '--editor es obligatorio: lo firma una persona, con su nombre')

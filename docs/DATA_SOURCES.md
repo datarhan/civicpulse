@@ -73,6 +73,13 @@ Each CLI re-validates the whole snapshot before writing, so an invariant
 algorithmic output through the CLI, never straight into the file — the schema
 validator and the git history are the audit trail.
 
+A signed raise (`subir-veredicto`) replaces its claim's overlay entry, so it
+keeps who wrote the entry it replaced, when, and that entry's signed records
+(`labelCorrections`, `reasonAmendments`) under `sustituye` — never its summary
+or reason, which would re-serve the machine prose the person replaced. Raises
+written before 2026-10-11 dropped it; `subir-veredicto --backfill-sustituye
+<commit> <claimId>…` restores it from git, stamped with the commit it came from.
+
 `competencias.json` is curated for a reason worth stating, because it is the
 only file here that puts a living person's name beside a cost figure. It maps
 each panel indicator to the delegated portfolio that answers for it, and the
