@@ -64,14 +64,12 @@ export const ROTULO_RESUMEN_RETIRADO =
  */
 export const RESUMENES_RETIRADOS = Object.freeze({
   '1qi8axv-023-cit-3e6224': 'Task completed: provided skeptical fact-',
-  '1sqj7is-081-cit-50c5bb': 'Task completed: provided the requested 2',
   'c8kr44-088-cit-d63a7d': 'Tarea de razonamiento (fact-checking en ',
   'c8kr44-089-cit-712906': 'Tarea de fact-checking en español sobre ',
   'c8kr44-114-cit-054e8e': 'Se ha razonado en español sobre la afirm',
   'c8kr44-117-cit-d6cf5b': 'Task completed: provided skeptical fact-',
   'k4olcs-176-cit-225080': 'Task completed: provided the requested 2',
   'otxq2c-209-cit-7741cf': 'Task was a direct fact-checking reasonin',
-  'qz6weg-184-cit-8629f9': 'Task was a Spanish-language fact-checkin',
   'qz6weg-246-cit-98306f': 'Task completed: provided skeptical Spani',
 })
 
