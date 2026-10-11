@@ -1472,23 +1472,23 @@ export default function Metodologia() {
             quién decidió la rebaja: «corregido por un curador» sólo cuando la firma nombra a una
             persona; «rebajado en una revisión automática» cuando nombra un proceso o un modelo; y
             «no consta quién lo decidió» cuando no dice ni lo uno ni lo otro. Lo que una rebaja deja
-            en <em>parcial</em> se enseña como contrastado, con la evidencia que tenía el veredicto
-            que rebajó y su motivo por resumen: se enseña porque la herramienta sólo baja, no porque
-            la firme una persona. Ese motivo es también la explicación que la tarjeta enseña bajo la
-            cita, y puede enmendarse después —para decir lo mismo en castellano llano, o decirlo
-            mejor— <strong>sin mover el veredicto</strong>: la enmienda la firma siempre una persona
-            con su nombre, que la tarjeta da («motivo firmado por…»), y queda en la propia entrada,
-            con la fecha, el porqué y una huella del motivo anterior que permite cotejarlo con el
-            historial público del repositorio. No se enmienda ninguno durante el periodo electoral,
-            ni cuando lo publicado no es la composición de lo que hay en disco. Enmendar el motivo
-            reescribe la explicación, no la decisión: una rebaja automática con el motivo firmado
-            por una persona sigue siendo una rebaja automática. Las decisiones de segunda pasada y
-            de curación viven en una capa («overlay») separada del veredicto determinista base, de
-            modo que recalcular la base nunca borra esas decisiones. Desde agosto de 2026 el{' '}
-            <em>tipo</em> de una declaración se corrige por la misma vía: cuando el extractor
-            archiva como <code>acusacion_publica</code> algo que no acusa a nadie —el caso que
-            estrenó la herramienta fue una defensa de la constitucionalidad de una ley estatal—, un
-            curador lo reclasifica con motivo verbatim en un registro propio (
+            en <em>parcial</em> se enseña entre las cotejadas, con la evidencia que tenía el
+            veredicto que rebajó y su motivo por resumen: se enseña porque la herramienta sólo baja,
+            no porque la firme una persona. Ese motivo es también la explicación que la tarjeta
+            enseña bajo la cita, y puede enmendarse después —para decir lo mismo en castellano
+            llano, o decirlo mejor— <strong>sin mover el veredicto</strong>: la enmienda la firma
+            siempre una persona con su nombre, que la tarjeta da («motivo firmado por…»), y queda en
+            la propia entrada, con la fecha, el porqué y una huella del motivo anterior que permite
+            cotejarlo con el historial público del repositorio. No se enmienda ninguno durante el
+            periodo electoral, ni cuando lo publicado no es la composición de lo que hay en disco.
+            Enmendar el motivo reescribe la explicación, no la decisión: una rebaja automática con
+            el motivo firmado por una persona sigue siendo una rebaja automática. Las decisiones de
+            segunda pasada y de curación viven en una capa («overlay») separada del veredicto
+            determinista base, de modo que recalcular la base nunca borra esas decisiones. Desde
+            agosto de 2026 el <em>tipo</em> de una declaración se corrige por la misma vía: cuando
+            el extractor archiva como <code>acusacion_publica</code> algo que no acusa a nadie —el
+            caso que estrenó la herramienta fue una defensa de la constitucionalidad de una ley
+            estatal—, un curador lo reclasifica con motivo verbatim en un registro propio (
             <code>pleno-claim-reclassifications.json</code>), y la herramienta sólo acepta
             movimientos que <strong>alejan</strong> de la acusación, nunca hacia ella: convertir una
             declaración en acusación agravaría lo que se afirma de quien habló, que es exactamente
@@ -2279,12 +2279,17 @@ export default function Metodologia() {
           </li>
         </ul>
         <p style={{ marginTop: 8 }}>
-          <strong>Contrastadas</strong> es la suma de las verificadas, las parciales y las
+          {/* Decía «Contrastadas»: en castellano una información contrastada es una
+              comprobada, y la revisión lectora del 06-10-2026 leyó «8 contrastadas» en
+              /departamentos/medio-ambiente sobre ocho parciales. Antes fue «con evidencia». */}
+          <strong>Cotejadas</strong> es la suma de las verificadas, las parciales y las
           contradichas: las declaraciones que se pudieron comparar con un documento municipal,
-          saliera a favor o en contra. No quiere decir que estén respaldadas; el veredicto de cada
-          una va en su tarjeta. En la ficha de cada concejalía se agrupan por tema, no por quien
-          habló: una declaración sobre urbanismo cuenta en esa área la pronunciara quien la
-          pronunciara, y su atribución sigue siendo de bloque.
+          saliera a favor o en contra. Cotejar no es comprobar: una parcial coincide sólo en parte
+          con el documento, y que una declaración esté entre las cotejadas no quiere decir que esté
+          respaldada. Junto a la cifra va cuántas son de cada veredicto, y el de cada una, en su
+          tarjeta. En la ficha de cada concejalía se agrupan por tema, no por quien habló: una
+          declaración sobre urbanismo cuenta en esa área la pronunciara quien la pronunciara, y su
+          atribución sigue siendo de bloque.
         </p>
 
         <h3 style={{ marginTop: 16, fontSize: 'var(--fs-head)' }}>Disciplina antilibellos</h3>

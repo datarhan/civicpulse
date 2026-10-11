@@ -7,6 +7,7 @@ import { conHuecos } from '../lib/huecos'
 import { usePlenoClaims, VERDICT_LABEL, VERDICT_TONE } from '../hooks/usePlenoClaims'
 import { rotuloDeTipo } from '../lib/claim-type-label.js'
 import { gateForDisplay, sortSignalFirst } from '../lib/claim-ledger'
+import { cuentaCotejadas, entreParentesis } from '../lib/cotejo'
 import { blocLabel } from '../lib/party-label.js'
 import {
   etiquetaVerificador,
@@ -272,9 +273,13 @@ function ClaimLedgerView({ items, filter, limit = 20, emptyHint, showSummary = f
 
   // Honest proportion: signal-first + a small limit otherwise oversells coverage
   // by hiding the (usually majority) sin-datos behind "load more".
+  // Las cotejadas, con su desglose por veredicto (src/lib/cotejo.js): sin él, «8
+  // contrastadas» se leía comprobadas siendo las ocho parciales. Lo que repite una
+  // promesa no es un cotejo con un documento municipal y va en su propia pieza.
   const mix = useMemo(() => {
     const sinContraste = base.filter((it) => it?.verification?.verdict === 'sin-datos').length
-    return { conEvidencia: base.length - sinContraste, sinContraste }
+    const promesas = base.filter((it) => it?.verification?.verdict === 'promesa-repetida').length
+    return { cotejadas: cuentaCotejadas(base), sinContraste, promesas }
   }, [base])
 
   if (base.length === 0) {
@@ -289,8 +294,7 @@ function ClaimLedgerView({ items, filter, limit = 20, emptyHint, showSummary = f
           lineHeight: 1.5,
         }}
       >
-        {emptyHint ||
-          'Todavía no hay declaraciones contrastadas con los datos municipales para mostrar aquí.'}
+        {emptyHint || t('ledger.vacio')}
       </div>
     )
   }
@@ -308,11 +312,20 @@ function ClaimLedgerView({ items, filter, limit = 20, emptyHint, showSummary = f
         >
           {conHuecos(
             t(
-              mix.conEvidencia === 1
-                ? 'ledger.recuento.contrastadas.uno'
-                : 'ledger.recuento.contrastadas.varios',
+              mix.cotejadas.total === 1
+                ? 'ledger.recuento.cotejadas.uno'
+                : 'ledger.recuento.cotejadas.varios',
             ),
-            { '{n}': <strong style={{ color: 'var(--ink)' }}>{mix.conEvidencia}</strong> },
+            { '{n}': <strong style={{ color: 'var(--ink)' }}>{mix.cotejadas.total}</strong> },
+          )}
+          {entreParentesis(t, mix.cotejadas)}
+          {mix.promesas > 0 && (
+            <>
+              {' · '}
+              {conHuecos(t(mix.promesas === 1 ? 'cotejo.promesas.uno' : 'cotejo.promesas.varios'), {
+                '{n}': <strong style={{ color: 'var(--ink)' }}>{mix.promesas}</strong>,
+              })}
+            </>
           )}
           {' · '}
           {conHuecos(t('ledger.recuento.sinContraste'), {

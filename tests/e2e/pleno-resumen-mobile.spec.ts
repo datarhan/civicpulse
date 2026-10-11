@@ -3,7 +3,7 @@ import { FIRST_PLENO_ID } from './_rutas'
 
 /**
  * La tira de resumen de /plenos/:id —orden del día, votaciones, declaraciones
- * contrastadas, hallazgos editoriales—: cada rótulo cabe en su ficha.
+ * cotejadas, hallazgos editoriales—: cada rótulo cabe en su ficha.
  *
  * Eran cuatro columnas a cualquier ancho, declaradas en el `style` del JSX. Un
  * rótulo no se parte dentro de una palabra, y «DECLARACIONES» —trece letras de

@@ -24,11 +24,11 @@ import { installFetchMock } from './setup/mockFetch'
  * Se llama «cotejada(s)» / «acarada(es)» —comparar, sin decir el resultado— y donde
  * se da la cifra va al lado cuántas son de cada veredicto, contado del dato.
  *
- * El detector busca el participio afirmativo: «no contrastada», «no esté
- * contrastada», «sin contrastar» o «que las contrasten» dicen una ausencia o un
- * proceso, no un resultado, y siguen. No juzga prosa: lee lo que la web pinta —el
- * texto de las páginas y de sus módulos, sin comentarios— y los valores del
- * catálogo, en los dos idiomas.
+ * El detector busca el participio afirmativo. La única negación que deja pasar es
+ * «no contrastada», el rótulo de una acusación que nada cotejó; «sin contraste»
+ * y «sin contrastar» no los ve porque no son participio. No juzga prosa: lee lo
+ * que la web pinta —el texto de las páginas y de sus módulos, sin comentarios— y
+ * los valores del catálogo, en los dos idiomas.
  *
  * Una sola excepción, y no es de declaraciones: /aviso-legal dice que los datos de
  * una adjudicación están «contrastados uno a uno contra la ficha» de PLACSP, y ahí
@@ -36,7 +36,7 @@ import { installFetchMock } from './setup/mockFetch'
  */
 const RAIZ = join(__dirname, '..')
 const RETIRADO =
-  /(?<!\b(?:no|ni|sin|sense)\s+(?:\p{L}+\s+)?)(?<!\p{L})contrasta(?:d[ao]s?|des|ts?)(?!\p{L})(?! uno a uno contra la ficha)/iu
+  /(?<!\bno\s)(?<!\p{L})contrasta(?:d[ao]s?|des|ts?)(?!\p{L})(?! uno a uno contra la ficha)/iu
 
 function fuentes(dir, out = []) {
   for (const f of readdirSync(dir)) {
@@ -61,6 +61,9 @@ const PAGINAS = fuentes(join(RAIZ, 'src'))
 describe('el agregado se llama «cotejadas», no «contrastadas»', () => {
   it('mide algo: lee las páginas, sus módulos y el catálogo', () => {
     expect(PAGINAS.filter((p) => p.endsWith('.jsx')).length).toBeGreaterThan(100)
+    // Que las leyó de verdad: el texto pintado de Metodologia trae su definición.
+    const metodologia = PAGINAS.find((p) => p.endsWith('src/pages/Metodologia.jsx'))
+    expect(pintable(readFileSync(metodologia, 'utf8'))).toContain('Cotejadas</strong> es la suma')
     expect(PAGINAS.some((p) => p.endsWith('src/pages/Metodologia.jsx'))).toBe(true)
     expect(PAGINAS.some((p) => p.endsWith('src/pages/AvisoLegal.jsx'))).toBe(true)
     expect(Object.keys(CATALOGUE.es).length).toBeGreaterThan(500)
@@ -76,13 +79,15 @@ describe('el agregado se llama «cotejadas», no «contrastadas»', () => {
       'Documents contrastats',
       'se enseña como contrastado',
       'extraído y contrastado',
+      'una cita no esté contrastada',
+      'ni contrastadas',
       pintable('<strong>8</strong> contrastadas'),
     ]) {
       expect(RETIRADO.test(visto), visto).toBe(true)
     }
     for (const limpio of [
       'acusación no contrastada',
-      'Qué significa que una cita no esté contrastada →',
+      'Qué significa que una cita quede sin contraste →',
       'hechos fechados— contrastados uno a uno contra la ficha del expediente',
       'acusaciones públicas sin contrastar',
       'Publicadas sin datos que las contrasten',

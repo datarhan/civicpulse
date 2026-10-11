@@ -216,8 +216,8 @@ export function avisoSinVeredicto(summary) {
     }
   }
   const extraidas =
-    `Se han extraído y contrastado ${plural(total, 'afirmación', 'afirmaciones')} de ` +
-    `${plural(summary?.auditedCount ?? 0, 'artículo', 'artículos')}`
+    `Se han extraído ${plural(total, 'afirmación', 'afirmaciones')} de ` +
+    `${plural(summary?.auditedCount ?? 0, 'artículo', 'artículos')} y se han buscado en los datos`
   const tasas =
     'Por eso la tasa de discrepancia aparece como «—» —no hay nada resuelto entre lo que ' +
     'dividir— y la de verificación marca el 0 % que le corresponde.'

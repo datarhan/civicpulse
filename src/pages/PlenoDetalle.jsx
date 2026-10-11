@@ -18,8 +18,7 @@ import { fmtDateLong, fmtDateShort, rellena } from '../lib/formatters'
 import { conHuecos } from '../lib/huecos'
 import { useT } from '../i18n'
 import { transcriptKind } from '../lib/transcript-kind.js'
-
-const GROUNDED = new Set(['verificado', 'parcial', 'contradicho'])
+import { cuentaCotejadas, desgloseCotejadas, entreParentesis } from '../lib/cotejo'
 
 function EmptyNote({ children }) {
   return (
@@ -230,11 +229,13 @@ function OLabel({ children }) {
 }
 
 /**
- * Contrastadas frente a sin contraste, en las declaraciones de la sesión. Sin
- * verde: «contrastadas» incluye las contradichas, y en verde se leía como respaldo.
+ * Cotejadas frente a sin contraste, en las declaraciones de la sesión. Sin
+ * verde: «cotejadas» incluye las contradichas, y en verde se leía como respaldo.
+ * La leyenda estaba escrita en castellano en el JSX y salía igual en valencià.
  */
 function DeclMixBar({ items }) {
-  const g = items.filter((it) => GROUNDED.has(it.verification?.verdict)).length
+  const t = useT()
+  const g = cuentaCotejadas(items).total
   const s = items.filter((it) => it.verification?.verdict === 'sin-datos').length
   if (g + s === 0) return null
   return (
@@ -261,7 +262,7 @@ function DeclMixBar({ items }) {
               background: 'var(--civic)',
             }}
           />
-          <span style={{ color: 'var(--ink70)' }}>contrastadas</span>
+          <span style={{ color: 'var(--ink70)' }}>{t('plenoDetail.mix.cotejadas')}</span>
           <strong className="mono" style={{ color: 'var(--ink)' }}>
             {g}
           </strong>
@@ -275,7 +276,7 @@ function DeclMixBar({ items }) {
               background: 'var(--ink50)',
             }}
           />
-          <span style={{ color: 'var(--ink70)' }}>sin contraste</span>
+          <span style={{ color: 'var(--ink70)' }}>{t('plenoDetail.mix.sinContraste')}</span>
           <strong className="mono" style={{ color: 'var(--ink)' }}>
             {s}
           </strong>
@@ -326,10 +327,8 @@ export default function PlenoDetalle() {
   // 404 a un fragmento vacío: `chunk` existe igual. «Extraída y sin nada» y «sin
   // extraer» sólo se distinguen por de dónde vino.
   const extraida = chunkExtraido(chunk)
-  const groundedCount = useMemo(
-    () => claimItems.filter((it) => GROUNDED.has(it.verification?.verdict)).length,
-    [claimItems],
-  )
+  const cotejadas = useMemo(() => cuentaCotejadas(claimItems), [claimItems])
+  const groundedCount = cotejadas.total
   const aprobados = votes.filter((v) => v.outcome === 'aprobado').length
 
   if (plenosLoading) {
@@ -450,7 +449,11 @@ export default function PlenoDetalle() {
           <Tile
             label={t('plenoDetail.declarations')}
             value={extraida ? groundedCount : '—'}
-            sub={extraida ? undefined : t('plenoDetail.extractionPending')}
+            sub={
+              extraida
+                ? desgloseCotejadas(t, cotejadas) || undefined
+                : t('plenoDetail.extractionPending')
+            }
           />
           <Tile
             label={t('plenoDetail.findings')}
@@ -572,11 +575,16 @@ export default function PlenoDetalle() {
             )}
             {' · '}
             {extraida ? (
-              <PiezaResumen
-                n={groundedCount}
-                uno="plenoDetail.line.declarations.uno"
-                varios="plenoDetail.line.declarations.varios"
-              />
+              <>
+                <PiezaResumen
+                  n={groundedCount}
+                  uno="plenoDetail.line.declarations.uno"
+                  varios="plenoDetail.line.declarations.varios"
+                />
+                {/* «2 declaraciones contrastadas» se leía comprobadas siendo las dos
+                    parciales: va detrás cuántas son de cada veredicto. */}
+                {entreParentesis(t, cotejadas)}
+              </>
             ) : (
               t('plenoDetail.line.declarationsPending')
             )}
