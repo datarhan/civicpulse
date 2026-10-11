@@ -34,10 +34,12 @@
  *     06-10-2026, cinco con su explicación nueva, cuando el motor dejó de leer
  *     «ningún candidato la respalda» como `parcial` (conclusion-sin-respaldo.ts).
  *     Siguen aquí las que el modelo ve respaldadas sólo por el título del
- *     registro (para un curador) y cuatro cuya explicación nueva no hacía más
- *     que repetir la afirmación (c8kr44-088, -089, -114 y -117): lo decidió el
- *     coordinador, porque en la tarjeta podía leerse como si el motor la
- *     afirmara.
+ *     registro (para un curador). Cuatro más se quedaron porque su explicación
+ *     nueva no hacía más que repetir la afirmación (c8kr44-088, -089, -114 y
+ *     -117), y en la tarjeta podía leerse como si el motor la afirmara; el
+ *     11-10-2026, con la explicación en la frase de la conclusión (#276), 088
+ *     y 114 salieron con la suya, y 089 y 117, re-derivadas con la lista corta
+ *     de hoy, pasaron a las de sólo el título.
  *   · Cada entrada fija el COMIENZO del texto retirado, no sólo la fila. Cuando
  *     el overlay se corrija con `downgrade-verdict` —desde el 10-10-2026, la
  *     explicación firmada de una persona: `--amend-reason` sobre la retractación
@@ -64,9 +66,7 @@ export const ROTULO_RESUMEN_RETIRADO =
  */
 export const RESUMENES_RETIRADOS = Object.freeze({
   '1qi8axv-023-cit-3e6224': 'Task completed: provided skeptical fact-',
-  'c8kr44-088-cit-d63a7d': 'Tarea de razonamiento (fact-checking en ',
   'c8kr44-089-cit-712906': 'Tarea de fact-checking en español sobre ',
-  'c8kr44-114-cit-054e8e': 'Se ha razonado en español sobre la afirm',
   'c8kr44-117-cit-d6cf5b': 'Task completed: provided skeptical fact-',
   'k4olcs-176-cit-225080': 'Task completed: provided the requested 2',
   'otxq2c-209-cit-7741cf': 'Task was a direct fact-checking reasonin',

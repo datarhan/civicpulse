@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-11T06:23:22.199Z",
+  "generatedAt": "2026-10-11T07:07:47.709Z",
   "version": "1",
   "plenoId": "15uvjew",
   "plenoDate": "2026-07-27",
@@ -805,25 +805,17 @@
       },
       "verification": {
         "claimId": "15uvjew-012-afi-83a0e3",
-        "verdict": "parcial",
-        "summary": "Coincidencia parcial: hay datos relacionados pero no idénticos al claim.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=pK1YW0Z3femXQV0WE7lYPw%3D%3D",
-            "snippet": "contrato de concesión del servicio público de abastecimiento de agua potable, servicio de gestión de alcantarillado , control de vertidos y depuración del municipio Riba-roja de Túria, por procedimiento abierto, mejor relación calidad-precio, varios criterios de adjudicación y con cláusulas medioambientales y con condición especial de ejecución de carácter medioambiental y social. · Ayuntamiento de Riba-roja de Túria · public_services · 55.685.179 €",
-            "similarity": 0.63,
-            "stance": "checked"
-          }
+        "verdict": "sin-datos",
+        "summary": "Ningún candidato respalda la afirmación; la fuerza del respaldo es nula.",
+        "evidence": [],
+        "checkedAgainst": [],
+        "derivedBy": [
+          "verdict-engine"
         ],
-        "checkedAgainst": [
-          "tenders",
-          "tenders-ted",
-          "bdns",
-          "budget"
-        ]
+        "confidence": 0.2,
+        "source": "verdict-engine"
       },
-      "visibility": "shown"
+      "visibility": "toggle"
     },
     {
       "claim": {
@@ -5254,25 +5246,17 @@
       },
       "verification": {
         "claimId": "15uvjew-148-afi-fbf71b",
-        "verdict": "parcial",
-        "summary": "Coincidencia parcial: hay datos relacionados pero no idénticos al claim.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=HJBVBRq8QhiXQV0WE7lYPw%3D%3D",
-            "snippet": "Servicio de mantenimiento de zonas ajardinadas, viales públicos y espacios públicos de titularidad municipal situados en casco urbano, por procedimiento abierto simplificado, mejor relación calidad-precio, único criterio de adjudicación y condición especial de ejecución de carácter social y medioambiental reservado a Centros Especiales de Empleo de iniciativa social contribuyendo al cumplimiento del ODS 8 relativo a la promoción del crecimiento económico inclusivo. · Ayuntamiento de Riba-roja de Túria · agriculture · 50.457 €",
-            "similarity": 0.61,
-            "stance": "checked"
-          }
+        "verdict": "sin-datos",
+        "summary": "Ningún candidato respalda la afirmación; como mucho hay una coincidencia numérica fortuita en [0], sin fuerza probatoria.",
+        "evidence": [],
+        "checkedAgainst": [],
+        "derivedBy": [
+          "verdict-engine"
         ],
-        "checkedAgainst": [
-          "tenders",
-          "tenders-ted",
-          "bdns",
-          "budget"
-        ]
+        "confidence": 0.2,
+        "source": "verdict-engine"
       },
-      "visibility": "shown"
+      "visibility": "toggle"
     },
     {
       "claim": {
@@ -5295,25 +5279,17 @@
       },
       "verification": {
         "claimId": "15uvjew-148-afi-755647",
-        "verdict": "verificado",
-        "summary": "Cita encontrada con coincidencia fuerte en los datos municipales.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=h4tiCELtfEdxseVhcqrkhw%3D%3D",
-            "snippet": "Contrato administrativo de obras para el proyecto de “Asfaltado y reasfaltado de viales urbanos y caminos rurales de Riba-roja de Túria” Plan RENOVE , dividido en 6 lotes. · Ayuntamiento de Riba-roja de Túria · BECSA SAU · construction · 76.082 €",
-            "similarity": 0.98,
-            "stance": "checked"
-          }
+        "verdict": "sin-datos",
+        "summary": "Conclusión: ningún candidato respalda genuinamente la afirmación; respaldo nulo o muy débil, no verificable con estos registros.",
+        "evidence": [],
+        "checkedAgainst": [],
+        "derivedBy": [
+          "verdict-engine"
         ],
-        "checkedAgainst": [
-          "tenders",
-          "tenders-ted",
-          "bdns",
-          "budget"
-        ]
+        "confidence": 0.2,
+        "source": "verdict-engine"
       },
-      "visibility": "shown"
+      "visibility": "toggle"
     },
     {
       "claim": {
@@ -5921,23 +5897,17 @@
       },
       "verification": {
         "claimId": "15uvjew-182-cit-3a11cb",
-        "verdict": "parcial",
-        "summary": "Coincidencia parcial: hay datos relacionados pero no idénticos al claim.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=E%2BOr0JaUVkecCF8sV%2BqtYA%3D%3D",
-            "snippet": "Obras  ejecución del proyecto: “Mejora del carril bici y la ejecución o mejora de refugios climáticos”, por procedimiento abierto simplificado, varios criterios de adjudicación, con condición de ejecución de carácter social y medioambiental, contribuyendo al cumplimiento del ODS 11 de la agenda 2030, en el marco del Plan de Recuperación, Transformación y Resilencia financiado por la U.E. · Ayuntamiento de Riba-roja de Túria · OBRA CIVIL Y EDIFICACION ESCRIMAR S.L.L. · construction · estado: formalized",
-            "similarity": 1,
-            "stance": "checked"
-          }
+        "verdict": "sin-datos",
+        "summary": "Ningún candidato respalda genuinamente la afirmación: el [0] sólo es contexto temático relacionado, con respaldo muy débil o nulo, y la parte verificable (aumento del presupuesto, conversación con José Manuel) no tiene datos que la confirmen.",
+        "evidence": [],
+        "checkedAgainst": [],
+        "derivedBy": [
+          "verdict-engine"
         ],
-        "checkedAgainst": [
-          "tenders",
-          "tenders-ted"
-        ]
+        "confidence": 0.2,
+        "source": "verdict-engine"
       },
-      "visibility": "shown"
+      "visibility": "toggle"
     },
     {
       "claim": {
@@ -6181,23 +6151,17 @@
       },
       "verification": {
         "claimId": "15uvjew-193-cit-446421",
-        "verdict": "parcial",
-        "summary": "Coincidencia parcial: hay datos relacionados pero no idénticos al claim.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=E%2BOr0JaUVkecCF8sV%2BqtYA%3D%3D",
-            "snippet": "Obras  ejecución del proyecto: “Mejora del carril bici y la ejecución o mejora de refugios climáticos”, por procedimiento abierto simplificado, varios criterios de adjudicación, con condición de ejecución de carácter social y medioambiental, contribuyendo al cumplimiento del ODS 11 de la agenda 2030, en el marco del Plan de Recuperación, Transformación y Resilencia financiado por la U.E. · Ayuntamiento de Riba-roja de Túria · OBRA CIVIL Y EDIFICACION ESCRIMAR S.L.L. · construction · estado: formalized",
-            "similarity": 1,
-            "stance": "checked"
-          }
+        "verdict": "sin-datos",
+        "summary": "Ningún candidato respalda genuinamente la afirmación; a lo sumo [0] aporta contexto muy débil de que el plan existe.",
+        "evidence": [],
+        "checkedAgainst": [],
+        "derivedBy": [
+          "verdict-engine"
         ],
-        "checkedAgainst": [
-          "tenders",
-          "tenders-ted"
-        ]
+        "confidence": 0.2,
+        "source": "verdict-engine"
       },
-      "visibility": "shown"
+      "visibility": "toggle"
     },
     {
       "claim": {

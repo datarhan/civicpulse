@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-11T06:23:22.199Z",
+  "generatedAt": "2026-10-11T07:07:47.709Z",
   "version": "1",
   "plenoId": "rx4hb4",
   "plenoDate": "2026-02-09",
@@ -1993,23 +1993,17 @@
       },
       "verification": {
         "claimId": "rx4hb4-136-cit-2639de",
-        "verdict": "parcial",
-        "summary": "Coincidencia parcial: hay datos relacionados pero no idénticos al claim.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=DDuU2CuSCh0BPRBxZ4nJ%2Fg%3D%3D",
-            "snippet": "Contrato menor, suministro para la adquisición de una carpa de 10x15 (150m2) zona exterior Centro de Salud para habilitar zona de triaje para usuarios que accedan al Centro de Salud, para el municipio de Riba-roja de Túria. · Ayuntamiento de Riba-roja de Túria · CARPAS VALENCIA SL · construction · estado: awarded",
-            "similarity": 1,
-            "stance": "checked"
-          }
+        "verdict": "sin-datos",
+        "summary": "Ningún candidato respalda la afirmación; la fuerza del respaldo es nula.",
+        "evidence": [],
+        "checkedAgainst": [],
+        "derivedBy": [
+          "verdict-engine"
         ],
-        "checkedAgainst": [
-          "tenders",
-          "tenders-ted"
-        ]
+        "confidence": 0.2,
+        "source": "verdict-engine"
       },
-      "visibility": "shown"
+      "visibility": "toggle"
     },
     {
       "claim": {
