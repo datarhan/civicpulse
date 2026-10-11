@@ -224,12 +224,12 @@ export default function AvisoLegal() {
           title="Qué afirmamos cuando una persona sube un veredicto"
         />
         <p>
-          En <code>/plenos</code> y <code>/declaraciones</code> cada declaración lleva un veredicto
-          contrastado con datos públicos. Lo pone un comparador automático, y las revisiones
-          automáticas posteriores sólo pueden bajarlo —retirar lo que no se sostiene—, nunca
-          subirlo. <strong>Subir un veredicto lo hace sólo una persona</strong>, con su nombre y
-          apellidos, que la tarjeta de la declaración da («subido por una persona · firmado por…»),
-          y responde de ello.
+          En <code>/plenos</code> y <code>/declaraciones</code> cada declaración lleva el veredicto
+          que resulta de cotejarla con datos públicos. Lo pone un comparador automático, y las
+          revisiones automáticas posteriores sólo pueden bajarlo —retirar lo que no se sostiene—,
+          nunca subirlo. <strong>Subir un veredicto lo hace sólo una persona</strong>, con su nombre
+          y apellidos, que la tarjeta de la declaración da («subido por una persona · firmado
+          por…»), y responde de ello.
         </p>
         <p>
           <strong>Con qué evidencia.</strong> Quien sube cita el registro público que lo sostiene

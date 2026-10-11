@@ -77,11 +77,11 @@ export function TarjetaDeclaraciones({ embudo }) {
       nota: t('plenos.indice.decl.sinDatos.nota'),
     },
     {
-      id: 'contrastadas',
-      rotulo: t('plenos.indice.decl.contrastadas'),
+      id: 'cotejadas',
+      rotulo: t('plenos.indice.decl.cotejadas'),
       valor: `${n(embudo.parcial)} · ${n(embudo.verificado)}`,
       tono: 'var(--ok-ink)',
-      nota: t('plenos.indice.decl.contrastadas.nota'),
+      nota: t('plenos.indice.decl.cotejadas.nota'),
     },
   ]
 

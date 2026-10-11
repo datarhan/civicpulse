@@ -209,8 +209,7 @@ export const CATALOGUE = {
     'nav.desc.departamentos': 'Acuerdos y plazos, concejalía a concejalía',
     'nav.desc.hallazgos': 'Fichas sobre lo dicho en pleno, con sus documentos',
     'nav.desc.reportajes': 'Investigaciones largas, cada afirmación con su fuente',
-    'nav.desc.declaraciones':
-      'Lo afirmado en pleno, contrastado con datos abiertos cuando se puede',
+    'nav.desc.declaraciones': 'Lo afirmado en pleno, cotejado con datos abiertos cuando se puede',
     'nav.desc.datos': 'Todo lo que alimenta el sitio, descargable',
     'nav.desc.quejas': 'Las quejas vecinales, agregadas y anónimas',
     'nav.desc.empleo': 'Ofertas de la Agència de Col·locació',
@@ -647,13 +646,13 @@ export const CATALOGUE = {
     'declaraciones.subtitle':
       'Cada afirmación, promesa o acusación detectada en los plenos municipales, cruzada contra los datos abiertos publicados (PLACSP, BDNS, presupuesto, promesas electorales). Atribución a nivel de grupo. El veredicto de cada fila lo pone un cotejo automático, salvo en las que llevan la marca «corregido por un curador», donde una persona lo ha rectificado a la baja: las declaraciones sin atribuir o sin evidencia se mantienen visibles porque se han hecho, y ninguna de ellas se convierte en un hallazgo editorial sin que una persona lo firme.',
     'declaraciones.stat.total': 'Total',
-    'declaraciones.stat.conEvidencia': 'Contrastadas',
+    'declaraciones.stat.conEvidencia': 'Cotejadas',
     'declaraciones.filter.verdict': 'Verdicto',
     'declaraciones.filter.bloc': 'Grupo',
     'declaraciones.filter.topic': 'Tema',
     'declaraciones.filter.todas': 'Todas',
     'declaraciones.filter.todos': 'Todos',
-    'declaraciones.filter.conEvidencia': 'Contrastadas',
+    'declaraciones.filter.conEvidencia': 'Cotejadas',
     'declaraciones.filter.atribuidas': 'Atribuidas',
     'declaraciones.filter.sinCorpus': 'Sin corpus que consultar',
     'declaraciones.filter.comprobadoSinHallar': 'Comprobada, no aparece',
@@ -767,8 +766,8 @@ export const CATALOGUE = {
       'una persona escuchó el audio y su literal no es lo que se dijo: no se publican',
     'plenos.indice.decl.sinDatos': 'Publicadas sin datos que las contrasten',
     'plenos.indice.decl.sinDatos.nota': 'ni confirmadas ni desmentidas',
-    'plenos.indice.decl.contrastadas': 'Parciales o verificadas',
-    'plenos.indice.decl.contrastadas.nota': 'lo único que cotejó un documento municipal',
+    'plenos.indice.decl.cotejadas': 'Parciales o verificadas',
+    'plenos.indice.decl.cotejadas.nota': 'lo único que cotejó un documento municipal',
     'plenos.indice.decl.eyebrow': 'Declaraciones extraídas · {n} sesiones',
     'plenos.indice.decl.titulo': '{extraidas} declaraciones, {verificado} verificadas',
     'plenos.indice.decl.sinDatosNota':
@@ -831,16 +830,32 @@ export const CATALOGUE = {
     'plenos.votes.empty.eyebrow': 'Sin datos',
     'plenos.votes.empty.title': 'No hay votaciones registradas todavía',
 
-    // Claim ledger (declaraciones contrastadas)
+    // Claim ledger (declaraciones cotejadas)
     'ledger.loadMore': 'Cargar más',
     // La línea de recuento que abre la lista, pieza a pieza, con la cifra en negrita.
     // Singular y plural como la línea del resumen de /plenos/:id (`plenoDetail.line.*`);
-    // «sin contraste en los datos» no cambia con el número.
-    'ledger.recuento.contrastadas.uno': '{n} contrastada',
-    'ledger.recuento.contrastadas.varios': '{n} contrastadas',
+    // «sin contraste en los datos» no cambia con el número. «Cotejadas» y no
+    // «contrastadas»: una información contrastada es una comprobada, y la cifra cuenta
+    // también las parciales (tests/rotulo-cotejadas.test.jsx). El desglose por
+    // veredicto que va detrás sale de `cotejo.*`.
+    'ledger.recuento.cotejadas.uno': '{n} cotejada con un documento',
+    'ledger.recuento.cotejadas.varios': '{n} cotejadas con un documento',
     'ledger.recuento.sinContraste': '{n} sin contraste en los datos',
     // Un grupo que firmó una persona (atribucion-firmada.ts). No dice «que escuchó la
     // sesión»: puede firmar desde la transcripción, y entonces lo dice su motivo.
+    'ledger.vacio':
+      'Todavía no hay declaraciones cotejadas con un documento municipal para mostrar aquí.',
+    // El desglose de las cotejadas por veredicto (src/lib/cotejo.js): sólo las piezas
+    // que no son cero, en este orden, entre paréntesis detrás de la cifra.
+    'cotejo.verificado.uno': '{n} verificada',
+    'cotejo.verificado.varios': '{n} verificadas',
+    'cotejo.parcial.uno': '{n} parcial',
+    'cotejo.parcial.varios': '{n} parciales',
+    'cotejo.contradicho.uno': '{n} contradicha',
+    'cotejo.contradicho.varios': '{n} contradichas',
+    // Las que repiten una promesa de /promesas no son cotejadas: van aparte.
+    'cotejo.promesas.uno': '{n} promesa ya registrada',
+    'cotejo.promesas.varios': '{n} promesas ya registradas',
     'ledger.firmado': 'firmado',
     'ledger.firmadoTitulo': 'Grupo firmado por una persona, sobre el tramo {tramo} de la sesión',
 
@@ -850,7 +865,7 @@ export const CATALOGUE = {
     'plenoDetail.summary': 'Resumen',
     'plenoDetail.agenda': 'Orden del día',
     'plenoDetail.votes': 'Votaciones',
-    'plenoDetail.declarations': 'Declaraciones contrastadas',
+    'plenoDetail.declarations': 'Declaraciones cotejadas',
     'plenoDetail.findings': 'Hallazgos editoriales',
     'plenoDetail.transcript': 'Ver transcripción',
     'plenoDetail.transcriptLoading': 'Cargando transcripción…',
@@ -885,8 +900,11 @@ export const CATALOGUE = {
     'plenoDetail.line.votes.varios': '{n} votaciones transcritas ({aprobadas})',
     'plenoDetail.line.approved.uno': '{n} aprobada',
     'plenoDetail.line.approved.varios': '{n} aprobadas',
-    'plenoDetail.line.declarations.uno': '{n} declaración contrastada',
-    'plenoDetail.line.declarations.varios': '{n} declaraciones contrastadas',
+    'plenoDetail.line.declarations.uno': '{n} declaración cotejada',
+    'plenoDetail.line.declarations.varios': '{n} declaraciones cotejadas',
+    // La leyenda de la barra de declaraciones del resumen.
+    'plenoDetail.mix.cotejadas': 'cotejadas',
+    'plenoDetail.mix.sinContraste': 'sin contraste',
     'plenoDetail.line.declarationsPending': 'declaraciones sin extraer',
     'plenoDetail.line.findings.uno': '{n} hallazgo editorial',
     'plenoDetail.line.findings.varios': '{n} hallazgos editoriales',
@@ -1094,7 +1112,8 @@ export const CATALOGUE = {
     'cargos.detalle.actividad.intro':
       'Cifras de las áreas que dirige, no de la persona. Las votaciones se registran por grupo político y las declaraciones se atribuyen al grupo que habló, nunca a un concejal concreto: por eso se enlazan aquí en lugar de mostrarse bajo su ficha.',
     'cargos.detalle.actividad.votos': 'votaciones',
-    'cargos.detalle.actividad.declaraciones': 'declaraciones contrastadas',
+    'cargos.detalle.actividad.declaraciones.uno': 'declaración cotejada',
+    'cargos.detalle.actividad.declaraciones.varios': 'declaraciones cotejadas',
     'cargos.detalle.actividad.hallazgos': 'hallazgos del área →',
     'datos.boe.eyebrow': 'Boletín Oficial del Estado',
     'datos.boe.intro':
@@ -1634,7 +1653,7 @@ export const CATALOGUE = {
     'departamentos.card.contratos': 'contratos',
     'departamentos.card.promesas': 'Promesas',
     'departamentos.card.quejas': 'Quejas abiertas',
-    'departamentos.card.declaraciones': 'Declaraciones contrastadas',
+    'departamentos.card.declaraciones': 'Declaraciones cotejadas',
     'departamentos.card.sinContraste': 'sin contraste',
     'departamentos.card.sinVotoTranscrito': 'sin voto transcrito',
     'departamentos.detalle.back': '← Todos los departamentos',
@@ -1648,9 +1667,9 @@ export const CATALOGUE = {
     'departamentos.detalle.declaraciones.aviso':
       'Las pronunció cualquier grupo municipal, no necesariamente quien dirige el área: se agrupan por tema, no por quien habla.',
     'departamentos.detalle.declaraciones.vacio':
-      'Todavía no hay declaraciones contrastadas sobre los temas de esta área.',
+      'Todavía no hay declaraciones cotejadas con un documento sobre los temas de esta área.',
     'departamentos.detalle.barra.titulo': 'Contraste con los datos',
-    'departamentos.detalle.barra.resto': 'contrastadas · {total} en total',
+    'departamentos.detalle.barra.resto': 'cotejadas · {total} en total',
     'departamentos.detalle.empty.votes':
       '0 votos transcritos para esta concejalía — contribuye vía `npm run pleno-vote` o la plantilla de issue.',
     'departamentos.detalle.empty.promesas': 'Sin promesas registradas para esta concejalía.',
@@ -1951,7 +1970,7 @@ export const CATALOGUE = {
     'nav.desc.departamentos': 'Acords i terminis, regidoria a regidoria',
     'nav.desc.hallazgos': 'Fitxes sobre el que s’ha dit en el ple, amb els seus documents',
     'nav.desc.reportajes': 'Investigacions llargues, cada afirmació amb la seua font',
-    'nav.desc.declaraciones': 'El que s’afirma en el ple, contrastat amb dades obertes quan es pot',
+    'nav.desc.declaraciones': 'El que s’afirma en el ple, acarat amb dades obertes quan es pot',
     'nav.desc.datos': 'Tot el que alimenta el web, descarregable',
     'nav.desc.quejas': 'Les queixes veïnals, agregades i anònimes',
     'nav.desc.empleo': 'Ofertes de l’Agència de Col·locació',
@@ -2341,13 +2360,13 @@ export const CATALOGUE = {
     'declaraciones.subtitle':
       "Cada afirmació, promesa o acusació detectada als plens municipals, creuada contra les dades obertes publicades (PLACSP, BDNS, pressupost, promeses electorals). Atribució a nivell de grup. El veredicte de cada fila el posa un acarament automàtic: les declaracions sense atribuir o sense evidència es mantenen visibles perquè es van fer, i cap d'elles es converteix en una troballa editorial sense que una persona la signe.",
     'declaraciones.stat.total': 'Total',
-    'declaraciones.stat.conEvidencia': 'Contrastades',
+    'declaraciones.stat.conEvidencia': 'Acarades',
     'declaraciones.filter.verdict': 'Veredicte',
     'declaraciones.filter.bloc': 'Grup',
     'declaraciones.filter.topic': 'Tema',
     'declaraciones.filter.todas': 'Totes',
     'declaraciones.filter.todos': 'Tots',
-    'declaraciones.filter.conEvidencia': 'Contrastades',
+    'declaraciones.filter.conEvidencia': 'Acarades',
     'declaraciones.filter.atribuidas': 'Atribuïdes',
     'declaraciones.filter.sinCorpus': 'Sense corpus a consultar',
     'declaraciones.filter.comprobadoSinHallar': 'Comprovada, no apareix',
@@ -2460,8 +2479,8 @@ export const CATALOGUE = {
       'una persona va escoltar l’àudio i el seu literal no és el que es va dir: no es publiquen',
     'plenos.indice.decl.sinDatos': 'Publicades sense dades que les contrasten',
     'plenos.indice.decl.sinDatos.nota': 'ni confirmades ni desmentides',
-    'plenos.indice.decl.contrastadas': 'Parcials o verificades',
-    'plenos.indice.decl.contrastadas.nota': 'l’única cosa que va acarar un document municipal',
+    'plenos.indice.decl.cotejadas': 'Parcials o verificades',
+    'plenos.indice.decl.cotejadas.nota': 'l’única cosa que va acarar un document municipal',
     'plenos.indice.decl.eyebrow': 'Declaracions extretes · {n} sessions',
     'plenos.indice.decl.titulo': '{extraidas} declaracions, {verificado} verificades',
     'plenos.indice.decl.sinDatosNota':
@@ -2518,12 +2537,25 @@ export const CATALOGUE = {
     'plenos.votes.empty.eyebrow': 'Sense dades',
     'plenos.votes.empty.title': 'Encara no hi ha votacions registrades',
 
-    // Claim ledger (declaracions contrastades)
+    // Claim ledger (declaracions acarades); vegeu el castellà. «Acarar» i no
+    // «contrastar»: segons el DIEC, acarar és confrontar dues coses per veure'n les
+    // diferències o semblances, i no diu quin resultat dona; «contrastada» es llig
+    // «comprovada», i la xifra compta també les parcials. No ho torneu a canviar.
     'ledger.loadMore': 'Carrega més',
-    'ledger.recuento.contrastadas.uno': '{n} contrastada',
-    'ledger.recuento.contrastadas.varios': '{n} contrastades',
+    'ledger.recuento.cotejadas.uno': '{n} acarada amb un document',
+    'ledger.recuento.cotejadas.varios': '{n} acarades amb un document',
     'ledger.recuento.sinContraste': '{n} sense contrast en les dades',
     // Un grup que va signar una persona (atribucion-firmada.ts); vegeu el castellà.
+    'ledger.vacio':
+      'Encara no hi ha declaracions acarades amb un document municipal per a mostrar ací.',
+    'cotejo.verificado.uno': '{n} verificada',
+    'cotejo.verificado.varios': '{n} verificades',
+    'cotejo.parcial.uno': '{n} parcial',
+    'cotejo.parcial.varios': '{n} parcials',
+    'cotejo.contradicho.uno': '{n} contradita',
+    'cotejo.contradicho.varios': '{n} contradites',
+    'cotejo.promesas.uno': '{n} promesa ja registrada',
+    'cotejo.promesas.varios': '{n} promeses ja registrades',
     'ledger.firmado': 'signat',
     'ledger.firmadoTitulo': 'Grup signat per una persona, sobre el tram {tramo} de la sessió',
 
@@ -2533,7 +2565,7 @@ export const CATALOGUE = {
     'plenoDetail.summary': 'Resum',
     'plenoDetail.agenda': 'Ordre del dia',
     'plenoDetail.votes': 'Votacions',
-    'plenoDetail.declarations': 'Declaracions contrastades',
+    'plenoDetail.declarations': 'Declaracions acarades',
     'plenoDetail.findings': 'Troballes editorials',
     'plenoDetail.transcript': 'Veure transcripció',
     'plenoDetail.transcriptLoading': 'Carregant transcripció…',
@@ -2561,8 +2593,10 @@ export const CATALOGUE = {
     'plenoDetail.line.votes.varios': '{n} votacions transcrites ({aprobadas})',
     'plenoDetail.line.approved.uno': '{n} aprovada',
     'plenoDetail.line.approved.varios': '{n} aprovades',
-    'plenoDetail.line.declarations.uno': '{n} declaració contrastada',
-    'plenoDetail.line.declarations.varios': '{n} declaracions contrastades',
+    'plenoDetail.line.declarations.uno': '{n} declaració acarada',
+    'plenoDetail.line.declarations.varios': '{n} declaracions acarades',
+    'plenoDetail.mix.cotejadas': 'acarades',
+    'plenoDetail.mix.sinContraste': 'sense contrast',
     'plenoDetail.line.declarationsPending': 'declaracions sense extraure',
     'plenoDetail.line.findings.uno': '{n} troballa editorial',
     'plenoDetail.line.findings.varios': '{n} troballes editorials',
@@ -2713,7 +2747,7 @@ export const CATALOGUE = {
     'hallazgos.area.clear': 'veure tots',
     'hallazgos.area.note':
       "Troballes les declaracions de les quals es classifiquen en esta àrea. L'atribució de cada troballa és al GRUP polític que va parlar, mai a una persona concreta.",
-    'findings.refs.crossChecked': 'Documents contrastats',
+    'findings.refs.crossChecked': 'Documents acarats',
     'findings.refs.provenance': 'Procedència de les cites',
     'findings.refs.contradiction': 'Documents que contradiuen',
     'findings.refs.ficha': 'fitxa {ficha}',
@@ -2743,7 +2777,8 @@ export const CATALOGUE = {
     'cargos.detalle.actividad.intro':
       "Xifres de les àrees que dirigeix, no de la persona. Les votacions es registren per grup polític i les declaracions s'atribueixen al grup que va parlar, mai a un regidor concret: per això s'enllacen ací en lloc de mostrar-se sota la seua fitxa.",
     'cargos.detalle.actividad.votos': 'votacions',
-    'cargos.detalle.actividad.declaraciones': 'declaracions contrastades',
+    'cargos.detalle.actividad.declaraciones.uno': 'declaració acarada',
+    'cargos.detalle.actividad.declaraciones.varios': 'declaracions acarades',
     'cargos.detalle.actividad.hallazgos': "troballes de l'àrea →",
     'datos.boe.eyebrow': "Butlletí Oficial de l'Estat",
     'datos.boe.intro':
@@ -3205,7 +3240,7 @@ export const CATALOGUE = {
     'departamentos.card.contratos': 'contractes',
     'departamentos.card.promesas': 'Promeses',
     'departamentos.card.quejas': 'Queixes obertes',
-    'departamentos.card.declaraciones': 'Declaracions contrastades',
+    'departamentos.card.declaraciones': 'Declaracions acarades',
     'departamentos.card.sinContraste': 'sense contrast',
     'departamentos.card.sinVotoTranscrito': 'sense vot transcrit',
     'departamentos.detalle.back': '← Tots els departaments',
@@ -3219,9 +3254,9 @@ export const CATALOGUE = {
     'departamentos.detalle.declaraciones.aviso':
       'Les va pronunciar qualsevol grup municipal, no necessàriament qui dirigeix l’àrea: s’agrupen per tema, no per qui parla.',
     'departamentos.detalle.declaraciones.vacio':
-      'Encara no hi ha declaracions contrastades sobre els temes d’aquesta àrea.',
+      'Encara no hi ha declaracions acarades amb un document sobre els temes d’aquesta àrea.',
     'departamentos.detalle.barra.titulo': 'Contrast amb les dades',
-    'departamentos.detalle.barra.resto': 'contrastades · {total} en total',
+    'departamentos.detalle.barra.resto': 'acarades · {total} en total',
     'departamentos.detalle.empty.votes':
       "0 vots transcrits per a aquesta regidoria — contribueix via `npm run pleno-vote` o la plantilla d'issue.",
     'departamentos.detalle.empty.promesas': 'Sense promeses registrades per a aquesta regidoria.',

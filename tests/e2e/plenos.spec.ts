@@ -36,7 +36,7 @@ test.describe('Pleno detail (/plenos/:id)', () => {
     })
     await page.goto(`/plenos/${FIRST_ID}`, { waitUntil: 'networkidle' })
     await expect(page.getByText('Orden del día').first()).toBeVisible()
-    await expect(page.getByText('Declaraciones contrastadas').first()).toBeVisible()
+    await expect(page.getByText('Declaraciones cotejadas').first()).toBeVisible()
     await expect(page.getByRole('button', { name: /Ver transcripción/i }).first()).toBeVisible()
 
     const shipped = chunkBodies.flatMap((c) => (c.items ?? []) as Array<Record<string, any>>)

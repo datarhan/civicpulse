@@ -13,6 +13,13 @@
  * misma ficha aprendió el singular en la #234 (`plenoDetail.line.*`); ésta lo aprende
  * con las mismas claves `.uno`/`.varios`. El cero va en plural, como allí.
  *
+ * Y «contrastadas» decía de más. La revisión lectora del 06-10-2026 leyó «8
+ * contrastadas» en /departamentos/medio-ambiente, y las ocho eran parciales: en
+ * castellano una información contrastada es una información comprobada. Lo que la
+ * cifra cuenta es que se cotejaron con un documento municipal, saliera como saliera;
+ * así que se llaman «cotejadas con un documento» / «acarades amb un document», y al
+ * lado va cuántas son de cada veredicto, contado del dato.
+ *
  * Lo que se sirve son declaraciones publicadas que pasan la puerta del registro, en el
  * número que cada escenario necesita para pintar cada forma; en /departamentos, con el
  * tema del área puesto, que es una mutación pequeña y nombrada. Las palabras esperadas
@@ -46,7 +53,8 @@ const FRAGMENTO = lee(MANIFIESTO.plenos[0].chunkPath)
 
 /** Lo que el registro pinta del corpus publicado: lo que pasa su misma puerta. */
 const VISIBLES = gateForDisplay(MANIFIESTO.plenos.flatMap((p) => lee(p.chunkPath).items))
-const CONTRASTADAS = VISIBLES.filter((it) => it.verification?.verdict !== 'sin-datos')
+const PARCIALES = VISIBLES.filter((it) => it.verification?.verdict === 'parcial')
+const VERIFICADAS = VISIBLES.filter((it) => it.verification?.verdict === 'verificado')
 const SIN_CONTRASTE = VISIBLES.filter((it) => it.verification?.verdict === 'sin-datos')
 
 // ─── Las dos páginas ───────────────────────────────────────────────────────────
@@ -122,7 +130,7 @@ async function abreDeclaraciones(c) {
 }
 
 /**
- * La tarjeta de una contrastada puede montar el puente de importe, que pide
+ * La tarjeta de una cotejada puede montar el puente de importe, que pide
  * `tenders.json` —1,4 MB— para cuadrar dos cifras del mismo expediente. Esta prueba
  * lee la línea de recuento y no las tarjetas, así que no se sirve a propósito.
  */
@@ -163,34 +171,35 @@ const enArea = (nombre, declaraciones, es, ca) => ({
 
 const ESCENARIOS = [
   enPleno(
-    'una contrastada y tres sin contraste',
-    [CONTRASTADAS[0], ...SIN_CONTRASTE.slice(0, 3)],
-    '1 contrastada · 3 sin contraste en los datos',
-    '1 contrastada · 3 sense contrast en les dades',
+    'una parcial y tres sin contraste',
+    [PARCIALES[0], ...SIN_CONTRASTE.slice(0, 3)],
+    '1 cotejada con un documento (1 parcial) · 3 sin contraste en los datos',
+    '1 acarada amb un document (1 parcial) · 3 sense contrast en les dades',
   ),
   enPleno(
-    'dos contrastadas y una sin contraste',
-    [...CONTRASTADAS.slice(0, 2), SIN_CONTRASTE[0]],
-    '2 contrastadas · 1 sin contraste en los datos',
-    '2 contrastades · 1 sense contrast en les dades',
+    'dos parciales y una sin contraste: la forma de la revisión lectora',
+    [...PARCIALES.slice(0, 2), SIN_CONTRASTE[0]],
+    '2 cotejadas con un documento (2 parciales) · 1 sin contraste en los datos',
+    '2 acarades amb un document (2 parcials) · 1 sense contrast en les dades',
   ),
   enPleno(
-    'ninguna contrastada: el cero va en plural',
+    'ninguna cotejada: el cero va en plural y sin desglose',
     SIN_CONTRASTE.slice(0, 2),
-    '0 contrastadas · 2 sin contraste en los datos',
-    '0 contrastades · 2 sense contrast en les dades',
+    '0 cotejadas con un documento · 2 sin contraste en los datos',
+    '0 acarades amb un document · 2 sense contrast en les dades',
   ),
   enArea(
-    'tres contrastadas y dos sin contraste',
-    [...CONTRASTADAS.slice(0, 3), ...SIN_CONTRASTE.slice(0, 2)],
-    '3 contrastadas · 2 sin contraste en los datos',
-    '3 contrastades · 2 sense contrast en les dades',
+    'una verificada, dos parciales y dos sin contraste',
+    [VERIFICADAS[0], ...PARCIALES.slice(0, 2), ...SIN_CONTRASTE.slice(0, 2)],
+    '3 cotejadas con un documento (1 verificada, 2 parciales) · 2 sin contraste en los datos',
+    '3 acarades amb un document (1 verificada, 2 parcials) · 2 sense contrast en les dades',
   ),
 ]
 
 describe('la línea de recuento · lo que necesita del dato publicado', () => {
   it('hay declaraciones visibles de las dos clases para pintar cada forma', () => {
-    expect(CONTRASTADAS.length, 'contrastadas visibles').toBeGreaterThanOrEqual(3)
+    expect(PARCIALES.length, 'parciales visibles').toBeGreaterThanOrEqual(2)
+    expect(VERIFICADAS.length, 'verificadas visibles').toBeGreaterThanOrEqual(1)
     expect(SIN_CONTRASTE.length, 'sin contraste visibles').toBeGreaterThanOrEqual(3)
     expect(TEMA, `temas de ${SLUG}`).toBeTruthy()
   })
@@ -225,7 +234,7 @@ describe('cobertura de la guarda de la línea de recuento', () => {
   const PREFIJO = 'ledger.recuento.'
   const claves = Object.keys(CATALOGUE.es).filter((k) => k.startsWith(PREFIJO))
   const escapa = (s) => s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')
-  // Entera: «contrastada» no cuenta como pintada porque se lea «contrastadas».
+  // Entera: «cotejada» no cuenta como pintada porque se lea «cotejadas».
   const palabraEntera = (trozo) => new RegExp(`(?<!\\p{L})${escapa(trozo)}(?!\\p{L})`, 'u')
 
   it('el catálogo tiene las cadenas de la línea (si no, esto no mide nada)', () => {

@@ -130,7 +130,7 @@ const ROUTES: Route[] = [
   { path: `/plenos/${FIRST_PLENO_ID}`, ready: /\d{1,2} de [a-záéíóúñ]+ de \d{4}/i }, // session date
   { path: '/promesas', ready: /\d+ compromisos en seguimiento/ },
   { path: '/departamentos', ready: /De \d+ concejalías con delegación/ },
-  { path: '/departamentos/urbanismo', ready: /\d+% contrastadas · \d+ en total/ },
+  { path: '/departamentos/urbanismo', ready: /\d+% cotejadas · \d+ en total/ },
   { path: '/hallazgos', ready: /TOTAL HALLAZGOS \d+/ },
   // La página propia de una ficha: su titular sale del snapshot, no de una cadena.
   { path: `/hallazgos/${PRIMER_HALLAZGO.id}`, ready: literal(PRIMER_HALLAZGO.title) },
@@ -138,7 +138,7 @@ const ROUTES: Route[] = [
   // Las piezas, una por slug del registro. No estaban en esta lista y dos de
   // ellas repartían sus fuentes en columnas de 280 px que a 320 no cabían.
   ...PIEZAS.map((p) => ({ path: `/reportajes/${p.slug}`, ready: literal(p.titulo) })),
-  { path: '/declaraciones', ready: /TOTAL \d+ CONTRASTADAS \d+/ },
+  { path: '/declaraciones', ready: /TOTAL \d+ COTEJADAS \d+/ },
   // Tablas de cinco columnas en un móvil: el sitio exacto donde una fila se
   // sale sin que ninguna prueba de datos lo note. /eficiencia/:id no estaba en
   // esta lista y por eso nadie lo midió a 375.

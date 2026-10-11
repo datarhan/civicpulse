@@ -550,7 +550,11 @@ const MARK_AXES = [
     // que explica su hueco y lo nombra por su rótulo.
     omiteRetenidas: false,
     href: '/metodologia#citas-contraste',
-    linkText: 'Qué significa que una cita no esté contrastada →',
+    // Decía «Qué significa que una cita no esté contrastada»: «contrastada» se lee
+    // «comprobada» (tests/rotulo-cotejadas.test.jsx). Repetir el rótulo tampoco: la
+    // nota lo dice ya una vez (finding-quote-contrast.test.jsx). «Una cita», en
+    // singular y genérico como antes: la nota de encima puede hablar de cuatro.
+    linkText: 'Qué significa que una cita quede sin contraste →',
   },
 ]
 
