@@ -1,6 +1,6 @@
 {
   "version": "1.0",
-  "generatedAt": "2026-10-10T19:35:13.908Z",
+  "generatedAt": "2026-10-11T17:11:01.893Z",
   "legalNotice": "Este registro recoge hallazgos editoriales sobre las intervenciones de los plenos. Los redacta un proceso automático a partir de declaraciones extraídas de la transcripción, salvo los que llevan la firma de una persona, y cada ficha indica quién la editó: un nombre como «auto-curation-v1» significa que el título y el resumen los escribió una máquina, no una persona. Cada hallazgo cita una o más afirmaciones literales (verbatim) del pleno y los documentos municipales que confirman o contradicen cada afirmación. Las réplicas de los grupos políticos se publican íntegras y sin editar.",
   "contactUrl": "https://github.com/datarhan/civicpulse/issues/new/choose",
   "methodologyUrl": "/metodologia",
@@ -898,7 +898,7 @@
       "plenoId": "10yl550",
       "plenoDate": "2026-05-11",
       "title": "Debate sobre la Fira de Comercio en el pleno del 2026-05-11",
-      "summary": "Durante el pleno del 2026-05-11, el grupo PP afirmó que el gobierno afectó la Fira de Comercio, mientras que, según la transcripción anterior de la sesión —cuyo literal no consta en la revisada—, el PSOE señaló las críticas de la oposición sobre la no realización de la edición de 2025. En el debate se leyó además, textualmente, la valoración de la campaña de 2024 de la que se dio cuenta al pleno en julio de ese año, según la cual fue «recibida muy positivamente».",
+      "summary": "Durante el pleno del 2026-05-11, el grupo PP afirmó que el gobierno afectó la Fira de Comercio, mientras que el PSOE señaló las críticas de la oposición sobre la no realización de la edición de 2025. En el debate se leyó además, textualmente, la valoración de la campaña de 2024 de la que se dio cuenta al pleno en julio de ese año, según la cual fue «recibida muy positivamente».",
       "severity": "informational",
       "sourceClaimIds": [
         "10yl550-263-cit-a0a379",
@@ -918,12 +918,12 @@
           "sourceClaimId": "10yl550-278-acu-ac00a4"
         },
         {
-          "text": "la campaña 22 Fira de Comercio 2024 fue recibida muy positivamente, tanto por la ciudadanía como por los comercios y establecimientos de hostelería y restauración",
+          "text": "la campaña 22 Fira del Comerç 2024 fue recibida muy positivamente, tanto por la ciudadanía como por los comercios y establecimientos de hostelería y restauración",
           "speakerGroup": null,
           "sourceClaimId": "10yl550-280-cit-ab3a68"
         },
         {
-          "text": "el Partido Popular el otro día trajo una noticia diciendo que el gobierno no hizo la fira del 2025 porque estaba dos velas, canino.",
+          "text": "el Partit Popular l'altre dia tragué una notícia dient que el que el gover no feu la fira del 2025",
           "speakerGroup": "PSOE",
           "sourceClaimId": "10yl550-293-acu-8785eb"
         }
@@ -1006,6 +1006,30 @@
           "reason": "La frase decía que en el debate se defendió el impacto positivo de la campaña de 2024, y la cita en que descansa no es una defensa sino una lectura. Quien interviene anuncia que reproduce textualmente la valoración de esa campaña de la que se dio cuenta al pleno en julio de 2024 (transcripción, 11.879,5–11.892,7 s) y la lee (11.893,2–11.937,9 s); después la contrapone a lo que se dice ahora y, en su última intervención, aclara que leía textualmente la propuesta de 2024 y que el éxito lo decía el gobierno (12.110,6–12.118,7 y 12.854,4–12.889,4 s). La frase dice ahora lo que se hizo, en impersonal: la ficha no atribuye esa cita a ningún grupo.",
           "editor": "civicpulse-curator",
           "correctedAt": "2026-10-10T19:35:13.583Z"
+        },
+        {
+          "field": "quote.2.text",
+          "original": "la campaña 22 Fira de Comercio 2024 fue recibida muy positivamente, tanto por la ciudadanía como por los comercios y establecimientos de hostelería y restauración",
+          "corrected": "la campaña 22 Fira del Comerç 2024 fue recibida muy positivamente, tanto por la ciudadanía como por los comercios y establecimientos de hostelería y restauración",
+          "reason": "Reanclaje a la transcripción vigente de la sesión. La cita es la lectura de la valoración de la campaña de 2024 (transcripción vigente, 11.893,2–11.904,2 s), y su literal traía el nombre de la campaña en castellano, «Fira de Comercio», como lo dejó el motor que se sustituyó al re-transcribir la sesión; la vigente dice «Fira del Comerç». El cotejo la daba por presente porque compara por tramos de palabras, no letra a letra. Se restituye el pasaje de la vigente, el mismo y con el mismo alcance, comprobado como subcadena literal del fichero; el resto de las palabras no cambia.",
+          "editor": "civicpulse-curator",
+          "correctedAt": "2026-10-11T17:11:01.290Z"
+        },
+        {
+          "field": "quote.3.text",
+          "original": "el Partido Popular el otro día trajo una noticia diciendo que el gobierno no hizo la fira del 2025 porque estaba dos velas, canino.",
+          "corrected": "el Partit Popular l'altre dia tragué una notícia dient que el que el gover no feu la fira del 2025",
+          "reason": "Reanclaje a la transcripción vigente de la sesión. El literal publicado sólo constaba en la transcripción anterior, cuyo motor traducía al castellano lo que se dijo en valencià; la misma intervención está en la vigente, en valencià, en 12.490,5–12.498,7 s. Se restituye ese pasaje, comprobado como subcadena literal del fichero. Acaba antes que el anterior: en la vigente, la frase la corta otra voz en 12.498,7 s y su final no se entiende (12.498,7–12.500,2 s), así que no se publica como literal. La atribución de la cita no cambia.",
+          "editor": "civicpulse-curator",
+          "correctedAt": "2026-10-11T17:11:01.592Z"
+        },
+        {
+          "field": "summary",
+          "original": "Durante el pleno del 2026-05-11, el grupo PP afirmó que el gobierno afectó la Fira de Comercio, mientras que, según la transcripción anterior de la sesión —cuyo literal no consta en la revisada—, el PSOE señaló las críticas de la oposición sobre la no realización de la edición de 2025. En el debate se leyó además, textualmente, la valoración de la campaña de 2024 de la que se dio cuenta al pleno en julio de ese año, según la cual fue «recibida muy positivamente».",
+          "corrected": "Durante el pleno del 2026-05-11, el grupo PP afirmó que el gobierno afectó la Fira de Comercio, mientras que el PSOE señaló las críticas de la oposición sobre la no realización de la edición de 2025. En el debate se leyó además, textualmente, la valoración de la campaña de 2024 de la que se dio cuenta al pleno en julio de ese año, según la cual fue «recibida muy positivamente».",
+          "reason": "La frase advertía que la intervención en que descansa su segunda cláusula sólo constaba en la transcripción anterior de la sesión y no en la revisada. Reanclada su cita a la transcripción vigente (12.490,5–12.498,7 s), consta en las dos, y la advertencia ha dejado de ser cierta. Sale la advertencia; lo que se dijo y a quién lo atribuye la ficha no cambian.",
+          "editor": "civicpulse-curator",
+          "correctedAt": "2026-10-11T17:11:01.892Z"
         }
       ]
     },
