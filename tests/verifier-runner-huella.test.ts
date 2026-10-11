@@ -1,4 +1,7 @@
 import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest'
+import { mkdtempSync, rmSync, writeFileSync } from 'node:fs'
+import { tmpdir } from 'node:os'
+import { join } from 'node:path'
 
 /**
  * La clave de caché del motor tiene que llevar los candidatos.
@@ -41,6 +44,7 @@ vi.mock('../src/llm/client', async (original) => {
 })
 
 const { makeEngineVerifier, huellaDeCandidatos } = await import('../src/scraper/verifier-runner')
+const { loadCorpus } = await import('../src/scraper/semantic-shortlist')
 
 const claim = {
   id: 'p1-001-cit-aaaaaa',
@@ -73,9 +77,12 @@ const ctx = (tenders: unknown[]) =>
   }) as never
 
 /** Las entradas de caché que pidió una pasada del motor sobre `claim` con `tenders`. */
-async function claves(tenders: unknown[]) {
+async function claves(tenders: unknown[], corpus: unknown = null) {
   pedidas.length = 0
-  await makeEngineVerifier({ always: true, consistency: false })(claim, ctx(tenders))
+  await makeEngineVerifier({ always: true, consistency: false })(claim, {
+    ...(ctx(tenders) as object),
+    corpus,
+  } as never)
   return {
     razonar: pedidas.find((p) => p.promptVersion.startsWith('engine-reason'))?.input,
     extraer: pedidas.find((p) => p.promptVersion.startsWith('engine-extract'))?.input,
@@ -125,6 +132,66 @@ describe('la clave de caché del motor', () => {
   it('cada declaración sigue teniendo la suya', async () => {
     const a = await claves([contrato(482000)])
     expect(JSON.stringify(a.razonar)).toContain('p1-001-cit-aaaaaa')
+  })
+})
+
+describe('entre pasadas, con un vector de consulta que no vuelve idéntico', () => {
+  // OpenAI no devuelve siempre el mismo vector para el mismo texto: el
+  // 11-10-2026, pidiendo seis veces cada consulta del oro, 12 de 59 trajeron más
+  // de uno, con cosenos que se movían hasta 9e-4 (cache-de-consultas.ts). Aquí la
+  // segunda respuesta lleva el coseno del único candidato de 0,2949 a 0,2951: del
+  // «sim=0.29» al «sim=0.30» que lee el modelo.
+  let dir: string
+  let peticiones: number
+
+  beforeEach(() => {
+    dir = mkdtempSync(join(tmpdir(), 'huella-consultas-'))
+    const fila = {
+      kind: 'tender',
+      sourceId: 'https://contratacion/a',
+      text: 'Obras de urbanización de la calle Mayor',
+      textSha256: 'x',
+      embedding: [1, 0, 0],
+      snippet: 'Obras de urbanización de la calle Mayor · 482.000 € · formalized',
+      ref: 'https://contratacion/a',
+    }
+    writeFileSync(join(dir, 'verifier-corpus.jsonl'), JSON.stringify(fila) + '\n')
+    writeFileSync(join(dir, 'verifier-corpus.jsonl.model'), 'openai:text-embedding-3-small:3')
+    vi.stubEnv('VERIFIER_SHORTLIST', 'hybrid')
+    vi.stubEnv('EMBED_BACKEND', 'openai')
+    vi.stubEnv('OPENAI_API_KEY', 'sk-de-prueba')
+    peticiones = 0
+    const cosenos = [0.2949, 0.2951]
+    vi.stubGlobal('fetch', async (url: string) => {
+      if (url !== 'https://api.openai.com/v1/embeddings')
+        throw new Error(`fetch inesperado: ${url}`)
+      const x = cosenos[Math.min(peticiones++, cosenos.length - 1)]
+      return new Response(
+        JSON.stringify({ data: [{ index: 0, embedding: [x, Math.sqrt(1 - x * x), 0] }] }),
+        { status: 200, headers: { 'content-type': 'application/json' } },
+      )
+    })
+  })
+  afterEach(() => {
+    vi.unstubAllGlobals()
+    rmSync(dir, { recursive: true, force: true })
+  })
+
+  it('la segunda pasada pide al modelo la misma entrada de caché que la primera', async () => {
+    const corpus = loadCorpus(join(dir, 'verifier-corpus.jsonl'))
+    const a = await claves([], corpus)
+    const b = await claves([], corpus)
+    // Sin contratos, el candidato sólo puede llegar por la mitad semántica.
+    expect(a.razonar).toBeDefined()
+    expect(b.razonar).toEqual(a.razonar)
+    expect(b.extraer).toEqual(a.extraer)
+  })
+
+  it('y no vuelve a pedir el vector: la segunda pasada lee el que usó la primera', async () => {
+    const corpus = loadCorpus(join(dir, 'verifier-corpus.jsonl'))
+    await claves([], corpus)
+    await claves([], corpus)
+    expect(peticiones).toBe(1)
   })
 })
 
