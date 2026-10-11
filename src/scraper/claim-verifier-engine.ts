@@ -158,6 +158,54 @@ export function recortarResumen(texto: string, max = RESUMEN_MAX): string {
 }
 
 /**
+ * Un candidato nombrado por su número en la lista que leyó el modelo: «[0]»,
+ * «[5] y [7]», «el candidato 5», «candidatos 0, 1, 3». Una retractación no lleva
+ * filas de evidencia, así que la tarjeta no enseña esa lista y el número no
+ * señala nada.
+ */
+const NUMERO_DE_CANDIDATO = /\[\d+\]|(?<![\p{L}\p{N}])candidatos? \d/iu
+
+/**
+ * Dónde se puede partir una frase en cláusulas: en un «;» o un «:» seguido de
+ * espacio —no en el de una hora, «10:30»—, y no dentro de un paréntesis o unas
+ * comillas abiertos (`quedaAlgoAbierto`), que el corte dejaría abiertos.
+ */
+function cortesDeClausula(t: string): number[] {
+  const cortes: number[] = []
+  const corte = /[;:](?= )/g
+  for (let m = corte.exec(t); m; m = corte.exec(t)) {
+    if (!quedaAlgoAbierto(t.slice(0, m.index))) cortes.push(m.index)
+  }
+  return cortes
+}
+
+/**
+ * La frase de la conclusión sin las cláusulas que nombran un candidato por su
+ * número (`NUMERO_DE_CANDIDATO`). Se queda la cláusula donde casa la conclusión
+ * —`indice`, dentro de `frase`— con las vecinas que no nombran ninguno, y cada
+ * corte se dice con «…»: detrás, o delante si lo cortado es el principio de la
+ * frase. Si el número va en la cláusula misma de la conclusión, no hay corte que
+ * lo deje fuera, y la frase se queda como estaba.
+ */
+function sinNumeroDeCandidato(frase: string, indice: number): string {
+  const cortes = cortesDeClausula(frase)
+  const clausulas = [-1, ...cortes].map((c, i): [number, number] => [
+    c + 1,
+    cortes[i] ?? frase.length,
+  ])
+  const nombra = ([desde, hasta]: [number, number]) =>
+    NUMERO_DE_CANDIDATO.test(frase.slice(desde, hasta))
+  const k = clausulas.findIndex(([desde, hasta]) => indice >= desde && indice < hasta)
+  if (nombra(clausulas[k])) return frase
+  let primera = k
+  let ultima = k
+  while (primera > 0 && !nombra(clausulas[primera - 1])) primera--
+  while (ultima < clausulas.length - 1 && !nombra(clausulas[ultima + 1])) ultima++
+  const trozo = frase.slice(clausulas[primera][0], clausulas[ultima][1]).trim()
+  return `${primera > 0 ? '…' : ''}${trozo}${ultima < clausulas.length - 1 ? '…' : ''}`
+}
+
+/**
  * La explicación de un `sin-datos` que concluye el razonamiento: la frase donde
  * el modelo concluye que nada respalda la declaración (`dondeConcluye`), con el
  * mismo tope que `recortarResumen`; o `null` si no concluye.
@@ -168,6 +216,14 @@ export function recortarResumen(texto: string, max = RESUMEN_MAX): string {
  * el 10-10-2026 sobre los 56 razonamientos «sin respaldo» de esa noche
  * (tests/fixtures/motor-corte-conclusion_2026-10-10.json): el recorte llevaba la
  * conclusión en 5, y la frase de la conclusión cabe en el tope en las 56.
+ *
+ * En 10 de esas 56 frases, el modelo nombraba un candidato por su número en la
+ * lista («a lo sumo [0] aporta contexto muy débil»), y bajo la cita ese número no
+ * señalaba nada: la cláusula que lo nombra se deja fuera
+ * (`sinNumeroDeCandidato`). Medido el 11-10-2026 en la caché del motor, sin
+ * llamadas: de las 66 conclusiones distintas de engine-reason-v2 que nombran
+ * uno, el corte lo deja fuera en 60; en las 6 restantes va en la cláusula misma
+ * de la conclusión.
  */
 export function resumenDeLaConclusion(razonamiento: string, max = RESUMEN_MAX): string | null {
   const t = razonamiento.replace(/\s+/g, ' ').trim()
@@ -176,7 +232,7 @@ export function resumenDeLaConclusion(razonamiento: string, max = RESUMEN_MAX): 
   const fines = finesDeFrase(t)
   const inicio = fines.filter((f) => f <= donde.indice).pop() ?? 0
   const fin = fines.find((f) => f > donde.indice) ?? t.length
-  return recortarResumen(t.slice(inicio, fin), max)
+  return recortarResumen(sinNumeroDeCandidato(t.slice(inicio, fin), donde.indice - inicio), max)
 }
 
 export interface EngineCite {
