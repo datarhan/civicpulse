@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-11T09:35:27.104Z",
+  "generatedAt": "2026-10-11T15:19:22.756Z",
   "version": "1",
   "plenoId": "c8kr44",
   "plenoDate": "2025-09-08",
@@ -2010,7 +2010,7 @@
       "verification": {
         "claimId": "c8kr44-088-cit-d63a7d",
         "verdict": "sin-datos",
-        "summary": "Ningún candidato respalda genuinamente la afirmación; el [0] sólo ofrece contexto temático débil.",
+        "summary": "Ningún candidato respalda genuinamente la afirmación…",
         "evidence": [],
         "checkedAgainst": [],
         "derivedBy": [
@@ -2909,7 +2909,7 @@
       "verification": {
         "claimId": "c8kr44-114-cit-054e8e",
         "verdict": "sin-datos",
-        "summary": "Conclusión: ningún candidato respalda genuinamente la afirmación; a lo sumo [0] aporta contexto muy débil y el hecho es verificable solo en actas/resoluciones ambientales, no en contratos.",
+        "summary": "Conclusión: ningún candidato respalda genuinamente la afirmación…",
         "evidence": [],
         "checkedAgainst": [],
         "derivedBy": [
