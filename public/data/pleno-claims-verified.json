@@ -1,6 +1,6 @@
 {
   "generatedAt": "2026-10-04T07:37:32.197Z",
-  "composedAt": "2026-10-10T20:46:13.802Z",
+  "composedAt": "2026-10-11T06:23:20.983Z",
   "source": {
     "description": "Fact-check verdicts for every pleno-claims-suggestions.json entry. Cross-references against tenders / BDNS / budget / promises. Pure deterministic — no LLM judgement.",
     "contract": "Machine-written verdicts; a curator reviews before surfacing contradicho or promesa-repetida editorially."
@@ -8,8 +8,8 @@
   "stats": {
     "total": 7564,
     "byVerdict": {
-      "verificado": 10,
-      "parcial": 22,
+      "verificado": 11,
+      "parcial": 21,
       "contradicho": 0,
       "sin-datos": 7532,
       "promesa-repetida": 0
@@ -65469,21 +65469,24 @@
       },
       "verification": {
         "claimId": "rx4hb4-006-cit-13b19d",
-        "verdict": "parcial",
-        "summary": "Coincidencia parcial: hay datos relacionados pero no idénticos al claim.",
+        "verdict": "verificado",
+        "summary": "El orden del día de esta misma sesión, la ordinaria del 9 de febrero de 2026, llevó en su punto 2 el acuerdo de someter a información pública la versión inicial del PRI de la UE Santa Rosa 2 (expediente 5543/2020/GEN). El título del punto no dice el plazo ni el medio de la información pública.",
         "evidence": [
           {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=ppCWsw4C8jUQK2TEfXGy%2BA%3D%3D",
-            "snippet": "Servicio de redacción trabajos  técnicos preparatorios para el inicio de la gestión directa de la unidad de ejecución Santa Rosa II · Ayuntamiento de Riba-roja de Túria · Arturo Sabaté Calatayud · architecture · estado: formalized",
-            "similarity": 1,
+            "kind": "agenda",
+            "ref": "https://regmeet.com/aytoribarroja/participaciones/c5b270a763686e776039618cc709f3a6?idioma=castellano",
+            "snippet": "Orden del día del pleno ordinario del 09-02-2026 · parte resolutiva · punto 2: Expedient: 5543/2020/GEN, Acord relatiu al sotmetiment a informació pública de la versió inicial del PRI de la UE Santa Rosa 2",
             "stance": "checked"
           }
         ],
         "checkedAgainst": [
-          "tenders",
-          "tenders-ted"
-        ]
+          "plenos-agendas"
+        ],
+        "derivedBy": [
+          "curator-upgrade"
+        ],
+        "source": "curator-upgrade",
+        "raisedBy": "Sergei Lutchenko"
       }
     },
     {

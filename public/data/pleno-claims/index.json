@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-10T20:46:14.930Z",
+  "generatedAt": "2026-10-11T06:23:22.199Z",
   "version": "1",
   "plenos": [
     {
@@ -271,7 +271,8 @@
       "toggleCount": 273,
       "byVerdict": {
         "sin-datos": 273,
-        "parcial": 3
+        "verificado": 1,
+        "parcial": 2
       },
       "byType": {
         "cita_obra": 71,
@@ -294,7 +295,7 @@
         "cultura": 2,
         "vivienda": 2
       },
-      "bytes": 391187
+      "bytes": 391474
     },
     {
       "plenoId": "19gax3o",
@@ -664,8 +665,8 @@
     "plenos": 23,
     "byVerdict": {
       "sin-datos": 4930,
-      "parcial": 22,
-      "verificado": 10
+      "parcial": 21,
+      "verificado": 11
     },
     "byTopicVerdict": {
       "fiscal": {
@@ -682,8 +683,8 @@
       },
       "urbanismo": {
         "sin-datos": 903,
-        "parcial": 6,
-        "verificado": 4
+        "parcial": 5,
+        "verificado": 5
       },
       "other": {
         "sin-datos": 409
@@ -834,14 +835,14 @@
         }
       },
       "corpus": {
-        "tenders": 1577,
-        "tenders-ted": 1563,
+        "tenders": 1576,
+        "tenders-ted": 1562,
         "bdns": 485,
         "budget": 483,
         "promises": 493,
         "curator-downgrade": 41,
         "verdict-engine": 538,
-        "plenos-agendas": 2
+        "plenos-agendas": 3
       },
       "porClaseDocumental": {
         "porClase": {
