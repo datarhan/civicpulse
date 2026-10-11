@@ -81,6 +81,17 @@ not comparable, and a mixed corpus silently returns garbage neighbours. The
 corpus `.model` sidecar is authoritative for the query backend, overriding an
 ambient `EMBED_BACKEND`. `check:retrieval` warns on any gemini-built corpus.
 
+**Query vectors are cached next to the corpus**, in `.embed-cache/consultas/`
+(one JSON file per query, keyed by the sidecar and the exact query text;
+`src/scraper/cache-de-consultas.ts`). OpenAI does not return a bit-identical
+vector for the same text, and the shortlist's rounded similarities move with
+it — the ones the engine prompt shows and its cache key covers — so without
+this a dry run and the real run after it could ask the model different
+questions. A corpus `--rebuild` leaves the cache alone; a backend switch just
+misses it. When a dry run's `.llm-cache/` entries are copied to another
+checkout, copy `.embed-cache/consultas/` with them, or the real run embeds
+afresh and may not match.
+
 Hybrid mode falls back to lexical with a stderr warning when the chosen backend
 is unusable (no key, daemon down, model not pulled) — it never crashes the
 verifier.
