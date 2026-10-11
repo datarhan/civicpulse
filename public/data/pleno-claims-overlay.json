@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "generatedAt": "2026-10-11T09:58:03.576Z",
+  "generatedAt": "2026-10-11T21:51:33.664Z",
   "entries": {
     "k4olcs-005-acu-7c0edd": {
       "verification": {
@@ -18317,7 +18317,25 @@
       "reason": "Las cinco actuaciones que se enumeran son, con sus mismos títulos, los cinco lotes del contrato de suministro e instalación de juegos infantiles 111-115/2025: Parque La Pedrera, Plaza Juez Heliodoro Gimeno (lote 2), Parque Bellavista I, Parque Molinet y Plaza Lavadero. Se licitó en noviembre de 2025 y se adjudicó en 2026.",
       "editor": "Sergei Lutchenko",
       "appliedAt": "2026-10-06T06:29:01.812Z",
-      "desde": "sin-datos"
+      "desde": "sin-datos",
+      "sustituye": {
+        "source": "verdict-engine",
+        "editor": "verdict-engine:gpt-4o-mini",
+        "appliedAt": "2026-08-02T13:42:55.628Z",
+        "labelCorrections": [
+          {
+            "previous": "verdict-engine:claude-code",
+            "reason": "Razonó y decidió gpt-4o-mini, según .llm-cache (engine-reason-v1 y engine-extract-v1). Leído con llmCacheEntrada bajo la clave de claude-code, donde la pasada del 02-08-2026 guardó cada respuesta: cuando claude -p fallaba contestaba openai/gpt-4o-mini, el respaldo de pago de la cadena, y el guion rotulaba con lo configurado. Causa cerrada en la PR #248.",
+            "editor": "civicpulse-curator",
+            "correctedAt": "2026-10-06T05:41:47.602Z"
+          }
+        ],
+        "recuperada": {
+          "commit": "6bee76509c3ca7d655571902542b74cef9b614ac",
+          "editor": "civicpulse-curator",
+          "recuperadaAt": "2026-10-11T21:51:33.664Z"
+        }
+      }
     },
     "c8kr44-229-cit-62282e": {
       "verification": {
@@ -18391,7 +18409,25 @@
       "reason": "El cambio de juegos y suelo de protección del Parque Bellavista se contrató: es el lote 3 («Parque Bellavista I») del contrato de suministro e instalación de juegos infantiles 111-115/2025, licitado en noviembre de 2025 y adjudicado a Urbeadapta en 2026.",
       "editor": "Sergei Lutchenko",
       "appliedAt": "2026-10-06T06:28:49.929Z",
-      "desde": "sin-datos"
+      "desde": "sin-datos",
+      "sustituye": {
+        "source": "verdict-engine",
+        "editor": "verdict-engine:gpt-4o-mini",
+        "appliedAt": "2026-08-02T13:45:35.741Z",
+        "labelCorrections": [
+          {
+            "previous": "verdict-engine:claude-code",
+            "reason": "Razonó y decidió gpt-4o-mini, según .llm-cache (engine-reason-v1 y engine-extract-v1). Leído con llmCacheEntrada bajo la clave de claude-code, donde la pasada del 02-08-2026 guardó cada respuesta: cuando claude -p fallaba contestaba openai/gpt-4o-mini, el respaldo de pago de la cadena, y el guion rotulaba con lo configurado. Causa cerrada en la PR #248.",
+            "editor": "civicpulse-curator",
+            "correctedAt": "2026-10-06T05:41:47.602Z"
+          }
+        ],
+        "recuperada": {
+          "commit": "6bee76509c3ca7d655571902542b74cef9b614ac",
+          "editor": "civicpulse-curator",
+          "recuperadaAt": "2026-10-11T21:51:33.664Z"
+        }
+      }
     },
     "c8kr44-231-cit-faf7d3": {
       "verification": {
@@ -18423,7 +18459,25 @@
       "reason": "Las dos actuaciones se contrataron: el cambio de juegos y suelo de protección del Parque Molinet y la sustitución de los de la Plaza Lavadero son los lotes 4 y 5 del contrato de suministro e instalación de juegos infantiles 111-115/2025, licitado en noviembre de 2025 y adjudicado en 2026.",
       "editor": "Sergei Lutchenko",
       "appliedAt": "2026-10-06T06:28:59.705Z",
-      "desde": "sin-datos"
+      "desde": "sin-datos",
+      "sustituye": {
+        "source": "verdict-engine",
+        "editor": "verdict-engine:gpt-4o-mini",
+        "appliedAt": "2026-08-02T13:45:35.741Z",
+        "labelCorrections": [
+          {
+            "previous": "verdict-engine:claude-code",
+            "reason": "Razonó y decidió gpt-4o-mini, según .llm-cache (engine-reason-v1 y engine-extract-v1). Leído con llmCacheEntrada bajo la clave de claude-code, donde la pasada del 02-08-2026 guardó cada respuesta: cuando claude -p fallaba contestaba openai/gpt-4o-mini, el respaldo de pago de la cadena, y el guion rotulaba con lo configurado. Causa cerrada en la PR #248.",
+            "editor": "civicpulse-curator",
+            "correctedAt": "2026-10-06T05:41:47.602Z"
+          }
+        ],
+        "recuperada": {
+          "commit": "6bee76509c3ca7d655571902542b74cef9b614ac",
+          "editor": "civicpulse-curator",
+          "recuperadaAt": "2026-10-11T21:51:33.664Z"
+        }
+      }
     },
     "c8kr44-231-acu-70a34f": {
       "verification": {
@@ -19937,7 +19991,25 @@
       "reason": "La obra existe: la fase II del carril ciclopeatonal de la zona norte (Senda del Molinet, alumbrado y conexión con Paretotes, expediente 56/2025) se licitó en julio de 2025 y se adjudicó en septiembre a Nerco Infraestructuras por 262.812 € con IVA. Que se pague con los gastos derivados de la DANA no consta en el registro.",
       "editor": "Sergei Lutchenko",
       "appliedAt": "2026-10-06T06:29:15.043Z",
-      "desde": "sin-datos"
+      "desde": "sin-datos",
+      "sustituye": {
+        "source": "verdict-engine",
+        "editor": "verdict-engine:gpt-4o-mini",
+        "appliedAt": "2026-08-02T13:50:44.730Z",
+        "labelCorrections": [
+          {
+            "previous": "verdict-engine:claude-code",
+            "reason": "Razonó y decidió gpt-4o-mini, según .llm-cache (engine-reason-v1 y engine-extract-v1). Leído con llmCacheEntrada bajo la clave de claude-code, donde la pasada del 02-08-2026 guardó cada respuesta: cuando claude -p fallaba contestaba openai/gpt-4o-mini, el respaldo de pago de la cadena, y el guion rotulaba con lo configurado. Causa cerrada en la PR #248.",
+            "editor": "civicpulse-curator",
+            "correctedAt": "2026-10-06T05:41:47.602Z"
+          }
+        ],
+        "recuperada": {
+          "commit": "6bee76509c3ca7d655571902542b74cef9b614ac",
+          "editor": "civicpulse-curator",
+          "recuperadaAt": "2026-10-11T21:51:33.664Z"
+        }
+      }
     },
     "rmtyr-125-cit-5655cc": {
       "verification": {
