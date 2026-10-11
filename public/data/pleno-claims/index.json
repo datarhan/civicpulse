@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-11T09:58:04.892Z",
+  "generatedAt": "2026-10-11T15:19:22.756Z",
   "version": "1",
   "plenos": [
     {
@@ -59,7 +59,7 @@
         "movilidad": 4,
         "salud": 1
       },
-      "bytes": 407662
+      "bytes": 407576
     },
     {
       "plenoId": "brxx5g",
@@ -202,7 +202,7 @@
         "empleo": 3,
         "movilidad": 1
       },
-      "bytes": 389714
+      "bytes": 389710
     },
     {
       "plenoId": "ma87e0",
@@ -394,7 +394,7 @@
         "salud": 1,
         "cultura": 2
       },
-      "bytes": 204453
+      "bytes": 204485
     },
     {
       "plenoId": "qz6weg",
@@ -522,7 +522,7 @@
         "movilidad": 15,
         "cultura": 3
       },
-      "bytes": 332843
+      "bytes": 331992
     },
     {
       "plenoId": "rmtyr",

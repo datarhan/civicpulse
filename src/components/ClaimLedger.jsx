@@ -4,13 +4,8 @@ import { Card, Pill, SectionHead, ExtLink } from './Primitives'
 import { MarcaDeFirma } from './MarcaDeFirma'
 import { useT } from '../i18n'
 import { conHuecos } from '../lib/huecos'
-import {
-  usePlenoClaims,
-  CLAIM_TYPE_LABEL,
-  CLAIM_TYPE_TONE,
-  VERDICT_LABEL,
-  VERDICT_TONE,
-} from '../hooks/usePlenoClaims'
+import { usePlenoClaims, VERDICT_LABEL, VERDICT_TONE } from '../hooks/usePlenoClaims'
+import { rotuloDeTipo } from '../lib/claim-type-label.js'
 import { gateForDisplay, sortSignalFirst } from '../lib/claim-ledger'
 import { blocLabel } from '../lib/party-label.js'
 import {
@@ -111,8 +106,11 @@ function ClaimCard({ item }) {
       >
         <div style={{ flex: 1, minWidth: 0 }}>
           <div style={{ display: 'flex', gap: 6, alignItems: 'center', marginBottom: 4 }}>
-            <Pill tone={CLAIM_TYPE_TONE[claim.type] || 'neutral'} size="xs">
-              {CLAIM_TYPE_LABEL[claim.type] || claim.type}
+            {/* Derivado del literal: un tipo que promete una cifra o un
+                convenio que la cita no trae baja a «Afirmación»
+                (src/lib/claim-type-label.js). */}
+            <Pill tone={rotuloDeTipo(claim).tono} size="xs">
+              {rotuloDeTipo(claim).texto}
             </Pill>
             {claim.speakerGroup && (
               <span

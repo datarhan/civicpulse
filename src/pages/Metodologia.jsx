@@ -1493,6 +1493,21 @@ export default function Metodologia() {
             movimientos que <strong>alejan</strong> de la acusación, nunca hacia ella: convertir una
             declaración en acusación agravaría lo que se afirma de quien habló, que es exactamente
             lo que «sólo a la baja» prohíbe para los veredictos.
+            <p style={{ margin: '8px 0 0' }}>
+              El rótulo de tipo que se ve en cada tarjeta, además, se deriva de lo que la cita dice,
+              y sólo puede bajar. El extractor usa «afirmación numérica» y «convenio citado» también
+              para frases que no traen ninguna cifra o que no nombran convenio, ayuda ni fondo: una
+              lista de departamentos, un recuento de votos, una valoración sobre una carta de
+              servicios. Cuando el literal no trae lo que el tipo promete, la tarjeta dice{' '}
+              <strong>«Afirmación»</strong>, sin más. Una cifra que la comprobación no reconozca
+              deja también «Afirmación», que no afirma nada de más; nunca se rotula una frase con un
+              tipo más fuerte que el del extractor. El tipo archivado no cambia, y los recuentos por
+              tipo de{' '}
+              <a href="/laboratorio/cobertura" style={{ color: 'var(--civic)' }}>
+                /laboratorio/cobertura
+              </a>{' '}
+              siguen contando lo que el extractor clasificó.
+            </p>
           </li>
           <li>
             <strong>Motor de veredictos (re-derivación, sólo a la baja).</strong> Una segunda pasada

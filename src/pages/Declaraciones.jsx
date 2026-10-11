@@ -3,13 +3,8 @@ import { Link } from 'react-router-dom'
 import { Card, Pill, SectionHead, PartyTag } from '../components/Primitives'
 import DataAsOf from '../components/DataAsOf'
 import { MarcaDeFirma } from '../components/MarcaDeFirma'
-import {
-  usePlenoClaims,
-  CLAIM_TYPE_LABEL,
-  CLAIM_TYPE_TONE,
-  VERDICT_LABEL,
-  VERDICT_TONE,
-} from '../hooks/usePlenoClaims'
+import { usePlenoClaims, VERDICT_LABEL, VERDICT_TONE } from '../hooks/usePlenoClaims'
+import { rotuloDeTipo } from '../lib/claim-type-label.js'
 import { usePlenos } from '../hooks/usePlenos'
 import { useOfficials } from '../hooks/useOfficials'
 import { PARTY_TONE } from '../hooks/usePromises'
@@ -132,8 +127,8 @@ function ClaimRow({ item, plenoTitle }) {
         <Pill tone={VERDICT_TONE[v.verdict] ?? 'neutral'} size="xs">
           {VERDICT_LABEL[v.verdict] ?? v.verdict}
         </Pill>
-        <Pill tone={CLAIM_TYPE_TONE[c.type] ?? 'neutral'} size="xs">
-          {CLAIM_TYPE_LABEL[c.type] ?? c.type}
+        <Pill tone={rotuloDeTipo(c).tono} size="xs">
+          {rotuloDeTipo(c).texto}
         </Pill>
         {/* El grupo y su «firmado» no se separan al envolver la fila: a 375 px la
             marca caía sola al principio de la línea siguiente y se leía como
