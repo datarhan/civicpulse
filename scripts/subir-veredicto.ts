@@ -51,8 +51,10 @@
  * del overlay en <commit> (`recuperarSustituida`). Es mecánica y se rehace desde
  * git, así que la firma una persona o la cuenta de rol (`rechazoDeMarcador`),
  * como `corregir-rotulo-motor`. El commit tiene que ser un antepasado de HEAD, y
- * recomponer con el overlay nuevo no puede mover ninguna declaración: lo
- * publicado no cambia, sólo el registro.
+ * componer la base en disco con el overlay nuevo tiene que dar lo mismo que con
+ * el de ahora: lo publicado no cambia, sólo el registro. No pide que lo
+ * publicado sea la composición de esa base (`cotejarCompose`), como subir: no
+ * recompone nada, y la pregunta es qué cambia el overlay, no qué cambia la base.
  *
  * Nunca corre sola: no la llama ningún runner, cron ni nocturna.
  */
@@ -73,7 +75,7 @@ import {
   subirVeredicto,
   type EvidenciaPedida,
 } from '../src/scraper/subida-firmada'
-import type { Overlay } from '../src/scraper/verified-merge'
+import type { Overlay, VerifiedItem } from '../src/scraper/verified-merge'
 import {
   compuestaSoloEsta,
   congeladoHasta,
@@ -82,7 +84,15 @@ import {
   leerComposicion,
   resumenesDeMaquina,
 } from './lib/antes-de-firmar'
-import { componer, declaracionesCambiadas, OVERLAY, rebuildVerified } from './verified-rebuild'
+import {
+  BASE,
+  cargarCapas,
+  componer,
+  declaracionesCambiadas,
+  OVERLAY,
+  rebuildVerified,
+  type Capas,
+} from './verified-rebuild'
 
 const TENDERS = resolve('public/data/tenders.json')
 const BDNS = resolve('public/data/bdns.json')
@@ -224,8 +234,8 @@ function git(args: string[], que: string): string {
 
 /**
  * `--backfill-sustituye`: devuelve a cada subida la entrada que sustituyó, leída
- * del overlay en <commit>. No recompone: recomponer con el overlay nuevo tiene
- * que dar lo publicado, byte a byte, o no se escribe.
+ * del overlay en <commit>. No recompone: componer con el overlay nuevo tiene que
+ * dar lo mismo, byte a byte, que con el de ahora, o no se escribe.
  */
 function recuperar(o: Orden): void {
   const hueco = rechazoDeMarcador(o.editor ?? '')
@@ -248,9 +258,18 @@ function recuperar(o: Orden): void {
     salir(1, `${ruta} en ${commit} no se deja leer: ${(err as Error).message}`)
   }
 
-  const c = leerComposicion(salir, 'Recuperar')
+  if (!existsSync(BASE)) {
+    salir(1, `falta la base (${BASE}), que está gitignorada: sin ella no se ve qué compone`)
+  }
+  const base = (JSON.parse(readFileSync(BASE, 'utf8')) as { items: VerifiedItem[] }).items
+  let capas: Capas
+  try {
+    capas = cargarCapas()
+  } catch (err) {
+    salir(1, `los ficheros que se componen no validan: ${(err as Error).message}`)
+  }
   const stamp = new Date().toISOString()
-  let nuevo = c.capas.overlay
+  let nuevo = capas.overlay
   for (const id of o.ids) {
     const anterior = antes.entries?.[id]
     if (!anterior) salir(1, `${id}: no tiene entrada en el overlay de ${commit.slice(0, 8)}`)
@@ -260,13 +279,21 @@ function recuperar(o: Orden): void {
       salir(1, `rechazado: ${(err as Error).message}`)
     }
   }
-  let compuestas
+  let ahora: VerifiedItem[]
+  let despues: VerifiedItem[]
   try {
-    compuestas = componer(c.base.items, { ...c.capas, overlay: nuevo }).items
+    ahora = componer(base, capas).items
+    despues = componer(base, { ...capas, overlay: nuevo }).items
   } catch (err) {
     salir(1, `rechazado al componer: ${(err as Error).message}`)
   }
-  const movidas = declaracionesCambiadas(c.publicado.items, compuestas)
+  // Que no se mueva nada sólo dice algo si cada una se compuso.
+  const compuestas = new Set(despues.map((it) => it.claim.id))
+  const fuera = o.ids.filter((id) => !compuestas.has(id))
+  if (fuera.length > 0) {
+    salir(1, `${fuera.join(', ')}: no está en la base en disco, y no se ve qué compone`)
+  }
+  const movidas = declaracionesCambiadas(ahora, despues)
   if (movidas.length > 0) {
     salir(
       1,

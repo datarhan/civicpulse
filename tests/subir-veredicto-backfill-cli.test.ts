@@ -219,4 +219,65 @@ describe('subir-veredicto --backfill-sustituye', () => {
     },
     PLAZO,
   )
+
+  it(
+    'no pide que lo publicado sea la composición de la base: compara el overlay de antes y el de después',
+    () => {
+      const { dir, antes } = montar()
+      // Lo publicado, más nuevo que la base en disco (la base vive gitignorada).
+      const publicado = JSON.parse(leer(dir, 'pleno-claims-verified.json'))
+      escribir(dir, {
+        'public/data/pleno-claims-verified.json': json({
+          ...publicado,
+          generatedAt: '2026-10-11T15:19:21.291Z',
+        }),
+      })
+      const r = lanzar(dir, [
+        '--backfill-sustituye',
+        antes,
+        ID,
+        '--editor',
+        'civicpulse-curator',
+        '--dry-run',
+      ])
+      expect(r.stderr).toBe('')
+      expect(r.status).toBe(0)
+    },
+    PLAZO,
+  )
+
+  it(
+    'sin la base, o con una declaración que no está en ella, no escribe',
+    () => {
+      const { dir, antes } = montar()
+      const base = leer(dir, 'pleno-claims-verified-base.json')
+      escribir(dir, {
+        'public/data/pleno-claims-verified-base.json': json({ ...BASE, items: [] }),
+      })
+      const fuera = lanzar(dir, [
+        '--backfill-sustituye',
+        antes,
+        ID,
+        '--editor',
+        'civicpulse-curator',
+      ])
+      expect(fuera.status).toBe(1)
+      expect(fuera.stderr).toMatch(/no está en la base/)
+      rmSync(join(dir, 'public/data/pleno-claims-verified-base.json'))
+      const sinBase = lanzar(dir, [
+        '--backfill-sustituye',
+        antes,
+        ID,
+        '--editor',
+        'civicpulse-curator',
+      ])
+      expect(sinBase.status).toBe(1)
+      expect(sinBase.stderr).toMatch(/falta la base/)
+      expect(base).toContain(ID)
+      expect(
+        JSON.parse(leer(dir, 'pleno-claims-overlay.json')).entries[ID].sustituye,
+      ).toBeUndefined()
+    },
+    PLAZO,
+  )
 })
