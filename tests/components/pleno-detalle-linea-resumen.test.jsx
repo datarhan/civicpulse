@@ -64,6 +64,16 @@ const VERIFICADA = CON_VERIFICADA
   ? lee(CON_VERIFICADA.chunkPath).items.find((it) => it.verification?.verdict === 'verificado')
   : { ...SIN_DATOS[0], verification: { ...SIN_DATOS[0].verification, verdict: 'verificado' } }
 
+/**
+ * Dos declaraciones parciales publicadas, de las sesiones que tengan alguna. Es la
+ * forma de la revisión lectora del 06-10-2026: una sesión cuyas cotejadas son todas
+ * parciales se leía «2 declaraciones contrastadas», o sea comprobadas.
+ */
+const PARCIALES = MANIFIESTO.plenos
+  .filter((p) => (p.byVerdict?.parcial ?? 0) > 0)
+  .flatMap((p) => lee(p.chunkPath).items.filter((it) => it.verification?.verdict === 'parcial'))
+  .slice(0, 2)
+
 const APROBADAS = VOTOS.items.filter((v) => v.outcome === 'aprobado')
 /** La rechazada publicada; si no hubiera ninguna, una aprobada que no lo fue. */
 const RECHAZADA = VOTOS.items.find((v) => v.outcome === 'rechazado') ?? {
@@ -135,8 +145,7 @@ const AVISO_CA =
 
 const ESCENARIOS = [
   {
-    nombre:
-      'una de cada: un punto, una votación aprobada, una declaración contrastada, un hallazgo',
+    nombre: 'una de cada: un punto, una votación aprobada, una declaración cotejada, un hallazgo',
     fetch: sirve({
       puntos: AGENDA.agenda.slice(0, 1),
       votos: APROBADAS.slice(0, 1),
@@ -144,33 +153,47 @@ const ESCENARIOS = [
       hallazgos: HALLAZGOS.items.slice(0, 1),
     }),
     es: [
-      `1 punto en el orden del día · 1 votación transcrita (1 aprobada) · 1 declaración contrastada · 1 hallazgo editorial. ${AVISO_ES}`,
+      `1 punto en el orden del día · 1 votación transcrita (1 aprobada) · 1 declaración cotejada (1 verificada) · 1 hallazgo editorial. ${AVISO_ES}`,
       '1',
       'transcrita',
     ],
     ca: [
-      `1 punt en l’ordre del dia · 1 votació transcrita (1 aprovada) · 1 declaració contrastada · 1 troballa editorial. ${AVISO_CA}`,
+      `1 punt en l’ordre del dia · 1 votació transcrita (1 aprovada) · 1 declaració acarada (1 verificada) · 1 troballa editorial. ${AVISO_CA}`,
       '1',
       'transcrita',
     ],
   },
   {
     nombre:
-      'varias de cada: el orden del día entero, tres votaciones con una rechazada, ninguna declaración contrastada, dos hallazgos',
+      'varias de cada: el orden del día entero, tres votaciones con una rechazada, ninguna declaración cotejada, dos hallazgos',
     fetch: sirve({
       votos: [...APROBADAS.slice(0, 2), RECHAZADA],
       declaraciones: SIN_DATOS.slice(0, 3),
       hallazgos: HALLAZGOS.items.slice(0, 2),
     }),
     es: [
-      `${PUNTOS} puntos en el orden del día · 3 votaciones transcritas (2 aprobadas) · 0 declaraciones contrastadas · 2 hallazgos editoriales. ${AVISO_ES}`,
+      `${PUNTOS} puntos en el orden del día · 3 votaciones transcritas (2 aprobadas) · 0 declaraciones cotejadas · 2 hallazgos editoriales. ${AVISO_ES}`,
       '3',
       'transcritas',
     ],
     ca: [
-      `${PUNTOS} punts en l’ordre del dia · 3 votacions transcrites (2 aprovades) · 0 declaracions contrastades · 2 troballes editorials. ${AVISO_CA}`,
+      `${PUNTOS} punts en l’ordre del dia · 3 votacions transcrites (2 aprovades) · 0 declaracions acarades · 2 troballes editorials. ${AVISO_CA}`,
       '3',
       'transcrites',
+    ],
+  },
+  {
+    nombre: 'sólo dos parciales: cotejadas, y dice cuántas de cada veredicto',
+    fetch: sirve({ declaraciones: PARCIALES }),
+    es: [
+      `${PUNTOS} puntos en el orden del día · 2 declaraciones cotejadas (2 parciales). ${AVISO_ES}`,
+      '—',
+      'sin transcribir',
+    ],
+    ca: [
+      `${PUNTOS} punts en l’ordre del dia · 2 declaracions acarades (2 parcials). ${AVISO_CA}`,
+      '—',
+      'sense transcriure',
     ],
   },
   {
@@ -201,6 +224,7 @@ describe('/plenos/:id · lo que la línea del resumen necesita del dato publicad
     expect(HALLAZGOS.items.length).toBeGreaterThanOrEqual(2)
     expect(SIN_DATOS.length).toBeGreaterThanOrEqual(3)
     expect(VERIFICADA?.verification?.verdict).toBe('verificado')
+    expect(PARCIALES.map((it) => it.verification?.verdict)).toEqual(['parcial', 'parcial'])
   })
 })
 
