@@ -20,6 +20,12 @@
  * `--retract` exists because a published judgement about a named person must be
  * removable without hand-editing the file the guard hook protects. Retraction is
  * a weakening action: it only ever removes a claim.
+ *
+ * `--curator` acepta la cuenta de rol y rechaza, antes de leer nada y en
+ * cualquier vía en que venga, el hueco de una orden copiada sin rellenar —el
+ * `<nombre>` de la línea de uso—, que firmaría una fila publicada sobre un cargo
+ * con nombre: el validador sólo pide que `curatedBy` no esté vacío
+ * (`rechazoDeMarcador`, src/scraper/firma-de-persona.ts).
  */
 import { existsSync, readFileSync, writeFileSync } from 'node:fs'
 import { resolve } from 'node:path'
@@ -31,6 +37,7 @@ import {
   type AvisoMapping,
   type OfficialLike,
 } from '../src/scraper/area-fit'
+import { rechazoDeMarcador } from '../src/scraper/firma-de-persona'
 
 const QUEUE = resolve('editorial/area-fit-queue.json')
 const OUT = resolve('public/data/area-fit.json')
@@ -155,6 +162,17 @@ function write(snap: AreaFitSnapshot) {
 }
 
 function main() {
+  // Antes de leer nada: el hueco no firma una fila del encaje. Sólo el hueco;
+  // la cuenta de rol, sí (`rechazoDeMarcador`). En toda vía en que venga la
+  // bandera, aunque esa vía no la escriba: no corre una orden a medio escribir.
+  if (process.argv.includes('--curator')) {
+    const hueco = rechazoDeMarcador(arg('curator') ?? '')
+    if (hueco) {
+      console.error(`--curator: ${hueco}`)
+      process.exit(2)
+    }
+  }
+
   const queue = loadQueue()
 
   if (process.argv.includes('--list')) {
