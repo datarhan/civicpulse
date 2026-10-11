@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-10T10:55:14.282Z",
+  "generatedAt": "2026-10-11T11:14:03.809Z",
   "frozen": false,
   "frozenUntil": null,
   "notice": "Sugerencias generadas automáticamente. Requieren aprobación humana antes de aplicarse al estado de cada promesa.",
@@ -41,7 +41,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-10-10T10:55:14.179Z"
+      "generatedAt": "2026-10-11T11:14:03.716Z"
     },
     {
       "promiseId": "ac-psoe-jfg7bc",
@@ -60,7 +60,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-10-10T10:55:14.179Z"
+      "generatedAt": "2026-10-11T11:14:03.716Z"
     },
     {
       "promiseId": "ac-psoe-1ah9zqk",
@@ -79,7 +79,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-10-10T10:55:14.179Z"
+      "generatedAt": "2026-10-11T11:14:03.716Z"
     },
     {
       "promiseId": "ac-psoe-ppa53a",
@@ -87,7 +87,7 @@
       "confidence": 0,
       "reasoning": [],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-10-10T10:55:14.179Z"
+      "generatedAt": "2026-10-11T11:14:03.716Z"
     },
     {
       "promiseId": "ac-psoe-1m04lfw",
@@ -95,7 +95,7 @@
       "confidence": 0,
       "reasoning": [],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-10-10T10:55:14.179Z"
+      "generatedAt": "2026-10-11T11:14:03.716Z"
     },
     {
       "promiseId": "ac-psoe-sysee8",
@@ -114,7 +114,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-10-10T10:55:14.179Z"
+      "generatedAt": "2026-10-11T11:14:03.716Z"
     },
     {
       "promiseId": "ac-psoe-1ryndd8",
@@ -151,7 +151,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-10-10T10:55:14.179Z"
+      "generatedAt": "2026-10-11T11:14:03.716Z"
     },
     {
       "promiseId": "ac-psoe-43brfs",
@@ -216,7 +216,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-10-10T10:55:14.179Z"
+      "generatedAt": "2026-10-11T11:14:03.716Z"
     },
     {
       "promiseId": "ac-psoe-17y448o",
@@ -269,17 +269,6 @@
           ]
         },
         {
-          "url": "https://news.google.com/rss/articles/CBMiuwFBVV95cUxQaXhMaXQ4RVJKRllpdUNIRDRkdVV3ekNCNzFqRnhqYm1wQ3Nza0RwbDZBclY1cmhwWFY5MlVJNzdRWXJ0Q0g0bW5MTlZVWVNITkFWcjdVWnBVTjRjTUpMelNDOWJxQm9CUFVKUnVabUVhU1hSVy1kWm1tWUNHSktjcDB2NFVPNEQtODFrSmxVZ0FMaE9pV09mRjd2cXJic1VCdzF4bXh3ekpkMkw4el96MXQ1dy1UQVVQUFVn0gHAAUFVX3lxTE1heGVhaGlBUnFpRTBqU1Z2b1pvSGN4NWdYZE9XQVdfcmk1cUUxRXk1a0p5eEhwU3lLeTdTNjZEY3pmc2lNbkliRnlDZ3FSUUNCNXZwV3o2RHVlVEo5U2ROeEZORmswS2tWck5ZOFU1UnZVc2ZPOUVVNlhkdTRmRUZ5bS0yV0dzdF9SbHpUWGVMWHBZb3JXT09tRnczMTlLVG1jWjZtUmhEQ1JvQ1VLbGlsSjk3N0tSdkMtRFJuVUlsZg?oc=5",
-          "date": "2026-10-08",
-          "quote": "Riba-roja firma el nuevo contrato del agua por 17 años: 2,3 millones de euros y tarifas congeladas",
-          "kind": "press",
-          "publisher": "Levante-EMV",
-          "matchedKeywords": [
-            "euro",
-            "nuevo"
-          ]
-        },
-        {
           "url": "https://regmeet.com/aytoribarroja/participaciones/2e3d2c4f33a7a1f58bc6c81cacd21e9c?idioma=castellano",
           "date": "2026-10-05",
           "quote": "Contratación · Inicio del expediente de contratación para la licitación del suministro de sustitución del pavimento de césped artificial de la instalación del estadio de fútbol Roberto Gil en régimen de arrendamiento, con opción de compra, por procedimiento abierto, varios criterios de adjudicación, con condición de ejecución de carácter social y medioambiental, contribuyendo al cumplimiento del ODS 12 de “Producción y consumo responsables” y ODS 13 “Acción por el clima” de la Agenda 2030, contrato sujeto a regulación armonizada, siendo su tramitación anticipada. (Ctto. 122/2026)",
@@ -291,7 +280,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-10-10T10:55:14.179Z"
+      "generatedAt": "2026-10-11T11:14:03.716Z"
     },
     {
       "promiseId": "ac-psoe-1bkbwjs",
@@ -346,7 +335,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-10-10T10:55:14.179Z"
+      "generatedAt": "2026-10-11T11:14:03.716Z"
     },
     {
       "promiseId": "ac-psoe-1xeq50",
@@ -381,7 +370,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-10-10T10:55:14.179Z"
+      "generatedAt": "2026-10-11T11:14:03.716Z"
     }
   ],
   "llmEvidence": [],
