@@ -1358,9 +1358,11 @@ export async function getShortlist(
   // the import cost (and doesn't require fetch/openai env at all).
   let semanticModule: typeof import('./semantic-shortlist')
   let embedModule: typeof import('./embed-client')
+  let cacheModule: typeof import('./cache-de-consultas')
   try {
     semanticModule = await import('./semantic-shortlist')
     embedModule = await import('./embed-client')
+    cacheModule = await import('./cache-de-consultas')
   } catch (err) {
     process.stderr.write(
       `[verifier] semantic mode unavailable (${(err as Error).message}); using lexical\n`,
@@ -1415,7 +1417,7 @@ export async function getShortlist(
   // resolution only when there is no sidecar.
   const { parseCorpusSidecar } = await import('./retrieval-health')
   const side = corpus.model ? parseCorpusSidecar(corpus.model) : {}
-  const embedFn: import('./semantic-shortlist').EmbedFn = async (text) => {
+  const embedDirecto: import('./semantic-shortlist').EmbedFn = async (text) => {
     const opts: Record<string, unknown> = {}
     if (side.backend === 'openai' || side.backend === 'gemini' || side.backend === 'ollama')
       opts.backend = side.backend
@@ -1424,6 +1426,18 @@ export async function getShortlist(
     const [v] = await embedModule.embedTexts([text], opts)
     return v
   }
+  // El vector de consulta, guardado junto al corpus (cache-de-consultas.ts): uno
+  // nuevo en cada pasada no sale idéntico, mueve la similitud redondeada que lee
+  // el modelo, y con ella la huella del shortlist que va en la clave del motor.
+  // Sin sidecar no hay a quién atribuir el vector, y no se guarda.
+  const embedFn =
+    corpus.dirDeConsultas && corpus.model
+      ? cacheModule.conCacheDeConsultas(embedDirecto, {
+          dir: corpus.dirDeConsultas,
+          embedder: corpus.model,
+          dim: side.dim,
+        })
+      : embedDirecto
 
   let semantic: CandidateShortlist[]
   try {
