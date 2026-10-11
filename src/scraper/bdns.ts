@@ -100,30 +100,75 @@ export function parseBdnsConvocatorias(json: string): BdnsItem[] {
     const code = String(r.numeroConvocatoria || '').trim()
     if (!code || seen.has(code)) continue
     seen.add(code)
-
-    // The Ayuntamiento appears in nivel2/nivel3 when it's the granting
-    // body; records whose levels don't name the municipality as the
-    // convocant (e.g. a Generalitat-level call to which the Ayto might
-    // apply) count as "received", and `ubicarConvocatoria` decides whether
-    // they are about this Riba-roja at all.
-    const nivel3 = (r.nivel3 ?? '').toUpperCase()
-    const isGranted = plegar(r.nivel2) === plegar(MUNICIPIO_BDNS) && /AYUNTAMIENTO/.test(nivel3)
-
-    out.push({
-      id: r.id,
-      bdnsCode: code,
-      description: (r.descripcion || '').trim(),
-      date: parseDate(r.fechaRecepcion),
-      organ: [r.nivel1, r.nivel2, r.nivel3].filter(Boolean).join(' · '),
-      level1: r.nivel1,
-      level2: r.nivel2 ?? null,
-      direction: isGranted ? 'granted' : 'received',
-      sourceUrl: `https://www.pap.hacienda.gob.es/bdnstrans/GE/es/convocatoria/${code}`,
-    })
+    out.push(itemDeFila(r, code))
   }
 
-  out.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
+  out.sort(masRecienteAntes)
   return out
+}
+
+function masRecienteAntes(a: BdnsItem, b: BdnsItem): number {
+  return new Date(b.date).getTime() - new Date(a.date).getTime()
+}
+
+function convocatoriaUrl(code: string): string {
+  return `https://www.pap.hacienda.gob.es/bdnstrans/GE/es/convocatoria/${code}`
+}
+
+function itemDeFila(r: Raw, code: string): BdnsItem {
+  // The Ayuntamiento appears in nivel2/nivel3 when it's the granting
+  // body; records whose levels don't name the municipality as the
+  // convocant (e.g. a Generalitat-level call to which the Ayto might
+  // apply) count as "received", and `ubicarConvocatoria` decides whether
+  // they are about this Riba-roja at all.
+  const nivel3 = (r.nivel3 ?? '').toUpperCase()
+  const isGranted = plegar(r.nivel2) === plegar(MUNICIPIO_BDNS) && /AYUNTAMIENTO/.test(nivel3)
+
+  return {
+    id: r.id,
+    bdnsCode: code,
+    description: (r.descripcion || '').trim(),
+    date: parseDate(r.fechaRecepcion),
+    organ: [r.nivel1, r.nivel2, r.nivel3].filter(Boolean).join(' · '),
+    level1: r.nivel1,
+    level2: r.nivel2 ?? null,
+    direction: isGranted ? 'granted' : 'received',
+    sourceUrl: convocatoriaUrl(code),
+  }
+}
+
+/**
+ * La ficha de una convocatoria (/convocatorias?vpd=GE&numConv=) como la fila
+ * que daría la búsqueda: el mismo `id`, la misma fecha de recepción, el mismo
+ * órgano. Es como entra en `items` la convocatoria de una concesión que la
+ * búsqueda por nombre no trajo. Sin código o sin fecha, null: una fila sin
+ * fecha se ordenaría como de 1970 y la contaría `yearSpan`.
+ */
+export function itemDeFicha(ficha: unknown): BdnsItem | null {
+  const f = ficha as {
+    id?: unknown
+    codigoBDNS?: unknown
+    descripcion?: unknown
+    fechaRecepcion?: unknown
+    organo?: { nivel1?: unknown; nivel2?: unknown; nivel3?: unknown } | null
+  } | null
+  if (!f || typeof f !== 'object') return null
+  const code = typeof f.codigoBDNS === 'string' ? f.codigoBDNS.trim() : ''
+  const fecha = typeof f.fechaRecepcion === 'string' ? f.fechaRecepcion : ''
+  if (!code || !fecha || typeof f.id !== 'number') return null
+  const nivel = (v: unknown) => (typeof v === 'string' ? v : null)
+  return itemDeFila(
+    {
+      id: f.id,
+      numeroConvocatoria: code,
+      descripcion: typeof f.descripcion === 'string' ? f.descripcion : '',
+      fechaRecepcion: fecha,
+      nivel1: nivel(f.organo?.nivel1) ?? '',
+      nivel2: nivel(f.organo?.nivel2),
+      nivel3: nivel(f.organo?.nivel3),
+    },
+    code,
+  )
 }
 
 /** Sin tildes, en mayúsculas y con los espacios plegados: así compara la BDNS. */
@@ -289,4 +334,239 @@ export function rechazoDeLaCorrida(separacion: {
     return `se apartaron las ${juzgadas} recibidas: ninguna se sitúa en Riba-roja de Túria`
   }
   return null
+}
+
+// ─── Lo que el Ayuntamiento recibe, por su NIF ──────────────────────────────
+//
+// La búsqueda por «riba-roja» trae las convocatorias cuyo TEXTO nombra el
+// municipio. Una convocatoria de la Generalitat o de la Diputación abierta a
+// todos los ayuntamientos no nombra a ninguno, y el nuestro la cobra igual. El
+// 11-10-2026 la BDNS registraba 148 concesiones a NIF_AYUNTAMIENTO en 121
+// convocatorias, por 46,3 M€, y el snapshot publicaba 14 recibidas, siete de
+// ellas entre esas 121: un 6 %. La consulta por NIF no devuelve nada anterior a
+// 2022 (2015–2021: cero filas), así que las siete recibidas más viejas siguen
+// viniendo sólo de la búsqueda por nombre.
+//
+// Dos unidades, cada una en su sitio, para no contar dos veces:
+//  · `concesiones`: una fila por CONCESIÓN, con su importe. Los euros se suman
+//    aquí y sólo aquí. Una convocatoria puede tener varias (la 754381, el Plan
+//    Abierto de Inversiones de la Diputación, ocho).
+//  · `items`: una fila por CONVOCATORIA, como siempre. La de una concesión entra
+//    una vez, como recibida, sin importe: la línea con que el verificador lee
+//    una convocatoria (snippet-de-bdns.ts) no cambia, porque cambiarla se mide
+//    con llamadas reales antes de fusionar.
+//
+// El importe es lo CONCEDIDO, no lo cobrado: los pagos son otro registro de la
+// BDNS. La prosa que lo enseñe dice «concedido».
+
+/**
+ * El instrumento de una subvención, plegado. Las 148 del 11-10-2026 lo traen
+ * («SUBVENCIÓN y ENTREGA DINERARIA SIN CONTRAPRESTACIÓN »). Otro instrumento
+ * —un préstamo, una garantía— se publica como concesión pero no suma en los
+ * euros recibidos: un préstamo se devuelve.
+ */
+export const INSTRUMENTO_SUBVENCION = 'SUBVENCION Y ENTREGA DINERARIA SIN CONTRAPRESTACION'
+
+export interface ConcesionRecibida {
+  id: number
+  codConcesion: string
+  /** El código de su convocatoria: la clave que la une a `items`. */
+  bdnsCode: string
+  convocatoria: string
+  /** `fechaConcesion`, a medianoche UTC. */
+  fecha: string
+  /** Lo concedido, en euros; null si la fila no trae un número. */
+  importe: number | null
+  instrumento: string
+  esSubvencion: boolean
+  organ: string
+  level1: string
+  /** La ficha de la convocatoria: la concesión no tiene página propia. */
+  sourceUrl: string
+}
+
+export interface ConcesionesLeidas {
+  concesiones: ConcesionRecibida[]
+  /** Filas de otro beneficiario: si la API deja de filtrar por `nifCif`. */
+  ajenas: number
+  /** `totalElements` de la primera página, o null si no venía paginado. */
+  declaradas: number | null
+}
+
+interface RawConcesion {
+  id?: unknown
+  codConcesion?: unknown
+  fechaConcesion?: unknown
+  beneficiario?: unknown
+  instrumento?: unknown
+  importe?: unknown
+  numeroConvocatoria?: unknown
+  convocatoria?: unknown
+  nivel1?: unknown
+  nivel2?: unknown
+  nivel3?: unknown
+}
+
+const texto = (v: unknown): string => (typeof v === 'string' ? v.trim() : '')
+
+/**
+ * Las concesiones de /concesiones/busqueda?nifCif=NIF_AYUNTAMIENTO: acepta las
+ * páginas concatenadas en un array, una página suelta o las filas a secas. Se
+ * mira el NIF de cada fila, como en `leerConcesiones`: si la API dejara de
+ * filtrar, devolvería las de todos los beneficiarios.
+ */
+export function parseBdnsConcesiones(json: string): ConcesionesLeidas {
+  const raw = JSON.parse(json) as unknown
+  const paginas = Array.isArray(raw) ? raw : [raw]
+  const primera = paginas[0] as { totalElements?: unknown } | undefined
+  const declaradas =
+    primera && typeof primera === 'object' && typeof primera.totalElements === 'number'
+      ? primera.totalElements
+      : null
+  const filas: RawConcesion[] = paginas.flatMap((p) => {
+    const content = (p as { content?: unknown } | null)?.content
+    if (Array.isArray(content)) return content as RawConcesion[]
+    return p && typeof p === 'object' && !('content' in p) ? [p as RawConcesion] : []
+  })
+
+  const vistas = new Set<number>()
+  const concesiones: ConcesionRecibida[] = []
+  let ajenas = 0
+  for (const f of filas) {
+    if (texto(f.beneficiario).split(/\s+/)[0] !== NIF_AYUNTAMIENTO) {
+      ajenas++
+      continue
+    }
+    const id = Number(f.id)
+    const code = texto(f.numeroConvocatoria)
+    if (!Number.isFinite(id) || !code || vistas.has(id)) continue
+    vistas.add(id)
+    const importe = typeof f.importe === 'number' && Number.isFinite(f.importe) ? f.importe : null
+    const instrumento = texto(f.instrumento)
+    concesiones.push({
+      id,
+      codConcesion: texto(f.codConcesion),
+      bdnsCode: code,
+      convocatoria: texto(f.convocatoria),
+      fecha: parseDate(texto(f.fechaConcesion)),
+      importe,
+      instrumento,
+      esSubvencion: plegar(instrumento) === INSTRUMENTO_SUBVENCION,
+      organ: [f.nivel1, f.nivel2, f.nivel3].map(texto).filter(Boolean).join(' · '),
+      level1: texto(f.nivel1),
+      sourceUrl: convocatoriaUrl(code),
+    })
+  }
+  concesiones.sort((a, b) => b.fecha.localeCompare(a.fecha) || b.id - a.id)
+  return { concesiones, ajenas, declaradas }
+}
+
+export interface ResumenConcesiones {
+  total: number
+  convocatorias: number
+  /** Euros concedidos en subvenciones, al céntimo. */
+  importe: number
+  otrosInstrumentos: number
+  sinImporte: number
+  /** Primera y última `fecha`, como AAAA-MM-DD; null sin filas. */
+  desde: string | null
+  hasta: string | null
+}
+
+export function resumirConcesiones(concesiones: ConcesionRecibida[]): ResumenConcesiones {
+  const subvenciones = concesiones.filter((c) => c.esSubvencion)
+  const centimos = subvenciones.reduce((s, c) => s + Math.round((c.importe ?? 0) * 100), 0)
+  const fechas = concesiones.map((c) => c.fecha.slice(0, 10)).sort()
+  return {
+    total: concesiones.length,
+    convocatorias: new Set(concesiones.map((c) => c.bdnsCode)).size,
+    importe: centimos / 100,
+    otrosInstrumentos: concesiones.length - subvenciones.length,
+    sinImporte: concesiones.filter((c) => c.importe === null).length,
+    desde: fechas[0] ?? null,
+    hasta: fechas[fechas.length - 1] ?? null,
+  }
+}
+
+/**
+ * Cuánto pueden caer las concesiones frente al snapshot anterior antes de que la
+ * corrida no se crea. La ventana de la BDNS corre: el año que sale se lleva sus
+ * concesiones (las de 2022 eran 39 de 148, un 26 %). La mitad ya no es eso.
+ */
+export const TECHO_CAIDA_CONCESIONES = 0.5
+
+/** Por encima de esta fracción, un campo que falta es un campo renombrado. */
+const TECHO_FALTANTES = 0.1
+
+/**
+ * Por qué no debe escribirse la vía por NIF, o null si puede. La clase nº 7 de
+ * docs/DATA_INTEGRITY.md: sin esto, el día que la API cambie de forma el sitio
+ * publicaría «0 concesiones» con toda la tranquilidad de un año sin ayudas.
+ */
+export function rechazoDeLasConcesiones(
+  leidas: ConcesionesLeidas,
+  contexto: { anterior?: number | null; sinFicha?: readonly string[] } = {},
+): string | null {
+  const { concesiones, ajenas, declaradas } = leidas
+  const n = concesiones.length
+  if (ajenas > 0) {
+    return `${ajenas} concesiones de otro NIF: la API ha dejado de filtrar por ${NIF_AYUNTAMIENTO}`
+  }
+  if (n === 0) return `cero concesiones a ${NIF_AYUNTAMIENTO}: ¿ha cambiado la API de la BDNS?`
+  if (declaradas !== null && n < declaradas) {
+    return `${n} concesiones leídas de ${declaradas} que declara la API: la paginación se cortó`
+  }
+  const resumen = resumirConcesiones(concesiones)
+  if (resumen.sinImporte > TECHO_FALTANTES * n) {
+    return `${resumen.sinImporte} de ${n} concesiones sin importe: ¿ha cambiado de nombre el campo?`
+  }
+  if (resumen.otrosInstrumentos > TECHO_FALTANTES * n) {
+    return (
+      `${resumen.otrosInstrumentos} de ${n} concesiones fuera de «${INSTRUMENTO_SUBVENCION}»: ` +
+      '¿ha cambiado el rótulo del instrumento?'
+    )
+  }
+  const { anterior } = contexto
+  if (anterior != null && n < anterior * (1 - TECHO_CAIDA_CONCESIONES)) {
+    return `${n} concesiones, frente a ${anterior} en el snapshot anterior: cae más de la mitad`
+  }
+  const sinFicha = contexto.sinFicha?.length ?? 0
+  if (sinFicha > TECHO_FALTANTES * resumen.convocatorias) {
+    return `${sinFicha} de ${resumen.convocatorias} convocatorias con concesión se quedaron sin ficha`
+  }
+  return null
+}
+
+/**
+ * Las convocatorias de las concesiones, unidas a las que ya se publican. Cada
+ * convocatoria entra una vez: la que ya traía la búsqueda conserva su fila; la
+ * nueva entra con la de su ficha (`itemDeFicha`). Una concesión al NIF sitúa
+ * su convocatoria aquí —la regla 2 de `ubicarConvocatoria`—, así que si la
+ * búsqueda la había apartado, deja de estarlo. Sin ficha legible no entra en
+ * `items`, y se dice cuál: sus concesiones siguen en `concesiones`.
+ */
+export function unirConcesiones(
+  separacion: { propias: BdnsItem[]; descartadas: Descartada[] },
+  concesiones: ConcesionRecibida[],
+  fichas: ReadonlyMap<string, unknown>,
+): { propias: BdnsItem[]; descartadas: Descartada[]; anadidas: string[]; sinFicha: string[] } {
+  const codigos = [...new Set(concesiones.map((c) => c.bdnsCode))]
+  const yaEstan = new Set(separacion.propias.map((i) => i.bdnsCode))
+  const propias = [...separacion.propias]
+  const anadidas: string[] = []
+  const sinFicha: string[] = []
+  for (const code of codigos) {
+    if (yaEstan.has(code)) continue
+    const item = itemDeFicha(fichas.get(code))
+    if (!item || item.bdnsCode !== code) {
+      sinFicha.push(code)
+      continue
+    }
+    propias.push(item)
+    anadidas.push(code)
+  }
+  propias.sort(masRecienteAntes)
+  const situadas = new Set(anadidas)
+  const descartadas = separacion.descartadas.filter((d) => !situadas.has(d.bdnsCode))
+  return { propias, descartadas, anadidas, sinFicha }
 }
