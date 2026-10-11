@@ -406,8 +406,17 @@ const expectWithdrawn = (id: string): void => {
  * dos se reanclan al pasaje de la vigente. La tercera fila quita del sumario la salvedad que la [3]
  * deja sin objeto. La [3] pasa a `RESUELTAS_DESPUES`, y lote 5 deja de buscarla por su texto.
  */
-const TOTAL_CORRECTIONS = 253
-const TOTAL_REMOVALS = 40
+/*
+ * 253 → 234 (bloque «543cc1 y 3fd230, retiradas por lo que decía su sumario»).
+ * Dos fichas del pleno del 2026-01-19 cuyo sumario decía, con otras palabras, lo que dicen citas
+ * que la puerta editorial retiene: la pregunta de la cola de excepción, respondida «retirar» en
+ * las dos. `retract-finding` se lleva su bitácora entera, 10 filas de `f-2026-01-19-cit-543cc1` y
+ * 9 de `f-2026-01-19-cit-3fd230`; tres de ellas eran retiradas de fila (`TOTAL_REMOVALS` 40 → 37:
+ * la cita [2] y el cotejo [0] de 3fd230, el cotejo [1] de 543cc1). Ningún lote cambia más que eso:
+ * las dos salen de LOTE_2, LOTE_3 y LOTE_5 por `live`, y bajan los suelos que cuentan citas.
+ */
+const TOTAL_CORRECTIONS = 234
+const TOTAL_REMOVALS = 37
 
 /** One row of a review batch's fixture: enough to locate its own entries. */
 interface BatchCase {
@@ -634,8 +643,10 @@ describe('published pleno findings — a removal does not republish what it remo
     // 2026-09-30: dos citas más, la [1] de `947479` y la [2] de `8b29a9` (bloque «163 → 184»),
     // y otras dos el mismo día, la [2] y la [1] de `c80e68` (bloque «184 → 208»).
     // Y la [2] de `5b06c8` (bloque «salvedad C+D, +8»).
-    expect(removals.filter((c) => c.field.startsWith('quote.'))).toHaveLength(12)
-    expect(removals.filter((c) => c.field.startsWith('crossChecked.'))).toHaveLength(28)
+    // Y tres menos, que se fueron con su ficha (bloque «250 → 231»): la cita [2] y el cotejo [0]
+    // de `3fd230`, y el cotejo [1] de `543cc1`.
+    expect(removals.filter((c) => c.field.startsWith('quote.'))).toHaveLength(11)
+    expect(removals.filter((c) => c.field.startsWith('crossChecked.'))).toHaveLength(26)
   })
 
   it('records a digest and a marker, never the removed row', () => {
@@ -3544,7 +3555,9 @@ describe('published pleno findings — one intervention is one row', () => {
     }
     // The measuring half: 52 findings with a single quote each would compare
     // nothing and pass.
-    expect(compared).toBeGreaterThan(300)
+    // 2026-10-11: 543cc1 (4 citas) y 3fd230 (3) se retiran enteras (bloque «250 → 231»), y
+    // con ellas 18 de las 306 comparaciones. El suelo queda justo por debajo de las 288.
+    expect(compared).toBeGreaterThan(280)
     expect(offences).toEqual([])
   })
 })
@@ -3586,7 +3599,9 @@ describe('published pleno findings — one verbatim is one bloc', () => {
     // y `b00839` [0] (bloque «salvedad C+D, +8»). El suelo baja tres.
     // Y tres con la ficha entera de `66709b`, que se retira (bloque «252 → 250»). De 64 a 61, y
     // el suelo baja tres.
-    expect(attributed.length).toBeGreaterThan(60)
+    // Y otras tres con `543cc1` ([2] PSOE, [3] PP) y `3fd230` ([0] PSOE), que se retiran
+    // (bloque «250 → 231»). De 61 a 58, y el suelo baja tres.
+    expect(attributed.length).toBeGreaterThan(57)
     expect(findAttributionConflicts(items)).toEqual([])
   })
 })
@@ -4108,8 +4123,14 @@ describe('published pleno findings — el reanclaje del 2026-08-10', () => {
       ambiguous.filter((r) => r.publishedBefore && liveRow(r) && !RESUELTAS_DESPUES.has(r.tag))
         .length,
     )
-    // Toda fila de la tabla es una ambigua publicada y viva que se resolvió: ninguna sobra.
-    expect(resueltas).toBe(RESUELTAS_DESPUES.size)
+    // Toda fila de la tabla es una ambigua publicada que se resolvió: ninguna sobra. Una cuya
+    // ficha se retiró entera después no se cuenta, pero no se pierde de vista: su ficha tiene que
+    // estar en el registro de retiradas. Es una, `b21`, de `543cc1` (bloque «250 → 231»).
+    const filaDe = (tag: string) => BATCH.rows.find((r) => r.tag === tag)!
+    const sinFicha = [...RESUELTAS_DESPUES.keys()].filter((tag) => !liveRow(filaDe(tag)))
+    expect(sinFicha).toEqual(['b21'])
+    for (const tag of sinFicha) expectWithdrawn(filaDe(tag).findingId)
+    expect(resueltas).toBe(RESUELTAS_DESPUES.size - sinFicha.length)
     expect(ambiguous.filter((r) => !r.publishedBefore)).toHaveLength(1)
   })
 
@@ -4416,4 +4437,70 @@ describe('published pleno findings — a0a379, reanclada a la vigente', () => {
       ),
     ).toBe(sumario.corrected)
   })
+})
+
+/*
+ * Bloque «253 → 234». Dos fichas del pleno del 2026-01-19, las dos de `auto-curation-v1`, cuyo
+ * sumario decía con otras palabras lo que dicen citas que la puerta editorial retiene: la pregunta
+ * de la cola de excepción (src/scraper/finding-exception.ts), respondida «retirar» en las dos.
+ *
+ * `f-2026-01-19-cit-543cc1`: su primera frase daba como afirmación lo que en la sesión se formula
+ * como pregunta —y recibe respuesta en el mismo debate—, y la segunda descansaba en la otra cita
+ * retenida. Sin ellas, la ficha sólo podía enseñar una frase que nombra el asunto del debate y una
+ * cita que el sumario nunca usó.
+ *
+ * `f-2026-01-19-cit-3fd230`: su segunda frase era la acusación de sus dos citas retenidas, y la ficha
+ * no podía enseñar en qué se apoyaba (revisión de superficies del 10-10-2026). Sin ella quedaba una
+ * frase sobre fechas de construcción bajo un titular que anuncia un debate.
+ *
+ * En las dos, escribir un sumario sobre lo que queda sería un hallazgo nuevo bajo el identificador
+ * de uno que no revisó una persona. Cada lápida guarda la huella de la ficha que se fue —rehecha con
+ * `findingTombstone` sobre el fichero anterior a la retirada—, nunca su prosa, y su motivo dice en
+ * qué segundos de la transcripción vigente descansa cada parte.
+ */
+describe('published pleno findings — 543cc1 y 3fd230, retiradas por lo que decía su sumario', () => {
+  const CASOS = [
+    {
+      id: 'f-2026-01-19-cit-543cc1',
+      digest: 'hallazgo · sha256:37f9a2d980fc',
+      cuentas: [4, 3],
+      tramos: ['5.693,7–5.712,2 s', '6.526,7–6.541,5 s', '6.148,9–6.162,5 s'],
+    },
+    {
+      id: 'f-2026-01-19-cit-3fd230',
+      digest: 'hallazgo · sha256:a8785e9584bf',
+      cuentas: [3, 2],
+      tramos: ['6.497,5–6.506,2', '6.968,1–6.972,7 s', '7.063,6–7.071,7 s'],
+    },
+  ]
+
+  it.each(CASOS)(
+    '$id se retiró entera, con su huella y un motivo anclado en la transcripción',
+    (c) => {
+      expect(items.some((f) => f.id === c.id)).toBe(false)
+      expectWithdrawn(c.id)
+      const r = (snapshot.retractions ?? []).find((x) => x.findingId === c.id)!
+      expect(r.digest).toBe(c.digest)
+      expect([r.quoteCount, r.crossCheckedCount]).toEqual(c.cuentas)
+      expect([r.plenoId, r.plenoDate, r.severity]).toEqual([
+        '19gax3o',
+        '2026-01-19',
+        'informational',
+      ])
+      // Cada tramo que cita el motivo empieza y acaba en una marca de la transcripción vigente.
+      const transcripcion = transcriptOf(r.plenoId)
+      for (const tramo of c.tramos) {
+        expect(r.reason, `el motivo no cita ${tramo}`).toContain(tramo)
+        for (const extremo of tramo.replace(/ s$/, '').split('–')) {
+          const seg = extremo.replace(/\./g, '').replace(',', '.')
+          expect(
+            transcripcion.includes(`[${seg} →`) || transcripcion.includes(`→ ${seg}]`),
+            `${extremo} s no es una marca de la transcripción vigente`,
+          ).toBe(true)
+        }
+      }
+      // Las citas sin grupo siguen sin atribuir: el motivo no nombra a ningún grupo.
+      expect(findPartiesInText(r.reason)).toEqual([])
+    },
+  )
 })

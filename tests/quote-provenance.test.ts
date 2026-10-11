@@ -74,7 +74,8 @@ describe('el snapshot cubre TODAS las citas publicadas', () => {
   it('no deja caer ni una: filas + no clasificadas = citas del snapshot', () => {
     // Que la comprobación mide algo: con el snapshot vacío esta prueba pasaría
     // comparando 0 con 0 sin haber examinado nada.
-    expect(ALL_QUOTES.length).toBeGreaterThan(120)
+    // 2026-10-11: 543cc1 y 3fd230 se retiran con sus siete citas (de 122 a 115); el suelo baja a 110.
+    expect(ALL_QUOTES.length).toBeGreaterThan(110)
     const rows = Object.values(DERIVED.quotes).reduce((n, r) => n + r.length, 0)
     expect(rows + DERIVED.unresolved.length).toBe(ALL_QUOTES.length)
     expect(DERIVED.stats.quotes).toBe(ALL_QUOTES.length)

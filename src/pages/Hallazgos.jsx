@@ -283,9 +283,12 @@ function RetractionLedger({ retractions }) {
       >
         Hallazgos retirados · {ordered.length}
       </div>
+      {/* Decía «se retiraron porque ninguna de sus citas superaba la puerta editorial»: la causa
+          de las once del 2026-08-11, y no la de 66709b (10-10) ni la de 543cc1 y 3fd230 (11-10),
+          que tenían citas visibles. Cada retirada dice la suya en su motivo. */}
       <p style={{ margin: '0 0 10px' }}>
-        Publicados y después retirados. No se reproduce lo que decían: se retiraron porque ninguna
-        de sus citas superaba la puerta editorial, así que republicar el texto aquí devolvería a la
+        Publicados y después retirados. No se reproduce lo que decían: cada uno se retiró por lo que
+        decía —su motivo va debajo de su huella—, así que republicar el texto aquí devolvería a la
         web exactamente aquello que la retirada quita. Queda la huella —{' '}
         <span className="mono">sha256</span> del original, por si alguien conserva una copia y
         quiere comprobar que coincide.
