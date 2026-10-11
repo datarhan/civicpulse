@@ -1185,7 +1185,11 @@ export const CATALOGUE = {
     'presupuesto.gasto.listado': 'listado de contratos',
     'presupuesto.gasto.razonesSociales': '{n} razones sociales',
     'presupuesto.gasto.dana': 'Recuperación DANA ≈ {pct}% del importe adjudicado.',
-    'presupuesto.subvenciones.eyebrow': 'BDNS · {total} convocatorias · {municipales} municipales',
+    'presupuesto.subvenciones.eyebrow': 'BDNS · {municipales} convocatorias municipales',
+    'presupuesto.subvenciones.eyebrow.recibidas': ' · {n} concesiones recibidas',
+    'presupuesto.subvenciones.recibidas.titulo': 'Recibidas por el Ayuntamiento',
+    'presupuesto.subvenciones.recibidas.texto':
+      '{n} concesiones al NIF del Ayuntamiento (P4621600H){span}, en {conv} convocatorias: {importe} concedidos. Es lo concedido, no lo cobrado, y una convocatoria puede dar varias concesiones. La BDNS no devuelve por el NIF concesiones anteriores a {desde}. Las más recientes:',
     'presupuesto.subvenciones.titulo': 'Subvenciones · Base Nacional',
     'presupuesto.subvenciones.fuente': 'Datos reales de MinHac BDNS · pap.hacienda.gob.es',
     'presupuesto.obras.eyebrow': 'Urbanismo · infraestructuras',
@@ -1378,8 +1382,9 @@ export const CATALOGUE = {
     'presupuesto.contra.ted.mayor': ', el {pct} % en un solo anuncio',
     'presupuesto.contra.ted.link': 'Anuncios ↓',
     'presupuesto.contra.bdns': 'Subvenciones · BDNS',
-    'presupuesto.contra.bdns.nota':
-      'convocatorias municipales en la Base Nacional{span} · {total} en total, contando las recibidas',
+    'presupuesto.contra.bdns.nota': 'convocatorias municipales en la Base Nacional{span}',
+    'presupuesto.contra.bdns.recibidas':
+      ' · y {n} concesiones al Ayuntamiento{span}, {importe} concedidos',
     'presupuesto.contra.bdns.link': 'Convocatorias ↓',
     'presupuesto.pie.fuentes.a': 'Fuentes: presupuesto aprobado de ',
     'presupuesto.pie.fuentes.conprel': 'CONPREL, Ministerio de Hacienda ↗',
@@ -2826,7 +2831,11 @@ export const CATALOGUE = {
     'presupuesto.gasto.listado': 'llistat de contractes',
     'presupuesto.gasto.razonesSociales': '{n} raons socials',
     'presupuesto.gasto.dana': 'Recuperació DANA ≈ {pct}% de l’import adjudicat.',
-    'presupuesto.subvenciones.eyebrow': 'BDNS · {total} convocatòries · {municipales} municipals',
+    'presupuesto.subvenciones.eyebrow': 'BDNS · {municipales} convocatòries municipals',
+    'presupuesto.subvenciones.eyebrow.recibidas': ' · {n} concessions rebudes',
+    'presupuesto.subvenciones.recibidas.titulo': 'Rebudes per l’Ajuntament',
+    'presupuesto.subvenciones.recibidas.texto':
+      '{n} concessions al NIF de l’Ajuntament (P4621600H){span}, en {conv} convocatòries: {importe} concedits. És el que s’ha concedit, no el que s’ha cobrat, i una convocatòria pot donar diverses concessions. La BDNS no torna pel NIF concessions anteriors a {desde}. Les més recents:',
     'presupuesto.subvenciones.titulo': 'Subvencions · Base Nacional',
     'presupuesto.subvenciones.fuente': 'Dades reals de MinHac BDNS · pap.hacienda.gob.es',
     'presupuesto.obras.eyebrow': 'Urbanisme · infraestructures',
@@ -3010,8 +3019,9 @@ export const CATALOGUE = {
     'presupuesto.contra.ted.mayor': ', el {pct} % en un sol anunci',
     'presupuesto.contra.ted.link': 'Anuncis ↓',
     'presupuesto.contra.bdns': 'Subvencions · BDNS',
-    'presupuesto.contra.bdns.nota':
-      'convocatòries municipals en la Base Nacional{span} · {total} en total, comptant les rebudes',
+    'presupuesto.contra.bdns.nota': 'convocatòries municipals en la Base Nacional{span}',
+    'presupuesto.contra.bdns.recibidas':
+      ' · i {n} concessions a l’Ajuntament{span}, {importe} concedits',
     'presupuesto.contra.bdns.link': 'Convocatòries ↓',
     'presupuesto.pie.fuentes.a': 'Fonts: pressupost aprovat de ',
     'presupuesto.pie.fuentes.conprel': "CONPREL, Ministeri d'Hisenda ↗",
