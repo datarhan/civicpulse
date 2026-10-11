@@ -1576,13 +1576,20 @@ export default function Metodologia() {
                 (tests/fixtures/motor-corte-conclusion_2026-10-10.json). */}
             La explicación lleva entonces la frase en que lo concluye, y no sólo el arranque del
             razonamiento: ése repite la declaración y, solo bajo la cita, se leía como si el motor
-            la afirmara. Y cuando lo único que el modelo cita es el título de un registro, el motor
-            no lo da por respaldo, pero tampoco retracta ni reescribe la explicación con un
-            razonamiento que defiende lo contrario: la declaración queda apartada para que la mire
-            una persona. En la corrida del 2 de agosto de 2026 una parte de esas explicaciones no
-            hablaba de la declaración sino del encargo del propio modelo («Task completed: reasoned
-            in Spanish…»): la tarjeta no las imprime y dice «Explicación retirada» mientras una
-            persona no escriba la suya (
+            la afirmara.{' '}
+            {/* 11-10-2026: en 10 de esas 56 frases el modelo nombraba un candidato por su
+                número en la lista que leyó («a lo sumo [0] aporta contexto»), y la tarjeta
+                de una retractación no enseña esa lista (src/scraper/claim-verifier-engine.ts). */}
+            Si esa frase nombra un candidato por el número que tenía en la lista que leyó el modelo
+            —«[0]», «el candidato 5»—, que la tarjeta no enseña, se publica sin la parte que lo
+            nombra: se corta en un punto y coma o en unos dos puntos, y el corte se marca con «…».
+            Cuando el número va en la parte misma de la conclusión, la frase sale entera. Y cuando
+            lo único que el modelo cita es el título de un registro, el motor no lo da por respaldo,
+            pero tampoco retracta ni reescribe la explicación con un razonamiento que defiende lo
+            contrario: la declaración queda apartada para que la mire una persona. En la corrida del
+            2 de agosto de 2026 una parte de esas explicaciones no hablaba de la declaración sino
+            del encargo del propio modelo («Task completed: reasoned in Spanish…»): la tarjeta no
+            las imprime y dice «Explicación retirada» mientras una persona no escriba la suya (
             <a href="#explicacion-firmada" style={{ color: 'var(--civic)' }}>
               explicación firmada
             </a>
