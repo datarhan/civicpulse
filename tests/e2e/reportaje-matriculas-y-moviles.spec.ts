@@ -37,10 +37,26 @@ test.describe('Reportaje · matrículas y móviles (/reportajes/matriculas-y-mov
     await expect(page.getByText(/tiempo medio de ocupación/).first()).toBeVisible()
     await expect(page.getByText(/calidad del aire/).first()).toBeVisible()
     await expect(page.getByText(/no un rastreo propio del Ayuntamiento/)).toBeVisible()
+    // Las que añadió la revisión del 11-10, por la misma razón: la finalidad que
+    // el pliego da a la integración con la Policía Local, su cláusula de
+    // finalidad exclusiva, y la única mención a las evaluaciones de impacto.
+    // Sin esta última, «no exige una evaluación de impacto» se lee como «no dice
+    // nada de ellas», y los dos pliegos administrativos sí dicen algo.
+    await expect(
+      page.getByText(/gestión del tráfico y la seguridad en las áreas de aparcamiento/),
+    ).toBeVisible()
+    await expect(page.getByText(/ningún tratamiento destinado a fines distintos/)).toBeVisible()
+    await expect(
+      page.getByText(/colaborará en la realización de las evaluaciones de impacto/),
+    ).toBeVisible()
+    // El importe, con y sin IVA: la adjudicación sin IVA no es lo que costó.
+    await expect(page.getByText(/73\.870,75 € con IVA/).first()).toBeVisible()
 
     // La visita dice lo que sostiene una foto, y nada más.
     await expect(
-      page.getByText(/Una fotografía no prueba que una cámara lea matrículas/),
+      page.getByText(
+        /Una fotografía no prueba que una cámara lea matrículas ni de qué contrato es/,
+      ),
     ).toBeVisible()
     await expect(page.getByText(/Este reportaje no afirma que falten aparatos/)).toBeVisible()
     // Las frases de prensa son del periódico, en estilo indirecto: la pieza

@@ -3,8 +3,8 @@
   "meta": {
     "slug": "matriculas-y-moviles",
     "seccion": "Reportaje · Protección de datos",
-    "titulo": "Un contrato para contar visitantes que compra cámaras de matrículas conectadas a la Policía Local",
-    "subtitulo": "El pliego de los «sensores para el conteo de personas» de Riba-roja exige cámaras que guardan las matrículas en tres aparcamientos del casco urbano y dispositivos que reconocen móviles aunque oculten su identificador. Promete datos «anonimizados» y no pide evaluación de impacto. Este medio fue a mirar: hay cámaras en dos de los tres aparcamientos, y en ninguno un cartel.",
+    "titulo": "Un contrato para contar visitantes que encarga cámaras de matrículas para integrarlas con la Policía Local",
+    "subtitulo": "El pliego de los «sensores para el conteo de personas» de Riba-roja exige cámaras capaces de leer y guardar las matrículas en tres aparcamientos del casco urbano, y dispositivos pensados para reconocer un móvil aunque cambie su identificador. Promete una recogida «no intrusiva y anonimizada» y no exige que se haga una evaluación de impacto. Este medio fue a mirar: hay cámaras orientadas a dos de los tres aparcamientos, y en ninguno un cartel.",
     "estado": "borrador",
     "publicadoEl": "2026-10-14",
     "fechaDatos": "14 de octubre de 2026",
@@ -13,7 +13,7 @@
   "kpis": [
     {
       "n": "61.050 €",
-      "l": "el contrato de «sensores para el conteo de personas»: 61.050,21 € sin IVA, pagados con fondos europeos de un plan de sostenibilidad turística"
+      "l": "adjudicación del contrato de «sensores para el conteo de personas»: 61.050,21 € sin IVA (73.870,75 € con IVA), con fondos europeos de un plan de sostenibilidad turística"
     },
     {
       "n": "≥5",
@@ -21,49 +21,46 @@
     },
     {
       "n": "0 de 2",
-      "l": "aparcamientos con cámara observada que tenían un cartel informativo de videovigilancia, el 11 de octubre de 2026"
-    },
-    {
-      "n": "0",
-      "l": "evaluaciones de impacto en protección de datos exigidas en los cuatro pliegos de los dos contratos"
+      "l": "aparcamientos con cámaras a la vista que tenían un cartel informativo de videovigilancia, el 11 de octubre de 2026"
     }
   ],
-  "entradilla": "El contrato se llama «suministro de sensores para el conteo de personas en el Parque Natural de Túria y entorno». Se pagó con fondos europeos de recuperación, dentro de un plan de sostenibilidad turística, y costó 61.050,21 €. Su pliego de prescripciones técnicas, publicado en la Plataforma de Contratación, compra cuatro cosas. Dos de ellas tratan datos de personas, y ninguna de esas dos se limita a contar gente en un parque: al menos cinco cámaras que leen matrículas en tres aparcamientos del casco urbano, que el pliego manda alinear con la videovigilancia de la Policía Local, y al menos seis dispositivos que detectan móviles con una técnica pensada para reconocerlos aunque el teléfono intente evitarlo.",
+  "entradilla": "El contrato se titula «Contrato administrativo de suministros de sensores para el conteo de personas en el Parque Natural de Túria y entorno». Se adjudicó por 61.050,21 € sin IVA —73.870,75 € con IVA—, con fondos europeos de recuperación, dentro de un plan de sostenibilidad turística. Su pliego de prescripciones técnicas, publicado en la Plataforma de Contratación, compra cuatro cosas. Dos de ellas tratan datos de personas, y ninguna de esas dos se limita a contar gente en un parque: al menos cinco cámaras que leen matrículas en tres aparcamientos del casco urbano, que el pliego manda alinear con la videovigilancia de la Policía Local, y al menos seis dispositivos que detectan móviles con una técnica pensada para reconocerlos aunque el teléfono intente evitarlo.",
   "compra": {
     "titulo": "Lo que nombra el título, y lo que compra el pliego",
-    "texto": "El título del contrato habla de sensores de conteo en el Parque Natural. El pliego de prescripciones técnicas enumera cuatro soluciones:",
+    "texto": "El título habla de sensores para el conteo de personas «en el Parque Natural de Túria y entorno». El pliego de prescripciones técnicas enumera cuatro soluciones:",
     "cita": "a. Instalación de dispositivos para control de aforos. b. Instalación de cámaras para control de bolsas de aparcamiento. c. Instalación de Displays LED informativos. d. Instalación de dispositivos para medir la calidad del aire.",
     "citaFuente": "Pliego de prescripciones técnicas del expediente 98/2025, en su síntesis de «las soluciones a implantar» (Plataforma de Contratación del Sector Público)",
     "remate": [
-      "No es que el contrato esconda nada: las cuatro soluciones están escritas en un documento público. Es que el título nombra una sola, y de las dos que tratan datos de personas es la que menos dice de ellas.",
-      "Una de las cuatro es la calidad del aire, una función ambiental legítima que no depende de que haya visitantes. Este reportaje trata de las otras dos."
+      "No es que el contrato esconda nada: las cuatro soluciones están escritas en un documento público. Es que el título nombra una sola.",
+      "Una de las cuatro es la calidad del aire, una función ambiental legítima que no depende de que haya visitantes. Este reportaje trata, sobre todo, de las dos que tratan datos de personas."
     ]
   },
   "anonimizada": {
-    "titulo": "«Anonimizada», y el párrafo que explica cómo se deshace",
+    "titulo": "«Anonimizada», y el párrafo que explica cómo reconocer el móvil",
     "promesa": "Se instalarán, como mínimo, seis (6) dispositivos IoT para monitorizar la afluencia de personas mediante conexión Wi-Fi y Bluetooth, a una distancia mínima de 100 metros lineales y garantizando en todo momento, una recopilación de datos no intrusiva y anonimizada.",
     "metodo": "Estos dispositivos detectarán la dirección MAC (Medium Access Control) de los smartphones, pero también el SSID (red Wi-Fi por defecto que busca el dispositivo) y la Signature (fragmento del mensaje Probe Request que contiene información sobre el modelo dispositivo). Con estas dos métricas adicionales, se dispondrá de una alternativa para reconocer el dispositivo en los casos donde estos tengan una dirección MAC aleatoria, debido a que la combinación de la Wi-Fi por defecto y el modelo ayuda a identificarlo.",
     "citaFuente": "Pliego de prescripciones técnicas del expediente 98/2025. Los dos párrafos van seguidos en el documento.",
-    "explicacion": "Los móviles modernos cambian al azar la dirección con la que se anuncian —la MAC aleatoria— precisamente para que no se pueda seguir a un teléfono de un punto a otro. Es una defensa de privacidad que viene activada de fábrica. La finalidad que el pliego declara para recoger los dos identificadores adicionales es reconocer el dispositivo cuando esa defensa está activada.",
-    "matiz": "El pliego añade que se hará «sin almacenar valores que permitan reconocer a la persona monitorizada». Y el panel al que alimentan los dispositivos debe ofrecer, entre otras salidas, estas dos:",
+    "explicacion": "Los teléfonos actuales usan por defecto una dirección MAC aleatoria, distinta para cada red wifi, porque una dirección fija permite seguir al teléfono y elaborar perfiles de quien lo lleva, como explica Apple; en Android viene activada de fábrica desde la versión 10. Es una defensa de privacidad. La finalidad que el pliego declara para recoger los dos identificadores adicionales es reconocer el dispositivo cuando esa defensa está activada.",
+    "matiz": "El pliego añade que, «sin almacenar valores que permitan reconocer a la persona monitorizada, se podrán reconocer los distintos puntos por los que transita el dispositivo», y que los datos, sus transformaciones y sus transferencias «seguirán los requisitos y recomendaciones del Reglamento General de Protección de Datos». Y el panel al que alimentan los dispositivos debe incluir, entre otras salidas, estas dos:",
     "panel": [
       "Perfil de los usuarios registrados (visitantes, residentes, turistas, etc.)",
       "Diferenciación entre visitantes nuevos, recurrentes, etc."
     ],
-    "remate": "Distinguir a un visitante nuevo de uno recurrente exige, por definición, reconocer que es el mismo de la vez anterior. Qué se almacena exactamente, con qué transformación y durante cuánto tiempo es una de las preguntas registradas ante el Ayuntamiento y planteadas a la adjudicataria."
+    "remate": "Distinguir a un visitante nuevo de uno recurrente exige, por definición, reconocer que es el mismo de la vez anterior. Qué se guarda exactamente y durante cuánto tiempo está pedido al Ayuntamiento en la solicitud registrada; con qué transformación, y cómo se hace esa distinción, se le ha preguntado a la adjudicataria."
   },
   "camaras": {
-    "titulo": "Cinco cámaras que leen matrículas, y a dónde van sus datos",
+    "titulo": "Cinco cámaras que leen matrículas, y a dónde pueden ir sus datos",
     "cita": "cinco (5) cámaras con reconocimiento de matrículas",
     "citaFuente": "Pliego de prescripciones técnicas del expediente 98/2025, que las exige «como mínimo» en los puntos de entrada y salida de tres aparcamientos: ADL (junto a la calle Eusebio Benedito), Asunción de Nuestra Señora (junto al Carrer Pobla de Vallbona) y Centro de Salud (junto a la calle Colón)",
-    "texto": "Ninguno de los tres aparcamientos está en el Parque Natural: los tres están en el casco urbano. Lo que tienen que guardar las cámaras, según el pliego:",
+    "texto": "Ninguno de los tres aparcamientos está en el Parque Natural: los tres están en el casco urbano, y el pliego lo declara entre sus objetivos —«la ocupación de los principales aparcamientos del municipio»—. Lo que las cámaras deben ser capaces de guardar, según el pliego:",
     "guardan": "los datos de las matrículas y la duración de la estancia de cada vehículo",
     "destino": [
-      "Alineadas «con los parámetros y protocolos de gestión de las cámaras ya disponibles en el sistema de videovigilancia de la Policía Local».",
+      "Alineadas «con los parámetros y protocolos de gestión de las cámaras ya disponibles en el sistema de videovigilancia de la Policía Local». El pliego dice para qué: «Esta integración permitirá la detección de incidencias en tiempo real y el registro de datos relevantes para la gestión del tráfico y la seguridad en las áreas de aparcamiento».",
+      "La adjudicataria «deberá coordinarse con la Policía Local para configurar y poner en marcha el sistema».",
       "Con capacidad de transmisión de datos «en tiempo real a la plataforma de gestión utilizada por los cuerpos de seguridad municipales».",
       "Con «Generación de alertas automáticas ante la detección de incidencias, como actos incívicos, accesos no autorizados u otros»."
     ],
-    "remate": "Por eso el pliego invoca, para las cámaras, la Ley Orgánica 7/2021: la que regula los datos personales tratados con fines de prevención, detección e investigación de infracciones penales, un régimen distinto del Reglamento General de Protección de Datos. Dentro de un contrato de promoción turística financiado por el Plan de Recuperación.",
+    "remate": "En el apartado de las cámaras, el pliego invoca la Ley Orgánica 7/2021: la que regula los datos personales tratados con fines de prevención, detección e investigación de infracciones penales, un régimen distinto del Reglamento General de Protección de Datos. Dentro de un plan de sostenibilidad turística financiado por el Plan de Recuperación.",
     "finalidad": "El pliego dice para qué: «A fin de controlar las entradas y salidas del aparcamiento y otros datos relevantes como el tiempo medio de ocupación». Es una finalidad de gestión del aparcamiento, y conviene decirlo antes que nada de lo que sigue."
   },
   "observado": {
@@ -72,40 +69,40 @@
     "filas": [
       {
         "exige": "≥5 cámaras con reconocimiento de matrículas en tres aparcamientos",
-        "visto": "Castell/ADL: cámaras en la fachada del Castell. Asunción: una cámara en una farola, junto a un armario con los logotipos del Plan de Recuperación. Centro de Salud: no se observó ninguna cámara."
+        "visto": "Castell/ADL: cámaras en la fachada del Castell, orientadas al aparcamiento. Asunción: dos cámaras en farolas, una de ellas junto a un armario con una franja de logotipos institucionales. Centro de Salud: no se observó ninguna cámara."
       },
       {
-        "exige": "Informar a quien es grabado (artículo 13 del RGPD)",
+        "exige": "Informar a quien es grabado (no lo exige el pliego: es un deber de la normativa de protección de datos)",
         "visto": "Ningún cartel informativo de videovigilancia en ninguno de los tres aparcamientos."
       },
       {
-        "exige": "≥2 displays LED de 1,5 × 1 m que informen de las plazas libres",
-        "visto": "Uno, a la entrada del casco por la Carretera de València: una señal con tres aparcamientos y un contador LED para cada uno. Los tres contadores mostraban sólo guiones."
+        "exige": "≥2 displays LED de 1,5 × 1 m, a todo color, que informen de las plazas libres",
+        "visto": "En el recorrido no se observó ningún display como el que describe el pliego. Sí una señal de plazas libres a la entrada del casco por la Carretera de València, con tres contadores LED: los tres mostraban sólo guiones."
       },
       {
         "exige": "≥6 dispositivos de aforo por Wi-Fi y Bluetooth y ≥1 de calidad del aire, «previsiblemente en el Valle de Porxinos»",
-        "visto": "Cinco postes nuevos con placa solar, una o dos cajas y antena, junto a la señalética de las rutas de Porxinos. Ningún cartel que informe de la captación de datos de los móviles."
+        "visto": "Cinco postes con placa solar, una o dos cajas y antena, junto a la señalética de las rutas de Porxinos. Ningún cartel que informe de la captación de datos de los móviles."
       }
     ],
     "fotos": [
       {
         "src": "/reportajes/matriculas-y-moviles/asuncion.jpg",
-        "alt": "Farola con un armario gris que lleva una franja de logotipos de financiación europea y, al lado, una cámara de tipo bala.",
-        "pie": "Aparcamiento de la Asunción: cámara y armario con los logotipos del Plan de Recuperación. No se observó cartel informativo.",
+        "alt": "Farola con un armario gris que lleva una franja de logotipos y, al lado, una cámara de tipo bala.",
+        "pie": "Aparcamiento de la Asunción: una de las dos cámaras observadas, junto a un armario con una franja de logotipos institucionales. No se observó cartel informativo.",
         "w": 825,
         "h": 1100
       },
       {
         "src": "/reportajes/matriculas-y-moviles/castell.jpg",
         "alt": "Fachada de piedra y ladrillo del Castell con dos cámaras de tipo bala y una caja de conexiones.",
-        "pie": "Aparcamiento Castell/ADL: cámaras en la fachada del Castell. No se observó cartel informativo.",
+        "pie": "Aparcamiento Castell/ADL: cámaras en la fachada del Castell, orientadas al aparcamiento. No se observó cartel informativo.",
         "w": 825,
         "h": 1100
       },
       {
         "src": "/reportajes/matriculas-y-moviles/panel-led.jpg",
         "alt": "Señal de aparcamientos en un poste nuevo junto a un carril bici: Castell/ADL 900 m, Vlqz./Asunción 950 m, A. Suárez/CIJ 1,4 km, cada uno con un contador LED y una flecha.",
-        "pie": "El único panel observado, a la entrada del casco por la Carretera de València.",
+        "pie": "La señal de plazas observada a la entrada del casco por la Carretera de València. No se corresponde con el display a todo color de 1,5 × 1 m que describe el pliego; no consta si forma parte del contrato.",
         "w": 645,
         "h": 1100
       },
@@ -125,40 +122,38 @@
       }
     ],
     "limites": [
-      "Una fotografía no prueba que una cámara lea matrículas: lo que se observó son cámaras en los aparcamientos que nombra el pliego; que deban leer matrículas lo dice el pliego.",
-      "Cinco postes no son cinco dispositivos: un poste puede llevar más de una caja —uno de ellos lleva dos— y desde el suelo no se sabe qué hay dentro. Este reportaje no afirma que falten aparatos.",
+      "Una fotografía no prueba que una cámara lea matrículas ni de qué contrato es: lo que se observó son cámaras orientadas a los aparcamientos que nombra el pliego; que deban leer matrículas lo dice el pliego.",
+      "Cinco postes no son cinco dispositivos: un poste puede llevar más de una caja —alguno lleva dos— y desde el suelo no se sabe qué hay dentro. Este reportaje no afirma que falten aparatos.",
       "La señal nombra un tercer aparcamiento, «A. Suárez/CIJ», que el pliego no nombra y que este medio no visitó.",
       "Que no haya cartel es lo que se observó en una fecha. Si esa ausencia incumple alguna norma no lo decide este medio, y la pregunta está hecha al Ayuntamiento."
     ]
   },
   "version": {
     "titulo": "Lo que se contó en público, frente a lo que exige el pliego",
-    "texto": "El 19 de septiembre de 2026 un diario regional publicó la versión municipal del sistema: la fotografía iba acreditada al propio Ayuntamiento y no se citaba ninguna otra fuente. Las frases de la columna izquierda son del periódico, en estilo indirecto, al contar esa versión; las de la derecha, del pliego que el Ayuntamiento licitó.",
+    "texto": "El 19 de septiembre de 2026, Levante-EMV publicó que el sistema «ya ha terminado de implantarse tanto en el entorno natural como en el núcleo urbano», y cómo funciona. El artículo no atribuye esas afirmaciones a ninguna fuente; su fotografía va acreditada al Ayuntamiento. Las frases de la columna izquierda son del periódico, en estilo indirecto; las de la derecha, del pliego que el Ayuntamiento licitó.",
     "filas": [
       {
-        "dijo": "el sistema «ya ha terminado de implantarse»",
-        "pliego": "El contrato terminó el 20 de julio de 2026. Este medio no ha localizado publicada el acta de recepción."
+        "dijo": "el sistema «no pretende identificar a las personas que pasan por estos lugares», en Porxinos y en el núcleo urbano",
+        "pliego": "Los dispositivos de aforo captan MAC, SSID y Signature como «una alternativa para reconocer el dispositivo en los casos donde estos tengan una dirección MAC aleatoria», y el panel distingue visitantes «nuevos, recurrentes». El pliego añade que se hará «sin almacenar valores que permitan reconocer a la persona monitorizada»."
       },
       {
-        "dijo": "las cámaras del entorno urbano «no almacenan imágenes», sino que «únicamente generan información numérica»",
-        "pliego": "Las cámaras deben almacenar «los datos de las matrículas y la duración de la estancia de cada vehículo»."
+        "dijo": "las cámaras urbanas «no almacenan imágenes, sino que únicamente generan información numérica sobre el número de visitantes detectados», y así se obtienen datos de afluencia «sin registrar la identidad de las personas»",
+        "pliego": "Su software debe ser «capaz de identificar las matrículas de los vehículos que acceden y salen del aparcamiento», y las cámaras, capaces de almacenar «los datos de las matrículas y la duración de la estancia de cada vehículo», que deben ser «accesibles en la aplicación web para su análisis y reporte»."
       },
       {
-        "dijo": "se obtendrán datos de afluencia «sin registrar la identidad de las personas»",
-        "pliego": "Los dispositivos captan MAC, SSID y Signature para «reconocer el dispositivo» aunque tenga la MAC aleatoria, y el panel distingue visitantes «nuevos, recurrentes»."
-      },
-      {
-        "dijo": "en el núcleo urbano se han incorporado «cámaras de conteo»",
-        "pliego": "«Cámaras con reconocimiento de matrículas», alineadas con la videovigilancia de la Policía Local y con alertas automáticas."
+        "dijo": "en el núcleo urbano se han incorporado «cámaras de conteo en puntos estratégicos»",
+        "pliego": "«Cámaras con reconocimiento de matrículas» en las entradas y salidas de tres aparcamientos, alineadas con la videovigilancia de la Policía Local y con alertas automáticas."
       }
     ],
-    "remate": "Una matrícula es un dato personal. «No almacenar imágenes» y «no identificar» son dos afirmaciones distintas, y la segunda es la que el pliego no sostiene."
+    "remate": "Para el Reglamento General de Protección de Datos, una persona es identificable si su identidad puede determinarse, directa o indirectamente, mediante un identificador como «un número de identificación», «datos de localización» o «un identificador en línea» (artículo 4.1): no hace falta saber su nombre. Una matrícula lo es, y también un identificador que permite reconocer el mismo móvil de una visita a otra. Por eso «sin almacenar imágenes» y «ni identificar a los visitantes» —las dos promesas del subtítulo del artículo— no son la misma: la primera no la contradice el pliego; si se cumple la segunda depende de qué se guarde de cada matrícula y de cada móvil, y eso es lo que se ha preguntado."
   },
   "garantias": {
     "titulo": "Lo que los pliegos exigen sobre los datos, y lo que no",
     "bullets": [
       "Los pliegos administrativos de los dos contratos incluyen el clausulado de encargado del tratamiento del artículo 28 del RGPD: confidencialidad, un registro de actividades que debe llevar el contratista, y que al terminar el servicio devuelva o suprima los datos personales.",
-      "En ninguno de los cuatro documentos —los pliegos técnico y administrativo de los expedientes 98/2025 y 100/2025— se exige una evaluación de impacto relativa a la protección de datos (artículo 35 del RGPD), ni se fija cuánto tiempo pueden conservarse las matrículas o los identificadores de los móviles mientras el sistema funciona.",
+      "Ninguno de los cuatro documentos —los pliegos técnico y administrativo de los expedientes 98/2025 y 100/2025— exige que se haga una evaluación de impacto relativa a la protección de datos (artículo 35 del RGPD). La única mención está en ese mismo clausulado de encargado: el contratista «colaborará en la realización de las evaluaciones de impacto» y, en su caso, de las consultas previas. Es la ayuda que el artículo 28.3.f del Reglamento pide a todo encargado; hacer la evaluación, cuando proceda, le corresponde al responsable del tratamiento, el Ayuntamiento.",
+      "Tampoco se fija cuánto tiempo pueden conservarse las matrículas o los identificadores de los móviles mientras el sistema funciona. El pliego técnico pide una plataforma con un «histórico de datos», sin límite, y que las copias de seguridad se guarden «durante un mínimo de un (1) mes tras la finalización del contrato».",
+      "El pliego técnico, por su parte, obliga a la adjudicataria a tratar los datos «con la finalidad exclusiva de la realización de las prestaciones objeto del contrato», y dispone que «no podrán ser objeto de ningún tratamiento destinado a fines distintos a la prestación del contrato».",
       "El artículo 35 obliga a hacer esa evaluación cuando un tratamiento entraña un alto riesgo, y menciona expresamente la observación sistemática a gran escala de una zona de acceso público. Si este tratamiento la requería, y si existe fuera de los pliegos, es una de las preguntas registradas ante el Ayuntamiento. Este reportaje no afirma que fuera obligatoria: afirma que los pliegos no la piden."
     ]
   },
@@ -169,11 +164,11 @@
     "texto": "PENDIENTE: rehacer la búsqueda el día de publicación y decir por dónde se buscó."
   },
   "campana": {
-    "titulo": "Y la campaña que localiza a quien ya está en el parque",
-    "texto": "El contrato hermano, el expediente 100/2025 —campañas de promoción turística segmentadas, 26.000 €, adjudicado a Autoritas Consulting S.A. con una sola oferta— pide:",
+    "titulo": "Y la campaña dirigida a quien ya está en el entorno del parque",
+    "texto": "El contrato hermano, el expediente 100/2025 —campañas de promoción turística segmentadas, 26.000 € sin IVA, adjudicado a Autoritas Consulting S.A. con una sola oferta— pide:",
     "cita": "Geolocalización en tiempo real: Implementación de campañas que impacten a visitantes que ya se encuentren en el entorno del Parque Natural del Túria o en áreas de influencia cercanas, incentivando su desplazamiento hacia el centro urbano de Riba-roja.",
     "citaFuente": "Pliego de prescripciones técnicas del expediente 100/2025",
-    "remate": "Es publicidad segmentada comprada a plataformas, no un rastreo propio del Ayuntamiento, y confundir una cosa con otra sería un error. Lo que sí documenta el pliego es que el Ayuntamiento compró la capacidad de dirigirse a quien está físicamente en el parque. De qué plataformas y con qué datos se hizo es lo que se le ha preguntado a la adjudicataria."
+    "remate": "Es publicidad segmentada comprada a plataformas, no un rastreo propio del Ayuntamiento, y confundir una cosa con otra sería un error. Lo que sí documenta el pliego es que el Ayuntamiento compró la capacidad de dirigirse a quien está físicamente en el entorno del parque. De qué plataformas y con qué datos se hizo es lo que se le ha preguntado a la adjudicataria."
   },
   "limites": {
     "titulo": "Lo que este reportaje no afirma",
@@ -186,15 +181,15 @@
   },
   "preguntas": [
     "¿Existe evaluación de impacto relativa a la protección de datos de las cámaras y de los dispositivos de aforo? Si se concluyó que no era exigible, ¿dónde consta?",
-    "¿Qué categorías de datos capta cada dispositivo, con qué transformación se almacenan y durante cuánto tiempo se conservan?",
-    "¿Cómo distingue el sistema a los visitantes «nuevos» de los «recurrentes» sin conservar un identificador del dispositivo?",
+    "¿Qué categorías de datos capta cada dispositivo y durante cuánto tiempo se conservan?",
+    "¿Con qué transformación se guardan los identificadores de los móviles, y cómo distingue el sistema a los visitantes «nuevos» de los «recurrentes» sin conservar un identificador del dispositivo?",
     "¿Están conectadas las cámaras de los aparcamientos a la plataforma de la Policía Local? ¿Quién accede a las matrículas y con qué finalidad?",
     "¿Por qué no hay cartel informativo de videovigilancia en los aparcamientos donde se han instalado cámaras?",
     "¿Está en funcionamiento el panel de aparcamientos de la Carretera de València? ¿Dónde está el segundo panel que exige el pliego?",
     "¿Qué datos captan los dispositivos de Porxinos y cómo se informa de ello a quienes recorren las rutas?",
     "¿Qué ocurre con los datos y con el acceso a las plataformas ahora que el contrato ha terminado?"
   ],
-  "preguntasNota": "Las preguntas sobre los datos forman parte de la solicitud de acceso a la información registrada ante el Ayuntamiento de Riba-roja de Túria (abajo, con su plazo calculado el día que se lee). Las relativas al cartel, a la conexión con la Policía Local, al panel de aparcamientos y a los dispositivos de Porxinos nacen de la visita del 11 de octubre y se remitieron al Ayuntamiento por correo electrónico ese mismo día, como preguntas de prensa. Toda respuesta se publicará íntegra y sin editar junto a este reportaje.",
+  "preguntasNota": "Las preguntas 1, 2 y 8 forman parte de la solicitud de acceso a la información registrada ante el Ayuntamiento de Riba-roja de Túria (abajo, con su plazo calculado el día que se lee). La 3 se le planteó a la adjudicataria, Gimeno Digital Technologies, el 11 de octubre. De la 4 a la 7 nacen de la visita del 11 de octubre y se remitieron al Ayuntamiento por correo electrónico ese mismo día, como preguntas de prensa; la 4 y la 8, también a la adjudicataria. Toda respuesta se publicará íntegra y sin editar junto a este reportaje.",
   "solicitudes": {
     "titulo": "Lo que se ha pedido al Ayuntamiento y desde cuándo corre el plazo",
     "nota": "La solicitud se envió primero por correo electrónico y, a indicación del Área de Transparencia del Ayuntamiento, se presentó después por su Registro de Entrada. De ésa consta el asiento del mismo órgano que la resuelve, así que su plazo se cuenta desde la fecha de registro y se puede afirmar.",
@@ -212,7 +207,7 @@
     ]
   },
   "replica": {
-    "texto": "El Ayuntamiento de Riba-roja de Túria, Gimeno Digital Technologies S.L. y Autoritas Consulting S.A. tienen derecho de réplica sobre este reportaje. A las dos adjudicatarias se les escribió el 11 de octubre de 2026 con preguntas concretas sobre lo que captan, guardan y comparten sus sistemas, y se les pidió respuesta antes del 14 de octubre. Cualquier respuesta se publicará íntegra junto a este texto, sin edición, aunque llegue después de la publicación.",
+    "texto": "El Ayuntamiento de Riba-roja de Túria, Gimeno Digital Technologies S.L. y Autoritas Consulting S.A. tienen derecho de réplica sobre este reportaje. A las dos adjudicatarias se les escribió el 11 de octubre de 2026 con preguntas concretas sobre lo que captan, guardan y comparten sus sistemas, y se les pidió respuesta hasta las 14:00 del 14 de octubre. Cualquier respuesta se publicará íntegra junto a este texto, sin edición, aunque llegue después de la publicación.",
     "respuestas": []
   },
   "fuentes": [
@@ -225,7 +220,7 @@
       "url": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=3csNBsbDj9UwYTJJ03sHog%3D%3D"
     },
     {
-      "label": "Reglamento (UE) 2016/679, artículos 13 y 35 (EUR-Lex)",
+      "label": "Reglamento (UE) 2016/679, artículos 4, 13, 28 y 35 (EUR-Lex)",
       "url": "https://eur-lex.europa.eu/legal-content/ES/TXT/?uri=CELEX:32016R0679"
     },
     {
@@ -233,20 +228,32 @@
       "url": "https://www.boe.es/buscar/act.php?id=BOE-A-2021-8806"
     },
     {
+      "label": "Levante-EMV, 19 de septiembre de 2026: «Riba-roja contará cuántas personas visitan el Parc Natural del Túria con un nuevo sistema inteligente»",
+      "url": "https://www.levante-emv.com/comunitat-valenciana/camp-de-turia/2026/09/19/riba-roja-contara-personas-visitan-parc-natural-turia-134435964.html"
+    },
+    {
+      "label": "Apple · «Usar direcciones wifi privadas en dispositivos Apple»",
+      "url": "https://support.apple.com/es-es/102509"
+    },
+    {
+      "label": "Android · «MAC randomization behavior»",
+      "url": "https://source.android.com/docs/core/connect/wifi-mac-randomization-behavior"
+    },
+    {
       "label": "Reportaje previo: «Contar visitantes en un pueblo que nunca ha contado visitantes»",
       "url": "/reportajes/conteo-visitantes"
     },
     {
-      "label": "Reportaje previo: «Dos millones para el destino inteligente»",
+      "label": "Reportaje previo: «Dos millones para el “destino inteligente”: qué compró Riba-roja con los fondos europeos de turismo»",
       "url": "/reportajes/inteligencia-turistica"
     }
   ],
   "metodo": [
-    "Los pliegos técnico y administrativo de los expedientes 98/2025 y 100/2025 se descargaron de la Plataforma de Contratación del Sector Público en septiembre de 2026. Cada cita de este reportaje se ha cotejado palabra por palabra contra esos documentos.",
-    "La ausencia de evaluación de impacto y de plazo de conservación se afirma tras buscar en los cuatro documentos completos, no en un extracto.",
-    "La visita se hizo el domingo 11 de octubre de 2026, a pie y desde la vía pública, sin entrar en ninguna propiedad. Las fotografías se publican recortadas y sin metadatos de localización; ninguna muestra una matrícula ni un rostro.",
-    "La versión municipal se cita del texto del periódico del 19 de septiembre de 2026, archivado por este medio, y se atribuye como estilo indirecto porque así está escrita.",
-    "El importe y las fechas del contrato proceden del registro de contratación que publica este sitio, cotejados contra la ficha de la Plataforma.",
+    "Los pliegos técnico y administrativo de los expedientes 98/2025 y 100/2025 se descargaron de la Plataforma de Contratación del Sector Público en septiembre de 2026. Cada cita de los pliegos se ha cotejado palabra por palabra contra esos documentos; las del periódico, contra el artículo archivado por este medio.",
+    "Que los pliegos no exigen una evaluación de impacto ni fijan un plazo de conservación se afirma tras leer los cuatro documentos completos, buscando cada término en todas sus formas. La única mención a las evaluaciones de impacto, la del clausulado de encargado, se cita en el apartado 06.",
+    "La visita se hizo el domingo 11 de octubre de 2026, a pie y desde la vía pública, sin entrar en ninguna propiedad. Las fotografías se publican reducidas —una, además, recortada— y sin metadatos de localización; ninguna muestra una matrícula ni un rostro.",
+    "Las frases del artículo de Levante-EMV del 19 de septiembre de 2026 se citan del texto archivado por este medio y se atribuyen al periódico, en estilo indirecto, porque así están escritas.",
+    "El importe y las fechas del contrato proceden del registro de contratación que publica este sitio, cotejados contra la ficha de la Plataforma; el importe se da sin IVA y con IVA.",
     "Las cifras están congeladas a la fecha de publicación: si algo cambia, se anota como corrección y se dice qué cambió."
   ],
   "emblema": {
