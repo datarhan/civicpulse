@@ -186,7 +186,7 @@ describe('validateOverlay · `sustituye` sólo con su molde, y sólo en una subi
   it('con lo que decía la entrada —motivo, resumen, verificación— revienta', () => {
     for (const campo of ['reason', 'summary', 'verification', 'desde']) {
       const o = con((e) => {
-        ;(e.sustituye as Record<string, unknown>)[campo] = FX.motor.reason
+        ;(e.sustituye as unknown as Record<string, unknown>)[campo] = FX.motor.reason
       })
       expect(() => validateOverlay(o), campo).toThrow(/sustituye/)
     }

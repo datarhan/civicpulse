@@ -68,13 +68,16 @@ import { charlaDeTarea } from './charla-de-tarea'
 import type { PlenoSection } from './pleno-agenda'
 import { corpusDeEvidencia, esTextoDeMaquina, type ClaimVerdict } from './claim-verdicts'
 import type { ClaimEvidence, ClaimVerification } from './claim-verifier'
-import { rechazoDeFirma } from './firma-de-persona'
+import { rechazoDeFirma, rechazoDeMarcador } from './firma-de-persona'
 import { TRINQUETE } from './trinquete'
 import {
   applyOverlayEntries,
   isDowngrade,
+  sustituidaDe,
+  validateOverlay,
   verificacionDeBajada,
   type Overlay,
+  type OverlayEntry,
   type VerifiedItem,
 } from './verified-merge'
 
@@ -760,6 +763,73 @@ export function retirarSubida(
     stampIso,
     new Map([[claimId, e.verification.verdict]]),
   )
+}
+
+// ─── Lo que se perdió ───────────────────────────────────────────────────────
+
+/** De dónde sale lo que se recupera, y quién lo firma. */
+export interface RecuperacionPedida {
+  /** El commit entero en el que la entrada sustituida todavía estaba. */
+  commit: string
+  /** Una persona o la cuenta de rol: la prueba es mecánica y se rehace desde git. */
+  editor: string
+}
+
+/**
+ * Devuelve a una subida firmada lo que sustituyó, cuando la subida es anterior
+ * al 11-10-2026 y su vía aún lo tiraba (ver `EntradaSustituida`): la entrada que
+ * había, leída de git por quien llama, pasa a `sustituye` como la guardaría hoy
+ * la vía, más de qué commit se recuperó, quién lo hizo y cuándo.
+ *
+ * No toca nada más de la subida —ni su veredicto, ni su resumen, ni su fecha—,
+ * así que lo publicado no cambia. Y sólo recupera lo que encaja con ella: una
+ * subida que aún no lo dice, una entrada que publicaba su `desde` y que es
+ * anterior a ella. Puro: devuelve un overlay nuevo.
+ */
+export function recuperarSustituida(
+  overlay: Overlay,
+  claimId: string,
+  anterior: OverlayEntry,
+  pedida: RecuperacionPedida,
+  stampIso: string,
+): Overlay {
+  const donde = `[recuperar] ${claimId}`
+  const hueco = rechazoDeMarcador(pedida.editor)
+  if (hueco) throw new Error(`${donde}: la recuperación la firma alguien: ${hueco}`)
+  if (!/^[0-9a-f]{40}$/.test(pedida.commit)) {
+    throw new Error(`${donde}: el commit se escribe entero, 40 hex (${pedida.commit})`)
+  }
+  const e = overlay?.entries?.[claimId]
+  if (!e || e.source !== CANAL_DE_LA_SUBIDA || !e.desde) {
+    throw new Error(
+      `${donde}: no es una subida firmada (la entrada es ${e ? `de ${e.source}` : 'ninguna'})`,
+    )
+  }
+  if (e.sustituye) {
+    throw new Error(`${donde}: la subida ya dice lo que sustituyó (${e.sustituye.source})`)
+  }
+  if (anterior?.verification?.verdict !== e.desde) {
+    throw new Error(
+      `${donde}: la entrada de git publica ${String(anterior?.verification?.verdict)}, y la ` +
+        `subida dice que subió desde ${e.desde}: no es la que sustituyó`,
+    )
+  }
+  if (!(Date.parse(anterior.appliedAt) < Date.parse(e.appliedAt))) {
+    throw new Error(
+      `${donde}: la entrada de git (${anterior.appliedAt}) no es anterior a la subida (${e.appliedAt})`,
+    )
+  }
+  const sustituye = {
+    ...sustituidaDe(anterior),
+    recuperada: { commit: pedida.commit, editor: pedida.editor, recuperadaAt: stampIso },
+  }
+  const next: Overlay = {
+    ...overlay,
+    generatedAt: stampIso,
+    entries: { ...overlay.entries, [claimId]: { ...e, sustituye } },
+  }
+  validateOverlay(next)
+  return next
 }
 
 // ─── Al componer ────────────────────────────────────────────────────────────
