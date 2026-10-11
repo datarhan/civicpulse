@@ -10,6 +10,7 @@
 // honesty gate every consumer of this list must keep. Its own route still
 // renders a draft, under a «Borrador editorial» banner: unlisted is not private.
 export const REPORTAJE_SLUGS = [
+  'matriculas-y-moviles',
   'conteo-visitantes',
   'coste-efectivo',
   'basuras',
