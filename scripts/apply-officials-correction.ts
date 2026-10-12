@@ -44,6 +44,7 @@ import {
   type OfficialsSnapshot,
   type ReplicaPadron,
 } from '../src/scraper/officials-corrections'
+import { rechazarOpcionesDesconocidas } from '../src/scraper/opciones-cli'
 
 const CORRECTIONS = resolve('public/data/officials-corrections.json')
 const OFFICIALS = resolve('public/data/officials.json')
@@ -145,6 +146,12 @@ export function recompose(): OfficialsSnapshot {
 }
 
 function main(): void {
+  // Antes de leer nada: una opción que este CLI no conoce no se ignora
+  // (src/scraper/opciones-cli.ts).
+  rechazarOpcionesDesconocidas('roster-correction', {
+    banderas: ['--list', '--alta', '--baja', '--reply', '--apply', '-h', '--help'],
+    conValor: ['--retirar', '--from-file'],
+  })
   const argv = process.argv.slice(2)
   if (argv.length === 0 || argv.includes('-h') || argv.includes('--help')) usage()
 

@@ -1112,7 +1112,8 @@ export const CATALOGUE = {
     'cargos.detalle.actividad.title': 'Qué se ha debatido y verificado en sus concejalías',
     'cargos.detalle.actividad.intro':
       'Cifras de las áreas que dirige, no de la persona. Las votaciones se registran por grupo político y las declaraciones se atribuyen al grupo que habló, nunca a un concejal concreto: por eso se enlazan aquí en lugar de mostrarse bajo su ficha.',
-    'cargos.detalle.actividad.votos': 'votaciones',
+    'cargos.detalle.actividad.votos.uno': 'votación',
+    'cargos.detalle.actividad.votos.varios': 'votaciones',
     'cargos.detalle.actividad.declaraciones.uno': 'declaración cotejada',
     'cargos.detalle.actividad.declaraciones.varios': 'declaraciones cotejadas',
     'cargos.detalle.actividad.hallazgos': 'hallazgos del área →',
@@ -2783,7 +2784,8 @@ export const CATALOGUE = {
     'cargos.detalle.actividad.title': "Què s'ha debatut i verificat a les seues regidories",
     'cargos.detalle.actividad.intro':
       "Xifres de les àrees que dirigeix, no de la persona. Les votacions es registren per grup polític i les declaracions s'atribueixen al grup que va parlar, mai a un regidor concret: per això s'enllacen ací en lloc de mostrar-se sota la seua fitxa.",
-    'cargos.detalle.actividad.votos': 'votacions',
+    'cargos.detalle.actividad.votos.uno': 'votació',
+    'cargos.detalle.actividad.votos.varios': 'votacions',
     'cargos.detalle.actividad.declaraciones.uno': 'declaració acarada',
     'cargos.detalle.actividad.declaraciones.varios': 'declaracions acarades',
     'cargos.detalle.actividad.hallazgos': "troballes de l'àrea →",

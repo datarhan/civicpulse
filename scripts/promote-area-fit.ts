@@ -38,6 +38,7 @@ import {
   type OfficialLike,
 } from '../src/scraper/area-fit'
 import { rechazoDeMarcador } from '../src/scraper/firma-de-persona'
+import { rechazarOpcionesDesconocidas } from '../src/scraper/opciones-cli'
 
 const QUEUE = resolve('editorial/area-fit-queue.json')
 const OUT = resolve('public/data/area-fit.json')
@@ -162,6 +163,12 @@ function write(snap: AreaFitSnapshot) {
 }
 
 function main() {
+  // Antes de leer nada: una opción que este CLI no conoce no se ignora
+  // (src/scraper/opciones-cli.ts).
+  rechazarOpcionesDesconocidas('promote-area-fit', {
+    banderas: ['--list', '--reject', '--retract', '--aviso', '--rebind'],
+    conValor: ['--official', '--area', '--curator', '--note', '--aviso-index', '--from', '--to'],
+  })
   // Antes de leer nada: el hueco no firma una fila del encaje. Sólo el hueco;
   // la cuenta de rol, sí (`rechazoDeMarcador`). En toda vía en que venga la
   // bandera, aunque esa vía no la escriba: no corre una orden a medio escribir.

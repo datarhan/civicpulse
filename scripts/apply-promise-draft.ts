@@ -33,6 +33,7 @@ import {
   revertStatusChange,
   tombstoneStatusChange,
 } from '../src/scraper/promise-apply'
+import { rechazarOpcionesDesconocidas } from '../src/scraper/opciones-cli'
 
 const __dirname = dirname(fileURLToPath(import.meta.url))
 const ROOT = join(__dirname, '..')
@@ -84,6 +85,11 @@ async function writeSnap(snap: unknown) {
 }
 
 async function main() {
+  // Antes de leer nada: una opción que este CLI no conoce no se ignora
+  // (src/scraper/opciones-cli.ts).
+  rechazarOpcionesDesconocidas('apply-promise-draft', {
+    conValor: ['--reject', '--retract', '--mark-reviewed'],
+  })
   const argv = process.argv.slice(2)
   if (argv.length === 0) usage()
   const now = new Date().toISOString()

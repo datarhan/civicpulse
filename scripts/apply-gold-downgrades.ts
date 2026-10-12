@@ -23,7 +23,11 @@ import {
 } from '../src/scraper/verified-merge'
 import type { ClaimVerdict, ClaimVerification } from '../src/scraper/claim-verifier'
 import type { GoldRow } from '../src/scraper/verifier-eval'
+import { rechazarOpcionesDesconocidas } from '../src/scraper/opciones-cli'
 
+// Antes de leer nada: una opción que este CLI no conoce no se ignora
+// (src/scraper/opciones-cli.ts).
+rechazarOpcionesDesconocidas('gold-downgrades', { banderas: ['--dry-run'] })
 const dryRun = process.argv.includes('--dry-run')
 
 const gold = (

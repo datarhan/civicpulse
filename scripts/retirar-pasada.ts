@@ -42,6 +42,7 @@ import { validateOverlay, type Overlay, type OverlaySource } from '../src/scrape
 import type { ClaimVerdict } from '../src/scraper/claim-verifier'
 import { decidirDevolucion, type Devolucion } from '../src/scraper/decision-del-motor'
 import { RETRACTACIONES_SIN_JUICIO } from '../src/scraper/retractaciones-sin-juicio'
+import { rechazarOpcionesDesconocidas } from '../src/scraper/opciones-cli'
 
 function arg(name: string): string | null {
   const i = process.argv.indexOf(`--${name}`)
@@ -125,6 +126,12 @@ async function devolverSinJuicio(dry: boolean): Promise<void> {
 }
 
 async function main(): Promise<void> {
+  // Antes de leer nada: una opción que este CLI no conoce no se ignora
+  // (src/scraper/opciones-cli.ts).
+  rechazarOpcionesDesconocidas('retirar', {
+    banderas: ['--dry-run', '--sin-juicio'],
+    conValor: ['--source'],
+  })
   const dry = process.argv.includes('--dry-run')
   if (process.argv.includes('--sin-juicio')) return devolverSinJuicio(dry)
   const source = arg('source') as OverlaySource | null

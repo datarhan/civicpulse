@@ -36,6 +36,7 @@ import {
   findingTombstone,
   retractFinding,
 } from '../src/scraper/finding-retraction'
+import { rechazarOpcionesDesconocidas } from '../src/scraper/opciones-cli'
 
 const FINDINGS_PATH = resolve('public/data/pleno-findings.json')
 
@@ -51,6 +52,12 @@ function bail(msg: string, code = 2): never {
 }
 
 async function main() {
+  // Antes de leer nada: una opción que este CLI no conoce no se ignora
+  // (src/scraper/opciones-cli.ts).
+  rechazarOpcionesDesconocidas('retract-finding', {
+    banderas: ['--dry-run'],
+    conValor: ['--reason', '--editor'],
+  })
   const id = process.argv[2]
   const reason = getFlag('--reason')
   const editor = getFlag('--editor')

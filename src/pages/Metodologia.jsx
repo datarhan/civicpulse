@@ -1411,6 +1411,16 @@ export default function Metodologia() {
               el impreso no es la cifra citada y otro importe del mismo expediente sí lo es, la
               tarjeta dice debajo qué es cada uno.
             </p>
+            {/* Hasta el 12-10-2026 la fila imprimía «sim 1.00» suelto, y junto a
+                «Parcial» se leía como coincidencia perfecta. */}
+            <p style={{ margin: '8px 0 0' }}>
+              Cuando el verificador puntuó el parecido de una fila con lo citado —las palabras del
+              objeto frente al título del expediente y, si las hay, las cifras—, la fila lo imprime
+              como «parecido con lo citado», de 0 a 1. Ese número dice cuánto trata la fila de lo
+              mismo que la cita, no si la confirma: una cita «Parcial» puede llevar un 1,00, porque
+              el expediente es el que se nombró pero no acredita lo que se dijo de él. Lo que la
+              fila acredita lo dice el veredicto.
+            </p>
           </li>
           <li>
             <strong>

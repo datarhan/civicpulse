@@ -32,7 +32,8 @@ const OFICIALES = {
     },
   ],
 }
-const VOTACIONES = CATALOGUE.es['cargos.detalle.actividad.votos']
+const VOTACIONES = CATALOGUE.es['cargos.detalle.actividad.votos.varios']
+const VOTACION = CATALOGUE.es['cargos.detalle.actividad.votos.uno']
 const SIN_VOTO = CATALOGUE.es['departamentos.card.sinVotoTranscrito']
 
 const voto = (n, outcome) => ({
@@ -91,5 +92,14 @@ describe('/cargos/:slug · la actividad de sus áreas', () => {
     const fila = await filaDeUrbanismo()
     expect(fila.textContent).toMatch(new RegExp(`\\b2\\s+${VOTACIONES}`))
     expect(fila.textContent).not.toContain(SIN_VOTO)
+  })
+
+  // Con una sola decía «1 votaciones», al lado del nombre de quien dirige el área.
+  it('con una sola votación, en singular', async () => {
+    monta([voto(1, 'aprobado')])
+    const fila = await filaDeUrbanismo()
+    expect(VOTACION, 'el catálogo no tiene la forma singular').toBeTruthy()
+    expect(fila.textContent).toMatch(new RegExp(`\\b1\\s+${VOTACION}\\b`))
+    expect(fila.textContent).not.toMatch(new RegExp(`\\b1\\s+${VOTACIONES}`))
   })
 })

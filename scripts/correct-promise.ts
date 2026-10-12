@@ -37,6 +37,7 @@ import {
   resolveGoogleNewsUrl,
   stripHtml,
 } from '../src/scraper/promise-grounding'
+import { rechazarOpcionesDesconocidas } from '../src/scraper/opciones-cli'
 
 const __dirname = dirname(fileURLToPath(import.meta.url))
 const PROMISES = join(__dirname, '..', 'public/data/promises.json')
@@ -67,6 +68,11 @@ async function comprobarEnLaFuente(url: string, cita: string) {
 }
 
 async function main() {
+  // Antes de leer nada: una opción que este CLI no conoce no se ignora
+  // (src/scraper/opciones-cli.ts).
+  rechazarOpcionesDesconocidas('corregir-promesa', {
+    conValor: ['--motivo', '--editor', '--fuente', '--editorial'],
+  })
   const [accion, id, ...resto] = process.argv.slice(2)
   if (!id || (accion !== 'cita' && accion !== 'retirar')) uso()
   const motivo = opcion(resto, '--motivo')

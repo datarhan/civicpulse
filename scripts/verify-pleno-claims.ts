@@ -19,6 +19,7 @@ import {
 } from '../src/scraper/claim-verifier'
 import { resumirSinDatos } from '../src/scraper/claim-verdicts'
 import { BASE, VERIFIED, rebuildVerified } from './verified-rebuild'
+import { rechazarOpcionesDesconocidas } from '../src/scraper/opciones-cli'
 
 const CLAIMS = resolve('public/data/pleno-claims-suggestions.json')
 const DATA = resolve('public/data')
@@ -30,6 +31,9 @@ function loadIfExists(name: string): unknown {
 }
 
 async function main() {
+  // Antes de leer nada: una opción que este CLI no conoce no se ignora
+  // (src/scraper/opciones-cli.ts).
+  rechazarOpcionesDesconocidas('verify', { banderas: ['--base-only'] })
   if (!existsSync(CLAIMS)) {
     process.stderr.write(
       '[verify] ' + CLAIMS + ' not found — run `npm run extract:pleno-claims -- <plenoId>` first\n',
