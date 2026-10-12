@@ -746,6 +746,43 @@ export function textoTrasLaBarra(): string {
 }
 
 /**
+ * Abre lo que la carga deja plegado, para que `innerText` lo lea: los paneles
+ * de pestaña no activos y el interior de cada `<details>` cerrado.
+ *
+ * Publicado no es «visible ahora mismo». Los dos están en el DOM, cualquiera
+ * los abre con un clic y los dos salen en papel —el bloque `@media print` de
+ * index.css fuerza abiertos todos los `<details>`—. Pero `innerText` sólo ve lo
+ * que se pinta: medido el 4-10-2026 en Chromium 147 sobre
+ * /hallazgos/f-2026-04-20-cit-947479, con la bitácora cerrada traía la línea
+ * «BITÁCORA DE CORRECCIONES · 9» y ninguna de sus nueve filas, ni rótulos ni
+ * motivos. Las bitácoras de /hallazgos, /promesas y /eficiencia van plegadas,
+ * y llevan justo la prosa que más importa leer: sumarios sustituidos,
+ * atribuciones retiradas. La revisión lectora no había leído ninguna.
+ *
+ * El coste, medido el 12-10-2026 sobre una build con banderas y sin llamar al
+ * modelo: /hallazgos pasa de 126.000 a 329.000 caracteres y de 41 a 102
+ * fragmentos —sus 32 bitácoras son 202.000 de esos caracteres—; /eficiencia
+ * suma 9 fragmentos nuevos, /quejas 10, /promesas 7, cada reportaje de 3 a 5.
+ * Unos 143 en el barrido entero, que se pagan UNA vez: la caché va por el hash
+ * del fragmento y `esFrontera` corta por contenido, así que una corrección
+ * nueva vuelve a leer uno o dos, no la página. En el pre-push /hallazgos ya
+ * sólo cabía en caché; hasta que el barrido la caliente saldrá PARCIAL, y lo
+ * dirá.
+ *
+ * Como `textoTrasLaBarra`, se pasa tal cual a `page.evaluate`: nada de fuera
+ * de su cuerpo.
+ */
+export function abrirLoPlegado(): { paneles: number; plegados: number } {
+  const paneles = Array.from(document.querySelectorAll<HTMLElement>('[role="tabpanel"][hidden]'))
+  for (const p of paneles) p.hidden = false
+  // `querySelectorAll` devuelve también los anidados, que abrir sólo el de
+  // fuera dejaría sin leer.
+  const plegados = Array.from(document.querySelectorAll<HTMLDetailsElement>('details:not([open])'))
+  for (const d of plegados) d.open = true
+  return { paneles: paneles.length, plegados: plegados.length }
+}
+
+/**
  * ¿Se puede acometer este fragmento con el reloj que queda?
  *
  * La regla en una frase: **el presupuesto tasa el TRABAJO, no los fragmentos.**
