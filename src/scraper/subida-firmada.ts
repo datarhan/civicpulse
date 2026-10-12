@@ -721,7 +721,9 @@ export interface RetiradaDeSubida {
  * No borra la entrada. Borrarla devolvería la declaración a la base, y la base
  * puede estar por encima de lo que se publicaba antes de subirla: si el motor la
  * había retractado, borrar la subida republicaría lo que el motor bajó sin que
- * nadie lo firmara. Puro: devuelve un overlay nuevo.
+ * nadie lo firmara. La bajada guarda en `sustituye` la subida que retira, con
+ * lo que ésta sustituía (`heredaSustituida`, en `applyOverlayEntries`). Puro:
+ * devuelve un overlay nuevo.
  */
 export function retirarSubida(
   overlay: Overlay,
