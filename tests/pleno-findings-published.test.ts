@@ -415,7 +415,17 @@ const expectWithdrawn = (id: string): void => {
  * la cita [2] y el cotejo [0] de 3fd230, el cotejo [1] de 543cc1). Ningún lote cambia más que eso:
  * las dos salen de LOTE_2, LOTE_3 y LOTE_5 por `live`, y bajan los suelos que cuentan citas.
  */
-const TOTAL_CORRECTIONS = 234
+/*
+ * 234 → 235 (bloque «436a7e, el sumario que entrecomillaba al motor sustituido»).
+ * Una fila de `correct-pleno-finding --field summary` (editor `civicpulse-curator`) en
+ * `f-2026-03-16-cit-436a7e`, que no es de ningún lote: ningún lote cambia.
+ */
+/*
+ * 235 → 236 (bloque «75b31f, el plan de empleo que el sumario entrecomillaba en castellano»).
+ * Una fila de `correct-pleno-finding --field summary` (editor `civicpulse-curator`) en
+ * `f-2026-03-16-cit-75b31f`, que no es de ningún lote: ningún lote cambia.
+ */
+const TOTAL_CORRECTIONS = 236
 const TOTAL_REMOVALS = 37
 
 /** One row of a review batch's fixture: enough to locate its own entries. */
@@ -4503,4 +4513,121 @@ describe('published pleno findings — 543cc1 y 3fd230, retiradas por lo que dec
       expect(findPartiesInText(r.reason)).toEqual([])
     },
   )
+})
+
+/*
+ * Bloque «436a7e, el sumario que entrecomillaba al motor sustituido». La revisión lectora señaló
+ * tres veces (pre-push de #277, #289 y #290, 2026-10-11) que la nota de contraste de la cita
+ * —«no apareció ningún dato que la confirme ni que la desmienta»— chocaba con el contrato de la
+ * Fase I que la ficha enseña como cotejado. La nota decía la verdad: el contrato documenta el
+ * movimiento de tierras y el muro de contención de 2019, y la intervención atribuye a la
+ * Generalitat una obra que falta; el contrato no dice nada de eso. Lo que inducía la lectura era
+ * el sumario, que presentaba la Fase I como respuesta a la cita y entrecomillaba como dicho un
+ * castellano del motor sustituido: la cita se reancló el 2026-08-10 y el sumario se quedó atrás.
+ * El guardián de entrecomillados no lo vio porque sólo lee «»; éste lo usaba recto.
+ */
+describe('published pleno findings — 436a7e, el sumario que entrecomillaba al motor sustituido', () => {
+  const ID = 'f-2026-03-16-cit-436a7e'
+
+  it('lo que entrecomilla es su cita, tal cual en la transcripción vigente', () => {
+    const f = byId(ID)
+    expect(f.summary).toContain("«no teniu pavelló d'escoto»")
+    expect(f.quotes[0].text).toBe("no teniu pavelló d'escoto")
+    expect(f.quotes[0].speakerGroup).toBeNull()
+    expect(
+      normaliseForQuoteMatch(transcriptOf(f.plenoId)).includes(
+        normaliseForQuoteMatch("no teniu pavelló d'escoto"),
+      ),
+    ).toBe(true)
+    // El castellano del motor sustituido no vuelve, ni entrecomillado ni suelto.
+    expect(f.summary).not.toContain('no tiene el pabellón de Escoto')
+  })
+
+  it('dice que el contrato cotejado no confirma ni desmiente, como la nota de contraste', () => {
+    const f = byId(ID)
+    expect(f.summary).toContain('no confirma ni desmiente lo que se afirma')
+    expect(f.summary).not.toContain('existe documentalmente')
+    // A quién atribuye la obra la intervención: lo dice la transcripción vigente, a renglón
+    // seguido de la cita (7.432,1–7.436,1 s).
+    expect(f.summary).toContain('atribuye a la Generalitat')
+    expect(transcriptOf(f.plenoId)).toContain(
+      '[7432.1 → 7436.1] (SPEAKER_120) i això és responsabilitat de la Generalitat',
+    )
+    // El cotejo sigue siendo el mismo y el único: la Fase I de 2019.
+    expect(f.crossChecked).toHaveLength(1)
+    expect(f.crossChecked[0].ref).toContain('idEvl=6eiWKGfBAKmrz3GQd5r6SQ')
+    expect(f.summary).toContain('Fase I')
+    expect(f.summary).toContain('adjudicado en 2019')
+  })
+
+  it('la fila de bitácora es de la cuenta de rol y no nombra a ningún grupo', () => {
+    const f = byId(ID)
+    const filas = (f.corrections ?? []).filter((c) => c.field === 'summary')
+    expect(filas).toHaveLength(1)
+    expect(filas[0].editor).toBe('civicpulse-curator')
+    expect(filas[0].corrected).toBe(f.summary)
+    expect(filas[0].original).toContain('no tiene el pabellón de Escoto')
+    expect(findPartiesInText(filas[0].reason)).toEqual([])
+    expect(findPartiesInText(f.summary)).toEqual([])
+  })
+})
+
+/*
+ * Bloque «75b31f, el plan de empleo que el sumario entrecomillaba en castellano». El mismo defecto
+ * que 436a7e: la cita se reancló el 2026-08-10 de «el Rivadona o el Plan de Empleo Ciudad Jardín»
+ * (el castellano del motor sustituido) a «el Ribadona o el pla d'empleo Ciutat Jardín», y el
+ * sumario siguió entrecomillando 'el Plan de Empleo Ciudad Jardín' con comillas rectas, que el
+ * guardián de entrecomillados no lee. Además lo llamaba «partida presupuestaria», y la intervención
+ * lo nombra como un programa que no podría hacerse si se reduce lo destinado a Cruz Roja.
+ */
+describe('published pleno findings — 75b31f, el plan de empleo que el sumario entrecomillaba en castellano', () => {
+  const ID = 'f-2026-03-16-cit-75b31f'
+  const CITA = "el Ribadona o el pla d'empleo Ciutat Jardín"
+
+  it('lo que entrecomilla es su cita, tal cual en la transcripción vigente', () => {
+    const f = byId(ID)
+    expect(f.summary).toContain(`«${CITA}»`)
+    expect(f.quotes).toHaveLength(1)
+    expect(f.quotes[0].text).toBe(CITA)
+    expect(f.quotes[0].speakerGroup).toBeNull()
+    expect(
+      normaliseForQuoteMatch(transcriptOf(f.plenoId)).includes(normaliseForQuoteMatch(CITA)),
+    ).toBe(true)
+    // El castellano del motor sustituido no vuelve, ni entrecomillado ni suelto.
+    expect(f.summary).not.toContain('Plan de Empleo Ciudad Jardín')
+  })
+
+  it('no lo llama partida: un programa que depende de lo destinado a Cruz Roja', () => {
+    const f = byId(ID)
+    expect(f.summary).not.toContain('como partida presupuestaria')
+    expect(f.summary).toContain('no lo presenta como una partida propia')
+    // Lo dice la transcripción vigente a renglón seguido, en la misma intervención: «la creurotxa,
+    // que la reduïm clarament i no se podria fer si volem fer, per exemple,» + la cita.
+    const t = transcriptOf(f.plenoId)
+    expect(t).toContain(
+      '[6316.1 → 6323.7] (SPEAKER_102) És a part de la creurotxa, que la reduïm clarament',
+    )
+    expect(t).toContain(`[6323.8 → 6327.1] (SPEAKER_102) ${CITA}, etcètera`)
+    // El cotejo sigue siendo el mismo y el único: la pista deportiva, contrato menor de 2019.
+    expect(f.crossChecked).toHaveLength(1)
+    expect(f.crossChecked[0].ref).toContain('idEvl=EcwQUWMyQ4mmq21uxhbaVQ')
+    expect(f.summary).toContain('contrato menor adjudicado en 2019')
+    expect(f.title).toBe(
+      'Ciudad Jardín · proyecto deportivo documentado pero no el plan de empleo citado',
+    )
+    expect(f.severity).toBe('informational')
+  })
+
+  it('la fila de bitácora es de la cuenta de rol y no nombra a ningún grupo', () => {
+    const f = byId(ID)
+    const filas = (f.corrections ?? []).filter((c) => c.field === 'summary')
+    expect(filas).toHaveLength(1)
+    expect(filas[0].editor).toBe('civicpulse-curator')
+    expect(filas[0].corrected).toBe(f.summary)
+    expect(filas[0].original).toContain(
+      "'el Plan de Empleo Ciudad Jardín' como partida presupuestaria",
+    )
+    expect(findPartiesInText(filas[0].reason)).toEqual([])
+    expect(findPartiesInText(f.summary)).toEqual([])
+  })
 })

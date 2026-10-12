@@ -1,6 +1,6 @@
 {
   "version": "1.0",
-  "generatedAt": "2026-10-11T17:46:31.665Z",
+  "generatedAt": "2026-10-12T13:20:43.168Z",
   "legalNotice": "Este registro recoge hallazgos editoriales sobre las intervenciones de los plenos. Los redacta un proceso automático a partir de declaraciones extraídas de la transcripción, salvo los que llevan la firma de una persona, y cada ficha indica quién la editó: un nombre como «auto-curation-v1» significa que el título y el resumen los escribió una máquina, no una persona. Cada hallazgo cita una o más afirmaciones literales (verbatim) del pleno y los documentos municipales que confirman o contradicen cada afirmación. Las réplicas de los grupos políticos se publican íntegras y sin editar.",
   "contactUrl": "https://github.com/datarhan/civicpulse/issues/new/choose",
   "methodologyUrl": "/metodologia",
@@ -1793,7 +1793,7 @@
       "plenoId": "ma87e0",
       "plenoDate": "2026-03-16",
       "title": "Pabellón de Escoto · contrato de construcción Fase I registrado",
-      "summary": "En la misma intervención se afirma que el municipio 'no tiene el pabellón de Escoto'. La base municipal de contratación registra el contrato de ejecución de las obras de construcción del pabellón deportivo cubierto en el CEIP Mas d'Escoto, Fase I (movimiento de tierras y muro de contención). La Fase I existe documentalmente; lo que queda por documentarse son las fases siguientes y el estado de ejecución actual del pabellón en sí, que no es el mismo que la preparación del terreno.",
+      "summary": "La cita («no teniu pavelló d'escoto») forma parte de una enumeración de infraestructuras que, según la intervención, faltan en el municipio y cuya responsabilidad atribuye a la Generalitat. La base municipal de contratación registra el contrato del Ayuntamiento para la Fase I de las obras del pabellón deportivo cubierto en el CEIP Mas d'Escoto (movimiento de tierras y muro de contención), adjudicado en 2019. Ese contrato no confirma ni desmiente lo que se afirma: documenta la preparación del terreno, no el estado actual del pabellón ni a quién corresponde terminarlo.",
       "severity": "notable",
       "sourceClaimIds": [
         "ma87e0-195-cit-436a7e"
@@ -1825,6 +1825,14 @@
           "reason": "Reanclaje a la transcripción vigente de la sesión. El literal publicado procedía del motor que se sustituyó al re-transcribir, que degradaba el reconocimiento y, en la mayoría de estos casos, traducía al castellano intervenciones pronunciadas en valencià: lo que se publicaba como verbatim no era lo que se dijo. Se restituye el pasaje de la transcripción vigente, la misma intervención y el mismo alcance, comprobado como subcadena literal del fichero. Donde el idioma cambia en pantalla, ese cambio es la fidelidad recuperada, no una edición de estilo.",
           "editor": "civicpulse-curator",
           "correctedAt": "2026-08-10T12:54:12.675Z"
+        },
+        {
+          "field": "summary",
+          "original": "En la misma intervención se afirma que el municipio 'no tiene el pabellón de Escoto'. La base municipal de contratación registra el contrato de ejecución de las obras de construcción del pabellón deportivo cubierto en el CEIP Mas d'Escoto, Fase I (movimiento de tierras y muro de contención). La Fase I existe documentalmente; lo que queda por documentarse son las fases siguientes y el estado de ejecución actual del pabellón en sí, que no es el mismo que la preparación del terreno.",
+          "corrected": "La cita («no teniu pavelló d'escoto») forma parte de una enumeración de infraestructuras que, según la intervención, faltan en el municipio y cuya responsabilidad atribuye a la Generalitat. La base municipal de contratación registra el contrato del Ayuntamiento para la Fase I de las obras del pabellón deportivo cubierto en el CEIP Mas d'Escoto (movimiento de tierras y muro de contención), adjudicado en 2019. Ese contrato no confirma ni desmiente lo que se afirma: documenta la preparación del terreno, no el estado actual del pabellón ni a quién corresponde terminarlo.",
+          "reason": "El sumario entrecomillaba como dicho en el pleno un texto en castellano que procedía del motor de transcripción sustituido, no lo que se dijo: la cita se reancló el 10-08-2026 a «no teniu pavelló d'escoto» y el sumario no se actualizó. Además leía el contrato de la Fase I como respuesta a la cita, cuando la intervención atribuye la obra a la Generalitat y ese contrato no dice nada de ello; no la confirma ni la desmiente, que es lo que ya decía la nota de contraste de la propia ficha.",
+          "editor": "civicpulse-curator",
+          "correctedAt": "2026-10-12T13:20:42.846Z"
         }
       ]
     },
@@ -1833,7 +1841,7 @@
       "plenoId": "ma87e0",
       "plenoDate": "2026-03-16",
       "title": "Ciudad Jardín · proyecto deportivo documentado pero no el plan de empleo citado",
-      "summary": "Una intervención menciona 'el Plan de Empleo Ciudad Jardín' como partida presupuestaria. La base de contratos registra una obra de instalación de pista deportiva en el barrio de Ciudad Jardín — es el mismo barrio pero un contrato de obra pública, no un programa de empleo. La cita del discurso no se corresponde directamente con el contrato encontrado; queda pendiente de documentar dónde está específicamente el Plan de Empleo Ciudad Jardín en la base presupuestaria municipal.",
+      "summary": "En el debate de la aprobación inicial del presupuesto de 2026, una intervención sostiene que, si se reduce lo destinado a Cruz Roja, no se podría hacer «el Ribadona o el pla d'empleo Ciutat Jardín»: no lo presenta como una partida propia, sino como un programa que depende de esa aportación. La base de contratos registra una obra de instalación de pista deportiva en el barrio de Ciudad Jardín, un contrato menor adjudicado en 2019: es el mismo barrio, pero una obra y no un programa de empleo, y no se corresponde con la cita. Queda pendiente de documentar con qué crédito del presupuesto municipal se financia ese plan de empleo.",
       "severity": "informational",
       "sourceClaimIds": [
         "ma87e0-151-cit-75b31f"
@@ -1865,6 +1873,14 @@
           "reason": "Reanclaje a la transcripción vigente de la sesión. El literal publicado procedía del motor que se sustituyó al re-transcribir, que degradaba el reconocimiento y, en la mayoría de estos casos, traducía al castellano intervenciones pronunciadas en valencià: lo que se publicaba como verbatim no era lo que se dijo. Se restituye el pasaje de la transcripción vigente, la misma intervención y el mismo alcance, comprobado como subcadena literal del fichero. Donde el idioma cambia en pantalla, ese cambio es la fidelidad recuperada, no una edición de estilo.",
           "editor": "civicpulse-curator",
           "correctedAt": "2026-08-10T12:54:13.393Z"
+        },
+        {
+          "field": "summary",
+          "original": "Una intervención menciona 'el Plan de Empleo Ciudad Jardín' como partida presupuestaria. La base de contratos registra una obra de instalación de pista deportiva en el barrio de Ciudad Jardín — es el mismo barrio pero un contrato de obra pública, no un programa de empleo. La cita del discurso no se corresponde directamente con el contrato encontrado; queda pendiente de documentar dónde está específicamente el Plan de Empleo Ciudad Jardín en la base presupuestaria municipal.",
+          "corrected": "En el debate de la aprobación inicial del presupuesto de 2026, una intervención sostiene que, si se reduce lo destinado a Cruz Roja, no se podría hacer «el Ribadona o el pla d'empleo Ciutat Jardín»: no lo presenta como una partida propia, sino como un programa que depende de esa aportación. La base de contratos registra una obra de instalación de pista deportiva en el barrio de Ciudad Jardín, un contrato menor adjudicado en 2019: es el mismo barrio, pero una obra y no un programa de empleo, y no se corresponde con la cita. Queda pendiente de documentar con qué crédito del presupuesto municipal se financia ese plan de empleo.",
+          "reason": "El sumario entrecomillaba como dicho en el pleno un texto en castellano que procedía del motor de transcripción sustituido, no lo que se dijo: la cita se reancló el 10-08-2026 a «el Ribadona o el pla d'empleo Ciutat Jardín» y el sumario no se actualizó. Además presentaba el plan como una partida presupuestaria, cuando la intervención lo menciona como un programa que no podría hacerse si se reduce lo destinado a Cruz Roja.",
+          "editor": "civicpulse-curator",
+          "correctedAt": "2026-10-12T13:20:43.168Z"
         }
       ]
     },
