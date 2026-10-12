@@ -18,6 +18,7 @@
 
 import { readFileSync, writeFileSync } from 'node:fs'
 import { resolve } from 'node:path'
+import { rechazarOpcionesDesconocidas } from '../src/scraper/opciones-cli'
 
 interface QuejaResponseItem {
   id: string
@@ -72,6 +73,9 @@ function usage(): never {
 }
 
 function main() {
+  // Antes de leer nada: una opción que este CLI no conoce no se ignora
+  // (src/scraper/opciones-cli.ts).
+  rechazarOpcionesDesconocidas('queja-reply', {})
   const args = process.argv.slice(2)
   if (args.length < 4) usage()
   const [rawId, role, firmante, text, sourceUrl] = args

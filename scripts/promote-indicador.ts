@@ -43,6 +43,7 @@ import {
 import type { Candidato } from '../src/scraper/indicador-desviacion'
 import { decideAutomation, loadMeasurements } from '../src/scraper/automation-policy'
 import { rechazoDeMarcador } from '../src/scraper/firma-de-persona'
+import { rechazarOpcionesDesconocidas } from '../src/scraper/opciones-cli'
 
 const COLA = resolve('editorial/indicador-candidates.json')
 const PUBLICADOS = resolve('public/data/eficiencia-findings.json')
@@ -120,6 +121,12 @@ function cargarCandidato(id: string): Candidato {
 }
 
 function main(): void {
+  // Antes de leer nada: una opción que este CLI no conoce no se ignora
+  // (src/scraper/opciones-cli.ts).
+  rechazarOpcionesDesconocidas('promote-indicador', {
+    banderas: ['--dry-run'],
+    conValor: ['--curator', '--titulo', '--cuerpo', '--cuerpo-file', '--caveat'],
+  })
   const [candidatoId] = positionals()
   if (!candidatoId) {
     fail(

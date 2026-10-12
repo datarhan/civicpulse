@@ -13,6 +13,7 @@ import { readFileSync, writeFileSync, existsSync } from 'node:fs'
 import { resolve } from 'node:path'
 import { validateFindingsSnapshot } from '../src/scraper/pleno-finding'
 import { SPEAKER_GROUPS, type SpeakerGroup } from '../src/scraper/pleno-votes'
+import { rechazarOpcionesDesconocidas } from '../src/scraper/opciones-cli'
 
 const FINDINGS = resolve('public/data/pleno-findings.json')
 // Imported, not restated. The hand-copied version of this set had drifted:
@@ -28,6 +29,9 @@ function usage(): never {
 }
 
 function main() {
+  // Antes de leer nada: una opción que este CLI no conoce no se ignora
+  // (src/scraper/opciones-cli.ts).
+  rechazarOpcionesDesconocidas('finding-reply', {})
   const [findingId, party, quote, maybeUrl, maybeDate] = process.argv.slice(2)
   if (!findingId || !party || !quote) usage()
   if (!ALLOWED_PARTIES.has(party)) {

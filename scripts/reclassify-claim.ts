@@ -29,6 +29,7 @@ import {
 import { rechazoDeMarcador } from '../src/scraper/firma-de-persona'
 import { applyReclassificationEntries } from '../src/scraper/verified-merge'
 import type { ClaimType } from '../src/scraper/pleno-claim'
+import { rechazarOpcionesDesconocidas } from '../src/scraper/opciones-cli'
 
 function parse(argv: string[]) {
   const pos: string[] = []
@@ -43,6 +44,9 @@ function parse(argv: string[]) {
 }
 
 function main() {
+  // Antes de leer nada: una opción que este CLI no conoce no se ignora
+  // (src/scraper/opciones-cli.ts).
+  rechazarOpcionesDesconocidas('reclas', { conValor: ['--reason', '--editor'] })
   const { claimId, newType, reason, editor } = parse(process.argv.slice(2))
   if (!claimId || !newType) {
     process.stderr.write(

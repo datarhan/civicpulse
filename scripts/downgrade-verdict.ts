@@ -79,6 +79,7 @@ import {
 } from '../src/scraper/verified-merge'
 import { rechazoDeFirma, rechazoDeMarcador } from '../src/scraper/firma-de-persona'
 import type { ClaimVerdict, ClaimVerification } from '../src/scraper/claim-verifier'
+import { describirAdmitidas, opcionDesconocida } from '../src/scraper/opciones-cli'
 
 const DOWNGRADE_TARGETS: ClaimVerdict[] = ['verificado', 'parcial', 'sin-datos']
 
@@ -117,8 +118,21 @@ export type Orden =
       dryRun: boolean
     }
 
+/**
+ * Lo que admite. Una opción fuera de aquí acababa entre los posicionales y la
+ * orden corría entera: `--dryrun` (sin guion) escribía de verdad.
+ */
+const ADMITE = {
+  banderas: ['--amend-reason', '--literal-no-dicho', '--dry-run'],
+  conValor: ['--reason', '--editor', '--new'],
+}
+
 /** La orden, leída y comprobada en lo que no necesita los datos. Lanza con el porqué. */
 export function leerOrden(argv: string[]): Orden {
+  const desconocida = opcionDesconocida(argv, ADMITE)
+  if (desconocida) {
+    throw new Error(`${desconocida} No se ha leído ni escrito nada. ${describirAdmitidas(ADMITE)}`)
+  }
   const pos: string[] = []
   let reason = ''
   let editor: string | null = null

@@ -107,6 +107,7 @@ import {
   type PlenoFindingCorrection,
   type PlenoFindingsSnapshot,
 } from '../src/scraper/pleno-finding'
+import { rechazarOpcionesDesconocidas } from '../src/scraper/opciones-cli'
 
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = dirname(__filename)
@@ -128,6 +129,20 @@ function bail(msg: string, code = 2): never {
 const ALLOWED_FIELDS = ['title', 'summary', 'severity', 'sourceClaimIds'] as const
 
 async function main() {
+  // Antes de leer nada: una opción que este CLI no conoce no se ignora
+  // (src/scraper/opciones-cli.ts).
+  rechazarOpcionesDesconocidas('correct-pleno-finding', {
+    banderas: ['--dry-run'],
+    conValor: [
+      '--field',
+      '--remove',
+      '--redact',
+      '--amend-reason',
+      '--new',
+      '--reason',
+      '--editor',
+    ],
+  })
   const id = process.argv[2]
   const field = getFlag('--field')
   const removePath = getFlag('--remove')
