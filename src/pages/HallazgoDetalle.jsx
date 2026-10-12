@@ -132,7 +132,7 @@ export default function HallazgoDetalle() {
           marginTop: 14,
         }}
       >
-        <DataAsOf iso={data?.generatedAt} label="Hallazgos" />
+        <DataAsOf iso={data?.generatedAt} label={t('nav.hallazgos')} />
         <Link
           to="/metodologia"
           style={{ color: 'var(--civic)', fontSize: 'var(--fs-meta)', textDecoration: 'underline' }}

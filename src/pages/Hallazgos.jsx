@@ -1,6 +1,14 @@
 import { useMemo, useState } from 'react'
 import { useLocation, Link } from 'react-router-dom'
-import { Card, Pill, ExtLink, Quote, EvidenceBand, PartyTag } from '../components/Primitives'
+import {
+  Card,
+  Pill,
+  ExtLink,
+  Quote,
+  EvidenceBand,
+  PartyTag,
+  Marcado,
+} from '../components/Primitives'
 import ClaimReviewJsonLd from '../components/ClaimReviewJsonLd'
 import DataAsOf from '../components/DataAsOf'
 // One RefList, not two. It was duplicated verbatim here and in PlenoFindings,
@@ -11,7 +19,7 @@ import DataAsOf from '../components/DataAsOf'
 // cotejados en FindingCard dejó esta página —la que el lector abre— enseñándolo
 // igual. Ahora se comparte la banda entera, `ListaDeCotejos`.
 import { ListaDeCotejos, CitasDeLaFicha, codigoDeFicha } from '../components/PlenoFindings'
-import { usePlenoFindings, SEVERITY_LABEL, SEVERITY_TONE } from '../hooks/usePlenoFindings'
+import { usePlenoFindings, SEVERITY_TONE } from '../hooks/usePlenoFindings'
 import { useFindingQuoteProvenance, provenanceFor } from '../hooks/useFindingQuoteProvenance'
 import { authorshipBreakdown } from '../scraper/finding-authorship'
 import { PARTY_TONE } from '../hooks/usePromises'
@@ -19,7 +27,8 @@ import { usePlenoClaims } from '../hooks/usePlenoClaims'
 import { findingMatchesArea } from '../lib/finding-area'
 import { contarHallazgos, pasaFiltros } from '../lib/hallazgos-filtros'
 import { DEPARTMENT_LABEL } from '../scraper/departments'
-import { useT } from '../i18n'
+import { rotuloDe, useLocale, useT } from '../i18n'
+import { partePorHueco, rellena } from '../lib/formatters'
 import { BitacoraCorrecciones } from '../components/BitacoraCorrecciones'
 import { EFICIENCIA_ENABLED } from '../flags'
 
@@ -67,6 +76,7 @@ export function FindingDetailCard({ f, permalink }) {
   // — and the marker itself lives in PlenoFindings so /plenos/:id renders the
   // same thing. The RefList duplication taught this lesson already: a fix on one
   // of two copies leaves the other one lying.
+  const t = useT()
   const { data: provenance } = useFindingQuoteProvenance()
   const prov = provenanceFor(provenance, f.id)
   // El nombre de la ficha: lo imprime el enlace permanente y lo repiten la nota
@@ -79,10 +89,14 @@ export function FindingDetailCard({ f, permalink }) {
       <ClaimReviewJsonLd finding={f} />
       <div style={{ display: 'flex', alignItems: 'baseline', gap: 8, marginBottom: 4 }}>
         <Pill tone={SEVERITY_TONE[f.severity] || 'neutral'} size="xs">
-          {SEVERITY_LABEL[f.severity] || f.severity}
+          {rotuloDe(t, `pleno.gravedad.${f.severity}`, f.severity)}
         </Pill>
         <span className="mono" style={{ fontSize: 'var(--fs-micro)', color: 'var(--ink50)' }}>
-          {f.plenoDate} · pleno {f.plenoId} · editado por {f.curatorName}
+          {rellena(t('findings.detalle.cabecera'), {
+            fecha: f.plenoDate,
+            pleno: f.plenoId,
+            editor: f.curatorName,
+          })}
         </span>
         <a
           href={permalink}
@@ -92,12 +106,12 @@ export function FindingDetailCard({ f, permalink }) {
             color: 'var(--civic)',
             textDecoration: 'none',
           }}
-          title="Enlace permanente a este hallazgo"
+          title={t('findings.detalle.enlace.title')}
         >
           {/* Decía «#{f.id.slice(-12)}» —«#1-acu-a870a4», con el último dígito
               del día delante—. Ahora es el nombre con que la nota y la banda de
               cotejos hablan de esta ficha, junto a «pleno 10yl550». */}
-          ficha {ficha}
+          {rellena(t('findings.detalle.enlace'), { ficha })}
         </a>
       </div>
       <div style={{ fontSize: 'var(--fs-head)', fontWeight: 600, lineHeight: 1.35 }}>{f.title}</div>
@@ -113,7 +127,7 @@ export function FindingDetailCard({ f, permalink }) {
             borderRadius: 'var(--r-card)',
             fontSize: 'var(--fs-micro)',
           }}
-          title="Atribución individual confirmada por curaduría editorial"
+          title={t('findings.detalle.individual.title')}
         >
           <PartyTag
             tone={PARTY_TONE[f.individualSpeaker.party]}
@@ -141,7 +155,7 @@ export function FindingDetailCard({ f, permalink }) {
       {/* §08: tres bandas, numeradas, siempre en este orden. El material ya
           estaba en la ficha y en esta secuencia; lo que faltaba era que se
           distinguiera lo que alguien DIJO de lo que está COMPROBADO. */}
-      <EvidenceBand n={1} title="Lo que se dijo">
+      <EvidenceBand n={1} title={t('findings.detalle.banda.dicho')}>
         {f.quotes?.length > 0 ? (
           // Numeradas, con la nota que dice de qué números habla: el reparto
           // entre cita impresa y hueco vive en `CitasDeLaFicha`, compartido con
@@ -155,12 +169,12 @@ export function FindingDetailCard({ f, permalink }) {
           />
         ) : (
           <div style={{ fontSize: 'var(--fs-meta)', color: 'var(--ink50)' }}>
-            Esta ficha no publica ningún literal.
+            {t('findings.detalle.sinLiterales')}
           </div>
         )}
       </EvidenceBand>
 
-      <EvidenceBand n={2} title="Contra qué se cotejó">
+      <EvidenceBand n={2} title={t('findings.detalle.banda.cotejo')}>
         {f.crossChecked?.length || f.contradiction?.length ? (
           <>
             <ListaDeCotejos
@@ -175,13 +189,12 @@ export function FindingDetailCard({ f, permalink }) {
           // «se cotejó y no salió nada» de «no se cotejó», así que decir «sin
           // rastro» aquí sería fabricar un veredicto con un dato que no existe.
           <div style={{ fontSize: 'var(--fs-meta)', color: 'var(--ink50)' }}>
-            Esta ficha no publica ningún documento cotejado. Eso no dice que no exista: dice que
-            aquí no consta.
+            {t('findings.detalle.sinCotejos')}
           </div>
         )}
       </EvidenceBand>
 
-      <EvidenceBand n={3} title="Derecho de réplica">
+      <EvidenceBand n={3} title={t('findings.detalle.banda.replica')}>
         {f.response ? (
           <div
             style={{
@@ -204,7 +217,10 @@ export function FindingDetailCard({ f, permalink }) {
                 fontWeight: 700,
               }}
             >
-              Réplica de {f.response.from} · {f.response.respondedAt}
+              {rellena(t('findings.card.replica'), {
+                grupo: f.response.from,
+                fecha: f.response.respondedAt,
+              })}
             </div>
             <Quote text={f.response.quote} attribution={f.response.from} />
             {f.response.sourceUrl && (
@@ -217,26 +233,38 @@ export function FindingDetailCard({ f, permalink }) {
                     textDecoration: 'none',
                   }}
                 >
-                  Fuente →
+                  {t('findings.detalle.replica.fuente')}
                 </ExtLink>
               </div>
             )}
           </div>
         ) : (
-          <div style={{ fontSize: 'var(--fs-meta)', color: 'var(--ink50)' }}>
-            Abierto desde {f.publishedAt} · sin respuesta. ¿Eres el grupo afectado? Contacta con la
-            redacción para ejercerlo · ver{' '}
-            <a
-              href="/aviso-legal#rectificacion"
-              style={{ color: 'var(--civic)', textDecoration: 'underline' }}
-            >
-              /aviso-legal
-            </a>
-          </div>
+          <ReplicaAbierta publishedAt={f.publishedAt} />
         )}
       </EvidenceBand>
       <BitacoraCorrecciones correcciones={f.corrections} />
     </Card>
+  )
+}
+
+/** La banda de réplica de una ficha que nadie ha contestado: el enlace, en su sitio. */
+function ReplicaAbierta({ publishedAt }) {
+  const t = useT()
+  const [antes, despues] = partePorHueco(
+    rellena(t('findings.detalle.replica.abierta'), { fecha: publishedAt }),
+    '{enlace}',
+  )
+  return (
+    <div style={{ fontSize: 'var(--fs-meta)', color: 'var(--ink50)' }}>
+      {antes}
+      <a
+        href="/aviso-legal#rectificacion"
+        style={{ color: 'var(--civic)', textDecoration: 'underline' }}
+      >
+        /aviso-legal
+      </a>
+      {despues}
+    </div>
   )
 }
 
@@ -256,8 +284,13 @@ export function FindingDetailCard({ f, permalink }) {
  * wanted to.
  */
 function RetractionLedger({ retractions }) {
+  const t = useT()
   if (!retractions?.length) return null
   const ordered = [...retractions].sort((a, b) => b.retractedAt.localeCompare(a.retractedAt))
+  const [huellaAntes, huellaDespues] = partePorHueco(
+    t('hallazgos.lista.retirados.texto'),
+    '{sha256}',
+  )
   return (
     <section
       style={{
@@ -281,17 +314,15 @@ function RetractionLedger({ retractions }) {
           marginBottom: 8,
         }}
       >
-        Hallazgos retirados · {ordered.length}
+        {rellena(t('hallazgos.lista.retirados.titulo'), { n: ordered.length })}
       </div>
       {/* Decía «se retiraron porque ninguna de sus citas superaba la puerta editorial»: la causa
           de las once del 2026-08-11, y no la de 66709b (10-10) ni la de 543cc1 y 3fd230 (11-10),
           que tenían citas visibles. Cada retirada dice la suya en su motivo. */}
       <p style={{ margin: '0 0 10px' }}>
-        Publicados y después retirados. No se reproduce lo que decían: cada uno se retiró por lo que
-        decía —su motivo va debajo de su huella—, así que republicar el texto aquí devolvería a la
-        web exactamente aquello que la retirada quita. Queda la huella —{' '}
-        <span className="mono">sha256</span> del original, por si alguien conserva una copia y
-        quiere comprobar que coincide.
+        {huellaAntes}
+        <span className="mono">sha256</span>
+        {huellaDespues}
       </p>
       <ol style={{ margin: 0, paddingLeft: 18, display: 'grid', gap: 8 }}>
         {ordered.map((r) => (
@@ -313,21 +344,32 @@ function RetractionLedger({ retractions }) {
  * antes de la retirada lleva a esta huella, y las dos tienen que decir lo mismo.
  */
 export function RetiradaDatos({ r }) {
+  const t = useT()
   return (
     <>
       <div
         className="mono"
         style={{ fontSize: 'var(--fs-micro)', color: 'var(--ink50)', marginBottom: 2 }}
       >
-        {r.findingId} · pleno {r.plenoDate} · retirado {r.retractedAt.slice(0, 10)} · {r.editor}
+        {rellena(t('findings.retirada.cabecera'), {
+          id: r.findingId,
+          fecha: r.plenoDate,
+          retirado: r.retractedAt.slice(0, 10),
+          editor: r.editor,
+        })}
       </div>
       <div>
-        {r.quoteCount} cita(s) y {r.crossCheckedCount} documento(s) cotejado(s) ·{' '}
+        {rellena(t('findings.retirada.recuento'), {
+          citas: r.quoteCount,
+          documentos: r.crossCheckedCount,
+        })}{' '}
         <span className="mono" style={{ color: 'var(--ink50)' }}>
           {r.digest}
         </span>
       </div>
-      <div style={{ marginTop: 2, fontSize: 'var(--fs-micro)' }}>Motivo: {r.reason}</div>
+      <div style={{ marginTop: 2, fontSize: 'var(--fs-micro)' }}>
+        {rellena(t('findings.retirada.motivo'), { motivo: r.reason })}
+      </div>
     </>
   )
 }
@@ -401,14 +443,13 @@ export function agruparPorPleno(hallazgos) {
  * con la lista filtrada vacía, sólo el total publicado sabe cuál de las dos es.
  */
 function ListaDeHallazgos({ hallazgos, hayPublicados }) {
+  const t = useT()
   const groups = useMemo(() => agruparPorPleno(hallazgos), [hallazgos])
 
   if (groups.length === 0) {
     return (
       <div style={AVISO_DE_LISTA}>
-        {!hayPublicados
-          ? 'Todavía no hay hallazgos editoriales publicados. El flujo de curación es: extraer declaraciones → verificar contra datos → promover a hallazgo.'
-          : 'Ninguno coincide con los filtros actuales.'}
+        {t(hayPublicados ? 'hallazgos.lista.ninguno' : 'hallazgos.lista.vacia')}
       </div>
     )
   }
@@ -425,7 +466,7 @@ function ListaDeHallazgos({ hallazgos, hayPublicados }) {
           marginBottom: 8,
         }}
       >
-        Pleno · {date}
+        {rellena(t('hallazgos.lista.pleno'), { fecha: date })}
       </div>
       <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
         {list.map((f) => (
@@ -461,8 +502,11 @@ function ListaDelArea({ area, hallazgos, hayPublicados }) {
   return <ListaDeHallazgos hallazgos={delArea} hayPublicados={hayPublicados} />
 }
 
+/** Las negritas de los párrafos atenuados de la lista, en tinta plena. */
+const TINTA = { color: 'var(--ink)' }
+
 export default function Hallazgos() {
-  const t = useT()
+  const { locale, t } = useLocale()
   const location = useLocation()
   const { loading, error, data } = usePlenoFindings()
   const [severityFilter, setSeverityFilter] = useState(null)
@@ -528,6 +572,46 @@ export default function Hallazgos() {
     )
   }
 
+  // Las frases del catálogo que envuelven un enlace se parten por su hueco
+  // (`partePorHueco`): cada idioma pone el enlace donde su gramática lo pide.
+  const [eficienciaAntes, eficienciaDespues] = partePorHueco(
+    t('hallazgos.lista.eficiencia'),
+    '{enlace}',
+  )
+  const [comoAntes, comoDespues] = partePorHueco(
+    rellena(t('hallazgos.lista.como.texto'), {
+      cuantas: authorship
+        ? rellena(t('hallazgos.lista.como.cuantas'), {
+            total: authorship.total,
+            maquina: authorship.machine,
+          })
+        : '',
+    }),
+    '{enlace}',
+  )
+  const [transcripcionesAntes, transcripcionesDespues] = provStats
+    ? partePorHueco(
+        rellena(t('hallazgos.lista.transcripciones'), {
+          quotes: provStats.quotes,
+          enVigente: provStats.enVigente,
+          soloEnSustituida: provStats.soloEnSustituida,
+          sinDeterminar: provStats.sinDeterminar,
+        }),
+        '{enlace}',
+      )
+    : ['', '']
+  const [contrasteAntes, contrasteDespues] = gateStats?.porContraste
+    ? partePorHueco(
+        rellena(t('hallazgos.lista.contraste'), {
+          citasConClaim: gateStats.citasConClaim,
+          shown: gateStats.porContraste.shown,
+          toggle: gateStats.porContraste.toggle,
+          hidden: gateStats.porContraste.hidden,
+        }),
+        '{enlace}',
+      )
+    : ['', '']
+
   return (
     <div style={{ padding: '28px 28px 48px', maxWidth: 1000, margin: '0 auto' }}>
       {/* Deep-linked from a councillor's page. Says plainly that the filter is
@@ -544,7 +628,7 @@ export default function Hallazgos() {
               {t('hallazgos.area.filtered')}
             </span>
             <strong style={{ fontSize: 'var(--fs-body)' }}>
-              {DEPARTMENT_LABEL[areaFilter].es}
+              {DEPARTMENT_LABEL[areaFilter][locale] ?? DEPARTMENT_LABEL[areaFilter].es}
             </strong>
             <Link to="/hallazgos" style={{ fontSize: 'var(--fs-meta)', color: 'var(--civic)' }}>
               {t('hallazgos.area.clear')}
@@ -585,8 +669,11 @@ export default function Hallazgos() {
               auto-curador. Mientras carga se queda la etiqueta neutra, que no
               afirma ni lo uno ni lo otro. Lo cazó `review:surfaces`. */}
           {authorship && authorship.machine > 0
-            ? `Redacción automática · ${authorship.machine} de ${authorship.total}`
-            : 'Verificación editorial'}
+            ? rellena(t('hallazgos.lista.cabecera.automatica'), {
+                maquina: authorship.machine,
+                total: authorship.total,
+              })
+            : t('hallazgo.cabecera.editorial')}
         </div>
         <div
           style={{
@@ -596,7 +683,7 @@ export default function Hallazgos() {
             marginTop: 2,
           }}
         >
-          Hallazgos sobre declaraciones en pleno
+          {t('hallazgos.lista.titulo')}
         </div>
         <p
           style={{
@@ -607,12 +694,7 @@ export default function Hallazgos() {
             lineHeight: 1.55,
           }}
         >
-          Cada hallazgo toma una o más afirmaciones literales de un pleno y las sitúa en su contexto
-          documental (contratos, subvenciones, presupuesto, promesas). Los redacta un proceso
-          automático bajo reglas fijas, salvo los que llevan la firma de una persona; el pie de cada
-          ficha dice quién la editó, y un nombre como «auto-curation-v1» significa que el texto lo
-          escribió una máquina. Cada ficha lista los documentos con los que se ha cotejado —lo
-          corroboren o no— y da derecho de réplica literal al grupo afectado.
+          {t('hallazgos.lista.intro')}
           {/* Sin cuantificador, y sin repetir aquí la cifra. Decía «la mayoría»
               con 40 de 41 escritos por una máquina, y eso deja al lector
               concluyendo que una parte apreciable llevó criterio humano. Pero
@@ -622,7 +704,7 @@ export default function Hallazgos() {
               dice cuál es la regla y cuál la excepción; el recuadro, cuántas. */}
         </p>
         <div style={{ marginTop: 10 }}>
-          <DataAsOf iso={data?.generatedAt} label="Hallazgos" />
+          <DataAsOf iso={data?.generatedAt} label={t('nav.hallazgos')} />
         </div>
       </div>
 
@@ -639,10 +721,7 @@ export default function Hallazgos() {
       {EFICIENCIA_ENABLED && (
         <Card style={{ marginBottom: 18, background: 'var(--soft)' }}>
           <div style={{ fontSize: 'var(--fs-aux)', color: 'var(--ink50)', lineHeight: 1.55 }}>
-            Esta página verifica <strong>declaraciones en pleno</strong>. Los hallazgos sobre{' '}
-            <strong>cuánto cuesta cada servicio</strong> —que no citan a nadie porque no los dijo
-            nadie: salen de las cifras que el ayuntamiento remite al ministerio— se publican junto a
-            los datos de los que salen, en{' '}
+            <Marcado texto={eficienciaAntes} />
             {/* Subrayado, no sólo color: un enlace dentro de un bloque de
                 texto que sólo se distingue por el tono falla WCAG 1.4.1, y axe
                 lo caza en cuanto se despliega. */}
@@ -650,9 +729,9 @@ export default function Hallazgos() {
               to="/eficiencia#hallazgos"
               style={{ color: 'var(--civic)', textDecoration: 'underline' }}
             >
-              eficiencia
+              {t('hallazgos.lista.eficiencia.enlace')}
             </Link>
-            .
+            <Marcado texto={eficienciaDespues} />
           </div>
         </Card>
       )}
@@ -662,18 +741,21 @@ export default function Hallazgos() {
           contenedor, que el `style` no admite. */}
       <div className="cp-cifras-marco" style={{ marginBottom: 18 }}>
         <div className="cp-cifras">
-          <MiniStat label="Total hallazgos" value={items.length} />
+          <MiniStat label={t('hallazgos.lista.cifra.total')} value={items.length} />
           <MiniStat
-            label="Críticos"
+            label={t('hallazgos.lista.cifra.critical')}
             value={counts.bySeverity.critical ?? 0}
             tone={(counts.bySeverity.critical ?? 0) > 0 ? 'crit' : undefined}
           />
           <MiniStat
-            label="Relevantes"
+            label={t('hallazgos.lista.cifra.notable')}
             value={counts.bySeverity.notable ?? 0}
             tone={(counts.bySeverity.notable ?? 0) > 0 ? 'warn' : undefined}
           />
-          <MiniStat label="Informativos" value={counts.bySeverity.informational ?? 0} />
+          <MiniStat
+            label={t('hallazgos.lista.cifra.informational')}
+            value={counts.bySeverity.informational ?? 0}
+          />
         </div>
       </div>
 
@@ -704,18 +786,18 @@ export default function Hallazgos() {
                 marginRight: 6,
               }}
             >
-              Severidad
+              {t('hallazgos.lista.filtro.severidad')}
             </span>
             <Chip
               active={severityFilter === null}
-              label="todas"
+              label={t('hallazgos.lista.filtro.todas')}
               onClick={() => setSeverityFilter(null)}
             />
             {['critical', 'notable', 'informational'].map((s) => (
               <Chip
                 key={s}
                 active={severityFilter === s}
-                label={SEVERITY_LABEL[s] ?? s}
+                label={rotuloDe(t, `pleno.gravedad.${s}`, s)}
                 count={counts.bySeverity[s] ?? 0}
                 onClick={() => setSeverityFilter(severityFilter === s ? null : s)}
               />
@@ -733,11 +815,11 @@ export default function Hallazgos() {
                   marginRight: 6,
                 }}
               >
-                Grupo
+                {t('hallazgos.lista.filtro.grupo')}
               </span>
               <Chip
                 active={speakerFilter === null}
-                label="todos"
+                label={t('hallazgos.lista.filtro.todos')}
                 onClick={() => setSpeakerFilter(null)}
               />
               {Object.entries(counts.bySpeaker)
@@ -765,11 +847,11 @@ export default function Hallazgos() {
                   marginRight: 6,
                 }}
               >
-                Pleno
+                {t('hallazgos.lista.filtro.pleno')}
               </span>
               <Chip
                 active={plenoFilter === null}
-                label="todos"
+                label={t('hallazgos.lista.filtro.todos')}
                 onClick={() => setPlenoFilter(null)}
               />
               {Object.entries(counts.byPleno)
@@ -807,53 +889,34 @@ export default function Hallazgos() {
           lineHeight: 1.55,
         }}
       >
-        <strong style={{ color: 'var(--ink)' }}>Cómo se escribe un hallazgo.</strong> Un proceso
-        automático agrupa las afirmaciones extraídas de las transcripciones del pleno, las coteja
-        con la base documental municipal y redacta el título y el resumen bajo reglas fijas
-        {authorship ? (
-          <>
-            : de los {authorship.total} publicados,{' '}
-            <strong style={{ color: 'var(--ink)' }}>
-              {authorship.machine} los firma una máquina
-            </strong>
-          </>
-        ) : null}
-        . El pie de cada ficha dice quién la editó, y un nombre como «auto-curation-v1» significa
-        que el texto lo escribió una máquina, no una persona. Los grupos afectados pueden responder
-        con cita literal por la{' '}
+        <strong style={TINTA}>{t('hallazgos.lista.como.titulo')}</strong>{' '}
+        <Marcado texto={comoAntes} estilo={TINTA} />
         <a
           href="/aviso-legal#rectificacion"
           style={{ color: 'var(--civic)', textDecoration: 'underline' }}
         >
-          vía de rectificación
+          {t('hallazgos.lista.como.enlace')}
         </a>
-        .{' '}
+        {comoDespues}{' '}
         <a
           href="/metodologia#verificacion-declaraciones"
           style={{ color: 'var(--civic)', textDecoration: 'underline' }}
         >
-          Leer metodología →
+          {t('hallazgos.lista.como.metodologia')}
         </a>
         {/* Counted from the derived snapshot, never typed here: a figure written
             into a page goes false on its own the next time a session is
             re-transcribed, and nobody edits a page to notice. */}
         {provStats && provStats.soloEnSustituida + provStats.sinDeterminar > 0 && (
           <div style={{ marginTop: 8 }}>
-            <strong style={{ color: 'var(--ink)' }}>Citas y transcripciones.</strong> Varias
-            sesiones se transcribieron una segunda vez con un motor mejor. De los {provStats.quotes}{' '}
-            literales publicados aquí,{' '}
-            <strong style={{ color: 'var(--ink)' }}>{provStats.enVigente}</strong> aparecen en la
-            transcripción vigente de su sesión;{' '}
-            <strong style={{ color: 'var(--ink)' }}>{provStats.soloEnSustituida}</strong> sólo en la
-            que se sustituyó, y {provStats.sinDeterminar} no se pueden situar en ninguna de las dos.
-            Los que no constan en el texto vigente llevan su marca al lado. No reescribimos ninguna
-            cita por nuestra cuenta.{' '}
+            <Marcado texto={transcripcionesAntes} estilo={TINTA} />
             <a
               href="/metodologia#citas-transcripcion"
               style={{ color: 'var(--civic)', textDecoration: 'underline' }}
             >
-              Qué significa cada marca →
+              {t('hallazgos.lista.transcripciones.enlace')}
             </a>
+            <Marcado texto={transcripcionesDespues} estilo={TINTA} />
           </div>
         )}
         {/* Same rule as above: counted from the derived snapshot at render
@@ -862,22 +925,14 @@ export default function Hallazgos() {
             false on its own, on a page that names political groups. */}
         {gateStats && gateStats.porContraste && (
           <div style={{ marginTop: 8 }}>
-            <strong style={{ color: 'var(--ink)' }}>Citas y datos municipales.</strong> Las
-            afirmaciones que sostienen estas citas se cotejan automáticamente con los datos del
-            ayuntamiento. De las {gateStats.citasConClaim} de aquí, el cotejo encontró algún dato
-            sobre <strong style={{ color: 'var(--ink)' }}>{gateStats.porContraste.shown}</strong>;
-            para <strong style={{ color: 'var(--ink)' }}>{gateStats.porContraste.toggle}</strong> no
-            encontró nada que las confirme ni que las desmienta, y otras{' '}
-            <strong style={{ color: 'var(--ink)' }}>{gateStats.porContraste.hidden}</strong> son
-            acusaciones públicas sin ese contraste, que en{' '}
+            <Marcado texto={contrasteAntes} estilo={TINTA} />
             {/* Underlined, not just tinted: a link inside a paragraph that is
                 distinguished by colour alone is a serious axe violation
                 (link-in-text-block), and the axe gate caught this one. */}
             <Link to="/plenos" style={{ color: 'var(--civic)', textDecoration: 'underline' }}>
-              el registro de declaraciones
-            </Link>{' '}
-            no se publican. Llevan su marca al lado: que una acusación no tenga contraste no la
-            declara falsa, y por sí solo no retira nada.{' '}
+              {t('hallazgos.lista.contraste.registro')}
+            </Link>
+            <Marcado texto={contrasteDespues} estilo={TINTA} />{' '}
             {/* Decía «No hemos retirado ninguna», y era falso desde el 11 de
                 agosto: la página imprime el ledger de retiradas SETENTA Y CINCO
                 líneas más arriba, con su propio encabezado contando cuántas.
@@ -890,16 +945,19 @@ export default function Hallazgos() {
                 ficha, que es exactamente como se rompió. */}
             {(data?.retractions?.length ?? 0) > 0 ? (
               <>
-                Lo que sí se ha retirado está arriba, en las{' '}
-                <strong style={{ color: 'var(--ink)' }}>{data.retractions.length}</strong> fichas
-                que se quedaron sin ninguna cita publicable.{' '}
+                <Marcado
+                  texto={rellena(t('hallazgos.lista.contraste.retiradas'), {
+                    n: data.retractions.length,
+                  })}
+                  estilo={TINTA}
+                />{' '}
               </>
             ) : null}
             <a
               href="/metodologia#citas-contraste"
               style={{ color: 'var(--civic)', textDecoration: 'underline' }}
             >
-              Por qué se publican aquí →
+              {t('hallazgos.lista.contraste.enlace')}
             </a>
           </div>
         )}

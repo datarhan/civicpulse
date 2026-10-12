@@ -1035,6 +1035,52 @@ export const CATALOGUE = {
     'pleno.fuenteVoto.video.sinCotejar': 'leído del vídeo, sin cotejar con otra fuente',
     'findings.card.cabecera': '{fecha} · ficha {ficha} · editado por {editor}',
     'findings.card.replica': 'Réplica de {grupo} · {fecha}',
+    // La ficha de /hallazgos y /hallazgos/:id (`FindingDetailCard`) y la huella de un
+    // hallazgo retirado (`RetiradaDatos`). El castellano es, letra por letra, el que las
+    // páginas escribían a mano: lo leen las pruebas e2e y la revisión lectora.
+    'findings.detalle.cabecera': '{fecha} · pleno {pleno} · editado por {editor}',
+    'findings.detalle.enlace': 'ficha {ficha}',
+    'findings.detalle.enlace.title': 'Enlace permanente a este hallazgo',
+    'findings.detalle.individual.title': 'Atribución individual confirmada por curaduría editorial',
+    'findings.detalle.banda.dicho': 'Lo que se dijo',
+    'findings.detalle.banda.cotejo': 'Contra qué se cotejó',
+    'findings.detalle.banda.replica': 'Derecho de réplica',
+    'findings.detalle.sinLiterales': 'Esta ficha no publica ningún literal.',
+    // Describe el REGISTRO, no el mundo: `pleno-findings.json` no separa «se cotejó y
+    // no salió nada» de «no se cotejó».
+    'findings.detalle.sinCotejos':
+      'Esta ficha no publica ningún documento cotejado. Eso no dice que no exista: dice que aquí no consta.',
+    'findings.detalle.replica.fuente': 'Fuente →',
+    'findings.detalle.replica.abierta':
+      'Abierto desde {fecha} · sin respuesta. ¿Eres el grupo afectado? Contacta con la redacción para ejercerlo · ver {enlace}',
+    'findings.retirada.cabecera': '{id} · pleno {fecha} · retirado {retirado} · {editor}',
+    'findings.retirada.recuento': '{citas} cita(s) y {documentos} documento(s) cotejado(s) ·',
+    'findings.retirada.motivo': 'Motivo: {motivo}',
+    // La bitácora de una ficha corregida (`BitacoraCorrecciones`): /hallazgos,
+    // /promesas, /laboratorio. Los rótulos castellanos son los que exporta el
+    // componente (`ROTULO_TEXTO_*`), que leen otras páginas y las pruebas.
+    'bitacora.resumen': 'Bitácora de correcciones · {n}',
+    'bitacora.enmendados.uno': '{n} motivo enmendado',
+    'bitacora.enmendados.varios': '{n} motivos enmendados',
+    'bitacora.textoRetirado': 'Texto retirado',
+    'bitacora.textoVigente': 'Texto vigente',
+    'bitacora.textoSustituido': 'Texto que puso esta corrección, sustituido el {fecha}',
+    'bitacora.literalRetenido':
+      'esta corrección cambió el texto de una cita que la puerta editorial retiene, así que la bitácora no reproduce ninguna de sus dos versiones; deja su huella, que cualquiera con el texto puede rehacer:',
+    'bitacora.grupoRetenido.rotulo': 'Grupo de un solo escaño',
+    'bitacora.grupoRetenido.texto':
+      'esta corrección cambió un texto que nombraba a un grupo con un solo concejal, y nombrar ese grupo es nombrar a esa persona, así que la bitácora no reproduce {cual}.',
+    'bitacora.grupoRetenido.ninguna': 'ninguna de sus dos versiones',
+    'bitacora.grupoRetenido.retirada': 'la versión que retiró',
+    'bitacora.grupoRetenido.puesta': 'la versión que puso',
+    'bitacora.motivo': 'Motivo:',
+    'bitacora.motivoEnmendadoEl': 'Motivo (enmendado el {fecha}):',
+    'bitacora.motivoEnmendado': 'Motivo enmendado',
+    'bitacora.enmienda.anterior':
+      'El motivo anterior no se reproduce; queda su huella, que cualquiera con una copia anterior puede rehacer:',
+    'bitacora.escanoUnico.nota':
+      'Las versiones que nombraban a un grupo de un solo escaño siguen en el repositorio público del proyecto: esta página deja de enseñarlas, no las retira.',
+    'bitacora.escanoUnico.enlace': 'Por qué, en la metodología',
     'findings.refs.tipo.tender': 'contrato',
     'findings.refs.tipo.bdns': 'subvención BDNS',
     'findings.refs.tipo.budget': 'presupuesto',
@@ -1202,6 +1248,47 @@ export const CATALOGUE = {
     'hallazgos.area.clear': 'ver todos',
     'hallazgos.area.note':
       'Hallazgos cuyas declaraciones se clasifican en esta área. La atribución de cada hallazgo es al GRUPO político que habló, nunca a una persona concreta.',
+    // La lista /hallazgos: lo que no es ficha. Un par de asteriscos marca negrita
+    // (`Marcado`); las cifras se derivan del dato al pintar.
+    'hallazgos.lista.cabecera.automatica': 'Redacción automática · {maquina} de {total}',
+    'hallazgos.lista.titulo': 'Hallazgos sobre declaraciones en pleno',
+    'hallazgos.lista.intro':
+      'Cada hallazgo toma una o más afirmaciones literales de un pleno y las sitúa en su contexto documental (contratos, subvenciones, presupuesto, promesas). Los redacta un proceso automático bajo reglas fijas, salvo los que llevan la firma de una persona; el pie de cada ficha dice quién la editó, y un nombre como «auto-curation-v1» significa que el texto lo escribió una máquina. Cada ficha lista los documentos con los que se ha cotejado —lo corroboren o no— y da derecho de réplica literal al grupo afectado.',
+    'hallazgos.lista.eficiencia':
+      'Esta página verifica **declaraciones en pleno**. Los hallazgos sobre **cuánto cuesta cada servicio** —que no citan a nadie porque no los dijo nadie: salen de las cifras que el ayuntamiento remite al ministerio— se publican junto a los datos de los que salen, en {enlace}.',
+    'hallazgos.lista.eficiencia.enlace': 'eficiencia',
+    'hallazgos.lista.cifra.total': 'Total hallazgos',
+    'hallazgos.lista.cifra.critical': 'Críticos',
+    'hallazgos.lista.cifra.notable': 'Relevantes',
+    'hallazgos.lista.cifra.informational': 'Informativos',
+    'hallazgos.lista.filtro.severidad': 'Severidad',
+    'hallazgos.lista.filtro.todas': 'todas',
+    'hallazgos.lista.filtro.grupo': 'Grupo',
+    'hallazgos.lista.filtro.todos': 'todos',
+    'hallazgos.lista.filtro.pleno': 'Pleno',
+    'hallazgos.lista.vacia':
+      'Todavía no hay hallazgos editoriales publicados. El flujo de curación es: extraer declaraciones → verificar contra datos → promover a hallazgo.',
+    'hallazgos.lista.ninguno': 'Ninguno coincide con los filtros actuales.',
+    'hallazgos.lista.pleno': 'Pleno · {fecha}',
+    'hallazgos.lista.retirados.titulo': 'Hallazgos retirados · {n}',
+    'hallazgos.lista.retirados.texto':
+      'Publicados y después retirados. No se reproduce lo que decían: cada uno se retiró por lo que decía —su motivo va debajo de su huella—, así que republicar el texto aquí devolvería a la web exactamente aquello que la retirada quita. Queda la huella — {sha256} del original, por si alguien conserva una copia y quiere comprobar que coincide.',
+    'hallazgos.lista.como.titulo': 'Cómo se escribe un hallazgo.',
+    'hallazgos.lista.como.texto':
+      'Un proceso automático agrupa las afirmaciones extraídas de las transcripciones del pleno, las coteja con la base documental municipal y redacta el título y el resumen bajo reglas fijas{cuantas}. El pie de cada ficha dice quién la editó, y un nombre como «auto-curation-v1» significa que el texto lo escribió una máquina, no una persona. Los grupos afectados pueden responder con cita literal por la {enlace}.',
+    'hallazgos.lista.como.cuantas':
+      ': de los {total} publicados, **{maquina} los firma una máquina**',
+    'hallazgos.lista.como.enlace': 'vía de rectificación',
+    'hallazgos.lista.como.metodologia': 'Leer metodología →',
+    'hallazgos.lista.transcripciones':
+      '**Citas y transcripciones.** Varias sesiones se transcribieron una segunda vez con un motor mejor. De los {quotes} literales publicados aquí, **{enVigente}** aparecen en la transcripción vigente de su sesión; **{soloEnSustituida}** sólo en la que se sustituyó, y {sinDeterminar} no se pueden situar en ninguna de las dos. Los que no constan en el texto vigente llevan su marca al lado. No reescribimos ninguna cita por nuestra cuenta. {enlace}',
+    'hallazgos.lista.transcripciones.enlace': 'Qué significa cada marca →',
+    'hallazgos.lista.contraste':
+      '**Citas y datos municipales.** Las afirmaciones que sostienen estas citas se cotejan automáticamente con los datos del ayuntamiento. De las {citasConClaim} de aquí, el cotejo encontró algún dato sobre **{shown}**; para **{toggle}** no encontró nada que las confirme ni que las desmienta, y otras **{hidden}** son acusaciones públicas sin ese contraste, que en {enlace} no se publican. Llevan su marca al lado: que una acusación no tenga contraste no la declara falsa, y por sí solo no retira nada.',
+    'hallazgos.lista.contraste.registro': 'el registro de declaraciones',
+    'hallazgos.lista.contraste.retiradas':
+      'Lo que sí se ha retirado está arriba, en las **{n}** fichas que se quedaron sin ninguna cita publicable.',
+    'hallazgos.lista.contraste.enlace': 'Por qué se publican aquí →',
     // Cross-checked documents. The date qualifier is chrome, not data: it says
     // WHICH date is being shown, so «7 feb 2023» beneath a 2026 debate cannot
     // be read as the debate's own date.
@@ -2931,6 +3018,45 @@ export const CATALOGUE = {
     'pleno.fuenteVoto.video.sinCotejar': 'llegit del vídeo, sense acarar amb cap altra font',
     'findings.card.cabecera': '{fecha} · fitxa {ficha} · editat per {editor}',
     'findings.card.replica': 'Rèplica de {grupo} · {fecha}',
+    'findings.detalle.cabecera': '{fecha} · ple {pleno} · editat per {editor}',
+    'findings.detalle.enlace': 'fitxa {ficha}',
+    'findings.detalle.enlace.title': 'Enllaç permanent a esta troballa',
+    'findings.detalle.individual.title':
+      'Atribució individual confirmada per la curadoria editorial',
+    'findings.detalle.banda.dicho': 'El que es va dir',
+    'findings.detalle.banda.cotejo': 'Amb què es va acarar',
+    'findings.detalle.banda.replica': 'Dret de rèplica',
+    'findings.detalle.sinLiterales': 'Esta fitxa no publica cap literal.',
+    'findings.detalle.sinCotejos':
+      'Esta fitxa no publica cap document acarat. Això no diu que no existisca: diu que ací no consta.',
+    'findings.detalle.replica.fuente': 'Font →',
+    'findings.detalle.replica.abierta':
+      'Obert des de {fecha} · sense resposta. Ets el grup afectat? Contacta amb la redacció per a exercir-lo · vegeu {enlace}',
+    'findings.retirada.cabecera': '{id} · ple {fecha} · retirada {retirado} · {editor}',
+    'findings.retirada.recuento': '{citas} cita(es) i {documentos} document(s) acarat(s) ·',
+    'findings.retirada.motivo': 'Motiu: {motivo}',
+    'bitacora.resumen': 'Registre de correccions · {n}',
+    'bitacora.enmendados.uno': '{n} motiu esmenat',
+    'bitacora.enmendados.varios': '{n} motius esmenats',
+    'bitacora.textoRetirado': 'Text retirat',
+    'bitacora.textoVigente': 'Text vigent',
+    'bitacora.textoSustituido': 'Text que va posar esta correcció, substituït el {fecha}',
+    'bitacora.literalRetenido':
+      'esta correcció va canviar el text d’una cita que la porta editorial reté, així que el registre no en reprodueix cap de les dues versions; en deixa l’empremta, que qualsevol amb el text pot refer:',
+    'bitacora.grupoRetenido.rotulo': 'Grup d’un sol escó',
+    'bitacora.grupoRetenido.texto':
+      'esta correcció va canviar un text que anomenava un grup amb un sol regidor, i anomenar eixe grup és anomenar eixa persona, així que el registre no reprodueix {cual}.',
+    'bitacora.grupoRetenido.ninguna': 'cap de les seues dues versions',
+    'bitacora.grupoRetenido.retirada': 'la versió que va retirar',
+    'bitacora.grupoRetenido.puesta': 'la versió que va posar',
+    'bitacora.motivo': 'Motiu:',
+    'bitacora.motivoEnmendadoEl': 'Motiu (esmenat el {fecha}):',
+    'bitacora.motivoEnmendado': 'Motiu esmenat',
+    'bitacora.enmienda.anterior':
+      'El motiu anterior no es reprodueix; en queda l’empremta, que qualsevol amb una còpia anterior pot refer:',
+    'bitacora.escanoUnico.nota':
+      'Les versions que anomenaven un grup d’un sol escó continuen en el repositori públic del projecte: esta pàgina deixa de mostrar-les, no les retira.',
+    'bitacora.escanoUnico.enlace': 'Per què, en la metodologia',
     'findings.refs.tipo.tender': 'contracte',
     'findings.refs.tipo.bdns': 'subvenció BDNS',
     'findings.refs.tipo.budget': 'pressupost',
@@ -3087,6 +3213,45 @@ export const CATALOGUE = {
     'hallazgos.area.clear': 'veure tots',
     'hallazgos.area.note':
       "Troballes les declaracions de les quals es classifiquen en esta àrea. L'atribució de cada troballa és al GRUP polític que va parlar, mai a una persona concreta.",
+    'hallazgos.lista.cabecera.automatica': 'Redacció automàtica · {maquina} de {total}',
+    'hallazgos.lista.titulo': 'Troballes sobre declaracions en ple',
+    'hallazgos.lista.intro':
+      'Cada troballa pren una o més afirmacions literals d’un ple i les situa en el seu context documental (contractes, subvencions, pressupost, promeses). Les redacta un procés automàtic amb regles fixes, llevat de les que porten la firma d’una persona; el peu de cada fitxa diu qui la va editar, i un nom com «auto-curation-v1» significa que el text el va escriure una màquina. Cada fitxa llista els documents amb què s’ha acarat —ho corroboren o no— i dona dret de rèplica literal al grup afectat.',
+    'hallazgos.lista.eficiencia':
+      'Esta pàgina verifica **declaracions en ple**. Les troballes sobre **quant costa cada servei** —que no citen ningú perquè no les va dir ningú: ixen de les xifres que l’ajuntament remet al ministeri— es publiquen al costat de les dades de què ixen, en {enlace}.',
+    'hallazgos.lista.eficiencia.enlace': 'eficiència',
+    'hallazgos.lista.cifra.total': 'Total de troballes',
+    'hallazgos.lista.cifra.critical': 'Crítiques',
+    'hallazgos.lista.cifra.notable': 'Rellevants',
+    'hallazgos.lista.cifra.informational': 'Informatives',
+    'hallazgos.lista.filtro.severidad': 'Gravetat',
+    'hallazgos.lista.filtro.todas': 'totes',
+    'hallazgos.lista.filtro.grupo': 'Grup',
+    'hallazgos.lista.filtro.todos': 'tots',
+    'hallazgos.lista.filtro.pleno': 'Ple',
+    'hallazgos.lista.vacia':
+      'Encara no hi ha troballes editorials publicades. El flux de curació és: extraure declaracions → verificar-les contra dades → promoure-les a troballa.',
+    'hallazgos.lista.ninguno': 'Cap no coincideix amb els filtres actuals.',
+    'hallazgos.lista.pleno': 'Ple · {fecha}',
+    'hallazgos.lista.retirados.titulo': 'Troballes retirades · {n}',
+    'hallazgos.lista.retirados.texto':
+      'Publicades i després retirades. No es reprodueix el que deien: cadascuna es va retirar pel que deia —el seu motiu va davall de la seua empremta—, així que republicar el text ací tornaria a la web exactament allò que la retirada lleva. En queda l’empremta — {sha256} de l’original, per si algú en conserva una còpia i vol comprovar que coincideix.',
+    'hallazgos.lista.como.titulo': 'Com s’escriu una troballa.',
+    'hallazgos.lista.como.texto':
+      'Un procés automàtic agrupa les afirmacions extretes de les transcripcions del ple, les acara amb la base documental municipal i redacta el títol i el resum amb regles fixes{cuantas}. El peu de cada fitxa diu qui la va editar, i un nom com «auto-curation-v1» significa que el text el va escriure una màquina, no una persona. Els grups afectats poden respondre amb una cita literal per la {enlace}.',
+    'hallazgos.lista.como.cuantas':
+      ': de les {total} publicades, **{maquina} les signa una màquina**',
+    'hallazgos.lista.como.enlace': 'via de rectificació',
+    'hallazgos.lista.como.metodologia': 'Llegiu la metodologia →',
+    'hallazgos.lista.transcripciones':
+      '**Cites i transcripcions.** Diverses sessions es van transcriure una segona vegada amb un motor millor. Dels {quotes} literals publicats ací, **{enVigente}** apareixen en la transcripció vigent de la seua sessió; **{soloEnSustituida}** només en la que es va substituir, i {sinDeterminar} no es poden situar en cap de les dues. Els que no consten en el text vigent porten la seua marca al costat. No reescrivim cap cita pel nostre compte. {enlace}',
+    'hallazgos.lista.transcripciones.enlace': 'Què vol dir cada marca →',
+    'hallazgos.lista.contraste':
+      '**Cites i dades municipals.** Les afirmacions que sostenen estes cites s’acaren automàticament amb les dades de l’ajuntament. De les {citasConClaim} d’ací, l’acarament va trobar alguna dada sobre **{shown}**; per a **{toggle}** no va trobar res que les confirme ni que les desmentisca, i unes altres **{hidden}** són acusacions públiques sense eixe contrast, que en {enlace} no es publiquen. Porten la seua marca al costat: que una acusació no tinga contrast no la declara falsa, i per si sol no retira res.',
+    'hallazgos.lista.contraste.registro': 'el registre de declaracions',
+    'hallazgos.lista.contraste.retiradas':
+      'El que sí que s’ha retirat és a dalt, en les **{n}** fitxes que es van quedar sense cap cita publicable.',
+    'hallazgos.lista.contraste.enlace': 'Per què es publiquen ací →',
     'findings.refs.crossChecked': 'Documents acarats',
     'findings.refs.provenance': 'Procedència de les cites',
     'findings.refs.contradiction': 'Documents que contradiuen',

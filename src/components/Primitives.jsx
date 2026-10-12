@@ -442,12 +442,23 @@ export function EvidenceBand({ n, title, children }) {
  * en tres claves y dejar que cada idioma las recomponga en su orden — que es
  * como se escriben las traducciones que no se pueden revisar.
  *
- * @param {{texto: string}} p
+ * `estilo` va a cada negrita: /hallazgos las pinta en tinta plena dentro de un
+ * párrafo atenuado.
+ *
+ * @param {{texto: string, estilo?: import('react').CSSProperties}} p
  */
-export function Marcado({ texto }) {
+export function Marcado({ texto, estilo }) {
   return String(texto)
     .split('**')
-    .map((p, i) => (i % 2 ? <strong key={i}>{p}</strong> : <Fragment key={i}>{p}</Fragment>))
+    .map((p, i) =>
+      i % 2 ? (
+        <strong key={i} style={estilo}>
+          {p}
+        </strong>
+      ) : (
+        <Fragment key={i}>{p}</Fragment>
+      ),
+    )
 }
 
 /**
