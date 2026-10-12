@@ -38,7 +38,6 @@ import { SECTION_LABEL } from '../../src/hooks/usePlenoAgendas'
 import { SEVERITY_LABEL } from '../../src/hooks/usePlenoFindings'
 import { DEPARTMENT_LABEL } from '../../src/scraper/departments'
 import { REAL_BLOCS } from '../../src/lib/party-label'
-import { CORPUS_IDS } from '../../src/scraper/claim-verdicts'
 import {
   cadenasDe,
   datosPintados,
@@ -245,15 +244,14 @@ const trozosDeSnippets = (mapa) => [
 /**
  * Lo que una tarjeta de declaración pinta del dato con forma de token, que
  * `datosPintados` no puede reconocer: la unidad del recuento que el extractor sacó de
- * la cita («actuaciones»), en su propio nodo junto a la cifra, los nombres de corpus de
- * «Fuentes comprobadas» —identificadores, iguales en los dos idiomas— y las unidades de
- * un importe abreviado («27 K €»).
+ * la cita («actuaciones»), en su propio nodo junto a la cifra, y las unidades de un
+ * importe abreviado («27 K €»). Los corpus de «Fuentes comprobadas» ya no: llevan
+ * rótulo del catálogo (`ledger.corpus.*`) desde el 12-10-2026.
  */
 const DATO_DE_LAS_DECLARACIONES = (mapa) => [
   ...mapa[RUTA_FRAGMENTO].items
     .map((it) => it.claim?.entities?.countUnit)
     .filter((u) => typeof u === 'string' && u !== ''),
-  ...CORPUS_IDS,
   'K €',
   'M €',
 ]
