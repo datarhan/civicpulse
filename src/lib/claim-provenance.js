@@ -46,7 +46,7 @@ import {
   resumenSinRegistro,
 } from '../scraper/claim-verdicts'
 import { CLASES_DE_FIRMA, nombraAUnaPersona } from '../scraper/firma-de-persona'
-import { CATALOGUE } from '../i18n'
+import { CATALOGUE, rotuloDe } from '../i18n'
 import { rellena } from './formatters'
 
 /**
@@ -57,6 +57,22 @@ import { rellena } from './formatters'
  * @param {string} clave
  */
 const castellano = (clave) => /** @type {Record<string,string>} */ (CATALOGUE.es)[clave] ?? clave
+
+/**
+ * El nombre que el lector lee de un corpus de `CORPUS_IDS` (`ledger.corpus.<id>`).
+ *
+ * Hasta el 12-10-2026 la tarjeta imprimía el identificador —«Fonts comprovades:
+ * plenos-agendas · tenders»—, un token de máquina en las dos lenguas. Sin rótulo
+ * en el catálogo sale el identificador, que es lo de antes y no un hueco; que no
+ * falte ninguno lo exige tests/i18n-mapa-enums.test.ts, leyendo el enum.
+ *
+ * @param {string} id
+ * @param {(clave: string) => string} t
+ */
+const rotuloDeCorpus = (id, t) => rotuloDe(t, `ledger.corpus.${id}`, id) ?? id
+
+/** Los corpus de la frase castellana del verificador, con el nombre de la línea. */
+const enCastellano = (id) => rotuloDeCorpus(id, castellano)
 
 /** Lo que se dice cuando no consta quién comprobó la cita. */
 export const SIN_VERIFICADOR = castellano('verificador.sinAnotar')
@@ -217,8 +233,8 @@ export function etiquetaVerificador(v, t = castellano) {
  * de encima: el reparto de /declaraciones contaba esas filas como «sin corpus
  * que consultar» mientras su tarjeta decía «no constan» (2026-09-29).
  *
- * Los nombres de corpus salen como identificadores, iguales en los dos idiomas;
- * las dos frases, del catálogo.
+ * Los corpus y las dos frases salen del catálogo, en el idioma de la página.
+ * Cada corpus, con su rótulo (`rotuloDeCorpus`), no con su identificador.
  *
  * @param {{ checkedAgainst?: unknown[] | null, derivedBy?: unknown[] | null,
  *   source?: string } | null | undefined} v  la verificación servida, entera.
@@ -227,7 +243,10 @@ export function etiquetaVerificador(v, t = castellano) {
  */
 export function fuentesComprobadas(v, t = castellano) {
   const desenlace = desenlaceDeCotejo(v)
-  if (desenlace === 'con-corpus') return corpusReales(v?.checkedAgainst).join(' · ')
+  if (desenlace === 'con-corpus')
+    return corpusReales(v?.checkedAgainst)
+      .map((id) => rotuloDeCorpus(id, t))
+      .join(' · ')
   return t(desenlace === 'sin-corpus' ? 'ledger.fuentes.ninguna' : 'ledger.fuentes.noConstan')
 }
 
@@ -250,6 +269,14 @@ export function fuentesComprobadas(v, t = castellano) {
  * `sin-datos`, que es el único veredicto que la escribe. Cualquier otra
  * explicación —la del motor, la de un curador— sale como vino.
  *
+ * La re-derivada nombra los corpus como la línea de debajo los nombra en
+ * castellano (`ledger.corpus.*`), no con el identificador que el verificador
+ * guarda: «No se encontró registro en contratos y presupuesto…» encima de
+ * «Fuentes comprobadas: contratos · presupuesto». La frase es castellana, como
+ * todo lo que escribe el verificador, y lo sigue siendo en una página en
+ * valencià; lo guardado no se toca y se sigue reconociendo con sus
+ * identificadores.
+ *
  * La otra frase del verificador para un `sin-datos`, la del expediente que se
  * parece (claim-verdicts.ts, «El expediente que se parece»), se lee con la
  * regla de `evidenciaSegunFuentes`: sin contratos cotejados, la fila no se
@@ -267,13 +294,14 @@ export function fuentesComprobadas(v, t = castellano) {
 export function resumenSegunFuentes(v, texto = v?.summary) {
   if (v?.verdict !== 'sin-datos') return texto
   if (esResumenCasi(texto)) {
-    if (!leyoContratos(v?.checkedAgainst)) return resumenSinRegistro(v?.checkedAgainst)
+    if (!leyoContratos(v?.checkedAgainst))
+      return resumenSinRegistro(v?.checkedAgainst, enCastellano)
     if (texto !== RESUMEN_CASI_FIJO) return texto
     const fila = lista(v?.evidence).find((e) => e?.kind === 'tender')
     return resumenCasi(!String(fila?.snippet ?? '').endsWith(COLA_SIN_IMPORTE))
   }
   if (!esResumenSinRegistro(texto)) return texto
-  return resumenSinRegistro(v?.checkedAgainst)
+  return resumenSinRegistro(v?.checkedAgainst, enCastellano)
 }
 
 /**
