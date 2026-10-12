@@ -73,6 +73,8 @@ const ROTULO = 'Fuentes comprobadas:'
 const SIN_CONSTANCIA = 'no constan'
 /** La etiqueta con la que la tarjeta rotula una fila de `kind: 'tender'`. */
 const CONTRATO = 'CONTRATO'
+/** Y en /declaraciones, entre corchetes: era la clave del enum, «[tender]». */
+const FILA_CONTRATO = `[${CATALOGUE.es['ledger.evidencia.tender']}]`
 /** Cómo nombra un corpus la línea de fuentes, y la explicación que la tarjeta re-deriva. */
 const corpus = (id) => CATALOGUE.es[`ledger.corpus.${id}`]
 /** Los rótulos de los dos corpus de contratos en esa línea. */
@@ -279,7 +281,7 @@ describe('/declaraciones: la misma cita, sin la fila', () => {
     return literal.closest('.cp-card')
   }
 
-  it('una cita sin contratos cotejados no enseña «1 evidencia» ni la fila [tender]', async () => {
+  it('una cita sin contratos cotejados no enseña «1 evidencia» ni la fila [Contrato]', async () => {
     // Lo servido ya no trae ninguna (04-10-2026): la fila sale del fixture,
     // tal como se publicaba, dentro de un trozo de un solo ítem.
     const fila = ANTES.sinCotejo[0]
@@ -288,6 +290,7 @@ describe('/declaraciones: la misma cita, sin la fila', () => {
     monta(trozo)
     const card = await tarjetaDe(fila)
     expect(card).not.toBeNull()
+    expect(within(card).queryByText(FILA_CONTRATO)).toBeNull()
     expect(within(card).queryByText(/\[tender\]/)).toBeNull()
     expect(card.textContent).not.toMatch(/\d+ evidencias? ·/)
   })
@@ -298,6 +301,6 @@ describe('/declaraciones: la misma cita, sin la fila', () => {
     monta(trozo)
     const card = await tarjetaDe(fila)
     expect(card).not.toBeNull()
-    expect(within(card).getByText(/\[tender\]/)).toBeDefined()
+    expect(within(card).getByText(FILA_CONTRATO)).toBeDefined()
   })
 })

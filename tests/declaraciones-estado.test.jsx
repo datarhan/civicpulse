@@ -6,7 +6,7 @@ import { MemoryRouter } from 'react-router-dom'
 import { installFetchMock } from './setup/mockFetch'
 import Declaraciones from '../src/pages/Declaraciones'
 import { CATALOGUE } from '../src/i18n'
-import { snippetWithoutStatus } from '../src/lib/crosschecked-status.js'
+import { snippetDeEvidencia } from '../src/lib/crosschecked-status.js'
 
 /**
  * La tarjeta de /declaraciones no imprime la cola «· estado: <palabra>».
@@ -15,7 +15,7 @@ import { snippetWithoutStatus } from '../src/lib/crosschecked-status.js'
  * que escribe, y el estado es la palabra cruda del registro, en inglés
  * —«formalized», «awarded», «revoked»— o el centinela «unknown», que significa
  * «no se sabe» y no un estado. /hallazgos y las tarjetas de `ClaimLedger` ya lo
- * quitan con `snippetWithoutStatus` (src/lib/crosschecked-status.js); la lista
+ * quitan con `snippetDeEvidencia` (src/lib/crosschecked-status.js); la lista
  * de evidencias de /declaraciones lo imprimía tal cual.
  *
  * Se pinta la PÁGINA, con los trozos servidos, y no el componente de la fila:
@@ -86,9 +86,7 @@ describe('/declaraciones — sin la palabra de estado cruda en la evidencia', ()
       const texto = tarjetas.map((c) => c?.textContent ?? '').join('\n')
       // Cuenta sólo las tarjetas que de verdad pintan el fragmento: una cuya
       // evidencia se descarta, o que queda tercera, no prueba nada.
-      const cabezas = it.verification.evidence
-        .filter(lleva)
-        .map((e) => snippetWithoutStatus(e.snippet))
+      const cabezas = it.verification.evidence.filter(lleva).map((e) => snippetDeEvidencia(e))
       if (cabezas.some((c) => c && texto.includes(c))) pintadas++
       expect(texto, it.claim.id).not.toMatch(CRUDO)
     }
