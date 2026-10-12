@@ -146,6 +146,8 @@ const ABIERTOS: Caso[] = [
     argv: ['retirar', 'una-promesa', '--motivo', MOTIVO, '--editor', ROL],
     datos: ['promises.json'],
     copia: true,
+    // Desde que tiene `plazo`, `--dry-run` es un modo de verdad en las cuatro vías.
+    dryRun: true,
   },
   {
     orden: 'pleno-vote',

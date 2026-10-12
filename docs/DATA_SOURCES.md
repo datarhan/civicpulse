@@ -495,6 +495,7 @@ overwrites it. Change the bot's SQLite instead.
 - **Pipeline** — **human-curated** · `promises.ts` validates the schema
 - **Source** — Hand-seeded from press citations (`press.json`) + real pleno votes + budget/tender snapshots. Every record has verbatim quote + source URL + publisher + ISO date
 - **Surfaces** — `/promesas`, `/` landing editorial column (`PromesasBlockD`), `/metodologia`, `/aviso-legal`
+- **Deadline (`dueBy`)** — set only by `npm run corregir-promesa -- plazo <id> <YYYY-MM-DD|YYYY-MM> --fuente "<verbatim fragment of the quote>" --motivo "<…>" --editor "<person>" [--dry-run]`, cleared by `quitar-plazo <id>`. A month publishes as its last day (rule `fin-de-mes`). The validator requires `dueBySource` (≥20 chars, an exact substring of the published `quote`), a real day no earlier than `madeAt`, and a chained, signed `dueByLog` whose last entry is the published deadline; setting needs a person (`rechazoDeFirma`), clearing only rejects the hole (`rechazoDeMarcador`). Both refuse during the LOREG freeze. Read by `/departamentos` («Plazos vencidos»).
 
 ### Promise suggestions (inference layer)
 

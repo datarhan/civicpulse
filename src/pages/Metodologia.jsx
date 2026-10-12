@@ -770,14 +770,33 @@ export default function Metodologia() {
             <em>en esa votación</em>, y lo hace una persona, no el extractor.
           </li>
           <li>
+            <strong>
+              El plazo de una promesa lo fija una persona, con las palabras de la cita.
+            </strong>{' '}
+            Ningún proceso automático convierte en fecha un plazo que aparece en el texto de una
+            promesa («el próximo mes de septiembre»): deducirla sería el plazo inferido por máquina
+            que el validador impide. Lo fija, si lo fija, una persona que firma con su nombre y
+            apellido, da su motivo y copia las palabras de la cita que lo sostienen (
+            <code>dueBySource</code>, ≥20 caracteres). El validador comprueba que esas palabras
+            estén <em>literalmente</em> en la cita que publica la tarjeta —no una paráfrasis, no
+            otra frase de la noticia—, que la fecha exista y no sea anterior al día de la promesa, y
+            que el cambio conste en su bitácora (<code>dueByLog</code>, publicada en{' '}
+            <code>/data/promises.json</code>): quién, cuándo, de qué fecha a cuál, por qué y sobre
+            qué palabras. Cuando la cita nombra un día, se publica ese día.{' '}
+            <strong>Cuando nombra sólo un mes, se publica el último día de ese mes</strong>: la
+            promesa no se llama vencida mientras el mes que dijo sigue en curso. Una estación, un
+            trimestre o «a principios de año» no tienen una fecha que se pueda firmar, y no se les
+            pone ninguna. Quitar un plazo también se firma y se razona, y queda en la misma
+            bitácora. Durante la veda electoral no se fija ni se quita ninguno.
+          </li>
+          <li>
             <strong>Sin fecha no hay cero.</strong> El recuento de plazos vencidos sólo mira el
-            campo <code>dueBy</code>; un plazo que aparece en el texto de una promesa («el próximo
-            mes de septiembre») no se convierte en fecha, porque deducirla sería el plazo inferido
-            por máquina que el validador impide. La mayoría de las áreas no tiene ningún compromiso
-            fechado, y ahí la cifra se publica como <strong>«—» · «sin plazo fechado»</strong>, no
-            como 0: un cero diría que no ha vencido nada, y lo único que se sabe es que nada tiene
-            fecha. Cuando un área sí tiene compromisos fechados, la cifra va con su denominador («de
-            N con plazo fechado»). Hasta octubre de 2026 se publicaba el 0 a secas.
+            campo <code>dueBy</code>, nunca el texto de la cita. La mayoría de las áreas no tiene
+            ningún compromiso fechado, y ahí la cifra se publica como{' '}
+            <strong>«—» · «sin plazo fechado»</strong>, no como 0: un cero diría que no ha vencido
+            nada, y lo único que se sabe es que nada tiene fecha. Cuando un área sí tiene
+            compromisos fechados, la cifra va con su denominador («de N con plazo fechado»). Hasta
+            octubre de 2026 se publicaba el 0 a secas.
           </li>
           <li>
             <strong>El aviso de plazo vencido no cambia ningún estado.</strong> Es una señalización

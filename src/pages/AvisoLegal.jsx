@@ -282,6 +282,10 @@ export default function AvisoLegal() {
           </li>
           <li>Los estados publicados quedan congelados a la fecha de inicio del periodo.</li>
           <li>
+            No se fija ni se quita el plazo de ninguna promesa, y el aviso de plazo vencido deja de
+            mostrarse.
+          </li>
+          <li>
             No se sube ningún veredicto de una declaración de pleno ni se reescribe su explicación;
             retirar una subida ya firmada sigue siendo posible.
           </li>
@@ -308,7 +312,14 @@ export default function AvisoLegal() {
           el estado «inviable» siguen requiriendo intervención humana, y todo el proceso se detiene
           durante el periodo electoral (LOREG art. 50). Una cita corregida conserva en su ficha la
           versión anterior, y una promesa retirada queda listada en /promesas con su fecha y su
-          motivo, sin su cita.
+          motivo, sin su cita. Ningún proceso automático pone fecha límite a una promesa: el plazo
+          lo fija una persona que firma con su nombre, da su motivo y copia las palabras literales
+          de la cita que lo sostienen, y el cambio queda registrado con su firma en el fichero
+          publicado de promesas, <code>/data/promises.json</code> (ver{' '}
+          <a href="/metodologia" style={{ color: 'var(--civic)' }}>
+            /metodologia
+          </a>
+          ).
         </p>
       </Card>
 
