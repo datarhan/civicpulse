@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-12T15:36:02.381Z",
+  "generatedAt": "2026-10-12T16:55:45.427Z",
   "version": "1",
   "plenos": [
     {
@@ -423,7 +423,7 @@
         "salud": 1,
         "cultura": 2
       },
-      "bytes": 204485
+      "bytes": 204313
     },
     {
       "plenoId": "qz6weg",
@@ -616,7 +616,7 @@
         "educacion": 1,
         "vivienda": 2
       },
-      "bytes": 1368050
+      "bytes": 1367887
     },
     {
       "plenoId": "1080zow",
@@ -868,7 +868,7 @@
         "budget": 502,
         "promises": 518,
         "curator-downgrade": 41,
-        "verdict-engine": 524,
+        "verdict-engine": 522,
         "plenos-agendas": 3
       },
       "porClaseDocumental": {
