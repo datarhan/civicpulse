@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-12T15:36:02.381Z",
+  "generatedAt": "2026-10-12T16:55:45.427Z",
   "version": "1",
   "plenoId": "1qi8axv",
   "plenoDate": "2025-12-23",
@@ -834,9 +834,10 @@
       "verification": {
         "claimId": "1qi8axv-017-afi-e2b0f0",
         "verdict": "sin-datos",
-        "summary": "Ninguno de los candidatos presenta un respaldo genuino a la afirmación. Aunque el candidato [5] menciona un contrato relacionado con el temporal de lluvias (DANA) y un importe de €141.562,93, esta cifra no coincide con los €143.539 mencionados en la afirmación.",
+        "summary": "Conclusión: ningún candidato respalda la afirmación; respaldo nulo.",
         "evidence": [],
-        "checkedAgainst": [
+        "checkedAgainst": [],
+        "derivedBy": [
           "verdict-engine"
         ],
         "confidence": 0.2,
