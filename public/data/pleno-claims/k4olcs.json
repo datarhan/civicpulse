@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-12T10:06:51.954Z",
+  "generatedAt": "2026-10-12T10:51:39.699Z",
   "version": "1",
   "plenoId": "k4olcs",
   "plenoDate": "2026-04-20",
@@ -4742,9 +4742,10 @@
       "verification": {
         "claimId": "k4olcs-101-cit-ec24fe",
         "verdict": "sin-datos",
-        "summary": "El candidato [0] (contrato de 25.794 € para el Portal del Empleado en Riba-roja) no respalda la afirmación.",
+        "summary": "Ningún candidato respalda la afirmación; la fuerza del respaldo es nula, y la afirmación es en buena parte una valoración política no verificable con estos registros.",
         "evidence": [],
-        "checkedAgainst": [
+        "checkedAgainst": [],
+        "derivedBy": [
           "verdict-engine"
         ],
         "confidence": 0.2,

@@ -14,6 +14,7 @@ import {
   evidenciaSegunFuentes,
   fuentesComprobadas,
   resumenSegunFuentes,
+  rotuloDeParecido,
 } from '../lib/claim-provenance.js'
 import { ROTULO_RESUMEN_RETIRADO, resumenPublicable } from '../lib/resumenes-retirados.js'
 import { PuenteDeImporte } from './PuenteDeImporte'
@@ -40,6 +41,7 @@ function EvidenceRow({ e, cifra }) {
       agenda: 'Orden del día',
       licitacion: 'Licitación',
     }[e.kind] || e.kind
+  const parecido = rotuloDeParecido(e.similarity)
   const body = (
     <>
       <span
@@ -55,12 +57,14 @@ function EvidenceRow({ e, cifra }) {
         {kindLabel.toUpperCase()}
       </span>
       <span style={{ fontSize: 'var(--fs-meta)', color: 'var(--ink)' }}>{e.snippet}</span>
-      {typeof e.similarity === 'number' && (
+      {/* Qué mide el número y qué no: suelto, «sim 1.00» junto a «Parcial» se
+          leía como coincidencia perfecta (src/lib/claim-provenance.js). */}
+      {parecido && (
         <span
           className="mono"
           style={{ fontSize: 'var(--fs-micro)', color: 'var(--ink50)', marginLeft: 6 }}
         >
-          sim {e.similarity.toFixed(2)}
+          {parecido}
         </span>
       )}
     </>
