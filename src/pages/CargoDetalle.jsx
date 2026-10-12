@@ -271,7 +271,11 @@ function AreaActivity({ slugs }) {
               ) : (
                 <>
                   <span className="mono">{b.plenoVotes.total}</span>{' '}
-                  {t('cargos.detalle.actividad.votos')}
+                  {t(
+                    b.plenoVotes.total === 1
+                      ? 'cargos.detalle.actividad.votos.uno'
+                      : 'cargos.detalle.actividad.votos.varios',
+                  )}
                 </>
               )}
               {' · '}
