@@ -1,3 +1,5 @@
+import { useT } from '../../i18n'
+
 /**
  * Rendered where a vote's per-bloc tally used to be, once a curator withdrew it.
  *
@@ -13,6 +15,7 @@
  * paraphrases or partially restores the tally — a retraction only ever removes.
  */
 export function VoteBreakdownRetracted({ retraction }) {
+  const t = useT()
   if (!retraction) return null
   const { reason, retractedAt } = retraction
   const day = typeof retractedAt === 'string' ? retractedAt.slice(0, 10) : null
@@ -35,7 +38,8 @@ export function VoteBreakdownRetracted({ retraction }) {
           marginBottom: 3,
         }}
       >
-        DESGLOSE POR GRUPOS RETIRADO{day ? ` · ${day}` : ''}
+        {t('plenoDetail.voto.desgloseRetirado')}
+        {day ? ` · ${day}` : ''}
       </div>
       <div style={{ fontSize: 'var(--fs-aux)', color: 'var(--ink70)', lineHeight: 1.45 }}>
         {reason}

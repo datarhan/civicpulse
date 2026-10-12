@@ -29,11 +29,16 @@ export const REAL_BLOCS = ['PSOE', 'PP', 'VOX', 'Compromís', 'Ciudadanos', 'EU-
 
 /**
  * Reader-facing name for a bloc code.
+ *
+ * `sinIdentificar` es cómo se dice «no identificado» en el idioma de quien lee:
+ * /plenos/:id le pasa `t('pleno.grupoNoIdentificado')`. La regla de cuándo se dice
+ * sigue aquí, en un solo sitio.
  * @param {string|null|undefined} bloc
+ * @param {string} [sinIdentificar]
  * @returns {string}
  */
-export function blocLabel(bloc) {
-  if (!bloc || bloc === 'Otro') return 'Grupo no identificado'
+export function blocLabel(bloc, sinIdentificar = 'Grupo no identificado') {
+  if (!bloc || bloc === 'Otro') return sinIdentificar
   return bloc
 }
 

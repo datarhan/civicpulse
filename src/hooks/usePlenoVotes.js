@@ -1,11 +1,17 @@
 // @ts-check
 import { useJsonFetch } from './useJsonFetch'
+import { CATALOGUE } from '../i18n'
 
+/**
+ * El rótulo castellano de cada desenlace, leído del catálogo (`pleno.desenlace.<valor>`). /plenos/:id
+ * lo pinta en el idioma de la interfaz con `rotuloDe`; las páginas que aún no están
+ * traducidas siguen leyendo esta tabla y escriben lo mismo que escribían.
+ */
 export const OUTCOME_LABEL = {
-  aprobado: 'Aprobado',
-  rechazado: 'Rechazado',
-  retirado: 'Retirado',
-  aplazado: 'Aplazado',
+  aprobado: CATALOGUE.es['pleno.desenlace.aprobado'],
+  rechazado: CATALOGUE.es['pleno.desenlace.rechazado'],
+  retirado: CATALOGUE.es['pleno.desenlace.retirado'],
+  aplazado: CATALOGUE.es['pleno.desenlace.aplazado'],
 }
 
 export const OUTCOME_TONE = {
@@ -15,11 +21,16 @@ export const OUTCOME_TONE = {
   aplazado: 'warn',
 }
 
+/**
+ * El rótulo castellano de cada sentido del voto, leído del catálogo (`pleno.sentido.<valor>`). /plenos/:id
+ * lo pinta en el idioma de la interfaz con `rotuloDe`; las páginas que aún no están
+ * traducidas siguen leyendo esta tabla y escriben lo mismo que escribían.
+ */
 export const DIRECTION_LABEL = {
-  a_favor: 'A favor',
-  en_contra: 'En contra',
-  abstencion: 'Abstención',
-  ausente: 'Ausente',
+  a_favor: CATALOGUE.es['pleno.sentido.a_favor'],
+  en_contra: CATALOGUE.es['pleno.sentido.en_contra'],
+  abstencion: CATALOGUE.es['pleno.sentido.abstencion'],
+  ausente: CATALOGUE.es['pleno.sentido.ausente'],
 }
 
 export const DIRECTION_TONE = {

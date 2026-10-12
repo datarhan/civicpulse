@@ -1,5 +1,5 @@
 import { Card, Pill, SectionHead, ExtLink, Quote, RotuloDeCita } from './Primitives'
-import { usePlenoFindings, SEVERITY_LABEL, SEVERITY_TONE } from '../hooks/usePlenoFindings'
+import { usePlenoFindings, SEVERITY_TONE } from '../hooks/usePlenoFindings'
 import { useTenders } from '../hooks/useTenders'
 import { PARTY_TONE } from '../hooks/usePromises'
 import { useFindingQuoteProvenance, provenanceFor } from '../hooks/useFindingQuoteProvenance'
@@ -12,10 +12,11 @@ import {
   refStatusIndexFor,
   refStatus,
   snippetWithoutStatus,
+  snippetParaLeer,
   REF_STATUS_KINDS,
 } from '../lib/crosschecked-status.js'
-import { fmtDateShort } from '../lib/formatters'
-import { useT } from '../i18n'
+import { fmtDateShort, rellena } from '../lib/formatters'
+import { rotuloDe, useLocale, useT } from '../i18n'
 import { ROTULO_CITA_RETENIDA, citaRetenida } from '../lib/cita-retenida'
 
 /**
@@ -59,7 +60,7 @@ import { ROTULO_CITA_RETENIDA, citaRetenida } from '../lib/cita-retenida'
  * not its start — and a document that publishes none says so in words. A blank
  * would read as recent, which is the failure being repaired.
  */
-function RefDate({ date, t }) {
+function RefDate({ date, t, locale }) {
   // `undefined` = nothing has resolved this ref yet (the tenders snapshot is
   // still in flight). Rendering "sin fecha" then would be a claim about the
   // document made from our own loading state.
@@ -83,7 +84,7 @@ function RefDate({ date, t }) {
       }}
       title={known ? `${field} · ${date.iso}` : t('findings.refs.date.noneTitle')}
     >
-      {known ? `${fmtDateShort(date.iso)} · ${field}` : t('findings.refs.date.none')}
+      {known ? `${fmtDateShort(date.iso, locale)} · ${field}` : t('findings.refs.date.none')}
     </span>
   )
 }
@@ -154,7 +155,7 @@ function RefStatus({ status, t }) {
 }
 
 export function RefList({ refs, kind, plenoDate, ficha }) {
-  const t = useT()
+  const { locale, t } = useLocale()
   // Tender dates live in tenders.json and nowhere smaller. A precomputed
   // index would be lighter, but it goes stale exactly where mis-dating is most
   // likely — the newest finding, citing the newest expediente — and a stale
@@ -196,13 +197,21 @@ export function RefList({ refs, kind, plenoDate, ficha }) {
         const isUrl = /^https?:\/\//.test(r.ref)
         const body = (
           <>
+            {/* El tipo de documento por su rótulo: se pintaba la clave del enum en
+                mayúsculas, «TENDER», «PLENO-VIDEO». Las mayúsculas las pone ahora
+                el estilo, como en la cabecera de la banda. */}
             <span
               className="mono"
-              style={{ fontSize: 'var(--fs-micro)', color: 'var(--ink50)', marginRight: 6 }}
+              style={{
+                fontSize: 'var(--fs-micro)',
+                color: 'var(--ink50)',
+                marginRight: 6,
+                textTransform: 'uppercase',
+              }}
             >
-              {r.kind.toUpperCase()}
+              {rotuloDe(t, `findings.refs.tipo.${r.kind}`, r.kind)}
             </span>{' '}
-            <RefDate date={refDate(r, index, plenoDate)} t={t} />{' '}
+            <RefDate date={refDate(r, index, plenoDate)} t={t} locale={locale} />{' '}
             <RefStatus status={refStatus(r, statusIndex)} t={t} />{' '}
             {/* The spaces above are load-bearing: margins separate the chips
                 visually, but a screen reader reads the text nodes, and without
@@ -210,8 +219,14 @@ export function RefList({ refs, kind, plenoDate, ficha }) {
             {/* The snippet loses its `· estado: <token>` tail: the state now
                 has a field of its own, and the tail printed the raw sentinel
                 «unknown» to a reader on 16 of these. Display only — the
-                committed snippet is untouched. */}
-            <span style={{ fontSize: 'var(--fs-meta)' }}>{snippetWithoutStatus(r.snippet)}</span>
+                committed snippet is untouched. Un contrato pierde además el
+                estado sin rótulo y cambia su categoría por el rótulo
+                (`snippetParaLeer`): «· awarded», «· construction». */}
+            <span style={{ fontSize: 'var(--fs-meta)' }}>
+              {r.kind === 'tender'
+                ? snippetParaLeer(r.snippet, (c) => rotuloDe(t, `contrato.categoria.${c}`, null))
+                : snippetWithoutStatus(r.snippet)}
+            </span>
           </>
         )
         return isUrl ? (
@@ -883,6 +898,7 @@ export function CitasDeLaFicha({ quotes, prov, curatorName, colorDeGrupo = false
 }
 
 export function FindingCard({ f }) {
+  const t = useT()
   const { data: provenance } = useFindingQuoteProvenance()
   const prov = provenanceFor(provenance, f.id)
   // El nombre con que la nota y la banda de cotejos hablan de esta ficha, y el
@@ -902,10 +918,14 @@ export function FindingCard({ f }) {
         <div style={{ flex: 1, minWidth: 0 }}>
           <div style={{ display: 'flex', gap: 6, alignItems: 'center', marginBottom: 4 }}>
             <Pill tone={SEVERITY_TONE[f.severity] || 'neutral'} size="xs">
-              {SEVERITY_LABEL[f.severity] || f.severity}
+              {rotuloDe(t, `pleno.gravedad.${f.severity}`, f.severity)}
             </Pill>
             <span className="mono" style={{ fontSize: 'var(--fs-micro)', color: 'var(--ink50)' }}>
-              {f.plenoDate} · ficha {ficha} · editado por {f.curatorName}
+              {rellena(t('findings.card.cabecera'), {
+                fecha: f.plenoDate,
+                ficha,
+                editor: f.curatorName,
+              })}
             </span>
           </div>
           <div style={{ fontSize: 'var(--fs-body)', fontWeight: 600, lineHeight: 1.35 }}>
@@ -969,7 +989,10 @@ export function FindingCard({ f }) {
               marginBottom: 2,
             }}
           >
-            Réplica de {f.response.from} · {f.response.respondedAt}
+            {rellena(t('findings.card.replica'), {
+              grupo: f.response.from,
+              fecha: f.response.respondedAt,
+            })}
           </div>
           «{f.response.quote}»
         </div>

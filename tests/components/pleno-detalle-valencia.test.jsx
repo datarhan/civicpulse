@@ -37,6 +37,7 @@ import { OUTCOME_LABEL } from '../../src/hooks/usePlenoVotes'
 import { SECTION_LABEL } from '../../src/hooks/usePlenoAgendas'
 import { SEVERITY_LABEL } from '../../src/hooks/usePlenoFindings'
 import { DEPARTMENT_LABEL } from '../../src/scraper/departments'
+import { REAL_BLOCS } from '../../src/lib/party-label'
 import {
   cadenasDe,
   datosPintados,
@@ -242,7 +243,14 @@ const trozosDeSnippets = (mapa) =>
   )
 
 /** Lo que no es lengua en esta página. */
-const SIGLAS = ['YouTube', 'Riba-roja de Túria', 'auto-curation-v1']
+const SIGLAS = [
+  'YouTube',
+  'WhatsApp',
+  'Telegram',
+  'Riba-roja de Túria',
+  'auto-curation-v1',
+  ...REAL_BLOCS,
+]
 
 const AREAS_IGUALES = Object.values(DEPARTMENT_LABEL)
   .filter((l) => l.es === l.ca)
@@ -357,13 +365,28 @@ describe(`/plenos/${ID}: cada pestaña, sin tokens y en valencià sin castellano
         [...es.piezas, ...piezasEs],
         new Set([...cadenasDe(esc.fetch), ...trozosDeSnippets(esc.fetch)]),
       )
-      const { castellanoEn } = detectorDeCastellano(
-        masLargasPrimero([...datos, ...SIGLAS, ...AREAS_IGUALES]),
-      )
+      const noSeTraduce = masLargasPrimero([...datos, ...SIGLAS, ...AREAS_IGUALES])
+      const { castellanoEn, sinTraducir } = detectorDeCastellano(noSeTraduce)
       const castellano = deLaPestana(lecturas.ca.sinPendiente).flatMap(({ pestana, texto }) =>
         castellanoEn(texto).map((p) => `${pestana}: «${p}» en «${texto.slice(0, 120)}»`),
       )
       expect.soft([...new Set(castellano)], 'castellano dentro del valencià').toEqual([])
+
+      // La otra mitad: una cadena valenciana copiada del castellano deja de ser
+      // «sólo castellana» y `castellanoEn` no la ve. Pieza a pieza, lo que se lee
+      // igual en los dos idiomas sin ser dato.
+      const es2 = deLaPestana(lecturas.es.sinPendiente).map((p) => p.texto)
+      const ca2 = deLaPestana(lecturas.ca.sinPendiente).map((p) => p.texto)
+      expect(ca2.length, 'las dos lecturas no pintan las mismas piezas').toBe(es2.length)
+      // Las piezas compuestas —«PP · A favor · 7», un snippet con su categoría— se
+      // comparan trozo a trozo: cada trozo es dato, sigla o una cadena que el
+      // catálogo escribe igual en los dos idiomas, y entera no es ninguna de ellas.
+      const trozos = (p) => p.split(' · ')
+      const pares = es2.flatMap((p, i) =>
+        p === ca2[i] ? trozos(p).map((t) => [t, t]) : [[p, ca2[i]]],
+      )
+      const iguales = sinTraducir(pares)
+      expect.soft([...new Set(iguales)], 'se lee igual en castellano y en valencià').toEqual([])
     },
     180000,
   )
