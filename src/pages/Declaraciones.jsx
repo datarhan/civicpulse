@@ -13,6 +13,7 @@ import { CLAIM_VERDICTS, resumirSinDatos, desenlaceDeCotejo } from '../scraper/c
 import { oneSeatBlocsOf } from '../scraper/corporation-seats'
 import { blocLabel } from '../lib/party-label.js'
 import { etiquetaVerificador, evidenciaSegunFuentes } from '../lib/claim-provenance.js'
+import { snippetWithoutStatus } from '../lib/crosschecked-status.js'
 import { PuenteDeImporte } from '../components/PuenteDeImporte'
 
 const PAGE_SIZE = 50
@@ -200,7 +201,11 @@ function ClaimRow({ item, plenoTitle }) {
               >
                 [{e.kind}]
               </span>
-              {e.snippet}
+              {/* Sin la cola «· estado: <palabra>» que `claim-verifier.ts`
+                  añade a cada contrato: es la palabra cruda del registro, en
+                  inglés, o el centinela «unknown». Sólo en pantalla; el dato
+                  no se toca. */}
+              {snippetWithoutStatus(e.snippet)}
               <PuenteDeImporte cifra={c.entities?.amountEuros} evidencia={e} />
             </div>
           ))}
