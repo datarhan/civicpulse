@@ -46,9 +46,12 @@ export function departamentoDeQueja(q) {
  * @property {string} labelEs
  * @property {string} labelCa
  * @property {object|null} responsableOfficial  first-matching concejal or null
- * @property {object} plenoVotes  { aprobado, rechazado, retirado, aplazado, plazosVencidos, total }
+ * @property {object} plenoVotes  { aprobado, rechazado, retirado, aplazado, plazosVencidos, conPlazo, total }
  * @property {object} plenoAgendas { total, sinVoto }
- * @property {object} promesas  { total, docs, enProgreso, plazosVencidos }
+ * @property {object} promesas  { total, docs, enProgreso, plazosVencidos, conPlazo }
+ *   `conPlazo` es el denominador de `plazosVencidos`: cuántos compromisos del área
+ *   llevan un `dueBy` curado. Sin él, «0 vencidos» no distingue «nada ha vencido»
+ *   de «nada tiene fecha» (lib/plazos-vencidos `celdaPlazosVencidos`).
  * @property {object} quejas  { total, abiertas, silencios, medible, motivo }: abiertas y
  *   silencios son null, con su motivo, mientras ninguna queja del área esté registrada
  * @property {object} contratacion  { contratos, importeEur, anios } — awarded spend owned by this
@@ -68,10 +71,11 @@ function emptyBucket(slug) {
       retirado: 0,
       aplazado: 0,
       plazosVencidos: 0,
+      conPlazo: 0,
       total: 0,
     },
     plenoAgendas: { total: 0, sinVoto: 0 },
-    promesas: { total: 0, docs: 0, enProgreso: 0, plazosVencidos: 0 },
+    promesas: { total: 0, docs: 0, enProgreso: 0, plazosVencidos: 0, conPlazo: 0 },
     quejas: { total: 0, abiertas: 0, silencios: 0, medible: true, motivo: null },
     /** Awarded public spending owned by this concejalía. Only contracts whose
      *  Gobierto category maps unambiguously to a department are counted, so the
@@ -97,8 +101,13 @@ function todayIso(now = new Date()) {
   return now.toISOString().slice(0, 10)
 }
 
+/** Lleva un plazo que puede vencer: un `dueBy` curado, nunca uno deducido. */
+function hasDueBy(dueBy) {
+  return typeof dueBy === 'string' && dueBy.length > 0
+}
+
 function isOverdue(dueBy, now = new Date()) {
-  if (!dueBy || typeof dueBy !== 'string') return false
+  if (!hasDueBy(dueBy)) return false
   return dueBy < todayIso(now)
 }
 
@@ -199,6 +208,8 @@ export function computeDepartmentStats({
       const bucket = buckets[slug].plenoVotes
       bucket.total += 1
       if (v.outcome in bucket) bucket[v.outcome] += 1
+      // Sólo un acuerdo aprobado compromete a algo, así que sólo él puede vencer.
+      if (v.outcome === 'aprobado' && hasDueBy(v.dueBy)) bucket.conPlazo += 1
       if (v.outcome === 'aprobado' && isOverdue(v.dueBy, now)) {
         bucket.plazosVencidos += 1
       }
@@ -228,6 +239,10 @@ export function computeDepartmentStats({
     if (p.status === 'en-progreso' || p.status === 'en-verificacion') {
       buckets[slug].promesas.enProgreso += 1
     }
+    // El plazo se lee del campo, nunca de la cita: «el próximo mes de
+    // septiembre» en el texto no es un `dueBy`, y deducirlo sería el plazo
+    // inferido por máquina que el validador existe para impedir.
+    if (hasDueBy(p.dueBy)) buckets[slug].promesas.conPlazo += 1
     // Soft flag — the V1 gate still controls publishable status. This counts
     // how many hand-curated promesas have a past dueBy and no later
     // "cumplida/parcial" status on the record.

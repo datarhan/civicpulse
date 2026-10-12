@@ -770,6 +770,16 @@ export default function Metodologia() {
             <em>en esa votación</em>, y lo hace una persona, no el extractor.
           </li>
           <li>
+            <strong>Sin fecha no hay cero.</strong> El recuento de plazos vencidos sólo mira el
+            campo <code>dueBy</code>; un plazo que aparece en el texto de una promesa («el próximo
+            mes de septiembre») no se convierte en fecha, porque deducirla sería el plazo inferido
+            por máquina que el validador impide. La mayoría de las áreas no tiene ningún compromiso
+            fechado, y ahí la cifra se publica como <strong>«—» · «sin plazo fechado»</strong>, no
+            como 0: un cero diría que no ha vencido nada, y lo único que se sabe es que nada tiene
+            fecha. Cuando un área sí tiene compromisos fechados, la cifra va con su denominador («de
+            N con plazo fechado»). Hasta octubre de 2026 se publicaba el 0 a secas.
+          </li>
+          <li>
             <strong>El aviso de plazo vencido no cambia ningún estado.</strong> Es una señalización
             editorial; por sí solo, el estado de la promesa o del voto no pasa a{' '}
             <em>no-ejecutada</em>, que —como todo veredicto de incumplimiento— exige curación humana

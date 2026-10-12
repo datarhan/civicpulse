@@ -5,7 +5,7 @@ import { useDepartmentStats } from '../hooks/useDepartmentStats'
 import { usePromises, isPromiseFrozen, PARTY_TONE } from '../hooks/usePromises'
 import { useAreaFit, fitAggregate } from '../hooks/useAreaFit'
 import { useT, useLocale } from '../i18n'
-import { rotuloPlazosVencidos } from '../lib/plazos-vencidos'
+import { celdaPlazosVencidos, rotuloPlazosVencidos } from '../lib/plazos-vencidos'
 import { yearSpan } from '../lib/year-span'
 import { desgloseCotejadas } from '../lib/cotejo'
 
@@ -180,13 +180,10 @@ function DepartmentCard({ bucket, frozen }) {
                   .join(' · ') || undefined
               }
             />
+            {/* «—» y «sin plazo fechado» cuando ningún compromiso del área lleva
+                fecha: el 0 se leía «nada vencido» (lib/plazos-vencidos). */}
             {!frozen && (
-              <Stat
-                label={t('departamentos.card.vencidos')}
-                value={vencidos}
-                tone={vencidos > 0 ? 'warn' : undefined}
-                muted={vencidos === 0}
-              />
+              <Stat label={t('departamentos.card.vencidos')} {...celdaPlazosVencidos(bucket, t)} />
             )}
           </div>
         </Card>
