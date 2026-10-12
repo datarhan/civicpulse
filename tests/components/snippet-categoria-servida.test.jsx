@@ -82,6 +82,15 @@ const textos = (container) => {
   return out.filter(Boolean)
 }
 
+/**
+ * Las piezas que pueden ser un snippet. Fuera la etiqueta de tema de /declaraciones
+ * («· other», «· fiscal»): es `claim.topic`, otro enum sin rótulo y otro arreglo; aquí
+ * se mide la categoría del contrato.
+ */
+const enSnippets = (piezas) => piezas.filter((s) => !/^· [a-z-]+$/.test(s))
+
+const TENDERS = lee('tenders.json')
+
 afterEach(() => localStorage.removeItem('cp:lang'))
 
 describe('las filas servidas traen la categoría en crudo — si no, esta prueba no mide nada', () => {
@@ -96,6 +105,8 @@ describe.each(['es', 'ca'])(
   (idioma) => {
     it('pinta el rótulo de la categoría, nunca la palabra inglesa del registro', async () => {
       localStorage.setItem('cp:lang', idioma)
+      // El puente de importe de cada fila lee tenders.json, como en producción.
+      installFetchMock({ '/data/tenders.json': TENDERS })
       const { container } = render(
         <MemoryRouter>
           <LocaleProvider>
@@ -111,7 +122,7 @@ describe.each(['es', 'ca'])(
       )
       expect(rotulos.length).toBeGreaterThan(0)
       for (const r of rotulos) expect(r, 'una categoría sin rótulo').toBeTruthy()
-      expect(pintados.flatMap(crudas)).toEqual([])
+      expect(enSnippets(pintados).filter((s) => crudas(s).length)).toEqual([])
       for (const e of filas) expect(pintados).not.toContain(snippetWithoutStatus(e.snippet))
       for (const r of new Set(rotulos))
         expect(pintados.some((s) => s.includes(` · ${r}`))).toBe(true)
@@ -130,6 +141,7 @@ describe.each(['es', 'ca'])('/declaraciones · %s', (idioma) => {
       '/data/pleno-claims/p1.json': { items: DE_DECLARACIONES },
       '/data/plenos.json': { items: [] },
       '/data/officials.json': { composition: {}, officials: [] },
+      '/data/tenders.json': TENDERS,
     })
     const { container } = render(
       <MemoryRouter>
@@ -149,7 +161,7 @@ describe.each(['es', 'ca'])('/declaraciones · %s', (idioma) => {
       categoriasDe(e.snippet).map((c) => CATALOGUE[idioma][`contrato.categoria.${c}`]),
     )
     expect(rotulos.length).toBeGreaterThan(0)
-    expect(pintados.flatMap(crudas)).toEqual([])
+    expect(enSnippets(pintados).filter((s) => crudas(s).length)).toEqual([])
     for (const e of filas) expect(pintados).not.toContain(snippetWithoutStatus(e.snippet))
     for (const r of new Set(rotulos)) expect(pintados.some((s) => s.includes(` · ${r}`))).toBe(true)
     // La fuente de la fila: «[tender]» era la clave del enum entre corchetes.

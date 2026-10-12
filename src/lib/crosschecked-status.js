@@ -45,6 +45,7 @@
  * without anyone editing a published finding.
  */
 
+import { CATALOGUE, rotuloDe } from '../i18n'
 import {
   procurementStatusKind,
   COMMITTED_STATUSES,
@@ -257,10 +258,45 @@ export function snippetParaLeer(snippet, rotuloDeCategoria) {
   const ultimo = trozos.length - 1
   const esEstado = (trozo) =>
     TROZO_TOKEN.test(trozo) && (trozo === 'unknown' || procurementStatusKind(trozo) !== null)
-  return trozos
-    .filter((trozo, i) => !(i > 0 && i === ultimo && esEstado(trozo)))
-    .map((trozo, i) =>
-      i > 0 && TROZO_TOKEN.test(trozo) ? (rotuloDeCategoria(trozo) ?? trozo) : trozo,
-    )
-    .join(' · ')
+  return (
+    trozos
+      // `unknown` es el centinela, no un valor (regla 3): fuera en cualquier
+      // trozo que no sea el título, no sólo en el último. Un estado reconocido,
+      // sólo en la cola: en medio podría ser otra cosa.
+      .filter((trozo, i) => !(i > 0 && (trozo === 'unknown' || (i === ultimo && esEstado(trozo)))))
+      .map((trozo, i) =>
+        i > 0 && TROZO_TOKEN.test(trozo) ? (rotuloDeCategoria(trozo) ?? trozo) : trozo,
+      )
+      .join(' · ')
+  )
+}
+
+/** El catálogo castellano como `t`, para quien llama sin idioma (pruebas, scripts). */
+const castellano = (clave) => /** @type {Record<string,string>} */ (CATALOGUE.es)[clave] ?? clave
+
+/**
+ * The one way a surface prints the snippet of an evidence row or a
+ * cross-checked ref — /hallazgos (`PlenoFindings`), the claim ledger on
+ * /plenos/:id and /departamentos/:slug (`ClaimLedger`), /declaraciones and the
+ * press lab. Before this, /hallazgos alone went through `snippetParaLeer` and
+ * the other three printed Gobierto's English category between « · »
+ * («… · construction · …»), because each surface chose its own helper.
+ *
+ * A contract (`kind: 'tender'`) gets `snippetParaLeer` with the
+ * `contrato.categoria.<key>` label in the reader's language: the piece is
+ * Gobierto's `categoryTitle` (`CATEGORIAS_DE_CONTRATO`, tenders.ts), not the
+ * `contractType` that `contrato.tipo.*` names — `construction` is «Construcción»
+ * there, not «Obras». A key with no label stays raw and visible, never dropped.
+ * Any other kind keeps its text and only loses the `estado:` tail: a promise's
+ * or a grant's snippet is prose, and a word in it is not a key.
+ *
+ * Display only: the committed snippet is untouched.
+ *
+ * @param {{ kind?: string, snippet?: string|null }|null|undefined} ref
+ * @param {(clave: string) => string} [t]  el del idioma de la página; sin él, castellano.
+ * @returns {string}
+ */
+export function snippetDeEvidencia(ref, t = castellano) {
+  if (ref?.kind !== 'tender') return snippetWithoutStatus(ref?.snippet)
+  return snippetParaLeer(ref.snippet, (c) => rotuloDe(t, `contrato.categoria.${c}`, null))
 }

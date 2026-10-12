@@ -635,6 +635,10 @@ function tenderTitle(r: TenderRow): string {
   // adjudicataria). Before 2026-05, the matcher only saw `title · contractor`,
   // which dropped a lot of real matches where the press named the awardee or
   // the CPV category but not the literal tender title.
+  //
+  // `categoryTitle` lands in the evidence snippet as Gobierto's English key
+  // («· construction ·»). Its vocabulary is `CATEGORIAS_DE_CONTRATO`
+  // (tenders.ts); the surfaces print its label (`snippetDeEvidencia`).
   const r2 = r as TenderRow & { assignee?: string; categoryTitle?: string }
   return [r.title, r.contractor, r2.assignee, r2.categoryTitle].filter(Boolean).join(' · ')
 }

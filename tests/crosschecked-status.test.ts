@@ -27,6 +27,7 @@ import {
   refStatus,
   snippetWithoutStatus,
   snippetParaLeer,
+  snippetDeEvidencia,
   REF_STATUS_KINDS,
 } from '../src/lib/crosschecked-status.js'
 import {
@@ -35,7 +36,7 @@ import {
   CANCELLED_STATUSES,
   IN_FLIGHT_STATUSES,
 } from '../src/lib/contract-status.js'
-import { CONTRACT_STATUS, TENDER_STATUS } from '../src/scraper/tenders'
+import { CATEGORIAS_DE_CONTRATO, CONTRACT_STATUS, TENDER_STATUS } from '../src/scraper/tenders'
 import { CATALOGUE } from '../src/i18n'
 
 const DATA = resolve(__dirname, '..', 'public', 'data')
@@ -376,4 +377,93 @@ describe('snippetParaLeer — ningún token del verificador llega al lector', ()
     for (const r of contratos)
       expect(conToken(snippetParaLeer(r.snippet, categoria)), r.snippet).toBe(false)
   })
+})
+
+/**
+ * Lo mismo en cada superficie que pinta un snippet de evidencia: /hallazgos, el
+ * registro de declaraciones (/plenos/:id, /departamentos/:slug), /declaraciones y
+ * el laboratorio de prensa. Antes, sólo /hallazgos cambiaba la categoría por su
+ * rótulo; las otras imprimían «· construction ·», «· architecture ·».
+ */
+describe('snippetDeEvidencia — un solo helper para todas las superficies', () => {
+  const t = (idioma: 'es' | 'ca') => (clave: string) =>
+    (CATALOGUE as unknown as Record<string, Record<string, string>>)[idioma][clave] ?? clave
+
+  it('un contrato: categoría por su rótulo en el idioma de quien lee, sin la cola de estado', () => {
+    const ref = {
+      kind: 'tender',
+      snippet: 'Obras · Ayuntamiento · INSDAGAR S.L. · construction · estado: awarded',
+    }
+    expect(snippetDeEvidencia(ref, t('es'))).toBe(
+      'Obras · Ayuntamiento · INSDAGAR S.L. · Construcción',
+    )
+    expect(snippetDeEvidencia(ref, t('ca'))).toBe(
+      'Obras · Ayuntamiento · INSDAGAR S.L. · Construcció',
+    )
+    // Sin idioma, castellano.
+    expect(snippetDeEvidencia(ref)).toBe('Obras · Ayuntamiento · INSDAGAR S.L. · Construcción')
+    // En medio también: el importe va detrás.
+    expect(
+      snippetDeEvidencia(
+        { kind: 'tender', snippet: 'Proyecto · Ayto · architecture · 1742 €' },
+        t('ca'),
+      ),
+    ).toBe('Proyecto · Ayto · Arquitectura · 1742 €')
+  })
+
+  it('una categoría sin rótulo se queda cruda y visible; el centinela «unknown» se va', () => {
+    expect(snippetDeEvidencia({ kind: 'tender', snippet: 'Obras · Ayto · zzz_nueva · 10 €' })).toBe(
+      'Obras · Ayto · zzz_nueva · 10 €',
+    )
+    expect(snippetDeEvidencia({ kind: 'tender', snippet: 'Obras · Ayto · unknown · 10 €' })).toBe(
+      'Obras · Ayto · 10 €',
+    )
+  })
+
+  it('lo que no es un contrato sólo pierde la cola: su texto es prosa, no claves', () => {
+    const promesa = { kind: 'promise', snippet: 'PSOE «arreglar la plaza» · 2023-05-01 · other' }
+    expect(snippetDeEvidencia(promesa)).toBe(promesa.snippet)
+    expect(snippetDeEvidencia(null)).toBe('')
+  })
+
+  /** Cada fila de evidencia o documento cotejado que una superficie pinta, de lo servido. */
+  const lee = (f: string) => JSON.parse(readFileSync(join(DATA, f), 'utf8'))
+  const filas: { kind?: string; snippet?: string }[] = []
+  const recoge = (o: unknown): void => {
+    if (Array.isArray(o)) return o.forEach(recoge)
+    if (!o || typeof o !== 'object') return
+    const r = o as { kind?: unknown; snippet?: unknown }
+    if (typeof r.snippet === 'string' && typeof r.kind === 'string')
+      filas.push({ kind: r.kind, snippet: r.snippet })
+    Object.values(o).forEach(recoge)
+  }
+  const manifiesto = lee('pleno-claims/index.json') as { plenos: { chunkPath: string }[] }
+  for (const p of manifiesto.plenos) recoge(lee(p.chunkPath))
+  recoge(findings)
+  recoge(lee('press-claims-verified.json'))
+  recoge(lee('press-findings.json'))
+
+  const CATEGORIAS = new Set<string>(CATEGORIAS_DE_CONTRATO)
+  const categorias = (s: string) =>
+    s
+      .split(' · ')
+      .slice(1)
+      .filter((trozo) => CATEGORIAS.has(trozo))
+
+  it.each(['es', 'ca'] as const)(
+    'ninguna fila servida conserva la categoría inglesa (%s) — y había',
+    (idioma) => {
+      const conCategoria = filas.filter(
+        (f) => f.kind === 'tender' && categorias(snippetWithoutStatus(f.snippet)).length > 0,
+      )
+      // Control positivo: el defecto está en el dato servido.
+      expect(conCategoria.length).toBeGreaterThan(20)
+      const crudas = conCategoria.filter(
+        (f) => categorias(snippetDeEvidencia(f, t(idioma))).length > 0,
+      )
+      // Techo de la reserva cruda, y el detalle si se pasa.
+      expect(crudas.length / conCategoria.length).toBeLessThan(0.1)
+      expect(crudas.map((f) => f.snippet)).toEqual([])
+    },
+  )
 })

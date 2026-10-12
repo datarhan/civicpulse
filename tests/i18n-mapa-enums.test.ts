@@ -19,7 +19,7 @@ import { readFileSync } from 'node:fs'
 import { resolve } from 'node:path'
 
 import { CATALOGUE } from '../src/i18n'
-import { CONTRACT_STATUS, TENDER_STATUS } from '../src/scraper/tenders'
+import { CATEGORIAS_DE_CONTRATO, CONTRACT_STATUS, TENDER_STATUS } from '../src/scraper/tenders'
 import { CAUSAS } from '../src/scraper/incendios'
 import { PLACE_KINDS } from '../src/scraper/place-resolver'
 import { POI_CATEGORIES } from '../src/lib/civic-poi'
@@ -112,6 +112,13 @@ const FAMILIAS = [
     familia: 'categorías de Gobierto publicadas en tenders.json',
     prefijo: 'contrato.categoria.',
     valores: publicados('categoryTitle'),
+  },
+  // La misma familia desde su dueño: la que el verificador escribe en el snippet de
+  // un contrato y las tarjetas pintan por su rótulo (`snippetDeEvidencia`).
+  {
+    familia: 'categorías de contrato (CATEGORIAS_DE_CONTRATO)',
+    prefijo: 'contrato.categoria.',
+    valores: lista(CATEGORIAS_DE_CONTRATO),
   },
   {
     familia: 'causas de incendio (CAUSAS)',
@@ -223,5 +230,24 @@ describe('las tablas de las leyendas guardan claves con rótulo en los dos idiom
     const sinClave = claves.filter((k) => typeof k !== 'string' || k === '')
     expect(sinClave.length, 'hay filas sin clave de rótulo').toBe(0)
     expect(sinRotulo(claves as string[])).toEqual([])
+  })
+})
+
+/**
+ * El enum de categorías es el vocabulario que el parser deja pasar sin tocar, así que
+ * lo publicado tiene que caber en él: una categoría nueva de Gobierto saldría cruda en
+ * cada tarjeta, en inglés. Con su techo (regla 1): cuántas filas con categoría caen
+ * fuera, sobre cuántas se midieron.
+ */
+describe('las categorías publicadas en tenders.json caben en CATEGORIAS_DE_CONTRATO', () => {
+  it('ninguna fuera, y se midió algo', () => {
+    const conCategoria = FILAS.map((f) => f.categoryTitle).filter(
+      (v): v is string => typeof v === 'string' && v !== '',
+    )
+    const conocidas = new Set<string>(CATEGORIAS_DE_CONTRATO)
+    const fuera = conCategoria.filter((v) => !conocidas.has(v))
+    expect(conCategoria.length, 'ninguna fila con categoría').toBeGreaterThan(100)
+    expect(fuera.length / conCategoria.length).toBeLessThan(0.1)
+    expect([...new Set(fuera)]).toEqual([])
   })
 })
