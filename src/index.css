@@ -1098,6 +1098,32 @@ body.cp-kiosk .cp-live-container {
   min-width: 0;
 }
 
+/* El registro de declaraciones (ClaimLedger: /plenos/:id, pestaña
+   Declaraciones, y /departamentos/:slug) — la misma fila de una línea que
+   `.cp-claim-head`, con el defecto contrario: aquí no desbordaba, ENCOGÍA. Sin
+   `flex-wrap`, cada pieza bajaba a su contenido mínimo y la fecha se partía
+   por el guion («2025- / 12-01») —medido el 04-10-2026 a 375 px: 275 de 430
+   filas en /plenos/qz6weg, 155 de 258 en /plenos/10yl550— y «Obra citada»
+   también.
+
+   Con `flex-wrap` una pieza que no cabe en lo que queda de línea baja ENTERA a
+   la siguiente; sólo se parte por dentro si es más ancha que la columna
+   entera. Por eso aquí NO va el `min-width: 0` de `.cp-claim-head`, que es
+   justo lo que deja a un hijo bajar de su contenido. Y por eso `nowrap` va
+   sólo en lo que no tiene espacios por donde partirse con sentido
+   (`.cp-ledger-entero`: la fecha, y el grupo con su «firmado», que así no cae
+   solo a la línea siguiente) y no en toda la fila: a 320 px la columna mide
+   unos 150 y «Afirmación numérica» 165, y con `nowrap` la píldora se montaba
+   sobre la del veredicto; sin él se parte por el espacio, entre palabras. */
+.cp-ledger-head {
+  flex-wrap: wrap;
+  row-gap: 4px;
+}
+
+.cp-ledger-head > .cp-ledger-entero {
+  white-space: nowrap;
+}
+
 /* Las tiras de cuatro cifras con rótulo en mono: las de cabecera de /hallazgos
    (total, críticos, relevantes, informativos) y la de la ficha de cada cargo
    (áreas delegadas, promesas del grupo, puntos en pleno, quejas pendientes).
