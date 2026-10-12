@@ -140,8 +140,12 @@ export interface OverlayEntry {
    */
   labelCorrections?: CorreccionDeRotulo[]
   /**
-   * Sólo en una subida firmada: la entrada que sustituyó, sin lo que decía. Ver
+   * En una subida firmada: la entrada que sustituyó, sin lo que decía. Ver
    * `EntradaSustituida`. Ausente si lo publicado antes de subirla era la base.
+   *
+   * Y en una bajada de curador escrita encima de una subida —o de otra bajada
+   * que ya lo lleva—: la entrada que pisó, con la subida en su cadena. Ver
+   * `heredaSustituida`.
    */
   sustituye?: EntradaSustituida
 }
@@ -199,6 +203,37 @@ export function sustituidaDe(previa: OverlayEntry): EntradaSustituida {
     ...(previa.sustituye ? { sustituye: previa.sustituye } : {}),
   }
 }
+
+/**
+ * Lo que guarda de la entrada que pisa una escritura que no es una subida: la
+ * entrada entera como `EntradaSustituida`, si en su historia hay una subida
+ * firmada —es una, o lleva `sustituye`—; si no, nada.
+ *
+ * Hasta el 12-10-2026 `subir-veredicto --retirar`, `downgrade-verdict` y la
+ * retirada de una declaración escribían su bajada entera encima de la subida y
+ * se llevaban quién la firmó, cuándo y la cadena que la subida guardaba —la
+ * retractación del motor con su rótulo corregido, que #290 acababa de
+ * devolverle—. Lo mismo que perdía la subida antes de #289, otra vía.
+ *
+ * Sólo cuando hay una subida: una bajada sobre una retractación del motor
+ * sigue sustituyéndola entera, como siempre (su motivo y su firma quedan en
+ * git). `sustituye` existe para que una subida no borre la historia de lo que
+ * subió, y para que bajarla no borre la subida.
+ */
+export function heredaSustituida(previa: OverlayEntry | undefined): EntradaSustituida | null {
+  if (!previa) return null
+  if (previa.source !== 'curator-upgrade' && !previa.sustituye) return null
+  return sustituidaDe(previa)
+}
+
+/** ¿La cadena llega a una subida firmada? Fuera de una subida, `sustituye` sólo así. */
+function llegaAUnaSubida(s: EntradaSustituida | undefined): boolean {
+  for (let x = s; x; x = x.sustituye) if (x.source === 'curator-upgrade') return true
+  return false
+}
+
+/** Fuera de una subida firmada, sólo una bajada de curador hereda lo que sustituyó. */
+const HEREDAN_SUSTITUYE: readonly OverlaySource[] = ['curator-upgrade', 'curator-downgrade']
 
 /**
  * Una corrección del rótulo (`editor`) de una retractación del motor.
@@ -683,11 +718,7 @@ export function validateOverlay(o: Overlay): void {
     }
     if (e.source === 'curator-upgrade') validarSubida(id, e)
     if (e.sustituye !== undefined) {
-      if (e.source !== 'curator-upgrade') {
-        throw new Error(
-          `[overlay] ${id}: sustituye sólo lo lleva una subida firmada (esta entrada es de ${e.source})`,
-        )
-      }
+      validarDondeVaSustituye(`[overlay] ${id}`, e.source, e.sustituye, 'esta entrada')
       validarSustituida(`[overlay] ${id}.sustituye`, e.sustituye, e.appliedAt)
     }
   }
@@ -705,6 +736,31 @@ const CLAVES_DE_LA_SUSTITUIDA = new Set([
 ])
 
 const COMMIT_ENTERO = /^[0-9a-f]{40}$/
+
+/**
+ * Quién lleva `sustituye`: una subida firmada, o una bajada de curador cuya
+ * cadena llega a una (`heredaSustituida`). Una retractación del motor nunca:
+ * el motor no escribe encima de lo que firmó una persona.
+ */
+function validarDondeVaSustituye(
+  donde: string,
+  source: OverlaySource,
+  s: EntradaSustituida,
+  quien: string,
+): void {
+  if (!HEREDAN_SUSTITUYE.includes(source)) {
+    throw new Error(
+      `${donde}: sustituye sólo lo lleva una subida firmada o la bajada de curador que la pisó ` +
+        `(${quien} es de ${source})`,
+    )
+  }
+  if (source !== 'curator-upgrade' && !llegaAUnaSubida(s)) {
+    throw new Error(
+      `${donde}: fuera de una subida firmada, sustituye sólo guarda la historia de una: su ` +
+        `cadena no llega a ninguna (${quien} es de ${source})`,
+    )
+  }
+}
 
 /**
  * Lo que una subida firmada dice que sustituyó, escrito por la vía o a mano: el
@@ -762,11 +818,7 @@ function validarSustituida(donde: string, s: EntradaSustituida, posteriorA: stri
     validarListaDeEnmiendas(donde, s.reasonAmendments, s.appliedAt)
   }
   if (s.sustituye !== undefined) {
-    if (s.source !== 'curator-upgrade') {
-      throw new Error(
-        `${donde}: sustituye sólo lo lleva una subida firmada (la sustituida es de ${s.source})`,
-      )
-    }
+    validarDondeVaSustituye(donde, s.source, s.sustituye, 'la sustituida')
     validarSustituida(`${donde}.sustituye`, s.sustituye, s.appliedAt)
   }
   if (s.recuperada !== undefined) {
@@ -1314,6 +1366,13 @@ export function applyOverlayEntries(
         )
       }
     }
+    // Lo que sustituye lo toma de la entrada que tiene delante, no de quien
+    // llama: así no lo pierde ni lo inventa ninguna vía. Una subida guarda
+    // siempre la que pisa; cualquier otra escritura, la que pisa si en su
+    // historia hay una subida (`downgrade-verdict`, `subir-veredicto
+    // --retirar`). Si la escribe el motor, `validateOverlay` se niega.
+    const sustituye =
+      etapa?.firmaEnLaEntrada && previa ? sustituidaDe(previa) : heredaSustituida(previa)
     next.entries[e.claimId] = {
       verification: e.verification,
       source: e.source,
@@ -1321,9 +1380,7 @@ export function applyOverlayEntries(
       ...(e.editor ? { editor: e.editor } : {}),
       appliedAt: stampIso,
       ...(etapa?.firmaEnLaEntrada && e.desde ? { desde: e.desde } : {}),
-      // Lo que sustituye la subida lo toma de la entrada que tiene delante, no
-      // de quien llama: así no lo pierde ni lo inventa ninguna vía.
-      ...(etapa?.firmaEnLaEntrada && previa ? { sustituye: sustituidaDe(previa) } : {}),
+      ...(sustituye ? { sustituye } : {}),
     }
   }
   validateOverlay(next)
@@ -1503,6 +1560,8 @@ export function enmendarMotivoDeBajada(
         // Enmendar el motivo no deshace la retirada: sin esto, reescribir la
         // explicación volvería a publicar la declaración.
         ...(e.retirada ? { retirada: e.retirada } : {}),
+        // Ni lo que la bajada sustituyó: la enmienda no es otra decisión.
+        ...(e.sustituye ? { sustituye: e.sustituye } : {}),
         reasonAmendments,
       }
   const next: Overlay = {
@@ -1554,8 +1613,10 @@ export function huellaDeLiteralRetirado(texto: string): string {
  *     con la que el dosier del 29-09 comprobó sus sumarios).
  *
  * Sustituye la entrada que hubiera —su motivo y su firma quedan en el
- * historial del repositorio—, y ninguna escritura posterior la pisa
- * (`applyOverlayEntries`). Puro: devuelve un overlay nuevo.
+ * historial del repositorio; si en su historia hay una subida firmada, quién
+ * la escribió y su cadena quedan además en `sustituye` (`heredaSustituida`)—,
+ * y ninguna escritura posterior la pisa (`applyOverlayEntries`). Puro:
+ * devuelve un overlay nuevo.
  */
 export function retirarDeclaracion(
   overlay: Overlay,
@@ -1596,6 +1657,7 @@ export function retirarDeclaracion(
     throw new Error(`${donde}: la fecha de la retirada tiene que ser ISO («${stampIso}»)`)
   }
 
+  const heredada = heredaSustituida(previa)
   const entrada: OverlayEntry = {
     verification: verificacionDeBajada(claimId, { evidence: [] }, 'sin-datos', motivo),
     source: 'curator-downgrade',
@@ -1603,6 +1665,7 @@ export function retirarDeclaracion(
     editor: pedida.editor.normalize('NFC').replace(/\s+/g, ' ').trim(),
     appliedAt: stampIso,
     retirada: { motivo: 'literal-no-dicho', literal: huellaDeLiteralRetirado(literal) },
+    ...(heredada ? { sustituye: heredada } : {}),
   }
   const next: Overlay = {
     version: overlay?.version ?? 1,
