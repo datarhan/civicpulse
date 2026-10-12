@@ -7,6 +7,7 @@ import PlenoDetalle from '../../src/pages/PlenoDetalle'
 import { installFetchMock } from '../setup/mockFetch'
 import { peekSnapshot } from '../../src/lib/snapshot-store'
 import { CATALOGUE } from '../../src/i18n'
+import { cuentaCotejadas, desgloseCotejadas } from '../../src/lib/cotejo'
 
 /**
  * Una cifra junto a «Votaciones» o «Hallazgos editoriales» afirma que se midió.
@@ -136,7 +137,13 @@ describe('las pestañas y las fichas de /plenos/:id no dicen 0 de lo que nadie h
     expect(ficha(HALLAZGOS_ROTULO)).toEqual({ valor: '0', nota: null })
     const declaraciones = ficha(DECLARACIONES)
     expect(declaraciones.valor).toMatch(/^\d+$/)
-    expect(declaraciones.nota).toBeNull()
+    // La nota de la ficha nunca es el motivo de «sin extraer». Desde #284 lleva el
+    // desglose por veredicto de las cotejadas, si el fragmento tiene alguna: el
+    // 12-10-2026 el primer pleno del índice pasó a tener una parcial y esta prueba
+    // pedía «ninguna nota». Se espera exactamente el desglose de ESE fragmento.
+    expect(declaraciones.nota).not.toBe(es['plenoDetail.extractionPending'])
+    const desglose = desgloseCotejadas((k) => es[k], cuentaCotejadas(CHUNK.items))
+    expect(declaraciones.nota).toBe(desglose || null)
   })
 
   it('un hallazgo firmado se cuenta aunque la sesión no tenga declaraciones extraídas', async () => {
