@@ -6,7 +6,8 @@ import { MemoryRouter } from 'react-router-dom'
 import { installFetchMock } from './setup/mockFetch'
 import { ClaimLedger } from '../src/components/ClaimLedger'
 import { gateForDisplay, sortSignalFirst } from '../src/lib/claim-ledger'
-import { CORPUS_IDS, corpusReales } from '../src/scraper/claim-verdicts'
+import { CORPUS_IDS, corpusReales, resumenSinRegistro } from '../src/scraper/claim-verdicts'
+import { CATALOGUE } from '../src/i18n'
 
 /**
  * La explicación bajo la cita no dice que se buscó donde la tarjeta dice que no
@@ -49,6 +50,12 @@ const trozos = readdirSync(TROZOS)
   .map((f) => JSON.parse(readFileSync(join(TROZOS, f), 'utf8')))
 
 const ROTULO = 'Fuentes comprobadas:'
+/**
+ * Cómo nombran la línea y la explicación cada corpus: con su rótulo castellano
+ * (`ledger.corpus.*`), no con el identificador que guarda el verificador.
+ */
+const corpus = (id) => CATALOGUE.es[`ledger.corpus.${id}`]
+const ROTULOS_DE_CORPUS = CORPUS_IDS.map(corpus)
 const SIN_CORPUS = new Set(['ninguna', 'no constan'])
 
 /**
@@ -166,7 +173,7 @@ describe('lo servido: la explicación y «Fuentes comprobadas» dicen lo mismo',
   it('lo que nombra es un corpus declarado, nunca una pasada ni un nombre suelto', () => {
     const sueltos = leidas
       .flatMap((t) => (fuentesNombradas(t.explicacion) ?? []).map((n) => [n, t]))
-      .filter(([n]) => !CORPUS_IDS.includes(n))
+      .filter(([n]) => !ROTULOS_DE_CORPUS.includes(n))
       .map(([n, t]) => `${n} · ${describir(t)}`)
     expect(sueltos.slice(0, 5), `${sueltos.length} nombres`).toEqual([])
   })
@@ -208,13 +215,15 @@ describe('una explicación copiada a una verificación con otra procedencia', ()
     )
     expect(origen, 'no se sirve ningún sin-datos cotejado con tenders y tenders-ted').toBeDefined()
     // Lo positivo primero: en su tarjeta, la explicación nombra esas dos.
-    expect(fuentesNombradas(origen.explicacion)).toEqual(['tenders', 'tenders-ted'])
+    expect(fuentesNombradas(origen.explicacion)).toEqual([corpus('tenders'), corpus('tenders-ted')])
 
     const copia = {
       ...origen.fila,
       verification: {
         ...origen.fila.verification,
-        summary: origen.explicacion,
+        // Lo que el motor copia es lo guardado, con los identificadores: la
+        // tarjeta lo re-deriva con rótulos, pero eso no viaja.
+        summary: resumenSinRegistro(origen.fila.verification.checkedAgainst),
         checkedAgainst: ['verdict-engine'],
         source: 'verdict-engine',
       },

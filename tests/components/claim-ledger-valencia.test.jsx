@@ -11,9 +11,11 @@
  *
  * Sólo se traduce el rótulo. La cita (`claim.verbatim`), la explicación del
  * verificador (`verification.summary`, o la que `resumenSegunFuentes` re-deriva con
- * la misma frase que el verificador guarda), el texto de cada fila de evidencia, las
- * firmas y los nombres de corpus de «Fuentes comprobadas» —`tenders`, `promises`:
- * identificadores, iguales en las dos lenguas— son dato y se quedan como vinieron.
+ * la misma frase que el verificador guarda), el texto de cada fila de evidencia y las
+ * firmas son dato y se quedan como vinieron. Los corpus de «Fuentes comprobadas» se
+ * pintaban como identificadores —`tenders`, `promises`, iguales en las dos lenguas— y
+ * esta guarda los contaba como dato; desde el 12-10-2026 llevan rótulo del catálogo
+ * (`ledger.corpus.*`) y se leen como lo que son, rótulo.
  *
  * La guarda es la de la portada y la de /plenos: pinta la misma superficie en los dos
  * idiomas con declaraciones PUBLICADAS, compara pieza a pieza y busca palabras
@@ -42,7 +44,7 @@ import {
 } from '../../src/lib/claim-provenance.js'
 import { resumenPublicable } from '../../src/lib/resumenes-retirados.js'
 import { snippetWithoutStatus } from '../../src/lib/crosschecked-status.js'
-import { CORPUS_IDS, desenlaceDeCotejo } from '../../src/scraper/claim-verdicts'
+import { desenlaceDeCotejo } from '../../src/scraper/claim-verdicts'
 import { puenteDeImporte } from '../../src/scraper/importe-de-contrato'
 import {
   cadenasDe,
@@ -127,13 +129,11 @@ const DERIVADOS = ELEGIDAS.flatMap((it) => {
 })
 
 /**
- * Lo que `datosPintados` no puede reconocer como dato porque tiene forma de token: los
- * nombres de corpus de «Fuentes comprobadas», la unidad del recuento que el extractor
- * sacó de la cita («parques») —se pinta en su propio nodo, junto a la cifra— y las
- * unidades de un importe abreviado.
+ * Lo que `datosPintados` no puede reconocer como dato porque tiene forma de token: la
+ * unidad del recuento que el extractor sacó de la cita («parques») —se pinta en su
+ * propio nodo, junto a la cifra— y las unidades de un importe abreviado.
  */
 const IDENTIFICADORES = [
-  ...CORPUS_IDS,
   ...ELEGIDAS.map((it) => it.claim.entities?.countUnit).filter((u) => typeof u === 'string'),
   'K €',
   'M €',
