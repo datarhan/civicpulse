@@ -289,3 +289,28 @@ export function evidenciaSegunFuentes(v) {
     return evidencia
   return evidencia.filter((e) => e?.kind !== 'tender')
 }
+
+/**
+ * El rótulo de la puntuación de parecido de una fila de evidencia, o `null` si
+ * la fila no trae número.
+ *
+ * La tarjeta imprimía «sim 1.00» y nada más. El número es lo que el verificador
+ * midió entre la fila y lo citado —solapamiento de las palabras del objeto con
+ * el título del expediente y, cuando las hay, cercanía de las cifras
+ * (src/scraper/claim-verifier.ts)—: dice cuánto trata la fila de lo mismo, no
+ * si confirma lo dicho. Suelto junto a la pastilla «Parcial», un 1,00 se leía
+ * como contradicción —coincidencia perfecta y, aun así, parcial—, y así lo
+ * señaló la revisión lectora el 11-10-2026 en /departamentos/urbanismo. El
+ * dato es cierto; el rótulo dice qué mide y qué no, en la misma fila.
+ *
+ * @param {unknown} similarity
+ * @returns {string | null}
+ */
+export function rotuloDeParecido(similarity) {
+  if (typeof similarity !== 'number' || !Number.isFinite(similarity)) return null
+  const n = similarity.toLocaleString('es-ES', {
+    minimumFractionDigits: 2,
+    maximumFractionDigits: 2,
+  })
+  return `parecido con lo citado ${n} · no mide si lo confirma`
+}
