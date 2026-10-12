@@ -54,10 +54,14 @@
  *     se descarga por su URL. Esto deja de PINTARLO.
  *   · /declaraciones no imprime el resumen, así que no le hace falta.
  */
+import { CATALOGUE } from '../i18n'
 
-/** Lo que la tarjeta dice donde iba la explicación retirada. */
-export const ROTULO_RESUMEN_RETIRADO =
-  'Explicación retirada: el verificador LLM guardó aquí una nota sobre su propia tarea.'
+/**
+ * Lo que la tarjeta dice donde iba la explicación retirada: su clave del catálogo, y
+ * el castellano para quien no pinta con `t`.
+ */
+export const CLAVE_RESUMEN_RETIRADO = 'ledger.resumenRetirado'
+export const ROTULO_RESUMEN_RETIRADO = CATALOGUE.es[CLAVE_RESUMEN_RETIRADO]
 
 /**
  * id de la declaración → comienzo del resumen retirado.

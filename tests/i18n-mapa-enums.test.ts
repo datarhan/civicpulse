@@ -28,6 +28,15 @@ import { KIND_ICON } from '../src/hooks/useParticipa'
 import { PLENO_TONE } from '../src/hooks/usePlenos'
 import { CLAVE_RELACION, RELATION_LABELS } from '../src/scraper/queja-contract-relations'
 import { NIVELES_AEMET } from '../src/scraper/spain-ticker'
+import { CLAIM_VERDICTS } from '../src/scraper/claim-verdicts'
+import { ALLOWED_CLAIM_TYPES } from '../src/scraper/pleno-claim'
+import { EVIDENCE_KINDS } from '../src/scraper/claim-verifier'
+import { CLASES_DE_FIRMA } from '../src/scraper/firma-de-persona'
+import {
+  CAMPOS_DEL_EMPAREJADOR,
+  MAGNITUDES_DEL_EXPEDIENTE,
+} from '../src/scraper/importe-de-contrato'
+import { TIPO_NEUTRO } from '../src/lib/claim-type-label.js'
 
 const IDIOMAS = ['es', 'ca'] as const
 const tabla = CATALOGUE as unknown as Record<(typeof IDIOMAS)[number], Record<string, string>>
@@ -149,6 +158,39 @@ const FAMILIAS = [
     familia: 'clases de sesión plenaria (PLENO_TONE)',
     prefijo: 'pleno.tipo.',
     valores: lista(Object.keys(PLENO_TONE ?? {})),
+  },
+  // La tarjeta de una declaración (ClaimLedger): su veredicto, su tipo —con el rótulo
+  // neutro al que baja un tipo que el literal no sostiene—, la fuente de cada fila de
+  // evidencia, quién decidió una bajada y las dos mitades del puente de importe.
+  {
+    familia: 'veredictos de una declaración (CLAIM_VERDICTS)',
+    prefijo: 'declaraciones.veredicto.',
+    valores: lista(CLAIM_VERDICTS),
+  },
+  {
+    familia: 'tipos de una declaración (ALLOWED_CLAIM_TYPES y el rótulo neutro)',
+    prefijo: 'declaraciones.tipo.',
+    valores: [...lista(ALLOWED_CLAIM_TYPES), ...(TIPO_NEUTRO ? [TIPO_NEUTRO] : [])],
+  },
+  {
+    familia: 'fuentes de una fila de evidencia (EVIDENCE_KINDS)',
+    prefijo: 'ledger.evidencia.',
+    valores: lista(EVIDENCE_KINDS),
+  },
+  {
+    familia: 'quién decidió una bajada (CLASES_DE_FIRMA)',
+    prefijo: 'verificador.bajada.',
+    valores: lista(CLASES_DE_FIRMA),
+  },
+  {
+    familia: 'qué importe imprime una fila CONTRATO (CAMPOS_DEL_EMPAREJADOR)',
+    prefijo: 'puente.queEs.',
+    valores: lista(CAMPOS_DEL_EMPAREJADOR),
+  },
+  {
+    familia: 'qué importe del expediente es la cifra citada (MAGNITUDES_DEL_EXPEDIENTE)',
+    prefijo: 'puente.magnitud.',
+    valores: lista(MAGNITUDES_DEL_EXPEDIENTE),
   },
 ]
 

@@ -1,4 +1,5 @@
 import { useTenders } from '../hooks/useTenders'
+import { useT } from '../i18n'
 import { necesitaPuente, puenteDeImporte, textoDelPuente } from '../scraper/importe-de-contrato'
 
 /**
@@ -18,6 +19,7 @@ export function PuenteDeImporte({ cifra, evidencia }) {
 }
 
 function PuenteConContratos({ cifra, evidencia }) {
+  const t = useT()
   const { data } = useTenders()
   const puente = puenteDeImporte(cifra, evidencia, data)
   if (!puente) return null
@@ -32,7 +34,7 @@ function PuenteConContratos({ cifra, evidencia }) {
         maxWidth: '68ch',
       }}
     >
-      {textoDelPuente(puente)}
+      {textoDelPuente(puente, t)}
     </div>
   )
 }

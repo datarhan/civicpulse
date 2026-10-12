@@ -24,8 +24,8 @@
  * número que cada escenario necesita para pintar cada forma; en /departamentos, con el
  * tema del área puesto, que es una mutación pequeña y nombrada. Las palabras esperadas
  * están escritas a mano, en los dos idiomas: son lo que esta prueba fija. El resto de
- * la tarjeta —«Fuentes comprobadas», el veredicto, el tipo— sigue en castellano y no
- * es de esta prueba.
+ * la tarjeta —«Fuentes comprobadas», el veredicto, el tipo— y la barra de veredictos
+ * de /departamentos los lee tests/components/claim-ledger-valencia.test.jsx.
  */
 import { describe, expect, it } from 'vitest'
 import { readFileSync } from 'node:fs'
