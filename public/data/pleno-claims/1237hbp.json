@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-12T10:06:51.954Z",
+  "generatedAt": "2026-10-12T10:51:39.699Z",
   "version": "1",
   "plenoId": "1237hbp",
   "plenoDate": "2026-07-03",
@@ -170,9 +170,10 @@
       "verification": {
         "claimId": "1237hbp-006-cit-1e90e0",
         "verdict": "sin-datos",
-        "summary": "Analicé el candidato [0] frente a la afirmación. El candidato es un contrato de TI (Portal del Empleado) sin relación temática, de entidad adjudicataria, fecha o importe con la afirmación sobre un contrato de emergencia medioambiental con FCC el 12 de marzo tras resolución con Garbiardi el día 9.",
+        "summary": "Ningún candidato respalda la afirmación; el respaldo es nulo.",
         "evidence": [],
-        "checkedAgainst": [
+        "checkedAgainst": [],
+        "derivedBy": [
           "verdict-engine"
         ],
         "confidence": 0.2,
