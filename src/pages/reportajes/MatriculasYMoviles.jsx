@@ -228,7 +228,10 @@ export default function MatriculasYMoviles() {
       <Lista items={ob.limites} />
 
       {/* 5 · la versión pública */}
-      <SecHead num="05" kicker="La versión municipal" title={ve.titulo} />
+      {/* «En la prensa» y no «la versión municipal»: el artículo no atribuye
+          nada al Ayuntamiento, y llamarlo su versión sería decir cómo trabajó
+          el periódico. */}
+      <SecHead num="05" kicker="En la prensa" title={ve.titulo} />
       <P>{ve.texto}</P>
       <Tabla
         cols={[{ label: 'Publicado el 19-09-2026' }, { label: 'Lo que exige el pliego' }]}

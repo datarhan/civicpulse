@@ -65,7 +65,7 @@
   },
   "observado": {
     "titulo": "Lo que este medio vio el 11 de octubre",
-    "texto": "Este medio recorrió el domingo 11 de octubre de 2026, desde la vía pública, los tres aparcamientos que nombra el pliego, la entrada del casco y las rutas del Valle de Porxinos, donde el pliego prevé instalar los dispositivos de aforo de forma provisional por los daños de la DANA en el parque. Por qué no se esperó a que se restaurara el parque también lo dice el pliego: «con el fin de garantizar la ejecución de los Fondos Next Generation». Y condiciona ese emplazamiento a que, una vez restaurado el parque, los aparatos «deberán ser reubicados en las zonas originalmente planificadas dentro del Parque Natural del Río Túria». No fija fecha para ese traslado.",
+    "texto": "Este medio recorrió el domingo 11 de octubre de 2026, desde la vía pública, los tres aparcamientos que nombra el pliego, la entrada del casco y las rutas del Valle de Porxinos, donde el pliego prevé instalar los dispositivos de aforo de forma provisional por los daños de la DANA en el parque. Por qué no se esperó a que se restaurara el parque también lo dice el pliego: «con el fin de garantizar la ejecución de los Fondos Next Generation». Y condiciona ese emplazamiento a que, una vez restaurado el parque, los aparatos «deberán ser reubicados en las zonas originalmente planificadas dentro del Parque Natural del Río Túria». No fija fecha para ese traslado. Quién aprobó ese emplazamiento, y cuándo y con qué dinero se hará el traslado, está pedido al Ayuntamiento —apartado 10— y a la Generalitat.",
     "filas": [
       {
         "exige": "≥5 cámaras con reconocimiento de matrículas en tres aparcamientos",
@@ -192,7 +192,7 @@
   "preguntasNota": "Las preguntas 1, 2 y 8 forman parte de la solicitud de acceso a la información registrada ante el Ayuntamiento de Riba-roja de Túria (abajo, con su plazo calculado el día que se lee). La 3 se le planteó a la adjudicataria, Gimeno Digital Technologies, el 11 de octubre. De la 4 a la 7 nacen de la visita del 11 de octubre y se remitieron al Ayuntamiento por correo electrónico ese mismo día, como preguntas de prensa; la 4 y la 8, también a la adjudicataria. Toda respuesta se publicará íntegra y sin editar junto a este reportaje.",
   "solicitudes": {
     "titulo": "Lo que se ha pedido al Ayuntamiento y desde cuándo corre el plazo",
-    "nota": "La solicitud se envió primero por correo electrónico y, a indicación del Área de Transparencia del Ayuntamiento, se presentó después por su Registro de Entrada. De ésa consta el asiento del mismo órgano que la resuelve, así que su plazo se cuenta desde la fecha de registro y se puede afirmar.",
+    "nota": "La primera solicitud se envió por correo electrónico y, a indicación del Área de Transparencia del Ayuntamiento, se presentó después por su Registro de Entrada; la segunda, sobre el emplazamiento provisional, se presentó directamente por esa vía. De las dos consta el asiento del mismo órgano que las resuelve, así que su plazo se cuenta desde la fecha de registro y se puede afirmar.",
     "items": [
       {
         "organismo": "Ayuntamiento de Riba-roja de Túria",
@@ -202,6 +202,16 @@
         "registro": "2026014913",
         "entradaEl": "2026-09-28",
         "pide": "Copia de nueve documentos de protección de datos —evaluación de impacto, base jurídica del tratamiento, asiento del Registro de Actividades de Tratamiento, contrato de encargado suscrito con cada adjudicataria, información del artículo 13 a las personas afectadas, categorías de datos y plazos de conservación, destino de los datos al terminar los contratos y constancia de la consulta al Delegado de Protección de Datos—, junto con ocho preguntas sobre los dos contratos.",
+        "respuesta": null
+      },
+      {
+        "organismo": "Ayuntamiento de Riba-roja de Túria",
+        "calendario": "ayuntamiento-de-riba-roja",
+        "enviadaEl": "2026-10-12",
+        "via": "la sede electrónica del Ayuntamiento",
+        "registro": "2026015752",
+        "entradaEl": "2026-10-13",
+        "pide": "Copia de la aprobación del emplazamiento provisional de los dispositivos en el Valle de Porxinos y de la solicitud que la motivó; de los informes que valoraran alternativas —aplazar la actuación hasta la restauración del parque, reprogramarla o renunciar a ella—; del acta de recepción del suministro; de la justificación de la actuación nº 9 en lo que acredite dónde estaban instalados los dispositivos; y el calendario y el presupuesto previstos para trasladarlos al parque.",
         "respuesta": null
       }
     ]
