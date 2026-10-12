@@ -224,3 +224,43 @@ export function snippetWithoutStatus(snippet) {
   if (typeof snippet !== 'string') return ''
   return snippet.replace(/\s*·\s*estado:\s*[a-z_]*(?:…|\.\.\.)?\s*$/i, '').trim()
 }
+
+/** Un trozo con forma de clave de máquina: «construction», «real_estate», «awarded». */
+const TROZO_TOKEN = /^[a-z][a-z_]*$/
+
+/**
+ * Un contrato's snippet as the reader gets it: without the status tail, and
+ * without the enum tokens the verifier left between « · ».
+ *
+ * The snippets written before `snippet-de-contrato.ts` read
+ * `título · comprador · adjudicataria · categoría · estado: <token>`, and the
+ * oldest `título · comprador · <estado>`. `snippetWithoutStatus` strips the
+ * tail that says «estado:»; the bare one and the category kept printing raw —
+ * on /plenos/qz6weg, ficha bef239, «… · awarded» and «… · INSDAGAR S.L. ·
+ * construction».
+ *
+ * A piece that is a category key becomes its label (`rotuloDeCategoria`, which
+ * returns `null` for a key it does not know: then the piece stays). The LAST
+ * piece, when it is a procurement status or the `unknown` sentinel, goes: the
+ * state has its own chip (`RefStatus`), read live from tenders.json. Whole
+ * pieces only, token-shaped only, never the first (the title): a title that
+ * contains the word is left alone.
+ *
+ * Display only, like `snippetWithoutStatus`: the committed snippet is untouched.
+ *
+ * @param {string|null|undefined} snippet
+ * @param {(categoria: string) => string | null} rotuloDeCategoria
+ * @returns {string}
+ */
+export function snippetParaLeer(snippet, rotuloDeCategoria) {
+  const trozos = snippetWithoutStatus(snippet).split(' · ')
+  const ultimo = trozos.length - 1
+  const esEstado = (trozo) =>
+    TROZO_TOKEN.test(trozo) && (trozo === 'unknown' || procurementStatusKind(trozo) !== null)
+  return trozos
+    .filter((trozo, i) => !(i > 0 && i === ultimo && esEstado(trozo)))
+    .map((trozo, i) =>
+      i > 0 && TROZO_TOKEN.test(trozo) ? (rotuloDeCategoria(trozo) ?? trozo) : trozo,
+    )
+    .join(' · ')
+}
