@@ -305,7 +305,8 @@ export function pickCheckDiagnosis(output: string): string {
  * todo, o una parte—. Son las suyas, no unas que el parte les imponga:
  * «SALTADO, jamás ok» (check:veredictos, check:verified-compose,
  * check:solicitudes) y «NO COMPROBADO, que no es un visto bueno» (check:queues,
- * check:officials-corrections, check:basemap, check:wms).
+ * check:officials-corrections, check:basemap, check:wms, check:privado,
+ * check:eficiencia-findings, check:hooks, check:runs).
  *
  * En mayúsculas y como palabras enteras, a propósito: las salidas normales de
  * cada noche llevan la familia en minúscula —el recuento `no-comprobado 0` de

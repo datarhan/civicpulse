@@ -606,6 +606,14 @@ in every night's clean output: `no-comprobado 0` in officials-corrections'
 counts, «saltados 24 binarios» in `check:privado`. **A guard that gains an exit-0
 path that measures nothing must print one of the two markers**; worded any other
 way, the digest reads it as clean.
+Five guards on the list broke that until 2026-10-12, each honest in its own
+words and read as clean: `check:privado` with nothing to scan,
+`check:eficiencia-findings` with no published ficha, `check:hooks` outside a
+repository, on a machine without git hooks or with no `.husky/` hooks,
+`check:officials-corrections` without its corrections file and `check:runs`
+without `.run-manifests/`. They now say NO COMPROBADO, and
+`tests/guardas-marca-sin-comprobar.test.ts` drives each real guard into that
+state and feeds what it printed to `clasificarGuarda`.
 
 **When a skip alerts.** Not on its first day: the chronic case is a public site
 answering 403, and a red every night for that teaches everyone to mute the

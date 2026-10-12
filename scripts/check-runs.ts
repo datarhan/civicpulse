@@ -170,11 +170,13 @@ function main() {
   // catastrophe: the first would FATAL on every expected pass, the second
   // would call all of them overdue. Measured, not assumed — with
   // `.run-manifests` moved aside this exited 2 before the guard below existed,
-  // which is precisely the permanent-red it is supposed to prevent.
+  // which is precisely the permanent-red it is supposed to prevent. It exits 0,
+  // so it says NO COMPROBADO: that marker is what monitor:health reads
+  // (`MARCAS_SIN_COMPROBAR`), and without it this line was read as clean.
   if (all.length === 0) {
     process.stdout.write(
-      '[check-runs] no hay ningún manifiesto en este checkout (.run-manifests está en\n' +
-        '             .gitignore, así que en CI o en un clon nuevo esto es lo normal).\n' +
+      '[check-runs] NO COMPROBADO: no hay ningún manifiesto en este checkout (.run-manifests\n' +
+        '             está en .gitignore, así que en CI o en un clon nuevo esto es lo normal).\n' +
         '             Sin historial no se puede decir nada de las pasadas programadas.\n',
     )
     return
