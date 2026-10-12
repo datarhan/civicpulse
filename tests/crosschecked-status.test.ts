@@ -26,6 +26,7 @@ import {
   buildRefStatusIndex,
   refStatus,
   snippetWithoutStatus,
+  snippetParaLeer,
   REF_STATUS_KINDS,
 } from '../src/lib/crosschecked-status.js'
 import {
@@ -35,6 +36,7 @@ import {
   IN_FLIGHT_STATUSES,
 } from '../src/lib/contract-status.js'
 import { CONTRACT_STATUS, TENDER_STATUS } from '../src/scraper/tenders'
+import { CATALOGUE } from '../src/i18n'
 
 const DATA = resolve(__dirname, '..', 'public', 'data')
 const tenders = JSON.parse(readFileSync(join(DATA, 'tenders.json'), 'utf8'))
@@ -315,5 +317,63 @@ describe('snippetWithoutStatus — a sentinel is never a value', () => {
       .filter((r) => r.kind === 'tender' && !/·\s*estado:/i.test(r.snippet ?? ''))
     expect(untailed.length).toBeGreaterThan(50)
     for (const r of untailed) expect(snippetWithoutStatus(r.snippet)).toBe(r.snippet.trim())
+  })
+})
+
+/**
+ * Los snippets viejos llevaban, además de la cola «estado:», el estado sin rótulo
+ * al final y la categoría del contrato entre « · »: en /plenos/qz6weg, ficha
+ * bef239, «… · awarded» y «… · INSDAGAR S.L. · construction».
+ */
+describe('snippetParaLeer — ningún token del verificador llega al lector', () => {
+  const categoria = (c: string) => CATALOGUE.es[`contrato.categoria.${c}`] ?? null
+
+  it('cambia la categoría por su rótulo y quita el estado del final, con o sin «estado:»', () => {
+    expect(
+      snippetParaLeer(
+        'Obras · Ayuntamiento · INSDAGAR S.L. · construction · estado: awarded',
+        categoria,
+      ),
+    ).toBe('Obras · Ayuntamiento · INSDAGAR S.L. · Construcción')
+    expect(snippetParaLeer('Obras de restauración · Ayuntamiento · awarded', categoria)).toBe(
+      'Obras de restauración · Ayuntamiento',
+    )
+    expect(snippetParaLeer('Arrendamiento · Ayuntamiento · Bodí · real_estate', categoria)).toBe(
+      'Arrendamiento · Ayuntamiento · Bodí · Inmobiliario',
+    )
+    expect(snippetParaLeer('Vallas · Ayuntamiento · unknown', categoria)).toBe(
+      'Vallas · Ayuntamiento',
+    )
+  })
+
+  it('no toca el título, ni un trozo que no es token, ni un token que no conoce', () => {
+    // El título es el primer trozo, aunque sea una sola palabra con forma de token.
+    expect(snippetParaLeer('other · Ayuntamiento', categoria)).toBe('other · Ayuntamiento')
+    expect(snippetParaLeer('Obras · Ayuntamiento · Adjudicado', categoria)).toBe(
+      'Obras · Ayuntamiento · Adjudicado',
+    )
+    expect(snippetParaLeer('Obras · zzz_desconocido', categoria)).toBe('Obras · zzz_desconocido')
+    // Un estado en medio no es la cola: no se quita.
+    expect(snippetParaLeer('Obras · awarded · Ayuntamiento', categoria)).toBe(
+      'Obras · awarded · Ayuntamiento',
+    )
+    expect(snippetParaLeer(null, categoria)).toBe('')
+  })
+
+  it('deja sin token cada contrato cotejado de las fichas publicadas — y había alguno', () => {
+    const contratos = items.flatMap((f) =>
+      (f.crossChecked ?? []).filter((r) => r.kind === 'tender'),
+    )
+    const conToken = (s: string) =>
+      s
+        .split(' · ')
+        .slice(1)
+        .some((t) => /^[a-z][a-z_]*$/.test(t))
+    // Control positivo: el defecto está en el dato publicado.
+    expect(
+      contratos.filter((r) => conToken(snippetWithoutStatus(r.snippet))).length,
+    ).toBeGreaterThan(5)
+    for (const r of contratos)
+      expect(conToken(snippetParaLeer(r.snippet, categoria)), r.snippet).toBe(false)
   })
 })

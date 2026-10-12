@@ -1,0 +1,351 @@
+[
+  {
+    "cacheKey": "f0642f6adf06f9b9",
+    "backend": "openai",
+    "model": "gpt-4o-mini",
+    "promptVersion": "pleno-claim-v3",
+    "createdAt": "2026-07-03T16:36:45.012Z",
+    "result": {
+      "claims": [
+        {
+          "type": "afirmacion_numerica",
+          "speakerSlug": null,
+          "verbatim": "está en más de un millón y pico de euros.",
+          "context": "está en más de un millón y pico de euros. Y dar solución. No sólo a Valencia de la Bella. Sino a la Llovatera.",
+          "topic": "fiscal",
+          "entities": {
+            "amountEuros": 1000000,
+            "count": 1,
+            "countUnit": "euros},",
+            "date": null,
+            "referencedEntity": null
+          },
+          "accusationSubtype": null,
+          "confidence": 0.8,
+          "reasoning": "La cifra mencionada es clara y se puede verificar en los registros financieros del ayuntamiento."
+        },
+        {
+          "type": "cita_obra",
+          "speakerSlug": null,
+          "verbatim": "la PAD de Metro. Que construimos. A petición de este gobierno.",
+          "context": "¿Sabes dónde? A la PAD de Metro. Que construimos. A petición de este gobierno. Y con un gobierno diferente.",
+          "topic": "movilidad",
+          "entities": {
+            "amountEuros": null,
+            "count": null,
+            "countUnit": null,
+            "date": null,
+            "referencedEntity": "PAD de Metro"
+          },
+          "accusationSubtype": null,
+          "confidence": 0.9,
+          "reasoning": "Se menciona un proyecto específico (PAD de Metro) que puede ser verificado en los registros de obras del ayuntamiento."
+        },
+        {
+          "type": "cita_obra",
+          "speakerSlug": null,
+          "verbatim": "se construyó. En la primera o segunda legislatura. De nuestro gobierno.",
+          "context": "Que construimos. A petición de este gobierno. Y con un gobierno diferente. La anterior. Después de 20 años de reivindicación. De que querían una PAD de Metro. Y se construyó. En la primera o segunda legislatura. De nuestro gobierno.",
+          "topic": "movilidad",
+          "entities": {
+            "amountEuros": null,
+            "count": null,
+            "countUnit": null,
+            "date": null,
+            "referencedEntity": "PAD de Metro"
+          },
+          "accusationSubtype": null,
+          "confidence": 0.8,
+          "reasoning": "La afirmación sobre la construcción de la PAD de Metro en un periodo específico de gobierno es verificable en los registros del ayuntamiento."
+        },
+        {
+          "type": "promesa",
+          "speakerSlug": null,
+          "verbatim": "Si hacemos el centro de salud. Lo hemos reiterado.",
+          "context": "Por ejemplo. Oye. Si hacemos el centro de salud. Lo hemos reiterado. La diputación. Lo hemos reiterado.",
+          "topic": "salud",
+          "entities": {
+            "amountEuros": null,
+            "count": null,
+            "countUnit": null,
+            "date": null,
+            "referencedEntity": "centro de salud"
+          },
+          "accusationSubtype": null,
+          "confidence": 0.7,
+          "reasoning": "Se menciona un compromiso de construir un centro de salud, lo cual puede ser verificado en planes de salud del ayuntamiento."
+        }
+      ]
+    }
+  },
+  {
+    "cacheKey": "bf24dd40b6667493",
+    "backend": "openai",
+    "model": "gpt-4o-mini",
+    "promptVersion": "pleno-claim-v3",
+    "createdAt": "2026-07-03T17:00:53.699Z",
+    "result": {
+      "claims": [
+        {
+          "type": "afirmacion_numerica",
+          "speakerSlug": null,
+          "verbatim": "pasamos de cuatro millones de euros a siete... a cerca de ocho, cuatro",
+          "context": "cuando gobernaba el Partido Popular 15, 16 y 17, los pies en Rivarroja, por ejemplo, no subían, prácticamente, eran lineales. Fue con el gobierno del Partido Socialista, eh, el que empezaron a subir.",
+          "topic": "fiscal",
+          "entities": {
+            "amountEuros": 8000000,
+            "count": 4,
+            "countUnit": "millones de euros},",
+            "date": null,
+            "referencedEntity": null
+          },
+          "accusationSubtype": "factual",
+          "confidence": 0.8,
+          "reasoning": "La afirmación menciona cifras concretas sobre el aumento de los pies en Ribarroja durante el gobierno del Partido Socialista, lo que puede ser verificado con datos financieros del municipio."
+        }
+      ]
+    }
+  },
+  {
+    "cacheKey": "c811acfa7891540c",
+    "backend": "openai",
+    "model": "gpt-4o-mini",
+    "promptVersion": "pleno-claim-v3",
+    "createdAt": "2026-07-03T17:00:53.521Z",
+    "result": {
+      "claims": [
+        {
+          "type": "afirmacion_numerica",
+          "speakerSlug": null,
+          "verbatim": "pasamos de cuatro millones de euros a siete... a cerca de ocho, cuatrocientos que estamos ahora.",
+          "context": "...gobierno del Partido Socialista, eh, el que empezaron a subir. Y pasamos de cuatro millones de euros a siete... a cerca de ocho, cuatrocientos que estamos ahora. Fíjate los cambios en la participación en los ingresos del Estado que ha hecho un gobierno u otro.",
+          "topic": "fiscal",
+          "entities": {
+            "amountEuros": 8400000,
+            "count": 4,
+            "countUnit": "millones de euros},",
+            "date": null,
+            "referencedEntity": null
+          },
+          "accusationSubtype": null,
+          "confidence": 0.9,
+          "reasoning": "La afirmación menciona cifras concretas sobre el aumento de ingresos, lo que permite verificar los datos en los informes financieros del Ayuntamiento."
+        }
+      ]
+    }
+  },
+  {
+    "cacheKey": "361d87198579ec79",
+    "backend": "openai",
+    "model": "gpt-4o-mini",
+    "promptVersion": "pleno-claim-v3",
+    "createdAt": "2026-07-03T17:04:58.193Z",
+    "result": {
+      "claims": [
+        {
+          "type": "afirmacion_numerica",
+          "speakerSlug": null,
+          "verbatim": "30.000 euros en una orquesta y repartieran a lo mejor 30.000 euros durante los comercios",
+          "context": "...si ustedes no se gastaran 30.000 euros en una orquesta y repartieran a lo mejor 30.000 euros durante los comercios, a lo mejor los comercios verían un atractivo más grande.",
+          "topic": "cultura",
+          "entities": {
+            "amountEuros": 30000,
+            "count": 30,
+            "countUnit": "euros},",
+            "date": null,
+            "referencedEntity": null
+          },
+          "accusationSubtype": null,
+          "confidence": 0.9,
+          "reasoning": "Se menciona una cifra concreta de 30.000 euros en relación a gastos en una orquesta y sugiere que esa misma cantidad podría ser repartida entre los comercios, lo que permite verificar la afirmación."
+        },
+        {
+          "type": "promesa",
+          "speakerSlug": null,
+          "verbatim": "si ustedes implementaran otras formas de aplicar la subvención directa a los comercios, ¿qué sería un éxito?",
+          "context": "...si ustedes implementaran otras formas de aplicar la subvención directa a los comercios, ¿qué sería un éxito? En participantes, en comercios participantes.",
+          "topic": "cultura",
+          "entities": {
+            "amountEuros": null,
+            "count": null,
+            "countUnit": null,
+            "date": null,
+            "referencedEntity": null
+          },
+          "accusationSubtype": null,
+          "confidence": 0.7,
+          "reasoning": "Se plantea una propuesta de cambio en la forma de aplicar subvenciones, lo que implica un compromiso futuro, aunque no se especifica un plan concreto."
+        },
+        {
+          "type": "afirmacion_numerica",
+          "speakerSlug": null,
+          "verbatim": "20 y medio comercios que van a hacer",
+          "context": "...porque solo les han presentado los 20 y medio comercios que van a hacer. Nosotros el día 3 traemos a redes sociales un vídeo y ustedes, ustedes que no es, no",
+          "topic": "cultura",
+          "entities": {
+            "amountEuros": null,
+            "count": 20,
+            "countUnit": "comercios},",
+            "date": null,
+            "referencedEntity": null
+          },
+          "accusationSubtype": null,
+          "confidence": 0.8,
+          "reasoning": "Se menciona un número específico de comercios (20 y medio) que están involucrados en una propuesta, lo que permite verificar la afirmación."
+        }
+      ]
+    }
+  },
+  {
+    "cacheKey": "aac8172743eb776b",
+    "backend": "openai",
+    "model": "gpt-4o-mini",
+    "promptVersion": "pleno-claim-v3",
+    "createdAt": "2026-07-03T17:04:59.066Z",
+    "result": {
+      "claims": [
+        {
+          "type": "afirmacion_numerica",
+          "speakerSlug": null,
+          "verbatim": "30.000 euros en una orquesta y repartieran a lo mejor 30.000 euros durante los comercios",
+          "context": "n 30.000 euros en una orquesta y repartieran a lo mejor 30.000 euros durante los comercios, a lo mejor los comercios verían un atractivo más grande.",
+          "topic": "cultura",
+          "entities": {
+            "amountEuros": 30000,
+            "count": 30000,
+            "countUnit": "euros},",
+            "date": null,
+            "referencedEntity": null
+          },
+          "accusationSubtype": null,
+          "confidence": 0.8,
+          "reasoning": "Se menciona una cifra concreta de 30.000 euros, lo que permite verificar si se ha asignado esa cantidad a la orquesta o a los comercios."
+        },
+        {
+          "type": "cita_obra",
+          "speakerSlug": null,
+          "verbatim": "se presenta a participar en la propuesta de reinvención de la fiesta",
+          "context": "en la parte estolera y se presenta a participar en la propuesta de reinvención de la fiesta.",
+          "topic": "cultura",
+          "entities": {
+            "amountEuros": null,
+            "count": null,
+            "countUnit": null,
+            "date": null,
+            "referencedEntity": "propuesta de reinvención de la fiesta"
+          },
+          "accusationSubtype": null,
+          "confidence": 0.7,
+          "reasoning": "Se menciona una propuesta específica que puede ser verificada en actas o documentos relacionados con la fiesta."
+        },
+        {
+          "type": "cita_obra",
+          "speakerSlug": null,
+          "verbatim": "se va a hacer el nuevo trámite",
+          "context": "Y es ahí cuando le comentan que se va a hacer el nuevo trámite.",
+          "topic": "transparencia",
+          "entities": {
+            "amountEuros": null,
+            "count": null,
+            "countUnit": null,
+            "date": null,
+            "referencedEntity": "nuevo trámite"
+          },
+          "accusationSubtype": null,
+          "confidence": 0.6,
+          "reasoning": "Se menciona un nuevo trámite que puede ser verificado en los registros del ayuntamiento."
+        },
+        {
+          "type": "cita_obra",
+          "speakerSlug": null,
+          "verbatim": "el logo de agrupa es público",
+          "context": "El logo de agrupa es público. Se puede gastar en redes sociales.",
+          "topic": "transparencia",
+          "entities": {
+            "amountEuros": null,
+            "count": null,
+            "countUnit": null,
+            "date": null,
+            "referencedEntity": "logo de agrupa"
+          },
+          "accusationSubtype": null,
+          "confidence": 0.7,
+          "reasoning": "Se menciona que el logo es público, lo que puede ser verificado a través de registros de propiedad intelectual o uso de marcas."
+        }
+      ]
+    }
+  },
+  {
+    "cacheKey": "21936d5e8bac4f0a",
+    "backend": "openai",
+    "model": "gpt-4o-mini",
+    "promptVersion": "pleno-claim-v3",
+    "createdAt": "2026-07-03T17:09:58.842Z",
+    "result": {
+      "claims": [
+        {
+          "type": "afirmacion_numerica",
+          "speakerSlug": null,
+          "verbatim": "se dotó el año pasado y se ha vuelto a dotar en un año esos dos mil euros.",
+          "context": "...se dotó el año pasado y se ha vuelto a dotar en un año esos dos mil euros. Que en cuanto esté todo preparado y fiscalizado por la int",
+          "topic": "empleo",
+          "entities": {
+            "amountEuros": 2000,
+            "count": 2,
+            "countUnit": "euros},",
+            "date": null,
+            "referencedEntity": null
+          },
+          "accusationSubtype": null,
+          "confidence": 0.8,
+          "reasoning": "La afirmación menciona una cifra específica de 2000 euros que se ha dotado en dos ocasiones, lo que puede ser verificado en los registros presupuestarios del ayuntamiento."
+        }
+      ]
+    }
+  },
+  {
+    "cacheKey": "d6e2c3d537c05f29",
+    "backend": "openai",
+    "model": "gpt-4o-mini",
+    "promptVersion": "pleno-claim-v3",
+    "createdAt": "2026-07-29T09:38:37.279Z",
+    "result": {
+      "claims": [
+        {
+          "type": "afirmacion_numerica",
+          "speakerSlug": null,
+          "verbatim": "En un incremento de 130.000 euros, Seguridad Social incluida",
+          "context": "Que es un acuerdo relativo a la autorización plenaria del aumento de las cantidades globales de todo el año para productividad y gratificación. En un incremento de 130.000 euros, Seguridad Social incluida y pucharía en total 168.350 euros.",
+          "topic": "fiscal",
+          "entities": {
+            "amountEuros": 130000,
+            "count": 168350,
+            "countUnit": "euros},",
+            "date": null,
+            "referencedEntity": null
+          },
+          "accusationSubtype": null,
+          "confidence": 0.9,
+          "reasoning": "Se menciona un incremento específico de 130.000 euros, lo que permite verificar la cifra en el contexto del presupuesto municipal."
+        },
+        {
+          "type": "afirmacion_numerica",
+          "speakerSlug": null,
+          "verbatim": "pucharía en total 168.350 euros",
+          "context": "En un incremento de 130.000 euros, Seguridad Social incluida y pucharía en total 168.350 euros. Y eso es lo que duraremos al pleno, que en estos incrementos donaríamos paso a la liquidación de obres, estrés y gratificaciones.",
+          "topic": "fiscal",
+          "entities": {
+            "amountEuros": 168350,
+            "count": 168350,
+            "countUnit": "euros},",
+            "date": null,
+            "referencedEntity": null
+          },
+          "accusationSubtype": null,
+          "confidence": 0.9,
+          "reasoning": "Se menciona un total de 168.350 euros, lo que permite verificar la cifra en el contexto del presupuesto municipal."
+        }
+      ]
+    }
+  }
+]

@@ -1,5 +1,5 @@
-import { DIRECTION_LABEL } from '../../hooks/usePlenoVotes'
 import { blocLabel } from '../../lib/party-label'
+import { rotuloDe, useT } from '../../i18n'
 
 // Current corporación seat counts — fallback when a tally row omits `seats`.
 const SEATS = { PSOE: 11, PP: 7, VOX: 1, Compromís: 1, 'EU-Podem': 1 }
@@ -19,6 +19,7 @@ const DIR_ORDER = { a_favor: 0, abstencion: 1, ausente: 2, en_contra: 3 }
  * visualisation stays consistent. Pair with <DirectionLegend/> once per list.
  */
 export function VoteTallyBar({ tally }) {
+  const t = useT()
   if (!tally || tally.length === 0) return null
   const sorted = [...tally].sort(
     (a, b) => (DIR_ORDER[a.direction] ?? 9) - (DIR_ORDER[b.direction] ?? 9),
@@ -42,7 +43,7 @@ export function VoteTallyBar({ tally }) {
         return (
           <div
             key={v.bloc ?? 'sin-identificar'}
-            title={`${blocLabel(v.bloc)} · ${DIRECTION_LABEL[v.direction] || v.direction} · ${seats}`}
+            title={`${blocLabel(v.bloc, t('pleno.grupoNoIdentificado'))} · ${rotuloDe(t, `pleno.sentido.${v.direction}`, v.direction)} · ${seats}`}
             style={{
               flex: seats,
               background: DIR_COLOR[v.direction] || 'var(--ink50)',
@@ -72,6 +73,7 @@ export function VoteTallyBar({ tally }) {
 
 /** Colour key for the four vote directions. Render once above a list of bars. */
 export function DirectionLegend() {
+  const t = useT()
   return (
     <div style={{ display: 'flex', flexWrap: 'wrap', gap: '4px 14px', marginBottom: 12 }}>
       {Object.entries(DIR_COLOR).map(([k, c]) => (
@@ -85,7 +87,7 @@ export function DirectionLegend() {
           }}
         >
           <span style={{ width: 9, height: 9, borderRadius: 'var(--r-input)', background: c }} />
-          <span style={{ color: 'var(--ink70)' }}>{DIRECTION_LABEL[k] || k}</span>
+          <span style={{ color: 'var(--ink70)' }}>{rotuloDe(t, `pleno.sentido.${k}`, k)}</span>
         </span>
       ))}
     </div>

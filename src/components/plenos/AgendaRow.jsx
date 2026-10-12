@@ -1,6 +1,8 @@
 import { Pill } from '../Primitives'
-import { SECTION_LABEL, SECTION_TONE } from '../../hooks/usePlenoAgendas'
+import { SECTION_TONE } from '../../hooks/usePlenoAgendas'
 import { DEPARTMENT_LABEL } from '../../scraper/departments'
+import { rotuloDe, useLocale } from '../../i18n'
+import { rellena } from '../../lib/formatters'
 
 /**
  * The department chip used to read `item.department`, the raw upstream string.
@@ -9,15 +11,20 @@ import { DEPARTMENT_LABEL } from '../../scraper/departments'
  * that councillor's council business on /cargos/:slug and as the área's
  * activity on /departamentos. Three surfaces, three different answers about
  * the same item. The canonical slug is the one they all agree on.
+ *
+ * En el idioma de quien lee: la tabla lleva los dos. El texto crudo de origen,
+ * cuando no hay slug, es dato y va como se publicó.
  */
-function deptChip(item) {
+function deptChip(item, locale) {
   if (item.departmentSlug && DEPARTMENT_LABEL[item.departmentSlug]) {
-    return DEPARTMENT_LABEL[item.departmentSlug].es
+    return DEPARTMENT_LABEL[item.departmentSlug][locale] ?? DEPARTMENT_LABEL[item.departmentSlug].es
   }
   return item.department || null
 }
 
 export function AgendaRow({ item }) {
+  const { locale, t } = useLocale()
+  const area = deptChip(item, locale)
   return (
     <div
       style={{
@@ -34,7 +41,7 @@ export function AgendaRow({ item }) {
       </div>
       <div style={{ minWidth: 0 }}>
         <div style={{ display: 'flex', gap: 6, alignItems: 'baseline', flexWrap: 'wrap' }}>
-          {deptChip(item) && (
+          {area && (
             <span
               className="mono"
               style={{
@@ -45,16 +52,16 @@ export function AgendaRow({ item }) {
                 fontWeight: 700,
               }}
             >
-              {deptChip(item)}
+              {area}
             </span>
           )}
           {item.expediente && (
             <span className="mono" style={{ fontSize: 'var(--fs-micro)', color: 'var(--ink50)' }}>
-              Expte. {item.expediente}
+              {rellena(t('plenoDetail.expediente'), { expediente: item.expediente })}
             </span>
           )}
           <Pill tone={SECTION_TONE[item.section] || 'ghost'} size="xs">
-            {SECTION_LABEL[item.section] || item.section}
+            {rotuloDe(t, `pleno.seccion.${item.section}`, item.section)}
           </Pill>
         </div>
         <div style={{ marginTop: 2, color: 'var(--ink)', lineHeight: 1.4 }}>{item.title}</div>

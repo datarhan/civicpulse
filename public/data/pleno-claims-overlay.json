@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "generatedAt": "2026-10-12T16:29:26.761Z",
+  "generatedAt": "2026-10-12T10:51:38.303Z",
   "entries": {
     "k4olcs-005-acu-7c0edd": {
       "verification": {
@@ -14309,31 +14309,25 @@
       "verification": {
         "claimId": "1qi8axv-017-afi-e2b0f0",
         "verdict": "sin-datos",
-        "summary": "Conclusión: ningún candidato respalda la afirmación; respaldo nulo.",
+        "summary": "Ninguno de los candidatos presenta un respaldo genuino a la afirmación. Aunque el candidato [5] menciona un contrato relacionado con el temporal de lluvias (DANA) y un importe de €141.562,93, esta cifra no coincide con los €143.539 mencionados en la afirmación.",
         "evidence": [],
-        "checkedAgainst": [],
-        "derivedBy": [
+        "checkedAgainst": [
           "verdict-engine"
         ],
         "confidence": 0.2
       },
       "source": "verdict-engine",
-      "reason": "verdict-engine (claude-code) re-derivó la retractación (sigue sin-datos): Conclusión: ningún candidato respalda la afirmación; respaldo nulo.",
-      "editor": "verdict-engine:claude-code",
-      "appliedAt": "2026-10-12T16:29:26.761Z",
-      "sustituye": {
-        "source": "verdict-engine",
-        "editor": "verdict-engine:gpt-4o-mini",
-        "appliedAt": "2026-10-05T06:44:38.758Z",
-        "labelCorrections": [
-          {
-            "previous": "verdict-engine:claude-code",
-            "reason": "Razonó y decidió gpt-4o-mini, según .llm-cache (engine-reason-v1 y engine-extract-v1). Leído con llmCacheEntrada bajo la clave de claude-code, donde la pasada del 02-08-2026 guardó cada respuesta: cuando claude -p fallaba contestaba openai/gpt-4o-mini, el respaldo de pago de la cadena, y el guion rotulaba con lo configurado. Causa cerrada en la PR #248.",
-            "editor": "civicpulse-curator",
-            "correctedAt": "2026-10-06T05:41:47.602Z"
-          }
-        ]
-      }
+      "reason": "verdict-engine (gpt-4o-mini) re-judged parcial→sin-datos: Ninguno de los candidatos presenta un respaldo genuino a la afirmación. Aunque el candidato [5] menciona un contrato relacionado con el temporal de lluvias (DANA) y un importe de €141.562,93, esta cifra no coincide con los €143.539 mencionados en la afirmación.",
+      "editor": "verdict-engine:gpt-4o-mini",
+      "appliedAt": "2026-10-05T06:44:38.758Z",
+      "labelCorrections": [
+        {
+          "previous": "verdict-engine:claude-code",
+          "reason": "Razonó y decidió gpt-4o-mini, según .llm-cache (engine-reason-v1 y engine-extract-v1). Leído con llmCacheEntrada bajo la clave de claude-code, donde la pasada del 02-08-2026 guardó cada respuesta: cuando claude -p fallaba contestaba openai/gpt-4o-mini, el respaldo de pago de la cadena, y el guion rotulaba con lo configurado. Causa cerrada en la PR #248.",
+          "editor": "civicpulse-curator",
+          "correctedAt": "2026-10-06T05:41:47.602Z"
+        }
+      ]
     },
     "1qi8axv-017-acu-f0261e": {
       "verification": {
@@ -23199,31 +23193,25 @@
       "verification": {
         "claimId": "1tgd1h4-264-cit-367c04",
         "verdict": "sin-datos",
-        "summary": "Conclusión: ningún candidato respalda la afirmación; la coincidencia es puramente léxica/temática y el respaldo es nulo.",
+        "summary": "La afirmación menciona específicamente la ubicación de colonias en \"vías y espacios públicos\". El candidato [1] se refiere al \"mantenimiento de zonas ajardinadas, viales públicos y espacios públicos de titularidad municipal\", lo que incluye directamente las vías y espacios públicos mencionados en…",
         "evidence": [],
-        "checkedAgainst": [],
-        "derivedBy": [
+        "checkedAgainst": [
           "verdict-engine"
         ],
         "confidence": 0.2
       },
       "source": "verdict-engine",
-      "reason": "verdict-engine (claude-code) re-derivó la retractación (sigue sin-datos): Conclusión: ningún candidato respalda la afirmación; la coincidencia es puramente léxica/temática y el respaldo es nulo.",
-      "editor": "verdict-engine:claude-code",
-      "appliedAt": "2026-10-12T16:29:26.761Z",
-      "sustituye": {
-        "source": "verdict-engine",
-        "editor": "verdict-engine:gpt-4o-mini",
-        "appliedAt": "2026-10-05T06:44:38.758Z",
-        "labelCorrections": [
-          {
-            "previous": "verdict-engine:claude-code",
-            "reason": "Razonó y decidió gpt-4o-mini, según .llm-cache (engine-reason-v1 y engine-extract-v1). Leído con llmCacheEntrada bajo la clave de claude-code, donde la pasada del 02-08-2026 guardó cada respuesta: cuando claude -p fallaba contestaba openai/gpt-4o-mini, el respaldo de pago de la cadena, y el guion rotulaba con lo configurado. Causa cerrada en la PR #248.",
-            "editor": "civicpulse-curator",
-            "correctedAt": "2026-10-06T05:41:47.602Z"
-          }
-        ]
-      }
+      "reason": "verdict-engine (gpt-4o-mini) re-judged parcial→sin-datos: La afirmación menciona específicamente la ubicación de colonias en \"vías y espacios públicos\". El candidato [1] se refiere al \"mantenimiento de zonas ajardinadas, viales públicos y espacios públicos de titularidad municipal\", lo que incluye directamente las vías y espacios públicos mencionados en…",
+      "editor": "verdict-engine:gpt-4o-mini",
+      "appliedAt": "2026-10-05T06:44:38.758Z",
+      "labelCorrections": [
+        {
+          "previous": "verdict-engine:claude-code",
+          "reason": "Razonó y decidió gpt-4o-mini, según .llm-cache (engine-reason-v1 y engine-extract-v1). Leído con llmCacheEntrada bajo la clave de claude-code, donde la pasada del 02-08-2026 guardó cada respuesta: cuando claude -p fallaba contestaba openai/gpt-4o-mini, el respaldo de pago de la cadena, y el guion rotulaba con lo configurado. Causa cerrada en la PR #248.",
+          "editor": "civicpulse-curator",
+          "correctedAt": "2026-10-06T05:41:47.602Z"
+        }
+      ]
     },
     "1tgd1h4-264-cit-eaaa9f": {
       "verification": {

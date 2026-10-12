@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-12T16:29:28.454Z",
+  "generatedAt": "2026-10-12T15:36:02.381Z",
   "version": "1",
   "plenoId": "1237hbp",
   "plenoDate": "2026-07-03",
@@ -1399,9 +1399,7 @@
         "context": "...que va a durar unos 4 o 6 mil que va a suponer unos 4 o 6 mil de fondos propios cuando siempre se ha dicho que el contrato de la basura no iba a suponer nada para el ayuntamiento...",
         "topic": "fiscal",
         "entities": {
-          "amountEuros": 4000,
-          "count": 1,
-          "countUnit": "mil"
+          "amountEuros": 4000
         },
         "confidence": 0.7,
         "reasoning": "Se menciona una cifra de 4 o 6 mil euros que se va a suponer de fondos propios, lo que puede ser verificado en los registros de presupuestos o gastos del ayuntamiento.",
