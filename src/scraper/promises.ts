@@ -23,6 +23,8 @@
  * (public/data/promise-suggestions.json) and never touches this one.
  */
 
+import { rechazoDeFirma, rechazoDeMarcador } from './firma-de-persona'
+
 // No `Otro`: a sentinel is never a value (CLAUDE.md, data-integrity rule 3),
 // and no promise or reply ever used it.
 export const ALLOWED_PARTIES = ['PSOE', 'PP', 'VOX', 'Compromís', 'EU-Podem'] as const
@@ -184,6 +186,20 @@ export interface Promise {
    * cumplida/parcial/no-ejecutada/inviable.
    */
   dueBy?: string
+  /**
+   * The words of `quote` that the deadline rests on, copied verbatim — the
+   * same field, and the same ≥20-char floor, as a pleno vote's `dueBySource`,
+   * plus one check a vote cannot have: the fragment must appear, exactly, in
+   * the quote this card publishes. Present if and only if `dueBy` is.
+   */
+  dueBySource?: string
+  /**
+   * Who set or cleared `dueBy`, when, from what to what, and why. Written only
+   * by `npm run corregir-promesa -- plazo|quitar-plazo`; a `dueBy` the last
+   * entry here does not match is rejected, so a deadline nobody signed for
+   * never publishes. Omitted when empty.
+   */
+  dueByLog?: PromiseDueByChange[]
   autoPublished?: AutoPublishedMeta | null
   /**
    * Public corrections log: what a curator changed after publication, with
@@ -212,6 +228,93 @@ export interface PromiseCorrection {
   /** A person. A script's name here would be a lie about who judged. */
   editor: string
   correctedAt: string
+}
+
+/**
+ * How the curator's date becomes `dueBy`. Two rules, and /metodologia names
+ * both:
+ *
+ *   · `dia`        — the curator wrote a day (`2026-09-15`); published as is.
+ *   · `fin-de-mes` — the curator wrote a month (`2026-09`), because the quote
+ *                    names a month and no day («el próximo mes de septiembre»);
+ *                    published as that month's LAST day, so the promise is not
+ *                    called overdue while the month it named is still running.
+ *
+ * There is no rule for a season, a quarter or «a principios de año»: a quote
+ * that vague has no date a person can sign, and inventing one is the
+ * machine-inferred deadline this schema exists to block.
+ */
+export const DUE_BY_RULES = ['dia', 'fin-de-mes'] as const
+export type DueByRule = (typeof DUE_BY_RULES)[number]
+
+/** Same floor as a pleno vote's `dueBySource` (pleno-votes.ts). */
+export const DUE_BY_SOURCE_MIN = 20
+
+export interface PromiseDueBy {
+  dueBy: string
+  dueBySource: string
+}
+
+/**
+ * One signed change of a promise's deadline. `from: null` sets one where there
+ * was none; `to: null` clears it. Setting one is a new claim about a named
+ * party —it is what lets /departamentos call the promise overdue— so a person
+ * signs it (`rechazoDeFirma`); clearing one only withdraws a claim, and the
+ * role account may sign it, as it signs a retraction (`rechazoDeMarcador`).
+ */
+export interface PromiseDueByChange {
+  from: PromiseDueBy | null
+  to: (PromiseDueBy & { rule: DueByRule }) | null
+  reason: string
+  editor: string
+  changedAt: string
+}
+
+const ISO_DAY = /^\d{4}-\d{2}-\d{2}$/
+
+/** Is `s` a calendar day that exists (`2026-02-30` is not)? */
+function isRealDay(s: unknown): s is string {
+  if (typeof s !== 'string' || !ISO_DAY.test(s)) return false
+  const d = new Date(`${s}T00:00:00Z`)
+  return Number.isFinite(d.getTime()) && d.toISOString().slice(0, 10) === s
+}
+
+/** The last day of month `m` (1–12) of year `y`, as `YYYY-MM-DD`. */
+const lastDayOfMonth = (y: number, m: number) =>
+  new Date(Date.UTC(y, m, 0)).toISOString().slice(0, 10)
+
+/**
+ * The curator's date as `dueBy`, with the rule that read it (`DUE_BY_RULES`).
+ * Throws on anything that is not a real day or month: «septiembre», a quarter,
+ * `2026-9`.
+ */
+export function resolveDueBy(texto: string): { dueBy: string; rule: DueByRule } {
+  const t = String(texto ?? '').trim()
+  if (isRealDay(t)) return { dueBy: t, rule: 'dia' }
+  const m = /^(\d{4})-(\d{2})$/.exec(t)
+  if (m) {
+    const mes = Number(m[2])
+    if (mes >= 1 && mes <= 12)
+      return { dueBy: lastDayOfMonth(Number(m[1]), mes), rule: 'fin-de-mes' }
+  }
+  throw new Error(
+    `el plazo «${t}» no es un día (AAAA-MM-DD) ni un mes (AAAA-MM) que exista; ` +
+      'una estación o un trimestre no tienen una fecha que se pueda firmar',
+  )
+}
+
+/** Spacing and Unicode form only: the words themselves must match exactly. */
+const llano = (s: string) => s.normalize('NFC').replace(/\s+/g, ' ').trim()
+
+/**
+ * Does `fragment` appear, exactly, in `quote`? No accent or case folding and
+ * no fuzzy match: the fragment is the verbatim the deadline rests on, and a
+ * tolerance here would let a paraphrase through. Only `quote` — the text the
+ * card publishes — counts; `source.quote` is not shown anywhere.
+ */
+export function quoteContainsFragment(quote: string, fragment: string): boolean {
+  const f = llano(fragment)
+  return f.length > 0 && llano(quote).includes(f)
 }
 
 /**
@@ -382,9 +485,15 @@ function validatePromise(p: unknown, idx: number): Promise {
   if (!Array.isArray(r.evidence)) throw new ValidationError(`items[${idx}].evidence must be array`)
   const evidence = (r.evidence as unknown[]).map((e, ei) => validateEvidence(e, ei))
   assertIsoDate(r.createdAt, `items[${idx}].createdAt`)
-  if (r.dueBy !== undefined && r.dueBy !== null) {
-    assertIsoDate(r.dueBy, `items[${idx}].dueBy`)
+  // A suggestion never substitutes for a published status (CLAUDE.md, «What
+  // may publish»): a row still awaiting a human is not part of the register.
+  if ('requiresHumanApproval' in r) {
+    throw new ValidationError(
+      `items[${idx}] carries requiresHumanApproval: a draft awaiting a human is not a ` +
+        `published promise — apply it through its curator CLI`,
+    )
   }
+  const plazo = validateDueBy(r, idx)
   if (r.departmentSlug !== undefined && r.departmentSlug !== null) {
     assertString(r.departmentSlug, `items[${idx}].departmentSlug`, 2, 40)
     if (!/^[a-z][a-z0-9-]*$/.test(r.departmentSlug as string)) {
@@ -440,7 +549,10 @@ function validatePromise(p: unknown, idx: number): Promise {
     createdAt: r.createdAt as string,
     updatedAt: typeof r.updatedAt === 'string' ? r.updatedAt : undefined,
     response: (r.response as Promise['response']) ?? null,
-    ...(typeof r.dueBy === 'string' ? { dueBy: r.dueBy } : {}),
+    // Carried through, like `corrections`, or a writer that serialises this
+    // normalised copy would drop the deadline's source and its signed trail.
+    ...(plazo.live ?? {}),
+    ...(plazo.log.length ? { dueByLog: plazo.log } : {}),
     ...(typeof r.departmentSlug === 'string' ? { departmentSlug: r.departmentSlug } : {}),
     autoPublished: (r.autoPublished as Promise['autoPublished']) ?? null,
     // Carried through, or every writer that serialises this normalised copy
@@ -448,6 +560,125 @@ function validatePromise(p: unknown, idx: number): Promise {
     // log on its next run.
     ...(corrections?.length ? { corrections } : {}),
   }
+}
+
+const sameDueBy = (a: PromiseDueBy | null, b: PromiseDueBy | null) =>
+  a === null || b === null ? a === b : a.dueBy === b.dueBy && a.dueBySource === b.dueBySource
+
+const pairOf = (to: PromiseDueByChange['to']): PromiseDueBy | null =>
+  to ? { dueBy: to.dueBy, dueBySource: to.dueBySource } : null
+
+function validateDueByPair(v: unknown, name: string): PromiseDueBy {
+  if (!v || typeof v !== 'object') throw new ValidationError(`${name} must be object or null`)
+  const o = v as Record<string, unknown>
+  if (!isRealDay(o.dueBy))
+    throw new ValidationError(
+      `${name}.dueBy must be a real YYYY-MM-DD day (got ${JSON.stringify(o.dueBy)})`,
+    )
+  assertString(o.dueBySource, `${name}.dueBySource`, DUE_BY_SOURCE_MIN, 400)
+  return { dueBy: o.dueBy, dueBySource: o.dueBySource }
+}
+
+/**
+ * A promise's deadline: `dueBy` with its verbatim `dueBySource`, and the signed
+ * `dueByLog` that put them there. «Evidence gates the strong verdicts»
+ * (CLAUDE.md): a deadline is what lets a page call a named party's promise
+ * overdue, so it needs the words it rests on —in the quote this card shows—
+ * and somebody's name on the change. A deadline read off the quote by a
+ * machine has neither, and this is where it stops.
+ */
+function validateDueBy(
+  r: Record<string, unknown>,
+  idx: number,
+): { live: PromiseDueBy | null; log: PromiseDueByChange[] } {
+  const where = `items[${idx}]`
+  const hasDue = r.dueBy !== undefined && r.dueBy !== null
+  const hasSrc = r.dueBySource !== undefined && r.dueBySource !== null
+  let live: PromiseDueBy | null = null
+  if (hasDue) {
+    if (!isRealDay(r.dueBy))
+      throw new ValidationError(
+        `${where}.dueBy must be a real ISO YYYY-MM-DD day (got ${JSON.stringify(r.dueBy)})`,
+      )
+    if (!hasSrc)
+      throw new ValidationError(
+        `${where}.dueBy needs its dueBySource: the verbatim words of the quote it rests on — ` +
+          `a deadline without them is a machine-inferred one`,
+      )
+    assertString(
+      r.dueBySource,
+      `${where}.dueBySource (verbatim, ≥${DUE_BY_SOURCE_MIN} chars)`,
+      DUE_BY_SOURCE_MIN,
+      400,
+    )
+    if (!quoteContainsFragment(r.quote as string, r.dueBySource))
+      throw new ValidationError(
+        `${where}.dueBySource no está literal en la cita de la promesa («${r.dueBySource}»): ` +
+          `el plazo tiene que apoyarse en palabras que la tarjeta publica. Si la cita se ` +
+          `corrigió, quita antes el plazo (corregir-promesa quitar-plazo) o vuelve a fijarlo`,
+      )
+    if (r.dueBy < (r.madeAt as string).slice(0, 10))
+      throw new ValidationError(
+        `${where}.dueBy ${r.dueBy} is before madeAt ${r.madeAt}: a deadline cannot fall ` +
+          `before the promise was made`,
+      )
+    live = { dueBy: r.dueBy, dueBySource: r.dueBySource }
+  } else if (hasSrc) {
+    throw new ValidationError(`${where}.dueBySource without dueBy`)
+  }
+
+  const log: PromiseDueByChange[] = []
+  if (r.dueByLog !== undefined) {
+    if (!Array.isArray(r.dueByLog)) throw new ValidationError(`${where}.dueByLog must be array`)
+    let prev: PromiseDueBy | null = null
+    for (const [i, e] of (r.dueByLog as unknown[]).entries()) {
+      const name = `${where}.dueByLog[${i}]`
+      if (!e || typeof e !== 'object') throw new ValidationError(`${name} must be object`)
+      const o = e as Record<string, unknown>
+      const from = o.from === null ? null : validateDueByPair(o.from, `${name}.from`)
+      let to: PromiseDueByChange['to'] = null
+      if (o.to !== null) {
+        const pair = validateDueByPair(o.to, `${name}.to`)
+        const rule = (o.to as Record<string, unknown>).rule
+        assertEnum(rule, DUE_BY_RULES, `${name}.to.rule`)
+        if (rule === 'fin-de-mes') {
+          const [y, m] = pair.dueBy.split('-').map(Number)
+          if (pair.dueBy !== lastDayOfMonth(y, m))
+            throw new ValidationError(
+              `${name}.to: rule fin-de-mes publishes the month's last day, not ${pair.dueBy}`,
+            )
+        }
+        to = { ...pair, rule }
+      }
+      if (from === null && to === null)
+        throw new ValidationError(`${name}: a change from no deadline to no deadline is not one`)
+      if (sameDueBy(from, pairOf(to)))
+        throw new ValidationError(`${name}: a change that changes nothing is not one`)
+      // The chain: each change starts where the previous one left the row.
+      if (!sameDueBy(from, prev))
+        throw new ValidationError(
+          `${name}.from does not match the deadline the previous entry left ` +
+            `(${prev ? prev.dueBy : 'none'})`,
+        )
+      assertString(o.reason, `${name}.reason`, PROMISE_REASON_MIN, 1000)
+      assertString(o.editor, `${name}.editor`, 2, 80)
+      // Setting a deadline signs a claim about a named party: a person. Clearing
+      // one withdraws a claim: anything but the hole of an unfilled command.
+      const firma = to ? rechazoDeFirma(o.editor) : rechazoDeMarcador(o.editor)
+      if (firma) throw new ValidationError(`${name}.editor: ${firma}`)
+      assertIsoDate(o.changedAt, `${name}.changedAt`)
+      log.push({ from, to, reason: o.reason, editor: o.editor, changedAt: o.changedAt })
+      prev = pairOf(to)
+    }
+  }
+  // The published deadline is the one the last signed change left — or none.
+  const signed = log.length ? pairOf(log[log.length - 1].to) : null
+  if (!sameDueBy(live, signed))
+    throw new ValidationError(
+      `${where}.dueBy does not match its dueByLog: every deadline is set by a signed change ` +
+        `(npm run corregir-promesa -- plazo), and the last one must be the one published`,
+    )
+  return { live, log }
 }
 
 function validateCorrection(c: unknown, name: string): PromiseCorrection {
