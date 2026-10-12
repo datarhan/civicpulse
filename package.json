@@ -175,6 +175,7 @@
     "apply-curation": "npx tsx scripts/apply-curation.ts",
     "push-curation-queue": "npx tsx scripts/push-curation-queue.ts",
     "retire:otro-sentinel": "npx tsx scripts/retire-otro-sentinel.ts",
+    "sanear:unidades-recuento": "npx tsx scripts/sanear-unidades-recuento.ts",
     "check:cron": "npx tsx scripts/check-cron.ts",
     "check:json": "npx tsx scripts/check-json.ts",
     "check:surfaces": "npx tsx scripts/check-surfaces.ts",

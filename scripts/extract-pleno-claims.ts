@@ -245,6 +245,12 @@ async function runOne(
         `${r.fueraDeLaComposicion} fuera de la composición\n`,
     )
   }
+  // Siempre, también a cero: «ninguna descartada» es una medida.
+  const u = res.stats.unidadesDescartadas
+  process.stdout.write(
+    `[extract·claims]   ${plenoId} · recuentos descartados: ${u['fragmento-json']} con trozos ` +
+      `de JSON en la unidad · ${u.moneda} con una moneda por unidad (el dinero va en amountEuros)\n`,
+  )
   windowTally.answered += res.stats.windowsAnswered
   windowTally.unanswered += res.stats.windowsUnanswered
   return res.items

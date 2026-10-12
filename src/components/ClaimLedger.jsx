@@ -1,6 +1,7 @@
 import { useMemo, useState } from 'react'
 import { Card, Pill, ExtLink } from './Primitives'
 import { MarcaDeFirma } from './MarcaDeFirma'
+import { tramoDeFirma } from '../lib/atribucion-firmada'
 import { rotuloDe, useT } from '../i18n'
 import { conHuecos } from '../lib/huecos'
 import { rellena } from '../lib/formatters'
@@ -109,36 +110,54 @@ function ClaimCard({ item }) {
         }}
       >
         <div style={{ flex: 1, minWidth: 0 }}>
-          <div style={{ display: 'flex', gap: 6, alignItems: 'center', marginBottom: 4 }}>
+          {/* La envoltura vive en index.css (.cp-ledger-head): sin ella la
+              fila no envolvía y, a 375 px, la fecha se partía por el guion. */}
+          <div
+            className="cp-ledger-head"
+            style={{ display: 'flex', gap: 6, alignItems: 'center', marginBottom: 4 }}
+          >
             {/* Derivado del literal: un tipo que promete una cifra o un
                 convenio que la cita no trae baja a «Afirmación»
                 (src/lib/claim-type-label.js). */}
             <Pill tone={rotuloDeTipo(claim, t).tono} size="xs">
               {rotuloDeTipo(claim, t).texto}
             </Pill>
-            {claim.speakerGroup && (
+            {/* El grupo y su «firmado» van en una sola pieza para que, al
+                envolver, la marca no caiga sola al principio de la línea
+                siguiente (lo mismo que /declaraciones, commit 43b21db0). */}
+            {(claim.speakerGroup || tramoDeFirma(claim)) && (
               <span
-                className="mono"
-                style={{
-                  fontSize: 'var(--fs-micro)',
-                  fontWeight: 700,
-                  letterSpacing: '.1em',
-                  color: 'var(--ink50)',
-                  textTransform: 'uppercase',
-                }}
+                className="cp-ledger-entero"
+                style={{ display: 'inline-flex', alignItems: 'center', gap: 6 }}
               >
-                {blocLabel(claim.speakerGroup)}
+                {claim.speakerGroup && (
+                  <span
+                    className="mono"
+                    style={{
+                      fontSize: 'var(--fs-micro)',
+                      fontWeight: 700,
+                      letterSpacing: '.1em',
+                      color: 'var(--ink50)',
+                      textTransform: 'uppercase',
+                    }}
+                  >
+                    {blocLabel(claim.speakerGroup)}
+                  </span>
+                )}
+                <MarcaDeFirma
+                  claim={claim}
+                  style={{
+                    fontSize: 'var(--fs-micro)',
+                    letterSpacing: '.04em',
+                    color: 'var(--ink50)',
+                  }}
+                />
               </span>
             )}
-            <MarcaDeFirma
-              claim={claim}
-              style={{
-                fontSize: 'var(--fs-micro)',
-                letterSpacing: '.04em',
-                color: 'var(--ink50)',
-              }}
-            />
-            <span className="mono" style={{ fontSize: 'var(--fs-micro)', color: 'var(--ink50)' }}>
+            <span
+              className="mono cp-ledger-entero"
+              style={{ fontSize: 'var(--fs-micro)', color: 'var(--ink50)' }}
+            >
               {claim.plenoDate}
             </span>
             {claim.entities.amountEuros && (
