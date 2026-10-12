@@ -203,7 +203,7 @@ describe('/plenos · la tarjeta lee la pasada de derivedBy y source', () => {
     pintarLedger(await subidaNli())
     expect(veredicto()).toBe('verificador NLI')
     // El corpus de la evidencia sí es una fuente: sale, y sale solo.
-    expect(fuentes()).toBe('tenders')
+    expect(fuentes()).toBe('contratos')
   })
 
   it('una retractación del motor dice quién la hizo y que no constan las fuentes', async () => {
@@ -429,7 +429,7 @@ describe('/declaraciones · el reparto de «sin datos» es el de las tarjetas', 
     })
     expect(lineas).toEqual([
       'ninguna',
-      'tenders · tenders-ted · bdns · budget',
+      'contratos · contratos anunciados en TED · subvenciones (BDNS) · presupuesto',
       'no constan',
       'no constan',
       'no constan',

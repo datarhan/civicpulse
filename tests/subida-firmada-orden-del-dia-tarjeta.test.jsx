@@ -81,7 +81,7 @@ describe('la tarjeta de una subida que cita un orden del día', () => {
         <ClaimLedger items={[it0]} />
       </MemoryRouter>,
     )
-    expect(linea('Fuentes comprobadas:')).toBe('plenos-agendas')
+    expect(linea('Fuentes comprobadas:')).toBe('órdenes del día de los plenos')
     expect(linea('Veredicto:')).toBe(`subido por una persona · firmado por ${PERSONA}`)
     const enlace = container.querySelector(`a[href="${RX4HB4}"]`)
     expect(enlace, 'la fila no enlaza a la sesión').not.toBeNull()

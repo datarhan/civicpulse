@@ -101,7 +101,7 @@ describe('la tarjeta de una subida firmada', () => {
       </MemoryRouter>,
     )
     expect(linea('Veredicto:')).toBe(`subido por una persona · firmado por ${PERSONA}`)
-    expect(linea('Fuentes comprobadas:')).toBe('tenders')
+    expect(linea('Fuentes comprobadas:')).toBe('contratos')
     expect(container.textContent).toContain(RESUMEN)
     expect(container.textContent).toContain('adjudicado a URBEADAPTA S. L.')
     // Ni la puntuación de parecido, que no la hay, ni el puente de importes.
@@ -163,7 +163,9 @@ describe('lo que ningún escritor produce no se lee como una subida firmada', ()
     expect(etiquetaVerificador(v({ source: 'curator-upgrade', raisedBy: PERSONA }))).toBe(
       `subido por una persona · firmado por ${PERSONA}`,
     )
-    expect(fuentesComprobadas(v({ source: 'curator-upgrade', raisedBy: PERSONA }))).toBe('tenders')
+    expect(fuentesComprobadas(v({ source: 'curator-upgrade', raisedBy: PERSONA }))).toBe(
+      'contratos',
+    )
   })
 
   it('una firma de persona colada en otro canal no hace de una bajada una subida', () => {

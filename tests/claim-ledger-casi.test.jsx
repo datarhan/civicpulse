@@ -73,6 +73,10 @@ const ROTULO = 'Fuentes comprobadas:'
 const SIN_CONSTANCIA = 'no constan'
 /** La etiqueta con la que la tarjeta rotula una fila de `kind: 'tender'`. */
 const CONTRATO = 'CONTRATO'
+/** Cómo nombra un corpus la línea de fuentes, y la explicación que la tarjeta re-deriva. */
+const corpus = (id) => CATALOGUE.es[`ledger.corpus.${id}`]
+/** Los rótulos de los dos corpus de contratos en esa línea. */
+const DE_CONTRATOS = [corpus('tenders'), corpus('tenders-ted')]
 
 const leyoContratos = (v) =>
   corpusReales(v?.checkedAgainst).some((c) => c === 'tenders' || c === 'tenders-ted')
@@ -175,7 +179,11 @@ describe('/plenos/:id: una fila CONTRATO va con los contratos anotados', () => {
   it('ninguna tarjeta enseña un contrato sobre una línea que no nombra contratos', () => {
     const malas = leidas
       .filter((t) => t.kinds.includes(CONTRATO))
-      .filter((t) => t.fuentes !== SIN_CONSTANCIA && !/\btenders\b/.test(t.fuentes))
+      .filter(
+        (t) =>
+          t.fuentes !== SIN_CONSTANCIA &&
+          !t.fuentes.split(' · ').some((f) => DE_CONTRATOS.includes(f)),
+      )
       .map(describir)
     expect(malas.slice(0, 5), `${malas.length} tarjetas`).toEqual([])
   })
@@ -191,12 +199,12 @@ describe('/plenos/:id: una fila CONTRATO va con los contratos anotados', () => {
       expect(esSinCotejo(t.fila), t.fila.claim.id).toBe(true)
       expect(t.kinds, t.fila.claim.id).not.toContain(CONTRATO)
       expect(t.explicacion, t.fila.claim.id).toBe(
-        resumenSinRegistro(t.fila.verification.checkedAgainst),
+        resumenSinRegistro(t.fila.verification.checkedAgainst, corpus),
       )
     }
     // Las líneas que el defecto dejaba sin contratos: las dos, medidas.
     expect(viejas.some((t) => t.fuentes === 'ninguna')).toBe(true)
-    expect(viejas.some((t) => t.fuentes === 'promises')).toBe(true)
+    expect(viejas.some((t) => t.fuentes === corpus('promises'))).toBe(true)
   })
 
   it('y el control publicado antes, con contratos cotejados, se pinta con la frase nueva', () => {

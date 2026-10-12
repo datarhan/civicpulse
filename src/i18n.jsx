@@ -860,8 +860,8 @@ export const CATALOGUE = {
     'ledger.firmado': 'firmado',
     'ledger.firmadoTitulo': 'Grupo firmado por una persona, sobre el tramo {tramo} de la sesión',
     // La tarjeta de una declaración (ClaimLedger) en /plenos/:id y /departamentos/:slug.
-    // Sólo el rótulo: la cita, la explicación del verificador, el texto de cada fila,
-    // las firmas y los nombres de corpus son dato y salen como vinieron. El veredicto y
+    // Sólo el rótulo: la cita, la explicación del verificador, el texto de cada fila
+    // y las firmas son dato y salen como vinieron. El veredicto y
     // el tipo van por su valor (CLAIM_VERDICTS, ALLOWED_CLAIM_TYPES y el rótulo neutro
     // de claim-type-label.js), y de aquí lee usePlenoClaims.js el castellano de las
     // páginas que aún no traducen (tests/i18n-mapa-enums.test.ts).
@@ -894,6 +894,20 @@ export const CATALOGUE = {
     'ledger.fuentes': 'Fuentes comprobadas: {fuentes}',
     'ledger.fuentes.ninguna': 'ninguna',
     'ledger.fuentes.noConstan': 'no constan',
+    // Cada corpus de esa línea (CORPUS_IDS, claim-verdicts.ts). En minúscula: van en
+    // la lista tras los dos puntos y dentro de la frase «No se encontró registro en …»
+    // que la tarjeta re-deriva (claim-provenance.js, resumenSegunFuentes).
+    'ledger.corpus.tenders': 'contratos',
+    'ledger.corpus.tenders-ted': 'contratos anunciados en TED',
+    'ledger.corpus.bdns': 'subvenciones (BDNS)',
+    'ledger.corpus.budget': 'presupuesto',
+    'ledger.corpus.promises': 'promesas documentadas',
+    'ledger.corpus.padron': 'padrón',
+    'ledger.corpus.paro': 'paro registrado',
+    'ledger.corpus.prior-claims': 'plenos anteriores',
+    'ledger.corpus.factcheck': 'verificaciones de prensa',
+    'ledger.corpus.boe': 'BOE',
+    'ledger.corpus.plenos-agendas': 'órdenes del día de los plenos',
     'ledger.veredicto': 'Veredicto: {verificador}',
     'verificador.llm': 'verificador LLM',
     'verificador.nli': 'verificador NLI',
@@ -2716,6 +2730,17 @@ export const CATALOGUE = {
     'ledger.fuentes': 'Fonts comprovades: {fuentes}',
     'ledger.fuentes.ninguna': 'cap',
     'ledger.fuentes.noConstan': 'no consten',
+    'ledger.corpus.tenders': 'contractes',
+    'ledger.corpus.tenders-ted': 'contractes anunciats en TED',
+    'ledger.corpus.bdns': 'subvencions (BDNS)',
+    'ledger.corpus.budget': 'pressupost',
+    'ledger.corpus.promises': 'promeses documentades',
+    'ledger.corpus.padron': 'padró',
+    'ledger.corpus.paro': 'atur registrat',
+    'ledger.corpus.prior-claims': 'plens anteriors',
+    'ledger.corpus.factcheck': 'verificacions de premsa',
+    'ledger.corpus.boe': 'BOE',
+    'ledger.corpus.plenos-agendas': 'ordres del dia dels plens',
     'ledger.veredicto': 'Veredicte: {verificador}',
     'verificador.llm': 'verificador LLM',
     'verificador.nli': 'verificador NLI',

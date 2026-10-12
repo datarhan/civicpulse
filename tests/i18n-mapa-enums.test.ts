@@ -28,7 +28,7 @@ import { KIND_ICON } from '../src/hooks/useParticipa'
 import { PLENO_TONE } from '../src/hooks/usePlenos'
 import { CLAVE_RELACION, RELATION_LABELS } from '../src/scraper/queja-contract-relations'
 import { NIVELES_AEMET } from '../src/scraper/spain-ticker'
-import { CLAIM_VERDICTS } from '../src/scraper/claim-verdicts'
+import { CLAIM_VERDICTS, CORPUS_IDS } from '../src/scraper/claim-verdicts'
 import { ALLOWED_CLAIM_TYPES } from '../src/scraper/pleno-claim'
 import { EVIDENCE_KINDS } from '../src/scraper/claim-verifier'
 import { CLASES_DE_FIRMA } from '../src/scraper/firma-de-persona'
@@ -176,6 +176,11 @@ const FAMILIAS = [
     familia: 'fuentes de una fila de evidencia (EVIDENCE_KINDS)',
     prefijo: 'ledger.evidencia.',
     valores: lista(EVIDENCE_KINDS),
+  },
+  {
+    familia: 'corpus de «Fuentes comprobadas» (CORPUS_IDS)',
+    prefijo: 'ledger.corpus.',
+    valores: lista(CORPUS_IDS),
   },
   {
     familia: 'quién decidió una bajada (CLASES_DE_FIRMA)',
