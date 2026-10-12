@@ -38,6 +38,8 @@ import { SECTION_LABEL } from '../../src/hooks/usePlenoAgendas'
 import { SEVERITY_LABEL } from '../../src/hooks/usePlenoFindings'
 import { DEPARTMENT_LABEL } from '../../src/scraper/departments'
 import { REAL_BLOCS } from '../../src/lib/party-label'
+import { resumenSegunFuentes } from '../../src/lib/claim-provenance.js'
+import { resumenPublicable } from '../../src/lib/resumenes-retirados.js'
 import {
   cadenasDe,
   datosPintados,
@@ -242,13 +244,21 @@ const trozosDeSnippets = (mapa) => [
 ]
 
 /**
- * Lo que una tarjeta de declaración pinta del dato con forma de token, que
- * `datosPintados` no puede reconocer: la unidad del recuento que el extractor sacó de
- * la cita («actuaciones»), en su propio nodo junto a la cifra, y las unidades de un
- * importe abreviado («27 K €»). Los corpus de «Fuentes comprobadas» ya no: llevan
- * rótulo del catálogo (`ledger.corpus.*`) desde el 12-10-2026.
+ * Lo que una tarjeta de declaración pinta del dato y `datosPintados` no puede
+ * reconocer: la explicación del verificador tal como la tarjeta la re-deriva
+ * (`resumenSegunFuentes`, que nombra los corpus con su rótulo castellano y ya no es
+ * la cadena guardada), la unidad del recuento que el extractor sacó de la cita
+ * («actuaciones»), en su propio nodo junto a la cifra, y las unidades de un importe
+ * abreviado («27 K €»). Los corpus de «Fuentes comprobadas» ya no: llevan rótulo del
+ * catálogo (`ledger.corpus.*`) desde el 12-10-2026, y se leen como rótulo.
  */
 const DATO_DE_LAS_DECLARACIONES = (mapa) => [
+  ...mapa[RUTA_FRAGMENTO].items
+    .map(
+      (it) =>
+        it.verification && resumenSegunFuentes(it.verification, resumenPublicable(it.verification)),
+    )
+    .filter((s) => typeof s === 'string' && s !== ''),
   ...mapa[RUTA_FRAGMENTO].items
     .map((it) => it.claim?.entities?.countUnit)
     .filter((u) => typeof u === 'string' && u !== ''),

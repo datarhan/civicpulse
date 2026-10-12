@@ -352,7 +352,7 @@ const DESCARGO = 'Un «sin datos» no es un desmentido: la afirmación puede ser
 const PREFIJO = 'No se encontró registro en '
 const INFIJO = ' que la sostenga. '
 
-/** `a`, `a y b`, `a, b y c`: los nombres tal cual, sin traducir. */
+/** `a`, `a y b`, `a, b y c`: los nombres como vengan. */
 function enumerar(nombres: readonly string[]): string {
   if (nombres.length === 1) return nombres[0]
   return `${nombres.slice(0, -1).join(', ')} y ${nombres[nombres.length - 1]}`
@@ -362,11 +362,18 @@ function enumerar(nombres: readonly string[]): string {
  * La explicación de un `sin-datos` que no encontró nada, dicha desde lo que
  * consta como consultado. Recibe el `checkedAgainst` entero: las marcas de
  * pasada no son corpus y no se nombran.
+ *
+ * El verificador la guarda con los identificadores (`nombrar` por defecto), y
+ * `esResumenSinRegistro` la reconoce así. La tarjeta la re-deriva con el rótulo
+ * de cada corpus (src/lib/claim-provenance.js, `resumenSegunFuentes`).
  */
-export function resumenSinRegistro(checkedAgainst?: readonly unknown[] | null): string {
+export function resumenSinRegistro(
+  checkedAgainst?: readonly unknown[] | null,
+  nombrar: (id: CorpusId) => string = (id) => id,
+): string {
   const corpus = corpusReales(checkedAgainst)
   if (corpus.length === 0) return DESCARGO
-  return `${PREFIJO}${enumerar(corpus)}${INFIJO}${DESCARGO}`
+  return `${PREFIJO}${enumerar(corpus.map(nombrar))}${INFIJO}${DESCARGO}`
 }
 
 /**
