@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-12T06:35:58.963Z",
+  "generatedAt": "2026-10-12T08:40:51.757Z",
   "clusters": [
     {
       "clusterId": "1208oo5",
@@ -37,7 +37,7 @@
         "verificado": 0,
         "parcial": 0,
         "contradicho": 0,
-        "sin-datos": 0,
+        "sin-datos": 16,
         "promesa-repetida": 0
       }
     },
@@ -77,7 +77,7 @@
         "verificado": 0,
         "parcial": 0,
         "contradicho": 0,
-        "sin-datos": 6,
+        "sin-datos": 0,
         "promesa-repetida": 0
       }
     }
@@ -87,8 +87,8 @@
     "triangulated3Plus": 0
   },
   "builtFrom": {
-    "plenos-agendas.json": "632d74e46235",
-    "press-claims-verified.json": "c0bc986a2d64",
+    "plenos-agendas.json": "d3738db52dd4",
+    "press-claims-verified.json": "7a128575d1ad",
     "press.json": "a2ca8faabc1e",
     "promises.json": "08c43b132d79"
   }
