@@ -425,7 +425,13 @@ const expectWithdrawn = (id: string): void => {
  * Una fila de `correct-pleno-finding --field summary` (editor `civicpulse-curator`) en
  * `f-2026-03-16-cit-75b31f`, que no es de ningún lote: ningún lote cambia.
  */
-const TOTAL_CORRECTIONS = 236
+/*
+ * 236 → 239 (bloque «377216, la Chen Machor que el motor sustituido escribía Chemmachor»).
+ * Tres filas de `correct-pleno-finding` (editor `civicpulse-curator`) en
+ * `f-2026-03-16-cit-377216`: `quote.0.text`, `title` y `summary`, en ese orden. En LOTE_2 la
+ * frase que la fila de 377216 anclaba sale de `keeps` y pasa a `drops`.
+ */
+const TOTAL_CORRECTIONS = 239
 const TOTAL_REMOVALS = 37
 
 /** One row of a review batch's fixture: enough to locate its own entries. */
@@ -1657,8 +1663,14 @@ const LOTE_2: Lote2Case[] = [
       'el vínculo documental existe',
       'el proyecto está activo',
       'con contrato en BD',
+      // 2026-10-12: la grafía del motor sustituido sale del sumario, y con ella la frase que esta
+      // fila anclaba; lo que afirmaba sigue, con otras palabras (bloque «236 → 239»).
+      'no cita la Chemmachor ni permite confirmar',
     ],
-    keeps: ['no cita la Chemmachor ni permite confirmar', 'cubierta de un Edificio Polivalente'],
+    keeps: [
+      'nada permite identificarlo con el que citan las intervenciones',
+      'cubierta de un Edificio Polivalente',
+    ],
     refs: ['tender|Obras de impermeabilización cubierta Edi'],
     claims: ['ma87e0-104-cit-377216', 'ma87e0-162-cit-092d3e'],
     groups: ['PSOE', 'PSOE'],
@@ -4629,5 +4641,87 @@ describe('published pleno findings — 75b31f, el plan de empleo que el sumario 
     )
     expect(findPartiesInText(filas[0].reason)).toEqual([])
     expect(findPartiesInText(f.summary)).toEqual([])
+  })
+})
+
+/*
+ * Bloque «377216, la Chen Machor que el motor sustituido escribía Chemmachor». Tres filas
+ * (`correct-pleno-finding`, editor `civicpulse-curator`), en este orden: la cita [0] se reancla,
+ * y el título y el sumario dejan las grafías que la transcripción vigente no contiene.
+ *  - La cita [0] era, letra por letra, la línea 795 de `superseded/ma87e0.txt`. El reanclaje del
+ *    2026-08-10 no la recogió porque `quoteAppearsIn` la daba por presente con su ventana de ocho
+ *    palabras (cobertura 0,56): «en-vigente» no es «literal».
+ *  - El sumario decía «transcrito también como 'Xemachor' o 'Chemachor'». 'Xemachor' no está en
+ *    ninguna transcripción de la sesión: es la conjetura del extractor en el contexto de
+ *    `ma87e0-104-cit-377216`. 'Chemachor' sólo en las sustituidas. El guardián de entrecomillados
+ *    no lo veía porque sólo lee «».
+ *  - Y omitía lo que la sesión dice del edificio: una obra por proyectar y construir, con una
+ *    partida inicial para su primera fase; el contrato de 2019 impermeabiliza la cubierta de uno
+ *    ya construido.
+ */
+describe('published pleno findings — 377216, la Chen Machor que el motor sustituido escribía Chemmachor', () => {
+  const ID = 'f-2026-03-16-cit-377216'
+  const CITA_0 =
+    'el edificio polivalente de la Chen Machor, también, no sé, estas personas que son vecinos nuestros, Chen Machor'
+  const CITA_1 = 'el proyecto y construcción del edificio polivalente de Chema Chor'
+
+  it('las dos citas son literales en la transcripción vigente, y la [0] ya no es la sustituida', () => {
+    const f = byId(ID)
+    expect(f.quotes.map((q) => q.text)).toEqual([CITA_0, CITA_1])
+    // Literal: subcadena del fichero normalizado, no la ventana tolerante de `quoteAppearsIn`.
+    const vigente = normaliseForQuoteMatch(transcriptOf(f.plenoId))
+    for (const q of f.quotes) expect(vigente.includes(normaliseForQuoteMatch(q.text))).toBe(true)
+    // El reanclaje no toca a quién se atribuye ni de qué declaración sale.
+    expect(f.quotes.map((q) => q.speakerGroup)).toEqual(['PSOE', 'PSOE'])
+    expect(f.quotes.map((q) => q.sourceClaimId)).toEqual([
+      'ma87e0-104-cit-377216',
+      'ma87e0-162-cit-092d3e',
+    ])
+  })
+
+  it('título y sumario no usan grafías que la transcripción vigente no contiene', () => {
+    const f = byId(ID)
+    const texto = `${f.title}\n${f.summary}`
+    const vigente = transcriptOf(f.plenoId)
+    for (const grafia of ['Xemachor', 'Chemachor', 'Chemmachor']) {
+      expect(texto).not.toContain(grafia)
+      expect(vigente).not.toContain(grafia)
+    }
+    expect(f.title.startsWith('«Chen Machor» · edificio polivalente')).toBe(true)
+    expect(f.summary).toContain('la transcripción recoge como «Chen Machor» y «Chema Chor»')
+  })
+
+  it('dice lo que la sesión cuenta del edificio y no lo identifica con el contrato', () => {
+    const f = byId(ID)
+    // La partida inicial de su primera fase, en la presentación del presupuesto.
+    expect(f.summary).toContain('partida inicial de 277.000 euros para su primera fase')
+    expect(transcriptOf(f.plenoId)).toContain(
+      'partida presupuestaria inicial de doscientos setenta y siete mil euros para la primera fase del edificio polivalente Chent Machor',
+    )
+    expect(f.summary).toContain(`«${CITA_1}»`)
+    expect(f.summary).toContain('nada permite identificarlo con el que citan las intervenciones')
+    // El cotejo sigue siendo el mismo y el único: la cubierta, adjudicada en 2019.
+    expect(f.crossChecked).toHaveLength(1)
+    expect(f.crossChecked[0].ref).toContain('idEvl=YlgG3XJA7Vh7h85')
+    expect(f.summary).toContain('contrato adjudicado en 2019 para impermeabilizar la cubierta')
+    expect(f.severity).toBe('informational')
+  })
+
+  it('las tres filas son de la cuenta de rol, en orden, y los motivos no nombran a ningún grupo', () => {
+    const f = byId(ID)
+    const filas = (f.corrections ?? []).slice(-3)
+    expect(filas.map((c) => c.field)).toEqual(['quote.0.text', 'title', 'summary'])
+    for (const c of filas) {
+      expect(c.editor).toBe('civicpulse-curator')
+      expect(findPartiesInText(c.reason)).toEqual([])
+    }
+    expect(filas[0].original).toBe(
+      'El edificio polivalente de la Chemmachor, también. No sé, estas personas que son vecinos nuestros, Chemmachor.',
+    )
+    expect(filas[0].corrected).toBe(CITA_0)
+    expect(filas[1].corrected).toBe(f.title)
+    expect(filas[2].corrected).toBe(f.summary)
+    expect(filas[2].original).toContain("(transcrito también como 'Xemachor' o 'Chemachor')")
+    expect(f.corrections).toHaveLength(6)
   })
 })
