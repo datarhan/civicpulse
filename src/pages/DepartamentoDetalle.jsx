@@ -189,7 +189,7 @@ function PromisesSection({ slug, frozen }) {
             </div>
             {p.dueBy && (
               <div style={{ marginTop: 8 }}>
-                <PlazoVencidoBadge dueBy={p.dueBy} frozen={frozen} />
+                <PlazoVencidoBadge dueBy={p.dueBy} frozen={frozen} note={p.dueBySource} />
               </div>
             )}
             <div
