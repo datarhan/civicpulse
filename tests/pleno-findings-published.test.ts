@@ -4258,6 +4258,81 @@ describe('published pleno findings — el reanclaje del 2026-08-10', () => {
       ].filter((id) => !retractedIds.has(id)),
     )
   })
+
+  /*
+   * El guardián de arriba sólo lee «». 436a7e y 75b31f entrecomillaban con comillas rectas el
+   * castellano del motor sustituido, y sus citas se reanclaron el 2026-08-10 sin que nadie lo
+   * viera (revisión lectora, 2026-10-12). Éste lee las otras cuatro formas: '…' (sin confundirla
+   * con el apóstrofo de «d'escoto»: la de apertura no sigue a una letra y la de cierre no la
+   * precede), ‘…’, “…” y "…".
+   *
+   * Un entrecomillado que no es habla no puede salir de una cita: hoy sólo el título de un
+   * contrato, y lo sostiene un `crossChecked[].snippet` de la misma ficha. La lista los nombra uno a
+   * uno, y cada entrada tiene que seguir casando con su sumario: una que ya no entrecomilla nada
+   * sale de la lista, o esconde el siguiente.
+   *
+   * `f-2026-03-16-cit-377216` no está en ella aunque su paréntesis «transcrito también como
+   * 'Xemachor' o 'Chemachor'» no era habla: 'Xemachor' no constaba en ninguna transcripción (era la
+   * conjetura del extractor) y 'Chemachor' sólo en las sustituidas. Se corrigió el 2026-10-12
+   * (bloque «236 → 239») en lugar de entrar aquí, que habría sido firmarlo con una prueba.
+   */
+  const TITULOS_DE_CONTRATO_ENTRECOMILLADOS: Record<string, string[]> = {
+    'f-2026-01-19-cit-c80e68': [
+      'Servicio mantenimiento instalaciones en complejo deportivo La Malla',
+    ],
+    'f-2026-05-11-acu-ea9d47': ['Un vehículo protección civil.'],
+  }
+  const OTRAS_COMILLAS = [
+    /(?<![\p{L}\p{N}])'([^'\n]+?)'(?![\p{L}\p{N}])/gu,
+    /‘([^’\n]+)’/gu,
+    /“([^”\n]+)”/gu,
+    /"([^"\n]+)"/gu,
+  ]
+  it('ningún entrecomillado recto o tipográfico del sumario se quedó sin lo que lo sostiene', () => {
+    const huerfanos: string[] = []
+    const usadas = new Set<string>()
+    let frases = 0
+    for (const f of items) {
+      if (retractedIds.has(f.id)) continue
+      for (const re of OTRAS_COMILLAS) {
+        for (const m of `${f.title}\n${f.summary}`.matchAll(re)) {
+          const frase = m[1].trim()
+          frases += 1
+          if (f.quotes.some((q) => q.text.includes(frase))) continue
+          if (!TITULOS_DE_CONTRATO_ENTRECOMILLADOS[f.id]?.includes(frase)) {
+            huerfanos.push(`${f.id} ${m[0]}`)
+            continue
+          }
+          usadas.add(`${f.id} ${frase}`)
+          if (!(f.crossChecked ?? []).some((c) => (c.snippet ?? '').includes(frase))) {
+            huerfanos.push(`${f.id} ${m[0]} (título sin el cotejo que lo sostiene)`)
+          }
+        }
+      }
+    }
+    expect(huerfanos).toEqual([])
+    // La lista no puede quedarse con entradas muertas.
+    expect([...usadas].sort()).toEqual(
+      Object.entries(TITULOS_DE_CONTRATO_ENTRECOMILLADOS)
+        .flatMap(([id, ts]) => ts.map((t) => `${id} ${t}`))
+        .sort(),
+    )
+    // Que la pasada leyó algo: las de a870a4 y 528973 salen de su cita, y las dos de la lista.
+    expect(frases).toBeGreaterThanOrEqual(4)
+  })
+
+  it('el lector de comillas no confunde un apóstrofo con una comilla (control)', () => {
+    const leer = (s: string) => OTRAS_COMILLAS.flatMap((re) => [...s.matchAll(re)].map((m) => m[1]))
+    expect(leer("«no teniu pavelló d'escoto» y «el pla d'empleo Ciutat Jardín»")).toEqual([])
+    expect(leer("dice 'el Plan de Empleo Ciudad Jardín' como partida")).toEqual([
+      'el Plan de Empleo Ciudad Jardín',
+    ])
+    expect(leer('el título "Un vehículo." y “otro” y ‘uno más’').sort()).toEqual([
+      'Un vehículo.',
+      'otro',
+      'uno más',
+    ])
+  })
 })
 
 describe('la grabación del pleno no se publica como documento cotejado', () => {
