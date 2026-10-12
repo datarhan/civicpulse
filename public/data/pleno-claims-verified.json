@@ -1,6 +1,6 @@
 {
   "generatedAt": "2026-10-12T10:06:45.354Z",
-  "composedAt": "2026-10-12T10:51:38.404Z",
+  "composedAt": "2026-10-12T16:29:26.881Z",
   "source": {
     "description": "Fact-check verdicts for every pleno-claims-suggestions.json entry. Cross-references against tenders / BDNS / budget / promises. Pure deterministic — no LLM judgement.",
     "contract": "Machine-written verdicts; a curator reviews before surfacing contradicho or promesa-repetida editorially."
@@ -106956,9 +106956,10 @@
       "verification": {
         "claimId": "1qi8axv-017-afi-e2b0f0",
         "verdict": "sin-datos",
-        "summary": "Ninguno de los candidatos presenta un respaldo genuino a la afirmación. Aunque el candidato [5] menciona un contrato relacionado con el temporal de lluvias (DANA) y un importe de €141.562,93, esta cifra no coincide con los €143.539 mencionados en la afirmación.",
+        "summary": "Conclusión: ningún candidato respalda la afirmación; respaldo nulo.",
         "evidence": [],
-        "checkedAgainst": [
+        "checkedAgainst": [],
+        "derivedBy": [
           "verdict-engine"
         ],
         "confidence": 0.2,
@@ -204414,9 +204415,10 @@
       "verification": {
         "claimId": "1tgd1h4-264-cit-367c04",
         "verdict": "sin-datos",
-        "summary": "La afirmación menciona específicamente la ubicación de colonias en \"vías y espacios públicos\". El candidato [1] se refiere al \"mantenimiento de zonas ajardinadas, viales públicos y espacios públicos de titularidad municipal\", lo que incluye directamente las vías y espacios públicos mencionados en…",
+        "summary": "Conclusión: ningún candidato respalda la afirmación; la coincidencia es puramente léxica/temática y el respaldo es nulo.",
         "evidence": [],
-        "checkedAgainst": [
+        "checkedAgainst": [],
+        "derivedBy": [
           "verdict-engine"
         ],
         "confidence": 0.2,

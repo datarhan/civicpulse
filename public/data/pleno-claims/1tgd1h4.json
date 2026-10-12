@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-12T10:51:39.699Z",
+  "generatedAt": "2026-10-12T16:29:28.454Z",
   "version": "1",
   "plenoId": "1tgd1h4",
   "plenoDate": "2024-07-29",
@@ -19357,9 +19357,10 @@
       "verification": {
         "claimId": "1tgd1h4-264-cit-367c04",
         "verdict": "sin-datos",
-        "summary": "La afirmación menciona específicamente la ubicación de colonias en \"vías y espacios públicos\". El candidato [1] se refiere al \"mantenimiento de zonas ajardinadas, viales públicos y espacios públicos de titularidad municipal\", lo que incluye directamente las vías y espacios públicos mencionados en…",
+        "summary": "Conclusión: ningún candidato respalda la afirmación; la coincidencia es puramente léxica/temática y el respaldo es nulo.",
         "evidence": [],
-        "checkedAgainst": [
+        "checkedAgainst": [],
+        "derivedBy": [
           "verdict-engine"
         ],
         "confidence": 0.2,
