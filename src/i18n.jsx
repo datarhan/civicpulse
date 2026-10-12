@@ -1229,6 +1229,85 @@ export const CATALOGUE = {
     'findings.refs.status.none': 'sin estado',
     'findings.refs.status.noneTitle':
       'El registro público de este documento no publica ningún estado utilizable. No significa que se anulara ni que se firmara.',
+    // Las citas de una ficha y sus notas (`CitasDeLaFicha`, en /plenos/:id y en
+    // /hallazgos/:id). Las citas son dato y se pintan como se publican; esto es lo
+    // que las rotula y las explica. El castellano es, letra por letra, el que la
+    // página escribía a mano: lo citan pruebas, descartes de la revisión lectora y
+    // /metodologia. «Cita» va sola y el número aparte, porque en valencià se escribe
+    // igual.
+    'findings.citas.cita': 'Cita',
+    'findings.citas.lista': '{inicio} y {ultima}',
+    'findings.citas.rotulo.una': 'Cita {lista}',
+    'findings.citas.rotulo.varias': 'Citas {lista}',
+    'findings.citas.sujeto.una': 'la cita {lista}',
+    'findings.citas.sujeto.varias': 'las citas {lista}',
+    'findings.citas.deLaFicha': '{citas} de la ficha {ficha}',
+    'findings.citas.sinAtribuir': 'sin atribuir',
+    // El hueco de una cita retenida. El rótulo es `ROTULO_CITA_RETENIDA`
+    // (src/lib/cita-retenida.js), que la bitácora y la copia servida usan en
+    // castellano; tests/components/citas-de-la-ficha-valencia.test.jsx los ata.
+    'findings.citas.retenida.rotulo': 'Literal retenido',
+    'findings.citas.retenida.estaCita': 'esta cita',
+    'findings.citas.retenida.laFicha': 'La ficha',
+    'findings.citas.retenida.laFichaDe': 'La ficha {ficha}',
+    'findings.citas.retenida.pie':
+      '{cual} es una acusación que el verificador no ha podido contrastar con ningún registro municipal, así que la ficha no reproduce su literal, y la misma puerta la retiene en el registro de declaraciones. No decimos que sea falsa: decimos que no consta.',
+    'findings.citas.retenida.atribuye': '{laFicha} atribuye {cual} a {grupo}.',
+    'findings.citas.retenida.sinGrupo': '{laFicha} no atribuye {cual} a ningún grupo.',
+    // De qué transcripción salen las palabras (`PROVENANCE_MARK`).
+    'findings.citas.procedencia.sustituida.chip': 'no consta en la transcripción revisada',
+    'findings.citas.procedencia.sustituida.title':
+      'La sesión se transcribió de nuevo con un motor mejor y estas palabras no aparecen en el texto nuevo.',
+    'findings.citas.procedencia.sustituida.nota.una':
+      'Sesión re-transcrita con un motor mejor. {sujeto} consta literalmente en la transcripción anterior y no en la vigente, que es más extensa: el asunto se debatió, pero la literalidad entrecomillada es la del primer transcriptor y no está confirmada contra el mejor texto disponible. Reanclarla es trabajo de una persona; aquí no se reescribe sola.',
+    'findings.citas.procedencia.sustituida.nota.varias':
+      'Sesión re-transcrita con un motor mejor. {sujeto} constan literalmente en la transcripción anterior y no en la vigente, que es más extensa: el asunto se debatió, pero la literalidad entrecomillada es la del primer transcriptor y no está confirmada contra el mejor texto disponible. Reanclarla es trabajo de una persona; aquí no se reescribe sola.',
+    'findings.citas.procedencia.sinDeterminar.chip': 'no hemos podido comprobarlo',
+    'findings.citas.procedencia.sinDeterminar.title':
+      'No podemos decir si estas palabras cambiaron al re-transcribir o si el tramo no está cubierto.',
+    'findings.citas.procedencia.sinDeterminar.nota':
+      'La transcripción vigente de esta sesión es más corta que la que sustituyó, así que la ausencia de las palabras de {sujeto} puede deberse al cambio de motor o a un tramo que la nueva pasada no cubre. No afirmamos ninguna de las dos cosas.',
+    'findings.citas.procedencia.enlace': 'Cómo se comprueba una cita →',
+    // Si algún dato municipal respalda lo que dicen (`CONTRAST_MARK`, por la puerta
+    // de claim-public-gate.ts).
+    'findings.citas.contraste.lead.una':
+      '{citas} se cotejó automáticamente con la base documental municipal —la contratación desde 2017, las subvenciones, el presupuesto vigente y las promesas publicadas— y no apareció ningún dato que la confirme ni que la desmienta. Eso no la convierte en falsa: quiere decir que no lo sabemos — y sobre hechos anteriores a esa cobertura, que no podíamos saberlo.',
+    'findings.citas.contraste.lead.varias':
+      '{citas} se cotejaron automáticamente con la base documental municipal —la contratación desde 2017, las subvenciones, el presupuesto vigente y las promesas publicadas— y no apareció ningún dato que las confirme ni que las desmienta. Eso no las convierte en falsas: quiere decir que no lo sabemos — y sobre hechos anteriores a esa cobertura, que no podíamos saberlo.',
+    'findings.citas.contraste.toggle.chip': 'sin contraste en los datos',
+    'findings.citas.contraste.toggle.title':
+      'El verificador no halló ningún dato municipal que confirme ni desmienta lo que se afirma aquí.',
+    'findings.citas.contraste.toggle.nota.una':
+      'no es una acusación; en el registro de declaraciones del pleno sale publicada con esta misma etiqueta.',
+    'findings.citas.contraste.toggle.nota.varias':
+      'no son acusaciones; en el registro de declaraciones del pleno salen publicadas con esta misma etiqueta.',
+    'findings.citas.contraste.hidden.chip': 'acusación no contrastada',
+    'findings.citas.contraste.hidden.title':
+      'Es una acusación pública que el verificador no pudo contrastar con ningún dato municipal. No decimos que sea falsa.',
+    'findings.citas.contraste.enlace': 'Qué significa que una cita quede sin contraste →',
+    // La nota de «acusación no contrastada» (`notaAcusacionSinContrastar`): su
+    // cabecera cuenta las ocho pasadas que la dejaron así.
+    'findings.citas.acusacion.laFicha': 'la ficha',
+    'findings.citas.acusacion.laFichaDe': 'la ficha {ficha}',
+    'findings.citas.acusacion.huecos.sinCitas':
+      'ni en la cita, donde queda a la vista el hueco «{rotulo}» con su motivo',
+    'findings.citas.acusacion.huecos.una':
+      'ni en {sujeto}, donde queda a la vista su hueco «{rotulo}» con su motivo',
+    'findings.citas.acusacion.huecos.varias':
+      'ni en {sujeto}, donde quedan a la vista sus huecos «{rotulo}» con su motivo',
+    'findings.citas.acusacion.base.una':
+      'es una acusación pública que el verificador no ha podido contrastar. La misma puerta que la retiene en el registro de declaraciones del pleno la retiene aquí: {laFicha} no reproduce su literal —{huecos}, ni en su bitácora de correcciones, ni en los datos de la ficha que sirve este sitio—',
+    'findings.citas.acusacion.base.varias':
+      'son acusaciones públicas que el verificador no ha podido contrastar. La misma puerta que las retiene en el registro de declaraciones del pleno las retiene aquí: {laFicha} no reproduce sus literales —{huecos}, ni en su bitácora de correcciones, ni en los datos de la ficha que sirve este sitio—',
+    'findings.citas.acusacion.cierre.una':
+      'Se retiene la cita, no lo que se dijo: la transcripción completa de la sesión sigue publicada.',
+    'findings.citas.acusacion.cierre.varias':
+      'Se retienen las citas, no lo que se dijo: la transcripción completa de la sesión sigue publicada.',
+    'findings.citas.acusacion.sinEditor':
+      '{base}; el pie de la ficha dice quién la editó. {cierre}',
+    'findings.citas.acusacion.maquina':
+      '{base}, y la ficha la editó un proceso automático ({quien}): es lo habitual en esta página —casi todas las fichas las redacta el mismo proceso—, no una excepción decidida para este caso. {cierre}',
+    'findings.citas.acusacion.persona': '{base}, y la ficha la editó {quien}. {cierre}',
     'cargos.detalle.actividad.eyebrow': 'Actividad de sus áreas',
     'cargos.detalle.actividad.title': 'Qué se ha debatido y verificado en sus concejalías',
     'cargos.detalle.actividad.intro':
@@ -3008,6 +3087,71 @@ export const CATALOGUE = {
     'findings.refs.status.none': 'sense estat',
     'findings.refs.status.noneTitle':
       "El registre públic d'este document no publica cap estat utilitzable. No vol dir que s'anul·lara ni que se signara.",
+    'findings.citas.cita': 'Cita',
+    'findings.citas.lista': '{inicio} i {ultima}',
+    'findings.citas.rotulo.una': 'Cita {lista}',
+    'findings.citas.rotulo.varias': 'Cites {lista}',
+    'findings.citas.sujeto.una': 'la cita {lista}',
+    'findings.citas.sujeto.varias': 'les cites {lista}',
+    'findings.citas.deLaFicha': '{citas} de la fitxa {ficha}',
+    'findings.citas.sinAtribuir': 'sense atribuir',
+    'findings.citas.retenida.rotulo': 'Literal retingut',
+    'findings.citas.retenida.estaCita': 'esta cita',
+    'findings.citas.retenida.laFicha': 'La fitxa',
+    'findings.citas.retenida.laFichaDe': 'La fitxa {ficha}',
+    'findings.citas.retenida.pie':
+      '{cual} és una acusació que el verificador no ha pogut contrastar amb cap registre municipal, així que la fitxa no en reprodueix el literal, i la mateixa porta la reté en el registre de declaracions. No diem que siga falsa: diem que no consta.',
+    'findings.citas.retenida.atribuye': '{laFicha} atribueix {cual} a {grupo}.',
+    'findings.citas.retenida.sinGrupo': '{laFicha} no atribueix {cual} a cap grup.',
+    'findings.citas.procedencia.sustituida.chip': 'no consta en la transcripció revisada',
+    'findings.citas.procedencia.sustituida.title':
+      'La sessió es va transcriure de nou amb un motor millor i estes paraules no apareixen en el text nou.',
+    'findings.citas.procedencia.sustituida.nota.una':
+      'Sessió retranscrita amb un motor millor. {sujeto} consta literalment en la transcripció anterior i no en la vigent, que és més extensa: l’assumpte es va debatre, però la literalitat entre cometes és la del primer transcriptor i no està confirmada contra el millor text disponible. Tornar-la a ancorar és feina d’una persona; ací no es reescriu sola.',
+    'findings.citas.procedencia.sustituida.nota.varias':
+      'Sessió retranscrita amb un motor millor. {sujeto} consten literalment en la transcripció anterior i no en la vigent, que és més extensa: l’assumpte es va debatre, però la literalitat entre cometes és la del primer transcriptor i no està confirmada contra el millor text disponible. Tornar-la a ancorar és feina d’una persona; ací no es reescriu sola.',
+    'findings.citas.procedencia.sinDeterminar.chip': 'no ho hem pogut comprovar',
+    'findings.citas.procedencia.sinDeterminar.title':
+      'No podem dir si estes paraules van canviar en tornar a transcriure o si el tram no està cobert.',
+    'findings.citas.procedencia.sinDeterminar.nota':
+      'La transcripció vigent d’esta sessió és més curta que la que va substituir, així que l’absència de les paraules de {sujeto} pot deure’s al canvi de motor o a un tram que la nova passada no cobreix. No afirmem cap de les dues coses.',
+    'findings.citas.procedencia.enlace': 'Com es comprova una cita →',
+    'findings.citas.contraste.lead.una':
+      '{citas} es va acarar automàticament amb la base documental municipal —la contractació des de 2017, les subvencions, el pressupost vigent i les promeses publicades— i no va aparéixer cap dada que la confirme ni que la desmentisca. Això no la fa falsa: vol dir que no ho sabem — i sobre fets anteriors a eixa cobertura, que no podíem saber-ho.',
+    'findings.citas.contraste.lead.varias':
+      '{citas} es van acarar automàticament amb la base documental municipal —la contractació des de 2017, les subvencions, el pressupost vigent i les promeses publicades— i no va aparéixer cap dada que les confirme ni que les desmentisca. Això no les fa falses: vol dir que no ho sabem — i sobre fets anteriors a eixa cobertura, que no podíem saber-ho.',
+    'findings.citas.contraste.toggle.chip': 'sense contrast en les dades',
+    'findings.citas.contraste.toggle.title':
+      'El verificador no va trobar cap dada municipal que confirme ni desmentisca el que s’afirma ací.',
+    'findings.citas.contraste.toggle.nota.una':
+      'no és una acusació; en el registre de declaracions del ple ix publicada amb esta mateixa etiqueta.',
+    'findings.citas.contraste.toggle.nota.varias':
+      'no són acusacions; en el registre de declaracions del ple ixen publicades amb esta mateixa etiqueta.',
+    'findings.citas.contraste.hidden.chip': 'acusació no contrastada',
+    'findings.citas.contraste.hidden.title':
+      'És una acusació pública que el verificador no va poder contrastar amb cap dada municipal. No diem que siga falsa.',
+    'findings.citas.contraste.enlace': 'Què vol dir que una cita quede sense contrast →',
+    'findings.citas.acusacion.laFicha': 'la fitxa',
+    'findings.citas.acusacion.laFichaDe': 'la fitxa {ficha}',
+    'findings.citas.acusacion.huecos.sinCitas':
+      'ni en la cita, on queda a la vista el buit «{rotulo}» amb el seu motiu',
+    'findings.citas.acusacion.huecos.una':
+      'ni en {sujeto}, on queda a la vista el seu buit «{rotulo}» amb el seu motiu',
+    'findings.citas.acusacion.huecos.varias':
+      'ni en {sujeto}, on queden a la vista els seus buits «{rotulo}» amb el seu motiu',
+    'findings.citas.acusacion.base.una':
+      'és una acusació pública que el verificador no ha pogut contrastar. La mateixa porta que la reté en el registre de declaracions del ple la reté ací: {laFicha} no en reprodueix el literal —{huecos}, ni en el seu registre de correccions, ni en les dades de la fitxa que servix este lloc—',
+    'findings.citas.acusacion.base.varias':
+      'són acusacions públiques que el verificador no ha pogut contrastar. La mateixa porta que les reté en el registre de declaracions del ple les reté ací: {laFicha} no en reprodueix els literals —{huecos}, ni en el seu registre de correccions, ni en les dades de la fitxa que servix este lloc—',
+    'findings.citas.acusacion.cierre.una':
+      'Es reté la cita, no el que es va dir: la transcripció completa de la sessió continua publicada.',
+    'findings.citas.acusacion.cierre.varias':
+      'Es retenen les cites, no el que es va dir: la transcripció completa de la sessió continua publicada.',
+    'findings.citas.acusacion.sinEditor':
+      '{base}; el peu de la fitxa diu qui la va editar. {cierre}',
+    'findings.citas.acusacion.maquina':
+      '{base}, i la fitxa la va editar un procés automàtic ({quien}): és el més habitual en esta pàgina —quasi totes les fitxes les redacta el mateix procés—, no una excepció decidida per a este cas. {cierre}',
+    'findings.citas.acusacion.persona': '{base}, i la fitxa la va editar {quien}. {cierre}',
     'cargos.detalle.actividad.eyebrow': 'Activitat de les seues àrees',
     'cargos.detalle.actividad.title': "Què s'ha debatut i verificat a les seues regidories",
     'cargos.detalle.actividad.intro':
