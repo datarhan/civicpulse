@@ -25,11 +25,18 @@
  * El TIPO del dato no se toca: lo siguen leyendo el verificador, los filtros y
  * los recuentos de /cobertura, que hablan del extractor y no de la tarjeta.
  */
-import { CLAIM_TYPE_LABEL, CLAIM_TYPE_TONE } from '../hooks/usePlenoClaims.js'
+import { CLAIM_TYPE_TONE } from '../hooks/usePlenoClaims.js'
+import { CATALOGUE, rotuloDe } from '../i18n'
 
 /** La clave del rótulo neutro. No es un `ClaimType`: nadie la escribe en un dato. */
 export const TIPO_NEUTRO = 'afirmacion'
-export const ROTULO_NEUTRO = 'Afirmación'
+export const ROTULO_NEUTRO = CATALOGUE.es[`declaraciones.tipo.${TIPO_NEUTRO}`]
+
+/** @type {Record<string, string>} */
+const TONO = CLAIM_TYPE_TONE
+
+/** @param {string} clave */
+const castellano = (clave) => /** @type {Record<string,string>} */ (CATALOGUE.es)[clave] ?? clave
 
 /** @param {string} s */
 function plano(s) {
@@ -163,15 +170,16 @@ export function tipoAMostrar(claim) {
 }
 
 /**
- * Texto y tono de la píldora de tipo.
+ * Texto y tono de la píldora de tipo. El texto, del catálogo en el idioma de `t`; sin
+ * `t`, en castellano.
  * @param {{ type: string, verbatim?: string, entities?: Record<string, unknown> }} claim
+ * @param {(clave: string) => string} [t]
  * @returns {{ texto: string, tono: string }}
  */
-export function rotuloDeTipo(claim) {
+export function rotuloDeTipo(claim, t = castellano) {
   const tipo = tipoAMostrar(claim)
-  if (tipo === TIPO_NEUTRO) return { texto: ROTULO_NEUTRO, tono: 'neutral' }
   return {
-    texto: /** @type {Record<string,string>} */ (CLAIM_TYPE_LABEL)[tipo] ?? tipo,
-    tono: /** @type {Record<string,string>} */ (CLAIM_TYPE_TONE)[tipo] ?? 'neutral',
+    texto: rotuloDe(t, `declaraciones.tipo.${tipo}`, tipo) ?? tipo,
+    tono: tipo === TIPO_NEUTRO ? 'neutral' : (TONO[tipo] ?? 'neutral'),
   }
 }

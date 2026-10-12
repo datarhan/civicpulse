@@ -328,10 +328,30 @@ function QuejasSection({ slug, motivo }) {
 function VerdictMixBar({ d }) {
   const t = useT()
   const segs = [
-    { n: d.verificado || 0, color: 'var(--ok)', label: 'Verificado' },
-    { n: d.parcial || 0, color: 'var(--warn)', label: 'Parcial' },
-    { n: d.contradicho || 0, color: 'var(--crit)', label: 'Contradicho' },
-    { n: d.sinDatos || 0, color: 'var(--ink50)', label: 'Sin contraste' },
+    {
+      clave: 'verificado',
+      n: d.verificado || 0,
+      color: 'var(--ok)',
+      label: t('declaraciones.veredicto.verificado'),
+    },
+    {
+      clave: 'parcial',
+      n: d.parcial || 0,
+      color: 'var(--warn)',
+      label: t('declaraciones.veredicto.parcial'),
+    },
+    {
+      clave: 'contradicho',
+      n: d.contradicho || 0,
+      color: 'var(--crit)',
+      label: t('declaraciones.veredicto.contradicho'),
+    },
+    {
+      clave: 'sin-datos',
+      n: d.sinDatos || 0,
+      color: 'var(--ink50)',
+      label: t('departamentos.detalle.barra.sinContraste'),
+    },
   ]
   const total = segs.reduce((a, s) => a + s.n, 0)
   if (total === 0) return null
@@ -388,7 +408,7 @@ function VerdictMixBar({ d }) {
       >
         {visible.map((s) => (
           <div
-            key={s.label}
+            key={s.clave}
             title={`${s.label}: ${s.n}`}
             style={{ width: `${(s.n / total) * 100}%`, background: s.color }}
           />
@@ -397,7 +417,7 @@ function VerdictMixBar({ d }) {
       <div style={{ display: 'flex', flexWrap: 'wrap', gap: '6px 14px', marginTop: 10 }}>
         {visible.map((s) => (
           <span
-            key={s.label}
+            key={s.clave}
             style={{
               display: 'inline-flex',
               alignItems: 'center',
