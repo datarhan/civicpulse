@@ -13,6 +13,7 @@ import {
   RUTAS_CON_ESTADO,
   readCacheEntry,
   leerPestanas,
+  abrirLoPlegado,
   rutasDeEntrada,
   type SurfaceInput,
 } from '../src/scraper/reader-review'
@@ -633,6 +634,51 @@ describe('leer las pestañas que la carga de la página no abre', () => {
       region: async () => 'R',
     })
     expect(r).toEqual({ leidas: [], textos: [], sinCambio: [] })
+  })
+})
+
+describe('abrir lo plegado antes de leer', () => {
+  /**
+   * `innerText` no lee lo que está oculto, y la página publica dos cosas que la
+   * carga deja ocultas: los paneles de pestaña que no están activos y el
+   * interior de cada `<details>` cerrado. Medido el 4-10-2026 en Chromium 147
+   * sobre /hallazgos/f-2026-04-20-cit-947479: con la bitácora cerrada,
+   * `innerText` traía «BITÁCORA DE CORRECCIONES · 9» y ninguna de sus filas.
+   */
+  function monta(html: string) {
+    document.body.innerHTML = html
+    return document.body
+  }
+
+  it('des-oculta los paneles de pestaña y abre los <details> cerrados, y los cuenta', () => {
+    const body = monta(`
+      <div role="tabpanel" hidden>panel B</div>
+      <div role="tabpanel">panel A</div>
+      <details><summary>Bitácora de correcciones · 2</summary><ol><li>fila</li></ol></details>
+      <details><summary>Promesas retiradas · 1</summary><p>retirada</p></details>
+    `)
+    expect(abrirLoPlegado()).toEqual({ paneles: 1, plegados: 2 })
+    expect(body.querySelectorAll('[role="tabpanel"][hidden]')).toHaveLength(0)
+    expect(body.querySelectorAll('details:not([open])')).toHaveLength(0)
+  })
+
+  it('abre también un <details> dentro de otro', () => {
+    // Hoy ninguna página pública anida uno, pero abrir sólo el de fuera dejaría
+    // el de dentro sin leer el día que alguna lo haga.
+    const body = monta(`
+      <details><summary>fuera</summary>
+        <details><summary>dentro</summary><p>texto</p></details>
+      </details>
+    `)
+    expect(abrirLoPlegado()).toEqual({ paneles: 0, plegados: 2 })
+    expect(body.querySelectorAll('details:not([open])')).toHaveLength(0)
+  })
+
+  it('lo ya abierto no se cuenta, y una página sin nada plegado da ceros', () => {
+    monta('<details open><summary>s</summary>t</details><div role="tabpanel">p</div>')
+    expect(abrirLoPlegado()).toEqual({ paneles: 0, plegados: 0 })
+    monta('<p>nada</p>')
+    expect(abrirLoPlegado()).toEqual({ paneles: 0, plegados: 0 })
   })
 })
 

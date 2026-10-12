@@ -68,6 +68,7 @@ import {
   rutasDeEntrada,
   leerPestanas,
   textoTrasLaBarra,
+  abrirLoPlegado,
   ESTADO_PESTANAS,
 } from '../src/scraper/reader-review'
 import {
@@ -757,7 +758,9 @@ async function main() {
     //
     // Publicado no es «visible ahora mismo»: los seis paneles están en el DOM,
     // cualquiera los abre con un clic y los seis se imprimen en papel. Se
-    // revisan los seis.
+    // revisan los seis. Y lo mismo vale para cada `<details>` cerrado —las
+    // bitácoras de correcciones van plegadas—, que hasta el 12-10-2026 no se
+    // abría: el lector veía «BITÁCORA DE CORRECCIONES · 9» y ninguna fila.
     // El estado, si la clave lo pide, ANTES de leer.
     //
     // Aquí sí hace falta pulsar: las capas opcionales no están ocultas, no
@@ -790,14 +793,21 @@ async function main() {
       }
     }
 
-    const abiertos = await page.evaluate(() => {
-      const ocultos = Array.from(
-        document.querySelectorAll<HTMLElement>('[role="tabpanel"][hidden]'),
-      )
-      for (const p of ocultos) p.hidden = false
-      return ocultos.length
-    })
-    if (abiertos > 0) console.log(`   (${abiertos} apartado(s) en pestaña abiertos para leerlos)`)
+    // Los paneles de pestaña y los `<details>`, por la misma razón: ver
+    // `abrirLoPlegado`, que trae lo medido.
+    const { paneles, plegados } = await page.evaluate(abrirLoPlegado)
+    // Con `--json`, stdout es el JSON y nada más: estas dos líneas delante lo
+    // dejaban sin parsear.
+    if (!asJson && paneles > 0) {
+      console.log(`   (${paneles} apartado(s) en pestaña abiertos para leerlos)`)
+    }
+    if (plegados > 0) {
+      if (!asJson) console.log(`   (${plegados} bloque(s) plegado(s) abiertos para leerlos)`)
+      // `toggle` llega en una tarea aparte, y hay bloques que pintan su
+      // contenido al oírlo (el índice de una pieza, Pieza.jsx): sin esperar al
+      // render se leería el bloque vacío.
+      await page.waitForTimeout(300)
+    }
 
     // The WHOLE page. No `.slice()` here, ever — see `chunkRenderedText`.
     let renderedText = await page.locator('body').innerText()
@@ -818,6 +828,10 @@ async function main() {
           // Lo que la pestaña pinta ya está cargado —la página lo pidió al
           // montarse—; esto es para el render, y para lo que pida al abrirse.
           await page.waitForTimeout(800)
+          // Lo que una pestaña monta al pulsarla llega plegado aunque lo de la
+          // carga ya se abriera arriba.
+          const { plegados } = await page.evaluate(abrirLoPlegado)
+          if (plegados > 0) await page.waitForTimeout(300)
         },
         region: () => page.evaluate(textoTrasLaBarra),
       })

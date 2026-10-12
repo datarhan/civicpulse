@@ -130,8 +130,10 @@ function main() {
   const porcelain = git(['worktree', 'list', '--porcelain'])
   const worktrees = porcelain === null ? [] : worktreesDe(porcelain)
   const principal = worktrees.find((w) => w.principal)
+  // Los tres caminos que salen 0 sin mirar nada dicen NO COMPROBADO: es la
+  // marca que lee el parte de salud (`MARCAS_SIN_COMPROBAR`); sin ella, limpia.
   if (!principal) {
-    out('[hooks] no estamos en un repositorio git — nada que mirar')
+    out('[hooks] NO COMPROBADO: no estamos en un repositorio git — nada que mirar')
     return
   }
   const enDisco = worktrees.filter((w) => w.enDisco)
@@ -162,7 +164,7 @@ function main() {
 
   if (comun.tipo === 'sin-ganchos') {
     out(
-      '[hooks] esta máquina no tiene ganchos de git: core.hooksPath sin poner y ningún `.husky/_` generado. ' +
+      '[hooks] NO COMPROBADO: esta máquina no tiene ganchos de git: core.hooksPath sin poner y ningún `.husky/_` generado. ' +
         'Nada que mirar — es lo normal en CI y en un clon nuevo, porque `husky` no es dependencia.',
     )
     return
@@ -170,7 +172,7 @@ function main() {
 
   const ganchos = ganchosDelRepo(git(['ls-files', '--full-name', '--', ':/.husky']) ?? '')
   if (ganchos.length === 0) {
-    out('[hooks] el repositorio no trae ganchos en `.husky/`: nada que comprobar.')
+    out('[hooks] NO COMPROBADO: el repositorio no trae ganchos en `.husky/`: nada que comprobar.')
     return
   }
 
