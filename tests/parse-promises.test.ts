@@ -147,7 +147,7 @@ describe('scraper/promises — validatePromisesSnapshot', () => {
     expect(() => validatePromisesSnapshot(JSON.stringify(bad))).toThrow(/evidence/)
   })
 
-  it('accepts optional dueBy + departmentSlug when provided', () => {
+  it('accepts optional dueBy (with its verbatim dueBySource and signed dueByLog) + departmentSlug', () => {
     const base = {
       version: '1.0',
       generatedAt: '2026-04-20',
@@ -172,6 +172,22 @@ describe('scraper/promises — validatePromisesSnapshot', () => {
           evidence: [],
           createdAt: '2024-06-01',
           dueBy: '2026-12-31',
+          // Un plazo sin el fragmento literal que lo sostiene, o sin quien lo
+          // firmó, ya no entra (tests/promesa-plazo.test.ts).
+          dueBySource: 'quote that is at least twenty',
+          dueByLog: [
+            {
+              from: null,
+              to: {
+                dueBy: '2026-12-31',
+                dueBySource: 'quote that is at least twenty',
+                rule: 'dia',
+              },
+              reason: 'Fecha de prueba copiada de la cita del programa.',
+              editor: 'María de la Fuente Llorens',
+              changedAt: '2026-04-20',
+            },
+          ],
           departmentSlug: 'vivienda',
         },
       ],
