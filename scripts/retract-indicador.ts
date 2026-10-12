@@ -27,6 +27,7 @@ import {
   validateEficienciaFindingsSnapshot,
   digestFinding,
 } from '../src/scraper/eficiencia-finding'
+import { rechazarOpcionesDesconocidas } from '../src/scraper/opciones-cli'
 
 const PUBLICADOS = resolve('public/data/eficiencia-findings.json')
 const argv = process.argv.slice(2)
@@ -54,6 +55,9 @@ function fail(msg: string, code = 1): never {
 }
 
 function main(): void {
+  // Antes de leer nada: una opción que este CLI no conoce no se ignora
+  // (src/scraper/opciones-cli.ts).
+  rechazarOpcionesDesconocidas('retract-indicador', { conValor: ['--editor', '--reason'] })
   const [findingId] = positionals()
   const editor = flag('--editor')?.trim()
   const reason = flag('--reason')?.trim()

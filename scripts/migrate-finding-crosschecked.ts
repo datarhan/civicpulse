@@ -32,6 +32,7 @@ import { readFileSync, writeFileSync } from 'node:fs'
 import { resolve } from 'node:path'
 import { validateFindingsSnapshot } from '../src/scraper/pleno-finding'
 import { validatePressFindingsSnapshot } from '../src/scraper/press-finding'
+import { rechazarOpcionesDesconocidas } from '../src/scraper/opciones-cli'
 
 type Target = 'pleno' | 'press'
 
@@ -41,6 +42,12 @@ const TARGETS: Record<Target, { path: string; validate: (json: string) => { item
     press: { path: 'public/data/press-findings.json', validate: validatePressFindingsSnapshot },
   }
 
+// Antes de leer nada: una opción que este CLI no conoce no se ignora
+// (src/scraper/opciones-cli.ts).
+rechazarOpcionesDesconocidas('migrate-crosschecked', {
+  banderas: ['--dry-run'],
+  conValor: ['--target'],
+})
 const targetArg = (() => {
   const i = process.argv.indexOf('--target')
   return i < 0 ? 'pleno' : (process.argv[i + 1] ?? '')

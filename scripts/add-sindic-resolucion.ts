@@ -27,6 +27,7 @@ import {
   type SindicResolucion,
   type SindicSnapshot,
 } from '../src/scraper/sindic.ts'
+import { rechazarOpcionesDesconocidas } from '../src/scraper/opciones-cli'
 
 function usage(): never {
   console.error(
@@ -38,6 +39,9 @@ function usage(): never {
 }
 
 function main() {
+  // Antes de leer nada: una opción que este CLI no conoce no se ignora
+  // (src/scraper/opciones-cli.ts).
+  rechazarOpcionesDesconocidas('sindic:add', {})
   const args = process.argv.slice(2)
   if (args.length < 7) usage()
   const [expediente, fecha, materia, sentido, titulo, resumen, urlPdf, quejaId] = args

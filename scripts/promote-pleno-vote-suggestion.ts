@@ -30,6 +30,7 @@ import {
   type PlenoVote,
 } from '../src/scraper/pleno-votes'
 import type { InferredVote } from '../src/scraper/pleno-vote-inference'
+import { rechazarOpcionesDesconocidas } from '../src/scraper/opciones-cli'
 
 const SUGGESTIONS = resolve('public/data/pleno-votes-suggestions.json')
 const AGENDAS = resolve('public/data/plenos-agendas.json')
@@ -75,6 +76,9 @@ function loadJson<T>(path: string, label: string): T {
 }
 
 function main() {
+  // Antes de leer nada: una opción que este CLI no conoce no se ignora
+  // (src/scraper/opciones-cli.ts).
+  rechazarOpcionesDesconocidas('promote-vote', { banderas: ['--edit'] })
   const args = process.argv.slice(2)
   const editMode = args.includes('--edit')
   const positional = args.filter((a) => !a.startsWith('--'))

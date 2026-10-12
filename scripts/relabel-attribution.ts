@@ -55,6 +55,7 @@ import {
   textosDeLaSesion,
   type Capas,
 } from './verified-rebuild'
+import { rechazarOpcionesDesconocidas } from '../src/scraper/opciones-cli'
 
 const PROMISES = resolve('public/data/promises.json')
 
@@ -114,6 +115,12 @@ function congeladoHasta(): string | null {
 const grupoDe = (it: VerifiedItem | undefined) => it?.claim.speakerGroup ?? 'sin grupo'
 
 async function main() {
+  // Antes de leer nada: una opción que este CLI no conoce no se ignora
+  // (src/scraper/opciones-cli.ts).
+  rechazarOpcionesDesconocidas('relabel', {
+    banderas: ['--dry-run'],
+    conValor: ['--retirar', '--grupo', '--segundos', '--motivo', '--editor'],
+  })
   const o = parse(process.argv.slice(2))
 
   // Antes de leer nada: quién firma.

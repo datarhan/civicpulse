@@ -52,6 +52,7 @@ import {
   type PlenoVotesSnapshot,
   type VoteRetractionScope,
 } from '../src/scraper/pleno-votes'
+import { rechazarOpcionesDesconocidas } from '../src/scraper/opciones-cli'
 
 const DATA_PATH = resolve('public/data/pleno-votes.json')
 
@@ -96,6 +97,12 @@ function summarise(snap: PlenoVotesSnapshot, voteId: string) {
 }
 
 function main() {
+  // Antes de leer nada: una opción que este CLI no conoce no se ignora
+  // (src/scraper/opciones-cli.ts).
+  rechazarOpcionesDesconocidas('retract-vote', {
+    banderas: ['--breakdown', '--plazo', '--unretract', '--dry-run'],
+    conValor: ['--reason', '--editor'],
+  })
   const voteId = process.argv[2]
   if (!voteId || voteId.startsWith('--')) usage()
 

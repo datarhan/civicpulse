@@ -18,7 +18,11 @@ import { readFileSync, writeFileSync, existsSync } from 'node:fs'
 import { BASE, OVERLAY, VERIFIED } from './verified-rebuild'
 import { validateOverlay, type Overlay, type OverlayEntry } from '../src/scraper/verified-merge'
 import type { ClaimVerification } from '../src/scraper/claim-verifier'
+import { rechazarOpcionesDesconocidas } from '../src/scraper/opciones-cli'
 
+// Antes de leer nada: una opción que este CLI no conoce no se ignora
+// (src/scraper/opciones-cli.ts).
+rechazarOpcionesDesconocidas('migrate', { banderas: ['--force'] })
 const force = process.argv.includes('--force')
 
 if (!existsSync(VERIFIED)) {

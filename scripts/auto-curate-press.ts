@@ -39,6 +39,7 @@ import {
   type VerifiedPressItem,
 } from '../src/scraper/press-auto-curate'
 import { validatePressFindingsSnapshot, type PressFinding } from '../src/scraper/press-finding'
+import { rechazarOpcionesDesconocidas } from '../src/scraper/opciones-cli'
 
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = dirname(__filename)
@@ -75,6 +76,12 @@ async function write(path: string, content: string): Promise<void> {
 }
 
 async function main() {
+  // Antes de leer nada: una opción que este CLI no conoce no se ignora
+  // (src/scraper/opciones-cli.ts).
+  rechazarOpcionesDesconocidas('auto-curate-press', {
+    banderas: ['--dry-run'],
+    conValor: ['--max'],
+  })
   const dryRun = hasFlag('--dry-run')
   const max = Number(getFlag('--max')) || 10
 

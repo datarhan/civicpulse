@@ -44,6 +44,7 @@ import { validatePromisesSnapshot } from '../src/scraper/promises'
 import { validateFindingsSnapshot } from '../src/scraper/pleno-finding'
 import { validarCompetencias } from '../src/scraper/competencias'
 import { validarSociedades } from '../src/scraper/sociedades'
+import { rechazarOpcionesDesconocidas } from '../src/scraper/opciones-cli'
 
 const DIA_MS = 86_400_000
 const DATA = 'public/data'
@@ -103,6 +104,12 @@ function git(args: string[]): string {
 }
 
 function main() {
+  // Antes de leer nada: una opción que este CLI no conoce no se ignora
+  // (src/scraper/opciones-cli.ts).
+  rechazarOpcionesDesconocidas('restamp', {
+    banderas: ['--dry-run'],
+    conValor: ['--motivo', '--at'],
+  })
   const argv = process.argv.slice(2)
   const nombre = argv.find((a) => !a.startsWith('--'))
   const arg = (k: string) => {

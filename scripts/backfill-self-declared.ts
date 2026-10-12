@@ -78,6 +78,7 @@ import {
 import { rechazoDeMarcador } from '../src/scraper/firma-de-persona'
 import { startRun } from '../src/scraper/run-manifest'
 import { validateReportsSnapshot } from '../src/scraper/journalist/validators'
+import { rechazarOpcionesDesconocidas } from '../src/scraper/opciones-cli'
 
 const AGG = resolve('public/data/journalist-reports.json')
 const MIRROR_DIR = resolve('public/data/journalist-reports')
@@ -339,6 +340,12 @@ interface ReportRow {
 }
 
 async function main() {
+  // Antes de leer nada: una opción que este CLI no conoce no se ignora
+  // (src/scraper/opciones-cli.ts).
+  rechazarOpcionesDesconocidas('backfill', {
+    banderas: ['--dry-run', '--verbose'],
+    conValor: ['--curator', '--report'],
+  })
   const dryRun = process.argv.includes('--dry-run')
   const curator = arg('curator')
   // Antes de leer nada: el hueco no firma una nota que se sirve. Sólo el hueco;
