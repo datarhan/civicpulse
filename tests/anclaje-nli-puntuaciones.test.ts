@@ -60,13 +60,15 @@ const RESPALDADA = LICITACIONES[1]
  * El `python` del venv, falso. `nli-client.ts` le pasa los pares en JSONL por la
  * entrada y lee las puntuaciones por la salida. Apunta el id de cada par en
  * `CALL_LOG`. Puntúa alto el par cuya premisa contiene `NLI_ALTO` y bajo el
- * resto; con `NLI_OTRO_ID` contesta con ids que nadie le mandó.
+ * resto; con `NLI_OTRO_ID` contesta con ids que nadie le mandó; con
+ * `NLI_DORMIR_MS` tarda eso en contestar, como un modelo lento.
  */
 const NLI_FALSO = `#!/usr/bin/env node
 const { appendFileSync } = require('node:fs')
 let entrada = ''
 process.stdin.on('data', (d) => (entrada += d))
 process.stdin.on('end', () => {
+  const salida = []
   for (const linea of entrada.split('\\n')) {
     if (!linea.trim()) continue
     const par = JSON.parse(linea)
@@ -76,8 +78,9 @@ process.stdin.on('end', () => {
       ? { entailment: 0.95, neutral: 0.03, contradiction: 0.02, label: 'entailment' }
       : { entailment: 0.05, neutral: 0.9, contradiction: 0.05, label: 'neutral' }
     const id = process.env.NLI_OTRO_ID ? 'otro:' + par.id : par.id
-    process.stdout.write(JSON.stringify({ id, ...puntos }) + '\\n')
+    salida.push(JSON.stringify({ id, ...puntos }) + '\\n')
   }
+  setTimeout(() => process.stdout.write(salida.join('')), Number(process.env.NLI_DORMIR_MS || 0))
 })
 `
 
@@ -309,5 +312,51 @@ describe('verify:pleno-claims:nli cuando no vuelve ninguna puntuación', () => {
   it('y sale con error: no ha hecho lo que se le pidió', () => {
     expect(r.status, r.stdout).toBe(1)
     expect(r.stderr).toMatch(/sin puntuación/)
+  })
+})
+
+/**
+ * Un tramo cuyo modelo no contesta dentro de su tope (el 12-10-2026 murió así
+ * la corrida entera, en el primer tramo, con «FATAL»). No es «sin respaldo»:
+ * nadie lo juzgó. Sus filas cuentan como sin puntuar, su fila de la cola se
+ * queda como estaba, la corrida sigue con el tramo siguiente y sale con error.
+ */
+describe('verify:pleno-claims:nli cuando el modelo no contesta a tiempo', () => {
+  let r: Corrida
+  beforeAll(async () => {
+    r = correr({
+      env: {
+        NLI_ALTO: RESPALDADA.title,
+        NLI_DORMIR_MS: '20000',
+        NLI_TOPE_ARRANQUE_MS: '500',
+        NLI_TOPE_MS_POR_PAR: '0',
+      },
+      cola: await colaQueLaPropone(),
+    })
+  }, TOPE)
+
+  it('los pares salieron hacia el modelo', () => {
+    expect(r.pares).toHaveLength(2)
+  })
+
+  it('no cuenta la fila como juzgada: sin puntuar, no «sin respaldo»', () => {
+    expect(leidas(r), r.stdout).toMatch(/puntuaciones leídas 0 de 2\b/)
+    const linea = hecho(r)
+    expect(linea, r.stdout).toMatch(/\bjuzgadas 0\b/)
+    expect(linea).toMatch(/\bsin respaldo 0\b/)
+    expect(linea).toMatch(/\bsin puntuar 1\b/)
+  })
+
+  it('el parte dice qué tramo no contestó, con cuántos pares y qué tope', () => {
+    expect(r.stdout + r.stderr).toMatch(/no contestó en 500 ms \(2 pares\)/)
+    expect(r.stderr).not.toMatch(/FATAL/)
+  })
+
+  it('deja la cola como estaba', () => {
+    expect(r.cola).toBe(r.colaAntes)
+  })
+
+  it('y sale con error: no ha hecho lo que se le pidió', () => {
+    expect(r.status, r.stdout).toBe(1)
   })
 })
