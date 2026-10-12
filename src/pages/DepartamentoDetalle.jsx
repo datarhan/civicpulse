@@ -1,6 +1,7 @@
 import { Link, useParams } from 'react-router-dom'
 import { Card, Pill, SectionHead, PartyTag } from '../components/Primitives'
 import { PlazoVencidoBadge } from '../components/PlazoVencidoBadge'
+import { celdaPlazosVencidos } from '../lib/plazos-vencidos'
 import { useDepartmentStats } from '../hooks/useDepartmentStats'
 import {
   usePromises,
@@ -551,14 +552,12 @@ export default function DepartamentoDetalle() {
           }
         />
         <MiniStat label={t('departamentos.card.promesas')} value={bucket.promesas.total} />
+        {/* Sólo cuenta lo que lleva un `dueBy` curado. Sin ningún compromiso
+            fechado en el área, «—» y el motivo: un 0 diría que no ha vencido
+            nada, y lo único sabido es que nada tiene fecha. */}
         <MiniStat
           label={t('departamentos.card.vencidos')}
-          value={frozen ? '—' : bucket.plenoVotes.plazosVencidos + bucket.promesas.plazosVencidos}
-          tone={
-            !frozen && bucket.plenoVotes.plazosVencidos + bucket.promesas.plazosVencidos > 0
-              ? 'warn'
-              : undefined
-          }
+          {...celdaPlazosVencidos(bucket, t, { frozen })}
         />
         {/* Las abiertas, con la regla del registro: «—» hasta que alguna queja
             del área haya entrado en el del ayuntamiento. El motivo va en la

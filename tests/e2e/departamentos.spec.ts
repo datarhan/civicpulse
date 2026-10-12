@@ -138,6 +138,34 @@ test.describe('Departamentos (/departamentos)', () => {
     expect(appErrors(errors)).toEqual([])
   })
 
+  // «PLAZOS VENCIDOS 0» en /departamentos/urbanismo, con un anuncio «En progreso»
+  // que prometía algo para «el próximo mes de septiembre» en la misma página: el
+  // cero contaba sólo lo que lleva `dueBy`, y allí no lo llevaba nada. Ninguna
+  // celda puede dar una cifra sin decir sobre cuántos compromisos fechados la da.
+  for (const ruta of ['/departamentos', '/departamentos/urbanismo']) {
+    test(`${ruta}: «Plazos vencidos» nunca es un número a secas`, async ({ page }) => {
+      await page.goto(ruta, { waitUntil: 'domcontentloaded' })
+      await expect(page.getByText('Plazos vencidos').first()).toBeVisible({ timeout: 8000 })
+
+      const celdas = await page.evaluate(() =>
+        Array.from(document.querySelectorAll('div'))
+          .filter((d) => d.childElementCount === 0 && d.textContent?.trim() === 'Plazos vencidos')
+          .map((label) => {
+            const [, valor, sub] = Array.from(label.parentElement?.children ?? [])
+            return { valor: valor?.textContent?.trim() ?? '', sub: sub?.textContent?.trim() ?? '' }
+          }),
+      )
+
+      // Que la comprobación haya mirado algo: sin celdas, pasaría sin medir nada.
+      expect(celdas.length).toBeGreaterThan(0)
+      for (const c of celdas) {
+        if (/^\d+$/.test(c.valor)) expect(c.sub).toMatch(/^de \d+ con plazo fechado$/)
+        // «—» con su motivo; sin motivo sólo en la veda electoral (`frozenUntil`).
+        else expect(c.valor).toBe('—')
+      }
+    })
+  }
+
   test('unknown slug shows not-found state (not a crash)', async ({ page }) => {
     const errors = collectPageErrors(page)
 
