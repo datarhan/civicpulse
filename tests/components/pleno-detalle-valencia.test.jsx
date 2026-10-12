@@ -38,6 +38,7 @@ import { SECTION_LABEL } from '../../src/hooks/usePlenoAgendas'
 import { SEVERITY_LABEL } from '../../src/hooks/usePlenoFindings'
 import { DEPARTMENT_LABEL } from '../../src/scraper/departments'
 import { REAL_BLOCS } from '../../src/lib/party-label'
+import { CORPUS_IDS } from '../../src/scraper/claim-verdicts'
 import {
   cadenasDe,
   datosPintados,
@@ -115,25 +116,18 @@ const botonesDePestana = (c) => [...c.querySelectorAll('button[data-pestana]')]
 
 /**
  * Lo que esta prueba todavía no le pide al valencià, quitado de una copia de la
- * página. Son dos bloques de prosa compartidos con superficies legalmente
- * materiales, y su traducción va aparte para que se revise como tal:
+ * página: las citas de cada ficha de hallazgo y sus notas de procedencia y de
+ * contraste (`CitasDeLaFicha`, también en /hallazgos), la lista `ol` de la ficha y la
+ * nota que va con ella, que comparten contenedor. Es prosa compartida con una
+ * superficie legalmente material, y su traducción va aparte para que se revise como
+ * tal. Las dos lecturas —tokens y castellano— se hacen sin ella.
  *
- *   - las tarjetas del registro de declaraciones (`ClaimLedger`, también en
- *     /declaraciones y /departamentos): las que llevan la cita en un `blockquote`;
- *   - las citas de cada ficha de hallazgo y sus notas de procedencia y de contraste
- *     (`CitasDeLaFicha`, también en /hallazgos): la lista `ol` de la ficha y la nota
- *     que va con ella, que comparten contenedor.
- *
- * Las dos lecturas —tokens y castellano— se hacen sin ellos: las tarjetas del
- * registro también pintan tokens, los nombres de los conjuntos de datos en
- * «Fuentes comprobadas», y eso es de la misma tarea.
+ * Las tarjetas del registro de declaraciones (`ClaimLedger`) estuvieron aquí hasta
+ * que pasaron por el catálogo (#314), y desde entonces se leen enteras.
  */
 const sinLoPendiente = (c) => {
   const copia = c.cloneNode(true)
-  // Las citas primero: también van en `blockquote`, y quitadas ellas, el único
-  // `blockquote` que queda en una tarjeta es el de una declaración.
   for (const ol of copia.querySelectorAll('.cp-card ol')) ol.parentElement?.remove()
-  for (const b of copia.querySelectorAll('blockquote')) b.closest('.cp-card')?.remove()
   return copia
 }
 
@@ -235,12 +229,34 @@ const ESCENARIOS = [
  * con algún trozo quitado o cambiado por su rótulo, así que el snippet entero ya no
  * aparece y cada trozo sigue siendo dato.
  */
-const trozosDeSnippets = (mapa) =>
-  mapa['/data/pleno-findings.json'].items.flatMap((f) =>
+const trozosDeSnippets = (mapa) => [
+  ...mapa['/data/pleno-findings.json'].items.flatMap((f) =>
     [...(f.crossChecked ?? []), ...(f.contradiction ?? [])].flatMap((r) =>
       String(r.snippet ?? '').split(' · '),
     ),
-  )
+  ),
+  // Y los de cada fila de evidencia de una declaración, que la tarjeta pinta sin su
+  // cola de estado.
+  ...mapa[RUTA_FRAGMENTO].items.flatMap((it) =>
+    (it.verification?.evidence ?? []).flatMap((e) => String(e.snippet ?? '').split(' · ')),
+  ),
+]
+
+/**
+ * Lo que una tarjeta de declaración pinta del dato con forma de token, que
+ * `datosPintados` no puede reconocer: la unidad del recuento que el extractor sacó de
+ * la cita («actuaciones»), en su propio nodo junto a la cifra, los nombres de corpus de
+ * «Fuentes comprobadas» —identificadores, iguales en los dos idiomas— y las unidades de
+ * un importe abreviado («27 K €»).
+ */
+const DATO_DE_LAS_DECLARACIONES = (mapa) => [
+  ...mapa[RUTA_FRAGMENTO].items
+    .map((it) => it.claim?.entities?.countUnit)
+    .filter((u) => typeof u === 'string' && u !== ''),
+  ...CORPUS_IDS,
+  'K €',
+  'M €',
+]
 
 /** Lo que no es lengua en esta página. */
 const SIGLAS = [
@@ -335,15 +351,17 @@ describe(`/plenos/${ID}: cada pestaña, sin tokens y en valencià sin castellano
         ['agenda', 'declaraciones', 'hallazgos', 'resumen', 'transcripcion', 'votos'].sort(),
       )
 
-      // Lo pendiente se quita, y sólo eso: en las dos pestañas que lo llevan la lectura
-      // sin ello es más corta, y la de hallazgos sigue leyendo sus cotejos.
+      // Lo pendiente se quita, y sólo eso: en la pestaña de hallazgos la lectura sin
+      // ello es más corta y sigue leyendo sus cotejos; la de declaraciones se lee entera.
       const cuenta = (lista, pestana) =>
         deLaPestana(lista).filter((p) => p.pestana === pestana).length
-      for (const pestana of ['declaraciones', 'hallazgos']) {
-        expect
-          .soft(cuenta(lecturas.ca.sinPendiente, pestana), `nada pendiente en ${pestana}`)
-          .toBeLessThan(cuenta(lecturas.ca.enteras, pestana))
-      }
+      expect
+        .soft(cuenta(lecturas.ca.sinPendiente, 'hallazgos'), 'nada pendiente en hallazgos')
+        .toBeLessThan(cuenta(lecturas.ca.enteras, 'hallazgos'))
+      expect
+        .soft(cuenta(lecturas.ca.sinPendiente, 'declaraciones'), 'declaraciones, entera')
+        .toBe(cuenta(lecturas.ca.enteras, 'declaraciones'))
+      expect(cuenta(lecturas.ca.enteras, 'declaraciones'), 'tarjetas leídas').toBeGreaterThan(20)
       expect
         .soft(
           deLaPestana(lecturas.ca.sinPendiente).some(
@@ -365,7 +383,12 @@ describe(`/plenos/${ID}: cada pestaña, sin tokens y en valencià sin castellano
         [...es.piezas, ...piezasEs],
         new Set([...cadenasDe(esc.fetch), ...trozosDeSnippets(esc.fetch)]),
       )
-      const noSeTraduce = masLargasPrimero([...datos, ...SIGLAS, ...AREAS_IGUALES])
+      const noSeTraduce = masLargasPrimero([
+        ...datos,
+        ...SIGLAS,
+        ...AREAS_IGUALES,
+        ...DATO_DE_LAS_DECLARACIONES(esc.fetch),
+      ])
       const { castellanoEn, sinTraducir } = detectorDeCastellano(noSeTraduce)
       const castellano = deLaPestana(lecturas.ca.sinPendiente).flatMap(({ pestana, texto }) =>
         castellanoEn(texto).map((p) => `${pestana}: «${p}» en «${texto.slice(0, 120)}»`),
