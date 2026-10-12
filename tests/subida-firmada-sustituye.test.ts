@@ -165,7 +165,7 @@ describe('subirVeredicto · lo que sustituye se queda en `sustituye`', () => {
   })
 })
 
-describe('validateOverlay · `sustituye` sólo con su molde, y sólo en una subida firmada', () => {
+describe('validateOverlay · `sustituye` sólo con su molde, y sólo donde puede ir', () => {
   const subida = (): Overlay => subirVeredicto(conMotor(), pedida(), observado(), STAMP)
   const con = (cambia: (e: OverlayEntry) => void): Overlay => {
     const o = structuredClone(subida())
@@ -177,7 +177,10 @@ describe('validateOverlay · `sustituye` sólo con su molde, y sólo en una subi
     expect(() => validateOverlay(subida())).not.toThrow()
   })
 
-  it('en una entrada que no es una subida firmada revienta', () => {
+  // Desde el 13-10-2026 una retractación del motor lleva `sustituye` cuando
+  // re-deriva otra suya con registros (tests/rederivacion-conserva-registros.test.ts),
+  // siempre con fecha nueva: copiada en sí misma, no.
+  it('en una retractación del motor que se sustituye a sí misma revienta', () => {
     const o = structuredClone(conMotor())
     o.entries[ID].sustituye = { ...IDENTIDAD_DEL_MOTOR } as OverlayEntry['sustituye']
     expect(() => validateOverlay(o)).toThrow(/sustituye/)

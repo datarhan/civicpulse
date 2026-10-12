@@ -146,6 +146,9 @@ export interface OverlayEntry {
    * Y en una bajada de curador escrita encima de una subida —o de otra bajada
    * que ya lo lleva—: la entrada que pisó, con la subida en su cadena. Ver
    * `heredaSustituida`.
+   *
+   * Y en una retractación del motor que re-deriva o recorta otra suya con
+   * registros firmados: la que pisó, con ellos. Ver `sustituidaPorElMotor`.
    */
   sustituye?: EntradaSustituida
 }
@@ -222,14 +225,50 @@ export function sustituidaDe(previa: OverlayEntry): EntradaSustituida {
  */
 export function heredaSustituida(previa: OverlayEntry | undefined): EntradaSustituida | null {
   if (!previa) return null
-  if (previa.source !== 'curator-upgrade' && !previa.sustituye) return null
-  return sustituidaDe(previa)
+  // La cadena, y no que lleve `sustituye`: desde el 13-10-2026 también la lleva
+  // una retractación del motor re-derivada, y eso no es una subida.
+  const s = sustituidaDe(previa)
+  return llegaAUnaSubida(s) ? s : null
+}
+
+/**
+ * Lo que guarda una retractación del motor de la retractación suya que vuelve a
+ * escribir —re-derivada con `--ids` o recortada con `--recortar`—: la entrada
+ * entera como `EntradaSustituida`, si en su cadena hay registros firmados; si
+ * no, nada, y la sustituye entera como siempre.
+ *
+ * Hasta el 13-10-2026 se la llevaba entera con sus correcciones de rótulo
+ * (`labelCorrections`, PR #254): el 12-10-2026 la re-derivación de #301 tuvo
+ * que dejar fuera dos filas, 1qi8axv-017-afi-e2b0f0 y 1tgd1h4-264-cit-367c04,
+ * porque reescribirlas las borraba. Las correcciones no pasan a la entrada
+ * nueva: dicen que se corrigió el rótulo de AQUÉLLA, y son anteriores a ésta.
+ *
+ * Las enmiendas de la explicación (`reasonAmendments`) no llegan aquí: una
+ * pasada no reescribe lo que firmó una persona (`explicacionFirmadaPor`). Si
+ * algún día llegaran, se guardarían igual —su huella, nunca el texto—.
+ */
+export function sustituidaPorElMotor(previa: OverlayEntry | undefined): EntradaSustituida | null {
+  if (previa?.source !== 'verdict-engine') return null
+  const s = sustituidaDe(previa)
+  return llevaRegistros(s) ? s : null
 }
 
 /** ¿La cadena llega a una subida firmada? Fuera de una subida, `sustituye` sólo así. */
 function llegaAUnaSubida(s: EntradaSustituida | undefined): boolean {
   for (let x = s; x; x = x.sustituye) if (x.source === 'curator-upgrade') return true
   return false
+}
+
+/** ¿Guarda la cadena algún registro firmado de una retractación del motor? */
+function llevaRegistros(s: EntradaSustituida | undefined): boolean {
+  for (let x = s; x; x = x.sustituye) if (x.labelCorrections || x.reasonAmendments) return true
+  return false
+}
+
+/** ¿Es toda la cadena del motor? Lo único que una retractación suya puede pisar. */
+function todaDelMotor(s: EntradaSustituida | undefined): boolean {
+  for (let x = s; x; x = x.sustituye) if (x.source !== 'verdict-engine') return false
+  return true
 }
 
 /** Fuera de una subida firmada, sólo una bajada de curador hereda lo que sustituyó. */
@@ -720,6 +759,17 @@ export function validateOverlay(o: Overlay): void {
     if (e.sustituye !== undefined) {
       validarDondeVaSustituye(`[overlay] ${id}`, e.source, e.sustituye, 'esta entrada')
       validarSustituida(`[overlay] ${id}.sustituye`, e.sustituye, e.appliedAt)
+      // El motor re-deriva o recorta con fecha nueva: una sustituida de la misma
+      // fecha es la entrada copiada en sí misma, con sus registros dos veces.
+      if (
+        e.source === 'verdict-engine' &&
+        !(Date.parse(e.sustituye.appliedAt) < Date.parse(e.appliedAt))
+      ) {
+        throw new Error(
+          `[overlay] ${id}: sustituye de una retractación del motor tiene que ser anterior a ella ` +
+            `(${e.sustituye.appliedAt}, no antes de ${e.appliedAt}): el motor no se sustituye a sí mismo`,
+        )
+      }
     }
   }
 }
@@ -738,9 +788,11 @@ const CLAVES_DE_LA_SUSTITUIDA = new Set([
 const COMMIT_ENTERO = /^[0-9a-f]{40}$/
 
 /**
- * Quién lleva `sustituye`: una subida firmada, o una bajada de curador cuya
- * cadena llega a una (`heredaSustituida`). Una retractación del motor nunca:
- * el motor no escribe encima de lo que firmó una persona.
+ * Quién lleva `sustituye`: una subida firmada, una bajada de curador cuya
+ * cadena llega a una (`heredaSustituida`), o una retractación del motor que
+ * pisó otra suya con registros firmados (`sustituidaPorElMotor`). En ésa, la
+ * cadena es toda del motor: el motor no escribe encima de lo que firmó una
+ * persona.
  */
 function validarDondeVaSustituye(
   donde: string,
@@ -748,6 +800,21 @@ function validarDondeVaSustituye(
   s: EntradaSustituida,
   quien: string,
 ): void {
+  if (source === 'verdict-engine') {
+    if (!todaDelMotor(s)) {
+      throw new Error(
+        `${donde}: en una retractación del motor, sustituye sólo guarda otra suya: el motor no ` +
+          `escribe encima de lo que firmó una persona (${quien} es de verdict-engine)`,
+      )
+    }
+    if (!llevaRegistros(s)) {
+      throw new Error(
+        `${donde}: en una retractación del motor, sustituye sólo guarda la anterior por sus ` +
+          `registros firmados, y su cadena no lleva ninguno (${quien} es de verdict-engine)`,
+      )
+    }
+    return
+  }
   if (!HEREDAN_SUSTITUYE.includes(source)) {
     throw new Error(
       `${donde}: sustituye sólo lo lleva una subida firmada o la bajada de curador que la pisó ` +
@@ -1368,11 +1435,17 @@ export function applyOverlayEntries(
     }
     // Lo que sustituye lo toma de la entrada que tiene delante, no de quien
     // llama: así no lo pierde ni lo inventa ninguna vía. Una subida guarda
-    // siempre la que pisa; cualquier otra escritura, la que pisa si en su
-    // historia hay una subida (`downgrade-verdict`, `subir-veredicto
-    // --retirar`). Si la escribe el motor, `validateOverlay` se niega.
+    // siempre la que pisa; el motor, la retractación suya que re-deriva o
+    // recorta, si lleva registros firmados (`sustituidaPorElMotor`); cualquier
+    // otra escritura, la que pisa si en su historia hay una subida
+    // (`downgrade-verdict`, `subir-veredicto --retirar`). Si el motor pisara
+    // una subida, `validateOverlay` se niega.
     const sustituye =
-      etapa?.firmaEnLaEntrada && previa ? sustituidaDe(previa) : heredaSustituida(previa)
+      etapa?.firmaEnLaEntrada && previa
+        ? sustituidaDe(previa)
+        : e.source === 'verdict-engine' && previa?.source === 'verdict-engine'
+          ? sustituidaPorElMotor(previa)
+          : heredaSustituida(previa)
     next.entries[e.claimId] = {
       verification: e.verification,
       source: e.source,

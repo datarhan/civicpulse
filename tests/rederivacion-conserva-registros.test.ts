@@ -75,7 +75,13 @@ const NUEVO_DANA =
   'cercano es de 141.562,93 €.'
 
 /** `--ids`, por la vía del guion: `entradaDelMotor` y `applyOverlayEntries`. */
-const rederivar = (o: Overlay, id: string, summary: string, stamp = STAMP, modelo = 'claude-code') =>
+const rederivar = (
+  o: Overlay,
+  id: string,
+  summary: string,
+  stamp = STAMP,
+  modelo = 'claude-code',
+) =>
   applyOverlayEntries(
     o,
     [entradaDelMotor({ verification: juicio(id, summary), modelo, tipo: 'rederivacion' })],
@@ -225,7 +231,12 @@ describe('recortar una retractación con el rótulo corregido', () => {
 })
 
 describe('después de re-derivarla', () => {
-  it('una bajada de curador encima conserva la cadena', () => {
+  // Como sobre cualquier retractación del motor: una bajada o una retirada la
+  // sustituye entera, y sólo guarda lo que sustituye si en su historia hay una
+  // subida firmada (`heredaSustituida`; tests/sustituye-al-bajar.test.ts lo fija
+  // sobre una retractación con el rótulo corregido). Lo que importa aquí es que
+  // el `sustituye` del motor no la haga reventar.
+  it('una bajada de curador encima se escribe, como sobre cualquier retractación del motor', () => {
     const o1 = rederivar(overlay(), DANA, NUEVO_DANA)
     const motivo = 'La cifra citada no aparece en ningún contrato publicado del temporal.'
     const o2 = applyOverlayEntries(
@@ -233,7 +244,12 @@ describe('después de re-derivarla', () => {
       [
         {
           claimId: DANA,
-          verification: verificacionDeBajada(DANA, o1.entries[DANA].verification, 'sin-datos', motivo),
+          verification: verificacionDeBajada(
+            DANA,
+            o1.entries[DANA].verification,
+            'sin-datos',
+            motivo,
+          ),
           source: 'curator-downgrade',
           reason: motivo,
           editor: PERSONA,
@@ -244,8 +260,44 @@ describe('después de re-derivarla', () => {
     )
     const e = o2.entries[DANA]
     expect(e.source).toBe('curator-downgrade')
-    expect(e.sustituye?.source).toBe('verdict-engine')
-    expect(e.sustituye?.sustituye).toEqual(sustituidaDe(FX.entries[DANA]))
+    expect(e).not.toHaveProperty('sustituye')
+    expect(() => validateOverlay(o2)).not.toThrow()
+  })
+
+  it('una subida firmada encima guarda la re-derivación y, debajo, la corrección', () => {
+    const SUB = JSON.parse(
+      readFileSync(
+        resolve(__dirname, 'fixtures/subida-sobre-rotulo-corregido_2026-10-06.json'),
+        'utf8',
+      ),
+    ) as { claimId: string; motor: OverlayEntry; subida: OverlayEntry }
+    const id = SUB.claimId
+    const o1 = rederivar(
+      { version: 1, generatedAt: STAMP, entries: { [id]: structuredClone(SUB.motor) } },
+      id,
+      'Ningún contrato publicado recoge el cambio de juegos del Parque Bellavista con esa cifra.',
+    )
+    const o2 = applyOverlayEntries(
+      o1,
+      [
+        {
+          claimId: id,
+          verification: SUB.subida.verification,
+          source: 'curator-upgrade',
+          reason: SUB.subida.reason,
+          editor: SUB.subida.editor,
+          desde: 'sin-datos',
+        },
+      ],
+      LUEGO,
+      new Map([[id, 'sin-datos' as const]]),
+    )
+    expect(o2.entries[id].sustituye).toEqual({
+      source: 'verdict-engine',
+      editor: 'verdict-engine:claude-code',
+      appliedAt: STAMP,
+      sustituye: sustituidaDe(SUB.motor),
+    })
     expect(() => validateOverlay(o2)).not.toThrow()
   })
 

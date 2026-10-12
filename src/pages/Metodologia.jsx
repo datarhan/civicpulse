@@ -1576,7 +1576,9 @@ export default function Metodologia() {
             respaldo de pago y sólo escribe a nombre del modelo que contestó, y el 6 de octubre de
             2026 se corrigió la atribución de esas retractaciones con una corrección registrada en
             cada una, que guarda el rótulo anterior, qué paso hizo cada modelo y el porqué, sin
-            tocar el veredicto ni la explicación. Las cifras, con su método y su muestra, están en
+            tocar el veredicto ni la explicación. Si el motor vuelve a escribir después una de esas
+            explicaciones, la entrada nueva conserva esa corrección junto a quién escribió la
+            anterior y cuándo, nunca lo que decía. Las cifras, con su método y su muestra, están en
             el registro público de mediciones (<code>.automation-measurements.json</code>); aquí no
             las damos como acierto. La regla se tomó en junio a la vista de esa medición, y hoy la
             sostiene una razón que no depende de ninguna: un <code>sin-datos</code> no afirma nada,
