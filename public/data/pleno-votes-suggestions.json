@@ -1,15 +1,17 @@
 {
-  "generatedAt": "2026-09-20T15:28:46.431Z",
+  "generatedAt": "2026-10-12T09:43:01.875Z",
   "source": {
     "description": "Vote suggestions inferred automatically from YouTube-derived pleno transcripts. Every record carries requiresHumanApproval:true and MUST be reviewed by a curator before promotion to pleno-votes.json via `npm run pleno-vote`.",
     "contract": "Machine-written; never substitutes for the published human-verified record."
   },
   "stats": {
-    "total": 5,
+    "total": 6,
     "byEngine": {
+      "llm": 1,
       "regex": 5
     },
     "byPleno": {
+      "zrbgic": 1,
       "10yl550": 1,
       "k4olcs": 1,
       "19gax3o": 2,
@@ -17,6 +19,31 @@
     }
   },
   "items": [
+    {
+      "plenoId": "zrbgic",
+      "plenoDate": "2026-10-05",
+      "itemNumber": 4,
+      "excerpt": "Pues da nueva chafa, quería probar, pero da nueva chafa favor, dos abstenciones, Grupo Socialista, A favor. Partido Popular, COX, escravina Abstención. potente, compromiso, pasemos a la siguiente punto del día",
+      "outcome": "aprobado",
+      "votes": [
+        {
+          "bloc": "PSOE",
+          "direction": "a_favor"
+        },
+        {
+          "bloc": "VOX",
+          "direction": "abstencion"
+        }
+      ],
+      "confidence": 0.62,
+      "requiresHumanApproval": true,
+      "engine": "llm",
+      "regmeetCheck": {
+        "regmeetOutcome": "aprobada",
+        "regmeetTitle": "Expediente: 4744/2026/GEN, Acuerdo sobre declaración de actividad municipalizada e inicio de la elaboración del proyecto del servicio de transportes de Riba-roja de Túria.",
+        "status": "match"
+      }
+    },
     {
       "plenoId": "10yl550",
       "plenoDate": "2026-05-11",
@@ -42,7 +69,7 @@
       "engine": "regex",
       "regmeetCheck": {
         "regmeetOutcome": null,
-        "status": "no-regmeet"
+        "status": "item-not-found"
       }
     },
     {
@@ -74,7 +101,7 @@
       "engine": "regex",
       "regmeetCheck": {
         "regmeetOutcome": null,
-        "status": "no-regmeet"
+        "status": "item-not-found"
       }
     },
     {
@@ -106,7 +133,7 @@
       "engine": "regex",
       "regmeetCheck": {
         "regmeetOutcome": null,
-        "status": "no-regmeet"
+        "status": "item-not-found"
       }
     },
     {
@@ -138,7 +165,7 @@
       "engine": "regex",
       "regmeetCheck": {
         "regmeetOutcome": null,
-        "status": "no-regmeet"
+        "status": "item-not-found"
       }
     },
     {
@@ -161,8 +188,9 @@
       "requiresHumanApproval": true,
       "engine": "regex",
       "regmeetCheck": {
-        "regmeetOutcome": null,
-        "status": "no-regmeet"
+        "regmeetOutcome": "aprobada",
+        "regmeetTitle": "Expedient: 4211/2025/GEN, Acord de Ple relatiu a autorització de compatibilitat per a l'acompliment de segona activitat laboral per a l'exercici 2025/2026 AJMH",
+        "status": "match"
       }
     }
   ]
