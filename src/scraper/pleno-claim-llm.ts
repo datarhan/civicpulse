@@ -25,6 +25,7 @@ import {
 } from '../llm/prompts'
 import type { ZodTypeAny, z } from 'zod'
 import type { PlenoClaim } from './pleno-claim'
+import { sanearRecuento, type MotivoDeDescarte } from './unidad-de-recuento'
 
 export interface ClaimExtractionOptions {
   plenoId: string
@@ -104,6 +105,12 @@ export interface ClaimExtractionResult {
      *   fueraDeLaComposicion  la composición no dice cuántos tiene
      */
     blocsRetenidos: { unEscano: number; fueraDeLaComposicion: number }
+    /**
+     * Pares count + countUnit que el modelo emitió y no se escriben, por
+     * motivo (src/scraper/unidad-de-recuento.ts). Contados al emitirse, antes
+     * del colapso: miden cuánto se equivoca el modelo, no cuánto sobrevive.
+     */
+    unidadesDescartadas: Record<MotivoDeDescarte, number>
   }
 }
 
@@ -284,6 +291,7 @@ export async function extractClaimsWithLlm(
   const seen = new Set<string>()
   const items: PlenoClaim[] = []
   let droppedLowConfidence = 0
+  const unidadesDescartadas: Record<MotivoDeDescarte, number> = { 'fragmento-json': 0, moneda: 0 }
 
   // Process windows in fixed-size parallel batches. Each batch awaits all of
   // its calls before starting the next so cache writes + dedup keep ordered
@@ -328,6 +336,10 @@ export async function extractClaimsWithLlm(
       // El concejal se va con su grupo: retener el grupo porque nombra a una
       // persona y dejar su `speakerSlug` sería nombrarla por la otra puerta.
       const validatedSlug = motivo ? null : validateSlug(raw.speakerSlug, speakerGroup)
+      // Después de la clave, no antes: el id sale de la respuesta cruda, así
+      // que sanear la unidad no renombra nada que un veredicto ya cite.
+      const recuento = sanearRecuento(raw.entities)
+      if (recuento.descarte) unidadesDescartadas[recuento.descarte] += 1
       items.push({
         id,
         plenoId: opts.plenoId,
@@ -341,8 +353,8 @@ export async function extractClaimsWithLlm(
         topic: raw.topic,
         entities: {
           ...(raw.entities.amountEuros != null ? { amountEuros: raw.entities.amountEuros } : {}),
-          ...(raw.entities.count != null ? { count: raw.entities.count } : {}),
-          ...(raw.entities.countUnit ? { countUnit: raw.entities.countUnit } : {}),
+          ...(recuento.count != null ? { count: recuento.count } : {}),
+          ...(recuento.countUnit ? { countUnit: recuento.countUnit } : {}),
           ...(raw.entities.date ? { date: raw.entities.date } : {}),
           ...(raw.entities.referencedEntity
             ? { referencedEntity: raw.entities.referencedEntity.toLowerCase().trim() }
@@ -392,6 +404,7 @@ export async function extractClaimsWithLlm(
       windowsAnswered,
       windowsUnanswered,
       blocsRetenidos,
+      unidadesDescartadas,
     },
   }
 }

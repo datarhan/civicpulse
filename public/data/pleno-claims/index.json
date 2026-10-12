@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-12T10:51:39.699Z",
+  "generatedAt": "2026-10-12T15:36:02.381Z",
   "version": "1",
   "plenos": [
     {
@@ -140,7 +140,7 @@
         "fiscal": 9,
         "other": 9
       },
-      "bytes": 89769
+      "bytes": 89717
     },
     {
       "plenoId": "11025xk",
@@ -197,7 +197,7 @@
         "vivienda": 65,
         "cultura": 41
       },
-      "bytes": 344930
+      "bytes": 344443
     },
     {
       "plenoId": "k4olcs",
@@ -457,7 +457,7 @@
         "movilidad": 2,
         "seguridad": 1
       },
-      "bytes": 590607
+      "bytes": 590550
     },
     {
       "plenoId": "1du4rf5",

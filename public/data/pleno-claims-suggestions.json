@@ -20452,9 +20452,7 @@
       "context": "...que va a durar unos 4 o 6 mil que va a suponer unos 4 o 6 mil de fondos propios cuando siempre se ha dicho que el contrato de la basura no iba a suponer nada para el ayuntamiento...",
       "topic": "fiscal",
       "entities": {
-        "amountEuros": 4000,
-        "count": 1,
-        "countUnit": "mil"
+        "amountEuros": 4000
       },
       "confidence": 0.7,
       "reasoning": "Se menciona una cifra de 4 o 6 mil euros que se va a suponer de fondos propios, lo que puede ser verificado en los registros de presupuestos o gastos del ayuntamiento.",
@@ -24061,9 +24059,7 @@
       "context": "está en más de un millón y pico de euros. Y dar solución. No sólo a Valencia de la Bella. Sino a la Llovatera.",
       "topic": "fiscal",
       "entities": {
-        "amountEuros": 1000000,
-        "count": 1,
-        "countUnit": "euros},"
+        "amountEuros": 1000000
       },
       "confidence": 0.8,
       "reasoning": "La cifra mencionada es clara y se puede verificar en los registros financieros del ayuntamiento.",
@@ -25666,8 +25662,6 @@
       "topic": "vivienda",
       "entities": {
         "amountEuros": 1100,
-        "count": 862,
-        "countUnit": "€",
         "date": "2026-01-01",
         "referencedEntity": "precio medio de una vivienda tipo"
       },
@@ -27897,9 +27891,7 @@
       "context": "...gobierno del Partido Socialista, eh, el que empezaron a subir. Y pasamos de cuatro millones de euros a siete... a cerca de ocho, cuatrocientos que estamos ahora. Fíjate los cambios en la participación en los ingresos del Estado que ha hecho un gobierno u otro.",
       "topic": "fiscal",
       "entities": {
-        "amountEuros": 8400000,
-        "count": 4,
-        "countUnit": "millones de euros},"
+        "amountEuros": 8400000
       },
       "confidence": 0.9,
       "reasoning": "La afirmación menciona cifras concretas sobre el aumento de ingresos, lo que permite verificar los datos en los informes financieros del Ayuntamiento.",
@@ -27916,9 +27908,7 @@
       "context": "cuando gobernaba el Partido Popular 15, 16 y 17, los pies en Rivarroja, por ejemplo, no subían, prácticamente, eran lineales. Fue con el gobierno del Partido Socialista, eh, el que empezaron a subir.",
       "topic": "fiscal",
       "entities": {
-        "amountEuros": 8000000,
-        "count": 4,
-        "countUnit": "millones de euros},"
+        "amountEuros": 8000000
       },
       "accusationSubtype": "factual",
       "confidence": 0.8,
@@ -28865,9 +28855,7 @@
       "context": "...si ustedes no se gastaran 30.000 euros en una orquesta y repartieran a lo mejor 30.000 euros durante los comercios, a lo mejor los comercios verían un atractivo más grande.",
       "topic": "cultura",
       "entities": {
-        "amountEuros": 30000,
-        "count": 30,
-        "countUnit": "euros},"
+        "amountEuros": 30000
       },
       "confidence": 0.9,
       "reasoning": "Se menciona una cifra concreta de 30.000 euros en relación a gastos en una orquesta y sugiere que esa misma cantidad podría ser repartida entre los comercios, lo que permite verificar la afirmación.",
@@ -28899,9 +28887,7 @@
       "context": "n 30.000 euros en una orquesta y repartieran a lo mejor 30.000 euros durante los comercios, a lo mejor los comercios verían un atractivo más grande.",
       "topic": "cultura",
       "entities": {
-        "amountEuros": 30000,
-        "count": 30000,
-        "countUnit": "euros},"
+        "amountEuros": 30000
       },
       "confidence": 0.8,
       "reasoning": "Se menciona una cifra concreta de 30.000 euros, lo que permite verificar si se ha asignado esa cantidad a la orquesta o a los comercios.",
@@ -29710,9 +29696,7 @@
       "context": "...se dotó el año pasado y se ha vuelto a dotar en un año esos dos mil euros. Que en cuanto esté todo preparado y fiscalizado por la int",
       "topic": "empleo",
       "entities": {
-        "amountEuros": 2000,
-        "count": 2,
-        "countUnit": "euros},"
+        "amountEuros": 2000
       },
       "confidence": 0.8,
       "reasoning": "La afirmación menciona una cifra específica de 2000 euros que se ha dotado en dos ocasiones, lo que puede ser verificado en los registros presupuestarios del ayuntamiento.",
@@ -30085,8 +30069,6 @@
       "topic": "medio-ambiente",
       "entities": {
         "amountEuros": 10000000,
-        "count": 100,
-        "countUnit": "millones de euros",
         "referencedEntity": "dana"
       },
       "confidence": 0.9,
@@ -77375,8 +77357,6 @@
       "topic": "social",
       "entities": {
         "amountEuros": 200000,
-        "count": 3000,
-        "countUnit": "euros",
         "referencedEntity": "ayudas directas al autónomo"
       },
       "confidence": 0.9,
