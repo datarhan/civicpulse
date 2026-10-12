@@ -1,6 +1,6 @@
 {
   "version": "1.0.0",
-  "generatedAt": "2026-10-05T06:30:09.767Z",
+  "generatedAt": "2026-10-12T06:30:10.935Z",
   "frozenUntil": null,
   "legalNotice": "CivicPulse es un proyecto de civic-tech independiente, sin vinculación con el Ayuntamiento de Riba-roja de Túria ni con ningún partido político. Las promesas listadas son compromisos públicos atribuidos a partidos y cargos, cada uno con su fuente enlazada: el documento oficial o la noticia de prensa que recoge la cita. Para correcciones, derecho de rectificación o propuesta de nuevas fuentes: abrir una issue en github.com/datarhan/civicpulse con la etiqueta correccion-promesa. Plazo de revisión: 24 h. Plazo de resolución: 72 h. Durante el periodo electoral oficial (LOREG art. 50), el tracker entra en modo solo-lectura y los estados quedan congelados a la fecha publicada en cada ficha.",
   "contactUrl": "https://github.com/datarhan/civicpulse/issues/new?labels=correccion-promesa",
@@ -341,14 +341,27 @@
       "madeAt": "2026-10-01",
       "topic": "social",
       "kind": "anuncio-gobierno",
-      "status": "documentada",
-      "evidence": [],
+      "status": "en-progreso",
+      "evidence": [
+        {
+          "date": "2026-10-01",
+          "url": "https://www.ribarroja.es/es/noticia/riba-roja-destina-104.605-euros-al-cheque-beb%C3%A9-%2B25-para-apoyar-a-las-familias-y-dinamizar-el-comercio-local",
+          "quote": "Riba-roja destina 104.605 euros al Cheque Bebé +25 para apoyar a las familias y dinamizar el comercio local",
+          "publisher": "Ayuntamiento de Riba-roja de Túria",
+          "kind": "press",
+          "addedBy": "auto-curation-v1"
+        }
+      ],
       "createdAt": "2026-10-05",
+      "updatedAt": "2026-10-12",
+      "response": null,
       "autoPublished": {
-        "at": "2026-10-05T06:30:09.767Z",
+        "at": "2026-10-12T06:30:10.935Z",
         "by": "auto-curation-v1",
-        "confidence": 0.75,
-        "reviewState": "pending-review"
+        "confidence": 0.9,
+        "reviewState": "pending-review",
+        "priorStatus": "documentada",
+        "appendedEvidenceUrl": "https://www.ribarroja.es/es/noticia/riba-roja-destina-104.605-euros-al-cheque-beb%C3%A9-%2B25-para-apoyar-a-las-familias-y-dinamizar-el-comercio-local"
       }
     },
     {
@@ -363,14 +376,27 @@
       "madeAt": "2026-09-25",
       "topic": "medio-ambiente",
       "kind": "anuncio-gobierno",
-      "status": "documentada",
-      "evidence": [],
+      "status": "en-progreso",
+      "evidence": [
+        {
+          "date": "2026-06-17",
+          "url": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=Fyy%2BTlMZfRsadbH3CysQuQ%3D%3D",
+          "quote": "Contrato administrativo para la contratación de la plataforma para la gestión de la sensorización de contenedores e información del servicio de recogida de RSU, poda y voluminosos en el municipio de Riba-roja de Túria, incluido en el marco de ayudas del Plan de Recuperación, Transformación y Resiliencia financiado por la Unión Europea, Next Generation UE (Ctto.138/2025)",
+          "publisher": "PLACSP",
+          "kind": "tender",
+          "addedBy": "auto-curation-v1"
+        }
+      ],
       "createdAt": "2026-10-05",
+      "updatedAt": "2026-10-12",
+      "response": null,
       "autoPublished": {
-        "at": "2026-10-05T06:30:09.767Z",
+        "at": "2026-10-12T06:30:10.935Z",
         "by": "auto-curation-v1",
-        "confidence": 0.7,
-        "reviewState": "pending-review"
+        "confidence": 0.85,
+        "reviewState": "pending-review",
+        "priorStatus": "documentada",
+        "appendedEvidenceUrl": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=Fyy%2BTlMZfRsadbH3CysQuQ%3D%3D"
       }
     },
     {
@@ -385,11 +411,46 @@
       "madeAt": "2026-09-16",
       "topic": "deporte",
       "kind": "anuncio-gobierno",
+      "status": "en-progreso",
+      "evidence": [
+        {
+          "date": "2026-09-16",
+          "url": "https://www.ribarroja.es/es/noticia/riba-roja-destina-una-partida-de-7.000-euros-en-subvenciones-para-fomentar-la-pr%C3%A1ctica-del-deporte-y-mejorar-el-rendimiento-en-las-competiciones-oficiales",
+          "quote": "Riba-roja destina una partida de 7.000 euros en subvenciones para fomentar la práctica del deporte y mejorar el rendimiento en las competiciones oficiales",
+          "publisher": "Ayuntamiento de Riba-roja de Túria",
+          "kind": "press",
+          "addedBy": "auto-curation-v1"
+        }
+      ],
+      "createdAt": "2026-10-05",
+      "updatedAt": "2026-10-12",
+      "response": null,
+      "autoPublished": {
+        "at": "2026-10-12T06:30:10.935Z",
+        "by": "auto-curation-v1",
+        "confidence": 0.9,
+        "reviewState": "pending-review",
+        "priorStatus": "documentada",
+        "appendedEvidenceUrl": "https://www.ribarroja.es/es/noticia/riba-roja-destina-una-partida-de-7.000-euros-en-subvenciones-para-fomentar-la-pr%C3%A1ctica-del-deporte-y-mejorar-el-rendimiento-en-las-competiciones-oficiales"
+      }
+    },
+    {
+      "id": "ac-psoe-1kui43c",
+      "party": "PSOE",
+      "title": "Congelación de las tarifas del agua durante dos años tras el nuevo contrato con Veolia",
+      "quote": "El acuerdo, mantendrá las tarifas congeladas durante dos años en el municipio.",
+      "source": {
+        "url": "https://www.ribarroja.es/es/noticia/riba-roja-de-t%C3%BAria-formaliza-con-veolia-el-nuevo-contrato-del-ciclo-integral-del-agua-para-reforzar-la-sostenibilidad-y-modernizar-sus-infraestructuras",
+        "publisher": "Ayuntamiento Riba-roja de Túria"
+      },
+      "madeAt": "2026-10-08",
+      "topic": "fiscal",
+      "kind": "anuncio-gobierno",
       "status": "documentada",
       "evidence": [],
-      "createdAt": "2026-10-05",
+      "createdAt": "2026-10-12",
       "autoPublished": {
-        "at": "2026-10-05T06:30:09.767Z",
+        "at": "2026-10-12T06:30:10.935Z",
         "by": "auto-curation-v1",
         "confidence": 0.72,
         "reviewState": "pending-review"

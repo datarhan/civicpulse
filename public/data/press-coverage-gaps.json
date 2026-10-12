@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-12T04:47:49.324Z",
+  "generatedAt": "2026-10-12T06:35:58.991Z",
   "windowDays": 14,
   "items": [
     {
@@ -41,12 +41,12 @@
   "stats": {
     "plenoItemsUncovered": 5,
     "promisesUncovered": 0,
-    "candidatesExamined": 9
+    "candidatesExamined": 10
   },
   "builtFrom": {
-    "plenos-agendas.json": "d4b559cf7aeb",
+    "plenos-agendas.json": "632d74e46235",
     "press-claims-verified.json": "c0bc986a2d64",
     "press.json": "a2ca8faabc1e",
-    "promises.json": "b5dbe1ebae83"
+    "promises.json": "08c43b132d79"
   }
 }
