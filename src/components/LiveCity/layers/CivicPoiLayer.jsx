@@ -25,8 +25,8 @@ import { PoiTooltip } from '../popups/Tooltips'
 export function CivicPoiLayer() {
   const { data } = useCivicPoi()
   const pois = data?.pois || []
-  // Own pane at z-450: above the vector overlay that holds the spend pins
-  // (400), below the marker pane that holds the barrio names (600). JSX order
+  // Own pane at z-450: above the spend pins' own pane (`cp-dinero`, 420), below
+  // the marker pane that holds the barrio names (600). JSX order
   // cannot express this — a divIcon lands in the shared marker pane whatever
   // order it mounts in — so the stacking is declared here rather than inherited
   // by accident.

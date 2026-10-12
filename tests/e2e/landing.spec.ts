@@ -2,6 +2,7 @@ import { test, expect } from '@playwright/test'
 import { readFileSync } from 'node:fs'
 import { collectErrors, appErrors } from './_console'
 import { afirmaPulsables, cargaYEncuadra, sondea } from './_estaciones'
+import { afirma, entraPorElPin, mide } from './_pines-y-barrios'
 import { contractTermYears, isConcession } from '../../src/lib/contract-status'
 
 test.describe('Landing (/)', () => {
@@ -307,6 +308,15 @@ test.describe('Landing (/)', () => {
         ).toBeVisible({ timeout: 2500 })
       }).toPass({ timeout: 15000 })
     await pulsaElPrimeroLibre('path.cp-money-pin', /Adjudicatario/i)
+    // Y el mapa, recién encuadrado, antes de buscar el punto. Esta prueba no espera a
+    // que el encuadre se asiente, y en CI, más lenta, el primer pin libre era uno de
+    // arriba del racimo: el auto-pan de su ficha bajaba el mapa entero unos 235 px y
+    // los puntos que no ceden su toque (`lib/barrios-bajo-pines`) acababan bajo la
+    // caja transparente de la pila de controles, que se lleva los clics. Las tres
+    // pasadas de CI, sin ninguno libre; forzando ese pin en local, 3 de 3 igual, y 3
+    // de 3 bien con el mapa recargado. Recargar no rebaja la prueba: el punto se
+    // sigue eligiendo por lo que recibe un toque en su centro.
+    await cargaYEncuadra(page)
     await pulsaElPrimeroLibre('.cp-osm-neigh-dot', /Población/i)
 
     // The retired "Tren L9" schematic-train chip is gone; toggling its
@@ -327,6 +337,64 @@ test.describe('Landing (/)', () => {
     // llegaba. La medida vive en tests/e2e/_estaciones.ts.
     await cargaYEncuadra(page)
     afirmaPulsables(await sondea(page))
+  })
+
+  test('un pin del dinero se pulsa por su centro aunque caiga sobre un barrio, y el barrio sigue teniendo puerta', async ({
+    page,
+  }) => {
+    // La historia y la sonda, en `_pines-y-barrios.ts`; a 375 px, en
+    // `barrios-mobile.spec.ts`.
+    //
+    // Aquí, además, se mide dos veces, porque cada capa se monta y se desmonta con su
+    // botón, y en el panel compartido de vectores mandaba el orden de llegada: con las
+    // quejas encendidas después del dinero, sus círculos quedaban encima de los pines.
+    // Se apaga y se enciende el dinero con las quejas ya pintadas, y tiene que seguir
+    // igual. No con incendios ni servicios: con sus leyendas, la caja transparente de
+    // la pila de controles cubre a 1280 px el centro del pueblo y no queda ningún pin
+    // que medir.
+    //
+    // Recorrer la segunda puerta recarga la portada una vez por barrio: el plazo de
+    // 30 s por prueba no alcanza.
+    test.setTimeout(120_000)
+    await cargaYEncuadra(page)
+    const alCargar = await mide(page)
+    afirma(alCargar, 'al cargar')
+    expect(
+      alCargar.barriosPorElPin.length,
+      'ningún punto cede: la prueba no recorre la segunda puerta',
+    ).toBeGreaterThan(0)
+    for (const barrio of alCargar.barriosPorElPin) await entraPorElPin(page, barrio, 'clic')
+    await cargaYEncuadra(page)
+
+    const capas = page.getByRole('group', { name: /Capas del mapa/i })
+    const dinero = capas.getByRole('button', { name: /Contratos situados/i })
+    await dinero.click()
+    await expect(page.locator('path.cp-money-pin')).toHaveCount(0)
+    // Sin pines, ningún punto tiene a quién ceder.
+    await expect(page.locator('.cp-osm-neigh--cede')).toHaveCount(0)
+    await capas.getByRole('button', { name: /^Quejas$/i }).click()
+    await expect(page.getByText(/Quejas por barrio/i).first()).toBeVisible({ timeout: 6000 })
+    await dinero.click()
+    await expect.poll(() => page.locator('path.cp-money-pin').count()).toBeGreaterThan(0)
+    // Encender el dinero vuelve a encuadrar: se espera a que el mapa se quede quieto.
+    await expect
+      .poll(
+        async () => {
+          const pos = () =>
+            page.evaluate(() =>
+              [...document.querySelectorAll('path.cp-money-pin')]
+                .map((p) => `${Math.round(p.getBoundingClientRect().x)}`)
+                .join('|'),
+            )
+          const antes = await pos()
+          await page.waitForTimeout(300)
+          return antes === (await pos())
+        },
+        { timeout: 15_000 },
+      )
+      .toBe(true)
+
+    afirma(await mide(page), 'tras apagar y encender el dinero, con las quejas pintadas')
   })
 })
 

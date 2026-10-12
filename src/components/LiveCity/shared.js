@@ -31,6 +31,16 @@ export function colorForMetroRef(ref) {
 
 export const DEFAULT_CENTER = [39.5439, -0.5711]
 
+/**
+ * Margen de arriba para el auto-pan de una ficha: la cinta «DIRECTO» de la portada
+ * (LiveTicker: `top: 14`, `height: 36`) va encima del mapa, y una ficha que Leaflet
+ * dejaba pegada al borde superior quedaba con su cabecera debajo. A 375 px la ficha
+ * de un contrato llena el mapa y Leaflet no la puede encajar entera; entonces manda
+ * el margen de arriba, así que lo que va bajo la cabecera —el enlace a la ficha del
+ * barrio— queda a la vista.
+ */
+export const MARGEN_FICHA_ARRIBA = /** @type {[number, number]} */ ([5, 58])
+
 export function ResizeOnMount() {
   const map = useMap()
   useEffect(() => {
