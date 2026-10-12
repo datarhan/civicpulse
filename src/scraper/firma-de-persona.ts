@@ -154,10 +154,30 @@ const PALABRAS_DE_MARCADOR: ReadonlySet<string> = new Set([
   'user',
 ])
 
+/**
+ * Lo que escribe un programa donde faltaba el valor: `execFile` convierte un
+ * `undefined` del argv en «undefined», una plantilla `${x}` hace lo mismo con
+ * `null` y `NaN`, y un objeto sale «[object Object]». Una firma hecha sólo de
+ * estas palabras no la escribió nadie.
+ */
+const VALORES_SIN_DATO: ReadonlySet<string> = new Set(['undefined', 'null', 'nan', 'object'])
+
 /** Cifras y signos que no aparecen en un nombre y sí en un identificador o un marcador. */
 const SIGNOS_DE_IDENTIFICADOR = /[\d<>[\]{}@/\\_#|:=]/
 
 const llana = (s: string) => s.normalize('NFD').replace(/\p{M}/gu, '').toLowerCase()
+
+/** Las palabras de la firma, sin tildes ni mayúsculas, partidas por todo lo que no es letra. */
+const palabrasLlanas = (firma: string) =>
+  llana(firma)
+    .split(/[^\p{L}]+/u)
+    .filter(Boolean)
+
+/** ¿Está hecha sólo de VALORES_SIN_DATO? Una firma sin letras no lo está: es otro hueco. */
+const esValorSinDato = (firma: string) => {
+  const palabras = palabrasLlanas(firma)
+  return palabras.length > 0 && palabras.every((p) => VALORES_SIN_DATO.has(p))
+}
 
 /** «Pérez», «d’Alòs», «O'Neill», «McDonald»: mayúscula inicial y alguna minúscula. */
 const parteDeNombre = (p: string) =>
@@ -179,6 +199,10 @@ export function rechazoDeFirma(editor: string): string | null {
   const firma = editor.normalize('NFC').replace(/\s+/g, ' ').trim()
   if (SIGNOS_DE_IDENTIFICADOR.test(firma)) {
     return `«${firma}» parece un marcador o un identificador, no el nombre de una persona`
+  }
+  if (esValorSinDato(firma)) {
+    // «Null Undefined» tiene forma de nombre y apellido; no lo es.
+    return `«${firma}» es lo que escribe un programa cuando falta el valor, no un nombre`
   }
   const palabras = firma.split(' ')
   for (const palabra of palabras) {
@@ -240,11 +264,17 @@ export const nombraAUnaPersona = (editor: string): boolean => rechazoDeFirma(edi
  * firma la línea que añade al `curatorNotes` servido de journalist-reports.json.
  * tests/firma-sin-rellenar-cli.test.ts las lanza una a una.
  *
+ * Desde el 12-10-2026 rechaza también lo que escribe un programa cuando falta
+ * el valor (VALORES_SIN_DATO). El panel /curator, con una petición sin
+ * `curator`, componía `--curator undefined` para `promote-area-fit`: `execFile`
+ * convierte el `undefined` del argv en la cadena «undefined», y esta guarda la
+ * dejaba pasar como si alguien hubiera firmado así.
+ *
  * No pide una persona: esas vías las firma el operador con la cuenta de rol
  * (`civicpulse-curator`), y esa convención es suya. Rechaza sólo lo que no
- * firma nada —una firma sin una sola letra, la sintaxis de un hueco (`<…>`) o
- * una palabra de PALABRAS_DE_MARCADOR—, así que todo lo que rechaza lo rechaza
- * también `rechazoDeFirma`.
+ * firma nada —una firma sin una sola letra, la sintaxis de un hueco (`<…>`),
+ * una hecha sólo de VALORES_SIN_DATO o una palabra de PALABRAS_DE_MARCADOR—,
+ * así que todo lo que rechaza lo rechaza también `rechazoDeFirma`.
  */
 const SINTAXIS_DE_HUECO = /[<>]/
 
@@ -261,9 +291,10 @@ export function rechazoDeMarcador(editor: string): string | null {
     // También con el nombre ya escrito dentro: `<Ana Pérez>` se publicaría tal cual.
     return `«${firma}» lleva los < > del hueco de una orden preparada: escribe quién firma, sin ellos`
   }
-  const marcador = llana(firma)
-    .split(/[^\p{L}]+/u)
-    .find((p) => PALABRAS_DE_MARCADOR.has(p))
+  if (esValorSinDato(firma)) {
+    return `«${firma}» es lo que escribe un programa cuando falta el valor, no una firma: escribe quién firma`
+  }
+  const marcador = palabrasLlanas(firma).find((p) => PALABRAS_DE_MARCADOR.has(p))
   if (marcador) {
     return `«${firma}» es el marcador de una orden sin rellenar («${marcador}»), no una firma: escribe quién firma`
   }

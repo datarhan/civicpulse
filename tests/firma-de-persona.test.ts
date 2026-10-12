@@ -231,4 +231,28 @@ describe('rechazoDeMarcador — el hueco de una orden preparada, sin rellenar', 
     expect(rechazoDeMarcador(null as unknown as string)).not.toBeNull()
     expect(rechazoDeMarcador(42 as unknown as string)).not.toBeNull()
   })
+
+  // Lo que escribe un programa cuando falta el valor: `execFile` convierte un
+  // `undefined` del argv en la cadena «undefined», y una plantilla `${x}` hace
+  // lo mismo con `null`. Visto el 11-10-2026 en el panel /curator, que habría
+  // firmado así una fila del encaje declarado.
+  it.each([
+    'undefined',
+    'null',
+    'NaN',
+    'Undefined',
+    'NULL',
+    ' undefined ',
+    '[object Object]',
+    // Con forma de nombre y apellido: `rechazoDeFirma` también ha de pararla.
+    'Null Undefined',
+  ])('rechaza el valor de un programa sin dato: «%s»', (firma) => {
+    expect(rechazoDeMarcador(firma)).not.toBeNull()
+    expect(rechazoDeFirma(firma)).not.toBeNull()
+  })
+
+  it('no confunde con ese valor un nombre que sólo lo contiene', () => {
+    expect(rechazoDeMarcador('Anulla Nullo')).toBeNull()
+    expect(rechazoDeMarcador('civicpulse-curator')).toBeNull()
+  })
 })

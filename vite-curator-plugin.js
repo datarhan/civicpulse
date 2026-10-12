@@ -21,6 +21,9 @@
  *   4. shell-metachar regex reject on every string arg as belt-and-suspenders
  *   5. Origin header lock to localhost:5173 / 127.0.0.1:5173
  *   6. POST only · 10 KB body cap · 30 s per-CLI timeout · single-flight queue
+ *   7. a signed action requires its signature in the schema, and `buildArgv`
+ *      refuses to hand the CLI an argv element that is not a non-empty
+ *      string (an `undefined` reaches the CLI as the literal «undefined»)
  *
  * Returns { exitCode, stdout, stderr, durationMs } on success, or a
  * structured error JSON on validation failures.
@@ -97,6 +100,32 @@ const SafeStringLong = z
   .refine((s) => !SHELL_METACHAR_RE.test(s), {
     message: 'string contains forbidden characters',
   })
+/**
+ * Lo que escribe un programa donde faltaba el valor. Mismo conjunto que
+ * VALORES_SIN_DATO en src/scraper/firma-de-persona.ts, que es la guarda que
+ * manda (la corren las CLIs); este plugin se carga con Node sin tsx y no puede
+ * importarla, así que la repite aquí para responder 400 antes de lanzar nada.
+ */
+const VALOR_SIN_DATO_RE = /^(?:undefined|null|nan|\[object object\])$/i
+
+/**
+ * La firma de una vía que publica o retira: texto de verdad, recortado, sin
+ * metacaracteres y que no sea lo que deja un programa cuando falta el valor.
+ * La guarda completa del hueco (`rechazoDeMarcador`) la corre la CLI.
+ */
+const firmaDelCurador = (min) =>
+  z
+    .string()
+    .trim()
+    .min(min)
+    .max(80)
+    .refine((s) => !SHELL_METACHAR_RE.test(s), {
+      message: 'firma contains forbidden characters',
+    })
+    .refine((s) => !VALOR_SIN_DATO_RE.test(s), {
+      message: 'la firma es el valor de un programa sin dato, no una firma',
+    })
+
 const ClaimIdRe = /^[a-z0-9-]{3,64}$/
 const FindingIdRe = /^f-[a-z0-9-]{3,80}$/
 const PartyEnum = z.enum(['PSOE', 'PP', 'VOX', 'Compromís', 'Ciudadanos', 'Otro'])
@@ -163,17 +192,24 @@ const ActionSchemas = {
   'refresh-gh-issues': z.object({}).strict(),
   'refresh-curate-queue': z.object({}).strict(),
   // «Encaje declarado» — promote / reject / retract ONE (official × área) row.
-  // Names a living person, so `curator` is required on the publish path and the
-  // CLI refuses without it; reject and retract only ever remove.
+  // Names a living person, so publish and retract are signed: `curator` is
+  // required on both and the CLI writes it as `curatedBy`. Hasta el 12-10-2026
+  // era opcional aquí, y una petición sin él componía `--curator undefined`
+  // (tests/vite-curator-plugin-firma.test.js). Reject only removes from the
+  // queue and is not signed.
   'promote-area-fit': z
     .object({
       official: z.string().regex(/^[a-z0-9-]{3,60}$/),
       area: z.string().min(2).max(120),
       action: z.enum(['publish', 'reject', 'retract']),
-      curator: z.string().min(2).max(80).optional(),
+      curator: firmaDelCurador(2).optional(),
       note: z.string().max(400).optional(),
     })
-    .strict(),
+    .strict()
+    .refine((d) => d.action === 'reject' || typeof d.curator === 'string', {
+      message: 'publish y retract piden curator: la fila nombra a una persona',
+      path: ['curator'],
+    }),
   // Draft a title + summary via LLM for one bundle. Read-only — does
   // not write to pleno-findings.json. Output is the LLM's JSON; the
   // dashboard parses it and pre-fills the editorial form. Optional
@@ -272,7 +308,8 @@ const ActionSchemas = {
         .regex(/^[a-z0-9-]{3,80}$/)
         .optional(),
       reason: z.string().min(1).max(500).optional(),
-      by: z.string().min(1).max(80).optional(),
+      // Opcional y no se publica, pero si viene no puede ser «undefined».
+      by: firmaDelCurador(1).optional(),
     })
     .strict()
     .refine((d) => d.mode !== 'assign' || typeof d.slug === 'string', {
@@ -364,8 +401,25 @@ const CommitBodySchema = z
 /**
  * Build the argv array for a validated payload. The script names are
  * hard-coded; the dynamic part is only data, never command structure.
+ *
+ * Nunca entrega un elemento que no sea texto o esté vacío: `execFile`
+ * convierte `undefined` en la cadena «undefined», y así una petición sin
+ * `curator` llegaba a la CLI firmada «undefined». Si algo lo compone, lanza
+ * —`handleRun` responde 500 y no lanza nada— en vez de entregarlo.
  */
 function buildArgv(action, args) {
+  const argv = componerArgv(action, args)
+  const i = argv.findIndex((x) => typeof x !== 'string' || x === '')
+  if (i !== -1) {
+    throw new Error(
+      `buildArgv(${action}): ${i > 0 ? `«${argv[i - 1]}»` : 'el primer elemento'} sin valor ` +
+        `(${argv[i] === '' ? 'vacío' : String(argv[i])}); no se lanza la CLI`,
+    )
+  }
+  return argv
+}
+
+function componerArgv(action, args) {
   switch (action) {
     case 'promote-claim': {
       const argv = ['run', 'promote-claim', '--']

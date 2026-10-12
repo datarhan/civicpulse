@@ -2085,6 +2085,18 @@ describe('promote-area-fit', () => {
     }
   })
 
+  // Lo que le llegaba del panel /curator cuando la petición no traía firma:
+  // `execFile` convierte el `undefined` del argv en la cadena «undefined».
+  it.each(['undefined', 'null'])('con «%s» se niega antes de leer nada', (valor) => {
+    const dir = montar('encaje-firma-', ilegibles(...LEE), { [COLA]: ILEGIBLE })
+    try {
+      expect(rechazoDeMarcador(valor)).not.toBeNull()
+      seNegoPorElHueco(lanzar(SCRIPT, dir, orden(valor)), '--curator', valor)
+    } finally {
+      limpiar(dir)
+    }
+  })
+
   it('con el hueco de su línea de uso se niega y deja los datos byte a byte', () => {
     const hueco = huecoDeSuUso(SCRIPT, '--curator')
     expect(hueco).toBeDefined()
