@@ -308,6 +308,15 @@ test.describe('Landing (/)', () => {
         ).toBeVisible({ timeout: 2500 })
       }).toPass({ timeout: 15000 })
     await pulsaElPrimeroLibre('path.cp-money-pin', /Adjudicatario/i)
+    // Y el mapa, recién encuadrado, antes de buscar el punto. Esta prueba no espera a
+    // que el encuadre se asiente, y en CI, más lenta, el primer pin libre era uno de
+    // arriba del racimo: el auto-pan de su ficha bajaba el mapa entero unos 235 px y
+    // los puntos que no ceden su toque (`lib/barrios-bajo-pines`) acababan bajo la
+    // caja transparente de la pila de controles, que se lleva los clics. Las tres
+    // pasadas de CI, sin ninguno libre; forzando ese pin en local, 3 de 3 igual, y 3
+    // de 3 bien con el mapa recargado. Recargar no rebaja la prueba: el punto se
+    // sigue eligiendo por lo que recibe un toque en su centro.
+    await cargaYEncuadra(page)
     await pulsaElPrimeroLibre('.cp-osm-neigh-dot', /Población/i)
 
     // The retired "Tren L9" schematic-train chip is gone; toggling its
