@@ -283,12 +283,15 @@ export function nombrarCitas(numeros, ficha, t = enCastellano) {
         ultima: numeros[numeros.length - 1],
       })
     : String(numeros[0])
-  const cuantas = plural ? 'varias' : 'una'
-  const rotulo = rellena(t(`findings.citas.rotulo.${cuantas}`), { lista })
+  const rotulo = rellena(t(plural ? 'findings.citas.rotulo.varias' : 'findings.citas.rotulo.una'), {
+    lista,
+  })
   return {
     plural,
     rotulo: ficha ? deLaFicha(rotulo, ficha, t) : rotulo,
-    sujeto: rellena(t(`findings.citas.sujeto.${cuantas}`), { lista }),
+    sujeto: rellena(t(plural ? 'findings.citas.sujeto.varias' : 'findings.citas.sujeto.una'), {
+      lista,
+    }),
     ...(ficha ? { ficha } : {}),
   }
 }
@@ -368,9 +371,16 @@ const PROVENANCE_MARK = {
     title: 'findings.citas.procedencia.sustituida.title',
     // Decía «Las citas marcadas constan…»: ahora dice cuáles (`nombrarCitas`).
     note: (citas, _curatorName, t) =>
-      rellena(t(`findings.citas.procedencia.sustituida.nota.${citas.plural ? 'varias' : 'una'}`), {
-        sujeto: mayuscula(citas.sujeto),
-      }),
+      rellena(
+        t(
+          citas.plural
+            ? 'findings.citas.procedencia.sustituida.nota.varias'
+            : 'findings.citas.procedencia.sustituida.nota.una',
+        ),
+        {
+          sujeto: mayuscula(citas.sujeto),
+        },
+      ),
   },
   'sin-determinar': {
     tone: 'ghost',
@@ -478,16 +488,25 @@ export function notaAcusacionSinContrastar(curatorName, citas = null, t = enCast
   // para que la nota se lea en valencià; el castellano es el de la octava, letra por
   // letra.
   const plural = citas?.plural === true
-  const cuantas = plural ? 'varias' : 'una'
   const rotulo = t('findings.citas.retenida.rotulo')
   const laFicha = citas?.ficha
     ? rellena(t('findings.citas.acusacion.laFichaDe'), { ficha: citas.ficha })
     : t('findings.citas.acusacion.laFicha')
   const huecos = !citas
     ? rellena(t('findings.citas.acusacion.huecos.sinCitas'), { rotulo })
-    : rellena(t(`findings.citas.acusacion.huecos.${cuantas}`), { sujeto: citas.sujeto, rotulo })
-  const base = rellena(t(`findings.citas.acusacion.base.${cuantas}`), { laFicha, huecos })
-  const cierre = t(`findings.citas.acusacion.cierre.${cuantas}`)
+    : rellena(
+        t(
+          plural ? 'findings.citas.acusacion.huecos.varias' : 'findings.citas.acusacion.huecos.una',
+        ),
+        { sujeto: citas.sujeto, rotulo },
+      )
+  const base = rellena(
+    t(plural ? 'findings.citas.acusacion.base.varias' : 'findings.citas.acusacion.base.una'),
+    { laFicha, huecos },
+  )
+  const cierre = t(
+    plural ? 'findings.citas.acusacion.cierre.varias' : 'findings.citas.acusacion.cierre.una',
+  )
   const quien = (curatorName ?? '').trim()
   if (!quien) return rellena(t('findings.citas.acusacion.sinEditor'), { base, cierre })
   return isMachineAuthored(quien)
@@ -505,7 +524,11 @@ const CONTRAST_MARK = {
     chip: 'findings.citas.contraste.toggle.chip',
     title: 'findings.citas.contraste.toggle.title',
     note: (citas, _curatorName, t) =>
-      t(`findings.citas.contraste.toggle.nota.${citas.plural ? 'varias' : 'una'}`),
+      t(
+        citas.plural
+          ? 'findings.citas.contraste.toggle.nota.varias'
+          : 'findings.citas.contraste.toggle.nota.una',
+      ),
   },
   hidden: {
     tone: 'warn',
@@ -563,11 +586,18 @@ const MARK_AXES = [
     // con la que empezaba el fragmento que la leyó sobre la ficha siguiente
     // (`codigoDeFicha`)—.
     lead: (citas, t) =>
-      rellena(t(`findings.citas.contraste.lead.${citas.plural ? 'varias' : 'una'}`), {
-        citas: citas.ficha
-          ? deLaFicha(mayuscula(citas.sujeto), citas.ficha, t)
-          : mayuscula(citas.sujeto),
-      }),
+      rellena(
+        t(
+          citas.plural
+            ? 'findings.citas.contraste.lead.varias'
+            : 'findings.citas.contraste.lead.una',
+        ),
+        {
+          citas: citas.ficha
+            ? deLaFicha(mayuscula(citas.sujeto), citas.ficha, t)
+            : mayuscula(citas.sujeto),
+        },
+      ),
     // La retenida SÍ cuenta aquí: la nota de «acusación no contrastada» es la
     // que explica su hueco y lo nombra por su rótulo.
     omiteRetenidas: false,
