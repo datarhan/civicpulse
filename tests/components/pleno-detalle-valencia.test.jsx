@@ -40,6 +40,9 @@ import { DEPARTMENT_LABEL } from '../../src/scraper/departments'
 import { REAL_BLOCS } from '../../src/lib/party-label'
 import { resumenSegunFuentes } from '../../src/lib/claim-provenance.js'
 import { resumenPublicable } from '../../src/lib/resumenes-retirados.js'
+import { QUOTE_PROVENANCE_STATUS_IDS } from '../../src/scraper/quote-provenance'
+import { CLAIM_VISIBILITIES } from '../../src/scraper/claim-public-gate'
+import { HUMAN_CURATORS } from '../../src/scraper/finding-authorship'
 import {
   cadenasDe,
   datosPintados,
@@ -108,6 +111,40 @@ function cadaForma() {
     respondedAt: '2026-01-15',
     quote: 'Texto literal de la réplica del grupo.',
   }
+  // Y cada marca de cita, en singular y en plural: la sesión publicada no trae
+  // «sin determinar», ni dos citas de una ficha con la misma marca de procedencia,
+  // ni una ficha firmada por una persona, ni una cita del grupo «Otro». Cada fila
+  // es [procedencia, puerta], por su posición en los enums importados.
+  const [vigente, sustituida, sinDeterminar] = QUOTE_PROVENANCE_STATUS_IDS
+  const [shown, toggle, hidden] = CLAIM_VISIBILITIES
+  const marcas = [
+    [
+      [sinDeterminar, toggle],
+      [sinDeterminar, toggle],
+      [vigente, hidden],
+    ],
+    [
+      [sustituida, toggle],
+      [vigente, hidden],
+      [vigente, hidden],
+    ],
+    [
+      [sustituida, shown],
+      [sustituida, toggle],
+      [sinDeterminar, shown],
+      [vigente, hidden],
+    ],
+  ]
+  const prov = mapa['/data/finding-quote-provenance.json']
+  deLaSesion.slice(0, marcas.length).forEach((f, i) => {
+    prov.quotes[f.id] = prov.quotes[f.id].map((e, j) => {
+      const [status, gate] = marcas[i][j] ?? [e.status, e.gate]
+      return { ...e, status, gate }
+    })
+  })
+  const fichas = hallazgos.items.filter((f) => f.plenoId === ID)
+  fichas[1].curatorName = [...HUMAN_CURATORS][0]
+  fichas[2].quotes = fichas[2].quotes.map((q, j) => (j === 0 ? { ...q, speakerGroup: 'Otro' } : q))
   return mapa
 }
 
@@ -116,21 +153,14 @@ function cadaForma() {
 const botonesDePestana = (c) => [...c.querySelectorAll('button[data-pestana]')]
 
 /**
- * Lo que esta prueba todavía no le pide al valencià, quitado de una copia de la
- * página: las citas de cada ficha de hallazgo y sus notas de procedencia y de
- * contraste (`CitasDeLaFicha`, también en /hallazgos), la lista `ol` de la ficha y la
- * nota que va con ella, que comparten contenedor. Es prosa compartida con una
- * superficie legalmente material, y su traducción va aparte para que se revise como
- * tal. Las dos lecturas —tokens y castellano— se hacen sin ella.
- *
- * Las tarjetas del registro de declaraciones (`ClaimLedger`) estuvieron aquí hasta
- * que pasaron por el catálogo (#314), y desde entonces se leen enteras.
+ * Las citas de cada ficha de hallazgo y sus notas de procedencia y de contraste
+ * (`CitasDeLaFicha`, también en /hallazgos) estuvieron fuera de esta lectura —se
+ * quitaba de una copia de la página la lista `ol` de la ficha y la nota que va con
+ * ella— hasta que pasaron por el catálogo, y desde entonces se leen enteras: las
+ * citas son dato y se pintan como se publican; sus rótulos, marcas y notas, no. Lo
+ * mismo las tarjetas del registro de declaraciones (`ClaimLedger`), desde #314.
  */
-const sinLoPendiente = (c) => {
-  const copia = c.cloneNode(true)
-  for (const ol of copia.querySelectorAll('.cp-card ol')) ol.parentElement?.remove()
-  return copia
-}
+const citasLeidas = (c) => c.querySelectorAll('.cp-card ol > li').length
 
 /** Sin la transcripción, que es el acta hablada y no prosa nuestra. */
 const sinTranscripcion = (c) => {
@@ -162,10 +192,9 @@ async function leeQuieta(container) {
 function pulsaCadaPestana(lecturas, idioma, transcripcion) {
   return async (container) => {
     const enteras = []
-    const sinPendiente = []
+    let citas = 0
     const lee = (clave, raiz) => {
       enteras.push(...lectura(raiz).map((p) => `${clave}\u0000${p}`))
-      sinPendiente.push(...lectura(sinLoPendiente(raiz)).map((p) => `${clave}\u0000${p}`))
     }
     for (const clave of botonesDePestana(container).map((b) => b.getAttribute('data-pestana'))) {
       const boton = container.querySelector(`button[data-pestana="${clave}"]`)
@@ -173,6 +202,7 @@ function pulsaCadaPestana(lecturas, idioma, transcripcion) {
       await waitFor(() => expect(boton.style.fontWeight).toBe('700'))
       await leeQuieta(container)
       lee(clave, container)
+      if (clave === 'hallazgos') citas = citasLeidas(container)
     }
     const servido = globalThis.fetch
     globalThis.fetch = async (u) =>
@@ -189,7 +219,7 @@ function pulsaCadaPestana(lecturas, idioma, transcripcion) {
     } finally {
       globalThis.fetch = servido
     }
-    lecturas[idioma] = { enteras, sinPendiente }
+    lecturas[idioma] = { enteras, citas }
     return []
   }
 }
@@ -330,6 +360,16 @@ describe(`/plenos/${ID}: lo que la prueba necesita del dato publicado`, () => {
     expect(hallazgos.some((f) => f.crossChecked?.some((r) => r.kind === 'tender'))).toBe(true)
     expect(ENTRADA?.itemCount ?? 0).toBeGreaterThan(0)
   })
+
+  it('el segundo escenario lleva cada procedencia y cada puerta a alguna cita de la sesión', () => {
+    const mapa = cadaForma()
+    const ids = mapa['/data/pleno-findings.json'].items
+      .filter((f) => f.plenoId === ID)
+      .map((f) => f.id)
+    const filas = ids.flatMap((id) => mapa['/data/finding-quote-provenance.json'].quotes[id])
+    expect(new Set(filas.map((e) => e.status))).toEqual(new Set(QUOTE_PROVENANCE_STATUS_IDS))
+    expect(new Set(filas.map((e) => e.gate))).toEqual(new Set(CLAIM_VISIBILITIES))
+  })
 })
 
 /** Las piezas de una lectura, cada una con la pestaña donde se leyó delante. */
@@ -359,30 +399,26 @@ describe(`/plenos/${ID}: cada pestaña, sin tokens y en valencià sin castellano
         ['agenda', 'declaraciones', 'hallazgos', 'resumen', 'transcripcion', 'votos'].sort(),
       )
 
-      // Lo pendiente se quita, y sólo eso: en la pestaña de hallazgos la lectura sin
-      // ello es más corta y sigue leyendo sus cotejos; la de declaraciones se lee entera.
+      // Que la lectura leyó lo que dice leer: las citas de las fichas —en los dos
+      // idiomas, las mismas—, sus cotejos y las tarjetas del registro.
       const cuenta = (lista, pestana) =>
         deLaPestana(lista).filter((p) => p.pestana === pestana).length
-      expect
-        .soft(cuenta(lecturas.ca.sinPendiente, 'hallazgos'), 'nada pendiente en hallazgos')
-        .toBeLessThan(cuenta(lecturas.ca.enteras, 'hallazgos'))
-      expect
-        .soft(cuenta(lecturas.ca.sinPendiente, 'declaraciones'), 'declaraciones, entera')
-        .toBe(cuenta(lecturas.ca.enteras, 'declaraciones'))
+      expect(lecturas.es.citas, 'citas leídas en la pestaña de hallazgos').toBeGreaterThan(0)
+      expect(lecturas.ca.citas, 'las mismas citas en valencià').toBe(lecturas.es.citas)
       expect(cuenta(lecturas.ca.enteras, 'declaraciones'), 'tarjetas leídas').toBeGreaterThan(20)
       expect
         .soft(
-          deLaPestana(lecturas.ca.sinPendiente).some(
+          deLaPestana(lecturas.ca.enteras).some(
             (p) =>
               p.pestana === 'hallazgos' &&
               p.texto.startsWith(CATALOGUE.ca['findings.refs.crossChecked']),
           ),
-          'la pestaña de hallazgos, sin lo pendiente, ya no lee sus cotejos',
+          'la pestaña de hallazgos ya no lee sus cotejos',
         )
         .toBe(true)
 
       for (const idioma of ['es', 'ca']) {
-        const conToken = tokensEn(deLaPestana(lecturas[idioma].sinPendiente).map((p) => p.texto))
+        const conToken = tokensEn(deLaPestana(lecturas[idioma].enteras).map((p) => p.texto))
         expect.soft(conToken, `tokens de enum (${idioma})`).toEqual([])
       }
 
@@ -398,7 +434,7 @@ describe(`/plenos/${ID}: cada pestaña, sin tokens y en valencià sin castellano
         ...DATO_DE_LAS_DECLARACIONES(esc.fetch),
       ])
       const { castellanoEn, sinTraducir } = detectorDeCastellano(noSeTraduce)
-      const castellano = deLaPestana(lecturas.ca.sinPendiente).flatMap(({ pestana, texto }) =>
+      const castellano = deLaPestana(lecturas.ca.enteras).flatMap(({ pestana, texto }) =>
         castellanoEn(texto).map((p) => `${pestana}: «${p}» en «${texto.slice(0, 120)}»`),
       )
       expect.soft([...new Set(castellano)], 'castellano dentro del valencià').toEqual([])
@@ -406,8 +442,8 @@ describe(`/plenos/${ID}: cada pestaña, sin tokens y en valencià sin castellano
       // La otra mitad: una cadena valenciana copiada del castellano deja de ser
       // «sólo castellana» y `castellanoEn` no la ve. Pieza a pieza, lo que se lee
       // igual en los dos idiomas sin ser dato.
-      const es2 = deLaPestana(lecturas.es.sinPendiente).map((p) => p.texto)
-      const ca2 = deLaPestana(lecturas.ca.sinPendiente).map((p) => p.texto)
+      const es2 = deLaPestana(lecturas.es.enteras).map((p) => p.texto)
+      const ca2 = deLaPestana(lecturas.ca.enteras).map((p) => p.texto)
       expect(ca2.length, 'las dos lecturas no pintan las mismas piezas').toBe(es2.length)
       // Las piezas compuestas —«PP · A favor · 7», un snippet con su categoría— se
       // comparan trozo a trozo: cada trozo es dato, sigla o una cadena que el
