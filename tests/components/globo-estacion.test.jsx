@@ -178,6 +178,10 @@ describe('el globo dice lo que dice la portada, y en valencià', () => {
     'Metrovalencia',
     'Adif',
     'Renfe Cercanías València',
+    // La insignia de Renfe en el círculo de la estación de Adif: una sigla. La lista
+    // no la necesitó hasta que el catálogo castellano trajo «re-transcrita», y
+    // desde entonces «re» se cuenta como palabra castellana.
+    'RE',
   ])
   const RAMAS = [
     {
