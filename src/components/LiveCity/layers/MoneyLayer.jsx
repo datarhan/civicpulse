@@ -3,11 +3,14 @@ import { useMemo } from 'react'
 import { CircleMarker, Popup, Tooltip } from 'react-leaflet'
 import { placeAmountsAt } from '../../../lib/tender-points'
 import { useCpvLabels } from '../../../hooks/useCpvLabels'
+import { useGeo } from '../../../hooks/useGeo'
 import { PlacePopup } from '../popups/PlacePopup'
 import { PinDineroTooltip } from '../popups/Tooltips'
+import { MARGEN_FICHA_ARRIBA } from '../shared'
+import { useAbreBarrio, useCesionBarrios } from './cesion-barrios'
 
 /** Pixel radius for a money pin, √-scaled so a €500k obra doesn't dwarf a €20k one. */
-function pinRadius(amount) {
+export function pinRadius(amount) {
   const a = Number(amount) || 0
   if (a <= 0) return 0
   return Math.max(6, Math.min(26, 5 + Math.sqrt(a) / 28))
@@ -21,8 +24,14 @@ function pinRadius(amount) {
  * civic-blue. Hover → quick total; click → PlacePopup with the contract cards.
  * Real data only: a pin exists only when a contract title named that place.
  */
-export function MoneyLayer({ snapshot, at, danaOnly, obrasOnly, contractsById }) {
+export function MoneyLayer({ snapshot, at, danaOnly, obrasOnly, contractsById, pines }) {
   const { data: cpv } = useCpvLabels()
+  const { data: geo } = useGeo()
+  // Un punto de barrio que tapa el centro de un pin le cede el toque, y la ficha
+  // del pin lleva a la del barrio (`lib/barrios-bajo-pines`). `pines` son estos
+  // mismos más los de las obras, de StylizedMap: las tres capas ven el mismo mapa.
+  const { bajoElPin } = useCesionBarrios(geo?.neighborhoods, pines)
+  const abreBarrio = useAbreBarrio()
   const places = useMemo(
     () => [...placeAmountsAt(snapshot?.assignments, { at, danaOnly, obrasOnly }).values()],
     [snapshot, at, danaOnly, obrasOnly],
@@ -59,10 +68,19 @@ export function MoneyLayer({ snapshot, at, danaOnly, obrasOnly, contractsById })
               },
             }}
           >
-            <Tooltip direction="top">
+            {/* Globo y rótulo en los paneles propios de Leaflet, a z-700 y 650: dentro
+                de un <Pane>, react-leaflet los mete en él, y la ficha se abría a z-420,
+                debajo de los puntos de barrio, las estaciones y los controles. */}
+            <Tooltip direction="top" pane="tooltipPane">
               <PinDineroTooltip lugar={p} />
             </Tooltip>
-            <Popup closeButton={true} autoPan={true} maxWidth={320}>
+            <Popup
+              closeButton={true}
+              autoPan={true}
+              autoPanPaddingTopLeft={MARGEN_FICHA_ARRIBA}
+              maxWidth={320}
+              pane="popupPane"
+            >
               <PlacePopup
                 place={p}
                 assignments={snapshot?.assignments}
@@ -70,6 +88,8 @@ export function MoneyLayer({ snapshot, at, danaOnly, obrasOnly, contractsById })
                 danaOnly={danaOnly}
                 obrasOnly={obrasOnly}
                 cpvDict={cpv?.codes}
+                barriosDebajo={bajoElPin({ point: p.point, radio: pinRadius(p.amount) })}
+                onAbrirBarrio={abreBarrio}
               />
             </Popup>
           </CircleMarker>

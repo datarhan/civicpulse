@@ -1,6 +1,12 @@
 // @ts-check
 import { CircleMarker, Popup, Tooltip } from 'react-leaflet'
+import { useGeo } from '../../../hooks/useGeo'
 import { ObraPopup } from '../popups/ObraPopup'
+import { MARGEN_FICHA_ARRIBA } from '../shared'
+import { useAbreBarrio, useCesionBarrios } from './cesion-barrios'
+
+/** Radio, en px, del pin de una obra. */
+export const RADIO_OBRA = 9
 
 /**
  * Obra pins on the landing map. One CircleMarker per resolved point (obra name
@@ -9,7 +15,10 @@ import { ObraPopup } from '../popups/ObraPopup'
  * marker whose popup lists them all. Real data only: an obra without a
  * resolved point simply doesn't paint.
  */
-export function ObrasLayer({ obras }) {
+export function ObrasLayer({ obras, pines }) {
+  const { data: geo } = useGeo()
+  const { bajoElPin } = useCesionBarrios(geo?.neighborhoods, pines)
+  const abreBarrio = useAbreBarrio()
   const located = (obras ?? []).filter(
     (o) => typeof o.lat === 'number' && typeof o.lng === 'number',
   )
@@ -27,12 +36,24 @@ export function ObrasLayer({ obras }) {
         <CircleMarker
           key={group[0].id}
           center={[group[0].lat, group[0].lng]}
-          radius={9}
+          radius={RADIO_OBRA}
           pathOptions={{ color: '#b45309', weight: 2, fillColor: '#f59e0b', fillOpacity: 0.55 }}
+          eventHandlers={{
+            // Como `cp-money-pin`: un gancho estable para las pruebas.
+            add: (e) => e.target.getElement?.()?.classList.add('cp-obra-pin'),
+          }}
         >
-          <Tooltip>{group.map((o) => o.nombre).join(' · ')}</Tooltip>
-          <Popup>
-            <ObraPopup obras={group} />
+          {/* En los paneles de Leaflet y no en el del dinero: ver MoneyLayer. */}
+          <Tooltip pane="tooltipPane">{group.map((o) => o.nombre).join(' · ')}</Tooltip>
+          <Popup pane="popupPane" autoPanPaddingTopLeft={MARGEN_FICHA_ARRIBA}>
+            <ObraPopup
+              obras={group}
+              barriosDebajo={bajoElPin({
+                point: [group[0].lat, group[0].lng],
+                radio: RADIO_OBRA,
+              })}
+              onAbrirBarrio={abreBarrio}
+            />
           </Popup>
         </CircleMarker>
       ))}

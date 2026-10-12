@@ -1,6 +1,6 @@
 // @ts-check
 import { useMemo, useState } from 'react'
-import { MapContainer, TileLayer } from 'react-leaflet'
+import { MapContainer, Pane, TileLayer } from 'react-leaflet'
 import { BASEMAP_URL } from '../../lib/basemap'
 import { useTenderGeo } from '../../hooks/useTenderGeo'
 import { useTenders } from '../../hooks/useTenders'
@@ -11,7 +11,7 @@ import { MunicipalBoundary } from './network/MunicipalBoundary'
 import { Railways } from './network/Railways'
 import { FullNetwork } from './network/FullNetwork'
 import { NetworkLegend } from './network/NetworkLegend'
-import { MoneyLayer } from './layers/MoneyLayer'
+import { MoneyLayer, pinRadius } from './layers/MoneyLayer'
 import { NeighborhoodsLayer } from './layers/NeighborhoodsLayer'
 import { IncendiosLayer } from './layers/IncendiosLayer'
 import { IncendiosYearSlider } from './controls/IncendiosYearSlider'
@@ -20,7 +20,7 @@ import { porAnyo } from '../../lib/incendios'
 import { FloodRiskLayer } from './layers/FloodRiskLayer'
 import { CivicPoiLayer } from './layers/CivicPoiLayer'
 import { QuejasLayer } from './layers/QuejasLayer'
-import { ObrasLayer } from './layers/ObrasLayer'
+import { ObrasLayer, RADIO_OBRA } from './layers/ObrasLayer'
 import { LayerControl } from './controls/LayerControl'
 import { MoneyTimeSlider } from './controls/MoneyTimeSlider'
 import { FloodLegend } from './controls/FloodLegend'
@@ -126,6 +126,20 @@ export default function StylizedMap({ center = DEFAULT_CENTER }) {
     [obrasData, snapshot],
   )
 
+  // Los pines que se pintan ahora, del dinero y de las obras: un punto de barrio que
+  // tape el centro de uno le cede el toque (`lib/barrios-bajo-pines`). Una sola lista
+  // para las tres capas, que así no pueden discrepar sobre qué punto cede.
+  const pinesDelMapa = useMemo(() => {
+    if (!layers.money) return []
+    const dinero = [
+      ...placeAmountsAt(snapshot.assignments, { at: effectiveAt, danaOnly, obrasOnly }).values(),
+    ].map((p) => ({ point: p.point, radio: pinRadius(p.amount) }))
+    const obras = unplacedObras
+      .filter((o) => typeof o.lat === 'number' && typeof o.lng === 'number')
+      .map((o) => ({ point: [o.lat, o.lng], radio: RADIO_OBRA }))
+    return [...dinero, ...obras]
+  }, [layers.money, snapshot, effectiveAt, danaOnly, obrasOnly, unplacedObras])
+
   // Un solo encuadre para todo el mapa: los pines del dinero y las obras sin pin,
   // juntos, y sólo cuando han llegado las dos instantáneas. Cada capa encuadraba por
   // su lado, y el mapa acababa a un zoom u otro según cuál llegaba antes (FitToPins).
@@ -162,34 +176,40 @@ export default function StylizedMap({ center = DEFAULT_CENTER }) {
 
         <FullNetwork />
         <MunicipalBoundary />
-        <NeighborhoodsLayer />
+        <NeighborhoodsLayer pines={pinesDelMapa} />
         <Railways />
 
-        {/* POIs BEFORE money: later siblings paint on top in Leaflet's overlay
-            pane, so rendering them after the spend pins put them over the
-            money and they swallowed its clicks. */}
-        {/* Antes que el dinero: los hermanos posteriores pintan encima en el
-          panel de superposición de Leaflet, y un polígono de 20 ha sobre los
-          pines se comería sus clics. */}
+        {/* El dinero y las obras van en su propio panel, a z-420, por encima de todo lo
+            demás que es vector (panel de superposición, 400). En el panel compartido
+            manda el orden en que llega cada capa, no el de este JSX: un polígono de
+            incendio de 20 ha, un círculo de quejas o la línea L9, que carga después,
+            se pintaban encima de los pines y se quedaban sus clics. Por debajo de los
+            equipamientos (`cp-poi`, 450), de los puntos de barrio (marcadores, 600) y
+            de las estaciones (610): lo pequeño encima de lo grande. Donde un punto de
+            barrio tapa el CENTRO de un pin, el punto le cede el toque
+            (`lib/barrios-bajo-pines`). */}
         {layers.incendios && <IncendiosLayer anyoVisible={anyoIncendios} />}
         {layers.poi && <CivicPoiLayer />}
         {layers.money && <FitToPins points={puntosDelEncuadre} />}
         {layers.money && (
-          <MoneyLayer
-            snapshot={snapshot}
-            at={effectiveAt}
-            danaOnly={danaOnly}
-            obrasOnly={obrasOnly}
-            contractsById={contractsById}
-          />
+          <Pane name="cp-dinero" style={{ zIndex: 420 }}>
+            <MoneyLayer
+              snapshot={snapshot}
+              at={effectiveAt}
+              danaOnly={danaOnly}
+              obrasOnly={obrasOnly}
+              contractsById={contractsById}
+              pines={pinesDelMapa}
+            />
+            {/* Obras fichas ride WITH the money layer rather than carrying their own
+                chip: the Transparencia fichas and the contract registry describe the
+                same works, and 6 of the 11 geolocated fichas share a point with a
+                located contract. Only the ones PLACSP never placed are painted, so
+                no work gets two markers with two amounts. */}
+            <ObrasLayer obras={unplacedObras} pines={pinesDelMapa} />
+          </Pane>
         )}
         {layers.quejas && <QuejasLayer />}
-        {/* Obras fichas ride WITH the money layer rather than carrying their own
-            chip: the Transparencia fichas and the contract registry describe the
-            same works, and 6 of the 11 geolocated fichas share a point with a
-            located contract. Only the ones PLACSP never placed are painted, so
-            no work gets two markers with two amounts. */}
-        {layers.money && <ObrasLayer obras={unplacedObras} />}
       </MapContainer>
 
       <NetworkLegend />

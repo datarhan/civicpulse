@@ -516,6 +516,7 @@ export const CATALOGUE = {
     'map.lugar.urbanizacion': 'Urbanización',
     'map.lugar.barrio': 'Barrio',
     'map.lugar.lote': 'Lote de: «{titulo}»',
+    'map.lugar.fichaBarrio': 'Ficha del barrio: {barrio}',
     'map.lugar.pie': 'Solo obras cuyo título nombra una calle, zona o equipamiento · PLACSP/TED',
     'map.incendio.deAnyo': 'Incendio de {anyo}',
     'map.incendio.superficie': 'superficie del incendio completo',
@@ -2247,6 +2248,7 @@ export const CATALOGUE = {
     'map.lugar.urbanizacion': 'Urbanització',
     'map.lugar.barrio': 'Barri',
     'map.lugar.lote': 'Lot de: «{titulo}»',
+    'map.lugar.fichaBarrio': 'Fitxa del barri: {barrio}',
     'map.lugar.pie':
       'Només obres el títol de les quals nomena un carrer, una zona o un equipament · PLACSP/TED',
     'map.incendio.deAnyo': 'Incendi de {anyo}',

@@ -805,6 +805,13 @@ body.cp-kiosk .cp-live-container {
   pointer-events: auto;
   cursor: pointer;
 }
+/* A dot over the CENTRE of a spend or obra pin hands its tap to the pin, whose
+   card links back to the barrio (`lib/barrios-bajo-pines`). Otherwise the pin's
+   centre opened the barrio card: always when a contract names an urbanización,
+   since the pin then sits on the barrio's own point. */
+.cp-osm-neigh.cp-osm-neigh--cede .cp-osm-neigh-dot {
+  pointer-events: none;
+}
 .cp-osm-neigh-dot {
   position: absolute;
   top: 0;

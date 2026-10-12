@@ -2,6 +2,7 @@
 import { Fragment } from 'react'
 import { useT } from '../../../i18n'
 import { rellena } from '../../../lib/formatters'
+import { EnlacesABarrio } from './EnlacesABarrio'
 
 /**
  * El globo de las obras de las fichas municipales —FEDER y Plan RENOVE— que el
@@ -74,10 +75,13 @@ function FichaDeObra({ obra: o }) {
   )
 }
 
-/** @param {{ obras: any[] }} props */
-export function ObraPopup({ obras }) {
+/** @param {{ obras: any[], barriosDebajo?: any[], onAbrirBarrio?: ((barrio: any) => void) | null }} props */
+export function ObraPopup({ obras, barriosDebajo = [], onAbrirBarrio = null }) {
   return (
     <div style={{ minWidth: 180 }}>
+      {/* Las obras van con el dinero y su pin tapa puntos de barrio igual que el de
+          un contrato: la misma puerta, arriba como en PlacePopup. */}
+      <EnlacesABarrio barrios={barriosDebajo} onAbrir={onAbrirBarrio} />
       {/* La clave en un Fragment: en un fichero con @ts-check, `key` sobre un
           componente de props inferidas no compila. El DOM no cambia. */}
       {obras.map((o) => (

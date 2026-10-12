@@ -2,6 +2,7 @@
 import { rotuloDe, useT } from '../../../i18n'
 import { rellena } from '../../../lib/formatters'
 import { ContractCard } from '../../tenders/ContractCard'
+import { EnlacesABarrio } from './EnlacesABarrio'
 
 const fmtEur = (n) =>
   new Intl.NumberFormat('es-ES', {
@@ -19,8 +20,20 @@ const fmtEur = (n) =>
  * La clase del lugar se rotula por su clave, `map.lugar.<clase>`, sobre el enum
  * `PLACE_KINDS` del resolutor. Una clase que no tenga clave se pinta con su token,
  * como se pintaba antes la que faltaba en la tabla escrita aquí.
+ *
+ * `barriosDebajo` son los barrios cuyo punto tapa este pin y le cede el toque
+ * (`lib/barrios-bajo-pines`): esta ficha es su puerta.
  */
-export function PlacePopup({ place, assignments, contractsById, danaOnly, obrasOnly, cpvDict }) {
+export function PlacePopup({
+  place,
+  assignments,
+  contractsById,
+  danaOnly,
+  obrasOnly,
+  cpvDict,
+  barriosDebajo = [],
+  onAbrirBarrio = null,
+}) {
   const t = useT()
   const works = (assignments || [])
     .filter(
@@ -70,6 +83,11 @@ export function PlacePopup({ place, assignments, contractsById, danaOnly, obrasO
           {rotuloDe(t, `map.lugar.${place.kind}`, place.kind)}
         </span>
       </div>
+      {/* Bajo la cabecera y no al pie: a 375 px la ficha llena el mapa y la pila de
+          controles plegada tapa su última fila. Medido el 12-10-2026 con cada barrio
+          que cede: aquí se alcanza en todos a 375 y a 1280; al pie fallaban 4 de 9 a
+          375. */}
+      <EnlacesABarrio barrios={barriosDebajo} onAbrir={onAbrirBarrio} />
       <div style={{ marginTop: 6, maxHeight: 260, overflowY: 'auto' }}>
         {works.map(({ a, c }) => (
           <div key={a.id}>
