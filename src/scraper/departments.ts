@@ -24,6 +24,7 @@
  */
 
 import { stripDiacritics, slugify } from './normalize'
+import type { CategoriaDeContrato } from './tenders'
 
 export const ALLOWED_DEPARTMENT_SLUGS = [
   'alcaldia',
@@ -351,7 +352,9 @@ export { slugify }
  * place-resolver applies to place names. That leaves ~80% of contracts
  * attributed and the remainder honestly unassigned.
  */
-export const TENDER_CATEGORY_DEPARTMENT: Record<string, DepartmentSlug> = {
+// Keyed on `CATEGORIAS_DE_CONTRATO` (tenders.ts), so a key that is not a
+// category Gobierto ships fails typecheck instead of matching nothing.
+export const TENDER_CATEGORY_DEPARTMENT: Partial<Record<CategoriaDeContrato, DepartmentSlug>> = {
   construction: 'obras-publicas',
   architecture: 'urbanismo',
   real_estate: 'vivienda',
@@ -380,7 +383,8 @@ export function departmentForTenderCategory(
   categoryTitle: string | null | undefined,
 ): DepartmentSlug | null {
   if (!categoryTitle) return null
-  return TENDER_CATEGORY_DEPARTMENT[categoryTitle.trim().toLowerCase()] ?? null
+  const clave = categoryTitle.trim().toLowerCase() as CategoriaDeContrato
+  return TENDER_CATEGORY_DEPARTMENT[clave] ?? null
 }
 
 /**

@@ -4,7 +4,7 @@ import { join } from 'node:path'
 import { render, cleanup } from '@testing-library/react'
 import { MemoryRouter } from 'react-router-dom'
 import { ClaimLedger } from '../src/components/ClaimLedger'
-import { snippetWithoutStatus } from '../src/lib/crosschecked-status.js'
+import { snippetDeEvidencia } from '../src/lib/crosschecked-status.js'
 
 /**
  * La tarjeta de `ClaimLedger` no imprime la cola «· estado: <palabra>».
@@ -13,7 +13,7 @@ import { snippetWithoutStatus } from '../src/lib/crosschecked-status.js'
  * que escribe, y el estado es la palabra cruda del registro, en inglés
  * —«formalized», «awarded», «revoked»— o el centinela «unknown», que significa
  * «no se sabe» y no un estado. /hallazgos ya lo quitaba con
- * `snippetWithoutStatus` (src/lib/crosschecked-status.js); las tarjetas de
+ * `snippetDeEvidencia` (src/lib/crosschecked-status.js); las tarjetas de
  * /departamentos/:slug y de la pestaña de declaraciones de /plenos/:id lo
  * imprimían tal cual. Lo vio una revisión lectora el 2026-10-12.
  *
@@ -44,7 +44,7 @@ describe('ClaimLedger — sin la palabra de estado cruda en la evidencia', () =>
       const texto = container.textContent ?? ''
       const cabezas = it.verification.evidence
         .filter((e) => /estado:/i.test(e?.snippet ?? ''))
-        .map((e) => snippetWithoutStatus(e.snippet))
+        .map((e) => snippetDeEvidencia(e))
       // Cuenta sólo las tarjetas que de verdad pintan el fragmento: una que la
       // compuerta oculta o cuya evidencia se descarta no prueba nada.
       if (cabezas.some((c) => c && texto.includes(c))) pintadas++

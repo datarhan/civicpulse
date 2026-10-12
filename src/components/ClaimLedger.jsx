@@ -10,7 +10,7 @@ import { rotuloDeTipo } from '../lib/claim-type-label.js'
 import { gateForDisplay, sortSignalFirst } from '../lib/claim-ledger'
 import { cuentaCotejadas, entreParentesis } from '../lib/cotejo'
 import { blocLabel } from '../lib/party-label.js'
-import { snippetWithoutStatus } from '../lib/crosschecked-status.js'
+import { snippetDeEvidencia } from '../lib/crosschecked-status.js'
 import {
   etiquetaVerificador,
   evidenciaSegunFuentes,
@@ -51,10 +51,12 @@ function EvidenceRow({ e, cifra }) {
         {kindLabel.toUpperCase()}
       </span>
       {/* Sin la cola «· estado: formalized» que `claim-verifier.ts` añade a
-          cada contrato: es la palabra cruda del registro, o el centinela
-          «unknown». El mismo helper que /hallazgos (crosschecked-status.js). */}
+          cada contrato —la palabra cruda del registro, o el centinela
+          «unknown»— y con la categoría de Gobierto por su rótulo, no
+          «· construction ·». El mismo helper que /hallazgos y /declaraciones
+          (crosschecked-status.js). */}
       <span style={{ fontSize: 'var(--fs-meta)', color: 'var(--ink)' }}>
-        {snippetWithoutStatus(e.snippet)}
+        {snippetDeEvidencia(e, t)}
       </span>
       {/* Qué mide el número y qué no: suelto, «sim 1.00» junto a «Parcial» se
           leía como coincidencia perfecta (src/lib/claim-provenance.js). */}

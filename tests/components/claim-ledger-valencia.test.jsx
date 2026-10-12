@@ -43,7 +43,8 @@ import {
   resumenSegunFuentes,
 } from '../../src/lib/claim-provenance.js'
 import { resumenPublicable } from '../../src/lib/resumenes-retirados.js'
-import { snippetWithoutStatus } from '../../src/lib/crosschecked-status.js'
+import { snippetDeEvidencia } from '../../src/lib/crosschecked-status.js'
+import { CATALOGUE } from '../../src/i18n'
 import { desenlaceDeCotejo } from '../../src/scraper/claim-verdicts'
 import { puenteDeImporte } from '../../src/scraper/importe-de-contrato'
 import {
@@ -116,13 +117,21 @@ const { elegidas: ELEGIDAS, rasgos: RASGOS } = eligeCubriendo(VISIBLES)
 
 /**
  * Lo que la tarjeta pinta del dato, además de lo que trae el fichero tal cual: la
- * fila sin su cola de estado, la explicación re-derivada y el recuento con su unidad.
+ * fila sin su cola de estado y con la categoría del contrato por su rótulo, la
+ * explicación re-derivada y el recuento con su unidad.
  */
 const DERIVADOS = ELEGIDAS.flatMap((it) => {
   const v = it.verification
   const e = it.claim.entities ?? {}
   return [
-    ...(v.evidence ?? []).map((f) => snippetWithoutStatus(f.snippet)),
+    // Una fila de contrato lleva la categoría por su rótulo, que es del idioma: la
+    // fila pintada en castellano no está entera en la valenciana, así que cuenta
+    // también cada trozo entre « · », que sí es dato en las dos (como en
+    // pleno-detalle-valencia.test.jsx).
+    ...(v.evidence ?? []).flatMap((f) => {
+      const fila = snippetDeEvidencia(f, (k) => CATALOGUE.es[k] ?? k)
+      return [fila, ...fila.split(' · ')]
+    }),
     resumenSegunFuentes(v, resumenPublicable(v)),
     e.count && e.countUnit ? `${e.count} ${e.countUnit}` : null,
   ].filter((s) => typeof s === 'string' && s !== '')

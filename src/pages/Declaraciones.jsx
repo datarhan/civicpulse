@@ -8,12 +8,12 @@ import { rotuloDeTipo } from '../lib/claim-type-label.js'
 import { usePlenos } from '../hooks/usePlenos'
 import { useOfficials } from '../hooks/useOfficials'
 import { PARTY_TONE } from '../hooks/usePromises'
-import { useLocale, useT } from '../i18n'
+import { rotuloDe, useLocale, useT } from '../i18n'
 import { CLAIM_VERDICTS, resumirSinDatos, desenlaceDeCotejo } from '../scraper/claim-verdicts'
 import { oneSeatBlocsOf } from '../scraper/corporation-seats'
 import { blocLabel } from '../lib/party-label.js'
 import { etiquetaVerificador, evidenciaSegunFuentes } from '../lib/claim-provenance.js'
-import { snippetWithoutStatus } from '../lib/crosschecked-status.js'
+import { snippetDeEvidencia } from '../lib/crosschecked-status.js'
 import { PuenteDeImporte } from '../components/PuenteDeImporte'
 
 const PAGE_SIZE = 50
@@ -101,6 +101,7 @@ function FilterChip({ active, label, count, onClick, tone }) {
 }
 
 function ClaimRow({ item, plenoTitle }) {
+  const t = useT()
   const c = item.claim
   const v = item.verification
   // Sin `|| 'var(--ink50)'`: PartyTag ya distingue «hay color de partido» de
@@ -199,13 +200,16 @@ function ClaimRow({ item, plenoTitle }) {
                 className="mono"
                 style={{ fontSize: 'var(--fs-micro)', color: 'var(--ink50)', marginRight: 6 }}
               >
-                [{e.kind}]
+                {/* La fuente por su rótulo, como en el registro: se pintaba la
+                    clave del enum, «[tender]». */}
+                [{rotuloDe(t, `ledger.evidencia.${e.kind}`, e.kind)}]
               </span>
               {/* Sin la cola «· estado: <palabra>» que `claim-verifier.ts`
-                  añade a cada contrato: es la palabra cruda del registro, en
-                  inglés, o el centinela «unknown». Sólo en pantalla; el dato
-                  no se toca. */}
-              {snippetWithoutStatus(e.snippet)}
+                  añade a cada contrato —la palabra cruda del registro, en
+                  inglés, o el centinela «unknown»— y con la categoría de
+                  Gobierto por su rótulo («· construction ·» → «Construcción»).
+                  Sólo en pantalla; el dato no se toca. */}
+              {snippetDeEvidencia(e, t)}
               <PuenteDeImporte cifra={c.entities?.amountEuros} evidencia={e} />
             </div>
           ))}

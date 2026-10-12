@@ -11,8 +11,7 @@ import { refDateIndexFor, refDate } from '../lib/crosschecked-date.js'
 import {
   refStatusIndexFor,
   refStatus,
-  snippetWithoutStatus,
-  snippetParaLeer,
+  snippetDeEvidencia,
   REF_STATUS_KINDS,
 } from '../lib/crosschecked-status.js'
 import { fmtDateShort, partePorHueco, rellena } from '../lib/formatters'
@@ -221,12 +220,9 @@ export function RefList({ refs, kind, plenoDate, ficha }) {
                 «unknown» to a reader on 16 of these. Display only — the
                 committed snippet is untouched. Un contrato pierde además el
                 estado sin rótulo y cambia su categoría por el rótulo
-                (`snippetParaLeer`): «· awarded», «· construction». */}
-            <span style={{ fontSize: 'var(--fs-meta)' }}>
-              {r.kind === 'tender'
-                ? snippetParaLeer(r.snippet, (c) => rotuloDe(t, `contrato.categoria.${c}`, null))
-                : snippetWithoutStatus(r.snippet)}
-            </span>
+                (`snippetParaLeer`): «· awarded», «· construction». Lo mismo
+                que las tarjetas de declaración: `snippetDeEvidencia`. */}
+            <span style={{ fontSize: 'var(--fs-meta)' }}>{snippetDeEvidencia(r, t)}</span>
           </>
         )
         return isUrl ? (
