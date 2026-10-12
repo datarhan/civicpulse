@@ -79,6 +79,11 @@ keeps who wrote the entry it replaced, when, and that entry's signed records
 or reason, which would re-serve the machine prose the person replaced. Raises
 written before 2026-10-11 dropped it; `subir-veredicto --backfill-sustituye
 <commit> <claimId>…` restores it from git, stamped with the commit it came from.
+The engine keeps the same record when it re-derives (`--ids`) or trims
+(`--recortar`) one of its own retractions that carries signed records
+(`sustituidaPorElMotor`); before 2026-10-13 it dropped them. A curator
+downgrade or retirada over an engine retraction still replaces it whole unless
+its chain reaches a signed raise (`heredaSustituida`).
 
 `competencias.json` is curated for a reason worth stating, because it is the
 only file here that puts a living person's name beside a cost figure. It maps
