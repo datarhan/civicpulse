@@ -45,6 +45,56 @@ export const TENDER_STATUS = new Set<TenderStatus>([
   'withdrawn',
 ])
 
+// ---------------------------------------------------------------------------
+// Category vocabulary
+// ---------------------------------------------------------------------------
+/**
+ * The categories Gobierto files a contract under (`category_title`), in the
+ * English it ships them in. The parser passes the field through untouched
+ * (`categoryTitle: nullable(row.category_title)`), so this is the vocabulary
+ * every consumer of that field can meet — and the one `claim-verifier.ts`
+ * writes into a contract snippet («… · INSDAGAR S.L. · construction · …»),
+ * where the reader's surfaces swap it for its `contrato.categoria.<key>` label
+ * (`snippetParaLeer`, src/lib/crosschecked-status.js).
+ *
+ * Exported so the label test and the department map read the list from here
+ * rather than restating it (docs/DATA_INTEGRITY.md rule 1). The parser does
+ * NOT coerce to it on purpose: a category Gobierto adds tomorrow stays visible
+ * as its raw word on every surface, and `tests/i18n-mapa-enums.test.ts` reds
+ * because the published value is outside this list — a coerced `null` would
+ * have hidden it.
+ */
+export const CATEGORIAS_DE_CONTRATO = [
+  'agriculture',
+  'architecture',
+  'audiovisual',
+  'catering',
+  'construction',
+  'culture',
+  'education',
+  'electrical',
+  'energy',
+  'environment',
+  'finance',
+  'furniture',
+  'health',
+  'industry',
+  'it',
+  'legal',
+  'maintenance',
+  'other',
+  'print',
+  'public_services',
+  'real_estate',
+  'security',
+  'software',
+  'telecom',
+  'textile',
+  'transportation',
+] as const
+
+export type CategoriaDeContrato = (typeof CATEGORIAS_DE_CONTRATO)[number]
+
 function normStatus<T extends string>(value: unknown, allowed: Set<T>): T {
   if (typeof value !== 'string') return 'unknown' as T
   const v = value.trim().toLowerCase()
