@@ -1,13 +1,13 @@
 {
-  "generatedAt": "2026-10-11T11:14:03.809Z",
+  "generatedAt": "2026-10-12T12:42:21.636Z",
   "frozen": false,
   "frozenUntil": null,
   "notice": "Sugerencias generadas automáticamente. Requieren aprobación humana antes de aplicarse al estado de cada promesa.",
   "counts": {
-    "total": 11,
+    "total": 12,
     "byProposedStatus": {
       "documentada": 9,
-      "en-progreso": 2
+      "en-progreso": 3
     },
     "llmEvidence": 0
   },
@@ -41,7 +41,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-10-11T11:14:03.716Z"
+      "generatedAt": "2026-10-12T12:42:21.515Z"
     },
     {
       "promiseId": "ac-psoe-jfg7bc",
@@ -60,7 +60,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-10-11T11:14:03.716Z"
+      "generatedAt": "2026-10-12T12:42:21.515Z"
     },
     {
       "promiseId": "ac-psoe-1ah9zqk",
@@ -79,7 +79,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-10-11T11:14:03.716Z"
+      "generatedAt": "2026-10-12T12:42:21.515Z"
     },
     {
       "promiseId": "ac-psoe-ppa53a",
@@ -87,7 +87,7 @@
       "confidence": 0,
       "reasoning": [],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-10-11T11:14:03.716Z"
+      "generatedAt": "2026-10-12T12:42:21.515Z"
     },
     {
       "promiseId": "ac-psoe-1m04lfw",
@@ -95,7 +95,7 @@
       "confidence": 0,
       "reasoning": [],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-10-11T11:14:03.716Z"
+      "generatedAt": "2026-10-12T12:42:21.515Z"
     },
     {
       "promiseId": "ac-psoe-sysee8",
@@ -114,7 +114,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-10-11T11:14:03.716Z"
+      "generatedAt": "2026-10-12T12:42:21.515Z"
     },
     {
       "promiseId": "ac-psoe-1ryndd8",
@@ -151,7 +151,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-10-11T11:14:03.716Z"
+      "generatedAt": "2026-10-12T12:42:21.515Z"
     },
     {
       "promiseId": "ac-psoe-43brfs",
@@ -182,17 +182,6 @@
           ]
         },
         {
-          "url": "https://news.google.com/rss/articles/CBMi0gFBVV95cUxNYWV1M3FmdUZiYWpKNk1tR3Rva3pNcEZVdkZvRlRBa3h6OHVyLW9QM2VsdjM2c28yZTM2bkJQYXRjRGRZWVpjcTJaaC0wNDY4U0JYUWZPcDBCYW1wYm1halVYNHNEUHhVX1NoWlZ0dnVEamlGREZLU3hOVmFCU0YyNlJoWmVLY2lmVWJ1MFc1X1RFZkkwaXdNS21wOVNIcFlBci0wTTd1YnJKbkpubDhTNDRKblVtaGNYeTVBcnNROWpiMTVTQmVBQ2tjVEhWN290X0E?oc=5",
-          "date": "2026-10-01",
-          "quote": "Riba-roja destina más de 100.000 euros al Cheque Bebé y ofrece hasta 500 euros por hijo a las familias",
-          "kind": "press",
-          "publisher": "Levante-EMV",
-          "matchedKeywords": [
-            "euro",
-            "destina"
-          ]
-        },
-        {
           "url": "https://www.ribarroja.es/es/noticia/riba-roja-destina-104.605-euros-al-cheque-beb%C3%A9-%2B25-para-apoyar-a-las-familias-y-dinamizar-el-comercio-local",
           "date": "2026-10-01",
           "quote": "Riba-roja destina 104.605 euros al Cheque Bebé +25 para apoyar a las familias y dinamizar el comercio local",
@@ -213,31 +202,27 @@
             "2026",
             "2027"
           ]
+        },
+        {
+          "url": "https://www.ribarroja.es/es/noticia/riba-roja-destina-una-partida-de-7.000-euros-en-subvenciones-para-fomentar-la-pr%C3%A1ctica-del-deporte-y-mejorar-el-rendimiento-en-las-competiciones-oficiales",
+          "date": "2026-09-16",
+          "quote": "Riba-roja destina una partida de 7.000 euros en subvenciones para fomentar la práctica del deporte y mejorar el rendimiento en las competiciones oficiales",
+          "kind": "press",
+          "publisher": "Ayuntamiento de Riba-roja de Túria",
+          "matchedKeywords": [
+            "euro",
+            "destina"
+          ]
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-10-11T11:14:03.716Z"
+      "generatedAt": "2026-10-12T12:42:21.515Z"
     },
     {
       "promiseId": "ac-psoe-17y448o",
       "proposedStatus": "en-progreso",
       "confidence": 0.7,
       "reasoning": [
-        {
-          "url": "https://news.google.com/rss/articles/CBMi0gFBVV95cUxNYWV1M3FmdUZiYWpKNk1tR3Rva3pNcEZVdkZvRlRBa3h6OHVyLW9QM2VsdjM2c28yZTM2bkJQYXRjRGRZWVpjcTJaaC0wNDY4U0JYUWZPcDBCYW1wYm1halVYNHNEUHhVX1NoWlZ0dnVEamlGREZLU3hOVmFCU0YyNlJoWmVLY2lmVWJ1MFc1X1RFZkkwaXdNS21wOVNIcFlBci0wTTd1YnJKbkpubDhTNDRKblVtaGNYeTVBcnNROWpiMTVTQmVBQ2tjVEhWN290X0E?oc=5",
-          "date": "2026-10-01",
-          "quote": "Riba-roja destina más de 100.000 euros al Cheque Bebé y ofrece hasta 500 euros por hijo a las familias",
-          "kind": "press",
-          "publisher": "Levante-EMV",
-          "matchedKeywords": [
-            "cheque",
-            "bebe",
-            "hasta",
-            "euro",
-            "destina",
-            "familia"
-          ]
-        },
         {
           "url": "https://www.ribarroja.es/es/noticia/riba-roja-destina-104.605-euros-al-cheque-beb%C3%A9-%2B25-para-apoyar-a-las-familias-y-dinamizar-el-comercio-local",
           "date": "2026-10-01",
@@ -280,13 +265,26 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-10-11T11:14:03.716Z"
+      "generatedAt": "2026-10-12T12:42:21.515Z"
     },
     {
       "promiseId": "ac-psoe-1bkbwjs",
       "proposedStatus": "documentada",
-      "confidence": 0.287,
+      "confidence": 0.4,
       "reasoning": [
+        {
+          "url": "https://news.google.com/rss/articles/CBMi5AFBVV95cUxPX0djQmtPeDg3NnNvVFlPZGpUN21OWmJvYW44amw5djJ6d2lPcXJMSjkyZmRQalVmdXRuenFiWndPZ2tCYnd0d05BVDgwT2Vzbi0yZlUydDc2M3NSUHRqTnhBTVlFZkFzcDR1WnA1NWFRbFBtQWhRQnEwWEt4S2JQaXZsRUtueTFTQVh2YVNfNXFKZl9oRklTeGNQX0YzdDZJN1NIbG8zQkFSQWwydWNaM3R3Zjg1V1JDQkxfSFFPZXBtbHRfcURkZDRqQ0JRRnZ0eVNkZFIwQ1loY3p6YURQcXB3bDXSAeoBQVVfeXFMT0ZWS1ZjMVEyalc0bGtoazFvRklDdmM3VXdsckpsWVNTR21qZXJ1S1YyQzRZQjh2cUs0dW5vNlhGdVVTQTU0T3hxc0lfNTZEWkZfSkJJUFJBTURxQmt4YkVsclhVU2NjVXFacEE1blR4cHBzdlc3eTlLOEhXalB3VjZ2MWZRQUplX0JIenAtdFEzV3BoQ3ZESk5UU19IRVhIUmhzQ0tfUFpnT1p5SVJvSjk0cWVWS0NfS0kzNjdPYTEwUXB1YWxGakd4cUlUblVBcXg1MzRCSUQ2QXFvQkdyOVBPcU9scTZPUEln?oc=5",
+          "date": "2026-09-25",
+          "quote": "Riba-roja instalará sensores en sus contenedores para conocer en tiempo real el nivel de llenado",
+          "kind": "press",
+          "publisher": "Levante-EMV",
+          "matchedKeywords": [
+            "contenedor",
+            "tiempo",
+            "real",
+            "llenado"
+          ]
+        },
         {
           "url": "https://www.ribarroja.es/es/noticia/riba-roja-de-t%C3%BAria-impulsa-la-sensorizaci%C3%B3n-de-sus-contenedores-de-residuos-para-avanzar-hacia-una-gesti%C3%B3n-m%C3%A1s-sostenible-del-municipio",
           "date": "2026-09-25",
@@ -335,7 +333,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-10-11T11:14:03.716Z"
+      "generatedAt": "2026-10-12T12:42:21.515Z"
     },
     {
       "promiseId": "ac-psoe-1xeq50",
@@ -370,7 +368,41 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-10-11T11:14:03.716Z"
+      "generatedAt": "2026-10-12T12:42:21.515Z"
+    },
+    {
+      "promiseId": "ac-psoe-1kui43c",
+      "proposedStatus": "en-progreso",
+      "confidence": 0.7,
+      "reasoning": [
+        {
+          "url": "https://www.ribarroja.es/es/noticia/riba-roja-de-t%C3%BAria-formaliza-con-veolia-el-nuevo-contrato-del-ciclo-integral-del-agua-para-reforzar-la-sostenibilidad-y-modernizar-sus-infraestructuras",
+          "date": "2026-10-08",
+          "quote": "Riba-roja de Túria formaliza con Veolia el nuevo contrato del ciclo integral del agua para reforzar la sostenibilidad y modernizar sus infraestructuras",
+          "kind": "press",
+          "publisher": "Ayuntamiento de Riba-roja de Túria",
+          "matchedKeywords": [
+            "agua",
+            "nuevo",
+            "contrato",
+            "veolia"
+          ]
+        },
+        {
+          "url": "https://news.google.com/rss/articles/CBMi6AFBVV95cUxPSTQ1ZHFLLTNRRXdudEs2RHpkMXdKam1SUjdjM21jRkx3TFZEcVd1eFJ5cloycFVpNHFFeG1UeXYyVHpFcXVyaEsxRVgzajlLdnI2ZmVoT3ZpMDJXa1h2WUN3REplYjJIN3QydlB2TWFWYTBpdnZ4QU5oY1VXTWlITUlCSDQwaGhCY0RocnZYTUR0THVERkJqOWpTMmtzMmNmRDhXaWlIcGNCZmNOaXM1d1BTVUZ4TmhUSm5DTGdmODlyeWw2bUY4UUc2OUN6MUZIZnRjNlZqSGRxeTd1QTVVUFd4bHpJNjhG?oc=5",
+          "date": "2026-10-08",
+          "quote": "Riba-roja adjudica el contrato para el suministro de agua potable por 55,6 millones para 17 años",
+          "kind": "press",
+          "publisher": "Valencia Plaza",
+          "matchedKeywords": [
+            "agua",
+            "anos",
+            "contrato"
+          ]
+        }
+      ],
+      "requiresHumanApproval": true,
+      "generatedAt": "2026-10-12T12:42:21.515Z"
     }
   ],
   "llmEvidence": [],

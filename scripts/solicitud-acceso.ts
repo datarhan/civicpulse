@@ -32,6 +32,7 @@ import {
 } from '../src/scraper/solicitud-acceso'
 import { CLASES_PEDIBLES, type ClasePedible } from '../src/scraper/clase-documental'
 import { generarBorradores } from './lib/solicitud-borrador'
+import { rechazarOpcionesDesconocidas } from '../src/scraper/opciones-cli'
 
 const RUTA = resolve('public/data/solicitudes-acceso.json')
 
@@ -57,6 +58,20 @@ function guardar(r: RegistroSolicitudes): void {
 }
 
 function main(): void {
+  // Antes de leer nada: una opción que este CLI no conoce no se ignora
+  // (src/scraper/opciones-cli.ts).
+  rechazarOpcionesDesconocidas('solicitud', {
+    conValor: [
+      '--clase',
+      '--titulo',
+      '--fecha',
+      '--registro',
+      '--sentido',
+      '--url',
+      '--organo',
+      '--expediente',
+    ],
+  })
   const cmd = process.argv[2]
   const reg = cargar()
   const hoy = new Date().toISOString().slice(0, 10)

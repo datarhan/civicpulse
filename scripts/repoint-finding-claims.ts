@@ -23,6 +23,7 @@ import { readFileSync, writeFileSync } from 'node:fs'
 import { resolve } from 'node:path'
 import { validateFindingsSnapshot } from '../src/scraper/pleno-finding'
 import { quoteCoverage } from './check-finding-quotes'
+import { rechazarOpcionesDesconocidas } from '../src/scraper/opciones-cli'
 
 const FINDINGS = resolve('public/data/pleno-findings.json')
 const CLAIMS = resolve('public/data/pleno-claims-suggestions.json')
@@ -38,6 +39,9 @@ interface Claim {
 }
 
 function main() {
+  // Antes de leer nada: una opción que este CLI no conoce no se ignora
+  // (src/scraper/opciones-cli.ts).
+  rechazarOpcionesDesconocidas('repoint-finding-claims', { banderas: ['--apply'] })
   const findingId = process.argv[2]
   const apply = process.argv.includes('--apply')
   if (!findingId || findingId.startsWith('--')) {

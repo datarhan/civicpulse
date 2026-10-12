@@ -25,6 +25,7 @@
 import { readFileSync, writeFileSync, existsSync } from 'node:fs'
 import { resolve } from 'node:path'
 import { validateFindingsSnapshot } from '../src/scraper/pleno-finding'
+import { rechazarOpcionesDesconocidas } from '../src/scraper/opciones-cli'
 
 const FINDINGS = resolve('public/data/pleno-findings.json')
 const QUEUE = resolve('editorial/auto-curation-queue-pending-measurement.json')
@@ -40,6 +41,9 @@ interface Decision {
 }
 
 function main() {
+  // Antes de leer nada: una opción que este CLI no conoce no se ignora
+  // (src/scraper/opciones-cli.ts).
+  rechazarOpcionesDesconocidas('apply-curation', { banderas: ['--dry-run'] })
   const dryRun = process.argv.includes('--dry-run')
 
   if (!existsSync(DECISIONS)) {

@@ -24,6 +24,7 @@ import {
   validateEntityOverrides,
   type EntityOverrides,
 } from '../src/scraper/entities'
+import { rechazarOpcionesDesconocidas } from '../src/scraper/opciones-cli'
 
 const OVERRIDES_PATH = resolve('public/data/entity-overrides.json')
 const ENTITIES_PATH = resolve('public/data/entities.json')
@@ -39,6 +40,9 @@ function bail(msg: string): never {
 }
 
 function main() {
+  // Antes de leer nada: una opción que este CLI no conoce no se ignora
+  // (src/scraper/opciones-cli.ts).
+  rechazarOpcionesDesconocidas('entity-alias', { conValor: ['--note', '--curator'] })
   const positional = process.argv.slice(2).filter((a, i, arr) => {
     if (a.startsWith('--')) return false
     if (i > 0 && arr[i - 1].startsWith('--')) return false

@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-12T10:06:51.954Z",
+  "generatedAt": "2026-10-12T10:51:39.699Z",
   "version": "1",
   "plenoId": "10yl550",
   "plenoDate": "2026-05-11",
@@ -1144,9 +1144,10 @@
       "verification": {
         "claimId": "10yl550-035-cit-d99202",
         "verdict": "sin-datos",
-        "summary": "Analicé la afirmación sobre construcción de aceras en la \"calle de la Beto\" contra los 8 candidatos proporcionados. Solo el candidato [1] trata sobre aceras, pero es en la C/ Bodeguetes, una calle distinta sin relación con \"calle de la Beto\" ni con el \"área de servicio\" mencionada en el contexto.",
+        "summary": "Ningún candidato respalda genuinamente la afirmación; la fuerza del respaldo es nula/muy débil, y además la afirmación es una descripción de obra en curso difícilmente verificable con estos registros.",
         "evidence": [],
-        "checkedAgainst": [
+        "checkedAgainst": [],
+        "derivedBy": [
           "verdict-engine"
         ],
         "confidence": 0.2,
@@ -1449,9 +1450,10 @@
       "verification": {
         "claimId": "10yl550-064-afi-d21e6d",
         "verdict": "sin-datos",
-        "summary": "Ningún candidato respalda genuinamente la cifra de \"más de un millón de euros\". Los importes de los contratos de obra listados (candidatos 0, 2, 3, 5) oscilan entre €2.265,73 y €10.192,06 — tres órdenes de magnitud por debajo de la cifra citada, y además corresponden a contratos de emergencia por…",
+        "summary": "Ninguno respalda genuinamente la afirmación; a lo sumo hay una coincidencia temática débil con València la Vella, sin valores que concuerden.",
         "evidence": [],
-        "checkedAgainst": [
+        "checkedAgainst": [],
+        "derivedBy": [
           "verdict-engine"
         ],
         "confidence": 0.2,
@@ -2285,9 +2287,10 @@
       "verification": {
         "claimId": "10yl550-100-cit-b7d66f",
         "verdict": "sin-datos",
-        "summary": "Ningún candidato respalda genuinamente la afirmación. Los candidatos [0]-[3], [5] y [7] corresponden a contratos de emergencia de noviembre de 2022 para acondicionamiento de caminos rurales (retroexcavadora, muros de contención, mallazo por derrumbes), es decir, reparaciones viarias tras lluvias…",
+        "summary": "Conclusión: ningún candidato respalda genuinamente la afirmación…",
         "evidence": [],
-        "checkedAgainst": [
+        "checkedAgainst": [],
+        "derivedBy": [
           "verdict-engine"
         ],
         "confidence": 0.2,

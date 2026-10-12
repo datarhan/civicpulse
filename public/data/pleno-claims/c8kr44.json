@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-12T10:06:51.954Z",
+  "generatedAt": "2026-10-12T10:51:39.699Z",
   "version": "1",
   "plenoId": "c8kr44",
   "plenoDate": "2025-09-08",
@@ -1502,9 +1502,10 @@
       "verification": {
         "claimId": "c8kr44-073-cit-d6d194",
         "verdict": "sin-datos",
-        "summary": "El único candidato [0] es un contrato de suministro de un aplicativo para la policía local en Riba-roja de Túria, sin relación temática (medio ambiente vs. policía) ni coincidencia de ningún valor concreto (importe, fecha, sujeto) con la afirmación verbatim, que además es una declaración genérica…",
+        "summary": "Ninguno respalda la afirmación; el respaldo es nulo y no es verificable con estos registros.",
         "evidence": [],
-        "checkedAgainst": [
+        "checkedAgainst": [],
+        "derivedBy": [
           "verdict-engine"
         ],
         "confidence": 0.2,
@@ -3845,9 +3846,10 @@
       "verification": {
         "claimId": "c8kr44-143-afi-e4636b",
         "verdict": "sin-datos",
-        "summary": "Analicé los 5 candidatos frente a la afirmación sobre 330.000€ para carril bici. Ningún candidato coincide en tema+importe simultáneamente: [0]/[1] son sobre alumbrado del carril bici sin importe reportado; [4] es obra de carril bici pero con importe de 172.440,82€, muy distinto de \"algo más de…",
+        "summary": "No hay respaldo genuino con valores concretos coincidentes…",
         "evidence": [],
-        "checkedAgainst": [
+        "checkedAgainst": [],
+        "derivedBy": [
           "verdict-engine"
         ],
         "confidence": 0.2,

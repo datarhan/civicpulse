@@ -30,6 +30,7 @@ import {
   type VoteBloc,
   type VoteProvenance,
 } from '../src/scraper/pleno-votes'
+import { rechazarOpcionesDesconocidas } from '../src/scraper/opciones-cli'
 
 const DATA_PATH = resolve('public/data/pleno-votes.json')
 const PLENOS_PATH = resolve('public/data/plenos.json')
@@ -118,6 +119,9 @@ function usage(): never {
 }
 
 function main() {
+  // Antes de leer nada: una opción que este CLI no conoce no se ignora
+  // (src/scraper/opciones-cli.ts).
+  rechazarOpcionesDesconocidas('pleno-vote', { conValor: ['--file'] })
   const args = process.argv.slice(2)
   let incoming: PlenoVote
 

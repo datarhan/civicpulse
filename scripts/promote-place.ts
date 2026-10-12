@@ -26,6 +26,7 @@ import {
   type PlaceOverride,
   type PlaceSuggestion,
 } from '../src/scraper/place-suggestion'
+import { rechazarOpcionesDesconocidas } from '../src/scraper/opciones-cli'
 
 const DATA = resolve('public/data')
 const SUGGESTIONS = resolve(DATA, 'place-suggestions.json')
@@ -46,6 +47,12 @@ async function readJson(path: string): Promise<any> {
 }
 
 async function main() {
+  // Antes de leer nada: una opción que este CLI no conoce no se ignora
+  // (src/scraper/opciones-cli.ts).
+  rechazarOpcionesDesconocidas('promote-place', {
+    banderas: ['--reject', '--edit'],
+    conValor: ['--curator', '--note'],
+  })
   const contractId = process.argv[2]
   if (!contractId || contractId.startsWith('--')) {
     console.error(

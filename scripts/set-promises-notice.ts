@@ -26,6 +26,7 @@ import { dirname, join } from 'node:path'
 import { fileURLToPath } from 'node:url'
 import { DATA_GRAPH } from '../src/scraper/data-graph'
 import { withLegalNotice } from '../src/scraper/promises'
+import { rechazarOpcionesDesconocidas } from '../src/scraper/opciones-cli'
 
 const __dirname = dirname(fileURLToPath(import.meta.url))
 const PROMISES = join(__dirname, '..', 'public/data/promises.json')
@@ -38,6 +39,9 @@ function uso(): never {
 }
 
 async function main() {
+  // Antes de leer nada: una opción que este CLI no conoce no se ignora
+  // (src/scraper/opciones-cli.ts).
+  rechazarOpcionesDesconocidas('aviso', {})
   const [accion, texto] = process.argv.slice(2)
   const raw = await readFile(PROMISES, 'utf8')
   // Sin validar: `status` tiene que poder enseñar también un aviso que el

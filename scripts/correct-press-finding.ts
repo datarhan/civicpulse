@@ -40,6 +40,7 @@ import {
   type PressFindingCorrection,
   type PressFindingsSnapshot,
 } from '../src/scraper/press-finding'
+import { rechazarOpcionesDesconocidas } from '../src/scraper/opciones-cli'
 
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = dirname(__filename)
@@ -61,6 +62,11 @@ const ALLOWED_FIELDS = ['title', 'summary', 'severity'] as const
 type AllowedField = (typeof ALLOWED_FIELDS)[number]
 
 async function main() {
+  // Antes de leer nada: una opción que este CLI no conoce no se ignora
+  // (src/scraper/opciones-cli.ts).
+  rechazarOpcionesDesconocidas('correct-press-finding', {
+    conValor: ['--field', '--new', '--reason', '--editor'],
+  })
   const id = process.argv[2]
   const field = getFlag('--field') as AllowedField | null
   const corrected = getFlag('--new')
