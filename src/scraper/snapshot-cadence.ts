@@ -96,6 +96,9 @@ export const DEFAULT_EXPECTATIONS: DatasetExpectation[] = [
     // refresco garantizado es el cron local. Si algún día se comprueba que el
     // runner alcanza elsindic.com, pasa a `nightly` con su plazo de 3 días.
     'sindic-expedientes.json',
+    // Las actas de la pestaña «Documentos» de regmeet: mismo bloqueo que el orden
+    // del día, mismo único refresco (`scrape-ci-blocked.sh`).
+    'pleno-actas.json',
   ].map((file) => ({ file, cls: 'ci-blocked' as const, maxAgeDays: 8 })),
   // Clase `local-llm`: lo que escribe `press-lab-pipeline.sh`, un agente de
   // launchd que corre los LUNES (a diario hasta el 2026-09-23; el cambio fue

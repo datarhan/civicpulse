@@ -204,14 +204,14 @@ and GitHub emails the failure.
 
 Anything needing an LLM backend or a residential IP runs here, not in CI.
 
-| When            | How     | Script                                                                                                                                                                                  |
-| --------------- | ------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| 06:45 daily     | launchd | `scrape-ci-blocked.sh` — the adapters runners cannot reach (`paro`, `pleno-agendas`, `asociaciones`, `obras`, `procesos-selectivos`, `sindicatura`, `consell-cv`, `sindic-expedientes`) |
-| 07:30 Mon + Thu | launchd | `review-sweep.sh` — reads every public route, plus one data-picked instance of each `:param` route, as a visitor (report-only, commits nothing)                                         |
-| 08:30 Mon       | launchd | `auto-curate-promises-daily.sh` — `/promesas` status-change miner                                                                                                                       |
-| 09:30 Mon + Thu | launchd | `hallazgos-pipeline.sh` — transcribe → extract → verify → auto-curate → push                                                                                                            |
-| 10:15 Mon       | launchd | `press-lab-pipeline.sh` — `/laboratorio` press fact-check pass                                                                                                                          |
-| 11:00 daily     | cron    | `monitor-health-cron.sh`                                                                                                                                                                |
+| When            | How     | Script                                                                                                                                                                                                 |
+| --------------- | ------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| 06:45 daily     | launchd | `scrape-ci-blocked.sh` — the adapters runners cannot reach (`paro`, `pleno-agendas`, `asociaciones`, `obras`, `procesos-selectivos`, `sindicatura`, `consell-cv`, `sindic-expedientes`, `pleno-actas`) |
+| 07:30 Mon + Thu | launchd | `review-sweep.sh` — reads every public route, plus one data-picked instance of each `:param` route, as a visitor (report-only, commits nothing)                                                        |
+| 08:30 Mon       | launchd | `auto-curate-promises-daily.sh` — `/promesas` status-change miner                                                                                                                                      |
+| 09:30 Mon + Thu | launchd | `hallazgos-pipeline.sh` — transcribe → extract → verify → auto-curate → push                                                                                                                           |
+| 10:15 Mon       | launchd | `press-lab-pipeline.sh` — `/laboratorio` press fact-check pass                                                                                                                                         |
+| 11:00 daily     | cron    | `monitor-health-cron.sh`                                                                                                                                                                               |
 
 ### Cadence: why the LLM agents are not daily
 

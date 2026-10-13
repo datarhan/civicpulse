@@ -1,0 +1,416 @@
+{
+  "generatedAt": "2026-10-13T09:03:58.632Z",
+  "source": {
+    "baseUrl": "https://regmeet.com",
+    "description": "Actas firmadas de pleno del Ayuntamiento de Riba-roja de Túria, publicadas en la pestaña «Documentos» de cada sesión en regmeet.com (aytoribarroja). Un PDF cuenta como acta por su texto («ACTA SESIÓN …» con la fecha del pleno), nunca por su etiqueta. Este índice no lleva texto del acta."
+  },
+  "stats": {
+    "sesiones": 63,
+    "conActa": 44,
+    "sinDocumentos": 19,
+    "soloOtros": 0,
+    "fechaNoCoincide": 0,
+    "fallidas": 0,
+    "sinIntentar": 0,
+    "arrastradas": 0,
+    "pdfReutilizados": 0
+  },
+  "items": [
+    {
+      "plenoId": "15uvjew",
+      "fecha": "2026-07-27",
+      "url": "https://regmeet.com/files/uploads/aytoribarroja/27-07-2026.Pleno2026-07-29_23-32-33/documentos/2026-07-30_13-49-04_0.pdf",
+      "etiqueta": "11_P 20260727",
+      "subidoEl": "2026-07-30",
+      "paginas": 51,
+      "sha256Short": "d6a68428e666"
+    },
+    {
+      "plenoId": "brxx5g",
+      "fecha": "2026-07-06",
+      "url": "https://regmeet.com/files/uploads/aytoribarroja/06-07-2026.Pleno2026-07-08_00-36-39/documentos/2026-07-30_13-48-52_0.pdf",
+      "etiqueta": "10_P 20260706",
+      "subidoEl": "2026-07-30",
+      "paginas": 60,
+      "sha256Short": "2bbd58da5108"
+    },
+    {
+      "plenoId": "1237hbp",
+      "fecha": "2026-07-03",
+      "url": "https://regmeet.com/files/uploads/aytoribarroja/03-07-2026.Pleno2026-07-03_23-40-36/documentos/2026-07-30_13-49-55_0.pdf",
+      "etiqueta": "09_P EXTR 2026 07 03",
+      "subidoEl": "2026-07-30",
+      "paginas": 3,
+      "sha256Short": "2e3c03b71ac7"
+    },
+    {
+      "plenoId": "11025xk",
+      "fecha": "2026-06-01",
+      "url": "https://regmeet.com/files/uploads/aytoribarroja/01-06-2026.Pleno2026-06-02_16-38-20/documentos/2026-07-30_13-48-05_0.pdf",
+      "etiqueta": "08_P 20260601",
+      "subidoEl": "2026-07-30",
+      "paginas": 20,
+      "sha256Short": "60bd79d65f7d"
+    },
+    {
+      "plenoId": "10yl550",
+      "fecha": "2026-05-11",
+      "url": "https://regmeet.com/files/uploads/aytoribarroja/11-05-2026.Pleno2026-05-11_23-30-05/documentos/2026-07-30_13-47-39_0.pdf",
+      "etiqueta": "07_P 20260511",
+      "subidoEl": "2026-07-30",
+      "paginas": 33,
+      "sha256Short": "49e418ffb2bc"
+    },
+    {
+      "plenoId": "k4olcs",
+      "fecha": "2026-04-20",
+      "url": "https://regmeet.com/files/uploads/aytoribarroja/20-04-2026.Pleno2026-04-21_04-44-21/documentos/2026-07-30_13-47-18_0.pdf",
+      "etiqueta": "06_P 20260420",
+      "subidoEl": "2026-07-30",
+      "paginas": 116,
+      "sha256Short": "9b76a88e0f71"
+    },
+    {
+      "plenoId": "ma87e0",
+      "fecha": "2026-03-16",
+      "url": "https://regmeet.com/files/uploads/aytoribarroja/16-03-2026.Pleno2026-03-18_13-36-39/documentos/2026-07-30_13-46-58_0.pdf",
+      "etiqueta": "05_P 20260316 EXT",
+      "subidoEl": "2026-07-30",
+      "paginas": 32,
+      "sha256Short": "32c7739a00ac"
+    },
+    {
+      "plenoId": "1sqj7is",
+      "fecha": "2026-03-09",
+      "url": "https://regmeet.com/files/uploads/aytoribarroja/09-03-2026.Pleno2026-03-11_13-49-23/documentos/2026-07-30_13-46-15_0.pdf",
+      "etiqueta": "04_P 20260309",
+      "subidoEl": "2026-07-30",
+      "paginas": 169,
+      "sha256Short": "2c16118b7f1d"
+    },
+    {
+      "plenoId": "rx4hb4",
+      "fecha": "2026-02-09",
+      "url": "https://regmeet.com/files/uploads/aytoribarroja/09-02-2026.Pleno2026-02-10_20-43-39/documentos/2026-07-30_13-45-56_0.pdf",
+      "etiqueta": "03_P 20260209",
+      "subidoEl": "2026-07-30",
+      "paginas": 44,
+      "sha256Short": "c7c07ce59bd2"
+    },
+    {
+      "plenoId": "19gax3o",
+      "fecha": "2026-01-19",
+      "url": "https://regmeet.com/files/uploads/aytoribarroja/19-01-2026.Pleno2026-01-20_13-42-21/documentos/2026-07-30_13-45-20_0.pdf",
+      "etiqueta": "02_P 20260119",
+      "subidoEl": "2026-07-30",
+      "paginas": 53,
+      "sha256Short": "4e5bce5317f0"
+    },
+    {
+      "plenoId": "1pe3qs8",
+      "fecha": "2026-01-07",
+      "url": "https://regmeet.com/files/uploads/aytoribarroja/07-01-2026.Pleno2026-01-08_15-51-32/documentos/2026-07-30_13-44-49_0.pdf",
+      "etiqueta": "01_P 20260107 EXT URG",
+      "subidoEl": "2026-07-30",
+      "paginas": 64,
+      "sha256Short": "3c8bb66acd7f"
+    },
+    {
+      "plenoId": "toa3rc",
+      "fecha": "2025-12-26",
+      "url": "https://regmeet.com/files/uploads/aytoribarroja/26-12-2025.Pleno2025-12-31_03-01-12/documentos/2026-07-30_15-35-55_0.pdf",
+      "etiqueta": "15- P 2025 12 26",
+      "subidoEl": "2026-07-30",
+      "paginas": 17,
+      "sha256Short": "bb5bc95b2d3f"
+    },
+    {
+      "plenoId": "1qi8axv",
+      "fecha": "2025-12-23",
+      "url": "https://regmeet.com/files/uploads/aytoribarroja/23-12-2025.Pleno2025-12-31_00-03-53/documentos/2026-07-30_15-35-36_0.pdf",
+      "etiqueta": "14- P 2025 12 23",
+      "subidoEl": "2026-07-30",
+      "paginas": 76,
+      "sha256Short": "e684dad502cb"
+    },
+    {
+      "plenoId": "qz6weg",
+      "fecha": "2025-12-01",
+      "url": "https://regmeet.com/files/uploads/aytoribarroja/01-12-2025.Pleno2025-12-04_01-07-20/documentos/2026-07-30_15-35-18_0.pdf",
+      "etiqueta": "13 -P 2025 12 01",
+      "subidoEl": "2026-07-30",
+      "paginas": 143,
+      "sha256Short": "0f70e08904d0"
+    },
+    {
+      "plenoId": "1du4rf5",
+      "fecha": "2025-11-03",
+      "url": "https://regmeet.com/files/uploads/aytoribarroja/03-11-2025.Pleno2025-11-04_16-50-08/documentos/2026-07-30_15-34-56_0.pdf",
+      "etiqueta": "12- P 2025 11 03",
+      "subidoEl": "2026-07-30",
+      "paginas": 59,
+      "sha256Short": "2b81da7493bf"
+    },
+    {
+      "plenoId": "otxq2c",
+      "fecha": "2025-10-06",
+      "url": "https://regmeet.com/files/uploads/aytoribarroja/06-10-2025.Pleno2025-10-06_21-57-47/documentos/2026-07-30_15-34-37_0.pdf",
+      "etiqueta": "11- P 2025 10 06",
+      "subidoEl": "2026-07-30",
+      "paginas": 23,
+      "sha256Short": "2587d8929fbf"
+    },
+    {
+      "plenoId": "c8kr44",
+      "fecha": "2025-09-08",
+      "url": "https://regmeet.com/files/uploads/aytoribarroja/08-09-2025.Pleno2025-09-10_23-13-38/documentos/2026-07-30_15-34-12_0.pdf",
+      "etiqueta": "10- P 2025 09 08",
+      "subidoEl": "2026-07-30",
+      "paginas": 64,
+      "sha256Short": "6ab3b5518855"
+    },
+    {
+      "plenoId": "rmtyr",
+      "fecha": "2025-07-31",
+      "url": "https://regmeet.com/files/uploads/aytoribarroja/31-07-2025.Pleno2025-08-08_01-47-08/documentos/2026-07-30_15-33-34_0.pdf",
+      "etiqueta": "9- P 2025 07 31",
+      "subidoEl": "2026-07-30",
+      "paginas": 40,
+      "sha256Short": "1b4aa462ef53"
+    },
+    {
+      "plenoId": "anrfd5",
+      "fecha": "2025-07-28",
+      "url": "https://regmeet.com/files/uploads/aytoribarroja/28-07-2025.Pleno2025-07-30_17-26-36/documentos/2026-07-30_15-33-15_0.pdf",
+      "etiqueta": "8- P 2025 07 28",
+      "subidoEl": "2026-07-30",
+      "paginas": 47,
+      "sha256Short": "e8a39397178f"
+    },
+    {
+      "plenoId": "1sk3q3c",
+      "fecha": "2025-07-07",
+      "url": "https://regmeet.com/files/uploads/aytoribarroja/07-07-2025.Pleno2025-07-25_19-06-16/documentos/2026-07-30_15-32-54_0.pdf",
+      "etiqueta": "7- P 2025 07 07",
+      "subidoEl": "2026-07-30",
+      "paginas": 107,
+      "sha256Short": "3509f8c7f707"
+    },
+    {
+      "plenoId": "1ci5p5s",
+      "fecha": "2025-06-02",
+      "url": "https://regmeet.com/files/uploads/aytoribarroja/02-06-2025.Pleno2025-06-09_18-40-53/documentos/2026-07-30_15-32-38_0.pdf",
+      "etiqueta": "6- P 2025 06 02",
+      "subidoEl": "2026-07-30",
+      "paginas": 23,
+      "sha256Short": "09ed1a8c7db8"
+    },
+    {
+      "plenoId": "1uqimx0",
+      "fecha": "2025-05-12",
+      "url": "https://regmeet.com/files/uploads/aytoribarroja/12-05-2025.Pleno2025-05-16_01-52-54/documentos/2026-07-30_15-32-22_0.pdf",
+      "etiqueta": "5- P 2025 05 12",
+      "subidoEl": "2026-07-30",
+      "paginas": 96,
+      "sha256Short": "a08a77180d09"
+    },
+    {
+      "plenoId": "hp3y4s",
+      "fecha": "2025-04-07",
+      "url": "https://regmeet.com/files/uploads/aytoribarroja/07-04-2025.Pleno2025-04-08_19-51-02/documentos/2026-07-30_15-32-00_0.pdf",
+      "etiqueta": "4- P 2025 04 07",
+      "subidoEl": "2026-07-30",
+      "paginas": 105,
+      "sha256Short": "b689f10fb541"
+    },
+    {
+      "plenoId": "4kokik",
+      "fecha": "2025-03-03",
+      "url": "https://regmeet.com/files/uploads/aytoribarroja/03-03-2025.Pleno2025-03-11_12-38-17/documentos/2026-07-30_15-31-43_0.pdf",
+      "etiqueta": "3- P 2025 03 03",
+      "subidoEl": "2026-07-30",
+      "paginas": 76,
+      "sha256Short": "9361d6fc5e20"
+    },
+    {
+      "plenoId": "11k71c8",
+      "fecha": "2025-02-10",
+      "url": "https://regmeet.com/files/uploads/aytoribarroja/10-02-2025.Pleno2025-02-12_03-53-06/documentos/2026-07-30_15-31-24_0.pdf",
+      "etiqueta": "2- P 2025 02 10",
+      "subidoEl": "2026-07-30",
+      "paginas": 108,
+      "sha256Short": "90bb4ea78875"
+    },
+    {
+      "plenoId": "of2npg",
+      "fecha": "2025-01-20",
+      "url": "https://regmeet.com/files/uploads/aytoribarroja/20-01-2025.Pleno2025-02-01_13-15-12/documentos/2026-07-30_15-30-54_0.pdf",
+      "etiqueta": "1- P 2025 01 20",
+      "subidoEl": "2026-07-30",
+      "paginas": 57,
+      "sha256Short": "60c82b651e84"
+    },
+    {
+      "plenoId": "1e0jjw",
+      "fecha": "2024-12-26",
+      "url": "https://regmeet.com/files/uploads/aytoribarroja/26-12-2024.Pleno2025-01-05_14-50-17/documentos/2026-07-30_15-42-55_0.pdf",
+      "etiqueta": "P 20241226 Extraordinario...",
+      "subidoEl": "2026-07-30",
+      "paginas": 8,
+      "sha256Short": "056bf3c81012"
+    },
+    {
+      "plenoId": "19m20g0",
+      "fecha": "2024-12-02",
+      "url": "https://regmeet.com/files/uploads/aytoribarroja/02-12-2024.Pleno2024-12-13_15-06-07/documentos/2026-07-30_15-42-36_0.pdf",
+      "etiqueta": "P 20241202",
+      "subidoEl": "2026-07-30",
+      "paginas": 12,
+      "sha256Short": "5f0c01284ec2"
+    },
+    {
+      "plenoId": "o48cdr",
+      "fecha": "2024-11-04",
+      "url": "https://regmeet.com/files/uploads/aytoribarroja/04-11-2024.Pleno2024-11-06_18-09-19/documentos/2026-07-30_15-42-11_0.pdf",
+      "etiqueta": "P 20241104",
+      "subidoEl": "2026-07-30",
+      "paginas": 34,
+      "sha256Short": "dedb7a57fa3e"
+    },
+    {
+      "plenoId": "18ei96g",
+      "fecha": "2024-10-21",
+      "url": "https://regmeet.com/files/uploads/aytoribarroja/21-10-2024.Pleno2024-10-24_14-07-50/documentos/2026-07-30_15-41-48_0.pdf",
+      "etiqueta": "P 20241021 Extraordinario...",
+      "subidoEl": "2026-07-30",
+      "paginas": 22,
+      "sha256Short": "32d1c68f7152"
+    },
+    {
+      "plenoId": "lpwudo",
+      "fecha": "2024-10-07",
+      "url": "https://regmeet.com/files/uploads/aytoribarroja/07-10-2024.Pleno2024-11-09_02-33-20/documentos/2026-07-30_15-41-27_0.pdf",
+      "etiqueta": "P 20241007",
+      "subidoEl": "2026-07-30",
+      "paginas": 74,
+      "sha256Short": "374c33c048a8"
+    },
+    {
+      "plenoId": "19xkzxw",
+      "fecha": "2024-09-09",
+      "url": "https://regmeet.com/files/uploads/aytoribarroja/09-09-2024.Pleno2024-10-08_17-52-18/documentos/2026-07-30_15-41-10_0.pdf",
+      "etiqueta": "P 20240909",
+      "subidoEl": "2026-07-30",
+      "paginas": 70,
+      "sha256Short": "a26338cb1154"
+    },
+    {
+      "plenoId": "1tgd1h4",
+      "fecha": "2024-07-29",
+      "url": "https://regmeet.com/files/uploads/aytoribarroja/29-07-2024.Pleno2024-08-06_14-15-54/documentos/2026-07-30_15-40-52_0.pdf",
+      "etiqueta": "P 20240729",
+      "subidoEl": "2026-07-30",
+      "paginas": 104,
+      "sha256Short": "8f10320b9216"
+    },
+    {
+      "plenoId": "1pe6awk",
+      "fecha": "2024-07-22",
+      "url": "https://regmeet.com/files/uploads/aytoribarroja/22-07-2024.Pleno2024-09-23_14-17-24/documentos/2026-07-30_15-40-35_0.pdf",
+      "etiqueta": "P 20240722 EXTRAORDINARIO...",
+      "subidoEl": "2026-07-30",
+      "paginas": 43,
+      "sha256Short": "d79cd12d4dbd"
+    },
+    {
+      "plenoId": "1pdx0lc",
+      "fecha": "2024-07-01",
+      "url": "https://regmeet.com/files/uploads/aytoribarroja/01-07-2024.Pleno2024-07-05_13-52-20/documentos/2026-07-30_15-40-15_0.pdf",
+      "etiqueta": "P 20240701",
+      "subidoEl": "2026-07-30",
+      "paginas": 20,
+      "sha256Short": "8b0259f48806"
+    },
+    {
+      "plenoId": "15jtq5k",
+      "fecha": "2024-06-14",
+      "url": "https://regmeet.com/files/uploads/aytoribarroja/14-06-2024.Pleno2024-06-14_14-22-24/documentos/2026-07-30_15-39-55_0.pdf",
+      "etiqueta": "P 20240614 EXTRAORDINARIO...",
+      "subidoEl": "2026-07-30",
+      "paginas": 6,
+      "sha256Short": "54993fb9c0d6"
+    },
+    {
+      "plenoId": "1wqaaog",
+      "fecha": "2024-06-03",
+      "url": "https://regmeet.com/files/uploads/aytoribarroja/03-06-2024.Pleno2024-06-21_17-08-45/documentos/2026-07-30_15-39-29_0.pdf",
+      "etiqueta": "P 20240603",
+      "subidoEl": "2026-07-30",
+      "paginas": 24,
+      "sha256Short": "4a95b8070e33"
+    },
+    {
+      "plenoId": "yhp4sc",
+      "fecha": "2024-05-13",
+      "url": "https://regmeet.com/files/uploads/aytoribarroja/13-05-2024.Pleno2024-05-14_14-18-25/documentos/2026-07-30_15-39-06_0.pdf",
+      "etiqueta": "P 20240513 EXTRAORDINARIO...",
+      "subidoEl": "2026-07-30",
+      "paginas": 60,
+      "sha256Short": "102c3f1f26d0"
+    },
+    {
+      "plenoId": "fkwdd8",
+      "fecha": "2024-05-06",
+      "url": "https://regmeet.com/files/uploads/aytoribarroja/06-05-2024.Pleno2024-05-07_13-38-07/documentos/2026-07-30_15-38-40_0.pdf",
+      "etiqueta": "P 20240506",
+      "subidoEl": "2026-07-30",
+      "paginas": 41,
+      "sha256Short": "f67191566c2f"
+    },
+    {
+      "plenoId": "1080zow",
+      "fecha": "2024-04-15",
+      "url": "https://regmeet.com/files/uploads/aytoribarroja/15-04-2024.Pleno2024-04-16_21-07-15/documentos/2026-07-30_15-38-22_0.pdf",
+      "etiqueta": "P 20240415",
+      "subidoEl": "2026-07-30",
+      "paginas": 88,
+      "sha256Short": "bc767f0092a6"
+    },
+    {
+      "plenoId": "1rb2dsm",
+      "fecha": "2024-03-28",
+      "url": "https://regmeet.com/files/uploads/aytoribarroja/28-03-2024.Pleno2024-03-29_14-14-02/documentos/2026-07-30_15-37-59_0.pdf",
+      "etiqueta": "P 20240328 EXTRAORDINARIO...",
+      "subidoEl": "2026-07-30",
+      "paginas": 4,
+      "sha256Short": "100af2cf9ace"
+    },
+    {
+      "plenoId": "umsqbk",
+      "fecha": "2024-03-04",
+      "url": "https://regmeet.com/files/uploads/aytoribarroja/04-03-2024.Pleno2024-03-05_14-24-26/documentos/2026-07-30_15-37-36_0.pdf",
+      "etiqueta": "P 20240304",
+      "subidoEl": "2026-07-30",
+      "paginas": 96,
+      "sha256Short": "788082ea0791"
+    },
+    {
+      "plenoId": "1ue92u4",
+      "fecha": "2024-02-05",
+      "url": "https://regmeet.com/files/uploads/aytoribarroja/05-02-2024.Pleno2024-02-14_02-53-29/documentos/2026-07-30_15-37-19_0.pdf",
+      "etiqueta": "P 20240205",
+      "subidoEl": "2026-07-30",
+      "paginas": 43,
+      "sha256Short": "7f71fc1a93bd"
+    },
+    {
+      "plenoId": "1qisc4g",
+      "fecha": "2024-01-15",
+      "url": "https://regmeet.com/files/uploads/aytoribarroja/15-01-2024.Pleno2024-01-17_23-19-53/documentos/2026-07-30_15-36-55_0.pdf",
+      "etiqueta": "P 20240115",
+      "subidoEl": "2026-07-30",
+      "paginas": 16,
+      "sha256Short": "d58679f191ff"
+    }
+  ]
+}

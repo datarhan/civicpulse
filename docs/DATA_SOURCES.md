@@ -484,6 +484,13 @@ overwrites it. Change the bot's SQLite instead.
 - **Surfaces** — `/plenos` — `TopDepartmentsCard` + inline "Ver orden del día" expander per session
 - **Cited by** — `subir-veredicto --evidencia <session link> --punto <n>` (since 2026-10-10): a signed raise may cite one agenda item as evidence (kind `agenda`, corpus `plenos-agendas`). The row is written from the record — session, date, part and the item's whole title — and never says «aprobado»; a later session cannot support an earlier statement, and with a figure in the statement no agenda row reaches `verificado` (`comprobarRegistrosConLaDeclaracion` in `src/scraper/subida-firmada.ts`)
 
+### Pleno actas (signed minutes, regmeet «Documentos» tab)
+
+- **Pipeline** — `scripts/scrape-pleno-actas.ts` → `regmeet-documentos.ts` (`parseRegmeetDocumentos`, `clasificarDocumento`) → `pleno-actas.json`; the text goes to the gitignored `.cache/pleno-actas/<plenoId>.txt` (`pdftotext`, no `-layout`) and is never published, because an acta names every councillor and private persons
+- **Source** — the «Documentos» tab of each session page on `regmeet.com` (aytoribarroja), where the council publishes the signed actas. A PDF counts as an acta by its text («ACTA SESIÓN …» with the session's date), never by its link label (an internal code). regmeet blocks GitHub runners, so the only refresh is `scrape-ci-blocked.sh`
+- **Outputs** — `pleno-actas.json`: per session the PDF URL, label, upload date, page count (`pdfinfo`; null if unknown, never 0) and the PDF's `sha256Short`. No text. `stats` reports attempted / con acta / sin documentos / sólo otros / fecha no coincide / fallidas / sin intentar separately
+- **Surfaces** — ninguna todavía; la usa check:votos-acta (`scripts/check-votos-acta.ts` over `acta-votos.ts` + `cotejo-votos-acta.ts`), which compares every published per-bloc tally in `pleno-votes.json` against the acta's vote on the merits (fondo, never the urgency vote) and only reports
+
 ### Open job vacancies
 
 - **Pipeline** — `empleo.ts` → `empleo.json`

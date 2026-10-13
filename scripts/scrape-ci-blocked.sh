@@ -79,6 +79,12 @@ ADAPTERS=(
   # ya no aparece en el menú de esa sección del portal. Correrlo aquí fallaría
   # igual. Eso necesita una fuente nueva o declararla retirada, no un cron.
   scrape:transparency
+  # Las actas firmadas de pleno, de la pestaña «Documentos» de cada sesión de
+  # regmeet. regmeet bloquea a los runners de GitHub igual que con el orden del
+  # día, así que la nocturna no puede ni intentarlo: éste es el ÚNICO camino de
+  # refresco de `pleno-actas.json`. Sin él, un acta nueva no entraría nunca en
+  # el cotejo de `check:votos-acta` de más abajo.
+  scrape:pleno-actas
 )
 
 failed=()
@@ -127,6 +133,14 @@ npm run check:sindic-fichas || echo "[ci-blocked] check:sindic-fichas reportó d
 echo "[ci-blocked] $(date '+%F %T') running check:citations (network probe)"
 npm run check:citations || echo "[ci-blocked] check:citations reported findings — see above"
 
+# ¿Dice el acta lo mismo que el desglose por grupos que publicamos? Aquí y no en
+# la nocturna porque lee el texto que `scrape:pleno-actas` deja en .cache/, y ese
+# raspado sólo corre desde esta IP. Sólo informa: una contradicción la corrige
+# una persona con `corregir-voto`, que firma; nada automático reescribe un
+# desglose publicado. Y no debe tumbar el refresco de los datos.
+echo "[ci-blocked] $(date '+%F %T') running check:votos-acta"
+npm run check:votos-acta || echo "[ci-blocked] check:votos-acta: desgloses que el acta contradice — ver arriba"
+
 # Commit only these snapshots — never `git add -A`, so an in-progress working
 # tree is not swept into an unattended commit. The `git add` alone never
 # achieved that: `git commit` with no pathspec takes the WHOLE index, so
@@ -145,6 +159,7 @@ if ! cron_git_stage_and_check \
        public/data/procesos-selectivos.json public/data/asociaciones.json \
        public/data/obras.json public/data/sindicatura.json \
        public/data/sindic-expedientes.json public/data/transparency-docs.json \
+       public/data/pleno-actas.json \
        $REDERIVADOS; then
   echo "[ci-blocked] no changes"
   exit ${#failed[@]}
