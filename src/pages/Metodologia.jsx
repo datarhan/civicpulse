@@ -710,18 +710,19 @@ export default function Metodologia() {
             de la sesión. Lo publica el <strong>acta</strong>, que el Ayuntamiento cuelga firmada en
             la pestaña «Documentos» de esa misma sesión en regmeet cuando se aprueba (hasta octubre
             de 2026 creímos que no se publicaba: lo habíamos buscado sólo en ribarroja.es). Mientras
-            no hay acta, el desglose procede de la transcripción automática (Whisper) del audio de
-            la sesión, que publicamos íntegra en <code>/data/pleno-transcripts/</code>; cada voto
-            dice de cuál de las dos sale. Antes ambas mitades colgaban de un único enlace que sólo
+            no lo hemos leído del acta —porque aún no se ha aprobado o porque todavía no la hemos
+            cotejado—, el desglose procede de la transcripción automática (Whisper) del audio de la
+            sesión, que publicamos íntegra en <code>/data/pleno-transcripts/</code>; cada voto dice
+            de cuál de las dos sale. Antes ambas mitades colgaban de un único enlace que sólo
             sostenía una de ellas, y en{' '}
             <a href="/departamentos" style={{ color: 'var(--civic)' }}>
               /departamentos
             </a>{' '}
-            ese enlace se rotulaba «Acta oficial». Esa transcripción es de lo menos verificable que
-            publica este sitio: varios desgloses leídos de ella resultaron erróneos. Los que se
-            retiraron constan como retirados, y los que el acta corrigió se publican con la marca{' '}
-            <strong>«desglose corregido»</strong>, la fecha y el motivo; el desglose anterior queda
-            en el registro de correcciones de <code>/data/pleno-votes.json</code>.
+            ese enlace se rotulaba «Acta oficial». La transcripción automática es de lo menos
+            verificable que publica este sitio: varios desgloses leídos de ella resultaron erróneos.
+            Los que se retiraron constan como retirados, y los que el acta corrigió se publican con
+            la marca <strong>«desglose corregido»</strong>, la fecha y el motivo; el desglose
+            anterior queda en el registro de correcciones de <code>/data/pleno-votes.json</code>.
           </li>
           <li>
             <strong>Un desglose no cotejado se declara como tal.</strong> Mientras no se haya
