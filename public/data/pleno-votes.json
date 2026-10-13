@@ -1,13 +1,13 @@
 {
-  "generatedAt": "2026-09-10T14:13:45.412Z",
+  "generatedAt": "2026-10-13T15:19:03.138Z",
   "source": {
     "description": "Curated voting records for the Ayuntamiento de Riba-roja de Túria. Each record cites its two halves separately in `provenance`: the OUTCOME comes from the council's session portal (regmeet.com), which publishes the orden del día and the result but no per-bloc tally; the BREAKDOWN comes from the automatic transcript of the session audio published at /data/pleno-transcripts/. A breakdown stays `verification: \"sin-verificar\"` until a curator cotejes it against the acta and signs for it.",
     "contract": "Human-edited, schema-validated. Mutations only via npm run pleno-vote / promote-vote / retract-vote. A breakdown attributed to a source that does not publish one is refused at write time."
   },
   "stats": {
-    "total": 17,
+    "total": 16,
     "byOutcome": {
-      "aprobado": 16,
+      "aprobado": 15,
       "rechazado": 1,
       "retirado": 0,
       "aplazado": 0
@@ -19,10 +19,10 @@
       "rx4hb4": 3,
       "1qi8axv": 1,
       "qz6weg": 3,
-      "1du4rf5": 3
+      "1du4rf5": 2
     },
     "retracted": {
-      "record": 2,
+      "record": 3,
       "breakdown": 1,
       "plazo": 1
     }
@@ -204,12 +204,12 @@
           "seats": 1
         },
         {
-          "bloc": "Compromís",
+          "bloc": "EU-Podem",
           "direction": "a_favor",
           "seats": 1
         },
         {
-          "bloc": null,
+          "bloc": "Compromís",
           "direction": "abstencion",
           "seats": 1
         }
@@ -224,10 +224,10 @@
           "verification": "sin-verificar"
         },
         "breakdown": {
-          "kind": "transcripcion",
-          "url": "/data/pleno-transcripts/1sqj7is.txt",
-          "publisher": "CivicPulse — transcripción automática (Whisper) de la sesión",
-          "retrievedAt": "2026-08-02",
+          "kind": "acta",
+          "url": "https://regmeet.com/files/uploads/aytoribarroja/09-03-2026.Pleno2026-03-11_13-49-23/documentos/2026-07-30_13-46-15_0.pdf",
+          "publisher": "Ayuntamiento de Riba-roja de Túria",
+          "retrievedAt": "2026-10-13",
           "verification": "sin-verificar"
         }
       },
@@ -434,13 +434,8 @@
           "seats": 11
         },
         {
-          "bloc": "PP",
-          "direction": "en_contra",
-          "seats": 7
-        },
-        {
-          "bloc": "VOX",
-          "direction": "en_contra",
+          "bloc": "EU-Podem",
+          "direction": "a_favor",
           "seats": 1
         },
         {
@@ -449,8 +444,13 @@
           "seats": 1
         },
         {
-          "bloc": null,
-          "direction": "a_favor",
+          "bloc": "PP",
+          "direction": "abstencion",
+          "seats": 7
+        },
+        {
+          "bloc": "VOX",
+          "direction": "en_contra",
           "seats": 1
         }
       ],
@@ -464,10 +464,10 @@
           "verification": "sin-verificar"
         },
         "breakdown": {
-          "kind": "transcripcion",
-          "url": "/data/pleno-transcripts/rx4hb4.txt",
-          "publisher": "CivicPulse — transcripción automática (Whisper) de la sesión",
-          "retrievedAt": "2026-08-01",
+          "kind": "acta",
+          "url": "https://regmeet.com/files/uploads/aytoribarroja/09-02-2026.Pleno2026-02-10_20-43-39/documentos/2026-07-30_13-45-56_0.pdf",
+          "publisher": "Ayuntamiento de Riba-roja de Túria",
+          "retrievedAt": "2026-10-13",
           "verification": "sin-verificar"
         }
       },
@@ -489,23 +489,23 @@
           "seats": 11
         },
         {
+          "bloc": "EU-Podem",
+          "direction": "a_favor",
+          "seats": 1
+        },
+        {
           "bloc": "Compromís",
           "direction": "a_favor",
           "seats": 1
         },
         {
           "bloc": "PP",
-          "direction": "abstencion",
+          "direction": "en_contra",
           "seats": 7
         },
         {
           "bloc": "VOX",
-          "direction": "en_contra",
-          "seats": 1
-        },
-        {
-          "bloc": null,
-          "direction": "a_favor",
+          "direction": "abstencion",
           "seats": 1
         }
       ],
@@ -523,10 +523,10 @@
           "verification": "sin-verificar"
         },
         "breakdown": {
-          "kind": "transcripcion",
-          "url": "/data/pleno-transcripts/rx4hb4.txt",
-          "publisher": "CivicPulse — transcripción automática (Whisper) de la sesión",
-          "retrievedAt": "2026-08-01",
+          "kind": "acta",
+          "url": "https://regmeet.com/files/uploads/aytoribarroja/09-02-2026.Pleno2026-02-10_20-43-39/documentos/2026-07-30_13-45-56_0.pdf",
+          "publisher": "Ayuntamiento de Riba-roja de Túria",
+          "retrievedAt": "2026-10-13",
           "verification": "sin-verificar"
         }
       },
@@ -545,12 +545,27 @@
         {
           "bloc": "PSOE",
           "direction": "a_favor",
-          "seats": 11
+          "seats": 10
+        },
+        {
+          "bloc": "Compromís",
+          "direction": "a_favor",
+          "seats": 1
         },
         {
           "bloc": "PP",
           "direction": "en_contra",
           "seats": 7
+        },
+        {
+          "bloc": "EU-Podem",
+          "direction": "abstencion",
+          "seats": 1
+        },
+        {
+          "bloc": "VOX",
+          "direction": "abstencion",
+          "seats": 1
         }
       ],
       "provenance": {
@@ -562,10 +577,10 @@
           "verification": "sin-verificar"
         },
         "breakdown": {
-          "kind": "transcripcion",
-          "url": "/data/pleno-transcripts/1qi8axv.txt",
-          "publisher": "CivicPulse — transcripción automática (Whisper) de la sesión",
-          "retrievedAt": "2026-08-02",
+          "kind": "acta",
+          "url": "https://regmeet.com/files/uploads/aytoribarroja/23-12-2025.Pleno2025-12-31_00-03-53/documentos/2026-07-30_15-35-36_0.pdf",
+          "publisher": "Ayuntamiento de Riba-roja de Túria",
+          "retrievedAt": "2026-10-13",
           "verification": "sin-verificar"
         }
       },
@@ -587,9 +602,14 @@
           "seats": 11
         },
         {
-          "bloc": "PP",
+          "bloc": "Compromís",
           "direction": "a_favor",
-          "seats": 7
+          "seats": 1
+        },
+        {
+          "bloc": "EU-Podem",
+          "direction": "a_favor",
+          "seats": 1
         },
         {
           "bloc": "VOX",
@@ -597,14 +617,9 @@
           "seats": 1
         },
         {
-          "bloc": null,
-          "direction": "a_favor",
-          "seats": 1
-        },
-        {
-          "bloc": "Compromís",
-          "direction": "a_favor",
-          "seats": 1
+          "bloc": "PP",
+          "direction": "abstencion",
+          "seats": 7
         }
       ],
       "provenance": {
@@ -616,10 +631,10 @@
           "verification": "sin-verificar"
         },
         "breakdown": {
-          "kind": "transcripcion",
-          "url": "/data/pleno-transcripts/qz6weg.txt",
-          "publisher": "CivicPulse — transcripción automática (Whisper) de la sesión",
-          "retrievedAt": "2026-08-01",
+          "kind": "acta",
+          "url": "https://regmeet.com/files/uploads/aytoribarroja/01-12-2025.Pleno2025-12-04_01-07-20/documentos/2026-07-30_15-35-18_0.pdf",
+          "publisher": "Ayuntamiento de Riba-roja de Túria",
+          "retrievedAt": "2026-10-13",
           "verification": "sin-verificar"
         }
       },
@@ -723,18 +738,23 @@
           "seats": 11
         },
         {
-          "bloc": "PP",
-          "direction": "a_favor",
-          "seats": 7
-        },
-        {
           "bloc": "VOX",
           "direction": "a_favor",
           "seats": 1
         },
         {
+          "bloc": "PP",
+          "direction": "abstencion",
+          "seats": 7
+        },
+        {
+          "bloc": "EU-Podem",
+          "direction": "abstencion",
+          "seats": 1
+        },
+        {
           "bloc": "Compromís",
-          "direction": "a_favor",
+          "direction": "abstencion",
           "seats": 1
         }
       ],
@@ -747,10 +767,10 @@
           "verification": "sin-verificar"
         },
         "breakdown": {
-          "kind": "transcripcion",
-          "url": "/data/pleno-transcripts/1du4rf5.txt",
-          "publisher": "CivicPulse — transcripción automática (Whisper) de la sesión",
-          "retrievedAt": "2026-08-02",
+          "kind": "acta",
+          "url": "https://regmeet.com/files/uploads/aytoribarroja/03-11-2025.Pleno2025-11-04_16-50-08/documentos/2026-07-30_15-34-56_0.pdf",
+          "publisher": "Ayuntamiento de Riba-roja de Túria",
+          "retrievedAt": "2026-10-13",
           "verification": "sin-verificar"
         }
       },
@@ -793,57 +813,6 @@
         }
       ],
       "expediente": "30/2025/PGRU",
-      "provenance": {
-        "outcome": {
-          "kind": "regmeet",
-          "url": "https://regmeet.com/aytoribarroja/participaciones/db98dc0dbafde48e8f74c0de001d35e4?idioma=castellano",
-          "publisher": "Ayuntamiento de Riba-roja de Túria",
-          "retrievedAt": "2026-06-24",
-          "verification": "sin-verificar"
-        },
-        "breakdown": {
-          "kind": "transcripcion",
-          "url": "/data/pleno-transcripts/1du4rf5.txt",
-          "publisher": "CivicPulse — transcripción automática (Whisper) de la sesión",
-          "retrievedAt": "2026-08-02",
-          "verification": "sin-verificar"
-        }
-      },
-      "sourceUrl": "https://regmeet.com/aytoribarroja/participaciones/db98dc0dbafde48e8f74c0de001d35e4?idioma=castellano",
-      "sourcePublisher": "Ayuntamiento de Riba-roja de Túria",
-      "retrievedAt": "2026-06-24"
-    },
-    {
-      "id": "1du4rf5-09",
-      "plenoId": "1du4rf5",
-      "plenoDate": "2025-11-03",
-      "itemNumber": 9,
-      "title": "Moció conjunta dels Grups Municipals EU-Podem i Compromís per Riba-roja de suport a la ILP “No és la meua cultura”",
-      "outcome": "aprobado",
-      "votes": [
-        {
-          "bloc": "PSOE",
-          "direction": "a_favor",
-          "seats": 11
-        },
-        {
-          "bloc": "PP",
-          "direction": "en_contra",
-          "seats": 7
-        },
-        {
-          "bloc": "VOX",
-          "direction": "en_contra",
-          "seats": 1
-        },
-        {
-          "bloc": "Compromís",
-          "direction": "a_favor",
-          "seats": 1
-        }
-      ],
-      "department": "Cultura",
-      "expediente": "27/2025/PGRU",
       "provenance": {
         "outcome": {
           "kind": "regmeet",
@@ -1005,6 +974,491 @@
       "originalPlazo": {
         "dueBy": "2026-02-14",
         "dueBySource": "el día 14 este sábado es el último día"
+      }
+    },
+    {
+      "voteId": "1du4rf5-09",
+      "scope": "record",
+      "reason": "Publicábamos la moción 27/2025/PGRU (punto 9 del 3 de noviembre de 2025) como aprobada. El acta dice que el Pleno acordó desestimarla por 2 votos a favor (EUPV y Compromís) y 19 en contra (PSOE, PP y VOX), y la página de la sesión en regmeet la marca «No aprobada». Se retira hasta poder publicar el resultado corregido.",
+      "editor": "Sergei Lutchenko",
+      "retractedAt": "2026-10-13T15:19:03.138Z",
+      "original": {
+        "id": "1du4rf5-09",
+        "plenoId": "1du4rf5",
+        "plenoDate": "2025-11-03",
+        "itemNumber": 9,
+        "title": "Moció conjunta dels Grups Municipals EU-Podem i Compromís per Riba-roja de suport a la ILP “No és la meua cultura”",
+        "outcome": "aprobado",
+        "votes": [
+          {
+            "bloc": "PSOE",
+            "direction": "a_favor",
+            "seats": 11
+          },
+          {
+            "bloc": "PP",
+            "direction": "en_contra",
+            "seats": 7
+          },
+          {
+            "bloc": "VOX",
+            "direction": "en_contra",
+            "seats": 1
+          },
+          {
+            "bloc": "Compromís",
+            "direction": "a_favor",
+            "seats": 1
+          }
+        ],
+        "department": "Cultura",
+        "expediente": "27/2025/PGRU",
+        "provenance": {
+          "outcome": {
+            "kind": "regmeet",
+            "url": "https://regmeet.com/aytoribarroja/participaciones/db98dc0dbafde48e8f74c0de001d35e4?idioma=castellano",
+            "publisher": "Ayuntamiento de Riba-roja de Túria",
+            "retrievedAt": "2026-06-24",
+            "verification": "sin-verificar"
+          },
+          "breakdown": {
+            "kind": "transcripcion",
+            "url": "/data/pleno-transcripts/1du4rf5.txt",
+            "publisher": "CivicPulse — transcripción automática (Whisper) de la sesión",
+            "retrievedAt": "2026-08-02",
+            "verification": "sin-verificar"
+          }
+        },
+        "sourceUrl": "https://regmeet.com/aytoribarroja/participaciones/db98dc0dbafde48e8f74c0de001d35e4?idioma=castellano",
+        "sourcePublisher": "Ayuntamiento de Riba-roja de Túria",
+        "retrievedAt": "2026-06-24"
+      },
+      "originalVotes": null
+    }
+  ],
+  "corrections": [
+    {
+      "voteId": "rx4hb4-10",
+      "correctedAt": "2026-10-13T15:18:32.684Z",
+      "editor": "Sergei Lutchenko",
+      "reason": "El acta de la sesión de 9 de febrero de 2026 (punto 10, moción 6/2026/PGRU) recoge 13 votos a favor (11 PSOE, 1 EUPV, 1 Compromís), 7 abstenciones (PP) y 1 voto en contra (VOX). Publicábamos al PP en contra, leído de la transcripción automática.",
+      "originalVotes": [
+        {
+          "bloc": "PSOE",
+          "direction": "a_favor",
+          "seats": 11
+        },
+        {
+          "bloc": "PP",
+          "direction": "en_contra",
+          "seats": 7
+        },
+        {
+          "bloc": "VOX",
+          "direction": "en_contra",
+          "seats": 1
+        },
+        {
+          "bloc": "Compromís",
+          "direction": "a_favor",
+          "seats": 1
+        },
+        {
+          "bloc": null,
+          "direction": "a_favor",
+          "seats": 1
+        }
+      ],
+      "originalBreakdownSource": {
+        "kind": "transcripcion",
+        "url": "/data/pleno-transcripts/rx4hb4.txt",
+        "publisher": "CivicPulse — transcripción automática (Whisper) de la sesión",
+        "retrievedAt": "2026-08-01",
+        "verification": "sin-verificar"
+      },
+      "votes": [
+        {
+          "bloc": "PSOE",
+          "direction": "a_favor",
+          "seats": 11
+        },
+        {
+          "bloc": "EU-Podem",
+          "direction": "a_favor",
+          "seats": 1
+        },
+        {
+          "bloc": "Compromís",
+          "direction": "a_favor",
+          "seats": 1
+        },
+        {
+          "bloc": "PP",
+          "direction": "abstencion",
+          "seats": 7
+        },
+        {
+          "bloc": "VOX",
+          "direction": "en_contra",
+          "seats": 1
+        }
+      ],
+      "breakdownSource": {
+        "kind": "acta",
+        "url": "https://regmeet.com/files/uploads/aytoribarroja/09-02-2026.Pleno2026-02-10_20-43-39/documentos/2026-07-30_13-45-56_0.pdf",
+        "publisher": "Ayuntamiento de Riba-roja de Túria",
+        "retrievedAt": "2026-10-13",
+        "verification": "sin-verificar"
+      }
+    },
+    {
+      "voteId": "rx4hb4-11",
+      "correctedAt": "2026-10-13T15:18:48.044Z",
+      "editor": "Sergei Lutchenko",
+      "reason": "El acta de la sesión de 9 de febrero de 2026 (punto 11, exp. 647/2026/GEN, votación del fondo) recoge 13 votos a favor (11 PSOE, 1 EUPV, 1 Compromís), 7 en contra (PP) y 1 abstención (VOX). Publicábamos PP abstención y VOX en contra: el desglose del punto 10 copiado en el 11.",
+      "originalVotes": [
+        {
+          "bloc": "PSOE",
+          "direction": "a_favor",
+          "seats": 11
+        },
+        {
+          "bloc": "Compromís",
+          "direction": "a_favor",
+          "seats": 1
+        },
+        {
+          "bloc": "PP",
+          "direction": "abstencion",
+          "seats": 7
+        },
+        {
+          "bloc": "VOX",
+          "direction": "en_contra",
+          "seats": 1
+        },
+        {
+          "bloc": null,
+          "direction": "a_favor",
+          "seats": 1
+        }
+      ],
+      "originalBreakdownSource": {
+        "kind": "transcripcion",
+        "url": "/data/pleno-transcripts/rx4hb4.txt",
+        "publisher": "CivicPulse — transcripción automática (Whisper) de la sesión",
+        "retrievedAt": "2026-08-01",
+        "verification": "sin-verificar"
+      },
+      "votes": [
+        {
+          "bloc": "PSOE",
+          "direction": "a_favor",
+          "seats": 11
+        },
+        {
+          "bloc": "EU-Podem",
+          "direction": "a_favor",
+          "seats": 1
+        },
+        {
+          "bloc": "Compromís",
+          "direction": "a_favor",
+          "seats": 1
+        },
+        {
+          "bloc": "PP",
+          "direction": "en_contra",
+          "seats": 7
+        },
+        {
+          "bloc": "VOX",
+          "direction": "abstencion",
+          "seats": 1
+        }
+      ],
+      "breakdownSource": {
+        "kind": "acta",
+        "url": "https://regmeet.com/files/uploads/aytoribarroja/09-02-2026.Pleno2026-02-10_20-43-39/documentos/2026-07-30_13-45-56_0.pdf",
+        "publisher": "Ayuntamiento de Riba-roja de Túria",
+        "retrievedAt": "2026-10-13",
+        "verification": "sin-verificar"
+      }
+    },
+    {
+      "voteId": "1sqj7is-05",
+      "correctedAt": "2026-10-13T15:18:51.311Z",
+      "editor": "Sergei Lutchenko",
+      "reason": "El acta de la sesión de 9 de marzo de 2026 (punto 5, PRI de la UE Casco 1, exp. 13/2019/GEN) recoge 20 votos a favor (11 PSOE, 7 PP, 1 VOX, 1 EUPV) y 1 abstención (Compromís). Publicábamos a Compromís a favor y una abstención sin grupo, leído de la transcripción automática.",
+      "originalVotes": [
+        {
+          "bloc": "PSOE",
+          "direction": "a_favor",
+          "seats": 11
+        },
+        {
+          "bloc": "PP",
+          "direction": "a_favor",
+          "seats": 7
+        },
+        {
+          "bloc": "VOX",
+          "direction": "a_favor",
+          "seats": 1
+        },
+        {
+          "bloc": "Compromís",
+          "direction": "a_favor",
+          "seats": 1
+        },
+        {
+          "bloc": null,
+          "direction": "abstencion",
+          "seats": 1
+        }
+      ],
+      "originalBreakdownSource": {
+        "kind": "transcripcion",
+        "url": "/data/pleno-transcripts/1sqj7is.txt",
+        "publisher": "CivicPulse — transcripción automática (Whisper) de la sesión",
+        "retrievedAt": "2026-08-02",
+        "verification": "sin-verificar"
+      },
+      "votes": [
+        {
+          "bloc": "PSOE",
+          "direction": "a_favor",
+          "seats": 11
+        },
+        {
+          "bloc": "PP",
+          "direction": "a_favor",
+          "seats": 7
+        },
+        {
+          "bloc": "VOX",
+          "direction": "a_favor",
+          "seats": 1
+        },
+        {
+          "bloc": "EU-Podem",
+          "direction": "a_favor",
+          "seats": 1
+        },
+        {
+          "bloc": "Compromís",
+          "direction": "abstencion",
+          "seats": 1
+        }
+      ],
+      "breakdownSource": {
+        "kind": "acta",
+        "url": "https://regmeet.com/files/uploads/aytoribarroja/09-03-2026.Pleno2026-03-11_13-49-23/documentos/2026-07-30_13-46-15_0.pdf",
+        "publisher": "Ayuntamiento de Riba-roja de Túria",
+        "retrievedAt": "2026-10-13",
+        "verification": "sin-verificar"
+      }
+    },
+    {
+      "voteId": "1qi8axv-05",
+      "correctedAt": "2026-10-13T15:18:53.780Z",
+      "editor": "Sergei Lutchenko",
+      "reason": "El acta de la sesión de 23 de diciembre de 2025 (punto 5, operación de tesorería 2025-2026, exp. 5477/2025/GEN) recoge 11 votos a favor (10 PSOE, 1 Compromís), 7 en contra (PP) y 2 abstenciones (EUPV y VOX). Publicábamos 11 votos del PSOE y omitíamos a Compromís, EUPV y VOX, leído de la transcripción automática.",
+      "originalVotes": [
+        {
+          "bloc": "PSOE",
+          "direction": "a_favor",
+          "seats": 11
+        },
+        {
+          "bloc": "PP",
+          "direction": "en_contra",
+          "seats": 7
+        }
+      ],
+      "originalBreakdownSource": {
+        "kind": "transcripcion",
+        "url": "/data/pleno-transcripts/1qi8axv.txt",
+        "publisher": "CivicPulse — transcripción automática (Whisper) de la sesión",
+        "retrievedAt": "2026-08-02",
+        "verification": "sin-verificar"
+      },
+      "votes": [
+        {
+          "bloc": "PSOE",
+          "direction": "a_favor",
+          "seats": 10
+        },
+        {
+          "bloc": "Compromís",
+          "direction": "a_favor",
+          "seats": 1
+        },
+        {
+          "bloc": "PP",
+          "direction": "en_contra",
+          "seats": 7
+        },
+        {
+          "bloc": "EU-Podem",
+          "direction": "abstencion",
+          "seats": 1
+        },
+        {
+          "bloc": "VOX",
+          "direction": "abstencion",
+          "seats": 1
+        }
+      ],
+      "breakdownSource": {
+        "kind": "acta",
+        "url": "https://regmeet.com/files/uploads/aytoribarroja/23-12-2025.Pleno2025-12-31_00-03-53/documentos/2026-07-30_15-35-36_0.pdf",
+        "publisher": "Ayuntamiento de Riba-roja de Túria",
+        "retrievedAt": "2026-10-13",
+        "verification": "sin-verificar"
+      }
+    },
+    {
+      "voteId": "qz6weg-10",
+      "correctedAt": "2026-10-13T15:18:56.905Z",
+      "editor": "Sergei Lutchenko",
+      "reason": "El acta de la sesión de 1 de diciembre de 2025 (punto 10, subsanación de errores materiales en la identificación fiscal de dos beneficiarios de la base 32, exp. 5472/2025/GEN) recoge 14 votos a favor (11 PSOE, 1 Compromís, 1 EUPV, 1 VOX) y 7 abstenciones (PP). Publicábamos al PP a favor y el voto de EUPV sin grupo, leído de la transcripción automática.",
+      "originalVotes": [
+        {
+          "bloc": "PSOE",
+          "direction": "a_favor",
+          "seats": 11
+        },
+        {
+          "bloc": "PP",
+          "direction": "a_favor",
+          "seats": 7
+        },
+        {
+          "bloc": "VOX",
+          "direction": "a_favor",
+          "seats": 1
+        },
+        {
+          "bloc": null,
+          "direction": "a_favor",
+          "seats": 1
+        },
+        {
+          "bloc": "Compromís",
+          "direction": "a_favor",
+          "seats": 1
+        }
+      ],
+      "originalBreakdownSource": {
+        "kind": "transcripcion",
+        "url": "/data/pleno-transcripts/qz6weg.txt",
+        "publisher": "CivicPulse — transcripción automática (Whisper) de la sesión",
+        "retrievedAt": "2026-08-01",
+        "verification": "sin-verificar"
+      },
+      "votes": [
+        {
+          "bloc": "PSOE",
+          "direction": "a_favor",
+          "seats": 11
+        },
+        {
+          "bloc": "Compromís",
+          "direction": "a_favor",
+          "seats": 1
+        },
+        {
+          "bloc": "EU-Podem",
+          "direction": "a_favor",
+          "seats": 1
+        },
+        {
+          "bloc": "VOX",
+          "direction": "a_favor",
+          "seats": 1
+        },
+        {
+          "bloc": "PP",
+          "direction": "abstencion",
+          "seats": 7
+        }
+      ],
+      "breakdownSource": {
+        "kind": "acta",
+        "url": "https://regmeet.com/files/uploads/aytoribarroja/01-12-2025.Pleno2025-12-04_01-07-20/documentos/2026-07-30_15-35-18_0.pdf",
+        "publisher": "Ayuntamiento de Riba-roja de Túria",
+        "retrievedAt": "2026-10-13",
+        "verification": "sin-verificar"
+      }
+    },
+    {
+      "voteId": "1du4rf5-06",
+      "correctedAt": "2026-10-13T15:18:59.533Z",
+      "editor": "Sergei Lutchenko",
+      "reason": "El acta de la sesión de 3 de noviembre de 2025 (punto 6, reconocimiento extrajudicial 27B/2025, exp. 4073/2025/GEN) recoge 12 votos a favor (11 PSOE, 1 VOX) y 9 abstenciones (7 PP, EUPV y Compromís). Publicábamos a PP y Compromís a favor y faltaba EUPV, leído de la transcripción automática.",
+      "originalVotes": [
+        {
+          "bloc": "PSOE",
+          "direction": "a_favor",
+          "seats": 11
+        },
+        {
+          "bloc": "PP",
+          "direction": "a_favor",
+          "seats": 7
+        },
+        {
+          "bloc": "VOX",
+          "direction": "a_favor",
+          "seats": 1
+        },
+        {
+          "bloc": "Compromís",
+          "direction": "a_favor",
+          "seats": 1
+        }
+      ],
+      "originalBreakdownSource": {
+        "kind": "transcripcion",
+        "url": "/data/pleno-transcripts/1du4rf5.txt",
+        "publisher": "CivicPulse — transcripción automática (Whisper) de la sesión",
+        "retrievedAt": "2026-08-02",
+        "verification": "sin-verificar"
+      },
+      "votes": [
+        {
+          "bloc": "PSOE",
+          "direction": "a_favor",
+          "seats": 11
+        },
+        {
+          "bloc": "VOX",
+          "direction": "a_favor",
+          "seats": 1
+        },
+        {
+          "bloc": "PP",
+          "direction": "abstencion",
+          "seats": 7
+        },
+        {
+          "bloc": "EU-Podem",
+          "direction": "abstencion",
+          "seats": 1
+        },
+        {
+          "bloc": "Compromís",
+          "direction": "abstencion",
+          "seats": 1
+        }
+      ],
+      "breakdownSource": {
+        "kind": "acta",
+        "url": "https://regmeet.com/files/uploads/aytoribarroja/03-11-2025.Pleno2025-11-04_16-50-08/documentos/2026-07-30_15-34-56_0.pdf",
+        "publisher": "Ayuntamiento de Riba-roja de Túria",
+        "retrievedAt": "2026-10-13",
+        "verification": "sin-verificar"
       }
     }
   ]
