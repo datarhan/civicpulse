@@ -20,6 +20,8 @@
  * new party must be added there first so the UI can render it.
  */
 
+import { esDocumentoDeSesionRegmeet } from './regmeet-documentos'
+
 /**
  * Group codes that NAME a real municipal group. This is the only set a
  * `speakerGroup` may take — «who said this» is an attribution, so a
@@ -137,7 +139,9 @@ export const VOTE_SOURCE_KINDS = {
     derivedFrom: null,
     unverifiedNote: null,
   },
-  /** The council's session portal. Item + outcome only — never a tally. */
+  /** The council's session portal. Item + outcome only — never a tally.
+   *  Los PDF firmados de su pestaña «Documentos» NO son esta clase: son actas
+   *  (`esDocumentoDeSesionRegmeet`, en `voteSourceKindForUrl`). */
   regmeet: {
     label: 'Portal de sesiones (regmeet)',
     publishesOutcome: true,
@@ -231,11 +235,12 @@ export function voteSourceDerivedFrom(kind: VoteSourceKind): VoteSourceKind | nu
  * catch, and that error is the transcription step: Whisper mishearing «tretze»
  * as «tres», dropping a bloc, or hallucinating a stretch outright. The video is
  * upstream of that step, and a human watching the nominal call is a different
- * reader, not a second machine. Rejecting it would mean the only admissible
- * check is a document this project currently cannot fetch at all (see
- * `scripts/fetch-pleno-actas.ts`, broken against the Aug-2026 portal), which
- * would leave `verificado` unreachable in practice and therefore, again,
- * meaningless. What it does NOT license is quietly calling that «cotejado con
+ * reader, not a second machine. Rejecting it would make the acta the only
+ * admissible check. When this was decided (2026-08) the acta was believed
+ * unfetchable; since 2026-10-13 the signed actas are indexed from regmeet
+ * (`scripts/scrape-pleno-actas.ts`, `npm run check:votos-acta`), so the acta
+ * is the check to prefer — but the video remains a legitimate independent
+ * reader of the transcript, and the edge stays. What it does NOT license is quietly calling that «cotejado con
  * el acta»: the surfaces name the document actually consulted, from
  * `verifiedAgainst.kind`.
  *
@@ -322,6 +327,37 @@ export function isIndependentlyVerified(
 }
 
 /**
+ * ¿Lleva esta cita la salvedad «sin cotejar»? La ÚNICA pregunta que se hacen la
+ * ficha del voto (`VoteProvenance`), el recuento de /datos y el aviso de
+ * check:relations, para que las tres respondan sobre el mismo conjunto.
+ *
+ * Sí ⇔ su clase tiene `unverifiedNote` no nula en `VOTE_SOURCE_KINDS` Y nadie
+ * la ha cotejado contra una fuente independiente. Sale de la tabla, no de una
+ * lista: hasta el 13-10-2026 /datos preguntaba sólo `isIndependentlyVerified`,
+ * así que un desglose corregido con `corregir-voto` —citado al acta,
+ * `sin-verificar`— se contaba «sin cotejar» mientras la ficha, con razón, no le
+ * ponía salvedad: el acta no tiene nada encima con que cotejarla. Una clase
+ * desconocida no lleva salvedad aquí porque ya es un error en
+ * `votes-breakdown-source`, y contarla dos veces sería ruido.
+ */
+export function breakdownNeedsCaveat(
+  ref:
+    | {
+        kind?: unknown
+        verification?: unknown
+        verifiedAgainst?: { kind?: unknown } | null
+      }
+    | null
+    | undefined,
+): boolean {
+  if (ref == null) return false
+  if (typeof ref.kind !== 'string' || !VOTE_SOURCE_KIND_IDS.includes(ref.kind as VoteSourceKind))
+    return false
+  if (VOTE_SOURCE_KINDS[ref.kind as VoteSourceKind].unverifiedNote == null) return false
+  return !isIndependentlyVerified(ref)
+}
+
+/**
  * Has a human cotejado THIS claim against an INDEPENDENT source?
  *
  * Deliberately two values, not a confidence score. «sin-verificar» is the
@@ -331,13 +367,17 @@ export function isIndependentlyVerified(
  * as verified would have been worse than the single-citation defect it
  * replaced.
  *
- * Note what «sin-verificar» does and does not accuse anyone of. The acta is the
- * source that would settle a breakdown, and this project cannot currently fetch
- * one: `scripts/fetch-pleno-actas.ts` reads a `link` that has pointed at
- * regmeet since 2026-05-25, extracts retired Drupal markup, and has no npm
- * script wiring it to anything. Zero actas are cached; all 45 transcripts on
- * disk are Whisper output. So the flag records an unreachable source, not an
- * unread one, and every message about it should say so.
+ * Note what «sin-verificar» does and does not accuse anyone of. Until
+ * 2026-10-13 the acta that would settle a breakdown was believed unreachable —
+ * only ribarroja.es had been measured (`scripts/fetch-pleno-actas.ts`). The
+ * signed actas are on regmeet, in each session's «Documentos» tab:
+ * `scripts/scrape-pleno-actas.ts` indexes them into pleno-actas.json,
+ * `npm run check:votos-acta` coteja each published tally against its acta, and
+ * `npm run corregir-voto` replaces a wrong one with a signed record. A
+ * transcript-cited breakdown still `sin-verificar` is therefore work pending
+ * on a reachable source, and messages about it should point at those commands.
+ * A breakdown cited to the acta itself carries no caveat at all
+ * (`breakdownNeedsCaveat`).
  */
 export const VOTE_VERIFICATIONS = ['verificado', 'sin-verificar'] as const
 export type VoteVerification = (typeof VOTE_VERIFICATIONS)[number]
@@ -420,6 +460,10 @@ export function voteSourceKindForUrl(url: string): VoteSourceKind | null {
   } catch {
     return null
   }
+  // El acta firmada que regmeet aloja en la pestaña «Documentos» es un acta,
+  // no el portal: publica el desglose por grupos. Sin esto, citarla para un
+  // desglose se rechazaba por venir de un portal que no lo publica.
+  if (esDocumentoDeSesionRegmeet(url)) return 'acta'
   if (host === 'regmeet.com') return 'regmeet'
   if (host === 'ribarroja.es' || host.endsWith('.ribarroja.es')) return 'acta'
   if (host === 'youtu.be' || host === 'youtube.com' || host.endsWith('.youtube.com')) return 'video'
@@ -632,6 +676,36 @@ export interface VoteRetraction {
   revokedReason?: string
 }
 
+/**
+ * Una corrección firmada de un desglose publicado: la contrapartida del libro de
+ * retiradas para el caso en que el desglose no sobra, sino que está mal.
+ *
+ * Existe por dos huecos que se vieron el 13-10-2026 con el acta de la sesión del
+ * 09-02 en la mano (rx4hb4-10 y rx4hb4-11, PP y VOX al revés): `npm run
+ * pleno-vote` sustituía la fila sin dejar rastro, y `retract-vote --breakdown`
+ * seguido de `--unretract` devuelve el desglose VIEJO, no uno nuevo. Ninguna de
+ * las dos vías dejaba dicho qué se publicó antes, quién lo cambió ni por qué.
+ *
+ * Como las retiradas, una corrección nunca se borra: guarda el desglose y la
+ * fuente que sustituye, tal cual se publicaron, y `validateSnapshot` exige que la
+ * fila coincida con la última corrección de su voto.
+ */
+export interface VoteBreakdownCorrection {
+  voteId: string
+  /** ISO timestamp. */
+  correctedAt: string
+  /** Firma del curador. Nunca el nombre de un script. */
+  editor: string
+  /** Qué estaba mal y de dónde sale lo nuevo. ≥ RETRACTION_REASON_MIN. Se publica. */
+  reason: string
+  /** El desglose publicado antes, tal cual. */
+  originalVotes: VoteByBloc[]
+  originalBreakdownSource: VoteSourceRef | null
+  /** El desglose que lo sustituye y su fuente. */
+  votes: VoteByBloc[]
+  breakdownSource: VoteSourceRef
+}
+
 export interface PlenoVotesSnapshot {
   generatedAt: string
   source: {
@@ -648,6 +722,8 @@ export interface PlenoVotesSnapshot {
   items: PlenoVote[]
   /** Append-only. Never pruned; see `VoteRetraction`. */
   retractions: VoteRetraction[]
+  /** Append-only. Never pruned; see `VoteBreakdownCorrection`. */
+  corrections: VoteBreakdownCorrection[]
 }
 
 /** A retraction still in force — `revoke` has not lifted it. */
@@ -1195,6 +1271,68 @@ export function validateRetraction(r: unknown, idx = -1): VoteRetraction {
   }
 }
 
+/**
+ * ¿Dicen dos desgloses lo mismo? Compara multiconjuntos de
+ * `grupo|sentido|escaños`, sin mirar el orden: reordenar las tuplas no es
+ * corregir nada, y cambiar un solo escaño sí.
+ */
+export function sameTally(a: readonly VoteByBloc[], b: readonly VoteByBloc[]): boolean {
+  const clave = (v: VoteByBloc) =>
+    `${v.bloc ?? '\u0000sin-identificar'}|${v.direction}|${v.seats ?? ''}`
+  const xs = a.map(clave).sort()
+  const ys = b.map(clave).sort()
+  return xs.length === ys.length && xs.every((x, i) => x === ys[i])
+}
+
+export function validateCorrection(raw: unknown, idx = -1): VoteBreakdownCorrection {
+  const ctx = idx >= 0 ? ` (corrections[${idx}])` : ''
+  must(typeof raw === 'object' && raw !== null, `correction must be an object${ctx}`)
+  const o = raw as Record<string, unknown>
+
+  must(typeof o.voteId === 'string' && o.voteId.trim().length > 0, `voteId required${ctx}`)
+  must(
+    typeof o.correctedAt === 'string' && ISO_DATETIME.test(o.correctedAt),
+    `correctedAt must be an ISO timestamp${ctx}`,
+  )
+  must(
+    typeof o.editor === 'string' && o.editor.trim().length > 0,
+    `editor required — una corrección de cómo votaron grupos con nombre lleva la firma ` +
+      `de un curador${ctx}`,
+  )
+  must(
+    typeof o.reason === 'string' && o.reason.trim().length >= RETRACTION_REASON_MIN,
+    `reason must be ≥${RETRACTION_REASON_MIN} chars — una corrección sin motivo no ` +
+      `deja constancia de nada${ctx}`,
+  )
+  // Las reglas de las tuplas (enum, deduplicado, el centinela `Otro` retirado)
+  // son las de `validateVote`, aplicadas sobre el mismo portador sintético que
+  // usa el libro de retiradas: nunca se reescriben aquí (DATA_INTEGRITY, regla 1).
+  must(Array.isArray(o.originalVotes), `originalVotes must be an array${ctx}`)
+  must(Array.isArray(o.votes), `votes must be an array${ctx}`)
+  const voteId = o.voteId as string
+  const originalVotes = validateVote(
+    syntheticTupleCarrier(o.originalVotes as unknown[], voteId),
+    idx,
+  ).votes
+  const votes = validateVote(syntheticTupleCarrier(o.votes as unknown[], voteId), idx).votes
+  const breakdownSource = validateSourceRef(o.breakdownSource, 'breakdown', ctx)
+  const originalBreakdownSource =
+    o.originalBreakdownSource == null
+      ? null
+      : validateSourceRef(o.originalBreakdownSource, 'breakdown', ctx)
+
+  return {
+    voteId,
+    correctedAt: o.correctedAt as string,
+    editor: (o.editor as string).trim(),
+    reason: (o.reason as string).trim(),
+    originalVotes,
+    originalBreakdownSource,
+    votes,
+    breakdownSource,
+  }
+}
+
 /** Minimal well-formed vote wrapper so a bare tuple array can be pushed through
  *  the tuple half of `validateVote` without restating its rules here — the
  *  hand-copied-shape trap in docs/DATA_INTEGRITY.md rule 1. */
@@ -1222,6 +1360,10 @@ export function validateSnapshot(raw: unknown): PlenoVotesSnapshot {
   must(
     o.retractions === undefined || Array.isArray(o.retractions),
     'retractions must be an array when present',
+  )
+  must(
+    o.corrections === undefined || Array.isArray(o.corrections),
+    'corrections must be an array when present',
   )
 
   const seenIds = new Set<string>()
@@ -1315,6 +1457,48 @@ export function validateSnapshot(raw: unknown): PlenoVotesSnapshot {
     )
   }
 
+  // El libro de correcciones, y la guarda que lo hace valer en el ESCRITOR: un
+  // desglose publicado que no coincide con la última corrección de su voto ha
+  // cambiado sin dejar rastro. `pleno-vote`, `promote-vote`, `retract-vote` y
+  // `corregir-voto` pasan todos por aquí.
+  const corrections: VoteBreakdownCorrection[] = ((o.corrections as unknown[]) ?? []).map(
+    validateCorrection,
+  )
+  const latestById = new Map<string, VoteBreakdownCorrection>()
+  for (const c of corrections) {
+    const prev = latestById.get(c.voteId)
+    must(
+      prev == null || prev.correctedAt <= c.correctedAt,
+      `las correcciones de ${c.voteId} no están en orden: ${c.correctedAt} va detrás de ` +
+        `${prev?.correctedAt} — el libro sólo se amplía al final`,
+    )
+    latestById.set(c.voteId, c)
+  }
+  const liveRecords = new Set(
+    retractions.filter((r) => isLiveRetraction(r) && r.scope === 'record').map((r) => r.voteId),
+  )
+  for (const [id, latest] of latestById) {
+    const item = byId.get(id)
+    if (item == null) {
+      must(
+        liveRecords.has(id),
+        `la corrección de ${id} (${latest.correctedAt}) no tiene voto en items[] ni una ` +
+          `retirada entera en vigor que explique su ausencia`,
+      )
+      continue
+    }
+    // Un desglose retirado DESPUÉS de corregirse está en el libro de retiradas,
+    // que guarda el corregido; aquí no hay tally que comparar. Retirar debilita, y
+    // la corrección no puede bloquear la vía que debilita.
+    if (item.votesRetracted != null) continue
+    must(
+      sameTally(latest.votes, item.votes) &&
+        item.provenance?.breakdown?.url === latest.breakdownSource.url,
+      `el desglose de ${id} difiere de su última corrección (${latest.correctedAt}). ` +
+        `Un desglose publicado sólo cambia con npm run corregir-voto`,
+    )
+  }
+
   const byOutcome: Record<VoteOutcome, number> = {
     aprobado: 0,
     rechazado: 0,
@@ -1343,6 +1527,7 @@ export function validateSnapshot(raw: unknown): PlenoVotesSnapshot {
     stats: { total: items.length, byOutcome, byPleno, retracted },
     items,
     retractions,
+    corrections,
   }
 }
 
@@ -1619,5 +1804,96 @@ export function revokeRetraction(
           }
         : r,
     ),
+  }
+}
+
+// ── corrección: la mitad pura ────────────────────────────────────────────────
+// A diferencia de las retiradas, esto SÍ cambia lo que se publica sobre cómo
+// votaron grupos con nombre: es nivel C, lo ejecuta y lo firma un curador
+// (`npm run corregir-voto`), nunca un proceso. Por eso no sustituye nada sin
+// dejar en el libro lo que había y de dónde sale lo nuevo.
+
+/** La última corrección de `voteId`, o null si nunca se corrigió. */
+export function latestCorrection(
+  snap: Pick<PlenoVotesSnapshot, 'corrections'>,
+  voteId: string,
+): VoteBreakdownCorrection | null {
+  const propias = (snap.corrections ?? []).filter((c) => c.voteId === voteId)
+  return propias.length > 0 ? propias[propias.length - 1] : null
+}
+
+/**
+ * Sustituir el desglose publicado de `voteId` por otro, citado a una fuente que
+ * publica desglose, y anotar la sustitución en `corrections[]`.
+ *
+ * El resultado y su fuente no se tocan: corregir quién votó qué no es corregir
+ * si se aprobó. Quien llama revalida la instantánea entera antes de escribir.
+ */
+export function correctVoteBreakdown(
+  snap: PlenoVotesSnapshot,
+  voteId: string,
+  input: { votes: VoteByBloc[]; breakdownSource: VoteSourceRef },
+  sig: RetractionSignature,
+): PlenoVotesSnapshot {
+  checkSignature(sig)
+  const target = snap.items.find((v) => v.id === voteId)
+  refuse(target != null, `el voto "${voteId}" no está publicado en items[] — nada que corregir`)
+  refuse(
+    findLiveRetraction(snap, voteId, 'breakdown') == null,
+    `el desglose de "${voteId}" está retirado — devuélvelo antes con retract-vote ` +
+      `--unretract --breakdown, y corrígelo después`,
+  )
+  // Un primer desglose no es una corrección: no hay nada que archivar en
+  // `originalVotes`, y el libro diría que se corrigió lo que nunca se publicó.
+  // `validateSnapshot` no deja publicar `votes: []` sin su retirada, pero esta
+  // función está exportada y la puede llamar una instantánea sin validar.
+  refuse(
+    target.votes.length > 0,
+    `"${voteId}": no hay desglose publicado que corregir; publícalo con npm run pleno-vote -- --file`,
+  )
+  const { kind, url } = input.breakdownSource
+  refuse(
+    BREAKDOWN_SOURCE_KINDS.includes(kind),
+    `la fuente "${kind}" no publica desglose por grupos; cita el acta. ` +
+      `Admitidas: ${BREAKDOWN_SOURCE_KINDS.join(', ')}`,
+  )
+  const deLaUrl = voteSourceKindForUrl(url)
+  refuse(
+    deLaUrl === kind,
+    `la fuente dice ser "${kind}" pero su url (${url}) es ` +
+      `${deLaUrl == null ? 'de un sitio que no se reconoce' : `"${deLaUrl}"`}`,
+  )
+  refuse(
+    input.votes.length > 0,
+    `el desglose nuevo de "${voteId}" está vacío; para quitarlo, retract-vote --breakdown`,
+  )
+  refuse(
+    !sameTally(input.votes, target.votes),
+    `el desglose no cambia: "${voteId}" ya publica exactamente esas tuplas`,
+  )
+  const correction: VoteBreakdownCorrection = {
+    voteId,
+    correctedAt: sig.at,
+    editor: sig.editor.trim(),
+    reason: sig.reason.trim(),
+    originalVotes: target.votes,
+    originalBreakdownSource: target.provenance?.breakdown ?? null,
+    votes: input.votes.map((v) => ({ ...v })),
+    breakdownSource: input.breakdownSource,
+  }
+  return {
+    ...snap,
+    items: snap.items.map((v) =>
+      v.id === voteId
+        ? {
+            ...v,
+            votes: correction.votes,
+            ...(v.provenance
+              ? { provenance: { outcome: v.provenance.outcome, breakdown: input.breakdownSource } }
+              : {}),
+          }
+        : v,
+    ),
+    corrections: [...(snap.corrections ?? []), correction],
   }
 }

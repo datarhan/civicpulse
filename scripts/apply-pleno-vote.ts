@@ -17,6 +17,7 @@
 import { readFileSync, writeFileSync, existsSync } from 'node:fs'
 import { resolve } from 'node:path'
 import {
+  sameTally,
   validateSnapshot,
   validateVote,
   voteSourceKindForUrl,
@@ -52,6 +53,7 @@ function loadSnapshot(): PlenoVotesSnapshot {
       },
       items: [],
       retractions: [],
+      corrections: [],
     }
   }
   return validateSnapshot(JSON.parse(readFileSync(DATA_PATH, 'utf8')))
@@ -208,6 +210,34 @@ function main() {
   const snap = loadSnapshot()
   const existingIdx = snap.items.findIndex((v) => v.id === incoming.id)
   if (existingIdx >= 0) {
+    // Sustituir la fila borraba el desglose publicado sin dejar rastro de qué
+    // decía ni de quién lo cambió (rx4hb4-10/-11, 13-10-2026). Un desglose
+    // publicado sólo cambia por el libro de correcciones, firmado, y sólo se
+    // quita por el de retiradas: vaciarlo aquí (`votes: []` con un sello escrito
+    // a mano) no archivaría lo que decía. Si lo publicado está vacío, la fila
+    // entrante es un primer desglose o la vuelta de uno retirado, y de eso
+    // responde `validateSnapshot` con su propio mensaje.
+    const existing = snap.items[existingIdx]
+    if (existing.votes.length > 0 && incoming.votes.length === 0) {
+      process.stderr.write(
+        `[pleno-vote] ${incoming.id} publica un desglose y la fila nueva lo vacía. Quitar un ` +
+          `desglose publicado deja constancia en el libro de retiradas: npm run retract-vote -- ` +
+          `${incoming.id} --breakdown --reason … --editor …\n`,
+      )
+      process.exit(1)
+    }
+    if (
+      existing.votes.length > 0 &&
+      incoming.votes.length > 0 &&
+      !sameTally(existing.votes, incoming.votes)
+    ) {
+      process.stderr.write(
+        `[pleno-vote] ${incoming.id} ya está publicado con otro desglose. Cambiar un desglose ` +
+          `publicado deja constancia: npm run corregir-voto -- ${incoming.id} --votos … ` +
+          `--fuente … --reason … --editor …\n`,
+      )
+      process.exit(1)
+    }
     process.stdout.write(`[pleno-vote] replacing existing ${incoming.id}\n`)
     snap.items[existingIdx] = incoming
   } else {

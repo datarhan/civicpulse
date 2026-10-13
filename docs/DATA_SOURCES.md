@@ -44,7 +44,7 @@ Everything produced by the convention above. Safe to delete and rebuild.
 | File                                                | Schema / CLI                                                                                                                                                                                                                                                                                                                      |
 | --------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `promises.json`                                     | `src/scraper/promises.ts` · `npm run reply`, `freeze:set`, `freeze:clear`, `aviso-promesas`, `corregir-promesa`                                                                                                                                                                                                                   |
-| `pleno-votes.json`                                  | `src/scraper/pleno-votes.ts` · `npm run pleno-vote`, `promote-vote`, `retract-vote`                                                                                                                                                                                                                                               |
+| `pleno-votes.json`                                  | `src/scraper/pleno-votes.ts` · `npm run pleno-vote`, `promote-vote`, `retract-vote`, `corregir-voto`                                                                                                                                                                                                                              |
 | `pleno-findings.json`                               | `src/scraper/pleno-finding.ts` · `npm run promote-claim`, `finding-reply`, `correct-pleno-finding`                                                                                                                                                                                                                                |
 | `press-findings.json`                               | `src/scraper/press-finding.ts` · rows arrive only through `npm run auto-curate-press` (`informational` only) · `correct-press-finding`                                                                                                                                                                                            |
 | `journalist-reports.json` (+ `journalist-reports/`) | `src/scraper/journalist.ts` · `npm run promote-report`, `correct-journalist-report`, `journalist-reply`, `repoint-source-url`, `journalist:archive`, `journalist:archive-sources`                                                                                                                                                 |
@@ -484,6 +484,13 @@ overwrites it. Change the bot's SQLite instead.
 - **Surfaces** — `/plenos` — `TopDepartmentsCard` + inline "Ver orden del día" expander per session
 - **Cited by** — `subir-veredicto --evidencia <session link> --punto <n>` (since 2026-10-10): a signed raise may cite one agenda item as evidence (kind `agenda`, corpus `plenos-agendas`). The row is written from the record — session, date, part and the item's whole title — and never says «aprobado»; a later session cannot support an earlier statement, and with a figure in the statement no agenda row reaches `verificado` (`comprobarRegistrosConLaDeclaracion` in `src/scraper/subida-firmada.ts`)
 
+### Pleno actas (signed minutes, regmeet «Documentos» tab)
+
+- **Pipeline** — `scripts/scrape-pleno-actas.ts` → `regmeet-documentos.ts` (`parseRegmeetDocumentos`, `clasificarDocumento`) → `pleno-actas.json`; the text goes to the gitignored `.cache/pleno-actas/<plenoId>.txt` (`pdftotext`, no `-layout`) and is never published, because an acta names every councillor and private persons
+- **Source** — the «Documentos» tab of each session page on `regmeet.com` (aytoribarroja), where the council publishes the signed actas. A PDF counts as an acta by its text («ACTA SESIÓN …» with the session's date), never by its link label (an internal code). regmeet blocks GitHub runners, so the only refresh is `scrape-ci-blocked.sh`
+- **Outputs** — `pleno-actas.json`: per session the PDF URL, label, upload date, page count (`pdfinfo`; null if unknown, never 0) and the PDF's `sha256Short`. No text. `stats` reports attempted / con acta / sin documentos / sólo otros / fecha no coincide / fallidas / sin intentar separately
+- **Surfaces** — ninguna todavía; la usa check:votos-acta (`scripts/check-votos-acta.ts` over `acta-votos.ts` + `cotejo-votos-acta.ts`), which compares every published per-bloc tally in `pleno-votes.json` against the acta's vote on the merits (fondo, never the urgency vote) and only reports
+
 ### Open job vacancies
 
 - **Pipeline** — `empleo.ts` → `empleo.json`
@@ -666,13 +673,15 @@ overwrites it. Change the bot's SQLite instead.
   off passed as a verification of it. `isIndependentlyVerified` is the one
   predicate the validator, `check:relations`, `/datos` and `VoteProvenance` all
   read — none of them re-expresses the rule.
-- **Nothing here has ever been cotejado, and the acta is unreachable.** All 16
-  published breakdowns and all 17 outcomes are `sin-verificar`.
-  `scripts/fetch-pleno-actas.ts` has four independent breakages against the
-  Aug-2026 portal (reads a `link` that points at regmeet since 2026-05-25;
-  extracts retired Drupal markup; plain `http://`; no npm script runs it), zero
-  actas are cached, and every transcript on disk is Whisper output. Messages
-  about this state must say _unreachable_, not _unread_
+- **The acta is reachable since 2026-10-13.** Until then it was believed
+  unreachable: only ribarroja.es had been measured
+  (`scripts/fetch-pleno-actas.ts`, legacy). The signed actas are in each
+  regmeet session's «Documentos» tab; `scripts/scrape-pleno-actas.ts` indexes
+  them into `pleno-actas.json`, `npm run check:votos-acta` coteja each
+  published tally against its acta, and `npm run corregir-voto` replaces a
+  wrong one with a signed record. A breakdown cited to the acta itself carries
+  no «sin cotejar» caveat; `breakdownNeedsCaveat` is the one predicate the vote
+  card, `/datos` and `check:relations` read for it
 - **Withdrawal** — `npm run retract-vote` is the only way out. Three scopes, because the
   parts of a record do not share a provenance: `--reason/--editor` alone withdraws
   the **whole vote** (it leaves `items[]`, so it stops counting everywhere that reads

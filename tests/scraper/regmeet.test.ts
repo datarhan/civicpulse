@@ -57,3 +57,28 @@ describe('normalizeRegmeetLabel', () => {
     expect(normalizeRegmeetLabel('Algo raro')).toBe('otro')
   })
 })
+
+describe('normalizeRegmeetLabel — aprobación negada', () => {
+  // 1du4rf5-09 se publicó «aprobado» porque regmeet rotula el punto «No aprobada» y
+  // /aprobad/ casaba antes que nada. Ningún fixture real trae ese rótulo: se fija aquí.
+  it('«No aprobada» (y su forma valenciana, en mayúsculas) es rechazada', () => {
+    expect(normalizeRegmeetLabel('No aprobada')).toBe('rechazada')
+    expect(normalizeRegmeetLabel('No aprovada')).toBe('rechazada')
+    expect(normalizeRegmeetLabel('NO APROBADA')).toBe('rechazada')
+  })
+
+  it('las etiquetas sin negación conservan su resultado', () => {
+    expect(normalizeRegmeetLabel('Aprobada')).toBe('aprobada')
+    expect(normalizeRegmeetLabel('Aprovada')).toBe('aprobada')
+    expect(normalizeRegmeetLabel('Rechazada')).toBe('rechazada')
+    expect(normalizeRegmeetLabel('Dar cuenta')).toBe('dar-cuenta')
+  })
+
+  it('parseRegmeetOutcomes lleva «No aprobada» a rechazada', () => {
+    const page =
+      '<p>4. Moción de prueba (00:10:00)</p><span class="label label-danger">No aprobada</span>'
+    expect(parseRegmeetOutcomes(page)).toEqual([
+      expect.objectContaining({ number: 4, outcome: 'rechazada' }),
+    ])
+  })
+})

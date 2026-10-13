@@ -1,4 +1,9 @@
 /**
+ * LEGADO — lee sólo ribarroja.es. Las actas firmadas de 2025-2026 están en la
+ * pestaña «Documentos» de cada sesión de regmeet, y las indexa
+ * `scripts/scrape-pleno-actas.ts` (→ public/data/pleno-actas.json); el cotejo
+ * de los desgloses contra ellas es `npm run check:votos-acta`.
+ *
  * Fetch pleno acta PDFs from ribarroja.es and extract text into the same
  * transcript format the LLM extractor consumes. Closes the coverage gap for
  * the ~33 plenos (mostly 2023-early 2024) that have no YouTube video.
