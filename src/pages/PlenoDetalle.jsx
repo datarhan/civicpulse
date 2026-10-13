@@ -5,6 +5,7 @@ import Compartir from '../components/Compartir'
 import { AgendaRow } from '../components/plenos/AgendaRow'
 import { VoteTallyBar, DirectionLegend } from '../components/plenos/VoteTallyBar'
 import { VoteBreakdownRetracted } from '../components/plenos/VoteBreakdownRetracted'
+import { VoteBreakdownCorrected } from '../components/plenos/VoteBreakdownCorrected'
 import { VoteProvenance } from '../components/plenos/VoteProvenance'
 import { FindingCard } from '../components/PlenoFindings'
 import { ClaimLedger } from '../components/ClaimLedger'
@@ -16,6 +17,7 @@ import { usePlenoVideos, indexVideosByPleno } from '../hooks/usePlenoVideos'
 import { usePlenoFindings } from '../hooks/usePlenoFindings'
 import { fmtDateLong, fmtDateShort, rellena } from '../lib/formatters'
 import { conHuecos } from '../lib/huecos'
+import { latestCorrection } from '../scraper/pleno-votes'
 import { rotuloDe, useLocale, useT } from '../i18n'
 import { transcriptKind } from '../lib/transcript-kind.js'
 import { cuentaCotejadas, desgloseCotejadas, entreParentesis } from '../lib/cotejo'
@@ -722,7 +724,12 @@ export default function PlenoDetalle() {
                   {rec.votesRetracted ? (
                     <VoteBreakdownRetracted retraction={rec.votesRetracted} />
                   ) : (
-                    <VoteTallyBar tally={rec.votes} />
+                    <>
+                      <VoteTallyBar tally={rec.votes} />
+                      <VoteBreakdownCorrected
+                        correction={votesData ? latestCorrection(votesData, rec.id) : null}
+                      />
+                    </>
                   )}
                   {/* This tab showed a tally with no citation at all — the
                       reader could not tell the outcome and the breakdown come

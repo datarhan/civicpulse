@@ -4,6 +4,7 @@ import { resolve } from 'node:path'
 import { render } from '@testing-library/react'
 
 import { VoteProvenance } from '../src/components/plenos/VoteProvenance'
+import { VoteBreakdownCorrected } from '../src/components/plenos/VoteBreakdownCorrected'
 import { unverifiedBreakdownNote } from '../src/pages/Datos'
 import { isIndependentlyVerified, VOTE_SOURCE_KINDS } from '../src/scraper/pleno-votes'
 
@@ -104,5 +105,35 @@ describe('the /datos count and the vote cards describe the same set', () => {
       ` · ${unverified.length - 1} de ${withBreakdown.length} desgloses sin cotejar`,
     )
     expect(caveatsOn(verified)).toHaveLength(0)
+  })
+})
+
+describe('VoteBreakdownCorrected', () => {
+  it('dice que el desglose se corrigió, cuándo y por qué, junto a la barra', () => {
+    const correction = {
+      voteId: 'rx4hb4-11',
+      correctedAt: '2026-10-13T12:00:00.000Z',
+      editor: 'Sergei Lutchenko',
+      reason:
+        'El acta de la sesión recoge PP en contra y VOX abstención; publicábamos lo contrario.',
+      originalVotes: [],
+      originalBreakdownSource: null,
+      votes: [],
+      breakdownSource: {
+        kind: 'acta',
+        url: 'https://regmeet.com/files/uploads/aytoribarroja/x/documentos/y.pdf',
+        publisher: 'Ayuntamiento de Riba-roja de Túria',
+        retrievedAt: '2026-10-13',
+        verification: 'sin-verificar',
+      },
+    }
+    const { getByText } = render(<VoteBreakdownCorrected correction={correction} />)
+    expect(getByText(/DESGLOSE POR GRUPOS CORREGIDO/)).toBeTruthy()
+    expect(getByText(/2026-10-13/)).toBeTruthy()
+    expect(getByText(/El acta de la sesión recoge/)).toBeTruthy()
+  })
+  it('no pinta nada sin corrección', () => {
+    const { container } = render(<VoteBreakdownCorrected correction={null} />)
+    expect(container.textContent).toBe('')
   })
 })

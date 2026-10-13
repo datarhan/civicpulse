@@ -14,12 +14,14 @@ import { usePlenoAgendas } from '../hooks/usePlenoAgendas'
 import { usePlenoVotes, OUTCOME_LABEL, OUTCOME_TONE } from '../hooks/usePlenoVotes'
 import { useQuejas, STATE_LABEL, STATE_TONE } from '../hooks/useQuejas'
 import { canonicalizeDepartment } from '../scraper/departments'
+import { latestCorrection } from '../scraper/pleno-votes'
 import { diaDeLaSede } from '../scraper/queja-router'
 import { ESTADOS_CERRADOS, departamentoDeQueja } from '../lib/department-stats'
 import { porcentajeLegible, rellena } from '../lib/formatters'
 import { ClaimLedger } from '../components/ClaimLedger'
 import { VoteTallyBar, DirectionLegend } from '../components/plenos/VoteTallyBar'
 import { VoteBreakdownRetracted } from '../components/plenos/VoteBreakdownRetracted'
+import { VoteBreakdownCorrected } from '../components/plenos/VoteBreakdownCorrected'
 import { VoteProvenance } from '../components/plenos/VoteProvenance'
 import { deptSlugToClaimTopics, promiseDeptSlug } from '../lib/department-claim-topics.js'
 import { useT, useLocale } from '../i18n'
@@ -86,6 +88,9 @@ function VotesSection({ slug, frozen }) {
             v.votes?.length > 0 && (
               <div style={{ marginTop: 8 }}>
                 <VoteTallyBar tally={v.votes} />
+                <VoteBreakdownCorrected
+                  correction={votesSnap.data ? latestCorrection(votesSnap.data, v.id) : null}
+                />
               </div>
             )
           )}

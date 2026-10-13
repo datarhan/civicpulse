@@ -706,16 +706,22 @@ export default function Metodologia() {
             oficial». No era cierto: <strong>cada voto cita ahora dos fuentes distintas</strong>. El{' '}
             <strong>resultado</strong> (aprobado, rechazado) procede del portal de sesiones del
             Ayuntamiento (regmeet.com), que publica el orden del día y el resultado. El{' '}
-            <strong>desglose por grupos</strong> —quién votó qué— <em>no</em> lo publica ese portal:
-            procede de la transcripción automática (Whisper) del audio de la sesión, que publicamos
-            íntegra en <code>/data/pleno-transcripts/</code>. Antes ambas mitades colgaban de un
-            único enlace que sólo sostenía una de ellas, y en{' '}
+            <strong>desglose por grupos</strong> —quién votó qué— <em>no</em> lo publica la página
+            de la sesión. Lo publica el <strong>acta</strong>, que el Ayuntamiento cuelga firmada en
+            la pestaña «Documentos» de esa misma sesión en regmeet cuando se aprueba (hasta octubre
+            de 2026 creímos que no se publicaba: lo habíamos buscado sólo en ribarroja.es). Mientras
+            no hay acta, el desglose procede de la transcripción automática (Whisper) del audio de
+            la sesión, que publicamos íntegra en <code>/data/pleno-transcripts/</code>; cada voto
+            dice de cuál de las dos sale. Antes ambas mitades colgaban de un único enlace que sólo
+            sostenía una de ellas, y en{' '}
             <a href="/departamentos" style={{ color: 'var(--civic)' }}>
               /departamentos
             </a>{' '}
-            ese enlace se rotulaba «Acta oficial». Esa segunda mitad es de lo menos verificable que
-            publica este sitio, no de lo más: tres desgloses se comprobaron y resultaron erróneos;
-            están retirados y su retirada consta.
+            ese enlace se rotulaba «Acta oficial». Esa transcripción es de lo menos verificable que
+            publica este sitio: varios desgloses leídos de ella resultaron erróneos. Los que se
+            retiraron constan como retirados, y los que el acta corrigió se publican con la marca{' '}
+            <strong>«desglose corregido»</strong>, la fecha y el motivo; el desglose anterior queda
+            en el registro de correcciones de <code>/data/pleno-votes.json</code>.
           </li>
           <li>
             <strong>Un desglose no cotejado se declara como tal.</strong> Mientras no se haya
