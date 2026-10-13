@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-12T12:42:40.440Z",
+  "generatedAt": "2026-10-13T04:49:41.362Z",
   "windowDays": 14,
   "items": [
     {
@@ -19,7 +19,7 @@
     {
       "kind": "pleno-item",
       "refId": "zrbgic:6",
-      "label": "Asuntos de Urgencia. 6.1. Moció",
+      "label": "Recursos humanos · Asuntos de Urgencia. RECURSOS HUMANOS, Acuerdo para la modificación de los criterios de reparto de la asignación a los grupos políticos para la anualidad 2026",
       "date": "2026-10-05",
       "keyword": ""
     },
@@ -44,7 +44,7 @@
     "candidatesExamined": 10
   },
   "builtFrom": {
-    "plenos-agendas.json": "f3665c9b0977",
+    "plenos-agendas.json": "6ace5a71c026",
     "press-claims-verified.json": "7a128575d1ad",
     "press.json": "55861149a5e9",
     "promises.json": "08c43b132d79"

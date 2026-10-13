@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-12T12:40:55.711Z",
+  "generatedAt": "2026-10-13T04:46:56.111Z",
   "source": {
     "baseUrl": "https://regmeet.com",
     "description": "Ayuntamiento de Riba-roja de Túria — sesiones plenarias en regmeet.com (aytoribarroja); cada página individual publica el orden del día en la tabla #tableOrdenDia. El departamento se infiere del título del punto."
@@ -7,7 +7,7 @@
   "stats": {
     "plenosFetched": 63,
     "agendaItemsTotal": 627,
-    "agendaItemsWithDepartment": 221,
+    "agendaItemsWithDepartment": 222,
     "plenosWithRuegos": 10,
     "uniqueDepartments": 24,
     "sessionsTotal": 63,
@@ -48,6 +48,11 @@
       "departmentSlug": "comercio"
     },
     {
+      "department": "recursos-humanos",
+      "count": 10,
+      "departmentSlug": "recursos-humanos"
+    },
+    {
       "department": "servicios-sociales",
       "count": 10,
       "departmentSlug": "servicios-sociales"
@@ -56,11 +61,6 @@
       "department": "cultura",
       "count": 9,
       "departmentSlug": "cultura"
-    },
-    {
-      "department": "recursos-humanos",
-      "count": 9,
-      "departmentSlug": "recursos-humanos"
     },
     {
       "department": "medio-ambiente",
@@ -133,11 +133,11 @@
         },
         {
           "number": 6,
-          "title": "Asuntos de Urgencia. 6.1. Moció",
+          "title": "Asuntos de Urgencia. RECURSOS HUMANOS, Acuerdo para la modificación de los criterios de reparto de la asignación a los grupos políticos para la anualidad 2026",
           "section": "resolutiva",
-          "department": null,
-          "departmentSlug": null,
-          "expediente": null
+          "department": "Recursos humanos",
+          "departmentSlug": "recursos-humanos",
+          "expediente": "4910/2026/GEN"
         },
         {
           "number": 7,
@@ -159,7 +159,8 @@
       "agendaCount": 8,
       "departments": [
         "contratacion",
-        "movilidad"
+        "movilidad",
+        "recursos-humanos"
       ],
       "hasRuegos": true
     },
