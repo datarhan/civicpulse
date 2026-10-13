@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 import { Card, Pill, SectionHead, PartyTag } from '../components/Primitives'
 import DataAsOf from '../components/DataAsOf'
 import { MarcaDeFirma } from '../components/MarcaDeFirma'
-import { usePlenoClaims, VERDICT_LABEL, VERDICT_TONE } from '../hooks/usePlenoClaims'
+import { usePlenoClaims, VERDICT_TONE } from '../hooks/usePlenoClaims'
 import { rotuloDeTipo } from '../lib/claim-type-label.js'
 import { usePlenos } from '../hooks/usePlenos'
 import { useOfficials } from '../hooks/useOfficials'
@@ -127,10 +127,10 @@ function ClaimRow({ item, plenoTitle }) {
         style={{ display: 'flex', gap: 10, alignItems: 'flex-start', marginBottom: 8 }}
       >
         <Pill tone={VERDICT_TONE[v.verdict] ?? 'neutral'} size="xs">
-          {VERDICT_LABEL[v.verdict] ?? v.verdict}
+          {rotuloDe(t, `declaraciones.veredicto.${v.verdict}`, v.verdict)}
         </Pill>
-        <Pill tone={rotuloDeTipo(c).tono} size="xs">
-          {rotuloDeTipo(c).texto}
+        <Pill tone={rotuloDeTipo(c, t).tono} size="xs">
+          {rotuloDeTipo(c, t).texto}
         </Pill>
         {/* El grupo y su «firmado» no se separan al envolver la fila: a 375 px la
             marca caía sola al principio de la línea siguiente y se leía como
@@ -142,14 +142,17 @@ function ClaimRow({ item, plenoTitle }) {
             tone={speakerColor}
             style={{ fontSize: 'var(--fs-micro)', letterSpacing: '.04em' }}
           >
-            {c.speakerGroup ? blocLabel(c.speakerGroup) : 'sin atribuir'}
+            {c.speakerGroup ? blocLabel(c.speakerGroup) : t('declaraciones.sinAtribuir')}
           </PartyTag>
           <MarcaDeFirma
             claim={c}
             style={{ fontSize: 'var(--fs-micro)', letterSpacing: '.04em', color: 'var(--ink50)' }}
           />
         </span>
-        <span style={{ fontSize: 'var(--fs-micro)', color: 'var(--ink50)' }}>· {c.topic}</span>
+        {/* El tema por su rótulo; uno que el catálogo no nombre sale crudo, a la vista. */}
+        <span style={{ fontSize: 'var(--fs-micro)', color: 'var(--ink50)' }}>
+          · {rotuloDe(t, `declaraciones.tema.${c.topic}`, c.topic)}
+        </span>
         <span style={{ flex: 1 }} />
         <Link
           to={`/plenos`}
@@ -191,8 +194,13 @@ function ClaimRow({ item, plenoTitle }) {
               marginBottom: 3,
             }}
           >
-            {evidencia.length} {evidencia.length === 1 ? 'evidencia' : 'evidencias'} ·{' '}
-            {etiquetaVerificador(v)}
+            {evidencia.length}{' '}
+            {t(
+              evidencia.length === 1
+                ? 'declaraciones.evidencia.una'
+                : 'declaraciones.evidencia.varias',
+            )}{' '}
+            · {etiquetaVerificador(v, t)}
           </div>
           {evidencia.slice(0, 2).map((e, i) => (
             <div key={i} style={{ marginTop: 2 }}>
@@ -461,7 +469,7 @@ export default function Declaraciones() {
             <FilterChip
               key={v}
               active={verdictFilter === v}
-              label={VERDICT_LABEL[v] ?? v}
+              label={rotuloDe(t, `declaraciones.veredicto.${v}`, v)}
               count={stats.byVerdict[v] ?? 0}
               onClick={() => setVerdictFilter(v)}
               tone={VERDICT_TONE[v]}
@@ -560,14 +568,23 @@ export default function Declaraciones() {
             label={t('declaraciones.filter.todos')}
             onClick={() => setTopicFilter('all')}
           />
-          {stats.topics.map((tp) => (
-            <FilterChip
-              key={tp}
-              active={topicFilter === tp}
-              label={tp}
-              onClick={() => setTopicFilter(tp)}
-            />
-          ))}
+          {/* Por su rótulo, en el orden del idioma de quien lee; el cajón del
+              extractor («Sin clasificar») al final, que no es un tema más. */}
+          {stats.topics
+            .map((tp) => ({ tp, rotulo: rotuloDe(t, `declaraciones.tema.${tp}`, tp) }))
+            .sort(
+              (x, y) =>
+                Number(x.tp === 'other') - Number(y.tp === 'other') ||
+                x.rotulo.localeCompare(y.rotulo, locale),
+            )
+            .map(({ tp, rotulo }) => (
+              <FilterChip
+                key={tp}
+                active={topicFilter === tp}
+                label={rotulo}
+                onClick={() => setTopicFilter(tp)}
+              />
+            ))}
         </div>
         <div style={{ marginTop: 4 }}>
           <input

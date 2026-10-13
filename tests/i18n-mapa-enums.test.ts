@@ -29,7 +29,7 @@ import { PLENO_TONE } from '../src/hooks/usePlenos'
 import { CLAVE_RELACION, RELATION_LABELS } from '../src/scraper/queja-contract-relations'
 import { NIVELES_AEMET } from '../src/scraper/spain-ticker'
 import { CLAIM_VERDICTS, CORPUS_IDS } from '../src/scraper/claim-verdicts'
-import { ALLOWED_CLAIM_TYPES } from '../src/scraper/pleno-claim'
+import { ALLOWED_CLAIM_TOPICS, ALLOWED_CLAIM_TYPES } from '../src/scraper/pleno-claim'
 import { EVIDENCE_KINDS } from '../src/scraper/claim-verifier'
 import { CLASES_DE_FIRMA } from '../src/scraper/firma-de-persona'
 import {
@@ -179,6 +179,13 @@ const FAMILIAS = [
     prefijo: 'declaraciones.tipo.',
     valores: [...lista(ALLOWED_CLAIM_TYPES), ...(TIPO_NEUTRO ? [TIPO_NEUTRO] : [])],
   },
+  // El tema de la tarjeta de /declaraciones y su filtro: se pintaba la clave cruda,
+  // «· other», «· medio-ambiente».
+  {
+    familia: 'temas de una declaración (ALLOWED_CLAIM_TOPICS)',
+    prefijo: 'declaraciones.tema.',
+    valores: lista(ALLOWED_CLAIM_TOPICS),
+  },
   {
     familia: 'fuentes de una fila de evidencia (EVIDENCE_KINDS)',
     prefijo: 'ledger.evidencia.',
@@ -253,6 +260,27 @@ describe('las categorías publicadas en tenders.json caben en CATEGORIAS_DE_CONT
     const fuera = conCategoria.filter((v) => !conocidas.has(v))
     expect(conCategoria.length, 'ninguna fila con categoría').toBeGreaterThan(100)
     expect(fuera.length / conCategoria.length).toBeLessThan(0.1)
+    expect([...new Set(fuera)]).toEqual([])
+  })
+})
+
+/**
+ * Lo mismo para el tema de una declaración: el vocabulario del extractor tiene que
+ * cubrir lo servido en public/data/pleno-claims, o un tema nuevo saldría crudo en
+ * cada tarjeta de /declaraciones. Con su techo (regla 1).
+ */
+describe('los temas servidos en pleno-claims caben en ALLOWED_CLAIM_TOPICS', () => {
+  it('ninguno fuera, y se midió algo', () => {
+    const leer = (f: string) => JSON.parse(readFileSync(resolve('public/data', f), 'utf8'))
+    const manifiesto = leer('pleno-claims/index.json') as { plenos: { chunkPath: string }[] }
+    const temas = manifiesto.plenos
+      .flatMap((p) => (leer(p.chunkPath).items ?? []) as { claim?: { topic?: unknown } }[])
+      .map((it) => it.claim?.topic)
+      .filter((v): v is string => typeof v === 'string' && v !== '')
+    const conocidos = new Set<string>(ALLOWED_CLAIM_TOPICS)
+    const fuera = temas.filter((v) => !conocidos.has(v))
+    expect(temas.length, 'ninguna declaración con tema').toBeGreaterThan(100)
+    expect(fuera.length / temas.length).toBeLessThan(0.1)
     expect([...new Set(fuera)]).toEqual([])
   })
 })
