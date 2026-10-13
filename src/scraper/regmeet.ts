@@ -26,7 +26,12 @@ export interface RegmeetItem {
   rawLabel: string
 }
 
+// El orden importa: gana el primer patrón que casa. La aprobación negada va ANTES que
+// la aprobación, porque /aprobad/ también casa con «No aprobada». Así se publicó
+// 1du4rf5-09 como «aprobado» cuando regmeet rotula el punto «No aprobada» y el acta
+// recoge que el pleno «acordó desestimar la moción». «no» se ancla como palabra.
 const LABEL_MAP: Array<[RegExp, RegmeetOutcome]> = [
+  [/\bno\s+apro[bv]ad/i, 'rechazada'],
   [/aprovad|aprobad/i, 'aprobada'],
   [/rebutj|rechazad|denegad/i, 'rechazada'],
   [/retirad/i, 'retirada'],
