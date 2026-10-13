@@ -26,6 +26,21 @@ export function esDocumentoDeSesionRegmeet(url: string): boolean {
   return u.host === 'regmeet.com' && RUTA_DOCUMENTO.test(u.pathname)
 }
 
+/**
+ * La fecha de la sesión (YYYY-MM-DD) que nombra la carpeta de un PDF de
+ * «Documentos» — `/files/uploads/aytoribarroja/09-02-2026.Pleno…/documentos/…` —
+ * o null si `url` no es uno o la carpeta no empieza por `DD-MM-AAAA`. Es el
+ * nombre de la carpeta, no el texto del acta: sirve para rechazar el acta de
+ * OTRA sesión, nunca para dar por buena una.
+ */
+export function fechaDeSesionRegmeet(url: string): string | null {
+  if (!esDocumentoDeSesionRegmeet(url)) return null
+  const m = /^\/files\/uploads\/aytoribarroja\/(\d{2})-(\d{2})-(\d{4})[^/]*\/documentos\//.exec(
+    new URL(url).pathname,
+  )
+  return m ? `${m[3]}-${m[2]}-${m[1]}` : null
+}
+
 export interface RegmeetDocumento {
   url: string
   /** Etiqueta del enlace tal cual («03_P 20260209»). No dice qué es el PDF. */

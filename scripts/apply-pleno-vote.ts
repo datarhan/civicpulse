@@ -212,10 +212,20 @@ function main() {
   if (existingIdx >= 0) {
     // Sustituir la fila borraba el desglose publicado sin dejar rastro de qué
     // decía ni de quién lo cambió (rx4hb4-10/-11, 13-10-2026). Un desglose
-    // publicado sólo cambia por el libro de correcciones, firmado. Si alguno de
-    // los dos lados está vacío no es una corrección sino una retirada o su
-    // vuelta, y de eso responde `validateSnapshot` con su propio mensaje.
+    // publicado sólo cambia por el libro de correcciones, firmado, y sólo se
+    // quita por el de retiradas: vaciarlo aquí (`votes: []` con un sello escrito
+    // a mano) no archivaría lo que decía. Si lo publicado está vacío, la fila
+    // entrante es un primer desglose o la vuelta de uno retirado, y de eso
+    // responde `validateSnapshot` con su propio mensaje.
     const existing = snap.items[existingIdx]
+    if (existing.votes.length > 0 && incoming.votes.length === 0) {
+      process.stderr.write(
+        `[pleno-vote] ${incoming.id} publica un desglose y la fila nueva lo vacía. Quitar un ` +
+          `desglose publicado deja constancia en el libro de retiradas: npm run retract-vote -- ` +
+          `${incoming.id} --breakdown --reason … --editor …\n`,
+      )
+      process.exit(1)
+    }
     if (
       existing.votes.length > 0 &&
       incoming.votes.length > 0 &&

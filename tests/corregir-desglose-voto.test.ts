@@ -114,6 +114,24 @@ describe('correctVoteBreakdown', () => {
     expect(() => correctVoteBreakdown(snap, 'nada-99', input, SIG)).toThrow()
   })
 
+  it('se niega sobre un voto sin desglose publicado: un primer desglose no es una corrección', () => {
+    // `validateSnapshot` no deja publicar `votes: []` sin su retirada, así que
+    // esta fila sólo existe en una instantánea sin validar: la función está
+    // exportada y nada impide llamarla con una.
+    const snap = buildSnapshot()
+    const v = snap.items.find((x) => x.id === 'fixa-01')!
+    v.votes = []
+    v.provenance = { ...v.provenance!, breakdown: null }
+    expect(() =>
+      correctVoteBreakdown(
+        snap,
+        'fixa-01',
+        { votes: [...VOTOS_ACTA], breakdownSource: fuenteActa },
+        SIG,
+      ),
+    ).toThrow('no hay desglose publicado que corregir; publícalo con npm run pleno-vote -- --file')
+  })
+
   it('se niega sobre un desglose retirado (primero hay que devolverlo con --unretract)', () => {
     const snap = buildSnapshotWithBreakdownRetracted('rx4hb4-11')
     expect(() =>
@@ -137,6 +155,22 @@ describe('validateSnapshot — un desglose no cambia sin dejar rastro', () => {
     )
     const v = snap.items.find((x) => x.id === 'rx4hb4-11')!
     v.votes = v.votes.map((b) => (b.bloc === 'VOX' ? { ...b, direction: 'en_contra' } : b))
+    expect(() => validateSnapshot(snap)).toThrow(/corrección|correction/i)
+  })
+  it('rechaza el mismo desglose citado a otra url que la de su última corrección', () => {
+    // La otra mitad de la guarda: las tuplas iguales no bastan. Cambiar en
+    // silencio la fuente de un desglose corregido es cambiar lo que se publica.
+    const snap = correctVoteBreakdown(
+      buildSnapshot(),
+      'rx4hb4-11',
+      { votes: [...VOTOS_ACTA], breakdownSource: fuenteActa },
+      SIG,
+    )
+    const v = snap.items.find((x) => x.id === 'rx4hb4-11')!
+    v.provenance = {
+      ...v.provenance!,
+      breakdown: { ...v.provenance!.breakdown!, url: ACTA_URL.replace('_0.pdf', '_1.pdf') },
+    }
     expect(() => validateSnapshot(snap)).toThrow(/corrección|correction/i)
   })
   it('acepta un snapshot sin `corrections` (los publicados antes de existir)', () => {
@@ -214,10 +248,19 @@ const RAIZ = resolve(__dirname, '..')
 const TSX = join(RAIZ, 'node_modules/tsx/dist/cli.mjs')
 
 /** Un directorio de trabajo con su propio public/data/pleno-votes.json. */
-function montar(snapJson: string): string {
+function montar(
+  snapJson: string,
+  actas?: { plenoId: string; fecha: string; url: string }[],
+): string {
   const dir = mkdtempSync(join(tmpdir(), 'corregir-voto-'))
   mkdirSync(join(dir, 'public/data'), { recursive: true })
   writeFileSync(join(dir, 'public/data/pleno-votes.json'), snapJson)
+  if (actas) {
+    writeFileSync(
+      join(dir, 'public/data/pleno-actas.json'),
+      JSON.stringify({ generatedAt: '2026-10-13T09:03:58.632Z', items: actas }, null, 2) + '\n',
+    )
+  }
   return dir
 }
 
@@ -251,6 +294,35 @@ describe('pleno-vote no cambia un desglose publicado en silencio', () => {
       expect(r.stderr).toContain(
         '[pleno-vote] rx4hb4-11 ya está publicado con otro desglose. Cambiar un desglose publicado deja constancia: npm run corregir-voto -- rx4hb4-11',
       )
+      expect(readFileSync(join(dir, 'public/data/pleno-votes.json'), 'utf8')).toBe(original)
+    } finally {
+      rmSync(dir, { recursive: true, force: true })
+    }
+  })
+})
+
+describe('pleno-vote no vacía un desglose publicado sin dejar rastro', () => {
+  it('sale con 1 y remite a retract-vote --breakdown', () => {
+    const original = JSON.stringify(buildSnapshot(), null, 2) + '\n'
+    const dir = montar(original)
+    try {
+      // Con el sello de retirada escrito a mano y sin entrada en el libro: lo
+      // único que `validateVote` deja pasar con `votes: []`.
+      const entrante = {
+        ...rx4hb4Item11(),
+        votes: [],
+        votesRetracted: {
+          reason: 'el desglose se quita sin pasar por el libro de retiradas',
+          editor: 'Test Curator',
+          retractedAt: '2026-10-13T12:00:00.000Z',
+        },
+        provenance: { ...rx4hb4Item11().provenance!, breakdown: null },
+      }
+      writeFileSync(join(dir, 'voto.json'), JSON.stringify(entrante))
+      const r = lanzar('apply-pleno-vote.ts', dir, ['--file', 'voto.json'])
+      const salida = `${r.stdout}\n${r.stderr}`
+      expect(r.status, salida).toBe(1)
+      expect(r.stderr).toContain('npm run retract-vote -- rx4hb4-11 --breakdown')
       expect(readFileSync(join(dir, 'public/data/pleno-votes.json'), 'utf8')).toBe(original)
     } finally {
       rmSync(dir, { recursive: true, force: true })
@@ -334,5 +406,72 @@ describe('corregir-voto', () => {
     } finally {
       rmSync(dir, { recursive: true, force: true })
     }
+  })
+
+  describe('--fuente tiene que ser el acta de ESA sesión', () => {
+    // Cualquier PDF de «Documentos» de regmeet se clasifica `acta`, sea de la
+    // sesión que sea. Citar el acta del 27-07 para un voto del 09-02 pasaba.
+    const ACTA_27_07 =
+      'https://regmeet.com/files/uploads/aytoribarroja/27-07-2026.Pleno2026-07-29_23-32-33/documentos/2026-07-30_13-49-04_0.pdf'
+    const INDICE = [
+      { plenoId: 'rx4hb4', fecha: '2026-02-09', url: ACTA_URL },
+      { plenoId: '15uvjew', fecha: '2026-07-27', url: ACTA_27_07 },
+    ]
+
+    it('rechaza el acta de otra sesión y no toca el fichero', () => {
+      const original = JSON.stringify(buildSnapshot(), null, 2) + '\n'
+      const dir = montar(original, INDICE)
+      try {
+        const a = argv()
+        a[a.indexOf('--fuente') + 1] = ACTA_27_07
+        const r = lanzar('corregir-desglose-voto.ts', dir, a)
+        expect(r.status, `${r.stdout}\n${r.stderr}`).not.toBe(0)
+        expect(r.stderr).toContain('pleno-actas.json')
+        expect(r.stderr).toContain(ACTA_URL)
+        expect(readFileSync(join(dir, 'public/data/pleno-votes.json'), 'utf8')).toBe(original)
+      } finally {
+        rmSync(dir, { recursive: true, force: true })
+      }
+    })
+
+    it('acepta el acta que el índice lista para esa sesión (--dry-run)', () => {
+      const original = JSON.stringify(buildSnapshot(), null, 2) + '\n'
+      const dir = montar(original, INDICE)
+      try {
+        const r = lanzar('corregir-desglose-voto.ts', dir, argv(['--dry-run']))
+        expect(r.status, `${r.stdout}\n${r.stderr}`).toBe(0)
+        expect(readFileSync(join(dir, 'public/data/pleno-votes.json'), 'utf8')).toBe(original)
+      } finally {
+        rmSync(dir, { recursive: true, force: true })
+      }
+    })
+
+    it('sin fila en el índice, rechaza una carpeta de sesión de otra fecha', () => {
+      const original = JSON.stringify(buildSnapshot(), null, 2) + '\n'
+      const dir = montar(original, [INDICE[1]])
+      try {
+        const a = argv()
+        a[a.indexOf('--fuente') + 1] = ACTA_27_07
+        const r = lanzar('corregir-desglose-voto.ts', dir, a)
+        expect(r.status, `${r.stdout}\n${r.stderr}`).not.toBe(0)
+        expect(r.stderr).toMatch(/27-07-2026/)
+        expect(r.stderr).toMatch(/2026-02-09/)
+        expect(readFileSync(join(dir, 'public/data/pleno-votes.json'), 'utf8')).toBe(original)
+      } finally {
+        rmSync(dir, { recursive: true, force: true })
+      }
+    })
+
+    it('sin fila en el índice, acepta la carpeta de la sesión del voto (--dry-run)', () => {
+      const original = JSON.stringify(buildSnapshot(), null, 2) + '\n'
+      const dir = montar(original)
+      try {
+        const r = lanzar('corregir-desglose-voto.ts', dir, argv(['--dry-run']))
+        expect(r.status, `${r.stdout}\n${r.stderr}`).toBe(0)
+        expect(readFileSync(join(dir, 'public/data/pleno-votes.json'), 'utf8')).toBe(original)
+      } finally {
+        rmSync(dir, { recursive: true, force: true })
+      }
+    })
   })
 })

@@ -139,7 +139,9 @@ export const VOTE_SOURCE_KINDS = {
     derivedFrom: null,
     unverifiedNote: null,
   },
-  /** The council's session portal. Item + outcome only — never a tally. */
+  /** The council's session portal. Item + outcome only — never a tally.
+   *  Los PDF firmados de su pestaña «Documentos» NO son esta clase: son actas
+   *  (`esDocumentoDeSesionRegmeet`, en `voteSourceKindForUrl`). */
   regmeet: {
     label: 'Portal de sesiones (regmeet)',
     publishesOutcome: true,
@@ -233,11 +235,12 @@ export function voteSourceDerivedFrom(kind: VoteSourceKind): VoteSourceKind | nu
  * catch, and that error is the transcription step: Whisper mishearing «tretze»
  * as «tres», dropping a bloc, or hallucinating a stretch outright. The video is
  * upstream of that step, and a human watching the nominal call is a different
- * reader, not a second machine. Rejecting it would mean the only admissible
- * check is a document this project currently cannot fetch at all (see
- * `scripts/fetch-pleno-actas.ts`, broken against the Aug-2026 portal), which
- * would leave `verificado` unreachable in practice and therefore, again,
- * meaningless. What it does NOT license is quietly calling that «cotejado con
+ * reader, not a second machine. Rejecting it would make the acta the only
+ * admissible check. When this was decided (2026-08) the acta was believed
+ * unfetchable; since 2026-10-13 the signed actas are indexed from regmeet
+ * (`scripts/scrape-pleno-actas.ts`, `npm run check:votos-acta`), so the acta
+ * is the check to prefer — but the video remains a legitimate independent
+ * reader of the transcript, and the edge stays. What it does NOT license is quietly calling that «cotejado con
  * el acta»: the surfaces name the document actually consulted, from
  * `verifiedAgainst.kind`.
  *
@@ -324,6 +327,37 @@ export function isIndependentlyVerified(
 }
 
 /**
+ * ¿Lleva esta cita la salvedad «sin cotejar»? La ÚNICA pregunta que se hacen la
+ * ficha del voto (`VoteProvenance`), el recuento de /datos y el aviso de
+ * check:relations, para que las tres respondan sobre el mismo conjunto.
+ *
+ * Sí ⇔ su clase tiene `unverifiedNote` no nula en `VOTE_SOURCE_KINDS` Y nadie
+ * la ha cotejado contra una fuente independiente. Sale de la tabla, no de una
+ * lista: hasta el 13-10-2026 /datos preguntaba sólo `isIndependentlyVerified`,
+ * así que un desglose corregido con `corregir-voto` —citado al acta,
+ * `sin-verificar`— se contaba «sin cotejar» mientras la ficha, con razón, no le
+ * ponía salvedad: el acta no tiene nada encima con que cotejarla. Una clase
+ * desconocida no lleva salvedad aquí porque ya es un error en
+ * `votes-breakdown-source`, y contarla dos veces sería ruido.
+ */
+export function breakdownNeedsCaveat(
+  ref:
+    | {
+        kind?: unknown
+        verification?: unknown
+        verifiedAgainst?: { kind?: unknown } | null
+      }
+    | null
+    | undefined,
+): boolean {
+  if (ref == null) return false
+  if (typeof ref.kind !== 'string' || !VOTE_SOURCE_KIND_IDS.includes(ref.kind as VoteSourceKind))
+    return false
+  if (VOTE_SOURCE_KINDS[ref.kind as VoteSourceKind].unverifiedNote == null) return false
+  return !isIndependentlyVerified(ref)
+}
+
+/**
  * Has a human cotejado THIS claim against an INDEPENDENT source?
  *
  * Deliberately two values, not a confidence score. «sin-verificar» is the
@@ -333,13 +367,17 @@ export function isIndependentlyVerified(
  * as verified would have been worse than the single-citation defect it
  * replaced.
  *
- * Note what «sin-verificar» does and does not accuse anyone of. The acta is the
- * source that would settle a breakdown, and this project cannot currently fetch
- * one: `scripts/fetch-pleno-actas.ts` reads a `link` that has pointed at
- * regmeet since 2026-05-25, extracts retired Drupal markup, and has no npm
- * script wiring it to anything. Zero actas are cached; all 45 transcripts on
- * disk are Whisper output. So the flag records an unreachable source, not an
- * unread one, and every message about it should say so.
+ * Note what «sin-verificar» does and does not accuse anyone of. Until
+ * 2026-10-13 the acta that would settle a breakdown was believed unreachable —
+ * only ribarroja.es had been measured (`scripts/fetch-pleno-actas.ts`). The
+ * signed actas are on regmeet, in each session's «Documentos» tab:
+ * `scripts/scrape-pleno-actas.ts` indexes them into pleno-actas.json,
+ * `npm run check:votos-acta` coteja each published tally against its acta, and
+ * `npm run corregir-voto` replaces a wrong one with a signed record. A
+ * transcript-cited breakdown still `sin-verificar` is therefore work pending
+ * on a reachable source, and messages about it should point at those commands.
+ * A breakdown cited to the acta itself carries no caveat at all
+ * (`breakdownNeedsCaveat`).
  */
 export const VOTE_VERIFICATIONS = ['verificado', 'sin-verificar'] as const
 export type VoteVerification = (typeof VOTE_VERIFICATIONS)[number]
@@ -1804,6 +1842,14 @@ export function correctVoteBreakdown(
     findLiveRetraction(snap, voteId, 'breakdown') == null,
     `el desglose de "${voteId}" está retirado — devuélvelo antes con retract-vote ` +
       `--unretract --breakdown, y corrígelo después`,
+  )
+  // Un primer desglose no es una corrección: no hay nada que archivar en
+  // `originalVotes`, y el libro diría que se corrigió lo que nunca se publicó.
+  // `validateSnapshot` no deja publicar `votes: []` sin su retirada, pero esta
+  // función está exportada y la puede llamar una instantánea sin validar.
+  refuse(
+    target.votes.length > 0,
+    `"${voteId}": no hay desglose publicado que corregir; publícalo con npm run pleno-vote -- --file`,
   )
   const { kind, url } = input.breakdownSource
   refuse(

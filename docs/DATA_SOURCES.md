@@ -673,13 +673,15 @@ overwrites it. Change the bot's SQLite instead.
   off passed as a verification of it. `isIndependentlyVerified` is the one
   predicate the validator, `check:relations`, `/datos` and `VoteProvenance` all
   read — none of them re-expresses the rule.
-- **Nothing here has ever been cotejado, and the acta is unreachable.** All 16
-  published breakdowns and all 17 outcomes are `sin-verificar`.
-  `scripts/fetch-pleno-actas.ts` has four independent breakages against the
-  Aug-2026 portal (reads a `link` that points at regmeet since 2026-05-25;
-  extracts retired Drupal markup; plain `http://`; no npm script runs it), zero
-  actas are cached, and every transcript on disk is Whisper output. Messages
-  about this state must say _unreachable_, not _unread_
+- **The acta is reachable since 2026-10-13.** Until then it was believed
+  unreachable: only ribarroja.es had been measured
+  (`scripts/fetch-pleno-actas.ts`, legacy). The signed actas are in each
+  regmeet session's «Documentos» tab; `scripts/scrape-pleno-actas.ts` indexes
+  them into `pleno-actas.json`, `npm run check:votos-acta` coteja each
+  published tally against its acta, and `npm run corregir-voto` replaces a
+  wrong one with a signed record. A breakdown cited to the acta itself carries
+  no «sin cotejar» caveat; `breakdownNeedsCaveat` is the one predicate the vote
+  card, `/datos` and `check:relations` read for it
 - **Withdrawal** — `npm run retract-vote` is the only way out. Three scopes, because the
   parts of a record do not share a provenance: `--reason/--editor` alone withdraws
   the **whole vote** (it leaves `items[]`, so it stops counting everywhere that reads

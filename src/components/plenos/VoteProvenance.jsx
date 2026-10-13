@@ -1,6 +1,10 @@
 import { Fragment } from 'react'
 import { ExtLink } from '../Primitives'
-import { isIndependentlyVerified, VOTE_SOURCE_KINDS } from '../../scraper/pleno-votes'
+import {
+  breakdownNeedsCaveat,
+  isIndependentlyVerified,
+  VOTE_SOURCE_KINDS,
+} from '../../scraper/pleno-votes'
 import { rotuloDe, useT } from '../../i18n'
 import { rellena } from '../../lib/formatters'
 
@@ -80,7 +84,9 @@ export function VoteProvenance({ provenance }) {
           ? rellena(t('plenoDetail.voto.cotejadoContra'), {
               fuente: fuente(ref.verifiedAgainst.kind),
             })
-          : sinCotejar(ref.kind)
+          : breakdownNeedsCaveat(ref)
+            ? sinCotejar(ref.kind)
+            : null
         return (
           <Fragment key={key}>
             <span

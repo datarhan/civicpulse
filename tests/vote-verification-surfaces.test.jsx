@@ -6,7 +6,7 @@ import { render } from '@testing-library/react'
 import { VoteProvenance } from '../src/components/plenos/VoteProvenance'
 import { VoteBreakdownCorrected } from '../src/components/plenos/VoteBreakdownCorrected'
 import { unverifiedBreakdownNote } from '../src/pages/Datos'
-import { isIndependentlyVerified, VOTE_SOURCE_KINDS } from '../src/scraper/pleno-votes'
+import { breakdownNeedsCaveat, VOTE_SOURCE_KINDS } from '../src/scraper/pleno-votes'
 
 /**
  * One number, one named set — across two pages.
@@ -35,7 +35,7 @@ function caveatsOn(vote) {
 
 describe('the /datos count and the vote cards describe the same set', () => {
   const withBreakdown = snapshot.items.filter((v) => (v.votes?.length ?? 0) > 0)
-  const unverified = withBreakdown.filter((v) => !isIndependentlyVerified(v.provenance?.breakdown))
+  const unverified = withBreakdown.filter((v) => breakdownNeedsCaveat(v.provenance?.breakdown))
 
   it('counts something at all — the set is not empty', () => {
     // Two suites in this repo have been green while measuring nothing. Every
@@ -105,6 +105,54 @@ describe('the /datos count and the vote cards describe the same set', () => {
       ` · ${unverified.length - 1} de ${withBreakdown.length} desgloses sin cotejar`,
     )
     expect(caveatsOn(verified)).toHaveLength(0)
+  })
+})
+
+describe('un desglose citado al acta no lleva salvedad en ninguna de las dos páginas', () => {
+  // Tras `corregir-voto`, el desglose queda citado al acta, `sin-verificar`.
+  // La ficha no le pone salvedad (el acta no tiene nada encima con que
+  // cotejarla: `VOTE_SOURCE_KINDS.acta.unverifiedNote` es null), y /datos lo
+  // contaba igualmente «sin cotejar», porque preguntaba sólo
+  // `isIndependentlyVerified`. Dos páginas, dos conjuntos: lo que la prueba de
+  // arriba fija sobre el publicado se rompía al firmar la primera corrección.
+  const transcrita = snapshot.items.find(
+    (v) => (v.votes?.length ?? 0) > 0 && v.provenance?.breakdown?.kind === 'transcripcion',
+  )
+  const actaRef = {
+    kind: 'acta',
+    url: 'https://regmeet.com/files/uploads/aytoribarroja/09-02-2026.Pleno2026-02-10_20-43-39/documentos/2026-07-30_13-45-56_0.pdf',
+    publisher: 'Ayuntamiento de Riba-roja de Túria',
+    retrievedAt: '2026-10-13',
+    verification: 'sin-verificar',
+  }
+
+  it('hay una fila transcrita con que construir el caso', () => {
+    expect(transcrita).toBeTruthy()
+  })
+
+  it('ni la ficha la marca ni /datos la cuenta', () => {
+    const corregida = {
+      ...transcrita,
+      provenance: { ...transcrita.provenance, breakdown: actaRef },
+    }
+    const antes = snapshot.items.filter(
+      (v) => (v.votes?.length ?? 0) > 0 && breakdownNeedsCaveat(v.provenance?.breakdown),
+    ).length
+    const items = snapshot.items.map((v) => (v.id === transcrita.id ? corregida : v))
+    const conDesglose = items.filter((v) => (v.votes?.length ?? 0) > 0).length
+    expect(caveatsOn(corregida)).toHaveLength(0)
+    expect(breakdownNeedsCaveat(actaRef)).toBe(false)
+    const esperado =
+      antes - 1 === 0 ? '' : ` · ${antes - 1} de ${conDesglose} desgloses sin cotejar`
+    expect(unverifiedBreakdownNote(items)).toBe(esperado)
+  })
+
+  it('el predicado sale de VOTE_SOURCE_KINDS: salvedad ⇔ nota no nula y sin cotejo independiente', () => {
+    for (const kind of Object.keys(VOTE_SOURCE_KINDS)) {
+      const ref = { ...actaRef, kind }
+      expect(breakdownNeedsCaveat(ref)).toBe(VOTE_SOURCE_KINDS[kind].unverifiedNote != null)
+    }
+    expect(breakdownNeedsCaveat(null)).toBe(false)
   })
 })
 

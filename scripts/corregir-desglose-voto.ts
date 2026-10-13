@@ -28,7 +28,13 @@
  *
  * `--fuente`: la url del documento que publica el desglose. Su clase la decide
  * `voteSourceKindForUrl`, nunca quien teclea: una url que no sabe clasificar se
- * rechaza, y una que no publica desglose (el portal de regmeet) también.
+ * rechaza, y una que no publica desglose (el portal de regmeet) también. Un PDF
+ * de «Documentos» de regmeet se clasifica `acta` sea de la sesión que sea, así
+ * que además tiene que ser el acta de ESA sesión: la url que
+ * public/data/pleno-actas.json lista para el `plenoId` del voto o, si el índice
+ * no tiene fila para él, una cuyo directorio de sesión (`DD-MM-AAAA.Pleno…`)
+ * sea la fecha del voto. Las actas de otros sitios (ribarroja.es) no pasan por
+ * aquí.
  *
  * leer → validateSnapshot → mutar (pura) → revalidar la instantánea ENTERA → escribir.
  * `--dry-run` enseña el desglose viejo y el nuevo, uno al lado del otro, y no escribe.
@@ -51,8 +57,10 @@ import {
   type VoteSourceRef,
 } from '../src/scraper/pleno-votes'
 import { rechazarOpcionesDesconocidas } from '../src/scraper/opciones-cli'
+import { esDocumentoDeSesionRegmeet, fechaDeSesionRegmeet } from '../src/scraper/regmeet-documentos'
 
 const DATA_PATH = resolve('public/data/pleno-votes.json')
+const ACTAS_PATH = resolve('public/data/pleno-actas.json')
 const PUBLICADOR = 'Ayuntamiento de Riba-roja de Túria'
 /** Las dos grafías de «el acta no dice de qué grupo», como en `pleno-vote`. */
 const SIN_GRUPO = new Set(['null', 'sin-identificar'])
@@ -105,6 +113,40 @@ function parseVotos(spec: string): VoteByBloc[] {
       ...(escanos !== undefined ? { seats: escanos } : {}),
     }
   })
+}
+
+/**
+ * Por qué `fuente` no es el acta de la sesión del voto, o null si lo es (o si
+ * no es un PDF de «Documentos» de regmeet, que no se juzga aquí).
+ */
+function rechazoDeSesion(
+  fuente: string,
+  voto: { id: string; plenoId: string; plenoDate: string },
+): string | null {
+  if (!esDocumentoDeSesionRegmeet(fuente)) return null
+  let indice: { plenoId?: unknown; url?: unknown }[] = []
+  if (existsSync(ACTAS_PATH)) {
+    try {
+      const raw = JSON.parse(readFileSync(ACTAS_PATH, 'utf8'))
+      if (Array.isArray(raw?.items)) indice = raw.items
+    } catch (err) {
+      return `${ACTAS_PATH} no se puede leer (${(err as Error).message}); no se comprueba a ciegas`
+    }
+  }
+  const fila = indice.find((a) => a?.plenoId === voto.plenoId)
+  if (fila != null) {
+    return fila.url === fuente
+      ? null
+      : `--fuente no es el acta de la sesión de ${voto.id}: pleno-actas.json lista para ` +
+          `${voto.plenoId} ${String(fila.url)}`
+  }
+  const fecha = fechaDeSesionRegmeet(fuente)
+  if (fecha === voto.plenoDate) return null
+  const carpeta = /\/aytoribarroja\/([^/]+)\/documentos\//.exec(fuente)?.[1] ?? '?'
+  return (
+    `--fuente es de la sesión «${carpeta}» y ${voto.id} se votó el ${voto.plenoDate}; ` +
+    `pleno-actas.json no tiene fila para ${voto.plenoId} con que comprobarlo de otro modo`
+  )
 }
 
 /** Una línea por grupo: lo publicado y lo que lo sustituye, uno al lado del otro. */
@@ -178,6 +220,10 @@ function main() {
   }
 
   const antes = snap.items.find((v) => v.id === voteId)
+  if (antes) {
+    const sesion = rechazoDeSesion(fuente, antes)
+    if (sesion) bail(sesion, 1)
+  }
   let next: PlenoVotesSnapshot
   try {
     next = correctVoteBreakdown(

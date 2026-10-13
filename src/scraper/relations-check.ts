@@ -24,6 +24,7 @@ import { ALLOWED_DEPARTMENT_SLUGS } from './departments'
 import { normalizeCompanyKey } from './entities'
 import {
   BREAKDOWN_SOURCE_KINDS,
+  breakdownNeedsCaveat,
   isIndependentlyVerified,
   isSiteRelativeRef,
   VOTE_SOURCE_KIND_IDS,
@@ -806,20 +807,19 @@ export function runRelationsChecks(inputs: RelationsCheckInputs): RelationCheckR
     // already declares, and a permanently-red check is one everybody learns to
     // skip. What must never be silent is the COUNT, so every row is listed.
     //
-    // What this line must NOT say is what it said until 2026-08-09 — «never
-    // cotejado against the acta», which reads as sixteen rows nobody got round
-    // to. The acta is not unread, it is UNREACHABLE: no acta is cached in this
-    // repo, all 45 transcripts on disk are Whisper output, and
-    // scripts/fetch-pleno-actas.ts has four independent breakages against the
-    // Aug-2026 portal (it reads a `link` that points at regmeet, extracts
-    // retired Drupal markup, uses plain http, and no npm script runs it).
-    // Blaming a curator for an upstream we cannot fetch is the same class of
-    // error as the disclaimer this batch removed from the outcome row.
+    // Until 2026-10-13 this line said the acta was «unreachable, not unread»
+    // (scripts/fetch-pleno-actas.ts read only ribarroja.es). The signed actas
+    // are on regmeet: scripts/scrape-pleno-actas.ts indexes them,
+    // `npm run check:votos-acta` coteja each tally against its acta, and
+    // `npm run corregir-voto` replaces a wrong one with a signed record. So
+    // the line now names those commands — the work is pending on a reachable
+    // source.
     //
     // The tier that does block is the one above, and it blocks at write time.
-    // Rows leave this count only via `isIndependentlyVerified` — the same
-    // predicate the validator and the surfaces use — so a self-verified row
-    // cannot go quiet here while going red there.
+    // Rows leave this count only via `breakdownNeedsCaveat` — the same
+    // predicate the vote card and /datos use — so a self-verified row cannot go
+    // quiet here while going red there, and a row cited to the acta itself
+    // (which the card shows without a caveat) is not counted here either.
     check('votes-breakdown-verified', 'warn', votes != null, () => {
       let checked = 0
       const broken: string[] = []
@@ -828,14 +828,14 @@ export function runRelationsChecks(inputs: RelationsCheckInputs): RelationCheckR
         const ref = v?.provenance?.breakdown
         if (ref == null) continue // already an error above; not double-counted
         checked += 1
-        if (isIndependentlyVerified(ref)) continue
+        if (!breakdownNeedsCaveat(ref)) continue
         broken.push(
           ref.verification === 'verificado'
             ? `${v?.id ?? '?'} breakdown claims verificado without an independent source — ` +
                 `still counted unverified (see votes-breakdown-source)`
-            : `${v?.id ?? '?'} breakdown is ${String(ref.verification)} — cited to ` +
-                `${String(ref.kind)}, no independent source cotejado against it. The acta ` +
-                `that would settle it is unreachable, not unread (scripts/fetch-pleno-actas.ts)`,
+            : `${v?.id ?? '?'}: desglose ${String(ref.verification)}, citado a ` +
+                `${String(ref.kind)} y sin cotejar contra una fuente independiente. Coteja el ` +
+                `acta con npm run check:votos-acta y, si no coincide, npm run corregir-voto`,
         )
       }
       return { checked, broken }

@@ -36,7 +36,7 @@ import { useDeudaViva } from '../hooks/useDeudaViva'
 import { useIpc } from '../hooks/useIpc'
 import { useCriminalidad } from '../hooks/useCriminalidad'
 import { fmtDateShort, fmtDateLong } from '../lib/formatters'
-import { isIndependentlyVerified } from '../scraper/pleno-votes'
+import { breakdownNeedsCaveat } from '../scraper/pleno-votes'
 
 function formatDate(iso) {
   return fmtDateShort(iso) || '—'
@@ -66,9 +66,12 @@ function retractionNote(retracted) {
  * number in the row now carries the set it counts — 17 votaciones (rows), and
  * «N de M desgloses» over the rows that publish a tally at all.
  *
- * `isIndependentlyVerified` is imported rather than re-expressed: a page that
+ * `breakdownNeedsCaveat` is imported rather than re-expressed: a page that
  * decided for itself what «cotejado» means could go quiet over a self-verified
- * row while check:relations still listed it.
+ * row while check:relations still listed it. Until 2026-10-13 this asked only
+ * `isIndependentlyVerified`, so a breakdown corrected against the acta
+ * (`corregir-voto`: cited to the acta, `sin-verificar`) was counted here while
+ * its card, rightly, showed no caveat.
  *
  * Exported so a test can hold this number against what the vote cards actually
  * mark on /plenos/:id and /departamentos/:slug. A count on one page and a
@@ -76,8 +79,8 @@ function retractionNote(retracted) {
  */
 export function unverifiedBreakdownNote(items) {
   const withBreakdown = items.filter((v) => (v?.votes?.length ?? 0) > 0)
-  const unverified = withBreakdown.filter(
-    (v) => !isIndependentlyVerified(v?.provenance?.breakdown),
+  const unverified = withBreakdown.filter((v) =>
+    breakdownNeedsCaveat(v?.provenance?.breakdown),
   ).length
   if (unverified === 0) return ''
   return ` · ${unverified} de ${withBreakdown.length} desglose${
