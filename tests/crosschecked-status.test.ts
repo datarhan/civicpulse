@@ -7,9 +7,11 @@
  * the state, so an abandoned procurement appeared under «Documentos cotejados»
  * looking like a thing the council did.
  *
- * Five and four, not four and three: expediente 68/2025 is `void` in the
- * licitaciones table while its contract row publishes no status, so a scan for
- * «every row is void» walks past it.
+ * It counted five refs and four expedientes until 13-10-2026. The fifth,
+ * expediente 68/2025, is `void` only in the licitaciones table, and there
+ * `void` means «no result published yet»: PLACSP had it in «Evaluación». The
+ * contract-table `void` lots that remain are desierto on PLACSP — no contract,
+ * but not annulled either, which is why the chip now says «sin contrato».
  *
  * THREE states, not two, and the third is the sentinel one: `status: 'unknown'`
  * is Gobierto's blank after normalisation, not a state a document is in
@@ -179,11 +181,14 @@ describe('buildRefStatusIndex — one expediente, several lots', () => {
   })
 
   it('a lot with no state cannot outvote a lot that has one', () => {
-    // The real `unknown+void` ref: `unknown` carries no information, so it does
-    // not dilute the one row that does. Same treatment a row with no date gets.
+    // `unknown` carries no information, so it does not dilute the one row
+    // that does. Same treatment a row with no date gets. (The void sits in
+    // `contracts`: a licitación's void is itself no state — see below.)
     const i = buildRefStatusIndex({
-      contracts: [{ permalink: 'p', status: 'unknown' }],
-      tenders: [{ permalink: 'p', status: 'void' }],
+      contracts: [
+        { permalink: 'p', status: 'unknown' },
+        { permalink: 'p', status: 'void' },
+      ],
     })
     expect(i.get('p')).toEqual({ kind: 'cancelled', status: 'void' })
   })
@@ -214,6 +219,22 @@ describe('buildRefStatusIndex — one expediente, several lots', () => {
     expect(a.get('p')).toEqual(b.get('p'))
     expect(a.get('p')).toEqual({ kind: 'in-flight', status: 'provisionally_awarded' })
   })
+
+  it('a licitación void is no state at all — a contract void still is', () => {
+    // In `licitaciones`, Gobierto writes `void` while PLACSP has no result
+    // yet: 9 of 9 checked on 13-10-2026 were in evaluation or since awarded.
+    const soloLicitacion = buildRefStatusIndex({
+      contracts: [{ permalink: 'p', status: 'unknown' }],
+      tenders: [{ permalink: 'p', status: 'void' }],
+    })
+    expect(soloLicitacion.get('p')).toBeNull()
+    // In `contratos` it is a desierto lot: no contract came of it.
+    const contrato = buildRefStatusIndex({ contracts: [{ permalink: 'q', status: 'void' }] })
+    expect(contrato.get('q')).toEqual({ kind: 'cancelled', status: 'void' })
+    // And a licitación's other states still speak.
+    const otra = buildRefStatusIndex({ tenders: [{ permalink: 'r', status: 'revoked' }] })
+    expect(otra.get('r')).toEqual({ kind: 'cancelled', status: 'revoked' })
+  })
 })
 
 describe('the real snapshot', () => {
@@ -239,24 +260,34 @@ describe('the real snapshot', () => {
     expect(kinds.has('in-flight')).toBe(true)
   })
 
-  it('marks the annulled refs and nothing else', () => {
-    // FIVE refs, four expedientes — one more than a scan for «every row is
-    // void» finds. Expediente 68/2025 (Dirección Facultativa del Centro
-    // Polivalente) is `void` in the licitaciones table while its contract row
-    // publishes no status at all, so the strict scan skipped it; the register
-    // still says the procedure ended with nobody hired.
+  it('marks the desierto refs and nothing else', () => {
+    // The three desierto lots, each void in the CONTRACTS table.
     const cancelled = tenderRefs.filter((r) => refStatus(r, index)?.kind === 'cancelled')
-    expect(cancelled).toHaveLength(5)
-    expect(new Set(cancelled.map((r) => r.ref)).size).toBe(4)
+    expect(new Set(cancelled.map((r) => r.ref)).size).toBe(3)
     for (const c of cancelled) expect(refStatus(c, index)?.status).toBe('void')
     const titles = cancelled.map((c) => c.snippet).join(' ')
     expect(titles).toContain('vallas de seguridad')
     expect(titles).toContain('puesta a disposición de personal')
     expect(titles).toContain('vigilancia y seguridad privada')
-    expect(titles).toContain('Dirección Facultativa')
   })
 
-  it('the annulled refs really are annulled in the register', () => {
+  it('68/2025 is not marked as ended: its only void is the licitación', () => {
+    // It read «expediente anulado» on /hallazgos while PLACSP had it in
+    // «Evaluación». Whatever the register says next, a licitación void alone
+    // never makes it «sin contrato».
+    const dirFac = tenderRefs.filter((r) => /Dirección Facultativa/.test(r.snippet ?? ''))
+    const polivalente = dirFac.filter((r) => {
+      const own = (tenders.tenders ?? []).filter(
+        (x: { permalink?: string }) => x.permalink === r.ref,
+      )
+      return own.some((x: { documentNumber?: string }) => x.documentNumber === '68/2025')
+    })
+    // Positive control: the ref is still cited, so this checks something.
+    expect(polivalente.length).toBeGreaterThan(0)
+    for (const r of polivalente) expect(refStatus(r, index)?.kind).not.toBe('cancelled')
+  })
+
+  it('the desierto refs really produced no contract in the register', () => {
     // Read the rows back, so this asserts the DATA and not just the mapping:
     // nothing awarded, nothing formalised, no money out.
     const cancelled = tenderRefs.filter((r) => refStatus(r, index)?.kind === 'cancelled')
@@ -264,8 +295,11 @@ describe('the real snapshot', () => {
     for (const c of cancelled) {
       const own = rows.filter((x: { permalink?: string }) => x.permalink === c.ref)
       expect(own.length).toBeGreaterThan(0)
-      // At least one row says so outright, and none contradicts it.
-      expect(own.some((r: { status?: string }) => r.status === 'void')).toBe(true)
+      // At least one CONTRACT row says so outright, and none contradicts it.
+      const contratos = (tenders.contracts ?? []).filter(
+        (x: { permalink?: string }) => x.permalink === c.ref,
+      )
+      expect(contratos.some((r: { status?: string }) => r.status === 'void')).toBe(true)
       for (const r of own) {
         expect(['void', 'unknown']).toContain(r.status)
         expect(r.finalAmount ?? 0).toBe(0)

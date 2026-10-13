@@ -31,9 +31,16 @@ export function useTenders() {
  *   · `revoked` → la ficha habla de un acuerdo de no celebrar el contrato, que
  *     es la renuncia del art. 152 LCSP. Una sola ficha y no un campo rotulado:
  *     menos firme que la anterior.
- *   · `void` → no se pudo arbitrar. El «Estado» de PLACSP es del EXPEDIENTE y
- *     las filas de Gobierto son por lote, así que un expediente «Resuelta»
- *     puede contener un lote anulado. Se deja el cognado literal.
+ *   · `void` → «Desierto», arbitrado el 13-10-2026 leyendo el RESULTADO de
+ *     cada lote, no el «Estado» del expediente (que es «Resuelta» aunque un
+ *     lote quede sin adjudicar). Cinco filas de `contratos`, cinco «Desierto»:
+ *     39/2018 lotes 2 y 3 (0 ofertas), 67/2025, el menor 35M/2022 (0
+ *     licitadores) y 104/2026 BSDA. Hasta entonces decía «Anulado», el cognado
+ *     literal, y un lote desierto no se anula: nadie se presentó.
+ *
+ *     Vale para la tabla de CONTRATOS. En la de LICITACIONES el mismo `void`
+ *     significa otra cosa —ver `crosschecked-status.js`— y no se pinta con
+ *     este rótulo.
  *
  * El texto de cada rótulo vive ahora en el catálogo, `contrato.estado.<estado>`:
  * la tarjeta de contrato del mapa lo pinta también en valencià. Este mapa se

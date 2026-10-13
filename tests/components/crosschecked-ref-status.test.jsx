@@ -1,5 +1,5 @@
 /**
- * ¿Distingue el lector un expediente anulado de un contrato firmado?
+ * ¿Distingue el lector un expediente que acabó sin contrato de un contrato firmado?
  *
  * `RefList` publicaba la FECHA de cada documento cotejado y nunca su ESTADO.
  * Cinco refs de /hallazgos resuelven a cuatro expedientes PLACSP anulados antes
@@ -29,7 +29,7 @@ const TENDERS = JSON.parse(readFileSync(join(ROOT, 'public/data/tenders.json'), 
 
 /** El rótulo que el lector ve, por estado. Uno por estado, y distintos. */
 const CHIP = {
-  cancelled: 'expediente anulado',
+  cancelled: 'sin contrato',
   committed: 'adjudicado',
   'in-flight': 'en licitación',
   none: 'sin estado',
@@ -102,7 +102,7 @@ describe('los datos reales traen los tres estados', () => {
 })
 
 describe('los tres estados se leen distintos en la página', () => {
-  it('un expediente anulado se ve anulado', async () => {
+  it('un expediente sin contrato se ve sin contrato', async () => {
     const { container } = await renderRefs([samples.cancelled])
     expect(container.textContent).toContain(CHIP.cancelled)
     // Y no se le puede confundir con lo contrario.
