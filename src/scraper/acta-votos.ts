@@ -213,7 +213,9 @@ function blocsDe(clausula: string): Pick<VotacionActa, 'blocs' | 'sinMapear'> {
   const plano = clausula.replace(/\s+/g, ' ')
   for (const t of plano.matchAll(TRAMO)) {
     const direction = SENTIDO.find(([re]) => re.test(t[2]))![1]
-    for (const parte of t[3].split(/,\s*|\s+y\s+(?=\d)/)) {
+    // «…, 1 EUPV- Unides Podem, y 1 VOX)» (qz6weg, punto 10): la «y» tras la coma
+    // también separa, o «y 1 VOX» se quedaría sin número delante.
+    for (const parte of t[3].split(/,\s*(?:y\s+(?=\d))?|\s+y\s+(?=\d)/)) {
       if (!parte.trim()) continue
       const pm = /^\s*(\d+)\s+(.+?)\s*$/.exec(parte)
       if (!pm) {

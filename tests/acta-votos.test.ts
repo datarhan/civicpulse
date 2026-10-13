@@ -249,6 +249,17 @@ describe('parseVotacionesActa — encabezados sin línea en blanco delante', () 
     expect(new Set(nums)).toEqual(new Set([2, 3, 4, 5, 6, 7]))
   })
 
+  it('qz6weg, punto 10: «…, 1 EUPV- Unides Podem, y 1 VOX)» no pierde a VOX', () => {
+    // Extracto: «por 14 votos a favor (11 PSOE, 1 Compromís per Riba-roja: Acord per
+    // Guanyar, 1 EUPV- Unides Podem, y 1 VOX) y 7 abstenciones (7 PP), acordó». La coma
+    // antes de la «y» dejaba el trozo «y 1 VOX», sin número delante, en sinMapear.
+    const [p10] = fondoDe(parseVotacionesActa(extracto('2025-12-01'), { desde: 10 }), 10)
+    expect(dir(p10, 'VOX')).toBe('a_favor')
+    expect(dir(p10, 'PP')).toBe('abstencion')
+    expect(escanos(p10)).toBe(21)
+    expect(p10.sinMapear).toEqual([])
+  })
+
   it('qz6weg (01-12-2025): los puntos 10 y 12 tienen una votación de fondo cada uno', () => {
     const v = parseVotacionesActa(extracto('2025-12-01'), { desde: 10 })
     for (const n of [10, 12]) expect(fondoDe(v, n), `punto ${n}`).toHaveLength(1)
