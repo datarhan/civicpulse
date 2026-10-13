@@ -18,7 +18,7 @@
  *
  * Uso: npm run scrape:pleno-actas
  */
-import { createHash } from 'node:crypto'
+import { sha256Short } from '../src/scraper/hash'
 import { spawnSync } from 'node:child_process'
 import { existsSync } from 'node:fs'
 import { copyFile, mkdir, readFile, writeFile } from 'node:fs/promises'
@@ -50,8 +50,8 @@ const MAX_FALLOS_SEGUIDOS = 3
 
 const sleep = (ms: number) => new Promise((r) => setTimeout(r, ms))
 
-/** Hash de los BYTES del PDF. `sha256Short` toma texto: un PDF pasado a string se corrompe. */
-const sha256CortoDeBytes = (b: Buffer) => createHash('sha256').update(b).digest('hex').slice(0, 12)
+/** Hash de los BYTES del PDF, con la primitiva compartida: nunca una copia local. */
+const sha256CortoDeBytes = (b: Buffer) => sha256Short(b)
 
 export interface ActaIndexada {
   plenoId: string
