@@ -85,6 +85,33 @@ describe('avisosDe', () => {
     expect(avisosDe([FIJA], enero(12))).toEqual([])
   })
 
+  // El último día callaba: los hitos de cierre eran 30, 14, 7, 3 y 1, y el de
+  // apertura sí tenía su «ABRE HOY». El premio de la AEPD (cierra el 15-10-2026 a
+  // las 23:59) avisaba el 14 y el día 15 —el único en que todavía se puede
+  // presentar con todo listo— no decía nada. Y «hoy» sin hora no sirve: cierra
+  // a las 23:59 o a las 12:00, y eso es la diferencia entre llegar y no.
+  it('el último día avisa que cierra HOY, con la hora de Madrid', () => {
+    // FIJA cierra el 31-01 a las 11:00Z: las 12:00 en Madrid (CET, invierno).
+    const [a] = avisosDe([FIJA], enero(31, 8))
+    expect(a.dias).toBe(0)
+    expect(a.texto).toMatch(/CIERRA HOY/)
+    expect(a.texto).toContain('12:00')
+    expect(a.texto).toContain('hora de Madrid')
+  })
+
+  // En verano la hora de Madrid es UTC+2: la del cierre de la AEPD, tal cual.
+  it('la hora del cierre sigue al horario de verano', () => {
+    const aepd: Convocatoria = { ...FIJA, id: 'v', cierra: '2026-10-15T21:59:00Z' }
+    const [a] = avisosDe([aepd], new Date(Date.UTC(2026, 9, 15, 8)))
+    expect(a.texto).toContain('23:59')
+  })
+
+  // Regla 1 otra vez: de una fecha aproximada no sabemos que sea hoy.
+  it('una fecha aproximada no dice «hoy»', () => {
+    const aprox: Convocatoria = { ...FIJA, id: 'ap-c', precision: 'aproximada' }
+    expect(avisosDe([aprox], enero(31, 8))).toEqual([])
+  })
+
   it('avisa el día que una convocatoria abre', () => {
     const abre: Convocatoria = {
       id: 'a',
@@ -141,6 +168,8 @@ describe('una convocatoria ya presentada', () => {
     expect(avisosDe([PRESENTADA], enero(1))).toEqual([]) // el hito de 30 se calla
     expect(avisosDe([PRESENTADA], enero(24)).map((a) => a.dias)).toEqual([7])
     expect(avisosDe([PRESENTADA], enero(30)).map((a) => a.dias)).toEqual([1])
+    // Y el día del cierre tampoco insiste: ya está enviada.
+    expect(avisosDe([PRESENTADA], enero(31, 8))).toEqual([])
   })
 
   // Y lo que diga tiene que decir que ya está enviada, con su referencia: un

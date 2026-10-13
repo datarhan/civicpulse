@@ -204,11 +204,33 @@ export interface Aviso {
   texto: string
 }
 
-/** Hitos en días. Lo aproximado avisa antes, porque hay que ir a confirmarlo. */
+/**
+ * Hitos en días. Lo aproximado avisa antes, porque hay que ir a confirmarlo.
+ *
+ * El 0 del cierre exacto llegó el 2026-10-13: hasta entonces el último día
+ * callaba, aunque la apertura sí tenía su «ABRE HOY». El premio de la AEPD
+ * cerraba el 15-10 a las 23:59 y ese día —el único en que todavía se puede
+ * presentar con todo listo— no iba a decir nada. Una fecha aproximada no lleva
+ * 0: de ella no sabemos que sea hoy.
+ */
 const HITOS = {
-  cierra: { exacta: [30, 14, 7, 3, 1], aproximada: [45, 30, 14, 7] },
+  cierra: { exacta: [30, 14, 7, 3, 1, 0], aproximada: [45, 30, 14, 7] },
   abre: { exacta: [7, 1, 0], aproximada: [30, 14, 7, 0] },
 }
+
+/**
+ * La hora del cierre en Madrid, «23:59». «Cierra hoy» sin hora no sirve: la
+ * AEPD cierra a las 23:59 y NLnet a las 12:00, y entre una y otra está llegar o
+ * no. En la hora peninsular porque es la del calendario de quien avisa; el
+ * cambio de horario lo resuelve la zona, no un desfase escrito a mano.
+ */
+const horaDeMadrid = (iso: string): string =>
+  new Intl.DateTimeFormat('es-ES', {
+    timeZone: 'Europe/Madrid',
+    hour: '2-digit',
+    minute: '2-digit',
+    hourCycle: 'h23',
+  }).format(new Date(iso))
 
 /** Ya enviada: sólo la última llamada, que es cuando aún se puede reenviar. */
 const HITOS_PRESENTADA = [7, 1]
@@ -250,7 +272,9 @@ export function avisosDe(cs: Convocatoria[], ahora: Date): Aviso[] {
           dias: d,
           texto: c.presentada
             ? `✅ Ya presentada el ${c.presentada.fecha}${ref} · ${c.nombre}\nCierra en ${d} día(s): hasta entonces puedes REENVIARLA si quieres cambiar algo.${cola}`
-            : `⏳ Cierra en ${d} día(s) · ${c.nombre}${sufijo}${cola}`,
+            : d === 0
+              ? `🔴 CIERRA HOY a las ${horaDeMadrid(c.cierra)} (hora de Madrid) · ${c.nombre}${sufijo}${cola}`
+              : `⏳ Cierra en ${d} día(s) · ${c.nombre}${sufijo}${cola}`,
         })
       }
     }
