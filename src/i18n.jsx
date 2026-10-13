@@ -563,7 +563,7 @@ export const CATALOGUE = {
     'contrato.quejasRelacionadas': 'Quejas ciudadanas relacionadas',
     'contrato.estado.awarded': 'Adjudicado',
     'contrato.estado.formalized': 'Formalizado',
-    'contrato.estado.void': 'Anulado',
+    'contrato.estado.void': 'Desierto',
     'contrato.estado.revoked': 'Renuncia',
     'contrato.estado.abandoned': 'Desistido',
     'contrato.estado.withdrawn': 'Retirado',
@@ -1335,9 +1335,10 @@ export const CATALOGUE = {
     'findings.refs.date.noneTitle':
       'El registro público de este documento no publica ninguna fecha utilizable. No significa que sea reciente.',
     // Tres estados y sólo tres, más el silencio mientras el snapshot carga. Un
-    // expediente anulado antes de adjudicar y un contrato firmado se leían
-    // igual bajo «Documentos cotejados».
-    'findings.refs.status.cancelled': 'expediente anulado',
+    // expediente que acabó sin contrato y un contrato firmado se leían igual
+    // bajo «Documentos cotejados». «Sin contrato» y no «anulado»: el estado que
+    // más lo dispara, `void`, es en PLACSP un lote DESIERTO (useTenders.js).
+    'findings.refs.status.cancelled': 'sin contrato',
     'findings.refs.status.cancelledTitle':
       'El procedimiento terminó sin contrato: se anuló, se desistió o quedó desierto. El ayuntamiento no llegó a firmarlo.',
     'findings.refs.status.committed': 'adjudicado',
@@ -1572,7 +1573,7 @@ export const CATALOGUE = {
     'presupuesto.menores.sinComparar':
       '{lista}: no se comparan con el límite, en vez de darlos por dentro.',
     'presupuesto.menores.anulados':
-      'Otros {n} venían marcados como menores y su adjudicación se deshizo: no cuentan como gasto ni se les mide el techo.',
+      'Otros {n} venían marcados como menores y no llegaron a contrato —quedaron desiertos o se deshizo la adjudicación—: no cuentan como gasto ni se les mide el techo.',
     'presupuesto.menores.norma': 'Ley 9/2017, art. 118',
     'presupuesto.deuda.titular.igual': 'Sin cambio en {anio}',
     'presupuesto.deuda.titular.sube': 'Sube en {anio}',
@@ -2612,7 +2613,7 @@ export const CATALOGUE = {
     'contrato.quejasRelacionadas': 'Queixes ciutadanes relacionades',
     'contrato.estado.awarded': 'Adjudicat',
     'contrato.estado.formalized': 'Formalitzat',
-    'contrato.estado.void': 'Anul·lat',
+    'contrato.estado.void': 'Desert',
     'contrato.estado.revoked': 'Renúncia',
     'contrato.estado.abandoned': 'Desistit',
     'contrato.estado.withdrawn': 'Retirat',
@@ -3300,7 +3301,7 @@ export const CATALOGUE = {
     'findings.refs.date.none': 'sense data publicada',
     'findings.refs.date.noneTitle':
       "El registre públic d'este document no publica cap data utilitzable. No vol dir que siga recent.",
-    'findings.refs.status.cancelled': 'expedient anul·lat',
+    'findings.refs.status.cancelled': 'sense contracte',
     'findings.refs.status.cancelledTitle':
       "El procediment va acabar sense contracte: es va anul·lar, se'n va desistir o va quedar desert. L'ajuntament no el va arribar a signar.",
     'findings.refs.status.committed': 'adjudicat',
@@ -3513,7 +3514,7 @@ export const CATALOGUE = {
     'presupuesto.menores.sinComparar':
       '{lista}: no es comparen amb el límit, en compte de donar-los per dins.',
     'presupuesto.menores.anulados':
-      'Altres {n} venien marcats com a menors i la seua adjudicació es va desfer: no compten com a despesa ni se’ls mesura el sostre.',
+      'Altres {n} venien marcats com a menors i no van arribar a contracte —van quedar deserts o es va desfer l’adjudicació—: no compten com a despesa ni se’ls mesura el sostre.',
     'presupuesto.menores.norma': 'Llei 9/2017, art. 118',
     'presupuesto.deuda.titular.igual': 'Sense canvis en {anio}',
     'presupuesto.deuda.titular.sube': 'Puja en {anio}',

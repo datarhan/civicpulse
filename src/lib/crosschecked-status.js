@@ -10,10 +10,12 @@
  * beside them stays blank — `endDate` is excluded from the date fields on
  * purpose, and an annulled expediente publishes nothing else.)
  *
- * Five and four, not the four and three a scan for «every row is void» finds:
- * expediente 68/2025, the Dirección Facultativa of the Centro Polivalente, is
- * `void` in the licitaciones table while its contract row publishes no status
- * at all. Ranking the two tables would have hidden it; pooling them does not.
+ * CORRECTED 13-10-2026: that count included expediente 68/2025, the Dirección
+ * Facultativa of the Centro Polivalente, which is `void` only in the
+ * licitaciones table — and there `void` means «no result published yet», not
+ * annulled (`sinVoidDeLicitacion` below). PLACSP had it in «Evaluación». The
+ * contract-table `void` refs are desierto lots: no contract, but nobody
+ * annulled anything either, hence the chip says «sin contrato».
  *
  * So a reader saw an abandoned procurement sitting under «Documentos
  * cotejados» beneath a finding about municipal spending, with nothing on screen
@@ -139,12 +141,34 @@ function group(into, rows) {
 }
 
 /**
+ * A licitación row's `void` is NOT a state, so it leaves the row stateless.
+ *
+ * In `contratos`, `void` is a desierto lot (useTenders.js). In `licitaciones`
+ * it is what Gobierto writes while PLACSP has published no result: on
+ * 13-10-2026 all nine `void` licitaciones were checked on PLACSP and seven were
+ * still «Evaluación» or taking offers (85/2026, 37/2026, 32/2026, 108/2026,
+ * 100/2026, 44-63/2026, 68/2025) and the other two had been AWARDED on 7 and
+ * 8 October (80/2025, 65/2026). Read as cancelled, it put «expediente anulado»
+ * beside 68/2025 on /hallazgos while the council was still scoring its bids.
+ *
+ * Same treatment as the `unknown` sentinel: it contributes nothing, and a
+ * contract row of the same expediente that DOES publish a state still speaks.
+ *
+ * @param {ProcurementRow} row
+ * @returns {ProcurementRow}
+ */
+function sinVoidDeLicitacion(row) {
+  const s = typeof row?.status === 'string' ? row.status.trim().toLowerCase() : ''
+  return s === 'void' ? { ...row, status: undefined } : row
+}
+
+/**
  * Index a tenders snapshot by permalink → the state that names the document.
  *
  * Contracts and tenders are pooled rather than ranked: unlike a date, where the
  * contract row is authoritative because it is the one carrying the award, a
- * state is a state whichever table publishes it — and one of the four void refs
- * is void in `tenders` while its contract row says `unknown`.
+ * state is a state whichever table publishes it — except a licitación's
+ * `void`, which is not one (`sinVoidDeLicitacion`).
  *
  * A permalink whose rows publish no usable state is indexed as `null`, so a
  * caller can tell «this document publishes no state» (say so) apart from «this
@@ -160,7 +184,7 @@ export function buildRefStatusIndex(snapshot) {
   /** @type {Map<string, ProcurementRow[]>} */
   const rows = new Map()
   group(rows, snapshot.contracts)
-  group(rows, snapshot.tenders)
+  group(rows, (snapshot.tenders ?? []).map(sinVoidDeLicitacion))
   for (const [link, bucket] of rows) index.set(link, pickStatus(bucket))
   return index
 }
