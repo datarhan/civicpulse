@@ -26,13 +26,22 @@
  *     https://regmeet.com/files/uploads/aytoribarroja/01-12-2025.Pleno2025-12-04_01-07-20/documentos/2026-07-30_15-35-18_0.pdf
  *   regmeet_acta_2025-11-03_extracto.txt — 1du4rf5, líneas 977–2150 (puntos 6–10), desde 6.
  *     https://regmeet.com/files/uploads/aytoribarroja/03-11-2025.Pleno2025-11-04_16-50-08/documentos/2026-07-30_15-34-56_0.pdf
+ *   regmeet_acta_2025-07-31_extracto.txt — rmtyr, líneas 3082–3131 (punto 3), desde 3.
+ *     https://regmeet.com/files/uploads/aytoribarroja/31-07-2025.Pleno2025-08-08_01-47-08/documentos/2026-07-30_15-33-34_0.pdf
+ *   regmeet_acta_2024-07-22_extracto.txt — 1pe6awk, líneas 72–1998 (puntos 1–2), desde 1.
+ *     https://regmeet.com/files/uploads/aytoribarroja/22-07-2024.Pleno2024-09-23_14-17-24/documentos/2026-07-30_15-40-35_0.pdf
  * Omitidos con las mismas marcas, línea a línea: en el del 20-04, la vivienda del punto 5
  * (polígono/parcela, referencia catastral) y las tres personas particulares del expediente;
  * en el del 03-11, el nombre y el NIF de un proveedor persona física (punto 6).
  */
 import { describe, it, expect } from 'vitest'
 import { readFileSync } from 'node:fs'
-import { parseVotacionesActa, blocDeActa, SIN_DESGLOSE } from '../src/scraper/acta-votos'
+import {
+  parseVotacionesActa,
+  encabezadosActa,
+  blocDeActa,
+  SIN_DESGLOSE,
+} from '../src/scraper/acta-votos'
 import { SPEAKER_GROUPS } from '../src/scraper/pleno-votes'
 
 const ACTA_0902 = readFileSync('tests/fixtures/regmeet_acta_2026-02-09.txt', 'utf8')
@@ -273,6 +282,38 @@ describe('parseVotacionesActa — encabezados sin línea en blanco delante', () 
     // (11 PSOE, 7 PP y 1 VOX) acordó» es el punto 9, no el 8.
     expect(dir(fondoDe(v, 9)[0], 'PSOE')).toBe('en_contra')
     expect(dir(fondoDe(v, 8)[0], 'PSOE')).toBe('a_favor')
+  })
+
+  it('rmtyr (31-07-2025): «3- INTERVENCIÓN, Expediente: …», con guion y sin punto, es el punto 3', () => {
+    // Extracto l.1: «3- INTERVENCIÓN, Expediente: 5014/2024/GEN, Aprobación inicial
+    // Presupuesto 2025». Esta acta numera «1.-» y luego «2-», «3-».
+    expect(encabezadosActa(extracto('2025-07-31'), { desde: 3 })).toEqual([{ n: 3, at: 0 }])
+  })
+
+  it('1pe6awk (22-07-2024): «1- INTERVENCIÓN,» con el título partido y «2- RECURSOS HUMANOS, Expediente…»', () => {
+    // Extracto l.1: «1- INTERVENCIÓN,» y, separadas por líneas en blanco, «Municipal 2024»,
+    // «Expediente:», «2852/2024/GEN,»… El 2, l.188: «2- RECURSOS HUMANOS, Expediente:
+    // 3723/2024/GEN Aprobación de la cifra global».
+    const t = extracto('2024-07-22')
+    const lineaDe = (at: number) => t.slice(0, at).split('\n').length
+    expect(encabezadosActa(t).map((h) => [h.n, lineaDe(h.at)])).toEqual([
+      [1, 1],
+      [2, 188],
+    ])
+    // «por 11 votos a favor (11 PSOE), 1 en contra (1 EUPV …) y 8 abstenciones (6 PP, 1
+    // VOX y 1 Compromís …), acordó:» es el punto 1.
+    const v = parseVotacionesActa(t)
+    const p1 = v.filter((x) => x.itemNumber === 1 && x.fase === 'fondo')
+    expect(p1).toHaveLength(1)
+    expect(dir(p1[0], 'EU-Podem')).toBe('en_contra')
+    // El informe del punto 2 enumera «3.- Cabe reseñar…» (l.1746), «4.- El informe
+    // emitido…», «5.- Asimismo…», «6.- Al respecto…», cada uno tras una línea en blanco y
+    // sin título: no son puntos, y la votación del final (l.1925–1926, «por 11 votos a
+    // favor (11 PSOE), 7 en contra (6 PP, 1 EUPV …) y 2 abstenciones…») es la del 2.
+    const p2 = v.filter((x) => x.itemNumber === 2 && x.fase === 'fondo')
+    expect(p2).toHaveLength(1)
+    expect(dir(p2[0], 'EU-Podem')).toBe('en_contra')
+    expect(Math.max(...v.map((x) => x.itemNumber ?? 0))).toBe(2)
   })
 
   it('sin `desde`, un texto que no empieza en el punto 1 no numera nada', () => {

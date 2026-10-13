@@ -16,11 +16,9 @@
  * `tests/acta-votos.test.ts`:
  *  - Las listas numeradas dentro de un punto («1.- Informe…», «4.- Propuesta de
  *    Acuerdo al Pleno.», «7.» en línea suelta, «3. SERVICIOS PÚBLICOS (SP)») no son
- *    encabezados: sólo cuenta el siguiente número al último (N = anterior + 1), con
- *    texto en la misma línea, y o bien con el título de un punto (un expediente,
- *    «Asuntos de urgencia», «Ruegos y preguntas»…) —haya o no línea en blanco
- *    delante—, o bien tras una línea en blanco y sin que el mismo N vuelva con
- *    título antes del N+1 (`encabezadosActa`).
+ *    encabezados: sólo cuenta el siguiente número al último (N = anterior + 1) con
+ *    el título de un punto (un expediente, «Asuntos de urgencia», «Ruegos y
+ *    preguntas»…), haya o no línea en blanco delante (`encabezadosActa`).
  *  - Las urgencias no llevan número propio: van todas bajo «Asuntos de Urgencia».
  *  - El acta a veces no cierra un paréntesis («(11 PSOE y 7 PP y 3 abstenciones
  *    (1 VOX, …)»): el tramo se cierra donde empieza el siguiente sentido de voto.
@@ -92,8 +90,6 @@ const TRAMO = new RegExp(
   'gi',
 )
 
-/** Encabezado de punto: «10.- 6/2026/PGRU …», «4.-CONTRATACIÓN…» u «11. Asuntos de Urgencia.» */
-const ENCABEZADO = /^\s*(\d{1,2})\s*\.(?:\s*[-–]\s*|\s+)\S/
 /**
  * Cualquier «N.» seguido de texto, con o sin separador («2.INTERVENCIÓN, …»). Un
  * dígito pegado al punto sólo vale si abre un expediente («8.26/2024/PGRU»): si
@@ -104,14 +100,18 @@ const NUMERADA = /^\s*(\d{1,2})\s*\.(?:(?=\d+\/\d{4}\/)|(?!\d))(?:\s*[-–]\s*|\
 const NUMERADA_SIN_PUNTO =
   /^\s*(\d{1,2})\s*[-–]?\s+((?:(?:asuntos?|despacho) de urgencia|ruegos y preguntas).*)$/i
 /**
+ * «2- RECURSOS HUMANOS, Expediente: …» (rmtyr, ma87e0, 1pe6awk): guion sin punto. */
+const NUMERADA_GUION = /^\s*(\d{1,2})\s*[-–]\s*(\S.*)$/
+/**
  * Lo que sólo trae el título de un punto del orden del día: un expediente
  * («Expediente», «1926/2026/GEN», «13/2026/PGRU»; con mayúscula, porque «del
  * expediente de imposición» en el cuerpo de un punto no lo es) o uno de los
- * puntos fijos del orden.
+ * puntos fijos del orden (los de una sesión extraordinaria incluidos: «1.- Ratificar el
+ * carácter urgente de la sesión», «1.- Confirmación de asistencia…»).
  */
 const EXPEDIENTE = /\b(?:Expediente|EXPEDIENTE)\b|\b\d+\/\d{4}\/[A-Z]{2,}\b/
 const PUNTO_FIJO =
-  /^(?:(?:asuntos?|despacho) de urgencia|aprobaci[oó]n (?:de(?:l| las?)? )?actas?\b|ruegos y preguntas|dar cuenta\b|daci[oó]n (?:de )?cuenta\b|moci[oó]n?(?![a-záéíóúñ]))/i
+  /^(?:(?:asuntos?|despacho) de urgencia|aprobaci[oó]n (?:de(?:l| las?)? )?actas?\b|ruegos y preguntas|dar cuenta\b|daci[oó]n (?:de )?cuenta\b|moci[oó]n?(?![a-záéíóúñ])|ratifica(?:r|ci[oó]n)\b|confirmaci[oó]n de asistencia)/i
 
 export interface OpcionesActa {
   /**
@@ -131,17 +131,23 @@ interface Candidata {
 const enBlanco = (linea: string | undefined) => linea == null || linea.replace(/[\s\f]/g, '') === ''
 
 /**
- * Un título partido en varias líneas tras una en blanco («5.SECRETARÍA» /
- * «(GESTIÓN» / «PATRIMONIAL),» / «EXPEDIENTE» / «514/2025/GEN,», en hp3y4s): el
- * expediente se busca en las cuatro líneas siguientes, si la del número es corta.
+ * Un título partido en varias líneas («5.SECRETARÍA» / «(GESTIÓN» / «PATRIMONIAL),» /
+ * «EXPEDIENTE» / «514/2025/GEN,», en hp3y4s; «1- INTERVENCIÓN,» / «Municipal 2024» /
+ * «Expediente:», con líneas en blanco entre medias, en 1pe6awk): si la línea del
+ * número es corta y va tras una en blanco o es un departamento en mayúsculas, el
+ * expediente se busca en sus cuatro líneas no vacías siguientes (dentro de diez).
  */
 function candidata(lineas: string[], i: number): Candidata | null {
-  const m = NUMERADA.exec(lineas[i]) ?? NUMERADA_SIN_PUNTO.exec(lineas[i])
+  const m =
+    NUMERADA.exec(lineas[i]) ?? NUMERADA_SIN_PUNTO.exec(lineas[i]) ?? NUMERADA_GUION.exec(lineas[i])
   if (!m) return null
   let titulo = EXPEDIENTE.test(m[2]) || PUNTO_FIJO.test(m[2])
-  if (!titulo && enBlanco(lineas[i - 1]) && m[2].length <= 40) {
+  const enMayusculas = !/[a-záéíóúñü]/.test(m[2])
+  if (!titulo && (enBlanco(lineas[i - 1]) || enMayusculas) && m[2].length <= 40) {
     const siguientes: string[] = []
-    for (let j = i + 1; j <= i + 4 && !enBlanco(lineas[j]); j++) siguientes.push(lineas[j])
+    for (let j = i + 1; j <= i + 10 && siguientes.length < 4 && j < lineas.length; j++) {
+      if (!enBlanco(lineas[j])) siguientes.push(lineas[j])
+    }
     titulo = EXPEDIENTE.test(siguientes.join(' '))
   }
   return { n: Number(m[1]), titulo }
@@ -149,49 +155,31 @@ function candidata(lineas: string[], i: number): Candidata | null {
 
 /**
  * Los encabezados de punto, en orden. Una línea lo es si es el siguiente número
- * (N = anterior + 1) y además:
- *  - lleva el título de un punto, haya o no línea en blanco delante: pdftotext
- *    no siempre la deja, y un encabezado perdido arrastraba todos los puntos
- *    siguientes al anterior (10yl550, k4olcs, qz6weg, 1du4rf5); o
- *  - tiene la forma «N.-» / «N. » tras una línea en blanco («1.- Ratificar el
- *    carácter urgente de la sesión»), salvo que más adelante, antes de un título
- *    del punto N+1, aparezca un título del punto N: entonces es una lista dentro
- *    del punto anterior («3. SERVICIOS PÚBLICOS (SP)» de una carta de servicios,
- *    y luego «3.- INTEGRIDAD, Expediente…», en k4olcs).
- * Una lista dentro de un punto cuyo número no siga al último («1. Que…») nunca
- * cuenta, ni con título.
+ * (N = anterior + 1) y lleva el título de un punto, haya o no línea en blanco
+ * delante: pdftotext no siempre la deja, y un encabezado perdido arrastraba todos
+ * los puntos siguientes al anterior (10yl550, k4olcs, qz6weg, 1du4rf5, rmtyr).
+ *
+ * Sin título no hay encabezado, aunque tenga la forma «N.-» tras una línea en
+ * blanco: así se leían como puntos la carta de servicios de k4olcs («3. SERVICIOS
+ * PÚBLICOS (SP)» … «27.») y los apartados de un informe en 1pe6awk («3.- Cabe
+ * reseñar…», «4.- El informe emitido…»), y sus votaciones iban al punto que no era.
+ * Un punto sin título queda sin número —«no encontrada» en `check:votos-acta`—,
+ * que se ve; una votación en el punto equivocado no.
  */
 export function encabezadosActa(
   texto: string,
   opciones: OpcionesActa = {},
 ): Array<{ n: number; at: number }> {
   const lineas = texto.split('\n')
-  const cands = lineas.map((_, i) => candidata(lineas, i))
-  const tituloDelMismoAntesDelSiguiente = (n: number, i: number) => {
-    for (let j = i + 1; j < cands.length; j++) {
-      const c = cands[j]
-      if (!c?.titulo) continue
-      if (c.n === n + 1) return false
-      if (c.n === n) return true
-    }
-    return false
-  }
-
   const out: Array<{ n: number; at: number }> = []
   let ultimo = (opciones.desde ?? 1) - 1
   let at = 0
-  let anteriorEnBlanco = true
   lineas.forEach((linea, i) => {
-    const c = cands[i]
-    if (c && c.n === ultimo + 1) {
-      const forma =
-        anteriorEnBlanco && ENCABEZADO.test(linea) && !tituloDelMismoAntesDelSiguiente(c.n, i)
-      if (c.titulo || forma) {
-        ultimo = c.n
-        out.push({ n: c.n, at })
-      }
+    const c = candidata(lineas, i)
+    if (c?.titulo && c.n === ultimo + 1) {
+      ultimo = c.n
+      out.push({ n: c.n, at })
     }
-    anteriorEnBlanco = enBlanco(linea)
     at += linea.length + 1
   })
   return out
