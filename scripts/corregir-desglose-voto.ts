@@ -18,8 +18,10 @@
  *
  * Es nivel C: nombra cómo votaron grupos con nombre —y uno de un solo escaño
  * nombra a su concejal—, así que la ejecuta y la firma un curador, nunca un
- * proceso. `--editor` rechaza, antes de leer nada, el hueco de una orden
- * preparada sin rellenar (`rechazoDeMarcador`, src/scraper/firma-de-persona.ts).
+ * proceso. `--editor` tiene que nombrar a una PERSONA: rechaza, antes de leer
+ * nada, la cuenta de rol, un identificador y el hueco de una orden preparada sin
+ * rellenar (`rechazoDeFirma`, src/scraper/firma-de-persona.ts), como las demás
+ * correcciones de afirmaciones publicadas.
  *
  * `--votos`: tuplas `<grupo>:<sentido>[:<escaños>]` separadas por comas. Para un
  * voto que el acta recoge sin decir de qué grupo es, `null` o `sin-identificar`.
@@ -34,7 +36,7 @@
 import { existsSync, readFileSync, writeFileSync } from 'node:fs'
 import { resolve } from 'node:path'
 
-import { rechazoDeMarcador } from '../src/scraper/firma-de-persona'
+import { rechazoDeFirma } from '../src/scraper/firma-de-persona'
 import {
   correctVoteBreakdown,
   validateSnapshot,
@@ -145,8 +147,10 @@ function main() {
         `Es una corrección pública de cómo votaron grupos con nombre.`,
     )
   }
-  const hueco = rechazoDeMarcador(editor)
-  if (hueco) bail(`--editor: ${hueco}`)
+  // Nivel C: el desglose de un grupo de un escaño nombra a su concejal, así que
+  // firma una persona, nunca la cuenta de rol.
+  const firma = rechazoDeFirma(editor)
+  if (firma) bail(`--editor: ${firma}`, 1)
 
   const kind = voteSourceKindForUrl(fuente)
   if (kind == null) {

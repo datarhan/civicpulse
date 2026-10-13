@@ -306,6 +306,21 @@ describe('corregir-voto', () => {
     }
   })
 
+  it('se niega a la cuenta de rol: firma una persona (nivel C)', () => {
+    const original = JSON.stringify(buildSnapshot(), null, 2) + '\n'
+    const dir = montar(original)
+    try {
+      const a = argv()
+      a[a.indexOf('--editor') + 1] = 'civicpulse-curator'
+      const r = lanzar('corregir-desglose-voto.ts', dir, a)
+      expect(r.status, `${r.stdout}\n${r.stderr}`).toBe(1)
+      expect(r.stderr).toMatch(/--editor/)
+      expect(readFileSync(join(dir, 'public/data/pleno-votes.json'), 'utf8')).toBe(original)
+    } finally {
+      rmSync(dir, { recursive: true, force: true })
+    }
+  })
+
   it('se niega a una fuente que no sabe clasificar', () => {
     const original = JSON.stringify(buildSnapshot(), null, 2) + '\n'
     const dir = montar(original)

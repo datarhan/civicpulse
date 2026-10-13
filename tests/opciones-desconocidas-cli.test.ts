@@ -546,7 +546,7 @@ const CERRADOS: Caso[] = [
       '--reason',
       MOTIVO,
       '--editor',
-      ROL,
+      PERSONA,
     ],
     datos: ['pleno-votes.json'],
     dryRun: true,
