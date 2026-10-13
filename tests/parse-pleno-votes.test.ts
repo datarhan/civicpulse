@@ -11,6 +11,7 @@ import {
   OUTCOME_SOURCE_KINDS,
   VOTE_SOURCE_KINDS,
   VOTE_SOURCE_KIND_IDS,
+  voteSourceKindForUrl,
 } from '../src/scraper/pleno-votes'
 
 const baseVote = {
@@ -557,5 +558,20 @@ describe('provenance: a verification must be independent of what it verifies', (
       // Nothing is independent of itself, derived or not.
       expect(isIndependentVerificationSource(k, k)).toBe(false)
     }
+  })
+})
+
+describe('voteSourceKindForUrl — actas alojadas en regmeet', () => {
+  const ACTA =
+    'https://regmeet.com/files/uploads/aytoribarroja/09-02-2026.Pleno2026-02-10_20-43-39/documentos/2026-07-30_13-45-56_0.pdf'
+  it('un PDF de «Documentos» es un acta y puede sostener un desglose', () => {
+    expect(voteSourceKindForUrl(ACTA)).toBe('acta')
+    expect(BREAKDOWN_SOURCE_KINDS).toContain(voteSourceKindForUrl(ACTA))
+  })
+  it('la página de sesión sigue siendo regmeet, que no publica desglose', () => {
+    const sesion =
+      'https://regmeet.com/aytoribarroja/participaciones/c5b270a763686e776039618cc709f3a6?idioma=castellano'
+    expect(voteSourceKindForUrl(sesion)).toBe('regmeet')
+    expect(BREAKDOWN_SOURCE_KINDS).not.toContain('regmeet')
   })
 })

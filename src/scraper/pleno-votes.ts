@@ -20,6 +20,8 @@
  * new party must be added there first so the UI can render it.
  */
 
+import { esDocumentoDeSesionRegmeet } from './regmeet-documentos'
+
 /**
  * Group codes that NAME a real municipal group. This is the only set a
  * `speakerGroup` may take — «who said this» is an attribution, so a
@@ -420,6 +422,10 @@ export function voteSourceKindForUrl(url: string): VoteSourceKind | null {
   } catch {
     return null
   }
+  // El acta firmada que regmeet aloja en la pestaña «Documentos» es un acta,
+  // no el portal: publica el desglose por grupos. Sin esto, citarla para un
+  // desglose se rechazaba por venir de un portal que no lo publica.
+  if (esDocumentoDeSesionRegmeet(url)) return 'acta'
   if (host === 'regmeet.com') return 'regmeet'
   if (host === 'ribarroja.es' || host.endsWith('.ribarroja.es')) return 'acta'
   if (host === 'youtu.be' || host === 'youtube.com' || host.endsWith('.youtube.com')) return 'video'
