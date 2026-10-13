@@ -162,6 +162,10 @@ export function resumenCotejo(c: Cotejo[]): {
   let motivo: string | null = null
   if (porResultado.contradice > 0) {
     motivo = `${porResultado.contradice} desglose(s) que el acta contradice`
+  } else if (c.length > 0 && evaluados === 0) {
+    // Todo «sin-acta»: un índice de actas vacío o roto. Un cotejo que no comparó
+    // nada no puede imprimir «ok» (regla 2). Sin desgloses publicados, no aplica.
+    motivo = 'no se cotejó ningún desglose publicado'
   } else if (evaluados > 0 && leidos === 0) {
     motivo = `había ${evaluados} votación(es) con acta y no se pudo cotejar ninguna`
   } else if (evaluados > 0 && porResultado['no-encontrada'] / evaluados > 0.2) {

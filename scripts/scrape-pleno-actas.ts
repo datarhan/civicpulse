@@ -30,6 +30,7 @@ import {
   parseRegmeetDocumentos,
   type RegmeetDocumento,
 } from '../src/scraper/regmeet-documentos'
+import { desenlaceSesion, puedeEscribirIndice } from '../src/scraper/pleno-actas-pasada'
 
 const __dirname = dirname(fileURLToPath(import.meta.url))
 const PROJECT_ROOT = join(__dirname, '..')
@@ -100,8 +101,6 @@ async function leerAnterior(): Promise<ActaIndexada[]> {
   }
 }
 
-type Desenlace = 'conActa' | 'sinDocumentos' | 'soloOtros' | 'fechaNoCoincide' | 'fallida'
-
 async function main() {
   const index = JSON.parse(await readFile(PLENOS, 'utf8')) as {
     items?: Array<{ id: string; date: string; link?: string }>
@@ -171,7 +170,6 @@ async function main() {
     fallosSeguidos = 0
 
     const documentos = parseRegmeetDocumentos(html.toString('utf8'))
-    let desenlace: Desenlace = documentos.length === 0 ? 'sinDocumentos' : 'soloOtros'
     let algunaFallo = false
     let algunaActaOtraFecha = false
     let elegida: { doc: RegmeetDocumento; sha: string; pdf: string; txt: string } | null = null
@@ -214,8 +212,20 @@ async function main() {
       }
     }
 
+    const {
+      desenlace,
+      arrastrar: hayQueArrastrar,
+      motivo,
+    } = desenlaceSesion({
+      documentos: documentos.length,
+      hayActa: elegida !== null,
+      algunaFallo,
+      algunaActaOtraFecha,
+      teniaActa: anteriorPorPleno.has(p.id),
+    })
+    if (motivo) console.error(`\n[pleno-actas] ${p.id} (${p.date}) fallida: ${motivo}`)
+    if (hayQueArrastrar) arrastrar()
     if (elegida) {
-      desenlace = 'conActa'
       await copyFile(elegida.txt, join(CACHE, `${p.id}.txt`))
       items.push({
         plenoId: p.id,
@@ -226,11 +236,6 @@ async function main() {
         paginas: paginasDe(elegida.pdf),
         sha256Short: elegida.sha,
       })
-    } else if (algunaFallo) {
-      desenlace = 'fallida'
-      arrastrar()
-    } else if (algunaActaOtraFecha) {
-      desenlace = 'fechaNoCoincide'
     }
     stats[desenlace === 'fallida' ? 'fallidas' : desenlace] += 1
     console.log(`${documentos.length} documento(s) → ${desenlace}`)
@@ -244,14 +249,12 @@ async function main() {
     `arrastradas ${stats.arrastradas} · PDF reutilizados ${stats.pdfReutilizados}`
   console.log(resumen)
 
-  // El cortacircuitos de scrape-pleno-agendas: con media pasada perdida, el
-  // fichero anterior vale más que uno nuevo a medias, y no se toca.
-  const perdidas = stats.fallidas + stats.sinIntentar
-  if (stats.sesiones === 0 || perdidas >= stats.sesiones / 2) {
-    console.error(
-      `[pleno-actas] ${perdidas} de ${stats.sesiones} sesiones fallidas o sin intentar — ` +
-        `se deja ${OUT} como estaba`,
-    )
+  // El cortacircuitos de scrape-pleno-agendas, más uno propio: con media pasada
+  // perdida, o con menos de la mitad de las actas que había, el fichero anterior
+  // vale más que uno nuevo a medias, y no se toca (`puedeEscribirIndice`).
+  const puerta = puedeEscribirIndice({ ...stats, previas: anterior.length })
+  if (!puerta.ok) {
+    console.error(`[pleno-actas] ${puerta.motivo} — se deja ${OUT} como estaba`)
     process.exit(1)
   }
 

@@ -176,4 +176,15 @@ describe('resumenCotejo — demuestra que hizo trabajo', () => {
     expect(r.evaluados).toBe(2)
     expect(r.falla).toBe(false)
   })
+  it('falla si todo es sin-acta: no se cotejó nada (índice de actas vacío o roto)', () => {
+    const r = resumenCotejo([c('sin-acta'), c('sin-acta')])
+    expect(r.evaluados).toBe(0)
+    expect(r.falla).toBe(true)
+    expect(r.motivo).toBe('no se cotejó ningún desglose publicado')
+  })
+  it('sin desgloses publicados no hay nada que cotejar: no falla', () => {
+    const r = resumenCotejo([])
+    expect(r.evaluados).toBe(0)
+    expect(r.falla).toBe(false)
+  })
 })
