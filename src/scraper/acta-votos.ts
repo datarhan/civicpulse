@@ -15,9 +15,12 @@
  * Tres cosas del texto real que este parser tiene en cuenta, cada una fijada en
  * `tests/acta-votos.test.ts`:
  *  - Las listas numeradas dentro de un punto («1.- Informe…», «4.- Propuesta de
- *    Acuerdo al Pleno.», «7.» en línea suelta) no son encabezados: sólo cuenta un
- *    «N.-» / «N.» con texto en la misma línea, tras una línea en blanco, y que sea
- *    el siguiente al último (N = anterior + 1).
+ *    Acuerdo al Pleno.», «7.» en línea suelta, «3. SERVICIOS PÚBLICOS (SP)») no son
+ *    encabezados: sólo cuenta el siguiente número al último (N = anterior + 1), con
+ *    texto en la misma línea, y o bien con el título de un punto (un expediente,
+ *    «Asuntos de urgencia», «Ruegos y preguntas»…) —haya o no línea en blanco
+ *    delante—, o bien tras una línea en blanco y sin que el mismo N vuelva con
+ *    título antes del N+1 (`encabezadosActa`).
  *  - Las urgencias no llevan número propio: van todas bajo «Asuntos de Urgencia».
  *  - El acta a veces no cierra un paréntesis («(11 PSOE y 7 PP y 3 abstenciones
  *    (1 VOX, …)»): el tramo se cierra donde empieza el siguiente sentido de voto.
@@ -91,21 +94,106 @@ const TRAMO = new RegExp(
 
 /** Encabezado de punto: «10.- 6/2026/PGRU …», «4.-CONTRATACIÓN…» u «11. Asuntos de Urgencia.» */
 const ENCABEZADO = /^\s*(\d{1,2})\s*\.(?:\s*[-–]\s*|\s+)\S/
+/**
+ * Cualquier «N.» seguido de texto, con o sin separador («2.INTERVENCIÓN, …»). Un
+ * dígito pegado al punto sólo vale si abre un expediente («8.26/2024/PGRU»): si
+ * no, es una cifra («2.940,81») o un apartado («9.1 SECRETARÍA»).
+ */
+const NUMERADA = /^\s*(\d{1,2})\s*\.(?:(?=\d+\/\d{4}\/)|(?!\d))(?:\s*[-–]\s*|\s*)(\S.*)$/
+/** «8 Asuntos de urgencia.» (otxq2c) y «9- Ruegos y preguntas.» (of2npg): sin el punto. */
+const NUMERADA_SIN_PUNTO =
+  /^\s*(\d{1,2})\s*[-–]?\s+((?:(?:asuntos?|despacho) de urgencia|ruegos y preguntas).*)$/i
+/**
+ * Lo que sólo trae el título de un punto del orden del día: un expediente
+ * («Expediente», «1926/2026/GEN», «13/2026/PGRU»; con mayúscula, porque «del
+ * expediente de imposición» en el cuerpo de un punto no lo es) o uno de los
+ * puntos fijos del orden.
+ */
+const EXPEDIENTE = /\b(?:Expediente|EXPEDIENTE)\b|\b\d+\/\d{4}\/[A-Z]{2,}\b/
+const PUNTO_FIJO =
+  /^(?:(?:asuntos?|despacho) de urgencia|aprobaci[oó]n (?:de(?:l| las?)? )?actas?\b|ruegos y preguntas|dar cuenta\b|daci[oó]n (?:de )?cuenta\b|moci[oó]n?(?![a-záéíóúñ]))/i
 
-function encabezados(texto: string): Array<{ n: number; at: number }> {
+export interface OpcionesActa {
+  /**
+   * Número del primer punto que se espera en el texto (1 por omisión). Sólo para
+   * un extracto que empieza a mitad del acta: el acta entera empieza en el 1, y
+   * un texto que empezara con una lista «3.» no debe poder saltarse el 1 y el 2.
+   */
+  desde?: number
+}
+
+interface Candidata {
+  n: number
+  /** Lleva el título de un punto (`EXPEDIENTE` o `PUNTO_FIJO`). */
+  titulo: boolean
+}
+
+const enBlanco = (linea: string | undefined) => linea == null || linea.replace(/[\s\f]/g, '') === ''
+
+/**
+ * Un título partido en varias líneas tras una en blanco («5.SECRETARÍA» /
+ * «(GESTIÓN» / «PATRIMONIAL),» / «EXPEDIENTE» / «514/2025/GEN,», en hp3y4s): el
+ * expediente se busca en las cuatro líneas siguientes, si la del número es corta.
+ */
+function candidata(lineas: string[], i: number): Candidata | null {
+  const m = NUMERADA.exec(lineas[i]) ?? NUMERADA_SIN_PUNTO.exec(lineas[i])
+  if (!m) return null
+  let titulo = EXPEDIENTE.test(m[2]) || PUNTO_FIJO.test(m[2])
+  if (!titulo && enBlanco(lineas[i - 1]) && m[2].length <= 40) {
+    const siguientes: string[] = []
+    for (let j = i + 1; j <= i + 4 && !enBlanco(lineas[j]); j++) siguientes.push(lineas[j])
+    titulo = EXPEDIENTE.test(siguientes.join(' '))
+  }
+  return { n: Number(m[1]), titulo }
+}
+
+/**
+ * Los encabezados de punto, en orden. Una línea lo es si es el siguiente número
+ * (N = anterior + 1) y además:
+ *  - lleva el título de un punto, haya o no línea en blanco delante: pdftotext
+ *    no siempre la deja, y un encabezado perdido arrastraba todos los puntos
+ *    siguientes al anterior (10yl550, k4olcs, qz6weg, 1du4rf5); o
+ *  - tiene la forma «N.-» / «N. » tras una línea en blanco («1.- Ratificar el
+ *    carácter urgente de la sesión»), salvo que más adelante, antes de un título
+ *    del punto N+1, aparezca un título del punto N: entonces es una lista dentro
+ *    del punto anterior («3. SERVICIOS PÚBLICOS (SP)» de una carta de servicios,
+ *    y luego «3.- INTEGRIDAD, Expediente…», en k4olcs).
+ * Una lista dentro de un punto cuyo número no siga al último («1. Que…») nunca
+ * cuenta, ni con título.
+ */
+export function encabezadosActa(
+  texto: string,
+  opciones: OpcionesActa = {},
+): Array<{ n: number; at: number }> {
+  const lineas = texto.split('\n')
+  const cands = lineas.map((_, i) => candidata(lineas, i))
+  const tituloDelMismoAntesDelSiguiente = (n: number, i: number) => {
+    for (let j = i + 1; j < cands.length; j++) {
+      const c = cands[j]
+      if (!c?.titulo) continue
+      if (c.n === n + 1) return false
+      if (c.n === n) return true
+    }
+    return false
+  }
+
   const out: Array<{ n: number; at: number }> = []
-  let ultimo = 0
+  let ultimo = (opciones.desde ?? 1) - 1
   let at = 0
   let anteriorEnBlanco = true
-  for (const linea of texto.split('\n')) {
-    const m = ENCABEZADO.exec(linea)
-    if (m && anteriorEnBlanco && Number(m[1]) === ultimo + 1) {
-      ultimo = Number(m[1])
-      out.push({ n: ultimo, at })
+  lineas.forEach((linea, i) => {
+    const c = cands[i]
+    if (c && c.n === ultimo + 1) {
+      const forma =
+        anteriorEnBlanco && ENCABEZADO.test(linea) && !tituloDelMismoAntesDelSiguiente(c.n, i)
+      if (c.titulo || forma) {
+        ultimo = c.n
+        out.push({ n: c.n, at })
+      }
     }
-    anteriorEnBlanco = linea.replace(/[\s\f]/g, '') === ''
+    anteriorEnBlanco = enBlanco(linea)
     at += linea.length + 1
-  }
+  })
   return out
 }
 
@@ -143,8 +231,8 @@ function blocsDe(clausula: string): Pick<VotacionActa, 'blocs' | 'sinMapear'> {
   return { blocs, sinMapear }
 }
 
-export function parseVotacionesActa(texto: string): VotacionActa[] {
-  const heads = encabezados(texto)
+export function parseVotacionesActa(texto: string, opciones: OpcionesActa = {}): VotacionActa[] {
+  const heads = encabezadosActa(texto, opciones)
   const puntoEn = (at: number) => [...heads].reverse().find((h) => h.at < at)?.n ?? null
 
   const halladas: Array<{ at: number; fin: number; votacion: VotacionActa }> = []

@@ -12,6 +12,23 @@
  * Son las descargas reales con los particulares omitidos (la del 27-07: nombres, domicilio y
  * referencia catastral), marcados «[persona particular — omitido]», «[domicilio — omitido]» y
  * «[referencia catastral — omitida]»; ninguna cláusula de votación se ha tocado.
+ *
+ * Extractos (Task 6b, 2026-10-13): rangos CONTIGUOS de líneas del texto que deja
+ * `scrape:pleno-actas` — `pdftotext .cache/pleno-actas/<plenoId>-0.pdf
+ * .cache/pleno-actas/<plenoId>-0.txt` (sin `-layout`; el PDF casa con el `sha256Short`
+ * de public/data/pleno-actas.json) y luego `sed -n A,Bp`. Cada uno empieza en un
+ * encabezado de punto y se lee con `{ desde }` = ese número:
+ *   regmeet_acta_2026-05-11_extracto.txt — 10yl550, líneas 302–450 (puntos 5–7), desde 5.
+ *     https://regmeet.com/files/uploads/aytoribarroja/11-05-2026.Pleno2026-05-11_23-30-05/documentos/2026-07-30_13-47-39_0.pdf
+ *   regmeet_acta_2026-04-20_extracto.txt — k4olcs, líneas 84–3921 (puntos 2–8), desde 2.
+ *     https://regmeet.com/files/uploads/aytoribarroja/20-04-2026.Pleno2026-04-21_04-44-21/documentos/2026-07-30_13-47-18_0.pdf
+ *   regmeet_acta_2025-12-01_extracto.txt — qz6weg, líneas 3538–4655 (puntos 10–13), desde 10.
+ *     https://regmeet.com/files/uploads/aytoribarroja/01-12-2025.Pleno2025-12-04_01-07-20/documentos/2026-07-30_15-35-18_0.pdf
+ *   regmeet_acta_2025-11-03_extracto.txt — 1du4rf5, líneas 977–2150 (puntos 6–10), desde 6.
+ *     https://regmeet.com/files/uploads/aytoribarroja/03-11-2025.Pleno2025-11-04_16-50-08/documentos/2026-07-30_15-34-56_0.pdf
+ * Omitidos con las mismas marcas, línea a línea: en el del 20-04, la vivienda del punto 5
+ * (polígono/parcela, referencia catastral) y las tres personas particulares del expediente;
+ * en el del 03-11, el nombre y el NIF de un proveedor persona física (punto 6).
  */
 import { describe, it, expect } from 'vitest'
 import { readFileSync } from 'node:fs'
@@ -179,5 +196,79 @@ describe('parseVotacionesActa — ambas actas', () => {
       expect(x.sinMapear).toContain(SIN_DESGLOSE)
       expect(SIN_DESGLOSE).toBe('(cláusula sin desglose legible)')
     }
+  })
+})
+
+/**
+ * Encabezados sin línea en blanco delante. En estas cuatro actas pdftotext pega el
+ * encabezado de un punto a la línea anterior («…acordó desestimar / la moción
+ * presentada. / 6.- 11/2026/PGRU, Moción…»), o lo escribe sin separador
+ * («10.FIESTAS, Expediente…»). Bastaba perder uno para que todos los puntos
+ * siguientes se quedaran con el número del anterior, y `check:votos-acta` daba
+ * «no encontrada» a sus desgloses publicados.
+ *
+ * Los números de punto son los de las filas publicadas de cada sesión en
+ * public/data/pleno-votes.json el 2026-10-13 (sólo lectura).
+ */
+const extracto = (fecha: string) =>
+  readFileSync(`tests/fixtures/regmeet_acta_${fecha}_extracto.txt`, 'utf8')
+const fondoDe = (v: ReturnType<typeof parseVotacionesActa>, n: number) =>
+  v.filter((x) => x.itemNumber === n && x.fase === 'fondo')
+
+describe('parseVotacionesActa — encabezados sin línea en blanco delante', () => {
+  it('10yl550 (11-05-2026): el punto 6 tiene su votación de fondo', () => {
+    const v = parseVotacionesActa(extracto('2026-05-11'), { desde: 5 })
+    const p6 = fondoDe(v, 6)
+    expect(p6).toHaveLength(1)
+    // Extracto l.114–115: «por 14 votos a favor (11 PSOE, 1 EUPV …, 1 Compromís … y 1
+    // VOX), y 7 votos en contra (7 PP), acordó:»
+    expect(dir(p6[0], 'VOX')).toBe('a_favor')
+    expect(dir(p6[0], 'PP')).toBe('en_contra')
+    expect(escanos(p6[0])).toBe(21)
+    // La del punto 5 se queda en el 5: «6.-» va justo después de su «acordó».
+    expect(fondoDe(v, 5)).toHaveLength(1)
+    expect(dir(fondoDe(v, 5)[0], 'PP')).toBe('a_favor')
+  })
+
+  it('k4olcs (20-04-2026): los puntos 6 y 7 tienen una votación de fondo cada uno', () => {
+    const v = parseVotacionesActa(extracto('2026-04-20'), { desde: 2 })
+    for (const n of [6, 7]) expect(fondoDe(v, n), `punto ${n}`).toHaveLength(1)
+    expect(dir(fondoDe(v, 6)[0], 'VOX')).toBe('en_contra')
+    // Punto 7, «Asuntos de Urgencia»: urgencia y fondo, las dos «por unanimidad».
+    expect(fondoDe(v, 7)[0].unanimidad).toBe(true)
+    expect(v.filter((x) => x.itemNumber === 7 && x.fase === 'urgencia')).toHaveLength(1)
+  })
+
+  it('k4olcs: la carta de servicios del punto 2 («3. SERVICIOS PÚBLICOS (SP)» … «27.») no son puntos', () => {
+    // Extracto l.291 «3. SERVICIOS PÚBLICOS (SP)», tras una línea en blanco, enumera los
+    // departamentos hasta el 27; el punto 3 de verdad es l.1465 «3.- INTEGRIDAD,
+    // Expediente: 4305/2024/GEN, …».
+    const v = parseVotacionesActa(extracto('2026-04-20'), { desde: 2 })
+    const nums = v.map((x) => x.itemNumber).filter((n): n is number => n != null)
+    expect(Math.max(...nums)).toBeLessThanOrEqual(8)
+    expect(new Set(nums)).toEqual(new Set([2, 3, 4, 5, 6, 7]))
+  })
+
+  it('qz6weg (01-12-2025): los puntos 10 y 12 tienen una votación de fondo cada uno', () => {
+    const v = parseVotacionesActa(extracto('2025-12-01'), { desde: 10 })
+    for (const n of [10, 12]) expect(fondoDe(v, n), `punto ${n}`).toHaveLength(1)
+    expect(dir(fondoDe(v, 12)[0], 'VOX')).toBe('en_contra')
+  })
+
+  it('1du4rf5 (03-11-2025): los puntos 6, 8 y 9 tienen una votación de fondo cada uno', () => {
+    const v = parseVotacionesActa(extracto('2025-11-03'), { desde: 6 })
+    for (const n of [6, 8, 9]) expect(fondoDe(v, n), `punto ${n}`).toHaveLength(1)
+    // Extracto: «por 2 votos a favor (1 EUPV … y 1 Compromís …) y 19 votos en contra
+    // (11 PSOE, 7 PP y 1 VOX) acordó» es el punto 9, no el 8.
+    expect(dir(fondoDe(v, 9)[0], 'PSOE')).toBe('en_contra')
+    expect(dir(fondoDe(v, 8)[0], 'PSOE')).toBe('a_favor')
+  })
+
+  it('sin `desde`, un texto que no empieza en el punto 1 no numera nada', () => {
+    // Un extracto que abre en «5.-» no puede saltarse el 1: sus votaciones quedan sin
+    // punto, nunca con uno inventado.
+    const v = parseVotacionesActa(extracto('2026-05-11'))
+    expect(v.length).toBeGreaterThan(0)
+    expect(v.every((x) => x.itemNumber == null)).toBe(true)
   })
 })
