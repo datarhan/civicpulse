@@ -17,6 +17,7 @@
 import { readFileSync, writeFileSync, existsSync } from 'node:fs'
 import { resolve } from 'node:path'
 import {
+  sameTally,
   validateSnapshot,
   validateVote,
   voteSourceKindForUrl,
@@ -52,6 +53,7 @@ function loadSnapshot(): PlenoVotesSnapshot {
       },
       items: [],
       retractions: [],
+      corrections: [],
     }
   }
   return validateSnapshot(JSON.parse(readFileSync(DATA_PATH, 'utf8')))
@@ -208,6 +210,24 @@ function main() {
   const snap = loadSnapshot()
   const existingIdx = snap.items.findIndex((v) => v.id === incoming.id)
   if (existingIdx >= 0) {
+    // Sustituir la fila borraba el desglose publicado sin dejar rastro de qué
+    // decía ni de quién lo cambió (rx4hb4-10/-11, 13-10-2026). Un desglose
+    // publicado sólo cambia por el libro de correcciones, firmado. Si alguno de
+    // los dos lados está vacío no es una corrección sino una retirada o su
+    // vuelta, y de eso responde `validateSnapshot` con su propio mensaje.
+    const existing = snap.items[existingIdx]
+    if (
+      existing.votes.length > 0 &&
+      incoming.votes.length > 0 &&
+      !sameTally(existing.votes, incoming.votes)
+    ) {
+      process.stderr.write(
+        `[pleno-vote] ${incoming.id} ya está publicado con otro desglose. Cambiar un desglose ` +
+          `publicado deja constancia: npm run corregir-voto -- ${incoming.id} --votos … ` +
+          `--fuente … --reason … --editor …\n`,
+      )
+      process.exit(1)
+    }
     process.stdout.write(`[pleno-vote] replacing existing ${incoming.id}\n`)
     snap.items[existingIdx] = incoming
   } else {

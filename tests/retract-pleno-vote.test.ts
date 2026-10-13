@@ -3,7 +3,6 @@ import { readFileSync } from 'node:fs'
 import { resolve } from 'node:path'
 
 import {
-  validateVote,
   validateSnapshot,
   retractVoteRecord,
   retractVoteBreakdown,
@@ -14,10 +13,9 @@ import {
   PlenoVoteRetractionError,
   RETRACTION_REASON_MIN,
   RETRACTION_SCOPES,
-  type PlenoVote,
-  type VoteRetraction,
   type PlenoVotesSnapshot,
 } from '../src/scraper/pleno-votes'
+import { makeSnapshot, makeVote } from './helpers/pleno-votes-snapshot'
 import { tallyByBloc } from '../src/hooks/usePlenoVotes'
 import { computeDepartmentStats } from '../src/lib/department-stats'
 import { runRelationsChecks } from '../src/scraper/relations-check'
@@ -42,7 +40,9 @@ import { runRelationsChecks } from '../src/scraper/relations-check'
  * enums, the bloc dedupe, the retired `Otro` sentinel and the votes/
  * votesRetracted pairing are the real ones. A fixture that drifted from the
  * schema throws while being built instead of quietly measuring nothing, and the
- * `PlenoVote` type on the builder makes the drift a typecheck failure too.
+ * `PlenoVote` type on the builder makes the drift a typecheck failure too. The
+ * builder lives in tests/helpers/pleno-votes-snapshot.ts, shared with
+ * tests/corregir-desglose-voto.test.ts.
  *
  * The published file is still under test — in the last block — but only for
  * invariants that hold at zero retractions and at three hundred.
@@ -60,60 +60,6 @@ const SIG = {
 /** Before `NOW`, so a vote carrying it is unambiguously overdue. */
 const OVERDUE_BY = '2026-01-15'
 const NOW = new Date('2026-08-05')
-
-/**
- * Build one fixture vote THROUGH the production validator, so the fixture
- * cannot restate a shape the parser no longer accepts: an unknown bloc, a
- * duplicated group, a title under 20 chars or a `dueBy` without its verbatim
- * clause throws here, in the fixture, rather than passing silently.
- */
-const FIXTURE_URL = 'https://example.org/actas/fixture.pdf'
-
-/** One citation per claim. `acta` because the fixture's source is an acta PDF,
- *  and an acta is the one kind that carries BOTH halves — so a fixture built on
- *  it keeps exercising the outcome and the breakdown together. */
-function fixtureProvenance(votes: unknown[]) {
-  const ref = {
-    kind: 'acta' as const,
-    url: FIXTURE_URL,
-    publisher: 'Fixture — Ayuntamiento de Riba-roja de Túria',
-    retrievedAt: '2026-03-20',
-    verification: 'sin-verificar' as const,
-  }
-  return { outcome: ref, breakdown: votes.length > 0 ? ref : null }
-}
-
-function makeVote(id: string, over: Partial<PlenoVote> = {}): PlenoVote {
-  const [plenoId, num] = id.split('-')
-  const votes = over.votes ?? [
-    { bloc: 'PSOE' as const, direction: 'a_favor' as const, seats: 11 },
-    { bloc: 'PP' as const, direction: 'en_contra' as const, seats: 7 },
-  ]
-  return validateVote({
-    id,
-    plenoId,
-    itemNumber: Number(num),
-    plenoDate: '2026-03-12',
-    title: 'Aprobación del expediente de contratación del banco de pruebas',
-    outcome: 'aprobado',
-    sourceUrl: FIXTURE_URL,
-    sourcePublisher: 'Fixture — Ayuntamiento de Riba-roja de Túria',
-    retrievedAt: '2026-03-20',
-    provenance: fixtureProvenance(votes),
-    ...over,
-    votes,
-  })
-}
-
-/** Same trick one level up: the snapshot invariants are the production ones. */
-function makeSnapshot(items: PlenoVote[], retractions: VoteRetraction[] = []): PlenoVotesSnapshot {
-  return validateSnapshot({
-    generatedAt: '2026-08-05T00:00:00.000Z',
-    source: { description: 'fixture', contract: 'fixture' },
-    items,
-    retractions,
-  })
-}
 
 /**
  * A corpus with the four properties the cases below need: a departmented vote

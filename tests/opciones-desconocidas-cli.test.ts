@@ -535,6 +535,23 @@ const CERRADOS: Caso[] = [
     dryRun: true,
   },
   {
+    orden: 'corregir-voto',
+    script: 'corregir-desglose-voto.ts',
+    argv: [
+      'un-voto-03',
+      '--votos',
+      `${SPEAKER_GROUPS[0]}:a_favor:11`,
+      '--fuente',
+      'https://ribarroja.es/acta.pdf',
+      '--reason',
+      MOTIVO,
+      '--editor',
+      ROL,
+    ],
+    datos: ['pleno-votes.json'],
+    dryRun: true,
+  },
+  {
     orden: 'corregir-rotulo-motor',
     script: 'corregir-rotulo-motor.ts',
     argv: ['--ids', 'ids.txt', '--reason', MOTIVO, '--editor', PERSONA],
