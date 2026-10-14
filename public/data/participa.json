@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-13T12:07:40.922Z",
+  "generatedAt": "2026-10-14T09:46:20.776Z",
   "source": {
     "posts": "https://participa.ribarroja.es/wp-json/wp/v2/posts?per_page=100&_fields=id,date,title,link,excerpt,content,categories,slug,status",
     "categories": "https://participa.ribarroja.es/wp-json/wp/v2/categories?per_page=100",
@@ -53,8 +53,10 @@
       "link": "https://participa.ribarroja.es/conoce-siente-y-participa-en-ods-2/",
       "date": "2024-07-03T14:35:25",
       "excerpt": "PARTICIPA Del 3 al 6 de julio del 2023 se celebraron las “Jornadas de dinamización Consejos Sectoriales Responsabilidad Social Agenda 2030”, en las cuales se sensibilizó a la ciudadanía sobre la importancia de los ODS. Se ha elaborado un Reglamento para la creación del Consejo para la implementación de la Agenda 2030 en Riba-roja.La Asamblea […]",
-      "categories": [],
-      "kind": "other"
+      "categories": [
+        "Actividades participativas"
+      ],
+      "kind": "activity"
     },
     {
       "id": 3080,
@@ -63,10 +65,8 @@
       "link": "https://participa.ribarroja.es/conoce-siente-y-participa-en-ods/",
       "date": "2024-07-03T13:43:00",
       "excerpt": "SIENTE Por la implementación de la Agenda 2030 se han recibido diversos reconocimientos. Desde el Ayuntamiento se otorgan los Premios EcoRiba para reconocer las buenas prácticas en las categorías: circular, paisaje, educativo, honorífico y difusión. PREMIOS Finalista en los VIII Premios Buenas Prácticas locales por el Clima (2018), en la categoría de sensibilización y concienciación […]",
-      "categories": [
-        "Actividades participativas"
-      ],
-      "kind": "activity"
+      "categories": [],
+      "kind": "other"
     },
     {
       "id": 3072,

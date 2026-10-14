@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-13T12:17:12.806Z",
+  "generatedAt": "2026-10-14T09:56:17.504Z",
   "frozen": false,
   "frozenUntil": null,
   "notice": "Sugerencias generadas automáticamente. Requieren aprobación humana antes de aplicarse al estado de cada promesa.",
@@ -41,7 +41,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-10-13T12:17:12.741Z"
+      "generatedAt": "2026-10-14T09:56:17.395Z"
     },
     {
       "promiseId": "ac-psoe-jfg7bc",
@@ -60,7 +60,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-10-13T12:17:12.741Z"
+      "generatedAt": "2026-10-14T09:56:17.395Z"
     },
     {
       "promiseId": "ac-psoe-1ah9zqk",
@@ -79,7 +79,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-10-13T12:17:12.741Z"
+      "generatedAt": "2026-10-14T09:56:17.395Z"
     },
     {
       "promiseId": "ac-psoe-ppa53a",
@@ -87,7 +87,7 @@
       "confidence": 0,
       "reasoning": [],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-10-13T12:17:12.741Z"
+      "generatedAt": "2026-10-14T09:56:17.395Z"
     },
     {
       "promiseId": "ac-psoe-1m04lfw",
@@ -95,7 +95,7 @@
       "confidence": 0,
       "reasoning": [],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-10-13T12:17:12.741Z"
+      "generatedAt": "2026-10-14T09:56:17.395Z"
     },
     {
       "promiseId": "ac-psoe-sysee8",
@@ -114,7 +114,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-10-13T12:17:12.741Z"
+      "generatedAt": "2026-10-14T09:56:17.395Z"
     },
     {
       "promiseId": "ac-psoe-1ryndd8",
@@ -151,7 +151,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-10-13T12:17:12.741Z"
+      "generatedAt": "2026-10-14T09:56:17.395Z"
     },
     {
       "promiseId": "ac-psoe-43brfs",
@@ -216,7 +216,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-10-13T12:17:12.741Z"
+      "generatedAt": "2026-10-14T09:56:17.395Z"
     },
     {
       "promiseId": "ac-psoe-17y448o",
@@ -302,7 +302,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-10-13T12:17:12.741Z"
+      "generatedAt": "2026-10-14T09:56:17.395Z"
     },
     {
       "promiseId": "ac-psoe-1bkbwjs",
@@ -370,7 +370,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-10-13T12:17:12.741Z"
+      "generatedAt": "2026-10-14T09:56:17.395Z"
     },
     {
       "promiseId": "ac-psoe-1xeq50",
@@ -390,6 +390,17 @@
             "competicion",
             "oficial",
             "deporte"
+          ]
+        },
+        {
+          "url": "https://www.infoturia.com/riba-roja-de-turia/86707-riba-roja-aprova-el-compte-de-2025-amb-un-superavit-de-45-milions-deuros.html",
+          "date": "2026-10-13",
+          "quote": "Riba-roja aprova el compte de 2025 amb un superàvit de 4’5 milions d’euros",
+          "kind": "press",
+          "publisher": "Periòdic del Camp de Túria",
+          "matchedKeywords": [
+            "euro",
+            "2025"
           ]
         },
         {
@@ -416,7 +427,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-10-13T12:17:12.741Z"
+      "generatedAt": "2026-10-14T09:56:17.395Z"
     },
     {
       "promiseId": "ac-psoe-1kui43c",
@@ -465,7 +476,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-10-13T12:17:12.741Z"
+      "generatedAt": "2026-10-14T09:56:17.395Z"
     }
   ],
   "llmEvidence": [],

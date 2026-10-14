@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-13T12:13:08.184Z",
+  "generatedAt": "2026-10-14T09:52:21.860Z",
   "source": {
     "url": "https://www.pap.hacienda.gob.es/bdnstrans/api/convocatorias/busqueda",
     "query": "riba-roja",
@@ -13,13 +13,13 @@
     "descartadas": 4,
     "latestDate": "2026-09-25T00:00:00.000Z",
     "concesiones": {
-      "total": 148,
-      "convocatorias": 121,
-      "importe": 46269619.34,
+      "total": 149,
+      "convocatorias": 122,
+      "importe": 46307119.34,
       "otrosInstrumentos": 0,
       "sinImporte": 0,
       "desde": "2022-02-08",
-      "hasta": "2026-08-04"
+      "hasta": "2026-10-07"
     }
   },
   "items": [
@@ -1977,6 +1977,19 @@
     }
   ],
   "concesiones": [
+    {
+      "id": 157817506,
+      "codConcesion": "SB157817506",
+      "bdnsCode": "890566",
+      "convocatoria": "Resolución de la Secretaría de Estado de Ciencia, Innovación y Universidades de 21 de febrero de 2026, por la que se convocan ayudas para la cofinanciación en 2027 de agentes locales de innovación en ayuntamientos de ciudades miembros de la Red Innpulso.",
+      "fecha": "2026-10-07T00:00:00.000Z",
+      "importe": 37500,
+      "instrumento": "SUBVENCIÓN y ENTREGA DINERARIA SIN CONTRAPRESTACIÓN",
+      "esSubvencion": true,
+      "organ": "ESTADO · MINISTERIO DE CIENCIA, INNOVACIÓN Y UNIVERSIDADES · SECRETARÍA GENERAL DE INNOVACIÓN",
+      "level1": "ESTADO",
+      "sourceUrl": "https://www.pap.hacienda.gob.es/bdnstrans/GE/es/convocatoria/890566"
+    },
     {
       "id": 155934285,
       "codConcesion": "SB155934285",
