@@ -154,6 +154,7 @@
       "Ninguno de los cuatro documentos —los pliegos técnico y administrativo de los expedientes 98/2025 y 100/2025— exige que se haga una evaluación de impacto relativa a la protección de datos (artículo 35 del RGPD). La única mención está en ese mismo clausulado de encargado: el contratista «colaborará en la realización de las evaluaciones de impacto» y, en su caso, de las consultas previas. Es la ayuda que el artículo 28.3.f del Reglamento pide a todo encargado; hacer la evaluación, cuando proceda, le corresponde al responsable del tratamiento, el Ayuntamiento.",
       "Tampoco se fija cuánto tiempo pueden conservarse las matrículas o los identificadores de los móviles mientras el sistema funciona. El pliego técnico pide una plataforma con un «histórico de datos», sin límite, y que las copias de seguridad se guarden «durante un mínimo de un (1) mes tras la finalización del contrato».",
       "El pliego técnico, por su parte, obliga a la adjudicataria a tratar los datos «con la finalidad exclusiva de la realización de las prestaciones objeto del contrato», y dispone que «no podrán ser objeto de ningún tratamiento destinado a fines distintos a la prestación del contrato».",
+      "El registro de actividades de tratamiento que el Ayuntamiento publica en su web —versión 1.0, de 16 de enero de 2023, anterior a este contrato— no recoge ninguna actividad de conteo de visitantes ni de captación de identificadores de móviles. Las matrículas aparecen en las actividades de Policía Local y de parking municipal, ésta para la «gestión administrativa del parking municipal»; la videovigilancia, en la de instalaciones públicas, con fines de seguridad y un plazo máximo de un mes para las imágenes. Si el registro se ha actualizado sin publicarse, es una de las cosas pedidas: la solicitud registrada incluye el asiento de estos tratamientos.",
       "El artículo 35 obliga a hacer esa evaluación cuando un tratamiento entraña un alto riesgo, y menciona expresamente la observación sistemática a gran escala de una zona de acceso público. Si este tratamiento la requería, y si existe fuera de los pliegos, es una de las preguntas registradas ante el Ayuntamiento. Este reportaje no afirma que fuera obligatoria: afirma que los pliegos no la piden."
     ]
   },
@@ -244,6 +245,10 @@
     {
       "label": "Ayuntamiento de Riba-roja de Túria · «Sistema de videovigilancia» en las dependencias municipales",
       "url": "https://www.ribarroja.es/es/noticia/sistema-de-videovigilancia"
+    },
+    {
+      "label": "Ayuntamiento de Riba-roja de Túria · Registro de actividades de tratamiento (versión 1.0, 16-01-2023)",
+      "url": "https://www.ribarroja.es/es/pagina/registro-de-actividades-de-tratamiento"
     },
     {
       "label": "Apple · «Usar direcciones wifi privadas en dispositivos Apple»",
