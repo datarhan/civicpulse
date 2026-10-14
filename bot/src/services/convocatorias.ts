@@ -98,6 +98,9 @@ export const CONVOCATORIAS: Convocatoria[] = [
     url: 'https://www.aepd.es/la-agencia/transparencia/informacion-economica-presupuestaria-y-estadistica/premios',
     cierra: '2026-10-15T21:59:00Z', // 23:59 CEST del 15-10
     precision: 'exacta',
+    // Presentada por la sede de la AEPD el 14-10-2026. La referencia no se
+    // escribe aquí —el repositorio es público—, igual que la de NLnet.
+    presentada: { fecha: '2026-10-14' },
     nota: 'Las bases (BOE-A-2026-15843) premian trabajos «dedicados a la materia objeto de la convocatoria» y advierten que «no se considerarán aquellas candidaturas fuera del objeto del premio». Admiten medios exclusivamente online (URL más el contenido). Ventana de publicación 16-10-2025 a 15-10-2026. Se envía por la sede electrónica con el anexo 1 firmado y un resumen ejecutivo de 4 páginas; la mitad de la puntuación es la difusión conseguida.',
   },
   {
