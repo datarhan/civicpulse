@@ -227,14 +227,13 @@ export default function MatriculasYMoviles() {
       <Fotos fotos={ob.fotos} />
       <Lista items={ob.limites} />
 
-      {/* 5 · la versión pública */}
-      {/* «En la prensa» y no «la versión municipal»: el artículo no atribuye
-          nada al Ayuntamiento, y llamarlo su versión sería decir cómo trabajó
-          el periódico. */}
-      <SecHead num="05" kicker="En la prensa" title={ve.titulo} />
+      {/* 5 · la versión pública. Se cita la nota del propio Ayuntamiento
+          (30-07-2026), no el periódico que la reprodujo: así cada frase de la
+          columna izquierda es suya, sin atribuirle nada por inferencia. */}
+      <SecHead num="05" kicker="La versión municipal" title={ve.titulo} />
       <P>{ve.texto}</P>
       <Tabla
-        cols={[{ label: 'Publicado el 19-09-2026' }, { label: 'Lo que exige el pliego' }]}
+        cols={[{ label: 'Nota municipal del 30-07-2026' }, { label: 'Lo que exige el pliego' }]}
         rows={ve.filas.map((f) => [f.dijo, f.pliego])}
       />
       <P>{ve.remate}</P>

@@ -59,9 +59,13 @@ test.describe('Reportaje · matrículas y móviles (/reportajes/matriculas-y-mov
       ),
     ).toBeVisible()
     await expect(page.getByText(/Este reportaje no afirma que falten aparatos/)).toBeVisible()
-    // Las frases de prensa son del periódico, en estilo indirecto: la pieza
-    // tiene que decirlo, o las estaría poniendo en boca del Ayuntamiento.
-    await expect(page.getByText(/en estilo indirecto/).first()).toBeVisible()
+    // La versión municipal se cita de la nota del propio Ayuntamiento, literal:
+    // si alguien vuelve a parafrasearla o a citar a un periódico en su lugar,
+    // la frase que se contrasta deja de ser suya.
+    await expect(
+      page.getByText(/garantizando en todo momento la protección de la privacidad/),
+    ).toBeVisible()
+    await expect(page.getByText(/Nota municipal del 30-07-2026/)).toBeVisible()
 
     // Las fotos cargan de verdad: un <img> roto también «está en la página».
     const fotos = page.locator('.cp-pieza img')

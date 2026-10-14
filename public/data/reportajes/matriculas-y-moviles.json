@@ -5,7 +5,7 @@
     "seccion": "Reportaje · Protección de datos",
     "titulo": "Un contrato para contar visitantes que encarga cámaras de matrículas para integrarlas con la Policía Local",
     "subtitulo": "El pliego de los «sensores para el conteo de personas» de Riba-roja exige cámaras capaces de leer y guardar las matrículas en tres aparcamientos del casco urbano, y dispositivos pensados para reconocer un móvil aunque cambie su identificador. Promete una recogida «no intrusiva y anonimizada» y no exige que se haga una evaluación de impacto. Este medio fue a mirar: hay cámaras orientadas a dos de los tres aparcamientos, y en ninguno un cartel.",
-    "estado": "borrador",
+    "estado": "publicado",
     "publicadoEl": "2026-10-14",
     "fechaDatos": "14 de octubre de 2026",
     "correcciones": []
@@ -122,30 +122,30 @@
       }
     ],
     "limites": [
-      "Una fotografía no prueba que una cámara lea matrículas ni de qué contrato es: lo que se observó son cámaras orientadas a los aparcamientos que nombra el pliego; que deban leer matrículas lo dice el pliego.",
+      "Una fotografía no prueba que una cámara lea matrículas ni de qué contrato es: lo que se observó son cámaras orientadas a los aparcamientos que nombra el pliego; que deban leer matrículas lo dice el pliego. El Ayuntamiento tiene desde 2010 cámaras de seguridad en sus edificios integradas con la Policía Local, y el Castell alberga museos municipales.",
       "Cinco postes no son cinco dispositivos: un poste puede llevar más de una caja —alguno lleva dos— y desde el suelo no se sabe qué hay dentro. Este reportaje no afirma que falten aparatos.",
       "La señal nombra un tercer aparcamiento, «A. Suárez/CIJ», que el pliego no nombra y que este medio no visitó.",
       "Que no haya cartel es lo que se observó en una fecha. Si esa ausencia incumple alguna norma no lo decide este medio, y la pregunta está hecha al Ayuntamiento."
     ]
   },
   "version": {
-    "titulo": "Lo que se contó en público, frente a lo que exige el pliego",
-    "texto": "El 19 de septiembre de 2026, Levante-EMV publicó que el sistema «ya ha terminado de implantarse tanto en el entorno natural como en el núcleo urbano», y cómo funciona. El artículo no atribuye esas afirmaciones a ninguna fuente; su fotografía va acreditada al Ayuntamiento. Las frases de la columna izquierda son del periódico, en estilo indirecto; las de la derecha, del pliego que el Ayuntamiento licitó.",
+    "titulo": "Lo que contó el Ayuntamiento, frente a lo que exige su pliego",
+    "texto": "El 30 de julio de 2026, diez días después de que terminara el contrato, el Ayuntamiento publicó en su web que había «finalizado la actuación de implantación del sistema inteligente de conteo de personas en el Parque Natural del Turia y el núcleo urbano». Las frases de la columna izquierda son de esa nota; las de la derecha, del pliego que el propio Ayuntamiento licitó.",
     "filas": [
       {
-        "dijo": "el sistema «no pretende identificar a las personas que pasan por estos lugares», en Porxinos y en el núcleo urbano",
-        "pliego": "Los dispositivos de aforo captan MAC, SSID y Signature como «una alternativa para reconocer el dispositivo en los casos donde estos tengan una dirección MAC aleatoria», y el panel distingue visitantes «nuevos, recurrentes». El pliego añade que se hará «sin almacenar valores que permitan reconocer a la persona monitorizada»."
+        "dijo": "«En el paraje de Porxinos, ubicado en el Parque Natural del Turia, se han implantado dispositivos que permiten registrar el número de usuarios que acceden a este entorno natural»",
+        "pliego": "Porxinos es un «emplazamiento provisional», aprobado «con el fin de garantizar la ejecución de los Fondos Next Generation», y los aparatos «deberán ser reubicados en las zonas originalmente planificadas dentro del Parque Natural del Río Túria». Para reconocer cada móvil captan MAC, SSID y Signature: «una alternativa para reconocer el dispositivo en los casos donde estos tengan una dirección MAC aleatoria»."
       },
       {
-        "dijo": "las cámaras urbanas «no almacenan imágenes, sino que únicamente generan información numérica sobre el número de visitantes detectados», y así se obtienen datos de afluencia «sin registrar la identidad de las personas»",
-        "pliego": "Su software debe ser «capaz de identificar las matrículas de los vehículos que acceden y salen del aparcamiento», y las cámaras, capaces de almacenar «los datos de las matrículas y la duración de la estancia de cada vehículo», que deben ser «accesibles en la aplicación web para su análisis y reporte»."
-      },
-      {
-        "dijo": "en el núcleo urbano se han incorporado «cámaras de conteo en puntos estratégicos»",
+        "dijo": "«en el núcleo urbano se han incorporado cámaras destinadas al conteo de visitantes en puntos estratégicos del municipio»",
         "pliego": "«Cámaras con reconocimiento de matrículas» en las entradas y salidas de tres aparcamientos, alineadas con la videovigilancia de la Policía Local y con alertas automáticas."
+      },
+      {
+        "dijo": "«En el caso de las cámaras ubicadas en el entorno urbano, estas no almacenan imágenes, sino únicamente información numérica relativa al número de visitantes detectados, garantizando en todo momento la protección de la privacidad de las personas usuarias»",
+        "pliego": "Su software debe ser «capaz de identificar las matrículas de los vehículos que acceden y salen del aparcamiento», y las cámaras, capaces de almacenar «los datos de las matrículas y la duración de la estancia de cada vehículo», que deben ser «accesibles en la aplicación web para su análisis y reporte»."
       }
     ],
-    "remate": "Para el Reglamento General de Protección de Datos, una persona es identificable si su identidad puede determinarse, directa o indirectamente, mediante un identificador como «un número de identificación», «datos de localización» o «un identificador en línea» (artículo 4.1): no hace falta saber su nombre. Una matrícula lo es, y también un identificador que permite reconocer el mismo móvil de una visita a otra. Por eso «sin almacenar imágenes» y «ni identificar a los visitantes» —las dos promesas del subtítulo del artículo— no son la misma: la primera no la contradice el pliego; si se cumple la segunda depende de qué se guarde de cada matrícula y de cada móvil, y eso es lo que se ha preguntado."
+    "remate": "Para el Reglamento General de Protección de Datos, una persona es identificable si su identidad puede determinarse, directa o indirectamente, mediante un identificador como «un número de identificación», «datos de localización» o «un identificador en línea» (artículo 4.1): no hace falta saber su nombre. Una matrícula lo es, y también un identificador que permite reconocer el mismo móvil de una visita a otra. Por eso «no almacenan imágenes» y «la protección de la privacidad» no son la misma promesa: la primera no la contradice el pliego; si se cumple la segunda depende de qué se guarde de cada matrícula y de cada móvil, y eso es lo que se ha preguntado."
   },
   "garantias": {
     "titulo": "Lo que los pliegos exigen sobre los datos, y lo que no",
@@ -161,7 +161,7 @@
     "titulo": "Una promesa que se puede comprobar sin pedir nada",
     "cita": "El Ayuntamiento de Riba-roja de Túria publicará dicha información parcial o totalmente, con licencia de uso abierta, en la sección de descargas de la página web del Ayuntamiento.",
     "citaFuente": "Pliego de prescripciones técnicas del expediente 98/2025",
-    "texto": "PENDIENTE: rehacer la búsqueda el día de publicación y decir por dónde se buscó."
+    "texto": "El 14 de octubre de 2026 este medio buscó esa sección en la portada de la web municipal, en su portal de transparencia y con su buscador («datos abiertos», «descargas», «sensores», «conteo», «aforo»), y no la encontró. El buscador sí devuelve la nota del 30 de julio que da la actuación por terminada. El pliego no fija plazo para esa publicación, así que su ausencia no es un incumplimiento: es una promesa sin fecha que hoy no se puede comprobar."
   },
   "campana": {
     "titulo": "Y la campaña dirigida a quien ya está en el entorno del parque",
@@ -217,7 +217,7 @@
     ]
   },
   "replica": {
-    "texto": "El Ayuntamiento de Riba-roja de Túria, Gimeno Digital Technologies S.L. y Autoritas Consulting S.A. tienen derecho de réplica sobre este reportaje. A las dos adjudicatarias se les escribió el 11 de octubre de 2026 con preguntas concretas sobre lo que captan, guardan y comparten sus sistemas, y se les pidió respuesta hasta las 14:00 del 14 de octubre. Cualquier respuesta se publicará íntegra junto a este texto, sin edición, aunque llegue después de la publicación.",
+    "texto": "El Ayuntamiento de Riba-roja de Túria, Gimeno Digital Technologies S.L. y Autoritas Consulting S.A. tienen derecho de réplica sobre este reportaje. A las dos adjudicatarias se les escribió el 11 de octubre de 2026 con preguntas concretas sobre lo que captan, guardan y comparten sus sistemas, y se les pidió respuesta hasta las 14:00 del 14 de octubre. Cualquier respuesta se publicará íntegra junto a este texto, sin edición, aunque llegue después de la publicación. A las 14:00 del 14 de octubre ninguna de las dos había contestado.",
     "respuestas": []
   },
   "fuentes": [
@@ -238,8 +238,12 @@
       "url": "https://www.boe.es/buscar/act.php?id=BOE-A-2021-8806"
     },
     {
-      "label": "Levante-EMV, 19 de septiembre de 2026: «Riba-roja contará cuántas personas visitan el Parc Natural del Túria con un nuevo sistema inteligente»",
-      "url": "https://www.levante-emv.com/comunitat-valenciana/camp-de-turia/2026/09/19/riba-roja-contara-personas-visitan-parc-natural-turia-134435964.html"
+      "label": "Ayuntamiento de Riba-roja de Túria, 30 de julio de 2026: «Riba-roja de Túria culmina la implantación del sistema inteligente de conteo de visitantes en el Parque Natural del Turia y el núcleo urbano»",
+      "url": "https://www.ribarroja.es/es/noticia/riba-roja-de-t%C3%BAria-culmina-la-implantaci%C3%B3n-del-sistema-inteligente-de-conteo-de-visitantes-en-el-parque-natural-del-turia-y-el-n%C3%BAcleo-urbano"
+    },
+    {
+      "label": "Ayuntamiento de Riba-roja de Túria · «Sistema de videovigilancia» en las dependencias municipales",
+      "url": "https://www.ribarroja.es/es/noticia/sistema-de-videovigilancia"
     },
     {
       "label": "Apple · «Usar direcciones wifi privadas en dispositivos Apple»",
@@ -259,10 +263,10 @@
     }
   ],
   "metodo": [
-    "Los pliegos técnico y administrativo de los expedientes 98/2025 y 100/2025 se descargaron de la Plataforma de Contratación del Sector Público en septiembre de 2026. Cada cita de los pliegos se ha cotejado palabra por palabra contra esos documentos; las del periódico, contra el artículo archivado por este medio.",
+    "Los pliegos técnico y administrativo de los expedientes 98/2025 y 100/2025 se descargaron de la Plataforma de Contratación del Sector Público en septiembre de 2026. Cada cita de los pliegos se ha cotejado palabra por palabra contra esos documentos; las de la nota municipal, contra su texto, copiado por este medio el 14 de octubre.",
     "Que los pliegos no exigen una evaluación de impacto ni fijan un plazo de conservación se afirma tras leer los cuatro documentos completos, buscando cada término en todas sus formas. La única mención a las evaluaciones de impacto, la del clausulado de encargado, se cita en el apartado 06.",
     "La visita se hizo el domingo 11 de octubre de 2026, a pie y desde la vía pública, sin entrar en ninguna propiedad. Las fotografías se publican reducidas —una, además, recortada— y sin metadatos de localización; ninguna muestra una matrícula ni un rostro.",
-    "Las frases del artículo de Levante-EMV del 19 de septiembre de 2026 se citan del texto archivado por este medio y se atribuyen al periódico, en estilo indirecto, porque así están escritas.",
+    "La versión municipal se cita de la nota que el Ayuntamiento publicó en su web el 30 de julio de 2026, de la que este medio guarda copia.",
     "El importe y las fechas del contrato proceden del registro de contratación que publica este sitio, cotejados contra la ficha de la Plataforma; el importe se da sin IVA y con IVA.",
     "Las cifras están congeladas a la fecha de publicación: si algo cambia, se anota como corrección y se dice qué cambió."
   ],
