@@ -20,7 +20,7 @@ const SERIF = "'Fraunces', Georgia, serif"
  * sin fuente en una superficie legalmente material es exactamente lo que este
  * sitio no publica.
  */
-function Cita({ children, fuente }) {
+export function Cita({ children, fuente }) {
   return (
     <figure style={{ margin: '18px 0' }}>
       <blockquote
@@ -53,9 +53,11 @@ function Cita({ children, fuente }) {
   )
 }
 
-const P = ({ children }) => <p style={{ color: 'var(--ink70)', margin: '0 0 14px' }}>{children}</p>
+export const P = ({ children }) => (
+  <p style={{ color: 'var(--ink70)', margin: '0 0 14px' }}>{children}</p>
+)
 
-function Lista({ items }) {
+export function Lista({ items }) {
   return (
     <ul style={{ margin: '0 0 14px', paddingLeft: 18 }}>
       {items.map((t, i) => (
@@ -79,7 +81,7 @@ const eur = (n) =>
   n.toLocaleString('es-ES', { minimumFractionDigits: 2, maximumFractionDigits: 2 }) + ' €'
 
 /* ---- Tabla con scroll propio: nunca desborda la página ---- */
-function Tabla({ cols, rows, caption }) {
+export function Tabla({ cols, rows, caption }) {
   const th = {
     textAlign: 'left',
     fontSize: 'var(--fs-micro)',
@@ -171,7 +173,7 @@ function Tabla({ cols, rows, caption }) {
  * que es donde el art. 20.1 arranca el mes. Eso lo dice la nota, y la dice
  * siempre.
  */
-function SolicitudesEnviadas({ bloque }) {
+export function SolicitudesEnviadas({ bloque }) {
   const hoy = new Date().toISOString().slice(0, 10)
   const items = bloque?.items ?? []
   const resumen = resumirEnvios(items, hoy)

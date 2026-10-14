@@ -24,6 +24,10 @@
       {
         "fecha": "2026-09-23",
         "texto": "**La solicitud a Turisme Comunitat Valenciana presentada por registro ya no lleva un vencimiento afirmado.** Su fila decía que el plazo vencía el 21 de octubre, contado desde el asiento del 21 de septiembre como si ése acreditara la entrada en el órgano que tiene que resolver. El 23 de septiembre la Generalitat comunicó que la había remitido a Turisme Comunitat Valenciana por considerarlo el competente, y con esa remisión el asiento ya no basta para saber desde cuándo corre el mes: hace falta la fecha en que la recibió ese órgano, que todavía no consta. Hasta que conste, la fila cuenta el plazo desde la comunicación de la remisión, y lo dice."
+      },
+      {
+        "fecha": "2026-10-14",
+        "texto": "**Se han actualizado dos frases sobre los datos que tratan los sensores.** Decíamos que un contador de aforo «puede ser perfectamente anónimo» y que, hasta que el Ayuntamiento entregara la documentación técnica, no se sostenía otra cosa; y que este medio no había localizado las categorías de datos que capta cada dispositivo. El pliego de prescripciones técnicas del contrato, publicado en la Plataforma de Contratación, las detalla: los dispositivos de aforo deben captar la dirección MAC, el SSID y la «Signature» de los móviles para reconocerlos aunque cambien su dirección, y las cámaras de los aparcamientos deben ser capaces de identificar y guardar las matrículas. Lo cuenta el reportaje «Un contrato para contar visitantes que encarga cámaras de matrículas para integrarlas con la Policía Local», y las dos frases remiten ahora a él. Qué captan los aparatos instalados sigue sin documentarse. Ninguna cifra cambia."
       }
     ]
   },
@@ -133,7 +137,7 @@
     "texto": "Los dos contratos tratan datos de personas: uno cuenta cuántas pasan y por dónde, el otro segmenta y —según el nombre de la propia actuación aprobada— geolocaliza. Todo lo que las dos memorias dicen sobre protección de datos es la misma frase, la número 10 de una lista de condiciones sociales.",
     "cita": "El contratista está obligado a someterse a la normativa nacional y de la Unión Europea en materia de protección de datos, siendo obligación contractual esencial de conformidad con la letra f) del apartado 1 del artículo 211 LCSP.",
     "citaFuente": "Condición especial de ejecución nº 10, idéntica en las memorias justificativas de los expedientes 98/2025 y 100/2025",
-    "remate": "Este medio no ha localizado publicada ninguna evaluación de impacto relativa a la protección de datos, ni el asiento del registro de actividades de tratamiento que ampare estos tratamientos, ni las categorías de datos que capta cada dispositivo o su plazo de conservación."
+    "remate": "Este medio no ha localizado publicada ninguna evaluación de impacto relativa a la protección de datos, ni el asiento del registro de actividades de tratamiento que ampare estos tratamientos, ni el plazo de conservación de los datos. Las categorías de datos que el pliego técnico exige captar las cuenta el reportaje «Un contrato para contar visitantes que encarga cámaras de matrículas para integrarlas con la Policía Local»."
   },
   "dana": {
     "titulo": "La DANA, y el calendario",
@@ -151,7 +155,7 @@
   "limites": {
     "titulo": "Lo que este reportaje no afirma",
     "bullets": [
-      "No afirma que los sensores vigilen a nadie. Un contador de aforo puede ser perfectamente anónimo, y hasta que el Ayuntamiento entregue la documentación técnica no se sostiene otra cosa.",
+      "No afirma que los sensores vigilen a nadie. Lo que el pliego técnico exige a los dispositivos lo cuenta el reportaje «Un contrato para contar visitantes que encarga cámaras de matrículas para integrarlas con la Policía Local»; qué captan los que están instalados sigue sin documentarse.",
       "No afirma que el gasto fuera ilegal. Nada de lo documentado lo sugiere. Lo documentado es que la justificación de la necesidad está copiada de otro proyecto y que no se apoya en ninguna medición.",
       "No afirma nada sobre las adjudicatarias más allá de lo que consta en el registro de contratación. Gimeno Digital Technologies ganó con seis ofertas concurrentes y una baja del 13 %."
     ]

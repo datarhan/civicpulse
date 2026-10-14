@@ -223,6 +223,85 @@ function ConteoVisitantes({ data }) {
   }
 }
 
+// ── Matrículas y móviles: los tres aparcamientos del pliego, vistos ──────
+// Lo observado el 11-10-2026, del bloque `emblema` del snapshot. La falta de
+// cartel va en `foco`, no en `fallo`: la pieza dice lo que se vio y deja a la
+// AEPD decidir si incumple algo, y el color no puede afirmar más que el texto.
+function MatriculasYMoviles({ data }) {
+  const ps = data.emblema.aparcamientos
+  const conCamara = ps.filter((/** @type {{camara:boolean}} */ p) => p.camara).length
+  const conAmbos = ps.filter(
+    (/** @type {{camara:boolean, cartel:boolean}} */ p) => p.camara && p.cartel,
+  ).length
+  const cifra = `${conAmbos} de ${conCamara}`
+  /** @param {{ cx: number, cy: number, on: boolean, i: number }} p */
+  const Marca = ({ cx, cy, on, i }) => (
+    <circle
+      className="cp-brota"
+      style={orden(i)}
+      cx={cx}
+      cy={cy}
+      r={9}
+      fill={on ? C.foco : C.paper}
+      stroke={on ? C.foco : C.ink50}
+      strokeWidth={2}
+    />
+  )
+  return {
+    label: `De los ${ps.length} aparcamientos que nombra el pliego, se observó cámara en ${conCamara}; con cartel informativo, ${cifra}.`,
+    cifras: [cifra],
+    body: (
+      <>
+        <T x={40} y={36} fill={C.ink50} mono>
+          aparcamientos del pliego · visita del 11-10-2026
+        </T>
+        {ps.map((/** @type {{nombre:string, camara:boolean, cartel:boolean}} */ p, i) => {
+          const x = 40 + i * 136
+          return (
+            <g key={p.nombre}>
+              <rect
+                className="cp-aparece"
+                style={orden(i)}
+                x={x}
+                y={56}
+                width={120}
+                height={72}
+                rx={10}
+                fill={C.paper}
+                stroke={C.ink20}
+                strokeWidth={2}
+              />
+              <T x={x + 60} y={106} size={40} weight={600} anchor="middle" fill={C.ink50}>
+                P
+              </T>
+              <T x={x} y={156} size={16}>
+                {p.nombre}
+              </T>
+              <Marca cx={x + 9} cy={190} on={p.camara} i={i * 2 + 1} />
+              <T x={x + 26} y={196} size={16} fill={C.ink50}>
+                cámara
+              </T>
+              <Marca cx={x + 9} cy={226} on={p.cartel} i={i * 2 + 2} />
+              <T x={x + 26} y={232} size={16} fill={C.ink50}>
+                cartel
+              </T>
+            </g>
+          )
+        })}
+        <T x={460} y={176} size={60} fill={C.foco} weight={600}>
+          {cifra}
+        </T>
+        <T x={460} y={214} size={17} weight={600}>
+          con cámara y con cartel
+        </T>
+        <T x={460} y={240} size={16} fill={C.ink50}>
+          informativo de videovigilancia
+        </T>
+      </>
+    ),
+  }
+}
+
 // ── Coste efectivo: el panel del agua, entrega a entrega ─────────────────
 function CosteEfectivo({ data }) {
   const serie = new Map(
@@ -518,6 +597,7 @@ export const EMBLEMAS = {
   'conteo-visitantes': ConteoVisitantes,
   'coste-efectivo': CosteEfectivo,
   'inteligencia-turistica': InteligenciaTuristica,
+  'matriculas-y-moviles': MatriculasYMoviles,
   'reconstruccion-dana': ReconstruccionDana,
 }
 

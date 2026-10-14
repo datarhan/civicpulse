@@ -54,6 +54,7 @@ const InteligenciaTuristica = lazy(() => import('./pages/reportajes/Inteligencia
 const Basuras = lazy(() => import('./pages/reportajes/Basuras'))
 const CosteEfectivoReportaje = lazy(() => import('./pages/reportajes/CosteEfectivo'))
 const ConteoVisitantes = lazy(() => import('./pages/reportajes/ConteoVisitantes'))
+const MatriculasYMoviles = lazy(() => import('./pages/reportajes/MatriculasYMoviles'))
 const ArmazonReportaje = lazy(() => import('./pages/reportajes/Armazon'))
 const BuildingCivicPulse = lazy(() => import('./pages/blog/BuildingCivicPulse'))
 // /curator is dev-only — see vite-curator-plugin.js. The lazy import
@@ -188,6 +189,7 @@ function InnerShell({ onOpenCmdK }) {
                   />
                   <Route path="/reportajes/basuras" element={<Basuras />} />
                   <Route path="/reportajes/conteo-visitantes" element={<ConteoVisitantes />} />
+                  <Route path="/reportajes/matriculas-y-moviles" element={<MatriculasYMoviles />} />
                 </Route>
                 {/* English engineering blog post — unlisted (not in NAV), canonical home for HN/civic-tech. */}
                 <Route path="/blog/building-civicpulse-with-ai" element={<BuildingCivicPulse />} />
