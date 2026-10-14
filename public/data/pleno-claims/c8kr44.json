@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-11T07:07:47.709Z",
+  "generatedAt": "2026-10-12T16:55:45.427Z",
   "version": "1",
   "plenoId": "c8kr44",
   "plenoDate": "2025-09-08",
@@ -1502,9 +1502,10 @@
       "verification": {
         "claimId": "c8kr44-073-cit-d6d194",
         "verdict": "sin-datos",
-        "summary": "El único candidato [0] es un contrato de suministro de un aplicativo para la policía local en Riba-roja de Túria, sin relación temática (medio ambiente vs. policía) ni coincidencia de ningún valor concreto (importe, fecha, sujeto) con la afirmación verbatim, que además es una declaración genérica…",
+        "summary": "Ninguno respalda la afirmación; el respaldo es nulo y no es verificable con estos registros.",
         "evidence": [],
-        "checkedAgainst": [
+        "checkedAgainst": [],
+        "derivedBy": [
           "verdict-engine"
         ],
         "confidence": 0.2,
@@ -2010,7 +2011,7 @@
       "verification": {
         "claimId": "c8kr44-088-cit-d63a7d",
         "verdict": "sin-datos",
-        "summary": "Ningún candidato respalda genuinamente la afirmación; el [0] sólo ofrece contexto temático débil.",
+        "summary": "Ningún candidato respalda genuinamente la afirmación…",
         "evidence": [],
         "checkedAgainst": [],
         "derivedBy": [
@@ -2909,7 +2910,7 @@
       "verification": {
         "claimId": "c8kr44-114-cit-054e8e",
         "verdict": "sin-datos",
-        "summary": "Conclusión: ningún candidato respalda genuinamente la afirmación; a lo sumo [0] aporta contexto muy débil y el hecho es verificable solo en actas/resoluciones ambientales, no en contratos.",
+        "summary": "Conclusión: ningún candidato respalda genuinamente la afirmación…",
         "evidence": [],
         "checkedAgainst": [],
         "derivedBy": [
@@ -3340,16 +3341,8 @@
       "verification": {
         "claimId": "c8kr44-125-afi-f864ce",
         "verdict": "sin-datos",
-        "summary": "El título de un expediente municipal coincide en parte con el objeto citado, pero su importe no coincide con la cifra citada. Se enseña porque se cotejó, no porque la sostenga. Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=2RZHIgcWJEKqb7rCcv76BA%3D%3D",
-            "snippet": "Contrato administrativo de obras proyecto de “finalización del Centro Polivalente Cultural en Riba-roja de Túria”, mediante procedimiento abierto, varios criterios de adjudicación, con condición de ejecución de carácter medioambiental, contribuyendo al cumplimiento del ODS 11 “Edificios sostenibles y resilientes”, mediante tramitación anticipada y gastos con financiación afectada. · Ayuntamiento de Riba-roja de Túria · construction · 4.746.840 €",
-            "similarity": 1,
-            "stance": "checked"
-          }
-        ],
+        "summary": "No se encontró registro en tenders, tenders-ted, bdns y budget que la sostenga. Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
+        "evidence": [],
         "checkedAgainst": [
           "tenders",
           "tenders-ted",
@@ -3853,9 +3846,10 @@
       "verification": {
         "claimId": "c8kr44-143-afi-e4636b",
         "verdict": "sin-datos",
-        "summary": "Analicé los 5 candidatos frente a la afirmación sobre 330.000€ para carril bici. Ningún candidato coincide en tema+importe simultáneamente: [0]/[1] son sobre alumbrado del carril bici sin importe reportado; [4] es obra de carril bici pero con importe de 172.440,82€, muy distinto de \"algo más de…",
+        "summary": "No hay respaldo genuino con valores concretos coincidentes…",
         "evidence": [],
-        "checkedAgainst": [
+        "checkedAgainst": [],
+        "derivedBy": [
           "verdict-engine"
         ],
         "confidence": 0.2,

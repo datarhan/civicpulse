@@ -140,10 +140,14 @@ const STEP_OUTPUTS: Record<string, string> = {
   'scrape:sindicatura': 'public/data/sindicatura.json',
   'scrape:sindic-expedientes': 'public/data/sindic-expedientes.json',
   'scrape:transparency': 'public/data/transparency-docs.json',
+  'scrape:pleno-actas': 'public/data/pleno-actas.json',
   'scrape:pleno-videos': 'public/data/pleno-videos.json',
   'auto-curate': 'public/data/pleno-findings.json',
   // steps that produce nothing this suite needs to see
   'check:citations': '',
+  // Sólo informa (scrape-ci-blocked.sh lo corre con `|| echo`); sin script en el
+  // arenero, npm lo daría por fallo y ensuciaría el registro.
+  'check:votos-acta': '',
   'verify:pleno-claims': '',
   'embed:agent-corpus': '',
   'embed:verifier-corpus': '',

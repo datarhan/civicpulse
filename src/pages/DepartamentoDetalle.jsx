@@ -1,6 +1,7 @@
 import { Link, useParams } from 'react-router-dom'
 import { Card, Pill, SectionHead, PartyTag } from '../components/Primitives'
 import { PlazoVencidoBadge } from '../components/PlazoVencidoBadge'
+import { celdaPlazosVencidos } from '../lib/plazos-vencidos'
 import { useDepartmentStats } from '../hooks/useDepartmentStats'
 import {
   usePromises,
@@ -13,12 +14,14 @@ import { usePlenoAgendas } from '../hooks/usePlenoAgendas'
 import { usePlenoVotes, OUTCOME_LABEL, OUTCOME_TONE } from '../hooks/usePlenoVotes'
 import { useQuejas, STATE_LABEL, STATE_TONE } from '../hooks/useQuejas'
 import { canonicalizeDepartment } from '../scraper/departments'
+import { latestCorrection } from '../scraper/pleno-votes'
 import { diaDeLaSede } from '../scraper/queja-router'
 import { ESTADOS_CERRADOS, departamentoDeQueja } from '../lib/department-stats'
 import { porcentajeLegible, rellena } from '../lib/formatters'
 import { ClaimLedger } from '../components/ClaimLedger'
 import { VoteTallyBar, DirectionLegend } from '../components/plenos/VoteTallyBar'
 import { VoteBreakdownRetracted } from '../components/plenos/VoteBreakdownRetracted'
+import { VoteBreakdownCorrected } from '../components/plenos/VoteBreakdownCorrected'
 import { VoteProvenance } from '../components/plenos/VoteProvenance'
 import { deptSlugToClaimTopics, promiseDeptSlug } from '../lib/department-claim-topics.js'
 import { useT, useLocale } from '../i18n'
@@ -85,6 +88,9 @@ function VotesSection({ slug, frozen }) {
             v.votes?.length > 0 && (
               <div style={{ marginTop: 8 }}>
                 <VoteTallyBar tally={v.votes} />
+                <VoteBreakdownCorrected
+                  correction={votesSnap.data ? latestCorrection(votesSnap.data, v.id) : null}
+                />
               </div>
             )
           )}
@@ -188,7 +194,7 @@ function PromisesSection({ slug, frozen }) {
             </div>
             {p.dueBy && (
               <div style={{ marginTop: 8 }}>
-                <PlazoVencidoBadge dueBy={p.dueBy} frozen={frozen} />
+                <PlazoVencidoBadge dueBy={p.dueBy} frozen={frozen} note={p.dueBySource} />
               </div>
             )}
             <div
@@ -327,10 +333,30 @@ function QuejasSection({ slug, motivo }) {
 function VerdictMixBar({ d }) {
   const t = useT()
   const segs = [
-    { n: d.verificado || 0, color: 'var(--ok)', label: 'Verificado' },
-    { n: d.parcial || 0, color: 'var(--warn)', label: 'Parcial' },
-    { n: d.contradicho || 0, color: 'var(--crit)', label: 'Contradicho' },
-    { n: d.sinDatos || 0, color: 'var(--ink50)', label: 'Sin contraste' },
+    {
+      clave: 'verificado',
+      n: d.verificado || 0,
+      color: 'var(--ok)',
+      label: t('declaraciones.veredicto.verificado'),
+    },
+    {
+      clave: 'parcial',
+      n: d.parcial || 0,
+      color: 'var(--warn)',
+      label: t('declaraciones.veredicto.parcial'),
+    },
+    {
+      clave: 'contradicho',
+      n: d.contradicho || 0,
+      color: 'var(--crit)',
+      label: t('declaraciones.veredicto.contradicho'),
+    },
+    {
+      clave: 'sin-datos',
+      n: d.sinDatos || 0,
+      color: 'var(--ink50)',
+      label: t('departamentos.detalle.barra.sinContraste'),
+    },
   ]
   const total = segs.reduce((a, s) => a + s.n, 0)
   if (total === 0) return null
@@ -387,7 +413,7 @@ function VerdictMixBar({ d }) {
       >
         {visible.map((s) => (
           <div
-            key={s.label}
+            key={s.clave}
             title={`${s.label}: ${s.n}`}
             style={{ width: `${(s.n / total) * 100}%`, background: s.color }}
           />
@@ -396,7 +422,7 @@ function VerdictMixBar({ d }) {
       <div style={{ display: 'flex', flexWrap: 'wrap', gap: '6px 14px', marginTop: 10 }}>
         {visible.map((s) => (
           <span
-            key={s.label}
+            key={s.clave}
             style={{
               display: 'inline-flex',
               alignItems: 'center',
@@ -551,14 +577,12 @@ export default function DepartamentoDetalle() {
           }
         />
         <MiniStat label={t('departamentos.card.promesas')} value={bucket.promesas.total} />
+        {/* Sólo cuenta lo que lleva un `dueBy` curado. Sin ningún compromiso
+            fechado en el área, «—» y el motivo: un 0 diría que no ha vencido
+            nada, y lo único sabido es que nada tiene fecha. */}
         <MiniStat
           label={t('departamentos.card.vencidos')}
-          value={frozen ? '—' : bucket.plenoVotes.plazosVencidos + bucket.promesas.plazosVencidos}
-          tone={
-            !frozen && bucket.plenoVotes.plazosVencidos + bucket.promesas.plazosVencidos > 0
-              ? 'warn'
-              : undefined
-          }
+          {...celdaPlazosVencidos(bucket, t, { frozen })}
         />
         {/* Las abiertas, con la regla del registro: «—» hasta que alguna queja
             del área haya entrado en el del ayuntamiento. El motivo va en la

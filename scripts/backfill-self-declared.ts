@@ -59,6 +59,11 @@
  * alone"). `null` is written as UNSET (the key is deleted, never coerced to
  * `false`) — a wrong `false` would publish self-declaration as independently
  * corroborated; an honest gap routes to a curator instead.
+ *
+ * `--curator` firma la línea que esto añade al `curatorNotes` del agregado, que
+ * se sirve. Acepta la cuenta de rol y rechaza, antes de leer nada y en cualquier
+ * modo en que venga, el hueco de una orden copiada sin rellenar
+ * (`rechazoDeMarcador`, src/scraper/firma-de-persona.ts).
  */
 import { readFileSync, writeFileSync, existsSync } from 'node:fs'
 import { resolve, join } from 'node:path'
@@ -70,8 +75,10 @@ import {
   getRunStats,
   type ClientConfig,
 } from '../src/llm/client'
+import { rechazoDeMarcador } from '../src/scraper/firma-de-persona'
 import { startRun } from '../src/scraper/run-manifest'
 import { validateReportsSnapshot } from '../src/scraper/journalist/validators'
+import { rechazarOpcionesDesconocidas } from '../src/scraper/opciones-cli'
 
 const AGG = resolve('public/data/journalist-reports.json')
 const MIRROR_DIR = resolve('public/data/journalist-reports')
@@ -333,8 +340,23 @@ interface ReportRow {
 }
 
 async function main() {
+  // Antes de leer nada: una opción que este CLI no conoce no se ignora
+  // (src/scraper/opciones-cli.ts).
+  rechazarOpcionesDesconocidas('backfill', {
+    banderas: ['--dry-run', '--verbose'],
+    conValor: ['--curator', '--report'],
+  })
   const dryRun = process.argv.includes('--dry-run')
   const curator = arg('curator')
+  // Antes de leer nada: el hueco no firma una nota que se sirve. Sólo el hueco;
+  // la cuenta de rol, sí (`rechazoDeMarcador`).
+  if (process.argv.includes('--curator')) {
+    const hueco = rechazoDeMarcador(curator ?? '')
+    if (hueco) {
+      console.error(`[backfill] --curator: ${hueco}`)
+      process.exit(2)
+    }
+  }
   // Debug/iteration aid ONLY: scope the run to one report while tuning the
   // prompt. Always forces the no-write path below, dry-run or not — a
   // partial write to a curated file is worse than no write.

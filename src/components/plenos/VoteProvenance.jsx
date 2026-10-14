@@ -1,5 +1,12 @@
+import { Fragment } from 'react'
 import { ExtLink } from '../Primitives'
-import { isIndependentlyVerified, VOTE_SOURCE_KINDS } from '../../scraper/pleno-votes'
+import {
+  breakdownNeedsCaveat,
+  isIndependentlyVerified,
+  VOTE_SOURCE_KINDS,
+} from '../../scraper/pleno-votes'
+import { rotuloDe, useT } from '../../i18n'
+import { rellena } from '../../lib/formatters'
 
 /**
  * Where each half of a vote record came from.
@@ -39,30 +46,49 @@ import { isIndependentlyVerified, VOTE_SOURCE_KINDS } from '../../scraper/pleno-
  *                 and `video` (the claim is there only via a reading).
  */
 export function VoteProvenance({ provenance }) {
+  const t = useT()
   if (!provenance?.outcome) return null
+  // Los rótulos de las fuentes, en el idioma de quien lee; el castellano de
+  // `VOTE_SOURCE_KINDS` queda de reserva para una clase que el catálogo no tenga.
+  const fuente = (kind) =>
+    rotuloDe(t, `pleno.fuenteVoto.${kind}`, VOTE_SOURCE_KINDS[kind]?.label ?? kind)
+  const sinCotejar = (kind) => {
+    const nota = VOTE_SOURCE_KINDS[kind]?.unverifiedNote ?? null
+    return nota && rotuloDe(t, `pleno.fuenteVoto.${kind}.sinCotejar`, nota)
+  }
   const rows = [
-    { claim: 'Resultado', ref: provenance.outcome },
-    ...(provenance.breakdown ? [{ claim: 'Desglose', ref: provenance.breakdown }] : []),
+    { key: 'outcome', claim: t('plenoDetail.voto.resultado'), ref: provenance.outcome },
+    ...(provenance.breakdown
+      ? [{ key: 'breakdown', claim: t('plenoDetail.voto.desglose'), ref: provenance.breakdown }]
+      : []),
   ]
+  // Una rejilla y no una fila flexible por cita: la columna del rótulo mide lo que
+  // el más ancho, así los enlaces de las dos filas empiezan en el mismo borde. Con
+  // `minWidth: 62` cabía «Desglose» y no cabe «Desglossament».
   return (
-    <div style={{ marginTop: 10, display: 'flex', flexDirection: 'column', gap: 3 }}>
-      {rows.map(({ claim, ref }) => {
+    <div
+      style={{
+        marginTop: 10,
+        display: 'grid',
+        gridTemplateColumns: 'max-content minmax(0, 1fr)',
+        columnGap: 6,
+        rowGap: 3,
+        alignItems: 'baseline',
+        fontSize: 'var(--fs-aux)',
+        lineHeight: 1.45,
+      }}
+    >
+      {rows.map(({ key, claim, ref }) => {
         const verified = isIndependentlyVerified(ref)
         const note = verified
-          ? `cotejado contra ${VOTE_SOURCE_KINDS[ref.verifiedAgainst.kind]?.label ?? ref.verifiedAgainst.kind}`
-          : (VOTE_SOURCE_KINDS[ref.kind]?.unverifiedNote ?? null)
+          ? rellena(t('plenoDetail.voto.cotejadoContra'), {
+              fuente: fuente(ref.verifiedAgainst.kind),
+            })
+          : breakdownNeedsCaveat(ref)
+            ? sinCotejar(ref.kind)
+            : null
         return (
-          <div
-            key={claim}
-            style={{
-              display: 'flex',
-              gap: 6,
-              alignItems: 'baseline',
-              flexWrap: 'wrap',
-              fontSize: 'var(--fs-aux)',
-              lineHeight: 1.45,
-            }}
-          >
+          <Fragment key={key}>
             <span
               className="mono"
               style={{
@@ -70,23 +96,27 @@ export function VoteProvenance({ provenance }) {
                 letterSpacing: 0.3,
                 color: 'var(--ink50)',
                 textTransform: 'uppercase',
-                minWidth: 62,
               }}
             >
               {claim}
             </span>
-            <ExtLink href={ref.url} style={{ color: 'var(--civic)', textDecoration: 'none' }}>
-              {VOTE_SOURCE_KINDS[ref.kind]?.label ?? ref.kind} →
-            </ExtLink>
-            {ref.locator && (
-              <span className="mono" style={{ fontSize: 'var(--fs-micro)', color: 'var(--ink50)' }}>
-                {ref.locator}
-              </span>
-            )}
-            {note && (
-              <span style={{ fontSize: 'var(--fs-micro)', color: 'var(--ink50)' }}>{note}</span>
-            )}
-          </div>
+            <div style={{ display: 'flex', gap: 6, alignItems: 'baseline', flexWrap: 'wrap' }}>
+              <ExtLink href={ref.url} style={{ color: 'var(--civic)', textDecoration: 'none' }}>
+                {fuente(ref.kind)} →
+              </ExtLink>
+              {ref.locator && (
+                <span
+                  className="mono"
+                  style={{ fontSize: 'var(--fs-micro)', color: 'var(--ink50)' }}
+                >
+                  {ref.locator}
+                </span>
+              )}
+              {note && (
+                <span style={{ fontSize: 'var(--fs-micro)', color: 'var(--ink50)' }}>{note}</span>
+              )}
+            </div>
+          </Fragment>
         )
       })}
     </div>

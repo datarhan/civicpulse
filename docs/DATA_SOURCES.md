@@ -44,7 +44,7 @@ Everything produced by the convention above. Safe to delete and rebuild.
 | File                                                | Schema / CLI                                                                                                                                                                                                                                                                                                                      |
 | --------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `promises.json`                                     | `src/scraper/promises.ts` · `npm run reply`, `freeze:set`, `freeze:clear`, `aviso-promesas`, `corregir-promesa`                                                                                                                                                                                                                   |
-| `pleno-votes.json`                                  | `src/scraper/pleno-votes.ts` · `npm run pleno-vote`, `promote-vote`, `retract-vote`                                                                                                                                                                                                                                               |
+| `pleno-votes.json`                                  | `src/scraper/pleno-votes.ts` · `npm run pleno-vote`, `promote-vote`, `retract-vote`, `corregir-voto`                                                                                                                                                                                                                              |
 | `pleno-findings.json`                               | `src/scraper/pleno-finding.ts` · `npm run promote-claim`, `finding-reply`, `correct-pleno-finding`                                                                                                                                                                                                                                |
 | `press-findings.json`                               | `src/scraper/press-finding.ts` · rows arrive only through `npm run auto-curate-press` (`informational` only) · `correct-press-finding`                                                                                                                                                                                            |
 | `journalist-reports.json` (+ `journalist-reports/`) | `src/scraper/journalist.ts` · `npm run promote-report`, `correct-journalist-report`, `journalist-reply`, `repoint-source-url`, `journalist:archive`, `journalist:archive-sources`                                                                                                                                                 |
@@ -72,6 +72,18 @@ Each CLI re-validates the whole snapshot before writing, so an invariant
 (≥20-char verbatim quote, ≥10-char title) cannot silently slip. Route
 algorithmic output through the CLI, never straight into the file — the schema
 validator and the git history are the audit trail.
+
+A signed raise (`subir-veredicto`) replaces its claim's overlay entry, so it
+keeps who wrote the entry it replaced, when, and that entry's signed records
+(`labelCorrections`, `reasonAmendments`) under `sustituye` — never its summary
+or reason, which would re-serve the machine prose the person replaced. Raises
+written before 2026-10-11 dropped it; `subir-veredicto --backfill-sustituye
+<commit> <claimId>…` restores it from git, stamped with the commit it came from.
+The engine keeps the same record when it re-derives (`--ids`) or trims
+(`--recortar`) one of its own retractions that carries signed records
+(`sustituidaPorElMotor`); before 2026-10-13 it dropped them. A curator
+downgrade or retirada over an engine retraction still replaces it whole unless
+its chain reaches a signed raise (`heredaSustituida`).
 
 `competencias.json` is curated for a reason worth stating, because it is the
 only file here that puts a living person's name beside a cost figure. It maps
@@ -381,7 +393,8 @@ overwrites it. Change the bot's SQLite instead.
 - **Pipeline** — `bdns.ts` → `bdns.json`
 - **Source** — MinHac **BDNS** REST endpoint `/bdnstrans/api/convocatorias/busqueda?vpd=GE&descripcion=riba-roja`, paginated
 - **Filter** — the search also returns Riba-roja d'Ebre (Tarragona). A convocatoria not convoked by the Ayuntamiento is kept only if a BDNS field places it here: a concesión to the council's NIF `P4621600H` (not `P4621400C`, which is Real's) or a NUTS region in ES52/ES523 on its ficha. Anything else goes to `descartadas` with its reason (`ubicarConvocatoria`, `src/scraper/bdns.ts`); the CLI refuses to write if more than a quarter of received rows cannot be placed
-- **Surfaces** — `/presupuesto` (`Subvenciones · BDNS` card)
+- **Received, by NIF** — the name search only finds convocatorias whose text names the town; a Generalitat or Diputación call open to every municipality names none. So the CLI also reads `/bdnstrans/api/concesiones/busqueda?vpd=GE&nifCif=P4621600H` (all pages) into `concesiones`: one row per **concession**, with its `importe` — what was _awarded_, not what was paid. Euros are summed there and only there (`resumirConcesiones` → `stats.concesiones`), because one convocatoria can carry several concessions. Their convocatorias do **not** join `items`, which is what the verifier reads (`claim-verifier.ts`, `embed-verifier-corpus.ts`): measured on 2026-10-11, adding them moved 14 published pleno claims from `sin-datos` to `parcial` on lexical overlap and none down, and an automated verdict does not go up without a measured precision. So `items`, `stats.received` and `granted` are what the name search gives. The NIF query returns nothing before a rolling start year (on 2026-10-11, 2015–2021 gave zero rows), so older received convocatorias still arrive only through the name search. `rechazoDeLasConcesiones` refuses to write on zero rows, a cut pagination, another NIF in the results, a renamed `importe` or instrument, or a fall of more than half against the previous snapshot
+- **Surfaces** — `/presupuesto` (`Subvenciones · BDNS` card in «Contratación y subvenciones»; «Subvenciones · Base Nacional», which lists the latest municipal convocatorias and the latest concessions received), `/datos`, `/cambios`; the verifier and its corpus read `items` only
 
 ### Population (Total / Hombres / Mujeres)
 
@@ -471,6 +484,13 @@ overwrites it. Change the bot's SQLite instead.
 - **Surfaces** — `/plenos` — `TopDepartmentsCard` + inline "Ver orden del día" expander per session
 - **Cited by** — `subir-veredicto --evidencia <session link> --punto <n>` (since 2026-10-10): a signed raise may cite one agenda item as evidence (kind `agenda`, corpus `plenos-agendas`). The row is written from the record — session, date, part and the item's whole title — and never says «aprobado»; a later session cannot support an earlier statement, and with a figure in the statement no agenda row reaches `verificado` (`comprobarRegistrosConLaDeclaracion` in `src/scraper/subida-firmada.ts`)
 
+### Pleno actas (signed minutes, regmeet «Documentos» tab)
+
+- **Pipeline** — `scripts/scrape-pleno-actas.ts` → `regmeet-documentos.ts` (`parseRegmeetDocumentos`, `clasificarDocumento`) → `pleno-actas.json`; the text goes to the gitignored `.cache/pleno-actas/<plenoId>.txt` (`pdftotext`, no `-layout`) and is never published, because an acta names every councillor and private persons
+- **Source** — the «Documentos» tab of each session page on `regmeet.com` (aytoribarroja), where the council publishes the signed actas. A PDF counts as an acta by its text («ACTA SESIÓN …» with the session's date), never by its link label (an internal code). regmeet blocks GitHub runners, so the only refresh is `scrape-ci-blocked.sh`
+- **Outputs** — `pleno-actas.json`: per session the PDF URL, label, upload date, page count (`pdfinfo`; null if unknown, never 0) and the PDF's `sha256Short`. No text. `stats` reports attempted / con acta / sin documentos / sólo otros / fecha no coincide / fallidas / sin intentar separately
+- **Surfaces** — ninguna todavía; la usa check:votos-acta (`scripts/check-votos-acta.ts` over `acta-votos.ts` + `cotejo-votos-acta.ts`), which compares every published per-bloc tally in `pleno-votes.json` against the acta's vote on the merits (fondo, never the urgency vote) and only reports
+
 ### Open job vacancies
 
 - **Pipeline** — `empleo.ts` → `empleo.json`
@@ -482,6 +502,7 @@ overwrites it. Change the bot's SQLite instead.
 - **Pipeline** — **human-curated** · `promises.ts` validates the schema
 - **Source** — Hand-seeded from press citations (`press.json`) + real pleno votes + budget/tender snapshots. Every record has verbatim quote + source URL + publisher + ISO date
 - **Surfaces** — `/promesas`, `/` landing editorial column (`PromesasBlockD`), `/metodologia`, `/aviso-legal`
+- **Deadline (`dueBy`)** — set only by `npm run corregir-promesa -- plazo <id> <YYYY-MM-DD|YYYY-MM> --fuente "<verbatim fragment of the quote>" --motivo "<…>" --editor "<person>" [--dry-run]`, cleared by `quitar-plazo <id>`. A month publishes as its last day (rule `fin-de-mes`). The validator requires `dueBySource` (≥20 chars, an exact substring of the published `quote`), a real day no earlier than `madeAt`, and a chained, signed `dueByLog` whose last entry is the published deadline; setting needs a person (`rechazoDeFirma`), clearing only rejects the hole (`rechazoDeMarcador`). Both refuse during the LOREG freeze. Read by `/departamentos` («Plazos vencidos»).
 
 ### Promise suggestions (inference layer)
 
@@ -529,7 +550,7 @@ overwrites it. Change the bot's SQLite instead.
 
 - **Pipeline** — **human-curated** · `correct-pleno-finding.ts` CLI · embedded inside `pleno-findings.json`
 - **Source** — Same shape as press corrections. Same IFCN-compliant trail for the editorial findings auto-curated from pleno transcripts.
-- **Signer** — before reading anything, every mode refuses as `--editor` the hole of an unfilled prepared command: `<…>`, a word of the marker list, or no letter at all (the exception queue composes `"<nombre y apellidos>"`, the support and re-anchoring queues `"<tu nombre>"`, `check:summary-gate` and `downgrade-verdict` print `"…"`). Only the hole — the operator signs `--field`/`--redact`/`--remove` with the role account `civicpulse-curator`, and that convention stays; `--amend-reason` additionally requires a person. `retract-finding`, `reclassify-claim` and a plain `downgrade-verdict` (no `--amend-reason`, no `--literal-no-dicho`) run the same check, `rechazoDeMarcador` in `src/scraper/firma-de-persona.ts`. So, since 2026-10-05, do nine more CLIs, still accepting the role account: `reanchor-claim` (its queue composes `"<tu nombre>"`), `retract-vote` (the `pleno-votes.ts` validator asks for `--unretract … --editor "…"`), `review:finding-exception --reviewer` (the exception queue composes `"<nombre y apellidos>"`; its usage line prints the queue's own short holes, so a copied `--note` fails the 20-char floor), and `correct-press-finding`, `corregir-promesa`, `correct-indicador`, `retract-indicador`, `correct-journalist-report` and `repoint-source-url`, whose only hole is their own usage line — the last never stores its signer, but an unfilled command still does not run. Since 2026-10-06, so do the promotions — `promote-claim`, `promote-place`, `promote-relation`, `promote-report`, `promote-indicador` and `promote-social`, on `--curator` — plus `entity-alias` and `journalist:archive` on `--curator` and `override-speaker-assignment` on `--by`, still accepting the role account and each CLI's own default (`civicpulse-curator`; `curator` in `entity-alias`). A promotion publishes and is tier C, so one signed with the hole published the hole as its curator (`editado por <name>` on `/hallazgos`). Their hole is their own usage line, which `suggest:place-geocode`, `suggest:officials-social` and the `draft:indicadores` queue print too; `override-speaker-assignment` never publishes its signer (`pleno-speakers/` is outside `public/`), but an unfilled command still does not run. `reconcile:attribution` takes no signer: it signs its retractions with its own constant through `correct-pleno-finding`, which runs the check. `tests/firma-sin-rellenar-cli.test.ts` runs each one.
+- **Signer** — before reading anything, every mode refuses as `--editor` the hole of an unfilled prepared command: `<…>`, a word of the marker list, or no letter at all (the exception queue composes `"<nombre y apellidos>"`, the support and re-anchoring queues `"<tu nombre>"`, `check:summary-gate` and `downgrade-verdict` print `"…"`). Only the hole — the operator signs `--field`/`--redact`/`--remove` with the role account `civicpulse-curator`, and that convention stays; `--amend-reason` additionally requires a person. `retract-finding`, `reclassify-claim` and a plain `downgrade-verdict` (no `--amend-reason`, no `--literal-no-dicho`) run the same check, `rechazoDeMarcador` in `src/scraper/firma-de-persona.ts`. So, since 2026-10-05, do nine more CLIs, still accepting the role account: `reanchor-claim` (its queue composes `"<tu nombre>"`), `retract-vote` (the `pleno-votes.ts` validator asks for `--unretract … --editor "…"`), `review:finding-exception --reviewer` (the exception queue composes `"<nombre y apellidos>"`; its usage line prints the queue's own short holes, so a copied `--note` fails the 20-char floor), and `correct-press-finding`, `corregir-promesa`, `correct-indicador`, `retract-indicador`, `correct-journalist-report` and `repoint-source-url`, whose only hole is their own usage line — the last never stores its signer, but an unfilled command still does not run. Since 2026-10-06, so do the promotions — `promote-claim`, `promote-place`, `promote-relation`, `promote-report`, `promote-indicador` and `promote-social`, on `--curator` — plus `entity-alias` and `journalist:archive` on `--curator` and `override-speaker-assignment` on `--by`, still accepting the role account and each CLI's own default (`civicpulse-curator`; `curator` in `entity-alias`). A promotion publishes and is tier C, so one signed with the hole published the hole as its curator (`editado por <name>` on `/hallazgos`). Their hole is their own usage line, which `suggest:place-geocode`, `suggest:officials-social` and the `draft:indicadores` queue print too; `override-speaker-assignment` never publishes its signer (`pleno-speakers/` is outside `public/`), but an unfilled command still does not run. `reconcile:attribution` takes no signer: it signs its retractions with its own constant through `correct-pleno-finding`, which runs the check. Since 2026-10-11, so do `promote-area-fit` and `backfill:self-declared` on `--curator`, in every mode the flag appears in, still accepting the role account. The first signs the area-fit rows and avisos on `/cargos/:slug` — legally material — whose validator asks only that `curatedBy` be non-empty, and the local `/curator` dashboard passes it whatever is typed; its hole is its usage line, `"<nombre>"`. The second signs the line it appends to the served `curatorNotes` of `journalist-reports.json`; its usage line prints no hole. `tests/firma-sin-rellenar-cli.test.ts` runs each one.
 - **Amending a row's reason** — `--amend-reason <i>` replaces `corrections[i].reason` and records the change on that same row as `reasonAmendments[]` (`previous` = `motivo · sha256:…` digest of the replaced reason, never its text · `reason` ≥20 · `editor` must name a person, checked by `src/scraper/firma-de-persona.ts` · `amendedAt`). No row is appended and the row keeps its own `editor`/`correctedAt`. The validator rejects a role account or a process as the signer and preserves the key on every rewrite; the CLI refuses a new text that reproduces a withheld literal (`tramosRetenidosEn`). `--dry-run` validates and prints without writing. Rationale: the ENMIENDA DEL MOTIVO block in `src/scraper/pleno-finding.ts`.
 - **Surfaces** — `/hallazgos` and `/hallazgos/:id` — collapsible "Bitácora de correcciones" expander on each `FindingDetailCard`; an amended reason says so in text ("Motivo (enmendado el …)") with each amendment's date, signer, reason and digest.
 
@@ -652,13 +673,15 @@ overwrites it. Change the bot's SQLite instead.
   off passed as a verification of it. `isIndependentlyVerified` is the one
   predicate the validator, `check:relations`, `/datos` and `VoteProvenance` all
   read — none of them re-expresses the rule.
-- **Nothing here has ever been cotejado, and the acta is unreachable.** All 16
-  published breakdowns and all 17 outcomes are `sin-verificar`.
-  `scripts/fetch-pleno-actas.ts` has four independent breakages against the
-  Aug-2026 portal (reads a `link` that points at regmeet since 2026-05-25;
-  extracts retired Drupal markup; plain `http://`; no npm script runs it), zero
-  actas are cached, and every transcript on disk is Whisper output. Messages
-  about this state must say _unreachable_, not _unread_
+- **The acta is reachable since 2026-10-13.** Until then it was believed
+  unreachable: only ribarroja.es had been measured
+  (`scripts/fetch-pleno-actas.ts`, legacy). The signed actas are in each
+  regmeet session's «Documentos» tab; `scripts/scrape-pleno-actas.ts` indexes
+  them into `pleno-actas.json`, `npm run check:votos-acta` coteja each
+  published tally against its acta, and `npm run corregir-voto` replaces a
+  wrong one with a signed record. A breakdown cited to the acta itself carries
+  no «sin cotejar» caveat; `breakdownNeedsCaveat` is the one predicate the vote
+  card, `/datos` and `check:relations` read for it
 - **Withdrawal** — `npm run retract-vote` is the only way out. Three scopes, because the
   parts of a record do not share a provenance: `--reason/--editor` alone withdraws
   the **whole vote** (it leaves `items[]`, so it stops counting everywhere that reads

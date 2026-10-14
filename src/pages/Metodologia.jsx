@@ -706,16 +706,23 @@ export default function Metodologia() {
             oficial». No era cierto: <strong>cada voto cita ahora dos fuentes distintas</strong>. El{' '}
             <strong>resultado</strong> (aprobado, rechazado) procede del portal de sesiones del
             Ayuntamiento (regmeet.com), que publica el orden del día y el resultado. El{' '}
-            <strong>desglose por grupos</strong> —quién votó qué— <em>no</em> lo publica ese portal:
-            procede de la transcripción automática (Whisper) del audio de la sesión, que publicamos
-            íntegra en <code>/data/pleno-transcripts/</code>. Antes ambas mitades colgaban de un
-            único enlace que sólo sostenía una de ellas, y en{' '}
+            <strong>desglose por grupos</strong> —quién votó qué— <em>no</em> lo publica la página
+            de la sesión. Lo publica el <strong>acta</strong>, que el Ayuntamiento cuelga firmada en
+            la pestaña «Documentos» de esa misma sesión en regmeet cuando se aprueba (hasta octubre
+            de 2026 creímos que no se publicaba: lo habíamos buscado sólo en ribarroja.es). Mientras
+            no lo hemos leído del acta —porque aún no se ha aprobado o porque todavía no la hemos
+            cotejado—, el desglose procede de la transcripción automática (Whisper) del audio de la
+            sesión, que publicamos íntegra en <code>/data/pleno-transcripts/</code>; cada voto dice
+            de cuál de las dos sale. Antes ambas mitades colgaban de un único enlace que sólo
+            sostenía una de ellas, y en{' '}
             <a href="/departamentos" style={{ color: 'var(--civic)' }}>
               /departamentos
             </a>{' '}
-            ese enlace se rotulaba «Acta oficial». Esa segunda mitad es de lo menos verificable que
-            publica este sitio, no de lo más: tres desgloses se comprobaron y resultaron erróneos;
-            están retirados y su retirada consta.
+            ese enlace se rotulaba «Acta oficial». La transcripción automática es de lo menos
+            verificable que publica este sitio: varios desgloses leídos de ella resultaron erróneos.
+            Los que se retiraron constan como retirados, y los que el acta corrigió se publican con
+            la marca <strong>«desglose corregido»</strong>, la fecha y el motivo; el desglose
+            anterior queda en el registro de correcciones de <code>/data/pleno-votes.json</code>.
           </li>
           <li>
             <strong>Un desglose no cotejado se declara como tal.</strong> Mientras no se haya
@@ -768,6 +775,35 @@ export default function Metodologia() {
             Deducir el grupo restando escaños identificaría por eliminación al único concejal fuera
             de PSOE, PP, VOX y Compromís. Poner el nombre real exige que el acta lo nombre{' '}
             <em>en esa votación</em>, y lo hace una persona, no el extractor.
+          </li>
+          <li>
+            <strong>
+              El plazo de una promesa lo fija una persona, con las palabras de la cita.
+            </strong>{' '}
+            Ningún proceso automático convierte en fecha un plazo que aparece en el texto de una
+            promesa («el próximo mes de septiembre»): deducirla sería el plazo inferido por máquina
+            que el validador impide. Lo fija, si lo fija, una persona que firma con su nombre y
+            apellido, da su motivo y copia las palabras de la cita que lo sostienen (
+            <code>dueBySource</code>, ≥20 caracteres). El validador comprueba que esas palabras
+            estén <em>literalmente</em> en la cita que publica la tarjeta —no una paráfrasis, no
+            otra frase de la noticia—, que la fecha exista y no sea anterior al día de la promesa, y
+            que el cambio conste en su bitácora (<code>dueByLog</code>, publicada en{' '}
+            <code>/data/promises.json</code>): quién, cuándo, de qué fecha a cuál, por qué y sobre
+            qué palabras. Cuando la cita nombra un día, se publica ese día.{' '}
+            <strong>Cuando nombra sólo un mes, se publica el último día de ese mes</strong>: la
+            promesa no se llama vencida mientras el mes que dijo sigue en curso. Una estación, un
+            trimestre o «a principios de año» no tienen una fecha que se pueda firmar, y no se les
+            pone ninguna. Quitar un plazo también se firma y se razona, y queda en la misma
+            bitácora. Durante la veda electoral no se fija ni se quita ninguno.
+          </li>
+          <li>
+            <strong>Sin fecha no hay cero.</strong> El recuento de plazos vencidos sólo mira el
+            campo <code>dueBy</code>, nunca el texto de la cita. La mayoría de las áreas no tiene
+            ningún compromiso fechado, y ahí la cifra se publica como{' '}
+            <strong>«—» · «sin plazo fechado»</strong>, no como 0: un cero diría que no ha vencido
+            nada, y lo único que se sabe es que nada tiene fecha. Cuando un área sí tiene
+            compromisos fechados, la cifra va con su denominador («de N con plazo fechado»). Hasta
+            octubre de 2026 se publicaba el 0 a secas.
           </li>
           <li>
             <strong>El aviso de plazo vencido no cambia ningún estado.</strong> Es una señalización
@@ -1411,6 +1447,16 @@ export default function Metodologia() {
               el impreso no es la cifra citada y otro importe del mismo expediente sí lo es, la
               tarjeta dice debajo qué es cada uno.
             </p>
+            {/* Hasta el 12-10-2026 la fila imprimía «sim 1.00» suelto, y junto a
+                «Parcial» se leía como coincidencia perfecta. */}
+            <p style={{ margin: '8px 0 0' }}>
+              Cuando el verificador puntuó el parecido de una fila con lo citado —las palabras del
+              objeto frente al título del expediente y, si las hay, las cifras—, la fila lo imprime
+              como «parecido con lo citado», de 0 a 1. Ese número dice cuánto trata la fila de lo
+              mismo que la cita, no si la confirma: una cita «Parcial» puede llevar un 1,00, porque
+              el expediente es el que se nombró pero no acredita lo que se dijo de él. Lo que la
+              fila acredita lo dice el veredicto.
+            </p>
           </li>
           <li>
             <strong>
@@ -1472,27 +1518,42 @@ export default function Metodologia() {
             quién decidió la rebaja: «corregido por un curador» sólo cuando la firma nombra a una
             persona; «rebajado en una revisión automática» cuando nombra un proceso o un modelo; y
             «no consta quién lo decidió» cuando no dice ni lo uno ni lo otro. Lo que una rebaja deja
-            en <em>parcial</em> se enseña como contrastado, con la evidencia que tenía el veredicto
-            que rebajó y su motivo por resumen: se enseña porque la herramienta sólo baja, no porque
-            la firme una persona. Ese motivo es también la explicación que la tarjeta enseña bajo la
-            cita, y puede enmendarse después —para decir lo mismo en castellano llano, o decirlo
-            mejor— <strong>sin mover el veredicto</strong>: la enmienda la firma siempre una persona
-            con su nombre, que la tarjeta da («motivo firmado por…»), y queda en la propia entrada,
-            con la fecha, el porqué y una huella del motivo anterior que permite cotejarlo con el
-            historial público del repositorio. No se enmienda ninguno durante el periodo electoral,
-            ni cuando lo publicado no es la composición de lo que hay en disco. Enmendar el motivo
-            reescribe la explicación, no la decisión: una rebaja automática con el motivo firmado
-            por una persona sigue siendo una rebaja automática. Las decisiones de segunda pasada y
-            de curación viven en una capa («overlay») separada del veredicto determinista base, de
-            modo que recalcular la base nunca borra esas decisiones. Desde agosto de 2026 el{' '}
-            <em>tipo</em> de una declaración se corrige por la misma vía: cuando el extractor
-            archiva como <code>acusacion_publica</code> algo que no acusa a nadie —el caso que
-            estrenó la herramienta fue una defensa de la constitucionalidad de una ley estatal—, un
-            curador lo reclasifica con motivo verbatim en un registro propio (
+            en <em>parcial</em> se enseña entre las cotejadas, con la evidencia que tenía el
+            veredicto que rebajó y su motivo por resumen: se enseña porque la herramienta sólo baja,
+            no porque la firme una persona. Ese motivo es también la explicación que la tarjeta
+            enseña bajo la cita, y puede enmendarse después —para decir lo mismo en castellano
+            llano, o decirlo mejor— <strong>sin mover el veredicto</strong>: la enmienda la firma
+            siempre una persona con su nombre, que la tarjeta da («motivo firmado por…»), y queda en
+            la propia entrada, con la fecha, el porqué y una huella del motivo anterior que permite
+            cotejarlo con el historial público del repositorio. No se enmienda ninguno durante el
+            periodo electoral, ni cuando lo publicado no es la composición de lo que hay en disco.
+            Enmendar el motivo reescribe la explicación, no la decisión: una rebaja automática con
+            el motivo firmado por una persona sigue siendo una rebaja automática. Las decisiones de
+            segunda pasada y de curación viven en una capa («overlay») separada del veredicto
+            determinista base, de modo que recalcular la base nunca borra esas decisiones. Desde
+            agosto de 2026 el <em>tipo</em> de una declaración se corrige por la misma vía: cuando
+            el extractor archiva como <code>acusacion_publica</code> algo que no acusa a nadie —el
+            caso que estrenó la herramienta fue una defensa de la constitucionalidad de una ley
+            estatal—, un curador lo reclasifica con motivo verbatim en un registro propio (
             <code>pleno-claim-reclassifications.json</code>), y la herramienta sólo acepta
             movimientos que <strong>alejan</strong> de la acusación, nunca hacia ella: convertir una
             declaración en acusación agravaría lo que se afirma de quien habló, que es exactamente
             lo que «sólo a la baja» prohíbe para los veredictos.
+            <p style={{ margin: '8px 0 0' }}>
+              El rótulo de tipo que se ve en cada tarjeta, además, se deriva de lo que la cita dice,
+              y sólo puede bajar. El extractor usa «afirmación numérica» y «convenio citado» también
+              para frases que no traen ninguna cifra o que no nombran convenio, ayuda ni fondo: una
+              lista de departamentos, un recuento de votos, una valoración sobre una carta de
+              servicios. Cuando el literal no trae lo que el tipo promete, la tarjeta dice{' '}
+              <strong>«Afirmación»</strong>, sin más. Una cifra que la comprobación no reconozca
+              deja también «Afirmación», que no afirma nada de más; nunca se rotula una frase con un
+              tipo más fuerte que el del extractor. El tipo archivado no cambia, y los recuentos por
+              tipo de{' '}
+              <a href="/laboratorio/cobertura" style={{ color: 'var(--civic)' }}>
+                /laboratorio/cobertura
+              </a>{' '}
+              siguen contando lo que el extractor clasificó.
+            </p>
           </li>
           <li>
             <strong>Motor de veredictos (re-derivación, sólo a la baja).</strong> Una segunda pasada
@@ -1551,7 +1612,9 @@ export default function Metodologia() {
             respaldo de pago y sólo escribe a nombre del modelo que contestó, y el 6 de octubre de
             2026 se corrigió la atribución de esas retractaciones con una corrección registrada en
             cada una, que guarda el rótulo anterior, qué paso hizo cada modelo y el porqué, sin
-            tocar el veredicto ni la explicación. Las cifras, con su método y su muestra, están en
+            tocar el veredicto ni la explicación. Si el motor vuelve a escribir después una de esas
+            explicaciones, la entrada nueva conserva esa corrección junto a quién escribió la
+            anterior y cuándo, nunca lo que decía. Las cifras, con su método y su muestra, están en
             el registro público de mediciones (<code>.automation-measurements.json</code>); aquí no
             las damos como acierto. La regla se tomó en junio a la vista de esa medición, y hoy la
             sostiene una razón que no depende de ninguna: un <code>sin-datos</code> no afirma nada,
@@ -2264,12 +2327,17 @@ export default function Metodologia() {
           </li>
         </ul>
         <p style={{ marginTop: 8 }}>
-          <strong>Contrastadas</strong> es la suma de las verificadas, las parciales y las
+          {/* Decía «Contrastadas»: en castellano una información contrastada es una
+              comprobada, y la revisión lectora del 06-10-2026 leyó «8 contrastadas» en
+              /departamentos/medio-ambiente sobre ocho parciales. Antes fue «con evidencia». */}
+          <strong>Cotejadas</strong> es la suma de las verificadas, las parciales y las
           contradichas: las declaraciones que se pudieron comparar con un documento municipal,
-          saliera a favor o en contra. No quiere decir que estén respaldadas; el veredicto de cada
-          una va en su tarjeta. En la ficha de cada concejalía se agrupan por tema, no por quien
-          habló: una declaración sobre urbanismo cuenta en esa área la pronunciara quien la
-          pronunciara, y su atribución sigue siendo de bloque.
+          saliera a favor o en contra. Cotejar no es comprobar: una parcial coincide sólo en parte
+          con el documento, y que una declaración esté entre las cotejadas no quiere decir que esté
+          respaldada. Junto a la cifra va cuántas son de cada veredicto, y el de cada una, en su
+          tarjeta. En la ficha de cada concejalía se agrupan por tema, no por quien habló: una
+          declaración sobre urbanismo cuenta en esa área la pronunciara quien la pronunciara, y su
+          atribución sigue siendo de bloque.
         </p>
 
         <h3 style={{ marginTop: 16, fontSize: 'var(--fs-head)' }}>Disciplina antilibellos</h3>
@@ -2524,7 +2592,15 @@ export default function Metodologia() {
             convocatoria de otro organismo sólo se publica si la sitúa aquí la propia BDNS: una
             concesión al NIF del Ayuntamiento o la región de su ficha (Comunitat Valenciana o
             provincia de Valencia). La que no se puede situar se aparta, con su motivo, en{' '}
-            <code>bdns.json</code>.
+            <code>bdns.json</code>. Lo concedido al Ayuntamiento se lee además por su NIF
+            (P4621600H): una convocatoria abierta a todos los municipios no nombra a ninguno. Cada
+            concesión es una fila, con su importe; los euros son lo concedido (los pagos son otro
+            registro de la BDNS) y se suman sólo ahí, porque una convocatoria puede dar varias
+            concesiones. La consulta por el NIF no devuelve las concesiones más antiguas
+            (/presupuesto dice desde qué año); las recibidas anteriores siguen llegando sólo por el
+            nombre. Las convocatorias que sólo aparecen por el NIF no entran todavía en el contraste
+            del verificador: añadirlas movía veredictos hacia arriba por parecido de palabras, y eso
+            se mide antes de hacerlo.
           </li>
           <li>
             <strong>Presupuesto CONPREL (MinHac)</strong> — capítulos de gasto e ingreso anuales.

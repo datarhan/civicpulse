@@ -57,6 +57,7 @@ import {
   type PlenoVote,
   type VoteSourceRef,
 } from '../src/scraper/pleno-votes'
+import { rechazarOpcionesDesconocidas } from '../src/scraper/opciones-cli'
 
 const DATA_PATH = resolve('public/data/pleno-votes.json')
 const TRANSCRIPT_DIR = 'public/data/pleno-transcripts'
@@ -180,6 +181,9 @@ function planProvenance(items: PlenoVote[]): {
 }
 
 function main() {
+  // Antes de leer nada: una opción que este CLI no conoce no se ignora
+  // (src/scraper/opciones-cli.ts).
+  rechazarOpcionesDesconocidas('migrate', { banderas: ['--dry-run'] })
   const dryRun = process.argv.includes('--dry-run')
   if (!existsSync(DATA_PATH)) {
     process.stderr.write(`[migrate-vote-provenance] ${DATA_PATH} not found\n`)

@@ -27,6 +27,8 @@
  * una magnitud distinta de la que el emparejador leyó.
  */
 
+import { rellena } from '../lib/formatters'
+
 /**
  * Los campos de importe que el emparejador lee de una fila, en su orden, sin
  * IVA donde la fila lo trae. Gobierto proyecta `finalAmount` / `initialAmount`
@@ -69,34 +71,34 @@ export function importeDelEmparejador(fila: unknown): ImporteLeido | null {
   return null
 }
 
-/** Qué es cada importe que una fila puede imprimir, dicho para el lector. */
-const QUE_ES: Record<CampoDelEmparejador, string> = {
-  finalAmountNoTaxes: 'el importe de adjudicación, sin IVA',
-  initialAmountNoTaxes: 'el presupuesto base de licitación, sin IVA',
-  finalAmount: 'el importe de adjudicación, con IVA',
-  initialAmount: 'el presupuesto base de licitación, con IVA',
-  totalValueEur: 'el valor total que publica TED',
-  award_amount_eur: 'el importe que publica la fila',
-  awarded_amount: 'el importe que publica la fila',
-  amount: 'el importe que publica la fila',
-}
+/** El traductor del idioma de la página: el `t` de `useT()`. */
+type Traductor = (clave: string) => string
 
 /**
  * Los importes del expediente donde se busca la cifra citada, en el orden en
  * que se prefieren si hay varios iguales, y cómo se dice cada uno. El valor
  * estimado va aparte de los de la fila: es la magnitud legal del contrato
  * (prórrogas incluidas), y en la licitación Gobierto la llama `contractValue`.
+ *
+ * Lo dicho vive en el catálogo (`puente.magnitud.*`), con la clave escrita entera:
+ * tests/i18n-catalogue.test.ts la busca literal para dar su `{v}` por sustituido.
+ * Qué es cada importe que una fila puede imprimir, en `puente.queEs.<campo>`.
  */
 const MAGNITUDES = {
-  finalAmount: (v: string) => `se adjudicó por ${v} con IVA`,
-  finalAmountNoTaxes: (v: string) => `se adjudicó por ${v} sin IVA`,
-  initialAmount: (v: string) => `salió a licitación por ${v} con IVA`,
-  initialAmountNoTaxes: (v: string) => `salió a licitación por ${v} sin IVA`,
-  estimatedValue: (v: string) => `tiene un valor estimado de ${v}`,
-  contractValue: (v: string) => `tiene un valor estimado de ${v}`,
+  finalAmount: (t: Traductor, v: string) => rellena(t('puente.magnitud.finalAmount'), { v }),
+  finalAmountNoTaxes: (t: Traductor, v: string) =>
+    rellena(t('puente.magnitud.finalAmountNoTaxes'), { v }),
+  initialAmount: (t: Traductor, v: string) => rellena(t('puente.magnitud.initialAmount'), { v }),
+  initialAmountNoTaxes: (t: Traductor, v: string) =>
+    rellena(t('puente.magnitud.initialAmountNoTaxes'), { v }),
+  estimatedValue: (t: Traductor, v: string) => rellena(t('puente.magnitud.estimatedValue'), { v }),
+  contractValue: (t: Traductor, v: string) => rellena(t('puente.magnitud.contractValue'), { v }),
 } as const
 
 export type Magnitud = keyof typeof MAGNITUDES
+
+/** Las magnitudes, como VALOR y en su orden: la prueba del catálogo las recorre. */
+export const MAGNITUDES_DEL_EXPEDIENTE = Object.keys(MAGNITUDES) as Magnitud[]
 
 export interface Puente {
   cifra: number
@@ -166,7 +168,7 @@ export function puenteDeImporte(
     .map(importeDelEmparejador)
     .find((i): i is ImporteLeido => i != null && Math.round(i.valor) === impreso)
   if (!leido) return null
-  for (const campo of Object.keys(MAGNITUDES) as Magnitud[]) {
+  for (const campo of MAGNITUDES_DEL_EXPEDIENTE) {
     for (const f of filas) {
       const valor = Number(f[campo])
       if (!Number.isFinite(valor) || !(valor > 0) || !esLaCifra(valor, n)) continue
@@ -191,16 +193,22 @@ const entero = (v: number) => `${Math.round(v).toLocaleString('es-ES')}${NBSP}�
 const conCentimos = (v: number) =>
   `${v.toLocaleString('es-ES', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}${NBSP}€`
 
-/** El puente, dicho para el lector: qué es la cifra de la fila, y dónde está la citada. */
-export function textoDelPuente(p: Puente): string {
+/**
+ * El puente, dicho para el lector en el idioma de `t`: qué es la cifra de la fila, y
+ * dónde está la citada. Las cifras van con el formato de `es-ES`, que es también el
+ * del valenciano.
+ */
+export function textoDelPuente(p: Puente, t: Traductor): string {
   const sujeto = !p.citado.lote
-    ? 'El mismo expediente'
+    ? t('puente.sujeto.expediente')
     : p.citado.lote.numero != null
-      ? `El lote ${p.citado.lote.numero} del mismo expediente`
-      : 'Un lote del mismo expediente'
-  return (
-    `${entero(p.impreso.valor)} es ${QUE_ES[p.impreso.campo]}. ` +
-    `${sujeto} ${MAGNITUDES[p.citado.campo](conCentimos(p.citado.valor))}: ` +
-    `la cifra citada (${entero(p.cifra)}).`
-  )
+      ? rellena(t('puente.sujeto.lote'), { n: p.citado.lote.numero })
+      : t('puente.sujeto.loteSinNumero')
+  return rellena(t('puente.frase'), {
+    impreso: entero(p.impreso.valor),
+    queEs: t(`puente.queEs.${p.impreso.campo}`),
+    sujeto,
+    magnitud: MAGNITUDES[p.citado.campo](t, conCentimos(p.citado.valor)),
+    cifra: entero(p.cifra),
+  })
 }

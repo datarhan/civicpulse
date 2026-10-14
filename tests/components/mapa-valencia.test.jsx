@@ -30,6 +30,7 @@ import { porAnyo } from '../../src/lib/incendios'
 import { POI_CATEGORIES } from '../../src/lib/civic-poi'
 import { NeighborhoodPopup } from '../../src/components/LiveCity/popups/NeighborhoodPopup'
 import { PlacePopup } from '../../src/components/LiveCity/popups/PlacePopup'
+import { EnlacesABarrio } from '../../src/components/LiveCity/popups/EnlacesABarrio'
 import { IncendioPopup } from '../../src/components/LiveCity/popups/IncendioPopup'
 import { NetworkStationPopup } from '../../src/components/LiveCity/popups/NetworkStationPopup'
 import { ObraPopup, PROGRAMA_LABEL } from '../../src/components/LiveCity/popups/ObraPopup'
@@ -361,10 +362,11 @@ const GLOBOS = [
     quejas: QUEJAS_DE_OTRO_BARRIO,
   }),
   {
-    nombre: 'lugar con dos contratos, un lote y DANA',
-    cubre: [PlacePopup, ContractCard],
+    nombre: 'lugar con dos contratos, un lote y DANA, sobre el punto de un barrio',
+    cubre: [PlacePopup, ContractCard, EnlacesABarrio],
     datos: [
       LUGAR.name,
+      prettyNeighborhood(BARRIO.name),
       CONTRATO_OBRA.title,
       CONTRATO_OBRA.assignee,
       CONTRATO_LOTE.title,
@@ -382,6 +384,8 @@ const GLOBOS = [
         danaOnly={false}
         obrasOnly={false}
         cpvDict={undefined}
+        barriosDebajo={[{ ...BARRIO, id: BARRIO.slug }]}
+        onAbrirBarrio={() => {}}
       />
     ),
     listo: (c) => c.textContent.includes(CONTRATO_LOTE.assignee),

@@ -150,9 +150,10 @@ function main(): void {
     if (snap.items.length === 0) {
       // Cero fichas es el estado normal antes de la primera firma, y decir
       // «✓ todo en orden» sobre una lista vacía es exactamente la frase que
-      // este repositorio ya se ha creído dos veces.
+      // este repositorio ya se ha creído dos veces. Con la marca que lee el
+      // parte de salud (`MARCAS_SIN_COMPROBAR`), o allí se leería como limpia.
       process.stdout.write(
-        '[check-eficiencia] no hay ninguna ficha publicada todavía — nada que comprobar, ' +
+        '[check-eficiencia] NO COMPROBADO: no hay ninguna ficha publicada todavía — nada que comprobar, ' +
           'que NO es lo mismo que estar todo bien. La cola vive en ' +
           'editorial/indicador-candidates.md (`npm run draft:indicadores`).\n',
       )

@@ -46,17 +46,44 @@ import {
   resumenSinRegistro,
 } from '../scraper/claim-verdicts'
 import { CLASES_DE_FIRMA, nombraAUnaPersona } from '../scraper/firma-de-persona'
-
-/** Lo que se dice cuando no consta quién comprobó la cita. */
-export const SIN_VERIFICADOR = 'sin verificador anotado'
+import { CATALOGUE, rotuloDe } from '../i18n'
+import { rellena } from './formatters'
 
 /**
- * El rótulo de cada clase de verificador de `CLASE_DE_PASADA`, salvo el curador
- * y la persona que sube, que dicen además quién.
+ * Los rótulos de este fichero viven en el catálogo (`verificador.*`, `ledger.*`), y
+ * cada función recibe el `t` del idioma de la página. Sin él —las CLIs que anuncian
+ * «la tarjeta dirá», /declaraciones, las pruebas— dicen lo que dice el castellano.
+ *
+ * @param {string} clave
+ */
+const castellano = (clave) => /** @type {Record<string,string>} */ (CATALOGUE.es)[clave] ?? clave
+
+/**
+ * El nombre que el lector lee de un corpus de `CORPUS_IDS` (`ledger.corpus.<id>`).
+ *
+ * Hasta el 12-10-2026 la tarjeta imprimía el identificador —«Fonts comprovades:
+ * plenos-agendas · tenders»—, un token de máquina en las dos lenguas. Sin rótulo
+ * en el catálogo sale el identificador, que es lo de antes y no un hueco; que no
+ * falte ninguno lo exige tests/i18n-mapa-enums.test.ts, leyendo el enum.
+ *
+ * @param {string} id
+ * @param {(clave: string) => string} t
+ */
+const rotuloDeCorpus = (id, t) => rotuloDe(t, `ledger.corpus.${id}`, id) ?? id
+
+/** Los corpus de la frase castellana del verificador, con el nombre de la línea. */
+const enCastellano = (id) => rotuloDeCorpus(id, castellano)
+
+/** Lo que se dice cuando no consta quién comprobó la cita. */
+export const SIN_VERIFICADOR = castellano('verificador.sinAnotar')
+
+/**
+ * La clave del rótulo de cada clase de verificador de `CLASE_DE_PASADA`, salvo el
+ * curador y la persona que sube, que dicen además quién.
  */
 const ROTULO_DE_CLASE = {
-  llm: 'verificador LLM',
-  nli: 'verificador NLI',
+  llm: 'verificador.llm',
+  nli: 'verificador.nli',
 }
 
 /**
@@ -69,9 +96,9 @@ const ROTULO_DE_CLASE = {
  * @type {Record<import('../scraper/firma-de-persona').ClaseDeFirma, string>}
  */
 const ROTULO_DE_BAJADA = {
-  persona: 'corregido por un curador',
-  automatica: 'rebajado en una revisión automática',
-  'no-consta': 'rebajado; no consta quién lo decidió',
+  persona: 'verificador.bajada.persona',
+  automatica: 'verificador.bajada.automatica',
+  'no-consta': 'verificador.bajada.no-consta',
 }
 
 /**
@@ -81,13 +108,13 @@ const ROTULO_DE_BAJADA = {
  * imprime la firma del motivo si nombra a una persona, que es lo único que
  * `validateOverlay` deja firmar una enmienda.
  */
-function rotuloDeBajada(v) {
+function rotuloDeBajada(v, t) {
   const delCanal = v?.source === 'curator-downgrade'
   const clase = delCanal && CLASES_DE_FIRMA.includes(v?.downgradedBy) ? v.downgradedBy : 'no-consta'
-  const rotulo = ROTULO_DE_BAJADA[clase]
+  const rotulo = t(ROTULO_DE_BAJADA[clase])
   const motivo = delCanal ? v?.reasonSignedBy : undefined
   return typeof motivo === 'string' && nombraAUnaPersona(motivo)
-    ? `${rotulo} · motivo firmado por ${motivo}`
+    ? rellena(t('verificador.motivoFirmado'), { rotulo, firma: motivo })
     : rotulo
 }
 
@@ -99,11 +126,11 @@ function rotuloDeBajada(v) {
  * vuelve a mirar que la firma nombre a una persona: sin los dos, nadie ha dicho
  * quién la subió, y no se imprime un nombre.
  */
-function rotuloDeSubida(v) {
+function rotuloDeSubida(v, t) {
   const firma = v?.source === 'curator-upgrade' ? v?.raisedBy : undefined
   return typeof firma === 'string' && nombraAUnaPersona(firma)
-    ? `subido por una persona · firmado por ${firma}`
-    : 'subido; no consta quién lo firmó'
+    ? rellena(t('verificador.subida.firmada'), { firma })
+    : t('verificador.subida.sinFirma')
 }
 
 /**
@@ -114,10 +141,10 @@ function rotuloDeSubida(v) {
  * `mergeVerified` estampa con el canal del motor —`reasonSignedBy`—, y vuelve a
  * mirar que la firma nombre a una persona.
  */
-function conExplicacionFirmada(rotulo, v) {
+function conExplicacionFirmada(rotulo, v, t) {
   const firma = v?.source === 'verdict-engine' ? v?.reasonSignedBy : undefined
   return typeof firma === 'string' && nombraAUnaPersona(firma)
-    ? `${rotulo} · explicación firmada por ${firma}`
+    ? rellena(t('verificador.explicacionFirmada'), { rotulo, firma })
     : rotulo
 }
 
@@ -154,24 +181,26 @@ function esCotejoDeterminista(v) {
 /**
  * @param {{ checkedAgainst?: unknown[] | null, derivedBy?: unknown[] | null,
  *   source?: string } | null | undefined} v  la verificación servida, entera.
+ * @param {(clave: string) => string} [t]  el del idioma de la página; sin él, castellano.
  * @returns {string} la procedencia, en minúsculas, tal cual va a la página.
  */
-export function etiquetaVerificador(v) {
+export function etiquetaVerificador(v, t = castellano) {
   const clases = pasadasDe(v).map((p) => CLASE_DE_PASADA[p])
   // La bajada del curador va primero, esté donde esté: si se ha corregido el
   // veredicto, eso es lo que hay que decir —y quién lo decidió—, y no en qué se
   // apoyó la máquina a la que corrigió.
-  if (clases.includes('curador')) return rotuloDeBajada(v)
+  if (clases.includes('curador')) return rotuloDeBajada(v, t)
   // Una subida firmada, por su canal o por su pasada: dice quién la firmó, o
   // que no consta. Nunca hereda el rótulo de un cotejo.
-  if (clases.includes('persona')) return rotuloDeSubida(v)
+  if (clases.includes('persona')) return rotuloDeSubida(v, t)
   const clase = clases[0]
   // Una clase sin rótulo tampoco hereda el de «determinista».
-  if (clase) return conExplicacionFirmada(ROTULO_DE_CLASE[clase] ?? SIN_VERIFICADOR, v)
-  if (esCotejoDeterminista(v)) return 'verificador determinista'
+  if (clase)
+    return conExplicacionFirmada(t(ROTULO_DE_CLASE[clase] ?? 'verificador.sinAnotar'), v, t)
+  if (esCotejoDeterminista(v)) return t('verificador.determinista')
   // Nada anotado, o algo que no se puede nombrar. Ninguno de los dos puede
   // heredar la etiqueta de los que sí.
-  return SIN_VERIFICADOR
+  return t('verificador.sinAnotar')
 }
 
 /**
@@ -204,14 +233,21 @@ export function etiquetaVerificador(v) {
  * de encima: el reparto de /declaraciones contaba esas filas como «sin corpus
  * que consultar» mientras su tarjeta decía «no constan» (2026-09-29).
  *
+ * Los corpus y las dos frases salen del catálogo, en el idioma de la página.
+ * Cada corpus, con su rótulo (`rotuloDeCorpus`), no con su identificador.
+ *
  * @param {{ checkedAgainst?: unknown[] | null, derivedBy?: unknown[] | null,
  *   source?: string } | null | undefined} v  la verificación servida, entera.
+ * @param {(clave: string) => string} [t]  el del idioma de la página; sin él, castellano.
  * @returns {string} los corpus separados por « · », o una de las dos frases.
  */
-export function fuentesComprobadas(v) {
+export function fuentesComprobadas(v, t = castellano) {
   const desenlace = desenlaceDeCotejo(v)
-  if (desenlace === 'con-corpus') return corpusReales(v?.checkedAgainst).join(' · ')
-  return desenlace === 'sin-corpus' ? 'ninguna' : 'no constan'
+  if (desenlace === 'con-corpus')
+    return corpusReales(v?.checkedAgainst)
+      .map((id) => rotuloDeCorpus(id, t))
+      .join(' · ')
+  return t(desenlace === 'sin-corpus' ? 'ledger.fuentes.ninguna' : 'ledger.fuentes.noConstan')
 }
 
 /**
@@ -233,6 +269,14 @@ export function fuentesComprobadas(v) {
  * `sin-datos`, que es el único veredicto que la escribe. Cualquier otra
  * explicación —la del motor, la de un curador— sale como vino.
  *
+ * La re-derivada nombra los corpus como la línea de debajo los nombra en
+ * castellano (`ledger.corpus.*`), no con el identificador que el verificador
+ * guarda: «No se encontró registro en contratos y presupuesto…» encima de
+ * «Fuentes comprobadas: contratos · presupuesto». La frase es castellana, como
+ * todo lo que escribe el verificador, y lo sigue siendo en una página en
+ * valencià; lo guardado no se toca y se sigue reconociendo con sus
+ * identificadores.
+ *
  * La otra frase del verificador para un `sin-datos`, la del expediente que se
  * parece (claim-verdicts.ts, «El expediente que se parece»), se lee con la
  * regla de `evidenciaSegunFuentes`: sin contratos cotejados, la fila no se
@@ -250,13 +294,14 @@ export function fuentesComprobadas(v) {
 export function resumenSegunFuentes(v, texto = v?.summary) {
   if (v?.verdict !== 'sin-datos') return texto
   if (esResumenCasi(texto)) {
-    if (!leyoContratos(v?.checkedAgainst)) return resumenSinRegistro(v?.checkedAgainst)
+    if (!leyoContratos(v?.checkedAgainst))
+      return resumenSinRegistro(v?.checkedAgainst, enCastellano)
     if (texto !== RESUMEN_CASI_FIJO) return texto
     const fila = lista(v?.evidence).find((e) => e?.kind === 'tender')
     return resumenCasi(!String(fila?.snippet ?? '').endsWith(COLA_SIN_IMPORTE))
   }
   if (!esResumenSinRegistro(texto)) return texto
-  return resumenSinRegistro(v?.checkedAgainst)
+  return resumenSinRegistro(v?.checkedAgainst, enCastellano)
 }
 
 /**
@@ -288,4 +333,32 @@ export function evidenciaSegunFuentes(v) {
   if (v?.verdict !== 'sin-datos' || !esResumenCasi(v?.summary) || leyoContratos(v?.checkedAgainst))
     return evidencia
   return evidencia.filter((e) => e?.kind !== 'tender')
+}
+
+/**
+ * El rótulo de la puntuación de parecido de una fila de evidencia, o `null` si
+ * la fila no trae número.
+ *
+ * La tarjeta imprimía «sim 1.00» y nada más. El número es lo que el verificador
+ * midió entre la fila y lo citado —solapamiento de las palabras del objeto con
+ * el título del expediente y, cuando las hay, cercanía de las cifras
+ * (src/scraper/claim-verifier.ts)—: dice cuánto trata la fila de lo mismo, no
+ * si confirma lo dicho. Suelto junto a la pastilla «Parcial», un 1,00 se leía
+ * como contradicción —coincidencia perfecta y, aun así, parcial—, y así lo
+ * señaló la revisión lectora el 11-10-2026 en /departamentos/urbanismo. El
+ * dato es cierto; el rótulo dice qué mide y qué no, en la misma fila.
+ *
+ * El número va con coma decimal, que es la de las dos lenguas.
+ *
+ * @param {unknown} similarity
+ * @param {(clave: string) => string} [t]  el del idioma de la página; sin él, castellano.
+ * @returns {string | null}
+ */
+export function rotuloDeParecido(similarity, t = castellano) {
+  if (typeof similarity !== 'number' || !Number.isFinite(similarity)) return null
+  const n = similarity.toLocaleString('es-ES', {
+    minimumFractionDigits: 2,
+    maximumFractionDigits: 2,
+  })
+  return rellena(t('ledger.parecido'), { n })
 }

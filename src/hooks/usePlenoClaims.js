@@ -3,15 +3,25 @@ import { useEffect, useState } from 'react'
 import { useJsonFetch } from './useJsonFetch'
 import { useSnapshot } from './useSnapshot'
 import { loadSnapshotData } from '../lib/snapshot-store'
+import { CATALOGUE } from '../i18n'
+import { ALLOWED_CLAIM_TYPES } from '../scraper/pleno-claim'
+import { CLAIM_VERDICTS } from '../scraper/claim-verdicts'
 
-export const CLAIM_TYPE_LABEL = {
-  promesa: 'Promesa',
-  afirmacion_numerica: 'Afirmación numérica',
-  cita_obra: 'Obra citada',
-  cita_convenio: 'Convenio citado',
-  acusacion_publica: 'Acusación pública',
-  valoracion_politica: 'Valoración política',
-}
+/** @type {Record<string, string>} */
+const CASTELLANO = CATALOGUE.es
+
+/**
+ * El rótulo castellano de cada tipo y de cada veredicto, para las páginas que aún no
+ * pasan por el catálogo (/declaraciones, /cobertura, /laboratorio). Se lee del
+ * catálogo —`declaraciones.tipo.*`, `declaraciones.veredicto.*`—, que es donde vive
+ * también el valenciano, recorriendo el enum de su dueño: así la tarjeta traducida y
+ * estas tablas no pueden decir dos cosas distintas del mismo valor.
+ *
+ * @type {Record<string, string>}
+ */
+export const CLAIM_TYPE_LABEL = Object.fromEntries(
+  ALLOWED_CLAIM_TYPES.map((tipo) => [tipo, CASTELLANO[`declaraciones.tipo.${tipo}`]]),
+)
 
 export const CLAIM_TYPE_TONE = {
   promesa: 'civic',
@@ -22,13 +32,10 @@ export const CLAIM_TYPE_TONE = {
   valoracion_politica: 'neutral',
 }
 
-export const VERDICT_LABEL = {
-  verificado: 'Verificado',
-  parcial: 'Parcial',
-  contradicho: 'Contradicho',
-  'sin-datos': 'Sin datos',
-  'promesa-repetida': 'Promesa repetida',
-}
+/** @type {Record<string, string>} */
+export const VERDICT_LABEL = Object.fromEntries(
+  CLAIM_VERDICTS.map((v) => [v, CASTELLANO[`declaraciones.veredicto.${v}`]]),
+)
 
 export const VERDICT_TONE = {
   verificado: 'ok',

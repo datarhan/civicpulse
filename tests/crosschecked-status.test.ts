@@ -7,9 +7,11 @@
  * the state, so an abandoned procurement appeared under «Documentos cotejados»
  * looking like a thing the council did.
  *
- * Five and four, not four and three: expediente 68/2025 is `void` in the
- * licitaciones table while its contract row publishes no status, so a scan for
- * «every row is void» walks past it.
+ * It counted five refs and four expedientes until 13-10-2026. The fifth,
+ * expediente 68/2025, is `void` only in the licitaciones table, and there
+ * `void` means «no result published yet»: PLACSP had it in «Evaluación». The
+ * contract-table `void` lots that remain are desierto on PLACSP — no contract,
+ * but not annulled either, which is why the chip now says «sin contrato».
  *
  * THREE states, not two, and the third is the sentinel one: `status: 'unknown'`
  * is Gobierto's blank after normalisation, not a state a document is in
@@ -26,6 +28,8 @@ import {
   buildRefStatusIndex,
   refStatus,
   snippetWithoutStatus,
+  snippetParaLeer,
+  snippetDeEvidencia,
   REF_STATUS_KINDS,
 } from '../src/lib/crosschecked-status.js'
 import {
@@ -34,7 +38,8 @@ import {
   CANCELLED_STATUSES,
   IN_FLIGHT_STATUSES,
 } from '../src/lib/contract-status.js'
-import { CONTRACT_STATUS, TENDER_STATUS } from '../src/scraper/tenders'
+import { CATEGORIAS_DE_CONTRATO, CONTRACT_STATUS, TENDER_STATUS } from '../src/scraper/tenders'
+import { CATALOGUE } from '../src/i18n'
 
 const DATA = resolve(__dirname, '..', 'public', 'data')
 const tenders = JSON.parse(readFileSync(join(DATA, 'tenders.json'), 'utf8'))
@@ -176,11 +181,14 @@ describe('buildRefStatusIndex — one expediente, several lots', () => {
   })
 
   it('a lot with no state cannot outvote a lot that has one', () => {
-    // The real `unknown+void` ref: `unknown` carries no information, so it does
-    // not dilute the one row that does. Same treatment a row with no date gets.
+    // `unknown` carries no information, so it does not dilute the one row
+    // that does. Same treatment a row with no date gets. (The void sits in
+    // `contracts`: a licitación's void is itself no state — see below.)
     const i = buildRefStatusIndex({
-      contracts: [{ permalink: 'p', status: 'unknown' }],
-      tenders: [{ permalink: 'p', status: 'void' }],
+      contracts: [
+        { permalink: 'p', status: 'unknown' },
+        { permalink: 'p', status: 'void' },
+      ],
     })
     expect(i.get('p')).toEqual({ kind: 'cancelled', status: 'void' })
   })
@@ -211,6 +219,22 @@ describe('buildRefStatusIndex — one expediente, several lots', () => {
     expect(a.get('p')).toEqual(b.get('p'))
     expect(a.get('p')).toEqual({ kind: 'in-flight', status: 'provisionally_awarded' })
   })
+
+  it('a licitación void is no state at all — a contract void still is', () => {
+    // In `licitaciones`, Gobierto writes `void` while PLACSP has no result
+    // yet: 9 of 9 checked on 13-10-2026 were in evaluation or since awarded.
+    const soloLicitacion = buildRefStatusIndex({
+      contracts: [{ permalink: 'p', status: 'unknown' }],
+      tenders: [{ permalink: 'p', status: 'void' }],
+    })
+    expect(soloLicitacion.get('p')).toBeNull()
+    // In `contratos` it is a desierto lot: no contract came of it.
+    const contrato = buildRefStatusIndex({ contracts: [{ permalink: 'q', status: 'void' }] })
+    expect(contrato.get('q')).toEqual({ kind: 'cancelled', status: 'void' })
+    // And a licitación's other states still speak.
+    const otra = buildRefStatusIndex({ tenders: [{ permalink: 'r', status: 'revoked' }] })
+    expect(otra.get('r')).toEqual({ kind: 'cancelled', status: 'revoked' })
+  })
 })
 
 describe('the real snapshot', () => {
@@ -236,24 +260,34 @@ describe('the real snapshot', () => {
     expect(kinds.has('in-flight')).toBe(true)
   })
 
-  it('marks the annulled refs and nothing else', () => {
-    // FIVE refs, four expedientes — one more than a scan for «every row is
-    // void» finds. Expediente 68/2025 (Dirección Facultativa del Centro
-    // Polivalente) is `void` in the licitaciones table while its contract row
-    // publishes no status at all, so the strict scan skipped it; the register
-    // still says the procedure ended with nobody hired.
+  it('marks the desierto refs and nothing else', () => {
+    // The three desierto lots, each void in the CONTRACTS table.
     const cancelled = tenderRefs.filter((r) => refStatus(r, index)?.kind === 'cancelled')
-    expect(cancelled).toHaveLength(5)
-    expect(new Set(cancelled.map((r) => r.ref)).size).toBe(4)
+    expect(new Set(cancelled.map((r) => r.ref)).size).toBe(3)
     for (const c of cancelled) expect(refStatus(c, index)?.status).toBe('void')
     const titles = cancelled.map((c) => c.snippet).join(' ')
     expect(titles).toContain('vallas de seguridad')
     expect(titles).toContain('puesta a disposición de personal')
     expect(titles).toContain('vigilancia y seguridad privada')
-    expect(titles).toContain('Dirección Facultativa')
   })
 
-  it('the annulled refs really are annulled in the register', () => {
+  it('68/2025 is not marked as ended: its only void is the licitación', () => {
+    // It read «expediente anulado» on /hallazgos while PLACSP had it in
+    // «Evaluación». Whatever the register says next, a licitación void alone
+    // never makes it «sin contrato».
+    const dirFac = tenderRefs.filter((r) => /Dirección Facultativa/.test(r.snippet ?? ''))
+    const polivalente = dirFac.filter((r) => {
+      const own = (tenders.tenders ?? []).filter(
+        (x: { permalink?: string }) => x.permalink === r.ref,
+      )
+      return own.some((x: { documentNumber?: string }) => x.documentNumber === '68/2025')
+    })
+    // Positive control: the ref is still cited, so this checks something.
+    expect(polivalente.length).toBeGreaterThan(0)
+    for (const r of polivalente) expect(refStatus(r, index)?.kind).not.toBe('cancelled')
+  })
+
+  it('the desierto refs really produced no contract in the register', () => {
     // Read the rows back, so this asserts the DATA and not just the mapping:
     // nothing awarded, nothing formalised, no money out.
     const cancelled = tenderRefs.filter((r) => refStatus(r, index)?.kind === 'cancelled')
@@ -261,8 +295,11 @@ describe('the real snapshot', () => {
     for (const c of cancelled) {
       const own = rows.filter((x: { permalink?: string }) => x.permalink === c.ref)
       expect(own.length).toBeGreaterThan(0)
-      // At least one row says so outright, and none contradicts it.
-      expect(own.some((r: { status?: string }) => r.status === 'void')).toBe(true)
+      // At least one CONTRACT row says so outright, and none contradicts it.
+      const contratos = (tenders.contracts ?? []).filter(
+        (x: { permalink?: string }) => x.permalink === c.ref,
+      )
+      expect(contratos.some((r: { status?: string }) => r.status === 'void')).toBe(true)
       for (const r of own) {
         expect(['void', 'unknown']).toContain(r.status)
         expect(r.finalAmount ?? 0).toBe(0)
@@ -316,4 +353,151 @@ describe('snippetWithoutStatus — a sentinel is never a value', () => {
     expect(untailed.length).toBeGreaterThan(50)
     for (const r of untailed) expect(snippetWithoutStatus(r.snippet)).toBe(r.snippet.trim())
   })
+})
+
+/**
+ * Los snippets viejos llevaban, además de la cola «estado:», el estado sin rótulo
+ * al final y la categoría del contrato entre « · »: en /plenos/qz6weg, ficha
+ * bef239, «… · awarded» y «… · INSDAGAR S.L. · construction».
+ */
+describe('snippetParaLeer — ningún token del verificador llega al lector', () => {
+  const categoria = (c: string) => CATALOGUE.es[`contrato.categoria.${c}`] ?? null
+
+  it('cambia la categoría por su rótulo y quita el estado del final, con o sin «estado:»', () => {
+    expect(
+      snippetParaLeer(
+        'Obras · Ayuntamiento · INSDAGAR S.L. · construction · estado: awarded',
+        categoria,
+      ),
+    ).toBe('Obras · Ayuntamiento · INSDAGAR S.L. · Construcción')
+    expect(snippetParaLeer('Obras de restauración · Ayuntamiento · awarded', categoria)).toBe(
+      'Obras de restauración · Ayuntamiento',
+    )
+    expect(snippetParaLeer('Arrendamiento · Ayuntamiento · Bodí · real_estate', categoria)).toBe(
+      'Arrendamiento · Ayuntamiento · Bodí · Inmobiliario',
+    )
+    expect(snippetParaLeer('Vallas · Ayuntamiento · unknown', categoria)).toBe(
+      'Vallas · Ayuntamiento',
+    )
+  })
+
+  it('no toca el título, ni un trozo que no es token, ni un token que no conoce', () => {
+    // El título es el primer trozo, aunque sea una sola palabra con forma de token.
+    expect(snippetParaLeer('other · Ayuntamiento', categoria)).toBe('other · Ayuntamiento')
+    expect(snippetParaLeer('Obras · Ayuntamiento · Adjudicado', categoria)).toBe(
+      'Obras · Ayuntamiento · Adjudicado',
+    )
+    expect(snippetParaLeer('Obras · zzz_desconocido', categoria)).toBe('Obras · zzz_desconocido')
+    // Un estado en medio no es la cola: no se quita.
+    expect(snippetParaLeer('Obras · awarded · Ayuntamiento', categoria)).toBe(
+      'Obras · awarded · Ayuntamiento',
+    )
+    expect(snippetParaLeer(null, categoria)).toBe('')
+  })
+
+  it('deja sin token cada contrato cotejado de las fichas publicadas — y había alguno', () => {
+    const contratos = items.flatMap((f) =>
+      (f.crossChecked ?? []).filter((r) => r.kind === 'tender'),
+    )
+    const conToken = (s: string) =>
+      s
+        .split(' · ')
+        .slice(1)
+        .some((t) => /^[a-z][a-z_]*$/.test(t))
+    // Control positivo: el defecto está en el dato publicado.
+    expect(
+      contratos.filter((r) => conToken(snippetWithoutStatus(r.snippet))).length,
+    ).toBeGreaterThan(5)
+    for (const r of contratos)
+      expect(conToken(snippetParaLeer(r.snippet, categoria)), r.snippet).toBe(false)
+  })
+})
+
+/**
+ * Lo mismo en cada superficie que pinta un snippet de evidencia: /hallazgos, el
+ * registro de declaraciones (/plenos/:id, /departamentos/:slug), /declaraciones y
+ * el laboratorio de prensa. Antes, sólo /hallazgos cambiaba la categoría por su
+ * rótulo; las otras imprimían «· construction ·», «· architecture ·».
+ */
+describe('snippetDeEvidencia — un solo helper para todas las superficies', () => {
+  const t = (idioma: 'es' | 'ca') => (clave: string) =>
+    (CATALOGUE as unknown as Record<string, Record<string, string>>)[idioma][clave] ?? clave
+
+  it('un contrato: categoría por su rótulo en el idioma de quien lee, sin la cola de estado', () => {
+    const ref = {
+      kind: 'tender',
+      snippet: 'Obras · Ayuntamiento · INSDAGAR S.L. · construction · estado: awarded',
+    }
+    expect(snippetDeEvidencia(ref, t('es'))).toBe(
+      'Obras · Ayuntamiento · INSDAGAR S.L. · Construcción',
+    )
+    expect(snippetDeEvidencia(ref, t('ca'))).toBe(
+      'Obras · Ayuntamiento · INSDAGAR S.L. · Construcció',
+    )
+    // Sin idioma, castellano.
+    expect(snippetDeEvidencia(ref)).toBe('Obras · Ayuntamiento · INSDAGAR S.L. · Construcción')
+    // En medio también: el importe va detrás.
+    expect(
+      snippetDeEvidencia(
+        { kind: 'tender', snippet: 'Proyecto · Ayto · architecture · 1742 €' },
+        t('ca'),
+      ),
+    ).toBe('Proyecto · Ayto · Arquitectura · 1742 €')
+  })
+
+  it('una categoría sin rótulo se queda cruda y visible; el centinela «unknown» se va', () => {
+    expect(snippetDeEvidencia({ kind: 'tender', snippet: 'Obras · Ayto · zzz_nueva · 10 €' })).toBe(
+      'Obras · Ayto · zzz_nueva · 10 €',
+    )
+    expect(snippetDeEvidencia({ kind: 'tender', snippet: 'Obras · Ayto · unknown · 10 €' })).toBe(
+      'Obras · Ayto · 10 €',
+    )
+  })
+
+  it('lo que no es un contrato sólo pierde la cola: su texto es prosa, no claves', () => {
+    const promesa = { kind: 'promise', snippet: 'PSOE «arreglar la plaza» · 2023-05-01 · other' }
+    expect(snippetDeEvidencia(promesa)).toBe(promesa.snippet)
+    expect(snippetDeEvidencia(null)).toBe('')
+  })
+
+  /** Cada fila de evidencia o documento cotejado que una superficie pinta, de lo servido. */
+  const lee = (f: string) => JSON.parse(readFileSync(join(DATA, f), 'utf8'))
+  const filas: { kind?: string; snippet?: string }[] = []
+  const recoge = (o: unknown): void => {
+    if (Array.isArray(o)) return o.forEach(recoge)
+    if (!o || typeof o !== 'object') return
+    const r = o as { kind?: unknown; snippet?: unknown }
+    if (typeof r.snippet === 'string' && typeof r.kind === 'string')
+      filas.push({ kind: r.kind, snippet: r.snippet })
+    Object.values(o).forEach(recoge)
+  }
+  const manifiesto = lee('pleno-claims/index.json') as { plenos: { chunkPath: string }[] }
+  for (const p of manifiesto.plenos) recoge(lee(p.chunkPath))
+  recoge(findings)
+  recoge(lee('press-claims-verified.json'))
+  recoge(lee('press-findings.json'))
+
+  const CATEGORIAS = new Set<string>(CATEGORIAS_DE_CONTRATO)
+  const categorias = (s: string) =>
+    s
+      .split(' · ')
+      .slice(1)
+      .filter((trozo) => CATEGORIAS.has(trozo))
+
+  it.each(['es', 'ca'] as const)(
+    'ninguna fila servida conserva la categoría inglesa (%s) — y había',
+    (idioma) => {
+      const conCategoria = filas.filter(
+        (f) => f.kind === 'tender' && categorias(snippetWithoutStatus(f.snippet)).length > 0,
+      )
+      // Control positivo: el defecto está en el dato servido.
+      expect(conCategoria.length).toBeGreaterThan(20)
+      const crudas = conCategoria.filter(
+        (f) => categorias(snippetDeEvidencia(f, t(idioma))).length > 0,
+      )
+      // Techo de la reserva cruda, y el detalle si se pasa.
+      expect(crudas.length / conCategoria.length).toBeLessThan(0.1)
+      expect(crudas.map((f) => f.snippet)).toEqual([])
+    },
+  )
 })

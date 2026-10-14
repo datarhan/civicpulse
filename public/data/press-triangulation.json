@@ -1,6 +1,28 @@
 {
-  "generatedAt": "2026-10-11T11:14:21.536Z",
+  "generatedAt": "2026-10-14T09:56:33.653Z",
   "clusters": [
+    {
+      "clusterId": "b9iq7g",
+      "articleIds": [
+        "18kyu4h",
+        "3nxx84",
+        "xh27f9"
+      ],
+      "outlets": [
+        "Ayuntamiento de Riba-roja de Túria",
+        "Periòdic del Camp de Túria",
+        "PressReader"
+      ],
+      "earliestDate": "2026-10-07T10:03:16.000Z",
+      "latestDate": "2026-10-09T07:00:00.000Z",
+      "verdictMix": {
+        "verificado": 0,
+        "parcial": 0,
+        "contradicho": 0,
+        "sin-datos": 0,
+        "promesa-repetida": 0
+      }
+    },
     {
       "clusterId": "1208oo5",
       "articleIds": [
@@ -13,6 +35,26 @@
       ],
       "earliestDate": "2026-10-02T10:03:37.000Z",
       "latestDate": "2026-10-02T11:50:52.000Z",
+      "verdictMix": {
+        "verificado": 0,
+        "parcial": 0,
+        "contradicho": 0,
+        "sin-datos": 0,
+        "promesa-repetida": 0
+      }
+    },
+    {
+      "clusterId": "18wtlak",
+      "articleIds": [
+        "140oi31",
+        "pqxb2e"
+      ],
+      "outlets": [
+        "Ayuntamiento de Riba-roja de Túria",
+        "Valencia Plaza"
+      ],
+      "earliestDate": "2026-10-13T11:39:38.000Z",
+      "latestDate": "2026-10-13T18:32:03.000Z",
       "verdictMix": {
         "verificado": 0,
         "parcial": 0,
@@ -37,7 +79,7 @@
         "verificado": 0,
         "parcial": 0,
         "contradicho": 0,
-        "sin-datos": 0,
+        "sin-datos": 16,
         "promesa-repetida": 0
       }
     },
@@ -75,21 +117,21 @@
       "latestDate": "2026-09-25T09:54:12.000Z",
       "verdictMix": {
         "verificado": 0,
-        "parcial": 1,
+        "parcial": 0,
         "contradicho": 0,
-        "sin-datos": 5,
+        "sin-datos": 0,
         "promesa-repetida": 0
       }
     }
   ],
   "stats": {
-    "totalClusters": 4,
-    "triangulated3Plus": 0
+    "totalClusters": 6,
+    "triangulated3Plus": 1
   },
   "builtFrom": {
-    "plenos-agendas.json": "010eb2891e99",
-    "press-claims-verified.json": "5f440b22045d",
-    "press.json": "a2ca8faabc1e",
-    "promises.json": "b5dbe1ebae83"
+    "plenos-agendas.json": "1da4e2f94ee0",
+    "press-claims-verified.json": "7a128575d1ad",
+    "press.json": "1b0d9b85b1e6",
+    "promises.json": "08c43b132d79"
   }
 }

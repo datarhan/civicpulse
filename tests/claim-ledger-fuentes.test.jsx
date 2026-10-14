@@ -3,6 +3,8 @@ import { render, screen } from '@testing-library/react'
 import { MemoryRouter } from 'react-router-dom'
 import { ClaimLedger } from '../src/components/ClaimLedger'
 import { CORPUS_IDS, PASADAS } from '../src/scraper/claim-verdicts'
+import { fuentesComprobadas } from '../src/lib/claim-provenance.js'
+import { CATALOGUE } from '../src/i18n'
 
 /**
  * «Fuentes comprobadas» nombra corpus de datos, no la pasada que dio el
@@ -22,12 +24,19 @@ import { CORPUS_IDS, PASADAS } from '../src/scraper/claim-verdicts'
  * el veredicto. Las dos superficies tienen que decir lo mismo de la misma
  * afirmación, así que aquí se comprueba con los rótulos de ese módulo.
  *
+ * Cada corpus sale con su rótulo del catálogo (`ledger.corpus.<id>`), no con su
+ * identificador: «Fonts comprovades: plenos-agendas · tenders» era un token de
+ * máquina en las dos lenguas (#314 lo dejó así a propósito, y aquí se cierra).
+ *
  * Los ítems copian la forma servida (claim completo, `visibility`, y el
  * `source` que #164 lleva a la verificación): una forma recortada es cómo una
  * prueba sigue verde mientras la página real hace otra cosa.
  */
 
 const ROTULO = 'Fuentes comprobadas:'
+
+/** El rótulo de un corpus en un idioma: el del catálogo, no una copia. */
+const corpus = (id, idioma = 'es') => CATALOGUE[idioma][`ledger.corpus.${id}`]
 
 function item({
   verdict,
@@ -99,7 +108,7 @@ describe('ClaimLedger · «Fuentes comprobadas» lista corpus, no pasadas', () =
       const { fuentes } = fuentesListadas()
       // Lo positivo primero: sin esto, una línea que no listara nada pasaría
       // la negativa sin haber mirado.
-      expect(fuentes).toContain('tenders')
+      expect(fuentes).toContain(corpus('tenders'))
       expect(fuentes, `la marca ${pasada} listada como fuente`).not.toContain(pasada)
     })
   }
@@ -107,9 +116,9 @@ describe('ClaimLedger · «Fuentes comprobadas» lista corpus, no pasadas', () =
   it('todo corpus declarado se lista', () => {
     // Contra el enum exportado, no contra una copia: una lista blanca
     // recitada en la tarjeta a la que le faltara uno lo callaría sin ruido.
-    for (const corpus of CORPUS_IDS) {
-      const { unmount } = pintar(item({ verdict: 'sin-datos', checkedAgainst: [corpus] }))
-      expect(fuentesListadas().fuentes, corpus).toEqual([corpus])
+    for (const id of CORPUS_IDS) {
+      const { unmount } = pintar(item({ verdict: 'sin-datos', checkedAgainst: [id] }))
+      expect(fuentesListadas().fuentes, id).toEqual([corpus(id)])
       unmount()
     }
   })
@@ -118,7 +127,35 @@ describe('ClaimLedger · «Fuentes comprobadas» lista corpus, no pasadas', () =
     pintar(
       item({ verdict: 'sin-datos', checkedAgainst: ['tenders', 'tenders-ted', 'bdns', 'budget'] }),
     )
-    expect(fuentesListadas().fuentes).toEqual(['tenders', 'tenders-ted', 'bdns', 'budget'])
+    expect(fuentesListadas().fuentes).toEqual(
+      ['tenders', 'tenders-ted', 'bdns', 'budget'].map((id) => corpus(id)),
+    )
+  })
+})
+
+describe('«Fuentes comprobadas» nombra cada corpus con su rótulo, en los dos idiomas', () => {
+  const tDe = (idioma) => (clave) => CATALOGUE[idioma][clave] ?? clave
+
+  it.each(['es', 'ca'])('%s: ningún corpus sale con su identificador', (idioma) => {
+    for (const id of CORPUS_IDS) {
+      const dicho = fuentesComprobadas({ checkedAgainst: [id] }, tDe(idioma))
+      // Lo positivo primero: el rótulo existe y es el que sale.
+      expect(corpus(id, idioma)?.trim(), `${idioma} · ${id} sin rótulo`).toBeTruthy()
+      expect(dicho, `${idioma} · ${id}`).toBe(corpus(id, idioma))
+      expect(dicho, `${idioma} · ${id}`).not.toBe(id)
+    }
+  })
+
+  it('sin `t`, el castellano: es lo que dicen /declaraciones y las pruebas', () => {
+    expect(fuentesComprobadas({ checkedAgainst: ['plenos-agendas', 'tenders'] })).toBe(
+      `${corpus('plenos-agendas')} · ${corpus('tenders')}`,
+    )
+  })
+
+  it('en valencià, el rótulo valenciano', () => {
+    expect(fuentesComprobadas({ checkedAgainst: ['plenos-agendas', 'tenders'] }, tDe('ca'))).toBe(
+      `${corpus('plenos-agendas', 'ca')} · ${corpus('tenders', 'ca')}`,
+    )
   })
 })
 

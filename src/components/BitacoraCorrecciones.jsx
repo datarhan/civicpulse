@@ -51,17 +51,30 @@
  * regla vive aquí una vez.
  */
 
-import { ROTULO_CITA_RETENIDA } from '../lib/cita-retenida'
-import { MARCA_GRUPO_RETENIDO, ROTULO_GRUPO_RETENIDO } from '../lib/grupo-retenido'
+import { MARCA_GRUPO_RETENIDO } from '../lib/grupo-retenido'
+import { CATALOGUE, useT } from '../i18n'
+import { partePorHueco, rellena } from '../lib/formatters'
 
-export const ROTULO_TEXTO_RETIRADO = 'Texto retirado'
-export const ROTULO_TEXTO_VIGENTE = 'Texto vigente'
+/**
+ * Las palabras de la bitácora salen del catálogo (`bitacora.*`) desde el
+ * 12-10-2026, en el idioma de la interfaz. Los rótulos se siguen exportando en
+ * castellano, leídos de él: /eficiencia y el informe del agente pintan su propio
+ * marcado con ellos, y las pruebas los buscan.
+ */
+const enCastellano = (clave) => CATALOGUE.es[clave] ?? clave
+
+export const ROTULO_TEXTO_RETIRADO = enCastellano('bitacora.textoRetirado')
+export const ROTULO_TEXTO_VIGENTE = enCastellano('bitacora.textoVigente')
 /**
  * Lo que puso una fila cuando una posterior volvió a cambiar el mismo campo: ni
- * lo retiró ella ni es lo que la ficha publica hoy.
+ * lo retiró ella ni es lo que la ficha publica hoy. Es lo que el catálogo dice
+ * antes de «, sustituido el {fecha}».
  */
-export const ROTULO_TEXTO_SUSTITUIDO = 'Texto que puso esta corrección'
-export const ROTULO_MOTIVO_ENMENDADO = 'Motivo enmendado'
+export const ROTULO_TEXTO_SUSTITUIDO = partePorHueco(
+  enCastellano('bitacora.textoSustituido'),
+  ', sustituido el {fecha}',
+)[0]
+export const ROTULO_MOTIVO_ENMENDADO = enCastellano('bitacora.motivoEnmendado')
 
 const fecha = (iso) => String(iso ?? '').slice(0, 10)
 
@@ -102,12 +115,16 @@ export function sustitutas(correcciones) {
 /**
  * El rótulo de lo que puso una fila: «Texto vigente», o, si `posterior` lo
  * volvió a cambiar, «Texto que puso esta corrección, sustituido el 2026-09-30»
- * con el día de esa fila, que es la que el lector tiene que ir a buscar.
+ * con el día de esa fila, que es la que el lector tiene que ir a buscar. En el
+ * idioma de `t`; sin él, en castellano.
+ *
+ * @param {{ correctedAt?: string } | null} posterior
+ * @param {(clave: string) => string} [t]
  */
-export const rotuloTextoPuesto = (posterior) =>
+export const rotuloTextoPuesto = (posterior, t = enCastellano) =>
   posterior
-    ? `${ROTULO_TEXTO_SUSTITUIDO}, sustituido el ${fecha(posterior.correctedAt)}`
-    : ROTULO_TEXTO_VIGENTE
+    ? rellena(t('bitacora.textoSustituido'), { fecha: fecha(posterior.correctedAt) })
+    : t('bitacora.textoVigente')
 
 /**
  * `motivo · sha256:1a2b…` → `sha256:1a2b…`: qué es ya lo dice el rótulo, y el
@@ -124,10 +141,11 @@ const rotulo = {
 }
 
 function TextoRetirado({ texto }) {
+  const t = useT()
   return (
     <div style={{ color: 'var(--ink50)' }}>
       <span className="mono" style={rotulo}>
-        {ROTULO_TEXTO_RETIRADO}:{' '}
+        {t('bitacora.textoRetirado')}:{' '}
       </span>
       <del>{texto}</del>
     </div>
@@ -140,10 +158,11 @@ function TextoRetirado({ texto }) {
  * rótulo es lo que cuenta, el tono sólo acompaña.
  */
 function TextoPuesto({ texto, posterior }) {
+  const t = useT()
   return (
     <div style={{ color: posterior ? 'var(--ink70)' : 'var(--ink)', marginTop: 1 }}>
       <span className="mono" style={rotulo}>
-        {rotuloTextoPuesto(posterior)}:{' '}
+        {rotuloTextoPuesto(posterior, t)}:{' '}
       </span>
       {texto}
     </div>
@@ -156,22 +175,23 @@ function TextoPuesto({ texto, posterior }) {
  * se sirve.
  */
 function FilaGrupoRetenido({ c, posterior }) {
+  const t = useT()
   const sinOriginal = c.original === MARCA_GRUPO_RETENIDO
   const sinCorregido = c.corrected === MARCA_GRUPO_RETENIDO
-  const cual =
+  const cual = t(
     sinOriginal && sinCorregido
-      ? 'ninguna de sus dos versiones'
+      ? 'bitacora.grupoRetenido.ninguna'
       : sinOriginal
-        ? 'la versión que retiró'
-        : 'la versión que puso'
+        ? 'bitacora.grupoRetenido.retirada'
+        : 'bitacora.grupoRetenido.puesta',
+  )
   return (
     <>
       <div style={{ color: 'var(--ink70)' }}>
         <span className="mono" style={rotulo}>
-          {ROTULO_GRUPO_RETENIDO}:{' '}
+          {t('bitacora.grupoRetenido.rotulo')}:{' '}
         </span>
-        esta corrección cambió un texto que nombraba a un grupo con un solo concejal, y nombrar ese
-        grupo es nombrar a esa persona, así que la bitácora no reproduce {cual}.
+        {rellena(t('bitacora.grupoRetenido.texto'), { cual })}
       </div>
       {!sinOriginal && <TextoRetirado texto={c.original} />}
       {!sinCorregido && <TextoPuesto texto={c.corrected} posterior={posterior} />}
@@ -180,6 +200,7 @@ function FilaGrupoRetenido({ c, posterior }) {
 }
 
 export function BitacoraCorrecciones({ correcciones }) {
+  const t = useT()
   if (!correcciones?.length) return null
   const despues = sustitutas(correcciones)
   const enmendadas = correcciones.filter((c) => c.reasonAmendments?.length > 0).length
@@ -201,9 +222,9 @@ export function BitacoraCorrecciones({ correcciones }) {
           letterSpacing: '.06em',
         }}
       >
-        Bitácora de correcciones · {correcciones.length}
+        {rellena(t('bitacora.resumen'), { n: correcciones.length })}
         {enmendadas > 0 &&
-          ` · ${enmendadas} ${enmendadas === 1 ? 'motivo enmendado' : 'motivos enmendados'}`}
+          ` · ${rellena(t(enmendadas === 1 ? 'bitacora.enmendados.uno' : 'bitacora.enmendados.varios'), { n: enmendadas })}`}
       </summary>
       {/* `overflowWrap: 'anywhere'` porque una corrección puede retirar una URL
           entera, y una URL no tiene dónde partirse: la pista de esta rejilla
@@ -240,11 +261,9 @@ export function BitacoraCorrecciones({ correcciones }) {
               // Rotularla «texto vigente» diría que la ficha publica un código.
               <div style={{ color: 'var(--ink70)' }}>
                 <span className="mono" style={rotulo}>
-                  {ROTULO_CITA_RETENIDA}:{' '}
+                  {t('findings.citas.retenida.rotulo')}:{' '}
                 </span>
-                esta corrección cambió el texto de una cita que la puerta editorial retiene, así que
-                la bitácora no reproduce ninguna de sus dos versiones; deja su huella, que
-                cualquiera con el texto puede rehacer:{' '}
+                {t('bitacora.literalRetenido')}{' '}
                 <span className="mono">
                   {String(c.original).split(' · ')[1] ?? c.original} →{' '}
                   {String(c.corrected).split(' · ')[1] ?? c.corrected}
@@ -266,20 +285,21 @@ export function BitacoraCorrecciones({ correcciones }) {
               }}
             >
               {c.reasonAmendments?.length > 0
-                ? `Motivo (enmendado el ${fecha(c.reasonAmendments.at(-1).amendedAt)}): `
-                : 'Motivo: '}
+                ? rellena(t('bitacora.motivoEnmendadoEl'), {
+                    fecha: fecha(c.reasonAmendments.at(-1).amendedAt),
+                  })
+                : t('bitacora.motivo')}{' '}
               {c.reason}
             </div>
             {(c.reasonAmendments ?? []).map((a, j) => (
               <div key={j} style={{ marginTop: 2, color: 'var(--ink50)' }}>
                 <span className="mono" style={rotulo}>
-                  {ROTULO_MOTIVO_ENMENDADO}:{' '}
+                  {t('bitacora.motivoEnmendado')}:{' '}
                 </span>
                 <span className="mono" style={{ fontSize: 'var(--fs-micro)' }}>
                   {fecha(a.amendedAt)} · {a.editor}
                 </span>
-                . {a.reason} El motivo anterior no se reproduce; queda su huella, que cualquiera con
-                una copia anterior puede rehacer:{' '}
+                . {a.reason} {t('bitacora.enmienda.anterior')}{' '}
                 <span className="mono">{huellaSinEtiqueta(a.previous)}</span>.
               </div>
             ))}
@@ -288,10 +308,9 @@ export function BitacoraCorrecciones({ correcciones }) {
       </ol>
       {conGrupoRetenido && (
         <p style={{ margin: '8px 0 0', fontSize: 'var(--fs-micro)', color: 'var(--ink50)' }}>
-          Las versiones que nombraban a un grupo de un solo escaño siguen en el repositorio público
-          del proyecto: esta página deja de enseñarlas, no las retira.{' '}
+          {t('bitacora.escanoUnico.nota')}{' '}
           <a href="/metodologia#bitacora-escano-unico" style={{ color: 'var(--civic)' }}>
-            Por qué, en la metodología
+            {t('bitacora.escanoUnico.enlace')}
           </a>
           .
         </p>

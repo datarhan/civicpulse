@@ -1,0 +1,995 @@
+{
+  "plenoId": "zrbgic",
+  "generatedAt": "2026-10-12T09:52:44.945Z",
+  "model": "gemini-3.5-flash",
+  "promptVersion": "speaker-map-v2",
+  "chunkSeconds": 600,
+  "segments": [
+    {
+      "start": 0,
+      "end": 1.1,
+      "speaker": "c00/SPEAKER_00",
+      "text": "Bueno, pasamos al punto número tres."
+    },
+    {
+      "start": 1.1,
+      "end": 8.2,
+      "speaker": "c00/SPEAKER_00",
+      "text": "Expediente número tres siete tres dos de dos mil veinticuatro, aprobación del convenio tipo entre la Diputación Provincial de Valencia"
+    },
+    {
+      "start": 8.2,
+      "end": 15.6,
+      "speaker": "c00/SPEAKER_00",
+      "text": "y el Ayuntamiento de Riba-roja de Túria para la delegación de la gestión del servicio de recepción en la planta de tratamiento de residuos"
+    },
+    {
+      "start": 15.6,
+      "end": 21,
+      "speaker": "c00/SPEAKER_00",
+      "text": "de construcción y demolición, y en su caso de transporte de los mismos de titularidad municipal."
+    },
+    {
+      "start": 21,
+      "end": 23.3,
+      "speaker": "c00/SPEAKER_00",
+      "text": "S'ha debatut en comisión informativa."
+    },
+    {
+      "start": 23.3,
+      "end": 26.3,
+      "speaker": "c00/SPEAKER_00",
+      "text": "La ponente es Raquel, que no está. La va a defender"
+    },
+    {
+      "start": 26.3,
+      "end": 31,
+      "speaker": "c00/SPEAKER_00",
+      "text": "David. Tienes la palabra, David. ¿Se aprueba por unanimidad la urgencia?"
+    },
+    {
+      "start": 31,
+      "end": 33.1,
+      "speaker": "c00/SPEAKER_00",
+      "text": "Vale, pues se aprueba por unanimidad. David."
+    },
+    {
+      "start": 33.1,
+      "end": 44.5,
+      "speaker": "c00/SPEAKER_01",
+      "text": "Gracias, señor presidente. Buenas tardes a todos y a todas. Un saludo a los vecinos y vecinas que siguen este pleno mediante los medios de comunicación y de difusión municipal."
+    },
+    {
+      "start": 44.5,
+      "end": 58.7,
+      "speaker": "c00/SPEAKER_01",
+      "text": "Este expediente trata sobre la suscripción de un convenio tipo entre la Diputación Provincial de Valencia y el Ayuntamiento de Riba-roja de Túria para la delegación de la gestión del servicio de recepción en la planta de tratamiento de residuos"
+    },
+    {
+      "start": 58.7,
+      "end": 68.3,
+      "speaker": "c00/SPEAKER_01",
+      "text": "de construcción y demolición y, en su caso, del transporte de los mismos, de titularidad municipal, a través de la firma del correspondiente convenio."
+    },
+    {
+      "start": 68.3,
+      "end": 81.3,
+      "speaker": "c00/SPEAKER_01",
+      "text": "De conformidad con los antecedentes expuestos, el departamento de medio ambiente propone al pleno la adopción del siguiente acuerdo: en primer lugar, solicitar a la Diputación Provincial de Valencia"
+    },
+    {
+      "start": 81.3,
+      "end": 95.8,
+      "speaker": "c00/SPEAKER_01",
+      "text": "la delegación de la gestión del servicio de la planta de tratamiento de residuos de la construcción y demolición y, en su caso, del transporte de los mismos, de titularidad municipal. En segundo lugar, aprobar el convenio tipo"
+    },
+    {
+      "start": 95.8,
+      "end": 109.9,
+      "speaker": "c00/SPEAKER_01",
+      "text": "elaborado por la Diputación Provincial de Valencia, el cual adjuntamos a esta resolución. En tercer lugar, autorizar y facultar al señor alcalde, don Robert Raga Guesarte, para la suscripción de dicho convenio"
+    },
+    {
+      "start": 109.9,
+      "end": 120.8,
+      "speaker": "c00/SPEAKER_01",
+      "text": "y cuantos documentos sean necesarios para el desarrollo y efectividad del presente acuerdo. Y en cuarto y último lugar, notificar el presente acuerdo a la Diputación Provincial de Valencia."
+    },
+    {
+      "start": 120.8,
+      "end": 124.7,
+      "speaker": "c00/SPEAKER_01",
+      "text": "Muchas gracias, señor presidente, a la espera del debate y posterior votación."
+    },
+    {
+      "start": 124.7,
+      "end": 127.3,
+      "speaker": "c00/SPEAKER_00",
+      "text": "Gracias, señor concejal. Pasamos a la intervención."
+    },
+    {
+      "start": 127.3,
+      "end": 128.9,
+      "speaker": "c00/SPEAKER_00",
+      "text": "¿Esquerra Unida?"
+    },
+    {
+      "start": 128.9,
+      "end": 129.9,
+      "speaker": "c00/SPEAKER_00",
+      "text": "¿Vox?"
+    },
+    {
+      "start": 129.9,
+      "end": 131,
+      "speaker": "c00/SPEAKER_00",
+      "text": "¿Compromís?"
+    },
+    {
+      "start": 131,
+      "end": 132,
+      "speaker": "c00/SPEAKER_02",
+      "text": "Gracias, presidente."
+    },
+    {
+      "start": 132,
+      "end": 139.1,
+      "speaker": "c00/SPEAKER_02",
+      "text": "Bé, este és un conveni que es passa a tots els ajuntaments de la província per part de la Diputació de València,"
+    },
+    {
+      "start": 139.1,
+      "end": 145.4,
+      "speaker": "c00/SPEAKER_02",
+      "text": "a no ser que tinguen, diguem, un sistema de recollida de residus de la construcció propi."
+    },
+    {
+      "start": 145.4,
+      "end": 151.7,
+      "speaker": "c00/SPEAKER_02",
+      "text": "Per lo tant, entenem que és una eina que ens permetrà gestionar eixa traçabilitat de millor manera."
+    },
+    {
+      "start": 151.7,
+      "end": 156.9,
+      "speaker": "c00/SPEAKER_02",
+      "text": "Anem a votar a favor, no sense abans manifestar, que en este cas el Departament de Medi Ambient"
+    },
+    {
+      "start": 156.9,
+      "end": 162.2,
+      "speaker": "c00/SPEAKER_02",
+      "text": "hauria de mirar la possibilitat de poder tindre una parcel·la on poder fer el mateix"
+    },
+    {
+      "start": 162.2,
+      "end": 166.8,
+      "speaker": "c00/SPEAKER_02",
+      "text": "que anem a fer ara o delegar en la Diputació, de la mateixa manera que faà la Pobla de Vallbona"
+    },
+    {
+      "start": 166.8,
+      "end": 171.7,
+      "speaker": "c00/SPEAKER_02",
+      "text": "o que fan altres municipis per a aixina poder dotar als nostres veïns d'una alternativa"
+    },
+    {
+      "start": 171.7,
+      "end": 178.6,
+      "speaker": "c00/SPEAKER_02",
+      "text": "i no tindre que, bueno, per a xicotetes obres de veïns que tenim molasses"
+    },
+    {
+      "start": 178.6,
+      "end": 183.1,
+      "speaker": "c00/SPEAKER_02",
+      "text": "puguen portar-les allí. Jo crec que seria una bona eina, no obstant votarà a favor."
+    },
+    {
+      "start": 183.1,
+      "end": 184.2,
+      "speaker": "c00/SPEAKER_00",
+      "text": "Gràcies, senyor concejal."
+    },
+    {
+      "start": 184.2,
+      "end": 185.3,
+      "speaker": "c00/SPEAKER_00",
+      "text": "¿Partido Popular?"
+    },
+    {
+      "start": 185.3,
+      "end": 186.2,
+      "speaker": "c00/SPEAKER_03",
+      "text": "No."
+    },
+    {
+      "start": 186.2,
+      "end": 187.3,
+      "speaker": "c00/SPEAKER_00",
+      "text": "¿Debate posterior?"
+    },
+    {
+      "start": 187.3,
+      "end": 188.7,
+      "speaker": "c00/SPEAKER_00",
+      "text": "Tienes la palabra, David."
+    },
+    {
+      "start": 188.7,
+      "end": 202.9,
+      "speaker": "c00/SPEAKER_01",
+      "text": "Sí, únicamente, señor presidente, para contestar brevemente a la sugerencia que nos ha hecho el grupo municipal Compromís, tomamos nota y se la transmitiremos al área correspondiente. Muchas gracias."
+    },
+    {
+      "start": 202.9,
+      "end": 206.1,
+      "speaker": "c00/SPEAKER_00",
+      "text": "Molt bé. Passem a la votació. Vots a favor?"
+    },
+    {
+      "start": 206.1,
+      "end": 208.6,
+      "speaker": "c00/SPEAKER_00",
+      "text": "S'aprova per unanimitat."
+    },
+    {
+      "start": 208.6,
+      "end": 211.5,
+      "speaker": "c00/SPEAKER_00",
+      "text": "Bé, passem al punt número quatre."
+    },
+    {
+      "start": 211.5,
+      "end": 216.5,
+      "speaker": "c00/SPEAKER_00",
+      "text": "Expedient número deu tres mil set-cents nou barra dos mil vint-i-quatre."
+    },
+    {
+      "start": 216.5,
+      "end": 223.7,
+      "speaker": "c00/SPEAKER_00",
+      "text": "Moció del grup municipal Compromís per a la realització de les millores de manteniment de la xarxa d'aigua"
+    },
+    {
+      "start": 223.7,
+      "end": 226.7,
+      "speaker": "c00/SPEAKER_00",
+      "text": "potable en la urbanització de València la Vella."
+    },
+    {
+      "start": 226.7,
+      "end": 231.2,
+      "speaker": "c00/SPEAKER_00",
+      "text": "Ha estat debatuda en la comissió informativa. Té la paraula Compromís, senyor Folgado."
+    },
+    {
+      "start": 231.2,
+      "end": 232.8,
+      "speaker": "c00/SPEAKER_02",
+      "text": "Sí, moltes gràcies, senyor president."
+    },
+    {
+      "start": 232.8,
+      "end": 239.8,
+      "speaker": "c00/SPEAKER_02",
+      "text": "Bé, este és un tema que no ve d'ara, un tema que porta ja molts d'anys en la palestra en el nostre municipi,"
+    },
+    {
+      "start": 239.8,
+      "end": 246.5,
+      "speaker": "c00/SPEAKER_02",
+      "text": "un problema greu de fuites d'aigua en diferents urbanitzacions, però sobre tot, en la urbanització València la Vella."
+    },
+    {
+      "start": 246.5,
+      "end": 255.4,
+      "speaker": "c00/SPEAKER_02",
+      "text": "És veritat que moltes d'estos problemes de la xarxa d'aigua potable estan motivats, bueno, per la degradació pròpia del pas dels anys,"
+    },
+    {
+      "start": 255.4,
+      "end": 263.8,
+      "speaker": "c00/SPEAKER_02",
+      "text": "de ser una xarxa d'aigua vella, i també provocada per l'arbrat que tenim en certes vies del nostre municipi."
+    },
+    {
+      "start": 263.8,
+      "end": 270.8,
+      "speaker": "c00/SPEAKER_02",
+      "text": "Des de Compromís hem demanat informe als serveis tècnics de l'Ajuntament sobre les pèrdues de la xarxa d'aigua en el nostre municipi,"
+    },
+    {
+      "start": 270.8,
+      "end": 275.9,
+      "speaker": "c00/SPEAKER_02",
+      "text": "i de l'informe es desprem que tenim un trenta-cinc per cent de fuites en el nostre municipi,"
+    },
+    {
+      "start": 275.9,
+      "end": 282.8,
+      "speaker": "c00/SPEAKER_02",
+      "text": "que es traduïxen en vora set-cents cinquanta mil metres cúbics de pèrdues d'aigua l'any."
+    },
+    {
+      "start": 282.8,
+      "end": 292,
+      "speaker": "c00/SPEAKER_02",
+      "text": "Això, la veritat és que si fem càlculs a tres euros que ens cobra Hidraqua el metre cúbic, són al voltant de dos milions tres-cents mil euros."
+    },
+    {
+      "start": 292,
+      "end": 297.8,
+      "speaker": "c00/SPEAKER_02",
+      "text": "Per lo tant, entenem que és una quantitat importantíssima per a les arques municipals,"
+    },
+    {
+      "start": 297.8,
+      "end": 303.8,
+      "speaker": "c00/SPEAKER_02",
+      "text": "però sobre tot considerem que, estant en una situació d'emergència climàtica i en una situació de sequera,"
+    },
+    {
+      "start": 303.8,
+      "end": 308.2,
+      "speaker": "c00/SPEAKER_02",
+      "text": "eixa pèrdua d'aigua no la podem permetre i hem d'actuar ràpidament."
+    },
+    {
+      "start": 308.2,
+      "end": 314.5,
+      "speaker": "c00/SPEAKER_02",
+      "text": "Els veïns de la urbanització València la Vella han demanat reincidentment la millora d'eixa xarxa d'aigua."
+    },
+    {
+      "start": 314.5,
+      "end": 321.4,
+      "speaker": "c00/SPEAKER_02",
+      "text": "Tenim, bueno, constància de multitud de talls d'aigua al llarg de l'any i la veritat és que estiguem a l'estiu"
+    },
+    {
+      "start": 321.4,
+      "end": 327.2,
+      "speaker": "c00/SPEAKER_02",
+      "text": "o estiguem a l'hivern les queixes per talls d'aigua en eixa urbanització són generalitzades."
+    },
+    {
+      "start": 327.2,
+      "end": 333.6,
+      "speaker": "c00/SPEAKER_02",
+      "text": "Creiem que tenim el deure de mantindre en bon estat els serveis bàsics de totes les persones,"
+    },
+    {
+      "start": 333.6,
+      "end": 338.4,
+      "speaker": "c00/SPEAKER_02",
+      "text": "de tots els veïns i veïnes de Riba-roja, visquen on visquen, en el nucli urbà o en les urbanitzacions,"
+    },
+    {
+      "start": 338.4,
+      "end": 342.3,
+      "speaker": "c00/SPEAKER_02",
+      "text": "i des de l'Ajuntament hem d'apostar per prioritzar este tipus d'inversions"
+    },
+    {
+      "start": 342.3,
+      "end": 348.6,
+      "speaker": "c00/SPEAKER_02",
+      "text": "i dotar-les dels fons pressupostaris necessaris per a la seua execució en el menor temps possible."
+    },
+    {
+      "start": 348.6,
+      "end": 356.5,
+      "speaker": "c00/SPEAKER_02",
+      "text": "Per eixos motius, el grup municipal Compromís presenta per a la seua consideració i aprovació, si escau, pel Ple de l'Ajuntament"
+    },
+    {
+      "start": 356.5,
+      "end": 360.7,
+      "speaker": "c00/SPEAKER_02",
+      "text": "els següents acords: En primer lloc, que l'Ajuntament de Riba-roja de Túria"
+    },
+    {
+      "start": 360.7,
+      "end": 367.9,
+      "speaker": "c00/SPEAKER_02",
+      "text": "realitze de manera urgent un estudi integral sobre l'estat de la xarxa d'aigua potable en la urbanització València la Vella."
+    },
+    {
+      "start": 367.9,
+      "end": 377.1,
+      "speaker": "c00/SPEAKER_02",
+      "text": "En segon lloc, que es procedisca a la millora i substitució de les canalitzacions en pitjor estat, d'acord amb les prioritats que establisca l'estudi tècnic."
+    },
+    {
+      "start": 377.1,
+      "end": 387.6,
+      "speaker": "c00/SPEAKER_02",
+      "text": "En tercer lloc, que es contemple en el pressupost municipal de dos mil vint-i-cinc la partida o fons d'inversió necessaris per a executar estes obres de manteniment i millora."
+    },
+    {
+      "start": 387.6,
+      "end": 396.4,
+      "speaker": "c00/SPEAKER_02",
+      "text": "En quart lloc, implementar un pla de manteniment preventiu que evite noves fuites i garantisca el correcte funcionament de la xarxa d'aigua en eixa urbanització."
+    },
+    {
+      "start": 396.4,
+      "end": 408,
+      "speaker": "c00/SPEAKER_02",
+      "text": "I per últim, informar a la població de València la Vella sobre el calendari de les actuacions i les mesures que es duran a terme per a mitigar els efectes de les fuites d'aigua. Moltes gràcies."
+    },
+    {
+      "start": 408,
+      "end": 410.7,
+      "speaker": "c00/SPEAKER_00",
+      "text": "Gràcies, senyor Folgado. Passem al torn d'intervencions."
+    },
+    {
+      "start": 410.7,
+      "end": 412.3,
+      "speaker": "c00/SPEAKER_00",
+      "text": "¿Esquerra Unida?"
+    },
+    {
+      "start": 412.3,
+      "end": 413.2,
+      "speaker": "c00/SPEAKER_00",
+      "text": "¿Vox?"
+    },
+    {
+      "start": 413.2,
+      "end": 415.8,
+      "speaker": "c00/SPEAKER_00",
+      "text": "Vox. Tiene la palabra el señor José Manuel."
+    },
+    {
+      "start": 415.8,
+      "end": 421,
+      "speaker": "c00/SPEAKER_04",
+      "text": "Muchas gracias, señor presidente. Buenas tardes a todos los presentes y a los vecinos que nos ven desde sus casas."
+    },
+    {
+      "start": 421,
+      "end": 426.6,
+      "speaker": "c00/SPEAKER_04",
+      "text": "Trae hoy Compromís una moción sobre la red de agua potable en València la Vella."
+    },
+    {
+      "start": 426.6,
+      "end": 436.5,
+      "speaker": "c00/SPEAKER_04",
+      "text": "Lo cierto es que, según nos consta, esta urbanización en concreto sufre desde hace años constantes cortes de agua y pérdidas importantes de la red por la obsolescencia"
+    },
+    {
+      "start": 436.5,
+      "end": 444,
+      "speaker": "c00/SPEAKER_04",
+      "text": "de sus tuberías, que de igual forma ocurre en el área industrial del municipio, concretamente en los polígonos del Oliveral y Bassa de Reinet."
+    },
+    {
+      "start": 444,
+      "end": 450.4,
+      "speaker": "c00/SPEAKER_04",
+      "text": "Nos dicen que las pérdidas del caudal de agua llegan a ser de hasta el treinta y cinco por cien, con las consecuencias que ello conlleva"
+    },
+    {
+      "start": 450.4,
+      "end": 454.1,
+      "speaker": "c00/SPEAKER_04",
+      "text": "para las arcas municipales y para el medio ambiente por el desperdicio del agua."
+    },
+    {
+      "start": 454.1,
+      "end": 460.5,
+      "speaker": "c00/SPEAKER_04",
+      "text": "El grupo municipal Vox cree que este equipo de gobierno debe priorizar las inversiones de primera necesidad"
+    },
+    {
+      "start": 460.5,
+      "end": 468.3,
+      "speaker": "c00/SPEAKER_04",
+      "text": "y dejar de lado las ideológicas para poder dar soluciones urgentes a los problemas reales de los vecinos de València la Vella y del resto de Riba-roja."
+    },
+    {
+      "start": 468.3,
+      "end": 474.3,
+      "speaker": "c00/SPEAKER_04",
+      "text": "Por todo ello, el grupo municipal Vox se posiciona favorablemente a esta moción de Compromís. Muchas gracias."
+    },
+    {
+      "start": 474.3,
+      "end": 476.3,
+      "speaker": "c00/SPEAKER_00",
+      "text": "Muchas gracias, señor concejal."
+    },
+    {
+      "start": 476.3,
+      "end": 477.5,
+      "speaker": "c00/SPEAKER_00",
+      "text": "¿Partido Popular?"
+    },
+    {
+      "start": 477.5,
+      "end": 483.7,
+      "speaker": "c00/SPEAKER_03",
+      "text": "Sí, nos parece que es una moción, independientemente de que se apruebe o no, de extrema necesidad,"
+    },
+    {
+      "start": 483.7,
+      "end": 491.5,
+      "speaker": "c00/SPEAKER_03",
+      "text": "no solo en València la Vella, sino también en otras zonas del municipio como Montesol o la zona industrial."
+    },
+    {
+      "start": 491.5,
+      "end": 501,
+      "speaker": "c00/SPEAKER_03",
+      "text": "Pero sí que hay una avería en concreto en València la Vella, como todos bien sabrán, que no han sabido encontrar el lugar donde está provocándose esa avería,"
+    },
+    {
+      "start": 501,
+      "end": 507,
+      "speaker": "c00/SPEAKER_03",
+      "text": "y lo que hacen para paliarla o atenuarla es bajar la presión del agua,"
+    },
+    {
+      "start": 507,
+      "end": 512.6,
+      "speaker": "c00/SPEAKER_03",
+      "text": "con la consiguiente molestia que causa esto a los vecinos, que en muchas ocasiones se quedan sin agua."
+    },
+    {
+      "start": 512.6,
+      "end": 522,
+      "speaker": "c00/SPEAKER_03",
+      "text": "Deberían actuar con urgencia, porque un bien tan escaso no se puede desperdiciar y no pueden pasar los meses sin que esto se solucione."
+    },
+    {
+      "start": 522,
+      "end": 528.2,
+      "speaker": "c00/SPEAKER_03",
+      "text": "Como bien han dicho también, en la zona industrial hay zonas en las que las tuberías están en un estado tercermundista"
+    },
+    {
+      "start": 528.2,
+      "end": 536,
+      "speaker": "c00/SPEAKER_03",
+      "text": "e incluso cuando no hay averías sale el agua de color marrón, y esto es preocupante, sobre todo para las empresas de alimentación."
+    },
+    {
+      "start": 536,
+      "end": 542.4,
+      "speaker": "c00/SPEAKER_03",
+      "text": "Entendemos que el plan de inversiones debe priorizar el agua potable y su red de suministro."
+    },
+    {
+      "start": 542.4,
+      "end": 544.7,
+      "speaker": "c00/SPEAKER_03",
+      "text": "Por tanto, votaremos a favor."
+    },
+    {
+      "start": 544.7,
+      "end": 546.5,
+      "speaker": "c00/SPEAKER_00",
+      "text": "Gràcies, senyora concejala."
+    },
+    {
+      "start": 546.5,
+      "end": 548.8,
+      "speaker": "c00/SPEAKER_00",
+      "text": "Per al grup socialista té la paraula José Luis."
+    },
+    {
+      "start": 548.8,
+      "end": 552.1,
+      "speaker": "c00/SPEAKER_05",
+      "text": "Sí. Gràcies, senyor president."
+    },
+    {
+      "start": 552.1,
+      "end": 557.5,
+      "speaker": "c00/SPEAKER_05",
+      "text": "Bé, la veritat és que esta moció de Compromís coincidim al cent per cent"
+    },
+    {
+      "start": 557.5,
+      "end": 562.9,
+      "speaker": "c00/SPEAKER_05",
+      "text": "en la intenció de la millora de les xarxes d'aigua potable del nostre municipi."
+    },
+    {
+      "start": 562.9,
+      "end": 569.1,
+      "speaker": "c00/SPEAKER_05",
+      "text": "La mateixa preocupació que té el grup Compromís la tenim nosaltres i per eixe motiu estem treballant"
+    },
+    {
+      "start": 569.1,
+      "end": 572.7,
+      "speaker": "c00/SPEAKER_05",
+      "text": "en solucionar eixes pèrdues d'aigua que es tenen, no sols"
+    },
+    {
+      "start": 572.7,
+      "end": 579.5,
+      "speaker": "c00/SPEAKER_05",
+      "text": "en València la Vella, sinó en el municipi. En eixa urbanització de València la Vella de la que parleu"
+    },
+    {
+      "start": 579.5,
+      "end": 586.2,
+      "speaker": "c00/SPEAKER_05",
+      "text": "s'han realitzat accions per a minorar eixes pèrdues i s'està digitalitzant la xarxa,"
+    },
+    {
+      "start": 586.2,
+      "end": 590.2,
+      "speaker": "c00/SPEAKER_05",
+      "text": "la qual cosa ens permetrà detectar fuites amb major rapidesa."
+    },
+    {
+      "start": 590.2,
+      "end": 596.3,
+      "speaker": "c00/SPEAKER_05",
+      "text": "També en les pròximes setmanes de setembre s'iniciarà l'execució del projecte de digitalització"
+    },
+    {
+      "start": 596.3,
+      "end": 600.8,
+      "speaker": "c00/SPEAKER_05",
+      "text": "de tot el municipi que va ser aprovat pel fons europeu del PERTE."
+    },
+    {
+      "start": 600.8,
+      "end": 606.3,
+      "speaker": "c00/SPEAKER_05",
+      "text": "Este ajuntament ha estat beneficiat per d'eixa ajuda del PERTE de digitalització dels fons europeus"
+    },
+    {
+      "start": 606.3,
+      "end": 611.8,
+      "speaker": "c00/SPEAKER_05",
+      "text": "amb quasi un milió d'euros d'inversió per a millorar la gestió de la xarxa d'aigua potable."
+    },
+    {
+      "start": 611.8,
+      "end": 617.9,
+      "speaker": "c00/SPEAKER_05",
+      "text": "I un dels principals apartats que es van a desenrotllar és la sensorització de la xarxa d'aigua potable."
+    },
+    {
+      "start": 617.9,
+      "end": 622.7,
+      "speaker": "c00/SPEAKER_05",
+      "text": "A partir de la instal·lació d'eixos sensors i comptadors intel·ligents es podrà detectar"
+    },
+    {
+      "start": 622.7,
+      "end": 628.7,
+      "speaker": "c00/SPEAKER_05",
+      "text": "en temps real les pèrdues en la xarxa de distribució, de manera que quan se detecte una fuita"
+    },
+    {
+      "start": 628.7,
+      "end": 632.7,
+      "speaker": "c00/SPEAKER_05",
+      "text": "es puga actuar ràpidament evitant pèrdues d'aigua innecessàries."
+    },
+    {
+      "start": 632.7,
+      "end": 639.3,
+      "speaker": "c00/SPEAKER_05",
+      "text": "D'altra banda, Riba-roja ha invertit durant molts anys en la millora de la xarxa en altres punts del municipi."
+    },
+    {
+      "start": 639.3,
+      "end": 645.1,
+      "speaker": "c00/SPEAKER_05",
+      "text": "Hem actuat i continuem fent-ho en molts carrers del nucli urbà en cada millora que fem de reurbanització."
+    },
+    {
+      "start": 645.1,
+      "end": 650.9,
+      "speaker": "c00/SPEAKER_05",
+      "text": "S'està canviant tota la xarxa d'aigua potable en les urbanitzacions de Parc de València,"
+    },
+    {
+      "start": 650.9,
+      "end": 656.7,
+      "speaker": "c00/SPEAKER_05",
+      "text": "en els polígons industrials. O en la urbanització de Els Pous, que ara anem a aprovar el projecte"
+    },
+    {
+      "start": 656.7,
+      "end": 661.1,
+      "speaker": "c00/SPEAKER_05",
+      "text": "de reparcel·lació per a urbanitzar-la, de forma que el problema d'aigua allí"
+    },
+    {
+      "start": 661.1,
+      "end": 666.9,
+      "speaker": "c00/SPEAKER_05",
+      "text": "quedarà resolt d'ací a poc de temps. El pròxim objectiu,"
+    },
+    {
+      "start": 666.9,
+      "end": 671.3,
+      "speaker": "c00/SPEAKER_05",
+      "text": "una vegada s'acaben estes obres que s'estan executant en estes zones que he anomenat,"
+    },
+    {
+      "start": 671.3,
+      "end": 675.2,
+      "speaker": "c00/SPEAKER_05",
+      "text": "serà l'execució en la urbanització de València la Vella."
+    },
+    {
+      "start": 675.2,
+      "end": 680.7,
+      "speaker": "c00/SPEAKER_05",
+      "text": "Amb tot açò lo que vull dir és que l'equip de govern està compromés en la millora de la xarxa"
+    },
+    {
+      "start": 680.7,
+      "end": 686,
+      "speaker": "c00/SPEAKER_05",
+      "text": "i som conscients que hem de continuar destinant inversions a esta xarxa d'aigua potable,"
+    },
+    {
+      "start": 686,
+      "end": 690.8,
+      "speaker": "c00/SPEAKER_05",
+      "text": "com així ho estem fent, i ho anem a seguir fent en el pressupost pròxim"
+    },
+    {
+      "start": 690.8,
+      "end": 697.8,
+      "speaker": "c00/SPEAKER_05",
+      "text": "del dos mil vint-i-cinc. Per eixa raó anem a votar a favor de la moció que presenta el grup Compromís."
+    },
+    {
+      "start": 697.8,
+      "end": 702.4,
+      "speaker": "c00/SPEAKER_05",
+      "text": "Moltes gràcies, senyor president."
+    },
+    {
+      "start": 702.4,
+      "end": 704.5,
+      "speaker": "c00/SPEAKER_00",
+      "text": "Moltes gràcies, senyor concejal."
+    },
+    {
+      "start": 704.5,
+      "end": 706.3,
+      "speaker": "c00/SPEAKER_00",
+      "text": "Segon torn de paraula?"
+    },
+    {
+      "start": 706.3,
+      "end": 707.9,
+      "speaker": "c00/SPEAKER_00",
+      "text": "Señor Folgado."
+    },
+    {
+      "start": 707.9,
+      "end": 712.1,
+      "speaker": "c00/SPEAKER_02",
+      "text": "Sí, gràcies, senyor president. Agrair a tots els grups polítics el suport a esta moció."
+    },
+    {
+      "start": 712.1,
+      "end": 717.1,
+      "speaker": "c00/SPEAKER_02",
+      "text": "Simplement, com a matís a lo que ha comentat el senyor Folgado, el PERTE"
+    },
+    {
+      "start": 717.1,
+      "end": 723.3,
+      "speaker": "c00/SPEAKER_02",
+      "text": "de l'aigua el que permet és la sensorització i poder saber on està eixa fuita d'aigua,"
+    },
+    {
+      "start": 723.3,
+      "end": 728.8,
+      "speaker": "c00/SPEAKER_02",
+      "text": "però després la substitució i la millora de la canalització es fa a càrrec dels fons municipals,"
+    },
+    {
+      "start": 728.8,
+      "end": 733.8,
+      "speaker": "c00/SPEAKER_02",
+      "text": "d'ahí que nosaltres demanem en eixa moció que es contemple en el pressupost municipal de dos mil vint-i-cinc"
+    },
+    {
+      "start": 733.8,
+      "end": 738.9,
+      "speaker": "c00/SPEAKER_02",
+      "text": "eixa partida o fons d'inversió necessaris per a poder executar eixa actuació."
+    },
+    {
+      "start": 738.9,
+      "end": 743.8,
+      "speaker": "c00/SPEAKER_02",
+      "text": "Per lo tant, agrair-los a tots el suport a la moció i esperem que el dos mil vint-i-cinc"
+    },
+    {
+      "start": 738.8,
+      "end": 746.8,
+      "speaker": "c00/SPEAKER_02",
+      "text": "siga el moment d'executar eixes obres tan necessàries per a la urbanització de València la Vella. Moltes gràcies."
+    },
+    {
+      "start": 746.8,
+      "end": 748.9,
+      "speaker": "c00/SPEAKER_00",
+      "text": "Gràcies, senyor Folgado."
+    },
+    {
+      "start": 748.9,
+      "end": 750.6,
+      "speaker": "c00/SPEAKER_00",
+      "text": "¿Vox? ¿Partido Popular?"
+    },
+    {
+      "start": 750.6,
+      "end": 752,
+      "speaker": "c00/SPEAKER_00",
+      "text": "José Luis."
+    },
+    {
+      "start": 752,
+      "end": 757.2,
+      "speaker": "c00/SPEAKER_05",
+      "text": "Sí, per a aclarir-li al senyor Folgado que este equip de govern ha estat destinant fons"
+    },
+    {
+      "start": 557.2,
+      "end": 763.5,
+      "speaker": "c00/SPEAKER_05",
+      "text": "a l'aigua potable durant tots estos anys i va ser destinant en el dos mil vint-i-cinc, per supòsit."
+    },
+    {
+      "start": 763.5,
+      "end": 765.2,
+      "speaker": "c00/SPEAKER_05",
+      "text": "Moltes gràcies."
+    },
+    {
+      "start": 765.2,
+      "end": 768.4,
+      "speaker": "c00/SPEAKER_00",
+      "text": "Bé, moltes gràcies. Passem a la votació de la moció."
+    },
+    {
+      "start": 768.4,
+      "end": 770.8,
+      "speaker": "c00/SPEAKER_00",
+      "text": "Vots a favor?"
+    },
+    {
+      "start": 770.8,
+      "end": 773,
+      "speaker": "c00/SPEAKER_00",
+      "text": "S'aprova per unanimitat."
+    }
+  ],
+  "rows": [],
+  "rejected": [
+    {
+      "label": "c00/SPEAKER_00",
+      "reason": "unresolvable",
+      "detail": "heard \"presidència\" but the cited quote does not contain it"
+    },
+    {
+      "label": "c00/SPEAKER_01",
+      "reason": "relation-contradicted",
+      "detail": "turn-grant, but 26.3s is followed by SPEAKER_00"
+    },
+    {
+      "label": "c00/SPEAKER_02",
+      "reason": "evidence-speaker-mismatch",
+      "detail": "231.2s is SPEAKER_02, cited as SPEAKER_00"
+    },
+    {
+      "label": "c00/SPEAKER_03",
+      "reason": "unresolvable",
+      "detail": "no name in the cited quote and the party is not single-seat"
+    },
+    {
+      "label": "c00/SPEAKER_04",
+      "reason": "evidence-speaker-mismatch",
+      "detail": "415.8s is SPEAKER_04, cited as SPEAKER_00"
+    },
+    {
+      "label": "c00/SPEAKER_05",
+      "reason": "evidence-speaker-mismatch",
+      "detail": "548.8s is SPEAKER_05, cited as SPEAKER_00"
+    }
+  ],
+  "stats": {
+    "chunksExpected": 13,
+    "chunksTranscribed": 1,
+    "failedChunks": [
+      {
+        "chunk": 1,
+        "why": "covered 84% (floor 85%)",
+        "attempts": 1,
+        "givenUpUnder": {
+          "prompt": "speaker-map-v2",
+          "floor": 0.85,
+          "thinking": "low"
+        }
+      },
+      {
+        "chunk": 2,
+        "why": "covered 68% (floor 85%)",
+        "attempts": 1,
+        "givenUpUnder": {
+          "prompt": "speaker-map-v2",
+          "floor": 0.85,
+          "thinking": "low"
+        }
+      },
+      {
+        "chunk": 3,
+        "why": "HTTP 503: This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later."
+      },
+      {
+        "chunk": 4,
+        "why": "covered 1% (floor 85%)",
+        "attempts": 1,
+        "givenUpUnder": {
+          "prompt": "speaker-map-v2",
+          "floor": 0.85,
+          "thinking": "low"
+        }
+      },
+      {
+        "chunk": 5,
+        "why": "HTTP 503: This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later."
+      },
+      {
+        "chunk": 6,
+        "why": "never attempted (call budget spent; resumes next run)"
+      },
+      {
+        "chunk": 7,
+        "why": "never attempted (call budget spent; resumes next run)"
+      },
+      {
+        "chunk": 8,
+        "why": "never attempted (call budget spent; resumes next run)"
+      },
+      {
+        "chunk": 9,
+        "why": "never attempted (call budget spent; resumes next run)"
+      },
+      {
+        "chunk": 10,
+        "why": "never attempted (call budget spent; resumes next run)"
+      },
+      {
+        "chunk": 11,
+        "why": "never attempted (call budget spent; resumes next run)"
+      },
+      {
+        "chunk": 12,
+        "why": "never attempted (call budget spent; resumes next run)"
+      }
+    ],
+    "labelsSeen": 6,
+    "rowsAccepted": 0,
+    "rowsRejected": 6,
+    "rejectedBy": {
+      "unresolvable": 2,
+      "relation-contradicted": 1,
+      "evidence-speaker-mismatch": 3
+    },
+    "attemptedThisRun": 6,
+    "apiCalls": 17,
+    "coverage": 0.12620202119149043
+  }
+}

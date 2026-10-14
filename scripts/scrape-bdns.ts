@@ -11,15 +11,25 @@
  * (`rechazoDeLaCorrida`), no se escribe nada y sale 1: el snapshot de ayer
  * sigue en pie.
  *
+ * Después, lo que el Ayuntamiento recibe por su NIF: todas las concesiones a
+ * P4621600H, en `concesiones` (una fila por concesión, con su importe). Una
+ * convocatoria abierta a todos los municipios no nombra a ninguno, y era la
+ * mayoría de lo recibido. Sus convocatorias no entran en `items`, que es lo que
+ * lee el verificador (el porqué, en src/scraper/bdns.ts). Si la vía por NIF no
+ * se puede creer (`rechazoDeLasConcesiones`), tampoco se escribe nada.
+ *
  * Usage: npm run scrape:bdns
  */
-import { mkdir, writeFile } from 'node:fs/promises'
+import { mkdir, readFile, writeFile } from 'node:fs/promises'
 import { dirname, join } from 'node:path'
 import { fileURLToPath } from 'node:url'
 import {
   parseBdnsConvocatorias,
   separarPorMunicipio,
   rechazoDeLaCorrida,
+  parseBdnsConcesiones,
+  rechazoDeLasConcesiones,
+  resumirConcesiones,
   NIF_AYUNTAMIENTO,
   type PruebasDeLugar,
 } from '../src/scraper/bdns'
@@ -79,6 +89,40 @@ async function pruebasDe(codigo: string): Promise<PruebasDeLugar> {
   return { ficha, concesiones }
 }
 
+const CONCESIONES = `${API}/concesiones/busqueda?vpd=GE&nifCif=${NIF_AYUNTAMIENTO}`
+
+/**
+ * Todas las páginas de concesiones al NIF, tal cual. El tope de páginas es un
+ * perro guardián, no un límite: si se alcanza, `rechazoDeLasConcesiones` ve
+ * menos filas de las que la API declara y la corrida no se escribe.
+ */
+async function concesionesDelAyuntamiento(): Promise<unknown[]> {
+  const paginas: unknown[] = []
+  for (let page = 0; page < 40; page++) {
+    const body = (await getJson(`${CONCESIONES}&page=${page}&pageSize=${PER_PAGE}`)) as {
+      content?: unknown[]
+      last?: boolean
+    }
+    await espera(PAUSA_MS)
+    paginas.push(body)
+    if (!body.content || body.content.length < PER_PAGE || body.last) break
+  }
+  return paginas
+}
+
+/** Las concesiones del snapshot que se va a sustituir, o null si no lo hay. */
+async function concesionesAnteriores(): Promise<number | null> {
+  try {
+    const previo = JSON.parse(await readFile(OUT, 'utf8')) as {
+      stats?: { concesiones?: { total?: unknown } }
+    }
+    const n = previo.stats?.concesiones?.total
+    return typeof n === 'number' ? n : null
+  } catch {
+    return null
+  }
+}
+
 async function main() {
   const rows: unknown[] = []
   for (let page = 0; page < 20; page++) {
@@ -110,8 +154,18 @@ async function main() {
     process.exit(1)
   }
 
+  console.log(`[bdns] concesiones a ${NIF_AYUNTAMIENTO}…`)
+  const leidas = parseBdnsConcesiones(JSON.stringify(await concesionesDelAyuntamiento()))
+  const rechazoNif = rechazoDeLasConcesiones(leidas, { anterior: await concesionesAnteriores() })
+  if (rechazoNif) {
+    console.error(`[bdns] no se escribe ${OUT}: ${rechazoNif}`)
+    process.exit(1)
+  }
+
   const items = separacion.propias
   const descartadas = separacion.descartadas
+  const concesiones = leidas.concesiones
+  const resumen = resumirConcesiones(concesiones)
   const granted = items.filter((i) => i.direction === 'granted')
   const received = items.filter((i) => i.direction === 'received')
 
@@ -121,6 +175,7 @@ async function main() {
       url: BASE,
       query: QUERY,
       platform: 'MinHac BDNS (Base de Datos Nacional de Subvenciones)',
+      concesiones: CONCESIONES,
     },
     stats: {
       total: items.length,
@@ -128,9 +183,11 @@ async function main() {
       received: received.length,
       descartadas: descartadas.length,
       latestDate: items[0]?.date ?? null,
+      concesiones: resumen,
     },
     items,
     descartadas,
+    concesiones,
   }
 
   await mkdir(dirname(OUT), { recursive: true })
@@ -142,6 +199,10 @@ async function main() {
       `apartadas ${descartadas.length} ` +
       `(${descartadas.filter((d) => d.lugar === 'ajeno').length} de otro municipio · ` +
       `${descartadas.filter((d) => d.lugar === 'sin-determinar').length} sin situar)`,
+  )
+  console.log(
+    `[bdns] concesiones ${resumen.total} en ${resumen.convocatorias} convocatorias · ` +
+      `${resumen.importe.toLocaleString('es-ES')} € concedidos · ${resumen.desde}…${resumen.hasta}`,
   )
 }
 

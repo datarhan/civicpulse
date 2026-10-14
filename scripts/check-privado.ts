@@ -88,8 +88,11 @@ function main(): void {
         `saltados ${skippedBinary} binarios, ${skippedAllowed} en la lista, ${skippedMissing} ilegibles`,
     )
     if (!r.concluyente) {
-      // Nada escaneado no es nada encontrado.
-      console.log('[check:privado] no se escaneó ningún fichero: esto NO es un visto bueno')
+      // Nada escaneado no es nada encontrado. La marca es la que lee el parte
+      // de salud (`MARCAS_SIN_COMPROBAR`): sin ella, esto se leía como limpio.
+      console.log(
+        '[check:privado] NO COMPROBADO: no se escaneó ningún fichero: esto NO es un visto bueno',
+      )
     }
     return
   }

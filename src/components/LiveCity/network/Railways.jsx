@@ -45,8 +45,8 @@ export function Railways() {
         )
       })}
       {/*
-        Las estaciones van en su propio panel, a z-610: por encima de los pines del
-        dinero y de las vías (panel de vectores, 400), de los equipamientos (450) y de
+        Las estaciones van en su propio panel, a z-610: por encima de las vías (panel de
+        vectores, 400), de los pines del dinero (420), de los equipamientos (450) y de
         los puntos de barrio (panel de marcadores, 600), y por debajo de los rótulos
         flotantes (650) y de los globos (700). Medido: a 1280 px un punto de barrio caía
         sobre El Clot y un clic en la estación no le llegaba. Un panel tiene su propio

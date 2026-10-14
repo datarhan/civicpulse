@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-11T07:07:47.709Z",
+  "generatedAt": "2026-10-12T16:55:45.427Z",
   "version": "1",
   "plenoId": "ma87e0",
   "plenoDate": "2026-03-16",
@@ -893,7 +893,7 @@
       "verification": {
         "claimId": "ma87e0-104-afi-b55596",
         "verdict": "sin-datos",
-        "summary": "Ningún candidato respalda la afirmación. La afirmación habla de una aportación municipal de 62.000 € a Cruz Roja para planes de formación. El candidato [0] es un contrato de 17.545 € sobre formación en plan de integridad y antifraude: importe distinto y objeto distinto.",
+        "summary": "Por tanto, ninguno respalda la afirmación; la fuerza del respaldo es nula.",
         "evidence": [],
         "checkedAgainst": [],
         "derivedBy": [

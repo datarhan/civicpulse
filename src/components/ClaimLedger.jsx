@@ -1,25 +1,24 @@
 import { useMemo, useState } from 'react'
-import { Link } from 'react-router-dom'
-import { Card, Pill, SectionHead, ExtLink } from './Primitives'
+import { Card, Pill, ExtLink } from './Primitives'
 import { MarcaDeFirma } from './MarcaDeFirma'
-import { useT } from '../i18n'
+import { tramoDeFirma } from '../lib/atribucion-firmada'
+import { rotuloDe, useT } from '../i18n'
 import { conHuecos } from '../lib/huecos'
-import {
-  usePlenoClaims,
-  CLAIM_TYPE_LABEL,
-  CLAIM_TYPE_TONE,
-  VERDICT_LABEL,
-  VERDICT_TONE,
-} from '../hooks/usePlenoClaims'
+import { rellena } from '../lib/formatters'
+import { usePlenoClaims, VERDICT_TONE } from '../hooks/usePlenoClaims'
+import { rotuloDeTipo } from '../lib/claim-type-label.js'
 import { gateForDisplay, sortSignalFirst } from '../lib/claim-ledger'
+import { cuentaCotejadas, entreParentesis } from '../lib/cotejo'
 import { blocLabel } from '../lib/party-label.js'
+import { snippetDeEvidencia } from '../lib/crosschecked-status.js'
 import {
   etiquetaVerificador,
   evidenciaSegunFuentes,
   fuentesComprobadas,
   resumenSegunFuentes,
+  rotuloDeParecido,
 } from '../lib/claim-provenance.js'
-import { ROTULO_RESUMEN_RETIRADO, resumenPublicable } from '../lib/resumenes-retirados.js'
+import { CLAVE_RESUMEN_RETIRADO, resumenPublicable } from '../lib/resumenes-retirados.js'
 import { PuenteDeImporte } from './PuenteDeImporte'
 
 function formatEuros(n) {
@@ -34,16 +33,9 @@ function formatEuros(n) {
  * puente con la cifra citada cuando son dos importes del mismo expediente.
  */
 function EvidenceRow({ e, cifra }) {
-  const kindLabel =
-    {
-      tender: 'Contrato',
-      bdns: 'Subvención BDNS',
-      budget: 'Presupuesto',
-      promise: 'Promesa documentada',
-      'prior-claim': 'Pleno anterior',
-      agenda: 'Orden del día',
-      licitacion: 'Licitación',
-    }[e.kind] || e.kind
+  const t = useT()
+  const kindLabel = rotuloDe(t, `ledger.evidencia.${e.kind}`, e.kind)
+  const parecido = rotuloDeParecido(e.similarity, t)
   const body = (
     <>
       <span
@@ -58,13 +50,22 @@ function EvidenceRow({ e, cifra }) {
       >
         {kindLabel.toUpperCase()}
       </span>
-      <span style={{ fontSize: 'var(--fs-meta)', color: 'var(--ink)' }}>{e.snippet}</span>
-      {typeof e.similarity === 'number' && (
+      {/* Sin la cola «· estado: formalized» que `claim-verifier.ts` añade a
+          cada contrato —la palabra cruda del registro, o el centinela
+          «unknown»— y con la categoría de Gobierto por su rótulo, no
+          «· construction ·». El mismo helper que /hallazgos y /declaraciones
+          (crosschecked-status.js). */}
+      <span style={{ fontSize: 'var(--fs-meta)', color: 'var(--ink)' }}>
+        {snippetDeEvidencia(e, t)}
+      </span>
+      {/* Qué mide el número y qué no: suelto, «sim 1.00» junto a «Parcial» se
+          leía como coincidencia perfecta (src/lib/claim-provenance.js). */}
+      {parecido && (
         <span
           className="mono"
           style={{ fontSize: 'var(--fs-micro)', color: 'var(--ink50)', marginLeft: 6 }}
         >
-          sim {e.similarity.toFixed(2)}
+          {parecido}
         </span>
       )}
     </>
@@ -89,6 +90,7 @@ function EvidenceRow({ e, cifra }) {
 }
 
 function ClaimCard({ item }) {
+  const t = useT()
   const { claim, verification } = item
   // `null` cuando el resumen guardado habla de la tarea del verificador y no de
   // esta declaración (src/lib/resumenes-retirados.js): la tarjeta dice que lo
@@ -110,33 +112,54 @@ function ClaimCard({ item }) {
         }}
       >
         <div style={{ flex: 1, minWidth: 0 }}>
-          <div style={{ display: 'flex', gap: 6, alignItems: 'center', marginBottom: 4 }}>
-            <Pill tone={CLAIM_TYPE_TONE[claim.type] || 'neutral'} size="xs">
-              {CLAIM_TYPE_LABEL[claim.type] || claim.type}
+          {/* La envoltura vive en index.css (.cp-ledger-head): sin ella la
+              fila no envolvía y, a 375 px, la fecha se partía por el guion. */}
+          <div
+            className="cp-ledger-head"
+            style={{ display: 'flex', gap: 6, alignItems: 'center', marginBottom: 4 }}
+          >
+            {/* Derivado del literal: un tipo que promete una cifra o un
+                convenio que la cita no trae baja a «Afirmación»
+                (src/lib/claim-type-label.js). */}
+            <Pill tone={rotuloDeTipo(claim, t).tono} size="xs">
+              {rotuloDeTipo(claim, t).texto}
             </Pill>
-            {claim.speakerGroup && (
+            {/* El grupo y su «firmado» van en una sola pieza para que, al
+                envolver, la marca no caiga sola al principio de la línea
+                siguiente (lo mismo que /declaraciones, commit 43b21db0). */}
+            {(claim.speakerGroup || tramoDeFirma(claim)) && (
               <span
-                className="mono"
-                style={{
-                  fontSize: 'var(--fs-micro)',
-                  fontWeight: 700,
-                  letterSpacing: '.1em',
-                  color: 'var(--ink50)',
-                  textTransform: 'uppercase',
-                }}
+                className="cp-ledger-entero"
+                style={{ display: 'inline-flex', alignItems: 'center', gap: 6 }}
               >
-                {blocLabel(claim.speakerGroup)}
+                {claim.speakerGroup && (
+                  <span
+                    className="mono"
+                    style={{
+                      fontSize: 'var(--fs-micro)',
+                      fontWeight: 700,
+                      letterSpacing: '.1em',
+                      color: 'var(--ink50)',
+                      textTransform: 'uppercase',
+                    }}
+                  >
+                    {blocLabel(claim.speakerGroup)}
+                  </span>
+                )}
+                <MarcaDeFirma
+                  claim={claim}
+                  style={{
+                    fontSize: 'var(--fs-micro)',
+                    letterSpacing: '.04em',
+                    color: 'var(--ink50)',
+                  }}
+                />
               </span>
             )}
-            <MarcaDeFirma
-              claim={claim}
-              style={{
-                fontSize: 'var(--fs-micro)',
-                letterSpacing: '.04em',
-                color: 'var(--ink50)',
-              }}
-            />
-            <span className="mono" style={{ fontSize: 'var(--fs-micro)', color: 'var(--ink50)' }}>
+            <span
+              className="mono cp-ledger-entero"
+              style={{ fontSize: 'var(--fs-micro)', color: 'var(--ink50)' }}
+            >
               {claim.plenoDate}
             </span>
             {claim.entities.amountEuros && (
@@ -172,7 +195,7 @@ function ClaimCard({ item }) {
           </blockquote>
         </div>
         <Pill tone={VERDICT_TONE[verification.verdict] || 'neutral'} size="xs">
-          {VERDICT_LABEL[verification.verdict] || verification.verdict}
+          {rotuloDe(t, `declaraciones.veredicto.${verification.verdict}`, verification.verdict)}
         </Pill>
       </div>
       <div
@@ -184,7 +207,7 @@ function ClaimCard({ item }) {
           fontStyle: resumen === null ? 'italic' : 'normal',
         }}
       >
-        {resumen ?? ROTULO_RESUMEN_RETIRADO}
+        {resumen ?? t(CLAVE_RESUMEN_RETIRADO)}
       </div>
       {evidencia.length > 0 && (
         <div
@@ -219,8 +242,12 @@ function ClaimCard({ item }) {
           rowGap: 2,
         }}
       >
-        <span>Fuentes comprobadas: {fuentesComprobadas(verification)}</span>
-        <span>Veredicto: {etiquetaVerificador(verification)}</span>
+        <span>
+          {rellena(t('ledger.fuentes'), { fuentes: fuentesComprobadas(verification, t) })}
+        </span>
+        <span>
+          {rellena(t('ledger.veredicto'), { verificador: etiquetaVerificador(verification, t) })}
+        </span>
       </div>
     </Card>
   )
@@ -250,11 +277,12 @@ export function ClaimLedger({ items, ...props }) {
 
 /** Sin `items`: el corpus entero, p. ej. /departamentos/:slug filtrado por tema. */
 function ClaimLedgerFromCorpus(props) {
+  const t = useT()
   const { loading, data } = usePlenoClaims()
   if (loading) {
     return (
       <div style={{ padding: 12, fontSize: 'var(--fs-meta)', color: 'var(--ink50)' }}>
-        Cargando verificaciones…
+        {t('ledger.cargando')}
       </div>
     )
   }
@@ -274,9 +302,13 @@ function ClaimLedgerView({ items, filter, limit = 20, emptyHint, showSummary = f
 
   // Honest proportion: signal-first + a small limit otherwise oversells coverage
   // by hiding the (usually majority) sin-datos behind "load more".
+  // Las cotejadas, con su desglose por veredicto (src/lib/cotejo.js): sin él, «8
+  // contrastadas» se leía comprobadas siendo las ocho parciales. Lo que repite una
+  // promesa no es un cotejo con un documento municipal y va en su propia pieza.
   const mix = useMemo(() => {
     const sinContraste = base.filter((it) => it?.verification?.verdict === 'sin-datos').length
-    return { conEvidencia: base.length - sinContraste, sinContraste }
+    const promesas = base.filter((it) => it?.verification?.verdict === 'promesa-repetida').length
+    return { cotejadas: cuentaCotejadas(base), sinContraste, promesas }
   }, [base])
 
   if (base.length === 0) {
@@ -291,8 +323,7 @@ function ClaimLedgerView({ items, filter, limit = 20, emptyHint, showSummary = f
           lineHeight: 1.5,
         }}
       >
-        {emptyHint ||
-          'Todavía no hay declaraciones contrastadas con los datos municipales para mostrar aquí.'}
+        {emptyHint || t('ledger.vacio')}
       </div>
     )
   }
@@ -310,11 +341,20 @@ function ClaimLedgerView({ items, filter, limit = 20, emptyHint, showSummary = f
         >
           {conHuecos(
             t(
-              mix.conEvidencia === 1
-                ? 'ledger.recuento.contrastadas.uno'
-                : 'ledger.recuento.contrastadas.varios',
+              mix.cotejadas.total === 1
+                ? 'ledger.recuento.cotejadas.uno'
+                : 'ledger.recuento.cotejadas.varios',
             ),
-            { '{n}': <strong style={{ color: 'var(--ink)' }}>{mix.conEvidencia}</strong> },
+            { '{n}': <strong style={{ color: 'var(--ink)' }}>{mix.cotejadas.total}</strong> },
+          )}
+          {entreParentesis(t, mix.cotejadas)}
+          {mix.promesas > 0 && (
+            <>
+              {' · '}
+              {conHuecos(t(mix.promesas === 1 ? 'cotejo.promesas.uno' : 'cotejo.promesas.varios'), {
+                '{n}': <strong style={{ color: 'var(--ink)' }}>{mix.promesas}</strong>,
+              })}
+            </>
           )}
           {' · '}
           {conHuecos(t('ledger.recuento.sinContraste'), {
@@ -345,34 +385,5 @@ function ClaimLedgerView({ items, filter, limit = 20, emptyHint, showSummary = f
         </button>
       )}
     </div>
-  )
-}
-
-export function ClaimLedgerSection({ filter, limit, title, eyebrow, hint }) {
-  return (
-    <section style={{ marginTop: 28 }}>
-      <SectionHead
-        eyebrow={eyebrow || 'Verificación automática de declaraciones'}
-        title={title || 'Declaraciones hechas en el pleno · contraste con los datos'}
-      />
-      {hint && (
-        <p
-          style={{
-            fontSize: 'var(--fs-aux)',
-            color: 'var(--ink50)',
-            marginTop: 4,
-            marginBottom: 10,
-            lineHeight: 1.5,
-            maxWidth: 720,
-          }}
-        >
-          {hint}{' '}
-          <Link to="/metodologia#verificacion-declaraciones" style={{ color: 'var(--civic)' }}>
-            Cómo se filtran estas declaraciones →
-          </Link>
-        </p>
-      )}
-      <ClaimLedger filter={filter} limit={limit} />
-    </section>
   )
 }

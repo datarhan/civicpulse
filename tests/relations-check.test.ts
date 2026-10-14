@@ -976,18 +976,40 @@ describe('relations-check — vote provenance', () => {
     expect(rs['votes-breakdown-verified'].broken[0]).toMatch(/sin-verificar/)
   })
 
-  it('says the acta is unreachable, not that a curator never got to it', () => {
-    // The line this replaces read «never cotejado against the acta», which
-    // describes sixteen rows of neglect. Nobody has skipped this work: no acta
-    // is fetchable at all (scripts/fetch-pleno-actas.ts is broken four ways
-    // against the Aug-2026 portal, and zero actas are cached). A warn that
-    // misnames its own cause is a warn that gets dismissed for the wrong reason.
+  it('names the commands that settle it, not an acta it calls unreachable', () => {
+    // Until 2026-10-13 the line said the acta was «unreachable, not unread»
+    // (scripts/fetch-pleno-actas.ts). That stopped being true when the signed
+    // actas turned up on regmeet: scripts/scrape-pleno-actas.ts indexes them,
+    // check:votos-acta cotejará each tally, and corregir-voto replaces a wrong
+    // one with a signed record. A warn that misnames its own cause is a warn
+    // that gets dismissed for the wrong reason.
     const rs = run([
       { id: 'a-01', votes: tally, provenance: { outcome: regmeetRef, breakdown: transcriptRef } },
     ])
     const line = rs['votes-breakdown-verified'].broken[0]
-    expect(line).toMatch(/unreachable, not unread/)
+    expect(line).toMatch(/npm run check:votos-acta/)
+    expect(line).toMatch(/npm run corregir-voto/)
+    expect(line).not.toMatch(/unreachable/)
     expect(line).not.toMatch(/never cotejado/)
+  })
+
+  it('does not count a breakdown cited to the acta itself — the same set the vote card marks', () => {
+    // After corregir-voto a row's breakdown is {kind: 'acta', sin-verificar}.
+    // The card shows no caveat (VOTE_SOURCE_KINDS.acta.unverifiedNote is null),
+    // so counting it here would put a number on monitor:health and /datos that
+    // no card on the site explains.
+    const actaRef = {
+      kind: 'acta',
+      url: 'https://regmeet.com/files/uploads/aytoribarroja/09-02-2026.Pleno2026-02-10_20-43-39/documentos/2026-07-30_13-45-56_0.pdf',
+      publisher: 'Ayuntamiento de Riba-roja de Túria',
+      retrievedAt: '2026-10-13',
+      verification: 'sin-verificar',
+    }
+    const rs = run([
+      { id: 'a-01', votes: tally, provenance: { outcome: regmeetRef, breakdown: actaRef } },
+    ])
+    expect(rs['votes-breakdown-verified'].checked).toBe(1)
+    expect(rs['votes-breakdown-verified'].status).toBe('ok')
   })
 
   it('goes quiet once a curator has cotejado the breakdown against the acta', () => {

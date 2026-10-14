@@ -9,7 +9,9 @@ import { CATALOGUE } from '../src/i18n'
  * comparar con un documento, saliera a favor o en contra— y se leía «respaldada».
  * La revisión lectora de /departamentos/urbanismo lo señaló sobre dos
  * declaraciones parciales, en la ficha de un área con el nombre de quien la
- * dirige encima. El agregado se llama «contrastadas» / «contrastades».
+ * dirige encima. El agregado se llamó luego «contrastadas», que se leía
+ * «comprobadas», y desde el 11-10-2026 «cotejadas» / «acarades»
+ * (tests/rotulo-cotejadas.test.jsx).
  *
  * No juzga prosa: busca un rótulo retirado en lo que la web pinta —el texto de
  * las páginas, sin comentarios— y en los valores del catálogo, en los dos idiomas.
@@ -37,7 +39,7 @@ const pintable = (codigo) =>
 
 const PAGINAS = jsx(join(RAIZ, 'src'))
 
-describe('el agregado se llama «contrastadas», no «con evidencia»', () => {
+describe('el agregado no se llama «con evidencia»', () => {
   it('mide algo: lee las páginas y el catálogo', () => {
     expect(PAGINAS.length).toBeGreaterThan(100)
     expect(Object.keys(CATALOGUE.es).length).toBeGreaterThan(500)

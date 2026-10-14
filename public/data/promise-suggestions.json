@@ -1,13 +1,13 @@
 {
-  "generatedAt": "2026-10-11T11:14:03.809Z",
+  "generatedAt": "2026-10-14T09:56:17.504Z",
   "frozen": false,
   "frozenUntil": null,
   "notice": "Sugerencias generadas automáticamente. Requieren aprobación humana antes de aplicarse al estado de cada promesa.",
   "counts": {
-    "total": 11,
+    "total": 12,
     "byProposedStatus": {
       "documentada": 9,
-      "en-progreso": 2
+      "en-progreso": 3
     },
     "llmEvidence": 0
   },
@@ -41,7 +41,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-10-11T11:14:03.716Z"
+      "generatedAt": "2026-10-14T09:56:17.395Z"
     },
     {
       "promiseId": "ac-psoe-jfg7bc",
@@ -60,7 +60,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-10-11T11:14:03.716Z"
+      "generatedAt": "2026-10-14T09:56:17.395Z"
     },
     {
       "promiseId": "ac-psoe-1ah9zqk",
@@ -79,7 +79,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-10-11T11:14:03.716Z"
+      "generatedAt": "2026-10-14T09:56:17.395Z"
     },
     {
       "promiseId": "ac-psoe-ppa53a",
@@ -87,7 +87,7 @@
       "confidence": 0,
       "reasoning": [],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-10-11T11:14:03.716Z"
+      "generatedAt": "2026-10-14T09:56:17.395Z"
     },
     {
       "promiseId": "ac-psoe-1m04lfw",
@@ -95,7 +95,7 @@
       "confidence": 0,
       "reasoning": [],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-10-11T11:14:03.716Z"
+      "generatedAt": "2026-10-14T09:56:17.395Z"
     },
     {
       "promiseId": "ac-psoe-sysee8",
@@ -114,7 +114,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-10-11T11:14:03.716Z"
+      "generatedAt": "2026-10-14T09:56:17.395Z"
     },
     {
       "promiseId": "ac-psoe-1ryndd8",
@@ -151,7 +151,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-10-11T11:14:03.716Z"
+      "generatedAt": "2026-10-14T09:56:17.395Z"
     },
     {
       "promiseId": "ac-psoe-43brfs",
@@ -216,7 +216,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-10-11T11:14:03.716Z"
+      "generatedAt": "2026-10-14T09:56:17.395Z"
     },
     {
       "promiseId": "ac-psoe-17y448o",
@@ -269,6 +269,28 @@
           ]
         },
         {
+          "url": "https://www.ribarroja.es/es/noticia/riba-roja-de-t%C3%BAria-aprueba-la-cuenta-general-del-a%C3%B1o-2025-que-certifica-un-super%C3%A1vit-de-4%E2%80%995-millones-de-euros-y-un-remanente-de-3%273-millones-en-el-presupuesto-econ%C3%B3mico",
+          "date": "2026-10-13",
+          "quote": "Riba-roja de Túria aprueba la cuenta general del año 2025 que certifica un superávit de 4’5 millones de euros y un remanente de 3'3 millones en el presupuesto económico",
+          "kind": "press",
+          "publisher": "Ayuntamiento de Riba-roja de Túria",
+          "matchedKeywords": [
+            "euro",
+            "presupuesto"
+          ]
+        },
+        {
+          "url": "https://news.google.com/rss/articles/CBMiuwFBVV95cUxQaXhMaXQ4RVJKRllpdUNIRDRkdVV3ekNCNzFqRnhqYm1wQ3Nza0RwbDZBclY1cmhwWFY5MlVJNzdRWXJ0Q0g0bW5MTlZVWVNITkFWcjdVWnBVTjRjTUpMelNDOWJxQm9CUFVKUnVabUVhU1hSVy1kWm1tWUNHSktjcDB2NFVPNEQtODFrSmxVZ0FMaE9pV09mRjd2cXJic1VCdzF4bXh3ekpkMkw4el96MXQ1dy1UQVVQUFVn0gHAAUFVX3lxTE1heGVhaGlBUnFpRTBqU1Z2b1pvSGN4NWdYZE9XQVdfcmk1cUUxRXk1a0p5eEhwU3lLeTdTNjZEY3pmc2lNbkliRnlDZ3FSUUNCNXZwV3o2RHVlVEo5U2ROeEZORmswS2tWck5ZOFU1UnZVc2ZPOUVVNlhkdTRmRUZ5bS0yV0dzdF9SbHpUWGVMWHBZb3JXT09tRnczMTlLVG1jWjZtUmhEQ1JvQ1VLbGlsSjk3N0tSdkMtRFJuVUlsZg?oc=5",
+          "date": "2026-10-08",
+          "quote": "Riba-roja firma el nuevo contrato del agua por 17 años: 2,3 millones de euros y tarifas congeladas",
+          "kind": "press",
+          "publisher": "Levante-EMV",
+          "matchedKeywords": [
+            "euro",
+            "nuevo"
+          ]
+        },
+        {
           "url": "https://regmeet.com/aytoribarroja/participaciones/2e3d2c4f33a7a1f58bc6c81cacd21e9c?idioma=castellano",
           "date": "2026-10-05",
           "quote": "Contratación · Inicio del expediente de contratación para la licitación del suministro de sustitución del pavimento de césped artificial de la instalación del estadio de fútbol Roberto Gil en régimen de arrendamiento, con opción de compra, por procedimiento abierto, varios criterios de adjudicación, con condición de ejecución de carácter social y medioambiental, contribuyendo al cumplimiento del ODS 12 de “Producción y consumo responsables” y ODS 13 “Acción por el clima” de la Agenda 2030, contrato sujeto a regulación armonizada, siendo su tramitación anticipada. (Ctto. 122/2026)",
@@ -280,13 +302,26 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-10-11T11:14:03.716Z"
+      "generatedAt": "2026-10-14T09:56:17.395Z"
     },
     {
       "promiseId": "ac-psoe-1bkbwjs",
       "proposedStatus": "documentada",
-      "confidence": 0.287,
+      "confidence": 0.4,
       "reasoning": [
+        {
+          "url": "https://news.google.com/rss/articles/CBMi5AFBVV95cUxPX0djQmtPeDg3NnNvVFlPZGpUN21OWmJvYW44amw5djJ6d2lPcXJMSjkyZmRQalVmdXRuenFiWndPZ2tCYnd0d05BVDgwT2Vzbi0yZlUydDc2M3NSUHRqTnhBTVlFZkFzcDR1WnA1NWFRbFBtQWhRQnEwWEt4S2JQaXZsRUtueTFTQVh2YVNfNXFKZl9oRklTeGNQX0YzdDZJN1NIbG8zQkFSQWwydWNaM3R3Zjg1V1JDQkxfSFFPZXBtbHRfcURkZDRqQ0JRRnZ0eVNkZFIwQ1loY3p6YURQcXB3bDXSAeoBQVVfeXFMT0ZWS1ZjMVEyalc0bGtoazFvRklDdmM3VXdsckpsWVNTR21qZXJ1S1YyQzRZQjh2cUs0dW5vNlhGdVVTQTU0T3hxc0lfNTZEWkZfSkJJUFJBTURxQmt4YkVsclhVU2NjVXFacEE1blR4cHBzdlc3eTlLOEhXalB3VjZ2MWZRQUplX0JIenAtdFEzV3BoQ3ZESk5UU19IRVhIUmhzQ0tfUFpnT1p5SVJvSjk0cWVWS0NfS0kzNjdPYTEwUXB1YWxGakd4cUlUblVBcXg1MzRCSUQ2QXFvQkdyOVBPcU9scTZPUEln?oc=5",
+          "date": "2026-09-25",
+          "quote": "Riba-roja instalará sensores en sus contenedores para conocer en tiempo real el nivel de llenado",
+          "kind": "press",
+          "publisher": "Levante-EMV",
+          "matchedKeywords": [
+            "contenedor",
+            "tiempo",
+            "real",
+            "llenado"
+          ]
+        },
         {
           "url": "https://www.ribarroja.es/es/noticia/riba-roja-de-t%C3%BAria-impulsa-la-sensorizaci%C3%B3n-de-sus-contenedores-de-residuos-para-avanzar-hacia-una-gesti%C3%B3n-m%C3%A1s-sostenible-del-municipio",
           "date": "2026-09-25",
@@ -335,7 +370,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-10-11T11:14:03.716Z"
+      "generatedAt": "2026-10-14T09:56:17.395Z"
     },
     {
       "promiseId": "ac-psoe-1xeq50",
@@ -358,6 +393,28 @@
           ]
         },
         {
+          "url": "https://www.infoturia.com/riba-roja-de-turia/86707-riba-roja-aprova-el-compte-de-2025-amb-un-superavit-de-45-milions-deuros.html",
+          "date": "2026-10-13",
+          "quote": "Riba-roja aprova el compte de 2025 amb un superàvit de 4’5 milions d’euros",
+          "kind": "press",
+          "publisher": "Periòdic del Camp de Túria",
+          "matchedKeywords": [
+            "euro",
+            "2025"
+          ]
+        },
+        {
+          "url": "https://www.ribarroja.es/es/noticia/riba-roja-de-t%C3%BAria-aprueba-la-cuenta-general-del-a%C3%B1o-2025-que-certifica-un-super%C3%A1vit-de-4%E2%80%995-millones-de-euros-y-un-remanente-de-3%273-millones-en-el-presupuesto-econ%C3%B3mico",
+          "date": "2026-10-13",
+          "quote": "Riba-roja de Túria aprueba la cuenta general del año 2025 que certifica un superávit de 4’5 millones de euros y un remanente de 3'3 millones en el presupuesto económico",
+          "kind": "press",
+          "publisher": "Ayuntamiento de Riba-roja de Túria",
+          "matchedKeywords": [
+            "euro",
+            "2025"
+          ]
+        },
+        {
           "url": "https://www.ribarroja.es/es/noticia/riba-roja-destina-104.605-euros-al-cheque-beb%C3%A9-%2B25-para-apoyar-a-las-familias-y-dinamizar-el-comercio-local",
           "date": "2026-10-01",
           "quote": "Riba-roja destina 104.605 euros al Cheque Bebé +25 para apoyar a las familias y dinamizar el comercio local",
@@ -370,7 +427,56 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-10-11T11:14:03.716Z"
+      "generatedAt": "2026-10-14T09:56:17.395Z"
+    },
+    {
+      "promiseId": "ac-psoe-1kui43c",
+      "proposedStatus": "en-progreso",
+      "confidence": 0.7,
+      "reasoning": [
+        {
+          "url": "https://news.google.com/rss/articles/CBMiuwFBVV95cUxQaXhMaXQ4RVJKRllpdUNIRDRkdVV3ekNCNzFqRnhqYm1wQ3Nza0RwbDZBclY1cmhwWFY5MlVJNzdRWXJ0Q0g0bW5MTlZVWVNITkFWcjdVWnBVTjRjTUpMelNDOWJxQm9CUFVKUnVabUVhU1hSVy1kWm1tWUNHSktjcDB2NFVPNEQtODFrSmxVZ0FMaE9pV09mRjd2cXJic1VCdzF4bXh3ekpkMkw4el96MXQ1dy1UQVVQUFVn0gHAAUFVX3lxTE1heGVhaGlBUnFpRTBqU1Z2b1pvSGN4NWdYZE9XQVdfcmk1cUUxRXk1a0p5eEhwU3lLeTdTNjZEY3pmc2lNbkliRnlDZ3FSUUNCNXZwV3o2RHVlVEo5U2ROeEZORmswS2tWck5ZOFU1UnZVc2ZPOUVVNlhkdTRmRUZ5bS0yV0dzdF9SbHpUWGVMWHBZb3JXT09tRnczMTlLVG1jWjZtUmhEQ1JvQ1VLbGlsSjk3N0tSdkMtRFJuVUlsZg?oc=5",
+          "date": "2026-10-08",
+          "quote": "Riba-roja firma el nuevo contrato del agua por 17 años: 2,3 millones de euros y tarifas congeladas",
+          "kind": "press",
+          "publisher": "Levante-EMV",
+          "matchedKeywords": [
+            "tarifa",
+            "agua",
+            "anos",
+            "nuevo",
+            "contrato",
+            "congelada"
+          ]
+        },
+        {
+          "url": "https://www.ribarroja.es/es/noticia/riba-roja-de-t%C3%BAria-formaliza-con-veolia-el-nuevo-contrato-del-ciclo-integral-del-agua-para-reforzar-la-sostenibilidad-y-modernizar-sus-infraestructuras",
+          "date": "2026-10-08",
+          "quote": "Riba-roja de Túria formaliza con Veolia el nuevo contrato del ciclo integral del agua para reforzar la sostenibilidad y modernizar sus infraestructuras",
+          "kind": "press",
+          "publisher": "Ayuntamiento de Riba-roja de Túria",
+          "matchedKeywords": [
+            "agua",
+            "nuevo",
+            "contrato",
+            "veolia"
+          ]
+        },
+        {
+          "url": "https://news.google.com/rss/articles/CBMi6AFBVV95cUxPSTQ1ZHFLLTNRRXdudEs2RHpkMXdKam1SUjdjM21jRkx3TFZEcVd1eFJ5cloycFVpNHFFeG1UeXYyVHpFcXVyaEsxRVgzajlLdnI2ZmVoT3ZpMDJXa1h2WUN3REplYjJIN3QydlB2TWFWYTBpdnZ4QU5oY1VXTWlITUlCSDQwaGhCY0RocnZYTUR0THVERkJqOWpTMmtzMmNmRDhXaWlIcGNCZmNOaXM1d1BTVUZ4TmhUSm5DTGdmODlyeWw2bUY4UUc2OUN6MUZIZnRjNlZqSGRxeTd1QTVVUFd4bHpJNjhG?oc=5",
+          "date": "2026-10-08",
+          "quote": "Riba-roja adjudica el contrato para el suministro de agua potable por 55,6 millones para 17 años",
+          "kind": "press",
+          "publisher": "Valencia Plaza",
+          "matchedKeywords": [
+            "agua",
+            "anos",
+            "contrato"
+          ]
+        }
+      ],
+      "requiresHumanApproval": true,
+      "generatedAt": "2026-10-14T09:56:17.395Z"
     }
   ],
   "llmEvidence": [],

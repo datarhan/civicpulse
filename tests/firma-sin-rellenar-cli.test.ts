@@ -41,6 +41,11 @@
  * directorio vacío: varias dan por vacío el fichero que falta, y leer antes de
  * mirar la firma no las haría fallar.
  *
+ * Desde el 11-10-2026, también el `--curator` de `promote-area-fit`, que firma
+ * el encaje declarado de /cargos/:slug, y el de `backfill:self-declared`, que
+ * firma una línea del `curatorNotes` servido de las biografías. Ésta llama a un
+ * modelo, y se lanza con un `claude` de mentira.
+ *
  * Se ejercitan por subproceso, como en la terminal: llaman a `process.exit()`.
  * Todas corren sobre una copia de los datos en un directorio temporal y
  * escriben de verdad; ninguna toca `public/data/` del repositorio, ni aunque la
@@ -1978,6 +1983,248 @@ describe('override-speaker-assignment', () => {
       expect(r.status, r.stdout + r.stderr).toBe(0)
       const reparto = JSON.parse(readFileSync(join(dir, REPARTO), 'utf8'))
       expect(reparto.assignments[0].curatorOverride).toMatchObject({ slug, by: firma })
+    } finally {
+      limpiar(dir)
+    }
+  })
+})
+
+/**
+ * Firma una fila del «encaje declarado» de /cargos/:slug, superficie que
+ * nombra a cargos electos. El validador (src/scraper/area-fit.ts) sólo pide
+ * que `curatedBy` no esté vacío, y el panel local /curator le pasa la firma
+ * que se escriba en él. Su línea de uso trae `--curator "<nombre>"` en cuatro
+ * vías: publicar, retirar y firmar o retirar un aviso.
+ */
+describe('promote-area-fit', () => {
+  const SCRIPT = 'promote-area-fit.ts'
+  const COLA = 'editorial/area-fit-queue.json'
+  type Fila = { officialSlug: string; portfolio: string; curatedBy?: string }
+  const encaje = JSON.parse(datosDelRepositorio('area-fit.json')) as {
+    rows: Fila[]
+    avisos?: { officialSlug: string }[]
+  }
+  // Una fila de un cargo sin avisos firmados: quitarla no deja un aviso colgando.
+  const conAviso = new Set((encaje.avisos ?? []).map((a) => a.officialSlug))
+  const fila = encaje.rows.find((r) => !conAviso.has(r.officialSlug))
+  const ANTES =
+    JSON.stringify(
+      {
+        ...encaje,
+        rows: encaje.rows.filter(
+          (r) => !(r.officialSlug === fila?.officialSlug && r.portfolio === fila?.portfolio),
+        ),
+      },
+      null,
+      2,
+    ) + '\n'
+  /** La fila como la deja el sugeridor: sin firma y pendiente de una persona. */
+  const borrador = () => {
+    const {
+      curatedBy: _f,
+      curatedAt: _d,
+      curatorNotes: _n,
+      ...resto
+    } = fila as Fila & {
+      curatedAt?: string
+      curatorNotes?: string
+    }
+    return { ...resto, requiresHumanApproval: true }
+  }
+  const LEE = ['area-fit.json', 'officials.json', 'journalist-reports.json', 'promises.json']
+  const orden = (firma: string) => [
+    '--official',
+    fila!.officialSlug,
+    '--area',
+    fila!.portfolio,
+    '--curator',
+    firma,
+  ]
+  const conDatos = () =>
+    montar(
+      'encaje-firma-',
+      {
+        'promises.json': SIN_CONGELAR,
+        'area-fit.json': ANTES,
+        'officials.json': datosDelRepositorio('officials.json'),
+        'journalist-reports.json': datosDelRepositorio('journalist-reports.json'),
+      },
+      { [COLA]: JSON.stringify({ rows: [borrador()] }, null, 2) + '\n' },
+    )
+  /** Las demás vías, con la firma delante: también ahí se mira antes de leer. */
+  const OTRAS: [string, string[]][] = [
+    ['--retract', ['--official', 'x', '--area', 'y', '--retract']],
+    ['--reject', ['--official', 'x', '--area', 'y', '--reject']],
+    ['--aviso', ['--aviso', '--official', 'x', '--aviso-index', '0']],
+    ['--aviso --retract', ['--aviso', '--official', 'x', '--aviso-index', '0', '--retract']],
+    ['--rebind', ['--rebind', '--from', 'a', '--to', 'b']],
+    ['--list', ['--list']],
+  ]
+
+  it('hay una fila firmada de un cargo sin avisos', () => {
+    expect(fila).toBeTruthy()
+  })
+
+  it.each(HUECOS)('con «%s» se niega antes de leer nada', (hueco) => {
+    const dir = montar('encaje-firma-', ilegibles(...LEE), { [COLA]: ILEGIBLE })
+    try {
+      seNegoPorElHueco(lanzar(SCRIPT, dir, orden(hueco)), '--curator', hueco)
+    } finally {
+      limpiar(dir)
+    }
+  })
+
+  it.each(OTRAS)('%s, con el hueco de su línea de uso, se niega antes de leer nada', (_, via) => {
+    const hueco = huecoDeSuUso(SCRIPT, '--curator')
+    expect(hueco).toBeDefined()
+    const dir = montar('encaje-firma-', ilegibles(...LEE), { [COLA]: ILEGIBLE })
+    try {
+      seNegoPorElHueco(lanzar(SCRIPT, dir, [...via, '--curator', hueco!]), '--curator', hueco!)
+    } finally {
+      limpiar(dir)
+    }
+  })
+
+  // Lo que le llegaba del panel /curator cuando la petición no traía firma:
+  // `execFile` convierte el `undefined` del argv en la cadena «undefined».
+  it.each(['undefined', 'null'])('con «%s» se niega antes de leer nada', (valor) => {
+    const dir = montar('encaje-firma-', ilegibles(...LEE), { [COLA]: ILEGIBLE })
+    try {
+      expect(rechazoDeMarcador(valor)).not.toBeNull()
+      seNegoPorElHueco(lanzar(SCRIPT, dir, orden(valor)), '--curator', valor)
+    } finally {
+      limpiar(dir)
+    }
+  })
+
+  it('con el hueco de su línea de uso se niega y deja los datos byte a byte', () => {
+    const hueco = huecoDeSuUso(SCRIPT, '--curator')
+    expect(hueco).toBeDefined()
+    const dir = conDatos()
+    try {
+      const antes = huella(dir)
+      seNegoPorElHueco(lanzar(SCRIPT, dir, orden(hueco!)), '--curator', hueco!)
+      expect(huella(dir)).toEqual(antes)
+    } finally {
+      limpiar(dir)
+    }
+  })
+
+  it.each(FIRMAS)('firmada «%s», publica la fila con esa firma', (firma) => {
+    const dir = conDatos()
+    try {
+      const r = lanzar(SCRIPT, dir, orden(firma))
+      expect(r.status, r.stdout + r.stderr).toBe(0)
+      const escrita = (leerJson(dir, 'area-fit.json').rows as Fila[]).find(
+        (x) => x.officialSlug === fila!.officialSlug && x.portfolio === fila!.portfolio,
+      )
+      expect(escrita).toMatchObject({ curatedBy: firma })
+      expect(escrita).not.toHaveProperty('requiresHumanApproval')
+    } finally {
+      limpiar(dir)
+    }
+  })
+})
+
+/**
+ * Reclasifica `selfDeclared` en las biografías publicadas y deja constancia en
+ * el `curatorNotes` del agregado, que se sirve: «<fecha> · <firma>: …». Su
+ * línea de uso no imprime hueco —el ejemplo de su cabecera trae un nombre—,
+ * así que se prueba con el de la cola de excepción.
+ *
+ * Llama a un modelo por informe. Corre con `LLM_BACKEND=claude-code` y un
+ * `claude` de mentira que contesta «no se sabe» a cada fuente, sin claves de
+ * pago en el entorno y con `fetch` cambiado por uno que apunta y lanza: ningún
+ * caso llega a la red.
+ */
+describe('backfill:self-declared', () => {
+  const SCRIPT = 'backfill-self-declared.ts'
+  const INFORMES = datosDelRepositorio('journalist-reports.json')
+  const SIN_RED = `import { appendFileSync } from 'node:fs'
+globalThis.fetch = async (url) => {
+  appendFileSync(process.env.FETCH_LOG, String(url) + '\\n')
+  throw new Error('sin red en la prueba')
+}
+`
+  /** Contesta `null` a cada índice que la pregunta numera. */
+  const CLAUDE_FALSO = `#!${process.execPath}
+const p = process.argv[process.argv.indexOf('-p') + 1]
+const n = Number(/numeradas 1\\.\\.(\\d+)/.exec(p)[1])
+const fuentes = Array.from({ length: n }, (_, i) => ({ index: i + 1, selfDeclared: null, motivo: 'prueba' }))
+process.stdout.write(JSON.stringify({ is_error: false, structured_output: { fuentes }, total_cost_usd: 0, usage: { input_tokens: 1, output_tokens: 1 } }))
+`
+  const lanzarSinRed = (dir: string, argv: string[]) => {
+    writeFileSync(join(dir, 'sin-red.mjs'), SIN_RED)
+    writeFileSync(join(dir, 'claude-falso'), CLAUDE_FALSO, { mode: 0o755 })
+    return spawnSync(process.execPath, [TSX, join(RAIZ, 'scripts', SCRIPT), ...argv], {
+      cwd: dir,
+      encoding: 'utf8',
+      env: {
+        PATH: process.env.PATH ?? '',
+        HOME: process.env.HOME ?? '',
+        TMPDIR: process.env.TMPDIR ?? tmpdir(),
+        NODE_OPTIONS: `--import ${join(dir, 'sin-red.mjs')}`,
+        LLM_BACKEND: 'claude-code',
+        CLAUDE_CODE_MODEL: 'sonnet',
+        LLM_CONCURRENCY: '1',
+        CLAUDE_CODE_BIN: join(dir, 'claude-falso'),
+        AGY_BIN: join(dir, 'no-existe'),
+        GEMINI_BIN: join(dir, 'no-existe'),
+        FETCH_LOG: join(dir, 'red.log'),
+        RUN_MANIFEST_DIR: join(dir, '.run-manifests'),
+      },
+      timeout: 120_000,
+    })
+  }
+  const sinRed = (dir: string) => !existsSync(join(dir, 'red.log'))
+
+  it('hay biografías publicadas con fuentes', () => {
+    const items = JSON.parse(INFORMES).items as { sources?: unknown[] }[]
+    expect(items.some((x) => (x.sources ?? []).length > 0)).toBe(true)
+  })
+
+  it.each(HUECOS)('con «%s» se niega antes de leer nada', (hueco) => {
+    const dir = montar('autodeclarado-firma-', ilegibles('journalist-reports.json'))
+    try {
+      seNegoPorElHueco(lanzarSinRed(dir, ['--curator', hueco]), '--curator', hueco)
+      expect(sinRed(dir)).toBe(true)
+    } finally {
+      limpiar(dir)
+    }
+  })
+
+  it.each([['--dry-run'], ['--report', 'r-de-prueba']])(
+    'con %s y el hueco se niega antes de leer nada',
+    (...via) => {
+      const dir = montar('autodeclarado-firma-', ilegibles('journalist-reports.json'))
+      try {
+        seNegoPorElHueco(lanzarSinRed(dir, [...via, '--curator', HUECO]), '--curator', HUECO)
+      } finally {
+        limpiar(dir)
+      }
+    },
+  )
+
+  it('con el hueco se niega y deja los datos byte a byte', () => {
+    const dir = montar('autodeclarado-firma-', { 'journalist-reports.json': INFORMES })
+    try {
+      const antes = huella(dir)
+      seNegoPorElHueco(lanzarSinRed(dir, ['--curator', HUECO]), '--curator', HUECO)
+      expect(huella(dir)).toEqual(antes)
+      expect(sinRed(dir)).toBe(true)
+    } finally {
+      limpiar(dir)
+    }
+  })
+
+  it.each(FIRMAS)('firmada «%s», reclasifica y la nota lleva esa firma', (firma) => {
+    const dir = montar('autodeclarado-firma-', { 'journalist-reports.json': INFORMES })
+    try {
+      const r = lanzarSinRed(dir, ['--curator', firma])
+      expect(r.status, r.stdout + r.stderr).toBe(0)
+      expect(sinRed(dir)).toBe(true)
+      const notas = String(leerJson(dir, 'journalist-reports.json').curatorNotes).split('\n')
+      expect(notas.at(-1)).toMatch(new RegExp(`^\\d{4}-\\d{2}-\\d{2} · ${firma}: re-clasificado`))
     } finally {
       limpiar(dir)
     }

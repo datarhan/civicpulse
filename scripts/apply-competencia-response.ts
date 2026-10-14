@@ -20,6 +20,7 @@
 import { readFileSync, writeFileSync, existsSync } from 'node:fs'
 import { resolve } from 'node:path'
 import { validarCompetencias, type Replica } from '../src/scraper/competencias'
+import { rechazarOpcionesDesconocidas } from '../src/scraper/opciones-cli'
 
 const MAPA = resolve('public/data/competencias.json')
 
@@ -29,6 +30,11 @@ function arg(nombre: string): string | undefined {
 }
 
 function main(): void {
+  // Antes de leer nada: una opción que este CLI no conoce no se ignora
+  // (src/scraper/opciones-cli.ts).
+  rechazarOpcionesDesconocidas('competencia-reply', {
+    conValor: ['--oficial', '--fecha', '--texto', '--url'],
+  })
   const oficial = arg('oficial')
   const fecha = arg('fecha')
   const rutaTexto = arg('texto')

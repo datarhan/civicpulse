@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-11T07:07:47.709Z",
+  "generatedAt": "2026-10-12T16:55:45.427Z",
   "version": "1",
   "plenoId": "19gax3o",
   "plenoDate": "2026-01-19",
@@ -6410,9 +6410,10 @@
       "verification": {
         "claimId": "19gax3o-114-cit-b7641b",
         "verdict": "sin-datos",
-        "summary": "Los candidatos [0] y [1] ofrecen el respaldo más fuerte: son contratos menores de obra de 2026, con numeración correlativa (Ctto99 y Ctto101), destinados a corregir un problema técnico concreto (instalación de ACS con mezcladores para duchas) exactamente en los dos edificios que menciona la…",
+        "summary": "Conclusión: respaldo muy débil o nulo…",
         "evidence": [],
-        "checkedAgainst": [
+        "checkedAgainst": [],
+        "derivedBy": [
           "verdict-engine"
         ],
         "confidence": 0.2,
@@ -7794,9 +7795,10 @@
       "verification": {
         "claimId": "19gax3o-146-cit-288e9a",
         "verdict": "sin-datos",
-        "summary": "Ninguno de los candidatos respalda genuinamente la afirmación. Los candidatos [0]-[5] y [7] son contratos de mantenimiento informático (software, servidores, portal de empleo) completamente ajenos al pabellón polideportivo; solo coinciden en la palabra \"mantenimiento\", no en el sujeto real.",
+        "summary": "Ningún candidato respalda genuinamente la afirmación…",
         "evidence": [],
-        "checkedAgainst": [
+        "checkedAgainst": [],
+        "derivedBy": [
           "verdict-engine"
         ],
         "confidence": 0.2,

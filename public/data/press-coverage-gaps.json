@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-11T11:14:21.552Z",
+  "generatedAt": "2026-10-14T09:56:33.661Z",
   "windowDays": 14,
   "items": [
     {
@@ -11,22 +11,8 @@
     },
     {
       "kind": "pleno-item",
-      "refId": "zrbgic:2",
-      "label": "Aprobación de la Cuenta General correspondiente al ejercicio 2025",
-      "date": "2026-10-05",
-      "keyword": ""
-    },
-    {
-      "kind": "pleno-item",
       "refId": "zrbgic:6",
-      "label": "Asuntos de Urgencia. 6.1. Moció",
-      "date": "2026-10-05",
-      "keyword": ""
-    },
-    {
-      "kind": "pleno-item",
-      "refId": "zrbgic:7",
-      "label": "Dar cuenta de las Resoluciones de la número 2850/2026 a la 3084//2026",
+      "label": "Recursos humanos · Asuntos de Urgencia. RECURSOS HUMANOS, Acuerdo para la modificación de los criterios de reparto de la asignación a los grupos políticos para la anualidad 2026",
       "date": "2026-10-05",
       "keyword": ""
     },
@@ -39,14 +25,14 @@
     }
   ],
   "stats": {
-    "plenoItemsUncovered": 5,
+    "plenoItemsUncovered": 3,
     "promisesUncovered": 0,
-    "candidatesExamined": 9
+    "candidatesExamined": 10
   },
   "builtFrom": {
-    "plenos-agendas.json": "010eb2891e99",
-    "press-claims-verified.json": "5f440b22045d",
-    "press.json": "a2ca8faabc1e",
-    "promises.json": "b5dbe1ebae83"
+    "plenos-agendas.json": "1da4e2f94ee0",
+    "press-claims-verified.json": "7a128575d1ad",
+    "press.json": "1b0d9b85b1e6",
+    "promises.json": "08c43b132d79"
   }
 }

@@ -399,6 +399,32 @@ const STOPWORDS = new Set([
   'proyectos',
   'plan',
   'ejecucion',
+  // Funding-programme boilerplate. Every Recovery Plan contract carries «Plan
+  // de Recuperación, Transformación y Resiliencia financiado por la Unión
+  // Europea - Next Generation» in its title, so an entity that names the FUND
+  // («PSTD 2022 / Next Generation EU») overlapped with all of them: the
+  // sensor-platform claim got the pergolas contract as evidence
+  // (tests/claim-verifier-fondos.test.ts). The fund is not the object. «PSTD»
+  // stays: it names one programme, not the whole Plan.
+  'next',
+  'generation',
+  'nextgeneration',
+  'nextgenerationeu',
+  'union',
+  'europea',
+  'europeo',
+  'europeos',
+  'europeas',
+  'fondo',
+  'fondos',
+  'recuperacion',
+  'transformacion',
+  'resiliencia',
+  'financiado',
+  'financiada',
+  'financiacion',
+  'prtr',
+  'feder',
   // Debate / press-quote verbs (es) — these inflate every score against
   // every tender title because the press uses them constantly.
   'presenta',
@@ -609,6 +635,10 @@ function tenderTitle(r: TenderRow): string {
   // adjudicataria). Before 2026-05, the matcher only saw `title · contractor`,
   // which dropped a lot of real matches where the press named the awardee or
   // the CPV category but not the literal tender title.
+  //
+  // `categoryTitle` lands in the evidence snippet as Gobierto's English key
+  // («· construction ·»). Its vocabulary is `CATEGORIAS_DE_CONTRATO`
+  // (tenders.ts); the surfaces print its label (`snippetDeEvidencia`).
   const r2 = r as TenderRow & { assignee?: string; categoryTitle?: string }
   return [r.title, r.contractor, r2.assignee, r2.categoryTitle].filter(Boolean).join(' · ')
 }

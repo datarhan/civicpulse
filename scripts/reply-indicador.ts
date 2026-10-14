@@ -24,6 +24,7 @@ import {
   RESPONDENTES,
   type Respondente,
 } from '../src/scraper/eficiencia-finding'
+import { rechazarOpcionesDesconocidas } from '../src/scraper/opciones-cli'
 
 const PUBLICADOS = resolve('public/data/eficiencia-findings.json')
 
@@ -33,6 +34,9 @@ function fail(msg: string, code = 1): never {
 }
 
 function main(): void {
+  // Antes de leer nada: una opción que este CLI no conoce no se ignora
+  // (src/scraper/opciones-cli.ts).
+  rechazarOpcionesDesconocidas('indicador-reply', {})
   const [findingId, from, quote, sourceUrl] = process.argv.slice(2)
   if (!findingId || !from || !quote) {
     fail(

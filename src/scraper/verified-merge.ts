@@ -139,7 +139,140 @@ export interface OverlayEntry {
    * que escribió la pasada. Ver `corregirRotulos` (correccion-de-rotulo.ts).
    */
   labelCorrections?: CorreccionDeRotulo[]
+  /**
+   * En una subida firmada: la entrada que sustituyó, sin lo que decía. Ver
+   * `EntradaSustituida`. Ausente si lo publicado antes de subirla era la base.
+   *
+   * Y en una bajada de curador escrita encima de una subida —o de otra bajada
+   * que ya lo lleva—: la entrada que pisó, con la subida en su cadena. Ver
+   * `heredaSustituida`.
+   *
+   * Y en una retractación del motor que re-deriva o recorta otra suya con
+   * registros firmados: la que pisó, con ellos. Ver `sustituidaPorElMotor`.
+   */
+  sustituye?: EntradaSustituida
 }
+
+/**
+ * La entrada del overlay que pisó una subida firmada: quién la escribió, cuándo
+ * y los registros firmados que llevaba —las correcciones de su rótulo, las
+ * enmiendas de su explicación, lo que a su vez sustituía—.
+ *
+ * Una subida escribe su entrada entera, y hasta el 11-10-2026 eso se llevaba
+ * todo lo de la anterior: el 06-10-2026 la PR #258 subió cuatro retractaciones
+ * del motor cuyo rótulo había corregido la PR #254 horas antes, y la corrección
+ * dejó de servirse (quedaba sólo en git, en 6bee7650).
+ *
+ * Nunca lo que decía: ni su motivo ni su verificación. Es el razonamiento de una
+ * máquina que la persona acaba de sustituir, y volver a servirlo aquí lo
+ * publicaría otra vez. Tampoco va dentro de `desde`, que es un veredicto: lo
+ * leen como tal `isDowngrade`, la puerta de escritura y `--retirar`.
+ *
+ * Ni la composición ni ninguna página la leen: es el registro de la entrada,
+ * como `labelCorrections`.
+ */
+export interface EntradaSustituida {
+  source: OverlaySource
+  editor?: string
+  appliedAt: string
+  labelCorrections?: CorreccionDeRotulo[]
+  reasonAmendments?: EnmiendaDeMotivo[]
+  /** Si la sustituida era otra subida firmada, lo que sustituía ésa. */
+  sustituye?: EntradaSustituida
+  /** Sólo si se recuperó después de git (`recuperarSustituida`): de dónde y quién. */
+  recuperada?: RecuperacionDeSustituida
+}
+
+/** De qué commit se recuperó una `EntradaSustituida`, quién lo hizo y cuándo. */
+export interface RecuperacionDeSustituida {
+  /** El commit, entero (40 hex): el que tenía la entrada antes de la subida. */
+  commit: string
+  /** Quién firma: una persona o la cuenta de rol, nunca el hueco de una orden. */
+  editor: string
+  recuperadaAt: string
+}
+
+/**
+ * Lo que guarda una subida firmada de la entrada que sustituye (ver
+ * `EntradaSustituida`). Las claves, en un orden fijo: el overlay se sirve.
+ */
+export function sustituidaDe(previa: OverlayEntry): EntradaSustituida {
+  return {
+    source: previa.source,
+    ...(typeof previa.editor === 'string' ? { editor: previa.editor } : {}),
+    appliedAt: previa.appliedAt,
+    ...(previa.labelCorrections ? { labelCorrections: previa.labelCorrections } : {}),
+    ...(previa.reasonAmendments ? { reasonAmendments: previa.reasonAmendments } : {}),
+    ...(previa.sustituye ? { sustituye: previa.sustituye } : {}),
+  }
+}
+
+/**
+ * Lo que guarda de la entrada que pisa una escritura que no es una subida: la
+ * entrada entera como `EntradaSustituida`, si en su historia hay una subida
+ * firmada —es una, o lleva `sustituye`—; si no, nada.
+ *
+ * Hasta el 12-10-2026 `subir-veredicto --retirar`, `downgrade-verdict` y la
+ * retirada de una declaración escribían su bajada entera encima de la subida y
+ * se llevaban quién la firmó, cuándo y la cadena que la subida guardaba —la
+ * retractación del motor con su rótulo corregido, que #290 acababa de
+ * devolverle—. Lo mismo que perdía la subida antes de #289, otra vía.
+ *
+ * Sólo cuando hay una subida: una bajada sobre una retractación del motor
+ * sigue sustituyéndola entera, como siempre (su motivo y su firma quedan en
+ * git). `sustituye` existe para que una subida no borre la historia de lo que
+ * subió, y para que bajarla no borre la subida.
+ */
+export function heredaSustituida(previa: OverlayEntry | undefined): EntradaSustituida | null {
+  if (!previa) return null
+  // La cadena, y no que lleve `sustituye`: desde el 13-10-2026 también la lleva
+  // una retractación del motor re-derivada, y eso no es una subida.
+  const s = sustituidaDe(previa)
+  return llegaAUnaSubida(s) ? s : null
+}
+
+/**
+ * Lo que guarda una retractación del motor de la retractación suya que vuelve a
+ * escribir —re-derivada con `--ids` o recortada con `--recortar`—: la entrada
+ * entera como `EntradaSustituida`, si en su cadena hay registros firmados; si
+ * no, nada, y la sustituye entera como siempre.
+ *
+ * Hasta el 13-10-2026 se la llevaba entera con sus correcciones de rótulo
+ * (`labelCorrections`, PR #254): el 12-10-2026 la re-derivación de #301 tuvo
+ * que dejar fuera dos filas, 1qi8axv-017-afi-e2b0f0 y 1tgd1h4-264-cit-367c04,
+ * porque reescribirlas las borraba. Las correcciones no pasan a la entrada
+ * nueva: dicen que se corrigió el rótulo de AQUÉLLA, y son anteriores a ésta.
+ *
+ * Las enmiendas de la explicación (`reasonAmendments`) no llegan aquí: una
+ * pasada no reescribe lo que firmó una persona (`explicacionFirmadaPor`). Si
+ * algún día llegaran, se guardarían igual —su huella, nunca el texto—.
+ */
+export function sustituidaPorElMotor(previa: OverlayEntry | undefined): EntradaSustituida | null {
+  if (previa?.source !== 'verdict-engine') return null
+  const s = sustituidaDe(previa)
+  return llevaRegistros(s) ? s : null
+}
+
+/** ¿La cadena llega a una subida firmada? Fuera de una subida, `sustituye` sólo así. */
+function llegaAUnaSubida(s: EntradaSustituida | undefined): boolean {
+  for (let x = s; x; x = x.sustituye) if (x.source === 'curator-upgrade') return true
+  return false
+}
+
+/** ¿Guarda la cadena algún registro firmado de una retractación del motor? */
+function llevaRegistros(s: EntradaSustituida | undefined): boolean {
+  for (let x = s; x; x = x.sustituye) if (x.labelCorrections || x.reasonAmendments) return true
+  return false
+}
+
+/** ¿Es toda la cadena del motor? Lo único que una retractación suya puede pisar. */
+function todaDelMotor(s: EntradaSustituida | undefined): boolean {
+  for (let x = s; x; x = x.sustituye) if (x.source !== 'verdict-engine') return false
+  return true
+}
+
+/** Fuera de una subida firmada, sólo una bajada de curador hereda lo que sustituyó. */
+const HEREDAN_SUSTITUYE: readonly OverlaySource[] = ['curator-upgrade', 'curator-downgrade']
 
 /**
  * Una corrección del rótulo (`editor`) de una retractación del motor.
@@ -623,6 +756,157 @@ export function validateOverlay(o: Overlay): void {
       )
     }
     if (e.source === 'curator-upgrade') validarSubida(id, e)
+    if (e.sustituye !== undefined) {
+      validarDondeVaSustituye(`[overlay] ${id}`, e.source, e.sustituye, 'esta entrada')
+      validarSustituida(`[overlay] ${id}.sustituye`, e.sustituye, e.appliedAt)
+      // El motor re-deriva o recorta con fecha nueva: una sustituida de la misma
+      // fecha es la entrada copiada en sí misma, con sus registros dos veces.
+      if (
+        e.source === 'verdict-engine' &&
+        !(Date.parse(e.sustituye.appliedAt) < Date.parse(e.appliedAt))
+      ) {
+        throw new Error(
+          `[overlay] ${id}: sustituye de una retractación del motor tiene que ser anterior a ella ` +
+            `(${e.sustituye.appliedAt}, no antes de ${e.appliedAt}): el motor no se sustituye a sí mismo`,
+        )
+      }
+    }
+  }
+}
+
+/** Lo único que guarda una `EntradaSustituida`: nada de lo que decía. */
+const CLAVES_DE_LA_SUSTITUIDA = new Set([
+  'source',
+  'editor',
+  'appliedAt',
+  'labelCorrections',
+  'reasonAmendments',
+  'sustituye',
+  'recuperada',
+])
+
+const COMMIT_ENTERO = /^[0-9a-f]{40}$/
+
+/**
+ * Quién lleva `sustituye`: una subida firmada, una bajada de curador cuya
+ * cadena llega a una (`heredaSustituida`), o una retractación del motor que
+ * pisó otra suya con registros firmados (`sustituidaPorElMotor`). En ésa, la
+ * cadena es toda del motor: el motor no escribe encima de lo que firmó una
+ * persona.
+ */
+function validarDondeVaSustituye(
+  donde: string,
+  source: OverlaySource,
+  s: EntradaSustituida,
+  quien: string,
+): void {
+  if (source === 'verdict-engine') {
+    if (!todaDelMotor(s)) {
+      throw new Error(
+        `${donde}: en una retractación del motor, sustituye sólo guarda otra suya: el motor no ` +
+          `escribe encima de lo que firmó una persona (${quien} es de verdict-engine)`,
+      )
+    }
+    if (!llevaRegistros(s)) {
+      throw new Error(
+        `${donde}: en una retractación del motor, sustituye sólo guarda la anterior por sus ` +
+          `registros firmados, y su cadena no lleva ninguno (${quien} es de verdict-engine)`,
+      )
+    }
+    return
+  }
+  if (!HEREDAN_SUSTITUYE.includes(source)) {
+    throw new Error(
+      `${donde}: sustituye sólo lo lleva una subida firmada o la bajada de curador que la pisó ` +
+        `(${quien} es de ${source})`,
+    )
+  }
+  if (source !== 'curator-upgrade' && !llegaAUnaSubida(s)) {
+    throw new Error(
+      `${donde}: fuera de una subida firmada, sustituye sólo guarda la historia de una: su ` +
+        `cadena no llega a ninguna (${quien} es de ${source})`,
+    )
+  }
+}
+
+/**
+ * Lo que una subida firmada dice que sustituyó, escrito por la vía o a mano: el
+ * validador no se fía de ninguno. Sólo las claves de su molde —un motivo, un
+ * resumen o una verificación volverían a servir lo que la persona sustituyó—,
+ * anterior a la entrada que la sustituyó, y sus registros con las mismas reglas
+ * que tenían en su entrada, menos las que miran el texto que ya no se guarda.
+ */
+function validarSustituida(donde: string, s: EntradaSustituida, posteriorA: string): void {
+  if (!s || typeof s !== 'object' || Array.isArray(s)) {
+    throw new Error(`${donde} tiene que ser un objeto`)
+  }
+  const ajenas = Object.keys(s).filter((k) => !CLAVES_DE_LA_SUSTITUIDA.has(k))
+  if (ajenas.length > 0) {
+    throw new Error(
+      `${donde}: lleva ${ajenas.join(', ')}, y sólo guarda quién escribió la entrada, cuándo y ` +
+        'sus registros firmados: nunca lo que decía, que la subida sustituyó',
+    )
+  }
+  if (!VALID_SOURCES.includes(s.source)) {
+    throw new Error(`${donde}: canal desconocido (${String(s.source)})`)
+  }
+  if (s.editor !== undefined && (typeof s.editor !== 'string' || s.editor.trim() === '')) {
+    throw new Error(`${donde}.editor, si está, es el rótulo o la firma de la entrada`)
+  }
+  if (s.source === 'curator-upgrade') {
+    const rechazo = rechazoDeFirma(s.editor ?? '')
+    if (rechazo) throw new Error(`${donde}: una subida firmada la firma una persona: ${rechazo}`)
+  }
+  const cuando =
+    typeof s.appliedAt === 'string' && FECHA_ISO.test(s.appliedAt)
+      ? Date.parse(s.appliedAt)
+      : Number.NaN
+  if (Number.isNaN(cuando)) throw new Error(`${donde}.appliedAt tiene que ser una fecha ISO`)
+  if (cuando > Date.parse(posteriorA)) {
+    throw new Error(
+      `${donde}.appliedAt (${s.appliedAt}) es posterior a la subida que la sustituyó (${posteriorA})`,
+    )
+  }
+  if (s.labelCorrections !== undefined) {
+    if (s.source !== 'verdict-engine') {
+      throw new Error(
+        `${donde}: sólo una retractación del motor lleva labelCorrections (la sustituida es de ${s.source})`,
+      )
+    }
+    validarListaDeCorrecciones(donde, s.labelCorrections, s.appliedAt, s.editor)
+  }
+  if (s.reasonAmendments !== undefined) {
+    if (s.source !== 'curator-downgrade' && s.source !== 'verdict-engine') {
+      throw new Error(
+        `${donde}: sólo una bajada de curador o una retractación del motor lleva enmiendas ` +
+          `(la sustituida es de ${s.source})`,
+      )
+    }
+    validarListaDeEnmiendas(donde, s.reasonAmendments, s.appliedAt)
+  }
+  if (s.sustituye !== undefined) {
+    validarDondeVaSustituye(donde, s.source, s.sustituye, 'la sustituida')
+    validarSustituida(`${donde}.sustituye`, s.sustituye, s.appliedAt)
+  }
+  if (s.recuperada !== undefined) {
+    const r = s.recuperada as Partial<RecuperacionDeSustituida> | null
+    const at = `${donde}.recuperada`
+    if (!r || typeof r !== 'object') throw new Error(`${at} tiene que ser un objeto`)
+    if (typeof r.commit !== 'string' || !COMMIT_ENTERO.test(r.commit)) {
+      throw new Error(`${at}.commit tiene que ser el commit entero, 40 hex (${String(r.commit)})`)
+    }
+    const hueco = rechazoDeMarcador(r.editor ?? '')
+    if (hueco) throw new Error(`${at}.editor: ${hueco}`)
+    const recuperada =
+      typeof r.recuperadaAt === 'string' && FECHA_ISO.test(r.recuperadaAt)
+        ? Date.parse(r.recuperadaAt)
+        : Number.NaN
+    if (Number.isNaN(recuperada)) throw new Error(`${at}.recuperadaAt tiene que ser una fecha ISO`)
+    if (recuperada < Date.parse(posteriorA)) {
+      throw new Error(
+        `${at}.recuperadaAt (${r.recuperadaAt}) es anterior a la subida que perdió el registro (${posteriorA})`,
+      )
+    }
   }
 }
 
@@ -797,12 +1081,37 @@ function validarEnmiendas(id: string, e: OverlayEntry): void {
     )
   }
   const lista = e.reasonAmendments
+  validarListaDeEnmiendas(donde, lista, e.appliedAt)
+  if (!lista) return
+  if (lista[lista.length - 1].previous === reasonDigest(textoEnmendable(e))) {
+    throw new Error(
+      `${donde}: la última enmienda no cambió nada — su huella es la del motivo vigente`,
+    )
+  }
+  if (!delMotor && e.verification.summary !== e.reason) {
+    throw new Error(
+      `${donde}: el resumen publicado no es el motivo enmendado, y la tarjeta imprime el resumen`,
+    )
+  }
+}
+
+/**
+ * La lista de enmiendas, sin mirar el texto enmendado: su forma, su firma y su
+ * orden, y ninguna anterior a la entrada. La comparten la entrada que las lleva
+ * y la que las guarda al sustituirla (`validarSustituida`), que ya no tiene el
+ * texto con el que comparar la última.
+ */
+function validarListaDeEnmiendas(
+  donde: string,
+  lista: EnmiendaDeMotivo[] | undefined,
+  appliedAt: string,
+): void {
   if (!Array.isArray(lista) || lista.length === 0) {
     throw new Error(`${donde}: reasonAmendments, si está, tiene que ser una lista no vacía`)
   }
-  const desde = Date.parse(e.appliedAt)
+  const desde = Date.parse(appliedAt)
   if (Number.isNaN(desde)) {
-    throw new Error(`${donde}: appliedAt (${e.appliedAt}) no es una fecha con la que comparar`)
+    throw new Error(`${donde}: appliedAt (${appliedAt}) no es una fecha con la que comparar`)
   }
   let previa = -Infinity
   lista.forEach((a, i) => {
@@ -825,7 +1134,7 @@ function validarEnmiendas(id: string, e: OverlayEntry): void {
     if (Number.isNaN(cuando)) throw new Error(`${at}.amendedAt tiene que ser una fecha ISO`)
     if (cuando < desde) {
       throw new Error(
-        `${at}.amendedAt (${a.amendedAt}) es anterior a la bajada que enmienda (${e.appliedAt})`,
+        `${at}.amendedAt (${a.amendedAt}) es anterior a la bajada que enmienda (${appliedAt})`,
       )
     }
     if (cuando < previa) {
@@ -833,16 +1142,6 @@ function validarEnmiendas(id: string, e: OverlayEntry): void {
     }
     previa = cuando
   })
-  if (lista[lista.length - 1].previous === reasonDigest(textoEnmendable(e))) {
-    throw new Error(
-      `${donde}: la última enmienda no cambió nada — su huella es la del motivo vigente`,
-    )
-  }
-  if (!delMotor && e.verification.summary !== e.reason) {
-    throw new Error(
-      `${donde}: el resumen publicado no es el motivo enmendado, y la tarjeta imprime el resumen`,
-    )
-  }
 }
 
 /** Cómo empieza el rótulo de una retractación del motor: `verdict-engine:<quién>`. */
@@ -863,11 +1162,34 @@ function validarCorreccionesDeRotulo(id: string, e: OverlayEntry): void {
       `${donde}: sólo una retractación del motor lleva labelCorrections (esta entrada es de ${e.source})`,
     )
   }
-  const lista = e.labelCorrections
+  validarListaDeCorrecciones(donde, e.labelCorrections, e.appliedAt, e.editor)
+  const quien = e.editor?.startsWith(PREFIJO_DEL_ROTULO)
+    ? e.editor.slice(PREFIJO_DEL_ROTULO.length)
+    : null
+  if (!quien || !(e.reason ?? '').startsWith(`verdict-engine (${quien}) `)) {
+    throw new Error(
+      `${donde}: el motivo no dice el mismo rótulo que la entrada (${e.editor ?? '—'}); los dos ` +
+        'nombran a quien contestó y se corrigen juntos',
+    )
+  }
+}
+
+/**
+ * La lista de correcciones de rótulo, sin mirar el motivo: su forma, su firma y
+ * su orden, ninguna anterior a la retractación, y la última cambió algo. La
+ * comparten la entrada del motor que las lleva y la subida que las guarda al
+ * sustituirla (`validarSustituida`), que ya no tiene el motivo.
+ */
+function validarListaDeCorrecciones(
+  donde: string,
+  lista: CorreccionDeRotulo[] | undefined,
+  appliedAt: string,
+  editor: string | undefined,
+): void {
   if (!Array.isArray(lista) || lista.length === 0) {
     throw new Error(`${donde}: labelCorrections, si está, tiene que ser una lista no vacía`)
   }
-  const desde = Date.parse(e.appliedAt)
+  const desde = Date.parse(appliedAt)
   let previa = -Infinity
   lista.forEach((c, i) => {
     const at = `${donde}.labelCorrections[${i}]`
@@ -887,7 +1209,7 @@ function validarCorreccionesDeRotulo(id: string, e: OverlayEntry): void {
     if (Number.isNaN(cuando)) throw new Error(`${at}.correctedAt tiene que ser una fecha ISO`)
     if (!Number.isNaN(desde) && cuando < desde) {
       throw new Error(
-        `${at}.correctedAt (${c.correctedAt}) es anterior a la retractación que corrige (${e.appliedAt})`,
+        `${at}.correctedAt (${c.correctedAt}) es anterior a la retractación que corrige (${appliedAt})`,
       )
     }
     if (cuando < previa) {
@@ -895,18 +1217,9 @@ function validarCorreccionesDeRotulo(id: string, e: OverlayEntry): void {
     }
     previa = cuando
   })
-  if (lista[lista.length - 1].previous === e.editor) {
+  if (lista[lista.length - 1].previous === editor) {
     throw new Error(
       `${donde}: la última corrección de rótulo no cambió nada — su rótulo anterior es el vigente`,
-    )
-  }
-  const quien = e.editor?.startsWith(PREFIJO_DEL_ROTULO)
-    ? e.editor.slice(PREFIJO_DEL_ROTULO.length)
-    : null
-  if (!quien || !(e.reason ?? '').startsWith(`verdict-engine (${quien}) `)) {
-    throw new Error(
-      `${donde}: el motivo no dice el mismo rótulo que la entrada (${e.editor ?? '—'}); los dos ` +
-        'nombran a quien contestó y se corrigen juntos',
     )
   }
 }
@@ -1120,6 +1433,19 @@ export function applyOverlayEntries(
         )
       }
     }
+    // Lo que sustituye lo toma de la entrada que tiene delante, no de quien
+    // llama: así no lo pierde ni lo inventa ninguna vía. Una subida guarda
+    // siempre la que pisa; el motor, la retractación suya que re-deriva o
+    // recorta, si lleva registros firmados (`sustituidaPorElMotor`); cualquier
+    // otra escritura, la que pisa si en su historia hay una subida
+    // (`downgrade-verdict`, `subir-veredicto --retirar`). Si el motor pisara
+    // una subida, `validateOverlay` se niega.
+    const sustituye =
+      etapa?.firmaEnLaEntrada && previa
+        ? sustituidaDe(previa)
+        : e.source === 'verdict-engine' && previa?.source === 'verdict-engine'
+          ? sustituidaPorElMotor(previa)
+          : heredaSustituida(previa)
     next.entries[e.claimId] = {
       verification: e.verification,
       source: e.source,
@@ -1127,6 +1453,7 @@ export function applyOverlayEntries(
       ...(e.editor ? { editor: e.editor } : {}),
       appliedAt: stampIso,
       ...(etapa?.firmaEnLaEntrada && e.desde ? { desde: e.desde } : {}),
+      ...(sustituye ? { sustituye } : {}),
     }
   }
   validateOverlay(next)
@@ -1306,6 +1633,8 @@ export function enmendarMotivoDeBajada(
         // Enmendar el motivo no deshace la retirada: sin esto, reescribir la
         // explicación volvería a publicar la declaración.
         ...(e.retirada ? { retirada: e.retirada } : {}),
+        // Ni lo que la bajada sustituyó: la enmienda no es otra decisión.
+        ...(e.sustituye ? { sustituye: e.sustituye } : {}),
         reasonAmendments,
       }
   const next: Overlay = {
@@ -1357,8 +1686,10 @@ export function huellaDeLiteralRetirado(texto: string): string {
  *     con la que el dosier del 29-09 comprobó sus sumarios).
  *
  * Sustituye la entrada que hubiera —su motivo y su firma quedan en el
- * historial del repositorio—, y ninguna escritura posterior la pisa
- * (`applyOverlayEntries`). Puro: devuelve un overlay nuevo.
+ * historial del repositorio; si en su historia hay una subida firmada, quién
+ * la escribió y su cadena quedan además en `sustituye` (`heredaSustituida`)—,
+ * y ninguna escritura posterior la pisa (`applyOverlayEntries`). Puro:
+ * devuelve un overlay nuevo.
  */
 export function retirarDeclaracion(
   overlay: Overlay,
@@ -1399,6 +1730,7 @@ export function retirarDeclaracion(
     throw new Error(`${donde}: la fecha de la retirada tiene que ser ISO («${stampIso}»)`)
   }
 
+  const heredada = heredaSustituida(previa)
   const entrada: OverlayEntry = {
     verification: verificacionDeBajada(claimId, { evidence: [] }, 'sin-datos', motivo),
     source: 'curator-downgrade',
@@ -1406,6 +1738,7 @@ export function retirarDeclaracion(
     editor: pedida.editor.normalize('NFC').replace(/\s+/g, ' ').trim(),
     appliedAt: stampIso,
     retirada: { motivo: 'literal-no-dicho', literal: huellaDeLiteralRetirado(literal) },
+    ...(heredada ? { sustituye: heredada } : {}),
   }
   const next: Overlay = {
     version: overlay?.version ?? 1,

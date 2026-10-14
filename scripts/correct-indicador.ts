@@ -34,6 +34,7 @@ import {
   validateEficienciaFindingsSnapshot,
   cotejarMedicion,
 } from '../src/scraper/eficiencia-finding'
+import { rechazarOpcionesDesconocidas } from '../src/scraper/opciones-cli'
 
 const PUBLICADOS = resolve('public/data/eficiencia-findings.json')
 const PANEL = resolve('public/data/indicadores.json')
@@ -61,6 +62,12 @@ function fail(msg: string, code = 1): never {
 }
 
 function main(): void {
+  // Antes de leer nada: una opción que este CLI no conoce no se ignora
+  // (src/scraper/opciones-cli.ts).
+  rechazarOpcionesDesconocidas('correct-indicador', {
+    banderas: ['--refrescar'],
+    conValor: ['--field', '--new', '--reason', '--editor'],
+  })
   const [findingId] = positionals()
   const field = flag('--field')
   const reason = flag('--reason')?.trim()

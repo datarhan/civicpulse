@@ -1,137 +1,719 @@
 {
-  "generatedAt": "2026-09-28T08:21:08.164Z",
+  "generatedAt": "2026-10-12T08:31:17.413Z",
   "source": {
     "description": "Press claims verified against municipal data",
     "contract": "src/scraper/press-verifier.ts"
   },
   "stats": {
-    "total": 31,
+    "total": 36,
     "byVerdict": {
       "verificado": 0,
       "parcial": 1,
       "contradicho": 0,
-      "sin-datos": 30,
+      "sin-datos": 35,
       "promesa-repetida": 0
     }
   },
   "items": [
     {
       "claim": {
-        "id": "t335v0-0-num",
-        "articleId": "t335v0",
-        "articleFingerprint": "jt55in",
+        "id": "1w1lf6k-0-num",
+        "articleId": "1w1lf6k",
+        "articleFingerprint": "1j6o5dl",
+        "articleSource": "Periòdic del Camp de Túria",
+        "articleSourceHost": "infoturia.com",
+        "articleUrl": "https://www.infoturia.com/riba-roja-de-turia/86666-riba-roja-restaurara-les-quatre-pedreres.html",
+        "articleDate": "2026-10-09T08:08:54.000Z",
+        "segmentIndex": 0,
+        "segmentKind": "body",
+        "type": "afirmacion_numerica",
+        "attributedSource": "outlet",
+        "verbatim": "impacte econòmic a la regió de més 6.800 milions de lliures",
+        "context": "Aquest projecte ha tingut un impacte econòmic a la regió de més 6.800 milions de lliures i ha rebut 25 milions de visitants des de la seua obertura.",
+        "topic": "medio-ambiente",
+        "entities": {
+          "count": 6800,
+          "countUnit": "milions de lliures (GBP)",
+          "referencedEntity": "Eden Project"
+        },
+        "confidence": 0.7,
+        "reasoning": "Cifra económica específica y verificable sobre el impacto del Eden Project citado como modelo de referencia.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "1w1lf6k-0-num",
+        "verdict": "sin-datos",
+        "summary": "Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
+        "evidence": [],
+        "checkedAgainst": [],
+        "articleUrl": "https://www.infoturia.com/riba-roja-de-turia/86666-riba-roja-restaurara-les-quatre-pedreres.html",
+        "articleSource": "Periòdic del Camp de Túria",
+        "articleSourceHost": "infoturia.com",
+        "articleFingerprint": "1j6o5dl"
+      }
+    },
+    {
+      "claim": {
+        "id": "1w1lf6k-1-num",
+        "articleId": "1w1lf6k",
+        "articleFingerprint": "1j6o5dl",
+        "articleSource": "Periòdic del Camp de Túria",
+        "articleSourceHost": "infoturia.com",
+        "articleUrl": "https://www.infoturia.com/riba-roja-de-turia/86666-riba-roja-restaurara-les-quatre-pedreres.html",
+        "articleDate": "2026-10-09T08:08:54.000Z",
+        "segmentIndex": 1,
+        "segmentKind": "body",
+        "type": "afirmacion_numerica",
+        "attributedSource": "outlet",
+        "verbatim": "ha rebut 25 milions de visitants des de la seua obertura",
+        "context": "Aquest projecte ha tingut un impacte econòmic a la regió de més 6.800 milions de lliures i ha rebut 25 milions de visitants des de la seua obertura.",
+        "topic": "medio-ambiente",
+        "entities": {
+          "count": 25000000,
+          "countUnit": "visitants",
+          "referencedEntity": "Eden Project"
+        },
+        "confidence": 0.75,
+        "reasoning": "Cifra de visitantes verificable sobre el proyecto de referencia citado por el medio.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "1w1lf6k-1-num",
+        "verdict": "sin-datos",
+        "summary": "Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
+        "evidence": [],
+        "checkedAgainst": [],
+        "articleUrl": "https://www.infoturia.com/riba-roja-de-turia/86666-riba-roja-restaurara-les-quatre-pedreres.html",
+        "articleSource": "Periòdic del Camp de Túria",
+        "articleSourceHost": "infoturia.com",
+        "articleFingerprint": "1j6o5dl"
+      }
+    },
+    {
+      "claim": {
+        "id": "1w1lf6k-2-num",
+        "articleId": "1w1lf6k",
+        "articleFingerprint": "1j6o5dl",
+        "articleSource": "Periòdic del Camp de Túria",
+        "articleSourceHost": "infoturia.com",
+        "articleUrl": "https://www.infoturia.com/riba-roja-de-turia/86666-riba-roja-restaurara-les-quatre-pedreres.html",
+        "articleDate": "2026-10-09T08:08:54.000Z",
+        "segmentIndex": 2,
+        "segmentKind": "body",
+        "type": "afirmacion_numerica",
+        "attributedSource": "outlet",
+        "verbatim": "Un espectacular complex botànic que va ser inaugurat en 2001 en la població de Cornualla",
+        "context": "Un espectacular complex botànic que va ser inaugurat en 2001 en la població de Cornualla, al sud d'Anglaterra que compta amb un disseny arquitectònic format per cúpules geodèsiques.",
+        "topic": "medio-ambiente",
+        "entities": {
+          "date": "2001",
+          "referencedEntity": "Eden Project"
+        },
+        "confidence": 0.8,
+        "reasoning": "Fecha de apertura verificable de un proyecto citado como modelo de referencia.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "1w1lf6k-2-num",
+        "verdict": "sin-datos",
+        "summary": "Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
+        "evidence": [],
+        "checkedAgainst": [],
+        "articleUrl": "https://www.infoturia.com/riba-roja-de-turia/86666-riba-roja-restaurara-les-quatre-pedreres.html",
+        "articleSource": "Periòdic del Camp de Túria",
+        "articleSourceHost": "infoturia.com",
+        "articleFingerprint": "1j6o5dl"
+      }
+    },
+    {
+      "claim": {
+        "id": "1w1lf6k-3-num",
+        "articleId": "1w1lf6k",
+        "articleFingerprint": "1j6o5dl",
+        "articleSource": "Periòdic del Camp de Túria",
+        "articleSourceHost": "infoturia.com",
+        "articleUrl": "https://www.infoturia.com/riba-roja-de-turia/86666-riba-roja-restaurara-les-quatre-pedreres.html",
+        "articleDate": "2026-10-09T08:08:54.000Z",
+        "segmentIndex": 3,
+        "segmentKind": "body",
+        "type": "afirmacion_numerica",
+        "attributedSource": "outlet",
+        "verbatim": "al qual ha estat vinculat durant 12 anys",
+        "context": "Un d'aquests projectes és Eden Project, al qual ha estat vinculat durant 12 anys i amb el qual el govern municipal va començar a treballar en 2015 com a model per a instaurar a Riba-roja.",
+        "topic": "medio-ambiente",
+        "entities": {
+          "count": 12,
+          "countUnit": "anys",
+          "referencedEntity": "Eden Project"
+        },
+        "confidence": 0.7,
+        "reasoning": "Dato temporal verificable sobre la vinculación del consultor al proyecto citado.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "1w1lf6k-3-num",
+        "verdict": "sin-datos",
+        "summary": "Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
+        "evidence": [],
+        "checkedAgainst": [],
+        "articleUrl": "https://www.infoturia.com/riba-roja-de-turia/86666-riba-roja-restaurara-les-quatre-pedreres.html",
+        "articleSource": "Periòdic del Camp de Túria",
+        "articleSourceHost": "infoturia.com",
+        "articleFingerprint": "1j6o5dl"
+      }
+    },
+    {
+      "claim": {
+        "id": "1w1lf6k-4-dat",
+        "articleId": "1w1lf6k",
+        "articleFingerprint": "1j6o5dl",
+        "articleSource": "Periòdic del Camp de Túria",
+        "articleSourceHost": "infoturia.com",
+        "articleUrl": "https://www.infoturia.com/riba-roja-de-turia/86666-riba-roja-restaurara-les-quatre-pedreres.html",
+        "articleDate": "2026-10-09T08:08:54.000Z",
+        "segmentIndex": 4,
+        "segmentKind": "body",
+        "type": "dato_municipal",
+        "attributedSource": "outlet",
+        "verbatim": "el govern municipal va començar a treballar en 2015 com a model per a instaurar a Riba-roja",
+        "context": "Un d'aquests projectes és Eden Project, al qual ha estat vinculat durant 12 anys i amb el qual el govern municipal va començar a treballar en 2015 com a model per a instaurar a Riba-roja.",
+        "topic": "medio-ambiente",
+        "entities": {
+          "date": "2015",
+          "referencedEntity": "Eden Project"
+        },
+        "confidence": 0.75,
+        "reasoning": "Afirmación fechada sobre cuándo el gobierno municipal inició el trabajo con el modelo de referencia, contrastable documentalmente.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "1w1lf6k-4-dat",
+        "verdict": "sin-datos",
+        "summary": "No se ha encontrado el dato municipal en las series locales.",
+        "evidence": [],
+        "checkedAgainst": [],
+        "articleUrl": "https://www.infoturia.com/riba-roja-de-turia/86666-riba-roja-restaurara-les-quatre-pedreres.html",
+        "articleSource": "Periòdic del Camp de Túria",
+        "articleSourceHost": "infoturia.com",
+        "articleFingerprint": "1j6o5dl"
+      }
+    },
+    {
+      "claim": {
+        "id": "1w1lf6k-5-dat",
+        "articleId": "1w1lf6k",
+        "articleFingerprint": "1j6o5dl",
+        "articleSource": "Periòdic del Camp de Túria",
+        "articleSourceHost": "infoturia.com",
+        "articleUrl": "https://www.infoturia.com/riba-roja-de-turia/86666-riba-roja-restaurara-les-quatre-pedreres.html",
+        "articleDate": "2026-10-09T08:08:54.000Z",
+        "segmentIndex": 5,
+        "segmentKind": "body",
+        "type": "dato_municipal",
+        "attributedSource": "outlet",
+        "verbatim": "Riba-roja disposa de quatre pedreres, de les quals tres es troben actualment en explotació",
+        "context": "Riba-roja disposa de quatre pedreres, de les quals tres es troben actualment en explotació: El Porvenir (Aristaria) Carassols (Corporació F Túria), la Senyoreta (Cemex) i La Pedrera (CYES), tancada en l'actualitat.",
+        "topic": "urbanismo",
+        "entities": {
+          "count": 4,
+          "countUnit": "pedreres",
+          "referencedEntity": "Riba-roja de Túria"
+        },
+        "confidence": 0.85,
+        "reasoning": "Dato cuantificable y verificable sobre el número de canteras y su estado de explotación.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "1w1lf6k-5-dat",
+        "verdict": "sin-datos",
+        "summary": "No se ha encontrado el dato municipal en las series locales.",
+        "evidence": [],
+        "checkedAgainst": [],
+        "articleUrl": "https://www.infoturia.com/riba-roja-de-turia/86666-riba-roja-restaurara-les-quatre-pedreres.html",
+        "articleSource": "Periòdic del Camp de Túria",
+        "articleSourceHost": "infoturia.com",
+        "articleFingerprint": "1j6o5dl"
+      }
+    },
+    {
+      "claim": {
+        "id": "1w1lf6k-6-num",
+        "articleId": "1w1lf6k",
+        "articleFingerprint": "1j6o5dl",
+        "articleSource": "Periòdic del Camp de Túria",
+        "articleSourceHost": "infoturia.com",
+        "articleUrl": "https://www.infoturia.com/riba-roja-de-turia/86666-riba-roja-restaurara-les-quatre-pedreres.html",
+        "articleDate": "2026-10-09T08:08:54.000Z",
+        "segmentIndex": 6,
+        "segmentKind": "body",
+        "type": "afirmacion_numerica",
+        "attributedSource": "outlet",
+        "verbatim": "ocupen prop de 600.000 m2",
+        "context": "La jornada ha servit per a posar sobre la taula quins projectes innovadors... podrien desenvolupar-se... en aquestes quatre pedreres que ocupen prop de 600.000 m2 sobre un territori total 1,4 milions de m2 de superfície.",
+        "topic": "urbanismo",
+        "entities": {
+          "count": 600000,
+          "countUnit": "m2",
+          "referencedEntity": "quatre pedreres de Riba-roja"
+        },
+        "confidence": 0.75,
+        "reasoning": "Superficie ocupada por las canteras expresada en una cifra verificable.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "1w1lf6k-6-num",
+        "verdict": "sin-datos",
+        "summary": "Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
+        "evidence": [],
+        "checkedAgainst": [],
+        "articleUrl": "https://www.infoturia.com/riba-roja-de-turia/86666-riba-roja-restaurara-les-quatre-pedreres.html",
+        "articleSource": "Periòdic del Camp de Túria",
+        "articleSourceHost": "infoturia.com",
+        "articleFingerprint": "1j6o5dl"
+      }
+    },
+    {
+      "claim": {
+        "id": "1w1lf6k-7-num",
+        "articleId": "1w1lf6k",
+        "articleFingerprint": "1j6o5dl",
+        "articleSource": "Periòdic del Camp de Túria",
+        "articleSourceHost": "infoturia.com",
+        "articleUrl": "https://www.infoturia.com/riba-roja-de-turia/86666-riba-roja-restaurara-les-quatre-pedreres.html",
+        "articleDate": "2026-10-09T08:08:54.000Z",
+        "segmentIndex": 7,
+        "segmentKind": "body",
+        "type": "afirmacion_numerica",
+        "attributedSource": "outlet",
+        "verbatim": "sobre un territori total 1,4 milions de m2 de superfície",
+        "context": "...aquestes quatre pedreres que ocupen prop de 600.000 m2 sobre un territori total 1,4 milions de m2 de superfície.",
+        "topic": "urbanismo",
+        "entities": {
+          "count": 1400000,
+          "countUnit": "m2",
+          "referencedEntity": "quatre pedreres de Riba-roja"
+        },
+        "confidence": 0.75,
+        "reasoning": "Cifra total de superficie del territorio afectado, verificable con datos catastrales o municipales.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "1w1lf6k-7-num",
+        "verdict": "sin-datos",
+        "summary": "Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
+        "evidence": [],
+        "checkedAgainst": [],
+        "articleUrl": "https://www.infoturia.com/riba-roja-de-turia/86666-riba-roja-restaurara-les-quatre-pedreres.html",
+        "articleSource": "Periòdic del Camp de Túria",
+        "articleSourceHost": "infoturia.com",
+        "articleFingerprint": "1j6o5dl"
+      }
+    },
+    {
+      "claim": {
+        "id": "1w1lf6k-8-num",
+        "articleId": "1w1lf6k",
+        "articleFingerprint": "1j6o5dl",
+        "articleSource": "Periòdic del Camp de Túria",
+        "articleSourceHost": "infoturia.com",
+        "articleUrl": "https://www.infoturia.com/riba-roja-de-turia/86666-riba-roja-restaurara-les-quatre-pedreres.html",
+        "articleDate": "2026-10-09T08:08:54.000Z",
+        "segmentIndex": 8,
+        "segmentKind": "body",
+        "type": "afirmacion_numerica",
+        "attributedSource": "outlet",
+        "verbatim": "des de 2019 treballa amb 130 professionals i científics de l'àmbit de la mineria i la restauració",
+        "context": "El projecte es realitzarà en coordinació amb la Xarxa de Restauració de Mines i Pedreres que, des de 2019 treballa amb 130 professionals i científics de l'àmbit de la mineria i la restauració, 19 universitats i centres d'investigació i compta amb 57 socis.",
+        "topic": "medio-ambiente",
+        "entities": {
+          "count": 130,
+          "countUnit": "professionals",
+          "date": "2019",
+          "referencedEntity": "Xarxa de Restauració de Mines i Pedreres"
+        },
+        "confidence": 0.75,
+        "reasoning": "Cifra concreta y fechada sobre la composición de la red técnica, contrastable con sus registros.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "1w1lf6k-8-num",
+        "verdict": "sin-datos",
+        "summary": "Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
+        "evidence": [],
+        "checkedAgainst": [],
+        "articleUrl": "https://www.infoturia.com/riba-roja-de-turia/86666-riba-roja-restaurara-les-quatre-pedreres.html",
+        "articleSource": "Periòdic del Camp de Túria",
+        "articleSourceHost": "infoturia.com",
+        "articleFingerprint": "1j6o5dl"
+      }
+    },
+    {
+      "claim": {
+        "id": "1w1lf6k-9-num",
+        "articleId": "1w1lf6k",
+        "articleFingerprint": "1j6o5dl",
+        "articleSource": "Periòdic del Camp de Túria",
+        "articleSourceHost": "infoturia.com",
+        "articleUrl": "https://www.infoturia.com/riba-roja-de-turia/86666-riba-roja-restaurara-les-quatre-pedreres.html",
+        "articleDate": "2026-10-09T08:08:54.000Z",
+        "segmentIndex": 9,
+        "segmentKind": "body",
+        "type": "afirmacion_numerica",
+        "attributedSource": "outlet",
+        "verbatim": "19 universitats i centres d'investigació",
+        "context": "...des de 2019 treballa amb 130 professionals i científics de l'àmbit de la mineria i la restauració, 19 universitats i centres d'investigació i compta amb 57 socis, entre institucions publiques i privades.",
+        "topic": "medio-ambiente",
+        "entities": {
+          "count": 19,
+          "countUnit": "universitats i centres d'investigació",
+          "referencedEntity": "Xarxa de Restauració de Mines i Pedreres"
+        },
+        "confidence": 0.75,
+        "reasoning": "Cifra concreta sobre el número de instituciones académicas participantes, verificable.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "1w1lf6k-9-num",
+        "verdict": "sin-datos",
+        "summary": "Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
+        "evidence": [],
+        "checkedAgainst": [],
+        "articleUrl": "https://www.infoturia.com/riba-roja-de-turia/86666-riba-roja-restaurara-les-quatre-pedreres.html",
+        "articleSource": "Periòdic del Camp de Túria",
+        "articleSourceHost": "infoturia.com",
+        "articleFingerprint": "1j6o5dl"
+      }
+    },
+    {
+      "claim": {
+        "id": "1w1lf6k-10-num",
+        "articleId": "1w1lf6k",
+        "articleFingerprint": "1j6o5dl",
+        "articleSource": "Periòdic del Camp de Túria",
+        "articleSourceHost": "infoturia.com",
+        "articleUrl": "https://www.infoturia.com/riba-roja-de-turia/86666-riba-roja-restaurara-les-quatre-pedreres.html",
+        "articleDate": "2026-10-09T08:08:54.000Z",
+        "segmentIndex": 10,
+        "segmentKind": "body",
+        "type": "afirmacion_numerica",
+        "attributedSource": "outlet",
+        "verbatim": "compta amb 57 socis, entre institucions publiques i privades",
+        "context": "...19 universitats i centres d'investigació i compta amb 57 socis, entre institucions publiques i privades.",
+        "topic": "medio-ambiente",
+        "entities": {
+          "count": 57,
+          "countUnit": "socis",
+          "referencedEntity": "Xarxa de Restauració de Mines i Pedreres"
+        },
+        "confidence": 0.75,
+        "reasoning": "Cifra concreta sobre el número de socios de la red, verificable con sus propios registros.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "1w1lf6k-10-num",
+        "verdict": "sin-datos",
+        "summary": "Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
+        "evidence": [],
+        "checkedAgainst": [],
+        "articleUrl": "https://www.infoturia.com/riba-roja-de-turia/86666-riba-roja-restaurara-les-quatre-pedreres.html",
+        "articleSource": "Periòdic del Camp de Túria",
+        "articleSourceHost": "infoturia.com",
+        "articleFingerprint": "1j6o5dl"
+      }
+    },
+    {
+      "claim": {
+        "id": "1w1lf6k-11-num",
+        "articleId": "1w1lf6k",
+        "articleFingerprint": "1j6o5dl",
+        "articleSource": "Periòdic del Camp de Túria",
+        "articleSourceHost": "infoturia.com",
+        "articleUrl": "https://www.infoturia.com/riba-roja-de-turia/86666-riba-roja-restaurara-les-quatre-pedreres.html",
+        "articleDate": "2026-10-09T08:08:54.000Z",
+        "segmentIndex": 11,
+        "segmentKind": "body",
+        "type": "afirmacion_numerica",
+        "attributedSource": "municipal",
+        "verbatim": "prop de dos milions d'habitants i la seua àrea metropolitana",
+        "context": "Raga ha subratllat, 'les pedreres de Riba-roja tenen peculiaritats que les converteixen en un espai atractiu i únic per als prop de dos milions d'habitants i la seua àrea metropolitana, ja que estan pròximes a l'A3, el by pass, la línia 9 de Metro i a cinc minuts de l'aeroport de Manises'.",
+        "topic": "demografia",
+        "entities": {
+          "count": 2000000,
+          "countUnit": "habitants",
+          "referencedEntity": "àrea metropolitana de València"
+        },
+        "confidence": 0.65,
+        "reasoning": "Cifra de población del área metropolitana citada por una fuente institucional, contrastable con datos demográficos oficiales.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "1w1lf6k-11-num",
+        "verdict": "sin-datos",
+        "summary": "Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
+        "evidence": [],
+        "checkedAgainst": [],
+        "articleUrl": "https://www.infoturia.com/riba-roja-de-turia/86666-riba-roja-restaurara-les-quatre-pedreres.html",
+        "articleSource": "Periòdic del Camp de Túria",
+        "articleSourceHost": "infoturia.com",
+        "articleFingerprint": "1j6o5dl"
+      }
+    },
+    {
+      "claim": {
+        "id": "1w1lf6k-12-num",
+        "articleId": "1w1lf6k",
+        "articleFingerprint": "1j6o5dl",
+        "articleSource": "Periòdic del Camp de Túria",
+        "articleSourceHost": "infoturia.com",
+        "articleUrl": "https://www.infoturia.com/riba-roja-de-turia/86666-riba-roja-restaurara-les-quatre-pedreres.html",
+        "articleDate": "2026-10-09T08:08:54.000Z",
+        "segmentIndex": 12,
+        "segmentKind": "body",
+        "type": "afirmacion_numerica",
+        "attributedSource": "municipal",
+        "verbatim": "a cinc minuts de l'aeroport de Manises",
+        "context": "...ja que estan pròximes a l'A3, el by pass, la línia 9 de Metro i a cinc minuts de l'aeroport de Manises\" i conclou, \"pot convertir-se en un dels projectes més importants i singulars d'Europa\".",
+        "topic": "movilidad",
+        "entities": {
+          "count": 5,
+          "countUnit": "minuts",
+          "referencedEntity": "aeroport de Manises"
+        },
+        "confidence": 0.65,
+        "reasoning": "Afirmación de distancia temporal verificable con datos de tiempos de desplazamiento reales.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "1w1lf6k-12-num",
+        "verdict": "sin-datos",
+        "summary": "Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
+        "evidence": [],
+        "checkedAgainst": [],
+        "articleUrl": "https://www.infoturia.com/riba-roja-de-turia/86666-riba-roja-restaurara-les-quatre-pedreres.html",
+        "articleSource": "Periòdic del Camp de Túria",
+        "articleSourceHost": "infoturia.com",
+        "articleFingerprint": "1j6o5dl"
+      }
+    },
+    {
+      "claim": {
+        "id": "1w1lf6k-13-dat",
+        "articleId": "1w1lf6k",
+        "articleFingerprint": "1j6o5dl",
+        "articleSource": "Periòdic del Camp de Túria",
+        "articleSourceHost": "infoturia.com",
+        "articleUrl": "https://www.infoturia.com/riba-roja-de-turia/86666-riba-roja-restaurara-les-quatre-pedreres.html",
+        "articleDate": "2026-10-09T08:08:54.000Z",
+        "segmentIndex": 13,
+        "segmentKind": "body",
+        "type": "dato_municipal",
+        "attributedSource": "outlet",
+        "verbatim": "Les mercantils ja disposen de plans de restauració presentats a la conselleria de Medi Ambient i de manera específica a la Direcció General d'Energia i Mines.",
+        "context": "En aquest procés la participació de ARIVAL, que representa a les empreses titulars del sòl, serà clau. Les mercantils ja disposen de plans de restauració presentats a la conselleria de Medi Ambient i de manera específica a la Direcció General d'Energia i Mines.",
+        "topic": "medio-ambiente",
+        "entities": {
+          "referencedEntity": "ARIVAL / empreses titulars del sòl"
+        },
+        "confidence": 0.6,
+        "reasoning": "Afirmación verificable sobre la existencia de planes de restauración presentados ante un organismo autonómico concreto.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "1w1lf6k-13-dat",
+        "verdict": "sin-datos",
+        "summary": "No se ha encontrado el dato municipal en las series locales.",
+        "evidence": [],
+        "checkedAgainst": [],
+        "articleUrl": "https://www.infoturia.com/riba-roja-de-turia/86666-riba-roja-restaurara-les-quatre-pedreres.html",
+        "articleSource": "Periòdic del Camp de Túria",
+        "articleSourceHost": "infoturia.com",
+        "articleFingerprint": "1j6o5dl"
+      }
+    },
+    {
+      "claim": {
+        "id": "1w1lf6k-14-pro",
+        "articleId": "1w1lf6k",
+        "articleFingerprint": "1j6o5dl",
+        "articleSource": "Periòdic del Camp de Túria",
+        "articleSourceHost": "infoturia.com",
+        "articleUrl": "https://www.infoturia.com/riba-roja-de-turia/86666-riba-roja-restaurara-les-quatre-pedreres.html",
+        "articleDate": "2026-10-09T08:08:54.000Z",
+        "segmentIndex": 14,
+        "segmentKind": "body",
+        "type": "promesa",
+        "attributedSource": "municipal",
+        "verbatim": "serà un projecte participat a través dels 14 consells sectorials que representen a la població",
+        "context": "L'Ajuntament ha anunciat que serà un projecte participat a través dels 14 consells sectorials que representen a la població, amb l'objectiu de conjuminar inquietuds respecte a la posada en valor d'aquests espais degradats.",
+        "topic": "transparencia",
+        "entities": {
+          "count": 14,
+          "countUnit": "consells sectorials",
+          "referencedEntity": "Ajuntament de Riba-roja de Túria"
+        },
+        "confidence": 0.7,
+        "reasoning": "Anuncio municipal de un mecanismo de participación concreto y cuantificado, verificable en el futuro.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "1w1lf6k-14-pro",
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en promises que la sostenga. Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
+        "evidence": [],
+        "checkedAgainst": [
+          "promises"
+        ],
+        "articleUrl": "https://www.infoturia.com/riba-roja-de-turia/86666-riba-roja-restaurara-les-quatre-pedreres.html",
+        "articleSource": "Periòdic del Camp de Túria",
+        "articleSourceHost": "infoturia.com",
+        "articleFingerprint": "1j6o5dl"
+      }
+    },
+    {
+      "claim": {
+        "id": "1w1lf6k-15-dat",
+        "articleId": "1w1lf6k",
+        "articleFingerprint": "1j6o5dl",
+        "articleSource": "Periòdic del Camp de Túria",
+        "articleSourceHost": "infoturia.com",
+        "articleUrl": "https://www.infoturia.com/riba-roja-de-turia/86666-riba-roja-restaurara-les-quatre-pedreres.html",
+        "articleDate": "2026-10-09T08:08:54.000Z",
+        "segmentIndex": 15,
+        "segmentKind": "body",
+        "type": "dato_municipal",
+        "attributedSource": "outlet",
+        "verbatim": "estan enclavades en una situació estratègica entre la carretera CV-374, la zona industrial de l'autovia A7 i la carretera CV-370",
+        "context": "Les pedreres, de titularitat privada, estan enclavades en una situació estratègica entre la carretera CV-374, la zona industrial de l'autovia A7 i la carretera CV-370, a més de gaudir de comunicació per transport públic.",
+        "topic": "movilidad",
+        "entities": {
+          "referencedEntity": "quatre pedreres de Riba-roja"
+        },
+        "confidence": 0.6,
+        "reasoning": "Descripción de ubicación respecto a infraestructuras viarias concretas, comprobable sobre el terreno.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "1w1lf6k-15-dat",
+        "verdict": "sin-datos",
+        "summary": "No se ha encontrado el dato municipal en las series locales.",
+        "evidence": [],
+        "checkedAgainst": [],
+        "articleUrl": "https://www.infoturia.com/riba-roja-de-turia/86666-riba-roja-restaurara-les-quatre-pedreres.html",
+        "articleSource": "Periòdic del Camp de Túria",
+        "articleSourceHost": "infoturia.com",
+        "articleFingerprint": "1j6o5dl"
+      }
+    },
+    {
+      "claim": {
+        "id": "1ota6hb-0-dat",
+        "articleId": "1ota6hb",
+        "articleFingerprint": "1cszl50",
+        "articleSource": "Levante-EMV",
+        "articleSourceHost": "levante-emv.com",
+        "articleUrl": "https://news.google.com/rss/articles/CBMi5gFBVV95cUxNd0ZHNHJkbWVUR2J0U1RGU1pTdEJBMmpmektMZDNYUGdfX3hjc3JNbWg0azVEZzBRaFhqOUlCU0R6aTBrUGwzaFRDRVNCSkdNQXZudEpVWmNISkVnU3RZZEU4bnpHT011Q1U0NHFORmRiekpMSzJ4bWxYaWxSdG1uTkhGakNSb1BKTUhNQzZKMkV5dDdKNlMwaTR0YUZHY0pIWUZxZVJFQUkzSXdVemhYVjlQc1RyZ0k2cjNmXzh2TGlicmhJd1NVdzFrZjlQa1duRjkxZG03Z3hvYzlzb3BTZVZJNWxzQdIB6wFBVV95cUxQUnhwcThzYTY5RUpIWmJJQXhuNEN0YU9BZ0xkZndBakJoVmVjZDVCa2szTldWOWdJMFJ6Z0NsVUpmUUVNQm90ZVJGMV9nZW01dVg4cFBjNmgtRXAyZlJicmI0R3VLakZ3TUJINWVfVG10NlRYc3FNQWM4WVJIdFZMWFVtaWhnTFZFcGxuWGlaX1FvQ09reWZ3bS1mbzNtNzBhSzU2ZFlWdmJYOWhYUHJvYmN0aUlMVXFVcnBIc09nd2NaTklLUmxRLXpVNUtpQUw5OUJfRGxCbHhfS05DZnVSNFlkcS1hZUJ1MVlJ?oc=5",
+        "articleDate": "2026-10-08T12:42:17.000Z",
+        "segmentIndex": 0,
+        "segmentKind": "title",
+        "type": "dato_municipal",
+        "attributedSource": "outlet",
+        "verbatim": "La Diputación refuerza la seguridad en la CV-336 de Riba-roja con nuevas señales y límites a 40 km/h",
+        "context": "TITULAR: La Diputación refuerza la seguridad en la CV-336 de Riba-roja con nuevas señales y límites a 40 km/h (Levante-EMV, 08/10/2026). No se dispone de cuerpo de artículo adicional, solo el titular.",
+        "topic": "movilidad",
+        "entities": {
+          "count": 40,
+          "countUnit": "km/h",
+          "referencedEntity": "CV-336"
+        },
+        "confidence": 0.4,
+        "reasoning": "El titular afirma una medida concreta y verificable (nueva señalización y límite de velocidad de 40 km/h en la CV-336), aunque sin el cuerpo del artículo no puede confirmarse contexto adicional ni fecha exacta de la medida.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "1ota6hb-0-dat",
+        "verdict": "sin-datos",
+        "summary": "No se ha encontrado el dato municipal en las series locales.",
+        "evidence": [],
+        "checkedAgainst": [],
+        "articleUrl": "https://news.google.com/rss/articles/CBMi5gFBVV95cUxNd0ZHNHJkbWVUR2J0U1RGU1pTdEJBMmpmektMZDNYUGdfX3hjc3JNbWg0azVEZzBRaFhqOUlCU0R6aTBrUGwzaFRDRVNCSkdNQXZudEpVWmNISkVnU3RZZEU4bnpHT011Q1U0NHFORmRiekpMSzJ4bWxYaWxSdG1uTkhGakNSb1BKTUhNQzZKMkV5dDdKNlMwaTR0YUZHY0pIWUZxZVJFQUkzSXdVemhYVjlQc1RyZ0k2cjNmXzh2TGlicmhJd1NVdzFrZjlQa1duRjkxZG03Z3hvYzlzb3BTZVZJNWxzQdIB6wFBVV95cUxQUnhwcThzYTY5RUpIWmJJQXhuNEN0YU9BZ0xkZndBakJoVmVjZDVCa2szTldWOWdJMFJ6Z0NsVUpmUUVNQm90ZVJGMV9nZW01dVg4cFBjNmgtRXAyZlJicmI0R3VLakZ3TUJINWVfVG10NlRYc3FNQWM4WVJIdFZMWFVtaWhnTFZFcGxuWGlaX1FvQ09reWZ3bS1mbzNtNzBhSzU2ZFlWdmJYOWhYUHJvYmN0aUlMVXFVcnBIc09nd2NaTklLUmxRLXpVNUtpQUw5OUJfRGxCbHhfS05DZnVSNFlkcS1hZUJ1MVlJ?oc=5",
+        "articleSource": "Levante-EMV",
+        "articleSourceHost": "levante-emv.com",
+        "articleFingerprint": "1cszl50"
+      }
+    },
+    {
+      "claim": {
+        "id": "3lfz44-0-num",
+        "articleId": "3lfz44",
+        "articleFingerprint": "1oun3zs",
         "articleSource": "Actualidad Valencia",
         "articleSourceHost": "actualidadvalencia.com",
-        "articleUrl": "https://news.google.com/rss/articles/CBMigAFBVV95cUxPMUkxbDdQZHM0ZWdTU2E4T0xKMkJaVFR1d2ozNVNhdk9Na0VpeWhRM3ppTzJ0VGhJUDNqOGFhenVmOHY0dmk2MGxLRXJJcngxUUp3UDZBalpGRUFYUUowYkF3OVpVb1Rla2pFeGtLVUhIZVpUTzdqczQ1ekxvQzlSYQ?oc=5",
-        "articleDate": "2026-09-25T09:59:45.000Z",
+        "articleUrl": "https://news.google.com/rss/articles/CBMicEFVX3lxTE0xYWNmM1h3T0tSYmNaa3pnMXE4amxsOVlhM1RvSFZjTjlKSWFRQjE4SnJkZHh0Z1FTUWo2YmRpYTB0Yk15a3ZWTER2UVpnZ29oSEkxX1prZ2pYZEdTZXA0R2lDd0h4WkhlLU5ySUdlaS0?oc=5",
+        "articleDate": "2026-10-08T12:33:31.000Z",
         "segmentIndex": 0,
         "segmentKind": "title",
         "type": "afirmacion_numerica",
         "attributedSource": "outlet",
-        "verbatim": "El Camp de Túria supera los 51 millones para renovar sus carreteras",
-        "context": "Titular del artículo de Actualidad Valencia (25/09/2026). No se proporciona cuerpo del texto, por lo que no consta el origen de la cifra ni si corresponde a inversión, presupuesto o plan comarcal.",
+        "verbatim": "La Diputació refuerza la seguridad en la CV-336 de Riba-roja con un nuevo límite de 40 km/h",
+        "context": "Titular del artículo: La Diputació refuerza la seguridad en la CV-336 de Riba-roja con un nuevo límite de 40 km/h",
         "topic": "movilidad",
         "entities": {
-          "amountEuros": 51000000,
-          "referencedEntity": "Camp de Túria"
+          "count": 40,
+          "countUnit": "km/h",
+          "referencedEntity": "CV-336"
         },
-        "confidence": 0.4,
-        "reasoning": "Cifra concreta de más de 51 millones de euros para renovar carreteras, contrastable con presupuestos o licitaciones publicadas, aunque el titular no precisa el origen ni el alcance.",
+        "confidence": 0.5,
+        "reasoning": "Afirma un dato numérico verificable (nuevo límite de velocidad de 40 km/h en la CV-336) atribuido a la Diputació, pero solo se dispone del titular, sin cuerpo del artículo que lo confirme.",
         "requiresHumanApproval": true
       },
       "verification": {
-        "claimId": "t335v0-0-num",
+        "claimId": "3lfz44-0-num",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
         "evidence": [],
-        "checkedAgainst": [
-          "tenders",
-          "tenders-ted",
-          "bdns",
-          "budget"
-        ],
-        "articleUrl": "https://news.google.com/rss/articles/CBMigAFBVV95cUxPMUkxbDdQZHM0ZWdTU2E4T0xKMkJaVFR1d2ozNVNhdk9Na0VpeWhRM3ppTzJ0VGhJUDNqOGFhenVmOHY0dmk2MGxLRXJJcngxUUp3UDZBalpGRUFYUUowYkF3OVpVb1Rla2pFeGtLVUhIZVpUTzdqczQ1ekxvQzlSYQ?oc=5",
+        "checkedAgainst": [],
+        "articleUrl": "https://news.google.com/rss/articles/CBMicEFVX3lxTE0xYWNmM1h3T0tSYmNaa3pnMXE4amxsOVlhM1RvSFZjTjlKSWFRQjE4SnJkZHh0Z1FTUWo2YmRpYTB0Yk15a3ZWTER2UVpnZ29oSEkxX1prZ2pYZEdTZXA0R2lDd0h4WkhlLU5ySUdlaS0?oc=5",
         "articleSource": "Actualidad Valencia",
         "articleSourceHost": "actualidadvalencia.com",
-        "articleFingerprint": "jt55in"
+        "articleFingerprint": "1oun3zs"
       }
     },
     {
       "claim": {
-        "id": "1lk4zls-0-num",
-        "articleId": "1lk4zls",
-        "articleFingerprint": "vsmbot",
-        "articleSource": "Ayuntamiento de Riba-roja de Túria",
-        "articleSourceHost": "ribarroja.es",
-        "articleUrl": "https://www.ribarroja.es/es/noticia/riba-roja-de-t%C3%BAria-impulsa-la-sensorizaci%C3%B3n-de-sus-contenedores-de-residuos-para-avanzar-hacia-una-gesti%C3%B3n-m%C3%A1s-sostenible-del-municipio",
-        "articleDate": "2026-09-25T09:54:12.000Z",
+        "id": "plfgoc-0-num",
+        "articleId": "plfgoc",
+        "articleFingerprint": "18f1xjw",
+        "articleSource": "Valencia Plaza",
+        "articleSourceHost": "valenciaplaza.com",
+        "articleUrl": "https://news.google.com/rss/articles/CBMi6AFBVV95cUxPSTQ1ZHFLLTNRRXdudEs2RHpkMXdKam1SUjdjM21jRkx3TFZEcVd1eFJ5cloycFVpNHFFeG1UeXYyVHpFcXVyaEsxRVgzajlLdnI2ZmVoT3ZpMDJXa1h2WUN3REplYjJIN3QydlB2TWFWYTBpdnZ4QU5oY1VXTWlITUlCSDQwaGhCY0RocnZYTUR0THVERkJqOWpTMmtzMmNmRDhXaWlIcGNCZmNOaXM1d1BTVUZ4TmhUSm5DTGdmODlyeWw2bUY4UUc2OUN6MUZIZnRjNlZqSGRxeTd1QTVVUFd4bHpJNjhG?oc=5",
+        "articleDate": "2026-10-08T11:09:11.000Z",
         "segmentIndex": 0,
-        "segmentKind": "body",
+        "segmentKind": "title",
         "type": "afirmacion_numerica",
-        "attributedSource": "municipal",
-        "verbatim": "El importe total de la adjudicación asciende a 180.000 euros",
-        "context": "El Ayuntamiento ha adjudicado a Distromel, S.A. el proyecto de sensorización de contenedores de residuos, incluido en el PSTD 2022 y financiado con fondos Next Generation EU a través del PRTR.",
-        "topic": "fiscal",
+        "attributedSource": "outlet",
+        "verbatim": "Riba-roja adjudica el contrato para el suministro de agua potable por 55,6 millones para 17 años",
+        "context": "Titular del artículo publicado en Valencia Plaza: 'Riba-roja adjudica el contrato para el suministro de agua potable por 55,6 millones para 17 años'. No se dispone de cuerpo de artículo adicional para contextualizar más.",
+        "topic": "medio-ambiente",
         "entities": {
-          "amountEuros": 180000,
-          "date": "2026-09-25",
-          "referencedEntity": "Distromel, S.A."
-        },
-        "confidence": 0.85,
-        "reasoning": "Importe de adjudicación contrastable con la Plataforma de Contratación del Sector Público y el perfil del contratante municipal.",
-        "requiresHumanApproval": true
-      },
-      "verification": {
-        "claimId": "1lk4zls-0-num",
-        "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
-        "evidence": [],
-        "checkedAgainst": [
-          "tenders",
-          "tenders-ted",
-          "bdns",
-          "budget"
-        ],
-        "articleUrl": "https://www.ribarroja.es/es/noticia/riba-roja-de-t%C3%BAria-impulsa-la-sensorizaci%C3%B3n-de-sus-contenedores-de-residuos-para-avanzar-hacia-una-gesti%C3%B3n-m%C3%A1s-sostenible-del-municipio",
-        "articleSource": "Ayuntamiento de Riba-roja de Túria",
-        "articleSourceHost": "ribarroja.es",
-        "articleFingerprint": "vsmbot"
-      }
-    },
-    {
-      "claim": {
-        "id": "1lk4zls-1-num",
-        "articleId": "1lk4zls",
-        "articleFingerprint": "vsmbot",
-        "articleSource": "Ayuntamiento de Riba-roja de Túria",
-        "articleSourceHost": "ribarroja.es",
-        "articleUrl": "https://www.ribarroja.es/es/noticia/riba-roja-de-t%C3%BAria-impulsa-la-sensorizaci%C3%B3n-de-sus-contenedores-de-residuos-para-avanzar-hacia-una-gesti%C3%B3n-m%C3%A1s-sostenible-del-municipio",
-        "articleDate": "2026-09-25T09:54:12.000Z",
-        "segmentIndex": 1,
-        "segmentKind": "body",
-        "type": "afirmacion_numerica",
-        "attributedSource": "municipal",
-        "verbatim": "135.000 euros se financian con cargo al PSTD y los 35.000 euros restantes son aportados directamente por el Consistorio",
-        "context": "El importe total se cifra en 180.000 euros, de los cuales 135.000 se financian con cargo al PSTD (fondos Next Generation EU) y 35.000 los aporta el Ayuntamiento.",
-        "topic": "fiscal",
-        "entities": {
-          "amountEuros": 135000,
-          "referencedEntity": "PSTD 2022 / Next Generation EU"
+          "amountEuros": 55600000,
+          "count": 17,
+          "countUnit": "años",
+          "referencedEntity": "contrato de suministro de agua potable de Riba-roja de Túria"
         },
         "confidence": 0.7,
-        "reasoning": "Reparto de financiación contrastable con resolución de ayudas y contrato; 135.000 + 35.000 suman 170.000, no los 180.000 declarados, lo que exige verificación.",
+        "reasoning": "El titular afirma una cifra económica (55,6 millones) y una duración (17 años) de un contrato municipal, dato verificable contra el expediente de contratación o el perfil del contratante.",
         "requiresHumanApproval": true
       },
       "verification": {
-        "claimId": "1lk4zls-1-num",
+        "claimId": "plfgoc-0-num",
         "verdict": "parcial",
         "summary": "Coincidencia parcial: hay datos relacionados pero no idénticos al claim.",
         "evidence": [
           {
             "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=Ujgt5qEIoTA2wEhQbcAqug%3D%3D",
-            "snippet": "Contrato administrativo de obras para la ejecución del proyecto de “Obras de Instalación de pérgolas con vegetación autóctona para fomento de la resiliencia frente al cambio climático, en el marco del Plan de Recuperación, Transformación y Resiliencia financiado por la Unión Europea- Next Generation · Ayuntamiento de Riba-roja de Túria · construction · 131.336 €",
-            "similarity": 0.6,
+            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=pK1YW0Z3femXQV0WE7lYPw%3D%3D",
+            "snippet": "contrato de concesión del servicio público de abastecimiento de agua potable, servicio de gestión de alcantarillado , control de vertidos y depuración del municipio Riba-roja de Túria, por procedimiento abierto, mejor relación calidad-precio, varios criterios de adjudicación y con cláusulas medioambientales y con condición especial de ejecución de carácter medioambiental y social. · Ayuntamiento de Riba-roja de Túria · public_services · 55.685.179 €",
+            "similarity": 0.63,
             "stance": "checked"
           }
         ],
@@ -141,1067 +723,641 @@
           "bdns",
           "budget"
         ],
-        "articleUrl": "https://www.ribarroja.es/es/noticia/riba-roja-de-t%C3%BAria-impulsa-la-sensorizaci%C3%B3n-de-sus-contenedores-de-residuos-para-avanzar-hacia-una-gesti%C3%B3n-m%C3%A1s-sostenible-del-municipio",
-        "articleSource": "Ayuntamiento de Riba-roja de Túria",
-        "articleSourceHost": "ribarroja.es",
-        "articleFingerprint": "vsmbot"
+        "articleUrl": "https://news.google.com/rss/articles/CBMi6AFBVV95cUxPSTQ1ZHFLLTNRRXdudEs2RHpkMXdKam1SUjdjM21jRkx3TFZEcVd1eFJ5cloycFVpNHFFeG1UeXYyVHpFcXVyaEsxRVgzajlLdnI2ZmVoT3ZpMDJXa1h2WUN3REplYjJIN3QydlB2TWFWYTBpdnZ4QU5oY1VXTWlITUlCSDQwaGhCY0RocnZYTUR0THVERkJqOWpTMmtzMmNmRDhXaWlIcGNCZmNOaXM1d1BTVUZ4TmhUSm5DTGdmODlyeWw2bUY4UUc2OUN6MUZIZnRjNlZqSGRxeTd1QTVVUFd4bHpJNjhG?oc=5",
+        "articleSource": "Valencia Plaza",
+        "articleSourceHost": "valenciaplaza.com",
+        "articleFingerprint": "18f1xjw"
       }
     },
     {
       "claim": {
-        "id": "1lk4zls-2-dat",
-        "articleId": "1lk4zls",
-        "articleFingerprint": "vsmbot",
+        "id": "o3xjg4-0-pro",
+        "articleId": "o3xjg4",
+        "articleFingerprint": "1k3l80",
         "articleSource": "Ayuntamiento de Riba-roja de Túria",
         "articleSourceHost": "ribarroja.es",
-        "articleUrl": "https://www.ribarroja.es/es/noticia/riba-roja-de-t%C3%BAria-impulsa-la-sensorizaci%C3%B3n-de-sus-contenedores-de-residuos-para-avanzar-hacia-una-gesti%C3%B3n-m%C3%A1s-sostenible-del-municipio",
-        "articleDate": "2026-09-25T09:54:12.000Z",
-        "segmentIndex": 2,
-        "segmentKind": "body",
-        "type": "dato_municipal",
-        "attributedSource": "municipal",
-        "verbatim": "El Ayuntamiento de Riba-roja de Túria ha adjudicado a la empresa Distromel, S.A. el proyecto de sensorización de contenedores de residuos",
-        "context": "Apertura de la nota municipal: la adjudicación se enmarca en el Plan de Sostenibilidad Turística en Destino (PSTD) 2022, financiado con fondos Next Generation EU (PRTR).",
-        "topic": "medio-ambiente",
-        "entities": {
-          "date": "2026-09-25",
-          "referencedEntity": "Distromel, S.A."
-        },
-        "confidence": 0.85,
-        "reasoning": "Adjudicación de contrato a una empresa concreta, verificable en el perfil del contratante y en la Plataforma de Contratación.",
-        "requiresHumanApproval": true
-      },
-      "verification": {
-        "claimId": "1lk4zls-2-dat",
-        "verdict": "sin-datos",
-        "summary": "No se ha encontrado el dato municipal en las series locales.",
-        "evidence": [],
-        "checkedAgainst": [],
-        "articleUrl": "https://www.ribarroja.es/es/noticia/riba-roja-de-t%C3%BAria-impulsa-la-sensorizaci%C3%B3n-de-sus-contenedores-de-residuos-para-avanzar-hacia-una-gesti%C3%B3n-m%C3%A1s-sostenible-del-municipio",
-        "articleSource": "Ayuntamiento de Riba-roja de Túria",
-        "articleSourceHost": "ribarroja.es",
-        "articleFingerprint": "vsmbot"
-      }
-    },
-    {
-      "claim": {
-        "id": "1lk4zls-3-con",
-        "articleId": "1lk4zls",
-        "articleFingerprint": "vsmbot",
-        "articleSource": "Ayuntamiento de Riba-roja de Túria",
-        "articleSourceHost": "ribarroja.es",
-        "articleUrl": "https://www.ribarroja.es/es/noticia/riba-roja-de-t%C3%BAria-impulsa-la-sensorizaci%C3%B3n-de-sus-contenedores-de-residuos-para-avanzar-hacia-una-gesti%C3%B3n-m%C3%A1s-sostenible-del-municipio",
-        "articleDate": "2026-09-25T09:54:12.000Z",
-        "segmentIndex": 3,
-        "segmentKind": "body",
-        "type": "cita_convenio",
-        "attributedSource": "municipal",
-        "verbatim": "La actuación se enmarca dentro del Eje Programático 1, Transición Verde y Sostenible, del PSTD de Riba-roja de Túria",
-        "context": "El texto indica que el PSTD está integrado en el Plan Territorial de Sostenibilidad Turística en Destino Comunitat Valenciana-Programa 2022.",
-        "topic": "medio-ambiente",
-        "entities": {
-          "date": "2022",
-          "referencedEntity": "Plan de Sostenibilidad Turística en Destino (PSTD) 2022 - Eje 1"
-        },
-        "confidence": 0.65,
-        "reasoning": "Encuadre en un eje concreto del PSTD, contrastable con el documento del plan y la resolución de concesión.",
-        "requiresHumanApproval": true
-      },
-      "verification": {
-        "claimId": "1lk4zls-3-con",
-        "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
-        "evidence": [],
-        "checkedAgainst": [],
-        "articleUrl": "https://www.ribarroja.es/es/noticia/riba-roja-de-t%C3%BAria-impulsa-la-sensorizaci%C3%B3n-de-sus-contenedores-de-residuos-para-avanzar-hacia-una-gesti%C3%B3n-m%C3%A1s-sostenible-del-municipio",
-        "articleSource": "Ayuntamiento de Riba-roja de Túria",
-        "articleSourceHost": "ribarroja.es",
-        "articleFingerprint": "vsmbot"
-      }
-    },
-    {
-      "claim": {
-        "id": "1lk4zls-4-con",
-        "articleId": "1lk4zls",
-        "articleFingerprint": "vsmbot",
-        "articleSource": "Ayuntamiento de Riba-roja de Túria",
-        "articleSourceHost": "ribarroja.es",
-        "articleUrl": "https://www.ribarroja.es/es/noticia/riba-roja-de-t%C3%BAria-impulsa-la-sensorizaci%C3%B3n-de-sus-contenedores-de-residuos-para-avanzar-hacia-una-gesti%C3%B3n-m%C3%A1s-sostenible-del-municipio",
-        "articleDate": "2026-09-25T09:54:12.000Z",
-        "segmentIndex": 4,
-        "segmentKind": "body",
-        "type": "cita_convenio",
-        "attributedSource": "municipal",
-        "verbatim": "El proyecto se enmarca en el Componente 14 del Plan de Recuperación, Transformación y Resiliencia",
-        "context": "Se señala que el PRTR está financiado por la Unión Europea a través de los fondos Next Generation EU.",
-        "topic": "fiscal",
-        "entities": {
-          "referencedEntity": "Componente 14 del PRTR"
-        },
-        "confidence": 0.6,
-        "reasoning": "Referencia a un componente concreto del PRTR, verificable en la documentación de la convocatoria y la resolución de fondos.",
-        "requiresHumanApproval": true
-      },
-      "verification": {
-        "claimId": "1lk4zls-4-con",
-        "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
-        "evidence": [],
-        "checkedAgainst": [],
-        "articleUrl": "https://www.ribarroja.es/es/noticia/riba-roja-de-t%C3%BAria-impulsa-la-sensorizaci%C3%B3n-de-sus-contenedores-de-residuos-para-avanzar-hacia-una-gesti%C3%B3n-m%C3%A1s-sostenible-del-municipio",
-        "articleSource": "Ayuntamiento de Riba-roja de Túria",
-        "articleSourceHost": "ribarroja.es",
-        "articleFingerprint": "vsmbot"
-      }
-    },
-    {
-      "claim": {
-        "id": "1lk4zls-5-pro",
-        "articleId": "1lk4zls",
-        "articleFingerprint": "vsmbot",
-        "articleSource": "Ayuntamiento de Riba-roja de Túria",
-        "articleSourceHost": "ribarroja.es",
-        "articleUrl": "https://www.ribarroja.es/es/noticia/riba-roja-de-t%C3%BAria-impulsa-la-sensorizaci%C3%B3n-de-sus-contenedores-de-residuos-para-avanzar-hacia-una-gesti%C3%B3n-m%C3%A1s-sostenible-del-municipio",
-        "articleDate": "2026-09-25T09:54:12.000Z",
-        "segmentIndex": 5,
+        "articleUrl": "https://www.ribarroja.es/es/noticia/el-ayuntamiento-de-riba-roja-de-t%C3%BAria-ejecutar%C3%A1-un-plan-director-de-restauraci%C3%B3n-de-las-cuatro-canteras-del-municipio",
+        "articleDate": "2026-10-08T09:08:42.000Z",
+        "segmentIndex": 0,
         "segmentKind": "body",
         "type": "promesa",
         "attributedSource": "municipal",
-        "verbatim": "permitiendo conocer en tiempo real su nivel de llenado y mejorar así la planificación de las rutas de recogida",
-        "context": "La iniciativa busca modernizar y optimizar la gestión de residuos incorporando sensores en los contenedores para reducir desplazamientos innecesarios y el impacto ambiental.",
+        "verbatim": "ejecutará un plan director de restauración de las cuatro canteras del municipio",
+        "context": "El Ayuntamiento de Riba-roja de Túria ejecutará un plan director de restauración de las cuatro canteras del municipio.",
         "topic": "medio-ambiente",
         "entities": {
-          "referencedEntity": "Sensorización de contenedores de residuos"
+          "count": 4,
+          "countUnit": "canteras",
+          "referencedEntity": "canteras de Riba-roja de Túria"
         },
-        "confidence": 0.5,
-        "reasoning": "Objetivo funcional declarado del proyecto, contrastable a futuro con su puesta en marcha efectiva y los pliegos de contratación.",
+        "confidence": 0.7,
+        "reasoning": "Es un compromiso municipal futuro y concreto sobre la ejecución de un plan director, verificable con el tiempo.",
         "requiresHumanApproval": true
       },
       "verification": {
-        "claimId": "1lk4zls-5-pro",
+        "claimId": "o3xjg4-0-pro",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "No se encontró registro en promises que la sostenga. Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
         "evidence": [],
         "checkedAgainst": [
           "promises"
         ],
-        "articleUrl": "https://www.ribarroja.es/es/noticia/riba-roja-de-t%C3%BAria-impulsa-la-sensorizaci%C3%B3n-de-sus-contenedores-de-residuos-para-avanzar-hacia-una-gesti%C3%B3n-m%C3%A1s-sostenible-del-municipio",
+        "articleUrl": "https://www.ribarroja.es/es/noticia/el-ayuntamiento-de-riba-roja-de-t%C3%BAria-ejecutar%C3%A1-un-plan-director-de-restauraci%C3%B3n-de-las-cuatro-canteras-del-municipio",
         "articleSource": "Ayuntamiento de Riba-roja de Túria",
         "articleSourceHost": "ribarroja.es",
-        "articleFingerprint": "vsmbot"
+        "articleFingerprint": "1k3l80"
       }
     },
     {
       "claim": {
-        "id": "k7sazb-0-dat",
-        "articleId": "k7sazb",
-        "articleFingerprint": "10l70rc",
-        "articleSource": "Infobae",
-        "articleSourceHost": "infobae.com",
-        "articleUrl": "https://news.google.com/rss/articles/CBMi2AFBVV95cUxQWDhGbEhHa2tiTUNHeldCNWJHOExhZGhRdGd5X0N1d080MXNRV21MYmZNc0FmT1QzMW1HM2tXTEt1R29mbkQ2YktraUNGUFJEVHVlT255cDd4V3FpRmhpcU5aWjdRZzA4V1k0cWNqZXNJZkxRbFU1aXlZNkF0WUdteHJUckEydWhMSWNtUFdOQ0NLVzFFVDN1WVRZOC1vemlWUzdNbzQzTnlZaUZ1Y04wX3lsV1pMbnlRVnVXb2lXM0lJYXQ1QjFvOE5wMUZqV0pIY1A2eXlydW7SAfMBQVVfeXFMTktUdmQ3WEdhR0NzcUhlWVNrNUZrd212Snpxc1RLT0RtS1p5OUNwME00d2pwSlNvOWoyN2o4X2NzODFDVVFLaTAtSTJGLWtqT1NneFhKTldtMERzYWpod2xDcU9HdHZya0xHS1BfaFFDdWcxVzVKVUNNRVRoZ0xtS3FLNDBDUTZnR3ZEUEZnaWtnNHdHZFhqcW9YYVBOd0RBRXh0N3R5SlBhcVM2LXlqUldjX3VPalJnaTRodGFwVVFqOHhFVlRYaDRSa0JiUHRwMk9xb0JjdXFXMk1MRld0Z2hYUmZ3RkVuQ08yamRvM1VDY2Y4?oc=5",
-        "articleDate": "2026-09-24T12:18:00.000Z",
-        "segmentIndex": 0,
-        "segmentKind": "title",
-        "type": "dato_municipal",
-        "attributedSource": "outlet",
-        "verbatim": "Riba-roja ya avisó al 112 a las 12:50 h del día de la dana de la inundación de un barranco",
-        "context": "Titular de Infobae (2026-09-24). Solo se dispone del titular, sin cuerpo del artículo ni atribución explícita a una nota municipal u otra fuente.",
-        "topic": "seguridad",
-        "entities": {
-          "date": "12:50 h del día de la dana",
-          "referencedEntity": "Ayuntamiento de Riba-roja de Túria / Centro de Emergencias 112"
-        },
-        "confidence": 0.55,
-        "reasoning": "Afirma una acción municipal concreta con hora precisa (aviso al 112 a las 12:50 h), contrastable con registros del 112 y del Ayuntamiento.",
-        "requiresHumanApproval": true
-      },
-      "verification": {
-        "claimId": "k7sazb-0-dat",
-        "verdict": "sin-datos",
-        "summary": "No se ha encontrado el dato municipal en las series locales.",
-        "evidence": [],
-        "checkedAgainst": [],
-        "articleUrl": "https://news.google.com/rss/articles/CBMi2AFBVV95cUxQWDhGbEhHa2tiTUNHeldCNWJHOExhZGhRdGd5X0N1d080MXNRV21MYmZNc0FmT1QzMW1HM2tXTEt1R29mbkQ2YktraUNGUFJEVHVlT255cDd4V3FpRmhpcU5aWjdRZzA4V1k0cWNqZXNJZkxRbFU1aXlZNkF0WUdteHJUckEydWhMSWNtUFdOQ0NLVzFFVDN1WVRZOC1vemlWUzdNbzQzTnlZaUZ1Y04wX3lsV1pMbnlRVnVXb2lXM0lJYXQ1QjFvOE5wMUZqV0pIY1A2eXlydW7SAfMBQVVfeXFMTktUdmQ3WEdhR0NzcUhlWVNrNUZrd212Snpxc1RLT0RtS1p5OUNwME00d2pwSlNvOWoyN2o4X2NzODFDVVFLaTAtSTJGLWtqT1NneFhKTldtMERzYWpod2xDcU9HdHZya0xHS1BfaFFDdWcxVzVKVUNNRVRoZ0xtS3FLNDBDUTZnR3ZEUEZnaWtnNHdHZFhqcW9YYVBOd0RBRXh0N3R5SlBhcVM2LXlqUldjX3VPalJnaTRodGFwVVFqOHhFVlRYaDRSa0JiUHRwMk9xb0JjdXFXMk1MRld0Z2hYUmZ3RkVuQ08yamRvM1VDY2Y4?oc=5",
-        "articleSource": "Infobae",
-        "articleSourceHost": "infobae.com",
-        "articleFingerprint": "10l70rc"
-      }
-    },
-    {
-      "claim": {
-        "id": "1gkikhf-0-dat",
-        "articleId": "1gkikhf",
-        "articleFingerprint": "1rbtg40",
-        "articleSource": "Actualidad Valencia",
-        "articleSourceHost": "actualidadvalencia.com",
-        "articleUrl": "https://news.google.com/rss/articles/CBMickFVX3lxTFBiWlptYW5iSk5penUyTUJoT0h3WF9lNk1ITTRHb2FSSF9fTkg0YnpOU0NwX3g2ZDZBa2NZOHdZbWpET3JRbGFhc0ZDVnp5YkRqVWtiek9KOTZEUENOZTJmbjA3Y29tOXVGVERXTVI2c3BOQQ?oc=5",
-        "articleDate": "2026-09-24T11:36:13.000Z",
-        "segmentIndex": 0,
-        "segmentKind": "title",
-        "type": "dato_municipal",
-        "attributedSource": "unspecified",
-        "verbatim": "Riba-roja avisó al 112 al inicio de la inundación del Pozalet durante la DANA",
-        "context": "Titular del artículo de Actualidad Valencia (24/09/2026). No se ha facilitado el cuerpo del texto, por lo que no consta a quién se atribuye el dato ni con qué documentación se sustenta.",
-        "topic": "seguridad",
-        "entities": {
-          "referencedEntity": "112"
-        },
-        "confidence": 0.5,
-        "reasoning": "Afirma un hecho verificable (aviso del Ayuntamiento al 112 al inicio de la inundación del Pozalet) que puede contrastarse con registros de llamadas o cronologías oficiales de la emergencia.",
-        "requiresHumanApproval": true
-      },
-      "verification": {
-        "claimId": "1gkikhf-0-dat",
-        "verdict": "sin-datos",
-        "summary": "No se ha encontrado el dato municipal en las series locales.",
-        "evidence": [],
-        "checkedAgainst": [],
-        "articleUrl": "https://news.google.com/rss/articles/CBMickFVX3lxTFBiWlptYW5iSk5penUyTUJoT0h3WF9lNk1ITTRHb2FSSF9fTkg0YnpOU0NwX3g2ZDZBa2NZOHdZbWpET3JRbGFhc0ZDVnp5YkRqVWtiek9KOTZEUENOZTJmbjA3Y29tOXVGVERXTVI2c3BOQQ?oc=5",
-        "articleSource": "Actualidad Valencia",
-        "articleSourceHost": "actualidadvalencia.com",
-        "articleFingerprint": "1rbtg40"
-      }
-    },
-    {
-      "claim": {
-        "id": "1cibswi-0-dat",
-        "articleId": "1cibswi",
-        "articleFingerprint": "1s17cvw",
-        "articleSource": "valenciaplaza.com",
-        "articleSourceHost": "valenciaplaza.com",
-        "articleUrl": "https://news.google.com/rss/articles/CBMihAJBVV95cUxPcTJpRVA2aXA2X2trTU5KelB4TmhJa2h4ZThad0NsMHNuSDdseGozQTg5WTNYdTRKSWNHVzlfZGJzYV9meXhyejJZSXg2LXJkQW1CUzlTMXB4S1ROOXIzV0xPMG9vRmRmZG1GR2Q1MmRRay1QN0hfNXZySnBpTkFxdmtwekpWdGxZMU5hYTZxWXpRZlpXcXpKMUlZVUtKYk55TzJYZVRFSVVpWUc3cTZSMzZhckNKTXVZX1p6WUlwUm5adEVUVmI5TDZzdzcwMG5qaHRYVEFMUE5vNEcwN0tRemk1NC1fajBQY0wtSGdvN0xtbm8tRzBYYmNjV21yWXg2NjdoRQ?oc=5",
-        "articleDate": "2026-09-24T09:38:34.000Z",
-        "segmentIndex": 0,
-        "segmentKind": "title",
-        "type": "dato_municipal",
-        "attributedSource": "municipal",
-        "verbatim": "a las 15 horas del 29-O \"ya\" aconsejaron a empresas el cierre y advirtieron a vecinos",
-        "context": "Titular: el alcalde de Riba-roja dice que a las 15 horas del 29-O \"ya\" aconsejaron a empresas el cierre y advirtieron a vecinos. El medio atribuye la afirmación a la máxima autoridad municipal, sin aportar más texto del cuerpo.",
-        "topic": "seguridad",
-        "entities": {
-          "date": "29-O, 15:00 h",
-          "referencedEntity": "Ayuntamiento de Riba-roja de Túria"
-        },
-        "confidence": 0.55,
-        "reasoning": "Afirmación municipal sobre un hecho con hora concreta (avisos a empresas y vecinos a las 15 h del 29-O), contrastable con registros de comunicaciones, avisos y cronología oficial.",
-        "requiresHumanApproval": true
-      },
-      "verification": {
-        "claimId": "1cibswi-0-dat",
-        "verdict": "sin-datos",
-        "summary": "No se ha encontrado el dato municipal en las series locales.",
-        "evidence": [],
-        "checkedAgainst": [],
-        "articleUrl": "https://news.google.com/rss/articles/CBMihAJBVV95cUxPcTJpRVA2aXA2X2trTU5KelB4TmhJa2h4ZThad0NsMHNuSDdseGozQTg5WTNYdTRKSWNHVzlfZGJzYV9meXhyejJZSXg2LXJkQW1CUzlTMXB4S1ROOXIzV0xPMG9vRmRmZG1GR2Q1MmRRay1QN0hfNXZySnBpTkFxdmtwekpWdGxZMU5hYTZxWXpRZlpXcXpKMUlZVUtKYk55TzJYZVRFSVVpWUc3cTZSMzZhckNKTXVZX1p6WUlwUm5adEVUVmI5TDZzdzcwMG5qaHRYVEFMUE5vNEcwN0tRemk1NC1fajBQY0wtSGdvN0xtbm8tRzBYYmNjV21yWXg2NjdoRQ?oc=5",
-        "articleSource": "valenciaplaza.com",
-        "articleSourceHost": "valenciaplaza.com",
-        "articleFingerprint": "1s17cvw"
-      }
-    },
-    {
-      "claim": {
-        "id": "3edbnb-0-obr",
-        "articleId": "3edbnb",
-        "articleFingerprint": "bkuebd",
-        "articleSource": "valenciaplaza.com",
-        "articleSourceHost": "valenciaplaza.com",
-        "articleUrl": "https://news.google.com/rss/articles/CBMi9AFBVV95cUxNbk0wckVHWFlnRzR0czVNV1ZiSUNXXy1GY1FWdUE0QVVGRGRYT0hZaGo2aEpheHJYMGt3bFJuNnRTRXZtQWJpWUd0M0VtV2lrVmI3RGZSRHlXSkEyTmFfV2RqTzk5U1FxdEJTZGR4LTFpN1RCNjFxdkpoT3JWY2tyYkh4M2p4X1NDcWF2eGpTaVJFMnFYMXMzTC1XWjB2a1JDTHFFQjl0NzFYbDBMbVNGQWFmT0hCWk5RSFdma1ZYOHpYQ1U5cFAzX2tPRmVibTFoQ2oxY2kxSlBUNUk4SUt2OFJRUjZCdGVtM3lfQTVEdV9iUThj?oc=5",
-        "articleDate": "2026-09-24T04:06:11.000Z",
-        "segmentIndex": 0,
-        "segmentKind": "title",
-        "type": "cita_obra",
-        "attributedSource": "outlet",
-        "verbatim": "Las obras para evitar las inundaciones del Pozalet en el área empresarial de Riba-roja siguen pendientes",
-        "context": "Titular del artículo de Valencia Plaza (2026-09-24). Solo se dispone del titular, sin cuerpo de texto. El medio afirma en su propia voz que las obras contra las inundaciones del Pozalet en el área empresarial no se han ejecutado.",
-        "topic": "urbanismo",
-        "entities": {
-          "referencedEntity": "Pozalet (área empresarial de Riba-roja de Túria)"
-        },
-        "confidence": 0.5,
-        "reasoning": "Afirma el estado pendiente de una obra concreta de prevención de inundaciones, contrastable con licitaciones, contratos o ejecución municipal publicados.",
-        "requiresHumanApproval": true
-      },
-      "verification": {
-        "claimId": "3edbnb-0-obr",
-        "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
-        "evidence": [],
-        "checkedAgainst": [
-          "tenders",
-          "tenders-ted"
-        ],
-        "articleUrl": "https://news.google.com/rss/articles/CBMi9AFBVV95cUxNbk0wckVHWFlnRzR0czVNV1ZiSUNXXy1GY1FWdUE0QVVGRGRYT0hZaGo2aEpheHJYMGt3bFJuNnRTRXZtQWJpWUd0M0VtV2lrVmI3RGZSRHlXSkEyTmFfV2RqTzk5U1FxdEJTZGR4LTFpN1RCNjFxdkpoT3JWY2tyYkh4M2p4X1NDcWF2eGpTaVJFMnFYMXMzTC1XWjB2a1JDTHFFQjl0NzFYbDBMbVNGQWFmT0hCWk5RSFdma1ZYOHpYQ1U5cFAzX2tPRmVibTFoQ2oxY2kxSlBUNUk4SUt2OFJRUjZCdGVtM3lfQTVEdV9iUThj?oc=5",
-        "articleSource": "valenciaplaza.com",
-        "articleSourceHost": "valenciaplaza.com",
-        "articleFingerprint": "bkuebd"
-      }
-    },
-    {
-      "claim": {
-        "id": "17wvv8s-0-num",
-        "articleId": "17wvv8s",
-        "articleFingerprint": "npavvo",
-        "articleSource": "Periòdic del Camp de Túria",
-        "articleSourceHost": "infoturia.com",
-        "articleUrl": "https://www.infoturia.com/riba-roja-de-turia/86368-riba-roja-estalvia-69-milions-en-ladjudicacio-dels-611-contractes-des-de-2019.html",
-        "articleDate": "2026-09-22T12:43:01.000Z",
-        "segmentIndex": 0,
-        "segmentKind": "body",
-        "type": "afirmacion_numerica",
-        "attributedSource": "municipal",
-        "verbatim": "L’Ajuntament de Riba-roja ha estalviat fins a un total de 6.968.078 euros de les arques públiques al llarg dels últims anys en matèria de contractació pública",
-        "context": "Entradeta del text, basada en la memòria de la Secretaria Municipal donada a conéixer al ple. El titular parla de «des de 2019»; el cos alterna 2019-2025 i 2019-2026. La diferència entre licitat i adjudicat que cita l'article (63.725.396 − 56.752.591) dona 6.972.805 €, no exactament 6.968.078 €.",
-        "topic": "fiscal",
-        "entities": {
-          "amountEuros": 6968078,
-          "date": "2019-2025",
-          "referencedEntity": "Memòria de la Secretaria Municipal"
-        },
-        "confidence": 0.85,
-        "reasoning": "Xifra d'estalvi acumulat contrastable amb la memòria de Secretaria i amb la diferència entre import licitat i adjudicat (que dona 6.972.805 €, no exactament 6.968.078 €).",
-        "requiresHumanApproval": true
-      },
-      "verification": {
-        "claimId": "17wvv8s-0-num",
-        "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
-        "evidence": [],
-        "checkedAgainst": [
-          "tenders",
-          "tenders-ted",
-          "bdns",
-          "budget"
-        ],
-        "articleUrl": "https://www.infoturia.com/riba-roja-de-turia/86368-riba-roja-estalvia-69-milions-en-ladjudicacio-dels-611-contractes-des-de-2019.html",
-        "articleSource": "Periòdic del Camp de Túria",
-        "articleSourceHost": "infoturia.com",
-        "articleFingerprint": "npavvo"
-      }
-    },
-    {
-      "claim": {
-        "id": "17wvv8s-1-dat",
-        "articleId": "17wvv8s",
-        "articleFingerprint": "npavvo",
-        "articleSource": "Periòdic del Camp de Túria",
-        "articleSourceHost": "infoturia.com",
-        "articleUrl": "https://www.infoturia.com/riba-roja-de-turia/86368-riba-roja-estalvia-69-milions-en-ladjudicacio-dels-611-contractes-des-de-2019.html",
-        "articleDate": "2026-09-22T12:43:01.000Z",
+        "id": "o3xjg4-1-dat",
+        "articleId": "o3xjg4",
+        "articleFingerprint": "1k3l80",
+        "articleSource": "Ayuntamiento de Riba-roja de Túria",
+        "articleSourceHost": "ribarroja.es",
+        "articleUrl": "https://www.ribarroja.es/es/noticia/el-ayuntamiento-de-riba-roja-de-t%C3%BAria-ejecutar%C3%A1-un-plan-director-de-restauraci%C3%B3n-de-las-cuatro-canteras-del-municipio",
+        "articleDate": "2026-10-08T09:08:42.000Z",
         "segmentIndex": 1,
         "segmentKind": "body",
         "type": "dato_municipal",
         "attributedSource": "municipal",
-        "verbatim": "es van licitar els citats 611 contractes públics per un valor de 63.725.396 euros en la fase de licitació pública, sense els impostos",
-        "context": "Dades de la memòria de la Secretaria Municipal per a l'exercici 2019-2025. Cal tenir en compte que el cos parla també de «2019 i 2026», una inconsistència de període amb el resum.",
-        "topic": "fiscal",
+        "verbatim": "Riba-roja de Túria dispone en su territorio cuatro canteras, de las cuales tres se encuentran actualmente en explotación",
+        "context": "Riba-roja de Túria dispone en su territorio cuatro canteras, de las cuales tres se encuentran actualmente en explotación: El Porvenir (Aristaria) Carasoles (Corporación F Túria), la Senyoreta (Cemex) y La Pedrera (CYES), cerrada en la actualidad.",
+        "topic": "medio-ambiente",
         "entities": {
-          "amountEuros": 63725396,
-          "count": 611,
-          "countUnit": "contratos públicos",
-          "date": "2019-2025",
-          "referencedEntity": "Memòria de la Secretaria Municipal"
+          "count": 4,
+          "countUnit": "canteras",
+          "referencedEntity": "canteras de Riba-roja de Túria"
         },
-        "confidence": 0.85,
-        "reasoning": "Nombre i valor de licitació de contractes verificables en el perfil de contractant i en la memòria de Secretaria.",
+        "confidence": 0.75,
+        "reasoning": "Afirma un número y estado de explotación de las canteras municipales, dato verificable en registros mineros.",
         "requiresHumanApproval": true
       },
       "verification": {
-        "claimId": "17wvv8s-1-dat",
+        "claimId": "o3xjg4-1-dat",
         "verdict": "sin-datos",
         "summary": "No se ha encontrado el dato municipal en las series locales.",
         "evidence": [],
         "checkedAgainst": [],
-        "articleUrl": "https://www.infoturia.com/riba-roja-de-turia/86368-riba-roja-estalvia-69-milions-en-ladjudicacio-dels-611-contractes-des-de-2019.html",
-        "articleSource": "Periòdic del Camp de Túria",
-        "articleSourceHost": "infoturia.com",
-        "articleFingerprint": "npavvo"
+        "articleUrl": "https://www.ribarroja.es/es/noticia/el-ayuntamiento-de-riba-roja-de-t%C3%BAria-ejecutar%C3%A1-un-plan-director-de-restauraci%C3%B3n-de-las-cuatro-canteras-del-municipio",
+        "articleSource": "Ayuntamiento de Riba-roja de Túria",
+        "articleSourceHost": "ribarroja.es",
+        "articleFingerprint": "1k3l80"
       }
     },
     {
       "claim": {
-        "id": "17wvv8s-2-dat",
-        "articleId": "17wvv8s",
-        "articleFingerprint": "npavvo",
-        "articleSource": "Periòdic del Camp de Túria",
-        "articleSourceHost": "infoturia.com",
-        "articleUrl": "https://www.infoturia.com/riba-roja-de-turia/86368-riba-roja-estalvia-69-milions-en-ladjudicacio-dels-611-contractes-des-de-2019.html",
-        "articleDate": "2026-09-22T12:43:01.000Z",
+        "id": "o3xjg4-2-dat",
+        "articleId": "o3xjg4",
+        "articleFingerprint": "1k3l80",
+        "articleSource": "Ayuntamiento de Riba-roja de Túria",
+        "articleSourceHost": "ribarroja.es",
+        "articleUrl": "https://www.ribarroja.es/es/noticia/el-ayuntamiento-de-riba-roja-de-t%C3%BAria-ejecutar%C3%A1-un-plan-director-de-restauraci%C3%B3n-de-las-cuatro-canteras-del-municipio",
+        "articleDate": "2026-10-08T09:08:42.000Z",
         "segmentIndex": 2,
         "segmentKind": "body",
         "type": "dato_municipal",
         "attributedSource": "municipal",
-        "verbatim": "es van adjudicar per un muntant de 56.752.591 euros en el mateix període",
-        "context": "Continuació de la dada anterior: valor adjudicat dels 611 contractes de 2019 a 2025, del qual es deriva l'estalvi total de 6.968.078 euros.",
-        "topic": "fiscal",
+        "verbatim": "la Pedrera (CYES), cerrada en la actualidad",
+        "context": "...la Senyoreta (Cemex) y La Pedrera (CYES), cerrada en la actualidad.",
+        "topic": "medio-ambiente",
         "entities": {
-          "amountEuros": 56752591,
-          "date": "2019-2025",
-          "referencedEntity": "Memòria de la Secretaria Municipal"
+          "referencedEntity": "La Pedrera (CYES)"
         },
-        "confidence": 0.8,
-        "reasoning": "Import total adjudicat contrastable amb les adjudicacions publicades i amb la memòria de Secretaria.",
+        "confidence": 0.6,
+        "reasoning": "Afirma el estado operativo (cerrada) de una cantera concreta, dato verificable administrativamente.",
         "requiresHumanApproval": true
       },
       "verification": {
-        "claimId": "17wvv8s-2-dat",
+        "claimId": "o3xjg4-2-dat",
         "verdict": "sin-datos",
         "summary": "No se ha encontrado el dato municipal en las series locales.",
         "evidence": [],
         "checkedAgainst": [],
-        "articleUrl": "https://www.infoturia.com/riba-roja-de-turia/86368-riba-roja-estalvia-69-milions-en-ladjudicacio-dels-611-contractes-des-de-2019.html",
-        "articleSource": "Periòdic del Camp de Túria",
-        "articleSourceHost": "infoturia.com",
-        "articleFingerprint": "npavvo"
+        "articleUrl": "https://www.ribarroja.es/es/noticia/el-ayuntamiento-de-riba-roja-de-t%C3%BAria-ejecutar%C3%A1-un-plan-director-de-restauraci%C3%B3n-de-las-cuatro-canteras-del-municipio",
+        "articleSource": "Ayuntamiento de Riba-roja de Túria",
+        "articleSourceHost": "ribarroja.es",
+        "articleFingerprint": "1k3l80"
       }
     },
     {
       "claim": {
-        "id": "17wvv8s-3-dat",
-        "articleId": "17wvv8s",
-        "articleFingerprint": "npavvo",
-        "articleSource": "Periòdic del Camp de Túria",
-        "articleSourceHost": "infoturia.com",
-        "articleUrl": "https://www.infoturia.com/riba-roja-de-turia/86368-riba-roja-estalvia-69-milions-en-ladjudicacio-dels-611-contractes-des-de-2019.html",
-        "articleDate": "2026-09-22T12:43:01.000Z",
+        "id": "o3xjg4-3-dat",
+        "articleId": "o3xjg4",
+        "articleFingerprint": "1k3l80",
+        "articleSource": "Ayuntamiento de Riba-roja de Túria",
+        "articleSourceHost": "ribarroja.es",
+        "articleUrl": "https://www.ribarroja.es/es/noticia/el-ayuntamiento-de-riba-roja-de-t%C3%BAria-ejecutar%C3%A1-un-plan-director-de-restauraci%C3%B3n-de-las-cuatro-canteras-del-municipio",
+        "articleDate": "2026-10-08T09:08:42.000Z",
         "segmentIndex": 3,
         "segmentKind": "body",
         "type": "dato_municipal",
         "attributedSource": "municipal",
-        "verbatim": "Al llarg de l’any passat 2025 es van licitar un total de 91 contractes per 23’1 milions d’euros mentre que es van adjudicar per 21’1 milions d’euros",
-        "context": "Detall de l'exercici 2025 de la memòria; l'article afegeix que l'estalvi va ser de quasi 2 milions d'euros i que es van tramitar 16 contractes més de la Dana.",
-        "topic": "fiscal",
+        "verbatim": "el gobierno municipal comenzó a trabajar en 2015 como modelo para instaurar en Riba-roja de Túria",
+        "context": "Uno de estos proyectos es Eden Project, al que ha estado vinculado durante 12 años y con el que el gobierno municipal comenzó a trabajar en 2015 como modelo para instaurar en Riba-roja de Túria.",
+        "topic": "medio-ambiente",
         "entities": {
-          "amountEuros": 23100000,
-          "count": 91,
-          "countUnit": "contratos licitados",
-          "date": "2025",
-          "referencedEntity": "Memòria de la Secretaria Municipal"
+          "date": "2015",
+          "referencedEntity": "Eden Project"
         },
-        "confidence": 0.85,
-        "reasoning": "Nombre de contractes i imports licitat i adjudicat de 2025 verificables amb la memòria i el perfil de contractant.",
+        "confidence": 0.6,
+        "reasoning": "Fecha concreta de inicio de la colaboración con Eden Project, verificable documentalmente.",
         "requiresHumanApproval": true
       },
       "verification": {
-        "claimId": "17wvv8s-3-dat",
+        "claimId": "o3xjg4-3-dat",
         "verdict": "sin-datos",
         "summary": "No se ha encontrado el dato municipal en las series locales.",
         "evidence": [],
         "checkedAgainst": [],
-        "articleUrl": "https://www.infoturia.com/riba-roja-de-turia/86368-riba-roja-estalvia-69-milions-en-ladjudicacio-dels-611-contractes-des-de-2019.html",
-        "articleSource": "Periòdic del Camp de Túria",
-        "articleSourceHost": "infoturia.com",
-        "articleFingerprint": "npavvo"
+        "articleUrl": "https://www.ribarroja.es/es/noticia/el-ayuntamiento-de-riba-roja-de-t%C3%BAria-ejecutar%C3%A1-un-plan-director-de-restauraci%C3%B3n-de-las-cuatro-canteras-del-municipio",
+        "articleSource": "Ayuntamiento de Riba-roja de Túria",
+        "articleSourceHost": "ribarroja.es",
+        "articleFingerprint": "1k3l80"
       }
     },
     {
       "claim": {
-        "id": "17wvv8s-4-dat",
-        "articleId": "17wvv8s",
-        "articleFingerprint": "npavvo",
-        "articleSource": "Periòdic del Camp de Túria",
-        "articleSourceHost": "infoturia.com",
-        "articleUrl": "https://www.infoturia.com/riba-roja-de-turia/86368-riba-roja-estalvia-69-milions-en-ladjudicacio-dels-611-contractes-des-de-2019.html",
-        "articleDate": "2026-09-22T12:43:01.000Z",
+        "id": "o3xjg4-4-num",
+        "articleId": "o3xjg4",
+        "articleFingerprint": "1k3l80",
+        "articleSource": "Ayuntamiento de Riba-roja de Túria",
+        "articleSourceHost": "ribarroja.es",
+        "articleUrl": "https://www.ribarroja.es/es/noticia/el-ayuntamiento-de-riba-roja-de-t%C3%BAria-ejecutar%C3%A1-un-plan-director-de-restauraci%C3%B3n-de-las-cuatro-canteras-del-municipio",
+        "articleDate": "2026-10-08T09:08:42.000Z",
         "segmentIndex": 4,
         "segmentKind": "body",
-        "type": "dato_municipal",
+        "type": "afirmacion_numerica",
         "attributedSource": "municipal",
-        "verbatim": "en aquest exercici de 2024 es van dur a terme 113 contractes per valor de 6 milions d’euros licitats, 5’5 milions adjudicats i quasi 510.000 euros d’estalvi total",
-        "context": "Comparativa amb l'exercici 2024, que l'article vincula a la Dana d'octubre de 2024.",
-        "topic": "fiscal",
-        "entities": {
-          "amountEuros": 6000000,
-          "count": 113,
-          "countUnit": "contratos",
-          "date": "2024",
-          "referencedEntity": "Memòria de la Secretaria Municipal"
-        },
-        "confidence": 0.8,
-        "reasoning": "Xifres de contractes, import licitat, adjudicat i estalvi de 2024 contrastables amb la memòria de Secretaria.",
-        "requiresHumanApproval": true
-      },
-      "verification": {
-        "claimId": "17wvv8s-4-dat",
-        "verdict": "sin-datos",
-        "summary": "No se ha encontrado el dato municipal en las series locales.",
-        "evidence": [],
-        "checkedAgainst": [],
-        "articleUrl": "https://www.infoturia.com/riba-roja-de-turia/86368-riba-roja-estalvia-69-milions-en-ladjudicacio-dels-611-contractes-des-de-2019.html",
-        "articleSource": "Periòdic del Camp de Túria",
-        "articleSourceHost": "infoturia.com",
-        "articleFingerprint": "npavvo"
-      }
-    },
-    {
-      "claim": {
-        "id": "17wvv8s-5-dat",
-        "articleId": "17wvv8s",
-        "articleFingerprint": "npavvo",
-        "articleSource": "Periòdic del Camp de Túria",
-        "articleSourceHost": "infoturia.com",
-        "articleUrl": "https://www.infoturia.com/riba-roja-de-turia/86368-riba-roja-estalvia-69-milions-en-ladjudicacio-dels-611-contractes-des-de-2019.html",
-        "articleDate": "2026-09-22T12:43:01.000Z",
-        "segmentIndex": 5,
-        "segmentKind": "body",
-        "type": "dato_municipal",
-        "attributedSource": "municipal",
-        "verbatim": "es van tramitar, a més, 63 contractes relatius a la Dana per valor de 2 milions d’euros",
-        "context": "Dins del paràgraf de l'exercici 2024, després de les dades de 113 contractes; es refereix a contractes relacionats amb la Dana d'octubre de 2024.",
+        "verbatim": "Este proyecto ha tenido un impacto económico en la región de más 6.800 millones de libras",
+        "context": "Un espectacular complejo botánico que fue inaugurado en 2001... Este proyecto ha tenido un impacto económico en la región de más 6.800 millones de libras y ha recibido 25 millones de visitantes desde su apertura.",
         "topic": "other",
         "entities": {
-          "amountEuros": 2000000,
-          "count": 63,
-          "countUnit": "contratos Dana",
-          "date": "2024",
-          "referencedEntity": "Dana d'octubre de 2024"
-        },
-        "confidence": 0.75,
-        "reasoning": "Nombre i valor de contractes vinculats a la Dana en 2024, verificables en el registre de contractes i en la memòria.",
-        "requiresHumanApproval": true
-      },
-      "verification": {
-        "claimId": "17wvv8s-5-dat",
-        "verdict": "sin-datos",
-        "summary": "No se ha encontrado el dato municipal en las series locales.",
-        "evidence": [],
-        "checkedAgainst": [],
-        "articleUrl": "https://www.infoturia.com/riba-roja-de-turia/86368-riba-roja-estalvia-69-milions-en-ladjudicacio-dels-611-contractes-des-de-2019.html",
-        "articleSource": "Periòdic del Camp de Túria",
-        "articleSourceHost": "infoturia.com",
-        "articleFingerprint": "npavvo"
-      }
-    },
-    {
-      "claim": {
-        "id": "17wvv8s-6-dat",
-        "articleId": "17wvv8s",
-        "articleFingerprint": "npavvo",
-        "articleSource": "Periòdic del Camp de Túria",
-        "articleSourceHost": "infoturia.com",
-        "articleUrl": "https://www.infoturia.com/riba-roja-de-turia/86368-riba-roja-estalvia-69-milions-en-ladjudicacio-dels-611-contractes-des-de-2019.html",
-        "articleDate": "2026-09-22T12:43:01.000Z",
-        "segmentIndex": 6,
-        "segmentKind": "body",
-        "type": "dato_municipal",
-        "attributedSource": "municipal",
-        "verbatim": "En aquest exercici es van tramitar altres 16 contractes corresponent a la Dana d’octubre de 2024",
-        "context": "Paràgraf sobre 2025; «aquest exercici» sembla referir-se a 2025, però la redacció és ambigua.",
-        "topic": "other",
-        "entities": {
-          "count": 16,
-          "countUnit": "contratos Dana",
-          "date": "2025",
-          "referencedEntity": "Dana d'octubre de 2024"
+          "count": 6800,
+          "countUnit": "millones de libras esterlinas",
+          "referencedEntity": "Eden Project"
         },
         "confidence": 0.55,
-        "reasoning": "Nombre de contractes de la Dana tramitats en 2025 contrastable amb la memòria, tot i que l'exercici referit és ambigu.",
+        "reasoning": "Cifra económica específica sobre el proyecto de referencia, contrastable con fuentes públicas sobre Eden Project.",
         "requiresHumanApproval": true
       },
       "verification": {
-        "claimId": "17wvv8s-6-dat",
+        "claimId": "o3xjg4-4-num",
         "verdict": "sin-datos",
-        "summary": "No se ha encontrado el dato municipal en las series locales.",
+        "summary": "Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
         "evidence": [],
         "checkedAgainst": [],
-        "articleUrl": "https://www.infoturia.com/riba-roja-de-turia/86368-riba-roja-estalvia-69-milions-en-ladjudicacio-dels-611-contractes-des-de-2019.html",
-        "articleSource": "Periòdic del Camp de Túria",
-        "articleSourceHost": "infoturia.com",
-        "articleFingerprint": "npavvo"
+        "articleUrl": "https://www.ribarroja.es/es/noticia/el-ayuntamiento-de-riba-roja-de-t%C3%BAria-ejecutar%C3%A1-un-plan-director-de-restauraci%C3%B3n-de-las-cuatro-canteras-del-municipio",
+        "articleSource": "Ayuntamiento de Riba-roja de Túria",
+        "articleSourceHost": "ribarroja.es",
+        "articleFingerprint": "1k3l80"
       }
     },
     {
       "claim": {
-        "id": "17wvv8s-7-dat",
-        "articleId": "17wvv8s",
-        "articleFingerprint": "npavvo",
-        "articleSource": "Periòdic del Camp de Túria",
-        "articleSourceHost": "infoturia.com",
-        "articleUrl": "https://www.infoturia.com/riba-roja-de-turia/86368-riba-roja-estalvia-69-milions-en-ladjudicacio-dels-611-contractes-des-de-2019.html",
-        "articleDate": "2026-09-22T12:43:01.000Z",
-        "segmentIndex": 7,
+        "id": "o3xjg4-5-num",
+        "articleId": "o3xjg4",
+        "articleFingerprint": "1k3l80",
+        "articleSource": "Ayuntamiento de Riba-roja de Túria",
+        "articleSourceHost": "ribarroja.es",
+        "articleUrl": "https://www.ribarroja.es/es/noticia/el-ayuntamiento-de-riba-roja-de-t%C3%BAria-ejecutar%C3%A1-un-plan-director-de-restauraci%C3%B3n-de-las-cuatro-canteras-del-municipio",
+        "articleDate": "2026-10-08T09:08:42.000Z",
+        "segmentIndex": 5,
         "segmentKind": "body",
-        "type": "dato_municipal",
+        "type": "afirmacion_numerica",
         "attributedSource": "municipal",
-        "verbatim": "L’exercici corresponent a 2025 va ser el més elevat del període estudiat amb els citats 23’1 milions d’euros",
-        "context": "L'article atribueix la xifra a la tramitació del contracte de recollida de residus sòlids urbans i la compara amb la resta d'exercicis analitzats a la memòria.",
-        "topic": "fiscal",
-        "entities": {
-          "amountEuros": 23100000,
-          "date": "2025",
-          "referencedEntity": "Contracte de recollida de residus sòlids urbans"
-        },
-        "confidence": 0.75,
-        "reasoning": "Afirmació comparativa (2025 com a any de major import licitat) verificable amb les sèries anuals de contractació.",
-        "requiresHumanApproval": true
-      },
-      "verification": {
-        "claimId": "17wvv8s-7-dat",
-        "verdict": "sin-datos",
-        "summary": "No se ha encontrado el dato municipal en las series locales.",
-        "evidence": [],
-        "checkedAgainst": [],
-        "articleUrl": "https://www.infoturia.com/riba-roja-de-turia/86368-riba-roja-estalvia-69-milions-en-ladjudicacio-dels-611-contractes-des-de-2019.html",
-        "articleSource": "Periòdic del Camp de Túria",
-        "articleSourceHost": "infoturia.com",
-        "articleFingerprint": "npavvo"
-      }
-    },
-    {
-      "claim": {
-        "id": "17wvv8s-8-dat",
-        "articleId": "17wvv8s",
-        "articleFingerprint": "npavvo",
-        "articleSource": "Periòdic del Camp de Túria",
-        "articleSourceHost": "infoturia.com",
-        "articleUrl": "https://www.infoturia.com/riba-roja-de-turia/86368-riba-roja-estalvia-69-milions-en-ladjudicacio-dels-611-contractes-des-de-2019.html",
-        "articleDate": "2026-09-22T12:43:01.000Z",
-        "segmentIndex": 8,
-        "segmentKind": "body",
-        "type": "dato_municipal",
-        "attributedSource": "municipal",
-        "verbatim": "es van tramitar contractes del sector dels serveis per valor de 18’4 milions d’euros, a més de 1’5 milions d’euros en l’àmbit de les obres i 1’2 milions d’euros en subministraments",
-        "context": "Desglossament per tipus de contracte de l'exercici 2025 segons la memòria de la Secretaria Municipal.",
-        "topic": "fiscal",
-        "entities": {
-          "amountEuros": 18400000,
-          "date": "2025",
-          "referencedEntity": "Memòria de la Secretaria Municipal"
-        },
-        "confidence": 0.8,
-        "reasoning": "Imports per tipologia contractual (serveis, obres, subministraments) verificables en la memòria i en el perfil de contractant.",
-        "requiresHumanApproval": true
-      },
-      "verification": {
-        "claimId": "17wvv8s-8-dat",
-        "verdict": "sin-datos",
-        "summary": "No se ha encontrado el dato municipal en las series locales.",
-        "evidence": [],
-        "checkedAgainst": [],
-        "articleUrl": "https://www.infoturia.com/riba-roja-de-turia/86368-riba-roja-estalvia-69-milions-en-ladjudicacio-dels-611-contractes-des-de-2019.html",
-        "articleSource": "Periòdic del Camp de Túria",
-        "articleSourceHost": "infoturia.com",
-        "articleFingerprint": "npavvo"
-      }
-    },
-    {
-      "claim": {
-        "id": "17wvv8s-9-dat",
-        "articleId": "17wvv8s",
-        "articleFingerprint": "npavvo",
-        "articleSource": "Periòdic del Camp de Túria",
-        "articleSourceHost": "infoturia.com",
-        "articleUrl": "https://www.infoturia.com/riba-roja-de-turia/86368-riba-roja-estalvia-69-milions-en-ladjudicacio-dels-611-contractes-des-de-2019.html",
-        "articleDate": "2026-09-22T12:43:01.000Z",
-        "segmentIndex": 9,
-        "segmentKind": "body",
-        "type": "dato_municipal",
-        "attributedSource": "municipal",
-        "verbatim": "un total de 44 que es van tramitar en el sistema obert, altres 29 contractes menors, a més d’altres 11 mitjançant sistemes dinàmics d’adquisició (SDA)",
-        "context": "Procediments d'adjudicació duts a terme durant 2025 segons la memòria. L'article no explicita el total de contractes d'aquest recompte.",
-        "topic": "transparencia",
-        "entities": {
-          "count": 44,
-          "countUnit": "contratos procedimiento abierto",
-          "date": "2025",
-          "referencedEntity": "Memòria de la Secretaria Municipal"
-        },
-        "confidence": 0.75,
-        "reasoning": "Recompte de contractes per procediment (obert, menors, SDA) contrastable amb la memòria i els registres de contractació.",
-        "requiresHumanApproval": true
-      },
-      "verification": {
-        "claimId": "17wvv8s-9-dat",
-        "verdict": "sin-datos",
-        "summary": "No se ha encontrado el dato municipal en las series locales.",
-        "evidence": [],
-        "checkedAgainst": [],
-        "articleUrl": "https://www.infoturia.com/riba-roja-de-turia/86368-riba-roja-estalvia-69-milions-en-ladjudicacio-dels-611-contractes-des-de-2019.html",
-        "articleSource": "Periòdic del Camp de Túria",
-        "articleSourceHost": "infoturia.com",
-        "articleFingerprint": "npavvo"
-      }
-    },
-    {
-      "claim": {
-        "id": "17wvv8s-10-dat",
-        "articleId": "17wvv8s",
-        "articleFingerprint": "npavvo",
-        "articleSource": "Periòdic del Camp de Túria",
-        "articleSourceHost": "infoturia.com",
-        "articleUrl": "https://www.infoturia.com/riba-roja-de-turia/86368-riba-roja-estalvia-69-milions-en-ladjudicacio-dels-611-contractes-des-de-2019.html",
-        "articleDate": "2026-09-22T12:43:01.000Z",
-        "segmentIndex": 10,
-        "segmentKind": "body",
-        "type": "dato_municipal",
-        "attributedSource": "municipal",
-        "verbatim": "els contractes d’emergència es van reduir a 3 enfront dels 63 tramitats durant 2024 per la Dana d’octubre d’aqueix any",
-        "context": "Comparació dels contractes d'emergència de 2025 amb els de 2024, vinculats a la Dana d'octubre de 2024.",
+        "verbatim": "ha recibido 25 millones de visitantes desde su apertura",
+        "context": "Este proyecto ha tenido un impacto económico en la región de más 6.800 millones de libras y ha recibido 25 millones de visitantes desde su apertura.",
         "topic": "other",
         "entities": {
-          "count": 3,
-          "countUnit": "contratos de emergencia",
-          "date": "2025",
-          "referencedEntity": "Dana d'octubre de 2024"
+          "count": 25000000,
+          "countUnit": "visitantes",
+          "date": "2001",
+          "referencedEntity": "Eden Project"
         },
-        "confidence": 0.75,
-        "reasoning": "Recompte de contractes d'emergència de 2025 i 2024 verificable en el registre de contractes i en la memòria.",
+        "confidence": 0.55,
+        "reasoning": "Cifra acumulada de visitantes, dato público verificable sobre Eden Project.",
         "requiresHumanApproval": true
       },
       "verification": {
-        "claimId": "17wvv8s-10-dat",
+        "claimId": "o3xjg4-5-num",
         "verdict": "sin-datos",
-        "summary": "No se ha encontrado el dato municipal en las series locales.",
+        "summary": "Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
         "evidence": [],
         "checkedAgainst": [],
-        "articleUrl": "https://www.infoturia.com/riba-roja-de-turia/86368-riba-roja-estalvia-69-milions-en-ladjudicacio-dels-611-contractes-des-de-2019.html",
-        "articleSource": "Periòdic del Camp de Túria",
-        "articleSourceHost": "infoturia.com",
-        "articleFingerprint": "npavvo"
+        "articleUrl": "https://www.ribarroja.es/es/noticia/el-ayuntamiento-de-riba-roja-de-t%C3%BAria-ejecutar%C3%A1-un-plan-director-de-restauraci%C3%B3n-de-las-cuatro-canteras-del-municipio",
+        "articleSource": "Ayuntamiento de Riba-roja de Túria",
+        "articleSourceHost": "ribarroja.es",
+        "articleFingerprint": "1k3l80"
       }
     },
     {
       "claim": {
-        "id": "17wvv8s-11-num",
-        "articleId": "17wvv8s",
-        "articleFingerprint": "npavvo",
-        "articleSource": "Periòdic del Camp de Túria",
-        "articleSourceHost": "infoturia.com",
-        "articleUrl": "https://www.infoturia.com/riba-roja-de-turia/86368-riba-roja-estalvia-69-milions-en-ladjudicacio-dels-611-contractes-des-de-2019.html",
-        "articleDate": "2026-09-22T12:43:01.000Z",
+        "id": "o3xjg4-6-num",
+        "articleId": "o3xjg4",
+        "articleFingerprint": "1k3l80",
+        "articleSource": "Ayuntamiento de Riba-roja de Túria",
+        "articleSourceHost": "ribarroja.es",
+        "articleUrl": "https://www.ribarroja.es/es/noticia/el-ayuntamiento-de-riba-roja-de-t%C3%BAria-ejecutar%C3%A1-un-plan-director-de-restauraci%C3%B3n-de-las-cuatro-canteras-del-municipio",
+        "articleDate": "2026-10-08T09:08:42.000Z",
+        "segmentIndex": 6,
+        "segmentKind": "body",
+        "type": "afirmacion_numerica",
+        "attributedSource": "municipal",
+        "verbatim": "desde 2019 trabaja con 130 profesionales y científicos del ámbito de la minería y la restauración",
+        "context": "El proyecto se realizará en coordinación con la Red de Restauración de Minas y Canteras que, desde 2019 trabaja con 130 profesionales y científicos del ámbito de la minería y la restauración, 19 universidades y centros de investigación y cuenta con 57 socios.",
+        "topic": "medio-ambiente",
+        "entities": {
+          "count": 130,
+          "countUnit": "profesionales y científicos",
+          "date": "2019",
+          "referencedEntity": "Red de Restauración de Minas y Canteras"
+        },
+        "confidence": 0.6,
+        "reasoning": "Cifra concreta de integrantes de la red, contrastable con sus registros públicos.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "o3xjg4-6-num",
+        "verdict": "sin-datos",
+        "summary": "Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
+        "evidence": [],
+        "checkedAgainst": [],
+        "articleUrl": "https://www.ribarroja.es/es/noticia/el-ayuntamiento-de-riba-roja-de-t%C3%BAria-ejecutar%C3%A1-un-plan-director-de-restauraci%C3%B3n-de-las-cuatro-canteras-del-municipio",
+        "articleSource": "Ayuntamiento de Riba-roja de Túria",
+        "articleSourceHost": "ribarroja.es",
+        "articleFingerprint": "1k3l80"
+      }
+    },
+    {
+      "claim": {
+        "id": "o3xjg4-7-num",
+        "articleId": "o3xjg4",
+        "articleFingerprint": "1k3l80",
+        "articleSource": "Ayuntamiento de Riba-roja de Túria",
+        "articleSourceHost": "ribarroja.es",
+        "articleUrl": "https://www.ribarroja.es/es/noticia/el-ayuntamiento-de-riba-roja-de-t%C3%BAria-ejecutar%C3%A1-un-plan-director-de-restauraci%C3%B3n-de-las-cuatro-canteras-del-municipio",
+        "articleDate": "2026-10-08T09:08:42.000Z",
+        "segmentIndex": 7,
+        "segmentKind": "body",
+        "type": "afirmacion_numerica",
+        "attributedSource": "municipal",
+        "verbatim": "19 universidades y centros de investigación",
+        "context": "...trabaja con 130 profesionales y científicos del ámbito de la minería y la restauración, 19 universidades y centros de investigación y cuenta con 57 socios, entre instituciones publicas y privadas.",
+        "topic": "educacion",
+        "entities": {
+          "count": 19,
+          "countUnit": "universidades y centros de investigación",
+          "referencedEntity": "Red de Restauración de Minas y Canteras"
+        },
+        "confidence": 0.6,
+        "reasoning": "Cifra verificable del número de instituciones académicas integradas en la red citada.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "o3xjg4-7-num",
+        "verdict": "sin-datos",
+        "summary": "Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
+        "evidence": [],
+        "checkedAgainst": [],
+        "articleUrl": "https://www.ribarroja.es/es/noticia/el-ayuntamiento-de-riba-roja-de-t%C3%BAria-ejecutar%C3%A1-un-plan-director-de-restauraci%C3%B3n-de-las-cuatro-canteras-del-municipio",
+        "articleSource": "Ayuntamiento de Riba-roja de Túria",
+        "articleSourceHost": "ribarroja.es",
+        "articleFingerprint": "1k3l80"
+      }
+    },
+    {
+      "claim": {
+        "id": "o3xjg4-8-num",
+        "articleId": "o3xjg4",
+        "articleFingerprint": "1k3l80",
+        "articleSource": "Ayuntamiento de Riba-roja de Túria",
+        "articleSourceHost": "ribarroja.es",
+        "articleUrl": "https://www.ribarroja.es/es/noticia/el-ayuntamiento-de-riba-roja-de-t%C3%BAria-ejecutar%C3%A1-un-plan-director-de-restauraci%C3%B3n-de-las-cuatro-canteras-del-municipio",
+        "articleDate": "2026-10-08T09:08:42.000Z",
+        "segmentIndex": 8,
+        "segmentKind": "body",
+        "type": "afirmacion_numerica",
+        "attributedSource": "municipal",
+        "verbatim": "cuenta con 57 socios, entre instituciones publicas y privadas",
+        "context": "...19 universidades y centros de investigación y cuenta con 57 socios, entre instituciones publicas y privadas.",
+        "topic": "other",
+        "entities": {
+          "count": 57,
+          "countUnit": "socios",
+          "referencedEntity": "Red de Restauración de Minas y Canteras"
+        },
+        "confidence": 0.6,
+        "reasoning": "Cifra concreta de socios de la red, verificable con su listado público de miembros.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "o3xjg4-8-num",
+        "verdict": "sin-datos",
+        "summary": "Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
+        "evidence": [],
+        "checkedAgainst": [],
+        "articleUrl": "https://www.ribarroja.es/es/noticia/el-ayuntamiento-de-riba-roja-de-t%C3%BAria-ejecutar%C3%A1-un-plan-director-de-restauraci%C3%B3n-de-las-cuatro-canteras-del-municipio",
+        "articleSource": "Ayuntamiento de Riba-roja de Túria",
+        "articleSourceHost": "ribarroja.es",
+        "articleFingerprint": "1k3l80"
+      }
+    },
+    {
+      "claim": {
+        "id": "o3xjg4-9-num",
+        "articleId": "o3xjg4",
+        "articleFingerprint": "1k3l80",
+        "articleSource": "Ayuntamiento de Riba-roja de Túria",
+        "articleSourceHost": "ribarroja.es",
+        "articleUrl": "https://www.ribarroja.es/es/noticia/el-ayuntamiento-de-riba-roja-de-t%C3%BAria-ejecutar%C3%A1-un-plan-director-de-restauraci%C3%B3n-de-las-cuatro-canteras-del-municipio",
+        "articleDate": "2026-10-08T09:08:42.000Z",
+        "segmentIndex": 9,
+        "segmentKind": "body",
+        "type": "afirmacion_numerica",
+        "attributedSource": "municipal",
+        "verbatim": "estas cuatro canteras que ocupan cerca de 600.000 m2",
+        "context": "...qué proyectos innovadores, ligados a la sostenibilidad, podrían desarrollarse a medio y largo plazo en estas cuatro canteras que ocupan cerca de 600.000 m2 sobre un territorio total 1,4 millones de m² de superficie.",
+        "topic": "urbanismo",
+        "entities": {
+          "count": 600000,
+          "countUnit": "m²",
+          "referencedEntity": "canteras de Riba-roja de Túria"
+        },
+        "confidence": 0.65,
+        "reasoning": "Superficie ocupada por las canteras, dato catastral/urbanístico verificable.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "o3xjg4-9-num",
+        "verdict": "sin-datos",
+        "summary": "Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
+        "evidence": [],
+        "checkedAgainst": [],
+        "articleUrl": "https://www.ribarroja.es/es/noticia/el-ayuntamiento-de-riba-roja-de-t%C3%BAria-ejecutar%C3%A1-un-plan-director-de-restauraci%C3%B3n-de-las-cuatro-canteras-del-municipio",
+        "articleSource": "Ayuntamiento de Riba-roja de Túria",
+        "articleSourceHost": "ribarroja.es",
+        "articleFingerprint": "1k3l80"
+      }
+    },
+    {
+      "claim": {
+        "id": "o3xjg4-10-num",
+        "articleId": "o3xjg4",
+        "articleFingerprint": "1k3l80",
+        "articleSource": "Ayuntamiento de Riba-roja de Túria",
+        "articleSourceHost": "ribarroja.es",
+        "articleUrl": "https://www.ribarroja.es/es/noticia/el-ayuntamiento-de-riba-roja-de-t%C3%BAria-ejecutar%C3%A1-un-plan-director-de-restauraci%C3%B3n-de-las-cuatro-canteras-del-municipio",
+        "articleDate": "2026-10-08T09:08:42.000Z",
+        "segmentIndex": 10,
+        "segmentKind": "body",
+        "type": "afirmacion_numerica",
+        "attributedSource": "municipal",
+        "verbatim": "sobre un territorio total 1,4 millones de m² de superficie",
+        "context": "...estas cuatro canteras que ocupan cerca de 600.000 m2 sobre un territorio total 1,4 millones de m² de superficie.",
+        "topic": "urbanismo",
+        "entities": {
+          "count": 1400000,
+          "countUnit": "m²",
+          "referencedEntity": "territorio de las canteras de Riba-roja de Túria"
+        },
+        "confidence": 0.65,
+        "reasoning": "Superficie total del territorio afectado por el proyecto, verificable con datos catastrales.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "o3xjg4-10-num",
+        "verdict": "sin-datos",
+        "summary": "Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
+        "evidence": [],
+        "checkedAgainst": [],
+        "articleUrl": "https://www.ribarroja.es/es/noticia/el-ayuntamiento-de-riba-roja-de-t%C3%BAria-ejecutar%C3%A1-un-plan-director-de-restauraci%C3%B3n-de-las-cuatro-canteras-del-municipio",
+        "articleSource": "Ayuntamiento de Riba-roja de Túria",
+        "articleSourceHost": "ribarroja.es",
+        "articleFingerprint": "1k3l80"
+      }
+    },
+    {
+      "claim": {
+        "id": "o3xjg4-11-num",
+        "articleId": "o3xjg4",
+        "articleFingerprint": "1k3l80",
+        "articleSource": "Ayuntamiento de Riba-roja de Túria",
+        "articleSourceHost": "ribarroja.es",
+        "articleUrl": "https://www.ribarroja.es/es/noticia/el-ayuntamiento-de-riba-roja-de-t%C3%BAria-ejecutar%C3%A1-un-plan-director-de-restauraci%C3%B3n-de-las-cuatro-canteras-del-municipio",
+        "articleDate": "2026-10-08T09:08:42.000Z",
         "segmentIndex": 11,
         "segmentKind": "body",
         "type": "afirmacion_numerica",
         "attributedSource": "municipal",
-        "verbatim": "Les adjudicacions a les petites i mitjanes empreses (pimes) s’han incrementat entre els anys 2022 i 2025 en passar dels 76 als 77 en total, amb un 84% i un 85% respectivament",
-        "context": "L'article afegeix que les pimes concentren entre el 73 i el 85% de les adjudicacions en 2024 i 2025. Les xifres són poc clares (76→77 amb 84%→85%) i cal contrastar-les amb la memòria.",
-        "topic": "fiscal",
+        "verbatim": "para los cerca de dos millones de habitantes y su área metropolitana",
+        "context": "Raga ha subrayado, 'las canteras de Riba-roja tienen peculiaridades que las convierten en un espacio atractivo y único para los cerca de dos millones de habitantes y su área metropolitana, ya que están próximas a la A3, el by pass, la línea 9 de Metro y a cinco minutos del aeropuerto de Manises'.",
+        "topic": "demografia",
         "entities": {
-          "count": 77,
-          "countUnit": "adjudicaciones a pimes",
-          "date": "2022-2025",
-          "referencedEntity": "Memòria de la Secretaria Municipal"
+          "count": 2000000,
+          "countUnit": "habitantes",
+          "referencedEntity": "área metropolitana de Valencia"
         },
         "confidence": 0.5,
-        "reasoning": "Afirmació numèrica sobre adjudicacions a pimes contrastable amb la memòria, encara que les xifres són internament poc coherents.",
+        "reasoning": "Cifra aproximada de población del área metropolitana, contrastable con datos demográficos oficiales.",
         "requiresHumanApproval": true
       },
       "verification": {
-        "claimId": "17wvv8s-11-num",
+        "claimId": "o3xjg4-11-num",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
         "evidence": [],
         "checkedAgainst": [],
-        "articleUrl": "https://www.infoturia.com/riba-roja-de-turia/86368-riba-roja-estalvia-69-milions-en-ladjudicacio-dels-611-contractes-des-de-2019.html",
-        "articleSource": "Periòdic del Camp de Túria",
-        "articleSourceHost": "infoturia.com",
-        "articleFingerprint": "npavvo"
+        "articleUrl": "https://www.ribarroja.es/es/noticia/el-ayuntamiento-de-riba-roja-de-t%C3%BAria-ejecutar%C3%A1-un-plan-director-de-restauraci%C3%B3n-de-las-cuatro-canteras-del-municipio",
+        "articleSource": "Ayuntamiento de Riba-roja de Túria",
+        "articleSourceHost": "ribarroja.es",
+        "articleFingerprint": "1k3l80"
       }
     },
     {
       "claim": {
-        "id": "17wvv8s-12-dat",
-        "articleId": "17wvv8s",
-        "articleFingerprint": "npavvo",
-        "articleSource": "Periòdic del Camp de Túria",
-        "articleSourceHost": "infoturia.com",
-        "articleUrl": "https://www.infoturia.com/riba-roja-de-turia/86368-riba-roja-estalvia-69-milions-en-ladjudicacio-dels-611-contractes-des-de-2019.html",
-        "articleDate": "2026-09-22T12:43:01.000Z",
+        "id": "o3xjg4-12-num",
+        "articleId": "o3xjg4",
+        "articleFingerprint": "1k3l80",
+        "articleSource": "Ayuntamiento de Riba-roja de Túria",
+        "articleSourceHost": "ribarroja.es",
+        "articleUrl": "https://www.ribarroja.es/es/noticia/el-ayuntamiento-de-riba-roja-de-t%C3%BAria-ejecutar%C3%A1-un-plan-director-de-restauraci%C3%B3n-de-las-cuatro-canteras-del-municipio",
+        "articleDate": "2026-10-08T09:08:42.000Z",
         "segmentIndex": 12,
         "segmentKind": "body",
-        "type": "dato_municipal",
-        "attributedSource": "municipal",
-        "verbatim": "les 8.232 propostes elevades a la Junta de Govern entre els anys 2017 i 2025",
-        "context": "La memòria recull l'activitat dels òrgans municipals; el subtítol parla de «més de 8.200 propostes de la Junta de Govern».",
-        "topic": "transparencia",
-        "entities": {
-          "count": 8232,
-          "countUnit": "propuestas Junta de Gobierno",
-          "date": "2017-2025",
-          "referencedEntity": "Junta de Govern Local"
-        },
-        "confidence": 0.8,
-        "reasoning": "Recompte de propostes de la Junta de Govern verificable amb les actes i amb la memòria de Secretaria.",
-        "requiresHumanApproval": true
-      },
-      "verification": {
-        "claimId": "17wvv8s-12-dat",
-        "verdict": "sin-datos",
-        "summary": "No se ha encontrado el dato municipal en las series locales.",
-        "evidence": [],
-        "checkedAgainst": [],
-        "articleUrl": "https://www.infoturia.com/riba-roja-de-turia/86368-riba-roja-estalvia-69-milions-en-ladjudicacio-dels-611-contractes-des-de-2019.html",
-        "articleSource": "Periòdic del Camp de Túria",
-        "articleSourceHost": "infoturia.com",
-        "articleFingerprint": "npavvo"
-      }
-    },
-    {
-      "claim": {
-        "id": "17wvv8s-13-dat",
-        "articleId": "17wvv8s",
-        "articleFingerprint": "npavvo",
-        "articleSource": "Periòdic del Camp de Túria",
-        "articleSourceHost": "infoturia.com",
-        "articleUrl": "https://www.infoturia.com/riba-roja-de-turia/86368-riba-roja-estalvia-69-milions-en-ladjudicacio-dels-611-contractes-des-de-2019.html",
-        "articleDate": "2026-09-22T12:43:01.000Z",
-        "segmentIndex": 13,
-        "segmentKind": "body",
-        "type": "dato_municipal",
-        "attributedSource": "municipal",
-        "verbatim": "es van emportar al ple municipal 993 propostes, a més d’altres 31 mocions tramitades per part de diversos partits polítics durant el passat exercici de 2025",
-        "context": "Activitat del ple municipal segons la memòria; el període de les 993 propostes és el mateix que el de la Junta de Govern (2017-2025) i les 31 mocions corresponen a 2025.",
-        "topic": "transparencia",
-        "entities": {
-          "count": 993,
-          "countUnit": "propuestas al pleno",
-          "date": "2017-2025",
-          "referencedEntity": "Ple municipal"
-        },
-        "confidence": 0.75,
-        "reasoning": "Recompte de propostes al ple i de mocions de 2025, verificable en les actes plenàries i en la memòria.",
-        "requiresHumanApproval": true
-      },
-      "verification": {
-        "claimId": "17wvv8s-13-dat",
-        "verdict": "sin-datos",
-        "summary": "No se ha encontrado el dato municipal en las series locales.",
-        "evidence": [],
-        "checkedAgainst": [],
-        "articleUrl": "https://www.infoturia.com/riba-roja-de-turia/86368-riba-roja-estalvia-69-milions-en-ladjudicacio-dels-611-contractes-des-de-2019.html",
-        "articleSource": "Periòdic del Camp de Túria",
-        "articleSourceHost": "infoturia.com",
-        "articleFingerprint": "npavvo"
-      }
-    },
-    {
-      "claim": {
-        "id": "1s3psp4-0-num",
-        "articleId": "1s3psp4",
-        "articleFingerprint": "1opjjc",
-        "articleSource": "Ayuntamiento de Riba-roja de Túria",
-        "articleSourceHost": "ribarroja.es",
-        "articleUrl": "https://www.ribarroja.es/es/noticia/el-ayuntamiento-de-riba-roja-de-t%C3%BAria-ahorra-6%E2%80%999-millones-de-euros-en-la-adjudicaci%C3%B3n-de-los-611-contratos-p%C3%BAblicos-tramitados-desde-2019",
-        "articleDate": "2026-09-22T11:53:19.000Z",
-        "segmentIndex": 0,
-        "segmentKind": "title",
         "type": "afirmacion_numerica",
         "attributedSource": "municipal",
-        "verbatim": "ahorra 6’9 millones de euros en la adjudicación de los 611 contratos públicos",
-        "context": "Titular del artículo publicado en el medio del propio Ayuntamiento de Riba-roja de Túria: «El Ayuntamiento de Riba-roja de Túria ahorra 6’9 millones de euros en la adjudicación de los 611 contratos públicos tramitados desde 2019». Solo se dispone del titular.",
-        "topic": "fiscal",
+        "verbatim": "a cinco minutos del aeropuerto de Manises",
+        "context": "...ya que están próximas a la A3, el by pass, la línea 9 de Metro y a cinco minutos del aeropuerto de Manises.",
+        "topic": "movilidad",
         "entities": {
-          "amountEuros": 6900000,
-          "count": 611,
-          "countUnit": "contratos públicos",
-          "date": "2019",
-          "referencedEntity": "Ayuntamiento de Riba-roja de Túria"
+          "count": 5,
+          "countUnit": "minutos",
+          "referencedEntity": "Aeropuerto de Manises"
         },
-        "confidence": 0.6,
-        "reasoning": "Cifra de ahorro (6,9 M€) contrastable con importes de licitación y adjudicación en la Plataforma de Contratación del Sector Público.",
+        "confidence": 0.45,
+        "reasoning": "Estimación de tiempo de desplazamiento, contrastable aproximadamente con datos de distancia real.",
         "requiresHumanApproval": true
       },
       "verification": {
-        "claimId": "1s3psp4-0-num",
+        "claimId": "o3xjg4-12-num",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
-        "evidence": [],
-        "checkedAgainst": [
-          "tenders",
-          "tenders-ted",
-          "bdns",
-          "budget"
-        ],
-        "articleUrl": "https://www.ribarroja.es/es/noticia/el-ayuntamiento-de-riba-roja-de-t%C3%BAria-ahorra-6%E2%80%999-millones-de-euros-en-la-adjudicaci%C3%B3n-de-los-611-contratos-p%C3%BAblicos-tramitados-desde-2019",
-        "articleSource": "Ayuntamiento de Riba-roja de Túria",
-        "articleSourceHost": "ribarroja.es",
-        "articleFingerprint": "1opjjc"
-      }
-    },
-    {
-      "claim": {
-        "id": "1s3psp4-1-dat",
-        "articleId": "1s3psp4",
-        "articleFingerprint": "1opjjc",
-        "articleSource": "Ayuntamiento de Riba-roja de Túria",
-        "articleSourceHost": "ribarroja.es",
-        "articleUrl": "https://www.ribarroja.es/es/noticia/el-ayuntamiento-de-riba-roja-de-t%C3%BAria-ahorra-6%E2%80%999-millones-de-euros-en-la-adjudicaci%C3%B3n-de-los-611-contratos-p%C3%BAblicos-tramitados-desde-2019",
-        "articleDate": "2026-09-22T11:53:19.000Z",
-        "segmentIndex": 1,
-        "segmentKind": "title",
-        "type": "dato_municipal",
-        "attributedSource": "municipal",
-        "verbatim": "los 611 contratos públicos tramitados desde 2019",
-        "context": "Titular del artículo publicado en el medio del propio Ayuntamiento de Riba-roja de Túria sobre el ahorro obtenido en la adjudicación de contratos públicos desde 2019.",
-        "topic": "transparencia",
-        "entities": {
-          "count": 611,
-          "countUnit": "contratos públicos",
-          "date": "2019",
-          "referencedEntity": "Ayuntamiento de Riba-roja de Túria"
-        },
-        "confidence": 0.6,
-        "reasoning": "El recuento de 611 contratos tramitados desde 2019 es verificable en el perfil del contratante y en la Plataforma de Contratación del Sector Público.",
-        "requiresHumanApproval": true
-      },
-      "verification": {
-        "claimId": "1s3psp4-1-dat",
-        "verdict": "sin-datos",
-        "summary": "No se ha encontrado el dato municipal en las series locales.",
+        "summary": "Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
         "evidence": [],
         "checkedAgainst": [],
-        "articleUrl": "https://www.ribarroja.es/es/noticia/el-ayuntamiento-de-riba-roja-de-t%C3%BAria-ahorra-6%E2%80%999-millones-de-euros-en-la-adjudicaci%C3%B3n-de-los-611-contratos-p%C3%BAblicos-tramitados-desde-2019",
+        "articleUrl": "https://www.ribarroja.es/es/noticia/el-ayuntamiento-de-riba-roja-de-t%C3%BAria-ejecutar%C3%A1-un-plan-director-de-restauraci%C3%B3n-de-las-cuatro-canteras-del-municipio",
         "articleSource": "Ayuntamiento de Riba-roja de Túria",
         "articleSourceHost": "ribarroja.es",
-        "articleFingerprint": "1opjjc"
+        "articleFingerprint": "1k3l80"
       }
     },
     {
       "claim": {
-        "id": "1a5f1pr-0-pro",
-        "articleId": "1a5f1pr",
-        "articleFingerprint": "15h67us",
-        "articleSource": "levante-emv.com",
-        "articleSourceHost": "levante-emv.com",
-        "articleUrl": "https://news.google.com/rss/articles/CBMi2gFBVV95cUxNMmxLYkVncFZtSFlseFUxQWpTZ2pKemFoenI3UFhndVdTVDA2Y3RXUW1UODlGR1VnWlZRUXkxRGZreHFIcllPMUQ0N3VaV2t2SnBVOHNFZnBfbWNGM1ZSaVFSUGdJVWFSTmJCbTRiam5nZFhqT3I3TkFiMmlvZzFId0RQZzgxZWFrRE5DTzQxOTlKNFBNYXpKSlpSSW9PLVRCeU1SSmdMZWtWUDl0bjR1bUg4a211MGxVVDJoQTVXQnlIbU9YX0RVQWJ6QVFDRS0tVFdad3FjWjlzUdIB3wFBVV95cUxQQTBqaVJOTDZURHpobVBwemcyTnpWQmJBWTl1Z3Uyd1ZSb1ltaTJiYTVfTjBVdUZwTm1FUkN2My0tNVkxTlJBMklOMFRQcDNqblNNVTZUNFpPQ19aWEJnRERfM0ZmS012UjZBT3JqWFFmRmtLelhpZ3JKY2R5TVQ0VHR6bnVKTjZVQ0JIRS1nUVdNZm5ENl9kMWN5NkJ3bGhvM0VhSlRocElmM1J6YlZNVVEzbzVnb0dzZl81a3UyZmdySHhKUEJJSFF1ZUFWaFhEd0wzOUQ2TkFBZ0FBQjhn?oc=5",
-        "articleDate": "2026-09-19T04:00:48.000Z",
-        "segmentIndex": 0,
-        "segmentKind": "title",
+        "id": "o3xjg4-13-pro",
+        "articleId": "o3xjg4",
+        "articleFingerprint": "1k3l80",
+        "articleSource": "Ayuntamiento de Riba-roja de Túria",
+        "articleSourceHost": "ribarroja.es",
+        "articleUrl": "https://www.ribarroja.es/es/noticia/el-ayuntamiento-de-riba-roja-de-t%C3%BAria-ejecutar%C3%A1-un-plan-director-de-restauraci%C3%B3n-de-las-cuatro-canteras-del-municipio",
+        "articleDate": "2026-10-08T09:08:42.000Z",
+        "segmentIndex": 13,
+        "segmentKind": "body",
         "type": "promesa",
-        "attributedSource": "unspecified",
-        "verbatim": "Riba-roja contará cuántas personas visitan el Parc Natural del Túria con un nuevo sistema inteligente",
-        "context": "Titular del artículo de Levante-EMV (19/09/2026). Solo se dispone del titular, sin cuerpo del texto, por lo que no consta quién anuncia la medida ni plazos o importes.",
-        "topic": "medio-ambiente",
+        "attributedSource": "municipal",
+        "verbatim": "será un proyecto participado a través de los 14 consejos sectoriales que representan a la población",
+        "context": "El Ayuntamiento de Riba-roja de Túria ha anunciado que será un proyecto participado a través de los 14 consejos sectoriales que representan a la población, con el objetivo de aunar inquietudes respecto a la puesta en valor de estos espacios degradados.",
+        "topic": "transparencia",
         "entities": {
-          "referencedEntity": "Parc Natural del Túria"
+          "count": 14,
+          "countUnit": "consejos sectoriales",
+          "referencedEntity": "consejos sectoriales de Riba-roja de Túria"
         },
-        "confidence": 0.4,
-        "reasoning": "Anuncia la implantación de un sistema de conteo de visitantes en el Parc Natural del Túria, verificable mediante contrato, licitación o instalación efectiva.",
+        "confidence": 0.65,
+        "reasoning": "Compromiso municipal concreto sobre el mecanismo de participación pública anunciado, verificable en el tiempo.",
         "requiresHumanApproval": true
       },
       "verification": {
-        "claimId": "1a5f1pr-0-pro",
+        "claimId": "o3xjg4-13-pro",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "No se encontró registro en promises que la sostenga. Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
         "evidence": [],
         "checkedAgainst": [
           "promises"
         ],
-        "articleUrl": "https://news.google.com/rss/articles/CBMi2gFBVV95cUxNMmxLYkVncFZtSFlseFUxQWpTZ2pKemFoenI3UFhndVdTVDA2Y3RXUW1UODlGR1VnWlZRUXkxRGZreHFIcllPMUQ0N3VaV2t2SnBVOHNFZnBfbWNGM1ZSaVFSUGdJVWFSTmJCbTRiam5nZFhqT3I3TkFiMmlvZzFId0RQZzgxZWFrRE5DTzQxOTlKNFBNYXpKSlpSSW9PLVRCeU1SSmdMZWtWUDl0bjR1bUg4a211MGxVVDJoQTVXQnlIbU9YX0RVQWJ6QVFDRS0tVFdad3FjWjlzUdIB3wFBVV95cUxQQTBqaVJOTDZURHpobVBwemcyTnpWQmJBWTl1Z3Uyd1ZSb1ltaTJiYTVfTjBVdUZwTm1FUkN2My0tNVkxTlJBMklOMFRQcDNqblNNVTZUNFpPQ19aWEJnRERfM0ZmS012UjZBT3JqWFFmRmtLelhpZ3JKY2R5TVQ0VHR6bnVKTjZVQ0JIRS1nUVdNZm5ENl9kMWN5NkJ3bGhvM0VhSlRocElmM1J6YlZNVVEzbzVnb0dzZl81a3UyZmdySHhKUEJJSFF1ZUFWaFhEd0wzOUQ2TkFBZ0FBQjhn?oc=5",
-        "articleSource": "levante-emv.com",
-        "articleSourceHost": "levante-emv.com",
-        "articleFingerprint": "15h67us"
-      }
-    },
-    {
-      "claim": {
-        "id": "1cj48hw-0-dat",
-        "articleId": "1cj48hw",
-        "articleFingerprint": "vw4sri",
-        "articleSource": "Periòdic del Camp de Túria",
-        "articleSourceHost": "infoturia.com",
-        "articleUrl": "https://www.infoturia.com/riba-roja-de-turia/86207-riba-roja-destina-7-000-euros-per-a-fomentar-lesport-i-millorar-el-rendiment-en-competicions.html",
-        "articleDate": "2026-09-16T11:52:13.000Z",
-        "segmentIndex": 0,
-        "segmentKind": "title",
-        "type": "dato_municipal",
-        "attributedSource": "outlet",
-        "verbatim": "Riba-roja destina 7.000 euros per a fomentar l’esport i millorar el rendiment en competicions",
-        "context": "Titular del artículo del Periòdic del Camp de Túria (16/09/2026). Sólo se dispone del titular; no consta el detalle de la partida, el destinatario ni el acto administrativo que la respalda.",
-        "topic": "other",
-        "entities": {
-          "amountEuros": 7000,
-          "referencedEntity": "Ajuntament de Riba-roja de Túria"
-        },
-        "confidence": 0.6,
-        "reasoning": "Cifra concreta de gasto municipal (7.000 €) contrastable con las bases, la resolución de subvención o la BDNS y los presupuestos municipales.",
-        "requiresHumanApproval": true
-      },
-      "verification": {
-        "claimId": "1cj48hw-0-dat",
-        "verdict": "sin-datos",
-        "summary": "No se ha encontrado el dato municipal en las series locales.",
-        "evidence": [],
-        "checkedAgainst": [],
-        "articleUrl": "https://www.infoturia.com/riba-roja-de-turia/86207-riba-roja-destina-7-000-euros-per-a-fomentar-lesport-i-millorar-el-rendiment-en-competicions.html",
-        "articleSource": "Periòdic del Camp de Túria",
-        "articleSourceHost": "infoturia.com",
-        "articleFingerprint": "vw4sri"
-      }
-    },
-    {
-      "claim": {
-        "id": "2gr6xp-0-dat",
-        "articleId": "2gr6xp",
-        "articleFingerprint": "1j0z0p4",
+        "articleUrl": "https://www.ribarroja.es/es/noticia/el-ayuntamiento-de-riba-roja-de-t%C3%BAria-ejecutar%C3%A1-un-plan-director-de-restauraci%C3%B3n-de-las-cuatro-canteras-del-municipio",
         "articleSource": "Ayuntamiento de Riba-roja de Túria",
         "articleSourceHost": "ribarroja.es",
-        "articleUrl": "https://www.ribarroja.es/es/noticia/riba-roja-destina-una-partida-de-7.000-euros-en-subvenciones-para-fomentar-la-pr%C3%A1ctica-del-deporte-y-mejorar-el-rendimiento-en-las-competiciones-oficiales",
-        "articleDate": "2026-09-16T11:42:06.000Z",
-        "segmentIndex": 0,
-        "segmentKind": "title",
+        "articleFingerprint": "1k3l80"
+      }
+    },
+    {
+      "claim": {
+        "id": "o3xjg4-14-dat",
+        "articleId": "o3xjg4",
+        "articleFingerprint": "1k3l80",
+        "articleSource": "Ayuntamiento de Riba-roja de Túria",
+        "articleSourceHost": "ribarroja.es",
+        "articleUrl": "https://www.ribarroja.es/es/noticia/el-ayuntamiento-de-riba-roja-de-t%C3%BAria-ejecutar%C3%A1-un-plan-director-de-restauraci%C3%B3n-de-las-cuatro-canteras-del-municipio",
+        "articleDate": "2026-10-08T09:08:42.000Z",
+        "segmentIndex": 14,
+        "segmentKind": "body",
         "type": "dato_municipal",
         "attributedSource": "municipal",
-        "verbatim": "Riba-roja destina una partida de 7.000 euros en subvenciones para fomentar la práctica del deporte",
-        "context": "Titular de una publicación del Ayuntamiento de Riba-roja de Túria: \"Riba-roja destina una partida de 7.000 euros en subvenciones para fomentar la práctica del deporte y mejorar el rendimiento en las competiciones oficiales\".",
-        "topic": "other",
+        "verbatim": "Las mercantiles ya disponen de planes de restauración presentados a la conselleria de Medio Ambiente y de forma específica a la Dirección General de Energía y Minas",
+        "context": "En este proceso la participación de ARIVAL, que representa a las empresas titulares del suelo, será clave. Las mercantiles ya disponen de planes de restauración presentados a la conselleria de Medio Ambiente y de forma específica a la Dirección General de Energía y Minas.",
+        "topic": "transparencia",
         "entities": {
-          "amountEuros": 7000,
-          "referencedEntity": "Ayuntamiento de Riba-roja de Túria"
+          "referencedEntity": "Conselleria de Medio Ambiente / Dirección General de Energía y Minas"
         },
         "confidence": 0.6,
-        "reasoning": "Cifra concreta (7.000 €) de una partida de subvenciones deportivas, contrastable con la convocatoria, el presupuesto municipal o la BDNS.",
+        "reasoning": "Afirma la existencia de documentos administrativos presentados ante la administración autonómica, verificable mediante registro público.",
         "requiresHumanApproval": true
       },
       "verification": {
-        "claimId": "2gr6xp-0-dat",
+        "claimId": "o3xjg4-14-dat",
         "verdict": "sin-datos",
         "summary": "No se ha encontrado el dato municipal en las series locales.",
         "evidence": [],
         "checkedAgainst": [],
-        "articleUrl": "https://www.ribarroja.es/es/noticia/riba-roja-destina-una-partida-de-7.000-euros-en-subvenciones-para-fomentar-la-pr%C3%A1ctica-del-deporte-y-mejorar-el-rendimiento-en-las-competiciones-oficiales",
+        "articleUrl": "https://www.ribarroja.es/es/noticia/el-ayuntamiento-de-riba-roja-de-t%C3%BAria-ejecutar%C3%A1-un-plan-director-de-restauraci%C3%B3n-de-las-cuatro-canteras-del-municipio",
         "articleSource": "Ayuntamiento de Riba-roja de Túria",
         "articleSourceHost": "ribarroja.es",
-        "articleFingerprint": "1j0z0p4"
+        "articleFingerprint": "1k3l80"
       }
     },
     {
       "claim": {
-        "id": "yfbsr-0-obr",
-        "articleId": "yfbsr",
-        "articleFingerprint": "1ayfpd2",
-        "articleSource": "valenciaplaza.com",
-        "articleSourceHost": "valenciaplaza.com",
-        "articleUrl": "https://news.google.com/rss/articles/CBMiiAJBVV95cUxON3cyWjNNX05UVHIxX0dBSXFMdk5fUk50eGFIMjhzaEJhSVhDenkzQUxYNk85cS02Q2lIWkZhZDh0ZjhKVlk1ekF3T0JhY3pBcFZES3lYM05ZOGhPNU5DLWpYd0xCMjRnMTZ5UWFiMjdmdC1wbXNPTXBGdE1nOS04OEs3UmxwOFBoMFluNXpEaEFFYW9FVmpqajhhR1E1MjlxYVVwbFhUQ0l0cUNZNmhzRXlMS0NLUXlGYWdQd1ZXaWo1VHA1YUJBRXBFSlcweEotTG1qa2dHWl9xaWJiQmNsczR4b3RubEdRenJUX2NKZVNDcUtXVFZxU3d3M3ltemQxYUVjeXY0TkY?oc=5",
-        "articleDate": "2026-09-14T07:00:00.000Z",
+        "id": "1brxjo4-0-num",
+        "articleId": "1brxjo4",
+        "articleFingerprint": "19fhtds",
+        "articleSource": "Las Provincias",
+        "articleSourceHost": "lasprovincias.es",
+        "articleUrl": "https://news.google.com/rss/articles/CBMiugFBVV95cUxPTG9BTGJwbURqVThIaElBSGx3N0kzbGJtYXg0STlKU1d4TWRCb1pXMV9KeklQYUN3NkdlV2Y3bkpaMGx0MG5pT2UxWFRHaldxNkVKRC03LW9Hc2JCS09vUmpJSjhCcjlJMGxHZFd5N2cxZXJQOFNmN2VadlhCbkR3NE1sUHpZM29kZmFqblpIXy1HcC1COU1HU3Fac0xhN0ZZNVlWUkphcGU5ZTVZc1gyQ0Z3MmxRclVKcXfSAb8BQVVfeXFMT3ZnX05wcE0temcxV0tXanZsWUM3aFdEcmVrcWJUd0x1emVjUlRzbFptQ19UM2FTdkRaZTNiWHlJWml0VTFxbDBWR0p5ZFRjbHJyclpwUmJzSjlDTDgzbjRWQnNEZGJoTlgwdjRhUnF0bDhQUFVOc2tUMkI5aU54TDdHdUpQd0lsUFJMeEVFbzY2T1pOTms3SXI1UWFYMnRLTVVJQ2Jrc0ctbG8za1JYeXZyeWZyR0hHYUVvS3dueDA?oc=5",
+        "articleDate": "2026-10-08T08:29:07.000Z",
         "segmentIndex": 0,
         "segmentKind": "title",
-        "type": "cita_obra",
+        "type": "afirmacion_numerica",
         "attributedSource": "outlet",
-        "verbatim": "La patronal de la construcción recurre el concurso para ampliar la depuradora de Riba-roja por una cláusula de igualdad",
-        "context": "Titular del artículo de valenciaplaza.com (14/09/2026). Sólo se dispone del titular, sin cuerpo de texto. El medio afirma en su propia voz que existe un recurso contra el concurso de ampliación de la depuradora.",
+        "verbatim": "Riba-roja impulsa la restauración de cuatro canteras en el municipio",
+        "context": "Titular de Las Provincias (08/10/2026): \"Riba-roja impulsa la restauración de cuatro canteras en el municipio\". No se dispone del cuerpo del artículo, solo del titular.",
         "topic": "medio-ambiente",
         "entities": {
-          "referencedEntity": "Concurso de ampliación de la depuradora de Riba-roja de Túria"
+          "count": 4,
+          "countUnit": "canteras",
+          "referencedEntity": "Riba-roja de Túria"
         },
-        "confidence": 0.5,
-        "reasoning": "Es contrastable con el perfil del contratante y los registros de recursos contractuales (tribunal de contratos) del concurso de la depuradora, y con el pliego que contiene la cláusula de igualdad.",
+        "confidence": 0.4,
+        "reasoning": "El titular afirma un número concreto de canteras (cuatro) en proceso de restauración, cifra verificable frente a registros municipales, aunque solo se dispone del titular y no del cuerpo del artículo.",
         "requiresHumanApproval": true
       },
       "verification": {
-        "claimId": "yfbsr-0-obr",
+        "claimId": "1brxjo4-0-num",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "summary": "Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
         "evidence": [],
-        "checkedAgainst": [
-          "tenders",
-          "tenders-ted"
-        ],
-        "articleUrl": "https://news.google.com/rss/articles/CBMiiAJBVV95cUxON3cyWjNNX05UVHIxX0dBSXFMdk5fUk50eGFIMjhzaEJhSVhDenkzQUxYNk85cS02Q2lIWkZhZDh0ZjhKVlk1ekF3T0JhY3pBcFZES3lYM05ZOGhPNU5DLWpYd0xCMjRnMTZ5UWFiMjdmdC1wbXNPTXBGdE1nOS04OEs3UmxwOFBoMFluNXpEaEFFYW9FVmpqajhhR1E1MjlxYVVwbFhUQ0l0cUNZNmhzRXlMS0NLUXlGYWdQd1ZXaWo1VHA1YUJBRXBFSlcweEotTG1qa2dHWl9xaWJiQmNsczR4b3RubEdRenJUX2NKZVNDcUtXVFZxU3d3M3ltemQxYUVjeXY0TkY?oc=5",
-        "articleSource": "valenciaplaza.com",
-        "articleSourceHost": "valenciaplaza.com",
-        "articleFingerprint": "1ayfpd2"
+        "checkedAgainst": [],
+        "articleUrl": "https://news.google.com/rss/articles/CBMiugFBVV95cUxPTG9BTGJwbURqVThIaElBSGx3N0kzbGJtYXg0STlKU1d4TWRCb1pXMV9KeklQYUN3NkdlV2Y3bkpaMGx0MG5pT2UxWFRHaldxNkVKRC03LW9Hc2JCS09vUmpJSjhCcjlJMGxHZFd5N2cxZXJQOFNmN2VadlhCbkR3NE1sUHpZM29kZmFqblpIXy1HcC1COU1HU3Fac0xhN0ZZNVlWUkphcGU5ZTVZc1gyQ0Z3MmxRclVKcXfSAb8BQVVfeXFMT3ZnX05wcE0temcxV0tXanZsWUM3aFdEcmVrcWJUd0x1emVjUlRzbFptQ19UM2FTdkRaZTNiWHlJWml0VTFxbDBWR0p5ZFRjbHJyclpwUmJzSjlDTDgzbjRWQnNEZGJoTlgwdjRhUnF0bDhQUFVOc2tUMkI5aU54TDdHdUpQd0lsUFJMeEVFbzY2T1pOTms3SXI1UWFYMnRLTVVJQ2Jrc0ctbG8za1JYeXZyeWZyR0hHYUVvS3dueDA?oc=5",
+        "articleSource": "Las Provincias",
+        "articleSourceHost": "lasprovincias.es",
+        "articleFingerprint": "19fhtds"
+      }
+    },
+    {
+      "claim": {
+        "id": "rn4ct8-0-dat",
+        "articleId": "rn4ct8",
+        "articleFingerprint": "10b978",
+        "articleSource": "Ayuntamiento de Riba-roja de Túria",
+        "articleSourceHost": "ribarroja.es",
+        "articleUrl": "https://www.ribarroja.es/es/noticia/subvenciones-destinadas-a-clubes-y-entidades-deportivas-de-riba-roja-de-t%C3%BAria-a%C3%B1o-2026-%28temporada-25/26%29",
+        "articleDate": "2026-10-07T07:36:34.000Z",
+        "segmentIndex": 0,
+        "segmentKind": "body",
+        "type": "dato_municipal",
+        "attributedSource": "municipal",
+        "verbatim": "desde el día 07/10/26 hasta el día 29/10/26, ambos incluidos",
+        "context": "Presentación de solicitudes: desde el día 07/10/26 hasta el día 29/10/26, ambos incluidos. Bases subvenciones clubes 2025-2026",
+        "topic": "other",
+        "entities": {
+          "date": "2026-10-07/2026-10-29",
+          "referencedEntity": "clubes y entidades deportivas de Riba-roja de Túria"
+        },
+        "confidence": 0.75,
+        "reasoning": "Indica un plazo concreto de presentación de solicitudes que puede verificarse contra la convocatoria oficial publicada.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "rn4ct8-0-dat",
+        "verdict": "sin-datos",
+        "summary": "No se ha encontrado el dato municipal en las series locales.",
+        "evidence": [],
+        "checkedAgainst": [],
+        "articleUrl": "https://www.ribarroja.es/es/noticia/subvenciones-destinadas-a-clubes-y-entidades-deportivas-de-riba-roja-de-t%C3%BAria-a%C3%B1o-2026-%28temporada-25/26%29",
+        "articleSource": "Ayuntamiento de Riba-roja de Túria",
+        "articleSourceHost": "ribarroja.es",
+        "articleFingerprint": "10b978"
       }
     }
   ],
-  "sourceGeneratedAt": "2026-09-28T08:21:03.984Z"
+  "sourceGeneratedAt": "2026-10-12T08:31:15.395Z"
 }

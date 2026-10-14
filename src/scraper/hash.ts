@@ -22,7 +22,9 @@ export function fnv32(s: string): string {
   return h.toString(36)
 }
 
-/** First 12 hex chars of sha256. Identical to the former boe.ts/tenders-ted.ts copies. */
-export function sha256Short(text: string): string {
+/** First 12 hex chars of sha256. Identical to the former boe.ts/tenders-ted.ts copies.
+ *  Acepta también los BYTES de un fichero (un PDF pasado a string se corrompe);
+ *  con texto el resultado no cambia. */
+export function sha256Short(text: string | Buffer): string {
   return createHash('sha256').update(text).digest('hex').slice(0, 12)
 }

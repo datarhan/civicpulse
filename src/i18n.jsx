@@ -209,8 +209,7 @@ export const CATALOGUE = {
     'nav.desc.departamentos': 'Acuerdos y plazos, concejalía a concejalía',
     'nav.desc.hallazgos': 'Fichas sobre lo dicho en pleno, con sus documentos',
     'nav.desc.reportajes': 'Investigaciones largas, cada afirmación con su fuente',
-    'nav.desc.declaraciones':
-      'Lo afirmado en pleno, contrastado con datos abiertos cuando se puede',
+    'nav.desc.declaraciones': 'Lo afirmado en pleno, cotejado con datos abiertos cuando se puede',
     'nav.desc.datos': 'Todo lo que alimenta el sitio, descargable',
     'nav.desc.quejas': 'Las quejas vecinales, agregadas y anónimas',
     'nav.desc.empleo': 'Ofertas de la Agència de Col·locació',
@@ -517,6 +516,7 @@ export const CATALOGUE = {
     'map.lugar.urbanizacion': 'Urbanización',
     'map.lugar.barrio': 'Barrio',
     'map.lugar.lote': 'Lote de: «{titulo}»',
+    'map.lugar.fichaBarrio': 'Ficha del barrio: {barrio}',
     'map.lugar.pie': 'Solo obras cuyo título nombra una calle, zona o equipamiento · PLACSP/TED',
     'map.incendio.deAnyo': 'Incendio de {anyo}',
     'map.incendio.superficie': 'superficie del incendio completo',
@@ -563,7 +563,7 @@ export const CATALOGUE = {
     'contrato.quejasRelacionadas': 'Quejas ciudadanas relacionadas',
     'contrato.estado.awarded': 'Adjudicado',
     'contrato.estado.formalized': 'Formalizado',
-    'contrato.estado.void': 'Anulado',
+    'contrato.estado.void': 'Desierto',
     'contrato.estado.revoked': 'Renuncia',
     'contrato.estado.abandoned': 'Desistido',
     'contrato.estado.withdrawn': 'Retirado',
@@ -647,13 +647,13 @@ export const CATALOGUE = {
     'declaraciones.subtitle':
       'Cada afirmación, promesa o acusación detectada en los plenos municipales, cruzada contra los datos abiertos publicados (PLACSP, BDNS, presupuesto, promesas electorales). Atribución a nivel de grupo. El veredicto de cada fila lo pone un cotejo automático, salvo en las que llevan la marca «corregido por un curador», donde una persona lo ha rectificado a la baja: las declaraciones sin atribuir o sin evidencia se mantienen visibles porque se han hecho, y ninguna de ellas se convierte en un hallazgo editorial sin que una persona lo firme.',
     'declaraciones.stat.total': 'Total',
-    'declaraciones.stat.conEvidencia': 'Contrastadas',
+    'declaraciones.stat.conEvidencia': 'Cotejadas',
     'declaraciones.filter.verdict': 'Verdicto',
     'declaraciones.filter.bloc': 'Grupo',
     'declaraciones.filter.topic': 'Tema',
     'declaraciones.filter.todas': 'Todas',
     'declaraciones.filter.todos': 'Todos',
-    'declaraciones.filter.conEvidencia': 'Contrastadas',
+    'declaraciones.filter.conEvidencia': 'Cotejadas',
     'declaraciones.filter.atribuidas': 'Atribuidas',
     'declaraciones.filter.sinCorpus': 'Sin corpus que consultar',
     'declaraciones.filter.comprobadoSinHallar': 'Comprobada, no aparece',
@@ -767,8 +767,8 @@ export const CATALOGUE = {
       'una persona escuchó el audio y su literal no es lo que se dijo: no se publican',
     'plenos.indice.decl.sinDatos': 'Publicadas sin datos que las contrasten',
     'plenos.indice.decl.sinDatos.nota': 'ni confirmadas ni desmentidas',
-    'plenos.indice.decl.contrastadas': 'Parciales o verificadas',
-    'plenos.indice.decl.contrastadas.nota': 'lo único que cotejó un documento municipal',
+    'plenos.indice.decl.cotejadas': 'Parciales o verificadas',
+    'plenos.indice.decl.cotejadas.nota': 'lo único que cotejó un documento municipal',
     'plenos.indice.decl.eyebrow': 'Declaraciones extraídas · {n} sesiones',
     'plenos.indice.decl.titulo': '{extraidas} declaraciones, {verificado} verificadas',
     'plenos.indice.decl.sinDatosNota':
@@ -831,18 +831,139 @@ export const CATALOGUE = {
     'plenos.votes.empty.eyebrow': 'Sin datos',
     'plenos.votes.empty.title': 'No hay votaciones registradas todavía',
 
-    // Claim ledger (declaraciones contrastadas)
+    // Claim ledger (declaraciones cotejadas)
     'ledger.loadMore': 'Cargar más',
     // La línea de recuento que abre la lista, pieza a pieza, con la cifra en negrita.
     // Singular y plural como la línea del resumen de /plenos/:id (`plenoDetail.line.*`);
-    // «sin contraste en los datos» no cambia con el número.
-    'ledger.recuento.contrastadas.uno': '{n} contrastada',
-    'ledger.recuento.contrastadas.varios': '{n} contrastadas',
+    // «sin contraste en los datos» no cambia con el número. «Cotejadas» y no
+    // «contrastadas»: una información contrastada es una comprobada, y la cifra cuenta
+    // también las parciales (tests/rotulo-cotejadas.test.jsx). El desglose por
+    // veredicto que va detrás sale de `cotejo.*`.
+    'ledger.recuento.cotejadas.uno': '{n} cotejada con un documento',
+    'ledger.recuento.cotejadas.varios': '{n} cotejadas con un documento',
     'ledger.recuento.sinContraste': '{n} sin contraste en los datos',
     // Un grupo que firmó una persona (atribucion-firmada.ts). No dice «que escuchó la
     // sesión»: puede firmar desde la transcripción, y entonces lo dice su motivo.
+    'ledger.vacio':
+      'Todavía no hay declaraciones cotejadas con un documento municipal para mostrar aquí.',
+    // El desglose de las cotejadas por veredicto (src/lib/cotejo.js): sólo las piezas
+    // que no son cero, en este orden, entre paréntesis detrás de la cifra.
+    'cotejo.verificado.uno': '{n} verificada',
+    'cotejo.verificado.varios': '{n} verificadas',
+    'cotejo.parcial.uno': '{n} parcial',
+    'cotejo.parcial.varios': '{n} parciales',
+    'cotejo.contradicho.uno': '{n} contradicha',
+    'cotejo.contradicho.varios': '{n} contradichas',
+    // Las que repiten una promesa de /promesas no son cotejadas: van aparte.
+    'cotejo.promesas.uno': '{n} promesa ya registrada',
+    'cotejo.promesas.varios': '{n} promesas ya registradas',
     'ledger.firmado': 'firmado',
     'ledger.firmadoTitulo': 'Grupo firmado por una persona, sobre el tramo {tramo} de la sesión',
+    // La tarjeta de una declaración (ClaimLedger) en /plenos/:id y /departamentos/:slug.
+    // Sólo el rótulo: la cita, la explicación del verificador, el texto de cada fila
+    // y las firmas son dato y salen como vinieron. El veredicto y
+    // el tipo van por su valor (CLAIM_VERDICTS, ALLOWED_CLAIM_TYPES y el rótulo neutro
+    // de claim-type-label.js), y de aquí lee usePlenoClaims.js el castellano de las
+    // páginas que aún no traducen (tests/i18n-mapa-enums.test.ts).
+    'declaraciones.veredicto.verificado': 'Verificado',
+    'declaraciones.veredicto.parcial': 'Parcial',
+    'declaraciones.veredicto.contradicho': 'Contradicho',
+    'declaraciones.veredicto.sin-datos': 'Sin datos',
+    'declaraciones.veredicto.promesa-repetida': 'Promesa repetida',
+    'declaraciones.tipo.promesa': 'Promesa',
+    'declaraciones.tipo.afirmacion_numerica': 'Afirmación numérica',
+    'declaraciones.tipo.cita_obra': 'Obra citada',
+    'declaraciones.tipo.cita_convenio': 'Convenio citado',
+    'declaraciones.tipo.acusacion_publica': 'Acusación pública',
+    'declaraciones.tipo.valoracion_politica': 'Valoración política',
+    'declaraciones.tipo.afirmacion': 'Afirmación',
+    // El tema de una declaración (ALLOWED_CLAIM_TOPICS en src/scraper/pleno-claim.ts),
+    // en su tarjeta de /declaraciones y en el filtro. `other` es el cajón del
+    // extractor cuando no sabe de qué trata la cita: no es un tema más.
+    'declaraciones.tema.fiscal': 'Fiscal',
+    'declaraciones.tema.vivienda': 'Vivienda',
+    'declaraciones.tema.movilidad': 'Movilidad',
+    'declaraciones.tema.medio-ambiente': 'Medio ambiente',
+    'declaraciones.tema.social': 'Acción social',
+    'declaraciones.tema.cultura': 'Cultura',
+    'declaraciones.tema.seguridad': 'Seguridad',
+    'declaraciones.tema.empleo': 'Empleo',
+    'declaraciones.tema.urbanismo': 'Urbanismo',
+    'declaraciones.tema.salud': 'Salud',
+    'declaraciones.tema.transparencia': 'Transparencia',
+    'declaraciones.tema.educacion': 'Educación',
+    'declaraciones.tema.other': 'Sin clasificar',
+    'declaraciones.sinAtribuir': 'sin atribuir',
+    'declaraciones.evidencia.una': 'evidencia',
+    'declaraciones.evidencia.varias': 'evidencias',
+    // La fuente de cada fila de evidencia (EVIDENCE_KINDS).
+    'ledger.evidencia.tender': 'Contrato',
+    'ledger.evidencia.bdns': 'Subvención BDNS',
+    'ledger.evidencia.budget': 'Presupuesto',
+    'ledger.evidencia.promise': 'Promesa documentada',
+    'ledger.evidencia.prior-claim': 'Pleno anterior',
+    'ledger.evidencia.factcheck': 'Verificación de prensa',
+    'ledger.evidencia.boe': 'BOE',
+    'ledger.evidencia.agenda': 'Orden del día',
+    'ledger.evidencia.licitacion': 'Licitación',
+    // Qué mide la puntuación de una fila y qué no (claim-provenance.js, rotuloDeParecido).
+    'ledger.parecido': 'parecido con lo citado {n} · no mide si lo confirma',
+    // Contra qué se cotejó y quién dio el veredicto: dos preguntas, dos rótulos
+    // (claim-provenance.js, fuentesComprobadas y etiquetaVerificador).
+    'ledger.fuentes': 'Fuentes comprobadas: {fuentes}',
+    'ledger.fuentes.ninguna': 'ninguna',
+    'ledger.fuentes.noConstan': 'no constan',
+    // Cada corpus de esa línea (CORPUS_IDS, claim-verdicts.ts). En minúscula: van en
+    // la lista tras los dos puntos y dentro de la frase «No se encontró registro en …»
+    // que la tarjeta re-deriva (claim-provenance.js, resumenSegunFuentes).
+    'ledger.corpus.tenders': 'contratos',
+    'ledger.corpus.tenders-ted': 'contratos anunciados en TED',
+    'ledger.corpus.bdns': 'subvenciones (BDNS)',
+    'ledger.corpus.budget': 'presupuesto',
+    'ledger.corpus.promises': 'promesas documentadas',
+    'ledger.corpus.padron': 'padrón',
+    'ledger.corpus.paro': 'paro registrado',
+    'ledger.corpus.prior-claims': 'plenos anteriores',
+    'ledger.corpus.factcheck': 'verificaciones de prensa',
+    'ledger.corpus.boe': 'BOE',
+    'ledger.corpus.plenos-agendas': 'órdenes del día de los plenos',
+    'ledger.veredicto': 'Veredicto: {verificador}',
+    'verificador.llm': 'verificador LLM',
+    'verificador.nli': 'verificador NLI',
+    'verificador.determinista': 'verificador determinista',
+    'verificador.sinAnotar': 'sin verificador anotado',
+    'verificador.bajada.persona': 'corregido por un curador',
+    'verificador.bajada.automatica': 'rebajado en una revisión automática',
+    'verificador.bajada.no-consta': 'rebajado; no consta quién lo decidió',
+    'verificador.motivoFirmado': '{rotulo} · motivo firmado por {firma}',
+    'verificador.subida.firmada': 'subido por una persona · firmado por {firma}',
+    'verificador.subida.sinFirma': 'subido; no consta quién lo firmó',
+    'verificador.explicacionFirmada': '{rotulo} · explicación firmada por {firma}',
+    // Donde iba una explicación que habla de la tarea del verificador y no de la cita
+    // (resumenes-retirados.js).
+    'ledger.resumenRetirado':
+      'Explicación retirada: el verificador LLM guardó aquí una nota sobre su propia tarea.',
+    'ledger.cargando': 'Cargando verificaciones…',
+    // El puente de importe bajo una fila CONTRATO (importe-de-contrato.ts): qué es la
+    // cifra que imprime la fila y qué importe del mismo expediente es la citada.
+    'puente.frase': '{impreso} es {queEs}. {sujeto} {magnitud}: la cifra citada ({cifra}).',
+    'puente.sujeto.expediente': 'El mismo expediente',
+    'puente.sujeto.lote': 'El lote {n} del mismo expediente',
+    'puente.sujeto.loteSinNumero': 'Un lote del mismo expediente',
+    'puente.queEs.finalAmountNoTaxes': 'el importe de adjudicación, sin IVA',
+    'puente.queEs.initialAmountNoTaxes': 'el presupuesto base de licitación, sin IVA',
+    'puente.queEs.finalAmount': 'el importe de adjudicación, con IVA',
+    'puente.queEs.initialAmount': 'el presupuesto base de licitación, con IVA',
+    'puente.queEs.totalValueEur': 'el valor total que publica TED',
+    'puente.queEs.award_amount_eur': 'el importe que publica la fila',
+    'puente.queEs.awarded_amount': 'el importe que publica la fila',
+    'puente.queEs.amount': 'el importe que publica la fila',
+    'puente.magnitud.finalAmount': 'se adjudicó por {v} con IVA',
+    'puente.magnitud.finalAmountNoTaxes': 'se adjudicó por {v} sin IVA',
+    'puente.magnitud.initialAmount': 'salió a licitación por {v} con IVA',
+    'puente.magnitud.initialAmountNoTaxes': 'salió a licitación por {v} sin IVA',
+    'puente.magnitud.estimatedValue': 'tiene un valor estimado de {v}',
+    'puente.magnitud.contractValue': 'tiene un valor estimado de {v}',
 
     // Pleno detail (/plenos/:id)
     'plenoDetail.notFound': 'Sesión no encontrada',
@@ -850,7 +971,7 @@ export const CATALOGUE = {
     'plenoDetail.summary': 'Resumen',
     'plenoDetail.agenda': 'Orden del día',
     'plenoDetail.votes': 'Votaciones',
-    'plenoDetail.declarations': 'Declaraciones contrastadas',
+    'plenoDetail.declarations': 'Declaraciones cotejadas',
     'plenoDetail.findings': 'Hallazgos editoriales',
     'plenoDetail.transcript': 'Ver transcripción',
     'plenoDetail.transcriptLoading': 'Cargando transcripción…',
@@ -885,11 +1006,110 @@ export const CATALOGUE = {
     'plenoDetail.line.votes.varios': '{n} votaciones transcritas ({aprobadas})',
     'plenoDetail.line.approved.uno': '{n} aprobada',
     'plenoDetail.line.approved.varios': '{n} aprobadas',
-    'plenoDetail.line.declarations.uno': '{n} declaración contrastada',
-    'plenoDetail.line.declarations.varios': '{n} declaraciones contrastadas',
+    'plenoDetail.line.declarations.uno': '{n} declaración cotejada',
+    'plenoDetail.line.declarations.varios': '{n} declaraciones cotejadas',
+    // La leyenda de la barra de declaraciones del resumen.
+    'plenoDetail.mix.cotejadas': 'cotejadas',
+    'plenoDetail.mix.sinContraste': 'sin contraste',
     'plenoDetail.line.declarationsPending': 'declaraciones sin extraer',
     'plenoDetail.line.findings.uno': '{n} hallazgo editorial',
     'plenoDetail.line.findings.varios': '{n} hallazgos editoriales',
+    // El resto de /plenos/:id, que seguía escrito a mano o salía como token del
+    // enum (tests/components/pleno-detalle-valencia.test.jsx). Las tablas de los
+    // hooks (OUTCOME_LABEL, SECTION_LABEL, SEVERITY_LABEL, DIRECTION_LABEL) leen
+    // su castellano de aquí.
+    'plenoDetail.empty.declarations': 'Sin declaraciones contrastables para esta sesión.',
+    'plenoDetail.transcriptActa':
+      'Texto del acta oficial, no del audio. Las marcas de tiempo son sintéticas: el acta es un resumen ya redactado por secretaría, así que una cita literal de aquí cita el acta, no la intervención.',
+    'plenoDetail.transcriptAudio':
+      'Transcripción automática del audio de la sesión. Puede contener errores de reconocimiento; el acta oficial prevalece.',
+    'plenoDetail.expediente': 'Expte. {expediente}',
+    'plenoDetail.voto.resultado': 'Resultado',
+    'plenoDetail.voto.desglose': 'Desglose',
+    'plenoDetail.voto.cotejadoContra': 'cotejado contra {fuente}',
+    'plenoDetail.voto.desgloseRetirado': 'DESGLOSE POR GRUPOS RETIRADO',
+    'plenoDetail.voto.desgloseCorregido': 'DESGLOSE POR GRUPOS CORREGIDO',
+    'pleno.desenlace.aprobado': 'Aprobado',
+    'pleno.desenlace.rechazado': 'Rechazado',
+    'pleno.desenlace.retirado': 'Retirado',
+    'pleno.desenlace.aplazado': 'Aplazado',
+    'pleno.sentido.a_favor': 'A favor',
+    'pleno.sentido.en_contra': 'En contra',
+    'pleno.sentido.abstencion': 'Abstención',
+    'pleno.sentido.ausente': 'Ausente',
+    'pleno.seccion.apertura': 'Apertura',
+    'pleno.seccion.resolutiva': 'Resolutiva',
+    'pleno.seccion.informativa': 'Informativa',
+    'pleno.seccion.ruegos': 'Ruegos y preguntas',
+    'pleno.seccion.otro': '—',
+    'pleno.gravedad.informational': 'Informativo',
+    'pleno.gravedad.notable': 'Relevante',
+    'pleno.gravedad.critical': 'Crítico',
+    'pleno.grupoNoIdentificado': 'Grupo no identificado',
+    'pleno.fuenteVoto.acta': 'Acta oficial',
+    'pleno.fuenteVoto.regmeet': 'Portal de sesiones (regmeet)',
+    'pleno.fuenteVoto.transcripcion': 'Transcripción automática de la sesión',
+    'pleno.fuenteVoto.video': 'Vídeo de la sesión',
+    'pleno.fuenteVoto.transcripcion.sinCotejar':
+      'transcripción automática, sin cotejar con otra fuente',
+    'pleno.fuenteVoto.video.sinCotejar': 'leído del vídeo, sin cotejar con otra fuente',
+    'findings.card.cabecera': '{fecha} · ficha {ficha} · editado por {editor}',
+    'findings.card.replica': 'Réplica de {grupo} · {fecha}',
+    // La ficha de /hallazgos y /hallazgos/:id (`FindingDetailCard`) y la huella de un
+    // hallazgo retirado (`RetiradaDatos`). El castellano es, letra por letra, el que las
+    // páginas escribían a mano: lo leen las pruebas e2e y la revisión lectora.
+    'findings.detalle.cabecera': '{fecha} · pleno {pleno} · editado por {editor}',
+    'findings.detalle.enlace': 'ficha {ficha}',
+    'findings.detalle.enlace.title': 'Enlace permanente a este hallazgo',
+    'findings.detalle.individual.title': 'Atribución individual confirmada por curaduría editorial',
+    'findings.detalle.banda.dicho': 'Lo que se dijo',
+    'findings.detalle.banda.cotejo': 'Contra qué se cotejó',
+    'findings.detalle.banda.replica': 'Derecho de réplica',
+    'findings.detalle.sinLiterales': 'Esta ficha no publica ningún literal.',
+    // Describe el REGISTRO, no el mundo: `pleno-findings.json` no separa «se cotejó y
+    // no salió nada» de «no se cotejó».
+    'findings.detalle.sinCotejos':
+      'Esta ficha no publica ningún documento cotejado. Eso no dice que no exista: dice que aquí no consta.',
+    'findings.detalle.replica.fuente': 'Fuente →',
+    'findings.detalle.replica.abierta':
+      'Abierto desde {fecha} · sin respuesta. ¿Eres el grupo afectado? Contacta con la redacción para ejercerlo · ver {enlace}',
+    'findings.retirada.cabecera': '{id} · pleno {fecha} · retirado {retirado} · {editor}',
+    'findings.retirada.recuento': '{citas} cita(s) y {documentos} documento(s) cotejado(s) ·',
+    'findings.retirada.motivo': 'Motivo: {motivo}',
+    // La bitácora de una ficha corregida (`BitacoraCorrecciones`): /hallazgos,
+    // /promesas, /laboratorio. Los rótulos castellanos son los que exporta el
+    // componente (`ROTULO_TEXTO_*`), que leen otras páginas y las pruebas.
+    'bitacora.resumen': 'Bitácora de correcciones · {n}',
+    'bitacora.enmendados.uno': '{n} motivo enmendado',
+    'bitacora.enmendados.varios': '{n} motivos enmendados',
+    'bitacora.textoRetirado': 'Texto retirado',
+    'bitacora.textoVigente': 'Texto vigente',
+    'bitacora.textoSustituido': 'Texto que puso esta corrección, sustituido el {fecha}',
+    'bitacora.literalRetenido':
+      'esta corrección cambió el texto de una cita que la puerta editorial retiene, así que la bitácora no reproduce ninguna de sus dos versiones; deja su huella, que cualquiera con el texto puede rehacer:',
+    'bitacora.grupoRetenido.rotulo': 'Grupo de un solo escaño',
+    'bitacora.grupoRetenido.texto':
+      'esta corrección cambió un texto que nombraba a un grupo con un solo concejal, y nombrar ese grupo es nombrar a esa persona, así que la bitácora no reproduce {cual}.',
+    'bitacora.grupoRetenido.ninguna': 'ninguna de sus dos versiones',
+    'bitacora.grupoRetenido.retirada': 'la versión que retiró',
+    'bitacora.grupoRetenido.puesta': 'la versión que puso',
+    'bitacora.motivo': 'Motivo:',
+    'bitacora.motivoEnmendadoEl': 'Motivo (enmendado el {fecha}):',
+    'bitacora.motivoEnmendado': 'Motivo enmendado',
+    'bitacora.enmienda.anterior':
+      'El motivo anterior no se reproduce; queda su huella, que cualquiera con una copia anterior puede rehacer:',
+    'bitacora.escanoUnico.nota':
+      'Las versiones que nombraban a un grupo de un solo escaño siguen en el repositorio público del proyecto: esta página deja de enseñarlas, no las retira.',
+    'bitacora.escanoUnico.enlace': 'Por qué, en la metodología',
+    'findings.refs.tipo.tender': 'contrato',
+    'findings.refs.tipo.bdns': 'subvención BDNS',
+    'findings.refs.tipo.budget': 'presupuesto',
+    'findings.refs.tipo.promise': 'promesa',
+    'findings.refs.tipo.pleno-video': 'vídeo del pleno',
+    'findings.refs.tipo.pleno-acta': 'acta del pleno',
+    'findings.refs.tipo.press': 'prensa',
+    'findings.refs.tipo.document': 'documento',
+    'findings.refs.tipo.transcript': 'transcripción',
 
     // Quejas empty state
     'quejas.empty.title': 'El canal de quejas ciudadanas ya está abierto — no hay datos todavía',
@@ -1048,6 +1268,47 @@ export const CATALOGUE = {
     'hallazgos.area.clear': 'ver todos',
     'hallazgos.area.note':
       'Hallazgos cuyas declaraciones se clasifican en esta área. La atribución de cada hallazgo es al GRUPO político que habló, nunca a una persona concreta.',
+    // La lista /hallazgos: lo que no es ficha. Un par de asteriscos marca negrita
+    // (`Marcado`); las cifras se derivan del dato al pintar.
+    'hallazgos.lista.cabecera.automatica': 'Redacción automática · {maquina} de {total}',
+    'hallazgos.lista.titulo': 'Hallazgos sobre declaraciones en pleno',
+    'hallazgos.lista.intro':
+      'Cada hallazgo toma una o más afirmaciones literales de un pleno y las sitúa en su contexto documental (contratos, subvenciones, presupuesto, promesas). Los redacta un proceso automático bajo reglas fijas, salvo los que llevan la firma de una persona; el pie de cada ficha dice quién la editó, y un nombre como «auto-curation-v1» significa que el texto lo escribió una máquina. Cada ficha lista los documentos con los que se ha cotejado —lo corroboren o no— y da derecho de réplica literal al grupo afectado.',
+    'hallazgos.lista.eficiencia':
+      'Esta página verifica **declaraciones en pleno**. Los hallazgos sobre **cuánto cuesta cada servicio** —que no citan a nadie porque no los dijo nadie: salen de las cifras que el ayuntamiento remite al ministerio— se publican junto a los datos de los que salen, en {enlace}.',
+    'hallazgos.lista.eficiencia.enlace': 'eficiencia',
+    'hallazgos.lista.cifra.total': 'Total hallazgos',
+    'hallazgos.lista.cifra.critical': 'Críticos',
+    'hallazgos.lista.cifra.notable': 'Relevantes',
+    'hallazgos.lista.cifra.informational': 'Informativos',
+    'hallazgos.lista.filtro.severidad': 'Severidad',
+    'hallazgos.lista.filtro.todas': 'todas',
+    'hallazgos.lista.filtro.grupo': 'Grupo',
+    'hallazgos.lista.filtro.todos': 'todos',
+    'hallazgos.lista.filtro.pleno': 'Pleno',
+    'hallazgos.lista.vacia':
+      'Todavía no hay hallazgos editoriales publicados. El flujo de curación es: extraer declaraciones → verificar contra datos → promover a hallazgo.',
+    'hallazgos.lista.ninguno': 'Ninguno coincide con los filtros actuales.',
+    'hallazgos.lista.pleno': 'Pleno · {fecha}',
+    'hallazgos.lista.retirados.titulo': 'Hallazgos retirados · {n}',
+    'hallazgos.lista.retirados.texto':
+      'Publicados y después retirados. No se reproduce lo que decían: cada uno se retiró por lo que decía —su motivo va debajo de su huella—, así que republicar el texto aquí devolvería a la web exactamente aquello que la retirada quita. Queda la huella — {sha256} del original, por si alguien conserva una copia y quiere comprobar que coincide.',
+    'hallazgos.lista.como.titulo': 'Cómo se escribe un hallazgo.',
+    'hallazgos.lista.como.texto':
+      'Un proceso automático agrupa las afirmaciones extraídas de las transcripciones del pleno, las coteja con la base documental municipal y redacta el título y el resumen bajo reglas fijas{cuantas}. El pie de cada ficha dice quién la editó, y un nombre como «auto-curation-v1» significa que el texto lo escribió una máquina, no una persona. Los grupos afectados pueden responder con cita literal por la {enlace}.',
+    'hallazgos.lista.como.cuantas':
+      ': de los {total} publicados, **{maquina} los firma una máquina**',
+    'hallazgos.lista.como.enlace': 'vía de rectificación',
+    'hallazgos.lista.como.metodologia': 'Leer metodología →',
+    'hallazgos.lista.transcripciones':
+      '**Citas y transcripciones.** Varias sesiones se transcribieron una segunda vez con un motor mejor. De los {quotes} literales publicados aquí, **{enVigente}** aparecen en la transcripción vigente de su sesión; **{soloEnSustituida}** sólo en la que se sustituyó, y {sinDeterminar} no se pueden situar en ninguna de las dos. Los que no constan en el texto vigente llevan su marca al lado. No reescribimos ninguna cita por nuestra cuenta. {enlace}',
+    'hallazgos.lista.transcripciones.enlace': 'Qué significa cada marca →',
+    'hallazgos.lista.contraste':
+      '**Citas y datos municipales.** Las afirmaciones que sostienen estas citas se cotejan automáticamente con los datos del ayuntamiento. De las {citasConClaim} de aquí, el cotejo encontró algún dato sobre **{shown}**; para **{toggle}** no encontró nada que las confirme ni que las desmienta, y otras **{hidden}** son acusaciones públicas sin ese contraste, que en {enlace} no se publican. Llevan su marca al lado: que una acusación no tenga contraste no la declara falsa, y por sí solo no retira nada.',
+    'hallazgos.lista.contraste.registro': 'el registro de declaraciones',
+    'hallazgos.lista.contraste.retiradas':
+      'Lo que sí se ha retirado está arriba, en las **{n}** fichas que se quedaron sin ninguna cita publicable.',
+    'hallazgos.lista.contraste.enlace': 'Por qué se publican aquí →',
     // Cross-checked documents. The date qualifier is chrome, not data: it says
     // WHICH date is being shown, so «7 feb 2023» beneath a 2026 debate cannot
     // be read as the debate's own date.
@@ -1075,9 +1336,10 @@ export const CATALOGUE = {
     'findings.refs.date.noneTitle':
       'El registro público de este documento no publica ninguna fecha utilizable. No significa que sea reciente.',
     // Tres estados y sólo tres, más el silencio mientras el snapshot carga. Un
-    // expediente anulado antes de adjudicar y un contrato firmado se leían
-    // igual bajo «Documentos cotejados».
-    'findings.refs.status.cancelled': 'expediente anulado',
+    // expediente que acabó sin contrato y un contrato firmado se leían igual
+    // bajo «Documentos cotejados». «Sin contrato» y no «anulado»: el estado que
+    // más lo dispara, `void`, es en PLACSP un lote DESIERTO (useTenders.js).
+    'findings.refs.status.cancelled': 'sin contrato',
     'findings.refs.status.cancelledTitle':
       'El procedimiento terminó sin contrato: se anuló, se desistió o quedó desierto. El ayuntamiento no llegó a firmarlo.',
     'findings.refs.status.committed': 'adjudicado',
@@ -1089,12 +1351,93 @@ export const CATALOGUE = {
     'findings.refs.status.none': 'sin estado',
     'findings.refs.status.noneTitle':
       'El registro público de este documento no publica ningún estado utilizable. No significa que se anulara ni que se firmara.',
+    // Las citas de una ficha y sus notas (`CitasDeLaFicha`, en /plenos/:id y en
+    // /hallazgos/:id). Las citas son dato y se pintan como se publican; esto es lo
+    // que las rotula y las explica. El castellano es, letra por letra, el que la
+    // página escribía a mano: lo citan pruebas, descartes de la revisión lectora y
+    // /metodologia. «Cita» va sola y el número aparte, porque en valencià se escribe
+    // igual.
+    'findings.citas.cita': 'Cita',
+    'findings.citas.lista': '{inicio} y {ultima}',
+    'findings.citas.rotulo.una': 'Cita {lista}',
+    'findings.citas.rotulo.varias': 'Citas {lista}',
+    'findings.citas.sujeto.una': 'la cita {lista}',
+    'findings.citas.sujeto.varias': 'las citas {lista}',
+    'findings.citas.deLaFicha': '{citas} de la ficha {ficha}',
+    'findings.citas.sinAtribuir': 'sin atribuir',
+    // El hueco de una cita retenida. El rótulo es `ROTULO_CITA_RETENIDA`
+    // (src/lib/cita-retenida.js), que la bitácora y la copia servida usan en
+    // castellano; tests/components/citas-de-la-ficha-valencia.test.jsx los ata.
+    'findings.citas.retenida.rotulo': 'Literal retenido',
+    'findings.citas.retenida.estaCita': 'esta cita',
+    'findings.citas.retenida.laFicha': 'La ficha',
+    'findings.citas.retenida.laFichaDe': 'La ficha {ficha}',
+    'findings.citas.retenida.pie':
+      '{cual} es una acusación que el verificador no ha podido contrastar con ningún registro municipal, así que la ficha no reproduce su literal, y la misma puerta la retiene en el registro de declaraciones. No decimos que sea falsa: decimos que no consta.',
+    'findings.citas.retenida.atribuye': '{laFicha} atribuye {cual} a {grupo}.',
+    'findings.citas.retenida.sinGrupo': '{laFicha} no atribuye {cual} a ningún grupo.',
+    // De qué transcripción salen las palabras (`PROVENANCE_MARK`).
+    'findings.citas.procedencia.sustituida.chip': 'no consta en la transcripción revisada',
+    'findings.citas.procedencia.sustituida.title':
+      'La sesión se transcribió de nuevo con un motor mejor y estas palabras no aparecen en el texto nuevo.',
+    'findings.citas.procedencia.sustituida.nota.una':
+      'Sesión re-transcrita con un motor mejor. {sujeto} consta literalmente en la transcripción anterior y no en la vigente, que es más extensa: el asunto se debatió, pero la literalidad entrecomillada es la del primer transcriptor y no está confirmada contra el mejor texto disponible. Reanclarla es trabajo de una persona; aquí no se reescribe sola.',
+    'findings.citas.procedencia.sustituida.nota.varias':
+      'Sesión re-transcrita con un motor mejor. {sujeto} constan literalmente en la transcripción anterior y no en la vigente, que es más extensa: el asunto se debatió, pero la literalidad entrecomillada es la del primer transcriptor y no está confirmada contra el mejor texto disponible. Reanclarla es trabajo de una persona; aquí no se reescribe sola.',
+    'findings.citas.procedencia.sinDeterminar.chip': 'no hemos podido comprobarlo',
+    'findings.citas.procedencia.sinDeterminar.title':
+      'No podemos decir si estas palabras cambiaron al re-transcribir o si el tramo no está cubierto.',
+    'findings.citas.procedencia.sinDeterminar.nota':
+      'La transcripción vigente de esta sesión es más corta que la que sustituyó, así que la ausencia de las palabras de {sujeto} puede deberse al cambio de motor o a un tramo que la nueva pasada no cubre. No afirmamos ninguna de las dos cosas.',
+    'findings.citas.procedencia.enlace': 'Cómo se comprueba una cita →',
+    // Si algún dato municipal respalda lo que dicen (`CONTRAST_MARK`, por la puerta
+    // de claim-public-gate.ts).
+    'findings.citas.contraste.lead.una':
+      '{citas} se cotejó automáticamente con la base documental municipal —la contratación desde 2017, las subvenciones, el presupuesto vigente y las promesas publicadas— y no apareció ningún dato que la confirme ni que la desmienta. Eso no la convierte en falsa: quiere decir que no lo sabemos — y sobre hechos anteriores a esa cobertura, que no podíamos saberlo.',
+    'findings.citas.contraste.lead.varias':
+      '{citas} se cotejaron automáticamente con la base documental municipal —la contratación desde 2017, las subvenciones, el presupuesto vigente y las promesas publicadas— y no apareció ningún dato que las confirme ni que las desmienta. Eso no las convierte en falsas: quiere decir que no lo sabemos — y sobre hechos anteriores a esa cobertura, que no podíamos saberlo.',
+    'findings.citas.contraste.toggle.chip': 'sin contraste en los datos',
+    'findings.citas.contraste.toggle.title':
+      'El verificador no halló ningún dato municipal que confirme ni desmienta lo que se afirma aquí.',
+    'findings.citas.contraste.toggle.nota.una':
+      'no es una acusación; en el registro de declaraciones del pleno sale publicada con esta misma etiqueta.',
+    'findings.citas.contraste.toggle.nota.varias':
+      'no son acusaciones; en el registro de declaraciones del pleno salen publicadas con esta misma etiqueta.',
+    'findings.citas.contraste.hidden.chip': 'acusación no contrastada',
+    'findings.citas.contraste.hidden.title':
+      'Es una acusación pública que el verificador no pudo contrastar con ningún dato municipal. No decimos que sea falsa.',
+    'findings.citas.contraste.enlace': 'Qué significa que una cita quede sin contraste →',
+    // La nota de «acusación no contrastada» (`notaAcusacionSinContrastar`): su
+    // cabecera cuenta las ocho pasadas que la dejaron así.
+    'findings.citas.acusacion.laFicha': 'la ficha',
+    'findings.citas.acusacion.laFichaDe': 'la ficha {ficha}',
+    'findings.citas.acusacion.huecos.sinCitas':
+      'ni en la cita, donde queda a la vista el hueco «{rotulo}» con su motivo',
+    'findings.citas.acusacion.huecos.una':
+      'ni en {sujeto}, donde queda a la vista su hueco «{rotulo}» con su motivo',
+    'findings.citas.acusacion.huecos.varias':
+      'ni en {sujeto}, donde quedan a la vista sus huecos «{rotulo}» con su motivo',
+    'findings.citas.acusacion.base.una':
+      'es una acusación pública que el verificador no ha podido contrastar. La misma puerta que la retiene en el registro de declaraciones del pleno la retiene aquí: {laFicha} no reproduce su literal —{huecos}, ni en su bitácora de correcciones, ni en los datos de la ficha que sirve este sitio—',
+    'findings.citas.acusacion.base.varias':
+      'son acusaciones públicas que el verificador no ha podido contrastar. La misma puerta que las retiene en el registro de declaraciones del pleno las retiene aquí: {laFicha} no reproduce sus literales —{huecos}, ni en su bitácora de correcciones, ni en los datos de la ficha que sirve este sitio—',
+    'findings.citas.acusacion.cierre.una':
+      'Se retiene la cita, no lo que se dijo: la transcripción completa de la sesión sigue publicada.',
+    'findings.citas.acusacion.cierre.varias':
+      'Se retienen las citas, no lo que se dijo: la transcripción completa de la sesión sigue publicada.',
+    'findings.citas.acusacion.sinEditor':
+      '{base}; el pie de la ficha dice quién la editó. {cierre}',
+    'findings.citas.acusacion.maquina':
+      '{base}, y la ficha la editó un proceso automático ({quien}): es lo habitual en esta página —casi todas las fichas las redacta el mismo proceso—, no una excepción decidida para este caso. {cierre}',
+    'findings.citas.acusacion.persona': '{base}, y la ficha la editó {quien}. {cierre}',
     'cargos.detalle.actividad.eyebrow': 'Actividad de sus áreas',
     'cargos.detalle.actividad.title': 'Qué se ha debatido y verificado en sus concejalías',
     'cargos.detalle.actividad.intro':
       'Cifras de las áreas que dirige, no de la persona. Las votaciones se registran por grupo político y las declaraciones se atribuyen al grupo que habló, nunca a un concejal concreto: por eso se enlazan aquí en lugar de mostrarse bajo su ficha.',
-    'cargos.detalle.actividad.votos': 'votaciones',
-    'cargos.detalle.actividad.declaraciones': 'declaraciones contrastadas',
+    'cargos.detalle.actividad.votos.uno': 'votación',
+    'cargos.detalle.actividad.votos.varios': 'votaciones',
+    'cargos.detalle.actividad.declaraciones.uno': 'declaración cotejada',
+    'cargos.detalle.actividad.declaraciones.varios': 'declaraciones cotejadas',
     'cargos.detalle.actividad.hallazgos': 'hallazgos del área →',
     'datos.boe.eyebrow': 'Boletín Oficial del Estado',
     'datos.boe.intro':
@@ -1185,7 +1528,11 @@ export const CATALOGUE = {
     'presupuesto.gasto.listado': 'listado de contratos',
     'presupuesto.gasto.razonesSociales': '{n} razones sociales',
     'presupuesto.gasto.dana': 'Recuperación DANA ≈ {pct}% del importe adjudicado.',
-    'presupuesto.subvenciones.eyebrow': 'BDNS · {total} convocatorias · {municipales} municipales',
+    'presupuesto.subvenciones.eyebrow': 'BDNS · {municipales} convocatorias municipales',
+    'presupuesto.subvenciones.eyebrow.recibidas': ' · {n} concesiones al Ayuntamiento',
+    'presupuesto.subvenciones.recibidas.titulo': 'Concedidas al Ayuntamiento',
+    'presupuesto.subvenciones.recibidas.texto':
+      '{n} concesiones al NIF del Ayuntamiento (P4621600H){span}, en {conv} convocatorias: {importe} concedidos. Es lo concedido; los pagos son otro registro de la BDNS, y una convocatoria puede dar varias concesiones. La BDNS no devuelve por el NIF concesiones anteriores a {desde}. Las más recientes:',
     'presupuesto.subvenciones.titulo': 'Subvenciones · Base Nacional',
     'presupuesto.subvenciones.fuente': 'Datos reales de MinHac BDNS · pap.hacienda.gob.es',
     'presupuesto.obras.eyebrow': 'Urbanismo · infraestructuras',
@@ -1227,7 +1574,7 @@ export const CATALOGUE = {
     'presupuesto.menores.sinComparar':
       '{lista}: no se comparan con el límite, en vez de darlos por dentro.',
     'presupuesto.menores.anulados':
-      'Otros {n} venían marcados como menores y su adjudicación se deshizo: no cuentan como gasto ni se les mide el techo.',
+      'Otros {n} venían marcados como menores y no llegaron a contrato —quedaron desiertos o se deshizo la adjudicación—: no cuentan como gasto ni se les mide el techo.',
     'presupuesto.menores.norma': 'Ley 9/2017, art. 118',
     'presupuesto.deuda.titular.igual': 'Sin cambio en {anio}',
     'presupuesto.deuda.titular.sube': 'Sube en {anio}',
@@ -1378,8 +1725,9 @@ export const CATALOGUE = {
     'presupuesto.contra.ted.mayor': ', el {pct} % en un solo anuncio',
     'presupuesto.contra.ted.link': 'Anuncios ↓',
     'presupuesto.contra.bdns': 'Subvenciones · BDNS',
-    'presupuesto.contra.bdns.nota':
-      'convocatorias municipales en la Base Nacional{span} · {total} en total, contando las recibidas',
+    'presupuesto.contra.bdns.nota': 'convocatorias municipales en la Base Nacional{span}',
+    'presupuesto.contra.bdns.recibidas':
+      ' · y {n} concesiones al Ayuntamiento{span}, {importe} concedidos',
     'presupuesto.contra.bdns.link': 'Convocatorias ↓',
     'presupuesto.pie.fuentes.a': 'Fuentes: presupuesto aprobado de ',
     'presupuesto.pie.fuentes.conprel': 'CONPREL, Ministerio de Hacienda ↗',
@@ -1627,6 +1975,8 @@ export const CATALOGUE = {
     'departamentos.card.votes': 'Votos',
     'departamentos.card.aprobados': 'Aprobados',
     'departamentos.card.vencidos': 'Plazos vencidos',
+    'departamentos.card.sinPlazoFechado': 'sin plazo fechado',
+    'departamentos.card.deConPlazo': 'de {n} con plazo fechado',
     'departamentos.card.verResponsable': 'Ver responsable',
     'departamentos.card.contratacion': 'Contratación',
     'departamentos.sinConcejalia': 'sin concejalía asignada',
@@ -1634,7 +1984,7 @@ export const CATALOGUE = {
     'departamentos.card.contratos': 'contratos',
     'departamentos.card.promesas': 'Promesas',
     'departamentos.card.quejas': 'Quejas abiertas',
-    'departamentos.card.declaraciones': 'Declaraciones contrastadas',
+    'departamentos.card.declaraciones': 'Declaraciones cotejadas',
     'departamentos.card.sinContraste': 'sin contraste',
     'departamentos.card.sinVotoTranscrito': 'sin voto transcrito',
     'departamentos.detalle.back': '← Todos los departamentos',
@@ -1648,9 +1998,11 @@ export const CATALOGUE = {
     'departamentos.detalle.declaraciones.aviso':
       'Las pronunció cualquier grupo municipal, no necesariamente quien dirige el área: se agrupan por tema, no por quien habla.',
     'departamentos.detalle.declaraciones.vacio':
-      'Todavía no hay declaraciones contrastadas sobre los temas de esta área.',
+      'Todavía no hay declaraciones cotejadas con un documento sobre los temas de esta área.',
     'departamentos.detalle.barra.titulo': 'Contraste con los datos',
-    'departamentos.detalle.barra.resto': 'contrastadas · {total} en total',
+    'departamentos.detalle.barra.resto': 'cotejadas · {total} en total',
+    // La leyenda de la barra: los veredictos son `declaraciones.veredicto.*`.
+    'departamentos.detalle.barra.sinContraste': 'Sin contraste',
     'departamentos.detalle.empty.votes':
       '0 votos transcritos para esta concejalía — contribuye vía `npm run pleno-vote` o la plantilla de issue.',
     'departamentos.detalle.empty.promesas': 'Sin promesas registradas para esta concejalía.',
@@ -1951,7 +2303,7 @@ export const CATALOGUE = {
     'nav.desc.departamentos': 'Acords i terminis, regidoria a regidoria',
     'nav.desc.hallazgos': 'Fitxes sobre el que s’ha dit en el ple, amb els seus documents',
     'nav.desc.reportajes': 'Investigacions llargues, cada afirmació amb la seua font',
-    'nav.desc.declaraciones': 'El que s’afirma en el ple, contrastat amb dades obertes quan es pot',
+    'nav.desc.declaraciones': 'El que s’afirma en el ple, acarat amb dades obertes quan es pot',
     'nav.desc.datos': 'Tot el que alimenta el web, descarregable',
     'nav.desc.quejas': 'Les queixes veïnals, agregades i anònimes',
     'nav.desc.empleo': 'Ofertes de l’Agència de Col·locació',
@@ -2223,6 +2575,7 @@ export const CATALOGUE = {
     'map.lugar.urbanizacion': 'Urbanització',
     'map.lugar.barrio': 'Barri',
     'map.lugar.lote': 'Lot de: «{titulo}»',
+    'map.lugar.fichaBarrio': 'Fitxa del barri: {barrio}',
     'map.lugar.pie':
       'Només obres el títol de les quals nomena un carrer, una zona o un equipament · PLACSP/TED',
     'map.incendio.deAnyo': 'Incendi de {anyo}',
@@ -2261,7 +2614,7 @@ export const CATALOGUE = {
     'contrato.quejasRelacionadas': 'Queixes ciutadanes relacionades',
     'contrato.estado.awarded': 'Adjudicat',
     'contrato.estado.formalized': 'Formalitzat',
-    'contrato.estado.void': 'Anul·lat',
+    'contrato.estado.void': 'Desert',
     'contrato.estado.revoked': 'Renúncia',
     'contrato.estado.abandoned': 'Desistit',
     'contrato.estado.withdrawn': 'Retirat',
@@ -2341,13 +2694,13 @@ export const CATALOGUE = {
     'declaraciones.subtitle':
       "Cada afirmació, promesa o acusació detectada als plens municipals, creuada contra les dades obertes publicades (PLACSP, BDNS, pressupost, promeses electorals). Atribució a nivell de grup. El veredicte de cada fila el posa un acarament automàtic: les declaracions sense atribuir o sense evidència es mantenen visibles perquè es van fer, i cap d'elles es converteix en una troballa editorial sense que una persona la signe.",
     'declaraciones.stat.total': 'Total',
-    'declaraciones.stat.conEvidencia': 'Contrastades',
+    'declaraciones.stat.conEvidencia': 'Acarades',
     'declaraciones.filter.verdict': 'Veredicte',
     'declaraciones.filter.bloc': 'Grup',
     'declaraciones.filter.topic': 'Tema',
     'declaraciones.filter.todas': 'Totes',
     'declaraciones.filter.todos': 'Tots',
-    'declaraciones.filter.conEvidencia': 'Contrastades',
+    'declaraciones.filter.conEvidencia': 'Acarades',
     'declaraciones.filter.atribuidas': 'Atribuïdes',
     'declaraciones.filter.sinCorpus': 'Sense corpus a consultar',
     'declaraciones.filter.comprobadoSinHallar': 'Comprovada, no apareix',
@@ -2460,8 +2813,8 @@ export const CATALOGUE = {
       'una persona va escoltar l’àudio i el seu literal no és el que es va dir: no es publiquen',
     'plenos.indice.decl.sinDatos': 'Publicades sense dades que les contrasten',
     'plenos.indice.decl.sinDatos.nota': 'ni confirmades ni desmentides',
-    'plenos.indice.decl.contrastadas': 'Parcials o verificades',
-    'plenos.indice.decl.contrastadas.nota': 'l’única cosa que va acarar un document municipal',
+    'plenos.indice.decl.cotejadas': 'Parcials o verificades',
+    'plenos.indice.decl.cotejadas.nota': 'l’única cosa que va acarar un document municipal',
     'plenos.indice.decl.eyebrow': 'Declaracions extretes · {n} sessions',
     'plenos.indice.decl.titulo': '{extraidas} declaracions, {verificado} verificades',
     'plenos.indice.decl.sinDatosNota':
@@ -2518,14 +2871,112 @@ export const CATALOGUE = {
     'plenos.votes.empty.eyebrow': 'Sense dades',
     'plenos.votes.empty.title': 'Encara no hi ha votacions registrades',
 
-    // Claim ledger (declaracions contrastades)
+    // Claim ledger (declaracions acarades); vegeu el castellà. «Acarar» i no
+    // «contrastar»: segons el DIEC, acarar és confrontar dues coses per veure'n les
+    // diferències o semblances, i no diu quin resultat dona; «contrastada» es llig
+    // «comprovada», i la xifra compta també les parcials. No ho torneu a canviar.
     'ledger.loadMore': 'Carrega més',
-    'ledger.recuento.contrastadas.uno': '{n} contrastada',
-    'ledger.recuento.contrastadas.varios': '{n} contrastades',
+    'ledger.recuento.cotejadas.uno': '{n} acarada amb un document',
+    'ledger.recuento.cotejadas.varios': '{n} acarades amb un document',
     'ledger.recuento.sinContraste': '{n} sense contrast en les dades',
     // Un grup que va signar una persona (atribucion-firmada.ts); vegeu el castellà.
+    'ledger.vacio':
+      'Encara no hi ha declaracions acarades amb un document municipal per a mostrar ací.',
+    'cotejo.verificado.uno': '{n} verificada',
+    'cotejo.verificado.varios': '{n} verificades',
+    'cotejo.parcial.uno': '{n} parcial',
+    'cotejo.parcial.varios': '{n} parcials',
+    'cotejo.contradicho.uno': '{n} contradita',
+    'cotejo.contradicho.varios': '{n} contradites',
+    'cotejo.promesas.uno': '{n} promesa ja registrada',
+    'cotejo.promesas.varios': '{n} promeses ja registrades',
     'ledger.firmado': 'signat',
     'ledger.firmadoTitulo': 'Grup signat per una persona, sobre el tram {tramo} de la sessió',
+    'declaraciones.veredicto.verificado': 'Verificat',
+    'declaraciones.veredicto.parcial': 'Parcial',
+    'declaraciones.veredicto.contradicho': 'Contradit',
+    'declaraciones.veredicto.sin-datos': 'Sense dades',
+    'declaraciones.veredicto.promesa-repetida': 'Promesa repetida',
+    'declaraciones.tipo.promesa': 'Promesa',
+    'declaraciones.tipo.afirmacion_numerica': 'Afirmació numèrica',
+    'declaraciones.tipo.cita_obra': 'Obra citada',
+    'declaraciones.tipo.cita_convenio': 'Conveni citat',
+    'declaraciones.tipo.acusacion_publica': 'Acusació pública',
+    'declaraciones.tipo.valoracion_politica': 'Valoració política',
+    'declaraciones.tipo.afirmacion': 'Afirmació',
+    'declaraciones.tema.fiscal': 'Fiscal',
+    'declaraciones.tema.vivienda': 'Habitatge',
+    'declaraciones.tema.movilidad': 'Mobilitat',
+    'declaraciones.tema.medio-ambiente': 'Medi ambient',
+    'declaraciones.tema.social': 'Acció social',
+    'declaraciones.tema.cultura': 'Cultura',
+    'declaraciones.tema.seguridad': 'Seguretat',
+    'declaraciones.tema.empleo': 'Ocupació',
+    'declaraciones.tema.urbanismo': 'Urbanisme',
+    'declaraciones.tema.salud': 'Salut',
+    'declaraciones.tema.transparencia': 'Transparència',
+    'declaraciones.tema.educacion': 'Educació',
+    'declaraciones.tema.other': 'Sense classificar',
+    'declaraciones.sinAtribuir': 'sense atribuir',
+    'declaraciones.evidencia.una': 'evidència',
+    'declaraciones.evidencia.varias': 'evidències',
+    'ledger.evidencia.tender': 'Contracte',
+    'ledger.evidencia.bdns': 'Subvenció BDNS',
+    'ledger.evidencia.budget': 'Pressupost',
+    'ledger.evidencia.promise': 'Promesa documentada',
+    'ledger.evidencia.prior-claim': 'Ple anterior',
+    'ledger.evidencia.factcheck': 'Verificació de premsa',
+    'ledger.evidencia.boe': 'BOE',
+    'ledger.evidencia.agenda': 'Ordre del dia',
+    'ledger.evidencia.licitacion': 'Licitació',
+    'ledger.parecido': 'semblança amb allò citat {n} · no mesura si ho confirma',
+    'ledger.fuentes': 'Fonts comprovades: {fuentes}',
+    'ledger.fuentes.ninguna': 'cap',
+    'ledger.fuentes.noConstan': 'no consten',
+    'ledger.corpus.tenders': 'contractes',
+    'ledger.corpus.tenders-ted': 'contractes anunciats en TED',
+    'ledger.corpus.bdns': 'subvencions (BDNS)',
+    'ledger.corpus.budget': 'pressupost',
+    'ledger.corpus.promises': 'promeses documentades',
+    'ledger.corpus.padron': 'padró',
+    'ledger.corpus.paro': 'atur registrat',
+    'ledger.corpus.prior-claims': 'plens anteriors',
+    'ledger.corpus.factcheck': 'verificacions de premsa',
+    'ledger.corpus.boe': 'BOE',
+    'ledger.corpus.plenos-agendas': 'ordres del dia dels plens',
+    'ledger.veredicto': 'Veredicte: {verificador}',
+    'verificador.llm': 'verificador LLM',
+    'verificador.nli': 'verificador NLI',
+    'verificador.determinista': 'verificador determinista',
+    'verificador.sinAnotar': 'sense verificador anotat',
+    'verificador.bajada.persona': 'corregit per un curador',
+    'verificador.bajada.automatica': 'rebaixat en una revisió automàtica',
+    'verificador.bajada.no-consta': 'rebaixat; no consta qui ho va decidir',
+    'verificador.motivoFirmado': '{rotulo} · motiu signat per {firma}',
+    'verificador.subida.firmada': 'apujat per una persona · signat per {firma}',
+    'verificador.subida.sinFirma': 'apujat; no consta qui el va signar',
+    'verificador.explicacionFirmada': '{rotulo} · explicació signada per {firma}',
+    'ledger.resumenRetirado':
+      'Explicació retirada: el verificador LLM va guardar ací una nota sobre la seua pròpia tasca.',
+    'ledger.cargando': 'Carregant verificacions…',
+    'puente.frase': '{impreso} és {queEs}. {sujeto} {magnitud}: la xifra citada ({cifra}).',
+    'puente.sujeto.expediente': 'El mateix expedient',
+    'puente.sujeto.lote': 'El lot {n} del mateix expedient',
+    'puente.sujeto.loteSinNumero': 'Un lot del mateix expedient',
+    'puente.queEs.finalAmountNoTaxes': 'l’import d’adjudicació, sense IVA',
+    'puente.queEs.initialAmountNoTaxes': 'el pressupost base de licitació, sense IVA',
+    'puente.queEs.finalAmount': 'l’import d’adjudicació, amb IVA',
+    'puente.queEs.initialAmount': 'el pressupost base de licitació, amb IVA',
+    'puente.queEs.totalValueEur': 'el valor total que publica TED',
+    'puente.queEs.award_amount_eur': 'l’import que publica la fila',
+    'puente.queEs.awarded_amount': 'l’import que publica la fila',
+    'puente.queEs.amount': 'l’import que publica la fila',
+    'puente.magnitud.finalAmount': 'es va adjudicar per {v} amb IVA',
+    'puente.magnitud.finalAmountNoTaxes': 'es va adjudicar per {v} sense IVA',
+    'puente.magnitud.initialAmount': 'va eixir a licitació per {v} amb IVA',
+    'puente.magnitud.initialAmountNoTaxes': 'va eixir a licitació per {v} sense IVA',
+    'puente.magnitud.estimatedValue': 'té un valor estimat de {v}',
+    'puente.magnitud.contractValue': 'té un valor estimat de {v}',
 
     // Pleno detail (/plenos/:id)
     'plenoDetail.notFound': 'Sessió no trobada',
@@ -2533,7 +2984,7 @@ export const CATALOGUE = {
     'plenoDetail.summary': 'Resum',
     'plenoDetail.agenda': 'Ordre del dia',
     'plenoDetail.votes': 'Votacions',
-    'plenoDetail.declarations': 'Declaracions contrastades',
+    'plenoDetail.declarations': 'Declaracions acarades',
     'plenoDetail.findings': 'Troballes editorials',
     'plenoDetail.transcript': 'Veure transcripció',
     'plenoDetail.transcriptLoading': 'Carregant transcripció…',
@@ -2561,11 +3012,98 @@ export const CATALOGUE = {
     'plenoDetail.line.votes.varios': '{n} votacions transcrites ({aprobadas})',
     'plenoDetail.line.approved.uno': '{n} aprovada',
     'plenoDetail.line.approved.varios': '{n} aprovades',
-    'plenoDetail.line.declarations.uno': '{n} declaració contrastada',
-    'plenoDetail.line.declarations.varios': '{n} declaracions contrastades',
+    'plenoDetail.line.declarations.uno': '{n} declaració acarada',
+    'plenoDetail.line.declarations.varios': '{n} declaracions acarades',
+    'plenoDetail.mix.cotejadas': 'acarades',
+    'plenoDetail.mix.sinContraste': 'sense contrast',
     'plenoDetail.line.declarationsPending': 'declaracions sense extraure',
     'plenoDetail.line.findings.uno': '{n} troballa editorial',
     'plenoDetail.line.findings.varios': '{n} troballes editorials',
+    'plenoDetail.empty.declarations': 'Sense declaracions contrastables per a aquesta sessió.',
+    'plenoDetail.transcriptActa':
+      'Text de l’acta oficial, no de l’àudio. Les marques de temps són sintètiques: l’acta és un resum ja redactat per secretaria, així que una cita literal d’ací cita l’acta, no la intervenció.',
+    'plenoDetail.transcriptAudio':
+      'Transcripció automàtica de l’àudio de la sessió. Pot contindre errors de reconeixement; l’acta oficial preval.',
+    'plenoDetail.expediente': 'Exp. {expediente}',
+    'plenoDetail.voto.resultado': 'Resultat',
+    'plenoDetail.voto.desglose': 'Desglossament',
+    'plenoDetail.voto.cotejadoContra': 'acarat amb {fuente}',
+    'plenoDetail.voto.desgloseRetirado': 'DESGLOSSAMENT PER GRUPS RETIRAT',
+    'plenoDetail.voto.desgloseCorregido': 'DESGLOSSAMENT PER GRUPS CORREGIT',
+    'pleno.desenlace.aprobado': 'Aprovat',
+    'pleno.desenlace.rechazado': 'Rebutjat',
+    'pleno.desenlace.retirado': 'Retirat',
+    'pleno.desenlace.aplazado': 'Ajornat',
+    'pleno.sentido.a_favor': 'A favor',
+    'pleno.sentido.en_contra': 'En contra',
+    'pleno.sentido.abstencion': 'Abstenció',
+    'pleno.sentido.ausente': 'Absent',
+    'pleno.seccion.apertura': 'Obertura',
+    'pleno.seccion.resolutiva': 'Resolutiva',
+    'pleno.seccion.informativa': 'Informativa',
+    'pleno.seccion.ruegos': 'Precs i preguntes',
+    'pleno.seccion.otro': '—',
+    'pleno.gravedad.informational': 'Informatiu',
+    'pleno.gravedad.notable': 'Rellevant',
+    'pleno.gravedad.critical': 'Crític',
+    'pleno.grupoNoIdentificado': 'Grup no identificat',
+    'pleno.fuenteVoto.acta': 'Acta oficial',
+    'pleno.fuenteVoto.regmeet': 'Portal de sessions (regmeet)',
+    'pleno.fuenteVoto.transcripcion': 'Transcripció automàtica de la sessió',
+    'pleno.fuenteVoto.video': 'Vídeo de la sessió',
+    'pleno.fuenteVoto.transcripcion.sinCotejar':
+      'transcripció automàtica, sense acarar amb cap altra font',
+    'pleno.fuenteVoto.video.sinCotejar': 'llegit del vídeo, sense acarar amb cap altra font',
+    'findings.card.cabecera': '{fecha} · fitxa {ficha} · editat per {editor}',
+    'findings.card.replica': 'Rèplica de {grupo} · {fecha}',
+    'findings.detalle.cabecera': '{fecha} · ple {pleno} · editat per {editor}',
+    'findings.detalle.enlace': 'fitxa {ficha}',
+    'findings.detalle.enlace.title': 'Enllaç permanent a esta troballa',
+    'findings.detalle.individual.title':
+      'Atribució individual confirmada per la curadoria editorial',
+    'findings.detalle.banda.dicho': 'El que es va dir',
+    'findings.detalle.banda.cotejo': 'Amb què es va acarar',
+    'findings.detalle.banda.replica': 'Dret de rèplica',
+    'findings.detalle.sinLiterales': 'Esta fitxa no publica cap literal.',
+    'findings.detalle.sinCotejos':
+      'Esta fitxa no publica cap document acarat. Això no diu que no existisca: diu que ací no consta.',
+    'findings.detalle.replica.fuente': 'Font →',
+    'findings.detalle.replica.abierta':
+      'Obert des de {fecha} · sense resposta. Ets el grup afectat? Contacta amb la redacció per a exercir-lo · vegeu {enlace}',
+    'findings.retirada.cabecera': '{id} · ple {fecha} · retirada {retirado} · {editor}',
+    'findings.retirada.recuento': '{citas} cita(es) i {documentos} document(s) acarat(s) ·',
+    'findings.retirada.motivo': 'Motiu: {motivo}',
+    'bitacora.resumen': 'Registre de correccions · {n}',
+    'bitacora.enmendados.uno': '{n} motiu esmenat',
+    'bitacora.enmendados.varios': '{n} motius esmenats',
+    'bitacora.textoRetirado': 'Text retirat',
+    'bitacora.textoVigente': 'Text vigent',
+    'bitacora.textoSustituido': 'Text que va posar esta correcció, substituït el {fecha}',
+    'bitacora.literalRetenido':
+      'esta correcció va canviar el text d’una cita que la porta editorial reté, així que el registre no en reprodueix cap de les dues versions; en deixa l’empremta, que qualsevol amb el text pot refer:',
+    'bitacora.grupoRetenido.rotulo': 'Grup d’un sol escó',
+    'bitacora.grupoRetenido.texto':
+      'esta correcció va canviar un text que anomenava un grup amb un sol regidor, i anomenar eixe grup és anomenar eixa persona, així que el registre no reprodueix {cual}.',
+    'bitacora.grupoRetenido.ninguna': 'cap de les seues dues versions',
+    'bitacora.grupoRetenido.retirada': 'la versió que va retirar',
+    'bitacora.grupoRetenido.puesta': 'la versió que va posar',
+    'bitacora.motivo': 'Motiu:',
+    'bitacora.motivoEnmendadoEl': 'Motiu (esmenat el {fecha}):',
+    'bitacora.motivoEnmendado': 'Motiu esmenat',
+    'bitacora.enmienda.anterior':
+      'El motiu anterior no es reprodueix; en queda l’empremta, que qualsevol amb una còpia anterior pot refer:',
+    'bitacora.escanoUnico.nota':
+      'Les versions que anomenaven un grup d’un sol escó continuen en el repositori públic del projecte: esta pàgina deixa de mostrar-les, no les retira.',
+    'bitacora.escanoUnico.enlace': 'Per què, en la metodologia',
+    'findings.refs.tipo.tender': 'contracte',
+    'findings.refs.tipo.bdns': 'subvenció BDNS',
+    'findings.refs.tipo.budget': 'pressupost',
+    'findings.refs.tipo.promise': 'promesa',
+    'findings.refs.tipo.pleno-video': 'vídeo del ple',
+    'findings.refs.tipo.pleno-acta': 'acta del ple',
+    'findings.refs.tipo.press': 'premsa',
+    'findings.refs.tipo.document': 'document',
+    'findings.refs.tipo.transcript': 'transcripció',
 
     'quejas.empty.title': 'El canal de queixes ciutadanes ja està obert — encara no hi ha dades',
     // Per què un càrrec no porta xifres de resposta. El termini de la LPACAP
@@ -2713,7 +3251,46 @@ export const CATALOGUE = {
     'hallazgos.area.clear': 'veure tots',
     'hallazgos.area.note':
       "Troballes les declaracions de les quals es classifiquen en esta àrea. L'atribució de cada troballa és al GRUP polític que va parlar, mai a una persona concreta.",
-    'findings.refs.crossChecked': 'Documents contrastats',
+    'hallazgos.lista.cabecera.automatica': 'Redacció automàtica · {maquina} de {total}',
+    'hallazgos.lista.titulo': 'Troballes sobre declaracions en ple',
+    'hallazgos.lista.intro':
+      'Cada troballa pren una o més afirmacions literals d’un ple i les situa en el seu context documental (contractes, subvencions, pressupost, promeses). Les redacta un procés automàtic amb regles fixes, llevat de les que porten la firma d’una persona; el peu de cada fitxa diu qui la va editar, i un nom com «auto-curation-v1» significa que el text el va escriure una màquina. Cada fitxa llista els documents amb què s’ha acarat —ho corroboren o no— i dona dret de rèplica literal al grup afectat.',
+    'hallazgos.lista.eficiencia':
+      'Esta pàgina verifica **declaracions en ple**. Les troballes sobre **quant costa cada servei** —que no citen ningú perquè no les va dir ningú: ixen de les xifres que l’ajuntament remet al ministeri— es publiquen al costat de les dades de què ixen, en {enlace}.',
+    'hallazgos.lista.eficiencia.enlace': 'eficiència',
+    'hallazgos.lista.cifra.total': 'Total de troballes',
+    'hallazgos.lista.cifra.critical': 'Crítiques',
+    'hallazgos.lista.cifra.notable': 'Rellevants',
+    'hallazgos.lista.cifra.informational': 'Informatives',
+    'hallazgos.lista.filtro.severidad': 'Gravetat',
+    'hallazgos.lista.filtro.todas': 'totes',
+    'hallazgos.lista.filtro.grupo': 'Grup',
+    'hallazgos.lista.filtro.todos': 'tots',
+    'hallazgos.lista.filtro.pleno': 'Ple',
+    'hallazgos.lista.vacia':
+      'Encara no hi ha troballes editorials publicades. El flux de curació és: extraure declaracions → verificar-les contra dades → promoure-les a troballa.',
+    'hallazgos.lista.ninguno': 'Cap no coincideix amb els filtres actuals.',
+    'hallazgos.lista.pleno': 'Ple · {fecha}',
+    'hallazgos.lista.retirados.titulo': 'Troballes retirades · {n}',
+    'hallazgos.lista.retirados.texto':
+      'Publicades i després retirades. No es reprodueix el que deien: cadascuna es va retirar pel que deia —el seu motiu va davall de la seua empremta—, així que republicar el text ací tornaria a la web exactament allò que la retirada lleva. En queda l’empremta — {sha256} de l’original, per si algú en conserva una còpia i vol comprovar que coincideix.',
+    'hallazgos.lista.como.titulo': 'Com s’escriu una troballa.',
+    'hallazgos.lista.como.texto':
+      'Un procés automàtic agrupa les afirmacions extretes de les transcripcions del ple, les acara amb la base documental municipal i redacta el títol i el resum amb regles fixes{cuantas}. El peu de cada fitxa diu qui la va editar, i un nom com «auto-curation-v1» significa que el text el va escriure una màquina, no una persona. Els grups afectats poden respondre amb una cita literal per la {enlace}.',
+    'hallazgos.lista.como.cuantas':
+      ': de les {total} publicades, **{maquina} les signa una màquina**',
+    'hallazgos.lista.como.enlace': 'via de rectificació',
+    'hallazgos.lista.como.metodologia': 'Llegiu la metodologia →',
+    'hallazgos.lista.transcripciones':
+      '**Cites i transcripcions.** Diverses sessions es van transcriure una segona vegada amb un motor millor. Dels {quotes} literals publicats ací, **{enVigente}** apareixen en la transcripció vigent de la seua sessió; **{soloEnSustituida}** només en la que es va substituir, i {sinDeterminar} no es poden situar en cap de les dues. Els que no consten en el text vigent porten la seua marca al costat. No reescrivim cap cita pel nostre compte. {enlace}',
+    'hallazgos.lista.transcripciones.enlace': 'Què vol dir cada marca →',
+    'hallazgos.lista.contraste':
+      '**Cites i dades municipals.** Les afirmacions que sostenen estes cites s’acaren automàticament amb les dades de l’ajuntament. De les {citasConClaim} d’ací, l’acarament va trobar alguna dada sobre **{shown}**; per a **{toggle}** no va trobar res que les confirme ni que les desmentisca, i unes altres **{hidden}** són acusacions públiques sense eixe contrast, que en {enlace} no es publiquen. Porten la seua marca al costat: que una acusació no tinga contrast no la declara falsa, i per si sol no retira res.',
+    'hallazgos.lista.contraste.registro': 'el registre de declaracions',
+    'hallazgos.lista.contraste.retiradas':
+      'El que sí que s’ha retirat és a dalt, en les **{n}** fitxes que es van quedar sense cap cita publicable.',
+    'hallazgos.lista.contraste.enlace': 'Per què es publiquen ací →',
+    'findings.refs.crossChecked': 'Documents acarats',
     'findings.refs.provenance': 'Procedència de les cites',
     'findings.refs.contradiction': 'Documents que contradiuen',
     'findings.refs.ficha': 'fitxa {ficha}',
@@ -2726,7 +3303,7 @@ export const CATALOGUE = {
     'findings.refs.date.none': 'sense data publicada',
     'findings.refs.date.noneTitle':
       "El registre públic d'este document no publica cap data utilitzable. No vol dir que siga recent.",
-    'findings.refs.status.cancelled': 'expedient anul·lat',
+    'findings.refs.status.cancelled': 'sense contracte',
     'findings.refs.status.cancelledTitle':
       "El procediment va acabar sense contracte: es va anul·lar, se'n va desistir o va quedar desert. L'ajuntament no el va arribar a signar.",
     'findings.refs.status.committed': 'adjudicat',
@@ -2738,12 +3315,79 @@ export const CATALOGUE = {
     'findings.refs.status.none': 'sense estat',
     'findings.refs.status.noneTitle':
       "El registre públic d'este document no publica cap estat utilitzable. No vol dir que s'anul·lara ni que se signara.",
+    'findings.citas.cita': 'Cita',
+    'findings.citas.lista': '{inicio} i {ultima}',
+    'findings.citas.rotulo.una': 'Cita {lista}',
+    'findings.citas.rotulo.varias': 'Cites {lista}',
+    'findings.citas.sujeto.una': 'la cita {lista}',
+    'findings.citas.sujeto.varias': 'les cites {lista}',
+    'findings.citas.deLaFicha': '{citas} de la fitxa {ficha}',
+    'findings.citas.sinAtribuir': 'sense atribuir',
+    'findings.citas.retenida.rotulo': 'Literal retingut',
+    'findings.citas.retenida.estaCita': 'esta cita',
+    'findings.citas.retenida.laFicha': 'La fitxa',
+    'findings.citas.retenida.laFichaDe': 'La fitxa {ficha}',
+    'findings.citas.retenida.pie':
+      '{cual} és una acusació que el verificador no ha pogut contrastar amb cap registre municipal, així que la fitxa no en reprodueix el literal, i la mateixa porta la reté en el registre de declaracions. No diem que siga falsa: diem que no consta.',
+    'findings.citas.retenida.atribuye': '{laFicha} atribueix {cual} a {grupo}.',
+    'findings.citas.retenida.sinGrupo': '{laFicha} no atribueix {cual} a cap grup.',
+    'findings.citas.procedencia.sustituida.chip': 'no consta en la transcripció revisada',
+    'findings.citas.procedencia.sustituida.title':
+      'La sessió es va transcriure de nou amb un motor millor i estes paraules no apareixen en el text nou.',
+    'findings.citas.procedencia.sustituida.nota.una':
+      'Sessió retranscrita amb un motor millor. {sujeto} consta literalment en la transcripció anterior i no en la vigent, que és més extensa: l’assumpte es va debatre, però la literalitat entre cometes és la del primer transcriptor i no està confirmada contra el millor text disponible. Tornar-la a ancorar és feina d’una persona; ací no es reescriu sola.',
+    'findings.citas.procedencia.sustituida.nota.varias':
+      'Sessió retranscrita amb un motor millor. {sujeto} consten literalment en la transcripció anterior i no en la vigent, que és més extensa: l’assumpte es va debatre, però la literalitat entre cometes és la del primer transcriptor i no està confirmada contra el millor text disponible. Tornar-la a ancorar és feina d’una persona; ací no es reescriu sola.',
+    'findings.citas.procedencia.sinDeterminar.chip': 'no ho hem pogut comprovar',
+    'findings.citas.procedencia.sinDeterminar.title':
+      'No podem dir si estes paraules van canviar en tornar a transcriure o si el tram no està cobert.',
+    'findings.citas.procedencia.sinDeterminar.nota':
+      'La transcripció vigent d’esta sessió és més curta que la que va substituir, així que l’absència de les paraules de {sujeto} pot deure’s al canvi de motor o a un tram que la nova passada no cobreix. No afirmem cap de les dues coses.',
+    'findings.citas.procedencia.enlace': 'Com es comprova una cita →',
+    'findings.citas.contraste.lead.una':
+      '{citas} es va acarar automàticament amb la base documental municipal —la contractació des de 2017, les subvencions, el pressupost vigent i les promeses publicades— i no va aparéixer cap dada que la confirme ni que la desmentisca. Això no la fa falsa: vol dir que no ho sabem — i sobre fets anteriors a eixa cobertura, que no podíem saber-ho.',
+    'findings.citas.contraste.lead.varias':
+      '{citas} es van acarar automàticament amb la base documental municipal —la contractació des de 2017, les subvencions, el pressupost vigent i les promeses publicades— i no va aparéixer cap dada que les confirme ni que les desmentisca. Això no les fa falses: vol dir que no ho sabem — i sobre fets anteriors a eixa cobertura, que no podíem saber-ho.',
+    'findings.citas.contraste.toggle.chip': 'sense contrast en les dades',
+    'findings.citas.contraste.toggle.title':
+      'El verificador no va trobar cap dada municipal que confirme ni desmentisca el que s’afirma ací.',
+    'findings.citas.contraste.toggle.nota.una':
+      'no és una acusació; en el registre de declaracions del ple ix publicada amb esta mateixa etiqueta.',
+    'findings.citas.contraste.toggle.nota.varias':
+      'no són acusacions; en el registre de declaracions del ple ixen publicades amb esta mateixa etiqueta.',
+    'findings.citas.contraste.hidden.chip': 'acusació no contrastada',
+    'findings.citas.contraste.hidden.title':
+      'És una acusació pública que el verificador no va poder contrastar amb cap dada municipal. No diem que siga falsa.',
+    'findings.citas.contraste.enlace': 'Què vol dir que una cita quede sense contrast →',
+    'findings.citas.acusacion.laFicha': 'la fitxa',
+    'findings.citas.acusacion.laFichaDe': 'la fitxa {ficha}',
+    'findings.citas.acusacion.huecos.sinCitas':
+      'ni en la cita, on queda a la vista el buit «{rotulo}» amb el seu motiu',
+    'findings.citas.acusacion.huecos.una':
+      'ni en {sujeto}, on queda a la vista el seu buit «{rotulo}» amb el seu motiu',
+    'findings.citas.acusacion.huecos.varias':
+      'ni en {sujeto}, on queden a la vista els seus buits «{rotulo}» amb el seu motiu',
+    'findings.citas.acusacion.base.una':
+      'és una acusació pública que el verificador no ha pogut contrastar. La mateixa porta que la reté en el registre de declaracions del ple la reté ací: {laFicha} no en reprodueix el literal —{huecos}, ni en el seu registre de correccions, ni en les dades de la fitxa que servix este lloc—',
+    'findings.citas.acusacion.base.varias':
+      'són acusacions públiques que el verificador no ha pogut contrastar. La mateixa porta que les reté en el registre de declaracions del ple les reté ací: {laFicha} no en reprodueix els literals —{huecos}, ni en el seu registre de correccions, ni en les dades de la fitxa que servix este lloc—',
+    'findings.citas.acusacion.cierre.una':
+      'Es reté la cita, no el que es va dir: la transcripció completa de la sessió continua publicada.',
+    'findings.citas.acusacion.cierre.varias':
+      'Es retenen les cites, no el que es va dir: la transcripció completa de la sessió continua publicada.',
+    'findings.citas.acusacion.sinEditor':
+      '{base}; el peu de la fitxa diu qui la va editar. {cierre}',
+    'findings.citas.acusacion.maquina':
+      '{base}, i la fitxa la va editar un procés automàtic ({quien}): és el més habitual en esta pàgina —quasi totes les fitxes les redacta el mateix procés—, no una excepció decidida per a este cas. {cierre}',
+    'findings.citas.acusacion.persona': '{base}, i la fitxa la va editar {quien}. {cierre}',
     'cargos.detalle.actividad.eyebrow': 'Activitat de les seues àrees',
     'cargos.detalle.actividad.title': "Què s'ha debatut i verificat a les seues regidories",
     'cargos.detalle.actividad.intro':
       "Xifres de les àrees que dirigeix, no de la persona. Les votacions es registren per grup polític i les declaracions s'atribueixen al grup que va parlar, mai a un regidor concret: per això s'enllacen ací en lloc de mostrar-se sota la seua fitxa.",
-    'cargos.detalle.actividad.votos': 'votacions',
-    'cargos.detalle.actividad.declaraciones': 'declaracions contrastades',
+    'cargos.detalle.actividad.votos.uno': 'votació',
+    'cargos.detalle.actividad.votos.varios': 'votacions',
+    'cargos.detalle.actividad.declaraciones.uno': 'declaració acarada',
+    'cargos.detalle.actividad.declaraciones.varios': 'declaracions acarades',
     'cargos.detalle.actividad.hallazgos': "troballes de l'àrea →",
     'datos.boe.eyebrow': "Butlletí Oficial de l'Estat",
     'datos.boe.intro':
@@ -2826,7 +3470,11 @@ export const CATALOGUE = {
     'presupuesto.gasto.listado': 'llistat de contractes',
     'presupuesto.gasto.razonesSociales': '{n} raons socials',
     'presupuesto.gasto.dana': 'Recuperació DANA ≈ {pct}% de l’import adjudicat.',
-    'presupuesto.subvenciones.eyebrow': 'BDNS · {total} convocatòries · {municipales} municipals',
+    'presupuesto.subvenciones.eyebrow': 'BDNS · {municipales} convocatòries municipals',
+    'presupuesto.subvenciones.eyebrow.recibidas': ' · {n} concessions a l’Ajuntament',
+    'presupuesto.subvenciones.recibidas.titulo': 'Concedides a l’Ajuntament',
+    'presupuesto.subvenciones.recibidas.texto':
+      '{n} concessions al NIF de l’Ajuntament (P4621600H){span}, en {conv} convocatòries: {importe} concedits. És el que s’ha concedit; els pagaments són un altre registre de la BDNS, i una convocatòria pot donar diverses concessions. La BDNS no torna pel NIF concessions anteriors a {desde}. Les més recents:',
     'presupuesto.subvenciones.titulo': 'Subvencions · Base Nacional',
     'presupuesto.subvenciones.fuente': 'Dades reals de MinHac BDNS · pap.hacienda.gob.es',
     'presupuesto.obras.eyebrow': 'Urbanisme · infraestructures',
@@ -2868,7 +3516,7 @@ export const CATALOGUE = {
     'presupuesto.menores.sinComparar':
       '{lista}: no es comparen amb el límit, en compte de donar-los per dins.',
     'presupuesto.menores.anulados':
-      'Altres {n} venien marcats com a menors i la seua adjudicació es va desfer: no compten com a despesa ni se’ls mesura el sostre.',
+      'Altres {n} venien marcats com a menors i no van arribar a contracte —van quedar deserts o es va desfer l’adjudicació—: no compten com a despesa ni se’ls mesura el sostre.',
     'presupuesto.menores.norma': 'Llei 9/2017, art. 118',
     'presupuesto.deuda.titular.igual': 'Sense canvis en {anio}',
     'presupuesto.deuda.titular.sube': 'Puja en {anio}',
@@ -3010,8 +3658,9 @@ export const CATALOGUE = {
     'presupuesto.contra.ted.mayor': ', el {pct} % en un sol anunci',
     'presupuesto.contra.ted.link': 'Anuncis ↓',
     'presupuesto.contra.bdns': 'Subvencions · BDNS',
-    'presupuesto.contra.bdns.nota':
-      'convocatòries municipals en la Base Nacional{span} · {total} en total, comptant les rebudes',
+    'presupuesto.contra.bdns.nota': 'convocatòries municipals en la Base Nacional{span}',
+    'presupuesto.contra.bdns.recibidas':
+      ' · i {n} concessions a l’Ajuntament{span}, {importe} concedits',
     'presupuesto.contra.bdns.link': 'Convocatòries ↓',
     'presupuesto.pie.fuentes.a': 'Fonts: pressupost aprovat de ',
     'presupuesto.pie.fuentes.conprel': "CONPREL, Ministeri d'Hisenda ↗",
@@ -3198,6 +3847,8 @@ export const CATALOGUE = {
     'departamentos.card.votes': 'Vots',
     'departamentos.card.aprobados': 'Aprovats',
     'departamentos.card.vencidos': 'Terminis vençuts',
+    'departamentos.card.sinPlazoFechado': 'sense termini datat',
+    'departamentos.card.deConPlazo': 'de {n} amb termini datat',
     'departamentos.card.verResponsable': 'Veure responsable',
     'departamentos.card.contratacion': 'Contractació',
     'departamentos.sinConcejalia': 'sense regidoria assignada',
@@ -3205,7 +3856,7 @@ export const CATALOGUE = {
     'departamentos.card.contratos': 'contractes',
     'departamentos.card.promesas': 'Promeses',
     'departamentos.card.quejas': 'Queixes obertes',
-    'departamentos.card.declaraciones': 'Declaracions contrastades',
+    'departamentos.card.declaraciones': 'Declaracions acarades',
     'departamentos.card.sinContraste': 'sense contrast',
     'departamentos.card.sinVotoTranscrito': 'sense vot transcrit',
     'departamentos.detalle.back': '← Tots els departaments',
@@ -3219,9 +3870,10 @@ export const CATALOGUE = {
     'departamentos.detalle.declaraciones.aviso':
       'Les va pronunciar qualsevol grup municipal, no necessàriament qui dirigeix l’àrea: s’agrupen per tema, no per qui parla.',
     'departamentos.detalle.declaraciones.vacio':
-      'Encara no hi ha declaracions contrastades sobre els temes d’aquesta àrea.',
+      'Encara no hi ha declaracions acarades amb un document sobre els temes d’aquesta àrea.',
     'departamentos.detalle.barra.titulo': 'Contrast amb les dades',
-    'departamentos.detalle.barra.resto': 'contrastades · {total} en total',
+    'departamentos.detalle.barra.resto': 'acarades · {total} en total',
+    'departamentos.detalle.barra.sinContraste': 'Sense contrast',
     'departamentos.detalle.empty.votes':
       "0 vots transcrits per a aquesta regidoria — contribueix via `npm run pleno-vote` o la plantilla d'issue.",
     'departamentos.detalle.empty.promesas': 'Sense promeses registrades per a aquesta regidoria.',

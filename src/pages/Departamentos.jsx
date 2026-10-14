@@ -5,8 +5,9 @@ import { useDepartmentStats } from '../hooks/useDepartmentStats'
 import { usePromises, isPromiseFrozen, PARTY_TONE } from '../hooks/usePromises'
 import { useAreaFit, fitAggregate } from '../hooks/useAreaFit'
 import { useT, useLocale } from '../i18n'
-import { rotuloPlazosVencidos } from '../lib/plazos-vencidos'
+import { celdaPlazosVencidos, rotuloPlazosVencidos } from '../lib/plazos-vencidos'
 import { yearSpan } from '../lib/year-span'
+import { desgloseCotejadas } from '../lib/cotejo'
 
 /** Compact euros for a card stat: 61.262.695 € reads as "61,3 M€". */
 function formatEurosCompact(eur) {
@@ -161,24 +162,28 @@ function DepartmentCard({ bucket, frozen }) {
               }
             />
             {/* Sin rojo: las contradichas son de cualquier grupo que habló de los temas
-                del área, y esta tarjeta lleva el nombre de quien la dirige. */}
+                del área, y esta tarjeta lleva el nombre de quien la dirige. Debajo, cuántas
+                son de cada veredicto: «5» cotejadas bajo ese nombre se leían comprobadas
+                siendo cuatro parciales (src/lib/cotejo.js). */}
             <Stat
               label={t('departamentos.card.declaraciones')}
               value={bucket.declaraciones.conEvidencia}
               muted={bucket.declaraciones.conEvidencia === 0}
               sub={
-                bucket.declaraciones.sinDatos > 0
-                  ? `${bucket.declaraciones.sinDatos} ${t('departamentos.card.sinContraste')}`
-                  : undefined
+                [
+                  desgloseCotejadas(t, bucket.declaraciones),
+                  bucket.declaraciones.sinDatos > 0
+                    ? `${bucket.declaraciones.sinDatos} ${t('departamentos.card.sinContraste')}`
+                    : '',
+                ]
+                  .filter(Boolean)
+                  .join(' · ') || undefined
               }
             />
+            {/* «—» y «sin plazo fechado» cuando ningún compromiso del área lleva
+                fecha: el 0 se leía «nada vencido» (lib/plazos-vencidos). */}
             {!frozen && (
-              <Stat
-                label={t('departamentos.card.vencidos')}
-                value={vencidos}
-                tone={vencidos > 0 ? 'warn' : undefined}
-                muted={vencidos === 0}
-              />
+              <Stat label={t('departamentos.card.vencidos')} {...celdaPlazosVencidos(bucket, t)} />
             )}
           </div>
         </Card>

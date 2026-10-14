@@ -19,7 +19,7 @@ import { readFileSync } from 'node:fs'
 import { resolve } from 'node:path'
 
 import { CATALOGUE } from '../src/i18n'
-import { CONTRACT_STATUS, TENDER_STATUS } from '../src/scraper/tenders'
+import { CATEGORIAS_DE_CONTRATO, CONTRACT_STATUS, TENDER_STATUS } from '../src/scraper/tenders'
 import { CAUSAS } from '../src/scraper/incendios'
 import { PLACE_KINDS } from '../src/scraper/place-resolver'
 import { POI_CATEGORIES } from '../src/lib/civic-poi'
@@ -28,6 +28,15 @@ import { KIND_ICON } from '../src/hooks/useParticipa'
 import { PLENO_TONE } from '../src/hooks/usePlenos'
 import { CLAVE_RELACION, RELATION_LABELS } from '../src/scraper/queja-contract-relations'
 import { NIVELES_AEMET } from '../src/scraper/spain-ticker'
+import { CLAIM_VERDICTS, CORPUS_IDS } from '../src/scraper/claim-verdicts'
+import { ALLOWED_CLAIM_TOPICS, ALLOWED_CLAIM_TYPES } from '../src/scraper/pleno-claim'
+import { EVIDENCE_KINDS } from '../src/scraper/claim-verifier'
+import { CLASES_DE_FIRMA } from '../src/scraper/firma-de-persona'
+import {
+  CAMPOS_DEL_EMPAREJADOR,
+  MAGNITUDES_DEL_EXPEDIENTE,
+} from '../src/scraper/importe-de-contrato'
+import { TIPO_NEUTRO } from '../src/lib/claim-type-label.js'
 
 const IDIOMAS = ['es', 'ca'] as const
 const tabla = CATALOGUE as unknown as Record<(typeof IDIOMAS)[number], Record<string, string>>
@@ -104,6 +113,13 @@ const FAMILIAS = [
     prefijo: 'contrato.categoria.',
     valores: publicados('categoryTitle'),
   },
+  // La misma familia desde su dueño: la que el verificador escribe en el snippet de
+  // un contrato y las tarjetas pintan por su rótulo (`snippetDeEvidencia`).
+  {
+    familia: 'categorías de contrato (CATEGORIAS_DE_CONTRATO)',
+    prefijo: 'contrato.categoria.',
+    valores: lista(CATEGORIAS_DE_CONTRATO),
+  },
   {
     familia: 'causas de incendio (CAUSAS)',
     prefijo: 'map.incendio.causa.',
@@ -150,6 +166,51 @@ const FAMILIAS = [
     prefijo: 'pleno.tipo.',
     valores: lista(Object.keys(PLENO_TONE ?? {})),
   },
+  // La tarjeta de una declaración (ClaimLedger): su veredicto, su tipo —con el rótulo
+  // neutro al que baja un tipo que el literal no sostiene—, la fuente de cada fila de
+  // evidencia, quién decidió una bajada y las dos mitades del puente de importe.
+  {
+    familia: 'veredictos de una declaración (CLAIM_VERDICTS)',
+    prefijo: 'declaraciones.veredicto.',
+    valores: lista(CLAIM_VERDICTS),
+  },
+  {
+    familia: 'tipos de una declaración (ALLOWED_CLAIM_TYPES y el rótulo neutro)',
+    prefijo: 'declaraciones.tipo.',
+    valores: [...lista(ALLOWED_CLAIM_TYPES), ...(TIPO_NEUTRO ? [TIPO_NEUTRO] : [])],
+  },
+  // El tema de la tarjeta de /declaraciones y su filtro: se pintaba la clave cruda,
+  // «· other», «· medio-ambiente».
+  {
+    familia: 'temas de una declaración (ALLOWED_CLAIM_TOPICS)',
+    prefijo: 'declaraciones.tema.',
+    valores: lista(ALLOWED_CLAIM_TOPICS),
+  },
+  {
+    familia: 'fuentes de una fila de evidencia (EVIDENCE_KINDS)',
+    prefijo: 'ledger.evidencia.',
+    valores: lista(EVIDENCE_KINDS),
+  },
+  {
+    familia: 'corpus de «Fuentes comprobadas» (CORPUS_IDS)',
+    prefijo: 'ledger.corpus.',
+    valores: lista(CORPUS_IDS),
+  },
+  {
+    familia: 'quién decidió una bajada (CLASES_DE_FIRMA)',
+    prefijo: 'verificador.bajada.',
+    valores: lista(CLASES_DE_FIRMA),
+  },
+  {
+    familia: 'qué importe imprime una fila CONTRATO (CAMPOS_DEL_EMPAREJADOR)',
+    prefijo: 'puente.queEs.',
+    valores: lista(CAMPOS_DEL_EMPAREJADOR),
+  },
+  {
+    familia: 'qué importe del expediente es la cifra citada (MAGNITUDES_DEL_EXPEDIENTE)',
+    prefijo: 'puente.magnitud.',
+    valores: lista(MAGNITUDES_DEL_EXPEDIENTE),
+  },
 ]
 
 describe('los enums del mapa y de la portada tienen rótulo en los dos idiomas', () => {
@@ -181,5 +242,45 @@ describe('las tablas de las leyendas guardan claves con rótulo en los dos idiom
     const sinClave = claves.filter((k) => typeof k !== 'string' || k === '')
     expect(sinClave.length, 'hay filas sin clave de rótulo').toBe(0)
     expect(sinRotulo(claves as string[])).toEqual([])
+  })
+})
+
+/**
+ * El enum de categorías es el vocabulario que el parser deja pasar sin tocar, así que
+ * lo publicado tiene que caber en él: una categoría nueva de Gobierto saldría cruda en
+ * cada tarjeta, en inglés. Con su techo (regla 1): cuántas filas con categoría caen
+ * fuera, sobre cuántas se midieron.
+ */
+describe('las categorías publicadas en tenders.json caben en CATEGORIAS_DE_CONTRATO', () => {
+  it('ninguna fuera, y se midió algo', () => {
+    const conCategoria = FILAS.map((f) => f.categoryTitle).filter(
+      (v): v is string => typeof v === 'string' && v !== '',
+    )
+    const conocidas = new Set<string>(CATEGORIAS_DE_CONTRATO)
+    const fuera = conCategoria.filter((v) => !conocidas.has(v))
+    expect(conCategoria.length, 'ninguna fila con categoría').toBeGreaterThan(100)
+    expect(fuera.length / conCategoria.length).toBeLessThan(0.1)
+    expect([...new Set(fuera)]).toEqual([])
+  })
+})
+
+/**
+ * Lo mismo para el tema de una declaración: el vocabulario del extractor tiene que
+ * cubrir lo servido en public/data/pleno-claims, o un tema nuevo saldría crudo en
+ * cada tarjeta de /declaraciones. Con su techo (regla 1).
+ */
+describe('los temas servidos en pleno-claims caben en ALLOWED_CLAIM_TOPICS', () => {
+  it('ninguno fuera, y se midió algo', () => {
+    const leer = (f: string) => JSON.parse(readFileSync(resolve('public/data', f), 'utf8'))
+    const manifiesto = leer('pleno-claims/index.json') as { plenos: { chunkPath: string }[] }
+    const temas = manifiesto.plenos
+      .flatMap((p) => (leer(p.chunkPath).items ?? []) as { claim?: { topic?: unknown } }[])
+      .map((it) => it.claim?.topic)
+      .filter((v): v is string => typeof v === 'string' && v !== '')
+    const conocidos = new Set<string>(ALLOWED_CLAIM_TOPICS)
+    const fuera = temas.filter((v) => !conocidos.has(v))
+    expect(temas.length, 'ninguna declaración con tema').toBeGreaterThan(100)
+    expect(fuera.length / temas.length).toBeLessThan(0.1)
+    expect([...new Set(fuera)]).toEqual([])
   })
 })

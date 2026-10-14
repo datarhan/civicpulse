@@ -16,13 +16,22 @@
  * (no la copia normalizada del validador), mueven el sello y no devuelven nada
  * que el validador rechace. Comprobar en la red que la cita nueva está en su
  * fuente, y que son palabras del partido, es cosa del CLI (`corregir-promesa`).
+ *
+ * Desde el 12-10-2026, también el plazo (`withDueBy`, `withoutDueBy`): ver el
+ * bloque PLAZO, abajo.
  */
+import { rechazoDeFirma, rechazoDeMarcador } from './firma-de-persona'
 import { sha256Short } from './hash'
 import { normalizeForMatch } from './promise-grounding'
 import {
+  isFrozen,
   PROMISE_REASON_MIN,
+  quoteContainsFragment,
+  resolveDueBy,
   validatePromisesSnapshot,
   type PromiseCorrection,
+  type PromiseDueBy,
+  type PromiseDueByChange,
   type PromiseRetraction,
 } from './promises'
 
@@ -189,4 +198,103 @@ export function withRetraction(
   const items = [...snap.items.slice(0, idx), ...snap.items.slice(idx + 1)]
   const retractions = [...((snap.retractions as PromiseRetraction[] | undefined) ?? []), retirada]
   return cerrar({ ...snap, items, retractions }, now)
+}
+
+/**
+ * ─────────────────────────────────────────────────────────────────────────────
+ * PLAZO
+ *
+ * La PR #311 (12-10-2026) dejó «Plazos vencidos» de /departamentos en «— · sin
+ * plazo fechado», porque ninguna promesa publicada llevaba un `dueBy` y ninguna
+ * CLI podía escribirlo. Un anuncio como «lanzará la convocatoria el próximo mes
+ * de septiembre» trae el plazo en la cita y en ningún campo, y deducirlo del
+ * texto sería el plazo inferido por máquina que el validador impide.
+ *
+ * Así que lo fija una persona, y el cambio queda en `dueByLog` con quién,
+ * cuándo, de qué a qué, por qué y sobre qué palabras de la cita. Fijar un plazo
+ * es lo que deja a /departamentos llamar «vencida» a una promesa de un partido
+ * con nombre: lo firma una persona (`rechazoDeFirma`). Quitarlo sólo retira esa
+ * posibilidad, y basta con que la firma no sea el hueco de una orden sin
+ * rellenar (`rechazoDeMarcador`), como en una retirada. Durante la veda
+ * electoral (`frozenUntil`) no se toca ninguno de los dos.
+ *
+ * El validador (promises.ts, `validateDueBy`) exige lo mismo, de modo que un
+ * plazo escrito a mano en el fichero tampoco publica.
+ */
+function noVedado(snap: Record<string, unknown>, now: Date): void {
+  const frozenUntil = (snap.frozenUntil as string | null | undefined) ?? null
+  if (isFrozen({ frozenUntil }, now))
+    throw new Error(
+      `veda electoral (LOREG) hasta ${frozenUntil}: /promesas está en sólo lectura y ` +
+        'ningún plazo se fija ni se quita hasta que termine',
+    )
+}
+
+function plazoActual(fila: Fila): PromiseDueBy | null {
+  return typeof fila.dueBy === 'string' && typeof fila.dueBySource === 'string'
+    ? { dueBy: fila.dueBy, dueBySource: fila.dueBySource }
+    : null
+}
+
+function anotarPlazo(fila: Fila, cambio: PromiseDueByChange): void {
+  if (cambio.to) {
+    fila.dueBy = cambio.to.dueBy
+    fila.dueBySource = cambio.to.dueBySource
+  } else {
+    delete fila.dueBy
+    delete fila.dueBySource
+  }
+  fila.updatedAt = cambio.changedAt
+  fila.dueByLog = [...((fila.dueByLog as PromiseDueByChange[] | undefined) ?? []), cambio]
+}
+
+/**
+ * Fija (o cambia) el plazo de una promesa. `plazo` es un día (`AAAA-MM-DD`) o
+ * un mes (`AAAA-MM`, que se publica como su último día: `resolveDueBy`);
+ * `fuente`, las palabras de la cita que lo sostienen, copiadas literalmente.
+ */
+export function withDueBy(
+  raw: string,
+  id: string,
+  cambio: { plazo: string; fuente: string },
+  firma: Firma,
+  now: Date = new Date(),
+): string {
+  const { snap, fila } = abrir(raw, id)
+  noVedado(snap, now)
+  const { reason, editor } = firmar(firma)
+  const persona = rechazoDeMarcador(editor) ?? rechazoDeFirma(editor)
+  if (persona) throw new Error(`fijar un plazo lo firma una persona: ${persona}`)
+  const { dueBy, rule } = resolveDueBy(cambio.plazo)
+  const dueBySource = cambio.fuente.normalize('NFC').replace(/\s+/g, ' ').trim()
+  if (!quoteContainsFragment(fila.quote, dueBySource))
+    throw new Error(
+      `«${id}»: el fragmento «${dueBySource}» no está literal en la cita de la promesa; ` +
+        'cópialo tal cual de la cita publicada, con sus tildes y mayúsculas',
+    )
+  const antes = plazoActual(fila)
+  if (antes && antes.dueBy === dueBy && antes.dueBySource === dueBySource)
+    throw new Error(`«${id}»: nada que cambiar, el plazo ya es ${dueBy} con ese fragmento`)
+  const changedAt = now.toISOString().slice(0, 10)
+  anotarPlazo(fila, { from: antes, to: { dueBy, dueBySource, rule }, reason, editor, changedAt })
+  return cerrar(snap, now)
+}
+
+/** Quita el plazo de una promesa, firmado y razonado. */
+export function withoutDueBy(
+  raw: string,
+  id: string,
+  firma: Firma,
+  now: Date = new Date(),
+): string {
+  const { snap, fila } = abrir(raw, id)
+  noVedado(snap, now)
+  const { reason, editor } = firmar(firma)
+  const hueco = rechazoDeMarcador(editor)
+  if (hueco) throw new Error(hueco)
+  const antes = plazoActual(fila)
+  if (!antes) throw new Error(`«${id}» no tiene plazo: no hay nada que quitar`)
+  const changedAt = now.toISOString().slice(0, 10)
+  anotarPlazo(fila, { from: antes, to: null, reason, editor, changedAt })
+  return cerrar(snap, now)
 }

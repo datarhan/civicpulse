@@ -151,7 +151,10 @@ export default function Cobertura() {
   const hoy = new Date().toISOString().slice(0, 10)
   const totals = manifest.data?.totals
   const cob = totals?.cobertura
-  const porClaseDoc = cob?.porClaseDocumental?.porClase ?? {}
+  // `null` cuando el manifiesto no trae el cruce: no se ha contado, y un `?? {}`
+  // lo pintaba como «0 declaraciones» en cada documento (regla 3: un centinela
+  // nunca es un valor). Con el bloque presente, una clase ausente sí es un 0.
+  const porClaseDoc = cob?.porClaseDocumental?.porClase ?? null
 
   // Lo que la puerta editorial retiene, por tipo. Ordenado de más a menos.
   const retenidas = useMemo(
@@ -357,11 +360,18 @@ export default function Cobertura() {
         {/* El puente entre esta columna y la cifra de arriba. Desde el
             30-09-2026 cuenta sólo las «sin corpus»: las de «no consta» se
             juzgaron sobre algo, y que dependan del documento no consta. */}
-        <p style={{ color: 'var(--ink70)', fontSize: 'var(--fs-meta)', marginTop: 0 }}>
-          Cada cifra cuenta, de las <span className="mono">{resumen.sinCorpus}</span> declaraciones
-          sin corpus que consultar, las que nombran ese documento. Las de «no consta» no entran: se
-          juzgaron sobre algo, y que dependan del documento no consta.
-        </p>
+        {porClaseDoc ? (
+          <p style={{ color: 'var(--ink70)', fontSize: 'var(--fs-meta)', marginTop: 0 }}>
+            Cada cifra cuenta, de las <span className="mono">{resumen.sinCorpus}</span>{' '}
+            declaraciones sin corpus que consultar, las que nombran ese documento. Las de «no
+            consta» no entran: se juzgaron sobre algo, y que dependan del documento no consta.
+          </p>
+        ) : (
+          <p style={{ color: 'var(--ink70)', fontSize: 'var(--fs-meta)', marginTop: 0 }}>
+            El manifiesto de declaraciones no trae cuántas dependen de cada documento. No es que no
+            dependa ninguna: es que no se ha podido calcular.
+          </p>
+        )}
         <div style={{ overflowX: 'auto' }} className="cp-scroll-x">
           <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: 'var(--fs-meta)' }}>
             <thead>
@@ -380,9 +390,15 @@ export default function Cobertura() {
                 return (
                   <tr key={clase} style={{ borderTop: '1px solid var(--border)' }}>
                     <td style={{ padding: '8px 8px 8px 0' }}>{CLASE_ETIQUETA[clase]}</td>
-                    <td className="mono" style={{ padding: '8px', textAlign: 'right' }}>
-                      {porClaseDoc[clase] ?? 0}
-                    </td>
+                    {porClaseDoc ? (
+                      <td className="mono" style={{ padding: '8px', textAlign: 'right' }}>
+                        {porClaseDoc[clase] ?? 0}
+                      </td>
+                    ) : (
+                      <td style={{ padding: '8px', textAlign: 'right', color: 'var(--ink70)' }}>
+                        no consta
+                      </td>
+                    )}
                     <td style={{ padding: '8px 0 8px 8px' }}>
                       <Pill tone={ESTADO_TONO[estado]} size="xs">
                         {ESTADO_ETIQUETA[estado]}

@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-11T07:07:47.709Z",
+  "generatedAt": "2026-10-12T16:55:45.427Z",
   "version": "1",
   "plenoId": "qz6weg",
   "plenoDate": "2025-12-01",
@@ -3088,9 +3088,10 @@
       "verification": {
         "claimId": "qz6weg-055-cit-492759",
         "verdict": "sin-datos",
-        "summary": "El candidato [0] es un contrato de asesoramiento jurídico y defensa procesal (servicios legales genéricos), sin relación con terrenos, proyectos urbanísticos o titularidad de suelo.",
+        "summary": "Conclusión: no hay respaldo genuino; solo coincidencia temática, fuerza nula.",
         "evidence": [],
-        "checkedAgainst": [
+        "checkedAgainst": [],
+        "derivedBy": [
           "verdict-engine"
         ],
         "confidence": 0.2,
@@ -6718,8 +6719,6 @@
         "topic": "social",
         "entities": {
           "amountEuros": 200000,
-          "count": 3000,
-          "countUnit": "euros",
           "referencedEntity": "ayudas directas al autónomo"
         },
         "confidence": 0.9,
@@ -8256,9 +8255,10 @@
       "verification": {
         "claimId": "qz6weg-189-afi-b7253d",
         "verdict": "sin-datos",
-        "summary": "El único candidato disponible [0] es un contrato de servicios para implantar un Portal del Empleado en el Ayuntamiento de Riba-roja de Túria, por €25.794. No guarda ninguna relación con la afirmación, que trata sobre la exención del IVA (régimen de franquicia) para facturación por debajo de €85.000.",
+        "summary": "Ninguna coincidencia de importe, sujeto o fecha; el respaldo es nulo.",
         "evidence": [],
-        "checkedAgainst": [
+        "checkedAgainst": [],
+        "derivedBy": [
           "verdict-engine"
         ],
         "confidence": 0.2,
@@ -9534,7 +9534,7 @@
       "verification": {
         "claimId": "qz6weg-235-afi-4a748f",
         "verdict": "sin-datos",
-        "summary": "Ningún candidato respalda de verdad la afirmación de \"más de dos millones de euros para el bolsillo autónomo\". Los candidatos [4], [5] y [6] son convocatorias de ayudas a autónomos y emprendedores de Riba-roja (RIBACTIVA EMPRÈN II y III, ayudas COVID a autónomos y microempresas).",
+        "summary": "Respaldo nulo: no verificable con estos candidatos.",
         "evidence": [],
         "checkedAgainst": [],
         "derivedBy": [

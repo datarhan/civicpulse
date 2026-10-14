@@ -21,6 +21,7 @@ import { readFile, writeFile } from 'node:fs/promises'
 import { dirname, join } from 'node:path'
 import { fileURLToPath } from 'node:url'
 import { validatePromisesSnapshot, ALLOWED_PARTIES, type Party } from '../src/scraper/promises'
+import { rechazarOpcionesDesconocidas } from '../src/scraper/opciones-cli'
 
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = dirname(__filename)
@@ -44,6 +45,9 @@ Arguments:
 }
 
 async function main() {
+  // Antes de leer nada: una opción que este CLI no conoce no se ignora
+  // (src/scraper/opciones-cli.ts).
+  rechazarOpcionesDesconocidas('reply', {})
   const [promiseId, partyRaw, quoteRaw, sourceUrl, sourcePublisher, respondedAtRaw] =
     process.argv.slice(2)
 

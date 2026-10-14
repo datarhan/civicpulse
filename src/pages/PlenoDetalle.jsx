@@ -5,21 +5,22 @@ import Compartir from '../components/Compartir'
 import { AgendaRow } from '../components/plenos/AgendaRow'
 import { VoteTallyBar, DirectionLegend } from '../components/plenos/VoteTallyBar'
 import { VoteBreakdownRetracted } from '../components/plenos/VoteBreakdownRetracted'
+import { VoteBreakdownCorrected } from '../components/plenos/VoteBreakdownCorrected'
 import { VoteProvenance } from '../components/plenos/VoteProvenance'
 import { FindingCard } from '../components/PlenoFindings'
 import { ClaimLedger } from '../components/ClaimLedger'
-import { usePlenos, PLENO_TONE, PLENO_LABEL } from '../hooks/usePlenos'
+import { usePlenos, PLENO_TONE } from '../hooks/usePlenos'
 import { usePlenoChunk, chunkExtraido } from '../hooks/usePlenoClaims'
 import { usePlenoAgendas } from '../hooks/usePlenoAgendas'
-import { usePlenoVotes, OUTCOME_LABEL, OUTCOME_TONE } from '../hooks/usePlenoVotes'
+import { usePlenoVotes, OUTCOME_TONE } from '../hooks/usePlenoVotes'
 import { usePlenoVideos, indexVideosByPleno } from '../hooks/usePlenoVideos'
 import { usePlenoFindings } from '../hooks/usePlenoFindings'
 import { fmtDateLong, fmtDateShort, rellena } from '../lib/formatters'
 import { conHuecos } from '../lib/huecos'
-import { useT } from '../i18n'
+import { latestCorrection } from '../scraper/pleno-votes'
+import { rotuloDe, useLocale, useT } from '../i18n'
 import { transcriptKind } from '../lib/transcript-kind.js'
-
-const GROUNDED = new Set(['verificado', 'parcial', 'contradicho'])
+import { cuentaCotejadas, desgloseCotejadas, entreParentesis } from '../lib/cotejo'
 
 function EmptyNote({ children }) {
   return (
@@ -116,9 +117,9 @@ function TranscriptPanel({ plenoId }) {
         }}
       >
         {kind === 'acta'
-          ? 'Texto del acta oficial, no del audio. Las marcas de tiempo son sintéticas: el acta es un resumen ya redactado por secretaría, así que una cita literal de aquí cita el acta, no la intervención.'
+          ? t('plenoDetail.transcriptActa')
           : kind === 'audio'
-            ? 'Transcripción automática del audio de la sesión. Puede contener errores de reconocimiento; el acta oficial prevalece.'
+            ? t('plenoDetail.transcriptAudio')
             : null}
       </div>
       <pre
@@ -143,6 +144,8 @@ function TranscriptPanel({ plenoId }) {
 
 /** Coloured proportion bar for the vote outcomes in this session. */
 function VoteOutcomeBar({ votes }) {
+  const t = useT()
+  const rotulo = (k) => rotuloDe(t, `pleno.desenlace.${k}`, k)
   const counts = votes.reduce((acc, v) => {
     acc[v.outcome] = (acc[v.outcome] || 0) + 1
     return acc
@@ -168,7 +171,7 @@ function VoteOutcomeBar({ votes }) {
         {segs.map((s) => (
           <div
             key={s.k}
-            title={`${OUTCOME_LABEL[s.k]}: ${counts[s.k]}`}
+            title={`${rotulo(s.k)}: ${counts[s.k]}`}
             style={{ flex: counts[s.k], background: s.color, minWidth: 6 }}
           />
         ))}
@@ -187,7 +190,7 @@ function VoteOutcomeBar({ votes }) {
             <span
               style={{ width: 9, height: 9, borderRadius: 'var(--r-input)', background: s.color }}
             />
-            <span style={{ color: 'var(--ink70)' }}>{OUTCOME_LABEL[s.k]}</span>
+            <span style={{ color: 'var(--ink70)' }}>{rotulo(s.k)}</span>
             <strong className="mono" style={{ color: 'var(--ink)' }}>
               {counts[s.k]}
             </strong>
@@ -230,11 +233,13 @@ function OLabel({ children }) {
 }
 
 /**
- * Contrastadas frente a sin contraste, en las declaraciones de la sesión. Sin
- * verde: «contrastadas» incluye las contradichas, y en verde se leía como respaldo.
+ * Cotejadas frente a sin contraste, en las declaraciones de la sesión. Sin
+ * verde: «cotejadas» incluye las contradichas, y en verde se leía como respaldo.
+ * La leyenda estaba escrita en castellano en el JSX y salía igual en valencià.
  */
 function DeclMixBar({ items }) {
-  const g = items.filter((it) => GROUNDED.has(it.verification?.verdict)).length
+  const t = useT()
+  const g = cuentaCotejadas(items).total
   const s = items.filter((it) => it.verification?.verdict === 'sin-datos').length
   if (g + s === 0) return null
   return (
@@ -261,7 +266,7 @@ function DeclMixBar({ items }) {
               background: 'var(--civic)',
             }}
           />
-          <span style={{ color: 'var(--ink70)' }}>contrastadas</span>
+          <span style={{ color: 'var(--ink70)' }}>{t('plenoDetail.mix.cotejadas')}</span>
           <strong className="mono" style={{ color: 'var(--ink)' }}>
             {g}
           </strong>
@@ -275,7 +280,7 @@ function DeclMixBar({ items }) {
               background: 'var(--ink50)',
             }}
           />
-          <span style={{ color: 'var(--ink70)' }}>sin contraste</span>
+          <span style={{ color: 'var(--ink70)' }}>{t('plenoDetail.mix.sinContraste')}</span>
           <strong className="mono" style={{ color: 'var(--ink)' }}>
             {s}
           </strong>
@@ -286,7 +291,7 @@ function DeclMixBar({ items }) {
 }
 
 export default function PlenoDetalle() {
-  const t = useT()
+  const { locale, t } = useLocale()
   const { id } = useParams()
   const { data: plenosData, loading: plenosLoading } = usePlenos()
   const { data: chunk } = usePlenoChunk(id)
@@ -326,10 +331,8 @@ export default function PlenoDetalle() {
   // 404 a un fragmento vacío: `chunk` existe igual. «Extraída y sin nada» y «sin
   // extraer» sólo se distinguen por de dónde vino.
   const extraida = chunkExtraido(chunk)
-  const groundedCount = useMemo(
-    () => claimItems.filter((it) => GROUNDED.has(it.verification?.verdict)).length,
-    [claimItems],
-  )
+  const cotejadas = useMemo(() => cuentaCotejadas(claimItems), [claimItems])
+  const groundedCount = cotejadas.total
   const aprobados = votes.filter((v) => v.outcome === 'aprobado').length
 
   if (plenosLoading) {
@@ -397,10 +400,10 @@ export default function PlenoDetalle() {
         }}
       >
         <div style={{ fontSize: 'var(--fs-page)', fontWeight: 700, letterSpacing: '-.015em' }}>
-          {fmtDateLong(pleno.date)}
+          {fmtDateLong(pleno.date, locale)}
         </div>
         <Pill tone={PLENO_TONE[pleno.kind] || 'ghost'} size="xs">
-          {PLENO_LABEL[pleno.kind] || pleno.kind}
+          {rotuloDe(t, `pleno.tipo.${pleno.kind}`, pleno.kind)}
         </Pill>
         {video && (
           <ExtLink
@@ -450,7 +453,11 @@ export default function PlenoDetalle() {
           <Tile
             label={t('plenoDetail.declarations')}
             value={extraida ? groundedCount : '—'}
-            sub={extraida ? undefined : t('plenoDetail.extractionPending')}
+            sub={
+              extraida
+                ? desgloseCotejadas(t, cotejadas) || undefined
+                : t('plenoDetail.extractionPending')
+            }
           />
           <Tile
             label={t('plenoDetail.findings')}
@@ -572,11 +579,16 @@ export default function PlenoDetalle() {
             )}
             {' · '}
             {extraida ? (
-              <PiezaResumen
-                n={groundedCount}
-                uno="plenoDetail.line.declarations.uno"
-                varios="plenoDetail.line.declarations.varios"
-              />
+              <>
+                <PiezaResumen
+                  n={groundedCount}
+                  uno="plenoDetail.line.declarations.uno"
+                  varios="plenoDetail.line.declarations.varios"
+                />
+                {/* «2 declaraciones contrastadas» se leía comprobadas siendo las dos
+                    parciales: va detrás cuántas son de cada veredicto. */}
+                {entreParentesis(t, cotejadas)}
+              </>
             ) : (
               t('plenoDetail.line.declarationsPending')
             )}
@@ -641,7 +653,7 @@ export default function PlenoDetalle() {
                       }
                       size="xs"
                     >
-                      {f.severity}
+                      {rotuloDe(t, `pleno.gravedad.${f.severity}`, f.severity)}
                     </Pill>
                     <span
                       style={{ fontSize: 'var(--fs-aux)', color: 'var(--ink)', fontWeight: 600 }}
@@ -700,10 +712,10 @@ export default function PlenoDetalle() {
                       className="mono"
                       style={{ fontSize: 'var(--fs-micro)', color: 'var(--ink50)' }}
                     >
-                      {fmtDateShort(rec.plenoDate)}
+                      {fmtDateShort(rec.plenoDate, locale)}
                     </span>
                     <Pill tone={OUTCOME_TONE[rec.outcome]} size="xs">
-                      {OUTCOME_LABEL[rec.outcome]}
+                      {rotuloDe(t, `pleno.desenlace.${rec.outcome}`, rec.outcome)}
                     </Pill>
                   </div>
                   <div style={{ fontSize: 'var(--fs-body)', fontWeight: 600, marginBottom: 8 }}>
@@ -712,7 +724,12 @@ export default function PlenoDetalle() {
                   {rec.votesRetracted ? (
                     <VoteBreakdownRetracted retraction={rec.votesRetracted} />
                   ) : (
-                    <VoteTallyBar tally={rec.votes} />
+                    <>
+                      <VoteTallyBar tally={rec.votes} />
+                      <VoteBreakdownCorrected
+                        correction={votesData ? latestCorrection(votesData, rec.id) : null}
+                      />
+                    </>
                   )}
                   {/* This tab showed a tally with no citation at all — the
                       reader could not tell the outcome and the breakdown come
@@ -730,7 +747,7 @@ export default function PlenoDetalle() {
         <ClaimLedger
           items={claimItems}
           showSummary
-          emptyHint="Sin declaraciones contrastables para esta sesión."
+          emptyHint={t('plenoDetail.empty.declarations')}
         />
       )}
 

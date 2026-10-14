@@ -43,6 +43,7 @@ import {
   type ReportLike,
 } from '../src/scraper/area-fit'
 import { stripLeadingListConjunction } from '../src/scraper/corporacion'
+import { rechazarOpcionesDesconocidas } from '../src/scraper/opciones-cli'
 
 const OUT = resolve('public/data/area-fit.json')
 const OFFICIALS = resolve('public/data/officials.json')
@@ -56,6 +57,9 @@ function loadReports(): ReportLike[] {
 }
 
 function main() {
+  // Antes de leer nada: una opción que este CLI no conoce no se ignora
+  // (src/scraper/opciones-cli.ts).
+  rechazarOpcionesDesconocidas('migrate', { banderas: ['--dry-run'] })
   if (!existsSync(OUT)) {
     console.error(`${OUT} no existe — no hay nada que migrar`)
     process.exit(1)

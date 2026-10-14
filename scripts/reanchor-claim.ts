@@ -48,6 +48,7 @@ import { archivosDe } from '../src/scraper/superseded-archive'
 import { TRANSCRIPTS_DIR, SUPERSEDED_DIR } from './lib/transcript-corpus'
 import { loadReanchors, rebuildVerified, REANCHORS, VERIFIED } from './verified-rebuild'
 import { readdirSync } from 'node:fs'
+import { rechazarOpcionesDesconocidas } from '../src/scraper/opciones-cli'
 
 interface Publicado {
   claim: {
@@ -91,6 +92,12 @@ function parse(argv: string[]) {
 }
 
 function main() {
+  // Antes de leer nada: una opción que este CLI no conoce no se ignora
+  // (src/scraper/opciones-cli.ts).
+  rechazarOpcionesDesconocidas('reanchor', {
+    banderas: ['--dry-run'],
+    conValor: ['--verbatim', '--reason', '--editor'],
+  })
   const { claimId, verbatim, reason, editor, dryRun } = parse(process.argv.slice(2))
   if (!claimId || !verbatim) {
     process.stderr.write(

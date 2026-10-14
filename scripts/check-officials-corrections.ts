@@ -186,8 +186,9 @@ async function main(): Promise<void> {
   }
   if (!existsSync(CORRECTIONS)) {
     // Sin fichero no hay nada que vigilar, y se dice: no es un «todo en orden».
+    // Con la marca que lee el parte de salud, como el NO COMPROBADO de la página.
     process.stdout.write(
-      'officials-corrections · sin fichero de correcciones: nada que comprobar (no es un visto bueno)\n',
+      'officials-corrections · NO COMPROBADO: sin fichero de correcciones: nada que comprobar (no es un visto bueno)\n',
     )
     process.exit(0)
   }

@@ -398,8 +398,41 @@ const expectWithdrawn = (id: string): void => {
  * la que se dio cuenta al pleno en julio de 2024. En LOTE_1 cambia sólo lo que la fila de a0a379
  * mide en la prosa viva, y el suelo de citas atribuidas baja tres.
  */
-const TOTAL_CORRECTIONS = 250
-const TOTAL_REMOVALS = 40
+/*
+ * 250 → 253 (bloque «a0a379, reanclada a la vigente»).
+ * Tres filas más en `f-2026-05-11-cit-a0a379`, todas de `correct-pleno-finding`. Su cita [2] decía
+ * el nombre de la campaña en castellano donde la transcripción vigente lo dice en valencià, y su cita
+ * [3] —la ambigua `a20` del reanclaje del 2026-08-10— sólo constaba en la transcripción anterior: las
+ * dos se reanclan al pasaje de la vigente. La tercera fila quita del sumario la salvedad que la [3]
+ * deja sin objeto. La [3] pasa a `RESUELTAS_DESPUES`, y lote 5 deja de buscarla por su texto.
+ */
+/*
+ * 253 → 234 (bloque «543cc1 y 3fd230, retiradas por lo que decía su sumario»).
+ * Dos fichas del pleno del 2026-01-19 cuyo sumario decía, con otras palabras, lo que dicen citas
+ * que la puerta editorial retiene: la pregunta de la cola de excepción, respondida «retirar» en
+ * las dos. `retract-finding` se lleva su bitácora entera, 10 filas de `f-2026-01-19-cit-543cc1` y
+ * 9 de `f-2026-01-19-cit-3fd230`; tres de ellas eran retiradas de fila (`TOTAL_REMOVALS` 40 → 37:
+ * la cita [2] y el cotejo [0] de 3fd230, el cotejo [1] de 543cc1). Ningún lote cambia más que eso:
+ * las dos salen de LOTE_2, LOTE_3 y LOTE_5 por `live`, y bajan los suelos que cuentan citas.
+ */
+/*
+ * 234 → 235 (bloque «436a7e, el sumario que entrecomillaba al motor sustituido»).
+ * Una fila de `correct-pleno-finding --field summary` (editor `civicpulse-curator`) en
+ * `f-2026-03-16-cit-436a7e`, que no es de ningún lote: ningún lote cambia.
+ */
+/*
+ * 235 → 236 (bloque «75b31f, el plan de empleo que el sumario entrecomillaba en castellano»).
+ * Una fila de `correct-pleno-finding --field summary` (editor `civicpulse-curator`) en
+ * `f-2026-03-16-cit-75b31f`, que no es de ningún lote: ningún lote cambia.
+ */
+/*
+ * 236 → 239 (bloque «377216, la Chen Machor que el motor sustituido escribía Chemmachor»).
+ * Tres filas de `correct-pleno-finding` (editor `civicpulse-curator`) en
+ * `f-2026-03-16-cit-377216`: `quote.0.text`, `title` y `summary`, en ese orden. En LOTE_2 la
+ * frase que la fila de 377216 anclaba sale de `keeps` y pasa a `drops`.
+ */
+const TOTAL_CORRECTIONS = 239
+const TOTAL_REMOVALS = 37
 
 /** One row of a review batch's fixture: enough to locate its own entries. */
 interface BatchCase {
@@ -626,8 +659,10 @@ describe('published pleno findings — a removal does not republish what it remo
     // 2026-09-30: dos citas más, la [1] de `947479` y la [2] de `8b29a9` (bloque «163 → 184»),
     // y otras dos el mismo día, la [2] y la [1] de `c80e68` (bloque «184 → 208»).
     // Y la [2] de `5b06c8` (bloque «salvedad C+D, +8»).
-    expect(removals.filter((c) => c.field.startsWith('quote.'))).toHaveLength(12)
-    expect(removals.filter((c) => c.field.startsWith('crossChecked.'))).toHaveLength(28)
+    // Y tres menos, que se fueron con su ficha (bloque «250 → 231»): la cita [2] y el cotejo [0]
+    // de `3fd230`, y el cotejo [1] de `543cc1`.
+    expect(removals.filter((c) => c.field.startsWith('quote.'))).toHaveLength(11)
+    expect(removals.filter((c) => c.field.startsWith('crossChecked.'))).toHaveLength(26)
   })
 
   it('records a digest and a marker, never the removed row', () => {
@@ -1628,8 +1663,14 @@ const LOTE_2: Lote2Case[] = [
       'el vínculo documental existe',
       'el proyecto está activo',
       'con contrato en BD',
+      // 2026-10-12: la grafía del motor sustituido sale del sumario, y con ella la frase que esta
+      // fila anclaba; lo que afirmaba sigue, con otras palabras (bloque «236 → 239»).
+      'no cita la Chemmachor ni permite confirmar',
     ],
-    keeps: ['no cita la Chemmachor ni permite confirmar', 'cubierta de un Edificio Polivalente'],
+    keeps: [
+      'nada permite identificarlo con el que citan las intervenciones',
+      'cubierta de un Edificio Polivalente',
+    ],
     refs: ['tender|Obras de impermeabilización cubierta Edi'],
     claims: ['ma87e0-104-cit-377216', 'ma87e0-162-cit-092d3e'],
     groups: ['PSOE', 'PSOE'],
@@ -3474,7 +3515,9 @@ describe('published pleno findings — lote 5, attributions the corpus itself re
     // transcript supports. Retracting both would have been the cleanup
     // destroying the finding rather than repairing it.
     const other = byId('f-2026-05-11-cit-a0a379')
-    const survivor = other.quotes.find((q) => q.text.includes('trajo una noticia'))
+    // Por su declaración de origen y no por su texto: desde el 2026-10-11 la cita lleva el literal
+    // de la transcripción vigente, en valencià (bloque «a0a379, reanclada a la vigente»).
+    const survivor = other.quotes.find((q) => q.sourceClaimId === '10yl550-293-acu-8785eb')
     expect(survivor?.speakerGroup).toBe('PSOE')
     // …and untouched by lote 5: its log still opens with the three entries it
     // had before, and lote 5 appended none of its own. Read as a window rather
@@ -3487,9 +3530,13 @@ describe('published pleno findings — lote 5, attributions the corpus itself re
       'summary',
       'crossChecked.1',
     ])
-    // And what came after did not touch the row this block is about: the fira
-    // sentence is still the text lote 5 left, still marked, never re-anchored.
-    expect(other.corrections?.slice(3).every((c) => c.field !== 'quote.3.text')).toBe(true)
+    // And what came after touched the row this block is about once, and only to re-anchor it: the
+    // single later `quote.3.text` entry replaced exactly the text lote 5 left (its digest is the
+    // `a20` row of the 2026-08-10 batch) and kept its bloc.
+    const reanclajes = (other.corrections ?? []).slice(3).filter((c) => c.field === 'quote.3.text')
+    expect(reanclajes).toHaveLength(1)
+    expect(sha256Short(reanclajes[0].original)).toBe('50d3272f3ce7')
+    expect(survivor?.text).toBe(reanclajes[0].corrected)
   })
 })
 
@@ -3530,7 +3577,9 @@ describe('published pleno findings — one intervention is one row', () => {
     }
     // The measuring half: 52 findings with a single quote each would compare
     // nothing and pass.
-    expect(compared).toBeGreaterThan(300)
+    // 2026-10-11: 543cc1 (4 citas) y 3fd230 (3) se retiran enteras (bloque «250 → 231»), y
+    // con ellas 18 de las 306 comparaciones. El suelo queda justo por debajo de las 288.
+    expect(compared).toBeGreaterThan(280)
     expect(offences).toEqual([])
   })
 })
@@ -3572,7 +3621,9 @@ describe('published pleno findings — one verbatim is one bloc', () => {
     // y `b00839` [0] (bloque «salvedad C+D, +8»). El suelo baja tres.
     // Y tres con la ficha entera de `66709b`, que se retira (bloque «252 → 250»). De 64 a 61, y
     // el suelo baja tres.
-    expect(attributed.length).toBeGreaterThan(60)
+    // Y otras tres con `543cc1` ([2] PSOE, [3] PP) y `3fd230` ([0] PSOE), que se retiran
+    // (bloque «250 → 231»). De 61 a 58, y el suelo baja tres.
+    expect(attributed.length).toBeGreaterThan(57)
     expect(findAttributionConflicts(items)).toEqual([])
   })
 })
@@ -3958,6 +4009,9 @@ const RESUELTAS_DESPUES = new Map<string, { field: string; correctedAt: string; 
       huella: 'cita · sha256:76e747d41af3',
     },
   ],
+  // Y otra (bloque «a0a379, reanclada a la vigente»): la misma intervención consta en la vigente, en
+  // valencià, y la cita se reancló a ese pasaje. Su atribución no estaba contradicha.
+  ['a20', { field: 'quote.3.text', correctedAt: '2026-10-11T17:11:01.592Z' }],
 ])
 
 /**
@@ -4091,8 +4145,14 @@ describe('published pleno findings — el reanclaje del 2026-08-10', () => {
       ambiguous.filter((r) => r.publishedBefore && liveRow(r) && !RESUELTAS_DESPUES.has(r.tag))
         .length,
     )
-    // Toda fila de la tabla es una ambigua publicada y viva que se resolvió: ninguna sobra.
-    expect(resueltas).toBe(RESUELTAS_DESPUES.size)
+    // Toda fila de la tabla es una ambigua publicada que se resolvió: ninguna sobra. Una cuya
+    // ficha se retiró entera después no se cuenta, pero no se pierde de vista: su ficha tiene que
+    // estar en el registro de retiradas. Es una, `b21`, de `543cc1` (bloque «250 → 231»).
+    const filaDe = (tag: string) => BATCH.rows.find((r) => r.tag === tag)!
+    const sinFicha = [...RESUELTAS_DESPUES.keys()].filter((tag) => !liveRow(filaDe(tag)))
+    expect(sinFicha).toEqual(['b21'])
+    for (const tag of sinFicha) expectWithdrawn(filaDe(tag).findingId)
+    expect(resueltas).toBe(RESUELTAS_DESPUES.size - sinFicha.length)
     expect(ambiguous.filter((r) => !r.publishedBefore)).toHaveLength(1)
   })
 
@@ -4197,6 +4257,81 @@ describe('published pleno findings — el reanclaje del 2026-08-10', () => {
         'f-2026-07-03-cit-df8455',
       ].filter((id) => !retractedIds.has(id)),
     )
+  })
+
+  /*
+   * El guardián de arriba sólo lee «». 436a7e y 75b31f entrecomillaban con comillas rectas el
+   * castellano del motor sustituido, y sus citas se reanclaron el 2026-08-10 sin que nadie lo
+   * viera (revisión lectora, 2026-10-12). Éste lee las otras cuatro formas: '…' (sin confundirla
+   * con el apóstrofo de «d'escoto»: la de apertura no sigue a una letra y la de cierre no la
+   * precede), ‘…’, “…” y "…".
+   *
+   * Un entrecomillado que no es habla no puede salir de una cita: hoy sólo el título de un
+   * contrato, y lo sostiene un `crossChecked[].snippet` de la misma ficha. La lista los nombra uno a
+   * uno, y cada entrada tiene que seguir casando con su sumario: una que ya no entrecomilla nada
+   * sale de la lista, o esconde el siguiente.
+   *
+   * `f-2026-03-16-cit-377216` no está en ella aunque su paréntesis «transcrito también como
+   * 'Xemachor' o 'Chemachor'» no era habla: 'Xemachor' no constaba en ninguna transcripción (era la
+   * conjetura del extractor) y 'Chemachor' sólo en las sustituidas. Se corrigió el 2026-10-12
+   * (bloque «236 → 239») en lugar de entrar aquí, que habría sido firmarlo con una prueba.
+   */
+  const TITULOS_DE_CONTRATO_ENTRECOMILLADOS: Record<string, string[]> = {
+    'f-2026-01-19-cit-c80e68': [
+      'Servicio mantenimiento instalaciones en complejo deportivo La Malla',
+    ],
+    'f-2026-05-11-acu-ea9d47': ['Un vehículo protección civil.'],
+  }
+  const OTRAS_COMILLAS = [
+    /(?<![\p{L}\p{N}])'([^'\n]+?)'(?![\p{L}\p{N}])/gu,
+    /‘([^’\n]+)’/gu,
+    /“([^”\n]+)”/gu,
+    /"([^"\n]+)"/gu,
+  ]
+  it('ningún entrecomillado recto o tipográfico del sumario se quedó sin lo que lo sostiene', () => {
+    const huerfanos: string[] = []
+    const usadas = new Set<string>()
+    let frases = 0
+    for (const f of items) {
+      if (retractedIds.has(f.id)) continue
+      for (const re of OTRAS_COMILLAS) {
+        for (const m of `${f.title}\n${f.summary}`.matchAll(re)) {
+          const frase = m[1].trim()
+          frases += 1
+          if (f.quotes.some((q) => q.text.includes(frase))) continue
+          if (!TITULOS_DE_CONTRATO_ENTRECOMILLADOS[f.id]?.includes(frase)) {
+            huerfanos.push(`${f.id} ${m[0]}`)
+            continue
+          }
+          usadas.add(`${f.id} ${frase}`)
+          if (!(f.crossChecked ?? []).some((c) => (c.snippet ?? '').includes(frase))) {
+            huerfanos.push(`${f.id} ${m[0]} (título sin el cotejo que lo sostiene)`)
+          }
+        }
+      }
+    }
+    expect(huerfanos).toEqual([])
+    // La lista no puede quedarse con entradas muertas.
+    expect([...usadas].sort()).toEqual(
+      Object.entries(TITULOS_DE_CONTRATO_ENTRECOMILLADOS)
+        .flatMap(([id, ts]) => ts.map((t) => `${id} ${t}`))
+        .sort(),
+    )
+    // Que la pasada leyó algo: las de a870a4 y 528973 salen de su cita, y las dos de la lista.
+    expect(frases).toBeGreaterThanOrEqual(4)
+  })
+
+  it('el lector de comillas no confunde un apóstrofo con una comilla (control)', () => {
+    const leer = (s: string) => OTRAS_COMILLAS.flatMap((re) => [...s.matchAll(re)].map((m) => m[1]))
+    expect(leer("«no teniu pavelló d'escoto» y «el pla d'empleo Ciutat Jardín»")).toEqual([])
+    expect(leer("dice 'el Plan de Empleo Ciudad Jardín' como partida")).toEqual([
+      'el Plan de Empleo Ciudad Jardín',
+    ])
+    expect(leer('el título "Un vehículo." y “otro” y ‘uno más’').sort()).toEqual([
+      'Un vehículo.',
+      'otro',
+      'uno más',
+    ])
   })
 })
 
@@ -4304,11 +4439,364 @@ describe('published pleno findings — 66709b y a0a379, releídas contra la tran
         normaliseForQuoteMatch('recibida muy positivamente'),
       ),
     ).toBe(true)
-    const log = f.corrections ?? []
-    const fila = log[log.length - 1]
+    // La fila de aquel día, y no la última: el 2026-10-11 se añadieron otras (bloque «a0a379,
+    // reanclada a la vigente»).
+    const fila = (f.corrections ?? []).find((c) => c.correctedAt === '2026-10-10T19:35:13.583Z')!
     expect(fila.field).toBe('summary')
     for (const s of ['11.879,5', '11.893,2', '12.110,6', '12.854,4']) {
       expect(fila.reason, `el motivo no cita ${s}`).toContain(s)
     }
+  })
+})
+
+/*
+ * Bloque «a0a379, reanclada a la vigente». Las dos citas de `f-2026-05-11-cit-a0a379` cuyo literal no
+ * era el de la transcripción vigente de su sesión, reancladas al pasaje de la vigente con
+ * `correct-pleno-finding --field quote.<i>.text`.
+ *
+ * La [2] es la lectura de la valoración de la campaña de 2024 (11.893,2–11.904,2 s). Su literal decía
+ * el nombre de la campaña en castellano, como lo dejó el motor sustituido, y la vigente lo dice en
+ * valencià; el cotejador de la casa la daba por presente porque compara por tramos de ocho palabras.
+ * La [3] es la ambigua `a20` del reanclaje del 2026-08-10: sólo constaba en la transcripción anterior,
+ * que la traducía, y la misma intervención está en la vigente en valencià (12.490,5–12.498,7 s). Acaba
+ * antes que la anterior, porque en la vigente la corta otra voz y su final no se entiende. La puerta
+ * editorial la retiene, así que aquí va por su huella y nunca por su texto: el repositorio es público.
+ *
+ * La tercera fila quita del sumario la salvedad «según la transcripción anterior», que la [3] dejó sin
+ * objeto. Ni el grupo de ninguna cita ni el resto de la ficha cambian.
+ */
+describe('published pleno findings — a0a379, reanclada a la vigente', () => {
+  const ID = 'f-2026-05-11-cit-a0a379'
+  const DIA = '2026-10-11'
+  const lineaDe = (plenoId: string, desde: string) =>
+    transcriptOf(plenoId)
+      .split('\n')
+      .find((l) => l.startsWith(`[${desde} → `))
+
+  it('las dos citas son subcadena EXACTA de su línea de la transcripción vigente', () => {
+    const f = byId(ID)
+    expect(f.quotes[2].text).toBe(
+      'la campaña 22 Fira del Comerç 2024 fue recibida muy positivamente, tanto por la ciudadanía como por los comercios y establecimientos de hostelería y restauración',
+    )
+    expect(sha256Short(f.quotes[3].text)).toBe('55ac167e1374')
+    // Byte a byte, en la línea de su marca de tiempo: más estricto que el pasaje normalizado.
+    expect(lineaDe(f.plenoId, '11893.2')).toContain(f.quotes[2].text)
+    expect(lineaDe(f.plenoId, '12490.5')).toContain(f.quotes[3].text)
+    for (const i of [2, 3]) {
+      expect(quoteAppearsIn(f.quotes[i].text, transcriptOf(f.plenoId))).toBe(true)
+    }
+    // Ninguna otra cita ni ningún grupo se movió.
+    expect(f.quotes.map((q) => q.speakerGroup)).toEqual([null, 'PP', null, 'PSOE'])
+    expect(f.quotes.map((q) => q.sourceClaimId)).toEqual([
+      '10yl550-263-cit-a0a379',
+      '10yl550-278-acu-ac00a4',
+      '10yl550-280-cit-ab3a68',
+      '10yl550-293-acu-8785eb',
+    ])
+  })
+
+  it('cada reanclaje es una fila firmada que sustituye el literal anterior y cita sus segundos', () => {
+    const log = (byId(ID).corrections ?? []).filter((c) => c.correctedAt.startsWith(DIA))
+    expect(log.map((c) => c.field)).toEqual(['quote.2.text', 'quote.3.text', 'summary'])
+    const [c2, c3, sumario] = log
+    expect(sha256Short(c2.original)).toBe('faac7a3522f5')
+    expect(sha256Short(c3.original)).toBe('50d3272f3ce7')
+    expect(c2.reason).toContain('11.893,2–11.904,2 s')
+    expect(c3.reason).toContain('12.490,5–12.498,7 s')
+    expect(sumario.reason).toContain('12.490,5–12.498,7 s')
+    for (const c of log) {
+      expect(c.reason.trim().length).toBeGreaterThanOrEqual(20)
+      expect(c.editor.trim().length).toBeGreaterThan(1)
+    }
+    // El motivo de la [3] se publica junto a una cita retenida: no lleva su literal, ni el viejo.
+    expect(normaliseForQuoteMatch(c3.reason)).not.toContain(normaliseForQuoteMatch(c3.corrected))
+    expect(quoteAppearsIn(c3.original, c3.reason)).toBe(false)
+  })
+
+  it('ninguna cita de la ficha sigue marcada, y el sumario ya no dice que la [3] falte en la revisada', () => {
+    const f = byId(ID)
+    expect(PROVENANCE.quotes[ID].map((q) => q.status)).toEqual([
+      'en-vigente',
+      'en-vigente',
+      'en-vigente',
+      'en-vigente',
+    ])
+    expect(f.summary).not.toContain('transcripción anterior')
+    expect(f.summary).toContain('mientras que el PSOE señaló las críticas de la oposición')
+    // Lo único que salió del sumario es la salvedad.
+    const sumario = (f.corrections ?? []).find(
+      (c) => c.field === 'summary' && c.correctedAt.startsWith(DIA),
+    )!
+    expect(
+      sumario.original.replace(
+        ', según la transcripción anterior de la sesión —cuyo literal no consta en la revisada—,',
+        '',
+      ),
+    ).toBe(sumario.corrected)
+  })
+})
+
+/*
+ * Bloque «253 → 234». Dos fichas del pleno del 2026-01-19, las dos de `auto-curation-v1`, cuyo
+ * sumario decía con otras palabras lo que dicen citas que la puerta editorial retiene: la pregunta
+ * de la cola de excepción (src/scraper/finding-exception.ts), respondida «retirar» en las dos.
+ *
+ * `f-2026-01-19-cit-543cc1`: su primera frase daba como afirmación lo que en la sesión se formula
+ * como pregunta —y recibe respuesta en el mismo debate—, y la segunda descansaba en la otra cita
+ * retenida. Sin ellas, la ficha sólo podía enseñar una frase que nombra el asunto del debate y una
+ * cita que el sumario nunca usó.
+ *
+ * `f-2026-01-19-cit-3fd230`: su segunda frase era la acusación de sus dos citas retenidas, y la ficha
+ * no podía enseñar en qué se apoyaba (revisión de superficies del 10-10-2026). Sin ella quedaba una
+ * frase sobre fechas de construcción bajo un titular que anuncia un debate.
+ *
+ * En las dos, escribir un sumario sobre lo que queda sería un hallazgo nuevo bajo el identificador
+ * de uno que no revisó una persona. Cada lápida guarda la huella de la ficha que se fue —rehecha con
+ * `findingTombstone` sobre el fichero anterior a la retirada—, nunca su prosa, y su motivo dice en
+ * qué segundos de la transcripción vigente descansa cada parte.
+ */
+describe('published pleno findings — 543cc1 y 3fd230, retiradas por lo que decía su sumario', () => {
+  const CASOS = [
+    {
+      id: 'f-2026-01-19-cit-543cc1',
+      digest: 'hallazgo · sha256:37f9a2d980fc',
+      cuentas: [4, 3],
+      tramos: ['5.693,7–5.712,2 s', '6.526,7–6.541,5 s', '6.148,9–6.162,5 s'],
+    },
+    {
+      id: 'f-2026-01-19-cit-3fd230',
+      digest: 'hallazgo · sha256:a8785e9584bf',
+      cuentas: [3, 2],
+      tramos: ['6.497,5–6.506,2', '6.968,1–6.972,7 s', '7.063,6–7.071,7 s'],
+    },
+  ]
+
+  it.each(CASOS)(
+    '$id se retiró entera, con su huella y un motivo anclado en la transcripción',
+    (c) => {
+      expect(items.some((f) => f.id === c.id)).toBe(false)
+      expectWithdrawn(c.id)
+      const r = (snapshot.retractions ?? []).find((x) => x.findingId === c.id)!
+      expect(r.digest).toBe(c.digest)
+      expect([r.quoteCount, r.crossCheckedCount]).toEqual(c.cuentas)
+      expect([r.plenoId, r.plenoDate, r.severity]).toEqual([
+        '19gax3o',
+        '2026-01-19',
+        'informational',
+      ])
+      // Cada tramo que cita el motivo empieza y acaba en una marca de la transcripción vigente.
+      const transcripcion = transcriptOf(r.plenoId)
+      for (const tramo of c.tramos) {
+        expect(r.reason, `el motivo no cita ${tramo}`).toContain(tramo)
+        for (const extremo of tramo.replace(/ s$/, '').split('–')) {
+          const seg = extremo.replace(/\./g, '').replace(',', '.')
+          expect(
+            transcripcion.includes(`[${seg} →`) || transcripcion.includes(`→ ${seg}]`),
+            `${extremo} s no es una marca de la transcripción vigente`,
+          ).toBe(true)
+        }
+      }
+      // Las citas sin grupo siguen sin atribuir: el motivo no nombra a ningún grupo.
+      expect(findPartiesInText(r.reason)).toEqual([])
+    },
+  )
+})
+
+/*
+ * Bloque «436a7e, el sumario que entrecomillaba al motor sustituido». La revisión lectora señaló
+ * tres veces (pre-push de #277, #289 y #290, 2026-10-11) que la nota de contraste de la cita
+ * —«no apareció ningún dato que la confirme ni que la desmienta»— chocaba con el contrato de la
+ * Fase I que la ficha enseña como cotejado. La nota decía la verdad: el contrato documenta el
+ * movimiento de tierras y el muro de contención de 2019, y la intervención atribuye a la
+ * Generalitat una obra que falta; el contrato no dice nada de eso. Lo que inducía la lectura era
+ * el sumario, que presentaba la Fase I como respuesta a la cita y entrecomillaba como dicho un
+ * castellano del motor sustituido: la cita se reancló el 2026-08-10 y el sumario se quedó atrás.
+ * El guardián de entrecomillados no lo vio porque sólo lee «»; éste lo usaba recto.
+ */
+describe('published pleno findings — 436a7e, el sumario que entrecomillaba al motor sustituido', () => {
+  const ID = 'f-2026-03-16-cit-436a7e'
+
+  it('lo que entrecomilla es su cita, tal cual en la transcripción vigente', () => {
+    const f = byId(ID)
+    expect(f.summary).toContain("«no teniu pavelló d'escoto»")
+    expect(f.quotes[0].text).toBe("no teniu pavelló d'escoto")
+    expect(f.quotes[0].speakerGroup).toBeNull()
+    expect(
+      normaliseForQuoteMatch(transcriptOf(f.plenoId)).includes(
+        normaliseForQuoteMatch("no teniu pavelló d'escoto"),
+      ),
+    ).toBe(true)
+    // El castellano del motor sustituido no vuelve, ni entrecomillado ni suelto.
+    expect(f.summary).not.toContain('no tiene el pabellón de Escoto')
+  })
+
+  it('dice que el contrato cotejado no confirma ni desmiente, como la nota de contraste', () => {
+    const f = byId(ID)
+    expect(f.summary).toContain('no confirma ni desmiente lo que se afirma')
+    expect(f.summary).not.toContain('existe documentalmente')
+    // A quién atribuye la obra la intervención: lo dice la transcripción vigente, a renglón
+    // seguido de la cita (7.432,1–7.436,1 s).
+    expect(f.summary).toContain('atribuye a la Generalitat')
+    expect(transcriptOf(f.plenoId)).toContain(
+      '[7432.1 → 7436.1] (SPEAKER_120) i això és responsabilitat de la Generalitat',
+    )
+    // El cotejo sigue siendo el mismo y el único: la Fase I de 2019.
+    expect(f.crossChecked).toHaveLength(1)
+    expect(f.crossChecked[0].ref).toContain('idEvl=6eiWKGfBAKmrz3GQd5r6SQ')
+    expect(f.summary).toContain('Fase I')
+    expect(f.summary).toContain('adjudicado en 2019')
+  })
+
+  it('la fila de bitácora es de la cuenta de rol y no nombra a ningún grupo', () => {
+    const f = byId(ID)
+    const filas = (f.corrections ?? []).filter((c) => c.field === 'summary')
+    expect(filas).toHaveLength(1)
+    expect(filas[0].editor).toBe('civicpulse-curator')
+    expect(filas[0].corrected).toBe(f.summary)
+    expect(filas[0].original).toContain('no tiene el pabellón de Escoto')
+    expect(findPartiesInText(filas[0].reason)).toEqual([])
+    expect(findPartiesInText(f.summary)).toEqual([])
+  })
+})
+
+/*
+ * Bloque «75b31f, el plan de empleo que el sumario entrecomillaba en castellano». El mismo defecto
+ * que 436a7e: la cita se reancló el 2026-08-10 de «el Rivadona o el Plan de Empleo Ciudad Jardín»
+ * (el castellano del motor sustituido) a «el Ribadona o el pla d'empleo Ciutat Jardín», y el
+ * sumario siguió entrecomillando 'el Plan de Empleo Ciudad Jardín' con comillas rectas, que el
+ * guardián de entrecomillados no lee. Además lo llamaba «partida presupuestaria», y la intervención
+ * lo nombra como un programa que no podría hacerse si se reduce lo destinado a Cruz Roja.
+ */
+describe('published pleno findings — 75b31f, el plan de empleo que el sumario entrecomillaba en castellano', () => {
+  const ID = 'f-2026-03-16-cit-75b31f'
+  const CITA = "el Ribadona o el pla d'empleo Ciutat Jardín"
+
+  it('lo que entrecomilla es su cita, tal cual en la transcripción vigente', () => {
+    const f = byId(ID)
+    expect(f.summary).toContain(`«${CITA}»`)
+    expect(f.quotes).toHaveLength(1)
+    expect(f.quotes[0].text).toBe(CITA)
+    expect(f.quotes[0].speakerGroup).toBeNull()
+    expect(
+      normaliseForQuoteMatch(transcriptOf(f.plenoId)).includes(normaliseForQuoteMatch(CITA)),
+    ).toBe(true)
+    // El castellano del motor sustituido no vuelve, ni entrecomillado ni suelto.
+    expect(f.summary).not.toContain('Plan de Empleo Ciudad Jardín')
+  })
+
+  it('no lo llama partida: un programa que depende de lo destinado a Cruz Roja', () => {
+    const f = byId(ID)
+    expect(f.summary).not.toContain('como partida presupuestaria')
+    expect(f.summary).toContain('no lo presenta como una partida propia')
+    // Lo dice la transcripción vigente a renglón seguido, en la misma intervención: «la creurotxa,
+    // que la reduïm clarament i no se podria fer si volem fer, per exemple,» + la cita.
+    const t = transcriptOf(f.plenoId)
+    expect(t).toContain(
+      '[6316.1 → 6323.7] (SPEAKER_102) És a part de la creurotxa, que la reduïm clarament',
+    )
+    expect(t).toContain(`[6323.8 → 6327.1] (SPEAKER_102) ${CITA}, etcètera`)
+    // El cotejo sigue siendo el mismo y el único: la pista deportiva, contrato menor de 2019.
+    expect(f.crossChecked).toHaveLength(1)
+    expect(f.crossChecked[0].ref).toContain('idEvl=EcwQUWMyQ4mmq21uxhbaVQ')
+    expect(f.summary).toContain('contrato menor adjudicado en 2019')
+    expect(f.title).toBe(
+      'Ciudad Jardín · proyecto deportivo documentado pero no el plan de empleo citado',
+    )
+    expect(f.severity).toBe('informational')
+  })
+
+  it('la fila de bitácora es de la cuenta de rol y no nombra a ningún grupo', () => {
+    const f = byId(ID)
+    const filas = (f.corrections ?? []).filter((c) => c.field === 'summary')
+    expect(filas).toHaveLength(1)
+    expect(filas[0].editor).toBe('civicpulse-curator')
+    expect(filas[0].corrected).toBe(f.summary)
+    expect(filas[0].original).toContain(
+      "'el Plan de Empleo Ciudad Jardín' como partida presupuestaria",
+    )
+    expect(findPartiesInText(filas[0].reason)).toEqual([])
+    expect(findPartiesInText(f.summary)).toEqual([])
+  })
+})
+
+/*
+ * Bloque «377216, la Chen Machor que el motor sustituido escribía Chemmachor». Tres filas
+ * (`correct-pleno-finding`, editor `civicpulse-curator`), en este orden: la cita [0] se reancla,
+ * y el título y el sumario dejan las grafías que la transcripción vigente no contiene.
+ *  - La cita [0] era, letra por letra, la línea 795 de `superseded/ma87e0.txt`. El reanclaje del
+ *    2026-08-10 no la recogió porque `quoteAppearsIn` la daba por presente con su ventana de ocho
+ *    palabras (cobertura 0,56): «en-vigente» no es «literal».
+ *  - El sumario decía «transcrito también como 'Xemachor' o 'Chemachor'». 'Xemachor' no está en
+ *    ninguna transcripción de la sesión: es la conjetura del extractor en el contexto de
+ *    `ma87e0-104-cit-377216`. 'Chemachor' sólo en las sustituidas. El guardián de entrecomillados
+ *    no lo veía porque sólo lee «».
+ *  - Y omitía lo que la sesión dice del edificio: una obra por proyectar y construir, con una
+ *    partida inicial para su primera fase; el contrato de 2019 impermeabiliza la cubierta de uno
+ *    ya construido.
+ */
+describe('published pleno findings — 377216, la Chen Machor que el motor sustituido escribía Chemmachor', () => {
+  const ID = 'f-2026-03-16-cit-377216'
+  const CITA_0 =
+    'el edificio polivalente de la Chen Machor, también, no sé, estas personas que son vecinos nuestros, Chen Machor'
+  const CITA_1 = 'el proyecto y construcción del edificio polivalente de Chema Chor'
+
+  it('las dos citas son literales en la transcripción vigente, y la [0] ya no es la sustituida', () => {
+    const f = byId(ID)
+    expect(f.quotes.map((q) => q.text)).toEqual([CITA_0, CITA_1])
+    // Literal: subcadena del fichero normalizado, no la ventana tolerante de `quoteAppearsIn`.
+    const vigente = normaliseForQuoteMatch(transcriptOf(f.plenoId))
+    for (const q of f.quotes) expect(vigente.includes(normaliseForQuoteMatch(q.text))).toBe(true)
+    // El reanclaje no toca a quién se atribuye ni de qué declaración sale.
+    expect(f.quotes.map((q) => q.speakerGroup)).toEqual(['PSOE', 'PSOE'])
+    expect(f.quotes.map((q) => q.sourceClaimId)).toEqual([
+      'ma87e0-104-cit-377216',
+      'ma87e0-162-cit-092d3e',
+    ])
+  })
+
+  it('título y sumario no usan grafías que la transcripción vigente no contiene', () => {
+    const f = byId(ID)
+    const texto = `${f.title}\n${f.summary}`
+    const vigente = transcriptOf(f.plenoId)
+    for (const grafia of ['Xemachor', 'Chemachor', 'Chemmachor']) {
+      expect(texto).not.toContain(grafia)
+      expect(vigente).not.toContain(grafia)
+    }
+    expect(f.title.startsWith('«Chen Machor» · edificio polivalente')).toBe(true)
+    expect(f.summary).toContain('la transcripción recoge como «Chen Machor» y «Chema Chor»')
+  })
+
+  it('dice lo que la sesión cuenta del edificio y no lo identifica con el contrato', () => {
+    const f = byId(ID)
+    // La partida inicial de su primera fase, en la presentación del presupuesto.
+    expect(f.summary).toContain('partida inicial de 277.000 euros para su primera fase')
+    expect(transcriptOf(f.plenoId)).toContain(
+      'partida presupuestaria inicial de doscientos setenta y siete mil euros para la primera fase del edificio polivalente Chent Machor',
+    )
+    expect(f.summary).toContain(`«${CITA_1}»`)
+    expect(f.summary).toContain('nada permite identificarlo con el que citan las intervenciones')
+    // El cotejo sigue siendo el mismo y el único: la cubierta, adjudicada en 2019.
+    expect(f.crossChecked).toHaveLength(1)
+    expect(f.crossChecked[0].ref).toContain('idEvl=YlgG3XJA7Vh7h85')
+    expect(f.summary).toContain('contrato adjudicado en 2019 para impermeabilizar la cubierta')
+    expect(f.severity).toBe('informational')
+  })
+
+  it('las tres filas son de la cuenta de rol, en orden, y los motivos no nombran a ningún grupo', () => {
+    const f = byId(ID)
+    const filas = (f.corrections ?? []).slice(-3)
+    expect(filas.map((c) => c.field)).toEqual(['quote.0.text', 'title', 'summary'])
+    for (const c of filas) {
+      expect(c.editor).toBe('civicpulse-curator')
+      expect(findPartiesInText(c.reason)).toEqual([])
+    }
+    expect(filas[0].original).toBe(
+      'El edificio polivalente de la Chemmachor, también. No sé, estas personas que son vecinos nuestros, Chemmachor.',
+    )
+    expect(filas[0].corrected).toBe(CITA_0)
+    expect(filas[1].corrected).toBe(f.title)
+    expect(filas[2].corrected).toBe(f.summary)
+    expect(filas[2].original).toContain("(transcrito también como 'Xemachor' o 'Chemachor')")
+    expect(f.corrections).toHaveLength(6)
   })
 })

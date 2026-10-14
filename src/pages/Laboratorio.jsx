@@ -24,6 +24,8 @@ import ClaimReviewJsonLd from '../components/ClaimReviewJsonLd'
 import { BitacoraCorrecciones } from '../components/BitacoraCorrecciones'
 import DataAsOf from '../components/DataAsOf'
 import { fmtDateShort } from '../lib/formatters'
+import { snippetDeEvidencia } from '../lib/crosschecked-status.js'
+import { CATALOGUE } from '../i18n'
 import {
   pressLabSummary,
   fraseVeredictos,
@@ -224,7 +226,14 @@ function ClaimLedger({ claims }) {
                   color: 'var(--ink70)',
                 }}
               >
-                ↳ <span className="mono">[{evidence.kind}]</span> {evidence.snippet}
+                {/* El mismo snippet que las tarjetas de declaración: sin la cola
+                    «estado:» y con la categoría del contrato por su rótulo, no
+                    «· construction ·». La página no está traducida: castellano. */}
+                ↳{' '}
+                <span className="mono">
+                  [{CATALOGUE.es[`ledger.evidencia.${evidence.kind}`] ?? evidence.kind}]
+                </span>{' '}
+                {snippetDeEvidencia(evidence)}
               </div>
             )}
           </li>

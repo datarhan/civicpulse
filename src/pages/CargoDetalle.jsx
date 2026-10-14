@@ -18,6 +18,7 @@ import { canonicalizeDepartments, DEPARTMENT_LABEL } from '../scraper/department
 import { EncajeMatrix, QueExigeLaLey } from '../components/EncajeDeclarado'
 import { useT, useLocale } from '../i18n'
 import { contadoresDeCargo } from '../lib/reloj-lpacap'
+import { entreParentesis } from '../lib/cotejo'
 
 // El correo se parte antes que ensanchar la ficha. Un correo no tiene por dónde
 // cortarse, y «popularesribarroja@gmail.com» —el de los siete concejales del PP
@@ -270,12 +271,24 @@ function AreaActivity({ slugs }) {
               ) : (
                 <>
                   <span className="mono">{b.plenoVotes.total}</span>{' '}
-                  {t('cargos.detalle.actividad.votos')}
+                  {t(
+                    b.plenoVotes.total === 1
+                      ? 'cargos.detalle.actividad.votos.uno'
+                      : 'cargos.detalle.actividad.votos.varios',
+                  )}
                 </>
               )}
               {' · '}
+              {/* «5 declaraciones contrastadas», debajo del nombre de quien dirige el
+                  área, se leía como cinco comprobadas: eran una verificada y cuatro
+                  parciales. Cotejadas, y cuántas de cada veredicto (src/lib/cotejo.js). */}
               <span className="mono">{b.declaraciones.conEvidencia}</span>{' '}
-              {t('cargos.detalle.actividad.declaraciones')}
+              {t(
+                b.declaraciones.conEvidencia === 1
+                  ? 'cargos.detalle.actividad.declaraciones.uno'
+                  : 'cargos.detalle.actividad.declaraciones.varios',
+              )}
+              {entreParentesis(t, b.declaraciones)}
               {' · '}
               {/* Underlined, not just recoloured: this link sits mid-sentence
                   after the declaraciones count, and colour alone fails

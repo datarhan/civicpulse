@@ -37,6 +37,15 @@
  * commit (325a1c62). Por eso el parte dice cuántas puntuaciones leyó de
  * cuántas pidió, y un par sin la suya hace salir la corrida con error (regla 2).
  *
+ * Un tramo cuyo modelo no contesta dentro de su tope tampoco se juzga. Hasta el
+ * 12-10-2026 el tope era fijo (600 000 ms por tramo) y la corrida entera moría
+ * con «FATAL» en el primero: 400 declaraciones, ~3 200 pares, ~0,31 s por par
+ * medidos en CPU con `nice -n 10`. Ahora el tope crece con los pares
+ * (`topeParaPares`, src/scraper/nli-client.ts) y, si aun así vence, las filas
+ * de ese tramo salen como «sin puntuar» —por el mismo camino que un par cuya
+ * puntuación no volvió—, su fila de la cola se queda como estaba, la corrida
+ * sigue con el tramo siguiente y termina con error.
+ *
  * Tampoco propone subir lo que una retractación bajó: las filas cuyo veredicto
  * publicado entró por el motor o por un curador se apartan antes de puntuar, y
  * la corrida dice cuántas y de quién (`motivoParaNoProponer`).
@@ -53,7 +62,13 @@ import {
 } from '../src/scraper/claim-verifier'
 import { shouldSkipLlmVerification } from '../src/scraper/claim-verifier-llm'
 import { verifyClaimWithNli, type NliScorer } from '../src/scraper/claim-verifier-nli'
-import { scoreNliPairs, NliUnavailableError, type NliPair } from '../src/scraper/nli-client'
+import {
+  scoreNliPairs,
+  NliUnavailableError,
+  NliTimeoutError,
+  type NliPair,
+  type NliScore,
+} from '../src/scraper/nli-client'
 import { loadVerifierContext, type VerifierContext } from '../src/scraper/verifier-runner'
 import { loadOverlay } from './verified-rebuild'
 import {
@@ -68,7 +83,13 @@ import {
 
 const VERIFIED = resolve('public/data/pleno-claims-verified.json')
 const COLA = resolve(COLA_SUGERENCIAS_NLI)
-const CHUNK_CLAIMS = 400 // claims per NLI spawn (model reloads per chunk; checkpoint boundary)
+/**
+ * Declaraciones por proceso del modelo: lo recarga en cada tramo (~6 s) y la
+ * cola se guarda al final de cada uno. Con 400 un tramo eran ~3 200 pares,
+ * ~17 min en CPU cargada: una interrupción tiraba todo eso. Con 100, ~4 min y
+ * un 2-3 % de recarga.
+ */
+const CHUNK_CLAIMS = 100
 
 /** El id de un par en el lote de un tramo: su declaración y su índice en ella. */
 const idDelPar = (claimId: string, i: number | string) => `${claimId}#${i}`
@@ -243,6 +264,8 @@ async function main() {
     paresEnviados: 0,
     paresLeidos: 0,
   }
+  /** Los tramos cuyo modelo no contestó dentro de su tope: nadie los juzgó. */
+  const sinContestar: { tramo: string; pares: number; timeoutMs: number }[] = []
   const flaggedIds: string[] = []
   let cola = leerCola()
   let escrita = false
@@ -291,7 +314,23 @@ async function main() {
         )
       }
       stats.paresEnviados += pairs.length
-      const globalScores = await scoreNliPairs(pairs, opts.model ? { model: opts.model } : {})
+      const tramo = `${start + 1}-${start + chunk.length}`
+      const t0 = Date.now()
+      let globalScores: Map<string, NliScore>
+      try {
+        globalScores = await scoreNliPairs(pairs, opts.model ? { model: opts.model } : {})
+      } catch (err) {
+        if (!(err instanceof NliTimeoutError)) throw err
+        // Sin ninguna puntuación: cada fila con candidatos sale «sin puntuar»
+        // por el camino de abajo, y su fila de la cola se queda como estaba.
+        sinContestar.push({ tramo, pares: err.pares, timeoutMs: err.timeoutMs })
+        process.stderr.write(
+          `[verify-nli]   tramo ${tramo}: el modelo no contestó en ${err.timeoutMs} ms ` +
+            `(${err.pares} pares) — sus filas quedan sin juzgar\n`,
+        )
+        globalScores = new Map()
+      }
+      const segundos = (Date.now() - t0) / 1000
 
       // 3. Judge each claim; an upgrade becomes a suggestion for the human queue.
       const juzgadas: string[] = []
@@ -351,7 +390,10 @@ async function main() {
         `[verify-nli]   ${Math.min(start + CHUNK_CLAIMS, queue.length)}/${queue.length} · ` +
           `propuestas=${stats.propuestas} sin-respaldo=${stats.sinRespaldo} ` +
           `sin-juicio=${stats.sinJuicio} sin-puntuar=${stats.sinPuntuar} ` +
-          `contra-flags=${stats.contradictionFlags}\n`,
+          `contra-flags=${stats.contradictionFlags} · ` +
+          `${pairs.length} pares en ${segundos.toFixed(0)} s` +
+          (globalScores.size > 0 ? ` (${(globalScores.size / segundos).toFixed(1)} pares/s)` : '') +
+          '\n',
       )
     }
   } catch (err) {
@@ -383,6 +425,13 @@ async function main() {
   )
   // Un par cuya puntuación no volvió no es «sin respaldo»: el modelo no contestó
   // por él, o contestó con otro id. Regla 2.
+  if (sinContestar.length > 0) {
+    process.stderr.write(
+      `[verify-nli] ${sinContestar.length} tramo(s) sin contestar dentro de su tope: ` +
+        sinContestar.map((t) => `${t.tramo} (${t.pares} pares, ${t.timeoutMs} ms)`).join(', ') +
+        '. Sube NLI_TOPE_MS_POR_PAR o NLI_TOPE_ARRANQUE_MS, o corre con la máquina menos cargada.\n',
+    )
+  }
   if (stats.paresLeidos < stats.paresEnviados) {
     process.stderr.write(
       `[verify-nli] ${stats.paresEnviados - stats.paresLeidos} de ${stats.paresEnviados} par(es) ` +
