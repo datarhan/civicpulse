@@ -1085,14 +1085,20 @@ export const CATALOGUE = {
     'bitacora.textoRetirado': 'Texto retirado',
     'bitacora.textoVigente': 'Texto vigente',
     'bitacora.textoSustituido': 'Texto que puso esta corrección, sustituido el {fecha}',
+    'bitacora.textoRetiradoDespues': 'Texto que puso esta corrección; la cita se retiró el {fecha}',
+    // Qué cita de la ficha es la de una fila `quote.<i>…`: el campo cuenta desde 0
+    // y la ficha desde 1 (src/lib/posicion-en-bitacora.js).
+    'bitacora.campo.cita': 'cita {n}',
+    'bitacora.campo.citaRetirada': 'cita retirada después',
+    'bitacora.campo.citaQueRetira': 'la cita que retiró esta corrección',
     'bitacora.literalRetenido':
       'esta corrección cambió el texto de una cita que la puerta editorial retiene, así que la bitácora no reproduce ninguna de sus dos versiones; deja su huella, que cualquiera con el texto puede rehacer:',
     'bitacora.grupoRetenido.rotulo': 'Grupo de un solo escaño',
     'bitacora.grupoRetenido.texto':
       'esta corrección cambió un texto que nombraba a un grupo con un solo concejal, y nombrar ese grupo es nombrar a esa persona, así que la bitácora no reproduce {cual}.',
     'bitacora.grupoRetenido.ninguna': 'ninguna de sus dos versiones',
-    'bitacora.grupoRetenido.retirada': 'la versión que retiró',
-    'bitacora.grupoRetenido.puesta': 'la versión que puso',
+    'bitacora.grupoRetenido.retirada': 'el texto que había antes de esta corrección',
+    'bitacora.grupoRetenido.puesta': 'el texto que puso esta corrección',
     'bitacora.motivo': 'Motivo:',
     'bitacora.motivoEnmendadoEl': 'Motivo (enmendado el {fecha}):',
     'bitacora.motivoEnmendado': 'Motivo enmendado',
@@ -3079,14 +3085,19 @@ export const CATALOGUE = {
     'bitacora.textoRetirado': 'Text retirat',
     'bitacora.textoVigente': 'Text vigent',
     'bitacora.textoSustituido': 'Text que va posar esta correcció, substituït el {fecha}',
+    'bitacora.textoRetiradoDespues':
+      'Text que va posar esta correcció; la cita es va retirar el {fecha}',
+    'bitacora.campo.cita': 'cita {n}',
+    'bitacora.campo.citaRetirada': 'cita retirada després',
+    'bitacora.campo.citaQueRetira': 'la cita que va retirar esta correcció',
     'bitacora.literalRetenido':
       'esta correcció va canviar el text d’una cita que la porta editorial reté, així que el registre no en reprodueix cap de les dues versions; en deixa l’empremta, que qualsevol amb el text pot refer:',
     'bitacora.grupoRetenido.rotulo': 'Grup d’un sol escó',
     'bitacora.grupoRetenido.texto':
       'esta correcció va canviar un text que anomenava un grup amb un sol regidor, i anomenar eixe grup és anomenar eixa persona, així que el registre no reprodueix {cual}.',
     'bitacora.grupoRetenido.ninguna': 'cap de les seues dues versions',
-    'bitacora.grupoRetenido.retirada': 'la versió que va retirar',
-    'bitacora.grupoRetenido.puesta': 'la versió que va posar',
+    'bitacora.grupoRetenido.retirada': 'el text que hi havia abans d’esta correcció',
+    'bitacora.grupoRetenido.puesta': 'el text que va posar esta correcció',
     'bitacora.motivo': 'Motiu:',
     'bitacora.motivoEnmendadoEl': 'Motiu (esmenat el {fecha}):',
     'bitacora.motivoEnmendado': 'Motiu esmenat',

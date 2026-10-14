@@ -286,6 +286,30 @@ describe('filasQueNombranUnEscano — dónde queda un grupo de un escaño en la 
   it('en la copia servida no queda ninguno', () => {
     expect(filasQueNombranUnEscano(servir(f).snapshot, UN_ESCANO)).toEqual([])
   })
+
+  it('el texto de una cita, sólo si nombra al grupo cuya etiqueta se retiró de ESA cita', () => {
+    // La cita 2 lleva su etiqueta retirada; la 1, no. Entre medias se retira la
+    // cita 0, así que la `quote.1.text` del final es la que antes era la 2.
+    const g = ficha('f-b', [
+      fila('quote.2.text', 'dicho', 'des del grup municipal de compromís anem a votar'),
+      fila('quote.1.text', 'otro dicho', 'el compromís de Vox és clar'),
+      fila('quote.2.speakerGroup', 'Compromís', 'sin identificar'),
+      fila('quote.0', 'cita · sha256:0123456789ab', 'retirada del hallazgo'),
+      fila('quote.1.text', 'des del grup municipal de compromís anem a votar', 'anem a votar'),
+    ])
+    expect(filasQueNombranUnEscano(snapshotDe(g), UN_ESCANO)).toEqual([
+      'f-b[0].corrected',
+      'f-b[2].original',
+      'f-b[4].original',
+    ])
+    const servida = servir(g).snapshot.items[0].corrections
+    expect(servida[0].corrected).toBe(MARCA_GRUPO_RETENIDO)
+    expect(servida[0].original).toBe('dicho')
+    // Nombra a Vox, pero la etiqueta retirada de ESA cita no era de Vox: se sirve.
+    expect(servida[1]).toEqual(g.corrections[1])
+    expect(servida[4].original).toBe(MARCA_GRUPO_RETENIDO)
+    expect(servida[4].corrected).toBe('anem a votar')
+  })
 })
 
 // ── Sobre los datos publicados ───────────────────────────────────────────────
@@ -300,18 +324,51 @@ const SERVIDA = copiaServidaDeHallazgos(FUENTE, PROV, OFFICIALS).snapshot
  * El oráculo de estas pruebas, escrito aparte de la transformación: el alcance
  * sale de los campos que exporta el validador (`REDACTION_LABELS`,
  * `isSpeakerGroupField`), y el grupo, de la tabla de alias y de la composición.
+ * El texto de una cita cuenta sólo si nombra al grupo cuya etiqueta se retiró de
+ * esa misma cita: el registro se repite en orden, renumerando en cada retirada
+ * `quote.N` (bloque REMOVAL de src/scraper/pleno-finding.ts).
  */
-function ladosQueNombran(snapshot: {
-  items: Array<{ id: string; corrections?: Array<Record<string, unknown>> }>
-}) {
+type Fila = Record<string, unknown>
+const nombraUnEscano = (texto: unknown, entre: readonly string[] | null) =>
+  (findPartiesInText(String(texto ?? '')) as string[]).filter((g) => entre?.includes(g))
+
+/** Para cada fila de cita, un número de cita estable a lo largo del registro. */
+function citasDelRegistro(cs: Fila[]): Array<number | null> {
+  const vivas: number[] = [] // vivas[i] = id estable de la cita que hoy ocupa la posición i
+  let siguiente = 0
+  const asegura = (k: number) => {
+    while (vivas.length <= k) vivas.push(siguiente++)
+  }
+  return cs.map((c) => {
+    const m = /^quote\.(\d+)(\.|$)/.exec(String(c.field))
+    if (!m) return null
+    const k = Number(m[1])
+    asegura(k)
+    const id = vivas[k]
+    if (m[2] === '') vivas.splice(k, 1)
+    return id
+  })
+}
+
+function ladosQueNombran(snapshot: { items: Array<{ id: string; corrections?: Fila[] }> }) {
   const out: string[] = []
   for (const f of snapshot.items) {
-    ;(f.corrections ?? []).forEach((c, i) => {
+    const cs = f.corrections ?? []
+    const cita = citasDelRegistro(cs)
+    cs.forEach((c, i) => {
       const campo = String(c.field)
-      if (!(isSpeakerGroupField(campo) || campo in REDACTION_LABELS)) return
+      let entre: readonly string[] | null = null
+      if (isSpeakerGroupField(campo) || campo in REDACTION_LABELS) entre = UN_ESCANO_HOY
+      else if (/^quote\.\d+\.text$/.test(campo)) {
+        entre = cs.flatMap((d, j) =>
+          isSpeakerGroupField(String(d.field)) && cita[j] === cita[i]
+            ? nombraUnEscano(d.original, UN_ESCANO_HOY)
+            : [],
+        )
+      }
+      if (!entre) return
       for (const lado of ['original', 'corrected']) {
-        const grupos = findPartiesInText(String(c[lado] ?? '')) as string[]
-        if (grupos.some((g) => UN_ESCANO_HOY?.includes(g))) out.push(`${f.id}[${i}].${lado}`)
+        if (nombraUnEscano(c[lado], entre).length) out.push(`${f.id}[${i}].${lado}`)
       }
     })
   }
@@ -349,6 +406,52 @@ describe('sobre los datos publicados', () => {
     const enLaFuente = ladosQueNombran(FUENTE)
     expect(enLaFuente.some((r) => /\.original$/.test(r))).toBe(true)
     expect(enLaFuente.length).toBeGreaterThan(10)
+  })
+
+  it('la criba de citas mide algo: encuentra versiones de texto que nombraban al grupo retirado', () => {
+    const deTexto = ladosQueNombran(FUENTE).filter((r) => {
+      const [, id, i] = /^(.+)\[(\d+)\]/.exec(r) ?? []
+      const f = FUENTE.items.find((x: { id: string }) => x.id === id)
+      return /^quote\.\d+\.text$/.test(f?.corrections?.[Number(i)]?.field ?? '')
+    })
+    expect(deTexto.length).toBeGreaterThan(0)
+  })
+
+  it('ninguna cita publicada nombra al grupo de un escaño cuya etiqueta se le retiró', () => {
+    // La revisión de superficies del 14-10-2026 leyó «Nosaltres des del grup
+    // municipal de compromís…» en una cita a la que el 30-09 se le había retirado
+    // con firma esa misma etiqueta, por nombrar a su concejal por eliminación; y
+    // 25e6ea llevaba igual «El compromiso de Vox…». La etiqueta se retiró, la
+    // cita lo seguía diciendo. Se acortaron con la CLI el mismo día.
+    let medidas = 0
+    const nombran: string[] = []
+    for (const f of FUENTE.items as Array<{
+      id: string
+      quotes: Array<{ text: string }>
+      corrections?: Fila[]
+    }>) {
+      const cs = f.corrections ?? []
+      const cita = citasDelRegistro(cs)
+      // El id estable de la cita que hoy ocupa cada posición: las filas de
+      // etiqueta se reproducen hasta el final, como hace la CLI.
+      cs.forEach((d, j) => {
+        if (!isSpeakerGroupField(String(d.field))) return
+        const retirados = nombraUnEscano(d.original, UN_ESCANO_HOY)
+        if (!retirados.length) return
+        medidas += 1
+        // Posición de hoy: cuántas citas con id menor siguen vivas.
+        const vivas = citasDelRegistro([
+          ...cs,
+          ...f.quotes.map((_, k) => ({ field: `quote.${k}.x` })),
+        ])
+        const hoy = vivas.slice(cs.length).indexOf(cita[j])
+        if (hoy < 0) return
+        const nombra = nombraUnEscano(f.quotes[hoy]?.text, retirados)
+        if (nombra.length) nombran.push(`${f.id} · cita ${hoy + 1} · ${nombra.join(', ')}`)
+      })
+    }
+    expect(medidas, 'ninguna etiqueta de un escaño retirada: esto no mide nada').toBeGreaterThan(0)
+    expect(nombran).toEqual([])
   })
 
   it('en la copia servida ninguna fila de la bitácora nombra a uno en lo que retiró o puso', () => {

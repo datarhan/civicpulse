@@ -2535,11 +2535,16 @@ export default function Metodologia() {
             <code>grupo de un solo escaño · no se reproduce</code>, la fila conserva su campo, su
             motivo, su editor/a y su fecha, y la ficha dice qué versión falta y por qué. Es una
             marca y no una huella porque la huella de un nombre entre cinco se deshace probando los
-            cinco. La atribución retirada a un grupo con varios escaños se sigue enseñando: es de
-            bloque, y no señala a nadie. Y no es una retirada: el repositorio del proyecto es
-            público, y su fichero de hallazgos y su historial conservan la fila entera. El motivo de
-            una fila no lo reescribe ninguna máquina: si nombra a uno de esos grupos, lo enmienda
-            una persona por la vía del punto anterior.
+            cinco. Si una cita a la que se le retiró la etiqueta de uno de esos grupos nombraba
+            además al grupo en sus propias palabras —«des del grup municipal de…»—, la cita se
+            acorta con una corrección firmada al tramo que no lo nombra, y la bitácora tampoco
+            reproduce las versiones de su texto que lo nombraban: dirían lo mismo que la etiqueta
+            retirada. Una cita cualquiera no se juzga así, porque «podem» o «compromís» son también
+            palabras corrientes en valencià. La atribución retirada a un grupo con varios escaños se
+            sigue enseñando: es de bloque, y no señala a nadie. Y no es una retirada: el repositorio
+            del proyecto es público, y su fichero de hallazgos y su historial conservan la fila
+            entera. El motivo de una fila no lo reescribe ninguna máquina: si nombra a uno de esos
+            grupos, lo enmienda una persona por la vía del punto anterior.
           </li>
           <li>
             <strong>Retirar el hallazgo entero</strong> es una operación distinta de corregirlo, y

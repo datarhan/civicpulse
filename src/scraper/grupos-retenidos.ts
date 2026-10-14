@@ -56,9 +56,17 @@
  *     `grupoRetenido: true`. Conserva campo, motivo, firma, fecha y enmiendas, y
  *     el otro lado, si no lo nombra: una etiqueta retirada sigue diciendo que
  *     ahora es «sin identificar».
- *   · NO toca las filas de texto de una cita. Una cita es lo que se dijo, no una
- *     atribución nuestra, y la ficha enseña la vigente: en una intervención
- *     publicada quien habla dice de qué grupo es, y «podem» es también un verbo.
+ *   · Las filas de texto de una cita, sólo en un caso. Una cita es lo que se
+ *     dijo, no una atribución nuestra, y «podem» y «compromís» son también un
+ *     verbo y un nombre común en valencià: juzgar cualquier cita por la tabla de
+ *     alias señalaría palabras, no grupos. Pero cuando la ficha retiró con firma
+ *     la etiqueta de un grupo de un escaño de ESA cita (`mismaCita`,
+ *     src/lib/posicion-en-bitacora.js, que sigue la posición por las retiradas),
+ *     una versión de su texto que nombra a ESE grupo dice lo mismo que la
+ *     etiqueta retirada. El 14-10-2026 se acortaron con la CLI dos citas que
+ *     empezaban así («des del grup municipal de …», «El compromiso de …»): la
+ *     ficha dejó de enseñarlas, y sin esto la bitácora las seguía imprimiendo,
+ *     tachadas en la fila nueva y como «vigente» en la del reanclaje del 10-08.
  *   · NO toca el motivo. Es prosa, y nada automático la reescribe (CLAUDE.md,
  *     regla 4): un motivo que nombra al grupo lo enmienda una persona con
  *     `correct-pleno-finding --amend-reason`, y `tests/grupos-retenidos.test.ts`
@@ -77,6 +85,7 @@
 import { findPartiesInText } from '../lib/party-alias.js'
 import { MARCA_GRUPO_RETENIDO } from '../lib/grupo-retenido.js'
 import { REDACTION_LABELS, isSpeakerGroupField } from './pleno-finding'
+import { mismaCita } from '../lib/posicion-en-bitacora.js'
 
 const LADOS = ['original', 'corrected'] as const
 export type Lado = (typeof LADOS)[number]
@@ -105,7 +114,8 @@ export interface RetencionDeGruposStats {
 const NOTA_DE_LA_COPIA =
   'Esta es la copia que sirve el sitio. En la bitácora de correcciones de cada ficha, la ' +
   'versión de un titular, de un sumario o del grupo de una cita que nombraba a un grupo de un ' +
-  'solo escaño —los de «grupos»— no se reproduce: nombrar un grupo con un solo concejal es ' +
+  'solo escaño —los de «grupos»—, y la del texto de una cita que nombraba al grupo cuya ' +
+  'etiqueta se retiró de esa misma cita, no se reproduce: nombrar un grupo con un solo concejal es ' +
   'nombrar a esa persona, y casi siempre lo que la fila corregía era una atribución que una ' +
   'persona retiró. Ese lado lleva «grupo de un solo escaño · no se reproduce», y la fila, ' +
   '«grupoRetenido: true»; conserva campo, motivo, firma y fecha. Es una marca y no una huella ' +
@@ -118,17 +128,50 @@ function conAtribucion(field: unknown): boolean {
   return typeof field === 'string' && (isSpeakerGroupField(field) || field in REDACTION_LABELS)
 }
 
-/** Los lados de esta fila que nombran a un grupo de un escaño; ninguno si la fila no es de las que se miran. */
+const TEXTO_DE_CITA = /^quote\.\d+\.text$/
+
+const gruposDe = (texto: unknown): string[] =>
+  typeof texto === 'string' ? (findPartiesInText(texto) as string[]) : []
+
+/**
+ * Los grupos de un escaño cuya etiqueta retiró la ficha de la misma cita que la
+ * fila `i`: los que nombraba el `original` de una fila `quote.<k>.speakerGroup`
+ * que habla de esa cita.
+ */
+function gruposRetiradosDeLaCita(
+  correcciones: ReadonlyArray<{ field?: unknown; original?: unknown }>,
+  i: number,
+  unEscano: readonly string[],
+): string[] {
+  const out = new Set<string>()
+  correcciones.forEach((d, j) => {
+    if (typeof d?.field !== 'string' || !isSpeakerGroupField(d.field)) return
+    if (!mismaCita(correcciones as Array<{ field?: string }>, i, j)) return
+    for (const g of gruposDe(d.original)) if (unEscano.includes(g)) out.add(g)
+  })
+  return [...out]
+}
+
+/**
+ * Los lados de esta fila que nombran a un grupo de un escaño; ninguno si la fila
+ * no es de las que se miran. Una fila de texto de cita sólo se mira con el
+ * registro entero (`contexto`): lo que la retiene es una etiqueta retirada de la
+ * misma cita, y eso no está en la fila.
+ */
 export function ladosQueNombranUnEscano(
   fila: { field?: unknown; original?: unknown; corrected?: unknown } | null | undefined,
   unEscano: readonly string[],
+  contexto?: { correcciones: ReadonlyArray<{ field?: unknown; original?: unknown }>; i: number },
 ): Lado[] {
-  if (!fila || !conAtribucion(fila.field) || unEscano.length === 0) return []
-  return LADOS.filter((lado) => {
-    const texto = fila[lado]
-    if (typeof texto !== 'string') return false
-    return (findPartiesInText(texto) as string[]).some((g) => unEscano.includes(g))
-  })
+  if (!fila || unEscano.length === 0) return []
+  if (typeof fila.field === 'string' && TEXTO_DE_CITA.test(fila.field)) {
+    if (!contexto) return []
+    const retirados = gruposRetiradosDeLaCita(contexto.correcciones, contexto.i, unEscano)
+    if (retirados.length === 0) return []
+    return LADOS.filter((lado) => gruposDe(fila[lado]).some((g) => retirados.includes(g)))
+  }
+  if (!conAtribucion(fila.field)) return []
+  return LADOS.filter((lado) => gruposDe(fila[lado]).some((g) => unEscano.includes(g)))
 }
 
 /**
@@ -142,8 +185,9 @@ export function filasQueNombranUnEscano(
 ): string[] {
   const out: string[] = []
   for (const f of snapshot.items ?? []) {
-    ;(f.corrections ?? []).forEach((c, i) => {
-      for (const lado of ladosQueNombranUnEscano(c as FilaLike, unEscano)) {
+    const correcciones = (f.corrections ?? []) as FilaLike[]
+    correcciones.forEach((c, i) => {
+      for (const lado of ladosQueNombranUnEscano(c, unEscano, { correcciones, i })) {
         out.push(`${f.id}[${i}].${lado}`)
       }
     })
@@ -186,8 +230,9 @@ export function retenerGruposDeUnEscano<S extends { items?: FichaLike[] }>(
 
   for (const f of copia.items ?? []) {
     if (!Array.isArray(f.corrections)) continue
-    f.corrections = f.corrections.map((c) => {
-      const lados = ladosQueNombranUnEscano(c, unEscano)
+    const correcciones = f.corrections
+    f.corrections = correcciones.map((c, i) => {
+      const lados = ladosQueNombranUnEscano(c, unEscano, { correcciones, i })
       if (lados.length === 0 && c?.grupoRetenido !== true) return c
       const servida: FilaLike = { ...c, grupoRetenido: true }
       for (const lado of lados) servida[lado] = MARCA_GRUPO_RETENIDO

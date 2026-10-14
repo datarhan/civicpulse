@@ -69,7 +69,10 @@ describe('una fila con una versión que no se reproduce', () => {
     const f = { ...base, field: 'summary', original: MARCA_GRUPO_RETENIDO, corrected: VIGENTE }
     const { container } = render(<BitacoraCorrecciones correcciones={[f]} />)
     const texto = plano(container)
-    expect(texto).toMatch(/la versión que retiró/)
+    // «el texto que había antes», no «la versión que retiró»: junto a un «Texto que
+    // puso esta corrección, sustituido el …» la revisión del 14-10-2026 leyó el
+    // texto enseñado como si fuera el retirado.
+    expect(texto).toMatch(/no reproduce el texto que había antes de esta corrección/)
     expect(texto).toContain(`${ROTULO_TEXTO_VIGENTE}: ${VIGENTE}`)
     expect(texto).not.toContain(ROTULO_TEXTO_RETIRADO)
     expect(container.querySelector('del')).toBeNull()
@@ -79,7 +82,7 @@ describe('una fila con una versión que no se reproduce', () => {
     const f = { ...base, field: 'summary', original: RETIRADO, corrected: MARCA_GRUPO_RETENIDO }
     const { container } = render(<BitacoraCorrecciones correcciones={[f]} />)
     const texto = plano(container)
-    expect(texto).toMatch(/la versión que puso/)
+    expect(texto).toMatch(/no reproduce el texto que puso esta corrección/)
     expect(container.querySelector('del')?.textContent).toBe(RETIRADO)
     expect(texto).toContain(ROTULO_TEXTO_RETIRADO)
     // Rotular «vigente» una versión que no se enseña diría que la ficha nombra

@@ -68,7 +68,8 @@ const sirve = (hallazgos) => ({
  * La copia servida con unas fichas reales retocadas: una con réplica (y su
  * fuente) y atribución individual, una sin citas, una sin documentos cotejados,
  * las tres gravedades, una firmada por una persona, y una bitácora con una fila
- * de literal retenido y otra de grupo de un solo escaño, de cada lado.
+ * de literal retenido y otra de grupo de un solo escaño, de cada lado, y una
+ * cita re-escrita y retirada después.
  */
 function cadaForma() {
   const copia = structuredClone(SERVIDA)
@@ -104,6 +105,16 @@ function cadaForma() {
       corrected: MARCA_GRUPO_RETENIDO,
       reasonAmendments: undefined,
       grupoRetenido: true,
+    },
+    // Una cita cuyo texto se cambió y que después se retiró entera: su fila de
+    // texto no es vigente, y su cabecera dice que la cita ya no está.
+    { ...fila, field: 'quote.9.text', reasonAmendments: undefined },
+    {
+      ...fila,
+      field: 'quote.9',
+      original: 'cita · sha256:cccccccccccc',
+      corrected: 'retirada del hallazgo',
+      reasonAmendments: undefined,
     },
   ]
   return { snapshot: copia, retocadas: [a, b, c, d].map((f) => f.id) }
