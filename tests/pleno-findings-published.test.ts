@@ -431,7 +431,14 @@ const expectWithdrawn = (id: string): void => {
  * `f-2026-03-16-cit-377216`: `quote.0.text`, `title` y `summary`, en ese orden. En LOTE_2 la
  * frase que la fila de 377216 anclaba sale de `keeps` y pasa a `drops`.
  */
-const TOTAL_CORRECTIONS = 239
+/*
+ * 239 → 241 (bloque «el reanclaje del 2026-08-10», `ACORTADAS_DESPUES`).
+ * Dos filas de `correct-pleno-finding --field quote.<i>.text` (editor `civicpulse-curator`),
+ * el 14-10-2026: la cita [1] de `f-2026-01-19-afi-5238db` y la [2] de `f-2026-04-20-cit-25e6ea`
+ * nombraban, en sus propias palabras, al grupo de un escaño cuya etiqueta se les había retirado
+ * el 30-09. Se acortan al tramo que no lo nombra. Ninguna es de un lote.
+ */
+const TOTAL_CORRECTIONS = 241
 const TOTAL_REMOVALS = 37
 
 /** One row of a review batch's fixture: enough to locate its own entries. */
@@ -577,7 +584,9 @@ describe('published pleno findings — the correction ledger is append-only', ()
 // fuera errónea, y lo era (bloque «salvedad E, enmienda»).
 // +3 el 04-10-2026: los motivos de 8b29a9 [5], c80e68 [4] y cc8758 [4] nombraban a un
 // grupo de un solo escaño (#214); los enmendó una persona sin el nombre.
-const TOTAL_REASON_AMENDMENTS = 6
+// +1 el 14-10-2026: el motivo de la fila [1] de 25e6ea decía que el presupuesto municipal es «dos
+// órdenes de magnitud» menor que 1.700 millones; es unas cuarenta veces (revisión de superficies).
+const TOTAL_REASON_AMENDMENTS = 7
 
 describe('published pleno findings — un motivo enmendado no borra el anterior', () => {
   const enmiendas = allCorrections.flatMap((c) => c.reasonAmendments ?? [])
@@ -4049,6 +4058,43 @@ const resueltaDespues = (r: ReanchorRow): Correction => {
   return entry!
 }
 
+/**
+ * Reanclajes de esta tanda cuyo literal una corrección firmada DESPUÉS acortó.
+ *
+ * El 14-10-2026 la revisión de superficies leyó en la cita [1] de 5238db, re-anclada aquí
+ * (`b12`), el grupo municipal de quien habla: un grupo de un escaño cuya etiqueta se retiró
+ * con firma el 30-09 por nombrar a su concejal por eliminación. La cita se acortó con la CLI
+ * al tramo que no lo nombra. Igual que `RESUELTAS_DESPUES`, el salto no se esconde: la fila
+ * que lo hizo tiene que estar en la bitácora, ser posterior a la tanda, retirar exactamente
+ * el literal que la tanda puso y dejar una subcadena de él que consta en la vigente.
+ */
+const ACORTADAS_DESPUES = new Map<string, { field: string; correctedAt: string }>([
+  ['b12', { field: 'quote.1.text', correctedAt: '2026-10-14T13:53:45.544Z' }],
+])
+
+const acortadaDespues = (r: ReanchorRow): void => {
+  const want = ACORTADAS_DESPUES.get(r.tag)!
+  const f = byId(r.findingId)
+  const entry = (f.corrections ?? []).find(
+    (c) => c.field === want.field && c.correctedAt === want.correctedAt,
+  )
+  expect(entry, `${r.tag}: la bitácora no lleva la corrección que la acortó`).toBeDefined()
+  expect(entry!.correctedAt > BATCH_CLOSED, `${r.tag}: no es posterior a la tanda`).toBe(true)
+  expect(sha256Short(entry!.original), `${r.tag}: se acortó otra cita`).toBe(r.textAfter)
+  expect(findQuoteByDigest(r.findingId, r.textAfter!), `${r.tag}: sigue publicada`).toBe(-1)
+  expect(f.quotes.some((q) => q.text === entry!.corrected)).toBe(true)
+  expect(
+    normaliseForQuoteMatch(entry!.original).includes(normaliseForQuoteMatch(entry!.corrected)),
+    `${r.tag}: no es un tramo de lo que la tanda puso`,
+  ).toBe(true)
+  expect(
+    normaliseForQuoteMatch(transcriptOf(f.plenoId)).includes(
+      normaliseForQuoteMatch(entry!.corrected),
+    ),
+    `${r.tag}: el literal nuevo no está en la vigente`,
+  ).toBe(true)
+}
+
 describe('published pleno findings — el reanclaje del 2026-08-10', () => {
   it('la tanda hizo trabajo, y exactamente el que dice haber hecho', () => {
     // Regla 2 de docs/DATA_INTEGRITY.md: una pasada tiene que demostrar que
@@ -4078,6 +4124,11 @@ describe('published pleno findings — el reanclaje del 2026-08-10', () => {
   it('cada cita reanclada consta ahora, literal, en la transcripción vigente', () => {
     let checked = 0
     for (const r of appliedLive().filter((x) => x.verdict === 'reanclar')) {
+      if (ACORTADAS_DESPUES.has(r.tag)) {
+        acortadaDespues(r)
+        checked += 1
+        continue
+      }
       const i = findQuoteByDigest(r.findingId, r.textAfter!)
       expect(i, `${r.tag}: el texto reanclado no está en ${r.findingId}`).toBeGreaterThan(-1)
       const f = byId(r.findingId)

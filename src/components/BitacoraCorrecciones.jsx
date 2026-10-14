@@ -52,6 +52,7 @@
  */
 
 import { MARCA_GRUPO_RETENIDO } from '../lib/grupo-retenido'
+import { esRetirada, seguirPosicion } from '../lib/posicion-en-bitacora'
 import { CATALOGUE, useT } from '../i18n'
 import { partePorHueco, rellena } from '../lib/formatters'
 
@@ -91,39 +92,59 @@ const conPosicion = (campo) =>
  * Para cada fila, la fila POSTERIOR que volvió a cambiar su mismo campo, o
  * `null` si ninguna lo hizo y lo que puso es lo que la ficha publica.
  *
- * Sólo para los campos que tienen nombre fijo —`title`, `summary`, `titulo`,
- * `cuerpo`, `medicion`, la cita de una promesa, el cuerpo de una sección del
- * informe—. Los que nombran por su posición quedan FUERA: `quote.1.text` no dice
- * qué cita es, porque retirar la cita 0 renumera las siguientes, y dos filas con
- * el mismo nombre pueden hablar de citas distintas. Esas filas siguen rotulando
- * «vigente» lo que pusieron, y es verdad mientras ninguna vuelva a cambiarse
- * —una cita re-anclada dos veces, una atribución cambiada otra vez— ni su cita
- * se retire después.
- * `tests/components/bitacora-version-sustituida.test.jsx` reproduce las
- * retiradas como las escribe la CLI (bloque REMOVAL de
- * src/scraper/pleno-finding.ts) sobre la copia servida, y se pone roja el día
- * que eso deje de cumplirse: ese día esta regla tiene que aprender a seguirlas.
+ * Los campos con nombre fijo —`title`, `summary`, `titulo`, `cuerpo`,
+ * `medicion`, la cita de una promesa, el cuerpo de una sección del informe— se
+ * comparan por el nombre. Los de una cita o un documento cotejado nombrados por
+ * su posición —`quote.1.text`— NO: retirar la cita 0 renumera las siguientes, y
+ * dos filas con el mismo nombre pueden hablar de citas distintas. Esos se siguen
+ * por las retiradas del registro (`seguirPosicion`,
+ * src/lib/posicion-en-bitacora.js), y su posterior puede ser también la
+ * retirada de la cita entera. Hasta el 14-10-2026 quedaban fuera y rotulaban
+ * «vigente» lo que pusieron; ese día una cita re-anclada el 10-08 se acortó, y
+ * `tests/components/bitacora-version-sustituida.test.jsx`, que lo vigilaba, se
+ * puso roja como estaba escrito. Los demás campos con posición —`warnings[1]`,
+ * `portrait.portfolios[6]`— siguen fuera.
  */
 export function sustitutas(correcciones) {
-  return correcciones.map((c, i) =>
-    conPosicion(c.field)
+  return correcciones.map((c, i) => {
+    const seguida = seguirPosicion(correcciones, i)
+    if (seguida) return seguida.posterior
+    return conPosicion(c.field)
       ? null
-      : (correcciones.slice(i + 1).find((d) => d.field === c.field) ?? null),
-  )
+      : (correcciones.slice(i + 1).find((d) => d.field === c.field) ?? null)
+  })
+}
+
+/**
+ * Qué cita de la ficha es hoy la de una fila `quote.<i>…`, con el número que la
+ * ficha le pone («Cita 2» para `quote.1`), o que se retiró después. `null` si el
+ * campo no es de una cita.
+ */
+function citaDeLaFila(correcciones, i, t) {
+  const seguida = seguirPosicion(correcciones, i)
+  if (!seguida || seguida.coleccion !== 'quote') return null
+  if (esRetirada(correcciones[i])) return t('bitacora.campo.citaQueRetira')
+  return seguida.hoy === null
+    ? t('bitacora.campo.citaRetirada')
+    : rellena(t('bitacora.campo.cita'), { n: seguida.hoy + 1 })
 }
 
 /**
  * El rótulo de lo que puso una fila: «Texto vigente», o, si `posterior` lo
  * volvió a cambiar, «Texto que puso esta corrección, sustituido el 2026-09-30»
- * con el día de esa fila, que es la que el lector tiene que ir a buscar. En el
- * idioma de `t`; sin él, en castellano.
+ * con el día de esa fila, que es la que el lector tiene que ir a buscar; si
+ * `posterior` retiró la cita entera, lo dice así. En el idioma de `t`; sin él,
+ * en castellano.
  *
  * @param {{ correctedAt?: string } | null} posterior
  * @param {(clave: string) => string} [t]
  */
 export const rotuloTextoPuesto = (posterior, t = enCastellano) =>
   posterior
-    ? rellena(t('bitacora.textoSustituido'), { fecha: fecha(posterior.correctedAt) })
+    ? rellena(
+        t(esRetirada(posterior) ? 'bitacora.textoRetiradoDespues' : 'bitacora.textoSustituido'),
+        { fecha: fecha(posterior.correctedAt) },
+      )
     : t('bitacora.textoVigente')
 
 /**
@@ -203,6 +224,7 @@ export function BitacoraCorrecciones({ correcciones }) {
   const t = useT()
   if (!correcciones?.length) return null
   const despues = sustitutas(correcciones)
+  const citas = correcciones.map((_, i) => citaDeLaFila(correcciones, i, t))
   const enmendadas = correcciones.filter((c) => c.reasonAmendments?.length > 0).length
   const conGrupoRetenido = correcciones.some((c) => c.grupoRetenido)
   return (
@@ -253,7 +275,7 @@ export function BitacoraCorrecciones({ correcciones }) {
                 marginBottom: 2,
               }}
             >
-              {c.field} · {String(c.correctedAt ?? '').slice(0, 10)} · {c.editor}
+              {`${c.field}${citas[idx] ? ` (${citas[idx]})` : ''} · ${fecha(c.correctedAt)} · ${c.editor}`}
             </div>
             {c.literalRetenido ? (
               // La copia servida sustituye las dos versiones del literal de una

@@ -79,6 +79,9 @@ const dia = (iso) => String(iso).slice(0, 10)
 const sustituidoEl = (fecha) => `${ROTULO_TEXTO_SUSTITUIDO}, sustituido el ${fecha}:`
 const SUSTITUIDO_RE = new RegExp(`${ROTULO_TEXTO_SUSTITUIDO}, sustituido el \\d{4}-\\d{2}-\\d{2}:`)
 
+/** ¿Enseña la bitácora lo que puso la fila? (un grupo de un escaño o un literal retenido, no) */
+const seVe = (c) => !c.literalRetenido && c.corrected !== MARCA_GRUPO_RETENIDO
+
 /** Una fila por `<li>`, en el orden de la bitácora (el componente suelto, sin más listas). */
 const filas = (container) => [...container.querySelectorAll('ol > li')]
 /** Lo mismo dentro de una ficha entera, que tiene otras listas además de la bitácora. */
@@ -133,7 +136,7 @@ describe('la regla, sobre filas escritas a mano', () => {
   })
 
   it('un campo con posición no se juzga por el nombre: retirar una cita renumera las demás', () => {
-    // Fuera a propósito; la alarma sobre los datos está al final de este fichero.
+    // `quote.1.text` de la fila 2 es la cita que antes era la 2, no la de la fila 0.
     const lis = filas(
       render(
         <BitacoraCorrecciones
@@ -147,6 +150,46 @@ describe('la regla, sobre filas escritas a mano', () => {
     )
     expect(plano(lis[0])).toContain(`${ROTULO_TEXTO_VIGENTE}: cita b`)
     expect(plano(lis[2])).toContain(`${ROTULO_TEXTO_VIGENTE}: cita d`)
+    // Y la cabecera dice qué cita de la ficha es hoy, contando desde 1 como ella.
+    expect(plano(lis[0])).toMatch(/^quote\.1\.text \(cita 1\) · 2026-08-01/)
+    expect(plano(lis[1])).toMatch(/^quote\.0 \(la cita que retiró esta corrección\) ·/)
+    expect(plano(lis[2])).toMatch(/^quote\.1\.text \(cita 2\) · 2026-08-03/)
+  })
+
+  it('la misma cita, seguida por las retiradas, sí se sustituye', () => {
+    const lis = filas(
+      render(
+        <BitacoraCorrecciones
+          correcciones={[
+            fila('quote.2.text', 'cita a', 'cita b', '2026-08-01T10:00:00.000Z'),
+            fila('quote.0', 'cita · sha256:0123456789ab', 'retirada del hallazgo', '2026-08-02'),
+            fila('quote.1.text', 'cita b', 'cita c', '2026-08-03T10:00:00.000Z'),
+          ]}
+        />,
+      ).container,
+    )
+    expect(plano(lis[0])).toContain(`${sustituidoEl('2026-08-03')} cita b`)
+    expect(plano(lis[0])).not.toContain(ROTULO_TEXTO_VIGENTE)
+    expect(plano(lis[0])).toMatch(/^quote\.2\.text \(cita 2\) ·/)
+    expect(plano(lis[2])).toContain(`${ROTULO_TEXTO_VIGENTE}: cita c`)
+  })
+
+  it('una cita retirada después: lo que puso no es vigente, y la cabecera lo dice', () => {
+    const lis = filas(
+      render(
+        <BitacoraCorrecciones
+          correcciones={[
+            fila('quote.1.text', 'cita a', 'cita b', '2026-08-01T10:00:00.000Z'),
+            fila('quote.1', 'cita · sha256:0123456789ab', 'retirada del hallazgo', '2026-08-02'),
+          ]}
+        />,
+      ).container,
+    )
+    expect(plano(lis[0])).toContain(
+      'Texto que puso esta corrección; la cita se retiró el 2026-08-02: cita b',
+    )
+    expect(plano(lis[0])).not.toContain(ROTULO_TEXTO_VIGENTE)
+    expect(plano(lis[0])).toMatch(/^quote\.1\.text \(cita retirada después\) ·/)
   })
 })
 
@@ -381,61 +424,82 @@ describe('/laboratorio/agentes: el cuerpo de una sección del informe', () => {
   })
 })
 
-describe('los campos que se nombran por su posición: fuera de la regla, y una alarma', () => {
+describe('los campos de una cita, seguidos por las retiradas', () => {
   /**
-   * `quote.1.text` no dice qué cita es: retirar la cita 0 renumera las demás,
-   * así que el componente no decide por el nombre y rotula «vigente» lo que
-   * puso. Hoy es verdad en todas. Esto lo comprueba reproduciendo el registro
-   * como lo escribe la CLI —cada retirada `quote.N` con el índice que tenía la
-   * cita en ese momento, de mayor a menor, y repetir el registro en orden da el
-   * resultado (bloque REMOVAL de src/scraper/pleno-finding.ts)—, y se pone roja
-   * el día que una fila con posición quede sin efecto: la misma cita re-anclada
-   * dos veces, o retirada entera después. Ese día la bitácora vuelve a rotular
-   * «vigente» lo que no rige, y la regla del componente tiene que aprender a
-   * seguir las retiradas.
+   * `quote.1.text` no dice qué cita es: retirar la cita 0 renumera las demás.
+   * Hasta el 14-10-2026 el componente las dejaba fuera de la regla y rotulaba
+   * «vigente» lo que pusieron, y aquí había una alarma que se pondría roja el día
+   * que una quedara sin efecto. Ese día llegó: la cita 2 de 5238db, re-anclada el
+   * 10-08, se acortó para dejar de nombrar a un grupo de un escaño. Ahora el
+   * componente las sigue (src/lib/posicion-en-bitacora.js), y esto lo compara con
+   * un oráculo escrito aparte: reproducir el registro como lo escribe la CLI —cada
+   * retirada `quote.N` con el índice que tenía la cita en ese momento, de mayor a
+   * menor (bloque REMOVAL de src/scraper/pleno-finding.ts)— y mirar qué texto
+   * publica HOY la ficha.
    */
   const RETIRADA = /^(quote|crossChecked)\.(\d+)$/
   const DE_UNA = /^(quote|crossChecked)\.(\d+)\.(.+)$/
 
-  /** La fila posterior que deja sin efecto lo que puso la fila `i`, o `null`. */
+  /** La fila posterior que deja sin efecto lo que puso la fila `i`, y la cita de hoy. */
   function sinEfectoPor(cs, i) {
     const m = DE_UNA.exec(cs[i].field)
-    if (!m) return { por: null, renumerada: false }
+    if (!m) return { por: null, renumerada: false, hoy: null }
     const [, coleccion, , resto] = m
     let k = Number(m[2])
     let renumerada = false
+    let por = null
     for (const d of cs.slice(i + 1)) {
       const r = RETIRADA.exec(d.field)
       if (r && r[1] === coleccion) {
         const j = Number(r[2])
-        if (j === k) return { por: d, renumerada }
+        if (j === k) return { por: por ?? d, renumerada, hoy: null }
         if (j < k) {
           k -= 1
           renumerada = true
         }
-      } else if (d.field === `${coleccion}.${k}.${resto}`) return { por: d, renumerada }
+      } else if (!por && d.field === `${coleccion}.${k}.${resto}`) por = d
     }
-    return { por: null, renumerada }
+    return { por, renumerada, hoy: k }
   }
 
-  it('ninguna fila de cita de /hallazgos ha quedado sin efecto después', () => {
-    let reproducidas = 0
-    let renumeradas = 0
-    const sinEfecto = []
-    for (const f of SERVIDA.items) {
-      const cs = f.corrections ?? []
-      cs.forEach((c, i) => {
-        if (!DE_UNA.test(c.field)) return
-        reproducidas += 1
-        const { por, renumerada } = sinEfectoPor(cs, i)
-        if (renumerada) renumeradas += 1
-        if (por) sinEfecto.push(`${f.id} · fila ${i} (${c.field}) · por ${por.field}`)
-      })
+  const deCita = SERVIDA.items.flatMap((f) =>
+    (f.corrections ?? []).flatMap((c, i) =>
+      /^quote\.\d+\./.test(c.field) ? [{ f, c, i, ...sinEfectoPor(f.corrections, i) }] : [],
+    ),
+  )
+
+  it('el oráculo reproduce el registro: renumera, y el texto de la última fila es el de la ficha', () => {
+    expect(deCita.length).toBeGreaterThan(0)
+    expect(deCita.some((x) => x.renumerada)).toBe(true)
+    expect(deCita.some((x) => x.por)).toBe(true)
+    // Premisa: cada fila de texto que nada dejó sin efecto puso lo que la ficha publica.
+    const mal = deCita
+      .filter((x) => !x.por && x.hoy !== null && /\.text$/.test(x.c.field) && seVe(x.c))
+      .filter((x) => x.f.quotes[x.hoy]?.text !== x.c.corrected)
+      .map((x) => `${x.f.id} · fila ${x.i}`)
+    expect(mal).toEqual([])
+  })
+
+  it('la bitácora rotula cada fila de cita como el oráculo, y numera la cita como la ficha', () => {
+    const mal = []
+    for (const f of new Set(deCita.map((x) => x.f))) {
+      const lis = filas(render(<BitacoraCorrecciones correcciones={f.corrections} />).container)
+      for (const x of deCita.filter((y) => y.f === f)) {
+        const t = plano(lis[x.i])
+        const cabecera =
+          x.hoy === null
+            ? `${x.c.field} (cita retirada después) ·`
+            : `${x.c.field} (cita ${x.hoy + 1}) ·`
+        if (!t.startsWith(cabecera)) mal.push(`${f.id} · fila ${x.i}: cabecera «${t.slice(0, 60)}»`)
+        if (!seVe(x.c)) continue
+        if (x.por && t.includes(ROTULO_TEXTO_VIGENTE))
+          mal.push(`${f.id} · fila ${x.i}: «vigente» sin serlo`)
+        if (!x.por && !t.includes(`${ROTULO_TEXTO_VIGENTE}: ${norm(x.c.corrected)}`))
+          mal.push(`${f.id} · fila ${x.i}: no rotula vigente lo que rige`)
+      }
+      cleanup()
     }
-    // Control: reprodujo filas, y alguna cambió de número por el camino.
-    expect(reproducidas).toBeGreaterThan(0)
-    expect(renumeradas, 'ninguna renumeración: la reproducción no se ha probado').toBeGreaterThan(0)
-    expect(sinEfecto).toEqual([])
+    expect(mal).toEqual([])
   })
 
   it('ningún campo con posición de un informe del agente se vuelve a cambiar después', () => {

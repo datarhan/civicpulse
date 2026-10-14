@@ -1,6 +1,6 @@
 {
   "version": "1.0",
-  "generatedAt": "2026-10-12T13:43:52.838Z",
+  "generatedAt": "2026-10-14T13:53:52.286Z",
   "legalNotice": "Este registro recoge hallazgos editoriales sobre las intervenciones de los plenos. Los redacta un proceso automático a partir de declaraciones extraídas de la transcripción, salvo los que llevan la firma de una persona, y cada ficha indica quién la editó: un nombre como «auto-curation-v1» significa que el título y el resumen los escribió una máquina, no una persona. Cada hallazgo cita una o más afirmaciones literales (verbatim) del pleno y los documentos municipales que confirman o contradicen cada afirmación. Las réplicas de los grupos políticos se publican íntegras y sin editar.",
   "contactUrl": "https://github.com/datarhan/civicpulse/issues/new/choose",
   "methodologyUrl": "/metodologia",
@@ -1428,7 +1428,7 @@
           "sourceClaimId": "k4olcs-032-cit-98a5be"
         },
         {
-          "text": "El compromiso de Vox es garantizar una enseñanza de calidad, con libertad,",
+          "text": "garantizar una enseñanza de calidad, con libertad,",
           "speakerGroup": null,
           "sourceClaimId": "k4olcs-077-pro-02ea8a"
         }
@@ -1468,9 +1468,17 @@
           "field": "summary",
           "original": "El grupo PSOE afirma que el plan edificante ha movilizado hasta 1.700 millones de euros para la construcción y mejora de infraestructuras educativas, mientras que VOX se compromete a garantizar una enseñanza de calidad con libertad. El registro municipal incluye contratos relacionados con mejoras en centros educativos y servicios de formación.",
           "corrected": "El grupo PSOE afirma que el pla Edificant —el programa autonómico de la Generalitat para infraestructuras educativas, cuya cifra corresponde al conjunto de la Comunitat y no al presupuesto de este ayuntamiento— ha movilizado hasta 1.700 millones de euros para la construcción y mejora de infraestructuras educativas, mientras que VOX se compromete a garantizar una enseñanza de calidad con libertad. El registro municipal incluye contratos relacionados con mejoras en centros educativos y servicios de formación.",
-          "reason": "Junto a los datos de contratación y presupuesto municipales, la cifra de 1.700 millones se leía como imputable a Riba-roja, cuyo presupuesto anual es de dos órdenes de magnitud menor; es un programa autonómico. Señalamiento de la revisión de superficies del 18-08-2026.",
+          "reason": "Junto a los datos de contratación y presupuesto municipales, la cifra de 1.700 millones se leía como imputable a Riba-roja, cuyo presupuesto inicial de gastos de 2025 es de 41,6 millones según CONPREL, unas cuarenta veces menos; es un programa autonómico. Señalamiento de la revisión de superficies del 18-08-2026.",
           "editor": "Sergei Lutchenko",
-          "correctedAt": "2026-08-18T16:28:02.199Z"
+          "correctedAt": "2026-08-18T16:28:02.199Z",
+          "reasonAmendments": [
+            {
+              "previous": "motivo · sha256:b148f36dbc26",
+              "reason": "El motivo decía que el presupuesto municipal es «dos órdenes de magnitud» menor, unas cien veces. Con el presupuesto inicial de gastos de 2025 en CONPREL (41,6 millones) la proporción es de unas cuarenta veces, y con el crédito definitivo del año, de unas veintisiete. Revisión de superficies del 14-10-2026.",
+              "editor": "Sergei Lutchenko",
+              "amendedAt": "2026-10-14T13:53:52.282Z"
+            }
+          ]
         },
         {
           "field": "quote.2.speakerGroup",
@@ -1511,6 +1519,14 @@
           "reason": "El sumario decía «sin grupo identificado» de quien pronuncia una cita que la ficha no atribuye a ningún grupo. Como ya dice el motivo firmado el 30-09-2026 en f-2026-01-19-afi-5238db, esa fórmula afirma que no se sabe quién habla, y la ficha no dice eso: rotula la cita «sin atribuir», y así lo dice ahora el sumario, sin atribuirla a nadie.",
           "editor": "civicpulse-curator",
           "correctedAt": "2026-10-05T22:48:13.078Z"
+        },
+        {
+          "field": "quote.2.text",
+          "original": "El compromiso de Vox es garantizar una enseñanza de calidad, con libertad,",
+          "corrected": "garantizar una enseñanza de calidad, con libertad,",
+          "reason": "La cita nombraba al grupo municipal de quien habla, y ese grupo tiene un solo concejal: nombrarlo identifica a esa persona por eliminación, que es justo lo que el 30-09-2026 se retiró de la etiqueta y del sumario de esta ficha. Se acorta al tramo que sostiene el sumario, la misma intervención y subcadena literal de la transcripción vigente (3.887–3.904 s); lo que se dijo no cambia.",
+          "editor": "civicpulse-curator",
+          "correctedAt": "2026-10-14T13:53:45.869Z"
         }
       ]
     },
@@ -2520,7 +2536,7 @@
           "sourceClaimId": "19gax3o-114-afi-5238db"
         },
         {
-          "text": "Nosaltres des del grup municipal de compromís anem a recolzar aquest pla de contractació 2026 i l'aplicació és ben senzilla.",
+          "text": "anem a recolzar aquest pla de contractació 2026 i l'aplicació és ben senzilla.",
           "speakerGroup": null,
           "sourceClaimId": "19gax3o-010-cit-c48425"
         },
@@ -2690,6 +2706,14 @@
           "reason": "El sumario decía «un grupo no identificado» y «sin grupo identificado», que afirman que no se sabe quién habla. Lo que ocurre es que la atribución no se publica: es un grupo con un solo concejal, y nombrarlo identificaría a esa persona por eliminación; por eso se retira también de la cita. El sumario dice «sin atribuir», como la ficha.",
           "editor": "civicpulse-curator",
           "correctedAt": "2026-09-30T05:48:40.143Z"
+        },
+        {
+          "field": "quote.1.text",
+          "original": "Nosaltres des del grup municipal de compromís anem a recolzar aquest pla de contractació 2026 i l'aplicació és ben senzilla.",
+          "corrected": "anem a recolzar aquest pla de contractació 2026 i l'aplicació és ben senzilla.",
+          "reason": "La cita empezaba con el grupo municipal al que pertenece quien habla, y ese grupo tiene un solo concejal: nombrarlo identifica a esa persona por eliminación, que es justo lo que el 30-09-2026 se retiró de la etiqueta y del sumario de esta ficha. Se acorta al tramo que sostiene el sumario, la misma intervención y subcadena literal de la transcripción vigente (1.459–1.473 s); lo que se dijo no cambia.",
+          "editor": "civicpulse-curator",
+          "correctedAt": "2026-10-14T13:53:45.544Z"
         }
       ]
     },
