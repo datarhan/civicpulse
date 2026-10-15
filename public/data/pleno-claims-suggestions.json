@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-12T09:52:58.836Z",
+  "generatedAt": "2026-10-15T08:15:10.278Z",
   "source": {
     "description": "Claims extracted automatically from YouTube-derived pleno transcripts. Each record carries requiresHumanApproval:true and is cross-referenced against tenders / BDNS / budget / promises by the verifier pass before any editorial surface.",
     "contract": "Machine-written; never substitutes for the published human-verified record. Speaker attribution at bloc level only — no individual naming."
@@ -928,7 +928,7 @@
       "plenoDate": "2026-10-05",
       "segmentIndex": 28,
       "type": "acusacion_publica",
-      "speakerGroup": null,
+      "speakerGroup": "PP",
       "verbatim": "No datos que el PP se inventa de su informe.",
       "context": "Y frente a su relato, yo le doy datos aquí de su informe. No datos que el PP se inventa de su informe.",
       "topic": "transparencia",
@@ -137748,11 +137748,11 @@
     }
   ],
   "builtFrom": {
-    "officials.json": "dfbe50388608",
-    "pleno-findings.json": "5f02e2238bc1",
-    "pleno-speaker-map/": "050e92156bac",
+    "officials.json": "49ad402025e6",
+    "pleno-findings.json": "89d1ec760a8f",
+    "pleno-speaker-map/": "e8432d43e47b",
     "pleno-transcripts/": "db0fcba21c1a",
-    "plenos-agendas.json": "d3738db52dd4",
-    "plenos.json": "04b387cdef2d"
+    "plenos-agendas.json": "9be270e28cd5",
+    "plenos.json": "11f328635355"
   }
 }

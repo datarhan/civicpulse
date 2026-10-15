@@ -1,6 +1,6 @@
 {
-  "generatedAt": "2026-10-12T16:55:34.348Z",
-  "composedAt": "2026-10-12T16:55:43.986Z",
+  "generatedAt": "2026-10-15T08:23:15.819Z",
+  "composedAt": "2026-10-15T08:23:17.207Z",
   "source": {
     "description": "Fact-check verdicts for every pleno-claims-suggestions.json entry. Cross-references against tenders / BDNS / budget / promises. Pure deterministic — no LLM judgement.",
     "contract": "Machine-written verdicts; a curator reviews before surfacing contradicho or promesa-repetida editorially."
@@ -1455,7 +1455,7 @@
         "plenoDate": "2026-10-05",
         "segmentIndex": 28,
         "type": "acusacion_publica",
-        "speakerGroup": null,
+        "speakerGroup": "PP",
         "verbatim": "No datos que el PP se inventa de su informe.",
         "context": "Y frente a su relato, yo le doy datos aquí de su informe. No datos que el PP se inventa de su informe.",
         "topic": "transparencia",
