@@ -527,6 +527,27 @@ describe('una solicitud remitida a otro órgano no vence desde su asiento', () =
     expect(arranqueDelPlazo(remitida)).toEqual({ desde: '2026-09-23', acreditado: false })
     expect(arranqueDelPlazo(recibida)).toEqual({ desde: '2026-09-24', acreditado: true })
   })
+
+  // Dos remisiones distintas. La Generalitat la mandó a Turisme CV porque juzgó
+  // que la competencia era de éste: «por considerarlo el órgano competente» es lo
+  // que dijo. El Ayuntamiento, el 8-10-2026, sólo hizo de registro (art. 16.4 de
+  // la Ley 39/2015): la solicitud ya iba dirigida a la Secretaría de Estado, y su
+  // comunicación dice que «fue tramitada… a través de ORVE», nada de competencias.
+  // Atribuirle ese juicio sería poner en su boca algo que no dijo.
+  it('la que remite un registro no le atribuye un juicio de competencia', () => {
+    const porRegistro: EnvioSolicitud = {
+      ...remitida,
+      remitida: { fecha: '2026-10-15', a: 'la Secretaría de Estado de Turismo', porRegistro: true },
+    }
+    const f = fraseDeEnvio(porRegistro, '2026-10-20')
+    expect(f).not.toMatch(/por considerarlo/)
+    expect(f).toContain(
+      'se había remitido a la Secretaría de Estado de Turismo, a la que iba dirigida, desde el registro en que se presentó',
+    )
+    expect(f).toMatch(/no consta todavía cuándo la recibió/)
+    // El reloj no cambia: se cuenta desde la comunicación, como cualquier remitida.
+    expect(arranqueDelPlazo(porRegistro)).toEqual({ desde: '2026-10-15', acreditado: false })
+  })
 })
 
 /**

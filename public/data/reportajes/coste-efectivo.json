@@ -458,7 +458,7 @@
   },
   "solicitudes": {
     "titulo": "Lo que se ha pedido, a quién y desde cuándo corre el plazo",
-    "nota": "El artículo 17.2 de la Ley 19/2013 admite «cualquier medio que permita tener constancia» de la identidad de quien pide, de la información solicitada y de una dirección de contacto: un correo que lleve las tres cosas es una vía válida. El artículo 20.1, en cambio, cuenta el mes «desde la recepción de la solicitud por el órgano competente para resolver», y de un correo consta el envío, no esa recepción. Por eso las dos que salieron por correo, la de Hacienda y la primera del Ayuntamiento, llevan la fecha contada desde el envío y no como vencimiento acreditado. La de la Comisión de Precios se presentó por el registro electrónico de la Generalitat y la propia Generalitat ha acusado su entrada, así que consta desde cuándo corría el mes; pero después se dio traslado de la solicitud a terceros afectados y el plazo para resolverla quedó suspendido, y mientras dure no tiene último día. La del Ayuntamiento que se volvió a presentar por su Registro de Entrada, a petición suya, tiene el asiento del mismo órgano que la resuelve: de ésa el vencimiento se puede afirmar. Este apartado se actualiza cuando hay movimiento, aunque las cifras de la pieza estén congeladas a su fecha: cada fila lleva la fecha de lo que cuenta. Toda respuesta se publicará íntegra.",
+    "nota": "El artículo 17.2 de la Ley 19/2013 admite «cualquier medio que permita tener constancia» de la identidad de quien pide, de la información solicitada y de una dirección de contacto: un correo que lleve las tres cosas es una vía válida. El artículo 20.1, en cambio, cuenta el mes «desde la recepción de la solicitud por el órgano competente para resolver», y de un correo consta el envío, no esa recepción. Por eso las dos que salieron por correo, la de Hacienda y la primera del Ayuntamiento, llevan la fecha contada desde el envío y no como vencimiento acreditado. La de la Comisión de Precios se presentó por el registro electrónico de la Generalitat y la propia Generalitat ha acusado su entrada, así que consta desde cuándo corría el mes; pero después se dio traslado de la solicitud a terceros afectados y el plazo para resolverla quedó suspendido, y mientras dure no tiene último día. La del Ayuntamiento que se volvió a presentar por su Registro de Entrada, a petición suya, tiene el asiento del mismo órgano que la resuelve: de ésa el vencimiento se puede afirmar. La última a Hacienda se presentó en el Registro de Entrada del Ayuntamiento, que la remitió por el registro electrónico de las entidades locales: hasta que conste cuándo la recibió la Subdirección, su plazo se cuenta desde la comunicación de esa remisión y no se presenta como vencimiento acreditado. Este apartado se actualiza cuando hay movimiento, aunque las cifras de la pieza estén congeladas a su fecha: cada fila lleva la fecha de lo que cuenta. Toda respuesta se publicará íntegra.",
     "items": [
       {
         "organismo": "Ministerio de Hacienda · Subdirección General de Estudios Financieros de Entidades Locales",
@@ -523,6 +523,26 @@
         "suspendida": {
           "fecha": "2026-09-29",
           "hasta": "hasta que se reciban las alegaciones de los posibles terceros afectados a quienes se dio traslado de la solicitud, o pase el plazo de quince días hábiles que se les concedió para presentarlas"
+        }
+      },
+      {
+        "organismo": "Ministerio de Hacienda · Subdirección General de Estudios Financieros de Entidades Locales",
+        "calendario": "estado-en-madrid",
+        "enviadaEl": "2026-09-30",
+        "via": "el Registro de Entrada del Ayuntamiento de Riba-roja de Túria",
+        "registro": "2026015108",
+        "pide": "La solicitud del 18 de septiembre como solicitud formal: copia del requerimiento dirigido al Ayuntamiento por no remitir el coste efectivo de 2020 y de su respuesta, las medidas adoptadas por ese incumplimiento, cualquier requerimiento o incidencia sobre los costes de 0 euros declarados en abastecimiento de agua y alcantarillado en 2018, 2019, 2021, 2022 y 2023, y cualquier instrucción sobre cómo declarar las unidades físicas de un servicio gestionado por concesión.",
+        "respuesta": null,
+        "incidencias": [
+          {
+            "fecha": "2026-10-14",
+            "texto": "Se presentó en el Registro de Entrada del Ayuntamiento de Riba-roja de Túria, que no es el órgano que la resuelve. El Ayuntamiento la remitió el 8 de octubre a la Subdirección General de Estudios Financieros de Entidades Locales por la Oficina de Registro Virtual de Entidades Locales (ORVE), con registro de salida REGAGE26s00087753095, y lo comunicó el 14 de octubre. De la fecha en que la recibió la Subdirección todavía no hay constancia."
+          }
+        ],
+        "remitida": {
+          "fecha": "2026-10-14",
+          "a": "la Subdirección General de Estudios Financieros de Entidades Locales",
+          "porRegistro": true
         }
       }
     ]
