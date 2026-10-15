@@ -1,6 +1,7 @@
 import { describe, it, expect } from 'vitest'
 import { readFileSync } from 'node:fs'
 import { join } from 'node:path'
+import { isCommittedContract } from '../src/lib/contract-status.js'
 
 /**
  * El mismo expediente vive DOS VECES en `tenders.json`, y sus dos copias se
@@ -68,8 +69,11 @@ describe('tenders.json — licitaciones y contratos comparten ids', () => {
     expect(l, 'el expediente 46717 ya no está entre las licitaciones').toBeTruthy()
     expect(c, 'el expediente 46717 ya no está entre los contratos').toBeTruthy()
     expect(l!.title).toBe(c!.title)
-    // El contrato es el que sabe cómo acabó; la licitación, no.
-    expect(c!.status).toBe('awarded')
+    // El contrato es el que sabe cómo acabó; la licitación, no. Se pregunta con
+    // la regla del sitio y no con un estado copiado: el 2026-10-15 el contrato
+    // pasó de `awarded` a `formalized` —se firmó— y el `toBe('awarded')` que
+    // había aquí se puso rojo por la buena noticia.
+    expect(isCommittedContract(c), `46717 en contratos: ${c!.status}`).toBe(true)
     expect(c!.assignee, 'el contrato perdió su adjudicatario').toMatch(/HIDRAQUA/i)
     expect(l!.assignee, 'la licitación no puede traer adjudicatario').toBeUndefined()
   })

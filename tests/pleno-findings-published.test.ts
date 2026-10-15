@@ -3132,7 +3132,18 @@ describe('published pleno findings — lote 4, the last post-dated cotejos', () 
         recordDates.has(row.permalink),
         `${c.id}: el expediente ya no está en tenders.json`,
       ).toBe(true)
-      expect(recordDates.get(row.permalink)).toBe(row.firstKnown)
+      // `firstKnown` is the date the gate read when the row came out. A later
+      // snapshot can bring another row under the same ref, and the index keeps
+      // the earliest, so the date may move EARLIER — never later — and must
+      // still fall after the session. Pinning it exactly broke on 2026-10-15,
+      // when d6d194's contenedores contract gained its licitación (07-28 →
+      // 07-10) and the retraction stayed exactly as justified.
+      const fecha = recordDates.get(row.permalink)
+      expect(fecha, `${c.id}: el expediente ya no tiene fecha`).toBeTruthy()
+      expect(fecha! <= row.firstKnown, `${c.id}: ${fecha} es posterior a ${row.firstKnown}`).toBe(
+        true,
+      )
+      expect(fecha! > row.plenoDate, `${c.id}: ${fecha} ya no es posterior al pleno`).toBe(true)
       expect(row.firstKnown > row.plenoDate).toBe(true)
       expect(byId(c.id).plenoDate).toBe(row.plenoDate)
       // …and it is gone from the page.
