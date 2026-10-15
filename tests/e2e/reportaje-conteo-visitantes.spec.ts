@@ -49,10 +49,15 @@ test.describe('Reportaje · conteo de visitantes (/reportajes/conteo-visitantes)
     // filas. Se ancla en la cabeza «enviada el <fecha>» porque es lo único de la
     // fila que no cambia cuando el estado pasa de «en plazo» a «sin respuesta» o
     // «respondida»: una prueba atada a la frase del estado caduca sola.
-    expect(await page.getByText(/Secretaría de Estado de Turismo · enviada el/).count()).toBe(2)
+    // Y una TERCERA desde el 15-10-2026: la solicitud formal del 30-09, que se
+    // presentó en el Registro del Ayuntamiento y éste remitió por ORVE. Su reloj
+    // corre desde la comunicación de la remisión, no desde el registro, y la
+    // fila tiene que decir quién la remitió.
+    expect(await page.getByText(/Secretaría de Estado de Turismo · enviada el/).count()).toBe(3)
     await expect(
       page.getByText(/Secretaría de Estado de Turismo · enviada el 17 de septiembre de 2026/),
     ).toBeVisible()
+    await expect(page.getByText(/REGAGE26s00087758205/)).toBeVisible()
     // Lo que contestó al seguimiento (24-09-2026): el hito 221 «recogido» en
     // CoFFEE y la ampliación, por el Portal de la Transparencia. No entrega nada,
     // así que la fila sigue en plazo y lo que dijeron tiene que verse debajo.
@@ -85,7 +90,10 @@ test.describe('Reportaje · conteo de visitantes (/reportajes/conteo-visitantes)
     // aserción anterior, «vence el 21 de octubre», caducaba sola el día 22.
     expect(await page.getByText(/21 de octubre de 2026/).count()).toBe(0)
     await expect(page.getByText(/se había remitido a Turisme Comunitat Valenciana/)).toBeVisible()
-    await expect(page.getByText(/no consta todavía cuándo la recibió/)).toBeVisible()
+    // Desde el 15-10 hay DOS filas remitidas —ésta y la de la Secretaría de
+    // Estado que remitió el Ayuntamiento—, y cada una dice que no consta cuándo
+    // la recibió su órgano. Se cuentan las dos: una sola sería una que lo calla.
+    expect(await page.getByText(/no consta todavía cuándo la recibió/).count()).toBe(2)
     await expect(page.getByText(/GVAGIP\/2026\/774/)).toBeVisible()
 
     // LA CONTESTACIÓN QUE NO RESUELVE (21-09-2026). Turisme CV dijo que por

@@ -180,6 +180,16 @@ export interface EnvioSolicitud {
      * se cuenta desde la comunicación de la remisión.
      */
     recibidaEl?: string
+    /**
+     * La remitió un REGISTRO, no un órgano que juzgara la competencia: la
+     * solicitud ya iba dirigida a `a`, y quien la recibió sólo la reenvió desde
+     * su registro (art. 16.4 de la Ley 39/2015). Lo estrenaron las dos que el
+     * Ayuntamiento de Riba-roja reenvió por ORVE el 8-10-2026, cuya comunicación
+     * dice sólo que «fue tramitada… a través de ORVE»: sin este campo la frase
+     * decía «por considerarlo el órgano competente», un juicio que nadie hizo.
+     * El reloj no cambia.
+     */
+    porRegistro?: true
   }
   /**
    * El órgano comunicó que el plazo para resolver queda SUSPENDIDO (art. 19.3
@@ -364,9 +374,11 @@ export function fraseDeEnvio(e: EnvioSolicitud, hoy: string): string {
   // es quien la afirma.
   if (e.remitida) {
     const r = e.remitida
+    const porque = r.porRegistro
+      ? ', a la que iba dirigida, desde el registro en que se presentó, '
+      : ' por considerarlo el órgano competente para resolverla, '
     const remision =
-      `El ${enCastellano(r.fecha)} se comunicó que se había remitido a ${r.a} por considerarlo ` +
-      'el órgano competente para resolverla, ' +
+      `El ${enCastellano(r.fecha)} se comunicó que se había remitido a ${r.a}${porque}` +
       (r.recibidaEl
         ? `y consta que la recibió el ${enCastellano(r.recibidaEl)}.`
         : 'y no consta todavía cuándo la recibió.')

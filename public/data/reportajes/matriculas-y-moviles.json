@@ -65,7 +65,7 @@
   },
   "observado": {
     "titulo": "Lo que este medio vio el 11 de octubre",
-    "texto": "Este medio recorrió el domingo 11 de octubre de 2026, desde la vía pública, los tres aparcamientos que nombra el pliego, la entrada del casco y las rutas del Valle de Porxinos, donde el pliego prevé instalar los dispositivos de aforo de forma provisional por los daños de la DANA en el parque. Por qué no se esperó a que se restaurara el parque también lo dice el pliego: «con el fin de garantizar la ejecución de los Fondos Next Generation». Y condiciona ese emplazamiento a que, una vez restaurado el parque, los aparatos «deberán ser reubicados en las zonas originalmente planificadas dentro del Parque Natural del Río Túria». No fija fecha para ese traslado. Quién aprobó ese emplazamiento, y cuándo y con qué dinero se hará el traslado, está pedido al Ayuntamiento —apartado 10— y a la Generalitat.",
+    "texto": "Este medio recorrió el domingo 11 de octubre de 2026, desde la vía pública, los tres aparcamientos que nombra el pliego, la entrada del casco y las rutas del Valle de Porxinos, donde el pliego prevé instalar los dispositivos de aforo de forma provisional por los daños de la DANA en el parque. Por qué no se esperó a que se restaurara el parque también lo dice el pliego: «con el fin de garantizar la ejecución de los Fondos Next Generation». Y condiciona ese emplazamiento a que, una vez restaurado el parque, los aparatos «deberán ser reubicados en las zonas originalmente planificadas dentro del Parque Natural del Río Túria». No fija fecha para ese traslado. Quién aprobó ese emplazamiento, y cuándo y con qué dinero se hará el traslado, está pedido al Ayuntamiento y a la Generalitat (apartado 10).",
     "filas": [
       {
         "exige": "≥5 cámaras con reconocimiento de matrículas en tres aparcamientos",
@@ -192,8 +192,8 @@
   ],
   "preguntasNota": "Las preguntas 1, 2 y 8 forman parte de la solicitud de acceso a la información registrada ante el Ayuntamiento de Riba-roja de Túria (abajo, con su plazo calculado el día que se lee). La 3 se le planteó a la adjudicataria, Gimeno Digital Technologies, el 11 de octubre. De la 4 a la 7 nacen de la visita del 11 de octubre y se remitieron al Ayuntamiento por correo electrónico ese mismo día, como preguntas de prensa; la 4 y la 8, también a la adjudicataria. Toda respuesta se publicará íntegra y sin editar junto a este reportaje.",
   "solicitudes": {
-    "titulo": "Lo que se ha pedido al Ayuntamiento y desde cuándo corre el plazo",
-    "nota": "La primera solicitud se envió por correo electrónico y, a indicación del Área de Transparencia del Ayuntamiento, se presentó después por su Registro de Entrada; la segunda, sobre el emplazamiento provisional, se presentó directamente por esa vía. De las dos consta el asiento del mismo órgano que las resuelve, así que su plazo se cuenta desde la fecha de registro y se puede afirmar.",
+    "titulo": "Lo que se ha pedido y desde cuándo corre el plazo",
+    "nota": "La primera solicitud se envió por correo electrónico y, a indicación del Área de Transparencia del Ayuntamiento, se presentó después por su Registro de Entrada; la segunda, sobre el emplazamiento provisional, se presentó directamente por esa vía. De esas dos consta el asiento del mismo órgano que las resuelve, así que su plazo se cuenta desde la fecha de registro y se puede afirmar. La tercera se presentó por el registro electrónico de la Generalitat, que la remitió a Turisme Comunitat Valenciana: hasta que conste cuándo la recibió éste —la fecha que cuenta para el artículo 20.1—, su plazo se cuenta desde la comunicación de la remisión y no se presenta como vencimiento acreditado.",
     "items": [
       {
         "organismo": "Ayuntamiento de Riba-roja de Túria",
@@ -214,6 +214,25 @@
         "entradaEl": "2026-10-13",
         "pide": "Copia de la aprobación del emplazamiento provisional de los dispositivos en el Valle de Porxinos y de la solicitud que la motivó; de los informes que valoraran alternativas —aplazar la actuación hasta la restauración del parque, reprogramarla o renunciar a ella—; del acta de recepción del suministro; de la justificación de la actuación nº 9 en lo que acredite dónde estaban instalados los dispositivos; y el calendario y el presupuesto previstos para trasladarlos al parque.",
         "respuesta": null
+      },
+      {
+        "organismo": "Turisme Comunitat Valenciana",
+        "calendario": "generalitat-en-valencia",
+        "enviadaEl": "2026-10-12",
+        "via": "el registro electrónico de la Generalitat",
+        "registro": "GVRTE/2026/4658748",
+        "pide": "Si aprobó Turisme Comunitat Valenciana u otro órgano el emplazamiento provisional de los dispositivos en el Valle de Porxinos, con copia de la resolución y de la solicitud del Ayuntamiento; si la actuación nº 9 se dio por ejecutada, a efectos del hito nº 221, con los dispositivos en ese emplazamiento; y el plazo, las condiciones y las consecuencias para la financiación de su traslado al parque.",
+        "respuesta": null,
+        "incidencias": [
+          {
+            "fecha": "2026-10-15",
+            "texto": "El 15 de octubre la Conselleria de Industria, Turismo, Innovación y Comercio comunicó que la información pedida no obra en su poder y que había remitido la solicitud a Turisme Comunitat Valenciana por considerarlo el órgano competente (expediente GVAGIP/2026/886; cita el artículo 50.1 del Decreto 105/2017). No resuelve nada de lo pedido."
+          }
+        ],
+        "remitida": {
+          "fecha": "2026-10-15",
+          "a": "Turisme Comunitat Valenciana"
+        }
       }
     ]
   },
