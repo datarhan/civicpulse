@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-15T09:22:44.987Z",
+  "generatedAt": "2026-10-15T12:32:27.117Z",
   "source": "https://serviciostelematicosext.hacienda.gob.es/SGFAL/CONPREL/Consulta/DescargaFichero?CCAA=17&TipoDato=Presupuestos&Ejercicio=2025&TipoPublicacion=Definitiva",
   "kind": "presupuesto-inicial",
   "snapshot": {
@@ -130,6 +130,7 @@
         "amount": 7657419.12
       }
     ],
+    "sinDato": [],
     "source": "https://serviciostelematicosext.hacienda.gob.es/SGFAL/CONPREL/Consulta/DescargaFichero?CCAA=17&TipoDato=Presupuestos&Ejercicio=2025&TipoPublicacion=Definitiva"
   },
   "pares": {
@@ -495,6 +496,7 @@
         "poblacion": 17866,
         "gastoPorHabitante": 1036.593854808015
       }
-    ]
+    ],
+    "sinDatoDeGasto": []
   }
 }
