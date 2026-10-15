@@ -752,21 +752,31 @@ export default function Metodologia() {
             modo que el fallo original no puede repetirse por descuido.
           </li>
           <li>
-            <strong>Hoy no hay ningún desglose cotejado, y no es por dejadez.</strong> El documento
-            que zanjaría un desglose es el acta, y este proyecto <em>no puede descargarla</em>: el
-            portal municipal se reorganizó dos veces en 2026 y el descargador de actas quedó
-            apuntando a rutas que ya no existen. No hay ni una sola acta almacenada aquí; las 45
-            transcripciones que hay en disco son todas automáticas. Preferimos decirlo así —fuente
-            inaccesible— antes que dejar entender que alguien no ha hecho el trabajo.
+            {/* Decía «Hoy no hay ningún desglose cotejado… este proyecto no puede
+                descargarla: el portal municipal se reorganizó dos veces en 2026…
+                las 45 transcripciones». Lo escribimos el 09-08-2026 y dejó de ser
+                cierto el 13-10, cuando encontramos las actas en regmeet (punto
+                primero de esta lista); una revisión externa lo citó como hecho el
+                15-10. La cifra vive en /datos, que la deriva del fichero. */}
+            <strong>El acta ya se puede leer, y es contra lo que se coteja.</strong> Hasta octubre
+            de 2026 buscábamos las actas sólo en ribarroja.es y no las encontrábamos; están en la
+            pestaña «Documentos» de cada sesión en regmeet. Los desgloses que hemos leído del acta
+            lo dicen como fuente y no llevan la marca; los que todavía salen de la transcripción la
+            llevan hasta que alguien los coteje contra el acta y firme. Cuántos quedan de cada clase
+            lo da{' '}
+            <a href="/datos" style={{ color: 'var(--civic)' }}>
+              /datos
+            </a>
+            , calculado del propio fichero de votos.
           </li>
           <li>
             <strong>El plazo debe venir del acta.</strong> Para los votos de pleno, un{' '}
             <code>dueBy</code> sólo se publica acompañado de una cita verbatim del acuerdo (
             <code>dueBySource</code>, ≥20 caracteres). Sin cita literal no hay plazo. Lo que
             comprueba el validador es la forma —que la cita exista y tenga cuerpo—; que la cita
-            sostenga de verdad el plazo lo firma una persona, y contra la fuente que hay, porque el
-            acta no se puede descargar (dos puntos más arriba). Un plazo que no lo aguanta se retira
-            con su motivo firmado, sin tocar el resultado de la votación.
+            sostenga de verdad el plazo lo firma una persona, y contra el acta cuando está
+            publicada. Un plazo que no lo aguanta se retira con su motivo firmado, sin tocar el
+            resultado de la votación.
           </li>
           <li>
             <strong>El grupo también debe venir de la fuente.</strong> Cuando la fuente registra un

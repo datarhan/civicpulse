@@ -11,9 +11,9 @@
  * Sources, plural — and that is the point. A record asserts an OUTCOME and a
  * per-bloc BREAKDOWN, and in practice they come from different documents: the
  * council's session portal publishes the orden del día and the result, the
- * acta publishes both, and the session transcript carries the nominal call.
- * Each half cites its own source in `provenance`; see the block above
- * `VOTE_SOURCE_KINDS` for what went wrong when they shared one. The acuerdo
+ * acta publishes both, and the session transcript carries the call to vote,
+ * group by group. Each half cites its own source in `provenance`; see the block
+ * above `VOTE_SOURCE_KINDS` for what went wrong when they shared one. The acuerdo
  * title is quoted verbatim from the orden del día either way.
  *
  * Party bloc identifiers mirror src/hooks/useOfficials.js PARTY_COLORS. Any
@@ -150,9 +150,9 @@ export const VOTE_SOURCE_KINDS = {
     unverifiedNote: null,
   },
   /** Whisper transcript of the session audio, published under
-   *  /data/pleno-transcripts/. Carries the nominal call, so it CAN support a
-   *  breakdown — but it is machine-written, and three of the first nineteen
-   *  breakdowns taken from it were wrong. Hence `verification`. */
+   *  /data/pleno-transcripts/. Carries the call to vote, group by group, so it
+   *  CAN support a breakdown — but it is machine-written, and three of the first
+   *  nineteen breakdowns taken from it were wrong. Hence `verification`. */
   transcripcion: {
     label: 'Transcripción automática de la sesión',
     publishesOutcome: true,
@@ -234,7 +234,7 @@ export function voteSourceDerivedFrom(kind: VoteSourceKind): VoteSourceKind | nu
  * check. But independence here is asked of the ERROR the verification exists to
  * catch, and that error is the transcription step: Whisper mishearing «tretze»
  * as «tres», dropping a bloc, or hallucinating a stretch outright. The video is
- * upstream of that step, and a human watching the nominal call is a different
+ * upstream of that step, and a human watching the vote is a different
  * reader, not a second machine. Rejecting it would make the acta the only
  * admissible check. When this was decided (2026-08) the acta was believed
  * unfetchable; since 2026-10-13 the signed actas are indexed from regmeet
