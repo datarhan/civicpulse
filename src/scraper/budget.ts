@@ -1,27 +1,45 @@
 import * as XLSX from 'xlsx'
 
+// Un importe es `null` cuando la celda de CONPREL viene vacía o no se puede
+// leer como cifra. Nunca 0: un capítulo de verdad a cero llega como `0`
+// numérico en la descarga, y confundir los dos publicaría «aprobado a 0 €» de
+// algo que la fuente no dice (CLAUDE.md, regla 3).
 export interface Chapter {
   code: string
   label: string
-  amount: number
+  amount: number | null
 }
 
 export interface ProgramGroup {
   label: string
-  amount: number
+  amount: number | null
+}
+
+/** Una celda de la fila que la fuente dejó vacía o ilegible. */
+export interface CeldaSinDato {
+  /** Ruta del campo en el snapshot: `totalExpense`, `expenseByEconomicChapter.4`… */
+  campo: string
+  /** Su rótulo, para que la página pueda decir cuál falta. */
+  etiqueta: string
 }
 
 export interface BudgetSnapshot {
   ineCode: string
   name: string
   year: number
-  population: number
-  totalRevenue: number
-  totalExpense: number
-  balance: number
+  population: number | null
+  totalRevenue: number | null
+  totalExpense: number | null
+  /** Ingresos − gastos; null si falta cualquiera de los dos. */
+  balance: number | null
   revenueByEconomicChapter: Chapter[]
   expenseByEconomicChapter: Chapter[]
   expenseByProgram: ProgramGroup[]
+  /**
+   * Lo que la fila no trae. Vacío significa que se leyeron TODAS sus celdas,
+   * que es distinto de no haber mirado: el campo existe siempre.
+   */
+  sinDato: CeldaSinDato[]
   source: string
 }
 
@@ -69,14 +87,23 @@ interface ParseOpts {
   sheetName?: string // default: 'Comunitat Valenciana'
 }
 
-function num(v: unknown): number {
-  if (typeof v === 'number') return v
-  if (typeof v === 'string') {
-    const cleaned = v.replace(/[.\s]/g, '').replace(',', '.')
-    const n = parseFloat(cleaned)
-    return Number.isFinite(n) ? n : 0
-  }
-  return 0
+/** «1.234,56», «-1.000», «0»: miles con punto, decimales con coma, nada más. */
+const IMPORTE_ES = /^-?\d+(,\d+)?$/
+
+/**
+ * Una celda de CONPREL como importe, o `null` si no lo es.
+ *
+ * Devolvía 0 por una celda vacía, un texto ilegible o un tipo que no fuera
+ * número ni cadena, y `parseFloat` daba 12 por «12abc». Un 0 inventado se
+ * publicaba como cifra; ahora la ausencia llega como ausencia y quien la pinta
+ * decide cómo decirla.
+ */
+export function importe(v: unknown): number | null {
+  if (typeof v === 'number') return Number.isFinite(v) ? v : null
+  if (typeof v !== 'string') return null
+  const limpio = v.replace(/[.\s]/g, '')
+  if (!IMPORTE_ES.test(limpio)) return null
+  return Number(limpio.replace(',', '.'))
 }
 
 export function parseConprelBudget(
@@ -116,23 +143,34 @@ export function parseConprelBudget(
     //   26..31 expense groups by program
     //   32     Total gastos (duplicate)
     const name = String(row[3] ?? '').trim()
-    const population = num(row[4])
+    const population = importe(row[4])
+
+    // Cada celda que no se deja leer queda anotada aquí, con su rótulo. Los
+    // totales son los que declara la fuente: si falta uno no se rehace
+    // sumando capítulos, porque eso publicaría una suma nuestra como cifra
+    // del ministerio.
+    const sinDato: CeldaSinDato[] = []
+    const lee = (col: number, campo: string, etiqueta: string): number | null => {
+      const v = importe(row[col])
+      if (v === null) sinDato.push({ campo, etiqueta })
+      return v
+    }
 
     const revenueByEconomicChapter = REV_LABELS.map((label, i) => ({
       code: String(i + 1),
       label,
-      amount: num(row[6 + i]),
+      amount: lee(6 + i, `revenueByEconomicChapter.${i + 1}`, label),
     }))
-    const totalRevenue = num(row[15])
+    const totalRevenue = lee(15, 'totalRevenue', 'Total ingresos')
     const expenseByEconomicChapter = EXP_LABELS.map((label, i) => ({
       code: String(i + 1),
       label,
-      amount: num(row[16 + i]),
+      amount: lee(16 + i, `expenseByEconomicChapter.${i + 1}`, label),
     }))
-    const totalExpense = num(row[25])
+    const totalExpense = lee(25, 'totalExpense', 'Total gastos')
     const expenseByProgram = PROG_LABELS.map((label, i) => ({
       label,
-      amount: num(row[26 + i]),
+      amount: lee(26 + i, `expenseByProgram.${i + 1}`, label),
     }))
 
     return {
@@ -142,10 +180,11 @@ export function parseConprelBudget(
       population,
       totalRevenue,
       totalExpense,
-      balance: totalRevenue - totalExpense,
+      balance: totalRevenue !== null && totalExpense !== null ? totalRevenue - totalExpense : null,
       revenueByEconomicChapter,
       expenseByEconomicChapter,
       expenseByProgram,
+      sinDato,
       source: SOURCE_URL(opts.year),
     }
   }
@@ -157,10 +196,10 @@ export interface ConprelMunicipio {
   ine: string
   nombre: string
   poblacion: number
-  /** Total de gastos del presupuesto inicial, columna «Total gastos». */
-  gastoTotal: number
-  /** Total de ingresos, para poder ver si la fila cuadra consigo misma. */
-  ingresoTotal: number
+  /** Total de gastos del presupuesto inicial, columna «Total gastos»; null si no consta. */
+  gastoTotal: number | null
+  /** Total de ingresos, para poder ver si la fila cuadra consigo misma; null si no consta. */
+  ingresoTotal: number | null
 }
 
 /**
@@ -199,8 +238,10 @@ export function parseConprelRoster(
       .replace(/\D/g, '')
       .padStart(3, '0')
     const nombre = String(row[3] ?? '').trim()
-    const poblacion = num(row[4])
-    if (pr === '00' || !nombre || poblacion <= 0) continue
+    const poblacion = importe(row[4])
+    // Sin población la fila no es un municipio que se pueda dimensionar
+    // (diputaciones, mancomunidades): se salta, no se cuenta como 0 habitantes.
+    if (pr === '00' || !nombre || poblacion === null || poblacion <= 0) continue
     const ine = pr + cor
     // A repeated INE code would mean the sheet changed shape under us; keeping
     // the first and dropping the rest is safe here only because the duplicate
@@ -210,7 +251,13 @@ export function parseConprelRoster(
     // Mismas columnas que usa parseConprelBudget: 15 total ingresos, 25 total
     // gastos. Se leen aquí para poder comparar el gasto por habitante contra
     // municipios del mismo tamaño sin descargar nada más.
-    out.push({ ine, nombre, poblacion, gastoTotal: num(row[25]), ingresoTotal: num(row[15]) })
+    out.push({
+      ine,
+      nombre,
+      poblacion,
+      gastoTotal: importe(row[25]),
+      ingresoTotal: importe(row[15]),
+    })
   }
   return out
 }

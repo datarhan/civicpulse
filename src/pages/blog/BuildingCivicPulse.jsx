@@ -46,6 +46,23 @@ function Point({ lead, children }) {
 
 const LINK = { color: 'var(--civic)' }
 
+// Published 2026-07-09. On 2026-10-15 section 04 was corrected: it said no
+// machine output reached the public and that verification had no LLM in it,
+// and neither was true on the day it went up (auto-curate-findings.ts dates
+// from 2026-04-27, auto-curate-promises.ts from 2026-07-02, the LLM second-pass
+// verifier from 2026-04-25). The corrected text is in place; the sentences it
+// replaced are quoted, verbatim, in the corrections log at the end, because a
+// correction that leaves no record is a silent rewrite (CLAUDE.md, rule 4).
+// The same correction went to docs/blog/2026-building-a-town-watchdog-solo-with-ai.md.
+const PUBLICADO = '9 July 2026'
+const ANCLA_CORRECCIONES = 'corrections'
+
+const CORRECCION = {
+  borderLeft: '3px solid var(--crit)',
+  background: 'var(--crit-soft)',
+  borderRadius: 'var(--r-input)',
+}
+
 export default function BuildingCivicPulse() {
   return (
     <div
@@ -94,6 +111,26 @@ export default function BuildingCivicPulse() {
         The headline is that an AI wrote most of the code. That&rsquo;s the least interesting thing
         here. The interesting thing is the engineering that keeps an AI-assisted watchdog from
         quietly manufacturing a defamation suit with a real person&rsquo;s name on it.
+      </p>
+      <p
+        className="mono"
+        style={{
+          ...CORRECCION,
+          padding: '8px 12px',
+          margin: '-12px 0 30px',
+          fontSize: 'var(--fs-meta)',
+          lineHeight: 1.5,
+          color: 'var(--ink70)',
+        }}
+      >
+        Published {PUBLICADO} ·{' '}
+        <strong style={{ color: 'var(--crit-ink)' }}>corrected 15 October 2026</strong> ·{' '}
+        <a
+          href={`#${ANCLA_CORRECCIONES}`}
+          style={{ color: 'var(--crit-ink)', whiteSpace: 'nowrap' }}
+        >
+          see the correction ↓
+        </a>
       </p>
 
       <article style={{ color: 'var(--ink70)' }}>
@@ -205,16 +242,23 @@ export default function BuildingCivicPulse() {
           This is the core. The site makes claims about named elected officials, so the parts that
           do are engineered as legal architecture. The principle:{' '}
           <b style={{ color: 'var(--ink)' }}>
-            machine inference is never the last step before publication.
+            a model never gets the last word on a person or on a failure, and what it publishes on
+            its own says so.
           </b>
         </p>
-        <Point lead="Two files, never merged.">
-          The promise tracker, the findings, and the AI-drafted reports each have a human-curated
-          published file and a separate machine-written suggestions file. Inference can only write
-          to the suggestions file &mdash; whose return type doesn&rsquo;t even <i>include</i> the
-          dangerous statuses (&ldquo;broken,&rdquo; &ldquo;unfulfilled&rdquo;). Suggestions render
-          as &ldquo;automatic proposal, pending review&rdquo; and never substitute for a curated
-          status; a schema validator enforces every invariant at write time.
+        <Point lead="Suggestions stay suggestions; machine text is labelled.">
+          The promise tracker, the findings, and the AI-drafted reports each have a published file
+          and a separate machine-written suggestions file. A suggestion renders as &ldquo;automatic
+          proposal, pending review&rdquo; and never substitutes for a published status. A narrow
+          band does publish without a human, and says so where it appears: a model-proposed promise
+          whose quote is anchored verbatim to its source, or an advance to &ldquo;in progress&rdquo;
+          anchored to a real contract, subsidy or budget row, goes live marked &ldquo;published
+          automatically, review pending&rdquo;; an informational council finding whose title and
+          summary a model wrote is marked &ldquo;automatic drafting,&rdquo; and that class publishes
+          unattended only while its measured precision clears the bar. &ldquo;Partial,&rdquo;
+          &ldquo;fulfilled,&rdquo; &ldquo;not carried out,&rdquo; every critical finding, and
+          anything attributed to a named person need a human. A quote that isn&rsquo;t verbatim in
+          its source is rejected; a schema validator enforces every invariant at write time.
         </Point>
         <Point lead="Bloc-level attribution by default.">
           An extracted claim is attributed to a party group, not a person &mdash; the field is
@@ -222,13 +266,15 @@ export default function BuildingCivicPulse() {
           by a high-confidence voice match whose party even agrees. Naming the individual is a
           separate step a human takes after checking the audio.
         </Point>
-        <Point lead="Verification has no LLM in it.">
-          The verifier &mdash; the thing that decides whether &ldquo;we spent X on Y&rdquo; holds up
-          &mdash; is a pure, deterministic function. No model, no network. It cross-references the
-          claim against contracts, subsidies, budget, and prior claims, and returns a verdict with
-          citations. Opinion statements are hard-skipped as un-verifiable regardless of nearby
-          evidence &mdash; policy, not a heuristic the model can talk itself out of. The LLM
-          extracts <i>candidate</i> claims; it never decides whether one is true.
+        <Point lead="The first verifier is deterministic; a model only gives a second opinion.">
+          The first pass &mdash; the thing that checks whether &ldquo;we spent X on Y&rdquo; holds
+          up &mdash; is a pure, deterministic function. No model, no network. It cross-references
+          the claim against contracts, subsidies, budget, and prior claims, and returns a verdict
+          with citations. On the claims it leaves unmatched, a model scores the shortlisted records
+          it is handed and can cite nothing else; what it finds supported waits in an unpublished
+          queue until a person signs the upgrade. A later model pass re-reads published verdicts and
+          may only retract them. Opinion statements are hard-skipped as un-verifiable regardless of
+          nearby evidence &mdash; policy, not a heuristic the model can talk itself out of.
         </Point>
         <Point lead="Right of reply, everywhere.">
           Every finding, promise, and report carries a structured right-of-reply path &mdash; a
@@ -238,8 +284,10 @@ export default function BuildingCivicPulse() {
         <p>
           None of this is AI safety in the abstract. It&rsquo;s the concrete answer to &ldquo;what
           happens the first time the model is confidently wrong about a named human being?&rdquo;
-          &mdash; the answer is <i>nothing reaches the public</i>, because a model&rsquo;s output is
-          never the last node in the graph on a legally-material surface.
+          &mdash; the answer is that it cannot say anything new about that person on its own: naming
+          an individual, every strong verdict, and every critical finding take a human signature,
+          and the little a model does publish alone is labelled as machine-made and can be retracted
+          without one.
         </p>
 
         <SecHead num="05" kicker="Honesty, part two" title="What the AI actually did" />
@@ -250,10 +298,10 @@ export default function BuildingCivicPulse() {
           &ldquo;here&rsquo;s a real fixture and a failing test; make it pass.&rdquo; Where
           it&rsquo;s <i>not</i> trusted &mdash; and where the design reflects that &mdash; is
           judgment on legally-material output. The schemas, the validators, the honesty gates, the
-          deterministic verifier, the two-file separation: those are the parts that assume the model{' '}
-          <i>will</i> eventually be wrong and make that harmless. The interesting engineering was
-          never &ldquo;prompt it better.&rdquo; It was building the rails so that being solo-plus-AI
-          doesn&rsquo;t mean being one hallucination away from a lawsuit.
+          deterministic first-pass verifier, the suggestions files: those are the parts that assume
+          the model <i>will</i> eventually be wrong and make that harmless. The interesting
+          engineering was never &ldquo;prompt it better.&rdquo; It was building the rails so that
+          being solo-plus-AI doesn&rsquo;t mean being one hallucination away from a lawsuit.
         </p>
 
         <SecHead num="06" kicker="Scale" title="Why one town is the whole point" />
@@ -338,6 +386,81 @@ export default function BuildingCivicPulse() {
           </a>{' '}
           · civicpulse.es
         </p>
+
+        <section
+          id={ANCLA_CORRECCIONES}
+          aria-labelledby={`${ANCLA_CORRECCIONES}-title`}
+          style={{ scrollMarginTop: 72, margin: '36px 0 0' }}
+        >
+          <h2
+            id={`${ANCLA_CORRECCIONES}-title`}
+            className="mono"
+            style={{
+              fontSize: 'var(--fs-micro)',
+              fontWeight: 500,
+              color: 'var(--ink50)',
+              textTransform: 'uppercase',
+              letterSpacing: '.08em',
+              margin: '0 0 12px',
+              paddingTop: 14,
+              borderTop: '1px solid var(--border)',
+            }}
+          >
+            Corrections
+          </h2>
+          <div
+            style={{
+              ...CORRECCION,
+              borderRadius: 'var(--r-card)',
+              padding: '12px 14px',
+              fontSize: 'var(--fs-aux)',
+              lineHeight: 1.55,
+            }}
+          >
+            <p style={{ margin: '0 0 8px' }}>
+              <strong style={{ color: 'var(--crit-ink)' }}>15 October 2026.</strong> Section 04
+              overstated what the AI does not do. When this post went up on {PUBLICADO}, it said:
+            </p>
+            <ul style={{ margin: '0 0 8px', paddingLeft: 20 }}>
+              <li>
+                &ldquo;machine inference is never the last step before publication&rdquo; and
+                &ldquo;Inference can only write to the suggestions file&rdquo;;
+              </li>
+              <li>
+                &ldquo;The LLM extracts <i>candidate</i> claims; it never decides whether one is
+                true&rdquo;;
+              </li>
+              <li>
+                and, of a model confidently wrong about a named person, &ldquo;the answer is{' '}
+                <i>nothing reaches the public</i>&rdquo;.
+              </li>
+            </ul>
+            <p style={{ margin: '0 0 8px' }}>
+              None of it was true that day, and the site&rsquo;s own{' '}
+              <a href="/metodologia#auto-curacion-promesas" style={LINK}>
+                methodology
+              </a>{' '}
+              said so. The promise tracker already published model-proposed promises, and advances
+              to &ldquo;in progress&rdquo;, without a human; informational council findings with a
+              model-written title and summary were already on the site; and a model second pass had
+              already upgraded claims the deterministic verifier left without a match. What holds
+              today is narrower, and section 04 now says that instead: machine text is labelled, a
+              quote not verbatim in its source is rejected, a model may retract a verdict but only a
+              person can raise one, and the strong verdicts, critical findings and anything
+              attributed to a named person need a human.
+            </p>
+            <p style={{ margin: 0 }}>
+              The original text stays in the{' '}
+              <a
+                href="https://github.com/datarhan/civicpulse/commits/main/src/pages/blog/BuildingCivicPulse.jsx"
+                style={LINK}
+              >
+                public history of this page
+              </a>
+              .
+            </p>
+          </div>
+        </section>
       </article>
     </div>
   )
