@@ -204,9 +204,9 @@ esta web.
 > en el mapa cuando el propio contrato nombra el lugar—; y las quejas vecinales
 > con el reloj legal que obliga a responder.
 >
-> **Investiga.** Sobre esos datos hace periodismo local: cuatro investigaciones
-> publicadas en su primer municipio, Riba-roja de Túria. Cada afirmación lleva
-> su cita, y quien es nombrado tiene derecho de réplica.
+> **Investiga.** Sobre esos datos hace periodismo local: reportajes de
+> investigación publicados sobre su primer municipio, Riba-roja de Túria. Cada
+> afirmación lleva su cita, y quien es nombrado tiene derecho de réplica.
 >
 > **Escala.** Las fuentes nacionales cubren los ~8.100 municipios españoles por
 > código INE: replicar la capa de datos es ingeniería, no investigación.
@@ -279,7 +279,7 @@ la frase sale de los textos **antes** de que la copia se envíe a nadie.
 | «a qué empresas va cada contrato»                                                             | `/presupuesto` + mapa de la portada.                                                                                                                         |
 | «situado en el mapa cuando el propio contrato nombra el lugar»                                | `place-resolver` (cuatro puertas, infra-empareja a propósito); `MoneyCoverage` declara la fracción cubierta.                                                 |
 | «las quejas vecinales con su reloj legal»                                                     | `/quejas` — plazos LPACAP + escalado al Síndic.                                                                                                              |
-| «cuatro investigaciones publicadas»                                                           | `/reportajes` — reconstrucción DANA, basuras, coste efectivo, inteligencia turística (todas `estado: publicado`).                                            |
+| «reportajes de investigación publicados»                                                      | `/reportajes` — los que lista `src/reportajes.js` con `meta.estado === 'publicado'`. **La frase no lleva recuento:** «cuatro investigaciones publicadas» se quedó vieja en cuanto se publicó la siguiente; el número se lee del índice, nunca se escribe aquí. |
 | «dónde se acaban los datos oficiales»                                                         | `/lab-health` + `MoneyCoverage` + las especificaciones fallidas de `/laboratorio/frontera`.                                                                   |
 | «la puntuación cambia según cuál de varias cestas igual de defendibles elijamos»              | `/laboratorio/frontera` — `dea.json`: `propia.theta` de cada cesta publicada en la misma entrega; ninguna entrega con dos cestas publicadas les dio la misma. Sustituye a «cuatro cestas… mueven la puntuación media escala», que ninguna entrega sostuvo: de 2014 a 2024 nunca hubo cuatro cestas con puntuación a la vez. |
 | «con las más completas casi nunca se puede calcular»                                          | `dea.json` — `serie[].estado` de las cestas de cuatro y cinco servicios: `insuficiente` casi todas las entregas (la de cinco, todas); el motivo, en `motivoEstado`. |

@@ -144,7 +144,7 @@ export default function About() {
           LLM-extracted claims checked first by a deterministic verifier against the
           procurement/budget/subsidy record, findings with a built-in right of reply (the ones a
           machine drafted say so), geolocated contract spending, and a Telegram complaints channel
-          with statutory response clocks — plus four published investigations, from the DANA
+          with statutory response clocks — plus published investigations, from the DANA
           reconstruction money to the waste-collection contract. Every editorial surface is gated by
           documented libel discipline (
           <a href="/metodologia" style={{ color: 'var(--civic)' }}>
