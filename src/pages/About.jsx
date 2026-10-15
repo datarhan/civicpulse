@@ -24,7 +24,7 @@ const TIER_ROWS = [
   [
     'T2 · Semi',
     'hundreds',
-    'full-council transcription + claim extraction where session video exists; machine-suggested, human-gated',
+    'full-council transcription + claim extraction where session video exists; machine-extracted, shown through a fixed editorial gate, attributed to party blocs — naming a councillor takes a human',
   ],
   [
     'T3 · Editorial',
@@ -141,11 +141,12 @@ export default function About() {
           law actually requires for the post — the effective cost of each municipal service against
           the ministry&rsquo;s own peer data, supplier-payment periods and budget execution, 34
           nightly scrapers over public-sector open data, Whisper-transcribed council sessions,
-          LLM-extracted claims verified deterministically against the procurement/budget/subsidy
-          record, human-curated findings with a built-in right of reply, geolocated contract
-          spending, and a Telegram complaints channel with statutory response clocks — plus four
-          published investigations, from the DANA reconstruction money to the waste-collection
-          contract. Every editorial surface is gated by documented libel discipline (
+          LLM-extracted claims checked first by a deterministic verifier against the
+          procurement/budget/subsidy record, findings with a built-in right of reply (the ones a
+          machine drafted say so), geolocated contract spending, and a Telegram complaints channel
+          with statutory response clocks — plus four published investigations, from the DANA
+          reconstruction money to the waste-collection contract. Every editorial surface is gated by
+          documented libel discipline (
           <a href="/metodologia" style={{ color: 'var(--civic)' }}>
             methodology, in Spanish
           </a>

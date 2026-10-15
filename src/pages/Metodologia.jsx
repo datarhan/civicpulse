@@ -1148,6 +1148,26 @@ export default function Metodologia() {
               se avisan a quien modera.
             </li>
           </ul>
+          {/* 15-10-2026. docs/REVIEW_2026-09.md §25: auto-curate-press.ts y el
+              auto-curador de promesas no llaman a decideAutomation, y esta tarjeta
+              lo callaba mientras el README decía que nada automático subía nada. */}
+          <p>
+            <strong>
+              Dos procesos son anteriores a esta política y todavía no pasan por ella.
+            </strong>{' '}
+            La{' '}
+            <a href="#auto-curacion-promesas" style={{ color: 'var(--civic)' }}>
+              auto-curación de /promesas
+            </a>{' '}
+            publica con su propio umbral de confianza (≥0,70) y su anclaje a la fuente, sin una
+            precisión medida, y lo que publica lleva el rótulo «publicada automáticamente · revisión
+            pendiente». La del{' '}
+            <a href="#laboratorio-prensa" style={{ color: 'var(--civic)' }}>
+              laboratorio de prensa
+            </a>{' '}
+            publica hallazgos informativos con sus propias reglas. Ninguno de los dos publica un
+            incumplimiento ni un hallazgo crítico.
+          </p>
           <p style={{ marginBottom: 0 }}>
             La suspensión electoral (LOREG art. 50) prevalece sobre todo lo anterior: con{' '}
             <code>frozenUntil</code> activo no se publica ni se retracta nada de forma automática.
