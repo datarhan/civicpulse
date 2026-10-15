@@ -678,14 +678,23 @@ function CapitulosCard() {
   if (!p || filas.length === 0 || !(total?.actual > 0)) return null
   const dominante = capituloDominante(p.gastos.chapters, total)
   const capMax = Math.max(...filas.map((f) => f.definitivo), 1)
-  // Qué dice de ese mismo capítulo la OTRA fuente. `contrastarPresupuesto`
-  // devuelve null cuando los ejercicios no casan, y entonces no hay dos
-  // presupuestos del mismo año que contrastar: la frase se queda en la simple.
-  const contraste = contrastarPresupuesto(aprobado?.snapshot, p)
-  const segunConprel =
-    dominante && contraste
-      ? contraste.capitulos.find((c) => c.code === String(dominante.capitulo))
+  // Qué dice de ese mismo capítulo la OTRA fuente. Si los ejercicios no casan
+  // no hay dos presupuestos del mismo año que contrastar y la frase se queda
+  // en la simple. Se lee el capítulo del snapshot, no de
+  // `contrastarPresupuesto`: ésta calla entera cuando a CONPREL le falta el
+  // total de gastos, y el pie caía entonces en «no estaba en ninguno de los
+  // dos» con la cifra del capítulo a la vista. `conprel` es null si la fuente
+  // no trae ese capítulo.
+  const conprelMismoAnio = aprobado?.snapshot?.year === p.year ? aprobado.snapshot : null
+  const capConprel =
+    dominante && conprelMismoAnio
+      ? (conprelMismoAnio.expenseByEconomicChapter ?? []).find(
+          (c) => c.code === String(dominante.capitulo),
+        )
       : null
+  const segunConprel = capConprel
+    ? { conprel: typeof capConprel.amount === 'number' ? capConprel.amount : null }
+    : null
 
   const notaDe = (f) => {
     // La cuota de la ampliación NO se repite aquí cuando el capítulo abrió en

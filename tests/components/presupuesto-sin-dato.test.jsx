@@ -135,4 +135,23 @@ describe('/presupuesto · una celda sin dato en CONPREL', () => {
     expect(pie, 'publica 0 € como la cifra de CONPREL').not.toMatch(/le da 0\s?€/)
     expect(pie).toMatch(/CONPREL/)
   })
+
+  it('sin el TOTAL de CONPREL, el pie sigue citando el capítulo que CONPREL sí trae', async () => {
+    // `contrastarPresupuesto` calla entero cuando falta el total de gastos, y
+    // el pie leía de ahí la cifra del capítulo: caía en «no estaba en ninguno
+    // de los dos presupuestos» con 905.517 € de CONPREL en ese mismo capítulo.
+    // Lo vio el navegador, no una prueba.
+    const mapa = conHuecos((s) => {
+      s.totalExpense = null
+      s.balance = null
+      s.sinDato = [{ campo: 'totalExpense', etiqueta: 'Total gastos' }]
+    })
+    const { piezas } = await pintaYLee(escenario(mapa), 'es', {
+      lee: (c) => [...c.querySelectorAll('[data-pie="capitulos"]')].map((el) => el.textContent),
+    })
+    const pie = piezas.join(' ')
+    expect(pie, 'no encuentro el pie de la tarjeta de capítulos').toBeTruthy()
+    expect(pie).not.toMatch(/ninguno de los dos presupuestos/)
+    expect(pie).toMatch(/905\.517\s*€/)
+  })
 })
