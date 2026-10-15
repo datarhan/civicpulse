@@ -31,6 +31,7 @@ import {
   tendenciaDeuda,
   rotuloCapitulo,
   capitulosACero,
+  capitulosSinDato,
   magnitudDelEjercicio,
 } from '../src/scraper/presupuesto-lectura'
 
@@ -223,6 +224,29 @@ describe('capitulosACero · lo aprobado a cero se deja dicho, no se omite', () =
 
   it('un capítulo con importe nunca aparece', () => {
     expect(capitulosACero([{ code: '1', label: 'A', amount: 1 }])).toEqual([])
+  })
+
+  it('un capítulo SIN DATO no está «aprobado a 0 €»: eso es una afirmación', () => {
+    // La fuente no lo trae; decir que se aprobó a cero sería inventar la cifra.
+    expect(capitulosACero([{ code: '2', label: 'B', amount: null }])).toEqual([])
+    expect(capitulosACero([{ code: '2', label: 'B' } as never])).toEqual([])
+  })
+})
+
+describe('capitulosSinDato · lo que la fuente no trae se dice aparte', () => {
+  it('el CONPREL publicado trae todos sus capítulos', () => {
+    expect(capitulosSinDato(budget.snapshot.expenseByEconomicChapter)).toEqual([])
+    expect(capitulosSinDato(budget.snapshot.revenueByEconomicChapter)).toEqual([])
+  })
+
+  it('devuelve los null y no los ceros', () => {
+    const caps = [
+      { code: '1', label: 'A', amount: 10 },
+      { code: '2', label: 'B', amount: null },
+      { code: '5', label: 'C', amount: 0 },
+    ]
+    expect(capitulosSinDato(caps).map((c) => c.code)).toEqual(['2'])
+    expect(capitulosACero(caps).map((c) => c.code)).toEqual(['5'])
   })
 })
 

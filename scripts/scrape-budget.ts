@@ -44,6 +44,12 @@ const POP_MIN = 15_000
 const POP_MAX = 40_000
 
 let bandaDelUltimo: ConprelMunicipio[] = []
+/**
+ * Municipios de la banda cuyo total de gastos no consta en CONPREL. No entran
+ * en la comparación —no hay gasto por habitante sin gasto—, y el snapshot lo
+ * dice en vez de enseñar una banda más corta sin explicar por qué.
+ */
+let bandaSinGasto: ConprelMunicipio[] = []
 
 async function tryYear(year: number): Promise<BudgetSnapshot | null> {
   const url = conprelUrl(year)
@@ -71,9 +77,11 @@ async function tryYear(year: number): Promise<BudgetSnapshot | null> {
   // Del mismo fichero sale la banda de municipios comparables: el gasto por
   // habitante no significa nada suelto, y descargarlo aparte sería pedir dos
   // veces lo mismo.
-  bandaDelUltimo = parseConprelRoster(buf).filter(
-    (m) => m.poblacion >= POP_MIN && m.poblacion <= POP_MAX && m.gastoTotal > 0,
+  const enBanda = parseConprelRoster(buf).filter(
+    (m) => m.poblacion >= POP_MIN && m.poblacion <= POP_MAX,
   )
+  bandaDelUltimo = enBanda.filter((m) => m.gastoTotal !== null && m.gastoTotal > 0)
+  bandaSinGasto = enBanda.filter((m) => m.gastoTotal === null)
   const snapshot = parseConprelBudget(buf, { ineCode: INE_CODE, year })
   if (!snapshot) {
     console.warn(`[budget] ${year}: INE ${INE_CODE} not found in XLS`)
@@ -108,18 +116,33 @@ async function main() {
           ine: m.ine,
           nombre: m.nombre,
           poblacion: m.poblacion,
-          gastoPorHabitante: m.gastoTotal / m.poblacion,
+          gastoPorHabitante: m.gastoTotal! / m.poblacion,
         }))
+        .sort((a, b) => a.ine.localeCompare(b.ine)),
+      sinDatoDeGasto: bandaSinGasto
+        .filter((m) => m.ine !== INE_CODE)
+        .map((m) => ({ ine: m.ine, nombre: m.nombre }))
         .sort((a, b) => a.ine.localeCompare(b.ine)),
     },
   }
   await mkdir(dirname(OUT), { recursive: true })
   await writeFile(OUT, JSON.stringify(payload, null, 2) + '\n')
   console.log(`[budget] wrote ${OUT}`)
-  console.log(`[budget] banda ${CONJUNTO}: ${payload.pares.miembros.length} municipios comparables`)
   console.log(
-    `[budget] ${latest.year} total: €${latest.totalRevenue.toLocaleString('es-ES')} ingresos / ` +
-      `€${latest.totalExpense.toLocaleString('es-ES')} gastos`,
+    `[budget] banda ${CONJUNTO}: ${payload.pares.miembros.length} municipios comparables · ` +
+      `${payload.pares.sinDatoDeGasto.length} fuera por no constar su total de gastos`,
+  )
+  const eur = (v: number | null) => (v === null ? 'sin dato' : `€${v.toLocaleString('es-ES')}`)
+  console.log(
+    `[budget] ${latest.year} total: ${eur(latest.totalRevenue)} ingresos / ` +
+      `${eur(latest.totalExpense)} gastos`,
+  )
+  // Una fila leída entera y una fila con huecos no pueden imprimir lo mismo.
+  console.log(
+    latest.sinDato.length === 0
+      ? `[budget] ${INE_CODE}: todas las celdas leídas`
+      : `[budget] ${INE_CODE}: ${latest.sinDato.length} celda(s) sin dato en la fuente — ` +
+          latest.sinDato.map((c) => c.campo).join(', '),
   )
 }
 

@@ -21,6 +21,7 @@ import {
   capituloDominante,
   tendenciaDeuda,
   capitulosACero,
+  capitulosSinDato,
 } from '../scraper/presupuesto-lectura'
 import {
   isCommittedContract,
@@ -128,8 +129,11 @@ function Aviso({ tone = 'warn', children, id }) {
 
 // §07: la barra de magnitud lleva un solo color, el de marca. Antes recibía
 // uno de nueve por capítulo, sobre una fila que ya dice `Cap.1 · Personal`.
-function ChapterRow({ label, amount, total, nota }) {
-  const pct = total > 0 ? (amount / total) * 100 : 0
+function ChapterRow({ label, amount, total, escala, nota }) {
+  // Sin total en la fuente no hay porcentaje que dar: la barra se mide contra
+  // el capítulo mayor (`escala`) y la columna dice «—», no «0,0 %».
+  const pct = total > 0 ? (amount / total) * 100 : null
+  const ancho = pct ?? (escala > 0 ? (amount / escala) * 100 : 0)
   return (
     <div>
       <div style={{ display: 'flex', alignItems: 'baseline', gap: 10, fontSize: 'var(--fs-aux)' }}>
@@ -161,7 +165,7 @@ function ChapterRow({ label, amount, total, nota }) {
             flexShrink: 0,
           }}
         >
-          {pct1(pct)} %
+          {pct === null ? '—' : `${pct1(pct)} %`}
         </span>
       </div>
       <div
@@ -173,9 +177,49 @@ function ChapterRow({ label, amount, total, nota }) {
           overflow: 'hidden',
         }}
       >
-        <div style={{ width: pct + '%', height: '100%', background: 'var(--civic)' }} />
+        <div style={{ width: ancho + '%', height: '100%', background: 'var(--civic)' }} />
       </div>
     </div>
+  )
+}
+
+/**
+ * Lo que CONPREL no trae, dicho junto a las barras que faltan por eso.
+ *
+ * Un importe null (celda vacía o ilegible en la fuente; `budget.ts`) no tiene
+ * barra, y sin esta frase el lector no distinguiría un capítulo que falta de
+ * uno que no existe. Tampoco puede ir en la lista de «aprobado a 0 €»: eso
+ * afirmaría la cifra que no tenemos. `sinTotal` es la frase, ya traducida,
+ * para cuando falta el total y las barras se miden entre sí.
+ */
+function NotaSinDato({ marca, capitulos, sinTotal }) {
+  const t = useT()
+  if (capitulos.length === 0 && !sinTotal) return null
+  return (
+    <p
+      data-sin-dato={marca}
+      style={{
+        margin: '12px 0 0',
+        fontSize: 'var(--fs-micro)',
+        lineHeight: 1.5,
+        color: 'var(--ink50)',
+      }}
+    >
+      {capitulos.length === 1 &&
+        rellena(t('presupuesto.econ.sinDato'), {
+          code: capitulos[0].code,
+          label: capitulos[0].label.toLowerCase(),
+        })}
+      {capitulos.length > 1 &&
+        rellena(t('presupuesto.econ.sinDatoVarios'), {
+          lista: listaProsa(
+            capitulos.map((c) => `${c.code} (${c.label.toLowerCase()})`),
+            t('presupuesto.econ.cero.y'),
+          ),
+        })}
+      {capitulos.length > 0 && sinTotal ? ' ' : ''}
+      {sinTotal}
+    </p>
   )
 }
 
@@ -213,7 +257,10 @@ function Cabecera() {
   }
 
   const s = data.snapshot
-  const perCapita = s.population > 0 ? s.totalExpense / s.population : 0
+  // `totalExpense` es null cuando CONPREL no trae el total: no hay gasto por
+  // habitante que publicar, y un «0 € por habitante» lo inventaría.
+  const hayTotal = typeof s.totalExpense === 'number'
+  const perCapita = hayTotal && s.population > 0 ? s.totalExpense / s.population : null
   const exec = execData?.latest
   // The two sources disagree about the APPROVED budget itself, not merely
   // about approved-vs-spent: CONPREL publishes 41.578.252,26 € for 2025 while
@@ -254,10 +301,18 @@ function Cabecera() {
     // cuadre consigo mismo. La segunda es el estado para el que existe
     // `cuadra`, y decirle al lector que la cifra «aparecerá en cuanto se
     // publique» sería falso justo ahí.
-    lede = rellena(t(cascada ? 'presupuesto.lede.sinCuadre' : 'presupuesto.lede.soloAprobado'), {
-      year: s.year,
-      gastos: eurM(s.totalExpense, 2),
-    })
+    lede = rellena(
+      t(
+        cascada
+          ? hayTotal
+            ? 'presupuesto.lede.sinCuadre'
+            : 'presupuesto.lede.sinCuadre.sinTotal'
+          : hayTotal
+            ? 'presupuesto.lede.soloAprobado'
+            : 'presupuesto.lede.soloAprobado.sinTotal',
+      ),
+      { year: s.year, gastos: hayTotal ? eurM(s.totalExpense, 2) : '' },
+    )
   }
 
   return (
@@ -319,10 +374,10 @@ function Cabecera() {
           }}
         >
           <span>
-            {rellena(t('presupuesto.meta'), {
-              gastos: eurM(s.totalExpense, 2),
-              porHab: eur0(perCapita),
-              hab: num(s.population),
+            {rellena(t(perCapita !== null ? 'presupuesto.meta' : 'presupuesto.meta.sinTotal'), {
+              gastos: hayTotal ? eurM(s.totalExpense, 2) : '',
+              porHab: perCapita !== null ? eur0(perCapita) : '',
+              hab: s.population > 0 ? num(s.population) : '—',
               fecha: fmtDateLong(data.generatedAt, locale),
             })}
           </span>
@@ -623,14 +678,23 @@ function CapitulosCard() {
   if (!p || filas.length === 0 || !(total?.actual > 0)) return null
   const dominante = capituloDominante(p.gastos.chapters, total)
   const capMax = Math.max(...filas.map((f) => f.definitivo), 1)
-  // Qué dice de ese mismo capítulo la OTRA fuente. `contrastarPresupuesto`
-  // devuelve null cuando los ejercicios no casan, y entonces no hay dos
-  // presupuestos del mismo año que contrastar: la frase se queda en la simple.
-  const contraste = contrastarPresupuesto(aprobado?.snapshot, p)
-  const segunConprel =
-    dominante && contraste
-      ? contraste.capitulos.find((c) => c.code === String(dominante.capitulo))
+  // Qué dice de ese mismo capítulo la OTRA fuente. Si los ejercicios no casan
+  // no hay dos presupuestos del mismo año que contrastar y la frase se queda
+  // en la simple. Se lee el capítulo del snapshot, no de
+  // `contrastarPresupuesto`: ésta calla entera cuando a CONPREL le falta el
+  // total de gastos, y el pie caía entonces en «no estaba en ninguno de los
+  // dos» con la cifra del capítulo a la vista. `conprel` es null si la fuente
+  // no trae ese capítulo.
+  const conprelMismoAnio = aprobado?.snapshot?.year === p.year ? aprobado.snapshot : null
+  const capConprel =
+    dominante && conprelMismoAnio
+      ? (conprelMismoAnio.expenseByEconomicChapter ?? []).find(
+          (c) => c.code === String(dominante.capitulo),
+        )
       : null
+  const segunConprel = capConprel
+    ? { conprel: typeof capConprel.amount === 'number' ? capConprel.amount : null }
+    : null
 
   const notaDe = (f) => {
     // La cuota de la ampliación NO se repite aquí cuando el capítulo abrió en
@@ -847,7 +911,9 @@ function CapitulosCard() {
                   ? 'presupuesto.cap.pie.dominante'
                   : segunConprel?.conprel > 0
                     ? 'presupuesto.cap.pie.ceroDiscrepan'
-                    : 'presupuesto.cap.pie.cero',
+                    : segunConprel && segunConprel.conprel === null
+                      ? 'presupuesto.cap.pie.ceroSinConprel'
+                      : 'presupuesto.cap.pie.cero',
               ),
               {
                 capitulo: dominante.rotulo,
@@ -883,10 +949,17 @@ function AprobadoPar() {
   const s = data.snapshot
   const contraste = contrastarPresupuesto(s, execData?.latest)
   const desequilibrio =
-    contraste && Math.abs(contraste.desequilibrioConprel) >= TOLERANCIA_EQUILIBRIO
+    contraste &&
+    contraste.desequilibrioConprel !== null &&
+    Math.abs(contraste.desequilibrioConprel) >= TOLERANCIA_EQUILIBRIO
       ? contraste.desequilibrioConprel
       : null
   const aCero = capitulosACero(s.expenseByEconomicChapter)
+  // Lo que CONPREL no trae (null en el snapshot) no es un capítulo a cero: se
+  // dice aparte, con su propia frase, y nunca entra en la lista de «a 0 €».
+  const sinDato = capitulosSinDato(s.expenseByEconomicChapter)
+  const sinDatoIng = capitulosSinDato(s.revenueByEconomicChapter)
+  const escala = (caps) => Math.max(0, ...caps.map((c) => c.amount ?? 0))
   // Los ingresos también tienen capítulos a cero —enajenación de inversiones y
   // transferencias de capital, en 2025— y se caían del filtro `amount > 0` sin
   // que nadie lo dijera, mientras la tarjeta de al lado sí lo decía de los
@@ -910,6 +983,7 @@ function AprobadoPar() {
                 label={`Cap.${c.code} · ${c.label}`}
                 amount={c.amount}
                 total={s.totalExpense}
+                escala={escala(s.expenseByEconomicChapter)}
               />
             ))}
         </div>
@@ -935,6 +1009,11 @@ function AprobadoPar() {
                 })}
           </p>
         )}
+        <NotaSinDato
+          marca="gastos"
+          capitulos={sinDato}
+          sinTotal={s.totalExpense === null ? t('presupuesto.econ.sinTotal') : null}
+        />
       </Card>
 
       <Card>
@@ -952,6 +1031,7 @@ function AprobadoPar() {
                 label={`Cap.${c.code} · ${c.label}`}
                 amount={c.amount}
                 total={s.totalRevenue}
+                escala={escala(s.revenueByEconomicChapter)}
               />
             ))}
         </div>
@@ -977,6 +1057,11 @@ function AprobadoPar() {
                 })}
           </p>
         )}
+        <NotaSinDato
+          marca="ingresos"
+          capitulos={sinDatoIng}
+          sinTotal={s.totalRevenue === null ? t('presupuesto.ing.sinTotal') : null}
+        />
         {desequilibrio !== null && (
           <div style={{ marginTop: 12 }}>
             <Aviso tone="warn" id="descuadre">
@@ -1017,12 +1102,21 @@ function ProgramasCard() {
   if (programas.length === 0) return null
   const deudaPrograma = programas.find((g) => g.label.toLowerCase() === 'deuda pública')
   const ultimoDeuda = deudaData?.ultimo
+  // Igual que en los capítulos: sin total no hay porcentaje, y un área sin
+  // importe en CONPREL se dice, no se pinta a cero ni se calla.
+  const hayTotal = s.totalExpense > 0
+  const mayor = programas[0].amount
+  const sinDatoProg = capitulosSinDato(s.expenseByProgram)
 
   return (
     <Card>
       <SectionHead
         eyebrow={rellena(t('presupuesto.prog.eyebrow'), { year: s.year })}
-        title={rellena(t('presupuesto.prog.title'), { total: eurM(s.totalExpense, 2) })}
+        title={
+          hayTotal
+            ? rellena(t('presupuesto.prog.title'), { total: eurM(s.totalExpense, 2) })
+            : t('presupuesto.prog.title.sinTotal')
+        }
         right={
           <div
             style={{
@@ -1043,7 +1137,8 @@ function ProgramasCard() {
         style={{ display: 'flex', flexDirection: 'column', gap: 11, marginTop: 8 }}
       >
         {programas.map((g) => {
-          const pct = s.totalExpense > 0 ? (g.amount / s.totalExpense) * 100 : 0
+          const pct = hayTotal ? (g.amount / s.totalExpense) * 100 : null
+          const ancho = pct ?? (g.amount / mayor) * 100
           const glosa = GLOSA_PROGRAMA[g.label.toLowerCase()]
           return (
             <div key={g.label} className="cp-presu-prog">
@@ -1072,7 +1167,7 @@ function ProgramasCard() {
                   overflow: 'hidden',
                 }}
               >
-                <div style={{ height: '100%', width: `${pct}%`, background: 'var(--civic)' }} />
+                <div style={{ height: '100%', width: `${ancho}%`, background: 'var(--civic)' }} />
               </div>
               <div
                 className="mono"
@@ -1094,12 +1189,30 @@ function ProgramasCard() {
                   whiteSpace: 'nowrap',
                 }}
               >
-                {pct1(pct)} %
+                {pct === null ? '—' : `${pct1(pct)} %`}
               </div>
             </div>
           )
         })}
       </div>
+      {sinDatoProg.length > 0 && (
+        <p
+          data-sin-dato="programas"
+          style={{
+            margin: '12px 0 0',
+            fontSize: 'var(--fs-micro)',
+            lineHeight: 1.5,
+            color: 'var(--ink50)',
+          }}
+        >
+          {rellena(t('presupuesto.prog.sinDato'), {
+            lista: listaProsa(
+              sinDatoProg.map((g) => `«${g.label}»`),
+              t('presupuesto.econ.cero.y'),
+            ),
+          })}
+        </p>
+      )}
       {deudaPrograma && ultimoDeuda?.deudaEuros > 0 && (
         <p
           style={{
@@ -1144,8 +1257,10 @@ function DeudaVivaSection() {
   const primero = puntos[0]
   const tope = Math.max(...puntos.map((p) => p.deudaEuros), 1)
   const delta = ultimo.deudaEuros - primero.deudaEuros
+  // Con el importe sin dato en CONPREL la remisión se calla: «0,00 M€» sería
+  // una cifra que la fuente no da.
   const programaDeuda = (budget?.snapshot?.expenseByProgram ?? []).find(
-    (g) => g.label.toLowerCase() === 'deuda pública',
+    (g) => g.label.toLowerCase() === 'deuda pública' && typeof g.amount === 'number',
   )
   const reparto = data?.ultimo?.reparto
   const percentil = data?.ultimo?.percentil
