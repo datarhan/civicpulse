@@ -35,20 +35,21 @@ export const TOLERANCIA_EQUILIBRIO = 1000
 export interface CapituloContraste {
   code: string
   label: string
-  conprel: number
+  /** null cuando CONPREL no trae el capítulo: no se contrasta como si fuera 0. */
+  conprel: number | null
   municipal: number
-  diferencia: number
+  diferencia: number | null
 }
 
 export interface BudgetContraste {
   anio: number
-  /** Coinciden las dos fuentes en los ingresos iniciales. */
-  ingresosCoinciden: boolean
+  /** Coinciden las dos fuentes en los ingresos iniciales; null si CONPREL no los trae. */
+  ingresosCoinciden: boolean | null
   gastosConprel: number
   gastosMunicipal: number
   diferenciaGastos: number
-  /** Ingresos menos gastos en la fuente del ministerio. Debería ser ~0. */
-  desequilibrioConprel: number
+  /** Ingresos menos gastos en la fuente del ministerio. Debería ser ~0. Null sin ingresos. */
+  desequilibrioConprel: number | null
   capitulos: CapituloContraste[]
   /** `true` cuando hay algo que contar; si no, la página no pinta nada. */
   hayDesacuerdo: boolean
@@ -56,9 +57,9 @@ export interface BudgetContraste {
 
 interface BudgetSnapshotLike {
   year?: number
-  totalRevenue?: number
-  totalExpense?: number
-  expenseByEconomicChapter?: { code: string; label: string; amount: number }[]
+  totalRevenue?: number | null
+  totalExpense?: number | null
+  expenseByEconomicChapter?: { code: string; label: string; amount: number | null }[]
 }
 
 interface EjecucionLike {
@@ -71,6 +72,13 @@ interface EjecucionLike {
 }
 
 const num = (v: unknown): number => (typeof v === 'number' && Number.isFinite(v) ? v : 0)
+/**
+ * El lado de CONPREL se lee sin convertir la ausencia en 0: `budget.ts`
+ * publica null por una celda que la fuente no trae, y contrastar ese null
+ * como 0 daría por desacuerdo la cifra municipal entera.
+ */
+const cifra = (v: unknown): number | null =>
+  typeof v === 'number' && Number.isFinite(v) ? v : null
 
 export function contrastarPresupuesto(
   conprel: BudgetSnapshotLike | null | undefined,
@@ -81,29 +89,33 @@ export function contrastarPresupuesto(
   // tiempo. Sin año en las dos partes, no hay contraste que hacer.
   if (!conprel.year || !ejecucion.year || conprel.year !== ejecucion.year) return null
 
-  const gastosConprel = num(conprel.totalExpense)
+  const gastosConprel = cifra(conprel.totalExpense)
   const gastosMunicipal = num(ejecucion.gastos?.total?.inicial)
-  if (gastosConprel <= 0 || gastosMunicipal <= 0) return null
+  if (gastosConprel === null || gastosConprel <= 0 || gastosMunicipal <= 0) return null
 
   const capitulos: CapituloContraste[] = (conprel.expenseByEconomicChapter ?? []).map((c) => {
     const m = (ejecucion.gastos?.chapters ?? []).find((x) => String(x.capitulo) === c.code)
     const municipal = num(m?.inicial)
+    const deConprel = cifra(c.amount)
     return {
       code: c.code,
       label: c.label,
-      conprel: num(c.amount),
+      conprel: deConprel,
       municipal,
-      diferencia: num(c.amount) - municipal,
+      diferencia: deConprel === null ? null : deConprel - municipal,
     }
   })
 
-  const desequilibrioConprel = num(conprel.totalRevenue) - gastosConprel
+  const ingresosConprel = cifra(conprel.totalRevenue)
+  const desequilibrioConprel = ingresosConprel === null ? null : ingresosConprel - gastosConprel
   const diferenciaGastos = gastosConprel - gastosMunicipal
 
   return {
     anio: conprel.year,
     ingresosCoinciden:
-      Math.abs(num(conprel.totalRevenue) - num(ejecucion.ingresos?.total?.inicial)) < 1,
+      ingresosConprel === null
+        ? null
+        : Math.abs(ingresosConprel - num(ejecucion.ingresos?.total?.inicial)) < 1,
     gastosConprel,
     gastosMunicipal,
     diferenciaGastos,
@@ -111,6 +123,6 @@ export function contrastarPresupuesto(
     capitulos,
     hayDesacuerdo:
       Math.abs(diferenciaGastos) >= TOLERANCIA_EQUILIBRIO ||
-      Math.abs(desequilibrioConprel) >= TOLERANCIA_EQUILIBRIO,
+      (desequilibrioConprel !== null && Math.abs(desequilibrioConprel) >= TOLERANCIA_EQUILIBRIO),
   }
 }

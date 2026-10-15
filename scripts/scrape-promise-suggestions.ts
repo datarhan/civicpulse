@@ -220,7 +220,11 @@ async function main() {
                     title: `Presupuesto municipal ${budget.snapshot.year}`,
                     date: `${budget.snapshot.year}-01-01`,
                     publisher: 'MinHac CONPREL',
-                    text: `Presupuesto ${budget.snapshot.year} · ${budget.snapshot.totalExpense}€ gasto total`,
+                    // `totalExpense` es null si CONPREL no trae el total: «null€» no es un documento.
+                    text:
+                      typeof budget.snapshot.totalExpense === 'number'
+                        ? `Presupuesto ${budget.snapshot.year} · ${budget.snapshot.totalExpense}€ gasto total`
+                        : `Presupuesto ${budget.snapshot.year} · total de gastos sin dato en CONPREL`,
                   },
                 ],
               }

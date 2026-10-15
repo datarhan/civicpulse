@@ -248,11 +248,22 @@ export function tendenciaDeuda(
  * Los capítulos aprobados a cero. Se dejan dichos en vez de omitidos: un
  * lector que no vea el fondo de contingencia en la lista no sabe si no existe
  * o si no se le dotó.
+ *
+ * Sólo un 0 de verdad. Un importe ausente (null, la celda que CONPREL no
+ * trae) no está «aprobado a 0 €»: eso sería afirmar la cifra que falta. Va a
+ * `capitulosSinDato`, que la página dice con otras palabras.
  */
-export function capitulosACero<T extends { code: string; label: string; amount: number }>(
+export function capitulosACero<T extends { code: string; label: string; amount?: number | null }>(
   capitulos: T[] | null | undefined,
 ): T[] {
-  return (capitulos ?? []).filter((c) => num(c.amount) === 0)
+  return (capitulos ?? []).filter((c) => c.amount === 0)
+}
+
+/** Los capítulos cuyo importe no consta en la fuente: ni barra, ni «a cero». */
+export function capitulosSinDato<
+  T extends { code?: string; label: string; amount?: number | null },
+>(capitulos: T[] | null | undefined): T[] {
+  return (capitulos ?? []).filter((c) => typeof c.amount !== 'number' || !Number.isFinite(c.amount))
 }
 
 export interface MagnitudDelEjercicio {
@@ -309,8 +320,8 @@ export function magnitudDelEjercicio(
   conprel:
     | {
         year?: number
-        totalExpense?: number
-        expenseByEconomicChapter?: { code?: string; amount?: number }[]
+        totalExpense?: number | null
+        expenseByEconomicChapter?: { code?: string; amount?: number | null }[]
       }
     | null
     | undefined,

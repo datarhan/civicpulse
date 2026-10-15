@@ -17,6 +17,7 @@ import { readFileSync } from 'node:fs'
 import { resolve } from 'node:path'
 
 import Presupuesto from '../../src/pages/Presupuesto'
+import { capituloDominante } from '../../src/scraper/presupuesto-lectura'
 import { pintaYLee } from '../setup/pinta-y-lee'
 
 vi.mock('react-leaflet', () => {
@@ -110,5 +111,28 @@ describe('/presupuesto · una celda sin dato en CONPREL', () => {
     expect(texto, 'publica un gasto por habitante de cero euros').not.toMatch(
       /(^|[^\d.,])0\s?€ por habitante/,
     )
+  })
+
+  it('si CONPREL no trae el capítulo que abrió en cero, el pie no dice que tampoco estaba allí', async () => {
+    // El pie de «Capítulo a capítulo» tiene dos frases para un capítulo que
+    // abre en cero: o CONPREL le da crédito (y se cita), o «no estaba en
+    // ninguno de los dos presupuestos aprobados». Con la celda de CONPREL
+    // vacía la segunda afirma algo de una cifra que no tenemos.
+    const mapa = conHuecos((s) => {
+      const ejecucion = publicado('/data/budget-execution.json').latest
+      const dominante = capituloDominante(ejecucion.gastos.chapters, ejecucion.gastos.total)
+      expect(dominante?.abrioEnCero, 'premisa: el capítulo dominante abre en cero').toBe(true)
+      const cap = s.expenseByEconomicChapter.find((c) => c.code === String(dominante.capitulo))
+      cap.amount = null
+      s.sinDato = [{ campo: `expenseByEconomicChapter.${cap.code}`, etiqueta: cap.label }]
+    })
+    const { piezas } = await pintaYLee(escenario(mapa), 'es', {
+      lee: (c) => [...c.querySelectorAll('[data-pie="capitulos"]')].map((el) => el.textContent),
+    })
+    const pie = piezas.join(' ')
+    expect(pie, 'no encuentro el pie de la tarjeta de capítulos').toBeTruthy()
+    expect(pie).not.toMatch(/ninguno de los dos presupuestos/)
+    expect(pie, 'publica 0 € como la cifra de CONPREL').not.toMatch(/le da 0\s?€/)
+    expect(pie).toMatch(/CONPREL/)
   })
 })

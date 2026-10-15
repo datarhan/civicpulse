@@ -1619,11 +1619,17 @@ export const CATALOGUE = {
     // se escribió `cuadra`.
     'presupuesto.lede.sinCuadre':
       'El presupuesto aprobado para {year} según el Ministerio de Hacienda es de {gastos} de gastos. El estado de ejecución que publica el propio Ayuntamiento no cuadra consigo mismo este ejercicio: sus cuatro magnitudes van más abajo, una a una y sin sumarlas por él.',
+    'presupuesto.lede.soloAprobado.sinTotal':
+      'CONPREL, la fuente del Ministerio de Hacienda, no trae el total de gastos aprobado para {year}. Lo ejecutado aparece más abajo en cuanto el Ayuntamiento publica su estado de ejecución.',
+    'presupuesto.lede.sinCuadre.sinTotal':
+      'CONPREL, la fuente del Ministerio de Hacienda, no trae el total de gastos aprobado para {year}. El estado de ejecución que publica el propio Ayuntamiento no cuadra consigo mismo este ejercicio: sus cuatro magnitudes van más abajo, una a una y sin sumarlas por él.',
     'presupuesto.tres':
       'Esta página distingue en todo momento tres cosas que suelen confundirse: lo **aprobado**, lo **definitivo** tras modificaciones y lo **ejecutado**.',
     'presupuesto.tres.link': 'Cómo se leen los tres ↓',
     'presupuesto.meta':
       '{gastos} de gastos aprobados según CONPREL · {porHab} por habitante · {hab} habitantes · actualizado {fecha}',
+    'presupuesto.meta.sinTotal':
+      'CONPREL no trae el total de gastos aprobados · {hab} habitantes · actualizado {fecha}',
     'presupuesto.fuentes.title': 'Dos fuentes, dos presupuestos aprobados',
     'presupuesto.fuentes.conprel': 'CONPREL · Ministerio de Hacienda',
     'presupuesto.fuentes.municipal': 'Estado de ejecución del propio Ayuntamiento',
@@ -1668,6 +1674,8 @@ export const CATALOGUE = {
       '**{capitulo} abrió el ejercicio con 0 € y acabó con {definitivo}** —el {cuota} % de toda la ampliación—, de los que se ejecutó el {pct} %. Un capítulo que empieza en cero y recibe todo su crédito durante el ejercicio no es una desviación de ejecución: ese crédito no estaba en ninguno de los dos presupuestos aprobados que publica esta página.',
     'presupuesto.cap.pie.ceroDiscrepan':
       '**{capitulo} abrió el ejercicio con 0 € y acabó con {definitivo}** —el {cuota} % de toda la ampliación—, de los que se ejecutó el {pct} %. Ese cero es el del estado de ejecución del propio Ayuntamiento: **el presupuesto que se remitió a CONPREL le da {conprel} de crédito inicial a ese mismo capítulo**. Las dos fuentes son oficiales y no se reconcilian, así que parte de lo que aquí figura como ampliación ya estaba aprobado en la otra.',
+    'presupuesto.cap.pie.ceroSinConprel':
+      '**{capitulo} abrió el ejercicio con 0 € y acabó con {definitivo}** —el {cuota} % de toda la ampliación—, de los que se ejecutó el {pct} %. Ese cero es el del estado de ejecución del propio Ayuntamiento; **el presupuesto que se remitió a CONPREL no trae dato de ese capítulo**, así que no se puede decir si ese crédito ya estaba aprobado en la otra fuente.',
     'presupuesto.cap.pie.dominante':
       '**{capitulo} se llevó el {cuota} % de toda la ampliación**: de {inicial} a {definitivo}, de los que se ejecutó el {pct} %.',
     'presupuesto.cap.pie.cociente':
@@ -1682,12 +1690,23 @@ export const CATALOGUE = {
     'presupuesto.econ.ceroVarios':
       'Los capítulos {lista} están aprobados a 0 € y por eso no tienen barra. Se dejan dichos en vez de omitirlos.',
     'presupuesto.econ.cero.y': 'y',
+    'presupuesto.econ.sinDato':
+      'CONPREL no trae el importe del capítulo {code}, {label}. Sin dato en la fuente: no se pinta barra ni se cuenta como 0 €.',
+    'presupuesto.econ.sinDatoVarios':
+      'CONPREL no trae el importe de los capítulos {lista}. Sin dato en la fuente: no se pintan barras ni se cuentan como 0 €.',
+    'presupuesto.econ.sinTotal':
+      'CONPREL no trae el total de gastos de este ejercicio: las barras se comparan entre sí y no se da porcentaje sobre un total que no consta.',
+    'presupuesto.ing.sinTotal':
+      'CONPREL no trae el total de ingresos de este ejercicio: las barras se comparan entre sí y no se da porcentaje sobre un total que no consta.',
     'presupuesto.ing.eyebrow': 'Ingresos aprobados {year} · CONPREL · de dónde',
     'presupuesto.ing.title': 'De dónde vienen los ingresos municipales',
     'presupuesto.descuadre':
       '**Este presupuesto no cuadra en la fuente del ministerio:** atribuye {ingresos} de ingresos frente a {gastos} de gastos, {dif} de diferencia. Un presupuesto general se aprueba **sin déficit inicial** (art. 165.4 del texto refundido de la Ley de Haciendas Locales) y la exigencia vale en los dos sentidos: tampoco debería sobrar. En ese mismo fichero, otras entidades cuadran al céntimo. No es un remanente ni un colchón: es un descuadre, y no sabemos si está en lo que remitió el ayuntamiento o en cómo lo publica el ministerio.',
     'presupuesto.prog.eyebrow': 'Gastos aprobados {year} · clasificación por programas · para qué',
     'presupuesto.prog.title': 'Los mismos {total} repartidos por finalidad',
+    'presupuesto.prog.title.sinTotal': 'Los gastos aprobados, repartidos por finalidad',
+    'presupuesto.prog.sinDato':
+      'CONPREL no trae el importe de {lista}. Sin dato en la fuente: no se pinta barra ni se cuenta como 0 €.',
     'presupuesto.prog.nota':
       'Otro corte del mismo dinero, no otro dinero: la económica dice «en qué», esta dice «para qué». No se cruzan entre sí.',
     'presupuesto.prog.deuda':
@@ -3563,11 +3582,17 @@ export const CATALOGUE = {
       "El pressupost aprovat per a {year} segons el Ministeri d'Hisenda és de {gastos} de despeses. L'executat apareix més avall quan l'Ajuntament publica el seu estat d'execució.",
     'presupuesto.lede.sinCuadre':
       "El pressupost aprovat per a {year} segons el Ministeri d'Hisenda és de {gastos} de despeses. L'estat d'execució que publica el propi Ajuntament no quadra amb si mateix este exercici: les seues quatre magnituds van més avall, una a una i sense sumar-les per ell.",
+    'presupuesto.lede.soloAprobado.sinTotal':
+      "CONPREL, la font del Ministeri d'Hisenda, no porta el total de despeses aprovat per a {year}. L'executat apareix més avall quan l'Ajuntament publica el seu estat d'execució.",
+    'presupuesto.lede.sinCuadre.sinTotal':
+      "CONPREL, la font del Ministeri d'Hisenda, no porta el total de despeses aprovat per a {year}. L'estat d'execució que publica el propi Ajuntament no quadra amb si mateix este exercici: les seues quatre magnituds van més avall, una a una i sense sumar-les per ell.",
     'presupuesto.tres':
       "Esta pàgina distingix en tot moment tres coses que solen confondre's: l'**aprovat**, el **definitiu** després de modificacions i l'**executat**.",
     'presupuesto.tres.link': 'Com es lligen els tres ↓',
     'presupuesto.meta':
       '{gastos} de despeses aprovades segons CONPREL · {porHab} per habitant · {hab} habitants · actualitzat {fecha}',
+    'presupuesto.meta.sinTotal':
+      'CONPREL no porta el total de despeses aprovades · {hab} habitants · actualitzat {fecha}',
     'presupuesto.fuentes.title': 'Dos fonts, dos pressupostos aprovats',
     'presupuesto.fuentes.conprel': "CONPREL · Ministeri d'Hisenda",
     'presupuesto.fuentes.municipal': "Estat d'execució del propi Ajuntament",
@@ -3607,6 +3632,8 @@ export const CATALOGUE = {
       "**{capitulo} va obrir l'exercici amb 0 € i va acabar amb {definitivo}** —el {cuota} % de tota l'ampliació—, dels quals es va executar el {pct} %. Un capítol que comença en zero i rep tot el seu crèdit durant l'exercici no és una desviació d'execució: eixe crèdit no estava en cap dels dos pressupostos aprovats que publica esta pàgina.",
     'presupuesto.cap.pie.ceroDiscrepan':
       "**{capitulo} va obrir l'exercici amb 0 € i va acabar amb {definitivo}** —el {cuota} % de tota l'ampliació—, dels quals es va executar el {pct} %. Eixe zero és el de l'estat d'execució del propi Ajuntament: **el pressupost que es va remetre a CONPREL li dóna {conprel} de crèdit inicial a eixe mateix capítol**. Les dos fonts són oficials i no es reconcilien, així que part del que ací figura com a ampliació ja estava aprovat en l'altra.",
+    'presupuesto.cap.pie.ceroSinConprel':
+      "**{capitulo} va obrir l'exercici amb 0 € i va acabar amb {definitivo}** —el {cuota} % de tota l'ampliació—, dels quals es va executar el {pct} %. Eixe zero és el de l'estat d'execució del propi Ajuntament; **el pressupost que es va remetre a CONPREL no porta dada d'eixe capítol**, així que no es pot dir si eixe crèdit ja estava aprovat en l'altra font.",
     'presupuesto.cap.pie.dominante':
       "**{capitulo} es va emportar el {cuota} % de tota l'ampliació**: de {inicial} a {definitivo}, dels quals es va executar el {pct} %.",
     'presupuesto.cap.pie.cociente':
@@ -3621,6 +3648,14 @@ export const CATALOGUE = {
     'presupuesto.econ.ceroVarios':
       "Els capítols {lista} estan aprovats a 0 € i per això no tenen barra. Es deixen dits en compte d'ometre'ls.",
     'presupuesto.econ.cero.y': 'i',
+    'presupuesto.econ.sinDato':
+      "CONPREL no porta l'import del capítol {code}, {label}. Sense dada en la font: no es pinta barra ni es compta com a 0 €.",
+    'presupuesto.econ.sinDatoVarios':
+      "CONPREL no porta l'import dels capítols {lista}. Sense dada en la font: no es pinten barres ni es compten com a 0 €.",
+    'presupuesto.econ.sinTotal':
+      "CONPREL no porta el total de despeses d'este exercici: les barres es comparen entre si i no es dona percentatge sobre un total que no consta.",
+    'presupuesto.ing.sinTotal':
+      "CONPREL no porta el total d'ingressos d'este exercici: les barres es comparen entre si i no es dona percentatge sobre un total que no consta.",
     'presupuesto.ing.eyebrow': "Ingressos aprovats {year} · CONPREL · d'on",
     'presupuesto.ing.title': "D'on vénen els ingressos municipals",
     'presupuesto.descuadre':
@@ -3628,6 +3663,9 @@ export const CATALOGUE = {
     'presupuesto.prog.eyebrow':
       'Despeses aprovades {year} · classificació per programes · per a què',
     'presupuesto.prog.title': 'Els mateixos {total} repartits per finalitat',
+    'presupuesto.prog.title.sinTotal': 'Les despeses aprovades, repartides per finalitat',
+    'presupuesto.prog.sinDato':
+      "CONPREL no porta l'import de {lista}. Sense dada en la font: no es pinta barra ni es compta com a 0 €.",
     'presupuesto.prog.nota':
       "Un altre tall dels mateixos diners, no uns altres diners: l'econòmica diu «en què», esta diu «per a què». No es creuen entre si.",
     'presupuesto.prog.deuda':

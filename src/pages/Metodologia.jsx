@@ -2609,6 +2609,10 @@ export default function Metodologia() {
           </li>
           <li>
             <strong>Presupuesto CONPREL (MinHac)</strong> — capítulos de gasto e ingreso anuales.
+            Una celda que la fuente deja vacía o que no se lee como importe se publica como «sin
+            dato», nunca como 0 €: un capítulo de verdad a cero viene escrito como 0 en el fichero.
+            Un total que falta tampoco se rehace sumando capítulos, porque sería una suma nuestra
+            presentada como cifra del ministerio.
           </li>
           <li>
             <strong>Plenos de Riba-roja</strong> — actas + votos transcritos.
