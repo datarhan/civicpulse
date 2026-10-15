@@ -1,18 +1,28 @@
 {
-  "generatedAt": "2026-10-14T09:46:13.026Z",
+  "generatedAt": "2026-10-15T09:24:19.765Z",
   "source": {
     "name": "Boletín Oficial de la Provincia de València",
     "home": "https://bop.dival.es/bop/",
     "note": "Last 30 days · anuncios del Ayuntamiento de Riba-roja de Túria"
   },
   "stats": {
-    "total": 5,
+    "total": 6,
     "daysCovered": 21,
     "daysRequested": 30,
     "fetchFailures": 0,
-    "latestDate": "2026-10-07"
+    "latestDate": "2026-10-15"
   },
   "anuncios": [
+    {
+      "id": "aeaab3f59a3a",
+      "regNumber": "2026/12346",
+      "title": "Anuncio del Ayuntamiento de Riba-roja de Túria sobre la reincorporación del alcalde-presidente y finalización de la delegación de funciones efectuada mediante resolución de Alcaldía número 3055/2026",
+      "entity": "Ayuntamiento de Riba-roja de Túria",
+      "date": "2026-10-15",
+      "bulletinDate": "15/10/2026",
+      "pdfUrl": "https://bop.dival.es/bop/downloads?anuncioNumReg=2026%2F12346",
+      "bulletinUrl": "https://bop.dival.es/bop/downloads?boletinFecha=15%2F10%2F2026"
+    },
     {
       "id": "0028f15e2f90",
       "regNumber": "2026/12090",

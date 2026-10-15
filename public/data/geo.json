@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-14T09:50:52.759Z",
+  "generatedAt": "2026-10-15T09:26:07.815Z",
   "source": {
     "boundary": "https://overpass-api.de/api/interpreter",
     "neighborhoods": "https://overpass-api.de/api/interpreter",
@@ -1991,10 +1991,10 @@
       "id": "node-615163560",
       "slug": "el-pou-d-escoto",
       "name": "el Pou d'Escoto",
-      "kind": "hamlet",
+      "kind": "neighbourhood",
       "centroid": [
-        39.5483742,
-        -0.5912189
+        39.5484628,
+        -0.5909944
       ]
     },
     {

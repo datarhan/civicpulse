@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-14T09:56:44.014Z",
+  "generatedAt": "2026-10-15T09:33:26.636Z",
   "conjunto": "cv-15k-40k",
   "anioBase": 2024,
   "source": {
@@ -7938,21 +7938,21 @@
       "etiqueta": "Contratos con un solo licitador",
       "descripcion": "De los contratos adjudicados que declaran cuántas ofertas recibieron, cuántos recibieron exactamente una.",
       "numerador": {
-        "valor": 341,
+        "valor": 342,
         "estado": "declarado",
         "fuente": "tenders:adjudicados:numberOfProposals=1"
       },
       "denominador": {
-        "valor": 711,
+        "valor": 715,
         "estado": "declarado",
         "fuente": "tenders:adjudicados:conOfertasDeclaradas"
       },
-      "valor": 0.47960618846694797,
+      "valor": 0.4783216783216783,
       "formato": "porcentaje",
       "periodo": "2017–2026",
       "caveats": [
         "Un licitador único no es irregular por sí mismo: hay mercados con un solo proveedor capaz. Es el indicador que la Comisión Europea usa para vigilar la competencia en compra pública, y lo que mide es cuánta de ella hubo.",
-        "Ningún contrato adjudicado se queda fuera: los 711 declaran cuántas ofertas recibieron, así que el denominador coincide con el total de adjudicados."
+        "Ningún contrato adjudicado se queda fuera: los 715 declaran cuántas ofertas recibieron, así que el denominador coincide con el total de adjudicados."
       ],
       "citas": [
         {
@@ -7968,16 +7968,16 @@
       "etiqueta": "Adjudicado sin llamada abierta",
       "descripcion": "Contratos menores y negociados sin publicidad, sobre el total de adjudicados. Los derivados de un acuerdo marco o de un SDA no cuentan: su licitación sí se publicó.",
       "numerador": {
-        "valor": 287,
+        "valor": 288,
         "estado": "declarado",
         "fuente": "tenders:adjudicados:sinPublicidad"
       },
       "denominador": {
-        "valor": 711,
+        "valor": 715,
         "estado": "declarado",
         "fuente": "tenders:adjudicados"
       },
-      "valor": 0.40365682137834036,
+      "valor": 0.4027972027972028,
       "formato": "porcentaje",
       "periodo": "2017–2026",
       "caveats": [
@@ -8002,16 +8002,16 @@
         "fuente": "tenders:adjudicados:top5Importe"
       },
       "denominador": {
-        "valor": 124039832.53999995,
+        "valor": 125567342.14999995,
         "estado": "declarado",
         "fuente": "tenders:adjudicados:importeTotal"
       },
-      "valor": 0.6823516743519141,
+      "valor": 0.6740509591967981,
       "formato": "porcentaje",
       "periodo": "2017–2026",
       "caveats": [
         "Suma importes de adjudicación de años distintos y de contratos de duración muy distinta, así que mide concentración del importe adjudicado en el periodo, no gasto anual.",
-        "Una sola adjudicación —HIDRAQUA S.A.U— supone el 45 % del importe del periodo. Las concesiones se adjudican por todo su plazo de una vez, así que su importe no es comparable con el de un contrato anual."
+        "Una sola adjudicación —HIDRAQUA S.A.U— supone el 44 % del importe del periodo. Las concesiones se adjudican por todo su plazo de una vez, así que su importe no es comparable con el de un contrato anual."
       ],
       "citas": [
         {

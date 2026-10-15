@@ -1,20 +1,20 @@
 {
-  "generatedAt": "2026-10-14T09:55:29.451Z",
+  "generatedAt": "2026-10-15T09:32:02.437Z",
   "source": {
     "origin": "https://ribaocupacio.portalemp.com",
     "platform": "portalemp — ribaocupacio · Agència de Col·locació (ADL), Ajuntament de Riba-roja de Túria",
     "listEndpoint": "https://ribaocupacio.portalemp.com/ofertas.html?acc=tableData"
   },
   "stats": {
-    "total": 47,
-    "openTotal": 46,
-    "inRibaRoja": 30,
-    "closingSoon": 18,
-    "withDetail": 47,
+    "total": 46,
+    "openTotal": 45,
+    "inRibaRoja": 29,
+    "closingSoon": 17,
+    "withDetail": 46,
     "byMonth": {
       "2026-10": 4,
       "2026-09": 22,
-      "2026-08": 16,
+      "2026-08": 15,
       "2026-07": 1,
       "2026-06": 1,
       "2026-05": 2,
@@ -2293,92 +2293,6 @@
         "horario": "Por determinar.",
         "salario": "Según convenio",
         "funciones": "Limpieza de comunidades",
-        "vehiculo": "Sí",
-        "ocupaciones": []
-      }
-    },
-    {
-      "id": "2399",
-      "fo": 2399,
-      "codigo": "2026/00100",
-      "titulo": "Mozo almacén y chofer repartidor camión 3.500 kgs",
-      "publishedAt": "2026-08-25",
-      "deadline": "2026-10-25",
-      "location": "Nave en Poligono industrial Riba-roja de Túria",
-      "status": "Abierta",
-      "statusTone": "ok",
-      "url": "https://ribaocupacio.portalemp.com/ofertas.html?fo=2399",
-      "inRibaRoja": true,
-      "detail": {
-        "fields": [
-          {
-            "label": "Código",
-            "value": "2026/00100"
-          },
-          {
-            "label": "Nombre de la oferta",
-            "value": "Mozo almacén y chofer repartidor camión 3.500 kgs"
-          },
-          {
-            "label": "Sector CNAE",
-            "value": "OTROS SERVICIOS"
-          },
-          {
-            "label": "Tipo de contrato",
-            "value": "CONTRATO INDEFINIDO"
-          },
-          {
-            "label": "Duración del contrato",
-            "value": "Más de 6 meses"
-          },
-          {
-            "label": "Número de puestos",
-            "value": "1"
-          },
-          {
-            "label": "Categoría profesional",
-            "value": "SUBALTERNOS"
-          },
-          {
-            "label": "Lugar puesto de trabajo",
-            "value": "Nave en Poligono industrial, Municipio: Riba-roja de Túria, Provincia: Valencia, CP: 46190"
-          },
-          {
-            "label": "Tipo de jornada laboral",
-            "value": "Completa"
-          },
-          {
-            "label": "Observaciones jornada",
-            "value": "En el horario está incluida media hora para el almuerzo"
-          },
-          {
-            "label": "Horario",
-            "value": "8.30 a 14:00 y de 16:00 a 19:00"
-          },
-          {
-            "label": "Salario",
-            "value": "1.300 euros netos"
-          },
-          {
-            "label": "Funciones",
-            "value": "- Preparación pedidos. - Logística y ordenación de almacén. - Reparto por provincia de Valencia con camión de hasta 3.500 kgs."
-          },
-          {
-            "label": "Requiere vehículo propio",
-            "value": "Sí"
-          }
-        ],
-        "tipoContrato": "CONTRATO INDEFINIDO",
-        "duracion": "Más de 6 meses",
-        "numPuestos": "1",
-        "categoria": "SUBALTERNOS",
-        "municipio": "Riba-roja de Túria",
-        "provincia": "Valencia",
-        "cp": "46190",
-        "jornada": "Completa",
-        "horario": "8.30 a 14:00 y de 16:00 a 19:00",
-        "salario": "1.300 euros netos",
-        "funciones": "- Preparación pedidos. - Logística y ordenación de almacén. - Reparto por provincia de Valencia con camión de hasta 3.500 kgs.",
         "vehiculo": "Sí",
         "ocupaciones": []
       }
