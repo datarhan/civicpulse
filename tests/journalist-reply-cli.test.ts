@@ -53,5 +53,6 @@ describe('journalist-reply · ejecutado', () => {
     })
     expect(r.status).toBe(2)
     expect(r.stderr).toMatch(/Usage:/)
-  })
+    // `npx tsx` en frío: los 5 s por defecto de vitest no le bastan en CI.
+  }, 60_000)
 })

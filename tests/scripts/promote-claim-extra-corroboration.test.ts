@@ -10,10 +10,17 @@ import { resolve } from 'node:path'
 
 const SCRIPT = resolve('scripts/promote-claim.ts')
 
+/** Lo que se espera al subproceso. */
+const ESPERA_MS = 15_000
+/** Y al `it` que lo lanza, un poco más. Sin ella rige la de vitest, 5 s, y
+ *  arrancar `npx tsx` en frío se los come en un runner de CI cargado: el
+ *  `timeout` del subproceso no le alarga la suya al test. */
+const ESPERA_IT_MS = ESPERA_MS + 10_000
+
 function run(args: string[]): { code: number; out: string; err: string } {
   const r = spawnSync('npx', ['tsx', SCRIPT, ...args], {
     encoding: 'utf8',
-    timeout: 15_000,
+    timeout: ESPERA_MS,
     env: { ...process.env, NODE_ENV: 'test' },
   })
   return {
@@ -23,7 +30,7 @@ function run(args: string[]): { code: number; out: string; err: string } {
   }
 }
 
-describe('promote-claim --extra-corroboration', () => {
+describe('promote-claim --extra-corroboration', { timeout: ESPERA_IT_MS }, () => {
   // Use a known-bad claim id so the CLI fails fast AFTER the flag has
   // parsed — that way we can read the parser-stage error from stderr
   // without worrying about the CLI mutating the snapshot.

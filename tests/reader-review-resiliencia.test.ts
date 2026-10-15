@@ -147,7 +147,11 @@ describe('las fichas llegan enteras y una plantilla sin ficha se dice', () => {
 
     // Y cuenta para el código de salida: no se ha leído nada.
     expect(r.status).not.toBe(0)
-  })
+    // El `timeout` de arriba sólo acota el subproceso; el `it` tiene el suyo, y
+    // sin él rigen los 5 s de vitest. Arrancar `npx tsx` en frío ya se come
+    // segundos en un runner cargado: el 15-10-2026 este test cayó por tiempo en
+    // CI (PR #331) con el mismo árbol en verde en main.
+  }, 190_000)
 })
 
 describe('se insiste antes de dar por muerto el servidor', () => {

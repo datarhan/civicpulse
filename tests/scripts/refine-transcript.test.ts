@@ -22,6 +22,10 @@ const SCRIPT = resolve('scripts/refine-transcript.ts')
  * y con los 15 s de antes la tercera se quedó sin tiempo.
  */
 const ESPERA_MS = 60_000
+/** Y al `it` que lo lanza, un poco más. Sin ella rige la de vitest, 5 s, y
+ *  arrancar `npx tsx` en frío se los come en un runner de CI cargado: el
+ *  `timeout` del subproceso no le alarga la suya al test. */
+const ESPERA_IT_MS = ESPERA_MS + 10_000
 
 function run(args: string[]): { code: number; out: string; err: string; error?: string } {
   const r = spawnSync('npx', ['tsx', SCRIPT, ...args], {
@@ -51,7 +55,7 @@ function terminoSolo(r: { error?: string }) {
   ).toBeUndefined()
 }
 
-describe('refine-transcript CLI surface', () => {
+describe('refine-transcript CLI surface', { timeout: ESPERA_IT_MS }, () => {
   it('rejects calls with no positional plenoId', () => {
     const r = run([])
     terminoSolo(r)
