@@ -1,6 +1,7 @@
 import { describe, it, expect } from 'vitest'
 import { readFileSync } from 'node:fs'
 import { join } from 'node:path'
+import { ESTADOS_ADJUDICADOS } from '../src/scraper/indicadores-friccion'
 
 /**
  * El mismo expediente vive DOS VECES en `tenders.json`, y sus dos copias se
@@ -17,6 +18,11 @@ import { join } from 'node:path'
  * la primera y publicar «concesión revocada» habría sido falso — la ficha de
  * PLACSP dice «Adjudicada», y el `revoked` viene de que el procedimiento
  * estuvo suspendido cinco años. Estuvo a punto de publicarse así.
+ *
+ * El expediente sigue avanzando: el 06-10-2026 PLACSP publicó su formalización,
+ * y la nocturna del 15-10 trajo el contrato como `formalized` (y la licitación,
+ * ya, como `awarded`). Por eso el test no fija UN estado del contrato, sino que
+ * sea uno de los adjudicados: lo que decide es cómo acabó, no en qué paso va.
  *
  * La regla, que este test convierte en gate:
  *
@@ -68,8 +74,9 @@ describe('tenders.json — licitaciones y contratos comparten ids', () => {
     expect(l, 'el expediente 46717 ya no está entre las licitaciones').toBeTruthy()
     expect(c, 'el expediente 46717 ya no está entre los contratos').toBeTruthy()
     expect(l!.title).toBe(c!.title)
-    // El contrato es el que sabe cómo acabó; la licitación, no.
-    expect(c!.status).toBe('awarded')
+    // El contrato es el que sabe cómo acabó; la licitación, no. Adjudicado o
+    // ya formalizado: los dos dicen que hay concesionario, ninguno «revocada».
+    expect(ESTADOS_ADJUDICADOS).toContain(c!.status)
     expect(c!.assignee, 'el contrato perdió su adjudicatario').toMatch(/HIDRAQUA/i)
     expect(l!.assignee, 'la licitación no puede traer adjudicatario').toBeUndefined()
   })
