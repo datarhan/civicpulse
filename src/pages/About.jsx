@@ -143,7 +143,7 @@ export default function About() {
           nightly scrapers over public-sector open data, Whisper-transcribed council sessions,
           LLM-extracted claims verified deterministically against the procurement/budget/subsidy
           record, human-curated findings with a built-in right of reply, geolocated contract
-          spending, and a Telegram complaints channel with statutory response clocks — plus four
+          spending, and a Telegram complaints channel with statutory response clocks — plus
           published investigations, from the DANA reconstruction money to the waste-collection
           contract. Every editorial surface is gated by documented libel discipline (
           <a href="/metodologia" style={{ color: 'var(--civic)' }}>
