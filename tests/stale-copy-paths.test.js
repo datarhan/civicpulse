@@ -80,7 +80,8 @@ describe('hooks/stale-copy — a qué snapshot le sigue prosa', () => {
     })
     expect(r.stderr + r.stdout).not.toMatch(/no coincide/)
     expect(r.status).toBe(0)
-  })
+    // `npx tsx` en frío: los 5 s por defecto de vitest no le bastan en CI.
+  }, 60_000)
 
   it('el mapa se carga de verdad, y no calla por no encontrarlo', () => {
     // Un mapa que no carga y un mapa sin nada que avisar dan el mismo silencio.
