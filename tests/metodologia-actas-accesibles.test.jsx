@@ -56,6 +56,15 @@ describe('/metodologia y las actas', () => {
     expect(texto).toContain('El acta ya se puede leer, y es contra lo que se coteja.')
   })
 
+  it('no contradice el punto que admite el vídeo para cotejar una transcripción', () => {
+    // El punto «Cotejar significa contra otro documento» dice que el vídeo
+    // también vale; decir aquí «contra el acta» a secas lo habría negado.
+    expect(texto).toMatch(/el vídeo sí vale para cotejar/)
+    expect(texto).toContain(
+      'contra otra fuente —el acta, que es la preferible, o el vídeo de la sesión—',
+    )
+  })
+
   it('no fija a mano cuántas transcripciones hay', () => {
     expect(texto).not.toMatch(/\b\d+ transcripciones que hay en disco/)
   })

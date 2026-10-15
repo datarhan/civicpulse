@@ -762,8 +762,8 @@ export default function Metodologia() {
             de 2026 buscábamos las actas sólo en ribarroja.es y no las encontrábamos; están en la
             pestaña «Documentos» de cada sesión en regmeet. Los desgloses que hemos leído del acta
             lo dicen como fuente y no llevan la marca; los que todavía salen de la transcripción la
-            llevan hasta que alguien los coteje contra el acta y firme. Cuántos quedan de cada clase
-            lo da{' '}
+            llevan hasta que alguien los coteje contra otra fuente —el acta, que es la preferible, o
+            el vídeo de la sesión— y firme. Cuántos quedan de cada clase lo da{' '}
             <a href="/datos" style={{ color: 'var(--civic)' }}>
               /datos
             </a>
