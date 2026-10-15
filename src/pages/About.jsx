@@ -24,7 +24,7 @@ const TIER_ROWS = [
   [
     'T2 · Semi',
     'hundreds',
-    'full-council transcription + claim extraction where session video exists; machine-suggested, human-gated',
+    'full-council transcription + claim extraction where session video exists; machine-extracted, shown through a fixed editorial gate, attributed to party blocs — naming a councillor takes a human',
   ],
   [
     'T3 · Editorial',
