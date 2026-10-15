@@ -3004,7 +3004,12 @@ const LOTE_4: Lote4Case[] = [
     postDated: [
       {
         plenoDate: '2025-09-08',
-        firstKnown: '2026-07-28',
+        // 2026-10-15: era '2026-07-28', la adjudicación, porque el lote sólo
+        // tenía la fila del contrato. La nocturna del 15-10 trajo de Gobierto la
+        // de la licitación (E3/2026), y PLACSP fecha su anuncio el 10-07-2026:
+        // la fecha más temprana bajó, como el índice manda (mínimo, no la
+        // última). Sigue diez meses después de la sesión; la retirada no cambia.
+        firstKnown: '2026-07-10',
         permalink: `${PLACSP}G%2BmnRyGH352ExvMJXBMHHQ%3D%3D`,
       },
       {
