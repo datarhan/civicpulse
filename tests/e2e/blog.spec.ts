@@ -14,9 +14,15 @@ test.describe('Blog — Building CivicPulse (/blog/building-civicpulse-with-ai, 
     await expect(
       page.getByRole('heading', { name: /Where the AI is not allowed to decide/i }),
     ).toBeVisible()
+    // Until 2026-10-15 this asserted «machine inference is never the last step
+    // before publication» — a sentence that was false when it was published.
+    // The corrected principle is in place, and the sentence it replaced is
+    // quoted in the corrections log, which must exist and be reachable.
     await expect(
-      page.getByText(/machine inference is never the last step before publication/i).first(),
+      page.getByText(/a model never gets the last word on a person or on a failure/i).first(),
     ).toBeVisible()
+    await expect(page.getByRole('heading', { name: 'Corrections' })).toBeVisible()
+    await expect(page.locator('a[href="#corrections"]')).toBeVisible()
     await expect(page.getByRole('heading', { name: 'Try it / break it' })).toBeVisible()
 
     expect(appErrors(errors)).toEqual([])

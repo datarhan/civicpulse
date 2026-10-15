@@ -308,8 +308,11 @@ export default function AvisoLegal() {
           anclada a la fuente como palabras del partido: entre las comillas con que la noticia las
           recoge, o en el texto de una nota del propio Ayuntamiento, nunca un titular ni la
           narración del periodista. Cada registro auto-publicado se marca como «publicada
-          automáticamente · revisión pendiente» y es retractable. Los veredictos de incumplimiento y
-          el estado «inviable» siguen requiriendo intervención humana, y todo el proceso se detiene
+          automáticamente · revisión pendiente» y es retractable. De los cambios de estado de una
+          promesa ya publicada, sólo uno se publica solo: el avance a «en progreso», con el mismo
+          umbral y anclado a una fila real de contratos, subvenciones o presupuesto. «Parcial» y
+          «cumplida» los confirma siempre una persona, y los veredictos de incumplimiento y el
+          estado «inviable» siguen requiriendo intervención humana. Todo el proceso se detiene
           durante el periodo electoral (LOREG art. 50). Una cita corregida conserva en su ficha la
           versión anterior, y una promesa retirada queda listada en /promesas con su fecha y su
           motivo, sin su cita. Ningún proceso automático pone fecha límite a una promesa: el plazo
@@ -320,6 +323,25 @@ export default function AvisoLegal() {
             /metodologia
           </a>
           ).
+        </p>
+        {/* Desde el 15-10-2026. El README y la entrada del blog decían que nada
+            automático llegaba al público; scripts/auto-curate-findings.ts publica
+            hallazgos con título y resumen de un modelo (`auto-curation-v1`), y esta
+            página, que es el contrato, no lo decía. */}
+        <p>
+          <strong>Hallazgos de pleno redactados por una máquina.</strong> Un proceso automático
+          puede publicar hallazgos de gravedad informativa cuyo título y resumen escribe un modelo
+          de lenguaje, sobre citas que el registro público de declaraciones ya muestra. Se publican
+          rotulados como «Redacción automática», y el pie de la ficha dice qué proceso la firmó. Esa
+          vía sólo se abre mientras la precisión medida de esa clase de hallazgo supere el listón
+          publicado en{' '}
+          <a href="/metodologia#politica-automatizacion" style={{ color: 'var(--civic)' }}>
+            /metodologia
+          </a>
+          . El proceso no redacta hallazgos notables ni críticos, no atribuye nada a una persona con
+          nombre, no publica solo uno cuya cita se atribuya a un grupo municipal de un solo concejal
+          —que es nombrar a ese concejal— o cuyo texto lo nombre, y se detiene durante el periodo
+          electoral.
         </p>
       </Card>
 
