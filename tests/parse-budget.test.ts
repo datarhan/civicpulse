@@ -1,7 +1,8 @@
 import { describe, it, expect, beforeAll } from 'vitest'
 import { readFileSync } from 'node:fs'
 import { join } from 'node:path'
-import { parseConprelBudget, parseConprelRoster } from '../src/scraper/budget'
+import * as XLSX from 'xlsx'
+import { importe, parseConprelBudget, parseConprelRoster } from '../src/scraper/budget'
 
 /**
  * La descarga real de CONPREL (BIFF8, CODEPAGE 1200) que entró en a0fdf62f
@@ -153,5 +154,114 @@ describe('scraper/budget — parseConprelRoster', () => {
 
   it('returns an empty roster for a sheet that is not there, rather than throwing', () => {
     expect(parseConprelRoster(readFileSync(FIXTURE), { sheetName: 'No existe' })).toEqual([])
+  })
+})
+
+/**
+ * Una celda vacía no es 0 € (CLAUDE.md, regla 3: «a sentinel is never a value»).
+ *
+ * `num()` devolvía 0 para una celda en blanco, una cadena ilegible o un tipo
+ * que no era número ni texto, y el 0 se publicaba como importe: «capítulo
+ * aprobado a 0 €» de un capítulo que la fuente no trae. En la descarga real
+ * eso no pasa por casualidad —un capítulo de verdad a cero viene como `0`
+ * numérico (enajenación de inversiones, en la fila de Riba-roja) y ninguna fila
+ * de datos tiene un importe en blanco—, así que el blanco sólo puede querer
+ * decir «no consta», y la prueba lo provoca sobre ESA descarga: se vacían tres
+ * celdas de la fila 46214 en memoria y se vuelve a leer. Ni el fichero se toca
+ * ni la forma se inventa.
+ */
+describe('scraper/budget — una celda sin dato no se publica como 0 €', () => {
+  /** La fila de Riba-roja en la hoja, como índice de fila de la hoja. */
+  const filaDe = (sheet: XLSX.WorkSheet, ine: string): number => {
+    const rows: unknown[][] = XLSX.utils.sheet_to_json(sheet, {
+      header: 1,
+      raw: true,
+      defval: null,
+    })
+    const i = rows.findIndex(
+      (r) =>
+        String(r?.[0] ?? '').padStart(2, '0') === ine.slice(0, 2) &&
+        String(r?.[1] ?? '').padStart(3, '0') === ine.slice(2),
+    )
+    if (i < 0) throw new Error(`la fila ${ine} no está en la hoja`)
+    // `sheet_to_json` empieza en la primera fila del rango, no en la A1.
+    return i + XLSX.utils.decode_range(sheet['!ref']!).s.r
+  }
+
+  /** La descarga real con tres celdas de Riba-roja vaciadas de tres maneras. */
+  const conHuecos = () => {
+    const wb = XLSX.read(readFileSync(FIXTURE), { type: 'buffer' })
+    const sheet = wb.Sheets['Comunitat Valenciana']
+    const r = filaDe(sheet, '46214')
+    const celda = (c: number) => XLSX.utils.encode_cell({ r, c })
+    // Ingresos, capítulo 3 (columna 8): la celda no existe.
+    delete sheet[celda(8)]
+    // Gastos, capítulo 4 (columna 19): un texto que no es un importe.
+    sheet[celda(19)] = { t: 's', v: 'n.d.' }
+    // Total gastos (columna 25): una cadena vacía.
+    sheet[celda(25)] = { t: 's', v: '' }
+    return XLSX.write(wb, { type: 'buffer', bookType: 'xlsx' }) as Buffer
+  }
+
+  it('control: la descarga intacta no tiene ninguna celda sin dato, y su 0 real sigue siendo 0', () => {
+    // Sin este lado, una lectura que devolviera null en TODO pasaría la
+    // prueba de abajo. Y el 0 de enajenación es un dato: no puede caer en
+    // `sinDato` por parecerse a un hueco.
+    const b = parseConprelBudget(readFileSync(FIXTURE), { ineCode: '46214', year: 2024 })!
+    expect(b.sinDato).toEqual([])
+    const enajenacion = b.revenueByEconomicChapter.find((c) => c.code === '6')!
+    expect(enajenacion.amount).toBe(0)
+    expect(b.totalExpense).toBeGreaterThan(0)
+    expect(b.balance).not.toBeNull()
+  })
+
+  it('el capítulo vacío o ilegible es null, no 0', () => {
+    const b = parseConprelBudget(conHuecos(), { ineCode: '46214', year: 2024 })!
+    expect(b.revenueByEconomicChapter.find((c) => c.code === '3')!.amount).toBeNull()
+    expect(b.expenseByEconomicChapter.find((c) => c.code === '4')!.amount).toBeNull()
+    // Los vecinos siguen leyéndose: el hueco es de una celda, no de la fila.
+    expect(b.revenueByEconomicChapter.find((c) => c.code === '1')!.amount).toBeGreaterThan(0)
+    expect(b.expenseByEconomicChapter.find((c) => c.code === '1')!.amount).toBeGreaterThan(0)
+  })
+
+  it('el total que la fuente no trae es null: ni 0 ni rehecho sumando capítulos', () => {
+    // Rehacerlo con los capítulos sería publicar como cifra del ministerio una
+    // suma nuestra; dejarlo en 0 es afirmar un presupuesto de cero euros.
+    const b = parseConprelBudget(conHuecos(), { ineCode: '46214', year: 2024 })!
+    expect(b.totalExpense).toBeNull()
+    expect(b.totalRevenue).toBeGreaterThan(35_000_000)
+    // Un saldo con un lado ausente no es «ingresos − 0».
+    expect(b.balance).toBeNull()
+  })
+
+  it('el snapshot dice qué no pudo leer, celda a celda', () => {
+    const b = parseConprelBudget(conHuecos(), { ineCode: '46214', year: 2024 })!
+    expect(b.sinDato.map((x) => x.campo).sort()).toEqual(
+      ['expenseByEconomicChapter.4', 'revenueByEconomicChapter.3', 'totalExpense'].sort(),
+    )
+    for (const x of b.sinDato) expect(x.etiqueta.length).toBeGreaterThan(3)
+  })
+
+  it('el padrón de municipios tampoco convierte el total ausente en 0', () => {
+    const rr = parseConprelRoster(conHuecos()).find((m) => m.ine === '46214')!
+    expect(rr.gastoTotal).toBeNull()
+    expect(rr.ingresoTotal).toBeGreaterThan(0)
+  })
+})
+
+describe('scraper/budget — importe(), la lectura de una celda', () => {
+  it('lee números y el formato español de miles y decimales', () => {
+    expect(importe(1234.5)).toBe(1234.5)
+    expect(importe(0)).toBe(0)
+    expect(importe('0')).toBe(0)
+    expect(importe('1.234,56')).toBe(1234.56)
+    expect(importe(' 39.504.768,48 ')).toBe(39504768.48)
+    expect(importe('-1.000')).toBe(-1000)
+  })
+
+  it('devuelve null para lo que no es un importe, nunca 0', () => {
+    for (const v of [null, undefined, '', '   ', 'n.d.', '-', '12abc', NaN, Infinity, true, {}]) {
+      expect(importe(v), JSON.stringify(v)).toBeNull()
+    }
   })
 })

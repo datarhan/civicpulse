@@ -68,4 +68,31 @@ describe('scraper/budget-contraste', () => {
     )!
     expect(cuadrado.hayDesacuerdo).toBe(false)
   })
+
+  // Una celda de CONPREL sin dato llega al snapshot como null (budget.ts). Si
+  // aquí volviera a ser 0, la diferencia del capítulo sería la cifra municipal
+  // entera, publicada como desacuerdo entre las dos fuentes.
+  it('un capítulo sin dato en CONPREL no se contrasta como si valiera 0', () => {
+    const snap = structuredClone(budget.snapshot)
+    snap.expenseByEconomicChapter.find((x: { code: string }) => x.code === '1').amount = null
+    const sin = contrastarPresupuesto(snap, ejecucion.latest)!
+    const cap1 = sin.capitulos.find((x) => x.code === '1')!
+    expect(cap1.conprel).toBeNull()
+    expect(cap1.diferencia).toBeNull()
+    expect(cap1.municipal).toBeGreaterThan(0)
+  })
+
+  it('sin total de ingresos no hay desequilibrio que medir ni coincidencia que afirmar', () => {
+    const sin = contrastarPresupuesto({ ...budget.snapshot, totalRevenue: null }, ejecucion.latest)!
+    expect(sin.desequilibrioConprel).toBeNull()
+    expect(sin.ingresosCoinciden).toBeNull()
+    // El desacuerdo en gastos sigue en pie: no depende de los ingresos.
+    expect(sin.hayDesacuerdo).toBe(true)
+  })
+
+  it('sin total de gastos calla, igual que con la fuente ausente', () => {
+    expect(
+      contrastarPresupuesto({ ...budget.snapshot, totalExpense: null }, ejecucion.latest),
+    ).toBeNull()
+  })
 })
