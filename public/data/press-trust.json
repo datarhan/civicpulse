@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-16T04:48:50.534Z",
+  "generatedAt": "2026-10-16T08:40:20.024Z",
   "windowDays": 30,
   "articles": [
     {
@@ -1089,30 +1089,13 @@
         "opinionFraction": 0
       },
       "score": 2
-    },
-    {
-      "articleId": "1voiyyo",
-      "articleFingerprint": "1bdpfig",
-      "outlet": "Ayuntamiento de Riba-roja de Túria",
-      "outletHost": "ribarroja.es",
-      "url": "https://www.ribarroja.es/es/noticia/galer%C3%ADa-fotogr%C3%A1fica-procesi%C3%B3n-cristo-2026",
-      "date": "2026-09-16T07:22:59.000Z",
-      "indicators": {
-        "localCoverage": true,
-        "datedArticle": true,
-        "municipalSourceMatch": null,
-        "corroboratedAcrossOutlets": false,
-        "factualClaimsPresent": false,
-        "opinionFraction": 0
-      },
-      "score": 2
     }
   ],
   "outlets": [
     {
       "outlet": "Ayuntamiento de Riba-roja de Túria",
       "outletHost": "ribarroja.es",
-      "articleCount": 19,
+      "articleCount": 18,
       "verdictCounts": {
         "verificado": 0,
         "parcial": 0,
@@ -1120,7 +1103,7 @@
         "sin-datos": 16,
         "promesa-repetida": 0
       },
-      "meanTrustScore": 2.53,
+      "meanTrustScore": 2.56,
       "verifiedRatio": 0,
       "contradictedRatio": null
     },
@@ -1351,7 +1334,7 @@
     }
   ],
   "builtFrom": {
-    "plenos-agendas.json": "df9e01aef09a",
+    "plenos-agendas.json": "de1447f32a51",
     "press-claims-verified.json": "7a128575d1ad",
     "press.json": "4ff88bb3635a",
     "promises.json": "08c43b132d79"
