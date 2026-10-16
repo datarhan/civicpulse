@@ -1,12 +1,12 @@
 {
-  "generatedAt": "2026-10-15T09:24:19.765Z",
+  "generatedAt": "2026-10-16T09:18:22.502Z",
   "source": {
     "name": "Boletín Oficial de la Provincia de València",
     "home": "https://bop.dival.es/bop/",
     "note": "Last 30 days · anuncios del Ayuntamiento de Riba-roja de Túria"
   },
   "stats": {
-    "total": 6,
+    "total": 5,
     "daysCovered": 21,
     "daysRequested": 30,
     "fetchFailures": 0,
@@ -62,16 +62,6 @@
       "bulletinDate": "21/09/2026",
       "pdfUrl": "https://bop.dival.es/bop/downloads?anuncioNumReg=2026%2F11347",
       "bulletinUrl": "https://bop.dival.es/bop/downloads?boletinFecha=21%2F09%2F2026"
-    },
-    {
-      "id": "f5654e4d832b",
-      "regNumber": "2026/11237",
-      "title": "Anuncio del Ayuntamiento de Riba-roja de Túria sobre la convocatoria de subvenciones destinadas a ayudas a la rehabilitación de fachadas de viviendas, en régimen de concurrencia competitiva para los ejercicios 2026-2027. Identificador BDNS: 928143",
-      "entity": "Ayuntamiento de Riba-roja de Túria",
-      "date": "2026-09-16",
-      "bulletinDate": "16/09/2026",
-      "pdfUrl": "https://bop.dival.es/bop/downloads?anuncioNumReg=2026%2F11237",
-      "bulletinUrl": "https://bop.dival.es/bop/downloads?boletinFecha=16%2F09%2F2026"
     }
   ]
 }

@@ -1,35 +1,15 @@
 {
-  "generatedAt": "2026-10-15T09:24:33.630Z",
+  "generatedAt": "2026-10-16T09:18:34.551Z",
   "source": {
     "url": "https://www.ribarroja.es/es/eventos/rss.xml",
     "platform": "Drupal RSS (oficial)"
   },
   "stats": {
     "total": 50,
-    "upcoming": 9,
-    "nextDate": "2026-11-20T21:00:00.000Z"
+    "upcoming": 12,
+    "nextDate": "2026-10-17T07:00:00.000Z"
   },
   "events": [
-    {
-      "id": "x0y5jl",
-      "title": "Actes festes Crist 2026 - divendres 4 de setembre",
-      "link": "https://www.ribarroja.es/va/evento/actes-festes-crist-2026-divendres-4-de-setembre",
-      "eventDate": "2026-09-04T20:00:00.000Z",
-      "eventDateText": "04 de septiembre de 2026 22:00",
-      "publishedDate": "2026-08-28T10:03:00.000Z",
-      "excerpt": "&nbsp;",
-      "image": "https://www.ribarroja.es/sites/www.ribarroja.es/files/styles/interior_contenido_/public/20260827%20FestesCrist2026_web_6.png?itok=0GUkvgSL"
-    },
-    {
-      "id": "18cjnx4",
-      "title": "Actes festes Crist 2026 - dissabte 5 de setembre",
-      "link": "https://www.ribarroja.es/va/evento/actes-festes-crist-2026-dissabte-5-de-setembre",
-      "eventDate": "2026-09-05T05:00:00.000Z",
-      "eventDateText": "05 de septiembre de 2026 07:00",
-      "publishedDate": "2026-08-28T10:04:56.000Z",
-      "excerpt": "&nbsp;",
-      "image": "https://www.ribarroja.es/sites/www.ribarroja.es/files/styles/interior_contenido_/public/20260827%20FestesCrist2026_web_7.png?itok=6fHqqoOm"
-    },
     {
       "id": "a5g6cw",
       "title": "Competiciones deportivas 5 de septiembre de 2026",
@@ -49,16 +29,6 @@
       "publishedDate": "2026-09-03T07:46:23.000Z",
       "excerpt": "&nbsp;",
       "image": "https://www.ribarroja.es/sites/www.ribarroja.es/files/styles/interior_contenido_/public/Competiciones%20deportivas%20reducida_2.png?itok=7ArlWmzv"
-    },
-    {
-      "id": "r3a7a0",
-      "title": "Actes festes Crist 2026 - diumenge 6 de setembre",
-      "link": "https://www.ribarroja.es/va/evento/actes-festes-crist-2026-diumenge-6-de-setembre",
-      "eventDate": "2026-09-06T08:00:00.000Z",
-      "eventDateText": "06 de septiembre de 2026 10:00",
-      "publishedDate": "2026-08-28T10:06:46.000Z",
-      "excerpt": "&nbsp;",
-      "image": "https://www.ribarroja.es/sites/www.ribarroja.es/files/styles/interior_contenido_/public/20260827%20FestesCrist2026_web_8.png?itok=P3F7Xu_t"
     },
     {
       "id": "p2hxww",
@@ -419,6 +389,36 @@
       "publishedDate": "2026-09-21T11:06:36.000Z",
       "excerpt": "&nbsp;",
       "image": "https://www.ribarroja.es/sites/www.ribarroja.es/files/styles/interior_contenido_/public/ec0fec9f-34af-46c4-b656-82b8d9a4e5d9.jpg?itok=2zwPxNIW"
+    },
+    {
+      "id": "wvvkve",
+      "title": "Competiciones deportivas 17 de octubre de 2026",
+      "link": "https://www.ribarroja.es/es/evento/competiciones-deportivas-17-de-octubre-de-2026",
+      "eventDate": "2026-10-17T07:00:00.000Z",
+      "eventDateText": "17 de octubre de 2026 09:00",
+      "publishedDate": "2026-10-15T10:06:47.000Z",
+      "excerpt": "&nbsp;",
+      "image": "https://www.ribarroja.es/sites/www.ribarroja.es/files/styles/interior_contenido_/public/Competiciones%20deportivas%20reducida_8.png?itok=ekOl7gD2"
+    },
+    {
+      "id": "u5y8w0",
+      "title": "Competiciones deportivas 18 de octubre de 2026",
+      "link": "https://www.ribarroja.es/es/evento/competiciones-deportivas-18-de-octubre-de-2026",
+      "eventDate": "2026-10-18T07:00:00.000Z",
+      "eventDateText": "18 de octubre de 2026 09:00",
+      "publishedDate": "2026-10-15T10:10:39.000Z",
+      "excerpt": "&nbsp;",
+      "image": "https://www.ribarroja.es/sites/www.ribarroja.es/files/styles/interior_contenido_/public/Competiciones%20deportivas%20reducida_9.png?itok=4a4ygyCm"
+    },
+    {
+      "id": "kly15o",
+      "title": "Cine 'La bola negra'",
+      "link": "https://www.ribarroja.es/es/evento/cine-%27la-bola-negra%27",
+      "eventDate": "2026-10-30T21:00:00.000Z",
+      "eventDateText": "30 de octubre de 2026 22:00",
+      "publishedDate": "2026-10-15T10:45:18.000Z",
+      "excerpt": "&nbsp;",
+      "image": "https://www.ribarroja.es/sites/www.ribarroja.es/files/styles/interior_contenido_/public/20261014%20bolanegra.jpg?itok=lJw4Fqx4"
     },
     {
       "id": "nfc8cc",

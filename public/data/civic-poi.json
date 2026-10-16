@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-15T09:26:30.195Z",
+  "generatedAt": "2026-10-16T09:21:16.373Z",
   "source": {
     "platform": "OSM Overpass API",
     "endpoint": "https://overpass-api.de/api/interpreter",
@@ -247,6 +247,14 @@
       "lng": -0.5626679
     },
     {
+      "id": "node-14206811854",
+      "name": "Sanchis",
+      "category": "salud",
+      "kind": "pharmacy",
+      "lat": 39.5450112,
+      "lng": -0.5730381
+    },
+    {
       "id": "way-572095263",
       "name": "Parc de Rosalía de Castro",
       "category": "verde",
@@ -261,6 +269,14 @@
       "kind": "park",
       "lat": 39.5477716,
       "lng": -0.5797717
+    },
+    {
+      "id": "way-33654935",
+      "name": "Parc Municipal Montealcedo",
+      "category": "verde",
+      "kind": "park",
+      "lat": 39.5528084,
+      "lng": -0.5415844
     },
     {
       "id": "way-551533189",
@@ -280,14 +296,14 @@
     }
   ],
   "stats": {
-    "total": 34,
+    "total": 36,
     "byCategory": {
       "civico": 5,
       "cultura": 4,
       "deporte": 7,
       "educacion": 11,
-      "salud": 3,
-      "verde": 4
+      "salud": 4,
+      "verde": 5
     }
   }
 }

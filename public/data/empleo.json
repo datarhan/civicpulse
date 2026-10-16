@@ -1,19 +1,19 @@
 {
-  "generatedAt": "2026-10-15T09:32:02.437Z",
+  "generatedAt": "2026-10-16T09:26:41.177Z",
   "source": {
     "origin": "https://ribaocupacio.portalemp.com",
     "platform": "portalemp — ribaocupacio · Agència de Col·locació (ADL), Ajuntament de Riba-roja de Túria",
     "listEndpoint": "https://ribaocupacio.portalemp.com/ofertas.html?acc=tableData"
   },
   "stats": {
-    "total": 46,
-    "openTotal": 45,
+    "total": 45,
+    "openTotal": 44,
     "inRibaRoja": 29,
-    "closingSoon": 17,
-    "withDetail": 46,
+    "closingSoon": 16,
+    "withDetail": 45,
     "byMonth": {
       "2026-10": 4,
-      "2026-09": 22,
+      "2026-09": 21,
       "2026-08": 15,
       "2026-07": 1,
       "2026-06": 1,
@@ -1812,85 +1812,6 @@
             "nombre": "AUXILIARES DE ENFERMERÍA DE GERIATRÍA"
           }
         ]
-      }
-    },
-    {
-      "id": "2528",
-      "fo": 2528,
-      "codigo": "2026/00227",
-      "titulo": "Mozo de almacén",
-      "publishedAt": "2026-09-02",
-      "deadline": "2026-11-02",
-      "location": "Loriguilla (Valencia)",
-      "status": "Abierta",
-      "statusTone": "ok",
-      "url": "https://ribaocupacio.portalemp.com/ofertas.html?fo=2528",
-      "inRibaRoja": false,
-      "detail": {
-        "fields": [
-          {
-            "label": "Código",
-            "value": "2026/00227"
-          },
-          {
-            "label": "Nombre de la oferta",
-            "value": "Mozo de almacén"
-          },
-          {
-            "label": "Observaciones",
-            "value": "Requisitos: - Graduado en ESO - Carnet carretillero y puente grúa - Carnet B o superior Vehículo para acceder al puesto de trabajo ."
-          },
-          {
-            "label": "Tipo de contrato",
-            "value": "CONTRATO DE OBRA O SERVICIO DETERMINADO"
-          },
-          {
-            "label": "Duración del contrato",
-            "value": "Más de 6 meses"
-          },
-          {
-            "label": "Número de puestos",
-            "value": "1"
-          },
-          {
-            "label": "Lugar puesto de trabajo",
-            "value": "Municipio: Loriguilla, Provincia: Valencia"
-          },
-          {
-            "label": "Tipo de jornada laboral",
-            "value": "Completa Turnos: Turno partido"
-          },
-          {
-            "label": "Observaciones jornada",
-            "value": "Contrato temporal ampliable a indefinido"
-          },
-          {
-            "label": "Horario",
-            "value": "De lunes a viernes de 7:30 a 16:30 horas."
-          },
-          {
-            "label": "Salario",
-            "value": "Según convenio"
-          },
-          {
-            "label": "Funciones",
-            "value": "- Preparación de pedidos - Control de stock - Carga y descarga"
-          },
-          {
-            "label": "Requiere vehículo propio",
-            "value": "Sí"
-          }
-        ],
-        "tipoContrato": "CONTRATO DE OBRA O SERVICIO DETERMINADO",
-        "duracion": "Más de 6 meses",
-        "numPuestos": "1",
-        "observaciones": "Requisitos: - Graduado en ESO - Carnet carretillero y puente grúa - Carnet B o superior Vehículo para acceder al puesto de trabajo .",
-        "jornada": "Completa Turnos: Turno partido",
-        "horario": "De lunes a viernes de 7:30 a 16:30 horas.",
-        "salario": "Según convenio",
-        "funciones": "- Preparación de pedidos - Control de stock - Carga y descarga",
-        "vehiculo": "Sí",
-        "ocupaciones": []
       }
     },
     {
