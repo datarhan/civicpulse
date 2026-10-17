@@ -52,6 +52,13 @@ describe('textoSolicitudLector', () => {
     expect(t).toMatch(/a raíz de la información publicada en «Inteligencia turística»/)
     expect(t).toContain(pieza.url)
   })
+  it('las comillas del título pasan a ser de segundo nivel dentro de la cita', () => {
+    const c = textoSolicitudLector({
+      ...pieza,
+      titulo: 'Dos millones para el «destino inteligente»',
+    })
+    expect(c).toContain('en «Dos millones para el “destino inteligente”» (')
+  })
   it('sin preguntas no hay escrito', () => {
     expect(() => textoSolicitudLector({ ...pieza, preguntas: [] })).toThrow()
   })

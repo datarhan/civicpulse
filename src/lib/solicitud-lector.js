@@ -50,6 +50,16 @@ const LEY_VALENCIANA =
   'Ley 1/2022, de 13 de abril, de la Generalitat, de Transparencia y Buen Gobierno de la Comunitat Valenciana'
 
 /**
+ * Las comillas de dentro de un título que ya va entre «»: en castellano, las de
+ * segundo nivel son las inglesas. El titular de inteligencia turística lleva
+ * «destino inteligente», y citado tal cual salía «… el «destino inteligente»: …»,
+ * con un cierre que parece cerrar la cita entera.
+ *
+ * @param {string} titulo
+ */
+const comillasInternas = (titulo) => titulo.replace(/«/g, '“').replace(/»/g, '”')
+
+/**
  * El escrito entero, listo para pegar en el campo libre de la sede electrónica
  * o para imprimir y llevar al Registro de Entrada. Texto plano: la sede se come
  * el marcado.
@@ -80,7 +90,7 @@ export function textoSolicitudLector({ titulo, url, preguntas }) {
     '',
     `Que el artículo 12 de la ${LEY_ESTATAL}, reconoce a todas las personas el derecho a acceder a la información pública, que su artículo 13 define como los contenidos o documentos que obren en poder de la administración y que hayan sido elaborados o adquiridos en el ejercicio de sus funciones; derecho que regula también, en la Comunitat Valenciana, la ${LEY_VALENCIANA}.`,
     '',
-    `Que, aunque el artículo 17.3 de la Ley 19/2013 no obliga a motivar la solicitud, esta se formula a raíz de la información publicada en «${titulo}» (${url}).`,
+    `Que, aunque el artículo 17.3 de la Ley 19/2013 no obliga a motivar la solicitud, esta se formula a raíz de la información publicada en «${comillasInternas(titulo)}» (${url}).`,
     '',
     'SOLICITA',
     '',
