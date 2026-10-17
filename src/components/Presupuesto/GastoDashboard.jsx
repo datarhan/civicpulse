@@ -104,8 +104,12 @@ export default function GastoDashboard() {
   // verdad hasta la siguiente pasada del raspador. Y el total va rotulado
   // «adjudicado», no «gasto» —es importe de adjudicación sin IVA, no dinero
   // desembolsado—, que es la lección de la portada (`i18n-dinero-adjudicado`).
-  const yearMin = (tg.universe?.dateMin || '').slice(0, 4)
-  const yearMax = (tg.universe?.dateMax || '').slice(0, 4)
+  //
+  // Y es el periodo del TOTAL (`totalDateMin`/`totalDateMax`), no el de las
+  // filas del mapa (`dateMin`/`dateMax`, que mueven el deslizador): todo lo que
+  // lo usa rotula `totalAmount`. Coincidían por suerte hasta el 17-10-2026.
+  const yearMin = (tg.universe?.totalDateMin ?? tg.universe?.dateMin ?? '').slice(0, 4)
+  const yearMax = (tg.universe?.totalDateMax ?? tg.universe?.dateMax ?? '').slice(0, 4)
   const span = yearMin && yearMax ? `${yearMin}–${yearMax}` : null
   const nEjercicios = span ? Number(yearMax) - Number(yearMin) + 1 : null
   const totalUniverso = tg.universe?.totalAmount || 0
