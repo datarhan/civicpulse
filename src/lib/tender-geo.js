@@ -27,6 +27,8 @@ export const EMPTY_TENDER_GEO = {
     danaAmount: 0,
     dateMin: null,
     dateMax: null,
+    totalDateMin: null,
+    totalDateMax: null,
   },
   zones: [],
   places: [],

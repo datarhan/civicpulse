@@ -92,8 +92,13 @@ export interface TenderGeoSnapshot {
     danaAmount: number
     danaAwardedContracts: number
     danaAwardedAmount: number
+    /** Periodo de las filas que llegan al mapa (mueve el deslizador de /presupuesto). */
     dateMin: string | null
     dateMax: string | null
+    /** Fecha más antigua de TODO el universo sumado en `totalAmount`, situado o no. */
+    totalDateMin: string | null
+    /** Fecha más reciente de TODO el universo sumado en `totalAmount`, situado o no. */
+    totalDateMax: string | null
   }
   zones: TenderGeoZone[]
   places: TenderGeoPlace[]
@@ -200,12 +205,23 @@ export function matchContractsToZones(
   let danaAwardedAmount = 0
   let dateMin: string | null = null
   let dateMax: string | null = null
+  let totalDateMin: string | null = null
+  let totalDateMax: string | null = null
 
   for (const c of contracts) {
     const amt = amountOf(c)
     if (!amt) continue
     totalContracts++
     totalAmount += amt.amount
+    // El periodo del DENOMINADOR. `dateMin/dateMax` (más abajo) sólo ven las
+    // filas que llegan al mapa y mueven el deslizador de /presupuesto; las
+    // líneas de cobertura imprimen «X de Y (2017–2026)» y ese periodo es el de
+    // Y. Hasta el 15-10-2026 se imprimía el de X y coincidía por suerte.
+    const fechaTotal = dateOf(c)
+    if (fechaTotal) {
+      if (!totalDateMin || fechaTotal < totalDateMin) totalDateMin = fechaTotal
+      if (!totalDateMax || fechaTotal > totalDateMax) totalDateMax = fechaTotal
+    }
 
     const title = c.title || ''
     // Widen the searched text with the parent licitación objeto when it adds
@@ -351,6 +367,8 @@ export function matchContractsToZones(
       danaAwardedAmount,
       dateMin,
       dateMax,
+      totalDateMin,
+      totalDateMax,
     },
     zones: [...agg.values()].sort((a, b) => b.amount - a.amount),
     places: [...placeAgg.values()].sort((a, b) => b.amount - a.amount),
