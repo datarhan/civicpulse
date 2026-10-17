@@ -50,7 +50,7 @@ export function NeighborhoodPopup({ agg }) {
         </div>
 
         <div>
-          <div style={labelStyle}>{t('map.barrio.inversion')}</div>
+          <div style={labelStyle}>{t('map.barrio.adjudicado')}</div>
           {contractCount > 0 ? (
             <>
               <div style={valueStyle}>

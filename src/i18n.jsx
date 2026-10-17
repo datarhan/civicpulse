@@ -499,7 +499,11 @@ export const CATALOGUE = {
     // `map.quejas.crit|warn|ok|civic`. Una frase, una traducción.
     'map.barrio.habitantes': '{n} hab.',
     'map.barrio.osm': 'Barrio OSM',
-    'map.barrio.inversion': 'Inversión situada',
+    // «Inversión situada» decía, y la zona suma todo contrato cuyo título nombra
+    // el barrio: obra, servicio o suministro. El importe es el de adjudicación
+    // sin IVA, los mismos euros que /quejas rotula `quejas.cruce.col.adjudicado`
+    // (tests/components/barrio-adjudicado-situado.test.jsx).
+    'map.barrio.adjudicado': 'Adjudicado situado',
     'map.barrio.danaIncluida': 'incluye {importe} recuperación DANA',
     'map.barrio.sinObras': 'sin obras cuyo título nombre el barrio',
     'map.barrio.sinQuejas': 'sin quejas de vecinos',
@@ -2587,7 +2591,7 @@ export const CATALOGUE = {
     // Globos y rótulos flotantes del mapa: ver la nota del bloque castellano.
     'map.barrio.habitantes': '{n} hab.',
     'map.barrio.osm': 'Barri OSM',
-    'map.barrio.inversion': 'Inversió situada',
+    'map.barrio.adjudicado': 'Adjudicat situat',
     'map.barrio.danaIncluida': 'inclou {importe} de recuperació DANA',
     'map.barrio.sinObras': 'sense obres el títol de les quals nomene el barri',
     'map.barrio.sinQuejas': 'sense queixes de veïns',
