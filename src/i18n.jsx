@@ -238,6 +238,19 @@ export const CATALOGUE = {
     'reportajes.indice.apartados': '{n} apartados',
     'reportajes.mas': 'Más reportajes',
     'reportajes.todos': 'Todos los reportajes →',
+    // «Pídelo tú» (components/reportajes/SolicitudLector.jsx): el escrito de
+    // acceso con las preguntas de una pieza que el proyecto aún no ha
+    // registrado. Sólo la interfaz se traduce; el escrito va en castellano.
+    'reportajes.solicitud.titulo': 'Estas preguntas puedes hacerlas tú',
+    'reportajes.solicitud.explica':
+      'Cualquier persona puede pedir esta información al Ayuntamiento, sin explicar para qué (arts. 12 y 17 de la Ley 19/2013). El botón copia un escrito listo para pegar: rellena tus datos donde están los corchetes. Para presentarlo hay que identificarse, con certificado digital o Cl@ve en la sede electrónica del Ayuntamiento, o en persona en su Registro de Entrada. El Ayuntamiento tiene un mes para resolver, contado desde que la recibe el órgano que debe resolverla (art. 20.1). Si te contesta, puedes enviarnos la respuesta a {correo}; sólo se publica después de que la revise quien mantiene el proyecto, y nunca con tus datos.',
+    'reportajes.solicitud.parcial':
+      'El escrito recoge {n} de las {total} preguntas: las que piden información que tiene el Ayuntamiento. Las demás piden una valoración o parten de una afirmación de esta pieza, y en un escrito que firmas tú serían afirmaciones tuyas.',
+    'reportajes.solicitud.copiar': 'Copiar texto de la solicitud',
+    'reportajes.solicitud.copiado': 'Copiado',
+    'reportajes.solicitud.noCopiado':
+      'No se ha podido copiar: el texto está debajo, para seleccionarlo a mano.',
+    'reportajes.solicitud.ver': 'Ver el texto completo',
 
     // Empleo (ofertas de empleo · Agència de Col·locació)
     'empleo.eyebrow': 'Agència de Col·locació · ADL',
@@ -2355,6 +2368,16 @@ export const CATALOGUE = {
     'reportajes.indice.apartados': '{n} apartats',
     'reportajes.mas': 'Més reportatges',
     'reportajes.todos': 'Tots els reportatges →',
+    'reportajes.solicitud.titulo': 'Aquestes preguntes les pots fer tu',
+    'reportajes.solicitud.explica':
+      "Qualsevol persona pot demanar aquesta informació a l'Ajuntament, sense explicar per a què (arts. 12 i 17 de la Llei 19/2013). El botó copia un escrit a punt per a apegar: ompli les teues dades on hi ha els claudàtors. Per a presentar-lo cal identificar-se, amb certificat digital o Cl@ve a la seu electrònica de l'Ajuntament, o en persona al seu Registre d'Entrada. L'Ajuntament té un mes per a resoldre, comptat des que la rep l'òrgan que l'ha de resoldre (art. 20.1). Si et contesta, pots enviar-nos la resposta a {correo}; només es publica després que la revise qui manté el projecte, i mai amb les teues dades.",
+    'reportajes.solicitud.parcial':
+      "L'escrit recull {n} de les {total} preguntes: les que demanen informació que té l'Ajuntament. Les altres demanen una valoració o parteixen d'una afirmació d'aquesta peça, i en un escrit que signes tu serien afirmacions teues.",
+    'reportajes.solicitud.copiar': 'Copiar el text de la sol·licitud',
+    'reportajes.solicitud.copiado': 'Copiat',
+    'reportajes.solicitud.noCopiado':
+      "No s'ha pogut copiar: el text és ací baix, per a seleccionar-lo a mà.",
+    'reportajes.solicitud.ver': 'Veure el text complet',
 
     // Empleo (ofertes d’ocupació · Agència de Col·locació)
     'empleo.eyebrow': 'Agència de Col·locació · ADL',

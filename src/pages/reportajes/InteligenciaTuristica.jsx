@@ -3,6 +3,8 @@ import Emblema, { cifrasDelEmblema } from '../../components/reportajes/Emblema'
 import { Card } from '../../components/Primitives'
 import { CorrectionNote, CorrectionNotice } from '../../components/reportajes/CorrectionNote'
 import { SecHead, IndicePieza } from '../../components/reportajes/Pieza'
+import SolicitudLector from '../../components/reportajes/SolicitudLector'
+import { debeOfrecerSolicitud } from '../../lib/solicitud-lector'
 
 const SERIF = "'Fraunces', Georgia, serif"
 
@@ -575,6 +577,15 @@ export default function InteligenciaTuristica() {
             </li>
           ))}
         </ol>
+        {/* Todas piden información que el Ayuntamiento tiene, y la pieza no las
+            ha registrado: quien lee puede presentarlas con su nombre. */}
+        {debeOfrecerSolicitud(data) && (
+          <SolicitudLector
+            titulo={m.titulo}
+            ruta="/reportajes/inteligencia-turistica"
+            preguntas={data.preguntas}
+          />
+        )}
       </article>
 
       {/* Fuentes + método */}

@@ -2,6 +2,8 @@ import { useReportaje } from '../../hooks/useReportaje'
 import Emblema, { cifrasDelEmblema } from '../../components/reportajes/Emblema'
 import { CorrectionNote, CorrectionNotice } from '../../components/reportajes/CorrectionNote'
 import { SecHead, IndicePieza } from '../../components/reportajes/Pieza'
+import SolicitudLector from '../../components/reportajes/SolicitudLector'
+import { debeOfrecerSolicitud } from '../../lib/solicitud-lector'
 
 const SERIF = "'Fraunces', Georgia, serif"
 
@@ -182,6 +184,48 @@ const boxLi = () => ({
   lineHeight: 1.45,
 })
 
+/**
+ * Las preguntas del cuestionario que NO van en el escrito que puede presentar
+ * quien lee (`SolicitudLector`), por su comienzo literal y con el porqué.
+ *
+ * El escrito lo firma el lector con su DNI, así que sólo puede preguntar: pedir
+ * información que el Ayuntamiento tenga (art. 13 de la Ley 19/2013). Estas
+ * preguntas del cuestionario hacen otra cosa —valoran, afirman o señalan a quien
+ * ocupa un cargo que sólo ocupa una persona— y en un escrito a su nombre esa
+ * frase pasaría a ser suya. En la pieza siguen todas: aquí sólo se decide qué
+ * se pide. Por el comienzo y no por el número, para que reordenar el JSON no
+ * cambie en silencio cuáles se piden; tests/solicitud-lector.test.js exige que
+ * cada comienzo case con una sola pregunta.
+ */
+export const APARTADAS = {
+  '¿Sabía el Ayuntamiento, al firmar':
+    'su última parte («¿cómo pudo no saberlo…?») es retórica: afirma la negligencia que pregunta',
+  '¿La resolución fue por incumplimiento':
+    '«Las dos cosas no pueden ser verdad a la vez» es una conclusión de la pieza, no una pregunta',
+  'Los 685.296 €':
+    'abre afirmando lo que la pieza encontró —«de su bolsillo tras la caída del servicio»—',
+  '¿Se va a aplicar la rebaja':
+    'nombra al alcalde, un cargo que ocupa una persona, y pregunta una intención, no un documento',
+  '¿Quién es responsable de que':
+    'busca un culpable; lo que el escrito puede pedir es quién tiene la competencia',
+  '¿Consta en las actas alguna advertencia':
+    'su segunda parte pide al gobierno municipal una valoración y que alguien asuma responsabilidades',
+}
+
+/**
+ * Las preguntas del cuestionario, en su orden y literales, sin las apartadas.
+ * La forma en bloques es de esta pieza: se aplana aquí, no en el ayudante.
+ *
+ * @param {{ bloques: { items: { q: string }[] }[] }} preguntas
+ * @returns {string[]}
+ */
+export function preguntasSolicitables(preguntas) {
+  const apartadas = Object.keys(APARTADAS)
+  return preguntas.bloques
+    .flatMap((b) => b.items.map((it) => it.q))
+    .filter((q) => !apartadas.some((a) => q.startsWith(a)))
+}
+
 export default function Basuras() {
   const { loading, error, data } = useReportaje('basuras')
 
@@ -205,6 +249,7 @@ export default function Basuras() {
   const ce = data.costeEfectivo
   const cal = data.calendario
   const ch = cal.contradiccionHoraria
+  const solicitables = preguntasSolicitables(data.preguntas)
 
   return (
     <div
@@ -835,6 +880,14 @@ export default function Basuras() {
           )
         })}
         <p style={{ color: 'var(--ink50)', fontSize: 'var(--fs-body)' }}>{data.preguntas.cierre}</p>
+        {debeOfrecerSolicitud({ preguntas: solicitables, solicitudes: data.solicitudes }) && (
+          <SolicitudLector
+            titulo={m.titulo}
+            ruta="/reportajes/basuras"
+            preguntas={solicitables}
+            total={data.preguntas.bloques.reduce((s, b) => s + b.items.length, 0)}
+          />
+        )}
       </article>
 
       {/* Fuentes + método */}
