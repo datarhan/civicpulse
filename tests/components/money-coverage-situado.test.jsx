@@ -12,14 +12,17 @@ import CoverageMeter from '../../src/components/Presupuesto/CoverageMeter'
 
 afterEach(cleanup)
 
-// Intl compacta «6 M €» con un espacio duro entre la cifra, la M y el euro; de
-// ahí `\s` en las expresiones, y `\b` para que «16 M €» no pase por «6 M €».
+// Las cifras no son redondas a propósito: con 6e6, el ICU de una máquina imprime
+// «6 M €» y el de CI «6,0 M €», y la prueba pasaba en una y fallaba en otra. Con
+// 6,1e6 los dos imprimen «6,1 M €». Entre la cifra, la M y el euro puede ir un
+// espacio duro, uno estrecho o ninguno; `\b` impide que «16,1» pase por «6,1».
+const M = (cifra) => new RegExp(`\\b${cifra}[\\s\\u00a0\\u202f]?M[\\s\\u00a0\\u202f]?€`)
 const pinta = (nodo) => render(<LocaleProvider>{nodo}</LocaleProvider>).container
 
 const universe = {
   totalAmount: 100e6,
-  locatedAmount: 2e6,
-  situatedAmount: 6e6,
+  locatedAmount: 2.2e6,
+  situatedAmount: 6.1e6,
   dateMin: '2018-01-01',
   dateMax: '2025-01-01',
   totalDateMin: '2017-07-06',
@@ -29,9 +32,9 @@ const universe = {
 describe('MoneyCoverage', () => {
   it('imprime lo situado, no lo zonificado', () => {
     const t = pinta(<MoneyCoverage snapshot={{ universe }} />).textContent
-    expect(t).toMatch(/\b6\sM\s?€/)
-    expect(t).not.toMatch(/\b2\sM\s?€/)
-    expect(t).toMatch(/6%/)
+    expect(t).toMatch(M('6,1'))
+    expect(t).not.toMatch(M('2,2'))
+    expect(t).toMatch(/6,1\s?%/)
   })
   it('el periodo es el del denominador', () => {
     const t = pinta(<MoneyCoverage snapshot={{ universe }} />).textContent
@@ -53,7 +56,7 @@ describe('CoverageMeter', () => {
     const t = pinta(<CoverageMeter universe={universe} zones={[]} />).textContent
     expect(t).toMatch(/2017/)
     expect(t).toMatch(/2026/)
-    expect(t).toMatch(/\b2\sM\s?€/)
-    expect(t).not.toMatch(/\b6\sM\s?€/)
+    expect(t).toMatch(/\b2[\s\u00a0\u202f]?M[\s\u00a0\u202f]?€/)
+    expect(t).not.toMatch(/\b6(,1)?[\s\u00a0\u202f]?M[\s\u00a0\u202f]?€/)
   })
 })
