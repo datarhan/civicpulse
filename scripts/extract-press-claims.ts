@@ -39,6 +39,7 @@ import {
   desenlaceDe,
   elegirPendientes,
   fundirExtraccion,
+  pasadaEnRojo,
   sembrarDesdeClaims,
   type ExtraccionArticulo,
 } from '../src/scraper/press-extraccion'
@@ -283,18 +284,18 @@ async function main() {
     console.error(`[extract:press-claims] NOT WRITING ${OUT} · ${decision.reason}`)
   }
 
-  // Either way, an incomplete run must not masquerade as a clean extract: flag
-  // it loudly and exit non-zero so the cron marks the step ❌ — and, since the
-  // pipeline now honours that, skips the consumers that would derive published
-  // numbers from a corpus this run could not refresh.
+  // Una pasada incompleta no se hace pasar por limpia: cada fallo se dice por
+  // stderr, y el artículo queda `llm-no-disponible` para la pasada siguiente.
+  // Rojo (exit 1) sólo con la llamada entera caída —ver `pasadaEnRojo`—: el
+  // rojo hace que press-lab-pipeline.sh salte verify y lo que cuelga de él, y
+  // por un solo titular terco congelaría /laboratorio todas las semanas.
   if (result.stats.llmUnavailable > 0) {
     console.error(
       `[extract:press-claims] WARNING: LLM backend unavailable for ` +
         `${result.stats.llmUnavailable}/${result.stats.total} items ` +
-        `(backend=${process.env.LLM_BACKEND ?? 'auto'}). The suggestions ` +
-        `snapshot is incomplete — fix the backend and re-run.`,
+        `(backend=${process.env.LLM_BACKEND ?? 'auto'}). They stay pending ` +
+        `(llm-no-disponible) and are retried first on the next run.`,
     )
-    process.exitCode = 1
   }
   if (sinRespuesta > 0) {
     console.error(
@@ -302,15 +303,20 @@ async function main() {
         `${sinRespuesta}/${result.stats.triageHits} items with a positive triage. ` +
         `They stay pending (llm-no-disponible) and keep any earlier claims.`,
     )
-    // Rojo sólo si NINGÚN triaje positivo obtuvo su extracción: eso es la
-    // llamada de extracción caída, no un artículo raro. Un fallo parcial deja
-    // exit 0 a propósito: press-lab-pipeline.sh salta verify:press-claims y lo
-    // que cuelga de él cuando este paso sale con 1, y un artículo que siempre
-    // devuelve null (p. ej. una respuesta que no pasa el esquema) vuelve el
-    // primero a la cola en cada pasada — con exit 1 por cada uno, bloquearía
-    // la cadena entera todas las semanas por un solo titular. Los fusionados no
-    // pierden nada en ninguno de los dos casos (`fundirExtraccion`).
-    if (sinRespuesta === result.stats.triageHits) process.exitCode = 1
+  }
+  if (
+    pasadaEnRojo({
+      total: result.stats.total,
+      llmUnavailable: result.stats.llmUnavailable,
+      triageHits: result.stats.triageHits,
+      sinRespuesta,
+    })
+  ) {
+    console.error(
+      `[extract:press-claims] the LLM call is down for this whole run — exit 1 ` +
+        `so the pipeline skips the consumers of an unrefreshed corpus.`,
+    )
+    process.exitCode = 1
   }
 }
 

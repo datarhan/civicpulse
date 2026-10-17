@@ -3,7 +3,9 @@ import {
   DESENLACES_EXTRACCION,
   desenlaceDe,
   elegirPendientes,
+  extraccionParaVerificado,
   fundirExtraccion,
+  pasadaEnRojo,
   sembrarDesdeClaims,
   type DesenlaceExtraccion,
   type ExtraccionArticulo,
@@ -326,5 +328,44 @@ describe('sembrarDesdeClaims', () => {
     )
     expect(articulos.map((x) => [x.articleId, x.fingerprint])).toEqual([['a', 'fa-prensa']])
     expect(sinHuella).toEqual(['b', 'c'])
+  })
+})
+
+describe('pasadaEnRojo', () => {
+  // Un exit 1 hace que press-lab-pipeline.sh salte verify y lo que cuelga de él. El
+  // triaje salía en rojo con UN fallo, y con lo `llm-no-disponible` primero en la cola,
+  // un solo titular terco habría congelado /laboratorio en cada pasada.
+  const pasada = (p: Partial<Parameters<typeof pasadaEnRojo>[0]>) =>
+    pasadaEnRojo({ total: 10, llmUnavailable: 0, triageHits: 4, sinRespuesta: 0, ...p })
+
+  it('un fallo parcial del triaje no es rojo: queda llm-no-disponible y se reintenta', () => {
+    expect(pasada({ llmUnavailable: 1 })).toBe(false)
+    expect(pasada({ llmUnavailable: 9, triageHits: 1 })).toBe(false)
+  })
+  it('el triaje caído para TODOS es rojo', () => {
+    expect(pasada({ llmUnavailable: 10, triageHits: 0 })).toBe(true)
+  })
+  it('la extracción: parcial no, entera sí', () => {
+    expect(pasada({ sinRespuesta: 3 })).toBe(false)
+    expect(pasada({ sinRespuesta: 4 })).toBe(true)
+  })
+  it('una pasada sin nada que enviar no es rojo', () => {
+    expect(pasada({ total: 0, triageHits: 0 })).toBe(false)
+  })
+})
+
+describe('extraccionParaVerificado', () => {
+  it('copia los desenlaces tal cual', () => {
+    const articulos = [art('a1', 'extraido'), art('a2', 'descartado-en-triaje')]
+    expect(extraccionParaVerificado({ articulos })).toEqual({ articulos })
+  })
+  it('un fichero de sugerencias sin `articulos` da null, no una lista vacía', () => {
+    // Una lista vacía se leería «no se ha procesado ninguno»; null es «no se sabe».
+    expect(extraccionParaVerificado({})).toEqual({ articulos: null })
+    expect(extraccionParaVerificado({ articulos: 'no' })).toEqual({ articulos: null })
+    expect(extraccionParaVerificado(null)).toEqual({ articulos: null })
+  })
+  it('una lista vacía de verdad se conserva', () => {
+    expect(extraccionParaVerificado({ articulos: [] })).toEqual({ articulos: [] })
   })
 })

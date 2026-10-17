@@ -217,3 +217,50 @@ export function elegirPendientes<T extends { id: string; fingerprint: string; da
   if (Number.isNaN(max) || max <= 0) return []
   return cola.slice(0, Math.floor(max))
 }
+
+/**
+ * Si la pasada sale en rojo (exit 1). press-lab-pipeline.sh salta
+ * verify:press-claims y todo lo que cuelga de él cuando este paso sale con 1,
+ * así que el rojo congela /laboratorio entero hasta la pasada siguiente.
+ *
+ * Rojo sólo cuando la llamada entera está caída: NINGÚN triaje llegó al modelo,
+ * o NINGÚN triaje positivo obtuvo su extracción. Un fallo parcial es otra cosa.
+ * Desde que `elegirPendientes` pone primero lo `llm-no-disponible`, un artículo
+ * que siempre falla —una respuesta que no pasa el esquema, un titular raro—
+ * vuelve a la cola en cada pasada; con rojo por cada uno, bloquearía la cadena
+ * todas las semanas por un solo titular. Ese artículo queda registrado como
+ * `llm-no-disponible`, la CLI avisa por stderr y se reintenta; los fusionados no
+ * pierden nada (`fundirExtraccion`). Hasta octubre de 2026 el triaje salía en
+ * rojo con un solo fallo y la extracción no: la misma regla para las dos.
+ */
+export function pasadaEnRojo(s: {
+  /** Artículos enviados en esta pasada. */
+  total: number
+  /** De ellos, cuyo triaje no llegó al modelo. */
+  llmUnavailable: number
+  /** Triajes positivos. */
+  triageHits: number
+  /** De ellos, cuya extracción no obtuvo respuesta. */
+  sinRespuesta: number
+}): boolean {
+  const triajeCaido = s.total > 0 && s.llmUnavailable === s.total
+  const extraccionCaida = s.triageHits > 0 && s.sinRespuesta === s.triageHits
+  return triajeCaido || extraccionCaida
+}
+
+/**
+ * El bloque `extraccion` que verify-press-claims escribe en
+ * press-claims-verified.json: los desenlaces del fichero de sugerencias, tal
+ * cual. /laboratorio lee ese fichero y no el de sugerencias, y sin el desenlace
+ * imprimía «El extractor no sacó ninguna afirmación de este titular» también en
+ * los titulares que el extractor no había visto nunca (octubre de 2026).
+ * `null` cuando el fichero de sugerencias no trae `articulos` —es anterior a
+ * que existieran—: la página dice entonces lo de antes y no cuenta nada, en vez
+ * de leer una lista vacía como «no se ha procesado ninguno».
+ */
+export function extraccionParaVerificado(sugerencias: { articulos?: unknown } | null): {
+  articulos: ExtraccionArticulo[] | null
+} {
+  const articulos = sugerencias?.articulos
+  return { articulos: Array.isArray(articulos) ? (articulos as ExtraccionArticulo[]) : null }
+}
