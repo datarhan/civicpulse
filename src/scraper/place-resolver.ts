@@ -221,6 +221,41 @@ function dedupe(list: string[]): string[] {
   return [...new Set(list.filter(Boolean))]
 }
 
+/**
+ * Variante castellana de una aguja con la conjunción valenciana «i»: OSM rotula
+ * «Carrer de Garelli i Pastor» y el título dice «calle Garelli y Pastor». Sólo
+ * una «i» interior es conjunción; la final es un ordinal («Jaume I») y se queda.
+ * 2026-10-17: así quedaba sin situar un contrato que daba su dirección exacta.
+ */
+function conjuncionCastellana(needle: string): string | null {
+  const toks = needle.split(' ')
+  let cambia = false
+  const out = toks.map((t, i) => {
+    if (t === 'i' && i > 0 && i < toks.length - 1) {
+      cambia = true
+      return 'y'
+    }
+    return t
+  })
+  return cambia ? out.join(' ') : null
+}
+
+/**
+ * Instalaciones de las que el pueblo tiene UNA, nombradas por su tipo y no por
+ * su nombre propio: «obras en el Cementerio Municipal» no lleva «San Jaime». La
+ * frase entra como aguja del único POI de ese `osmKind`; con cero o con dos no
+ * entra en ninguno, y la puerta `allowPoi` (sólo obras) sigue mandando.
+ *
+ * Sólo el cementerio. «Ayuntamiento» va en casi todos los títulos como órgano de
+ * contratación, no como lugar; biblioteca y mercado no se han medido. La misma
+ * correspondencia ya vivía en `matchFacilityType` (vía LLM + firma): contratos
+ * «cementerio municipal» aprobados a mano el 2026-07-05 mientras otros con la
+ * misma frase seguían sin pin hasta el 2026-10-17.
+ */
+const SINGLETON_FACILITY_NEEDLES: Array<{ needles: string[]; kinds: string[] }> = [
+  { needles: ['cementerio municipal', 'cementeri municipal'], kinds: ['cemetery', 'grave_yard'] },
+]
+
 interface GazetteerInput {
   streets?: Array<{ slug: string; name: string; kind?: string; point: [number, number] }>
   pois?: Array<{
@@ -253,9 +288,18 @@ export function buildGazetteer(input: GazetteerInput): Candidate[] {
     })
   }
 
+  for (const { needles, kinds } of SINGLETON_FACILITY_NEEDLES) {
+    const deEseTipo = out.filter((c) => c.kind === 'poi' && c.osmKind && kinds.includes(c.osmKind))
+    if (new Set(deEseTipo.map((c) => c.sourceId)).size !== 1) continue
+    for (const c of deEseTipo) c.needles = dedupe([...c.needles, ...needles])
+  }
+
   for (const s of input.streets || []) {
     const full = foldTitle(s.name)
-    const needles = dedupe([full, streetCore(full)]).filter(needleDistinctive)
+    const base = [full, streetCore(full)]
+    const needles = dedupe([...base, ...base.map(conjuncionCastellana)]).filter(
+      (n): n is string => typeof n === 'string' && needleDistinctive(n),
+    )
     out.push({
       kind: 'street',
       name: s.name,

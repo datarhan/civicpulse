@@ -7,6 +7,7 @@ import {
   matchNameToGazetteer,
   type Candidate,
 } from '../src/scraper/place-resolver'
+import { ZONE_ALIASES } from '../src/scraper/tender-geo'
 
 // Gazetteer for the fuzzy LLM-name matcher (needles unused — it matches on the
 // candidate NAME, since the LLM already vetted that a place is referenced).
@@ -432,5 +433,122 @@ describe('place-resolver — buildGazetteer', () => {
   it('resolves a real title end-to-end through the built gazetteer', () => {
     const m = resolvePlace(foldTitle('Obras de mejora en C/ Sagunt'), gaz)
     expect(m?.kind).toBe('street')
+  })
+})
+
+// 2026-10-17 — auditoría de lugares sin situar. Títulos REALES de
+// public/data/tenders.json que nombran un sitio que el nomenclátor sí tiene y que
+// el resolutor determinista no alcanzaba. Cada caso trae su contraprueba: la
+// puerta que lo vuelve fiable sigue cerrando.
+describe('place-resolver — lugares que el nomenclátor tiene y el resolutor no alcanzaba', () => {
+  const CEMENTERIO = {
+    id: 'way-740051593',
+    name: 'Cementerio de San Jaime',
+    category: 'civico',
+    kind: 'cemetery',
+    lat: 39.4767673,
+    lng: -0.585373,
+  }
+
+  it('«Cementerio Municipal» de una obra va al único cementerio del nomenclátor (24098)', () => {
+    const gaz = buildGazetteer({ pois: [CEMENTERIO] })
+    const m = resolvePlace(
+      foldTitle(
+        'obras de ampliación del Cementerio Municipal, por procedimiento abierto simplificado, mejor relación calidad-precio',
+      ),
+      gaz,
+      { allowPoi: true },
+    )
+    expect(m?.sourceId).toBe('way-740051593')
+    expect(m?.point).toEqual([39.4767673, -0.585373])
+  })
+
+  it('con dos cementerios en el nomenclátor «Cementerio Municipal» no se sitúa (ambiguo)', () => {
+    const gaz = buildGazetteer({
+      pois: [CEMENTERIO, { ...CEMENTERIO, id: 'way-2', name: 'Cementeri Vell', lat: 39.55 }],
+    })
+    expect(
+      resolvePlace(
+        foldTitle('Contrato de obras de bloque de nichos en el Cementerio Municipal'),
+        gaz,
+        {
+          allowPoi: true,
+        },
+      ),
+    ).toBeNull()
+  })
+
+  it('un servicio «del cementerio municipal» sigue sin situarse: la puerta de obras no cambia (78068)', () => {
+    const gaz = buildGazetteer({ pois: [CEMENTERIO] })
+    expect(
+      resolvePlace(
+        foldTitle('Servicio de mantenimiento del elevador portaféretros del cementerio municipal'),
+        gaz,
+        { allowPoi: false },
+      ),
+    ).toBeNull()
+  })
+
+  it('«cementerio» a secas no basta: hace falta «cementerio municipal»', () => {
+    const gaz = buildGazetteer({ pois: [CEMENTERIO] })
+    expect(
+      resolvePlace(foldTitle('Obras de cerramiento junto al antiguo cementerio'), gaz, {
+        allowPoi: true,
+      }),
+    ).toBeNull()
+  })
+
+  it('«Entrenaranjos» (name:es en OSM) sitúa en la Urbanització Entretarongers (77637)', () => {
+    const gaz = buildGazetteer({
+      zones: [
+        {
+          slug: 'urbanitzacio-entretarongers',
+          name: 'Urbanització Entretarongers',
+          centroid: [39.5533441, -0.5383653],
+        },
+      ],
+      zoneAliases: ZONE_ALIASES,
+    })
+    const m = resolvePlace(
+      foldTitle('Suministro e instalación alumbrado urbanización Entrenaranjos'),
+      gaz,
+      { allowPoi: false },
+    )
+    expect(m?.sourceId).toBe('urbanitzacio-entretarongers')
+  })
+
+  it('«calle Garelli y Pastor» alcanza «Carrer de Garelli i Pastor» (6126538)', () => {
+    const gaz = buildGazetteer({
+      streets: [
+        {
+          slug: 'carrer-de-garelli-i-pastor',
+          name: 'Carrer de Garelli i Pastor',
+          kind: 'calle',
+          point: [39.5475725, -0.5679],
+        },
+      ],
+    })
+    const m = resolvePlace(
+      foldTitle(
+        'Contrato Menor:Realización de pruebas de carga en cada uno de los forjados (…) en la Casa del Abogado sita en calle Garelli y Pastor, 10. 46190, Riba-roja de Túria, València.',
+      ),
+      gaz,
+      { allowPoi: false },
+    )
+    expect(m?.sourceId).toBe('carrer-de-garelli-i-pastor')
+  })
+
+  it('una «I» final es un ordinal, no la conjunción: «Jaume I» no se lee «Jaume y»', () => {
+    const gaz = buildGazetteer({
+      streets: [
+        {
+          slug: 'carrer-de-jaume-i',
+          name: 'Carrer de Jaume I',
+          kind: 'calle',
+          point: [39.54, -0.57],
+        },
+      ],
+    })
+    expect(resolvePlace(foldTitle('Asfaltado de la calle Jaume y Pere'), gaz)).toBeNull()
   })
 })
