@@ -4,6 +4,22 @@
 **Author:** Claude Opus 4.7 research brief · 2026-04-20
 **Scope:** Riba-roja de Túria · 24,600 vecinos
 
+> **Nota, 2026-10-17 — esto no es lo que se construyó.** Es la propuesta del
+> 2026-04-20 (`cd614fab`) para recoger quejas por la web: un formulario en
+> `/quejas/nueva`, la anonimización de la foto y del texto en el servidor, y la
+> verificación por correo y Cl@ve. Ese formulario no existe. Lo que salió es el
+> bot de Telegram (`bot/`), empezado el mismo día en `5c5848b1` («Telegram-first
+> Quejas OS · Sprint A»). Ni ese commit ni ningún documento del repositorio dice
+> por qué se eligió Telegram en vez de la web: no consta el motivo.
+>
+> El camino que el sitio publica (`/metodologia#camino-de-una-queja`) se
+> escribió contra el código del bot y no contra este texto (`ca6eae9d`). Las
+> notas «_Status_» de la etapa 2 ya describen el bot; el resto del documento
+> describe el formulario. Antes de abrir un formulario web queda lo que
+> `docs/REVIEW_2026-09.md` §3 (hallazgo 8, medido el 2026-09-25) registró para
+> el canal que sí existe: sin registro de actividades de tratamiento y sin EIPD.
+> No consta que eso se haya cerrado.
+
 ---
 
 ## Goal

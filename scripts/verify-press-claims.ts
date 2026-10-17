@@ -16,6 +16,7 @@ import { verifyPressClaimsBatch } from '../src/scraper/press-verifier'
 import type { PressClaim } from '../src/scraper/press-claim'
 import { asTenderRow, type TenderTedRow } from '../src/scraper/tenders-ted'
 import { classifyClaimVisibility } from '../src/scraper/claim-public-gate'
+import { extraccionParaVerificado, type ExtraccionArticulo } from '../src/scraper/press-extraccion'
 
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = dirname(__filename)
@@ -46,6 +47,7 @@ async function readJson<T = unknown>(path: string): Promise<T | null> {
 async function main() {
   const claimsSnap = (await readJson(PATHS.claims)) as {
     items?: PressClaim[]
+    articulos?: ExtraccionArticulo[]
     generatedAt?: string
   } | null
   if (!claimsSnap || !Array.isArray(claimsSnap.items)) {
@@ -127,6 +129,10 @@ async function main() {
   // failed.
   ;(snap as unknown as { sourceGeneratedAt?: string | null }).sourceGeneratedAt =
     (claimsSnap as { generatedAt?: string }).generatedAt ?? null
+  // Qué le pasó a cada artículo en la última pasada del extractor, tal cual
+  // (ver `extraccionParaVerificado`).
+  ;(snap as unknown as { extraccion?: ReturnType<typeof extraccionParaVerificado> }).extraccion =
+    extraccionParaVerificado(claimsSnap)
 
   await mkdir(dirname(PATHS.out), { recursive: true })
   await writeFile(PATHS.out, JSON.stringify(snap, null, 2) + '\n')

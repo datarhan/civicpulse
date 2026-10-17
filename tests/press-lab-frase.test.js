@@ -8,7 +8,11 @@ import { fraseVeredictos, pressLabSummary, VERDICT_LABEL } from '../src/lib/pres
  * se quedaba corto, y la revisión lectora lo señaló el 15-09-2026. Es la frase que se
  * queda rancia cuando se mueve el dato: ahora sale del mismo recuento que las tasas.
  */
-const fila = (verdict) => ({ claim: { articleId: 'a1' }, verification: { verdict } })
+// Con fecha de hoy: los KPI cuentan sólo las afirmaciones de las tarjetas de la ventana.
+const fila = (verdict) => ({
+  claim: { articleId: 'a1', articleDate: new Date().toISOString() },
+  verification: { verdict },
+})
 const resumen = (veredictos) => pressLabSummary({ press: [], verified: veredictos.map(fila) })
 const varias = (n, verdict) => Array.from({ length: n }, () => verdict)
 

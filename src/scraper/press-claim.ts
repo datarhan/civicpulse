@@ -42,6 +42,8 @@
  * affected outlets receive a GitHub-Issue invitation to respond.
  */
 
+import { DESENLACES_EXTRACCION, type ExtraccionArticulo } from './press-extraccion'
+
 export type PressClaimType =
   | 'promesa'
   | 'afirmacion_numerica'
@@ -216,10 +218,27 @@ export interface PressClaimsSnapshot {
      */
     articlesProcessed?: number
     articlesAvailable?: number
+    /** Artículos cuyo TRIAJE no llegó al modelo. */
     llmUnavailable?: number
+    /**
+     * Artículos con el triaje positivo cuya EXTRACCIÓN no obtuvo respuesta.
+     * Aparte de `llmUnavailable` porque es otra llamada que falla: sin este
+     * campo, una pasada cuyo triaje funcionó y cuya extracción no respondió se leía sana.
+     */
+    extraccionesSinRespuesta?: number
     windowFrom?: string | null
     windowTo?: string | null
+    /** Artículos con desenlace conocido, de esta pasada y de las anteriores (`articulos.length`). */
+    articulosVistos?: number
   }
+  /**
+   * Qué le pasó a cada artículo en la última pasada que lo procesó. Desde
+   * octubre de 2026 el fichero se acumula en vez de reescribirse por ventana
+   * (press-extraccion.ts cuenta por qué): sin esta lista, «nunca enviado al
+   * extractor» y «enviado, sin afirmaciones» eran la misma tarjeta vacía.
+   * Opcional sólo porque los ficheros anteriores no la tenían.
+   */
+  articulos?: ExtraccionArticulo[]
   items: PressClaim[]
 }
 
@@ -246,6 +265,19 @@ export function validatePressClaimsSnapshot(text: string): PressClaimsSnapshot {
   const items = s.items as PressClaim[]
   for (const [i, c] of items.entries()) {
     validatePressClaim(c, i)
+  }
+  if (s.articulos !== undefined) {
+    if (!Array.isArray(s.articulos)) throw new Error('articulos must be an array')
+    for (const [i, a] of (s.articulos as ExtraccionArticulo[]).entries()) {
+      const where = `articulo ${i} (${a?.articleId || 'no-id'})`
+      if (!a || typeof a.articleId !== 'string' || !a.articleId)
+        throw new Error(`${where}: articleId missing`)
+      if (typeof a.fingerprint !== 'string' || !a.fingerprint)
+        throw new Error(`${where}: fingerprint missing`)
+      if (!DESENLACES_EXTRACCION.includes(a.desenlace))
+        throw new Error(`${where}: desenlace must be one of ${DESENLACES_EXTRACCION.join('|')}`)
+      if (typeof a.procesadoEl !== 'string') throw new Error(`${where}: procesadoEl must be ISO`)
+    }
   }
   return snap as PressClaimsSnapshot
 }

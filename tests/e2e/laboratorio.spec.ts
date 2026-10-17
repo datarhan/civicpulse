@@ -12,12 +12,20 @@ test.describe('Laboratorio (/laboratorio)', () => {
   }) => {
     const press = JSON.parse(readFileSync('public/data/press.json', 'utf8'))
     const verificadas = JSON.parse(readFileSync('public/data/press-claims-verified.json', 'utf8'))
-    const resumen = pressLabSummary({
-      press: press.items ?? press,
-      verified: verificadas.items ?? verificadas.claims ?? verificadas,
-    })
+    const filas = verificadas.items ?? verificadas.claims ?? verificadas
+    // El reloj, fijado al corpus. Desde que los KPI cuentan sólo las afirmaciones de
+    // la ventana de 30 días (src/lib/press-lab.js), con el reloj de la pared esta
+    // prueba se pondría roja sola cuando las afirmaciones publicadas envejecieran,
+    // sin que nada hubiera cambiado. La fecha del artículo más nuevo deja al menos
+    // una dentro, y la página y el recuento leen la misma hora.
+    const ahora = Math.max(
+      ...filas.map((r) => Date.parse(r?.claim?.articleDate)).filter(Number.isFinite),
+    )
+    expect(Number.isFinite(ahora), 'alguna afirmación trae fecha').toBe(true)
+    const resumen = pressLabSummary({ press: press.items ?? press, verified: filas }, ahora)
     // Mide algo: hay afirmaciones publicadas que contar.
     expect(resumen.totalClaims).toBeGreaterThan(0)
+    await page.clock.setFixedTime(ahora)
     await page.goto('/laboratorio', { waitUntil: 'domcontentloaded' })
     await expect(page.getByText(fraseVeredictos(resumen))).toBeVisible({ timeout: 8000 })
   })

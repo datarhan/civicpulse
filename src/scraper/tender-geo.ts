@@ -118,7 +118,10 @@ export const ZONE_ALIASES: Record<string, string[]> = {
   'urbanitzacio-valencia-la-vella': ['valencia la vella'],
   'santa-rosa': ['santa rosa'],
   'monte-alcedo': ['monte alcedo'],
-  'urbanitzacio-entretarongers': ['entretarongers'],
+  // «Entrenaranjos» es el `name:es` que OSM da a esta urbanización; geo.json sólo
+  // guarda el `name` valenciano, y los títulos de contrato usan el castellano.
+  // Hasta el 2026-10-17 los contratos que la nombraban así quedaban sin situar.
+  'urbanitzacio-entretarongers': ['entretarongers', 'entrenaranjos'],
   carasoles: ['carasoles'],
   'urbanitzacio-santa-monica': ['santa monica'],
   'el-molinet': ['molinet'],

@@ -78,6 +78,15 @@ export interface PressClaimExtractionResult {
   triage: PressTriageResponse
   /** Whether the body was fetched + used. */
   bodyUsed: boolean
+  /**
+   * El triaje dio positivo y la llamada de extracción no obtuvo respuesta del
+   * modelo. Sin este aviso el resultado es idéntico a «miró y no encontró
+   * nada» (`claims: []` con el triaje real), y la CLI no puede distinguir una
+   * pasada incompleta de un artículo sin afirmaciones (press-extraccion.ts,
+   * `desenlaceDe`). Nunca es true con afirmaciones, ni cuando falló el triaje:
+   * eso ya lo dice `reasoning: 'llm-unavailable'`.
+   */
+  extraccionSinRespuesta: boolean
 }
 
 const claimTypeAbbr: Record<PressClaimType, string> = {
@@ -203,11 +212,12 @@ export async function extractPressClaimsForItem(
         needsBody: false,
       },
       bodyUsed: false,
+      extraccionSinRespuesta: false,
     }
   }
 
   if (!triage.hasCheckableClaim) {
-    return { claims: [], triage, bodyUsed: false }
+    return { claims: [], triage, bodyUsed: false, extraccionSinRespuesta: false }
   }
 
   // Stage 2 — body fetch (only when triage requests it AND we have a fetcher).
@@ -239,7 +249,7 @@ export async function extractPressClaimsForItem(
   })
 
   if (!extracted) {
-    return { claims: [], triage, bodyUsed: !!body }
+    return { claims: [], triage, bodyUsed: !!body, extraccionSinRespuesta: true }
   }
 
   const claims: PressClaim[] = []
@@ -252,7 +262,21 @@ export async function extractPressClaimsForItem(
     claims: dedupeClaims(claims),
     triage,
     bodyUsed: !!body,
+    extraccionSinRespuesta: false,
   }
+}
+
+/**
+ * Lo que la pasada supo de UN artículo — la entrada de `desenlaceDe`
+ * (press-extraccion.ts). `claims` cuenta las afirmaciones que quedaron tras
+ * deduplicar, las mismas que entran en `claims` del lote.
+ */
+export interface TriajeDeArticulo {
+  articleId: string
+  triage: PressTriageResponse
+  bodyUsed: boolean
+  claims: number
+  extraccionSinRespuesta: boolean
 }
 
 export async function extractPressClaimsBatch(
@@ -260,7 +284,7 @@ export async function extractPressClaimsBatch(
   options: ExtractPressClaimsOptions = {},
 ): Promise<{
   claims: PressClaim[]
-  triages: Array<{ articleId: string; triage: PressTriageResponse; bodyUsed: boolean }>
+  triages: TriajeDeArticulo[]
   stats: {
     total: number
     triageHits: number
@@ -273,14 +297,20 @@ export async function extractPressClaimsBatch(
   }
 }> {
   const all: PressClaim[] = []
-  const triages: Array<{ articleId: string; triage: PressTriageResponse; bodyUsed: boolean }> = []
+  const triages: TriajeDeArticulo[] = []
   let triageHits = 0
   let bodyFetches = 0
   let llmUnavailable = 0
 
   for (const item of items) {
     const result = await extractPressClaimsForItem(item, options)
-    triages.push({ articleId: item.id, triage: result.triage, bodyUsed: result.bodyUsed })
+    triages.push({
+      articleId: item.id,
+      triage: result.triage,
+      bodyUsed: result.bodyUsed,
+      claims: result.claims.length,
+      extraccionSinRespuesta: result.extraccionSinRespuesta,
+    })
     if (result.triage.hasCheckableClaim) triageHits += 1
     if (result.triage.reasoning === 'llm-unavailable') llmUnavailable += 1
     if (result.bodyUsed) bodyFetches += 1

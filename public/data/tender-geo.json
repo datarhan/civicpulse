@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-17T19:32:10.102Z",
+  "generatedAt": "2026-10-17T20:03:07.359Z",
   "source": {
     "tenders": "2026-10-17T08:49:11.850Z",
     "geo": "2026-10-17T08:51:51.229Z"
@@ -7,10 +7,10 @@
   "universe": {
     "totalContracts": 710,
     "totalAmount": 125567342.14999995,
-    "locatedContracts": 47,
-    "locatedAmount": 2225591.150000001,
-    "situatedContracts": 105,
-    "situatedAmount": 4991367.26,
+    "locatedContracts": 51,
+    "locatedAmount": 3758711.6300000004,
+    "situatedContracts": 113,
+    "situatedAmount": 7227650.460000001,
     "danaContracts": 10,
     "danaAmount": 276297.42000000004,
     "danaAwardedContracts": 82,
@@ -21,6 +21,17 @@
     "totalDateMax": "2026-10-08"
   },
   "zones": [
+    {
+      "slug": "urbanitzacio-entretarongers",
+      "name": "Urbanització Entretarongers",
+      "centroid": [
+        39.5533441,
+        -0.5383653
+      ],
+      "contractCount": 5,
+      "amount": 1694009.48,
+      "danaAmount": 0
+    },
     {
       "slug": "el-molinet",
       "name": "el Molinet",
@@ -156,6 +167,18 @@
   ],
   "places": [
     {
+      "slug": "urbanitzacio-entretarongers",
+      "name": "Urbanització Entretarongers",
+      "kind": "urbanizacion",
+      "point": [
+        39.5533441,
+        -0.5383653
+      ],
+      "contractCount": 4,
+      "amount": 1533120.48,
+      "danaAmount": 0
+    },
+    {
       "slug": "barranc-dels-moros",
       "name": "Barranc dels Moros",
       "kind": "poi",
@@ -165,6 +188,18 @@
       ],
       "contractCount": 3,
       "amount": 775947.5399999999,
+      "danaAmount": 0
+    },
+    {
+      "slug": "way-740051593",
+      "name": "Cementerio de San Jaime",
+      "kind": "poi",
+      "point": [
+        39.4767673,
+        -0.585373
+      ],
+      "contractCount": 6,
+      "amount": 759280.6499999999,
       "danaAmount": 0
     },
     {
@@ -357,18 +392,6 @@
       ],
       "contractCount": 1,
       "amount": 78980,
-      "danaAmount": 0
-    },
-    {
-      "slug": "way-740051593",
-      "name": "Cementerio de San Jaime",
-      "kind": "poi",
-      "point": [
-        39.4767673,
-        -0.585373
-      ],
-      "contractCount": 3,
-      "amount": 71083.53,
       "danaAmount": 0
     },
     {
@@ -660,6 +683,18 @@
       "danaAmount": 0
     },
     {
+      "slug": "carrer-de-garelli-i-pastor",
+      "name": "Carrer de Garelli i Pastor",
+      "kind": "street",
+      "point": [
+        39.5475725,
+        -0.5676768
+      ],
+      "contractCount": 1,
+      "amount": 14965.6,
+      "danaAmount": 0
+    },
+    {
       "slug": "urbanitzacio-valencia-la-vella",
       "name": "Urbanització València la Vella",
       "kind": "urbanizacion",
@@ -877,6 +912,31 @@
       }
     },
     {
+      "id": "2062213",
+      "zones": [
+        "urbanitzacio-entretarongers"
+      ],
+      "matchedAlias": {
+        "urbanitzacio-entretarongers": "entrenaranjos"
+      },
+      "dana": false,
+      "amount": 121746,
+      "amountKind": "final",
+      "date": "2023-05-11",
+      "contractType": "construction",
+      "categoryTitle": "construction",
+      "point": [
+        39.5533441,
+        -0.5383653
+      ],
+      "place": {
+        "kind": "urbanizacion",
+        "name": "Urbanització Entretarongers",
+        "matchedText": "Urbanització Entretarongers",
+        "sourceId": "urbanitzacio-entretarongers"
+      }
+    },
+    {
       "id": "9297858",
       "zones": [],
       "matchedAlias": {},
@@ -1021,6 +1081,27 @@
         "name": "Carrer de Velázquez",
         "matchedText": "Carrer de Velázquez",
         "sourceId": "carrer-de-velazquez"
+      }
+    },
+    {
+      "id": "6126538",
+      "zones": [],
+      "matchedAlias": {},
+      "dana": false,
+      "amount": 14965.6,
+      "amountKind": "final",
+      "date": "2024-04-24",
+      "contractType": "services",
+      "categoryTitle": "architecture",
+      "point": [
+        39.5475725,
+        -0.5676768
+      ],
+      "place": {
+        "kind": "street",
+        "name": "Carrer de Garelli i Pastor",
+        "matchedText": "Carrer de Garelli i Pastor",
+        "sourceId": "carrer-de-garelli-i-pastor"
       }
     },
     {
@@ -1784,6 +1865,27 @@
         "name": "Urbanització València la Vella",
         "matchedText": "València la Vella (zona arqueológica)",
         "sourceId": "urbanitzacio-valencia-la-vella"
+      }
+    },
+    {
+      "id": "24098",
+      "zones": [],
+      "matchedAlias": {},
+      "dana": false,
+      "amount": 377848.8,
+      "amountKind": "final",
+      "date": "2020-01-15",
+      "contractType": "construction",
+      "categoryTitle": "construction",
+      "point": [
+        39.4767673,
+        -0.585373
+      ],
+      "place": {
+        "kind": "poi",
+        "name": "Cementerio de San Jaime",
+        "matchedText": "Cementerio de San Jaime",
+        "sourceId": "way-740051593"
       }
     },
     {
@@ -2585,6 +2687,52 @@
       }
     },
     {
+      "id": "1705904",
+      "zones": [
+        "urbanitzacio-entretarongers"
+      ],
+      "matchedAlias": {
+        "urbanitzacio-entretarongers": "entrenaranjos"
+      },
+      "dana": false,
+      "amount": 103920,
+      "amountKind": "final",
+      "date": "2022-06-07",
+      "contractType": "construction",
+      "categoryTitle": "construction",
+      "point": [
+        39.5533441,
+        -0.5383653
+      ],
+      "place": {
+        "kind": "urbanizacion",
+        "name": "Urbanització Entretarongers",
+        "matchedText": "Urbanització Entretarongers",
+        "sourceId": "urbanitzacio-entretarongers"
+      }
+    },
+    {
+      "id": "1926439",
+      "zones": [],
+      "matchedAlias": {},
+      "dana": false,
+      "amount": 81020,
+      "amountKind": "final",
+      "date": "2022-12-21",
+      "contractType": "construction",
+      "categoryTitle": "construction",
+      "point": [
+        39.4767673,
+        -0.585373
+      ],
+      "place": {
+        "kind": "poi",
+        "name": "Cementerio de San Jaime",
+        "matchedText": "Cementerio de San Jaime",
+        "sourceId": "way-740051593"
+      }
+    },
+    {
       "id": "7484026",
       "zones": [
         "urbanitzacio-els-pous"
@@ -2660,6 +2808,31 @@
       }
     },
     {
+      "id": "77637",
+      "zones": [
+        "urbanitzacio-entretarongers"
+      ],
+      "matchedAlias": {
+        "urbanitzacio-entretarongers": "entrenaranjos"
+      },
+      "dana": false,
+      "amount": 44033,
+      "amountKind": "final",
+      "date": "2018-06-06",
+      "contractType": "supplies",
+      "categoryTitle": "construction",
+      "point": [
+        39.5533441,
+        -0.5383653
+      ],
+      "place": {
+        "kind": "urbanizacion",
+        "name": "Urbanització Entretarongers",
+        "matchedText": "Urbanització Entretarongers",
+        "sourceId": "urbanitzacio-entretarongers"
+      }
+    },
+    {
       "id": "13417#1",
       "zones": [],
       "matchedAlias": {},
@@ -2678,6 +2851,31 @@
         "name": "Parc Municipal Maldonado",
         "matchedText": "Parc Municipal Maldonado",
         "sourceId": "way-39589891"
+      }
+    },
+    {
+      "id": "1764831",
+      "zones": [
+        "urbanitzacio-entretarongers"
+      ],
+      "matchedAlias": {
+        "urbanitzacio-entretarongers": "entrenaranjos"
+      },
+      "dana": false,
+      "amount": 1263421.48,
+      "amountKind": "final",
+      "date": "2022-07-20",
+      "contractType": "construction",
+      "categoryTitle": "construction",
+      "point": [
+        39.5533441,
+        -0.5383653
+      ],
+      "place": {
+        "kind": "urbanizacion",
+        "name": "Urbanització Entretarongers",
+        "matchedText": "Urbanització Entretarongers",
+        "sourceId": "urbanitzacio-entretarongers"
       }
     },
     {
@@ -2734,10 +2932,12 @@
       "id": "74419",
       "zones": [
         "santa-rosa",
+        "urbanitzacio-entretarongers",
         "el-molinet"
       ],
       "matchedAlias": {
         "santa-rosa": "santa rosa",
+        "urbanitzacio-entretarongers": "entrenaranjos",
         "el-molinet": "molinet"
       },
       "dana": false,
@@ -2818,6 +3018,27 @@
         "name": "Urbanització La Reva",
         "matchedText": "Urbanització La Reva",
         "sourceId": "urbanitzacio-la-reva"
+      }
+    },
+    {
+      "id": "4801029",
+      "zones": [],
+      "matchedAlias": {},
+      "dana": false,
+      "amount": 229328.32,
+      "amountKind": "final",
+      "date": "2025-09-18",
+      "contractType": "construction",
+      "categoryTitle": "construction",
+      "point": [
+        39.4767673,
+        -0.585373
+      ],
+      "place": {
+        "kind": "poi",
+        "name": "Cementerio de San Jaime",
+        "matchedText": "Cementerio de San Jaime",
+        "sourceId": "way-740051593"
       }
     },
     {

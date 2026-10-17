@@ -5,18 +5,18 @@ Reference material lives in `docs/` — read the one you need rather than carryi
 all of it — and the incident behind a rule is told in the header of the file
 that enforces it: read that header before changing the mechanism.
 
-| Doc                                                              | When                                              |
-| ---------------------------------------------------------------- | ------------------------------------------------- |
-| [`docs/DATA_INTEGRITY.md`](docs/DATA_INTEGRITY.md)               | **before writing or changing any adapter**        |
-| [`docs/DATA_SOURCES.md`](docs/DATA_SOURCES.md)                   | per-domain source, parser and surfaces            |
-| [`docs/OPERATIONS.md`](docs/OPERATIONS.md)                       | nightly job, workflows, local jobs, health checks |
-| [`docs/LLM_BACKENDS.md`](docs/LLM_BACKENDS.md)                   | model/embedding backends, cost, claim pipeline    |
-| [`docs/TRANSCRIPTION.md`](docs/TRANSCRIPTION.md)                 | Whisper, diarization, voice ID                    |
-| [`docs/JOURNALIST_AGENT.md`](docs/JOURNALIST_AGENT.md)           | the `/laboratorio/agentes` subsystem              |
-| [`docs/QUEJAS_DESIGN.md`](docs/QUEJAS_DESIGN.md)                 | rationale for the Telegram-first quejas OS        |
-| [`docs/DESCRIPCION.md`](docs/DESCRIPCION.md)                     | **before writing public copy about the project**  |
-| [`docs/REVIEW_2026-09.md`](docs/REVIEW_2026-09.md)               | priorities to May 2027, what not to build next    |
-| [`bot/README.md`](bot/README.md), [`bot/LOCAL.md`](bot/LOCAL.md) | the Telegram bot                                  |
+| Doc                                                              | When                                                                  |
+| ---------------------------------------------------------------- | --------------------------------------------------------------------- |
+| [`docs/DATA_INTEGRITY.md`](docs/DATA_INTEGRITY.md)               | **before writing or changing any adapter**                            |
+| [`docs/DATA_SOURCES.md`](docs/DATA_SOURCES.md)                   | per-domain source, parser and surfaces                                |
+| [`docs/OPERATIONS.md`](docs/OPERATIONS.md)                       | nightly job, workflows, local jobs, health checks                     |
+| [`docs/LLM_BACKENDS.md`](docs/LLM_BACKENDS.md)                   | model/embedding backends, cost, claim pipeline                        |
+| [`docs/TRANSCRIPTION.md`](docs/TRANSCRIPTION.md)                 | Whisper, diarization, voice ID                                        |
+| [`docs/JOURNALIST_AGENT.md`](docs/JOURNALIST_AGENT.md)           | the `/laboratorio/agentes` subsystem                                  |
+| [`docs/QUEJAS_DESIGN.md`](docs/QUEJAS_DESIGN.md)                 | the web-intake proposal for quejas (unbuilt; the bot shipped instead) |
+| [`docs/DESCRIPCION.md`](docs/DESCRIPCION.md)                     | **before writing public copy about the project**                      |
+| [`docs/REVIEW_2026-09.md`](docs/REVIEW_2026-09.md)               | priorities to May 2027, what not to build next                        |
+| [`bot/README.md`](bot/README.md), [`bot/LOCAL.md`](bot/LOCAL.md) | the Telegram bot                                                      |
 
 ## What this is
 

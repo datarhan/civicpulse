@@ -24,7 +24,6 @@ import { render, waitFor } from '@testing-library/react'
 
 import { LocaleProvider } from '../../src/i18n'
 import { peekSnapshot } from '../../src/lib/snapshot-store'
-import { prettyNeighborhood } from '../../src/hooks/useQuejas'
 import { aggregateNeighborhood, computePerNeighborhood } from '../../src/lib/neighborhood-aggregate'
 import { porAnyo } from '../../src/lib/incendios'
 import { POI_CATEGORIES } from '../../src/lib/civic-poi'
@@ -85,9 +84,10 @@ const UNIDADES = [UNIDAD_MILLONES, 'ha', 'hab.']
 
 const REGISTRADA = '2026-07-10T09:00:00.000Z'
 const BARRIO = { slug: 'la-reva', name: 'La Reva', centroid: [39.5, -0.5], population: 1200 }
+// Un nombre que OSM escribe con minúsculas: capitalizado diría «El Pou D'Escoto».
 const BARRIO_SIN_PADRON = {
-  slug: 'el-clot',
-  name: 'El Clot',
+  slug: 'el-pou-d-escoto',
+  name: "el Pou d'Escoto",
   centroid: [39.51, -0.52],
   population: null,
 }
@@ -341,7 +341,7 @@ const CONTRATOS_DE_INCENDIOS = {
 
 const escenarioBarrio = (nombre, { neighborhood, zones, quejas }) => {
   const agg = aggregateNeighborhood({ neighborhood, zones, instantanea: quejas })
-  const rotulo = prettyNeighborhood(neighborhood.name)
+  const rotulo = neighborhood.name
   return {
     nombre,
     cubre: [NeighborhoodPopup],
@@ -373,7 +373,7 @@ const GLOBOS = [
     cubre: [PlacePopup, ContractCard, EnlacesABarrio],
     datos: [
       LUGAR.name,
-      prettyNeighborhood(BARRIO.name),
+      BARRIO.name,
       CONTRATO_OBRA.title,
       CONTRATO_OBRA.assignee,
       CONTRATO_LOTE.title,
@@ -459,8 +459,8 @@ const GLOBOS = [
     datos: [
       PIN_UNA_OBRA.name,
       PIN_VARIAS_OBRAS.name,
-      prettyNeighborhood(BARRIO.name),
-      prettyNeighborhood(BARRIO_SIN_PADRON.name),
+      BARRIO.name,
+      BARRIO_SIN_PADRON.name,
       INCENDIO_AJENO.paraje,
       EQUIPAMIENTO.name,
       EQUIPAMIENTO_SIN_CATEGORIA.name,
@@ -746,11 +746,54 @@ describe('el mapa de la portada en valencià: nada se lee igual que en castellan
   })
 })
 
+describe('el nombre de un barrio, tal como lo escribe OSM', () => {
+  // Hasta 2026-10-17 el globo, el rótulo flotante, la burbuja de quejas y el
+  // enlace al barrio pasaban el nombre por `prettyNeighborhood`, que capitaliza
+  // cada palabra, y el punto del mapa lo escribía bien al lado.
+  /** El globo, el rótulo, la burbuja y el enlace de un barrio, cada uno pintado aparte. */
+  const lecturasDe = (barrio) => {
+    const agg = aggregateNeighborhood({ neighborhood: barrio, zones: [], instantanea: null })
+    const [fila] = computePerNeighborhood(instantanea([queja({ address_string: barrio.slug })]), [
+      barrio,
+    ])
+    expect(fila?.name).toBe(barrio.name)
+    const piezas = [
+      <NeighborhoodPopup key="globo" agg={agg} />,
+      <BarrioTooltip key="rotulo" agg={agg} />,
+      <QuejasTooltip key="burbuja" fila={fila} />,
+      <EnlacesABarrio key="enlace" barrios={[{ ...barrio, id: barrio.slug }]} onAbrir={() => {}} />,
+    ]
+    return piezas.map((pieza) => {
+      const { container, unmount } = render(<LocaleProvider>{pieza}</LocaleProvider>)
+      const texto = container.textContent
+      unmount()
+      return [pieza.key, texto]
+    })
+  }
+
+  it("«el Pou d'Escoto» se pinta sin capitalizar en el globo, los rótulos y el enlace", () => {
+    for (const [pieza, texto] of lecturasDe(BARRIO_SIN_PADRON)) {
+      expect(texto, pieza).toContain(BARRIO_SIN_PADRON.name)
+      expect(texto, pieza).not.toContain("El Pou D'Escoto")
+    }
+  })
+
+  it('un nombre de una sola palabra en minúscula también se queda como viene', () => {
+    // Tiene forma de slug, y no por eso es un slug: lo que llega de geo.json es
+    // el nombre, y se pinta sin adivinar.
+    const bovalar = { slug: 'bovalar', name: 'bovalar', centroid: [39.52, -0.53], population: null }
+    for (const [pieza, texto] of lecturasDe(bovalar)) {
+      expect(texto, pieza).toContain('bovalar')
+      expect(texto, pieza).not.toContain('Bovalar')
+    }
+  })
+})
+
 describe('la comparación, probada', () => {
   it('caza un rótulo sin traducir y deja pasar un dato, las unidades y un nombre que el catálogo escribe igual', () => {
     const igual = [...IGUALES_EN_EL_CATALOGO].find((v) => /^\p{Lu}\p{Ll}{3,}$/u.test(v))
     expect(igual, 'el catálogo no tiene ningún nombre que se escriba igual').toBeTruthy()
-    const dato = prettyNeighborhood(BARRIO.name)
+    const dato = BARRIO.name
     const { sinTraducir } = detectorDeCastellano(masLargasPrimero([dato, ...UNIDADES]))
     expect(
       sinTraducir([

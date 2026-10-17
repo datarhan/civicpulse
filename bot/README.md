@@ -1,7 +1,11 @@
 # MuniGraph bot — Quejas OS (Telegram)
 
 Telegram-native capture + social layer for Riba-roja de Túria's citizen
-complaints. Full pipeline per [`docs/QUEJAS_DESIGN.md`](../docs/QUEJAS_DESIGN.md).
+complaints. What runs is described here, in [`LOCAL.md`](LOCAL.md) and
+[`DEPLOY.md`](DEPLOY.md); the path a queja follows is published on
+`/metodologia#camino-de-una-queja`. [`docs/QUEJAS_DESIGN.md`](../docs/QUEJAS_DESIGN.md)
+is not this bot's design: it is the 2026-04-20 proposal for a web intake form
+(`/quejas/nueva`), never built — the bot shipped instead.
 
 Live as **[@munigraph_bot](https://t.me/munigraph_bot)** (bot id
 `8448334642`). Dashboard at

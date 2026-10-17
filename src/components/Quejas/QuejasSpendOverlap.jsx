@@ -108,8 +108,9 @@ export default function QuejasSpendOverlap() {
         </a>
         ).
       </div>
-      {/* La rejilla vive en `index.css` (`.cp-cruce`): en el móvil estrecha su
-          hueco entre columnas, y una @media no cabe en el prop `style`. */}
+      {/* La rejilla vive en `index.css` (`.cp-cruce`, `.cp-cruce-barrio`): en el
+          móvil estrecha su hueco, ciñe las cifras y deja partir el nombre del
+          barrio, y una @media no cabe en el prop `style`. */}
       <div className="cp-cruce" style={{ fontSize: 'var(--fs-aux)' }}>
         <div style={HEAD}>{t('quejas.cruce.col.barrio')}</div>
         <div style={{ ...HEAD, textAlign: 'right' }}>
@@ -122,7 +123,7 @@ export default function QuejasSpendOverlap() {
         </div>
         {rows.map((r) => (
           <Fragment key={r.slug}>
-            <div>
+            <div className="cp-cruce-barrio">
               {r.name}
               {r.gap && (
                 <span
