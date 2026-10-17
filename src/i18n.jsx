@@ -529,6 +529,7 @@ export const CATALOGUE = {
     'map.lugar.barrio': 'Barrio',
     'map.lugar.lote': 'Lote de: «{titulo}»',
     'map.lugar.fichaBarrio': 'Ficha del barrio: {barrio}',
+    'map.lugar.fichasBarrio': 'Fichas de barrio:',
     'map.lugar.pie':
       'Solo contratos cuyo título nombra una calle, zona o equipamiento · PLACSP/TED',
     'map.incendio.deAnyo': 'Incendio de {anyo}',
@@ -2614,6 +2615,7 @@ export const CATALOGUE = {
     'map.lugar.barrio': 'Barri',
     'map.lugar.lote': 'Lot de: «{titulo}»',
     'map.lugar.fichaBarrio': 'Fitxa del barri: {barrio}',
+    'map.lugar.fichasBarrio': 'Fitxes de barri:',
     'map.lugar.pie':
       'Només contractes el títol dels quals nomena un carrer, una zona o un equipament · PLACSP/TED',
     'map.incendio.deAnyo': 'Incendi de {anyo}',
