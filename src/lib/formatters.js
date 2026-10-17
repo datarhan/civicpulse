@@ -120,6 +120,27 @@ export function prettyNeighborhood(slug) {
 }
 
 /**
+ * El nombre de un barrio tal como lo escribe OSM (`geo.json` → `neighborhoods`),
+ * a partir del slug con el que el bot guarda la queja.
+ *
+ * `prettyNeighborhood` sólo capitaliza el slug: “Urbanitzacio Valencia La
+ * Vella”. Hasta 2026-10-17 /quejas pintaba así el barrio de sus quejas, sin la
+ * cedilla, sin los acentos y con un «La» que OSM escribe en minúscula, mientras
+ * el mapa de la misma página decía «Urbanització València la Vella». El slug no
+ * guarda nada de eso, así que el nombre se lee del sitio donde está; sólo un slug
+ * que geo.json no conoce —o geo.json sin cargar— cae en la capitalización.
+ *
+ * @param {string|null|undefined} slug
+ * @param {Array<{slug: string, name: string}>|null|undefined} barrios
+ * @returns {string}
+ */
+export function nombreDeBarrio(slug, barrios) {
+  // Sin slug no hay barrio: buscarlo casaría `undefined` con una fila sin slug.
+  if (!slug) return ''
+  return barrios?.find((b) => b.slug === slug)?.name ?? prettyNeighborhood(slug)
+}
+
+/**
  * Shorten a summary to fit a teaser slot WITHOUT slicing a word in half.
  *
  * The column's list rows truncate headlines with a naive `.slice()`, which is

@@ -1,5 +1,4 @@
 // @ts-check
-import { prettyNeighborhood } from '../../../hooks/useQuejas'
 import { useT } from '../../../i18n'
 import { rellena } from '../../../lib/formatters'
 
@@ -34,7 +33,7 @@ export function EnlacesABarrio({ barrios, onAbrir }) {
             textAlign: 'left',
           }}
         >
-          {rellena(t('map.lugar.fichaBarrio'), { barrio: prettyNeighborhood(b.name) })} →
+          {rellena(t('map.lugar.fichaBarrio'), { barrio: b.name })} →
         </button>
       ))}
     </div>
