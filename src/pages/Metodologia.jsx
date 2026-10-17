@@ -757,13 +757,18 @@ export default function Metodologia() {
                 las 45 transcripciones». Lo escribimos el 09-08-2026 y dejó de ser
                 cierto el 13-10, cuando encontramos las actas en regmeet (punto
                 primero de esta lista); una revisión externa lo citó como hecho el
-                15-10. La cifra vive en /datos, que la deriva del fichero. */}
-            <strong>El acta ya se puede leer, y es contra lo que se coteja.</strong> Hasta octubre
-            de 2026 buscábamos las actas sólo en ribarroja.es y no las encontrábamos; están en la
-            pestaña «Documentos» de cada sesión en regmeet. Los desgloses que hemos leído del acta
-            lo dicen como fuente y no llevan la marca; los que todavía salen de la transcripción la
-            llevan hasta que alguien los coteje contra otra fuente —el acta, que es la preferible, o
-            el vídeo de la sesión— y firme. Cuántos quedan de cada clase lo da{' '}
+                15-10. La cifra vive en /datos, que la deriva del fichero.
+                17-10: no repite el «hasta octubre… sólo en ribarroja.es» del primer
+                punto, y dice «cuando se aprueba» porque una sesión sin acta
+                aprobada no tiene nada en «Documentos». «Cuántos quedan de cada
+                clase» prometía más de lo que /datos da: sólo «N de M sin cotejar»,
+                y nada cuando N es cero. */}
+            <strong>El acta ya se puede leer, y es contra lo que se coteja.</strong> Cuando se
+            aprueba, el Ayuntamiento la cuelga en la pestaña «Documentos» de su sesión en regmeet
+            (primer punto de esta lista). Los desgloses que hemos leído del acta lo dicen como
+            fuente y no llevan la marca; los que todavía salen de la transcripción la llevan hasta
+            que alguien los coteje contra otra fuente —el acta, que es la preferible, o el vídeo de
+            la sesión— y firme. Cuántos llevan todavía la marca, y de cuántos, lo da{' '}
             <a href="/datos" style={{ color: 'var(--civic)' }}>
               /datos
             </a>
