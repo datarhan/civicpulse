@@ -200,6 +200,38 @@ export function streetCore(foldedName: string): string {
   return toks.slice(i).join(' ')
 }
 
+/**
+ * OSM rotula los centros educativos por su nombre oficial («Col·legi d'Educació
+ * Infantil i Primària Eres Altes») y los títulos los nombran por la sigla
+ * («CEIP Eres Altes», «C.E.I.P Eres Altes»). La sigla son las iniciales de ese
+ * prefijo, así que la aguja «<sigla> <núcleo>» se deriva del nombre y no se
+ * mantiene a mano. Sólo con la sigla delante: el núcleo a secas («Eres Altes»,
+ * «el Quint») es también una calle o una partida, y no se ofrece.
+ *
+ * El punto volado parte la palabra: «Col·legi» se pliega a «col legi», de modo
+ * que poiCore no la quita y la única aguja del colegio era su nombre entero.
+ * Se junta aquí y no en foldTitle, que pliega también cada título.
+ *
+ * Medido el 2026-10-17 sobre tenders.json: sólo cambian obras que escriben
+ * «CEIP <nombre>» — seis sin pin pasan a su colegio y tres pasan del centroide
+ * de el Pou d'Escoto (alias «escoto») al CEIP Mas d'Escoto, a 0,9 km de él.
+ * Ningún título escribe «IES» todavía.
+ */
+const SIGLAS_EDUCATIVAS: Array<[prefijo: string, sigla: string]> = [
+  ['collegi d educacio infantil i primaria', 'ceip'],
+  ['institut d educacio secundaria', 'ies'],
+]
+
+function siglaEducativa(foldedName: string): string | null {
+  const nombre = foldedName.replace(/^col legi /, 'collegi ')
+  for (const [prefijo, sigla] of SIGLAS_EDUCATIVAS) {
+    if (!nombre.startsWith(`${prefijo} `)) continue
+    const nucleo = nombre.slice(prefijo.length + 1)
+    return nucleo ? `${sigla} ${nucleo}` : null
+  }
+  return null
+}
+
 function poiCore(foldedName: string): string {
   const toks = foldedName.split(' ').filter(Boolean)
   let i = 0
@@ -299,7 +331,9 @@ export function buildGazetteer(input: GazetteerInput): Candidate[] {
 
   for (const p of input.pois || []) {
     const full = foldTitle(p.name)
-    const needles = dedupe([full, poiCore(full)]).filter(needleDistinctive)
+    const needles = dedupe([full, poiCore(full), siglaEducativa(full) ?? '']).filter(
+      needleDistinctive,
+    )
     out.push({
       kind: 'poi',
       name: p.name,
