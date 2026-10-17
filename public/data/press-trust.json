@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-16T09:27:54.797Z",
+  "generatedAt": "2026-10-17T04:48:57.779Z",
   "windowDays": 30,
   "articles": [
     {
@@ -1123,30 +1123,13 @@
         "opinionFraction": 0
       },
       "score": 2
-    },
-    {
-      "articleId": "2gr6xp",
-      "articleFingerprint": "1j0z0p4",
-      "outlet": "Ayuntamiento de Riba-roja de Túria",
-      "outletHost": "ribarroja.es",
-      "url": "https://www.ribarroja.es/es/noticia/riba-roja-destina-una-partida-de-7.000-euros-en-subvenciones-para-fomentar-la-pr%C3%A1ctica-del-deporte-y-mejorar-el-rendimiento-en-las-competiciones-oficiales",
-      "date": "2026-09-16T11:42:06.000Z",
-      "indicators": {
-        "localCoverage": true,
-        "datedArticle": true,
-        "municipalSourceMatch": null,
-        "corroboratedAcrossOutlets": false,
-        "factualClaimsPresent": false,
-        "opinionFraction": 0
-      },
-      "score": 2
     }
   ],
   "outlets": [
     {
       "outlet": "Ayuntamiento de Riba-roja de Túria",
       "outletHost": "ribarroja.es",
-      "articleCount": 19,
+      "articleCount": 18,
       "verdictCounts": {
         "verificado": 0,
         "parcial": 0,
@@ -1154,7 +1137,7 @@
         "sin-datos": 16,
         "promesa-repetida": 0
       },
-      "meanTrustScore": 2.58,
+      "meanTrustScore": 2.61,
       "verifiedRatio": 0,
       "contradictedRatio": null
     },
@@ -1400,7 +1383,7 @@
     }
   ],
   "builtFrom": {
-    "plenos-agendas.json": "b6d07da6563c",
+    "plenos-agendas.json": "a1826bc7bb2b",
     "press-claims-verified.json": "7a128575d1ad",
     "press.json": "4663a3f15bf3",
     "promises.json": "08c43b132d79"
