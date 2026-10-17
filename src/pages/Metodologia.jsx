@@ -15,6 +15,7 @@ import { STATUS_TIER } from '../scraper/promise-auto-curate'
 import { PROGRESS_STATUSES } from '../scraper/promises'
 import { TRINQUETE } from '../scraper/trinquete'
 import { RADIO_MAXIMO_M } from '../scraper/situar-barrio'
+import { CONTAINMENT_KM } from '../scraper/place-resolver'
 import { AMBITOS_DEL_FESTIVO, FESTIVOS_DE_LA_SEDE } from '../scraper/queja-router'
 
 /*
@@ -3422,9 +3423,26 @@ export default function Metodologia() {
           cotejamos contra un callejero de OpenStreetMap y el índice de equipamientos. Cada punto
           declara su procedencia («situado por «…»»). En los contratos por <strong>lotes</strong>,
           cuyo título es solo el nombre del lote («Obra completa»), consultamos además el objeto de
-          la licitación madre — y solo lo usamos cuando nombra <strong>un único</strong> lugar: si
-          la licitación enumera los sitios de varios lotes, no se puede saber qué lote va dónde y
-          preferimos no situar. El pin declara el objeto de la licitación («Lote de: …»).
+          la licitación madre, y el pin lo declara («Lote de: …»).
+        </p>
+        <p
+          style={{
+            fontSize: 'var(--fs-aux)',
+            lineHeight: 1.55,
+            color: 'var(--ink70)',
+            marginTop: 8,
+          }}
+        >
+          Un título —o un objeto de licitación— que nombra <strong>varios</strong> sitios no se
+          sitúa: un carril bici «en la zona Molinet, Montealcedo, entrenaranjos, Santa Rosa y El
+          Clot», unas aceras en tres calles o una licitación que enumera los sitios de sus lotes no
+          caben en un punto, y un punto en cualquiera de esos sitios diría que todo está allí. La
+          excepción son los lugares <strong>uno dentro de otro</strong> —«C/ Dolçaina (Partida
+          Gallipont)», «C/Mas de Montes en P.I. Mas de Balo»—, que se sitúan en el más preciso. Y
+          «dentro» se mide, no se supone: la calle tiene que quedar a menos de{' '}
+          {CONTAINMENT_KM.toLocaleString('es-ES', { maximumFractionDigits: 1 })} km del centro de la
+          zona que el título también nombra. «c/ Toledo y camí urbanización Els pous» son dos obras
+          a casi cinco kilómetros una de otra, y no se sitúa.
         </p>
         <p
           style={{
@@ -3437,12 +3455,13 @@ export default function Metodologia() {
           El emparejamiento es deliberadamente <strong>conservador</strong> —preferimos no situar un
           contrato antes que situarlo mal—: descartamos el nombre del municipio y de la provincia
           («Riba-roja de Túria», «València», que aparecen en casi todas las direcciones), las
-          palabras genéricas de expediente («social», «municipal», «pública», «mayor»), y solo
-          fiamos una calle cuando el título lleva un indicador de vía (C/, Camino, Ctra.). Un
-          equipamiento solo se sitúa para contratos de <strong>obra</strong>: un «suministro para la
-          Policía Local» es <em>para</em> el servicio, no una obra <em>en</em> el edificio. El gasto
-          sin lugar citado (servicios, suministros y obras sin ubicación) nunca se reparte por el
-          mapa.
+          palabras genéricas de expediente («social», «municipal», «pública», «mayor») y el nombre
+          de un ODS que citan los pliegos («Industria, innovación e infraestructura»), y solo fiamos
+          una calle cuando el título lleva un indicador de vía (C/, Camino, Ctra.) — una sigla como
+          «C.D.» o «C.E.I.P.» no lo es. Un equipamiento solo se sitúa para contratos de{' '}
+          <strong>obra</strong>: un «suministro para la Policía Local» es <em>para</em> el servicio,
+          no una obra <em>en</em> el edificio. El gasto sin lugar citado (servicios, suministros y
+          obras sin ubicación) nunca se reparte por el mapa.
         </p>
         <p
           style={{
