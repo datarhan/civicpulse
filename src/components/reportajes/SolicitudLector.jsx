@@ -19,11 +19,8 @@
 import { useEffect, useState } from 'react'
 import { useT } from '../../i18n'
 import { partePorHueco, rellena } from '../../lib/formatters'
-import { textoSolicitudLector } from '../../lib/solicitud-lector'
+import { CORREO, textoSolicitudLector } from '../../lib/solicitud-lector'
 import { SITIO } from '../Compartir'
-
-/** La dirección de contacto que publica /aviso-legal: la misma, no otra. */
-const CORREO = 'civicpulse_es@proton.me'
 
 const BOTON = {
   display: 'inline-flex',
@@ -51,17 +48,24 @@ const OCULTO = {
 
 /**
  * @param {{
- *   titulo: string,
+ *   meta: { titulo: string, publicadoEl: string },
  *   ruta: string,
  *   preguntas: string[],
  *   total?: number,
- * }} props — `ruta` es la de la pieza (`/reportajes/<slug>`), que se cita con
- *   la dirección pública; `total`, cuántas preguntas hace la pieza, cuando el
- *   escrito no lleva todas: entonces se dice cuántas lleva.
+ * }} props — `meta` es el de la pieza: su título se cita y su `publicadoEl`
+ *   fecha lo que las preguntas dan por sentado. `ruta` es la de la pieza
+ *   (`/reportajes/<slug>`), que se cita con la dirección pública; `total`,
+ *   cuántas preguntas hace la pieza, cuando el escrito no lleva todas: entonces
+ *   se dice cuántas lleva.
  */
-export default function SolicitudLector({ titulo, ruta, preguntas, total }) {
+export default function SolicitudLector({ meta, ruta, preguntas, total }) {
   const t = useT()
-  const texto = textoSolicitudLector({ titulo, url: `${SITIO}${ruta}`, preguntas })
+  const texto = textoSolicitudLector({
+    titulo: meta.titulo,
+    url: `${SITIO}${ruta}`,
+    publicadoEl: meta.publicadoEl,
+    preguntas,
+  })
   const [estado, setEstado] = useState(/** @type {'' | 'copiado' | 'fallo'} */ (''))
   const [abierto, setAbierto] = useState(false)
 

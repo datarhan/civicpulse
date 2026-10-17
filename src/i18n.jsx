@@ -243,9 +243,9 @@ export const CATALOGUE = {
     // registrado. Sólo la interfaz se traduce; el escrito va en castellano.
     'reportajes.solicitud.titulo': 'Estas preguntas puedes hacerlas tú',
     'reportajes.solicitud.explica':
-      'Cualquier persona puede pedir esta información al Ayuntamiento, sin explicar para qué (arts. 12 y 17 de la Ley 19/2013). El botón copia un escrito listo para pegar: rellena tus datos donde están los corchetes. Para presentarlo hay que identificarse, con certificado digital o Cl@ve en la sede electrónica del Ayuntamiento, o en persona en su Registro de Entrada. El Ayuntamiento tiene un mes para resolver, contado desde que la recibe el órgano que debe resolverla (art. 20.1). Si te contesta, puedes enviarnos la respuesta a {correo}; sólo se publica después de que la revise quien mantiene el proyecto, y nunca con tus datos.',
+      'Cualquier persona puede pedir esta información al Ayuntamiento, sin explicar para qué (arts. 12 y 17 de la Ley 19/2013). El botón copia un escrito listo para pegar: rellena tus datos donde están los corchetes. Se presenta identificándote en la sede electrónica (con certificado digital u otro medio que admita) o en el Registro de Entrada. El Ayuntamiento tiene un mes para resolver, ampliable a otro si lo justifica el volumen o la complejidad y te lo notifica; el plazo cuenta desde que la recibe el órgano que debe resolverla (art. 20.1). Si te contesta, puedes enviarnos la resolución, con tus datos de identificación tachados, a {correo}; sólo se publica después de que la revise quien mantiene el proyecto, y nunca con tus datos.',
     'reportajes.solicitud.parcial':
-      'El escrito recoge {n} de las {total} preguntas: las que piden información que tiene el Ayuntamiento. Las demás piden una valoración o parten de una afirmación de esta pieza, y en un escrito que firmas tú serían afirmaciones tuyas.',
+      'El escrito recoge {n} de las {total} preguntas: las que piden información que tiene el Ayuntamiento y que este proyecto no ha pedido ya. Las demás piden una valoración o una intención, parten de una afirmación de esta pieza —que en un escrito que firmas tú sería tuya— o ya están pedidas en otro reportaje.',
     'reportajes.solicitud.copiar': 'Copiar texto de la solicitud',
     'reportajes.solicitud.copiado': 'Copiado',
     'reportajes.solicitud.noCopiado':
@@ -2370,9 +2370,9 @@ export const CATALOGUE = {
     'reportajes.todos': 'Tots els reportatges →',
     'reportajes.solicitud.titulo': 'Aquestes preguntes les pots fer tu',
     'reportajes.solicitud.explica':
-      "Qualsevol persona pot demanar aquesta informació a l'Ajuntament, sense explicar per a què (arts. 12 i 17 de la Llei 19/2013). El botó copia un escrit a punt per a apegar: ompli les teues dades on hi ha els claudàtors. Per a presentar-lo cal identificar-se, amb certificat digital o Cl@ve a la seu electrònica de l'Ajuntament, o en persona al seu Registre d'Entrada. L'Ajuntament té un mes per a resoldre, comptat des que la rep l'òrgan que l'ha de resoldre (art. 20.1). Si et contesta, pots enviar-nos la resposta a {correo}; només es publica després que la revise qui manté el projecte, i mai amb les teues dades.",
+      "Qualsevol persona pot demanar aquesta informació a l'Ajuntament, sense explicar per a què (arts. 12 i 17 de la Llei 19/2013). El botó copia un escrit a punt per a apegar: ompli les teues dades on hi ha els claudàtors. Es presenta identificant-te a la seu electrònica (amb certificat digital o un altre mitjà que hi admeta) o al Registre d'Entrada. L'Ajuntament té un mes per a resoldre, ampliable a un altre si ho justifica el volum o la complexitat i t'ho notifica; el termini compta des que la rep l'òrgan que l'ha de resoldre (art. 20.1). Si et contesta, pots enviar-nos la resolució, amb les teues dades d'identificació ratllades, a {correo}; només es publica després que la revise qui manté el projecte, i mai amb les teues dades.",
     'reportajes.solicitud.parcial':
-      "L'escrit recull {n} de les {total} preguntes: les que demanen informació que té l'Ajuntament. Les altres demanen una valoració o parteixen d'una afirmació d'aquesta peça, i en un escrit que signes tu serien afirmacions teues.",
+      "L'escrit recull {n} de les {total} preguntes: les que demanen informació que té l'Ajuntament i que aquest projecte no ha demanat ja. Les altres demanen una valoració o una intenció, parteixen d'una afirmació d'aquesta peça —que en un escrit que signes tu seria teua— o ja estan demanades en un altre reportatge.",
     'reportajes.solicitud.copiar': 'Copiar el text de la sol·licitud',
     'reportajes.solicitud.copiado': 'Copiat',
     'reportajes.solicitud.noCopiado':

@@ -21,20 +21,28 @@
  * endpoint. Lo que el lector presenta es suyo y va con su DNI; recogerlo aquí
  * sería tratar datos personales sin registro de actividades ni evaluación de
  * impacto, que es justo lo que espera el canal web de quejas. Si quiere
- * compartir la respuesta, la manda por correo a la dirección del aviso legal, y
- * sólo se publica después de que la revise quien mantiene el proyecto.
+ * compartir la resolución, la manda por correo a la dirección del aviso legal,
+ * con sus datos de identificación tachados, y sólo se publica después de que
+ * la revise quien mantiene el proyecto.
  *
  * **Qué no dice el escrito.** No nombra a nadie y no afirma nada: sólo pregunta.
  * El reportaje se cita como el CONTEXTO de la petición —«a raíz de la
  * información publicada en…»—, nunca como prueba de lo que pregunta, porque lo
  * firma el lector y una afirmación de la pieza, copiada en su escrito, pasaría
- * a ser suya. Qué preguntas entran lo decide cada página, que es la que conoce
- * la forma de las suyas (las de basuras van en bloques, con su fundamento).
+ * a ser suya. Qué preguntas entran lo decide la lista editorial de
+ * src/lib/solicitud-apartadas.js, con el porqué de cada una que se aparta.
  *
  * El texto va en castellano en los dos idiomas de la interfaz: es un escrito
  * dirigido al Ayuntamiento, y sus preguntas son las literales de la pieza, que
  * conservan la lengua de su fuente como el resto de los datos.
  */
+
+/**
+ * La dirección de contacto que publica /aviso-legal, adonde el lector puede
+ * mandar la resolución. La misma, no otra: tests/solicitud-lector.test.js lee
+ * AvisoLegal.jsx y exige que la nombre.
+ */
+export const CORREO = 'civicpulse_es@proton.me'
 
 /** Quien recibe: el Área que tramita las de transparencia en el Ayuntamiento. */
 export const DESTINATARIO = 'Ayuntamiento de Riba-roja de Túria — Área de Transparencia'
@@ -48,6 +56,33 @@ const LEY_ESTATAL =
   'Ley 19/2013, de 9 de diciembre, de transparencia, acceso a la información pública y buen gobierno'
 const LEY_VALENCIANA =
   'Ley 1/2022, de 13 de abril, de la Generalitat, de Transparencia y Buen Gobierno de la Comunitat Valenciana'
+
+/**
+ * La fecha en castellano, «15 de julio de 2026», escrita aquí y no con
+ * `toLocaleDateString`: el escrito va siempre en castellano, y el CLDR de cada
+ * entorno escribe las fechas largas a su manera (tests/reportajes-fecha-iso.test.js
+ * no fija la forma por eso). Un escrito que se registra no puede depender de qué
+ * navegador lo copió.
+ */
+const MESES = [
+  'enero',
+  'febrero',
+  'marzo',
+  'abril',
+  'mayo',
+  'junio',
+  'julio',
+  'agosto',
+  'septiembre',
+  'octubre',
+  'noviembre',
+  'diciembre',
+]
+/** @param {string} iso AAAA-MM-DD */
+const fechaLarga = (iso) => {
+  const [a, m, d] = iso.split('-').map(Number)
+  return `${d} de ${MESES[m - 1]} de ${a}`
+}
 
 /**
  * Las comillas de dentro de un título que ya va entre «»: en castellano, las de
@@ -68,14 +103,26 @@ const comillasInternas = (titulo) => titulo.replace(/«/g, '“').replace(/»/g,
  * contacto y modalidad de acceso— va cada uno en su sitio; la identidad y la
  * dirección como huecos entre corchetes que rellena quien lo presenta.
  *
- * @param {{ titulo: string, url: string, preguntas: string[] }} pieza
+ * Las preguntas son las de la pieza, congeladas en la fecha en que se publicó,
+ * y alguna da algo por sentado («ahora que los contratos han terminado»). Por
+ * eso el escrito dice de cuándo son y pide lo que conste HOY: sin la fecha, el
+ * lector firmaría como actual una premisa que puede haber cambiado.
+ *
+ * @param {{ titulo: string, url: string, publicadoEl: string, preguntas: string[] }} pieza
+ *   `publicadoEl` es el `meta.publicadoEl` de la pieza, en AAAA-MM-DD.
  * @returns {string}
  */
-export function textoSolicitudLector({ titulo, url, preguntas }) {
+export function textoSolicitudLector({ titulo, url, publicadoEl, preguntas }) {
   if (!Array.isArray(preguntas) || preguntas.length === 0) {
     // Un escrito sin nada que pedir no es una solicitud; mejor que la página
     // no pinte el botón a que copie una carta vacía.
     throw new Error('textoSolicitudLector: no hay preguntas que pedir')
+  }
+  if (
+    typeof publicadoEl !== 'string' ||
+    !/^\d{4}-(0[1-9]|1[0-2])-(0[1-9]|[12]\d|3[01])$/.test(publicadoEl)
+  ) {
+    throw new Error(`textoSolicitudLector: fecha de publicación no válida: ${publicadoEl}`)
   }
   return [
     'SOLICITUD DE ACCESO A LA INFORMACIÓN PÚBLICA',
@@ -90,7 +137,7 @@ export function textoSolicitudLector({ titulo, url, preguntas }) {
     '',
     `Que el artículo 12 de la ${LEY_ESTATAL}, reconoce a todas las personas el derecho a acceder a la información pública, que su artículo 13 define como los contenidos o documentos que obren en poder de la administración y que hayan sido elaborados o adquiridos en el ejercicio de sus funciones; derecho que regula también, en la Comunitat Valenciana, la ${LEY_VALENCIANA}.`,
     '',
-    `Que, aunque el artículo 17.3 de la Ley 19/2013 no obliga a motivar la solicitud, esta se formula a raíz de la información publicada en «${comillasInternas(titulo)}» (${url}).`,
+    `Que, aunque el artículo 17.3 de la Ley 19/2013 no obliga a motivar la solicitud, esta se formula a raíz de la información publicada en «${comillasInternas(titulo)}» (${url}). Las preguntas se reproducen literalmente de ese reportaje, publicado el ${fechaLarga(publicadoEl)}, y lo que en ellas se da por sentado se refiere a esa fecha. Si algo ha cambiado desde entonces, se solicita la información que conste a la fecha de esta solicitud.`,
     '',
     'SOLICITA',
     '',

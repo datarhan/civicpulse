@@ -5,6 +5,7 @@ import { CorrectionNote, CorrectionNotice } from '../../components/reportajes/Co
 import { SecHead, IndicePieza } from '../../components/reportajes/Pieza'
 import SolicitudLector from '../../components/reportajes/SolicitudLector'
 import { debeOfrecerSolicitud } from '../../lib/solicitud-lector'
+import { solicitables as soloSolicitables } from '../../lib/solicitud-apartadas'
 
 const SERIF = "'Fraunces', Georgia, serif"
 
@@ -168,6 +169,8 @@ export default function InteligenciaTuristica() {
   const m = data.meta
   // Las tarjetas que la figura de cabecera ya imprime (ver cifrasDelEmblema).
   const enFigura = new Set(cifrasDelEmblema('inteligencia-turistica', data))
+  // Qué preguntas van en el escrito del lector (src/lib/solicitud-apartadas.js).
+  const solicitables = soloSolicitables('inteligencia-turistica', data.preguntas)
 
   return (
     <div
@@ -577,13 +580,16 @@ export default function InteligenciaTuristica() {
             </li>
           ))}
         </ol>
-        {/* Todas piden información que el Ayuntamiento tiene, y la pieza no las
-            ha registrado: quien lee puede presentarlas con su nombre. */}
-        {debeOfrecerSolicitud(data) && (
+        {/* Las que piden información que el Ayuntamiento tiene y que el proyecto
+            no ha pedido ya: la lista editorial de src/lib/solicitud-apartadas.js
+            dice cuáles se apartan y por qué. Quien lee puede presentarlas con su
+            nombre. */}
+        {debeOfrecerSolicitud({ preguntas: solicitables, solicitudes: data.solicitudes }) && (
           <SolicitudLector
-            titulo={m.titulo}
+            meta={m}
             ruta="/reportajes/inteligencia-turistica"
-            preguntas={data.preguntas}
+            preguntas={solicitables}
+            total={data.preguntas.length}
           />
         )}
       </article>
