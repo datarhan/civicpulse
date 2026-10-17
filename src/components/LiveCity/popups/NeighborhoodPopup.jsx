@@ -24,7 +24,7 @@ const subStyle = { fontSize: 'var(--fs-micro)', color: 'rgba(11,15,25,.55)' }
 
 /**
  * Aggregated civic card for one neighborhood: population (always), located
- * contract spend (or an honest "sin obras" note), and quejas with a health chip
+ * contract spend (or an honest "sin contratos" note), and quejas with a health chip
  * — but only when quejas exist. Never colours a barrio from an absence of data.
  *
  * Los rótulos salen del catálogo: escritos aquí, la portada valenciana pintaba
@@ -55,7 +55,7 @@ export function NeighborhoodPopup({ agg }) {
             <>
               <div style={valueStyle}>
                 {fmtEur(amount)} · {contractCount}{' '}
-                {t(contractCount === 1 ? 'map.obras.una' : 'map.obras.varias')}
+                {t(contractCount === 1 ? 'map.contratos.uno' : 'map.contratos.varios')}
               </div>
               {danaAmount > 0 && (
                 <div style={subStyle}>
@@ -64,7 +64,7 @@ export function NeighborhoodPopup({ agg }) {
               )}
             </>
           ) : (
-            <div style={subStyle}>{t('map.barrio.sinObras')}</div>
+            <div style={subStyle}>{t('map.barrio.sinContratos')}</div>
           )}
         </div>
 

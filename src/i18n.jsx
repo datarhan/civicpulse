@@ -502,14 +502,18 @@ export const CATALOGUE = {
     'map.barrio.osm': 'Barrio OSM',
     'map.barrio.inversion': 'Inversión situada',
     'map.barrio.danaIncluida': 'incluye {importe} recuperación DANA',
-    'map.barrio.sinObras': 'sin obras cuyo título nombre el barrio',
+    'map.barrio.sinContratos': 'sin contratos cuyo título nombre el barrio',
     'map.barrio.sinQuejas': 'sin quejas de vecinos',
-    // Un nombre que se escribe igual en los dos idiomas («obra», «licitador»,
-    // «adj.», «Causa») va solo en su nodo de texto: pegado a una cifra dentro de
-    // una plantilla, tests/components/mapa-valencia.test.jsx no podría
-    // distinguirlo de un rótulo sin traducir.
-    'map.obras.una': 'obra',
-    'map.obras.varias': 'obras',
+    // Un nombre que se escribe igual en los dos idiomas («licitador», «adj.»,
+    // «Causa») va solo en su nodo de texto: pegado a una cifra dentro de una
+    // plantilla, tests/components/mapa-valencia.test.jsx no podría distinguirlo
+    // de un rótulo sin traducir.
+    // Contratos, no «obras»: decían «obra»/«obras», y la chincheta, su ficha y la
+    // del barrio cuentan todo contrato cuyo título nombra el sitio, sea obra,
+    // servicio o suministro (tests/components/pin-cuenta-contratos.test.jsx).
+    // /presupuesto lo arregló el 17-09-2026 con `presupuesto.gasto.contratos.*`.
+    'map.contratos.uno': 'contrato',
+    'map.contratos.varios': 'contratos',
     'map.quejas.una': '{n} queja',
     'map.quejas.varias': '{n} quejas',
     'map.lugar.street': 'Calle / camino',
@@ -518,7 +522,8 @@ export const CATALOGUE = {
     'map.lugar.barrio': 'Barrio',
     'map.lugar.lote': 'Lote de: «{titulo}»',
     'map.lugar.fichaBarrio': 'Ficha del barrio: {barrio}',
-    'map.lugar.pie': 'Solo obras cuyo título nombra una calle, zona o equipamiento · PLACSP/TED',
+    'map.lugar.pie':
+      'Solo contratos cuyo título nombra una calle, zona o equipamiento · PLACSP/TED',
     'map.incendio.deAnyo': 'Incendio de {anyo}',
     'map.incendio.superficie': 'superficie del incendio completo',
     'map.incendio.atribuido':
@@ -2590,10 +2595,10 @@ export const CATALOGUE = {
     'map.barrio.osm': 'Barri OSM',
     'map.barrio.inversion': 'Inversió situada',
     'map.barrio.danaIncluida': 'inclou {importe} de recuperació DANA',
-    'map.barrio.sinObras': 'sense obres el títol de les quals nomene el barri',
+    'map.barrio.sinContratos': 'sense contractes el títol dels quals nomene el barri',
     'map.barrio.sinQuejas': 'sense queixes de veïns',
-    'map.obras.una': 'obra',
-    'map.obras.varias': 'obres',
+    'map.contratos.uno': 'contracte',
+    'map.contratos.varios': 'contractes',
     'map.quejas.una': '{n} queixa',
     'map.quejas.varias': '{n} queixes',
     'map.lugar.street': 'Carrer / camí',
@@ -2603,7 +2608,7 @@ export const CATALOGUE = {
     'map.lugar.lote': 'Lot de: «{titulo}»',
     'map.lugar.fichaBarrio': 'Fitxa del barri: {barrio}',
     'map.lugar.pie':
-      'Només obres el títol de les quals nomena un carrer, una zona o un equipament · PLACSP/TED',
+      'Només contractes el títol dels quals nomena un carrer, una zona o un equipament · PLACSP/TED',
     'map.incendio.deAnyo': 'Incendi de {anyo}',
     'map.incendio.superficie': 'superfície de l’incendi complet',
     'map.incendio.atribuido':
