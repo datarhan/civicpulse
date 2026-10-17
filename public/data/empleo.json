@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-16T09:26:41.177Z",
+  "generatedAt": "2026-10-17T08:56:21.336Z",
   "source": {
     "origin": "https://ribaocupacio.portalemp.com",
     "platform": "portalemp — ribaocupacio · Agència de Col·locació (ADL), Ajuntament de Riba-roja de Túria",
@@ -8,20 +8,103 @@
   "stats": {
     "total": 45,
     "openTotal": 44,
-    "inRibaRoja": 29,
-    "closingSoon": 16,
+    "inRibaRoja": 28,
+    "closingSoon": 15,
     "withDetail": 45,
     "byMonth": {
-      "2026-10": 4,
+      "2026-10": 5,
       "2026-09": 21,
       "2026-08": 15,
       "2026-07": 1,
-      "2026-06": 1,
       "2026-05": 2,
       "2025-11": 1
     }
   },
   "items": [
+    {
+      "id": "2548",
+      "fo": 2548,
+      "codigo": "2026/00245",
+      "titulo": "OPERARIOS/AS CON DISCAPACIDAD ENVASADO Y REPALETIZADO EN CHESTE",
+      "publishedAt": "2026-10-16",
+      "deadline": "2026-12-16",
+      "location": "Cheste (Valencia)",
+      "status": "Abierta",
+      "statusTone": "ok",
+      "url": "https://ribaocupacio.portalemp.com/ofertas.html?fo=2548",
+      "inRibaRoja": false,
+      "detail": {
+        "fields": [
+          {
+            "label": "Código",
+            "value": "2026/00245"
+          },
+          {
+            "label": "Nombre de la oferta",
+            "value": "OPERARIOS/AS CON DISCAPACIDAD ENVASADO Y REPALETIZADO EN CHESTE"
+          },
+          {
+            "label": "Observaciones",
+            "value": "Buscamos operarios/as con discapacidad para el puesto de manipulado, envasado y paletizado de productos de limpieza (detergentes, dispensadores lavavajillas, etc.). El puesto requiere poder estar 8h de pie y tener destreza manual (para envasar). Consiste en segregar productos para su posterior reenvasado. Además de repaletizar producto envasado (de palet europea a americano). El trabajador/a debe poder agacharse y coger peso. Turno rotativo: mañana, tarde y noche. Contrato inicial de 12 meses con posibilidad de continuar. Salario 1443€ brutos al mes en 12 pagas. Es recomendable tener coche para acceder hasta el centro de trabajo ya que está situado en el polígono. Indispensable disponer del certificado de discapacidad del 33% o más."
+          },
+          {
+            "label": "Sector CNAE",
+            "value": "INDUSTRIA MANUFACTURERA"
+          },
+          {
+            "label": "Tipo de contrato",
+            "value": "CONTRATACION DISCAPACIDAD"
+          },
+          {
+            "label": "Duración del contrato",
+            "value": "12 MESES PRORROGABLE"
+          },
+          {
+            "label": "Número de puestos",
+            "value": "2"
+          },
+          {
+            "label": "Categoría profesional",
+            "value": "PEONES"
+          },
+          {
+            "label": "Lugar puesto de trabajo",
+            "value": "Municipio: Cheste, Provincia: Valencia"
+          },
+          {
+            "label": "Tipo de jornada laboral",
+            "value": "Completa Turnos: Turno mañana, Turno tarde, Turno noche"
+          },
+          {
+            "label": "Horario",
+            "value": "TURNO ROTATIVO:MAÑANA TARDE Y NOCHE"
+          },
+          {
+            "label": "Salario",
+            "value": "1443 EUROS/BRUTO/MENSUAL"
+          },
+          {
+            "label": "Funciones",
+            "value": "ENVASAR Y REPALETIZAR"
+          },
+          {
+            "label": "Requiere vehículo propio",
+            "value": "Sí"
+          }
+        ],
+        "tipoContrato": "CONTRATACION DISCAPACIDAD",
+        "duracion": "12 MESES PRORROGABLE",
+        "numPuestos": "2",
+        "categoria": "PEONES",
+        "observaciones": "Buscamos operarios/as con discapacidad para el puesto de manipulado, envasado y paletizado de productos de limpieza (detergentes, dispensadores lavavajillas, etc.). El puesto requiere poder estar 8h de pie y tener destreza manual (para envasar). Consiste en segregar productos para su posterior reenvasado. Además de repaletizar producto envasado (de palet europea a americano). El trabajador/a debe poder agacharse y coger peso. Turno rotativo: mañana, tarde y noche. Contrato inicial de 12 meses con posibilidad de continuar. Salario 1443€ brutos al mes en 12 pagas. Es recomendable tener coche para acceder hasta el centro de trabajo ya que está situado en el polígono. Indispensable disponer del certificado de discapacidad del 33% o más.",
+        "jornada": "Completa Turnos: Turno mañana, Turno tarde, Turno noche",
+        "horario": "TURNO ROTATIVO:MAÑANA TARDE Y NOCHE",
+        "salario": "1443 EUROS/BRUTO/MENSUAL",
+        "funciones": "ENVASAR Y REPALETIZAR",
+        "vehiculo": "Sí",
+        "ocupaciones": []
+      }
+    },
     {
       "id": "2545",
       "fo": 2545,
@@ -3236,88 +3319,6 @@
         "jornada": "Completa",
         "salario": "segun convenio",
         "vehiculo": "Sí",
-        "ocupaciones": []
-      }
-    },
-    {
-      "id": "2462",
-      "fo": 2462,
-      "codigo": "2026/00163",
-      "titulo": "Oficial albañil",
-      "publishedAt": "2026-06-16",
-      "deadline": "2026-10-16",
-      "location": "Principalmente Valencia y Riba-roja y alrederdedores Riba-roja de Túria",
-      "status": "Abierta",
-      "statusTone": "ok",
-      "url": "https://ribaocupacio.portalemp.com/ofertas.html?fo=2462",
-      "inRibaRoja": true,
-      "detail": {
-        "fields": [
-          {
-            "label": "Código",
-            "value": "2026/00163"
-          },
-          {
-            "label": "Nombre de la oferta",
-            "value": "Oficial albañil"
-          },
-          {
-            "label": "Observaciones",
-            "value": "Empresa consolidada, buscamos gente con motivación y ganas de avanzar y aprender. 14 pagas mas posibilidades de incentivos según trabajo realizado. Todo según convenio"
-          },
-          {
-            "label": "Sector CNAE",
-            "value": "CONSTRUCCIÓN"
-          },
-          {
-            "label": "Tipo de contrato",
-            "value": "CONTRATO INDEFINIDO"
-          },
-          {
-            "label": "Duración del contrato",
-            "value": "Más de 6 meses"
-          },
-          {
-            "label": "Número de puestos",
-            "value": "1"
-          },
-          {
-            "label": "Categoría profesional",
-            "value": "OFICIAL DE 1ª"
-          },
-          {
-            "label": "Lugar puesto de trabajo",
-            "value": "Principalmente Valencia y Riba-roja y alrederdedores, Municipio: Riba-roja de Túria, Provincia: Valencia, CP: 46190"
-          },
-          {
-            "label": "Tipo de jornada laboral",
-            "value": "Completa"
-          },
-          {
-            "label": "Horario",
-            "value": "De lunes a viernes de 8h a 17h"
-          },
-          {
-            "label": "Salario",
-            "value": "Según convenio más incentivos y pagas"
-          },
-          {
-            "label": "Funciones",
-            "value": "Trabajo de tabiqueria, maestreado, revestimientos, escayola, toda la albañilería en general. Trabajos en zaguanes, viviendas y facahdas principalmente"
-          }
-        ],
-        "tipoContrato": "CONTRATO INDEFINIDO",
-        "duracion": "Más de 6 meses",
-        "numPuestos": "1",
-        "categoria": "OFICIAL DE 1ª",
-        "observaciones": "Empresa consolidada, buscamos gente con motivación y ganas de avanzar y aprender. 14 pagas mas posibilidades de incentivos según trabajo realizado. Todo según convenio",
-        "municipio": "Riba-roja de Túria",
-        "provincia": "Valencia",
-        "cp": "46190",
-        "jornada": "Completa",
-        "horario": "De lunes a viernes de 8h a 17h",
-        "salario": "Según convenio más incentivos y pagas",
-        "funciones": "Trabajo de tabiqueria, maestreado, revestimientos, escayola, toda la albañilería en general. Trabajos en zaguanes, viviendas y facahdas principalmente",
         "ocupaciones": []
       }
     },

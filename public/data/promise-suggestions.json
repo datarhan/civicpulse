@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-16T09:27:36.896Z",
+  "generatedAt": "2026-10-17T08:57:08.821Z",
   "frozen": false,
   "frozenUntil": null,
   "notice": "Sugerencias generadas automáticamente. Requieren aprobación humana antes de aplicarse al estado de cada promesa.",
@@ -41,7 +41,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-10-16T09:27:36.798Z"
+      "generatedAt": "2026-10-17T08:57:08.723Z"
     },
     {
       "promiseId": "ac-psoe-jfg7bc",
@@ -60,7 +60,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-10-16T09:27:36.798Z"
+      "generatedAt": "2026-10-17T08:57:08.723Z"
     },
     {
       "promiseId": "ac-psoe-1ah9zqk",
@@ -79,7 +79,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-10-16T09:27:36.798Z"
+      "generatedAt": "2026-10-17T08:57:08.723Z"
     },
     {
       "promiseId": "ac-psoe-ppa53a",
@@ -87,27 +87,15 @@
       "confidence": 0,
       "reasoning": [],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-10-16T09:27:36.798Z"
+      "generatedAt": "2026-10-17T08:57:08.723Z"
     },
     {
       "promiseId": "ac-psoe-1m04lfw",
       "proposedStatus": "documentada",
-      "confidence": 0.175,
-      "reasoning": [
-        {
-          "url": "https://news.google.com/rss/articles/CBMiR0FVX3lxTE5yU2NLT0hJaTJzR24xenF0akRkejdVVWVpbUJDSDhWZFYwbGtsSVFMcU13SjFfUGktdmRVR0FjVkZLcE5DcUZ3?oc=5",
-          "date": "2026-09-19",
-          "quote": "Riba-Rock 2026: cartel, horario y acceso gratuito",
-          "kind": "press",
-          "publisher": "Modo Festival",
-          "matchedKeywords": [
-            "acceso",
-            "gratuito"
-          ]
-        }
-      ],
+      "confidence": 0,
+      "reasoning": [],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-10-16T09:27:36.798Z"
+      "generatedAt": "2026-10-17T08:57:08.723Z"
     },
     {
       "promiseId": "ac-psoe-sysee8",
@@ -126,7 +114,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-10-16T09:27:36.798Z"
+      "generatedAt": "2026-10-17T08:57:08.723Z"
     },
     {
       "promiseId": "ac-psoe-1ryndd8",
@@ -163,7 +151,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-10-16T09:27:36.798Z"
+      "generatedAt": "2026-10-17T08:57:08.723Z"
     },
     {
       "promiseId": "ac-psoe-43brfs",
@@ -228,7 +216,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-10-16T09:27:36.798Z"
+      "generatedAt": "2026-10-17T08:57:08.723Z"
     },
     {
       "promiseId": "ac-psoe-17y448o",
@@ -314,7 +302,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-10-16T09:27:36.798Z"
+      "generatedAt": "2026-10-17T08:57:08.723Z"
     },
     {
       "promiseId": "ac-psoe-1bkbwjs",
@@ -382,7 +370,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-10-16T09:27:36.798Z"
+      "generatedAt": "2026-10-17T08:57:08.723Z"
     },
     {
       "promiseId": "ac-psoe-1xeq50",
@@ -439,7 +427,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-10-16T09:27:36.798Z"
+      "generatedAt": "2026-10-17T08:57:08.723Z"
     },
     {
       "promiseId": "ac-psoe-1kui43c",
@@ -486,7 +474,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-10-16T09:27:36.798Z"
+      "generatedAt": "2026-10-17T08:57:08.723Z"
     }
   ],
   "llmEvidence": [],

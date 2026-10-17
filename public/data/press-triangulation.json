@@ -1,20 +1,20 @@
 {
-  "generatedAt": "2026-10-17T08:11:27.483Z",
+  "generatedAt": "2026-10-17T08:57:26.013Z",
   "clusters": [
     {
-      "clusterId": "1208oo5",
+      "clusterId": "1hto5xc",
       "articleIds": [
-        "8hij1g",
-        "95mxd4",
-        "whw1as"
+        "1icj1ls",
+        "1jh9cu0",
+        "hkahd4"
       ],
       "outlets": [
-        "Ayuntamiento de Riba-roja de Túria",
-        "Valencia Plaza",
-        "Vivir Ediciones"
+        "Ayuntamiento de Cheste",
+        "El Periódico de Aquí",
+        "elperiodic.com"
       ],
-      "earliestDate": "2026-10-02T10:03:37.000Z",
-      "latestDate": "2026-10-07T09:15:02.000Z",
+      "earliestDate": "2026-10-16T06:58:16.000Z",
+      "latestDate": "2026-10-16T16:50:00.000Z",
       "verdictMix": {
         "verificado": 0,
         "parcial": 0,
@@ -46,6 +46,26 @@
       }
     },
     {
+      "clusterId": "1208oo5",
+      "articleIds": [
+        "8hij1g",
+        "95mxd4"
+      ],
+      "outlets": [
+        "Ayuntamiento de Riba-roja de Túria",
+        "Valencia Plaza"
+      ],
+      "earliestDate": "2026-10-02T10:03:37.000Z",
+      "latestDate": "2026-10-02T11:50:52.000Z",
+      "verdictMix": {
+        "verificado": 0,
+        "parcial": 0,
+        "contradicho": 0,
+        "sin-datos": 0,
+        "promesa-repetida": 0
+      }
+    },
+    {
       "clusterId": "18wtlak",
       "articleIds": [
         "140oi31",
@@ -66,7 +86,7 @@
       }
     },
     {
-      "clusterId": "1cgbsla",
+      "clusterId": "1a7s7tk",
       "articleIds": [
         "100ms28",
         "19crzeg",
@@ -74,6 +94,7 @@
         "1bfp5g8",
         "1h22n93",
         "1v0b3hs",
+        "1w31adk",
         "4kaf3g",
         "5csqp0",
         "8s5tks",
@@ -95,6 +116,26 @@
       }
     },
     {
+      "clusterId": "1b7iklo",
+      "articleIds": [
+        "1dkm9y0",
+        "1tbkqfc"
+      ],
+      "outlets": [
+        "El Periódico Extremadura",
+        "Levante-EMV"
+      ],
+      "earliestDate": "2026-09-24T07:00:00.000Z",
+      "latestDate": "2026-09-24T15:09:16.000Z",
+      "verdictMix": {
+        "verificado": 0,
+        "parcial": 0,
+        "contradicho": 0,
+        "sin-datos": 0,
+        "promesa-repetida": 0
+      }
+    },
+    {
       "clusterId": "1ffsisx",
       "articleIds": [
         "9k4v28",
@@ -105,7 +146,7 @@
         "Valencia Plaza"
       ],
       "earliestDate": "2026-10-08T12:37:13.000Z",
-      "latestDate": "2026-10-15T11:49:33.000Z",
+      "latestDate": "2026-10-15T23:37:30.000Z",
       "verdictMix": {
         "verificado": 0,
         "parcial": 0,
@@ -131,26 +172,6 @@
         "parcial": 0,
         "contradicho": 0,
         "sin-datos": 15,
-        "promesa-repetida": 0
-      }
-    },
-    {
-      "clusterId": "1nw85ai",
-      "articleIds": [
-        "1jh9cu0",
-        "hkahd4"
-      ],
-      "outlets": [
-        "Ayuntamiento de Cheste",
-        "elperiodic.com"
-      ],
-      "earliestDate": "2026-10-16T06:58:16.000Z",
-      "latestDate": "2026-10-16T08:03:18.000Z",
-      "verdictMix": {
-        "verificado": 0,
-        "parcial": 0,
-        "contradicho": 0,
-        "sin-datos": 0,
         "promesa-repetida": 0
       }
     },
@@ -196,13 +217,13 @@
     }
   ],
   "stats": {
-    "totalClusters": 9,
+    "totalClusters": 10,
     "triangulated3Plus": 2
   },
   "builtFrom": {
-    "plenos-agendas.json": "e048e9816c3f",
+    "plenos-agendas.json": "ea94298d1771",
     "press-claims-verified.json": "7a128575d1ad",
-    "press.json": "4663a3f15bf3",
+    "press.json": "d82b3de27057",
     "promises.json": "08c43b132d79"
   }
 }
