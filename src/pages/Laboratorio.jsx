@@ -33,6 +33,7 @@ import {
   VERDICT_LABEL,
   textoLibroVacio,
   recuentoDeExtraccion,
+  desenlaceVigente,
 } from '../lib/press-lab'
 
 const VERDICT_TONE = {
@@ -653,11 +654,12 @@ export default function Laboratorio() {
     return m
   }, [lab.verified])
 
-  // El desenlace de cada artículo en la última pasada del extractor, o `null` si el
-  // snapshot es anterior a que se guardara: entonces ni la frase por tarjeta ni el
-  // recuento de la lista pueden decir qué se miró.
-  const desenlacePorArticulo = useMemo(
-    () => (lab.extraccion ? new Map(lab.extraccion.map((a) => [a.articleId, a.desenlace])) : null),
+  // La fila del extractor de cada artículo —desenlace y huella con que se procesó—, o
+  // `null` si el snapshot es anterior a que se guardara: entonces ni la frase por
+  // tarjeta ni el recuento de la lista pueden decir qué se miró. La huella hace falta:
+  // una fila de otro titular no vale para éste (`desenlaceVigente`).
+  const filaPorArticulo = useMemo(
+    () => (lab.extraccion ? new Map(lab.extraccion.map((a) => [a.articleId, a])) : null),
     [lab.extraccion],
   )
 
@@ -714,10 +716,8 @@ export default function Laboratorio() {
 
   const recuento = useMemo(
     () =>
-      desenlacePorArticulo
-        ? recuentoDeExtraccion(visible, byArticleClaims, desenlacePorArticulo)
-        : null,
-    [visible, byArticleClaims, desenlacePorArticulo],
+      filaPorArticulo ? recuentoDeExtraccion(visible, byArticleClaims, filaPorArticulo) : null,
+    [visible, byArticleClaims, filaPorArticulo],
   )
 
   if (lab.loading) {
@@ -841,12 +841,12 @@ export default function Laboratorio() {
         <KPI
           label="Artículos auditados"
           value={fmtNumber(summary.auditedCount)}
-          hint="con ≥1 afirmación analizada"
+          hint="con ≥1 afirmación analizada · últimos 30 días"
         />
         <KPI
           label="Tasa de verificación"
           value={fmtPct(summary.verificadoRatio)}
-          hint={`${summary.verificadoClaims} de ${summary.totalClaims} claims`}
+          hint={`${summary.verificadoClaims} de ${summary.totalClaims} claims · últimos 30 días`}
         />
         {/* El pie dice ENTRE QUÉ se divide. Decía «de 36 claims» cuando el
             divisor real era 1 —las 36 son el corpus, no lo examinado—, y así
@@ -854,7 +854,7 @@ export default function Laboratorio() {
         <KPI
           label="Tasa de discrepancia"
           value={fmtPct(summary.contradichoRatio)}
-          hint={`${summary.contradichoClaims} de ${summary.resueltasClaims} resueltas`}
+          hint={`${summary.contradichoClaims} de ${summary.resueltasClaims} resueltas · últimos 30 días`}
         />
         <KPI
           label="Triangulación"
@@ -985,8 +985,8 @@ export default function Laboratorio() {
               summary={byArticleSummary.get(article.id)}
               claims={byArticleClaims.get(article.id)}
               textoVacio={
-                desenlacePorArticulo
-                  ? textoLibroVacio(desenlacePorArticulo.get(article.id) ?? null)
+                filaPorArticulo
+                  ? textoLibroVacio(desenlaceVigente(article, filaPorArticulo.get(article.id)))
                   : null
               }
               trust={byArticleTrust.get(article.id)}

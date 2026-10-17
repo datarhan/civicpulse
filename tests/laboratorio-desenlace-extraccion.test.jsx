@@ -5,7 +5,7 @@ import { readFileSync } from 'node:fs'
 import { join } from 'node:path'
 
 import Laboratorio from '../src/pages/Laboratorio'
-import { textoLibroVacio } from '../src/lib/press-lab'
+import { desenlaceVigente, textoLibroVacio } from '../src/lib/press-lab'
 import { DESENLACES_EXTRACCION } from '../src/scraper/press-extraccion'
 import { installFetchMock } from './setup/mockFetch'
 
@@ -26,12 +26,28 @@ describe('el libro vacío dice qué pasó', () => {
     for (const d of DESENLACES_EXTRACCION.filter((d) => d !== 'extraido'))
       expect(textoLibroVacio(d)).toBeTruthy()
     expect(textoLibroVacio('sin-afirmaciones')).toMatch(/No es lo mismo que no las tenga/)
+    // No afirma una lectura del cuerpo que muchas veces no hubo: sin `needsBody`, con
+    // --headline-only o con la descarga fallida, la extracción trabaja sobre el titular.
+    expect(textoLibroVacio('sin-afirmaciones')).toMatch(/revisó este titular/)
+    expect(textoLibroVacio('sin-afirmaciones')).not.toMatch(/leyó la noticia/)
     expect(textoLibroVacio('llm-no-disponible')).toMatch(/no pudo/)
   })
   it('«extraído» sin nada publicado tampoco se lee como «no sacó nada»', () => {
     // Pasa cuando el filtro editorial del verificador retiene todas las de un artículo.
     expect(textoLibroVacio('extraido')).toBeTruthy()
     expect(textoLibroVacio('extraido')).not.toMatch(/no sacó|aún no ha pasado/)
+  })
+  it('una fila de otro titular no vale: si la huella cambió, la tarjeta está pendiente', () => {
+    const fila = {
+      articleId: 'a1',
+      fingerprint: 'f1',
+      desenlace: 'sin-afirmaciones',
+      procesadoEl: '2026-10-15',
+    }
+    expect(desenlaceVigente({ fingerprint: 'f1' }, fila)).toBe('sin-afirmaciones')
+    expect(desenlaceVigente({ fingerprint: 'f2' }, fila)).toBeNull()
+    expect(desenlaceVigente({}, fila)).toBeNull()
+    expect(desenlaceVigente({ fingerprint: 'f1' }, undefined)).toBeNull()
   })
   it('las cuatro frases son distintas: ninguna se dobla en otra', () => {
     const frases = [null, ...DESENLACES_EXTRACCION].map(textoLibroVacio)
@@ -58,10 +74,15 @@ const sinAfirmaciones = PRESS.items
   .sort()
 
 // Una pasada que miró tres tarjetas sin afirmaciones, una con cada desenlace, y las de
-// las afirmaciones; el resto no lo ha visto nunca.
-const procesado = (articleId, desenlace) => ({
+// las afirmaciones; el resto no lo ha visto nunca. Con la huella de la tarjeta, que es
+// la del titular que se procesó.
+const huella = new Map([
+  ...VERIFICADAS.items.map((r) => [r.claim.articleId, r.claim.articleFingerprint]),
+  ...PRESS.items.map((p) => [p.id, p.fingerprint]),
+])
+const procesado = (articleId, desenlace, fingerprint = huella.get(articleId)) => ({
   articleId,
-  fingerprint: `fp-${articleId}`,
+  fingerprint,
   desenlace,
   procesadoEl: '2026-09-28T08:00:00.000Z',
 })
@@ -142,6 +163,21 @@ describe('/laboratorio con el desenlace de cada artículo', () => {
       }
     }
     expect(comprobados).toBeGreaterThan(20)
+  })
+
+  it('un desenlace de un titular que ya cambió no se le atribuye al de ahora', async () => {
+    // La fila se procesó con otra huella: el titular de la tarjeta no es el que miró
+    // el extractor, y para él vuelve a estar en la cola (`elegirPendientes`).
+    const cambiado = [
+      procesado(sinAfirmaciones[0], 'sin-afirmaciones', 'huella-de-otro-titular'),
+      ...ARTICULOS.slice(1),
+    ]
+    await montar({ ...VERIFICADAS, extraccion: { articulos: cambiado } })
+    expect(veces(textoLibroVacio('sin-afirmaciones'))).toBe(0)
+    expect(veces(textoLibroVacio(null))).toBe(sinAfirmaciones.length - 2)
+    const r = recuento()
+    expect(r).toMatchObject({ descartados: 1, pendientes: sinAfirmaciones.length - 1 })
+    expect(r.con + r.descartados + r.pendientes).toBe(tarjetas())
   })
 
   it('un snapshot sin `extraccion` dice lo de siempre y no inventa un recuento', async () => {

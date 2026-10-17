@@ -182,6 +182,12 @@ export const VERDICT_LABEL = {
  * que pintar es el filtro editorial del verificador (claim-public-gate.ts) reteniendo
  * todas las de ese artículo: hubo afirmaciones, y la frase no puede negarlo.
  *
+ * `sin-afirmaciones` no dice «leyó la noticia»: muchas veces no la leyó. Con
+ * `needsBody: false`, con `--headline-only` o cuando la descarga del cuerpo falla en
+ * silencio (press-claim-llm.ts), la extracción trabaja sobre el titular, y la mayoría
+ * de enlaces son redirecciones de news.google.com. «Revisó este titular» es lo único
+ * que vale en todos los casos.
+ *
  * @typedef {import('../scraper/press-extraccion').DesenlaceExtraccion} DesenlaceExtraccion
  * @type {Record<DesenlaceExtraccion, {estado: 'con' | 'descartado' | 'pendiente', texto: string}>}
  */
@@ -199,7 +205,7 @@ const LIBRO_VACIO = {
   'sin-afirmaciones': {
     estado: 'descartado',
     texto:
-      'El extractor leyó la noticia y no sacó ninguna afirmación. No es lo mismo que no las tenga.',
+      'El extractor revisó este titular y no sacó ninguna afirmación. No es lo mismo que no las tenga.',
   },
   'llm-no-disponible': {
     estado: 'pendiente',
@@ -229,24 +235,42 @@ export function textoLibroVacio(desenlace) {
 }
 
 /**
+ * El desenlace que vale para la tarjeta, o `null` si no hay ninguno que valga.
+ *
+ * La fila se busca por `articleId`, pero describe el titular con la huella con que se
+ * procesó. Si la tarjeta trae otra, el titular cambió después y lo que se pinta no es
+ * lo que el extractor miró: la tarjeta está pendiente, igual que para el extractor
+ * (`elegirPendientes` devuelve a la cola un artículo cuya huella cambió).
+ *
+ * @param {{fingerprint?: string} | null | undefined} articulo  la tarjeta
+ * @param {import('../scraper/press-extraccion').ExtraccionArticulo | null | undefined} fila
+ * @returns {DesenlaceExtraccion | null}
+ */
+export function desenlaceVigente(articulo, fila) {
+  if (!fila) return null
+  if (fila.fingerprint !== articulo?.fingerprint) return null
+  return fila.desenlace
+}
+
+/**
  * El recuento que va bajo el contador de la lista, sobre las tarjetas que se ven: cada
  * una cae en UNA casilla, así que las tres suman el total visible. Una tarjeta con
  * afirmaciones pintadas cuenta «con» aunque su desenlace sea otro —sus afirmaciones son
  * de una pasada anterior a que el extractor guardara desenlaces, o de un artículo que
  * salió del feed—: el recuento describe lo que la lista enseña.
  *
- * @param {Array<{id: string}>} articulos  las tarjetas visibles
+ * @param {Array<{id: string, fingerprint?: string}>} articulos  las tarjetas visibles
  * @param {Map<string, unknown[]>} afirmacionesPorArticulo
- * @param {Map<string, DesenlaceExtraccion>} desenlacePorArticulo
+ * @param {Map<string, import('../scraper/press-extraccion').ExtraccionArticulo>} filaPorArticulo
  */
-export function recuentoDeExtraccion(articulos, afirmacionesPorArticulo, desenlacePorArticulo) {
+export function recuentoDeExtraccion(articulos, afirmacionesPorArticulo, filaPorArticulo) {
   const r = { con: 0, descartados: 0, pendientes: 0 }
   for (const a of articulos) {
     if ((afirmacionesPorArticulo.get(a.id)?.length ?? 0) > 0) {
       r.con += 1
       continue
     }
-    const { estado } = filaDelLibro(desenlacePorArticulo.get(a.id))
+    const { estado } = filaDelLibro(desenlaceVigente(a, filaPorArticulo.get(a.id)))
     if (estado === 'con') r.con += 1
     else if (estado === 'descartado') r.descartados += 1
     else r.pendientes += 1
