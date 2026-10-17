@@ -36,6 +36,8 @@ test.describe('Reportajes · la solicitud que puede presentar quien lee', () => 
       expect(copiado).toBe(enseñado)
       expect(copiado).toContain('Área de Transparencia')
       expect(copiado).toContain(`https://www.civicpulse.es/reportajes/${slug}`)
+      // La fecha de la pieza, que es a la que se refiere lo que las preguntas dan por sentado.
+      expect(copiado).toMatch(/publicado el \d{1,2} de [a-z]+ de \d{4}/)
     })
   }
 
