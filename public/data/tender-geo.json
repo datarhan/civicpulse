@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-17T08:57:24.398Z",
+  "generatedAt": "2026-10-17T18:14:06.442Z",
   "source": {
     "tenders": "2026-10-17T08:49:11.850Z",
     "geo": "2026-10-17T08:51:51.229Z"
@@ -16,7 +16,9 @@
     "danaAwardedContracts": 82,
     "danaAwardedAmount": 2840148.539999998,
     "dateMin": "2017-07-06",
-    "dateMax": "2026-05-27"
+    "dateMax": "2026-05-27",
+    "totalDateMin": "2017-07-03",
+    "totalDateMax": "2026-10-08"
   },
   "zones": [
     {

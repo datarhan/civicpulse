@@ -27,8 +27,11 @@ export default function CoverageMeter({ universe, zones, onSelectZone }) {
   // toda la página, y el listado de abajo pinta el registro entero: 806 filas de
   // las que 699 están adjudicadas. El revisor de superficies lo señaló citando
   // esta frase, y tenía razón sobre la página aunque no sobre la barra.
-  const yearMin = (universe?.dateMin || '').slice(0, 4)
-  const yearMax = (universe?.dateMax || '').slice(0, 4)
+  // El periodo es el del denominador (`totalDate*`, todos los contratos que suma
+  // `totalAmount`), no el de los que tienen sitio en el mapa (`dateMin`/`dateMax`,
+  // que mueve el deslizador). Un snapshot anterior a esos campos cae en los otros.
+  const yearMin = (universe?.totalDateMin ?? universe?.dateMin ?? '').slice(0, 4)
+  const yearMax = (universe?.totalDateMax ?? universe?.dateMax ?? '').slice(0, 4)
   const span = yearMin && yearMax ? `${yearMin}–${yearMax}` : null
   return (
     <div>
