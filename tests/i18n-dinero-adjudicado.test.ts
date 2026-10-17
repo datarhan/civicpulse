@@ -51,6 +51,9 @@ const ROTULOS_DE_CIFRA = [
   'map.money.coverage',
   'map.layer.money',
   'map.money.title',
+  // La ficha del barrio: decía «Inversión situada» sobre los mismos euros
+  // (tests/components/barrio-adjudicado-situado.test.jsx).
+  'map.barrio.adjudicado',
 ]
 
 /** Ejecución presupuestaria: en la portada esta palabra ya tiene dueño. */
