@@ -20,12 +20,20 @@
  *
  *   · `desenlaceDe` — qué le pasó a UN artículo en esta pasada, con un valor
  *     por desenlace y sin centinelas: «el LLM no respondió» no es «no hay nada».
+ *     Vale para las dos llamadas: el triaje y la extracción. Si el triaje dio
+ *     positivo y la extracción no respondió, press-claim-llm.ts devuelve el
+ *     triaje real con `claims: []` — idéntico a «miró y no encontró nada». La
+ *     CLI tiene que avisar con `extraccionSinRespuesta`; sin el aviso, esa
+ *     pasada incompleta borraría las afirmaciones anteriores y el artículo no
+ *     volvería nunca a la cola.
  *   · `fundirExtraccion` — une la pasada con lo publicado. Sigue la regla de
  *     DIRECCIÓN de `decideSnapshotWrite` (snapshot-write.ts) a escala de
  *     artículo: una pasada incompleta puede AÑADIR, nunca QUITAR. Un
  *     `llm-no-disponible` no borra un desenlace anterior ni sus afirmaciones.
  *   · `elegirPendientes` — a qué artículos dedicar el tope: primero lo nunca
- *     visto, luego lo que cambió de huella, luego lo que no llegó al modelo.
+ *     visto junto con lo que no llegó al modelo, más nuevo antes — un apagón
+ *     del LLM no debe dejar los titulares más nuevos detrás del atraso —, y
+ *     después lo que cambió de huella.
  *     Lo ya procesado y sin cambios no se reenvía; sus claves de `.llm-cache`
  *     acertarían igual, pero ocuparían plazas del tope que son de trabajo nuevo.
  */
@@ -57,10 +65,15 @@ const RAZON_LLM_NO_DISPONIBLE = 'llm-unavailable'
 export function desenlaceDe(t: {
   triage: { hasCheckableClaim: boolean; reasoning?: string }
   claims: number
+  /** La extracción (tras un triaje positivo) no obtuvo respuesta del modelo. */
+  extraccionSinRespuesta?: boolean
 }): DesenlaceExtraccion {
   // Primero: un triaje sin modelo trae `hasCheckableClaim: false`, que leído
   // a secas sería «descartado» — la mentira que este módulo existe para evitar.
   if (t.triage.reasoning === RAZON_LLM_NO_DISPONIBLE) return 'llm-no-disponible'
+  // Y una extracción sin respuesta trae `claims: []` tras un triaje positivo,
+  // que leído a secas sería «sin-afirmaciones»: la misma mentira, un paso después.
+  if (t.extraccionSinRespuesta === true) return 'llm-no-disponible'
   if (t.claims > 0) return 'extraido'
   if (!t.triage.hasCheckableClaim) return 'descartado-en-triaje'
   return 'sin-afirmaciones'
@@ -124,7 +137,17 @@ function instante(fecha: string): number {
   return Number.isNaN(ms) ? -Infinity : ms
 }
 
-/** Qué artículos procesar: primero los nunca vistos o con huella cambiada, más nuevos antes. */
+/**
+ * Qué artículos procesar, hasta `max`:
+ *
+ *   1. lo nunca visto y lo que no llegó al modelo (`llm-no-disponible`), en un
+ *      solo grupo, más nuevo antes;
+ *   2. lo que cambió de huella, más nuevo antes.
+ *
+ * Lo procesado con la misma huella no se reenvía. `max` sólo deja de ser tope
+ * cuando es `Infinity`; un `NaN` o un negativo no procesan nada — un tope
+ * ilegible no puede convertirse en «manda todo al LLM».
+ */
 export function elegirPendientes<T extends { id: string; fingerprint: string; date: string }>(
   items: T[],
   prev: ExtraccionArticulo[],
@@ -133,18 +156,19 @@ export function elegirPendientes<T extends { id: string; fingerprint: string; da
   const anterior = new Map<string, ExtraccionArticulo>()
   for (const a of prev) anterior.set(a.articleId, a)
 
-  const ineditos: T[] = []
+  const pendientes: T[] = []
   const cambiados: T[] = []
-  const reintentos: T[] = []
   for (const it of items) {
     const a = anterior.get(it.id)
-    if (!a) ineditos.push(it)
+    if (!a) pendientes.push(it)
     else if (a.fingerprint !== it.fingerprint) cambiados.push(it)
-    else if (a.desenlace === 'llm-no-disponible') reintentos.push(it)
+    else if (a.desenlace === 'llm-no-disponible') pendientes.push(it)
     // Procesado y sin cambios: no se reenvía.
   }
 
   const masNuevoAntes = (x: T, y: T) => instante(y.date) - instante(x.date) || 0
-  const cola = [ineditos, cambiados, reintentos].flatMap((g) => [...g].sort(masNuevoAntes))
-  return Number.isFinite(max) ? cola.slice(0, Math.max(0, Math.floor(max))) : cola
+  const cola = [pendientes, cambiados].flatMap((g) => [...g].sort(masNuevoAntes))
+  if (max === Infinity) return cola
+  if (Number.isNaN(max) || max <= 0) return []
+  return cola.slice(0, Math.floor(max))
 }

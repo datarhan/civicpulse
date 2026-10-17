@@ -61,6 +61,35 @@ describe('fundirExtraccion', () => {
     expect(out.items).toEqual([{ articleId: 'a' }])
   })
 
+  it.each(['sin-afirmaciones', 'descartado-en-triaje'] as const)(
+    'una pasada sin LLM no pisa un %s anterior',
+    (anterior) => {
+      const prev = { articulos: [art('a', anterior, 'f-a', '2026-10-01')], items: [] }
+      const run = { articulos: [art('a', 'llm-no-disponible', 'f-a', '2026-10-15')], items: [] }
+      expect(fundirExtraccion(prev, run).articulos).toEqual([
+        art('a', anterior, 'f-a', '2026-10-01'),
+      ])
+    },
+  )
+
+  it('una extracción sin respuesta tras un triaje positivo no borra lo ya extraído', () => {
+    const prev = {
+      articulos: [art('a', 'extraido', 'f-a', '2026-10-01')],
+      items: [{ articleId: 'a', texto: 'de-a' }],
+    }
+    // press-claim-llm.ts devuelve el triaje real con `claims: []` cuando la
+    // llamada de extracción no responde; la CLI lo señala con el aviso.
+    const desenlace = desenlaceDe({
+      triage: { hasCheckableClaim: true, reasoning: 'cifra de inversión' },
+      claims: 0,
+      extraccionSinRespuesta: true,
+    })
+    const run = { articulos: [art('a', desenlace, 'f-a', '2026-10-15')], items: [] }
+    const out = fundirExtraccion(prev, run)
+    expect(out.articulos).toEqual([art('a', 'extraido', 'f-a', '2026-10-01')])
+    expect(out.items).toEqual([{ articleId: 'a', texto: 'de-a' }])
+  })
+
   it('una pasada sin LLM sí anota el desenlace de lo que antes no tenía ninguno', () => {
     const prev = { articulos: [art('a', 'llm-no-disponible', 'f-a', '2026-10-01')], items: [] }
     const run = {
@@ -131,7 +160,7 @@ describe('elegirPendientes', () => {
     expect(elegirPendientes(items, prev, 25)).toEqual([])
   })
 
-  it('primero lo nunca visto, luego la huella cambiada, luego lo que no llegó al LLM; más nuevo antes', () => {
+  it('lo nunca visto y lo que no llegó al LLM van juntos, más nuevo antes; luego la huella cambiada', () => {
     const items = [
       { id: 'reintento-nuevo', fingerprint: 'f-reintento-nuevo', date: '2026-10-09' },
       { id: 'cambiada', fingerprint: 'otra', date: '2026-10-08' },
@@ -146,12 +175,13 @@ describe('elegirPendientes', () => {
       art('cambiada', 'extraido'),
       art('hecho', 'extraido'),
     ]
+    // Un apagón del LLM no deja `reintento-nuevo` detrás del atraso viejo.
     expect(elegirPendientes(items, prev, 10).map((x) => x.id)).toEqual([
+      'reintento-nuevo',
       'inedito-nuevo',
+      'reintento-viejo',
       'inedito-viejo',
       'cambiada',
-      'reintento-nuevo',
-      'reintento-viejo',
     ])
   })
 
@@ -164,6 +194,17 @@ describe('elegirPendientes', () => {
     ]
     // `d` es el más nuevo pero ya se procesó: no ocupa plaza.
     expect(elegirPendientes(items, [art('d', 'extraido')], 2).map((x) => x.id)).toEqual(['b', 'c'])
+  })
+
+  it('sólo Infinity quita el tope; un tope ilegible o negativo no manda nada al LLM', () => {
+    const items = [
+      { id: 'a', fingerprint: 'f-a', date: '2026-10-01' },
+      { id: 'b', fingerprint: 'f-b', date: '2026-10-02' },
+    ]
+    expect(elegirPendientes(items, [], Infinity).map((x) => x.id)).toEqual(['b', 'a'])
+    expect(elegirPendientes(items, [], NaN)).toEqual([])
+    expect(elegirPendientes(items, [], -1)).toEqual([])
+    expect(elegirPendientes(items, [], 0)).toEqual([])
   })
 })
 
@@ -190,8 +231,20 @@ describe('desenlaceDe', () => {
     ).toBe('descartado-en-triaje')
   })
 
-  it('pasó el triaje y la extracción no devolvió nada: sin-afirmaciones', () => {
-    expect(desenlaceDe({ triage: { hasCheckableClaim: true }, claims: 0 })).toBe('sin-afirmaciones')
+  it('pasó el triaje y la extracción no respondió: llm-no-disponible, no sin-afirmaciones', () => {
+    expect(
+      desenlaceDe({ triage: { hasCheckableClaim: true }, claims: 0, extraccionSinRespuesta: true }),
+    ).toBe('llm-no-disponible')
+  })
+
+  it('pasó el triaje y la extracción respondió sin afirmaciones: sin-afirmaciones', () => {
+    expect(
+      desenlaceDe({
+        triage: { hasCheckableClaim: true },
+        claims: 0,
+        extraccionSinRespuesta: false,
+      }),
+    ).toBe('sin-afirmaciones')
   })
 })
 
