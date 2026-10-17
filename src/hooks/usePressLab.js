@@ -27,6 +27,7 @@ export function usePressLab() {
     press: [],
     summaries: [],
     verified: [],
+    extraccion: null,
     trust: null,
     triangulation: null,
     gaps: null,
@@ -70,6 +71,13 @@ export function usePressLab() {
         press: press?.items ?? [],
         summaries: summaries?.items ?? [],
         verified: verified?.items ?? [],
+        // Qué le pasó a cada artículo en la última pasada del extractor, copiado por el
+        // verificador desde press-claims-suggestions.json. `null` en un snapshot anterior
+        // a que existiera: la página no puede decir entonces qué se miró y qué no, y no
+        // lo inventa (ver `textoLibroVacio` en src/lib/press-lab.js).
+        extraccion: Array.isArray(verified?.extraccion?.articulos)
+          ? verified.extraccion.articulos
+          : null,
         trust: trust ?? null,
         triangulation: triangulation ?? null,
         gaps: gaps ?? null,

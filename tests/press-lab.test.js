@@ -7,7 +7,12 @@ const ROOT = join(__dirname, '..')
 const AHORA = Date.parse('2026-08-13T09:00:00Z')
 const hace = (d) => new Date(AHORA - d * 86_400_000).toISOString()
 
-const claim = (articleId, verdict) => ({ claim: { articleId }, verification: { verdict } })
+// Con fecha dentro de la ventana: los KPI cuentan sólo las afirmaciones de las tarjetas
+// que la lista pinta (ver «los KPI cuentan…» abajo).
+const claim = (articleId, verdict) => ({
+  claim: { articleId, articleDate: hace(1) },
+  verification: { verdict },
+})
 
 describe('los escalares de /laboratorio no se contradicen entre sí', () => {
   it('cuenta como auditado el artículo cuya afirmación NO se verificó', () => {
@@ -132,8 +137,8 @@ describe('los escalares de /laboratorio no se contradicen entre sí', () => {
     // Confundirlas exagera el trabajo hecho, que es lo que dice el docstring
     // del módulo: «a page reading 70 auditados / 0% verificado is
     // self-contradictory».
-    const press = Array.from({ length: 5 }, () => ({ date: hace(3) }))
-    const s = pressLabSummary({ press, verified: [claim('a1', 'sin-datos')] }, AHORA)
+    const press = Array.from({ length: 5 }, (_, i) => ({ id: `p${i}`, date: hace(3) }))
+    const s = pressLabSummary({ press, verified: [claim('p0', 'sin-datos')] }, AHORA)
     expect(s.monitoredCount).toBe(5)
     expect(s.auditedCount).toBe(1)
   })
@@ -203,6 +208,37 @@ describe('la ventana de /laboratorio: las tarjetas que la lista pinta', () => {
     expect(s.articulos).toEqual([])
     expect(s.monitoredCount).toBe(0)
     expect(s.fueraDelFeedCount).toBe(0)
+  })
+
+  it('los KPI cuentan las afirmaciones de las tarjetas de la ventana, no todo el corpus', () => {
+    // Desde octubre de 2026 la extracción se acumula entre pasadas
+    // (src/scraper/press-extraccion.ts), así que el corpus guarda afirmaciones de
+    // artículos que ya salieron de la ventana. «Artículos auditados» y las tasas
+    // recorrían el corpus entero mientras «Titulares monitorizados» y la lista
+    // cuentan la ventana: «N+1 auditados de N monitorizados» a la vista.
+    const s = pressLabSummary(
+      {
+        press: [{ id: 'p1', date: hace(1) }],
+        verified: [
+          fila('p1', hace(1), 'contradicho'),
+          fila('o1', hace(2), 'sin-datos'),
+          // Fuera de la ventana: ni su artículo ni su veredicto cuentan.
+          fila('viejo', hace(45), 'verificado'),
+          fila('viejo', hace(45), 'verificado'),
+        ],
+      },
+      AHORA,
+    )
+    expect(s.articulos.map((a) => a.id).sort()).toEqual(['o1', 'p1'])
+    expect(s.auditedCount).toBe(2)
+    expect(s.totalClaims).toBe(2)
+    expect(s.verificadoClaims).toBe(0)
+    expect(s.contradichoClaims).toBe(1)
+    expect(s.resueltasClaims).toBe(1)
+    expect(s.verificadoRatio).toBe(0)
+    expect(s.contradichoRatio).toBe(1)
+    // Lo auditado es un subconjunto de lo monitorizado.
+    expect(s.auditedCount).toBeLessThanOrEqual(s.monitoredCount)
   })
 
   it('una fecha ilegible no entra ni en la lista ni en el total', () => {

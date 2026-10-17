@@ -31,6 +31,9 @@ import {
   fraseVeredictos,
   avisoSinVeredicto,
   VERDICT_LABEL,
+  textoLibroVacio,
+  recuentoDeExtraccion,
+  desenlaceVigente,
 } from '../lib/press-lab'
 
 const VERDICT_TONE = {
@@ -187,7 +190,13 @@ function TrustIndicators({ indicators }) {
   )
 }
 
-function ClaimLedger({ claims }) {
+// La frase de antes, para un press-claims-verified.json anterior a `extraccion`: sin el
+// desenlace de cada artículo no se puede distinguir lo mirado de lo no mirado, y la
+// página no lo adivina.
+const SIN_REGISTRO_DE_EXTRACCION =
+  'El extractor no sacó ninguna afirmación de este titular. No es lo mismo que no las tenga.'
+
+function ClaimLedger({ claims, textoVacio }) {
   if (!claims || claims.length === 0) {
     return (
       // Quién no las encontró, y que eso no prueba que no las haya.
@@ -198,8 +207,12 @@ function ClaimLedger({ claims }) {
       // 55,6 millones para 17 años»: cifra, plazo y objeto, justo lo que esta
       // página contrasta contra los contratos de PLACSP. Lo que pasó es que el
       // extractor no sacó nada, que es un hecho sobre el extractor.
+      //
+      // Y sólo donde el extractor miró: la frase salía en toda tarjeta sin
+      // afirmaciones, y la pasada de octubre de 2026 sólo había visto los titulares
+      // del 7 al 9. Cada tarjeta dice ahora su desenlace (`textoLibroVacio`).
       <div style={{ fontSize: 'var(--fs-meta)', color: 'var(--ink50)' }}>
-        El extractor no sacó ninguna afirmación de este titular. No es lo mismo que no las tenga.
+        {textoVacio ?? SIN_REGISTRO_DE_EXTRACCION}
       </div>
     )
   }
@@ -251,7 +264,7 @@ function ClaimLedger({ claims }) {
   )
 }
 
-function LabPressCard({ article, summary, claims, trust, triangulation, linkRot }) {
+function LabPressCard({ article, summary, claims, textoVacio, trust, triangulation, linkRot }) {
   const claimRows = claims || []
   const counts = claimRows.reduce((acc, r) => {
     acc[r.verification.verdict] = (acc[r.verification.verdict] || 0) + 1
@@ -364,7 +377,7 @@ function LabPressCard({ article, summary, claims, trust, triangulation, linkRot 
         </>
       )}
       <div style={{ marginTop: 12 }}>
-        <ClaimLedger claims={claimRows} />
+        <ClaimLedger claims={claimRows} textoVacio={textoVacio} />
       </div>
       {trust && <TrustIndicators indicators={trust.indicators} />}
       {triangulation && triangulation.outlets.length >= 2 && (
@@ -641,6 +654,15 @@ export default function Laboratorio() {
     return m
   }, [lab.verified])
 
+  // La fila del extractor de cada artículo —desenlace y huella con que se procesó—, o
+  // `null` si el snapshot es anterior a que se guardara: entonces ni la frase por
+  // tarjeta ni el recuento de la lista pueden decir qué se miró. La huella hace falta:
+  // una fila de otro titular no vale para éste (`desenlaceVigente`).
+  const filaPorArticulo = useMemo(
+    () => (lab.extraccion ? new Map(lab.extraccion.map((a) => [a.articleId, a])) : null),
+    [lab.extraccion],
+  )
+
   const byArticleSummary = useMemo(() => {
     const m = new Map()
     for (const s of lab.summaries) m.set(s.articleId, s)
@@ -690,6 +712,12 @@ export default function Laboratorio() {
         })
         .sort((a, b) => b.date.localeCompare(a.date)),
     [summary, outletFilter, verdictFilter, byArticleClaims],
+  )
+
+  const recuento = useMemo(
+    () =>
+      filaPorArticulo ? recuentoDeExtraccion(visible, byArticleClaims, filaPorArticulo) : null,
+    [visible, byArticleClaims, filaPorArticulo],
   )
 
   if (lab.loading) {
@@ -813,12 +841,12 @@ export default function Laboratorio() {
         <KPI
           label="Artículos auditados"
           value={fmtNumber(summary.auditedCount)}
-          hint="con ≥1 afirmación analizada"
+          hint="con ≥1 afirmación analizada · últimos 30 días"
         />
         <KPI
           label="Tasa de verificación"
           value={fmtPct(summary.verificadoRatio)}
-          hint={`${summary.verificadoClaims} de ${summary.totalClaims} claims`}
+          hint={`${summary.verificadoClaims} de ${summary.totalClaims} claims · últimos 30 días`}
         />
         {/* El pie dice ENTRE QUÉ se divide. Decía «de 36 claims» cuando el
             divisor real era 1 —las 36 son el corpus, no lo examinado—, y así
@@ -826,7 +854,7 @@ export default function Laboratorio() {
         <KPI
           label="Tasa de discrepancia"
           value={fmtPct(summary.contradichoRatio)}
-          hint={`${summary.contradichoClaims} de ${summary.resueltasClaims} resueltas`}
+          hint={`${summary.contradichoClaims} de ${summary.resueltasClaims} resueltas · últimos 30 días`}
         />
         <KPI
           label="Triangulación"
@@ -909,12 +937,23 @@ export default function Laboratorio() {
             <option value="sin-datos">Sin registro</option>
           </select>
         </label>
-        <span
-          className="mono"
-          style={{ fontSize: 'var(--fs-micro)', color: 'var(--ink50)', marginLeft: 'auto' }}
-        >
-          {visible.length} de {summary.monitoredCount} · ventana 30 días
-        </span>
+        <div style={{ marginLeft: 'auto', textAlign: 'right' }}>
+          <span className="mono" style={{ fontSize: 'var(--fs-micro)', color: 'var(--ink50)' }}>
+            {visible.length} de {summary.monitoredCount} · ventana 30 días
+          </span>
+          {/* Qué hizo el extractor con las tarjetas que se ven: las tres casillas suman
+              el numerador de arriba (`recuentoDeExtraccion`). Sin el desenlace de cada
+              artículo —un snapshot anterior— no se pinta: no hay con qué contarlo. */}
+          {recuento && (
+            <div
+              className="mono"
+              style={{ fontSize: 'var(--fs-micro)', color: 'var(--ink50)', marginTop: 2 }}
+            >
+              {recuento.con} con afirmaciones · {recuento.descartados} descartados por el extractor
+              · {recuento.pendientes} sin procesar todavía
+            </div>
+          )}
+        </div>
       </div>
 
       <div
@@ -945,6 +984,11 @@ export default function Laboratorio() {
               article={article}
               summary={byArticleSummary.get(article.id)}
               claims={byArticleClaims.get(article.id)}
+              textoVacio={
+                filaPorArticulo
+                  ? textoLibroVacio(desenlaceVigente(article, filaPorArticulo.get(article.id)))
+                  : null
+              }
               trust={byArticleTrust.get(article.id)}
               triangulation={byArticleTriangulation.get(article.id)}
               linkRot={lab.linkRot?.get(article.link) ?? null}

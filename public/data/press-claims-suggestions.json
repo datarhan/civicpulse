@@ -48,8 +48,53 @@
     "articlesAvailable": 156,
     "llmUnavailable": 0,
     "windowFrom": "2026-10-07T01:31:23.000Z",
-    "windowTo": "2026-10-09T08:08:54.000Z"
+    "windowTo": "2026-10-09T08:08:54.000Z",
+    "articulosVistos": 7
   },
+  "articulos": [
+    {
+      "articleId": "1brxjo4",
+      "fingerprint": "19fhtds",
+      "desenlace": "extraido",
+      "procesadoEl": "2026-10-12T08:31:15.395Z"
+    },
+    {
+      "articleId": "1ota6hb",
+      "fingerprint": "1cszl50",
+      "desenlace": "extraido",
+      "procesadoEl": "2026-10-12T08:31:15.395Z"
+    },
+    {
+      "articleId": "1w1lf6k",
+      "fingerprint": "1j6o5dl",
+      "desenlace": "extraido",
+      "procesadoEl": "2026-10-12T08:31:15.395Z"
+    },
+    {
+      "articleId": "3lfz44",
+      "fingerprint": "1oun3zs",
+      "desenlace": "extraido",
+      "procesadoEl": "2026-10-12T08:31:15.395Z"
+    },
+    {
+      "articleId": "o3xjg4",
+      "fingerprint": "1k3l80",
+      "desenlace": "extraido",
+      "procesadoEl": "2026-10-12T08:31:15.395Z"
+    },
+    {
+      "articleId": "plfgoc",
+      "fingerprint": "18f1xjw",
+      "desenlace": "extraido",
+      "procesadoEl": "2026-10-12T08:31:15.395Z"
+    },
+    {
+      "articleId": "rn4ct8",
+      "fingerprint": "10b978",
+      "desenlace": "extraido",
+      "procesadoEl": "2026-10-12T08:31:15.395Z"
+    }
+  ],
   "items": [
     {
       "id": "1w1lf6k-0-num",

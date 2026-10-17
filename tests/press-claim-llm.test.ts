@@ -265,4 +265,108 @@ describe('press-claim-llm — extractPressClaimsBatch', () => {
     expect(result.stats.claimsEmitted).toBe(0)
     expect(result.stats.llmUnavailable).toBe(2)
   })
+
+  // La CLI decide el desenlace de cada artículo (`desenlaceDe`,
+  // press-extraccion.ts) a partir de `triages`. Sin el recuento por artículo y
+  // sin el aviso de la extracción muda, «el triaje dio positivo y la extracción
+  // no respondió» llega a la CLI idéntico a «miró y no encontró nada».
+  it('cada triaje lleva cuántas afirmaciones dio y si la extracción quedó sin respuesta', async () => {
+    const triajePositivo = {
+      hasCheckableClaim: true,
+      reasoning: 'cifra en el titular',
+      expectedClaimTypes: ['afirmacion_numerica'],
+      needsBody: false,
+    }
+    const unaAfirmacion = {
+      claims: [
+        {
+          type: 'afirmacion_numerica',
+          attributedSource: 'municipal',
+          verbatim: 'Riba-roja invierte 185.000 € en el parque del Túria',
+          context: '',
+          topic: 'medio-ambiente',
+          entities: {
+            amountEuros: 185000,
+            count: null,
+            countUnit: null,
+            date: null,
+            referencedEntity: 'parque del Túria',
+          },
+          accusationSubtype: null,
+          confidence: 0.82,
+          reasoning: 'numeric claim',
+        },
+      ],
+    }
+    // Por artículo, en orden: a-001 extrae una; a-002 se descarta en el
+    // triaje; a-003 pasa el triaje y la extracción devuelve null; a-004 no
+    // llega al modelo; a-005 pasa el triaje y la extracción no da ninguna.
+    const respuestas: Record<string, { triaje: unknown; extraccion?: unknown }> = {
+      'fp-001': { triaje: triajePositivo, extraccion: unaAfirmacion },
+      'fp-002': {
+        triaje: {
+          hasCheckableClaim: false,
+          reasoning: 'opinión',
+          expectedClaimTypes: [],
+          needsBody: false,
+        },
+      },
+      'fp-003': { triaje: triajePositivo, extraccion: null },
+      'fp-004': { triaje: null },
+      'fp-005': { triaje: triajePositivo, extraccion: { claims: [] } },
+    }
+    const caller = vi.fn().mockImplementation(async (req: any) => {
+      const r = respuestas[req.input.fingerprint]
+      return req.input.kind === 'press-triage' ? r.triaje : r.extraccion
+    })
+    const items = ['001', '002', '003', '004', '005'].map((n) =>
+      makeItem({ id: `a-${n}`, fingerprint: `fp-${n}` }),
+    )
+    const result = await extractPressClaimsBatch(items, { caller: caller as any })
+    expect(result.triages.map((t) => [t.articleId, t.claims, t.extraccionSinRespuesta])).toEqual([
+      ['a-001', 1, false],
+      ['a-002', 0, false],
+      ['a-003', 0, true],
+      // Un triaje sin modelo no es una extracción sin respuesta: ya lo marca
+      // `reasoning: 'llm-unavailable'`, y la extracción ni se intentó.
+      ['a-004', 0, false],
+      ['a-005', 0, false],
+    ])
+  })
+})
+
+describe('press-claim-llm — extractPressClaimsForItem · extraccionSinRespuesta', () => {
+  it('sólo es true cuando el triaje dio positivo y la extracción devolvió null', async () => {
+    const caller = vi
+      .fn()
+      .mockResolvedValueOnce({
+        hasCheckableClaim: true,
+        reasoning: 'cifra',
+        expectedClaimTypes: [],
+        needsBody: false,
+      })
+      .mockResolvedValueOnce(null)
+    const result = await extractPressClaimsForItem(makeItem(), { caller: caller as any })
+    expect(result.claims).toEqual([])
+    expect(result.extraccionSinRespuesta).toBe(true)
+    // El resto del resultado no cambia: el triaje real, no uno inventado.
+    expect(result.triage.hasCheckableClaim).toBe(true)
+    expect(result.bodyUsed).toBe(false)
+  })
+
+  it('es false en un triaje sin modelo y en un triaje negativo', async () => {
+    const sinModelo = await extractPressClaimsForItem(makeItem(), {
+      caller: vi.fn().mockResolvedValueOnce(null) as any,
+    })
+    expect(sinModelo.extraccionSinRespuesta).toBe(false)
+    const negativo = await extractPressClaimsForItem(makeItem(), {
+      caller: vi.fn().mockResolvedValueOnce({
+        hasCheckableClaim: false,
+        reasoning: 'opinión',
+        expectedClaimTypes: [],
+        needsBody: false,
+      }) as any,
+    })
+    expect(negativo.extraccionSinRespuesta).toBe(false)
+  })
 })

@@ -6,9 +6,17 @@
  * public/data/press-claims-suggestions.json with requiresHumanApproval
  * stamped on every row.
  *
+ * Desde octubre de 2026 el fichero se ACUMULA: cada pasada procesa sólo los
+ * artículos pendientes (`elegirPendientes`), anota el desenlace de cada uno en
+ * `articulos` y se funde con lo publicado (`fundirExtraccion`). Antes tomaba
+ * los `--max` titulares más nuevos y reescribía el fichero entero, así que lo
+ * extraído en ventanas anteriores desaparecía y /laboratorio decía «no sacó
+ * ninguna afirmación» de artículos que nunca había visto. La historia está en
+ * la cabecera de src/scraper/press-extraccion.ts.
+ *
  * Usage:
- *   npm run extract:press-claims                       # all items
- *   npm run extract:press-claims -- --max 20           # cap items
+ *   npm run extract:press-claims                       # every pending item
+ *   npm run extract:press-claims -- --max 20           # cap pending items
  *   npm run extract:press-claims -- --since 2026-05-01 # date floor
  *   npm run extract:press-claims -- --source levante   # filter by sourceHost substring
  *   npm run extract:press-claims -- --headline-only    # skip body fetch
@@ -23,8 +31,18 @@ import {
   ALLOWED_PRESS_CLAIM_TYPES,
   ALLOWED_CLAIM_TOPICS,
   ALLOWED_ATTRIBUTED_SOURCES,
+  validatePressClaimsSnapshot,
+  type PressClaim,
   type PressClaimsSnapshot,
 } from '../src/scraper/press-claim'
+import {
+  desenlaceDe,
+  elegirPendientes,
+  fundirExtraccion,
+  pasadaEnRojo,
+  sembrarDesdeClaims,
+  type ExtraccionArticulo,
+} from '../src/scraper/press-extraccion'
 import { decideSnapshotWrite } from '../src/scraper/snapshot-write'
 import { resetBudget } from '../src/llm/client'
 
@@ -34,14 +52,18 @@ const PROJECT_ROOT = join(__dirname, '..')
 const IN = join(PROJECT_ROOT, 'public/data/press.json')
 const OUT = join(PROJECT_ROOT, 'public/data/press-claims-suggestions.json')
 
+// `--flag valor` y `--flag=valor`. Sólo la primera forma se reconocía: un
+// `--max=5` caía en «sin `--max`» y mandaba TODOS los pendientes al LLM.
 function getFlag(name: string): string | null {
+  const conIgual = process.argv.find((a) => a.startsWith(`${name}=`))
+  if (conIgual !== undefined) return conIgual.slice(name.length + 1)
   const i = process.argv.indexOf(name)
   if (i < 0) return null
   return process.argv[i + 1] ?? null
 }
 
 function hasFlag(name: string): boolean {
-  return process.argv.includes(name)
+  return process.argv.some((a) => a === name || a.startsWith(`${name}=`))
 }
 
 async function main() {
@@ -49,7 +71,10 @@ async function main() {
 
   const since = getFlag('--since')
   const sourceFilter = getFlag('--source')
-  const max = Number(getFlag('--max')) || Infinity
+  // Sin `--max`, sin tope. Con `--max`, su valor tal cual: `elegirPendientes`
+  // trata un NaN o un 0 como «nada», nunca como «todo». El `|| Infinity` de
+  // antes convertía `--max 0` (y `--max abc`) en «manda todo al LLM».
+  const max = hasFlag('--max') ? Number(getFlag('--max')) : Infinity
   const headlineOnly = hasFlag('--headline-only')
 
   const pressRaw = await readFile(IN, 'utf8')
@@ -84,15 +109,25 @@ async function main() {
         it.source.toLowerCase().includes(needle),
     )
   }
-  // How many were in scope BEFORE the sliding window cut it down. The window
-  // is 25 items over a date-desc feed and the snapshot is overwritten whole,
-  // so cumulative coverage is 8 of 156 articles — and nothing in the file said
-  // so.
+  // Lo publicado, leído ANTES de elegir: es la base de la fusión y la historia
+  // que dice qué artículos ya se vieron. Un fichero ilegible no es «no hay
+  // nada»: fundir contra él borraría todo lo publicado, así que se para aquí.
+  const existingRaw = await readFile(OUT, 'utf8').catch(() => null)
+  const prev = existingRaw === null ? null : leerAnterior(existingRaw, press.items)
+
+  // Cuántos había en alcance ANTES de elegir pendientes. Con la ventana de
+  // antes (los más nuevos, fichero reescrito entero) la cobertura acumulada
+  // era una fracción mínima del feed y nada en el fichero lo decía.
   const allItemsCount = items.length
-  items = items.slice(0, max)
+  // Contra la historia FUNDIDA del disco, nunca contra la de una pasada. La
+  // cola entera se cuenta aparte para que el log diga cuántos quedan sin
+  // intentar por el tope (regla 2): «0 enviados» no es «nada pendiente».
+  const cola = elegirPendientes(items, prev?.articulos ?? [], Infinity)
+  items = elegirPendientes(items, prev?.articulos ?? [], max)
 
   console.log(
-    `[extract:press-claims] processing ${items.length} items` +
+    `[extract:press-claims] processing ${items.length} of ${cola.length} pending items` +
+      ` (${cola.length - items.length} left for a later run)` +
       (since ? ` (since ${since})` : '') +
       (sourceFilter ? ` (source≈${sourceFilter})` : '') +
       (headlineOnly ? ' (headline-only mode)' : ''),
@@ -108,6 +143,24 @@ async function main() {
     forceHeadlineOnly: headlineOnly,
   })
 
+  const ahora = new Date().toISOString()
+  const huellaDe = new Map(items.map((it) => [it.id, it.fingerprint]))
+  const run: { articulos: ExtraccionArticulo[]; items: PressClaim[] } = {
+    articulos: result.triages.map((t) => ({
+      articleId: t.articleId,
+      fingerprint: huellaDe.get(t.articleId) as string,
+      desenlace: desenlaceDe(t),
+      procesadoEl: ahora,
+    })),
+    items: result.claims,
+  }
+  const merged = fundirExtraccion(prev, run)
+  // Extracciones sin respuesta tras un triaje positivo: `llmUnavailable` sólo
+  // cuenta los triajes que no llegaron al modelo. Las dos son artículos que
+  // esta pasada no resolvió, y snapshot-write.ts pide contarlas juntas.
+  const sinRespuesta = result.triages.filter((t) => t.extraccionSinRespuesta).length
+  const unresolved = result.stats.llmUnavailable + sinRespuesta
+
   const byType: Record<string, number> = Object.fromEntries(
     ALLOWED_PRESS_CLAIM_TYPES.map((t) => [t, 0]),
   )
@@ -118,32 +171,76 @@ async function main() {
     ALLOWED_ATTRIBUTED_SOURCES.map((s) => [s, 0]),
   )
   const bySource: Record<string, number> = {}
-  for (const c of result.claims) {
+  // Del corpus FUNDIDO: el fichero publica todas las afirmaciones, no las de
+  // esta pasada.
+  for (const c of merged.items) {
     byType[c.type] = (byType[c.type] || 0) + 1
     byTopic[c.topic] = (byTopic[c.topic] || 0) + 1
     byAttributedSource[c.attributedSource] = (byAttributedSource[c.attributedSource] || 0) + 1
     bySource[c.articleSource] = (bySource[c.articleSource] || 0) + 1
   }
 
+  // Procedencia de la PASADA. Una pasada que no envió ningún artículo (nada
+  // pendiente, `--max 0`) no es una pasada: conserva la fecha y la procedencia
+  // de la última que sí lo hizo, en vez de publicar «0 procesados, ventana
+  // nula» con fecha de hoy, que leído junto a las afirmaciones parecería una
+  // extracción que no encontró nada.
+  const huboPasada = result.stats.total > 0
+  const procedencia =
+    !huboPasada && prev
+      ? {
+          generatedAt: prev.generatedAt,
+          articlesProcessed: prev.stats.articlesProcessed,
+          articlesAvailable: prev.stats.articlesAvailable,
+          llmUnavailable: prev.stats.llmUnavailable,
+          extraccionesSinRespuesta: prev.stats.extraccionesSinRespuesta,
+          windowFrom: prev.stats.windowFrom,
+          windowTo: prev.stats.windowTo,
+        }
+      : {
+          generatedAt: ahora,
+          articlesProcessed: result.stats.total,
+          articlesAvailable: allItemsCount,
+          llmUnavailable: result.stats.llmUnavailable,
+          extraccionesSinRespuesta: sinRespuesta,
+          // Ya no es una ventana contigua: el más viejo y el más nuevo de los
+          // artículos que ESTA pasada envió.
+          windowFrom: fechaExtrema(items, 'min'),
+          windowTo: fechaExtrema(items, 'max'),
+        }
+
   const snapshot: PressClaimsSnapshot = {
-    generatedAt: new Date().toISOString(),
+    generatedAt: procedencia.generatedAt,
     source: {
       description: 'Press claims extracted by the laboratory pipeline',
       contract: 'src/scraper/press-claim.ts',
     },
     stats: {
-      total: result.claims.length,
+      total: merged.items.length,
       byType: byType as never,
       bySource,
       byTopic: byTopic as never,
       byAttributedSource: byAttributedSource as never,
-      articlesProcessed: result.stats.total,
-      articlesAvailable: allItemsCount,
-      llmUnavailable: result.stats.llmUnavailable,
-      windowFrom: items[items.length - 1]?.date ?? null,
-      windowTo: items[0]?.date ?? null,
+      articlesProcessed: procedencia.articlesProcessed,
+      articlesAvailable: procedencia.articlesAvailable,
+      llmUnavailable: procedencia.llmUnavailable,
+      extraccionesSinRespuesta: procedencia.extraccionesSinRespuesta,
+      windowFrom: procedencia.windowFrom,
+      windowTo: procedencia.windowTo,
+      articulosVistos: merged.articulos.length,
     },
-    items: result.claims,
+    articulos: merged.articulos,
+    items: merged.items,
+  }
+
+  // Sin pasada y sin siembra (prev ya traía `articulos`), el fichero saldría
+  // igual que el del disco: no se reescribe.
+  if (!huboPasada && prev && !prev.sembrado) {
+    console.log(
+      `[extract:press-claims] ningún artículo enviado (${cola.length} pendientes) · ` +
+        `${OUT} sin cambios`,
+    )
+    return
   }
 
   // Decide BEFORE writing. The original code wrote first and only then checked
@@ -161,10 +258,12 @@ async function main() {
   // when it honestly found fewer claims than last time. See
   // decideSnapshotWrite in src/scraper/snapshot-write.ts for the pure decision
   // — shared with summarize:press, which needs the identical rule.
-  const existingRaw = await readFile(OUT, 'utf8').catch(() => null)
+  //
+  // Con la fusión, `incomingCount` es el corpus FUNDIDO, no lo de esta pasada:
+  // la pasada sólo sustituye las afirmaciones de los artículos que reprocesó.
   const decision = decideSnapshotWrite({
     incomingCount: snapshot.items.length,
-    unresolvedCount: result.stats.llmUnavailable,
+    unresolvedCount: unresolved,
     existingRaw,
     itemNoun: 'claim',
   })
@@ -174,28 +273,82 @@ async function main() {
     await writeFile(OUT, JSON.stringify(snapshot, null, 2) + '\n')
     console.log(
       `[extract:press-claims] wrote ${OUT}` +
-        ` · ${result.stats.claimsEmitted} claims · ` +
+        ` · ${result.stats.claimsEmitted} claims this run, ${merged.items.length} merged · ` +
         `triage=${result.stats.triageHits}/${result.stats.total} hits, ` +
         `body=${result.stats.bodyFetches} fetches` +
+        ` · ${merged.articulos.length} articles with a known outcome` +
+        (prev?.sembrado ? ` (seeded ${prev.articulos.length} from the previous file)` : '') +
         ` · ${decision.reason}`,
     )
   } else {
     console.error(`[extract:press-claims] NOT WRITING ${OUT} · ${decision.reason}`)
   }
 
-  // Either way, an incomplete run must not masquerade as a clean extract: flag
-  // it loudly and exit non-zero so the cron marks the step ❌ — and, since the
-  // pipeline now honours that, skips the consumers that would derive published
-  // numbers from a corpus this run could not refresh.
+  // Una pasada incompleta no se hace pasar por limpia: cada fallo se dice por
+  // stderr, y el artículo queda `llm-no-disponible` para la pasada siguiente.
+  // Rojo (exit 1) sólo con la llamada entera caída —ver `pasadaEnRojo`—: el
+  // rojo hace que press-lab-pipeline.sh salte verify y lo que cuelga de él, y
+  // por un solo titular terco congelaría /laboratorio todas las semanas.
   if (result.stats.llmUnavailable > 0) {
     console.error(
       `[extract:press-claims] WARNING: LLM backend unavailable for ` +
         `${result.stats.llmUnavailable}/${result.stats.total} items ` +
-        `(backend=${process.env.LLM_BACKEND ?? 'auto'}). The suggestions ` +
-        `snapshot is incomplete — fix the backend and re-run.`,
+        `(backend=${process.env.LLM_BACKEND ?? 'auto'}). They stay pending ` +
+        `(llm-no-disponible) and are retried first on the next run.`,
+    )
+  }
+  if (sinRespuesta > 0) {
+    console.error(
+      `[extract:press-claims] WARNING: extraction returned nothing for ` +
+        `${sinRespuesta}/${result.stats.triageHits} items with a positive triage. ` +
+        `They stay pending (llm-no-disponible) and keep any earlier claims.`,
+    )
+  }
+  if (
+    pasadaEnRojo({
+      total: result.stats.total,
+      llmUnavailable: result.stats.llmUnavailable,
+      triageHits: result.stats.triageHits,
+      sinRespuesta,
+    })
+  ) {
+    console.error(
+      `[extract:press-claims] the LLM call is down for this whole run — exit 1 ` +
+        `so the pipeline skips the consumers of an unrefreshed corpus.`,
     )
     process.exitCode = 1
   }
+}
+
+/** La fecha más vieja o más nueva de los artículos enviados; null si no hubo ninguno. */
+function fechaExtrema(items: PressNewsItem[], cual: 'min' | 'max'): string | null {
+  if (items.length === 0) return null
+  const fechas = items.map((it) => it.date).sort()
+  return cual === 'min' ? fechas[0] : fechas[fechas.length - 1]
+}
+
+/**
+ * Lee el fichero publicado como base de la fusión. Si no trae `articulos`
+ * (anterior a octubre de 2026), los siembra de una sola vez con
+ * `sembrarDesdeClaims` (press-extraccion.ts), que explica qué se siembra y
+ * por qué nada más.
+ */
+function leerAnterior(
+  raw: string,
+  pressItems: Array<{ id: string; fingerprint: string }>,
+): PressClaimsSnapshot & { articulos: ExtraccionArticulo[]; sembrado: boolean } {
+  const snap = validatePressClaimsSnapshot(raw)
+  if (snap.articulos) return { ...snap, articulos: snap.articulos, sembrado: false }
+
+  const huellaEnPrensa = new Map(pressItems.map((it) => [it.id, it.fingerprint]))
+  const { articulos, sinHuella } = sembrarDesdeClaims(snap.items, snap.generatedAt, huellaEnPrensa)
+  for (const id of sinHuella) {
+    console.warn(
+      `[extract:press-claims] seed: ${id} has no fingerprint in its claim nor in press.json ` +
+        `— left out of articulos`,
+    )
+  }
+  return { ...snap, articulos, sembrado: true }
 }
 
 main().catch((err) => {
