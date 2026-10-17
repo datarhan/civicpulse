@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-12T08:31:17.413Z",
+  "generatedAt": "2026-10-17T18:53:58.911Z",
   "source": {
     "description": "Press claims verified against municipal data",
     "contract": "src/scraper/press-verifier.ts"
@@ -1359,5 +1359,51 @@
       }
     }
   ],
-  "sourceGeneratedAt": "2026-10-12T08:31:15.395Z"
+  "sourceGeneratedAt": "2026-10-12T08:31:15.395Z",
+  "extraccion": {
+    "articulos": [
+      {
+        "articleId": "1brxjo4",
+        "fingerprint": "19fhtds",
+        "desenlace": "extraido",
+        "procesadoEl": "2026-10-12T08:31:15.395Z"
+      },
+      {
+        "articleId": "1ota6hb",
+        "fingerprint": "1cszl50",
+        "desenlace": "extraido",
+        "procesadoEl": "2026-10-12T08:31:15.395Z"
+      },
+      {
+        "articleId": "1w1lf6k",
+        "fingerprint": "1j6o5dl",
+        "desenlace": "extraido",
+        "procesadoEl": "2026-10-12T08:31:15.395Z"
+      },
+      {
+        "articleId": "3lfz44",
+        "fingerprint": "1oun3zs",
+        "desenlace": "extraido",
+        "procesadoEl": "2026-10-12T08:31:15.395Z"
+      },
+      {
+        "articleId": "o3xjg4",
+        "fingerprint": "1k3l80",
+        "desenlace": "extraido",
+        "procesadoEl": "2026-10-12T08:31:15.395Z"
+      },
+      {
+        "articleId": "plfgoc",
+        "fingerprint": "18f1xjw",
+        "desenlace": "extraido",
+        "procesadoEl": "2026-10-12T08:31:15.395Z"
+      },
+      {
+        "articleId": "rn4ct8",
+        "fingerprint": "10b978",
+        "desenlace": "extraido",
+        "procesadoEl": "2026-10-12T08:31:15.395Z"
+      }
+    ]
+  }
 }

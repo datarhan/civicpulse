@@ -63,20 +63,30 @@ function articulosDeLaVentana(press, verified, now) {
 export function pressLabSummary({ press = [], verified = [] } = {}, now = Date.now()) {
   const articulos = articulosDeLaVentana(press, verified, now)
 
+  // Los KPI cuentan las afirmaciones de las tarjetas que la lista pinta, no el corpus
+  // entero. Desde octubre de 2026 la extracción se acumula entre pasadas
+  // (src/scraper/press-extraccion.ts) y el corpus guarda afirmaciones de artículos que
+  // ya salieron de la ventana: «Artículos auditados» y las tasas las sumaban mientras
+  // «Titulares monitorizados» y la lista contaban la ventana, y la página podía decir
+  // más auditados que monitorizados. La ventana es una sola —la de
+  // `articulosDeLaVentana`—: aquí se pregunta por su lista, no se repite su regla.
+  const enLaLista = new Set(articulos.map((a) => a?.id))
   const auditedIds = new Set()
+  let totalClaims = 0
   let verificado = 0
   let contradicho = 0
   let parcial = 0
   for (const row of verified) {
     const id = row?.claim?.articleId
-    if (id) auditedIds.add(id)
+    if (!id || !enLaLista.has(id)) continue
+    auditedIds.add(id)
+    totalClaims += 1
     const v = row?.verification?.verdict
     if (v === 'verificado') verificado += 1
     else if (v === 'contradicho') contradicho += 1
     else if (v === 'parcial') parcial += 1
   }
 
-  const totalClaims = verified.length
   // Ninguna fila ha llegado a un veredicto que se pueda contar: ni confirmada
   // ni desmentida. `sin-datos` y `parcial` no resuelven nada que dividir.
   const sinResolver = verificado + contradicho === 0
@@ -156,6 +166,92 @@ export const VERDICT_LABEL = {
   contradicho: 'Discrepa',
   'sin-datos': 'Sin registro',
   'promesa-repetida': 'Promesa repetida',
+}
+
+/**
+ * Qué pasó con un titular que no enseña afirmaciones, y en qué casilla del recuento de
+ * la lista cae. Una tabla por desenlace de src/scraper/press-extraccion.ts
+ * (`DESENLACES_EXTRACCION`; tests/laboratorio-desenlace-extraccion.test.jsx recorre el
+ * enum exportado, no una copia).
+ *
+ * La tarjeta decía «El extractor no sacó ninguna afirmación de este titular» en todas
+ * las que no tenían ninguna, y la pasada auditada en octubre de 2026 sólo había mirado
+ * los titulares del 7 al 9: «nunca intentado» doblado en «intentado, no encontró nada»
+ * (regla 2 de CLAUDE.md). `llm-no-disponible` no es un descarte: el modelo no respondió,
+ * así que cuenta como pendiente junto a lo que nadie ha mirado. Y `extraido` sin nada
+ * que pintar es el filtro editorial del verificador (claim-public-gate.ts) reteniendo
+ * todas las de ese artículo: hubo afirmaciones, y la frase no puede negarlo.
+ *
+ * @typedef {import('../scraper/press-extraccion').DesenlaceExtraccion} DesenlaceExtraccion
+ * @type {Record<DesenlaceExtraccion, {estado: 'con' | 'descartado' | 'pendiente', texto: string}>}
+ */
+const LIBRO_VACIO = {
+  extraido: {
+    estado: 'con',
+    texto:
+      'El extractor sacó afirmaciones de este titular, pero el filtro editorial de esta página no publica ninguna.',
+  },
+  'descartado-en-triaje': {
+    estado: 'descartado',
+    texto:
+      'El extractor leyó el titular y no vio nada que contrastar; el cuerpo no se llegó a leer. No es lo mismo que no lo tenga.',
+  },
+  'sin-afirmaciones': {
+    estado: 'descartado',
+    texto:
+      'El extractor leyó la noticia y no sacó ninguna afirmación. No es lo mismo que no las tenga.',
+  },
+  'llm-no-disponible': {
+    estado: 'pendiente',
+    texto: 'El extractor no pudo procesarlo: el modelo no respondió. Se reintentará.',
+  },
+}
+const NUNCA_VISTO = {
+  estado: 'pendiente',
+  texto: 'Este titular aún no ha pasado por el extractor.',
+}
+/** @param {string | null | undefined} desenlace */
+const filaDelLibro = (desenlace) =>
+  desenlace && Object.hasOwn(LIBRO_VACIO, desenlace)
+    ? LIBRO_VACIO[/** @type {DesenlaceExtraccion} */ (desenlace)]
+    : NUNCA_VISTO
+
+/**
+ * La frase de una tarjeta sin afirmaciones. `null` es «el extractor no tiene fila de
+ * este artículo»: nunca lo ha visto. Un desenlace que esta tabla no conoce (un enum más
+ * nuevo que la página) se lee igual, porque de él no se sabe nada que se pueda decir.
+ *
+ * @param {DesenlaceExtraccion | null} desenlace
+ * @returns {string}
+ */
+export function textoLibroVacio(desenlace) {
+  return filaDelLibro(desenlace).texto
+}
+
+/**
+ * El recuento que va bajo el contador de la lista, sobre las tarjetas que se ven: cada
+ * una cae en UNA casilla, así que las tres suman el total visible. Una tarjeta con
+ * afirmaciones pintadas cuenta «con» aunque su desenlace sea otro —sus afirmaciones son
+ * de una pasada anterior a que el extractor guardara desenlaces, o de un artículo que
+ * salió del feed—: el recuento describe lo que la lista enseña.
+ *
+ * @param {Array<{id: string}>} articulos  las tarjetas visibles
+ * @param {Map<string, unknown[]>} afirmacionesPorArticulo
+ * @param {Map<string, DesenlaceExtraccion>} desenlacePorArticulo
+ */
+export function recuentoDeExtraccion(articulos, afirmacionesPorArticulo, desenlacePorArticulo) {
+  const r = { con: 0, descartados: 0, pendientes: 0 }
+  for (const a of articulos) {
+    if ((afirmacionesPorArticulo.get(a.id)?.length ?? 0) > 0) {
+      r.con += 1
+      continue
+    }
+    const { estado } = filaDelLibro(desenlacePorArticulo.get(a.id))
+    if (estado === 'con') r.con += 1
+    else if (estado === 'descartado') r.descartados += 1
+    else r.pendientes += 1
+  }
+  return r
 }
 
 /**

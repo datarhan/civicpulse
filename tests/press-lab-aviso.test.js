@@ -8,7 +8,11 @@ import { avisoSinVeredicto, pressLabSummary } from '../src/lib/press-lab'
  * decía al lado del KPI «11 artículos auditados». La revisión lectora lo señaló el
  * 23-09-2026 (por otro motivo: el cero de triangulación, que sí era cierto).
  */
-const fila = (verdict, articleId = 'a1') => ({ claim: { articleId }, verification: { verdict } })
+// Con fecha de hoy: los KPI cuentan sólo las afirmaciones de las tarjetas de la ventana.
+const fila = (verdict, articleId = 'a1') => ({
+  claim: { articleId, articleDate: new Date().toISOString() },
+  verification: { verdict },
+})
 const resumen = (filas) => pressLabSummary({ press: [], verified: filas })
 const varias = (n, verdict) => Array.from({ length: n }, (_, i) => fila(verdict, `a${i % 11}`))
 
