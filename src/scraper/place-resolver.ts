@@ -251,6 +251,15 @@ function conjuncionCastellana(needle: string): string | null {
  * correspondencia ya vivía en `matchFacilityType` (vía LLM + firma): contratos
  * «cementerio municipal» aprobados a mano el 2026-07-05 mientras otros con la
  * misma frase seguían sin pin hasta el 2026-10-17.
+ *
+ * Dos límites, sabidos y aceptados:
+ *  - Sólo cuenta lo que trae `osmKind`, y las filas de gazetteer-supplement.json
+ *    no lo traen: un cementerio añadido a mano allí no entra en el recuento ni
+ *    recibe la aguja. Si el punto del cementerio de OSM resultara no ser el
+ *    municipal, la corrección va por place-overrides.json (contrato a contrato),
+ *    no por el suplemento.
+ *  - «cementerio municipal de <otro municipio>» también se situaría aquí. Ningún
+ *    título real tiene esa forma; se miró y se acepta.
  */
 const SINGLETON_FACILITY_NEEDLES: Array<{ needles: string[]; kinds: string[] }> = [
   { needles: ['cementerio municipal', 'cementeri municipal'], kinds: ['cemetery', 'grave_yard'] },
