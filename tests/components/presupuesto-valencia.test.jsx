@@ -253,6 +253,10 @@ function ramasRaras() {
   const tg = mapa[MAPA]
   delete tg.universe.dateMin
   delete tg.universe.dateMax
+  // La cobertura toma el periodo del denominador (`totalDate*`) y cae en
+  // `dateMin`/`dateMax`: sin borrar los cuatro, la rama sin periodo no se pinta.
+  delete tg.universe.totalDateMin
+  delete tg.universe.totalDateMax
   tg.assignments = tg.assignments.map((a) => ({ ...a, zones: [] }))
   // Con el mapa vacío no se monta la silueta del término, que es quien pide geo.json.
   delete mapa['/data/geo.json']

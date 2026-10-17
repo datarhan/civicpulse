@@ -260,6 +260,37 @@ describe('scraper/tender-geo — matchContractsToZones', () => {
     expect(snap.universe.locatedAmount).toBe(0)
   })
 
+  it('totalDateMin/Max abarcan TODO el universo, no sólo lo que llega al mapa', () => {
+    // Un contrato situado (2020) y uno sin lugar posterior (2026): el
+    // denominador suma los dos, así que su periodo debe llegar a 2026.
+    const snap = matchContractsToZones(
+      [
+        {
+          id: 'a',
+          title: 'Reurbanización Zona Verde Monte Alcedo',
+          status: 'awarded',
+          finalAmount: 100000,
+          awardDate: '2020-03-01',
+          contractType: 'construction',
+        },
+        {
+          id: 'b',
+          title: 'Servicio de limpieza viaria',
+          status: 'awarded',
+          finalAmount: 50000,
+          awardDate: '2026-10-08',
+        },
+      ],
+      ZONES,
+      OPTS,
+    )
+    expect(snap.assignments.map((x) => x.id)).toEqual(['a'])
+    expect(snap.universe.totalDateMin).toBe('2020-03-01')
+    expect(snap.universe.totalDateMax).toBe('2026-10-08')
+    expect(snap.universe.dateMin).toBe('2020-03-01')
+    expect(snap.universe.dateMax).toBe('2020-03-01')
+  })
+
   it('excludes non-awarded contracts and awarded-with-zero-final from the universe', () => {
     const snap = matchContractsToZones(
       [

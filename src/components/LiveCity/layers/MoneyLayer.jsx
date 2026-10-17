@@ -17,7 +17,7 @@ export function pinRadius(amount) {
 }
 
 /**
- * Precise "obras situadas" pins on the landing map. One CircleMarker per place
+ * Precise "contratos situados" pins on the landing map. One CircleMarker per place
  * the resolver situated money at (street / equipment / urbanización / barrio),
  * meter... pixel-radius sized by the € located ≤ the timeline cursor `at`
  * (cumulative via placeAmountsAt). DANA-heavy pins read amber, ordinary spend

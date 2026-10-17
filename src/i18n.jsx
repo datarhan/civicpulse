@@ -389,13 +389,12 @@ export const CATALOGUE = {
     'map.timeline.play': 'Reproducir la línea de tiempo',
     'map.timeline.pause': 'Pausar la línea de tiempo',
     // «obra acumulada» decía el rótulo, y la capa pinta TODO el gasto situado:
-    // el filtro «Solo obras» nace apagado. Medido sobre tenders.json con los
-    // predicados del repo, la obra es 185 filas y 17.475.488,67 € — el 14,1 %
-    // de los 123,7 M€ que la línea de debajo pone como denominador. El trozo
-    // situado tampoco es obra: de los 47 contratos con punto, 25 son obra, 13
-    // servicios y 9 suministros. Ni el numerador ni el denominador lo eran.
-    // Neutral en tipo, como el título del propio panel («Gasto situado»), que
-    // vale igual con el filtro puesto que sin él.
+    // el filtro «Solo obras» nace apagado. La obra es una parte pequeña del
+    // importe que la línea de debajo pone como denominador, y el trozo situado
+    // tampoco es todo obra: entre los contratos con chincheta hay servicios y
+    // suministros. Ni el numerador ni el denominador lo eran. Neutral en tipo,
+    // como el título del propio panel («Gasto situado»), que vale igual con el
+    // filtro puesto que sin él.
     'map.money.accum': 'adjudicado acumulado',
     'map.money.detalle': 'Detalle',
     'map.money.of': 'de',
@@ -434,7 +433,9 @@ export const CATALOGUE = {
     'map.poi.categoria.verde': 'Zonas verdes',
     'map.poi.categoria.deporte': 'Deporte',
     'map.poi.categoria.cultura': 'Cultura',
-    'map.money.slider': 'Línea de tiempo de los contratos situados por zona',
+    // «por zona» decía, y la capa son chinchetas: un punto por lugar nombrado en
+    // el título (`placeAmountsAt`), no las zonas del mapa de /presupuesto.
+    'map.money.slider': 'Línea de tiempo de los contratos situados en el mapa',
     'map.eventos.hoy': 'HOY EN RIBA-ROJA',
     'map.eventos.manana': 'MAÑANA EN RIBA-ROJA',
     'map.eventos.participa': 'participa ›',
@@ -499,16 +500,24 @@ export const CATALOGUE = {
     // `map.quejas.crit|warn|ok|civic`. Una frase, una traducción.
     'map.barrio.habitantes': '{n} hab.',
     'map.barrio.osm': 'Barrio OSM',
-    'map.barrio.inversion': 'Inversión situada',
+    // «Inversión situada» decía, y la zona suma todo contrato cuyo título nombra
+    // el barrio: obra, servicio o suministro. El importe es el de adjudicación
+    // sin IVA, los mismos euros que /quejas rotula `quejas.cruce.col.adjudicado`
+    // (tests/components/barrio-adjudicado-situado.test.jsx).
+    'map.barrio.adjudicado': 'Adjudicado situado',
     'map.barrio.danaIncluida': 'incluye {importe} recuperación DANA',
-    'map.barrio.sinObras': 'sin obras cuyo título nombre el barrio',
+    'map.barrio.sinContratos': 'sin contratos cuyo título nombre el barrio',
     'map.barrio.sinQuejas': 'sin quejas de vecinos',
-    // Un nombre que se escribe igual en los dos idiomas («obra», «licitador»,
-    // «adj.», «Causa») va solo en su nodo de texto: pegado a una cifra dentro de
-    // una plantilla, tests/components/mapa-valencia.test.jsx no podría
-    // distinguirlo de un rótulo sin traducir.
-    'map.obras.una': 'obra',
-    'map.obras.varias': 'obras',
+    // Un nombre que se escribe igual en los dos idiomas («licitador», «adj.»,
+    // «Causa») va solo en su nodo de texto: pegado a una cifra dentro de una
+    // plantilla, tests/components/mapa-valencia.test.jsx no podría distinguirlo
+    // de un rótulo sin traducir.
+    // Contratos, no «obras»: decían «obra»/«obras», y la chincheta, su ficha y la
+    // del barrio cuentan todo contrato cuyo título nombra el sitio, sea obra,
+    // servicio o suministro (tests/components/pin-cuenta-contratos.test.jsx).
+    // /presupuesto lo arregló el 17-09-2026 con `presupuesto.gasto.contratos.*`.
+    'map.contratos.uno': 'contrato',
+    'map.contratos.varios': 'contratos',
     'map.quejas.una': '{n} queja',
     'map.quejas.varias': '{n} quejas',
     'map.lugar.street': 'Calle / camino',
@@ -517,7 +526,8 @@ export const CATALOGUE = {
     'map.lugar.barrio': 'Barrio',
     'map.lugar.lote': 'Lote de: «{titulo}»',
     'map.lugar.fichaBarrio': 'Ficha del barrio: {barrio}',
-    'map.lugar.pie': 'Solo obras cuyo título nombra una calle, zona o equipamiento · PLACSP/TED',
+    'map.lugar.pie':
+      'Solo contratos cuyo título nombra una calle, zona o equipamiento · PLACSP/TED',
     'map.incendio.deAnyo': 'Incendio de {anyo}',
     'map.incendio.superficie': 'superficie del incendio completo',
     'map.incendio.atribuido':
@@ -2529,7 +2539,7 @@ export const CATALOGUE = {
     'map.poi.categoria.verde': 'Zones verdes',
     'map.poi.categoria.deporte': 'Esport',
     'map.poi.categoria.cultura': 'Cultura',
-    'map.money.slider': 'Línia de temps dels contractes situats per zona',
+    'map.money.slider': 'Línia de temps dels contractes situats al mapa',
     'map.eventos.hoy': 'HUI A RIBA-ROJA',
     'map.eventos.manana': 'DEMÀ A RIBA-ROJA',
     'map.eventos.participa': 'participa ›',
@@ -2587,12 +2597,12 @@ export const CATALOGUE = {
     // Globos y rótulos flotantes del mapa: ver la nota del bloque castellano.
     'map.barrio.habitantes': '{n} hab.',
     'map.barrio.osm': 'Barri OSM',
-    'map.barrio.inversion': 'Inversió situada',
+    'map.barrio.adjudicado': 'Adjudicat situat',
     'map.barrio.danaIncluida': 'inclou {importe} de recuperació DANA',
-    'map.barrio.sinObras': 'sense obres el títol de les quals nomene el barri',
+    'map.barrio.sinContratos': 'sense contractes el títol dels quals nomene el barri',
     'map.barrio.sinQuejas': 'sense queixes de veïns',
-    'map.obras.una': 'obra',
-    'map.obras.varias': 'obres',
+    'map.contratos.uno': 'contracte',
+    'map.contratos.varios': 'contractes',
     'map.quejas.una': '{n} queixa',
     'map.quejas.varias': '{n} queixes',
     'map.lugar.street': 'Carrer / camí',
@@ -2602,7 +2612,7 @@ export const CATALOGUE = {
     'map.lugar.lote': 'Lot de: «{titulo}»',
     'map.lugar.fichaBarrio': 'Fitxa del barri: {barrio}',
     'map.lugar.pie':
-      'Només obres el títol de les quals nomena un carrer, una zona o un equipament · PLACSP/TED',
+      'Només contractes el títol dels quals nomena un carrer, una zona o un equipament · PLACSP/TED',
     'map.incendio.deAnyo': 'Incendi de {anyo}',
     'map.incendio.superficie': 'superfície de l’incendi complet',
     'map.incendio.atribuido':

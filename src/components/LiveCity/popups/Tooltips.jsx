@@ -25,7 +25,7 @@ const fmtEurCompacto = (n) =>
 
 const cuerpo = { fontFamily: 'Outfit, sans-serif', fontSize: 'var(--fs-meta)' }
 
-/** El pin del dinero situado: el lugar, lo situado y cuántas obras. */
+/** El pin del dinero situado: el lugar, lo situado y cuántos contratos (no «obras»). */
 export function PinDineroTooltip({ lugar }) {
   const t = useT()
   return (
@@ -33,7 +33,7 @@ export function PinDineroTooltip({ lugar }) {
       <strong>{lugar.name}</strong>
       <br />
       {fmtEurCompacto(lugar.amount)} · {lugar.count}{' '}
-      {t(lugar.count === 1 ? 'map.obras.una' : 'map.obras.varias')}
+      {t(lugar.count === 1 ? 'map.contratos.uno' : 'map.contratos.varios')}
     </div>
   )
 }
