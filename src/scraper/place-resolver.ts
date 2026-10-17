@@ -47,10 +47,21 @@ export interface PlaceMatch {
 
 /** Accent/case/punctuation-folded title → space-separated lowercase tokens. */
 export function foldTitle(s: string): string {
-  return stripDiacritics(String(s || ''))
-    .toLowerCase()
-    .replace(/[^a-z0-9]+/g, ' ')
-    .trim()
+  return (
+    stripDiacritics(String(s || ''))
+      .toLowerCase()
+      // Una sigla con puntos es UN token: «C.D. La Mallá» → «cd la malla». Sin
+      // esto se plegaba a «c d la malla», y una «c» suelta es el indicador de
+      // «C/» (STREET_INDICATOR_TOKENS): el contrato 85485, limpieza del C.D. La
+      // Mallá, acabó pinchado en el «Carrer de la Piscina».
+      // También sin el último punto: «C.E.I.P Eres Altes» (266371, 310978).
+      .replace(/\b[a-z](?:\.[a-z])+\.?(?![a-z])/g, (m) => `${m.replace(/\./g, '')} `)
+      // Lo mismo con la letra de una meta ODS («meta 9.5.c» → «9 5c»), que daba
+      // permiso de calle a una app municipal (1402847).
+      .replace(/(\d)\.([a-z])\b/g, '$1$2')
+      .replace(/[^a-z0-9]+/g, ' ')
+      .trim()
+  )
 }
 
 // Leading street-type words (folded) + connector words dropped to reach the core.
@@ -143,6 +154,9 @@ const COMMON_WORDS = new Set([
   'verda',
   'verde',
   'verd',
+  // «carril peatonal», «paso peatonal»: un adjetivo, no la vía que OSM llama
+  // «Peatonal» a secas.
+  'peatonal',
 ])
 
 // Generic leading words dropped from a POI name to reach its distinctive core.
@@ -609,34 +623,193 @@ export function resolvePlace(
   return best
 }
 
+// ─── Un título, un sitio ─────────────────────────────────────────────────────
+// resolvePlace elige UN ganador aunque el título nombre cinco sitios: «carril
+// bici en la zona Molinet, Montealcedo, entrenaranjos, Santa Rosa y El Clot»
+// (74419) publicaba un pin en Santa Rosa. Pero contar sitios a secas tampoco
+// vale: medido el 17-10-2026 sobre tender-geo.json, «≥2 sitios en el título →
+// sin pin» quitaba 22 pines, casi todos legítimos y ANIDADOS — «C/ Dolçaina
+// (Partida Gallipont)», «C/Mas de Montes en P.I. Mas de Balo», «parcela de
+// Pacadar sita en C/ Arrosals», o una calle con dos grafías en OSM («Passeig
+// del Molinet» / «Passeig el Molinet») más la zona que le da nombre.
+//
+// Así que se cuenta por MENCIONES, no por candidatos:
+//  1. Cada tramo del título que casa con algún candidato es una mención; los
+//     candidatos que casan con tramos solapados son la MISMA mención («Paseo
+//     Molinet» casa con las dos grafías y con la zona: es un sitio).
+//  2. Una mención es un ÁREA si la precede una palabra de área («P.I.»,
+//     «partida», «zona»…), si sólo casa con zonas, o si casa con una zona sin
+//     palabra de calle delante («parcela de Pacadar»). Si no, es PRECISA
+//     (calle o POI).
+//  3. Dos grafías de la misma calle (mismo núcleo, a menos de
+//     DUPLICATE_STREET_KM) son una.
+//  4. ≥2 menciones precisas → sin pin. Una → pin, si cae DENTRO de cada área
+//     nombrada (a menos de CONTAINMENT_KM de su centroide). Ninguna → el área,
+//     si es una sola.
+// «Dentro» se mide, no se supone: C/ Toledo queda a 4,9 km de Els Pous, así que
+// «c/ Toledo y camí urbanización Els Pous» son dos obras y no se pincha.
+
+/** Radio de contención: distancia máxima del punto de una calle o POI al
+ *  centroide del área que el título también nombra. Medido el 17-10-2026: el
+ *  más lejano de los anidados legítimos es C/ Tabalet en la Partida Gallipont
+ *  (0,94 km); el más cercano de los NO contenidos, Camí de les Ànimes respecto
+ *  a Els Pous (4,6 km). */
+export const CONTAINMENT_KM = 1.5
+/** Dos grafías OSM de una calle: Passeig del Molinet y Passeig el Molinet
+ *  distan 0,36 km. */
+export const DUPLICATE_STREET_KM = 1
+
+// Delante de un nombre, dicen que el título nombra un área y no la calle
+// homónima: «P.I. Mas de Balo» es el polígono, no el Carrer del Mas de Baló.
+const AREA_WORDS = new Set([
+  'pi',
+  'poligono',
+  'poligon',
+  'partida',
+  'pda',
+  'pedania',
+  'urbanizacion',
+  'urbanitzacio',
+  'urb',
+  'zona',
+  'sector',
+  'barrio',
+  'barri',
+])
+
+// Boilerplate de los pliegos que casa con un callejero sin nombrar sitio
+// alguno: el ODS 9 «Industria, innovación e infraestructura» pinchaba en la
+// Avinguda de la Indústria (4510789, 1402847, 1404560).
+const BOILERPLATE = [
+  'industria innovacion e infraestructura',
+  'industria innovacio i infraestructura',
+]
+
+function stripBoilerplate(foldedTitle: string): string {
+  let t = ` ${foldedTitle} `
+  for (const b of BOILERPLATE) t = t.split(` ${b} `).join(' ')
+  return t.trim()
+}
+
+function km(a: [number, number], b: [number, number]): number {
+  const r = Math.PI / 180
+  const dLat = (b[0] - a[0]) * r
+  const dLng = (b[1] - a[1]) * r
+  const h =
+    Math.sin(dLat / 2) ** 2 + Math.cos(a[0] * r) * Math.cos(b[0] * r) * Math.sin(dLng / 2) ** 2
+  return 2 * 6371 * Math.asin(Math.sqrt(h))
+}
+
+interface Hit {
+  c: Candidate
+  start: number
+  end: number
+  len: number
+}
+
+function bestOf(hits: Hit[]): Candidate {
+  let best = hits[0]
+  for (const h of hits)
+    if (
+      h.c.specificity > best.c.specificity ||
+      (h.c.specificity === best.c.specificity && h.len > best.len)
+    )
+      best = h
+  return best.c
+}
+
+const isArea = (c: Candidate) => c.kind === 'urbanizacion' || c.kind === 'barrio'
+const maxLen = (hits: Hit[]) => hits.reduce((m, h) => Math.max(m, h.len), -1)
+
 /**
- * Every distinct place a folded text matches (same gates as resolvePlace,
- * deduped by sourceId). For callers that must detect AMBIGUITY rather than
- * pick a winner — e.g. a multi-lot parent objeto that enumerates the places
- * of several lots: one distinct match is trustworthy, two or more are not.
+ * The single place a folded title names, or null when it names several that
+ * are not nested in one another (see the block above). Same gates as
+ * resolvePlace — street indicator, allowPoi — so it can only ever pin LESS.
  */
-export function resolveDistinctPlaces(
+export function resolveUnambiguousPlace(
   foldedTitle: string,
   candidates: Candidate[],
   opts: { allowPoi?: boolean } = {},
-): PlaceMatch[] {
+): PlaceMatch | null {
   const { allowPoi = true } = opts
-  const padded = ` ${foldedTitle} `
-  const streetOk = hasStreetIndicator(foldedTitle)
-  const bySource = new Map<string, PlaceMatch>()
+  const text = stripBoilerplate(foldedTitle)
+  const tokens = text.split(' ').filter(Boolean)
+  const padded = ` ${text} `
+  const streetOk = hasStreetIndicator(text)
+
+  const hits: Hit[] = []
   for (const c of candidates) {
     if (c.kind === 'street' && !streetOk) continue
     if (c.kind === 'poi' && !allowPoi) continue
-    if (!c.needles.some((n) => matches(padded, n))) continue
-    if (!bySource.has(c.sourceId)) {
-      bySource.set(c.sourceId, {
-        point: c.point,
-        kind: c.kind,
-        name: c.name,
-        matchedText: c.name,
-        sourceId: c.sourceId,
-      })
+    for (const n of c.needles) {
+      if (!matches(padded, n)) continue
+      const nt = n.split(' ')
+      for (let i = 0; i + nt.length <= tokens.length; i++)
+        if (nt.every((t, k) => tokens[i + k] === t))
+          hits.push({ c, start: i, end: i + nt.length, len: n.length })
     }
   }
-  return [...bySource.values()]
+  if (hits.length === 0) return null
+
+  // 1. Tramos solapados → una mención.
+  hits.sort((a, b) => a.start - b.start || b.end - a.end)
+  const mentions: Hit[][] = []
+  let end = -1
+  for (const h of hits) {
+    if (h.start < end) mentions[mentions.length - 1].push(h)
+    else mentions.push([h])
+    end = Math.max(end, h.end)
+  }
+
+  // 2. Área o precisa.
+  const precise: Candidate[] = []
+  const areas: Candidate[] = []
+  for (const m of mentions) {
+    const start = m[0].start
+    let p = start - 1
+    while (p >= 0 && CONNECTORS.has(tokens[p])) p--
+    const before = p >= 0 ? tokens[p] : ''
+    const areaWord = AREA_WORDS.has(before) || AREA_WORDS.has(tokens[start])
+    const streetWord =
+      STREET_INDICATOR_TOKENS.has(before) || STREET_INDICATOR_TOKENS.has(tokens[start])
+    const zoneHits = m.filter((h) => isArea(h.c))
+    const preciseHits = m.filter((h) => !isArea(h.c))
+    const asArea =
+      areaWord ||
+      preciseHits.length === 0 ||
+      (zoneHits.length > 0 && !streetWord && maxLen(zoneHits) >= maxLen(preciseHits))
+    if (asArea) areas.push(bestOf(zoneHits.length > 0 ? zoneHits : preciseHits))
+    else precise.push(bestOf(preciseHits))
+  }
+
+  // 3. Mismo sitio dos veces: mismo id, o dos grafías de una calle.
+  const sameStreet = (a: Candidate, b: Candidate) =>
+    a.kind === 'street' &&
+    b.kind === 'street' &&
+    streetCore(foldTitle(a.name)) === streetCore(foldTitle(b.name)) &&
+    km(a.point, b.point) <= DUPLICATE_STREET_KM
+  const distinct = (list: Candidate[]) =>
+    list.filter(
+      (c, i) => !list.slice(0, i).some((o) => o.sourceId === c.sourceId || sameStreet(o, c)),
+    )
+  const sitios = distinct(precise)
+  const zonas = distinct(areas).filter((z) => !sitios.some((s) => s.sourceId === z.sourceId))
+
+  // 4. Decidir.
+  let chosen: Candidate | null = null
+  if (sitios.length === 1) {
+    const s = sitios[0]
+    if (zonas.every((z) => km(s.point, z.point) <= CONTAINMENT_KM)) chosen = s
+  } else if (sitios.length === 0 && zonas.length === 1) {
+    chosen = zonas[0]
+  }
+  return chosen
+    ? {
+        point: chosen.point,
+        kind: chosen.kind,
+        name: chosen.name,
+        matchedText: chosen.name,
+        sourceId: chosen.sourceId,
+      }
+    : null
 }

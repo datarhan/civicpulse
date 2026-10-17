@@ -248,6 +248,10 @@ describe('place-resolver — foldTitle', () => {
       'c mas de montes en pi mas de balo',
     )
     expect(foldTitle('Obras en el C.E.I.P. Cervantes')).toBe('obras en el ceip cervantes')
+    expect(foldTitle('eficiencia energética en C.E.I.P Eres Altes')).toBe(
+      'eficiencia energetica en ceip eres altes',
+    )
+    expect(foldTitle('bar C.D La Mallá')).toBe('bar cd la malla')
     // La letra de una meta ODS («meta 9.5.c») tampoco es una «C/».
     expect(foldTitle('en relación a la meta 9.5.c para')).toBe('en relacion a la meta 9 5c para')
     // Una abreviatura suelta no es una sigla: «C/» y «Ctra.» siguen igual.
