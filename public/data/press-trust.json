@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-17T08:57:26.006Z",
+  "generatedAt": "2026-10-17T19:29:43.692Z",
   "windowDays": 30,
   "articles": [
     {
@@ -1106,47 +1106,13 @@
         "opinionFraction": 0
       },
       "score": 2
-    },
-    {
-      "articleId": "19l4yd4",
-      "articleFingerprint": "mns35o",
-      "outlet": "Ayuntamiento de Riba-roja de Túria",
-      "outletHost": "ribarroja.es",
-      "url": "https://www.ribarroja.es/es/noticia/riba-roja-arranca-%27malamente%27-una-extensa-programaci%C3%B3n-con-motivo-del-25n-para-abordar-las-diferentes-formas-de-violencia-machista",
-      "date": "2026-09-17T14:37:32.000Z",
-      "indicators": {
-        "localCoverage": true,
-        "datedArticle": true,
-        "municipalSourceMatch": null,
-        "corroboratedAcrossOutlets": false,
-        "factualClaimsPresent": false,
-        "opinionFraction": 0
-      },
-      "score": 2
-    },
-    {
-      "articleId": "d2zytc",
-      "articleFingerprint": "90xnz4",
-      "outlet": "Ayuntamiento de Riba-roja de Túria",
-      "outletHost": "ribarroja.es",
-      "url": "https://www.ribarroja.es/es/noticia/cartelera-de-cultura-septiembre-noviembre-2026",
-      "date": "2026-09-17T10:14:51.000Z",
-      "indicators": {
-        "localCoverage": true,
-        "datedArticle": true,
-        "municipalSourceMatch": null,
-        "corroboratedAcrossOutlets": false,
-        "factualClaimsPresent": false,
-        "opinionFraction": 0
-      },
-      "score": 2
     }
   ],
   "outlets": [
     {
       "outlet": "Ayuntamiento de Riba-roja de Túria",
       "outletHost": "ribarroja.es",
-      "articleCount": 19,
+      "articleCount": 17,
       "verdictCounts": {
         "verificado": 0,
         "parcial": 0,
@@ -1154,7 +1120,7 @@
         "sin-datos": 16,
         "promesa-repetida": 0
       },
-      "meanTrustScore": 2.58,
+      "meanTrustScore": 2.65,
       "verifiedRatio": 0,
       "contradictedRatio": null
     },
@@ -1371,7 +1337,7 @@
   ],
   "builtFrom": {
     "plenos-agendas.json": "ea94298d1771",
-    "press-claims-verified.json": "7a128575d1ad",
+    "press-claims-verified.json": "577b1fb0a58a",
     "press.json": "d82b3de27057",
     "promises.json": "08c43b132d79"
   }
