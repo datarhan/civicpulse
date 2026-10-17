@@ -3,25 +3,28 @@ import { useT } from '../../../i18n'
 import { yearSpan } from '../../../lib/year-span'
 
 /**
- * What share of municipal contracting this map can actually show.
+ * Qué parte de la contratación municipal puede enseñar este mapa.
  *
- * The layer was labelled "Gasto municipal" and painted a low single-digit
- * percentage of municipal contracting — today €2,2M of €123,7M, 1,8%, 47 of
- * 696 contracts — with no statement of that anywhere. Every
- * individual pin was scrupulous (the place-resolver's gates deliberately
- * under-match, an honest miss beating a wrong pin) but the AGGREGATE read as
- * completeness. In a project whose credibility rests on honesty gates, that was
- * the one surface where the discipline stopped at the pin.
+ * La capa se llamaba «Gasto municipal» y pintaba un porcentaje de un solo dígito
+ * de la contratación municipal sin decirlo en ningún sitio. Cada chincheta era
+ * escrupulosa (las puertas del place-resolver se quedan cortas a propósito: un
+ * fallo honrado gana a una chincheta falsa), pero el CONJUNTO se leía como si
+ * fuera completo. En un proyecto cuya credibilidad descansa en sus puertas de
+ * honradez, era la única superficie donde la disciplina se paraba en la chincheta.
  *
- * And the gap is not a backlog. Most municipal money is town-wide service
- * contracts — waste collection €16,6M, parks €4,8M, street cleaning €3,9M, home
- * help, catering — that have no point. Pinning them would be FALSE, so the
- * honest ceiling for a point map is a fraction, not 100%. Saying so turns the
- * limit into the finding it actually is: most of what the town spends has no
- * address.
+ * Y el hueco no es trabajo pendiente. Casi todo el dinero municipal son
+ * servicios de ámbito municipal —la recogida de residuos, los parques, la
+ * limpieza viaria, la ayuda a domicilio, los comedores— que no tienen un punto.
+ * Pincharlos sería FALSO, así que el techo honrado de un mapa de puntos es una
+ * fracción, no el 100 %. Decirlo convierte el límite en el hallazgo que es: casi
+ * todo lo que el pueblo gasta no tiene dirección.
  *
- * Figures come from `tender-geo.json`'s own `universe` block, never hard-coded,
- * so they can't drift from the pins beside them.
+ * El numerador es `situatedAmount`, el total de las asignaciones con `place`
+ * —las mismas de las que salen las chinchetas (`placeAmountsAt`), con los
+ * filtros apagados y el cursor al final—, y no
+ * `locatedAmount`, que suma los contratos con ZONA y es el del medidor de
+ * /presupuesto. Las cifras salen del bloque `universe` de `tender-geo.json`,
+ * nunca escritas a mano, para que no se separen de las chinchetas de al lado.
  *
  * Con la pila plegada (a 375 px, DirectionD.jsx) la línea de las cifras es lo que
  * queda a la vista de toda la tarjeta, así que el botón de detalle va dentro de ella
@@ -42,22 +45,31 @@ const fmtM = (n) =>
 const fmtPct = (n) => new Intl.NumberFormat('es-ES', { maximumFractionDigits: 1 }).format(n)
 
 /**
- * @param {{ snapshot?: { universe?: { locatedAmount?: number, totalAmount?: number,
- *   locatedContracts?: number, totalContracts?: number, dateMin?: string|null,
- *   dateMax?: string|null } }, accion?: import('react').ReactNode }} props
+ * @param {{ snapshot?: { universe?: { situatedAmount?: number, totalAmount?: number,
+ *   dateMin?: string|null, dateMax?: string|null, totalDateMin?: string|null,
+ *   totalDateMax?: string|null } },
+ *   accion?: import('react').ReactNode }} props
  */
 export function MoneyCoverage({ snapshot, accion = null }) {
   const t = useT()
   const u = snapshot?.universe
-  // No universe block ⇒ say nothing rather than imply a coverage we can't back.
-  if (!u || !u.totalAmount || !u.locatedAmount) return null
-  const pct = (100 * u.locatedAmount) / u.totalAmount
-  // `dateMin`/`dateMax` are the span of this exact universe — the same rows the
-  // denominator sums — so the period can never describe a wider set than the
-  // figure. The landing's KPI strip publishes «Presup. 2025 · €41,6M» a few
-  // hundred pixels below, and an undated nine-figure cumulative beside a
-  // one-year budget is the comparison this whole line exists to prevent.
-  const span = yearSpan([u.dateMin, u.dateMax])
+  // Sin bloque `universe` no se dice nada, en vez de insinuar una cobertura que
+  // no podemos respaldar.
+  // Las chinchetas de la portada son las asignaciones con `place`
+  // (placeAmountsAt), y su total es `situatedAmount`. Hasta el 15-10-2026 esta
+  // línea imprimía `locatedAmount` —las ZONAS de /presupuesto— y declaraba un
+  // tercio de lo que el mapa pintaba al lado.
+  if (!u || !u.totalAmount || !u.situatedAmount) return null
+  const pct = (100 * u.situatedAmount) / u.totalAmount
+  // El periodo es el del DENOMINADOR: `totalDateMin`/`totalDateMax` abarcan todos
+  // los contratos que suma `totalAmount`, y no sólo los que tienen sitio en el
+  // mapa (eso es `dateMin`/`dateMax`, que mueve el deslizador). Así el periodo
+  // nunca describe un conjunto distinto del de la cifra. La franja de KPIs de la
+  // portada publica unos centenares de píxeles más abajo el presupuesto de un
+  // solo año, y un acumulado de nueve cifras sin fecha al lado de un presupuesto
+  // anual es justo la comparación que esta línea existe para impedir. Un
+  // snapshot anterior a esos campos cae en `dateMin`/`dateMax`.
+  const span = yearSpan([u.totalDateMin ?? u.dateMin, u.totalDateMax ?? u.dateMax])
 
   return (
     <div
@@ -73,7 +85,7 @@ export function MoneyCoverage({ snapshot, accion = null }) {
         className="mono"
         style={{ fontSize: 'var(--fs-micro)', color: 'rgba(11,15,25,.86)', fontWeight: 700 }}
       >
-        {fmtM(u.locatedAmount)} {t('map.money.of')} {fmtM(u.totalAmount)}
+        {fmtM(u.situatedAmount)} {t('map.money.of')} {fmtM(u.totalAmount)}
         {span ? ` (${span})` : ''} · {pct < 1 ? '<1' : fmtPct(pct)}%{accion}
       </div>
       <div id="cp-dinero-nota" className="cp-plegable" style={{ marginTop: 3 }}>

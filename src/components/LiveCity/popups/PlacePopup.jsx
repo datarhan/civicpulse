@@ -12,7 +12,7 @@ const fmtEur = (n) =>
   }).format(n)
 
 /**
- * Map popup for a precise "obra situada" pin. Lists every located contract that
+ * Map popup for a precise "contrato situado" pin. Lists every located contract that
  * resolved to this place (via the multi-source resolver) using the shared
  * ContractCard. Honest by construction: a contract only appears here because its
  * title named this street / equipment / zone.
@@ -66,7 +66,7 @@ export function PlacePopup({
           style={{ fontSize: 'var(--fs-meta)', fontWeight: 700, color: 'var(--civic)' }}
         >
           {fmtEur(total)} · {works.length}{' '}
-          {t(works.length === 1 ? 'map.obras.una' : 'map.obras.varias')}
+          {t(works.length === 1 ? 'map.contratos.uno' : 'map.contratos.varios')}
         </span>
         <span
           style={{

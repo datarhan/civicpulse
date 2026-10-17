@@ -294,13 +294,20 @@ const EQUIPAMIENTO_SIN_CATEGORIA = {
 
 // Leyendas y deslizadores.
 const noHaceNada = () => {}
+// `situatedAmount` es lo que imprime la línea de cobertura (el total de las
+// chinchetas); sin él, MoneyCoverage no pinta nada y este escenario dejaría de
+// leer la línea que dice cubrir.
 const UNIVERSO_DINERO = {
   locatedAmount: 2_200_000,
+  situatedAmount: 6_100_000,
   totalAmount: 124_000_000,
   locatedContracts: 47,
+  situatedContracts: 127,
   totalContracts: 696,
   dateMin: '2017-01-01',
   dateMax: '2026-06-30',
+  totalDateMin: '2017-01-01',
+  totalDateMax: '2026-10-08',
 }
 const AVISO_ICV = 'No están cartografiados todos los incendios forestales del periodo'
 const ESTE_ANYO = new Date().getFullYear()
