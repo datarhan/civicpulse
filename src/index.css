@@ -1574,15 +1574,32 @@ body.cp-kiosk .cp-live-container {
    Por debajo de 720 el hueco baja a 6, y no a 10: 10 cabía en macOS (74 + 47 +
    80 + 20 = 221 px) y no en la CI, donde Chromium en Linux pinta las mismas
    tres palabras más anchas (78 + 49 + 84 + 20 = 230,6 px en una caja de 230,
-   medido en la PR #189). Con 6 quedan unos 7 px de margen también allí. */
+   medido en la PR #189). Con 6 quedan unos 7 px de margen también allí.
+
+   2026-10-17: aquel mínimo suponía que la palabra más larga de un barrio era
+   «Urbanització». Al situarse los contratos de Entrenaranjos entró en la tabla
+   «Urbanització Entretarongers», cuya segunda palabra es más ancha, y con ella
+   la primera cifra de siete dígitos: 92 + 49 + 88 + 12 px en la caja de 230 de
+   la CI. Ninguna palabra de un nombre puede fijar el suelo de la tabla, porque
+   el nombre lo trae OSM. En el móvil las cifras ocupan su mínimo, el barrio se
+   queda lo que sobra (`minmax(0, 1fr)`) y una palabra que no quepa en su
+   renglón se parte (`.cp-cruce-barrio`) — partirla, no recortarla con «…»,
+   para que se siga leyendo qué barrio es. */
 .cp-cruce {
   display: grid;
   grid-template-columns: 1fr auto auto;
   gap: 7px 16px;
   align-items: baseline;
 }
+.cp-cruce-barrio {
+  min-width: 0;
+  overflow-wrap: anywhere;
+  -webkit-hyphens: auto;
+  hyphens: auto;
+}
 @media (max-width: 720px) {
   .cp-cruce {
+    grid-template-columns: minmax(0, 1fr) min-content min-content;
     column-gap: 6px;
   }
 }
