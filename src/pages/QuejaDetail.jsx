@@ -1,6 +1,7 @@
 import { Link, useParams } from 'react-router-dom'
 import { Card, ExtLink, Pill, SectionHead, ShareWA } from '../components/Primitives'
-import { useQuejas, useQuejaResponses, STATE_TONE, prettyNeighborhood } from '../hooks/useQuejas'
+import { useQuejas, useQuejaResponses, STATE_TONE } from '../hooks/useQuejas'
+import { useGeo } from '../hooks/useGeo'
 import {
   useQuejaContractRelations,
   useQuejaRelationApprovals,
@@ -8,7 +9,7 @@ import {
 } from '../hooks/useQuejaContractRelations'
 import { useOfficials, partyColor } from '../hooks/useOfficials'
 import { useDocumentTitle } from '../hooks/useDocumentTitle'
-import { fmtDateHuman, rellena } from '../lib/formatters'
+import { fmtDateHuman, nombreDeBarrio, rellena } from '../lib/formatters'
 import { conHuecos } from '../lib/huecos'
 import { rotuloDe, useLocale } from '../i18n'
 import { CLAVE_RELACION } from '../scraper/relation-labels'
@@ -155,6 +156,7 @@ function CorrelationsCard({ quejaId }) {
   const { locale, t } = useLocale()
   const { data } = useQuejaContractRelations()
   const { data: approvals } = useQuejaRelationApprovals()
+  const barrios = useGeo().data?.neighborhoods
   const items = relationsForQueja(data, quejaId, approvals?.approvals)
   if (items.length === 0) return null
   return (
@@ -237,7 +239,7 @@ function CorrelationsCard({ quejaId }) {
                 <>
                   {t('quejas.detalle.relacion.zona')}
                   {': '}
-                  <strong>{prettyNeighborhood(place)}</strong>
+                  <strong>{nombreDeBarrio(place, barrios)}</strong>
                 </>
               )}
               {place && materia && ' · '}
@@ -273,6 +275,8 @@ export default function QuejaDetail() {
   const { loading, data } = useQuejas()
   const { data: responses } = useQuejaResponses()
   const { data: officials } = useOfficials()
+  // El barrio con su nombre de OSM, como en /quejas (`nombreDeBarrio`).
+  const barrios = useGeo().data?.neighborhoods
 
   const id = (rawId || '').toUpperCase()
   const queja = (data?.items || []).find((q) => q.service_request_id === id)
@@ -334,7 +338,7 @@ export default function QuejaDetail() {
     label: t('quejas.detalle.hito.capturada'),
     tone: 'neutral',
     detail: rellena(t('quejas.detalle.hito.capturada.detalle'), {
-      barrio: prettyNeighborhood(queja.address_string) || '—',
+      barrio: nombreDeBarrio(queja.address_string, barrios) || '—',
     }),
   })
   if (queja.apoyos >= 10) {
@@ -449,7 +453,7 @@ export default function QuejaDetail() {
           }}
         >
           <span>📂 {categoria}</span>
-          {queja.address_string && <span>📍 {prettyNeighborhood(queja.address_string)}</span>}
+          {queja.address_string && <span>📍 {nombreDeBarrio(queja.address_string, barrios)}</span>}
           {queja.concejalia_area && <span>🏛 {queja.concejalia_area}</span>}
           <span>👍 {rellena(t('quejas.detalle.apoyos'), { n: queja.apoyos })}</span>
         </div>

@@ -1,6 +1,8 @@
 import { Link } from 'react-router-dom'
 import { Card, Pill, SectionHead } from '../components/Primitives'
-import { useQuejas, useEtiquetasDeQueja, STATE_TONE, prettyNeighborhood } from '../hooks/useQuejas'
+import { useQuejas, useEtiquetasDeQueja, STATE_TONE } from '../hooks/useQuejas'
+import { useGeo } from '../hooks/useGeo'
+import { nombreDeBarrio } from '../lib/formatters'
 import { useOfficials, partyColor } from '../hooks/useOfficials'
 import { useDocumentTitle } from '../hooks/useDocumentTitle'
 import { useT } from '../i18n'
@@ -315,6 +317,8 @@ function CategoryBreakdown({ byCategory }) {
 }
 
 function NeighborhoodBreakdown({ byNeighborhood }) {
+  // El nombre de OSM, no el slug capitalizado (`nombreDeBarrio`).
+  const barrios = useGeo().data?.neighborhoods
   const entries = Object.entries(byNeighborhood || {}).sort((a, b) => b[1] - a[1])
   if (entries.length === 0) return null
   const max = Math.max(...entries.map((e) => e[1]))
@@ -323,7 +327,7 @@ function NeighborhoodBreakdown({ byNeighborhood }) {
       <SectionHead eyebrow="Dónde pasa" title="Barrios" />
       <div style={{ marginTop: 12 }}>
         {entries.map(([slug, n]) => (
-          <Bar key={slug} label={prettyNeighborhood(slug)} n={n} max={max} color="var(--ok)" />
+          <Bar key={slug} label={nombreDeBarrio(slug, barrios)} n={n} max={max} color="var(--ok)" />
         ))}
       </div>
     </Card>
@@ -477,6 +481,7 @@ function ReadyToEscalate({ items }) {
 
 function TopPending({ items }) {
   const etiqueta = useEtiquetasDeQueja()
+  const barrios = useGeo().data?.neighborhoods
   const pending = (items || [])
     .filter((q) =>
       ['capturada', 'apoyada_verificada', 'registrada', 'notificada_10d', 'en_tramite'].includes(
@@ -525,7 +530,7 @@ function TopPending({ items }) {
                 style={{ fontSize: 'var(--fs-micro)', color: 'var(--ink50)', marginTop: 2 }}
               >
                 {etiqueta.categoria(q.service_code)}
-                {q.address_string ? ` · ${prettyNeighborhood(q.address_string)}` : ''}
+                {q.address_string ? ` · ${nombreDeBarrio(q.address_string, barrios)}` : ''}
               </div>
             </div>
             <span

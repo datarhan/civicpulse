@@ -3,7 +3,8 @@ import { Marker, Popup, Tooltip } from 'react-leaflet'
 import L from 'leaflet'
 import { useGeo } from '../../../hooks/useGeo'
 import { useTenderGeo } from '../../../hooks/useTenderGeo'
-import { useQuejas, prettyNeighborhood } from '../../../hooks/useQuejas'
+import { useQuejas } from '../../../hooks/useQuejas'
+import { rotuloDeBarrio } from '../../../lib/formatters'
 import { aggregateNeighborhood } from '../../../lib/neighborhood-aggregate'
 import { escapeHtml } from '../shared'
 import { NeighborhoodPopup } from '../popups/NeighborhoodPopup'
@@ -44,7 +45,7 @@ export function NeighborhoodsLayer({ pines }) {
           iconAnchor: [4, 4],
         })
         return (
-          <Marker key={n.id} position={n.centroid} icon={icon} title={prettyNeighborhood(n.name)}>
+          <Marker key={n.id} position={n.centroid} icon={icon} title={rotuloDeBarrio(n.name)}>
             <Tooltip direction="top" offset={[0, -4]}>
               <BarrioTooltip agg={agg} />
             </Tooltip>
