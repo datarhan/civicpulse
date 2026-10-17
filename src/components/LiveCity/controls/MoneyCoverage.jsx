@@ -20,7 +20,8 @@ import { yearSpan } from '../../../lib/year-span'
  * todo lo que el pueblo gasta no tiene dirección.
  *
  * El numerador es `situatedAmount`, el total de las asignaciones con `place`
- * —las mismas de las que salen las chinchetas (`placeAmountsAt`)—, y no
+ * —las mismas de las que salen las chinchetas (`placeAmountsAt`), con los
+ * filtros apagados y el cursor al final—, y no
  * `locatedAmount`, que suma los contratos con ZONA y es el del medidor de
  * /presupuesto. Las cifras salen del bloque `universe` de `tender-geo.json`,
  * nunca escritas a mano, para que no se separen de las chinchetas de al lado.

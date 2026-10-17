@@ -389,13 +389,12 @@ export const CATALOGUE = {
     'map.timeline.play': 'Reproducir la línea de tiempo',
     'map.timeline.pause': 'Pausar la línea de tiempo',
     // «obra acumulada» decía el rótulo, y la capa pinta TODO el gasto situado:
-    // el filtro «Solo obras» nace apagado. Medido sobre tenders.json con los
-    // predicados del repo, la obra es 185 filas y 17.475.488,67 € — el 14,1 %
-    // de los 123,7 M€ que la línea de debajo pone como denominador. El trozo
-    // situado tampoco es obra: de los 47 contratos con punto, 25 son obra, 13
-    // servicios y 9 suministros. Ni el numerador ni el denominador lo eran.
-    // Neutral en tipo, como el título del propio panel («Gasto situado»), que
-    // vale igual con el filtro puesto que sin él.
+    // el filtro «Solo obras» nace apagado. La obra es una parte pequeña del
+    // importe que la línea de debajo pone como denominador, y el trozo situado
+    // tampoco es todo obra: entre los contratos con chincheta hay servicios y
+    // suministros. Ni el numerador ni el denominador lo eran. Neutral en tipo,
+    // como el título del propio panel («Gasto situado»), que vale igual con el
+    // filtro puesto que sin él.
     'map.money.accum': 'adjudicado acumulado',
     'map.money.detalle': 'Detalle',
     'map.money.of': 'de',
@@ -434,7 +433,9 @@ export const CATALOGUE = {
     'map.poi.categoria.verde': 'Zonas verdes',
     'map.poi.categoria.deporte': 'Deporte',
     'map.poi.categoria.cultura': 'Cultura',
-    'map.money.slider': 'Línea de tiempo de los contratos situados por zona',
+    // «por zona» decía, y la capa son chinchetas: un punto por lugar nombrado en
+    // el título (`placeAmountsAt`), no las zonas del mapa de /presupuesto.
+    'map.money.slider': 'Línea de tiempo de los contratos situados en el mapa',
     'map.eventos.hoy': 'HOY EN RIBA-ROJA',
     'map.eventos.manana': 'MAÑANA EN RIBA-ROJA',
     'map.eventos.participa': 'participa ›',
@@ -2529,7 +2530,7 @@ export const CATALOGUE = {
     'map.poi.categoria.verde': 'Zones verdes',
     'map.poi.categoria.deporte': 'Esport',
     'map.poi.categoria.cultura': 'Cultura',
-    'map.money.slider': 'Línia de temps dels contractes situats per zona',
+    'map.money.slider': 'Línia de temps dels contractes situats al mapa',
     'map.eventos.hoy': 'HUI A RIBA-ROJA',
     'map.eventos.manana': 'DEMÀ A RIBA-ROJA',
     'map.eventos.participa': 'participa ›',
