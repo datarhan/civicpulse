@@ -4,7 +4,11 @@ import { CorrectionNote, CorrectionNotice } from '../../components/reportajes/Co
 import { SecHead, IndicePieza } from '../../components/reportajes/Pieza'
 import SolicitudLector from '../../components/reportajes/SolicitudLector'
 import { debeOfrecerSolicitud } from '../../lib/solicitud-lector'
-import { preguntasDe, solicitables as soloSolicitables } from '../../lib/solicitud-apartadas'
+import {
+  clasesApartadas,
+  preguntasDe,
+  solicitables as soloSolicitables,
+} from '../../lib/solicitud-apartadas'
 
 const SERIF = "'Fraunces', Georgia, serif"
 
@@ -842,12 +846,17 @@ export default function Basuras() {
           )
         })}
         <p style={{ color: 'var(--ink50)', fontSize: 'var(--fs-body)' }}>{data.preguntas.cierre}</p>
-        {debeOfrecerSolicitud({ preguntas: solicitables, solicitudes: data.solicitudes }) && (
+        {debeOfrecerSolicitud({
+          meta: m,
+          preguntas: solicitables,
+          solicitudes: data.solicitudes,
+        }) && (
           <SolicitudLector
             meta={m}
             ruta="/reportajes/basuras"
             preguntas={solicitables}
             total={todasLasPreguntas.length}
+            clases={clasesApartadas('basuras', todasLasPreguntas)}
           />
         )}
       </article>

@@ -85,6 +85,17 @@ const fechaLarga = (iso) => {
 }
 
 /**
+ * ¿Es una fecha AAAA-MM-DD? Es lo que guarda `meta.publicadoEl`
+ * (tests/reportajes-fecha-iso.test.js), y sin ella el escrito no puede decir de
+ * cuándo son las premisas de sus preguntas.
+ *
+ * @param {unknown} v
+ * @returns {v is string}
+ */
+export const esFechaIso = (v) =>
+  typeof v === 'string' && /^\d{4}-(0[1-9]|1[0-2])-(0[1-9]|[12]\d|3[01])$/.test(v)
+
+/**
  * Las comillas de dentro de un título que ya va entre «»: en castellano, las de
  * segundo nivel son las inglesas. El titular de inteligencia turística lleva
  * «destino inteligente», y citado tal cual salía «… el «destino inteligente»: …»,
@@ -118,10 +129,7 @@ export function textoSolicitudLector({ titulo, url, publicadoEl, preguntas }) {
     // no pinte el botón a que copie una carta vacía.
     throw new Error('textoSolicitudLector: no hay preguntas que pedir')
   }
-  if (
-    typeof publicadoEl !== 'string' ||
-    !/^\d{4}-(0[1-9]|1[0-2])-(0[1-9]|[12]\d|3[01])$/.test(publicadoEl)
-  ) {
+  if (!esFechaIso(publicadoEl)) {
     throw new Error(`textoSolicitudLector: fecha de publicación no válida: ${publicadoEl}`)
   }
   return [
@@ -159,19 +167,22 @@ export function textoSolicitudLector({ titulo, url, publicadoEl, preguntas }) {
 
 /**
  * ¿Ofrece esta pieza el escrito? Sí sólo si sus preguntas son una LISTA de
- * textos no vacía y la pieza no trae un bloque `solicitudes`. Ver el porqué en
- * la cabecera.
+ * textos no vacía, su `meta.publicadoEl` es una fecha AAAA-MM-DD y la pieza no
+ * trae un bloque `solicitudes`. Ver el porqué en la cabecera.
  *
  * No aprende formas: una pieza cuyas preguntas no son una lista de textos —las
  * de basuras, en bloques— dice que no, y es su página la que aplana las suyas y
  * se las pasa ya como lista. Enseñarle aquí cada forma sería decidir en un
  * sitio lo que sólo la página sabe.
  *
- * @param {{ preguntas?: unknown, solicitudes?: unknown }} pieza
+ * @param {{ meta?: unknown, preguntas?: unknown, solicitudes?: unknown }} pieza
  * @returns {boolean}
  */
 export function debeOfrecerSolicitud(pieza) {
   if (pieza?.solicitudes != null) return false
+  // Sin fecha de publicación el escrito no se puede redactar, y lanzar dentro
+  // del render tumbaría la pieza entera por un bloque que es un añadido.
+  if (!esFechaIso(/** @type {any} */ (pieza?.meta)?.publicadoEl)) return false
   const p = pieza?.preguntas
   return (
     Array.isArray(p) && p.length > 0 && p.every((q) => typeof q === 'string' && q.trim() !== '')

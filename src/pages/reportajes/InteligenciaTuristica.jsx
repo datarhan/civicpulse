@@ -5,7 +5,7 @@ import { CorrectionNote, CorrectionNotice } from '../../components/reportajes/Co
 import { SecHead, IndicePieza } from '../../components/reportajes/Pieza'
 import SolicitudLector from '../../components/reportajes/SolicitudLector'
 import { debeOfrecerSolicitud } from '../../lib/solicitud-lector'
-import { solicitables as soloSolicitables } from '../../lib/solicitud-apartadas'
+import { clasesApartadas, solicitables as soloSolicitables } from '../../lib/solicitud-apartadas'
 
 const SERIF = "'Fraunces', Georgia, serif"
 
@@ -584,12 +584,17 @@ export default function InteligenciaTuristica() {
             no ha pedido ya: la lista editorial de src/lib/solicitud-apartadas.js
             dice cuáles se apartan y por qué. Quien lee puede presentarlas con su
             nombre. */}
-        {debeOfrecerSolicitud({ preguntas: solicitables, solicitudes: data.solicitudes }) && (
+        {debeOfrecerSolicitud({
+          meta: m,
+          preguntas: solicitables,
+          solicitudes: data.solicitudes,
+        }) && (
           <SolicitudLector
             meta={m}
             ruta="/reportajes/inteligencia-turistica"
             preguntas={solicitables}
             total={data.preguntas.length}
+            clases={clasesApartadas('inteligencia-turistica', data.preguntas)}
           />
         )}
       </article>

@@ -19,7 +19,7 @@
 import { useEffect, useState } from 'react'
 import { useT } from '../../i18n'
 import { partePorHueco, rellena } from '../../lib/formatters'
-import { CORREO, textoSolicitudLector } from '../../lib/solicitud-lector'
+import { CORREO, esFechaIso, textoSolicitudLector } from '../../lib/solicitud-lector'
 import { SITIO } from '../Compartir'
 
 const BOTON = {
@@ -52,20 +52,29 @@ const OCULTO = {
  *   ruta: string,
  *   preguntas: string[],
  *   total?: number,
+ *   clases?: string[],
  * }} props — `meta` es el de la pieza: su título se cita y su `publicadoEl`
  *   fecha lo que las preguntas dan por sentado. `ruta` es la de la pieza
  *   (`/reportajes/<slug>`), que se cita con la dirección pública; `total`,
  *   cuántas preguntas hace la pieza, cuando el escrito no lleva todas: entonces
- *   se dice cuántas lleva.
+ *   se dice cuántas lleva, y `clases` —las de `clasesApartadas`— dice por qué:
+ *   sólo se nombran los motivos que se dan de verdad en esa pieza.
  */
-export default function SolicitudLector({ meta, ruta, preguntas, total }) {
+export default function SolicitudLector({ meta, ruta, preguntas, total, clases = [] }) {
   const t = useT()
-  const texto = textoSolicitudLector({
-    titulo: meta.titulo,
-    url: `${SITIO}${ruta}`,
-    publicadoEl: meta.publicadoEl,
-    preguntas,
-  })
+  // Sin fecha válida o sin preguntas, nada: la página ya lo filtra con
+  // `debeOfrecerSolicitud`, y esto es la segunda puerta, para que un dato mal
+  // formado no tumbe la pieza con la excepción del escrito.
+  const redactable =
+    esFechaIso(meta?.publicadoEl) && Array.isArray(preguntas) && preguntas.length > 0
+  const texto = redactable
+    ? textoSolicitudLector({
+        titulo: meta.titulo,
+        url: `${SITIO}${ruta}`,
+        publicadoEl: meta.publicadoEl,
+        preguntas,
+      })
+    : ''
   const [estado, setEstado] = useState(/** @type {'' | 'copiado' | 'fallo'} */ (''))
   const [abierto, setAbierto] = useState(false)
 
@@ -87,10 +96,20 @@ export default function SolicitudLector({ meta, ruta, preguntas, total }) {
     }
   }
 
+  if (!redactable) return null
+
   const [antes, despues] = partePorHueco(t('reportajes.solicitud.explica'), '{correo}')
+  /** Una frase por clase de motivo presente, en el orden de `CLASES`. */
+  const FRASE_DE_CLASE = {
+    'no-informativa': 'reportajes.solicitud.parcial.noInformativa',
+    'ya-pedida': 'reportajes.solicitud.parcial.yaPedida',
+  }
   const parcial =
     total != null && total > preguntas.length
-      ? rellena(t('reportajes.solicitud.parcial'), { n: preguntas.length, total })
+      ? [
+          rellena(t('reportajes.solicitud.parcial'), { n: preguntas.length, total }),
+          ...clases.filter((c) => c in FRASE_DE_CLASE).map((c) => t(FRASE_DE_CLASE[c])),
+        ].join(' ')
       : null
 
   return (
@@ -124,7 +143,10 @@ export default function SolicitudLector({ meta, ruta, preguntas, total }) {
         {despues}
       </p>
       {parcial && (
-        <p style={{ margin: '0 0 10px', fontSize: 'var(--fs-body)', color: 'var(--ink70)' }}>
+        <p
+          data-solicitud-parcial
+          style={{ margin: '0 0 10px', fontSize: 'var(--fs-body)', color: 'var(--ink70)' }}
+        >
           {parcial}
         </p>
       )}

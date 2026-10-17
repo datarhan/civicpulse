@@ -396,11 +396,11 @@ export default function AvisoLegal() {
           Algunos reportajes ofrecen el texto de una solicitud de acceso a la información para que
           la presentes tú. El botón lo copia a tu portapapeles y no envía nada a ninguna parte: no
           hay formulario ni se guarda lo que escribas, y la solicitud la presentas tú, con tu
-          identificación, ante el Ayuntamiento. Si nos envías la resolución por correo —mejor con
-          tus datos de identificación tachados—, ese correo se usa sólo para revisar la respuesta:
-          se publica sólo después de que la revise quien mantiene el proyecto, tus datos personales
-          no se publican nunca y el correo se borra cuando lo pidas, por la vía de rectificación de
-          esta página.
+          identificación, ante el Ayuntamiento. Si nos envías por correo la resolución que recibas
+          —mejor con tus datos de identificación tachados—, usamos ese correo sólo para revisar la
+          resolución. La resolución puede publicarse después de que la revise quien mantiene el
+          proyecto, nunca con tus datos personales. El correo se borra cuando lo pidas por la vía de
+          rectificación de esta página.
         </p>
       </Card>
 

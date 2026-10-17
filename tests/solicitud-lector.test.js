@@ -14,7 +14,7 @@ import { readFileSync } from 'node:fs'
 import { join } from 'node:path'
 
 import { textoSolicitudLector, debeOfrecerSolicitud, CORREO } from '../src/lib/solicitud-lector'
-import { APARTADAS, preguntasDe, solicitables } from '../src/lib/solicitud-apartadas'
+import { APARTADAS, CLASES, preguntasDe, solicitables } from '../src/lib/solicitud-apartadas'
 import { REPORTAJE_SLUGS } from '../src/reportajes'
 
 const pieza = {
@@ -76,22 +76,37 @@ describe('textoSolicitudLector', () => {
 })
 
 describe('debeOfrecerSolicitud', () => {
+  const meta = { publicadoEl: '2026-07-15' }
   it('no se ofrece donde ya se pidió', () => {
-    expect(debeOfrecerSolicitud({ preguntas: ['¿a?'], solicitudes: { items: [{}] } })).toBe(false)
+    expect(debeOfrecerSolicitud({ meta, preguntas: ['¿a?'], solicitudes: { items: [{}] } })).toBe(
+      false,
+    )
   })
-  it('se ofrece con preguntas y sin solicitud', () => {
-    expect(debeOfrecerSolicitud({ preguntas: ['¿a?'] })).toBe(true)
+  it('se ofrece con preguntas, fecha de publicación y sin solicitud', () => {
+    expect(debeOfrecerSolicitud({ meta, preguntas: ['¿a?'] })).toBe(true)
   })
   it('sin preguntas en lista, no', () => {
-    expect(debeOfrecerSolicitud({ preguntas: { bloques: [] } })).toBe(false)
+    expect(debeOfrecerSolicitud({ meta, preguntas: { bloques: [] } })).toBe(false)
   })
   it('una lista vacía o con algo que no es texto, no', () => {
-    expect(debeOfrecerSolicitud({ preguntas: [] })).toBe(false)
-    expect(debeOfrecerSolicitud({ preguntas: ['¿a?', { q: '¿b?' }] })).toBe(false)
-    expect(debeOfrecerSolicitud({})).toBe(false)
+    expect(debeOfrecerSolicitud({ meta, preguntas: [] })).toBe(false)
+    expect(debeOfrecerSolicitud({ meta, preguntas: ['¿a?', { q: '¿b?' }] })).toBe(false)
+    expect(debeOfrecerSolicitud({ meta })).toBe(false)
   })
   it('un bloque de solicitudes sin filas tampoco: la pieza ya se ocupa de pedirlo', () => {
-    expect(debeOfrecerSolicitud({ preguntas: ['¿a?'], solicitudes: { items: [] } })).toBe(false)
+    expect(debeOfrecerSolicitud({ meta, preguntas: ['¿a?'], solicitudes: { items: [] } })).toBe(
+      false,
+    )
+  })
+  it('sin una fecha de publicación válida, no: el escrito no podría fecharse', () => {
+    // Sin esto, textoSolicitudLector lanzaría dentro del render y tumbaría la pieza.
+    expect(debeOfrecerSolicitud({ preguntas: ['¿a?'] })).toBe(false)
+    for (const publicadoEl of [undefined, null, '', '15 de julio de 2026', '2026-13-01']) {
+      expect(
+        debeOfrecerSolicitud({ meta: { publicadoEl }, preguntas: ['¿a?'] }),
+        String(publicadoEl),
+      ).toBe(false)
+    }
   })
 })
 
@@ -123,7 +138,9 @@ describe('las piezas publicadas', () => {
 
       it('lo ofrece', () => {
         expect(preguntas.length).toBeGreaterThan(0)
-        expect(debeOfrecerSolicitud({ preguntas, solicitudes: d.solicitudes })).toBe(true)
+        expect(debeOfrecerSolicitud({ meta: d.meta, preguntas, solicitudes: d.solicitudes })).toBe(
+          true,
+        )
       })
       it('cada pregunta es literal de la pieza', () => {
         for (const q of preguntas) expect(enLaPieza, q).toContain(JSON.stringify(q).slice(1, -1))
@@ -152,8 +169,9 @@ describe('las piezas publicadas', () => {
         const todas = preguntasDe(d)
         const apartadas = Object.entries(APARTADAS[slug])
         expect(apartadas.length).toBeGreaterThan(0)
-        for (const [comienzo, motivo] of apartadas) {
+        for (const [comienzo, { clase, motivo }] of apartadas) {
           expect(todas.filter((q) => q.startsWith(comienzo)).length, comienzo).toBe(1)
+          expect(CLASES, comienzo).toContain(clase)
           expect(motivo.trim().length, comienzo).toBeGreaterThan(0)
           expect(
             preguntas.some((q) => q.startsWith(comienzo)),
@@ -186,12 +204,33 @@ describe('las piezas publicadas', () => {
       '¿Cuál es el grado de ejecución final',
       '¿Considera el Ayuntamiento publicar',
     ])
+    const conteo = leerPieza('conteo-visitantes').solicitudes.items
     for (const yaPedida of [
       '¿Se planteó el Ayuntamiento, tras la DANA',
       '¿Cuál es el grado de ejecución final',
     ]) {
-      expect(it_[yaPedida]).toMatch(/^ya pedida en conteo-visitantes/)
+      const { clase, motivo } = it_[yaPedida]
+      expect(clase).toBe('ya-pedida')
+      expect(motivo).toMatch(/^ya pedida en conteo-visitantes/)
+      // Cita la solicitud VIVA —el escrito a Turisme Comunitat Valenciana— y no
+      // la de la Secretaría de Estado, que contestó «no les corresponde» el 16-9.
+      expect(motivo).toContain('Turisme Comunitat Valenciana')
+      expect(motivo).not.toContain('Secretaría de Estado')
+      const registro = motivo.match(/GVRTE\/\d{4}\/\d+/)?.[0]
+      expect(registro, yaPedida).toBeTruthy()
+      expect(
+        conteo.some(
+          (s) => s.registro === registro && s.organismo === 'Turisme Comunitat Valenciana',
+        ),
+        registro,
+      ).toBe(true)
     }
+    // La mitad de la 7 que ese escrito no pide se dice, no se calla.
+    expect(it_['¿Cuál es el grado de ejecución final'].motivo).toMatch(/sin ejecutar/)
+  })
+
+  it('las demás apartadas son «no-informativa»; «ya-pedida» sólo donde se pidió', () => {
+    expect(Object.values(APARTADAS.basuras).every((e) => e.clase === 'no-informativa')).toBe(true)
   })
 })
 
