@@ -743,28 +743,41 @@ describe('el nombre de un barrio, tal como lo escribe OSM', () => {
   // Hasta 2026-10-17 el globo, el rótulo flotante, la burbuja de quejas y el
   // enlace al barrio pasaban el nombre por `prettyNeighborhood`, que capitaliza
   // cada palabra, y el punto del mapa lo escribía bien al lado.
-  it("«el Pou d'Escoto» se pinta sin capitalizar en el globo, los rótulos y el enlace", () => {
-    const nombre = BARRIO_SIN_PADRON.name
-    const [fila] = computePerNeighborhood(
-      instantanea([queja({ address_string: BARRIO_SIN_PADRON.slug })]),
-      [BARRIO_SIN_PADRON],
-    )
-    expect(fila?.name).toBe(nombre)
+  /** El globo, el rótulo, la burbuja y el enlace de un barrio, cada uno pintado aparte. */
+  const lecturasDe = (barrio) => {
+    const agg = aggregateNeighborhood({ neighborhood: barrio, zones: [], instantanea: null })
+    const [fila] = computePerNeighborhood(instantanea([queja({ address_string: barrio.slug })]), [
+      barrio,
+    ])
+    expect(fila?.name).toBe(barrio.name)
     const piezas = [
-      <NeighborhoodPopup key="globo" agg={AGG_SIN_PADRON} />,
-      <BarrioTooltip key="rotulo" agg={AGG_SIN_PADRON} />,
+      <NeighborhoodPopup key="globo" agg={agg} />,
+      <BarrioTooltip key="rotulo" agg={agg} />,
       <QuejasTooltip key="burbuja" fila={fila} />,
-      <EnlacesABarrio
-        key="enlace"
-        barrios={[{ ...BARRIO_SIN_PADRON, id: BARRIO_SIN_PADRON.slug }]}
-        onAbrir={() => {}}
-      />,
+      <EnlacesABarrio key="enlace" barrios={[{ ...barrio, id: barrio.slug }]} onAbrir={() => {}} />,
     ]
-    for (const pieza of piezas) {
+    return piezas.map((pieza) => {
       const { container, unmount } = render(<LocaleProvider>{pieza}</LocaleProvider>)
-      expect(container.textContent, pieza.key).toContain(nombre)
-      expect(container.textContent, pieza.key).not.toContain("El Pou D'Escoto")
+      const texto = container.textContent
       unmount()
+      return [pieza.key, texto]
+    })
+  }
+
+  it("«el Pou d'Escoto» se pinta sin capitalizar en el globo, los rótulos y el enlace", () => {
+    for (const [pieza, texto] of lecturasDe(BARRIO_SIN_PADRON)) {
+      expect(texto, pieza).toContain(BARRIO_SIN_PADRON.name)
+      expect(texto, pieza).not.toContain("El Pou D'Escoto")
+    }
+  })
+
+  it('un nombre de una sola palabra en minúscula también se queda como viene', () => {
+    // Tiene forma de slug, y no por eso es un slug: lo que llega de geo.json es
+    // el nombre, y se pinta sin adivinar.
+    const bovalar = { slug: 'bovalar', name: 'bovalar', centroid: [39.52, -0.53], population: null }
+    for (const [pieza, texto] of lecturasDe(bovalar)) {
+      expect(texto, pieza).toContain('bovalar')
+      expect(texto, pieza).not.toContain('Bovalar')
     }
   })
 })

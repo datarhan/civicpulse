@@ -135,28 +135,9 @@ export function prettyNeighborhood(slug) {
  * @returns {string}
  */
 export function nombreDeBarrio(slug, barrios) {
+  // Sin slug no hay barrio: buscarlo casaría `undefined` con una fila sin slug.
+  if (!slug) return ''
   return barrios?.find((b) => b.slug === slug)?.name ?? prettyNeighborhood(slug)
-}
-
-/** Lo que tiene forma de slug: minúsculas ASCII, cifras, guiones y guiones bajos. */
-const FORMA_DE_SLUG = /^[a-z0-9_-]+$/
-
-/**
- * El rótulo de un barrio cuando lo que llega YA es su nombre (`geo.json` →
- * `neighborhoods[].name`): se pinta tal cual. Sólo lo que tiene forma de slug
- * pasa por `prettyNeighborhood`.
- *
- * Hasta 2026-10-17 los mapas pasaban el nombre de OSM por `prettyNeighborhood`,
- * que capitaliza cada palabra: «el Pou d'Escoto» salía «El Pou D'Escoto» y
- * «l'Oliveral», «L'Oliveral», en el título del punto, su ficha, su globo y la
- * burbuja de quejas, mientras el rótulo del mismo punto lo escribía bien.
- *
- * @param {string|null|undefined} nombre
- * @returns {string}
- */
-export function rotuloDeBarrio(nombre) {
-  if (!nombre) return ''
-  return FORMA_DE_SLUG.test(nombre) ? prettyNeighborhood(nombre) : nombre
 }
 
 /**

@@ -12,7 +12,7 @@ import { BASEMAP_ATTRIBUTION, BASEMAP_URL } from '../lib/basemap'
 import { useGeo } from '../hooks/useGeo'
 import { useQuejas } from '../hooks/useQuejas'
 import { coberturaDeBarrios, computePerNeighborhood } from '../lib/neighborhood-aggregate'
-import { rellena, rotuloDeBarrio } from '../lib/formatters'
+import { prettyNeighborhood, rellena } from '../lib/formatters'
 import { useT } from '../i18n'
 
 const RIBA_CENTER = [39.5439, -0.5711]
@@ -112,7 +112,7 @@ export default function QuejasHeatmap() {
               >
                 <Tooltip direction="top" sticky>
                   <div style={{ fontFamily: 'Outfit, sans-serif', fontSize: 'var(--fs-meta)' }}>
-                    <strong>{rotuloDeBarrio(n.name || n.slug)}</strong>
+                    <strong>{n.name ?? prettyNeighborhood(n.slug)}</strong>
                     <br />
                     {n.total} queja{n.total === 1 ? '' : 's'}
                     {/* ✓ ⏳ ⚠ cuentan respuestas del ayuntamiento, y el plazo de la

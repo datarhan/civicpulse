@@ -1,6 +1,6 @@
 // @ts-check
 import { useT } from '../../../i18n'
-import { rellena, rotuloDeBarrio } from '../../../lib/formatters'
+import { rellena } from '../../../lib/formatters'
 
 /**
  * La puerta a la ficha de un barrio desde la ficha del pin que tapa su punto
@@ -33,7 +33,7 @@ export function EnlacesABarrio({ barrios, onAbrir }) {
             textAlign: 'left',
           }}
         >
-          {rellena(t('map.lugar.fichaBarrio'), { barrio: rotuloDeBarrio(b.name) })} →
+          {rellena(t('map.lugar.fichaBarrio'), { barrio: b.name })} →
         </button>
       ))}
     </div>

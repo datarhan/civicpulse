@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { nombreDeBarrio, rotuloDeBarrio } from '../src/lib/formatters'
+import { nombreDeBarrio } from '../src/lib/formatters'
 
 const barrios = [{ slug: 'urbanitzacio-valencia-la-vella', name: 'Urbanització València la Vella' }]
 
@@ -15,22 +15,10 @@ describe('nombreDeBarrio', () => {
   it('sin geo cae en el de siempre', () => {
     expect(nombreDeBarrio('santa-rosa', null)).toBe('Santa Rosa')
   })
-})
-
-describe('rotuloDeBarrio', () => {
-  it('un nombre de OSM se pinta tal cual, sin capitalizar', () => {
-    expect(rotuloDeBarrio("el Pou d'Escoto")).toBe("el Pou d'Escoto")
-    expect(rotuloDeBarrio("l'Oliveral")).toBe("l'Oliveral")
-    expect(rotuloDeBarrio('Urbanització València la Vella')).toBe('Urbanització València la Vella')
-    expect(rotuloDeBarrio('Vallesa de Mandor')).toBe('Vallesa de Mandor')
-  })
-  it('lo que llega con forma de slug sí se capitaliza', () => {
-    expect(rotuloDeBarrio('santa-rosa')).toBe('Santa Rosa')
-    expect(rotuloDeBarrio('l_oliveral')).toBe('L Oliveral')
-  })
-  it('vacío se queda vacío', () => {
-    expect(rotuloDeBarrio(null)).toBe('')
-    expect(rotuloDeBarrio(undefined)).toBe('')
-    expect(rotuloDeBarrio('')).toBe('')
+  it('sin slug no hay barrio, aunque una fila de geo venga sin slug', () => {
+    const conFilaSinSlug = [...barrios, { name: 'Sin slug' }]
+    expect(nombreDeBarrio(undefined, conFilaSinSlug)).toBe('')
+    expect(nombreDeBarrio(null, conFilaSinSlug)).toBe('')
+    expect(nombreDeBarrio('', conFilaSinSlug)).toBe('')
   })
 })

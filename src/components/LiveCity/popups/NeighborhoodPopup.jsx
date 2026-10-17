@@ -1,6 +1,6 @@
 // @ts-check
 import { useT } from '../../../i18n'
-import { rellena, rotuloDeBarrio } from '../../../lib/formatters'
+import { rellena } from '../../../lib/formatters'
 import { NIVELES_QUEJAS } from '../controls/QuejasLegend'
 
 const fmtEur = (n) =>
@@ -37,7 +37,10 @@ export function NeighborhoodPopup({ agg }) {
   const nivel = NIVELES_QUEJAS.find((l) => l.level === health.level)
   return (
     <div style={{ fontFamily: 'Outfit, system-ui, sans-serif', minWidth: 210, maxWidth: 280 }}>
-      <div style={{ fontSize: 'var(--fs-body)', fontWeight: 700 }}>{rotuloDeBarrio(name)}</div>
+      {/* El nombre de geo.json, tal cual. Hasta 2026-10-17 pasaba por
+          `prettyNeighborhood`, que capitaliza cada palabra: «el Pou d'Escoto»
+          salía «El Pou D'Escoto». */}
+      <div style={{ fontSize: 'var(--fs-body)', fontWeight: 700 }}>{name}</div>
       <div style={{ marginTop: 7, display: 'grid', gap: 8 }}>
         <div>
           <div style={labelStyle}>{t('eficiencia.pares.poblacion')}</div>

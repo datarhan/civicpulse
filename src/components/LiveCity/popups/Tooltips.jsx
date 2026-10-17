@@ -1,7 +1,7 @@
 // @ts-check
 import { useT } from '../../../i18n'
 import { POI_CATEGORIES } from '../../../lib/civic-poi'
-import { rellena, rotuloDeBarrio } from '../../../lib/formatters'
+import { prettyNeighborhood, rellena } from '../../../lib/formatters'
 
 /**
  * Los rótulos que flotan al pasar por encima de un pin de dinero, un barrio, un
@@ -42,7 +42,9 @@ export function BarrioTooltip({ agg }) {
   const t = useT()
   return (
     <div style={cuerpo}>
-      <strong>{rotuloDeBarrio(agg.name)}</strong>
+      {/* El nombre de geo.json, tal cual: capitalizado, «el Pou d'Escoto» salía
+          «El Pou D'Escoto» (hasta 2026-10-17). */}
+      <strong>{agg.name}</strong>
       <br />
       {agg.population
         ? rellena(t('map.barrio.habitantes'), { n: agg.population.toLocaleString('es-ES') })
@@ -72,7 +74,7 @@ export function QuejasTooltip({ fila: n }) {
   const t = useT()
   return (
     <div style={cuerpo}>
-      <strong>{rotuloDeBarrio(n.name || n.slug)}</strong>
+      <strong>{n.name ?? prettyNeighborhood(n.slug)}</strong>
       <br />
       {/* Variantes -ink: el tono base daba 3,3:1 sobre el blanco del
           popup, y axe no lo ve porque un popup de Leaflet no existe
