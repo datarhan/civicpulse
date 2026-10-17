@@ -218,7 +218,14 @@ export interface PressClaimsSnapshot {
      */
     articlesProcessed?: number
     articlesAvailable?: number
+    /** Artículos cuyo TRIAJE no llegó al modelo. */
     llmUnavailable?: number
+    /**
+     * Artículos con el triaje positivo cuya EXTRACCIÓN no obtuvo respuesta.
+     * Aparte de `llmUnavailable` porque es otra llamada que falla: sin este
+     * campo, una pasada cuyo triaje funcionó y cuya extracción no respondió se leía sana.
+     */
+    extraccionesSinRespuesta?: number
     windowFrom?: string | null
     windowTo?: string | null
     /** Artículos con desenlace conocido, de esta pasada y de las anteriores (`articulos.length`). */

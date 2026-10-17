@@ -4,6 +4,7 @@ import {
   desenlaceDe,
   elegirPendientes,
   fundirExtraccion,
+  sembrarDesdeClaims,
   type DesenlaceExtraccion,
   type ExtraccionArticulo,
 } from '../src/scraper/press-extraccion'
@@ -251,4 +252,79 @@ describe('desenlaceDe', () => {
 it('el enum exportado es el que usa la página', () => {
   expect(DESENLACES_EXTRACCION).toContain('descartado-en-triaje')
   expect(new Set(DESENLACES_EXTRACCION).size).toBe(DESENLACES_EXTRACCION.length)
+})
+
+// Migración de una sola vez de los ficheros anteriores a `articulos`: de lo
+// que el fichero viejo prueba —sólo las afirmaciones— y de nada más. Los
+// artículos de la ventana que no dieron afirmaciones no dejaron rastro de su
+// desenlace; inventarles un «sin-afirmaciones» sería la regla 2 al revés.
+describe('sembrarDesdeClaims', () => {
+  const claim = (articleId: string, articleFingerprint?: string) => ({
+    articleId,
+    ...(articleFingerprint === undefined ? {} : { articleFingerprint }),
+  })
+
+  it('siembra sólo los artículos con al menos una afirmación, todos `extraido`, fechados con el fichero', () => {
+    const { articulos, sinHuella } = sembrarDesdeClaims(
+      [claim('b', 'fb'), claim('a', 'fa'), claim('b', 'fb')],
+      '2026-10-12T08:31:15.395Z',
+      new Map([
+        ['a', 'fa'],
+        ['b', 'fb'],
+        ['sin-claims', 'fz'],
+      ]),
+    )
+    expect(articulos).toEqual([
+      {
+        articleId: 'a',
+        fingerprint: 'fa',
+        desenlace: 'extraido',
+        procesadoEl: '2026-10-12T08:31:15.395Z',
+      },
+      {
+        articleId: 'b',
+        fingerprint: 'fb',
+        desenlace: 'extraido',
+        procesadoEl: '2026-10-12T08:31:15.395Z',
+      },
+    ])
+    expect(sinHuella).toEqual([])
+  })
+
+  it('nunca inventa otro desenlace que `extraido`', () => {
+    const { articulos } = sembrarDesdeClaims(
+      [claim('a', 'fa'), claim('c', 'fc')],
+      '2026-10-12',
+      new Map([['z', 'fz']]),
+    )
+    expect(articulos.length).toBeGreaterThan(0)
+    expect(new Set(articulos.map((a) => a.desenlace))).toEqual(new Set(['extraido']))
+    expect(articulos.some((a) => a.desenlace === 'sin-afirmaciones')).toBe(false)
+  })
+
+  it('la huella de la afirmación manda sobre la de press.json: un titular cambiado vuelve a la cola', () => {
+    const { articulos } = sembrarDesdeClaims(
+      [claim('a', 'huella-extraida')],
+      '2026-10-12',
+      new Map([['a', 'huella-de-hoy']]),
+    )
+    expect(articulos[0].fingerprint).toBe('huella-extraida')
+    // Y por eso `elegirPendientes` lo devuelve como cambiado.
+    const cola = elegirPendientes(
+      [{ id: 'a', fingerprint: 'huella-de-hoy', date: '2026-10-12' }],
+      articulos,
+      Infinity,
+    )
+    expect(cola.map((x) => x.id)).toEqual(['a'])
+  })
+
+  it('sin huella en la afirmación usa la de press.json; sin ninguna, lo deja fuera y lo dice', () => {
+    const { articulos, sinHuella } = sembrarDesdeClaims(
+      [claim('a'), claim('b'), claim('c', '')],
+      '2026-10-12',
+      new Map([['a', 'fa-prensa']]),
+    )
+    expect(articulos.map((x) => [x.articleId, x.fingerprint])).toEqual([['a', 'fa-prensa']])
+    expect(sinHuella).toEqual(['b', 'c'])
+  })
 })

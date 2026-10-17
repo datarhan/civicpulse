@@ -121,14 +121,59 @@ export function fundirExtraccion<T extends { articleId: string }>(
     porId.set(a.articleId, a)
   }
 
-  const articulos = [...porId.values()].sort((x, y) =>
-    x.articleId < y.articleId ? -1 : x.articleId > y.articleId ? 1 : 0,
-  )
+  const articulos = [...porId.values()].sort(porArticleId)
   const items = [
     ...(prev?.items ?? []).filter((it) => !sustituidos.has(it.articleId)),
     ...run.items.filter((it) => !rechazados.has(it.articleId)),
   ]
   return { articulos, items }
+}
+
+/** Orden por `articleId`, el mismo de `fundirExtraccion`. */
+function porArticleId(x: ExtraccionArticulo, y: ExtraccionArticulo): number {
+  return x.articleId < y.articleId ? -1 : x.articleId > y.articleId ? 1 : 0
+}
+
+/**
+ * Migración de una sola vez: `articulos` para un fichero anterior a octubre de
+ * 2026, que no los traía porque el desenlace de cada artículo se tiraba.
+ *
+ * Se siembra SÓLO lo que el fichero prueba: un artículo con al menos una
+ * afirmación fue `extraido`, en la pasada que fechó el fichero
+ * (`generatedAt`). De los demás artículos de aquella ventana no queda
+ * constancia de qué salió —pudo ser «sin afirmaciones», un descarte en el
+ * triaje o un LLM caído—, así que no se inventa ninguno: siguen pendientes y
+ * /laboratorio los muestra como aún no procesados hasta que una pasada los vea.
+ *
+ * La huella es la de la afirmación (`articleFingerprint`): es la del titular
+ * que de verdad se extrajo. Si el titular cambió después, la de press.json
+ * diría «ya procesado» de un texto que nadie miró; con la de la afirmación,
+ * `elegirPendientes` lo devuelve a la cola como cambiado. press.json sólo
+ * suple una afirmación sin huella. Sin ninguna, el artículo queda fuera y se
+ * devuelve en `sinHuella` para que la CLI lo diga.
+ */
+export function sembrarDesdeClaims(
+  items: Array<{ articleId: string; articleFingerprint?: string }>,
+  generatedAt: string,
+  huellaEnPrensa: ReadonlyMap<string, string>,
+): { articulos: ExtraccionArticulo[]; sinHuella: string[] } {
+  const porId = new Map<string, ExtraccionArticulo>()
+  const sinHuella: string[] = []
+  for (const c of items) {
+    if (porId.has(c.articleId) || sinHuella.includes(c.articleId)) continue
+    const fingerprint = c.articleFingerprint || huellaEnPrensa.get(c.articleId)
+    if (!fingerprint) {
+      sinHuella.push(c.articleId)
+      continue
+    }
+    porId.set(c.articleId, {
+      articleId: c.articleId,
+      fingerprint,
+      desenlace: 'extraido',
+      procesadoEl: generatedAt,
+    })
+  }
+  return { articulos: [...porId.values()].sort(porArticleId), sinHuella }
 }
 
 /** Milisegundos de una fecha; lo ilegible va al final, no al principio. */

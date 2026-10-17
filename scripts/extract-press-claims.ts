@@ -39,6 +39,7 @@ import {
   desenlaceDe,
   elegirPendientes,
   fundirExtraccion,
+  sembrarDesdeClaims,
   type ExtraccionArticulo,
 } from '../src/scraper/press-extraccion'
 import { decideSnapshotWrite } from '../src/scraper/snapshot-write'
@@ -50,14 +51,18 @@ const PROJECT_ROOT = join(__dirname, '..')
 const IN = join(PROJECT_ROOT, 'public/data/press.json')
 const OUT = join(PROJECT_ROOT, 'public/data/press-claims-suggestions.json')
 
+// `--flag valor` y `--flag=valor`. Sólo la primera forma se reconocía: un
+// `--max=5` caía en «sin `--max`» y mandaba TODOS los pendientes al LLM.
 function getFlag(name: string): string | null {
+  const conIgual = process.argv.find((a) => a.startsWith(`${name}=`))
+  if (conIgual !== undefined) return conIgual.slice(name.length + 1)
   const i = process.argv.indexOf(name)
   if (i < 0) return null
   return process.argv[i + 1] ?? null
 }
 
 function hasFlag(name: string): boolean {
-  return process.argv.includes(name)
+  return process.argv.some((a) => a === name || a.startsWith(`${name}=`))
 }
 
 async function main() {
@@ -187,6 +192,7 @@ async function main() {
           articlesProcessed: prev.stats.articlesProcessed,
           articlesAvailable: prev.stats.articlesAvailable,
           llmUnavailable: prev.stats.llmUnavailable,
+          extraccionesSinRespuesta: prev.stats.extraccionesSinRespuesta,
           windowFrom: prev.stats.windowFrom,
           windowTo: prev.stats.windowTo,
         }
@@ -195,6 +201,7 @@ async function main() {
           articlesProcessed: result.stats.total,
           articlesAvailable: allItemsCount,
           llmUnavailable: result.stats.llmUnavailable,
+          extraccionesSinRespuesta: sinRespuesta,
           // Ya no es una ventana contigua: el más viejo y el más nuevo de los
           // artículos que ESTA pasada envió.
           windowFrom: fechaExtrema(items, 'min'),
@@ -216,6 +223,7 @@ async function main() {
       articlesProcessed: procedencia.articlesProcessed,
       articlesAvailable: procedencia.articlesAvailable,
       llmUnavailable: procedencia.llmUnavailable,
+      extraccionesSinRespuesta: procedencia.extraccionesSinRespuesta,
       windowFrom: procedencia.windowFrom,
       windowTo: procedencia.windowTo,
       articulosVistos: merged.articulos.length,
@@ -291,9 +299,18 @@ async function main() {
   if (sinRespuesta > 0) {
     console.error(
       `[extract:press-claims] WARNING: extraction returned nothing for ` +
-        `${sinRespuesta}/${result.stats.total} items after a positive triage. ` +
+        `${sinRespuesta}/${result.stats.triageHits} items with a positive triage. ` +
         `They stay pending (llm-no-disponible) and keep any earlier claims.`,
     )
+    // Rojo sólo si NINGÚN triaje positivo obtuvo su extracción: eso es la
+    // llamada de extracción caída, no un artículo raro. Un fallo parcial deja
+    // exit 0 a propósito: press-lab-pipeline.sh salta verify:press-claims y lo
+    // que cuelga de él cuando este paso sale con 1, y un artículo que siempre
+    // devuelve null (p. ej. una respuesta que no pasa el esquema) vuelve el
+    // primero a la cola en cada pasada — con exit 1 por cada uno, bloquearía
+    // la cadena entera todas las semanas por un solo titular. Los fusionados no
+    // pierden nada en ninguno de los dos casos (`fundirExtraccion`).
+    if (sinRespuesta === result.stats.triageHits) process.exitCode = 1
   }
 }
 
@@ -305,19 +322,10 @@ function fechaExtrema(items: PressNewsItem[], cual: 'min' | 'max'): string | nul
 }
 
 /**
- * Lee el fichero publicado como base de la fusión.
- *
- * Migración de una sola vez: los ficheros anteriores a octubre de 2026 no
- * traen `articulos`, porque el desenlace de cada artículo se tiraba. Se siembra
- * SÓLO lo que el fichero prueba: un artículo con al menos una afirmación fue
- * `extraido`, en la pasada que fechó el fichero. De los demás artículos de
- * aquella ventana no queda constancia de qué salió — pudo ser «sin
- * afirmaciones», un descarte en el triaje o un LLM caído —, así que no se
- * inventa ninguno: siguen pendientes y /laboratorio los muestra como aún no
- * procesados hasta que una pasada los vea, que es lo que se puede probar.
- *
- * La huella sale de press.json; si el artículo ya no está allí, de la propia
- * afirmación (`articleFingerprint`), que es la huella con que se extrajo.
+ * Lee el fichero publicado como base de la fusión. Si no trae `articulos`
+ * (anterior a octubre de 2026), los siembra de una sola vez con
+ * `sembrarDesdeClaims` (press-extraccion.ts), que explica qué se siembra y
+ * por qué nada más.
  */
 function leerAnterior(
   raw: string,
@@ -327,29 +335,13 @@ function leerAnterior(
   if (snap.articulos) return { ...snap, articulos: snap.articulos, sembrado: false }
 
   const huellaEnPrensa = new Map(pressItems.map((it) => [it.id, it.fingerprint]))
-  const porId = new Map<string, ExtraccionArticulo>()
-  for (const c of snap.items) {
-    if (porId.has(c.articleId)) continue
-    const fingerprint = huellaEnPrensa.get(c.articleId) ?? c.articleFingerprint
-    if (!fingerprint) {
-      console.warn(
-        `[extract:press-claims] seed: ${c.articleId} has no fingerprint in press.json ` +
-          `nor in its claim — left out of articulos`,
-      )
-      continue
-    }
-    porId.set(c.articleId, {
-      articleId: c.articleId,
-      fingerprint,
-      desenlace: 'extraido',
-      procesadoEl: snap.generatedAt,
-    })
+  const { articulos, sinHuella } = sembrarDesdeClaims(snap.items, snap.generatedAt, huellaEnPrensa)
+  for (const id of sinHuella) {
+    console.warn(
+      `[extract:press-claims] seed: ${id} has no fingerprint in its claim nor in press.json ` +
+        `— left out of articulos`,
+    )
   }
-  // El mismo orden que `fundirExtraccion`, para que la siembra no cambie de
-  // orden en la primera pasada real.
-  const articulos = [...porId.values()].sort((x, y) =>
-    x.articleId < y.articleId ? -1 : x.articleId > y.articleId ? 1 : 0,
-  )
   return { ...snap, articulos, sembrado: true }
 }
 
