@@ -129,11 +129,14 @@
     ],
     "geo.json": [
       "/",
+      "/cambios",
       "/datos",
       "/lab-health",
       "/metodologia",
       "/presupuesto",
-      "/quejas"
+      "/quejas",
+      "/quejas/:id",
+      "/quejas/dashboard"
     ],
     "incendios-perimetros.json": [
       "/",

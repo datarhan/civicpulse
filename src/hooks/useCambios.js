@@ -1,6 +1,8 @@
 // @ts-check
 import { useMemo } from 'react'
-import { useQuejas, CATEGORY_LABEL, STATE_LABEL, prettyNeighborhood } from './useQuejas'
+import { useQuejas, CATEGORY_LABEL, STATE_LABEL } from './useQuejas'
+import { useGeo } from './useGeo'
+import { nombreDeBarrio } from '../lib/formatters'
 import { usePlenos } from './usePlenos'
 import { usePress } from './usePress'
 import { useTenders, formatDate } from './useTenders'
@@ -46,6 +48,9 @@ export function useCambios(days = DEFAULT_WINDOW_DAYS) {
   const { data: tenders, loading: tL } = useTenders()
   const { data: bdns, loading: bL } = useBdns()
   const { data: participa, loading: paL } = useParticipa()
+  // Sólo para escribir el barrio de una queja con su nombre de OSM. No entra en
+  // `loading`: sin geo.json el barrio cae en el slug capitalizado, no se calla.
+  const { data: geo } = useGeo()
 
   const loading = qL || pL || prL || tL || bL || paL
 
@@ -67,7 +72,7 @@ export function useCambios(days = DEFAULT_WINDOW_DAYS) {
         title: (q.description || '').split('\n')[0].slice(0, 120),
         subtitle: [
           CATEGORY_LABEL[q.service_code] || q.service_code,
-          q.address_string ? prettyNeighborhood(q.address_string) : null,
+          q.address_string ? nombreDeBarrio(q.address_string, geo?.neighborhoods) : null,
           STATE_LABEL[q.status] || q.status,
         ]
           .filter(Boolean)
@@ -156,7 +161,7 @@ export function useCambios(days = DEFAULT_WINDOW_DAYS) {
 
     out.sort((a, b) => (b.date || '').localeCompare(a.date || ''))
     return out
-  }, [quejas, plenos, press, tenders, bdns, participa, days])
+  }, [quejas, plenos, press, tenders, bdns, participa, geo, days])
 
   const byKind = useMemo(() => {
     const m = {}

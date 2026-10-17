@@ -28,7 +28,6 @@ import { readFileSync } from 'node:fs'
 import { resolve } from 'node:path'
 
 import { CATALOGUE, LocaleProvider } from '../../src/i18n'
-import { prettyNeighborhood } from '../../src/lib/formatters'
 import QuejaDetail from '../../src/pages/QuejaDetail'
 import { RELATION_LABELS, scoreRelation } from '../../src/scraper/queja-contract-relations'
 import {
@@ -94,7 +93,12 @@ const OFICIALES = publicado('/data/officials.json')
 const CONCEJAL = OFICIALES.officials.find((o) => o.photoUrl && o.party && o.role !== 'alcalde')
 
 const ID = 'Q-GUARDA01'
-const BARRIO = 'el-oliveral'
+const BARRIO = 'l-oliveral'
+/**
+ * Su punto en geo.json, escrito aquí: la ficha pinta el nombre de OSM, con su
+ * minúscula y su apóstrofo, y no el slug capitalizado («L Oliveral»).
+ */
+const BARRIO_OSM = { id: 'node-1', slug: BARRIO, name: "l'Oliveral", centroid: [39.55, -0.56] }
 
 /** Todos los campos que publica el bot; el texto es inventado. */
 const QUEJA = {
@@ -197,6 +201,7 @@ function sirve({
     },
     '/data/quejas-responses.json': { generatedAt: '2026-09-17T06:00:00.000Z', items: respuestas },
     '/data/officials.json': OFICIALES,
+    '/data/geo.json': { neighborhoods: [BARRIO_OSM] },
   }
   if (encontrada) {
     mapa['/data/queja-contract-relations.json'] = relaciones
@@ -205,8 +210,8 @@ function sirve({
   return mapa
 }
 
-/** El dato que la ficha deriva del fichero y no está escrito en él: el barrio legible. */
-const DERIVADOS = [prettyNeighborhood(BARRIO)]
+/** El barrio, por su nombre de geo.json: dato aunque sea corto y vaya dentro de una pieza. */
+const DERIVADOS = [BARRIO_OSM.name]
 
 // ─── Escenarios ────────────────────────────────────────────────────────────────
 

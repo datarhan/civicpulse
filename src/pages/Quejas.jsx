@@ -1,7 +1,8 @@
 import { Link } from 'react-router-dom'
 import { Card, ExtLink, Pill, SectionHead, ShareWA } from '../components/Primitives'
 import DataAsOf from '../components/DataAsOf'
-import { useQuejas, useEtiquetasDeQueja, STATE_TONE, prettyNeighborhood } from '../hooks/useQuejas'
+import { useQuejas, useEtiquetasDeQueja, STATE_TONE } from '../hooks/useQuejas'
+import { useGeo } from '../hooks/useGeo'
 import { useCtbg } from '../hooks/useCtbg'
 import { useSindicatura } from '../hooks/useSindicatura'
 import { useBop, formatBopDate } from '../hooks/useBop'
@@ -11,7 +12,7 @@ import { useSindicExpedientes } from '../hooks/useSindicExpedientes'
 import QuejasHeatmap from '../components/QuejasHeatmap'
 import QuejasSpendOverlap from '../components/Quejas/QuejasSpendOverlap'
 import { useDocumentTitle } from '../hooks/useDocumentTitle'
-import { fmtDateShort, porcentajeLegible } from '../lib/formatters'
+import { fmtDateShort, nombreDeBarrio, porcentajeLegible } from '../lib/formatters'
 import { medibilidad, registroUtilizable } from '../lib/reloj-lpacap'
 import { contarConsideraciones } from '../lib/sindic-consideraciones'
 import { useT } from '../i18n'
@@ -977,6 +978,9 @@ function StatCard({ label, value, tone = 'neutral', sub }) {
 function DashboardView({ data }) {
   const t = useT()
   const etiqueta = useEtiquetasDeQueja()
+  // El nombre del barrio, el de OSM: el slug capitalizado perdía acentos y
+  // cedillas (`nombreDeBarrio`). El mapa de esta página ya pide geo.json.
+  const barrios = useGeo().data?.neighborhoods
   const items = data.items || []
   const stats = data.stats || { total: 0, byState: {}, byNeighborhood: {}, byCategory: {} }
 
@@ -1129,7 +1133,7 @@ function DashboardView({ data }) {
             {sortedNeigh.map(([slug, n]) => (
               <div key={slug} style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
                 <span style={{ flex: 1, fontSize: 'var(--fs-aux)' }}>
-                  {prettyNeighborhood(slug)}
+                  {nombreDeBarrio(slug, barrios)}
                 </span>
                 <span
                   className="mono"
@@ -1208,7 +1212,7 @@ function DashboardView({ data }) {
                   style={{ fontSize: 'var(--fs-micro)', color: 'var(--ink50)', marginTop: 2 }}
                 >
                   {etiqueta.categoria(it.service_code)}
-                  {it.address_string ? ` · ${prettyNeighborhood(it.address_string)}` : ''}
+                  {it.address_string ? ` · ${nombreDeBarrio(it.address_string, barrios)}` : ''}
                   {it.concejalia_area ? ` · ${it.concejalia_area}` : ''}
                 </div>
               </div>
