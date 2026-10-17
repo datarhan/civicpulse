@@ -1,8 +1,7 @@
 import { stripDiacritics } from './normalize'
 import { isCommittedContract, importeAdjudicado } from '../lib/contract-status.js'
 import {
-  resolvePlace,
-  resolveDistinctPlaces,
+  resolveUnambiguousPlace,
   foldTitle,
   type Candidate,
   type PlaceKind,
@@ -248,22 +247,20 @@ export function matchContractsToZones(
 
     // Precise point via a curator override (LLM-suggested, human-approved) if
     // present, else the deterministic resolver (POIs only for works contracts).
-    // The contract's OWN title always wins; the parent objeto is only a
-    // fallback and only when it names exactly ONE distinct place — a multi-lot
-    // parent enumerating several lots' places can't say which lot goes where,
-    // and an honest miss beats a wrong pin.
+    // Own title and parent objeto pass the SAME rule: one place, or places
+    // nested in one another (a street inside the partida it names); a title
+    // naming several unrelated places gets no pin — five zones of a bike lane,
+    // or a multi-lot parent enumerating its lots' places. An honest miss beats
+    // a wrong pin. The own title always wins; the parent is only a fallback.
     const isWorks = (c.contractType ?? '') === 'construction'
     const override = opts.overrides?.[c.id]
-    let resolved = resolvePlace(foldTitle(title), candidates, { allowPoi: isWorks })
+    let resolved = resolveUnambiguousPlace(foldTitle(title), candidates, { allowPoi: isWorks })
     let placedViaParent = false
     if (!resolved && parentAdds) {
-      const parentPlaces = resolveDistinctPlaces(foldTitle(c.parentTitle!), candidates, {
+      resolved = resolveUnambiguousPlace(foldTitle(c.parentTitle!), candidates, {
         allowPoi: isWorks,
       })
-      if (parentPlaces.length === 1) {
-        resolved = parentPlaces[0]
-        placedViaParent = true
-      }
+      placedViaParent = resolved !== null
     }
     const place = override
       ? {

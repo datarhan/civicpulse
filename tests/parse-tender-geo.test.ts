@@ -119,6 +119,76 @@ describe('scraper/tender-geo — matchContractsToZones', () => {
     expect(snap.assignments.find((x) => x.id === '4446501')?.place ?? null).toBeNull()
   })
 
+  it('el objeto padre que nombra una calle DENTRO de su partida sí sitúa el lote', () => {
+    // «Varios sitios» se cuenta después de la contención: la partida que
+    // contiene a la calle no es un segundo sitio.
+    const candidates = buildGazetteer({
+      streets: [
+        { slug: 'carrer-dolcaina', name: 'Carrer Dolçaina', point: [39.5609297, -0.5598736] },
+      ],
+      zones: [{ slug: 'gallipont', name: 'Gallipont', centroid: [39.55865, -0.55638] }],
+      zoneAliases: { gallipont: ['Gallipont'] },
+    })
+    const snap = matchContractsToZones(
+      [
+        {
+          id: 'lote-partida',
+          title: 'Obra completa',
+          parentTitle: 'Asfaltado C/ Dolçaina (Partida Gallipont)',
+          status: 'awarded',
+          finalAmount: 10000,
+          awardDate: '2024-07-08',
+          contractType: 'construction',
+        },
+      ],
+      ZONES,
+      OPTS,
+      candidates,
+    )
+    expect(snap.assignments.find((x) => x.id === 'lote-partida')?.place?.sourceId).toBe(
+      'carrer-dolcaina',
+    )
+  })
+
+  it('74419: un título que enumera cinco zonas cuenta en cada zona pero no tiene pin', () => {
+    const zonas = [
+      ...ZONES,
+      {
+        slug: 'santa-rosa',
+        name: 'Santa Rosa',
+        centroid: [39.5508312, -0.5333969] as [number, number],
+      },
+    ]
+    const candidates = buildGazetteer({
+      zones: zonas,
+      zoneAliases: { 'santa-rosa': ['santa rosa'], 'el-molinet': ['molinet'] },
+    })
+    const snap = matchContractsToZones(
+      [
+        {
+          id: '74419',
+          title:
+            'Obras de ejecución de carril bici en la zona Molinet, Montealcedo, entrenaranjos, Santa Rosa y El Clot',
+          status: 'awarded',
+          finalAmount: 160889,
+          awardDate: '2018-05-01',
+          contractType: 'construction',
+        },
+      ],
+      zonas,
+      OPTS,
+      candidates,
+    )
+    const a = snap.assignments.find((x) => x.id === '74419')!
+    // El agregado por zonas no cambia: el título nombra esas zonas.
+    expect(a.zones.sort()).toEqual(['el-molinet', 'santa-rosa'])
+    // Pero un pin en Santa Rosa diría que el carril está allí.
+    expect(a.place).toBeNull()
+    expect(a.point).toBeNull()
+    expect(snap.universe.situatedContracts).toBe(0)
+    expect(snap.universe.situatedAmount).toBe(0)
+  })
+
   it('the parent objeto never overrides a place the lot title names itself', () => {
     const candidates = buildGazetteer({
       pois: [{ id: 'barranc-dels-moros', name: 'Barranc dels Moros', lat: 39.53, lng: -0.58 }],
@@ -381,11 +451,15 @@ describe('scraper/tender-geo — precise placement via gazetteer', () => {
     ],
     pois: [
       {
+        // Dentro de La Reva (≈0,4 km de su centroide): la regla de contención
+        // sólo deja ganar al punto más preciso si cae DENTRO de la zona que el
+        // título también nombra. Hasta el 17-10-2026 este fixture lo ponía a
+        // 6 km, una geografía imposible que la regla anterior no miraba.
         id: 'poi-poli',
         name: 'Polideportivo Municipal',
         category: 'deporte',
-        lat: 39.54,
-        lng: -0.57,
+        lat: 39.4875,
+        lng: -0.5705,
       },
     ],
     zones: ZONES.map((z) => ({ slug: z.slug, name: z.name, centroid: z.centroid })),
@@ -436,7 +510,7 @@ describe('scraper/tender-geo — precise placement via gazetteer', () => {
     expect(a.zones).toEqual(['urbanitzacio-la-reva'])
     // …but the precise pin sits on the POI, not the barrio centroid.
     expect(a.place?.kind).toBe('poi')
-    expect(a.point).toEqual([39.54, -0.57])
+    expect(a.point).toEqual([39.4875, -0.5705])
   })
 
   it('applies a curator override (LLM-suggested, human-approved) over the resolver', () => {
