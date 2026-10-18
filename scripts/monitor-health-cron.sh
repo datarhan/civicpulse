@@ -22,6 +22,14 @@ export PATH="/usr/local/bin:/opt/homebrew/bin:$HOME/.local/bin:$PATH"
 if [ -f .env ]; then set -a; . ./.env; set +a; fi
 
 echo "[monitor-health-cron] $(date '+%F %T')"
+
+# Before the digest: rebuild the curator worklists that only went stale because
+# findings were retracted (`colas:rehacer`, src/scraper/queue-repair.ts). It
+# refuses a queue holding a choice its builder would wipe, and puts the backup
+# back when a rebuild fails or drops a verdict — either way `check:queues`,
+# run inside the digest below, still reports it, so what needs a person still
+# reaches one. Its exit code is not the cron's: a refusal is the step working.
+npm run --silent colas:rehacer || echo "[monitor-health-cron] colas:rehacer dejó algo para una persona (arriba)"
 npm run --silent monitor:health -- --explain
 rc=$?
 # Exit 1 means "alerts found and reported" — the monitor working, not the cron

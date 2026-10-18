@@ -211,7 +211,7 @@ Anything needing an LLM backend or a residential IP runs here, not in CI.
 | 08:30 Mon       | launchd | `auto-curate-promises-daily.sh` — `/promesas` status-change miner                                                                                                                                      |
 | 09:30 Mon + Thu | launchd | `hallazgos-pipeline.sh` — transcribe → extract → verify → auto-curate → push                                                                                                                           |
 | 10:15 Mon       | launchd | `press-lab-pipeline.sh` — `/laboratorio` press fact-check pass                                                                                                                                         |
-| 11:00 daily     | cron    | `monitor-health-cron.sh`                                                                                                                                                                               |
+| 11:00 daily     | cron    | `monitor-health-cron.sh` — first `colas:rehacer` (rebuilds curator queues gone stale by a retraction, never one holding an unapplied choice), then the digest                                          |
 
 ### Cadence: why the LLM agents are not daily
 
