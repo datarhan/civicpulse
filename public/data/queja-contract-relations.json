@@ -1,12 +1,12 @@
 {
-  "generatedAt": "2026-10-18T09:13:01.467Z",
+  "generatedAt": "2026-10-18T09:52:38.898Z",
   "source": "queja-contract-relations engine v1 (deterministic)",
   "stats": {
     "frozen": false,
     "quejasScanned": 1,
     "contractsScanned": 715,
-    "tierA": 4,
-    "tierB": 32,
+    "tierA": 3,
+    "tierB": 30,
     "reason": null
   },
   "links": [
@@ -196,22 +196,6 @@
     },
     {
       "quejaId": "Q-KJY6XSVG",
-      "tenderPermalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=X%2FkmL7iSyCcSugstABGr5A%3D%3D",
-      "tenderId": "2739773",
-      "via": "deterministic",
-      "signals": {
-        "place": {
-          "granularity": "barrio",
-          "slug": "urbanitzacio-valencia-la-vella"
-        }
-      },
-      "tier": "B",
-      "score": 0.6,
-      "relationLabel": "misma zona",
-      "requiresHumanApproval": true
-    },
-    {
-      "quejaId": "Q-KJY6XSVG",
       "tenderPermalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=lWTuvLzS6jH10HRJw8TEnQ%3D%3D",
       "tenderId": "9895895",
       "via": "deterministic",
@@ -374,25 +358,6 @@
     },
     {
       "quejaId": "Q-KJY6XSVG",
-      "tenderPermalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=HOM%2FHPDB2NAS7pcxhTeWOg%3D%3D",
-      "tenderId": "4718569",
-      "via": "deterministic",
-      "signals": {
-        "place": {
-          "granularity": "exact",
-          "slug": "urbanitzacio-valencia-la-vella"
-        },
-        "department": {
-          "slug": "urbanismo"
-        }
-      },
-      "tier": "A",
-      "score": 0.85,
-      "relationLabel": "misma zona y materia",
-      "requiresHumanApproval": false
-    },
-    {
-      "quejaId": "Q-KJY6XSVG",
       "tenderPermalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=vj7xKMfPgB%2BP66GS%2BONYvQ%3D%3D",
       "tenderId": "9990928",
       "via": "deterministic",
@@ -427,22 +392,6 @@
       "score": 0.85,
       "relationLabel": "misma zona y materia",
       "requiresHumanApproval": false
-    },
-    {
-      "quejaId": "Q-KJY6XSVG",
-      "tenderPermalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=7t0981qTMJ0uf4aBO%2BvQlQ%3D%3D",
-      "tenderId": "1520813",
-      "via": "deterministic",
-      "signals": {
-        "place": {
-          "granularity": "barrio",
-          "slug": "urbanitzacio-valencia-la-vella"
-        }
-      },
-      "tier": "B",
-      "score": 0.6,
-      "relationLabel": "misma zona",
-      "requiresHumanApproval": true
     },
     {
       "quejaId": "Q-KJY6XSVG",
@@ -665,7 +614,7 @@
   "builtFrom": {
     "promises.json": "08c43b132d79",
     "quejas.json": "0cd221b41a96",
-    "tender-geo.json": "2a8b5aad1386",
+    "tender-geo.json": "8d5e62cf32f7",
     "tenders.json": "1b7d64143ae0"
   }
 }
