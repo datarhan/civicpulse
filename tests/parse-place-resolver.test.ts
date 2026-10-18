@@ -962,3 +962,93 @@ describe('place-resolver — «Mas d’Escoto» (el colegio) no es el Pou d’Es
     expect(sitio("Pavimentación pista deportiva en CEIP Más d'Escoto", true)).toBe('way-903588096')
   })
 })
+
+describe('place-resolver — València la Vella: la urbanización se ve; el yacimiento no se confunde con ella', () => {
+  // OSM da cuatro cosas con ese nombre: la urbanización (node 615180643), la
+  // estación de Metrovalencia, el Carrer de València la Vella y el yacimiento
+  // visigodo (BIC, «Zona arqueològica», way 1176535578), con su propio polígono a
+  // 0,72 km del centroide de la urbanización. Medido el 2026-10-18.
+  const gaz = buildGazetteer({
+    // El yacimiento entra por gazetteer-supplement.json con estos tres nombres.
+    pois: [
+      'Jaciment Visigòtic de València la Vella',
+      'Yacimiento arqueológico de Valencia la Vella',
+      'Yacimiento de Valencia la Vella',
+    ].map((name) => ({
+      id: 'jaciment-valencia-la-vella',
+      name,
+      lat: 39.52974,
+      lng: -0.52503,
+    })),
+    zones: [
+      {
+        slug: 'urbanitzacio-valencia-la-vella',
+        name: 'Urbanització València la Vella',
+        centroid: [39.5344276, -0.5307458],
+      },
+      { slug: 'monte-alcedo', name: 'Monte Alcedo', centroid: [39.5558, -0.5425] },
+      {
+        slug: 'poligono-industrial-entrevias',
+        name: 'Polígono Industrial Entrevías',
+        centroid: [39.5405303, -0.5508958],
+      },
+    ],
+    zoneAliases: ZONE_ALIASES,
+  })
+  const sitio = (titulo: string, allowPoi: boolean) =>
+    resolveUnambiguousPlace(foldTitle(titulo), gaz, { allowPoi })?.sourceId ?? null
+
+  it('el alias curado «valencia la vella» es una aguja de la urbanización', () => {
+    const urb = gaz.find(
+      (c) => c.kind === 'urbanizacion' && c.sourceId === 'urbanitzacio-valencia-la-vella',
+    )
+    expect(urb?.needles).toContain('valencia la vella')
+  })
+
+  it('el área de esparcimiento «en zona verde de Valencia la Vella» va a la urbanización (5106922)', () => {
+    // El anuncio de licitación lo dice: «Adecuar una parte del área verde de la
+    // urbanización Valencia la Vella como zona de esparcimiento».
+    expect(
+      sitio(
+        'Contrato administrativo obras para la ejecución del proyecto Área de esparcimiento en zona verde de Valencia la Vella en el T. M. de Riba-roja de Túria (Valencia) - Ctto.39/2026',
+        true,
+      ),
+    ).toBe('urbanitzacio-valencia-la-vella')
+  })
+
+  it('un suministro para el yacimiento no cae en la urbanización (2739773, 1520813)', () => {
+    expect(
+      sitio(
+        'Contrato menor de suministro de material e instalación del sistema de cctv de vigilancia para parte del perímetro del yacimiento arqueológico de Valencia la Vella, en el municipio de Riba-roja de Túria.',
+        false,
+      ),
+    ).toBeNull()
+    expect(
+      sitio(
+        'Contrato de suministro de paneles individuales de acceso para el yacimiento arqueológico de Valencia la vella destinado al departamento de Turismo, por procedimiento abierto súper simplificado, mejor relación calidad-precio, un único criterio de adjudicación',
+        false,
+      ),
+    ).toBeNull()
+  })
+
+  it('una obra en el yacimiento sigue yendo al yacimiento', () => {
+    expect(
+      sitio('Obras de consolidación del yacimiento arqueológico de Valencia la Vella', true),
+    ).toBe('jaciment-valencia-la-vella')
+  })
+
+  it('un título con dos urbanizaciones o tres zonas sigue sin pin (96520, 1554203)', () => {
+    expect(
+      sitio(
+        'contrato de obras de colocación de Centros Culturales e instalaciones al servicio de las Urbanizaciones Monte Alcedo y Valencia La Vella, por procedimiento abierto',
+        true,
+      ),
+    ).toBeNull()
+    expect(
+      sitio(
+        'Contrato de obras INSTALACION ALUMBRADO PUBLICO CARRIL BICI ESCOTO, ROTONDA ENTREVIAS Y ACCESO VALENCIA LA VELLA por procedimiento abierto súper simplificado',
+        true,
+      ),
+    ).toBeNull()
+  })
+})
