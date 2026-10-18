@@ -905,11 +905,53 @@ describe('callClaudeCode · no deja su directorio temporal', () => {
     expect(quedan()).toEqual([])
   })
 
+  /**
+   * El vigilante se dispara a mano, no por reloj. Con 300 ms reales competía
+   * con el arranque del falso: el 18-10-2026, bajo la carga de un `npm test`
+   * completo, lo mató antes de que `sh` llegara a escribir su `cwd`, y el
+   * control falló con ENOENT —la limpieza iba bien; lo que faltaba era la
+   * prueba de que el falso había corrido—. Ahora el reloj del vigilante es
+   * falso y sólo avanza cuando el `cwd` ya está escrito, y el falso apunta la
+   * señal que lo mató: «no queda nada» mide algo, y lo que lo mató fue el
+   * vigilante y no otra cosa.
+   */
   it('cuando el vigilante lo mata por tiempo', async () => {
+    const setTimeoutReal = globalThis.setTimeout
+    const esperarFichero = async (f: string) => {
+      const limite = Date.now() + 20_000
+      for (;;) {
+        try {
+          const t = readFileSync(f, 'utf8')
+          if (t.endsWith('\n')) return
+        } catch {
+          /* aún no existe */
+        }
+        if (Date.now() > limite) throw new Error(`${f} no apareció`)
+        await new Promise((r) => setTimeoutReal(r, 10))
+      }
+    }
+
     process.env.LLM_CLI_TIMEOUT_MS = '300'
-    expect(await llamar(claudeFalso('exec sleep 5'))).toBeNull()
-    corrioAqui()
-    expect(quedan()).toEqual([])
+    vi.useFakeTimers({ toFake: ['setTimeout', 'clearTimeout'] })
+    try {
+      // Cuelga hasta que lo maten; al recibir SIGTERM lo apunta y se va, y se
+      // lleva su `sleep` para no dejar un huérfano.
+      const bin = claudeFalso(
+        `trap 'kill $! 2>/dev/null; echo TERM > "${aparte}/senal"; exit 143' TERM\nsleep 60 &\nwait`,
+      )
+      const llamada = llamar(bin)
+      await esperarFichero(resolve(aparte, 'cwd'))
+      corrioAqui()
+      expect(quedan()).toHaveLength(1)
+
+      vi.advanceTimersByTime(300)
+      expect(await llamada).toBeNull()
+      expect(quedan()).toEqual([])
+      await esperarFichero(resolve(aparte, 'senal'))
+      expect(readFileSync(resolve(aparte, 'senal'), 'utf8').trim()).toBe('TERM')
+    } finally {
+      vi.useRealTimers()
+    }
   })
 
   it('cuando el binario no existe', async () => {
