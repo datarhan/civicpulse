@@ -774,3 +774,128 @@ describe('place-resolver — resolveUnambiguousPlace (un título que nombra vari
     })
   })
 })
+
+// 2026-10-17 — «CEIP Eres Altes» no llegaba al colegio. OSM rotula los centros
+// por su nombre oficial («Col·legi d'Educació Infantil i Primària Eres Altes»),
+// los títulos por la sigla, y poiCore sólo quita UNA palabra genérica: la aguja
+// que quedaba era «educacio infantil i primaria eres altes», que ningún título
+// escribe. 266371 y 310978 se pinchaban en el Carrer de les Eres Altes (a 90 m)
+// sólo porque la «c» suelta de «C.E.I.P» contaba como «C/»; #344 lo quitó y se
+// quedaron sin pin. Títulos y puntos REALES (tenders.json, civic-poi.json,
+// streets.json, geo.json).
+describe('place-resolver — la sigla del centro educativo (CEIP, IES) alcanza su POI', () => {
+  const EDUCACION = [
+    {
+      id: 'way-1178031442',
+      name: "Col·legi d'Educació Infantil i Primària Eres Altes",
+      category: 'educacion',
+      kind: 'school',
+      lat: 39.5473561,
+      lng: -0.5639968,
+    },
+    {
+      id: 'way-1242095512',
+      name: "Col·legi d'Educació Infantil i Primària Camp de Túria",
+      category: 'educacion',
+      kind: 'school',
+      lat: 39.5493045,
+      lng: -0.5717854,
+    },
+    {
+      id: 'way-903588096',
+      name: 'Col·legi d’Educació Infantil i Primària Mas d’Escoto',
+      category: 'educacion',
+      kind: 'school',
+      lat: 39.5504954,
+      lng: -0.5811206,
+    },
+    {
+      id: 'way-152522318',
+      name: "Institut d'Educació Secundària el Quint",
+      category: 'educacion',
+      kind: 'school',
+      lat: 39.5480338,
+      lng: -0.5616616,
+    },
+  ]
+  const gaz = buildGazetteer({
+    pois: EDUCACION,
+    streets: [
+      {
+        slug: 'carrer-de-les-eres-altes',
+        name: 'Carrer de les Eres Altes',
+        kind: 'calle',
+        point: [39.5465682, -0.5637041],
+      },
+      {
+        slug: 'avinguda-del-camp-de-turia',
+        name: 'Avinguda del Camp de Túria',
+        kind: 'avenida',
+        point: [39.5517161, -0.5422703],
+      },
+    ],
+    zones: [
+      { slug: 'el-pou-d-escoto', name: "el Pou d'Escoto", centroid: [39.5484628, -0.5909944] },
+    ],
+    zoneAliases: ZONE_ALIASES,
+  })
+  const obra = (titulo: string) =>
+    resolveUnambiguousPlace(foldTitle(titulo), gaz, { allowPoi: true })?.sourceId ?? null
+
+  it('el colegio y el instituto llevan la aguja de su sigla', () => {
+    const agujas = (id: string) => gaz.find((c) => c.sourceId === id)!.needles
+    expect(agujas('way-1178031442')).toContain('ceip eres altes')
+    expect(agujas('way-903588096')).toContain('ceip mas d escoto')
+    expect(agujas('way-152522318')).toContain('ies el quint')
+  })
+
+  it('«C.E.I.P Eres Altes» (266371, 310978) se sitúa en el colegio, no en la calle', () => {
+    expect(
+      obra(
+        'contrato de obras de mejora de la eficiencia energética en C.E.I.P Eres Altes por procedimiento abierto súper simplificado, mejor relación calidad-precio, varios criterios de adjudicación, con cláusulas socio-laborales como criterio de adjudicación y con condiciones especiales de ejecución de carácter medioambiental. ( Plan Edificant )',
+      ),
+    ).toBe('way-1178031442')
+    expect(
+      obra(
+        'Contrato de obras de mejora de la instalación de climatización e iluminación en C.E.I.P Eres Altes por lotes -2 lotes- por procedimiento abierto súper simplificado, mejor relación calidad-precio, varios criterios de adjudicación, con cláusulas medioambientales como criterio de adjudicación y con condiciones especiales de ejecución de carácter medioambiental y social. (Plan Edificant)',
+      ),
+    ).toBe('way-1178031442')
+  })
+
+  it('«CEIP Eres Altes» (256906) y «CEIP Camp de Túria» (86822) se sitúan en su colegio', () => {
+    expect(
+      obra(
+        'Contrato de obras de reforma de aseos en el CEIP Eres Altes por procedimiento abierto súper simplificado, mejor relación calidad-precio, varios criterios de adjudicación, con cláusulas socio-laborales como criterio de adjudicación y con condiciones especiales de ejecución de carácter medioambiental',
+      ),
+    ).toBe('way-1178031442')
+    expect(obra('Construcción cubierta en pista deportiva CEIP Camp de Túria')).toBe(
+      'way-1242095512',
+    )
+  })
+
+  it('«CEIP Mas d’Escoto» (269749, 632456) va al colegio y no al centroide de el Pou d’Escoto', () => {
+    expect(
+      obra(
+        'contrato de ejecución de las obras de construcción de pabellón deportivo cubierto en CEIP Mas d’Escoto – Fase I (movimiento de tierras y muro de contención) por procedimiento abierto súper simplificado, mejor relación calidad-precio, varios criterios de adjudicación con cláusula socio-laboral como criterio de adjudicación y con condición especial de ejecución de carácter medioambiental',
+      ),
+    ).toBe('way-903588096')
+    expect(obra("Obras de reforma de aseos en CEIP Mas d'escoto")).toBe('way-903588096')
+  })
+
+  it('un servicio en el colegio sigue sin situarse: la puerta de obras no cambia (840300)', () => {
+    expect(
+      resolveUnambiguousPlace(
+        foldTitle(
+          'servicio de limpieza EEII Riu Túria y CEIP Camp de Túria, por procedimiento abierto, 2 lotes, mejor relación calidad-precio, varios criterios de adjudicación',
+        ),
+        gaz,
+        { allowPoi: false },
+      ),
+    ).toBeNull()
+  })
+
+  it('sin la sigla no hay aguja nueva: «Eres Altes» a secas no es el colegio', () => {
+    expect(obra('Obras de urbanización en Eres Altes')).toBeNull()
+    expect(obra('Obras en el Quint')).toBeNull()
+  })
+})
