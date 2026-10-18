@@ -186,6 +186,56 @@ export function capituloDominante(
   }
 }
 
+/**
+ * De quién es el cero del capítulo dominante. /presupuesto publica DOS
+ * presupuestos aprobados del mismo ejercicio —el estado de ejecución del
+ * propio Ayuntamiento y el remitido a CONPREL— y no se reconcilian: en 2025 el
+ * primero abre Inversiones reales en 0 € y el segundo le da 905.517,35 €.
+ * «Un capítulo que había empezado en cero», dicho en singular, elige una de
+ * las dos sin nombrarla, justo donde más discrepan.
+ *
+ * Lo resolvió primero el pie de «Capítulo a capítulo» y el lede siguió
+ * diciéndolo plano (revisión lectora, 18-10-2026), así que la lectura vive
+ * aquí y las dos frases la piden a la misma función:
+ *
+ *   coinciden     CONPREL también trae 0 €: el crédito no estaba en ninguno.
+ *   discrepan     CONPREL le da crédito inicial; `conprel` es esa cifra.
+ *   sinConprel    CONPREL es del mismo ejercicio pero no trae ese capítulo.
+ *   sinContraste  no hay CONPREL de ese ejercicio con el que cotejar. Antes
+ *                 caía en «coinciden» y el pie afirmaba «ninguno de los dos»
+ *                 con un solo presupuesto de ese año a la vista.
+ *
+ * null cuando no hay cero que leer: sin capítulo dominante, o con uno que no
+ * abrió en cero.
+ */
+export type EstadoCero = 'coinciden' | 'discrepan' | 'sinConprel' | 'sinContraste'
+
+export function ceroDelDominante(
+  dominante: Pick<CapituloDominante, 'capitulo' | 'abrioEnCero'> | null | undefined,
+  conprel:
+    | {
+        year?: number
+        expenseByEconomicChapter?: { code?: string; amount?: number | null }[]
+      }
+    | null
+    | undefined,
+  year: number | null | undefined,
+): { estado: EstadoCero; conprel: number | null } | null {
+  if (!dominante?.abrioEnCero) return null
+  if (!conprel || year == null || conprel.year !== year)
+    return { estado: 'sinContraste', conprel: null }
+  // CONPREL publica siempre los nueve capítulos (`budget.ts`) y deja null la
+  // celda que no trae, así que una fila que falta del mismo ejercicio es el
+  // mismo «no trae dato» que la celda vacía.
+  const fila = (conprel.expenseByEconomicChapter ?? []).find(
+    (c) => String(c?.code) === String(dominante.capitulo),
+  )
+  const amount = typeof fila?.amount === 'number' ? fila.amount : null
+  if (amount === null) return { estado: 'sinConprel', conprel: null }
+  if (amount === 0) return { estado: 'coinciden', conprel: 0 }
+  return { estado: 'discrepan', conprel: amount }
+}
+
 const ORDINAL = ['', 'primer', 'segundo', 'tercer', 'cuarto', 'quinto', 'sexto', 'séptimo']
 const CARDINAL = ['', 'un', 'dos', 'tres', 'cuatro', 'cinco', 'seis', 'siete']
 const cardinal = (n: number) => CARDINAL[n] ?? String(n)
