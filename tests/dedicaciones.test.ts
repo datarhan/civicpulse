@@ -30,18 +30,18 @@ describe('scraper/dedicaciones — validateDedicacionesSnapshot', () => {
   })
 
   it('attributes the alcalde figure and the two pay tiers', () => {
-    expect(dedicacionForSlug(SNAP, 'robert-raga-gadea')?.amountEuros).toBe(48234.08)
+    expect(dedicacionForSlug(SNAP, 'robert-raga-gadea')?.amountEuros).toBe(59195.48)
     const tiers = SNAP.byOfficial
       .filter((o) => o.slug !== 'robert-raga-gadea')
       .map((o) => o.amountEuros)
-    expect(tiers.filter((a) => a === 43067.36).length).toBe(2)
-    expect(tiers.filter((a) => a === 38891.66).length).toBe(4)
+    expect(tiers.filter((a) => a === 47978.79).length).toBe(2)
+    expect(tiers.filter((a) => a === 43327.07).length).toBe(4)
   })
 
   it('carries a verbatim citation to the acuerdo', () => {
     expect(SNAP.source.quote.length).toBeGreaterThanOrEqual(20)
     expect(SNAP.source.url).toMatch(/\.pdf$/i)
-    expect(SNAP.source.date).toBe('2023-07-07')
+    expect(SNAP.source.date).toBe('2026-03-16')
   })
 
   it('rejects an out-of-band amount on a named official (libel guard)', () => {
