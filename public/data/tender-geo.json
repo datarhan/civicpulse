@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-17T20:36:02.109Z",
+  "generatedAt": "2026-10-18T05:44:50.580Z",
   "source": {
     "tenders": "2026-10-17T08:49:11.850Z",
     "geo": "2026-10-17T08:51:51.229Z"
@@ -7,12 +7,12 @@
   "universe": {
     "totalContracts": 710,
     "totalAmount": 125567342.14999995,
-    "locatedContracts": 51,
-    "locatedAmount": 3758711.6300000004,
-    "situatedContracts": 119,
-    "situatedAmount": 7653899.8100000005,
-    "danaContracts": 10,
-    "danaAmount": 276297.42000000004,
+    "locatedContracts": 44,
+    "locatedAmount": 3526075.68,
+    "situatedContracts": 114,
+    "situatedAmount": 7385134.12,
+    "danaContracts": 9,
+    "danaAmount": 259915.39,
     "danaAwardedContracts": 82,
     "danaAwardedAmount": 2840148.539999998,
     "dateMin": "2018-01-18",
@@ -64,17 +64,6 @@
       "contractCount": 6,
       "amount": 344170.56999999995,
       "danaAmount": 0
-    },
-    {
-      "slug": "el-pou-d-escoto",
-      "name": "el Pou d'Escoto",
-      "centroid": [
-        39.5484628,
-        -0.5909944
-      ],
-      "contractCount": 9,
-      "amount": 297660.60000000003,
-      "danaAmount": 16382.03
     },
     {
       "slug": "monte-alcedo",
@@ -163,6 +152,17 @@
       "contractCount": 1,
       "amount": 12800,
       "danaAmount": 0
+    },
+    {
+      "slug": "el-pou-d-escoto",
+      "name": "el Pou d'Escoto",
+      "centroid": [
+        39.5484628,
+        -0.5909944
+      ],
+      "contractCount": 1,
+      "amount": 10471.95,
+      "danaAmount": 0
     }
   ],
   "places": [
@@ -236,18 +236,6 @@
       ],
       "contractCount": 6,
       "amount": 306454.29,
-      "danaAmount": 0
-    },
-    {
-      "slug": "monte-alcedo",
-      "name": "Monte Alcedo",
-      "kind": "urbanizacion",
-      "point": [
-        39.5558464,
-        -0.5425281
-      ],
-      "contractCount": 2,
-      "amount": 289190.77,
       "danaAmount": 0
     },
     {
@@ -359,16 +347,16 @@
       "danaAmount": 0
     },
     {
-      "slug": "el-pou-d-escoto",
-      "name": "el Pou d'Escoto",
+      "slug": "monte-alcedo",
+      "name": "Monte Alcedo",
       "kind": "urbanizacion",
       "point": [
-        39.5484628,
-        -0.5909944
+        39.5558464,
+        -0.5425281
       ],
-      "contractCount": 5,
-      "amount": 125177.03,
-      "danaAmount": 16382.03
+      "contractCount": 1,
+      "amount": 135130.16,
+      "danaAmount": 0
     },
     {
       "slug": "way-903588096",
@@ -812,6 +800,18 @@
       ],
       "contractCount": 1,
       "amount": 11851.21,
+      "danaAmount": 0
+    },
+    {
+      "slug": "el-pou-d-escoto",
+      "name": "el Pou d'Escoto",
+      "kind": "urbanizacion",
+      "point": [
+        39.5484628,
+        -0.5909944
+      ],
+      "contractCount": 1,
+      "amount": 10471.95,
       "danaAmount": 0
     },
     {
@@ -1634,12 +1634,8 @@
     },
     {
       "id": "269749",
-      "zones": [
-        "el-pou-d-escoto"
-      ],
-      "matchedAlias": {
-        "el-pou-d-escoto": "escoto"
-      },
+      "zones": [],
+      "matchedAlias": {},
       "dana": false,
       "amount": 68814.55,
       "amountKind": "final",
@@ -2289,16 +2285,8 @@
       "date": "2019-11-03",
       "contractType": "construction",
       "categoryTitle": "construction",
-      "point": [
-        39.5558464,
-        -0.5425281
-      ],
-      "place": {
-        "kind": "urbanizacion",
-        "name": "Monte Alcedo",
-        "matchedText": "Monte Alcedo",
-        "sourceId": "monte-alcedo"
-      }
+      "point": null,
+      "place": null
     },
     {
       "id": "440383",
@@ -2407,12 +2395,8 @@
     },
     {
       "id": "632456",
-      "zones": [
-        "el-pou-d-escoto"
-      ],
-      "matchedAlias": {
-        "el-pou-d-escoto": "escoto"
-      },
+      "zones": [],
+      "matchedAlias": {},
       "dana": false,
       "amount": 24200,
       "amountKind": "final",
@@ -2449,31 +2433,6 @@
         "name": "Carrer de Cristòfol Colom",
         "matchedText": "Carrer de Cristòfol Colom",
         "sourceId": "carrer-de-cristofol-colom"
-      }
-    },
-    {
-      "id": "692227",
-      "zones": [
-        "el-pou-d-escoto"
-      ],
-      "matchedAlias": {
-        "el-pou-d-escoto": "escoto"
-      },
-      "dana": false,
-      "amount": 13500,
-      "amountKind": "final",
-      "date": "2019-12-28",
-      "contractType": "supplies",
-      "categoryTitle": "other",
-      "point": [
-        39.5484628,
-        -0.5909944
-      ],
-      "place": {
-        "kind": "urbanizacion",
-        "name": "el Pou d'Escoto",
-        "matchedText": "el Pou d'Escoto",
-        "sourceId": "el-pou-d-escoto"
       }
     },
     {
@@ -2558,31 +2517,6 @@
         "name": "Polígono Industrial Casanova",
         "matchedText": "Polígono Industrial Casanova",
         "sourceId": "poligon-industrial-casanova"
-      }
-    },
-    {
-      "id": "1045077",
-      "zones": [
-        "el-pou-d-escoto"
-      ],
-      "matchedAlias": {
-        "el-pou-d-escoto": "escoto"
-      },
-      "dana": false,
-      "amount": 25252.52,
-      "amountKind": "final",
-      "date": "2021-01-24",
-      "contractType": "services",
-      "categoryTitle": "architecture",
-      "point": [
-        39.5484628,
-        -0.5909944
-      ],
-      "place": {
-        "kind": "urbanizacion",
-        "name": "el Pou d'Escoto",
-        "matchedText": "el Pou d'Escoto",
-        "sourceId": "el-pou-d-escoto"
       }
     },
     {
@@ -2918,31 +2852,6 @@
         "name": "Urbanització La Reva",
         "matchedText": "Urbanització La Reva",
         "sourceId": "urbanitzacio-la-reva"
-      }
-    },
-    {
-      "id": "68394",
-      "zones": [
-        "el-pou-d-escoto"
-      ],
-      "matchedAlias": {
-        "el-pou-d-escoto": "escoto"
-      },
-      "dana": false,
-      "amount": 59570.53,
-      "amountKind": "final",
-      "date": "2018-05-09",
-      "contractType": "construction",
-      "categoryTitle": "construction",
-      "point": [
-        39.5484628,
-        -0.5909944
-      ],
-      "place": {
-        "kind": "urbanizacion",
-        "name": "el Pou d'Escoto",
-        "matchedText": "el Pou d'Escoto",
-        "sourceId": "el-pou-d-escoto"
       }
     },
     {
@@ -3297,31 +3206,6 @@
       }
     },
     {
-      "id": "8678128",
-      "zones": [
-        "el-pou-d-escoto"
-      ],
-      "matchedAlias": {
-        "el-pou-d-escoto": "escoto"
-      },
-      "dana": true,
-      "amount": 16382.03,
-      "amountKind": "final",
-      "date": "2025-08-21",
-      "contractType": "construction",
-      "categoryTitle": "construction",
-      "point": [
-        39.5484628,
-        -0.5909944
-      ],
-      "place": {
-        "kind": "urbanizacion",
-        "name": "el Pou d'Escoto",
-        "matchedText": "el Pou d'Escoto",
-        "sourceId": "el-pou-d-escoto"
-      }
-    },
-    {
       "id": "1474367",
       "zones": [],
       "matchedAlias": {},
@@ -3535,12 +3419,8 @@
     },
     {
       "id": "329628",
-      "zones": [
-        "el-pou-d-escoto"
-      ],
-      "matchedAlias": {
-        "el-pou-d-escoto": "escoto"
-      },
+      "zones": [],
+      "matchedAlias": {},
       "dana": false,
       "amount": 24916.32,
       "amountKind": "final",
@@ -3629,7 +3509,7 @@
         "el-pou-d-escoto"
       ],
       "matchedAlias": {
-        "el-pou-d-escoto": "escoto"
+        "el-pou-d-escoto": "pou d escoto"
       },
       "dana": false,
       "amount": 10471.95,
@@ -3651,12 +3531,10 @@
     {
       "id": "1554203",
       "zones": [
-        "el-pou-d-escoto",
         "urbanitzacio-valencia-la-vella",
         "poligono-industrial-entrevias"
       ],
       "matchedAlias": {
-        "el-pou-d-escoto": "escoto",
         "urbanitzacio-valencia-la-vella": "valencia la vella",
         "poligono-industrial-entrevias": "entrevias"
       },

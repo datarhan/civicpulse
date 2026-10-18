@@ -778,7 +778,7 @@ function stripBoilerplate(foldedTitle: string): string {
   return t.trim()
 }
 
-function km(a: [number, number], b: [number, number]): number {
+export function km(a: [number, number], b: [number, number]): number {
   const r = Math.PI / 180
   const dLat = (b[0] - a[0]) * r
   const dLng = (b[1] - a[1]) * r

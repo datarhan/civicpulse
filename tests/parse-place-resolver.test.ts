@@ -899,3 +899,66 @@ describe('place-resolver — la sigla del centro educativo (CEIP, IES) alcanza s
     expect(obra('Obras en el Quint')).toBeNull()
   })
 })
+
+describe('place-resolver — «Mas d’Escoto» (el colegio) no es el Pou d’Escoto (la urbanización)', () => {
+  // OSM los separa: el colegio (way-903588096) y la localidad «el Mas d'Escoto»
+  // (node 11688398913) caen en el polígono residencial way 903588100; el
+  // centroide de el Pou d'Escoto, en otro (way 905055223), a 0,55 km del
+  // colegio por su vértice más cercano. Medido el 2026-10-18.
+  const gaz = buildGazetteer({
+    pois: [
+      {
+        id: 'way-903588096',
+        name: 'Col·legi d’Educació Infantil i Primària Mas d’Escoto',
+        category: 'educacion',
+        kind: 'school',
+        lat: 39.5504954,
+        lng: -0.5811206,
+      },
+    ],
+    zones: [
+      { slug: 'el-pou-d-escoto', name: "el Pou d'Escoto", centroid: [39.5484628, -0.5909944] },
+    ],
+    zoneAliases: ZONE_ALIASES,
+  })
+  const sitio = (titulo: string, allowPoi: boolean) =>
+    resolveUnambiguousPlace(foldTitle(titulo), gaz, { allowPoi })?.sourceId ?? null
+
+  it('un suministro o un servicio en el CEIP no se pincha en la urbanización (692227, 1045077)', () => {
+    expect(sitio("Sustitución campana extractora CEIP Mas d'Escoto", false)).toBeNull()
+    expect(
+      sitio(
+        'Contrato de servicio de redacción de proyecto de ejecución y dirección de las obras para la construcción de Pabellón Deportivo Cubierto en CEIP Mas d’Escoto con perspectiva de género por procedimiento abierto simplificado, mejor relación calidad-precio, varios criterios de adjudicación, con condición especial de ejecución de carácter social y medioambiental contribuyendo al cumplimiento del ODS 8 relativo al trabajo decente para todos y 5 de igualdad de género',
+        false,
+      ),
+    ).toBeNull()
+  })
+
+  it('«colegio Mas d’Escoto» sin sigla no cae en el centroide de el Pou d’Escoto (8678128)', () => {
+    expect(
+      sitio(
+        "Contrato menor de obras para el proyecto de “Reparación y adecuación del vallado linde patio infantil colegio Mas d'Escoto con el Barranco de Porchinos por daños sufridos tras la DANA” a favor de SERCOT SERVICIOS Y CONSTRUCCIONES TURIA, SL con CIF nº B44581510. (Ctto. 64M/2025)",
+        true,
+      ),
+    ).not.toBe('el-pou-d-escoto')
+  })
+
+  it('«cruce Escoto» no nombra la urbanización (68394)', () => {
+    expect(
+      sitio('Urbanización de la carretera Villamarchante desde parque hasta cruce Escoto', true),
+    ).toBeNull()
+  })
+
+  it('«acceso al Pou d’Escoto» sigue en la urbanización (1891608)', () => {
+    expect(
+      sitio(
+        'Contrato para alumbrado público en acceso al Pou d’Escoto, derivado del sistema dinámico de adquisición (SDA) de suministro de material de electricidad. (Expte. 23/2022).',
+        false,
+      ),
+    ).toBe('el-pou-d-escoto')
+  })
+
+  it('el CEIP con sigla sigue yendo al colegio (269749, 329628)', () => {
+    expect(sitio("Pavimentación pista deportiva en CEIP Más d'Escoto", true)).toBe('way-903588096')
+  })
+})
