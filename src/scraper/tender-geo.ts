@@ -3,8 +3,11 @@ import { isCommittedContract, importeAdjudicado } from '../lib/contract-status.j
 import {
   resolveUnambiguousPlace,
   foldTitle,
+  km,
+  CONTAINMENT_KM,
   type Candidate,
   type PlaceKind,
+  type PlaceMatch,
 } from './place-resolver'
 
 export interface ContractInput {
@@ -220,6 +223,35 @@ export function matchContractsToZones(
   let totalDateMin: string | null = null
   let totalDateMax: string | null = null
 
+  const zonasNombradas = (folded: string): Record<string, string> => {
+    const matched: Record<string, string> = {}
+    for (const [slug, aliases] of Object.entries(ZONE_ALIASES)) {
+      if (!zoneBySlug.has(slug) || aliases.length === 0) continue
+      let best = ''
+      for (const a of aliases) if (folded.includes(a) && a.length > best.length) best = a
+      if (best) matched[slug] = best
+    }
+    return matched
+  }
+
+  // El resolutor sólo ve las zonas cuyo alias pasa needleDistinctive, y
+  // «valencia la vella» no lo pasa («valencia» es del municipio, «vella» es
+  // palabra común). Así que «Urbanizaciones Monte Alcedo y Valencia La Vella»
+  // (96520) le parecía un solo sitio y se pinchaba en Monte Alcedo, a 2,6 km de
+  // la otra. Aquí se aplica su misma regla con las zonas que nombra el texto
+  // del que salió el pin: un área no se pincha si el texto nombra otra; una
+  // calle o un POI, sólo si cae dentro de cada zona nombrada. Sólo quita pines.
+  // Medido el 2026-10-18: quita 96520 y 1554203, y nada más.
+  const dentroDeSusZonas = (place: PlaceMatch | null, texto: string): PlaceMatch | null => {
+    if (!place) return null
+    const area = place.kind === 'urbanizacion' || place.kind === 'barrio'
+    for (const slug of Object.keys(zonasNombradas(foldText(texto)))) {
+      if (slug === place.sourceId) continue
+      if (area || km(place.point, zoneBySlug.get(slug)!.centroid) > CONTAINMENT_KM) return null
+    }
+    return place
+  }
+
   for (const c of contracts) {
     const amt = amountOf(c)
     if (!amt) continue
@@ -249,13 +281,7 @@ export function matchContractsToZones(
     }
     // Barrio-alias membership (backward-compatible aggregate for /departamentos
     // + the NeighborhoodsLayer). Kept title-named-only, on the foldText forms.
-    const matched: Record<string, string> = {}
-    for (const [slug, aliases] of Object.entries(ZONE_ALIASES)) {
-      if (!zoneBySlug.has(slug) || aliases.length === 0) continue
-      let best = ''
-      for (const a of aliases) if (folded.includes(a) && a.length > best.length) best = a
-      if (best) matched[slug] = best
-    }
+    const matched = zonasNombradas(folded)
     const zoneSlugs = Object.keys(matched)
 
     // Precise point via a curator override (LLM-suggested, human-approved) if
@@ -267,12 +293,16 @@ export function matchContractsToZones(
     // a wrong pin. The own title always wins; the parent is only a fallback.
     const isWorks = (c.contractType ?? '') === 'construction'
     const override = opts.overrides?.[c.id]
-    let resolved = resolveUnambiguousPlace(foldTitle(title), candidates, { allowPoi: isWorks })
+    let resolved = dentroDeSusZonas(
+      resolveUnambiguousPlace(foldTitle(title), candidates, { allowPoi: isWorks }),
+      title,
+    )
     let placedViaParent = false
     if (!resolved && parentAdds) {
-      resolved = resolveUnambiguousPlace(foldTitle(c.parentTitle!), candidates, {
-        allowPoi: isWorks,
-      })
+      resolved = dentroDeSusZonas(
+        resolveUnambiguousPlace(foldTitle(c.parentTitle!), candidates, { allowPoi: isWorks }),
+        c.parentTitle!,
+      )
       placedViaParent = resolved !== null
     }
     const place = override
