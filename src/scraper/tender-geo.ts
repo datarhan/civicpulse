@@ -114,7 +114,13 @@ const DANA_RE = /\bdana\b|temporal de lluvias|29 de octubre/
 export const ZONE_ALIASES: Record<string, string[]> = {
   'urbanitzacio-els-pous': ['els pous'],
   'urbanitzacio-mas-de-traver': ['mas de traver'],
-  'el-pou-d-escoto': ['escoto'],
+  // «escoto» a secas recogía también el CEIP Mas d'Escoto, otro sitio: OSM pone
+  // el colegio y la localidad «el Mas d'Escoto» en el polígono residencial
+  // way 903588100, y el centroide de el Pou d'Escoto en way 905055223, a 0,55 km
+  // del colegio. Y el «cruce Escoto» de 68394 es un cruce de carreteras fuera de
+  // los dos. Medido el 2026-10-18: sólo 1891608 («acceso al Pou d'Escoto»)
+  // nombra la urbanización.
+  'el-pou-d-escoto': ['pou d escoto'],
   'urbanitzacio-valencia-la-vella': ['valencia la vella'],
   'santa-rosa': ['santa rosa'],
   'monte-alcedo': ['monte alcedo'],
@@ -142,11 +148,15 @@ export const ZONE_ALIASES: Record<string, string[]> = {
 }
 
 export function foldText(s: string): string {
-  return stripDiacritics(s)
-    .toLowerCase()
-    .replace(/['´`']/g, ' ')
-    .replace(/\s+/g, ' ')
-    .trim()
+  return (
+    stripDiacritics(s)
+      .toLowerCase()
+      // La comilla tipográfica también: «Pou d’Escoto» (1891608) no casaba con
+      // «pou d escoto» porque la clase repetía la recta y le faltaba ’.
+      .replace(/['´`‘’]/g, ' ')
+      .replace(/\s+/g, ' ')
+      .trim()
+  )
 }
 
 function amountOf(c: ContractInput): { amount: number; kind: 'final' | 'initial' } | null {
