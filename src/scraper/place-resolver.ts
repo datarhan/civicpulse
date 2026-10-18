@@ -371,8 +371,13 @@ export function buildGazetteer(input: GazetteerInput): Candidate[] {
   for (const [slug, aliases] of Object.entries(input.zoneAliases || {})) {
     const zone = zoneBySlug.get(slug)
     if (!zone || !aliases.length) continue
-    // Curated aliases are already conservative; keep any that clear the gate.
-    const needles = dedupe(aliases.map(foldTitle)).filter(needleDistinctive)
+    // Curated aliases are already conservative. A multi-word alias is trusted as
+    // written: «valencia la vella» fails needleDistinctive («valencia» is a
+    // municipality token, «vella» a common word), and the resolver could not see
+    // the urbanización at all. A single word still has to clear the gate.
+    const needles = dedupe(aliases.map(foldTitle)).filter(
+      (n) => n.includes(' ') || needleDistinctive(n),
+    )
     if (!needles.length) continue
     out.push({
       kind: 'urbanizacion',
@@ -825,15 +830,16 @@ export function resolveUnambiguousPlace(
   const streetOk = hasStreetIndicator(text)
 
   const hits: Hit[] = []
+  const gated: Hit[] = []
   for (const c of candidates) {
     if (c.kind === 'street' && !streetOk) continue
-    if (c.kind === 'poi' && !allowPoi) continue
+    const into = c.kind === 'poi' && !allowPoi ? gated : hits
     for (const n of c.needles) {
       if (!matches(padded, n)) continue
       const nt = n.split(' ')
       for (let i = 0; i + nt.length <= tokens.length; i++)
         if (nt.every((t, k) => tokens[i + k] === t))
-          hits.push({ c, start: i, end: i + nt.length, len: n.length })
+          into.push({ c, start: i, end: i + nt.length, len: n.length })
     }
   }
   if (hits.length === 0) return null
@@ -846,6 +852,17 @@ export function resolveUnambiguousPlace(
     if (h.start < end) mentions[mentions.length - 1].push(h)
     else mentions.push([h])
     end = Math.max(end, h.end)
+  }
+
+  // Un POI que la puerta de obras no deja pinchar sigue siendo el sitio que el
+  // título nombra. Si su nombre contiene el de una zona o una calle, la mención
+  // es el POI y no se pincha nada. Si no, la zona recogería el pin: la puerta
+  // de obras no deja pinchar un suministro en el «yacimiento arqueológico de
+  // Valencia la Vella», y caía en la urbanización homónima, a 0,72 km.
+  for (const m of mentions) {
+    const start = m[0].start
+    const fin = Math.max(...m.map((h) => h.end))
+    if (gated.some((g) => g.start < fin && g.end > start && g.len > maxLen(m))) return null
   }
 
   // 2. Área o precisa.
