@@ -15,6 +15,7 @@ import {
   etiquetaDeCita,
 } from './ConteoVisitantes'
 
+const SERIF = "'Fraunces', Georgia, serif"
 const SLUG = 'matriculas-y-moviles'
 
 /** El número de una foto en la hoja de contactos: F1, F2… por su orden. */
