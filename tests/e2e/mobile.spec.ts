@@ -523,6 +523,83 @@ test.describe('Mobile shell (iPhone 13 mini / 375px)', () => {
 })
 
 // ---------------------------------------------------------------------------
+// La tarjeta del dinero, desplegada, debajo de la cinta «DIRECTO».
+//
+// La guarda de arriba mide la pila contra el borde del MAPA, y la cinta va dentro
+// del mapa, encima de todo (z-index 401 contra 400). Medido el 17-10-2026 en una
+// build de producción a 375×812: con «Detalle ▾» pulsado la pila crecía hacia
+// arriba hasta y=187 y la cinta llegaba a y=211, así que la primera línea de la
+// tarjeta quedaba debajo —con la guarda de arriba en verde—. El tope de la pila
+// contaba desde el borde del mapa, no desde el pie de la cinta.
+//
+// A 812 de alto la tarjeta tiene que caber ENTERA; a 629 no cabe, y lo que se
+// pide es que su principio quede a la vista y lo demás se alcance desplazando la
+// pila, nunca debajo de la cinta.
+// ---------------------------------------------------------------------------
+
+for (const { width, height, entera } of [
+  { width: 375, height: 812, entera: true },
+  { width: 320, height: 812, entera: true },
+  { width: 375, height: 629, entera: false },
+]) {
+  test.describe(`La tarjeta del dinero desplegada a ${width}×${height}`, () => {
+    test.use({ viewport: { width, height } })
+
+    test('empieza debajo de la cinta «DIRECTO»', async ({ page }) => {
+      await page.goto('/', { waitUntil: 'domcontentloaded' })
+      const pila = page.locator('.cp-mapa-pila')
+      const cinta = page.locator('[data-live-ticker]')
+      await expect(pila.locator('.cp-cobertura')).toBeVisible({ timeout: 15_000 })
+      // La cinta sólo se monta cuando tiene titulares que pasar.
+      await expect(cinta).toBeVisible({ timeout: 15_000 })
+
+      await pila.getByRole('button', { name: /detalle/i }).click()
+      await expect(pila).toHaveAttribute('data-plegada', 'false')
+      await expect(pila.locator('#cp-dinero-nota')).toBeVisible()
+
+      const m = await page.evaluate(() => {
+        const r = (el: Element | null) => {
+          if (!el) return null
+          const b = el.getBoundingClientRect()
+          return { top: b.top, bottom: b.bottom, left: b.left, right: b.right }
+        }
+        return {
+          cinta: r(document.querySelector('[data-live-ticker]')),
+          pila: r(document.querySelector('.cp-mapa-pila')),
+          tarjeta: r(document.querySelector('.cp-mapa-pila .cp-dinero')),
+        }
+      })
+
+      // Que haya medido algo: los tres nodos, con alto, y la cinta y la tarjeta
+      // en la misma franja de x. Sin solaparse en horizontal, «arriba/abajo» no
+      // diría nada de que una tape a la otra.
+      expect(m.cinta, 'no está la cinta').not.toBeNull()
+      expect(m.pila, 'no está la pila').not.toBeNull()
+      expect(m.tarjeta, 'no está la tarjeta del dinero').not.toBeNull()
+      const [c, p, t] = [m.cinta!, m.pila!, m.tarjeta!]
+      expect(c.bottom - c.top).toBeGreaterThan(20)
+      expect(t.bottom - t.top, 'la tarjeta no se desplegó').toBeGreaterThan(120)
+      expect(Math.min(c.right, t.right) - Math.max(c.left, t.left)).toBeGreaterThan(0)
+
+      expect(
+        t.top,
+        'la primera línea de la tarjeta queda debajo de la cinta',
+      ).toBeGreaterThanOrEqual(c.bottom)
+      // Y que el principio no se lo haya comido el desplazamiento de la pila. Con
+      // un píxel de holgura: desplazada al tope, el desplazamiento va en píxeles
+      // enteros y el contenido no, y a 375×629 la tarjeta queda 0,97 px por encima
+      // del borde de la pila. Lo que la guarda busca son decenas: la línea de la
+      // fecha mide 16.
+      expect(
+        t.top,
+        'la pila se desplazó y esconde el principio de la tarjeta',
+      ).toBeGreaterThanOrEqual(p.top - 1.5)
+      if (entera) expect(t.bottom, 'la tarjeta no cabe entera').toBeLessThanOrEqual(p.bottom + 0.5)
+    })
+  })
+}
+
+// ---------------------------------------------------------------------------
 // El documento a 320 px: WCAG 2.1 AA, criterio 1.4.10 (Reflow).
 //
 // La medida de arriba mira el documento a 375, y la de las rejillas, más abajo,

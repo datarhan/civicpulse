@@ -3,6 +3,9 @@ import Emblema, { cifrasDelEmblema } from '../../components/reportajes/Emblema'
 import { Card } from '../../components/Primitives'
 import { CorrectionNote, CorrectionNotice } from '../../components/reportajes/CorrectionNote'
 import { SecHead, IndicePieza } from '../../components/reportajes/Pieza'
+import SolicitudLector from '../../components/reportajes/SolicitudLector'
+import { debeOfrecerSolicitud } from '../../lib/solicitud-lector'
+import { clasesApartadas, solicitables as soloSolicitables } from '../../lib/solicitud-apartadas'
 
 const SERIF = "'Fraunces', Georgia, serif"
 
@@ -166,6 +169,8 @@ export default function InteligenciaTuristica() {
   const m = data.meta
   // Las tarjetas que la figura de cabecera ya imprime (ver cifrasDelEmblema).
   const enFigura = new Set(cifrasDelEmblema('inteligencia-turistica', data))
+  // Qué preguntas van en el escrito del lector (src/lib/solicitud-apartadas.js).
+  const solicitables = soloSolicitables('inteligencia-turistica', data.preguntas)
 
   return (
     <div
@@ -575,6 +580,23 @@ export default function InteligenciaTuristica() {
             </li>
           ))}
         </ol>
+        {/* Las que piden información que el Ayuntamiento tiene y que el proyecto
+            no ha pedido ya: la lista editorial de src/lib/solicitud-apartadas.js
+            dice cuáles se apartan y por qué. Quien lee puede presentarlas con su
+            nombre. */}
+        {debeOfrecerSolicitud({
+          meta: m,
+          preguntas: solicitables,
+          solicitudes: data.solicitudes,
+        }) && (
+          <SolicitudLector
+            meta={m}
+            ruta="/reportajes/inteligencia-turistica"
+            preguntas={solicitables}
+            total={data.preguntas.length}
+            clases={clasesApartadas('inteligencia-turistica', data.preguntas)}
+          />
+        )}
       </article>
 
       {/* Fuentes + método */}

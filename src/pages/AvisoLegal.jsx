@@ -392,6 +392,16 @@ export default function AvisoLegal() {
           (Open-Meteo). Tus preferencias de idioma y de apariencia se guardan sólo en tu navegador,
           y puedes borrarlas desde él.
         </p>
+        <p>
+          Algunos reportajes ofrecen el texto de una solicitud de acceso a la información para que
+          la presentes tú. El botón lo copia a tu portapapeles y no envía nada a ninguna parte: no
+          hay formulario ni se guarda lo que escribas, y la solicitud la presentas tú, con tu
+          identificación, ante el Ayuntamiento. Si nos envías por correo la resolución que recibas
+          —mejor con tus datos de identificación tachados—, usamos ese correo sólo para revisar la
+          resolución. La resolución puede publicarse después de que la revise quien mantiene el
+          proyecto, nunca con tus datos personales. El correo se borra cuando lo pidas por la vía de
+          rectificación de esta página.
+        </p>
       </Card>
 
       <Card style={{ marginTop: 14 }}>

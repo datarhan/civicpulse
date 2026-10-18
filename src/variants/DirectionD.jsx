@@ -161,6 +161,9 @@ export default function DirectionD() {
            gana a cualquier clase. En ancho de escritorio no cambia nada: la fila de
            chips salta de línea y el botón de plegar no existe. */
         .cp-capas-chips { flex-wrap: wrap; }
+        /* 232 partía la cabecera de la tarjeta del dinero (título y los dos filtros)
+           en tres líneas. */
+        .cp-dinero { width: 268px; }
         .cp-cobertura { margin-top: 6px; padding-top: 6px; border-top: 1px solid #E6E1D4; }
         .cp-pila-plegar { display: none; }
 
@@ -181,6 +184,15 @@ export default function DirectionD() {
              La cobertura es la declaración de honestidad de la capa: sólo se pliega
              la tarjeta que la lleva, y ella nunca. */
           .cp-capas-titulo { display: none; }
+          /* Desplegada, la tarjeta del dinero tiene que caber entera entre la pila
+             de chips y la cinta «DIRECTO» (el tope de la pila está en
+             StylizedMap.jsx). Con los 268 px de escritorio la nota de cobertura
+             iba en seis líneas, la tarjeta medía 253 px y la pila se pasaba 32 de
+             lo que cabe a 375×812: toma el ancho de la pila. Y su título se va,
+             como el de las capas: repetía el chip «Contratos situados», encendido
+             justo debajo. */
+          .cp-dinero { width: auto; max-width: 360px; }
+          .cp-dinero-titulo { display: none; }
           .cp-capas-chips {
             flex-wrap: nowrap; overflow-x: auto; overscroll-behavior-x: contain;
             scrollbar-width: none;
@@ -194,6 +206,15 @@ export default function DirectionD() {
           .cp-mapa-pila[data-plegada='true'] .cp-cobertura {
             margin-top: 0; padding-top: 0; border-top: 0;
           }
+          /* Con una ficha abierta, la pila se aparta. Todo el mapa —también el
+             panel de las fichas— apila a z-400, igual que la pila, que va después
+             en el DOM y gana el empate; y a 375×629 una ficha mide unos 400 px en
+             un mapa de 277, así que el auto-pan no la saca de debajo. El
+             17-10-2026 la ficha del Passeig del Molinet llevaba cuatro enlaces de
+             barrio y el último caía bajo la cobertura plegada: el toque en el
+             punto de el Molinet no llegaba a su ficha. La cobertura no se pierde:
+             vuelve al cerrar la ficha (barrios-mobile.spec.ts). */
+          .cp-mapa-pila[data-ficha='true'] { visibility: hidden; }
         }
       `}</style>
 
