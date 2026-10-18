@@ -87,6 +87,7 @@
     "fotos": [
       {
         "src": "/reportajes/matriculas-y-moviles/asuncion.jpg",
+        "fila": 0,
         "alt": "Farola con un armario gris que lleva una franja de logotipos y, al lado, una cámara de tipo bala.",
         "pie": "Aparcamiento de la Asunción: una de las dos cámaras observadas, junto a un armario con una franja de logotipos institucionales. No se observó cartel informativo.",
         "w": 825,
@@ -94,6 +95,7 @@
       },
       {
         "src": "/reportajes/matriculas-y-moviles/castell.jpg",
+        "fila": 0,
         "alt": "Fachada de piedra y ladrillo del Castell con dos cámaras de tipo bala y una caja de conexiones.",
         "pie": "Aparcamiento Castell/ADL: cámaras en la fachada del Castell, orientadas al aparcamiento. No se observó cartel informativo.",
         "w": 825,
@@ -101,6 +103,7 @@
       },
       {
         "src": "/reportajes/matriculas-y-moviles/panel-led.jpg",
+        "fila": 2,
         "alt": "Señal de aparcamientos en un poste nuevo junto a un carril bici: Castell/ADL 900 m, Vlqz./Asunción 950 m, A. Suárez/CIJ 1,4 km, cada uno con un contador LED y una flecha.",
         "pie": "La señal de plazas observada a la entrada del casco por la Carretera de València. No se corresponde con el display a todo color de 1,5 × 1 m que describe el pliego; no consta si forma parte del contrato.",
         "w": 645,
@@ -108,6 +111,7 @@
       },
       {
         "src": "/reportajes/matriculas-y-moviles/panel-led-detalle.jpg",
+        "fila": 2,
         "alt": "Detalle de los tres contadores LED de la señal: cada uno muestra sólo una línea de guiones verdes.",
         "pie": "Detalle: los tres contadores mostraban guiones, ninguna cifra de plazas.",
         "w": 409,
@@ -115,6 +119,7 @@
       },
       {
         "src": "/reportajes/matriculas-y-moviles/porxinos.jpg",
+        "fila": 3,
         "alt": "Poste galvanizado con una placa solar y una caja gris en lo alto, junto a un camino asfaltado con valla de madera, entre pinos.",
         "pie": "Valle de Porxinos: uno de los cinco postes observados junto a las rutas.",
         "w": 825,

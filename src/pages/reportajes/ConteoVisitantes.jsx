@@ -16,13 +16,46 @@ import {
 const SERIF = "'Fraunces', Georgia, serif"
 
 /**
- * Cita literal de un documento. Lleva SIEMPRE su procedencia debajo: una cita
- * sin fuente en una superficie legalmente material es exactamente lo que este
- * sitio no publica.
+ * La voz de cada cita: QUÉ documento habla. La pieza tiene tres voces y cada una
+ * su letra —el documento en Fraunces, la redacción en Outfit, el registro en DM
+ * Mono—, y la etiqueta, en mono encima de la cita, dice cuál de los documentos
+ * es antes de leerla. Un `tipo` que no está aquí no se pinta: lanza.
  */
-export function Cita({ children, fuente }) {
+export const TIPOS_CITA = {
+  pliego: 'Pliego técnico',
+  memoria: 'Memoria justificativa',
+  'nota-municipal': 'Nota municipal',
+  respuesta: 'Respuesta',
+}
+
+/** @param {string} tipo @param {string} [de] */
+function etiquetaDeCita(tipo, de) {
+  const nombre = TIPOS_CITA[/** @type {keyof typeof TIPOS_CITA} */ (tipo)]
+  if (!nombre) throw new Error(`Cita: tipo desconocido «${tipo}»`)
+  return de ? `${nombre} · ${de}` : nombre
+}
+
+const ETIQUETA = {
+  display: 'block',
+  fontFamily: 'var(--font-mono)',
+  fontSize: 'var(--fs-micro)',
+  letterSpacing: '.06em',
+  textTransform: 'uppercase',
+  color: 'var(--ink50)',
+}
+
+/**
+ * Cita literal de un documento. Lleva SIEMPRE su procedencia: la etiqueta de
+ * arriba (`tipo` y `de`, obligatoria) y, si hace falta más, el pie (`fuente`).
+ * Una cita sin fuente en una superficie legalmente material es exactamente lo
+ * que este sitio no publica.
+ *
+ * @param {{ children: import('react').ReactNode, tipo: string, de?: string, fuente?: string }} props
+ */
+export function Cita({ children, tipo, de, fuente }) {
   return (
     <figure style={{ margin: '18px 0' }}>
+      <div style={{ ...ETIQUETA, marginBottom: 5 }}>{etiquetaDeCita(tipo, de)}</div>
       <blockquote
         style={{
           margin: 0,
@@ -50,6 +83,26 @@ export function Cita({ children, fuente }) {
         </figcaption>
       )}
     </figure>
+  )
+}
+
+/**
+ * Una cita de una línea, dentro de la frase que la presenta. En caja, un
+ * fragmento de cinco palabras pesaba lo mismo que dos párrafos del pliego, y la
+ * página iba caja, texto, caja. Sigue en la letra del documento, y su
+ * procedencia va detrás, en la del registro: dentro de la frase tampoco se cita
+ * sin fuente.
+ *
+ * @param {{ children: import('react').ReactNode, tipo: string, de?: string }} props
+ */
+export function CitaEnLinea({ children, tipo, de }) {
+  return (
+    <>
+      <span style={{ fontFamily: SERIF, color: 'var(--ink)' }}>«{children}»</span>{' '}
+      <span style={{ ...ETIQUETA, display: 'inline', whiteSpace: 'nowrap' }}>
+        ({etiquetaDeCita(tipo, de)})
+      </span>
+    </>
   )
 }
 
@@ -453,7 +506,9 @@ export default function ConteoVisitantes() {
       {/* 3 · el hallazgo */}
       <SecHead num="03" kicker="Las memorias" title={data.hallazgo.titulo} />
       <P>{data.hallazgo.texto}</P>
-      <Cita fuente={data.hallazgo.citaFuente}>{data.hallazgo.cita}</Cita>
+      <Cita tipo="memoria" de="exps. 98/2025 y 100/2025" fuente={data.hallazgo.citaFuente}>
+        {data.hallazgo.cita}
+      </Cita>
       {data.hallazgo.remate.map((t, i) => (
         <P key={i}>{t}</P>
       ))}
@@ -461,7 +516,9 @@ export default function ConteoVisitantes() {
       {/* 4 · qué se compró */}
       <SecHead num="04" kicker="El objeto" title={data.compra.titulo} />
       <P>El objeto declarado del contrato de sensores es</P>
-      <Cita fuente="Memoria justificativa del expediente 98/2025">{data.compra.objeto}</Cita>
+      <Cita tipo="memoria" de="exp. 98/2025">
+        {data.compra.objeto}
+      </Cita>
       <P>{data.compra.matiz}</P>
       <Lista items={data.compra.objetivos} />
 
@@ -482,7 +539,9 @@ export default function ConteoVisitantes() {
       {/* 6 · protección de datos */}
       <SecHead num="06" kicker="Los datos" title={data.datos.titulo} />
       <P>{data.datos.texto}</P>
-      <Cita fuente={data.datos.citaFuente}>{data.datos.cita}</Cita>
+      <Cita tipo="memoria" de="exps. 98/2025 y 100/2025" fuente={data.datos.citaFuente}>
+        {data.datos.cita}
+      </Cita>
       <P>{data.datos.remate}</P>
 
       {/* 7 · la DANA */}

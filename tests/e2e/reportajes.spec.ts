@@ -71,11 +71,21 @@ test.describe('La columna de las piezas', () => {
         const columna = caja.right - parseFloat(cs.paddingRight) - L
         const medida = parseFloat(getComputedStyle(document.documentElement).fontSize) * 38
         const bloques = Array.from(pieza.children)
-          .flatMap((c) => (c.tagName === 'ARTICLE' ? Array.from(c.children) : [c]))
+          // La banda de cierre (`.cp-registro`) se mide por dentro, como un
+          // <article>: el borde que importa es el de su texto, no sólo el suyo.
+          .flatMap((c) =>
+            c.tagName === 'ARTICLE'
+              ? Array.from(c.children)
+              : c.classList.contains('cp-registro')
+                ? [c, ...Array.from(c.children)]
+                : [c],
+          )
           .map((el) => el.getBoundingClientRect())
           .filter((b) => b.width > 0)
         const parrafos = Array.from(
-          pieza.querySelectorAll(':scope > p:not(.cp-ancho), :scope > article > p:not(.cp-ancho)'),
+          pieza.querySelectorAll(
+            ':scope > p:not(.cp-ancho), :scope > article > p:not(.cp-ancho), :scope > .cp-registro > p:not(.cp-ancho)',
+          ),
         ).map((p) => p.getBoundingClientRect().width)
         return {
           columna,
