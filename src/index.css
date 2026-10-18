@@ -1774,6 +1774,31 @@ main:focus:not(:focus-visible) {
   font-weight: 600;
 }
 
+/* «Promete / Describe» (`PrometeYDescribe`, MatriculasYMoviles.jsx): las dos
+   citas lado a lado cuando la columna llega a su ancho entero —desde 1000px,
+   con la barra lateral—; antes, cada mitad bajaba de unos treinta caracteres
+   por línea, y van una encima de otra. */
+.cp-frente {
+  display: grid;
+  gap: 14px;
+}
+@media (min-width: 1000px) {
+  .cp-frente {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    align-items: start;
+  }
+}
+/* Subrayado NUESTRO sobre palabras de un documento: subraya, no resalta. Un
+   fondo de rotulador taparía la letra y se leería como del documento. */
+.cp-subrayado {
+  background: none;
+  color: inherit;
+  text-decoration: underline;
+  text-decoration-color: var(--civic);
+  text-decoration-thickness: 2px;
+  text-underline-offset: 3px;
+}
+
 /* La hoja de contactos de una pieza (`Fotos`, MatriculasYMoviles.jsx): marcos
    iguales de 3:4, tres por fila; dos en el móvil, donde una columna sola eran
    dos mil píxeles de fotos. */
