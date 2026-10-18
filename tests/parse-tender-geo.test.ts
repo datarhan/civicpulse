@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest'
-import { matchContractsToZones, foldText } from '../src/scraper/tender-geo'
+import { matchContractsToZones, foldText, ZONE_ALIASES } from '../src/scraper/tender-geo'
 import { buildGazetteer } from '../src/scraper/place-resolver'
 
 const ZONES = [
@@ -564,5 +564,105 @@ describe('scraper/tender-geo — precise placement via gazetteer', () => {
     expect(snap.assignments.length).toBe(0)
     expect(snap.universe.situatedContracts).toBe(0)
     expect(snap.places.length).toBe(0)
+  })
+})
+
+describe('scraper/tender-geo — el alias de el Pou d’Escoto no recoge el colegio Mas d’Escoto', () => {
+  const zonas = [
+    { slug: 'el-pou-d-escoto', name: "el Pou d'Escoto", centroid: [39.5484628, -0.5909944] },
+    {
+      slug: 'urbanitzacio-valencia-la-vella',
+      name: 'Urbanització València la Vella',
+      centroid: [39.5344, -0.5307],
+    },
+    {
+      slug: 'poligono-industrial-entrevias',
+      name: 'Polígono Industrial Entrevías',
+      centroid: [39.53, -0.55],
+    },
+  ] as Array<{ slug: string; name: string; centroid: [number, number] }>
+  const candidates = buildGazetteer({
+    pois: [
+      {
+        id: 'way-903588096',
+        name: 'Col·legi d’Educació Infantil i Primària Mas d’Escoto',
+        category: 'educacion',
+        kind: 'school',
+        lat: 39.5504954,
+        lng: -0.5811206,
+      },
+    ],
+    zones: zonas,
+    zoneAliases: ZONE_ALIASES,
+  })
+  const fila = (id: string, contractType: string, title: string) => ({
+    id,
+    title,
+    contractType,
+    status: 'awarded',
+    finalAmount: 10000,
+    awardDate: '2024-01-01',
+  })
+  const snap = matchContractsToZones(
+    [
+      fila('692227', 'supplies', "Sustitución campana extractora CEIP Mas d'Escoto"),
+      fila(
+        '1045077',
+        'services',
+        'Contrato de servicio de redacción de proyecto de ejecución y dirección de las obras para la construcción de Pabellón Deportivo Cubierto en CEIP Mas d’Escoto con perspectiva de género',
+      ),
+      fila(
+        '8678128',
+        'construction',
+        "Contrato menor de obras para el proyecto de “Reparación y adecuación del vallado linde patio infantil colegio Mas d'Escoto con el Barranco de Porchinos por daños sufridos tras la DANA”",
+      ),
+      fila('632456', 'construction', "Obras de reforma de aseos en CEIP Mas d'escoto"),
+      fila(
+        '68394',
+        'construction',
+        'Urbanización de la carretera Villamarchante desde parque hasta cruce Escoto',
+      ),
+      fila(
+        '1891608',
+        'supplies',
+        'Contrato para alumbrado público en acceso al Pou d’Escoto, derivado del sistema dinámico de adquisición (SDA) de suministro de material de electricidad. (Expte. 23/2022).',
+      ),
+      fila(
+        '1554203',
+        'construction',
+        'Contrato de obras INSTALACION ALUMBRADO PUBLICO CARRIL BICI ESCOTO, ROTONDA ENTREVIAS Y ACCESO VALENCIA LA VELLA',
+      ),
+    ],
+    zonas,
+    OPTS,
+    candidates,
+  )
+  const de = (id: string) => snap.assignments.find((a) => a.id === id)
+
+  it('lo que pasa en el colegio no cuenta en la zona de la urbanización', () => {
+    for (const id of ['692227', '1045077', '8678128', '632456']) {
+      expect(de(id)?.zones ?? []).not.toContain('el-pou-d-escoto')
+    }
+    // Y sin la zona, el suministro y el servicio no llegan al mapa: la puerta
+    // de obras les niega el POI del colegio.
+    expect(de('692227')).toBeUndefined()
+    expect(de('1045077')).toBeUndefined()
+    // La obra con sigla sigue en su colegio.
+    expect(de('632456')?.place?.sourceId).toBe('way-903588096')
+  })
+
+  it('«cruce Escoto» y «carril bici Escoto» no nombran la urbanización', () => {
+    expect(de('68394')).toBeUndefined()
+    expect(de('1554203')?.zones.sort()).toEqual([
+      'poligono-industrial-entrevias',
+      'urbanitzacio-valencia-la-vella',
+    ])
+  })
+
+  it('«acceso al Pou d’Escoto» sigue en la zona y en su centroide', () => {
+    expect(de('1891608')?.zones).toEqual(['el-pou-d-escoto'])
+    expect(de('1891608')?.matchedAlias['el-pou-d-escoto']).toBe('pou d escoto')
+    expect(de('1891608')?.place?.sourceId).toBe('el-pou-d-escoto')
+    expect(snap.zones.find((z) => z.slug === 'el-pou-d-escoto')?.contractCount).toBe(1)
   })
 })
