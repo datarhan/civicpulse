@@ -97,20 +97,58 @@ function sectionAnchorId(section, alreadySeen) {
 // paragraphs came out glued. Exported so the render is testable without
 // mounting the page.
 const VENTANA = 200
-function Recorte({ texto }) {
+// The window starts where the two versions part. Anchored at character 0, a
+// correction that replaces a whole section body to change its last sentence
+// showed «retirado» and «vigente» with the same 200 characters and the change
+// out of sight (three of seven signed on 2026-10-18; the first one differed at
+// character 487). CONTEXTO keeps a few words of the shared text before it, cut
+// at a space, and «…» says the window does not start the text.
+const CONTEXTO = 60
+const MARGEN = 20
+
+function piezasVisibles(texto) {
   const piezas = []
-  let resto = VENTANA
   for (const [i, parrafo] of trozos(texto).entries()) {
-    if (i > 0 && resto > 0) {
-      piezas.push({ texto: ' ' })
-      resto -= 1
+    if (i > 0) piezas.push({ texto: ' ' })
+    for (const t of parrafo) piezas.push(t)
+  }
+  return piezas
+}
+
+const plano = (texto) =>
+  piezasVisibles(texto)
+    .map((t) => t.negrita ?? t.texto)
+    .join('')
+
+/** Where both versions' windows start, in characters of the text the reader sees. */
+export function inicioVentana(original, corregido) {
+  const a = plano(original)
+  const b = plano(corregido)
+  let k = 0
+  while (k < a.length && k < b.length && a[k] === b[k]) k += 1
+  if (k + MARGEN <= VENTANA) return 0
+  // Up to k the two are the same text, so one offset serves both.
+  const d = k - CONTEXTO
+  const espacio = a.lastIndexOf(' ', d)
+  return espacio > 0 ? espacio + 1 : d
+}
+
+function Recorte({ texto, desde = 0 }) {
+  const piezas = desde > 0 ? [{ texto: '…' }] : []
+  let saltar = desde
+  let resto = VENTANA
+  for (const t of piezasVisibles(texto)) {
+    if (resto <= 0) break
+    let s = t.negrita ?? t.texto
+    if (saltar > 0) {
+      const n = Math.min(saltar, s.length)
+      s = s.slice(n)
+      saltar -= n
+      if (!s) continue
     }
-    for (const t of parrafo) {
-      if (resto <= 0) break
-      const s = (t.negrita ?? t.texto).slice(0, resto)
-      resto -= s.length
-      piezas.push(t.negrita !== undefined ? { negrita: s } : { texto: s })
-    }
+    s = s.slice(0, resto)
+    resto -= s.length
+    piezas.push(t.negrita !== undefined ? { negrita: s } : { texto: s })
   }
   return piezas.map((t, j) =>
     t.negrita !== undefined ? <strong key={j}>{t.negrita}</strong> : <span key={j}>{t.texto}</span>,
@@ -126,36 +164,39 @@ export function CorrectionLog({ corrections }) {
     <Card>
       <SectionHead title="Bitácora de correcciones" />
       <ol style={{ margin: 0, padding: 0, listStyle: 'none', fontSize: 'var(--fs-meta)' }}>
-        {corrections.map((c, i) => (
-          <li
-            key={`${c.field}-${i}`}
-            style={{
-              padding: '8px 0',
-              borderBottom: i < corrections.length - 1 ? '1px solid var(--border)' : 'none',
-            }}
-          >
-            <div className="mono" style={{ fontSize: 'var(--fs-micro)', color: 'var(--ink50)' }}>
-              {c.correctedAt} · {c.editor} · {c.field}
-            </div>
-            <div style={{ marginTop: 4, color: 'var(--ink50)' }}>
-              {/* Rotulado, no sólo tachado: un estilo no viaja en `textContent`
+        {corrections.map((c, i) => {
+          const desde = inicioVentana(c.original, c.corrected)
+          return (
+            <li
+              key={`${c.field}-${i}`}
+              style={{
+                padding: '8px 0',
+                borderBottom: i < corrections.length - 1 ? '1px solid var(--border)' : 'none',
+              }}
+            >
+              <div className="mono" style={{ fontSize: 'var(--fs-micro)', color: 'var(--ink50)' }}>
+                {c.correctedAt} · {c.editor} · {c.field}
+              </div>
+              <div style={{ marginTop: 4, color: 'var(--ink50)' }}>
+                {/* Rotulado, no sólo tachado: un estilo no viaja en `textContent`
                   y esta ficha nombra a personas. Ver BitacoraCorrecciones.jsx. */}
-              <span className="mono" style={{ fontSize: 'var(--fs-micro)' }}>
-                {ROTULO_TEXTO_RETIRADO}:{' '}
-              </span>
-              <del>
-                <Recorte texto={c.original} />
-              </del>{' '}
-              <span className="mono" style={{ fontSize: 'var(--fs-micro)' }}>
-                {rotuloTextoPuesto(despues[i])}:{' '}
-              </span>
-              <span style={{ color: 'var(--ink70)' }}>
-                <Recorte texto={c.corrected} />
-              </span>
-            </div>
-            <div style={{ marginTop: 4, color: 'var(--ink50)' }}>{c.reason}</div>
-          </li>
-        ))}
+                <span className="mono" style={{ fontSize: 'var(--fs-micro)' }}>
+                  {ROTULO_TEXTO_RETIRADO}:{' '}
+                </span>
+                <del>
+                  <Recorte texto={c.original} desde={desde} />
+                </del>{' '}
+                <span className="mono" style={{ fontSize: 'var(--fs-micro)' }}>
+                  {rotuloTextoPuesto(despues[i])}:{' '}
+                </span>
+                <span style={{ color: 'var(--ink70)' }}>
+                  <Recorte texto={c.corrected} desde={desde} />
+                </span>
+              </div>
+              <div style={{ marginTop: 4, color: 'var(--ink50)' }}>{c.reason}</div>
+            </li>
+          )
+        })}
       </ol>
     </Card>
   )

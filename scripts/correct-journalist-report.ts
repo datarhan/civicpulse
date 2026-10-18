@@ -34,6 +34,11 @@
  *     never `null` or blank — re-opening a closed mandate is a re-run. The
  *     ledger's `original` is `'null'` for an open row, the previous year for
  *     a closed one, so the reader sees `null → 2025`.
+ *   · timeline[<index>].label            — reword one dated event (0-indexed).
+ *     Exists because a 2023 row still said a councillor «percibe» a salary the
+ *     pleno had since raised (2026-10-18), and one tense was a full re-run.
+ *     The label only: the date and sources make the row an event. Exactly one
+ *     timeline section, index in range, no blank, no no-op.
  *
  * Re-validates the whole reports snapshot before writing — which, for a
  * warning, includes the judicial-token gate: a corrected caveat that names a
@@ -92,7 +97,8 @@ function usage(): never {
       '  · quote.<index>.attributedTo\n' +
       '  · portrait.portfolios[<index>]\n' +
       '  · warnings[<index>]\n' +
-      '  · career-political[<index>].endYear   (--new YYYY; never null)\n',
+      '  · career-political[<index>].endYear   (--new YYYY; never null)\n' +
+      '  · timeline[<index>].label             (the wording only; never the date)\n',
   )
   process.exit(2)
 }
@@ -143,6 +149,7 @@ function parseArgs(argv: string[]): Opts {
 const PORTFOLIO_PATH = /^portrait\.portfolios\[(\d+)\]$/
 const WARNING_PATH = /^warnings\[(\d+)\]$/
 const CAREER_END_PATH = /^career-political\[(\d+)\]\.endYear$/
+const TIMELINE_LABEL_PATH = /^timeline\[(\d+)\]\.label$/
 const YEAR = /^\d{4}$/
 
 export function applyCorrection(
@@ -192,6 +199,33 @@ export function applyCorrection(
     // `String(undefined)` would put "undefined" in the Bitácora.
     const original = item.endYear == null ? 'null' : String(item.endYear)
     item.endYear = year
+    return { sections, original }
+  }
+  if (fieldPath.startsWith('timeline')) {
+    const m = TIMELINE_LABEL_PATH.exec(fieldPath)
+    if (!m)
+      throw new Error(`timeline must be addressed as timeline[<index>].label, got ${fieldPath}`)
+    const targetIndex = Number(m[1])
+    const timelines = sections.filter((s) => s.kind === 'timeline') as Array<
+      Extract<ReportSection, { kind: 'timeline' }>
+    >
+    // The date and the sources are what make a row an event; only its wording
+    // is correctable here. Zero sections would correct nothing, several make
+    // «the event at index N» ambiguous.
+    if (timelines.length !== 1)
+      throw new Error(`expected exactly 1 timeline section, found ${timelines.length}`)
+    const events = timelines[0].payload.events
+    if (targetIndex >= events.length)
+      throw new Error(`timeline index ${targetIndex} out of range (${events.length} events)`)
+    const trimmed = newValue.trim()
+    if (!trimmed)
+      throw new Error('a timeline label cannot be blank — dropping an event is a re-run')
+    const original = events[targetIndex].label
+    if (trimmed === original)
+      throw new Error(
+        `timeline[${targetIndex}].label already reads that — a no-op correction is a mistake, not a record`,
+      )
+    events[targetIndex].label = trimmed
     return { sections, original }
   }
   if (fieldPath.startsWith('warnings')) {

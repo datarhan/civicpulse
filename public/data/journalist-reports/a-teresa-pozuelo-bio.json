@@ -304,7 +304,7 @@
           },
           {
             "date": "2023-07-07",
-            "label": "Acuerdo del Pleno fija el régimen económico de los concejales; la Primera Teniente de Alcalde percibe 43.067,36 €/año en dedicación exclusiva.",
+            "label": "Acuerdo del Pleno fija el régimen económico de los concejales; asigna a la Primera Teniente de Alcalde 43.067,36 €/año en dedicación exclusiva.",
             "sourceIds": [
               "src-005"
             ]
@@ -730,6 +730,14 @@
       "original": "Como Primera Teniente de Alcalde, su retribución quedó fijada por Acuerdo del Pleno de 07/07/2023, que estableció el régimen económico de los concejales (expediente 4533/2023/GEN): dedicación exclusiva y una asignación anual de 43.067,36 €, consignada en el acuerdo bajo el área de Territorio y Agenda Urbana.",
       "corrected": "Como Primera Teniente de Alcalde, su retribución quedó fijada por Acuerdo del Pleno de 07/07/2023, que estableció el régimen económico de los concejales (expediente 4533/2023/GEN): dedicación exclusiva y una asignación anual de 43.067,36 €, consignada en el acuerdo bajo el área de Territorio y Agenda Urbana; el importe vigente consta en su ficha de la sección Cargos de este sitio.",
       "reason": "El Pleno del 16/03/2026 (exp. 1462/2026/GEN) actualizó para 2026 las retribuciones fijadas el 07/07/2023; la cifra de 2023 se presentaba como vigente.",
+      "editor": "Sergei Lutchenko",
+      "correctedAt": "2026-10-18"
+    },
+    {
+      "field": "timeline[5].label",
+      "original": "Acuerdo del Pleno fija el régimen económico de los concejales; la Primera Teniente de Alcalde percibe 43.067,36 €/año en dedicación exclusiva.",
+      "corrected": "Acuerdo del Pleno fija el régimen económico de los concejales; asigna a la Primera Teniente de Alcalde 43.067,36 €/año en dedicación exclusiva.",
+      "reason": "El hito de 2023 decía «percibe» en presente; el Pleno del 16/03/2026 (exp. 1462/2026/GEN) actualizó esa retribución para 2026.",
       "editor": "Sergei Lutchenko",
       "correctedAt": "2026-10-18"
     }
