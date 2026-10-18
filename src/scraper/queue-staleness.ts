@@ -18,7 +18,9 @@
  *
  * This is the read-time half. It does not rewrite a queue: re-running the
  * `triage:*` pass is what regenerates one, and a checker that silently edited
- * a curator's worklist would be its own problem. It reports.
+ * a curator's worklist would be its own problem. It reports. The step that
+ * acts is separate — `colas:rehacer` (src/scraper/queue-repair.ts), run by the
+ * local cron before the digest, and only where the rebuild takes no judgement.
  */
 
 /** A queue file and the field its rows key on. Curated, never glob-scanned. */
