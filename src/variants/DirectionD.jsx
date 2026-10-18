@@ -6,6 +6,7 @@ import {
   SANS,
   MAPA_COMPACTO,
   MAPA_PLEGADO_ALTO,
+  MAPA_SIN_LEYENDA_ALTO,
   STACK_BREAKPOINT,
   useClock,
 } from './direction-d/tokens'
@@ -166,6 +167,12 @@ export default function DirectionD() {
         .cp-dinero { width: 268px; }
         .cp-cobertura { margin-top: 6px; padding-top: 6px; border-top: 1px solid #E6E1D4; }
         .cp-pila-plegar { display: none; }
+        /* La clave de Metrovalencia, tarjeta de la pila (NetworkLegend.jsx). Su
+           display va aquí y no en su style, que ganaría a las reglas de abajo. */
+        .cp-leyenda-red { display: flex; }
+
+        /* En la hoja y no en el style de MapAttribution: el compacto la cambia. */
+        .cp-atribucion { letter-spacing: .08em; }
 
         @media (max-width: ${MAPA_COMPACTO}px) {
           .d-mappane { height: 44vh; min-height: 260px; }
@@ -206,6 +213,10 @@ export default function DirectionD() {
           .cp-mapa-pila[data-plegada='true'] .cp-cobertura {
             margin-top: 0; padding-top: 0; border-top: 0;
           }
+          /* Plegada, la clave de Metrovalencia se va con lo demás que se pliega: es
+             una tarjeta de la pila desde el 18-10-2026, y a estos altos la pila
+             plegada sólo deja chips y cobertura. Al desplegar, vuelve. */
+          .cp-mapa-pila[data-plegada='true'] .cp-leyenda-red { display: none; }
           /* Con una ficha abierta, la pila se aparta. Todo el mapa —también el
              panel de las fichas— apila a z-400, igual que la pila, que va después
              en el DOM y gana el empate; y a 375×629 una ficha mide unos 400 px en
@@ -214,7 +225,14 @@ export default function DirectionD() {
              barrio y el último caía bajo la cobertura plegada: el toque en el
              punto de el Molinet no llegaba a su ficha. La cobertura no se pierde:
              vuelve al cerrar la ficha (barrios-mobile.spec.ts). */
-          .cp-mapa-pila[data-ficha='true'] { visibility: hidden; }
+          .cp-mapa[data-ficha='true'] .cp-mapa-pila { visibility: hidden; }
+          /* La atribución en una sola línea: con el espaciado de escritorio, a 375 px
+             iba en dos y se comía el doble de pie de mapa (y de ficha). */
+          .cp-atribucion { letter-spacing: 0; }
+        }
+
+        @container mapa (max-height: ${MAPA_SIN_LEYENDA_ALTO}px) {
+          .cp-leyenda-red { display: none; }
         }
       `}</style>
 

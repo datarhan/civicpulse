@@ -2,26 +2,38 @@
 import { useMetroNetwork } from '../../../hooks/useMetroNetwork'
 import { readableInk } from '../../../lib/contrast'
 
+/**
+ * La clave de colores de las líneas de Metrovalencia, como una tarjeta más de la
+ * pila de controles (StylizedMap.jsx), junto a las leyendas de las capas.
+ *
+ * Hasta el 18-10-2026 flotaba sola, abajo a la derecha, a z-400 y con 397 px fijos:
+ * a la altura de la pila y del mismo z, la pila le ganaba el empate. Medido con
+ * `elementFromPoint`: tapada un 97 % a 320 y 375 px (y empezando fuera del mapa, más
+ * ancha que él), del 30 al 100 % entre 600 y 1280, y limpia sólo desde 1440. Dentro
+ * de la pila no puede chocar con nada de ella, y las líneas saltan de renglón.
+ * Cuándo se enseña (plegada, en un móvil) lo dicen las reglas de DirectionD.jsx,
+ * y por eso su `display` vive allí y no aquí.
+ */
 export function NetworkLegend() {
   const { data } = useMetroNetwork()
   if (!data?.lines) return null
   return (
     <div
+      className="cp-leyenda-red"
       style={{
-        position: 'absolute',
-        bottom: 28,
-        right: 12,
-        background: 'rgba(255,255,255,.92)',
+        alignSelf: 'flex-start',
+        maxWidth: '100%',
+        boxSizing: 'border-box',
+        background: 'rgba(255,255,255,.94)',
         border: '1px solid #DCD7C8',
         borderRadius: 'var(--r-input)',
         padding: '5px 8px',
         fontFamily: "'Outfit', system-ui, sans-serif",
-        zIndex: 400,
         boxShadow: '0 4px 14px rgba(11,15,25,.08)',
-        display: 'flex',
+        flexWrap: 'wrap',
         alignItems: 'center',
-        gap: 8,
-        whiteSpace: 'nowrap',
+        columnGap: 8,
+        rowGap: 4,
       }}
     >
       <span
@@ -36,7 +48,7 @@ export function NetworkLegend() {
       >
         Metrovalencia
       </span>
-      <div style={{ display: 'inline-flex', gap: 3 }}>
+      <div style={{ display: 'inline-flex', flexWrap: 'wrap', gap: 3 }}>
         {data.lines.map((l) => (
           <span
             key={l.ref}
@@ -52,6 +64,7 @@ export function NetworkLegend() {
               padding: '1px 4px',
               borderRadius: 'var(--r-input)',
               lineHeight: 1.3,
+              whiteSpace: 'nowrap',
             }}
           >
             {l.ref}
