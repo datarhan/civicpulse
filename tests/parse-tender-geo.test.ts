@@ -666,3 +666,72 @@ describe('scraper/tender-geo — el alias de el Pou d’Escoto no recoge el cole
     expect(snap.zones.find((z) => z.slug === 'el-pou-d-escoto')?.contractCount).toBe(1)
   })
 })
+
+describe('scraper/tender-geo — una zona que el resolutor no ve también cuenta como sitio', () => {
+  // «valencia la vella» no pasa needleDistinctive («valencia» es del municipio,
+  // «vella» es palabra común), así que el resolutor no la ve; la capa de zonas,
+  // sí. Un título que nombra otra zona más tenía pin en la que sí veía.
+  const zonas = [
+    ...ZONES,
+    {
+      slug: 'poligono-industrial-entrevias',
+      name: 'Polígono Industrial Entrevías',
+      centroid: [39.5405303, -0.5508958] as [number, number],
+    },
+  ]
+  const candidates = buildGazetteer({
+    streets: [
+      {
+        slug: 'passeig-del-molinet',
+        name: 'Passeig del Molinet',
+        kind: 'calle',
+        point: [39.5557928, -0.5531642],
+      },
+    ],
+    zones: zonas,
+    zoneAliases: ZONE_ALIASES,
+  })
+  const obra = (id: string, title: string) => ({
+    id,
+    title,
+    contractType: 'construction',
+    status: 'formalized',
+    finalAmount: 10000,
+    awardDate: '2024-01-01',
+  })
+  const snap = matchContractsToZones(
+    [
+      obra(
+        '96520',
+        'contrato de obras de colocación de Centros Culturales e instalaciones al servicio de las Urbanizaciones Monte Alcedo y Valencia La Vella, por procedimiento abierto, simplificado mejor relación calidad-precio, varios criterios de adjudicación con cláusulas medioambientales como criterio de adjudicación y con condición especial de ejecución de carácter medioambiental.',
+      ),
+      obra(
+        '1554203',
+        'Contrato de obras INSTALACION ALUMBRADO PUBLICO CARRIL BICI ESCOTO, ROTONDA ENTREVIAS Y ACCESO VALENCIA LA VELLA por procedimiento abierto súper simplificado, varios criterios de adjudicación, con condición de ejecución de carácter social y medioambiental contribuyendo al cumplimiento del ODS 8 relativo al trabajo decente para todos.',
+      ),
+      obra('1999#2', 'Adecuación Paseo Molinet'),
+    ],
+    zonas,
+    OPTS,
+    candidates,
+  )
+  const de = (id: string) => snap.assignments.find((a) => a.id === id)!
+
+  it('dos urbanizaciones a 2,6 km no se pinchan en una (96520)', () => {
+    expect(de('96520').zones.sort()).toEqual(['monte-alcedo', 'urbanitzacio-valencia-la-vella'])
+    expect(de('96520').place).toBeNull()
+  })
+
+  it('la rotonda de Entrevías y el acceso a València la Vella no se pinchan en Entrevías (1554203)', () => {
+    expect(de('1554203').zones.sort()).toEqual([
+      'poligono-industrial-entrevias',
+      'urbanitzacio-valencia-la-vella',
+    ])
+    expect(de('1554203').place).toBeNull()
+  })
+
+  it('una calle DENTRO de la zona que el título también nombra sigue pinchada (1999#2)', () => {
+    expect(de('1999#2').zones).toEqual(['el-molinet'])
+    expect(de('1999#2').place?.sourceId).toBe('passeig-del-molinet')
+  })
+})
