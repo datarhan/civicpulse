@@ -445,11 +445,41 @@ const STOPWORDS = new Set([
   'comuneca',
 ])
 
+/**
+ * Los tokens distintivos de un texto —normalizado, ≥4 letras, sin stopwords—,
+ * calculados una vez por texto.
+ *
+ * Cada `verifyClaim` compara la entidad con el título de TODOS los contratos, y
+ * hasta tres veces por fila (el camino del importe, `tenderCouldRefute`,
+ * `mejorCasiPorObjeto`). Normalizar cada título en cada llamada era el 75 % del
+ * tiempo del verificador, medido el 18-10-2026 con --cpu-prof: unos 100 ms por
+ * declaración, que la nocturna paga por miles y que bajo carga sacaba de los
+ * 5 s una prueba que verifica unas pocas
+ * (tests/claim-verifier-casi-sin-cifra.test.ts). Los títulos son los mismos de
+ * una llamada a otra, así que se cachea por el texto, no por la fila: un dato
+ * que cambie entre llamadas no puede servir tokens viejos. El tope sólo impide
+ * que crezca sin fin en un proceso largo.
+ */
+const cacheDistintivos = new Map<string, ReadonlySet<string>>()
+const TOPE_CACHE_DISTINTIVOS = 20_000
+function distintivos(s: string): ReadonlySet<string> {
+  let r = cacheDistintivos.get(s)
+  if (r === undefined) {
+    if (cacheDistintivos.size >= TOPE_CACHE_DISTINTIVOS) cacheDistintivos.clear()
+    r = new Set(
+      norm(s)
+        .split(' ')
+        .filter((t) => t.length >= 4 && !STOPWORDS.has(t)),
+    )
+    cacheDistintivos.set(s, r)
+  }
+  return r
+}
+
 /** Very cheap word-overlap score between two normalized strings. */
 function overlapScore(a: string, b: string): number {
-  const filt = (t: string) => t.length >= 4 && !STOPWORDS.has(t)
-  const aw = new Set(norm(a).split(' ').filter(filt))
-  const bw = new Set(norm(b).split(' ').filter(filt))
+  const aw = distintivos(a)
+  const bw = distintivos(b)
   if (aw.size === 0 || bw.size === 0) return 0
   let hit = 0
   for (const w of aw) if (bw.has(w)) hit += 1
@@ -470,9 +500,8 @@ function solapamientoMutuo(
   a: string,
   b: string,
 ): { compartidas: number; jaccard: number; entera: boolean; tokensEntidad: number } {
-  const filt = (t: string) => t.length >= 4 && !STOPWORDS.has(t)
-  const aw = new Set(norm(a).split(' ').filter(filt))
-  const bw = new Set(norm(b).split(' ').filter(filt))
+  const aw = distintivos(a)
+  const bw = distintivos(b)
   let compartidas = 0
   for (const w of aw) if (bw.has(w)) compartidas += 1
   const union = new Set([...aw, ...bw]).size
@@ -536,9 +565,8 @@ function tenderCouldRefute(
   amount: number,
   maxContract: number,
 ): boolean {
-  const filt = (t: string) => t.length >= 4 && !STOPWORDS.has(t)
-  const a = new Set(norm(entity).split(' ').filter(filt))
-  const b = new Set(norm(title).split(' ').filter(filt))
+  const a = distintivos(entity)
+  const b = distintivos(title)
   if (a.size < 2) return false
   let shared = 0
   for (const w of a) if (b.has(w)) shared += 1
