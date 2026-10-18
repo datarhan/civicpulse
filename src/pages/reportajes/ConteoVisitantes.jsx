@@ -57,6 +57,10 @@ export const P = ({ children }) => (
   <p style={{ color: 'var(--ink70)', margin: '0 0 14px' }}>{children}</p>
 )
 
+/* Las viñetas van al cuerpo del párrafo, no a --fs-aux: en estas piezas una
+   lista no es un aparte, es el argumento —las garantías que el pliego no
+   exige, lo que la pieza no afirma, el método—, y a 13px lo más serio de la
+   pieza era lo que menos se leía. */
 export function Lista({ items }) {
   return (
     <ul style={{ margin: '0 0 14px', paddingLeft: 18 }}>
@@ -64,10 +68,8 @@ export function Lista({ items }) {
         <li
           key={i}
           style={{
-            fontSize: 'var(--fs-aux)',
             color: 'var(--ink70)',
-            marginBottom: 8,
-            lineHeight: 1.5,
+            marginBottom: 10,
           }}
         >
           {t}
@@ -80,7 +82,12 @@ export function Lista({ items }) {
 const eur = (n) =>
   n.toLocaleString('es-ES', { minimumFractionDigits: 2, maximumFractionDigits: 2 }) + ' €'
 
-/* ---- Tabla con scroll propio: nunca desborda la página ---- */
+/* ---- Tabla con scroll propio: nunca desborda la página ----
+   Por debajo de 600px no se desplaza: cada fila se apila en pares etiqueta ·
+   valor (`.cp-tabla` en index.css). Con scroll, a 375px la segunda columna —en
+   «lo que exige / lo observado», la que trae el hallazgo— quedaba fuera de la
+   pantalla, y el pie, dentro del mismo scroll, cortado a media frase. La
+   etiqueta sale de `data-label`, el mismo texto que la cabecera de la columna. */
 export function Tabla({ cols, rows, caption }) {
   const th = {
     textAlign: 'left',
@@ -107,8 +114,8 @@ export function Tabla({ cols, rows, caption }) {
     ...(i === cols.length - 1 && { paddingRight: 0 }),
   })
   return (
-    <div style={{ overflowX: 'auto' }}>
-      <table style={{ borderCollapse: 'collapse', width: '100%', minWidth: 520 }}>
+    <div className="cp-tabla" style={{ overflowX: 'auto' }}>
+      <table style={{ borderCollapse: 'collapse', width: '100%' }}>
         {caption && (
           <caption
             style={{
@@ -141,6 +148,7 @@ export function Tabla({ cols, rows, caption }) {
               {r.map((cell, j) => (
                 <td
                   key={j}
+                  data-label={cols[j].label}
                   className={cols[j].mono ? 'mono' : undefined}
                   style={{
                     ...td,
@@ -182,15 +190,43 @@ export function SolicitudesEnviadas({ bloque }) {
   // queda un silencio, queda una frase menos.
   if (!resumen.concluyente) return null
 
+  // Cuerpos: la frase de cada solicitud a --fs-body y en tinta plena, lo pedido
+  // a --fs-aux bajo su propia etiqueta, la nota a --fs-aux. Iba todo a 13px y la
+  // nota a 11 —el suelo de las etiquetas, no de un párrafo—: el registro de lo
+  // que se ha pedido y de cuándo vence se leía como letra pequeña. Cada texto va
+  // a la medida de lectura; la tarjeta ocupa la columna. Las frases no se
+  // parten en columnas: las escribe `fraseDeEnvio` con cada salvedad del plazo
+  // en su sitio, y una tabla de fechas las perdería.
+  const frase = {
+    fontSize: 'var(--fs-body)',
+    color: 'var(--ink)',
+    lineHeight: 1.55,
+    maxWidth: 'var(--medida)',
+  }
+  const aparte = {
+    fontSize: 'var(--fs-aux)',
+    color: 'var(--ink70)',
+    lineHeight: 1.5,
+    maxWidth: 'var(--medida)',
+  }
+  const etiqueta = {
+    fontFamily: 'var(--font-mono)',
+    fontSize: 'var(--fs-micro)',
+    letterSpacing: '.06em',
+    textTransform: 'uppercase',
+    color: 'var(--ink50)',
+    marginTop: 8,
+    marginBottom: 2,
+  }
   return (
-    <Card style={{ padding: '12px 14px', marginBottom: 14 }}>
+    <Card style={{ padding: '14px 16px', marginBottom: 14 }}>
       <div
         className="mono"
         style={{
           fontSize: 'var(--fs-micro)',
           color: 'var(--ink50)',
           letterSpacing: '.04em',
-          marginBottom: 10,
+          marginBottom: 12,
         }}
       >
         {bloque.titulo}
@@ -198,75 +234,48 @@ export function SolicitudesEnviadas({ bloque }) {
 
       {items.map((e, i) => {
         const estado = estadoDeEnvio(e, hoy)
+        const ultima = i === items.length - 1
         return (
           <div
             key={`${e.organismo}-${e.enviadaEl}`}
             style={{
-              marginBottom: i === items.length - 1 ? 0 : 12,
-              paddingBottom: i === items.length - 1 ? 0 : 12,
-              borderBottom: i === items.length - 1 ? 'none' : '1px solid var(--border)',
+              marginBottom: ultima ? 0 : 14,
+              paddingBottom: ultima ? 0 : 14,
+              borderBottom: ultima ? 'none' : '1px solid var(--border)',
             }}
           >
-            <div style={{ marginBottom: 5 }}>
+            <div style={{ marginBottom: 6 }}>
               <Pill tone={ESTADO_ENVIO_TONO[estado]} size="xs">
                 {ESTADO_ENVIO_ETIQUETA[estado]}
               </Pill>
             </div>
-            <div style={{ fontSize: 'var(--fs-aux)', color: 'var(--ink70)', lineHeight: 1.5 }}>
-              {fraseDeEnvio(e, hoy)}
-            </div>
+            <div style={frase}>{fraseDeEnvio(e, hoy)}</div>
             {/* Lo que dijeron, atribuido. Va con la tinta de la frase y no con la
                 de lo pedido: es la respuesta, no el contexto. */}
             {e.respuesta?.resumen && (
-              <div
-                style={{
-                  fontSize: 'var(--fs-aux)',
-                  color: 'var(--ink70)',
-                  lineHeight: 1.5,
-                  marginTop: 4,
-                }}
-              >
-                {e.respuesta.resumen}
-              </div>
+              <div style={{ ...frase, marginTop: 4 }}>{e.respuesta.resumen}</div>
             )}
             {/* Lo que contestaron sin resolver. Va con la tinta de la frase, no
                 con la de lo pedido: es algo que dijeron. Y va SIN pastilla de
                 estado propia, porque el estado no ha cambiado — que es
                 justamente lo que hay que enseñar. */}
             {(e.incidencias ?? []).map((inc) => (
-              <div
-                key={inc.fecha}
-                style={{
-                  fontSize: 'var(--fs-aux)',
-                  color: 'var(--ink70)',
-                  lineHeight: 1.5,
-                  marginTop: 4,
-                }}
-              >
+              <div key={inc.fecha} style={{ ...frase, marginTop: 4 }}>
                 {inc.texto}
               </div>
             ))}
-            <div
-              style={{
-                fontSize: 'var(--fs-aux)',
-                color: 'var(--ink50)',
-                lineHeight: 1.5,
-                marginTop: 4,
-              }}
-            >
-              {e.pide}
-            </div>
+            <div style={etiqueta}>Lo que se pidió</div>
+            <div style={aparte}>{e.pide}</div>
           </div>
         )
       })}
 
       <div
         style={{
-          fontSize: 'var(--fs-micro)',
+          ...aparte,
           color: 'var(--ink50)',
-          lineHeight: 1.5,
-          marginTop: 12,
-          paddingTop: 10,
+          marginTop: 14,
+          paddingTop: 12,
           borderTop: '1px solid var(--border)',
         }}
       >
@@ -492,15 +501,7 @@ export default function ConteoVisitantes() {
       <SecHead num="10" kicker="Sin responder" title="Las preguntas registradas" />
       <ol style={{ margin: '0 0 14px', paddingLeft: 20 }}>
         {data.preguntas.map((q, i) => (
-          <li
-            key={i}
-            style={{
-              fontSize: 'var(--fs-aux)',
-              color: 'var(--ink70)',
-              marginBottom: 8,
-              lineHeight: 1.5,
-            }}
-          >
+          <li key={i} style={{ color: 'var(--ink70)', marginBottom: 10 }}>
             {q}
           </li>
         ))}
