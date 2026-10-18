@@ -35,6 +35,10 @@ export interface Candidate {
   specificity: number
   /** Raw OSM tag for POIs (townhall/cemetery/library…) — the singleton facility matcher. */
   osmKind?: string
+  /** Frases plegadas dentro de las cuales una aguja NO nombra este sitio
+   *  (ZONE_ALIAS_EXCLUSIONS): «yacimiento arqueológico de Valencia la Vella» no
+   *  es la urbanización. */
+  notWithin?: string[]
 }
 
 export interface PlaceMatch {
@@ -323,6 +327,38 @@ interface GazetteerInput {
   }>
   zones?: Array<{ slug: string; name: string; centroid: [number, number] }>
   zoneAliases?: Record<string, string[]>
+  /** Por slug de zona: frases en las que su alias nombra otro sitio homónimo. */
+  zoneAliasExclusions?: Record<string, string[]>
+}
+
+function notWithinDe(input: GazetteerInput, slug: string): { notWithin?: string[] } {
+  const frases = (input.zoneAliasExclusions?.[slug] ?? []).map(foldTitle).filter(Boolean)
+  return frases.length ? { notWithin: frases } : {}
+}
+
+/**
+ * ¿La aparición de `start..end` (en tokens) cae dentro de alguna de `frases`?
+ * Entonces la aguja nombra otro sitio homónimo y no cuenta como este.
+ */
+function dentroDeFrase(tokens: string[], start: number, end: number, frases: string[]): boolean {
+  return frases.some((f) => {
+    const ft = f.split(' ')
+    for (let k = Math.max(0, end - ft.length); k <= start; k++)
+      if (ft.every((t, x) => tokens[k + x] === t)) return true
+    return false
+  })
+}
+
+/** ¿Aparece la aguja `n` en `tokens` fuera de las frases de exclusión de `c`? */
+function apareceLibre(tokens: string[], n: string, c: Candidate): boolean {
+  const nt = n.split(' ')
+  for (let i = 0; i + nt.length <= tokens.length; i++)
+    if (
+      nt.every((t, k) => tokens[i + k] === t) &&
+      !dentroDeFrase(tokens, i, i + nt.length, c.notWithin ?? [])
+    )
+      return true
+  return false
 }
 
 /** Build the candidate list from the loaded snapshots. */
@@ -386,6 +422,7 @@ export function buildGazetteer(input: GazetteerInput): Candidate[] {
       sourceId: slug,
       needles,
       specificity: 2,
+      ...notWithinDe(input, slug),
     })
   }
 
@@ -399,6 +436,7 @@ export function buildGazetteer(input: GazetteerInput): Candidate[] {
       sourceId: z.slug,
       needles,
       specificity: 1,
+      ...notWithinDe(input, z.slug),
     })
   }
 
@@ -697,7 +735,9 @@ export function resolvePlace(
     if (c.kind === 'poi' && !allowPoi) continue
     let matchedLen = -1
     for (const n of c.needles) {
-      if (matches(padded, n) && n.length > matchedLen) matchedLen = n.length
+      if (!matches(padded, n) || n.length <= matchedLen) continue
+      if (c.notWithin && !apareceLibre(foldedTitle.split(' ').filter(Boolean), n, c)) continue
+      matchedLen = n.length
     }
     if (matchedLen < 0) continue
     if (c.specificity > bestScore || (c.specificity === bestScore && matchedLen > bestLen)) {
@@ -838,7 +878,10 @@ export function resolveUnambiguousPlace(
       if (!matches(padded, n)) continue
       const nt = n.split(' ')
       for (let i = 0; i + nt.length <= tokens.length; i++)
-        if (nt.every((t, k) => tokens[i + k] === t))
+        if (
+          nt.every((t, k) => tokens[i + k] === t) &&
+          !dentroDeFrase(tokens, i, i + nt.length, c.notWithin ?? [])
+        )
           into.push({ c, start: i, end: i + nt.length, len: n.length })
     }
   }

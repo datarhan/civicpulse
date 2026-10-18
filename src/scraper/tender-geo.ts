@@ -150,6 +150,37 @@ export const ZONE_ALIASES: Record<string, string[]> = {
   'clot-de-navarrete': ['navarrete'],
 }
 
+// Frases en las que un alias NO nombra su zona, sino otro sitio homónimo.
+// Curadas, como los alias. València la Vella es también el yacimiento visigodo
+// (BIC, «Zona arqueològica», OSM way 1176535578), con su propio polígono a
+// 0,72 km del centroide de la urbanización: dentro de CONTAINMENT_KM, así que
+// la distancia no los separa y hace falta decirlo. Las frases son las de los
+// títulos (2739773, 1520813, 4718569) y los nombres del yacimiento en
+// gazetteer-supplement.json. Medido el 2026-10-18. Una ocurrencia del alias
+// fuera de estas frases sigue contando.
+export const ZONE_ALIAS_EXCLUSIONS: Record<string, string[]> = {
+  'urbanitzacio-valencia-la-vella': [
+    'yacimiento arqueologico de valencia la vella',
+    'yacimiento de valencia la vella',
+    'zona arqueologica de valencia la vella',
+    'jaciment visigotic de valencia la vella',
+    'jaciment de valencia la vella',
+  ],
+}
+
+/** ¿Aparece `alias` en `texto` fuera de toda `frase` que lo contenga? */
+function aliasFueraDeFrases(texto: string, alias: string, frases: string[]): boolean {
+  for (let i = texto.indexOf(alias); i >= 0; i = texto.indexOf(alias, i + 1)) {
+    const cubierta = frases.some((f) => {
+      for (let j = texto.indexOf(f); j >= 0; j = texto.indexOf(f, j + 1))
+        if (j <= i && i + alias.length <= j + f.length) return true
+      return false
+    })
+    if (!cubierta) return true
+  }
+  return false
+}
+
 export function foldText(s: string): string {
   return (
     stripDiacritics(s)
@@ -228,7 +259,9 @@ export function matchContractsToZones(
     for (const [slug, aliases] of Object.entries(ZONE_ALIASES)) {
       if (!zoneBySlug.has(slug) || aliases.length === 0) continue
       let best = ''
-      for (const a of aliases) if (folded.includes(a) && a.length > best.length) best = a
+      const frases = ZONE_ALIAS_EXCLUSIONS[slug] ?? []
+      for (const a of aliases)
+        if (aliasFueraDeFrases(folded, a, frases) && a.length > best.length) best = a
       if (best) matched[slug] = best
     }
     return matched
