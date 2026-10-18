@@ -76,7 +76,7 @@
       "kind": "narrative",
       "payload": {
         "heading": "Cargos, portafolios y retribución",
-        "bodyMarkdown": "Hernández Carrizosa ostenta las concejalías de Administración y Servicios Generales, Compra Pública, Recursos Humanos, Finanzas públicas y recaudación, Fomento económico, Empleo y Emprendimiento, y Comercio, además del cargo de Tercer Teniente de Alcalde. El Pleno del Ayuntamiento, en el acuerdo de fijación del régimen económico de los concejales de 7 de julio de 2023 (Expediente 4533/2023/GEN), fijó su dedicación exclusiva en 43.067,36 euros anuales para el desempeño de dicho cargo.",
+        "bodyMarkdown": "Hernández Carrizosa ostenta las concejalías de Administración y Servicios Generales, Compra Pública, Recursos Humanos, Finanzas públicas y recaudación, Fomento económico, Empleo y Emprendimiento, y Comercio, además del cargo de Tercer Teniente de Alcalde. El Pleno del Ayuntamiento, en el acuerdo de fijación del régimen económico de los concejales de 7 de julio de 2023 (Expediente 4533/2023/GEN), fijó su dedicación exclusiva en 43.067,36 euros anuales para el desempeño de dicho cargo; el importe vigente consta en su ficha de la sección Cargos de este sitio.",
         "sourceIds": [
           "src-001",
           "src-005"
@@ -790,6 +790,14 @@
       "reason": "Se retira la frase sobre intervenciones en cuestiones presupuestarias de personal: la sostenía un extracto del motor de transcripción que se sustituyó, y que no aparece en la transcripción vigente de la sesión. Lo que se publicaba como literal no es lo que consta hoy, así que la afirmación se retira en vez de reanclarse a un pasaje que no la dice.",
       "editor": "Sergei Lutchenko",
       "correctedAt": "2026-08-18"
+    },
+    {
+      "field": "narrative.Cargos, portafolios y retribución.bodyMarkdown",
+      "original": "Hernández Carrizosa ostenta las concejalías de Administración y Servicios Generales, Compra Pública, Recursos Humanos, Finanzas públicas y recaudación, Fomento económico, Empleo y Emprendimiento, y Comercio, además del cargo de Tercer Teniente de Alcalde. El Pleno del Ayuntamiento, en el acuerdo de fijación del régimen económico de los concejales de 7 de julio de 2023 (Expediente 4533/2023/GEN), fijó su dedicación exclusiva en 43.067,36 euros anuales para el desempeño de dicho cargo.",
+      "corrected": "Hernández Carrizosa ostenta las concejalías de Administración y Servicios Generales, Compra Pública, Recursos Humanos, Finanzas públicas y recaudación, Fomento económico, Empleo y Emprendimiento, y Comercio, además del cargo de Tercer Teniente de Alcalde. El Pleno del Ayuntamiento, en el acuerdo de fijación del régimen económico de los concejales de 7 de julio de 2023 (Expediente 4533/2023/GEN), fijó su dedicación exclusiva en 43.067,36 euros anuales para el desempeño de dicho cargo; el importe vigente consta en su ficha de la sección Cargos de este sitio.",
+      "reason": "El Pleno del 16/03/2026 (exp. 1462/2026/GEN) actualizó para 2026 las retribuciones fijadas el 07/07/2023; la cifra de 2023 se presentaba como vigente.",
+      "editor": "Sergei Lutchenko",
+      "correctedAt": "2026-10-18"
     }
   ],
   "response": null
