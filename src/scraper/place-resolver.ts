@@ -63,6 +63,10 @@ export function foldTitle(s: string): string {
       // Lo mismo con la letra de una meta ODS («meta 9.5.c» → «9 5c»), que daba
       // permiso de calle a una app municipal (1402847).
       .replace(/(\d)\.([a-z])\b/g, '$1$2')
+      // «poli-deportivo» es «polideportivo». Plegado a «poli deportivo», el guion
+      // destapaba la aguja «deportivo municipal» del pabellón: el contrato DANA
+      // 4863213, pistas del poli-deportivo, acabó en el Pavelló (18-10-2026).
+      .replace(/\bpoli-(?=[a-z])/g, 'poli')
       .replace(/[^a-z0-9]+/g, ' ')
       .trim()
   )
@@ -161,6 +165,17 @@ const COMMON_WORDS = new Set([
   // «carril peatonal», «paso peatonal»: un adjetivo, no la vía que OSM llama
   // «Peatonal» a secas.
   'peatonal',
+  // «instalación deportiva», «campo deportivo municipal»: el tipo, no el sitio.
+  // Sin ellas, «Pabellón deportivo municipal» sin su «pabellón» dejaba la aguja
+  // «deportivo municipal», que casaba con cualquier instalación (4863213).
+  'deportivo',
+  'deportiva',
+  'deportivos',
+  'deportivas',
+  'esportiu',
+  'esportiva',
+  'esportius',
+  'esportives',
 ])
 
 // Generic leading words dropped from a POI name to reach its distinctive core.
