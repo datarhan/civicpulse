@@ -1,10 +1,9 @@
 import { useReportaje } from '../../hooks/useReportaje'
-import Emblema, { cifrasDelEmblema } from '../../components/reportajes/Emblema'
+import CabeceraPieza, { ENTRADILLA } from '../../components/reportajes/CabeceraPieza'
 import { Card, SectionHead } from '../../components/Primitives'
-import { CorrectionNote, CorrectionNotice } from '../../components/reportajes/CorrectionNote'
-import { SecHead, IndicePieza, Revela, useRevelado } from '../../components/reportajes/Pieza'
+import { CorrectionNote } from '../../components/reportajes/CorrectionNote'
+import { SecHead, Revela, useRevelado } from '../../components/reportajes/Pieza'
 
-const SERIF = "'Fraunces', Georgia, serif"
 const MES = ['ene', 'feb', 'mar', 'abr', 'may', 'jun', 'jul', 'ago', 'sep', 'oct', 'nov', 'dic']
 
 function eurC(n) {
@@ -469,8 +468,6 @@ export default function ReconstruccionDana() {
 
   const t = data.totals
   const m = data.meta
-  // Las tarjetas que la figura de cabecera ya imprime (ver cifrasDelEmblema).
-  const enFigura = new Set(cifrasDelEmblema('reconstruccion-dana', data))
 
   return (
     <div
@@ -483,140 +480,55 @@ export default function ReconstruccionDana() {
         lineHeight: 1.62,
       }}
     >
-      {m.estado !== 'publicado' && (
-        <div
-          style={{
-            background: 'var(--warn-soft)',
-            border: '1px solid var(--warn)',
-            color: 'var(--warn-ink)',
-            borderRadius: 'var(--r-card)',
-            padding: '10px 14px',
-            fontSize: 'var(--fs-meta)',
-            marginBottom: 22,
-          }}
-        >
-          <strong>Borrador editorial · pendiente de derecho de réplica.</strong> Esta pieza aún no
-          es una publicación definitiva: se recabará la versión del Ayuntamiento de Riba-roja y se
-          incorporará antes de darla por publicada.
-        </div>
-      )}
-
-      <div
-        className="mono cp-texto"
-        style={{
-          fontSize: 'var(--fs-micro)',
-          color: 'var(--ink50)',
-          textTransform: 'uppercase',
-          letterSpacing: '.08em',
+      {/* Cabecera común. Las tarjetas las arma la página con sus totales
+          (`kpisReconstruccion`), y la entradilla son los dos párrafos de
+          apertura, escritos aquí porque mezclan cifras del snapshot con prosa. */}
+      <CabeceraPieza
+        slug="reconstruccion-dana"
+        data={data}
+        borrador={{
+          titulo: 'Borrador editorial · pendiente de derecho de réplica.',
+          texto:
+            'Esta pieza aún no es una publicación definitiva: se recabará la versión del Ayuntamiento de Riba-roja y se incorporará antes de darla por publicada.',
         }}
-      >
-        {m.seccion}
-      </div>
-      <h1
-        style={{
-          fontFamily: SERIF,
-          fontSize: 'var(--type-display)',
-          fontWeight: 600,
-          letterSpacing: '-.015em',
-          lineHeight: 1.08,
-          margin: '4px 0 14px',
-        }}
-      >
-        {m.titulo}
-      </h1>
-      <p
-        style={{
-          fontSize: 'var(--fs-head)',
-          color: 'var(--ink50)',
-          lineHeight: 1.5,
-          margin: '0 0 26px',
-        }}
-      >
-        {m.subtitulo}
-      </p>
-
-      <Emblema slug="reconstruccion-dana" data={data} style={{ margin: '0 0 26px' }} />
-
-      <CorrectionNotice correcciones={m.correcciones} />
-
-      {/* KPIs */}
-      <div
-        style={{
-          display: 'grid',
-          // auto-fit y no cuatro columnas fijas: donde la figura se ve, dos tarjetas
-          // se esconden (cifrasDelEmblema), y cuatro columnas dejaban dos huecos. En
-          // el móvil, además, cuatro columnas de 80px no le cabían a «14,5 M€».
-          gridTemplateColumns: 'repeat(auto-fit, minmax(150px, 1fr))',
-          gap: 1,
-          background: 'var(--border)',
-          border: '1px solid var(--border)',
-          borderRadius: 'var(--r-card)',
-          overflow: 'hidden',
-          margin: '0 0 30px',
-        }}
-      >
-        {kpisReconstruccion(t).map((s, i) => (
-          <div
-            key={i}
-            className={enFigura.has(s.n) ? 'cp-kpi-en-figura' : undefined}
-            style={{ background: 'var(--paper)', padding: '16px 14px' }}
-          >
-            <div
-              className="mono"
-              style={{
-                fontSize: 'var(--fs-card)',
-                fontWeight: 500,
-                color: s.tone || 'var(--ink)',
-                lineHeight: 1,
-              }}
-            >
-              {s.n}
-            </div>
-            <div
-              style={{
-                fontSize: 'var(--fs-aux)',
-                color: 'var(--ink50)',
-                marginTop: 7,
-                lineHeight: 1.3,
-              }}
-            >
-              {s.l}
-            </div>
-          </div>
-        ))}
-      </div>
+        kpis={kpisReconstruccion(t)}
+        entradilla={
+          <>
+            <p style={ENTRADILLA}>
+              En los días que siguieron a la DANA del 29 de octubre de 2024, el Ayuntamiento de
+              Riba-roja de Túria firmó contratos casi a diario. Palas para despejar caminos,
+              camiones para retirar el lodo, bombas para achicar los polígonos anegados. Solo en
+              noviembre de aquel año adjudicó <b>22 contratos por 1,39 millones de euros</b>, buena
+              parte por el procedimiento de emergencia que permite la ley cuando no hay tiempo para
+              un concurso. Año y medio después, la reconstrucción todavía se contrata: el último
+              gran contrato con referencia a la DANA que consta en el registro público —un vallado
+              de parcelas en los polígonos industriales por <b>445.313 euros</b>— se adjudicó en
+              marzo de 2026.
+            </p>
+            <p style={{ ...ENTRADILLA, margin: '14px 0 0' }}>
+              Entre esas dos fechas, un análisis de la contratación municipal permite seguir el
+              rastro del dinero contrato a contrato, y en muchos casos calle a calle. De los{' '}
+              {/* «entre 2018 y 2026» era falso: el denominador congelado son los 698 contratos
+                  adjudicados del snapshot del 02-08-2026, y su adjudicación más antigua es del
+                  03-07-2017. 2017 aporta 15 contratos y 3,35 M€ — el 4,9% de la cifra. */}
+              {eurC(t.totalAwarded)} que el Ayuntamiento adjudicó entre julio de 2017 y julio de
+              2026 —sin contar la concesión del agua, que se adjudica por sus diecisiete años de una
+              vez y por sí sola pesa casi tanto como todo lo demás junto—,{' '}
+              <b>
+                {t.danaContracts} contratos por {eurC(t.danaAmount)} referencian expresamente la
+                DANA
+              </b>{' '}
+              en su título. Es una cifra conservadora —el suelo trazable, no el total de la
+              reconstrucción—, pero{' '}
+              <b>extiende en 16 meses la última cuenta pública del propio Ayuntamiento</b>, que en
+              2024 cifró en 63 contratos de emergencia y 2.048.621 euros su respuesta inmediata a la
+              riada.
+            </p>
+          </>
+        }
+      />
 
       <article style={{ color: 'var(--ink70)' }}>
-        <p>
-          En los días que siguieron a la DANA del 29 de octubre de 2024, el Ayuntamiento de
-          Riba-roja de Túria firmó contratos casi a diario. Palas para despejar caminos, camiones
-          para retirar el lodo, bombas para achicar los polígonos anegados. Solo en noviembre de
-          aquel año adjudicó <b>22 contratos por 1,39 millones de euros</b>, buena parte por el
-          procedimiento de emergencia que permite la ley cuando no hay tiempo para un concurso. Año
-          y medio después, la reconstrucción todavía se contrata: el último gran contrato con
-          referencia a la DANA que consta en el registro público —un vallado de parcelas en los
-          polígonos industriales por <b>445.313 euros</b>— se adjudicó en marzo de 2026.
-        </p>
-        <p>
-          Entre esas dos fechas, un análisis de la contratación municipal permite seguir el rastro
-          del dinero contrato a contrato, y en muchos casos calle a calle. De los{' '}
-          {/* «entre 2018 y 2026» era falso: el denominador congelado son los 698 contratos
-              adjudicados del snapshot del 02-08-2026, y su adjudicación más antigua es del
-              03-07-2017. 2017 aporta 15 contratos y 3,35 M€ — el 4,9% de la cifra. */}
-          {eurC(t.totalAwarded)} que el Ayuntamiento adjudicó entre julio de 2017 y julio de 2026
-          —sin contar la concesión del agua, que se adjudica por sus diecisiete años de una vez y
-          por sí sola pesa casi tanto como todo lo demás junto—,{' '}
-          <b>
-            {t.danaContracts} contratos por {eurC(t.danaAmount)} referencian expresamente la DANA
-          </b>{' '}
-          en su título. Es una cifra conservadora —el suelo trazable, no el total de la
-          reconstrucción—, pero{' '}
-          <b>extiende en 16 meses la última cuenta pública del propio Ayuntamiento</b>, que en 2024
-          cifró en 63 contratos de emergencia y 2.048.621 euros su respuesta inmediata a la riada.
-        </p>
-
-        <IndicePieza />
-
         <SecHead num="01" kicker="Cuándo" title="La ola y la cola" />
         <p>
           El grueso llegó de golpe. La retirada de fango y la limpieza de caminos y viales coparon

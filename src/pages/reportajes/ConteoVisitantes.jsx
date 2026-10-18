@@ -1,9 +1,8 @@
 import { useReportaje } from '../../hooks/useReportaje'
-import Emblema, { cifrasDelEmblema } from '../../components/reportajes/Emblema'
+import CabeceraPieza from '../../components/reportajes/CabeceraPieza'
 import { Card, Pill } from '../../components/Primitives'
-import { CorrectionNote, CorrectionNotice } from '../../components/reportajes/CorrectionNote'
-import { SecHead, IndicePieza } from '../../components/reportajes/Pieza'
-import { fmtDateHuman } from '../../lib/formatters'
+import { CorrectionNote } from '../../components/reportajes/CorrectionNote'
+import { SecHead } from '../../components/reportajes/Pieza'
 import {
   estadoDeEnvio,
   fraseDeCalendarios,
@@ -359,8 +358,6 @@ export default function ConteoVisitantes() {
     )
 
   const m = data.meta
-  // Las tarjetas que la figura de cabecera ya imprime (ver cifrasDelEmblema).
-  const enFigura = new Set(cifrasDelEmblema('conteo-visitantes', data))
 
   return (
     <div
@@ -373,111 +370,7 @@ export default function ConteoVisitantes() {
         lineHeight: 1.62,
       }}
     >
-      {m.estado !== 'publicado' && (
-        <div
-          style={{
-            background: 'var(--warn-soft)',
-            border: '1px solid var(--warn)',
-            borderRadius: 'var(--r-card)',
-            padding: '10px 12px',
-            marginBottom: 16,
-            fontSize: 'var(--fs-aux)',
-            color: 'var(--ink)',
-          }}
-        >
-          Borrador · no publicado.
-        </div>
-      )}
-
-      <div
-        className="mono cp-texto"
-        style={{ fontSize: 'var(--fs-micro)', color: 'var(--ink50)', letterSpacing: '.06em' }}
-      >
-        {m.seccion}
-      </div>
-      <h1
-        style={{
-          fontFamily: SERIF,
-          fontSize: 'var(--fs-display)',
-          fontWeight: 600,
-          letterSpacing: '-.02em',
-          lineHeight: 1.08,
-          margin: '8px 0 10px',
-        }}
-      >
-        {m.titulo}
-      </h1>
-      <p style={{ color: 'var(--ink70)', fontSize: 'var(--fs-head)', margin: '0 0 6px' }}>
-        {m.subtitulo}
-      </p>
-      <div className="mono" style={{ fontSize: 'var(--fs-meta)', color: 'var(--ink50)' }}>
-        Publicado el {fmtDateHuman(m.publicadoEl)} · cifras congeladas a {m.fechaDatos}
-      </div>
-
-      {/* Aquí la entradilla va seguida de la línea «Publicado el…», sin margen
-          propio: el hueco de arriba lo pone la figura. */}
-      <Emblema slug="conteo-visitantes" data={data} style={{ margin: '22px 0 26px' }} />
-
-      {/* La línea «Publicado el…» no tiene margen propio y la figura, que pone el
-          hueco en escritorio, se oculta en móvil: el hueco lo pone también el
-          aviso (los márgenes se colapsan, así que en escritorio no se suma). */}
-      <CorrectionNotice correcciones={m.correcciones} style={{ marginTop: 22 }} />
-
-      {/* KPIs */}
-      <div
-        style={{
-          display: 'grid',
-          gridTemplateColumns: 'repeat(auto-fit, minmax(150px, 1fr))',
-          gap: 10,
-          margin: '20px 0 6px',
-        }}
-      >
-        {data.kpis.map((k, i) => (
-          <Card
-            key={i}
-            className={enFigura.has(k.n) ? 'cp-kpi-en-figura' : undefined}
-            style={{ padding: '12px 14px' }}
-          >
-            <div
-              className="mono"
-              style={{ fontSize: 'var(--fs-page)', color: 'var(--ink)', fontWeight: 600 }}
-            >
-              {k.n}
-            </div>
-            <div
-              style={{
-                fontSize: 'var(--fs-meta)',
-                color: 'var(--ink50)',
-                marginTop: 4,
-                lineHeight: 1.4,
-              }}
-            >
-              {k.l}
-            </div>
-          </Card>
-        ))}
-      </div>
-
-      {/* La entradilla iba a --fs-page (26px) también en el móvil: a 375px eran
-          diecisiete líneas de serifa, pantalla y media antes del primer
-          apartado. Ahora escala con el ancho entre dos pasos de la escala, como
-          los --type-* de index.css: --fs-page donde cabe, --fs-card donde no.
-          Va a todo el ancho (`cp-ancho`): a 26px, la columna entera son unos
-          sesenta caracteres, y la medida del cuerpo la dejaba en trece líneas. */}
-      <p
-        className="cp-ancho"
-        style={{
-          fontFamily: SERIF,
-          fontSize: 'clamp(var(--fs-card), 2.4vw, var(--fs-page))',
-          lineHeight: 1.5,
-          color: 'var(--ink)',
-          margin: '22px 0 0',
-        }}
-      >
-        {data.entradilla}
-      </p>
-
-      <IndicePieza />
+      <CabeceraPieza slug="conteo-visitantes" data={data} />
 
       {/* 1 · los dos contratos */}
       <SecHead num="01" kicker="El expediente" title="Los dos contratos" />
