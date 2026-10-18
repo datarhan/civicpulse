@@ -158,10 +158,20 @@ npm run journalist-reply -- <reportId> <PSOE|PP|VOX|Compromís|Ciudadanos|EU-Pod
    report.
 
 **Web-search backend (Stage 2):** the agent's `web-search` tool prefers a
-self-hosted **SearXNG** instance over the paid Exa REST API. Bootstrap
-once with `npm run searxng:up` (requires Docker; compose file at
-`scripts/searxng/docker-compose.yml`), then set
-`SEARXNG_URL=http://localhost:8888` in `.env`. The dispatcher in
+self-hosted **SearXNG** instance over the paid Exa REST API. Nobody starts it
+by hand: `journalist:run` and `suggest:officials-social` call
+`searxngForThisRun()` (`scripts/lib/searxng-lease.ts`), which sets
+`SEARXNG_URL=http://127.0.0.1:8888` when it is unset, opens Docker Desktop
+if the daemon is down, brings the container up from the **main checkout's**
+`scripts/searxng/docker-compose.yml` (never a worktree's — on 2026-10-18 a
+container created from a since-deleted worktree mounted an empty directory
+over `settings.yml` and would not start), and checks a JSON search answers.
+If it does not answer within a few minutes the run exits 1 before doing any
+work, naming the step that failed. On exit, Ctrl+C or error the run drops its
+lease, and the last run out stops the container — but only one a run started:
+an instance brought up by hand with `npm run searxng:up` is never stopped. A
+`SEARXNG_URL` that is not this machine on 8888 is only health-checked. The
+dispatcher in
 `src/scraper/journalist-tools.ts::webSearch()` picks SearXNG first, falls
 back to Exa only when `SEARXNG_URL` is unset AND `EXA_API_KEY` is set,
 and otherwise returns an empty result set with a helpful error so the
@@ -351,10 +361,11 @@ What the first v2 taught (Gimeno, 2026-09-06/07), each fixed in code:
   the published citation cap, applied at parse time so a bad seed cannot become
   a citation. Trim the excerpt to a contiguous verbatim span; do not paraphrase.
 - **The run reads `SEARXNG_URL` from its own environment.** A worktree has no
-  `.env`, so a run launched there logged «web-search backend: NONE» and would
-  have skipped every open-web query while still exiting 0 with a draft. Pass
-  `SEARXNG_URL=http://127.0.0.1:<port>` (the container's port, `docker port
-civicpulse-searxng`) explicitly, and read the backend line the run prints.
+  `.env`, so a run launched there once logged «web-search backend: NONE» and
+  would have skipped every open-web query while still exiting 0 with a draft.
+  The run now sets `http://127.0.0.1:8888` itself when the variable is unset
+  and refuses to start if SearXNG does not answer; still read the backend line
+  it prints.
 - What the third v2 taught (the mayor, 2026-09-20), all four caught by a gate
   AFTER the promotion, none by reading the draft:
   - **A v2 must not reword a `career-professional` or `education` row that a

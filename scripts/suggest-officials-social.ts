@@ -17,10 +17,12 @@
  * namesake's account cannot reach a councillor's card.
  *
  * Search runs through the repo's existing dispatcher, which prefers a
- * self-hosted SearXNG instance (SEARXNG_URL) and costs nothing.
+ * self-hosted SearXNG instance (SEARXNG_URL) and costs nothing. The run
+ * starts that instance itself when it is down, and stops it on exit.
  */
 import { writeFile, readFile } from 'node:fs/promises'
 import { resolve } from 'node:path'
+import { searxngForThisRun } from './lib/searxng-lease'
 /**
  * Queries SearXNG directly rather than through the journalist-tools wrapper.
  * That wrapper hard-caps at 8 results and does not re-rank, so for a query like
@@ -115,6 +117,9 @@ async function main() {
     console.error(`[social] no official matches --slug ${slugArg}`)
     process.exit(1)
   }
+
+  // Levanta SearXNG si hace falta y lo baja al salir (scripts/lib/searxng-lease.ts).
+  await searxngForThisRun('[social]')
 
   console.log(
     `[social] searching ${targets.length} official(s) across ${SOCIAL_PLATFORMS.length} allowlisted platforms`,

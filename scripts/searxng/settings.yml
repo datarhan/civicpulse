@@ -99,3 +99,7 @@ engines:
     disabled: true
   - name: imdb
     disabled: true
+  # Startpage answers a self-hosted instance with a captcha redirect, and
+  # SearXNG then suspends it for an hour on every container start.
+  - name: startpage
+    disabled: true

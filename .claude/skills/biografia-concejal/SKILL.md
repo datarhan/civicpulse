@@ -19,7 +19,8 @@ script, the stale draft purged, and the run relaunched).
 
 ## Phase 0 — Prerequisites
 
-- SearXNG up: `docker ps | grep searxng` (else `npm run searxng:up`) and `SEARXNG_URL` in `.env`.
+- SearXNG: nothing to do. `journalist:run` starts it (opening Docker Desktop if needed), sets
+  `SEARXNG_URL` when unset, and stops it on exit; if it cannot, the run exits 1 before starting.
 - Env: the repo has NO dotenv — always `set -a && source .env && set +a` before metered/LLM commands.
 - Backend policy: `LLM_BACKEND=claude-code LLM_CONCURRENCY=1` (coste cero, plan Max — avoid
   dollar-number literals in this file; the skill runtime interpolates them as positional args).
