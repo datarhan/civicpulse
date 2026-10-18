@@ -70,3 +70,18 @@ describe('primeraFrase: el summary del pliegue', () => {
     }
   })
 })
+
+describe('una fecha, una corrección', () => {
+  it('ningún reportaje repite fecha en su registro (CorrectionNote usa `key={c.fecha}`)', () => {
+    // Dos entradas del mismo día comparten clave de React y una puede no pintarse,
+    // sin error ni aviso. coste-efectivo lo comprobaba sólo para sí; el 18-10-2026
+    // la pieza DANA iba a llevar dos correcciones de ese día. Lo del mismo día va
+    // como un párrafo más de su entrada.
+    const piezas = import.meta.glob('../public/data/reportajes/*.json', { eager: true })
+    expect(Object.keys(piezas).length).toBeGreaterThan(1)
+    for (const [ruta, mod] of Object.entries(piezas)) {
+      const fechas = ((mod.default ?? mod).meta?.correcciones ?? []).map((c) => c.fecha)
+      expect(new Set(fechas).size, ruta).toBe(fechas.length)
+    }
+  })
+})
