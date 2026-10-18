@@ -1,20 +1,20 @@
 {
-  "generatedAt": "2026-10-17T08:56:21.336Z",
+  "generatedAt": "2026-10-18T09:12:12.486Z",
   "source": {
     "origin": "https://ribaocupacio.portalemp.com",
     "platform": "portalemp — ribaocupacio · Agència de Col·locació (ADL), Ajuntament de Riba-roja de Túria",
     "listEndpoint": "https://ribaocupacio.portalemp.com/ofertas.html?acc=tableData"
   },
   "stats": {
-    "total": 45,
-    "openTotal": 44,
-    "inRibaRoja": 28,
-    "closingSoon": 15,
-    "withDetail": 45,
+    "total": 44,
+    "openTotal": 43,
+    "inRibaRoja": 27,
+    "closingSoon": 14,
+    "withDetail": 44,
     "byMonth": {
       "2026-10": 5,
       "2026-09": 21,
-      "2026-08": 15,
+      "2026-08": 14,
       "2026-07": 1,
       "2026-05": 2,
       "2025-11": 1
@@ -3177,85 +3177,6 @@
         "horario": "12:00h-19:36h",
         "salario": "1400 € brutos/mes 12 pagas",
         "funciones": "Carga de camiones y tareas de almacén.",
-        "vehiculo": "Sí",
-        "ocupaciones": []
-      }
-    },
-    {
-      "id": "2518",
-      "fo": 2518,
-      "codigo": "2026/00217",
-      "titulo": "Costurero/a",
-      "publishedAt": "2026-08-17",
-      "deadline": "2026-10-17",
-      "location": "Riba-roja de Túria",
-      "status": "Abierta",
-      "statusTone": "ok",
-      "url": "https://ribaocupacio.portalemp.com/ofertas.html?fo=2518",
-      "inRibaRoja": true,
-      "detail": {
-        "fields": [
-          {
-            "label": "Código",
-            "value": "2026/00217"
-          },
-          {
-            "label": "Nombre de la oferta",
-            "value": "Costurero/a"
-          },
-          {
-            "label": "Observaciones",
-            "value": "Se buscan personas comprometidas y con ganas de trabajar. Requisitos : Carnet de conduciry vehículo propio Experiencia DISPONIBILIDAD INMEDIATA."
-          },
-          {
-            "label": "Tipo de contrato",
-            "value": "CONTRATO INDEFINIDO"
-          },
-          {
-            "label": "Duración del contrato",
-            "value": "Más de 6 meses"
-          },
-          {
-            "label": "Número de puestos",
-            "value": "1"
-          },
-          {
-            "label": "Lugar puesto de trabajo",
-            "value": "Municipio: Riba-roja de Túria, Provincia: Valencia"
-          },
-          {
-            "label": "Tipo de jornada laboral",
-            "value": "Completa"
-          },
-          {
-            "label": "Observaciones jornada",
-            "value": "3 meses ETT + posibilidad de contratación directa por la empresa"
-          },
-          {
-            "label": "Horario",
-            "value": "De lunes a jueves de 6:00 a 14:15 horas y viernes de 6:00 a 14:00 horas."
-          },
-          {
-            "label": "Salario",
-            "value": "Según convenio y valía"
-          },
-          {
-            "label": "Funciones",
-            "value": "- Manejo de máquinas de costura industriales triple arrastre. - Manipulación de piezas grandes de telas muy duras y pesadas para ponerlas en la máquina y coserlas."
-          },
-          {
-            "label": "Requiere vehículo propio",
-            "value": "Sí"
-          }
-        ],
-        "tipoContrato": "CONTRATO INDEFINIDO",
-        "duracion": "Más de 6 meses",
-        "numPuestos": "1",
-        "observaciones": "Se buscan personas comprometidas y con ganas de trabajar. Requisitos : Carnet de conduciry vehículo propio Experiencia DISPONIBILIDAD INMEDIATA.",
-        "jornada": "Completa",
-        "horario": "De lunes a jueves de 6:00 a 14:15 horas y viernes de 6:00 a 14:00 horas.",
-        "salario": "Según convenio y valía",
-        "funciones": "- Manejo de máquinas de costura industriales triple arrastre. - Manipulación de piezas grandes de telas muy duras y pesadas para ponerlas en la máquina y coserlas.",
         "vehiculo": "Sí",
         "ocupaciones": []
       }
