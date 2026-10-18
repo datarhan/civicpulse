@@ -6,7 +6,12 @@
 import { readFile, writeFile } from 'node:fs/promises'
 import { existsSync } from 'node:fs'
 import { resolve } from 'node:path'
-import { matchContractsToZones, ZONE_ALIASES, type ZoneInput } from '../src/scraper/tender-geo'
+import {
+  matchContractsToZones,
+  ZONE_ALIASES,
+  ZONE_ALIAS_EXCLUSIONS,
+  type ZoneInput,
+} from '../src/scraper/tender-geo'
 import { buildGazetteer } from '../src/scraper/place-resolver'
 import { validatePlaceOverrides, type PlaceKind } from '../src/scraper/place-suggestion'
 import {
@@ -62,6 +67,7 @@ async function main() {
     pois: [...(poiSnap?.pois ?? []), ...supp.pois],
     zones: [...zones, ...supp.zones],
     zoneAliases: { ...ZONE_ALIASES, ...supp.zoneAliases },
+    zoneAliasExclusions: ZONE_ALIAS_EXCLUSIONS,
   })
 
   // Curator-approved LLM geocode overrides (place-overrides.json). Absent file →
