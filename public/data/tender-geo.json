@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-18T09:52:32.799Z",
+  "generatedAt": "2026-10-18T12:59:58.567Z",
   "source": {
     "tenders": "2026-10-18T09:04:07.369Z",
     "geo": "2026-10-18T09:07:19.675Z"
@@ -9,8 +9,8 @@
     "totalAmount": 125567342.14999995,
     "locatedContracts": 41,
     "locatedAmount": 3480498.68,
-    "situatedContracts": 114,
-    "situatedAmount": 7460264.38,
+    "situatedContracts": 117,
+    "situatedAmount": 8820861.98,
     "danaContracts": 9,
     "danaAmount": 259915.39,
     "danaAwardedContracts": 82,
@@ -203,6 +203,30 @@
       "danaAmount": 0
     },
     {
+      "slug": "parque-porta-del-barranc",
+      "name": "Parque Porta del Barranc",
+      "kind": "poi",
+      "point": [
+        39.544402,
+        -0.567274
+      ],
+      "contractCount": 1,
+      "amount": 552137.6,
+      "danaAmount": 0
+    },
+    {
+      "slug": "passarella-barranc-de-mandor",
+      "name": "Pasarela en Barranco Mandor",
+      "kind": "poi",
+      "point": [
+        39.5515918,
+        -0.5311894
+      ],
+      "contractCount": 1,
+      "amount": 450000,
+      "danaAmount": 0
+    },
+    {
       "slug": "passeig-del-molinet",
       "name": "Passeig del Molinet",
       "kind": "street",
@@ -225,6 +249,18 @@
       "contractCount": 7,
       "amount": 428053.66000000003,
       "danaAmount": 124844.16
+    },
+    {
+      "slug": "casa-del-abogado",
+      "name": "Casa del Abogado",
+      "kind": "poi",
+      "point": [
+        39.547903,
+        -0.567443
+      ],
+      "contractCount": 1,
+      "amount": 358460,
+      "danaAmount": 0
     },
     {
       "slug": "way-1178031442",
@@ -1093,6 +1129,27 @@
         "name": "Carrer de Velázquez",
         "matchedText": "Carrer de Velázquez",
         "sourceId": "carrer-de-velazquez"
+      }
+    },
+    {
+      "id": "4440554",
+      "zones": [],
+      "matchedAlias": {},
+      "dana": false,
+      "amount": 358460,
+      "amountKind": "final",
+      "date": "2024-07-10",
+      "contractType": "construction",
+      "categoryTitle": "construction",
+      "point": [
+        39.547903,
+        -0.567443
+      ],
+      "place": {
+        "kind": "poi",
+        "name": "Casa del Abogado",
+        "matchedText": "Casa del Abogado",
+        "sourceId": "casa-del-abogado"
       }
     },
     {
@@ -2140,6 +2197,27 @@
       }
     },
     {
+      "id": "36054",
+      "zones": [],
+      "matchedAlias": {},
+      "dana": false,
+      "amount": 552137.6,
+      "amountKind": "final",
+      "date": "2019-03-30",
+      "contractType": "construction",
+      "categoryTitle": "construction",
+      "point": [
+        39.544402,
+        -0.567274
+      ],
+      "place": {
+        "kind": "poi",
+        "name": "Parque Porta del Barranc",
+        "matchedText": "Parque Porta del Barranc",
+        "sourceId": "parque-porta-del-barranc"
+      }
+    },
+    {
       "id": "1892105#7",
       "zones": [
         "urbanitzacio-la-reva"
@@ -3063,6 +3141,27 @@
       }
     },
     {
+      "id": "1995480",
+      "zones": [],
+      "matchedAlias": {},
+      "dana": false,
+      "amount": 450000,
+      "amountKind": "final",
+      "date": "2023-04-05",
+      "contractType": "construction",
+      "categoryTitle": "construction",
+      "point": [
+        39.5515918,
+        -0.5311894
+      ],
+      "place": {
+        "kind": "poi",
+        "name": "Pasarela en Barranco Mandor",
+        "matchedText": "Pasarela en Barranco Mandor",
+        "sourceId": "passarella-barranc-de-mandor"
+      }
+    },
+    {
       "id": "1705844",
       "zones": [
         "monte-alcedo"
@@ -3520,7 +3619,7 @@
   ],
   "builtFrom": {
     "civic-poi.json": "40b3bd82800d",
-    "gazetteer-supplement.json": "813c38c1dc80",
+    "gazetteer-supplement.json": "b3013a1e0efe",
     "geo.json": "1a0ccbd93288",
     "place-overrides.json": "5878849f1684",
     "streets.json": "33dbbf543ba1",
