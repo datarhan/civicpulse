@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-17T19:12:38.742Z",
+  "generatedAt": "2026-10-17T20:03:07.359Z",
   "source": {
     "tenders": "2026-10-17T08:49:11.850Z",
     "geo": "2026-10-17T08:51:51.229Z"
@@ -9,13 +9,13 @@
     "totalAmount": 125567342.14999995,
     "locatedContracts": 51,
     "locatedAmount": 3758711.6300000004,
-    "situatedContracts": 135,
-    "situatedAmount": 8321311.040000002,
+    "situatedContracts": 113,
+    "situatedAmount": 7227650.460000001,
     "danaContracts": 10,
     "danaAmount": 276297.42000000004,
     "danaAwardedContracts": 82,
     "danaAwardedAmount": 2840148.539999998,
-    "dateMin": "2017-07-06",
+    "dateMin": "2018-01-24",
     "dateMax": "2026-05-27",
     "totalDateMin": "2017-07-03",
     "totalDateMax": "2026-10-08"
@@ -174,8 +174,8 @@
         39.5533441,
         -0.5383653
       ],
-      "contractCount": 5,
-      "amount": 1694009.48,
+      "contractCount": 4,
+      "amount": 1533120.48,
       "danaAmount": 0
     },
     {
@@ -227,18 +227,6 @@
       "danaAmount": 124844.16
     },
     {
-      "slug": "carrer-de-la-malla",
-      "name": "Carrer de la Mallà",
-      "kind": "street",
-      "point": [
-        39.5468976,
-        -0.5820025
-      ],
-      "contractCount": 5,
-      "amount": 409136.21,
-      "danaAmount": 0
-    },
-    {
       "slug": "monte-alcedo",
       "name": "Monte Alcedo",
       "kind": "urbanizacion",
@@ -248,18 +236,6 @@
       ],
       "contractCount": 2,
       "amount": 289190.77,
-      "danaAmount": 0
-    },
-    {
-      "slug": "carrer-arrosals",
-      "name": "Carrer Arrosals",
-      "kind": "street",
-      "point": [
-        39.5451001,
-        -0.5757313
-      ],
-      "contractCount": 3,
-      "amount": 286287.52,
       "danaAmount": 0
     },
     {
@@ -323,6 +299,18 @@
       "danaAmount": 0
     },
     {
+      "slug": "carrer-arrosals",
+      "name": "Carrer Arrosals",
+      "kind": "street",
+      "point": [
+        39.5451001,
+        -0.5757313
+      ],
+      "contractCount": 1,
+      "amount": 167871,
+      "danaAmount": 0
+    },
+    {
       "slug": "way-39586076",
       "name": "Polideportivo Municipal",
       "kind": "poi",
@@ -332,18 +320,6 @@
       ],
       "contractCount": 4,
       "amount": 159057.4,
-      "danaAmount": 0
-    },
-    {
-      "slug": "avinguda-de-la-industria",
-      "name": "Avinguda de la Indústria",
-      "kind": "street",
-      "point": [
-        39.4843186,
-        -0.5531345
-      ],
-      "contractCount": 3,
-      "amount": 159007.12,
       "danaAmount": 0
     },
     {
@@ -357,6 +333,18 @@
       "contractCount": 2,
       "amount": 142754.99,
       "danaAmount": 114211.09
+    },
+    {
+      "slug": "carrer-de-mallorca",
+      "name": "Carrer de Mallorca",
+      "kind": "street",
+      "point": [
+        39.4778375,
+        -0.5704932
+      ],
+      "contractCount": 1,
+      "amount": 138270.08,
+      "danaAmount": 0
     },
     {
       "slug": "node-5809597354",
@@ -383,30 +371,6 @@
       "danaAmount": 0
     },
     {
-      "slug": "carrer-de-la-piscina",
-      "name": "Carrer de la Piscina",
-      "kind": "street",
-      "point": [
-        39.5518584,
-        -0.5277984
-      ],
-      "contractCount": 1,
-      "amount": 92820.91,
-      "danaAmount": 0
-    },
-    {
-      "slug": "carrer-de-les-eres-altes",
-      "name": "Carrer de les Eres Altes",
-      "kind": "street",
-      "point": [
-        39.5465682,
-        -0.5637041
-      ],
-      "contractCount": 2,
-      "amount": 91070.04,
-      "danaAmount": 0
-    },
-    {
       "slug": "carrer-la-canal",
       "name": "Carrer La Canal",
       "kind": "street",
@@ -428,30 +392,6 @@
       ],
       "contractCount": 1,
       "amount": 78980,
-      "danaAmount": 0
-    },
-    {
-      "slug": "carrer-de-les-bodeguetes",
-      "name": "Carrer de les Bodeguetes",
-      "kind": "street",
-      "point": [
-        39.5419901,
-        -0.5694022
-      ],
-      "contractCount": 2,
-      "amount": 67898.6,
-      "danaAmount": 0
-    },
-    {
-      "slug": "poligono-industrial-entrevias",
-      "name": "Polígono Industrial Entrevías",
-      "kind": "urbanizacion",
-      "point": [
-        39.5405303,
-        -0.5508958
-      ],
-      "contractCount": 1,
-      "amount": 54552.7,
       "danaAmount": 0
     },
     {
@@ -515,18 +455,6 @@
       "danaAmount": 0
     },
     {
-      "slug": "carrer-dolcaina",
-      "name": "Carrer Dolçaina",
-      "kind": "street",
-      "point": [
-        39.5609297,
-        -0.5598736
-      ],
-      "contractCount": 2,
-      "amount": 46432,
-      "danaAmount": 0
-    },
-    {
       "slug": "castell-de-riba-roja",
       "name": "Castillo de Riba-roja de Túria",
       "kind": "poi",
@@ -548,6 +476,18 @@
       ],
       "contractCount": 1,
       "amount": 37848,
+      "danaAmount": 0
+    },
+    {
+      "slug": "carrer-dolcaina",
+      "name": "Carrer Dolçaina",
+      "kind": "street",
+      "point": [
+        39.5609297,
+        -0.5598736
+      ],
+      "contractCount": 1,
+      "amount": 36418,
       "danaAmount": 0
     },
     {
@@ -635,18 +575,6 @@
       "danaAmount": 0
     },
     {
-      "slug": "carrer-de-toledo",
-      "name": "Carrer de Toledo",
-      "kind": "street",
-      "point": [
-        39.5408141,
-        -0.5716581
-      ],
-      "contractCount": 1,
-      "amount": 25550.45,
-      "danaAmount": 0
-    },
-    {
       "slug": "placa-de-la-torre",
       "name": "Plaça de la Torre",
       "kind": "street",
@@ -680,18 +608,6 @@
       ],
       "contractCount": 3,
       "amount": 23296,
-      "danaAmount": 0
-    },
-    {
-      "slug": "carrer-de-luis-santangel",
-      "name": "Carrer de Luis Santàngel",
-      "kind": "street",
-      "point": [
-        39.5465507,
-        -0.5737996
-      ],
-      "contractCount": 1,
-      "amount": 22850,
       "danaAmount": 0
     },
     {
@@ -740,18 +656,6 @@
       ],
       "contractCount": 2,
       "amount": 20105.129999999997,
-      "danaAmount": 0
-    },
-    {
-      "slug": "carretera-de-vilamarxant",
-      "name": "Carretera de Vilamarxant",
-      "kind": "street",
-      "point": [
-        39.5484923,
-        -0.5816335
-      ],
-      "contractCount": 2,
-      "amount": 19537,
       "danaAmount": 0
     },
     {
@@ -815,18 +719,6 @@
       "danaAmount": 0
     },
     {
-      "slug": "urbanitzacio-santa-monica",
-      "name": "Urbanització Santa Mònica",
-      "kind": "urbanizacion",
-      "point": [
-        39.5577449,
-        -0.5539922
-      ],
-      "contractCount": 1,
-      "amount": 13096.08,
-      "danaAmount": 0
-    },
-    {
       "slug": "gallipont",
       "name": "Gallipont",
       "kind": "urbanizacion",
@@ -848,6 +740,30 @@
       ],
       "contractCount": 1,
       "amount": 12800,
+      "danaAmount": 0
+    },
+    {
+      "slug": "carretera-de-vilamarxant",
+      "name": "Carretera de Vilamarxant",
+      "kind": "street",
+      "point": [
+        39.5484923,
+        -0.5816335
+      ],
+      "contractCount": 1,
+      "amount": 12201,
+      "danaAmount": 0
+    },
+    {
+      "slug": "carrer-de-les-bodeguetes",
+      "name": "Carrer de les Bodeguetes",
+      "kind": "street",
+      "point": [
+        39.5419901,
+        -0.5694022
+      ],
+      "contractCount": 1,
+      "amount": 12118.6,
       "danaAmount": 0
     },
     {
@@ -885,18 +801,6 @@
       "contractCount": 1,
       "amount": 11851.21,
       "danaAmount": 0
-    },
-    {
-      "slug": "cami-de-les-animes",
-      "name": "Camí de les Ànimes",
-      "kind": "street",
-      "point": [
-        39.5487019,
-        -0.5619531
-      ],
-      "contractCount": 2,
-      "amount": 11411.63,
-      "danaAmount": 11411.63
     },
     {
       "slug": "carrer-tabalet",
@@ -959,27 +863,6 @@
         "name": "Urbanització La Llobatera",
         "matchedText": "Urbanització La Llobatera",
         "sourceId": "urbanitzacio-la-llobatera"
-      }
-    },
-    {
-      "id": "1561143",
-      "zones": [],
-      "matchedAlias": {},
-      "dana": false,
-      "amount": 10014,
-      "amountKind": "final",
-      "date": "2022-03-29",
-      "contractType": "construction",
-      "categoryTitle": "construction",
-      "point": [
-        39.5609297,
-        -0.5598736
-      ],
-      "place": {
-        "kind": "street",
-        "name": "Carrer Dolçaina",
-        "matchedText": "Carrer Dolçaina",
-        "sourceId": "carrer-dolcaina"
       }
     },
     {
@@ -1176,37 +1059,8 @@
       "date": "2025-01-15",
       "contractType": "services",
       "categoryTitle": "environment",
-      "point": [
-        39.5487019,
-        -0.5619531
-      ],
-      "place": {
-        "kind": "street",
-        "name": "Camí de les Ànimes",
-        "matchedText": "Camí de les Ànimes",
-        "sourceId": "cami-de-les-animes"
-      }
-    },
-    {
-      "id": "1931390",
-      "zones": [],
-      "matchedAlias": {},
-      "dana": false,
-      "amount": 55780,
-      "amountKind": "final",
-      "date": "2022-12-01",
-      "contractType": "construction",
-      "categoryTitle": "construction",
-      "point": [
-        39.5419901,
-        -0.5694022
-      ],
-      "place": {
-        "kind": "street",
-        "name": "Carrer de les Bodeguetes",
-        "matchedText": "Carrer de les Bodeguetes",
-        "sourceId": "carrer-de-les-bodeguetes"
-      }
+      "point": null,
+      "place": null
     },
     {
       "id": "101026",
@@ -1444,27 +1298,6 @@
       }
     },
     {
-      "id": "85485",
-      "zones": [],
-      "matchedAlias": {},
-      "dana": false,
-      "amount": 92820.91,
-      "amountKind": "final",
-      "date": "2018-03-14",
-      "contractType": "services",
-      "categoryTitle": "environment",
-      "point": [
-        39.5518584,
-        -0.5277984
-      ],
-      "place": {
-        "kind": "street",
-        "name": "Carrer de la Piscina",
-        "matchedText": "Carrer de la Piscina",
-        "sourceId": "carrer-de-la-piscina"
-      }
-    },
-    {
       "id": "1889876",
       "zones": [],
       "matchedAlias": {},
@@ -1549,27 +1382,6 @@
       "place": null
     },
     {
-      "id": "9554",
-      "zones": [],
-      "matchedAlias": {},
-      "dana": false,
-      "amount": 12000,
-      "amountKind": "final",
-      "date": "2019-07-25",
-      "contractType": "other",
-      "categoryTitle": "catering",
-      "point": [
-        39.5468976,
-        -0.5820025
-      ],
-      "place": {
-        "kind": "street",
-        "name": "Carrer de la Mallà",
-        "matchedText": "Carrer de la Mallà",
-        "sourceId": "carrer-de-la-malla"
-      }
-    },
-    {
       "id": "4510789",
       "zones": [],
       "matchedAlias": {},
@@ -1580,14 +1392,14 @@
       "contractType": "construction",
       "categoryTitle": "construction",
       "point": [
-        39.4843186,
-        -0.5531345
+        39.4778375,
+        -0.5704932
       ],
       "place": {
         "kind": "street",
-        "name": "Avinguda de la Indústria",
-        "matchedText": "Avinguda de la Indústria",
-        "sourceId": "avinguda-de-la-industria"
+        "name": "Carrer de Mallorca",
+        "matchedText": "Carrer de Mallorca",
+        "sourceId": "carrer-de-mallorca"
       }
     },
     {
@@ -1725,27 +1537,6 @@
       }
     },
     {
-      "id": "266371",
-      "zones": [],
-      "matchedAlias": {},
-      "dana": false,
-      "amount": 68486.37,
-      "amountKind": "final",
-      "date": "2019-12-17",
-      "contractType": "construction",
-      "categoryTitle": "construction",
-      "point": [
-        39.5465682,
-        -0.5637041
-      ],
-      "place": {
-        "kind": "street",
-        "name": "Carrer de les Eres Altes",
-        "matchedText": "Carrer de les Eres Altes",
-        "sourceId": "carrer-de-les-eres-altes"
-      }
-    },
-    {
       "id": "269749",
       "zones": [
         "el-pou-d-escoto"
@@ -1814,27 +1605,6 @@
         "name": "Carrer Pobla de Vallbona",
         "matchedText": "Carrer Pobla de Vallbona",
         "sourceId": "carrer-pobla-de-vallbona"
-      }
-    },
-    {
-      "id": "713082",
-      "zones": [],
-      "matchedAlias": {},
-      "dana": false,
-      "amount": 7336,
-      "amountKind": "final",
-      "date": "2018-11-26",
-      "contractType": "construction",
-      "categoryTitle": "other",
-      "point": [
-        39.5484923,
-        -0.5816335
-      ],
-      "place": {
-        "kind": "street",
-        "name": "Carretera de Vilamarxant",
-        "matchedText": "Carretera de Vilamarxant",
-        "sourceId": "carretera-de-vilamarxant"
       }
     },
     {
@@ -2312,70 +2082,6 @@
       }
     },
     {
-      "id": "4363449",
-      "zones": [],
-      "matchedAlias": {},
-      "dana": false,
-      "amount": 65200,
-      "amountKind": "final",
-      "date": "2024-05-03",
-      "contractType": "supplies",
-      "categoryTitle": "culture",
-      "point": [
-        39.5468976,
-        -0.5820025
-      ],
-      "place": {
-        "kind": "street",
-        "name": "Carrer de la Mallà",
-        "matchedText": "Carrer de la Mallà",
-        "sourceId": "carrer-de-la-malla"
-      },
-      "parentTitle": "Contrato suministro mediante arrendamiento con opción a compra del equipamiento deportivo cardiorespiratorio en el C.D. La Mallá (Riba-roja de Turia)"
-    },
-    {
-      "id": "1892105#4",
-      "zones": [],
-      "matchedAlias": {},
-      "dana": false,
-      "amount": 76879,
-      "amountKind": "final",
-      "date": "2023-12-04",
-      "contractType": "construction",
-      "categoryTitle": "construction",
-      "point": [
-        39.5451001,
-        -0.5757313
-      ],
-      "place": {
-        "kind": "street",
-        "name": "Carrer Arrosals",
-        "matchedText": "Carrer Arrosals",
-        "sourceId": "carrer-arrosals"
-      }
-    },
-    {
-      "id": "1892105#6",
-      "zones": [],
-      "matchedAlias": {},
-      "dana": false,
-      "amount": 41537.52,
-      "amountKind": "final",
-      "date": "2024-01-10",
-      "contractType": "construction",
-      "categoryTitle": "construction",
-      "point": [
-        39.5451001,
-        -0.5757313
-      ],
-      "place": {
-        "kind": "street",
-        "name": "Carrer Arrosals",
-        "matchedText": "Carrer Arrosals",
-        "sourceId": "carrer-arrosals"
-      }
-    },
-    {
       "id": "1892105#7",
       "zones": [
         "urbanitzacio-la-reva"
@@ -2605,27 +2311,6 @@
         "name": "el Pou d'Escoto",
         "matchedText": "el Pou d'Escoto",
         "sourceId": "el-pou-d-escoto"
-      }
-    },
-    {
-      "id": "649195",
-      "zones": [],
-      "matchedAlias": {},
-      "dana": false,
-      "amount": 22850,
-      "amountKind": "final",
-      "date": "2019-03-30",
-      "contractType": "construction",
-      "categoryTitle": "other",
-      "point": [
-        39.5465507,
-        -0.5737996
-      ],
-      "place": {
-        "kind": "street",
-        "name": "Carrer de Luis Santàngel",
-        "matchedText": "Carrer de Luis Santàngel",
-        "sourceId": "carrer-de-luis-santangel"
       }
     },
     {
@@ -2981,48 +2666,6 @@
       }
     },
     {
-      "id": "310978",
-      "zones": [],
-      "matchedAlias": {},
-      "dana": false,
-      "amount": 22583.67,
-      "amountKind": "final",
-      "date": "2021-02-23",
-      "contractType": "construction",
-      "categoryTitle": "construction",
-      "point": [
-        39.5465682,
-        -0.5637041
-      ],
-      "place": {
-        "kind": "street",
-        "name": "Carrer de les Eres Altes",
-        "matchedText": "Carrer de les Eres Altes",
-        "sourceId": "carrer-de-les-eres-altes"
-      }
-    },
-    {
-      "id": "1402847",
-      "zones": [],
-      "matchedAlias": {},
-      "dana": false,
-      "amount": 5600,
-      "amountKind": "final",
-      "date": "2021-07-16",
-      "contractType": "services",
-      "categoryTitle": "it",
-      "point": [
-        39.4843186,
-        -0.5531345
-      ],
-      "place": {
-        "kind": "street",
-        "name": "Avinguda de la Indústria",
-        "matchedText": "Avinguda de la Indústria",
-        "sourceId": "avinguda-de-la-industria"
-      }
-    },
-    {
       "id": "7483049",
       "zones": [],
       "matchedAlias": {},
@@ -3236,27 +2879,6 @@
       }
     },
     {
-      "id": "1404560",
-      "zones": [],
-      "matchedAlias": {},
-      "dana": false,
-      "amount": 15137.04,
-      "amountKind": "final",
-      "date": "2022-03-03",
-      "contractType": "services",
-      "categoryTitle": "it",
-      "point": [
-        39.4843186,
-        -0.5531345
-      ],
-      "place": {
-        "kind": "street",
-        "name": "Avinguda de la Indústria",
-        "matchedText": "Avinguda de la Indústria",
-        "sourceId": "avinguda-de-la-industria"
-      }
-    },
-    {
       "id": "4589612",
       "zones": [
         "l-oliveral"
@@ -3324,16 +2946,8 @@
       "date": "2018-08-14",
       "contractType": "construction",
       "categoryTitle": "construction",
-      "point": [
-        39.5533441,
-        -0.5383653
-      ],
-      "place": {
-        "kind": "urbanizacion",
-        "name": "Urbanització Entretarongers",
-        "matchedText": "Urbanització Entretarongers",
-        "sourceId": "urbanitzacio-entretarongers"
-      }
+      "point": null,
+      "place": null
     },
     {
       "id": "4580111",
@@ -3425,27 +3039,6 @@
         "name": "Cementerio de San Jaime",
         "matchedText": "Cementerio de San Jaime",
         "sourceId": "way-740051593"
-      }
-    },
-    {
-      "id": "130643",
-      "zones": [],
-      "matchedAlias": {},
-      "dana": false,
-      "amount": 15600,
-      "amountKind": "final",
-      "date": "2017-07-06",
-      "contractType": "services",
-      "categoryTitle": "catering",
-      "point": [
-        39.5468976,
-        -0.5820025
-      ],
-      "place": {
-        "kind": "street",
-        "name": "Carrer de la Mallà",
-        "matchedText": "Carrer de la Mallà",
-        "sourceId": "carrer-de-la-malla"
       }
     },
     {
@@ -3591,28 +3184,6 @@
       }
     },
     {
-      "id": "4363449#1",
-      "zones": [],
-      "matchedAlias": {},
-      "dana": false,
-      "amount": 67841.82,
-      "amountKind": "final",
-      "date": "2024-05-03",
-      "contractType": "supplies",
-      "categoryTitle": "culture",
-      "point": [
-        39.5468976,
-        -0.5820025
-      ],
-      "place": {
-        "kind": "street",
-        "name": "Carrer de la Mallà",
-        "matchedText": "Carrer de la Mallà",
-        "sourceId": "carrer-de-la-malla"
-      },
-      "parentTitle": "Contrato suministro mediante arrendamiento con opción a compra del equipamiento deportivo cardiorespiratorio en el C.D. La Mallá (Riba-roja de Turia)"
-    },
-    {
       "id": "1474367",
       "zones": [],
       "matchedAlias": {},
@@ -3714,16 +3285,8 @@
       "date": "2019-12-28",
       "contractType": "construction",
       "categoryTitle": "construction",
-      "point": [
-        39.5408141,
-        -0.5716581
-      ],
-      "place": {
-        "kind": "street",
-        "name": "Carrer de Toledo",
-        "matchedText": "Carrer de Toledo",
-        "sourceId": "carrer-de-toledo"
-      }
+      "point": null,
+      "place": null
     },
     {
       "id": "43208#1",
@@ -3741,16 +3304,8 @@
       "date": "2019-06-05",
       "contractType": "construction",
       "categoryTitle": "construction",
-      "point": [
-        39.5577449,
-        -0.5539922
-      ],
-      "place": {
-        "kind": "urbanizacion",
-        "name": "Urbanització Santa Mònica",
-        "matchedText": "Urbanització Santa Mònica",
-        "sourceId": "urbanitzacio-santa-monica"
-      }
+      "point": null,
+      "place": null
     },
     {
       "id": "1999#2",
@@ -3817,27 +3372,6 @@
         "name": "Carrer La Canal",
         "matchedText": "Carrer La Canal",
         "sourceId": "carrer-la-canal"
-      }
-    },
-    {
-      "id": "1399312",
-      "zones": [],
-      "matchedAlias": {},
-      "dana": false,
-      "amount": 248494.39,
-      "amountKind": "final",
-      "date": "2021-06-30",
-      "contractType": "services",
-      "categoryTitle": "environment",
-      "point": [
-        39.5468976,
-        -0.5820025
-      ],
-      "place": {
-        "kind": "street",
-        "name": "Carrer de la Mallà",
-        "matchedText": "Carrer de la Mallà",
-        "sourceId": "carrer-de-la-malla"
       }
     },
     {
@@ -3948,16 +3482,8 @@
       "date": "2025-01-15",
       "contractType": "services",
       "categoryTitle": "environment",
-      "point": [
-        39.5487019,
-        -0.5619531
-      ],
-      "place": {
-        "kind": "street",
-        "name": "Camí de les Ànimes",
-        "matchedText": "Camí de les Ànimes",
-        "sourceId": "cami-de-les-animes"
-      }
+      "point": null,
+      "place": null
     },
     {
       "id": "1891608",
@@ -4002,16 +3528,8 @@
       "date": "2022-01-11",
       "contractType": "construction",
       "categoryTitle": "construction",
-      "point": [
-        39.5405303,
-        -0.5508958
-      ],
-      "place": {
-        "kind": "urbanizacion",
-        "name": "Polígono Industrial Entrevías",
-        "matchedText": "Polígono Industrial Entrevías",
-        "sourceId": "poligono-industrial-entrevias"
-      }
+      "point": null,
+      "place": null
     },
     {
       "id": "9975923",

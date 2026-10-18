@@ -416,8 +416,11 @@ export const CATALOGUE = {
     'map.money.accum': 'adjudicado acumulado',
     'map.money.detalle': 'Detalle',
     'map.money.of': 'de',
+    // «Un único lugar, o lugares uno dentro de otro»: la regla de
+    // `resolveUnambiguousPlace`. Y no más largo que la versión anterior: a 375 px
+    // el panel crece hacia arriba y ya roza la franja «Directo».
     'map.money.coverage':
-      'Sólo los contratos cuyo título nombra un lugar. El resto son servicios de ámbito municipal —la concesión del agua, la recogida de residuos, la limpieza viaria— adjudicados por todo su plazo y sin un punto en el mapa.',
+      'Sólo los contratos cuyo título nombra un único lugar, o lugares uno dentro de otro. El resto es sobre todo servicios de ámbito municipal —la concesión del agua, la recogida de residuos, la limpieza viaria— adjudicados por todo su plazo.',
     'map.poi.title': 'Servicios públicos',
     'map.poi.source': 'OpenStreetMap · datos abiertos',
     'map.flood.title': 'Riesgo de inundación',
@@ -544,6 +547,7 @@ export const CATALOGUE = {
     'map.lugar.barrio': 'Barrio',
     'map.lugar.lote': 'Lote de: «{titulo}»',
     'map.lugar.fichaBarrio': 'Ficha del barrio: {barrio}',
+    'map.lugar.fichasBarrio': 'Fichas de barrio:',
     'map.lugar.pie':
       'Solo contratos cuyo título nombra una calle, zona o equipamiento · PLACSP/TED',
     'map.incendio.deAnyo': 'Incendio de {anyo}',
@@ -2536,7 +2540,7 @@ export const CATALOGUE = {
     'map.money.detalle': 'Detall',
     'map.money.of': 'de',
     'map.money.coverage':
-      "Només els contractes el títol dels quals nomena un lloc. La resta són serveis d'àmbit municipal —la concessió de l'aigua, la recollida de residus, la neteja viària— adjudicats per tot el seu termini i sense un punt al mapa.",
+      "Només els contractes el títol dels quals nomena un únic lloc, o llocs l'un dins de l'altre. La resta és sobretot serveis d'àmbit municipal —la concessió de l'aigua, la recollida de residus, la neteja viària— adjudicats per tot el seu termini.",
     'map.poi.title': 'Serveis públics',
     'map.poi.source': 'OpenStreetMap · dades obertes',
     'map.flood.title': 'Risc d’inundació',
@@ -2642,6 +2646,7 @@ export const CATALOGUE = {
     'map.lugar.barrio': 'Barri',
     'map.lugar.lote': 'Lot de: «{titulo}»',
     'map.lugar.fichaBarrio': 'Fitxa del barri: {barrio}',
+    'map.lugar.fichasBarrio': 'Fitxes de barri:',
     'map.lugar.pie':
       'Només contractes el títol dels quals nomena un carrer, una zona o un equipament · PLACSP/TED',
     'map.incendio.deAnyo': 'Incendi de {anyo}',
