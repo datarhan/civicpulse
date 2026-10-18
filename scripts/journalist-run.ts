@@ -35,6 +35,7 @@ import { runJournalistAgent, JournalistAgentError } from '../src/scraper/journal
 import { describeWebSearchBackend } from '../src/scraper/journalist-tools'
 import { parseSeedSources, type SeedSource } from '../src/scraper/journalist-agent/seeds'
 import { journalistCliTimeoutMs } from '../src/scraper/journalist-agent/shared'
+import { searxngForThisRun } from './lib/searxng-lease'
 
 const ASSIGNMENTS = resolve('public/data/journalist-assignments.json')
 const DRAFTS = resolve('editorial/journalist-drafts/journalist-reports-suggestions.json')
@@ -139,6 +140,11 @@ async function main(): Promise<void> {
       `[journalist:run] ${seedSources.length} seed source(s) from ${opts.seed}\n`,
     )
   }
+
+  // SearXNG se levanta aquí y se baja al salir (scripts/lib/searxng-lease.ts).
+  // Va antes de marcar `running`: si no llega a responder, el encargo no
+  // queda colgado en `running` sin borrador.
+  await searxngForThisRun('[journalist:run]')
 
   // Flip status to running before executing.
   const runningCopy = JSON.parse(JSON.stringify(assignmentsSnap)) as JournalistAssignmentsSnapshot

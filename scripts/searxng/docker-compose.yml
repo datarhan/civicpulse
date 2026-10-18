@@ -5,12 +5,16 @@
 # calls its JSON endpoint via SEARXNG_URL — no API key, no quota, no
 # scraping fragility, no paid plan.
 #
-# Usage (from repo root):
+# Started on demand: `journalist:run` and `suggest:officials-social` bring
+# it up from the MAIN checkout's copy of this file and stop it when the last
+# run using it exits (scripts/lib/searxng-lease.ts). No restart policy, so
+# it no longer comes up every time Docker Desktop opens.
+#
+# By hand (from the main checkout, never a worktree — a container created
+# from a worktree breaks once that worktree is deleted):
 #   npm run searxng:up         # start the container in the background
 #   npm run searxng:down       # stop + remove the container
-#
-# Then in .env or shell env:
-#   SEARXNG_URL=http://localhost:8888
+# An instance started by hand is never stopped by a run.
 #
 # Verify it responds with JSON before running the agent:
 #   curl -s 'http://localhost:8888/search?q=test&format=json' | head -c 400
@@ -23,7 +27,6 @@ services:
   searxng:
     image: searxng/searxng:latest
     container_name: civicpulse-searxng
-    restart: unless-stopped
     # Bind to 8888 to avoid clashing with Vite (5173) and other
     # common dev ports. Inside the container SearXNG listens on 8080.
     ports:
