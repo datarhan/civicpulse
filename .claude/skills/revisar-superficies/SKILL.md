@@ -54,7 +54,12 @@ defecto.
    nombra rutas PARCIAL, SIN REVISAR, NO MONTADA, NO ALCANZADA, SIN FICHA o NO
    RESUELTA, esas no se han leído, digan lo que digan los señalamientos.
 
-3. **Verifica CADA señalamiento antes de tocar nada.** El agente cita literal —si
+3. **Verifica CADA señalamiento antes de tocar nada.** Si el barrido dejó hoja
+   (`editorial/senalamientos/<fecha>.md`, de `npm run triage:senalamientos`),
+   empieza por ella: ya sitúa cada cifra en `public/data` y trae el pasaje y una
+   segunda lectura. Es un punto de partida, no un veredicto: el 18-10-2026, en
+   su primera pasada, dio por «real» un «cero en las cinco de en medio» que era
+   cierto porque a la serie le faltaba 2020. El agente cita literal —si
    parafrasea, el grounding lo descarta— pero puede estar equivocado sobre la
    implicación. Comprueba la cifra contra el snapshot tú mismo. En su primera
    ejecución acertó las dos: una la había arreglado un humano en otro sitio de la

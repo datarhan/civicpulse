@@ -194,4 +194,17 @@ if grep -q 'NO ALCANZADA(S): EL SERVIDOR' "$SALIDA" 2>/dev/null; then
 else
   log "terminado (review:surfaces salió $RESULTADO$NOTA_RELANZ) · el parte para el digest lo da: npm run check:surfaces"
 fi
+
+# ── La hoja de decisiones ──────────────────────────────────────────────────
+# Cada señalamiento vivo, con sus cifras situadas en public/data, el pasaje
+# donde está la frase y una segunda lectura que sólo cita cifras que existen
+# (scripts/triage-flags.ts). No decide nada ni escribe review-dismissals.json:
+# deja editorial/senalamientos/<fecha>.md para quien los revise, y check:surfaces
+# la nombra en el parte. Misma regla de gasto que la lectura: claude-code o
+# nada; sin backend gratuito, todo DIFERIDO y la hoja lo dice.
+log "hoja de decisiones de los señalamientos vivos…"
+env -u OPENAI_API_KEY -u ANTHROPIC_API_KEY \
+    GEMINI_BIN=/nonexistent-disabled AGY_BIN=/nonexistent-disabled \
+    LLM_BACKEND=claude-code LLM_CONCURRENCY=1 \
+    npm run --silent triage:senalamientos 2>&1 || log "triage:senalamientos falló — la hoja de hoy no está (el parte sigue saliendo)"
 exit 0
