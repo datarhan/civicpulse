@@ -208,6 +208,7 @@
     "review:finding-exception": "npx tsx scripts/review-finding-exception.ts",
     "check:summary-gate": "npx tsx scripts/check-summary-gate.ts",
     "check:queues": "npx tsx scripts/check-queues.ts",
+    "colas:rehacer": "npx tsx scripts/repair-queues.ts",
     "scrape:coste-efectivo": "npx tsx scripts/scrape-coste-efectivo.ts",
     "compute:indicadores": "npx tsx scripts/compute-indicadores.ts",
     "check:indicadores": "npx tsx scripts/check-indicadores.ts",

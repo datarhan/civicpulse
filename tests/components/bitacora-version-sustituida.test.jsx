@@ -36,7 +36,7 @@ import {
   ROTULO_TEXTO_VIGENTE,
 } from '../../src/components/BitacoraCorrecciones'
 import { HallazgosEficiencia } from '../../src/components/eficiencia/HallazgosEficiencia'
-import { CorrectionLog } from '../../src/pages/AgenteReporte'
+import { CorrectionLog, inicioVentana } from '../../src/pages/AgenteReporte'
 import { FindingDetailCard } from '../../src/pages/Hallazgos'
 import { MARCA_GRUPO_RETENIDO } from '../../src/lib/grupo-retenido'
 import { invalidateSnapshots } from '../../src/lib/snapshot-store'
@@ -394,8 +394,16 @@ describe('/laboratorio/agentes: el cuerpo de una sección del informe', () => {
   const vigenteDe = (informe, campo) =>
     informe.sections.find((s) => s.kind === 'narrative' && s.payload?.heading === campo)?.payload
       ?.bodyMarkdown
-  /** El comienzo de un texto tal y como lo pinta el registro: sin asteriscos de negrita. */
-  const comienzo = (texto) => norm(String(texto).replace(/\*\*/g, '')).slice(0, 60)
+  /**
+   * El comienzo de la ventana tal y como la pinta el registro: sin asteriscos
+   * de negrita, y «…» cuando la ventana arranca donde las dos versiones se
+   * separan (`inicioVentana`) en vez de en el carácter 0. Esta prueba mide el
+   * RÓTULO; qué trozo enseña la ventana lo mide journalist-correction-log.
+   */
+  const comienzo = (texto, c) =>
+    inicioVentana(c.original, c.corrected) > 0
+      ? '…'
+      : norm(String(texto).replace(/\*\*/g, '')).slice(0, 60)
 
   it('ninguna fila rotula «Texto vigente» un cuerpo que el informe ya no publica', () => {
     let medidas = 0
@@ -408,14 +416,14 @@ describe('/laboratorio/agentes: el cuerpo de una sección del informe', () => {
         if (vigente === undefined || vigente === null) return
         const t = plano(lis[i])
         if (c.corrected === vigente) {
-          expect(t).toContain(`${ROTULO_TEXTO_VIGENTE}: ${comienzo(c.corrected)}`)
+          expect(t).toContain(`${ROTULO_TEXTO_VIGENTE}: ${comienzo(c.corrected, c)}`)
           return
         }
         medidas += 1
         if (t.includes(ROTULO_TEXTO_VIGENTE)) mal.push(`${r.id} · fila ${i} · ${c.field}`)
         const por = r.corrections.slice(i + 1).find((d) => d.original === c.corrected)
         expect(por, `${r.id} · fila ${i}: ninguna fila posterior la retiró`).toBeTruthy()
-        expect(t).toContain(`${sustituidoEl(dia(por.correctedAt))} ${comienzo(c.corrected)}`)
+        expect(t).toContain(`${sustituidoEl(dia(por.correctedAt))} ${comienzo(c.corrected, c)}`)
       })
       cleanup()
     }

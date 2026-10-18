@@ -119,7 +119,8 @@ npm run promote-report -- a-robert-raga-bio \
 
 npm run correct-journalist-report -- <reportId> \
     --field <narrative.<heading>.bodyMarkdown | narrative.<heading>.heading | quote.<index>.attributedTo \
-            | portrait.portfolios[<index>] | warnings[<index>] | career-political[<index>].endYear> \
+            | portrait.portfolios[<index>] | warnings[<index>] | career-political[<index>].endYear \
+            | timeline[<index>].label> \
     --new "<text>" --reason "<≥20 chars>" --editor "<name>"
 
 npm run journalist:archive -- <assignmentId> --superseded-by <newAssignmentId> \
@@ -310,6 +311,11 @@ fetch|pdf|chrome`; `trust` is never accepted from the file — it comes from
   `career-political[<index>].endYear`, to close a mandate (a councillor who
   leaves mid-term stayed «desde 2023» on her page); never `null`, never below
   `startYear`, never a no-op.
+- **…and a seventh, `timeline[<index>].label`** (2026-10-18), to reword one
+  dated event — a 2023 row still said a councillor «percibe» a salary the
+  pleno had since raised. The wording only: the date and the sources are what
+  make the row an event. One timeline section, index in range, no blank, no
+  no-op.
 
 What the first v2 taught (Gimeno, 2026-09-06/07), each fixed in code:
 

@@ -14,6 +14,9 @@
  *
  * Reports, never rewrites. Re-running the named `triage:*` pass is the fix; a
  * checker that quietly edited a curator's worklist would be its own defect.
+ * Since 2026-10-18 the local cron runs that pass first, as a separate step
+ * (`npm run colas:rehacer`), wherever it cannot erase a curator's choice — so
+ * what this reports in the digest is what was left for a person.
  *
  * See `src/scraper/queue-staleness.ts` for why retracted and orphaned ids are
  * counted apart.
