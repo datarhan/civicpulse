@@ -30,7 +30,9 @@
  * Se aplana como `innerText`, que es lo que lee la revisión
  * (`page.locator('body').innerText()` en scripts/review-surfaces.ts): un salto
  * en cada caja de bloque, en cada elemento de un contenedor flex y en cada
- * <br>, y nada de lo que un <details> cerrado esconde. Las fichas son las
+ * <br>, con los <details> ABIERTOS, porque la revisión los abre antes de leer
+ * (`abrirLoPlegado`): hasta el 18-10-2026 esta prueba los leía cerrados y no
+ * veía la bitácora de correcciones. Las fichas son las
  * publicadas, en la copia servida, y contiguas como las pinta cada página. Los
  * mensajes nombran fichas y números, nunca el texto de una cita: el repositorio
  * es público.
@@ -95,9 +97,14 @@ function esBloque(el) {
   return BLOQUES.has(el.tagName)
 }
 
-function aplanar(nodo, out = []) {
-  // Un <details> cerrado sólo enseña su <summary>: la bitácora de correcciones.
-  const cerrado = nodo.tagName === 'DETAILS' && !nodo.open
+function aplanar(nodo, out = [], { abrirPlegados = true } = {}) {
+  // La revisión ABRE lo plegado antes de leer (`abrirLoPlegado`,
+  // src/scraper/reader-review.ts: «N bloque(s) plegado(s) abiertos para
+  // leerlos»), así que la bitácora de correcciones se lee entera. Esta prueba la
+  // daba por cerrada, como `innerText` a secas, y por eso no vio que sus filas
+  // —«quote.1.speakerGroup (cita 2) · …»— nombraban la cita sin la ficha: el
+  // barrido del 18-10-2026 leyó así cuatro filas contra la tarjeta de al lado.
+  const cerrado = !abrirPlegados && nodo.tagName === 'DETAILS' && !nodo.open
   for (const hijo of nodo.childNodes) {
     if (hijo.nodeType === 3) {
       if (!cerrado) out.push(hijo.textContent)
