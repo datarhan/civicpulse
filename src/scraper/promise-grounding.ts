@@ -11,10 +11,13 @@
  *
  * A NEW promise must also quote the party's own words (`quoteIsPartyWords`):
  * a headline or the reporter's narration is present on the page and still
- * says nothing about what the party said.
+ * says nothing about what the party said. On the council's own site the text
+ * is the municipal government's, so it is only the alcaldía's party's words
+ * (`partyOwnsCouncilText`).
  */
 import { stripDiacritics } from './normalize'
 import { ALLOWED_PARTIES } from './promises'
+import { partyOfAlcaldia, type OfficialsDoc } from './corporation-seats'
 import type { DraftNewPromise, DraftStatusChange, Grounding } from './promise-draft'
 
 /**
@@ -63,6 +66,54 @@ export function quoteIsPartyWords(quote: string, pageText: string, url: string):
   const q = normalizeForMatch(quote)
   if (q.length < 12) return false
   return quotedSpans(pageText).some((span) => normalizeForMatch(span).includes(q))
+}
+
+/**
+ * How a promise sourced on the council's own site stands to its party label.
+ *
+ * `quoteIsPartyWords` takes the council's text as words someone owns; this
+ * says whose. A note there is the municipal government speaking, and the
+ * government is the alcaldía's party (`partyOfAlcaldia`), so the note belongs
+ * under that label and no other. Until 2026-10-18 nothing checked it: the
+ * grounding grounded a council note under any party, and /promesas put every
+ * one under the governing party's pill without saying why, beside correction
+ * logs that say «sin palabras del partido» of the quote each replaced (review
+ * of 18-10).
+ *
+ * - `null` — not a council page; nothing to bridge.
+ * - `coincide` — the label is the alcaldía's party.
+ * - `otra` — the roster names the alcaldía's party and it is another one.
+ * - `sin-alcaldia` — the roster cannot say (`partyOfAlcaldia` is null).
+ *
+ * `alcaldia` is the party itself, for the card to print; never a guess.
+ */
+export type NotaDelAyuntamiento =
+  | { atribucion: 'coincide' | 'otra'; alcaldia: string }
+  | { atribucion: 'sin-alcaldia'; alcaldia: null }
+
+export function notaDelAyuntamiento(
+  p: { party: string; madeAt: string; source: { url: string } },
+  officials: OfficialsDoc | null | undefined,
+): NotaDelAyuntamiento | null {
+  if (!isAyuntamientoUrl(p.source.url)) return null
+  const alcaldia = partyOfAlcaldia(officials, p.madeAt)
+  if (alcaldia === null) return { atribucion: 'sin-alcaldia', alcaldia: null }
+  return { atribucion: p.party === alcaldia ? 'coincide' : 'otra', alcaldia }
+}
+
+/**
+ * The page's text is the party's to own: anywhere but the council's site,
+ * always (`quoteIsPartyWords` already decided whose mouth it is in); there,
+ * only under the alcaldía's party. Unknown fails closed, to the human queue.
+ */
+export function partyOwnsCouncilText(
+  url: string,
+  party: string,
+  madeAt: string,
+  officials: OfficialsDoc | null | undefined,
+): boolean {
+  const nota = notaDelAyuntamiento({ party, madeAt, source: { url } }, officials)
+  return nota === null || nota.atribucion === 'coincide'
 }
 
 export function normalizeForMatch(s: string): string {
@@ -297,6 +348,7 @@ export async function groundDraft(
   fetchImpl: FetchLike = defaultGroundingFetch,
   now: Date = new Date(),
   resolveGn: (url: string) => Promise<string | null> = resolveGoogleNewsUrl,
+  officials: OfficialsDoc | null = null,
 ): Promise<Grounding> {
   const checkedAt = now.toISOString()
   const fail: Grounding = { grounded: false, urlResolved: false, quoteFound: false, checkedAt }
@@ -326,8 +378,12 @@ export async function groundDraft(
     const text = stripHtml(html)
     const quoteFound = quoteFoundInText(draft.proposed.quote, text)
     // Present is not enough: a headline is present too. The quote has to be
-    // what the page says the party said (see quoteIsPartyWords).
-    const partyWords = quoteFound && quoteIsPartyWords(draft.proposed.quote, text, res.url)
+    // what the page says the party said (see quoteIsPartyWords) — and on the
+    // council's site, only the alcaldía's party says it (partyOwnsCouncilText).
+    const partyWords =
+      quoteFound &&
+      quoteIsPartyWords(draft.proposed.quote, text, res.url) &&
+      partyOwnsCouncilText(res.url, draft.proposed.party, draft.proposed.madeAt, officials)
     return {
       grounded: partyWords,
       urlResolved: true,

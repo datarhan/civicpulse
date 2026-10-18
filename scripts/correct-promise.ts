@@ -14,8 +14,9 @@
  * si se da; si es una redirección de Google News, la del medio), y la cita
  * tiene que estar en la página LITERALMENTE —sin la tolerancia del 90 % que usa
  * la puerta automática— y ser palabras del partido: entre comillas en un medio,
- * o el texto del propio Ayuntamiento en su web (`quoteIsPartyWords`). Es la
- * misma regla que desde el 28-09-2026 exige el auto-curador, aplicada a mano.
+ * o el texto del propio Ayuntamiento en su web (`quoteIsPartyWords`), que sólo
+ * es del partido de la alcaldía (`partyOwnsCouncilText`, desde el 18-10-2026).
+ * Es la misma regla que exige el auto-curador, aplicada a mano.
  *
  * `retirar` saca la tarjeta del registro y deja en `retractions[]` su huella,
  * no su texto. El motivo no puede repetir la cita retirada.
@@ -55,15 +56,18 @@ import {
   defaultGroundingFetch,
   isGoogleNewsUrl,
   normalizeForMatch,
+  partyOwnsCouncilText,
   quoteIsPartyWords,
   resolveGoogleNewsUrl,
   stripHtml,
 } from '../src/scraper/promise-grounding'
 import { isFrozen, resolveDueBy } from '../src/scraper/promises'
+import type { OfficialsDoc } from '../src/scraper/corporation-seats'
 import { rechazarOpcionesDesconocidas, type OpcionesAdmitidas } from '../src/scraper/opciones-cli'
 
 const __dirname = dirname(fileURLToPath(import.meta.url))
 const PROMISES = join(__dirname, '..', 'public/data/promises.json')
+const OFFICIALS = join(__dirname, '..', 'public/data/officials.json')
 
 function uso(): never {
   console.error(`Uso:
@@ -98,8 +102,16 @@ function opcion(args: string[], nombre: string): string | undefined {
   return i >= 0 ? args[i + 1] : undefined
 }
 
-/** Baja la página y dice si la cita está, literal, y en boca del partido. */
-async function comprobarEnLaFuente(url: string, cita: string) {
+/**
+ * Baja la página y dice si la cita está, literal, y en boca del partido. En la
+ * web del Ayuntamiento, además, que el partido de la ficha sea el de la
+ * alcaldía; sin listado de la corporación no se puede saber, y no se escribe.
+ */
+async function comprobarEnLaFuente(
+  url: string,
+  cita: string,
+  promesa: { party: string; madeAt: string },
+) {
   let objetivo = url
   if (isGoogleNewsUrl(url)) objetivo = (await resolveGoogleNewsUrl(url)) ?? url
   const res = await defaultGroundingFetch(objetivo)
@@ -107,8 +119,20 @@ async function comprobarEnLaFuente(url: string, cita: string) {
     return { final: res.url, literal: false, delPartido: false, motivo: 'la página no respondió' }
   const texto = stripHtml(await res.text())
   const literal = normalizeForMatch(texto).includes(normalizeForMatch(cita))
-  const delPartido = literal && quoteIsPartyWords(cita, texto, res.url)
-  return { final: res.url, literal, delPartido, motivo: '' }
+  const enSuBoca = literal && quoteIsPartyWords(cita, texto, res.url)
+  const officials = await readFile(OFFICIALS, 'utf8')
+    .then((r) => JSON.parse(r) as OfficialsDoc)
+    .catch(() => null)
+  if (enSuBoca && !partyOwnsCouncilText(res.url, promesa.party, promesa.madeAt, officials))
+    return {
+      final: res.url,
+      literal,
+      delPartido: false,
+      motivo:
+        `la cita es texto del Ayuntamiento, y «${promesa.party}» no es el partido de la ` +
+        'alcaldía según public/data/officials.json (o el listado no lo dice)',
+    }
+  return { final: res.url, literal, delPartido: enSuBoca, motivo: '' }
 }
 
 async function main() {
@@ -194,11 +218,13 @@ async function main() {
     const fuente = opcion(resto, '--fuente')
     const editorial = opcion(resto, '--editorial')
     const actual = (
-      JSON.parse(raw) as { items: Array<{ id: string; source: { url: string } }> }
+      JSON.parse(raw) as {
+        items: Array<{ id: string; party: string; madeAt: string; source: { url: string } }>
+      }
     ).items.find((p) => p.id === id)
     if (!actual) throw new Error(`no hay ninguna promesa con id «${id}»`)
     const url = fuente ?? actual.source.url
-    const c = await comprobarEnLaFuente(url, cita)
+    const c = await comprobarEnLaFuente(url, cita, actual)
     if (!c.literal || !c.delPartido) {
       console.error(
         `[corregir-promesa] no se escribió nada: en ${c.final} ` +

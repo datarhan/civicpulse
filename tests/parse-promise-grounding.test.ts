@@ -13,12 +13,23 @@ import {
   quotedSpans,
   quoteIsPartyWords,
   isAyuntamientoUrl,
+  notaDelAyuntamiento,
+  partyOwnsCouncilText,
   type FetchLike,
 } from '../src/scraper/promise-grounding'
+import type { OfficialsDoc } from '../src/scraper/corporation-seats'
 import type { DraftNewPromise, DraftStatusChange } from '../src/scraper/promise-draft'
 import { defaultGroundingFetch, MOZILLA_UA } from '../src/scraper/promise-grounding'
 
 const NOW = new Date('2026-07-02T00:00:00.000Z')
+
+/** A roster with one sitting alcalde. The party is the fixture's, not the town's. */
+const ROSTER: OfficialsDoc = {
+  officials: [
+    { slug: 'a', name: 'A', party: 'PSOE', role: 'alcalde' },
+    { slug: 'b', name: 'B', party: 'PP', role: 'concejal' },
+  ],
+}
 
 function draft(overrides: Partial<DraftNewPromise['proposed']> = {}): DraftNewPromise {
   return {
@@ -106,9 +117,57 @@ describe('promise-grounding', () => {
       url: 'https://www.ribarroja.es/es/noticia/bono',
       text: async () => `<article><p>${quote}.</p></article>`,
     })
-    const g = await groundDraft(draft({ quote }), fetchImpl, NOW)
+    const g = await groundDraft(draft({ quote }), fetchImpl, NOW, undefined, ROSTER)
     expect(g.partyWords).toBe(true)
     expect(g.grounded).toBe(true)
+  })
+
+  it("groundDraft grounds the council's text only under the alcaldía's party", async () => {
+    const quote = 'El Ayuntamiento destinará 160.000 euros al Bono Vuelve al Cole en esta edición'
+    const fetchImpl: FetchLike = async () => ({
+      ok: true,
+      url: 'https://www.ribarroja.es/es/noticia/bono',
+      text: async () => `<article><p>${quote}.</p></article>`,
+    })
+    // The same page under another party is the government's text, not that
+    // party's: it queues for a person.
+    const otro = await groundDraft(draft({ quote, party: 'PP' }), fetchImpl, NOW, undefined, ROSTER)
+    expect(otro.quoteFound).toBe(true)
+    expect(otro.partyWords).toBe(false)
+    expect(otro.grounded).toBe(false)
+    // No roster: whose words they are cannot be told, so it fails closed.
+    const ciego = await groundDraft(draft({ quote }), fetchImpl, NOW)
+    expect(ciego.quoteFound).toBe(true)
+    expect(ciego.grounded).toBe(false)
+  })
+
+  it('a paper quoting a party grounds without any roster', async () => {
+    const fetchImpl: FetchLike = async () => ({
+      ok: true,
+      url: 'https://www.lasprovincias.es/x',
+      text: async () =>
+        '<p>El PP dijo: «Construiremos un carril bici en la Avenida del Camp de Túria antes de 2027».</p>',
+    })
+    const g = await groundDraft(draft({ party: 'PP' }), fetchImpl, NOW)
+    expect(g.grounded).toBe(true)
+  })
+
+  it('notaDelAyuntamiento: null off the council site; coincide, otra, sin-alcaldia on it', () => {
+    const council = { url: 'https://www.ribarroja.es/es/noticia/x' }
+    const paper = { url: 'https://www.levante-emv.com/x' }
+    const p = (party: string, source = council) => ({ party, madeAt: '2026-06-16', source })
+    expect(notaDelAyuntamiento(p('PSOE', paper), ROSTER)).toBeNull()
+    expect(notaDelAyuntamiento(p('PSOE'), ROSTER)).toEqual({
+      atribucion: 'coincide',
+      alcaldia: 'PSOE',
+    })
+    expect(notaDelAyuntamiento(p('PP'), ROSTER)).toEqual({ atribucion: 'otra', alcaldia: 'PSOE' })
+    expect(notaDelAyuntamiento(p('PSOE'), null)).toEqual({
+      atribucion: 'sin-alcaldia',
+      alcaldia: null,
+    })
+    expect(partyOwnsCouncilText(paper.url, 'VOX', '2026-06-16', null)).toBe(true)
+    expect(partyOwnsCouncilText(council.url, 'VOX', '2026-06-16', ROSTER)).toBe(false)
   })
 
   it('groundDraft fails safe when quote is absent', async () => {
