@@ -1,12 +1,12 @@
 // @ts-check
-import { useMemo, useState } from 'react'
+import { useLayoutEffect, useMemo, useRef, useState } from 'react'
 import { MapContainer, Pane, TileLayer } from 'react-leaflet'
 import { BASEMAP_URL } from '../../lib/basemap'
 import { useTenderGeo } from '../../hooks/useTenderGeo'
 import { useTenders } from '../../hooks/useTenders'
 import { useObras } from '../../hooks/useObras'
 import { EMPTY_TENDER_GEO } from '../../lib/tender-geo'
-import { DEFAULT_CENTER, ResizeOnMount } from './shared'
+import { BAJO_LA_CINTA, DEFAULT_CENTER, ResizeOnMount } from './shared'
 import { MunicipalBoundary } from './network/MunicipalBoundary'
 import { Railways } from './network/Railways'
 import { FullNetwork } from './network/FullNetwork'
@@ -28,6 +28,10 @@ import { PoiLegend } from './controls/PoiLegend'
 import { QuejasLegend } from './controls/QuejasLegend'
 import { obrasWithoutMoneyPin, placeAmountsAt } from '../../lib/tender-points'
 import { FitToPins } from './layers/FitToPins'
+
+// La pila de controles se apoya a esta distancia del pie del mapa, sobre la línea
+// de atribución.
+const PILA_ABAJO = 28
 
 function MapAttribution() {
   return (
@@ -96,6 +100,16 @@ export default function StylizedMap({ center = DEFAULT_CENTER }) {
   // las cuatro estaciones de Riba-roja. Plegada deja a la vista los chips y la
   // línea de cobertura del dinero, que es la declaración de honestidad de la capa.
   const [plegada, setPlegada] = useState(true)
+  // Al desplegar, la pila enseña su principio. Es column-reverse, así que cuando no
+  // cabe se desplaza anclada al final y lo que se sale es lo de ARRIBA: la primera
+  // línea de la tarjeta que se acaba de pedir. A 320 y 375 px de ancho con 812 de
+  // alto cabe entera y esto no mueve nada; en pantallas más bajas, sí. El scrollTop
+  // de un column-reverse va en negativo y el navegador lo recorta a su tope.
+  const pilaRef = useRef(/** @type {HTMLDivElement | null} */ (null))
+  useLayoutEffect(() => {
+    const pila = pilaRef.current
+    if (!plegada && pila) pila.scrollTop = -pila.scrollHeight
+  }, [plegada])
   // null = sin tocar: se ve la serie entera hasta el último año cartografiado.
   const [anyoIncendios, setAnyoIncendios] = useState(null)
   const [danaOnly, setDanaOnly] = useState(false)
@@ -225,20 +239,27 @@ export default function StylizedMap({ center = DEFAULT_CENTER }) {
           at 375px the map is 277px tall and the chips + money slider alone
           already ran 59px past its top edge — a panel could end up above the
           viewport entirely, unreachable rather than merely overlapping. The
-          chip row is the last flex child, so it is what stays pinned. */}
+          chip row is the last flex child, so it is what stays pinned.
+
+          El tope se mide desde el pie de la cinta «DIRECTO», no desde el borde
+          del mapa. Medido desde el borde dejaba subir la pila hasta 12 px del
+          techo, y la cinta va encima (401 contra 400): a 375×812, con el detalle
+          del dinero abierto, la primera línea de la tarjeta quedaba debajo de la
+          cinta (17-10-2026). */}
       <div
+        ref={pilaRef}
         className="cp-mapa-pila"
         data-plegada={plegada ? 'true' : 'false'}
         style={{
           position: 'absolute',
-          bottom: 28,
+          bottom: PILA_ABAJO,
           left: 12,
           zIndex: 400,
           display: 'flex',
           flexDirection: 'column-reverse',
           gap: 8,
           maxWidth: 'calc(100% - 24px)',
-          maxHeight: 'calc(100% - 40px)',
+          maxHeight: `calc(100% - ${PILA_ABAJO + BAJO_LA_CINTA}px)`,
           overflowY: 'auto',
           overscrollBehavior: 'contain',
         }}

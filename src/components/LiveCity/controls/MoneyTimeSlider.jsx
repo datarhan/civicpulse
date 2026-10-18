@@ -11,9 +11,8 @@ const cardStyle = {
   padding: '8px 10px',
   fontFamily: "'Outfit', system-ui, sans-serif",
   boxShadow: '0 4px 16px rgba(11,15,25,.16)',
-  // 232 forced the header row (title + the two filter chips) onto three lines.
-  // Invisible while the layer was opt-in; the layer now opens by default.
-  width: 268,
+  // El ancho no va aquí: cambia con el alto del mapa y vive en la clase `cp-dinero`
+  // (DirectionD.jsx), porque un style gana a cualquier clase.
 }
 
 /**
@@ -93,6 +92,7 @@ export function MoneyTimeSlider({
           }}
         >
           <span
+            className="cp-dinero-titulo"
             style={{
               fontFamily: "'DM Mono', monospace",
               fontSize: 'var(--fs-micro)',
@@ -114,6 +114,7 @@ export function MoneyTimeSlider({
                 fontSize: 'var(--fs-micro)',
                 fontWeight: 700,
                 padding: '2px 7px',
+                whiteSpace: 'nowrap',
                 borderRadius: 'var(--r-pill)',
                 border: `1px solid ${obrasOnly ? 'var(--civic)' : '#C9C3B4'}`,
                 background: obrasOnly ? 'rgba(14,91,98,.14)' : 'transparent',
@@ -132,6 +133,7 @@ export function MoneyTimeSlider({
                 fontSize: 'var(--fs-micro)',
                 fontWeight: 700,
                 padding: '2px 7px',
+                whiteSpace: 'nowrap',
                 borderRadius: 'var(--r-pill)',
                 border: `1px solid ${danaOnly ? '#E08600' : '#C9C3B4'}`,
                 background: danaOnly ? 'rgba(224,134,0,.16)' : 'transparent',
