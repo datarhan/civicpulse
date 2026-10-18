@@ -28,6 +28,7 @@ import {
   cascadaGastos,
   lecturaCapitulos,
   capituloDominante,
+  ceroDelDominante,
   tendenciaDeuda,
   rotuloCapitulo,
   capitulosACero,
@@ -140,6 +141,46 @@ describe('capituloDominante · «casi toda la ampliación fue a…»', () => {
     expect(
       capituloDominante(quieta, { inicial: 10, modificaciones: 0, actual: 10, ejecutado: 1 }),
     ).toBeNull()
+  })
+})
+
+describe('ceroDelDominante · ¿de quién es el cero?', () => {
+  const dominante = capituloDominante(
+    ejecucion.latest.gastos.chapters,
+    ejecucion.latest.gastos.total,
+  )!
+  const conCapitulo6 = (amount: number | null) => ({
+    year: ejecucion.latest.year,
+    expenseByEconomicChapter: [{ code: '6', amount }],
+  })
+
+  it('en 2025 las dos fuentes discrepan: CONPREL da 905.517,35 € de entrada', () => {
+    expect(ceroDelDominante(dominante, budget.snapshot, ejecucion.latest.year)).toEqual({
+      estado: 'discrepan',
+      conprel: 905517.35,
+    })
+  })
+
+  it('coinciden con CONPREL a cero; sin dato con la celda null', () => {
+    const y = ejecucion.latest.year
+    expect(ceroDelDominante(dominante, conCapitulo6(0), y)?.estado).toBe('coinciden')
+    expect(ceroDelDominante(dominante, conCapitulo6(null), y)).toEqual({
+      estado: 'sinConprel',
+      conprel: null,
+    })
+  })
+
+  it('sin contraste si CONPREL es de otro ejercicio o no ha llegado', () => {
+    const y = ejecucion.latest.year
+    expect(ceroDelDominante(dominante, { ...conCapitulo6(0), year: y - 1 }, y)?.estado).toBe(
+      'sinContraste',
+    )
+    expect(ceroDelDominante(dominante, null, y)?.estado).toBe('sinContraste')
+  })
+
+  it('null cuando no hay cero que leer', () => {
+    expect(ceroDelDominante(null, budget.snapshot, 2025)).toBeNull()
+    expect(ceroDelDominante({ ...dominante, abrioEnCero: false }, budget.snapshot, 2025)).toBeNull()
   })
 })
 
