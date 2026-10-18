@@ -1,5 +1,10 @@
 import { describe, it, expect } from 'vitest'
-import { matchContractsToZones, foldText, ZONE_ALIASES } from '../src/scraper/tender-geo'
+import {
+  matchContractsToZones,
+  foldText,
+  ZONE_ALIASES,
+  ZONE_ALIAS_EXCLUSIONS,
+} from '../src/scraper/tender-geo'
 import { buildGazetteer } from '../src/scraper/place-resolver'
 
 const ZONES = [
@@ -733,5 +738,97 @@ describe('scraper/tender-geo — una zona que el resolutor no ve también cuenta
   it('una calle DENTRO de la zona que el título también nombra sigue pinchada (1999#2)', () => {
     expect(de('1999#2').zones).toEqual(['el-molinet'])
     expect(de('1999#2').place?.sourceId).toBe('passeig-del-molinet')
+  })
+})
+
+describe('scraper/tender-geo — el yacimiento de València la Vella no es la urbanización', () => {
+  // El yacimiento visigodo (BIC, «Zona arqueològica», OSM way 1176535578) tiene su
+  // propio polígono a 0,72 km del centroide de la urbanización: dentro del radio
+  // de contención, así que la exclusión es explícita (ZONE_ALIAS_EXCLUSIONS).
+  const zonas = [
+    ...ZONES,
+    {
+      slug: 'urbanitzacio-valencia-la-vella',
+      name: 'Urbanització València la Vella',
+      centroid: [39.5344276, -0.5307458] as [number, number],
+    },
+  ]
+  const candidates = buildGazetteer({
+    zones: zonas,
+    zoneAliases: ZONE_ALIASES,
+    zoneAliasExclusions: ZONE_ALIAS_EXCLUSIONS,
+  })
+  const fila = (id: string, contractType: string, title: string) => ({
+    id,
+    title,
+    contractType,
+    status: 'awarded',
+    finalAmount: 10000,
+    awardDate: '2024-01-01',
+  })
+  const snap = matchContractsToZones(
+    [
+      fila(
+        '2739773',
+        'supplies',
+        'Contrato menor de suministro de material e instalación del sistema de cctv de vigilancia para parte del perímetro del yacimiento arqueológico de Valencia la Vella, en el municipio de Riba-roja de Túria.',
+      ),
+      fila(
+        '1520813',
+        'supplies',
+        'Contrato de suministro de paneles individuales de acceso para el yacimiento arqueológico de Valencia la vella destinado al departamento de Turismo, por procedimiento abierto súper simplificado, mejor relación calidad-precio, un único criterio de adjudicación',
+      ),
+      fila(
+        '4718569',
+        'services',
+        'Contrato, de carácter menor, para la prestación del servicio realización del Plan especial de protección para la zona arqueológica de Valencia la Vella de Riba-roja de Túria (Ctto 180M/2023).',
+      ),
+      fila(
+        '5106922',
+        'construction',
+        'Contrato administrativo obras para la ejecución del proyecto Área de esparcimiento en zona verde de Valencia la Vella en el T. M. de Riba-roja de Túria (Valencia) - Ctto.39/2026',
+      ),
+      fila(
+        '96520',
+        'construction',
+        'contrato de obras de colocación de Centros Culturales e instalaciones al servicio de las Urbanizaciones Monte Alcedo y Valencia La Vella, por procedimiento abierto',
+      ),
+    ],
+    zonas,
+    OPTS,
+    candidates,
+  )
+  const de = (id: string) => snap.assignments.find((a) => a.id === id)
+
+  it('lo que nombra el yacimiento no cuenta en la zona ni se pincha en la urbanización', () => {
+    // Su único sitio era la zona: sin ella, no llegan al mapa.
+    expect(de('2739773')).toBeUndefined()
+    expect(de('1520813')).toBeUndefined()
+    expect(de('4718569')).toBeUndefined()
+  })
+
+  it('la urbanización sigue recogiendo lo que la nombra (5106922, 96520)', () => {
+    expect(de('5106922')?.zones).toEqual(['urbanitzacio-valencia-la-vella'])
+    expect(de('5106922')?.place?.sourceId).toBe('urbanitzacio-valencia-la-vella')
+    expect(de('96520')?.zones.sort()).toEqual(['monte-alcedo', 'urbanitzacio-valencia-la-vella'])
+    expect(snap.zones.find((z) => z.slug === 'urbanitzacio-valencia-la-vella')?.contractCount).toBe(
+      2,
+    )
+  })
+
+  it('la exclusión es una frase, no una palabra: no tapa la urbanización en otro tramo', () => {
+    const s = matchContractsToZones(
+      [
+        fila(
+          'x',
+          'construction',
+          'Camino desde la urbanización Valencia la Vella hasta el yacimiento arqueológico de Valencia la Vella',
+        ),
+      ],
+      zonas,
+      OPTS,
+      candidates,
+    )
+    expect(s.assignments[0]?.zones).toEqual(['urbanitzacio-valencia-la-vella'])
   })
 })
