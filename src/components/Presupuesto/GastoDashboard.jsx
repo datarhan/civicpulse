@@ -3,6 +3,7 @@ import { Card, SectionHead, Pill } from '../Primitives'
 import { contractTypeTotals, obrasSharePct } from '../../lib/tender-geo'
 import { isCommittedContract, isConcession, importeAdjudicado } from '../../lib/contract-status'
 import { useTenders } from '../../hooks/useTenders'
+import { agrupaPorExpediente } from '../../lib/tender-lotes'
 import { useTenderGeo } from '../../hooks/useTenderGeo'
 import { useCpvLabels } from '../../hooks/useCpvLabels'
 import GastoMap from './GastoMap'
@@ -30,6 +31,8 @@ export default function GastoDashboard() {
   const { data: cpv } = useCpvLabels()
   const contracts = useMemo(() => tenders?.contracts || [], [tenders])
   const contractsById = useMemo(() => new Map(contracts.map((c) => [c.id, c])), [contracts])
+  // Sobre todos los contratos, no los de la zona: ver `ContractCard`.
+  const grupos = useMemo(() => agrupaPorExpediente(contracts), [contracts])
 
   const dateMax = tg?.universe?.dateMax ? new Date(tg.universe.dateMax).getTime() : 0
   const dateMin = tg?.universe?.dateMin ? new Date(tg.universe.dateMin).getTime() : 0
@@ -248,6 +251,8 @@ export default function GastoDashboard() {
               snapshot={tg}
               zoneSlug={selectedZone}
               contractsById={contractsById}
+              grupos={grupos}
+              tenders={tenders?.tenders}
               danaOnly={danaOnly}
               onClear={() => setSelectedZone(null)}
               cpvDict={cpv?.codes}

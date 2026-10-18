@@ -21,6 +21,9 @@ const fmtEur = (n) =>
  * `PLACE_KINDS` del resolutor. Una clase que no tenga clave se pinta con su token,
  * como se pintaba antes la que faltaba en la tabla escrita aquí.
  *
+ * `grupos` y `tenders` vienen de TODO tenders.json, no de los contratos de este
+ * lugar: ver `ContractCard`.
+ *
  * `barriosDebajo` son los barrios cuyo punto tapa este pin y le cede el toque
  * (`lib/barrios-bajo-pines`): esta ficha es su puerta.
  */
@@ -28,6 +31,8 @@ export function PlacePopup({
   place,
   assignments,
   contractsById,
+  grupos,
+  tenders,
   danaOnly,
   obrasOnly,
   cpvDict,
@@ -98,6 +103,8 @@ export function PlacePopup({
               date={a.date}
               dana={a.dana}
               cpvDict={cpvDict}
+              grupos={grupos}
+              tenders={tenders}
             />
             {a.parentTitle && (
               <div

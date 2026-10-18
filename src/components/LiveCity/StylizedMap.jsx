@@ -6,6 +6,7 @@ import { useTenderGeo } from '../../hooks/useTenderGeo'
 import { useTenders } from '../../hooks/useTenders'
 import { useObras } from '../../hooks/useObras'
 import { EMPTY_TENDER_GEO } from '../../lib/tender-geo'
+import { agrupaPorExpediente } from '../../lib/tender-lotes'
 import { BAJO_LA_CINTA, DEFAULT_CENTER, ResizeOnMount } from './shared'
 import { MunicipalBoundary } from './network/MunicipalBoundary'
 import { Railways } from './network/Railways'
@@ -145,6 +146,8 @@ export default function StylizedMap({ center = DEFAULT_CENTER }) {
     () => new Map((tenders?.contracts || []).map((c) => [c.id, c])),
     [tenders],
   )
+  // Sobre todos los contratos, no los de un pin: ver `ContractCard`.
+  const grupos = useMemo(() => agrupaPorExpediente(tenders?.contracts), [tenders])
 
   const unplacedObras = useMemo(
     () => obrasWithoutMoneyPin(obrasData?.obras, snapshot.places),
@@ -229,6 +232,8 @@ export default function StylizedMap({ center = DEFAULT_CENTER }) {
               danaOnly={danaOnly}
               obrasOnly={obrasOnly}
               contractsById={contractsById}
+              grupos={grupos}
+              tenders={tenders?.tenders}
               pines={pinesDelMapa}
             />
             {/* Obras fichas ride WITH the money layer rather than carrying their own

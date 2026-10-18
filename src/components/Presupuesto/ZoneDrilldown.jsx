@@ -19,6 +19,8 @@ export default function ZoneDrilldown({
   snapshot,
   zoneSlug,
   contractsById,
+  grupos,
+  tenders,
   danaOnly,
   onClear,
   cpvDict,
@@ -75,6 +77,8 @@ export default function ZoneDrilldown({
             dana={a.dana}
             provenance={a.matchedAlias?.[zoneSlug]}
             cpvDict={cpvDict}
+            grupos={grupos}
+            tenders={tenders}
             relatedQuejas={relatedQuejasForContract(
               relations,
               quejas?.items,

@@ -6,6 +6,7 @@ import { bajaPct } from '../../lib/tenders'
 import { uniqueCpvLabels } from '../../lib/cpv'
 import { rotuloDe, useLocale } from '../../i18n'
 import { CLAVE_RELACION } from '../../scraper/relation-labels'
+import NotaDeLote from './NotaDeLote'
 
 const fmtEur = (n) =>
   new Intl.NumberFormat('es-ES', {
@@ -32,7 +33,13 @@ const INK45 = 'rgba(11,15,25,.45)'
  *
  * Props: contract (full Contract row · required), amount, amountKind
  * ('final'|'initial'), date, dana, provenance (matched place-name), cpvDict
- * (codes map from useCpvLabels).
+ * (codes map from useCpvLabels), grupos + tenders (para `NotaDeLote`).
+ *
+ * `grupos` sale de `agrupaPorExpediente` sobre TODOS los contratos de
+ * tenders.json y `tenders` es su `tenders`: el enlace de un lote abre la ficha
+ * del expediente entero, cuya cifra no es la de la tarjeta, y la nota lo dice.
+ * Agrupado sobre lo que la lista pinta —una zona, un lugar—, un lote sin
+ * hermanas a la vista dejaría de serlo. Sin `grupos` no hay nota.
  *
  * Su cromo pasa por el catálogo: la tarjeta vive en el globo de un pin del mapa
  * de la portada, y en valencià decía «Adjudicatario:», «Formalizado» y
@@ -42,7 +49,18 @@ const INK45 = 'rgba(11,15,25,.45)'
  * @param {any} props
  */
 export function ContractCard(props) {
-  const { contract: c, amount, amountKind, date, dana, provenance, cpvDict, relatedQuejas } = props
+  const {
+    contract: c,
+    amount,
+    amountKind,
+    date,
+    dana,
+    provenance,
+    cpvDict,
+    relatedQuejas,
+    grupos,
+    tenders,
+  } = props
   const { t, locale } = useLocale()
   if (!c) return null
   const shown = typeof amount === 'number' ? amount : c.finalAmountNoTaxes || c.finalAmount || 0
@@ -130,6 +148,17 @@ export function ContractCard(props) {
             </span>
           )}
         </div>
+      )}
+
+      {/* El enlace del título NO lleva a esta fila si es un lote: ver `NotaDeLote`. */}
+      {grupos && (
+        <NotaDeLote
+          contract={c}
+          grupos={grupos}
+          tenders={tenders}
+          color={INK55}
+          style={{ marginTop: 3 }}
+        />
       )}
 
       {/* CPV target labels */}
