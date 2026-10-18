@@ -134,6 +134,27 @@
       "reason": "Lectura aplanada de dos filas. «20 abr 2026 · 0 filas · 175 B» es la fila de quejas-responses.json, cuya pastilla —primera celda de SU fila— decía «sin refresco»; el «fresco» que sigue es la pastilla de la fila siguiente, quejas.json (refrescado el 04-10-2026). Calculado con freshnessTone + expectationFor sobre los ficheros publicados el 05-10-2026: crit y ok. La página no se contradecía. Lo que sí era real se arregla en el mismo cambio: quejas-responses.json sólo cambia cuando se publica una réplica y no tenía plazo propio, así que contaba en «sin refresco»; ahora es curated a 365 días en snapshot-cadence.ts. Descartado por encargo del coordinador de sesiones (05-10-2026).",
       "editor": "claude-opus-5.5",
       "at": "2026-10-05"
+    },
+    {
+      "route": "/reportajes/coste-efectivo",
+      "quote": "Por eso las dos que salieron por correo, la de Hacienda y la primera del Ayuntamiento, llevan la fecha contada desde el envío y no como vencimiento acreditado.",
+      "reason": "El revisor leyó como «la primera del Ayuntamiento» la fila que se volvió a presentar por su Registro de Entrada el 27-09-2026 (registro 2026014914, entrada 28-09, vence el 28-10). La primera es la del 18-09-2026, enviada por correo electrónico y sin asiento, y su plazo se cuenta desde el envío, como dice la nota. La de Hacienda por correo es la del 18-09; la otra fila de Hacienda (30-09, registro 2026015108) la nota la trata aparte, como la que el Ayuntamiento remitió por ORVE. Comprobado contra solicitudes.items el 18-10-2026: la nota no dice nada falso.",
+      "editor": "Sergei Lutchenko",
+      "at": "2026-10-18"
+    },
+    {
+      "route": "/reportajes/coste-efectivo",
+      "quote": "y cero en las cinco de en medio",
+      "reason": "Cierto. La serie del programa a161 tiene diez entregas, no once: la de 2020 no se rindió (entregas.noPresentadas, y Hacienda lo lista como incumplimiento). Cinco traen importe —2014, 2015, 2016, 2017 y 2024— y cinco vienen a cero: 2018, 2019, 2021, 2022 y 2023. Cada importe de la corrección del 29-08-2026 coincide al céntimo con public/data/coste-efectivo.json (comprobado el 18-10-2026), y el KPI dice «en cinco de las diez». El revisor contó 2018-2023 como seis sin saber que falta 2020; la pieza lo explica en el apartado de entregas. Es una corrección fechada del registro: no se reescribe.",
+      "editor": "Sergei Lutchenko",
+      "at": "2026-10-18"
+    },
+    {
+      "route": "/reportajes/coste-efectivo",
+      "quote": "la tarifa que paga un vecino sigue sin estar publicada en ningún sitio que se pueda enlazar",
+      "reason": "Es una frase de la corrección del 02-09-2026, y la corrección del 17-09-2026, en el mismo registro y justo después, la retira por su nombre: «La tarifa del agua sí está publicada… Las dos cosas eran falsas», con el DOGV de 23-01-2013 y el estudio de viabilidad. El apartado 09 se titula hoy «La tarifa del agua está publicada». El registro de correcciones es histórico y cada entrada dice lo que se sabía ese día: reescribir la del 02-09 borraría lo que la del 17-09 corrige.",
+      "editor": "Sergei Lutchenko",
+      "at": "2026-10-18"
     }
   ]
 }
