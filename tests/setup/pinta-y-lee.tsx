@@ -14,7 +14,13 @@
  *     devuelve en `pedidasSinServir`: la lista se vigila en los dos sentidos.
  *   - `pinta()`: el árbol, dentro de `MemoryRouter` y `LocaleProvider`.
  *   - `ruta` (opcional): la URL inicial del router, para las páginas con `:id`.
- *   - `listo(container)`: que la rama que el escenario abre ya está pintada.
+ *   - `listo(container)`: que la rama que el escenario abre ya está pintada. Tiene
+ *     que exigir todo lo que se pinta DESPUÉS de que sus datos lleguen: «datos sin
+ *     llegar» mira el almacén, no React, y un bloque que guarda lo cargado en un
+ *     estado propio (el de reportajes de la portada) se pinta en una tarea aparte,
+ *     en cuyo hueco dos lecturas seguidas pueden salir iguales sin él. Lo que
+ *     lee el almacén con `useSnapshot` se pinta con el aviso del propio almacén, y
+ *     eso no ha dado este problema.
  *   - `faltanAdrede` (opcional): rutas que el escenario no sirve a propósito.
  *   - `interactua(container)` (opcional): lo que hay que pulsar; devuelve más
  *     piezas leídas, que van detrás de las de la carga.

@@ -62,6 +62,22 @@ import {
 } from '../setup/castellano'
 import { pintaYLee } from '../setup/pinta-y-lee'
 
+// Lo que tarda el bloque de reportajes en pintarse después de que sus instantáneas
+// lleguen al almacén. Cero salvo en la prueba de la espera, al final del fichero, que
+// reproduce así el rojo del 18-10.
+const retraso = vi.hoisted(() => ({ ms: 0 }))
+vi.mock('../../src/lib/snapshot-store', async (original) => {
+  const real = await original()
+  return {
+    ...real,
+    loadSnapshotOptional: async (ruta) => {
+      const datos = await real.loadSnapshotOptional(ruta)
+      if (retraso.ms) await new Promise((r) => setTimeout(r, retraso.ms))
+      return datos
+    },
+  }
+})
+
 // El chip «Hoy» de la cabecera ya se lee en valencià en `vivo-portada.test.jsx`, con
 // sus tres fuentes servidas por URL. Aquí sólo estorbaría: esta prueba lee lo demás.
 vi.mock('../../src/variants/direction-d/Vivo', () => ({ Vivo: () => null }))
@@ -174,6 +190,23 @@ const LA_COLUMNA = [
   ParticipaBlockD,
 ]
 const bloquesPintados = (c) => c.querySelectorAll('aside > *').length
+
+/**
+ * Los títulos de los reportajes publicados que un escenario sirve. El bloque no se
+ * pinta cuando sus instantáneas llegan al almacén, que es lo que `pintaYLee` vigila,
+ * sino después: las pide con un `Promise.all` y guarda el resultado en un estado
+ * propio, y React pinta ese estado en una tarea suya. En ese hueco la columna puede
+ * leerse dos veces igual sin el bloque. El 18-10, con la suite entera, la pasada en
+ * castellano se leyó así (180 piezas contra 223): la espera sólo pedía nueve bloques
+ * de doce, y el que faltaba era este. Así que exige estos títulos siempre que el
+ * escenario sirva alguno publicado.
+ */
+const titulosDeReportajes = (mapa) =>
+  REPORTAJE_SLUGS.map((slug) => mapa[`/data/reportajes/${slug}.json`]?.meta)
+    .filter((meta) => meta?.estado === 'publicado')
+    .map((meta) => meta.titulo)
+const reportajesPintados = (c, mapa) =>
+  titulosDeReportajes(mapa).every((titulo) => c.textContent.includes(titulo))
 
 /**
  * La sección de cada reportaje («Dinero público») sale de su JSON congelado, recortada
@@ -297,24 +330,28 @@ async function abreCadaPanel(container) {
 
 // ─── Escenarios ────────────────────────────────────────────────────────────────
 
+const COLUMNA_DE_HOY = sirve(RUTAS_COLUMNA)
+const COLUMNA_RARA = columnaEnSusRamasRaras()
+
 const ESCENARIOS = [
   {
     nombre: 'la columna editorial con lo que hoy está publicado',
     cubre: [EditorialColumn, ...LA_COLUMNA],
     datos: TEMAS_DE_REPORTAJE,
-    fetch: sirve(RUTAS_COLUMNA),
+    fetch: COLUMNA_DE_HOY,
     pinta: () => <EditorialColumn now={AHORA} />,
     // Con el dato de hoy casi todos los bloques pintan; la otra columna los exige todos.
-    listo: (c) => bloquesPintados(c) >= 9,
+    // Los reportajes, sí o sí: son el bloque que se pinta tarde.
+    listo: (c) => bloquesPintados(c) >= 9 && reportajesPintados(c, COLUMNA_DE_HOY),
   },
   {
     nombre: 'la columna editorial en sus ramas raras: LOREG, concesiones, oficial y sin ejecución',
     cubre: [EditorialColumn, ...LA_COLUMNA],
     datos: TEMAS_DE_REPORTAJE,
-    fetch: columnaEnSusRamasRaras(),
+    fetch: COLUMNA_RARA,
     faltanAdrede: ['/data/budget-execution.json'],
     pinta: () => <EditorialColumn now={AHORA} />,
-    listo: (c) => bloquesPintados(c) === LA_COLUMNA.length,
+    listo: (c) => bloquesPintados(c) === LA_COLUMNA.length && reportajesPintados(c, COLUMNA_RARA),
   },
   {
     nombre: 'la tira de indicadores con lo publicado',
@@ -455,4 +492,28 @@ describe('cobertura de la guarda de la portada', () => {
       expect(cubiertos.has(fuera), `${fuera.name} sin escenario`).toBe(true)
     }
   })
+})
+
+/**
+ * El rojo del 18-10, reproducido: los reportajes llegan al almacén a tiempo y el bloque
+ * tarda en pintarlos, sólo en la pasada en castellano. 300 ms son seis vueltas del
+ * `waitFor` (50 ms): sin exigir el bloque, la columna se daba por quieta antes.
+ */
+describe('la espera de la columna', () => {
+  it('no da la columna por leída mientras el bloque de reportajes no se ha pintado', async () => {
+    const escenario = ESCENARIOS[0]
+    const titulos = titulosDeReportajes(escenario.fetch)
+    expect(titulos.length, 'ningún reportaje publicado: no mide nada').toBeGreaterThan(0)
+    retraso.ms = 300
+    let es
+    try {
+      es = await pintaYLee(escenario, 'es')
+    } finally {
+      retraso.ms = 0
+    }
+    const ca = await pintaYLee(escenario, 'ca')
+    const texto = es.piezas.join(' · ')
+    for (const titulo of titulos) expect.soft(texto, 'reportaje sin leer').toContain(titulo)
+    expect(es.piezas.length, 'no se pintan las mismas piezas').toBe(ca.piezas.length)
+  }, 60000)
 })
