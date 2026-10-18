@@ -20,10 +20,18 @@ export interface OfficialLike {
   slug: string
   name: string
   party: string
+  /** `alcalde` or `concejal` in `officials.json`. */
+  role?: string
+}
+
+/** A member who left during the mandate, with the day they left. */
+export interface FormerOfficialLike extends OfficialLike {
+  until?: string
 }
 
 export interface OfficialsDoc {
   officials?: OfficialLike[]
+  formerOfficials?: FormerOfficialLike[]
   /** Published seat count per bloc. Authoritative when present. */
   composition?: Record<string, number>
 }
@@ -113,4 +121,30 @@ export function singleSeatAttributions(
     for (const party of findPartiesInText(prose ?? '')) add(party)
   }
   return found
+}
+
+/**
+ * The party of the sitting alcalde, or `null` when the roster does not say.
+ *
+ * /promesas attributes a note on the council's own site to this party: the
+ * institution speaks there as the municipal government, and the alcaldía is
+ * the one office the roster names that heads it. Read from the roster, never
+ * written down, so a change of mayor reaches every card that leans on it.
+ *
+ * `null` is «cannot tell», never a party: no sitting alcalde or more than one;
+ * or, with `since` (the day the note was published), a former alcalde who left
+ * on or after that day — the note was written under someone else, and today's
+ * mayor says nothing about it — or one whose leaving day the roster lacks.
+ */
+export function partyOfAlcaldia(
+  doc: OfficialsDoc | null | undefined,
+  since?: string,
+): string | null {
+  const sitting = (doc?.officials ?? []).filter((o) => o.role === 'alcalde')
+  if (sitting.length !== 1 || !sitting[0].party) return null
+  if (since !== undefined) {
+    const left = (doc?.formerOfficials ?? []).filter((o) => o.role === 'alcalde')
+    if (left.some((o) => !o.until || o.until.slice(0, 10) >= since.slice(0, 10))) return null
+  }
+  return sitting[0].party
 }

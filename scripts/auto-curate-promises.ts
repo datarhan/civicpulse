@@ -34,6 +34,7 @@ import {
   type QueueDraft,
 } from '../src/scraper/promise-draft'
 import { groundDraft, groundStatusDraft } from '../src/scraper/promise-grounding'
+import type { OfficialsDoc } from '../src/scraper/corporation-seats'
 import {
   retractedDraftIds,
   selectPromiseDrafts,
@@ -54,6 +55,7 @@ const AGENDAS = resolve('public/data/plenos-agendas.json')
 const TENDERS = resolve('public/data/tenders.json')
 const BDNS = resolve('public/data/bdns.json')
 const BUDGET = resolve('public/data/budget.json')
+const OFFICIALS = resolve('public/data/officials.json')
 const QUEUE = resolve('editorial/promise-review-queue.json')
 const ARCHIVE = resolve('editorial/promise-review-archive.json')
 const LOGDIR = resolve('scripts/logs')
@@ -358,6 +360,10 @@ async function main() {
         `[auto-curate-promises] discovery: LLM proposed ${batch.promises.length} candidate(s)\n`,
       )
       const candidates: DraftNewPromise[] = []
+      // Whose words a council note is: the alcaldía's party, read from the
+      // roster. Missing roster → every council-sourced draft queues for a
+      // person (`partyOwnsCouncilText` fails closed on null).
+      const officials = loadJson<OfficialsDoc>(OFFICIALS)
       for (const it of batch.promises) {
         const draft: DraftNewPromise = {
           draftId: makeDraftId(it.party, it.title, it.sourceUrl),
@@ -387,7 +393,7 @@ async function main() {
           ],
           generatedAt: nowIso,
         }
-        draft.grounding = await groundDraft(draft, undefined, now)
+        draft.grounding = await groundDraft(draft, undefined, now, undefined, officials)
         candidates.push(draft)
       }
       const sel = selectPromiseDrafts({
