@@ -819,7 +819,14 @@ export default function ReconstruccionDana() {
               no el total de reconstrucción.
             </li>
             <li style={boxLi()}>
-              Importes sin IVA, sobre contratos adjudicados (datos a {m.fechaDatos}).{' '}
+              {/* La fecha de los IMPORTES, no la de la pieza. «datos a {fechaDatos}»
+                  decía 06-07 sobre cifras que la corrección del 02-08-2026 recalculó
+                  con el registro de ese día (metodo.recalculadoEl): lo señaló la
+                  revisión lectora el 18-10-2026. fechaDatos se queda, porque las
+                  listas la usan como fecha de la pieza. */}
+              {data.metodo?.recalculadoEl
+                ? `Importes sin IVA, sobre contratos adjudicados, recalculados el ${data.metodo.recalculadoEl} sobre el registro de ese día.`
+                : `Importes sin IVA, sobre contratos adjudicados (datos a ${m.fechaDatos}).`}{' '}
               <b>Adjudicado ≠ ejecutado</b>; los financiadores no se suman.
             </li>
             <li style={boxLi()}>
