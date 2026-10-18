@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-18T08:28:39.542Z",
+  "generatedAt": "2026-10-18T09:13:00.717Z",
   "clusters": [
     {
       "clusterId": "1hto5xc",
@@ -15,28 +15,6 @@
       ],
       "earliestDate": "2026-10-16T06:58:16.000Z",
       "latestDate": "2026-10-16T16:50:00.000Z",
-      "verdictMix": {
-        "verificado": 0,
-        "parcial": 0,
-        "contradicho": 0,
-        "sin-datos": 0,
-        "promesa-repetida": 0
-      }
-    },
-    {
-      "clusterId": "b9iq7g",
-      "articleIds": [
-        "18kyu4h",
-        "3nxx84",
-        "xh27f9"
-      ],
-      "outlets": [
-        "Ayuntamiento de Riba-roja de Túria",
-        "Periòdic del Camp de Túria",
-        "PressReader"
-      ],
-      "earliestDate": "2026-10-07T10:03:16.000Z",
-      "latestDate": "2026-10-09T07:00:00.000Z",
       "verdictMix": {
         "verificado": 0,
         "parcial": 0,
@@ -99,6 +77,7 @@
         "5csqp0",
         "8s5tks",
         "fr25a0",
+        "mw9ti3",
         "urrfhs"
       ],
       "outlets": [
@@ -217,13 +196,13 @@
     }
   ],
   "stats": {
-    "totalClusters": 10,
-    "triangulated3Plus": 2
+    "totalClusters": 9,
+    "triangulated3Plus": 1
   },
   "builtFrom": {
-    "plenos-agendas.json": "99f16425dad2",
+    "plenos-agendas.json": "d5db990ea89e",
     "press-claims-verified.json": "577b1fb0a58a",
-    "press.json": "d82b3de27057",
+    "press.json": "6853d30dea86",
     "promises.json": "08c43b132d79"
   }
 }
