@@ -1,7 +1,8 @@
 import { Link } from 'react-router-dom'
 import { useTenders, formatDate as formatTenderDate } from '../../../hooks/useTenders'
 
-import { agrupaPorExpediente, infoLote } from '../../../lib/tender-lotes'
+import { agrupaPorExpediente } from '../../../lib/tender-lotes'
+import NotaDeLote from '../../../components/tenders/NotaDeLote'
 import {
   isCommittedContract,
   comprometidosSinImporte,
@@ -110,18 +111,6 @@ export function LiveContracts() {
       currency: 'EUR',
       maximumFractionDigits: 0,
       notation: n >= 100_000 ? 'compact' : 'standard',
-    }).format(n)
-
-  // El presupuesto base va al CÉNTIMO y sin notación compacta: existe para que
-  // el lector lo case con lo que va a leer en PLACSP —«53.409,63 Euros»— y un
-  // «53 mil €» no se casa con nada. Además esquiva la deriva de CLDR entre el
-  // portátil y la CI, que sólo afecta a la unidad compacta.
-  const fmtEurExacto = (n) =>
-    new Intl.NumberFormat('es-ES', {
-      style: 'currency',
-      currency: 'EUR',
-      minimumFractionDigits: 2,
-      maximumFractionDigits: 2,
     }).format(n)
 
   // The period, derived from the same rows the counter counts. The four
@@ -251,57 +240,14 @@ export function LiveContracts() {
                 {importe === null ? '—' : fmtEur(importe)}
               </span>
             </div>
-            {/* El enlace de esta fila NO lleva a esta fila: lleva a la ficha del
-              expediente entero, que titula el presupuesto base de todos los
-              lotes juntos. El 16-09-2026 la portada publicaba «UE casco 5 ·
-              6.900 €» y «UE vella 6 · 20.251 €» con el MISMO enlace, el del
-              expediente 106/2025, cuya única cifra visible es 53.409,63 €. Las
-              tres eran ciertas y ninguna decía de qué era.
-
-              El total de lotes sale del `numberOfBatches` de la licitación
-              homónima —la fuente declarándolo—, nunca de cuántas filas
-              tengamos: un denominador que no se puede ver no se escribe. */}
-            {(() => {
-              const lote = infoLote(c, grupos, data.tenders)
-              if (!lote) return null
-              const exp = lote.expediente ? ` (${lote.expediente})` : ''
-              // Cada rama nombra SU clave junto a los huecos que rellena, en vez
-              // de elegir una clave en una variable: así lo ve el guard de
-              // `tests/i18n-catalogue.test.ts`, que lee el objeto pegado al
-              // literal para comprobar que ningún `{hueco}` llega al lector. Con
-              // la clave en una variable el guard no puede leerlo y se pone rojo,
-              // que es justo lo que tiene que hacer un guard que no puede mirar.
-              const texto =
-                lote.numero && lote.total && lote.presupuestoBase
-                  ? rellena(t('landing.contratos.lote.conBase'), {
-                      n: lote.numero,
-                      total: lote.total,
-                      exp,
-                      base: fmtEurExacto(lote.presupuestoBase),
-                    })
-                  : lote.numero && lote.total
-                    ? rellena(t('landing.contratos.lote.deTotal'), {
-                        n: lote.numero,
-                        total: lote.total,
-                        exp,
-                      })
-                    : lote.numero
-                      ? rellena(t('landing.contratos.lote.simple'), { n: lote.numero, exp })
-                      : rellena(t('landing.contratos.lote.sinNumero'), { exp })
-              return (
-                <div
-                  className="cp-lote-nota"
-                  style={{
-                    marginTop: 4,
-                    fontSize: 'var(--fs-micro)',
-                    color: PALETTE.ink60,
-                    lineHeight: 1.35,
-                  }}
-                >
-                  {texto}
-                </div>
-              )
-            })()}
+            {/* El enlace de esta fila NO lleva a esta fila: ver `NotaDeLote`. */}
+            <NotaDeLote
+              contract={c}
+              grupos={grupos}
+              tenders={data.tenders}
+              color={PALETTE.ink60}
+              style={{ marginTop: 4 }}
+            />
             {/* Una concesión se adjudica por TODO su plazo de una vez, así que su
               importe no es comparable con el de las filas que tiene al lado ni
               con el presupuesto anual impreso en esta misma pantalla. Sin esta
