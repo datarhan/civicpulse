@@ -41,7 +41,9 @@
     "metodo": "Estos dispositivos detectarán la dirección MAC (Medium Access Control) de los smartphones, pero también el SSID (red Wi-Fi por defecto que busca el dispositivo) y la Signature (fragmento del mensaje Probe Request que contiene información sobre el modelo dispositivo). Con estas dos métricas adicionales, se dispondrá de una alternativa para reconocer el dispositivo en los casos donde estos tengan una dirección MAC aleatoria, debido a que la combinación de la Wi-Fi por defecto y el modelo ayuda a identificarlo.",
     "citaFuente": "Pliego de prescripciones técnicas del expediente 98/2025. Los dos párrafos van seguidos en el documento.",
     "resaltes": {
-      "promesa": ["no intrusiva y anonimizada"],
+      "promesa": [
+        "no intrusiva y anonimizada"
+      ],
       "metodo": [
         "reconocer el dispositivo en los casos donde estos tengan una dirección MAC aleatoria",
         "ayuda a identificarlo"
