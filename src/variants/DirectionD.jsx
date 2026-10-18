@@ -194,6 +194,15 @@ export default function DirectionD() {
           .cp-mapa-pila[data-plegada='true'] .cp-cobertura {
             margin-top: 0; padding-top: 0; border-top: 0;
           }
+          /* Con una ficha abierta, la pila se aparta. Todo el mapa —también el
+             panel de las fichas— apila a z-400, igual que la pila, que va después
+             en el DOM y gana el empate; y a 375×629 una ficha mide unos 400 px en
+             un mapa de 277, así que el auto-pan no la saca de debajo. El
+             17-10-2026 la ficha del Passeig del Molinet llevaba cuatro enlaces de
+             barrio y el último caía bajo la cobertura plegada: el toque en el
+             punto de el Molinet no llegaba a su ficha. La cobertura no se pierde:
+             vuelve al cerrar la ficha (barrios-mobile.spec.ts). */
+          .cp-mapa-pila[data-ficha='true'] { visibility: hidden; }
         }
       `}</style>
 

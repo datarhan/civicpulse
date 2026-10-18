@@ -1,6 +1,6 @@
 // @ts-check
 import { useMemo, useState } from 'react'
-import { MapContainer, Pane, TileLayer } from 'react-leaflet'
+import { MapContainer, Pane, TileLayer, useMapEvents } from 'react-leaflet'
 import { BASEMAP_URL } from '../../lib/basemap'
 import { useTenderGeo } from '../../hooks/useTenderGeo'
 import { useTenders } from '../../hooks/useTenders'
@@ -96,6 +96,10 @@ export default function StylizedMap({ center = DEFAULT_CENTER }) {
   // las cuatro estaciones de Riba-roja. Plegada deja a la vista los chips y la
   // línea de cobertura del dinero, que es la declaración de honestidad de la capa.
   const [plegada, setPlegada] = useState(true)
+  // Si hay una ficha abierta. En un mapa compacto la pila se aparta mientras la
+  // ficha está abierta (la regla, en DirectionD.jsx); al cerrarla vuelve, con la
+  // línea de cobertura.
+  const [fichaAbierta, setFichaAbierta] = useState(false)
   // null = sin tocar: se ve la serie entera hasta el último año cartografiado.
   const [anyoIncendios, setAnyoIncendios] = useState(null)
   const [danaOnly, setDanaOnly] = useState(false)
@@ -169,6 +173,7 @@ export default function StylizedMap({ center = DEFAULT_CENTER }) {
         worldCopyJump={false}
       >
         <ResizeOnMount />
+        <AvisaFicha onCambio={setFichaAbierta} />
 
         <TileLayer url={BASEMAP_URL} attribution="" />
 
@@ -229,6 +234,7 @@ export default function StylizedMap({ center = DEFAULT_CENTER }) {
       <div
         className="cp-mapa-pila"
         data-plegada={plegada ? 'true' : 'false'}
+        data-ficha={fichaAbierta ? 'true' : 'false'}
         style={{
           position: 'absolute',
           bottom: 28,
@@ -274,4 +280,16 @@ export default function StylizedMap({ center = DEFAULT_CENTER }) {
       </div>
     </div>
   )
+}
+
+/**
+ * Avisa de si hay una ficha (popup) abierta en el mapa. Leaflet cierra la anterior
+ * antes de abrir la siguiente, así que `popupclose` llega antes que `popupopen`.
+ */
+function AvisaFicha({ onCambio }) {
+  useMapEvents({
+    popupopen: () => onCambio(true),
+    popupclose: () => onCambio(false),
+  })
+  return null
 }

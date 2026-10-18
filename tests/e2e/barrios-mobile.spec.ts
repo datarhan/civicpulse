@@ -29,5 +29,36 @@ for (const alto of [812, 629]) {
       ).toBeGreaterThan(0)
       for (const barrio of m.barriosPorElPin) await entraPorElPin(page, barrio, 'dedo')
     })
+
+    test('con una ficha abierta la pila se aparta, y al cerrarla vuelve la cobertura', async ({
+      page,
+    }) => {
+      // Todo el mapa apila a z-400, igual que la pila, que gana el empate: sin esto
+      // el pie de una ficha alta queda debajo de los controles plegados. Pero la
+      // cobertura es la declaración de honestidad de la capa y tiene que volver.
+      await cargaYEncuadra(page)
+      const pila = page.locator('.cp-mapa-pila')
+      const cobertura = page.locator('.cp-cobertura')
+      await expect(cobertura).toBeVisible()
+      const pin = await page.evaluate(() => {
+        const panes = document.querySelector('.leaflet-map-pane')!
+        for (const p of document.querySelectorAll('path.cp-money-pin')) {
+          const r = p.getBoundingClientRect()
+          const x = r.left + r.width / 2
+          const y = r.top + r.height / 2
+          if (x < 0 || y < 0 || x >= innerWidth || y >= innerHeight) continue
+          const arriba = document.elementFromPoint(x, y)
+          if (arriba === p && panes.contains(arriba)) return { x, y }
+        }
+        return null
+      })
+      expect(pin, 'ningún pin del dinero recibe un toque en su centro').not.toBeNull()
+      await page.touchscreen.tap(pin!.x, pin!.y)
+      await expect(page.locator('.leaflet-popup')).toHaveCount(1)
+      await expect(pila).toBeHidden()
+      await page.locator('.leaflet-popup-close-button').click()
+      await expect(page.locator('.leaflet-popup')).toHaveCount(0)
+      await expect(cobertura).toBeVisible()
+    })
   })
 }
