@@ -136,53 +136,59 @@ export default function MatriculasYMoviles() {
 
       <CorrectionNotice correcciones={m.correcciones} style={{ marginTop: 22 }} />
 
-      {/* KPIs */}
-      <div
-        style={{
-          display: 'grid',
-          gridTemplateColumns: 'repeat(auto-fit, minmax(150px, 1fr))',
-          gap: 10,
-          margin: '20px 0 6px',
-        }}
-      >
-        {data.kpis.map((k, i) => (
-          <Card
-            key={i}
-            className={enFigura.has(k.n) ? 'cp-kpi-en-figura' : undefined}
-            style={{ padding: '12px 14px' }}
-          >
-            <div
-              className="mono"
-              style={{ fontSize: 'var(--fs-page)', color: 'var(--ink)', fontWeight: 600 }}
-            >
-              {k.n}
-            </div>
-            <div
-              style={{
-                fontSize: 'var(--fs-meta)',
-                color: 'var(--ink50)',
-                marginTop: 4,
-                lineHeight: 1.4,
-              }}
-            >
-              {k.l}
-            </div>
-          </Card>
-        ))}
+      {/* La apertura era cuatro resúmenes seguidos —subtítulo, figura, tarjetas y
+          una entradilla en serifa de titular— que repetían las mismas cifras: en
+          el móvil, tres pantallas antes del primer apartado. Ahora resumen el
+          subtítulo y la figura, y la entradilla abre el texto.
+
+          Tarjetas: sólo quedan las que la figura imprime, y sólo donde la figura
+          no cabe (`cp-kpi-en-figura`, por debajo de 480px), para sustituirla.
+          Las demás repetían, sin su contexto, una cifra que la entradilla da
+          con él: «61.050 €» —ahí con y sin IVA— y «≥5» —«al menos cinco
+          cámaras». Una tarjeta nueva en `kpis` cuya cifra no esté en la figura
+          no se pinta: si hace falta, que vaya a la prosa. Por eso esto es de
+          ESTA pieza y no del armazón: en «conteo-visitantes», «267» y «16/100»
+          sólo están en sus tarjetas. */}
+      {/* La clase va en un envoltorio sin `display` en línea: en la rejilla, el
+          `display: grid` en línea ganaba a la regla que la esconde. */}
+      <div className="cp-kpi-en-figura">
+        <div
+          style={{
+            display: 'grid',
+            gridTemplateColumns: 'repeat(auto-fit, minmax(150px, 1fr))',
+            gap: 10,
+            margin: '20px 0 6px',
+          }}
+        >
+          {data.kpis
+            .filter((k) => enFigura.has(k.n))
+            .map((k, i) => (
+              <Card key={i} style={{ padding: '12px 14px' }}>
+                <div
+                  className="mono"
+                  style={{ fontSize: 'var(--fs-page)', color: 'var(--ink)', fontWeight: 600 }}
+                >
+                  {k.n}
+                </div>
+                <div
+                  style={{
+                    fontSize: 'var(--fs-meta)',
+                    color: 'var(--ink50)',
+                    marginTop: 4,
+                    lineHeight: 1.4,
+                  }}
+                >
+                  {k.l}
+                </div>
+              </Card>
+            ))}
+        </div>
       </div>
 
-      <p
-        className="cp-ancho"
-        style={{
-          fontFamily: SERIF,
-          fontSize: 'clamp(var(--fs-card), 2.4vw, var(--fs-page))',
-          lineHeight: 1.5,
-          color: 'var(--ink)',
-          margin: '22px 0 0',
-        }}
-      >
-        {data.entradilla}
-      </p>
+      {/* La entradilla, en el cuerpo del texto y a la medida: es el primer
+          párrafo de la pieza, no un segundo subtítulo. En tinta plena, que la
+          distingue del gris de los párrafos que la siguen. */}
+      <p style={{ color: 'var(--ink)', margin: '22px 0 0' }}>{data.entradilla}</p>
 
       <IndicePieza />
 
@@ -261,15 +267,7 @@ export default function MatriculasYMoviles() {
       <SecHead num="10" kicker="Sin responder" title="Las preguntas" />
       <ol style={{ margin: '0 0 14px', paddingLeft: 20 }}>
         {data.preguntas.map((q, i) => (
-          <li
-            key={i}
-            style={{
-              fontSize: 'var(--fs-aux)',
-              color: 'var(--ink70)',
-              marginBottom: 8,
-              lineHeight: 1.5,
-            }}
-          >
+          <li key={i} style={{ color: 'var(--ink70)', marginBottom: 10 }}>
             {q}
           </li>
         ))}

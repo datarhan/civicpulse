@@ -1751,6 +1751,57 @@ main:focus:not(:focus-visible) {
   max-width: var(--medida);
 }
 
+/* La tabla de las piezas (`Tabla`, ConteoVisitantes.jsx). Con sitio, una tabla
+   con su scroll de reserva; por debajo de 600px —donde dos columnas de texto
+   ya no caben en 520px— cada fila se apila: la cabecera se esconde (sigue ahí
+   para el lector de pantalla) y cada celda lleva delante su etiqueta. Los
+   `!important` ganan a los estilos en línea de la celda, que no pueden llevar
+   media queries. */
+.cp-tabla table {
+  min-width: 520px;
+}
+@media (max-width: 599px) {
+  .cp-tabla table {
+    min-width: 0;
+  }
+  .cp-tabla :is(table, tbody, tr, td),
+  .cp-tabla caption {
+    display: block;
+  }
+  .cp-tabla thead {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+  }
+  .cp-tabla tr {
+    padding: 10px 0;
+    border-bottom: 1px solid var(--border);
+  }
+  .cp-tabla td {
+    padding: 0 !important;
+    border-bottom: 0 !important;
+    text-align: left !important;
+    white-space: normal !important;
+  }
+  .cp-tabla td + td {
+    margin-top: 8px;
+  }
+  .cp-tabla td::before {
+    content: attr(data-label);
+    display: block;
+    margin-bottom: 2px;
+    font-family: var(--font-mono);
+    font-size: var(--fs-micro);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--ink50);
+    font-weight: 500;
+  }
+}
+
 /* «En esta pieza» — índice plegado, leído de los encabezados de la pieza. */
 .cp-indice {
   margin: 26px 0 0;

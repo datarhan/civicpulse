@@ -1,7 +1,8 @@
 import { Ic } from './Icons'
 import { useT } from '../i18n'
+import { TweaksButton } from './TweaksPanel'
 
-export function Topbar({ crumb, onOpenCmdK, onOpenSidebar }) {
+export function Topbar({ crumb, onOpenCmdK, onOpenSidebar, tweaksOpen, onToggleTweaks }) {
   const t = useT()
   return (
     <header
@@ -112,6 +113,8 @@ export function Topbar({ crumb, onOpenCmdK, onOpenSidebar }) {
           ⌘K
         </span>
       </button>
+
+      <TweaksButton open={tweaksOpen} onToggle={onToggleTweaks} />
     </header>
   )
 }

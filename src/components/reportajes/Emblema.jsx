@@ -250,6 +250,9 @@ function MatriculasYMoviles({ data }) {
   return {
     label: `De los ${ps.length} aparcamientos que nombra el pliego, se observó cámara en ${conCamara}; con cartel informativo, ${cifra}.`,
     cifras: [cifra],
+    // Lo más bajo es la línea «informativo de videovigilancia» (y 240): con 300
+    // quedaban sesenta unidades vacías entre la figura y la entradilla.
+    alto: 254,
     body: (
       <>
         <T x={40} y={36} fill={C.ink50} mono>
@@ -626,7 +629,7 @@ export default function Emblema({ slug, data, style }) {
   const { ref, marcas } = useRevelado()
   const Figura = EMBLEMAS[slug]
   if (!Figura || !data) return null
-  const { label, body } = Figura({ data })
+  const { label, body, alto = 300 } = Figura({ data })
   return (
     <figure
       ref={/** @type {import('react').RefObject<HTMLElement>} */ (ref)}
@@ -636,9 +639,11 @@ export default function Emblema({ slug, data, style }) {
     >
       <style>{CSS}</style>
       {/* El dibujo ocupa x 36–684 de un lienzo de 720: el viewBox recorta el
-          margen para que el borde de la figura caiga donde el del titular. */}
+          margen para que el borde de la figura caiga donde el del titular. El
+          alto es 300 salvo que la figura diga otro (`alto`): una que acaba
+          antes dejaba debajo una franja vacía que se sumaba al margen. */}
       <svg
-        viewBox="36 0 648 300"
+        viewBox={`36 0 648 ${alto}`}
         role="img"
         aria-label={label}
         style={{ fontFamily: 'var(--font-body)' }}
