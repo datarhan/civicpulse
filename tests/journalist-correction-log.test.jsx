@@ -87,3 +87,66 @@ describe('CorrectionLog: el recorte se hace sobre el texto que se lee', () => {
     expect(filas, 'ningún informe con bitácora: esto no mide nada').toBeGreaterThan(0)
   })
 })
+
+/**
+ * La ventana empezaba siempre en el carácter 0. Una corrección que reemplaza
+ * el cuerpo entero de una sección y cambia una frase del final enseñaba dos
+ * versiones con los mismos 200 primeros caracteres: «retirado» y «vigente»
+ * idénticos, y el cambio, que es lo único que la bitácora existe para mostrar,
+ * fuera de la vista. Medido el 18-10-2026 en tres de las siete correcciones de
+ * retribución (Gómez Sánchez, Hernández Carrizosa, Pozuelo): el cambio
+ * empezaba en los caracteres 266, 487 y 308.
+ */
+describe('CorrectionLog: la ventana enseña lo que cambió', () => {
+  const fila = (original, corrected) => ({
+    field: 'narrative.Retribución.bodyMarkdown',
+    original,
+    corrected,
+    reason: 'Motivo de prueba con la longitud de un motivo de verdad.',
+    editor: 'civicpulse-curator',
+    correctedAt: '2026-10-18',
+  })
+  const versiones = (container) => ({
+    retirado: container.querySelector('del').textContent,
+    vigente: container.querySelector('del').nextElementSibling.nextElementSibling.textContent,
+  })
+
+  it('un cambio más allá del carácter 200 se ve en las dos versiones', () => {
+    const comun = `${'Texto común de la sección que no cambia. '.repeat(8)}`
+    const { container } = render(
+      <CorrectionLog
+        corrections={[fila(`${comun}Percibe 38.891,66 euros.`, `${comun}Fijó 38.891,66 euros.`)]}
+      />,
+    )
+    const v = versiones(container)
+    expect(v.retirado).toContain('Percibe 38.891,66')
+    expect(v.vigente).toContain('Fijó 38.891,66')
+    // Recortada por delante, y dicho: sin «…» parecería que el texto empieza ahí.
+    expect(v.retirado.startsWith('…')).toBe(true)
+    expect(v.vigente.startsWith('…')).toBe(true)
+  })
+
+  it('un cambio dentro de los primeros caracteres sigue empezando por el principio', () => {
+    const { container } = render(<CorrectionLog corrections={[fila('Uno dos.', 'Uno tres.')]} />)
+    const v = versiones(container)
+    expect(v.retirado).toBe('Uno dos.')
+    expect(v.vigente).toBe('Uno tres.')
+  })
+
+  it('en ninguna bitácora publicada «retirado» y «vigente» se leen iguales', () => {
+    const DIR = join(__dirname, '..', 'public/data/journalist-reports')
+    const informes = readdirSync(DIR).map((n) => JSON.parse(readFileSync(join(DIR, n), 'utf8')))
+    let distintas = 0
+    for (const r of informes.filter((x) => x.corrections?.length)) {
+      for (const c of r.corrections) {
+        if (c.original === c.corrected) continue
+        distintas += 1
+        const { container } = render(<CorrectionLog corrections={[c]} />)
+        const v = versiones(container)
+        expect(v.retirado, `${r.id} · ${c.field}`).not.toBe(v.vigente)
+        cleanup()
+      }
+    }
+    expect(distintas, 'ninguna corrección que cambie texto: esto no mide nada').toBeGreaterThan(0)
+  })
+})
