@@ -3,6 +3,7 @@ import { spawnSync } from 'node:child_process'
 import { existsSync, mkdtempSync, mkdirSync, writeFileSync, readFileSync, rmSync } from 'node:fs'
 import { tmpdir } from 'node:os'
 import { dirname, join, resolve } from 'node:path'
+import { pathToFileURL } from 'node:url'
 import { shortlistCandidates, type VerifierInputs } from '../src/scraper/claim-verifier'
 import { shouldSkipLlmVerification } from '../src/scraper/claim-verifier-llm'
 import { verifyClaimWithNli } from '../src/scraper/claim-verifier-nli'
@@ -61,7 +62,8 @@ const RESPALDADA = LICITACIONES[1]
  * entrada y lee las puntuaciones por la salida. Apunta el id de cada par en
  * `CALL_LOG`. Puntúa alto el par cuya premisa contiene `NLI_ALTO` y bajo el
  * resto; con `NLI_OTRO_ID` contesta con ids que nadie le mandó; con
- * `NLI_DORMIR_MS` tarda eso en contestar, como un modelo lento.
+ * `NLI_COLGAR` no contesta nunca, como un modelo atascado, y deja escrito en
+ * `NLI_RECIBIDO` que ya tiene todos sus pares.
  */
 const NLI_FALSO = `#!/usr/bin/env node
 const { appendFileSync } = require('node:fs')
@@ -80,8 +82,57 @@ process.stdin.on('end', () => {
     const id = process.env.NLI_OTRO_ID ? 'otro:' + par.id : par.id
     salida.push(JSON.stringify({ id, ...puntos }) + '\\n')
   }
-  setTimeout(() => process.stdout.write(salida.join('')), Number(process.env.NLI_DORMIR_MS || 0))
+  if (process.env.NLI_COLGAR) {
+    appendFileSync(process.env.NLI_RECIBIDO, String(salida.length))
+    setInterval(() => {}, 1 << 30)
+    return
+  }
+  process.stdout.write(salida.join(''))
 })
+`
+
+/**
+ * Se precarga en el proceso del guion (`--import`) para la prueba del tope. El
+ * vigilante de `nli-client.ts` es un `setTimeout` de reloj real que empieza a
+ * contar al lanzar el modelo; con un tope corto competía con el arranque del
+ * falso, y el 18-10-2026, bajo la carga de un `npm test` completo, venció
+ * antes de que el falso leyera un solo par —el control «los pares salieron»
+ * vio cero—. Esta precarga retiene ESE temporizador, y sólo ése (lo reconoce
+ * por la pila), hasta que el falso escribe `NLI_RECIBIDO`; entonces lo arma con
+ * su tope de siempre. Apunta en `NLI_VIGILANTE_LOG` que lo retuvo y cuándo lo
+ * soltó: si `nli-client.ts` dejara de usar `setTimeout`, la precarga no haría
+ * nada y la prueba lo diría, en vez de volver a la carrera sin avisar. Si el
+ * falso no recibe nada en `ESPERA_RECIBO_MS`, lo suelta igual: la prueba falla
+ * por el control, no se cuelga.
+ */
+const VIGILANTE_RETENIDO = `import { appendFileSync, existsSync } from 'node:fs'
+const real = globalThis.setTimeout
+const borrarReal = globalThis.clearTimeout
+const { NLI_RECIBIDO, NLI_VIGILANTE_LOG } = process.env
+const ESPERA_RECIBO_MS = 60_000
+const retenidos = new WeakSet()
+globalThis.setTimeout = function (fn, ms, ...args) {
+  if (!/nli-client/.test(new Error().stack ?? '')) return real(fn, ms, ...args)
+  appendFileSync(NLI_VIGILANTE_LOG, 'retenido ' + ms + '\\n')
+  const h = { t: null, cancelado: false }
+  retenidos.add(h)
+  const limite = Date.now() + ESPERA_RECIBO_MS
+  const mirar = () => {
+    if (h.cancelado) return
+    const recibido = existsSync(NLI_RECIBIDO)
+    if (recibido || Date.now() > limite) {
+      appendFileSync(NLI_VIGILANTE_LOG, (recibido ? 'soltado' : 'soltado sin recibo') + '\\n')
+      h.t = real(fn, ms, ...args)
+    } else h.t = real(mirar, 5)
+  }
+  mirar()
+  return h
+}
+globalThis.clearTimeout = function (h) {
+  if (!retenidos.has(h)) return borrarReal(h)
+  h.cancelado = true
+  borrarReal(h.t)
+}
 `
 
 // Arranca el guion de verdad (~3 s con tsx).
@@ -135,6 +186,8 @@ interface Corrida {
   stderr: string
   /** Los ids de los pares que le llegaron al modelo. */
   pares: string[]
+  /** Lo que apuntó la precarga del vigilante (sólo con `vigilanteRetenido`). */
+  vigilante: string[]
   /** La cola tras la corrida, en texto; `null` si no existe. */
   cola: string | null
   /** La cola antes de la corrida, en texto; `null` si no había. */
@@ -144,7 +197,12 @@ interface Corrida {
   overlayCreado: boolean
 }
 
-function correr(opts: { env?: Record<string, string>; cola?: ColaDeSugerencias }): Corrida {
+function correr(opts: {
+  env?: Record<string, string>
+  cola?: ColaDeSugerencias
+  /** Precarga `VIGILANTE_RETENIDO` y cuelga al falso tras recibir sus pares. */
+  vigilanteRetenido?: boolean
+}): Corrida {
   const caja = mkdtempSync(join(tmpdir(), 'anclaje-nli-puntuaciones-'))
   cajas.push(caja)
   const data = join(caja, 'public/data')
@@ -169,6 +227,18 @@ function correr(opts: { env?: Record<string, string>; cola?: ColaDeSugerencias }
   }
 
   const log = join(caja, 'pares.log')
+  const vigilanteLog = join(caja, 'vigilante.log')
+  const retencion: Record<string, string> = {}
+  if (opts.vigilanteRetenido) {
+    const precarga = join(caja, 'vigilante-retenido.mjs')
+    writeFileSync(precarga, VIGILANTE_RETENIDO)
+    Object.assign(retencion, {
+      NODE_OPTIONS: `--import ${pathToFileURL(precarga).href}`,
+      NLI_COLGAR: '1',
+      NLI_RECIBIDO: join(caja, 'recibido'),
+      NLI_VIGILANTE_LOG: vigilanteLog,
+    })
+  }
   const res = spawnSync(TSX, [SCRIPT], {
     cwd: caja,
     encoding: 'utf8',
@@ -181,6 +251,7 @@ function correr(opts: { env?: Record<string, string>; cola?: ColaDeSugerencias }
       TMPDIR: process.env.TMPDIR,
       VERIFIER_SHORTLIST: 'lexical',
       CALL_LOG: log,
+      ...retencion,
       ...opts.env,
     },
     timeout: TOPE,
@@ -191,6 +262,7 @@ function correr(opts: { env?: Record<string, string>; cola?: ColaDeSugerencias }
     stdout: res.stdout,
     stderr: res.stderr,
     pares: (leer(log) ?? '').split('\n').filter(Boolean),
+    vigilante: (leer(vigilanteLog) ?? '').split('\n').filter(Boolean),
     cola: leer(rutaCola),
     colaAntes,
     verificadoAntes,
@@ -327,13 +399,19 @@ describe('verify:pleno-claims:nli cuando el modelo no contesta a tiempo', () => 
     r = correr({
       env: {
         NLI_ALTO: RESPALDADA.title,
-        NLI_DORMIR_MS: '20000',
         NLI_TOPE_ARRANQUE_MS: '500',
         NLI_TOPE_MS_POR_PAR: '0',
       },
       cola: await colaQueLaPropone(),
+      vigilanteRetenido: true,
     })
   }, TOPE)
+
+  it('el vigilante empezó a contar sólo cuando el modelo tenía sus pares', () => {
+    // Sin esto, la precarga podría no haber retenido nada y el resto volvería
+    // a ser una carrera contra el arranque del falso.
+    expect(r.vigilante, r.stderr).toEqual(['retenido 500', 'soltado'])
+  })
 
   it('los pares salieron hacia el modelo', () => {
     expect(r.pares).toHaveLength(2)
