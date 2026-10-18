@@ -18,7 +18,7 @@
  * Sale ≠ 0 —y por tanto habla— cuando alguna ruta arrastra señalamientos vivos,
  * o cuando alguna lleva más de `DIAS_FRESCURA` sin leerse, o nunca.
  */
-import { readFileSync, existsSync } from 'node:fs'
+import { readFileSync, existsSync, readdirSync } from 'node:fs'
 import { resolve } from 'node:path'
 import { construirGrafoRutas, rutasRevisables } from './lib/route-graph'
 import { leerDeDisco } from './lib/fichas-representativas'
@@ -33,6 +33,7 @@ import type { ReviewCacheEntry } from '../src/scraper/reader-review'
 
 const CACHE = resolve('.review-cache.json')
 const DESCARTES = resolve('review-dismissals.json')
+const HOJAS = resolve('editorial/senalamientos')
 
 function main() {
   // Las claves con estado cuentan como superficie propia. Si el barrido las
@@ -120,9 +121,22 @@ function main() {
   }
 
   console.error(`[check-surfaces] ${parte}`)
+  // Where the person starts: the sheet the sweep left with each live flag's
+  // figures located and a second reading (`triage:senalamientos`). Named only
+  // when it exists — a pointer to nothing would be its own small lie.
+  const hojas = existsSync(HOJAS)
+    ? readdirSync(HOJAS)
+        .filter((n) => /^\d{4}-\d{2}-\d{2}\.md$/.test(n))
+        .sort()
+    : []
+  const hoja =
+    f.senalamientos > 0 && hojas.length > 0
+      ? ` · hoja de decisiones: editorial/senalamientos/${hojas[hojas.length - 1]}`
+      : ''
   console.error(
     `[check-surfaces] ${leidas} de ${rutas.length} al día · ` +
-      'el barrido es scripts/review-sweep.sh (launchd, lunes y jueves 07:30); a mano: npm run review:surfaces -- --all',
+      'el barrido es scripts/review-sweep.sh (launchd, lunes y jueves 07:30); a mano: npm run review:surfaces -- --all' +
+      hoja,
   )
   process.exitCode = 1
 }

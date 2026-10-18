@@ -192,6 +192,7 @@
     "suggest:area-fit": "npx tsx scripts/suggest-area-fit.ts",
     "triage:finding-support": "npx tsx scripts/triage-finding-support.ts",
     "triage:quote-reanchor": "npx tsx scripts/triage-quote-reanchor.ts",
+    "triage:senalamientos": "npx tsx scripts/triage-flags.ts",
     "triage:claim-reanchor": "npx tsx scripts/triage-claim-reanchor.ts",
     "triage:finding-exception": "npx tsx scripts/triage-finding-exception.ts",
     "promote-area-fit": "npx tsx scripts/promote-area-fit.ts",
