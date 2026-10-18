@@ -33,17 +33,24 @@ import { FitToPins } from './layers/FitToPins'
 // de atribución.
 const PILA_ABAJO = 28
 
+// La atribución de los datos y las teselas se queda siempre a la vista, también con
+// una ficha abierta: es la licencia (ODbL de OSM, CARTO) y no se lleva toques. Lleva
+// fondo de papel, como el control de atribución de Leaflet, porque sin él sus letras
+// se imprimían sobre el texto de la ficha que queda debajo.
 function MapAttribution() {
   return (
     <div
+      className="cp-atribucion"
       style={{
         position: 'absolute',
-        bottom: 8,
-        left: 16,
+        bottom: 6,
+        left: 12,
+        padding: '1px 4px',
+        borderRadius: 'var(--r-input)',
+        background: '#EFE9D9',
         fontFamily: "'DM Mono', monospace",
         fontSize: 'var(--fs-micro)',
         color: 'rgba(11,15,25,.62)',
-        letterSpacing: '.08em',
         textTransform: 'uppercase',
         zIndex: 400,
         pointerEvents: 'none',
@@ -110,9 +117,9 @@ export default function StylizedMap({ center = DEFAULT_CENTER }) {
     const pila = pilaRef.current
     if (!plegada && pila) pila.scrollTop = -pila.scrollHeight
   }, [plegada])
-  // Si hay una ficha abierta. En un mapa compacto la pila se aparta mientras la
-  // ficha está abierta (la regla, en DirectionD.jsx); al cerrarla vuelve, con la
-  // línea de cobertura.
+  // Si hay una ficha abierta. En un mapa compacto la pila —con la leyenda de
+  // Metrovalencia dentro— se aparta mientras lo está, y vuelve al cerrarla (la
+  // regla, en DirectionD.jsx).
   const [fichaAbierta, setFichaAbierta] = useState(false)
   // null = sin tocar: se ve la serie entera hasta el último año cartografiado.
   const [anyoIncendios, setAnyoIncendios] = useState(null)
@@ -173,7 +180,11 @@ export default function StylizedMap({ center = DEFAULT_CENTER }) {
   }, [tgeoCargando, obrasCargando, snapshot, effectiveAt, danaOnly, obrasOnly, unplacedObras])
 
   return (
-    <div style={{ position: 'relative', width: '100%', height: '100%', background: '#EFE9D9' }}>
+    <div
+      className="cp-mapa"
+      data-ficha={fichaAbierta ? 'true' : 'false'}
+      style={{ position: 'relative', width: '100%', height: '100%', background: '#EFE9D9' }}
+    >
       <MapContainer
         center={center}
         zoom={13}
@@ -231,7 +242,6 @@ export default function StylizedMap({ center = DEFAULT_CENTER }) {
         {layers.quejas && <QuejasLayer />}
       </MapContainer>
 
-      <NetworkLegend />
       <MapAttribution />
 
       {/* Anchored to the bottom-left: the toggle chips sit at the very bottom
@@ -255,7 +265,6 @@ export default function StylizedMap({ center = DEFAULT_CENTER }) {
         ref={pilaRef}
         className="cp-mapa-pila"
         data-plegada={plegada ? 'true' : 'false'}
-        data-ficha={fichaAbierta ? 'true' : 'false'}
         style={{
           position: 'absolute',
           bottom: PILA_ABAJO,
@@ -298,6 +307,9 @@ export default function StylizedMap({ center = DEFAULT_CENTER }) {
           />
         )}
         {layers.flood && <FloodLegend estado={floodEstado} />}
+        {/* La última: column-reverse la pone arriba del todo, y es lo primero que
+            se pliega en un mapa compacto (DirectionD.jsx). */}
+        <NetworkLegend />
       </div>
     </div>
   )
