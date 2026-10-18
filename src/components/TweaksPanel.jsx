@@ -77,10 +77,11 @@ export function TweaksPanel({ open, onClose, state, onChange }) {
   return (
     <div
       className="cp-spring-in"
+      // Cuelga de la barra superior, bajo el botón que lo abre (Topbar.jsx).
       style={{
         position: 'fixed',
-        bottom: 20,
-        right: 20,
+        top: 60,
+        right: 14,
         width: 268,
         zIndex: 40,
         background: 'var(--paper)',
@@ -146,28 +147,30 @@ export function TweaksPanel({ open, onClose, state, onChange }) {
   )
 }
 
-export function TweaksButton({ onOpen }) {
+/**
+ * Abre los ajustes desde la barra superior. Fue un botón flotante en la esquina
+ * inferior derecha, y en una columna de lectura flotaba ENCIMA del texto: en el
+ * móvil tapaba los titulares de apartado de los reportajes, y a 1024px, la
+ * cifra de la figura de cabecera. En la barra no tapa nada y está donde se
+ * busca lo demás que no es contenido.
+ */
+export function TweaksButton({ open, onToggle }) {
   const t = useT()
   return (
     <button
-      onClick={onOpen}
+      type="button"
+      onClick={onToggle}
       aria-label={t('tweaks.open.aria')}
-      // Armazón: en papel no hay ajustes que abrir.
-      data-print-hide
+      aria-expanded={open}
       style={{
-        position: 'fixed',
-        bottom: 20,
-        right: 20,
-        width: 40,
-        height: 40,
-        borderRadius: 'var(--r-pill)',
-        background: 'var(--paper)',
-        border: '1px solid var(--border)',
-        boxShadow: '0 4px 12px rgba(11,15,25,.08)',
+        width: 36,
+        height: 36,
+        borderRadius: 'var(--r-input)',
+        background: open ? 'var(--civic-soft)' : 'var(--soft)',
         display: 'grid',
         placeItems: 'center',
-        color: 'var(--ink50)',
-        zIndex: 30,
+        color: 'var(--ink70)',
+        flexShrink: 0,
       }}
     >
       <Ic.settings width={18} height={18} />

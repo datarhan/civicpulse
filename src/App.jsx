@@ -5,7 +5,7 @@ import { entradaNavActiva } from './nav'
 import { Topbar } from './components/Topbar'
 import { CmdK } from './components/CmdK'
 import { AbrirBuscador } from './lib/buscador'
-import { TweaksPanel, TweaksButton } from './components/TweaksPanel'
+import { TweaksPanel } from './components/TweaksPanel'
 import { SkipLink } from './components/SkipLink'
 import ErrorBoundary from './components/ErrorBoundary'
 import { useHashScroll } from './hooks/useHashScroll'
@@ -96,7 +96,7 @@ function Loading() {
   )
 }
 
-function InnerShell({ onOpenCmdK }) {
+function InnerShell({ onOpenCmdK, tweaksOpen, onToggleTweaks }) {
   const location = useLocation()
   const t = useT()
   const active = entradaNavActiva(location.pathname)
@@ -132,7 +132,13 @@ function InnerShell({ onOpenCmdK }) {
         />
       )}
       <main style={{ flex: 1, minWidth: 0, display: 'flex', flexDirection: 'column' }}>
-        <Topbar crumb={crumb} onOpenCmdK={onOpenCmdK} onOpenSidebar={() => setSidebarOpen(true)} />
+        <Topbar
+          crumb={crumb}
+          onOpenCmdK={onOpenCmdK}
+          onOpenSidebar={() => setSidebarOpen(true)}
+          tweaksOpen={tweaksOpen}
+          onToggleTweaks={onToggleTweaks}
+        />
         {/* The skip target sits BELOW the topbar, not on <main> — <main> wraps
             the topbar here, so landing on it would skip the sidebar only to
             drop the reader back at the breadcrumb and search. */}
@@ -270,8 +276,11 @@ export default function App() {
   return (
     <>
       <SkipLink />
-      <InnerShell onOpenCmdK={() => setCmdK(true)} />
-      {!tweaksOpen && <TweaksButton onOpen={() => setTweaksOpen(true)} />}
+      <InnerShell
+        onOpenCmdK={() => setCmdK(true)}
+        tweaksOpen={tweaksOpen}
+        onToggleTweaks={() => setTweaksOpen((o) => !o)}
+      />
       <TweaksPanel
         open={tweaksOpen}
         onClose={() => setTweaksOpen(false)}
