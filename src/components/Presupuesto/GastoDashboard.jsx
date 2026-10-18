@@ -292,7 +292,9 @@ export default function GastoDashboard() {
           ))}
         </div>
         <div role="tabpanel" aria-labelledby={`tab-${tab}`} style={{ paddingTop: 12 }}>
-          {tab === 'explorar' && <ContractsExplorer contracts={contracts} snapshot={tg} />}
+          {tab === 'explorar' && (
+            <ContractsExplorer contracts={contracts} tenders={tenders?.tenders} snapshot={tg} />
+          )}
           {tab === 'contratistas' && <ContractorLeaderboard contracts={contracts} />}
           {tab === 'tipos' && <SpendingTypeBreakdown contracts={contracts} snapshot={tg} />}
         </div>

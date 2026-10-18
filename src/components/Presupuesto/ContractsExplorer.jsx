@@ -1,6 +1,7 @@
 import { Fragment, useMemo, useState } from 'react'
 import { ExtLink, Pill } from '../Primitives'
 import Paginacion from '../Paginacion'
+import NotaDeLote from '../tenders/NotaDeLote'
 import { STATUS_TONE } from '../../hooks/useTenders'
 import { fmtDateCompacta, rellena } from '../../lib/formatters'
 import { rotuloDe, useLocale } from '../../i18n'
@@ -10,6 +11,7 @@ import {
   importeLicitacion,
   isCommittedContract,
 } from '../../lib/contract-status'
+import { agrupaPorExpediente } from '../../lib/tender-lotes'
 
 const fmtEur = (n) =>
   new Intl.NumberFormat('es-ES', {
@@ -71,7 +73,7 @@ function Importe({ c, t }) {
   )
 }
 
-export default function ContractsExplorer({ contracts, snapshot }) {
+export default function ContractsExplorer({ contracts, tenders, snapshot }) {
   const { locale, t } = useLocale()
   const estado = (s) => rotuloDe(t, `contrato.estado.${s}`, s)
   const [text, setText] = useState('')
@@ -91,6 +93,10 @@ export default function ContractsExplorer({ contracts, snapshot }) {
     [contracts, text, zoneSlug, type, dana, assignmentsById],
   )
   const resumen = useMemo(() => contractsListSummary(matched), [matched])
+  // Sobre TODOS los contratos, nunca sobre `matched`: buscar un lote por su
+  // nombre lo dejaría sin hermanas en la lista y sin el aviso que explica por
+  // qué su enlace enseña otra cifra. Ver `NotaDeLote`.
+  const grupos = useMemo(() => agrupaPorExpediente(contracts), [contracts])
   const zones = snapshot?.zones || []
   return (
     <div>
@@ -207,6 +213,13 @@ export default function ContractsExplorer({ contracts, snapshot }) {
                   <div style={{ fontSize: 'var(--fs-micro)', color: 'var(--ink50)' }}>
                     {c.assignee || '—'} · {fmtDateCompacta(c.awardDate, locale) || '—'}
                   </div>
+                  <NotaDeLote
+                    contract={c}
+                    grupos={grupos}
+                    tenders={tenders}
+                    color="var(--ink50)"
+                    style={{ marginTop: 2 }}
+                  />
                 </div>
                 <Importe c={c} t={t} />
                 <span style={{ textAlign: 'right' }}>
