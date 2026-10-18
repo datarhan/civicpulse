@@ -470,6 +470,7 @@ function RetribucionesPanel() {
   if (!latest || !split) return null
   const alcaldeAcuerdo = (dedic?.byOfficial ?? []).find((o) => /alcald/i.test(o.role || ''))
   const alcaldeIspa = latest.alcalde?.amountEuros
+  const anioAcuerdo = /^\d{4}/.exec(dedic?.source?.date || '')?.[0] ?? null
   return (
     <Card style={{ marginTop: 18 }}>
       {/* Its own header rather than SectionHead's `right` slot: that slot is a
@@ -755,12 +756,18 @@ function RetribucionesPanel() {
               maxWidth: '86ch',
             }}
           >
+            {/* The year is the acuerdo's own, read from its date: since the
+                16/03/2026 update the fixed figure is a 2026 one beside an
+                ISPA year that is older, and without both years on the line
+                the gap between them reads as one of the two being wrong. */}
             El acuerdo de pleno le <em>fija</em>{' '}
             <span className="mono">{formatEurosCents(alcaldeAcuerdo.amountEuros)}</span> brutos
-            anuales. El ISPA publica lo que <em>percibió</em> en {latest.year}:{' '}
-            <span className="mono">{formatEurosCents(alcaldeIspa)}</span>. No se contradicen —una es
-            la asignación, la otra la nómina— y sumar o comparar las dos series es el error que esta
-            página facilitaba.{' '}
+            anuales
+            {anioAcuerdo ? ` para ${anioAcuerdo}` : ''}. El ISPA publica lo que <em>percibió</em> en{' '}
+            {latest.year}: <span className="mono">{formatEurosCents(alcaldeIspa)}</span>. No se
+            contradicen —una es la asignación, la otra la nómina
+            {anioAcuerdo && anioAcuerdo !== String(latest.year) ? ', y son de años distintos' : ''}—
+            y sumar o comparar las dos series es el error que esta página facilitaba.{' '}
             {/* Derived, never restated: the trienios clause renders only while
                 the acuerdo's own quote still carries it. If «(+ trienios)»
                 leaves the source, the sentence leaves the page with it. */}

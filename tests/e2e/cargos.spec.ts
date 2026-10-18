@@ -308,7 +308,8 @@ test.describe('Cargos (/cargos)', () => {
   test('the two figures for the alcalde are reconciled, not left to contradict', async ({
     page,
   }) => {
-    // 48.234,08 € (fixed by the acuerdo) and 48.647,50 € (received, per ISPA)
+    // 59.195,48 € (fixed for 2026 by the acuerdo) and 48.647,50 € (received in
+    // 2024, per ISPA) — 48.234,08 € until the 16/03/2026 update —
     // sat 300px apart with nothing saying they measure different things, so the
     // only available reading was that one of them was wrong.
     await page.goto('/cargos', { waitUntil: 'domcontentloaded' })
@@ -319,8 +320,11 @@ test.describe('Cargos (/cargos)', () => {
     const i = body.indexOf('Por qué el alcalde tiene dos cifras')
     const nota = body.slice(i, i + 700)
     // Both figures are inside the SAME block as the sentence reconciling them.
-    expect(nota).toMatch(/48\.234,08/)
+    expect(nota).toMatch(/59\.195,48/)
     expect(nota).toMatch(/48\.647,50/)
+    // Each figure carries its own year, or the gap reads as an error.
+    expect(nota).toMatch(/para 2026/)
+    expect(nota).toMatch(/años distintos/)
     expect(nota).toMatch(/asignación/)
     expect(nota).toMatch(/nómina/)
   })
