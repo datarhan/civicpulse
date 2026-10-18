@@ -1747,8 +1747,47 @@ main:focus:not(:focus-visible) {
 }
 .cp-pieza > :is(p, ul, ol, h3, .cp-texto):not(.cp-ancho),
 .cp-pieza > article > :is(p, ul, ol, h3, .cp-texto):not(.cp-ancho),
+.cp-pieza > .cp-registro > :is(p, ul, ol, h3, .cp-texto):not(.cp-ancho),
 .cp-pieza .cp-pie {
   max-width: var(--medida);
+}
+
+/* La banda que cierra una pieza: lo que no afirma, lo preguntado, la réplica,
+   el método, las fuentes y las correcciones. No es más reportaje, es con qué
+   comprobarlo, y la banda marca dónde acaba lo contado: un filete en `--civic`
+   a todo el ancho de la columna y su rótulo. Sin fondo, a propósito: un fondo
+   necesita relleno por dentro —y entonces cuatro apartados iban 24px a la
+   derecha del resto— o salirse de la columna —y entonces la banda tenía otro
+   borde izquierdo—. Las dos rompían «todo arranca en el mismo borde», que
+   vigila reportajes.spec.ts. */
+.cp-registro {
+  margin-top: 56px;
+  padding-top: 14px;
+  border-top: 3px solid var(--civic);
+}
+.cp-registro-titulo {
+  font-family: var(--font-mono);
+  font-size: var(--fs-micro);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--civic);
+  font-weight: 600;
+}
+
+/* La hoja de contactos de una pieza (`Fotos`, MatriculasYMoviles.jsx): marcos
+   iguales de 3:4, tres por fila; dos en el móvil, donde una columna sola eran
+   dos mil píxeles de fotos. */
+.cp-fotos {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 14px;
+  margin: 18px 0;
+}
+@media (max-width: 599px) {
+  .cp-fotos {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px;
+  }
 }
 
 /* La tabla de las piezas (`Tabla`, ConteoVisitantes.jsx). Con sitio, una tabla

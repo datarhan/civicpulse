@@ -4,45 +4,61 @@ import { Card } from '../../components/Primitives'
 import { CorrectionNote, CorrectionNotice } from '../../components/reportajes/CorrectionNote'
 import { SecHead, IndicePieza } from '../../components/reportajes/Pieza'
 import { fmtDateHuman } from '../../lib/formatters'
-import { Cita, P, Lista, Tabla, SolicitudesEnviadas } from './ConteoVisitantes'
+import { Cita, CitaEnLinea, P, Lista, Tabla, SolicitudesEnviadas } from './ConteoVisitantes'
 
 const SERIF = "'Fraunces', Georgia, serif"
 const SLUG = 'matriculas-y-moviles'
 
+/** El número de una foto en la hoja de contactos: F1, F2… por su orden. */
+const numFoto = (/** @type {number} */ i) => `F${i + 1}`
+
 /**
- * Las fotografías de la visita. Cada una lleva su pie, que dice QUÉ se vio y
- * dónde: una foto sin sitio no sostiene nada. Van con `width`/`height` del
- * fichero para que la página no salte al cargarlas, y con `loading="lazy"`
- * porque están a media pieza. La rejilla se resuelve con `auto-fit`, sin media
- * queries: en el móvil cae a una columna sola.
+ * Las fotografías de la visita, como hoja de contactos. Cada una lleva su pie,
+ * que dice QUÉ se vio y dónde: una foto sin sitio no sostiene nada.
+ *
+ * Todas en el mismo marco de 3:4, con la foto ENTERA dentro (`contain` sobre
+ * `--soft`): recortarlas para igualarlas podía dejar fuera justo lo que la foto
+ * enseña. Llevan número (F1…) para que la tabla de arriba las cite, y abren el
+ * fichero a su tamaño. Van con `width`/`height` del fichero, para que la página
+ * no salte al cargarlas, y con `loading="lazy"` porque están a media pieza. La
+ * rejilla vive en `.cp-fotos` (index.css): tres columnas, dos en el móvil.
  */
 function Fotos({ fotos }) {
   return (
-    <div
-      className="cp-ancho"
-      style={{
-        display: 'grid',
-        gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))',
-        gap: 14,
-        margin: '18px 0',
-      }}
-    >
-      {fotos.map((f) => (
-        <figure key={f.src} style={{ margin: 0 }}>
-          <img
-            src={f.src}
-            alt={f.alt}
-            width={f.w}
-            height={f.h}
-            loading="lazy"
+    <div className="cp-ancho cp-fotos">
+      {fotos.map((f, i) => (
+        <figure key={f.src} id={`foto-${numFoto(i).toLowerCase()}`} style={{ margin: 0 }}>
+          <a
+            href={f.src}
+            target="_blank"
+            rel="noopener noreferrer"
             style={{
+              position: 'relative',
               display: 'block',
-              width: '100%',
-              height: 'auto',
-              borderRadius: 'var(--r-card)',
+              aspectRatio: '3 / 4',
               background: 'var(--soft)',
+              borderRadius: 'var(--r-card)',
+              overflow: 'hidden',
             }}
-          />
+          >
+            {/* Clavada al marco: con `height: 100%` en flujo, una foto más
+                estrecha que 3:4 tomaba el alto de sus atributos, desbordaba el
+                marco y el `overflow` la recortaba —justo lo que no debe pasar—. */}
+            <img
+              src={f.src}
+              alt={f.alt}
+              width={f.w}
+              height={f.h}
+              loading="lazy"
+              style={{
+                position: 'absolute',
+                inset: 0,
+                width: '100%',
+                height: '100%',
+                objectFit: 'contain',
+              }}
+            />
+          </a>
           <figcaption
             style={{
               fontSize: 'var(--fs-meta)',
@@ -51,11 +67,44 @@ function Fotos({ fotos }) {
               lineHeight: 1.4,
             }}
           >
-            {f.pie}
+            <span className="mono" style={{ color: 'var(--ink)', fontWeight: 600 }}>
+              {numFoto(i)}
+            </span>{' '}
+            · {f.pie}
           </figcaption>
         </figure>
       ))}
     </div>
+  )
+}
+
+/**
+ * La celda de lo observado, con las fotos que la muestran detrás. Qué foto va
+ * con qué fila lo dice cada foto (`fila` en la instantánea), no la tabla: una
+ * fila sin foto no cita ninguna. La de los carteles no lleva: una foto enseña
+ * lo que se vio, y lo que esa fila dice es que no se vio nada.
+ *
+ * @param {{ texto: string, fila: number, fotos: Array<{ fila?: number }> }} props
+ */
+function Observado({ texto, fila, fotos }) {
+  const suyas = fotos.flatMap((f, i) => (f.fila === fila ? [i] : []))
+  return (
+    <>
+      {texto}
+      {suyas.length > 0 && (
+        <span className="mono" style={{ fontSize: 'var(--fs-micro)', whiteSpace: 'nowrap' }}>
+          {' '}
+          (
+          {suyas.map((i, k) => (
+            <span key={i}>
+              {k > 0 && ' · '}
+              <a href={`#foto-${numFoto(i).toLowerCase()}`}>{numFoto(i)}</a>
+            </span>
+          ))}
+          )
+        </span>
+      )}
+    </>
   )
 }
 
@@ -195,7 +244,9 @@ export default function MatriculasYMoviles() {
       {/* 1 · lo que compra el pliego */}
       <SecHead num="01" kicker="El pliego" title={data.compra.titulo} />
       <P>{data.compra.texto}</P>
-      <Cita fuente={data.compra.citaFuente}>{data.compra.cita}</Cita>
+      <Cita tipo="pliego" de="exp. 98/2025" fuente={data.compra.citaFuente}>
+        {data.compra.cita}
+      </Cita>
       {data.compra.remate.map((t, i) => (
         <P key={i}>{t}</P>
       ))}
@@ -203,9 +254,13 @@ export default function MatriculasYMoviles() {
       {/* 2 · los móviles: la promesa y el párrafo siguiente, uno detrás de otro */}
       <SecHead num="02" kicker="Los móviles" title={an.titulo} />
       <P>Primero, la promesa:</P>
-      <Cita>{an.promesa}</Cita>
+      <Cita tipo="pliego" de="exp. 98/2025">
+        {an.promesa}
+      </Cita>
       <P>Y a continuación, el método:</P>
-      <Cita fuente={an.citaFuente}>{an.metodo}</Cita>
+      <Cita tipo="pliego" de="exp. 98/2025" fuente={an.citaFuente}>
+        {an.metodo}
+      </Cita>
       <P>{an.explicacion}</P>
       <P>{an.matiz}</P>
       {/* Dos viñetas del pliego, dos citas: unirlas en una frase pondría una
@@ -216,9 +271,17 @@ export default function MatriculasYMoviles() {
       {/* 3 · las cámaras */}
       <SecHead num="03" kicker="Los aparcamientos" title={ca.titulo} />
       <P>{ca.finalidad}</P>
-      <Cita fuente={ca.citaFuente}>{ca.cita}</Cita>
-      <P>{ca.texto}</P>
-      <Cita fuente="Pliego de prescripciones técnicas del expediente 98/2025">{ca.guardan}</Cita>
+      <Cita tipo="pliego" de="exp. 98/2025" fuente={ca.citaFuente}>
+        {ca.cita}
+      </Cita>
+      {/* `ca.texto` acaba en «según el pliego:», que presenta la cita: va dentro
+          de la frase, y no en una caja para cinco palabras. */}
+      <P>
+        {ca.texto}{' '}
+        <CitaEnLinea tipo="pliego" de="exp. 98/2025">
+          {ca.guardan}
+        </CitaEnLinea>
+      </P>
       <Lista items={ca.destino} />
       <P>{ca.remate}</P>
 
@@ -227,7 +290,10 @@ export default function MatriculasYMoviles() {
       <P>{ob.texto}</P>
       <Tabla
         cols={[{ label: 'Lo que exige el pliego' }, { label: 'Lo observado el 11-10-2026' }]}
-        rows={ob.filas.map((f) => [f.exige, f.visto])}
+        rows={ob.filas.map((f, i) => [
+          f.exige,
+          <Observado key={i} texto={f.visto} fila={i} fotos={ob.fotos} />,
+        ])}
         caption="Observación desde la vía pública. Lo que una fotografía sostiene es «se observó», no «no existe»."
       />
       <Fotos fotos={ob.fotos} />
@@ -250,79 +316,94 @@ export default function MatriculasYMoviles() {
 
       {/* 7 · la promesa de publicar los datos */}
       <SecHead num="07" kicker="Comprobable" title={data.descargas.titulo} />
-      <Cita fuente={data.descargas.citaFuente}>{data.descargas.cita}</Cita>
+      {/* El pie de estas dos decía sólo «Pliego de prescripciones técnicas del
+          expediente N», que es lo que ya dice la etiqueta: no se repite. */}
+      <Cita tipo="pliego" de="exp. 98/2025">
+        {data.descargas.cita}
+      </Cita>
       <P>{data.descargas.texto}</P>
 
       {/* 8 · la campaña */}
       <SecHead num="08" kicker="El contrato hermano" title={data.campana.titulo} />
       <P>{data.campana.texto}</P>
-      <Cita fuente={data.campana.citaFuente}>{data.campana.cita}</Cita>
+      <Cita tipo="pliego" de="exp. 100/2025">
+        {data.campana.cita}
+      </Cita>
       <P>{data.campana.remate}</P>
 
-      {/* 9 · límites */}
-      <SecHead num="09" kicker="Honestidad" title={data.limites.titulo} />
-      <Lista items={data.limites.bullets} />
-
-      {/* 10 · preguntas, solicitud y réplica */}
-      <SecHead num="10" kicker="Sin responder" title="Las preguntas" />
-      <ol style={{ margin: '0 0 14px', paddingLeft: 20 }}>
-        {data.preguntas.map((q, i) => (
-          <li key={i} style={{ color: 'var(--ink70)', marginBottom: 10 }}>
-            {q}
-          </li>
-        ))}
-      </ol>
-      <Card style={{ padding: '12px 14px', marginBottom: 14 }}>
-        <div style={{ fontSize: 'var(--fs-aux)', color: 'var(--ink70)', lineHeight: 1.5 }}>
-          {data.preguntasNota}
+      {/* Lo que cierra la pieza no es más reportaje: es el registro —lo que no
+          se afirma, lo preguntado y a quién, la réplica, el método, las fuentes y
+          las correcciones—. Va en su banda para que se vea dónde acaba lo
+          contado y empieza con qué se puede comprobar. Las correcciones siguen
+          siendo lo último. */}
+      <section className="cp-registro" aria-labelledby="cp-registro-titulo">
+        <div id="cp-registro-titulo" className="cp-registro-titulo">
+          Rendición de cuentas
         </div>
-      </Card>
 
-      <SolicitudesEnviadas bloque={data.solicitudes} />
+        {/* 9 · límites */}
+        <SecHead num="09" kicker="Honestidad" title={data.limites.titulo} />
+        <Lista items={data.limites.bullets} />
 
-      <Card style={{ padding: '12px 14px' }}>
-        <div style={{ fontSize: 'var(--fs-aux)', color: 'var(--ink70)', lineHeight: 1.5 }}>
-          {data.replica.texto}
-        </div>
-        {/* Las respuestas, íntegras y atribuidas. Sin respuestas no se pinta
-            nada: el texto de arriba ya dice que se pidieron y hasta cuándo. */}
-        {data.replica.respuestas.map((r) => (
-          <div key={`${r.de}-${r.fecha}`} style={{ marginTop: 12 }}>
-            <div
-              className="mono"
-              style={{ fontSize: 'var(--fs-micro)', color: 'var(--ink50)', marginBottom: 4 }}
-            >
-              {r.de} · {fmtDateHuman(r.fecha)}
-            </div>
-            <Cita>{r.texto}</Cita>
+        {/* 10 · preguntas, solicitud y réplica */}
+        <SecHead num="10" kicker="Sin responder" title="Las preguntas" />
+        <ol style={{ margin: '0 0 14px', paddingLeft: 20 }}>
+          {data.preguntas.map((q, i) => (
+            <li key={i} style={{ color: 'var(--ink70)', marginBottom: 10 }}>
+              {q}
+            </li>
+          ))}
+        </ol>
+        <Card style={{ padding: '12px 14px', marginBottom: 14 }}>
+          <div style={{ fontSize: 'var(--fs-aux)', color: 'var(--ink70)', lineHeight: 1.5 }}>
+            {data.preguntasNota}
           </div>
-        ))}
-      </Card>
+        </Card>
 
-      {/* método y fuentes */}
-      <SecHead num="11" kicker="Cómo se ha hecho" title="Método" />
-      <Lista items={data.metodo} />
+        <SolicitudesEnviadas bloque={data.solicitudes} />
 
-      <SecHead num="12" kicker="Comprobable" title="Fuentes" />
-      <ul style={{ margin: '0 0 14px', paddingLeft: 18 }}>
-        {data.fuentes.map((f, i) => (
-          <li
-            key={i}
-            style={{
-              fontSize: 'var(--fs-aux)',
-              color: 'var(--ink70)',
-              marginBottom: 8,
-              lineHeight: 1.45,
-            }}
-          >
-            <a href={f.url} target="_blank" rel="noopener noreferrer">
-              {f.label}
-            </a>
-          </li>
-        ))}
-      </ul>
+        <Card style={{ padding: '12px 14px' }}>
+          <div style={{ fontSize: 'var(--fs-aux)', color: 'var(--ink70)', lineHeight: 1.5 }}>
+            {data.replica.texto}
+          </div>
+          {/* Las respuestas, íntegras y atribuidas. Sin respuestas no se pinta
+            nada: el texto de arriba ya dice que se pidieron y hasta cuándo. */}
+          {data.replica.respuestas.map((r) => (
+            <Cita
+              key={`${r.de}-${r.fecha}`}
+              tipo="respuesta"
+              de={`${r.de} · ${fmtDateHuman(r.fecha)}`}
+            >
+              {r.texto}
+            </Cita>
+          ))}
+        </Card>
 
-      <CorrectionNote correcciones={m.correcciones} />
+        {/* método y fuentes */}
+        <SecHead num="11" kicker="Cómo se ha hecho" title="Método" />
+        <Lista items={data.metodo} />
+
+        <SecHead num="12" kicker="Comprobable" title="Fuentes" />
+        <ul style={{ margin: '0 0 14px', paddingLeft: 18 }}>
+          {data.fuentes.map((f, i) => (
+            <li
+              key={i}
+              style={{
+                fontSize: 'var(--fs-aux)',
+                color: 'var(--ink70)',
+                marginBottom: 8,
+                lineHeight: 1.45,
+              }}
+            >
+              <a href={f.url} target="_blank" rel="noopener noreferrer">
+                {f.label}
+              </a>
+            </li>
+          ))}
+        </ul>
+
+        <CorrectionNote correcciones={m.correcciones} />
+      </section>
     </div>
   )
 }
