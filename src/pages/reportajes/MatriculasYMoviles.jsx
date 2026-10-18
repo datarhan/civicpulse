@@ -4,7 +4,16 @@ import { Card } from '../../components/Primitives'
 import { CorrectionNote } from '../../components/reportajes/CorrectionNote'
 import { SecHead } from '../../components/reportajes/Pieza'
 import { fmtDateHuman } from '../../lib/formatters'
-import { Cita, CitaEnLinea, P, Lista, Tabla, SolicitudesEnviadas } from './ConteoVisitantes'
+import { trozosResaltados } from '../../lib/resaltar'
+import {
+  Cita,
+  CitaEnLinea,
+  P,
+  Lista,
+  Tabla,
+  SolicitudesEnviadas,
+  etiquetaDeCita,
+} from './ConteoVisitantes'
 
 const SLUG = 'matriculas-y-moviles'
 
@@ -107,6 +116,88 @@ function Observado({ texto, fila, fotos }) {
   )
 }
 
+/**
+ * El hallazgo de la pieza, en un pliego: lo que promete y, en el párrafo
+ * siguiente, lo que describe. Lado a lado donde caben (`.cp-frente`, index.css),
+ * una encima de otra donde no. Las frases que chocan van subrayadas: énfasis
+ * NUESTRO sobre palabras del pliego, que no cambia ni una (`trozosResaltados`
+ * lanza si una frase no está tal cual) y que el pie declara. En `--civic` y no
+ * en rojo: la pieza enseña la distancia entre las dos, no dice que sea un
+ * incumplimiento.
+ *
+ * @param {{ an: { promesa: string, metodo: string, citaFuente: string, resaltes: { promesa: string[], metodo: string[] } } }} props
+ */
+function PrometeYDescribe({ an }) {
+  const columnas = [
+    { rotulo: 'Promete', texto: an.promesa, frases: an.resaltes.promesa },
+    { rotulo: 'Describe', texto: an.metodo, frases: an.resaltes.metodo },
+  ]
+  return (
+    <figure className="cp-ancho" style={{ margin: '18px 0' }}>
+      <div
+        className="mono"
+        style={{
+          fontSize: 'var(--fs-micro)',
+          letterSpacing: '.06em',
+          textTransform: 'uppercase',
+          color: 'var(--ink50)',
+          marginBottom: 8,
+        }}
+      >
+        {etiquetaDeCita('pliego', 'exp. 98/2025')}
+      </div>
+      <div className="cp-frente">
+        {columnas.map((c) => (
+          <div key={c.rotulo}>
+            <div
+              className="mono"
+              style={{
+                fontSize: 'var(--fs-meta)',
+                letterSpacing: '.06em',
+                textTransform: 'uppercase',
+                color: 'var(--civic)',
+                fontWeight: 600,
+                marginBottom: 6,
+              }}
+            >
+              {c.rotulo}
+            </div>
+            <blockquote
+              style={{
+                margin: 0,
+                padding: '12px 16px',
+                borderLeft: '3px solid var(--civic)',
+                background: 'var(--soft)',
+                fontFamily: SERIF,
+                fontSize: 'var(--fs-head)',
+                lineHeight: 1.5,
+                color: 'var(--ink)',
+              }}
+            >
+              «
+              {trozosResaltados(c.texto, c.frases).map((t, i) =>
+                t.resalte ? (
+                  <mark key={i} className="cp-subrayado">
+                    {t.t}
+                  </mark>
+                ) : (
+                  <span key={i}>{t.t}</span>
+                ),
+              )}
+              »
+            </blockquote>
+          </div>
+        ))}
+      </div>
+      <figcaption
+        style={{ fontSize: 'var(--fs-meta)', color: 'var(--ink50)', marginTop: 6, lineHeight: 1.4 }}
+      >
+        {an.citaFuente} Subrayado nuestro.
+      </figcaption>
+    </figure>
+  )
+}
+
 export default function MatriculasYMoviles() {
   const { loading, error, data } = useReportaje(SLUG)
 
@@ -153,16 +244,9 @@ export default function MatriculasYMoviles() {
         <P key={i}>{t}</P>
       ))}
 
-      {/* 2 · los móviles: la promesa y el párrafo siguiente, uno detrás de otro */}
+      {/* 2 · los móviles: la promesa y el párrafo siguiente, frente a frente */}
       <SecHead num="02" kicker="Los móviles" title={an.titulo} />
-      <P>Primero, la promesa:</P>
-      <Cita tipo="pliego" de="exp. 98/2025">
-        {an.promesa}
-      </Cita>
-      <P>Y a continuación, el método:</P>
-      <Cita tipo="pliego" de="exp. 98/2025" fuente={an.citaFuente}>
-        {an.metodo}
-      </Cita>
+      <PrometeYDescribe an={an} />
       <P>{an.explicacion}</P>
       <P>{an.matiz}</P>
       {/* Dos viñetas del pliego, dos citas: unirlas en una frase pondría una

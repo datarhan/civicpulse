@@ -28,7 +28,7 @@ export const TIPOS_CITA = {
 }
 
 /** @param {string} tipo @param {string} [de] */
-function etiquetaDeCita(tipo, de) {
+export function etiquetaDeCita(tipo, de) {
   const nombre = TIPOS_CITA[/** @type {keyof typeof TIPOS_CITA} */ (tipo)]
   if (!nombre) throw new Error(`Cita: tipo desconocido «${tipo}»`)
   return de ? `${nombre} · ${de}` : nombre
