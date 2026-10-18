@@ -1,5 +1,6 @@
 import { useReportaje } from '../../hooks/useReportaje'
 import Emblema, { cifrasDelEmblema } from '../../components/reportajes/Emblema'
+import MapaPliego from '../../components/reportajes/MapaPliego'
 import { Card } from '../../components/Primitives'
 import { CorrectionNote, CorrectionNotice } from '../../components/reportajes/CorrectionNote'
 import { SecHead, IndicePieza } from '../../components/reportajes/Pieza'
@@ -366,6 +367,10 @@ export default function MatriculasYMoviles() {
           {ca.guardan}
         </CitaEnLinea>
       </P>
+      {/* «Ninguno de los tres aparcamientos está en el Parque Natural», dicho en
+          la frase de arriba, a la vista. Sin bloque `mapa` no se pinta nada:
+          la frase se sostiene sola. */}
+      {data.mapa && <MapaPliego mapa={data.mapa} />}
       <Lista items={ca.destino} />
       <P>{ca.remate}</P>
 
