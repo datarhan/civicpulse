@@ -155,6 +155,34 @@
       "reason": "Es una frase de la corrección del 02-09-2026, y la corrección del 17-09-2026, en el mismo registro y justo después, la retira por su nombre: «La tarifa del agua sí está publicada… Las dos cosas eran falsas», con el DOGV de 23-01-2013 y el estudio de viabilidad. El apartado 09 se titula hoy «La tarifa del agua está publicada». El registro de correcciones es histórico y cada entrada dice lo que se sabía ese día: reescribir la del 02-09 borraría lo que la del 17-09 corrige.",
       "editor": "Sergei Lutchenko",
       "at": "2026-10-18"
+    },
+    {
+      "route": "/eficiencia",
+      "quote": "Riba-roja repite el 100 %, por encima de todos ellos, en un reparto que va de un extremo a otro de la escala.",
+      "reason": "La frase sólo está en la bitácora de la ficha ef-2026-08-12-denominadores-sin-remedir, y siempre rotulada: dentro de «Texto retirado» (en <del>) o como «Texto que puso esta corrección, sustituido el 2026-08-16». Medido en el DOM del build el 18-10-2026: cinco apariciones, las cinco rotuladas. La corrección del 24-08-2026 la llama falsa por su nombre («“por encima de todos ellos” era falso: el máximo del grupo de 50 comparables es también el 100 %») y el motivo se publica. El cuerpo vigente dice «Riba-roja repite el 86,7 %… y no en lo más alto», que cuadra con indicadores.json (13 de 15, máximo del grupo 1, percentil 92 de 52). El revisor leyó texto retirado como vigente.",
+      "editor": "Sergei Lutchenko",
+      "at": "2026-10-18"
+    },
+    {
+      "route": "/promesas",
+      "quote": "La cita empezaba con la narración del periodista; se deja sólo lo que la noticia pone entre comillas en boca del alcalde.",
+      "reason": "Lectura cruzada de dos tarjetas. La frase es el motivo de la única corrección de ac-psoe-1ah9zqk («Descuento en la tasa de residuos…»), cuya fuente es Las Provincias y cuya cita vigente —«compromiso lo cumpliremos y habrá un descuento a los vecinos»— es lo que la noticia pone entre comillas, como dice el motivo. La entrada que el revisor opone («la nota del propio Ayuntamiento anuncia el reparto…») es de otra promesa, ac-psoe-ppa53a (los helados del cinema d'estiu), en otra tarjeta. Comprobado en el DOM del build el 18-10-2026: cada bitácora va dentro de su tarjeta, con su promesa y su fuente.",
+      "editor": "Sergei Lutchenko",
+      "at": "2026-10-18"
+    },
+    {
+      "route": "/reportajes/inteligencia-turistica",
+      "quote": "Se ha precisado cuándo terminaban los dos contratos que el Ayuntamiento celebró en julio.",
+      "reason": "El señalamiento era cierto —«celebrar un contrato» es firmarlo— y se resolvió con la corrección del 2026-10-18 de la misma pieza, que explica que «celebró» quería decir «festejó» en las notas del 7 y del 8 de julio. La frase de la corrección del 29-08 no se retoca, por la regla que la pieza de la DANA dejó escrita el 13-08: una corrección es el registro de lo que dijimos y cuándo. Este descarte evita que el barrido vuelva a señalar lo que la nota de debajo ya explica.",
+      "editor": "Sergei Lutchenko",
+      "at": "2026-10-18"
+    },
+    {
+      "route": "/reportajes/reconstruccion-dana",
+      "quote": "el total de contratación municipal que citábamos, 14,05 M€, son 68,0 M€ sobre 698 contratos",
+      "reason": "Es una frase de la corrección del 02-08-2026, y la del 13-08-2026, en el mismo registro, la explica por su nombre: era exacta ese día (698 contratos y 67.996.704 €, todo lo adjudicado), y el 06-08 entró la concesión del agua (55,69 M€) y el total vivo pasó a 699 y 123,68 M€. La pieza decide no retocarla y lo dice («editarla por detrás sería justo lo que las correcciones existen para impedir»). metodo.denominador lo documenta (123,68 − 55,69 = 68,00).",
+      "editor": "Sergei Lutchenko",
+      "at": "2026-10-18"
     }
   ]
 }
