@@ -238,6 +238,24 @@ export const CATALOGUE = {
     'reportajes.indice.apartados': '{n} apartados',
     'reportajes.mas': 'Más reportajes',
     'reportajes.todos': 'Todos los reportajes →',
+    // «Pídelo tú» (components/reportajes/SolicitudLector.jsx): el escrito de
+    // acceso con las preguntas de una pieza que el proyecto aún no ha
+    // registrado. Sólo la interfaz se traduce; el escrito va en castellano.
+    'reportajes.solicitud.titulo': 'Estas preguntas puedes hacerlas tú',
+    'reportajes.solicitud.explica':
+      'Cualquier persona puede pedir esta información al Ayuntamiento, sin explicar para qué (arts. 12 y 17 de la Ley 19/2013). El botón copia un escrito listo para pegar: rellena tus datos donde están los corchetes. Se presenta identificándote en la sede electrónica (con certificado digital u otro medio que admita) o en el Registro de Entrada. El Ayuntamiento tiene un mes para resolver, ampliable a otro si lo justifica el volumen o la complejidad y te lo notifica; el plazo cuenta desde que la recibe el órgano que debe resolverla (art. 20.1). Si te contesta, puedes enviarnos la resolución, con tus datos de identificación tachados, a {correo}; sólo se publica después de que la revise quien mantiene el proyecto, y nunca con tus datos.',
+    // La línea de las que no van: la cifra y, detrás, una frase por cada clase
+    // de motivo que se da en ESA pieza (src/lib/solicitud-apartadas.js).
+    'reportajes.solicitud.parcial': 'El escrito recoge {n} de las {total} preguntas.',
+    'reportajes.solicitud.parcial.noInformativa':
+      'Quedan fuera las que piden una valoración o una intención, o parten de una afirmación de esta pieza, que en un escrito que firmas tú sería tuya.',
+    'reportajes.solicitud.parcial.yaPedida':
+      'Las que este proyecto ya ha pedido en otro reportaje no van, para no duplicar esa solicitud.',
+    'reportajes.solicitud.copiar': 'Copiar texto de la solicitud',
+    'reportajes.solicitud.copiado': 'Copiado',
+    'reportajes.solicitud.noCopiado':
+      'No se ha podido copiar: el texto está debajo, para seleccionarlo a mano.',
+    'reportajes.solicitud.ver': 'Ver el texto completo',
 
     // Empleo (ofertas de empleo · Agència de Col·locació)
     'empleo.eyebrow': 'Agència de Col·locació · ADL',
@@ -2369,6 +2387,19 @@ export const CATALOGUE = {
     'reportajes.indice.apartados': '{n} apartats',
     'reportajes.mas': 'Més reportatges',
     'reportajes.todos': 'Tots els reportatges →',
+    'reportajes.solicitud.titulo': 'Aquestes preguntes les pots fer tu',
+    'reportajes.solicitud.explica':
+      "Qualsevol persona pot demanar aquesta informació a l'Ajuntament, sense explicar per a què (arts. 12 i 17 de la Llei 19/2013). El botó copia un escrit a punt per a apegar: ompli les teues dades on hi ha els claudàtors. Es presenta identificant-te a la seu electrònica (amb certificat digital o un altre mitjà que admeta) o al Registre d'Entrada. L'Ajuntament té un mes per a resoldre, ampliable a un altre si ho justifica el volum o la complexitat i t'ho notifica; el termini compta des que la rep l'òrgan que l'ha de resoldre (art. 20.1). Si et contesta, pots enviar-nos la resolució, amb les teues dades d'identificació ratllades, a {correo}; només es publica després que la revise qui manté el projecte, i mai amb les teues dades.",
+    'reportajes.solicitud.parcial': "L'escrit recull {n} de les {total} preguntes.",
+    'reportajes.solicitud.parcial.noInformativa':
+      "En queden fora les que demanen una valoració o una intenció, o parteixen d'una afirmació d'aquesta peça, que en un escrit que signes tu seria teua.",
+    'reportajes.solicitud.parcial.yaPedida':
+      'Les que aquest projecte ja ha demanat en un altre reportatge no hi van, per a no duplicar aquella sol·licitud.',
+    'reportajes.solicitud.copiar': 'Copiar el text de la sol·licitud',
+    'reportajes.solicitud.copiado': 'Copiat',
+    'reportajes.solicitud.noCopiado':
+      "No s'ha pogut copiar: el text és ací baix, per a seleccionar-lo a mà.",
+    'reportajes.solicitud.ver': 'Veure el text complet',
 
     // Empleo (ofertes d’ocupació · Agència de Col·locació)
     'empleo.eyebrow': 'Agència de Col·locació · ADL',
