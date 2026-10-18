@@ -1,6 +1,6 @@
 {
   "version": "1.0",
-  "generatedAt": "2026-09-22T17:12:10.441Z",
+  "generatedAt": "2026-10-18T11:23:06.929Z",
   "legalNotice": "Informes periodísticos elaborados por un agente automático y revisados por curación humana antes de su publicación. Cada afirmación incluye cita verbatim, enlace de archivo cuando procede y derecho de réplica abierto vía formulario público en github.com/datarhan/civicpulse.",
   "contactUrl": "https://github.com/datarhan/civicpulse/issues/new/choose",
   "methodologyUrl": "/metodologia",
@@ -44,7 +44,7 @@
           "kind": "narrative",
           "payload": {
             "heading": "Identidad y cargo actual",
-            "bodyMarkdown": "Rafael Gómez Sánchez es concejal del Ayuntamiento de Riba-roja de Túria por el PSOE (PSPV-PSOE), con las delegaciones de Servicios públicos municipales, Urbanizaciones, barrios y diseminados, y Movilidad y Deportes. Ejerce el cargo en régimen de dedicación exclusiva, con una retribución anual de 38.891,66 euros fijada por acuerdo del Pleno municipal de 7 de julio de 2023 (expediente 4533/2023/GEN).",
+            "bodyMarkdown": "Rafael Gómez Sánchez es concejal del Ayuntamiento de Riba-roja de Túria por el PSOE (PSPV-PSOE), con las delegaciones de Servicios públicos municipales, Urbanizaciones, barrios y diseminados, y Movilidad y Deportes. Ejerce el cargo en régimen de dedicación exclusiva. El acuerdo del Pleno municipal de 7 de julio de 2023 (expediente 4533/2023/GEN) fijó esa retribución en 38.891,66 euros anuales; el importe vigente consta en su ficha de la sección Cargos de este sitio.",
             "sourceIds": [
               "src-001",
               "src-006"
@@ -568,12 +568,12 @@
           "id": "src-002",
           "kind": "web",
           "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/migrate/864708/filesGroup/PSOE-Rafael-Gomez-Sanchez.pdf",
+          "archiveUrl": "http://web.archive.org/web/20260922164838/https://www.ribarroja.es/sites/www.ribarroja.es/files/migrate/864708/filesGroup/PSOE-Rafael-Gomez-Sanchez.pdf",
           "title": "CV autodeclarado (ficha oficial de transparencia) — Rafael Gómez Sánchez",
           "retrievedAt": "2026-07-30T17:34:24.741Z",
           "excerpt": "SN PRESENTACIÓN FORMACIÓN MÓDULOS FORMATIVOS• INSTITUTO SAN VICENTE FERRER• 1995 Estudios en grado III en Industrias Alimentarias EXPERIENCIA PROFESIONAL REGIDOR • 2019 - 2023• AYUNTAMIENTO RIBA-ROJA DE TÚRIA Barrios y urbanizaciones, Parques y jardines, Servicios Públicos, Transporte y movilidad TRANSPORTISTA • 2001 - 2015• AUTÓNOMO Autónomo en el sector transporte 15 ENERO 1976 VALÈNCIA rgomez@ribarroja.es D. RAFAEL GÓMEZ SÁNCHEZ SERVICIOS PÚBLICOS MUNICIPALES, URBANIZACION",
           "trust": "high",
-          "selfDeclared": true,
-          "archiveUrl": "http://web.archive.org/web/20260922164838/https://www.ribarroja.es/sites/www.ribarroja.es/files/migrate/864708/filesGroup/PSOE-Rafael-Gomez-Sanchez.pdf"
+          "selfDeclared": true
         },
         {
           "id": "src-006",
@@ -680,13 +680,13 @@
           "id": "src-068",
           "kind": "official-doc",
           "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/migrate/4549352/filesGroup/20231017-20230905-BIEN-ACTIV-CONCEJALES---TOMA-POSESIN---ANUNC-1.pdf",
+          "archiveUrl": "http://web.archive.org/web/20260907114051/https://www.ribarroja.es/sites/www.ribarroja.es/files/migrate/4549352/filesGroup/20231017-20230905-BIEN-ACTIV-CONCEJALES---TOMA-POSESIN---ANUNC-1.pdf",
           "title": "Declaración de actividades y bienes · Corporación 2023-2027 (expte. 3971/2023/GEN) · tabla de actividades",
           "publisher": "Ayuntamiento de Riba-roja de Túria — Portal de Transparencia",
           "retrievedAt": "2026-07-30T21:47:48.515Z",
           "excerpt": "EVA LARA CATALÁ Profesora IES el Quint 00/09/2008 RAFAEL GOMEZ SANCHEZ Concejal Ayuntamiento Riba-roja de Túria 15/06/2019",
           "trust": "high",
-          "selfDeclared": true,
-          "archiveUrl": "http://web.archive.org/web/20260907114051/https://www.ribarroja.es/sites/www.ribarroja.es/files/migrate/4549352/filesGroup/20231017-20230905-BIEN-ACTIV-CONCEJALES---TOMA-POSESIN---ANUNC-1.pdf"
+          "selfDeclared": true
         },
         {
           "id": "src-080",
@@ -739,14 +739,14 @@
           "id": "src-101",
           "kind": "official-doc",
           "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/migrate/3867306/filesGroup/Pleno-20110611.pdf",
+          "archiveUrl": "http://web.archive.org/web/20260922165116/https://www.ribarroja.es/sites/www.ribarroja.es/files/migrate/3867306/filesGroup/Pleno-20110611.pdf",
           "title": "Acta de la sesión extraordinaria de constitución del Ayuntamiento y elección de alcalde, 11 de junio de 2011",
           "publisher": "Ayuntamiento de Riba-roja de Túria",
           "publishedAt": "2011-06-11",
           "retrievedAt": "2026-09-22T15:45:00.000Z",
           "excerpt": "se reúnen en sesión pública: Don FRANCISCO TARAZONA ZARAGOZA. […] Don ROBERTO PASCUAL RAGA GADEA Doña ANA LUJAN TARIN Don JOSE LUIS LOPEZ GALDON Doña SILVIA GUERRERO CANOVAS Don JOSE ANGEL HERNANDEZ CARRIZOSA Doña RAQUEL ORELLANO GOMEZ Doña RAFAEL GOMEZ SANCHEZ Doña CARMEN FOLGADO TERESI Don RAFAEL GOMEZ MUÑOZ Don BERNAT GARCIA SEVILLA Los cuales han sido proclamados concejales/as electos/as en las elecciones locales celebradas el pasado día 22 de mayo de 2011.",
           "trust": "high",
-          "selfDeclared": false,
-          "archiveUrl": "http://web.archive.org/web/20260922165116/https://www.ribarroja.es/sites/www.ribarroja.es/files/migrate/3867306/filesGroup/Pleno-20110611.pdf"
+          "selfDeclared": false
         },
         {
           "id": "src-102",
@@ -803,14 +803,14 @@
           "id": "src-106",
           "kind": "official-doc",
           "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/migrate//filesGroup/Acta-pleno-constitucion-13-06-2015.pdf",
+          "archiveUrl": "http://web.archive.org/web/20260920063703/https://www.ribarroja.es/sites/www.ribarroja.es/files/migrate//filesGroup/Acta-pleno-constitucion-13-06-2015.pdf",
           "title": "Acta de la sesión extraordinaria de constitución del Ayuntamiento y elección de alcalde, 13 de junio de 2015",
           "publisher": "Ayuntamiento de Riba-roja de Túria",
           "publishedAt": "2015-06-13",
           "retrievedAt": "2026-09-22T15:35:00.000Z",
           "excerpt": "ASISTENTES: Nombre y Apellidos D. ROBERTO RAGA GADEA Dª Mª TERESA POZUELO MARTÍN D. JOSÉ LUÍS LÓPEZ GALDÓN Dª Mª DOLORES VERDEGUER ROYO D. JOSÉ ÁNGEL HERNANDEZ CARRIZOSA Dª BEATRIZ QUEVEDO SÁNCHEZ D. RAFAEL FOLGADO NAVARRO D. MIQUEL CASTILLO FAUS D. RAFAEL GÓMEZ MUÑOZ D. RUBÉN FERRER PÉREZ Dª CONCEPCIÓN NOGUERA PUCHOL",
           "trust": "high",
-          "selfDeclared": false,
-          "archiveUrl": "http://web.archive.org/web/20260920063703/https://www.ribarroja.es/sites/www.ribarroja.es/files/migrate//filesGroup/Acta-pleno-constitucion-13-06-2015.pdf"
+          "selfDeclared": false
         },
         {
           "id": "src-107",
@@ -829,66 +829,66 @@
           "id": "src-108",
           "kind": "web",
           "url": "https://www.ribarroja.es/es/ayuntamiento/tv_riba_roja/pleno_7_de_septiembre_de_2015/contenidos/9500100/0892965",
+          "archiveUrl": "http://web.archive.org/web/20260922165436/https://www.ribarroja.es/es/noticia/pleno-7-de-septiembre-de-2015",
           "title": "Orden del día del pleno ordinario de 7 de septiembre de 2015 (punto 5.1)",
           "publisher": "Ayuntamiento de Riba-roja de Túria",
           "publishedAt": "2015-09-07",
           "retrievedAt": "2026-09-22T15:40:00.000Z",
           "excerpt": "5.1. Dar cuenta Resolución 2068/2015 relativo a la modificación delegaciones de Servicios Municipales, por toma de posesión del Concejal Rafael Gómez Sanchez y cambio de Delegación Concejalía de Servicios Públicos pasando a la Concejala Teresa Pozuelo.",
           "trust": "high",
-          "selfDeclared": false,
-          "archiveUrl": "http://web.archive.org/web/20260922165436/https://www.ribarroja.es/es/noticia/pleno-7-de-septiembre-de-2015"
+          "selfDeclared": false
         },
         {
           "id": "src-109",
           "kind": "official-doc",
           "url": "https://bop.dival.es/bop/downloads?anuncioNumReg=2015%2F19648",
+          "archiveUrl": "http://web.archive.org/web/20260922165519/https://bop.dival.es/bop/downloads?anuncioNumReg=2015%2F19648",
           "title": "BOP de València n.º 209, 2 de septiembre de 2015 — edicto sobre modificación de delegaciones de servicios municipales (Resolución de Alcaldía 2068/15, de 19 de agosto)",
           "publisher": "Boletín Oficial de la Provincia de València",
           "publishedAt": "2015-09-02",
           "retrievedAt": "2026-09-22T15:55:00.000Z",
           "excerpt": "Vista la renuncia como Concejala de este Ayuntamiento de Dª Beatriz Quevedo Sánchez Concejal delegada de Transporte y Comunicación Viaria, Urbanizaciones, Participación Ciudadana, Parques y Jardines, así como la Toma de posesión como Concejal de D. Rafael Gómez Sánchez, ambos del Grupo Municipal Socialista en sesión Plenaria de 22 de julio de 2015. […] Transporte y Comunicación Viaria, Urbanizaciones, Participación Ciudadana, Parques y Jardines: D. Rafael Gómez Sánchez.",
           "trust": "high",
-          "selfDeclared": false,
-          "archiveUrl": "http://web.archive.org/web/20260922165519/https://bop.dival.es/bop/downloads?anuncioNumReg=2015%2F19648"
+          "selfDeclared": false
         },
         {
           "id": "src-110",
           "kind": "official-doc",
           "url": "https://bop.dival.es/bop/downloads?anuncioNumReg=2015%2F19689",
+          "archiveUrl": "http://web.archive.org/web/20260922165652/https://bop.dival.es/bop/downloads?anuncioNumReg=2015%2F19689",
           "title": "BOP de València n.º 210, 3 de septiembre de 2015 — edicto sobre modificación de la fijación del régimen de retribuciones, indemnizaciones y dietas de los concejales (acuerdo de pleno de 22 de julio de 2015)",
           "publisher": "Boletín Oficial de la Provincia de València",
           "publishedAt": "2015-09-03",
           "retrievedAt": "2026-09-22T15:55:00.000Z",
           "excerpt": "Asignar a D. Rafael Gómez Sánchez la dedicación exclusiva a los efectos de desempeñar su cargo, con las siguientes retribuciones, 2.418,93 euros brutos mensuales, pagaderas en 14 mensualidades. Así como en el efecto retroactivo de las cantidades propuestas serán aplicadas desde el 13 de junio de 2015, fecha de la toma de posesión de los mismos. […] Lo que se hace público en virtud del artículo 75.5 de la Ley de Bases de Régimen Local",
           "trust": "high",
-          "selfDeclared": false,
-          "archiveUrl": "http://web.archive.org/web/20260922165652/https://bop.dival.es/bop/downloads?anuncioNumReg=2015%2F19689"
+          "selfDeclared": false
         },
         {
           "id": "src-111",
           "kind": "official-doc",
           "url": "https://bop.dival.es/bop/downloads?anuncioNumReg=2015%2F18549",
+          "archiveUrl": "http://web.archive.org/web/20260922165640/https://bop.dival.es/bop/downloads?anuncioNumReg=2015%2F18549",
           "title": "BOP de València, 5 de agosto de 2015 — edicto sobre delegación de bodas civiles en concejales, mes de agosto de 2015",
           "publisher": "Boletín Oficial de la Provincia de València",
           "publishedAt": "2015-08-05",
           "retrievedAt": "2026-09-22T15:55:00.000Z",
           "excerpt": "5.- Delegar en D. RAFAEL GOMEZ SANCHEZ - Concejal de este Ayuntamiento la competencia para la celebración de Matrimonio Civil según detalle: - Día 15-8-2015 a las 20'30 horas en la Vallesa de Mandor.",
           "trust": "high",
-          "selfDeclared": false,
-          "archiveUrl": "http://web.archive.org/web/20260922165640/https://bop.dival.es/bop/downloads?anuncioNumReg=2015%2F18549"
+          "selfDeclared": false
         },
         {
           "id": "src-112",
           "kind": "official-doc",
           "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/migrate/4068128/filesGroup/03-P-20170306-1.pdf",
+          "archiveUrl": "http://web.archive.org/web/20260922165657/https://www.ribarroja.es/sites/www.ribarroja.es/files/migrate/4068128/filesGroup/03-P-20170306-1.pdf",
           "title": "Acta de la sesión ordinaria del Ayuntamiento Pleno de 6 de marzo de 2017",
           "publisher": "Ayuntamiento de Riba-roja de Túria",
           "publishedAt": "2017-03-06",
           "retrievedAt": "2026-09-22T15:30:00.000Z",
           "excerpt": "CONCEJALES ASISTENTES: Pspv-Psoe Dª. Mª Teresa Pozuelo Martín D. José-Luis López Galdón D. José Ángel Sánchez Carrizosa Dª Mª Dolores Verdeguer Royo D. Rafael Gómez Sánchez […] Riba-roja -Pot D. Rubén Ferrer Pérez Compromís D.Rafel Folgado Navarro EUPV D. Rafael Gómez Muñoz",
           "trust": "high",
-          "selfDeclared": false,
-          "archiveUrl": "http://web.archive.org/web/20260922165657/https://www.ribarroja.es/sites/www.ribarroja.es/files/migrate/4068128/filesGroup/03-P-20170306-1.pdf"
+          "selfDeclared": false
         },
         {
           "id": "src-113",
@@ -906,14 +906,14 @@
           "id": "src-114",
           "kind": "official-doc",
           "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/20210201-Renta-Rafael-Gmez-Sanchez-2019.pdf",
+          "archiveUrl": "http://web.archive.org/web/20260922165916/https://www.ribarroja.es/sites/www.ribarroja.es/files/20210201-Renta-Rafael-Gmez-Sanchez-2019.pdf",
           "title": "Declaración del IRPF de 2019 (modelo 100) publicada en el portal de transparencia municipal",
           "publisher": "Ayuntamiento de Riba-roja de Túria",
           "publishedAt": "2021-02-01",
           "retrievedAt": "2026-09-22T16:10:00.000Z",
           "excerpt": "Apellidos y nombre: GOMEZ SANCHEZ RAFAEL · (10) Fecha de nacimiento: 15/01/1976 · (0003) Retribuciones dinerarias 35.941,21 · (0012) Total ingresos íntegros computables 35.941,21 · (0435) Base imponible general 31.588,93 · (0460) Base imponible del ahorro 0,00",
           "trust": "high",
-          "selfDeclared": true,
-          "archiveUrl": "http://web.archive.org/web/20260922165916/https://www.ribarroja.es/sites/www.ribarroja.es/files/20210201-Renta-Rafael-Gmez-Sanchez-2019.pdf"
+          "selfDeclared": true
         },
         {
           "id": "src-115",
@@ -932,14 +932,14 @@
           "id": "src-116",
           "kind": "web",
           "url": "https://www.infoturia.com/riba-roja-de-turia/85030-riba-roja-avanca-en-les-infraestructures-clau-del-municipi.html",
+          "archiveUrl": "http://web.archive.org/web/20260922165855/https://www.infoturia.com/riba-roja-de-turia/85030-riba-roja-avanca-en-les-infraestructures-clau-del-municipi.html",
           "title": "Riba-roja avança en les infraestructures clau del municipi",
           "publisher": "InfoTúria — Periòdic del Camp de Túria",
           "publishedAt": "2026-07-22",
           "retrievedAt": "2026-09-22T16:15:00.000Z",
           "excerpt": "Durant la trobada en el qual també era present el regidor d’Urbanitzacions Rafa Gómez, s’han abordat tres projectes fonamentals per al municipi de manera “positiva” i amb “compromisos” en paraules del propi alcalde.",
           "trust": "medium",
-          "selfDeclared": false,
-          "archiveUrl": "http://web.archive.org/web/20260922165855/https://www.infoturia.com/riba-roja-de-turia/85030-riba-roja-avanca-en-les-infraestructures-clau-del-municipi.html"
+          "selfDeclared": false
         },
         {
           "id": "src-120",
@@ -1000,7 +1000,16 @@
       "promotedBy": "Sergei Lutchenko",
       "promotedAt": "2026-09-22T17:08:49.421Z",
       "curatorNotes": "REVISIÓN DE CURADURÍA 2026-09-22 (v2, superconjunto de la v1 corregida). Esta versión conserva todas las secciones verificadas de la anterior y añade lo que aportó el cotejo con documentos que el concejal no controla: actas de pleno de 2011, 2015, 2017 y 2019, seis anuncios del Boletín Oficial de la Provincia de València entre 2003 y 2015, y la declaración del IRPF de 2019 que el propio Ayuntamiento publica en su portal de transparencia. QUÉ CAMBIA: la trayectoria municipal pasa de cuatro años a quince. El acta de constitución de 11 de junio de 2011 lo acredita como concejal desde entonces, y la Resolución de Alcaldía 2068/15 fecha una segunda toma de posesión el 22 de julio de 2015, cinco semanas después de una constitución en la que no había entrado. La versión anterior decía que en 2015 fue candidato «sin obtener acta»: era cierto el día de la constitución y dejó de serlo cinco semanas más tarde. CRITERIO: cada hecho lleva su documento y su nexo con el cargo; lo autodeclarado va marcado como tal y separado de lo que consta en actas y boletines; las cifras se publican con numerador, denominador y porcentaje, y el criterio con el que se clasifican los contratos de sus áreas se publica junto a ellas para que cualquiera pueda rehacer la medición; de los documentos que contienen datos de personas que no desempeñan cargo público no se toma ningún dato de esas personas. Se han descartado las fuentes que no acreditan identidad con el sujeto: el municipio tuvo dos concejales llamados Rafael Gómez a la vez, y la homonimia se resuelve por apellido materno y grupo municipal, nunca por coincidencia de nombre. COMPROBACIONES: barrido nominal de la contratación municipal repetido el 22-09-2026 sobre los 725 contratos con fecha de adjudicación, sin coincidencias; consulta del Boletín Oficial del Registro Mercantil del registro de València entre 2009 y 2026, 542.284 anuncios, sin ningún cargo societario atribuible al concejal —el barrido se hace con las dos formas del nombre, porque el boletín escribe los cargos con los apellidos delante—; y contraste de su declaración de actividades con su declaración del IRPF de 2019, que registra un solo pagador y ningún rendimiento de actividades económicas. QUÉ SE RETIRA: la versión anterior comparaba la proporción de contratos menores de sus áreas en la banda previa al umbral de los 15.000 euros con una proporción del conjunto municipal calculada sobre un denominador distinto; medida con el mismo denominador la diferencia desaparece, y la comparación se retira. Se retira también de esta nota el nombre de una empresa que la versión anterior citaba junto a una comprobación sobre el concejal: no había ningún vínculo documentado entre ambos, y una nota de curaduría describe el criterio, nunca el material descartado. El rastro completo de la investigación se conserva fuera del sitio.",
-      "corrections": [],
+      "corrections": [
+        {
+          "field": "narrative.Identidad y cargo actual.bodyMarkdown",
+          "original": "Rafael Gómez Sánchez es concejal del Ayuntamiento de Riba-roja de Túria por el PSOE (PSPV-PSOE), con las delegaciones de Servicios públicos municipales, Urbanizaciones, barrios y diseminados, y Movilidad y Deportes. Ejerce el cargo en régimen de dedicación exclusiva, con una retribución anual de 38.891,66 euros fijada por acuerdo del Pleno municipal de 7 de julio de 2023 (expediente 4533/2023/GEN).",
+          "corrected": "Rafael Gómez Sánchez es concejal del Ayuntamiento de Riba-roja de Túria por el PSOE (PSPV-PSOE), con las delegaciones de Servicios públicos municipales, Urbanizaciones, barrios y diseminados, y Movilidad y Deportes. Ejerce el cargo en régimen de dedicación exclusiva. El acuerdo del Pleno municipal de 7 de julio de 2023 (expediente 4533/2023/GEN) fijó esa retribución en 38.891,66 euros anuales; el importe vigente consta en su ficha de la sección Cargos de este sitio.",
+          "reason": "El Pleno del 16/03/2026 (exp. 1462/2026/GEN) actualizó para 2026 las retribuciones fijadas el 07/07/2023; la cifra de 2023 se presentaba como vigente.",
+          "editor": "Sergei Lutchenko",
+          "correctedAt": "2026-10-18"
+        }
+      ],
       "response": null
     },
     {
@@ -1072,7 +1081,7 @@
           "kind": "narrative",
           "payload": {
             "heading": "Retribución del cargo",
-            "bodyMarkdown": "El régimen retributivo de la alcaldía fue fijado por acuerdo del Pleno del 7 de julio de 2023 (expediente 4533/2023/GEN), que estableció una dedicación exclusiva de 48.234,08 euros anuales. Según los datos de retribuciones anuales de altos cargos del Ministerio de Hacienda (ISPA), el titular de la alcaldía percibió 45.461,94 € en 2020, 45.916,56 € en 2021, 52.855,48 € en 2022 y 48.647,5 € en 2024.",
+            "bodyMarkdown": "El régimen retributivo de la alcaldía fue fijado por acuerdo del Pleno del 7 de julio de 2023 (expediente 4533/2023/GEN), que estableció una dedicación exclusiva de 48.234,08 euros anuales; el importe vigente consta en su ficha de la sección Cargos de este sitio. Según los datos de retribuciones anuales de altos cargos del Ministerio de Hacienda (ISPA), el titular de la alcaldía percibió 45.461,94 € en 2020, 45.916,56 € en 2021, 52.855,48 € en 2022 y 48.647,5 € en 2024.",
             "sourceIds": [
               "src-006",
               "src-007"
@@ -2623,7 +2632,16 @@
       "promotedBy": "Sergei Lutchenko",
       "promotedAt": "2026-09-20T07:06:09.935Z",
       "curatorNotes": "REVISIÓN DE CURADURÍA 2026-09-19 (v5, superconjunto de la v4 corregida). Esta versión conserva las secciones verificadas de la v4 y añade lo que aportó el cotejo con documentos que el alcalde no controla: las candidaturas proclamadas en el BOP desde 2007, el nombramiento de 2011 en la Diputació de València, los cargos en entidades supramunicipales y en su partido, y tres apartados de sensibilidad alta construidos sobre un acta de pleno, un anuncio del BOP y la transcripción de una sesión. CRITERIO: cada hecho lleva su documento y su nexo con el cargo; lo que sólo publica un medio va atribuido y fechado; de un procedimiento judicial sólo se cuenta lo que consta en un documento oficial, con su desenlace por delante; de las personas de su entorno, sólo lo que un documento público ata a una decisión municipal, y sin nombrarlas. Se han descartado las fuentes que no acreditan identidad con el sujeto y las alegaciones sin documento firme o sin relación con el cargo. COMPROBACIONES: barrido nominal de la contratación repetido el 19-09-2026 y consulta del Boletín Oficial del Registro Mercantil de València 2009–2026, sin coincidencias. FUENTES: las del borrador automático no se reutilizan; las 28 de la v4 conservan su identificador y tres ganan un extracto literal del documento. El rastro completo de la investigación se conserva fuera del sitio.",
-      "corrections": [],
+      "corrections": [
+        {
+          "field": "narrative.Retribución del cargo.bodyMarkdown",
+          "original": "El régimen retributivo de la alcaldía fue fijado por acuerdo del Pleno del 7 de julio de 2023 (expediente 4533/2023/GEN), que estableció una dedicación exclusiva de 48.234,08 euros anuales. Según los datos de retribuciones anuales de altos cargos del Ministerio de Hacienda (ISPA), el titular de la alcaldía percibió 45.461,94 € en 2020, 45.916,56 € en 2021, 52.855,48 € en 2022 y 48.647,5 € en 2024.",
+          "corrected": "El régimen retributivo de la alcaldía fue fijado por acuerdo del Pleno del 7 de julio de 2023 (expediente 4533/2023/GEN), que estableció una dedicación exclusiva de 48.234,08 euros anuales; el importe vigente consta en su ficha de la sección Cargos de este sitio. Según los datos de retribuciones anuales de altos cargos del Ministerio de Hacienda (ISPA), el titular de la alcaldía percibió 45.461,94 € en 2020, 45.916,56 € en 2021, 52.855,48 € en 2022 y 48.647,5 € en 2024.",
+          "reason": "El Pleno del 16/03/2026 (exp. 1462/2026/GEN) actualizó para 2026 las retribuciones fijadas el 07/07/2023; la cifra de 2023 se presentaba como vigente.",
+          "editor": "Sergei Lutchenko",
+          "correctedAt": "2026-10-18"
+        }
+      ],
       "response": null
     },
     {
@@ -2792,7 +2810,7 @@
           "kind": "narrative",
           "payload": {
             "heading": "Retribución y régimen de dedicación",
-            "bodyMarkdown": "Como concejala delegada de Seguridad, Igualdad y Comunicación, Pamblanco percibe una retribución en régimen de dedicación exclusiva de 38.891,66 euros anuales, fijada por acuerdo del Pleno de 7 de julio de 2023 sobre el régimen económico de los concejales (expediente 4533/2023/GEN).",
+            "bodyMarkdown": "Como concejala delegada de Seguridad, Igualdad y Comunicación, Pamblanco ejerce el cargo en régimen de dedicación exclusiva. El acuerdo del Pleno de 7 de julio de 2023 sobre el régimen económico de los concejales (expediente 4533/2023/GEN) fijó esa retribución en 38.891,66 euros anuales; el importe vigente consta en su ficha de la sección Cargos de este sitio.",
             "sourceIds": [
               "src-005",
               "src-031"
@@ -3840,7 +3858,16 @@
       "promotedBy": "Sergei Lutchenko",
       "promotedAt": "2026-09-07T12:04:24.449Z",
       "curatorNotes": "REVISIÓN DE CURADURÍA 2026-09-07 (v2, superconjunto de la v1 corregida el mismo día): 27 fuentes localizadas por la investigación previa (BOP de València, actas de pleno, Ministerio de Igualdad, FEMP, partido y once medios), 9 de ellas capturadas en navegador porque el medio bloquea el rastreador, y 8 extractos de actas releídos en su contexto. Cada cita entre comillas se ha comprobado literal en su extracto y todas las URL responden (check:citations 0 bloqueantes, 0 avisos). El reparto de votos de la ordenanza abolicionista se toma del acta de 06-05-2024; el del plan de 2023 sólo consta por prensa y así se dice. Las secciones de la v1 se conservan íntegras; la v2 fecha lo comprobado (BORME 2009–2026, actas y BOP 2023–2026) y no afirma irregularidad alguna. La revisión lectora previa a la publicación corrigió una frase heredada de la v1: los 804 del cruce de contratación eran expedientes, adjudicados o no, no contratos adjudicados. Se han descartado fuentes que no acreditan documento o que caen fuera del papel público de la concejala; no se publican ni se describen.",
-      "corrections": [],
+      "corrections": [
+        {
+          "field": "narrative.Retribución y régimen de dedicación.bodyMarkdown",
+          "original": "Como concejala delegada de Seguridad, Igualdad y Comunicación, Pamblanco percibe una retribución en régimen de dedicación exclusiva de 38.891,66 euros anuales, fijada por acuerdo del Pleno de 7 de julio de 2023 sobre el régimen económico de los concejales (expediente 4533/2023/GEN).",
+          "corrected": "Como concejala delegada de Seguridad, Igualdad y Comunicación, Pamblanco ejerce el cargo en régimen de dedicación exclusiva. El acuerdo del Pleno de 7 de julio de 2023 sobre el régimen económico de los concejales (expediente 4533/2023/GEN) fijó esa retribución en 38.891,66 euros anuales; el importe vigente consta en su ficha de la sección Cargos de este sitio.",
+          "reason": "El Pleno del 16/03/2026 (exp. 1462/2026/GEN) actualizó para 2026 las retribuciones fijadas el 07/07/2023; la cifra de 2023 se presentaba como vigente.",
+          "editor": "Sergei Lutchenko",
+          "correctedAt": "2026-10-18"
+        }
+      ],
       "response": null
     },
     {
@@ -8902,7 +8929,7 @@
           "kind": "narrative",
           "payload": {
             "heading": "Retribución",
-            "bodyMarkdown": "Como concejal delegado de Acción social, Mayores y Juventud con dedicación exclusiva, su retribución anual asciende a 38.891,66 euros, según el acuerdo del Pleno de 7 de julio de 2023 que fija el régimen económico de los concejales (Expediente 4533/2023/GEN).",
+            "bodyMarkdown": "Como concejal delegado de Acción social, Mayores y Juventud, ejerce el cargo con dedicación exclusiva. El acuerdo del Pleno de 7 de julio de 2023 que fija el régimen económico de los concejales (Expediente 4533/2023/GEN) estableció esa retribución en 38.891,66 euros anuales; el importe vigente consta en su ficha de la sección Cargos de este sitio.",
             "sourceIds": [
               "src-003"
             ]
@@ -9573,7 +9600,16 @@
       "promotedBy": "Sergei Lutchenko",
       "promotedAt": "2026-07-31T13:14:19.350Z",
       "curatorNotes": "REVISIÓN DE CURADURÍA 31-07-2026: draft del agente (16 secciones, el más completo hasta la fecha — bio-extract funcionó sobre el CV real) sometido al pase forense estándar. CV primario re-descargado y parseado (nacido 29-08-1995 en València — el concejal más joven —, ADE UV 2013-17, máster RRHH UCJC 2017-18, Derecho UCJC 2019-24, máster fiscalidad UNIR en curso). Declaración de bienes verificada contra el PDF consolidado Y contra el render visual de la página 3 (pdftoppm) por el descuadre de columnas del parser: activo 108.594,20 € (95.094,20 inmuebles + 13.500 otros), pasivo 78.000 € — el mayor de la corporación; actividades: personal eventual del Ayuntamiento (inicio impreso «2029», errata evidente transcrita [sic]; cese 2023) y directivo de JUNTSUMEM, S.L. 2017-2019 (su CV: «Director de RRHH», grafía «Juntsumen»). HALLAZGO CENTRAL VERIFICADO en tenders.json: el Ayuntamiento adjudicó a Juntsumem, S.L. el 08-02-2018 (id 77927, abierto, 2 licitadores, 104.545,45 €, CPV 85320000, ejecución 10/2017-10/2019 — coextensiva con su etapa declarada) el plan de diversidad funcional — la misma materia que hoy dirige por delegación. Tratamiento de hechos fechados sin conclusión: adjudicación anterior a todos sus cargos públicos, única en el corpus, ediciones posteriores a otros prestadores (Fundación Muñoz Bastide 2021/2025, Riba Actua 2022, AUCA 2025 — las 2025 bajo su mandato), línea explícita de no-irregularidad. Cadena de nombramiento completa por actas (BOP n.º 82 30-04-2019 candidato n.º 15 sin escaño dentro del bloque de la circunscripción → electo 2023 → juramento → grupo puesto 11 → decreto punto 11 → comisión de Inclusión Social → exclusiva 38.891,66 €). Advertencias del verificador adjudicadas: identity/career «sin soporte en excerpt» FALSAS (el CV primario en disco contiene nacimiento y las dos etapas; excerpts repuestos con ventanas verbatim); «interviene en plenos» RETIRADA y sustituida por atribución precisa (líder de los programas 5 y 12 en la Carta de Servicios, acta 15-04-2024, llamada nominal verbatim); quote-card paráfrasis sustituida por el verbatim del decreto punto 11. Barrido nominal adjudicatarios: 0 «BARBANCHO».",
-      "corrections": [],
+      "corrections": [
+        {
+          "field": "narrative.Retribución.bodyMarkdown",
+          "original": "Como concejal delegado de Acción social, Mayores y Juventud con dedicación exclusiva, su retribución anual asciende a 38.891,66 euros, según el acuerdo del Pleno de 7 de julio de 2023 que fija el régimen económico de los concejales (Expediente 4533/2023/GEN).",
+          "corrected": "Como concejal delegado de Acción social, Mayores y Juventud, ejerce el cargo con dedicación exclusiva. El acuerdo del Pleno de 7 de julio de 2023 que fija el régimen económico de los concejales (Expediente 4533/2023/GEN) estableció esa retribución en 38.891,66 euros anuales; el importe vigente consta en su ficha de la sección Cargos de este sitio.",
+          "reason": "El Pleno del 16/03/2026 (exp. 1462/2026/GEN) actualizó para 2026 las retribuciones fijadas el 07/07/2023; la cifra de 2023 se presentaba como vigente.",
+          "editor": "Sergei Lutchenko",
+          "correctedAt": "2026-10-18"
+        }
+      ],
       "response": null
     },
     {
@@ -11057,7 +11093,7 @@
           "kind": "narrative",
           "payload": {
             "heading": "Retribución",
-            "bodyMarkdown": "Según el acuerdo del Pleno de Riba-roja de Túria de 7 de julio de 2023 (expediente 4533/2023/GEN), que fija el régimen económico de los concejales, Gómez Laredo percibe una retribución de 38.891,66 euros anuales por su dedicación exclusiva como concejala delegada de Participación, Atención ciudadana y Turismo.",
+            "bodyMarkdown": "Según el acuerdo del Pleno de Riba-roja de Túria de 7 de julio de 2023 (expediente 4533/2023/GEN), que fija el régimen económico de los concejales, la dedicación exclusiva de Gómez Laredo como concejala delegada de Participación, Atención ciudadana y Turismo quedó retribuida con 38.891,66 euros anuales; el importe vigente consta en su ficha de la sección Cargos de este sitio.",
             "sourceIds": [
               "src-002"
             ]
@@ -11536,6 +11572,14 @@
           "reason": "El cambio de delegaciones no consta sólo en el registro municipal: se publicó en el BOP de València once días después del decreto original; atribuirlo al registro ocultaba la fuente oficial que lo sostiene.",
           "editor": "Sergei Lutchenko",
           "correctedAt": "2026-09-05"
+        },
+        {
+          "field": "narrative.Retribución.bodyMarkdown",
+          "original": "Según el acuerdo del Pleno de Riba-roja de Túria de 7 de julio de 2023 (expediente 4533/2023/GEN), que fija el régimen económico de los concejales, Gómez Laredo percibe una retribución de 38.891,66 euros anuales por su dedicación exclusiva como concejala delegada de Participación, Atención ciudadana y Turismo.",
+          "corrected": "Según el acuerdo del Pleno de Riba-roja de Túria de 7 de julio de 2023 (expediente 4533/2023/GEN), que fija el régimen económico de los concejales, la dedicación exclusiva de Gómez Laredo como concejala delegada de Participación, Atención ciudadana y Turismo quedó retribuida con 38.891,66 euros anuales; el importe vigente consta en su ficha de la sección Cargos de este sitio.",
+          "reason": "El Pleno del 16/03/2026 (exp. 1462/2026/GEN) actualizó para 2026 las retribuciones fijadas el 07/07/2023; la cifra de 2023 se presentaba como vigente.",
+          "editor": "Sergei Lutchenko",
+          "correctedAt": "2026-10-18"
         }
       ],
       "response": null
@@ -12184,7 +12228,7 @@
           "kind": "narrative",
           "payload": {
             "heading": "Cargos, portafolios y retribución",
-            "bodyMarkdown": "Hernández Carrizosa ostenta las concejalías de Administración y Servicios Generales, Compra Pública, Recursos Humanos, Finanzas públicas y recaudación, Fomento económico, Empleo y Emprendimiento, y Comercio, además del cargo de Tercer Teniente de Alcalde. El Pleno del Ayuntamiento, en el acuerdo de fijación del régimen económico de los concejales de 7 de julio de 2023 (Expediente 4533/2023/GEN), fijó su dedicación exclusiva en 43.067,36 euros anuales para el desempeño de dicho cargo.",
+            "bodyMarkdown": "Hernández Carrizosa ostenta las concejalías de Administración y Servicios Generales, Compra Pública, Recursos Humanos, Finanzas públicas y recaudación, Fomento económico, Empleo y Emprendimiento, y Comercio, además del cargo de Tercer Teniente de Alcalde. El Pleno del Ayuntamiento, en el acuerdo de fijación del régimen económico de los concejales de 7 de julio de 2023 (Expediente 4533/2023/GEN), fijó su dedicación exclusiva en 43.067,36 euros anuales para el desempeño de dicho cargo; el importe vigente consta en su ficha de la sección Cargos de este sitio.",
             "sourceIds": [
               "src-001",
               "src-005"
@@ -12898,6 +12942,14 @@
           "reason": "Se retira la frase sobre intervenciones en cuestiones presupuestarias de personal: la sostenía un extracto del motor de transcripción que se sustituyó, y que no aparece en la transcripción vigente de la sesión. Lo que se publicaba como literal no es lo que consta hoy, así que la afirmación se retira en vez de reanclarse a un pasaje que no la dice.",
           "editor": "Sergei Lutchenko",
           "correctedAt": "2026-08-18"
+        },
+        {
+          "field": "narrative.Cargos, portafolios y retribución.bodyMarkdown",
+          "original": "Hernández Carrizosa ostenta las concejalías de Administración y Servicios Generales, Compra Pública, Recursos Humanos, Finanzas públicas y recaudación, Fomento económico, Empleo y Emprendimiento, y Comercio, además del cargo de Tercer Teniente de Alcalde. El Pleno del Ayuntamiento, en el acuerdo de fijación del régimen económico de los concejales de 7 de julio de 2023 (Expediente 4533/2023/GEN), fijó su dedicación exclusiva en 43.067,36 euros anuales para el desempeño de dicho cargo.",
+          "corrected": "Hernández Carrizosa ostenta las concejalías de Administración y Servicios Generales, Compra Pública, Recursos Humanos, Finanzas públicas y recaudación, Fomento económico, Empleo y Emprendimiento, y Comercio, además del cargo de Tercer Teniente de Alcalde. El Pleno del Ayuntamiento, en el acuerdo de fijación del régimen económico de los concejales de 7 de julio de 2023 (Expediente 4533/2023/GEN), fijó su dedicación exclusiva en 43.067,36 euros anuales para el desempeño de dicho cargo; el importe vigente consta en su ficha de la sección Cargos de este sitio.",
+          "reason": "El Pleno del 16/03/2026 (exp. 1462/2026/GEN) actualizó para 2026 las retribuciones fijadas el 07/07/2023; la cifra de 2023 se presentaba como vigente.",
+          "editor": "Sergei Lutchenko",
+          "correctedAt": "2026-10-18"
         }
       ],
       "response": null
@@ -13742,7 +13794,7 @@
           "kind": "narrative",
           "payload": {
             "heading": "Retribución del cargo",
-            "bodyMarkdown": "Como Primera Teniente de Alcalde, su retribución quedó fijada por Acuerdo del Pleno de 07/07/2023, que estableció el régimen económico de los concejales (expediente 4533/2023/GEN): dedicación exclusiva y una asignación anual de 43.067,36 €, consignada en el acuerdo bajo el área de Territorio y Agenda Urbana.",
+            "bodyMarkdown": "Como Primera Teniente de Alcalde, su retribución quedó fijada por Acuerdo del Pleno de 07/07/2023, que estableció el régimen económico de los concejales (expediente 4533/2023/GEN): dedicación exclusiva y una asignación anual de 43.067,36 €, consignada en el acuerdo bajo el área de Territorio y Agenda Urbana; el importe vigente consta en su ficha de la sección Cargos de este sitio.",
             "sourceIds": [
               "src-005"
             ]
@@ -14384,7 +14436,16 @@
       "promotedBy": "Sergei Lutchenko",
       "promotedAt": "2026-07-30T22:36:09.719Z",
       "curatorNotes": "REVISIÓN DE CURADURÍA 2026-07-31 (previa a la promoción): la ficha CV en PDF SÍ existe en el portal con patrón de nombre nuevo (20250817-CV-TERESA-POZUELO.pdf) que el agente no localizó — descargada, verificada e integrada manualmente (identidad, formación en edificación/arquitectura técnica UPV, trayectoria en Grupo Tremon SA y Pavituria SL, regidora desde 2015). Cadena de nombramiento verificada contra las actas íntegras: proclamada electa y toma de posesión (9jatoj, 17-06-2023, con intervención como representante del PSOE), portavoz del grupo, Primera Tenencia de Alcaldía, primera integrante de la JGL y delegación del punto 2 del decreto de áreas (16ujrlm, 07-07-2023, ventanas literales). Declaración estatutaria integrada (activo 394.118,84 €, el tercero más alto de la corporación; pasivo 90.759,21 €; sin actividad empresarial). DISCREPANCIA publicada sin resolver: regidora desde 2015 según su CV, 15/06/2019 según su declaración — ambos autodeclarados. Comprobaciones: 0 de 804 contratos con su apellido; sus antiguos empleadores declarados (Grupo Tremon SA, Pavituria SL — sector construcción, coincidente con sus áreas de Urbanismo y Obra Pública) NO constan como adjudicatarios municipales; indicadores de competencia de sus áreas mejores que la media (44% licitador único frente a 55%). Retiradas por homonimia las secciones de LinkedIn (coincidencia solo nominal) y press-sparkline (una novela de ficción); 9 advertencias del verificador reducidas a 3 reales. CORROBORACIÓN 2026-07-31 (revisión del operador sobre lagunas recurrentes): localizado y verificado el anuncio del BOP de València n.º 180 (15-09-2023, 2023/12011) que publica las declaraciones de actividades y bienes de la legislatura — los cinco sujetos constan en su texto; añadido como fuente y citado en la narrativa de patrimonio (la naturaleza autodeclarada del contenido no cambia; la publicación oficial en boletín queda ahora acreditada con identificadores de gaceta). CORROBORACIÓN INDEPENDIENTE 2026-07-31: BOP n.º 79/2015 (puesto 2, como independiente) + acta constitutiva 13-06-2015 (electa) RESUELVEN la discrepancia 2015/2019 a favor de 2015; BOP n.º 82/2019 (puesto 2) y acta de organización de 25-06-2019 (Primera Teniente y portavoz ya en aquel mandato) añadidos.",
-      "corrections": [],
+      "corrections": [
+        {
+          "field": "narrative.Retribución del cargo.bodyMarkdown",
+          "original": "Como Primera Teniente de Alcalde, su retribución quedó fijada por Acuerdo del Pleno de 07/07/2023, que estableció el régimen económico de los concejales (expediente 4533/2023/GEN): dedicación exclusiva y una asignación anual de 43.067,36 €, consignada en el acuerdo bajo el área de Territorio y Agenda Urbana.",
+          "corrected": "Como Primera Teniente de Alcalde, su retribución quedó fijada por Acuerdo del Pleno de 07/07/2023, que estableció el régimen económico de los concejales (expediente 4533/2023/GEN): dedicación exclusiva y una asignación anual de 43.067,36 €, consignada en el acuerdo bajo el área de Territorio y Agenda Urbana; el importe vigente consta en su ficha de la sección Cargos de este sitio.",
+          "reason": "El Pleno del 16/03/2026 (exp. 1462/2026/GEN) actualizó para 2026 las retribuciones fijadas el 07/07/2023; la cifra de 2023 se presentaba como vigente.",
+          "editor": "Sergei Lutchenko",
+          "correctedAt": "2026-10-18"
+        }
+      ],
       "response": null
     }
   ],

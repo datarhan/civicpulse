@@ -67,7 +67,7 @@
       "kind": "narrative",
       "payload": {
         "heading": "Retribución del cargo",
-        "bodyMarkdown": "El régimen retributivo de la alcaldía fue fijado por acuerdo del Pleno del 7 de julio de 2023 (expediente 4533/2023/GEN), que estableció una dedicación exclusiva de 48.234,08 euros anuales. Según los datos de retribuciones anuales de altos cargos del Ministerio de Hacienda (ISPA), el titular de la alcaldía percibió 45.461,94 € en 2020, 45.916,56 € en 2021, 52.855,48 € en 2022 y 48.647,5 € en 2024.",
+        "bodyMarkdown": "El régimen retributivo de la alcaldía fue fijado por acuerdo del Pleno del 7 de julio de 2023 (expediente 4533/2023/GEN), que estableció una dedicación exclusiva de 48.234,08 euros anuales; el importe vigente consta en su ficha de la sección Cargos de este sitio. Según los datos de retribuciones anuales de altos cargos del Ministerio de Hacienda (ISPA), el titular de la alcaldía percibió 45.461,94 € en 2020, 45.916,56 € en 2021, 52.855,48 € en 2022 y 48.647,5 € en 2024.",
         "sourceIds": [
           "src-006",
           "src-007"
@@ -1200,14 +1200,14 @@
       "id": "src-112",
       "kind": "web",
       "url": "https://www.elperiodicodeaqui.com/epda-noticias/robert-raga-nuevo-presidente-del-consorcio-valencia-interior/194308",
+      "archiveUrl": "http://web.archive.org/web/20260920063817/https://www.elperiodicodeaqui.com/robert-raga-nuevo-presidente-del-consorcio-valencia-interior_194308_102.html",
       "title": "Robert Raga, nuevo presidente del Consorcio Valencia Interior",
       "publisher": "El Periódico de Aquí",
       "publishedAt": "2019-10-25",
       "retrievedAt": "2026-09-19T19:30:00.000Z",
       "excerpt": "El Consorcio Valencia Interior es elente supramunicipal que lleva a cabo el tratamiento de los residuosde 61 municipios de las cinco comarcas del interior de la provinciade Valencia: Camp de Túria, los Serranos, la Hoya de Buñol-Chiva,la Plana Utiel-Requena y el Rincón de Ademuz.",
       "trust": "medium",
-      "selfDeclared": false,
-      "archiveUrl": "http://web.archive.org/web/20260920063817/https://www.elperiodicodeaqui.com/robert-raga-nuevo-presidente-del-consorcio-valencia-interior_194308_102.html"
+      "selfDeclared": false
     },
     {
       "id": "src-113",
@@ -1381,14 +1381,14 @@
       "id": "src-126",
       "kind": "web",
       "url": "https://www.levante-emv.com/comunitat-valenciana/camp-de-turia/2018/06/26/raga-declara-juez-cino-expedientes-11892195.html",
+      "archiveUrl": "https://web.archive.org/web/20260921053130/https://www.levante-emv.com/comunitat-valenciana/camp-de-turia/2018/06/26/raga-declara-juez-cino-expedientes-11892195.html",
       "title": "Raga declara ante el juez que se ciñó a los expedientes al contratar a la asesoría jurídica",
       "publisher": "Levante-EMV",
       "publishedAt": "2018-06-26",
       "retrievedAt": "2026-09-19T18:30:00.000Z",
       "excerpt": "Raga justificó que en aquel proceso la alcaldía se ciñó a los expedientes presentados que cumplían con los requisitos de la Secretaría y la Intervención.",
       "trust": "medium",
-      "selfDeclared": false,
-      "archiveUrl": "https://web.archive.org/web/20260921053130/https://www.levante-emv.com/comunitat-valenciana/camp-de-turia/2018/06/26/raga-declara-juez-cino-expedientes-11892195.html"
+      "selfDeclared": false
     },
     {
       "id": "src-127",
@@ -1618,6 +1618,15 @@
   "promotedBy": "Sergei Lutchenko",
   "promotedAt": "2026-09-20T07:06:09.935Z",
   "curatorNotes": "REVISIÓN DE CURADURÍA 2026-09-19 (v5, superconjunto de la v4 corregida). Esta versión conserva las secciones verificadas de la v4 y añade lo que aportó el cotejo con documentos que el alcalde no controla: las candidaturas proclamadas en el BOP desde 2007, el nombramiento de 2011 en la Diputació de València, los cargos en entidades supramunicipales y en su partido, y tres apartados de sensibilidad alta construidos sobre un acta de pleno, un anuncio del BOP y la transcripción de una sesión. CRITERIO: cada hecho lleva su documento y su nexo con el cargo; lo que sólo publica un medio va atribuido y fechado; de un procedimiento judicial sólo se cuenta lo que consta en un documento oficial, con su desenlace por delante; de las personas de su entorno, sólo lo que un documento público ata a una decisión municipal, y sin nombrarlas. Se han descartado las fuentes que no acreditan identidad con el sujeto y las alegaciones sin documento firme o sin relación con el cargo. COMPROBACIONES: barrido nominal de la contratación repetido el 19-09-2026 y consulta del Boletín Oficial del Registro Mercantil de València 2009–2026, sin coincidencias. FUENTES: las del borrador automático no se reutilizan; las 28 de la v4 conservan su identificador y tres ganan un extracto literal del documento. El rastro completo de la investigación se conserva fuera del sitio.",
-  "corrections": [],
+  "corrections": [
+    {
+      "field": "narrative.Retribución del cargo.bodyMarkdown",
+      "original": "El régimen retributivo de la alcaldía fue fijado por acuerdo del Pleno del 7 de julio de 2023 (expediente 4533/2023/GEN), que estableció una dedicación exclusiva de 48.234,08 euros anuales. Según los datos de retribuciones anuales de altos cargos del Ministerio de Hacienda (ISPA), el titular de la alcaldía percibió 45.461,94 € en 2020, 45.916,56 € en 2021, 52.855,48 € en 2022 y 48.647,5 € en 2024.",
+      "corrected": "El régimen retributivo de la alcaldía fue fijado por acuerdo del Pleno del 7 de julio de 2023 (expediente 4533/2023/GEN), que estableció una dedicación exclusiva de 48.234,08 euros anuales; el importe vigente consta en su ficha de la sección Cargos de este sitio. Según los datos de retribuciones anuales de altos cargos del Ministerio de Hacienda (ISPA), el titular de la alcaldía percibió 45.461,94 € en 2020, 45.916,56 € en 2021, 52.855,48 € en 2022 y 48.647,5 € en 2024.",
+      "reason": "El Pleno del 16/03/2026 (exp. 1462/2026/GEN) actualizó para 2026 las retribuciones fijadas el 07/07/2023; la cifra de 2023 se presentaba como vigente.",
+      "editor": "Sergei Lutchenko",
+      "correctedAt": "2026-10-18"
+    }
+  ],
   "response": null
 }
