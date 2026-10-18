@@ -16,7 +16,7 @@ import {
   type Candidate,
   type PlaceMatch,
 } from '../src/scraper/place-resolver'
-import { ZONE_ALIASES } from '../src/scraper/tender-geo'
+import { ZONE_ALIASES, ZONE_ALIAS_EXCLUSIONS } from '../src/scraper/tender-geo'
 import {
   validateGazetteerSupplement,
   supplementToGazetteerInput,
@@ -160,6 +160,7 @@ async function main() {
     pois: [...(pois?.pois ?? []), ...supp.pois],
     zones: [...zones, ...supp.zones],
     zoneAliases: { ...ZONE_ALIASES, ...supp.zoneAliases },
+    zoneAliasExclusions: ZONE_ALIAS_EXCLUSIONS,
   })
 
   // Newest lote first (RENOVE 2023–24, then FEDER 2019–20). Each lote is
