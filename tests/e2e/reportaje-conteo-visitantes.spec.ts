@@ -100,9 +100,21 @@ test.describe('Reportaje · conteo de visitantes (/reportajes/conteo-visitantes)
     // correo no la atiende y que hay que usar su trámite electrónico. Tiene que
     // VERSE —si no, la página calla que contestaron— y la fila NO puede pasar a
     // «respondida»: no concedieron, no denegaron y no dijeron que no les
-    // correspondiera, así que el mes del artículo 20 sigue corriendo.
+    // correspondiera, así que esa contestación no detiene el mes del artículo 20.
+    //
+    // Hasta el 18-10-2026 esta prueba exigía ver «el mes del artículo 20 sigue
+    // corriendo»: fijaba la prosa rancia que tenía que caer. El mes terminó el
+    // 13-10 y la fila lo decía una línea encima. Dónde está el reloj lo dice sólo
+    // la frase calculada; la incidencia dice lo que no caduca. La frase vieja
+    // sólo puede seguir en el registro de correcciones, que la cita.
     await expect(page.getByText(/por su trámite electrónico/)).toBeVisible()
-    await expect(page.getByText(/el mes del artículo 20 sigue corriendo/)).toBeVisible()
+    await expect(
+      page.getByText(/esa contestación no detiene el mes del artículo 20/).first(),
+    ).toBeVisible()
+    const vieja = /el mes del artículo 20 sigue corriendo/
+    expect(await page.getByText(vieja).count()).toBe(
+      await page.locator('#correcciones').getByText(vieja).count(),
+    )
 
     // Y LA DEL AYUNTAMIENTO (23-09-2026): pide que se presente por su Registro de
     // Entrada, y lo dice de las DOS solicitudes que recibió por correo —ésta y la

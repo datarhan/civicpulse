@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest'
-import { readFileSync } from 'node:fs'
+import { readFileSync, readdirSync } from 'node:fs'
 import {
   CALENDARIOS,
   arranqueDelPlazo,
@@ -687,7 +687,26 @@ describe('un plazo suspendido no vence ni se da por vencido', () => {
 // (el conteo y el coste efectivo), y las dos usan este módulo. La prueba recorre
 // las instantáneas en vez de fijar una: la siguiente pieza que publique un
 // escrito entra sola, y no hereda un candado escrito sólo para la primera.
-const PIEZAS = ['conteo-visitantes', 'coste-efectivo'] as const
+//
+// «Entra sola» no era verdad mientras la lista se escribía a mano: la tercera
+// pieza, matrículas y móviles (14-10-2026), publicó tres filas con reloj y
+// ninguna de estas comprobaciones las miró. Ahora sale del directorio: toda
+// instantánea con un bloque `solicitudes` es una pieza que lo publica.
+const DIR_REPORTAJES = 'public/data/reportajes'
+const PIEZAS = readdirSync(DIR_REPORTAJES)
+  .filter((f) => f.endsWith('.json'))
+  .filter((f) => {
+    const d = JSON.parse(readFileSync(`${DIR_REPORTAJES}/${f}`, 'utf8'))
+    return Array.isArray(d?.solicitudes?.items)
+  })
+  .map((f) => f.replace(/\.json$/, ''))
+
+it('mide algo: la lista de piezas sale del directorio y no está vacía', () => {
+  // Las tres que lo publicaban el 18-10-2026; si una deja de hacerlo, que se vea.
+  expect(PIEZAS).toEqual(
+    expect.arrayContaining(['conteo-visitantes', 'coste-efectivo', 'matriculas-y-moviles']),
+  )
+})
 
 describe.each(PIEZAS)('instantánea publicada · %s', (slug) => {
   const d = JSON.parse(readFileSync(`public/data/reportajes/${slug}.json`, 'utf8')) as {
@@ -918,5 +937,102 @@ describe.each(PIEZAS)('fechas de entrada publicadas · %s', (slug) => {
       expect(e.registro, `${e.organismo}: fecha de entrada sin asiento`).toBeTruthy()
       expect(e.entradaEl! >= e.enviadaEl, `${e.organismo}: entrada antes del envío`).toBe(true)
     }
+  })
+})
+
+/**
+ * Una incidencia cuenta lo que pasó un día; dónde está el reloj HOY lo dice
+ * sólo `fraseDeEnvio`.
+ *
+ * La incidencia de Turisme Comunitat Valenciana del 21-09-2026 terminaba «así
+ * que el mes del artículo 20 sigue corriendo». Era cierto ese día. El 14-10 el
+ * mes terminó y la fila decía a la vez, una línea encima, que «terminó el 13 de
+ * octubre … sin que la hayan resuelto», y debajo, que seguía corriendo. Lo
+ * levantó `review:surfaces` en el pre-push del 18-10-2026; ninguna prueba podía,
+ * porque el dato estaba bien y la frase mal. Se corrigió con su nota en
+ * `meta.correcciones`.
+ *
+ * Lo que una incidencia sí puede decir del reloj es lo que no caduca: que esa
+ * contestación no lo detiene, o que no dice desde cuándo corre.
+ */
+const ESTADO_DEL_RELOJ =
+  /sigue corriendo|sigue en plazo|est[aá] en plazo|(?:a[uú]n|todav[ií]a) no (?:ha )?vencid|ya ha vencido|ha vencido/i
+
+describe('una incidencia no dice en qué punto está el plazo', () => {
+  const incidencias = PIEZAS.flatMap((slug) =>
+    (
+      JSON.parse(readFileSync(`${DIR_REPORTAJES}/${slug}.json`, 'utf8')) as {
+        solicitudes: { items: EnvioSolicitud[] }
+      }
+    ).solicitudes.items.flatMap((e) =>
+      (e.incidencias ?? []).map((i) => ({ slug, organismo: e.organismo, ...i })),
+    ),
+  )
+
+  it('mide algo: hay incidencias publicadas que leer', () => {
+    expect(incidencias.length).toBeGreaterThan(0)
+  })
+
+  it('el patrón caza la frase que lo estrenó', () => {
+    expect(
+      'ni dicen que no les corresponda, así que el mes del artículo 20 sigue corriendo.',
+    ).toMatch(ESTADO_DEL_RELOJ)
+  })
+
+  it('ninguna publicada lo hace', () => {
+    const malas = incidencias
+      .filter((i) => ESTADO_DEL_RELOJ.test(i.texto))
+      .map(
+        (i) => `${i.slug} · ${i.organismo} · ${i.fecha}: «${i.texto.match(ESTADO_DEL_RELOJ)![0]}»`,
+      )
+    expect(malas).toEqual([])
+  })
+})
+
+/**
+ * Una pieza cuyas cifras están «congeladas» a su fecha y cuyo apartado de
+ * solicitudes cuenta algo POSTERIOR tiene que decir que ese apartado se mueve.
+ *
+ * Matrículas y móviles se publicó el 14-10-2026 con «cifras congeladas a 14 de
+ * octubre», y el 15 su fila de la Generalitat contó una remisión de ese día:
+ * `review:surfaces` lo leyó como una pieza que contradice su propia fecha
+ * (pre-push del 18-10-2026). No la contradice —el reloj se calcula con el «hoy»
+ * de quien lee y la pieza ya lo dice—, pero la nota no avisaba de que el
+ * apartado se actualiza. El coste efectivo lo avisaba desde el 22-09; el conteo,
+ * con filas del 15-10 bajo una pieza del 9-09, tampoco.
+ */
+describe('un apartado de solicitudes que se movió tras publicarse lo dice', () => {
+  const fechasDe = (e: EnvioSolicitud): string[] =>
+    [
+      e.enviadaEl,
+      e.entradaEl,
+      e.respuesta?.fecha,
+      e.remitida?.fecha,
+      e.remitida?.recibidaEl,
+      e.suspendida?.fecha,
+      ...(e.incidencias ?? []).map((i) => i.fecha),
+    ].filter((f): f is string => !!f)
+
+  const piezas = PIEZAS.map((slug) => {
+    const d = JSON.parse(readFileSync(`${DIR_REPORTAJES}/${slug}.json`, 'utf8')) as {
+      meta: { publicadoEl?: string }
+      solicitudes: { nota: string; items: EnvioSolicitud[] }
+    }
+    const ultima = d.solicitudes.items.flatMap(fechasDe).sort().pop() ?? ''
+    return { slug, publicadoEl: d.meta.publicadoEl ?? '', ultima, nota: d.solicitudes.nota }
+  })
+  const movidas = piezas.filter((p) => p.publicadoEl && p.ultima > p.publicadoEl)
+
+  // La premisa medida: hoy hay piezas cuyo apartado cuenta algo posterior a su
+  // publicación. Sin ella, la comprobación de abajo aprobaría sin mirar nada.
+  it('mide algo: alguna pieza cuenta en sus solicitudes algo posterior a su publicación', () => {
+    expect(movidas.length).toBeGreaterThan(0)
+  })
+
+  it('y su nota dice que el apartado se actualiza', () => {
+    const calladas = movidas
+      .filter((p) => !/se actualiza/.test(p.nota))
+      .map((p) => `${p.slug}: publicada el ${p.publicadoEl}, cuenta algo del ${p.ultima}`)
+    expect(calladas).toEqual([])
   })
 })
