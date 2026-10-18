@@ -19,6 +19,7 @@ import {
   cascadaGastos,
   lecturaCapitulos,
   capituloDominante,
+  ceroDelDominante,
   tendenciaDeuda,
   capitulosACero,
   capitulosSinDato,
@@ -290,9 +291,33 @@ function Cabecera() {
       ejecutado: eurM(cascada.ejecutado),
     })
     if (dominante) {
+      // El cero del capítulo es de UNA de las dos fuentes que publica la
+      // página, y el lede lo decía plano: «un capítulo que había empezado en
+      // cero» se lee como 22 M€ de inversión sin presupuestar en enero, y
+      // CONPREL le daba 905.517 € (revisión lectora, 18-10-2026). Misma
+      // lectura que el pie de «Capítulo a capítulo», de la misma función, para
+      // que no vuelvan a decir cosas distintas. Las claves van literales en la
+      // llamada por el guard de `i18n-catalogue` (lo explica el pie).
+      const cero = ceroDelDominante(dominante, s, exec.year)
       lede += rellena(
-        t(dominante.abrioEnCero ? 'presupuesto.lede.dominanteCero' : 'presupuesto.lede.dominante'),
-        { cuota: pct0(dominante.cuotaAmpliacion * 100), capitulo: dominante.rotulo.toLowerCase() },
+        t(
+          !cero
+            ? 'presupuesto.lede.dominante'
+            : cero.estado === 'discrepan'
+              ? 'presupuesto.lede.dominanteCeroDiscrepan'
+              : cero.estado === 'sinConprel'
+                ? 'presupuesto.lede.dominanteCeroSinConprel'
+                : cero.estado === 'sinContraste'
+                  ? 'presupuesto.lede.dominanteCeroSinContraste'
+                  : 'presupuesto.lede.dominanteCero',
+        ),
+        {
+          cuota: pct0(dominante.cuotaAmpliacion * 100),
+          capitulo: dominante.rotulo.toLowerCase(),
+          // Al euro, como en el pie: remite a la tarjeta de CONPREL de más
+          // abajo, que lo publica así.
+          conprel: eur0(cero?.conprel ?? 0),
+        },
       )
     }
   } else {
@@ -343,6 +368,7 @@ function Cabecera() {
             maxWidth: '62ch',
             textWrap: 'pretty',
           }}
+          data-lede="presupuesto"
         >
           {lede}
         </p>
@@ -678,23 +704,15 @@ function CapitulosCard() {
   if (!p || filas.length === 0 || !(total?.actual > 0)) return null
   const dominante = capituloDominante(p.gastos.chapters, total)
   const capMax = Math.max(...filas.map((f) => f.definitivo), 1)
-  // Qué dice de ese mismo capítulo la OTRA fuente. Si los ejercicios no casan
-  // no hay dos presupuestos del mismo año que contrastar y la frase se queda
-  // en la simple. Se lee el capítulo del snapshot, no de
+  // Qué dice de ese mismo capítulo la OTRA fuente: `ceroDelDominante`, la
+  // misma lectura que el lede. Se lee el capítulo del snapshot, no de
   // `contrastarPresupuesto`: ésta calla entera cuando a CONPREL le falta el
   // total de gastos, y el pie caía entonces en «no estaba en ninguno de los
-  // dos» con la cifra del capítulo a la vista. `conprel` es null si la fuente
-  // no trae ese capítulo.
-  const conprelMismoAnio = aprobado?.snapshot?.year === p.year ? aprobado.snapshot : null
-  const capConprel =
-    dominante && conprelMismoAnio
-      ? (conprelMismoAnio.expenseByEconomicChapter ?? []).find(
-          (c) => c.code === String(dominante.capitulo),
-        )
-      : null
-  const segunConprel = capConprel
-    ? { conprel: typeof capConprel.amount === 'number' ? capConprel.amount : null }
-    : null
+  // dos» con la cifra del capítulo a la vista. Si los ejercicios no casan el
+  // estado es `sinContraste`, no `coinciden`: con un solo presupuesto de ese
+  // año a la vista, «ninguno de los dos» afirmaba algo de uno que la página no
+  // había cotejado.
+  const cero = ceroDelDominante(dominante, aprobado?.snapshot, p.year)
 
   const notaDe = (f) => {
     // La cuota de la ampliación NO se repite aquí cuando el capítulo abrió en
@@ -909,11 +927,13 @@ function CapitulosCard() {
               t(
                 !dominante.abrioEnCero
                   ? 'presupuesto.cap.pie.dominante'
-                  : segunConprel?.conprel > 0
+                  : cero.estado === 'discrepan'
                     ? 'presupuesto.cap.pie.ceroDiscrepan'
-                    : segunConprel && segunConprel.conprel === null
+                    : cero.estado === 'sinConprel'
                       ? 'presupuesto.cap.pie.ceroSinConprel'
-                      : 'presupuesto.cap.pie.cero',
+                      : cero.estado === 'sinContraste'
+                        ? 'presupuesto.cap.pie.ceroSinContraste'
+                        : 'presupuesto.cap.pie.cero',
               ),
               {
                 capitulo: dominante.rotulo,
@@ -926,7 +946,7 @@ function CapitulosCard() {
                 // más abajo, donde ese capítulo aparece como «905.517 €». La
                 // frase existe para que el lector lo compruebe allí, y un
                 // «0,91 M€» le pone una conversión por delante.
-                conprel: eur0(segunConprel?.conprel ?? 0),
+                conprel: eur0(cero?.conprel ?? 0),
               },
             )}
           />

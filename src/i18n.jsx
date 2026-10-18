@@ -1642,6 +1642,15 @@ export const CATALOGUE = {
       'El ayuntamiento abrió el año con {inicial} de crédito, lo amplió en {mod} durante el ejercicio —un {pct} % más— y ejecutó {ejecutado}.',
     'presupuesto.lede.dominanteCero':
       ' Casi toda la ampliación, el {cuota} %, fue a {capitulo}, un capítulo que había empezado en cero.',
+    // El cero de arriba sólo cuando las DOS fuentes lo abren en cero. Si no, se
+    // dice de quién es, como el pie de «Capítulo a capítulo» (misma lectura,
+    // `ceroDelDominante`).
+    'presupuesto.lede.dominanteCeroDiscrepan':
+      ' Casi toda la ampliación, el {cuota} %, fue a {capitulo}, que el estado de ejecución del propio Ayuntamiento abre en cero y el presupuesto remitido a CONPREL con {conprel}.',
+    'presupuesto.lede.dominanteCeroSinConprel':
+      ' Casi toda la ampliación, el {cuota} %, fue a {capitulo}, que el estado de ejecución del propio Ayuntamiento abre en cero y del que el presupuesto remitido a CONPREL no trae cifra.',
+    'presupuesto.lede.dominanteCeroSinContraste':
+      ' Casi toda la ampliación, el {cuota} %, fue a {capitulo}, que el estado de ejecución del propio Ayuntamiento abre en cero.',
     'presupuesto.lede.dominante': ' Casi toda la ampliación, el {cuota} %, fue a {capitulo}.',
     'presupuesto.lede.soloAprobado':
       'El presupuesto aprobado para {year} según el Ministerio de Hacienda es de {gastos} de gastos. Lo ejecutado aparece más abajo en cuanto el Ayuntamiento publica su estado de ejecución.',
@@ -1708,6 +1717,10 @@ export const CATALOGUE = {
       '**{capitulo} abrió el ejercicio con 0 € y acabó con {definitivo}** —el {cuota} % de toda la ampliación—, de los que se ejecutó el {pct} %. Ese cero es el del estado de ejecución del propio Ayuntamiento: **el presupuesto que se remitió a CONPREL le da {conprel} de crédito inicial a ese mismo capítulo**. Las dos fuentes son oficiales y no se reconcilian, así que parte de lo que aquí figura como ampliación ya estaba aprobado en la otra.',
     'presupuesto.cap.pie.ceroSinConprel':
       '**{capitulo} abrió el ejercicio con 0 € y acabó con {definitivo}** —el {cuota} % de toda la ampliación—, de los que se ejecutó el {pct} %. Ese cero es el del estado de ejecución del propio Ayuntamiento; **el presupuesto que se remitió a CONPREL no trae dato de ese capítulo**, así que no se puede decir si ese crédito ya estaba aprobado en la otra fuente.',
+    // Sin CONPREL del mismo ejercicio no hay segundo presupuesto que nombrar:
+    // «ninguno de los dos» afirmaría algo de uno que la página no ha cotejado.
+    'presupuesto.cap.pie.ceroSinContraste':
+      '**{capitulo} abrió el ejercicio con 0 € y acabó con {definitivo}** —el {cuota} % de toda la ampliación—, de los que se ejecutó el {pct} %. Ese cero es el del estado de ejecución del propio Ayuntamiento, y no hay presupuesto remitido a CONPREL del mismo ejercicio con el que cotejarlo.',
     'presupuesto.cap.pie.dominante':
       '**{capitulo} se llevó el {cuota} % de toda la ampliación**: de {inicial} a {definitivo}, de los que se ejecutó el {pct} %.',
     'presupuesto.cap.pie.cociente':
@@ -3623,6 +3636,12 @@ export const CATALOGUE = {
       "L'ajuntament va obrir l'any amb {inicial} de crèdit, el va ampliar en {mod} durant l'exercici —un {pct} % més— i va executar {ejecutado}.",
     'presupuesto.lede.dominanteCero':
       " Quasi tota l'ampliació, el {cuota} %, va anar a {capitulo}, un capítol que havia començat en zero.",
+    'presupuesto.lede.dominanteCeroDiscrepan':
+      " Quasi tota l'ampliació, el {cuota} %, va anar a {capitulo}, que l'estat d'execució del propi Ajuntament obri en zero i el pressupost que es va remetre a CONPREL amb {conprel}.",
+    'presupuesto.lede.dominanteCeroSinConprel':
+      " Quasi tota l'ampliació, el {cuota} %, va anar a {capitulo}, que l'estat d'execució del propi Ajuntament obri en zero i del qual el pressupost que es va remetre a CONPREL no porta xifra.",
+    'presupuesto.lede.dominanteCeroSinContraste':
+      " Quasi tota l'ampliació, el {cuota} %, va anar a {capitulo}, que l'estat d'execució del propi Ajuntament obri en zero.",
     'presupuesto.lede.dominante': " Quasi tota l'ampliació, el {cuota} %, va anar a {capitulo}.",
     'presupuesto.lede.soloAprobado':
       "El pressupost aprovat per a {year} segons el Ministeri d'Hisenda és de {gastos} de despeses. L'executat apareix més avall quan l'Ajuntament publica el seu estat d'execució.",
@@ -3680,6 +3699,8 @@ export const CATALOGUE = {
       "**{capitulo} va obrir l'exercici amb 0 € i va acabar amb {definitivo}** —el {cuota} % de tota l'ampliació—, dels quals es va executar el {pct} %. Eixe zero és el de l'estat d'execució del propi Ajuntament: **el pressupost que es va remetre a CONPREL li dóna {conprel} de crèdit inicial a eixe mateix capítol**. Les dos fonts són oficials i no es reconcilien, així que part del que ací figura com a ampliació ja estava aprovat en l'altra.",
     'presupuesto.cap.pie.ceroSinConprel':
       "**{capitulo} va obrir l'exercici amb 0 € i va acabar amb {definitivo}** —el {cuota} % de tota l'ampliació—, dels quals es va executar el {pct} %. Eixe zero és el de l'estat d'execució del propi Ajuntament; **el pressupost que es va remetre a CONPREL no porta dada d'eixe capítol**, així que no es pot dir si eixe crèdit ja estava aprovat en l'altra font.",
+    'presupuesto.cap.pie.ceroSinContraste':
+      "**{capitulo} va obrir l'exercici amb 0 € i va acabar amb {definitivo}** —el {cuota} % de tota l'ampliació—, dels quals es va executar el {pct} %. Eixe zero és el de l'estat d'execució del propi Ajuntament, i no hi ha pressupost remés a CONPREL del mateix exercici amb què acarar-lo.",
     'presupuesto.cap.pie.dominante':
       "**{capitulo} es va emportar el {cuota} % de tota l'ampliació**: de {inicial} a {definitivo}, dels quals es va executar el {pct} %.",
     'presupuesto.cap.pie.cociente':
