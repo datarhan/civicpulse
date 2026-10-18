@@ -24,7 +24,16 @@ export function pinRadius(amount) {
  * civic-blue. Hover → quick total; click → PlacePopup with the contract cards.
  * Real data only: a pin exists only when a contract title named that place.
  */
-export function MoneyLayer({ snapshot, at, danaOnly, obrasOnly, contractsById, pines }) {
+export function MoneyLayer({
+  snapshot,
+  at,
+  danaOnly,
+  obrasOnly,
+  contractsById,
+  grupos,
+  tenders,
+  pines,
+}) {
   const { data: cpv } = useCpvLabels()
   const { data: geo } = useGeo()
   // Un punto de barrio que tapa el centro de un pin le cede el toque, y la ficha
@@ -85,6 +94,8 @@ export function MoneyLayer({ snapshot, at, danaOnly, obrasOnly, contractsById, p
                 place={p}
                 assignments={snapshot?.assignments}
                 contractsById={contractsById}
+                grupos={grupos}
+                tenders={tenders}
                 danaOnly={danaOnly}
                 obrasOnly={obrasOnly}
                 cpvDict={cpv?.codes}
