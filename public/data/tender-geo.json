@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-18T05:44:50.580Z",
+  "generatedAt": "2026-10-18T07:25:52.598Z",
   "source": {
     "tenders": "2026-10-17T08:49:11.850Z",
     "geo": "2026-10-17T08:51:51.229Z"
@@ -9,8 +9,8 @@
     "totalAmount": 125567342.14999995,
     "locatedContracts": 44,
     "locatedAmount": 3526075.68,
-    "situatedContracts": 114,
-    "situatedAmount": 7385134.12,
+    "situatedContracts": 115,
+    "situatedAmount": 7475114.38,
     "danaContracts": 9,
     "danaAmount": 259915.39,
     "danaAwardedContracts": 82,
@@ -395,6 +395,18 @@
       "danaAmount": 0
     },
     {
+      "slug": "urbanitzacio-valencia-la-vella",
+      "name": "Urbanització València la Vella",
+      "kind": "urbanizacion",
+      "point": [
+        39.5344276,
+        -0.5307458
+      ],
+      "contractCount": 2,
+      "amount": 104830.26,
+      "danaAmount": 0
+    },
+    {
       "slug": "carrer-la-canal",
       "name": "Carrer La Canal",
       "kind": "street",
@@ -692,18 +704,6 @@
       ],
       "contractCount": 1,
       "amount": 14965.6,
-      "danaAmount": 0
-    },
-    {
-      "slug": "urbanitzacio-valencia-la-vella",
-      "name": "Urbanització València la Vella",
-      "kind": "urbanizacion",
-      "point": [
-        39.5344276,
-        -0.5307458
-      ],
-      "contractCount": 1,
-      "amount": 14850,
       "danaAmount": 0
     },
     {
@@ -1411,8 +1411,16 @@
       "date": "2026-05-27",
       "contractType": "construction",
       "categoryTitle": "construction",
-      "point": null,
-      "place": null
+      "point": [
+        39.5344276,
+        -0.5307458
+      ],
+      "place": {
+        "kind": "urbanizacion",
+        "name": "Urbanització València la Vella",
+        "matchedText": "Urbanització València la Vella",
+        "sourceId": "urbanitzacio-valencia-la-vella"
+      }
     },
     {
       "id": "4510789",

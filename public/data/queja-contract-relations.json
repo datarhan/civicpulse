@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-18T05:46:27.267Z",
+  "generatedAt": "2026-10-18T07:25:53.947Z",
   "source": "queja-contract-relations engine v1 (deterministic)",
   "stats": {
     "frozen": false,
@@ -143,7 +143,7 @@
       "via": "deterministic",
       "signals": {
         "place": {
-          "granularity": "barrio",
+          "granularity": "exact",
           "slug": "urbanitzacio-valencia-la-vella"
         },
         "department": {
@@ -665,7 +665,7 @@
   "builtFrom": {
     "promises.json": "08c43b132d79",
     "quejas.json": "efffb9b3aabc",
-    "tender-geo.json": "03da7e1089d5",
+    "tender-geo.json": "7b65470462a3",
     "tenders.json": "7269fc1db4ca"
   }
 }
