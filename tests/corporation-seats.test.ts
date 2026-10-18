@@ -3,6 +3,7 @@ import { readFileSync } from 'node:fs'
 import { resolve } from 'node:path'
 import {
   oneSeatBlocsOf,
+  partyOfAlcaldia,
   seatsFromOfficials,
   singleSeatAttributions,
   singleSeatBlocs,
@@ -168,5 +169,50 @@ describe('singleSeatAttributions', () => {
         ONE,
       ),
     ).toEqual([])
+  })
+})
+
+describe('partyOfAlcaldia', () => {
+  const alcalde = { slug: 'a', name: 'A', party: 'X', role: 'alcalde' }
+  const concejal = { slug: 'b', name: 'B', party: 'Y', role: 'concejal' }
+
+  it("is the sitting alcalde's party", () => {
+    expect(partyOfAlcaldia({ officials: [concejal, alcalde] })).toBe('X')
+  })
+
+  it('is null, never a party, when the roster has no alcalde or several', () => {
+    expect(partyOfAlcaldia(null)).toBeNull()
+    expect(partyOfAlcaldia({ officials: [concejal] })).toBeNull()
+    expect(
+      partyOfAlcaldia({ officials: [alcalde, { ...alcalde, slug: 'c', party: 'Y' }] }),
+    ).toBeNull()
+  })
+
+  it('is null for a note written before the mayor changed, or when the roster lacks the day', () => {
+    const left = (until?: string) => ({ ...alcalde, slug: 'z', party: 'Y', until })
+    const doc = (until?: string): OfficialsDoc => ({
+      officials: [alcalde],
+      formerOfficials: [left(until)],
+    })
+    expect(partyOfAlcaldia(doc('2026-03-01'), '2026-06-16')).toBe('X')
+    expect(partyOfAlcaldia(doc('2026-06-16'), '2026-06-16')).toBeNull()
+    expect(partyOfAlcaldia(doc('2026-09-01'), '2026-06-16')).toBeNull()
+    expect(partyOfAlcaldia(doc(undefined), '2026-06-16')).toBeNull()
+    // Without a day, today's alcaldía is the answer.
+    expect(partyOfAlcaldia(doc('2026-09-01'))).toBe('X')
+    // A former concejal is not a change of mayor.
+    expect(
+      partyOfAlcaldia(
+        { officials: [alcalde], formerOfficials: [{ ...concejal, until: '2026-09-01' }] },
+        '2026-06-16',
+      ),
+    ).toBe('X')
+  })
+
+  it('reads the published roster: one sitting alcalde, so the bridge on /promesas has a party', () => {
+    const doc = JSON.parse(
+      readFileSync(resolve(__dirname, '../public/data/officials.json'), 'utf8'),
+    ) as OfficialsDoc
+    expect(partyOfAlcaldia(doc)).not.toBeNull()
   })
 })

@@ -447,12 +447,16 @@ export default function Metodologia() {
             <strong>Palabras del partido, con su fuente enlazada.</strong> Cada promesa se atribuye
             mediante una cita literal (≥20 caracteres) que son palabras del partido: lo que la
             fuente pone entre comillas en boca del partido o de uno de sus cargos, o el texto de una
-            nota del propio Ayuntamiento en su web. Nunca el titular ni la narración del periodista:
-            si una noticia sólo cuenta el compromiso con sus palabras, no hay cita que publicar. La
-            ficha enlaza su fuente —el documento oficial o la noticia que recoge la cita— y nombra
-            quién la publicó. Nuestros propios datos no sirven de fuente: con ellos se contrasta una
-            promesa, no se sostiene. Una cita corregida enseña en su ficha la que había antes, y una
-            ficha retirada queda listada al pie de{' '}
+            nota del propio Ayuntamiento en su web. Esa nota es la voz del gobierno municipal, no un
+            comunicado del partido: se atribuye al partido que ostenta la alcaldía, y la ficha lo
+            dice junto a su fuente, con el partido leído del listado de la corporación. Cuando la
+            bitácora de una ficha dice «sin palabras del partido», habla de la cita que se corrigió,
+            no de la vigente. Nunca el titular ni la narración del periodista: si una noticia sólo
+            cuenta el compromiso con sus palabras, no hay cita que publicar. La ficha enlaza su
+            fuente —el documento oficial o la noticia que recoge la cita— y nombra quién la publicó.
+            Nuestros propios datos no sirven de fuente: con ellos se contrasta una promesa, no se
+            sostiene. Una cita corregida enseña en su ficha la que había antes, y una ficha retirada
+            queda listada al pie de{' '}
             <a href="/promesas" style={{ color: 'var(--civic)' }}>
               /promesas
             </a>{' '}
@@ -639,9 +643,10 @@ export default function Metodologia() {
           una verificación determinista de anclaje: la URL de la fuente debe resolver y la cita
           textual debe aparecer literalmente en ella y ser palabras del partido —en una noticia,
           dentro de las comillas con que el medio las recoge; en la web del Ayuntamiento vale su
-          propio texto—. Un titular o la narración del periodista no se anclan aunque estén en la
-          página. Sólo se publica automáticamente lo que supera un umbral de confianza (≥0,70){' '}
-          <em>y</em> queda anclado; el resto espera revisión humana en cola.
+          propio texto, que se atribuye al partido de la alcaldía—. Un titular o la narración del
+          periodista no se anclan aunque estén en la página. Sólo se publica automáticamente lo que
+          supera un umbral de confianza (≥0,70) <em>y</em> queda anclado; el resto espera revisión
+          humana en cola.
         </p>
         <p style={{ margin: '8px 0 0', color: 'var(--ink70)' }}>
           Los <em>cambios de estado</em> sobre promesas ya publicadas se infieren de licitaciones y

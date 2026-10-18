@@ -11,6 +11,8 @@ import {
   TOPIC_LABEL,
 } from '../hooks/usePromises'
 import { V1_STATUSES, advancesStatus } from '../scraper/promises'
+import { notaDelAyuntamiento } from '../scraper/promise-grounding'
+import { useOfficials } from '../hooks/useOfficials'
 import { fmtDateLong } from '../lib/formatters'
 import { useT } from '../i18n'
 import { useCitationHealth, citationStatus, citationArchive } from '../hooks/useCitationHealth'
@@ -198,7 +200,40 @@ function CompositionBar({ items }) {
   )
 }
 
-export function PromiseCard({ p, suggestion, llmEvidence, frozen }) {
+/**
+ * Por qué una nota del Ayuntamiento va bajo la pastilla de un partido. La
+ * regla (`quoteIsPartyWords`) la toma por palabras del gobierno municipal, que
+ * es el partido de la alcaldía; la ficha no lo decía, y junto a una bitácora
+ * que dice «sin palabras del partido» de la cita anterior, se leía como que la
+ * vigente tampoco lo es (revisión lectora, 18-10-2026). El partido se lee del
+ * listado de la corporación (`partyOfAlcaldia`), nunca se escribe: si cambia
+ * la alcaldía después de la nota, o el listado no lo dice, la frase se queda
+ * sin él. `officials` indefinido es «aún cargando»: no se pinta nada.
+ */
+function NotaDelAyuntamiento({ p, officials }) {
+  if (officials === undefined) return null
+  const nota = notaDelAyuntamiento(p, officials)
+  if (!nota) return null
+  return (
+    <div
+      data-nota-ayuntamiento={nota.atribucion}
+      style={{
+        fontSize: 'var(--fs-micro)',
+        color: 'var(--ink50)',
+        lineHeight: 1.45,
+        maxWidth: '68ch',
+        marginBottom: 6,
+      }}
+    >
+      Nota del Ayuntamiento: es el texto del gobierno municipal, no un comunicado del partido.
+      {nota.atribucion === 'coincide' &&
+        ` Se atribuye al ${nota.alcaldia} porque es el partido de la alcaldía.`}
+      {nota.atribucion === 'otra' && ` La alcaldía la ostenta el ${nota.alcaldia}.`}
+    </div>
+  )
+}
+
+export function PromiseCard({ p, suggestion, llmEvidence, frozen, officials }) {
   const citations = useCitationHealth()
   // La fuente ni resuelve ni tiene copia: lo que la tarjeta dice del estado no
   // puede dar por consultable lo que ella misma acaba de marcar como roto.
@@ -335,6 +370,7 @@ export function PromiseCard({ p, suggestion, llmEvidence, frozen }) {
           </Pill>
         )}
       </div>
+      <NotaDelAyuntamiento p={p} officials={officials} />
 
       {p.evidence.length === 0 && (
         /**
@@ -574,6 +610,9 @@ export default function Promesas() {
   const t = useT()
   const { loading, error, data } = usePromises()
   const { data: sugg } = usePromiseSuggestions()
+  const roster = useOfficials()
+  // Indefinido mientras carga; null si no hay listado (ver NotaDelAyuntamiento).
+  const officials = roster.loading ? undefined : (roster.data ?? null)
   const [partyFilter, setPartyFilter] = useState('all')
   const [topicFilter, setTopicFilter] = useState('all')
 
@@ -727,6 +766,7 @@ export default function Promesas() {
             suggestion={suggestionsById[p.id]}
             llmEvidence={sugg?.llmEvidence || []}
             frozen={frozen}
+            officials={officials}
           />
         ))}
       </div>

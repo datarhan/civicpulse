@@ -459,6 +459,13 @@ overwrites it. Change the bot's SQLite instead.
 - **Scope** — FGV also operates the TRAM d'Alacant, whose relations answer the `operator` clause and whose line refs collide with València's (L1–L5 and L9, measured 2026-09-15). Before the parser split them, the legend titled València lines with TRAM names and the snapshot carried Alicante's stations. `ambitoDeLaRelacion` keeps a relation only when its `network` is Metrovalencia, or it has none, and none of its geometry lies south of latitude 39.0 (between Dénia and Castelló). The snapshot's `ambito` block counts the relations queried, included, without a line ref, and excluded by reason and network; `tests/metro-network-ambito.test.ts` reds on anything out of scope in the published file
 - **Surfaces** — Direction D StylizedMap `FullNetwork` layer: thin coloured polylines + small station dots across the whole region, plus a line-legend pill row
 
+### Mapa de situación de «matrículas y móviles» (figura congelada de un reportaje)
+
+- **Pipeline** — `npm run build:mapa-pliego` (`scripts/build-mapa-pliego.ts`) → `src/scraper/mapa-pliego.ts` (fixture `tests/fixtures/osm_matriculas-pliego_2026-10-18.json`, la respuesta a `--ql`) → bloque `mapa` de `reportajes/matriculas-y-moviles.json`. A mano, no en la nocturna: como toda cifra de un reportaje, se congela con la fecha de su consulta
+- **Source** — **OSM Overpass API** — la relación 3774370 (Parc Natural del Túria), las tres calles junto a las que el pliego del expediente 98/2025 sitúa sus aparcamientos con cámaras (por su nombre OSM exacto, en `mapa-pliego-config.ts`), el Riu Túria, y los nodos de Porxinos y del pueblo
+- **Scope** — dibuja la CALLE que nombra el pliego, nunca un pin donde creemos que está el aparcamiento. El build se niega a escribir si alguna calle cae dentro del parque (par-impar con los huecos), porque la pieza afirma lo contrario; la prueba comprueba además que `dentro` sí da «dentro» para el cauce
+- **Surfaces** — `/reportajes/matriculas-y-moviles`, §03
+
 ### Metrovalencia GTFS static schedule (L9 + L2 at 4 local stations)
 
 - **Pipeline** — `scrape-fgv-gtfs.ts` → `metro-schedule.json`

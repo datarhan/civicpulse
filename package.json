@@ -89,6 +89,7 @@
     "compute:entities": "npx tsx scripts/compute-entities.ts",
     "entity-alias": "npx tsx scripts/entity-alias.ts",
     "build:cpv-labels": "npx tsx scripts/build-cpv-labels.ts",
+    "build:mapa-pliego": "npx tsx scripts/build-mapa-pliego.ts",
     "suggest:place-geocode": "npx tsx scripts/suggest-place-geocode.ts",
     "promote-place": "npx tsx scripts/promote-place.ts",
     "extract:pleno-votes": "npx tsx scripts/extract-pleno-votes.ts",
