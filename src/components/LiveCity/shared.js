@@ -32,6 +32,13 @@ export function colorForMetroRef(ref) {
 export const DEFAULT_CENTER = [39.5439, -0.5711]
 
 /**
+ * Lo que la cinta «DIRECTO» ocupa del borde de arriba del mapa, más 8 px de aire:
+ * LiveTicker la pone a `top: 14` con `height: 36`, y por encima de todo lo que va en
+ * el mapa (z-index 401). Nada que tenga que leerse entero puede subir de aquí.
+ */
+export const BAJO_LA_CINTA = 58
+
+/**
  * Margen de arriba para el auto-pan de una ficha: la cinta «DIRECTO» de la portada
  * (LiveTicker: `top: 14`, `height: 36`) va encima del mapa, y una ficha que Leaflet
  * dejaba pegada al borde superior quedaba con su cabecera debajo. A 375 px la ficha
@@ -39,7 +46,7 @@ export const DEFAULT_CENTER = [39.5439, -0.5711]
  * el margen de arriba, así que lo que va bajo la cabecera —el enlace a la ficha del
  * barrio— queda a la vista.
  */
-export const MARGEN_FICHA_ARRIBA = /** @type {[number, number]} */ ([5, 58])
+export const MARGEN_FICHA_ARRIBA = /** @type {[number, number]} */ ([5, BAJO_LA_CINTA])
 
 export function ResizeOnMount() {
   const map = useMap()

@@ -2,6 +2,13 @@ import { useReportaje } from '../../hooks/useReportaje'
 import Emblema, { cifrasDelEmblema } from '../../components/reportajes/Emblema'
 import { CorrectionNote, CorrectionNotice } from '../../components/reportajes/CorrectionNote'
 import { SecHead, IndicePieza } from '../../components/reportajes/Pieza'
+import SolicitudLector from '../../components/reportajes/SolicitudLector'
+import { debeOfrecerSolicitud } from '../../lib/solicitud-lector'
+import {
+  clasesApartadas,
+  preguntasDe,
+  solicitables as soloSolicitables,
+} from '../../lib/solicitud-apartadas'
 
 const SERIF = "'Fraunces', Georgia, serif"
 
@@ -205,6 +212,10 @@ export default function Basuras() {
   const ce = data.costeEfectivo
   const cal = data.calendario
   const ch = cal.contradiccionHoraria
+  // Qué preguntas del cuestionario van en el escrito del lector: la lista
+  // editorial de src/lib/solicitud-apartadas.js, con el porqué de cada una.
+  const todasLasPreguntas = preguntasDe(data)
+  const solicitables = soloSolicitables('basuras', todasLasPreguntas)
 
   return (
     <div
@@ -835,6 +846,19 @@ export default function Basuras() {
           )
         })}
         <p style={{ color: 'var(--ink50)', fontSize: 'var(--fs-body)' }}>{data.preguntas.cierre}</p>
+        {debeOfrecerSolicitud({
+          meta: m,
+          preguntas: solicitables,
+          solicitudes: data.solicitudes,
+        }) && (
+          <SolicitudLector
+            meta={m}
+            ruta="/reportajes/basuras"
+            preguntas={solicitables}
+            total={todasLasPreguntas.length}
+            clases={clasesApartadas('basuras', todasLasPreguntas)}
+          />
+        )}
       </article>
 
       {/* Fuentes + método */}
