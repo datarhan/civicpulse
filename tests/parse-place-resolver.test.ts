@@ -484,6 +484,66 @@ describe('place-resolver — buildGazetteer', () => {
 // public/data/tenders.json que nombran un sitio que el nomenclátor sí tiene y que
 // el resolutor determinista no alcanzaba. Cada caso trae su contraprueba: la
 // puerta que lo vuelve fiable sigue cerrando.
+describe('place-resolver — «poli-deportivo» no es el pabellón (4863213)', () => {
+  // El 18-10-2026, al rehacer el mapa de /reportajes/reconstruccion-dana: el
+  // contrato DANA de 114.211 € «cambio de pavimento de las pistas del
+  // poli-deportivo municipal» estaba pinchado en el Pavelló, a unos 600 m del
+  // Poliesportiu. El alias «Pabellón deportivo municipal» dejaba, sin su
+  // «pabellón», la aguja «deportivo municipal», y el guion de «poli-deportivo»
+  // la destapaba. Era el segundo lugar con más gasto DANA situado.
+  const POLI = {
+    id: 'way-39586076',
+    name: 'Polideportivo Municipal',
+    category: 'deporte',
+    kind: 'sports_centre',
+    lat: 39.5460249,
+    lng: -0.5806981,
+  }
+  const PAVELLO = {
+    id: 'pavello-municipal',
+    name: 'Pabellón deportivo municipal',
+    category: 'deporte',
+    kind: 'sports_hall',
+    lat: 39.54395,
+    lng: -0.57328,
+  }
+  const gaz = buildGazetteer({ pois: [POLI, PAVELLO] })
+  const TITULO =
+    'Contrato Administrativo Obras de recuperación de instalación deportiva con el cambio de pavimento de las pistas del poli-deportivo municipal por daños sufridos tras la DANA 2024'
+
+  it('«poli-deportivo» se pliega como «polideportivo»', () => {
+    expect(foldTitle('pistas del poli-deportivo municipal')).toBe(
+      'pistas del polideportivo municipal',
+    )
+  })
+
+  it('el contrato va al polideportivo que nombra, no al pabellón', () => {
+    expect(resolvePlace(foldTitle(TITULO), gaz, { allowPoi: true })?.sourceId).toBe('way-39586076')
+  })
+
+  it('«deportivo municipal» no es una aguja: dos palabras genéricas no sitúan nada', () => {
+    const soloPavello = buildGazetteer({ pois: [PAVELLO] })
+    expect(soloPavello[0].needles).not.toContain('deportivo municipal')
+    expect(
+      resolvePlace(
+        foldTitle('Obras en la pista deportiva del campo deportivo municipal'),
+        soloPavello,
+        {
+          allowPoi: true,
+        },
+      ),
+    ).toBeNull()
+    // El pabellón se sigue situando cuando el título lo nombra.
+    expect(
+      resolvePlace(
+        foldTitle('instalación de ACS con mezcladores para duchas en pabellón deportivo municipal'),
+        soloPavello,
+        { allowPoi: true },
+      )?.sourceId,
+    ).toBe('pavello-municipal')
+  })
+})
+
 describe('place-resolver — lugares que el nomenclátor tiene y el resolutor no alcanzaba', () => {
   const CEMENTERIO = {
     id: 'way-740051593',
