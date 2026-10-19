@@ -61,7 +61,7 @@ export type Dimension = 'operativa' | 'respuesta' | 'fiscal' | 'friccion'
 export type EstadoCelda = 'declarado' | 'no-declarado' | 'no-se-presta'
 
 export type Motivo =
-  /** El atributo o la fila no aparecen. */
+  /** El atributo o la fila no aparecen, o su casilla viene vacía: la entrega no trae cifra. */
   | 'ausente'
   /** Vino 0 junto a un gasto real: es «no lo declaré», no una cantidad. */
   | 'cero-sin-declarar'
@@ -423,7 +423,12 @@ export function resolverCoste(filas: CesteRow[], programa: string, anio: number)
   // 1.964.894,95 y 282.412,19), y ahí no hay forma honesta de elegir.
   const positivas = rows.filter((r) => (r.costeTotal ?? 0) > 0)
   if (!positivas.length) {
-    return { valor: null, estado: 'no-declarado', motivo: 'cero-sin-declarar', fuente }
+    // Una casilla vacía (`null` desde el parser) no «viene a cero», que es lo
+    // que el texto de `cero-sin-declarar` le dice al lector. Si ninguna fila
+    // del servicio trae cifra, lo cierto es que la entrega no la trae.
+    const algunCero = rows.some((r) => r.modoGestion !== 'no-se-presta' && r.costeTotal === 0)
+    const motivo = algunCero ? 'cero-sin-declarar' : 'ausente'
+    return { valor: null, estado: 'no-declarado', motivo, fuente }
   }
   const distintos = new Set(positivas.map((r) => r.costeTotal))
   if (distintos.size > 1) {
@@ -447,14 +452,19 @@ export function resolverUnidad(
   const fuente = fuenteUnidad(anio, programa, atributo)
   const rows = filas.filter((f) => f.programa === programa && f.anio === anio)
   const valores = rows.flatMap((r) => r.unidades.filter((u) => u.atributo === atributo))
-  if (!valores.length) return { valor: null, estado: 'no-declarado', motivo: 'ausente', fuente }
+  // Una casilla vacía no es una afirmación: ni cuenta como valor rival de una
+  // declarada («0 y 16» es ambiguo; «nada y 16» no) ni pasa por un cero.
+  const declarados = valores.flatMap((v) => (v.valor === null ? [] : [v.valor]))
+  if (!declarados.length) {
+    return { valor: null, estado: 'no-declarado', motivo: 'ausente', fuente }
+  }
 
-  const distintos = new Set(valores.map((v) => v.valor))
+  const distintos = new Set(declarados)
   if (distintos.size > 1) {
     return { valor: null, estado: 'no-declarado', motivo: 'atributo-ambiguo', fuente }
   }
 
-  const valor = valores[0].valor
+  const valor = declarados[0]
   if (valor <= 0) {
     return { valor: null, estado: 'no-declarado', motivo: 'cero-sin-declarar', fuente }
   }

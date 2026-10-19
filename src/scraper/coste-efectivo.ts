@@ -24,7 +24,8 @@
  *    refusing to — is src/scraper/indicadores.ts's job.
  *  - **It does not treat 0 as a quantity.** `viajeros = 0` next to a real bus
  *    budget means «no lo declaré», not «nobody rode the bus». The zero is
- *    carried through untouched so the engine can classify it.
+ *    carried through untouched so the engine can classify it — and a BLANK
+ *    cell is carried as `null`, never as that zero, so the two stay apart.
  *
  * Pure parser — the downloads live in scripts/scrape-coste-efectivo.ts.
  */
@@ -55,7 +56,8 @@ export type ModoGestion = (typeof MODOS_GESTION)[number]
 
 export interface UnidadFisica {
   atributo: string
-  valor: number
+  /** `null` cuando la casilla viene vacía o ilegible; 0 sólo si la fuente dice 0. */
+  valor: number | null
 }
 
 export interface CesteRow {
@@ -67,6 +69,10 @@ export interface CesteRow {
   modoGestion: ModoGestion
   /** The ministry's own wording, kept verbatim so the classification is auditable. */
   codGestionRaw: string
+  /**
+   * `null` si el servicio no se presta o si la casilla de coste viene vacía o
+   * ilegible; 0 sólo cuando la fuente declara 0. Nunca se rellena un hueco.
+   */
   costeTotal: number | null
   unidades: UnidadFisica[]
 }
@@ -126,15 +132,30 @@ export function ineFromEnte(ente: string): string | null {
   return m ? m[1] + m[2] : null
 }
 
-function numeric(v: unknown): number {
-  if (typeof v === 'number') return Number.isFinite(v) ? v : 0
-  const n = Number(
-    String(v ?? '')
-      .replace(/\s/g, '')
-      .replace(/\.(?=\d{3}\b)/g, '')
-      .replace(',', '.'),
-  )
-  return Number.isFinite(n) ? n : 0
+/**
+ * La cifra de una casilla, o `null` si la casilla no trae ninguna.
+ *
+ * Devolvía 0 ante una casilla vacía (`Number('')` es 0) o ilegible, y así un
+ * coste en blanco salía idéntico a un coste declarado a cero: la regla 3 de
+ * docs/DATA_INTEGRITY.md, un centinela valiendo por dos hechos. Lo preguntó una
+ * revisión lectora el 2026-10-18 —¿los ceros del agua de 2018–2023 eran «no
+ * calculado»?— y la respuesta, leída en la celda cruda, era que no; pero este
+ * parser no habría podido darla.
+ *
+ * Vale igual para el coste y para las unidades de CE3: el 0 es un dato de la
+ * fuente que el motor clasifica; la casilla vacía no dice nada, y el motor la
+ * lee como `ausente`.
+ */
+function cifra(v: unknown): number | null {
+  if (typeof v === 'number') return Number.isFinite(v) ? v : null
+  if (typeof v !== 'string') return null
+  const limpio = v
+    .replace(/\s/g, '')
+    .replace(/\.(?=\d{3}\b)/g, '')
+    .replace(',', '.')
+  if (!limpio) return null
+  const n = Number(limpio)
+  return Number.isFinite(n) ? n : null
 }
 
 /** Attribute names ship with stray whitespace — 'Nº puntos de luz  ' is real. */
@@ -163,7 +184,7 @@ export function parseCeselWorkbook(
   for (const r of XLSX.utils.sheet_to_json<Record<string, unknown>>(wb.Sheets[ce3Name])) {
     const key = `${r.Ente}|${r.Programa}`
     const list = unidades.get(key) ?? []
-    list.push({ atributo: atributoKey(r.Atributo), valor: numeric(r.Valor) })
+    list.push({ atributo: atributoKey(r.Atributo), valor: cifra(r.Valor) })
     unidades.set(key, list)
   }
 
@@ -185,7 +206,7 @@ export function parseCeselWorkbook(
       programa,
       modoGestion,
       codGestionRaw,
-      costeTotal: modoGestion === 'no-se-presta' ? null : numeric(r.Econ14),
+      costeTotal: modoGestion === 'no-se-presta' ? null : cifra(r.Econ14),
       unidades: unidades.get(`${ente}|${programa}`) ?? [],
     })
   }
@@ -284,7 +305,7 @@ export function parseCeselInforme(
           if (!programa) continue
           const clave = `${ente}|${programa}`
           const lista = unidades.get(clave) ?? []
-          lista.push({ atributo: atributoKey(r?.[a3]), valor: numeric(r?.[v3]) })
+          lista.push({ atributo: atributoKey(r?.[a3]), valor: cifra(r?.[v3]) })
           unidades.set(clave, lista)
         }
       }
@@ -313,7 +334,7 @@ export function parseCeselInforme(
         programa: sufijo + programa,
         modoGestion,
         codGestionRaw,
-        costeTotal: modoGestion === 'no-se-presta' ? null : numeric(r?.[iCoste]),
+        costeTotal: modoGestion === 'no-se-presta' ? null : cifra(r?.[iCoste]),
         unidades: unidades.get(clave) ?? [],
       })
     }
