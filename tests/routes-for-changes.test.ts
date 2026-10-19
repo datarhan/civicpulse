@@ -1,10 +1,11 @@
 import { describe, it, expect } from 'vitest'
-import { readFileSync } from 'node:fs'
+import { existsSync, readFileSync } from 'node:fs'
 import { join } from 'node:path'
 import { construirGrafoRutas } from '../scripts/lib/route-graph'
 import { leerDeDisco } from '../scripts/lib/fichas-representativas'
 import { rutasDeFichero, ordenarPorCentralidad } from '../scripts/routes-for-changes'
 import { estadoDe, rutaBase } from '../src/scraper/reader-review'
+import { REPORTAJE_SLUGS } from '../src/reportajes'
 
 const ROOT = join(__dirname, '..')
 const grafo = construirGrafoRutas(join(ROOT, 'src'))
@@ -257,4 +258,66 @@ describe('la centralidad ordena por lo que el push reescribió', () => {
     expect(r.directas).toBe(0)
     expect(r.rutas.length).toBeGreaterThan(20)
   })
+})
+
+describe('un reportaje: su snapshot congelado lleva a su pieza', () => {
+  // Medido el 19-10-2026 en la PR #385: un push que sólo tocaba
+  // public/data/reportajes/reconstruccion-dana.json imprimió «ninguna ruta
+  // afectada por estos 2 fichero(s)». `useReportaje` carga el JSON con un
+  // literal de plantilla —`/data/reportajes/${slug}.json`— y el grafo sólo casa
+  // literales `/data/x.json`, así que ninguna pieza tenía su propio dato. Una
+  // corrección de cifras a un reportaje publicado no la leía nadie al empujar.
+  const fichero = (slug: string) => `public/data/reportajes/${slug}.json`
+
+  it('PREMISA medida: hay piezas, y cada una tiene su JSON y su ruta montada', () => {
+    // Sin esto, un registro vacío haría verdes las pruebas de abajo sin evaluar
+    // una sola pieza.
+    expect(REPORTAJE_SLUGS.length).toBeGreaterThan(0)
+    expect(REPORTAJE_SLUGS).toContain('reconstruccion-dana')
+    for (const slug of REPORTAJE_SLUGS) {
+      expect(existsSync(join(ROOT, fichero(slug))), `${slug}: falta su JSON`).toBe(true)
+      expect(grafo.rutas, `${slug}: su ruta no está montada`).toContain(`/reportajes/${slug}`)
+    }
+  })
+
+  it.each(REPORTAJE_SLUGS.map((s) => [s]))('el JSON de %s selecciona su pieza', (slug) => {
+    expect(rutas(fichero(slug))).toContain(`/reportajes/${slug}`)
+  })
+
+  it.each(REPORTAJE_SLUGS.map((s) => [s]))(
+    'el JSON de %s no selecciona las OTRAS piezas',
+    (slug) => {
+      // «Más reportajes» pinta título y fecha de las demás, y el índice pinta
+      // eso y más: leer cinco piezas enteras para ver un título que ya lee
+      // /reportajes es repartir el presupuesto entre páginas que nadie tocó.
+      const otras = rutas(fichero(slug)).filter(
+        (r) => r.startsWith('/reportajes/') && r !== `/reportajes/${slug}`,
+      )
+      expect(otras).toEqual([])
+    },
+  )
+
+  it.each(REPORTAJE_SLUGS.map((s) => [s]))(
+    'el JSON de %s selecciona también el índice y la portada, que pintan su ficha',
+    (slug) => {
+      // /reportajes dibuja el emblema y el subtítulo del mismo JSON; la portada,
+      // su titular. Publicar una pieza —`meta.estado`— cambia las dos.
+      const r = rutas(fichero(slug))
+      expect(r).toContain('/reportajes')
+      expect(r).toContain('/')
+    },
+  )
+
+  it.each(REPORTAJE_SLUGS.map((s) => [s]))(
+    'el JSON de %s pone su pieza la PRIMERA, como directa',
+    (slug) => {
+      // En el gancho sólo cabe una ruta, y `--rotate-desde` rota todo lo que no
+      // es directa: sin esto la portada —leída hace más tiempo— le quitaba el
+      // turno a la pieza cuyas cifras acababan de cambiar.
+      const c = ordenarPorCentralidad([fichero(slug)], grafo, publicados)
+      expect(c.rutas[0]).toBe(`/reportajes/${slug}`)
+      expect(c.directas).toBe(1)
+      expect(c.sinRuta).toEqual([])
+    },
+  )
 })

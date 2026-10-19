@@ -14,6 +14,7 @@ import {
   PROSA_POR_SNAPSHOT,
   MAPA_CARGADO,
 } from '../.claude/hooks/stale-copy-paths.mjs'
+import { REPORTAJE_SLUGS } from '../src/reportajes.js'
 
 // El recordatorio existe porque tres frases se quedaron viejas en una sola
 // sesión y ningún test las cazó: los datos estaban bien y las guardas
@@ -62,6 +63,22 @@ describe('hooks/stale-copy — a qué snapshot le sigue prosa', () => {
     expect(snapshotDe('package.json')).toBeNull()
     expect(snapshotDe('public/data/pleno-claims/x.json')).toBeNull() // troceados, sin prosa propia
     expect(snapshotDe(undefined)).toBeNull()
+  })
+
+  it('un reportaje sí lleva prosa: su JSON congelado nombra su pieza', () => {
+    // `public/data/reportajes/<slug>.json` vive en una carpeta, como los
+    // troceados, pero es el dato entero de una página. Hasta el 19-10-2026 este
+    // aviso no lo veía (PR #385): corregir las cifras de un reportaje publicado
+    // no recordaba releer la prosa que las rodea.
+    expect(REPORTAJE_SLUGS.length).toBeGreaterThan(0)
+    expect(snapshotDe('public/data/reportajes/reconstruccion-dana.json')).toBe(
+      'reportajes/reconstruccion-dana.json',
+    )
+    for (const slug of REPORTAJE_SLUGS) {
+      expect(rutasAfectadas(`public/data/reportajes/${slug}.json`), slug).toContain(
+        `/reportajes/${slug}`,
+      )
+    }
   })
 
   it('nombra las páginas que describen ese dato con palabras', () => {
@@ -371,6 +388,17 @@ describe('hooks/stale-copy — lo que reescribe un script por Bash', () => {
       'public/data/indicadores.json',
       'public/data/streets.json',
     ])
+  })
+
+  it('un reportaje reescrito por un script también avisa de su pieza', () => {
+    // `git status` iba acotado a `public/data/*.json`, que no cruza carpetas:
+    // el JSON de una pieza no aparecía nunca, aunque el mapa lo conociera.
+    expect(REPORTAJE_SLUGS).toContain('reconstruccion-dana')
+    escribir('public/data/reportajes/reconstruccion-dana.json', '{"v":2}\n')
+    expect(snapshotsDeEstado(git(...GIT_STATUS_SNAPSHOTS))).toContain(
+      'public/data/reportajes/reconstruccion-dana.json',
+    )
+    expect(contextoDe(bash().stdout)).toContain('/reportajes/reconstruccion-dana')
   })
 
   it('fuera de un repositorio calla y sale 0', () => {
