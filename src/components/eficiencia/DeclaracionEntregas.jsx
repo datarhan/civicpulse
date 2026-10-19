@@ -38,6 +38,8 @@
  *   sería una casilla que ninguna pasada de contraste mira: verde por no
  *   ejecutarse, que es el defecto que esta casa lleva años pagando.
  */
+import { useId } from 'react'
+
 const HATCH = 'repeating-linear-gradient(135deg, var(--warn-soft) 0 4px, var(--paper) 4px 8px)'
 
 function Casilla({ children, tono, primera, ultima }) {
@@ -46,6 +48,9 @@ function Casilla({ children, tono, primera, ultima }) {
   } ${primera ? 'var(--r-input)' : 0}`
   const base = {
     height: 22,
+    minWidth: 52,
+    padding: '0 3px',
+    boxSizing: 'border-box',
     display: 'grid',
     placeItems: 'center',
     borderRadius: radio,
@@ -211,6 +216,7 @@ function Muestra({ estilo, children }) {
 }
 
 export function DeclaracionEntregas({ indicador, entregasPublicadas = [], noPresentadas = [] }) {
+  const tituloId = useId()
   const i = indicador
   const anios = entregasPublicadas.length
     ? [...entregasPublicadas].sort((a, b) => a - b)
@@ -300,6 +306,7 @@ export function DeclaracionEntregas({ indicador, entregasPublicadas = [], noPres
         }}
       >
         <span
+          id={tituloId}
           className="mono"
           style={{
             fontSize: 'var(--fs-micro)',
@@ -317,15 +324,32 @@ export function DeclaracionEntregas({ indicador, entregasPublicadas = [], noPres
 
       {/* overflowX explícito: `.cp-scroll-x` de index.css sólo enciende por
           debajo de 720px, así que en escritorio esta rejilla empujaría la
-          página igual que hizo la tabla del libro. */}
-      <div style={{ marginTop: 12, overflowX: 'auto' }}>
+          página igual que hizo la tabla del libro.
+
+          Cada columna mide al menos lo que su cifra más ancha. Con
+          `minmax(52px, 1fr)` y un ancho mínimo calculado a 56 px por entrega,
+          a 375 px las casillas se quedaban en 52 y «1.990.000» se montaba
+          sobre «1.657.441»: la cifra que la ficha afirma repetida, ilegible.
+          `max-content` deja que la rejilla crezca y que sea el contenedor el
+          que se desplace; y como entonces se desplaza, es una región con nombre
+          que entra en el orden del teclado (axe `scrollable-region-focusable`,
+          como `Deslizable`). La holgura de 3 px por lado es la que cabe a
+          1280 px sin que la rejilla se desplace con la cifra más ancha. */}
+      <div
+        role="region"
+        aria-labelledby={tituloId}
+        tabIndex={0}
+        style={{ marginTop: 12, overflowX: 'auto' }}
+      >
         <div
+          data-rejilla-entregas=""
           style={{
             display: 'grid',
-            gridTemplateColumns: `92px repeat(${anios.length}, minmax(52px, 1fr))`,
+            gridTemplateColumns: `92px repeat(${anios.length}, minmax(max-content, 1fr))`,
             gap: 4,
             alignItems: 'center',
-            minWidth: 92 + anios.length * 56,
+            width: 'max-content',
+            minWidth: '100%',
           }}
         >
           <span className="mono" style={{ fontSize: 'var(--fs-micro)', color: 'var(--ink50)' }}>
