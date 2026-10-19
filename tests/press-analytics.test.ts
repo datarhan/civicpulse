@@ -347,7 +347,7 @@ describe('press-analytics — computeCoverageGaps', () => {
   it('flags pleno items whose title tokens never appear in press headlines', () => {
     const press = [
       makePress({
-        title: 'Riba-roja invierte en el parque del Túria',
+        title: 'Riba-roja invierte en la renaturalización del parque fluvial',
         date: '2026-05-19T10:00:00Z',
       }),
     ]
@@ -364,7 +364,7 @@ describe('press-analytics — computeCoverageGaps', () => {
             },
             {
               number: 2,
-              title: 'Aprobación del parque del Túria',
+              title: 'Aprobación del proyecto de renaturalización del parque fluvial',
               department: 'MEDIO AMBIENTE',
             },
           ],
@@ -373,7 +373,9 @@ describe('press-analytics — computeCoverageGaps', () => {
     }
     const r = computeCoverageGaps({ press, agendas, now: NOW, windowDays: 14 })
     // Item 1 ("subvenciones", "reglamento", "modificación") doesn't intersect press tokens.
-    // Item 2 ("parque", "túria") shares with press → covered.
+    // Item 2 shares «renaturalización», «parque» and «fluvial» with ONE headline → covered.
+    // It used to be covered by «parque» + «túria» alone: one shared word, and the
+    // town's own name (tests/press-lagunas-cobertura.test.ts).
     expect(r.items.length).toBe(1)
     expect(r.items[0].kind).toBe('pleno-item')
     expect(r.items[0].refId).toBe('p-1:1')

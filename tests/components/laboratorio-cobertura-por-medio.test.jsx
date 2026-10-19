@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { render, screen } from '@testing-library/react'
+import { fireEvent, render, screen } from '@testing-library/react'
 
 import { OutletScoreboard, TrustIndicators } from '../../src/pages/Laboratorio'
 
@@ -119,5 +119,31 @@ describe('TrustIndicators — «sin comprobar» dice qué no se comprobó', () =
     expect(chip('Coincide con datos municipales').getAttribute('title')).toMatch(
       /datos municipales/,
     )
+  })
+})
+
+describe('OutletScoreboard — no esconde medios', () => {
+  // El 19-10-2026 la tabla enseñaba 10 de 15 medios con `slice(0, 10)` y no lo decía.
+  const quince = Array.from({ length: 15 }, (_, i) =>
+    fila(`Medio ${String(i + 1).padStart(2, '0')}`, 15 - i, {}, 0),
+  )
+
+  it('con más de diez, dice cuántos quedan y cuántos artículos suman', () => {
+    render(<OutletScoreboard outlets={quince} />)
+    expect(screen.getByText('Medio 10')).toBeTruthy()
+    expect(screen.queryByText('Medio 11')).toBeNull()
+    // Los cinco restantes: 5 + 4 + 3 + 2 + 1 artículos.
+    expect(screen.getByText(/y 5 medios más · 15 artículos/)).toBeTruthy()
+  })
+
+  it('el botón los enseña todos', () => {
+    render(<OutletScoreboard outlets={quince} />)
+    fireEvent.click(screen.getByRole('button', { name: /ver los 15 medios/i }))
+    expect(screen.getByText('Medio 15')).toBeTruthy()
+  })
+
+  it('con diez o menos no hay cola', () => {
+    render(<OutletScoreboard outlets={quince.slice(0, 10)} />)
+    expect(screen.queryByText(/medios más/)).toBeNull()
   })
 })
