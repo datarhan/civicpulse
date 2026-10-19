@@ -116,8 +116,9 @@ export interface ServicioDef {
    * Nada de estado VIVO: fechas y cifras de la adjudicación, que son
    * históricas y no se mueven. Si el contrato se formaliza mañana, esto sigue
    * siendo cierto — que es justo lo que no pasaría con un «pendiente de
-   * formalizar» congelado en un registro. La excepción es `hasta`: la fecha de
-   * fin la fija la formalización, y antes de ella no se escribe.
+   * formalizar» congelado en un registro. La excepción es `hasta`: el plazo
+   * corre desde el acta de inicio del servicio, y hasta que el registro da una
+   * fecha de fin no se escribe.
    */
   concesion?: {
     /** Razón social de la adjudicataria, literal del expediente. */
@@ -131,9 +132,9 @@ export interface ServicioDef {
      */
     adjudicadaEl: string
     /**
-     * Último día del plazo, ISO, tal como lo da el registro de contratos. Antes
-     * de formalizarse el contrato la fuente sólo da la duración, no una fecha
-     * de fin: no se escribe una calculada a mano.
+     * Último día del plazo, ISO, tal como lo da el registro de contratos. Hasta
+     * que lo da, la fuente sólo trae la duración, no una fecha de fin: no se
+     * escribe una calculada a mano.
      */
     hasta: string
     /** Cuántas ofertas concurrieron. */
@@ -153,12 +154,17 @@ export interface ServicioDef {
  * `adjudicadaEl` es el acuerdo del Pleno del 27-07-2026 —la adjudicación va en
  * el orden del día de esa sesión (`plenos-agendas.json`) y es la fecha que da
  * `reportajes/coste-efectivo.json`—, no el 06-08-2026, que es cuando la
- * Plataforma publicó el anuncio. `hasta` es el `endDate` de la fila del
- * expediente en `contracts`, que el registro trae desde que formalizó
- * (`formalizedDate` 2026-10-06; probablemente también el día del anuncio y
- * no el de la firma, porque `endDate` menos los 6.209 días de `duration` da el
- * 2026-10-02). El 2043-07-27 de antes no lo daba ninguna fuente: era el
- * acuerdo más 17 años.
+ * Plataforma publicó el anuncio. En el acta de esa sesión el Pleno «acordó»,
+ * en su punto «Primero. - Adjudicar el contrato de concesión», a Hidraqua, y
+ * los 17 años cuentan «desde la firma del acta de inicio del servicio».
+ *
+ * `hasta` es el `endDate` de la fila del expediente en `contracts`, que el
+ * registro trae desde que formalizó (`formalizedDate` 2026-10-06, que puede
+ * ser también el día del anuncio y no el de la firma). `endDate` menos los
+ * 6.209 días de `duration` da el 2026-10-02, que sería el inicio del plazo; no
+ * se publica, porque ninguna fuente aquí lo nombra como tal. El 2043-07-27 de
+ * antes no lo daba ninguna fuente: era el acuerdo más 17 años.
+ *
  * Se escribe aquí y no se lee de `tenders.json` en `compute-indicadores` para
  * que la nocturna no pueda mover sola una fecha publicada en una superficie
  * con valor legal: si el registro la cambia, `eficiencia-concesion-agua.test`
