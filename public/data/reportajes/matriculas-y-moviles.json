@@ -8,7 +8,12 @@
     "estado": "publicado",
     "publicadoEl": "2026-10-14",
     "fechaDatos": "14 de octubre de 2026",
-    "correcciones": [],
+    "correcciones": [
+      {
+        "fecha": "2026-10-19",
+        "texto": "**Se ha corregido el cierre del apartado sobre la sección de descargas, que contradecía su propio título.** El apartado se titula «Una promesa que se puede comprobar sin pedir nada» y terminaba diciendo que era «una promesa sin fecha que hoy no se puede comprobar». Comprobarla no exige ninguna solicitud: el 14 de octubre la buscamos y no encontramos la sección. Dice ahora que es una promesa sin fecha y que comprobar si se cumple no exige pedir nada.\n\nNo cambia ningún hecho: la búsqueda del 14 de octubre, lo que no se encontró y que su ausencia no es un incumplimiento, porque el pliego no fija plazo."
+      }
+    ],
     "kpisEnTexto": [
       {
         "n": "61.050 €",
@@ -186,7 +191,7 @@
     "titulo": "Una promesa que se puede comprobar sin pedir nada",
     "cita": "El Ayuntamiento de Riba-roja de Túria publicará dicha información parcial o totalmente, con licencia de uso abierta, en la sección de descargas de la página web del Ayuntamiento.",
     "citaFuente": "Pliego de prescripciones técnicas del expediente 98/2025",
-    "texto": "El 14 de octubre de 2026 este medio buscó esa sección en la portada de la web municipal, en su portal de transparencia y con su buscador («datos abiertos», «descargas», «sensores», «conteo», «aforo»), y no la encontró. El buscador sí devuelve la nota del 30 de julio que da la actuación por terminada. El pliego no fija plazo para esa publicación, así que su ausencia no es un incumplimiento: es una promesa sin fecha que hoy no se puede comprobar."
+    "texto": "El 14 de octubre de 2026 este medio buscó esa sección en la portada de la web municipal, en su portal de transparencia y con su buscador («datos abiertos», «descargas», «sensores», «conteo», «aforo»), y no la encontró. El buscador sí devuelve la nota del 30 de julio que da la actuación por terminada. El pliego no fija plazo para esa publicación, así que su ausencia no es un incumplimiento: es una promesa sin fecha, y comprobar si llega a cumplirse no exige pedir nada; basta volver a mirar la web municipal."
   },
   "campana": {
     "titulo": "Y la campaña dirigida a quien ya está en el entorno del parque",
