@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-19T17:25:07.602Z",
+  "generatedAt": "2026-10-19T20:44:14.407Z",
   "version": "1",
   "plenoId": "rmtyr",
   "plenoDate": "2025-07-31",
@@ -3867,12 +3867,12 @@
       "verification": {
         "claimId": "rmtyr-124-cit-a8696c",
         "verdict": "parcial",
-        "summary": "La obra existe: la fase II del carril ciclopeatonal de la zona norte (Senda del Molinet, alumbrado y conexión con Paretotes, expediente 56/2025) se licitó en julio de 2025 y se adjudicó en septiembre a Nerco Infraestructuras por 262.812 € con IVA. Que se pague con los gastos derivados de la DANA no consta en el registro.",
+        "summary": "La obra existe: la fase II del carril ciclopeatonal de la zona norte (Senda del Molinet, alumbrado y conexión con Paretotes, expediente 56/2025) se licitó en julio de 2025 y se adjudicó a Nerco Infraestructuras por 262.812 € con IVA (la adjudicación se publicó el 24-09-2025). Que se pague con los gastos derivados de la DANA no consta en el registro.",
         "evidence": [
           {
             "kind": "tender",
             "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=zH8ATDFdYlU7%2B9FIQYNjeQ%3D%3D",
-            "snippet": "Obras Carril Ciclopeatonal Zona Norte: Fase II de la adecuación de la Senda del Molinet, alumbrado y conexión con la zona de Paretotes… · expediente 56/2025 · adjudicado a NERCO INFRAESTRUCTURAS, S.L. por 262.812,00 € con IVA el 24-09-2025",
+            "snippet": "Obras Carril Ciclopeatonal Zona Norte: Fase II de la adecuación de la Senda del Molinet, alumbrado y conexión… · expediente 56/2025 · adjudicado a NERCO INFRAESTRUCTURAS, S.L. por 262.812,00 € con IVA · adjudicación publicada el 24-09-2025",
             "stance": "checked"
           }
         ],
