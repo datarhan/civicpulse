@@ -119,14 +119,22 @@ export function sustitutas(correcciones) {
  * Qué cita de la ficha es hoy la de una fila `quote.<i>…`, con el número que la
  * ficha le pone («Cita 2» para `quote.1`), o que se retiró después. `null` si el
  * campo no es de una cita.
+ *
+ * Con `ficha`, la cita numerada dice además de cuál («cita 2 de la ficha
+ * a870a4»), con la misma clave que las notas de las citas
+ * (`findings.citas.deLaFicha`, `nombrarCitas` en PlenoFindings.jsx). Los
+ * números son por ficha, y la revisión lectora abre la bitácora y lee la página
+ * aplanada: el 18-10-2026 tomó cuatro filas por las de la tarjeta de al lado
+ * (tests/components/fichas-contiguas.test.jsx). Opcional porque /promesas y
+ * /laboratorio montan esta bitácora para cosas que no son fichas de pleno.
  */
-function citaDeLaFila(correcciones, i, t) {
+function citaDeLaFila(correcciones, i, t, ficha) {
   const seguida = seguirPosicion(correcciones, i)
   if (!seguida || seguida.coleccion !== 'quote') return null
   if (esRetirada(correcciones[i])) return t('bitacora.campo.citaQueRetira')
-  return seguida.hoy === null
-    ? t('bitacora.campo.citaRetirada')
-    : rellena(t('bitacora.campo.cita'), { n: seguida.hoy + 1 })
+  if (seguida.hoy === null) return t('bitacora.campo.citaRetirada')
+  const cita = rellena(t('bitacora.campo.cita'), { n: seguida.hoy + 1 })
+  return ficha ? rellena(t('findings.citas.deLaFicha'), { citas: cita, ficha }) : cita
 }
 
 /**
@@ -220,11 +228,15 @@ function FilaGrupoRetenido({ c, posterior }) {
   )
 }
 
-export function BitacoraCorrecciones({ correcciones }) {
+/**
+ * @param {{ correcciones: any[], ficha?: string }} props  `ficha`: el código de
+ *   la ficha de pleno (`codigoDeFicha`), para que cada fila de cita la nombre.
+ */
+export function BitacoraCorrecciones({ correcciones, ficha }) {
   const t = useT()
   if (!correcciones?.length) return null
   const despues = sustitutas(correcciones)
-  const citas = correcciones.map((_, i) => citaDeLaFila(correcciones, i, t))
+  const citas = correcciones.map((_, i) => citaDeLaFila(correcciones, i, t, ficha))
   const enmendadas = correcciones.filter((c) => c.reasonAmendments?.length > 0).length
   const conGrupoRetenido = correcciones.some((c) => c.grupoRetenido)
   return (
