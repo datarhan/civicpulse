@@ -13,7 +13,8 @@
  *      que DESCRIBE sin cargar vía el marcador `prosa-describe:`
  *   2. se sigue el grafo de imports de src/ —una página llega a `useBudget` a
  *      través de un componente, no siempre de forma directa—
- *   3. App.jsx liga cada `<Route path>` con su módulo de página
+ *   3. App.jsx liga cada `<Route path>` con su módulo de página, y cada layout
+ *      sin `path` con las rutas que envuelve (`layoutsSinRuta`)
  *
  * Módulo puro salvo por la lectura de src/: no toca red y no escribe nada.
  */
@@ -197,6 +198,55 @@ function rutaDePortada(
   return null
 }
 
+/**
+ * Las rutas de LAYOUT sin `path` —`<Route element={<X />}>…</Route>`— y las
+ * rutas que cada una envuelve.
+ *
+ * El bucle de `construirGrafoRutas` sólo siembra desde `<Route path=…
+ * element=…>`, así que un layout sin `path` no era semilla de nada y lo que
+ * sólo él importa no llegaba a ninguna ruta. Medido el 19-10-2026:
+ * `pages/reportajes/Armazon.jsx` —barra de lectura, Compartir, «Más
+ * reportajes»— daba `rutas: []`, y un push que tocara sólo el armazón salía del
+ * pre-push con «ninguna ruta afectada».
+ *
+ * Se deriva de App.jsx con una pila de `<Route>` / `</Route>`, no de una lista:
+ * una pieza nueva dentro del bloque entra sola. El final de cada etiqueta se
+ * busca contando llaves, porque `element={<X />}` ya lleva un `/>` dentro y un
+ * regex no distingue ése del que cierra la etiqueta. Un `path` anidado se
+ * apunta en TODOS los marcos abiertos, así que un layout dentro de otro
+ * alcanza también las rutas del interior.
+ */
+function layoutsSinRuta(textoApp: string): { comp: string; rutas: string[] }[] {
+  const t = sinComentarios(textoApp)
+  const out: { comp: string; rutas: string[] }[] = []
+  const pila: { comp: string | null; rutas: string[] }[] = []
+  const re = /<\/Route\s*>|<Route\b/g
+  let m: RegExpExecArray | null
+  while ((m = re.exec(t))) {
+    if (m[0].startsWith('</')) {
+      const marco = pila.pop()
+      if (marco?.comp) out.push({ comp: marco.comp, rutas: marco.rutas })
+      continue
+    }
+    let i = m.index + m[0].length
+    for (let prof = 0; i < t.length; i++) {
+      const c = t[i]
+      if (c === '{') prof++
+      else if (c === '}') prof--
+      else if (c === '>' && prof === 0) break
+    }
+    const etiqueta = t.slice(m.index, i + 1)
+    const path = /\bpath="([^"]+)"/.exec(etiqueta)?.[1] ?? null
+    const comp = /\belement=\{<(\w+)/.exec(etiqueta)?.[1] ?? null
+    if (path) for (const marco of pila) marco.rutas.push(path)
+    // Sólo un layout SIN `path` es lo que faltaba. Uno con `path` e hijos ya
+    // alcanza su propia ruta, y sus hijos podrían ser relativos.
+    if (t[i - 1] !== '/') pila.push({ comp: path ? null : comp, rutas: [] })
+    re.lastIndex = i + 1
+  }
+  return out
+}
+
 export function construirGrafoRutas(src: string): GrafoRutas {
   const todos = ficheros(src)
   const texto = new Map(todos.map((f) => [f, readFileSync(f, 'utf8')]))
@@ -312,9 +362,8 @@ export function construirGrafoRutas(src: string): GrafoRutas {
   /** El módulo de página de cada ruta. El bucle ya lo sabía y lo tiraba. */
   const paginaPorRuta = new Map<string, string>()
   const rutas: string[] = []
-  const montarRuta = (ruta: string, fichero: string): void => {
-    rutas.push(ruta)
-    paginaPorRuta.set(ruta, fichero)
+  /** Cuelga de `ruta` todo lo que `fichero` alcanza: snapshots y ficheros. */
+  const colgar = (ruta: string, fichero: string): void => {
     for (const snap of alcanzaSnapshots(fichero)) {
       const set = rutasPorSnapshot.get(snap) ?? new Set()
       set.add(ruta)
@@ -328,6 +377,11 @@ export function construirGrafoRutas(src: string): GrafoRutas {
       set.add(ruta)
       rutasPorFichero.set(fich, set)
     }
+  }
+  const montarRuta = (ruta: string, fichero: string): void => {
+    rutas.push(ruta)
+    paginaPorRuta.set(ruta, fichero)
+    colgar(ruta, fichero)
   }
 
   for (const m of textoApp.matchAll(/<Route\s+path="([^"]+)"\s+element=\{<(\w+)/g)) {
@@ -360,6 +414,23 @@ export function construirGrafoRutas(src: string): GrafoRutas {
   // `tests/route-graph-portada.test.ts` la fija por si el patrón cambia.
   const portada = rutaDePortada(textoApp, componenteDe)
   if (portada) montarRuta(portada.ruta, portada.fichero)
+
+  // UN LAYOUT SIN `path` NO ES UNA RUTA, pero envuelve las que lleva dentro.
+  //
+  // `<Route element={<ArmazonReportaje />}>` pinta la barra de lectura y «Más
+  // reportajes» de cada pieza, y no tiene `path`: el bucle de arriba no lo
+  // veía, y `Armazon.jsx` caía en `sinRuta` (medido el 19-10-2026). Su módulo
+  // se cuelga de cada ruta montada que envuelve, sin entrar en `rutas` ni en
+  // `paginaPorRuta`: tocar el armazón no es reescribir la página de la pieza,
+  // y no debe contar como DIRECTA en `--rotate-desde`.
+  // `tests/routes-for-changes.test.ts` lo fija contra `REPORTAJE_SLUGS`, y
+  // `tests/route-graph-layout.test.ts` el anidado y el cierre.
+  const montadas = new Set(rutas)
+  for (const { comp, rutas: envueltas } of layoutsSinRuta(textoApp)) {
+    const fichero = componenteDe.get(comp)
+    if (!fichero) continue
+    for (const r of envueltas) if (montadas.has(r)) colgar(r, fichero)
+  }
 
   // EL ARMAZÓN ALCANZA TODAS LAS RUTAS, y hasta ahora no alcanzaba ninguna.
   //
