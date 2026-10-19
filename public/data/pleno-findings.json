@@ -1,6 +1,6 @@
 {
   "version": "1.0",
-  "generatedAt": "2026-10-14T13:53:52.286Z",
+  "generatedAt": "2026-10-18T20:37:16.686Z",
   "legalNotice": "Este registro recoge hallazgos editoriales sobre las intervenciones de los plenos. Los redacta un proceso automático a partir de declaraciones extraídas de la transcripción, salvo los que llevan la firma de una persona, y cada ficha indica quién la editó: un nombre como «auto-curation-v1» significa que el título y el resumen los escribió una máquina, no una persona. Cada hallazgo cita una o más afirmaciones literales (verbatim) del pleno y los documentos municipales que confirman o contradicen cada afirmación. Las réplicas de los grupos políticos se publican íntegras y sin editar.",
   "contactUrl": "https://github.com/datarhan/civicpulse/issues/new/choose",
   "methodologyUrl": "/metodologia",
@@ -361,7 +361,7 @@
         },
         {
           "text": "esta iniciativa que se pretende aplicar en el municipio como había comentado la ley 2012-2023 es una norma que además ha sido ampliamente contestada por numerosas comunidades autónomas",
-          "speakerGroup": "PP",
+          "speakerGroup": null,
           "sourceClaimId": "10yl550-170-acu-0a31a6"
         },
         {
@@ -437,6 +437,14 @@
           "reason": "La primera frase se apoyaba sólo en intervenciones que la puerta editorial retiene y cuya transcripción está degradada; la única cita mostrable de la ficha sostiene la segunda, no aquella.",
           "editor": "Sergei Lutchenko",
           "correctedAt": "2026-08-11T09:06:43.855Z"
+        },
+        {
+          "field": "quote.1.speakerGroup",
+          "original": "PP",
+          "corrected": "sin identificar",
+          "reason": "La cita no es del PP: tras el turno del portavoz popular, la presidencia da la palabra a otro grupo, y quien habla se refiere al regidor del Partido Popular en tercera persona y recibe al acabar el agradecimiento por su nombre (transcripción y vídeo, 7.036–7.237 s). Ese grupo tiene un solo concejal, así que se retira la atribución en lugar de sustituirla.",
+          "editor": "civicpulse-curator",
+          "correctedAt": "2026-10-18T20:37:16.686Z"
         }
       ]
     },

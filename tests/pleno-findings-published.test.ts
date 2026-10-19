@@ -438,7 +438,14 @@ const expectWithdrawn = (id: string): void => {
  * nombraban, en sus propias palabras, al grupo de un escaño cuya etiqueta se les había retirado
  * el 30-09. Se acortan al tramo que no lo nombra. Ninguna es de un lote.
  */
-const TOTAL_CORRECTIONS = 241
+/*
+ * 241 → 242 (la cita 2 de `f-2026-05-11-acu-1adbf3` no era del PP). Una fila de
+ * `correct-pleno-finding --field quote.1.speakerGroup` (editor `civicpulse-curator`), el
+ * 18-10-2026, escuchado el vídeo (7.036–7.237 s): el turno es de un grupo de un solo escaño, y
+ * la atribución se retira a «sin identificar» en vez de sustituirse. Va detrás de la fila del
+ * lote 4 de esa ficha, así que ningún lote cambia; sí cambian sus `groups`.
+ */
+const TOTAL_CORRECTIONS = 242
 const TOTAL_REMOVALS = 37
 
 /** One row of a review batch's fixture: enough to locate its own entries. */
@@ -882,7 +889,10 @@ const LOTE_1: Lote1Case[] = [
       '10yl550-191-cit-9aa672',
       '10yl550-220-acu-0101aa',
     ],
-    groups: ['PSOE', 'PP', 'PSOE', 'PSOE'],
+    // La cita 2 era «PP» y no lo es: el turno es de un grupo de un solo escaño,
+    // y se retiró a «sin identificar» (corrección del 18-10-2026, escuchado el
+    // vídeo, 7.036–7.237 s). Nombrar ese grupo sería nombrar a su concejal.
+    groups: ['PSOE', null, 'PSOE', 'PSOE'],
   },
   {
     id: 'f-2026-05-11-acu-1e1bfa',
@@ -2882,7 +2892,10 @@ const LOTE_4: Lote4Case[] = [
       '10yl550-191-cit-9aa672',
       '10yl550-220-acu-0101aa',
     ],
-    groups: ['PSOE', 'PP', 'PSOE', 'PSOE'],
+    // La cita 2 era «PP» y no lo es: el turno es de un grupo de un solo escaño,
+    // y se retiró a «sin identificar» (corrección del 18-10-2026, escuchado el
+    // vídeo, 7.036–7.237 s). Nombrar ese grupo sería nombrar a su concejal.
+    groups: ['PSOE', null, 'PSOE', 'PSOE'],
   },
   {
     id: 'f-2026-01-19-acu-2c074a',
@@ -3637,7 +3650,9 @@ describe('published pleno findings — one verbatim is one bloc', () => {
     // el suelo baja tres.
     // Y otras tres con `543cc1` ([2] PSOE, [3] PP) y `3fd230` ([0] PSOE), que se retiran
     // (bloque «250 → 231»). De 61 a 58, y el suelo baja tres.
-    expect(attributed.length).toBeGreaterThan(57)
+    // Y el 2026-10-18 la [1] de `1adbf3`, que no era del PP (bloque «241 → 242»). De 58 a 57, y
+    // el suelo baja uno.
+    expect(attributed.length).toBeGreaterThan(56)
     expect(findAttributionConflicts(items)).toEqual([])
   })
 })
