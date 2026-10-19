@@ -1,7 +1,7 @@
 import { useReportaje } from '../../hooks/useReportaje'
 import CabeceraPieza from '../../components/reportajes/CabeceraPieza'
 import { CorrectionNote } from '../../components/reportajes/CorrectionNote'
-import { SecHead } from '../../components/reportajes/Pieza'
+import { SecHead, Pliegue, Aparte } from '../../components/reportajes/Pieza'
 import SolicitudLector from '../../components/reportajes/SolicitudLector'
 import { debeOfrecerSolicitud } from '../../lib/solicitud-lector'
 import {
@@ -9,146 +9,11 @@ import {
   preguntasDe,
   solicitables as soloSolicitables,
 } from '../../lib/solicitud-apartadas'
-
-/* ---- Tabla genérica con scroll horizontal propio ---- */
-function Tabla({ cols, rows, caption }) {
-  const th = {
-    textAlign: 'left',
-    fontSize: 'var(--fs-micro)',
-    textTransform: 'uppercase',
-    letterSpacing: '.06em',
-    color: 'var(--ink50)',
-    fontWeight: 600,
-    padding: '8px 10px',
-    borderBottom: '1px solid var(--border)',
-    whiteSpace: 'nowrap',
-  }
-  const td = {
-    fontSize: 'var(--fs-aux)',
-    color: 'var(--ink70)',
-    padding: '8px 10px',
-    borderBottom: '1px solid var(--border)',
-    verticalAlign: 'top',
-  }
-  // La primera y la última columna van a ras: la tabla arranca en el mismo borde
-  // izquierdo que el texto que la presenta, y acaba en el de su filete.
-  const aRas = (i) => ({
-    ...(i === 0 && { paddingLeft: 0 }),
-    ...(i === cols.length - 1 && { paddingRight: 0 }),
-  })
-  return (
-    <div style={{ overflowX: 'auto' }}>
-      <table style={{ borderCollapse: 'collapse', width: '100%', minWidth: 520 }}>
-        {caption && (
-          <caption
-            style={{
-              captionSide: 'top',
-              textAlign: 'left',
-              fontSize: 'var(--fs-meta)',
-              color: 'var(--ink50)',
-              paddingBottom: 8,
-            }}
-          >
-            {caption}
-          </caption>
-        )}
-        <thead>
-          <tr>
-            {cols.map((c, i) => (
-              <th
-                key={i}
-                scope="col"
-                style={{ ...th, ...aRas(i), ...(c.right && { textAlign: 'right' }) }}
-              >
-                {c.label}
-              </th>
-            ))}
-          </tr>
-        </thead>
-        <tbody>
-          {rows.map((r, i) => (
-            <tr key={i}>
-              {r.map((cell, j) => (
-                <td
-                  key={j}
-                  className={cols[j].mono ? 'mono' : undefined}
-                  style={{
-                    ...td,
-                    ...aRas(j),
-                    ...(cols[j].right && { textAlign: 'right', whiteSpace: 'nowrap' }),
-                    ...(cols[j].nowrap && { whiteSpace: 'nowrap' }),
-                    ...(cols[j].strong && { color: 'var(--ink)', fontWeight: 500 }),
-                  }}
-                >
-                  {cell}
-                </td>
-              ))}
-            </tr>
-          ))}
-        </tbody>
-      </table>
-    </div>
-  )
-}
-
-/* ---- Callout ámbar ---- */
-function Callout({ title, children }) {
-  return (
-    <div
-      style={{
-        background: 'var(--warn-soft)',
-        border: '1px solid var(--warn)',
-        borderRadius: 'var(--r-card)',
-        padding: '16px 20px',
-        margin: '16px 0 8px',
-      }}
-    >
-      <div
-        style={{
-          fontSize: 'var(--fs-meta)',
-          textTransform: 'uppercase',
-          letterSpacing: '.1em',
-          color: 'var(--warn-ink)',
-          fontWeight: 700,
-          marginBottom: 8,
-        }}
-      >
-        {title}
-      </div>
-      <div style={{ fontSize: 'var(--fs-body)', color: 'var(--ink70)', lineHeight: 1.5 }}>
-        {children}
-      </div>
-    </div>
-  )
-}
-
-/* ---- Cita textual de un documento ---- */
-function Cita({ children, fuente }) {
-  return (
-    <figure style={{ margin: '14px 0' }}>
-      <blockquote
-        style={{
-          borderLeft: '3px solid var(--civic)',
-          padding: '6px 14px',
-          margin: 0,
-          fontSize: 'var(--fs-body)',
-          color: 'var(--ink70)',
-          background: 'var(--soft)',
-          borderRadius: '0 var(--r-input) var(--r-input) 0',
-        }}
-      >
-        {children}
-      </blockquote>
-      {fuente && (
-        <figcaption
-          style={{ fontSize: 'var(--fs-meta)', color: 'var(--ink50)', margin: '6px 0 0 17px' }}
-        >
-          {fuente}
-        </figcaption>
-      )}
-    </figure>
-  )
-}
+// La tabla y la cita son las de las otras piezas. La tabla propia se
+// desplazaba de lado a 375px —520 px de mínimo, el texto cortado a media
+// palabra y sin aviso—; la compartida apila cada fila en pares etiqueta ·
+// valor. La cita propia no decía qué documento hablaba.
+import { Cita, Tabla } from './ConteoVisitantes'
 
 function eur(n, dec = 0) {
   return new Intl.NumberFormat('es-ES', {
@@ -212,6 +77,22 @@ export default function Basuras() {
   // editorial de src/lib/solicitud-apartadas.js, con el porqué de cada una.
   const todasLasPreguntas = preguntasDe(data)
   const solicitables = soloSolicitables('basuras', todasLasPreguntas)
+  // La tabla del coste declarado, año a año, con el año que no se rindió en su
+  // sitio. Saltaba de 2019 a 2021 sin decirlo, y la pieza del coste efectivo
+  // cuenta que la entrega de 2020 no se presentó: un hueco mudo se lee como un
+  // año que falta en la tabla, no en la declaración. `sinEntrega` lo coteja
+  // tests/reportaje-basuras-coste.test.js con esa otra pieza.
+  const filasCoste = [
+    ...[...ce.filas.map((f) => f.anio), ...(ce.sinEntrega ?? [])]
+      .sort((a, b) => a - b)
+      .map((anio) => {
+        const f = ce.filas.find((x) => x.anio === anio)
+        return f
+          ? [String(anio), eur(f.coste), num(f.porHabitante, 2)]
+          : [String(anio), 'sin entrega', '—']
+      }),
+    ['Contrato', eur(ce.contratoPorAnio), num(ce.contratoPorHabitante, 2)],
+  ]
 
   return (
     <div
@@ -259,11 +140,22 @@ export default function Basuras() {
           Duró, contando generosamente, un mes.
         </p>
 
-        <Tabla
-          caption="Cronología, con la fuente de cada hito."
-          cols={[{ label: 'Fecha', mono: true, nowrap: true }, { label: 'Qué ocurre' }]}
-          rows={data.cronologia.map((c) => [c.fecha, c.hito])}
-        />
+        {/* Plegada desde el 19-10-2026. Abierta, sus veintitrés filas ocupan
+            1.360 px en escritorio y 3.650 apiladas a 375px, y repiten los
+            pasos de Parla que la sección 03 cuenta en su recuadro. Los tres
+            párrafos de arriba ya dan el hilo; la tabla es para quien quiera
+            cada fecha. El rótulo dice cuántos hitos y de qué años salen de los
+            datos, no de una frase escrita a mano. */}
+        <Pliegue
+          kicker="Cronología"
+          titulo={`${data.cronologia.length} hitos, de ${data.cronologia[0].fecha.slice(0, 4)} a ${data.cronologia[data.cronologia.length - 1].fecha.slice(0, 4)}: la contrata, el concurso, Parla y lo que vino después`}
+        >
+          <Tabla
+            caption="Cronología, con la fuente de cada hito."
+            cols={[{ label: 'Fecha', mono: true, nowrap: true }, { label: 'Qué ocurre' }]}
+            rows={data.cronologia.map((c) => [c.fecha, c.hito])}
+          />
+        </Pliegue>
 
         {/* 02 */}
         <SecHead num="02" kicker="El concurso" title="Lo que compró el concurso" />
@@ -275,7 +167,10 @@ export default function Basuras() {
           prometía hacer: un proyecto técnico, contenedores, vehículos, contrataciones, emisiones.
         </p>
 
-        {/* Barra 32 / 68 */}
+        {/* Barra 32 / 68. Los compromisos en petróleo, que es de lo que habla la
+            pieza, y el precio en gris. Iban el precio en petróleo y los
+            compromisos en ámbar, y el pie llamaba «azul» al petróleo: el azul
+            es el color de un partido, y este sitio no lo usa. */}
         <div style={{ margin: '18px 0 6px' }}>
           <div
             style={{
@@ -289,6 +184,19 @@ export default function Basuras() {
             <div
               style={{
                 width: `${data.criterios.totalPrecio}%`,
+                background: 'var(--ink20)',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+              }}
+            >
+              <span className="mono" style={{ fontSize: 'var(--fs-micro)', color: 'var(--ink)' }}>
+                {data.criterios.totalPrecio}
+              </span>
+            </div>
+            <div
+              style={{
+                width: `${data.criterios.totalCompromisos}%`,
                 background: 'var(--civic)',
                 display: 'flex',
                 alignItems: 'center',
@@ -299,32 +207,17 @@ export default function Basuras() {
                 className="mono"
                 style={{ fontSize: 'var(--fs-micro)', color: 'var(--civic-on)' }}
               >
-                {data.criterios.totalPrecio}
-              </span>
-            </div>
-            <div
-              style={{
-                width: `${data.criterios.totalCompromisos}%`,
-                background: 'var(--warn)',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-              }}
-            >
-              <span
-                className="mono"
-                style={{ fontSize: 'var(--fs-micro)', color: 'var(--warn-on)' }}
-              >
                 {data.criterios.totalCompromisos}
               </span>
             </div>
           </div>
           <p className="cp-pie" style={cap()}>
-            Reparto de los 100 puntos del lote 1: en azul el precio, en ámbar los compromisos.
+            Reparto de los 100 puntos del lote 1: en gris el precio, en petróleo los compromisos.
           </p>
         </div>
 
         <Tabla
+          compacta
           cols={[{ label: 'Criterio' }, { label: 'Puntos', right: true, mono: true, strong: true }]}
           rows={data.criterios.filas.map((f) => [f.criterio, num(f.puntos, f.puntos % 1 ? 1 : 0)])}
         />
@@ -370,10 +263,12 @@ export default function Basuras() {
               ))}
             </ul>
           </div>
+          {/* Rojo: son los incumplimientos que documentan los informes
+              municipales, un fallo que la pieza documenta. Iba en ámbar. */}
           <div
             style={{
               background: 'var(--soft)',
-              border: '1px solid var(--warn)',
+              border: '1px solid var(--crit)',
               borderRadius: 'var(--r-card)',
               padding: '18px 20px',
             }}
@@ -401,7 +296,6 @@ export default function Basuras() {
           style={{
             background: 'var(--soft)',
             border: '1px solid var(--border)',
-            borderLeft: '3px solid var(--warn)',
             borderRadius: 'var(--r-card)',
             padding: '18px 20px',
             margin: '16px 0',
@@ -424,7 +318,13 @@ export default function Basuras() {
           El estado de la flota devuelta no lo describe este reportaje, sino la primera teniente de
           alcalde de Parla, el día en que su ayuntamiento despedía el contrato:
         </p>
-        <Cita fuente={data.parla.quien}>«{data.parla.citaVehiculos}»</Cita>
+        <Cita
+          tipo="nota-municipal"
+          de="Ayuntamiento de Parla · 27-04-2018"
+          fuente={data.parla.quien}
+        >
+          {data.parla.citaVehiculos}
+        </Cita>
         <p>Y el criterio, en la misma nota: «{data.parla.citaObligacion}».</p>
         <p>{data.parla.balance}</p>
         <p>El rastro de la empresa en otros lugares es más corto, pero existe:</p>
@@ -439,7 +339,7 @@ export default function Basuras() {
             <p style={{ margin: 0, fontSize: 'var(--fs-body)' }}>{e.texto}</p>
           </div>
         ))}
-        <Callout title="La pregunta que esto abre">
+        <Aparte title="La pregunta que esto abre" tono="foco">
           {/* Decía «antes de que se valorasen las ofertas», y el bloque de
               JUSTO ARRIBA lo desmiente: la huelga de Ugao-Miraballes se cerró
               el 19 de julio de 2025 «mientras en Riba-roja se valoraban las
@@ -456,7 +356,7 @@ export default function Basuras() {
           </strong>{' '}
           Es una pregunta que se responde con el expediente, y es una de las que esta pieza abre al
           Ayuntamiento en su derecho de réplica.
-        </Callout>
+        </Aparte>
 
         {/* 04 */}
         <SecHead num="04" kicker="Los dueños" title="La empresa y la política" />
@@ -497,13 +397,13 @@ export default function Basuras() {
           <strong style={{ color: 'var(--ink)' }}>{data.politica.castellanos.nombre}.</strong>{' '}
           {data.politica.castellanos.texto}
         </p>
-        <Callout title="Lo que esto significa aquí — y lo que no">
+        <Aparte title="Lo que esto significa aquí — y lo que no">
           {data.politica.limites.map((l, i) => (
             <p key={i} style={{ margin: i === 0 ? 0 : '8px 0 0' }}>
               {l}
             </p>
           ))}
-        </Callout>
+        </Aparte>
 
         {/* 05 */}
         <SecHead num="05" kicker="La venta" title="Quién era la empresa cuando firmó" />
@@ -514,11 +414,13 @@ export default function Basuras() {
           grupo danés {data.venta.matriz}.
         </p>
         <Cita
-          fuente={`Resolución de la CNMC, expediente ${data.venta.expediente}, 1 de octubre de 2025`}
+          tipo="resolucion"
+          de={`CNMC · exp. ${data.venta.expediente}`}
+          fuente="Resolución de la Comisión Nacional de los Mercados y la Competencia, 1 de octubre de 2025"
         >
-          «la adquisición, por parte de ISS FACILITY SERVICES, S.A. (ISS), del control exclusivo
+          la adquisición, por parte de ISS FACILITY SERVICES, S.A. (ISS), del control exclusivo
           sobre Garbialdi, S.A. (GARBIALDI) mediante la adquisición de la totalidad de su capital
-          social»
+          social
         </Cita>
         <p>
           Las fechas importan. El Ayuntamiento adjudicó el 10 de septiembre de 2025. ISS notificó la
@@ -531,22 +433,26 @@ export default function Basuras() {
           En enero, cuando el nuevo propietario pidió que se le reconociera como contratista, el
           pleno dijo que no:
         </p>
-        <Cita fuente="Orden del día del pleno extraordinario y urgente de 7 de enero de 2026, expediente 615/2025/GEN">
-          «desestimación de solicitud de sucesión en la posición de contratista […] en virtud de
+        <Cita
+          tipo="orden-del-dia"
+          de="pleno de 7-1-2026 · exp. 615/2025/GEN"
+          fuente="Orden del día del pleno extraordinario y urgente de 7 de enero de 2026, expediente 615/2025/GEN"
+        >
+          desestimación de solicitud de sucesión en la posición de contratista […] en virtud de
           operación de transmisión de rama de actividad mediante absorción de la empresa contratista
           Garbialdi, S.A. por la mercantil ISS Facility Services, S.A.U., en el marco del artículo
-          98 de la Ley 9/2017, de 8 de noviembre, de Contratos del Sector Público»
+          98 de la Ley 9/2017, de 8 de noviembre, de Contratos del Sector Público
         </Cita>
         <p>
           La nota municipal de ese mismo día explicó el motivo: se presumía que pudiera existir
           «riesgo de la elusión de responsabilidades». Es el propio Ayuntamiento quien conecta la
           venta con el desenlace.
         </p>
-        <Callout title="Lo que aquí no decimos">
+        <Aparte title="Lo que aquí no decimos">
           Que la venta causara el fallo del servicio. La secuencia está documentada; la relación de
           causa no lo está. Es la pregunta que esta pieza abre a ISS, a Garbialdi y al Ayuntamiento,
           y publicaremos íntegra la respuesta de cada uno.
-        </Callout>
+        </Aparte>
 
         {/* 06 */}
         <SecHead
@@ -570,7 +476,7 @@ export default function Basuras() {
           la resolución. Y no consta ningún contrato de FCC, la empresa que presta el servicio desde
           marzo.
         </p>
-        <Callout title="El control que hicimos antes de decir esto">
+        <Aparte title="El control que hicimos antes de decir esto">
           Un registro desactualizado podría estar sencillamente abandonado, y entonces esto no sería
           noticia. No lo está: ese mismo día contenía{' '}
           <span className="mono">{data.registro.filasEnRegistro}</span> expedientes —de los que{' '}
@@ -579,7 +485,7 @@ export default function Basuras() {
           publicado— con adjudicaciones anotadas hasta el{' '}
           <span className="mono">{data.registro.ultimaAdjudicacionDelRegistro}</span>. Se mantiene
           al día. Lo que falta es esta anotación.
-        </Callout>
+        </Aparte>
 
         {/* 07 */}
         <SecHead num="07" kicker="El servicio" title="Lo que te toca, y cuándo" />
@@ -641,12 +547,12 @@ export default function Basuras() {
           <span className="mono">{cal.telefono}</span>, gratuito, donde Riba-roja Neta indica el día
           que corresponde. Ese número lleva funcionando desde 2011.
         </p>
-        <Callout title="Dos documentos municipales, la misma página, horas distintas">
+        <Aparte title="Dos documentos municipales, la misma página, horas distintas" tono="aviso">
           El <em>{ch.documentoA}</em> pide sacarlo el día anterior «{ch.textoA}». El{' '}
           <em>{ch.documentoB}</em> dice, para la poda, «{ch.textoB}», y para los muebles, «
           {ch.textoB2}». {ch.nota} Un vecino que siga el cartel puede dejar un mueble en la calle
           tres horas antes de lo que dice el calendario.
-        </Callout>
+        </Aparte>
 
         {/* 08 */}
         <SecHead num="08" kicker="El dinero" title="Lo que cuesta y quién lo paga" />
@@ -701,16 +607,16 @@ export default function Basuras() {
           atención:
         </p>
         <Tabla
+          compacta
           caption="Coste efectivo declarado del programa de recogida de residuos, y lo que costará el contrato nuevo."
           cols={[
             { label: 'Año', mono: true },
             { label: 'Coste declarado', right: true, mono: true },
             { label: '€ por habitante', right: true, mono: true, strong: true },
           ]}
-          rows={[
-            ...ce.filas.map((f) => [String(f.anio), eur(f.coste), num(f.porHabitante, 2)]),
-            ['Contrato', eur(ce.contratoPorAnio), num(ce.contratoPorHabitante, 2)],
-          ]}
+          rows={filasCoste}
+          // La fila del contrato es la comparación de la que habla el texto.
+          foco={[filasCoste.length - 1]}
         />
         <p>
           El último ejercicio con gestión anterior costó {eur(ce.filas[ce.filas.length - 1].coste)}.
@@ -719,12 +625,12 @@ export default function Basuras() {
           indicativa y no equivalente —el contrato agrupa recogida, poda y voluminosos, y el
           programa ministerial es sólo recogida—, pero el orden de magnitud es el que es.
         </p>
-        <Callout title="Un defecto del dato, no del servicio">
+        <Aparte title="Un defecto del dato, no del servicio">
           En esa misma declaración ministerial, Riba-roja consta como «gestión directa por la
           entidad local» en todos los ejercicios de 2015 a 2024. No puede ser cierto: la concesión
           de SAV estuvo vigente durante todo ese periodo. Es un error del dato oficial, y conviene
           saberlo antes de usar esa serie para nada.
-        </Callout>
+        </Aparte>
 
         <SecHead num="10" kicker="El cuestionario" title="Dieciocho preguntas incómodas" />
         <p>{data.preguntas.intro}</p>
@@ -765,14 +671,15 @@ export default function Basuras() {
         )}
       </article>
 
-      {/* Fuentes + método */}
+      {/* Fuentes y método: una caja debajo de la otra, con el texto a la medida
+          de lectura. En dos columnas, el método —unas veinte cautelas, más del
+          doble de largo— se leía en media columna, al lado de un hueco. */}
       <div
         style={{
-          display: 'grid',
-          gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))',
+          display: 'flex',
+          flexDirection: 'column',
           gap: 14,
           margin: '32px 0 0',
-          alignItems: 'start',
         }}
       >
         <div
@@ -784,7 +691,7 @@ export default function Basuras() {
           }}
         >
           <h3 style={boxH()}>Fuentes primarias</h3>
-          <ul style={boxUl()}>
+          <ul style={{ ...boxUl(), maxWidth: 'var(--medida)' }}>
             {data.fuentes.map((f, i) => (
               <li key={i} style={boxLi()}>
                 <a
@@ -802,13 +709,13 @@ export default function Basuras() {
         <div
           style={{
             background: 'var(--soft)',
-            border: '1px solid var(--warn)',
+            border: '1px solid var(--border)',
             borderRadius: 'var(--r-card)',
             padding: '18px 20px',
           }}
         >
           <h3 style={boxH()}>Método y cautelas</h3>
-          <ul style={boxUl()}>
+          <ul style={{ ...boxUl(), maxWidth: 'var(--medida)' }}>
             {data.metodo.map((t, i) => (
               <li key={i} style={boxLi()}>
                 {t}

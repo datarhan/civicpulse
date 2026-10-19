@@ -1,19 +1,15 @@
 import { useReportaje } from '../../hooks/useReportaje'
 import CabeceraPieza from '../../components/reportajes/CabeceraPieza'
 import { CorrectionNote } from '../../components/reportajes/CorrectionNote'
-import { SecHead, Revela } from '../../components/reportajes/Pieza'
+import { SecHead, Revela, Pliegue } from '../../components/reportajes/Pieza'
 import { FichaSociedad } from '../../components/reportajes/FichaSociedad'
 import { useSociedades, indexarSociedades } from '../../hooks/useSociedades'
-import { Card, Pill } from '../../components/Primitives'
-import {
-  enCastellano,
-  estadoDeEnvio,
-  fraseDeCalendarios,
-  fraseDeEnvio,
-  resumirEnvios,
-  ESTADO_ENVIO_ETIQUETA,
-  ESTADO_ENVIO_TONO,
-} from '../../scraper/solicitud-enviada'
+import { enCastellano } from '../../scraper/solicitud-enviada'
+// La tarjeta de las solicitudes es la del conteo, no una copia. Había una
+// copia aquí, «misma frase que en el conteo» según su comentario, y se quedó
+// atrás en cada cambio de aquélla: renglones de cien caracteres, lo pedido sin
+// rótulo, la nota a --fs-micro, y sin plegar.
+import { SolicitudesEnviadas } from './ConteoVisitantes'
 import { isoDeFecha, msDeIso, silencioDeLaFicha, duracion } from '../../lib/cronologia'
 
 const SERIF = "'Fraunces', Georgia, serif"
@@ -66,7 +62,11 @@ function Figura({ titulo, pie, children }) {
 
 /* ---- Las once casillas de entrega. Rejilla, no flex: con flex la última
         caía sola a la segunda línea estirada a todo el ancho — justo la
-        casilla que no debe llamar la atención. ---- */
+        casilla que no debe llamar la atención.
+        La entrega sin rendir va en rojo, no en ámbar: es un incumplimiento que
+        Hacienda registra, y el emblema de la cabecera ya la pinta en rojo. Iba
+        en ámbar aquí y en las barras de abajo, y el mismo año salía con dos
+        colores en la misma pieza. ---- */
 function CasillasEntregas({ publicadas, noPresentadas }) {
   const sin = new Set(noPresentadas)
   return (
@@ -89,10 +89,10 @@ function CasillasEntregas({ publicadas, noPresentadas }) {
               textAlign: 'center',
               padding: '10px 4px 8px',
               borderRadius: 'var(--r-input)',
-              border: falta ? '1px solid var(--warn)' : '1px solid var(--border)',
-              color: falta ? 'var(--warn-ink)' : 'var(--ink70)',
+              border: falta ? '1px solid var(--crit)' : '1px solid var(--border)',
+              color: falta ? 'var(--crit-ink)' : 'var(--ink70)',
               background: falta
-                ? 'repeating-linear-gradient(45deg, var(--warn-soft) 0 5px, transparent 5px 10px)'
+                ? 'repeating-linear-gradient(45deg, var(--crit-soft) 0 5px, transparent 5px 10px)'
                 : 'var(--paper)',
               fontSize: 'var(--fs-meta)',
             }}
@@ -102,7 +102,7 @@ function CasillasEntregas({ publicadas, noPresentadas }) {
               style={{
                 fontSize: 'var(--fs-micro)',
                 marginTop: 2,
-                color: falta ? 'var(--warn-ink)' : 'var(--ok-ink)',
+                color: falta ? 'var(--crit-ink)' : 'var(--ok-ink)',
               }}
             >
               {falta ? 'sin rendir' : '✓'}
@@ -115,7 +115,7 @@ function CasillasEntregas({ publicadas, noPresentadas }) {
 }
 
 /* ---- Barras: ayuntamientos que rindieron cada entrega. El año propio sin
-        rendir va en ámbar Y es la barra más larga: eso ES el argumento. ---- */
+        rendir va en rojo, el del emblema, Y es la barra más larga: eso ES el argumento. ---- */
 function BarrasRendicion({ porAnio, anioPropio }) {
   const max = Math.max(...porAnio.map((f) => f.n))
   return (
@@ -136,7 +136,7 @@ function BarrasRendicion({ porAnio, anioPropio }) {
               className="mono"
               style={{
                 fontSize: 'var(--fs-meta)',
-                color: propio ? 'var(--warn-ink)' : 'var(--ink50)',
+                color: propio ? 'var(--crit-ink)' : 'var(--ink50)',
                 fontWeight: propio ? 700 : 400,
               }}
             >
@@ -157,7 +157,7 @@ function BarrasRendicion({ porAnio, anioPropio }) {
                   '--paso': '50ms',
                   width: `${(100 * f.n) / max}%`,
                   height: '100%',
-                  background: propio ? 'var(--warn)' : 'var(--civic)',
+                  background: propio ? 'var(--crit)' : 'var(--civic)',
                 }}
               />
             </div>
@@ -166,7 +166,7 @@ function BarrasRendicion({ porAnio, anioPropio }) {
               style={{
                 fontSize: 'var(--fs-meta)',
                 textAlign: 'right',
-                color: propio ? 'var(--warn-ink)' : 'var(--ink70)',
+                color: propio ? 'var(--crit-ink)' : 'var(--ink70)',
                 fontWeight: propio ? 700 : 400,
               }}
             >
@@ -181,7 +181,10 @@ function BarrasRendicion({ porAnio, anioPropio }) {
 
 /* ---- La franja de comparables: mitad central sombreada, mediana marcada,
         Riba-roja como punto. Misma gramática que BandaPares en /eficiencia,
-        congelada a la cifra de esta pieza. ---- */
+        congelada a la cifra de esta pieza.
+        Los comparables en gris y Riba-roja en petróleo: es lo que la pieza
+        mira, no un fallo —el texto dice que «no es una rareza local»—. Iba en
+        ámbar, y con la mediana en petróleo el énfasis caía en los demás. ---- */
 function FranjaComparables({ banda }) {
   // Las cuatro cifras en es-ES. La de Riba-roja iba en crudo y se publicó
   // «86.7 %» con punto inglés al lado de «41,3 %»: sólo había pasado
@@ -211,7 +214,7 @@ function FranjaComparables({ banda }) {
           width: `${banda.p75 - banda.p25}%`,
           top: 27,
           height: 10,
-          background: 'var(--civic-soft)',
+          background: 'var(--ink30)',
           borderRadius: 'var(--r-input)',
         }}
       />
@@ -222,7 +225,7 @@ function FranjaComparables({ banda }) {
           top: 21,
           width: 2,
           height: 22,
-          background: 'var(--civic)',
+          background: 'var(--ink70)',
         }}
       />
       <span
@@ -277,7 +280,7 @@ function FranjaComparables({ banda }) {
           height: 12,
           marginLeft: -6,
           borderRadius: 'var(--r-pill)',
-          background: 'var(--warn)',
+          background: 'var(--civic)',
           boxShadow: '0 0 0 2px var(--paper)',
         }}
       />
@@ -292,7 +295,7 @@ function FranjaComparables({ banda }) {
           right: 0,
           top: 62,
           fontSize: 'var(--fs-micro)',
-          color: 'var(--warn-ink)',
+          color: 'var(--civic-ink)',
           fontWeight: 700,
         }}
       >
@@ -302,7 +305,10 @@ function FranjaComparables({ banda }) {
   )
 }
 
-/* ---- Nominal contra real, por servicio ---- */
+/* ---- Nominal contra real, por servicio. Los corrientes en gris y los
+        constantes en petróleo: la pieza habla de lo que queda al quitar el
+        nivel de precios, y eso es lo que se mira. Los corrientes iban en ámbar,
+        el color de un aviso, y se llevaban la vista. ---- */
 function ParNominalReal({ servicios }) {
   const max = Math.max(...servicios.map((s) => s.nominal))
   const fmt = (v) =>
@@ -315,7 +321,7 @@ function ParNominalReal({ servicios }) {
             {s.nombre} <span style={{ color: 'var(--ink50)' }}>· {s.tramo}</span>
           </div>
           {[
-            { que: 'corrientes', v: s.nominal, color: 'var(--warn)' },
+            { que: 'corrientes', v: s.nominal, color: 'var(--ink30)' },
             { que: 'constantes', v: s.real, color: 'var(--civic)' },
           ].map((fila, j) => (
             <div
@@ -453,7 +459,7 @@ function TiraCronologia({ hitos }) {
             margin: '8px 0 0',
           }}
         >
-          Cada punto es un hito de la lista, en la fecha del acto. La banda va de la entrada de la
+          Cada marca es un hito de la lista, en la fecha del acto. La banda va de la entrada de la
           ficha del {enCastellano(silencio.desde)} a la siguiente que recoge la cronología, la del{' '}
           {enCastellano(silencio.hasta)}.
         </p>
@@ -567,18 +573,9 @@ function DuranteLaEspera({ bloque }) {
         compruebe sin fiarse de nosotros. ---- */
 function LaTarifa({ bloque }) {
   const b = bloque
+  // Sin título propio: va plegada, y el título es el rótulo del pliegue.
   return (
     <>
-      <h3
-        style={{
-          fontFamily: SERIF,
-          fontSize: 'var(--fs-head)',
-          fontWeight: 600,
-          margin: '26px 0 0',
-        }}
-      >
-        {b.titulo}
-      </h3>
       <P>{b.cuerpo}</P>
       <div className="cp-texto" style={{ margin: '12px 0' }}>
         {b.buscadoEn.map((x) => (
@@ -661,114 +658,6 @@ function QuienRemite({ bloque }) {
         </figcaption>
       </figure>
     </>
-  )
-}
-
-/* ---- Las solicitudes que salieron sobre esta pieza, con su reloj.
-        Mismo módulo, mismos tonos y misma frase que en el reportaje del conteo:
-        dos superficies que cuentan el mismo plazo con palabras distintas son una
-        de las dos mintiendo, y desde fuera no se sabe cuál. El estado se calcula
-        con el «hoy» de quien lee, así que la página envejece sola en vez de
-        quedarse con un «en plazo» escrito a mano. ---- */
-function SolicitudesEnviadas({ bloque }) {
-  const hoy = new Date().toISOString().slice(0, 10)
-  const items = bloque?.items ?? []
-  const resumen = resumirEnvios(items, hoy)
-  // Sin solicitudes no se pinta una tarjeta vacía: un hueco se lee como limpio.
-  if (!resumen.concluyente) return null
-
-  return (
-    <Card style={{ padding: '12px 14px', margin: '14px 0' }}>
-      <div
-        className="mono"
-        style={{
-          fontSize: 'var(--fs-micro)',
-          color: 'var(--ink50)',
-          letterSpacing: '.04em',
-          marginBottom: 10,
-        }}
-      >
-        {bloque.titulo}
-      </div>
-
-      {items.map((e, i) => {
-        const estado = estadoDeEnvio(e, hoy)
-        const ultimo = i === items.length - 1
-        return (
-          <div
-            key={`${e.organismo}-${e.enviadaEl}`}
-            style={{
-              marginBottom: ultimo ? 0 : 12,
-              paddingBottom: ultimo ? 0 : 12,
-              borderBottom: ultimo ? 'none' : '1px solid var(--border)',
-            }}
-          >
-            <div style={{ marginBottom: 5 }}>
-              <Pill tone={ESTADO_ENVIO_TONO[estado]} size="xs">
-                {ESTADO_ENVIO_ETIQUETA[estado]}
-              </Pill>
-            </div>
-            <div style={{ fontSize: 'var(--fs-aux)', color: 'var(--ink70)', lineHeight: 1.5 }}>
-              {fraseDeEnvio(e, hoy)}
-            </div>
-            {e.respuesta?.resumen && (
-              <div
-                style={{
-                  fontSize: 'var(--fs-aux)',
-                  color: 'var(--ink70)',
-                  lineHeight: 1.5,
-                  marginTop: 4,
-                }}
-              >
-                {e.respuesta.resumen}
-              </div>
-            )}
-            {/* Una contestación que no resuelve: se publica, y el estado no se
-                mueve. Misma gramática que en el reportaje del conteo. */}
-            {(e.incidencias ?? []).map((inc) => (
-              <div
-                key={inc.fecha}
-                style={{
-                  fontSize: 'var(--fs-aux)',
-                  color: 'var(--ink70)',
-                  lineHeight: 1.5,
-                  marginTop: 4,
-                }}
-              >
-                {inc.texto}
-              </div>
-            ))}
-            <div
-              style={{
-                fontSize: 'var(--fs-aux)',
-                color: 'var(--ink50)',
-                lineHeight: 1.5,
-                marginTop: 4,
-              }}
-            >
-              {e.pide}
-            </div>
-          </div>
-        )
-      })}
-
-      <div
-        style={{
-          fontSize: 'var(--fs-micro)',
-          color: 'var(--ink50)',
-          lineHeight: 1.5,
-          marginTop: 12,
-          paddingTop: 10,
-          borderTop: '1px solid var(--border)',
-        }}
-      >
-        {bloque.nota}
-        {/* Con qué calendario se contó el último día de cada fila (art. 30.5
-            LPACAP): sale de las filas, así que no puede nombrar a quien no
-            aparece en ellas. */}
-        {` ${fraseDeCalendarios(items)}`}
-      </div>
-    </Card>
   )
 }
 
@@ -899,12 +788,27 @@ export default function CosteEfectivo() {
           anuncio del BORME que lo sostiene: el precedente es el bloque de
           basuras, y el motivo es que una respuesta documentada es la que el
           lector puede ir a comprobar sin fiarse de nosotros. */}
-      <FichaSociedad sociedad={ficha} />
+      {/* Plegada, como la tarifa de abajo: las dos amplían la sección y no son
+          su hilo, y abiertas ponían 1.450 px más entre el lector y §02 —2.550
+          a 375—, que es lo que promete el título (medido el 19-10-2026). Plegar no mueve nada de sitio ni de
+          número. El rótulo nombra a la empresa: lo que se pliega es su ficha. */}
+      {ficha && (
+        <Pliegue kicker="Quién es la empresa" titulo={ficha.denominacion}>
+          <FichaSociedad sociedad={ficha} />
+        </Pliegue>
+      )}
 
       {/* La tarifa va detrás de la ficha societaria y antes de la sección 02:
           cierra «quién cobra» con «cuánto cobra», que es la pregunta que un
-          vecino hace a continuación. */}
-      {data.laTarifa && <LaTarifa bloque={data.laTarifa} />}
+          vecino hace a continuación. El rótulo es su título, que ya afirma lo
+          que el bloque sostiene —que está publicada, y dónde—: plegada, la
+          afirmación sigue a la vista y el detalle, a un clic. §02 la cita como
+          «el apartado de la tarifa, más arriba», y ahí sigue. */}
+      {data.laTarifa && (
+        <Pliegue kicker="La tarifa" titulo={data.laTarifa.titulo}>
+          <LaTarifa bloque={data.laTarifa} />
+        </Pliegue>
+      )}
 
       {/* «El coste oficial del agua es cero», decía este titular, y la
           declaración ministerial lo desmiente en la mitad de sus entregas: el
@@ -937,8 +841,10 @@ export default function CosteEfectivo() {
                 alignItems: 'baseline',
                 padding: '8px 10px',
                 borderRadius: 'var(--r-input)',
-                border: '1px solid var(--warn)',
-                background: 'var(--warn-soft)',
+                // Petróleo, lo que la pieza mira. En ámbar parecían una alerta
+                // del sitio, y el emblema pinta esos ceros en gris, no en color.
+                border: '1px solid var(--civic)',
+                background: 'var(--civic-soft)',
               }}
             >
               <span style={{ fontSize: 'var(--fs-meta)' }}>
@@ -949,7 +855,7 @@ export default function CosteEfectivo() {
               </span>
               <span
                 className="mono"
-                style={{ fontSize: 'var(--fs-meta)', color: 'var(--warn-ink)' }}
+                style={{ fontSize: 'var(--fs-meta)', color: 'var(--civic-ink)' }}
               >
                 {sv.coste} · {sv.motivo}
               </span>
@@ -1057,6 +963,17 @@ export default function CosteEfectivo() {
         kicker="Y por qué hay que leerlo con pinzas"
         title="De once entregas, una sin rendir"
       />
+      {/* Donde empiezan las tres secciones que resume. Iba al final, debajo del
+          método, donde sólo la encontraba quien ya había leído las tres. */}
+      {data.infografia && (
+        <p style={{ fontSize: 'var(--fs-aux)', color: 'var(--ink50)', margin: '0 0 12px' }}>
+          Las secciones 05 a 07 —los tres defectos de la declaración— existen también como{' '}
+          <a href={data.infografia.url} style={{ color: 'var(--civic)' }}>
+            «{data.infografia.titulo}», una infografía en una sola página
+          </a>
+          , pensada para compartir o imprimir. {data.infografia.que}
+        </p>
+      )}
       <P>
         Calcular el coste efectivo de los servicios antes del 1 de noviembre de cada año, y
         comunicarlo al ministerio para su publicación, es una obligación del artículo 116 ter de la
@@ -1193,15 +1110,15 @@ export default function CosteEfectivo() {
         </ul>
       </div>
 
-      {/* Fuentes y método, el cierre de todas las piezas. El `min(…, 100%)` es
-          para la columna que queda sola: sin él conservaba sus 280 px en una
-          caja de 272 (320 px de pantalla). */}
+      {/* Fuentes y método, el cierre de todas las piezas: una caja debajo de la
+          otra, con el texto a la medida de lectura. Iban en dos columnas, y el
+          método —el doble de largo— se leía en media columna a --fs-aux, con un
+          hueco vacío al lado de las fuentes. */}
       <div
         style={{
-          display: 'grid',
-          gridTemplateColumns: 'repeat(auto-fit, minmax(min(280px, 100%), 1fr))',
+          display: 'flex',
+          flexDirection: 'column',
           gap: 14,
-          alignItems: 'start',
           marginTop: 30,
         }}
       >
@@ -1224,7 +1141,15 @@ export default function CosteEfectivo() {
           >
             Fuentes primarias
           </h3>
-          <ul style={{ margin: 0, paddingLeft: 18, fontSize: 'var(--fs-aux)', lineHeight: 1.6 }}>
+          <ul
+            style={{
+              margin: 0,
+              paddingLeft: 18,
+              fontSize: 'var(--fs-aux)',
+              lineHeight: 1.6,
+              maxWidth: 'var(--medida)',
+            }}
+          >
             {data.fuentes.map((f) => (
               <li key={f.url} style={{ marginBottom: 5 }}>
                 <a
@@ -1242,7 +1167,7 @@ export default function CosteEfectivo() {
         <div
           style={{
             background: 'var(--soft)',
-            border: '1px solid var(--warn)',
+            border: '1px solid var(--border)',
             borderRadius: 'var(--r-card)',
             padding: '18px 20px',
           }}
@@ -1265,6 +1190,7 @@ export default function CosteEfectivo() {
               fontSize: 'var(--fs-aux)',
               color: 'var(--ink70)',
               lineHeight: 1.6,
+              maxWidth: 'var(--medida)',
             }}
           >
             {data.metodo.map((t) => (
@@ -1275,16 +1201,6 @@ export default function CosteEfectivo() {
           </ul>
         </div>
       </div>
-
-      {data.infografia && (
-        <p style={{ fontSize: 'var(--fs-aux)', color: 'var(--ink50)', margin: '18px 0 0' }}>
-          Las secciones 05 a 07 —los tres defectos de la declaración— existen también como{' '}
-          <a href={data.infografia.url} style={{ color: 'var(--civic)' }}>
-            «{data.infografia.titulo}», una infografía en una sola página
-          </a>
-          , pensada para compartir o imprimir. {data.infografia.que}
-        </p>
-      )}
 
       <p
         style={{

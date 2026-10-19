@@ -1,8 +1,9 @@
+import { lazy, Suspense } from 'react'
 import { useReportaje } from '../../hooks/useReportaje'
 import CabeceraPieza, { ENTRADILLA } from '../../components/reportajes/CabeceraPieza'
 import { Card, SectionHead } from '../../components/Primitives'
 import { CorrectionNote } from '../../components/reportajes/CorrectionNote'
-import { SecHead, Revela, useRevelado } from '../../components/reportajes/Pieza'
+import { SecHead, Revela, useRevelado, Aparte } from '../../components/reportajes/Pieza'
 
 const MES = ['ene', 'feb', 'mar', 'abr', 'may', 'jun', 'jul', 'ago', 'sep', 'oct', 'nov', 'dic']
 
@@ -11,14 +12,6 @@ function eurC(n) {
   if (n >= 1e3) return Math.round(n / 1e3) + ' k€'
   return Math.round(n) + ' €'
 }
-function eurFull(n) {
-  return new Intl.NumberFormat('es-ES', {
-    style: 'currency',
-    currency: 'EUR',
-    maximumFractionDigits: 0,
-  }).format(n)
-}
-
 /* ---- Cronograma (barras por mes) ---- */
 function Timeline({ data }) {
   const W = 680,
@@ -32,6 +25,27 @@ function Timeline({ data }) {
   const max = Math.max(...data.map((d) => d.amount))
   const bw = iw / data.length
   const { ref, marcas } = useRevelado()
+  // Los picos —cualquier mes por encima del 30 % del mayor— llevan su importe
+  // encima. Sólo lo llevaba el mayor, noviembre de 2024, y el otro que la
+  // entradilla nombra —el vallado de marzo de 2026, 445.313 €— quedaba como
+  // una barra sin cifra ni mes: su etiqueta era la penúltima, la que se salta.
+  const picos = data.flatMap((d, i) => (d.amount >= 0.3 * max ? [i] : []))
+  // Un mes sí y otro no, y siempre el último. Con un número par de meses el
+  // penúltimo también es par, y las dos etiquetas finales se montaban
+  // («mar 26abr 26»): se salta el penúltimo. Después, cada pico se queda con su
+  // mes y sus vecinos lo pierden —salvo que el vecino sea otro pico ya rotulado,
+  // y entonces el que cede es éste: dos meses seguidos no caben—.
+  const meses = new Set(
+    data.flatMap((_, i) =>
+      (i % 2 === 0 && i !== data.length - 2) || i === data.length - 1 ? [i] : [],
+    ),
+  )
+  for (const p of picos) {
+    if (picos.includes(p - 1) && meses.has(p - 1)) continue
+    meses.add(p)
+    if (!picos.includes(p - 1)) meses.delete(p - 1)
+    if (!picos.includes(p + 1)) meses.delete(p + 1)
+  }
   return (
     <svg
       ref={ref}
@@ -64,7 +78,7 @@ function Timeline({ data }) {
                 <title>{`${MES[mo]} ${d.month.slice(0, 4)} · ${eurC(d.amount)} · ${d.count} contrato${d.count > 1 ? 's' : ''}`}</title>
               </rect>
             )}
-            {d.amount === max && (
+            {picos.includes(i) && (
               <text
                 x={bx + bwid / 2}
                 y={mT + ih - bh - 5}
@@ -75,10 +89,7 @@ function Timeline({ data }) {
                 {eurC(d.amount)}
               </text>
             )}
-            {/* Un mes sí y otro no, y siempre el último. Con un número par de
-                meses el penúltimo también es par, y las dos etiquetas finales se
-                montaban («mar 26abr 26»): se salta el penúltimo. */}
-            {((i % 2 === 0 && i !== data.length - 2) || i === data.length - 1) && (
+            {meses.has(i) && (
               <text
                 x={x + bw / 2}
                 y={H - 9}
@@ -96,98 +107,16 @@ function Timeline({ data }) {
   )
 }
 
-/* ---- Mapa de contratos geolocalizados ----
-   Misma clave que la figura de cabecera de esta pieza (Emblema): con referencia
-   DANA en petróleo, el resto en gris. Antes los dos grupos eran el mismo
-   petróleo con distinta opacidad (0,72 frente a 0,4): en claro costaba
-   distinguirlos y en oscuro no se distinguían, y el pie pedía al lector que
-   viera «los puntos más intensos». Y no en rojo: el rojo es el color de lo que
-   una pieza documenta como fallo, y ésta no atribuye irregularidad a nadie. */
-function MapaContratos({ boundary, bbox, places, danaPlaces }) {
-  const pad = 20
-  const cosLat = Math.cos((((bbox.north + bbox.south) / 2) * Math.PI) / 180)
-  const lngSpan = bbox.east - bbox.west
-  const latSpan = bbox.north - bbox.south
-  const H = 520
-  const W = Math.round(H * ((lngSpan * cosLat) / latSpan))
-  const iw = W - pad * 2
-  const ih = H - pad * 2
-  const px = (lng) => pad + ((lng - bbox.west) / lngSpan) * iw
-  const py = (lat) => pad + ((bbox.north - lat) / latSpan) * ih
-  const path = boundary
-    .map((p, i) => (i ? 'L' : 'M') + px(p[1]).toFixed(1) + ' ' + py(p[0]).toFixed(1))
-    .join(' ')
-    .concat(' Z')
-  const maxAmt = Math.max(...places.map((p) => p.amount))
-  const rOf = (a) => 4 + Math.sqrt(a / maxAmt) * 16
-  const sorted = [...places].sort((a, b) => b.amount - a.amount)
-  const anchors = danaPlaces.slice(0, 2)
-  const { ref, marcas } = useRevelado()
-  return (
-    <svg
-      ref={ref}
-      {...marcas}
-      viewBox={`0 0 ${W} ${H}`}
-      style={{ width: '100%', maxWidth: 440, display: 'block' }}
-      role="img"
-      aria-label="Mapa de Riba-roja de Túria con los contratos geolocalizados: en azul petróleo, los lugares con contratos que referencian la DANA; en gris, el resto"
-    >
-      <path
-        className="cp-traza"
-        pathLength={1}
-        d={path}
-        fill="var(--soft)"
-        stroke="var(--ink50)"
-        strokeWidth="1"
-        strokeLinejoin="round"
-      />
-      {sorted.map((p, i) => (
-        <circle
-          key={i}
-          className="cp-brota"
-          style={{ '--i': i, '--d': '500ms', '--paso': '22ms' }}
-          cx={px(p.lng).toFixed(1)}
-          cy={py(p.lat).toFixed(1)}
-          r={rOf(p.amount).toFixed(1)}
-          fill={p.danaAmount > 0 ? 'var(--civic)' : 'var(--ink50)'}
-          fillOpacity={p.danaAmount > 0 ? 0.9 : 0.6}
-          stroke="var(--paper)"
-          strokeWidth={1.2}
-        >
-          <title>{`${p.name} · ${eurFull(p.amount)} · ${p.contractCount} contrato${p.contractCount > 1 ? 's' : ''}${p.danaAmount > 0 ? ` · DANA ${eurC(p.danaAmount)}` : ''}`}</title>
-        </circle>
-      ))}
-      {anchors.map((p, i) => {
-        const x = px(p.lng)
-        const y = py(p.lat)
-        const r = rOf(p.amount)
-        return (
-          <g key={'a' + i}>
-            {/* Halo del color del papel y no un rectángulo de fondo: el rectángulo
-                se medía a ojo (4,9 por letra) y se quedaba corto —53 para los 66 de
-                «l'Oliveral», 117 para los 152 de «Polideportivo Municipal», sobre el
-                racimo del casco—. El halo mide lo que mide el texto. */}
-            <text
-              x={x + r + 4}
-              y={y + 3}
-              className="mono"
-              paintOrder="stroke"
-              stroke="var(--paper)"
-              strokeWidth={3}
-              strokeLinejoin="round"
-              style={{ fontSize: 'var(--fs-micro)', fill: 'var(--ink)', fontWeight: 500 }}
-            >
-              {p.name}
-            </text>
-          </g>
-        )
-      })}
-    </svg>
-  )
-}
+/* ---- El mapa de §02, sobre el mapa base, perezoso: sólo esta pieza lo usa,
+        y a media página (MapaDana.jsx cuenta por qué dejó de ser un SVG).
+        Misma clave que la figura de cabecera: con referencia DANA en
+        petróleo, el resto en gris. Y no en rojo: el rojo es el color de lo que
+        una pieza documenta como fallo, y ésta no atribuye irregularidad a
+        nadie. ---- */
+const MapaDana = lazy(() => import('../../components/reportajes/MapaDana'))
 
-/* ---- La clave del mapa, en HTML y no dentro del SVG: el SVG se escala con el
-        ancho y sus letras bajarían del suelo de 11px en un móvil. ---- */
+/* ---- La clave del mapa, en HTML: debajo del mapa y no dentro, donde sus
+        letras se leerían sobre las teselas. ---- */
 function ClaveMapa() {
   const punto = (color, opacidad) => ({
     display: 'inline-block',
@@ -211,11 +140,12 @@ function ClaveMapa() {
       }}
     >
       <span>
-        <span aria-hidden="true" style={punto('var(--civic)', 0.9)} />
+        <span aria-hidden="true" style={punto('var(--civic)', 0.85)} />
         con referencia DANA
       </span>
       <span>
-        <span aria-hidden="true" style={punto('var(--ink50)', 0.6)} />
+        {/* El gris del mapa: la tinta al 40 %, como pinta Leaflet el resto. */}
+        <span aria-hidden="true" style={punto('var(--ink)', 0.4)} />
         sin referencia DANA
       </span>
     </div>
@@ -239,16 +169,10 @@ function Barras({ rows }) {
               marginBottom: 5,
             }}
           >
-            <span
-              style={{
-                color: 'var(--ink)',
-                overflow: 'hidden',
-                textOverflow: 'ellipsis',
-                whiteSpace: 'nowrap',
-              }}
-            >
-              {r.label}
-            </span>
+            {/* El nombre entero, en dos líneas si hace falta. Se cortaba a 34
+                caracteres y con puntos suspensivos: «HIDRAQUA GESTION INTEGRAL
+                DE AGUA…», el nombre de una adjudicataria a medias. */}
+            <span style={{ color: 'var(--ink)' }}>{r.label}</span>
             <span
               className="mono"
               style={{ color: 'var(--ink50)', fontSize: 'var(--fs-meta)', flexShrink: 0 }}
@@ -300,12 +224,15 @@ const FUNDERS = [
     fig: '46,3 M€',
   },
   { who: 'UE · FEDER (Plan EDIL)', sub: 'reconstrucción urbana', fig: '9,5 M€' },
+  // Sin cifra propia para Riba-roja: la de la CHJ es de doce municipios y la de
+  // la Diputació no se desglosa. Su columna decía «río Túria» y «provincial»
+  // con la letra y el color de un importe; ahora dice que no hay importe.
   {
     who: 'Estado · CHJ',
     sub: 'emergencia del cauce del Túria (parte de 19 M€ / 12 municipios)',
-    fig: 'río Túria',
+    fig: null,
   },
-  { who: 'Diputació de València', sub: 'ayuda provincial + personal', fig: 'provincial' },
+  { who: 'Diputació de València', sub: 'ayuda provincial + personal', fig: null },
 ]
 function Funders() {
   return (
@@ -345,17 +272,27 @@ function Funders() {
                 {f.sub}
               </div>
             </div>
-            <div
-              className="mono"
-              style={{
-                fontSize: 'var(--fs-aux)',
-                color: 'var(--civic)',
-                fontWeight: 500,
-                whiteSpace: 'nowrap',
-              }}
-            >
-              {f.fig}
-            </div>
+            {f.fig ? (
+              <div
+                className="mono"
+                style={{
+                  fontSize: 'var(--fs-aux)',
+                  color: 'var(--civic)',
+                  fontWeight: 500,
+                  whiteSpace: 'nowrap',
+                }}
+              >
+                {f.fig}
+              </div>
+            ) : (
+              <div
+                style={{ fontSize: 'var(--fs-micro)', color: 'var(--ink50)', textAlign: 'right' }}
+              >
+                sin cifra
+                <br />
+                para Riba-roja
+              </div>
+            )}
           </div>
         ))}
       </div>
@@ -370,7 +307,9 @@ function Funders() {
   )
 }
 
-/* ---- Callout ámbar: lo que sigue sin ejecutarse ---- */
+/* ---- Lo que sigue sin ejecutarse. El `Aparte` compartido, en petróleo: es lo
+        que la pieza señala, y el ámbar —el color de un aviso para quien lee—
+        no le pedía hacer nada. ---- */
 function Callout() {
   const li = {
     marginBottom: 7,
@@ -378,29 +317,9 @@ function Callout() {
     fontSize: 'var(--fs-body)',
     lineHeight: 1.45,
   }
-  const em = { color: 'var(--warn-ink)' }
+  const em = { color: 'var(--civic-ink)' }
   return (
-    <div
-      style={{
-        background: 'var(--warn-soft)',
-        border: '1px solid var(--warn)',
-        borderRadius: 'var(--r-card)',
-        padding: '18px 22px',
-        margin: '16px 0 8px',
-      }}
-    >
-      <div
-        style={{
-          fontSize: 'var(--fs-meta)',
-          textTransform: 'uppercase',
-          letterSpacing: '.1em',
-          color: 'var(--warn-ink)',
-          fontWeight: 700,
-          marginBottom: 10,
-        }}
-      >
-        Adjudicado no es ejecutado
-      </div>
+    <Aparte title="Adjudicado no es ejecutado" tono="foco">
       <ul style={{ margin: 0, paddingLeft: 20 }}>
         <li style={li}>
           La reposición hídrica del municipio iba al <b style={em}>30 %</b> en 2026, según la
@@ -415,17 +334,25 @@ function Callout() {
           meses después.
         </li>
       </ul>
-    </div>
+    </Aparte>
   )
 }
-
-const CAP = (s) => (s.length > 34 ? s.slice(0, 33) + '…' : s)
 
 /**
  * Lo que suman los lugares con gasto DANA: cuántos, con cuántos contratos DANA y
  * por cuánto. Derivado de la lista que pintan las barras, no escrito: «Seis
  * emplazamientos», a mano, se quedó contando la lista de la versión del 06-07.
  */
+/** Noviembre de 2024, el mes de la ola, de la misma serie que la gráfica. */
+export function mesDeLaOla(timeline) {
+  const m = timeline.find((x) => x.month === '2024-11')
+  if (!m) throw new Error('reconstrucción DANA: la serie mensual no trae noviembre de 2024')
+  return m
+}
+
+/** «1,33»: millones con dos decimales y coma, como los escribe la pieza. */
+export const millones = (n) => (n / 1e6).toFixed(2).replace('.', ',')
+
 export function danaSituadoDe(danaPlaces) {
   return {
     lugares: danaPlaces.length,
@@ -463,7 +390,8 @@ export function kpisReconstruccion(t) {
     {
       n: '0',
       l: 'informes DANA de la Sindicatura que alcanzan al tramo municipal',
-      tone: 'var(--warn-ink)',
+      // Petróleo, lo que la pieza señala. Iba en ámbar, el color de un aviso.
+      tone: 'var(--civic-ink)',
     },
   ]
 }
@@ -487,6 +415,7 @@ export default function ReconstruccionDana() {
   const t = data.totals
   const m = data.meta
   const danaSituado = danaSituadoDe(data.danaPlaces)
+  const ola = mesDeLaOla(data.timelineFull)
 
   return (
     <div
@@ -516,13 +445,20 @@ export default function ReconstruccionDana() {
             <p style={ENTRADILLA}>
               En los días que siguieron a la DANA del 29 de octubre de 2024, el Ayuntamiento de
               Riba-roja de Túria firmó contratos casi a diario. Palas para despejar caminos,
-              camiones para retirar el lodo, bombas para achicar los polígonos anegados. Solo en
-              noviembre de aquel año adjudicó <b>22 contratos por 1,39 millones de euros</b>, buena
-              parte por el procedimiento de emergencia que permite la ley cuando no hay tiempo para
-              un concurso. Año y medio después, la reconstrucción todavía se contrata: el último
-              gran contrato con referencia a la DANA que consta en el registro público —un vallado
-              de parcelas en los polígonos industriales por <b>445.313 euros</b>— se adjudicó en
-              marzo de 2026.
+              camiones para retirar el lodo, bombas para achicar los polígonos anegados. Solo en{' '}
+              {/* De la serie de la gráfica, no escrito: decía «22 contratos por 1,39
+                  millones», la serie del 6 de julio, y la corrección del 19-10-2026
+                  rehízo la gráfica (21 y 1,33) sin tocar esta frase. Las dos cifras
+                  del mismo mes quedaron a un palmo. */}
+              noviembre de aquel año adjudicó{' '}
+              <b>
+                {ola.count} contratos por {millones(ola.amount)} millones de euros
+              </b>
+              , buena parte por el procedimiento de emergencia que permite la ley cuando no hay
+              tiempo para un concurso. Año y medio después, la reconstrucción todavía se contrata:
+              el último gran contrato con referencia a la DANA que consta en el registro público —un
+              vallado de parcelas en los polígonos industriales por <b>445.313 euros</b>— se
+              adjudicó en marzo de 2026.
             </p>
             <p style={{ ...ENTRADILLA, margin: '14px 0 0' }}>
               Entre esas dos fechas, un análisis de la contratación municipal permite seguir el
@@ -587,21 +523,24 @@ export default function ReconstruccionDana() {
         <Card style={{ margin: '18px 0 8px' }}>
           <SectionHead eyebrow="Dónde" title="Contratos municipales geolocalizados" />
           <div style={{ marginTop: 10 }}>
-            <MapaContratos
-              boundary={data.boundary}
-              bbox={data.bbox}
-              places={data.places}
-              danaPlaces={data.danaPlaces}
-            />
+            <Suspense fallback={<div className="cp-mapa-dana" />}>
+              <MapaDana
+                boundary={data.boundary}
+                bbox={data.bbox}
+                places={data.places}
+                danaPlaces={data.danaPlaces}
+              />
+            </Suspense>
             <ClaveMapa />
           </div>
         </Card>
         <p className="cp-pie" style={cap()}>
           Un punto por lugar: {data.places.length} lugares que nombran {t.situatedContracts}{' '}
           contratos. Un contrato cuyo título nombra varios lugares no se sitúa en ninguno. Radio
-          proporcional a √importe; en azul petróleo, los lugares con algún contrato que referencia
-          la DANA, y en gris el resto. Contorno municipal real (OSM). Fuente: tender-geo · resolutor
-          determinista de topónimos.
+          proporcional a √importe; en petróleo, los lugares con algún contrato que referencia la
+          DANA, y en gris el resto. Los dos con más gasto DANA llevan su nombre; los demás lo dicen
+          al pasar por encima o al tocarlos. En discontinua, el contorno del término (OSM), sobre el
+          mapa base de OpenStreetMap. Fuente: tender-geo · resolutor determinista de topónimos.
         </p>
 
         <SecHead num="03" kicker="Quién" title="Los adjudicatarios" />
@@ -612,7 +551,7 @@ export default function ReconstruccionDana() {
         <Card style={{ margin: '18px 0 20px' }}>
           <Barras
             rows={data.contractors.map((c) => ({
-              label: CAP(c.name),
+              label: c.name,
               value: c.amount,
               count: c.count,
             }))}
@@ -669,13 +608,16 @@ export default function ReconstruccionDana() {
 
         <SecHead num="06" kicker="El vacío" title="Quién audita esto, y con qué lupa" />
         <p>
-          Ese caudal de dinero público llega, en su tramo municipal, sin un control externo
+          {/* Los dos {' '} de este párrafo no son adorno: JSX se come el salto de
+              línea entre una palabra y una etiqueta, y se publicaba «control
+              externoespecífico» y «de esamirada» (revisión del 19-10-2026). */}
+          Ese caudal de dinero público llega, en su tramo municipal, sin un control externo{' '}
           <i>específico de la DANA</i>. La Sindicatura de Comptes anunció la fiscalización de los
           contratos y subvenciones ligados a la riada, pero acotada al <b>sector autonómico</b> —la
           ferroviaria FGV y la pública VAERSA, donde ya detectó sobrecostes y falta de
           transparencia—, no a los ayuntamientos: sus dos informes especiales llevan «en el sector
           autonómico» en el propio título. Los contratos de emergencia municipales, adjudicados a
-          menudo sin concurrencia por la urgencia de la catástrofe, quedan fuera de <i>esa</i>
+          menudo sin concurrencia por la urgencia de la catástrofe, quedan fuera de <i>esa</i>{' '}
           mirada. Tampoco el visor infoDANA del Gobierno, que detalla las ayudas{' '}
           <i>pueblo a pueblo</i>, desciende al contrato concreto ni a la calle.
         </p>
@@ -717,10 +659,12 @@ export default function ReconstruccionDana() {
         </p>
       </article>
 
+      {/* Fuentes y método: una caja debajo de la otra, con el texto a la medida
+          de lectura, como en las otras piezas. */}
       <div
         style={{
-          display: 'grid',
-          gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))',
+          display: 'flex',
+          flexDirection: 'column',
           gap: 14,
           margin: '32px 0 0',
         }}
@@ -734,7 +678,7 @@ export default function ReconstruccionDana() {
           }}
         >
           <h3 style={boxH()}>Fuentes primarias</h3>
-          <ul style={boxUl()}>
+          <ul style={{ ...boxUl(), maxWidth: 'var(--medida)' }}>
             <li style={boxLi()}>
               <b>PLACSP / Gobierto</b> — el ledger contrato a contrato.
             </li>
@@ -755,13 +699,13 @@ export default function ReconstruccionDana() {
         <div
           style={{
             background: 'var(--soft)',
-            border: '1px solid var(--warn)',
+            border: '1px solid var(--border)',
             borderRadius: 'var(--r-card)',
             padding: '18px 20px',
           }}
         >
           <h3 style={boxH()}>Método y cautelas</h3>
-          <ul style={boxUl()}>
+          <ul style={{ ...boxUl(), maxWidth: 'var(--medida)' }}>
             <li style={boxLi()}>
               <b>«DANA» = coincidencia por palabra en el título</b> del contrato: el suelo trazable,
               no el total de reconstrucción.

@@ -1,4 +1,4 @@
-import { useEffect, useMemo } from 'react'
+import { useMemo } from 'react'
 import {
   AttributionControl,
   CircleMarker,
@@ -8,10 +8,10 @@ import {
   ScaleControl,
   TileLayer,
   Tooltip,
-  useMap,
 } from 'react-leaflet'
 import { BASEMAP_ATTRIBUTION, BASEMAP_URL } from '../../lib/basemap'
 import { fmtDateHuman } from '../../lib/formatters'
+import Encaje from './EncajeMapa'
 
 /**
  * El mapa de situación de «matrículas y móviles»: el Parc Natural del Túria,
@@ -56,32 +56,6 @@ function vista(mapa) {
     [Math.min(...lats) - 0.003, Math.min(...lons) - 0.004],
     [Math.max(...lats) + 0.004, Math.max(...lons) + 0.012],
   ]
-}
-
-/**
- * Encaja la vista cada vez que el contenedor cambia de tamaño, y no deja
- * alejarse más. Al montarse desde `lazy`, el contenedor aún medía cero:
- * `fitBounds` sobre una caja vacía cae al zoom máximo, y el mapa salía a 30 m
- * de escala. Un ResizeObserver espera a que mida algo, y vuelve a encajar si
- * cambia el ancho (el móvil al girar).
- */
-function Encaje({ bounds }) {
-  const map = useMap()
-  useEffect(() => {
-    const el = map.getContainer()
-    const encaja = () => {
-      if (!el.clientWidth || !el.clientHeight) return
-      map.invalidateSize()
-      map.setMinZoom(0)
-      map.fitBounds(bounds, { padding: [12, 12], animate: false })
-      map.setMinZoom(map.getZoom())
-    }
-    encaja()
-    const ro = new ResizeObserver(encaja)
-    ro.observe(el)
-    return () => ro.disconnect()
-  }, [map, bounds])
-  return null
 }
 
 /** @param {{ mapa: any }} props */

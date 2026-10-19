@@ -125,7 +125,8 @@
       {
         "criterio": "Número de dispositivos adicionales sobre el mínimo exigido",
         "puntos": 16,
-        "tipo": "fórmula"
+        "tipo": "fórmula",
+        "foco": true
       },
       {
         "criterio": "Años de experiencia adicional del jefe de proyecto",
@@ -198,6 +199,16 @@
     {
       "label": "Reportaje previo: «El dinero de la reconstrucción, calle a calle»",
       "url": "/reportajes/reconstruccion-dana"
+    },
+    {
+      "label": "Reportaje posterior: «Un contrato para contar visitantes que encarga cámaras de matrículas para integrarlas con la Policía Local»",
+      "url": "/reportajes/matriculas-y-moviles"
+    }
+  ],
+  "enlaces": [
+    {
+      "texto": "Un contrato para contar visitantes que encarga cámaras de matrículas para integrarlas con la Policía Local",
+      "a": "/reportajes/matriculas-y-moviles"
     }
   ],
   "metodo": [

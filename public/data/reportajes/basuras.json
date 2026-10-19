@@ -22,7 +22,7 @@
   },
   "kpis": [
     {
-      "n": "14 a. 9 m.",
+      "n": "14 años y 9 meses",
       "l": "duró la contrata anterior: SAV, del 1 de febrero de 2011 a noviembre de 2025"
     },
     {
@@ -289,6 +289,7 @@
       2023,
       2024
     ],
+    "sinEntrega": [2020],
     "paresConDato": 55,
     "paresConTonelaje": 46,
     "paresTotales": 60,

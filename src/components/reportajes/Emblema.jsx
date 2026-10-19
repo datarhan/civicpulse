@@ -19,7 +19,7 @@
  * index.css. Ningún texto cambia de valor, de tamaño ni de sitio —nada cuenta
  * hacia arriba—: una cifra que pasa por valores intermedios es una cifra que
  * alguien pudo leer mal. Lo más que ocurre es que una barra que crece descubra
- * la etiqueta clara que lleva encima («14 a. 9 m.»). Sin IntersectionObserver,
+ * la etiqueta clara que lleva encima («14 años y 9 meses»). Sin IntersectionObserver,
  * con movimiento reducido o en papel, la figura está completa desde el primer
  * fotograma.
  */

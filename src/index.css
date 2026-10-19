@@ -1748,6 +1748,7 @@ main:focus:not(:focus-visible) {
 .cp-pieza > :is(p, ul, ol, h3, .cp-texto):not(.cp-ancho),
 .cp-pieza > article > :is(p, ul, ol, h3, .cp-texto):not(.cp-ancho),
 .cp-pieza > .cp-registro > :is(p, ul, ol, h3, .cp-texto):not(.cp-ancho),
+.cp-pieza > .cp-pliegue > :is(p, ul, ol, h3, .cp-texto):not(.cp-ancho),
 .cp-pieza .cp-pie {
   max-width: var(--medida);
 }
@@ -1805,12 +1806,20 @@ main:focus:not(:focus-visible) {
 .cp-mapa-pliego {
   height: 380px;
 }
+/* El de «reconstrucción DANA» cubre el término entero, más alto que ancho:
+   más alto que el del pliego para que el casco no quede en un racimo. */
+.cp-mapa-dana {
+  height: 520px;
+}
 @media (max-width: 599px) {
   .cp-mapa-pliego {
     height: 320px;
   }
+  .cp-mapa-dana {
+    height: 440px;
+  }
 }
-.cp-mapa-pliego .cp-mapa-tip {
+:is(.cp-mapa-pliego, .cp-mapa-dana) .cp-mapa-tip {
   font-family: var(--font-body);
   font-size: var(--fs-meta);
   font-weight: 600;
@@ -1821,7 +1830,7 @@ main:focus:not(:focus-visible) {
   box-shadow: 0 1px 3px rgba(11, 15, 25, 0.25);
   padding: 2px 6px;
 }
-.cp-mapa-pliego .cp-mapa-tip::before {
+:is(.cp-mapa-pliego, .cp-mapa-dana) .cp-mapa-tip::before {
   display: none;
 }
 .cp-mapa-pliego .cp-mapa-tip-parque {
@@ -1898,6 +1907,24 @@ main:focus:not(:focus-visible) {
     color: var(--ink50);
     font-weight: 500;
   }
+  /* Compacta (`Tabla compacta`): la etiqueta a la izquierda de su valor, no
+     encima. Para tablas de celdas cortas —importes, puntos, ofertas—, donde
+     una etiqueta por línea doblaba el alto: la del plan turístico, dieciséis
+     filas de seis columnas, medía 5.114 px a 375. Las de texto largo —la
+     cronología de basuras, «lo que exige / lo observado»— siguen con la
+     etiqueta encima, que deja al texto el ancho entero. */
+  .cp-tabla-compacta td {
+    display: grid;
+    grid-template-columns: minmax(6.5em, 32%) 1fr;
+    column-gap: 12px;
+    align-items: baseline;
+  }
+  .cp-tabla-compacta td::before {
+    margin-bottom: 0;
+  }
+  .cp-tabla-compacta td + td {
+    margin-top: 4px;
+  }
 }
 
 /* «En esta pieza» — índice plegado, leído de los encabezados de la pieza. */
@@ -1932,6 +1959,57 @@ main:focus:not(:focus-visible) {
 .cp-indice[open] > summary::after {
   transform: translateY(1px) rotate(225deg);
 }
+/* El bloque plegado de una pieza (`Pliegue` en Pieza.jsx): la misma fila con
+   chevrón que el índice, para que se lea como algo que se abre. El rótulo va
+   en dos líneas —qué es, y qué dice— y el chevrón, fuera del flujo, para que a
+   375px un rótulo largo no lo empuje a una tercera. */
+.cp-pliegue {
+  margin: 18px 0;
+}
+.cp-pliegue > summary {
+  position: relative;
+  display: block;
+  padding: 11px 40px 11px 16px;
+  border: 1px solid var(--border);
+  border-radius: var(--r-card);
+  background: var(--paper);
+  cursor: pointer;
+  list-style: none;
+}
+.cp-pliegue > summary::-webkit-details-marker {
+  display: none;
+}
+.cp-pliegue > summary::after {
+  content: '';
+  position: absolute;
+  right: 18px;
+  top: 50%;
+  width: 7px;
+  height: 7px;
+  border-right: 1.5px solid var(--ink50);
+  border-bottom: 1.5px solid var(--ink50);
+  transform: translateY(-70%) rotate(45deg);
+  transition: transform var(--motion-base) var(--ease-base);
+}
+.cp-pliegue[open] > summary::after {
+  transform: translateY(-30%) rotate(225deg);
+}
+.cp-pliegue-kicker {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: var(--fs-micro);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--ink50);
+}
+.cp-pliegue-titulo {
+  display: block;
+  margin-top: 2px;
+  font-size: var(--fs-aux);
+  line-height: 1.45;
+  color: var(--ink);
+}
+
 .cp-indice-titulo {
   font-family: var(--font-mono);
   font-size: var(--fs-micro);
@@ -1998,15 +2076,19 @@ main:focus:not(:focus-visible) {
   line-height: 1.3;
   color: var(--ink70);
 }
+/* Una marca vertical por hito, no un punto: los siete hitos de 2019 caen en
+   cinco meses, que a este ancho son menos píxeles que siete puntos de 12, y se
+   montaban en un borrón de medias lunas. Una raya de 2px con su filete del
+   color del fondo deja ver cada una aunque caigan juntas. El nombre se queda:
+   la prueba de la banda mide el centro de cada `.cp-tira-punto`. */
 .cp-tira-punto {
   position: absolute;
-  top: 40px;
-  width: 12px;
-  height: 12px;
-  margin-left: -6px;
-  border-radius: 50%;
+  top: 36px;
+  width: 2px;
+  height: 26px;
+  margin-left: -1px;
   background: var(--civic);
-  box-shadow: 0 0 0 2px var(--soft);
+  box-shadow: 0 0 0 1px var(--soft);
 }
 .cp-tira-eje {
   position: absolute;

@@ -25,6 +25,15 @@ test.describe('Reportaje · basuras (/reportajes/basuras)', () => {
     // The timeline table actually has rows (not an empty <tbody>).
     const filas = page.locator('table tbody tr')
     expect(await filas.count()).toBeGreaterThan(15)
+    // Plegada desde el 19-10-2026, con un rótulo que dice cuántos hitos hay.
+    // Sus filas repiten frases de las secciones de Parla y de los dueños, así
+    // que las comprobaciones de abajo miran sólo lo VISIBLE: un `.first()` a
+    // secas resolvería a la fila oculta de la cronología.
+    const cronologia = page.locator('.cp-pliegue').filter({ hasText: 'Cronología' })
+    expect(await cronologia.getAttribute('open')).toBeNull()
+    await expect(cronologia.locator('summary')).toContainText(
+      `${JSON.parse(readFileSync('public/data/reportajes/basuras.json', 'utf8')).cronologia.length} hitos`,
+    )
 
     // The register finding, and the control that makes it a finding.
     await expect(page.getByText(/sigue vivo en el registro/).first()).toBeVisible()
@@ -40,10 +49,20 @@ test.describe('Reportaje · basuras (/reportajes/basuras)', () => {
       page.getByText(/un camión de recogida de basuras sin la pluma de la grúa/).first(),
     ).toBeVisible()
     // …and told in both directions: the UTE's own 2015 rescission request.
-    await expect(page.getByText(/la propia UTE pide rescindir el contrato/).first()).toBeVisible()
+    await expect(
+      page
+        .getByText(/la propia UTE pide rescindir el contrato/)
+        .filter({ visible: true })
+        .first(),
+    ).toBeVisible()
 
     // The owners section: Olazarán's PNV record, attributed, with its limits.
-    await expect(page.getByText(/Euzkadi Buru Batzar/).first()).toBeVisible()
+    await expect(
+      page
+        .getByText(/Euzkadi Buru Batzar/)
+        .filter({ visible: true })
+        .first(),
+    ).toBeVisible()
     await expect(
       page.getByText(/trece meses antes de que se abriera la licitación/).first(),
     ).toBeVisible()
@@ -59,6 +78,23 @@ test.describe('Reportaje · basuras (/reportajes/basuras)', () => {
 
     // The two-documents-disagree defect.
     await expect(page.getByText(/horas distintas/).first()).toBeVisible()
+
+    // Desde el 19-10-2026: las tres tablas son la compartida, que se apila a
+    // 375px en vez de desplazarse de lado; la del coste dice el año que no se
+    // rindió en vez de saltárselo; y el ámbar queda para un solo aparte, el que
+    // le sirve a un vecino —las horas distintas—. Los demás son salvedades.
+    const snap = JSON.parse(readFileSync('public/data/reportajes/basuras.json', 'utf8'))
+    expect(await page.locator('.cp-tabla table').count()).toBe(3)
+    for (const a of snap.costeEfectivo.sinEntrega) {
+      await expect(
+        page
+          .locator('.cp-tabla tr')
+          .filter({ hasText: String(a) })
+          .filter({ hasText: 'sin entrega' }),
+      ).toHaveCount(1)
+    }
+    await expect(page.locator('[data-aparte="aviso"]')).toHaveCount(1)
+    await expect(page.locator('[data-aparte="aviso"]')).toContainText('horas distintas')
 
     // Every primary source link resolves to an absolute URL we can check.
     const fuentes = page.locator('a[rel="noopener noreferrer"]')

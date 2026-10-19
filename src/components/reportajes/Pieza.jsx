@@ -251,6 +251,82 @@ export function Revela({ children, style, className }) {
   )
 }
 
+/**
+ * Un bloque de contexto, plegado: lo que amplía una sección sin ser su hilo
+ * —la ficha de una sociedad, dónde está publicada una tarifa—. El rótulo dice
+ * QUÉ hay dentro y, si el bloque afirma algo, lo afirma él mismo: plegar
+ * esconde el detalle, no la afirmación. `review:surfaces` abre los `<details>`
+ * antes de leer.
+ *
+ * Lo estrenó «coste efectivo» (19-10-2026), donde §02 —lo que promete el
+ * título— empezaba a un tercio de la página, detrás de la concesión entera.
+ *
+ * @param {{ kicker: string, titulo: import('react').ReactNode, children: import('react').ReactNode }} props
+ */
+export function Pliegue({ kicker, titulo, children }) {
+  return (
+    <details className="cp-pliegue">
+      <summary>
+        <span className="cp-pliegue-kicker">{kicker}</span>
+        <span className="cp-pliegue-titulo">{titulo}</span>
+      </summary>
+      {children}
+    </details>
+  )
+}
+
+/* Los tonos de un aparte. «basuras» tenía seis cajas ámbar, más el borde del
+   recuadro de Parla y el del método, e «inteligencia turística» dos: con todo
+   en el color de un aviso, ninguno avisaba. El tono dice qué es cada uno:
+   - `nota` (por defecto), gris: una salvedad de la propia pieza —lo que no
+     decimos, el control que hicimos, un defecto del dato—.
+   - `foco`, petróleo: lo que la pieza señala, como la pregunta a la que lleva.
+   - `aviso`, ámbar: lo que le sirve a quien lee para actuar —en «basuras», las
+     dos horas distintas para sacar un mueble—. Uno, o ninguno, por pieza. */
+const TONOS_APARTE = {
+  nota: { fondo: 'var(--soft)', borde: 'var(--border)', rotulo: 'var(--ink50)' },
+  foco: { fondo: 'var(--civic-soft)', borde: 'var(--civic)', rotulo: 'var(--civic-ink)' },
+  aviso: { fondo: 'var(--warn-soft)', borde: 'var(--warn)', rotulo: 'var(--warn-ink)' },
+}
+
+/**
+ * Un aparte con rótulo, en una caja a lo ancho de la columna.
+ *
+ * @param {{ title: string, tono?: 'nota' | 'foco' | 'aviso', children: import('react').ReactNode }} props
+ */
+export function Aparte({ title, tono = 'nota', children }) {
+  const t = TONOS_APARTE[tono]
+  if (!t) throw new Error(`Aparte: tono desconocido «${tono}»`)
+  return (
+    <div
+      data-aparte={tono}
+      style={{
+        background: t.fondo,
+        border: `1px solid ${t.borde}`,
+        borderRadius: 'var(--r-card)',
+        padding: '16px 20px',
+        margin: '16px 0 8px',
+      }}
+    >
+      <div
+        style={{
+          fontSize: 'var(--fs-meta)',
+          textTransform: 'uppercase',
+          letterSpacing: '.1em',
+          color: t.rotulo,
+          fontWeight: 700,
+          marginBottom: 8,
+        }}
+      >
+        {title}
+      </div>
+      <div style={{ fontSize: 'var(--fs-body)', color: 'var(--ink70)', lineHeight: 1.5 }}>
+        {children}
+      </div>
+    </div>
+  )
+}
+
 const siempre = () => true
 
 /**

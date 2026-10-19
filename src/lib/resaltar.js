@@ -34,3 +34,34 @@ export function trozosResaltados(texto, frases) {
   if (cursor < texto.length) out.push({ t: texto.slice(cursor), resalte: false })
   return out
 }
+
+/**
+ * Parte un texto en trozos, enlazando cada mención de otra pieza.
+ *
+ * A diferencia de `trozosResaltados`, aquí cero o varias apariciones son lo
+ * normal: la instantánea declara los enlaces una vez y cada párrafo enlaza los
+ * que nombra. Que el título siga siendo el de la otra pieza lo comprueba
+ * `tests/resaltar.test.js`, que es donde un enlace roto se pone rojo.
+ *
+ * @param {string} texto
+ * @param {Array<{ texto: string, a: string }> | undefined} enlaces
+ * @returns {Array<{ t: string, a?: string }>}  los trozos, en orden; unidos dan `texto`
+ */
+export function trozosEnlazados(texto, enlaces) {
+  const tramos = []
+  for (const { texto: f, a } of enlaces ?? []) {
+    for (let desde = texto.indexOf(f); f && desde >= 0; desde = texto.indexOf(f, desde + f.length))
+      tramos.push({ desde, hasta: desde + f.length, a })
+  }
+  tramos.sort((x, y) => x.desde - y.desde)
+  const out = []
+  let cursor = 0
+  for (const { desde, hasta, a } of tramos) {
+    if (desde < cursor) continue
+    if (desde > cursor) out.push({ t: texto.slice(cursor, desde) })
+    out.push({ t: texto.slice(desde, hasta), a })
+    cursor = hasta
+  }
+  if (cursor < texto.length || !out.length) out.push({ t: texto.slice(cursor) })
+  return out
+}

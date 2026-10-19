@@ -89,7 +89,15 @@ test.describe('Reportaje · coste efectivo (/reportajes/coste-efectivo)', () => 
     //
     // 1. El cero no se explica por la concesión: la Orden manda declarar tarifas.
     await expect(page.getByText(snap.panelCiego.porQue.slice(0, 80))).toBeVisible()
-    // 2. La tarifa está publicada, y se enlaza.
+    // 2. La tarifa está publicada, y se enlaza. Plegada desde el 19-10-2026
+    // con la ficha de la empresa: amplían §01 y no son su hilo. La afirmación
+    // —que está publicada, y dónde— es el rótulo del pliegue, así que se ve sin
+    // abrirlo; el enlace, al abrirlo.
+    const tarifa = page.locator('.cp-pliegue').filter({ hasText: snap.laTarifa.titulo })
+    await expect(tarifa.locator('summary')).toContainText(snap.laTarifa.titulo)
+    await expect(tarifa.locator('summary')).toBeVisible()
+    expect(await tarifa.getAttribute('open')).toBeNull()
+    await tarifa.locator('summary').click()
     await expect(
       page.getByRole('link', { name: /Diari Oficial de la Generalitat Valenciana/ }),
     ).toBeVisible()
@@ -98,6 +106,26 @@ test.describe('Reportaje · coste efectivo (/reportajes/coste-efectivo)', () => 
     expect(await page.getByText(/Carrizosa/).count()).toBe(0)
     // 4. La suspensión la ordenó un juzgado, y la cronología lo dice.
     await expect(page.getByText(/Juzgado de lo Contencioso-Administrativo nº 3/)).toBeVisible()
+
+    // La tarjeta es la compartida con el conteo (era una copia hasta el
+    // 19-10-2026), así que pliega igual: lo pedido y lo comunicado sin resolver
+    // se abren con un clic, y el rótulo de cada fila con comunicaciones lo dice
+    // con fecha. Se comprueba plegado y luego se abre todo, para que lo de
+    // abajo mire el texto entero, como antes.
+    const pliegues = page.locator('[data-solicitudes] details')
+    expect(await pliegues.count()).toBe(snap.solicitudes.items.length)
+    for (const d of await pliegues.all()) expect(await d.getAttribute('open')).toBeNull()
+    const conComunicaciones = snap.solicitudes.items.filter(
+      (e: { incidencias?: unknown[] }) => e.incidencias?.length,
+    ).length
+    expect(conComunicaciones).toBeGreaterThan(0)
+    expect(
+      await page
+        .locator('[data-solicitudes] summary')
+        .filter({ hasText: /^Lo que comunicaron el \d+ de \w+ de \d{4}.*, sin resolverla/ })
+        .count(),
+    ).toBe(conComunicaciones)
+    for (const s of await page.locator('[data-solicitudes] summary').all()) await s.click()
 
     // 5. Los tres escritos que salieron el 18-09, con el reloj calculado el día
     // que se lee. Se ancla en la cabeza «enviada el <fecha>», lo único de la
