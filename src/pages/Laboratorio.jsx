@@ -26,6 +26,7 @@ import DataAsOf from '../components/DataAsOf'
 import { fmtDateShort } from '../lib/formatters'
 import { snippetDeEvidencia } from '../lib/crosschecked-status.js'
 import { CATALOGUE } from '../i18n'
+import { esFuenteOficial } from '../scraper/press-fuente-oficial'
 import {
   pressLabSummary,
   fraseVeredictos,
@@ -120,7 +121,19 @@ const TRUST_LABEL = {
   factualClaimsPresent: 'Afirmaciones contrastables',
 }
 
-function TrustIndicators({ indicators }) {
+// Qué quiere decir «sin comprobar» en cada indicador que puede no comprobarse. Una
+// frase para todos decía, en «Cobertura cruzada», que no se habían cotejado datos
+// municipales: el motivo de otro indicador.
+const SIN_COMPROBAR = {
+  municipalSourceMatch:
+    'ninguna afirmación de este titular se ha cotejado con los datos municipales',
+  corroboratedAcrossOutlets:
+    'no se ha encontrado esta historia en otro medio independiente. El agrupado por título no reconoce la misma noticia contada con otras palabras o en la otra lengua, así que no encontrarla no quiere decir que no la haya; una nota de prensa de una administración no cuenta como otro medio',
+  factualClaimsPresent:
+    'este titular no tiene un resultado del extractor: no ha pasado por él, el modelo no respondió o sus afirmaciones no se publican',
+}
+
+export function TrustIndicators({ indicators }) {
   if (!indicators) return null
   const entries = Object.entries(TRUST_LABEL)
   return (
@@ -150,7 +163,7 @@ function TrustIndicators({ indicators }) {
         const on = !!raw
         const glifo = sinComprobar ? '–' : on ? '●' : '○'
         const titulo = sinComprobar
-          ? `Indicador del Trust Project · ${label} · sin comprobar: ninguna afirmación de este titular se ha cotejado con los datos municipales`
+          ? `Indicador del Trust Project · ${label} · sin comprobar: ${SIN_COMPROBAR[k] ?? 'no hay dato'}`
           : `Indicador del Trust Project · ${label}`
         return (
           <span
@@ -313,7 +326,11 @@ function LabPressCard({ article, summary, claims, textoVacio, trust, triangulati
             FUERA DEL FEED
           </span>
         )}
-        {article.official && (
+        {/* La misma regla que la tabla por medio y que el recuento de cobertura
+            cruzada (press-fuente-oficial.ts). La bandera `official` de press.ts
+            sólo la lleva el feed del Ayuntamiento de Riba-roja, y la nota del de
+            Cheste salía sin marca. */}
+        {esFuenteOficial(article) && (
           <span
             className="mono"
             style={{
@@ -324,7 +341,7 @@ function LabPressCard({ article, summary, claims, textoVacio, trust, triangulati
               color: 'var(--warn-ink)',
               letterSpacing: '.06em',
             }}
-            title="Nota de prensa del propio Ayuntamiento, no cobertura periodística independiente"
+            title="Nota de prensa de una administración, no cobertura periodística independiente"
           >
             OFICIAL
           </span>
@@ -394,8 +411,14 @@ function LabPressCard({ article, summary, claims, textoVacio, trust, triangulati
           {/* Decía también «· cifras divergen €45.000 (33 %)», y las dos cifras eran
               de una sola nota: el total y la parte del PSTD. El agrupado ya no
               compara cifras (press-analytics.ts, TriangulationCluster). */}
+          {/* Sólo medios independientes: la nota de una administración que el
+              periódico reproduce no es un segundo testigo, es la fuente. Se nombra
+              aparte para que se vea de dónde salió la historia. */}
           Cobertura comparada · {triangulation.outlets.length} medios:{' '}
           <strong>{triangulation.outlets.join(' · ')}</strong>
+          {triangulation.fuentesOficiales?.length > 0 && (
+            <> · además, la nota de prensa de {triangulation.fuentesOficiales.join(' y de ')}</>
+          )}
         </div>
       )}
       <div
@@ -460,10 +483,15 @@ function LabPressCard({ article, summary, claims, textoVacio, trust, triangulati
  * 5 de esos 18 artículos, las 39 «sin-datos». Un lector dividía entre la
  * columna de al lado. La tarjeta de KPI de arriba ya pone su divisor en el
  * pie; aquí va en la celda, y «fiabilidad» deja de nombrar una cobertura.
+ *
+ * Y el divisor son las COTEJADAS (`checkedClaims`), no todas: el 19-10-2026 la
+ * fila del Ayuntamiento decía «0 de 26 afirm.» y 21 de esas 26 no se habían
+ * buscado en ningún dato. Las que nadie cotejó van aparte, «21 sin cotejar».
  */
 export function OutletScoreboard({ outlets }) {
   const afirmaciones = (o) =>
     Object.values(o.verdictCounts ?? {}).reduce((acc, n) => acc + (Number(n) || 0), 0)
+  const cotejadas = (o) => Number(o.checkedClaims) || 0
   if (!outlets || outlets.length === 0) {
     return (
       <div style={{ fontSize: 'var(--fs-meta)', color: 'var(--ink50)' }}>
@@ -495,11 +523,11 @@ export function OutletScoreboard({ outlets }) {
               {/* The largest "medio" in this table is the audited institution
                   itself. Ranking its own PR for reliability alongside
                   newsrooms, unlabelled, is the wrong comparison to invite. */}
-              {isOfficialOutlet(o.outlet) && (
+              {esFuenteOficial({ source: o.outlet, sourceHost: o.outletHost }) && (
                 <span
                   className="mono"
                   style={{ marginLeft: 6, fontSize: 'var(--fs-micro)', color: 'var(--warn-ink)' }}
-                  title="Fuente institucional: notas de prensa del propio Ayuntamiento"
+                  title="Fuente institucional: notas de prensa de una administración"
                 >
                   OFICIAL
                 </span>
@@ -514,9 +542,15 @@ export function OutletScoreboard({ outlets }) {
             >
               {fmtPct(o.verifiedRatio)}
               {/* El divisor, en la celda: entre qué se divide el porcentaje. */}
-              {afirmaciones(o) > 0 && (
+              {cotejadas(o) > 0 && (
                 <div style={{ fontSize: 'var(--fs-micro)', color: 'var(--ink50)' }}>
-                  {o.verdictCounts?.verificado ?? 0} de {afirmaciones(o)} afirm.
+                  {o.verdictCounts?.verificado ?? 0} de {cotejadas(o)} cotejadas
+                </div>
+              )}
+              {/* Y lo que no divide: afirmaciones que nadie buscó en ningún dato. */}
+              {afirmaciones(o) > cotejadas(o) && (
+                <div style={{ fontSize: 'var(--fs-micro)', color: 'var(--ink50)' }}>
+                  {afirmaciones(o) - cotejadas(o)} sin cotejar
                 </div>
               )}
             </td>
@@ -531,11 +565,6 @@ export function OutletScoreboard({ outlets }) {
       </tbody>
     </table>
   )
-}
-
-/** Is this "outlet" the town hall's own newsroom rather than a newspaper? */
-function isOfficialOutlet(name) {
-  return /ajuntament|ayuntamiento/i.test(name || '')
 }
 
 function FactCheckRail({ factcheck }) {
