@@ -27,14 +27,21 @@ import { fmtDateShort } from '../lib/formatters'
 import { snippetDeEvidencia } from '../lib/crosschecked-status.js'
 import { CATALOGUE } from '../i18n'
 import { esFuenteOficial } from '../scraper/press-fuente-oficial'
+import { esAnuncioClasificado } from '../scraper/press-clasificado'
 import {
   pressLabSummary,
   fraseVeredictos,
   avisoSinVeredicto,
   VERDICT_LABEL,
+  ESTADO_LABEL,
+  estadoDeAfirmacion,
   textoLibroVacio,
   recuentoDeExtraccion,
   desenlaceVigente,
+  resumenHallazgos,
+  fraseFactcheck,
+  puenteTablaMedios,
+  CADENCIA_LABORATORIO,
 } from '../lib/press-lab'
 
 const VERDICT_TONE = {
@@ -42,6 +49,7 @@ const VERDICT_TONE = {
   parcial: 'warn',
   contradicho: 'crit',
   'sin-datos': 'neutral',
+  'no-cotejada': 'neutral',
   'promesa-repetida': 'civic',
 }
 
@@ -106,7 +114,7 @@ function VerdictMix({ counts }) {
     <span style={{ display: 'inline-flex', gap: 6, flexWrap: 'wrap' }}>
       {entries.map(([v, n]) => (
         <Pill key={v} tone={VERDICT_TONE[v] || 'neutral'} size="xs">
-          {n} {VERDICT_LABEL[v] || v}
+          {n} {ESTADO_LABEL[v] || v}
         </Pill>
       ))}
     </span>
@@ -241,11 +249,14 @@ function ClaimLedger({ claims, textoVacio }) {
         const v = row.verification
         const c = row.claim
         const evidence = (v.evidence || [])[0]
+        // «No cotejada» y «Sin registro» son dos cosas: una no se buscó en ningún
+        // dato, la otra se buscó y no se encontró (`estadoDeAfirmacion`).
+        const estado = estadoDeAfirmacion(row)
         return (
           <li key={c.id}>
             <div style={{ display: 'flex', alignItems: 'baseline', gap: 6 }}>
-              <Pill tone={VERDICT_TONE[v.verdict] || 'neutral'} size="xs">
-                {VERDICT_LABEL[v.verdict] || v.verdict}
+              <Pill tone={VERDICT_TONE[estado] || 'neutral'} size="xs">
+                {ESTADO_LABEL[estado] || estado}
               </Pill>
               <span style={{ fontSize: 'var(--fs-aux)', lineHeight: 1.4 }}>«{c.verbatim}»</span>
             </div>
@@ -286,7 +297,8 @@ function ClaimLedger({ claims, textoVacio }) {
 function LabPressCard({ article, summary, claims, textoVacio, trust, triangulation, linkRot }) {
   const claimRows = claims || []
   const counts = claimRows.reduce((acc, r) => {
-    acc[r.verification.verdict] = (acc[r.verification.verdict] || 0) + 1
+    const estado = estadoDeAfirmacion(r)
+    acc[estado] = (acc[estado] || 0) + 1
     return acc
   }, {})
   return (
@@ -494,7 +506,12 @@ function LabPressCard({ article, summary, claims, textoVacio, trust, triangulati
  * fila del Ayuntamiento decía «0 de 26 afirm.» y 21 de esas 26 no se habían
  * buscado en ningún dato. Las que nadie cotejó van aparte, «21 sin cotejar».
  */
-export function OutletScoreboard({ outlets }) {
+// Cuántas filas enseña la tabla antes de plegar el resto. Con `slice(0, 10)` y nada
+// más, el 19-10-2026 escondía 5 de 15 medios sin decirlo.
+const FILAS_DE_MEDIOS = 10
+
+export function OutletScoreboard({ outlets, puente }) {
+  const [todos, setTodos] = useState(false)
   const afirmaciones = (o) =>
     Object.values(o.verdictCounts ?? {}).reduce((acc, n) => acc + (Number(n) || 0), 0)
   const cotejadas = (o) => Number(o.checkedClaims) || 0
@@ -505,134 +522,237 @@ export function OutletScoreboard({ outlets }) {
       </div>
     )
   }
+  const visibles = todos ? outlets : outlets.slice(0, FILAS_DE_MEDIOS)
+  const resto = outlets.slice(FILAS_DE_MEDIOS)
+  const articulosDelResto = resto.reduce((t, o) => t + (Number(o.articleCount) || 0), 0)
   return (
-    <table
-      // `.cp-tabla-medios` (index.css) deja partir un nombre de medio en el
-      // móvil: sin relleno lateral en las celdas, a 320 px la tabla no cabía.
-      // Ni a la izquierda de las cifras: 8 px en tres columnas son 24 px de
-      // suelo, y con ellos la tarjeta se salía en la CI a 320 px y con la barra
-      // lateral hacia 855 px (#396), aunque aquí cupiera por un par de píxeles.
-      className="cp-tabla-medios"
-      style={{ width: '100%', borderCollapse: 'collapse', fontSize: 'var(--fs-meta)' }}
-      aria-label="Cobertura de comprobación por medio"
-    >
-      <thead>
-        <tr style={{ textAlign: 'left', color: 'var(--ink70)' }}>
-          <th style={{ padding: '4px 0', fontWeight: 600 }}>Medio</th>
-          <th style={{ padding: '4px 0', fontWeight: 600, textAlign: 'right' }}>Artículos</th>
-          <th style={{ padding: '4px 0', fontWeight: 600, textAlign: 'right' }}>Verificado</th>
-          <th style={{ padding: '4px 0', fontWeight: 600, textAlign: 'right' }}>Discrepa</th>
-        </tr>
-      </thead>
-      <tbody>
-        {outlets.slice(0, 10).map((o) => (
-          <tr key={o.outlet} style={{ borderTop: '1px solid var(--border2)' }}>
-            <td style={{ padding: '4px 0' }}>
-              {o.outlet}
-              {/* The largest "medio" in this table is the audited institution
+    <>
+      <table
+        // `.cp-tabla-medios` (index.css) deja partir un nombre de medio en el
+        // móvil: sin relleno lateral en las celdas, a 320 px la tabla no cabía.
+        // Ni a la izquierda de las cifras: 8 px en tres columnas son 24 px de
+        // suelo, y con ellos la tarjeta se salía en la CI a 320 px y con la barra
+        // lateral hacia 855 px (#396), aunque aquí cupiera por un par de píxeles.
+        className="cp-tabla-medios"
+        style={{ width: '100%', borderCollapse: 'collapse', fontSize: 'var(--fs-meta)' }}
+        aria-label="Cobertura de comprobación por medio"
+      >
+        <thead>
+          <tr style={{ textAlign: 'left', color: 'var(--ink70)' }}>
+            <th style={{ padding: '4px 0', fontWeight: 600 }}>Medio</th>
+            <th style={{ padding: '4px 0', fontWeight: 600, textAlign: 'right' }}>Artículos</th>
+            <th style={{ padding: '4px 0', fontWeight: 600, textAlign: 'right' }}>Verificado</th>
+            <th style={{ padding: '4px 0', fontWeight: 600, textAlign: 'right' }}>Discrepa</th>
+          </tr>
+        </thead>
+        <tbody>
+          {visibles.map((o) => (
+            <tr key={o.outlet} style={{ borderTop: '1px solid var(--border2)' }}>
+              <td style={{ padding: '4px 0' }}>
+                {o.outlet}
+                {/* The largest "medio" in this table is the audited institution
                   itself. Ranking its own PR for reliability alongside
                   newsrooms, unlabelled, is the wrong comparison to invite. */}
-              {esFuenteOficial({ source: o.outlet, sourceHost: o.outletHost }) && (
-                <span
-                  className="mono"
-                  style={{ marginLeft: 6, fontSize: 'var(--fs-micro)', color: 'var(--warn-ink)' }}
-                  title="Fuente institucional: notas de prensa de una administración"
-                >
-                  OFICIAL
-                </span>
-              )}
-            </td>
-            <td style={{ padding: '4px 0', textAlign: 'right' }} className="mono">
-              {o.articleCount}
-            </td>
-            <td
-              style={{ padding: '4px 0', textAlign: 'right', color: 'var(--ok-ink)' }}
-              className="mono"
-            >
-              {fmtPct(o.verifiedRatio)}
-              {/* El divisor, en la celda: entre qué se divide el porcentaje. */}
-              {cotejadas(o) > 0 && (
-                <div style={{ fontSize: 'var(--fs-micro)', color: 'var(--ink50)' }}>
-                  {o.verdictCounts?.verificado ?? 0} de {cotejadas(o)}{' '}
-                  {cotejadas(o) === 1 ? 'cotejada' : 'cotejadas'}
-                </div>
-              )}
-              {/* Y lo que no divide: afirmaciones que nadie buscó en ningún dato. */}
-              {afirmaciones(o) > cotejadas(o) && (
-                <div style={{ fontSize: 'var(--fs-micro)', color: 'var(--ink50)' }}>
-                  {afirmaciones(o) - cotejadas(o)} sin cotejar
-                </div>
-              )}
-            </td>
-            <td
-              style={{ padding: '4px 0', textAlign: 'right', color: 'var(--crit-ink)' }}
-              className="mono"
-            >
-              {fmtPct(o.contradictedRatio)}
-            </td>
-          </tr>
-        ))}
-      </tbody>
-    </table>
+                {esFuenteOficial({ source: o.outlet, sourceHost: o.outletHost }) && (
+                  <span
+                    className="mono"
+                    style={{ marginLeft: 6, fontSize: 'var(--fs-micro)', color: 'var(--warn-ink)' }}
+                    title="Fuente institucional: notas de prensa de una administración"
+                  >
+                    OFICIAL
+                  </span>
+                )}
+              </td>
+              <td style={{ padding: '4px 0', textAlign: 'right' }} className="mono">
+                {o.articleCount}
+              </td>
+              <td
+                style={{ padding: '4px 0', textAlign: 'right', color: 'var(--ok-ink)' }}
+                className="mono"
+              >
+                {fmtPct(o.verifiedRatio)}
+                {/* El divisor, en la celda: entre qué se divide el porcentaje. */}
+                {cotejadas(o) > 0 && (
+                  <div style={{ fontSize: 'var(--fs-micro)', color: 'var(--ink50)' }}>
+                    {o.verdictCounts?.verificado ?? 0} de {cotejadas(o)}{' '}
+                    {cotejadas(o) === 1 ? 'cotejada' : 'cotejadas'}
+                  </div>
+                )}
+                {/* Y lo que no divide: afirmaciones que nadie buscó en ningún dato. */}
+                {afirmaciones(o) > cotejadas(o) && (
+                  <div style={{ fontSize: 'var(--fs-micro)', color: 'var(--ink50)' }}>
+                    {afirmaciones(o) - cotejadas(o)} sin cotejar
+                  </div>
+                )}
+              </td>
+              <td
+                style={{ padding: '4px 0', textAlign: 'right', color: 'var(--crit-ink)' }}
+                className="mono"
+              >
+                {fmtPct(o.contradictedRatio)}
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+      {/* Fuera de la tabla a propósito: sus celdas no llevan relleno lateral
+          (`.cp-tabla-medios`, #396), y una fila de pie con texto largo la ensancharía. */}
+      {resto.length > 0 && (
+        <div
+          className="mono"
+          style={{
+            display: 'flex',
+            flexWrap: 'wrap',
+            gap: 8,
+            alignItems: 'baseline',
+            marginTop: 6,
+            fontSize: 'var(--fs-micro)',
+            color: 'var(--ink50)',
+          }}
+        >
+          {!todos && (
+            <span>
+              y {resto.length} {resto.length === 1 ? 'medio más' : 'medios más'} ·{' '}
+              {articulosDelResto} {articulosDelResto === 1 ? 'artículo' : 'artículos'}
+            </span>
+          )}
+          <button
+            type="button"
+            onClick={() => setTodos((v) => !v)}
+            style={{
+              padding: 0,
+              border: 0,
+              background: 'none',
+              color: 'var(--civic)',
+              textDecoration: 'underline',
+              cursor: 'pointer',
+              font: 'inherit',
+            }}
+          >
+            {todos
+              ? `Ver sólo los ${FILAS_DE_MEDIOS} primeros`
+              : `Ver los ${outlets.length} medios`}
+          </button>
+        </div>
+      )}
+      {puente && (
+        <p
+          style={{
+            margin: '8px 0 0',
+            fontSize: 'var(--fs-micro)',
+            color: 'var(--ink50)',
+            lineHeight: 1.5,
+          }}
+        >
+          {puente}
+        </p>
+      )}
+    </>
   )
 }
 
 function FactCheckRail({ factcheck }) {
   const items = factcheck?.items ?? []
-  if (items.length === 0) {
-    return (
-      <div
-        style={{
-          fontSize: 'var(--fs-aux)',
-          color: 'var(--ink50)',
-          marginTop: 8,
-          lineHeight: 1.55,
-        }}
-      >
-        Sin verificaciones de terceros indexadas para Riba-roja en este periodo. Fuente: Google Fact
-        Check Tools API (Newtral, Maldita, EFE Verifica, AFP Factual). Configurar{' '}
-        <code>GOOGLE_FACT_CHECK_API_KEY</code> en .env para activar.
-      </div>
-    )
-  }
+  // Qué se consultó y qué salió, leído de factcheck.json (`fraseFactcheck`). Decía
+  // siempre «Configurar GOOGLE_FACT_CHECK_API_KEY en .env para activar» con las tres
+  // fuentes consultadas y 61 revisiones examinadas.
+  const frase = (
+    <div
+      style={{
+        fontSize: 'var(--fs-aux)',
+        color: 'var(--ink50)',
+        marginTop: 8,
+        lineHeight: 1.55,
+      }}
+    >
+      {fraseFactcheck(factcheck)}
+      {factcheck?.generatedAt ? ` Última consulta: ${fmtDate(factcheck.generatedAt)}.` : null}
+    </div>
+  )
+  if (items.length === 0) return frase
   return (
-    <ul style={{ margin: '8px 0 0', padding: 0, listStyle: 'none', display: 'grid', gap: 8 }}>
-      {items.slice(0, 6).map((row) => {
-        const tone = VERDICT_TONE[row.normalizedVerdict] || 'neutral'
-        return (
-          <li key={row.id} style={{ fontSize: 'var(--fs-aux)', lineHeight: 1.45 }}>
-            <div style={{ display: 'flex', gap: 6, alignItems: 'baseline', flexWrap: 'wrap' }}>
-              <Pill tone={tone} size="xs">
-                {row.verdict || VERDICT_LABEL[row.normalizedVerdict] || row.normalizedVerdict}
-              </Pill>
-              <span
-                className="mono"
-                style={{
-                  fontSize: 'var(--fs-micro)',
-                  color: 'var(--civic)',
-                  textTransform: 'uppercase',
-                  fontWeight: 700,
-                  letterSpacing: '.06em',
-                }}
-              >
-                {row.reviewerName}
-              </span>
-              <span className="mono" style={{ fontSize: 'var(--fs-micro)', color: 'var(--ink50)' }}>
-                {row.reviewDate.slice(0, 10)}
-              </span>
-            </div>
-            <ExtLink href={row.reviewUrl} style={{ color: 'inherit', textDecoration: 'none' }}>
-              {row.reviewTitle}
-            </ExtLink>
+    <>
+      {frase}
+      <ul style={{ margin: '8px 0 0', padding: 0, listStyle: 'none', display: 'grid', gap: 8 }}>
+        {items.slice(0, 6).map((row) => {
+          const tone = VERDICT_TONE[row.normalizedVerdict] || 'neutral'
+          return (
+            <li key={row.id} style={{ fontSize: 'var(--fs-aux)', lineHeight: 1.45 }}>
+              <div style={{ display: 'flex', gap: 6, alignItems: 'baseline', flexWrap: 'wrap' }}>
+                <Pill tone={tone} size="xs">
+                  {row.verdict || VERDICT_LABEL[row.normalizedVerdict] || row.normalizedVerdict}
+                </Pill>
+                <span
+                  className="mono"
+                  style={{
+                    fontSize: 'var(--fs-micro)',
+                    color: 'var(--civic)',
+                    textTransform: 'uppercase',
+                    fontWeight: 700,
+                    letterSpacing: '.06em',
+                  }}
+                >
+                  {row.reviewerName}
+                </span>
+                <span
+                  className="mono"
+                  style={{ fontSize: 'var(--fs-micro)', color: 'var(--ink50)' }}
+                >
+                  {row.reviewDate.slice(0, 10)}
+                </span>
+              </div>
+              <ExtLink href={row.reviewUrl} style={{ color: 'inherit', textDecoration: 'none' }}>
+                {row.reviewTitle}
+              </ExtLink>
+            </li>
+          )
+        })}
+        {items.length > 6 && (
+          <li className="mono" style={{ fontSize: 'var(--fs-micro)', color: 'var(--ink50)' }}>
+            +{items.length - 6} verificaciones más
           </li>
-        )
-      })}
-      {items.length > 6 && (
-        <li className="mono" style={{ fontSize: 'var(--fs-micro)', color: 'var(--ink50)' }}>
-          +{items.length - 6} verificaciones más
-        </li>
-      )}
-    </ul>
+        )}
+      </ul>
+    </>
+  )
+}
+
+/**
+ * Cómo se decide que la prensa «sigue» algo, dicho en la tarjeta. La regla está en
+ * `computeCoverageGaps` (press-analytics.ts): hasta el 19-10-2026 bastaba una palabra
+ * suelta en la bolsa de todos los titulares, y cuatro de los seis puntos «seguidos»
+ * del pleno del 5-10-2026 lo eran por casualidad. Las cifras salen del informe.
+ */
+function MetodoLagunas({ stats }) {
+  if (!stats) return null
+  const tramites = stats.tramitesExcluidos ?? 0
+  const titulares = stats.titularesConsiderados
+  const asuntos = stats.candidatesExamined
+  const partes = [
+    'Un punto del pleno o una promesa cuenta como seguido si un titular de un medio independiente comparte con su título al menos dos palabras significativas; el nombre del municipio, las fórmulas de trámite, las notas de prensa de una administración y los anuncios no cuentan.',
+  ]
+  if (typeof titulares === 'number' && typeof asuntos === 'number')
+    partes.push(
+      `Se han cruzado ${titulares} ${titulares === 1 ? 'titular' : 'titulares'} con ${asuntos} ${asuntos === 1 ? 'asunto' : 'asuntos'}.`,
+    )
+  if (tramites > 0)
+    partes.push(
+      `${tramites} ${tramites === 1 ? 'punto del orden del día es un trámite' : 'puntos del orden del día son trámites'} (acta anterior, relación de resoluciones, ruegos y preguntas) y no se examinan.`,
+    )
+  partes.push(
+    'Una noticia contada con otras palabras, o en valenciano, puede salir aquí como laguna.',
+  )
+  return (
+    <p
+      style={{
+        margin: '10px 0 0',
+        fontSize: 'var(--fs-micro)',
+        color: 'var(--ink50)',
+        lineHeight: 1.5,
+      }}
+    >
+      {partes.join(' ')}
+    </p>
   )
 }
 
@@ -644,37 +764,43 @@ function CoverageGaps({ items, stats }) {
     // candidate was skipped and the card still congratulated the local press.
     const examined = stats?.candidatesExamined
     return (
-      <div style={{ fontSize: 'var(--fs-meta)', color: 'var(--ink50)' }}>
-        {examined === 0
-          ? 'No hubo plenos ni promesas nuevas en los últimos 14 días, así que no hay nada que comparar con la cobertura.'
-          : 'Sin lagunas detectadas en los últimos 14 días.'}
-      </div>
+      <>
+        <div style={{ fontSize: 'var(--fs-meta)', color: 'var(--ink50)' }}>
+          {examined === 0
+            ? 'No hubo plenos ni promesas nuevas en los últimos 14 días, así que no hay nada que comparar con la cobertura.'
+            : 'Sin lagunas detectadas en los últimos 14 días.'}
+        </div>
+        {examined > 0 && <MetodoLagunas stats={stats} />}
+      </>
     )
   }
   return (
-    <ul style={{ margin: 0, padding: 0, listStyle: 'none', display: 'grid', gap: 6 }}>
-      {items.slice(0, 8).map((it) => (
-        <li key={it.refId} style={{ fontSize: 'var(--fs-meta)' }}>
-          <span
-            className="mono"
-            style={{
-              fontSize: 'var(--fs-micro)',
-              color: 'var(--ink70)',
-              textTransform: 'uppercase',
-              marginRight: 6,
-            }}
-          >
-            {it.kind === 'pleno-item' ? 'Pleno' : 'Promesa'}
-          </span>
-          <span style={{ color: 'var(--ink70)' }}>{it.label}</span>
-        </li>
-      ))}
-      {items.length > 8 && (
-        <li className="mono" style={{ fontSize: 'var(--fs-micro)', color: 'var(--ink50)' }}>
-          +{items.length - 8} más
-        </li>
-      )}
-    </ul>
+    <>
+      <ul style={{ margin: 0, padding: 0, listStyle: 'none', display: 'grid', gap: 6 }}>
+        {items.slice(0, 8).map((it) => (
+          <li key={it.refId} style={{ fontSize: 'var(--fs-meta)' }}>
+            <span
+              className="mono"
+              style={{
+                fontSize: 'var(--fs-micro)',
+                color: 'var(--ink70)',
+                textTransform: 'uppercase',
+                marginRight: 6,
+              }}
+            >
+              {it.kind === 'pleno-item' ? 'Pleno' : 'Promesa'}
+            </span>
+            <span style={{ color: 'var(--ink70)' }}>{it.label}</span>
+          </li>
+        ))}
+        {items.length > 8 && (
+          <li className="mono" style={{ fontSize: 'var(--fs-micro)', color: 'var(--ink50)' }}>
+            +{items.length - 8} más
+          </li>
+        )}
+      </ul>
+      <MetodoLagunas stats={stats} />
+    </>
   )
 }
 
@@ -726,7 +852,7 @@ export default function Laboratorio() {
 
   const outletsForFilter = useMemo(() => {
     const set = new Set()
-    for (const p of lab.press) set.add(p.source)
+    for (const p of lab.press) if (!esAnuncioClasificado(p)) set.add(p.source)
     return Array.from(set).sort()
   }, [lab.press])
 
@@ -735,6 +861,7 @@ export default function Laboratorio() {
     [lab.press, lab.verified],
   )
   const aviso = avisoSinVeredicto(summary)
+  const hallazgos = useMemo(() => resumenHallazgos(lab.findings), [lab.findings])
 
   // Se filtra la MISMA lista que cuenta `summary.monitoredCount` —la del feed más
   // las tarjetas FUERA DEL FEED, con una sola ventana—, así que el contador de
@@ -747,7 +874,7 @@ export default function Laboratorio() {
         .filter((p) => {
           if (verdictFilter === 'all') return true
           const claims = byArticleClaims.get(p.id) || []
-          return claims.some((c) => c.verification.verdict === verdictFilter)
+          return claims.some((c) => estadoDeAfirmacion(c) === verdictFilter)
         })
         .sort((a, b) => b.date.localeCompare(a.date)),
     [summary, outletFilter, verdictFilter, byArticleClaims],
@@ -900,7 +1027,26 @@ export default function Laboratorio() {
           value={fmtNumber(triangulated3Plus)}
           hint="historias en ≥3 medios"
         />
-        <KPI label="Hallazgos editoriales" value={fmtNumber(lab.findings.length)} hint="curados" />
+        {/* Decía «Hallazgos editoriales 17 · curados»: las 17 filas eran del curador
+            automático, de 5 lotes repetidos (`resumenHallazgos`). Cuenta lotes, y
+            dice quién los firmó. */}
+        {hallazgos.humanos > 0 ? (
+          <KPI
+            label="Hallazgos editoriales"
+            value={fmtNumber(hallazgos.humanos)}
+            hint={
+              hallazgos.automaticos > 0
+                ? `firmados por una persona · y ${fmtNumber(hallazgos.automaticos)} automáticos`
+                : 'firmados por una persona'
+            }
+          />
+        ) : (
+          <KPI
+            label="Hallazgos automáticos"
+            value={fmtNumber(hallazgos.automaticos)}
+            hint="lotes del curador automático · sin revisión humana"
+          />
+        )}
       </div>
 
       {aviso && lab.press.length > 0 && (
@@ -917,9 +1063,8 @@ export default function Laboratorio() {
             lineHeight: 1.55,
           }}
         >
-          <strong style={{ color: 'var(--warn-ink)' }}>{aviso.titulo}</strong> {aviso.texto} La
-          cadena <code>extract → verify → summarize → analytics</code> corre una vez por semana, los
-          lunes, o a mano.
+          <strong style={{ color: 'var(--warn-ink)' }}>{aviso.titulo}</strong> {aviso.texto}{' '}
+          {CADENCIA_LABORATORIO}
         </div>
       )}
 
@@ -973,7 +1118,8 @@ export default function Laboratorio() {
             <option value="verificado">Verificado</option>
             <option value="parcial">Parcial</option>
             <option value="contradicho">Discrepa</option>
-            <option value="sin-datos">Sin registro</option>
+            <option value="sin-datos">{ESTADO_LABEL['sin-datos']}</option>
+            <option value="no-cotejada">{ESTADO_LABEL['no-cotejada']}</option>
           </select>
         </label>
         <div style={{ marginLeft: 'auto', textAlign: 'right' }}>
@@ -1012,8 +1158,8 @@ export default function Laboratorio() {
                 Si acabas de instalar el laboratorio, ejecuta{' '}
                 <code>npm run extract:press-claims</code> + <code>npm run verify:press-claims</code>{' '}
                 + <code>npm run summarize:press</code> +{' '}
-                <code>npm run compute:press-analytics</code> para poblar los snapshots. La cadena
-                completa también corre sola una vez por semana, los lunes.
+                <code>npm run compute:press-analytics</code> para poblar los snapshots.{' '}
+                {CADENCIA_LABORATORIO}
               </p>
             </Card>
           )}
@@ -1042,7 +1188,12 @@ export default function Laboratorio() {
               title="Medios monitorizados (últimos 30 días)"
             />
             <div style={{ marginTop: 8 }}>
-              <OutletScoreboard outlets={lab.trust?.outlets ?? []} />
+              <OutletScoreboard
+                outlets={lab.trust?.outlets ?? []}
+                puente={
+                  lab.trust?.outlets?.length ? puenteTablaMedios(lab.trust.outlets, summary) : null
+                }
+              />
             </div>
           </Card>
 
@@ -1057,18 +1208,22 @@ export default function Laboratorio() {
           </Card>
 
           <Card>
-            <SectionHead
-              eyebrow="Verificaciones externas"
-              title="Fact-checkers terceros (Google FCT)"
-            />
+            <SectionHead eyebrow="Verificaciones externas" title="Fact-checkers terceros" />
             <FactCheckRail factcheck={lab.factcheck} />
           </Card>
 
-          {lab.findings.length > 0 && (
+          {hallazgos.lotes.length > 0 && (
             <Card>
+              {/* Un lote por fila, el más reciente: el curador automático volvía a
+                  publicar el mismo lote cada vez que corría, y la columna enseñaba el
+                  de Nerco cuatro veces en cinco filas (`resumenHallazgos`). */}
               <SectionHead
-                eyebrow="Hallazgos editoriales"
-                title={`${lab.findings.length} verificación(es)`}
+                eyebrow={hallazgos.humanos > 0 ? 'Hallazgos editoriales' : 'Hallazgos automáticos'}
+                title={
+                  hallazgos.humanos > 0
+                    ? `${hallazgos.humanos} ${hallazgos.humanos === 1 ? 'firmado' : 'firmados'} · ${hallazgos.automaticos} ${hallazgos.automaticos === 1 ? 'automático' : 'automáticos'}`
+                    : `${hallazgos.lotes.length} ${hallazgos.lotes.length === 1 ? 'lote' : 'lotes'} sin revisión humana`
+                }
               />
               <ul
                 style={{
@@ -1079,23 +1234,42 @@ export default function Laboratorio() {
                   gap: 8,
                 }}
               >
-                {lab.findings.slice(0, 5).map((f) => (
-                  <li key={f.id} style={{ fontSize: 'var(--fs-meta)' }}>
-                    <ClaimReviewJsonLd finding={f} />
-                    <span
-                      className="mono"
-                      style={{
-                        fontSize: 'var(--fs-micro)',
-                        color: 'var(--ink70)',
-                        marginRight: 6,
-                      }}
-                    >
-                      {f.publishedAt}
-                    </span>
-                    {f.title}
-                    <BitacoraCorrecciones correcciones={f.corrections} />
+                {hallazgos.lotes
+                  .slice(0, 5)
+                  .map(({ finding: f, automatico, veces, primera, correcciones }) => (
+                    <li key={f.id} style={{ fontSize: 'var(--fs-meta)' }}>
+                      <ClaimReviewJsonLd finding={f} />
+                      <span
+                        className="mono"
+                        style={{
+                          fontSize: 'var(--fs-micro)',
+                          color: 'var(--ink70)',
+                          marginRight: 6,
+                        }}
+                      >
+                        {f.publishedAt}
+                      </span>
+                      {f.title}
+                      <div
+                        className="mono"
+                        style={{ fontSize: 'var(--fs-micro)', color: 'var(--ink50)', marginTop: 2 }}
+                      >
+                        {automatico
+                          ? 'Automático, sin revisión humana'
+                          : 'Firmado por una persona curadora'}
+                        {veces > 1 ? ` · publicado ${veces} veces desde el ${primera}` : ''}
+                      </div>
+                      <BitacoraCorrecciones correcciones={correcciones} />
+                    </li>
+                  ))}
+                {hallazgos.lotes.length > 5 && (
+                  <li
+                    className="mono"
+                    style={{ fontSize: 'var(--fs-micro)', color: 'var(--ink50)' }}
+                  >
+                    +{hallazgos.lotes.length - 5} lotes más
                   </li>
-                ))}
+                )}
               </ul>
             </Card>
           )}

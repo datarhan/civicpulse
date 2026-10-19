@@ -102,18 +102,30 @@ describe('«Coincide con datos municipales» (press-trust.json)', () => {
 
   it('cotejadas y sin ninguna «verificado», el círculo sigue vacío: no se vuelve «sin comprobar»', () => {
     const r = informe()
-    for (const id of ['1lk4zls', '3edbnb', '17wvv8s', '1s3psp4', '1a5f1pr', 'yfbsr']) {
+    for (const id of ['1lk4zls', '3edbnb', '17wvv8s', '1s3psp4', 'yfbsr']) {
       expect(fila(r, id).indicators.municipalSourceMatch, id).toBe(false)
     }
   })
 
+  // Hasta el 19-10-2026 estaba en la lista de arriba: su única afirmación se cotejó,
+  // pero contra el catálogo de promesas, que no es un dato municipal
+  // (`CORPUS_NO_MUNICIPALES`, claim-verdicts.ts). Nada se buscó en los datos del
+  // Ayuntamiento, así que el círculo vacío decía algo que nadie miró.
+  it('cotejada sólo contra promesas (1a5f1pr) es «sin comprobar», no «no coincide»', () => {
+    const suyas = VERIFICADAS.filter((v) => v.claim.articleId === '1a5f1pr')
+    expect(suyas.map((v) => v.verification.checkedAgainst)).toEqual([['promises']])
+    expect(fila(informe(), '1a5f1pr').indicators.municipalSourceMatch).toBeNull()
+  })
+
   it('los tres estados, contados sobre la ventana entera', () => {
-    // 45 titulares. 34 sin ninguna afirmación y 5 con afirmaciones sin cotejar:
-    // 39 «sin comprobar». Los 6 cotejados, sin ninguna «verificado»: 6 «no». Y
-    // ninguno enciende el verde, porque el 28-09 no había ni una verificada.
+    // 45 titulares, y desde el 19-10-2026 44: uno era un anuncio de fotocasa.es, que no
+    // es prensa (press-clasificado.ts). 33 sin ninguna afirmación, 5 con afirmaciones
+    // sin cotejar y 1a5f1pr, cotejada sólo contra promesas: 39 «sin comprobar». Los 5
+    // cotejados con datos municipales, sin ninguna «verificado»: 5 «no». Y ninguno
+    // enciende el verde, porque el 28-09 no había ni una verificada.
     const cuenta: Record<string, number> = { true: 0, false: 0, null: 0 }
     for (const a of informe().articles) cuenta[`${a.indicators.municipalSourceMatch}`] += 1
-    expect(cuenta).toEqual({ true: 0, false: 6, null: 39 })
+    expect(cuenta).toEqual({ true: 0, false: 5, null: 39 })
   })
 
   // Lo que la escala publicada dice de cada veredicto. Un veredicto nuevo sale

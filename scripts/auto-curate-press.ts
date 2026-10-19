@@ -35,6 +35,7 @@ import type { PressArticleLite } from '../src/scraper/press-analytics'
 import {
   selectBundles,
   composeFinding,
+  descartarLotesYaPublicados,
   renderQuarantineMarkdown,
   type VerifiedPressItem,
 } from '../src/scraper/press-auto-curate'
@@ -130,20 +131,23 @@ async function main() {
   }
 
   const today = new Date().toISOString().slice(0, 10)
-  const newFindings: PressFinding[] = result.eligible.map((b) =>
+  const existing = (await readJson(PATHS.findings)) as { items?: PressFinding[] } | null
+  const existingItems = existing?.items ?? []
+  const composed: PressFinding[] = result.eligible.map((b) =>
     composeFinding({ bundle: b, publishedAt: today }),
   )
+  // El mismo lote, con las mismas afirmaciones, ya está publicado con la fecha de
+  // otro día: no se vuelve a añadir (ver `descartarLotesYaPublicados`).
+  const newFindings = descartarLotesYaPublicados(composed, existingItems)
 
   console.log(
-    `[auto-curate-press] eligible=${result.eligible.length} quarantine=${result.quarantine.length} skipped=${result.skipped.length}`,
+    `[auto-curate-press] eligible=${result.eligible.length} already-published=${composed.length - newFindings.length} new=${newFindings.length} quarantine=${result.quarantine.length} skipped=${result.skipped.length}`,
   )
   if (dryRun) {
     console.log('[auto-curate-press] --dry-run: no files written.')
     return
   }
 
-  const existing = (await readJson(PATHS.findings)) as { items?: PressFinding[] } | null
-  const existingItems = existing?.items ?? []
   const newIds = new Set(newFindings.map((f) => f.id))
   const merged = [...newFindings, ...existingItems.filter((f) => !newIds.has(f.id))]
 

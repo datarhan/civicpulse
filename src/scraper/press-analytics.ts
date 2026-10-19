@@ -10,9 +10,10 @@
  *         Túria outlet (`LOCAL_HOSTS`) OR the source name says so. An
  *         administration is never a local outlet (`esFuenteOficial`).
  *       - datedArticle: ISO publish date parses correctly.
- *       - municipalSourceMatch: alguna afirmación cotejada volvió
- *         `verificado`; `null` si no se cotejó ninguna. Una fila de
- *         evidencia no basta: ver `coincidenciaMunicipal`.
+ *       - municipalSourceMatch: alguna afirmación cotejada CON DATOS
+ *         MUNICIPALES volvió `verificado`; `null` si no se cotejó ninguna
+ *         contra ellos. Una fila de evidencia no basta, y el catálogo de
+ *         promesas no es un dato municipal: ver `coincidenciaMunicipal`.
  *       - corroboratedAcrossOutlets: `true` when ≥2 INDEPENDENT outlets
  *         (by host; an administration's press note does not count) tell
  *         the same story (clusterArticlesByStory). `null` otherwise, never
@@ -38,16 +39,19 @@
  *      reader which decisions the local press isn't following.
  *
  * All three functions are pure and synchronous; the CLI wrapper
- * (scripts/compute-press-analytics.ts) does the IO.
+ * (scripts/compute-press-analytics.ts) does the IO. All three drop classified
+ * ads from the feed first (`esAnuncioClasificado`, press-clasificado.ts): a
+ * property portal's listing is not press.
  */
 
 import { fingerprintFor } from './press'
-import { corpusReales } from './claim-verdicts'
+import { CORPUS_NO_MUNICIPALES, corpusMunicipales, corpusReales } from './claim-verdicts'
 import type { ClaimVerdict } from './claim-verifier'
 import type { PressClaim } from './press-claim'
 import type { PressClaimVerification } from './press-verifier'
 import { desenlaceVigente, type ExtraccionArticulo } from './press-extraccion'
 import { esFuenteOficial } from './press-fuente-oficial'
+import { sinAnunciosClasificados } from './press-clasificado'
 
 /**
  * Hosts of LOCAL outlets: newsrooms of the Camp de Túria, which is what
@@ -174,9 +178,17 @@ export interface VerifiedClaimRow {
  * y el punto sólo lo gana una `verificado`.
  */
 function coincidenciaMunicipal(claims: VerifiedClaimRow[]): boolean | null {
-  const cotejadas = claims.filter(cotejada)
+  const cotejadas = claims.filter(cotejadaConDatosMunicipales)
   if (cotejadas.length === 0) return null
   return cotejadas.some((c) => c.verification.verdict === 'verificado')
+}
+
+// `CORPUS_NO_MUNICIPALES` y `corpusMunicipales` viven en claim-verdicts.ts, junto a
+// `corpusReales`: la página (src/lib/press-lab.js) cuenta con la misma regla.
+export { CORPUS_NO_MUNICIPALES, corpusMunicipales }
+
+function cotejadaConDatosMunicipales(c: VerifiedClaimRow): boolean {
+  return corpusMunicipales(c.verification.checkedAgainst).length > 0
 }
 
 /** Checked against some real corpus: a pass marker alone does not count. */
@@ -259,7 +271,7 @@ export function computeTrustIndicators(opts: {
   const now = opts.now ?? new Date()
   const cutoff = new Date(now.getTime() - windowDays * 24 * 60 * 60 * 1000).toISOString()
 
-  const press = opts.press.filter((p) => p.date >= cutoff)
+  const press = sinAnunciosClasificados(opts.press).filter((p) => p.date >= cutoff)
 
   const claimsByArticle = new Map<string, VerifiedClaimRow[]>()
   for (const row of opts.verified) {
@@ -518,7 +530,7 @@ export function computeTriangulation(opts: {
   const now = opts.now ?? new Date()
   const windowDays = opts.windowDays ?? 30
   const cutoff = new Date(now.getTime() - windowDays * 24 * 60 * 60 * 1000).toISOString()
-  const recent = opts.press.filter((p) => p.date >= cutoff)
+  const recent = sinAnunciosClasificados(opts.press).filter((p) => p.date >= cutoff)
 
   const components = clusterArticlesByStory(recent)
 
@@ -572,28 +584,74 @@ export function computeTriangulation(opts: {
 }
 
 // ─── 3. Coverage gaps ──────────────────────────────────────────────────────
+//
+// «Lo que la prensa local no está siguiendo»: los puntos del pleno y las promesas
+// de los últimos 14 días que ningún titular de un medio independiente recoge.
+//
+// Un candidato tiene eco cuando UN titular comparte con su título al menos
+// `MIN_PALABRAS_COMPARTIDAS` palabras de contenido (`palabrasDeContenido`). Hasta
+// el 19-10-2026 bastaba UNA palabra de más de cuatro letras, y se buscaba en la
+// bolsa de las palabras de TODOS los titulares de la ventana. En el pleno zrbgic
+// (5-10-2026) cuatro de los seis puntos «seguidos» lo eran por casualidad: el
+// servicio de transportes por «proyecto» (una pieza de Interempresas sobre las
+// canteras), la moción del PP y VOX por «túria» (en 20 titulares, 12 de ellos
+// anuncios de Fotocasa), el césped del estadio por «suministro» (el del agua) y
+// «Dar cuenta de las Resoluciones» por «cuenta» (la Cuenta General). Y la promesa
+// de congelar la tarifa del agua, por «nuevo». Lo medido está en
+// tests/press-lagunas-cobertura.test.ts, con las filas de ese día.
+//
+// Tres reglas más, cada una por un caso de ese día:
+//
+//   · Una sola palabra no basta, por distintiva que parezca. «Veolia» está en el
+//     titular de Valencia Plaza sobre el contrato del agua, y la promesa es
+//     congelar la tarifa: el mismo asunto no es la misma noticia.
+//   · La nota de prensa de una administración (`esFuenteOficial`) no es eco: es
+//     la fuente contándose a sí misma. La única pieza que comparte palabras con la
+//     moción del 9 d'Octubre es la nota del Ayuntamiento sobre su propio acto.
+//   · Los trámites fijos del orden del día (`esTramiteDePleno`) no son candidatos:
+//     que ningún periódico titule «Ruegos y preguntas» no es una laguna.
+//
+// El error contrario existe —un eco real contado con otras palabras, o en
+// valenciano, sale como laguna—, y la tarjeta dice cómo se cuenta.
 
 export interface CoverageGapItem {
   kind: 'pleno-item' | 'promise'
   refId: string
   label: string
   date: string
+  /** Siempre '': un candidato sin eco no tiene palabra. Se queda por compatibilidad. */
   keyword: string
+}
+
+/** Un candidato que sí tiene eco: con qué titular, de qué medio, y qué palabras comparte. */
+export interface CoverageEcho {
+  kind: 'pleno-item' | 'promise'
+  refId: string
+  label: string
+  date: string
+  articleId: string
+  outlet: string
+  shared: string[]
 }
 
 export interface CoverageGapsReport {
   generatedAt: string
   windowDays: number
   items: CoverageGapItem[]
+  covered: CoverageEcho[]
   stats: {
     plenoItemsUncovered: number
     promisesUncovered: number
     /**
-     * How many pleno items + promises fell inside the window at all. Zero
-     * means "nothing to check", which the UI must not render as "the press
-     * covered everything".
+     * How many pleno items + promises fell inside the window and were looked at
+     * (procedural items excluded). Zero means "nothing to check", which the UI
+     * must not render as "the press covered everything".
      */
     candidatesExamined: number
+    /** Puntos del pleno de la ventana que son trámite y no se examinan. */
+    tramitesExcluidos: number
+    /** Titulares contra los que se buscó: de medios independientes, sin anuncios. */
+    titularesConsiderados: number
   }
 }
 
@@ -603,6 +661,194 @@ function tokenise(s: string): string[] {
     .replace(/[^\p{L}\p{N}\s]/gu, ' ')
     .split(/\s+/)
     .filter((w) => w.length > 4)
+}
+
+/** Cuántas palabras de contenido tiene que compartir UN titular con un candidato. */
+export const MIN_PALABRAS_COMPARTIDAS = 2
+
+/**
+ * Lo que no es contenido, ya sin tildes: el nombre del pueblo, palabras vacías de
+ * más de cuatro letras, y las fórmulas de trámite y de nota de prensa que salen en
+ * cualquier punto del pleno o en cualquier titular. «cuenta» NO está: sola no basta
+ * (hacen falta dos), y con «general» es la Cuenta General, que sí es noticia; el
+ * «Dar cuenta de las Resoluciones» que casaba por ella es un trámite y ya no entra.
+ */
+const NO_CONTENIDO: ReadonlySet<string> = new Set([
+  // El municipio y la comunidad: salen en casi todos los titulares.
+  'ribarroja',
+  'turia',
+  'valencia',
+  'valenciana',
+  'comunitat',
+  // Vacías, castellano y valenciano.
+  'sobre',
+  'desde',
+  'entre',
+  'hasta',
+  'hacia',
+  'contra',
+  'durante',
+  'segun',
+  'donde',
+  'cuando',
+  'porque',
+  'aunque',
+  'mientras',
+  'ademas',
+  'tambien',
+  'todos',
+  'todas',
+  'otros',
+  'otras',
+  'mismo',
+  'misma',
+  'antes',
+  'despues',
+  'siendo',
+  'estos',
+  'estas',
+  'nuestro',
+  'nuestra',
+  'puede',
+  'pueden',
+  'tiene',
+  'tienen',
+  'durant',
+  'despres',
+  'abans',
+  'segons',
+  'perque',
+  'totes',
+  'altres',
+  'aquest',
+  'aquesta',
+  'aquests',
+  'aquestes',
+  'nostre',
+  'nostra',
+  'mentre',
+  'sense',
+  // Fórmulas de trámite y de nota de prensa.
+  'acuerdo',
+  'acord',
+  'aprobacion',
+  'aprueba',
+  'aprobado',
+  'aprobada',
+  'aprovacio',
+  'aprova',
+  'inicio',
+  'inicia',
+  'expediente',
+  'expedient',
+  'proyecto',
+  'proyectos',
+  'projecte',
+  'nuevo',
+  'nueva',
+  'nuevos',
+  'nuevas',
+  'servicio',
+  'servicios',
+  'servei',
+  'serveis',
+  'suministro',
+  'subministrament',
+  'contrato',
+  'contratos',
+  'contracte',
+  'contratacion',
+  'contractacio',
+  'licitacion',
+  'licitacio',
+  'procedimiento',
+  'procediment',
+  'adjudicacion',
+  'adjudicacio',
+  'municipal',
+  'municipales',
+  'municipals',
+  'municipio',
+  'municipi',
+  'ayuntamiento',
+  'ajuntament',
+  'pleno',
+  'mocion',
+  'mocio',
+  'grupo',
+  'grupos',
+  'grups',
+  'asunto',
+  'asuntos',
+  'urgencia',
+  'modificacion',
+  'modificacio',
+  'relativo',
+  'relativa',
+  'correspondiente',
+  'propuesta',
+  'proposta',
+  'dictamen',
+  'euros',
+  'millones',
+  'milions',
+])
+
+const sinTildes = (s: string): string => s.normalize('NFD').replace(/\p{M}/gu, '')
+
+/**
+ * Las palabras de contenido de un título, en su orden y sin repetir: en minúsculas
+ * y sin tildes («césped» y «cesped» son la misma), de más de cuatro letras, con
+ * alguna letra (un número de expediente no es contenido) y fuera de `NO_CONTENIDO`.
+ */
+export function palabrasDeContenido(titulo: string): string[] {
+  const out: string[] = []
+  for (const w of sinTildes(titulo.toLowerCase())
+    .replace(/[^\p{L}\p{N}\s]/gu, ' ')
+    .split(/\s+/)) {
+    if (w.length <= 4 || !/\p{L}/u.test(w) || NO_CONTENIDO.has(w) || out.includes(w)) continue
+    out.push(w)
+  }
+  return out
+}
+
+/**
+ * Los trámites fijos del orden del día, en castellano y en valenciano: aprobar el
+ * acta anterior, dar cuenta de la lista de resoluciones de la alcaldía, ruegos y
+ * preguntas, y el epígrafe «Asuntos de urgencia» sin asunto detrás. Una dación de
+ * cuenta con sustancia —una sentencia, una auditoría— no es trámite: que la prensa
+ * no la siga sí es una laguna.
+ */
+const TRAMITES: readonly RegExp[] = [
+  /^(aprobaci[oó]n|aprovaci[oó])\s+(de\s+(las?\s+|les\s+|l['’]\s*))?actas?\b/i,
+  /^(dar|donar)\s+(cuenta|compte)\s+de\s+(las|les)\s+resoluci(ones|ons)\b/i,
+  /^(ruegos\s+y\s+preguntas|precs\s+[iy]\s+preguntes)\s*\.?$/i,
+  /^asuntos?\s+de\s+urgencia\s*\.?$/i,
+]
+
+export function esTramiteDePleno(titulo: string): boolean {
+  const t = titulo.trim()
+  return TRAMITES.some((r) => r.test(t))
+}
+
+interface Titular {
+  id: string
+  outlet: string
+  palabras: Set<string>
+}
+
+/** El titular que más palabras comparte con `palabras`, si llega al mínimo. */
+function ecoEn(
+  palabras: string[],
+  titulares: Titular[],
+): { titular: Titular; shared: string[] } | null {
+  let mejor: { titular: Titular; shared: string[] } | null = null
+  for (const t of titulares) {
+    const shared = palabras.filter((w) => t.palabras.has(w))
+    if (shared.length < MIN_PALABRAS_COMPARTIDAS) continue
+    if (!mejor || shared.length > mejor.shared.length) mejor = { titular: t, shared }
+  }
+  return mejor
 }
 
 export function computeCoverageGaps(opts: {
@@ -625,14 +871,34 @@ export function computeCoverageGaps(opts: {
   // timestamp excluded anything dated ON the cutoff day.
   const cutoffDay = cutoff.slice(0, 10)
 
-  const recentPress = opts.press.filter((p) => p.date >= cutoff)
-  const pressTokens = new Set<string>()
-  for (const p of recentPress) for (const t of tokenise(p.title)) pressTokens.add(t)
+  // Prensa: sin anuncios clasificados ni notas de una administración, en la
+  // ventana. Ordenada por fecha e id para que el eco elegido no dependa del feed.
+  const titulares: Titular[] = sinAnunciosClasificados(opts.press)
+    .filter((p) => p.date >= cutoff && !esFuenteOficial(p))
+    .sort((a, b) => a.date.localeCompare(b.date) || a.id.localeCompare(b.id))
+    .map((p) => ({ id: p.id, outlet: p.source, palabras: new Set(palabrasDeContenido(p.title)) }))
 
   const items: CoverageGapItem[] = []
+  const covered: CoverageEcho[] = []
+
+  const examinar = (c: Omit<CoverageGapItem, 'keyword'>, titulo: string): boolean => {
+    const eco = ecoEn(palabrasDeContenido(titulo), titulares)
+    if (eco) {
+      covered.push({
+        ...c,
+        articleId: eco.titular.id,
+        outlet: eco.titular.outlet,
+        shared: eco.shared,
+      })
+      return true
+    }
+    items.push({ ...c, keyword: '' })
+    return false
+  }
 
   const agendas = opts.agendas?.plenos ?? []
   let plenoItemsUncovered = 0
+  let tramitesExcluidos = 0
   // How many things we actually looked at. Without this the report cannot
   // tell "the press covered everything" apart from "nothing happened inside
   // the window", and the page asserted the first while meaning the second:
@@ -645,19 +911,21 @@ export function computeCoverageGaps(opts: {
     // ISO timestamp, so a session ON the cutoff day sorted as "before" it.
     if (session.date < cutoffDay) continue
     for (const item of session.agenda ?? []) {
+      if (esTramiteDePleno(item.title)) {
+        tramitesExcluidos += 1
+        continue
+      }
       candidatesExamined += 1
-      const tokens = tokenise(item.title)
-      const keyword = tokens.find((t) => pressTokens.has(t)) ?? ''
-      if (!keyword) {
-        plenoItemsUncovered += 1
-        items.push({
+      const seguido = examinar(
+        {
           kind: 'pleno-item',
           refId: `${session.id}:${item.number}`,
           label: `${item.department ? item.department + ' · ' : ''}${item.title}`,
           date: session.date,
-          keyword: '',
-        })
-      }
+        },
+        item.title,
+      )
+      if (!seguido) plenoItemsUncovered += 1
     }
   }
 
@@ -665,30 +933,29 @@ export function computeCoverageGaps(opts: {
   for (const promise of opts.promises?.items ?? []) {
     if (promise.madeAt < cutoffDay) continue
     candidatesExamined += 1
-    const tokens = tokenise(promise.title)
-    const keyword = tokens.find((t) => pressTokens.has(t)) ?? ''
-    if (!keyword) {
-      promisesUncovered += 1
-      items.push({
-        kind: 'promise',
-        refId: promise.id,
-        label: promise.title,
-        date: promise.madeAt,
-        keyword: '',
-      })
-    }
+    const seguido = examinar(
+      { kind: 'promise', refId: promise.id, label: promise.title, date: promise.madeAt },
+      promise.title,
+    )
+    if (!seguido) promisesUncovered += 1
   }
 
-  items.sort((a, b) => b.date.localeCompare(a.date))
+  const porFecha = (a: { date: string; refId: string }, b: { date: string; refId: string }) =>
+    b.date.localeCompare(a.date) || a.refId.localeCompare(b.refId, 'en', { numeric: true })
+  items.sort(porFecha)
+  covered.sort(porFecha)
 
   return {
     generatedAt: now.toISOString(),
     windowDays,
     items,
+    covered,
     stats: {
       plenoItemsUncovered,
       promisesUncovered,
       candidatesExamined,
+      tramitesExcluidos,
+      titularesConsiderados: titulares.length,
     },
   }
 }
