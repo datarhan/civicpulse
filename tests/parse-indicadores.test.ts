@@ -637,10 +637,17 @@ describe('scraper/indicadores · una concesión que declara, con datos reales de
     enConcesion.delete(CONCESION_QUE_DECLARA)
     const frase = agua.caveats.find((c) => /no declaran? (su )?coste|no rellenan/.test(c))
     expect(frase, 'sin frase que acote el grupo').toBeDefined()
-    // …y la frase cita los DOS recuentos, y el que resta cuadra con `pares.n`.
-    expect(frase).toContain(String(enConcesion.size))
-    expect(frase).toContain(String(agua.pares!.n))
-    expect(frase).toContain(String(enConcesion.size - agua.pares!.n))
+    // …y la frase cita el total y el grupo, y los recuentos de cada motivo
+    // suman lo que queda fuera. Antes se pedía que el RESTO apareciera tal
+    // cual, rotulado «no declaran su coste»: en este mismo fixture uno de esos
+    // diez trae dos costes distintos, y llamarlo «no declara» era falso.
+    expect(frase).toContain(`De los ${enConcesion.size} municipios`)
+    expect(frase).toContain(`contra los ${agua.pares!.n} restantes`)
+    const recuentos = [
+      ...frase!.matchAll(/(\d+) (?:no declaran? su coste|declaran? un coste|traen? dos costes)/g),
+    ].map((m) => Number(m[1]))
+    expect(recuentos.length).toBeGreaterThan(0)
+    expect(recuentos.reduce((a, b) => a + b, 0)).toBe(enConcesion.size - agua.pares!.n)
   })
 
   it('una concesión muda del mismo fixture sigue sin cociente y sin par', () => {

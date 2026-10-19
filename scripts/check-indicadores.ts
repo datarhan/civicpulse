@@ -22,6 +22,7 @@ import { readFile } from 'node:fs/promises'
 import { dirname, join } from 'node:path'
 import { fileURLToPath } from 'node:url'
 import type { CesteRow } from '../src/scraper/coste-efectivo'
+import { esGestionPorConcesion } from '../src/scraper/modo-gestion'
 import { MIN_PARES, situacion, type Indicador } from '../src/scraper/indicadores'
 import { SERVICIOS } from '../src/scraper/indicador-registry'
 import { medirDeclaracionCongelada } from '../src/scraper/declaracion-congelada'
@@ -153,10 +154,23 @@ async function main() {
       if (i.pares && i.pares.modoGestion !== 'concesion') {
         fail(`${i.id}: concesión comparada contra pares en ${i.pares.modoGestion}`)
       }
+      // La frase del recibo es de la concesión PROPIAMENTE DICHA, no de la
+      // clase: la clase junta también el concierto y la gestión interesada, y
+      // de un concierto es falsa. Vigilar sólo que falte dejaba sin vigilar que
+      // sobre, que es como estuvo publicándose hasta el 2026-10-19 sin que
+      // ninguna ficha propia la necesitara todavía.
       comprobaciones++
-      if (i.valor !== null && !i.caveats.some((c) => /concesionario/.test(c) && /recibo/.test(c))) {
+      const diceRecibo = i.caveats.some((c) => /concesionario/.test(c) && /recibo/.test(c))
+      if (esGestionPorConcesion(i.codGestionRaw)) {
+        if (i.valor !== null && !diceRecibo) {
+          fail(
+            `${i.id}: publica cociente de concesión sin decir que ese dinero no sale del presupuesto`,
+          )
+        }
+      } else if (diceRecibo) {
         fail(
-          `${i.id}: publica cociente de concesión sin decir que ese dinero no sale del presupuesto`,
+          `${i.id}: «${i.codGestionRaw}» no es una concesión y la ficha dice que lo cobra el ` +
+            'concesionario del recibo',
         )
       }
     }
