@@ -38,9 +38,11 @@ export function useTenders() {
  *     licitadores) y 104/2026 BSDA. Hasta entonces decía «Anulado», el cognado
  *     literal, y un lote desierto no se anula: nadie se presentó.
  *
- *     Vale para la tabla de CONTRATOS. En la de LICITACIONES el mismo `void`
- *     significa otra cosa —ver `crosschecked-status.js`— y no se pinta con
- *     este rótulo.
+ *     Vale para la tabla de CONTRATOS. En la de LICITACIONES ninguna palabra de
+ *     Gobierto dice lo que dice; desde el 19-10-2026 el parser las traduce a lo
+ *     que muestra la Plataforma (`estadoDeLicitacion`, src/scraper/tenders.ts),
+ *     y de ahí sale `annulled` → «Anulado»: la ficha dice «Anulada» y trae su
+ *     anuncio de anulación.
  *
  * El texto de cada rótulo vive ahora en el catálogo, `contrato.estado.<estado>`:
  * la tarjeta de contrato del mapa lo pinta también en valencià. Este mapa se
@@ -62,6 +64,7 @@ export const STATUS_LABEL = {
   revoked: CATALOGUE.es['contrato.estado.revoked'],
   abandoned: CATALOGUE.es['contrato.estado.abandoned'],
   withdrawn: CATALOGUE.es['contrato.estado.withdrawn'],
+  annulled: CATALOGUE.es['contrato.estado.annulled'],
   // Todavía en marcha.
   provisionally_awarded: CATALOGUE.es['contrato.estado.provisionally_awarded'],
   in_progress: CATALOGUE.es['contrato.estado.in_progress'],
@@ -86,6 +89,7 @@ export const STATUS_TONE = {
   revoked: 'warn',
   abandoned: 'warn',
   withdrawn: 'warn',
+  annulled: 'warn',
   provisionally_awarded: 'civic',
   in_progress: 'civic',
   open: 'civic',

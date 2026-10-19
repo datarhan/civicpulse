@@ -30,15 +30,21 @@
 export const COMMITTED_STATUSES = ['formalized', 'finalized', 'closed', 'awarded']
 const COMMITTED = new Set(COMMITTED_STATUSES)
 
-/** Statuses that mean the award was undone. Never counted as spend. */
-export const CANCELLED_STATUSES = ['void', 'revoked', 'abandoned', 'withdrawn']
+/**
+ * Statuses that mean the award was undone. Never counted as spend.
+ *
+ * `annulled` is PLACSP's «Anulada» for a licitación, which Gobierto exports as
+ * `formalized` (`estadoDeLicitacion` in src/scraper/tenders.ts translates it).
+ */
+export const CANCELLED_STATUSES = ['void', 'revoked', 'abandoned', 'withdrawn', 'annulled']
 const CANCELLED = new Set(CANCELLED_STATUSES)
 
 /**
  * Statuses that mean the procurement is still running, so no money is
  * committed yet. `provisionally_awarded` belongs here: a provisional award can
- * still be withdrawn before formalisation, and 23 of the 449 licitaciones sit
- * in that state.
+ * still be withdrawn before formalisation. (The 23 licitaciones Gobierto
+ * exported under that word were in fact in «Evaluación» on PLACSP; since
+ * 2026-10-19 the parser translates them to `evaluation`.)
  */
 export const IN_FLIGHT_STATUSES = [
   'provisionally_awarded',

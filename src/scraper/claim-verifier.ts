@@ -100,15 +100,26 @@ export function claimsCompletion(verbatim: string): boolean {
  * Aun así el veredicto se queda en «revisión editorial»: que ESTA licitación
  * se anulara no prueba que la obra no se hiciera por otra vía.
  *
+ * Desde el 2026-10-19 el estado de una LICITACIÓN llega traducido a lo que dice
+ * la Plataforma (`estadoDeLicitacion`, src/scraper/tenders.ts): Gobierto
+ * escribía `revoked` en las adjudicadas y `formalized` en las anuladas, así que
+ * este conjunto desmentía con licitaciones adjudicadas y daba por firmadas las
+ * anuladas. Con la traducción entran `annulled` y `evaluation`: una licitación
+ * todavía en evaluación es contratación que no llegó a término, igual que la
+ * adjudicación provisional (decisión del 19-10-2026). Las palabras de la tabla
+ * de contratos siguen aquí con su sentido de contratos.
+ *
  * `tests/claim-verifier-estados-vivos.test.ts` comprueba contra el snapshot
  * publicado que la intersección no vuelva a quedarse vacía, y que la fuente no
  * emita ningún estado que estos dos conjuntos no clasifiquen.
  */
 export const TENDER_NOT_DONE_STATUSES = new Set([
-  'void', // anulada / desierta — no hubo adjudicación
-  'revoked', // revocada
+  'void', // desierto (contratos) — no hubo adjudicación
+  'revoked', // renuncia a celebrar el contrato
   'abandoned', // desistida por la administración
   'provisionally_awarded', // adjudicación aún provisional
+  'evaluation', // licitación todavía en evaluación (PLACSP «Evaluación»)
+  'annulled', // licitación anulada (PLACSP «Anulada»)
 ])
 
 /**
