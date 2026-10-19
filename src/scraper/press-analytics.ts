@@ -149,6 +149,26 @@ function coincidenciaMunicipal(claims: VerifiedClaimRow[]): boolean | null {
   return cotejadas.some((c) => c.verification.verdict === 'verificado')
 }
 
+/**
+ * The distinct outlets among `articles`, one name per publisher host.
+ *
+ * The outlet is the HOST, not the name Google News prints: it gives one site
+ * under more than one name. On 2026-10-18 thirteen fotocasa.es listings,
+ * twelve named «Fotocasa» and one «Fotocasa.es», counted as two outlets, so
+ * /laboratorio marked them «corroborated across outlets» — 13 of its 30.
+ * Without a host the name is all there is. The name kept is the
+ * alphabetically first, so the published list does not depend on feed order.
+ */
+export function distinctOutlets(articles: ReadonlyArray<PressArticleLite>): string[] {
+  const nameByHost = new Map<string, string>()
+  for (const a of articles) {
+    const key = a.sourceHost ?? `name:${a.source}`
+    const prev = nameByHost.get(key)
+    if (prev === undefined || a.source.localeCompare(prev) < 0) nameByHost.set(key, a.source)
+  }
+  return [...nameByHost.values()].sort()
+}
+
 export function computeTrustIndicators(opts: {
   press: PressArticleLite[]
   verified: VerifiedClaimRow[]
@@ -172,7 +192,7 @@ export function computeTrustIndicators(opts: {
   // why exact fingerprint identity can never answer this.
   const outletsByArticleId = new Map<string, number>()
   for (const group of clusterArticlesByStory(press).values()) {
-    const outlets = new Set(group.map((a) => a.source)).size
+    const outlets = distinctOutlets(group).length
     for (const a of group) outletsByArticleId.set(a.id, outlets)
   }
 
@@ -404,9 +424,9 @@ export function computeTriangulation(opts: {
 
   const clusters: TriangulationCluster[] = []
   for (const articles of components.values()) {
-    const outlets = new Set(articles.map((a) => a.source))
+    const outlets = distinctOutlets(articles)
     // Triangulation = corroboration ACROSS outlets; a same-outlet echo isn't it.
-    if (outlets.size < 2) continue
+    if (outlets.length < 2) continue
     const dates = articles.map((a) => a.date).sort()
     const verdictMix: Record<ClaimVerdict, number> = {
       verificado: 0,
@@ -421,7 +441,7 @@ export function computeTriangulation(opts: {
     clusters.push({
       clusterId: articles.map((a) => a.fingerprint).sort()[0],
       articleIds: articles.map((a) => a.id).sort(),
-      outlets: Array.from(outlets).sort(),
+      outlets,
       earliestDate: dates[0],
       latestDate: dates[dates.length - 1],
       verdictMix,
