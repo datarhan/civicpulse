@@ -1,0 +1,552 @@
+{
+  "medido": "2026-10-19",
+  "fuente": "PLACSP, «State of the Tender» de la ficha detalle_licitacion de cada enlace, leída con el bundle de certifi",
+  "gobierto": "public/data/tenders.json (generatedAt 2026-10-18T09:04:07Z), campo tenders[].status tal cual lo exporta ribalicita",
+  "muestra": "todas las filas de los estados con ≤ 10 filas; 14 de revoked y 10 de awarded y provisionally_awarded, a intervalos regulares",
+  "nota": "placsp null = la ficha no trae estado legible (8/2017)",
+  "filas": [
+    {
+      "id": "4889055",
+      "expediente": "ESDA1/2025",
+      "enlace": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=2N0awhGNBRR%2FR5QFTlaM4A%3D%3D",
+      "gobierto": "abandoned",
+      "placsp": "Evaluación Previa",
+      "documentos": [
+        "Adjudicación",
+        "Anuncio de Licitación"
+      ]
+    },
+    {
+      "id": "1794430",
+      "expediente": "ESDA2/2022",
+      "enlace": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=BNVBpfbsTAamq21uxhbaVQ%3D%3D",
+      "gobierto": "abandoned",
+      "placsp": "Evaluación Previa",
+      "documentos": [
+        "Adjudicación",
+        "Anuncio de Licitación"
+      ]
+    },
+    {
+      "id": "1689128",
+      "expediente": "ESDA 1/2022",
+      "enlace": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=vOpqxtfcGwgBPRBxZ4nJ%2Fg%3D%3D",
+      "gobierto": "abandoned",
+      "placsp": "Evaluación Previa",
+      "documentos": [
+        "Adjudicación",
+        "Anuncio de Licitación"
+      ]
+    },
+    {
+      "id": "5190772",
+      "expediente": "80/2025",
+      "enlace": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=eJtaf6IFJQyP66GS%2BONYvQ%3D%3D",
+      "gobierto": "abandoned",
+      "placsp": "Parcialmente Adjudicada",
+      "documentos": [
+        "Adjudicación",
+        "Anuncio de Licitación"
+      ]
+    },
+    {
+      "id": "1889876",
+      "expediente": "ESDA1/2020",
+      "enlace": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=25tltyOORPNvYnTkQN0%2FZA%3D%3D",
+      "gobierto": "abandoned",
+      "placsp": "Evaluación Previa",
+      "documentos": [
+        "Adjudicación",
+        "Anuncio de Licitación"
+      ]
+    },
+    {
+      "id": "1999",
+      "expediente": "6/2019",
+      "enlace": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=uhl7Dr7kScguf4aBO%2BvQlQ%3D%3D",
+      "gobierto": "abandoned",
+      "placsp": "Parcialmente Resuelta",
+      "documentos": [
+        "Adjudicación",
+        "Anuncio de Licitación"
+      ]
+    },
+    {
+      "id": "26459",
+      "expediente": "1/2019",
+      "enlace": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=F5cJBe2hB%2BxvYnTkQN0%2FZA%3D%3D",
+      "gobierto": "abandoned",
+      "placsp": "Parcialmente Adjudicada",
+      "documentos": [
+        "Adjudicación",
+        "Anuncio de Licitación"
+      ]
+    },
+    {
+      "id": "4930957",
+      "expediente": "ESDA1/2025",
+      "enlace": "https://contrataciondelestado.es/wps/poc?uri=deeplink%3Adetalle_licitacion&idEvl=2N0awhGNBRR%2FR5QFTlaM4A%3D%3D",
+      "gobierto": "provisionally_awarded",
+      "placsp": "Evaluación Previa",
+      "documentos": [
+        "Adjudicación",
+        "Anuncio de Licitación"
+      ]
+    },
+    {
+      "id": "1892105",
+      "expediente": "ESDA2/2020",
+      "enlace": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=iAX0flihInamq21uxhbaVQ%3D%3D",
+      "gobierto": "provisionally_awarded",
+      "placsp": "Evaluación Previa",
+      "documentos": [
+        "Adjudicación",
+        "Anuncio de Licitación"
+      ]
+    },
+    {
+      "id": "4333841",
+      "expediente": "212/2023",
+      "enlace": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=2RZHIgcWJEKqb7rCcv76BA%3D%3D",
+      "gobierto": "provisionally_awarded",
+      "placsp": "Evaluación",
+      "documentos": [
+        "Anuncio de Licitación"
+      ]
+    },
+    {
+      "id": "1891367",
+      "expediente": "33/2022",
+      "enlace": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=I0i8B46ALokuf4aBO%2BvQlQ%3D%3D",
+      "gobierto": "provisionally_awarded",
+      "placsp": "Evaluación",
+      "documentos": [
+        "Anuncio de Licitación"
+      ]
+    },
+    {
+      "id": "1554246",
+      "expediente": "32 2021",
+      "enlace": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=3v1yfrBD5haiEJrVRqloyA%3D%3D",
+      "gobierto": "provisionally_awarded",
+      "placsp": "Evaluación",
+      "documentos": [
+        "Anuncio de Licitación"
+      ]
+    },
+    {
+      "id": "1449704",
+      "expediente": "3581/2020/GEN",
+      "enlace": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=HHo%2F5zL%2BijGmq21uxhbaVQ%3D%3D",
+      "gobierto": "provisionally_awarded",
+      "placsp": "Evaluación",
+      "documentos": [
+        "Anuncio de Licitación"
+      ]
+    },
+    {
+      "id": "1258755",
+      "expediente": "SDA 2/2020",
+      "enlace": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=owgkhfJ99nyXQV0WE7lYPw%3D%3D",
+      "gobierto": "provisionally_awarded",
+      "placsp": "Anulada",
+      "documentos": [
+        "Anulación",
+        "Anuncio de Licitación"
+      ]
+    },
+    {
+      "id": "257224",
+      "expediente": "44/2019",
+      "enlace": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=CzdU%2BRnOSZ6mq21uxhbaVQ%3D%3D",
+      "gobierto": "provisionally_awarded",
+      "placsp": "Evaluación",
+      "documentos": [
+        "Anuncio de Licitación"
+      ]
+    },
+    {
+      "id": "57539",
+      "expediente": "222/2012",
+      "enlace": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=HcG5nDY0D30QK2TEfXGy%2BA%3D%3D",
+      "gobierto": "provisionally_awarded",
+      "placsp": "Evaluación",
+      "documentos": [
+        "Anuncio de Licitación"
+      ]
+    },
+    {
+      "id": "76284",
+      "expediente": "41/2018",
+      "enlace": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=50AMOi%2FtmLPnSoTX3z%2F7wA%3D%3D",
+      "gobierto": "provisionally_awarded",
+      "placsp": "Evaluación",
+      "documentos": [
+        "Anuncio de Licitación"
+      ]
+    },
+    {
+      "id": "5219201",
+      "expediente": "85/2026",
+      "enlace": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=SFROhqFdVqicCF8sV%2BqtYA%3D%3D",
+      "gobierto": "void",
+      "placsp": "Evaluación",
+      "documentos": [
+        "Anuncio de Licitación"
+      ]
+    },
+    {
+      "id": "5210154",
+      "expediente": "37/2026",
+      "enlace": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=%2FkhmkNb0THlJ8Trn0ZPzLw%3D%3D",
+      "gobierto": "void",
+      "placsp": "Evaluación",
+      "documentos": [
+        "Anuncio de Licitación"
+      ]
+    },
+    {
+      "id": "5200183",
+      "expediente": "32/2026",
+      "enlace": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=Hn05YEAhWqzjHF5qKI4aaw%3D%3D",
+      "gobierto": "void",
+      "placsp": "Evaluación",
+      "documentos": [
+        "Anuncio de Licitación"
+      ]
+    },
+    {
+      "id": "5196181",
+      "expediente": "108/2026",
+      "enlace": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=lQlfD5LIN7YXhk1FZxEyvw%3D%3D",
+      "gobierto": "void",
+      "placsp": "Evaluación",
+      "documentos": [
+        "Anuncio de Licitación"
+      ]
+    },
+    {
+      "id": "5177416",
+      "expediente": "100/2026",
+      "enlace": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=j0PEgp21LM4UqXM96WStVA%3D%3D",
+      "gobierto": "void",
+      "placsp": "Evaluación",
+      "documentos": [
+        "Anuncio de Licitación"
+      ]
+    },
+    {
+      "id": "5177429",
+      "expediente": "44-63/2026",
+      "enlace": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=%2F34pTr%2F3b9WLAncw3qdZkA%3D%3D",
+      "gobierto": "void",
+      "placsp": "Evaluación",
+      "documentos": [
+        "Anuncio de Licitación"
+      ]
+    },
+    {
+      "id": "4996875",
+      "expediente": "68/2025",
+      "enlace": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=GWSKX9oF1nmFQ%2FlhRK79lA%3D%3D",
+      "gobierto": "void",
+      "placsp": "Evaluación",
+      "documentos": [
+        "Anuncio de Licitación"
+      ]
+    },
+    {
+      "id": "5198588",
+      "expediente": "36/2026",
+      "enlace": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=Dsw60vrWRmm5HQrHoP3G5A%3D%3D",
+      "gobierto": "revoked",
+      "placsp": "Adjudicada",
+      "documentos": [
+        "Adjudicación",
+        "Anuncio de Licitación"
+      ]
+    },
+    {
+      "id": "4664118",
+      "expediente": "155/2025",
+      "enlace": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=QYV9GVTmEKs%2Bk2oCbDosIw%3D%3D",
+      "gobierto": "revoked",
+      "placsp": "Adjudicada",
+      "documentos": [
+        "Adjudicación",
+        "Anuncio de Licitación"
+      ]
+    },
+    {
+      "id": "4584195",
+      "expediente": "50V/2024",
+      "enlace": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=nsi1cQdvUjpxseVhcqrkhw%3D%3D",
+      "gobierto": "revoked",
+      "placsp": "Adjudicada",
+      "documentos": [
+        "Adjudicación",
+        "Formalización"
+      ]
+    },
+    {
+      "id": "4580298",
+      "expediente": "45V/2024",
+      "enlace": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=B6COEr8VdRprhBlEHQFSKA%3D%3D",
+      "gobierto": "revoked",
+      "placsp": "Adjudicada",
+      "documentos": [
+        "Adjudicación"
+      ]
+    },
+    {
+      "id": "4579942",
+      "expediente": "27E/2024",
+      "enlace": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=uLUNqpv9ou3XOjazN1Dw9Q%3D%3D",
+      "gobierto": "revoked",
+      "placsp": "Adjudicada",
+      "documentos": [
+        "Adjudicación"
+      ]
+    },
+    {
+      "id": "4574459",
+      "expediente": "14E/2024",
+      "enlace": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=jtl9CdiFhIY7u6%2B%2FR7DUoA%3D%3D",
+      "gobierto": "revoked",
+      "placsp": "Adjudicada",
+      "documentos": [
+        "Adjudicación"
+      ]
+    },
+    {
+      "id": "4571416",
+      "expediente": "16E/2024",
+      "enlace": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=8FCjPLfz2wvIGlsa0Wad%2Bw%3D%3D",
+      "gobierto": "revoked",
+      "placsp": "Adjudicada",
+      "documentos": [
+        "Adjudicación"
+      ]
+    },
+    {
+      "id": "4581791",
+      "expediente": "40V/2024",
+      "enlace": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=iDTYC0k2%2FVmdkQsA7ROvsg%3D%3D",
+      "gobierto": "revoked",
+      "placsp": "Adjudicada",
+      "documentos": [
+        "Adjudicación"
+      ]
+    },
+    {
+      "id": "4581623",
+      "expediente": "38V/2024",
+      "enlace": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=TC4CjFxVknSFQ%2FlhRK79lA%3D%3D",
+      "gobierto": "revoked",
+      "placsp": "Adjudicada",
+      "documentos": [
+        "Adjudicación"
+      ]
+    },
+    {
+      "id": "4598693",
+      "expediente": "63V/2024",
+      "enlace": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=e2Vj2Cv%2BAyWqb7rCcv76BA%3D%3D",
+      "gobierto": "revoked",
+      "placsp": "Adjudicada",
+      "documentos": [
+        "Adjudicación"
+      ]
+    },
+    {
+      "id": "4415701",
+      "expediente": "33/2024",
+      "enlace": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=xkXNO23MYwoZDGvgaZEVxQ%3D%3D",
+      "gobierto": "revoked",
+      "placsp": "Adjudicada",
+      "documentos": [
+        "Adjudicación",
+        "Anuncio de Licitación"
+      ]
+    },
+    {
+      "id": "1946022",
+      "expediente": "54/2022",
+      "enlace": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=%2B8ZzX1rUP2SiEJrVRqloyA%3D%3D",
+      "gobierto": "revoked",
+      "placsp": "Adjudicada",
+      "documentos": [
+        "Adjudicación",
+        "Anuncio de Licitación"
+      ]
+    },
+    {
+      "id": "1557347",
+      "expediente": "20/2021",
+      "enlace": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=xL2Sywo7D7ZvYnTkQN0%2FZA%3D%3D",
+      "gobierto": "revoked",
+      "placsp": "Resuelta",
+      "documentos": [
+        "Adjudicación",
+        "Anulación",
+        "Anuncio de Licitación",
+        "Formalización"
+      ]
+    },
+    {
+      "id": "1412877",
+      "expediente": "6E/2020",
+      "enlace": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=dj0UfagL4ccSugstABGr5A%3D%3D",
+      "gobierto": "revoked",
+      "placsp": "Adjudicada",
+      "documentos": [
+        "Adjudicación"
+      ]
+    },
+    {
+      "id": "5241939",
+      "expediente": "E3/2026",
+      "enlace": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=G%2BmnRyGH352ExvMJXBMHHQ%3D%3D",
+      "gobierto": "awarded",
+      "placsp": "Resuelta",
+      "documentos": [
+        "Adjudicación",
+        "Anuncio de Licitación"
+      ]
+    },
+    {
+      "id": "4588901",
+      "expediente": "7/2024 ter",
+      "enlace": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=tJ%2BjwKqFofE4NavIWzMcHA%3D%3D",
+      "gobierto": "awarded",
+      "placsp": "Resuelta",
+      "documentos": [
+        "Adjudicación",
+        "Anuncio de Licitación",
+        "Desistimiento"
+      ]
+    },
+    {
+      "id": "4321164",
+      "expediente": "194/2023",
+      "enlace": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=z7DQk7wlPT6cCF8sV%2BqtYA%3D%3D",
+      "gobierto": "awarded",
+      "placsp": "Resuelta",
+      "documentos": [
+        "Adjudicación",
+        "Anuncio de Licitación",
+        "Formalización"
+      ]
+    },
+    {
+      "id": "1892810",
+      "expediente": "37/2022",
+      "enlace": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=OLo5hAhMs9mmq21uxhbaVQ%3D%3D",
+      "gobierto": "awarded",
+      "placsp": "Resuelta",
+      "documentos": [
+        "Adjudicación",
+        "Anuncio de Licitación"
+      ]
+    },
+    {
+      "id": "1608861",
+      "expediente": "67/2021",
+      "enlace": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=DeNuLJF4hrOiEJrVRqloyA%3D%3D",
+      "gobierto": "awarded",
+      "placsp": "Resuelta",
+      "documentos": [
+        "Adjudicación",
+        "Anuncio de Licitación",
+        "Formalización"
+      ]
+    },
+    {
+      "id": "1365217",
+      "expediente": "28/2020",
+      "enlace": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=guQ6bRAyZ1umq21uxhbaVQ%3D%3D",
+      "gobierto": "awarded",
+      "placsp": "Resuelta",
+      "documentos": [
+        "Adjudicación",
+        "Anuncio de Licitación",
+        "Formalización"
+      ]
+    },
+    {
+      "id": "311298",
+      "expediente": "31/2019",
+      "enlace": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=2%2B%2FWDdeFF%2BaXQV0WE7lYPw%3D%3D",
+      "gobierto": "awarded",
+      "placsp": "Resuelta",
+      "documentos": [
+        "Adjudicación",
+        "Anuncio de Licitación"
+      ]
+    },
+    {
+      "id": "39497",
+      "expediente": "75/2018",
+      "enlace": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=IoNf54xXFLXnSoTX3z%2F7wA%3D%3D",
+      "gobierto": "awarded",
+      "placsp": "Resuelta",
+      "documentos": [
+        "Adjudicación",
+        "Anuncio de Licitación",
+        "Formalización"
+      ]
+    },
+    {
+      "id": "95133",
+      "expediente": "39/2018",
+      "enlace": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=yrxcliuypflvYnTkQN0%2FZA%3D%3D",
+      "gobierto": "awarded",
+      "placsp": "Resuelta",
+      "documentos": [
+        "Adjudicación",
+        "Anuncio de Licitación",
+        "Formalización"
+      ]
+    },
+    {
+      "id": "58184",
+      "expediente": "8/2017",
+      "enlace": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=%2BVq1UOx8Xb4QK2TEfXGy%2BA%3D%3D",
+      "gobierto": "awarded",
+      "placsp": null,
+      "documentos": []
+    },
+    {
+      "id": "1526763",
+      "expediente": "2SDA/2021",
+      "enlace": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=iljIY%2FgAKZKXQV0WE7lYPw%3D%3D",
+      "gobierto": "formalized",
+      "placsp": "Anulada",
+      "documentos": [
+        "Adjudicación",
+        "Anulación",
+        "Anuncio de Licitación"
+      ]
+    },
+    {
+      "id": "1488067",
+      "expediente": "1SDA/2021",
+      "enlace": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=jtkuFOznKsmmq21uxhbaVQ%3D%3D",
+      "gobierto": "formalized",
+      "placsp": "Anulada",
+      "documentos": [
+        "Adjudicación",
+        "Anulación",
+        "Anuncio de Licitación"
+      ]
+    },
+    {
+      "id": "2456310",
+      "expediente": "97/2023",
+      "enlace": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=TO7sKuaZmazpxJFXpLZ%2B2A%3D%3D",
+      "gobierto": "unknown",
+      "placsp": "Anuncio Previo",
+      "documentos": []
+    }
+  ]
+}
