@@ -129,6 +129,34 @@ describe('press-analytics — computeTrustIndicators', () => {
     expect(report.articles[0].indicators.corroboratedAcrossOutlets).toBe(false)
   })
 
+  it('two names Google News gives one site are one outlet, not corroboration', () => {
+    // Measured 2026-10-18: 13 fotocasa.es listings, 12 named «Fotocasa» and 1
+    // «Fotocasa.es», were one «story» corroborated «across outlets» — 13 of the
+    // 30 corroborated articles on /laboratorio. The host is the publisher.
+    const press = [
+      makePress({
+        id: 'a-1',
+        title: 'Casas y pisos en Calle Sagunto, Riba-roja de Túria',
+        source: 'Fotocasa',
+        sourceHost: 'fotocasa.es',
+        fingerprint: 'fp-a',
+      }),
+      makePress({
+        id: 'a-2',
+        title: 'Casas y pisos en Calle Ibiza, Riba-roja de Túria',
+        source: 'Fotocasa.es',
+        sourceHost: 'fotocasa.es',
+        fingerprint: 'fp-b',
+      }),
+    ]
+    const report = computeTrustIndicators({ press, verified: [], now: NOW })
+    expect(report.articles.map((a) => a.indicators.corroboratedAcrossOutlets)).toEqual([
+      false,
+      false,
+    ])
+    expect(computeTriangulation({ press, verified: [], now: NOW }).clusters).toEqual([])
+  })
+
   it('outletScorecard aggregates verdictCounts across an outlet', () => {
     const press = [
       makePress({ id: 'a-1', source: 'Outlet X', sourceHost: 'x.test' }),
@@ -192,9 +220,11 @@ describe('press-analytics — computeTrustIndicators', () => {
 
 describe('press-analytics — computeTriangulation', () => {
   it('emits a cluster when ≥2 outlets carry the same story', () => {
+    // Each outlet on its own host, as production emits them: a name alone is
+    // not an outlet (see «two names Google News gives one site»).
     const press = [
-      makePress({ id: 'a-1', source: 'Outlet A' }),
-      makePress({ id: 'a-2', source: 'Outlet B' }),
+      makePress({ id: 'a-1', source: 'Outlet A', sourceHost: 'a.test' }),
+      makePress({ id: 'a-2', source: 'Outlet B', sourceHost: 'b.test' }),
     ]
     const r = computeTriangulation({ press, verified: [], now: NOW })
     expect(r.clusters.length).toBe(1)
@@ -203,9 +233,9 @@ describe('press-analytics — computeTriangulation', () => {
 
   it('counts 3+ triangulation correctly', () => {
     const press = [
-      makePress({ id: 'a-1', source: 'A' }),
-      makePress({ id: 'a-2', source: 'B' }),
-      makePress({ id: 'a-3', source: 'C' }),
+      makePress({ id: 'a-1', source: 'A', sourceHost: 'a.test' }),
+      makePress({ id: 'a-2', source: 'B', sourceHost: 'b.test' }),
+      makePress({ id: 'a-3', source: 'C', sourceHost: 'c.test' }),
     ]
     const r = computeTriangulation({ press, verified: [], now: NOW })
     expect(r.stats.triangulated3Plus).toBe(1)
