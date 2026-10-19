@@ -17,8 +17,16 @@ import {
   formatEurosCents,
   retribucionesSplit,
   alcaldeSerie,
+  ningunoACero,
+  perceptoresIspa,
 } from '../hooks/useIspa'
-import { useDedicaciones, estadoRetribucion, fijadoTramos } from '../hooks/useDedicaciones'
+import {
+  useDedicaciones,
+  estadoRetribucion,
+  fijadoTramos,
+  desgloseAntiguedad,
+  filaDelAlcalde,
+} from '../hooks/useDedicaciones'
 import { useJsonFetch } from '../hooks/useJsonFetch'
 import { useBioReportRoutes } from '../hooks/useBioReportRoutes'
 import { useQuejas } from '../hooks/useQuejas'
@@ -27,7 +35,7 @@ import { useSocialFor, SOCIAL_PLATFORM_META } from '../hooks/useOfficialsSocial'
 import { canonicalizeDepartments, DEPARTMENT_LABEL } from '../scraper/departments'
 import { EncajeCard } from '../components/EncajeDeclarado'
 import { mailboxKinds } from '../lib/mailboxes'
-import { fmtDateLong } from '../lib/formatters'
+import { fmtDateLong, rellena } from '../lib/formatters'
 import { useT, useLocale } from '../i18n'
 
 /**
@@ -277,6 +285,7 @@ function RetribucionBadge({ official }) {
     )
   }
   const d = estado.d
+  const desglose = desgloseAntiguedad(d)
   return (
     <div style={linea} data-retribucion="fijada">
       <span className="mono" style={{ fontWeight: 700, color: 'var(--ink)' }}>
@@ -285,6 +294,15 @@ function RetribucionBadge({ official }) {
       <span style={{ color: 'var(--ink50)' }}>
         {t('cargos.retri.fijadoPor').replace('{dedicacion}', d.dedicacion)}
       </span>
+      {/* La antigüedad va con la persona, no con el cargo: junto a la cifra
+          que la incluye, y leída de la fila, nunca escrita aquí. */}
+      {desglose && (
+        <span style={{ color: 'var(--ink70)' }}>
+          {rellena(t('cargos.retri.antiguedadBadge'), {
+            antiguedad: formatEurosCents(desglose.antiguedad),
+          })}
+        </span>
+      )}
       {data.source?.url && (
         <ExtLink
           href={data.source.url}
@@ -483,11 +501,15 @@ function RetribucionesPanel() {
   const t = useT()
   const { data } = useIspa()
   const { data: dedic } = useDedicaciones()
+  const { data: padron } = useOfficials()
   const latest = ispaLatest(data)
   const split = retribucionesSplit(data)
   const fijado = fijadoTramos(dedic)
   if (!latest || !split) return null
-  const alcaldeAcuerdo = (dedic?.byOfficial ?? []).find((o) => /alcald/i.test(o.role || ''))
+  // Por quién es alcalde en el padrón, no por el rótulo del puesto: /alcald/i
+  // casaba también con «Primer Teniente de Alcalde».
+  const alcaldeAcuerdo = filaDelAlcalde(dedic, padron)
+  const desgloseAlcalde = desgloseAntiguedad(alcaldeAcuerdo)
   const alcaldeIspa = latest.alcalde?.amountEuros
   const anioAcuerdo = /^\d{4}/.exec(dedic?.source?.date || '')?.[0] ?? null
   return (
@@ -516,7 +538,11 @@ function RetribucionesPanel() {
               letterSpacing: '.1em',
             }}
           >
-            {t('cargos.retri.eyebrow').replace('{n}', split.con.count + split.sin.count)}
+            {/* «Ninguno a cero» es una afirmación sobre la fila menor: con la
+                misma condición que la cabecera, o no se dice. */}
+            {ningunoACero(split)
+              ? t('cargos.retri.eyebrow').replace('{n}', perceptoresIspa(split))
+              : t('cargos.retri.eyebrowBase').replace('{year}', split.year)}
           </div>
           <h3 className="cp-sec-head cp-sec-head-xl" style={{ marginTop: 3 }}>
             {t('cargos.retri.title')}
@@ -536,7 +562,7 @@ function RetribucionesPanel() {
               vez en esta misma página. */}
           <div style={{ fontSize: 'var(--fs-micro)', color: 'var(--ink50)', marginTop: 2 }}>
             {t('cargos.ispa.total')
-              .replace('{n}', split.con.count + split.sin.count)
+              .replace('{n}', perceptoresIspa(split))
               .replace('{year}', latest.year)}
           </div>
         </div>
@@ -656,9 +682,35 @@ function RetribucionesPanel() {
                       {tr.roles.join(' · ')}
                     </div>
                   )}
+                  {tr.antiguedadEuros > 0 && (
+                    <div
+                      data-antiguedad
+                      style={{
+                        fontSize: 'var(--fs-micro)',
+                        color: 'var(--ink70)',
+                        marginTop: 3,
+                        lineHeight: 1.4,
+                      }}
+                    >
+                      {tr.count === 1
+                        ? rellena(t('cargos.retri.tramoAntiguedad'), {
+                            antiguedad: formatEurosCents(tr.antiguedadEuros),
+                            base: formatEurosCents(tr.amountEuros - tr.antiguedadEuros),
+                          })
+                        : rellena(t('cargos.retri.tramoAntiguedadVarios'), {
+                            antiguedad: formatEurosCents(tr.antiguedadEuros),
+                          })}
+                    </div>
+                  )}
                 </div>
               ))}
+              {/* «Lo fijado por cargo» deja de ser cierto en cuanto una fila
+                  incluye antigüedad: el cuadro del acta da el total de cada
+                  puesto con la antigüedad de quien lo ocupa dentro. La nota
+                  dice «los totales del cuadro» y, si el fichero la registra,
+                  cuánta es. */}
               <p
+                data-nota-fijado
                 style={{
                   margin: '11px 0 0',
                   fontSize: 'var(--fs-micro)',
@@ -666,7 +718,7 @@ function RetribucionesPanel() {
                   color: 'var(--ink50)',
                 }}
               >
-                Los importes de arriba son lo <strong>fijado</strong> por cargo en el{' '}
+                Los importes de arriba son los totales que <strong>fija</strong> el cuadro del{' '}
                 {dedic?.source?.url ? (
                   <ExtLink href={dedic.source.url} style={{ color: 'var(--civic)' }}>
                     acuerdo de pleno de {fmtDateLong(dedic.source.date)} ↗
@@ -675,9 +727,13 @@ function RetribucionesPanel() {
                   'acuerdo de pleno'
                 )}
                 {dedic?.source?.expediente ? ` (exp. ${dedic.source.expediente})` : ''} y suman{' '}
-                <span className="mono">{formatEurosCents(fijado.sum)}</span>. El total de la
-                cabecera es otra serie: lo <strong>percibido</strong> en {latest.year} según el
-                ISPA.
+                <span className="mono">{formatEurosCents(fijado.sum)}</span>
+                {fijado.antiguedadEuros > 0 &&
+                  rellena(t('cargos.retri.notaAntiguedad'), {
+                    antiguedad: formatEurosCents(fijado.antiguedadEuros),
+                  })}
+                . El total de la cabecera es otra serie: lo <strong>percibido</strong> en{' '}
+                {latest.year} según el ISPA.
               </p>
             </div>
           )}
@@ -755,6 +811,7 @@ function RetribucionesPanel() {
           things, so the only available reading was that one of them was wrong. */}
       {alcaldeAcuerdo && typeof alcaldeIspa === 'number' && (
         <div
+          data-puente-alcalde
           style={{
             marginTop: 18,
             padding: '13px 15px',
@@ -782,15 +839,32 @@ function RetribucionesPanel() {
             El acuerdo de pleno le <em>fija</em>{' '}
             <span className="mono">{formatEurosCents(alcaldeAcuerdo.amountEuros)}</span> brutos
             anuales
-            {anioAcuerdo ? ` para ${anioAcuerdo}` : ''}. El ISPA publica lo que <em>percibió</em> en{' '}
-            {latest.year}: <span className="mono">{formatEurosCents(alcaldeIspa)}</span>. No se
-            contradicen —una es la asignación, la otra la nómina
+            {anioAcuerdo ? ` para ${anioAcuerdo}` : ''}
+            {desgloseAlcalde && (
+              <>
+                {': '}
+                <span className="mono">{formatEurosCents(desgloseAlcalde.base)}</span> de sueldo del
+                cargo y <span className="mono">{formatEurosCents(desgloseAlcalde.antiguedad)}</span>{' '}
+                de antigüedad personal, que va con quien lo ocupa y no con el cargo
+              </>
+            )}
+            . El ISPA publica lo que <em>percibió</em> en {latest.year}:{' '}
+            <span className="mono">{formatEurosCents(alcaldeIspa)}</span>. No se contradicen —una es
+            la asignación, la otra la nómina
             {anioAcuerdo && anioAcuerdo !== String(latest.year) ? ', y son de años distintos' : ''}—
             y sumar o comparar las dos series es el error que esta página facilitaba.{' '}
-            {/* Derived, never restated: the trienios clause renders only while
-                the acuerdo's own quote still carries it. If «(+ trienios)»
-                leaves the source, the sentence leaves the page with it. */}
-            {/\(\+\s*trienios\)/.test(dedic?.source?.quote || '') && t('cargos.ispa.trienios')}
+            {/* Derived, never restated: the seniority clause renders only from
+                the row's own `antiguedadEuros`, which the validator accepts
+                only beside the acta's line writing base, antigüedad and total.
+                It used to key on «(+ trienios)» in the 2023 quote; the 2026
+                quote has no such words, so the clause vanished while the total
+                it qualified went up by the antigüedad. */}
+            {desgloseAlcalde &&
+              rellena(t('cargos.ispa.trienios'), {
+                ispa: formatEurosCents(alcaldeIspa),
+                total: formatEurosCents(desgloseAlcalde.total),
+                base: formatEurosCents(desgloseAlcalde.base),
+              })}
           </p>
         </div>
       )}
@@ -1447,11 +1521,14 @@ function CorporacionMunicipal() {
             {/* Only while the data supports it: «ninguno a cero» is a claim
                 about the smallest anonymous row, so it renders from that row
                 and vanishes if one ever reads zero. */}
-            {split?.cuadra && split.sin.min > 0 && (
+            {/* Its n is the ISPA year's own rows, not the roster's count: the
+                roster of today includes a councillor who took the seat in 2025
+                and leaves out one who was paid in 2024 and has since gone. */}
+            {ningunoACero(split) && (
               <>
                 {t('cargos.hero.coste')
                   .replace('{importe}', formatEuros(split.total))
-                  .replace('{n}', data.count)
+                  .replace('{n}', perceptoresIspa(split))
                   .replace('{year}', split.year)}
               </>
             )}
