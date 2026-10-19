@@ -417,7 +417,7 @@ function LabPressCard({ article, summary, claims, textoVacio, trust, triangulati
           Cobertura comparada · {triangulation.outlets.length} medios:{' '}
           <strong>{triangulation.outlets.join(' · ')}</strong>
           {triangulation.fuentesOficiales?.length > 0 && (
-            <> · además, la nota de prensa de {triangulation.fuentesOficiales.join(' y de ')}</>
+            <> · además, nota de prensa oficial: {triangulation.fuentesOficiales.join(' · ')}</>
           )}
         </div>
       )}
@@ -510,9 +510,15 @@ export function OutletScoreboard({ outlets }) {
       <thead>
         <tr style={{ textAlign: 'left', color: 'var(--ink70)' }}>
           <th style={{ padding: '4px 0', fontWeight: 600 }}>Medio</th>
-          <th style={{ padding: '4px 0', fontWeight: 600, textAlign: 'right' }}>Artículos</th>
-          <th style={{ padding: '4px 0', fontWeight: 600, textAlign: 'right' }}>Verificado</th>
-          <th style={{ padding: '4px 0', fontWeight: 600, textAlign: 'right' }}>Discrepa</th>
+          <th style={{ padding: '4px 0 4px 8px', fontWeight: 600, textAlign: 'right' }}>
+            Artículos
+          </th>
+          <th style={{ padding: '4px 0 4px 8px', fontWeight: 600, textAlign: 'right' }}>
+            Verificado
+          </th>
+          <th style={{ padding: '4px 0 4px 8px', fontWeight: 600, textAlign: 'right' }}>
+            Discrepa
+          </th>
         </tr>
       </thead>
       <tbody>
@@ -533,18 +539,19 @@ export function OutletScoreboard({ outlets }) {
                 </span>
               )}
             </td>
-            <td style={{ padding: '4px 0', textAlign: 'right' }} className="mono">
+            <td style={{ padding: '4px 0 4px 8px', textAlign: 'right' }} className="mono">
               {o.articleCount}
             </td>
             <td
-              style={{ padding: '4px 0', textAlign: 'right', color: 'var(--ok-ink)' }}
+              style={{ padding: '4px 0 4px 8px', textAlign: 'right', color: 'var(--ok-ink)' }}
               className="mono"
             >
               {fmtPct(o.verifiedRatio)}
               {/* El divisor, en la celda: entre qué se divide el porcentaje. */}
               {cotejadas(o) > 0 && (
                 <div style={{ fontSize: 'var(--fs-micro)', color: 'var(--ink50)' }}>
-                  {o.verdictCounts?.verificado ?? 0} de {cotejadas(o)} cotejadas
+                  {o.verdictCounts?.verificado ?? 0} de {cotejadas(o)}{' '}
+                  {cotejadas(o) === 1 ? 'cotejada' : 'cotejadas'}
                 </div>
               )}
               {/* Y lo que no divide: afirmaciones que nadie buscó en ningún dato. */}
@@ -555,7 +562,7 @@ export function OutletScoreboard({ outlets }) {
               )}
             </td>
             <td
-              style={{ padding: '4px 0', textAlign: 'right', color: 'var(--crit-ink)' }}
+              style={{ padding: '4px 0 4px 8px', textAlign: 'right', color: 'var(--crit-ink)' }}
               className="mono"
             >
               {fmtPct(o.contradictedRatio)}

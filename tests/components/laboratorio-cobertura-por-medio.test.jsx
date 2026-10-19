@@ -74,6 +74,13 @@ describe('OutletScoreboard — el divisor del porcentaje va en la celda', () => 
     expect(screen.queryByText(/sin cotejar/)).toBeNull()
   })
 
+  it('una sola cotejada va en singular', () => {
+    // Levante-EMV el 19-10-2026: 2 afirmaciones, 1 cotejada.
+    render(<OutletScoreboard outlets={[fila('Levante-EMV', 7, { 'sin-datos': 2 }, 1)]} />)
+    expect(screen.getByText('0 de 1 cotejada')).toBeTruthy()
+    expect(screen.getByText('1 sin cotejar')).toBeTruthy()
+  })
+
   it('la tabla ya no se llama «fiabilidad»: es una cobertura', () => {
     render(<OutletScoreboard outlets={[fila('boletinbien', 3, {}, 0)]} />)
     const tabla = screen.getByRole('table')
