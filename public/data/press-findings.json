@@ -1,10 +1,61 @@
 {
   "version": "1",
-  "generatedAt": "2026-10-12",
+  "generatedAt": "2026-10-19",
   "legalNotice": "Auditoría editorial automatizada. Los lotes con ≥1 veredicto contradicho se mantienen en editorial/press-auto-curation-queue.md hasta revisión humana; los medios afectados pueden ejercer derecho de réplica mediante el formulario .github/ISSUE_TEMPLATE/press-finding-response.yml.",
   "contactUrl": "https://github.com/datarhan/civicpulse/issues",
   "methodologyUrl": "/metodologia#laboratorio-prensa",
   "items": [
+    {
+      "id": "pf-2026-10-19-140oi31+",
+      "sourceClaimIds": [
+        "pqxb2e-0-dat",
+        "140oi31-1-num",
+        "140oi31-2-num"
+      ],
+      "articleIds": [
+        "pqxb2e",
+        "140oi31"
+      ],
+      "articleFingerprints": [
+        "140oi31+pqxb2e"
+      ],
+      "attributedOutlets": [
+        "Ayuntamiento de Riba-roja de Túria",
+        "Valencia Plaza"
+      ],
+      "earliestArticleDate": "2026-10-13",
+      "latestArticleDate": "2026-10-13",
+      "title": "Auditoría · Valencia Plaza: con un superávit de 4'5 millones y 3,3 de remanente",
+      "summary": "Los datos municipales contrastan con la cobertura citada. Veredictos del lote: 3 sin-datos. Cobertura: 2 medio(s) — Ayuntamiento de Riba-roja de Túria, Valencia Plaza. Lote auto-curado por el laboratorio: el contraste es determinista y no lo ha revisado una persona.",
+      "severity": "informational",
+      "quotes": [
+        {
+          "text": "con un superávit de 4'5 millones y 3,3 de remanente",
+          "outlet": "Valencia Plaza",
+          "articleUrl": "https://news.google.com/rss/articles/CBMi5gFBVV95cUxOUGxVWTVsNWU2Y3RCWFlJM25PME9qaTZfVlJZVmdxMC1KdmpIS3F5SHdHU2RuTjVyLWlPSnAyZ2IwVDlBMTF4a3ozMU03YVp3RHh5Q1hqZ3hmM09OOFlsUE5lOHJtSGZ2QWRjQ1ZEYXRONW1nMVNxV3NEWnkteG5WVFNiLVV1Z0JSWUdmRXhjaGUwOTJTV3VIWHQtOFQxRTgtaS14RWJSSDQ4ZDVHMkNaeF9vWW5yQjRXVTVVcF9abFB4Q2RoWkVtM2ttUFVWNVhHclZFZzRnZFBhaTdMaWRBMlVPOXU0UQ?oc=5",
+          "sourceClaimId": "pqxb2e-0-dat"
+        },
+        {
+          "text": "certifica un superávit de 4'5 millones de euros",
+          "outlet": "Ayuntamiento de Riba-roja de Túria",
+          "articleUrl": "https://www.ribarroja.es/es/noticia/riba-roja-de-t%C3%BAria-aprueba-la-cuenta-general-del-a%C3%B1o-2025-que-certifica-un-super%C3%A1vit-de-4%E2%80%995-millones-de-euros-y-un-remanente-de-3%273-millones-en-el-presupuesto-econ%C3%B3mico",
+          "sourceClaimId": "140oi31-1-num"
+        },
+        {
+          "text": "un remanente de 3'3 millones en el presupuesto económico",
+          "outlet": "Ayuntamiento de Riba-roja de Túria",
+          "articleUrl": "https://www.ribarroja.es/es/noticia/riba-roja-de-t%C3%BAria-aprueba-la-cuenta-general-del-a%C3%B1o-2025-que-certifica-un-super%C3%A1vit-de-4%E2%80%995-millones-de-euros-y-un-remanente-de-3%273-millones-en-el-presupuesto-econ%C3%B3mico",
+          "sourceClaimId": "140oi31-2-num"
+        }
+      ],
+      "crossChecked": [],
+      "contradiction": [],
+      "relatedPromiseIds": [],
+      "relatedPlenoItems": [],
+      "curatorName": "auto-curation-v1",
+      "publishedAt": "2026-10-19",
+      "response": null
+    },
     {
       "id": "pf-2026-09-10-1gwkjpc",
       "sourceClaimIds": [

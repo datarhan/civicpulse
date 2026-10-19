@@ -1,62 +1,119 @@
 {
-  "generatedAt": "2026-10-12T08:31:15.395Z",
+  "generatedAt": "2026-10-19T08:28:17.385Z",
   "source": {
     "description": "Press claims extracted by the laboratory pipeline",
     "contract": "src/scraper/press-claim.ts"
   },
   "stats": {
-    "total": 36,
+    "total": 58,
     "byType": {
       "promesa": 3,
-      "afirmacion_numerica": 23,
+      "afirmacion_numerica": 37,
       "cita_obra": 0,
-      "cita_convenio": 0,
+      "cita_convenio": 1,
       "acusacion_publica": 0,
-      "dato_municipal": 10
+      "dato_municipal": 17
     },
     "bySource": {
-      "Periòdic del Camp de Túria": 16,
-      "Levante-EMV": 1,
+      "Periòdic del Camp de Túria": 19,
+      "Levante-EMV": 3,
       "Actualidad Valencia": 1,
-      "Valencia Plaza": 1,
-      "Ayuntamiento de Riba-roja de Túria": 16,
-      "Las Provincias": 1
+      "Valencia Plaza": 4,
+      "Ayuntamiento de Riba-roja de Túria": 26,
+      "Las Provincias": 2,
+      "El Periódico de Aquí": 1,
+      "elperiodic.com": 2
     },
     "byTopic": {
-      "fiscal": 0,
+      "fiscal": 7,
       "vivienda": 0,
       "movilidad": 5,
-      "medio-ambiente": 16,
-      "social": 0,
-      "cultura": 0,
+      "medio-ambiente": 17,
+      "social": 3,
+      "cultura": 2,
       "seguridad": 0,
-      "empleo": 0,
+      "empleo": 1,
       "urbanismo": 5,
       "salud": 0,
       "transparencia": 3,
       "educacion": 1,
       "demografia": 2,
-      "other": 4
+      "other": 12
     },
     "byAttributedSource": {
-      "outlet": 17,
-      "municipal": 19,
+      "outlet": 33,
+      "municipal": 23,
       "opposition": 0,
-      "unspecified": 0
+      "unspecified": 2
     },
     "articlesProcessed": 25,
-    "articlesAvailable": 156,
+    "articlesAvailable": 154,
     "llmUnavailable": 0,
-    "windowFrom": "2026-10-07T01:31:23.000Z",
-    "windowTo": "2026-10-09T08:08:54.000Z",
-    "articulosVistos": 7
+    "extraccionesSinRespuesta": 0,
+    "windowFrom": "2026-10-08T14:27:28.000Z",
+    "windowTo": "2026-10-17T04:00:33.000Z",
+    "articulosVistos": 32
   },
   "articulos": [
+    {
+      "articleId": "100ms28",
+      "fingerprint": "1skh6cw",
+      "desenlace": "descartado-en-triaje",
+      "procesadoEl": "2026-10-19T08:28:17.385Z"
+    },
+    {
+      "articleId": "140oi31",
+      "fingerprint": "1oeuiiq",
+      "desenlace": "extraido",
+      "procesadoEl": "2026-10-19T08:28:17.385Z"
+    },
+    {
+      "articleId": "18sga9a",
+      "fingerprint": "yeftxc",
+      "desenlace": "descartado-en-triaje",
+      "procesadoEl": "2026-10-19T08:28:17.385Z"
+    },
+    {
+      "articleId": "1bfp5g8",
+      "fingerprint": "1cgbsla",
+      "desenlace": "descartado-en-triaje",
+      "procesadoEl": "2026-10-19T08:28:17.385Z"
+    },
     {
       "articleId": "1brxjo4",
       "fingerprint": "19fhtds",
       "desenlace": "extraido",
       "procesadoEl": "2026-10-12T08:31:15.395Z"
+    },
+    {
+      "articleId": "1c2qm9k",
+      "fingerprint": "194qqhc",
+      "desenlace": "extraido",
+      "procesadoEl": "2026-10-19T08:28:17.385Z"
+    },
+    {
+      "articleId": "1h22n93",
+      "fingerprint": "j5j8nk",
+      "desenlace": "descartado-en-triaje",
+      "procesadoEl": "2026-10-19T08:28:17.385Z"
+    },
+    {
+      "articleId": "1icj1ls",
+      "fingerprint": "1hto5xc",
+      "desenlace": "extraido",
+      "procesadoEl": "2026-10-19T08:28:17.385Z"
+    },
+    {
+      "articleId": "1jh9cu0",
+      "fingerprint": "1nw85ai",
+      "desenlace": "sin-afirmaciones",
+      "procesadoEl": "2026-10-19T08:28:17.385Z"
+    },
+    {
+      "articleId": "1n4h2ak",
+      "fingerprint": "1mm0diu",
+      "desenlace": "sin-afirmaciones",
+      "procesadoEl": "2026-10-19T08:28:17.385Z"
     },
     {
       "articleId": "1ota6hb",
@@ -65,16 +122,88 @@
       "procesadoEl": "2026-10-12T08:31:15.395Z"
     },
     {
+      "articleId": "1oxvb8w",
+      "fingerprint": "o337v6",
+      "desenlace": "sin-afirmaciones",
+      "procesadoEl": "2026-10-19T08:28:17.385Z"
+    },
+    {
+      "articleId": "1tg7jey",
+      "fingerprint": "y87p2g",
+      "desenlace": "extraido",
+      "procesadoEl": "2026-10-19T08:28:17.385Z"
+    },
+    {
+      "articleId": "1u62lnk",
+      "fingerprint": "75fdnc",
+      "desenlace": "sin-afirmaciones",
+      "procesadoEl": "2026-10-19T08:28:17.385Z"
+    },
+    {
+      "articleId": "1v0b3hs",
+      "fingerprint": "1t1pf03",
+      "desenlace": "descartado-en-triaje",
+      "procesadoEl": "2026-10-19T08:28:17.385Z"
+    },
+    {
       "articleId": "1w1lf6k",
       "fingerprint": "1j6o5dl",
       "desenlace": "extraido",
       "procesadoEl": "2026-10-12T08:31:15.395Z"
     },
     {
+      "articleId": "1w31adk",
+      "fingerprint": "1a7s7tk",
+      "desenlace": "descartado-en-triaje",
+      "procesadoEl": "2026-10-19T08:28:17.385Z"
+    },
+    {
+      "articleId": "1ywxxln",
+      "fingerprint": "9bm4gp",
+      "desenlace": "extraido",
+      "procesadoEl": "2026-10-19T08:28:17.385Z"
+    },
+    {
       "articleId": "3lfz44",
       "fingerprint": "1oun3zs",
       "desenlace": "extraido",
       "procesadoEl": "2026-10-12T08:31:15.395Z"
+    },
+    {
+      "articleId": "9k4v28",
+      "fingerprint": "1ffsisx",
+      "desenlace": "extraido",
+      "procesadoEl": "2026-10-19T08:28:17.385Z"
+    },
+    {
+      "articleId": "dg07lo",
+      "fingerprint": "1pti7lg",
+      "desenlace": "extraido",
+      "procesadoEl": "2026-10-19T08:28:17.385Z"
+    },
+    {
+      "articleId": "hkahd4",
+      "fingerprint": "r61td3",
+      "desenlace": "extraido",
+      "procesadoEl": "2026-10-19T08:28:17.385Z"
+    },
+    {
+      "articleId": "iasru4",
+      "fingerprint": "1ay8nz0",
+      "desenlace": "extraido",
+      "procesadoEl": "2026-10-19T08:28:17.385Z"
+    },
+    {
+      "articleId": "lhseyk",
+      "fingerprint": "x91xj4",
+      "desenlace": "extraido",
+      "procesadoEl": "2026-10-19T08:28:17.385Z"
+    },
+    {
+      "articleId": "loiujc",
+      "fingerprint": "py5smo",
+      "desenlace": "descartado-en-triaje",
+      "procesadoEl": "2026-10-19T08:28:17.385Z"
     },
     {
       "articleId": "o3xjg4",
@@ -89,10 +218,34 @@
       "procesadoEl": "2026-10-12T08:31:15.395Z"
     },
     {
+      "articleId": "pqxb2e",
+      "fingerprint": "18wtlak",
+      "desenlace": "extraido",
+      "procesadoEl": "2026-10-19T08:28:17.385Z"
+    },
+    {
+      "articleId": "qvuwag",
+      "fingerprint": "1yzxzcj",
+      "desenlace": "extraido",
+      "procesadoEl": "2026-10-19T08:28:17.385Z"
+    },
+    {
       "articleId": "rn4ct8",
       "fingerprint": "10b978",
       "desenlace": "extraido",
       "procesadoEl": "2026-10-12T08:31:15.395Z"
+    },
+    {
+      "articleId": "urrfhs",
+      "fingerprint": "1plve0g",
+      "desenlace": "descartado-en-triaje",
+      "procesadoEl": "2026-10-19T08:28:17.385Z"
+    },
+    {
+      "articleId": "vibox0",
+      "fingerprint": "3zj37c",
+      "desenlace": "sin-afirmaciones",
+      "procesadoEl": "2026-10-19T08:28:17.385Z"
     }
   ],
   "items": [
@@ -950,6 +1103,534 @@
       },
       "confidence": 0.75,
       "reasoning": "Indica un plazo concreto de presentación de solicitudes que puede verificarse contra la convocatoria oficial publicada.",
+      "requiresHumanApproval": true
+    },
+    {
+      "id": "1icj1ls-0-num",
+      "articleId": "1icj1ls",
+      "articleFingerprint": "1hto5xc",
+      "articleSource": "El Periódico de Aquí",
+      "articleSourceHost": "elperiodicodeaqui.com",
+      "articleUrl": "https://news.google.com/rss/articles/CBMiqAJBVV95cUxOcjVIczFIX1d2aUhUSUJweGpmOU1FM1BNa1RSdm1WUTFpLU5qTWpjRlZCeS1yMUF6VVJ6MmZQemFMVV9MZ2Rhdlk5dTExQnlHZVlaYjRrT1ItRFE5X0tDT3BPbjN5QmFyV3dJdTdMdm8wVlNCMTQ1NVdIOE12YXg3amJ1a09nYkFVSC1iSlV5cUlzZHJUTThoT25XTy1qek9fdnlBWEJGWFA2ZGhNNGtfeTRTOTl2NnFhdFNsN3ZsSFNWOHNoTExBaXlLZ0pGSFBUUFh4bDRLbUIteGF0NzdaSm8tZGFlcXBKeGU4ZEpSSklINW54YjdZRG9NZHRVZjh1a01UWkQ2a2JURUU5MktyZEs2dHFBZ2NfZGFfZmVQSFI0T1YycjBRaQ?oc=5",
+      "articleDate": "2026-10-16T16:50:00.000Z",
+      "segmentIndex": 0,
+      "segmentKind": "title",
+      "type": "afirmacion_numerica",
+      "attributedSource": "outlet",
+      "verbatim": "Cheste, Loriguilla y Riba-roja avanzan hacia una mancomunidad industrial que reúne a 2.800 empresas",
+      "context": "Titular del artículo de El Periódico de Aquí (16/10/2026) sobre el avance de los municipios de Cheste, Loriguilla y Riba-roja de Túria hacia la constitución de una mancomunidad industrial conjunta.",
+      "topic": "other",
+      "entities": {
+        "count": 2800,
+        "countUnit": "empresas",
+        "referencedEntity": "mancomunidad industrial de Cheste, Loriguilla y Riba-roja"
+      },
+      "confidence": 0.55,
+      "reasoning": "La cifra de 2.800 empresas asociadas a la futura mancomunidad es un dato numérico verificable frente a registros empresariales o padrones municipales.",
+      "requiresHumanApproval": true
+    },
+    {
+      "id": "1c2qm9k-0-num",
+      "articleId": "1c2qm9k",
+      "articleFingerprint": "194qqhc",
+      "articleSource": "Periòdic del Camp de Túria",
+      "articleSourceHost": "infoturia.com",
+      "articleUrl": "https://www.infoturia.com/riba-roja-de-turia/86781-el-programa-municipal-per-a-persones-majors-de-riba-roja-inicia-un-nou-curs-amb-623-places.html",
+      "articleDate": "2026-10-16T16:09:43.000Z",
+      "segmentIndex": 0,
+      "segmentKind": "title",
+      "type": "afirmacion_numerica",
+      "attributedSource": "unspecified",
+      "verbatim": "El Programa Municipal per a Persones Majors de Riba-roja inicia un nou curs amb 623 places",
+      "context": "El Programa Municipal per a Persones Majors de Riba-roja inicia un nou curs amb 623 places",
+      "topic": "social",
+      "entities": {
+        "count": 623,
+        "countUnit": "plazas",
+        "referencedEntity": "Programa Municipal per a Persones Majors de Riba-roja"
+      },
+      "confidence": 0.6,
+      "reasoning": "Cifra concreta de plazas ofertadas en un programa municipal, verificable frente a datos del Ayuntamiento, aunque solo se dispone del titular sin cuerpo del artículo.",
+      "requiresHumanApproval": true
+    },
+    {
+      "id": "1tg7jey-0-num",
+      "articleId": "1tg7jey",
+      "articleFingerprint": "y87p2g",
+      "articleSource": "Ayuntamiento de Riba-roja de Túria",
+      "articleSourceHost": "ribarroja.es",
+      "articleUrl": "https://www.ribarroja.es/es/noticia/riba-roja-inicia-un-nuevo-curso-del-programa-municipal-para-personas-mayores-con-623-plazas-en-diferentes-actividades-deportivas%2C-talleres-creativos-y-propuestas-de-bienestar",
+      "articleDate": "2026-10-16T11:22:48.000Z",
+      "segmentIndex": 0,
+      "segmentKind": "title",
+      "type": "afirmacion_numerica",
+      "attributedSource": "municipal",
+      "verbatim": "623 plazas en diferentes actividades deportivas, talleres creativos y propuestas de bienestar",
+      "context": "Riba-roja inicia un nuevo curso del Programa Municipal para Personas Mayores con 623 plazas en diferentes actividades deportivas, talleres creativos y propuestas de bienestar",
+      "topic": "social",
+      "entities": {
+        "count": 623,
+        "countUnit": "plazas",
+        "referencedEntity": "Programa Municipal para Personas Mayores"
+      },
+      "confidence": 0.7,
+      "reasoning": "Es una cifra concreta de plazas ofertadas en un programa municipal, verificable contra los registros de inscripción del Ayuntamiento.",
+      "requiresHumanApproval": true
+    },
+    {
+      "id": "hkahd4-0-dat",
+      "articleId": "hkahd4",
+      "articleFingerprint": "r61td3",
+      "articleSource": "elperiodic.com",
+      "articleSourceHost": "elperiodic.com",
+      "articleUrl": "https://news.google.com/rss/articles/CBMi4AFBVV95cUxOaFhQZmo5aTR4dkFOS2hXZzk2em9udHlNNGprRHN4Yno2cTdSUkJLcHFlTmtpb0Zvb3hiQW1XN0wwNGI5NU5CeUFwcjZNd19Fc1pzR25ieVFqQV9ydVdqMDU2X080QU9zd1lsdDdjWjFOLVdPOWdmR1pzLVp0Vkh2TGN5SFpGcHFVT2wyZlhWRW9KQzVoVEVMdjd6VF9la3JuTzVmeGVZdnRKbk9lbzZNRndGTUt1dS1lenJ0REowc1VwUU40aXo3a0xwVHhfNmRhS09YUFQ5UlZsU0poX1UzSQ?oc=5",
+      "articleDate": "2026-10-16T08:03:18.000Z",
+      "segmentIndex": 0,
+      "segmentKind": "title",
+      "type": "dato_municipal",
+      "attributedSource": "outlet",
+      "verbatim": "Nace la Mancomunidad Industrial de la A3 con la unión de Cheste, Loriguilla y Riba-roja",
+      "context": "Nace la Mancomunidad Industrial de la A3 con la unión de Cheste, Loriguilla y Riba-roja: 2.800 empresas y 14 millones de metros cuadrados",
+      "topic": "other",
+      "entities": {
+        "count": 3,
+        "countUnit": "municipios",
+        "date": "2026-10-16",
+        "referencedEntity": "Mancomunidad Industrial de la A3"
+      },
+      "confidence": 0.6,
+      "reasoning": "La creación formal de una mancomunidad entre tres municipios es un hecho administrativo verificable en registros oficiales, aunque solo se dispone del titular sin cuerpo de la noticia.",
+      "requiresHumanApproval": true
+    },
+    {
+      "id": "hkahd4-1-num",
+      "articleId": "hkahd4",
+      "articleFingerprint": "r61td3",
+      "articleSource": "elperiodic.com",
+      "articleSourceHost": "elperiodic.com",
+      "articleUrl": "https://news.google.com/rss/articles/CBMi4AFBVV95cUxOaFhQZmo5aTR4dkFOS2hXZzk2em9udHlNNGprRHN4Yno2cTdSUkJLcHFlTmtpb0Zvb3hiQW1XN0wwNGI5NU5CeUFwcjZNd19Fc1pzR25ieVFqQV9ydVdqMDU2X080QU9zd1lsdDdjWjFOLVdPOWdmR1pzLVp0Vkh2TGN5SFpGcHFVT2wyZlhWRW9KQzVoVEVMdjd6VF9la3JuTzVmeGVZdnRKbk9lbzZNRndGTUt1dS1lenJ0REowc1VwUU40aXo3a0xwVHhfNmRhS09YUFQ5UlZsU0poX1UzSQ?oc=5",
+      "articleDate": "2026-10-16T08:03:18.000Z",
+      "segmentIndex": 1,
+      "segmentKind": "title",
+      "type": "afirmacion_numerica",
+      "attributedSource": "outlet",
+      "verbatim": "2.800 empresas y 14 millones de metros cuadrados",
+      "context": "Nace la Mancomunidad Industrial de la A3 con la unión de Cheste, Loriguilla y Riba-roja: 2.800 empresas y 14 millones de metros cuadrados",
+      "topic": "empleo",
+      "entities": {
+        "count": 2800,
+        "countUnit": "empresas",
+        "date": "2026-10-16",
+        "referencedEntity": "Mancomunidad Industrial de la A3"
+      },
+      "confidence": 0.65,
+      "reasoning": "La cifra de 2.800 empresas asociadas a la nueva mancomunidad es un dato cuantitativo contrastable con registros empresariales o fuentes municipales.",
+      "requiresHumanApproval": true
+    },
+    {
+      "id": "9k4v28-0-con",
+      "articleId": "9k4v28",
+      "articleFingerprint": "1ffsisx",
+      "articleSource": "Valencia Plaza",
+      "articleSourceHost": "valenciaplaza.com",
+      "articleUrl": "https://news.google.com/rss/articles/CBMi_wFBVV95cUxOaFdsQmhCV1F2cHJvbHJ6RlU5bThHajduSi1BRW5ZczNXTzUzRlpYSUhndlBFOHRRZUFONzI2bFdDZFNHMDY4dUp5Yll6Rmt2UEkwdHNneUx4emltcmJKeWNTUHQ1akVqOHFOQVVIZzNXSkR5ZTc3WHJ1OXVJaGtGUUtUbmJRdHEtbGJHV2V4TXNWVmw2OXRIeDd5dzVIQXcxRExmc2ZtZHdDZjJ2RW03TG80QlFBMkZpM2ZqdUdibVc0ci1FN2dHd05HUWo4M3pZU3cwUUM3RXFIVnlRYjgxTF8yNG5mQW91cmdKcy1xbmlQZXNiRlptaEVGbDdEOWc?oc=5",
+      "articleDate": "2026-10-15T23:37:30.000Z",
+      "segmentIndex": 0,
+      "segmentKind": "title",
+      "type": "cita_convenio",
+      "attributedSource": "outlet",
+      "verbatim": "Riba-roja formaliza con Veolia un nuevo contrato para la gestión integral del agua y modernizar infraestructuras",
+      "context": "Titular del artículo de Valencia Plaza (15/10/2026) sobre la formalización de un contrato entre el Ayuntamiento de Riba-roja de Túria y la empresa Veolia.",
+      "topic": "medio-ambiente",
+      "entities": {
+        "referencedEntity": "Veolia"
+      },
+      "confidence": 0.55,
+      "reasoning": "El titular afirma la existencia de un contrato formalizado y verificable entre el Ayuntamiento y Veolia, pero no se dispone del cuerpo del artículo para contrastar detalles (importe, duración, alcance).",
+      "requiresHumanApproval": true
+    },
+    {
+      "id": "iasru4-0-num",
+      "articleId": "iasru4",
+      "articleFingerprint": "1ay8nz0",
+      "articleSource": "Periòdic del Camp de Túria",
+      "articleSourceHost": "infoturia.com",
+      "articleUrl": "https://www.infoturia.com/riba-roja-de-turia/86744-una-fira-de-10-amb-50-negocis-i-lincentiu-del-bo-1010.html",
+      "articleDate": "2026-10-15T14:58:20.000Z",
+      "segmentIndex": 0,
+      "segmentKind": "title",
+      "type": "afirmacion_numerica",
+      "attributedSource": "outlet",
+      "verbatim": "Una Fira de 10 amb 50 negocis i l'incentiu del Bo 10+10",
+      "context": "Titular del artículo publicado en Periòdic del Camp de Túria (15/10/2026): 'Una Fira de 10 amb 50 negocis i l'incentiu del Bo 10+10'. No se dispone del cuerpo del artículo, solo del titular.",
+      "topic": "other",
+      "entities": {
+        "count": 50,
+        "countUnit": "negocis"
+      },
+      "confidence": 0.5,
+      "reasoning": "El titular afirma un número concreto de negocios participantes en una feria local, dato en principio verificable mediante el registro de participantes.",
+      "requiresHumanApproval": true
+    },
+    {
+      "id": "qvuwag-0-dat",
+      "articleId": "qvuwag",
+      "articleFingerprint": "1yzxzcj",
+      "articleSource": "Ayuntamiento de Riba-roja de Túria",
+      "articleSourceHost": "ribarroja.es",
+      "articleUrl": "https://www.ribarroja.es/es/noticia/riba-roja-presenta-la-fira-de-10-con-una-edici%C3%B3n-renovada%2C-m%C3%A1s-de-50-negocios-y-el-incentivo-del-bono-10%2B10",
+      "articleDate": "2026-10-15T12:07:23.000Z",
+      "segmentIndex": 0,
+      "segmentKind": "body",
+      "type": "dato_municipal",
+      "attributedSource": "outlet",
+      "verbatim": "La feria se celebrará los días 17 y 18 de octubre en la explanada del CIJ",
+      "context": "La feria se celebrará los días 17 y 18 de octubre en la explanada del CIJ y contará con la participación de más de 50 negocios de Riba-roja, que mostrarán la diversidad y calidad de su oferta en seis sectores.",
+      "topic": "cultura",
+      "entities": {
+        "count": 2,
+        "countUnit": "días",
+        "date": "2026-10-17 a 2026-10-18",
+        "referencedEntity": "explanada del CIJ"
+      },
+      "confidence": 0.92,
+      "reasoning": "Fecha y ubicación concretas del evento, fácilmente verificables de forma pública.",
+      "requiresHumanApproval": true
+    },
+    {
+      "id": "qvuwag-1-num",
+      "articleId": "qvuwag",
+      "articleFingerprint": "1yzxzcj",
+      "articleSource": "Ayuntamiento de Riba-roja de Túria",
+      "articleSourceHost": "ribarroja.es",
+      "articleUrl": "https://www.ribarroja.es/es/noticia/riba-roja-presenta-la-fira-de-10-con-una-edici%C3%B3n-renovada%2C-m%C3%A1s-de-50-negocios-y-el-incentivo-del-bono-10%2B10",
+      "articleDate": "2026-10-15T12:07:23.000Z",
+      "segmentIndex": 1,
+      "segmentKind": "body",
+      "type": "afirmacion_numerica",
+      "attributedSource": "outlet",
+      "verbatim": "contará con la participación de más de 50 negocios de Riba-roja",
+      "context": "La feria se celebrará los días 17 y 18 de octubre en la explanada del CIJ y contará con la participación de más de 50 negocios de Riba-roja, que mostrarán la diversidad y calidad de su oferta en seis sectores.",
+      "topic": "other",
+      "entities": {
+        "count": 50,
+        "countUnit": "negocios",
+        "date": "2026-10-17 a 2026-10-18",
+        "referencedEntity": "Una Fira de 10"
+      },
+      "confidence": 0.85,
+      "reasoning": "Cifra concreta de negocios participantes, contrastable con el listado oficial de la feria.",
+      "requiresHumanApproval": true
+    },
+    {
+      "id": "qvuwag-2-dat",
+      "articleId": "qvuwag",
+      "articleFingerprint": "1yzxzcj",
+      "articleSource": "Ayuntamiento de Riba-roja de Túria",
+      "articleSourceHost": "ribarroja.es",
+      "articleUrl": "https://www.ribarroja.es/es/noticia/riba-roja-presenta-la-fira-de-10-con-una-edici%C3%B3n-renovada%2C-m%C3%A1s-de-50-negocios-y-el-incentivo-del-bono-10%2B10",
+      "articleDate": "2026-10-15T12:07:23.000Z",
+      "segmentIndex": 2,
+      "segmentKind": "body",
+      "type": "dato_municipal",
+      "attributedSource": "outlet",
+      "verbatim": "seis sectores: salud y bienestar, imagen personal, comercio especializado, productos gourmet, servicios profesionales y restauración",
+      "context": "contará con la participación de más de 50 negocios de Riba-roja, que mostrarán la diversidad y calidad de su oferta en seis sectores: salud y bienestar, imagen personal, comercio especializado, productos gourmet, servicios profesionales y restauración.",
+      "topic": "other",
+      "entities": {
+        "count": 6,
+        "countUnit": "sectores",
+        "referencedEntity": "Una Fira de 10"
+      },
+      "confidence": 0.9,
+      "reasoning": "Clasificación numérica de sectores comerciales, verificable con el programa oficial de la feria.",
+      "requiresHumanApproval": true
+    },
+    {
+      "id": "qvuwag-3-num",
+      "articleId": "qvuwag",
+      "articleFingerprint": "1yzxzcj",
+      "articleSource": "Ayuntamiento de Riba-roja de Túria",
+      "articleSourceHost": "ribarroja.es",
+      "articleUrl": "https://www.ribarroja.es/es/noticia/riba-roja-presenta-la-fira-de-10-con-una-edici%C3%B3n-renovada%2C-m%C3%A1s-de-50-negocios-y-el-incentivo-del-bono-10%2B10",
+      "articleDate": "2026-10-15T12:07:23.000Z",
+      "segmentIndex": 3,
+      "segmentKind": "body",
+      "type": "afirmacion_numerica",
+      "attributedSource": "outlet",
+      "verbatim": "permitirá a la ciudadanía pagar 10 euros y disponer de 20 euros para comprar en los establecimientos comerciales adheridos a la campaña durante los días de la feria",
+      "context": "Una de las principales novedades de esta edición es el Bono 10+10 de Una Fira de 10, una iniciativa de dinamización comercial que permitirá a la ciudadanía pagar 10 euros y disponer de 20 euros para comprar en los establecimientos comerciales adheridos a la campaña durante los días de la feria.",
+      "topic": "other",
+      "entities": {
+        "amountEuros": 10,
+        "count": 20,
+        "countUnit": "euros",
+        "date": "2026-10-17 a 2026-10-18",
+        "referencedEntity": "Bono 10+10"
+      },
+      "confidence": 0.9,
+      "reasoning": "Importe y mecánica del bono (10 euros por 20) son cifras concretas verificables en la web de la campaña.",
+      "requiresHumanApproval": true
+    },
+    {
+      "id": "qvuwag-4-num",
+      "articleId": "qvuwag",
+      "articleFingerprint": "1yzxzcj",
+      "articleSource": "Ayuntamiento de Riba-roja de Túria",
+      "articleSourceHost": "ribarroja.es",
+      "articleUrl": "https://www.ribarroja.es/es/noticia/riba-roja-presenta-la-fira-de-10-con-una-edici%C3%B3n-renovada%2C-m%C3%A1s-de-50-negocios-y-el-incentivo-del-bono-10%2B10",
+      "articleDate": "2026-10-15T12:07:23.000Z",
+      "segmentIndex": 4,
+      "segmentKind": "body",
+      "type": "afirmacion_numerica",
+      "attributedSource": "outlet",
+      "verbatim": "se han reservado150 bonos para mayores de 65 años, que se pueden adquirir presencialmente en la Oficina de la Agencia de Desarrollo Local (ADL)",
+      "context": "Con el fin de facilitar la participación de las personas mayores, se han reservado150 bonos para mayores de 65 años, que se pueden adquirir presencialmente en la Oficina de la Agencia de Desarrollo Local (ADL).",
+      "topic": "social",
+      "entities": {
+        "count": 150,
+        "countUnit": "bonos",
+        "referencedEntity": "Agencia de Desarrollo Local (ADL)"
+      },
+      "confidence": 0.9,
+      "reasoning": "Cantidad concreta de bonos reservados para mayores de 65 años, verificable en la ADL.",
+      "requiresHumanApproval": true
+    },
+    {
+      "id": "qvuwag-5-num",
+      "articleId": "qvuwag",
+      "articleFingerprint": "1yzxzcj",
+      "articleSource": "Ayuntamiento de Riba-roja de Túria",
+      "articleSourceHost": "ribarroja.es",
+      "articleUrl": "https://www.ribarroja.es/es/noticia/riba-roja-presenta-la-fira-de-10-con-una-edici%C3%B3n-renovada%2C-m%C3%A1s-de-50-negocios-y-el-incentivo-del-bono-10%2B10",
+      "articleDate": "2026-10-15T12:07:23.000Z",
+      "segmentIndex": 5,
+      "segmentKind": "body",
+      "type": "afirmacion_numerica",
+      "attributedSource": "outlet",
+      "verbatim": "con la GastroFira de 10, una propuesta gastronómica en la que participarán nueve bares y restaurantes del municipio",
+      "context": "La programación comenzará el viernes 16 de octubre, a partir de las 18.00 horas, con la GastroFira de 10, una propuesta gastronómica en la que participarán nueve bares y restaurantes del municipio.",
+      "topic": "cultura",
+      "entities": {
+        "count": 9,
+        "countUnit": "bares y restaurantes",
+        "date": "2026-10-16",
+        "referencedEntity": "GastroFira de 10"
+      },
+      "confidence": 0.9,
+      "reasoning": "Número concreto de establecimientos participantes en la GastroFira, contrastable con el listado oficial.",
+      "requiresHumanApproval": true
+    },
+    {
+      "id": "1ywxxln-0-num",
+      "articleId": "1ywxxln",
+      "articleFingerprint": "9bm4gp",
+      "articleSource": "Levante-EMV",
+      "articleSourceHost": "levante-emv.com",
+      "articleUrl": "https://news.google.com/rss/articles/CBMi0wFBVV95cUxNU0pwZXgxWklpWWtWZlRZMU55SUZ6ZFdlZTBWWXJDcHpaazNMcE43OWdYSjhtX0hna3o4c3E1QlZuc1lfcWVpSWlsWEltVWdjWXNwQVdMZ21lZGYtb0ZMZzg0NmwwcGkxcENkd0JzaTRyU0NtQ2k2M0NNbUNsYjI5MEpMbFd3VkhHOXoxaEJGc0xVckpQRk9VclUtLXV6dHQ1Rk5xX21WMllSZ0k2Znc0Q2dwTThGWTNPSWVoOGpmWlRMMUxNM3ZtSlJUM1FCNnoyc1k40gHYAUFVX3lxTFBDZnNQc2Y3TlNzbjVjWWMwTnZDVkRkcUN1MGFzcndTOF9MRkpTRnBFcDZlTEd5MEl1WEhQN0JIcnVQNVpFcy1RbDhvbkRrNHB5bTlUVFlkTkV5aEhQMFBfRmxJYU14dG44WTYwaVFsUzJDeTk2YkpiZlYxdVg0ZC1nb1NMTS1NLXlhVVBPQmJiSms5X0hwNHhuQ2RvYzBQTkx5OFRsdzlJZEFxeGk5RUg3dmJ3VE84ZjQ2Z0cwNnFwVEZNN3dvRUU3ZkloZ2I1WDRXcmhuVTZnUg?oc=5",
+      "articleDate": "2026-10-15T11:39:14.000Z",
+      "segmentIndex": 0,
+      "segmentKind": "title",
+      "type": "afirmacion_numerica",
+      "attributedSource": "outlet",
+      "verbatim": "con más de 50 comercios",
+      "context": "Riba-roja celebra la Fira de 10 con más de 50 comercios y bonos de 20 euros",
+      "topic": "other",
+      "entities": {
+        "count": 50,
+        "countUnit": "comercios",
+        "referencedEntity": "Fira de 10"
+      },
+      "confidence": 0.55,
+      "reasoning": "El número de comercios participantes en la feria es un dato verificable con la organización municipal o la asociación de comerciantes.",
+      "requiresHumanApproval": true
+    },
+    {
+      "id": "1ywxxln-1-num",
+      "articleId": "1ywxxln",
+      "articleFingerprint": "9bm4gp",
+      "articleSource": "Levante-EMV",
+      "articleSourceHost": "levante-emv.com",
+      "articleUrl": "https://news.google.com/rss/articles/CBMi0wFBVV95cUxNU0pwZXgxWklpWWtWZlRZMU55SUZ6ZFdlZTBWWXJDcHpaazNMcE43OWdYSjhtX0hna3o4c3E1QlZuc1lfcWVpSWlsWEltVWdjWXNwQVdMZ21lZGYtb0ZMZzg0NmwwcGkxcENkd0JzaTRyU0NtQ2k2M0NNbUNsYjI5MEpMbFd3VkhHOXoxaEJGc0xVckpQRk9VclUtLXV6dHQ1Rk5xX21WMllSZ0k2Znc0Q2dwTThGWTNPSWVoOGpmWlRMMUxNM3ZtSlJUM1FCNnoyc1k40gHYAUFVX3lxTFBDZnNQc2Y3TlNzbjVjWWMwTnZDVkRkcUN1MGFzcndTOF9MRkpTRnBFcDZlTEd5MEl1WEhQN0JIcnVQNVpFcy1RbDhvbkRrNHB5bTlUVFlkTkV5aEhQMFBfRmxJYU14dG44WTYwaVFsUzJDeTk2YkpiZlYxdVg0ZC1nb1NMTS1NLXlhVVBPQmJiSms5X0hwNHhuQ2RvYzBQTkx5OFRsdzlJZEFxeGk5RUg3dmJ3VE84ZjQ2Z0cwNnFwVEZNN3dvRUU3ZkloZ2I1WDRXcmhuVTZnUg?oc=5",
+      "articleDate": "2026-10-15T11:39:14.000Z",
+      "segmentIndex": 1,
+      "segmentKind": "title",
+      "type": "afirmacion_numerica",
+      "attributedSource": "outlet",
+      "verbatim": "comercios y bonos de 20 euros",
+      "context": "Riba-roja celebra la Fira de 10 con más de 50 comercios y bonos de 20 euros",
+      "topic": "other",
+      "entities": {
+        "amountEuros": 20,
+        "referencedEntity": "Fira de 10"
+      },
+      "confidence": 0.55,
+      "reasoning": "El importe de los bonos asociados a la feria es una cifra concreta que puede verificarse con la convocatoria municipal del programa.",
+      "requiresHumanApproval": true
+    },
+    {
+      "id": "pqxb2e-0-dat",
+      "articleId": "pqxb2e",
+      "articleFingerprint": "18wtlak",
+      "articleSource": "Valencia Plaza",
+      "articleSourceHost": "valenciaplaza.com",
+      "articleUrl": "https://news.google.com/rss/articles/CBMi5gFBVV95cUxOUGxVWTVsNWU2Y3RCWFlJM25PME9qaTZfVlJZVmdxMC1KdmpIS3F5SHdHU2RuTjVyLWlPSnAyZ2IwVDlBMTF4a3ozMU03YVp3RHh5Q1hqZ3hmM09OOFlsUE5lOHJtSGZ2QWRjQ1ZEYXRONW1nMVNxV3NEWnkteG5WVFNiLVV1Z0JSWUdmRXhjaGUwOTJTV3VIWHQtOFQxRTgtaS14RWJSSDQ4ZDVHMkNaeF9vWW5yQjRXVTVVcF9abFB4Q2RoWkVtM2ttUFVWNVhHclZFZzRnZFBhaTdMaWRBMlVPOXU0UQ?oc=5",
+      "articleDate": "2026-10-13T18:32:03.000Z",
+      "segmentIndex": 0,
+      "segmentKind": "title",
+      "type": "dato_municipal",
+      "attributedSource": "outlet",
+      "verbatim": "con un superávit de 4'5 millones y 3,3 de remanente",
+      "context": "Riba-roja aprueba la cuenta general de 2025 con un superávit de 4'5 millones y 3,3 de remanente",
+      "topic": "fiscal",
+      "entities": {
+        "amountEuros": 4500000,
+        "date": "2025",
+        "referencedEntity": "Ayuntamiento de Riba-roja de Túria"
+      },
+      "confidence": 0.65,
+      "reasoning": "Cifra concreta de superávit en la cuenta general municipal de 2025, verificable en las cuentas públicas del Ayuntamiento.",
+      "requiresHumanApproval": true
+    },
+    {
+      "id": "pqxb2e-1-dat",
+      "articleId": "pqxb2e",
+      "articleFingerprint": "18wtlak",
+      "articleSource": "Valencia Plaza",
+      "articleSourceHost": "valenciaplaza.com",
+      "articleUrl": "https://news.google.com/rss/articles/CBMi5gFBVV95cUxOUGxVWTVsNWU2Y3RCWFlJM25PME9qaTZfVlJZVmdxMC1KdmpIS3F5SHdHU2RuTjVyLWlPSnAyZ2IwVDlBMTF4a3ozMU03YVp3RHh5Q1hqZ3hmM09OOFlsUE5lOHJtSGZ2QWRjQ1ZEYXRONW1nMVNxV3NEWnkteG5WVFNiLVV1Z0JSWUdmRXhjaGUwOTJTV3VIWHQtOFQxRTgtaS14RWJSSDQ4ZDVHMkNaeF9vWW5yQjRXVTVVcF9abFB4Q2RoWkVtM2ttUFVWNVhHclZFZzRnZFBhaTdMaWRBMlVPOXU0UQ?oc=5",
+      "articleDate": "2026-10-13T18:32:03.000Z",
+      "segmentIndex": 1,
+      "segmentKind": "title",
+      "type": "dato_municipal",
+      "attributedSource": "outlet",
+      "verbatim": "con un superávit de 4'5 millones y 3,3 de remanente",
+      "context": "Riba-roja aprueba la cuenta general de 2025 con un superávit de 4'5 millones y 3,3 de remanente",
+      "topic": "fiscal",
+      "entities": {
+        "amountEuros": 3300000,
+        "date": "2025",
+        "referencedEntity": "Ayuntamiento de Riba-roja de Túria"
+      },
+      "confidence": 0.6,
+      "reasoning": "Cifra concreta de remanente de tesorería asociada a la cuenta general de 2025, contrastable con el expediente municipal.",
+      "requiresHumanApproval": true
+    },
+    {
+      "id": "lhseyk-0-num",
+      "articleId": "lhseyk",
+      "articleFingerprint": "x91xj4",
+      "articleSource": "Periòdic del Camp de Túria",
+      "articleSourceHost": "infoturia.com",
+      "articleUrl": "https://www.infoturia.com/riba-roja-de-turia/86707-riba-roja-aprova-el-compte-de-2025-amb-un-superavit-de-45-milions-deuros.html",
+      "articleDate": "2026-10-13T12:46:44.000Z",
+      "segmentIndex": 0,
+      "segmentKind": "title",
+      "type": "afirmacion_numerica",
+      "attributedSource": "outlet",
+      "verbatim": "Riba-roja aprova el compte de 2025 amb un superàvit de 4’5 milions d’euros",
+      "context": "Titular del artículo publicado por Periòdic del Camp de Túria (13/10/2026): \"Riba-roja aprova el compte de 2025 amb un superàvit de 4’5 milions d’euros\". No se dispone de cuerpo del artículo adicional para más contexto.",
+      "topic": "fiscal",
+      "entities": {
+        "amountEuros": 4500000,
+        "date": "2025",
+        "referencedEntity": "Ajuntament de Riba-roja de Túria"
+      },
+      "confidence": 0.55,
+      "reasoning": "Cifra concreta de superávit municipal (4,5 millones de euros) verificable contra las cuentas anuales publicadas, aunque sólo se dispone del titular sin cuerpo de texto que lo corrobore.",
+      "requiresHumanApproval": true
+    },
+    {
+      "id": "140oi31-0-dat",
+      "articleId": "140oi31",
+      "articleFingerprint": "1oeuiiq",
+      "articleSource": "Ayuntamiento de Riba-roja de Túria",
+      "articleSourceHost": "ribarroja.es",
+      "articleUrl": "https://www.ribarroja.es/es/noticia/riba-roja-de-t%C3%BAria-aprueba-la-cuenta-general-del-a%C3%B1o-2025-que-certifica-un-super%C3%A1vit-de-4%E2%80%995-millones-de-euros-y-un-remanente-de-3%273-millones-en-el-presupuesto-econ%C3%B3mico",
+      "articleDate": "2026-10-13T11:39:38.000Z",
+      "segmentIndex": 0,
+      "segmentKind": "title",
+      "type": "dato_municipal",
+      "attributedSource": "municipal",
+      "verbatim": "aprueba la cuenta general del año 2025",
+      "context": "Riba-roja de Túria aprueba la cuenta general del año 2025 que certifica un superávit de 4'5 millones de euros y un remanente de 3'3 millones en el presupuesto económico",
+      "topic": "fiscal",
+      "entities": {
+        "date": "2025",
+        "referencedEntity": "cuenta general del Ayuntamiento de Riba-roja de Túria"
+      },
+      "confidence": 0.6,
+      "reasoning": "La aprobación de la cuenta general es un acto municipal verificable en actas de pleno o boletines oficiales.",
+      "requiresHumanApproval": true
+    },
+    {
+      "id": "140oi31-1-num",
+      "articleId": "140oi31",
+      "articleFingerprint": "1oeuiiq",
+      "articleSource": "Ayuntamiento de Riba-roja de Túria",
+      "articleSourceHost": "ribarroja.es",
+      "articleUrl": "https://www.ribarroja.es/es/noticia/riba-roja-de-t%C3%BAria-aprueba-la-cuenta-general-del-a%C3%B1o-2025-que-certifica-un-super%C3%A1vit-de-4%E2%80%995-millones-de-euros-y-un-remanente-de-3%273-millones-en-el-presupuesto-econ%C3%B3mico",
+      "articleDate": "2026-10-13T11:39:38.000Z",
+      "segmentIndex": 1,
+      "segmentKind": "title",
+      "type": "afirmacion_numerica",
+      "attributedSource": "municipal",
+      "verbatim": "certifica un superávit de 4'5 millones de euros",
+      "context": "Riba-roja de Túria aprueba la cuenta general del año 2025 que certifica un superávit de 4'5 millones de euros y un remanente de 3'3 millones en el presupuesto económico",
+      "topic": "fiscal",
+      "entities": {
+        "amountEuros": 4500000,
+        "date": "2025",
+        "referencedEntity": "cuenta general del Ayuntamiento de Riba-roja de Túria"
+      },
+      "confidence": 0.65,
+      "reasoning": "Cifra concreta de superávit atribuida a la cuenta general, verificable contra el documento presupuestario oficial.",
+      "requiresHumanApproval": true
+    },
+    {
+      "id": "140oi31-2-num",
+      "articleId": "140oi31",
+      "articleFingerprint": "1oeuiiq",
+      "articleSource": "Ayuntamiento de Riba-roja de Túria",
+      "articleSourceHost": "ribarroja.es",
+      "articleUrl": "https://www.ribarroja.es/es/noticia/riba-roja-de-t%C3%BAria-aprueba-la-cuenta-general-del-a%C3%B1o-2025-que-certifica-un-super%C3%A1vit-de-4%E2%80%995-millones-de-euros-y-un-remanente-de-3%273-millones-en-el-presupuesto-econ%C3%B3mico",
+      "articleDate": "2026-10-13T11:39:38.000Z",
+      "segmentIndex": 2,
+      "segmentKind": "title",
+      "type": "afirmacion_numerica",
+      "attributedSource": "municipal",
+      "verbatim": "un remanente de 3'3 millones en el presupuesto económico",
+      "context": "Riba-roja de Túria aprueba la cuenta general del año 2025 que certifica un superávit de 4'5 millones de euros y un remanente de 3'3 millones en el presupuesto económico",
+      "topic": "fiscal",
+      "entities": {
+        "amountEuros": 3300000,
+        "date": "2025",
+        "referencedEntity": "cuenta general del Ayuntamiento de Riba-roja de Túria"
+      },
+      "confidence": 0.65,
+      "reasoning": "Cifra concreta de remanente de tesorería atribuida al presupuesto, verificable contra la liquidación presupuestaria oficial.",
+      "requiresHumanApproval": true
+    },
+    {
+      "id": "dg07lo-0-dat",
+      "articleId": "dg07lo",
+      "articleFingerprint": "1pti7lg",
+      "articleSource": "Las Provincias",
+      "articleSourceHost": "lasprovincias.es",
+      "articleUrl": "https://news.google.com/rss/articles/CBMiswFBVV95cUxNM2xHWFNBY3pERUxaVzZFTDBkVjVCUFdYa0xuSE1nSEt6Wk50b2h0LTFNclp5YWsyY2o4VTNmYU1MSmJWQnQ2UXNQTkRhV1dCQUtBa2doS2ttNnI1VUtDVjZOSWtHTzZDTmdPZjhpVXpqaldyVm5oZGVMNVZnSjB3YTlWTjZBZlJKVXdrUERVdFlONG84ZVVOdXdLamdBU2M1M09TbXQ3c3RpaHhOXzNUa0Jfb9IBuAFBVV95cUxOS1BaZ0M5d3d0NmU1ZUFrQzkzbWRxSktYVXhyZWR2eWRNcDdKMWdKVnhGM3dXTU1kS2h6b2lzSTNjS0RMTVBPZklvaGhrWXhWVVpBVjcxdjc5U1pCSmZDNXlsMnpBRDViQ0h4ZHRfVGE2UjZEV1RMOWpGRVNBMTBUY3lycTV5VHZOWUstUjNYdTBHbHRBNHltajNPT3M2Y3NPcE9qbGpWb0hhR2o0YU01M1ZPT2U1Ylox?oc=5",
+      "articleDate": "2026-10-11T22:05:08.000Z",
+      "segmentIndex": 0,
+      "segmentKind": "title",
+      "type": "dato_municipal",
+      "attributedSource": "unspecified",
+      "verbatim": "Aprobadas las cuentas generales con un superávit de 4,5 millones de euros",
+      "context": "Titular: Aprobadas las cuentas generales con un superávit de 4,5 millones de euros (Las Provincias, 2026-10-11).",
+      "topic": "fiscal",
+      "entities": {
+        "amountEuros": 4500000
+      },
+      "confidence": 0.55,
+      "reasoning": "Cifra concreta de superávit municipal (4,5 millones de euros) verificable contra las cuentas generales aprobadas, aunque solo se dispone del titular y no del cuerpo del artículo.",
       "requiresHumanApproval": true
     }
   ]

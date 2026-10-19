@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-19T07:46:21.258Z",
+  "generatedAt": "2026-10-19T08:31:29.620Z",
   "clusters": [
     {
       "clusterId": "1hto5xc",
@@ -19,7 +19,7 @@
         "verificado": 0,
         "parcial": 0,
         "contradicho": 0,
-        "sin-datos": 0,
+        "sin-datos": 3,
         "promesa-repetida": 0
       }
     },
@@ -59,7 +59,7 @@
         "verificado": 0,
         "parcial": 0,
         "contradicho": 0,
-        "sin-datos": 0,
+        "sin-datos": 5,
         "promesa-repetida": 0
       }
     },
@@ -99,7 +99,7 @@
         "verificado": 0,
         "parcial": 0,
         "contradicho": 0,
-        "sin-datos": 0,
+        "sin-datos": 1,
         "promesa-repetida": 0
       }
     },
@@ -170,7 +170,7 @@
   },
   "builtFrom": {
     "plenos-agendas.json": "49b86bcaa5a7",
-    "press-claims-verified.json": "577b1fb0a58a",
+    "press-claims-verified.json": "035904d802c7",
     "press.json": "6853d30dea86",
     "promises.json": "a4b8423e960f"
   }
