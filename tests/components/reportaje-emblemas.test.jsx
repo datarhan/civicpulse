@@ -122,8 +122,19 @@ describe('emblemas de reportaje', () => {
           `«${c}» no es exactamente una tarjeta de la pieza`,
         ).toHaveLength(1)
       }
-      // Y la cabecera nunca se queda sin tarjetas: siempre queda alguna a la vista.
-      expect(tarjetas(slug, p).filter((k) => !cifras.includes(k.n)).length).toBeGreaterThan(0)
+      // Y la cabecera nunca se queda sin cifras: siempre queda alguna tarjeta a
+      // la vista, salvo que las que faltan las dé el texto —las de
+      // `meta.kpisEnTexto`, cuya frase comprueba reportaje-cabecera.test.js—.
+      // Así quedó «matrículas y móviles» en #365: sus dos tarjetas repetían lo
+      // que dice la entradilla.
+      const enTexto = (p.meta.kpisEnTexto ?? []).map((k) => k.n)
+      const visibles = tarjetas(slug, p).filter(
+        (k) => !cifras.includes(k.n) && !enTexto.includes(k.n),
+      )
+      const repetidas = tarjetas(slug, p).filter(
+        (k) => !cifras.includes(k.n) && enTexto.includes(k.n),
+      )
+      expect(visibles.length + repetidas.length).toBeGreaterThan(0)
     })
   }
 
