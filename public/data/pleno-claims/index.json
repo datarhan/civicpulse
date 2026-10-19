@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-19T07:43:27.209Z",
+  "generatedAt": "2026-10-19T12:48:28.630Z",
   "version": "1",
   "plenos": [
     {
@@ -876,14 +876,33 @@
           "presupuesto": 79,
           "informe-tecnico": 53,
           "contrato": 82,
-          "acta": 16,
+          "acta": 14,
           "convenio": 30,
           "plan-interno": 19,
           "expediente": 25,
           "ordenanza": 11
         },
-        "sinDocumento": 1777,
+        "sinDocumento": 1779,
         "total": 2074
+      },
+      "pasadas": {
+        "porMarca": {
+          "curator-downgrade": {
+            "filas": 41,
+            "noConsta": 41
+          },
+          "verdict-engine": {
+            "filas": 830,
+            "noConsta": 830
+          },
+          "curator-upgrade": {
+            "filas": 18,
+            "noConsta": 0
+          }
+        },
+        "filas": 889,
+        "noConsta": 871,
+        "noConstaSinMarca": 0
       }
     },
     "retenidas": {
@@ -891,6 +910,15 @@
       "cita_convenio": 1,
       "cita_obra": 1,
       "afirmacion_numerica": 1
+    },
+    "retenidasPorMotivo": {
+      "sin-procedencia": 2,
+      "retirada": 2,
+      "contradicho": 0,
+      "acusacion-opinativa": 1201,
+      "acusacion-cotejada-sin-respaldo": 1051,
+      "acusacion-sin-corpus": 148,
+      "acusacion-no-consta": 303
     },
     "retenidasSinProcedencia": 2,
     "retiradas": {
