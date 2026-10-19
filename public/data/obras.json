@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-18T04:47:09.939Z",
+  "generatedAt": "2026-10-19T04:48:31.508Z",
   "source": "https://www.ribarroja.es/portal_de_transparencia/5_transparencia_en_materias_de_urbanismo__obras_publicas_y_medioambiente/obras_de_infraestructuras_en_curso/contenidos/2467622/1909893",
   "sources": {
     "feder": "https://www.ribarroja.es/portal_de_transparencia/5_transparencia_en_materias_de_urbanismo__obras_publicas_y_medioambiente/obras_de_infraestructuras_en_curso/contenidos/2467622/1909893",
@@ -121,7 +121,11 @@
       "plazoMeses": 6,
       "inicio": "2019-03-25",
       "empresa": "LICUAS, S.A.",
-      "bajaPct": 27.8
+      "bajaPct": 27.8,
+      "lat": 39.544402,
+      "lng": -0.567274,
+      "placeName": "Parque Porta del Barranc",
+      "placeKind": "poi"
     },
     {
       "id": "ampliacion-cementerio",
