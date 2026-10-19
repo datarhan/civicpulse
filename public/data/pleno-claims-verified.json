@@ -1,6 +1,6 @@
 {
   "generatedAt": "2026-10-19T07:43:22.017Z",
-  "composedAt": "2026-10-19T17:03:39.820Z",
+  "composedAt": "2026-10-19T17:28:32.728Z",
   "source": {
     "description": "Fact-check verdicts for every pleno-claims-suggestions.json entry. Cross-references against tenders / BDNS / budget / promises. Pure deterministic — no LLM judgement.",
     "contract": "Machine-written verdicts; a curator reviews before surfacing contradicho or promesa-repetida editorially."
@@ -171016,7 +171016,7 @@
       "verification": {
         "claimId": "c8kr44-142-cit-b8c30e",
         "verdict": "parcial",
-        "summary": "La actuación existe: obras de mejora del carril bici y de refugios climáticos, licitadas por 325.662,55 € (IVA incluido) y adjudicadas en mayo de 2026 por 296.195,90 €. El importe del registro queda algo por debajo de los «algo más de 330.000 €» que se dijeron.",
+        "summary": "La actuación existe: obras de mejora del carril bici y de refugios climáticos, licitadas por 325.662,55 € (IVA incluido) y adjudicadas por 296.195,90 € (la adjudicación se publicó el 29-05-2026). El importe del registro queda algo por debajo de los «algo más de 330.000 €» que se dijeron.",
         "evidence": [
           {
             "kind": "tender",
@@ -173482,7 +173482,7 @@
       "verification": {
         "claimId": "c8kr44-230-cit-56b068",
         "verdict": "verificado",
-        "summary": "Las cinco actuaciones que se enumeran son, con sus mismos títulos, los cinco lotes del contrato de suministro e instalación de juegos infantiles 111-115/2025: Parque La Pedrera, Plaza Juez Heliodoro Gimeno (lote 2), Parque Bellavista I, Parque Molinet y Plaza Lavadero. Se licitó en noviembre de 2025 y se adjudicó en 2026.",
+        "summary": "Las cinco actuaciones que se enumeran son, con sus mismos títulos, los cinco lotes del contrato de suministro e instalación de juegos infantiles 111-115/2025: Parque La Pedrera, Plaza Juez Heliodoro Gimeno (lote 2), Parque Bellavista I, Parque Molinet y Plaza Lavadero. Se licitó en noviembre de 2025 y se adjudicó, con la adjudicación publicada el 01-04-2026.",
         "evidence": [
           {
             "kind": "tender",
@@ -173664,7 +173664,7 @@
       "verification": {
         "claimId": "c8kr44-229-cit-1356bf",
         "verdict": "verificado",
-        "summary": "El cambio de juegos y suelo de protección del Parque Bellavista se contrató: es el lote 3 («Parque Bellavista I») del contrato de suministro e instalación de juegos infantiles 111-115/2025, licitado en noviembre de 2025 y adjudicado a Urbeadapta en 2026.",
+        "summary": "El cambio de juegos y suelo de protección del Parque Bellavista se contrató: es el lote 3 («Parque Bellavista I») del contrato de suministro e instalación de juegos infantiles 111-115/2025, licitado en noviembre de 2025 y adjudicado a Urbeadapta, con la adjudicación publicada el 01-04-2026.",
         "evidence": [
           {
             "kind": "tender",
@@ -173704,7 +173704,7 @@
       "verification": {
         "claimId": "c8kr44-231-cit-faf7d3",
         "verdict": "verificado",
-        "summary": "Las dos actuaciones se contrataron: el cambio de juegos y suelo de protección del Parque Molinet y la sustitución de los de la Plaza Lavadero son los lotes 4 y 5 del contrato de suministro e instalación de juegos infantiles 111-115/2025, licitado en noviembre de 2025 y adjudicado en 2026.",
+        "summary": "Las dos actuaciones se contrataron: el cambio de juegos y suelo de protección del Parque Molinet y la sustitución de los de la Plaza Lavadero son los lotes 4 y 5 del contrato de suministro e instalación de juegos infantiles 111-115/2025, licitado en noviembre de 2025 y adjudicado, con la adjudicación publicada el 01-04-2026.",
         "evidence": [
           {
             "kind": "tender",
@@ -179538,7 +179538,7 @@
       "verification": {
         "claimId": "rmtyr-124-cit-a8696c",
         "verdict": "parcial",
-        "summary": "La obra existe: la fase II del carril ciclopeatonal de la zona norte (Senda del Molinet, alumbrado y conexión con Paretotes, expediente 56/2025) se licitó en julio de 2025 y se adjudicó en septiembre a Nerco Infraestructuras por 262.812 € con IVA. Que se pague con los gastos derivados de la DANA no consta en el registro.",
+        "summary": "La obra existe: la fase II del carril ciclopeatonal de la zona norte (Senda del Molinet, alumbrado y conexión con Paretotes, expediente 56/2025) se licitó en julio de 2025 y se adjudicó a Nerco Infraestructuras por 262.812 € con IVA (la adjudicación se publicó el 24-09-2025). Que se pague con los gastos derivados de la DANA no consta en el registro.",
         "evidence": [
           {
             "kind": "tender",
