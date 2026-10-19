@@ -89,6 +89,21 @@ export interface VerificacionCotejable {
 const anotados = (x: unknown): readonly unknown[] => (Array.isArray(x) ? x : [])
 
 /**
+ * Todo lo que una fila anota sobre cómo se llegó a su veredicto, en los tres
+ * sitios donde puede ir: la lista de lo consultado, la pasada que lo declara y
+ * el canal del overlay. Es la lectura que decide «no consta» y la que cuenta las
+ * marcas de pasada (`marcasDePasada`): una sola, para que las dos cifras no
+ * puedan contar filas distintas.
+ */
+function anotacionesDeProcedencia(v: VerificacionCotejable | null | undefined): unknown[] {
+  return [
+    ...anotados(v?.checkedAgainst),
+    ...anotados(v?.derivedBy),
+    ...(v?.source ? [v.source] : []),
+  ]
+}
+
+/**
  * El desenlace de una fila, sea cual sea su veredicto. Es la regla de la línea
  * «Fuentes comprobadas» de cada tarjeta (`fuentesComprobadas`, que la llama), y
  * la del recuento de /declaraciones, /plenos y /laboratorio/cobertura: una sola,
@@ -96,9 +111,27 @@ const anotados = (x: unknown): readonly unknown[] => (Array.isArray(x) ? x : [])
  */
 export function desenlaceDeCotejo(v: VerificacionCotejable | null | undefined): DesenlaceDeCotejo {
   if (corpusReales(v?.checkedAgainst).length > 0) return 'con-corpus'
-  const nadaAnotado =
-    !v?.source && anotados(v?.derivedBy).length === 0 && anotados(v?.checkedAgainst).length === 0
-  return nadaAnotado ? 'sin-corpus' : 'no-consta'
+  return anotacionesDeProcedencia(v).length === 0 ? 'sin-corpus' : 'no-consta'
+}
+
+/**
+ * Las marcas de pasada que lleva una fila, sin repetir, se anoten donde se
+ * anoten.
+ *
+ * Las píldoras «Pasadas de revisión» de /laboratorio/cobertura contaban sólo
+ * las de `checkedAgainst`, mientras «no consta» miraba también `derivedBy` y el
+ * canal: el 19-10-2026 sumaban 563 al lado de un «no consta» de 871, porque 308
+ * filas llevaban la marca del motor sólo en `derivedBy`. Las dos cifras leen
+ * ahora lo mismo (`anotacionesDeProcedencia`).
+ */
+export function marcasDePasada(v: VerificacionCotejable | null | undefined): Pasada[] {
+  const out: Pasada[] = []
+  for (const x of anotacionesDeProcedencia(v)) {
+    if (typeof x === 'string' && esMarcaDePasada(x) && !out.includes(x as Pasada)) {
+      out.push(x as Pasada)
+    }
+  }
+  return out
 }
 
 /**

@@ -58,6 +58,26 @@ export const CLASE_ETIQUETA: Record<ClaseDocumental, string> = {
   presupuesto: 'Presupuesto y liquidaciones',
 }
 
+/** Un mes, para reconocer una sesión fechada. */
+const MES =
+  '(enero|febrero|marzo|abril|mayo|junio|julio|agosto|sept?iembre|octubre|noviembre|diciembre)'
+
+/**
+ * Una sesión plenaria CON FECHA: «en el pleno celebrado el 3 de junio», «en el
+ * Pleno de febrero», «el pleno celebrado el día 12». Ésa sí depende de su acta.
+ *
+ * Casaba «en el pleno» y «pleno celebrado» sueltos, que en una sesión plenaria
+ * son habla corriente: el 19-10-2026, 7 de las 16 declaraciones que la tabla de
+ * solicitudes contaba como dependientes de un acta casaban sólo por eso, y dos
+ * hablaban del tiempo de palabra («cada hora invertida en el pleno»). Un «como
+ * dije en el pleno» no nombra ningún documento; una fecha, sí: la del acta.
+ */
+const SESION_FECHADA = new RegExp(
+  `\\b(en el pleno|pleno celebrado)( (ordinario|extraordinario))?( celebrado)?` +
+    `( (el|del?))?( d[íi]a)? (\\d|${MES}\\b)`,
+  'i',
+)
+
 /**
  * Los patrones, exportados para que una prueba pueda recorrerlos.
  *
@@ -66,7 +86,10 @@ export const CLASE_ETIQUETA: Record<ClaseDocumental, string> = {
  * paga delante de una administración.
  */
 export const PATRONES: Record<ClaseDocumental, RegExp> = {
-  acta: /\b(actas?|acuerdos? plenarios?|acuerdo del pleno|en el pleno|pleno celebrado)\b/i,
+  acta: new RegExp(
+    `\\b(actas?|acuerdos? plenarios?|acuerdo del pleno)\\b|${SESION_FECHADA.source}`,
+    'i',
+  ),
   'informe-tecnico': /\b(informes?|dict[áa]men(es)?)\b/i,
   expediente: /\bexpedientes?\b/i,
   'plan-interno': /\b(plan(es)? de\b|plan director)/i,

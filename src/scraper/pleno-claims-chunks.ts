@@ -22,7 +22,13 @@
 
 import type { PlenoClaim, ClaimType, ClaimTopic } from './pleno-claim'
 import type { MotivoDeRetirada } from './declaracion-retirada'
-import { CASILLA_DE_DESENLACE, desenlaceDeCotejo, type ResumenSinDatos } from './claim-verdicts'
+import type { MotivoDeRetencion } from './claim-public-gate'
+import {
+  CASILLA_DE_DESENLACE,
+  desenlaceDeCotejo,
+  marcasDePasada,
+  type ResumenSinDatos,
+} from './claim-verdicts'
 import { agruparPorClaseDocumental } from './clase-documental'
 
 // The verifier emits items as { claim, verification } pairs. We keep
@@ -129,6 +135,17 @@ export interface PlenoClaimsChunkManifest {
         sinDocumento: number
         total: number
       }
+      /**
+       * Las marcas de pasada, contadas por FILAS y con la misma lectura que
+       * decide «no consta» (`marcasDePasada`: lista, `derivedBy` y canal).
+       *
+       * `corpus` cuenta sólo lo que lleva `checkedAgainst`, y las píldoras de
+       * pasadas lo leían: el 19-10-2026 sumaban 563 al lado de un «no consta» de
+       * 871, porque 308 filas llevaban la marca del motor sólo en `derivedBy`.
+       * Con esto la página puede decir el puente con cifras: de las filas con
+       * marca, cuántas son de «no consta» y cuántas nombran además un corpus.
+       */
+      pasadas: ResumenDePasadas
     }
     /**
      * Por qué `sin-datos`, sobre lo PUBLICADO (post-puerta editorial).
@@ -148,6 +165,16 @@ export interface PlenoClaimsChunkManifest {
      * fila que no está no la publica.
      */
     retenidas: Record<string, number>
+    /**
+     * Lo mismo que `retenidas`, repartido por el motivo de la puerta
+     * (`motivoDeRetencion`). Las dos particiones suman lo mismo.
+     *
+     * /laboratorio/cobertura decía, escrito a mano, que la puerta retiene «por
+     * dos motivos distintos», y no eran los que más pesaban. Ausente cuando
+     * quien construye el manifiesto no lo pasa: un objeto vacío se leería como
+     * «cero de cada motivo».
+     */
+    retenidasPorMotivo?: Record<MotivoDeRetencion, number>
     /**
      * Retenidas porque su literal NO consta en ninguna transcripción nuestra.
      *
@@ -179,6 +206,18 @@ export interface PlenoClaimsChunkManifest {
 
 /** Una celda de la tabla de cobertura: su total y sus tres desenlaces. */
 export type CasillaDeCobertura = { total: number } & ResumenSinDatos
+
+/** Las filas con marca de pasada, y cuántas de ellas son de «no consta». */
+export interface ResumenDePasadas {
+  /** Por marca: filas que la llevan, y de ellas las de «no consta». */
+  porMarca: Record<string, { filas: number; noConsta: number }>
+  /** Filas con alguna marca (una fila con dos cuenta una vez). */
+  filas: number
+  /** De ellas, las de «no consta». */
+  noConsta: number
+  /** Filas de «no consta» sin ninguna marca declarada: un nombre sin clasificar. */
+  noConstaSinMarca: number
+}
 
 export interface PlenoClaimsChunk {
   generatedAt: string
@@ -275,6 +314,7 @@ export function buildManifest(
   retenidas: Record<string, number> = {},
   retenidasSinProcedencia = 0,
   retiradas: Partial<Record<MotivoDeRetirada, number>> = {},
+  retenidasPorMotivo: Record<MotivoDeRetencion, number> | null = null,
 ): {
   manifest: PlenoClaimsChunkManifest
   chunks: Map<string, PlenoClaimsChunk>
@@ -296,6 +336,7 @@ export function buildManifest(
   const sinCorpusVerbatims: string[] = []
   const casilla = (tabla: Record<string, CasillaDeCobertura>, k: string) =>
     (tabla[k] ??= { total: 0, sinCorpus: 0, comprobadoSinHallar: 0, noConsta: 0 })
+  const pasadas: ResumenDePasadas = { porMarca: {}, filas: 0, noConsta: 0, noConstaSinMarca: 0 }
   let totalItems = 0
   for (const [plenoId, items] of itemsByPleno) {
     const { chunk, descriptor } = buildChunkAndDescriptor(plenoId, items, generatedAt)
@@ -317,6 +358,21 @@ export function buildManifest(
       // una fila sin nada que consultar: de ésa no consta contra qué se cotejó.
       const desenlace = desenlaceDeCotejo(it.verification)
       const campo = CASILLA_DE_DESENLACE[desenlace]
+      // Las marcas, por fila y con la lectura de `desenlace`: así las píldoras
+      // de pasadas y la casilla «no consta» cuentan las mismas filas.
+      const marcas = marcasDePasada(it.verification)
+      const enNoConsta = desenlace === 'no-consta' ? 1 : 0
+      for (const m of marcas) {
+        const p = (pasadas.porMarca[m] ??= { filas: 0, noConsta: 0 })
+        p.filas += 1
+        p.noConsta += enNoConsta
+      }
+      if (marcas.length > 0) {
+        pasadas.filas += 1
+        pasadas.noConsta += enNoConsta
+      } else {
+        pasadas.noConstaSinMarca += enNoConsta
+      }
       // La cobertura mira TODAS las filas, no sólo las `sin-datos`: la pregunta
       // es «¿contra qué se pudo cotejar?», y una fila verificada también
       // contesta a eso.
@@ -356,8 +412,10 @@ export function buildManifest(
           porTema,
           corpus,
           porClaseDocumental: agruparPorClaseDocumental(sinCorpusVerbatims),
+          pasadas,
         },
         retenidas,
+        ...(retenidasPorMotivo ? { retenidasPorMotivo } : {}),
         retenidasSinProcedencia,
         retiradas,
         sinDatosPorque,

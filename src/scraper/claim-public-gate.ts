@@ -20,7 +20,7 @@
  */
 import type { VerifiedClaimItem } from './pleno-claims-chunks'
 import type { OverlaySource } from './verified-merge'
-import { corpusReales } from './claim-verdicts'
+import { corpusReales, desenlaceDeCotejo, type DesenlaceDeCotejo } from './claim-verdicts'
 import { motivoDeRetirada } from './declaracion-retirada'
 
 /**
@@ -138,6 +138,8 @@ export interface ClaimVisibilityInput {
     verdict?: unknown
     source?: unknown
     checkedAgainst?: unknown
+    /** Sólo para el rótulo de `motivoDeRetencion`; la visibilidad no lo lee. */
+    derivedBy?: unknown
     retirada?: unknown
   } | null
 }
@@ -219,11 +221,129 @@ export function classifyClaimVisibility(
   item: ClaimVisibilityInput,
   opts: { sinProcedencia?: boolean } = {},
 ): ClaimVisibility {
-  if (opts.sinProcedencia) return 'hidden'
-  if (motivoDeRetirada(item) !== null) return 'hidden'
+  if (motivoDeRetencion(item, opts) !== null) return 'hidden'
+  return estaFundada(item) ? 'shown' : 'toggle'
+}
+
+/**
+ * Por qué la puerta retiene una declaración, como VALOR.
+ *
+ * /laboratorio/cobertura decía, escrito a mano, que la puerta retiene «por dos
+ * motivos distintos»: una acusación cuyo veredicto no nombra ningún corpus, y
+ * una cita cuyo literal no consta en ninguna transcripción. Medido el
+ * 19-10-2026 sobre lo retenido, los que más pesaban eran otros dos: las
+ * acusaciones opinativas (o sin subtipo, que se tratan como tales) y las
+ * acusaciones de hecho que SÍ nombran un corpus sin un dato que las respalde.
+ * Por eso el motivo sale de la misma función que decide ocultar
+ * (`classifyClaimVisibility` oculta exactamente lo que tiene motivo) y la
+ * página cuenta lo que esto devuelve, en vez de recitarlo.
+ *
+ * Una acusación de hecho sin fundar se reparte con `desenlaceDeCotejo`, la
+ * misma regla de las casillas de la cobertura: no es lo mismo cotejarla y no
+ * hallar nada que no tener con qué, ni que no conste contra qué se cotejó.
+ *
+ * Exportado como lista para que un `Record<MotivoDeRetencion, …>` —el rótulo,
+ * un contador— deje de compilar cuando aparezca un motivo nuevo
+ * (docs/DATA_INTEGRITY.md, regla 1).
+ */
+export const MOTIVOS_DE_RETENCION = [
+  'sin-procedencia',
+  'retirada',
+  'contradicho',
+  'acusacion-opinativa',
+  'acusacion-cotejada-sin-respaldo',
+  'acusacion-sin-corpus',
+  'acusacion-no-consta',
+] as const
+
+export type MotivoDeRetencion = (typeof MOTIVOS_DE_RETENCION)[number]
+
+/**
+ * Cómo se dice cada motivo en la página, detrás de su cifra («1.202 …»). Vive
+ * con el enum, como `CLASE_ETIQUETA`: un motivo nuevo sin rótulo no compila.
+ */
+export const MOTIVO_DE_RETENCION_ETIQUETA: Record<MotivoDeRetencion, string> = {
+  'sin-procedencia':
+    'cuyo literal no consta en ninguna transcripción nuestra: no podemos enseñar que se dijeran',
+  retirada:
+    'retiradas por una persona que escuchó la sesión: la transcripción no recoge lo que se dijo',
+  contradicho:
+    'con un desmentido asignado por una máquina, que es una pista para quien redacta y no un veredicto',
+  'acusacion-opinativa':
+    'acusaciones públicas de opinión —o sin subtipo, que se tratan como tales—: una opinión no se puede comprobar',
+  'acusacion-cotejada-sin-respaldo':
+    'acusaciones públicas de hecho cotejadas contra algún corpus sin que ningún dato las respalde',
+  'acusacion-sin-corpus':
+    'acusaciones públicas de hecho sin ningún corpus anotado contra el que se cotejaran',
+  'acusacion-no-consta':
+    'acusaciones públicas de hecho sin un dato que las respalde, de las que no consta contra qué se cotejaron',
+}
+
+/**
+ * El motivo por el que la puerta retiene esta declaración, o `null` si se
+ * sirve (enseñada o plegada). El orden es el de la puerta: el primero que
+ * aplica es el que se cuenta, y así cada retenida cuenta una sola vez.
+ */
+export function motivoDeRetencion(
+  item: ClaimVisibilityInput,
+  opts: { sinProcedencia?: boolean } = {},
+): MotivoDeRetencion | null {
+  if (opts.sinProcedencia) return 'sin-procedencia'
+  if (motivoDeRetirada(item) !== null) return 'retirada'
+  if (item?.verification?.verdict === 'contradicho') return 'contradicho'
+  if (item?.claim?.type !== 'acusacion_publica') return null
+  const subtype = item.claim.accusationSubtype ?? 'opinativa' // safe default
+  if (subtype === 'opinativa') return 'acusacion-opinativa'
+  if (estaFundada(item)) return null
+  // Sólo para elegir el rótulo: ocultar ya está decidido. Se le pasan los
+  // campos como arrays o nada, porque `desenlaceDeCotejo` recorre lo que recibe
+  // y aquí los campos son `unknown`.
+  const v = item.verification
+  const desenlace = desenlaceDeCotejo({
+    checkedAgainst: Array.isArray(v?.checkedAgainst) ? v.checkedAgainst : [],
+    derivedBy: Array.isArray(v?.derivedBy) ? v.derivedBy : [],
+    source: v?.source,
+  })
+  return MOTIVO_DE_ACUSACION_SIN_FUNDAR[desenlace]
+}
+
+const MOTIVO_DE_ACUSACION_SIN_FUNDAR: Record<DesenlaceDeCotejo, MotivoDeRetencion> = {
+  'con-corpus': 'acusacion-cotejada-sin-respaldo',
+  'sin-corpus': 'acusacion-sin-corpus',
+  'no-consta': 'acusacion-no-consta',
+}
+
+/**
+ * Lo retenido de un corpus, repartido por tipo y por motivo. Las dos
+ * particiones suman lo mismo: lo que `gateItemsForPublic` no sirve. Todos los
+ * motivos salen, a cero si no retienen nada: un cero contado no es un hueco.
+ */
+export function repartirRetenidas(
+  items: readonly (ClaimVisibilityInput & { claim?: { id?: unknown } | null })[],
+  opts: { sinProcedencia?: ReadonlySet<string> } = {},
+): { porTipo: Record<string, number>; porMotivo: Record<MotivoDeRetencion, number> } {
+  const porTipo: Record<string, number> = {}
+  const porMotivo = Object.fromEntries(MOTIVOS_DE_RETENCION.map((m) => [m, 0])) as Record<
+    MotivoDeRetencion,
+    number
+  >
+  for (const it of items ?? []) {
+    const id = it?.claim?.id
+    const motivo = motivoDeRetencion(it, {
+      sinProcedencia: typeof id === 'string' && (opts.sinProcedencia?.has(id) ?? false),
+    })
+    if (motivo === null) continue
+    porMotivo[motivo] += 1
+    const tipo = it?.claim?.type
+    if (typeof tipo === 'string') porTipo[tipo] = (porTipo[tipo] ?? 0) + 1
+  }
+  return { porTipo, porMotivo }
+}
+
+/** ¿Hay un dato detrás del veredicto? Lo que separa enseñar de plegar u ocultar. */
+function estaFundada(item: ClaimVisibilityInput): boolean {
   const verdict = item?.verification?.verdict
-  if (verdict === 'contradicho') return 'hidden'
-  const grounded =
+  return (
     typeof verdict === 'string' &&
     DATA_GROUNDED_VERDICTS.has(verdict) &&
     // Un veredicto que dejó la vía del curador (`downgrade-verdict`) es la vía
@@ -240,12 +360,7 @@ export function classifyClaimVisibility(
     // a hallazgo, en cambio, no la pasa: desde el 27-08 la ficha obedece esta
     // misma puerta.
     (tieneVerificadorAnotado(item) || isCuratorPromoted(item))
-  if (item?.claim?.type === 'acusacion_publica') {
-    const subtype = item.claim.accusationSubtype ?? 'opinativa' // safe default
-    if (subtype === 'opinativa') return 'hidden'
-    return grounded ? 'shown' : 'hidden'
-  }
-  return grounded ? 'shown' : 'toggle'
+  )
 }
 
 export interface GatedItem extends VerifiedClaimItem {

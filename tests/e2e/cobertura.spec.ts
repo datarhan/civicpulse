@@ -5,6 +5,7 @@ import {
   type SolicitudAcceso,
 } from '../../src/scraper/solicitud-acceso'
 import { CLASES_PEDIBLES } from '../../src/scraper/clase-documental'
+import { diaDeLaSede } from '../../src/scraper/queja-router'
 import { readFileSync, readdirSync } from 'node:fs'
 import { collectErrors, appErrors } from './_console'
 
@@ -167,7 +168,8 @@ test.describe('Solicitudes de acceso (/laboratorio/cobertura)', () => {
   const REGISTRO = JSON.parse(readFileSync('public/data/solicitudes-acceso.json', 'utf8')) as {
     items?: SolicitudAcceso[]
   }
-  const HOY = new Date().toISOString().slice(0, 10)
+  // El día de la sede, como la página: el de UTC es ayer entre las 22:00 y las 24:00 de Madrid.
+  const HOY = diaDeLaSede(new Date().toISOString()) ?? ''
   const TITULO_SOLICITUDES = new RegExp(
     tituloSolicitudes(
       CLASES_PEDIBLES.map((clase) =>

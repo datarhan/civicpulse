@@ -36,8 +36,10 @@ import {
   desenlaceDeCotejo,
   esMarcaDePasada,
   clasificarProcedencia,
+  marcasDePasada,
   type ResumenSinDatos,
 } from '../src/scraper/claim-verdicts'
+import type { ResumenDePasadas } from '../src/scraper/pleno-claims-chunks'
 
 const DIR = resolve('public/data/pleno-claims')
 const INDEX = join(DIR, 'index.json')
@@ -76,8 +78,11 @@ function main(): void {
         porTipo: Record<string, Casilla>
         porTema: Record<string, Casilla>
         corpus: Record<string, number>
+        pasadas?: ResumenDePasadas
       }
       sinDatosPorque?: ResumenSinDatos
+      retenidas?: Record<string, number>
+      retenidasPorMotivo?: Record<string, number>
     }
   }
   const totals = manifest.totals
@@ -111,13 +116,26 @@ function main(): void {
   }
   const casilla = (t: Record<string, Casilla>, k: string) =>
     (t[k] ??= { total: 0, sinCorpus: 0, comprobadoSinHallar: 0, noConsta: 0 })
+  const pasadas: ResumenDePasadas = { porMarca: {}, filas: 0, noConsta: 0, noConstaSinMarca: 0 }
 
   for (const it of items) {
     const listados = it.verification?.checkedAgainst ?? []
     for (const c of listados) {
       if (typeof c === 'string') rehecho.corpus[c] = (rehecho.corpus[c] ?? 0) + 1
     }
-    const campo = CASILLA_DE_DESENLACE[desenlaceDeCotejo(it.verification)]
+    const desenlace = desenlaceDeCotejo(it.verification)
+    const campo = CASILLA_DE_DESENLACE[desenlace]
+    const marcas = marcasDePasada(it.verification)
+    const enNoConsta = desenlace === 'no-consta' ? 1 : 0
+    for (const m of marcas) {
+      const p = (pasadas.porMarca[m] ??= { filas: 0, noConsta: 0 })
+      p.filas += 1
+      p.noConsta += enNoConsta
+    }
+    if (marcas.length > 0) {
+      pasadas.filas += 1
+      pasadas.noConsta += enNoConsta
+    } else pasadas.noConstaSinMarca += enNoConsta
     for (const [tabla, clave] of [
       [rehecho.porTipo, it.claim?.type],
       [rehecho.porTema, it.claim?.topic],
@@ -153,6 +171,57 @@ function main(): void {
     comprobaciones += 1
     if (cob.corpus[k] !== rehecho.corpus[k]) {
       fail(`corpus.${k}: manifiesto ${cob.corpus[k] ?? '—'} · trozos ${rehecho.corpus[k] ?? '—'}`)
+    }
+  }
+
+  // 1.bis · las pasadas se reproducen, con la lectura de «no consta»
+  //
+  // Las píldoras de pasadas de la página leen este bloque. Si falta, la página
+  // dice que no consta; si no se reproduce, publica unas cifras que los trozos
+  // ya no dan. Y las filas con marca de «no consta», más las de «no consta» sin
+  // marca, tienen que ser la casilla «no consta»: es el puente que la página
+  // le dice al lector.
+  comprobaciones += 1
+  if (!cob.pasadas) {
+    fail('el manifiesto no trae `cobertura.pasadas`: las píldoras de pasadas no tendrían cifras')
+  } else {
+    const a = cob.pasadas
+    for (const campo of ['filas', 'noConsta', 'noConstaSinMarca'] as const) {
+      if (a[campo] !== pasadas[campo]) {
+        fail(`pasadas.${campo}: manifiesto ${a[campo]} · trozos ${pasadas[campo]}`)
+      }
+    }
+    for (const k of new Set([...Object.keys(a.porMarca), ...Object.keys(pasadas.porMarca)])) {
+      comprobaciones += 1
+      const x = a.porMarca[k]
+      const y = pasadas.porMarca[k]
+      if (x?.filas !== y?.filas || x?.noConsta !== y?.noConsta) {
+        fail(`pasadas.porMarca.${k}: manifiesto ${JSON.stringify(x)} · trozos ${JSON.stringify(y)}`)
+      }
+    }
+    comprobaciones += 1
+    const noConstaCasilla = Object.values(cob.porTipo).reduce((s, v) => s + v.noConsta, 0)
+    if (a.noConsta + a.noConstaSinMarca !== noConstaCasilla) {
+      fail(
+        `pasadas: ${a.noConsta} con marca + ${a.noConstaSinMarca} sin marca no son las ` +
+          `${noConstaCasilla} de «no consta»`,
+      )
+    }
+  }
+
+  // 1.ter · lo retenido, por tipo y por motivo, suma lo mismo
+  //
+  // No se puede rehacer desde los trozos —lo retenido no se sirve—, pero las
+  // dos particiones del manifiesto tienen que ser del mismo conjunto.
+  comprobaciones += 1
+  if (!totals?.retenidasPorMotivo) {
+    fail('el manifiesto no trae `retenidasPorMotivo`: la página no puede decir por qué retiene')
+  } else {
+    const suma = (o: Record<string, number>) => Object.values(o).reduce((s, n) => s + n, 0)
+    const porMotivo = suma(totals.retenidasPorMotivo)
+    const porTipo = suma(totals.retenidas ?? {})
+    if (porMotivo !== porTipo) {
+      fail(`retenidas: ${porTipo} por tipo y ${porMotivo} por motivo`)
     }
   }
 
