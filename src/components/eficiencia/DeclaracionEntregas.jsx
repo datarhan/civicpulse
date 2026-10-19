@@ -3,8 +3,15 @@
  *
  * La cifra congelada estaba dicha en prosa —«la misma cifra desde 2019»— y una
  * frase así se lee y se olvida. Puesta en una rejilla, cinco casillas idénticas
- * en fila debajo de cinco casillas que cambian todos los años son la
+ * en la fila del denominador, bajo una fila de coste que se mueve, son la
  * demostración, no la afirmación.
+ *
+ * La frase que acompaña a la rejilla sale de la rejilla (`lecturaCongelacion`).
+ * Decía a mano «N casillas idénticas debajo de otras que cambian todos los
+ * años», y en las trece fichas congeladas el tramo anterior del denominador
+ * también repite alguna cifra: el lector que buscó esas «otras» en la misma
+ * fila —a1532 repite 1.657.441 de 2015 a 2018— la encontró falsa. Revisión
+ * lectora del 19-10-2026.
  *
  * TRES AUSENCIAS, TRES TRATAMIENTOS. Hasta agosto de 2026 había dos casillas y
  * una de ellas mentía por agregación: `falta` juntaba «el ayuntamiento rindió la
@@ -102,8 +109,79 @@ function Casilla({ children, tono, primera, ultima }) {
  * afirmación de esta ficha es justamente que es la MISMA cifra. Del coste, en
  * cambio, sólo hace falta ver que se mueve.
  */
-/** La cantidad, entera y sin abreviar. Es la cifra que la ficha afirma repetida. */
-const exacto = (v) => v.toLocaleString('es-ES', { maximumFractionDigits: 0 })
+/**
+ * La cantidad, entera y sin abreviar. Es la cifra que la ficha afirma repetida.
+ *
+ * Con sus decimales: redondeaba a entero, y 0,01 m² —el valor que a163 declara
+ * en 2014 y 2015— salía como «0», un centinela pintado como cifra; las
+ * 11.059,41 t que se repiten «hasta el segundo decimal» salían sin ellos.
+ */
+const exacto = (v) => v.toLocaleString('es-ES', { maximumFractionDigits: 2 })
+
+const mismaCifra = (a, b) => a.toFixed(4) === b.toFixed(4)
+
+/**
+ * Lo que la fila del denominador enseña, dicho con sus cifras.
+ *
+ * Recibe las casillas que la rejilla pinta CON cifra, en orden, y las parte en
+ * tramos de cifra repetida. La última es la congelada; las de antes son lo que
+ * el lector ve a su izquierda, y la frase tiene que decir lo que hay ahí —si
+ * también repiten o si cambian en cada entrega—, no suponerlo. Del coste
+ * mira sólo las entregas del tramo final: es la fila de encima de él.
+ */
+export function lecturaCongelacion(casillas) {
+  const tramos = []
+  for (const c of casillas) {
+    const ultimo = tramos.at(-1)
+    if (ultimo && mismaCifra(ultimo.valor, c.valor)) ultimo.casillas.push(c)
+    else tramos.push({ valor: c.valor, casillas: [c] })
+  }
+  const resumen = (t) => ({
+    valor: t.valor,
+    n: t.casillas.length,
+    desde: t.casillas[0].anio,
+    hasta: t.casillas.at(-1).anio,
+  })
+  const final = tramos.at(-1)
+  if (!final) return null
+  const costes = final.casillas.map((c) => c.coste).filter((v) => typeof v === 'number')
+  return {
+    final: resumen(final),
+    casillasAntes: casillas.length - final.casillas.length,
+    repetidasAntes: tramos
+      .slice(0, -1)
+      .filter((t) => t.casillas.length >= 2)
+      .map(resumen),
+    costesDeclarados: costes.length,
+    costesDistintos: new Set(costes.map((v) => v.toFixed(2))).size,
+  }
+}
+
+function FraseCongelacion({ lectura, rotulo }) {
+  const { final, repetidasAntes, casillasAntes, costesDeclarados, costesDistintos } = lectura
+  const coste =
+    costesDeclarados < final.n
+      ? `el coste, en la fila de encima, viene declarado en ${costesDeclarados} de ellas y toma ${costesDistintos} ${costesDistintos === 1 ? 'valor' : 'valores distintos'}`
+      : costesDistintos === final.n
+        ? 'el coste, en la fila de encima, cambia en cada una'
+        : costesDistintos === 1
+          ? 'el coste, en la fila de encima, también repite la misma cifra'
+          : `el coste, en la fila de encima, toma ${costesDistintos} valores distintos en esas ${final.n}`
+  const enumera = (xs) =>
+    xs.length < 2 ? xs.join('') : `${xs.slice(0, -1).join(', ')} y ${xs.at(-1)}`
+  const tramo = (t) => `${exacto(t.valor)} en ${t.n} entregas (${t.desde}–${t.hasta})`
+  return (
+    <span data-congelacion="">
+      En la fila «{rotulo}», la cifra es la misma en las últimas {final.n} entregas:{' '}
+      {exacto(final.valor)}, de {final.desde} a {final.hasta}, mientras {coste}.{' '}
+      {repetidasAntes.length > 0
+        ? `No es la primera vez: antes repitió ${enumera(repetidasAntes.map(tramo))}. Sólo el último tramo va marcado porque es la cifra con la que hoy se publica el coste unitario.`
+        : casillasAntes > 0
+          ? `Antes de ${final.desde} la cifra cambió en cada entrega.`
+          : 'Es la misma desde la primera entrega de la rejilla.'}{' '}
+    </span>
+  )
+}
 
 const compacto = (v) =>
   v >= 1e6
@@ -173,6 +251,18 @@ export function DeclaracionEntregas({ indicador, entregasPublicadas = [], noPres
   const aMedias = aniosSinDeclarar.filter(
     (a) => desenlace(a, 'numerador') === 'declarado' || desenlace(a, 'denominador') === 'declarado',
   ).length
+
+  const congelacion = congeladaDesde
+    ? lecturaCongelacion(
+        anios
+          .filter((a) => desenlace(a, 'denominador') === 'declarado')
+          .map((a) => ({
+            anio: a,
+            valor: porAnio.get(a).denominador,
+            coste: porAnio.get(a).numerador,
+          })),
+      )
+    : null
 
   const fila = (clave, rotulo, formato, tonoDe) => (
     <>
@@ -316,18 +406,13 @@ export function DeclaracionEntregas({ indicador, entregasPublicadas = [], noPres
           textWrap: 'pretty',
         }}
       >
-        {congeladaDesde && (
-          <>
-            {i.declaracion.denominador.repeticionesFinales} casillas idénticas debajo de otras que
-            cambian todos los años: eso es el hallazgo, y no hace falta afirmarlo.{' '}
-          </>
-        )}
+        {congelacion && <FraseCongelacion lectura={congelacion} rotulo={i.divisor.singular} />}
         {sinRendir.length > 0 && sinDeclarar > 0 && (
           <>
             <strong>
               {sinDeclarar === 1
                 ? `${anios.find((a) => desenlace(a) === 'no-declarado')} y ${sinRendir.join(', ')} son ausencias distintas`
-                : 'las ausencias de esta rejilla no son todas iguales'}
+                : 'Las ausencias de esta rejilla no son todas iguales'}
             </strong>
             {' — '}
             en {sinDeclarar === 1 ? aniosSinDeclarar[0] : 'unas entregas'} el ayuntamiento rindió la
