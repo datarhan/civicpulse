@@ -5,6 +5,7 @@ import { buildTenderRows, CLAVE_DE_LICITACION } from '../../scripts/embed-verifi
 import { shortlistCandidates } from '../../src/scraper/claim-verifier'
 import { looselyContains } from '../../src/scraper/claim-verifier-llm'
 import { procurementStatusKind } from '../../src/lib/contract-status.js'
+import { sinEstadoSiLoDaSuContrato } from '../../src/scraper/gemelos-de-licitacion'
 import type { PlenoClaim } from '../../src/scraper/pleno-claim'
 
 /**
@@ -172,8 +173,15 @@ describe('sobre el snapshot publicado', () => {
     // licitaciones con su clave, que es la del corpus y no una copia.
     const fuente = new Map<string, Record<string, unknown>>()
     for (const r of T.contracts as Record<string, unknown>[]) fuente.set(String(r.id), r)
-    for (const r of T.tenders as Record<string, unknown>[])
-      fuente.set(CLAVE_DE_LICITACION + String(r.id), r)
+    // Salvo un hecho que se quita a propósito: el estado de una licitación cuyo
+    // contrato gemelo publica el suyo, que lo desmentía (`revoked` junto a
+    // `awarded`; tests/claim-verifier-gemelos-de-licitacion.test.ts). El resto
+    // de sus hechos —el importe del expediente entero, sobre todo— sigue debido.
+    const licitaciones = sinEstadoSiLoDaSuContrato(
+      T.tenders as Record<string, unknown>[],
+      T.contracts,
+    )
+    for (const r of licitaciones) fuente.set(CLAVE_DE_LICITACION + String(r.id), r)
     const conHechosPerdidos: string[] = []
     for (const f of filas) {
       const r = fuente.get(f.sourceId)

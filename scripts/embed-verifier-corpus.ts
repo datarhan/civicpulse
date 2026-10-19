@@ -47,6 +47,7 @@ import { pathToFileURL } from 'node:url'
 import { describeActiveEmbedder, embedTexts, EmbedError } from '../src/scraper/embed-client'
 import type { CorpusRow } from '../src/scraper/semantic-shortlist'
 import { snippetDeContrato } from '../src/scraper/snippet-de-contrato'
+import { sinEstadoSiLoDaSuContrato } from '../src/scraper/gemelos-de-licitacion'
 import { bdnsRef, snippetDeBdns, type BdnsRow } from '../src/scraper/snippet-de-bdns'
 
 const DATA_DIR = resolve('public/data')
@@ -154,13 +155,22 @@ function repiteSuContrato(
  * en todas las filas, y no distingue a ninguna; la adjudicataria va en
  * `assignee`, y sin ella una declaración que nombra a la empresa
  * (1pe3qs8-005-cit-6af61c, «Auditesa») no la encontraba por su nombre.
+ *
+ * Y la licitación que entra lo hace sin su estado cuando su contrato gemelo
+ * publica uno (`sinEstadoSiLoDaSuContrato`): el 19-10-2026, 20 entraban con un
+ * estado que su contrato desmentía —`revoked` junto a `awarded`—, y el modelo
+ * leía el mismo expediente revocado y adjudicado. El texto embebido no cambia,
+ * así que la siguiente pasada sólo les rehace el snippet.
  */
 export function buildTenderRows(data: unknown): PendingRow[] {
   if (!data || typeof data !== 'object') return []
   const d = data as { contracts?: unknown[]; tenders?: unknown[]; items?: unknown[] }
   const arr: Array<[unknown, string]> = [
     ...(d.contracts ?? []).map((r): [unknown, string] => [r, '']),
-    ...(d.tenders ?? []).map((r): [unknown, string] => [r, CLAVE_DE_LICITACION]),
+    ...sinEstadoSiLoDaSuContrato(d.tenders, d.contracts).map((r): [unknown, string] => [
+      r,
+      CLAVE_DE_LICITACION,
+    ]),
     ...(d.items ?? []).map((r): [unknown, string] => [r, '']),
   ]
   const contratos = new Map<string, Record<string, unknown>>()
