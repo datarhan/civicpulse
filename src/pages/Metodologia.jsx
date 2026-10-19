@@ -2413,13 +2413,16 @@ export default function Metodologia() {
             que se cruzaron sus citas, los respalden o no: <strong>ningún</strong> paso de este
             verificador comprueba que un expediente sostenga una frase. Los cruces son coincidencias
             de importe, de cifra contra la última serie publicada o de palabras en un título — el 5
-            de agosto de 2026, la única fila de evidencia del laboratorio emparejaba un contrato del
-            Plan de Movilidad Urbana Sostenible con una noticia sobre 61.000 € en artes escénicas.
-            Hasta ese mismo día el campo se llamaba <code>corroboration</code> con exactamente el
-            mismo contenido, igual que en los hallazgos de pleno. Se renombró sin ninguna fila
-            publicada dentro, así que aquí no cambió ninguna afirmación; el cambio es incompatible
-            para quien leyera el fichero. El campo <code>contradiction</code> sólo admite documentos
-            que el verificador marcó como incompatibles con la cita.
+            de agosto de 2026, la única fila de evidencia del verificador de prensa (
+            <code>press-claims-verified.json</code>, la que lee el laboratorio) emparejaba un
+            contrato del Plan de Movilidad Urbana Sostenible con una noticia sobre 61.000 € en artes
+            escénicas. Hasta ese mismo día el campo se llamaba <code>corroboration</code> con
+            exactamente el mismo contenido, igual que en los hallazgos de pleno. Vive en el fichero
+            de hallazgos de prensa (<code>press-findings.json</code>), y se renombró cuando aún no
+            había ningún hallazgo publicado: aquella fila era del verificador, no de un hallazgo,
+            así que aquí no cambió ninguna afirmación; el cambio es incompatible para quien leyera
+            el fichero. El campo <code>contradiction</code> sólo admite documentos que el
+            verificador marcó como incompatibles con la cita.
           </li>
           <li>
             <strong>
