@@ -598,6 +598,11 @@ export function construirGrafoApp(entradas: EntradasGrafo): GrafoApp {
    */
   const dato = (nombre: string, quienLoNombra: string): string | null => {
     if (colecciones.has(nombre)) return `snapshot:${nombre}`
+    // Un fichero DENTRO de una colección —`reportajes/basuras.json`, que el
+    // grafo de rutas cuelga de su pieza desde el 19-10-2026— es esa pieza aquí:
+    // el despiece dibuja la carpeta como un nodo, no sus hojas.
+    const carpeta = nombre.includes('/') ? nombre.slice(0, nombre.lastIndexOf('/') + 1) : null
+    if (carpeta && colecciones.has(carpeta)) return `snapshot:${carpeta}`
     if (publicados.has(nombre)) {
       return anota({
         id: `snapshot:${nombre}`,
