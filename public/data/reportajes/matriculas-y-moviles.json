@@ -8,7 +8,17 @@
     "estado": "publicado",
     "publicadoEl": "2026-10-14",
     "fechaDatos": "14 de octubre de 2026",
-    "correcciones": []
+    "correcciones": [],
+    "kpisEnTexto": [
+      {
+        "n": "61.050 €",
+        "en": "61.050,21 € sin IVA —73.870,75 € con IVA—"
+      },
+      {
+        "n": "≥5",
+        "en": "al menos cinco cámaras que leen matrículas"
+      }
+    ]
   },
   "kpis": [
     {

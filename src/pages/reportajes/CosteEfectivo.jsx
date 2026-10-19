@@ -1,7 +1,7 @@
 import { useReportaje } from '../../hooks/useReportaje'
-import Emblema, { cifrasDelEmblema } from '../../components/reportajes/Emblema'
-import { CorrectionNote, CorrectionNotice } from '../../components/reportajes/CorrectionNote'
-import { SecHead, IndicePieza, Revela } from '../../components/reportajes/Pieza'
+import CabeceraPieza from '../../components/reportajes/CabeceraPieza'
+import { CorrectionNote } from '../../components/reportajes/CorrectionNote'
+import { SecHead, Revela } from '../../components/reportajes/Pieza'
 import { FichaSociedad } from '../../components/reportajes/FichaSociedad'
 import { useSociedades, indexarSociedades } from '../../hooks/useSociedades'
 import { Card, Pill } from '../../components/Primitives'
@@ -790,8 +790,6 @@ export default function CosteEfectivo() {
     )
 
   const m = data.meta
-  // Las tarjetas que la figura de cabecera ya imprime (ver cifrasDelEmblema).
-  const enFigura = new Set(cifrasDelEmblema('coste-efectivo', data))
   const c = data.concesion
   const ficha = indexarSociedades(sociedades).get('hidraqua')
   const cong = data.congelados
@@ -823,132 +821,44 @@ export default function CosteEfectivo() {
         lineHeight: 1.62,
       }}
     >
-      {m.estado !== 'publicado' && (
-        <div
-          style={{
-            background: 'var(--warn-soft)',
-            border: '1px solid var(--warn)',
-            color: 'var(--warn-ink)',
-            borderRadius: 'var(--r-card)',
-            padding: '10px 14px',
-            fontSize: 'var(--fs-meta)',
-            marginBottom: 22,
-          }}
-        >
-          <strong>Borrador editorial · pendiente de revisión afirmación por afirmación.</strong>{' '}
-          Esta pieza aún no es una publicación definitiva. El derecho de réplica del Ayuntamiento
-          queda abierto desde su publicación.
-        </div>
-      )}
-
-      <div
-        className="mono cp-texto"
-        style={{
-          fontSize: 'var(--fs-micro)',
-          color: 'var(--ink50)',
-          textTransform: 'uppercase',
-          letterSpacing: '.08em',
+      <CabeceraPieza
+        slug="coste-efectivo"
+        data={data}
+        borrador={{
+          titulo: 'Borrador editorial · pendiente de revisión afirmación por afirmación.',
+          texto:
+            'Esta pieza aún no es una publicación definitiva. El derecho de réplica del Ayuntamiento queda abierto desde su publicación.',
         }}
-      >
-        {m.seccion}
-      </div>
-      <h1
-        style={{
-          fontFamily: SERIF,
-          fontSize: 'var(--type-display)',
-          fontWeight: 600,
-          letterSpacing: '-.015em',
-          lineHeight: 1.08,
-          margin: '4px 0 14px',
-        }}
-      >
-        {m.titulo}
-      </h1>
-      <p
-        style={{
-          fontSize: 'var(--fs-head)',
-          color: 'var(--ink50)',
-          lineHeight: 1.5,
-          margin: '0 0 26px',
-        }}
-      >
-        {m.subtitulo}
-      </p>
-
-      <Emblema slug="coste-efectivo" data={data} style={{ margin: '0 0 26px' }} />
-
-      <CorrectionNotice correcciones={m.correcciones} />
-
-      {/* Esta pieza se publicó el 16 de agosto y se amplió el 23. Decirlo en la
-          propia pieza, y decir que no se ha retirado ni corregido nada, es la
-          diferencia entre ampliar y reescribir en silencio: quien la leyó la
-          primera vez tiene derecho a saber qué ha cambiado desde entonces. */}
-      {m.notaAmpliacion && (
-        <p
-          className="cp-ancho"
-          style={{
-            fontSize: 'var(--fs-aux)',
-            color: 'var(--ink70, var(--ink50))',
-            background: 'var(--soft)',
-            border: '1px solid var(--border)',
-            borderRadius: 'var(--r-card)',
-            padding: '12px 14px',
-            margin: '0 0 22px',
-            lineHeight: 1.55,
-          }}
-        >
-          <strong>Ampliada el {m.ampliadoEl}.</strong> {m.notaAmpliacion}
-        </p>
-      )}
-
-      {/* KPIs */}
-      <div
-        style={{
-          display: 'grid',
-          gridTemplateColumns: 'repeat(auto-fit, minmax(150px, 1fr))',
-          gap: 1,
-          background: 'var(--border)',
-          border: '1px solid var(--border)',
-          borderRadius: 'var(--r-card)',
-          overflow: 'hidden',
-          margin: '0 0 30px',
-        }}
-      >
-        {data.kpis.map((s, i) => (
-          <div
-            key={i}
-            className={enFigura.has(s.n) ? 'cp-kpi-en-figura' : undefined}
-            style={{ background: 'var(--paper)', padding: '16px 14px' }}
-          >
-            <div
-              className="mono"
-              style={{
-                fontSize: 'var(--fs-card)',
-                fontWeight: 500,
-                color: 'var(--ink)',
-                lineHeight: 1,
-              }}
-            >
-              {s.n}
-            </div>
-            <div
-              style={{
-                fontSize: 'var(--fs-aux)',
-                color: 'var(--ink50)',
-                marginTop: 6,
-                lineHeight: 1.35,
-              }}
-            >
-              {s.l}
-            </div>
-          </div>
-        ))}
-      </div>
+        nota={
+          <>
+            {/* Esta pieza se publicó el 16 de agosto y se amplió el 23. Decirlo en la
+                propia pieza, y decir que no se ha retirado ni corregido nada, es la
+                diferencia entre ampliar y reescribir en silencio: quien la leyó la
+                primera vez tiene derecho a saber qué ha cambiado desde entonces. */}
+            {m.notaAmpliacion && (
+              <p
+                className="cp-ancho"
+                style={{
+                  fontSize: 'var(--fs-aux)',
+                  color: 'var(--ink70, var(--ink50))',
+                  background: 'var(--soft)',
+                  border: '1px solid var(--border)',
+                  borderRadius: 'var(--r-card)',
+                  padding: '12px 14px',
+                  margin: '0 0 22px',
+                  lineHeight: 1.55,
+                }}
+              >
+                <strong>Ampliada el {m.ampliadoEl}.</strong> {m.notaAmpliacion}
+              </p>
+            )}
+          </>
+        }
+      />
 
       {/* 01-04: el eje nuevo. Las tres secciones de la primera versión pasan a
           ser 05-07 sin tocar una cifra: lo que se añade es lo que faltaba —qué
           hay detrás de las dos casillas que el panel deja en blanco—. */}
-      <IndicePieza />
 
       <SecHead
         num="01"

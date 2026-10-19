@@ -1,9 +1,9 @@
 import { useReportaje } from '../../hooks/useReportaje'
-import Emblema, { cifrasDelEmblema } from '../../components/reportajes/Emblema'
+import CabeceraPieza from '../../components/reportajes/CabeceraPieza'
 import MapaPliego from '../../components/reportajes/MapaPliego'
 import { Card } from '../../components/Primitives'
-import { CorrectionNote, CorrectionNotice } from '../../components/reportajes/CorrectionNote'
-import { SecHead, IndicePieza } from '../../components/reportajes/Pieza'
+import { CorrectionNote } from '../../components/reportajes/CorrectionNote'
+import { SecHead } from '../../components/reportajes/Pieza'
 import { fmtDateHuman } from '../../lib/formatters'
 import { trozosResaltados } from '../../lib/resaltar'
 import {
@@ -217,8 +217,6 @@ export default function MatriculasYMoviles() {
     )
 
   const m = data.meta
-  // Las tarjetas que la figura de cabecera ya imprime (ver cifrasDelEmblema).
-  const enFigura = new Set(cifrasDelEmblema(SLUG, data))
   const { anonimizada: an, camaras: ca, observado: ob, version: ve } = data
 
   return (
@@ -232,106 +230,11 @@ export default function MatriculasYMoviles() {
         lineHeight: 1.62,
       }}
     >
-      {m.estado !== 'publicado' && (
-        <div
-          style={{
-            background: 'var(--warn-soft)',
-            border: '1px solid var(--warn)',
-            borderRadius: 'var(--r-card)',
-            padding: '10px 12px',
-            marginBottom: 16,
-            fontSize: 'var(--fs-aux)',
-            color: 'var(--ink)',
-          }}
-        >
-          Borrador · no publicado.
-        </div>
-      )}
-
-      <div
-        className="mono cp-texto"
-        style={{ fontSize: 'var(--fs-micro)', color: 'var(--ink50)', letterSpacing: '.06em' }}
-      >
-        {m.seccion}
-      </div>
-      <h1
-        style={{
-          fontFamily: SERIF,
-          fontSize: 'var(--fs-display)',
-          fontWeight: 600,
-          letterSpacing: '-.02em',
-          lineHeight: 1.08,
-          margin: '8px 0 10px',
-        }}
-      >
-        {m.titulo}
-      </h1>
-      <p style={{ color: 'var(--ink70)', fontSize: 'var(--fs-head)', margin: '0 0 6px' }}>
-        {m.subtitulo}
-      </p>
-      <div className="mono" style={{ fontSize: 'var(--fs-meta)', color: 'var(--ink50)' }}>
-        Publicado el {fmtDateHuman(m.publicadoEl)} · cifras congeladas a {m.fechaDatos}
-      </div>
-
-      <Emblema slug={SLUG} data={data} style={{ margin: '22px 0 26px' }} />
-
-      <CorrectionNotice correcciones={m.correcciones} style={{ marginTop: 22 }} />
-
-      {/* La apertura era cuatro resúmenes seguidos —subtítulo, figura, tarjetas y
-          una entradilla en serifa de titular— que repetían las mismas cifras: en
-          el móvil, tres pantallas antes del primer apartado. Ahora resumen el
-          subtítulo y la figura, y la entradilla abre el texto.
-
-          Tarjetas: sólo quedan las que la figura imprime, y sólo donde la figura
-          no cabe (`cp-kpi-en-figura`, por debajo de 480px), para sustituirla.
-          Las demás repetían, sin su contexto, una cifra que la entradilla da
-          con él: «61.050 €» —ahí con y sin IVA— y «≥5» —«al menos cinco
-          cámaras». Una tarjeta nueva en `kpis` cuya cifra no esté en la figura
-          no se pinta: si hace falta, que vaya a la prosa. Por eso esto es de
-          ESTA pieza y no del armazón: en «conteo-visitantes», «267» y «16/100»
-          sólo están en sus tarjetas. */}
-      {/* La clase va en un envoltorio sin `display` en línea: en la rejilla, el
-          `display: grid` en línea ganaba a la regla que la esconde. */}
-      <div className="cp-kpi-en-figura">
-        <div
-          style={{
-            display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(150px, 1fr))',
-            gap: 10,
-            margin: '20px 0 6px',
-          }}
-        >
-          {data.kpis
-            .filter((k) => enFigura.has(k.n))
-            .map((k, i) => (
-              <Card key={i} style={{ padding: '12px 14px' }}>
-                <div
-                  className="mono"
-                  style={{ fontSize: 'var(--fs-page)', color: 'var(--ink)', fontWeight: 600 }}
-                >
-                  {k.n}
-                </div>
-                <div
-                  style={{
-                    fontSize: 'var(--fs-meta)',
-                    color: 'var(--ink50)',
-                    marginTop: 4,
-                    lineHeight: 1.4,
-                  }}
-                >
-                  {k.l}
-                </div>
-              </Card>
-            ))}
-        </div>
-      </div>
-
-      {/* La entradilla, en el cuerpo del texto y a la medida: es el primer
-          párrafo de la pieza, no un segundo subtítulo. En tinta plena, que la
-          distingue del gris de los párrafos que la siguen. */}
-      <p style={{ color: 'var(--ink)', margin: '22px 0 0' }}>{data.entradilla}</p>
-
-      <IndicePieza />
+      {/* La cabecera es la común (CabeceraPieza). Sus tarjetas: «61.050 €» y
+          «≥5» están en `meta.kpisEnTexto` —la entradilla las da con su
+          contexto—, así que sólo queda «0 de 2», que la figura escribe: se ve
+          donde la figura no cabe, para sustituirla. */}
+      <CabeceraPieza slug={SLUG} data={data} />
 
       {/* 1 · lo que compra el pliego */}
       <SecHead num="01" kicker="El pliego" title={data.compra.titulo} />
