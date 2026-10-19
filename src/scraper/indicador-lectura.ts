@@ -24,6 +24,7 @@
  */
 import type { Indicador, Tier } from './indicadores'
 import { cruzaMediana } from './indicador-areas'
+import { esGestionPorConcesion } from './modo-gestion'
 import type { IndicadorMunicipal } from './indicadores-friccion'
 
 export interface Lectura {
@@ -344,11 +345,16 @@ export function leerIndicador(i: Indicador): Lectura {
   // Desde el 2026-09-02 estas fichas tienen cociente, y esa frase colocaba en
   // el presupuesto municipal un dinero que sale del recibo de cada casa: la
   // salvedad lo aclara debajo, pero la primera frase es la que se lee.
-  const cierre =
-    i.modoGestion === 'concesion'
-      ? `: sale a ${euros(i.valor)} al año por cada ${i.divisor.singular}, que no paga el ` +
-        'presupuesto municipal sino el recibo de cada casa.'
-      : `: sale a ${euros(i.valor)} al año por cada ${i.divisor.singular}.`
+  //
+  // Y sólo en una concesión propiamente dicha: la clase `concesion` junta
+  // también el concierto y la gestión interesada, y de un concierto —el
+  // ayuntamiento paga a una empresa por prestarlo— es falso que lo pague el
+  // recibo. Se pregunta a la cadena del ministerio, no a la clase.
+  const concesionPropia = i.modoGestion === 'concesion' && esGestionPorConcesion(i.codGestionRaw)
+  const cierre = concesionPropia
+    ? `: sale a ${euros(i.valor)} al año por cada ${i.divisor.singular}, que no paga el ` +
+      'presupuesto municipal sino el recibo de cada casa.'
+    : `: sale a ${euros(i.valor)} al año por cada ${i.divisor.singular}.`
   const que =
     `El ayuntamiento declaró ${euros(i.numerador.valor!)} de coste para este servicio en ` +
     `${entrega} y ${i.denominador.valor!.toLocaleString('es-ES')} ${i.divisor.plural} ` +
@@ -371,7 +377,7 @@ export function leerIndicador(i: Indicador): Lectura {
           `cruza la mediana: la posición no se distingue con seguridad de la del grupo.`,
       )
     }
-  } else if (i.modoGestion === 'concesion') {
+  } else if (concesionPropia) {
     // Era `donde = null`, y valía mientras ninguna concesión podía tener
     // pares: la rama sólo la alcanzaban fichas sin cociente, donde el motivo ya
     // lo explicaba todo. Ahora la alcanza una concesión CON cifra a la que no

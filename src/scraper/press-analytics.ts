@@ -7,15 +7,21 @@
  *      We don't fetch outlet About pages; instead we infer the
  *      8-indicator subset that is verifiable from our local data trail:
  *       - localCoverage: article URL host belongs to a local Camp de
- *         Túria outlet OR the source name matches our known list.
+ *         Túria outlet (`LOCAL_HOSTS`) OR the source name says so. An
+ *         administration is never a local outlet (`esFuenteOficial`).
  *       - datedArticle: ISO publish date parses correctly.
  *       - municipalSourceMatch: alguna afirmación cotejada volvió
  *         `verificado`; `null` si no se cotejó ninguna. Una fila de
  *         evidencia no basta: ver `coincidenciaMunicipal`.
- *       - corroboratedAcrossOutlets: ≥2 outlets share the article
- *         fingerprint (FNV title hash).
+ *       - corroboratedAcrossOutlets: `true` when ≥2 INDEPENDENT outlets
+ *         (by host; an administration's press note does not count) tell
+ *         the same story (clusterArticlesByStory). `null` otherwise, never
+ *         `false`: the title clustering misses the same story told in
+ *         Valencian and in Castilian, so not finding a second outlet is
+ *         not evidence that there is none.
  *       - factualClaimsPresent: extractor emitted ≥1 claim with
- *         confidence ≥0.5.
+ *         confidence ≥0.5; `false` when it processed the headline and
+ *         found none; `null` when it never processed it.
  *       - opinionFraction: ratio of opinativa accusations to total
  *         claims. Lower is more "news-y", higher is more "opinion".
  *      We deliberately do NOT rank outlets — ranking with <10 articles
@@ -40,19 +46,26 @@ import { corpusReales } from './claim-verdicts'
 import type { ClaimVerdict } from './claim-verifier'
 import type { PressClaim } from './press-claim'
 import type { PressClaimVerification } from './press-verifier'
+import { desenlaceVigente, type ExtraccionArticulo } from './press-extraccion'
+import { esFuenteOficial } from './press-fuente-oficial'
 
-const LOCAL_HOSTS = new Set([
-  'infoturia.com',
-  'ribarroja.es',
-  'ribarroja-cs.es',
-  'levante-emv.com',
-  'lasprovincias.es',
-  'valenciaplaza.com',
-  'eldiario.es',
-  'cadenaser.com',
-])
+/**
+ * Hosts of LOCAL outlets: newsrooms of the Camp de Túria, which is what
+ * «Cobertura local» says. The set used to hold Levante-EMV, Las Provincias,
+ * Valencia Plaza, elDiario.es and the Cadena SER — regional and national
+ * outlets — and the council's own ribarroja.es, which is not an outlet at all;
+ * so the chip was lit for most of the feed and meant nothing. Exported so a
+ * test pins what it holds (tests/press-analitica-medios.test.ts).
+ */
+export const LOCAL_HOSTS: ReadonlySet<string> = new Set(['infoturia.com'])
 
-const LOCAL_SOURCE_HINTS = ['camp de túria', 'periòdic', 'comarcal', 'ribarroja', 'riba-roja']
+/**
+ * Source names that make an outlet local. Only names tied to the comarca or the
+ * town: «periòdic» and «comarcal» alone matched any Valencian paper or comarca.
+ * An administration that carries the town's name (the Ayuntamiento) is caught
+ * by `esFuenteOficial` before this list is read.
+ */
+const LOCAL_SOURCE_HINTS = ['camp de túria', 'ribarroja', 'riba-roja']
 
 // ─── 1. Trust Project indicators ────────────────────────────────────────────
 
@@ -75,8 +88,17 @@ export interface ArticleTrustRow {
      * `coincidenciaMunicipal`.
      */
     municipalSourceMatch: boolean | null
-    corroboratedAcrossOutlets: boolean
-    factualClaimsPresent: boolean
+    /**
+     * `true` ≥2 independent outlets ran the story · `null` none found. Never
+     * `false`: absence of a detected cluster is not evidence of no coverage.
+     */
+    corroboratedAcrossOutlets: true | null
+    /**
+     * `true` ≥1 claim with confidence ≥0.5 · `false` the extractor processed
+     * this headline and kept none · `null` it never processed it (or the
+     * model did not answer), so nothing is known either way.
+     */
+    factualClaimsPresent: boolean | null
     opinionFraction: number
   }
   score: number
@@ -86,10 +108,16 @@ export interface OutletScorecard {
   outlet: string
   outletHost: string | null
   articleCount: number
+  /** Every claim of the outlet's articles, by verdict — checked or not. */
   verdictCounts: Record<ClaimVerdict, number>
+  /**
+   * How many of those claims were checked against some corpus
+   * (`corpusReales(checkedAgainst)` non-empty) — the divisor of the ratios.
+   */
+  checkedClaims: number
   meanTrustScore: number
-  // null (not 0) when the outlet has no audited claims yet — the UI renders
-  // "—", so a monitored-but-unverified outlet never masquerades as "0% verified".
+  // null (not 0) when the outlet has no CHECKED claims — the UI renders "—",
+  // so a monitored-but-unverified outlet never masquerades as "0% verified".
   verifiedRatio: number | null
   contradictedRatio: number | null
 }
@@ -109,6 +137,8 @@ export interface PressArticleLite {
   sourceHost: string | null
   date: string
   fingerprint: string
+  /** press.ts stamps it on the council's own feed; see `esFuenteOficial`. */
+  official?: boolean
 }
 
 export interface VerifiedClaimRow {
@@ -144,9 +174,43 @@ export interface VerifiedClaimRow {
  * y el punto sólo lo gana una `verificado`.
  */
 function coincidenciaMunicipal(claims: VerifiedClaimRow[]): boolean | null {
-  const cotejadas = claims.filter((c) => corpusReales(c.verification.checkedAgainst).length > 0)
+  const cotejadas = claims.filter(cotejada)
   if (cotejadas.length === 0) return null
   return cotejadas.some((c) => c.verification.verdict === 'verificado')
+}
+
+/** Checked against some real corpus: a pass marker alone does not count. */
+function cotejada(c: VerifiedClaimRow): boolean {
+  return corpusReales(c.verification.checkedAgainst).length > 0
+}
+
+/**
+ * «Afirmaciones contrastables», en tres estados. Era `claims.some(...)`, y para
+ * un titular que el extractor nunca procesó eso es `false`: el 19-10-2026, 38 de
+ * los 65 titulares de la ventana salían «○» justo debajo de la frase de la misma
+ * tarjeta que dice «Este titular aún no ha pasado por el extractor». Regla 2: «no
+ * corrió» no es «no encontró».
+ *
+ *   · con afirmaciones publicadas: lo que digan sus confianzas;
+ *   · procesado sin afirmaciones (`sin-afirmaciones`, `descartado-en-triaje`):
+ *     `false`, que es lo que el extractor dijo;
+ *   · todo lo demás —sin fila, huella cambiada, `llm-no-disponible`, o
+ *     `extraido` con todas retenidas por el filtro editorial, cuya confianza no
+ *     se ve—: `null`. Sin bloque `extraccion` (un snapshot anterior) no hay fila
+ *     de ningún titular, y uno sin afirmaciones es `null` por lo mismo.
+ */
+function afirmacionesContrastables(
+  claims: VerifiedClaimRow[],
+  desenlace: ExtraccionArticulo['desenlace'] | null,
+): boolean | null {
+  if (claims.length > 0) return claims.some((c) => c.claim.confidence >= 0.5)
+  if (desenlace === 'sin-afirmaciones' || desenlace === 'descartado-en-triaje') return false
+  return null
+}
+
+/** The outlet is the publisher host; with no host, the name is all there is. */
+function claveDeMedio(a: { sourceHost: string | null; source: string }): string {
+  return a.sourceHost ?? `name:${a.source}`
 }
 
 /**
@@ -162,16 +226,32 @@ function coincidenciaMunicipal(claims: VerifiedClaimRow[]): boolean | null {
 export function distinctOutlets(articles: ReadonlyArray<PressArticleLite>): string[] {
   const nameByHost = new Map<string, string>()
   for (const a of articles) {
-    const key = a.sourceHost ?? `name:${a.source}`
+    const key = claveDeMedio(a)
     const prev = nameByHost.get(key)
     if (prev === undefined || a.source.localeCompare(prev) < 0) nameByHost.set(key, a.source)
   }
   return [...nameByHost.values()].sort()
 }
 
+/**
+ * The distinct outlets that can corroborate each other: `distinctOutlets`
+ * without administrations. On 2026-10-19 seven of the eight published
+ * «Cobertura comparada · 2 medios» groups were the Ayuntamiento's press note
+ * plus a newspaper reprinting it — one source, counted twice.
+ */
+export function medioIndependientes(articles: ReadonlyArray<PressArticleLite>): string[] {
+  return distinctOutlets(articles.filter((a) => !esFuenteOficial(a)))
+}
+
 export function computeTrustIndicators(opts: {
   press: PressArticleLite[]
   verified: VerifiedClaimRow[]
+  /**
+   * The extractor's per-article outcomes (`extraccion.articulos` of
+   * press-claims-verified.json). `null`/absent for a snapshot older than the
+   * block: then no headline without claims can be said to have been processed.
+   */
+  extraccion?: ExtraccionArticulo[] | null
   windowDays?: number
   now?: Date
 }): TrustIndicatorsReport {
@@ -188,11 +268,14 @@ export function computeTrustIndicators(opts: {
     else claimsByArticle.set(row.claim.articleId, [row])
   }
 
+  const filaDe = new Map((opts.extraccion ?? []).map((f) => [f.articleId, f]))
+
   // Same-story clustering as triangulation — see clusterArticlesByStory for
-  // why exact fingerprint identity can never answer this.
+  // why exact fingerprint identity can never answer this. Only independent
+  // outlets count (`medioIndependientes`).
   const outletsByArticleId = new Map<string, number>()
   for (const group of clusterArticlesByStory(press).values()) {
-    const outlets = distinctOutlets(group).length
+    const outlets = medioIndependientes(group).length
     for (const a of group) outletsByArticleId.set(a.id, outlets)
   }
 
@@ -205,14 +288,18 @@ export function computeTrustIndicators(opts: {
 
     const municipalSourceMatch = coincidenciaMunicipal(claims)
 
-    const ind = {
+    const ind: ArticleTrustRow['indicators'] = {
       localCoverage:
-        LOCAL_HOSTS.has(p.sourceHost ?? '') ||
-        LOCAL_SOURCE_HINTS.some((h) => p.source.toLowerCase().includes(h)),
+        !esFuenteOficial(p) &&
+        (LOCAL_HOSTS.has(p.sourceHost ?? '') ||
+          LOCAL_SOURCE_HINTS.some((h) => p.source.toLowerCase().includes(h))),
       datedArticle: !!p.date && !Number.isNaN(new Date(p.date).getTime()),
       municipalSourceMatch,
-      corroboratedAcrossOutlets: (outletsByArticleId.get(p.id) ?? 0) >= 2,
-      factualClaimsPresent: claims.some((c) => c.claim.confidence >= 0.5),
+      corroboratedAcrossOutlets: (outletsByArticleId.get(p.id) ?? 0) >= 2 ? true : null,
+      factualClaimsPresent: afirmacionesContrastables(
+        claims,
+        desenlaceVigente(p, filaDe.get(p.id)),
+      ),
       opinionFraction,
     }
 
@@ -240,15 +327,20 @@ export function computeTrustIndicators(opts: {
     }
   })
 
+  // One row per publisher HOST, named as `distinctOutlets` names it. Grouped by
+  // the Google News name, fotocasa.es was two rows on 2026-10-19, «Fotocasa»
+  // (11) and «Fotocasa.es» (1) — the defect 18a952e1 fixed for cross-coverage.
   const byOutlet = new Map<string, { rows: ArticleTrustRow[]; host: string | null }>()
   for (const a of articles) {
-    const entry = byOutlet.get(a.outlet)
+    const key = claveDeMedio({ sourceHost: a.outletHost, source: a.outlet })
+    const entry = byOutlet.get(key)
     if (entry) entry.rows.push(a)
-    else byOutlet.set(a.outlet, { rows: [a], host: a.outletHost })
+    else byOutlet.set(key, { rows: [a], host: a.outletHost })
   }
 
   const outlets: OutletScorecard[] = []
-  for (const [outlet, { rows, host }] of byOutlet) {
+  for (const { rows, host } of byOutlet.values()) {
+    const outlet = rows.map((r) => r.outlet).sort((a, b) => a.localeCompare(b))[0]
     const articleIds = rows.map((r) => r.articleId)
     const verdictCounts: Record<ClaimVerdict, number> = {
       verificado: 0,
@@ -257,12 +349,12 @@ export function computeTrustIndicators(opts: {
       'sin-datos': 0,
       'promesa-repetida': 0,
     }
-    let totalClaims = 0
+    let checkedClaims = 0
     for (const id of articleIds) {
       const claims = claimsByArticle.get(id) ?? []
       for (const c of claims) {
         verdictCounts[c.verification.verdict] += 1
-        totalClaims += 1
+        if (cotejada(c)) checkedClaims += 1
       }
     }
     const meanTrustScore = rows.reduce((acc, r) => acc + r.score, 0) / Math.max(rows.length, 1)
@@ -275,15 +367,24 @@ export function computeTrustIndicators(opts: {
     // La asimetría se mantiene: verificado es una COBERTURA («0 de 30
     // comprobadas» es verdad y es lo que se quiere saber), discrepancia es un
     // HALLAZGO y sobre nada examinado no vale 0, no existe.
+    //
+    // Y el divisor es lo COTEJADO, no todo lo extraído. El 19-10-2026 la fila del
+    // Ayuntamiento decía «0 % · 0 de 26 afirm.» y 21 de esas 26 no se habían
+    // buscado en ningún corpus (`checkedAgainst: []`): eran 0 de 5. Una
+    // afirmación que nadie cotejó no puede salir verificada ni contradicha, así
+    // que tampoco divide; la página dice aparte cuántas quedan sin cotejar. Sin
+    // ninguna cotejada, las dos tasas son null.
     const sinResolver = verdictCounts.verificado + verdictCounts.contradicho === 0
-    const verifiedRatio = totalClaims === 0 ? null : verdictCounts.verificado / totalClaims
-    const contradictedRatio = sinResolver ? null : verdictCounts.contradicho / totalClaims
+    const verifiedRatio = checkedClaims === 0 ? null : verdictCounts.verificado / checkedClaims
+    const contradictedRatio =
+      sinResolver || checkedClaims === 0 ? null : verdictCounts.contradicho / checkedClaims
 
     outlets.push({
       outlet,
       outletHost: host,
       articleCount: rows.length,
       verdictCounts,
+      checkedClaims,
       meanTrustScore: Math.round(meanTrustScore * 100) / 100,
       verifiedRatio: verifiedRatio === null ? null : Math.round(verifiedRatio * 1000) / 1000,
       contradictedRatio:
@@ -309,7 +410,13 @@ export interface TriangulationCluster {
   // consumers join to articles via `articleIds`, not this field.
   clusterId: string
   articleIds: string[]
+  /** The INDEPENDENT outlets that ran the story, one per host; ≥2 by construction. */
   outlets: string[]
+  /**
+   * Administrations whose press note is in the group (`esFuenteOficial`). Named
+   * apart because they do not corroborate: they are the source, not a witness.
+   */
+  fuentesOficiales: string[]
   earliestDate: string
   latestDate: string
   // Ninguna cifra. El grupo publicaba `amountDrift` —el máximo menos el mínimo de
@@ -424,8 +531,9 @@ export function computeTriangulation(opts: {
 
   const clusters: TriangulationCluster[] = []
   for (const articles of components.values()) {
-    const outlets = distinctOutlets(articles)
-    // Triangulation = corroboration ACROSS outlets; a same-outlet echo isn't it.
+    const outlets = medioIndependientes(articles)
+    // Triangulation = corroboration ACROSS outlets; a same-outlet echo isn't it,
+    // and neither is a newspaper reprinting the council's own press note.
     if (outlets.length < 2) continue
     const dates = articles.map((a) => a.date).sort()
     const verdictMix: Record<ClaimVerdict, number> = {
@@ -442,6 +550,7 @@ export function computeTriangulation(opts: {
       clusterId: articles.map((a) => a.fingerprint).sort()[0],
       articleIds: articles.map((a) => a.id).sort(),
       outlets,
+      fuentesOficiales: distinctOutlets(articles.filter((a) => esFuenteOficial(a))),
       earliestDate: dates[0],
       latestDate: dates[dates.length - 1],
       verdictMix,

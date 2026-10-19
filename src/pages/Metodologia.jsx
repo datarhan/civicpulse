@@ -1767,6 +1767,22 @@ export default function Metodologia() {
                 título entero de la licitación, su expediente y la fecha en que se abrió—, no quien
                 firma.
               </li>
+              {/* 19-10-2026: la fila de la concesión del agua decía «adjudicado … por
+                  55.685.178,79 € con IVA el 06-08-2026» — valor estimado de 17 años
+                  como precio, un IVA que el registro no distingue y la fecha del
+                  anuncio como la del acuerdo (src/scraper/subida-firmada.ts,
+                  `filaDeContrato`). */}
+              <li>
+                <strong>La fila de un contrato dice qué es cada cifra y cada fecha.</strong> El
+                importe lleva «con IVA» sólo cuando el registro da dos importes distintos, con y sin
+                impuestos; si da el mismo, o uno solo, la fila no dice ninguna de las dos cosas. De
+                una concesión no imprime un precio de adjudicación sino su valor estimado por todo
+                su plazo, con los años que dura: se adjudica de una vez para muchos años, y no es un
+                gasto anual. Y la fecha es el día en que se publicó el anuncio de adjudicación en la
+                Plataforma, que la fila rotula así: el acuerdo de adjudicar es anterior —el de la
+                concesión del agua, del Pleno de 27 de julio de 2026, se publicó el 6 de agosto—, y
+                su fecha no está en el registro.
+              </li>
               {/* 10-10-2026: una declaración sobre lo que se llevó a un pleno sólo la
                   sostiene un orden del día o un acta, y de actas no hay corpus
                   (src/scraper/subida-firmada.ts, `comprobarRegistrosConLaDeclaracion`). */}
@@ -2450,6 +2466,24 @@ export default function Metodologia() {
             131.336 € que el verificador sólo había marcado «Parcial».
           </li>
           <li>
+            <strong>Los demás indicadores tampoco dicen «no» de lo que no se miró.</strong>{' '}
+            «Afirmaciones contrastables» sale «sin comprobar» (–) en los titulares que el extractor
+            todavía no ha procesado; el círculo vacío (○) queda para los que procesó sin sacar
+            ninguna. «Cobertura cruzada» se enciende cuando al menos dos medios independientes
+            cuentan la misma historia, y si no se encuentra un segundo medio dice «sin comprobar»,
+            nunca ○: el agrupado compara titulares y no reconoce la misma noticia contada con otras
+            palabras o en la otra lengua. La nota de prensa de una administración —el Ayuntamiento,
+            otro ayuntamiento, la Generalitat o la Diputació— no cuenta como un medio que corrobore:
+            es la fuente, y el periódico que la reproduce no es un segundo testigo. «Cobertura
+            local» son los medios del Camp de Túria, no los regionales ni el propio Ayuntamiento. Y
+            un medio es su dominio, no el nombre con que lo firma el agregador. En la tabla por
+            medio, el porcentaje de «Verificado» se calcula sobre las afirmaciones cotejadas con
+            algún dato, y las que no se cotejaron se cuentan aparte. Así se corrigió el 19 de
+            octubre de 2026: hasta entonces la fila del Ayuntamiento decía «0 de 26» cuando sólo se
+            habían cotejado 5, y siete de los ocho grupos de cobertura comparada eran una nota
+            municipal y el periódico que la publicaba.
+          </li>
+          <li>
             <strong>Severity crítico exige una contradicción.</strong> El validador rechaza un
             hallazgo etiquetado como <code>critical</code> sin al menos una referencia de
             contradicción dateada y enlazada. Hasta el 5 de agosto de 2026 aceptaba en su lugar
@@ -2835,8 +2869,11 @@ export default function Metodologia() {
             calcula cociente ni se compara. Cuando trae importe sí se divide, y entonces la ficha
             lleva dos salvedades que no caben dentro del número: que ese dinero no sale del
             presupuesto municipal sino del recibo de cada casa, y que la comparación es sólo contra
-            las otras concesiones que también rellenan la casilla, no contra todas las que tienen el
-            servicio concedido.
+            las otras concesiones que declaran coste y unidad, no contra todas las que tienen el
+            servicio concedido; la ficha dice cuántas quedan fuera y por qué —sin coste, con coste
+            pero sin unidad utilizable, o con dos costes distintos—, cada motivo con su recuento.
+            Esa frase del recibo es sólo de la concesión: un servicio en concierto o en gestión
+            interesada se compara en el mismo grupo, pero sin ella.
           </li>
           <li>
             <strong>Cero sin declarar.</strong> Una unidad física a cero junto a un gasto real
@@ -2856,11 +2893,13 @@ export default function Metodologia() {
           La comparación se hace contra municipios de la Comunitat Valenciana de entre 15.000 y
           40.000 habitantes, y <strong>sólo dentro del mismo modo de gestión</strong>: comparar una
           gestión directa con una concesión es un error de categoría, no una diferencia de
-          eficiencia. Hace falta un mínimo de quince municipios comparables para dibujar la banda;
-          por debajo, la posición diría más de quién declaró ese año que del municipio. Se publica
-          la banda intercuartílica con el marcador propio, nunca un puesto, y el desglose nombra a
-          todos los municipios comparados: son cifras oficiales y esconder contra quién se compara
-          rompería el contrato de mostrar el trabajo.
+          eficiencia. La sociedad de economía mixta es un modo propio: aunque el ministerio la
+          rotule «gestión indirecta», no entra en el grupo de las concesiones. Hace falta un mínimo
+          de quince municipios comparables para dibujar la banda; por debajo, la posición diría más
+          de quién declaró ese año que del municipio. Se publica la banda intercuartílica con el
+          marcador propio, nunca un puesto, y el desglose nombra a todos los municipios comparados:
+          son cifras oficiales y esconder contra quién se compara rompería el contrato de mostrar el
+          trabajo.
         </p>
         <p style={{ margin: '10px 0 0', color: 'var(--ink70)' }}>
           <strong>Qué mide cada cifra.</strong> Cada indicador va etiquetado como entrada, carga de

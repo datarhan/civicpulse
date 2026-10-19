@@ -264,3 +264,23 @@ export function extraccionParaVerificado(sugerencias: { articulos?: unknown } | 
   const articulos = sugerencias?.articulos
   return { articulos: Array.isArray(articulos) ? (articulos as ExtraccionArticulo[]) : null }
 }
+
+/**
+ * El desenlace que vale para un titular, o `null` si no hay ninguno que valga.
+ *
+ * La fila se busca por `articleId`, pero describe el titular con la huella con que se
+ * procesó. Si el titular trae otra, cambió después y lo que se pinta no es lo que el
+ * extractor miró: está pendiente, igual que para el extractor (`elegirPendientes`
+ * devuelve a la cola un artículo cuya huella cambió).
+ *
+ * La usan la tarjeta de /laboratorio (src/lib/press-lab.js la reexporta) y el
+ * indicador «Afirmaciones contrastables» de press-analytics.ts: una sola regla.
+ */
+export function desenlaceVigente(
+  articulo: { fingerprint?: string } | null | undefined,
+  fila: ExtraccionArticulo | null | undefined,
+): DesenlaceExtraccion | null {
+  if (!fila) return null
+  if (fila.fingerprint !== articulo?.fingerprint) return null
+  return fila.desenlace
+}

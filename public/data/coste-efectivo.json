@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-16T13:19:40.101Z",
+  "generatedAt": "2026-10-19T12:50:25.285Z",
   "source": {
     "volcado": "https://www.hacienda.gob.es/cdi/power%20bi/cesel-2021.xlsx",
     "consulta": "https://serviciostelematicosext.hacienda.gob.es/sgcief/Cesel/Consulta/Consulta.aspx",
@@ -8819,7 +8819,7 @@
       "popMax": 40000,
       "tipoEnte": "AA"
     },
-    "resolvedAt": "2026-08-16T13:19:40.101Z",
+    "resolvedAt": "2026-10-19T12:50:25.285Z",
     "anios": [
       2014,
       2015,
@@ -24557,7 +24557,7 @@
         "ente": "17-03-047-AA-000",
         "nombre": "Calp",
         "programa": "a161",
-        "modoGestion": "concesion",
+        "modoGestion": "mixta",
         "codGestionRaw": "Gestión indirecta por sociedad de economía mixta",
         "costeTotal": 5277780.58,
         "unidades": [
@@ -24573,7 +24573,7 @@
         "ente": "17-03-047-AA-000",
         "nombre": "Calp",
         "programa": "a160",
-        "modoGestion": "concesion",
+        "modoGestion": "mixta",
         "codGestionRaw": "Gestión indirecta por sociedad de economía mixta",
         "costeTotal": 482381.41,
         "unidades": [
@@ -39661,7 +39661,7 @@
         "ente": "17-03-047-AA-000",
         "nombre": "Calp",
         "programa": "a161",
-        "modoGestion": "concesion",
+        "modoGestion": "mixta",
         "codGestionRaw": "Gestión indirecta por sociedad de economía mixta",
         "costeTotal": 5510284.26,
         "unidades": [
@@ -39677,7 +39677,7 @@
         "ente": "17-03-047-AA-000",
         "nombre": "Calp",
         "programa": "a160",
-        "modoGestion": "concesion",
+        "modoGestion": "mixta",
         "codGestionRaw": "Gestión indirecta por sociedad de economía mixta",
         "costeTotal": 574445.03,
         "unidades": [
@@ -139501,7 +139501,7 @@
         "ente": "17-03-047-AA-000",
         "nombre": "Calp",
         "programa": "a161",
-        "modoGestion": "concesion",
+        "modoGestion": "mixta",
         "codGestionRaw": "Gestión indirecta por sociedad de economía mixta",
         "costeTotal": 6736437.75,
         "unidades": [
@@ -139517,7 +139517,7 @@
         "ente": "17-03-047-AA-000",
         "nombre": "Calp",
         "programa": "a160",
-        "modoGestion": "concesion",
+        "modoGestion": "mixta",
         "codGestionRaw": "Gestión indirecta por sociedad de economía mixta",
         "costeTotal": 543481,
         "unidades": [

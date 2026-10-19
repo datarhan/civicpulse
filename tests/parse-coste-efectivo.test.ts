@@ -6,6 +6,7 @@ import {
   parseCeselWorkbook,
   parseCeselInforme,
   clasificarGestion,
+  esGestionPorConcesion,
   ineFromEnte,
   MODOS_GESTION,
   type CesteRow,
@@ -134,6 +135,35 @@ describe('scraper/coste-efectivo — parseCeselWorkbook', () => {
     ).toBe('otra')
     expect(clasificarGestion('Gestión consorciada + otra forma de gestión (*)')).toBe('otra')
     expect(clasificarGestion('')).toBe('sin-clasificar')
+  })
+
+  it('la sociedad de economía mixta es su propio modo, no una concesión', () => {
+    // La cadena que publica el ministerio (Calp declara así el agua y el
+    // alcantarillado en 2014, 2015 y 2024) empieza por «Gestión indirecta», y
+    // el clasificador preguntaba por «indirecta» antes que por «mixta»: la
+    // clase `mixta` no la alcanzaba nada y Calp entraba en el grupo de las
+    // concesiones del agua de Riba-roja.
+    expect(clasificarGestion('Gestión indirecta por sociedad de economía mixta')).toBe('mixta')
+  })
+
+  it('sólo la concesión propiamente dicha es «gestión por concesión»', () => {
+    // La clase `concesion` agrupa las tres formas indirectas que no son la
+    // sociedad mixta; la frase «lo cobra el concesionario del recibo» sólo es
+    // cierta de una de ellas. Las cadenas, tal cual las publica el ministerio.
+    expect(
+      esGestionPorConcesion(
+        'Gestión indirecta mediante concesión, gestionando el concesionario el servicio a su riesgo y ventura',
+      ),
+    ).toBe(true)
+    expect(esGestionPorConcesion('Gestión indirecta por concierto')).toBe(false)
+    expect(
+      esGestionPorConcesion(
+        'Gestión indirecta interesada, compartiendo la entidad local y el empresario los resultados de explotación en la proporción fijada en el contrato',
+      ),
+    ).toBe(false)
+    expect(esGestionPorConcesion('Gestión indirecta por sociedad de economía mixta')).toBe(false)
+    expect(esGestionPorConcesion('Gestión directa por la entidad local')).toBe(false)
+    expect(esGestionPorConcesion('')).toBe(false)
   })
 
   it('leaves nothing unclassified in a real entrega (the classifier ceiling)', () => {

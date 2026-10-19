@@ -63,7 +63,7 @@
  * Puro: sin disco y sin reloj. La CLI (scripts/subir-veredicto.ts) lee los
  * ficheros y pasa la fecha.
  */
-import { isCommittedContract } from '../lib/contract-status.js'
+import { contractTermYears, isCommittedContract, isConcession } from '../lib/contract-status.js'
 import { charlaDeTarea } from './charla-de-tarea'
 import type { PlenoSection } from './pleno-agenda'
 import { corpusDeEvidencia, esTextoDeMaquina, type ClaimVerdict } from './claim-verdicts'
@@ -130,10 +130,13 @@ interface FilaContrato {
   permalink?: string
   title?: string
   status?: string
+  contractType?: string | null
+  duration?: number | null
   assignee?: string | null
   awardDate?: string | null
   finalAmount?: number | null
   finalAmountNoTaxes?: number | null
+  estimatedValue?: number | null
   batchNumber?: number | null
 }
 
@@ -323,8 +326,54 @@ function conTitulo(titulo: string, cola: string): string {
   return `${titulo.slice(0, Math.max(0, cabe)).trimEnd()}… · ${cola}`
 }
 
-/** Lo que un contrato adjudicado dice de sí mismo: lote, expediente, adjudicataria, importe, fecha. */
-function filaDeContrato(f: FilaContrato, variosLotes: boolean, expediente: string | null): string {
+/**
+ * El importe de adjudicación de una fila, y si el registro dice de qué es.
+ *
+ * «con IVA» sólo cuando la fila da los dos importes y son distintos: el de la
+ * concesión del agua, 31/2021 y otras filas del registro traen el mismo
+ * número en los dos campos, y entonces el registro no dice si lleva IVA. Con
+ * uno solo, tampoco: un campo vacío no es una afirmación sobre el otro.
+ */
+function importeDeAdjudicacion(f: FilaContrato): string | null {
+  const conIva = positivo(f.finalAmount)
+  const sinIva = positivo(f.finalAmountNoTaxes)
+  if (conIva && sinIva && Math.abs(conIva - sinIva) >= 0.005) return `${euros(conIva)} con IVA`
+  const uno = conIva ?? sinIva
+  return uno ? euros(uno) : null
+}
+
+/**
+ * Lo que dice de una concesión su fila: el valor estimado por todo su plazo, y
+ * nunca un «adjudicado por». Una concesión se adjudica de una vez por todos sus
+ * años —17 la del agua—, y su importe impreso como precio de adjudicación se
+ * lee como un pago puntual mayor que el presupuesto municipal de un año. Es la
+ * salvedad que ya dicen la portada y /presupuesto (`isConcession`).
+ *
+ * En un lote no hay importe: Gobierto repite en cada lote el valor estimado del
+ * expediente entero, y se leería como el de ese lote (snippet-de-contrato.ts).
+ */
+function valorDeLaConcesion(f: FilaContrato, variosLotes: boolean): string | null {
+  const valor = variosLotes ? null : positivo(f.estimatedValue)
+  if (!valor) return null
+  const anios = contractTermYears(f)
+  return `valor estimado por todo su plazo${anios ? ` (${anios} años)` : ''}: ${euros(valor)}`
+}
+
+/**
+ * Lo que un contrato adjudicado dice de sí mismo: lote, expediente, adjudicataria,
+ * importe, y el día en que se publicó su adjudicación.
+ *
+ * La fecha es la del ANUNCIO, no la del acuerdo, y la fila lo dice. Cotejado el
+ * 19-10-2026 en siete fichas de la Plataforma de 2018 a 2026: en las siete,
+ * `awardDate` es el día en que se publicó el anuncio de adjudicación —la del
+ * agua, 06-08-2026; el Pleno la había acordado el 27-07-2026—. Impresa como
+ * «adjudicado … el», atribuye al acuerdo una fecha que no es la suya.
+ */
+function filaDeContrato(
+  f: FilaContrato,
+  variosLotes: boolean,
+  expediente: string | null,
+): { texto: string; diceImporte: boolean } {
   const partes: string[] = []
   const lote = positivo(f.batchNumber)
   if (variosLotes && lote) {
@@ -332,25 +381,29 @@ function filaDeContrato(f: FilaContrato, variosLotes: boolean, expediente: strin
   } else if (expediente) {
     partes.push(`expediente ${expediente}`)
   }
-  let adjudicado = 'adjudicado'
   const adjudicataria = espacios(f.assignee)
-  if (adjudicataria) adjudicado += ` a ${adjudicataria}`
-  const conIva = positivo(f.finalAmount)
-  const sinIva = positivo(f.finalAmountNoTaxes)
-  if (conIva) adjudicado += ` por ${euros(conIva)} con IVA`
-  else if (sinIva) adjudicado += ` por ${euros(sinIva)} sin IVA`
+  let importe: string | null
+  if (isConcession(f)) {
+    partes.push(`concesión adjudicada${adjudicataria ? ` a ${adjudicataria}` : ''}`)
+    importe = valorDeLaConcesion(f, variosLotes)
+    if (importe) partes.push(importe)
+  } else {
+    importe = importeDeAdjudicacion(f)
+    partes.push(
+      `adjudicado${adjudicataria ? ` a ${adjudicataria}` : ''}${importe ? ` por ${importe}` : ''}`,
+    )
+  }
   const fecha = dia(f.awardDate)
-  if (fecha) adjudicado += ` el ${fecha}`
-  partes.push(adjudicado)
-  return conTitulo(espacios(f.title), partes.join(' · '))
+  if (fecha) partes.push(`adjudicación publicada el ${fecha}`)
+  return { texto: conTitulo(espacios(f.title), partes.join(' · ')), diceImporte: importe != null }
 }
 
 /** Una línea por lote, para que quien firma elija el suyo. */
 function lineaDeLote(f: FilaContrato): string {
-  const importe = positivo(f.finalAmount)
+  const importe = isConcession(f) ? null : importeDeAdjudicacion(f)
   return (
     `  · lote ${f.batchNumber ?? '¿?'} · ${espacios(f.assignee) || 'sin adjudicataria'}` +
-    `${importe ? ` · ${euros(importe)} con IVA` : ''} · estado ${f.status ?? 'desconocido'}`
+    `${importe ? ` · ${importe}` : ''} · estado ${f.status ?? 'desconocido'}`
   )
 }
 
@@ -533,15 +586,11 @@ export function registroDeLaSubida(
         '«adjudicado» de algo que no lo está',
     )
   }
+  const { texto, diceImporte } = filaDeContrato(fila, contratos.length > 1, expediente)
   return {
-    fila: {
-      kind: 'tender',
-      ref: enlace,
-      snippet: filaDeContrato(fila, contratos.length > 1, expediente),
-      stance: 'checked',
-    },
+    fila: { kind: 'tender', ref: enlace, snippet: texto, stance: 'checked' },
     fecha: null,
-    diceImporte: positivo(fila.finalAmount) != null || positivo(fila.finalAmountNoTaxes) != null,
+    diceImporte,
   }
 }
 

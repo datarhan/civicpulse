@@ -1,7 +1,7 @@
 import { describe, expect, it } from 'vitest'
 import { render, screen } from '@testing-library/react'
 
-import { OutletScoreboard } from '../../src/pages/Laboratorio'
+import { OutletScoreboard, TrustIndicators } from '../../src/pages/Laboratorio'
 
 /**
  * La tabla por medio de /laboratorio se rotulaba «Tabla de fiabilidad» y ponía,
@@ -16,54 +16,108 @@ import { OutletScoreboard } from '../../src/pages/Laboratorio'
  * el divisor en el pie («0 de 58 claims»). La tabla nunca lo recibió. Son dos
  * cifras ciertas sin puente, y aquí se tiende el puente: el divisor va en la
  * celda, y «fiabilidad» deja de ser el nombre de una cobertura.
+ *
+ * Y el divisor es lo COTEJADO, no todo lo extraído. El 19-10-2026 la fila del
+ * Ayuntamiento decía «0 % · 0 de 26 afirm.», y 21 de esas 26 no se habían buscado
+ * en ningún dato (`checkedAgainst: []`): se leía «se miraron 26 y ninguna
+ * cuadra». Las cotejadas eran 5. La celda dice ahora las dos cosas.
  */
-const fila = (outlet, articleCount, verdictCounts) => {
-  const total = Object.values(verdictCounts).reduce((a, b) => a + b, 0)
-  return {
-    outlet,
-    articleCount,
-    verdictCounts,
-    verifiedRatio: total === 0 ? null : verdictCounts.verificado / total,
-    contradictedRatio:
-      verdictCounts.verificado + verdictCounts.contradicho === 0
-        ? null
-        : verdictCounts.contradicho / total,
-  }
-}
 const vacio = { verificado: 0, parcial: 0, contradicho: 0, 'sin-datos': 0, 'promesa-repetida': 0 }
+// La forma que publica press-trust.json: `checkedClaims` es el divisor.
+const fila = (outlet, articleCount, verdictCounts, checkedClaims) => ({
+  outlet,
+  outletHost: null,
+  articleCount,
+  verdictCounts: { ...vacio, ...verdictCounts },
+  checkedClaims,
+  verifiedRatio: checkedClaims === 0 ? null : (verdictCounts.verificado ?? 0) / checkedClaims,
+  contradictedRatio: null,
+})
 
 describe('OutletScoreboard — el divisor del porcentaje va en la celda', () => {
-  it('«0 %» lleva debajo «0 de 39 afirm.», no los 18 artículos de al lado', () => {
+  it('el Ayuntamiento el 19-10-2026: «0 de 5 cotejadas» y las 21 sin cotejar, aparte', () => {
     render(
       <OutletScoreboard
-        outlets={[fila('Ayuntamiento de Riba-roja de Túria', 18, { ...vacio, 'sin-datos': 39 })]}
+        outlets={[fila('Ayuntamiento de Riba-roja de Túria', 17, { 'sin-datos': 26 }, 5)]}
       />,
     )
     expect(screen.getByText('0%')).toBeTruthy()
-    expect(screen.getByText('0 de 39 afirm.')).toBeTruthy()
-    expect(screen.getByText('18')).toBeTruthy()
+    expect(screen.getByText('0 de 5 cotejadas')).toBeTruthy()
+    expect(screen.getByText('21 sin cotejar')).toBeTruthy()
+    expect(screen.queryByText(/de 26/)).toBeNull()
+    expect(screen.getByText('17')).toBeTruthy()
+  })
+
+  it('afirmaciones sin ninguna cotejada: «—», no «0 %», y cuántas quedan sin cotejar', () => {
+    // elperiodic.com el 19-10-2026: 2 afirmaciones, las 2 con `checkedAgainst: []`.
+    render(<OutletScoreboard outlets={[fila('elperiodic.com', 2, { 'sin-datos': 2 }, 0)]} />)
+    expect(screen.queryByText('0%')).toBeNull()
+    expect(screen.getAllByText('—').length).toBeGreaterThanOrEqual(1)
+    expect(screen.getByText('2 sin cotejar')).toBeTruthy()
+    expect(screen.queryByText(/de 0/)).toBeNull()
   })
 
   it('un medio sin afirmaciones no lleva divisor: «—» y nada debajo', () => {
-    render(<OutletScoreboard outlets={[fila('boletinbien', 3, vacio)]} />)
+    render(<OutletScoreboard outlets={[fila('boletinbien', 3, {}, 0)]} />)
     expect(screen.getAllByText('—').length).toBeGreaterThanOrEqual(1)
-    expect(screen.queryByText(/de 0 afirm\./)).toBeNull()
+    expect(screen.queryByText(/cotej/)).toBeNull()
   })
 
   it('el numerador es el de verificado, no la suma de lo resuelto', () => {
     render(
       <OutletScoreboard
-        outlets={[fila('Levante-EMV', 5, { ...vacio, verificado: 1, parcial: 2, 'sin-datos': 1 })]}
+        outlets={[fila('Levante-EMV', 5, { verificado: 1, parcial: 2, 'sin-datos': 1 }, 4)]}
       />,
     )
     expect(screen.getByText('25%')).toBeTruthy()
-    expect(screen.getByText('1 de 4 afirm.')).toBeTruthy()
+    expect(screen.getByText('1 de 4 cotejadas')).toBeTruthy()
+    expect(screen.queryByText(/sin cotejar/)).toBeNull()
+  })
+
+  it('una sola cotejada va en singular', () => {
+    // Levante-EMV el 19-10-2026: 2 afirmaciones, 1 cotejada.
+    render(<OutletScoreboard outlets={[fila('Levante-EMV', 7, { 'sin-datos': 2 }, 1)]} />)
+    expect(screen.getByText('0 de 1 cotejada')).toBeTruthy()
+    expect(screen.getByText('1 sin cotejar')).toBeTruthy()
   })
 
   it('la tabla ya no se llama «fiabilidad»: es una cobertura', () => {
-    render(<OutletScoreboard outlets={[fila('boletinbien', 3, vacio)]} />)
+    render(<OutletScoreboard outlets={[fila('boletinbien', 3, {}, 0)]} />)
     const tabla = screen.getByRole('table')
     expect(tabla.getAttribute('aria-label')).toMatch(/cobertura/i)
     expect(tabla.getAttribute('aria-label')).not.toMatch(/fiabilidad/i)
+  })
+
+  it('una administración lleva OFICIAL aunque no sea el Ayuntamiento de Riba-roja', () => {
+    render(
+      <OutletScoreboard
+        outlets={[{ ...fila('Comunica GVA', 1, {}, 0), outletHost: 'comunica.gva.es' }]}
+      />,
+    )
+    expect(screen.getByText('OFICIAL')).toBeTruthy()
+  })
+})
+
+describe('TrustIndicators — «sin comprobar» dice qué no se comprobó', () => {
+  const base = {
+    localCoverage: true,
+    datedArticle: true,
+    municipalSourceMatch: null,
+    corroboratedAcrossOutlets: null,
+    factualClaimsPresent: null,
+    opinionFraction: 0,
+  }
+  const chip = (texto) => screen.getByText(texto).closest('span[title]')
+
+  it('cada indicador nulo pinta «–» con su propio motivo', () => {
+    render(<TrustIndicators indicators={base} />)
+    for (const t of ['Cobertura cruzada', 'Afirmaciones contrastables'])
+      expect(chip(t).textContent).toMatch(/–/)
+    expect(chip('Cobertura cruzada').getAttribute('title')).toMatch(/otro medio/)
+    expect(chip('Cobertura cruzada').getAttribute('title')).not.toMatch(/datos municipales/)
+    expect(chip('Afirmaciones contrastables').getAttribute('title')).toMatch(/extractor/)
+    expect(chip('Coincide con datos municipales').getAttribute('title')).toMatch(
+      /datos municipales/,
+    )
   })
 })
