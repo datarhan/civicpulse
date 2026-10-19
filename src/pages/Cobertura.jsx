@@ -327,11 +327,12 @@ export default function Cobertura() {
         }}
       >
         Las cifras cuentan filas de extracción, no frases: dos ventanas del extractor pueden recoger
-        la misma frase y cada una deja su fila. «Ningún comparador se lanzó» no quiere decir que no
-        haya con qué comprobarla: el verificador sólo lanza un comparador cuando la declaración trae
-        un importe en euros, cuando cita una obra por su nombre o cuando es una promesa, y éstas no
-        traían nada de eso. Para algunas habría datos —el padrón, el paro, las votaciones y las
-        actas de pleno se publican en este sitio—, pero todavía no hay comparador que los lea.
+        la misma frase y cada una deja su fila. Que a una no se le lanzara ningún comparador no
+        quiere decir que no haya con qué comprobarla: el verificador sólo lanza un comparador cuando
+        la declaración trae un importe en euros, cuando cita una obra por su nombre o cuando es una
+        promesa, y éstas no traían nada de eso. Para algunas habría datos —el padrón, el paro, las
+        votaciones y las actas de pleno se publican en este sitio—, pero todavía no hay comparador
+        que los lea.
       </p>
 
       <TablaCobertura
