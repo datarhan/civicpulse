@@ -350,6 +350,12 @@ const ABIERTOS: Caso[] = [
     datos: ['officials-corrections.json', 'officials.json'],
   },
   {
+    orden: 'contract-correction',
+    script: 'contract-correction.ts',
+    argv: ['--retirar', '1943883'],
+    datos: ['contract-corrections.json'],
+  },
+  {
     orden: 'solicitud',
     script: 'solicitud-acceso.ts',
     argv: ['responder', 'una-solicitud', '--fecha', '2026-10-05', '--sentido', 'parcial'],

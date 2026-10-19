@@ -1,0 +1,27 @@
+{
+  "note": "Correcciones curadas del registro de contratos de Gobierto (ribalicita): filas cuyo estado el registro publica mal y la Plataforma de Contratación tiene bien. Cada entrada cita literalmente el anuncio que dice el estado y el que explica la discrepancia, y va firmada; se aplican en scripts/scrape-tenders.ts y nunca las escribe la automatización. Una corrección que el registro ya absorbió se retira, no se deja.",
+  "corrections": [
+    {
+      "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=wdnrdmoJINqmq21uxhbaVQ%3D%3D",
+      "lote": 0,
+      "id": "1943883",
+      "status": "formalized",
+      "assignee": "EIFFAGE ENERGÍA, S.L.U.",
+      "motivo": "El Ayuntamiento anuló el 11-01-2024 el anuncio de formalización, no el contrato, para volver a publicarlo con la financiación FEDER, y no lo volvió a publicar; Gobierto lo registra como revocado y sin adjudicataria.",
+      "source": {
+        "title": "PLACSP · Anuncio de formalización de contrato, expediente 51/2022",
+        "url": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=wdnrdmoJINqmq21uxhbaVQ%3D%3D",
+        "date": "2023-03-22",
+        "quote": "Importe total ofertado (sin impuestos) 481.777,6 EUR."
+      },
+      "motivoSource": {
+        "title": "PLACSP · Anulación del anuncio de formalización, expediente 51/2022",
+        "url": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=wdnrdmoJINqmq21uxhbaVQ%3D%3D",
+        "date": "2024-01-11",
+        "quote": "Pendiente publicación referida la financiación del contrato a través de los fondos FEDER."
+      },
+      "curatedBy": "Sergei Lutchenko",
+      "curatedAt": "2026-10-19"
+    }
+  ]
+}

@@ -220,6 +220,19 @@ export default function ContractsExplorer({ contracts, tenders, snapshot }) {
                     color="var(--ink50)"
                     style={{ marginTop: 2 }}
                   />
+                  {/* Una fila que el sitio corrige sobre el registro municipal lo
+                    dice, con el estado que el registro publica y el anuncio que
+                    lo desmiente (src/scraper/contract-corrections.ts). */}
+                  {c.correccion && (
+                    <div
+                      style={{ fontSize: 'var(--fs-micro)', color: 'var(--ink50)', marginTop: 2 }}
+                    >
+                      {t('contrato.corregido')} «{estado(c.sourceStatus)}» ·{' '}
+                      <ExtLink href={c.correccion.url} title={c.correccion.motivo}>
+                        {t('contrato.corregido.fuente')}
+                      </ExtLink>
+                    </div>
+                  )}
                 </div>
                 <Importe c={c} t={t} />
                 <span style={{ textAlign: 'right' }}>

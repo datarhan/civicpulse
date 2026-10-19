@@ -1560,6 +1560,8 @@ export const CATALOGUE = {
     // por el que se firmó, porque la fuente no publica el segundo. Se avisa
     // sólo ahí: en una fila sin adjudicar la pastilla de estado ya lo dice.
     'presupuesto.gasto.sinAdjudicacion': 'importe de licitación',
+    'contrato.corregido': 'Estado corregido: el registro municipal lo publica como',
+    'contrato.corregido.fuente': 'ver la Plataforma de Contratación',
     'presupuesto.gasto.fueraDeCifras.uno':
       'El otro consta en el registro público pero no cuenta en las cifras de arriba:',
     'presupuesto.gasto.fueraDeCifras.varios':
@@ -3554,6 +3556,8 @@ export const CATALOGUE = {
     'presupuesto.gasto.resultado.pagina': '{desde}–{hasta}, pàgina {pagina} de {paginas}',
     'presupuesto.gasto.comprometido': 'són diners compromesos (adjudicats o formalitzats).',
     'presupuesto.gasto.sinAdjudicacion': 'import de licitació',
+    'contrato.corregido': 'Estat corregit: el registre municipal el publica com',
+    'contrato.corregido.fuente': 'veure la Plataforma de Contractació',
     'presupuesto.gasto.fueraDeCifras.uno':
       'L’altre consta en el registre públic però no compta en les xifres de dalt:',
     'presupuesto.gasto.fueraDeCifras.varios':

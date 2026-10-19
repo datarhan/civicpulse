@@ -755,6 +755,23 @@ export const INJECTIONS: Array<{
       return JSON.stringify(d, null, 2) + '\n'
     },
   },
+  {
+    guard: 'check:contract-corrections',
+    file: 'public/data/contract-corrections.json',
+    describe:
+      'una corrección curada sin la cita literal de su anuncio (una edición a mano que salta el CLI)',
+    // El fichero curado y no el publicado: hasta la primera nocturna posterior
+    // a la firma, el publicado da la corrección por PENDIENTE y sale 0 a
+    // propósito, así que corromperlo no probaría nada.
+    corrupt: (s) => {
+      const d = JSON.parse(s)
+      const primera = d.corrections?.[0]
+      if (!primera?.source?.quote)
+        throw new Error('contract-corrections.json no trae ninguna corrección con cita')
+      delete primera.source.quote
+      return JSON.stringify(d, null, 2) + '\n'
+    },
+  },
 ]
 
 function gitIsClean(file: string): boolean {

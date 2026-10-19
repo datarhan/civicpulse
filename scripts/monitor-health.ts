@@ -382,6 +382,10 @@ async function gather(rachasPrevias: Record<string, string>): Promise<Observatio
     // `minor_contract` llevaba semanas así. Ahora el ruido no cuenta, nuestras
     // traducciones tampoco, y lo que queda sale con 1 y llega aquí.
     'check:vocabulary',
+    // Las correcciones curadas del registro de contratos: una que la nocturna
+    // no aplicó, o que ya sobra porque Gobierto se puso al día, no puede
+    // esperar a que alguien lea el registro de la pasada.
+    'check:contract-corrections',
   ]) {
     const r = runCheck(c)
     if (r.desenlace === 'fallo') integrity.push({ check: c, message: r.mensaje })
