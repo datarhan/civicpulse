@@ -139,14 +139,15 @@ const subir = (extra: Partial<SubidaPedida> = {}, obs: Partial<Observado> = {}) 
   subirVeredicto(overlayConRetractacion(), pedida(extra), observado(obs), STAMP)
 
 describe('evidenciaDelRegistro · la fila la escribe el registro, no quien firma', () => {
-  it('un contrato adjudicado: título, expediente, adjudicataria, importe con céntimos y fecha', () => {
+  it('un contrato adjudicado: título, expediente, adjudicataria, importe con céntimos y la fecha de su anuncio', () => {
     const e = evidenciaDelRegistro({ enlace: ENLACE.juegos, lote: null }, CORPUS)
     expect(e).toEqual({
       kind: 'tender',
       ref: ENLACE.juegos,
       snippet:
         'Suministro con instalación de juegos infantiles en Parque Asunción de Nuestra Señora · ' +
-        `expediente 36/2026 · adjudicado a URBEADAPTA S. L. por 40.727,10${NBSP}€ con IVA el 08-09-2026`,
+        `expediente 36/2026 · adjudicado a URBEADAPTA S. L. por 40.727,10${NBSP}€ con IVA · ` +
+        'adjudicación publicada el 08-09-2026',
       stance: 'checked',
     })
     // No es una puntuación de parecido: la tarjeta la imprimiría como si lo fuera.
@@ -160,7 +161,8 @@ describe('evidenciaDelRegistro · la fila la escribe el registro, no quien firma
     expect(e.snippet).toContain('…')
     expect(
       e.snippet.endsWith(
-        `· expediente 33/2024 · adjudicado a VODAFONE ESPANA SA por 35.252,87${NBSP}€ con IVA el 29-05-2024`,
+        `· expediente 33/2024 · adjudicado a VODAFONE ESPANA SA por 35.252,87${NBSP}€ con IVA · ` +
+          'adjudicación publicada el 29-05-2024',
       ),
     ).toBe(true)
   })
@@ -168,7 +170,8 @@ describe('evidenciaDelRegistro · la fila la escribe el registro, no quien firma
   it('los espacios dobles del registro no pasan a la fila', () => {
     const e = evidenciaDelRegistro({ enlace: ENLACE.agua, lote: null }, CORPUS)
     expect(e.snippet).toContain(
-      `adjudicado a HIDRAQUA GESTIÓN INTEGRAL DE AGUAS DE LEVANTE, S.A. por 55.685.178,79${NBSP}€ con IVA el 06-08-2026`,
+      'concesión adjudicada a HIDRAQUA GESTIÓN INTEGRAL DE AGUAS DE LEVANTE, S.A. · ' +
+        `valor estimado por todo su plazo (17 años): 55.685.178,79${NBSP}€`,
     )
     expect(e.snippet).not.toMatch(/ {2}/)
   })
@@ -184,7 +187,8 @@ describe('evidenciaDelRegistro · la fila la escribe el registro, no quien firma
     const e = evidenciaDelRegistro({ enlace: ENLACE.lotes, lote: 2 }, CORPUS)
     expect(e.ref).toBe(ENLACE.lotes)
     expect(e.snippet).toContain(
-      `lote 2 del expediente 136/2025 · adjudicado a AUDITESA SL por 194.810,00${NBSP}€ con IVA el 10-09-2025`,
+      `lote 2 del expediente 136/2025 · adjudicado a AUDITESA SL por 194.810,00${NBSP}€ con IVA · ` +
+        'adjudicación publicada el 10-09-2025',
     )
     expect(e.snippet).not.toContain('GARBIALDI')
   })
