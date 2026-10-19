@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-19T12:48:28.630Z",
+  "generatedAt": "2026-10-19T17:03:41.071Z",
   "version": "1",
   "plenoId": "c8kr44",
   "plenoDate": "2025-09-08",
@@ -883,7 +883,7 @@
           {
             "kind": "tender",
             "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=oE58TiRVCfAZDGvgaZEVxQ%3D%3D",
-            "snippet": "Servicio de asistencia técnica y apoyo para el control y supervisión sobre la prestación del contrato de recogida de RSU, poda y voluminosos… · lote 2 del expediente 136/2025 · adjudicado a AUDITESA SL por 194.810,00 € con IVA el 10-09-2025",
+            "snippet": "Servicio de asistencia técnica y apoyo para el control y supervisión sobre la prestación del contrato de recogida d… · lote 2 del expediente 136/2025 · adjudicado a AUDITESA SL por 194.810,00 € con IVA · adjudicación publicada el 10-09-2025",
             "stance": "checked"
           }
         ],
@@ -1790,12 +1790,12 @@
       "verification": {
         "claimId": "c8kr44-081-cit-74fc55",
         "verdict": "parcial",
-        "summary": "La asistencia técnica que fiscaliza la recogida de residuos existe: es el lote 2 del contrato 136/2025, adjudicado a Auditesa el 10-09-2025 por 194.810 €. Que «se creó una empresa» no consta en el registro.",
+        "summary": "La asistencia técnica que fiscaliza la recogida de residuos existe: es el lote 2 del contrato 136/2025, adjudicado a Auditesa por 194.810 € (la adjudicación se publicó el 10-09-2025). Que «se creó una empresa» no consta en el registro.",
         "evidence": [
           {
             "kind": "tender",
             "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=oE58TiRVCfAZDGvgaZEVxQ%3D%3D",
-            "snippet": "Servicio de asistencia técnica y apoyo para el control y supervisión sobre la prestación del contrato de recogida de RSU, poda y voluminosos… · lote 2 del expediente 136/2025 · adjudicado a AUDITESA SL por 194.810,00 € con IVA el 10-09-2025",
+            "snippet": "Servicio de asistencia técnica y apoyo para el control y supervisión sobre la prestación del contrato de recogida d… · lote 2 del expediente 136/2025 · adjudicado a AUDITESA SL por 194.810,00 € con IVA · adjudicación publicada el 10-09-2025",
             "stance": "checked"
           }
         ],
@@ -3807,7 +3807,7 @@
           {
             "kind": "tender",
             "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=E%2BOr0JaUVkecCF8sV%2BqtYA%3D%3D",
-            "snippet": "Obras ejecución del proyecto: “Mejora del carril bici y la ejecución o mejora de refugios climáticos”, por procedimiento ab… · expediente 52/2025 · adjudicado a OBRA CIVIL Y EDIFICACION ESCRIMAR S.L.L. por 296.195,90 € con IVA el 29-05-2026",
+            "snippet": "Obras ejecución del proyecto: “Mejora del carril bici y la ejecución o mejora de refugios climátic… · expediente 52/2025 · adjudicado a OBRA CIVIL Y EDIFICACION ESCRIMAR S.L.L. por 296.195,90 € con IVA · adjudicación publicada el 29-05-2026",
             "stance": "checked"
           }
         ],
@@ -6141,7 +6141,7 @@
           {
             "kind": "tender",
             "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=0sQ%2BhGrxuvbjHF5qKI4aaw%3D%3D",
-            "snippet": "Cambio de juegos y suelo de protección Parque Bellavista I · lote 3 del expediente 111-115/2025 · adjudicado a URBEADAPTA S. L. por 29.515,26 € con IVA el 01-04-2026",
+            "snippet": "Cambio de juegos y suelo de protección Parque Bellavista I · lote 3 del expediente 111-115/2025 · adjudicado a URBEADAPTA, S.L por 29.515,26 € con IVA · adjudicación publicada el 01-04-2026",
             "stance": "checked"
           }
         ],
@@ -6184,31 +6184,31 @@
           {
             "kind": "tender",
             "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=0sQ%2BhGrxuvbjHF5qKI4aaw%3D%3D",
-            "snippet": "Cambio de juegos y suelo de protección Parque La Pedrera · lote 1 del expediente 111-115/2025 · adjudicado a JUEGOS KOMPAN, S.A. por 45.931,60 € con IVA el 01-04-2026",
+            "snippet": "Cambio de juegos y suelo de protección Parque La Pedrera · lote 1 del expediente 111-115/2025 · adjudicado a JUEGOS KOMPAN, S.A. por 45.931,60 € con IVA · adjudicación publicada el 01-04-2026",
             "stance": "checked"
           },
           {
             "kind": "tender",
             "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=0sQ%2BhGrxuvbjHF5qKI4aaw%3D%3D",
-            "snippet": "Renovación de los juegos y suelo de protección Plaza Juez Heliodoro Gimeno · lote 2 del expediente 111-115/2025 · adjudicado a URBEADAPTA S. L. por 41.151,23 € con IVA el 01-04-2026",
+            "snippet": "Renovación de los juegos y suelo de protección Plaza Juez Heliodoro Gimeno · lote 2 del expediente 111-115/2025 · adjudicado a URBEADAPTA, S.L por 41.151,23 € con IVA · adjudicación publicada el 01-04-2026",
             "stance": "checked"
           },
           {
             "kind": "tender",
             "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=0sQ%2BhGrxuvbjHF5qKI4aaw%3D%3D",
-            "snippet": "Cambio de juegos y suelo de protección Parque Bellavista I · lote 3 del expediente 111-115/2025 · adjudicado a URBEADAPTA S. L. por 29.515,26 € con IVA el 01-04-2026",
+            "snippet": "Cambio de juegos y suelo de protección Parque Bellavista I · lote 3 del expediente 111-115/2025 · adjudicado a URBEADAPTA, S.L por 29.515,26 € con IVA · adjudicación publicada el 01-04-2026",
             "stance": "checked"
           },
           {
             "kind": "tender",
             "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=0sQ%2BhGrxuvbjHF5qKI4aaw%3D%3D",
-            "snippet": "Cambio de juegos y suelo de protección Parque Molinet · lote 4 del expediente 111-115/2025 · adjudicado a JUEGOS KOMPAN, S.A. por 43.342,20 € con IVA el 01-04-2026",
+            "snippet": "Cambio de juegos y suelo de protección Parque Molinet · lote 4 del expediente 111-115/2025 · adjudicado a JUEGOS KOMPAN, S.A. por 43.342,20 € con IVA · adjudicación publicada el 01-04-2026",
             "stance": "checked"
           },
           {
             "kind": "tender",
             "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=0sQ%2BhGrxuvbjHF5qKI4aaw%3D%3D",
-            "snippet": "Sustitución de los juegos y suelo de protección de la Plaza Lavadero · lote 5 del expediente 111-115/2025 · adjudicado a LUDOMAQUINA S.L por 35.348,67 € con IVA el 01-04-2026",
+            "snippet": "Sustitución de los juegos y suelo de protección de la Plaza Lavadero · lote 5 del expediente 111-115/2025 · adjudicado a LUDOMAQUINA S.L por 35.348,67 € con IVA · adjudicación publicada el 01-04-2026",
             "stance": "checked"
           }
         ],
@@ -6249,13 +6249,13 @@
           {
             "kind": "tender",
             "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=0sQ%2BhGrxuvbjHF5qKI4aaw%3D%3D",
-            "snippet": "Cambio de juegos y suelo de protección Parque Molinet · lote 4 del expediente 111-115/2025 · adjudicado a JUEGOS KOMPAN, S.A. por 43.342,20 € con IVA el 01-04-2026",
+            "snippet": "Cambio de juegos y suelo de protección Parque Molinet · lote 4 del expediente 111-115/2025 · adjudicado a JUEGOS KOMPAN, S.A. por 43.342,20 € con IVA · adjudicación publicada el 01-04-2026",
             "stance": "checked"
           },
           {
             "kind": "tender",
             "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=0sQ%2BhGrxuvbjHF5qKI4aaw%3D%3D",
-            "snippet": "Sustitución de los juegos y suelo de protección de la Plaza Lavadero · lote 5 del expediente 111-115/2025 · adjudicado a LUDOMAQUINA S.L por 35.348,67 € con IVA el 01-04-2026",
+            "snippet": "Sustitución de los juegos y suelo de protección de la Plaza Lavadero · lote 5 del expediente 111-115/2025 · adjudicado a LUDOMAQUINA S.L por 35.348,67 € con IVA · adjudicación publicada el 01-04-2026",
             "stance": "checked"
           }
         ],

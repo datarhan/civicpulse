@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-19T12:48:28.630Z",
+  "generatedAt": "2026-10-19T17:03:41.071Z",
   "version": "1",
   "plenos": [
     {
@@ -231,7 +231,7 @@
         "empleo": 3,
         "movilidad": 1
       },
-      "bytes": 389796
+      "bytes": 390352
     },
     {
       "plenoId": "ma87e0",
@@ -262,7 +262,7 @@
         "other": 3,
         "salud": 1
       },
-      "bytes": 240461
+      "bytes": 240491
     },
     {
       "plenoId": "1sqj7is",
@@ -356,7 +356,7 @@
         "social": 4,
         "educacion": 2
       },
-      "bytes": 462125
+      "bytes": 462182
     },
     {
       "plenoId": "1pe3qs8",
@@ -551,7 +551,7 @@
         "movilidad": 15,
         "cultura": 3
       },
-      "bytes": 331577
+      "bytes": 331825
     },
     {
       "plenoId": "rmtyr",
@@ -584,7 +584,7 @@
         "vivienda": 6,
         "salud": 1
       },
-      "bytes": 354272
+      "bytes": 354274
     },
     {
       "plenoId": "1tgd1h4",
