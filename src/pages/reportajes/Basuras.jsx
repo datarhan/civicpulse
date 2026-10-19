@@ -1,7 +1,7 @@
 import { useReportaje } from '../../hooks/useReportaje'
-import Emblema, { cifrasDelEmblema } from '../../components/reportajes/Emblema'
-import { CorrectionNote, CorrectionNotice } from '../../components/reportajes/CorrectionNote'
-import { SecHead, IndicePieza } from '../../components/reportajes/Pieza'
+import CabeceraPieza from '../../components/reportajes/CabeceraPieza'
+import { CorrectionNote } from '../../components/reportajes/CorrectionNote'
+import { SecHead } from '../../components/reportajes/Pieza'
 import SolicitudLector from '../../components/reportajes/SolicitudLector'
 import { debeOfrecerSolicitud } from '../../lib/solicitud-lector'
 import {
@@ -9,8 +9,6 @@ import {
   preguntasDe,
   solicitables as soloSolicitables,
 } from '../../lib/solicitud-apartadas'
-
-const SERIF = "'Fraunces', Georgia, serif"
 
 /* ---- Tabla genérica con scroll horizontal propio ---- */
 function Tabla({ cols, rows, caption }) {
@@ -206,8 +204,6 @@ export default function Basuras() {
     )
 
   const m = data.meta
-  // Las tarjetas que la figura de cabecera ya imprime (ver cifrasDelEmblema).
-  const enFigura = new Set(cifrasDelEmblema('basuras', data))
   const d = data.dinero
   const ce = data.costeEfectivo
   const cal = data.calendario
@@ -228,109 +224,17 @@ export default function Basuras() {
         lineHeight: 1.62,
       }}
     >
-      {m.estado !== 'publicado' && (
-        <div
-          style={{
-            background: 'var(--warn-soft)',
-            border: '1px solid var(--warn)',
-            color: 'var(--warn-ink)',
-            borderRadius: 'var(--r-card)',
-            padding: '10px 14px',
-            fontSize: 'var(--fs-meta)',
-            marginBottom: 22,
-          }}
-        >
-          <strong>Borrador editorial · pendiente de derecho de réplica.</strong> Esta pieza aún no
-          es una publicación definitiva: se recabará la versión del Ayuntamiento de Riba-roja y de
-          las empresas citadas, y se incorporará antes de darla por publicada.
-        </div>
-      )}
-
-      <div
-        className="mono cp-texto"
-        style={{
-          fontSize: 'var(--fs-micro)',
-          color: 'var(--ink50)',
-          textTransform: 'uppercase',
-          letterSpacing: '.08em',
+      <CabeceraPieza
+        slug="basuras"
+        data={data}
+        borrador={{
+          titulo: 'Borrador editorial · pendiente de derecho de réplica.',
+          texto:
+            'Esta pieza aún no es una publicación definitiva: se recabará la versión del Ayuntamiento de Riba-roja y de las empresas citadas, y se incorporará antes de darla por publicada.',
         }}
-      >
-        {m.seccion}
-      </div>
-      <h1
-        style={{
-          fontFamily: SERIF,
-          fontSize: 'var(--type-display)',
-          fontWeight: 600,
-          letterSpacing: '-.015em',
-          lineHeight: 1.08,
-          margin: '4px 0 14px',
-        }}
-      >
-        {m.titulo}
-      </h1>
-      <p
-        style={{
-          fontSize: 'var(--fs-head)',
-          color: 'var(--ink50)',
-          lineHeight: 1.5,
-          margin: '0 0 26px',
-        }}
-      >
-        {m.subtitulo}
-      </p>
-
-      <Emblema slug="basuras" data={data} style={{ margin: '0 0 26px' }} />
-
-      <CorrectionNotice correcciones={m.correcciones} />
-
-      {/* KPIs */}
-      <div
-        style={{
-          display: 'grid',
-          gridTemplateColumns: 'repeat(auto-fit, minmax(150px, 1fr))',
-          gap: 1,
-          background: 'var(--border)',
-          border: '1px solid var(--border)',
-          borderRadius: 'var(--r-card)',
-          overflow: 'hidden',
-          margin: '0 0 30px',
-        }}
-      >
-        {data.kpis.map((s, i) => (
-          <div
-            key={i}
-            className={enFigura.has(s.n) ? 'cp-kpi-en-figura' : undefined}
-            style={{ background: 'var(--paper)', padding: '16px 14px' }}
-          >
-            <div
-              className="mono"
-              style={{
-                fontSize: 'var(--fs-card)',
-                fontWeight: 500,
-                color: 'var(--ink)',
-                lineHeight: 1,
-              }}
-            >
-              {s.n}
-            </div>
-            <div
-              style={{
-                fontSize: 'var(--fs-aux)',
-                color: 'var(--ink50)',
-                marginTop: 7,
-                lineHeight: 1.3,
-              }}
-            >
-              {s.l}
-            </div>
-          </div>
-        ))}
-      </div>
+      />
 
       <article style={{ color: 'var(--ink70)' }}>
-        <IndicePieza />
-
         {/* 01 */}
         <SecHead num="01" kicker="La contrata" title="La empresa que llevaba casi quince años" />
         <p>
