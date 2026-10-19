@@ -407,8 +407,9 @@ fi
 
 # Has an upstream changed the words it uses? A field where a large share of rows
 # falls back to `unknown` means the parser is misreading the source — that is
-# how `formalized` cost €53.5M for months. New values only warn: a source adding
-# a word is normal, not noticing is not.
+# how `formalized` cost €53.5M for months. A new or vanished value also exits 1
+# since 2026-10-19 (it used to warn and nobody read it): soft here, and
+# `monitor:health` sends it in its digest.
 if ! npm run check:vocabulary; then
   echo "[scrape-all] SOFT-FAILED: check:vocabulary — upstream vocabulary drifted"
   soft_failures+=("check:vocabulary")

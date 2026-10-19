@@ -154,6 +154,11 @@ function group(into, rows) {
  * Same treatment as the `unknown` sentinel: it contributes nothing, and a
  * contract row of the same expediente that DOES publish a state still speaks.
  *
+ * Since 19-10-2026 the parser translates every licitación word to PLACSP's
+ * state (`estadoDeLicitacion` in src/scraper/tenders.ts), so a licitación in
+ * evaluation arrives as `evaluation`, never `void`. This stays for snapshots
+ * written before that and does nothing on newer ones.
+ *
  * @param {ProcurementRow} row
  * @returns {ProcurementRow}
  */

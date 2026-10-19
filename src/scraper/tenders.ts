@@ -43,7 +43,92 @@ export const TENDER_STATUS = new Set<TenderStatus>([
   'closed',
   'unknown',
   'withdrawn',
+  // Lo que la Plataforma llama «Anulada»; Gobierto lo exporta como `formalized`
+  // en la tabla de licitaciones (ver `estadoDeLicitacion`).
+  'annulled',
 ])
+
+// ---------------------------------------------------------------------------
+// Tender (licitación) status: Gobierto's words are not PLACSP's states
+// ---------------------------------------------------------------------------
+/**
+ * Qué estado de la Plataforma de Contratación hay detrás de cada palabra que
+ * Gobierto escribe en `licitaciones.status`. `null` = lo medido es una mezcla.
+ *
+ * En la tabla de CONTRATOS las palabras dicen lo que dicen (55V/2024: contrato
+ * `awarded`, Adjudicada; `void` es «Desierto», #325). En la de LICITACIONES no:
+ * el 2026-10-19 se cotejaron 51 licitaciones, de todos los estados y de 2017 a
+ * 2026, con el «Estado de la licitación» de su ficha en PLACSP
+ * (tests/fixtures/placsp_estado-licitacion_2026-10-19.json), y salió esto:
+ *
+ *   revoked                → Adjudicada (13 de 14; la otra, Resuelta)
+ *   formalized             → Anulada (2 de 2; las dos con su anuncio de anulación)
+ *   void                   → Evaluación (7 de 7; sólo el anuncio de licitación)
+ *   provisionally_awarded  → Evaluación (9 de 10, dos de ellas «Previa»)
+ *   awarded                → Resuelta (9 de 9)
+ *   abandoned              → Evaluación Previa (4), Parcialmente adjudicada o
+ *                            resuelta (3): una mezcla, sin una clase que darle
+ *
+ * No es el retraso de Gobierto, que va semanas por detrás: las licitaciones de
+ * 2018 a 2024 dan los mismos pares. Leídas al pie de la letra, `tenders.json`
+ * publicaba «revoked» sobre 114 licitaciones adjudicadas —el verificador llegó
+ * a tomarlas por desmentidos (#389)— y «formalized» sobre dos anuladas.
+ *
+ * «Resuelta» NO es «formalizada»: tres de las nueve no traen anuncio de
+ * formalización y una trae un desistimiento. Por eso `awarded` se queda en
+ * `awarded` y no sube a `formalized`, que diría «firmado».
+ */
+export const PLACSP_DE_LICITACION_GOBIERTO: Readonly<Record<string, string | null>> = {
+  revoked: 'Adjudicada',
+  formalized: 'Anulada',
+  void: 'Evaluación',
+  provisionally_awarded: 'Evaluación',
+  awarded: 'Resuelta',
+  abandoned: null,
+}
+
+/**
+ * Cada estado de la Plataforma, en el vocabulario de este proyecto
+ * (`contract-status.js` decide su clase). «Parcialmente adjudicada/resuelta»
+ * cuenta como comprometida por la misma regla que /hallazgos aplica a los
+ * lotes: un expediente en el que algún lote llegó a contrato no está anulado.
+ */
+export const ESTADO_DE_PLACSP: Readonly<Record<string, TenderStatus>> = {
+  'Anuncio Previo': 'open',
+  'En plazo': 'open',
+  Evaluación: 'evaluation',
+  'Evaluación Previa': 'evaluation',
+  Adjudicada: 'awarded',
+  'Parcialmente Adjudicada': 'awarded',
+  Resuelta: 'awarded',
+  'Parcialmente Resuelta': 'awarded',
+  Anulada: 'annulled',
+}
+
+/**
+ * Todo lo que `estadoDeLicitacion` puede devolver. `check:vocabulary` lo lee
+ * para no tomar nuestra traducción por deriva del origen: una palabra de aquí
+ * que aparece en `tenders.tenders.status` la ha puesto este parser, y la de
+ * Gobierto se vigila en `sourceStatus` (src/scraper/vocabulary-census.ts).
+ */
+export const ESTADOS_DE_LICITACION_TRADUCIDOS: ReadonlySet<TenderStatus> = new Set<TenderStatus>([
+  ...Object.values(PLACSP_DE_LICITACION_GOBIERTO)
+    .filter((p): p is string => p !== null)
+    .map((p) => ESTADO_DE_PLACSP[p]),
+  'unknown',
+])
+
+/**
+ * El estado de una licitación de Gobierto, traducido a lo que dice la
+ * Plataforma. Una palabra que nadie ha cotejado, una mezcla o el blanco de
+ * Gobierto dan el centinela: con el vocabulario corrido, una palabra nueva
+ * puede significar cualquier cosa (regla 3: el centinela no es un valor).
+ */
+export function estadoDeLicitacion(value: unknown): TenderStatus {
+  if (typeof value !== 'string') return 'unknown'
+  const placsp = PLACSP_DE_LICITACION_GOBIERTO[value.trim().toLowerCase()]
+  return (placsp && ESTADO_DE_PLACSP[placsp]) || 'unknown'
+}
 
 // ---------------------------------------------------------------------------
 // Category vocabulary
@@ -159,6 +244,7 @@ export type TenderStatus =
   | 'closed'
   | 'unknown'
   | 'withdrawn'
+  | 'annulled'
 
 export interface Contract {
   id: string
@@ -210,7 +296,10 @@ export interface Tender {
   title: string
   documentNumber: string | null
   permalink: string | null
+  /** Lo que dice la Plataforma, traducido de la palabra de Gobierto (`estadoDeLicitacion`). */
   status: TenderStatus
+  /** La palabra de Gobierto tal cual, para cotejar la traducción. */
+  sourceStatus: string | null
   contractType: string | null
   processType: string | null
   minorContract: boolean
@@ -319,7 +408,8 @@ export function parseRibalicitaTenders(csv: string): Tender[] {
       title: str(row.title),
       documentNumber: nullable(row.document_number),
       permalink: nullable(row.permalink),
-      status: normStatus<TenderStatus>(row.status, TENDER_STATUS),
+      status: estadoDeLicitacion(row.status),
+      sourceStatus: nullable(row.status),
       contractType: nullable(row.contract_type),
       processType: nullable(row.process_type),
       minorContract: String(row.minor_contract).toLowerCase() === 't',

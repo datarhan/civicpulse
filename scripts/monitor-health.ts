@@ -377,6 +377,11 @@ async function gather(rachasPrevias: Record<string, string>): Promise<Observatio
     // escrito el aviso de que los ids de ArcGIS se corren al republicar —fue
     // exacto y no sirvió de nada, porque un comentario no lo ejecuta nadie.
     'check:wms',
+    // El vocabulario de los orígenes. Hasta el 19-10-2026 una palabra nueva
+    // salía 0 y moría en el registro del nocturno, entre 35 avisos de ruido:
+    // `minor_contract` llevaba semanas así. Ahora el ruido no cuenta, nuestras
+    // traducciones tampoco, y lo que queda sale con 1 y llega aquí.
+    'check:vocabulary',
   ]) {
     const r = runCheck(c)
     if (r.desenlace === 'fallo') integrity.push({ check: c, message: r.mensaje })

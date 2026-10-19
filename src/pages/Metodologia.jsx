@@ -1425,13 +1425,18 @@ export default function Metodologia() {
               <li>
                 <strong>contradicho</strong> — la base documental registra un importe distinto, o el
                 discurso afirma «obra terminada» cuando la contratación no llegó a término (anulada,
-                revocada, desistida o sin adjudicación definitiva).{' '}
-                {/* 19-10-2026: 109 licitaciones «revoked» tenían un contrato gemelo «awarded»
-                    —55V/2024 entre ellas— y podían desmentir una obra que el propio contrato da
-                    por adjudicada (src/scraper/gemelos-de-licitacion.ts). */}
-                Cuando un mismo expediente figura en la tabla de contratos y en la de licitaciones
-                con estados distintos, manda el del contrato: una licitación «revocada» no desmiente
-                nada si su contrato figura adjudicado.{' '}
+                desierta, desistida, todavía en evaluación o sin adjudicación definitiva).{' '}
+                {/* 19-10-2026: Gobierto rotula el estado de las licitaciones con palabras que no
+                    son las de la Plataforma —«revoked» en 114 adjudicadas, «formalized» en dos
+                    anuladas—, medido sobre 51 fichas (src/scraper/tenders.ts,
+                    `estadoDeLicitacion`). Y cuando las dos tablas no casan, manda el contrato
+                    (src/scraper/gemelos-de-licitacion.ts). */}
+                El estado de una licitación se lee como lo muestra la Plataforma de Contratación: la
+                copia que publica el portal municipal lo rotula con otras palabras —«revocada» para
+                una licitación adjudicada, «formalizada» para una anulada—, y se traducen con una
+                correspondencia cotejada ficha a ficha contra la Plataforma. Cuando un mismo
+                expediente figura en la tabla de contratos y en la de licitaciones con estados
+                distintos, manda el del contrato.{' '}
                 <strong>Desde el 2 de agosto de 2026 no se publica de forma automática.</strong> El
                 comparador determinista llegó a emitir 49 y los 49 estaban mal: comparaban dinero
                 autonómico o estatal con un contrato municipal que compartía una palabra suelta. Una

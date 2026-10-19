@@ -537,6 +537,16 @@ Baselines (`.vocabulary-census.json`, `.transcript-check-baseline.json`) are
 **committed on purpose**. Gitignored, CI would write a fresh one each night and
 report "no change" forever.
 
+`check:vocabulary` is the exception to "report-only": any finding exits 1, and
+`monitor:health` sends it in its digest, because until 2026-10-19 a new
+upstream value warned with exit 0 and nobody read it. Three things keep that
+from being noise: a field only counts as vocabulary if its values repeat and
+its name is not an id, link, date, stamp or email; words a translation of ours
+writes (`CAMPOS_TRADUCIDOS` in `src/scraper/vocabulary-census.ts`) are not
+findings, and the upstream word is watched in its own field (`sourceStatus`);
+and accepting stays a human step — check the parser handles each value, then
+`npm run check:vocabulary -- --accept` and commit the census.
+
 `check:citations` is split across two runners, and the split is the point. The
 free structural half (does every claim cite a source that exists, is every quote
 verbatim in its excerpt) runs in `scrape:all` with `--offline`. The URL probe

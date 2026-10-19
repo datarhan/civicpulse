@@ -16,6 +16,14 @@
  * semántica, enseñaba al modelo un expediente adjudicado y revocado a la vez
  * (tests/claim-verifier-gemelos-de-licitacion.test.ts cuenta cómo).
  *
+ * CORREGIDO el mismo 19-10: esas licitaciones no estaban revocadas. Gobierto
+ * escribe `revoked` en las que la Plataforma tiene «Adjudicada» (13 de 14
+ * cotejadas), y el resto de su vocabulario de licitaciones está igual de
+ * corrido; el parser lo traduce ahora (`estadoDeLicitacion`, tenders.ts). La
+ * regla de este módulo sigue haciendo falta: la tabla de licitaciones y la de
+ * contratos pueden seguir sin casar —una licitación que la Plataforma deja «en
+ * evaluación» desde 2019 junto a su contrato adjudicado—, y el contrato manda.
+ *
  * El registro del contrato manda. Tres decisiones, cada una con su porqué:
  *
  *   · Se QUITA el estado de la licitación; la fila se queda. Lo único que la
