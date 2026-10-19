@@ -82,10 +82,13 @@ describe('los enlaces de una pieza a otra', () => {
   })
 
   it('cada uno lleva a una pieza, con su título literal, y su pieza lo nombra', () => {
-    for (const { slug, texto, a } of declarados) {
+    for (const { slug, texto, a, apodo } of declarados) {
       const destino = a.replace(/^\/reportajes\//, '')
       expect(REPORTAJE_SLUGS, `${slug} → ${a}`).toContain(destino)
-      expect(texto, `${slug} → ${a}`).toBe(leer(destino).meta.titulo)
+      // Un apodo —«Reconstrucción DANA» por «El dinero de la reconstrucción,
+      // calle a calle»— no tiene que ser el título: es como la pieza la nombra.
+      // Lo que se mira entonces es que el destino exista y el texto esté.
+      if (!apodo) expect(texto, `${slug} → ${a}`).toBe(leer(destino).meta.titulo)
       // Sin el propio bloque `enlaces`, que lo contiene siempre.
       const { enlaces: _, ...pieza } = leer(slug)
       expect(JSON.stringify(pieza), `${slug} no nombra «${texto}»`).toContain(texto)

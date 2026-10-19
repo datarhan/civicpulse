@@ -128,7 +128,8 @@
       "importe": 25887,
       "licitadores": 6,
       "proc": "abierto",
-      "pstd": true
+      "pstd": true,
+      "foco": true
     },
     {
       "ano": "2025",
@@ -137,7 +138,8 @@
       "importe": 25900,
       "licitadores": 2,
       "proc": "abierto",
-      "pstd": true
+      "pstd": true,
+      "foco": true
     },
     {
       "ano": "2025",
@@ -400,6 +402,13 @@
     "¿Se planteó el Ayuntamiento, tras la DANA, solicitar la reprogramación de actuaciones del PSTD hacia la recuperación de los espacios turísticos dañados?",
     "¿Cuál es el grado de ejecución final del plan (2,11 M€) certificado ante la Comisión de Seguimiento, y qué actuaciones se quedaron sin ejecutar?",
     "¿Considera el Ayuntamiento publicar el Estudio de Repercusiones del PSTD encargado en mayo de 2026?"
+  ],
+  "enlaces": [
+    {
+      "texto": "Reconstrucción DANA",
+      "a": "/reportajes/reconstruccion-dana",
+      "apodo": true
+    }
   ],
   "fuentes": [
     {

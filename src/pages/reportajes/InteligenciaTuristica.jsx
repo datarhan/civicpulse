@@ -1,130 +1,34 @@
 import { useReportaje } from '../../hooks/useReportaje'
 import CabeceraPieza from '../../components/reportajes/CabeceraPieza'
-import { Card } from '../../components/Primitives'
 import { CorrectionNote } from '../../components/reportajes/CorrectionNote'
-import { SecHead } from '../../components/reportajes/Pieza'
+import { SecHead, Aparte } from '../../components/reportajes/Pieza'
 import SolicitudLector from '../../components/reportajes/SolicitudLector'
 import { debeOfrecerSolicitud } from '../../lib/solicitud-lector'
 import { clasesApartadas, solicitables as soloSolicitables } from '../../lib/solicitud-apartadas'
-
-/* ---- Tabla genérica con scroll horizontal propio ---- */
-function Tabla({ cols, rows, caption }) {
-  const th = {
-    textAlign: 'left',
-    fontSize: 'var(--fs-micro)',
-    textTransform: 'uppercase',
-    letterSpacing: '.06em',
-    color: 'var(--ink50)',
-    fontWeight: 600,
-    padding: '8px 10px',
-    borderBottom: '1px solid var(--border)',
-    whiteSpace: 'nowrap',
-  }
-  const td = {
-    fontSize: 'var(--fs-aux)',
-    color: 'var(--ink70)',
-    padding: '8px 10px',
-    borderBottom: '1px solid var(--border)',
-    verticalAlign: 'top',
-  }
-  // La primera y la última columna van a ras: la tabla arranca en el mismo borde
-  // izquierdo que el texto que la presenta, y acaba en el de su filete.
-  const aRas = (i) => ({
-    ...(i === 0 && { paddingLeft: 0 }),
-    ...(i === cols.length - 1 && { paddingRight: 0 }),
-  })
-  return (
-    <div style={{ overflowX: 'auto' }}>
-      <table style={{ borderCollapse: 'collapse', width: '100%', minWidth: 560 }}>
-        {caption && (
-          <caption
-            style={{
-              captionSide: 'top',
-              textAlign: 'left',
-              fontSize: 'var(--fs-meta)',
-              color: 'var(--ink50)',
-              paddingBottom: 8,
-            }}
-          >
-            {caption}
-          </caption>
-        )}
-        <thead>
-          <tr>
-            {cols.map((c, i) => (
-              <th
-                key={i}
-                scope="col"
-                style={{ ...th, ...aRas(i), ...(c.right && { textAlign: 'right' }) }}
-              >
-                {c.label}
-              </th>
-            ))}
-          </tr>
-        </thead>
-        <tbody>
-          {rows.map((r, i) => (
-            <tr key={i}>
-              {r.map((cell, j) => (
-                <td
-                  key={j}
-                  className={cols[j].mono ? 'mono' : undefined}
-                  style={{
-                    ...td,
-                    ...aRas(j),
-                    ...(cols[j].right && { textAlign: 'right', whiteSpace: 'nowrap' }),
-                    ...(cols[j].strong && { color: 'var(--ink)', fontWeight: 500 }),
-                  }}
-                >
-                  {cell}
-                </td>
-              ))}
-            </tr>
-          ))}
-        </tbody>
-      </table>
-    </div>
-  )
-}
-
-/* ---- Callout ámbar ---- */
-function Callout({ title, children }) {
-  return (
-    <div
-      style={{
-        background: 'var(--warn-soft)',
-        border: '1px solid var(--warn)',
-        borderRadius: 'var(--r-card)',
-        padding: '16px 20px',
-        margin: '16px 0 8px',
-      }}
-    >
-      <div
-        style={{
-          fontSize: 'var(--fs-meta)',
-          textTransform: 'uppercase',
-          letterSpacing: '.1em',
-          color: 'var(--warn-ink)',
-          fontWeight: 700,
-          marginBottom: 8,
-        }}
-      >
-        {title}
-      </div>
-      <div style={{ fontSize: 'var(--fs-body)', color: 'var(--ink70)', lineHeight: 1.5 }}>
-        {children}
-      </div>
-    </div>
-  )
-}
+// La tabla y las citas son las de las otras piezas. La tabla propia tenía
+// 560 px de mínimo y a 375px se desplazaba de lado con el texto cortado; la
+// compartida apila cada fila. Y las citas dicen qué documento habla.
+import { Cita, CitaFragmentos, Tabla, enlazar } from './ConteoVisitantes'
 
 function eur(n) {
   return new Intl.NumberFormat('es-ES', {
     style: 'currency',
     currency: 'EUR',
     maximumFractionDigits: 0,
+    // es-ES no agrupa los números de cuatro cifras: «6612 €» salía en la misma
+    // columna que «14.403 €».
+    useGrouping: 'always',
   }).format(n)
 }
+
+/** Los procedimientos abiertos del plan, y cuáles de ellos tuvieron una sola
+ *  oferta: la tabla los marca y el texto los cuenta («cuatro de los once»). */
+export const esAbierto = (/** @type {{ proc: string }} */ r) => r.proc.startsWith('abierto')
+export const ofertaUnica = (/** @type {{ proc: string, licitadores: number }} */ r) =>
+  esAbierto(r) && r.licitadores === 1
+
+/** «Conflicto de intereses: …», del método. Va también en la cabecera. */
+export const PREFIJO_CONFLICTO = 'Conflicto de intereses:'
 
 const cap = () => ({
   fontSize: 'var(--fs-meta)',
@@ -167,6 +71,12 @@ export default function InteligenciaTuristica() {
   const m = data.meta
   // Qué preguntas van en el escrito del lector (src/lib/solicitud-apartadas.js).
   const solicitables = soloSolicitables('inteligencia-turistica', data.preguntas)
+  // La declaración de intereses, del método, en la cabecera: una pieza que
+  // examina unas licitaciones a las que su editor valoró concurrir lo dice
+  // antes de examinarlas, no en la quinta cautela del final. Se lee del
+  // método, no se copia, para que las dos no puedan decir cosas distintas.
+  const conflicto = data.metodo.find((t) => t.startsWith(PREFIJO_CONFLICTO))
+  const filasPlan = data.cluster.filter((r) => r.pstd)
 
   return (
     <div
@@ -187,6 +97,30 @@ export default function InteligenciaTuristica() {
           texto:
             'Esta pieza aún no es una publicación definitiva: se recabará la versión del Ayuntamiento de Riba-roja y de las empresas citadas, y se incorporará antes de darla por publicada.',
         }}
+        nota={
+          conflicto && (
+            <p
+              className="cp-ancho"
+              data-conflicto
+              style={{
+                fontSize: 'var(--fs-aux)',
+                color: 'var(--ink70)',
+                background: 'var(--soft)',
+                border: '1px solid var(--border)',
+                borderRadius: 'var(--r-card)',
+                padding: '12px 14px',
+                margin: '0 0 22px',
+                lineHeight: 1.55,
+              }}
+            >
+              <strong>Conflicto de intereses.</strong>{' '}
+              {conflicto
+                .slice(PREFIJO_CONFLICTO.length)
+                .trim()
+                .replace(/^./, (c) => c.toUpperCase())}
+            </p>
+          )
+        }
       />
 
       <article style={{ color: 'var(--ink70)' }}>
@@ -198,23 +132,11 @@ export default function InteligenciaTuristica() {
           un proyecto desarrollado por Movea Consulting con fondos europeos Next Generation, y lo
           hace con el vocabulario de una capital turística:
         </p>
-        <div style={{ display: 'flex', flexDirection: 'column', gap: 8, margin: '14px 0' }}>
-          {data.claims.map((c, i) => (
-            <div
-              key={i}
-              style={{
-                borderLeft: '3px solid var(--civic)',
-                padding: '6px 14px',
-                fontSize: 'var(--fs-body)',
-                color: 'var(--ink70)',
-                background: 'var(--soft)',
-                borderRadius: '0 var(--r-input) var(--r-input) 0',
-              }}
-            >
-              {c}
-            </div>
-          ))}
-        </div>
+        <CitaFragmentos
+          tipo="nota-municipal"
+          de="Ayuntamiento de Riba-roja · 7-7-2026"
+          fragmentos={data.claims}
+        />
         <p>
           {data.claimsOmitido} {data.notaLinkSense}
         </p>
@@ -241,29 +163,31 @@ export default function InteligenciaTuristica() {
           incluido el asesoramiento de la sociedad estatal SEGITTUR (32 días de contrato) y el
           estudio que evalúa el propio plan, firmados también en mayo de 2026, a semanas del cierre.
         </p>
-        <Card style={{ margin: '18px 0 8px' }}>
-          <Tabla
-            caption="Actuaciones del PSTD localizadas en el registro de contratación (importes de adjudicación sin IVA)"
-            cols={[
-              { label: 'Año' },
-              { label: 'Objeto' },
-              { label: 'Adjudicatario' },
-              { label: '€ sin IVA', right: true, mono: true, strong: true },
-              { label: 'Ofertas', right: true, mono: true },
-              { label: 'Proc.' },
-            ]}
-            rows={data.cluster
-              .filter((r) => r.pstd)
-              .map((r) => [
-                r.ano,
-                r.objeto,
-                r.empresa,
-                eur(r.importe),
-                String(r.licitadores),
-                r.proc,
-              ])}
-          />
-        </Card>
+        {/* Sin caja alrededor, como las tablas de las otras piezas. Marca las
+            dos filas de las que trata la pieza (`foco` en la instantánea) y,
+            en «Ofertas», los procedimientos abiertos que recibieron una sola:
+            el párrafo de abajo los cuenta, y la tabla tiene que dejar verlos. */}
+        <Tabla
+          compacta
+          caption="Actuaciones del PSTD localizadas en el registro de contratación (importes de adjudicación sin IVA)"
+          cols={[
+            { label: 'Año' },
+            { label: 'Objeto' },
+            { label: 'Adjudicatario' },
+            { label: '€ sin IVA', right: true, mono: true, strong: true },
+            { label: 'Ofertas', right: true, mono: true },
+            { label: 'Proc.' },
+          ]}
+          rows={filasPlan.map((r) => [
+            r.ano,
+            r.objeto,
+            r.empresa,
+            eur(r.importe),
+            ofertaUnica(r) ? `${r.licitadores} · única` : String(r.licitadores),
+            r.proc,
+          ])}
+          foco={filasPlan.flatMap((r, i) => (r.foco ? [i] : []))}
+        />
         <p className="cp-pie" style={cap()}>
           {data.clusterNota}
         </p>
@@ -293,27 +217,26 @@ export default function InteligenciaTuristica() {
           secreto de las proposiciones» —, y un error aritmético en la baremación obligó a
           rectificar el informe técnico. El resultado final:
         </p>
-        <Card style={{ margin: '18px 0 8px' }}>
-          <Tabla
-            caption={`Panel de Inteligencia · criterios: juicio de valor 49 · precio 40 · equipo 7 · mejoras 4`}
-            cols={[
-              { label: 'Licitador' },
-              { label: 'Precio (IVA inc.)', right: true, mono: true },
-              { label: 'Sobre B (49)', right: true, mono: true },
-              { label: 'Sobre C (51)', right: true, mono: true },
-              { label: 'Total', right: true, mono: true, strong: true },
-              { label: 'Resultado' },
-            ]}
-            rows={data.panel.ofertas.map((o) => [
-              o.empresa,
-              o.precio,
-              o.sobreB,
-              o.sobreC,
-              o.total,
-              o.resultado,
-            ])}
-          />
-        </Card>
+        <Tabla
+          compacta
+          caption={`Panel de Inteligencia · criterios: juicio de valor 49 · precio 40 · equipo 7 · mejoras 4`}
+          cols={[
+            { label: 'Licitador' },
+            { label: 'Precio (IVA inc.)', right: true, mono: true },
+            { label: 'Sobre B (49)', right: true, mono: true },
+            { label: 'Sobre C (51)', right: true, mono: true },
+            { label: 'Total', right: true, mono: true, strong: true },
+            { label: 'Resultado' },
+          ]}
+          rows={data.panel.ofertas.map((o) => [
+            o.empresa,
+            o.precio,
+            o.sobreB,
+            o.sobreC,
+            o.total,
+            o.resultado,
+          ])}
+        />
         <p className="cp-pie" style={cap()}>
           Excluidas antes de la valoración: {data.panel.excluidas.map((e) => e.empresa).join(' y ')}{' '}
           ({data.panel.excluidas[0].motivo}).
@@ -328,27 +251,26 @@ export default function InteligenciaTuristica() {
           <b>Los informes de movilidad ({data.movea.expediente})</b>, base de {data.movea.base},
           atrajeron solo dos ofertas — y aquí el orden se invirtió: ganó la más cara.
         </p>
-        <Card style={{ margin: '18px 0 8px' }}>
-          <Tabla
-            caption="Informes de movilidad · criterios: juicio de valor 40 · precio 40 · indicadores adicionales 15 · jefe de proyecto 5"
-            cols={[
-              { label: 'Licitador' },
-              { label: 'Precio (sin IVA)', right: true, mono: true },
-              { label: 'Sobre B (40)', right: true, mono: true },
-              { label: 'Sobre C (60)', right: true, mono: true },
-              { label: 'Total', right: true, mono: true, strong: true },
-              { label: 'Resultado' },
-            ]}
-            rows={data.movea.ofertas.map((o) => [
-              o.empresa,
-              o.precio,
-              o.sobreB,
-              o.sobreC,
-              o.total,
-              o.resultado,
-            ])}
-          />
-        </Card>
+        <Tabla
+          compacta
+          caption="Informes de movilidad · criterios: juicio de valor 40 · precio 40 · indicadores adicionales 15 · jefe de proyecto 5"
+          cols={[
+            { label: 'Licitador' },
+            { label: 'Precio (sin IVA)', right: true, mono: true },
+            { label: 'Sobre B (40)', right: true, mono: true },
+            { label: 'Sobre C (60)', right: true, mono: true },
+            { label: 'Total', right: true, mono: true, strong: true },
+            { label: 'Resultado' },
+          ]}
+          rows={data.movea.ofertas.map((o) => [
+            o.empresa,
+            o.precio,
+            o.sobreB,
+            o.sobreC,
+            o.total,
+            o.resultado,
+          ])}
+        />
         <p>{data.movea.ofertasNota}</p>
         <p style={cap()}>
           Cronologías completas — panel: {data.panel.hitos} · movilidad: {data.movea.hitos}
@@ -423,11 +345,15 @@ export default function InteligenciaTuristica() {
           ))}
         </ul>
         <p>{data.compra.campanas}</p>
-        <Callout title="Lo que caduca con el contrato">{data.compra.caducidad}</Callout>
-        <Callout title="La promesa de datos abiertos">
+        {/* En petróleo, lo que la pieza señala: eran dos cajas ámbar, el color
+            de un aviso para quien lee, y ninguna le pide hacer nada. */}
+        <Aparte title="Lo que caduca con el contrato" tono="foco">
+          {data.compra.caducidad}
+        </Aparte>
+        <Aparte title="La promesa de datos abiertos" tono="foco">
           {data.compra.openData.promesa}
           <div style={{ marginTop: 8, fontWeight: 600 }}>{data.compra.openData.estado}</div>
-        </Callout>
+        </Aparte>
 
         <SecHead num="06" kicker="La escala" title="El turismo que se quiere medir" />
         <ul>
@@ -437,37 +363,22 @@ export default function InteligenciaTuristica() {
             </li>
           ))}
         </ul>
-        <blockquote
-          style={{
-            margin: '16px 0',
-            padding: '12px 18px',
-            borderLeft: '3px solid var(--civic)',
-            background: 'var(--soft)',
-            borderRadius: '0 var(--r-input) var(--r-input) 0',
-            fontSize: 'var(--fs-head)',
-            fontWeight: 500,
-            lineHeight: 1.5,
-            color: 'var(--ink)',
-          }}
+        {/* La cita compartida, con su etiqueta. Iba en negrita a 17px, más
+            pesada que cualquier otra cita del sitio. La instantánea la guarda
+            con sus comillas, y la cita pone las suyas: se quitan las de fuera. */}
+        <Cita
+          tipo="pleno"
+          de="9-3-2026 · transcripción propia"
+          fuente={data.baseline.plenoQuoteFuente}
         >
-          {data.baseline.plenoQuote}
-          <div
-            style={{
-              fontSize: 'var(--fs-meta)',
-              color: 'var(--ink50)',
-              marginTop: 8,
-              fontWeight: 400,
-            }}
-          >
-            {data.baseline.plenoQuoteFuente}
-          </div>
-        </blockquote>
+          {data.baseline.plenoQuote.replace(/^«/, '').replace(/»$/, '')}
+        </Cita>
 
         <SecHead num="07" kicker="El contexto" title="Un plan turístico atravesado por la DANA" />
         <ul>
           {data.dana.bullets.map((b, i) => (
             <li key={i} style={{ marginBottom: 7, fontSize: 'var(--fs-body)' }}>
-              {b}
+              {enlazar(b, data.enlaces)}
             </li>
           ))}
         </ul>
@@ -503,11 +414,12 @@ export default function InteligenciaTuristica() {
         )}
       </article>
 
-      {/* Fuentes + método */}
+      {/* Fuentes y método: una caja debajo de la otra, con el texto a la medida
+          de lectura, como en las otras piezas. */}
       <div
         style={{
-          display: 'grid',
-          gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))',
+          display: 'flex',
+          flexDirection: 'column',
           gap: 14,
           margin: '32px 0 0',
         }}
@@ -521,7 +433,7 @@ export default function InteligenciaTuristica() {
           }}
         >
           <h3 style={boxH()}>Fuentes primarias</h3>
-          <ul style={boxUl()}>
+          <ul style={{ ...boxUl(), maxWidth: 'var(--medida)' }}>
             {data.fuentes.map((f, i) => (
               <li key={i} style={boxLi()}>
                 <a
@@ -539,13 +451,13 @@ export default function InteligenciaTuristica() {
         <div
           style={{
             background: 'var(--soft)',
-            border: '1px solid var(--warn)',
+            border: '1px solid var(--border)',
             borderRadius: 'var(--r-card)',
             padding: '18px 20px',
           }}
         >
           <h3 style={boxH()}>Método y cautelas</h3>
-          <ul style={boxUl()}>
+          <ul style={{ ...boxUl(), maxWidth: 'var(--medida)' }}>
             {data.metodo.map((t, i) => (
               <li key={i} style={boxLi()}>
                 {t}

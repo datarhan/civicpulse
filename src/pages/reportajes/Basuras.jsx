@@ -1,7 +1,7 @@
 import { useReportaje } from '../../hooks/useReportaje'
 import CabeceraPieza from '../../components/reportajes/CabeceraPieza'
 import { CorrectionNote } from '../../components/reportajes/CorrectionNote'
-import { SecHead, Pliegue } from '../../components/reportajes/Pieza'
+import { SecHead, Pliegue, Aparte } from '../../components/reportajes/Pieza'
 import SolicitudLector from '../../components/reportajes/SolicitudLector'
 import { debeOfrecerSolicitud } from '../../lib/solicitud-lector'
 import {
@@ -14,52 +14,6 @@ import {
 // palabra y sin aviso—; la compartida apila cada fila en pares etiqueta ·
 // valor. La cita propia no decía qué documento hablaba.
 import { Cita, Tabla } from './ConteoVisitantes'
-
-/* ---- Los apartes. Eran seis cajas ámbar, más el borde del recuadro de Parla
-        y el del método: con todo en el color de un aviso, ninguno avisaba.
-        Ahora el tono dice qué es cada uno:
-        - `nota` (por defecto), gris: una salvedad de la propia pieza —lo que
-          no decimos, el control que hicimos, un defecto del dato—.
-        - `foco`, petróleo: la pregunta a la que la pieza lleva.
-        - `aviso`, ámbar: lo único que le sirve a un vecino para actuar, las
-          dos horas distintas para sacar un mueble. ---- */
-const TONOS_APARTE = {
-  nota: { fondo: 'var(--soft)', borde: 'var(--border)', rotulo: 'var(--ink50)' },
-  foco: { fondo: 'var(--civic-soft)', borde: 'var(--civic)', rotulo: 'var(--civic-ink)' },
-  aviso: { fondo: 'var(--warn-soft)', borde: 'var(--warn)', rotulo: 'var(--warn-ink)' },
-}
-
-function Callout({ title, tono = 'nota', children }) {
-  const t = TONOS_APARTE[/** @type {keyof typeof TONOS_APARTE} */ (tono)]
-  return (
-    <div
-      data-aparte={tono}
-      style={{
-        background: t.fondo,
-        border: `1px solid ${t.borde}`,
-        borderRadius: 'var(--r-card)',
-        padding: '16px 20px',
-        margin: '16px 0 8px',
-      }}
-    >
-      <div
-        style={{
-          fontSize: 'var(--fs-meta)',
-          textTransform: 'uppercase',
-          letterSpacing: '.1em',
-          color: t.rotulo,
-          fontWeight: 700,
-          marginBottom: 8,
-        }}
-      >
-        {title}
-      </div>
-      <div style={{ fontSize: 'var(--fs-body)', color: 'var(--ink70)', lineHeight: 1.5 }}>
-        {children}
-      </div>
-    </div>
-  )
-}
 
 function eur(n, dec = 0) {
   return new Intl.NumberFormat('es-ES', {
@@ -263,6 +217,7 @@ export default function Basuras() {
         </div>
 
         <Tabla
+          compacta
           cols={[{ label: 'Criterio' }, { label: 'Puntos', right: true, mono: true, strong: true }]}
           rows={data.criterios.filas.map((f) => [f.criterio, num(f.puntos, f.puntos % 1 ? 1 : 0)])}
         />
@@ -384,7 +339,7 @@ export default function Basuras() {
             <p style={{ margin: 0, fontSize: 'var(--fs-body)' }}>{e.texto}</p>
           </div>
         ))}
-        <Callout title="La pregunta que esto abre" tono="foco">
+        <Aparte title="La pregunta que esto abre" tono="foco">
           {/* Decía «antes de que se valorasen las ofertas», y el bloque de
               JUSTO ARRIBA lo desmiente: la huelga de Ugao-Miraballes se cerró
               el 19 de julio de 2025 «mientras en Riba-roja se valoraban las
@@ -401,7 +356,7 @@ export default function Basuras() {
           </strong>{' '}
           Es una pregunta que se responde con el expediente, y es una de las que esta pieza abre al
           Ayuntamiento en su derecho de réplica.
-        </Callout>
+        </Aparte>
 
         {/* 04 */}
         <SecHead num="04" kicker="Los dueños" title="La empresa y la política" />
@@ -442,13 +397,13 @@ export default function Basuras() {
           <strong style={{ color: 'var(--ink)' }}>{data.politica.castellanos.nombre}.</strong>{' '}
           {data.politica.castellanos.texto}
         </p>
-        <Callout title="Lo que esto significa aquí — y lo que no">
+        <Aparte title="Lo que esto significa aquí — y lo que no">
           {data.politica.limites.map((l, i) => (
             <p key={i} style={{ margin: i === 0 ? 0 : '8px 0 0' }}>
               {l}
             </p>
           ))}
-        </Callout>
+        </Aparte>
 
         {/* 05 */}
         <SecHead num="05" kicker="La venta" title="Quién era la empresa cuando firmó" />
@@ -493,11 +448,11 @@ export default function Basuras() {
           «riesgo de la elusión de responsabilidades». Es el propio Ayuntamiento quien conecta la
           venta con el desenlace.
         </p>
-        <Callout title="Lo que aquí no decimos">
+        <Aparte title="Lo que aquí no decimos">
           Que la venta causara el fallo del servicio. La secuencia está documentada; la relación de
           causa no lo está. Es la pregunta que esta pieza abre a ISS, a Garbialdi y al Ayuntamiento,
           y publicaremos íntegra la respuesta de cada uno.
-        </Callout>
+        </Aparte>
 
         {/* 06 */}
         <SecHead
@@ -521,7 +476,7 @@ export default function Basuras() {
           la resolución. Y no consta ningún contrato de FCC, la empresa que presta el servicio desde
           marzo.
         </p>
-        <Callout title="El control que hicimos antes de decir esto">
+        <Aparte title="El control que hicimos antes de decir esto">
           Un registro desactualizado podría estar sencillamente abandonado, y entonces esto no sería
           noticia. No lo está: ese mismo día contenía{' '}
           <span className="mono">{data.registro.filasEnRegistro}</span> expedientes —de los que{' '}
@@ -530,7 +485,7 @@ export default function Basuras() {
           publicado— con adjudicaciones anotadas hasta el{' '}
           <span className="mono">{data.registro.ultimaAdjudicacionDelRegistro}</span>. Se mantiene
           al día. Lo que falta es esta anotación.
-        </Callout>
+        </Aparte>
 
         {/* 07 */}
         <SecHead num="07" kicker="El servicio" title="Lo que te toca, y cuándo" />
@@ -592,12 +547,12 @@ export default function Basuras() {
           <span className="mono">{cal.telefono}</span>, gratuito, donde Riba-roja Neta indica el día
           que corresponde. Ese número lleva funcionando desde 2011.
         </p>
-        <Callout title="Dos documentos municipales, la misma página, horas distintas" tono="aviso">
+        <Aparte title="Dos documentos municipales, la misma página, horas distintas" tono="aviso">
           El <em>{ch.documentoA}</em> pide sacarlo el día anterior «{ch.textoA}». El{' '}
           <em>{ch.documentoB}</em> dice, para la poda, «{ch.textoB}», y para los muebles, «
           {ch.textoB2}». {ch.nota} Un vecino que siga el cartel puede dejar un mueble en la calle
           tres horas antes de lo que dice el calendario.
-        </Callout>
+        </Aparte>
 
         {/* 08 */}
         <SecHead num="08" kicker="El dinero" title="Lo que cuesta y quién lo paga" />
@@ -652,6 +607,7 @@ export default function Basuras() {
           atención:
         </p>
         <Tabla
+          compacta
           caption="Coste efectivo declarado del programa de recogida de residuos, y lo que costará el contrato nuevo."
           cols={[
             { label: 'Año', mono: true },
@@ -669,12 +625,12 @@ export default function Basuras() {
           indicativa y no equivalente —el contrato agrupa recogida, poda y voluminosos, y el
           programa ministerial es sólo recogida—, pero el orden de magnitud es el que es.
         </p>
-        <Callout title="Un defecto del dato, no del servicio">
+        <Aparte title="Un defecto del dato, no del servicio">
           En esa misma declaración ministerial, Riba-roja consta como «gestión directa por la
           entidad local» en todos los ejercicios de 2015 a 2024. No puede ser cierto: la concesión
           de SAV estuvo vigente durante todo ese periodo. Es un error del dato oficial, y conviene
           saberlo antes de usar esa serie para nada.
-        </Callout>
+        </Aparte>
 
         <SecHead num="10" kicker="El cuestionario" title="Dieciocho preguntas incómodas" />
         <p>{data.preguntas.intro}</p>

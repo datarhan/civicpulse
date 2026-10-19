@@ -22,7 +22,7 @@ function aperturas() {
   const out = []
   for (const f of piezas) {
     const src = readFileSync(`${DIR}/${f}`, 'utf8')
-    for (const m of src.matchAll(/<Cita(?:EnLinea)?\b([^>]*)>/g)) {
+    for (const m of src.matchAll(/<Cita(?:EnLinea|Fragmentos)?\b([^>]*)>/g)) {
       out.push({ f, attrs: m[1] })
     }
   }

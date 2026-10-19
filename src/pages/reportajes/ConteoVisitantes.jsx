@@ -32,6 +32,9 @@ export const TIPOS_CITA = {
   // etiqueta: la autorización de la CNMC y el acuerdo del pleno.
   resolucion: 'Resolución',
   'orden-del-dia': 'Orden del día',
+  // «inteligencia turística»: lo dicho en un pleno, de una transcripción
+  // propia del audio; la atribución, a nivel de grupo, va en el pie.
+  pleno: 'Intervención en el pleno',
 }
 
 /** @param {string} tipo @param {string} [de] */
@@ -76,6 +79,61 @@ export function Cita({ children, tipo, de, fuente }) {
       >
         «{children}»
       </blockquote>
+      {fuente && (
+        <figcaption
+          style={{
+            fontSize: 'var(--fs-meta)',
+            color: 'var(--ink50)',
+            marginTop: 6,
+            lineHeight: 1.4,
+          }}
+        >
+          {fuente}
+        </figcaption>
+      )}
+    </figure>
+  )
+}
+
+/**
+ * Varios fragmentos sueltos de UN documento, bajo una sola etiqueta. Es lo
+ * que «inteligencia turística» hacía con seis cajas de cita seguidas, cada una
+ * con su filete y ninguna con su procedencia. Los fragmentos no se unen con
+ * «[…]»: eso afirmaría que van en ese orden y con sólo eso entre medias, y la
+ * pieza no lo dice. Cada uno llega con sus comillas, como lo cita la
+ * instantánea.
+ *
+ * @param {{ fragmentos: string[], tipo: string, de?: string, fuente?: string }} props
+ */
+export function CitaFragmentos({ fragmentos, tipo, de, fuente }) {
+  return (
+    <figure style={{ margin: '18px 0' }}>
+      <div style={{ ...ETIQUETA, marginBottom: 5 }}>{etiquetaDeCita(tipo, de)}</div>
+      <ul
+        style={{
+          listStyle: 'none',
+          margin: 0,
+          padding: '4px 16px',
+          borderLeft: '3px solid var(--civic)',
+          background: 'var(--soft)',
+        }}
+      >
+        {fragmentos.map((f, i) => (
+          <li
+            key={i}
+            style={{
+              fontFamily: SERIF,
+              fontSize: 'var(--fs-body)',
+              lineHeight: 1.5,
+              color: 'var(--ink)',
+              padding: '8px 0',
+              borderTop: i ? '1px solid var(--border)' : 'none',
+            }}
+          >
+            {f}
+          </li>
+        ))}
+      </ul>
       {fuente && (
         <figcaption
           style={{
@@ -170,7 +228,7 @@ const eur = (n) =>
    el peso, no con un fondo: un fondo empezaría en el mismo píxel que el texto
    de la primera columna, que va a ras, y el filete de la fila quedaría cortado.
    Petróleo, porque es lo que la pieza mira, no un fallo. */
-export function Tabla({ cols, rows, caption, foco = [] }) {
+export function Tabla({ cols, rows, caption, foco = [], compacta = false }) {
   const th = {
     textAlign: 'left',
     fontSize: 'var(--fs-micro)',
@@ -198,7 +256,10 @@ export function Tabla({ cols, rows, caption, foco = [] }) {
   return (
     // El margen de abajo es el de un párrafo: sin él, el texto que sigue a la
     // tabla se pegaba a su último filete.
-    <div className="cp-tabla" style={{ overflowX: 'auto', marginBottom: 14 }}>
+    <div
+      className={compacta ? 'cp-tabla cp-tabla-compacta' : 'cp-tabla'}
+      style={{ overflowX: 'auto', marginBottom: 14 }}
+    >
       <table style={{ borderCollapse: 'collapse', width: '100%' }}>
         {caption && (
           <caption
@@ -430,6 +491,7 @@ export default function ConteoVisitantes() {
       {/* 1 · los dos contratos */}
       <SecHead num="01" kicker="El expediente" title="Los dos contratos" />
       <Tabla
+        compacta
         cols={[
           { label: 'Expediente' },
           { label: 'Adjudicataria' },
@@ -473,6 +535,7 @@ export default function ConteoVisitantes() {
       {/* 5 · el baremo */}
       <SecHead num="05" kicker="El concurso" title={data.baremo.titulo} />
       <Tabla
+        compacta
         cols={[
           { label: 'Criterio' },
           { label: 'Puntos', right: true, mono: true },

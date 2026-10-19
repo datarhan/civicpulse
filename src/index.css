@@ -1899,6 +1899,24 @@ main:focus:not(:focus-visible) {
     color: var(--ink50);
     font-weight: 500;
   }
+  /* Compacta (`Tabla compacta`): la etiqueta a la izquierda de su valor, no
+     encima. Para tablas de celdas cortas —importes, puntos, ofertas—, donde
+     una etiqueta por línea doblaba el alto: la del plan turístico, dieciséis
+     filas de seis columnas, medía 5.114 px a 375. Las de texto largo —la
+     cronología de basuras, «lo que exige / lo observado»— siguen con la
+     etiqueta encima, que deja al texto el ancho entero. */
+  .cp-tabla-compacta td {
+    display: grid;
+    grid-template-columns: minmax(6.5em, 32%) 1fr;
+    column-gap: 12px;
+    align-items: baseline;
+  }
+  .cp-tabla-compacta td::before {
+    margin-bottom: 0;
+  }
+  .cp-tabla-compacta td + td {
+    margin-top: 4px;
+  }
 }
 
 /* «En esta pieza» — índice plegado, leído de los encabezados de la pieza. */
