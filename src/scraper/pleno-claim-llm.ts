@@ -26,6 +26,7 @@ import {
 import type { ZodTypeAny, z } from 'zod'
 import type { PlenoClaim } from './pleno-claim'
 import { sanearRecuento, type MotivoDeDescarte } from './unidad-de-recuento'
+import { normalizarLiteral } from './normalize'
 
 export interface ClaimExtractionOptions {
   plenoId: string
@@ -130,17 +131,10 @@ function roundSig(n: number | null | undefined, sig = 3): string {
   return String(Math.round(n * factor) / factor)
 }
 
-function normForKey(s: string): string {
-  // NFD diacritic strip + lowercase + collapse whitespace + strip punctuation
-  // so variant transcripts of the same utterance collapse.
-  return s
-    .normalize('NFD')
-    .replace(/[̀-ͯ]/g, '')
-    .toLowerCase()
-    .replace(/[^\p{L}\p{N}\s]/gu, ' ')
-    .replace(/\s+/g, ' ')
-    .trim()
-}
+// NFD diacritic strip + lowercase + collapse whitespace + strip punctuation
+// so variant transcripts of the same utterance collapse. Shared with the
+// manifest's distinct-literal count, so «the same sentence» means one thing.
+const normForKey = normalizarLiteral
 
 function claimKey(c: PlenoClaimExtraction): string {
   // Semantic dedup — the sliding windows overlap and the LLM paraphrases

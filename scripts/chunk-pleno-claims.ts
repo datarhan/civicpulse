@@ -31,6 +31,7 @@ import { classifyClaimProvenancePreparado } from '../src/scraper/claim-provenanc
 import { motivoDeRetirada, type MotivoDeRetirada } from '../src/scraper/declaracion-retirada'
 import { prepararHeno, type HenoPreparado } from '../src/scraper/quote-match'
 import { loadSupersededTexts, TRANSCRIPTS_DIR } from './lib/transcript-corpus'
+import { sesionesConActaEnDisco } from './lib/sesiones-con-acta'
 
 const MONOLITH = resolve('public/data/pleno-claims-verified.json')
 const CHUNKS_DIR = resolve('public/data/pleno-claims')
@@ -228,6 +229,7 @@ export function rewriteChunksFromMonolith(opts: { dryRun?: boolean } = {}): {
     sinProcedencia.size,
     retiradas,
     retenidasPorMotivo,
+    sesionesConActaEnDisco(),
   )
 
   // Track the chunks we're about to write so we can prune stale ones.

@@ -768,6 +768,16 @@ export function verifyClaim(inputs: VerifierInputs): ClaimVerification {
   // both PLACSP and EU notices without further changes downstream.
   const tedTenders = inputs.tendersTed ? readTenders(inputs.tendersTed) : []
   const tenderList = [...localTenders, ...tedTenders]
+  /**
+   * ¿Leyó los contratos el camino del IMPORTE (bloque 2)? Es lo único que
+   * justifica enseñar el expediente parecido de `mejorCasiPorObjeto`, cuya
+   * frase habla de la cifra citada. `leyoContratos(checked)` no lo distingue:
+   * el bloque 3 también anota `tenders`, y desde que su emparejamiento se ancla
+   * en el literal (abajo), una cita sin cifra que sólo casaba por la paráfrasis
+   * del extractor volvía por esa puerta con un «no publica importe con el que
+   * cotejar la cifra citada» de una cifra que no existe.
+   */
+  let importeLeyoContratos = false
   const bdnsList = inputs.bdns ? readBdns(inputs.bdns) : []
   const promiseList = inputs.promises ? readPromises(inputs.promises) : []
 
@@ -825,6 +835,7 @@ export function verifyClaim(inputs: VerifierInputs): ClaimVerification {
     if (tenderList.length > 0) {
       if (localTenders.length > 0) note('tenders')
       if (tedTenders.length > 0) note('tenders-ted')
+      importeLeyoContratos = true
       let best: { row: TenderRow; sim: number } | null = null
       // Also look for strong-entity / weak-amount matches → potential contradicho
       let entityMatchMismatchedAmount: { row: TenderRow; textSim: number } | null = null
@@ -1068,7 +1079,27 @@ export function verifyClaim(inputs: VerifierInputs): ClaimVerification {
     // abajo —sin-datos, con el documento a la vista— en vez de convertirse en un
     // desmentido automático contra un grupo con nombre.
     const claimsCompleted = claim.type !== 'acusacion_publica' && claimsCompletion(claim.verbatim)
-    for (const t of tenderList) {
+    // El objeto se busca con las palabras QUE DIJO quien habla, no con la
+    // paráfrasis del extractor. `referencedEntity` la escribe un modelo, y
+    // casaba contra contratos palabras que la cita no trae: el 19-10-2026
+    // zrbgic-086-cit-ec50ea —«Si ha hagut un manteniment no ha sigut
+    // l'adequat…», una valoración en valenciano— salía `parcial` y enseñada
+    // con similitud 1 sobre el contrato de mantenimiento del césped
+    // artificial, porque el extractor anotó «contrato/condiciones de
+    // mantenimiento del césped artificial». Ni «césped» ni «artificial» ni
+    // «mantenimiento» están en la cita. Un parecido con lo que el modelo
+    // entendió no es un parecido con lo que se dijo, y no sube un veredicto
+    // (CLAUDE.md, regla 4: los automáticos sólo bajan).
+    //
+    // La entidad sigue sirviendo de FOCO —de un literal largo, qué palabras
+    // nombran el objeto—, pero sólo cuenta lo que de ella está en el literal.
+    // Sin ninguna, no hay con qué emparejar: la fila cae a `sin-datos`, con
+    // `tenders` anotado porque el comparador se lanzó.
+    const literal = distintivos(claim.verbatim)
+    const entidadEnLiteral = [...distintivos(claim.entities.referencedEntity)]
+      .filter((tok) => literal.has(tok))
+      .join(' ')
+    for (const t of entidadEnLiteral ? tenderList : []) {
       // Mutuo, no contención: el suelo 0,50 de `overlapScore` lo saciaban
       // «contratación», «servicio» y «procedimiento» sobre cuatro campos
       // concatenados, y así una cita sobre la concesión del agua quedó
@@ -1076,8 +1107,16 @@ export function verifyClaim(inputs: VerifierInputs): ClaimVerification {
       // `tenderCouldRefute` ya exige para acusar: ≥2 tokens distintivos
       // compartidos y Jaccard ≥ 0,34. El segundo paso LLM sigue detrás para
       // los falsos positivos que sobrevivan.
-      const m = solapamientoMutuo(claim.entities.referencedEntity, tenderTitle(t))
-      const textSim = puntuacionObjeto(m)
+      // El MENOR de los dos parecidos: con la paráfrasis entera y con lo que de
+      // ella está en el literal. Recortar la entidad no puede subir nada, y
+      // sólo con la segunda lo hacía: «A B C D» con sólo «A B» en la cita
+      // casaba ENTERA contra un título con «A B» y puntuaba 1 donde la
+      // paráfrasis daba un Jaccard de 0,3. Medido sobre la base del
+      // 19-10-2026: doce `sin-datos` subían a `parcial` así.
+      const textSim = Math.min(
+        puntuacionObjeto(solapamientoMutuo(claim.entities.referencedEntity, tenderTitle(t))),
+        puntuacionObjeto(solapamientoMutuo(entidadEnLiteral, tenderTitle(t))),
+      )
       if (textSim >= 0.34) {
         // Contradicho: speaker says "completed" but tender is open/pending.
         // Decided BEFORE the push so the ref carries its own stance rather
@@ -1230,8 +1269,12 @@ export function verifyClaim(inputs: VerifierInputs): ClaimVerification {
   // la fila salía sobre una línea de fuentes que no nombra ninguno, y la frase
   // hablaba de una cifra que la cita no trae (claim-verdicts.ts, «El expediente
   // que se parece»).
+  //
+  // Y sólo el camino del IMPORTE (`importeLeyoContratos`): el de sólo-objeto
+  // también anota `tenders`, y una cita sin cifra cuyo objeto no está en el
+  // literal no debe volver por aquí con el contrato que casó con la paráfrasis.
   const casi =
-    evidence.some((e) => e.kind === 'tender') || !leyoContratos(checked)
+    evidence.some((e) => e.kind === 'tender') || !importeLeyoContratos || !leyoContratos(checked)
       ? null
       : mejorCasiPorObjeto(claim.entities.referencedEntity, tenderList)
   if (casi) {

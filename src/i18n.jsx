@@ -688,7 +688,7 @@ export const CATALOGUE = {
     'declaraciones.filter.todos': 'Todos',
     'declaraciones.filter.conEvidencia': 'Cotejadas',
     'declaraciones.filter.atribuidas': 'Atribuidas',
-    'declaraciones.filter.sinCorpus': 'Sin corpus que consultar',
+    'declaraciones.filter.sinCorpus': 'Ningún comparador lanzado',
     'declaraciones.filter.comprobadoSinHallar': 'Comprobada, no aparece',
     'declaraciones.filter.noConsta': 'No consta qué se consultó',
     'declaraciones.filter.unEscano.uno':
@@ -698,8 +698,8 @@ export const CATALOGUE = {
     'declaraciones.filter.unEscano.porQue': 'Por qué',
     'declaraciones.split.titulo': 'Por qué «sin datos»',
     'declaraciones.split.cuerpo':
-      'No es lo mismo haber comprobado y no encontrar nada que no haber tenido con qué comprobar: lo segundo no dice nada sobre la declaración, dice que aún no tenemos ese corpus. Y de las que no consta, una revisión posterior —de un modelo o de un curador— rehízo el veredicto sin dejar anotado contra qué lo cotejó, que tampoco es lo mismo que no tener con qué.',
-    'declaraciones.split.sinCorpus': 'sin corpus que consultar',
+      'No es lo mismo haber comprobado y no encontrar nada que no haber lanzado ningún comparador. El verificador sólo lanza uno cuando la declaración trae un importe en euros, cuando cita una obra por su nombre o cuando es una promesa; a las demás no les lanza ninguno. Eso no dice nada sobre la declaración, ni que no haya datos con que contrastarla —para algunas los hay, como el padrón, el paro o las votaciones y actas de pleno—: dice que aún no tenemos el comparador. Y de las que no consta, una revisión posterior —de un modelo o de un curador— rehízo el veredicto sin dejar anotado contra qué lo cotejó, que tampoco es lo mismo.',
+    'declaraciones.split.sinCorpus': 'sin ningún comparador lanzado',
     'declaraciones.split.comprobadoSinHallar': 'comprobadas, no aparecen',
     'declaraciones.split.noConsta': 'no consta qué se consultó',
     'declaraciones.search.placeholder': 'Buscar en el texto literal…',
@@ -806,7 +806,7 @@ export const CATALOGUE = {
     'plenos.indice.decl.titulo': '{extraidas} declaraciones, {verificado} verificadas',
     'plenos.indice.decl.sinDatosNota':
       'Un «sin datos» no desmiente nada: dice que no encontramos ningún documento municipal que hable de eso. De los {sinDatos}, {sinCorpus}, {comprobado} se comprobaron sin hallar nada y de {noConsta} no consta qué se consultó.',
-    'plenos.indice.decl.sinCorpus': '{n} no tenían corpus donde buscar',
+    'plenos.indice.decl.sinCorpus': '{n} no pasaron por ningún comparador',
     'plenos.indice.decl.enlace': 'Verificación de declaraciones, todas las sesiones →',
     'plenos.indice.reparto.eyebrow': 'Reparto por área · {puntos} puntos de {sesiones} sesiones',
     'plenos.indice.reparto.titulo': 'Qué áreas llevan el orden del día',
@@ -2800,7 +2800,7 @@ export const CATALOGUE = {
     'declaraciones.filter.todos': 'Tots',
     'declaraciones.filter.conEvidencia': 'Acarades',
     'declaraciones.filter.atribuidas': 'Atribuïdes',
-    'declaraciones.filter.sinCorpus': 'Sense corpus a consultar',
+    'declaraciones.filter.sinCorpus': 'Cap comparador llançat',
     'declaraciones.filter.comprobadoSinHallar': 'Comprovada, no apareix',
     'declaraciones.filter.noConsta': 'No consta què es va consultar',
     'declaraciones.filter.unEscano.uno':
@@ -2810,8 +2810,8 @@ export const CATALOGUE = {
     'declaraciones.filter.unEscano.porQue': 'Per què',
     'declaraciones.split.titulo': 'Per què «sense dades»',
     'declaraciones.split.cuerpo':
-      'No és el mateix haver comprovat i no trobar res que no haver tingut amb què comprovar: el segon no diu res sobre la declaració, diu que encara no tenim eixe corpus. I de les que no consta, una revisió posterior —d’un model o d’un curador— va refer el veredicte sense deixar anotat contra què el va acarar, que tampoc és el mateix que no tindre amb què.',
-    'declaraciones.split.sinCorpus': 'sense corpus a consultar',
+      'No és el mateix haver comprovat i no trobar res que no haver llançat cap comparador. El verificador només en llança un quan la declaració porta un import en euros, quan cita una obra pel seu nom o quan és una promesa; a les altres no els en llança cap. Això no diu res sobre la declaració, ni que no hi haja dades amb què contrastar-la —per a algunes n’hi ha, com el padró, l’atur o les votacions i actes de ple—: diu que encara no tenim el comparador. I de les que no consta, una revisió posterior —d’un model o d’un curador— va refer el veredicte sense deixar anotat contra què el va acarar, que tampoc és el mateix.',
+    'declaraciones.split.sinCorpus': 'sense cap comparador llançat',
     'declaraciones.split.comprobadoSinHallar': 'comprovades, no apareixen',
     'declaraciones.split.noConsta': 'no consta què es va consultar',
     'declaraciones.search.placeholder': 'Cerca en el text literal…',
@@ -2917,7 +2917,7 @@ export const CATALOGUE = {
     'plenos.indice.decl.titulo': '{extraidas} declaracions, {verificado} verificades',
     'plenos.indice.decl.sinDatosNota':
       'Un «sense dades» no desmentix res: diu que no hem trobat cap document municipal que en parle. Dels {sinDatos}, {sinCorpus}, {comprobado} es van comprovar sense trobar res i de {noConsta} no consta què es va consultar.',
-    'plenos.indice.decl.sinCorpus': '{n} no tenien corpus on buscar',
+    'plenos.indice.decl.sinCorpus': '{n} no van passar per cap comparador',
     'plenos.indice.decl.enlace': 'Verificació de declaracions, totes les sessions →',
     'plenos.indice.reparto.eyebrow': 'Repartiment per àrea · {puntos} punts de {sesiones} sessions',
     'plenos.indice.reparto.titulo': 'Quines àrees porten l’ordre del dia',

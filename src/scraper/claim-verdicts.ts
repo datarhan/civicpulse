@@ -56,7 +56,14 @@ export type ClaimVerdict = (typeof CLAIM_VERDICTS)[number]
  * Qué consta de lo que se consultó para llegar a un veredicto:
  *
  *   · `con-corpus` — la lista nombra algún corpus declarado en `CORPUS_IDS`;
- *   · `sin-corpus` — no hay nada anotado en ningún sitio: no había con qué;
+ *   · `sin-corpus` — no hay nada anotado en ningún sitio: no se lanzó ningún
+ *     comparador. El nombre es histórico y dice de más: no es que no haya
+ *     corpus —el padrón, el paro, las votaciones y las actas de pleno están
+ *     publicados—, es que el verificador sólo lanza uno con un importe en
+ *     euros, con la obra que cita una cita de obra o una acusación de hecho, o
+ *     con una promesa, y la fila no traía nada de eso (19-10-2026: las 2.074
+ *     servidas, ninguna con importe). La página lo rotula «ningún comparador se
+ *     lanzó»; el identificador se queda, porque lo leen el manifiesto y las CLI;
  *   · `no-consta` — se anotó algo que no es un corpus (una pasada, en
  *     `checkedAgainst`, en `derivedBy` o como `source`, o un nombre sin
  *     declarar): no sabemos contra qué se cotejó, que no es lo mismo que no
@@ -67,7 +74,7 @@ export const DESENLACES_DE_COTEJO = ['con-corpus', 'sin-corpus', 'no-consta'] as
 export type DesenlaceDeCotejo = (typeof DESENLACES_DE_COTEJO)[number]
 
 export interface ResumenSinDatos {
-  /** Nada anotado: no había corpus que consultar. */
+  /** Nada anotado: no se lanzó ningún comparador (no que no haya corpus). */
   sinCorpus: number
   /** Se consultaron corpus y no hubo coincidencia. */
   comprobadoSinHallar: number

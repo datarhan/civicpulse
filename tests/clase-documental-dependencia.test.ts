@@ -236,6 +236,13 @@ describe('informes, planes y expedientes de otro órgano no se cuentan', () => {
 
   const PROPIAS: Array<[string, string, string, string]> = [
     [
+      // «de l'Ajuntament de data…»: es éste, no otro ayuntamiento llamado «data».
+      '15000go-014-afi-b5c1a7',
+      '2023-05-24',
+      "L'informe dels serveis tècnics de l'Ajuntament de data 26 d'octubre de 2010, s'estableixen les deficiències que persisteixen encara",
+      'informe-tecnico',
+    ],
+    [
       '1tgd1h4-013-afi-46e105',
       '2024-07-29',
       'Visto el informe emitido por el Ingeniero Municipal en fecha 12 de julio de 2024',

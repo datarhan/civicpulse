@@ -38,6 +38,22 @@ export function slugify(s: string): string {
 }
 
 /**
+ * El literal de una declaración, reducido a lo que distingue una frase de otra:
+ * sin acentos, en minúsculas, sin puntuación y con un solo espacio. Es la
+ * normalización con la que el extractor deduplica sus ventanas
+ * (`claimKey`, pleno-claim-llm.ts) y con la que el manifiesto cuenta literales
+ * distintos: una sola, para que «la misma frase» signifique lo mismo en los dos
+ * sitios.
+ */
+export function normalizarLiteral(s: string): string {
+  return stripDiacritics(s)
+    .toLowerCase()
+    .replace(/[^\p{L}\p{N}\s]/gu, ' ')
+    .replace(/\s+/g, ' ')
+    .trim()
+}
+
+/**
  * Aggressive matcher fold: lowercase, strip accents, drop every
  * non-alphanumeric char — so "Riba-roja", "riba roja", "ribarroja" and
  * "Ribarroja" all collapse to the same token. Previously duplicated

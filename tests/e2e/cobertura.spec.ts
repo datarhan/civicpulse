@@ -8,6 +8,7 @@ import { CLASES_PEDIBLES } from '../../src/scraper/clase-documental'
 import { diaDeLaSede } from '../../src/scraper/queja-router'
 import { readFileSync, readdirSync } from 'node:fs'
 import { collectErrors, appErrors } from './_console'
+import { entero } from '../../src/lib/formatters'
 
 // Las cifras salen del manifiesto publicado, no escritas a mano: una spec que
 // restituye el número que debería salir se queda verde mientras la página
@@ -60,7 +61,7 @@ test.describe('Cobertura de comprobación (/laboratorio/cobertura)', () => {
       ['NO CONSTA QUÉ SE CONSULTÓ', SUMA.noConsta],
     ] as const) {
       const bloque = page.getByText(rotulo, { exact: true }).locator('..')
-      await expect(bloque, rotulo).toContainText(n.toLocaleString('es-ES'))
+      await expect(bloque, rotulo).toContainText(entero(n))
     }
     expect(appErrors(errors)).toEqual([])
   })
@@ -91,9 +92,7 @@ test.describe('Cobertura de comprobación (/laboratorio/cobertura)', () => {
     await page.goto('/laboratorio/cobertura', { waitUntil: 'domcontentloaded' })
     await expect(page.getByText(/hay retenidas/i)).toBeVisible({ timeout: 8000 })
     for (const n of Object.values(retenidas)) {
-      await expect(
-        page.getByText(n.toLocaleString('es-ES'), { exact: false }).first(),
-      ).toBeVisible()
+      await expect(page.getByText(entero(n), { exact: false }).first()).toBeVisible()
     }
   })
 
@@ -191,7 +190,7 @@ test.describe('Solicitudes de acceso (/laboratorio/cobertura)', () => {
     for (const clase of ['informe-tecnico', 'expediente', 'plan-interno', 'acta']) {
       const n = CLASES.porClase[clase] ?? 0
       expect(n, `la clase ${clase} no tiene material detrás`).toBeGreaterThan(0)
-      expect(texto).toContain(n.toLocaleString('es-ES'))
+      expect(texto).toContain(entero(n))
     }
   })
 

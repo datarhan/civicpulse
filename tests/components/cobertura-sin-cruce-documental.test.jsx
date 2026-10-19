@@ -85,7 +85,7 @@ describe('/laboratorio/cobertura · el cruce documental que falta no es un cero'
   it('sin `porClaseDocumental`, dice que no se ha podido calcular', async () => {
     pintar({})
     expect(
-      await screen.findByText(/no es que no dependa ninguna.*no se ha podido calcular/i),
+      await screen.findByText(/no es que no lo nombre ninguna.*no se ha podido calcular/i),
     ).toBeTruthy()
   })
 
