@@ -438,11 +438,11 @@ overwrites it. Change the bot's SQLite instead.
 - **Source** — **OSM Overpass API** — `amenity`/`leisure`/`healthcare`/`tourism` civic tags inside the `wikidata=Q23701` area. Requires a `name` on the noisy `leisure` bucket so the ~1.5k private backyard pools never reach the map; parser drops unnamed + dedups node/area
 - **Surfaces** — Direction D StylizedMap "Servicios" layer (category-coloured markers + legend)
 
-### Mapa base de los cuatro mapas (no snapshot — teselas en vivo)
+### Mapa base de los cinco mapas (no snapshot — teselas en vivo)
 
 - **Pipeline** — _(ninguno — teselas ráster)_ · la URL y la clave viven en `src/lib/basemap.js`, en un solo sitio
 - **Source** — **CARTO Voyager** (`basemaps.cartocdn.com/rastertiles/voyager`), cartografía derivada de **OpenStreetMap** (ODbL). Capa gratuita de CARTO para uso no comercial: 5M teselas/mes, clave en `VITE_CARTO_API_KEY`
-- **Surfaces** — los cuatro mapas Leaflet: portada (`StylizedMap`), `/quejas` (`QuejasHeatmap`), `/presupuesto` (`GastoMap`), `/empleo` (`EmpleoMap`)
+- **Surfaces** — los cinco mapas Leaflet: portada (`StylizedMap`), `/quejas` (`QuejasHeatmap`), `/presupuesto` (`GastoMap`), `/empleo` (`EmpleoMap`), `/reportajes/matriculas-y-moviles` (`MapaPliego`)
 - **Atribución** — obligatoria por partida doble (la capa gratuita de CARTO la exige por escrito; la ODbL de OSM la exige igual) y se sirve desde `BASEMAP_ATTRIBUTION`. La portada usa su propia línea de crédito; los otros tres, el control de Leaflet sin prefijo
 - **Trampa medida (3-sep-2026)** — sin clave, CARTO NO falla: devuelve `200 image/png` con «API KEY REQUIRED» estampado en diagonal. Y una clave **inválida** devuelve esa misma tesela **byte a byte** —sin 401 ni 403— así que un secreto sin poner en Vercel, una clave revocada o la cuota agotada son indistinguibles de acertar por HTTP. Lo mira `npm run check:basemap`, comparando la tesela con clave contra la de sin clave; entra en el parte nocturno, no en el pre-commit
 
@@ -464,7 +464,7 @@ overwrites it. Change the bot's SQLite instead.
 - **Pipeline** — `npm run build:mapa-pliego` (`scripts/build-mapa-pliego.ts`) → `src/scraper/mapa-pliego.ts` (fixture `tests/fixtures/osm_matriculas-pliego_2026-10-18.json`, la respuesta a `--ql`) → bloque `mapa` de `reportajes/matriculas-y-moviles.json`. A mano, no en la nocturna: como toda cifra de un reportaje, se congela con la fecha de su consulta
 - **Source** — **OSM Overpass API** — la relación 3774370 (Parc Natural del Túria), las tres calles junto a las que el pliego del expediente 98/2025 sitúa sus aparcamientos con cámaras (por su nombre OSM exacto, en `mapa-pliego-config.ts`), el Riu Túria, y los nodos de Porxinos y del pueblo
 - **Scope** — dibuja la CALLE que nombra el pliego, nunca un pin donde creemos que está el aparcamiento. El build se niega a escribir si alguna calle cae dentro del parque (par-impar con los huecos), porque la pieza afirma lo contrario; la prueba comprueba además que `dentro` sí da «dentro» para el cauce
-- **Surfaces** — `/reportajes/matriculas-y-moviles`, §03
+- **Surfaces** — `/reportajes/matriculas-y-moviles`, §03: Leaflet sobre el mapa base del sitio (ver abajo), cargado perezoso. El río y el pueblo del bloque no se dibujan: el mapa base ya los trae
 
 ### Metrovalencia GTFS static schedule (L9 + L2 at 4 local stations)
 

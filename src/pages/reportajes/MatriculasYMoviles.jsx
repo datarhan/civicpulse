@@ -1,6 +1,6 @@
+import { lazy, Suspense } from 'react'
 import { useReportaje } from '../../hooks/useReportaje'
 import CabeceraPieza from '../../components/reportajes/CabeceraPieza'
-import MapaPliego from '../../components/reportajes/MapaPliego'
 import { Card } from '../../components/Primitives'
 import { CorrectionNote } from '../../components/reportajes/CorrectionNote'
 import { SecHead } from '../../components/reportajes/Pieza'
@@ -17,6 +17,8 @@ import {
 } from './ConteoVisitantes'
 
 const SERIF = "'Fraunces', Georgia, serif"
+// Leaflet, perezoso: sólo esta pieza lo usa, y a media página.
+const MapaPliego = lazy(() => import('../../components/reportajes/MapaPliego'))
 const SLUG = 'matriculas-y-moviles'
 
 /** El número de una foto en la hoja de contactos: F1, F2… por su orden. */
@@ -273,7 +275,13 @@ export default function MatriculasYMoviles() {
       {/* «Ninguno de los tres aparcamientos está en el Parque Natural», dicho en
           la frase de arriba, a la vista. Sin bloque `mapa` no se pinta nada:
           la frase se sostiene sola. */}
-      {data.mapa && <MapaPliego mapa={data.mapa} />}
+      {data.mapa && (
+        <Suspense
+          fallback={<div className="cp-ancho cp-mapa-pliego" style={{ margin: '18px 0' }} />}
+        >
+          <MapaPliego mapa={data.mapa} />
+        </Suspense>
+      )}
       <Lista items={ca.destino} />
       <P>{ca.remate}</P>
 
