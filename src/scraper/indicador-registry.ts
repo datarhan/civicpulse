@@ -154,8 +154,11 @@ export interface ServicioDef {
  * el orden del día de esa sesión (`plenos-agendas.json`) y es la fecha que da
  * `reportajes/coste-efectivo.json`—, no el 06-08-2026, que es cuando la
  * Plataforma publicó el anuncio. `hasta` es el `endDate` de la fila del
- * expediente en `contracts` desde la formalización del 06-10-2026; el
- * 2043-07-27 de antes no lo daba ninguna fuente: era el acuerdo más 17 años.
+ * expediente en `contracts`, que el registro trae desde que formalizó
+ * (`formalizedDate` 2026-10-06; probablemente también el día del anuncio y
+ * no el de la firma, porque `endDate` menos los 6.209 días de `duration` da el
+ * 2026-10-02). El 2043-07-27 de antes no lo daba ninguna fuente: era el
+ * acuerdo más 17 años.
  * Se escribe aquí y no se lee de `tenders.json` en `compute-indicadores` para
  * que la nocturna no pueda mover sola una fecha publicada en una superficie
  * con valor legal: si el registro la cambia, `eficiencia-concesion-agua.test`
