@@ -28,6 +28,15 @@ import { cruzaMediana } from '../src/scraper/indicador-areas'
 import { SERVICIOS } from '../src/scraper/indicador-registry'
 import { MIN_ENTREGAS_CONGELADA } from '../src/scraper/declaracion-congelada'
 import { detectarDesviaciones, RECHAZOS } from '../src/scraper/indicador-desviacion'
+import type { OrigenEntrega } from '../src/scraper/cesel-procedencia'
+
+/** Un documento de origen para cada año que construyen estas pruebas. */
+const ORIGENES: Record<number, OrigenEntrega> = Object.fromEntries(
+  Array.from({ length: 30 }, (_, k) => 2010 + k).map((a) => [
+    a,
+    { documento: 'informe-ccaa', url: 'https://www.hacienda.gob.es/', ccaa: 17 },
+  ]),
+)
 import type { CesteRow } from '../src/scraper/coste-efectivo'
 
 const ANIOS = [2019, 2020, 2021, 2022, 2023, 2024]
@@ -76,7 +85,7 @@ function construir(municipioFilas: CesteRow[]) {
       })),
       filas: paresFilas,
     },
-    citaUrl: 'https://www.hacienda.gob.es/',
+    origenes: ORIGENES,
   })
 }
 
@@ -222,7 +231,7 @@ describe('scraper/indicador-desviacion — el movimiento necesita un denominador
         })),
         filas: paresQuietos,
       },
-      citaUrl: 'https://www.hacienda.gob.es/',
+      origenes: ORIGENES,
     })
   }
 
@@ -302,7 +311,7 @@ describe('scraper/indicadores — el grupo de cada cifra, y la salvedad del ×2'
         })),
         filas,
       },
-      citaUrl: 'https://www.hacienda.gob.es/',
+      origenes: ORIGENES,
     })
     return byId(s, 'a1621-coste-unitario')
   }

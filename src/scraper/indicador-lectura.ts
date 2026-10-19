@@ -318,7 +318,9 @@ export function leerIndicador(i: Indicador): Lectura {
             ? 'No hay coste por unidad porque el ministerio publica más de un coste para este mismo servicio.'
             : motivo === 'atributo-ambiguo'
               ? 'No hay coste por unidad porque la magnitud viene declarada dos veces con valores distintos.'
-              : 'No hay coste por unidad para este servicio en la entrega publicada.'
+              : motivo === 'cifra-simbolica'
+                ? 'No hay coste por unidad porque la entrega trae en la casilla una cifra de relleno —0,01, o 1 € de coste—, no una medida.'
+                : 'No hay coste por unidad para este servicio en la entrega publicada.'
     return {
       que,
       donde: null,
@@ -397,7 +399,23 @@ export function leerIndicador(i: Indicador): Lectura {
   // banda con la que contrastarse, y anclar ahí daba «sube un 1517 %» cuando lo
   // que cambió fue cómo se declara. Una tendencia sobre una cifra que nadie
   // pudo verificar es justo la afirmación que este motor no hace.
-  const limpios = declarados.filter((p) => p.medianaPares !== undefined && !p.atipico)
+  //
+  // Dos correcciones del 2026-10-19:
+  //
+  //  - Un año de OTRO modo de gestión no entra (regla 4). Residuos decía
+  //    «Entre 2014 y 2024 baja un 31 %» y 2014 era concesión: la misma ficha
+  //    lo declara no comparable, y la línea del gráfico no lo une.
+  //  - «Comprobada» es haber pasado la cordura (`contrastado`), no tener
+  //    mediana de su modo. La mediana es una comparación y sólo se publica
+  //    contra el mismo modo; la cordura puede apoyarse en todos los que
+  //    declararon. Transporte decía «Entre 2021 y 2023 sube un 36 % … 4194
+  //    €/km» debajo de una cifra de 2024 de 4056 que había pasado la cordura
+  //    contra veintiún municipios: el año que titula se caía de su propia
+  //    tendencia sólo por no tener quince del mismo modo. Una serie publicada
+  //    antes de que existiera `contrastado` cae a la regla vieja.
+  const comprobado = (p: (typeof declarados)[number]) =>
+    p.contrastado === true || p.medianaPares !== undefined
+  const limpios = declarados.filter((p) => comprobado(p) && !p.atipico && !p.otroModo)
   if (limpios.length >= 2) {
     const a = limpios[0]
     const b = limpios[limpios.length - 1]
@@ -424,15 +442,51 @@ export function leerIndicador(i: Indicador): Lectura {
     // 141 €/punto de luz) mientras Riba-roja declaraba entre 0,07 y 0,13 veces
     // esa mediana y sólo converge en 2023. Lo que cambió fue cuánto se declara,
     // no cuánto cuesta, y decir sólo el porcentaje absoluto lo cuenta al revés.
-    const rel = (p: (typeof limpios)[number]) => p.valor! / p.medianaPares!
-    const saltoRelativo = rel(b) / rel(a)
-    if (saltoRelativo > 3 || saltoRelativo < 1 / 3) {
-      const veces = (v: number) =>
-        v.toLocaleString('es-ES', { minimumFractionDigits: 2, maximumFractionDigits: 2 })
-      avisos.push(
-        `Medido contra sus pares pasa de ${veces(rel(a))} a ${veces(rel(b))} veces la mediana, así ` +
-          `que buena parte de ese cambio está en cuánto se declara y no en cuánto cuesta.`,
-      )
+    //
+    // Pero «cuánto se declara» es una afirmación sobre el DIVISOR, y se hacía
+    // sólo con mirar el salto contra la mediana. En los colegios el cociente
+    // pasa de 0,87 a 3,09 veces la mediana con el coste multiplicado por 6,35
+    // y la superficie SUBIENDO de 18.398 a 31.992 m²: el divisor se movió en la
+    // dirección que habría bajado el cociente, no en la que lo explica. Ahora
+    // la frase dice siempre qué se movió —las dos mitades, con sus cifras— y
+    // sólo concluye «se declara» cuando el divisor va en contra del cociente y
+    // explica al menos la mitad del salto. (En alumbrado lo que se movió es el
+    // coste declarado, de 36.298 € a 664.679 €; la frase lo dice así.)
+    const conMediana = limpios.filter((p) => p.medianaPares !== undefined)
+    const ra = conMediana[0]
+    const rb = conMediana[conMediana.length - 1]
+    if (conMediana.length >= 2) {
+      const rel = (p: (typeof limpios)[number]) => p.valor! / p.medianaPares!
+      const saltoRelativo = rel(rb) / rel(ra)
+      if (saltoRelativo > 3 || saltoRelativo < 1 / 3) {
+        const veces = (v: number) =>
+          v.toLocaleString('es-ES', { minimumFractionDigits: 2, maximumFractionDigits: 2 })
+        const cantidad = (v: number) => `${v.toLocaleString('es-ES')} ${i.divisor.plural}`
+        // Los años sólo cuando no son los de la frase de arriba.
+        const tramo =
+          ra.anio === a.anio && rb.anio === b.anio ? '' : ` entre ${ra.anio} y ${rb.anio}`
+        let frase =
+          `Medido contra sus pares${tramo} pasa de ${veces(rel(ra))} a ${veces(rel(rb))} veces la ` +
+          'mediana'
+        if (typeof ra.numerador === 'number' && typeof ra.denominador === 'number') {
+          frase +=
+            `: el coste declarado pasa de ${euros(ra.numerador)} a ${euros(rb.numerador!)} y la ` +
+            `cantidad, de ${cantidad(ra.denominador)} a ${cantidad(rb.denominador!)}`
+          // El divisor explica el salto cuando se mueve EN CONTRA del cociente
+          // (sube la posición ⇐ baja el divisor) y pesa al menos la mitad.
+          const porDivisor = Math.log(ra.denominador / rb.denominador!)
+          const total = Math.log(saltoRelativo)
+          const loExplica =
+            Math.sign(porDivisor) === Math.sign(total) &&
+            Math.abs(porDivisor) >= Math.abs(total) / 2
+          frase += loExplica
+            ? ', así que buena parte de ese cambio está en cuánto se declara y no en cuánto cuesta.'
+            : '.'
+        } else {
+          frase += '.'
+        }
+        avisos.push(frase)
+      }
     }
   }
 
@@ -442,12 +496,16 @@ export function leerIndicador(i: Indicador): Lectura {
     )
   }
 
+  // Lo que no puede ser un coste es el COCIENTE, que es nuestro; las casillas
+  // son las que publica la entrega. Decía «la entrega publica una cifra que no
+  // puede ser un coste», y la entrega no publica ningún cociente.
   const atipicas = declarados.filter((p) => p.atipico).map((p) => p.anio)
   if (atipicas.length) {
+    const una = atipicas.length === 1
     avisos.push(
-      `${atipicas.length === 1 ? 'La entrega' : 'Las entregas'} de ${atipicas.join(', ')} ` +
-        `${atipicas.length === 1 ? 'publica una cifra que no puede ser un coste' : 'publican cifras que no pueden ser un coste'}; ` +
-        'se muestran porque son las oficiales.',
+      `En ${atipicas.join(', ')}, dividir las dos casillas da ` +
+        `${una ? 'una cifra que no puede ser un coste' : 'cifras que no pueden ser un coste'}; ` +
+        `${una ? 'se muestra' : 'se muestran'} porque las casillas son las oficiales.`,
     )
   }
 

@@ -20,9 +20,24 @@ import {
   type MotivoFueraDePares,
 } from '../src/scraper/indicadores'
 import { leerIndicador } from '../src/scraper/indicador-lectura'
+import { MAPA_URL } from '../src/scraper/cesel-entregas'
+import type { OrigenEntrega } from '../src/scraper/cesel-procedencia'
 
 const FIXTURE = join(__dirname, 'fixtures', 'cesel_2021_cv_slice.xlsx')
 const CITA = 'https://www.hacienda.gob.es/cdi/power%20bi/cesel-2021.xlsx'
+/**
+ * De qué documento sale cada entrega, como lo anota el adaptador: 2021 del
+ * volcado, el resto de los informes por comunidad. Para todos los años que
+ * usan estas pruebas, también los construidos.
+ */
+const ORIGENES: Record<number, OrigenEntrega> = Object.fromEntries(
+  Array.from({ length: 30 }, (_, k) => 2010 + k).map((a) => [
+    a,
+    a === 2021
+      ? { documento: 'volcado-nacional', url: CITA }
+      : { documento: 'informe-ccaa', url: MAPA_URL, ccaa: 17 },
+  ]),
+)
 
 const rows = parseCeselWorkbook(readFileSync(FIXTURE), { anio: 2021 })
 const mias = rows.filter((r) => r.ine === '46214')
@@ -36,7 +51,7 @@ const snap = construirIndicadores({
   municipio: { ine: '46214', nombre: 'Riba-roja de Túria', filas: mias },
   pares: { conjunto: 'cv-15k-40k', anios: [2021], miembros, filas: rows },
   anioBase: 2021,
-  citaUrl: CITA,
+  origenes: ORIGENES,
 })
 const byId = (id: string) => snap.indicadores.find((i) => i.id === id)!
 
@@ -175,7 +190,7 @@ describe('scraper/indicadores', () => {
       municipio: { ine: '46214', nombre: 'Riba-roja de Túria', filas: conCero },
       pares: { conjunto: 'cv-15k-40k', anios: [2021], miembros, filas: rows },
       anioBase: 2021,
-      citaUrl: CITA,
+      origenes: ORIGENES,
     })
     const bus = snapCero.indicadores.find((i) => i.id === 'a4411-440p-coste-unitario')!
     expect(bus.numerador.estado).toBe('declarado') // the money is real
@@ -361,14 +376,16 @@ describe('scraper/indicadores', () => {
           ...rows.filter((r) => r.ine !== '46214').map((r) => ({ ...r, anio: 2022 })),
         ],
       },
-      citaUrl: CITA,
+      origenes: ORIGENES,
     })
     const limpieza = snap2.indicadores.find((i) => i.servicio === 'a163')!
     const punto = limpieza.serie.find((p) => p.anio === 2022)!
     expect(punto.valor).not.toBeNull() // no se borra
     expect(punto.atipico).toBe(true)
     expect(punto.medianaPares).toBeGreaterThan(0)
-    expect(limpieza.caveats.some((c) => /inveros[ií]miles/.test(c))).toBe(true)
+    // La cifra inverosímil es el cociente —nuestro—, no algo que el ministerio
+    // publique: la salvedad lo dice así desde el 2026-10-19.
+    expect(limpieza.caveats.some((c) => /inveros[ií]mil/.test(c) && /dividir/i.test(c))).toBe(true)
     // …y una entrega normal no se marca, para que la marca signifique algo.
     expect(limpieza.serie.find((p) => p.anio === 2021)?.atipico).toBeUndefined()
   })
@@ -417,7 +434,7 @@ describe('scraper/indicadores · otro modo de gestión en la serie (regla 4)', (
     municipio: { ine: '46214', nombre: 'Riba-roja de Túria', filas: mias22 },
     pares: { conjunto: 'cv-15k-40k', anios: [2021, 2022], miembros, filas: pares22 },
     anioBase: 2021,
-    citaUrl: CITA,
+    origenes: ORIGENES,
   })
   const residuos = snapOM.indicadores.find((i) => i.id === 'a1621-coste-unitario')!
 
@@ -469,7 +486,7 @@ describe('scraper/indicadores · banda plausible del percentil', () => {
       municipio: { ine: '46214', nombre: 'Riba-roja de Túria', filas: mias },
       pares: { conjunto: 'cv-15k-40k', anios: [2021], miembros, filas: rows },
       anioBase: 2021,
-      citaUrl: CITA,
+      origenes: ORIGENES,
     })
     for (const i of snap.indicadores) {
       const gemela = otra.indicadores.find((x) => x.id === i.id)!
@@ -491,7 +508,7 @@ describe('scraper/indicadores · CE4 supramunicipal', () => {
       municipio: { ine: '46214', nombre: 'Riba-roja de Túria', filas: mias },
       pares: { conjunto: 'cv-15k-40k', anios: [2021], miembros, filas: rows },
       anioBase: 2021,
-      citaUrl: CITA,
+      origenes: ORIGENES,
       supramunicipal: filasSupra,
     })
 
@@ -524,7 +541,7 @@ describe('scraper/indicadores · euros constantes', () => {
     municipio: { ine: '46214', nombre: 'Riba-roja de Túria', filas: mias },
     pares: { conjunto: 'cv-15k-40k', anios: [2021], miembros, filas: rows },
     anioBase: 2021,
-    citaUrl: CITA,
+    origenes: ORIGENES,
     ipc: IPC,
   })
 
@@ -585,7 +602,7 @@ describe('scraper/indicadores · una concesión que declara, con datos reales de
     },
     pares: { conjunto: 'cv-15k-40k', anios: [2021], miembros, filas: rows },
     anioBase: 2021,
-    citaUrl: CITA,
+    origenes: ORIGENES,
   })
   const agua = snapC.indicadores.find((i) => i.id === 'a161-coste-unitario')!
 
@@ -644,7 +661,9 @@ describe('scraper/indicadores · una concesión que declara, con datos reales de
     expect(frase).toContain(`De los ${enConcesion.size} municipios`)
     expect(frase).toContain(`contra los ${agua.pares!.n} restantes`)
     const recuentos = [
-      ...frase!.matchAll(/(\d+) (?:no declaran? su coste|declaran? un coste|traen? dos costes)/g),
+      ...frase!.matchAll(
+        /(\d+) (?:no declaran? su coste|declaran? un coste|traen? dos costes|declaran? como coste una cifra de relleno|declaran? 0,01|declaran? su coste bajo otro modo|traen? el mismo coste bajo dos modos)/g,
+      ),
     ].map((m) => Number(m[1]))
     expect(recuentos.length).toBeGreaterThan(0)
     expect(recuentos.reduce((a, b) => a + b, 0)).toBe(enConcesion.size - agua.pares!.n)
@@ -693,7 +712,7 @@ describe('scraper/indicadores · quién queda fuera del grupo de comparación (2
       },
       pares: { conjunto: 'cv-15k-40k', anios: [2024], miembros: miembros24, filas: filas24 },
       anioBase: 2024,
-      citaUrl: CITA,
+      origenes: ORIGENES,
     })
   const rr = construir('46214')
   const agua = rr.indicadores.find((i) => i.id === 'a161-coste-unitario')!

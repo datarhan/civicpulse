@@ -3,10 +3,14 @@
  * negarse a hacer esa división.
  *
  * Un indicador aquí no es un número, es un registro con procedencia: cada
- * magnitud lleva la celda exacta de la que sale (`cesel:2021:CE2:a1621:Econ14`)
- * para que `check:indicadores` pueda comprobar la aritmética igual que
- * `check:citations` comprueba las citas. En un sitio cuyo contrato entero es
- * que toda afirmación lleva cita, un cociente sin procedencia sería la única
+ * magnitud lleva la dirección de su cifra en coste-efectivo.json
+ * (`cesel:2021:CE2:a1621:Econ14`) para que `check:indicadores` pueda comprobar
+ * la aritmética igual que `check:citations` comprueba las citas, y cada ficha
+ * lleva el documento del ministerio y la hoja, fila y columna en que un lector
+ * encuentra esa cifra (`citas`, `procedencia`; src/scraper/cesel-procedencia.ts).
+ * Son dos cosas distintas: la dirección tiene la forma del volcado de 2021 para
+ * todos los años, y la celda del documento no. En un sitio cuyo contrato entero
+ * es que toda afirmación lleva cita, un cociente sin procedencia sería la única
  * cifra publicada sin respaldo.
  *
  * LAS CINCO TRAMPAS QUE ESTE MÓDULO EXISTE PARA PARAR
@@ -39,11 +43,15 @@ import {
   type CesteRow,
   type ModoGestion,
 } from './coste-efectivo'
+import { procedenciaCesel, type OrigenEntrega, type Procedencia } from './cesel-procedencia'
 import { crearPrng, semillaDesde } from './prng'
 import { SERVICIOS, type ServicioDef, type Divisor } from './indicador-registry'
 import { medirDeclaracionCongelada, MIN_ENTREGAS_CONGELADA } from './declaracion-congelada'
 import { SALVEDAD_DENOMINADOR_CONGELADO, paresDeclaracionCongelada } from './indicador-lectura'
 import { cruzaMediana } from './indicador-areas'
+// La etiqueta legible de cada modo, la misma que pinta la ficha. Se publicaba
+// la clave interna («(concesion)») en la salvedad del año de otro régimen.
+import { GESTION } from '../components/eficiencia/vocabulario.js'
 
 /**
  * El escalón de Hatry, y la razón de que este panel no sea otro cuadro de
@@ -77,13 +85,23 @@ export type Motivo =
   | 'atributo-ambiguo'
   /** Servicio concedido y casilla de coste vacía o a cero: el concesionario cobra del recibo. */
   | 'concesion'
+  /**
+   * La casilla trae una cifra de relleno —0,01 o 1 € de coste, 0,01 de unidad—,
+   * no una medida. Ver `COSTES_SIMBOLICOS`.
+   */
+  | 'cifra-simbolica'
 
 export interface Magnitud {
   /** `null` siempre que `estado !== 'declarado'`: una celda que no vale no se pinta. */
   valor: number | null
   estado: EstadoCelda
   motivo?: Motivo
-  /** La celda exacta, p. ej. `cesel:2021:CE3:a1621:Producción anual…`. */
+  /**
+   * La dirección de la cifra en coste-efectivo.json, p. ej.
+   * `cesel:2021:CE3:a1621:Producción anual…`. NO es la celda del documento del
+   * ministerio —ésa está en `Indicador.citas`—: tiene la forma del volcado
+   * nacional para todos los años, y la llevan congelada las fichas firmadas.
+   */
   fuente: string
 }
 
@@ -132,6 +150,14 @@ export interface ParesResumen {
   /** Cuántos de `miembros` van marcados `atipico`. Derivado, para que la UI no lo recuente. */
   atipicos: number
   miembros: ParMiembro[]
+  /**
+   * Los municipios que prestan el servicio del mismo modo y se quedan FUERA del
+   * grupo, por motivo. Contados en el bucle que decide quién entra
+   * (`motivoFueraDePares`), así que `n` más la suma de esto es el universo del
+   * mismo modo. Se publica para que un lector que abra el informe y vea a
+   * Aldaia con una cifra sepa por qué no está en la banda.
+   */
+  fuera: Record<MotivoFueraDePares, number>
 }
 
 /** Remuestreos del bootstrap del percentil. */
@@ -198,6 +224,19 @@ export interface PuntoSerie {
    * concesión y uno de gestión directa no son la misma magnitud.
    */
   otroModo?: ModoGestion
+  /**
+   * Ese año había con qué comprobar la cifra: una banda de pares —la de su
+   * modo o, sin ella, la de todos los que declararon— con al menos
+   * `MIN_PARES` cocientes. Es la condición de la regla 9: sin banda, un error
+   * de orden de magnitud no se puede distinguir de un coste.
+   *
+   * Existe aparte de `medianaPares` porque son cosas distintas. La mediana es
+   * una COMPARACIÓN y sólo se publica contra el mismo modo; la comprobación de
+   * cordura puede apoyarse en todos. La tendencia de la ficha exigía la
+   * mediana, y así transporte publicaba «entre 2021 y 2023» debajo de una cifra
+   * de 2024 que había pasado la cordura contra veintiún municipios.
+   */
+  contrastado?: boolean
 }
 
 export interface DeclaracionMagnitud {
@@ -272,7 +311,19 @@ export interface Indicador {
   avisoDeclaracion?: string
   /** Quién presta el servicio concedido, con su expediente. Ver el registro. */
   concesion?: ServicioDef['concesion']
-  citas: { url: string; entrega: number }[]
+  /**
+   * La cita de la cifra que titula: la entrega base, con el documento del que
+   * sale y la hoja, fila y columna de cada mitad. Una sola, y siempre la
+   * primera: quien lee `citas[0].entrega` lee el año de la cabecera.
+   */
+  citas: ({ entrega: number } & Procedencia)[]
+  /**
+   * La de CADA entrega de la serie, agrupadas por documento y celda: la serie
+   * mezcla el volcado de 2021 con los informes por comunidad del resto, y cada
+   * punto se busca en un sitio distinto. Toda entrega de `serie` está en
+   * exactamente un grupo (`check:indicadores`).
+   */
+  procedencia: ({ entregas: number[] } & Procedencia)[]
 }
 
 /**
@@ -380,20 +431,53 @@ const fuenteUnidad = (anio: number, programa: string, atributo: string) =>
   `cesel:${anio}:CE3:${programa}:${atributo}`
 
 /**
- * El coste del servicio, o la razón por la que no se puede usar.
+ * Cifras de relleno: lo que algunos ayuntamientos escriben en una casilla del
+ * coste efectivo que no quieren —o no pueden— dejar vacía. No son medidas.
  *
- * Nunca «gana la primera fila»: si el ministerio publica dos costes distintos
- * para el mismo programa, los dos son igual de creíbles y elegir sería un
- * volado disfrazado de dato.
+ * Medido sobre la banda `cv-15k-40k`, 2014–2024, en los servicios del
+ * registro: 81 costes de exactamente 0,01 € y 64 de exactamente 1 €; 0,01
+ * aparece además como superficie, préstamos, kilómetros o efectivos. El motor
+ * sólo rechazaba lo que valía 0 o menos, y así Riba-roja publicaba limpieza
+ * viaria a 53 y 67 millones de euros por m² (0,01 m² en 2014 y 2015), y la
+ * mediana de promoción del deporte de 2024 contaba a Aldaia y Benetússer con
+ * 0,01 efectivos: 161.045 € con ellos, 129.518 € sin ellos.
+ *
+ * Lo que NO está aquí, a propósito: el 1 como UNIDAD. «1 efectivo» es una
+ * plantilla de una persona —once municipios de la banda lo declaran en 2024,
+ * con costes de 79.777 € a 931.266 €— y «1 km» o «1 m²» no tienen ninguna
+ * prueba de ser relleno. Convertirlo en marca sería decidir por el
+ * ayuntamiento qué quiso decir; el 1 € de COSTE, en cambio, no puede ser el
+ * coste anual de un servicio.
  */
-export function resolverCoste(filas: CesteRow[], programa: string, anio: number): Magnitud {
+export const COSTES_SIMBOLICOS: readonly number[] = [0.01, 1]
+export const UNIDADES_SIMBOLICAS: readonly number[] = [0.01]
+
+const costeSimbolico = (c: number | null) => c !== null && COSTES_SIMBOLICOS.includes(c)
+
+/** El coste resuelto y las filas que lo llevan: la fuente del modo de gestión. */
+function costeConFilas(
+  filas: CesteRow[],
+  programa: string,
+  anio: number,
+): { magnitud: Magnitud; filasDelCoste: CesteRow[] } {
   const fuente = fuenteCoste(anio, programa)
   const rows = filas.filter((f) => f.programa === programa && f.anio === anio)
-  if (!rows.length) return { valor: null, estado: 'no-declarado', motivo: 'ausente', fuente }
+  const sin = (motivo?: Motivo, estado: EstadoCelda = 'no-declarado') => ({
+    magnitud: { valor: null, estado, ...(motivo ? { motivo } : {}), fuente },
+    filasDelCoste: [] as CesteRow[],
+  })
+  if (!rows.length) return sin('ausente')
 
-  if (rows.every((r) => r.modoGestion === 'no-se-presta')) {
-    return { valor: null, estado: 'no-se-presta', fuente }
-  }
+  if (rows.every((r) => r.modoGestion === 'no-se-presta')) return sin(undefined, 'no-se-presta')
+
+  // Una cifra de relleno no es un coste, y tampoco un rival de uno: se aparta
+  // igual que el 0 (ver `COSTES_SIMBOLICOS`). Si es lo único que hay, la ficha
+  // lo dice con su propio motivo, no con el de la casilla vacía.
+  const conCifra = (r: CesteRow) => (r.costeTotal ?? 0) > 0 && !costeSimbolico(r.costeTotal)
+  const algunRelleno = rows.some(
+    (r) => r.modoGestion !== 'no-se-presta' && costeSimbolico(r.costeTotal),
+  )
+
   if (rows.some((r) => r.modoGestion === 'concesion')) {
     // La trampa 1, acotada a lo que la trampa dice. Esto volvía en cuanto veía
     // el modo de gestión, SIN LEER `costeTotal` siquiera, y así una concesión
@@ -407,16 +491,15 @@ export function resolverCoste(filas: CesteRow[], programa: string, anio: number)
     // «el agua sale gratis». Un coste declarado ES un coste: se divide, y la
     // comparación con pares lo filtra al mismo modo de gestión, así que una
     // concesión nunca se mide contra una gestión directa.
-    const declarado = rows.map((r) => r.costeTotal ?? 0).filter((c) => c > 0)
-    if (!declarado.length) {
-      return { valor: null, estado: 'no-declarado', motivo: 'concesion', fuente }
-    }
+    const declaradas = rows.filter(conCifra)
+    if (!declaradas.length) return sin(algunRelleno ? 'cifra-simbolica' : 'concesion')
     // Dos costes positivos distintos son dos afirmaciones rivales, aquí igual
     // que en gestión directa: elegir sería un volado disfrazado de dato.
-    if (new Set(declarado).size > 1) {
-      return { valor: null, estado: 'no-declarado', motivo: 'filas-duplicadas', fuente }
+    if (new Set(declaradas.map((r) => r.costeTotal)).size > 1) return sin('filas-duplicadas')
+    return {
+      magnitud: { valor: declaradas[0].costeTotal!, estado: 'declarado', fuente },
+      filasDelCoste: declaradas,
     }
-    return { valor: declarado[0], estado: 'declarado', fuente }
   }
 
   // Una fila con coste 0 no es una afirmación rival: es la misma «no lo
@@ -427,20 +510,80 @@ export function resolverCoste(filas: CesteRow[], programa: string, anio: number)
   //
   // Dos costes POSITIVOS distintos sí son dos afirmaciones (a1721 declara
   // 1.964.894,95 y 282.412,19), y ahí no hay forma honesta de elegir.
-  const positivas = rows.filter((r) => (r.costeTotal ?? 0) > 0)
+  const positivas = rows.filter(conCifra)
   if (!positivas.length) {
     // Una casilla vacía (`null` desde el parser) no «viene a cero», que es lo
     // que el texto de `cero-sin-declarar` le dice al lector. Si ninguna fila
     // del servicio trae cifra, lo cierto es que la entrega no la trae.
     const algunCero = rows.some((r) => r.modoGestion !== 'no-se-presta' && r.costeTotal === 0)
-    const motivo = algunCero ? 'cero-sin-declarar' : 'ausente'
-    return { valor: null, estado: 'no-declarado', motivo, fuente }
+    return sin(algunRelleno ? 'cifra-simbolica' : algunCero ? 'cero-sin-declarar' : 'ausente')
   }
-  const distintos = new Set(positivas.map((r) => r.costeTotal))
-  if (distintos.size > 1) {
-    return { valor: null, estado: 'no-declarado', motivo: 'filas-duplicadas', fuente }
+  if (new Set(positivas.map((r) => r.costeTotal)).size > 1) return sin('filas-duplicadas')
+  return {
+    magnitud: { valor: positivas[0].costeTotal!, estado: 'declarado', fuente },
+    filasDelCoste: positivas,
   }
-  return { valor: positivas[0].costeTotal!, estado: 'declarado', fuente }
+}
+
+/**
+ * El coste del servicio, o la razón por la que no se puede usar.
+ *
+ * Nunca «gana la primera fila»: si el ministerio publica dos costes distintos
+ * para el mismo programa, los dos son igual de creíbles y elegir sería un
+ * volado disfrazado de dato.
+ */
+export function resolverCoste(filas: CesteRow[], programa: string, anio: number): Magnitud {
+  return costeConFilas(filas, programa, anio).magnitud
+}
+
+/**
+ * El modo de gestión de la fila cuyo coste se usa.
+ *
+ * El de un par se tomaba de la PRIMERA fila del servicio (`.find`), y hay
+ * municipios que traen dos con modos distintos: en parques y jardines de 2024
+ * Cullera declara 0 € en «otra forma de gestión» y 47.168,48 € en gestión
+ * directa, y Quart de Poblet y Moncada el mismo coste bajo las dos. Quién
+ * entraba en el grupo dependía del orden en que el ministerio escribe las
+ * filas: el grupo de parques bailaba entre 28 y 31 sin que cambiara un dato.
+ *
+ * El coste que se divide es de una fila; el modo con el que se compara tiene
+ * que ser el de esa misma fila. Si el mismo coste viene bajo dos modos, no hay
+ * forma honesta de elegir y el modo queda `ambiguo`. Sin coste utilizable,
+ * `modo` es `null`: no hay fila que decida.
+ */
+export function modoDelCoste(
+  filas: CesteRow[],
+  programa: string,
+  anio: number,
+): { modo: ModoGestion | null; ambiguo: boolean } {
+  const { filasDelCoste } = costeConFilas(filas, programa, anio)
+  const modos = new Set(filasDelCoste.map((f) => f.modoGestion))
+  if (modos.size === 1) return { modo: [...modos][0], ambiguo: false }
+  return { modo: null, ambiguo: modos.size > 1 }
+}
+
+/**
+ * El modo con el que se rotula y se compara el servicio PROPIO en una entrega:
+ * el de la fila del coste (`modoDelCoste`). Sin coste utilizable, el de la
+ * primera fila —una concesión muda sigue siendo una concesión, y la ficha lo
+ * tiene que decir—. Con el mismo coste bajo dos modos, `sin-clasificar`, que no
+ * se compara con nadie: elegir uno sería el volado que el motor se niega a
+ * echar con los costes rivales.
+ */
+function modoDelProgramaEn(filas: CesteRow[], programa: string, anio: number): ModoGestion {
+  const { modo, ambiguo } = modoDelCoste(filas, programa, anio)
+  if (modo) return modo
+  if (ambiguo) return 'sin-clasificar'
+  return (
+    filas.find((f) => f.programa === programa && f.anio === anio)?.modoGestion ?? 'sin-clasificar'
+  )
+}
+
+/** La fila que da el modo de `modoDelProgramaEn`, para leer su cadena literal. */
+function filaDelModo(filas: CesteRow[], programa: string, anio: number): CesteRow | undefined {
+  const { filasDelCoste } = costeConFilas(filas, programa, anio)
+  if (new Set(filasDelCoste.map((f) => f.modoGestion)).size === 1) return filasDelCoste[0]
+  return filas.find((f) => f.programa === programa && f.anio === anio)
 }
 
 /**
@@ -474,6 +617,11 @@ export function resolverUnidad(
   if (valor <= 0) {
     return { valor: null, estado: 'no-declarado', motivo: 'cero-sin-declarar', fuente }
   }
+  // 0,01 m², 0,01 préstamos, 0,01 efectivos: relleno, no medida. Ver
+  // `COSTES_SIMBOLICOS` — y por qué el 1 no está en esta lista.
+  if (UNIDADES_SIMBOLICAS.includes(valor)) {
+    return { valor: null, estado: 'no-declarado', motivo: 'cifra-simbolica', fuente }
+  }
   return { valor, estado: 'declarado', fuente }
 }
 
@@ -481,29 +629,49 @@ export function resolverUnidad(
  * Por qué un par del MISMO modo de gestión se queda fuera del grupo de
  * comparación. Cada motivo se publica con su propio recuento.
  *
- *   sin-coste       la entrega no trae coste utilizable (vacío o a cero)
- *   sin-unidad      trae coste, pero no la magnitud física con que dividirlo
- *   costes-rivales  trae dos costes positivos distintos para el servicio
+ *   sin-coste           la entrega no trae coste utilizable (vacío o a cero)
+ *   sin-unidad          trae coste, pero no la magnitud física con que dividirlo
+ *   costes-rivales      trae dos costes positivos distintos para el servicio
+ *   coste-simbolico     su coste es una cifra de relleno (0,01 o 1 €)
+ *   unidad-simbolica    su unidad es una cifra de relleno (0,01)
+ *   coste-en-otro-modo  presta el servicio también de este modo, pero el coste
+ *                       que se divide está en la fila de otro
+ *   modo-ambiguo        trae el mismo coste bajo dos modos de gestión
  *
  * Hasta el 2026-10-19 la ficha restaba el tamaño del grupo del de todos los
  * pares del modo y llamaba al resto «no declaran su coste». En la entrega de
  * 2024 Paiporta declara 1 € para el agua y el alcantarillado con 0 m de red, y
- * la frase la contaba entre los que no declaran coste: 11 y 5 donde la fuente
- * dice 10 y 4. Un resto no es un motivo; contado así, cualquier exclusión nueva
- * se habría publicado con la etiqueta de la primera.
+ * la frase la contaba entre los que no declaran coste. Un resto no es un
+ * motivo; contado así, cualquier exclusión nueva se habría publicado con la
+ * etiqueta de la primera.
  */
-export const MOTIVOS_FUERA_DE_PARES = ['sin-coste', 'sin-unidad', 'costes-rivales'] as const
+export const MOTIVOS_FUERA_DE_PARES = [
+  'sin-coste',
+  'sin-unidad',
+  'costes-rivales',
+  'coste-simbolico',
+  'unidad-simbolica',
+  'coste-en-otro-modo',
+  'modo-ambiguo',
+] as const
 export type MotivoFueraDePares = (typeof MOTIVOS_FUERA_DE_PARES)[number]
 
-/** El motivo por el que un par no entra en el grupo, o `null` si entra. */
+/**
+ * El motivo por el que un par no entra en el grupo por sus CELDAS, o `null` si
+ * las dos valen. El modo de gestión lo decide el bucle, con `modoDelCoste`.
+ */
 export function motivoFueraDePares(
   numerador: Magnitud,
   denominador: Magnitud,
 ): MotivoFueraDePares | null {
   if (numerador.estado !== 'declarado') {
-    return numerador.motivo === 'filas-duplicadas' ? 'costes-rivales' : 'sin-coste'
+    if (numerador.motivo === 'filas-duplicadas') return 'costes-rivales'
+    if (numerador.motivo === 'cifra-simbolica') return 'coste-simbolico'
+    return 'sin-coste'
   }
-  if (denominador.estado !== 'declarado') return 'sin-unidad'
+  if (denominador.estado !== 'declarado') {
+    return denominador.motivo === 'cifra-simbolica' ? 'unidad-simbolica' : 'sin-unidad'
+  }
   return null
 }
 
@@ -518,20 +686,30 @@ function enumerar(partes: string[]): string {
  * declara», «10 no declaran».
  */
 function frasesFueraDePares(fuera: Record<MotivoFueraDePares, number>, divisor: Divisor): string[] {
+  const v = (n: number, uno: string, varios: string) => `${n} ${n === 1 ? uno : varios}`
   const partes: string[] = []
   const k = fuera['sin-coste']
   if (k) partes.push(`${k} no ${k === 1 ? 'declara' : 'declaran'} su coste`)
   const u = fuera['sin-unidad']
   if (u) {
     partes.push(
-      `${u} ${u === 1 ? 'declara' : 'declaran'} un coste pero no una cifra utilizable de ` +
-        divisor.plural,
+      `${v(u, 'declara', 'declaran')} un coste pero no una cifra utilizable de ${divisor.plural}`,
     )
   }
   const r = fuera['costes-rivales']
-  if (r) {
-    partes.push(`${r} ${r === 1 ? 'trae' : 'traen'} dos costes distintos para el mismo servicio`)
+  if (r) partes.push(`${v(r, 'trae', 'traen')} dos costes distintos para el mismo servicio`)
+  const cs = fuera['coste-simbolico']
+  if (cs) {
+    partes.push(`${v(cs, 'declara', 'declaran')} como coste una cifra de relleno (0,01 € o 1 €)`)
   }
+  const us = fuera['unidad-simbolica']
+  if (us) {
+    partes.push(`${v(us, 'declara', 'declaran')} 0,01 ${divisor.plural}, una cifra de relleno`)
+  }
+  const om = fuera['coste-en-otro-modo']
+  if (om) partes.push(`${v(om, 'declara', 'declaran')} su coste bajo otro modo de gestión`)
+  const ma = fuera['modo-ambiguo']
+  if (ma) partes.push(`${v(ma, 'trae', 'traen')} el mismo coste bajo dos modos de gestión`)
   return partes
 }
 
@@ -563,12 +741,10 @@ function bandaDePares(
   const vals: number[] = []
   for (const m of pares.miembros) {
     const suyas = pares.filas.filter((f) => f.ine === m.ine)
-    if (
-      modoGestion &&
-      suyas.find((f) => f.programa === programa && f.anio === anio)?.modoGestion !== modoGestion
-    ) {
-      continue
-    }
+    // El modo de la fila cuyo coste se divide, no el de la primera fila: con
+    // dos filas de modos distintos, el orden del fichero decidía (ver
+    // `modoDelCoste`).
+    if (modoGestion && modoDelCoste(suyas, programa, anio).modo !== modoGestion) continue
     const n = resolverCoste(suyas, programa, anio)
     const d = resolverUnidad(suyas, programa, anio, atributo)
     if (n.estado === 'declarado' && d.estado === 'declarado') vals.push(n.valor! / d.valor!)
@@ -594,7 +770,14 @@ export interface ConstruirInput {
   }
   /** Entrega que titula la tarjeta. Por omisión, la más reciente con datos. */
   anioBase?: number
-  citaUrl: string
+  /**
+   * De qué documento salió cada entrega (`source.entregas` de
+   * coste-efectivo.json, que escribe el adaptador al leerlas). Sustituye a una
+   * sola `citaUrl`, que era el volcado de 2021 puesto debajo de cifras de 2024.
+   * Una entrega de la serie sin origen hace FALLAR el cálculo: una cita
+   * inventada es justo lo que esto existe para no publicar.
+   */
+  origenes: Record<number, OrigenEntrega>
   /**
    * Índice de precios medio por año, para expresar la serie en euros
    * constantes del año base. Opcional a propósito: sin él la serie sale sólo en
@@ -682,8 +865,8 @@ function caveatDeclaracion(
 ): string | null {
   const conPares =
     d.paresMedibles > 0
-      ? ` No es una rareza local: ${paresDeclaracionCongelada(d, nComparables)} (regla 8).`
-      : ' (regla 8).'
+      ? ` No es una rareza local: ${paresDeclaracionCongelada(d, nComparables)} (regla 10).`
+      : ' (regla 10).'
 
   if (d.denominador.congelada && d.numerador.congelada) {
     return (
@@ -762,8 +945,16 @@ function bandaBootstrap(
 }
 
 export function construirIndicadores(input: ConstruirInput): IndicadoresSnapshot {
-  const { municipio, pares, citaUrl } = input
+  const { municipio, pares, origenes } = input
   const aniosDisponibles = [...new Set(municipio.filas.map((f) => f.anio))].sort((a, b) => a - b)
+  const sinOrigen = aniosDisponibles.filter((a) => !origenes[a])
+  if (sinOrigen.length) {
+    throw new Error(
+      `[indicadores] sin documento de origen para la(s) entrega(s) ${sinOrigen.join(', ')}: ` +
+        'no se publica una cifra con una cita que no sabe de dónde sale',
+    )
+  }
+  const ente = municipio.filas[0]?.ente ?? ''
   // La tarjeta titula con la entrega MÁS RECIENTE que haya. Titular con la más
   // antigua porque es la que tiene pares publicaría a sabiendas una cifra vieja
   // —y en alumbrado, una que la propia fuente corrigió después—.
@@ -780,8 +971,11 @@ export function construirIndicadores(input: ConstruirInput): IndicadoresSnapshot
     // fila del array. Con una sola entrega daban lo mismo; con diez años, el
     // array empieza en 2014 y la limpieza viaria estaba entonces concedida:
     // la tarjeta de 2024 se declaraba concesión y perdía su cociente.
-    const propiaBase = propias.find((f) => f.anio === anioBase)
-    const modoGestion: ModoGestion = propiaBase?.modoGestion ?? 'sin-clasificar'
+    //
+    // Y dentro de esa entrega, el de la fila cuyo coste se divide, por la
+    // misma razón que el de los pares (`modoDelProgramaEn`).
+    const propiaBase = filaDelModo(municipio.filas, programa, anioBase)
+    const modoGestion: ModoGestion = modoDelProgramaEn(municipio.filas, programa, anioBase)
     const codGestionRaw = propiaBase?.codGestionRaw ?? ''
 
     const valor =
@@ -817,9 +1011,9 @@ export function construirIndicadores(input: ConstruirInput): IndicadoresSnapshot
       // coste bajo concesión no es la misma magnitud que uno de gestión
       // directa (regla 4). El punto se publica —es la cifra oficial— pero
       // marcado, y la línea no lo une con los años del otro régimen.
-      const modoDelAnio = municipio.filas.find(
-        (f) => f.anio === anio && f.programa === programa,
-      )?.modoGestion
+      const modoDelAnio = propias.some((f) => f.anio === anio)
+        ? modoDelProgramaEn(municipio.filas, programa, anio)
+        : undefined
       if (ok && modoDelAnio && modoDelAnio !== modoGestion) punto.otroModo = modoDelAnio
       if (valor !== null) {
         // Los pares del año se filtran al modo de gestión DE ESE AÑO — la
@@ -831,6 +1025,7 @@ export function construirIndicadores(input: ConstruirInput): IndicadoresSnapshot
           ? bandaDePares(pares, programa, anio, def.denominador, modoDelAnio)
           : null
         if (banda !== null && banda.mediana > 0) {
+          punto.contrastado = true
           punto.medianaPares = banda.mediana
           punto.p25Pares = banda.p25
           punto.p75Pares = banda.p75
@@ -838,13 +1033,14 @@ export function construirIndicadores(input: ConstruirInput): IndicadoresSnapshot
           const razon = valor / banda.mediana
           if (razon > ATIPICO_FACTOR || razon < 1 / ATIPICO_FACTOR) punto.atipico = true
         } else {
-          // Sin banda del mismo modo, la CORDURA (regla 7) puede apoyarse en
+          // Sin banda del mismo modo, la CORDURA (regla 9) puede apoyarse en
           // todos los que declararon ese año: nada de eso se publica como
           // comparación, pero sin este respaldo los 67 millones de €/m² de la
           // limpieza de 2015 —un año de concesión, sin quince concesiones con
           // las que compararse— entrarían en la escala como si fueran un coste.
           const cordura = bandaDePares(pares, programa, anio, def.denominador)
           if (cordura !== null && cordura.mediana > 0) {
+            punto.contrastado = true
             const razon = valor / cordura.mediana
             if (razon > ATIPICO_FACTOR || razon < 1 / ATIPICO_FACTOR) punto.atipico = true
           }
@@ -882,11 +1078,22 @@ export function construirIndicadores(input: ConstruirInput): IndicadoresSnapshot
       for (const m of pares.miembros) {
         if (m.ine === municipio.ine) continue
         const suyas = pares.filas.filter((f) => f.ine === m.ine)
-        const fila = suyas.find((f) => f.programa === programa && f.anio === anioBase)
-        if (!fila || fila.modoGestion !== modoGestion) continue
+        // Candidato: alguna de sus filas presta el servicio de este modo. Se
+        // miraba sólo la PRIMERA, y con dos filas de modos distintos el orden
+        // del fichero decidía quién era comparable (ver `modoDelCoste`).
+        const delModo = suyas.some(
+          (f) => f.programa === programa && f.anio === anioBase && f.modoGestion === modoGestion,
+        )
+        if (!delModo) continue
         const n = resolverCoste(suyas, programa, anioBase)
         const d = resolverUnidad(suyas, programa, anioBase, def.denominador)
-        const motivo = motivoFueraDePares(n, d)
+        let motivo = motivoFueraDePares(n, d)
+        if (!motivo) {
+          // Las celdas valen; falta que el coste que se divide sea de ESTE modo.
+          const { modo, ambiguo } = modoDelCoste(suyas, programa, anioBase)
+          if (ambiguo) motivo = 'modo-ambiguo'
+          else if (modo !== modoGestion) motivo = 'coste-en-otro-modo'
+        }
         if (motivo) {
           fuera[motivo] += 1
           continue
@@ -929,6 +1136,7 @@ export function construirIndicadores(input: ConstruirInput): IndicadoresSnapshot
           p75: percentil(orden, 0.75),
           atipicos,
           miembros,
+          fuera,
         }
       }
     }
@@ -996,6 +1204,21 @@ export function construirIndicadores(input: ConstruirInput): IndicadoresSnapshot
         }
       }
     }
+    // Fuera de la concesión, la ficha no contaba a quién deja fuera, y desde
+    // el 2026-10-19 hay exclusiones que un lector no puede adivinar: abre el
+    // informe, ve a Aldaia con una cifra en la casilla de efectivos y no la
+    // encuentra en la banda. Los que dejan la casilla vacía no necesitan
+    // explicación —no hay nada que dividir—; los que escriben algo, sí.
+    if (resumen && !(modoGestion === 'concesion' && valor !== null)) {
+      const partes = frasesFueraDePares({ ...fuera, 'sin-coste': 0, 'sin-unidad': 0 }, def.divisor)
+      if (partes.length) {
+        caveats.push(
+          'Prestan el servicio del mismo modo y rellenan la casilla, pero quedan fuera del grupo ' +
+            `de comparación: ${enumerar(partes)}. El percentil se calcula contra los ` +
+            `${resumen.n} que declaran un coste y una unidad utilizables de este modo.`,
+        )
+      }
+    }
     if (resumen && valor !== null && resumen.mediana > 0) {
       const razon = valor / resumen.mediana
       // Sólo la PROSA mira la banda; `DIVERGENCIA_EXTREMA` sigue bajando la
@@ -1015,7 +1238,7 @@ export function construirIndicadores(input: ConstruirInput): IndicadoresSnapshot
             `Una diferencia así suele venir de que cada ayuntamiento declara ` +
             `«${def.denominador}» a su manera, no de que el servicio se gestione mejor o peor. ` +
             `El coste y la unidad son los que publica el ministerio; lo que conviene tomar con pinzas ` +
-            `es la comparación (regla 6 de la metodología).`,
+            `es la comparación (regla 8 de la metodología).`,
         )
       }
     }
@@ -1023,7 +1246,10 @@ export function construirIndicadores(input: ConstruirInput): IndicadoresSnapshot
     const otrosModos = serie.filter((p) => p.otroModo)
     if (otrosModos.length) {
       const rangos = otrosModos.map((p) => p.anio).join(', ')
-      const modos = [...new Set(otrosModos.map((p) => p.otroModo))].join(', ')
+      // La etiqueta de la ficha («concesión»), no la clave interna («concesion»).
+      const modos = [...new Set(otrosModos.map((p) => p.otroModo!))]
+        .map((m) => GESTION[m]?.label ?? m)
+        .join(', ')
       caveats.push(
         `En ${rangos} el servicio se prestaba bajo otro modo de gestión (${modos}): esos años se ` +
           `publican pero la línea no los une con los del régimen actual, porque un coste bajo ` +
@@ -1031,12 +1257,23 @@ export function construirIndicadores(input: ConstruirInput): IndicadoresSnapshot
       )
     }
 
+    // Los números de regla son los de la lista publicada en
+    // /metodologia#reglas-eficiencia. Citaban 6, 7 y 8 desde que el 24-08-2026
+    // se insertaron dos reglas por delante (la escala fija y la banda que cruza
+    // la mediana) y nadie movió las citas: la ficha remitía a una regla que
+    // decía otra cosa. Son la 8, la 9 y la 10.
     const atipicas = serie.filter((p) => p.atipico).map((p) => p.anio)
     if (atipicas.length) {
+      // Decía «El ministerio publica cifras inverosímiles», y no es lo que pasa:
+      // el ministerio publica las dos casillas —en transporte, una red de
+      // 204.834 «km» que son metros— y lo inverosímil es el COCIENTE, que es
+      // nuestro. Atribuirle al ministerio una cifra que no publica es la misma
+      // clase de error que citar un documento que no la contiene.
       caveats.push(
-        `El ministerio publica cifras inverosímiles para ${atipicas.join(', ')}: se apartan más de ` +
-          `${ATIPICO_FACTOR} veces de lo que declararon los municipios comparables ese mismo año. ` +
-          `Se muestran porque son las oficiales, pero no se pueden leer como coste (regla 7).`,
+        `Al dividir las dos casillas de ${atipicas.join(', ')} sale una cifra inverosímil: se ` +
+          `aparta más de ${ATIPICO_FACTOR} veces de lo que da la misma división en los municipios ` +
+          `comparables ese mismo año. Las casillas son las que publica el ministerio y se ` +
+          `enseñan; el cociente no se puede leer como coste (regla 9).`,
       )
     }
 
@@ -1061,6 +1298,26 @@ export function construirIndicadores(input: ConstruirInput): IndicadoresSnapshot
       )
     }
 
+    // ── De dónde sale cada cifra ────────────────────────────────────────────
+    // La cita titula con la entrega base; cada punto de la serie, con la suya.
+    // Agrupadas por documento y celda: diez entregas de dos documentos son dos
+    // citas, no diez copias de la misma.
+    const donde = (anio: number) =>
+      procedenciaCesel(anio, origenes[anio], { programa, atributo: def.denominador, ente })
+    const procedencia: Indicador['procedencia'] = []
+    for (const anio of aniosDisponibles) {
+      const p = donde(anio)
+      const igual = procedencia.find(
+        (g) =>
+          g.url === p.url &&
+          g.documento === p.documento &&
+          g.coste === p.coste &&
+          g.unidad === p.unidad,
+      )
+      if (igual) igual.entregas.push(anio)
+      else procedencia.push({ entregas: [anio], ...p })
+    }
+
     indicadores.push({
       id: `${programa.replace(/[^a-z0-9]/gi, '-').toLowerCase()}-coste-unitario`,
       dimension: 'operativa',
@@ -1081,7 +1338,8 @@ export function construirIndicadores(input: ConstruirInput): IndicadoresSnapshot
       caveats,
       ...(def.avisoDeclaracion ? { avisoDeclaracion: def.avisoDeclaracion } : {}),
       ...(def.concesion ? { concesion: def.concesion } : {}),
-      citas: [{ url: citaUrl, entrega: anioBase }],
+      citas: [{ entrega: anioBase, ...donde(anioBase) }],
+      procedencia,
     })
   }
 
