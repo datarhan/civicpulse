@@ -274,12 +274,39 @@ export function DeclaracionEntregas({ indicador, entregasPublicadas = [], noPres
       )
     : null
 
+  // La cifra de relleno de una casilla (0,01 m², 1 €), si es eso lo que trae:
+  // se enseña tal cual, con su propio rótulo, y no como «—». Ver
+  // `rellenoNumerador` en src/scraper/indicadores.ts.
+  const RELLENO = { numerador: 'rellenoNumerador', denominador: 'rellenoDenominador' }
+  const relleno = (a, clave) => {
+    const v = porAnio.get(a)?.[RELLENO[clave]]
+    return typeof v === 'number' && desenlace(a, clave) === 'no-declarado' ? v : null
+  }
+  const hayRelleno = anios.some(
+    (a) => relleno(a, 'numerador') !== null || relleno(a, 'denominador') !== null,
+  )
+  // La leyenda del «—» sólo si alguna casilla lo pinta: una casilla de relleno
+  // no es una cifra ausente.
+  const hayGuion = anios.some((a) =>
+    ['numerador', 'denominador'].some(
+      (c) => desenlace(a, c) === 'no-declarado' && relleno(a, c) === null,
+    ),
+  )
+
   const fila = (clave, rotulo, formato, tonoDe) => (
     <>
       <span style={{ fontSize: 'var(--fs-micro)', color: 'var(--ink70)' }}>{rotulo}</span>
       {anios.map((a, k) => {
         const d = desenlace(a, clave)
         const v = porAnio.get(a)?.[clave]
+        const r = relleno(a, clave)
+        if (r !== null) {
+          return (
+            <Casilla key={a} tono="no-declarado" primera={k === 0} ultima={k === anios.length - 1}>
+              <span title="cifra de relleno, no una medida">{exacto(r)}*</span>
+            </Casilla>
+          )
+        }
         return (
           <Casilla
             key={a}
@@ -396,7 +423,7 @@ export function DeclaracionEntregas({ indicador, entregasPublicadas = [], noPres
       {/* La leyenda existe porque ahora hay tres tratamientos y dos de ellos son
           huecos: sin decir cuál es cuál, la distinción que este bloque acaba de
           ganar sería invisible. Se pinta sólo lo que esta ficha usa. */}
-      {(sinRendir.length > 0 || sinDeclarar > 0 || congeladaDesde) && (
+      {(sinRendir.length > 0 || hayGuion || hayRelleno || congeladaDesde) && (
         <div
           style={{
             display: 'flex',
@@ -410,7 +437,12 @@ export function DeclaracionEntregas({ indicador, entregasPublicadas = [], noPres
           {congeladaDesde && (
             <Muestra estilo={{ background: 'var(--warn)' }}>cantidad repetida sin remedir</Muestra>
           )}
-          {sinDeclarar > 0 && (
+          {hayRelleno && (
+            <Muestra estilo={{ background: 'var(--paper)', border: '1px dashed var(--border)' }}>
+              * cifra de relleno (0,01, o 1 € de coste): no consta como medida
+            </Muestra>
+          )}
+          {hayGuion && (
             <Muestra estilo={{ background: 'var(--paper)', border: '1px dashed var(--border)' }}>
               {/* «no declaró este servicio» rotulaba una casilla que ahora es de
                   UNA magnitud: en el agua, la del coste está vacía y la de los

@@ -1,6 +1,6 @@
 {
   "version": "1",
-  "generatedAt": "2026-10-19T17:47:46.960Z",
+  "generatedAt": "2026-10-19T20:13:52.687Z",
   "legalNotice": "Cada ficha parte de cifras oficiales publicadas por el Ministerio de Hacienda en cumplimiento del artículo 116 ter de la LRSAL y del Real Decreto 1040/2017. Describe un servicio municipal, nunca a una persona. El ayuntamiento, la intervención, el concesionario o el ministerio pueden ejercer derecho de réplica literal y su respuesta se publica junto a la ficha.",
   "contactUrl": "https://github.com/datarhan/civicpulse/issues/new?template=eficiencia-finding-response.yml",
   "methodologyUrl": "/metodologia#eficiencia",
@@ -196,8 +196,8 @@
         },
         {
           "field": "medicion",
-          "original": "86.66666666666667 % (2024) · mediana de 52: 57.738095238095234",
-          "corrected": "86.66666666666667 % (2024) · mediana de 52: 57.738095238095234",
+          "original": "86.66666666666667 % (2024) · mediana de 52: 57.738095238095234 · percentil 92",
+          "corrected": "86.66666666666667 % (2024) · mediana de 52: 57.738095238095234 · percentil 90",
           "reason": "Las cifras de relleno del coste efectivo (0,01 en la casilla de efectivos de Benetússer en 2024) dejan de contar como medida: Benetússer pasa de 9 de 11 a 9 de 10 denominadores repetidos y queda por encima de Riba-roja, así que el percentil baja de 92 a 90. La proporción propia (86,7 %), el tamaño de la banda (52) y la mediana (57,7 %) no cambian.",
           "editor": "civicpulse-curator",
           "correctedAt": "2026-10-19"

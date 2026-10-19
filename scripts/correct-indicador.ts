@@ -33,6 +33,7 @@ import { rechazoDeMarcador } from '../src/scraper/firma-de-persona'
 import {
   validateEficienciaFindingsSnapshot,
   cotejarMedicion,
+  lineaDeMedicion,
 } from '../src/scraper/eficiencia-finding'
 import { rechazarOpcionesDesconocidas } from '../src/scraper/opciones-cli'
 
@@ -144,13 +145,14 @@ function main(): void {
           }
         : ficha!.medicion.pares
 
-    const antesPares = ficha!.medicion.pares
-    original =
-      `${ficha!.medicion.valor} ${ficha!.medicion.unidad} (${ficha!.medicion.periodo})` +
-      (antesPares ? ` · mediana de ${antesPares.n}: ${antesPares.mediana}` : '')
-    corregido =
-      `${cotejo.actual} ${ficha!.medicion.unidad} (${cotejo.periodoActual ?? ficha!.medicion.periodo})` +
-      (paresVivos ? ` · mediana de ${paresVivos.n}: ${paresVivos.mediana}` : '')
+    // Una línea, con el percentil: ver `lineaDeMedicion`.
+    original = lineaDeMedicion(ficha!.medicion)
+    corregido = lineaDeMedicion({
+      ...ficha!.medicion,
+      valor: cotejo.actual,
+      periodo: cotejo.periodoActual ?? ficha!.medicion.periodo,
+      pares: paresVivos,
+    })
     ficha!.medicion = {
       ...ficha!.medicion,
       valor: cotejo.actual,

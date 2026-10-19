@@ -100,9 +100,12 @@ describe('razonMediana — la columna × mediana', () => {
     expect(razonMediana({ valor: null } as Indicador)).toBe(null)
   })
 
-  it('colegios pagan ×3,09 la mediana en el snapshot publicado', () => {
+  it('colegios pagan ×3,01 la mediana en el snapshot publicado', () => {
+    // Era ×3,09 hasta el 2026-10-19: Borriana declara 1 € de coste, una cifra
+    // de relleno que ya no entra en el grupo, y la mediana sube de 32,51 a
+    // 33,31 €/m².
     const colegios = indicadores.find((i) => i.id === 'b323-324-320p-coste-unitario')!
-    expect(razonMediana(colegios)).toBeCloseTo(3.09, 2)
+    expect(razonMediana(colegios)).toBeCloseTo(3.01, 2)
   })
 })
 

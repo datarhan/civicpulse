@@ -200,18 +200,26 @@ describe('scraper/dea-especificacion — el análisis', () => {
     expect(p.escala).toBeCloseTo(p.thetaCrs / p.theta, 6)
   })
 
-  it('avisa de que la cesta más fina pone a Riba-roja en la frontera sin poder acotarla', () => {
+  it('la cesta más fina pone a Riba-roja en la frontera, y si acota lo dice el intervalo medido', () => {
     // El resultado más fácil de malinterpretar de todo el experimento: la única
     // especificación que da θ = 1 es también la que se queda en el mínimo de
     // unidades, y su intervalo se sale de la escala por abajo. «Estamos en la
     // frontera» y «no se puede saber» son aquí la misma medición.
+    //
+    // En este recorte de 2021 la cesta tenía 15 unidades y el intervalo se
+    // salía por abajo. Desde el 2026-10-19 un coste de relleno (0,01 o 1 €) no
+    // es un rival de un coste real (`COSTES_SIMBOLICOS`): una unidad que antes
+    // quedaba fuera por «dos costes» entra con el suyo, y con 16 el intervalo
+    // ya acota. La frontera sigue ahí (θ = 1); lo que la prueba fija ahora es
+    // que el aviso sale del intervalo medido y no de una suposición.
     const cuatro = analizarEspecificacion(spec('cuatro-servicios'), ENTRADA)
     expect(cuatro.estado).toBe('publicada')
     expect(cuatro.propia!.theta).toBeCloseTo(1, 6)
     expect(cuatro.cobertura.incluidas).toBeLessThan(principal.cobertura.incluidas)
-    expect(cuatro.propia!.intervaloAcotaPorAbajo).toBe(false)
-    expect(cuatro.propia!.ic.truncadoInferior).toBe(true)
-    // …y la principal sí acota, o el aviso no distinguiría nada.
+    expect(cuatro.cobertura.incluidas).toBe(16)
+    expect(cuatro.propia!.intervaloAcotaPorAbajo).toBe(!cuatro.propia!.ic.truncadoInferior)
+    expect(cuatro.propia!.ic.truncadoInferior).toBe(false)
+    // …y la principal también acota.
     expect(principal.propia!.intervaloAcotaPorAbajo).toBe(true)
   })
 

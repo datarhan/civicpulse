@@ -237,6 +237,15 @@ export interface PuntoSerie {
    * de 2024 que había pasado la cordura contra veintiún municipios.
    */
   contrastado?: boolean
+  /**
+   * La cifra de relleno que trae la casilla cuando la mitad no consta por
+   * `cifra-simbolica` (0,01 m² en limpieza viaria 2014). No es `numerador` ni
+   * `denominador` —no divide nada—, pero la rejilla de entregas la enseña tal
+   * cual: rotular «no declaró esta cifra» una casilla que trae 0,01 sería
+   * desmentir a la fuente en sentido contrario.
+   */
+  rellenoNumerador?: number
+  rellenoDenominador?: number
 }
 
 export interface DeclaracionMagnitud {
@@ -1006,6 +1015,17 @@ export function construirIndicadores(input: ConstruirInput): IndicadoresSnapshot
       // `valor` sigue exigiendo las dos: un cociente a medias no existe.
       if (n.estado === 'declarado') punto.numerador = n.valor!
       if (d.estado === 'declarado') punto.denominador = d.valor!
+      if (n.motivo === 'cifra-simbolica') {
+        const r = propias.find((f) => f.anio === anio && costeSimbolico(f.costeTotal))
+        if (r) punto.rellenoNumerador = r.costeTotal!
+      }
+      if (d.motivo === 'cifra-simbolica') {
+        const u = propias
+          .filter((f) => f.anio === anio)
+          .flatMap((f) => f.unidades)
+          .find((x) => x.atributo === def.denominador && x.valor !== null)
+        if (u) punto.rellenoDenominador = u.valor!
+      }
       // El modo de gestión de ESE año, que no tiene por qué ser el que titula:
       // limpieza viaria estuvo concedida antes de 2016 y directa después, y un
       // coste bajo concesión no es la misma magnitud que uno de gestión

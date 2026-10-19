@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-19T17:49:34.388Z",
+  "generatedAt": "2026-10-19T20:13:51.693Z",
   "conjunto": "cv-15k-40k",
   "anioBase": 2024,
   "source": {
@@ -893,6 +893,7 @@
           "valor": null,
           "estado": "no-declarado",
           "numerador": 532961.47,
+          "rellenoDenominador": 0.01,
           "valorReal": null,
           "medianaParesReal": null,
           "p25ParesReal": null,
@@ -903,6 +904,7 @@
           "valor": null,
           "estado": "no-declarado",
           "numerador": 676767.14,
+          "rellenoDenominador": 0.01,
           "valorReal": null,
           "medianaParesReal": null,
           "p25ParesReal": null,
@@ -3885,6 +3887,7 @@
           "valor": null,
           "estado": "no-declarado",
           "numerador": 136864.06,
+          "rellenoDenominador": 0.01,
           "valorReal": null,
           "medianaParesReal": null,
           "p25ParesReal": null,
