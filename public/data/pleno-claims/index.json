@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-15T08:23:22.784Z",
+  "generatedAt": "2026-10-19T07:43:27.209Z",
   "version": "1",
   "plenos": [
     {
@@ -29,7 +29,7 @@
         "cultura": 15,
         "educacion": 1
       },
-      "bytes": 216743
+      "bytes": 216728
     },
     {
       "plenoId": "1xmr0do",
@@ -117,7 +117,7 @@
         "educacion": 74,
         "medio-ambiente": 2
       },
-      "bytes": 226042
+      "bytes": 226004
     },
     {
       "plenoId": "1237hbp",
@@ -423,7 +423,7 @@
         "salud": 1,
         "cultura": 2
       },
-      "bytes": 204313
+      "bytes": 204294
     },
     {
       "plenoId": "qz6weg",

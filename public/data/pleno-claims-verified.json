@@ -1,6 +1,6 @@
 {
-  "generatedAt": "2026-10-15T08:23:15.819Z",
-  "composedAt": "2026-10-15T08:23:17.207Z",
+  "generatedAt": "2026-10-19T07:43:22.017Z",
+  "composedAt": "2026-10-19T07:43:22.798Z",
   "source": {
     "description": "Fact-check verdicts for every pleno-claims-suggestions.json entry. Cross-references against tenders / BDNS / budget / promises. Pure deterministic — no LLM judgement.",
     "contract": "Machine-written verdicts; a curator reviews before surfacing contradicho or promesa-repetida editorially."
@@ -3053,7 +3053,7 @@
           {
             "kind": "tender",
             "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=hFrradR5sN8BPRBxZ4nJ%2Fg%3D%3D",
-            "snippet": "El objeto del presente contrato es establecer las condiciones por las que ha de regirse la adjudicación y posterior ejecución del contrato del servicio mantenimiento césped artificial en instalaciones deportivas municipales. Servicio mantenimiento césped artificial en instalaciones deportivas municipales por lotes -2 lotes-, por procedimiento abierto súper simplificado, mejor relación calidad-precio, criterios de adjudicación el precio con condiciones especiales de ejecución de carácter social y medioambiental · Ayuntamiento de Riba-roja de Túria · agriculture · estado: revoked",
+            "snippet": "El objeto del presente contrato es establecer las condiciones por las que ha de regirse la adjudicación y posterior ejecución del contrato del servicio mantenimiento césped artificial en instalaciones deportivas municipales. Servicio mantenimiento césped artificial en instalaciones deportivas municipales por lotes -2 lotes-, por procedimiento abierto súper simplificado, mejor relación calidad-precio, criterios de adjudicación el precio con condiciones especiales de ejecución de carácter social y medioambiental · Ayuntamiento de Riba-roja de Túria · agriculture",
             "similarity": 1,
             "stance": "checked"
           }
@@ -3314,7 +3314,7 @@
         "plenoDate": "2026-10-05",
         "segmentIndex": 101,
         "type": "promesa",
-        "speakerGroup": null,
+        "speakerGroup": "PSOE",
         "verbatim": "proceder a la elaboración de una memoria con el proyecto de servicio que permita decidir la mejor manera de gestión del servicio de manera adecuada y financieramente sostenible",
         "context": "Y el segundo proceder a la elaboración de una memoria con el proyecto de servicio que permita decidir la mejor manera de gestión del servicio de manera adecuada y financieramente sostenible.",
         "topic": "movilidad",
@@ -3342,7 +3342,7 @@
         "plenoDate": "2026-10-05",
         "segmentIndex": 102,
         "type": "acusacion_publica",
-        "speakerGroup": null,
+        "speakerGroup": "PP",
         "verbatim": "Nos dijeron que es porque se quiere privatizar el servicio.",
         "context": "No se pone por qué se va a realizar esta propuesta. Nos dijeron que es porque se quiere privatizar el servicio. De hecho, se ha contactado ya con los trabajadores, nos dijo José Luis,",
         "topic": "movilidad",
@@ -3402,7 +3402,7 @@
         "plenoDate": "2026-10-05",
         "segmentIndex": 103,
         "type": "acusacion_publica",
-        "speakerGroup": null,
+        "speakerGroup": "PP",
         "verbatim": "la razón de querer iniciar la privatización del servicio se debe a que se da un mal servicio,",
         "context": "se ha contactado ya con los trabajadores, nos dijo José Luis, y la razón de querer iniciar la privatización del servicio se debe a que se da un mal servicio, se da un servicio... no acorde con las necesidades,",
         "topic": "movilidad",
@@ -3429,7 +3429,7 @@
         "plenoDate": "2026-10-05",
         "segmentIndex": 103,
         "type": "acusacion_publica",
-        "speakerGroup": null,
+        "speakerGroup": "PP",
         "verbatim": "no se puede dar el servicio, el servicio resulta muy caro.",
         "context": "No acorde con las necesidades, no se puede dar el servicio, el servicio resulta muy caro. ¿Cuál es el motivo de querer privatizar este servicio?",
         "topic": "movilidad",
@@ -3456,7 +3456,7 @@
         "plenoDate": "2026-10-05",
         "segmentIndex": 103,
         "type": "acusacion_publica",
-        "speakerGroup": null,
+        "speakerGroup": "PP",
         "verbatim": "esto se hace para poder privatizar el servicio, es el primer paso de la privatización.",
         "context": "Porque según dijisteis, para que la gente lo entienda, esto se hace para poder privatizar el servicio, es el primer paso de la privatización.",
         "topic": "movilidad",
@@ -3486,7 +3486,7 @@
         "plenoDate": "2026-10-05",
         "segmentIndex": 104,
         "type": "acusacion_publica",
-        "speakerGroup": null,
+        "speakerGroup": "PP",
         "verbatim": "saber los motivos que inducen al gobierno socialista obrero español a privatizar un servicio público.",
         "context": "Tras cuestionar el coste y la calidad del servicio, el interviniente formula directamente la pregunta de qué motivos llevan al gobierno a privatizar un servicio público, enmarcando el expediente de transportes como una privatización encubierta.",
         "topic": "movilidad",
@@ -3513,7 +3513,7 @@
         "plenoDate": "2026-10-05",
         "segmentIndex": 105,
         "type": "acusacion_publica",
-        "speakerGroup": null,
+        "speakerGroup": "PP",
         "verbatim": "es el primer paso de la privatización.",
         "context": "es el primer paso de la privatización. Entonces, saber los motivos que inducen al gobierno socialista obrero español a privatizar un servicio público.",
         "topic": "movilidad",
@@ -3742,7 +3742,7 @@
         "plenoDate": "2026-10-05",
         "segmentIndex": 111,
         "type": "cita_convenio",
-        "speakerGroup": null,
+        "speakerGroup": "PSOE",
         "verbatim": "la adjudicación a un particular del contrato por el que se encarga de la gestión indirecta del servicio municipal municipalizado",
         "context": "y la adjudicación a un particular del contrato por el que se encarga de la gestión indirecta del servicio municipal municipalizado. Es decir, la segunda parte del punto que usted dice que no se comenta sí que se queda reflejado y se explica, esto lo dice aquí, la propia propuesta de acuerdo en su introducción.",
         "topic": "movilidad",
@@ -27187,7 +27187,7 @@
           {
             "kind": "tender",
             "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=HqQWB8HdvFAQK2TEfXGy%2BA%3D%3D",
-            "snippet": "Servicio de limpieza CEIP Cervantes · Ayuntamiento de Riba-roja de Túria · environment · estado: awarded",
+            "snippet": "Servicio de limpieza CEIP Cervantes · Ayuntamiento de Riba-roja de Túria · environment",
             "similarity": 0.4,
             "stance": "checked"
           }
@@ -28991,7 +28991,7 @@
           {
             "kind": "tender",
             "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=HqQWB8HdvFAQK2TEfXGy%2BA%3D%3D",
-            "snippet": "Servicio de limpieza CEIP Cervantes · Ayuntamiento de Riba-roja de Túria · environment · estado: awarded",
+            "snippet": "Servicio de limpieza CEIP Cervantes · Ayuntamiento de Riba-roja de Túria · environment",
             "similarity": 0.4,
             "stance": "checked"
           }
@@ -112085,7 +112085,7 @@
           {
             "kind": "tender",
             "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=dukyIWQ3V8T%2Fa9DgO%2BoYKQ%3D%3D",
-            "snippet": "Contrato verbal de servicio de oficiales con maquinaria para limpiar y recoger escombro en la vía pública (Els Pous, c/ Ànimes y Pedanía del Oliveral) como consecuencia del temporal de lluvias (DANA) producido el pasado 29 de octubre de 2024 mediante tramitación de emergencia, a favor de Becsa, S.A. con CIF A46041711 · Ayuntamiento de Riba-roja de Túria · BECSA, S.A. / BENITO ARNO E HIJOS, S.A.U. · environment · 5706 €",
+            "snippet": "Contrato verbal de servicio de oficiales con maquinaria para limpiar y recoger escombro en la vía pública (Els Pous, c/ Ànimes y Pedanía del Oliveral) como consecuencia del temporal de lluvias (DANA) producido el pasado 29 de octubre de 2024 mediante tramitación de emergencia, a favor de Becsa, S.A. con CIF A46041711 · Ayuntamiento de Riba-roja de Túria · BECSA SOCIEDAD ANONIMA · environment · 5706 €",
             "similarity": 1,
             "stance": "checked"
           }

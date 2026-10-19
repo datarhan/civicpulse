@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-15T08:23:22.784Z",
+  "generatedAt": "2026-10-19T07:43:27.209Z",
   "version": "1",
   "plenoId": "zrbgic",
   "plenoDate": "2026-10-05",
@@ -1867,7 +1867,7 @@
           {
             "kind": "tender",
             "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=hFrradR5sN8BPRBxZ4nJ%2Fg%3D%3D",
-            "snippet": "El objeto del presente contrato es establecer las condiciones por las que ha de regirse la adjudicación y posterior ejecución del contrato del servicio mantenimiento césped artificial en instalaciones deportivas municipales. Servicio mantenimiento césped artificial en instalaciones deportivas municipales por lotes -2 lotes-, por procedimiento abierto súper simplificado, mejor relación calidad-precio, criterios de adjudicación el precio con condiciones especiales de ejecución de carácter social y medioambiental · Ayuntamiento de Riba-roja de Túria · agriculture · estado: revoked",
+            "snippet": "El objeto del presente contrato es establecer las condiciones por las que ha de regirse la adjudicación y posterior ejecución del contrato del servicio mantenimiento césped artificial en instalaciones deportivas municipales. Servicio mantenimiento césped artificial en instalaciones deportivas municipales por lotes -2 lotes-, por procedimiento abierto súper simplificado, mejor relación calidad-precio, criterios de adjudicación el precio con condiciones especiales de ejecución de carácter social y medioambiental · Ayuntamiento de Riba-roja de Túria · agriculture",
             "similarity": 1,
             "stance": "checked"
           }
@@ -2055,7 +2055,7 @@
         "plenoDate": "2026-10-05",
         "segmentIndex": 101,
         "type": "promesa",
-        "speakerGroup": null,
+        "speakerGroup": "PSOE",
         "verbatim": "proceder a la elaboración de una memoria con el proyecto de servicio que permita decidir la mejor manera de gestión del servicio de manera adecuada y financieramente sostenible",
         "context": "Y el segundo proceder a la elaboración de una memoria con el proyecto de servicio que permita decidir la mejor manera de gestión del servicio de manera adecuada y financieramente sostenible.",
         "topic": "movilidad",
@@ -2203,7 +2203,7 @@
         "plenoDate": "2026-10-05",
         "segmentIndex": 111,
         "type": "cita_convenio",
-        "speakerGroup": null,
+        "speakerGroup": "PSOE",
         "verbatim": "la adjudicación a un particular del contrato por el que se encarga de la gestión indirecta del servicio municipal municipalizado",
         "context": "y la adjudicación a un particular del contrato por el que se encarga de la gestión indirecta del servicio municipal municipalizado. Es decir, la segunda parte del punto que usted dice que no se comenta sí que se queda reflejado y se explica, esto lo dice aquí, la propia propuesta de acuerdo en su introducción.",
         "topic": "movilidad",

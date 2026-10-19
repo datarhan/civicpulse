@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-15T08:15:10.278Z",
+  "generatedAt": "2026-10-19T07:42:33.932Z",
   "source": {
     "description": "Claims extracted automatically from YouTube-derived pleno transcripts. Each record carries requiresHumanApproval:true and is cross-referenced against tenders / BDNS / budget / promises by the verifier pass before any editorial surface.",
     "contract": "Machine-written; never substitutes for the published human-verified record. Speaker attribution at bloc level only — no individual naming."
@@ -2061,7 +2061,7 @@
       "plenoDate": "2026-10-05",
       "segmentIndex": 101,
       "type": "promesa",
-      "speakerGroup": null,
+      "speakerGroup": "PSOE",
       "verbatim": "proceder a la elaboración de una memoria con el proyecto de servicio que permita decidir la mejor manera de gestión del servicio de manera adecuada y financieramente sostenible",
       "context": "Y el segundo proceder a la elaboración de una memoria con el proyecto de servicio que permita decidir la mejor manera de gestión del servicio de manera adecuada y financieramente sostenible.",
       "topic": "movilidad",
@@ -2078,7 +2078,7 @@
       "plenoDate": "2026-10-05",
       "segmentIndex": 102,
       "type": "acusacion_publica",
-      "speakerGroup": null,
+      "speakerGroup": "PP",
       "verbatim": "Nos dijeron que es porque se quiere privatizar el servicio.",
       "context": "No se pone por qué se va a realizar esta propuesta. Nos dijeron que es porque se quiere privatizar el servicio. De hecho, se ha contactado ya con los trabajadores, nos dijo José Luis,",
       "topic": "movilidad",
@@ -2114,7 +2114,7 @@
       "plenoDate": "2026-10-05",
       "segmentIndex": 103,
       "type": "acusacion_publica",
-      "speakerGroup": null,
+      "speakerGroup": "PP",
       "verbatim": "la razón de querer iniciar la privatización del servicio se debe a que se da un mal servicio,",
       "context": "se ha contactado ya con los trabajadores, nos dijo José Luis, y la razón de querer iniciar la privatización del servicio se debe a que se da un mal servicio, se da un servicio... no acorde con las necesidades,",
       "topic": "movilidad",
@@ -2132,7 +2132,7 @@
       "plenoDate": "2026-10-05",
       "segmentIndex": 103,
       "type": "acusacion_publica",
-      "speakerGroup": null,
+      "speakerGroup": "PP",
       "verbatim": "no se puede dar el servicio, el servicio resulta muy caro.",
       "context": "No acorde con las necesidades, no se puede dar el servicio, el servicio resulta muy caro. ¿Cuál es el motivo de querer privatizar este servicio?",
       "topic": "movilidad",
@@ -2150,7 +2150,7 @@
       "plenoDate": "2026-10-05",
       "segmentIndex": 103,
       "type": "acusacion_publica",
-      "speakerGroup": null,
+      "speakerGroup": "PP",
       "verbatim": "esto se hace para poder privatizar el servicio, es el primer paso de la privatización.",
       "context": "Porque según dijisteis, para que la gente lo entienda, esto se hace para poder privatizar el servicio, es el primer paso de la privatización.",
       "topic": "movilidad",
@@ -2168,7 +2168,7 @@
       "plenoDate": "2026-10-05",
       "segmentIndex": 104,
       "type": "acusacion_publica",
-      "speakerGroup": null,
+      "speakerGroup": "PP",
       "verbatim": "saber los motivos que inducen al gobierno socialista obrero español a privatizar un servicio público.",
       "context": "Tras cuestionar el coste y la calidad del servicio, el interviniente formula directamente la pregunta de qué motivos llevan al gobierno a privatizar un servicio público, enmarcando el expediente de transportes como una privatización encubierta.",
       "topic": "movilidad",
@@ -2186,7 +2186,7 @@
       "plenoDate": "2026-10-05",
       "segmentIndex": 105,
       "type": "acusacion_publica",
-      "speakerGroup": null,
+      "speakerGroup": "PP",
       "verbatim": "es el primer paso de la privatización.",
       "context": "es el primer paso de la privatización. Entonces, saber los motivos que inducen al gobierno socialista obrero español a privatizar un servicio público.",
       "topic": "movilidad",
@@ -2328,7 +2328,7 @@
       "plenoDate": "2026-10-05",
       "segmentIndex": 111,
       "type": "cita_convenio",
-      "speakerGroup": null,
+      "speakerGroup": "PSOE",
       "verbatim": "la adjudicación a un particular del contrato por el que se encarga de la gestión indirecta del servicio municipal municipalizado",
       "context": "y la adjudicación a un particular del contrato por el que se encarga de la gestión indirecta del servicio municipal municipalizado. Es decir, la segunda parte del punto que usted dice que no se comenta sí que se queda reflejado y se explica, esto lo dice aquí, la propia propuesta de acuerdo en su introducción.",
       "topic": "movilidad",
@@ -137748,11 +137748,11 @@
     }
   ],
   "builtFrom": {
-    "officials.json": "49ad402025e6",
-    "pleno-findings.json": "89d1ec760a8f",
-    "pleno-speaker-map/": "e8432d43e47b",
+    "officials.json": "6be4cb770152",
+    "pleno-findings.json": "9587dacf2d80",
+    "pleno-speaker-map/": "f5b5052769c7",
     "pleno-transcripts/": "db0fcba21c1a",
-    "plenos-agendas.json": "9be270e28cd5",
-    "plenos.json": "11f328635355"
+    "plenos-agendas.json": "f3e886857234",
+    "plenos.json": "4a1d21df2c29"
   }
 }

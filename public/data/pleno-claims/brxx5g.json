@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-15T08:23:22.784Z",
+  "generatedAt": "2026-10-19T07:43:27.209Z",
   "version": "1",
   "plenoId": "brxx5g",
   "plenoDate": "2026-07-06",
@@ -2732,7 +2732,7 @@
           {
             "kind": "tender",
             "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=HqQWB8HdvFAQK2TEfXGy%2BA%3D%3D",
-            "snippet": "Servicio de limpieza CEIP Cervantes · Ayuntamiento de Riba-roja de Túria · environment · estado: awarded",
+            "snippet": "Servicio de limpieza CEIP Cervantes · Ayuntamiento de Riba-roja de Túria · environment",
             "similarity": 0.4,
             "stance": "checked"
           }
@@ -3786,7 +3786,7 @@
           {
             "kind": "tender",
             "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=HqQWB8HdvFAQK2TEfXGy%2BA%3D%3D",
-            "snippet": "Servicio de limpieza CEIP Cervantes · Ayuntamiento de Riba-roja de Túria · environment · estado: awarded",
+            "snippet": "Servicio de limpieza CEIP Cervantes · Ayuntamiento de Riba-roja de Túria · environment",
             "similarity": 0.4,
             "stance": "checked"
           }
