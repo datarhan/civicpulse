@@ -69,6 +69,17 @@ describe('concesión del agua · fin del plazo', () => {
   })
 })
 
+describe('concesión del agua · el snapshot publicado', () => {
+  // La página lee `indicadores.json`, no el registro: un registro corregido
+  // con el snapshot sin regenerar sigue publicando la fecha vieja.
+  const { indicadores } = leer('public/data/indicadores.json')
+  it.each(FICHAS)('%s publica la concesión del registro', (programa) => {
+    const ficha = indicadores.find((i) => i.id === `${programa}-coste-unitario`)
+    expect(ficha, `${programa}-coste-unitario no está en indicadores.json`).toBeTruthy()
+    expect(ficha.concesion).toEqual(SERVICIOS[programa].concesion)
+  })
+})
+
 describe('concesión del agua · la fecha que se pinta', () => {
   // `new Date('2026-07-27')` es la medianoche UTC: en cualquier huso al oeste
   // de Greenwich `toLocaleDateString` la pinta como el día ANTERIOR. Una fecha
