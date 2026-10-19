@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-19T04:50:13.278Z",
+  "generatedAt": "2026-10-19T06:31:54.766Z",
   "clusters": [
     {
       "clusterId": "1hto5xc",
@@ -55,37 +55,6 @@
       ],
       "earliestDate": "2026-10-13T11:39:38.000Z",
       "latestDate": "2026-10-13T18:32:03.000Z",
-      "verdictMix": {
-        "verificado": 0,
-        "parcial": 0,
-        "contradicho": 0,
-        "sin-datos": 0,
-        "promesa-repetida": 0
-      }
-    },
-    {
-      "clusterId": "1a7s7tk",
-      "articleIds": [
-        "100ms28",
-        "19crzeg",
-        "1a9am3c",
-        "1bfp5g8",
-        "1h22n93",
-        "1v0b3hs",
-        "1w31adk",
-        "4kaf3g",
-        "5csqp0",
-        "8s5tks",
-        "fr25a0",
-        "mw9ti3",
-        "urrfhs"
-      ],
-      "outlets": [
-        "Fotocasa",
-        "Fotocasa.es"
-      ],
-      "earliestDate": "2026-10-07T01:31:23.000Z",
-      "latestDate": "2026-10-10T20:18:24.000Z",
       "verdictMix": {
         "verificado": 0,
         "parcial": 0,
@@ -196,13 +165,13 @@
     }
   ],
   "stats": {
-    "totalClusters": 9,
+    "totalClusters": 8,
     "triangulated3Plus": 1
   },
   "builtFrom": {
-    "plenos-agendas.json": "76e47d680294",
+    "plenos-agendas.json": "644a55bbb1c1",
     "press-claims-verified.json": "577b1fb0a58a",
     "press.json": "6853d30dea86",
-    "promises.json": "08c43b132d79"
+    "promises.json": "a4b8423e960f"
   }
 }

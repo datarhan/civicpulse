@@ -16,9 +16,17 @@
  *   3. App.jsx liga cada `<Route path>` con su módulo de página, y cada layout
  *      sin `path` con las rutas que envuelve (`layoutsSinRuta`)
  *
+ * Y una excepción al paso 1, que no se ve en el texto: los REPORTAJES. Cada
+ * pieza carga `public/data/reportajes/<slug>.json` por `useReportaje(slug)`,
+ * cuyo literal es una plantilla —`/data/reportajes/${slug}.json`— que el paso 1
+ * no casa ni puede casar. Sus aristas salen del registro, `src/reportajes.js`:
+ * ver «LOS REPORTAJES» en `construirGrafoRutas`. Su clave lleva la carpeta
+ * (`reportajes/basuras.json`), porque es la ruta relativa a `public/data/`.
+ *
  * Módulo puro salvo por la lectura de src/: no toca red y no escribe nada.
  */
 import { RUTAS_CON_ESTADO } from '../../src/scraper/reader-review'
+import { REPORTAJE_SLUGS } from '../../src/reportajes'
 import { fichasRepresentativas, type LeerSnapshot } from './fichas-representativas'
 import { existsSync, readFileSync, readdirSync, statSync } from 'node:fs'
 import { dirname, join, resolve } from 'node:path'
@@ -94,6 +102,12 @@ export interface GrafoRutas {
   rutas: string[]
   /** Ruta → el módulo de página que la sirve. */
   paginaPorRuta: Map<string, string>
+  /**
+   * Snapshot → la ruta cuyo dato ES, entero: el JSON congelado de un reportaje
+   * y su pieza. Cambiar ese fichero es cambiar esa página tanto como editar su
+   * módulo, y `routes-for-changes` la cuenta como directa por eso.
+   */
+  rutaPropiaPorSnapshot: Map<string, string>
 }
 
 /**
@@ -363,7 +377,7 @@ export function construirGrafoRutas(src: string): GrafoRutas {
   const paginaPorRuta = new Map<string, string>()
   const rutas: string[] = []
   /** Cuelga de `ruta` todo lo que `fichero` alcanza: snapshots y ficheros. */
-  const colgar = (ruta: string, fichero: string): void => {
+  const colgarModulo = (ruta: string, fichero: string): void => {
     for (const snap of alcanzaSnapshots(fichero)) {
       const set = rutasPorSnapshot.get(snap) ?? new Set()
       set.add(ruta)
@@ -381,7 +395,7 @@ export function construirGrafoRutas(src: string): GrafoRutas {
   const montarRuta = (ruta: string, fichero: string): void => {
     rutas.push(ruta)
     paginaPorRuta.set(ruta, fichero)
-    colgar(ruta, fichero)
+    colgarModulo(ruta, fichero)
   }
 
   for (const m of textoApp.matchAll(/<Route\s+path="([^"]+)"\s+element=\{<(\w+)/g)) {
@@ -429,7 +443,58 @@ export function construirGrafoRutas(src: string): GrafoRutas {
   for (const { comp, rutas: envueltas } of layoutsSinRuta(textoApp)) {
     const fichero = componenteDe.get(comp)
     if (!fichero) continue
-    for (const r of envueltas) if (montadas.has(r)) colgar(r, fichero)
+    for (const r of envueltas) if (montadas.has(r)) colgarModulo(r, fichero)
+  }
+
+  // LOS REPORTAJES NO SE CARGAN CON UN LITERAL, así que el paso 1 no los veía.
+  //
+  // `useReportaje(slug)` pide `/data/reportajes/${slug}.json`, una plantilla, y
+  // el regex de arriba sólo casa `/data/x.json` escrito entero. Ningún JSON de
+  // reportaje colgaba de ninguna ruta. Medido el 19-10-2026 en la PR #385: un
+  // push que sólo corregía public/data/reportajes/reconstruccion-dana.json
+  // imprimió «ninguna ruta afectada», y el recordatorio de prosa vieja tampoco
+  // nombró la pieza. Una corrección de cifras a un reportaje PUBLICADO es
+  // exactamente el cambio cuya prosa vecina hay que releer.
+  //
+  // Se deriva del registro, nunca de una lista aquí: cada slug de
+  // `REPORTAJE_SLUGS` tiene su JSON y su ruta explícita `/reportajes/<slug>`
+  // (no un `:slug`), y la arista sólo se pone si esa ruta está montada de
+  // verdad. Una pieza nueva entra sola; una que se quite del registro, sale.
+  //
+  // Quién más lee cada JSON, medido en el código:
+  //
+  //   · el índice (`/reportajes`) pinta su ficha —titular, subtítulo y el
+  //     emblema, que son cifras—, y la portada su titular: los dos enumeran el
+  //     registro, y publicar una pieza (`meta.estado`) cambia los dos.
+  //   · «Más reportajes», al pie de cada pieza, enumera el registro también,
+  //     pero pinta sólo título y fecha de las otras. Eso lo pinta igual el
+  //     índice, y una pieza entera cuesta su presupuesto de lectura: colgar las
+  //     seis de cada JSON era leer cinco páginas que nadie tocó para ver un
+  //     título que /reportajes ya lee. Por eso una pieza recibe su JSON y no el
+  //     de las demás.
+  //
+  // «Enumera el registro» = importa `src/reportajes.js`, que no tiene otro uso.
+  const registroReportajes = resolve(src, 'reportajes.js')
+  const rutaPropiaPorSnapshot = new Map<string, string>()
+  const colgar = (snap: string, ruta: string): void => {
+    const set = rutasPorSnapshot.get(snap) ?? new Set()
+    set.add(ruta)
+    rutasPorSnapshot.set(snap, set)
+  }
+  for (const slug of REPORTAJE_SLUGS) {
+    const ruta = `/reportajes/${slug}`
+    if (!paginaPorRuta.has(ruta)) continue
+    const snap = `reportajes/${slug}.json`
+    rutaPropiaPorSnapshot.set(snap, ruta)
+    colgar(snap, ruta)
+  }
+  const piezas = new Set(rutaPropiaPorSnapshot.values())
+  for (const [f, deps] of importa) {
+    if (!deps.includes(registroReportajes)) continue
+    for (const ruta of rutasPorFichero.get(f) ?? []) {
+      if (piezas.has(ruta)) continue
+      for (const snap of rutaPropiaPorSnapshot.keys()) colgar(snap, ruta)
+    }
   }
 
   // EL ARMAZÓN ALCANZA TODAS LAS RUTAS, y hasta ahora no alcanzaba ninguna.
@@ -468,6 +533,7 @@ export function construirGrafoRutas(src: string): GrafoRutas {
     rutasPorSnapshot,
     rutasPorFichero,
     paginaPorRuta,
+    rutaPropiaPorSnapshot,
     snapshotsDe,
     importa,
     importaEstatico,

@@ -1,6 +1,6 @@
 {
   "version": "1.0.0",
-  "generatedAt": "2026-10-12T06:30:10.935Z",
+  "generatedAt": "2026-10-19T06:30:07.507Z",
   "frozenUntil": null,
   "legalNotice": "CivicPulse es un proyecto de civic-tech independiente, sin vinculación con el Ayuntamiento de Riba-roja de Túria ni con ningún partido político. Las promesas listadas son compromisos públicos atribuidos a partidos y cargos, cada uno con su fuente enlazada: el documento oficial o la noticia de prensa que recoge la cita. Para correcciones, derecho de rectificación o propuesta de nuevas fuentes: abrir una issue en github.com/datarhan/civicpulse con la etiqueta correccion-promesa. Plazo de revisión: 24 h. Plazo de resolución: 72 h. Durante el periodo electoral oficial (LOREG art. 50), el tracker entra en modo solo-lectura y los estados quedan congelados a la fecha publicada en cada ficha.",
   "contactUrl": "https://github.com/datarhan/civicpulse/issues/new?labels=correccion-promesa",
@@ -446,14 +446,27 @@
       "madeAt": "2026-10-08",
       "topic": "fiscal",
       "kind": "anuncio-gobierno",
-      "status": "documentada",
-      "evidence": [],
+      "status": "en-progreso",
+      "evidence": [
+        {
+          "date": "2026-10-08",
+          "url": "https://www.ribarroja.es/es/noticia/riba-roja-de-t%C3%BAria-formaliza-con-veolia-el-nuevo-contrato-del-ciclo-integral-del-agua-para-reforzar-la-sostenibilidad-y-modernizar-sus-infraestructuras",
+          "quote": "Riba-roja de Túria formaliza con Veolia el nuevo contrato del ciclo integral del agua para reforzar la sostenibilidad y modernizar sus infraestructuras",
+          "publisher": "Ayuntamiento de Riba-roja de Túria",
+          "kind": "press",
+          "addedBy": "auto-curation-v1"
+        }
+      ],
       "createdAt": "2026-10-12",
+      "updatedAt": "2026-10-19",
+      "response": null,
       "autoPublished": {
-        "at": "2026-10-12T06:30:10.935Z",
+        "at": "2026-10-19T06:30:07.507Z",
         "by": "auto-curation-v1",
         "confidence": 0.72,
-        "reviewState": "pending-review"
+        "reviewState": "pending-review",
+        "priorStatus": "documentada",
+        "appendedEvidenceUrl": "https://www.ribarroja.es/es/noticia/riba-roja-de-t%C3%BAria-formaliza-con-veolia-el-nuevo-contrato-del-ciclo-integral-del-agua-para-reforzar-la-sostenibilidad-y-modernizar-sus-infraestructuras"
       }
     }
   ],

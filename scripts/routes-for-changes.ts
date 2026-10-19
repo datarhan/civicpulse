@@ -46,6 +46,19 @@ const __dirname = dirname(fileURLToPath(import.meta.url))
 const ROOT = join(__dirname, '..')
 const SRC = join(ROOT, 'src')
 
+/**
+ * `public/data/x.json` → `x.json`, y `public/data/reportajes/x.json` →
+ * `reportajes/x.json`: la clave del grafo es la ruta relativa a `public/data/`.
+ *
+ * Aceptaba sólo el primer nivel, y por eso el JSON de un reportaje —que vive en
+ * su carpeta— no alcanzaba ni a su propia pieza aunque el grafo la conociera.
+ * Un troceado (`pleno-claims/…`) pasa por aquí igual y no encuentra clave: el
+ * mapa decide qué lleva prosa, no este regex.
+ */
+function snapshotDeRuta(limpia: string): string | null {
+  return /^public\/data\/((?:[\w-]+\/)?[\w-]+\.json)$/.exec(limpia)?.[1] ?? null
+}
+
 /** Rutas que toca un fichero cambiado. Vacío = ninguna página lo alcanza. */
 export function rutasDeFichero(
   ruta: string,
@@ -55,8 +68,8 @@ export function rutasDeFichero(
   if (!limpia) return []
 
   // Un snapshot: lo alcanzan las páginas que lo cargan o lo describen.
-  const snap = /^public\/data\/([\w-]+\.json)$/.exec(limpia)
-  if (snap) return [...(grafo.rutasPorSnapshot.get(snap[1]) ?? [])]
+  const snap = snapshotDeRuta(limpia)
+  if (snap) return [...(grafo.rutasPorSnapshot.get(snap) ?? [])]
 
   // Un módulo del front: lo alcanzan las páginas que lo importan, directa o
   // transitivamente. `src/i18n.jsx` sale con las veintitantas, y es correcto.
@@ -116,7 +129,12 @@ export function ordenarPorCentralidad(
   // Se conservan dos señales, y ninguna es una heurística:
   //
   //   `directa`  cambió el propio módulo de página de esa ruta. Exacto: sale de
-  //              `paginaPorRuta`, que el grafo ya calculaba.
+  //              `paginaPorRuta`, que el grafo ya calculaba. O cambió el dato
+  //              que ES esa página —el JSON congelado de un reportaje, por
+  //              `rutaPropiaPorSnapshot`—: sin eso la pieza empataba con la
+  //              portada y el índice, y como `--rotate-desde` rota todo lo que
+  //              no es directa, la que cabía era la leída hace más tiempo, no
+  //              la pieza cuyas cifras acababan de cambiar.
   //   `peso`     suma de 1/(rutas que alcanza cada fichero cambiado). Un fichero
   //              que llega a dos rutas aporta 0,5 a cada una; la hoja global,
   //              que llega a treinta, aporta 0,03 a todas. Es fan-out inverso:
@@ -131,7 +149,10 @@ export function ordenarPorCentralidad(
       .map(aClave)
       .filter((x): x is string => x !== null)
     if (rutasDeFichero(e, grafo).length === 0) sinRuta.push(e)
-    const propia = paginas.get(resolve(ROOT, e.trim().replace(/^\.\//, '')))
+    const limpia = e.trim().replace(/^\.\//, '')
+    const snap = snapshotDeRuta(limpia)
+    const propia =
+      paginas.get(resolve(ROOT, limpia)) ?? (snap ? grafo.rutaPropiaPorSnapshot.get(snap) : null)
     const clavePropia = propia ? aClave(propia) : null
     if (clavePropia) directa.add(clavePropia)
     for (const x of r) {
