@@ -664,9 +664,11 @@ describe('scraper/indicadores · una concesión que declara, con datos reales de
 // servicio concedido, 11 no declaran su coste» en el agua y «de los 27, 5» en el
 // alcantarillado. Dos errores en la misma frase, medidos sobre la entrega:
 //
-//  - Paiporta (46186) SÍ declara coste —1 €— y lo que no declara es la red
-//    (0 m). Restar `n` del total metía en «no declaran su coste» a todo el que
-//    se quedaba fuera por cualquier motivo: diez y cuatro, no once y cinco.
+//  - Paiporta (46186) declara 1 € y 0 m de red. Restar `n` del total metía en
+//    «no declaran su coste» a todo el que se quedaba fuera por cualquier
+//    motivo. Desde el 2026-10-19 ese euro tampoco cuenta como coste: es una
+//    cifra de relleno (`COSTES_SIMBOLICOS`), y Paiporta sale con su propio
+//    motivo, no con el de los que dejan la casilla vacía.
 //  - Calp (03047) declara «Gestión indirecta por sociedad de economía mixta», y
 //    el clasificador la leía como concesión porque preguntaba por «indirecta»
 //    antes que por «mixta»: entraba en el grupo y movía el percentil.
@@ -698,60 +700,43 @@ describe('scraper/indicadores · quién queda fuera del grupo de comparación (2
   const alcant = rr.indicadores.find((i) => i.id === 'a160-coste-unitario')!
   const fraseGrupo = (i: Indicador) => i.caveats.find((c) => /^De los \d+ municipios/.test(c))
 
-  /** Por qué se queda fuera cada par del mismo modo, calculado de las celdas. */
-  const fuera = (programa: string) => {
-    const cuenta = Object.fromEntries(MOTIVOS_FUERA_DE_PARES.map((m) => [m, 0])) as Record<
-      MotivoFueraDePares,
-      number
-    >
-    for (const m of miembros24) {
-      if (m.ine === '46214') continue
-      const suyas = filas24.filter((f) => f.ine === m.ine)
-      const fila = suyas.find((f) => f.programa === programa)
-      if (fila?.modoGestion !== 'concesion') continue
-      const motivo = motivoFueraDePares(
-        resolverCoste(suyas, programa, 2024),
-        resolverUnidad(suyas, programa, 2024, SERVICIOS[programa].denominador),
-      )
-      if (motivo) cuenta[motivo] += 1
-    }
-    return cuenta
-  }
-
   it('la evaluación vio la banda entera y las dos fichas tienen grupo', () => {
     expect(new Set(filas24.map((r) => r.ine)).size).toBeGreaterThan(50)
     expect(agua.pares).not.toBeNull()
     expect(alcant.pares).not.toBeNull()
   })
 
-  it('Paiporta declara coste y no red: no es «no declara su coste»', () => {
+  it('Paiporta declara 1 € y 0 m: un relleno, no un coste ni «no declara su coste»', () => {
     const paiporta = filas24.filter((f) => f.ine === '46186')
     for (const programa of ['a161', 'a160']) {
+      expect(paiporta.find((f) => f.programa === programa)!.costeTotal).toBe(1)
       const n = resolverCoste(paiporta, programa, 2024)
       const d = resolverUnidad(paiporta, programa, 2024, SERVICIOS[programa].denominador)
-      expect(n.estado).toBe('declarado')
+      expect(n.estado).toBe('no-declarado')
+      expect(n.motivo).toBe('cifra-simbolica')
       expect(d.estado).toBe('no-declarado')
-      expect(motivoFueraDePares(n, d)).toBe('sin-unidad')
+      expect(motivoFueraDePares(n, d)).toBe('coste-simbolico')
     }
   })
 
   it('cuenta cada motivo por separado, con los recuentos de la fuente', () => {
-    expect(fuera('a161')).toEqual({ 'sin-coste': 10, 'sin-unidad': 1, 'costes-rivales': 0 })
-    expect(fuera('a160')).toEqual({ 'sin-coste': 4, 'sin-unidad': 1, 'costes-rivales': 0 })
+    const cero = Object.fromEntries(MOTIVOS_FUERA_DE_PARES.map((m) => [m, 0])) as Record<
+      MotivoFueraDePares,
+      number
+    >
+    expect(agua.pares!.fuera).toEqual({ ...cero, 'sin-coste': 10, 'coste-simbolico': 1 })
+    expect(alcant.pares!.fuera).toEqual({ ...cero, 'sin-coste': 4, 'coste-simbolico': 1 })
   })
 
   it('la frase dice cada motivo con su recuento, y suman el total', () => {
-    for (const [i, programa] of [
-      [agua, 'a161'],
-      [alcant, 'a160'],
-    ] as const) {
-      const f = fuera(programa)
-      const total = i.pares!.n + f['sin-coste'] + f['sin-unidad'] + f['costes-rivales']
+    for (const i of [agua, alcant]) {
+      const f = i.pares!.fuera
+      const total = i.pares!.n + MOTIVOS_FUERA_DE_PARES.reduce((s, k) => s + f[k], 0)
       const frase = fraseGrupo(i)
-      expect(frase, `${programa}: sin frase que acote el grupo`).toBeDefined()
+      expect(frase, `${i.id}: sin frase que acote el grupo`).toBeDefined()
       expect(frase).toContain(`De los ${total} municipios`)
       expect(frase).toContain(`${f['sin-coste']} no declaran su coste`)
-      expect(frase).toMatch(/1 declara un coste pero no una cifra utilizable de m de red/)
+      expect(frase).toMatch(/1 declara como coste una cifra de relleno/)
       expect(frase).toContain(`contra los ${i.pares!.n} restantes`)
     }
     // Los publicados, para que el arreglo no se quede en la identidad.
