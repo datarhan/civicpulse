@@ -110,10 +110,13 @@ describe('press-analytics — computeTrustIndicators', () => {
     expect(report.articles[1].indicators.corroboratedAcrossOutlets).toBe(true)
   })
 
-  it('does not mark a lone article as corroborated', () => {
+  it('does not mark a lone article as corroborated — nor as «not corroborated»', () => {
+    // The title clustering finding no other outlet is not evidence that none
+    // ran the story (it misses Valencian vs Castilian headlines): `null`,
+    // «sin comprobar», never `false`. tests/press-analitica-medios.test.ts.
     const press = [makePress({ id: 'a-1', source: 'Outlet A', sourceHost: 'a.test' })]
     const report = computeTrustIndicators({ press, verified: [], now: NOW })
-    expect(report.articles[0].indicators.corroboratedAcrossOutlets).toBe(false)
+    expect(report.articles[0].indicators.corroboratedAcrossOutlets).toBeNull()
   })
 
   it('does not count a same-outlet echo as cross-outlet corroboration', () => {
@@ -126,7 +129,7 @@ describe('press-analytics — computeTrustIndicators', () => {
       }),
     ]
     const report = computeTrustIndicators({ press, verified: [], now: NOW })
-    expect(report.articles[0].indicators.corroboratedAcrossOutlets).toBe(false)
+    expect(report.articles[0].indicators.corroboratedAcrossOutlets).toBeNull()
   })
 
   it('two names Google News gives one site are one outlet, not corroboration', () => {
@@ -150,10 +153,7 @@ describe('press-analytics — computeTrustIndicators', () => {
       }),
     ]
     const report = computeTrustIndicators({ press, verified: [], now: NOW })
-    expect(report.articles.map((a) => a.indicators.corroboratedAcrossOutlets)).toEqual([
-      false,
-      false,
-    ])
+    expect(report.articles.map((a) => a.indicators.corroboratedAcrossOutlets)).toEqual([null, null])
     expect(computeTriangulation({ press, verified: [], now: NOW }).clusters).toEqual([])
   })
 

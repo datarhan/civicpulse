@@ -2,6 +2,7 @@ import { describe, it, expect } from 'vitest'
 import { readFileSync } from 'node:fs'
 import { join } from 'node:path'
 import {
+  clusterArticlesByStory,
   computeTriangulation,
   type PressArticleLite,
   type TriangulationCluster,
@@ -66,6 +67,25 @@ type Nombre = (typeof CASOS)[number]
 const FX = JSON.parse(
   readFileSync(join(__dirname, 'fixtures/triangulacion_cifras_2026-09-28.json'), 'utf8'),
 ) as Record<Nombre, Caso>
+
+/**
+ * Los tres casos son una nota del Ayuntamiento y un periódico, y desde el
+ * 19-10-2026 una nota institucional no cuenta como un medio que corrobore
+ * (tests/press-analitica-medios.test.ts): con las filas tal cual, ninguno forma
+ * grupo. Para que la regla de las cifras se siga midiendo sobre un grupo que
+ * exista, `comoMedio` pone la nota a nombre de un periódico; las cifras, los
+ * títulos y las afirmaciones no se tocan.
+ */
+function comoMedio(caso: Caso): Caso {
+  return {
+    ...caso,
+    press: caso.press.map((a) =>
+      a.official
+        ? { ...a, source: 'Un periódico', sourceHost: 'periodico.test', official: false }
+        : a,
+    ),
+  }
+}
 
 /** El grupo de la historia, localizado por sus artículos y no por su posición. */
 function grupoDe(caso: Caso): TriangulationCluster | undefined {
@@ -140,9 +160,23 @@ describe('el reproductor se da', () => {
 })
 
 describe('triangulación: agrupa la historia y no compara sus cifras', () => {
-  it.each(CASOS)('%s: la historia se sigue agrupando con sus dos medios', (nombre) => {
+  it.each(CASOS)('%s: el agrupado por título sigue juntando los dos artículos', (nombre) => {
     const caso = FX[nombre]
-    expect(grupoDe(caso)?.outlets).toEqual(caso.publicado.outlets)
+    const ids = caso.press.map((a) => a.id).sort()
+    const grupos = [...clusterArticlesByStory(caso.press).values()].map((g) =>
+      g.map((a) => a.id).sort(),
+    )
+    expect(grupos).toContainEqual(ids)
+  })
+
+  it.each(CASOS)('%s: la nota del Ayuntamiento no corrobora al periódico', (nombre) => {
+    const caso = FX[nombre]
+    expect(caso.press.filter((a) => a.official)).toHaveLength(1)
+    expect(grupoDe(caso)).toBeUndefined()
+  })
+
+  it.each(CASOS)('%s: con la nota a nombre de un periódico, hay grupo de dos', (nombre) => {
+    expect(grupoDe(comoMedio(FX[nombre]))?.outlets).toHaveLength(2)
   })
 
   it.each([
@@ -152,7 +186,7 @@ describe('triangulación: agrupa la historia y no compara sus cifras', () => {
   ] as const)(
     '%s: el grupo no publica ninguna de sus cifras ni su diferencia',
     (nombre, cifras) => {
-      const grupo = grupoDe(FX[nombre])
+      const grupo = grupoDe(comoMedio(FX[nombre]))
       expect(grupo).toBeDefined()
       const publicados = numerosDe(grupo)
       for (const cifra of cifras) expect(publicados).not.toContain(cifra)
