@@ -1,7 +1,7 @@
 import { useReportaje } from '../../hooks/useReportaje'
 import CabeceraPieza from '../../components/reportajes/CabeceraPieza'
 import { CorrectionNote } from '../../components/reportajes/CorrectionNote'
-import { SecHead } from '../../components/reportajes/Pieza'
+import { SecHead, Pliegue } from '../../components/reportajes/Pieza'
 import SolicitudLector from '../../components/reportajes/SolicitudLector'
 import { debeOfrecerSolicitud } from '../../lib/solicitud-lector'
 import {
@@ -186,11 +186,22 @@ export default function Basuras() {
           Duró, contando generosamente, un mes.
         </p>
 
-        <Tabla
-          caption="Cronología, con la fuente de cada hito."
-          cols={[{ label: 'Fecha', mono: true, nowrap: true }, { label: 'Qué ocurre' }]}
-          rows={data.cronologia.map((c) => [c.fecha, c.hito])}
-        />
+        {/* Plegada desde el 19-10-2026. Abierta, sus veintitrés filas ocupan
+            1.360 px en escritorio y 3.650 apiladas a 375px, y repiten los
+            pasos de Parla que la sección 03 cuenta en su recuadro. Los tres
+            párrafos de arriba ya dan el hilo; la tabla es para quien quiera
+            cada fecha. El rótulo dice cuántos hitos y de qué años salen de los
+            datos, no de una frase escrita a mano. */}
+        <Pliegue
+          kicker="Cronología"
+          titulo={`${data.cronologia.length} hitos, de ${data.cronologia[0].fecha.slice(0, 4)} a ${data.cronologia[data.cronologia.length - 1].fecha.slice(0, 4)}: la contrata, el concurso, Parla y lo que vino después`}
+        >
+          <Tabla
+            caption="Cronología, con la fuente de cada hito."
+            cols={[{ label: 'Fecha', mono: true, nowrap: true }, { label: 'Qué ocurre' }]}
+            rows={data.cronologia.map((c) => [c.fecha, c.hito])}
+          />
+        </Pliegue>
 
         {/* 02 */}
         <SecHead num="02" kicker="El concurso" title="Lo que compró el concurso" />
