@@ -49,7 +49,13 @@ const TEATRO =
 const JUEGOS =
   'https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=Dsw60vrWRmm5HQrHoP3G5A%3D%3D'
 
-const filaReal = (corpus: { tenders: { contracts: { id: string }[] } }, id: string) => {
+interface Fila {
+  id: string
+  contractType?: string
+  duration?: number
+}
+
+const filaReal = (corpus: { tenders: { contracts: Fila[] } }, id: string): Fila => {
   const r = corpus.tenders.contracts.find((c) => c.id === id)
   if (!r) throw new Error(`la fila ${id} no está en el fixture`)
   return r
