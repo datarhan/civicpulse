@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-19T12:48:28.630Z",
+  "generatedAt": "2026-10-19T17:25:07.602Z",
   "version": "1",
   "plenos": [
     {
@@ -7,10 +7,9 @@
       "plenoDate": "2026-10-05",
       "chunkPath": "pleno-claims/zrbgic.json",
       "itemCount": 150,
-      "toggleCount": 149,
+      "toggleCount": 150,
       "byVerdict": {
-        "sin-datos": 149,
-        "parcial": 1
+        "sin-datos": 150
       },
       "byType": {
         "afirmacion_numerica": 60,
@@ -29,7 +28,7 @@
         "cultura": 15,
         "educacion": 1
       },
-      "bytes": 216728
+      "bytes": 215934
     },
     {
       "plenoId": "1xmr0do",
@@ -117,7 +116,7 @@
         "educacion": 74,
         "medio-ambiente": 2
       },
-      "bytes": 226004
+      "bytes": 225256
     },
     {
       "plenoId": "1237hbp",
@@ -690,10 +689,11 @@
   ],
   "totals": {
     "items": 5112,
+    "literalesDistintos": 4821,
     "plenos": 24,
     "byVerdict": {
-      "sin-datos": 5086,
-      "parcial": 16,
+      "sin-datos": 5087,
+      "parcial": 15,
       "verificado": 10
     },
     "byTopicVerdict": {
@@ -716,8 +716,7 @@
         "verificado": 5
       },
       "other": {
-        "sin-datos": 428,
-        "parcial": 1
+        "sin-datos": 429
       },
       "empleo": {
         "sin-datos": 218,
@@ -874,15 +873,16 @@
       "porClaseDocumental": {
         "porClase": {
           "presupuesto": 79,
-          "informe-tecnico": 53,
+          "informe-tecnico": 39,
           "contrato": 82,
-          "acta": 14,
+          "acta": 3,
           "convenio": 30,
-          "plan-interno": 19,
-          "expediente": 25,
+          "plan-interno": 15,
+          "expediente": 24,
           "ordenanza": 11
         },
         "sinDocumento": 1779,
+        "apartadas": 24,
         "total": 2074
       },
       "pasadas": {
@@ -926,7 +926,7 @@
     },
     "sinDatosPorque": {
       "sinCorpus": 2074,
-      "comprobadoSinHallar": 2144,
+      "comprobadoSinHallar": 2145,
       "noConsta": 868
     }
   }
