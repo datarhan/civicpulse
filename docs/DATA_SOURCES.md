@@ -438,11 +438,11 @@ overwrites it. Change the bot's SQLite instead.
 - **Source** — **OSM Overpass API** — `amenity`/`leisure`/`healthcare`/`tourism` civic tags inside the `wikidata=Q23701` area. Requires a `name` on the noisy `leisure` bucket so the ~1.5k private backyard pools never reach the map; parser drops unnamed + dedups node/area
 - **Surfaces** — Direction D StylizedMap "Servicios" layer (category-coloured markers + legend)
 
-### Mapa base de los cinco mapas (no snapshot — teselas en vivo)
+### Mapa base de los seis mapas (no snapshot — teselas en vivo)
 
 - **Pipeline** — _(ninguno — teselas ráster)_ · la URL y la clave viven en `src/lib/basemap.js`, en un solo sitio
 - **Source** — **CARTO Voyager** (`basemaps.cartocdn.com/rastertiles/voyager`), cartografía derivada de **OpenStreetMap** (ODbL). Capa gratuita de CARTO para uso no comercial: 5M teselas/mes, clave en `VITE_CARTO_API_KEY`
-- **Surfaces** — los cinco mapas Leaflet: portada (`StylizedMap`), `/quejas` (`QuejasHeatmap`), `/presupuesto` (`GastoMap`), `/empleo` (`EmpleoMap`), `/reportajes/matriculas-y-moviles` (`MapaPliego`)
+- **Surfaces** — los seis mapas Leaflet: portada (`StylizedMap`), `/quejas` (`QuejasHeatmap`), `/presupuesto` (`GastoMap`), `/empleo` (`EmpleoMap`), `/reportajes/matriculas-y-moviles` (`MapaPliego`), `/reportajes/reconstruccion-dana` (`MapaDana`)
 - **Atribución** — obligatoria por partida doble (la capa gratuita de CARTO la exige por escrito; la ODbL de OSM la exige igual) y se sirve desde `BASEMAP_ATTRIBUTION`. La portada usa su propia línea de crédito; los otros tres, el control de Leaflet sin prefijo
 - **Trampa medida (3-sep-2026)** — sin clave, CARTO NO falla: devuelve `200 image/png` con «API KEY REQUIRED» estampado en diagonal. Y una clave **inválida** devuelve esa misma tesela **byte a byte** —sin 401 ni 403— así que un secreto sin poner en Vercel, una clave revocada o la cuota agotada son indistinguibles de acertar por HTTP. Lo mira `npm run check:basemap`, comparando la tesela con clave contra la de sin clave; entra en el parte nocturno, no en el pre-commit
 

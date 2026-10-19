@@ -1806,12 +1806,20 @@ main:focus:not(:focus-visible) {
 .cp-mapa-pliego {
   height: 380px;
 }
+/* El de «reconstrucción DANA» cubre el término entero, más alto que ancho:
+   más alto que el del pliego para que el casco no quede en un racimo. */
+.cp-mapa-dana {
+  height: 520px;
+}
 @media (max-width: 599px) {
   .cp-mapa-pliego {
     height: 320px;
   }
+  .cp-mapa-dana {
+    height: 440px;
+  }
 }
-.cp-mapa-pliego .cp-mapa-tip {
+:is(.cp-mapa-pliego, .cp-mapa-dana) .cp-mapa-tip {
   font-family: var(--font-body);
   font-size: var(--fs-meta);
   font-weight: 600;
@@ -1822,7 +1830,7 @@ main:focus:not(:focus-visible) {
   box-shadow: 0 1px 3px rgba(11, 15, 25, 0.25);
   padding: 2px 6px;
 }
-.cp-mapa-pliego .cp-mapa-tip::before {
+:is(.cp-mapa-pliego, .cp-mapa-dana) .cp-mapa-tip::before {
   display: none;
 }
 .cp-mapa-pliego .cp-mapa-tip-parque {
