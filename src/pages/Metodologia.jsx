@@ -2466,6 +2466,24 @@ export default function Metodologia() {
             131.336 € que el verificador sólo había marcado «Parcial».
           </li>
           <li>
+            <strong>Los demás indicadores tampoco dicen «no» de lo que no se miró.</strong>{' '}
+            «Afirmaciones contrastables» sale «sin comprobar» (–) en los titulares que el extractor
+            todavía no ha procesado; el círculo vacío (○) queda para los que procesó sin sacar
+            ninguna. «Cobertura cruzada» se enciende cuando al menos dos medios independientes
+            cuentan la misma historia, y si no se encuentra un segundo medio dice «sin comprobar»,
+            nunca ○: el agrupado compara titulares y no reconoce la misma noticia contada con otras
+            palabras o en la otra lengua. La nota de prensa de una administración —el Ayuntamiento,
+            otro ayuntamiento, la Generalitat o la Diputació— no cuenta como un medio que corrobore:
+            es la fuente, y el periódico que la reproduce no es un segundo testigo. «Cobertura
+            local» son los medios del Camp de Túria, no los regionales ni el propio Ayuntamiento. Y
+            un medio es su dominio, no el nombre con que lo firma el agregador. En la tabla por
+            medio, el porcentaje de «Verificado» se calcula sobre las afirmaciones cotejadas con
+            algún dato, y las que no se cotejaron se cuentan aparte. Así se corrigió el 19 de
+            octubre de 2026: hasta entonces la fila del Ayuntamiento decía «0 de 26» cuando sólo se
+            habían cotejado 5, y siete de los ocho grupos de cobertura comparada eran una nota
+            municipal y el periódico que la publicaba.
+          </li>
+          <li>
             <strong>Severity crítico exige una contradicción.</strong> El validador rechaza un
             hallazgo etiquetado como <code>critical</code> sin al menos una referencia de
             contradicción dateada y enlazada. Hasta el 5 de agosto de 2026 aceptaba en su lugar

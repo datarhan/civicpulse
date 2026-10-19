@@ -11,6 +11,8 @@
  * self-contradictory. These fields keep the two counts distinct, and leave the
  * ratios null (→ rendered "—") when there is nothing to divide.
  */
+import { desenlaceVigente } from '../scraper/press-extraccion'
+
 const WINDOW_DAYS = 30
 
 /**
@@ -234,23 +236,10 @@ export function textoLibroVacio(desenlace) {
   return filaDelLibro(desenlace).texto
 }
 
-/**
- * El desenlace que vale para la tarjeta, o `null` si no hay ninguno que valga.
- *
- * La fila se busca por `articleId`, pero describe el titular con la huella con que se
- * procesó. Si la tarjeta trae otra, el titular cambió después y lo que se pinta no es
- * lo que el extractor miró: la tarjeta está pendiente, igual que para el extractor
- * (`elegirPendientes` devuelve a la cola un artículo cuya huella cambió).
- *
- * @param {{fingerprint?: string} | null | undefined} articulo  la tarjeta
- * @param {import('../scraper/press-extraccion').ExtraccionArticulo | null | undefined} fila
- * @returns {DesenlaceExtraccion | null}
- */
-export function desenlaceVigente(articulo, fila) {
-  if (!fila) return null
-  if (fila.fingerprint !== articulo?.fingerprint) return null
-  return fila.desenlace
-}
+// `desenlaceVigente` vive en src/scraper/press-extraccion.ts: press-analytics.ts
+// la necesita para «Afirmaciones contrastables», y dos copias de la regla de la
+// huella acabarían diciendo cosas distintas de la misma tarjeta.
+export { desenlaceVigente }
 
 /**
  * El recuento que va bajo el contador de la lista, sobre las tarjetas que se ven: cada

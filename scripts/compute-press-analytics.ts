@@ -5,8 +5,8 @@
  *
  *   - press-trust.json           — Trust Project indicators per article
  *                                  + per-outlet scoreboard
- *   - press-triangulation.json   — fingerprint-clustered cross-outlet
- *                                  coverage + numeric drift
+ *   - press-triangulation.json   — stories told by ≥2 independent
+ *                                  outlets (title clustering)
  *   - press-coverage-gaps.json   — pleno items + promises with no
  *                                  press echo in the last 14 days
  *
@@ -29,6 +29,7 @@ import {
   type PressArticleLite,
   type VerifiedClaimRow,
 } from '../src/scraper/press-analytics'
+import type { ExtraccionArticulo } from '../src/scraper/press-extraccion'
 
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = dirname(__filename)
@@ -64,8 +65,13 @@ async function main() {
   }
   const verifiedSnap = (await readJson(PATHS.verified)) as {
     items?: VerifiedClaimRow[]
+    extraccion?: { articulos?: ExtraccionArticulo[] | null }
   } | null
   const verified = verifiedSnap?.items ?? []
+  // Qué hizo el extractor con cada titular. Sin el bloque (un snapshot anterior)
+  // «Afirmaciones contrastables» queda null en los titulares sin afirmaciones:
+  // no se sabe si se procesaron.
+  const extraccion = verifiedSnap?.extraccion?.articulos ?? null
   const agendas = (await readJson(PATHS.agendas)) as {
     plenos?: Array<{
       id: string
@@ -77,7 +83,7 @@ async function main() {
     items?: Array<{ id: string; title: string; madeAt: string }>
   } | null
 
-  const trust = computeTrustIndicators({ press: press.items, verified })
+  const trust = computeTrustIndicators({ press: press.items, verified, extraccion })
   const triangulation = computeTriangulation({ press: press.items, verified })
   const gaps = computeCoverageGaps({
     press: press.items,

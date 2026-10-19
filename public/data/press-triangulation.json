@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-19T10:20:18.657Z",
+  "generatedAt": "2026-10-19T12:46:45.695Z",
   "clusters": [
     {
       "clusterId": "1hto5xc",
@@ -9,9 +9,11 @@
         "hkahd4"
       ],
       "outlets": [
-        "Ayuntamiento de Cheste",
         "El Periódico de Aquí",
         "elperiodic.com"
+      ],
+      "fuentesOficiales": [
+        "Ayuntamiento de Cheste"
       ],
       "earliestDate": "2026-10-16T06:58:16.000Z",
       "latestDate": "2026-10-16T16:50:00.000Z",
@@ -22,151 +24,11 @@
         "sin-datos": 3,
         "promesa-repetida": 0
       }
-    },
-    {
-      "clusterId": "1208oo5",
-      "articleIds": [
-        "8hij1g",
-        "95mxd4"
-      ],
-      "outlets": [
-        "Ayuntamiento de Riba-roja de Túria",
-        "Valencia Plaza"
-      ],
-      "earliestDate": "2026-10-02T10:03:37.000Z",
-      "latestDate": "2026-10-02T11:50:52.000Z",
-      "verdictMix": {
-        "verificado": 0,
-        "parcial": 0,
-        "contradicho": 0,
-        "sin-datos": 0,
-        "promesa-repetida": 0
-      }
-    },
-    {
-      "clusterId": "18wtlak",
-      "articleIds": [
-        "140oi31",
-        "pqxb2e"
-      ],
-      "outlets": [
-        "Ayuntamiento de Riba-roja de Túria",
-        "Valencia Plaza"
-      ],
-      "earliestDate": "2026-10-13T11:39:38.000Z",
-      "latestDate": "2026-10-13T18:32:03.000Z",
-      "verdictMix": {
-        "verificado": 0,
-        "parcial": 0,
-        "contradicho": 0,
-        "sin-datos": 5,
-        "promesa-repetida": 0
-      }
-    },
-    {
-      "clusterId": "1ffsisx",
-      "articleIds": [
-        "9k4v28",
-        "hbl63g"
-      ],
-      "outlets": [
-        "Ayuntamiento de Riba-roja de Túria",
-        "Valencia Plaza"
-      ],
-      "earliestDate": "2026-10-08T12:37:13.000Z",
-      "latestDate": "2026-10-15T11:49:33.000Z",
-      "verdictMix": {
-        "verificado": 0,
-        "parcial": 0,
-        "contradicho": 0,
-        "sin-datos": 1,
-        "promesa-repetida": 0
-      }
-    },
-    {
-      "clusterId": "1jpl94s",
-      "articleIds": [
-        "b8rw3f",
-        "fm4n44"
-      ],
-      "outlets": [
-        "Ayuntamiento de Riba-roja de Túria",
-        "Las Provincias"
-      ],
-      "earliestDate": "2026-09-24T07:53:50.000Z",
-      "latestDate": "2026-10-18T21:17:08.000Z",
-      "verdictMix": {
-        "verificado": 0,
-        "parcial": 0,
-        "contradicho": 0,
-        "sin-datos": 0,
-        "promesa-repetida": 0
-      }
-    },
-    {
-      "clusterId": "1k3l80",
-      "articleIds": [
-        "9k9b2w",
-        "o3xjg4"
-      ],
-      "outlets": [
-        "Ayuntamiento de Riba-roja de Túria",
-        "Valencia Plaza"
-      ],
-      "earliestDate": "2026-10-08T07:00:00.000Z",
-      "latestDate": "2026-10-08T09:08:42.000Z",
-      "verdictMix": {
-        "verificado": 0,
-        "parcial": 0,
-        "contradicho": 0,
-        "sin-datos": 15,
-        "promesa-repetida": 0
-      }
-    },
-    {
-      "clusterId": "38xahs",
-      "articleIds": [
-        "w4u7tv",
-        "xcbiyc"
-      ],
-      "outlets": [
-        "Ayuntamiento de Riba-roja de Túria",
-        "Levante-EMV"
-      ],
-      "earliestDate": "2026-10-01T07:00:00.000Z",
-      "latestDate": "2026-10-01T12:20:24.000Z",
-      "verdictMix": {
-        "verificado": 0,
-        "parcial": 0,
-        "contradicho": 0,
-        "sin-datos": 0,
-        "promesa-repetida": 0
-      }
-    },
-    {
-      "clusterId": "hxak26",
-      "articleIds": [
-        "11s7c3b",
-        "1lk4zls"
-      ],
-      "outlets": [
-        "Ayuntamiento de Riba-roja de Túria",
-        "Valencia Plaza"
-      ],
-      "earliestDate": "2026-09-25T07:00:00.000Z",
-      "latestDate": "2026-09-25T09:54:12.000Z",
-      "verdictMix": {
-        "verificado": 0,
-        "parcial": 0,
-        "contradicho": 0,
-        "sin-datos": 0,
-        "promesa-repetida": 0
-      }
     }
   ],
   "stats": {
-    "totalClusters": 8,
-    "triangulated3Plus": 1
+    "totalClusters": 1,
+    "triangulated3Plus": 0
   },
   "builtFrom": {
     "plenos-agendas.json": "54c4ffd0e494",
