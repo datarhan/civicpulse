@@ -1767,6 +1767,22 @@ export default function Metodologia() {
                 título entero de la licitación, su expediente y la fecha en que se abrió—, no quien
                 firma.
               </li>
+              {/* 19-10-2026: la fila de la concesión del agua decía «adjudicado … por
+                  55.685.178,79 € con IVA el 06-08-2026» — valor estimado de 17 años
+                  como precio, un IVA que el registro no distingue y la fecha del
+                  anuncio como la del acuerdo (src/scraper/subida-firmada.ts,
+                  `filaDeContrato`). */}
+              <li>
+                <strong>La fila de un contrato dice qué es cada cifra y cada fecha.</strong> El
+                importe lleva «con IVA» sólo cuando el registro da dos importes distintos, con y sin
+                impuestos; si da el mismo, o uno solo, la fila no dice ninguna de las dos cosas. De
+                una concesión no imprime un precio de adjudicación sino su valor estimado por todo
+                su plazo, con los años que dura: se adjudica de una vez para muchos años, y no es un
+                gasto anual. Y la fecha es el día en que se publicó el anuncio de adjudicación en la
+                Plataforma, que la fila rotula así: el acuerdo de adjudicar es anterior —el de la
+                concesión del agua, del Pleno de 27 de julio de 2026, se publicó el 6 de agosto—, y
+                su fecha no está en el registro.
+              </li>
               {/* 10-10-2026: una declaración sobre lo que se llevó a un pleno sólo la
                   sostiene un orden del día o un acta, y de actas no hay corpus
                   (src/scraper/subida-firmada.ts, `comprobarRegistrosConLaDeclaracion`). */}

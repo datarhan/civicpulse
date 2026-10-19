@@ -1,0 +1,118 @@
+{
+  "_comment": "Filas reales de public/data/tenders.json del 19-10-2026 (main de12280f), copiadas sin tocar: la concesión del agua (46717, expediente 27/2018) —importe con y sin IVA iguales, valor estimado por 17 años, fecha de adjudicación = la de publicación del anuncio de adjudicación en la Plataforma (06-08-2026; el Pleno la acordó el 27-07-2026)— y un contrato de servicios cuyo registro da el mismo importe con y sin IVA (1500923). Contrato: tests/subida-firmada-concesion.test.ts.",
+  "tenders": {
+    "contracts": [
+      {
+        "id": "1500923",
+        "title": "Contrato de servicios de teatro inclusivo y creatividad desarrollado por el Ayuntamiento, por procedimiento abierto súper-simplificado, mejor relación calidad-precio, varios criterios de adjudicación de carácter socio-laboral, con condición de ejecución de carácter social, contribuyendo al cumplimiento del ODS 8 relativo a lograr trabajo decente.",
+        "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=2ICh5yiBO%2B17h85%2Fpmmsfw%3D%3D",
+        "status": "awarded",
+        "contractType": "services",
+        "processType": "open_simplified",
+        "minorContract": false,
+        "startDate": "2021-10-01",
+        "endDate": "2022-10-07",
+        "awardDate": "2021-10-07",
+        "formalizedDate": null,
+        "duration": 365,
+        "batchNumber": 0,
+        "assignee": "TOT ANIMACIÓ S.L.",
+        "contractor": "Ayuntamiento de Riba-roja de Túria",
+        "contractorId": "58096",
+        "contractorType": "Ayuntamiento",
+        "categoryId": "36",
+        "categoryTitle": "education",
+        "cpvs": [
+          "80000000",
+          "92000000"
+        ],
+        "initialAmount": 11091.6,
+        "initialAmountNoTaxes": 11091.6,
+        "finalAmount": 10008,
+        "finalAmountNoTaxes": 10008,
+        "estimatedValue": 22183.2,
+        "numberOfProposals": 3
+      },
+      {
+        "id": "46717",
+        "title": "contrato de concesión del servicio público de abastecimiento de agua potable, servicio de gestión de alcantarillado , control de vertidos y depuración del municipio Riba-roja de Túria, por procedimiento abierto, mejor relación calidad-precio, varios criterios de adjudicación y con cláusulas medioambientales y con condición especial de ejecución de carácter medioambiental y social.",
+        "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=pK1YW0Z3femXQV0WE7lYPw%3D%3D",
+        "status": "formalized",
+        "contractType": "public_services_management",
+        "processType": "open",
+        "minorContract": false,
+        "startDate": null,
+        "endDate": "2043-10-02",
+        "awardDate": "2026-08-06",
+        "formalizedDate": "2026-10-06",
+        "duration": 6209,
+        "batchNumber": 0,
+        "assignee": "HIDRAQUA S.A.U",
+        "contractor": "Ayuntamiento de Riba-roja de Túria",
+        "contractorId": "58096",
+        "contractorType": "Ayuntamiento",
+        "categoryId": "48",
+        "categoryTitle": "public_services",
+        "cpvs": [
+          "65130000"
+        ],
+        "initialAmount": 55685178.79,
+        "initialAmountNoTaxes": 55685178.79,
+        "finalAmount": 55685178.79,
+        "finalAmountNoTaxes": 55685178.79,
+        "estimatedValue": 55685178.79,
+        "numberOfProposals": 7
+      }
+    ],
+    "tenders": [
+      {
+        "id": "1500923",
+        "title": "Contrato de servicios de teatro inclusivo y creatividad desarrollado por el Ayuntamiento, por procedimiento abierto súper-simplificado, mejor relación calidad-precio, varios criterios de adjudicación de carácter socio-laboral, con condición de ejecución de carácter social, contribuyendo al cumplimiento del ODS 8 relativo a lograr trabajo decente.",
+        "documentNumber": "31/2021",
+        "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=2ICh5yiBO%2B17h85%2Fpmmsfw%3D%3D",
+        "status": "awarded",
+        "sourceStatus": "revoked",
+        "contractType": "services",
+        "processType": "open_simplified",
+        "minorContract": false,
+        "submissionDate": "2021-09-21",
+        "openProposalsDate": "2021-09-06",
+        "contractor": "Ayuntamiento de Riba-roja de Túria",
+        "contractValue": 22183.2,
+        "initialAmount": 11091.6,
+        "initialAmountNoTaxes": 11091.6,
+        "categoryTitle": "education",
+        "cpvs": [
+          "80000000",
+          "92000000"
+        ],
+        "numberOfBatches": 0
+      },
+      {
+        "id": "46717",
+        "title": "contrato de concesión del servicio público de abastecimiento de agua potable, servicio de gestión de alcantarillado , control de vertidos y depuración del municipio Riba-roja de Túria, por procedimiento abierto, mejor relación calidad-precio, varios criterios de adjudicación y con cláusulas medioambientales y con condición especial de ejecución de carácter medioambiental y social.",
+        "documentNumber": "27/2018",
+        "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=pK1YW0Z3femXQV0WE7lYPw%3D%3D",
+        "status": "awarded",
+        "sourceStatus": "awarded",
+        "contractType": "public_services_management",
+        "processType": "open",
+        "minorContract": false,
+        "submissionDate": "2019-05-28",
+        "openProposalsDate": "2019-04-24",
+        "contractor": "Ayuntamiento de Riba-roja de Túria",
+        "contractValue": 55685178.79,
+        "initialAmount": 55685178.79,
+        "initialAmountNoTaxes": 55685178.79,
+        "categoryTitle": "public_services",
+        "cpvs": [
+          "65130000"
+        ],
+        "numberOfBatches": 0
+      }
+    ]
+  },
+  "bdns": {
+    "items": []
+  }
+}
