@@ -5,7 +5,12 @@ import {
   alcaldeSerie,
   formatEurosCents,
 } from '../src/hooks/useIspa'
-import { fijadoTramos } from '../src/hooks/useDedicaciones'
+import {
+  fijadoTramos,
+  estadoRetribucion,
+  dedicacionesLeidas,
+  EMPTY_DEDIC,
+} from '../src/hooks/useDedicaciones'
 import { mailboxKinds } from '../src/lib/mailboxes'
 import ispaPublicado from '../public/data/ispa.json'
 import dedicacionesPublicadas from '../public/data/dedicaciones.json'
@@ -175,6 +180,60 @@ describe('useDedicaciones — fijadoTramos', () => {
   it('devuelve null sin acuerdo, en vez de una tabla vacía que parece un cero', () => {
     expect(fijadoTramos(null)).toBeNull()
     expect(fijadoTramos({ byOfficial: [] })).toBeNull()
+  })
+})
+
+// «Sin dedicación» es una afirmación sobre una persona con nombre, y sólo la
+// puede hacer un fichero que se ha LEÍDO. La tarjeta de /cargos tomaba «no hay
+// fila» por «sin dedicación»: mientras el fichero cargaba, si fallaba o con el
+// 404, los siete con dedicación salían cobrando sólo por sesión.
+describe('useDedicaciones — estadoRetribucion', () => {
+  const snap = leer('dedicaciones.json')
+  const conFila = snap.byOfficial[0].slug
+  const sinFila = 'no-esta-en-el-fichero'
+
+  it('mientras carga, ni cifra ni «sin dedicación»', () => {
+    const res = { loading: true, error: null, data: null }
+    expect(estadoRetribucion(res, conFila).estado).toBe('cargando')
+    expect(estadoRetribucion(res, sinFila).estado).toBe('cargando')
+  })
+
+  it('un error de red no es «sin dedicación»', () => {
+    const res = { loading: false, error: new Error('red'), data: null }
+    expect(estadoRetribucion(res, conFila).estado).toBe('no-disponible')
+    expect(estadoRetribucion(res, sinFila).estado).toBe('no-disponible')
+  })
+
+  it('el 404 (EMPTY_DEDIC) no es «sin dedicación»', () => {
+    const res = { loading: false, error: null, data: EMPTY_DEDIC }
+    expect(dedicacionesLeidas(EMPTY_DEDIC)).toBe(false)
+    expect(estadoRetribucion(res, conFila).estado).toBe('no-disponible')
+    expect(estadoRetribucion(res, sinFila).estado).toBe('no-disponible')
+  })
+
+  it('un fichero sin fuente o sin filas tampoco', () => {
+    const vacio = { ...snap, byOfficial: [] }
+    const sinFuente = { ...snap, source: null }
+    for (const data of [vacio, sinFuente]) {
+      expect(estadoRetribucion({ loading: false, error: null, data }, sinFila).estado).toBe(
+        'no-disponible',
+      )
+    }
+  })
+
+  it('leído: la fila da la cifra y su ausencia da «sin dedicación»', () => {
+    const res = { loading: false, error: null, data: snap }
+    const e = estadoRetribucion(res, conFila)
+    expect(e.estado).toBe('fijada')
+    expect(e.d.amountEuros).toBe(snap.byOfficial[0].amountEuros)
+    expect(estadoRetribucion(res, sinFila).estado).toBe('sin-dedicacion')
+  })
+
+  it('cada fila del fichero publicado sale como «fijada», ninguna como «sin dedicación»', () => {
+    const res = { loading: false, error: null, data: snap }
+    const estados = snap.byOfficial.map((o) => estadoRetribucion(res, o.slug).estado)
+    expect(estados.length).toBeGreaterThan(0)
+    expect(estados.every((e) => e === 'fijada')).toBe(true)
   })
 })
 

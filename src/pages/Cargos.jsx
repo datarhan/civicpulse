@@ -18,7 +18,7 @@ import {
   retribucionesSplit,
   alcaldeSerie,
 } from '../hooks/useIspa'
-import { useDedicaciones, dedicacionForSlug, fijadoTramos } from '../hooks/useDedicaciones'
+import { useDedicaciones, estadoRetribucion, fijadoTramos } from '../hooks/useDedicaciones'
 import { useJsonFetch } from '../hooks/useJsonFetch'
 import { useBioReportRoutes } from '../hooks/useBioReportRoutes'
 import { useQuejas } from '../hooks/useQuejas'
@@ -216,32 +216,59 @@ function DepartmentLinks({ portfolios }) {
   )
 }
 
-// Per-councillor salary mapped by ROLE: the pleno acuerdo (Exp 4533/2023)
-// assigns each dedicación exclusiva to a cargo + its delegated áreas, which
-// match the officials.json portfolios verbatim → a named, cited figure for each
-// of the 7.
+// Per-councillor salary by PUESTO: the pleno acuerdo fixes each dedicación
+// exclusiva for a cargo (Alcaldía, a numbered Tenencia, a concejalía delegada
+// with its áreas), never for a named person. Which councillor holds each
+// puesto is the curator's attribution; dedicaciones.json's note has to say
+// what it rests on, because the áreas in the acuerdo do NOT always coincide
+// with the officials.json portfolios (a Tenencia's áreas can differ entirely
+// from its holder's current delegations).
 //
 // The 14 sin-dedicación councillors get NO figure here, and that is a rule
 // rather than a gap: ISPA's councillor rows carry an amount and a dedicación
 // but no name, so the only honest place for their money is the distribution in
 // RetribucionesPanel. What this badge says instead is what régimen they are on
 // — which the acuerdo does state — so the card never reads as "paid nothing".
+//
+// «Sin dedicación» is a claim, and only a snapshot that was READ can make it.
+// While the file loads, if it fails, or on the 404 fallback, the badge says it
+// does not know — it used to show every salaried councillor as paid by
+// session only in all three cases.
 function RetribucionBadge({ official }) {
-  const { data } = useDedicaciones()
+  const res = useDedicaciones()
+  const { data } = res
   const t = useT()
-  const d = dedicacionForSlug(data, official.slug)
-  if (!d) {
+  const estado = estadoRetribucion(res, official.slug)
+  const linea = {
+    marginTop: 10,
+    display: 'flex',
+    alignItems: 'baseline',
+    gap: 8,
+    flexWrap: 'wrap',
+    fontSize: 'var(--fs-micro)',
+  }
+  if (estado.estado === 'cargando') {
     return (
-      <div
-        style={{
-          marginTop: 10,
-          display: 'flex',
-          alignItems: 'baseline',
-          gap: 8,
-          flexWrap: 'wrap',
-          fontSize: 'var(--fs-micro)',
-        }}
-      >
+      <div style={linea} aria-busy="true" data-retribucion="cargando">
+        <span className="mono" style={{ color: 'var(--ink50)' }}>
+          {t('cargos.retri.cargando')}
+        </span>
+      </div>
+    )
+  }
+  if (estado.estado === 'no-disponible') {
+    return (
+      <div style={linea} data-retribucion="no-disponible">
+        <span className="mono" style={{ fontWeight: 700, color: 'var(--ink70)' }}>
+          {t('cargos.retri.noDisponible')}
+        </span>
+        <span style={{ color: 'var(--ink50)' }}>{t('cargos.retri.noDisponibleNota')}</span>
+      </div>
+    )
+  }
+  if (estado.estado === 'sin-dedicacion') {
+    return (
+      <div style={linea} data-retribucion="sin-dedicacion">
         <span className="mono" style={{ fontWeight: 700, color: 'var(--warn-ink)' }}>
           {t('cargos.retri.asistenciasCargo')}
         </span>
@@ -249,17 +276,9 @@ function RetribucionBadge({ official }) {
       </div>
     )
   }
+  const d = estado.d
   return (
-    <div
-      style={{
-        marginTop: 10,
-        display: 'flex',
-        alignItems: 'baseline',
-        gap: 8,
-        flexWrap: 'wrap',
-        fontSize: 'var(--fs-micro)',
-      }}
-    >
+    <div style={linea} data-retribucion="fijada">
       <span className="mono" style={{ fontWeight: 700, color: 'var(--ink)' }}>
         {formatEurosCents(d.amountEuros)}
       </span>
@@ -620,11 +639,11 @@ function RetribucionesPanel() {
                       {formatEurosCents(tr.amountEuros)}
                     </span>
                   </div>
-                  {/* Verbatim from the acuerdo: it names the cargo, not the
-                      person, and rewriting one to fit the column would be
-                      paraphrasing a legal act. A single-role tramo already
-                      carries that name on the line above, so listing it again
-                      underneath just printed «Alcaldía / Alcaldía». */}
+                  {/* The puesto as dedicaciones.json words it — meant to be
+                      the acuerdo's own wording: it names the cargo, not the
+                      person. A single-role tramo already carries that name on
+                      the line above, so listing it again underneath just
+                      printed «Alcaldía / Alcaldía». */}
                   {tr.count > 1 && (
                     <div
                       style={{

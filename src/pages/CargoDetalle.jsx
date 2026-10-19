@@ -7,7 +7,7 @@ import { usePromises, STATUS_LABEL, STATUS_TONE } from '../hooks/usePromises'
 import { usePlenoAgendas } from '../hooks/usePlenoAgendas'
 import { useQuejas } from '../hooks/useQuejas'
 import { useBioReportRoutes } from '../hooks/useBioReportRoutes'
-import { useDedicaciones, dedicacionForSlug } from '../hooks/useDedicaciones'
+import { useDedicaciones, estadoRetribucion } from '../hooks/useDedicaciones'
 import { useDepartmentStats } from '../hooks/useDepartmentStats'
 import { useElections } from '../hooks/useElections'
 import { useTransparencyDocs } from '../hooks/useTransparencyDocs'
@@ -168,18 +168,39 @@ function AreaSpend({ slugs }) {
  * 14 of 21 councillors hold no paid dedication; that renders as an explicit
  * "sin dedicación" rather than a blank, because a missing salary row and a
  * salary of zero are different claims.
+ *
+ * And «sin dedicación» needs a snapshot that was READ: on the 404 fallback the
+ * hook hands back an empty object, which used to reach the «sin dedicación»
+ * branch for every councillor, salaried or not. Unknown says unknown.
  */
 function Retribucion({ slug }) {
   const t = useT()
-  const { data } = useDedicaciones()
-  if (!data) return null
-  const d = dedicacionForSlug(data, slug)
+  const res = useDedicaciones()
+  const estado = estadoRetribucion(res, slug)
+  if (estado.estado === 'cargando') return null
+  const { data } = res
+  const head = (
+    <SectionHead
+      eyebrow={t('cargos.detalle.pago.eyebrow')}
+      title={t('cargos.detalle.pago.title')}
+    />
+  )
+  if (estado.estado === 'no-disponible') {
+    return (
+      <section style={{ marginBottom: 28 }} data-retribucion="no-disponible">
+        {head}
+        <Card>
+          <div style={{ fontSize: 'var(--fs-aux)', color: 'var(--ink70)' }}>
+            {t('cargos.detalle.pago.noDisponible')}
+          </div>
+        </Card>
+      </section>
+    )
+  }
+  const d = estado.estado === 'fijada' ? estado.d : null
   return (
-    <section style={{ marginBottom: 28 }}>
-      <SectionHead
-        eyebrow={t('cargos.detalle.pago.eyebrow')}
-        title={t('cargos.detalle.pago.title')}
-      />
+    <section style={{ marginBottom: 28 }} data-retribucion={estado.estado}>
+      {head}
       <Card>
         {d ? (
           <div style={{ display: 'flex', alignItems: 'baseline', gap: 12, flexWrap: 'wrap' }}>
