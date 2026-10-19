@@ -1424,7 +1424,14 @@ export default function Metodologia() {
               </li>
               <li>
                 <strong>contradicho</strong> — la base documental registra un importe distinto, o el
-                discurso afirma «obra terminada» cuando la licitación sigue abierta.{' '}
+                discurso afirma «obra terminada» cuando la contratación no llegó a término (anulada,
+                revocada, desistida o sin adjudicación definitiva).{' '}
+                {/* 19-10-2026: 109 licitaciones «revoked» tenían un contrato gemelo «awarded»
+                    —55V/2024 entre ellas— y podían desmentir una obra que el propio contrato da
+                    por adjudicada (src/scraper/gemelos-de-licitacion.ts). */}
+                Cuando un mismo expediente figura en la tabla de contratos y en la de licitaciones
+                con estados distintos, manda el del contrato: una licitación «revocada» no desmiente
+                nada si su contrato figura adjudicado.{' '}
                 <strong>Desde el 2 de agosto de 2026 no se publica de forma automática.</strong> El
                 comparador determinista llegó a emitir 49 y los 49 estaban mal: comparaban dinero
                 autonómico o estatal con un contrato municipal que compartía una palabra suelta. Una
