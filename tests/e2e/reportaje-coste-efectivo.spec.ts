@@ -99,6 +99,26 @@ test.describe('Reportaje · coste efectivo (/reportajes/coste-efectivo)', () => 
     // 4. La suspensión la ordenó un juzgado, y la cronología lo dice.
     await expect(page.getByText(/Juzgado de lo Contencioso-Administrativo nº 3/)).toBeVisible()
 
+    // La tarjeta es la compartida con el conteo (era una copia hasta el
+    // 19-10-2026), así que pliega igual: lo pedido y lo comunicado sin resolver
+    // se abren con un clic, y el rótulo de cada fila con comunicaciones lo dice
+    // con fecha. Se comprueba plegado y luego se abre todo, para que lo de
+    // abajo mire el texto entero, como antes.
+    const pliegues = page.locator('[data-solicitudes] details')
+    expect(await pliegues.count()).toBe(snap.solicitudes.items.length)
+    for (const d of await pliegues.all()) expect(await d.getAttribute('open')).toBeNull()
+    const conComunicaciones = snap.solicitudes.items.filter(
+      (e: { incidencias?: unknown[] }) => e.incidencias?.length,
+    ).length
+    expect(conComunicaciones).toBeGreaterThan(0)
+    expect(
+      await page
+        .locator('[data-solicitudes] summary')
+        .filter({ hasText: /^Lo que comunicaron el \d+ de \w+ de \d{4}.*, sin resolverla/ })
+        .count(),
+    ).toBe(conComunicaciones)
+    for (const s of await page.locator('[data-solicitudes] summary').all()) await s.click()
+
     // 5. Los tres escritos que salieron el 18-09, con el reloj calculado el día
     // que se lee. Se ancla en la cabeza «enviada el <fecha>», lo único de la
     // fila que no cambia cuando el estado pase de «en plazo» a «sin respuesta»,
