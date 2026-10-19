@@ -33,6 +33,11 @@ import type { PlenoClaim } from '../src/scraper/pleno-claim'
  * propia base da por adjudicado. Y la lista corta, léxica y semántica, le
  * enseñaba al modelo el mismo expediente adjudicado y revocado a la vez.
  *
+ * (Corregido el mismo día: Gobierto escribe `revoked` en las licitaciones que
+ * la Plataforma tiene «Adjudicada»; el parser traduce ahora su vocabulario,
+ * tests/estado-de-licitacion.test.ts. La regla de los gemelos sigue: las dos
+ * tablas pueden no casar por otras razones, y el contrato manda.)
+ *
  * Ninguna página pinta el estado de `tenders`, y los ficheros de afirmaciones
  * verificadas no traían ningún `contradicho` al medirlo: nada publicado estaba
  * mal todavía. El camino estaba vivo para la siguiente pasada.
