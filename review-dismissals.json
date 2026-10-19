@@ -253,6 +253,13 @@
       "reason": "El cero no es un dato que el panel deje de calcular: es la cifra que el ayuntamiento declaró. En los libros del ministerio (cesel-ccaa17-<año>.xlsx, hoja «CE1a y CE2a», columna coste_efectivo, fila 17-46-214-AA-000 programa 161) la celda de 2018, 2019, 2021, 2022 y 2023 es un 0 NUMÉRICO, no una celda vacía, y lo mismo el 160; 2014-2017 y 2024 traen 1.861.058,09 / 1.804.949,27 / 1.928.056,75 / 1.965.811,90 / 1.898.034,08 €, que coinciden al céntimo con public/data/coste-efectivo.json. Comprobado leyendo la celda en bruto el 18-10-2026, porque el parser (numeric() en src/scraper/coste-efectivo.ts) convierte una celda vacía en 0 y desde el snapshot no se podía distinguir. 2020 no es cero: no se rindió, y la figura lo pinta aparte, rayado y rotulado «sin entrega». Lo que «sólo calcula la mitad de los años» es el panel de /eficiencia, que divide por habitante sólo las entregas con cifra; la propia página lo dice debajo («deja en blanco las que traen cero, porque dividir un cero publicaría que el agua sale gratis») y el titular de la pieza sostiene precisamente que ese cero declarado no es un coste real. Descartado por encargo de Sergei Lutchenko (18-10-2026).",
       "editor": "claude-opus-5.5",
       "at": "2026-10-18"
+    },
+    {
+      "route": "/reportajes/coste-efectivo",
+      "quote": "La conclusión no cambia. El panel sigue sin publicar un coste por habitante para los dos servicios donde el dinero es mayor y llega a más casas.",
+      "reason": "Es el cierre de la corrección del 29-08-2026, y la entrada siguiente del mismo registro, la del 02-09-2026, la retira por su nombre: «El panel ya calcula las dos fichas del agua, y esta pieza decía que no podía», con 7,01 €/m de red para el agua y 1,73 €/m para el alcantarillado en la entrega de 2024. Comprobado el 19-10-2026 en indicadores.json: a161-coste-unitario = 7,013 y a160-coste-unitario = 1,735, en €/m de red. El registro de correcciones es histórico, y cada entrada dice lo que se sabía ese día; reescribir la del 29-08 borraría lo que la del 02-09 corrige. Es el mismo caso que el descarte de la frase de la tarifa (02-09, retirada el 17-09). Descartado por encargo de Sergei Lutchenko (19-10-2026).",
+      "editor": "claude-opus-5.5",
+      "at": "2026-10-19"
     }
   ]
 }
