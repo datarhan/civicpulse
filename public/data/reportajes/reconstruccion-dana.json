@@ -11,7 +11,7 @@
     "correcciones": [
       {
         "fecha": "2026-10-19",
-        "texto": "**Se ha rehecho el mapa: dibujaba otra lista que la de sus cifras.** La corrección del 2 de agosto recalculó lo situado —de 72 contratos y 2,04 M€ a «62 emplazamientos» y 6,09 M€—, pero el mapa, la figura de cabecera y la lista de lugares con gasto DANA siguieron dibujando los 39 lugares de la versión del 6 de julio. La cabecera decía 62 y la leyenda del mapa, 39, y las dos cifras no salían de la misma lista. Además, el 62 eran lugares, y la tarjeta lo ponía junto a los contratos: aquel recuento situaba 127.\n\nAhora el mapa y sus cifras salen de una sola lista: los mismos contratos adjudicados del registro del 2 de agosto, situados con el resolutor de topónimos del 18 de octubre. Son 117 contratos en 60 lugares, por 8,82 M€. De los 127 de aquel recuento, el resolutor ha dejado de situar 28 cuyo título no sostenía el sitio, y sitúa 18 que entonces no situaba: 127 − 28 + 18 = 117.\n\nDe los seis lugares con gasto DANA que publicábamos, dos salen y entra uno, así que quedan cinco. Salen los 16.382 € del Pou d'Escoto, que eran el vallado del colegio Mas d'Escoto junto al barranco de Porchinos, y el título no nombra la urbanización; y los 11.412 € de la calle de les Ànimes, que eran dos contratos de limpieza que nombran también Els Pous y el Oliveral: un contrato que nombra varios lugares no se sitúa en ninguno. Entra el polideportivo municipal, con 114.211 € por el cambio de pavimento de sus pistas, y es el segundo lugar con más gasto DANA situado, por delante de La Reva.\n\nCambia también cómo contábamos los contratos de cada lugar. «L'Oliveral (125.000 euros, seis contratos)» sumaba todos los contratos del lugar, no los de la DANA, que allí son dos. El apartado 4 cuenta ahora sólo los contratos con referencia a la DANA.\n\n**Lo que no cambia:** los 75 contratos y 2,75 M€ con referencia a la DANA, y el denominador de 68,00 M€. Lo publicado antes se conserva en el propio fichero (`placesPublicadoOriginal`, `danaPlacesPublicadoOriginal`, `situadoPublicado20260802`)."
+        "texto": "**Se ha rehecho el mapa: dibujaba otra lista que la de sus cifras.** La corrección del 2 de agosto recalculó lo situado —de 72 contratos y 2,04 M€ a «62 emplazamientos» y 6,09 M€—, pero el mapa, la figura de cabecera y la lista de lugares con gasto DANA siguieron dibujando los 39 lugares de la versión del 6 de julio. La cabecera decía 62 y la leyenda del mapa, 39, y las dos cifras no salían de la misma lista. Además, el 62 eran lugares, y la tarjeta lo ponía junto a los contratos: aquel recuento situaba 127.\n\nAhora el mapa y sus cifras salen de una sola lista: los mismos contratos adjudicados del registro del 2 de agosto, situados con el resolutor de topónimos del 18 de octubre. Son 117 contratos en 60 lugares, por 8,82 M€. De los 127 de aquel recuento, el resolutor ha dejado de situar 28 cuyo título no sostenía el sitio, y sitúa 18 que entonces no situaba: 127 − 28 + 18 = 117.\n\nDe los seis lugares con gasto DANA que publicábamos, dos salen y entra uno, así que quedan cinco. Salen los 16.382 € del Pou d'Escoto, que eran el vallado del colegio Mas d'Escoto junto al barranco de Porchinos, y el título no nombra la urbanización; y los 11.412 € de la calle de les Ànimes, que eran dos contratos de limpieza que nombran también Els Pous y el Oliveral: un contrato que nombra varios lugares no se sitúa en ninguno. Entra el polideportivo municipal, con 114.211 € por el cambio de pavimento de sus pistas, y es el segundo lugar con más gasto DANA situado, por delante de La Reva.\n\nCambia también cómo contábamos los contratos de cada lugar. «L'Oliveral (125.000 euros, seis contratos)» sumaba todos los contratos del lugar, no los de la DANA, que allí son dos. El apartado 4 cuenta ahora sólo los contratos con referencia a la DANA.\n\n**Lo que no cambia:** los 75 contratos y 2,75 M€ con referencia a la DANA, y el denominador de 68,00 M€. Lo publicado antes se conserva en el propio fichero (`placesPublicadoOriginal`, `danaPlacesPublicadoOriginal`, `situadoPublicado20260802`).\n\n**Se ha corregido la gráfica «Contratos con referencia DANA, por mes».** La corrección del 2 de agosto recalculó los totales —75 contratos, 2,75 M€— pero dejó la gráfica con la serie de la versión del 6 de julio: sumaba 2,24 M€ en 73 contratos, y marzo de 2026 salía a cero aunque esta misma pieza cuenta que ese mes se adjudicó el contrato de 445.313 € de Construcciones Rafael Zarzoso. La gráfica se ha rehecho con el mismo método y el mismo registro que los totales, y ahora suma lo mismo que ellos. Cambian seis meses: noviembre y diciembre de 2024 pierden un contrato cada uno; febrero de 2026 gana uno; octubre de 2025, enero de 2026 y marzo de 2026 dejan de estar a cero. La serie anterior se conserva en el fichero. Ninguna otra cifra cambia."
       },
       {
         "fecha": "2026-10-18",
@@ -37,6 +37,98 @@
     "situatedPlaces": 60
   },
   "timelineFull": [
+    {
+      "month": "2024-11",
+      "amount": 1325691.39,
+      "count": 21
+    },
+    {
+      "month": "2024-12",
+      "amount": 488520.52,
+      "count": 34
+    },
+    {
+      "month": "2025-01",
+      "amount": 191189.04,
+      "count": 6
+    },
+    {
+      "month": "2025-02",
+      "amount": 0,
+      "count": 0
+    },
+    {
+      "month": "2025-03",
+      "amount": 0,
+      "count": 0
+    },
+    {
+      "month": "2025-04",
+      "amount": 14900,
+      "count": 1
+    },
+    {
+      "month": "2025-05",
+      "amount": 4850,
+      "count": 1
+    },
+    {
+      "month": "2025-06",
+      "amount": 0,
+      "count": 0
+    },
+    {
+      "month": "2025-07",
+      "amount": 0,
+      "count": 0
+    },
+    {
+      "month": "2025-08",
+      "amount": 23532.86,
+      "count": 2
+    },
+    {
+      "month": "2025-09",
+      "amount": 88337.21,
+      "count": 2
+    },
+    {
+      "month": "2025-10",
+      "amount": 114211.09,
+      "count": 1
+    },
+    {
+      "month": "2025-11",
+      "amount": 14701.09,
+      "count": 1
+    },
+    {
+      "month": "2025-12",
+      "amount": 0,
+      "count": 0
+    },
+    {
+      "month": "2026-01",
+      "amount": 18000,
+      "count": 1
+    },
+    {
+      "month": "2026-02",
+      "amount": 19112,
+      "count": 3
+    },
+    {
+      "month": "2026-03",
+      "amount": 445313,
+      "count": 1
+    },
+    {
+      "month": "2026-04",
+      "amount": 4588,
+      "count": 1
+    }
+  ],
+  "timelinePublicadoOriginal": [
     {
       "month": "2024-11",
       "amount": 1386115.03,
