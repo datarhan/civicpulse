@@ -1837,10 +1837,10 @@ export default function Metodologia() {
                 de una subida firmada se vuelve a escribir desde los datos de contratación de ese
                 día: si el importe, el estado, la fecha o el contrato ya no son los que dice, o el
                 contrato ha desaparecido, o un contrato sostiene una promesa, o una cifra no es la
-                de su fila, la comprobación lo señala como fallo. Una subida firmada antes de
-                octubre de 2026 que cita un registro posterior sin motivo se señala como aviso, y la
-                decide quien cura el registro al volver a firmarla. Nada la reescribe: la retira o
-                la vuelve a firmar una persona.
+                de su fila, la comprobación lo señala como fallo. Las subidas firmadas antes del 19
+                de octubre de 2026 no podían guardar el motivo: si citan un registro posterior, se
+                señalan como aviso, y las decide quien cura el registro al volver a firmarlas. Nada
+                la reescribe: la retira o la vuelve a firmar una persona.
               </li>
               {/* 10-10-2026: un SDA no se adjudica como un contrato; para lo que se dice
                   de él, la licitación es el registro (src/scraper/subida-firmada.ts). */}
