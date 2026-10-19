@@ -1,5 +1,13 @@
 import { describe, it, expect } from 'vitest'
-import { classifyClaimVisibility, gateItemsForPublic } from '../src/scraper/claim-public-gate'
+import {
+  classifyClaimVisibility,
+  gateItemsForPublic,
+  MOTIVOS_DE_RETENCION,
+  motivoDeRetencion,
+  repartirRetenidas,
+  type MotivoDeRetencion,
+} from '../src/scraper/claim-public-gate'
+import { motivoDeRetirada } from '../src/scraper/declaracion-retirada'
 import {
   applyOverlayEntries,
   mergeVerified,
@@ -390,5 +398,136 @@ describe('claim-public-gate — lo que firma un curador, por el camino real', ()
     const fila = mergeVerified([deLaBase('cita_obra')], aMano)[0]
     expect(fila.verification.verdict).toBe('contradicho')
     expect(classifyClaimVisibility(fila)).toBe('hidden')
+  })
+})
+
+/**
+ * Por qué se retiene, como valor.
+ *
+ * /laboratorio/cobertura decía que la puerta retiene «por dos motivos
+ * distintos» —una acusación cuyo veredicto no nombra ningún corpus, y una cita
+ * cuyo literal no consta en ninguna transcripción—, y no eran los motivos que
+ * más pesan: medido el 19-10-2026 sobre lo retenido, la mayoría eran
+ * acusaciones opinativas (o sin subtipo, que la puerta trata como tales) y
+ * acusaciones de hecho que SÍ nombran un corpus sin un dato que las respalde.
+ * La frase iba escrita a mano; ahora el motivo lo da la misma función que
+ * decide ocultar, y la página lo cuenta.
+ */
+describe('claim-public-gate — el motivo de lo que se retiene', () => {
+  const conVerif = (
+    type: string,
+    verification: Record<string, unknown>,
+    accusationSubtype?: string,
+  ) => ({ claim: { type, accusationSubtype }, verification })
+
+  const casos: Array<[string, ReturnType<typeof conVerif>, MotivoDeRetencion | null]> = [
+    [
+      'acusación sin subtipo → opinativa',
+      conVerif('acusacion_publica', { verdict: 'verificado', checkedAgainst: ['tenders'] }),
+      'acusacion-opinativa',
+    ],
+    [
+      'acusación opinativa',
+      conVerif('acusacion_publica', { verdict: 'sin-datos', checkedAgainst: [] }, 'opinativa'),
+      'acusacion-opinativa',
+    ],
+    [
+      'acusación de hecho cotejada contra un corpus y sin dato',
+      conVerif(
+        'acusacion_publica',
+        { verdict: 'sin-datos', checkedAgainst: ['tenders', 'tenders-ted'] },
+        'factual',
+      ),
+      'acusacion-cotejada-sin-respaldo',
+    ],
+    [
+      'acusación de hecho sin nada anotado',
+      conVerif('acusacion_publica', { verdict: 'sin-datos', checkedAgainst: [] }, 'factual'),
+      'acusacion-sin-corpus',
+    ],
+    [
+      'acusación de hecho que sólo lleva la marca de una pasada',
+      conVerif(
+        'acusacion_publica',
+        { verdict: 'sin-datos', checkedAgainst: [], derivedBy: ['verdict-engine'] },
+        'contra-datos',
+      ),
+      'acusacion-no-consta',
+    ],
+    [
+      'contradicho de máquina, de cualquier tipo',
+      conVerif('cita_obra', { verdict: 'contradicho', checkedAgainst: ['tenders'] }),
+      'contradicho',
+    ],
+    [
+      'acusación de hecho respaldada: no se retiene',
+      conVerif('acusacion_publica', { verdict: 'parcial', checkedAgainst: ['tenders'] }, 'factual'),
+      null,
+    ],
+    [
+      'afirmación sin datos: se pliega, no se retiene',
+      conVerif('afirmacion_numerica', { verdict: 'sin-datos', checkedAgainst: [] }),
+      null,
+    ],
+  ]
+
+  for (const [nombre, fila, motivo] of casos) {
+    it(nombre, () => {
+      expect(motivoDeRetencion(fila)).toBe(motivo)
+    })
+  }
+
+  it('sin procedencia manda sobre cualquier otro motivo', () => {
+    expect(motivoDeRetencion(casos[0][1], { sinProcedencia: true })).toBe('sin-procedencia')
+  })
+
+  it('una retirada firmada es su propio motivo', () => {
+    const r = conVerif('afirmacion_numerica', {
+      verdict: 'sin-datos',
+      checkedAgainst: ['curator-downgrade'],
+      source: 'curator-downgrade',
+      retirada: { motivo: 'literal-no-dicho' },
+    })
+    // Si el canal cambia, que la prueba lo diga en vez de quedarse verde.
+    expect(motivoDeRetirada(r)).not.toBeNull()
+    expect(motivoDeRetencion(r)).toBe('retirada')
+  })
+
+  it('oculta exactamente lo que tiene motivo: una sola regla, no dos', () => {
+    for (const [, fila, motivo] of casos) {
+      expect(classifyClaimVisibility(fila) === 'hidden').toBe(motivo !== null)
+    }
+    // Y la prueba evaluó las dos ramas.
+    expect(casos.some(([, , m]) => m === null)).toBe(true)
+    expect(casos.some(([, , m]) => m !== null)).toBe(true)
+  })
+
+  it('cada motivo del enum sale en algún caso: ninguno se declara sin probar', () => {
+    const vistos = new Set<string>(
+      casos.map(([, , m]) => m).filter((m): m is MotivoDeRetencion => m !== null),
+    )
+    vistos.add('sin-procedencia')
+    vistos.add('retirada')
+    expect([...vistos].sort()).toEqual([...MOTIVOS_DE_RETENCION].sort())
+  })
+
+  it('repartirRetenidas cuenta por tipo y por motivo, y las dos particiones suman lo mismo', () => {
+    const items = casos.map(([, fila], i) => ({
+      ...fila,
+      claim: { ...fila.claim, id: `c${i}` },
+    }))
+    const sinProcedencia = new Set(['c7'])
+    const r = repartirRetenidas(items, { sinProcedencia })
+    const suma = (o: Record<string, number>) => Object.values(o).reduce((a, n) => a + n, 0)
+    // Seis con motivo propio, más la afirmación sin procedencia (c7).
+    expect(suma(r.porTipo)).toBe(7)
+    expect(suma(r.porMotivo)).toBe(7)
+    expect(r.porMotivo['sin-procedencia']).toBe(1)
+    expect(r.porMotivo['acusacion-opinativa']).toBe(2)
+    // Todos los motivos están, aunque sea a cero: un cero contado no es un hueco.
+    expect(Object.keys(r.porMotivo).sort()).toEqual([...MOTIVOS_DE_RETENCION].sort())
+    // Y lo que reparte es exactamente lo que la puerta no sirve.
+    const servidos = gateItemsForPublic(items as never, { sinProcedencia })
+    expect(suma(r.porTipo)).toBe(items.length - servidos.length)
   })
 })

@@ -259,3 +259,74 @@ describe('manifest · comprobado, sin corpus o no consta', () => {
     expect(clases.total).toBe(1)
   })
 })
+
+/**
+ * Las pasadas, contadas con la regla de «no consta».
+ *
+ * Las píldoras «Pasadas de revisión» de /laboratorio/cobertura leían
+ * `cobertura.corpus`, que sólo mira `checkedAgainst`; «no consta» sale de
+ * `desenlaceDeCotejo`, que mira también `derivedBy` y `source`. El 19-10-2026
+ * las píldoras sumaban 563 al lado de un «no consta» de 871: 308 filas llevaban
+ * la marca del motor sólo en `derivedBy`. Y el texto decía que las filas de
+ * esas píldoras eran las de «no consta». Ahora las dos cifras salen de la
+ * misma lectura de la fila, y el manifiesto dice cuántas de cada marca son de
+ * «no consta» y cuántas nombran además un corpus.
+ */
+describe('manifest · las pasadas, con la misma regla que «no consta»', () => {
+  const fila = (segmentIndex: number, verification: VerifiedClaimItem['verification']) => ({
+    claim: { ...baseClaim, id: `P-${segmentIndex}`, plenoId: 'P', segmentIndex },
+    verification,
+  })
+  const items: VerifiedClaimItem[] = [
+    // La marca del motor en la lista: la forma de antes.
+    fila(0, {
+      verdict: 'sin-datos',
+      confidence: 0.2,
+      checkedAgainst: ['verdict-engine'],
+      source: 'verdict-engine',
+    }),
+    // La marca del motor SÓLO en `derivedBy`: la que las píldoras no veían.
+    fila(1, {
+      verdict: 'sin-datos',
+      confidence: 0.2,
+      checkedAgainst: [],
+      derivedBy: ['verdict-engine'],
+    }),
+    // Una subida firmada que sí nombra su corpus: con marca, y con corpus.
+    fila(2, {
+      verdict: 'verificado',
+      confidence: 0.9,
+      checkedAgainst: ['tenders'],
+      source: 'curator-upgrade',
+    }),
+    // Ni corpus ni marca.
+    fila(3, { verdict: 'sin-datos', confidence: 0.5, checkedAgainst: [] }),
+  ]
+  const { manifest } = buildManifest(groupItemsByPleno(items), '2026-10-19T00:00:00.000Z')
+  const pasadas = manifest.totals.cobertura.pasadas
+
+  it('cuenta FILAS por marca, mirando lista, `derivedBy` y canal', () => {
+    expect(pasadas.porMarca['verdict-engine']).toEqual({ filas: 2, noConsta: 2 })
+    expect(pasadas.porMarca['curator-upgrade']).toEqual({ filas: 1, noConsta: 0 })
+  })
+
+  it('las filas con marca de «no consta» son las de la casilla «no consta»', () => {
+    const noConsta = Object.values(manifest.totals.cobertura.porTipo).reduce(
+      (a, c) => a + c.noConsta,
+      0,
+    )
+    expect(noConsta).toBe(2)
+    expect(pasadas.noConsta + pasadas.noConstaSinMarca).toBe(noConsta)
+    expect(pasadas.filas).toBe(3)
+    expect(pasadas.noConsta).toBe(2)
+    expect(pasadas.noConstaSinMarca).toBe(0)
+  })
+
+  it('el reparto por motivo de lo retenido viaja tal cual, y sin él no se inventa', () => {
+    const porMotivo = { 'acusacion-opinativa': 3, 'sin-procedencia': 1 }
+    const con = buildManifest(groupItemsByPleno(items), 'x', {}, 0, {}, porMotivo as never)
+    expect(con.manifest.totals.retenidasPorMotivo).toEqual(porMotivo)
+    // Sin reparto, el campo no está: un objeto vacío se leería como «cero de cada».
+    expect('retenidasPorMotivo' in manifest.totals).toBe(false)
+  })
+})

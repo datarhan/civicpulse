@@ -72,3 +72,50 @@ describe('claseDocumentalDe · qué documento nombra la frase', () => {
     )
   })
 })
+
+/**
+ * «En el pleno» no es nombrar un acta.
+ *
+ * El patrón de `acta` casaba «en el pleno» y «pleno celebrado» sueltos, que son
+ * habla corriente en una sesión plenaria. El 19-10-2026, 7 de las 16
+ * declaraciones publicadas que la tabla de solicitudes contaba como
+ * dependientes de un acta casaban sólo por eso: dos hablaban del tiempo de
+ * palabra («cada hora invertida en el pleno»), y cinco citaban un acuerdo de un
+ * pleno anterior con su fecha. Las segundas sí dependen del acta de esa sesión;
+ * las primeras no nombran ningún documento. Las frases son las publicadas.
+ */
+describe('claseDocumentalDe · el acta, sólo con una sesión fechada', () => {
+  it('el pleno como lugar donde se habla no nombra ningún acta', () => {
+    for (const frase of [
+      'lo normal es que de cada hora invertida en el pleno lo normal 20 minutos sean para el alcalde',
+      'lo normal es que el 30% del tiempo ocupado en el pleno sea por los diálogos que tenemos con el señor alcalde',
+      'como ya dije en el pleno',
+      'el último pleno celebrado aquí',
+    ]) {
+      expect(claseDocumentalDe(frase), frase).not.toContain('acta')
+    }
+  })
+
+  it('una sesión anterior con su fecha sí depende de su acta', () => {
+    for (const frase of [
+      'Ya en el pleno celebrado el 3 de junio de 2024 acordamos la adhesión al convenio marco de colaboración entre la Generalitat,',
+      'En el Pleno de febrero del 21 se acuerda la suspensión del procedimiento de contratación del servicio dada la sentencia.',
+      'en el pleno de 1 de diciembre de 2025 iniciamos el expediente de resolución de oficio de la adjudicación',
+      'En el Pleno de febrero nos pusimos un plazo de un año ampliable, incluso a dos',
+      'en el pleno ordinario de marzo se aprobó',
+      'el pleno celebrado el día 12 aprobó la moción',
+    ]) {
+      expect(claseDocumentalDe(frase), frase).toContain('acta')
+    }
+  })
+
+  it('lo que ya casaba por su nombre sigue casando', () => {
+    expect(claseDocumentalDe('Acuerdo Plenario de fecha 26 de septiembre de 2016')).toContain(
+      'acta',
+    )
+    expect(claseDocumentalDe('realizándose un acta pormenorizada de dicha reunión')).toContain(
+      'acta',
+    )
+    expect(claseDocumentalDe('según el acuerdo del pleno')).toContain('acta')
+  })
+})
