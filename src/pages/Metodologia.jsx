@@ -2637,7 +2637,16 @@ export default function Metodologia() {
         <h3 style={{ marginTop: 16, fontSize: 'var(--fs-head)' }}>Fuentes auditadas</h3>
         <ul style={{ margin: '6px 0 0', paddingLeft: 20, fontSize: 'var(--fs-aux)' }}>
           <li>
-            <strong>PLACSP / Gobierto</strong> — contratos municipales adjudicados y en licitación.
+            <strong>PLACSP / Gobierto</strong> — contratos municipales adjudicados y en licitación.{' '}
+            {/* 19-10-2026: 51/2022, el alumbrado LED del casco urbano, formalizado y publicado
+                como «Renuncia» porque se anuló su anuncio de formalización
+                (src/scraper/contract-corrections.ts). */}
+            Cuando el registro municipal da a un contrato un estado imposible —una renuncia o un
+            desistimiento con fecha de formalización, que la ley sólo admite antes de formalizar—,
+            el contrato se publica sin estado. Y cuando la Plataforma de Contratación dice otra
+            cosa, una persona puede corregirlo citando literalmente el anuncio que lo dice y el que
+            explica la discrepancia; cada corrección va firmada, en{' '}
+            <code>/data/contract-corrections.json</code>, y la fila corregida lo indica.
           </li>
           <li>
             <strong>TED (Tenders Electronic Daily)</strong> — contratos europeos sobre el umbral UE,
