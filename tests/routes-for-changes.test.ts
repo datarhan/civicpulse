@@ -139,6 +139,43 @@ describe('el armazón y la hoja global alcanzan TODAS las rutas', () => {
   })
 })
 
+describe('una ruta de layout sin `path` alcanza las rutas que envuelve', () => {
+  // Medido el 19-10-2026: `src/pages/reportajes/Armazon.jsx` —barra de lectura,
+  // Compartir, «Más reportajes», el bloque que no puede quedar detrás del
+  // registro de correcciones— daba `rutas: []` y caía en `sinRuta`. App.jsx lo
+  // monta como `<Route element={<ArmazonReportaje />}>` SIN `path`, y el grafo
+  // sólo sembraba desde `<Route path=… element=…>`. Un push que tocara sólo el
+  // armazón salía con «ninguna ruta afectada» y ninguna pieza se leía.
+  const piezas = REPORTAJE_SLUGS.map((s) => `/reportajes/${s}`).sort()
+
+  it('premisa medida: hay piezas, y todas están montadas', () => {
+    // Sin esto, una lista vacía haría verde la prueba de abajo sin comprobar
+    // nada: `[]` contiene a todos los elementos de `[]`.
+    expect(piezas.length).toBeGreaterThan(0)
+    for (const p of piezas) expect(grafo.rutas, `${p} no está montada`).toContain(p)
+  })
+
+  it('el armazón de reportajes selecciona cada pieza de REPORTAJE_SLUGS', () => {
+    expect(rutas('src/pages/reportajes/Armazon.jsx')).toEqual(piezas)
+  })
+
+  it('EL CONTROL: no selecciona rutas que no envuelve', () => {
+    // El índice /reportajes es hermano del bloque, no hijo; /blog/… viene justo
+    // después del `</Route>` que lo cierra. Un parser que no casara el cierre
+    // se las tragaría, y con ellas cualquier ruta montada más abajo.
+    const r = rutas('src/pages/reportajes/Armazon.jsx')
+    expect(r).not.toContain('/reportajes')
+    expect(r).not.toContain('/blog/building-civicpulse-with-ai')
+    expect(r).not.toContain('/eficiencia')
+    expect(r.length).toBeLessThan(grafo.rutas.length / 2)
+  })
+
+  it('un layout no es una ruta: `rutas` no gana ninguna entrada sin `path`', () => {
+    for (const r of grafo.rutas) expect(r.startsWith('/'), r).toBe(true)
+    expect(grafo.paginaPorRuta.get(piezas[0])).not.toContain('Armazon')
+  })
+})
+
 describe('una ruta con parámetro se lee por su ficha, no se tira', () => {
   const orden = (fs: string[]) => ordenarPorCentralidad(fs, grafo, publicados)
 
