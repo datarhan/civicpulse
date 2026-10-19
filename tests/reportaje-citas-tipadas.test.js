@@ -8,8 +8,8 @@ import { TIPOS_CITA } from '../src/pages/reportajes/ConteoVisitantes'
 
 const DIR = 'src/pages/reportajes'
 // Sólo las piezas que usan ESTA `Cita`: la define ConteoVisitantes.jsx y la
-// importan las demás. Basuras, por ejemplo, tiene una `Cita` propia, otra
-// componente con otras props.
+// importan las demás. Una pieza con una `Cita` propia —basuras la tuvo hasta
+// el 19-10-2026— es otra componente con otras props, y no se mira.
 const piezas = readdirSync(DIR).filter((f) => {
   if (!f.endsWith('.jsx')) return false
   if (f === 'ConteoVisitantes.jsx') return true

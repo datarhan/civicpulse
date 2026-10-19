@@ -60,6 +60,23 @@ test.describe('Reportaje · basuras (/reportajes/basuras)', () => {
     // The two-documents-disagree defect.
     await expect(page.getByText(/horas distintas/).first()).toBeVisible()
 
+    // Desde el 19-10-2026: las tres tablas son la compartida, que se apila a
+    // 375px en vez de desplazarse de lado; la del coste dice el año que no se
+    // rindió en vez de saltárselo; y el ámbar queda para un solo aparte, el que
+    // le sirve a un vecino —las horas distintas—. Los demás son salvedades.
+    const snap = JSON.parse(readFileSync('public/data/reportajes/basuras.json', 'utf8'))
+    expect(await page.locator('.cp-tabla table').count()).toBe(3)
+    for (const a of snap.costeEfectivo.sinEntrega) {
+      await expect(
+        page
+          .locator('.cp-tabla tr')
+          .filter({ hasText: String(a) })
+          .filter({ hasText: 'sin entrega' }),
+      ).toHaveCount(1)
+    }
+    await expect(page.locator('[data-aparte="aviso"]')).toHaveCount(1)
+    await expect(page.locator('[data-aparte="aviso"]')).toContainText('horas distintas')
+
     // Every primary source link resolves to an absolute URL we can check.
     const fuentes = page.locator('a[rel="noopener noreferrer"]')
     expect(await fuentes.count()).toBeGreaterThanOrEqual(8)

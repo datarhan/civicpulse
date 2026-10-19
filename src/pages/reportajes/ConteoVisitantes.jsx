@@ -28,6 +28,10 @@ export const TIPOS_CITA = {
   memoria: 'Memoria justificativa',
   'nota-municipal': 'Nota municipal',
   respuesta: 'Respuesta',
+  // Los dos de «basuras», que hasta el 19-10-2026 tenía una cita propia sin
+  // etiqueta: la autorización de la CNMC y el acuerdo del pleno.
+  resolucion: 'Resolución',
+  'orden-del-dia': 'Orden del día',
 }
 
 /** @param {string} tipo @param {string} [de] */
@@ -234,6 +238,8 @@ export function Tabla({ cols, rows, caption, foco = [] }) {
                     ...td,
                     ...aRas(j),
                     ...(cols[j].right && { textAlign: 'right', whiteSpace: 'nowrap' }),
+                    ...(cols[j].nowrap && { whiteSpace: 'nowrap' }),
+                    ...(cols[j].strong && { color: 'var(--ink)', fontWeight: 500 }),
                     ...(foco.includes(i) && { color: 'var(--civic-ink)', fontWeight: 600 }),
                   }}
                 >
