@@ -15,7 +15,14 @@
  * Son cifras de la ADJUDICACIÓN, que es un hecho fechado y quieto. Nada de
  * estado vivo aquí: un «pendiente de formalizar» se quedaría falso en cuanto
  * se formalice, y esta página no tiene forma de enterarse.
+ *
+ * «Adjudicado el» lleva la fecha del ACUERDO, no la del anuncio en la
+ * Plataforma, y se pinta con `enCastellano` y no con `toLocaleDateString`:
+ * `new Date('2026-07-27')` es la medianoche UTC, y al oeste de Greenwich salía
+ * el 26 —con la fecha vieja, «5 de agosto»—.
  */
+import { enCastellano } from '../../scraper/solicitud-enviada'
+
 const eur = (v) =>
   v.toLocaleString('es-ES', { style: 'currency', currency: 'EUR', maximumFractionDigits: 0 })
 
@@ -50,14 +57,8 @@ export function Concesion({ concesion }) {
     >
       <p style={{ margin: 0 }}>
         <strong>Lo presta {c.adjudicataria}</strong>, con un contrato de concesión adjudicado el{' '}
-        <span className="mono">
-          {new Date(c.adjudicadaEl).toLocaleDateString('es-ES', {
-            day: 'numeric',
-            month: 'long',
-            year: 'numeric',
-          })}
-        </span>{' '}
-        por <span className="mono">{eur(c.importe)}</span> y vigente hasta{' '}
+        <span className="mono">{enCastellano(c.adjudicadaEl)}</span> por{' '}
+        <span className="mono">{eur(c.importe)}</span> y vigente hasta{' '}
         <span className="mono">{anio(c.hasta)}</span>. Concurrieron{' '}
         <span className="mono">{c.ofertas}</span> ofertas.
       </p>
