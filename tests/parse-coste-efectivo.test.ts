@@ -1,8 +1,10 @@
 import { describe, it, expect } from 'vitest'
 import { readFileSync } from 'node:fs'
 import { join } from 'node:path'
+import * as XLSX from 'xlsx'
 import {
   parseCeselWorkbook,
+  parseCeselInforme,
   clasificarGestion,
   ineFromEnte,
   MODOS_GESTION,
@@ -140,5 +142,145 @@ describe('scraper/coste-efectivo — parseCeselWorkbook', () => {
     // parser defect and must be ~zero.
     const sinClasificar = rows.filter((r) => r.modoGestion === 'sin-clasificar')
     expect(sinClasificar.length / rows.length).toBeLessThan(0.01)
+  })
+})
+
+// ── Casilla vacía contra cero declarado ─────────────────────────────────────
+// El 2026-10-18 una revisión lectora preguntó si los ceros del agua de 2018–2023
+// eran «no calculado» y no cero. Leída la celda cruda, era un 0 numérico: un
+// cero de verdad. Pero el parser no habría sabido distinguirlo, porque
+// `Number('')` es 0 y el respaldo era `: 0`: una casilla en blanco salía
+// `costeTotal: 0`, idéntica a un cero declarado. Es la regla 3 de
+// docs/DATA_INTEGRITY.md, un centinela valiendo por dos hechos.
+//
+// Ninguna entrega cacheada trae hoy una casilla vacía en coste ni en unidades
+// (medido el 2026-10-19 sobre las doce), así que no hay fila real que congelar.
+// En vez de inventar un libro, se toma la fixture real, se vacía UNA celda y se
+// vuelve a escribir: todo lo demás sigue siendo el fichero del ministerio.
+const FIXTURE_CCAA = join(__dirname, 'fixtures', 'cesel_ccaa17_2024_slice.xlsx')
+
+/**
+ * Vacía (o sustituye por texto) la única celda de `columna` en la fila que
+ * cumple `donde`. Falla si la fila no es exactamente una o si la celda ya
+ * estaba vacía: una edición que no toca nada dejaría el test pasando en vano.
+ */
+function editarCelda(
+  buf: Buffer,
+  hoja: string,
+  columna: string,
+  donde: Record<string, string>,
+  valor: string | null,
+): Buffer {
+  const wb = XLSX.read(buf, { type: 'buffer' })
+  const ws = wb.Sheets[hoja]
+  const origen = XLSX.utils.decode_range(ws['!ref']!).s
+  const filas: unknown[][] = XLSX.utils.sheet_to_json(ws, { header: 1, raw: true, defval: null })
+  const h = filas.findIndex((r) => r.some((c) => String(c ?? '').trim() === columna))
+  const head = filas[h].map((c) => String(c ?? '').trim())
+  const casan = filas
+    .map((_, i) => i)
+    .filter(
+      (i) =>
+        i > h &&
+        Object.entries(donde).every(
+          ([k, v]) => String(filas[i][head.indexOf(k)] ?? '').trim() === v,
+        ),
+    )
+  expect(casan, `${hoja}: ${JSON.stringify(donde)}`).toHaveLength(1)
+  const addr = XLSX.utils.encode_cell({
+    r: origen.r + casan[0],
+    c: origen.c + head.indexOf(columna),
+  })
+  expect(ws[addr], `${hoja}!${addr} ya estaba vacía`).toBeDefined()
+  if (valor === null) delete ws[addr]
+  else ws[addr] = { t: 's', v: valor }
+  return XLSX.write(wb, { type: 'buffer', bookType: 'xlsx' }) as Buffer
+}
+
+describe('scraper/coste-efectivo — casilla vacía no es cero', () => {
+  const RR = '17-46-214-AA-000'
+
+  it('CE2: una casilla de coste vacía es null; el 0 declarado sigue siendo 0', () => {
+    // a161 (agua) declara 0 en 2021; a160 (alcantarillado) también. Se vacía
+    // sólo la del agua: si las dos salen iguales, el parser no distingue.
+    const buf = editarCelda(
+      readFileSync(FIXTURE),
+      '2021 CE2',
+      'Econ14',
+      { Ente: RR, Programa: 'a161' },
+      null,
+    )
+    const filas = parseCeselWorkbook(buf, { anio: 2021 }).filter((r) => r.ine === '46214')
+    expect(filas.find((r) => r.programa === 'a161')!.costeTotal).toBeNull()
+    expect(filas.find((r) => r.programa === 'a160')!.costeTotal).toBe(0)
+    // Lo demás no se mueve: la edición tocó una celda, no la lectura entera.
+    expect(filas.find((r) => r.programa === 'a1621')!.costeTotal).toBe(801040.17)
+  })
+
+  it('CE2: un texto que no es una cifra tampoco se lee como 0', () => {
+    const buf = editarCelda(
+      readFileSync(FIXTURE),
+      '2021 CE2',
+      'Econ14',
+      { Ente: RR, Programa: 'a165' },
+      'n/d',
+    )
+    const fila = parseCeselWorkbook(buf, { anio: 2021 }).find(
+      (r) => r.ine === '46214' && r.programa === 'a165',
+    )!
+    expect(fila.costeTotal).toBeNull()
+  })
+
+  it('CE3: una unidad física vacía es null; la unidad a 0 sigue siendo 0', () => {
+    // La unidad se decide igual que el coste: el 0 de `viajeros` es un dato de
+    // la fuente («no lo declaré», que clasifica el motor); la casilla vacía no
+    // dice nada y no puede hacerse pasar por él.
+    const buf = editarCelda(
+      readFileSync(FIXTURE),
+      '2021 CE3',
+      'Valor',
+      { Ente: RR, Programa: 'a1621', Atributo: 'Producción anual residuos urbanos: toneladas' },
+      null,
+    )
+    const filas = parseCeselWorkbook(buf, { anio: 2021 }).filter((r) => r.ine === '46214')
+    const residuos = filas.find((r) => r.programa === 'a1621')!
+    expect(residuos.unidades.find((u) => /toneladas/i.test(u.atributo))!.valor).toBeNull()
+    const bus = filas.find((r) => r.programa === 'a4411/440P')!
+    expect(bus.unidades.find((u) => /viajeros/i.test(u.atributo))!.valor).toBe(0)
+  })
+
+  it('informe por comunidad: coste_efectivo vacío es null; el 0 declarado sigue siendo 0', () => {
+    // 2024: el agua declara 1.898.034,08 €; a1531 declara 0. Vaciar la primera
+    // no puede convertirla en la segunda.
+    const buf = editarCelda(
+      readFileSync(FIXTURE_CCAA),
+      'CE1a y CE2a',
+      'coste_efectivo',
+      { 'Código Ente': RR, 'Grupo de programa / Programa': '161' },
+      null,
+    )
+    const filas = parseCeselInforme(buf, { anio: 2024 }).filter((r) => r.ine === '46214')
+    expect(filas.find((r) => r.programa === 'a161')!.costeTotal).toBeNull()
+    expect(filas.find((r) => r.programa === 'a1531/150P')!.costeTotal).toBe(0)
+    expect(filas.find((r) => r.programa === 'a160')!.costeTotal).toBe(514318.78)
+  })
+
+  it('informe por comunidad: «Nº unidades» vacío es null', () => {
+    const buf = editarCelda(
+      readFileSync(FIXTURE_CCAA),
+      'CE3a',
+      'Nº unidades',
+      {
+        'Código Ente': RR,
+        'Grupo de programa / Programa': '165',
+        'Unidades físicas de referencia': 'Nº puntos de luz',
+      },
+      null,
+    )
+    const alumbrado = parseCeselInforme(buf, { anio: 2024 }).find(
+      (r) => r.ine === '46214' && r.programa === 'a165',
+    )!
+    expect(alumbrado.unidades.find((u) => u.atributo === 'Nº puntos de luz')!.valor).toBeNull()
+    expect(alumbrado.unidades.find((u) => u.atributo === 'Potencia instalada')!.valor).toBe(657)
   })
 })

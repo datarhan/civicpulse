@@ -2819,7 +2819,8 @@ export default function Metodologia() {
           </li>
           <li>
             <strong>Cero sin declarar.</strong> Una unidad física a cero junto a un gasto real
-            significa «no se declaró», no «no hubo».
+            significa «no se declaró», no «no hubo». Una casilla en blanco no es ese cero: se lee
+            como cifra ausente, y nunca se rellena con un 0.
           </li>
           <li>
             <strong>Filas duplicadas.</strong> Cuando el ministerio publica dos costes distintos
