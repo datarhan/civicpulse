@@ -4,11 +4,19 @@
  *
  * This is the project's most libel-material surface: it states a NAMED elected
  * official's salary. It is human-curated + cited (NEVER scraped) and validated
- * like promises.json. The figures come from the pleno acuerdo that fixes the
- * régimen económico (Expediente 4533/2023/GEN, 07/07/2023), which assigns each
- * amount to a CARGO (role + delegated áreas); each cargo is mapped to its
- * concejal because the áreas in the acuerdo coincide literally with the
- * officials.json portfolios. Guards:
+ * like promises.json. The figures come from the pleno acuerdo that sets the
+ * régimen económico — today the 16/03/2026 update (Expediente 1462/2026/GEN) of
+ * the 07/07/2023 acuerdo (Expediente 4533/2023/GEN) — which assigns each amount
+ * to a PUESTO (Alcaldía, a numbered Tenencia de Alcaldía, a concejalía delegada
+ * with its áreas), never to a person.
+ *
+ * Which councillor holds each puesto is the curator's attribution, and it rests
+ * on the appointment acts, not on officials.json: the Tenencias on the
+ * Alcaldía resolution that names them (Res. 2512/2023), the concejalías on the
+ * delegation decree (Res. 2513/2023), both read into the 07/07/2023 pleno. The
+ * áreas the acuerdo gives a Tenencia can share nothing with its holder's
+ * current officials.json portfolios, so "the áreas match" is not a basis the
+ * note may claim. Guards:
  *   - the source must carry a URL, an ISO date, and a verbatim quote (≥20),
  *   - every per-official amount must match one of the published brackets
  *     (no out-of-band number can be attributed to a named person),

@@ -1834,6 +1834,10 @@ export const CATALOGUE = {
     'cargos.detalle.pago.sinDedicacion':
       'Sin dedicación retribuida en el acuerdo de la corporación. Percibe, en su caso, asistencias por sesión, que no constan en esta fuente.',
     'cargos.detalle.pago.fuente': 'Fuente: acuerdo plenario de retribuciones.',
+    // Ni cifra ni «sin dedicación»: si el fichero no se ha podido leer, no
+    // sabemos qué cobra, y decirlo es lo único cierto.
+    'cargos.detalle.pago.noDisponible':
+      'No se ha podido cargar el acuerdo de retribuciones, así que aquí no consta qué cobra por el cargo. Esto no significa que no tenga dedicación.',
     'cargos.detalle.area.eyebrow': 'Contratación de sus áreas',
     'cargos.detalle.area.title': 'Dinero adjudicado en las concejalías que hoy dirige',
     'cargos.detalle.area.titleRango':
@@ -1918,6 +1922,12 @@ export const CATALOGUE = {
     // nombre — y por eso el importe vive en el reparto, no en la tarjeta.
     'cargos.retri.asistenciasCargo': 'asistencias por sesión',
     'cargos.retri.asistenciasCargoNota': '· sin dedicación; el ISPA no publica el nombre',
+    // Mientras el fichero llega, o si falla, la tarjeta no sabe nada: ni cifra
+    // ni «sin dedicación», que es una afirmación sobre la persona.
+    'cargos.retri.cargando': 'retribución · cargando…',
+    'cargos.retri.noDisponible': 'retribución no disponible',
+    'cargos.retri.noDisponibleNota':
+      '· no se ha podido cargar el acuerdo; no significa «sin dedicación»',
     'cargos.gobierno.eyebrow': 'Gobierno · {n} concejales con áreas delegadas',
     'cargos.gobierno.title': 'Quién dirige qué',
     'cargos.gobierno.areas': 'Áreas delegadas · {n}',
@@ -3816,6 +3826,8 @@ export const CATALOGUE = {
     'cargos.detalle.pago.sinDedicacion':
       "Sense dedicació retribuïda en l'acord de la corporació. Percep, si escau, assistències per sessió, que no consten en esta font.",
     'cargos.detalle.pago.fuente': 'Font: acord plenari de retribucions.',
+    'cargos.detalle.pago.noDisponible':
+      "No s'ha pogut carregar l'acord de retribucions, així que ací no consta què cobra pel càrrec. Açò no significa que no tinga dedicació.",
     'cargos.detalle.area.eyebrow': 'Contractació de les seues àrees',
     'cargos.detalle.area.title': 'Diners adjudicats a les regidories que hui dirigeix',
     'cargos.detalle.area.titleRango':
@@ -3876,6 +3888,10 @@ export const CATALOGUE = {
     'cargos.retri.fijadoPor': '· dedicació {dedicacion}, fixada en l’acord',
     'cargos.retri.asistenciasCargo': 'assistències per sessió',
     'cargos.retri.asistenciasCargoNota': '· sense dedicació; l’ISPA no publica el nom',
+    'cargos.retri.cargando': 'retribució · carregant…',
+    'cargos.retri.noDisponible': 'retribució no disponible',
+    'cargos.retri.noDisponibleNota':
+      '· no s’ha pogut carregar l’acord; no significa «sense dedicació»',
     'cargos.gobierno.eyebrow': 'Govern · {n} regidors amb àrees delegades',
     'cargos.gobierno.title': 'Qui dirigix què',
     'cargos.gobierno.areas': 'Àrees delegades · {n}',

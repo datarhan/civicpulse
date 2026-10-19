@@ -136,8 +136,10 @@ export function alcaldeGrowth(data, windows = [1, 3, 5, 10]) {
  * "48.647,50 €" — euros WITH cents.
  *
  * For the figures the page sets against each other. Rounded to whole euros,
- * the alcalde's fixed 48.234,08 € and his received 48.647,50 € read as one
- * number somebody mistyped; the cents are what show them to be two series.
+ * the 48.234,08 € the 2023 acuerdo fixed for the Alcaldía and the 48.647,50 €
+ * ISPA reports as received in 2024 read as one number somebody mistyped; the
+ * cents are what show them to be two series. (The page now prints the figure
+ * of the 2026 update, but the two series stay two series.)
  */
 export function formatEurosCents(n) {
   if (typeof n !== 'number' || !Number.isFinite(n)) return ''
