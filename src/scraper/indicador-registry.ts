@@ -18,6 +18,7 @@
  * forma que debía comprobar.
  */
 import type { Tier } from './indicadores'
+import { enCastellano } from './solicitud-enviada'
 
 /**
  * Bloques temáticos bajo los que la página agrupa las fichas.
@@ -115,16 +116,26 @@ export interface ServicioDef {
    * Nada de estado VIVO: fechas y cifras de la adjudicación, que son
    * históricas y no se mueven. Si el contrato se formaliza mañana, esto sigue
    * siendo cierto — que es justo lo que no pasaría con un «pendiente de
-   * formalizar» congelado en un registro.
+   * formalizar» congelado en un registro. La excepción es `hasta`: el plazo
+   * corre desde el acta de inicio del servicio, y hasta que el registro da una
+   * fecha de fin no se escribe.
    */
   concesion?: {
     /** Razón social de la adjudicataria, literal del expediente. */
     adjudicataria: string
     /** Valor estimado del contrato por todo su plazo, en euros. */
     importe: number
-    /** Fecha de adjudicación, ISO. */
+    /**
+     * Fecha del ACUERDO de adjudicación, ISO. No la del anuncio: el `awardDate`
+     * de `tenders.json` es el día en que la Plataforma publicó la adjudicación,
+     * que llega días o semanas después del acuerdo.
+     */
     adjudicadaEl: string
-    /** Último día del plazo, ISO. */
+    /**
+     * Último día del plazo, ISO, tal como lo da el registro de contratos. Hasta
+     * que lo da, la fuente sólo trae la duración, no una fecha de fin: no se
+     * escribe una calculada a mano.
+     */
     hasta: string
     /** Cuántas ofertas concurrieron. */
     ofertas: number
@@ -133,6 +144,47 @@ export interface ServicioDef {
     /** Lo que el expediente cuenta y una fecha sola no. */
     nota: string
   }
+}
+
+/**
+ * La concesión conjunta del agua: abastecimiento, alcantarillado, control de
+ * vertidos y depuración en un solo contrato. Una sola copia para a161 y a160,
+ * que se habían escrito dos veces y se corrigen a la vez o no se corrigen.
+ *
+ * `adjudicadaEl` es el acuerdo del Pleno del 27-07-2026 —la adjudicación va en
+ * el orden del día de esa sesión (`plenos-agendas.json`) y es la fecha que da
+ * `reportajes/coste-efectivo.json`—, no el 06-08-2026, que es cuando la
+ * Plataforma publicó el anuncio. En el acta de esa sesión el Pleno «acordó»,
+ * en su punto «Primero. - Adjudicar el contrato de concesión», a Hidraqua, y
+ * los 17 años cuentan «desde la firma del acta de inicio del servicio».
+ *
+ * `hasta` es el `endDate` de la fila del expediente en `contracts`, que el
+ * registro trae desde que formalizó (`formalizedDate` 2026-10-06, que puede
+ * ser también el día del anuncio y no el de la firma). `endDate` menos los
+ * 6.209 días de `duration` da el 2026-10-02, que sería el inicio del plazo; no
+ * se publica, porque ninguna fuente aquí lo nombra como tal. El 2043-07-27 de
+ * antes no lo daba ninguna fuente: era el acuerdo más 17 años.
+ *
+ * Se escribe aquí y no se lee de `tenders.json` en `compute-indicadores` para
+ * que la nocturna no pueda mover sola una fecha publicada en una superficie
+ * con valor legal: si el registro la cambia, `eficiencia-concesion-agua.test`
+ * se pone rojo y lo decide una persona.
+ */
+const AGUA_ADJUDICADA_EL = '2026-07-27'
+
+/** `2026-07-27` → `julio de 2026`, del mismo calendario que pinta las fechas. */
+const mesYAnio = (iso: string) => enCastellano(iso).replace(/^\d+ de /, '')
+
+const CONCESION_AGUA: ServicioDef['concesion'] = {
+  adjudicataria: 'HIDRAQUA, Gestión Integral de Aguas de Levante, S.A.',
+  importe: 55685178.79,
+  adjudicadaEl: AGUA_ADJUDICADA_EL,
+  hasta: '2043-10-02',
+  ofertas: 7,
+  url: 'https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=pK1YW0Z3femXQV0WE7lYPw%3D%3D',
+  // El mes sale de la fecha: «agosto» se quedó escrito aquí cuando la fecha
+  // era la del anuncio, y nadie lo habría visto al corregir sólo el campo.
+  nota: `El expediente se anunció en abril de 2019 y estuvo suspendido —con dos recursos ante el TACRC de por medio— hasta que en abril de 2026 recayó sentencia. La adjudicación llegó en ${mesYAnio(AGUA_ADJUDICADA_EL)}, siete años después del anuncio.`,
 }
 
 export const SERVICIOS: Record<string, ServicioDef> = {
@@ -371,15 +423,7 @@ export const SERVICIOS: Record<string, ServicioDef> = {
     tier: 'output',
     area: 'agua-residuos',
     caveats: [],
-    concesion: {
-      adjudicataria: 'HIDRAQUA, Gestión Integral de Aguas de Levante, S.A.',
-      importe: 55685178.79,
-      adjudicadaEl: '2026-08-06',
-      hasta: '2043-07-27',
-      ofertas: 7,
-      url: 'https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=pK1YW0Z3femXQV0WE7lYPw%3D%3D',
-      nota: 'El expediente se anunció en abril de 2019 y estuvo suspendido —con dos recursos ante el TACRC de por medio— hasta que en abril de 2026 recayó sentencia. La adjudicación llegó en agosto de 2026, siete años después del anuncio.',
-    },
+    concesion: CONCESION_AGUA,
   },
   a160: {
     label: 'Alcantarillado',
@@ -393,16 +437,7 @@ export const SERVICIOS: Record<string, ServicioDef> = {
     tier: 'output',
     area: 'agua-residuos',
     caveats: [],
-    // Mismo expediente que a161: la concesión es conjunta —agua potable,
-    // alcantarillado, control de vertidos y depuración en un solo contrato—.
-    concesion: {
-      adjudicataria: 'HIDRAQUA, Gestión Integral de Aguas de Levante, S.A.',
-      importe: 55685178.79,
-      adjudicadaEl: '2026-08-06',
-      hasta: '2043-07-27',
-      ofertas: 7,
-      url: 'https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=pK1YW0Z3femXQV0WE7lYPw%3D%3D',
-      nota: 'El expediente se anunció en abril de 2019 y estuvo suspendido —con dos recursos ante el TACRC de por medio— hasta que en abril de 2026 recayó sentencia. La adjudicación llegó en agosto de 2026, siete años después del anuncio.',
-    },
+    // Mismo expediente que a161: la concesión es conjunta (ver CONCESION_AGUA).
+    concesion: CONCESION_AGUA,
   },
 }
