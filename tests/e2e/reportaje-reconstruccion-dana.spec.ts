@@ -15,6 +15,19 @@ test.describe('Reportaje · reconstrucción DANA (/reportajes/reconstruccion-dan
     expect(cuerpo).not.toMatch(/externoespecífico|esamirada/)
     expect(cuerpo).toMatch(/control externo específico de la DANA/)
 
+    // La entradilla cuenta noviembre de 2024 con la serie de la gráfica: decía
+    // «22 contratos por 1,39 millones», la del 6 de julio, debajo de una barra
+    // rotulada 1,33 M€ (corrección del 19-10-2026).
+    const nov = snap.timelineFull.find((m: { month: string }) => m.month === '2024-11')
+    const mill = (nov.amount / 1e6).toFixed(2).replace('.', ',')
+    // Lo visible: la corrección, plegada, cita la frase nueva también.
+    await expect(
+      page
+        .getByText(`${nov.count} contratos por ${mill} millones de euros`)
+        .filter({ visible: true }),
+    ).toHaveCount(1)
+    expect(cuerpo).not.toMatch(/22 contratos por 1,39 millones/)
+
     // EL MAPA, sobre el mapa base y no a mano: un círculo por lugar, en el
     // panel de Leaflet, y los dos con más gasto DANA con su nombre a la vista.
     // Se espera al mapa de verdad: el hueco que guarda su sitio mientras carga

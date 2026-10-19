@@ -343,6 +343,16 @@ function Callout() {
  * por cuánto. Derivado de la lista que pintan las barras, no escrito: «Seis
  * emplazamientos», a mano, se quedó contando la lista de la versión del 06-07.
  */
+/** Noviembre de 2024, el mes de la ola, de la misma serie que la gráfica. */
+export function mesDeLaOla(timeline) {
+  const m = timeline.find((x) => x.month === '2024-11')
+  if (!m) throw new Error('reconstrucción DANA: la serie mensual no trae noviembre de 2024')
+  return m
+}
+
+/** «1,33»: millones con dos decimales y coma, como los escribe la pieza. */
+export const millones = (n) => (n / 1e6).toFixed(2).replace('.', ',')
+
 export function danaSituadoDe(danaPlaces) {
   return {
     lugares: danaPlaces.length,
@@ -405,6 +415,7 @@ export default function ReconstruccionDana() {
   const t = data.totals
   const m = data.meta
   const danaSituado = danaSituadoDe(data.danaPlaces)
+  const ola = mesDeLaOla(data.timelineFull)
 
   return (
     <div
@@ -434,13 +445,20 @@ export default function ReconstruccionDana() {
             <p style={ENTRADILLA}>
               En los días que siguieron a la DANA del 29 de octubre de 2024, el Ayuntamiento de
               Riba-roja de Túria firmó contratos casi a diario. Palas para despejar caminos,
-              camiones para retirar el lodo, bombas para achicar los polígonos anegados. Solo en
-              noviembre de aquel año adjudicó <b>22 contratos por 1,39 millones de euros</b>, buena
-              parte por el procedimiento de emergencia que permite la ley cuando no hay tiempo para
-              un concurso. Año y medio después, la reconstrucción todavía se contrata: el último
-              gran contrato con referencia a la DANA que consta en el registro público —un vallado
-              de parcelas en los polígonos industriales por <b>445.313 euros</b>— se adjudicó en
-              marzo de 2026.
+              camiones para retirar el lodo, bombas para achicar los polígonos anegados. Solo en{' '}
+              {/* De la serie de la gráfica, no escrito: decía «22 contratos por 1,39
+                  millones», la serie del 6 de julio, y la corrección del 19-10-2026
+                  rehízo la gráfica (21 y 1,33) sin tocar esta frase. Las dos cifras
+                  del mismo mes quedaron a un palmo. */}
+              noviembre de aquel año adjudicó{' '}
+              <b>
+                {ola.count} contratos por {millones(ola.amount)} millones de euros
+              </b>
+              , buena parte por el procedimiento de emergencia que permite la ley cuando no hay
+              tiempo para un concurso. Año y medio después, la reconstrucción todavía se contrata:
+              el último gran contrato con referencia a la DANA que consta en el registro público —un
+              vallado de parcelas en los polígonos industriales por <b>445.313 euros</b>— se
+              adjudicó en marzo de 2026.
             </p>
             <p style={{ ...ENTRADILLA, margin: '14px 0 0' }}>
               Entre esas dos fechas, un análisis de la contratación municipal permite seguir el
