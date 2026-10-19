@@ -6,13 +6,28 @@
     "url": "https://regmeet.com/files/uploads/aytoribarroja/16-03-2026.Pleno2026-03-18_13-36-39/documentos/2026-07-30_13-46-58_0.pdf",
     "expediente": "1462/2026/GEN",
     "date": "2026-03-16",
-    "quote": "Fijar un incremento en las retribuciones brutas de los miembros de la corporación con dedicación exclusiva para la anualidad 2026"
+    "quote": "Fijar un incremento en las retribuciones brutas de los miembros de la corporación con dedicación exclusiva para la anualidad 2026, correspondiente a las actualizaciones salariales resultantes que se representan en el siguiente cuadro, y amparado por la libertad de pactos",
+    "amountQuotes": [
+      "912 100.01 ALCALDE Polit P 53.734,99 5.460,49 59.195,48",
+      "912 100.01 CNJAL (1Tte alcalde) Polit P 47.978,99 0,00 47.978,79",
+      "912 100.01 CNJAL (3 Tte. Alcalde) Polit P 47.978,99 0,00 47.978,79",
+      "912 100.01 CONJAL Polit P 43.327,07 0,00 43.327,07"
+    ]
   },
-  "note": "Retribuciones brutas anuales con dedicación exclusiva para 2026, aprobadas por unanimidad en el pleno del 16/03/2026 (punto 4), que actualiza el acuerdo del 07/07/2023 (exp. 4533/2023/GEN; 48.234,08 €, 43.067,36 € y 38.891,66 €, sin incremento hasta 2026). El cuadro del acta fija cada importe POR PUESTO (Alcalde, 1.er y 3.er Teniente de Alcalde, cuatro concejales); cada puesto se mapea a su concejal como en el acuerdo de 2023, por las áreas delegadas de officials.json. El importe del alcalde es el total del acta: 53.734,99 € de sueldo base más 5.460,49 € de antigüedad. Para los dos tenientes de alcalde el acta da 47.978,99 € en la columna de sueldo base y 47.978,79 € en la de totales; se publica el total, que es el que cuadra con la suma del cuadro (328.461,34 €). Los otros 14 concejales no tienen dedicación y perciben solo asistencias por sesión.",
+  "note": "Retribuciones brutas anuales con dedicación exclusiva para 2026, aprobadas por unanimidad en el pleno del 16/03/2026 (punto 4, exp. 1462/2026/GEN), que actualiza el acuerdo del 07/07/2023 (exp. 4533/2023/GEN; 48.234,08 €, 43.067,36 € y 38.891,66 €, sin incremento hasta 2026). El cuadro del acta fija cada importe POR PUESTO (Alcalde, 1.er y 3.er Teniente de Alcalde, cuatro concejales), y cada puesto se nombra aquí con las palabras del acuerdo de 2023. Ninguno de los dos acuerdos nombra a la persona: quién ocupa cada tenencia consta en la Resolución de Alcaldía 2512/2023 (nombramiento de Tenientes de Alcalde) y quién cada concejalía delegada, en la Resolución 2513/2023 (áreas y delegaciones), ambas de 17/06/2023 y de las que se dio cuenta en el pleno del 07/07/2023. El importe del alcalde es el total del acta: 53.734,99 € de sueldo base más 5.460,49 € de antigüedad. Para los dos tenientes de alcalde el acta da 47.978,99 € en la columna de sueldo base y 47.978,79 € en la de totales; se publica el total, que es el que cuadra con la suma del cuadro (328.461,34 €). Los otros 14 concejales no tienen dedicación. El mismo acuerdo de 2026 les actualiza las asistencias: 350,00 € por sesión de Pleno, 200,00 € por Comisión Informativa y por Junta de Gobierno, 225,00 € por Comisión de Contratación, 125,00 € por Junta de Portavoces, 90,00 € por Consell Agrari y 100,00 € por boda celebrada en viernes por la tarde, sábado, domingo, festivo o víspera de festivo. Siguen los 34,46 € por sesión de otros órganos complementarios y las dietas conforme al Real Decreto 462/2002 que fijó el acuerdo de 2023, que el de 2026 no modifica.",
   "brackets": [
-    { "amountEuros": 59195.48, "count": 1 },
-    { "amountEuros": 47978.79, "count": 2 },
-    { "amountEuros": 43327.07, "count": 4 }
+    {
+      "amountEuros": 59195.48,
+      "count": 1
+    },
+    {
+      "amountEuros": 47978.79,
+      "count": 2
+    },
+    {
+      "amountEuros": 43327.07,
+      "count": 4
+    }
   ],
   "sinDedicacionCount": 14,
   "byOfficial": [
@@ -26,37 +41,37 @@
       "slug": "teresa-pozuelo-martin",
       "amountEuros": 47978.79,
       "dedicacion": "exclusiva",
-      "role": "1ª Teniente de Alcalde · Territorio y Agenda Urbana"
+      "role": "Primer Teniente de Alcalde, con coordinación de las áreas de Territorio, Agenda Urbana y Servicios Públicos"
     },
     {
       "slug": "jose-angel-hernandez-carrizosa",
       "amountEuros": 47978.79,
       "dedicacion": "exclusiva",
-      "role": "3er Teniente de Alcalde · Administración, RR. HH., Hacienda y Fomento"
+      "role": "Tercer Teniente de Alcalde, con coordinación de las áreas de Administración y Servicios Generales, Recursos Humanos, Hacienda Pública y Fomento Económico"
     },
     {
       "slug": "rafael-gomez-sanchez",
       "amountEuros": 43327.07,
       "dedicacion": "exclusiva",
-      "role": "Concejal delegado · Servicios públicos, Urbanizaciones, Movilidad y Deportes"
+      "role": "Concejal delegado de servicios públicos municipales, urbanizaciones, barrios y diseminados, movilidad y deportes"
     },
     {
       "slug": "raquel-pamblanco-paredes",
       "amountEuros": 43327.07,
       "dedicacion": "exclusiva",
-      "role": "Concejala delegada · Seguridad, Igualdad y Comunicación"
+      "role": "Concejal delegada de Seguridad y emergencias, Igualdad, Comunicación e Información y Bienestar Animal"
     },
     {
       "slug": "maria-esther-gomez-laredo",
       "amountEuros": 43327.07,
       "dedicacion": "exclusiva",
-      "role": "Concejala delegada · Participación, Atención ciudadana y Turismo"
+      "role": "Concejal delegada de Participación y transparencia, Atención a la ciudadanía, Turismo y Patrimonio Histórico"
     },
     {
       "slug": "david-barbancho-martinez",
       "amountEuros": 43327.07,
       "dedicacion": "exclusiva",
-      "role": "Concejal delegado · Acción social, Mayores y Juventud"
+      "role": "Concejal delegado de Acción social y políticas inclusivas, Mayores, Juventud y Servicios Jurídicos"
     }
   ]
 }
