@@ -179,7 +179,7 @@ describe('la fecha es la del anuncio de adjudicación, y lo dice', () => {
         continue // varios lotes, una licitación, un estado sin comprometer: lo prueba subida-firmada.test.ts
       }
       leidas++
-      expect(snippet).not.toMatch(/ el \d\d-\d\d-\d{4}$/)
+      expect(snippet).not.toMatch(/adjudicad[oa][^·]* el \d\d-\d\d-\d{4}/)
       expect(snippet).toMatch(/ · adjudicación publicada el \d\d-\d\d-\d{4}$/)
     }
     // Que la prueba evaluó filas, y no salió verde por no leer ninguna.
