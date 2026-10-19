@@ -87,6 +87,7 @@ export function estadoRetribucion(res, slug) {
  * Roles come through as `role` is written in dedicaciones.json. They are MEANT
  * to be the acuerdo's own wording for each puesto — they name the cargo, not
  * the person, and a shortened one drops áreas the acuerdo names.
+ * tests/dedicaciones.test.ts checks each against the 2023 acuerdo's text.
  *
  * @returns {{tramos: Array<{amountEuros: number, count: number, roles: string[]}>, sum: number, count: number}|null}
  */
