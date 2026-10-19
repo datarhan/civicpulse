@@ -68,7 +68,8 @@ test.describe('Reportaje · matrículas y móviles (/reportajes/matriculas-y-mov
     await expect(page.getByText(/Nota municipal del 30-07-2026/)).toBeVisible()
 
     // Las fotos cargan de verdad: un <img> roto también «está en la página».
-    const fotos = page.locator('.cp-pieza img')
+    // Las de la hoja de contactos: las teselas del mapa de §03 también son <img>.
+    const fotos = page.locator('.cp-fotos img')
     expect(await fotos.count()).toBe(snap.observado.fotos.length)
     for (const img of await fotos.all()) {
       await img.scrollIntoViewIfNeeded()

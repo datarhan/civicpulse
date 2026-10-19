@@ -157,7 +157,7 @@ Figures are per-domain SVG components (`src/components/Charts.jsx` holds only
 `Sparkline`). The landing's Leaflet map, `LiveCity/StylizedMap.jsx`, is a
 thin orchestrator over `network/`, `popups/`, `layers/`, `controls/`; each
 toggleable layer is conditionally mounted so a hidden layer's rAF/WMS never
-runs. `/quejas`, `/presupuesto` and `/empleo` carry their own Leaflet maps.
+runs. `/quejas`, `/presupuesto`, `/empleo` and `/reportajes/matriculas-y-moviles` carry their own Leaflet maps.
 
 Map honesty rules, which are the point of every map:
 

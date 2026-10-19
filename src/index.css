@@ -1799,6 +1799,40 @@ main:focus:not(:focus-visible) {
   text-underline-offset: 3px;
 }
 
+/* El mapa de situación de una pieza (`MapaPliego`): Leaflet sobre el mapa
+   base del sitio. Alto fijo, menor en el móvil, y rótulos como etiquetas
+   blancas sobre las teselas, con la escala de letra del sitio. */
+.cp-mapa-pliego {
+  height: 380px;
+}
+@media (max-width: 599px) {
+  .cp-mapa-pliego {
+    height: 320px;
+  }
+}
+.cp-mapa-pliego .cp-mapa-tip {
+  font-family: var(--font-body);
+  font-size: var(--fs-meta);
+  font-weight: 600;
+  color: #0b0f19;
+  background: rgba(255, 255, 255, 0.92);
+  border: 0;
+  border-radius: var(--r-input);
+  box-shadow: 0 1px 3px rgba(11, 15, 25, 0.25);
+  padding: 2px 6px;
+}
+.cp-mapa-pliego .cp-mapa-tip::before {
+  display: none;
+}
+.cp-mapa-pliego .cp-mapa-tip-parque {
+  background: none;
+  box-shadow: none;
+  color: #0e5b62;
+  text-shadow:
+    0 0 3px #fff,
+    0 0 3px #fff;
+}
+
 /* La hoja de contactos de una pieza (`Fotos`, MatriculasYMoviles.jsx): marcos
    iguales de 3:4, tres por fila; dos en el móvil, donde una columna sola eran
    dos mil píxeles de fotos. */

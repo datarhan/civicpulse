@@ -56,5 +56,5 @@ export function tileUrl(clave) {
 /** La clave que se horneó en la construcción, o vacía. */
 export const CARTO_KEY = import.meta.env?.VITE_CARTO_API_KEY ?? ''
 
-/** Lo que consumen los cuatro `<TileLayer>`. */
+/** Lo que consumen los `<TileLayer>` del sitio (los cinco mapas: ver DATA_SOURCES). */
 export const BASEMAP_URL = tileUrl(CARTO_KEY)

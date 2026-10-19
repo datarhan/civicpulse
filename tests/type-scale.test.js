@@ -81,15 +81,9 @@ describe('la escala tipográfica', () => {
     // cifras). Una unidad de viewBox no es un píxel de CSS: un token rem ahí
     // dentro mediría distinto en cada ancho, que es exactamente lo que la
     // escala prohíbe.
-    //
-    // El mapa de situación de «matrículas y móviles», por el mismo motivo que
-    // el embudo, con una diferencia: en el móvil sus rótulos SÍ llevan
-    // información (los nombres de los sitios), así que crecen en unidades para
-    // quedarse en ~11 px en pantalla en vez de volverse decorativos.
     const EXENTOS = new Set([
       'src/components/SectionGlyph.jsx',
       'src/components/coste-esperado/Embudo.jsx',
-      'src/components/reportajes/MapaPliego.jsx',
     ])
     const culpables = []
     for (const p of FUENTES) {

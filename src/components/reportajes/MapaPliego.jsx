@@ -1,86 +1,102 @@
+import { useEffect, useMemo } from 'react'
+import {
+  AttributionControl,
+  CircleMarker,
+  MapContainer,
+  Polygon,
+  Polyline,
+  ScaleControl,
+  TileLayer,
+  Tooltip,
+  useMap,
+} from 'react-leaflet'
+import { BASEMAP_ATTRIBUTION, BASEMAP_URL } from '../../lib/basemap'
+import { fmtDateHuman } from '../../lib/formatters'
+
 /**
  * El mapa de situación de «matrículas y móviles»: el Parc Natural del Túria,
  * las tres calles junto a las que el pliego sitúa sus aparcamientos con
- * cámaras, y Porxinos. Lee el bloque `mapa` de la instantánea, congelado por
+ * cámaras, y Porxinos, sobre el mapa base del sitio (CARTO Voyager, de
+ * OpenStreetMap, el mismo que los demás mapas del sitio: `lib/basemap.js`).
+ *
+ * La primera versión dibujaba todo esto a mano en un SVG, sin calles ni
+ * pueblo alrededor: el lector veía tres trazos negros y un contorno sin saber
+ * dónde estaba. Sobre un mapa de verdad, la calle, el río y el casco se leen
+ * solos, y lo nuestro es sólo lo que el mapa base no dice.
+ *
+ * Lee el bloque `mapa` de la instantánea, congelado por
  * `scripts/build-mapa-pliego.ts` (que se niega a escribirlo si alguna calle cae
- * dentro del parque).
+ * dentro del parque). Lo que la figura NO hace, a propósito: poner un pin
+ * donde creemos que está cada aparcamiento. El pliego no da su posición, da
+ * la calle; se dibuja la calle. Porxinos es el punto con ese nombre en
+ * OpenStreetMap, no el contorno del valle. El pie dice las dos cosas.
  *
- * Lo que la figura NO hace, a propósito: poner un pin donde creemos que está
- * cada aparcamiento. El pliego no da su posición, da la calle; se dibuja la
- * calle. Y Porxinos es el punto con ese nombre en OpenStreetMap, no el
- * contorno del valle. El pie dice las dos cosas.
- *
- * Proyección equirrectangular con el coseno de la latitud media: a cinco
- * kilómetros, la diferencia con una UTM no se ve.
+ * Se carga perezoso desde la pieza (`lazy`), como EmpleoMap: Leaflet no entra
+ * en el trozo de la página hasta que hace falta.
  */
 
-import { fmtDateHuman } from '../../lib/formatters'
+// Leaflet pinta en SVG con atributos: `var(--civic)` no resuelve ahí, así que
+// los colores van en hexadecimal. Petróleo de la marca y la tinta del sitio.
+const PETROLEO = '#0E5B62'
+const TINTA = '#0B0F19'
 
-const W = 648
-
-// Los rótulos van en unidades del dibujo y escalan con él: a 712px de columna,
-// 15 unidades son unos 16px; a 327px serían 7, bajo el suelo de 11px del
-// sitio. En el móvil crecen en unidades para quedarse en ~11px en pantalla. Por
-// eso este fichero está, con nombre y motivo, entre los exentos de
-// tests/type-scale.test.js, como el embudo de coste esperado.
-const CSS = `
-.cp-mapa-rotulo { font-size: 15px; }
-.cp-mapa-menor { font-size: 13px; }
-@media (max-width: 599px) {
-  .cp-mapa-rotulo, .cp-mapa-menor { font-size: 22px; }
+/**
+ * La vista: de Porxinos al casco, con margen, y un kilómetro de más al este
+ * para que los rótulos de la derecha quepan. Con el encuadre entero del
+ * bloque (siete kilómetros) las calles se apelotonaban en un punto.
+ *
+ * @param {any} mapa
+ * @returns {[[number, number], [number, number]]}
+ */
+function vista(mapa) {
+  const pts = [...mapa.aparcamientos.flatMap((a) => a.tramos.flat()), mapa.lugar.punto]
+  const lats = pts.map((p) => p[0])
+  const lons = pts.map((p) => p[1])
+  return [
+    [Math.min(...lats) - 0.003, Math.min(...lons) - 0.004],
+    [Math.max(...lats) + 0.004, Math.max(...lons) + 0.012],
+  ]
 }
-`
+
+/**
+ * Encaja la vista cada vez que el contenedor cambia de tamaño, y no deja
+ * alejarse más. Al montarse desde `lazy`, el contenedor aún medía cero:
+ * `fitBounds` sobre una caja vacía cae al zoom máximo, y el mapa salía a 30 m
+ * de escala. Un ResizeObserver espera a que mida algo, y vuelve a encajar si
+ * cambia el ancho (el móvil al girar).
+ */
+function Encaje({ bounds }) {
+  const map = useMap()
+  useEffect(() => {
+    const el = map.getContainer()
+    const encaja = () => {
+      if (!el.clientWidth || !el.clientHeight) return
+      map.invalidateSize()
+      map.setMinZoom(0)
+      map.fitBounds(bounds, { padding: [12, 12], animate: false })
+      map.setMinZoom(map.getZoom())
+    }
+    encaja()
+    const ro = new ResizeObserver(encaja)
+    ro.observe(el)
+    return () => ro.disconnect()
+  }, [map, bounds])
+  return null
+}
 
 /** @param {{ mapa: any }} props */
 export default function MapaPliego({ mapa }) {
+  const bounds = useMemo(() => vista(mapa), [mapa])
+  // El encuadre del bloque cae dentro del marco al que se recortó el contorno
+  // del parque: no dejar salir de él evita ver el corte.
   const [s, w, n, e] = mapa.encuadre
-  const k = Math.cos((((s + n) / 2) * Math.PI) / 180)
-  const H = Math.round((W * (n - s)) / ((e - w) * k))
-  /** @param {[number, number]} p */
-  const xy = ([la, lo]) => [((lo - w) / (e - w)) * W, ((n - la) / (n - s)) * H]
-  /** @param {[number, number][]} l */
-  const d = (l) =>
-    l
-      .map(
-        (p, i) =>
-          `${i ? 'L' : 'M'}${xy(p)
-            .map((v) => v.toFixed(1))
-            .join(' ')}`,
-      )
-      .join('')
-
-  // Metros por unidad del dibujo, para la barra de escala.
-  const mPorU = ((e - w) * k * 111_320) / W
-  const barraM = 1000
-  const barraU = barraM / mPorU
-
-  // Las calles se rotulan en columna a su derecha, con una guía a cada una:
-  // están a doscientos metros unas de otras y los nombres no caben al lado.
-  const calles = mapa.aparcamientos.map((a) => {
-    const pts = a.tramos.flat().map(xy)
-    const cx = pts.reduce((t, p) => t + p[0], 0) / pts.length
-    const cy = pts.reduce((t, p) => t + p[1], 0) / pts.length
-    return { ...a, cx, cy }
-  })
-  const colX = Math.max(...calles.map((c) => c.cx)) + 40
-  // Cada rótulo a la altura de su calle, y si choca con el de arriba, justo
-  // debajo: ordenados por altura, las guías no se cruzan. El paso (30 unidades)
-  // cabe el rótulo del móvil: 22 de letra, ~28 con acentos y descendentes.
-  const orden = [...calles].sort((a, b) => a.cy - b.cy)
-  /** @type {number[]} */
-  const alturas = []
-  orden.forEach((c, i) => alturas.push(i ? Math.max(c.cy + 5, alturas[i - 1] + 30) : c.cy + 5))
-  const [px, py] = xy(mapa.lugar.punto)
-  const [rx, ry] = xy(mapa.parque.rotulo)
-  const [tx, ty] = xy(mapa.pueblo.punto)
   const resumen =
     `Mapa. Las tres calles junto a las que el pliego sitúa los aparcamientos con cámaras ` +
-    `(${calles.map((c) => c.calle).join(', ')}) están en el casco urbano, fuera del ` +
+    `(${mapa.aparcamientos.map((a) => a.calle).join(', ')}) están en el casco urbano, fuera del ` +
     `${mapa.parque.nombre}. ${mapa.lugar.nombre} queda ${mapa.lugar.dentroDelParque ? 'dentro' : 'fuera'} del parque.`
 
   return (
-    <figure className="cp-ancho cp-mapa-pliego" style={{ margin: '18px 0' }}>
-      <style>{CSS}</style>
+    <figure className="cp-ancho" style={{ margin: '18px 0' }}>
       <div
         className="mono"
         style={{
@@ -93,131 +109,75 @@ export default function MapaPliego({ mapa }) {
       >
         Dónde pone el pliego sus aparatos
       </div>
-      <svg
-        viewBox={`0 0 ${W} ${H}`}
-        role="img"
+      <div
+        role="region"
         aria-label={resumen}
+        className="cp-mapa-pliego"
         style={{
-          display: 'block',
-          width: '100%',
-          height: 'auto',
-          background: 'var(--paper)',
-          border: '1px solid var(--border)',
           borderRadius: 'var(--r-card)',
-          fontFamily: 'var(--font-body)',
+          overflow: 'hidden',
+          border: '1px solid var(--border)',
         }}
       >
-        <title>{resumen}</title>
-        <defs>
-          <clipPath id="cp-mapa-pliego-marco">
-            <rect x="0" y="0" width={W} height={H} />
-          </clipPath>
-        </defs>
-        <g clipPath="url(#cp-mapa-pliego-marco)">
-          <path
-            d={mapa.parque.anillos.map(d).join('')}
-            fillRule="evenodd"
-            style={{
-              fill: 'var(--civic)',
-              fillOpacity: 0.16,
-              stroke: 'var(--civic)',
-              strokeWidth: 1,
-              strokeOpacity: 0.7,
+        <MapContainer
+          bounds={bounds}
+          maxBounds={[
+            [s, w],
+            [n, e],
+          ]}
+          maxBoundsViscosity={1}
+          zoomSnap={0.25}
+          scrollWheelZoom={false}
+          attributionControl={false}
+          style={{ height: '100%', width: '100%' }}
+        >
+          <TileLayer url={BASEMAP_URL} attribution={BASEMAP_ATTRIBUTION} />
+          <AttributionControl prefix={false} />
+          <ScaleControl imperial={false} position="bottomleft" />
+          <Encaje bounds={bounds} />
+
+          <Polygon
+            positions={mapa.parque.anillos}
+            pathOptions={{
+              color: PETROLEO,
+              weight: 1.5,
+              opacity: 0.8,
+              fillColor: PETROLEO,
+              fillOpacity: 0.2,
+              fillRule: 'evenodd',
+              interactive: false,
             }}
           />
-          {mapa.rio?.tramos.map((t, i) => (
-            <path
-              key={i}
-              d={d(t)}
-              style={{ fill: 'none', stroke: 'var(--ink50)', strokeWidth: 1.5 }}
-            />
-          ))}
-          {calles.map((c) =>
-            c.tramos.map((t, i) => (
-              <path
-                key={`${c.calle}-${i}`}
-                d={d(t)}
-                style={{
-                  fill: 'none',
-                  stroke: 'var(--ink)',
-                  strokeWidth: 4,
-                  strokeLinecap: 'round',
-                }}
-              />
-            )),
-          )}
-          {orden.map((c, i) => {
-            const ly = alturas[i]
-            return (
-              <g key={c.calle}>
-                <path
-                  d={`M${c.cx.toFixed(1)} ${c.cy.toFixed(1)}L${(colX - 6).toFixed(1)} ${(ly - 5).toFixed(1)}`}
-                  style={{ stroke: 'var(--ink50)', strokeWidth: 0.75, fill: 'none' }}
-                />
-                <text
-                  x={colX}
-                  y={ly}
-                  className="cp-mapa-rotulo"
-                  style={{ fill: 'var(--ink)', fontWeight: 600 }}
-                >
-                  {c.nombre}
-                </text>
-              </g>
-            )
-          })}
-          {/* El nombre del parque, en un punto que el build comprueba dentro de él. */}
-          <text
-            x={rx}
-            y={ry}
-            textAnchor="middle"
-            className="cp-mapa-rotulo"
-            style={{ fill: 'var(--civic)', fontWeight: 600 }}
+          <CircleMarker
+            center={mapa.parque.rotulo}
+            radius={0}
+            pathOptions={{ opacity: 0, fillOpacity: 0, interactive: false }}
           >
-            {mapa.parque.nombre}
-          </text>
-          {/* El pueblo: sólo su nombre, a la izquierda de su nodo, para situar el
-              casco urbano. No es un aparato ni un aparcamiento. */}
-          <text
-            x={tx - 10}
-            y={ty + 5}
-            textAnchor="end"
-            className="cp-mapa-rotulo cp-mapa-menor"
-            style={{ fill: 'var(--ink70)' }}
+            <Tooltip permanent direction="center" className="cp-mapa-tip cp-mapa-tip-parque">
+              {mapa.parque.nombre}
+            </Tooltip>
+          </CircleMarker>
+
+          {/* Rótulos alternos, de norte a sur: derecha, izquierda, derecha. En
+              el móvil las calles quedan a 14 px y dos rótulos del mismo lado
+              se pisaban. */}
+          {[...mapa.aparcamientos]
+            .sort((x, y) => norte(y) - norte(x))
+            .map((a, i) => (
+              <Calle key={a.calle} a={a} lado={i % 2 ? 'left' : 'right'} />
+            ))}
+
+          <CircleMarker
+            center={mapa.lugar.punto}
+            radius={6}
+            pathOptions={{ color: TINTA, weight: 2.5, fillColor: '#ffffff', fillOpacity: 1 }}
           >
-            {mapa.pueblo.nombre}
-          </text>
-          <circle
-            cx={px}
-            cy={py}
-            r={6}
-            style={{ fill: 'var(--paper)', stroke: 'var(--ink)', strokeWidth: 2 }}
-          />
-          <text
-            x={px + 11}
-            y={py + 5}
-            className="cp-mapa-rotulo"
-            style={{ fill: 'var(--ink)', fontWeight: 600 }}
-          >
-            {mapa.lugar.nombre}
-          </text>
-        </g>
-        {/* Escala, abajo a la izquierda. */}
-        <g transform={`translate(14 ${H - 16})`}>
-          <path d={`M0 0H${barraU.toFixed(1)}`} style={{ stroke: 'var(--ink)', strokeWidth: 2 }} />
-          <path
-            d={`M0 -4V0M${barraU.toFixed(1)} -4V0`}
-            style={{ stroke: 'var(--ink)', strokeWidth: 2 }}
-          />
-          <text
-            x={barraU + 6}
-            y={4}
-            className="cp-mapa-rotulo cp-mapa-menor"
-            style={{ fill: 'var(--ink70)' }}
-          >
-            1 km
-          </text>
-        </g>
-      </svg>
+            <Tooltip permanent direction="right" offset={[8, 0]} className="cp-mapa-tip">
+              {mapa.lugar.nombre}
+            </Tooltip>
+          </CircleMarker>
+        </MapContainer>
+      </div>
       <figcaption
         style={{ fontSize: 'var(--fs-meta)', color: 'var(--ink50)', marginTop: 6, lineHeight: 1.4 }}
       >
@@ -233,12 +193,64 @@ export default function MapaPliego({ mapa }) {
             opacity: 0.35,
           }}
         />
-        {mapa.parque.nombre}. Cada aparcamiento está dibujado como la calle junto a la que lo sitúa
-        el pliego ({calles.map((c) => `${c.nombre}: ${c.calle}`).join('; ')}): el pliego no da su
+        {mapa.parque.nombre}, según OpenStreetMap. En negro, cada aparcamiento dibujado como la
+        calle junto a la que lo sitúa el pliego (
+        {mapa.aparcamientos.map((a) => `${a.nombre}: ${a.calle}`).join('; ')}): el pliego no da su
         posición exacta. {mapa.lugar.nombre}, por el punto con ese nombre en OpenStreetMap, no por
-        el contorno del valle. Norte arriba. Datos {mapa.fuente.atribucion} ({mapa.fuente.licencia}
-        ), consultados el {fmtDateHuman(mapa.fuente.consultadoEl)}.
+        el contorno del valle. Contorno y calles consultados el{' '}
+        {fmtDateHuman(mapa.fuente.consultadoEl)}.
       </figcaption>
     </figure>
+  )
+}
+
+/** La latitud media de una calle, para ordenarlas de norte a sur. */
+const norte = (/** @type {{ tramos: [number, number][][] }} */ a) => {
+  const pts = a.tramos.flat()
+  return pts.reduce((t, p) => t + p[0], 0) / pts.length
+}
+
+/**
+ * Una calle del pliego: su trazado, con un borde blanco debajo para que se lea
+ * sobre las calles del mapa base, y su rótulo a un lado.
+ *
+ * @param {{ a: { nombre: string, calle: string, tramos: [number, number][][] }, lado: 'left' | 'right' }} props
+ */
+function Calle({ a, lado }) {
+  // El rótulo cuelga del extremo de la calle en su lado: así queda junto al
+  // trazo y no encima.
+  const pts = a.tramos.flat()
+  const ancla = pts.reduce((m, p) => ((lado === 'right' ? p[1] > m[1] : p[1] < m[1]) ? p : m))
+  return (
+    <>
+      <Polyline
+        positions={a.tramos}
+        pathOptions={{
+          color: '#ffffff',
+          weight: 9,
+          opacity: 0.9,
+          lineCap: 'round',
+          interactive: false,
+        }}
+      />
+      <Polyline
+        positions={a.tramos}
+        pathOptions={{ color: TINTA, weight: 5, lineCap: 'round', interactive: false }}
+      />
+      <CircleMarker
+        center={ancla}
+        radius={0}
+        pathOptions={{ opacity: 0, fillOpacity: 0, interactive: false }}
+      >
+        <Tooltip
+          permanent
+          direction={lado}
+          offset={[lado === 'right' ? 10 : -10, 0]}
+          className="cp-mapa-tip"
+        >
+          {a.nombre}
+        </Tooltip>
+      </CircleMarker>
+    </>
   )
 }
