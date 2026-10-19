@@ -1,96 +1,9 @@
 [
   {
-    "path": "bop.anuncios.bulletinDate",
-    "values": {
-      "02/09/2026": 1,
-      "01/09/2026": 1,
-      "19/08/2026": 1,
-      "17/08/2026": 1,
-      "14/08/2026": 1,
-      "12/08/2026": 1
-    }
-  },
-  {
-    "path": "bop.anuncios.bulletinUrl",
-    "values": {
-      "https://bop.dival.es/bop/downloads?boletinFecha=02%2F09%2F2026": 1,
-      "https://bop.dival.es/bop/downloads?boletinFecha=01%2F09%2F2026": 1,
-      "https://bop.dival.es/bop/downloads?boletinFecha=19%2F08%2F2026": 1,
-      "https://bop.dival.es/bop/downloads?boletinFecha=17%2F08%2F2026": 1,
-      "https://bop.dival.es/bop/downloads?boletinFecha=14%2F08%2F2026": 1,
-      "https://bop.dival.es/bop/downloads?boletinFecha=12%2F08%2F2026": 1
-    }
-  },
-  {
-    "path": "bop.anuncios.date",
-    "values": {
-      "2026-09-02": 1,
-      "2026-09-01": 1,
-      "2026-08-19": 1,
-      "2026-08-17": 1,
-      "2026-08-14": 1,
-      "2026-08-12": 1
-    }
-  },
-  {
-    "path": "bop.anuncios.id",
-    "values": {
-      "181e502f8ac2": 1,
-      "e249be5b9f9f": 1,
-      "fe34bf9c6686": 1,
-      "ee667dfb0062": 1,
-      "e033a04f8ee6": 1,
-      "326439418684": 1
-    }
-  },
-  {
-    "path": "bop.anuncios.pdfUrl",
-    "values": {
-      "https://bop.dival.es/bop/downloads?anuncioNumReg=2026%2F10815": 1,
-      "https://bop.dival.es/bop/downloads?anuncioNumReg=2026%2F10780": 1,
-      "https://bop.dival.es/bop/downloads?anuncioNumReg=2026%2F10441": 1,
-      "https://bop.dival.es/bop/downloads?anuncioNumReg=2026%2F10322": 1,
-      "https://bop.dival.es/bop/downloads?anuncioNumReg=2026%2F10262": 1,
-      "https://bop.dival.es/bop/downloads?anuncioNumReg=2026%2F10172": 1
-    }
-  },
-  {
-    "path": "bop.anuncios.regNumber",
-    "values": {
-      "2026/10815": 1,
-      "2026/10780": 1,
-      "2026/10441": 1,
-      "2026/10322": 1,
-      "2026/10262": 1,
-      "2026/10172": 1
-    }
-  },
-  {
-    "path": "bop.anuncios.title",
-    "values": {
-      "Anuncio del Ayuntamiento de Riba-roja de Túria sobre la aprobación definitiva de la modificación de las bases de ejecución del presupuesto 2026": 1,
-      "Anuncio del Ayuntamiento de Riba-roja de Túria sobre la concesión de ayudas destinadas a la rehabilitación de fachadas de viviendas en el municipio y fomento de la economía local, para los ejercicios 2026-2027": 1,
-      "Anuncio del Ayuntamiento de Riba-roja de Túria sobre la exposición pública de la cuenta general del ejercicio 2025": 1,
-      "Anuncio del Ayuntamiento de Riba-roja de Túria sobre la exposición pública y notificación colectiva de los padrones fiscales correspondientes al impuesto de bienes inmuebles de naturaleza rústica del ejercicio 2026": 1,
-      "Anuncio del Ayuntamiento de Riba-roja de Túria sobre la modificación de las bases de ejecución del presupuesto municipal para el ejercicio 2026": 1,
-      "Anuncio del Ayuntamiento de Riba-roja de Túria sobre la convocatoria de subvenciones destinadas a la concesión de los premios EcoRiba 2026. Identificador BDNS: 923287": 1
-    }
-  },
-  {
-    "path": "officials.officials.email",
-    "values": {
-      "rraga@ribarroja.es": 1,
-      "tpozuelo@ribarroja.es": 1,
-      "jlramos@ribarroja.es": 1,
-      "alcaldia@ribarroja.es": 11,
-      "popularesribarroja@gmail.com": 7
-    }
-  },
-  {
     "path": "officials.officials.honorific",
     "values": {
-      "Sr.": 13,
-      "Sra.": 8
+      "Sr.": 14,
+      "Sra.": 7
     }
   },
   {
@@ -104,16 +17,6 @@
     }
   },
   {
-    "path": "officials.officials.partyLogoUrl",
-    "values": {
-      "https://www.ribarroja.es/sites/www.ribarroja.es/files/migrate/body_images/40756/pspvpsoe76x38.jpg": 11,
-      "https://www.ribarroja.es/sites/www.ribarroja.es/files/migrate/body_images/40756/Logo-PP.jpg": 7,
-      "https://www.ribarroja.es/sites/www.ribarroja.es/files/migrate/body_images/40756/Vox-Web.jpg": 1,
-      "https://www.ribarroja.es/sites/www.ribarroja.es/files/migrate/body_images/40756/20230619-logo-EU-UP-40.png": 1,
-      "https://www.ribarroja.es/sites/www.ribarroja.es/files/migrate/body_images/40756/coaliciocompromis76x38.jpg": 1
-    }
-  },
-  {
     "path": "officials.officials.role",
     "values": {
       "alcalde": 1,
@@ -121,141 +24,55 @@
     }
   },
   {
-    "path": "pleno-votes.items.department",
-    "values": {
-      "Cultura": 2,
-      "Medio ambiente": 1
-    }
-  },
-  {
-    "path": "pleno-votes.items.expediente",
-    "values": {
-      "11/2026/PGRU": 1,
-      "10/2026/PGRU": 1,
-      "13/2019/GEN": 1,
-      "1038/2026/GEN": 1,
-      "07/2026/PGRU": 1,
-      "615/2025/GEN": 1,
-      "6/2026/PGRU": 1,
-      "31/2025/PGRU": 1,
-      "30/2025/PGRU": 1,
-      "27/2025/PGRU": 1
-    }
-  },
-  {
     "path": "pleno-votes.items.outcome",
     "values": {
-      "aprobado": 16,
+      "aprobado": 15,
       "rechazado": 1
-    }
-  },
-  {
-    "path": "pleno-votes.items.plenoDate",
-    "values": {
-      "2026-05-11": 1,
-      "2026-04-20": 2,
-      "2026-03-09": 4,
-      "2026-02-09": 3,
-      "2025-12-23": 1,
-      "2025-12-01": 3,
-      "2025-11-03": 3
-    }
-  },
-  {
-    "path": "pleno-votes.items.plenoId",
-    "values": {
-      "10yl550": 1,
-      "k4olcs": 2,
-      "1sqj7is": 4,
-      "rx4hb4": 3,
-      "1qi8axv": 1,
-      "qz6weg": 3,
-      "1du4rf5": 3
-    }
-  },
-  {
-    "path": "pleno-votes.items.retrievedAt",
-    "values": {
-      "2026-07-03": 1,
-      "2026-06-24": 16
-    }
-  },
-  {
-    "path": "pleno-votes.items.sourceUrl",
-    "values": {
-      "https://regmeet.com/aytoribarroja/participaciones/74791edf1f8e8b8289a5067737630874?idioma=castellano": 1,
-      "https://regmeet.com/aytoribarroja/participaciones/1d2a48c55f6f10010887cc7d849469a1?idioma=castellano": 2,
-      "https://regmeet.com/aytoribarroja/participaciones/895daa408f494ad58006c47a30f51c1f?idioma=castellano": 4,
-      "https://regmeet.com/aytoribarroja/participaciones/c5b270a763686e776039618cc709f3a6?idioma=castellano": 3,
-      "https://regmeet.com/aytoribarroja/participaciones/69f357fcc8e6d119f3d95f33cedb5915?idioma=castellano": 1,
-      "https://regmeet.com/aytoribarroja/participaciones/5481b2f34a74e427a2818014b8e103b0?idioma=castellano": 3,
-      "https://regmeet.com/aytoribarroja/participaciones/db98dc0dbafde48e8f74c0de001d35e4?idioma=castellano": 3
     }
   },
   {
     "path": "plenos.items.kind",
     "values": {
-      "ordinario": 42,
+      "ordinario": 44,
       "extraordinario": 12,
       "urgente": 7
     }
   },
   {
-    "path": "promises.items.createdAt",
-    "values": {
-      "2026-04-20": 15,
-      "2026-07-03": 2,
-      "2026-07-04": 6
-    }
-  },
-  {
     "path": "promises.items.kind",
     "values": {
-      "anuncio-gobierno": 16,
-      "compromiso-investidura": 1,
-      "enmienda-pleno": 4,
-      "programa-electoral": 1,
-      "pacto-coalicion": 1
-    }
-  },
-  {
-    "path": "promises.items.party",
-    "values": {
-      "PSOE": 18,
-      "PP": 3,
-      "VOX": 1,
-      "Compromís": 1
+      "anuncio-gobierno": 11,
+      "enmienda-pleno": 1
     }
   },
   {
     "path": "promises.items.status",
     "values": {
-      "documentada": 15,
-      "en-progreso": 7,
-      "en-verificacion": 1
+      "en-progreso": 9,
+      "documentada": 3
     }
   },
   {
     "path": "promises.items.topic",
     "values": {
-      "fiscal": 6,
-      "medio-ambiente": 5,
-      "urbanismo": 2,
-      "vivienda": 2,
-      "participacion": 2,
-      "movilidad": 2,
-      "transparencia": 1,
+      "participacion": 1,
+      "movilidad": 1,
+      "fiscal": 2,
       "cultura": 2,
-      "deporte": 1
+      "deporte": 2,
+      "urbanismo": 1,
+      "educacion": 1,
+      "social": 1,
+      "medio-ambiente": 1
     }
   },
   {
     "path": "tenders.contracts.contractType",
     "values": {
-      "services": 421,
+      "services": 425,
       "other": 14,
-      "construction": 198,
       "supplies": 166,
+      "construction": 198,
       "patrimonial": 6,
       "public_services_management": 4
     }
@@ -263,20 +80,20 @@
   {
     "path": "tenders.contracts.processType",
     "values": {
-      "restricted": 84,
-      "minor_contract": 190,
-      "open": 201,
-      "open_simplified": 226,
+      "restricted": 86,
+      "open": 202,
+      "minor_contract": 191,
       "negotiated_without_publicity": 103,
+      "open_simplified": 226,
       "based_on_agreement": 5
     }
   },
   {
     "path": "tenders.contracts.status",
     "values": {
-      "awarded": 385,
-      "unknown": 43,
-      "formalized": 316,
+      "awarded": 398,
+      "formalized": 317,
+      "unknown": 33,
       "void": 49,
       "revoked": 7,
       "abandoned": 9
@@ -285,8 +102,8 @@
   {
     "path": "tenders.tenders.contractType",
     "values": {
-      "services": 218,
-      "supplies": 76,
+      "services": 219,
+      "supplies": 77,
       "construction": 112,
       "patrimonial": 9,
       "other": 11,
@@ -298,20 +115,32 @@
     "path": "tenders.tenders.processType",
     "values": {
       "restricted": 17,
+      "open": 128,
       "open_simplified": 181,
-      "open": 127,
+      "minor_contract": 1,
       "negotiated_without_publicity": 103,
       "based_on_agreement": 1
     }
   },
   {
+    "path": "tenders.tenders.sourceStatus",
+    "values": {
+      "abandoned": 7,
+      "provisionally_awarded": 23,
+      "void": 7,
+      "revoked": 114,
+      "awarded": 277,
+      "formalized": 2
+    }
+  },
+  {
     "path": "tenders.tenders.status",
     "values": {
-      "abandoned": 6,
-      "provisionally_awarded": 24,
-      "void": 10,
-      "awarded": 275,
-      "revoked": 111,
+      "abandoned": 7,
+      "provisionally_awarded": 23,
+      "void": 7,
+      "revoked": 114,
+      "awarded": 277,
       "formalized": 2,
       "unknown": 1
     }

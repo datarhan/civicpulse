@@ -134,7 +134,11 @@ Automatizable hasta aquí y **ni un paso más**:
 1. Congela una carga real en `tests/fixtures/` — ése es el contrato (RED).
 2. Escribe el parser puro; `fetch` solo en el CLI (GREEN).
 3. **Exporta el enum e impórtalo en el test.** Añade el techo de fallback.
-4. Ejecuta `npm run check:vocabulary -- --accept` y comitea el censo.
+4. Ejecuta `npm run check:vocabulary -- --accept` y comitea el censo. Si el
+   parser TRADUCE un campo del origen, guarda la palabra original en un campo
+   propio y declara lo que la traducción escribe en `CAMPOS_TRADUCIDOS`
+   (`src/scraper/vocabulary-census.ts`): si no, el censo deja de vigilar al
+   origen y avisa de lo nuestro.
 5. Declara su cadencia en `snapshot-cadence.ts`, o no se sabrá si deja de moverse.
 6. Si CI no alcanza la fuente, va a `scrape-ci-blocked.sh` **y** a best-effort.
    Best-effort sin ruta local de refresco es decadencia silenciosa.

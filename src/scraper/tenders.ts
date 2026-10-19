@@ -106,6 +106,19 @@ export const ESTADO_DE_PLACSP: Readonly<Record<string, TenderStatus>> = {
 }
 
 /**
+ * Todo lo que `estadoDeLicitacion` puede devolver. `check:vocabulary` lo lee
+ * para no tomar nuestra traducción por deriva del origen: una palabra de aquí
+ * que aparece en `tenders.tenders.status` la ha puesto este parser, y la de
+ * Gobierto se vigila en `sourceStatus` (src/scraper/vocabulary-census.ts).
+ */
+export const ESTADOS_DE_LICITACION_TRADUCIDOS: ReadonlySet<TenderStatus> = new Set<TenderStatus>([
+  ...Object.values(PLACSP_DE_LICITACION_GOBIERTO)
+    .filter((p): p is string => p !== null)
+    .map((p) => ESTADO_DE_PLACSP[p]),
+  'unknown',
+])
+
+/**
  * El estado de una licitación de Gobierto, traducido a lo que dice la
  * Plataforma. Una palabra que nadie ha cotejado, una mezcla o el blanco de
  * Gobierto dan el centinela: con el vocabulario corrido, una palabra nueva
