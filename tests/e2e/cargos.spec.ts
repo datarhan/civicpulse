@@ -329,6 +329,78 @@ test.describe('Cargos (/cargos)', () => {
     expect(nota).toMatch(/nómina/)
   })
 
+  // El cuadro del acta escribe para la Alcaldía 53.734,99 € de base, 5.460,49 €
+  // de antigüedad y 59.195,48 € de total, y la página publicaba el total como
+  // «lo fijado por cargo» junto a los 48.647,50 € del ISPA de 2024: una subida
+  // del 21,7 % donde la base subió un 11,4 %. Con la fila stubada, porque el
+  // fichero es curado y la antigüedad entra en él a mano: la aserción tiene
+  // que morder aunque el fichero publicado todavía no la lleve.
+  test('la antigüedad del alcalde se nombra, y el puente no la mezcla con la nómina', async ({
+    page,
+  }) => {
+    const dedic = JSON.parse(readFileSync('public/data/dedicaciones.json', 'utf8'))
+    const linea = dedic.source.amountQuotes.find((q: string) => /ALCALDE/.test(q))
+    expect(linea, 'el acta ya no escribe la línea del alcalde').toBeTruthy()
+    const fila = dedic.byOfficial.find((o: { slug: string }) => o.slug === 'robert-raga-gadea')
+    fila.antiguedadEuros = 5460.49
+    fila.antiguedadQuote = linea
+    await page.route('**/data/dedicaciones.json', (route) =>
+      route.fulfill({ contentType: 'application/json', body: JSON.stringify(dedic) }),
+    )
+    await page.goto('/cargos', { waitUntil: 'domcontentloaded' })
+    const puente = page.locator('[data-puente-alcalde]')
+    await expect(puente).toContainText('5.460,49', { timeout: 8000 })
+    const texto = (await puente.innerText()).replace(/\s+/g, ' ')
+    expect(texto).toMatch(/53\.734,99/)
+    expect(texto).toMatch(/59\.195,48/)
+    expect(texto).toMatch(/48\.647,50/)
+    expect(texto).toMatch(/antigüedad/)
+    // Dice por qué no se comparan las dos cifras de frente.
+    expect(texto).toMatch(/sin desglose/)
+    // La nota del cuadro ya no llama «fijado por cargo» a un total con antigüedad.
+    const nota = page.locator('[data-nota-fijado]')
+    await expect(nota).toContainText('5.460,49')
+    expect(await nota.innerText()).not.toMatch(/fijado por cargo/)
+    // Y la tarjeta del alcalde lo dice junto a su cifra.
+    const tarjeta = page
+      .locator('.cp-card')
+      .filter({ has: page.locator('a[href="/cargos/robert-raga-gadea"]') })
+      .first()
+    await expect(tarjeta.locator('[data-retribucion="fijada"]')).toContainText('5.460,49')
+  })
+
+  test('sin la antigüedad en el fichero, la página no la inventa', async ({ page }) => {
+    await page.goto('/cargos', { waitUntil: 'domcontentloaded' })
+    const puente = page.locator('[data-puente-alcalde]')
+    await expect(puente).toContainText('48.647,50', { timeout: 8000 })
+    const fila = JSON.parse(readFileSync('public/data/dedicaciones.json', 'utf8')).byOfficial.find(
+      (o: { slug: string }) => o.slug === 'robert-raga-gadea',
+    )
+    if (fila.antiguedadEuros === undefined) {
+      expect(await puente.innerText()).not.toMatch(/antigüedad/)
+    } else {
+      expect(await puente.innerText()).toMatch(/antigüedad/)
+    }
+    // Ni en un caso ni en otro llama «fijado por cargo» a los totales del cuadro.
+    expect(await page.locator('[data-nota-fijado]').innerText()).not.toMatch(/fijado por cargo/)
+  })
+
+  // «Los 21 percibieron… en 2024» contaba el padrón de HOY, que incluye a
+  // quien entró en 2025 y deja fuera a quien cobró en 2024 y se fue.
+  test('la cabecera cuenta a los electos del año del ISPA, no el padrón de hoy', async ({
+    page,
+  }) => {
+    const ispa = JSON.parse(readFileSync('public/data/ispa.json', 'utf8'))
+    const y = ispa.years.find((x: { year: number }) => x.year === ispa.latestYear)
+    const n = y.concejales.length + (y.alcalde ? 1 : 0)
+    await page.goto('/cargos', { waitUntil: 'domcontentloaded' })
+    const frase = CATALOGUE.es['cargos.hero.coste']
+      .split('{importe}')[0]
+      .replace('{year}', String(y.year))
+      .replace('{n}', String(n))
+    await expect(page.locator('.cp-cargos-hero')).toContainText(frase, { timeout: 8000 })
+  })
+
   test('the missing 2023 is drawn as the full width of the hole it leaves', async ({ page }) => {
     // Measured, not asserted about text. The band that marks the missing 2020
     // entrega on /eficiencia shipped covering exactly half the hole it marks —
@@ -475,6 +547,35 @@ test.describe('Cargos (/cargos)', () => {
       await expect(tarjeta).toContainText(CATALOGUE.es[`quejas.reloj.${c!.r.motivo}.corto`])
       expect(await tarjeta.innerText()).not.toMatch(/[✓⏳⚠]\s*\d/)
     }
+  })
+
+  // «Puntos en pleno 0» y «Sin promesas documentadas» junto al nombre de una
+  // persona, mientras los ficheros cargaban o si fallaban: un cero que quería
+  // decir «todavía no lo sé».
+  test('la ficha no pinta un cero mientras sus ficheros cargan, ni si fallan', async ({ page }) => {
+    let soltar: () => void = () => {}
+    const espera = new Promise<void>((r) => (soltar = r))
+    await page.route('**/data/plenos-agendas.json', async (route) => {
+      await espera
+      await route.continue()
+    })
+    await page.route('**/data/promises.json', (route) => route.fulfill({ status: 500, body: '' }))
+    await page.goto('/cargos/robert-raga-gadea', { waitUntil: 'domcontentloaded' })
+    const cifra = (rotulo: string) =>
+      page.locator('.cp-cifras > div').filter({ hasText: rotulo }).first()
+    const puntos = cifra(CATALOGUE.es['cargos.detalle.stat.agendaItems'])
+    const promesas = cifra(CATALOGUE.es['cargos.detalle.stat.partyPromises'])
+    await expect(puntos).toHaveAttribute('data-estado', 'cargando', { timeout: 8000 })
+    await expect(promesas).toHaveAttribute('data-estado', 'no-disponible')
+    for (const c of [puntos, promesas]) expect(await c.innerText()).not.toMatch(/\b0\b/)
+    const cuerpo = page.locator('body')
+    await expect(cuerpo).toContainText(CATALOGUE.es['cargos.detalle.promesas.noDisponible'])
+    await expect(cuerpo).not.toContainText(CATALOGUE.es['cargos.detalle.promesas.empty'])
+    await expect(cuerpo).not.toContainText(CATALOGUE.es['cargos.detalle.agenda.empty'])
+    // Y cuando el fichero llega, la cifra es la suya.
+    soltar()
+    await expect(puntos).toHaveAttribute('data-estado', 'listo', { timeout: 8000 })
+    expect(await puntos.innerText()).toMatch(/\d/)
   })
 
   test('clicking a councillor link navigates into the detail view', async ({ page }) => {
