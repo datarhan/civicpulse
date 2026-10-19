@@ -134,9 +134,14 @@ test.describe('Ficha de servicio (/eficiencia/:id)', () => {
     const declarados = (i.serie ?? []).filter((s) => s.estado === 'declarado')
     const ultimo = declarados[declarados.length - 1]
     expect(typeof ultimo.denominador, 'la serie no publica su denominador').toBe('number')
-    const exacta = ultimo.denominador!.toLocaleString('es-ES', { maximumFractionDigits: 0 })
+    // Con sus decimales: 11.059,41 t es la cifra que se repite, no 11.059.
+    const exacta = ultimo.denominador!.toLocaleString('es-ES', { maximumFractionDigits: 2 })
     const repes = i.declaracion.denominador.repeticionesFinales
-    await expect(page.getByText(exacta, { exact: true })).toHaveCount(repes)
+    // Dentro de la rejilla: con los decimales, la ecuación de arriba publica
+    // también 11.059,41 y el recuento de la página entera daba uno de más.
+    await expect(
+      page.locator('[data-rejilla-entregas]').getByText(exacta, { exact: true }),
+    ).toHaveCount(repes)
 
     // La entrega que falta se marca, y su «—» va sobre una pastilla sólida:
     // contraste.spec.ts se salta cualquier elemento con background-image, así
@@ -145,6 +150,58 @@ test.describe('Ficha de servicio (/eficiencia/:id)', () => {
     for (const a of noPresentadas) {
       await expect(page.getByText(String(a), { exact: true }).first()).toBeVisible()
     }
+  })
+
+  test('ninguna cifra de la rejilla de entregas se sale de su casilla', async ({
+    page,
+  }, testInfo) => {
+    // A 375 px las columnas se quedaban en 52 px y «1.990.000» se montaba sobre
+    // «1.657.441» en /eficiencia/a1532-150p-coste-unitario: la cifra que la
+    // ficha afirma repetida, ilegible. Ninguna prueba lo veía porque todas
+    // leen texto, y el texto estaba entero. Se mide la ficha con la cantidad
+    // más larga, que es la que decide si la columna da de sí.
+    test.skip(Boolean(testInfo.project.use.isMobile), 'setViewportSize no vale en emulación móvil')
+    const larga = (i: Indicador) =>
+      Math.max(
+        0,
+        ...(i.serie ?? []).map((s) =>
+          typeof s.denominador === 'number'
+            ? s.denominador.toLocaleString('es-ES', { maximumFractionDigits: 2 }).length
+            : 0,
+        ),
+      )
+    const ancha = [...CON_RATIO].sort((a, b) => larga(b) - larga(a))[0]
+    let medidas = 0
+    for (const w of [1440, 1280, 1100, 760, 375, 320]) {
+      await page.setViewportSize({ width: w, height: 900 })
+      await page.goto(`/eficiencia/${ancha.id}`, { waitUntil: 'domcontentloaded' })
+      const rejilla = page.locator('[data-rejilla-entregas]')
+      await expect(rejilla).toBeVisible({ timeout: 8000 })
+      const m = await rejilla.evaluate((el) => {
+        const fuera: string[] = []
+        let n = 0
+        for (const c of el.children) {
+          const caja = c.getBoundingClientRect()
+          const rango = document.createRange()
+          rango.selectNodeContents(c)
+          const texto = rango.getBoundingClientRect()
+          if (!c.textContent?.trim()) continue
+          n += 1
+          if (texto.left < caja.left - 0.5 || texto.right > caja.right + 0.5) {
+            fuera.push(c.textContent.trim())
+          }
+        }
+        const caja = el.parentElement!
+        return { n, fuera, desliza: caja.scrollWidth > caja.clientWidth + 1 }
+      })
+      expect(m.fuera, `a ${w}px estas cifras se salen de su casilla`).toEqual([])
+      // Y dar sitio a la cifra no puede costar la rejilla entera en escritorio:
+      // a 1280 px, el ancho del proyecto, las once entregas se ven sin deslizar.
+      if (w >= 1280) expect(m.desliza, `a ${w}px la rejilla se desliza`).toBe(false)
+      medidas += m.n
+    }
+    // Midió algo: sin casillas, la lista vacía de arriba es verde por no mirar.
+    expect(medidas).toBeGreaterThan(0)
   })
 
   test('publica contra quién se compara, con nombres', async ({ page }) => {

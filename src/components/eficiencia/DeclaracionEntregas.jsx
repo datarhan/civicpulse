@@ -3,8 +3,15 @@
  *
  * La cifra congelada estaba dicha en prosa —«la misma cifra desde 2019»— y una
  * frase así se lee y se olvida. Puesta en una rejilla, cinco casillas idénticas
- * en fila debajo de cinco casillas que cambian todos los años son la
+ * en la fila del denominador, bajo una fila de coste que se mueve, son la
  * demostración, no la afirmación.
+ *
+ * La frase que acompaña a la rejilla sale de la rejilla (`lecturaCongelacion`).
+ * Decía a mano «N casillas idénticas debajo de otras que cambian todos los
+ * años», y en las trece fichas congeladas el tramo anterior del denominador
+ * también repite alguna cifra: el lector que buscó esas «otras» en la misma
+ * fila —a1532 repite 1.657.441 de 2015 a 2018— la encontró falsa. Revisión
+ * lectora del 19-10-2026.
  *
  * TRES AUSENCIAS, TRES TRATAMIENTOS. Hasta agosto de 2026 había dos casillas y
  * una de ellas mentía por agregación: `falta` juntaba «el ayuntamiento rindió la
@@ -31,6 +38,8 @@
  *   sería una casilla que ninguna pasada de contraste mira: verde por no
  *   ejecutarse, que es el defecto que esta casa lleva años pagando.
  */
+import { useId } from 'react'
+
 const HATCH = 'repeating-linear-gradient(135deg, var(--warn-soft) 0 4px, var(--paper) 4px 8px)'
 
 function Casilla({ children, tono, primera, ultima }) {
@@ -39,6 +48,9 @@ function Casilla({ children, tono, primera, ultima }) {
   } ${primera ? 'var(--r-input)' : 0}`
   const base = {
     height: 22,
+    minWidth: 52,
+    padding: '0 2px',
+    boxSizing: 'border-box',
     display: 'grid',
     placeItems: 'center',
     borderRadius: radio,
@@ -55,7 +67,7 @@ function Casilla({ children, tono, primera, ultima }) {
           style={{
             background: 'var(--paper)',
             color: 'var(--warn-ink)',
-            padding: '0 4px',
+            padding: '0 2px',
             borderRadius: 'var(--r-input)',
           }}
         >
@@ -102,8 +114,83 @@ function Casilla({ children, tono, primera, ultima }) {
  * afirmación de esta ficha es justamente que es la MISMA cifra. Del coste, en
  * cambio, sólo hace falta ver que se mueve.
  */
-/** La cantidad, entera y sin abreviar. Es la cifra que la ficha afirma repetida. */
-const exacto = (v) => v.toLocaleString('es-ES', { maximumFractionDigits: 0 })
+/**
+ * La cantidad, entera y sin abreviar. Es la cifra que la ficha afirma repetida.
+ *
+ * Con sus decimales: redondeaba a entero, y 0,01 m² —el valor que a163 declara
+ * en 2014 y 2015— salía como «0», un centinela pintado como cifra; las
+ * 11.059,41 t que se repiten «hasta el segundo decimal» salían sin ellos.
+ */
+const exacto = (v) => v.toLocaleString('es-ES', { maximumFractionDigits: 2 })
+
+const mismaCifra = (a, b) => a.toFixed(4) === b.toFixed(4)
+
+/**
+ * Lo que la fila del denominador enseña, dicho con sus cifras.
+ *
+ * Recibe las casillas que la rejilla pinta CON cifra, en orden, y las parte en
+ * tramos de cifra repetida. La última es la congelada; las de antes son lo que
+ * el lector ve a su izquierda, y la frase tiene que decir lo que hay ahí —si
+ * también repiten o si cambian en cada entrega—, no suponerlo. Del coste
+ * mira sólo las entregas del tramo final: es la fila de encima de él.
+ */
+export function lecturaCongelacion(casillas) {
+  const tramos = []
+  for (const c of casillas) {
+    const ultimo = tramos.at(-1)
+    if (ultimo && mismaCifra(ultimo.valor, c.valor)) ultimo.casillas.push(c)
+    else tramos.push({ valor: c.valor, casillas: [c] })
+  }
+  const resumen = (t) => ({
+    valor: t.valor,
+    n: t.casillas.length,
+    desde: t.casillas[0].anio,
+    hasta: t.casillas.at(-1).anio,
+  })
+  const final = tramos.at(-1)
+  if (!final) return null
+  const costes = final.casillas.map((c) => c.coste).filter((v) => typeof v === 'number')
+  return {
+    final: resumen(final),
+    casillasAntes: casillas.length - final.casillas.length,
+    repetidasAntes: tramos
+      .slice(0, -1)
+      .filter((t) => t.casillas.length >= 2)
+      .map(resumen),
+    costesDeclarados: costes.length,
+    costesDistintos: new Set(costes.map((v) => v.toFixed(2))).size,
+  }
+}
+
+function FraseCongelacion({ lectura, rotulo }) {
+  const { final, repetidasAntes, casillasAntes, costesDeclarados, costesDistintos } = lectura
+  // Sin coste declarado en el tramo, «toma 0 valores distintos» sería un cero
+  // que no se midió: lo que pasa es que la casilla no trae cifra.
+  const coste =
+    costesDeclarados === 0
+      ? 'el coste, en la fila de encima, no viene declarado en ninguna'
+      : costesDeclarados < final.n
+        ? `el coste, en la fila de encima, viene declarado en ${costesDeclarados} de ellas y toma ${costesDistintos} ${costesDistintos === 1 ? 'valor' : 'valores distintos'}`
+        : costesDistintos === final.n
+          ? 'el coste, en la fila de encima, cambia en cada una'
+          : costesDistintos === 1
+            ? 'el coste, en la fila de encima, también repite la misma cifra'
+            : `el coste, en la fila de encima, toma ${costesDistintos} valores distintos en esas ${final.n}`
+  const enumera = (xs) =>
+    xs.length < 2 ? xs.join('') : `${xs.slice(0, -1).join(', ')} y ${xs.at(-1)}`
+  const tramo = (t) => `${exacto(t.valor)} en ${t.n} entregas (${t.desde}–${t.hasta})`
+  return (
+    <span data-congelacion="">
+      En la fila «{rotulo}», la cifra es la misma en las últimas {final.n} entregas:{' '}
+      {exacto(final.valor)}, de {final.desde} a {final.hasta}, mientras {coste}.{' '}
+      {repetidasAntes.length > 0
+        ? `No es la primera vez: antes repitió ${enumera(repetidasAntes.map(tramo))}. Sólo el último tramo va marcado porque es la cifra con la que hoy se publica el coste unitario.`
+        : casillasAntes > 0
+          ? `Antes de ${final.desde} la cifra cambió en cada entrega.`
+          : 'Es la misma desde la primera entrega de la rejilla.'}{' '}
+    </span>
+  )
+}
 
 const compacto = (v) =>
   v >= 1e6
@@ -133,6 +220,7 @@ function Muestra({ estilo, children }) {
 }
 
 export function DeclaracionEntregas({ indicador, entregasPublicadas = [], noPresentadas = [] }) {
+  const tituloId = useId()
   const i = indicador
   const anios = entregasPublicadas.length
     ? [...entregasPublicadas].sort((a, b) => a - b)
@@ -174,6 +262,18 @@ export function DeclaracionEntregas({ indicador, entregasPublicadas = [], noPres
     (a) => desenlace(a, 'numerador') === 'declarado' || desenlace(a, 'denominador') === 'declarado',
   ).length
 
+  const congelacion = congeladaDesde
+    ? lecturaCongelacion(
+        anios
+          .filter((a) => desenlace(a, 'denominador') === 'declarado')
+          .map((a) => ({
+            anio: a,
+            valor: porAnio.get(a).denominador,
+            coste: porAnio.get(a).numerador,
+          })),
+      )
+    : null
+
   const fila = (clave, rotulo, formato, tonoDe) => (
     <>
       <span style={{ fontSize: 'var(--fs-micro)', color: 'var(--ink70)' }}>{rotulo}</span>
@@ -210,6 +310,7 @@ export function DeclaracionEntregas({ indicador, entregasPublicadas = [], noPres
         }}
       >
         <span
+          id={tituloId}
           className="mono"
           style={{
             fontSize: 'var(--fs-micro)',
@@ -227,15 +328,40 @@ export function DeclaracionEntregas({ indicador, entregasPublicadas = [], noPres
 
       {/* overflowX explícito: `.cp-scroll-x` de index.css sólo enciende por
           debajo de 720px, así que en escritorio esta rejilla empujaría la
-          página igual que hizo la tabla del libro. */}
-      <div style={{ marginTop: 12, overflowX: 'auto' }}>
+          página igual que hizo la tabla del libro.
+
+          Cada columna mide al menos lo que su cifra más ancha. Con
+          `minmax(52px, 1fr)` y un ancho mínimo calculado a 56 px por entrega,
+          a 375 px las casillas se quedaban en 52 y «1.990.000» se montaba
+          sobre «1.657.441»: la cifra que la ficha afirma repetida, ilegible.
+          `max-content` deja que la rejilla crezca y que sea el contenedor el
+          que se desplace; y como entonces se desplaza, es una región con nombre
+          que entra en el orden del teclado (axe `scrollable-region-focusable`,
+          como `Deslizable`).
+
+          A 1280 px las once columnas tienen que caber sin deslizar, y el
+          margen es de píxeles: la casilla más ancha es «no rindió», con su
+          pastilla y su borde. En el Mac cabía con 3 px de holgura por lado y
+          la CI —Chromium en Linux, que redondea el avance de cada glifo— la
+          desplazaba. Por eso la holgura es de 2 px, la pastilla de 2 px, y
+          la columna del rótulo mide lo que su rótulo (`fit-content`, hasta
+          92 px) en vez de 92 fijos: «coste» y «m²» devuelven ~40 px a las
+          entregas. */}
+      <div
+        role="region"
+        aria-labelledby={tituloId}
+        tabIndex={0}
+        style={{ marginTop: 12, overflowX: 'auto' }}
+      >
         <div
+          data-rejilla-entregas=""
           style={{
             display: 'grid',
-            gridTemplateColumns: `92px repeat(${anios.length}, minmax(52px, 1fr))`,
+            gridTemplateColumns: `fit-content(92px) repeat(${anios.length}, minmax(max-content, 1fr))`,
             gap: 4,
             alignItems: 'center',
-            minWidth: 92 + anios.length * 56,
+            width: 'max-content',
+            minWidth: '100%',
           }}
         >
           <span className="mono" style={{ fontSize: 'var(--fs-micro)', color: 'var(--ink50)' }}>
@@ -316,18 +442,13 @@ export function DeclaracionEntregas({ indicador, entregasPublicadas = [], noPres
           textWrap: 'pretty',
         }}
       >
-        {congeladaDesde && (
-          <>
-            {i.declaracion.denominador.repeticionesFinales} casillas idénticas debajo de otras que
-            cambian todos los años: eso es el hallazgo, y no hace falta afirmarlo.{' '}
-          </>
-        )}
+        {congelacion && <FraseCongelacion lectura={congelacion} rotulo={i.divisor.singular} />}
         {sinRendir.length > 0 && sinDeclarar > 0 && (
           <>
             <strong>
               {sinDeclarar === 1
                 ? `${anios.find((a) => desenlace(a) === 'no-declarado')} y ${sinRendir.join(', ')} son ausencias distintas`
-                : 'las ausencias de esta rejilla no son todas iguales'}
+                : 'Las ausencias de esta rejilla no son todas iguales'}
             </strong>
             {' — '}
             en {sinDeclarar === 1 ? aniosSinDeclarar[0] : 'unas entregas'} el ayuntamiento rindió la
