@@ -164,14 +164,18 @@ export function lecturaCongelacion(casillas) {
 
 function FraseCongelacion({ lectura, rotulo }) {
   const { final, repetidasAntes, casillasAntes, costesDeclarados, costesDistintos } = lectura
+  // Sin coste declarado en el tramo, «toma 0 valores distintos» sería un cero
+  // que no se midió: lo que pasa es que la casilla no trae cifra.
   const coste =
-    costesDeclarados < final.n
-      ? `el coste, en la fila de encima, viene declarado en ${costesDeclarados} de ellas y toma ${costesDistintos} ${costesDistintos === 1 ? 'valor' : 'valores distintos'}`
-      : costesDistintos === final.n
-        ? 'el coste, en la fila de encima, cambia en cada una'
-        : costesDistintos === 1
-          ? 'el coste, en la fila de encima, también repite la misma cifra'
-          : `el coste, en la fila de encima, toma ${costesDistintos} valores distintos en esas ${final.n}`
+    costesDeclarados === 0
+      ? 'el coste, en la fila de encima, no viene declarado en ninguna'
+      : costesDeclarados < final.n
+        ? `el coste, en la fila de encima, viene declarado en ${costesDeclarados} de ellas y toma ${costesDistintos} ${costesDistintos === 1 ? 'valor' : 'valores distintos'}`
+        : costesDistintos === final.n
+          ? 'el coste, en la fila de encima, cambia en cada una'
+          : costesDistintos === 1
+            ? 'el coste, en la fila de encima, también repite la misma cifra'
+            : `el coste, en la fila de encima, toma ${costesDistintos} valores distintos en esas ${final.n}`
   const enumera = (xs) =>
     xs.length < 2 ? xs.join('') : `${xs.slice(0, -1).join(', ')} y ${xs.at(-1)}`
   const tramo = (t) => `${exacto(t.valor)} en ${t.n} entregas (${t.desde}–${t.hasta})`

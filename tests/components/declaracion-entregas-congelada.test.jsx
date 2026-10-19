@@ -140,6 +140,14 @@ describe('DeclaracionEntregas — la frase de la cifra repetida sale del dato', 
     expect(texto).toMatch(/toma 3 valores distintos en esas 5/)
   })
 
+  it('si el coste no viene declarado en el tramo, no lo cuenta como cero valores', () => {
+    const i = congeladas.find((x) => x.id === 'a1532-150p-coste-unitario')
+    const serie = i.serie.map((p) => (p.anio >= 2019 ? { ...p, numerador: null } : p))
+    const texto = parrafo({ ...i, serie })
+    expect(texto).not.toMatch(/0 valores/)
+    expect(texto).toMatch(/el coste, en la fila de encima, no viene declarado en ninguna/)
+  })
+
   it('la cantidad se pinta con sus decimales: 0,01 no es «0»', () => {
     // a163 declara 0,01 m² en 2014 y 2015. `exacto` redondeaba a entero y la
     // casilla decía «0»: un centinela publicado como valor, y además la
