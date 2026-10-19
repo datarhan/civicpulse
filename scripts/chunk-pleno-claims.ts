@@ -26,7 +26,7 @@ import {
   groupItemsByPleno,
   type VerifiedSnapshot,
 } from '../src/scraper/pleno-claims-chunks'
-import { gateItemsForPublic } from '../src/scraper/claim-public-gate'
+import { gateItemsForPublic, repartirRetenidas } from '../src/scraper/claim-public-gate'
 import { classifyClaimProvenancePreparado } from '../src/scraper/claim-provenance'
 import { motivoDeRetirada, type MotivoDeRetirada } from '../src/scraper/declaracion-retirada'
 import { prepararHeno, type HenoPreparado } from '../src/scraper/quote-match'
@@ -203,15 +203,21 @@ export function rewriteChunksFromMonolith(opts: { dryRun?: boolean } = {}): {
     )
   }
   const items = gateItemsForPublic(crudos, { sinProcedencia })
-  // Lo que la puerta se lleva, contado por tipo antes de perderlo de vista. Un
-  // tipo retenido entero desaparecería de la tabla de cobertura y el lector
-  // concluiría que no lo extraemos: la ausencia hay que publicarla, no omitirla.
-  const servidos = new Set(items.map((it) => it.claim?.id))
-  const retenidas: Record<string, number> = {}
-  for (const it of crudos) {
-    if (servidos.has(it.claim?.id)) continue
-    const t = it.claim?.type
-    if (typeof t === 'string') retenidas[t] = (retenidas[t] ?? 0) + 1
+  // Lo que la puerta se lleva, contado por tipo y por motivo antes de perderlo
+  // de vista. Un tipo retenido entero desaparecería de la tabla de cobertura y
+  // el lector concluiría que no lo extraemos: la ausencia hay que publicarla,
+  // no omitirla. Y el motivo lo da la misma función que decide ocultar.
+  const { porTipo: retenidas, porMotivo: retenidasPorMotivo } = repartirRetenidas(crudos, {
+    sinProcedencia,
+  })
+  // Las dos cuentas de lo retenido y la de lo servido tienen que cuadrar: si la
+  // puerta y el reparto discreparan, la página publicaría motivos de otras filas.
+  const nRetenidas = Object.values(retenidasPorMotivo).reduce((s, n) => s + n, 0)
+  if (nRetenidas !== crudos.length - items.length) {
+    throw new Error(
+      `[chunk-claims] el reparto por motivo cuenta ${nRetenidas} retenidas y la puerta ` +
+        `retiene ${crudos.length - items.length}: no cuadran, no se escribe nada.`,
+    )
   }
   const grouped = groupItemsByPleno(items)
   const generatedAt = new Date().toISOString()
@@ -221,6 +227,7 @@ export function rewriteChunksFromMonolith(opts: { dryRun?: boolean } = {}): {
     retenidas,
     sinProcedencia.size,
     retiradas,
+    retenidasPorMotivo,
   )
 
   // Track the chunks we're about to write so we can prune stale ones.

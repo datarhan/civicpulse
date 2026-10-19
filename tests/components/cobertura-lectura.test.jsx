@@ -100,8 +100,10 @@ describe('/laboratorio/cobertura · por qué retiene la puerta, contado', () => 
     pintar()
     const tarjeta = await tarjetaDelUniverso()
     expect(tarjeta.textContent).not.toMatch(/dos motivos/)
+    // Las líneas de los motivos, no el párrafo que las contiene (que lo lleva todo).
     const items = within(tarjeta)
       .getAllByRole('listitem')
+      .filter((li) => li.querySelector('li') === null)
       .map((li) => li.textContent)
     let evaluados = 0
     for (const motivo of MOTIVOS_DE_RETENCION) {

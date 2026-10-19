@@ -3,7 +3,9 @@ import { Card, Pill, SectionHead } from '../components/Primitives'
 import DataAsOf from '../components/DataAsOf'
 import { usePlenoClaimsManifest, CLAIM_TYPE_LABEL } from '../hooks/usePlenoClaims'
 import { esMarcaDePasada } from '../scraper/claim-verdicts'
-import { useT } from '../i18n'
+import { MOTIVOS_DE_RETENCION, MOTIVO_DE_RETENCION_ETIQUETA } from '../scraper/claim-public-gate'
+import { diaDeLaSede } from '../scraper/queja-router'
+import { rotuloDe, useT } from '../i18n'
 import { useSolicitudesAcceso } from '../hooks/useSolicitudesAcceso'
 import { CLASES_PEDIBLES, CLASE_ETIQUETA } from '../scraper/clase-documental'
 // La etiqueta y el tono de cada estado viven con el enum, tipados: aquí eran
@@ -92,6 +94,9 @@ function Barra({ conCorpus, total }) {
  */
 const RELLENO = 6
 
+/** Una cifra en el texto corrido, con el separador de miles de la página. */
+const fmt = (n) => n.toLocaleString('es-ES')
+
 function TablaCobertura({ titulo, filas, etiqueta, columna }) {
   const orden = useMemo(() => [...filas].sort((a, b) => b[1].total - a[1].total), [filas])
   const th = { padding: `6px ${RELLENO}px`, fontWeight: 500, textAlign: 'right' }
@@ -147,8 +152,15 @@ function TablaCobertura({ titulo, filas, etiqueta, columna }) {
 export default function Cobertura() {
   const t = useT()
   const manifest = usePlenoClaimsManifest()
-  const { data: solicitudes } = useSolicitudesAcceso()
-  const hoy = new Date().toISOString().slice(0, 10)
+  const registro = useSolicitudesAcceso()
+  // `null` mientras carga o si no se pudo leer: un registro que no se ha leído
+  // no dice «sin pedir», dice que no consta. Un 404 sí es el registro vacío
+  // (el hook lo resuelve a `{ items: [] }`), y ahí «sin pedir» es cierto.
+  const solicitudesLeidas =
+    !registro.loading && !registro.error ? (registro.data?.items ?? []) : null
+  // El día de la sede, no el de UTC: entre las 22:00 y las 24:00 de Madrid, el
+  // de UTC es ayer, y un plazo vencido ese día se pintaba «en plazo».
+  const hoy = diaDeLaSede(new Date().toISOString())
   const totals = manifest.data?.totals
   const cob = totals?.cobertura
   // `null` cuando el manifiesto no trae el cruce: no se ha contado, y un `?? {}`
@@ -161,6 +173,16 @@ export default function Cobertura() {
     () => Object.entries(totals?.retenidas ?? {}).sort((a, b) => b[1] - a[1]),
     [totals],
   )
+
+  // Y por qué. El orden es el del enum, que es el de la puerta; un motivo a
+  // cero no ocupa línea. `null` si el manifiesto no trae el reparto: entonces
+  // se dice que no consta, en vez de recitar unos motivos que no se han contado.
+  const porMotivo = useMemo(() => {
+    const r = totals?.retenidasPorMotivo
+    if (!r) return null
+    const filas = MOTIVOS_DE_RETENCION.map((m) => [m, r[m] ?? 0]).filter(([, n]) => n > 0)
+    return { filas, total: filas.reduce((a, [, n]) => a + n, 0) }
+  }, [totals])
 
   // Cada casilla, del manifiesto. «Sin corpus» salía por resta y se llevaba
   // las filas de las que no consta qué se consultó.
@@ -196,6 +218,8 @@ export default function Cobertura() {
   }
 
   const pct = resumen.total > 0 ? (100 * resumen.conCorpus) / resumen.total : 0
+  // Ausente en un manifiesto anterior al 19-10-2026: entonces no consta.
+  const pasadas = cob.pasadas ?? null
 
   return (
     <>
@@ -276,7 +300,7 @@ export default function Cobertura() {
         titulo="Por tema"
         columna="Tema"
         filas={Object.entries(cob.porTema)}
-        etiqueta={(k) => k}
+        etiqueta={(k) => rotuloDe(t, `declaraciones.tema.${k}`, k)}
       />
 
       <Card style={{ marginTop: 12 }}>
@@ -293,7 +317,7 @@ export default function Cobertura() {
             .sort((a, b) => b[1] - a[1])
             .map(([nombre, n]) => (
               <Pill key={nombre} tone="neutral" size="xs">
-                {nombre} <span className="mono">{n}</span>
+                {rotuloDe(t, `ledger.corpus.${nombre}`, nombre)} <span className="mono">{n}</span>
               </Pill>
             ))}
         </div>
@@ -314,21 +338,59 @@ export default function Cobertura() {
           Pasadas de revisión (no son fuentes)
         </h4>
         <p style={{ color: 'var(--ink70)', fontSize: 'var(--fs-meta)', margin: '0 0 8px' }}>
-          Dicen cómo se llegó al veredicto, no contra qué se comprobó. No suman evidencia. Cuando
-          una de ellas rehízo el veredicto dejando su marca en lugar de la lista de lo consultado,
-          la declaración cuenta en «no consta» y no en «sin corpus»: que no sepamos qué se miró no
-          quiere decir que no hubiera con qué.
+          Dicen cómo se llegó al veredicto, no contra qué se comprobó, y no suman evidencia. Cada
+          una cuenta las declaraciones que llevan su marca, esté en la lista de lo consultado o como
+          la pasada que dio el veredicto.
         </p>
-        <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8 }}>
-          {Object.entries(cob.corpus)
-            .filter(([nombre]) => esMarcaDePasada(nombre))
-            .sort((a, b) => b[1] - a[1])
-            .map(([nombre, n]) => (
-              <Pill key={nombre} tone="ghost" size="xs">
-                {nombre} <span className="mono">{n}</span>
-              </Pill>
-            ))}
-        </div>
+        {/* Las píldoras leían `cob.corpus`, que sólo mira la lista de lo
+            consultado, y «no consta» mira también la pasada que dio el
+            veredicto: sumaban 563 al lado de 871 (19-10-2026). Ahora salen de
+            `cob.pasadas`, contado con la misma lectura de la fila. */}
+        {pasadas ? (
+          <>
+            <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8 }}>
+              {Object.entries(pasadas.porMarca)
+                .filter(([nombre]) => esMarcaDePasada(nombre))
+                .sort((a, b) => b[1].filas - a[1].filas)
+                .map(([nombre, p]) => (
+                  <Pill key={nombre} tone="ghost" size="xs">
+                    {nombre} <span className="mono">{fmt(p.filas)}</span>
+                  </Pill>
+                ))}
+            </div>
+            <p style={{ color: 'var(--ink70)', fontSize: 'var(--fs-meta)', margin: '8px 0 0' }}>
+              {resumen.noConsta > 0 ? (
+                <>
+                  De las <span className="mono">{fmt(resumen.noConsta)}</span> declaraciones de «no
+                  consta», <span className="mono">{fmt(pasadas.noConsta)}</span> llevan alguna de
+                  estas marcas y ningún corpus: una pasada rehízo el veredicto y dejó su marca en
+                  lugar de la lista de lo consultado.{' '}
+                  {pasadas.noConstaSinMarca > 0 && (
+                    <>
+                      Las otras <span className="mono">{fmt(pasadas.noConstaSinMarca)}</span> anotan
+                      un nombre que no es ni un corpus ni una pasada declarada.{' '}
+                    </>
+                  )}
+                  Que no sepamos qué se miró no quiere decir que no hubiera con qué: por eso cuentan
+                  en «no consta» y no en «sin corpus».{' '}
+                </>
+              ) : (
+                <>Ninguna declaración cuenta en «no consta». </>
+              )}
+              {pasadas.filas - pasadas.noConsta > 0 && (
+                <>
+                  Hay además <span className="mono">{fmt(pasadas.filas - pasadas.noConsta)}</span>{' '}
+                  filas con marca que nombran también algún corpus, y cuentan en «con corpus».
+                </>
+              )}
+            </p>
+          </>
+        ) : (
+          <p style={{ color: 'var(--ink70)', fontSize: 'var(--fs-meta)', margin: 0 }}>
+            El manifiesto de declaraciones no trae las pasadas contadas por declaración: no consta
+            cuántas llevan cada marca.
+          </p>
+        )}
       </Card>
 
       {/*
@@ -342,15 +404,20 @@ export default function Cobertura() {
             pedido» con el registro vacío y todas las filas «Todavía no lo hemos
             pedido» (revisión lectora, 15-09-2026). */}
         <h3 style={{ fontSize: 'var(--fs-card)', margin: '0 0 8px' }}>
-          {tituloSolicitudes(
-            CLASES_PEDIBLES.map((clase) =>
-              estadoDeSolicitud(
-                (solicitudes?.items ?? []).find((x) => x.clase === clase) ?? null,
-                hoy,
-              ),
-            ),
-          )}
+          {solicitudesLeidas
+            ? tituloSolicitudes(
+                CLASES_PEDIBLES.map((clase) =>
+                  estadoDeSolicitud(solicitudesLeidas.find((x) => x.clase === clase) ?? null, hoy),
+                ),
+              )
+            : 'Lo que habría que pedir, y si se ha pedido'}
         </h3>
+        {registro.error && (
+          <p style={{ color: 'var(--warn-ink)', fontSize: 'var(--fs-meta)', marginTop: 0 }}>
+            No se ha podido leer el registro de solicitudes, así que desde aquí no consta si cada
+            documento se ha pedido. No es que no se haya pedido: es que no se ha podido leer.
+          </p>
+        )}
         <p style={{ color: 'var(--ink70)', fontSize: 'var(--fs-meta)', marginTop: 0 }}>
           Cuando una declaración depende de un documento municipal que no se publica, ningún corpus
           podrá comprobarla nunca. Eso no es un límite técnico: es un documento que se puede pedir.
@@ -385,8 +452,8 @@ export default function Cobertura() {
             </thead>
             <tbody>
               {CLASES_PEDIBLES.map((clase) => {
-                const sol = (solicitudes?.items ?? []).find((x) => x.clase === clase) ?? null
-                const estado = estadoDeSolicitud(sol, hoy)
+                const sol = solicitudesLeidas?.find((x) => x.clase === clase) ?? null
+                const estado = solicitudesLeidas ? estadoDeSolicitud(sol, hoy) : null
                 return (
                   <tr key={clase} style={{ borderTop: '1px solid var(--border)' }}>
                     <td style={{ padding: '8px 8px 8px 0' }}>{CLASE_ETIQUETA[clase]}</td>
@@ -400,19 +467,29 @@ export default function Cobertura() {
                       </td>
                     )}
                     <td style={{ padding: '8px 0 8px 8px' }}>
-                      <Pill tone={ESTADO_TONO[estado]} size="xs">
-                        {ESTADO_ETIQUETA[estado]}
-                      </Pill>
-                      <div
-                        style={{
-                          color: 'var(--ink70)',
-                          fontSize: 'var(--fs-micro)',
-                          marginTop: 4,
-                          maxWidth: '54ch',
-                        }}
-                      >
-                        {frasePublica(sol, hoy)}
-                      </div>
+                      {estado ? (
+                        <>
+                          <Pill tone={ESTADO_TONO[estado]} size="xs">
+                            {ESTADO_ETIQUETA[estado]}
+                          </Pill>
+                          <div
+                            style={{
+                              color: 'var(--ink70)',
+                              fontSize: 'var(--fs-micro)',
+                              marginTop: 4,
+                              maxWidth: '54ch',
+                            }}
+                          >
+                            {frasePublica(sol, hoy)}
+                          </div>
+                        </>
+                      ) : (
+                        // Sin registro leído no hay estado: ni «sin pedir» ni
+                        // ningún otro. Cargando, o no consta.
+                        <span style={{ color: 'var(--ink70)' }}>
+                          {registro.loading ? t('common.loading') : 'no consta'}
+                        </span>
+                      )}
                     </td>
                   </tr>
                 )
@@ -445,13 +522,37 @@ export default function Cobertura() {
         >
           <li>
             Son las declaraciones <strong style={{ color: 'var(--ink)' }}>publicadas</strong>. El
-            corpus interno lleva más, y la puerta editorial retiene por dos motivos distintos: una
-            acusación cuyo veredicto no nombra ningún corpus no se sirve, y una declaración cuyo
-            literal no consta en ninguna transcripción nuestra tampoco — de la primera no podemos
-            comprobar lo que dice, de la segunda no podemos enseñar que se dijera.{' '}
+            corpus interno lleva más: la puerta editorial sólo publica una acusación pública si un
+            dato la respalda, y no publica nada que no podamos enseñar que se dijo.{' '}
+            {/* Decía «retiene por dos motivos distintos» —una acusación cuyo
+                veredicto no nombra ningún corpus, y un literal que no consta en
+                ninguna transcripción— y no eran los que más pesaban: la mayoría
+                eran acusaciones opinativas y acusaciones de hecho que sí nombran
+                un corpus sin un dato detrás (19-10-2026). Ahora los motivos y sus
+                cifras salen del manifiesto, con la regla de la puerta. */}
+            {porMotivo ? (
+              porMotivo.total > 0 && (
+                <>
+                  Ahora mismo retiene <span className="mono">{fmt(porMotivo.total)}</span>:
+                  <ul style={{ margin: '4px 0', paddingLeft: '1.1em' }}>
+                    {porMotivo.filas.map(([motivo, n]) => (
+                      <li key={motivo}>
+                        <span className="mono">{fmt(n)}</span>{' '}
+                        {MOTIVO_DE_RETENCION_ETIQUETA[motivo]}
+                      </li>
+                    ))}
+                  </ul>
+                </>
+              )
+            ) : (
+              <>
+                El manifiesto de declaraciones no trae por qué se retiene cada una, así que aquí no
+                se dicen los motivos: no se han contado.{' '}
+              </>
+            )}
             {retenidas.length > 0 && (
               <>
-                Ahora mismo hay retenidas{' '}
+                Por tipo, hay retenidas{' '}
                 {retenidas.map(([tipo, n], i) => (
                   <span key={tipo}>
                     {i > 0 ? ' · ' : ''}
