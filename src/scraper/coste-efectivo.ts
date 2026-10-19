@@ -31,28 +31,16 @@
  */
 import * as XLSX from 'xlsx'
 
-/**
- * How the service is run, which decides what the cost figure even means.
- *
- * `otra` and `sin-clasificar` are NOT the same state and must never be folded.
- * `otra` is the source saying «Otro tipo de gestión (**)» — that is data, and
- * it can be any share of an entrega. `sin-clasificar` is this classifier
- * failing to recognise a string — that is a defect, and its share is what the
- * test ceiling is aimed at. Collapsing them would make the ceiling
- * unfalsifiable, which is failure mode 1 of docs/DATA_INTEGRITY.md.
- */
-export const MODOS_GESTION = [
-  'directa',
-  'concesion',
-  'mancomunada',
-  'consorciada',
-  'convenio',
-  'mixta',
-  'otra',
-  'sin-clasificar',
-  'no-se-presta',
-] as const
-export type ModoGestion = (typeof MODOS_GESTION)[number]
+import { clasificarGestion, type ModoGestion } from './modo-gestion'
+
+// El modo de gestión vive en su propio módulo, sin SheetJS, porque la página
+// también lo necesita. Se re-exporta para que quien lo importaba de aquí siga.
+export {
+  MODOS_GESTION,
+  clasificarGestion,
+  esGestionPorConcesion,
+  type ModoGestion,
+} from './modo-gestion'
 
 export interface UnidadFisica {
   atributo: string
@@ -75,49 +63,6 @@ export interface CesteRow {
    */
   costeTotal: number | null
   unidades: UnidadFisica[]
-}
-
-/** Lowercase and strip diacritics, so a re-encoded entrega cannot break matching. */
-function norm(s: string): string {
-  return (s ?? '')
-    .normalize('NFD')
-    .replace(/[\u0300-\u036f]/g, '')
-    .toLowerCase()
-    .trim()
-}
-
-/**
- * Map the ministry's CodGestion vocabulary onto the comparability classes.
- *
- * The 2021 Comunitat Valenciana entrega publishes fourteen distinct strings.
- * The grouping follows the ministry's own top-level word (directa / indirecta)
- * because that is what determines whether the council bears the cost:
- *
- *  - the four «Gestión directa por …» variants (entidad local, organismo
- *    autónomo, entidad pública empresarial, sociedad mercantil local) all mean
- *    the cost lands in the council's accounts → `directa`
- *  - the three «Gestión indirecta …» variants (concesión a riesgo y ventura,
- *    concierto, interesada) all mean it does not → `concesion`
- *  - anything carrying «+ otra forma de gestión (*)» is a hybrid: part of the
- *    cost sits elsewhere, which makes it exactly as uncomparable as a
- *    concession, so it joins `otra` and never enters a peer pool.
- */
-export function clasificarGestion(codGestion: string): ModoGestion {
-  const s = norm(codGestion)
-  if (!s) return 'sin-clasificar'
-  if (s.includes('no se presta')) return 'no-se-presta'
-  // Check the hybrid marker BEFORE the family words it is appended to.
-  if (s.includes('otra forma de gestion')) return 'otra'
-  if (s.includes('otro tipo de gestion')) return 'otra'
-  if (s.includes('indirecta')) return 'concesion'
-  if (s.includes('mancomunada') || s.includes('comarcal') || s.includes('diputacion')) {
-    return 'mancomunada'
-  }
-  if (s.includes('consorciada')) return 'consorciada'
-  if (s.includes('convenio')) return 'convenio'
-  if (s.includes('mixta')) return 'mixta'
-  if (s.includes('directa')) return 'directa'
-  return 'sin-clasificar'
 }
 
 /**

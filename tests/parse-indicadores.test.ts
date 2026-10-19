@@ -1,7 +1,11 @@
 import { describe, it, expect } from 'vitest'
 import { readFileSync } from 'node:fs'
 import { join } from 'node:path'
-import { parseCeselWorkbook } from '../src/scraper/coste-efectivo'
+import {
+  parseCeselWorkbook,
+  parseCeselInforme,
+  esGestionPorConcesion,
+} from '../src/scraper/coste-efectivo'
 import { SERVICIOS } from '../src/scraper/indicador-registry'
 import {
   construirIndicadores,
@@ -10,7 +14,12 @@ import {
   MIN_PARES,
   situacion,
   DIVERGENCIA_EXTREMA,
+  MOTIVOS_FUERA_DE_PARES,
+  motivoFueraDePares,
+  type Indicador,
+  type MotivoFueraDePares,
 } from '../src/scraper/indicadores'
+import { leerIndicador } from '../src/scraper/indicador-lectura'
 
 const FIXTURE = join(__dirname, 'fixtures', 'cesel_2021_cv_slice.xlsx')
 const CITA = 'https://www.hacienda.gob.es/cdi/power%20bi/cesel-2021.xlsx'
@@ -628,10 +637,17 @@ describe('scraper/indicadores · una concesión que declara, con datos reales de
     enConcesion.delete(CONCESION_QUE_DECLARA)
     const frase = agua.caveats.find((c) => /no declaran? (su )?coste|no rellenan/.test(c))
     expect(frase, 'sin frase que acote el grupo').toBeDefined()
-    // …y la frase cita los DOS recuentos, y el que resta cuadra con `pares.n`.
-    expect(frase).toContain(String(enConcesion.size))
-    expect(frase).toContain(String(agua.pares!.n))
-    expect(frase).toContain(String(enConcesion.size - agua.pares!.n))
+    // …y la frase cita el total y el grupo, y los recuentos de cada motivo
+    // suman lo que queda fuera. Antes se pedía que el RESTO apareciera tal
+    // cual, rotulado «no declaran su coste»: en este mismo fixture uno de esos
+    // diez trae dos costes distintos, y llamarlo «no declara» era falso.
+    expect(frase).toContain(`De los ${enConcesion.size} municipios`)
+    expect(frase).toContain(`contra los ${agua.pares!.n} restantes`)
+    const recuentos = [
+      ...frase!.matchAll(/(\d+) (?:no declaran? su coste|declaran? un coste|traen? dos costes)/g),
+    ].map((m) => Number(m[1]))
+    expect(recuentos.length).toBeGreaterThan(0)
+    expect(recuentos.reduce((a, b) => a + b, 0)).toBe(enConcesion.size - agua.pares!.n)
   })
 
   it('una concesión muda del mismo fixture sigue sin cociente y sin par', () => {
@@ -640,5 +656,138 @@ describe('scraper/indicadores · una concesión que declara, con datos reales de
     const rr = snap.indicadores.find((i) => i.id === 'a161-coste-unitario')!
     expect(rr.valor).toBeNull()
     expect(rr.pares).toBeNull()
+  })
+})
+
+// ── El grupo de las concesiones del agua, con la banda ENTERA de 2024 ──────
+// Lo publicado decía «De los 41 municipios comparables que también tienen este
+// servicio concedido, 11 no declaran su coste» en el agua y «de los 27, 5» en el
+// alcantarillado. Dos errores en la misma frase, medidos sobre la entrega:
+//
+//  - Paiporta (46186) SÍ declara coste —1 €— y lo que no declara es la red
+//    (0 m). Restar `n` del total metía en «no declaran su coste» a todo el que
+//    se quedaba fuera por cualquier motivo: diez y cuatro, no once y cinco.
+//  - Calp (03047) declara «Gestión indirecta por sociedad de economía mixta», y
+//    el clasificador la leía como concesión porque preguntaba por «indirecta»
+//    antes que por «mixta»: entraba en el grupo y movía el percentil.
+//
+// La fixture es el informe de comunidad de 2024 recortado a tres servicios
+// para la banda entera (scripts/build-cesel-agua-fixture.ts), con los valores
+// tal cual: los recuentos de abajo son los de la fuente.
+describe('scraper/indicadores · quién queda fuera del grupo de comparación (2024)', () => {
+  const FX_AGUA = join(__dirname, 'fixtures', 'cesel_ccaa17_2024_agua.xlsx')
+  const filas24 = parseCeselInforme(readFileSync(FX_AGUA), { anio: 2024 })
+  const miembros24 = [...new Set(filas24.map((r) => r.ine))].map((ine) => ({
+    ine,
+    nombre: filas24.find((r) => r.ine === ine)!.nombre,
+    poblacion: 0,
+  }))
+  const construir = (ine: string) =>
+    construirIndicadores({
+      municipio: {
+        ine,
+        nombre: filas24.find((r) => r.ine === ine)!.nombre,
+        filas: filas24.filter((r) => r.ine === ine),
+      },
+      pares: { conjunto: 'cv-15k-40k', anios: [2024], miembros: miembros24, filas: filas24 },
+      anioBase: 2024,
+      citaUrl: CITA,
+    })
+  const rr = construir('46214')
+  const agua = rr.indicadores.find((i) => i.id === 'a161-coste-unitario')!
+  const alcant = rr.indicadores.find((i) => i.id === 'a160-coste-unitario')!
+  const fraseGrupo = (i: Indicador) => i.caveats.find((c) => /^De los \d+ municipios/.test(c))
+
+  /** Por qué se queda fuera cada par del mismo modo, calculado de las celdas. */
+  const fuera = (programa: string) => {
+    const cuenta = Object.fromEntries(MOTIVOS_FUERA_DE_PARES.map((m) => [m, 0])) as Record<
+      MotivoFueraDePares,
+      number
+    >
+    for (const m of miembros24) {
+      if (m.ine === '46214') continue
+      const suyas = filas24.filter((f) => f.ine === m.ine)
+      const fila = suyas.find((f) => f.programa === programa)
+      if (fila?.modoGestion !== 'concesion') continue
+      const motivo = motivoFueraDePares(
+        resolverCoste(suyas, programa, 2024),
+        resolverUnidad(suyas, programa, 2024, SERVICIOS[programa].denominador),
+      )
+      if (motivo) cuenta[motivo] += 1
+    }
+    return cuenta
+  }
+
+  it('la evaluación vio la banda entera y las dos fichas tienen grupo', () => {
+    expect(new Set(filas24.map((r) => r.ine)).size).toBeGreaterThan(50)
+    expect(agua.pares).not.toBeNull()
+    expect(alcant.pares).not.toBeNull()
+  })
+
+  it('Paiporta declara coste y no red: no es «no declara su coste»', () => {
+    const paiporta = filas24.filter((f) => f.ine === '46186')
+    for (const programa of ['a161', 'a160']) {
+      const n = resolverCoste(paiporta, programa, 2024)
+      const d = resolverUnidad(paiporta, programa, 2024, SERVICIOS[programa].denominador)
+      expect(n.estado).toBe('declarado')
+      expect(d.estado).toBe('no-declarado')
+      expect(motivoFueraDePares(n, d)).toBe('sin-unidad')
+    }
+  })
+
+  it('cuenta cada motivo por separado, con los recuentos de la fuente', () => {
+    expect(fuera('a161')).toEqual({ 'sin-coste': 10, 'sin-unidad': 1, 'costes-rivales': 0 })
+    expect(fuera('a160')).toEqual({ 'sin-coste': 4, 'sin-unidad': 1, 'costes-rivales': 0 })
+  })
+
+  it('la frase dice cada motivo con su recuento, y suman el total', () => {
+    for (const [i, programa] of [
+      [agua, 'a161'],
+      [alcant, 'a160'],
+    ] as const) {
+      const f = fuera(programa)
+      const total = i.pares!.n + f['sin-coste'] + f['sin-unidad'] + f['costes-rivales']
+      const frase = fraseGrupo(i)
+      expect(frase, `${programa}: sin frase que acote el grupo`).toBeDefined()
+      expect(frase).toContain(`De los ${total} municipios`)
+      expect(frase).toContain(`${f['sin-coste']} no declaran su coste`)
+      expect(frase).toMatch(/1 declara un coste pero no una cifra utilizable de m de red/)
+      expect(frase).toContain(`contra los ${i.pares!.n} restantes`)
+    }
+    // Los publicados, para que el arreglo no se quede en la identidad.
+    expect(fraseGrupo(agua)).toContain('10 no declaran su coste')
+    expect(fraseGrupo(alcant)).toContain('4 no declaran su coste')
+  })
+
+  it('la sociedad de economía mixta no entra en el grupo de las concesiones', () => {
+    const calp = filas24.filter((f) => f.ine === '03047' && ['a161', 'a160'].includes(f.programa))
+    expect(calp.length).toBe(2)
+    for (const f of calp) {
+      expect(f.codGestionRaw).toBe('Gestión indirecta por sociedad de economía mixta')
+      expect(f.modoGestion).toBe('mixta')
+    }
+    for (const i of [agua, alcant]) {
+      expect(i.pares!.modoGestion).toBe('concesion')
+      expect(i.pares!.miembros.some((m) => m.ine === '03047')).toBe(false)
+    }
+    expect(agua.pares!.n).toBe(29)
+    expect(alcant.pares!.n).toBe(21)
+  })
+
+  it('la frase del concesionario y el recibo es de la concesión, no de un concierto', () => {
+    // Riba-roja: concesión de verdad, la frase va.
+    expect(esGestionPorConcesion(agua.codGestionRaw)).toBe(true)
+    expect(agua.caveats.some((c) => /concesionario/.test(c) && /recibo/.test(c))).toBe(true)
+    // Sant Joan d'Alacant declara la recogida de residuos «por concierto», con
+    // cifra: el ayuntamiento paga a una empresa por prestarlo, y decir que lo
+    // cobra un concesionario del recibo sería falso.
+    const sj = construir('03119').indicadores.find((i) => i.id === 'a1621-coste-unitario')!
+    expect(sj.codGestionRaw).toBe('Gestión indirecta por concierto')
+    expect(sj.modoGestion).toBe('concesion')
+    expect(sj.valor).not.toBeNull()
+    expect(esGestionPorConcesion(sj.codGestionRaw)).toBe(false)
+    expect(sj.caveats.some((c) => /concesionario/.test(c) || /recibo/.test(c))).toBe(false)
+    expect(leerIndicador(sj).que).not.toMatch(/recibo/)
+    expect(leerIndicador(agua).que).toMatch(/recibo/)
   })
 })

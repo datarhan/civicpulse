@@ -32,7 +32,13 @@
  *
  * Módulo puro: sin red, sin lectura de ficheros. Los CLIs le pasan los datos.
  */
-import { programaCe4CasaCon, type Ce4Row, type CesteRow, type ModoGestion } from './coste-efectivo'
+import {
+  esGestionPorConcesion,
+  programaCe4CasaCon,
+  type Ce4Row,
+  type CesteRow,
+  type ModoGestion,
+} from './coste-efectivo'
 import { crearPrng, semillaDesde } from './prng'
 import { SERVICIOS, type ServicioDef, type Divisor } from './indicador-registry'
 import { medirDeclaracionCongelada, MIN_ENTREGAS_CONGELADA } from './declaracion-congelada'
@@ -471,6 +477,64 @@ export function resolverUnidad(
   return { valor, estado: 'declarado', fuente }
 }
 
+/**
+ * Por qué un par del MISMO modo de gestión se queda fuera del grupo de
+ * comparación. Cada motivo se publica con su propio recuento.
+ *
+ *   sin-coste       la entrega no trae coste utilizable (vacío o a cero)
+ *   sin-unidad      trae coste, pero no la magnitud física con que dividirlo
+ *   costes-rivales  trae dos costes positivos distintos para el servicio
+ *
+ * Hasta el 2026-10-19 la ficha restaba el tamaño del grupo del de todos los
+ * pares del modo y llamaba al resto «no declaran su coste». En la entrega de
+ * 2024 Paiporta declara 1 € para el agua y el alcantarillado con 0 m de red, y
+ * la frase la contaba entre los que no declaran coste: 11 y 5 donde la fuente
+ * dice 10 y 4. Un resto no es un motivo; contado así, cualquier exclusión nueva
+ * se habría publicado con la etiqueta de la primera.
+ */
+export const MOTIVOS_FUERA_DE_PARES = ['sin-coste', 'sin-unidad', 'costes-rivales'] as const
+export type MotivoFueraDePares = (typeof MOTIVOS_FUERA_DE_PARES)[number]
+
+/** El motivo por el que un par no entra en el grupo, o `null` si entra. */
+export function motivoFueraDePares(
+  numerador: Magnitud,
+  denominador: Magnitud,
+): MotivoFueraDePares | null {
+  if (numerador.estado !== 'declarado') {
+    return numerador.motivo === 'filas-duplicadas' ? 'costes-rivales' : 'sin-coste'
+  }
+  if (denominador.estado !== 'declarado') return 'sin-unidad'
+  return null
+}
+
+/** «a», «a y b», «a, b y c». */
+function enumerar(partes: string[]): string {
+  if (partes.length <= 1) return partes.join('')
+  return `${partes.slice(0, -1).join(', ')} y ${partes[partes.length - 1]}`
+}
+
+/**
+ * Cada motivo de exclusión con su recuento, en palabras. Sin plural a ojo: «1
+ * declara», «10 no declaran».
+ */
+function frasesFueraDePares(fuera: Record<MotivoFueraDePares, number>, divisor: Divisor): string[] {
+  const partes: string[] = []
+  const k = fuera['sin-coste']
+  if (k) partes.push(`${k} no ${k === 1 ? 'declara' : 'declaran'} su coste`)
+  const u = fuera['sin-unidad']
+  if (u) {
+    partes.push(
+      `${u} ${u === 1 ? 'declara' : 'declaran'} un coste pero no una cifra utilizable de ` +
+        divisor.plural,
+    )
+  }
+  const r = fuera['costes-rivales']
+  if (r) {
+    partes.push(`${r} ${r === 1 ? 'trae' : 'traen'} dos costes distintos para el mismo servicio`)
+  }
+  return partes
+}
+
 function percentil(ordenados: number[], q: number): number {
   if (!ordenados.length) return 0
   const i = (ordenados.length - 1) * q
@@ -803,6 +867,13 @@ export function construirIndicadores(input: ConstruirInput): IndicadoresSnapshot
     // sus dos celdas. Comparar una gestión directa con una concesión es el
     // error de categoría que la trampa 1 describe.
     let resumen: ParesResumen | null = null
+    // Los pares del mismo modo que se quedan fuera, por motivo. Se cuentan en
+    // el MISMO bucle que decide quién entra, para que la frase que los nombra
+    // no pueda describir otro universo que el del percentil.
+    const fuera = Object.fromEntries(MOTIVOS_FUERA_DE_PARES.map((k) => [k, 0])) as Record<
+      MotivoFueraDePares,
+      number
+    >
     const puedeCompararse = valor !== null && MODOS_COMPARABLES.has(modoGestion)
     if (puedeCompararse) {
       // Comparar 2024 contra pares de 2021 sería un error de categoría; si no
@@ -815,7 +886,11 @@ export function construirIndicadores(input: ConstruirInput): IndicadoresSnapshot
         if (!fila || fila.modoGestion !== modoGestion) continue
         const n = resolverCoste(suyas, programa, anioBase)
         const d = resolverUnidad(suyas, programa, anioBase, def.denominador)
-        if (n.estado !== 'declarado' || d.estado !== 'declarado') continue
+        const motivo = motivoFueraDePares(n, d)
+        if (motivo) {
+          fuera[motivo] += 1
+          continue
+        }
         miembros.push({ ...m, valor: n.valor! / d.valor! })
       }
       if (miembros.length >= MIN_PARES) {
@@ -878,12 +953,23 @@ export function construirIndicadores(input: ConstruirInput): IndicadoresSnapshot
     // Derivadas del dato, no escritas a mano: los dos recuentos salen del
     // volcado en cada pase, así que no pueden quedarse viejos cuando el
     // ministerio publique otra entrega.
+    //
+    // La primera frase es de la CONCESIÓN, no de la clase `concesion`: la
+    // clase junta también el concierto y la gestión interesada para poder
+    // compararlos, y de un concierto —el ayuntamiento paga a una empresa por
+    // prestar el servicio— es falso que lo cobre un concesionario del recibo.
+    // Por eso se pregunta a la cadena del ministerio (`esGestionPorConcesion`).
+    const concesionPropia = esGestionPorConcesion(codGestionRaw)
     if (modoGestion === 'concesion' && valor !== null) {
       caveats.push(
-        'Este servicio está concedido: el coste que el ayuntamiento declara no sale de su ' +
-          'presupuesto —lo cobra el concesionario del recibo de cada casa—, así que este cociente ' +
-          'dice lo que cuesta el servicio, no lo que el ayuntamiento gasta en él. Por eso sólo se ' +
-          'compara con otras concesiones.',
+        concesionPropia
+          ? 'Este servicio está concedido: el coste que el ayuntamiento declara no sale de su ' +
+              'presupuesto —lo cobra el concesionario del recibo de cada casa—, así que este cociente ' +
+              'dice lo que cuesta el servicio, no lo que el ayuntamiento gasta en él. Por eso sólo se ' +
+              'compara con otras concesiones.'
+          : `Este servicio se presta en gestión indirecta («${codGestionRaw}»), no por el propio ` +
+              'ayuntamiento: por eso sólo se compara con otros servicios prestados en concesión, ' +
+              'concierto o gestión interesada, nunca con los de gestión directa.',
       )
       if (resumen) {
         // COMPARABLES, sin contar a Riba-roja, que es la misma cuenta que la
@@ -892,23 +978,20 @@ export function construirIndicadores(input: ConstruirInput): IndicadoresSnapshot
         // dos universos distintos en la misma tarjeta sin decir en qué se
         // diferencian: lo señaló la revisión lectora del 2026-09-02, y tenía
         // razón — un lector no puede saber si él mismo está o no en la cifra.
-        // `pares.filas` no trae al propio municipio en la tubería real y sí en
-        // el fixture, así que se descuenta explícitamente en vez de confiar en
-        // quién llama.
-        const enConcesion = new Set<string>()
-        for (const f of pares.filas) {
-          if (f.programa === programa && f.anio === anioBase && f.modoGestion === 'concesion') {
-            enConcesion.add(f.ine)
-          }
-        }
-        enConcesion.delete(municipio.ine)
-        const mudos = enConcesion.size - resumen.n
-        if (mudos > 0) {
+        //
+        // Cada motivo con su recuento, contado en el bucle que forma el grupo
+        // (`motivoFueraDePares`). La frase decía «N no declaran su coste» con
+        // N = todos los que no entraban, y en 2024 uno de ellos —Paiporta—
+        // declara coste y lo que le falta es la red.
+        const partes = frasesFueraDePares(fuera, def.divisor)
+        const total = resumen.n + MOTIVOS_FUERA_DE_PARES.reduce((s, k) => s + fuera[k], 0)
+        if (partes.length) {
           caveats.push(
-            `De los ${enConcesion.size} municipios comparables que también tienen este servicio ` +
-              `concedido, ${mudos} no declaran su coste: sin coste no hay cociente con el que ` +
-              `compararse, así que el percentil se calcula contra los ${resumen.n} restantes. El ` +
-              'grupo es el de las concesiones que rellenan esa casilla, no el de todas las que hay.',
+            `De los ${total} municipios comparables que también tienen este servicio ` +
+              `${concesionPropia ? 'concedido' : 'en concesión, concierto o gestión interesada'}, ` +
+              `${enumerar(partes)}: sin un coste y una unidad utilizables no hay cociente con el ` +
+              `que compararse, así que el percentil se calcula contra los ${resumen.n} ` +
+              'restantes. El grupo lo forman los que declaran coste y unidad, no todos los que hay.',
           )
         }
       }
