@@ -692,9 +692,13 @@ export default function ReconstruccionDana() {
         </p>
 
         <SecHead num="07" kicker="Lo pendiente" title="Lo que sigue sin ejecutarse" />
+        {/* Decía «Casi dieciocho meses después de la riada»: en el borrador, esa cuenta era la
+            de las pasarelas, reconstruidas en abril de 2026 (la caja de abajo la conserva). Al
+            subir a abrir el apartado perdió su referente, y la pieza es de julio de 2026, veinte
+            meses después (revisión lectora, 18-10-2026; corrección del 19-10). */}
         <p>
-          Adjudicar no es terminar. Casi dieciocho meses después de la riada, buena parte de la
-          reconstrucción seguía en marcha —o sin empezar—.
+          Adjudicar no es terminar. Cuando se publicó esta pieza, en julio de 2026, buena parte de
+          la reconstrucción seguía en marcha —o sin empezar—.
         </p>
         <Callout />
         <p style={{ marginTop: 20 }}>
