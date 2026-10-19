@@ -16,7 +16,8 @@ import {
  * Un punto del pleno o una promesa contaba como «seguido» si UNA palabra de más de
  * cuatro letras de su título salía en CUALQUIER titular de los últimos 14 días, y
  * las palabras de todos los titulares se echaban en una sola bolsa. En el pleno
- * zrbgic (5-10-2026), cuatro de los seis «seguidos» eran casualidades:
+ * zrbgic (5-10-2026) salían «seguidos» cinco puntos y una promesa, y cuatro de los
+ * cinco puntos eran casualidades:
  *
  *   · el servicio de transportes, por «proyecto» —una pieza de Interempresas sobre
  *     la restauración de las canteras—;

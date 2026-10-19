@@ -2480,12 +2480,12 @@ export default function Metodologia() {
           </li>
           <li>
             <strong>Los anuncios no son prensa.</strong> El agregador de noticias trae, mezclados
-            con la prensa, los listados de portales inmobiliarios («Casas y pisos en Calle…»). Todo
-            lo que llega desde el dominio de un portal de anuncios clasificados queda fuera del
-            laboratorio: de los titulares monitorizados, de la tabla por medio, de la triangulación
-            y de las lagunas de cobertura. La regla mira el dominio, no el título ni el nombre que
-            pone el agregador. Hasta el 19 de octubre de 2026 eran 12 de los 68 titulares
-            monitorizados.
+            con la prensa, los listados de portales inmobiliarios («Casas y pisos en Calle…»). Lo
+            que llega desde el dominio de uno de los portales de anuncios de su lista (Fotocasa,
+            Idealista, Habitaclia, pisos.com, Milanuncios, yaencontre) queda fuera del laboratorio:
+            de los titulares monitorizados, de la tabla por medio, de la triangulación y de las
+            lagunas de cobertura. La regla mira el dominio, no el título ni el nombre que pone el
+            agregador. Hasta el 19 de octubre de 2026 eran 12 de los 68 titulares monitorizados.
           </li>
           <li>
             <strong>Lagunas de cobertura: dos palabras en un mismo titular.</strong> Un punto del
@@ -2497,11 +2497,12 @@ export default function Metodologia() {
             trámites fijos del orden del día —aprobar el acta anterior, dar cuenta de la relación de
             resoluciones, ruegos y preguntas— no se examinan; una dación de cuenta con sustancia,
             como una sentencia o una auditoría, sí. Hasta el 19 de octubre de 2026 bastaba una
-            palabra suelta en cualquier titular, y en el pleno del 5 de octubre cuatro de los seis
-            puntos «seguidos» lo eran por casualidad: el servicio de transportes por «proyecto», una
-            moción por «Túria», el césped del estadio por «suministro». El error contrario también
-            existe: una noticia contada con otras palabras, o en valenciano, puede salir como
-            laguna.
+            palabra suelta en cualquier titular, y en el pleno del 5 de octubre cuatro de los cinco
+            puntos «seguidos» lo eran por casualidad —el servicio de transportes por «proyecto», una
+            moción por «Túria», el césped del estadio por «suministro» y la relación de resoluciones
+            por «cuenta»—, y también la única promesa de esos días, por «nuevo». El error contrario
+            también existe: una noticia contada con otras palabras, o en valenciano, puede salir
+            como laguna.
           </li>
           <li>
             <strong>Los hallazgos automáticos se rotulan como automáticos.</strong> El laboratorio

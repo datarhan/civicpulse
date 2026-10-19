@@ -592,7 +592,8 @@ export function computeTriangulation(opts: {
 // `MIN_PALABRAS_COMPARTIDAS` palabras de contenido (`palabrasDeContenido`). Hasta
 // el 19-10-2026 bastaba UNA palabra de más de cuatro letras, y se buscaba en la
 // bolsa de las palabras de TODOS los titulares de la ventana. En el pleno zrbgic
-// (5-10-2026) cuatro de los seis puntos «seguidos» lo eran por casualidad: el
+// (5-10-2026) salían «seguidos» cinco puntos y una promesa, y cuatro de los cinco
+// puntos lo eran por casualidad: el
 // servicio de transportes por «proyecto» (una pieza de Interempresas sobre las
 // canteras), la moción del PP y VOX por «túria» (en 20 titulares, 12 de ellos
 // anuncios de Fotocasa), el césped del estadio por «suministro» (el del agua) y

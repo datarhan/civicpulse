@@ -720,10 +720,11 @@ function FactCheckRail({ factcheck }) {
 /**
  * Cómo se decide que la prensa «sigue» algo, dicho en la tarjeta. La regla está en
  * `computeCoverageGaps` (press-analytics.ts): hasta el 19-10-2026 bastaba una palabra
- * suelta en la bolsa de todos los titulares, y cuatro de los seis puntos «seguidos»
- * del pleno del 5-10-2026 lo eran por casualidad. Las cifras salen del informe.
+ * suelta en la bolsa de todos los titulares, y cuatro de los cinco puntos «seguidos»
+ * del pleno del 5-10-2026, y su única promesa, lo eran por casualidad. Las cifras
+ * salen del informe.
  */
-function MetodoLagunas({ stats }) {
+function MetodoLagunas({ stats, dias }) {
   if (!stats) return null
   const tramites = stats.tramitesExcluidos ?? 0
   const titulares = stats.titularesConsiderados
@@ -733,7 +734,10 @@ function MetodoLagunas({ stats }) {
   ]
   if (typeof titulares === 'number' && typeof asuntos === 'number')
     partes.push(
-      `Se han cruzado ${titulares} ${titulares === 1 ? 'titular' : 'titulares'} con ${asuntos} ${asuntos === 1 ? 'asunto' : 'asuntos'}.`,
+      // Dice de qué universo salen: no son los «Titulares monitorizados» de arriba
+      // (30 días, todos los medios), sino los de medios independientes de la ventana
+      // de las lagunas, sin anuncios ni notas de una administración.
+      `Se han cruzado ${titulares} ${titulares === 1 ? 'titular' : 'titulares'} de medios independientes de los últimos ${dias ?? 14} días —sin anuncios ni notas de prensa oficiales— con ${asuntos} ${asuntos === 1 ? 'asunto' : 'asuntos'}.`,
     )
   if (tramites > 0)
     partes.push(
@@ -756,7 +760,7 @@ function MetodoLagunas({ stats }) {
   )
 }
 
-function CoverageGaps({ items, stats }) {
+function CoverageGaps({ items, stats, dias }) {
   if (!items || items.length === 0) {
     // "No gaps" and "nothing to compare" look identical from the item list
     // alone, and the second was being published as the first: with the newest
@@ -770,7 +774,7 @@ function CoverageGaps({ items, stats }) {
             ? 'No hubo plenos ni promesas nuevas en los últimos 14 días, así que no hay nada que comparar con la cobertura.'
             : 'Sin lagunas detectadas en los últimos 14 días.'}
         </div>
-        {examined > 0 && <MetodoLagunas stats={stats} />}
+        {examined > 0 && <MetodoLagunas stats={stats} dias={dias} />}
       </>
     )
   }
@@ -799,7 +803,7 @@ function CoverageGaps({ items, stats }) {
           </li>
         )}
       </ul>
-      <MetodoLagunas stats={stats} />
+      <MetodoLagunas stats={stats} dias={dias} />
     </>
   )
 }
@@ -1203,7 +1207,11 @@ export default function Laboratorio() {
               title="Lo que la prensa local no está siguiendo"
             />
             <div style={{ marginTop: 8 }}>
-              <CoverageGaps items={lab.gaps?.items ?? []} stats={lab.gaps?.stats} />
+              <CoverageGaps
+                items={lab.gaps?.items ?? []}
+                stats={lab.gaps?.stats}
+                dias={lab.gaps?.windowDays}
+              />
             </div>
           </Card>
 
