@@ -135,6 +135,7 @@ import type { ClaimVerdict } from './claim-verdicts'
 import { COLA_SIN_IMPORTE, leyoContratos, resumenCasi, resumenSinRegistro } from './claim-verdicts'
 import { importeDelEmparejador } from './importe-de-contrato'
 import { snippetDeContrato } from './snippet-de-contrato'
+import { sinEstadoSiLoDaSuContrato } from './gemelos-de-licitacion'
 import { bdnsAmount, bdnsRef, bdnsText, snippetDeBdns, type BdnsRow } from './snippet-de-bdns'
 
 /**
@@ -629,10 +630,21 @@ function similarAmount(claimed: number, found: number): number {
 
 // ─── Dataset readers ────────────────────────────────────────────────────────
 
+/**
+ * Las dos tablas de `tenders.json`, más los `items` de TED. Una licitación cuyo
+ * contrato gemelo publica un estado llega sin el suyo: si no, una `revoked`
+ * junto a un contrato `awarded` desmentía «la obra está terminada» contra un
+ * contrato adjudicado (gemelos-de-licitacion.ts cuenta por qué se quita el
+ * estado y no la fila).
+ */
 function readTenders(data: unknown): TenderRow[] {
   if (!data || typeof data !== 'object') return []
   const obj = data as { contracts?: TenderRow[]; tenders?: TenderRow[]; items?: TenderRow[] }
-  return [...(obj.contracts ?? []), ...(obj.tenders ?? []), ...(obj.items ?? [])]
+  return [
+    ...(obj.contracts ?? []),
+    ...sinEstadoSiLoDaSuContrato(obj.tenders, obj.contracts),
+    ...(obj.items ?? []),
+  ]
 }
 
 /**
@@ -1065,7 +1077,10 @@ export function verifyClaim(inputs: VerifierInputs): ClaimVerification {
         evidence.push({
           kind: 'tender',
           ref: t.permalink ?? '',
-          snippet: `${tenderTitle(t)} · estado: ${t.status ?? 'desconocido'}`,
+          // Sin estado no hay cola: una licitación cuyo contrato gemelo publica
+          // el suyo llega sin él (gemelos-de-licitacion.ts), y «desconocido»
+          // diría que la base no lo sabe cuando el contrato sí lo dice.
+          snippet: t.status ? `${tenderTitle(t)} · estado: ${t.status}` : tenderTitle(t),
           similarity: Math.round(textSim * 100) / 100,
           // Title overlap only — no amount, no semantics. This is the path
           // that matched a queue-management IT contract to a claim about
