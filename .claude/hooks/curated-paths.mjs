@@ -77,6 +77,10 @@ export const CURATED = {
   // Este es el único sitio donde una corrección sobrevive a la nocturna, y
   // nombra a personas vivas con el acta literal al lado: sólo escribe el CLI.
   'officials-corrections.json': 'npm run roster-correction -- --alta|--baja|--retirar|--reply',
+  // Pone un estado comprometido y una empresa con nombre junto a una cifra,
+  // por encima de lo que publica el registro municipal: lo firma una persona
+  // con el anuncio de la Plataforma delante, y sólo escribe el CLI.
+  'contract-corrections.json': 'npm run contract-correction -- --add|--retirar',
   // El registro de solicitudes de acceso. Lo escribe una persona porque una
   // persona presentó el escrito y una persona leyó la respuesta: que lo
   // rellenara una máquina sería inventar un hecho sobre una administración.

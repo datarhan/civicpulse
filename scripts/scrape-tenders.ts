@@ -15,6 +15,8 @@ import {
   type Contract,
   type Tender,
 } from '../src/scraper/tenders'
+import { applyContractCorrections } from '../src/scraper/contract-corrections'
+import { loadContractCorrections } from './contract-correction'
 
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = dirname(__filename)
@@ -62,8 +64,14 @@ async function main() {
   console.log('[tenders] fetching licitaciones…')
   const tendersCsv = await fetchCsv(TENDERS_URL)
 
-  const contracts = parseRibalicitaContracts(contractsCsv)
+  // El parser ya deja sin estado lo imposible (`sinEstadoImposible`); lo que
+  // una persona restituyó con el anuncio delante se aplica aquí, y lo que ya no
+  // corrige nada se anota en vez de tumbar la pasada (contract-corrections.ts).
+  const parsed = parseRibalicitaContracts(contractsCsv)
+  const correcciones = applyContractCorrections(parsed, loadContractCorrections())
+  const contracts = correcciones.contracts
   const tenders = parseRibalicitaTenders(tendersCsv)
+  const imposibles = parsed.filter((c) => c.sourceStatus !== undefined)
 
   // La precedencia se importa; era la sexta copia de la misma regla y la que
   // produce la cifra de la portada. Coincidía en el número —es la versión
@@ -92,6 +100,15 @@ async function main() {
       recentAwarded: topRecentAwardedContracts(contracts, 12),
       openTenders: topOpenTenders(tenders, 12),
     },
+    // Lo que esta pasada cambió del registro, para que se pueda auditar: las
+    // filas que dejó sin estado por imposible y las correcciones curadas que
+    // aplicó o que ya sobran (check:contract-corrections lee este bloque).
+    contractCorrections: {
+      file: '/data/contract-corrections.json',
+      sinEstadoPorImposible: imposibles.map((c) => c.id),
+      aplicadas: correcciones.aplicadas,
+      sobran: correcciones.sobran,
+    },
     contracts,
     tenders,
   }
@@ -99,6 +116,12 @@ async function main() {
   await mkdir(dirname(OUT), { recursive: true })
   await writeFile(OUT, JSON.stringify(payload, null, 2) + '\n')
   console.log(`[tenders] wrote ${OUT}`)
+  console.log(
+    `[tenders] estados imposibles → centinela: ${imposibles.length} · correcciones: ` +
+      `${correcciones.aplicadas.length} aplicada(s), ${correcciones.sobran.length} sobrante(s)`,
+  )
+  for (const s of correcciones.sobran)
+    console.log(`[tenders]   ✗ la corrección de ${s.id} (lote ${s.lote}) sobra: ${s.porque}`)
   console.log(
     `[tenders] ${contracts.length} contracts (${payload.stats.awardedContracts} awarded, € ${awardedTotal
       .toFixed(0)

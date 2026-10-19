@@ -129,7 +129,7 @@ function correccion(parcial: Partial<CorreccionContrato> = {}): CorreccionContra
   }
 }
 const fichero = (...c: CorreccionContrato[]): ContractCorrections => ({
-  note: 'prueba',
+  note: 'Correcciones de prueba del registro de contratos.',
   corrections: c,
 })
 

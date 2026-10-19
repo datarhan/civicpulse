@@ -415,6 +415,14 @@ if ! npm run check:vocabulary; then
   soft_failures+=("check:vocabulary")
 fi
 
+# ¿Aplicó scrape:tenders cada corrección curada del registro de contratos, y
+# sigue haciendo falta? Blanda: una corrección que sobra no tumba la noche, y el
+# parte de salud la manda igual.
+if ! npm run check:contract-corrections; then
+  echo "[scrape-all] SOFT-FAILED: check:contract-corrections — a curated contract correction was not applied or is no longer needed"
+  soft_failures+=("check:contract-corrections")
+fi
+
 # ¿Sigue cada snapshot dentro de su propia cadencia? El check existía con sus
 # presupuestos por fichero y NO LO INVOCABA NADIE — el modo de fallo 1 de
 # check:guards, en el propio guardián de la frescura. Soft: un dato viejo

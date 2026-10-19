@@ -1,5 +1,6 @@
 import { parse } from 'csv-parse/sync'
 import { isScoreArtifactAmount } from '../lib/tenders'
+import { CANCELLED_STATUSES, procurementStatusKind } from '../lib/contract-status.js'
 import { fnv32 } from './hash'
 
 // ---------------------------------------------------------------------------
@@ -289,6 +290,11 @@ export interface Contract {
   /** Valor estimado del contrato (Gobierto `estimated_value`). */
   estimatedValue: number
   numberOfProposals: number
+  /**
+   * La palabra de Gobierto, sólo en las filas cuyo estado se cambió: por
+   * imposible (`sinEstadoImposible`) o por una corrección curada.
+   */
+  sourceStatus?: string
 }
 
 export interface Tender {
@@ -391,7 +397,43 @@ export function parseRibalicitaContracts(csv: string): Contract[] {
     }
     out.push(contract)
   }
-  return out
+  return sinEstadoImposible(out)
+}
+
+/**
+ * Un estado cancelado junto a una fecha de formalización es imposible, y se
+ * queda sin estado.
+ *
+ * La renuncia y el desistimiento sólo caben ANTES de formalizar (art. 152
+ * LCSP), y un lote desierto no se firma. Así que una fila `revoked`,
+ * `abandoned`, `void` o `withdrawn` con `formalizedDate` dice dos cosas que no
+ * pueden ser ciertas a la vez — salvo cuando la fecha es del expediente y la
+ * puso un lote HERMANO que sí se firmó: Gobierto copia la fecha de formalización
+ * a todos los lotes, y un lote desierto junto a uno firmado es corriente
+ * (95133, 85540, 1892773, 4561450 en el registro de octubre de 2026).
+ *
+ * El caso que la motivó, cotejado en la Plataforma el 2026-10-19: 51/2022
+ * (1943883), el alumbrado LED del casco urbano, formalizado el 21-02-2023 con
+ * EIFFAGE ENERGÍA. El 11-01-2024 el Ayuntamiento anuló el ANUNCIO de
+ * formalización para republicarlo con la financiación FEDER, y Gobierto lo leyó
+ * como un contrato revocado. /presupuesto lo pintaba «Renuncia».
+ *
+ * Esta capa sólo QUITA: deja el centinela, nunca escribe «formalizado», porque
+ * del registro sólo se sabe que el estado es imposible, no cuál es el bueno.
+ * Restituirlo lo hace una persona, con el anuncio delante
+ * (`contract-corrections.ts`). La palabra de Gobierto queda en `sourceStatus`.
+ */
+export function sinEstadoImposible(contracts: Contract[]): Contract[] {
+  const firmados = new Set(
+    contracts
+      .filter((c) => c.permalink && procurementStatusKind(c.status) === 'committed')
+      .map((c) => c.permalink),
+  )
+  return contracts.map((c) => {
+    if (!CANCELLED_STATUSES.includes(c.status) || !c.formalizedDate) return c
+    if (c.permalink && firmados.has(c.permalink)) return c
+    return { ...c, status: 'unknown', sourceStatus: c.status }
+  })
 }
 
 // ---------------------------------------------------------------------------
