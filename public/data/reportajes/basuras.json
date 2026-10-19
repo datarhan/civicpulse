@@ -17,6 +17,10 @@
       {
         "fecha": "2026-09-05",
         "texto": "**Se ha corregido la baja de la adjudicación, que estaba calculada sobre una base que no le correspondía.** Publicábamos una baja de 829.198,26 € (4,99 %) y un ahorro de los dos lotes «sin IVA» de 840.595,94 €. Las dos cifras restaban la adjudicación del LOTE 1 de la base de los DOS lotes: 16.632.795,30 € es la suma del presupuesto de recogida (16.460.397,62 €) y del de supervisión (172.397,68 €). El síntoma era que la suma «sin IVA» salía MAYOR que la misma suma «con IVA», que es imposible. Contra los dos expedientes de la Plataforma de Contratación (4653394 y 4653394#1), las cifras correctas son 656.800,58 € de baja (3,99 %) y 668.198,26 € sumando los dos lotes sin IVA. La cifra con IVA que ya publicábamos, 736.271,76 €, era correcta y no cambia: es la que se compara con el «ahorro de hasta 731.000 euros» que anunció el Ayuntamiento, así que lo que sostiene el reportaje no varía — la baja que publicábamos era MAYOR que la real, no menor."
+      },
+      {
+        "fecha": "2026-10-19",
+        "texto": "**Se ha precisado qué relación traza el Ayuntamiento entre la venta de Garbialdi y el contrato, y de dónde sale la cita que la sostiene.** Decíamos, tras citar el motivo con que el pleno de 7 de enero de 2026 denegó a ISS la sucesión como contratista, que «es el propio Ayuntamiento quien conecta la venta con el desenlace». La nota municipal de ese día no relaciona la venta con el fallo del servicio ni con la resolución del contrato: sólo da el motivo para denegar la sucesión, que se presumía que pudiera existir «riesgo de la elusión de responsabilidades». La frase dice ahora que ése es el único vínculo que traza el Ayuntamiento, y que no precisa qué responsabilidades ni de quién.\n\nAdemás, la cronología y la base de una de las preguntas atribuían esa cita al orden del día del pleno, con un «por» dentro de las comillas que no es de la fuente. El orden del día recoge la desestimación y el artículo 98 de la Ley de Contratos, pero no el motivo; el motivo está en la nota municipal del mismo día, que pasa a la lista de fuentes.\n\n**La conclusión no cambia.** La pieza ya decía, en «Lo que aquí no decimos», que la relación de causa entre la venta y el fallo no está documentada."
       }
     ]
   },
@@ -127,8 +131,8 @@
     },
     {
       "fecha": "2026-01-07",
-      "hito": "Pleno extraordinario y urgente (expediente 615/2025/GEN): eleva a definitiva la penalidad de 143.539 €, inicia la resolución del contrato y desestima la sucesión del contratista a favor de ISS «por riesgo de la elusión de responsabilidades». FCC entra el día 4 sólo a complementar el servicio.",
-      "fuente": "Orden del día del pleno de 07-01-2026"
+      "hito": "Pleno extraordinario y urgente (expediente 615/2025/GEN): eleva a definitiva la penalidad de 143.539 €, inicia la resolución del contrato y desestima la sucesión del contratista a favor de ISS, porque, según la nota municipal de ese día, se presume que pudiera existir «riesgo de la elusión de responsabilidades». FCC entra el día 4 sólo a complementar el servicio.",
+      "fuente": "Orden del día del pleno de 07-01-2026 y nota municipal del mismo día"
     },
     {
       "fecha": "2026-03-09",
@@ -582,7 +586,7 @@
           },
           {
             "q": "¿Qué responsabilidades concretas se temía que se eludieran al denegar la sucesión del contratista a ISS, y cuáles se han exigido desde entonces, a Garbialdi o a su nuevo dueño?",
-            "base": "Orden del día del pleno del 7-1-2026: desestimación de la sucesión «por riesgo de la elusión de responsabilidades» (art. 98 de la Ley 9/2017)."
+            "base": "Pleno del 7-1-2026: desestimación de la sucesión (art. 98 de la Ley 9/2017, según el orden del día) porque, según la nota municipal de ese día, se presume que pudiera existir «riesgo de la elusión de responsabilidades»."
           },
           {
             "q": "¿Se ha incautado la garantía definitiva? ¿Por qué importe? ¿Y en qué estado está la reclamación de daños y perjuicios anunciada?",
@@ -672,6 +676,10 @@
     {
       "label": "Ayuntamiento de Riba-roja · Pleno extraordinario y urgente de 7 de enero de 2026 (orden del día)",
       "url": "https://www.ribarroja.es/es/aviso/pleno-extraordinario-y-urgente-7-de-enero-de-2026"
+    },
+    {
+      "label": "Ayuntamiento de Riba-roja · «El pleno de Riba-roja aprueba la rescisión del actual contrato de recogida de residuos sólidos urbanos, poda y voluminosos por incumplimiento reiterado del servicio» (07-01-2026)",
+      "url": "https://www.ribarroja.es/es/noticia/el-pleno-de-riba-roja-aprueba-la-rescisi%C3%B3n-del-actual-contrato-de-recogida-de-residuos-s%C3%B3lidos-urbanos%2C-poda-y-voluminosos-por-incumplimiento-reiterado-del-servicio"
     },
     {
       "label": "Ayuntamiento de Riba-roja · Pleno ordinario de 9 de marzo de 2026 (orden del día, punto 11)",

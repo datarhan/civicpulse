@@ -445,8 +445,9 @@ export default function Basuras() {
         </Cita>
         <p>
           La nota municipal de ese mismo día explicó el motivo: se presumía que pudiera existir
-          «riesgo de la elusión de responsabilidades». Es el propio Ayuntamiento quien conecta la
-          venta con el desenlace.
+          «riesgo de la elusión de responsabilidades». Es el único vínculo que el propio
+          Ayuntamiento traza entre la venta y el contrato, y no dice de qué responsabilidades habla
+          ni de quién.
         </p>
         <Aparte title="Lo que aquí no decimos">
           Que la venta causara el fallo del servicio. La secuencia está documentada; la relación de
