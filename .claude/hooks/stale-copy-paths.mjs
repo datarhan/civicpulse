@@ -72,12 +72,34 @@ export const MAPA_CARGADO = cargado !== null
 
 export const PROSA_POR_SNAPSHOT = cargado ?? {}
 
-/** `public/data/x.json` → `x.json`; cualquier otra cosa → null. */
+/**
+ * Las carpetas de `public/data/` cuyos ficheros llevan prosa propia, sacadas de
+ * las claves del mapa: hoy sólo `reportajes`, cuyo JSON es el dato entero de una
+ * pieza. Los troceados (`pleno-claims/…`) no tienen clave y siguen fuera.
+ *
+ * Se deriva del mapa y no se escribe aquí porque, hasta el 19-10-2026, aquí se
+ * suponía que todo snapshot con prosa vivía en el primer nivel: el JSON de un
+ * reportaje no llegaba nunca al aviso (PR #385).
+ */
+export const CARPETAS_CON_PROSA = [
+  ...new Set(
+    Object.keys(PROSA_POR_SNAPSHOT)
+      .filter((k) => k.includes('/'))
+      .map((k) => k.slice(0, k.lastIndexOf('/'))),
+  ),
+].sort()
+
+/**
+ * `public/data/x.json` → `x.json`; `public/data/reportajes/x.json` →
+ * `reportajes/x.json` si esa carpeta lleva prosa; cualquier otra cosa → null.
+ */
 export function snapshotDe(ruta) {
   if (typeof ruta !== 'string') return null
   const norm = ruta.replace(/\\/g, '/')
-  const m = /(?:^|\/)public\/data\/([^/]+\.json)$/.exec(norm)
-  return m ? m[1] : null
+  const m = /(?:^|\/)public\/data\/(?:([^/]+)\/)?([^/]+\.json)$/.exec(norm)
+  if (!m) return null
+  if (!m[1]) return m[2]
+  return CARPETAS_CON_PROSA.includes(m[1]) ? `${m[1]}/${m[2]}` : null
 }
 
 /**
@@ -143,7 +165,9 @@ export function decideRecordatorio(payload) {
 
 /**
  * Lo que el runner le pregunta a git tras un Bash: qué snapshots difieren de
- * HEAD. `:(glob)` para que `*` no cruce carpetas y los troceados queden fuera.
+ * HEAD. `:(glob)` para que `*` no cruce carpetas y los troceados queden fuera;
+ * las carpetas que sí llevan prosa (`CARPETAS_CON_PROSA`) entran con su propio
+ * patrón, que tampoco cruza más abajo.
  * `--no-optional-locks` para no tomar `index.lock`: en el checkout principal
  * los agentes de launchd hacen sus propios commits, y un `git status` de fondo
  * con el candado puesto les tumbaría el suyo. `--untracked-files=normal`
@@ -157,6 +181,7 @@ export const GIT_STATUS_SNAPSHOTS = [
   '--untracked-files=normal',
   '--',
   ':(glob)public/data/*.json',
+  ...CARPETAS_CON_PROSA.map((c) => `:(glob)public/data/${c}/*.json`),
 ]
 
 /**

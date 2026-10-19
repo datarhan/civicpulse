@@ -405,6 +405,36 @@
     "reciclaje.json": [
       "/datos"
     ],
+    "reportajes/basuras.json": [
+      "/",
+      "/reportajes",
+      "/reportajes/basuras"
+    ],
+    "reportajes/conteo-visitantes.json": [
+      "/",
+      "/reportajes",
+      "/reportajes/conteo-visitantes"
+    ],
+    "reportajes/coste-efectivo.json": [
+      "/",
+      "/reportajes",
+      "/reportajes/coste-efectivo"
+    ],
+    "reportajes/inteligencia-turistica.json": [
+      "/",
+      "/reportajes",
+      "/reportajes/inteligencia-turistica"
+    ],
+    "reportajes/matriculas-y-moviles.json": [
+      "/",
+      "/reportajes",
+      "/reportajes/matriculas-y-moviles"
+    ],
+    "reportajes/reconstruccion-dana.json": [
+      "/",
+      "/reportajes",
+      "/reportajes/reconstruccion-dana"
+    ],
     "requisitos-cargo.json": [
       "/cargos",
       "/cargos/:slug",
