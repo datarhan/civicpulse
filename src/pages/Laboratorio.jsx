@@ -185,6 +185,12 @@ export function TrustIndicators({ indicators }) {
               // por algo más que el glifo: en un chip de 11px un «–» y un «○» se
               // confunden de un vistazo.
               fontStyle: sinComprobar ? 'italic' : 'normal',
+              // Con « · sin comprobar» el chip más largo («Afirmaciones
+              // contrastables») pasa de los 272 px de la tarjeta a 320 px de
+              // ancho: el chip tiene que poder partir su propio texto, no sólo
+              // la fila partir entre chips (tests/e2e/mobile.spec.ts, rejillas).
+              maxWidth: '100%',
+              flexWrap: 'wrap',
             }}
           >
             <span style={{ fontSize: 'var(--fs-micro)' }} aria-hidden="true">
