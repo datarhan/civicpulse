@@ -1,26 +1,103 @@
 {
-  "generatedAt": "2026-10-18T09:12:12.486Z",
+  "generatedAt": "2026-10-19T10:19:20.129Z",
   "source": {
     "origin": "https://ribaocupacio.portalemp.com",
     "platform": "portalemp — ribaocupacio · Agència de Col·locació (ADL), Ajuntament de Riba-roja de Túria",
     "listEndpoint": "https://ribaocupacio.portalemp.com/ofertas.html?acc=tableData"
   },
   "stats": {
-    "total": 44,
-    "openTotal": 43,
-    "inRibaRoja": 27,
+    "total": 42,
+    "openTotal": 41,
+    "inRibaRoja": 26,
     "closingSoon": 14,
-    "withDetail": 44,
+    "withDetail": 42,
     "byMonth": {
-      "2026-10": 5,
+      "2026-10": 6,
       "2026-09": 21,
-      "2026-08": 14,
+      "2026-08": 11,
       "2026-07": 1,
       "2026-05": 2,
       "2025-11": 1
     }
   },
   "items": [
+    {
+      "id": "2377",
+      "fo": 2377,
+      "codigo": "2026/00079",
+      "titulo": "Ayudante / camarero",
+      "publishedAt": "2026-10-19",
+      "deadline": "2026-12-19",
+      "location": "Eliana (l') (Valencia)",
+      "status": "Abierta",
+      "statusTone": "ok",
+      "url": "https://ribaocupacio.portalemp.com/ofertas.html?fo=2377",
+      "inRibaRoja": false,
+      "detail": {
+        "fields": [
+          {
+            "label": "Código",
+            "value": "2026/00079"
+          },
+          {
+            "label": "Nombre de la oferta",
+            "value": "Ayudante / camarero"
+          },
+          {
+            "label": "Tipo de contrato",
+            "value": "CONTRATO INDEFINIDO"
+          },
+          {
+            "label": "Duración del contrato",
+            "value": "Más de 6 meses"
+          },
+          {
+            "label": "Número de puestos",
+            "value": "1"
+          },
+          {
+            "label": "Lugar puesto de trabajo",
+            "value": "Municipio: Eliana (l'), Provincia: Valencia, CP: 46183"
+          },
+          {
+            "label": "Tipo de jornada laboral",
+            "value": "Parcial"
+          },
+          {
+            "label": "Observaciones jornada",
+            "value": "9 a 13:30"
+          },
+          {
+            "label": "Horario",
+            "value": "9:00 a 13:30 miércoles, viernes, sábado y domingo."
+          },
+          {
+            "label": "Salario",
+            "value": "Según convenio."
+          },
+          {
+            "label": "Funciones",
+            "value": "Atención al cliente, servir y recoger mesas, auxiliar de barra(lavavajillas, tostadas, limpieza)"
+          },
+          {
+            "label": "Requiere vehículo propio",
+            "value": "Sí"
+          }
+        ],
+        "tipoContrato": "CONTRATO INDEFINIDO",
+        "duracion": "Más de 6 meses",
+        "numPuestos": "1",
+        "municipio": "Eliana (l')",
+        "provincia": "Valencia",
+        "cp": "46183",
+        "jornada": "Parcial",
+        "horario": "9:00 a 13:30 miércoles, viernes, sábado y domingo.",
+        "salario": "Según convenio.",
+        "funciones": "Atención al cliente, servir y recoger mesas, auxiliar de barra(lavavajillas, tostadas, limpieza)",
+        "vehiculo": "Sí",
+        "ocupaciones": []
+      }
+    },
     {
       "id": "2548",
       "fo": 2548,
@@ -2859,86 +2936,6 @@
       }
     },
     {
-      "id": "2520",
-      "fo": 2520,
-      "codigo": "2026/00219",
-      "titulo": "Técnico/a deportivo para impartir clases artísticas",
-      "publishedAt": "2026-08-19",
-      "deadline": "2026-10-19",
-      "location": "POLIDEPORTIVO MUNICIPAL DE LELIANA Eliana (l') (Valencia)",
-      "status": "Abierta",
-      "statusTone": "ok",
-      "url": "https://ribaocupacio.portalemp.com/ofertas.html?fo=2520",
-      "inRibaRoja": false,
-      "detail": {
-        "fields": [
-          {
-            "label": "Código",
-            "value": "2026/00219"
-          },
-          {
-            "label": "Nombre de la oferta",
-            "value": "Técnico/a deportivo para impartir clases artísticas"
-          },
-          {
-            "label": "Sector CNAE",
-            "value": "ACTIVIDADES ARTÍSTICAS, RECREATIVAS Y DE ENTRENIMIENTO"
-          },
-          {
-            "label": "Tipo de contrato",
-            "value": "FIJOS DISCONTINUOS"
-          },
-          {
-            "label": "Duración del contrato",
-            "value": "Más de 6 meses"
-          },
-          {
-            "label": "Número de puestos",
-            "value": "2"
-          },
-          {
-            "label": "Lugar puesto de trabajo",
-            "value": "POLIDEPORTIVO MUNICIPAL DE LELIANA, Municipio: Eliana (l'), Provincia: Valencia, CP: 46183"
-          },
-          {
-            "label": "Tipo de jornada laboral",
-            "value": "Parcial Turnos: Turno tarde"
-          },
-          {
-            "label": "Observaciones jornada",
-            "value": "Jornada de tardes, con horarios a definir según el número de clases"
-          },
-          {
-            "label": "Horario",
-            "value": "Tardes"
-          },
-          {
-            "label": "Salario",
-            "value": "Por especificar"
-          },
-          {
-            "label": "Funciones",
-            "value": "- Impartición de clases de gimnasia rítmica lúdica - Impartición de clases de danzas urbanas lúdicas - Posibilidad de impartir otros deportes"
-          }
-        ],
-        "tipoContrato": "FIJOS DISCONTINUOS",
-        "duracion": "Más de 6 meses",
-        "numPuestos": "2",
-        "municipio": "Eliana (l')",
-        "provincia": "Valencia",
-        "cp": "46183",
-        "jornada": "Parcial Turnos: Turno tarde",
-        "horario": "Tardes",
-        "salario": "Por especificar",
-        "funciones": "- Impartición de clases de gimnasia rítmica lúdica - Impartición de clases de danzas urbanas lúdicas - Posibilidad de impartir otros deportes",
-        "ocupaciones": [
-          {
-            "nombre": "Monitores de actividades recreativas y de entretenimiento"
-          }
-        ]
-      }
-    },
-    {
       "id": "2369",
       "fo": 2369,
       "codigo": "2026/00070",
@@ -3020,165 +3017,6 @@
             "nombre": "Trabajadores de los cuidados personales a domicilio"
           }
         ]
-      }
-    },
-    {
-      "id": "2519",
-      "fo": 2519,
-      "codigo": "2026/00218",
-      "titulo": "Personal de limpieza",
-      "publishedAt": "2026-08-18",
-      "deadline": "2026-10-18",
-      "location": "Riba-roja de Túria",
-      "status": "Abierta",
-      "statusTone": "ok",
-      "url": "https://ribaocupacio.portalemp.com/ofertas.html?fo=2519",
-      "inRibaRoja": true,
-      "detail": {
-        "fields": [
-          {
-            "label": "Código",
-            "value": "2026/00218"
-          },
-          {
-            "label": "Nombre de la oferta",
-            "value": "Personal de limpieza"
-          },
-          {
-            "label": "Tipo de contrato",
-            "value": "CONTRATO A TIEMPO PARCIAL"
-          },
-          {
-            "label": "Número de puestos",
-            "value": "1"
-          },
-          {
-            "label": "Lugar puesto de trabajo",
-            "value": "Municipio: Riba-roja de Túria, Provincia: Valencia, CP: 46190"
-          },
-          {
-            "label": "Tipo de jornada laboral",
-            "value": "Parcial"
-          },
-          {
-            "label": "Horario",
-            "value": "Lunes y miércoles de 7:00 am 11:30 am Jueves y viernes de 9:30am 11:30 am"
-          },
-          {
-            "label": "Salario",
-            "value": "Según convenio"
-          },
-          {
-            "label": "Funciones",
-            "value": "La persona seleccionada será responsable de realizar tareas de limpieza en instalaciones, con conocimiento en manejo de fregadora y demás herramientas. Así como de aplicar técnicas de desinfección utilizando productos profesionales de limpieza"
-          },
-          {
-            "label": "Requiere vehículo propio",
-            "value": "Sí"
-          },
-          {
-            "label": "Habilidades",
-            "value": "Manejo adecuado de productos y herramientas profesionales de limpieza. Buscamos una persona responsable, organizada, puntual y con buena actitud hacia el trabajo. Con disponibilidad para cubrir"
-          }
-        ],
-        "tipoContrato": "CONTRATO A TIEMPO PARCIAL",
-        "numPuestos": "1",
-        "municipio": "Riba-roja de Túria",
-        "provincia": "Valencia",
-        "cp": "46190",
-        "jornada": "Parcial",
-        "horario": "Lunes y miércoles de 7:00 am 11:30 am Jueves y viernes de 9:30am 11:30 am",
-        "salario": "Según convenio",
-        "funciones": "La persona seleccionada será responsable de realizar tareas de limpieza en instalaciones, con conocimiento en manejo de fregadora y demás herramientas. Así como de aplicar técnicas de desinfección utilizando productos profesionales de limpieza",
-        "vehiculo": "Sí",
-        "ocupaciones": []
-      }
-    },
-    {
-      "id": "2430",
-      "fo": 2430,
-      "codigo": "2026/00135",
-      "titulo": "Operario/a de almacén con discapacidad",
-      "publishedAt": "2026-08-18",
-      "deadline": "2026-10-18",
-      "location": "Cheste (Valencia)",
-      "status": "Abierta",
-      "statusTone": "ok",
-      "url": "https://ribaocupacio.portalemp.com/ofertas.html?fo=2430",
-      "inRibaRoja": false,
-      "detail": {
-        "fields": [
-          {
-            "label": "Código",
-            "value": "2026/00135"
-          },
-          {
-            "label": "Nombre de la oferta",
-            "value": "Operario/a de almacén con discapacidad"
-          },
-          {
-            "label": "Observaciones",
-            "value": "Se requiere carnet de carretillero."
-          },
-          {
-            "label": "Porcentaje de discapacidad",
-            "value": "Igual o superior a 33%"
-          },
-          {
-            "label": "Tipo de contrato",
-            "value": "CONTRATACION DISCAPACIDAD"
-          },
-          {
-            "label": "Duración del contrato",
-            "value": "De 1 a 6 meses"
-          },
-          {
-            "label": "Número de puestos",
-            "value": "5"
-          },
-          {
-            "label": "Categoría profesional",
-            "value": "PEONES"
-          },
-          {
-            "label": "Lugar puesto de trabajo",
-            "value": "Municipio: Cheste, Provincia: Valencia, CP: 46830"
-          },
-          {
-            "label": "Tipo de jornada laboral",
-            "value": "Completa Turnos: Turno tarde"
-          },
-          {
-            "label": "Horario",
-            "value": "12:00h-19:36h"
-          },
-          {
-            "label": "Salario",
-            "value": "1400 € brutos/mes 12 pagas"
-          },
-          {
-            "label": "Funciones",
-            "value": "Carga de camiones y tareas de almacén."
-          },
-          {
-            "label": "Requiere vehículo propio",
-            "value": "Sí"
-          }
-        ],
-        "tipoContrato": "CONTRATACION DISCAPACIDAD",
-        "duracion": "De 1 a 6 meses",
-        "numPuestos": "5",
-        "categoria": "PEONES",
-        "observaciones": "Se requiere carnet de carretillero.",
-        "municipio": "Cheste",
-        "provincia": "Valencia",
-        "cp": "46830",
-        "jornada": "Completa Turnos: Turno tarde",
-        "horario": "12:00h-19:36h",
-        "salario": "1400 € brutos/mes 12 pagas",
-        "funciones": "Carga de camiones y tareas de almacén.",
-        "vehiculo": "Sí",
-        "ocupaciones": []
       }
     },
     {

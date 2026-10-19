@@ -1,12 +1,12 @@
 {
-  "generatedAt": "2026-10-18T20:54:28.249Z",
+  "generatedAt": "2026-10-19T10:20:16.887Z",
   "source": {
-    "tenders": "2026-10-18T09:04:07.369Z",
-    "geo": "2026-10-18T09:07:19.675Z"
+    "tenders": "2026-10-19T10:11:27.863Z",
+    "geo": "2026-10-19T10:14:26.901Z"
   },
   "universe": {
-    "totalContracts": 710,
-    "totalAmount": 125567342.14999995,
+    "totalContracts": 711,
+    "totalAmount": 126049119.74999994,
     "locatedContracts": 41,
     "locatedAmount": 3480498.68,
     "situatedContracts": 117,
@@ -687,8 +687,8 @@
       "name": "Carrer del Mas de Montes",
       "kind": "street",
       "point": [
-        39.4805062,
-        -0.5875882
+        39.4832932,
+        -0.5874328
       ],
       "contractCount": 1,
       "amount": 20661.16,
@@ -783,8 +783,8 @@
       "name": "Carretera de Vilamarxant",
       "kind": "street",
       "point": [
-        39.5484923,
-        -0.5816335
+        39.5492186,
+        -0.5827079
       ],
       "contractCount": 1,
       "amount": 12201,
@@ -1016,8 +1016,8 @@
       "contractType": "construction",
       "categoryTitle": "construction",
       "point": [
-        39.4805062,
-        -0.5875882
+        39.4832932,
+        -0.5874328
       ],
       "place": {
         "kind": "street",
@@ -1377,8 +1377,8 @@
       "contractType": "supplies",
       "categoryTitle": "industry",
       "point": [
-        39.5484923,
-        -0.5816335
+        39.5492186,
+        -0.5827079
       ],
       "place": {
         "kind": "street",
@@ -3618,11 +3618,11 @@
     }
   ],
   "builtFrom": {
-    "civic-poi.json": "40b3bd82800d",
+    "civic-poi.json": "a1881a8dc6dd",
     "gazetteer-supplement.json": "b3013a1e0efe",
-    "geo.json": "1a0ccbd93288",
+    "geo.json": "ebf14880757a",
     "place-overrides.json": "5878849f1684",
-    "streets.json": "33dbbf543ba1",
-    "tenders.json": "1b7d64143ae0"
+    "streets.json": "9c831f32db4e",
+    "tenders.json": "68436a7dfe4d"
   }
 }

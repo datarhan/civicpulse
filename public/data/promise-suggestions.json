@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-18T09:12:45.528Z",
+  "generatedAt": "2026-10-19T10:20:04.243Z",
   "frozen": false,
   "frozenUntil": null,
   "notice": "Sugerencias generadas automáticamente. Requieren aprobación humana antes de aplicarse al estado de cada promesa.",
@@ -41,7 +41,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-10-18T09:12:45.420Z"
+      "generatedAt": "2026-10-19T10:20:04.136Z"
     },
     {
       "promiseId": "ac-psoe-jfg7bc",
@@ -60,7 +60,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-10-18T09:12:45.420Z"
+      "generatedAt": "2026-10-19T10:20:04.136Z"
     },
     {
       "promiseId": "ac-psoe-1ah9zqk",
@@ -79,7 +79,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-10-18T09:12:45.420Z"
+      "generatedAt": "2026-10-19T10:20:04.136Z"
     },
     {
       "promiseId": "ac-psoe-ppa53a",
@@ -87,7 +87,7 @@
       "confidence": 0,
       "reasoning": [],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-10-18T09:12:45.420Z"
+      "generatedAt": "2026-10-19T10:20:04.136Z"
     },
     {
       "promiseId": "ac-psoe-1m04lfw",
@@ -95,7 +95,7 @@
       "confidence": 0,
       "reasoning": [],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-10-18T09:12:45.420Z"
+      "generatedAt": "2026-10-19T10:20:04.136Z"
     },
     {
       "promiseId": "ac-psoe-sysee8",
@@ -114,7 +114,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-10-18T09:12:45.420Z"
+      "generatedAt": "2026-10-19T10:20:04.136Z"
     },
     {
       "promiseId": "ac-psoe-1ryndd8",
@@ -151,7 +151,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-10-18T09:12:45.420Z"
+      "generatedAt": "2026-10-19T10:20:04.136Z"
     },
     {
       "promiseId": "ac-psoe-43brfs",
@@ -204,11 +204,11 @@
           ]
         },
         {
-          "url": "https://news.google.com/rss/articles/CBMi0gFBVV95cUxNYWV1M3FmdUZiYWpKNk1tR3Rva3pNcEZVdkZvRlRBa3h6OHVyLW9QM2VsdjM2c28yZTM2bkJQYXRjRGRZWVpjcTJaaC0wNDY4U0JYUWZPcDBCYW1wYm1halVYNHNEUHhVX1NoWlZ0dnVEamlGREZLU3hOVmFCU0YyNlJoWmVLY2lmVWJ1MFc1X1RFZkkwaXdNS21wOVNIcFlBci0wTTd1YnJKbkpubDhTNDRKblVtaGNYeTVBcnNROWpiMTVTQmVBQ2tjVEhWN290X0E?oc=5",
+          "url": "https://www.ribarroja.es/es/noticia/riba-roja-destina-104.605-euros-al-cheque-beb%C3%A9-%2B25-para-apoyar-a-las-familias-y-dinamizar-el-comercio-local",
           "date": "2026-10-01",
-          "quote": "Riba-roja destina más de 100.000 euros al Cheque Bebé y ofrece hasta 500 euros por hijo a las familias",
+          "quote": "Riba-roja destina 104.605 euros al Cheque Bebé +25 para apoyar a las familias y dinamizar el comercio local",
           "kind": "press",
-          "publisher": "Levante-EMV",
+          "publisher": "Ayuntamiento de Riba-roja de Túria",
           "matchedKeywords": [
             "euro",
             "destina"
@@ -216,28 +216,13 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-10-18T09:12:45.420Z"
+      "generatedAt": "2026-10-19T10:20:04.136Z"
     },
     {
       "promiseId": "ac-psoe-17y448o",
       "proposedStatus": "en-progreso",
       "confidence": 0.7,
       "reasoning": [
-        {
-          "url": "https://news.google.com/rss/articles/CBMi0gFBVV95cUxNYWV1M3FmdUZiYWpKNk1tR3Rva3pNcEZVdkZvRlRBa3h6OHVyLW9QM2VsdjM2c28yZTM2bkJQYXRjRGRZWVpjcTJaaC0wNDY4U0JYUWZPcDBCYW1wYm1halVYNHNEUHhVX1NoWlZ0dnVEamlGREZLU3hOVmFCU0YyNlJoWmVLY2lmVWJ1MFc1X1RFZkkwaXdNS21wOVNIcFlBci0wTTd1YnJKbkpubDhTNDRKblVtaGNYeTVBcnNROWpiMTVTQmVBQ2tjVEhWN290X0E?oc=5",
-          "date": "2026-10-01",
-          "quote": "Riba-roja destina más de 100.000 euros al Cheque Bebé y ofrece hasta 500 euros por hijo a las familias",
-          "kind": "press",
-          "publisher": "Levante-EMV",
-          "matchedKeywords": [
-            "cheque",
-            "bebe",
-            "hasta",
-            "euro",
-            "destina",
-            "familia"
-          ]
-        },
         {
           "url": "https://www.ribarroja.es/es/noticia/riba-roja-destina-104.605-euros-al-cheque-beb%C3%A9-%2B25-para-apoyar-a-las-familias-y-dinamizar-el-comercio-local",
           "date": "2026-10-01",
@@ -253,6 +238,21 @@
             "dinamizar",
             "comercio",
             "local"
+          ]
+        },
+        {
+          "url": "https://news.google.com/rss/articles/CBMi0gFBVV95cUxNYWV1M3FmdUZiYWpKNk1tR3Rva3pNcEZVdkZvRlRBa3h6OHVyLW9QM2VsdjM2c28yZTM2bkJQYXRjRGRZWVpjcTJaaC0wNDY4U0JYUWZPcDBCYW1wYm1halVYNHNEUHhVX1NoWlZ0dnVEamlGREZLU3hOVmFCU0YyNlJoWmVLY2lmVWJ1MFc1X1RFZkkwaXdNS21wOVNIcFlBci0wTTd1YnJKbkpubDhTNDRKblVtaGNYeTVBcnNROWpiMTVTQmVBQ2tjVEhWN290X0HSAdcBQVVfeXFMUE5vQjdSdXhta285NUVvUWswZWM2akM0MGJnWElzVUxGUnpSd1hrTlZhMFpoQnVpM2lCS09jNG9xQzFWRThGQkNnaHdmV2dVSDNmcHV1bWJrNXR3dnZkZ092ZmdPNlhYa0l4OE9Nb0hpX2xaVk1NY25rU05sYW9qVDVyOFpOZnJpWlZ1SGREOWpIbVRjX1hMelpGYmdiYzNsWkpNRDlrYjZpcDYtdUpVTjVYc09TN0JiTkhJOTZuQ251T3FWU2NsVEE4djJBVy1yS0RhV2hyNjg?oc=5",
+          "date": "2026-10-01",
+          "quote": "Riba-roja destina más de 100.000 euros al Cheque Bebé y ofrece hasta 500 euros por hijo a las familias",
+          "kind": "press",
+          "publisher": "Levante-EMV",
+          "matchedKeywords": [
+            "cheque",
+            "bebe",
+            "hasta",
+            "euro",
+            "destina",
+            "familia"
           ]
         },
         {
@@ -302,7 +302,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-10-18T09:12:45.420Z"
+      "generatedAt": "2026-10-19T10:20:04.136Z"
     },
     {
       "promiseId": "ac-psoe-1bkbwjs",
@@ -370,7 +370,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-10-18T09:12:45.420Z"
+      "generatedAt": "2026-10-19T10:20:04.136Z"
     },
     {
       "promiseId": "ac-psoe-1xeq50",
@@ -427,7 +427,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-10-18T09:12:45.420Z"
+      "generatedAt": "2026-10-19T10:20:04.136Z"
     },
     {
       "promiseId": "ac-psoe-1kui43c",
@@ -474,7 +474,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-10-18T09:12:45.420Z"
+      "generatedAt": "2026-10-19T10:20:04.136Z"
     }
   ],
   "llmEvidence": [],

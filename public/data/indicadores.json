@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-18T09:13:10.807Z",
+  "generatedAt": "2026-10-19T10:20:29.028Z",
   "conjunto": "cv-15k-40k",
   "anioBase": 2024,
   "source": {
@@ -7943,16 +7943,16 @@
         "fuente": "tenders:adjudicados:numberOfProposals=1"
       },
       "denominador": {
-        "valor": 715,
+        "valor": 716,
         "estado": "declarado",
         "fuente": "tenders:adjudicados:conOfertasDeclaradas"
       },
-      "valor": 0.4783216783216783,
+      "valor": 0.4776536312849162,
       "formato": "porcentaje",
       "periodo": "2017–2026",
       "caveats": [
         "Un licitador único no es irregular por sí mismo: hay mercados con un solo proveedor capaz. Es el indicador que la Comisión Europea usa para vigilar la competencia en compra pública, y lo que mide es cuánta de ella hubo.",
-        "Ningún contrato adjudicado se queda fuera: los 715 declaran cuántas ofertas recibieron, así que el denominador coincide con el total de adjudicados."
+        "Ningún contrato adjudicado se queda fuera: los 716 declaran cuántas ofertas recibieron, así que el denominador coincide con el total de adjudicados."
       ],
       "citas": [
         {
@@ -7973,11 +7973,11 @@
         "fuente": "tenders:adjudicados:sinPublicidad"
       },
       "denominador": {
-        "valor": 715,
+        "valor": 716,
         "estado": "declarado",
         "fuente": "tenders:adjudicados"
       },
-      "valor": 0.4027972027972028,
+      "valor": 0.4022346368715084,
       "formato": "porcentaje",
       "periodo": "2017–2026",
       "caveats": [
@@ -8002,11 +8002,11 @@
         "fuente": "tenders:adjudicados:top5Importe"
       },
       "denominador": {
-        "valor": 125567342.14999995,
+        "valor": 126049119.74999994,
         "estado": "declarado",
         "fuente": "tenders:adjudicados:importeTotal"
       },
-      "valor": 0.6740509591967981,
+      "valor": 0.6714746409008544,
       "formato": "porcentaje",
       "periodo": "2017–2026",
       "caveats": [
