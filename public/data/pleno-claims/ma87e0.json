@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-19T12:48:28.630Z",
+  "generatedAt": "2026-10-19T17:28:34.239Z",
   "version": "1",
   "plenoId": "ma87e0",
   "plenoDate": "2026-03-16",
@@ -3027,12 +3027,12 @@
       "verification": {
         "claimId": "ma87e0-157-pro-7ce20e",
         "verdict": "parcial",
-        "summary": "El parque de Valencia la Vella se puso en marcha: las obras del área de esparcimiento de su zona verde se adjudicaron el 27-05-2026 por 108.876,11 € (contrato 39/2026). Que pasara por pleno, y los demás parques, no constan.",
+        "summary": "El parque de Valencia la Vella se puso en marcha: las obras del área de esparcimiento de su zona verde se adjudicaron por 108.876,11 € (contrato 39/2026; la adjudicación se publicó el 27-05-2026). Que pasara por pleno, y los demás parques, no constan.",
         "evidence": [
           {
             "kind": "tender",
             "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=sOt%2BY8QGKwx6nTs9LZ9RhQ%3D%3D",
-            "snippet": "Contrato administrativo obras para la ejecución del proyecto Área de esparcimiento en zona verde de Valencia la Vella en el T. M. de Riba-roja de Túr… · expediente 39/2026 · adjudicado a GEOCIVIL, S.A. por 108.876,11 € con IVA el 27-05-2026",
+            "snippet": "Contrato administrativo obras para la ejecución del proyecto Área de esparcimiento en zona verde de Valencia la Vella en el… · expediente 39/2026 · adjudicado a GEOCIVIL, S.A. por 108.876,11 € con IVA · adjudicación publicada el 27-05-2026",
             "stance": "checked"
           }
         ],
