@@ -43,12 +43,15 @@ describe('claseDocumentalDe · qué documento nombra la frase', () => {
   })
 
   it('agrupa sin repartir lo que no nombra nada', () => {
-    const r = agruparPorClaseDocumental([
-      'visto el informe conjunto',
-      'el expediente de contratación',
-      'no está gestionando como toca',
-      'Vox dice que no',
-    ])
+    const r = agruparPorClaseDocumental(
+      [
+        'visto el informe conjunto',
+        'el expediente de contratación',
+        'no está gestionando como toca',
+        'Vox dice que no',
+      ].map((verbatim) => ({ verbatim, plenoDate: '2026-03-09' })),
+      { sesionesConActa: null },
+    )
     expect(r.porClase['informe-tecnico']).toBe(1)
     expect(r.porClase['expediente']).toBe(1)
     // Las dos sin documento van a su propio contador, no a las clases.

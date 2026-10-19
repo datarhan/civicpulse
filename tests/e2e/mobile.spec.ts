@@ -142,7 +142,7 @@ const ROUTES: Route[] = [
   // Tablas de cinco columnas en un móvil: el sitio exacto donde una fila se
   // sale sin que ninguna prueba de datos lo note. /eficiencia/:id no estaba en
   // esta lista y por eso nadie lo midió a 375.
-  { path: '/laboratorio/cobertura', ready: /DECLARACIONES PUBLICADAS/i },
+  { path: '/laboratorio/cobertura', ready: /FILAS DE EXTRACCIÓN PUBLICADAS/i },
   { path: '/datos', ready: /Q23701/ }, // Wikidata identity block
   { path: '/empleo', ready: /OFERTAS ABIERTAS \d+/ },
   // La ficha de una oferta: filas etiqueta/valor con la etiqueta en 190 px.

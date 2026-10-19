@@ -129,14 +129,14 @@ test.describe('Por qué «sin datos» (/declaraciones)', () => {
     await expect(parrafo).toBeVisible()
     const texto = (await parrafo.innerText()).replace(/\s+/g, ' ')
     expect(texto).toMatch(new RegExp(`${cifra(comprobadoSinHallar)} comprobadas, no aparecen`))
-    expect(texto).toMatch(new RegExp(`${cifra(sinCorpus)} sin corpus que consultar`))
+    expect(texto).toMatch(new RegExp(`${cifra(sinCorpus)} sin ningún comparador lanzado`))
     expect(texto).toMatch(new RegExp(`${cifra(noConsta)} no consta qué se consultó`))
   })
 
   test('cada filtro de «sin datos» deja exactamente sus declaraciones', async ({ page }) => {
     await page.goto('/declaraciones', { waitUntil: 'domcontentloaded' })
     for (const [rotulo, n] of [
-      [/Sin corpus que consultar/i, totals.sinDatosPorque.sinCorpus],
+      [/Ningún comparador lanzado/i, totals.sinDatosPorque.sinCorpus],
       [/No consta qué se consultó/i, totals.sinDatosPorque.noConsta],
       [/Comprobada, no aparece/i, totals.sinDatosPorque.comprobadoSinHallar],
     ] as const) {

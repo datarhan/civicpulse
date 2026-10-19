@@ -53,14 +53,14 @@ test.describe('Cobertura de comprobación (/laboratorio/cobertura)', () => {
     })
     // Regla 2 del laboratorio: la ausencia se publica como ausencia. Las tres
     // cifras tienen que estar, no sólo la que favorece — y cada una bajo su
-    // rótulo: «sin corpus» no es lo que falta para el total.
+    // rótulo: «ningún comparador» no es lo que falta para el total.
     for (const [rotulo, n] of [
       ['COTEJADAS CONTRA ALGÚN CORPUS', SUMA.conCorpus],
-      ['SIN CORPUS QUE CONSULTAR', SUMA.sinCorpus],
+      ['NINGÚN COMPARADOR SE LANZÓ', SUMA.sinCorpus],
       ['NO CONSTA QUÉ SE CONSULTÓ', SUMA.noConsta],
     ] as const) {
       const bloque = page.getByText(rotulo, { exact: true }).locator('..')
-      await expect(bloque, rotulo).toContainText(String(n))
+      await expect(bloque, rotulo).toContainText(n.toLocaleString('es-ES'))
     }
     expect(appErrors(errors)).toEqual([])
   })
@@ -73,7 +73,7 @@ test.describe('Cobertura de comprobación (/laboratorio/cobertura)', () => {
     // una advertencia que nadie lee.
     const html = await page.content()
     const posAviso = html.search(/No juzga a nadie/i)
-    const posCifra = html.search(/DECLARACIONES PUBLICADAS/i)
+    const posCifra = html.search(/FILAS DE EXTRACCIÓN PUBLICADAS/i)
     expect(posAviso).toBeGreaterThan(-1)
     expect(posCifra).toBeGreaterThan(-1)
     expect(posAviso).toBeLessThan(posCifra)
@@ -191,7 +191,7 @@ test.describe('Solicitudes de acceso (/laboratorio/cobertura)', () => {
     for (const clase of ['informe-tecnico', 'expediente', 'plan-interno', 'acta']) {
       const n = CLASES.porClase[clase] ?? 0
       expect(n, `la clase ${clase} no tiene material detrás`).toBeGreaterThan(0)
-      expect(texto).toContain(String(n))
+      expect(texto).toContain(n.toLocaleString('es-ES'))
     }
   })
 

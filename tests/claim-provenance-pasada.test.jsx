@@ -455,7 +455,7 @@ describe('/declaraciones · el reparto de «sin datos» es el de las tarjetas', 
   it('la línea de reparto separa lo que no consta de lo que no tenía corpus', async () => {
     const reparto = (await pintarDeclaraciones()).textContent.replace(/\s+/g, ' ')
     expect(reparto).toMatch(/\b1 comprobadas, no aparecen\b/)
-    expect(reparto).toMatch(/\b1 sin corpus que consultar\b/)
+    expect(reparto).toMatch(/\b1 sin ningún comparador lanzado\b/)
     // Sin `\b` al final: sin la bandera `u`, «ó» no es un carácter de palabra.
     expect(reparto).toMatch(/\b3 no consta qué se consultó/)
   })
@@ -464,7 +464,7 @@ describe('/declaraciones · el reparto de «sin datos» es el de las tarjetas', 
     await pintarDeclaraciones()
     for (const [rotulo, n] of [
       [/^No consta qué se consultó/, 3],
-      [/^Sin corpus que consultar/, 1],
+      [/^Ningún comparador lanzado/, 1],
       [/^Comprobada, no aparece/, 1],
     ]) {
       fireEvent.click(screen.getByRole('button', { name: rotulo }))
