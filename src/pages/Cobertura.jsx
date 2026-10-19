@@ -361,10 +361,20 @@ export default function Cobertura() {
             <p style={{ color: 'var(--ink70)', fontSize: 'var(--fs-meta)', margin: '8px 0 0' }}>
               {resumen.noConsta > 0 ? (
                 <>
-                  De las <span className="mono">{fmt(resumen.noConsta)}</span> declaraciones de «no
-                  consta», <span className="mono">{fmt(pasadas.noConsta)}</span> llevan alguna de
-                  estas marcas y ningún corpus: una pasada rehízo el veredicto y dejó su marca en
-                  lugar de la lista de lo consultado.{' '}
+                  {pasadas.noConsta === resumen.noConsta ? (
+                    <>
+                      Las <span className="mono">{fmt(resumen.noConsta)}</span> declaraciones de «no
+                      consta» llevan alguna de estas marcas y ningún corpus
+                    </>
+                  ) : (
+                    <>
+                      De las <span className="mono">{fmt(resumen.noConsta)}</span> declaraciones de
+                      «no consta», <span className="mono">{fmt(pasadas.noConsta)}</span> llevan
+                      alguna de estas marcas y ningún corpus
+                    </>
+                  )}
+                  : una pasada rehízo el veredicto y dejó su marca en lugar de la lista de lo
+                  consultado.{' '}
                   {pasadas.noConstaSinMarca > 0 && (
                     <>
                       Las otras <span className="mono">{fmt(pasadas.noConstaSinMarca)}</span> anotan
