@@ -1,7 +1,7 @@
 import { useReportaje } from '../../hooks/useReportaje'
 import CabeceraPieza from '../../components/reportajes/CabeceraPieza'
 import { CorrectionNote } from '../../components/reportajes/CorrectionNote'
-import { SecHead, Revela } from '../../components/reportajes/Pieza'
+import { SecHead, Revela, Pliegue } from '../../components/reportajes/Pieza'
 import { FichaSociedad } from '../../components/reportajes/FichaSociedad'
 import { useSociedades, indexarSociedades } from '../../hooks/useSociedades'
 import { enCastellano } from '../../scraper/solicitud-enviada'
@@ -573,18 +573,9 @@ function DuranteLaEspera({ bloque }) {
         compruebe sin fiarse de nosotros. ---- */
 function LaTarifa({ bloque }) {
   const b = bloque
+  // Sin título propio: va plegada, y el título es el rótulo del pliegue.
   return (
     <>
-      <h3
-        style={{
-          fontFamily: SERIF,
-          fontSize: 'var(--fs-head)',
-          fontWeight: 600,
-          margin: '26px 0 0',
-        }}
-      >
-        {b.titulo}
-      </h3>
       <P>{b.cuerpo}</P>
       <div className="cp-texto" style={{ margin: '12px 0' }}>
         {b.buscadoEn.map((x) => (
@@ -797,12 +788,27 @@ export default function CosteEfectivo() {
           anuncio del BORME que lo sostiene: el precedente es el bloque de
           basuras, y el motivo es que una respuesta documentada es la que el
           lector puede ir a comprobar sin fiarse de nosotros. */}
-      <FichaSociedad sociedad={ficha} />
+      {/* Plegada, como la tarifa de abajo: las dos amplían la sección y no son
+          su hilo, y abiertas ponían 1.450 px más entre el lector y §02 —2.550
+          a 375—, que es lo que promete el título (medido el 19-10-2026). Plegar no mueve nada de sitio ni de
+          número. El rótulo nombra a la empresa: lo que se pliega es su ficha. */}
+      {ficha && (
+        <Pliegue kicker="Quién es la empresa" titulo={ficha.denominacion}>
+          <FichaSociedad sociedad={ficha} />
+        </Pliegue>
+      )}
 
       {/* La tarifa va detrás de la ficha societaria y antes de la sección 02:
           cierra «quién cobra» con «cuánto cobra», que es la pregunta que un
-          vecino hace a continuación. */}
-      {data.laTarifa && <LaTarifa bloque={data.laTarifa} />}
+          vecino hace a continuación. El rótulo es su título, que ya afirma lo
+          que el bloque sostiene —que está publicada, y dónde—: plegada, la
+          afirmación sigue a la vista y el detalle, a un clic. §02 la cita como
+          «el apartado de la tarifa, más arriba», y ahí sigue. */}
+      {data.laTarifa && (
+        <Pliegue kicker="La tarifa" titulo={data.laTarifa.titulo}>
+          <LaTarifa bloque={data.laTarifa} />
+        </Pliegue>
+      )}
 
       {/* «El coste oficial del agua es cero», decía este titular, y la
           declaración ministerial lo desmiente en la mitad de sus entregas: el

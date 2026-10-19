@@ -89,7 +89,15 @@ test.describe('Reportaje · coste efectivo (/reportajes/coste-efectivo)', () => 
     //
     // 1. El cero no se explica por la concesión: la Orden manda declarar tarifas.
     await expect(page.getByText(snap.panelCiego.porQue.slice(0, 80))).toBeVisible()
-    // 2. La tarifa está publicada, y se enlaza.
+    // 2. La tarifa está publicada, y se enlaza. Plegada desde el 19-10-2026
+    // con la ficha de la empresa: amplían §01 y no son su hilo. La afirmación
+    // —que está publicada, y dónde— es el rótulo del pliegue, así que se ve sin
+    // abrirlo; el enlace, al abrirlo.
+    const tarifa = page.locator('.cp-pliegue').filter({ hasText: snap.laTarifa.titulo })
+    await expect(tarifa.locator('summary')).toContainText(snap.laTarifa.titulo)
+    await expect(tarifa.locator('summary')).toBeVisible()
+    expect(await tarifa.getAttribute('open')).toBeNull()
+    await tarifa.locator('summary').click()
     await expect(
       page.getByRole('link', { name: /Diari Oficial de la Generalitat Valenciana/ }),
     ).toBeVisible()

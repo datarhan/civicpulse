@@ -251,6 +251,30 @@ export function Revela({ children, style, className }) {
   )
 }
 
+/**
+ * Un bloque de contexto, plegado: lo que amplía una sección sin ser su hilo
+ * —la ficha de una sociedad, dónde está publicada una tarifa—. El rótulo dice
+ * QUÉ hay dentro y, si el bloque afirma algo, lo afirma él mismo: plegar
+ * esconde el detalle, no la afirmación. `review:surfaces` abre los `<details>`
+ * antes de leer.
+ *
+ * Lo estrenó «coste efectivo» (19-10-2026), donde §02 —lo que promete el
+ * título— empezaba a un tercio de la página, detrás de la concesión entera.
+ *
+ * @param {{ kicker: string, titulo: import('react').ReactNode, children: import('react').ReactNode }} props
+ */
+export function Pliegue({ kicker, titulo, children }) {
+  return (
+    <details className="cp-pliegue">
+      <summary>
+        <span className="cp-pliegue-kicker">{kicker}</span>
+        <span className="cp-pliegue-titulo">{titulo}</span>
+      </summary>
+      {children}
+    </details>
+  )
+}
+
 const siempre = () => true
 
 /**

@@ -1748,6 +1748,7 @@ main:focus:not(:focus-visible) {
 .cp-pieza > :is(p, ul, ol, h3, .cp-texto):not(.cp-ancho),
 .cp-pieza > article > :is(p, ul, ol, h3, .cp-texto):not(.cp-ancho),
 .cp-pieza > .cp-registro > :is(p, ul, ol, h3, .cp-texto):not(.cp-ancho),
+.cp-pieza > .cp-pliegue > :is(p, ul, ol, h3, .cp-texto):not(.cp-ancho),
 .cp-pieza .cp-pie {
   max-width: var(--medida);
 }
@@ -1932,6 +1933,57 @@ main:focus:not(:focus-visible) {
 .cp-indice[open] > summary::after {
   transform: translateY(1px) rotate(225deg);
 }
+/* El bloque plegado de una pieza (`Pliegue` en Pieza.jsx): la misma fila con
+   chevrón que el índice, para que se lea como algo que se abre. El rótulo va
+   en dos líneas —qué es, y qué dice— y el chevrón, fuera del flujo, para que a
+   375px un rótulo largo no lo empuje a una tercera. */
+.cp-pliegue {
+  margin: 18px 0;
+}
+.cp-pliegue > summary {
+  position: relative;
+  display: block;
+  padding: 11px 40px 11px 16px;
+  border: 1px solid var(--border);
+  border-radius: var(--r-card);
+  background: var(--paper);
+  cursor: pointer;
+  list-style: none;
+}
+.cp-pliegue > summary::-webkit-details-marker {
+  display: none;
+}
+.cp-pliegue > summary::after {
+  content: '';
+  position: absolute;
+  right: 18px;
+  top: 50%;
+  width: 7px;
+  height: 7px;
+  border-right: 1.5px solid var(--ink50);
+  border-bottom: 1.5px solid var(--ink50);
+  transform: translateY(-70%) rotate(45deg);
+  transition: transform var(--motion-base) var(--ease-base);
+}
+.cp-pliegue[open] > summary::after {
+  transform: translateY(-30%) rotate(225deg);
+}
+.cp-pliegue-kicker {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: var(--fs-micro);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--ink50);
+}
+.cp-pliegue-titulo {
+  display: block;
+  margin-top: 2px;
+  font-size: var(--fs-aux);
+  line-height: 1.45;
+  color: var(--ink);
+}
+
 .cp-indice-titulo {
   font-family: var(--font-mono);
   font-size: var(--fs-micro);
