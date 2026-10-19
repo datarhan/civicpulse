@@ -2835,8 +2835,11 @@ export default function Metodologia() {
             calcula cociente ni se compara. Cuando trae importe sí se divide, y entonces la ficha
             lleva dos salvedades que no caben dentro del número: que ese dinero no sale del
             presupuesto municipal sino del recibo de cada casa, y que la comparación es sólo contra
-            las otras concesiones que también rellenan la casilla, no contra todas las que tienen el
-            servicio concedido.
+            las otras concesiones que declaran coste y unidad, no contra todas las que tienen el
+            servicio concedido; la ficha dice cuántas quedan fuera y por qué —sin coste, con coste
+            pero sin unidad utilizable, o con dos costes distintos—, cada motivo con su recuento.
+            Esa frase del recibo es sólo de la concesión: un servicio en concierto o en gestión
+            interesada se compara en el mismo grupo, pero sin ella.
           </li>
           <li>
             <strong>Cero sin declarar.</strong> Una unidad física a cero junto a un gasto real
@@ -2856,11 +2859,13 @@ export default function Metodologia() {
           La comparación se hace contra municipios de la Comunitat Valenciana de entre 15.000 y
           40.000 habitantes, y <strong>sólo dentro del mismo modo de gestión</strong>: comparar una
           gestión directa con una concesión es un error de categoría, no una diferencia de
-          eficiencia. Hace falta un mínimo de quince municipios comparables para dibujar la banda;
-          por debajo, la posición diría más de quién declaró ese año que del municipio. Se publica
-          la banda intercuartílica con el marcador propio, nunca un puesto, y el desglose nombra a
-          todos los municipios comparados: son cifras oficiales y esconder contra quién se compara
-          rompería el contrato de mostrar el trabajo.
+          eficiencia. La sociedad de economía mixta es un modo propio: aunque el ministerio la
+          rotule «gestión indirecta», no entra en el grupo de las concesiones. Hace falta un mínimo
+          de quince municipios comparables para dibujar la banda; por debajo, la posición diría más
+          de quién declaró ese año que del municipio. Se publica la banda intercuartílica con el
+          marcador propio, nunca un puesto, y el desglose nombra a todos los municipios comparados:
+          son cifras oficiales y esconder contra quién se compara rompería el contrato de mostrar el
+          trabajo.
         </p>
         <p style={{ margin: '10px 0 0', color: 'var(--ink70)' }}>
           <strong>Qué mide cada cifra.</strong> Cada indicador va etiquetado como entrada, carga de

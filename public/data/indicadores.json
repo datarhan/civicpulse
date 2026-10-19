@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-19T10:20:29.028Z",
+  "generatedAt": "2026-10-19T12:50:37.686Z",
   "conjunto": "cv-15k-40k",
   "anioBase": 2024,
   "source": {
@@ -37,7 +37,7 @@
       2020
     ],
     "motivoFaltantes": "El ministerio sólo publica volcado masivo de 2021; el resto de entregas se obtienen del informe por comunidad autónoma de la aplicación de consulta, que se pide con `npm run fetch:cesel-ccaa` y se guarda en .cache/cesel/ccaa.",
-    "fuenteGeneratedAt": "2026-08-16T13:19:40.101Z"
+    "fuenteGeneratedAt": "2026-10-19T12:50:25.285Z"
   },
   "indicadores": [
     {
@@ -6887,16 +6887,16 @@
       "comparable": true,
       "pares": {
         "conjunto": "cv-15k-40k",
-        "n": 30,
+        "n": 29,
         "modoGestion": "concesion",
-        "percentil": 20,
+        "percentil": 21,
         "percentilBanda": [
           7,
-          37
+          38
         ],
-        "p25": 7.782706122414473,
-        "mediana": 11.910290129904695,
-        "p75": 15.667835789780156,
+        "p25": 7.679536964285714,
+        "mediana": 11.741348474095103,
+        "p75": 15.500102171136653,
         "atipicos": 3,
         "miembros": [
           {
@@ -6930,14 +6930,6 @@
             "gastoTotal": 22399647.61,
             "ingresoTotal": 22399647.61,
             "valor": 12.615302223682768
-          },
-          {
-            "ine": "03047",
-            "nombre": "Calp",
-            "poblacion": 27616,
-            "gastoTotal": 54911909,
-            "ingresoTotal": 54911909,
-            "valor": 23.425058419745874
           },
           {
             "ine": "03050",
@@ -7151,14 +7143,14 @@
           "estado": "declarado",
           "numerador": 1861058.09,
           "denominador": 239240,
-          "medianaPares": 10.686807756076568,
-          "p25Pares": 4.312031979889521,
-          "p75Pares": 15.400137098713131,
-          "nPares": 48,
+          "medianaPares": 10.524050852461436,
+          "p25Pares": 4.184513243578559,
+          "p75Pares": 14.947188165372474,
+          "nPares": 47,
           "valorReal": 9.556474658307941,
-          "medianaParesReal": 13.1286349917738,
-          "p25ParesReal": 5.297287574452334,
-          "p75ParesReal": 18.918912308244433
+          "medianaParesReal": 12.928689785616292,
+          "p25ParesReal": 5.140632099604201,
+          "p75ParesReal": 18.362469135365096
         },
         {
           "anio": 2015,
@@ -7166,14 +7158,14 @@
           "estado": "declarado",
           "numerador": 1804949.27,
           "denominador": 242615,
-          "medianaPares": 10.579923028648736,
-          "p25Pares": 5.811609803789506,
-          "p75Pares": 15.874494847669062,
-          "nPares": 38,
+          "medianaPares": 10.199055510204081,
+          "p25Pares": 5.675462552895913,
+          "p75Pares": 15.634382994360664,
+          "nPares": 37,
           "valorReal": 9.185383162450954,
-          "medianaParesReal": 13.062684379421045,
-          "p25ParesReal": 7.175404244216628,
-          "p75ParesReal": 19.599718761312285
+          "medianaParesReal": 12.592439731105179,
+          "p25ParesReal": 7.00730769353917,
+          "p75ParesReal": 19.30326052177384
         },
         {
           "anio": 2016,
@@ -7261,14 +7253,14 @@
           "estado": "declarado",
           "numerador": 1898034.08,
           "denominador": 270630,
-          "medianaPares": 11.910290129904695,
-          "p25Pares": 7.782706122414473,
-          "p75Pares": 15.667835789780156,
-          "nPares": 30,
+          "medianaPares": 11.741348474095103,
+          "p25Pares": 7.679536964285714,
+          "p75Pares": 15.500102171136653,
+          "nPares": 29,
           "valorReal": 7.01339127221668,
-          "medianaParesReal": 11.910290129904695,
-          "p25ParesReal": 7.782706122414473,
-          "p75ParesReal": 15.667835789780156
+          "medianaParesReal": 11.741348474095103,
+          "p25ParesReal": 7.679536964285714,
+          "p75ParesReal": 15.500102171136653
         }
       ],
       "declaracion": {
@@ -7290,7 +7282,7 @@
       },
       "caveats": [
         "Este servicio está concedido: el coste que el ayuntamiento declara no sale de su presupuesto —lo cobra el concesionario del recibo de cada casa—, así que este cociente dice lo que cuesta el servicio, no lo que el ayuntamiento gasta en él. Por eso sólo se compara con otras concesiones.",
-        "De los 41 municipios comparables que también tienen este servicio concedido, 11 no declaran su coste: sin coste no hay cociente con el que compararse, así que el percentil se calcula contra los 30 restantes. El grupo es el de las concesiones que rellenan esa casilla, no el de todas las que hay."
+        "De los 40 municipios comparables que también tienen este servicio concedido, 10 no declaran su coste y 1 declara un coste pero no una cifra utilizable de m de red: sin un coste y una unidad utilizables no hay cociente con el que compararse, así que el percentil se calcula contra los 29 restantes. El grupo lo forman los que declaran coste y unidad, no todos los que hay."
       ],
       "concesion": {
         "adjudicataria": "HIDRAQUA, Gestión Integral de Aguas de Levante, S.A.",
@@ -7336,16 +7328,16 @@
       "comparable": true,
       "pares": {
         "conjunto": "cv-15k-40k",
-        "n": 22,
+        "n": 21,
         "modoGestion": "concesion",
-        "percentil": 23,
+        "percentil": 24,
         "percentilBanda": [
-          5,
-          41
+          10,
+          43
         ],
-        "p25": 2.129494215162271,
-        "mediana": 5.624232457690648,
-        "p75": 7.458327083480685,
+        "p25": 1.8639798488664987,
+        "mediana": 5.175101484230055,
+        "p75": 7.463572719614,
         "atipicos": 1,
         "miembros": [
           {
@@ -7379,14 +7371,6 @@
             "gastoTotal": 22399647.61,
             "ingresoTotal": 22399647.61,
             "valor": 7.442590175080741
-          },
-          {
-            "ine": "03047",
-            "nombre": "Calp",
-            "poblacion": 27616,
-            "gastoTotal": 54911909,
-            "ingresoTotal": 54911909,
-            "valor": 6.073363431151241
           },
           {
             "ine": "03076",
@@ -7534,14 +7518,14 @@
           "estado": "declarado",
           "numerador": 503042.19,
           "denominador": 220142,
-          "medianaPares": 2.794771797152782,
-          "p25Pares": 1.6494158016513905,
-          "p75Pares": 6.3546200584298065,
-          "nPares": 40,
+          "medianaPares": 2.789054709029016,
+          "p25Pares": 1.5531750376462155,
+          "p75Pares": 6.417056785509988,
+          "nPares": 39,
           "valorReal": 2.8071982214633855,
-          "medianaParesReal": 3.43334882105085,
-          "p25ParesReal": 2.0262905915222613,
-          "p75ParesReal": 7.8065863223835
+          "medianaParesReal": 3.4263254362472777,
+          "p25ParesReal": 1.9080597885741175,
+          "p75ParesReal": 7.883289208654717
         },
         {
           "anio": 2015,
@@ -7549,14 +7533,14 @@
           "estado": "declarado",
           "numerador": 498674.68,
           "denominador": 223863,
-          "medianaPares": 3.483427750885888,
-          "p25Pares": 1.6240201992663357,
-          "p75Pares": 5.5387600089635285,
-          "nPares": 31,
+          "medianaPares": 3.500460053891747,
+          "p25Pares": 1.5632020160712206,
+          "p75Pares": 5.923441795995069,
+          "nPares": 30,
           "valorReal": 2.7503307446252987,
-          "medianaParesReal": 4.300874131609867,
-          "p25ParesReal": 2.005124539316244,
-          "p75ParesReal": 6.83852554073737
+          "medianaParesReal": 4.321903358175859,
+          "p25ParesReal": 1.9300343208471342,
+          "p75ParesReal": 7.313479541527154
         },
         {
           "anio": 2016,
@@ -7644,14 +7628,14 @@
           "estado": "declarado",
           "numerador": 514318.78,
           "denominador": 296490,
-          "medianaPares": 5.624232457690648,
-          "p25Pares": 2.129494215162271,
-          "p75Pares": 7.458327083480685,
-          "nPares": 22,
+          "medianaPares": 5.175101484230055,
+          "p25Pares": 1.8639798488664987,
+          "p75Pares": 7.463572719614,
+          "nPares": 21,
           "valorReal": 1.7346918277176298,
-          "medianaParesReal": 5.624232457690648,
-          "p25ParesReal": 2.129494215162271,
-          "p75ParesReal": 7.458327083480685
+          "medianaParesReal": 5.175101484230055,
+          "p25ParesReal": 1.8639798488664987,
+          "p75ParesReal": 7.463572719614
         }
       ],
       "declaracion": {
@@ -7673,7 +7657,7 @@
       },
       "caveats": [
         "Este servicio está concedido: el coste que el ayuntamiento declara no sale de su presupuesto —lo cobra el concesionario del recibo de cada casa—, así que este cociente dice lo que cuesta el servicio, no lo que el ayuntamiento gasta en él. Por eso sólo se compara con otras concesiones.",
-        "De los 27 municipios comparables que también tienen este servicio concedido, 5 no declaran su coste: sin coste no hay cociente con el que compararse, así que el percentil se calcula contra los 22 restantes. El grupo es el de las concesiones que rellenan esa casilla, no el de todas las que hay.",
+        "De los 26 municipios comparables que también tienen este servicio concedido, 4 no declaran su coste y 1 declara un coste pero no una cifra utilizable de m de red: sin un coste y una unidad utilizables no hay cociente con el que compararse, así que el percentil se calcula contra los 21 restantes. El grupo lo forman los que declaran coste y unidad, no todos los que hay.",
         "Esta cifra queda muy por debajo de la mediana de sus pares (×0,3). Una diferencia así suele venir de que cada ayuntamiento declara «Longitud del tramo: metros lineales.» a su manera, no de que el servicio se gestione mejor o peor. El coste y la unidad son los que publica el ministerio; lo que conviene tomar con pinzas es la comparación (regla 6 de la metodología)."
       ],
       "concesion": {
