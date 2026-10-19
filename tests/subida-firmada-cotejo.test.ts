@@ -27,6 +27,7 @@ import {
   DESENLACES_DE_FILA,
   cotejarFilaDeContrato,
   cotejarSubidasFirmadas,
+  evidenciaDelRegistro,
   type DeclaracionCotejada,
 } from '../src/scraper/subida-firmada'
 import type { Overlay } from '../src/scraper/verified-merge'
@@ -121,6 +122,16 @@ describe('cotejarFilaDeContrato · una fila firmada contra el tenders.json de ho
     expect(cotejarFilaDeContrato(f, c).desenlace).toBe('contradice')
   })
 
+  it('movido: un importe de cuatro cifras, que se escribe sin punto de millares («1936,00 €»)', () => {
+    const c = corpus()
+    const derivado = c.tenders.contracts.find((r: { id: string }) => r.id === '4889055#1')
+    const hoy = evidenciaDelRegistro({ enlace: derivado.permalink, lote: null }, c)
+    expect(hoy.snippet).toContain('1936,00')
+    derivado.assignee = 'JOSE LUIS MORENO DELGADO'
+    const r = cotejarFilaDeContrato(hoy, c)
+    expect(r.desenlace, r.detalle).toBe('movido')
+  })
+
   it('sin-registro: el enlace, o su lote, ya no está en tenders.json', () => {
     const c = corpus()
     const f = fila('rmtyr-124-cit-a8696c')
@@ -159,10 +170,10 @@ describe('cotejarSubidasFirmadas · lo que publica main el 19-10-2026', () => {
     expect(cuenta('coincide') + cuenta('contradice') + cuenta('sin-registro')).toBe(0)
   })
 
-  it('10 subidas citan una adjudicación publicada después de lo dicho', () => {
-    const posteriores = [
-      ...new Set(r.avisos.filter((a) => a.codigo === 'posterior').map((a) => a.id)),
-    ]
+  it('9 citan una adjudicación publicada después de lo dicho sin motivo registrado: aviso, no fallo', () => {
+    // Firmadas antes del 19-10-2026, no podían guardar el motivo: lo decide el
+    // curador al volver a firmarlas.
+    const posteriores = [...new Set(r.posterioresSinMotivo.map((a) => a.id))]
     expect(posteriores.sort()).toEqual(
       [
         '19gax3o-034-cit-8ae8be',
@@ -173,14 +184,35 @@ describe('cotejarSubidasFirmadas · lo que publica main el 19-10-2026', () => {
         'c8kr44-230-cit-56b068',
         'c8kr44-231-cit-faf7d3',
         'k4olcs-101-cit-ddd6c4',
-        'ma87e0-157-pro-7ce20e',
         'rmtyr-124-cit-a8696c',
       ].sort(),
     )
+    expect(r.avisos.filter((a) => a.codigo === 'posterior')).toEqual([])
+    expect(r.posterioresConMotivo).toEqual([])
   })
 
-  it('una es una promesa sostenida por un contrato', () => {
+  it('la décima es una promesa sostenida por un contrato: su propia clase, que ningún motivo arregla', () => {
     expect(r.avisos.filter((a) => a.codigo === 'promesa').map((a) => a.id)).toEqual([
+      'ma87e0-157-pro-7ce20e',
+    ])
+    expect(r.posterioresSinMotivo.some((a) => a.id === 'ma87e0-157-pro-7ce20e')).toBe(false)
+  })
+
+  it('con el motivo firmado en la entrada, el registro posterior se lista y no avisa', () => {
+    const o = overlay()
+    o.entries['c8kr44-229-cit-1356bf'].registroPosterior =
+      'En el pleno se describía, lote a lote, el contrato que se tramitaba; la licitación de noviembre trae esos cinco lotes con esos nombres.'
+    o.entries['ma87e0-157-pro-7ce20e'].registroPosterior =
+      'En el pleno se describía, lote a lote, el contrato que se tramitaba; la licitación de noviembre trae esos cinco lotes con esos nombres.'
+    const otro = cotejarSubidasFirmadas({
+      overlay: o,
+      declaraciones: declaraciones(),
+      corpus: corpus(),
+    })
+    expect(otro.posterioresConMotivo.map((p) => p.id)).toEqual(['c8kr44-229-cit-1356bf'])
+    expect(otro.posterioresSinMotivo.some((a) => a.id === 'c8kr44-229-cit-1356bf')).toBe(false)
+    // A una promesa no la salva un motivo.
+    expect(otro.avisos.filter((a) => a.codigo === 'promesa').map((a) => a.id)).toEqual([
       'ma87e0-157-pro-7ce20e',
     ])
   })

@@ -39,9 +39,15 @@
  *    la fila la escribe el registro: un contrato (con `--lote` si el enlace lleva
  *    a varios), una convocatoria de la BDNS o, desde el 10-10-2026, un punto del
  *    orden del día de un pleno (`--punto`);
- *  · un orden del día posterior a la declaración no la sostiene, y una
- *    declaración con cifra no llega a `verificado` si ningún registro citado dice
- *    un importe (`comprobarRegistrosConLaDeclaracion`);
+ *  · un registro posterior a la declaración no la sostiene —desde el 19-10-2026
+ *    también un contrato, por el día en que se publicó su adjudicación, y una
+ *    convocatoria— salvo con `--registro-posterior "<motivo>"` (o
+ *    `--registro-posterior-de <fichero>`): por qué corrobora la descripción de
+ *    un contrato en trámite. El motivo se publica con la entrada. Una promesa no
+ *    la sostiene un contrato, con motivo o sin él; y una declaración con
+ *    cifra no llega a `verificado` si ninguna fila citada dice esa cifra
+ *    (`comprobarRegistrosConLaDeclaracion`). Lo ya firmado lo vuelve a mirar
+ *    `check:veredictos`, sin reescribirlo;
  *  · el resumen no puede ser el de una máquina: el de la base, el de una entrada
  *    del overlay que no firmó una persona, o la propuesta de NLI de esa
  *    declaración si la cola está en disco.
@@ -103,7 +109,8 @@ const VEREDICTOS_DE_SUBIDA = ['parcial', 'verificado']
 const USO =
   'uso: npm run subir-veredicto -- <claimId> <parcial|verificado> \\\n' +
   "         --evidencia '<enlace del registro>' [--lote <n> | --punto <n>] [--evidencia '<otro>' …] \\\n" +
-  '         --resumen-de <fichero> --editor "<Nombre Apellido>" [--dry-run]\n' +
+  '         --resumen-de <fichero> --editor "<Nombre Apellido>" \\\n' +
+  '         [--registro-posterior-de <fichero>] [--dry-run]\n' +
   '     npm run subir-veredicto -- --retirar <claimId> --motivo-de <fichero> \\\n' +
   '         --editor "<Nombre Apellido>" [--dry-run]\n' +
   '     npm run subir-veredicto -- --backfill-sustituye <commit> <claimId>… \\\n' +
@@ -121,6 +128,8 @@ interface Orden {
   resumenDe?: string
   motivo?: string
   motivoDe?: string
+  registroPosterior?: string
+  registroPosteriorDe?: string
   editor?: string
   dryRun: boolean
   /** Lo que no se ha podido leer de la orden: se dice antes de leer nada más. */
@@ -159,6 +168,8 @@ function parse(argv: string[]): Orden {
     else if (a === '--resumen-de') o.resumenDe = argv[++i]
     else if (a === '--motivo') o.motivo = argv[++i]
     else if (a === '--motivo-de') o.motivoDe = argv[++i]
+    else if (a === '--registro-posterior') o.registroPosterior = argv[++i]
+    else if (a === '--registro-posterior-de') o.registroPosteriorDe = argv[++i]
     else if (a === '--editor') o.editor = argv[++i]
     else if (a === '--dry-run') o.dryRun = true
     else if (a.startsWith('--')) o.errores.push(`opción desconocida: ${a}`)
@@ -174,12 +185,17 @@ function parse(argv: string[]): Orden {
       o.errores.push('--backfill-sustituye no sube nada: ni --evidencia ni resumen')
     if (o.motivo != null || o.motivoDe != null)
       o.errores.push('--backfill-sustituye no retira nada: sin --motivo')
+    if (o.registroPosterior != null || o.registroPosteriorDe != null)
+      o.errores.push('--backfill-sustituye no cita registros: sin --registro-posterior')
   } else if (o.retirar) {
     if (posicionales.length > 0)
       o.errores.push(`--retirar no lleva veredicto (${posicionales.join(' ')})`)
     if (o.evidencias.length > 0) o.errores.push('--retirar no cita registros: baja a lo que había')
     if (o.resumen != null || o.resumenDe != null) {
       o.errores.push('--retirar lleva su porqué en --motivo-de (o --motivo), no un resumen')
+    }
+    if (o.registroPosterior != null || o.registroPosteriorDe != null) {
+      o.errores.push('--retirar no cita registros: sin --registro-posterior')
     }
   } else {
     ;[o.claimId, o.veredicto] = posicionales
@@ -351,6 +367,10 @@ async function main() {
   const escrito = o.retirar
     ? texto('motivo', o.motivo, o.motivoDe)
     : texto('resumen', o.resumen, o.resumenDe)
+  const registroPosterior =
+    o.registroPosterior != null || o.registroPosteriorDe != null
+      ? texto('registro-posterior', o.registroPosterior, o.registroPosteriorDe)
+      : null
 
   if (!o.retirar) {
     const congelado = congeladoHasta()
@@ -392,9 +412,11 @@ async function main() {
         registros,
         {
           fecha: enPublicado.claim.plenoDate ?? null,
-          conImporte: enPublicado.claim.entities?.amountEuros != null,
+          tipo: String(enPublicado.claim.type),
+          importe: enPublicado.claim.entities?.amountEuros ?? null,
         },
         o.veredicto as ClaimVerdict,
+        registroPosterior,
       )
       const evidencia: ClaimEvidence[] = registros.map((r) => r.fila)
       nuevo = subirVeredicto(
@@ -405,6 +427,7 @@ async function main() {
           evidencia,
           resumen: escrito,
           editor: o.editor,
+          registroPosterior,
         },
         {
           tipo: String(enPublicado.claim.type),

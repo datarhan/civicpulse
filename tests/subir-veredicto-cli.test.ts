@@ -52,11 +52,19 @@ const MOTIVO_DEL_MOTOR =
 const RETIRADA = 'El parque del contrato no es el que se cita en la sesión, sino otro del casco.'
 const PERSONA = 'María de la Fuente Llorens'
 
-const declaracion = (id: string, verbatim: string, type = 'cita_obra') => ({
+/**
+ * El día de la sesión de prueba: posterior a la adjudicación de los juegos
+ * (publicada el 08-09-2026), que es lo que la cita. Hasta el 19-10-2026 era el
+ * 19-01-2026, anterior a ella, y la vía no lo miraba: es el caso de
+ * 19gax3o-034-cit-8ae8be, que hoy señala `check:veredictos`.
+ */
+const DICHA = '2026-09-14'
+
+const declaracion = (id: string, verbatim: string, type = 'cita_obra', plenoDate = DICHA) => ({
   claim: {
     id,
     plenoId: 'p1',
-    plenoDate: '2026-01-19',
+    plenoDate,
     segmentIndex: Number(id.split('-')[1]),
     type,
     ...(type === 'acusacion_publica' ? { accusationSubtype: 'factual' } : {}),
@@ -124,11 +132,13 @@ function montar(
     /** La transcripción de la sesión; por defecto, con las tres declaraciones. */
     transcripcion?: string
     colaNli?: unknown
+    /** La base; por defecto, la de las tres declaraciones del día de la sesión. */
+    base?: unknown
   } = {},
 ): string {
   const dir = mkdtempSync(join(tmpdir(), 'subir-'))
   const ficheros: Record<string, string> = {
-    'public/data/pleno-claims-verified-base.json': json(BASE),
+    'public/data/pleno-claims-verified-base.json': json(opciones.base ?? BASE),
     'public/data/pleno-claims-overlay.json': json(OVERLAY),
     'public/data/pleno-claims-verified.json': json(opciones.publicado ?? publicado()),
     'public/data/pleno-transcripts/p1.txt':
@@ -435,6 +445,39 @@ describe('subir-veredicto', { timeout: PLAZO }, () => {
       ])
       expect(conLote.status, conLote.stdout + conLote.stderr).toBe(0)
       expect(conLote.stdout).toContain('AUDITESA SL')
+    } finally {
+      limpiar(dir)
+    }
+  })
+
+  it('un contrato cuya adjudicación se publicó después de lo dicho no lo sostiene sin un motivo firmado', () => {
+    const anterior = {
+      ...BASE,
+      items: [declaracion(SUBIDA, LITERAL, 'cita_obra', '2026-01-19'), ...BASE.items.slice(1)],
+    }
+    const dir = montar({
+      base: anterior,
+      publicado: {
+        generatedAt: GENERADO,
+        source: BASE.source,
+        items: mergeVerified(anterior.items as unknown as VerifiedItem[], OVERLAY as never),
+      },
+    })
+    try {
+      const antes = huella(dir)
+      const r = subir(dir)
+      expect(r.status, r.stdout + r.stderr).toBe(1)
+      expect(r.stderr).toMatch(/08-09-2026.*posterior.*19-01-2026/s)
+      expect(r.stderr).toMatch(/--registro-posterior/)
+      expect(huella(dir)).toEqual(antes)
+
+      // Con el motivo firmado, sí, y la entrada lo lleva.
+      const motivo =
+        'La sesión describía el suministro que se tramitaba, y la adjudicación es la de ese objeto.'
+      const conMotivo = subir(dir, ['--registro-posterior', motivo, '--dry-run'])
+      expect(conMotivo.status, conMotivo.stdout + conMotivo.stderr).toBe(0)
+      expect(conMotivo.stdout).toContain(`"registroPosterior": "${motivo}"`)
+      expect(huella(dir)).toEqual(antes)
     } finally {
       limpiar(dir)
     }

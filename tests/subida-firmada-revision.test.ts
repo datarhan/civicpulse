@@ -27,8 +27,10 @@ import {
   comprobarRegistrosConLaDeclaracion,
   evidenciaDelRegistro,
   registroDeLaSubida,
+  subirVeredicto,
   type RegistroDeLaSubida,
 } from '../src/scraper/subida-firmada'
+import { validateOverlay, type Overlay } from '../src/scraper/verified-merge'
 
 const F = JSON.parse(
   readFileSync(resolve(__dirname, 'fixtures/subida-firmada-revision_2026-10-19.json'), 'utf8'),
@@ -53,7 +55,12 @@ const licitacionDe = (id: string) =>
 const pedidaDe = (claimId: string, n = 0) => {
   const fila = F.subidas[claimId].verification.evidence[n]
   const lote = /\blote (\d+)\b/.exec(fila.snippet)
-  return { enlace: fila.ref, lote: lote ? Number(lote[1]) : null }
+  const punto = fila.kind === 'agenda' ? /\bpunto (\d+):/.exec(fila.snippet) : null
+  return {
+    enlace: fila.ref,
+    lote: lote ? Number(lote[1]) : null,
+    punto: punto ? Number(punto[1]) : null,
+  }
 }
 const registrosDe = (claimId: string): RegistroDeLaSubida[] =>
   F.subidas[claimId].verification.evidence.map((_: unknown, i: number) =>
@@ -84,7 +91,10 @@ describe('un contrato tiene fecha: el día en que se publicó su adjudicación',
   })
 })
 
-describe('comprobarRegistrosConLaDeclaracion · un contrato posterior a lo dicho no lo sostiene', () => {
+const MOTIVO =
+  'En el pleno se describía, lote a lote, el contrato que se tramitaba; la licitación de noviembre trae esos cinco lotes con esos nombres.'
+
+describe('comprobarRegistrosConLaDeclaracion · un registro posterior a lo dicho, sólo con su motivo', () => {
   it('c8kr44-229, -230 y -231 (dichas el 08-09-2025): adjudicación publicada el 01-04-2026', () => {
     for (const id of ['c8kr44-229-cit-1356bf', 'c8kr44-230-cit-56b068', 'c8kr44-231-cit-faf7d3']) {
       expect(F.subidas[id].verification.verdict).toBe('verificado')
@@ -119,7 +129,47 @@ describe('comprobarRegistrosConLaDeclaracion · un contrato posterior a lo dicho
     ).not.toThrow()
   })
 
-  it('una convocatoria posterior tampoco', () => {
+  it('con un motivo firmado, sí: un registro posterior corrobora la descripción de un contrato en trámite', () => {
+    // Decisión del curador del 19-10-2026: c8kr44-229/230/231 describían, lote a
+    // lote, el contrato que se tramitaba, y siguen en verificado.
+    for (const id of ['c8kr44-229-cit-1356bf', 'c8kr44-230-cit-56b068', 'c8kr44-231-cit-faf7d3']) {
+      expect(() =>
+        comprobarRegistrosConLaDeclaracion(registrosDe(id), declaracion(id), 'verificado', MOTIVO),
+      ).not.toThrow()
+    }
+  })
+
+  it('el rechazo explica la doctrina y cómo firmar el motivo', () => {
+    const id = 'c8kr44-229-cit-1356bf'
+    expect(() =>
+      comprobarRegistrosConLaDeclaracion(registrosDe(id), declaracion(id), 'verificado'),
+    ).toThrow(
+      /corroborar lo que se describió de un contrato.*no que algo ya estuviera hecho.*--registro-posterior/s,
+    )
+  })
+
+  it('un motivo corto, de una máquina, o sin registro posterior que justificar, se niega', () => {
+    const id = 'c8kr44-229-cit-1356bf'
+    expect(() =>
+      comprobarRegistrosConLaDeclaracion(
+        registrosDe(id),
+        declaracion(id),
+        'verificado',
+        'porque sí',
+      ),
+    ).toThrow(/20 caracteres/)
+    const anterior = 'k4olcs-018-afi-1077bc'
+    expect(() =>
+      comprobarRegistrosConLaDeclaracion(
+        registrosDe(anterior),
+        declaracion(anterior),
+        'verificado',
+        MOTIVO,
+      ),
+    ).toThrow(/ningún registro citado es posterior/)
+  })
+
+  it('una convocatoria posterior tampoco, sin motivo', () => {
     const r = registroDeLaSubida(pedidaDe('ma87e0-152-cit-786d7e'), CORPUS)
     expect(() =>
       comprobarRegistrosConLaDeclaracion(
@@ -147,6 +197,10 @@ describe('una promesa no la sostiene un contrato', () => {
         'parcial',
       ),
     ).toThrow(/promesa.*\/promesas/s)
+    // Ni con un motivo: una promesa no la sostiene un contrato.
+    expect(() =>
+      comprobarRegistrosConLaDeclaracion(registros, declaracion(id), 'parcial', MOTIVO),
+    ).toThrow(/promesa/)
   })
 
   it('un orden del día anterior a una promesa sigue valiendo: lo que se llevó al pleno', () => {
@@ -208,6 +262,51 @@ describe('verificado con una cifra exige que la fila diga ESA cifra', () => {
     expect(() =>
       comprobarRegistrosConLaDeclaracion(registrosDe(id), declaracion(id), 'verificado'),
     ).not.toThrow()
+  })
+})
+
+describe('el motivo del registro posterior se publica con la subida', () => {
+  const vacio = (): Overlay => ({
+    version: 1,
+    generatedAt: '2026-10-19T00:00:00.000Z',
+    entries: {},
+  })
+  const pedida = (registroPosterior?: string) => ({
+    claimId: 'c8kr44-229-cit-1356bf',
+    veredicto: 'verificado' as const,
+    evidencia: registrosDe('c8kr44-229-cit-1356bf').map((r) => r.fila),
+    resumen:
+      'En el pleno se describió la renovación del Parque Bellavista I, que es el lote 3 del contrato adjudicado.',
+    editor: 'María de la Fuente Llorens',
+    registroPosterior,
+  })
+  const observado = { tipo: 'cita_obra', publicado: 'sin-datos' as const, resumenesDeMaquina: [] }
+
+  it('la entrada lo lleva, en una línea', () => {
+    const o = subirVeredicto(
+      vacio(),
+      pedida(`  ${MOTIVO}\n`),
+      observado,
+      '2026-10-19T10:00:00.000Z',
+    )
+    expect(o.entries['c8kr44-229-cit-1356bf'].registroPosterior).toBe(MOTIVO)
+  })
+
+  it('sin él, la entrada no lo lleva', () => {
+    const o = subirVeredicto(vacio(), pedida(), observado, '2026-10-19T10:00:00.000Z')
+    expect(o.entries['c8kr44-229-cit-1356bf']).not.toHaveProperty('registroPosterior')
+  })
+
+  it('al leer, sólo lo lleva una subida firmada, y con ≥20 caracteres', () => {
+    const o = subirVeredicto(vacio(), pedida(MOTIVO), observado, '2026-10-19T10:00:00.000Z')
+    const corto = structuredClone(o)
+    corto.entries['c8kr44-229-cit-1356bf'].registroPosterior = 'corto'
+    expect(() => validateOverlay(corto)).toThrow(/registroPosterior/)
+    const otraVia = structuredClone(o)
+    const e = otraVia.entries['c8kr44-229-cit-1356bf']
+    e.source = 'curator-downgrade'
+    delete e.desde
+    expect(() => validateOverlay(otraVia)).toThrow(/registroPosterior sólo lo lleva/)
   })
 })
 
@@ -292,7 +391,7 @@ describe('un título que es un código CPV toma el de su licitación', () => {
     const c = contrato('4889055#1')
     const { snippet } = evidenciaDelRegistro({ enlace: c.permalink, lote: null }, CORPUS)
     expect(snippet).toMatch(
-      /^Contrato derivado del sistema dinámico de adquisición ESDA1\/2025 · objeto según su CPV: Servicios de arquitectura, construcción, ingeniería e inspección · adjudicado a José Luis Moreno Delgado por/,
+      /^Contrato derivado del sistema dinámico de adquisición ESDA1\/2025 · objeto según su CPV: Servicios de arquitectura, construcción, ingenier.* · adjudicado a José Luis Moreno Delgado por 1936,00/,
     )
   })
 
