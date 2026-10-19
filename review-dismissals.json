@@ -185,6 +185,69 @@
       "at": "2026-10-18"
     },
     {
+      "route": "/hallazgos",
+      "quote": "\"Otro\" no era el nombre de ningún grupo municipal: era el valor de relleno que el extractor usaba cuando no podía determinar quién hablaba.",
+      "reason": "El revisor lee el rótulo «Grupo de un solo escaño» como si dijera que «Otro» era ese grupo. No: las dos versiones del titular y del sumario de f-2026-01-19-afi-5238db (filas 0 y 1 de su bitácora) nombran también a Compromís, que tiene un solo concejal, y por eso no se reproducen. El motivo cuenta qué cambió la corrección (el relleno «Otro»); el rótulo cuenta por qué no se enseña el texto. Las dos cosas son ciertas a la vez. Comprobado sobre pleno-findings.json y la copia servida el 18-10-2026: el rótulo sale sólo en las seis filas «Otro» cuyo texto nombra a Compromís o a VOX.",
+      "editor": "Sergei Lutchenko",
+      "at": "2026-10-18"
+    },
+    {
+      "route": "/hallazgos",
+      "quote": "La ficha 1adbf3 atribuye la cita 2 a PP.",
+      "reason": "La corrección que cita el revisor (quote.1.speakerGroup PP → PSOE, 29-09-2026) es de la ficha a870a4, la anterior de la lista, cuya cita 2 también está retenida; la bitácora de 1adbf3 no tiene ninguna fila de grupo. La atribución a PP de la cita 2 de 1adbf3 se revisa aparte y por otro motivo: en la transcripción (10yl550, 7.041–7.236 s) el turno es de otro grupo.",
+      "editor": "Sergei Lutchenko",
+      "at": "2026-10-18"
+    },
+    {
+      "route": "/hallazgos",
+      "quote": "la ficha 7f7619 no reproduce su literal —ni en la cita 4, donde queda a la vista su hueco «Literal retenido» con su motivo, ni en su bitácora de correcciones",
+      "reason": "El revisor toma por el literal retenido una paráfrasis. La cita 4 de f-2026-05-11-cit-7f7619 dice «Que compete a la Generalitat Valenciana. Donde gobierna el Partido Popular.», y ni la bitácora ni ninguna otra parte de la ficha lo reproducen. Lo que el revisor señala —«el grupo PSOE afirma que la competencia sobre esta infraestructura es de la Generalitat Valenciana»— es el sumario: parafrasea la mitad que no acusa y omite «Donde gobierna el Partido Popular». La nota promete no reproducir el literal, no ocultar el contenido, y su última frase lo dice: «Se retiene la cita, no lo que se dijo». Comprobado el 18-10-2026.",
+      "editor": "Sergei Lutchenko",
+      "at": "2026-10-18"
+    },
+    {
+      "route": "/hallazgos",
+      "quote": "cuyo presupuesto inicial de gastos de 2025 es de 41,6 millones según CONPREL",
+      "reason": "41.578.252,26 € es el presupuesto inicial de gastos de 2025 según CONPREL: budget.json lo declara así (\"kind\": \"presupuesto-inicial\", TipoDato=Presupuestos) y /presupuesto lo llama «presupuesto aprobado según el Ministerio de Hacienda». Los 37,60 M€ son el crédito inicial del listado municipal, la misma etapa en otra fuente que no cuadra con CONPREL (budget-contraste.ts; descarte de /gestion del 24-08-2026), no una prueba de que CONPREL mida otra cosa. La frase dice de qué fuente sale. Con 37,60 M€ la proporción sería de unas 45 veces en vez de 41, y el motivo sigue siendo cierto; la enmienda del 14-10 da además la proporción con el crédito definitivo (unas veintisiete).",
+      "editor": "Sergei Lutchenko",
+      "at": "2026-10-18"
+    },
+    {
+      "route": "/hallazgos",
+      "quote": "GRUPO DE UN SOLO ESCAÑO: esta corrección cambió un texto que nombraba a un grupo con un solo concejal, y nombrar ese grupo es nombrar a esa persona",
+      "reason": "Cada fila con ese rótulo lleva un titular o un sumario cuyas dos versiones nombran a Compromís (f-2026-01-19-afi-5238db, filas 0 a 3 y 9 de su bitácora), aunque lo que corrigiera la fila fuera el relleno «Otro» o el desfase 2006-2012/2017. El rótulo no dice que la corrección tratara del grupo, sino que el texto lo nombraba, y eso es exacto en cada fila donde sale (lo decide retenerGruposDeUnEscano fila a fila). Comprobado el 18-10-2026.",
+      "editor": "Sergei Lutchenko",
+      "at": "2026-10-18"
+    },
+    {
+      "route": "/hallazgos",
+      "quote": "así que la bitácora no reproduce el texto que había antes de esta corrección",
+      "reason": "El «Texto retirado» que el revisor pone debajo es de otra fila: la 15 de la bitácora de f-2026-01-19-afi-5238db (sumario del 30-09), que retiró el sumario «un grupo no identificado…» puesto por la fila 13. Lo que la fila 13 no reproduce es su texto anterior, que empezaba nombrando a Compromís, y ése no aparece en la página. Comprobado sobre pleno-findings.json el 18-10-2026.",
+      "editor": "Sergei Lutchenko",
+      "at": "2026-10-18"
+    },
+    {
+      "route": "/hallazgos",
+      "quote": "La corrección del 9-08-2026 citaba de la transcripción sólo «El plan rehabilita más de 900.000 euros», y así se leía que el resto de la cita no estaba en ella.",
+      "reason": "El revisor leyó el lado equivocado de la fila. En la bitácora de f-2025-12-01-cit-66cd62, la corrección del 9-08-2026 (corrections[1], commit f722028e) tiene como texto retirado la paráfrasis del 1-08 («menciona un plan de rehabilitación…») y como texto que puso, rotulado «sustituido el 15-09-2026», el que dice «la transcripción dice «El plan rehabilita más de 900.000 euros»». Esa corrección es justo la que citaba sólo ese fragmento, y el motivo del 15-09 la describe bien. Comprobado el 18-10-2026.",
+      "editor": "Sergei Lutchenko",
+      "at": "2026-10-18"
+    },
+    {
+      "route": "/hallazgos",
+      "quote": "esta última intervención sí se reproduce aquí, marcada como sin contraste en los datos",
+      "reason": "La única cita con literal de f-2025-12-01-acu-34560f es su cita 2, «el tema del bono de comercio», impresa con las marcas «no consta en la transcripción revisada» y «sin contraste en los datos»; las citas 1, 3 y 4 están retenidas. La frase es exacta. La cita sobre la ILP y el reparto «citas 1 y 3 retenidas» que describe el revisor son de la ficha siguiente, 431140. Comprobado el 18-10-2026.",
+      "editor": "Sergei Lutchenko",
+      "at": "2026-10-18"
+    },
+    {
+      "route": "/hallazgos",
+      "quote": "el contrato que hemos aprobado, ya me ha ido mejor, y el área de contratación, si no me lo traslado, en el sentido que es flexible. Por lo tanto, el contrato se puede modificar, está amparado, y además está aprobado»\nno consta en la transcripción revisada\nsin contraste en los datos\nPSOE",
+      "reason": "La bitácora que cita el revisor —atribución retirada a «sin identificar» porque la presidencia concedió el turno a otro grupo— es la de la cita 2 de la ficha 431140, del pleno de 03-11-2025. La única corrección de grupo de f-2025-09-08-cit-d6d194 es la de su cita 3 (Compromís → sin identificar). Su cita 1 no tiene corrección de grupo, y el contexto en la transcripción sustituida —quien habla lo hace como gobierno: «el contrato que hemos aprobado»— es coherente con PSOE. Comprobado el 18-10-2026.",
+      "editor": "Sergei Lutchenko",
+      "at": "2026-10-18"
+    },
+    {
       "route": "/reportajes/coste-efectivo",
       "quote": "El coste oficial del agua es cero la mitad de los años",
       "reason": "El cero no es un dato que el panel deje de calcular: es la cifra que el ayuntamiento declaró. En los libros del ministerio (cesel-ccaa17-<año>.xlsx, hoja «CE1a y CE2a», columna coste_efectivo, fila 17-46-214-AA-000 programa 161) la celda de 2018, 2019, 2021, 2022 y 2023 es un 0 NUMÉRICO, no una celda vacía, y lo mismo el 160; 2014-2017 y 2024 traen 1.861.058,09 / 1.804.949,27 / 1.928.056,75 / 1.965.811,90 / 1.898.034,08 €, que coinciden al céntimo con public/data/coste-efectivo.json. Comprobado leyendo la celda en bruto el 18-10-2026, porque el parser (numeric() en src/scraper/coste-efectivo.ts) convierte una celda vacía en 0 y desde el snapshot no se podía distinguir. 2020 no es cero: no se rindió, y la figura lo pinta aparte, rayado y rotulado «sin entrega». Lo que «sólo calcula la mitad de los años» es el panel de /eficiencia, que divide por habitante sólo las entregas con cifra; la propia página lo dice debajo («deja en blanco las que traen cero, porque dividir un cero publicaría que el agua sale gratis») y el titular de la pieza sostiene precisamente que ese cero declarado no es un coste real. Descartado por encargo de Sergei Lutchenko (18-10-2026).",

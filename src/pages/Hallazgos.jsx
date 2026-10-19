@@ -80,9 +80,9 @@ export function FindingDetailCard({ f, permalink }) {
   const { data: provenance } = useFindingQuoteProvenance()
   const prov = provenanceFor(provenance, f.id)
   // El nombre de la ficha: lo imprime el enlace permanente y lo repiten la nota
-  // de las citas, el pie de cada hueco y la banda de cotejos, porque los
-  // números de cita son por ficha y la de al lado tiene los mismos
-  // (`codigoDeFicha`, en PlenoFindings.jsx).
+  // de las citas, el pie de cada hueco, la banda de cotejos y cada fila de cita
+  // de la bitácora, porque los números de cita son por ficha y la de al lado
+  // tiene los mismos (`codigoDeFicha`, en PlenoFindings.jsx).
   const ficha = codigoDeFicha(f.id)
   return (
     <Card id={f.id} style={{ scrollMarginTop: 24 }}>
@@ -242,7 +242,7 @@ export function FindingDetailCard({ f, permalink }) {
           <ReplicaAbierta publishedAt={f.publishedAt} />
         )}
       </EvidenceBand>
-      <BitacoraCorrecciones correcciones={f.corrections} />
+      <BitacoraCorrecciones correcciones={f.corrections} ficha={ficha} />
     </Card>
   )
 }
