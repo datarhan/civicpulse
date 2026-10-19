@@ -208,6 +208,46 @@ describe('scraper/indicadores', () => {
     expect(m.motivo).toBe('cero-sin-declarar')
   })
 
+  // Una casilla vacía (`costeTotal: null`, desde el parser) no es un cero: el
+  // motor no puede devolverla con el motivo `cero-sin-declarar`, cuyo texto
+  // publicado dice que «viene a cero». Lo que es verdad de ella es lo que dice
+  // `ausente`: la entrega no trae esta magnitud.
+  it('reads a blank cost cell as absent, not as a declared zero', () => {
+    const filas = mias
+      .filter((f) => f.programa === 'a171/170P')
+      .map((f) => ({ ...f, costeTotal: null }))
+    const m = resolverCoste(filas, 'a171/170P', 2021)
+    expect(m.estado).toBe('no-declarado')
+    expect(m.motivo).toBe('ausente')
+    expect(m.valor).toBeNull()
+  })
+
+  it('does not let a blank cost row hide a real one', () => {
+    const [real] = mias.filter((f) => f.programa === 'a171/170P' && f.costeTotal! > 0)
+    const m = resolverCoste([real, { ...real, costeTotal: null }], 'a171/170P', 2021)
+    expect(m.estado).toBe('declarado')
+    expect(m.valor).toBe(718015.88)
+  })
+
+  it('reads a blank unit as absent, and never as a rival to a declared one', () => {
+    const atributo = 'Producción anual residuos urbanos: toneladas'
+    const residuos = mias.filter((f) => f.programa === 'a1621')
+    const vaciar = (f: (typeof mias)[number]) => ({
+      ...f,
+      unidades: f.unidades.map((u) => (u.atributo === atributo ? { ...u, valor: null } : u)),
+    })
+    const solo = resolverUnidad(residuos.map(vaciar), 'a1621', 2021, atributo)
+    expect(solo.estado).toBe('no-declarado')
+    expect(solo.motivo).toBe('ausente')
+    expect(solo.valor).toBeNull()
+
+    // Una fila vacía junto a la declarada no es un segundo valor: «0 y 16» es
+    // ambiguo porque son dos afirmaciones; «nada y 16» es una.
+    const mixta = resolverUnidad([...residuos, ...residuos.map(vaciar)], 'a1621', 2021, atributo)
+    expect(mixta.estado).toBe('declarado')
+    expect(mixta.valor).toBe(11059.41)
+  })
+
   it('refuses a unit when the same attribute is declared twice differently', () => {
     const m = resolverUnidad(
       mias,
