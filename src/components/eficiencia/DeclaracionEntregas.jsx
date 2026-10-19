@@ -49,7 +49,7 @@ function Casilla({ children, tono, primera, ultima }) {
   const base = {
     height: 22,
     minWidth: 52,
-    padding: '0 3px',
+    padding: '0 2px',
     boxSizing: 'border-box',
     display: 'grid',
     placeItems: 'center',
@@ -67,7 +67,7 @@ function Casilla({ children, tono, primera, ultima }) {
           style={{
             background: 'var(--paper)',
             color: 'var(--warn-ink)',
-            padding: '0 4px',
+            padding: '0 2px',
             borderRadius: 'var(--r-input)',
           }}
         >
@@ -337,8 +337,16 @@ export function DeclaracionEntregas({ indicador, entregasPublicadas = [], noPres
           `max-content` deja que la rejilla crezca y que sea el contenedor el
           que se desplace; y como entonces se desplaza, es una región con nombre
           que entra en el orden del teclado (axe `scrollable-region-focusable`,
-          como `Deslizable`). La holgura de 3 px por lado es la que cabe a
-          1280 px sin que la rejilla se desplace con la cifra más ancha. */}
+          como `Deslizable`).
+
+          A 1280 px las once columnas tienen que caber sin deslizar, y el
+          margen es de píxeles: la casilla más ancha es «no rindió», con su
+          pastilla y su borde. En el Mac cabía con 3 px de holgura por lado y
+          la CI —Chromium en Linux, que redondea el avance de cada glifo— la
+          desplazaba. Por eso la holgura es de 2 px, la pastilla de 2 px, y
+          la columna del rótulo mide lo que su rótulo (`fit-content`, hasta
+          92 px) en vez de 92 fijos: «coste» y «m²» devuelven ~40 px a las
+          entregas. */}
       <div
         role="region"
         aria-labelledby={tituloId}
@@ -349,7 +357,7 @@ export function DeclaracionEntregas({ indicador, entregasPublicadas = [], noPres
           data-rejilla-entregas=""
           style={{
             display: 'grid',
-            gridTemplateColumns: `92px repeat(${anios.length}, minmax(max-content, 1fr))`,
+            gridTemplateColumns: `fit-content(92px) repeat(${anios.length}, minmax(max-content, 1fr))`,
             gap: 4,
             alignItems: 'center',
             width: 'max-content',
