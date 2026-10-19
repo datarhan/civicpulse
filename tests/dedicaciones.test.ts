@@ -24,6 +24,11 @@ const importesPublicados = (snap: DedicacionesSnapshot) => [
 /** Una copia del fichero publicado cuya cita SÍ escribe cada importe. */
 const citado = (): DedicacionesSnapshot => {
   const c = clone()
+  // La copia parte del fichero publicado, pero la cita la controla la prueba
+  // entera: si heredara los `amountQuotes` del curador, quitar un importe de
+  // `quote` ya no lo dejaría sin cita y la prueba de rechazo no podría fallar
+  // por la razón que nombra (pasó al aplicar el texto del acta de 2026).
+  delete c.source.amountQuotes
   c.source.quote =
     'Cuadro del acuerdo: ' +
     importesPublicados(c)
