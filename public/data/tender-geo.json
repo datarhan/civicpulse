@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-18T12:59:58.567Z",
+  "generatedAt": "2026-10-18T20:54:28.249Z",
   "source": {
     "tenders": "2026-10-18T09:04:07.369Z",
     "geo": "2026-10-18T09:07:19.675Z"
@@ -275,6 +275,18 @@
       "danaAmount": 0
     },
     {
+      "slug": "way-39586076",
+      "name": "Polideportivo Municipal",
+      "kind": "poi",
+      "point": [
+        39.5460249,
+        -0.5806981
+      ],
+      "contractCount": 5,
+      "amount": 273268.49,
+      "danaAmount": 114211.09
+    },
+    {
       "slug": "urbanitzacio-la-reva",
       "name": "Urbanització La Reva",
       "kind": "urbanizacion",
@@ -345,30 +357,6 @@
       "contractCount": 1,
       "amount": 167871,
       "danaAmount": 0
-    },
-    {
-      "slug": "way-39586076",
-      "name": "Polideportivo Municipal",
-      "kind": "poi",
-      "point": [
-        39.5460249,
-        -0.5806981
-      ],
-      "contractCount": 4,
-      "amount": 159057.4,
-      "danaAmount": 0
-    },
-    {
-      "slug": "pavello-municipal",
-      "name": "Pabellón deportivo municipal",
-      "kind": "poi",
-      "point": [
-        39.54395,
-        -0.57328
-      ],
-      "contractCount": 2,
-      "amount": 142754.99,
-      "danaAmount": 114211.09
     },
     {
       "slug": "carrer-de-mallorca",
@@ -608,6 +596,18 @@
       ],
       "contractCount": 1,
       "amount": 28913,
+      "danaAmount": 0
+    },
+    {
+      "slug": "pavello-municipal",
+      "name": "Pabellón deportivo municipal",
+      "kind": "poi",
+      "point": [
+        39.54395,
+        -0.57328
+      ],
+      "contractCount": 1,
+      "amount": 28543.9,
       "danaAmount": 0
     },
     {
@@ -3306,14 +3306,14 @@
       "contractType": "construction",
       "categoryTitle": "construction",
       "point": [
-        39.54395,
-        -0.57328
+        39.5460249,
+        -0.5806981
       ],
       "place": {
         "kind": "poi",
-        "name": "Pabellón deportivo municipal",
-        "matchedText": "Pabellón deportivo municipal",
-        "sourceId": "pavello-municipal"
+        "name": "Polideportivo Municipal",
+        "matchedText": "Polideportivo Municipal",
+        "sourceId": "way-39586076"
       }
     },
     {

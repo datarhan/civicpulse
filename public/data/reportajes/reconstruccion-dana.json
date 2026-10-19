@@ -2,13 +2,17 @@
   "meta": {
     "slug": "reconstruccion-dana",
     "titulo": "El dinero de la reconstrucción, calle a calle",
-    "subtitulo": "Un análisis de la contratación municipal sitúa 62 emplazamientos por 6,09 M€ y atribuye 2,75 M€ a 75 contratos con referencia a la DANA; ningún informe DANA de la Sindicatura alcanza al tramo municipal.",
+    "subtitulo": "Un análisis de la contratación municipal sitúa en el mapa 117 contratos por 8,82 M€ y atribuye 2,75 M€ a 75 contratos con referencia a la DANA; ningún informe DANA de la Sindicatura alcanza al tramo municipal.",
     "seccion": "Reportaje · datos",
     "municipio": "Riba-roja de Túria",
     "fechaDatos": "2026-07-06",
     "estado": "publicado",
     "derechoReplica": "sin-respuesta",
     "correcciones": [
+      {
+        "fecha": "2026-10-19",
+        "texto": "**Se ha rehecho el mapa: dibujaba otra lista que la de sus cifras.** La corrección del 2 de agosto recalculó lo situado —de 72 contratos y 2,04 M€ a «62 emplazamientos» y 6,09 M€—, pero el mapa, la figura de cabecera y la lista de lugares con gasto DANA siguieron dibujando los 39 lugares de la versión del 6 de julio. La cabecera decía 62 y la leyenda del mapa, 39, y las dos cifras no salían de la misma lista. Además, el 62 eran lugares, y la tarjeta lo ponía junto a los contratos: aquel recuento situaba 127.\n\nAhora el mapa y sus cifras salen de una sola lista: los mismos contratos adjudicados del registro del 2 de agosto, situados con el resolutor de topónimos del 18 de octubre. Son 117 contratos en 60 lugares, por 8,82 M€. De los 127 de aquel recuento, el resolutor ha dejado de situar 28 cuyo título no sostenía el sitio, y sitúa 18 que entonces no situaba: 127 − 28 + 18 = 117.\n\nDe los seis lugares con gasto DANA que publicábamos, dos salen y entra uno, así que quedan cinco. Salen los 16.382 € del Pou d'Escoto, que eran el vallado del colegio Mas d'Escoto junto al barranco de Porchinos, y el título no nombra la urbanización; y los 11.412 € de la calle de les Ànimes, que eran dos contratos de limpieza que nombran también Els Pous y el Oliveral: un contrato que nombra varios lugares no se sitúa en ninguno. Entra el polideportivo municipal, con 114.211 € por el cambio de pavimento de sus pistas, y es el segundo lugar con más gasto DANA situado, por delante de La Reva.\n\nCambia también cómo contábamos los contratos de cada lugar. «L'Oliveral (125.000 euros, seis contratos)» sumaba todos los contratos del lugar, no los de la DANA, que allí son dos. El apartado 4 cuenta ahora sólo los contratos con referencia a la DANA.\n\n**Lo que no cambia:** los 75 contratos y 2,75 M€ con referencia a la DANA, y el denominador de 68,00 M€. Lo publicado antes se conserva en el propio fichero (`placesPublicadoOriginal`, `danaPlacesPublicadoOriginal`, `situadoPublicado20260802`)."
+      },
       {
         "fecha": "2026-10-18",
         "texto": "**Se ha corregido la fecha de los importes en «Método y cautelas».** Decía «Importes sin IVA, sobre contratos adjudicados (datos a 2026-07-06)». El 6 de julio es la fecha con la que se publicó la pieza, pero sus importes no son de ese día: la corrección del 2 de agosto los recalculó con el registro de contratación de esa fecha, cuyo denominador son los 698 contratos adjudicados hasta el 28 de julio de 2026. La línea dice ahora que los importes se recalcularon el 2026-08-02 sobre el registro de ese día. Ninguna cifra cambia."
@@ -27,9 +31,10 @@
   "totals": {
     "danaContracts": 75,
     "danaAmount": 2752946.2,
-    "situatedContracts": 62,
-    "situatedAmount": 6085027.84,
-    "totalAwarded": 67996704
+    "situatedContracts": 117,
+    "situatedAmount": 8820861.98,
+    "totalAwarded": 67996704,
+    "situatedPlaces": 60
   },
   "timelineFull": [
     {
@@ -169,6 +174,58 @@
     {
       "name": "l'Oliveral",
       "kind": "urbanizacion",
+      "amount": 428053.66,
+      "danaAmount": 124844.16,
+      "contractCount": 7,
+      "danaContractCount": 2,
+      "lat": 39.4710524,
+      "lng": -0.5366921
+    },
+    {
+      "name": "Polideportivo Municipal",
+      "kind": "poi",
+      "amount": 273268.49,
+      "danaAmount": 114211.09,
+      "contractCount": 5,
+      "danaContractCount": 1,
+      "lat": 39.5460249,
+      "lng": -0.5806981
+    },
+    {
+      "name": "Urbanització La Reva",
+      "kind": "urbanizacion",
+      "amount": 270288.79,
+      "danaAmount": 100681.64,
+      "contractCount": 9,
+      "danaContractCount": 4,
+      "lat": 39.4840972,
+      "lng": -0.572073
+    },
+    {
+      "name": "Urbanització Els Pous",
+      "kind": "urbanizacion",
+      "amount": 30473.4,
+      "danaAmount": 22977.96,
+      "contractCount": 3,
+      "danaContractCount": 1,
+      "lat": 39.5233167,
+      "lng": -0.5191743
+    },
+    {
+      "name": "Carrer Major",
+      "kind": "street",
+      "amount": 22240.98,
+      "danaAmount": 4059.16,
+      "contractCount": 2,
+      "danaContractCount": 1,
+      "lat": 39.5441796,
+      "lng": -0.5689306
+    }
+  ],
+  "danaPlacesPublicadoOriginal": [
+    {
+      "name": "l'Oliveral",
+      "kind": "urbanizacion",
       "amount": 196544.66,
       "danaAmount": 124844.16,
       "contractCount": 6,
@@ -222,6 +279,608 @@
     }
   ],
   "places": [
+    {
+      "name": "Urbanització Entretarongers",
+      "kind": "urbanizacion",
+      "amount": 1533120.48,
+      "danaAmount": 0,
+      "contractCount": 4,
+      "danaContractCount": 0,
+      "lat": 39.5533441,
+      "lng": -0.5383653
+    },
+    {
+      "name": "Barranc dels Moros",
+      "kind": "poi",
+      "amount": 775947.54,
+      "danaAmount": 0,
+      "contractCount": 3,
+      "danaContractCount": 0,
+      "lat": 39.54713,
+      "lng": -0.56558
+    },
+    {
+      "name": "Cementerio de San Jaime",
+      "kind": "poi",
+      "amount": 759280.65,
+      "danaAmount": 0,
+      "contractCount": 6,
+      "danaContractCount": 0,
+      "lat": 39.4767673,
+      "lng": -0.585373
+    },
+    {
+      "name": "Parque Porta del Barranc",
+      "kind": "poi",
+      "amount": 552137.6,
+      "danaAmount": 0,
+      "contractCount": 1,
+      "danaContractCount": 0,
+      "lat": 39.544402,
+      "lng": -0.567274
+    },
+    {
+      "name": "Pasarela en Barranco Mandor",
+      "kind": "poi",
+      "amount": 450000,
+      "danaAmount": 0,
+      "contractCount": 1,
+      "danaContractCount": 0,
+      "lat": 39.5515918,
+      "lng": -0.5311894
+    },
+    {
+      "name": "Passeig del Molinet",
+      "kind": "street",
+      "amount": 432334.35,
+      "danaAmount": 0,
+      "contractCount": 3,
+      "danaContractCount": 0,
+      "lat": 39.5557928,
+      "lng": -0.5531642
+    },
+    {
+      "name": "l'Oliveral",
+      "kind": "urbanizacion",
+      "amount": 428053.66,
+      "danaAmount": 124844.16,
+      "contractCount": 7,
+      "danaContractCount": 2,
+      "lat": 39.4710524,
+      "lng": -0.5366921
+    },
+    {
+      "name": "Casa del Abogado",
+      "kind": "poi",
+      "amount": 358460,
+      "danaAmount": 0,
+      "contractCount": 1,
+      "danaContractCount": 0,
+      "lat": 39.547903,
+      "lng": -0.567443
+    },
+    {
+      "name": "Col·legi d'Educació Infantil i Primària Eres Altes",
+      "kind": "poi",
+      "amount": 306454.29,
+      "danaAmount": 0,
+      "contractCount": 6,
+      "danaContractCount": 0,
+      "lat": 39.5473561,
+      "lng": -0.5639968
+    },
+    {
+      "name": "Polideportivo Municipal",
+      "kind": "poi",
+      "amount": 273268.49,
+      "danaAmount": 114211.09,
+      "contractCount": 5,
+      "danaContractCount": 1,
+      "lat": 39.5460249,
+      "lng": -0.5806981
+    },
+    {
+      "name": "Urbanització La Reva",
+      "kind": "urbanizacion",
+      "amount": 270288.79,
+      "danaAmount": 100681.64,
+      "contractCount": 9,
+      "danaContractCount": 4,
+      "lat": 39.4840972,
+      "lng": -0.572073
+    },
+    {
+      "name": "Avinguda de la Pau",
+      "kind": "street",
+      "amount": 221151.69,
+      "danaAmount": 0,
+      "contractCount": 2,
+      "danaContractCount": 0,
+      "lat": 39.5475704,
+      "lng": -0.5757486
+    },
+    {
+      "name": "Camp de futbol Municipal Francisco Soriano",
+      "kind": "poi",
+      "amount": 195035.04,
+      "danaAmount": 0,
+      "contractCount": 1,
+      "danaContractCount": 0,
+      "lat": 39.5452787,
+      "lng": -0.5807577
+    },
+    {
+      "name": "Polígono Industrial Masía Baló",
+      "kind": "urbanizacion",
+      "amount": 174771.99,
+      "danaAmount": 0,
+      "contractCount": 3,
+      "danaContractCount": 0,
+      "lat": 39.47822,
+      "lng": -0.58302
+    },
+    {
+      "name": "Col·legi d'Educació Infantil i Primària Camp de Túria",
+      "kind": "poi",
+      "amount": 171491.06,
+      "danaAmount": 0,
+      "contractCount": 5,
+      "danaContractCount": 0,
+      "lat": 39.5493045,
+      "lng": -0.5717854
+    },
+    {
+      "name": "Carrer Arrosals",
+      "kind": "street",
+      "amount": 167871,
+      "danaAmount": 0,
+      "contractCount": 1,
+      "danaContractCount": 0,
+      "lat": 39.5451001,
+      "lng": -0.5757313
+    },
+    {
+      "name": "Carrer de Mallorca",
+      "kind": "street",
+      "amount": 138270.08,
+      "danaAmount": 0,
+      "contractCount": 1,
+      "danaContractCount": 0,
+      "lat": 39.4778375,
+      "lng": -0.5704932
+    },
+    {
+      "name": "Monte Alcedo",
+      "kind": "urbanizacion",
+      "amount": 135130.16,
+      "danaAmount": 0,
+      "contractCount": 1,
+      "danaContractCount": 0,
+      "lat": 39.5558464,
+      "lng": -0.5425281
+    },
+    {
+      "name": "Col·legi d'Educació Infantil i Primària Mas d’Escoto",
+      "kind": "poi",
+      "amount": 117930.87,
+      "danaAmount": 0,
+      "contractCount": 3,
+      "danaContractCount": 0,
+      "lat": 39.5504954,
+      "lng": -0.5811206
+    },
+    {
+      "name": "Ajuntament de Riba-roja de Túria",
+      "kind": "poi",
+      "amount": 115145.55,
+      "danaAmount": 0,
+      "contractCount": 5,
+      "danaContractCount": 0,
+      "lat": 39.5469545,
+      "lng": -0.5666236
+    },
+    {
+      "name": "Mercado Municipal",
+      "kind": "poi",
+      "amount": 108300.4,
+      "danaAmount": 0,
+      "contractCount": 3,
+      "danaContractCount": 0,
+      "lat": 39.54635,
+      "lng": -0.56768
+    },
+    {
+      "name": "Urbanització València la Vella",
+      "kind": "urbanizacion",
+      "amount": 89980.26,
+      "danaAmount": 0,
+      "contractCount": 1,
+      "danaContractCount": 0,
+      "lat": 39.5344276,
+      "lng": -0.5307458
+    },
+    {
+      "name": "Carrer La Canal",
+      "kind": "street",
+      "amount": 85000,
+      "danaAmount": 0,
+      "contractCount": 1,
+      "danaContractCount": 0,
+      "lat": 39.5461376,
+      "lng": -0.5660289
+    },
+    {
+      "name": "Zona Pacadar",
+      "kind": "urbanizacion",
+      "amount": 78980,
+      "danaAmount": 0,
+      "contractCount": 1,
+      "danaContractCount": 0,
+      "lat": 39.54148,
+      "lng": -0.57145
+    },
+    {
+      "name": "Carrer de Miguel de Cervantes",
+      "kind": "street",
+      "amount": 49855.45,
+      "danaAmount": 0,
+      "contractCount": 1,
+      "danaContractCount": 0,
+      "lat": 39.5473585,
+      "lng": -0.5711286
+    },
+    {
+      "name": "Campo de Fútbol Municipal Roberto Gil",
+      "kind": "poi",
+      "amount": 49248.97,
+      "danaAmount": 0,
+      "contractCount": 2,
+      "danaContractCount": 0,
+      "lat": 39.5439777,
+      "lng": -0.5812609
+    },
+    {
+      "name": "Camí de Xest",
+      "kind": "street",
+      "amount": 48858.84,
+      "danaAmount": 0,
+      "contractCount": 1,
+      "danaContractCount": 0,
+      "lat": 39.5300347,
+      "lng": -0.5922932
+    },
+    {
+      "name": "Col·legi d'Educació Infantil i Primària Cervantes",
+      "kind": "poi",
+      "amount": 46788.35,
+      "danaAmount": 0,
+      "contractCount": 2,
+      "danaContractCount": 0,
+      "lat": 39.5433427,
+      "lng": -0.5731124
+    },
+    {
+      "name": "el Molinet",
+      "kind": "urbanizacion",
+      "amount": 46627.16,
+      "danaAmount": 0,
+      "contractCount": 2,
+      "danaContractCount": 0,
+      "lat": 39.5544196,
+      "lng": -0.5510476
+    },
+    {
+      "name": "Castillo de Riba-roja de Túria",
+      "kind": "poi",
+      "amount": 38387.18,
+      "danaAmount": 0,
+      "contractCount": 1,
+      "danaContractCount": 0,
+      "lat": 39.54798,
+      "lng": -0.56508
+    },
+    {
+      "name": "Santa Rosa",
+      "kind": "urbanizacion",
+      "amount": 37848,
+      "danaAmount": 0,
+      "contractCount": 1,
+      "danaContractCount": 0,
+      "lat": 39.5508312,
+      "lng": -0.5333969
+    },
+    {
+      "name": "Carrer Dolçaina",
+      "kind": "street",
+      "amount": 36418,
+      "danaAmount": 0,
+      "contractCount": 1,
+      "danaContractCount": 0,
+      "lat": 39.5609297,
+      "lng": -0.5598736
+    },
+    {
+      "name": "Carreró de l'Església",
+      "kind": "street",
+      "amount": 33976.32,
+      "danaAmount": 0,
+      "contractCount": 1,
+      "danaContractCount": 0,
+      "lat": 39.5471385,
+      "lng": -0.5672751
+    },
+    {
+      "name": "Vallesa de Mandor",
+      "kind": "urbanizacion",
+      "amount": 33810,
+      "danaAmount": 0,
+      "contractCount": 1,
+      "danaContractCount": 0,
+      "lat": 39.5487635,
+      "lng": -0.5280143
+    },
+    {
+      "name": "Urbanització Els Pous",
+      "kind": "urbanizacion",
+      "amount": 30473.4,
+      "danaAmount": 22977.96,
+      "contractCount": 3,
+      "danaContractCount": 1,
+      "lat": 39.5233167,
+      "lng": -0.5191743
+    },
+    {
+      "name": "Carrer de Velázquez",
+      "kind": "street",
+      "amount": 28913,
+      "danaAmount": 0,
+      "contractCount": 1,
+      "danaContractCount": 0,
+      "lat": 39.5450334,
+      "lng": -0.5654298
+    },
+    {
+      "name": "Pabellón deportivo municipal",
+      "kind": "poi",
+      "amount": 28543.9,
+      "danaAmount": 0,
+      "contractCount": 1,
+      "danaContractCount": 0,
+      "lat": 39.54395,
+      "lng": -0.57328
+    },
+    {
+      "name": "Carrer de Perpinyanet",
+      "kind": "street",
+      "amount": 27783.17,
+      "danaAmount": 0,
+      "contractCount": 1,
+      "danaContractCount": 0,
+      "lat": 39.550535,
+      "lng": -0.5820432
+    },
+    {
+      "name": "Carrer del Lliri Groc",
+      "kind": "street",
+      "amount": 25920,
+      "danaAmount": 0,
+      "contractCount": 1,
+      "danaContractCount": 0,
+      "lat": 39.5239906,
+      "lng": -0.5171613
+    },
+    {
+      "name": "Plaça de la Torre",
+      "kind": "street",
+      "amount": 24257.23,
+      "danaAmount": 0,
+      "contractCount": 1,
+      "danaContractCount": 0,
+      "lat": 39.5472019,
+      "lng": -0.568434
+    },
+    {
+      "name": "Complex Esportiu La Mallà",
+      "kind": "poi",
+      "amount": 24020.82,
+      "danaAmount": 0,
+      "contractCount": 1,
+      "danaContractCount": 0,
+      "lat": 39.5433045,
+      "lng": -0.5757486
+    },
+    {
+      "name": "Carrer Major",
+      "kind": "street",
+      "amount": 22240.98,
+      "danaAmount": 4059.16,
+      "contractCount": 2,
+      "danaContractCount": 1,
+      "lat": 39.5441796,
+      "lng": -0.5689306
+    },
+    {
+      "name": "Centre Social",
+      "kind": "poi",
+      "amount": 20980,
+      "danaAmount": 0,
+      "contractCount": 1,
+      "danaContractCount": 0,
+      "lat": 39.5458994,
+      "lng": -0.5714322
+    },
+    {
+      "name": "Carrer del Mas de Montes",
+      "kind": "street",
+      "amount": 20661.16,
+      "danaAmount": 0,
+      "contractCount": 1,
+      "danaContractCount": 0,
+      "lat": 39.4805062,
+      "lng": -0.5875882
+    },
+    {
+      "name": "Carrer del Cronista Cerveró",
+      "kind": "street",
+      "amount": 20105.13,
+      "danaAmount": 0,
+      "contractCount": 2,
+      "danaContractCount": 0,
+      "lat": 39.5465928,
+      "lng": -0.572529
+    },
+    {
+      "name": "Polígono Industrial Casanova",
+      "kind": "urbanizacion",
+      "amount": 18066,
+      "danaAmount": 0,
+      "contractCount": 1,
+      "danaContractCount": 0,
+      "lat": 39.48269,
+      "lng": -0.5564
+    },
+    {
+      "name": "Carrer Pobla de Vallbona",
+      "kind": "street",
+      "amount": 17770.71,
+      "danaAmount": 0,
+      "contractCount": 1,
+      "danaContractCount": 0,
+      "lat": 39.5430193,
+      "lng": -0.5669714
+    },
+    {
+      "name": "Carrer de Garelli i Pastor",
+      "kind": "street",
+      "amount": 14965.6,
+      "danaAmount": 0,
+      "contractCount": 1,
+      "danaContractCount": 0,
+      "lat": 39.5475725,
+      "lng": -0.5676768
+    },
+    {
+      "name": "Parc Municipal Maldonado",
+      "kind": "poi",
+      "amount": 13123.14,
+      "danaAmount": 0,
+      "contractCount": 1,
+      "danaContractCount": 0,
+      "lat": 39.5477716,
+      "lng": -0.5797717
+    },
+    {
+      "name": "Gallipont",
+      "kind": "urbanizacion",
+      "amount": 12900,
+      "danaAmount": 0,
+      "contractCount": 1,
+      "danaContractCount": 0,
+      "lat": 39.55865,
+      "lng": -0.55638
+    },
+    {
+      "name": "Urbanització La Llobatera",
+      "kind": "urbanizacion",
+      "amount": 12800,
+      "danaAmount": 0,
+      "contractCount": 1,
+      "danaContractCount": 0,
+      "lat": 39.5119251,
+      "lng": -0.5337693
+    },
+    {
+      "name": "Carretera de Vilamarxant",
+      "kind": "street",
+      "amount": 12201,
+      "danaAmount": 0,
+      "contractCount": 1,
+      "danaContractCount": 0,
+      "lat": 39.5484923,
+      "lng": -0.5816335
+    },
+    {
+      "name": "Carrer de les Bodeguetes",
+      "kind": "street",
+      "amount": 12118.6,
+      "danaAmount": 0,
+      "contractCount": 1,
+      "danaContractCount": 0,
+      "lat": 39.5419901,
+      "lng": -0.5694022
+    },
+    {
+      "name": "Avinguda de la Masia de Traver",
+      "kind": "street",
+      "amount": 12000,
+      "danaAmount": 0,
+      "contractCount": 1,
+      "danaContractCount": 0,
+      "lat": 39.5420868,
+      "lng": -0.5438471
+    },
+    {
+      "name": "Urbanización Lliri Groc",
+      "kind": "urbanizacion",
+      "amount": 11894.21,
+      "danaAmount": 0,
+      "contractCount": 1,
+      "danaContractCount": 0,
+      "lat": 39.52513,
+      "lng": -0.5188
+    },
+    {
+      "name": "La Canyada de l'Anguila",
+      "kind": "urbanizacion",
+      "amount": 11851.21,
+      "danaAmount": 0,
+      "contractCount": 1,
+      "danaContractCount": 0,
+      "lat": 39.50646,
+      "lng": -0.56416
+    },
+    {
+      "name": "el Pou d'Escoto",
+      "kind": "urbanizacion",
+      "amount": 10471.95,
+      "danaAmount": 0,
+      "contractCount": 1,
+      "danaContractCount": 0,
+      "lat": 39.5484628,
+      "lng": -0.5909944
+    },
+    {
+      "name": "Carrer Tabalet",
+      "kind": "street",
+      "amount": 9530,
+      "danaAmount": 0,
+      "contractCount": 1,
+      "danaContractCount": 0,
+      "lat": 39.5637115,
+      "lng": -0.5651402
+    },
+    {
+      "name": "Carrer de Cristòfol Colom",
+      "kind": "street",
+      "amount": 9048.55,
+      "danaAmount": 0,
+      "contractCount": 1,
+      "danaContractCount": 0,
+      "lat": 39.5448121,
+      "lng": -0.5670968
+    },
+    {
+      "name": "La Sargueta",
+      "kind": "urbanizacion",
+      "amount": 8000,
+      "danaAmount": 0,
+      "contractCount": 1,
+      "danaContractCount": 0,
+      "lat": 39.48555,
+      "lng": -0.55304
+    }
+  ],
+  "placesPublicadoOriginal": [
     {
       "name": "Urbanització La Reva",
       "kind": "urbanizacion",
@@ -2577,6 +3236,14 @@
     "estado": "solo contratos comprometidos: awarded o formalized; se excluyen void/abandoned/revoked; un estado en blanco cuenta si hay adjudicatario",
     "importe": "sin IVA cuando existe (finalAmountNoTaxes → initialAmountNoTaxes → finalAmount → initialAmount)",
     "denominador": "totalAwarded son los 698 contratos adjudicados (awarded/formalized) del snapshot del 02-08-2026, 68,00 M€, adjudicados entre el 03-07-2017 y el 28-07-2026. NO incluye la concesión del abastecimiento de agua (55,69 M€, diecisiete años adjudicados de una vez) y conviene decir por qué con precisión: en ese snapshot la concesión figuraba con estado «unknown» y sin fecha de adjudicación, así que no era elegible; entró como adjudicada el 06-08-2026 y llevó el total vivo a 699 contratos y 123,68 M€. Es decir, la cifra no excluyó la concesión por una decisión de método: la concesión aún no contaba. Mantenerla fuera sí es ahora una decisión —meter una concesión de diecisiete años en el denominador de la contratación anual encoge artificialmente cualquier porcentaje—, y 123,68 − 55,69 = 68,00 la reproduce. Una versión anterior de esta nota presentaba la exclusión como el criterio que había producido la cifra; era una racionalización a posteriori. check:drift la da por deriva ×1.8 y por eso lleva `scope`.",
-    "nota": "El método original no se pudo reproducir con exactitud: publicaba 73 contratos y 2.241.265,75 €, y ninguna variante ensayada da esa cifra (la más próxima, 72 y 2.184.922,11 €). Por eso se documenta aquí el método NUEVO en lugar de fingir continuidad, y las cifras originales se conservan en totalsPublicadoOriginal y contractorsPublicadoOriginal."
+    "nota": "El método original no se pudo reproducir con exactitud: publicaba 73 contratos y 2.241.265,75 €, y ninguna variante ensayada da esa cifra (la más próxima, 72 y 2.184.922,11 €). Por eso se documenta aquí el método NUEVO en lugar de fingir continuidad, y las cifras originales se conservan en totalsPublicadoOriginal y contractorsPublicadoOriginal.",
+    "situado": "El mapa, los lugares DANA y las cifras de lo situado (totals.situatedContracts, situatedPlaces, situatedAmount) se recalcularon el 2026-10-18 con el resolutor de topónimos de ese día (public/data/tender-geo.json) sobre los mismos contratos adjudicados del registro del 02-08-2026: ningún contrato situado queda fuera de ese universo, y cada importe coincide al céntimo con la regla de `importe`. Un contrato cuenta en un lugar sólo si su título nombra ese lugar y nada más; el que nombra varios no se sitúa. Mapa y cifras salen así de la misma lista, que era lo que fallaba: la corrección del 02-08 cambió las cifras y dejó el mapa de la versión del 06-07.",
+    "situadoEl": "2026-10-18"
+  },
+  "situadoPublicado20260802": {
+    "lugares": 62,
+    "contratos": 127,
+    "importe": 6085027.84,
+    "nota": "Lo que la corrección del 02-08-2026 publicó como situado: 6,09 M€ en 62 lugares (127 contratos), según el snapshot de tender-geo de ese día. El campo situatedContracts llevaba el 62, que eran lugares, y el KPI lo rotulaba junto a los contratos. El mapa, en cambio, seguía dibujando los 39 lugares de la versión del 06-07 (placesPublicadoOriginal). Sustituido el 2026-10-18."
   }
 }

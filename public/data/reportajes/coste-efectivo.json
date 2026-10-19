@@ -39,6 +39,10 @@
       {
         "fecha": "2026-10-18",
         "texto": "**Se ha completado la cronología: por qué la suspensión duró hasta 2026.** La pieza dice que el concurso estuvo cinco años suspendido por orden judicial, y la cronología enseñaba que el Tribunal Superior de Justicia revocó en noviembre de 2022 la sentencia que lo había parado, sin decir por qué la suspensión siguió después. El auto de diciembre de 2020 era una medida cautelar que suspendía la licitación hasta que hubiera resolución definitiva, y esa resolución fue la sentencia del Tribunal Supremo de 23 de febrero de 2026, que hizo firme la de 2022. Lo recoge el acta del Pleno de 27 de julio de 2026, que se añade a las fuentes. La cronología lo dice ahora en esas dos entradas. Ninguna cifra cambia."
+      },
+      {
+        "fecha": "2026-10-19",
+        "texto": "**Se ha corregido cuándo acabó la suspensión, en la cabecera.** La tarjeta decía que el procedimiento estuvo suspendido por orden judicial «de febrero de 2021 a abril de 2026». Abril es cuando la ficha del expediente publicó la sentencia del Supremo, el 28 de abril; la suspensión cautelar se acabó con la propia sentencia, el 23 de febrero de 2026, como dice ahora la cronología. La tarjeta dice ahora «de febrero de 2021 a febrero de 2026». Los cinco años no cambian.\n\nLa banda de la cronología mide otra cosa y así lo rotula: el tiempo que pasa de una entrada de la ficha a la siguiente, del 11 de febrero de 2021 al 28 de abril de 2026. No es la duración de la suspensión."
       }
     ]
   },
@@ -62,7 +66,7 @@
     },
     {
       "n": "5 años",
-      "l": "que el procedimiento estuvo suspendido por orden judicial, de febrero de 2021 a abril de 2026"
+      "l": "que el procedimiento estuvo suspendido por orden judicial, de febrero de 2021 a febrero de 2026"
     }
   ],
   "concesion": {

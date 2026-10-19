@@ -163,19 +163,18 @@ function MapaContratos({ boundary, bbox, places, danaPlaces }) {
         const r = rOf(p.amount)
         return (
           <g key={'a' + i}>
-            <rect
-              x={x + r + 2}
-              y={y - 6}
-              width={p.name.length * 4.9 + 4}
-              height={12}
-              rx="2"
-              fill="var(--paper)"
-              fillOpacity="0.82"
-            />
+            {/* Halo del color del papel y no un rectángulo de fondo: el rectángulo
+                se medía a ojo (4,9 por letra) y se quedaba corto —53 para los 66 de
+                «l'Oliveral», 117 para los 152 de «Polideportivo Municipal», sobre el
+                racimo del casco—. El halo mide lo que mide el texto. */}
             <text
               x={x + r + 4}
               y={y + 3}
               className="mono"
+              paintOrder="stroke"
+              stroke="var(--paper)"
+              strokeWidth={3}
+              strokeLinejoin="round"
               style={{ fontSize: 'var(--fs-micro)', fill: 'var(--ink)', fontWeight: 500 }}
             >
               {p.name}
@@ -423,6 +422,19 @@ function Callout() {
 const CAP = (s) => (s.length > 34 ? s.slice(0, 33) + '…' : s)
 
 /**
+ * Lo que suman los lugares con gasto DANA: cuántos, con cuántos contratos DANA y
+ * por cuánto. Derivado de la lista que pintan las barras, no escrito: «Seis
+ * emplazamientos», a mano, se quedó contando la lista de la versión del 06-07.
+ */
+export function danaSituadoDe(danaPlaces) {
+  return {
+    lugares: danaPlaces.length,
+    contratos: danaPlaces.reduce((a, p) => a + p.danaContractCount, 0),
+    importe: danaPlaces.reduce((a, p) => a + p.danaAmount, 0),
+  }
+}
+
+/**
  * Las cuatro cifras de la cabecera. Función y no literal en el JSX: el test de los
  * emblemas comprueba que las que la figura ya imprime (y que la pieza esconde
  * donde la figura se ve) son de verdad tarjetas de aquí.
@@ -434,7 +446,13 @@ export function kpisReconstruccion(t) {
     // '72') beside amounts that came from `t`, so correcting the totals
     // would have left the count saying 73 next to the corrected 2,75 M€.
     { n: String(t.danaContracts), l: `contratos ref. DANA · ${eurC(t.danaAmount)}` },
-    { n: String(t.situatedContracts), l: `geolocalizados · ${eurC(t.situatedAmount)}` },
+    // «62 geolocalizados» junto a «75 contratos» se leía como 62 contratos, y eran
+    // 62 LUGARES (aquel recuento situaba 127). Desde el 18-10-2026 el campo cuenta
+    // contratos y la tarjeta lo dice.
+    {
+      n: String(t.situatedContracts),
+      l: `contratos situados en el mapa · ${eurC(t.situatedAmount)}`,
+    },
     // Decía «0 órganos que fiscalizan los contratos municipales», y es falso: la
     // Sindicatura de Comptes es el órgano de control externo de las entidades locales,
     // programa «la fiscalización de la contratación en las entidades locales durante
@@ -468,6 +486,7 @@ export default function ReconstruccionDana() {
 
   const t = data.totals
   const m = data.meta
+  const danaSituado = danaSituadoDe(data.danaPlaces)
 
   return (
     <div
@@ -553,12 +572,17 @@ export default function ReconstruccionDana() {
 
         <SecHead num="02" kicker="Dónde" title="El mapa, contrato a contrato" />
         <p>
+          {/* Decía «l'Oliveral (125.000 euros, seis contratos) y La Reva le sigue de cerca
+              (99.000 euros, siete contratos)»: los contratos eran TODOS los del lugar, no los
+              de la DANA, y el mapa era el de la versión del 06-07. Rehecho el 18-10-2026 sobre
+              la misma lista que dibuja el mapa; el porqué, en la corrección de esa fecha. */}
           Situados sobre el mapa del municipio, esos contratos se concentran donde más golpeó el
           agua. El poblado de <b>l'Oliveral</b> absorbe el mayor gasto DANA geolocalizado (125.000
-          euros, seis contratos) y la urbanización <b>La Reva</b> le sigue de cerca (99.000 euros,
-          siete contratos): son, precisamente, dos de las zonas industriales que la riada dejó bajo
-          el barro. El alcalde, Robert Raga (PSPV), cifró en unas 1.400 empresas y 20.000
-          trabajadores el tejido del área industrial afectada por la DANA.
+          euros en dos contratos, el mayor de ellos en calles de los polígonos industriales El
+          Oliveral y Sector 14); le siguen el <b>polideportivo municipal</b> (114.000 euros, un
+          contrato: el cambio de pavimento de sus pistas) y la urbanización <b>La Reva</b> (101.000
+          euros, cuatro contratos). El alcalde, Robert Raga (PSPV), cifró en unas 1.400 empresas y
+          20.000 trabajadores el tejido del área industrial afectada por la DANA.
         </p>
         <Card style={{ margin: '18px 0 8px' }}>
           <SectionHead eyebrow="Dónde" title="Contratos municipales geolocalizados" />
@@ -573,9 +597,11 @@ export default function ReconstruccionDana() {
           </div>
         </Card>
         <p className="cp-pie" style={cap()}>
-          Radio proporcional a √importe; en azul petróleo, los lugares con algún contrato que
-          referencia la DANA, y en gris el resto. Contorno municipal real (OSM). Fuente: tender-geo
-          · resolutor determinista de topónimos.
+          Un punto por lugar: {data.places.length} lugares que nombran {t.situatedContracts}{' '}
+          contratos. Un contrato cuyo título nombra varios lugares no se sitúa en ninguno. Radio
+          proporcional a √importe; en azul petróleo, los lugares con algún contrato que referencia
+          la DANA, y en gris el resto. Contorno municipal real (OSM). Fuente: tender-geo · resolutor
+          determinista de topónimos.
         </p>
 
         <SecHead num="03" kicker="Quién" title="Los adjudicatarios" />
@@ -595,15 +621,21 @@ export default function ReconstruccionDana() {
 
         <SecHead num="04" kicker="Zonas" title="El gasto DANA que hemos podido situar" />
         <p>
-          Seis emplazamientos absorben el gasto DANA geolocalizado —una fracción del total, la que
-          el título del contrato permite ubicar con precisión—.
+          {/* «Seis emplazamientos», escrito a mano, sobre la lista de la versión del 06-07. Se
+              deriva de la lista para que no vuelva a separarse de las barras. */}
+          El gasto DANA que el título del contrato permite ubicar con precisión se reparte en{' '}
+          {danaSituado.lugares} lugares: {danaSituado.contratos} de los {t.danaContracts} contratos
+          con referencia a la DANA, por {eurC(danaSituado.importe)} de {eurC(t.danaAmount)}. Una
+          fracción del total, no el mapa de la reconstrucción.
         </p>
         <Card style={{ margin: '18px 0 20px' }}>
           <Barras
             rows={data.danaPlaces.map((p) => ({
               label: p.name,
               value: p.danaAmount,
-              count: p.contractCount,
+              // Los contratos DANA del lugar, como cuentan las barras de adjudicatarios;
+              // `contractCount` son todos los del lugar.
+              count: p.danaContractCount,
             }))}
           />
         </Card>
@@ -741,6 +773,12 @@ export default function ReconstruccionDana() {
                 : `Importes sin IVA, sobre contratos adjudicados (datos a ${m.fechaDatos}).`}{' '}
               <b>Adjudicado ≠ ejecutado</b>; los financiadores no se suman.
             </li>
+            {data.metodo?.situadoEl && (
+              <li style={boxLi()}>
+                Lo situado en el mapa se recalculó el {data.metodo.situadoEl} con el resolutor de
+                topónimos de ese día, sobre los mismos contratos.
+              </li>
+            )}
             <li style={boxLi()}>
               Fallecidos, daños municipales, tejido industrial y sentido del voto: declaraciones del
               Ayuntamiento recogidas por la prensa local.

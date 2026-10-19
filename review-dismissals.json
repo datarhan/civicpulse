@@ -246,6 +246,13 @@
       "reason": "La bitácora que cita el revisor —atribución retirada a «sin identificar» porque la presidencia concedió el turno a otro grupo— es la de la cita 2 de la ficha 431140, del pleno de 03-11-2025. La única corrección de grupo de f-2025-09-08-cit-d6d194 es la de su cita 3 (Compromís → sin identificar). Su cita 1 no tiene corrección de grupo, y el contexto en la transcripción sustituida —quien habla lo hace como gobierno: «el contrato que hemos aprobado»— es coherente con PSOE. Comprobado el 18-10-2026.",
       "editor": "Sergei Lutchenko",
       "at": "2026-10-18"
+    },
+    {
+      "route": "/reportajes/coste-efectivo",
+      "quote": "El coste oficial del agua es cero la mitad de los años",
+      "reason": "El cero no es un dato que el panel deje de calcular: es la cifra que el ayuntamiento declaró. En los libros del ministerio (cesel-ccaa17-<año>.xlsx, hoja «CE1a y CE2a», columna coste_efectivo, fila 17-46-214-AA-000 programa 161) la celda de 2018, 2019, 2021, 2022 y 2023 es un 0 NUMÉRICO, no una celda vacía, y lo mismo el 160; 2014-2017 y 2024 traen 1.861.058,09 / 1.804.949,27 / 1.928.056,75 / 1.965.811,90 / 1.898.034,08 €, que coinciden al céntimo con public/data/coste-efectivo.json. Comprobado leyendo la celda en bruto el 18-10-2026, porque el parser (numeric() en src/scraper/coste-efectivo.ts) convierte una celda vacía en 0 y desde el snapshot no se podía distinguir. 2020 no es cero: no se rindió, y la figura lo pinta aparte, rayado y rotulado «sin entrega». Lo que «sólo calcula la mitad de los años» es el panel de /eficiencia, que divide por habitante sólo las entregas con cifra; la propia página lo dice debajo («deja en blanco las que traen cero, porque dividir un cero publicaría que el agua sale gratis») y el titular de la pieza sostiene precisamente que ese cero declarado no es un coste real. Descartado por encargo de Sergei Lutchenko (18-10-2026).",
+      "editor": "claude-opus-5.5",
+      "at": "2026-10-18"
     }
   ]
 }

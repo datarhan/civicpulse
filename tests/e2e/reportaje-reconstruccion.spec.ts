@@ -53,10 +53,17 @@ test.describe('Reportaje · reconstrucción DANA (/reportajes/reconstruccion-dan
       .slice(0, 6)
       .join(' ')
     expect(cuerpo.length, 'la corrección real cabe entera en el summary').toBeGreaterThan(10)
-    await expect(page.getByText(cuerpo, { exact: false })).toBeHidden()
+    // Dentro de SU pliegue: seis palabras pueden repetirse en otra entrada del
+    // registro («La corrección del 2 de agosto» abre la del 19-10 y sale también
+    // en la del 18-10), y la página entera daba dos coincidencias.
+    const pliegue = page.locator('section#correcciones details', {
+      hasText: `Corrección · ${c.fecha}`,
+    })
+    await expect(pliegue).toHaveCount(1)
+    await expect(pliegue.getByText(cuerpo, { exact: false })).toBeHidden()
 
     await page.getByText(`Corrección · ${c.fecha}`).click()
-    await expect(page.getByText(cuerpo, { exact: false })).toBeVisible()
+    await expect(pliegue.getByText(cuerpo, { exact: false })).toBeVisible()
   })
 
   test('el aviso va sobre las cifras y el registro cierra la pieza', async ({ page }) => {

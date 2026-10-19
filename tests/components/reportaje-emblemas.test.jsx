@@ -53,6 +53,30 @@ describe('emblemas de reportaje', () => {
     expect(agua.map((f) => f.anio)).toEqual(esperadas)
   })
 
+  it('el mapa de la DANA dibuja la misma lista que cuentan sus cifras', () => {
+    // La corrección del 02-08-2026 cambió las cifras de lo situado y dejó el mapa
+    // de la versión del 06-07: la cabecera decía 62 y la leyenda, 39, y no salían
+    // de la misma lista (señalado por la revisión lectora el 18-10-2026).
+    const p = pieza('reconstruccion-dana')
+    const t = p.totals
+    const sumaContratos = p.places.reduce((a, x) => a + x.contractCount, 0)
+    const sumaImporte = p.places.reduce((a, x) => a + x.amount, 0)
+    expect(sumaContratos).toBe(t.situatedContracts)
+    expect(Math.abs(sumaImporte - t.situatedAmount)).toBeLessThan(0.01)
+    expect(p.places.length).toBe(t.situatedPlaces)
+    // Los lugares DANA son los del mapa con gasto DANA, no otra lista.
+    const delMapa = p.places.filter((x) => x.danaAmount > 0).map((x) => x.name)
+    expect(p.danaPlaces.map((x) => x.name).sort()).toEqual(delMapa.sort())
+    // La premisa medida: contratos y lugares NO coinciden, así que la figura
+    // tiene que imprimir los dos —sin el puente, el lector vuelve a ver dos
+    // cifras que no cuadran.
+    expect(t.situatedContracts).not.toBe(p.places.length)
+    const textos = textosDelSvg(
+      renderToStaticMarkup(<Emblema slug="reconstruccion-dana" data={p} />),
+    )
+    expect(textos).toContain(`en ${t.situatedContracts} contratos, ${p.places.length} lugares`)
+  })
+
   for (const slug of REPORTAJE_SLUGS) {
     it(`«${slug}» dibuja con su snapshot publicado`, () => {
       const html = renderToStaticMarkup(<Emblema slug={slug} data={pieza(slug)} />)

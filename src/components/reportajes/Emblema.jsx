@@ -512,7 +512,7 @@ function ReconstruccionDana({ data }) {
   const t = data.totals
   const tx = 40 + Wm + 50
   return {
-    label: `Mapa de los lugares que nombran los contratos: ${eurM(t.situatedAmount)} situados; ${eurM(t.danaAmount)} con referencia a la DANA.`,
+    label: `Mapa de los lugares que nombran los contratos: ${eurM(t.situatedAmount)} en ${t.situatedContracts} contratos situados en ${data.places.length} lugares; ${eurM(t.danaAmount)} con referencia a la DANA.`,
     cifras: [String(t.situatedContracts), String(t.danaContracts)],
     body: (
       <>
@@ -549,7 +549,10 @@ function ReconstruccionDana({ data }) {
           {eurM(t.situatedAmount)}
         </T>
         <T x={tx} y={88} size={19} fill={C.ink50}>
-          {`en ${t.situatedContracts} emplazamientos con dirección`}
+          {/* Decía «en 62 emplazamientos con dirección» sobre un mapa de 39 puntos: las
+              cifras eran del recuento del 02-08 y los puntos, de la versión del 06-07. Hoy
+              las dos líneas salen de la misma lista y se puentean aquí: contratos, lugares. */}
+          {`en ${t.situatedContracts} contratos, ${data.places.length} lugares`}
         </T>
         <T x={tx} y={150} size={32} fill={C.foco} mono weight={500}>
           {eurM(t.danaAmount)}
@@ -566,7 +569,7 @@ function ReconstruccionDana({ data }) {
           sin referencia DANA
         </T>
         <T x={tx} y={284} size={15} fill={C.ink50} mono>
-          {`un punto = un lugar (${data.places.length}) · área = importe`}
+          {`un punto = un lugar · área = importe`}
         </T>
       </>
     ),
