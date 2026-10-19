@@ -129,7 +129,7 @@ describe('comprobarRegistrosConLaDeclaracion · lo que un registro puede sostene
     expect(() =>
       comprobarRegistrosConLaDeclaracion(
         [agenda(MA87E0, 2)],
-        { fecha: '2026-03-09', conImporte: false },
+        { fecha: '2026-03-09', tipo: 'cita_obra', importe: null },
         'verificado',
       ),
     ).toThrow(/posterior/)
@@ -140,19 +140,28 @@ describe('comprobarRegistrosConLaDeclaracion · lo que un registro puede sostene
       expect(() =>
         comprobarRegistrosConLaDeclaracion(
           [agenda(RX4HB4, 2)],
-          { fecha, conImporte: false },
+          { fecha, tipo: 'cita_obra', importe: null },
           'verificado',
         ),
       ).not.toThrow()
     }
   })
 
-  it('la fecha no acota un contrato ni una convocatoria: esa vía no la miraba, y no cambia', () => {
-    // El contrato de los juegos se adjudicó el 08-09-2026.
+  it('un contrato o una convocatoria posteriores a la declaración tampoco la sostienen', () => {
+    // Hasta el 19-10-2026 la fecha no acotaba ni un contrato ni una convocatoria,
+    // y 10 de las 13 subidas que citan un contrato citaban una adjudicación
+    // publicada después de lo dicho. El de los juegos se publicó el 08-09-2026.
+    expect(() =>
+      comprobarRegistrosConLaDeclaracion(
+        [contrato()],
+        { fecha: '2026-01-19', tipo: 'cita_obra', importe: null },
+        'parcial',
+      ),
+    ).toThrow(/08-09-2026.*posterior/s)
     expect(() =>
       comprobarRegistrosConLaDeclaracion(
         [contrato(), convocatoria()],
-        { fecha: '2026-01-19', conImporte: false },
+        { fecha: '2026-09-30', tipo: 'cita_obra', importe: null },
         'verificado',
       ),
     ).not.toThrow()
@@ -163,25 +172,25 @@ describe('comprobarRegistrosConLaDeclaracion · lo que un registro puede sostene
       expect(() =>
         comprobarRegistrosConLaDeclaracion(
           registros,
-          { fecha: '2026-03-09', conImporte: true },
+          { fecha: '2026-03-09', tipo: 'cita_obra', importe: 40727.1 },
           'verificado',
         ),
       ).toThrow(/importe/)
       expect(() =>
         comprobarRegistrosConLaDeclaracion(
           registros,
-          { fecha: '2026-03-09', conImporte: true },
+          { fecha: '2026-03-09', tipo: 'cita_obra', importe: 40727.1 },
           'parcial',
         ),
       ).not.toThrow()
     }
   })
 
-  it('un contrato con su importe sí la deja llegar a verificado', () => {
+  it('un contrato que dice esa cifra sí la deja llegar a verificado', () => {
     expect(() =>
       comprobarRegistrosConLaDeclaracion(
         [agenda(RX4HB4, 2), contrato()],
-        { fecha: '2026-09-30', conImporte: true },
+        { fecha: '2026-09-30', tipo: 'cita_obra', importe: 40727.1 },
         'verificado',
       ),
     ).not.toThrow()

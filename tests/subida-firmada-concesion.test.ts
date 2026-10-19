@@ -110,8 +110,11 @@ describe('la fila de una concesión: valor estimado por todo su plazo, nunca pre
     )
   })
 
-  it('dice un importe —el valor estimado—, así que cuenta como registro con cifra', () => {
-    expect(registroDeLaSubida({ enlace: AGUA, lote: null }, CORPUS_HOY).diceImporte).toBe(true)
+  it('imprime el valor estimado, pero no es una cifra que sostenga lo dicho', () => {
+    // Hasta el 19-10-2026 contaba como «registro con cifra», y cualquier cifra de
+    // la declaración —un canon anual, un precio— llegaba con él a verificado.
+    // El valor de 17 años de una concesión no establece ninguna de las dos.
+    expect(registroDeLaSubida({ enlace: AGUA, lote: null }, CORPUS_HOY).importe).toBeNull()
   })
 
   it('en un lote, el valor estimado es el del expediente entero: la fila no dice importe', () => {
@@ -131,7 +134,7 @@ describe('la fila de una concesión: valor estimado por todo su plazo, nunca pre
     const r = registroDeLaSubida({ enlace: AGUA, lote: 2 }, lotes)
     expect(r.fila.snippet).toContain('lote 2 del expediente 27/2018 · concesión adjudicada a')
     expect(r.fila.snippet).not.toMatch(/€/)
-    expect(r.diceImporte).toBe(false)
+    expect(r.importe).toBeNull()
   })
 })
 
