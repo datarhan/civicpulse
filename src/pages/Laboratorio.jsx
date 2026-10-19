@@ -509,6 +509,9 @@ export function OutletScoreboard({ outlets }) {
     <table
       // `.cp-tabla-medios` (index.css) deja partir un nombre de medio en el
       // móvil: sin relleno lateral en las celdas, a 320 px la tabla no cabía.
+      // Ni a la izquierda de las cifras: 8 px en tres columnas son 24 px de
+      // suelo, y con ellos la tarjeta se salía en la CI a 320 px y con la barra
+      // lateral hacia 855 px (#396), aunque aquí cupiera por un par de píxeles.
       className="cp-tabla-medios"
       style={{ width: '100%', borderCollapse: 'collapse', fontSize: 'var(--fs-meta)' }}
       aria-label="Cobertura de comprobación por medio"
@@ -516,15 +519,9 @@ export function OutletScoreboard({ outlets }) {
       <thead>
         <tr style={{ textAlign: 'left', color: 'var(--ink70)' }}>
           <th style={{ padding: '4px 0', fontWeight: 600 }}>Medio</th>
-          <th style={{ padding: '4px 0 4px 8px', fontWeight: 600, textAlign: 'right' }}>
-            Artículos
-          </th>
-          <th style={{ padding: '4px 0 4px 8px', fontWeight: 600, textAlign: 'right' }}>
-            Verificado
-          </th>
-          <th style={{ padding: '4px 0 4px 8px', fontWeight: 600, textAlign: 'right' }}>
-            Discrepa
-          </th>
+          <th style={{ padding: '4px 0', fontWeight: 600, textAlign: 'right' }}>Artículos</th>
+          <th style={{ padding: '4px 0', fontWeight: 600, textAlign: 'right' }}>Verificado</th>
+          <th style={{ padding: '4px 0', fontWeight: 600, textAlign: 'right' }}>Discrepa</th>
         </tr>
       </thead>
       <tbody>
@@ -545,11 +542,11 @@ export function OutletScoreboard({ outlets }) {
                 </span>
               )}
             </td>
-            <td style={{ padding: '4px 0 4px 8px', textAlign: 'right' }} className="mono">
+            <td style={{ padding: '4px 0', textAlign: 'right' }} className="mono">
               {o.articleCount}
             </td>
             <td
-              style={{ padding: '4px 0 4px 8px', textAlign: 'right', color: 'var(--ok-ink)' }}
+              style={{ padding: '4px 0', textAlign: 'right', color: 'var(--ok-ink)' }}
               className="mono"
             >
               {fmtPct(o.verifiedRatio)}
@@ -568,7 +565,7 @@ export function OutletScoreboard({ outlets }) {
               )}
             </td>
             <td
-              style={{ padding: '4px 0 4px 8px', textAlign: 'right', color: 'var(--crit-ink)' }}
+              style={{ padding: '4px 0', textAlign: 'right', color: 'var(--crit-ink)' }}
               className="mono"
             >
               {fmtPct(o.contradictedRatio)}
