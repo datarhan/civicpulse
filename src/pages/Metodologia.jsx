@@ -2922,6 +2922,17 @@ export default function Metodologia() {
           delante — dos puntos no se dibujan como una línea, porque dos puntos no son una tendencia.
         </p>
         <p style={{ margin: '10px 0 0', color: 'var(--ink70)' }}>
+          <strong>Cada cifra cita el documento del que sale, y la celda.</strong> Los dos documentos
+          no tienen la misma forma. En el volcado nacional de 2021 el coste está en la hoja «2021
+          CE2», columna <code>Econ14</code>, con el programa escrito con su letra (
+          <code>a1621</code>); en el informe por comunidad de las demás entregas está en la hoja
+          «CE1a y CE2a» (o «CE1b y CE2b»), columna <code>coste_efectivo</code>, con el programa sin
+          la letra (<code>1621</code>), y la unidad física en «CE3a» o «CE3b». El adaptador anota
+          qué documento dio cada entrega al leerla, y la ficha cita el de la cifra que titula y el
+          de cada año de la serie. Hasta el 19 de octubre de 2026 las quince fichas enlazaban el
+          volcado de 2021 bajo la cifra de 2024: quien seguía el enlace encontraba otra cifra.
+        </p>
+        <p style={{ margin: '10px 0 0', color: 'var(--ink70)' }}>
           <strong>Una entrega que falta puede faltar por dos motivos distintos</strong>, y
           confundirlos borra un hecho sobre la rendición de cuentas del ayuntamiento. Que no hayamos
           conseguido el fichero es un hueco nuestro. Que el fichero esté, que los demás municipios
@@ -2964,12 +2975,14 @@ export default function Metodologia() {
         </p>
         <div id="reglas-eficiencia" style={{ scrollMarginTop: 24, marginTop: 14 }}>
           <p style={{ margin: 0, color: 'var(--ink70)' }}>
-            <strong>Reglas de filtrado y comparabilidad · v1 (2026-08).</strong> La literatura sobre
+            <strong>Reglas de filtrado y comparabilidad · v2 (2026-10).</strong> La literatura sobre
             el coste efectivo es explícita: las categorías se solapan y hay doble contabilización
             conocida, así que cualquier trabajo sobre esta fuente debe publicar un procedimiento de
             filtrado reproducible. Éste es el nuestro, numerado para que cada salvedad del panel
             pueda citar la regla que la dispara. Cambiarlo es cambiar de versión, no editar en
-            silencio.
+            silencio. La v2 (19 de octubre de 2026) añade las reglas 14 y 15, decide el modo de un
+            comparable por la fila de su coste (regla 4) y deja de atribuirle al ministerio el
+            cociente inverosímil (regla 9).
           </p>
           <ol style={{ margin: '8px 0 0', paddingLeft: 22, color: 'var(--ink70)' }}>
             <li>
@@ -2988,7 +3001,11 @@ export default function Metodologia() {
               Sólo se compara contra municipios que prestan el servicio con el{' '}
               <em>mismo modo de gestión</em> y declaran las dos cifras en la misma entrega — también
               a lo largo de la serie: un año prestado bajo otro régimen se publica, pero fuera de la
-              línea y sin mediana de pares.
+              línea y sin mediana de pares. El modo de un municipio es el de la fila cuyo coste se
+              divide: hay quien declara el mismo servicio en dos filas de modos distintos, y tomar
+              la primera hacía que el grupo dependiera del orden en que el ministerio escribe el
+              fichero. Si el mismo coste viene bajo dos modos, ese municipio queda fuera y se
+              cuenta.
             </li>
             <li>Sin quince comparables no hay banda ni percentil: la fila no se sitúa.</li>
             <li>
@@ -3030,8 +3047,11 @@ export default function Metodologia() {
             </li>
             <li>
               Un cociente a más de veinte veces —o menos de una veinteava parte— de la mediana de
-              sus pares es una cifra inverosímil: se publica porque es la oficial, pero fuera de la
-              escala del gráfico y sin leerse como coste.
+              sus pares es una cifra inverosímil. Lo inverosímil es la división, que es nuestra: las
+              dos casillas son las que publica el ministerio y se enseñan, y el cociente queda fuera
+              de la escala del gráfico y sin leerse como coste. Esta comprobación puede apoyarse en
+              todos los municipios que declararon ese año aunque no compartan modo de gestión;
+              compararse, sólo con los del mismo modo (regla 4).
             </li>
             <li>
               Un denominador cuenta como congelado cuando sus últimas cuatro entregas o más traen el
@@ -3068,6 +3088,24 @@ export default function Metodologia() {
               Excluirlos movería posiciones ya publicadas de municipios que no tienen derecho de
               réplica en este sitio, así que no se excluyen, y una prueba fija que el percentil siga
               saliendo de todos.
+            </li>
+            <li>
+              <strong>Una cifra de relleno no es una medida.</strong> Un coste de 0,01 € o de 1 € y
+              una unidad física de 0,01 no constan: la casilla trae algo, pero no una cantidad. En
+              la banda hay 81 costes de exactamente 0,01 € y 64 de exactamente 1 € entre 2014 y
+              2024, y dividirlos daba cifras como 53 millones de euros por metro cuadrado de
+              limpieza viaria. El municipio que los declara queda fuera del grupo con ese motivo
+              contado y dicho en la ficha. El 1 como <em>unidad</em> sí cuenta: «1 efectivo» es una
+              plantilla de una persona, y no hay nada que diga que sea un relleno.
+            </li>
+            <li>
+              <strong>La tendencia se afirma entre años comparables.</strong> Sólo entran las
+              entregas que pasaron la regla 9 y se prestaron bajo el mismo régimen que la que titula
+              (regla 4), y entra la que titula si la pasó, aunque ese año no haya quince comparables
+              de su modo. Cuando la posición contra la mediana cambia más de tres veces, la ficha
+              dice cuánto se movió el coste declarado y cuánto la cantidad; sólo concluye que el
+              cambio está «en cuánto se declara» cuando la cantidad se movió en contra del cociente
+              y explica al menos la mitad del salto.
             </li>
           </ol>
         </div>

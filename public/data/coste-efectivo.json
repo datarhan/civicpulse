@@ -1,9 +1,61 @@
 {
-  "generatedAt": "2026-10-19T12:50:25.285Z",
+  "generatedAt": "2026-10-19T17:45:25.169Z",
   "source": {
     "volcado": "https://www.hacienda.gob.es/cdi/power%20bi/cesel-2021.xlsx",
     "consulta": "https://serviciostelematicosext.hacienda.gob.es/sgcief/Cesel/Consulta/Consulta.aspx",
-    "orden": "https://www.boe.es/buscar/doc.php?id=BOE-A-2014-11492"
+    "mapa": "https://serviciostelematicosext.hacienda.gob.es/SGCIEF/CESEL/Consulta/Mapa/ConsultaMapa.aspx",
+    "orden": "https://www.boe.es/buscar/doc.php?id=BOE-A-2014-11492",
+    "entregas": {
+      "2014": {
+        "documento": "informe-ccaa",
+        "url": "https://serviciostelematicosext.hacienda.gob.es/SGCIEF/CESEL/Consulta/Mapa/ConsultaMapa.aspx",
+        "ccaa": 17
+      },
+      "2015": {
+        "documento": "informe-ccaa",
+        "url": "https://serviciostelematicosext.hacienda.gob.es/SGCIEF/CESEL/Consulta/Mapa/ConsultaMapa.aspx",
+        "ccaa": 17
+      },
+      "2016": {
+        "documento": "informe-ccaa",
+        "url": "https://serviciostelematicosext.hacienda.gob.es/SGCIEF/CESEL/Consulta/Mapa/ConsultaMapa.aspx",
+        "ccaa": 17
+      },
+      "2017": {
+        "documento": "informe-ccaa",
+        "url": "https://serviciostelematicosext.hacienda.gob.es/SGCIEF/CESEL/Consulta/Mapa/ConsultaMapa.aspx",
+        "ccaa": 17
+      },
+      "2018": {
+        "documento": "informe-ccaa",
+        "url": "https://serviciostelematicosext.hacienda.gob.es/SGCIEF/CESEL/Consulta/Mapa/ConsultaMapa.aspx",
+        "ccaa": 17
+      },
+      "2019": {
+        "documento": "informe-ccaa",
+        "url": "https://serviciostelematicosext.hacienda.gob.es/SGCIEF/CESEL/Consulta/Mapa/ConsultaMapa.aspx",
+        "ccaa": 17
+      },
+      "2021": {
+        "documento": "volcado-nacional",
+        "url": "https://www.hacienda.gob.es/cdi/power%20bi/cesel-2021.xlsx"
+      },
+      "2022": {
+        "documento": "informe-ccaa",
+        "url": "https://serviciostelematicosext.hacienda.gob.es/SGCIEF/CESEL/Consulta/Mapa/ConsultaMapa.aspx",
+        "ccaa": 17
+      },
+      "2023": {
+        "documento": "informe-ccaa",
+        "url": "https://serviciostelematicosext.hacienda.gob.es/SGCIEF/CESEL/Consulta/Mapa/ConsultaMapa.aspx",
+        "ccaa": 17
+      },
+      "2024": {
+        "documento": "informe-ccaa",
+        "url": "https://serviciostelematicosext.hacienda.gob.es/SGCIEF/CESEL/Consulta/Mapa/ConsultaMapa.aspx",
+        "ccaa": 17
+      }
+    }
   },
   "municipio": {
     "ine": "46214",
@@ -8819,7 +8871,7 @@
       "popMax": 40000,
       "tipoEnte": "AA"
     },
-    "resolvedAt": "2026-10-19T12:50:25.285Z",
+    "resolvedAt": "2026-10-19T17:45:25.169Z",
     "anios": [
       2014,
       2015,
