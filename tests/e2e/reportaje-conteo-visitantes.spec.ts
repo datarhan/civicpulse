@@ -41,6 +41,29 @@ test.describe('Reportaje · conteo de visitantes (/reportajes/conteo-visitantes)
     // legal: la pieza nombra a dos empresas y a un ayuntamiento.
     await expect(page.getByText(/derecho de réplica/).first()).toBeVisible()
 
+    // PLEGADAS desde el 19-10-2026: de cada fila quedan a la vista la pastilla,
+    // la frase calculada y la respuesta; lo que se pidió y lo que comunicaron sin
+    // resolver se abren con un clic. Plegar no puede callar: una fila con
+    // comunicaciones dice en su rótulo, con fecha, que las hubo, aunque nadie la
+    // abra. Se comprueba plegado, se comprueba el rótulo, y luego se abren todas
+    // para que lo de abajo mire el texto entero, como antes.
+    const pliegues = page.locator('[data-solicitudes] details')
+    const nPliegues = await pliegues.count()
+    expect(nPliegues).toBe(snap.solicitudes.items.length)
+    for (const d of await pliegues.all()) expect(await d.getAttribute('open')).toBeNull()
+    const conComunicaciones = snap.solicitudes.items.filter(
+      (e: { incidencias?: unknown[] }) => e.incidencias?.length,
+    ).length
+    expect(conComunicaciones).toBeGreaterThan(0)
+    expect(
+      await page
+        .locator('[data-solicitudes] summary')
+        .filter({ hasText: /^Lo que comunicaron el \d+ de \w+ de \d{4}.*, sin resolverla/ })
+        .count(),
+    ).toBe(conComunicaciones)
+    for (const s of await page.locator('[data-solicitudes] summary').all()) await s.click()
+    for (const d of await pliegues.all()) expect(await d.getAttribute('open')).not.toBeNull()
+
     // Las solicitudes, con su reloj CALCULADO el día que se lee.
     //
     // A la Secretaría de Estado se le escribió DOS veces: la solicitud del 9-sep
@@ -189,6 +212,22 @@ test.describe('Reportaje · conteo de visitantes (/reportajes/conteo-visitantes)
     // solicitud al competente (art. 19.1), justo lo que no hicieron. Se prohíbe
     // en la prosa escrita a mano, que no pasa por la prueba unitaria de la frase.
     expect(await page.getByText(/\bremitieron\b/).count()).toBe(0)
+
+    // El baremo marca la fila de la que habla el texto —y sólo ésa—, y lo que
+    // la marca es el dato (`foco`), no una posición escrita aquí.
+    const enFoco = snap.baremo.filas.filter((f: { foco?: boolean }) => f.foco)
+    expect(enFoco.length).toBe(1)
+    await expect(page.locator('tr[data-foco]')).toHaveCount(1)
+    await expect(page.locator('tr[data-foco]')).toContainText(enFoco[0].criterio)
+
+    // La pieza hermana se nombra con enlace, en el cuerpo y en la banda, no en
+    // texto plano.
+    const hermana = page.locator('.cp-pieza a[href="/reportajes/matriculas-y-moviles"]')
+    expect(await hermana.count()).toBeGreaterThanOrEqual(2)
+
+    // Y el registro va en su banda, como en «matrículas y móviles».
+    await expect(page.locator('.cp-registro')).toContainText('Rendición de cuentas')
+    await expect(page.locator('.cp-registro #correcciones')).toHaveCount(1)
 
     expect(appErrors(errors)).toEqual([])
   })

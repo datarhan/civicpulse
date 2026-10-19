@@ -1,4 +1,6 @@
+import { Link } from 'react-router-dom'
 import { useReportaje } from '../../hooks/useReportaje'
+import { trozosEnlazados } from '../../lib/resaltar'
 import CabeceraPieza from '../../components/reportajes/CabeceraPieza'
 import { Card, Pill } from '../../components/Primitives'
 import { CorrectionNote } from '../../components/reportajes/CorrectionNote'
@@ -8,6 +10,7 @@ import {
   fraseDeCalendarios,
   fraseDeEnvio,
   resumirEnvios,
+  rotuloDelDetalle,
   ESTADO_ENVIO_ETIQUETA,
   ESTADO_ENVIO_TONO,
 } from '../../scraper/solicitud-enviada'
@@ -105,6 +108,23 @@ export function CitaEnLinea({ children, tipo, de }) {
   )
 }
 
+/* Un texto de la instantánea con cada mención de otra pieza enlazada a ella.
+   Las menciones se declaran en `enlaces` de la instantánea, por título;
+   `tests/resaltar.test.js` comprueba que el título sigue siendo el de la otra
+   pieza. Antes, la pieza nombraba dos veces a «matrículas y móviles» en texto
+   plano y el lector tenía que buscarla. */
+export function enlazar(texto, enlaces) {
+  return trozosEnlazados(texto, enlaces).map(({ t, a }, i) =>
+    a ? (
+      <Link key={i} to={a}>
+        {t}
+      </Link>
+    ) : (
+      t
+    ),
+  )
+}
+
 export const P = ({ children }) => (
   <p style={{ color: 'var(--ink70)', margin: '0 0 14px' }}>{children}</p>
 )
@@ -139,8 +159,14 @@ const eur = (n) =>
    valor (`.cp-tabla` en index.css). Con scroll, a 375px la segunda columna —en
    «lo que exige / lo observado», la que trae el hallazgo— quedaba fuera de la
    pantalla, y el pie, dentro del mismo scroll, cortado a media frase. La
-   etiqueta sale de `data-label`, el mismo texto que la cabecera de la columna. */
-export function Tabla({ cols, rows, caption }) {
+   etiqueta sale de `data-label`, el mismo texto que la cabecera de la columna.
+
+   `foco`: los índices de las filas de las que trata el texto —en el baremo del
+   conteo, los 16 puntos por dispositivos adicionales—. Se marcan con la tinta y
+   el peso, no con un fondo: un fondo empezaría en el mismo píxel que el texto
+   de la primera columna, que va a ras, y el filete de la fila quedaría cortado.
+   Petróleo, porque es lo que la pieza mira, no un fallo. */
+export function Tabla({ cols, rows, caption, foco = [] }) {
   const th = {
     textAlign: 'left',
     fontSize: 'var(--fs-micro)',
@@ -166,7 +192,9 @@ export function Tabla({ cols, rows, caption }) {
     ...(i === cols.length - 1 && { paddingRight: 0 }),
   })
   return (
-    <div className="cp-tabla" style={{ overflowX: 'auto' }}>
+    // El margen de abajo es el de un párrafo: sin él, el texto que sigue a la
+    // tabla se pegaba a su último filete.
+    <div className="cp-tabla" style={{ overflowX: 'auto', marginBottom: 14 }}>
       <table style={{ borderCollapse: 'collapse', width: '100%' }}>
         {caption && (
           <caption
@@ -196,7 +224,7 @@ export function Tabla({ cols, rows, caption }) {
         </thead>
         <tbody>
           {rows.map((r, i) => (
-            <tr key={i}>
+            <tr key={i} data-foco={foco.includes(i) || undefined}>
               {r.map((cell, j) => (
                 <td
                   key={j}
@@ -206,6 +234,7 @@ export function Tabla({ cols, rows, caption }) {
                     ...td,
                     ...aRas(j),
                     ...(cols[j].right && { textAlign: 'right', whiteSpace: 'nowrap' }),
+                    ...(foco.includes(i) && { color: 'var(--civic-ink)', fontWeight: 600 }),
                   }}
                 >
                   {cell}
@@ -271,7 +300,7 @@ export function SolicitudesEnviadas({ bloque }) {
     marginBottom: 2,
   }
   return (
-    <Card style={{ padding: '14px 16px', marginBottom: 14 }}>
+    <Card data-solicitudes style={{ padding: '14px 16px', marginBottom: 14 }}>
       <div
         className="mono"
         style={{
@@ -303,21 +332,41 @@ export function SolicitudesEnviadas({ bloque }) {
             </div>
             <div style={frase}>{fraseDeEnvio(e, hoy)}</div>
             {/* Lo que dijeron, atribuido. Va con la tinta de la frase y no con la
-                de lo pedido: es la respuesta, no el contexto. */}
+                de lo pedido: es la respuesta, no el contexto. Y va a la vista:
+                es lo que resolvieron. */}
             {e.respuesta?.resumen && (
               <div style={{ ...frase, marginTop: 4 }}>{e.respuesta.resumen}</div>
             )}
-            {/* Lo que contestaron sin resolver. Va con la tinta de la frase, no
-                con la de lo pedido: es algo que dijeron. Y va SIN pastilla de
-                estado propia, porque el estado no ha cambiado — que es
-                justamente lo que hay que enseñar. */}
-            {(e.incidencias ?? []).map((inc) => (
-              <div key={inc.fecha} style={{ ...frase, marginTop: 4 }}>
-                {inc.texto}
-              </div>
-            ))}
-            <div style={etiqueta}>Lo que se pidió</div>
-            <div style={aparte}>{e.pide}</div>
+            {/* Plegado: lo que se pidió y lo que comunicaron sin resolver. El
+                apartado medía 3.470 px en escritorio y 5.750 a 375, casi un
+                tercio de la pieza. El rótulo (`rotuloDelDetalle`) nombra la
+                fecha de cada comunicación: plegada, la fila no puede leerse
+                como si nadie hubiera contestado. `review:surfaces` abre los
+                `<details>` antes de leer. */}
+            <details style={{ marginTop: 6 }}>
+              <summary
+                style={{
+                  cursor: 'pointer',
+                  fontSize: 'var(--fs-meta)',
+                  color: 'var(--civic)',
+                  padding: '4px 0',
+                  maxWidth: 'var(--medida)',
+                }}
+              >
+                {rotuloDelDetalle(e)}
+              </summary>
+              {/* Lo que contestaron sin resolver. Va con la tinta de la frase, no
+                  con la de lo pedido: es algo que dijeron. Y va SIN pastilla de
+                  estado propia, porque el estado no ha cambiado — que es
+                  justamente lo que hay que enseñar. */}
+              {(e.incidencias ?? []).map((inc) => (
+                <div key={inc.fecha} style={{ ...frase, marginTop: 4 }}>
+                  {inc.texto}
+                </div>
+              ))}
+              <div style={etiqueta}>Lo que se pidió</div>
+              <div style={aparte}>{e.pide}</div>
+            </details>
           </div>
         )
       })}
@@ -424,6 +473,7 @@ export default function ConteoVisitantes() {
           { label: 'Tipo' },
         ]}
         rows={data.baremo.filas.map((f) => [f.criterio, String(f.puntos), f.tipo])}
+        foco={data.baremo.filas.flatMap((f, i) => (f.foco ? [i] : []))}
         caption="Criterios de adjudicación del expediente 98/2025, sobre 100 puntos."
       />
       <P>{data.baremo.texto}</P>
@@ -435,7 +485,7 @@ export default function ConteoVisitantes() {
       <Cita tipo="memoria" de="exps. 98/2025 y 100/2025" fuente={data.datos.citaFuente}>
         {data.datos.cita}
       </Cita>
-      <P>{data.datos.remate}</P>
+      <P>{enlazar(data.datos.remate, data.enlaces)}</P>
 
       {/* 7 · la DANA */}
       <SecHead num="07" kicker="El contexto" title={data.dana.titulo} />
@@ -445,58 +495,69 @@ export default function ConteoVisitantes() {
       <SecHead num="08" kicker="El hito europeo" title={data.plazo.titulo} />
       <P>{data.plazo.texto}</P>
 
-      {/* 9 · límites */}
-      <SecHead num="09" kicker="Honestidad" title={data.limites.titulo} />
-      <Lista items={data.limites.bullets} />
-
-      {/* 10 · preguntas */}
-      <SecHead num="10" kicker="Sin responder" title="Las preguntas registradas" />
-      <ol style={{ margin: '0 0 14px', paddingLeft: 20 }}>
-        {data.preguntas.map((q, i) => (
-          <li key={i} style={{ color: 'var(--ink70)', marginBottom: 10 }}>
-            {q}
-          </li>
-        ))}
-      </ol>
-      <Card style={{ padding: '12px 14px', marginBottom: 14 }}>
-        <div style={{ fontSize: 'var(--fs-aux)', color: 'var(--ink70)', lineHeight: 1.5 }}>
-          {data.preguntasNota}
+      {/* Lo que cierra la pieza no es más reportaje: es el registro —lo que no
+          se afirma, lo preguntado y a quién, la réplica, el método, las fuentes y
+          las correcciones—. La misma banda que «matrículas y móviles», su pieza
+          hermana: las dos acababan distinto. Las correcciones siguen siendo lo
+          último. */}
+      <section className="cp-registro" aria-labelledby="cp-registro-titulo">
+        <div id="cp-registro-titulo" className="cp-registro-titulo">
+          Rendición de cuentas
         </div>
-      </Card>
 
-      {/* 10 bis · el reloj de cada solicitud, calculado, no escrito a mano */}
-      <SolicitudesEnviadas bloque={data.solicitudes} />
+        {/* 9 · límites */}
+        <SecHead num="09" kicker="Honestidad" title={data.limites.titulo} />
+        <Lista items={data.limites.bullets.map((t) => enlazar(t, data.enlaces))} />
 
-      <Card style={{ padding: '12px 14px' }}>
-        <div style={{ fontSize: 'var(--fs-aux)', color: 'var(--ink70)', lineHeight: 1.5 }}>
-          {data.replica}
-        </div>
-      </Card>
+        {/* 10 · preguntas */}
+        <SecHead num="10" kicker="Sin responder" title="Las preguntas registradas" />
+        <ol style={{ margin: '0 0 14px', paddingLeft: 20 }}>
+          {data.preguntas.map((q, i) => (
+            <li key={i} style={{ color: 'var(--ink70)', marginBottom: 10 }}>
+              {q}
+            </li>
+          ))}
+        </ol>
+        <Card style={{ padding: '12px 14px', marginBottom: 14 }}>
+          <div style={{ fontSize: 'var(--fs-aux)', color: 'var(--ink70)', lineHeight: 1.5 }}>
+            {data.preguntasNota}
+          </div>
+        </Card>
 
-      {/* método y fuentes */}
-      <SecHead num="11" kicker="Cómo se ha hecho" title="Método" />
-      <Lista items={data.metodo} />
+        {/* 10 bis · el reloj de cada solicitud, calculado, no escrito a mano */}
+        <SolicitudesEnviadas bloque={data.solicitudes} />
 
-      <SecHead num="12" kicker="Comprobable" title="Fuentes" />
-      <ul style={{ margin: '0 0 14px', paddingLeft: 18 }}>
-        {data.fuentes.map((f, i) => (
-          <li
-            key={i}
-            style={{
-              fontSize: 'var(--fs-aux)',
-              color: 'var(--ink70)',
-              marginBottom: 8,
-              lineHeight: 1.45,
-            }}
-          >
-            <a href={f.url} target="_blank" rel="noopener noreferrer">
-              {f.label}
-            </a>
-          </li>
-        ))}
-      </ul>
+        <Card style={{ padding: '12px 14px' }}>
+          <div style={{ fontSize: 'var(--fs-aux)', color: 'var(--ink70)', lineHeight: 1.5 }}>
+            {data.replica}
+          </div>
+        </Card>
 
-      <CorrectionNote correcciones={m.correcciones} />
+        {/* método y fuentes */}
+        <SecHead num="11" kicker="Cómo se ha hecho" title="Método" />
+        <Lista items={data.metodo} />
+
+        <SecHead num="12" kicker="Comprobable" title="Fuentes" />
+        <ul style={{ margin: '0 0 14px', paddingLeft: 18 }}>
+          {data.fuentes.map((f, i) => (
+            <li
+              key={i}
+              style={{
+                fontSize: 'var(--fs-aux)',
+                color: 'var(--ink70)',
+                marginBottom: 8,
+                lineHeight: 1.45,
+              }}
+            >
+              <a href={f.url} target="_blank" rel="noopener noreferrer">
+                {f.label}
+              </a>
+            </li>
+          ))}
+        </ul>
+
+        <CorrectionNote correcciones={m.correcciones} />
+      </section>
     </div>
   )
 }

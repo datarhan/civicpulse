@@ -8,6 +8,7 @@ import {
   fraseDeCalendarios,
   fraseDeEnvio,
   resumirEnvios,
+  rotuloDelDetalle,
   vencimientoAfirmable,
   type EnvioSolicitud,
 } from '../src/scraper/solicitud-enviada'
@@ -1034,5 +1035,60 @@ describe('un apartado de solicitudes que se movió tras publicarse lo dice', () 
       .filter((p) => !/se actualiza/.test(p.nota))
       .map((p) => `${p.slug}: publicada el ${p.publicadoEl}, cuenta algo del ${p.ultima}`)
     expect(calladas).toEqual([])
+  })
+})
+
+/**
+ * Lo que se pliega de cada fila, y el rótulo que lo abre.
+ *
+ * Plegado desde el 19-10-2026: el apartado del conteo medía 3.470 px en
+ * escritorio y 5.750 a 375, casi un tercio de la pieza. A la vista quedan la
+ * pastilla y la frase calculada —quién, cuándo, el reloj— y, si la hay, la
+ * respuesta; se pliegan lo que se pidió y las comunicaciones que no resolvieron.
+ * Pero plegarlas no puede callarlas: la fila de quien contestó sin resolver
+ * sigue «en plazo», y sin el rótulo se leería como si nadie hubiera dicho nada.
+ * Así que el rótulo nombra cada fecha.
+ */
+describe('rotuloDelDetalle · lo plegado se anuncia', () => {
+  it('sin comunicaciones, sólo lo que se pidió', () => {
+    expect(rotuloDelDetalle(base)).toBe('Lo que se pidió')
+  })
+
+  it('con una, su fecha, y que no la resolvió', () => {
+    const r: EnvioSolicitud = {
+      ...base,
+      incidencias: [{ fecha: '2026-09-23', texto: 'Que se presente por el Registro.' }],
+    }
+    expect(rotuloDelDetalle(r)).toBe(
+      'Lo que comunicaron el 23 de septiembre de 2026, sin resolverla, y lo que se pidió',
+    )
+  })
+
+  it('con varias, todas, en orden y sin repetir', () => {
+    const r: EnvioSolicitud = {
+      ...base,
+      incidencias: [
+        { fecha: '2026-09-29', texto: 'b' },
+        { fecha: '2026-09-21', texto: 'a' },
+        { fecha: '2026-09-29', texto: 'c' },
+      ],
+    }
+    expect(rotuloDelDetalle(r)).toBe(
+      'Lo que comunicaron el 21 de septiembre de 2026 y el 29 de septiembre de 2026, sin resolverla, y lo que se pidió',
+    )
+  })
+
+  // Sin filas con comunicaciones, las dos de arriba probarían un caso que la
+  // página no tiene.
+  it('mide algo: alguna fila publicada lleva comunicaciones', () => {
+    const filas = PIEZAS.flatMap(
+      (slug) =>
+        (
+          JSON.parse(readFileSync(`${DIR_REPORTAJES}/${slug}.json`, 'utf8')) as {
+            solicitudes: { items: EnvioSolicitud[] }
+          }
+        ).solicitudes.items,
+    )
+    expect(filas.filter((e) => e.incidencias?.length).length).toBeGreaterThan(0)
   })
 })

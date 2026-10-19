@@ -245,6 +245,24 @@ export function enCastellano(iso: string): string {
 }
 
 /**
+ * El rótulo de lo que cada fila pliega: lo que se pidió y, si las hay, las
+ * comunicaciones que no la resolvieron.
+ *
+ * Plegarlas no puede callarlas. Una incidencia no cambia el estado —es
+ * justamente lo que hay que enseñar—, así que con ella plegada la fila seguiría
+ * diciendo «en plazo» sin rastro de que contestaron. Por eso el rótulo nombra
+ * cada fecha, y dice «sin resolverla», que es lo que una incidencia es por
+ * definición (ver `incidencias`).
+ */
+export function rotuloDelDetalle(e: EnvioSolicitud): string {
+  const fechas = [...new Set((e.incidencias ?? []).map((i) => i.fecha))].sort()
+  if (!fechas.length) return 'Lo que se pidió'
+  const dias = fechas.map((f) => `el ${enCastellano(f)}`)
+  const lista = dias.length > 1 ? `${dias.slice(0, -1).join(', ')} y ${dias.at(-1)}` : dias[0]
+  return `Lo que comunicaron ${lista}, sin resolverla, y lo que se pidió`
+}
+
+/**
  * Desde qué fecha corre el mes, y si esa fecha ACREDITA la recepción por el
  * órgano competente para resolver —lo único que permite afirmar el vencimiento
  * en vez de decir desde dónde se cuenta—.
