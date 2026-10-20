@@ -47,7 +47,9 @@ test.describe('Laboratorio (/laboratorio)', () => {
     await expect(page.getByText('Tasa de verificación').first()).toBeVisible()
     await expect(page.getByText('Tasa de discrepancia').first()).toBeVisible()
     await expect(page.getByText('Triangulación').first()).toBeVisible()
-    await expect(page.getByText('Hallazgos editoriales').first()).toBeVisible()
+    // «editoriales» si alguno lo firmó una persona; «automáticos» si todos son del
+    // curador automático (resumenHallazgos, src/lib/press-lab.js).
+    await expect(page.getByText(/^Hallazgos (editoriales|automáticos)$/).first()).toBeVisible()
 
     await expect(page.getByLabel('Filtrar por medio')).toBeVisible()
     await expect(page.getByLabel('Filtrar por veredicto')).toBeVisible()

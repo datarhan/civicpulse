@@ -294,7 +294,9 @@ export default function LabHealth() {
             }}
           >
             La mayoría de los snapshots se refrescan vía GitHub Actions cada noche a las 04:30 UTC;
-            los del laboratorio de prensa, una vez por semana, los lunes. Cada fuente se mide contra
+            los del laboratorio de prensa que necesitan un modelo (extracción, cotejo, síntesis,
+            hallazgos automáticos), una vez por semana, los lunes; sus indicadores, la triangulación
+            y las lagunas de cobertura se recalculan también cada noche. Cada fuente se mide contra
             su propio plazo ·{' '}
             <a
               href="/metodologia#laboratorio-prensa"

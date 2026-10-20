@@ -29,6 +29,11 @@ const citado = (): DedicacionesSnapshot => {
   // `quote` ya no lo dejaría sin cita y la prueba de rechazo no podría fallar
   // por la razón que nombra (pasó al aplicar el texto del acta de 2026).
   delete c.source.amountQuotes
+  // Y por la misma razón, sin la antigüedad: su cita tiene que ser uno de los
+  // pasajes que se acaban de borrar, así que heredarla dejaría la copia
+  // inválida y estas pruebas fallarían por otra cosa (pasó al añadir la del
+  // alcalde, 20-10-2026). La antigüedad tiene sus propias pruebas.
+  c.byOfficial = c.byOfficial.map(({ antiguedadEuros, antiguedadQuote, ...fila }) => fila)
   c.source.quote =
     'Cuadro del acuerdo: ' +
     importesPublicados(c)
@@ -203,5 +208,71 @@ describe('public/data/dedicaciones.json — ROJO hasta la edición del curador',
       .map((o) => o.role.replace(/\s+/g, ' ').trim())
       .filter((role) => !primero.includes(role))
     expect(noLiterales).toEqual([])
+  })
+})
+
+// ---------------------------------------------------------------------------
+// Antigüedad personal dentro del importe de una fila.
+//
+// El cuadro del acta de 16/03/2026 da al alcalde tres columnas: 53.734,99 €
+// de sueldo base, 5.460,49 € de antigüedad y 59.195,48 € de total. La página
+// publicaba el total como «lo fijado por cargo», y la antigüedad es de quien
+// ocupa el cargo, no del cargo: junto a los 48.647,50 € del ISPA de 2024 se
+// leía como una subida del 21,7 % cuando el sueldo base subió un 11,4 %. La
+// antigüedad entra en el fichero como dato con su pasaje literal, para que la
+// página la DERIVE y no la escriba nadie a mano.
+// ---------------------------------------------------------------------------
+
+describe('scraper/dedicaciones — antigüedad dentro del importe de una fila', () => {
+  const LINEA = '912 100.01 ALCALDE Polit P 53.734,99 5.460,49 59.195,48'
+  const alcalde = (s: DedicacionesSnapshot) =>
+    s.byOfficial.find((o) => o.slug === 'robert-raga-gadea')!
+
+  /** Una copia válida cuyo alcalde lleva su antigüedad y el pasaje que la escribe. */
+  const conAntiguedad = (): DedicacionesSnapshot => {
+    const c = citado()
+    c.source.amountQuotes = [LINEA]
+    alcalde(c).antiguedadEuros = 5460.49
+    alcalde(c).antiguedadQuote = LINEA
+    return c
+  }
+
+  it('acepta la antigüedad con el pasaje que escribe base, antigüedad y total', () => {
+    expect(() => validateDedicacionesSnapshot(conAntiguedad())).not.toThrow()
+  })
+
+  it('rechaza la antigüedad sin pasaje', () => {
+    const bad = conAntiguedad()
+    delete alcalde(bad).antiguedadQuote
+    expect(() => validateDedicacionesSnapshot(bad)).toThrow(/antiguedadQuote/)
+  })
+
+  it('rechaza un pasaje sin antigüedad', () => {
+    const bad = conAntiguedad()
+    delete alcalde(bad).antiguedadEuros
+    expect(() => validateDedicacionesSnapshot(bad)).toThrow(/antiguedadEuros/)
+  })
+
+  it('el pasaje tiene que ser uno de los ya citados de la fuente, no un texto nuevo', () => {
+    const bad = conAntiguedad()
+    alcalde(bad).antiguedadQuote = 'ALCALDE 53.734,99 5.460,49 59.195,48 (texto retecleado)'
+    expect(() => validateDedicacionesSnapshot(bad)).toThrow(/amountQuotes/)
+  })
+
+  it('el pasaje escribe las TRES cifras: total, antigüedad y la base que resulta', () => {
+    const bad = conAntiguedad()
+    // 5.000,00 está en el pasaje, pero 59.195,48 − 5.000,00 no es 53.734,99.
+    bad.source.amountQuotes = [`${LINEA} 5.000,00`]
+    alcalde(bad).antiguedadEuros = 5000
+    alcalde(bad).antiguedadQuote = bad.source.amountQuotes[0]
+    expect(() => validateDedicacionesSnapshot(bad)).toThrow(/base/)
+  })
+
+  it('rechaza una antigüedad nula, negativa o no menor que el total', () => {
+    for (const v of [0, -1, 59195.48, 70000]) {
+      const bad = conAntiguedad()
+      alcalde(bad).antiguedadEuros = v
+      expect(() => validateDedicacionesSnapshot(bad)).toThrow(/antiguedadEuros/)
+    }
   })
 })

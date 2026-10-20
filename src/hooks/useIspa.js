@@ -85,6 +85,30 @@ export function retribucionesSplit(data) {
 }
 
 /**
+ * How many people ISPA paid in the split's year: its own rows, not the roster.
+ *
+ * The /cargos hero said «Los {n} percibieron … en 2024» with n read from the
+ * CURRENT officials.json, which counts a councillor who took the seat in 2025
+ * and leaves out one who was paid in 2024 and has since gone. The number
+ * matched by coincidence; the people did not.
+ */
+export function perceptoresIspa(split) {
+  if (!split) return null
+  return split.con.count + split.sin.count
+}
+
+/**
+ * Whether the page may say «ninguno cobró cero»: only from a split that
+ * reconciles, and none of whose rows — salaried or per-session — is zero.
+ * The hero and the panel's eyebrow both make the claim, so both ask here.
+ */
+export function ningunoACero(split) {
+  if (!split?.cuadra) return false
+  const filas = [...split.con.amounts, ...split.sin.amounts]
+  return filas.length > 0 && filas.every((v) => typeof v === 'number' && v > 0)
+}
+
+/**
  * The alcalde's ISPA series as SLOTS to lay out, gaps included.
  *
  * ISPA publishes no 2023 for this municipality, and the page used to paint the

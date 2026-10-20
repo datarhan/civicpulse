@@ -4,11 +4,15 @@ import {
   retribucionesSplit,
   alcaldeSerie,
   formatEurosCents,
+  ningunoACero,
+  perceptoresIspa,
 } from '../src/hooks/useIspa'
 import {
   fijadoTramos,
   estadoRetribucion,
   dedicacionesLeidas,
+  desgloseAntiguedad,
+  filaDelAlcalde,
   EMPTY_DEDIC,
 } from '../src/hooks/useDedicaciones'
 import { mailboxKinds } from '../src/lib/mailboxes'
@@ -289,5 +293,109 @@ describe('lib/mailboxes — mailboxKinds', () => {
     // propias — y entonces la etiqueta sobra, que es justo lo que hay que ver.
     const k = mailboxKinds(leer('officials.json').officials)
     expect([...k.values()].some((v) => v.compartido)).toBe(true)
+  })
+})
+
+// ---------------------------------------------------------------------------
+// La antigüedad del alcalde: personal, no del cargo.
+//
+// El cuadro del acta de 16/03/2026 escribe para la Alcaldía 53.734,99 € de
+// sueldo base, 5.460,49 € de antigüedad y 59.195,48 € de total. La página
+// publicaba el total como «lo fijado por cargo», y junto a los 48.647,50 € del
+// ISPA de 2024 se leía como una subida del 21,7 % cuando la base subió un
+// 11,4 %. Lo que la página diga de la antigüedad sale de la fila, nunca de un
+// texto escrito a mano.
+// ---------------------------------------------------------------------------
+
+/** El fichero publicado con la antigüedad que el acta escribe para el alcalde. */
+const conAntiguedad = () => {
+  const d = structuredClone(leer('dedicaciones.json'))
+  const linea = d.source.amountQuotes.find((q) => /ALCALDE/.test(q))
+  const fila = d.byOfficial.find((o) => o.slug === 'robert-raga-gadea')
+  fila.antiguedadEuros = 5460.49
+  fila.antiguedadQuote = linea
+  return d
+}
+
+describe('useDedicaciones — desgloseAntiguedad', () => {
+  it('separa la antigüedad del total y da la base del cargo', () => {
+    const fila = conAntiguedad().byOfficial.find((o) => o.slug === 'robert-raga-gadea')
+    const d = desgloseAntiguedad(fila)
+    expect(d.total).toBe(59195.48)
+    expect(d.antiguedad).toBe(5460.49)
+    expect(d.base).toBe(53734.99)
+  })
+
+  it('sin antigüedad en la fila no inventa ningún desglose', () => {
+    const filas = leer('dedicaciones.json').byOfficial.filter(
+      (o) => o.antiguedadEuros === undefined,
+    )
+    expect(filas.length).toBeGreaterThan(0)
+    for (const fila of filas) expect(desgloseAntiguedad(fila)).toBeNull()
+    expect(desgloseAntiguedad(null)).toBeNull()
+    expect(desgloseAntiguedad({ amountEuros: 100, antiguedadEuros: 0 })).toBeNull()
+  })
+})
+
+describe('useDedicaciones — fijadoTramos con antigüedad', () => {
+  it('el tramo de la Alcaldía dice cuánto de su importe es antigüedad', () => {
+    const t = fijadoTramos(conAntiguedad())
+    const alcaldia = t.tramos.find((x) => x.amountEuros === 59195.48)
+    expect(alcaldia.antiguedadEuros).toBe(5460.49)
+    expect(t.antiguedadEuros).toBeCloseTo(5460.49, 2)
+    for (const x of t.tramos.filter((x) => x !== alcaldia)) expect(x.antiguedadEuros).toBe(0)
+  })
+
+  it('sin antigüedad en el fichero, ningún tramo la reclama', () => {
+    const d = structuredClone(leer('dedicaciones.json'))
+    for (const o of d.byOfficial) delete o.antiguedadEuros
+    const t = fijadoTramos(d)
+    expect(t.antiguedadEuros).toBe(0)
+    expect(t.tramos.every((x) => x.antiguedadEuros === 0)).toBe(true)
+  })
+})
+
+// `/alcald/i` sobre el rótulo del puesto casaba también con «Primer Teniente
+// de Alcalde»: con otro orden de filas el puente del alcalde habría puesto la
+// cifra de una teniente de alcalde junto a la nómina del alcalde.
+describe('useDedicaciones — filaDelAlcalde', () => {
+  it('une por el cargo del padrón (officials.json), no por el rótulo', () => {
+    const d = structuredClone(leer('dedicaciones.json'))
+    // Una teniente de alcalde va primero: un `find` por /alcald/i la cogería.
+    d.byOfficial.sort((a, b) => Number(/Teniente/.test(b.role)) - Number(/Teniente/.test(a.role)))
+    expect(d.byOfficial[0].role).toMatch(/Teniente de Alcalde/)
+    const alcalde = leer('officials.json').officials.find((o) => o.role === 'alcalde')
+    expect(filaDelAlcalde(d, leer('officials.json')).slug).toBe(alcalde.slug)
+  })
+
+  it('sin padrón o sin alcalde en él, no hay fila que adjudicar', () => {
+    expect(filaDelAlcalde(leer('dedicaciones.json'), null)).toBeNull()
+    expect(filaDelAlcalde(leer('dedicaciones.json'), { officials: [] })).toBeNull()
+  })
+})
+
+// La cabecera decía «Los {n} percibieron…» con n del padrón ACTUAL. El ISPA
+// de 2024 paga a quien era electo en 2024: el padrón de hoy incluye a quien
+// entró en 2025 y excluye a quien cobró en 2024 y ya se fue.
+describe('useIspa — perceptoresIspa y ningunoACero', () => {
+  it('cuenta las filas del año del ISPA, no el padrón de hoy', () => {
+    expect(perceptoresIspa(retribucionesSplit(ispa2024))).toBe(anio2024.concejales.length + 1)
+    const real = retribucionesSplit(leer('ispa.json'))
+    const y = leer('ispa.json').years.find((x) => x.year === real.year)
+    expect(perceptoresIspa(real)).toBe(y.concejales.length + (y.alcalde ? 1 : 0))
+    expect(perceptoresIspa(null)).toBeNull()
+  })
+
+  it('«ninguno a cero» sólo si el reparto cuadra y la fila menor no es cero', () => {
+    expect(ningunoACero(retribucionesSplit(ispa2024))).toBe(true)
+    const conCero = structuredClone(ispa2024)
+    conCero.years[0].concejales[7].amountEuros = 0
+    conCero.years[0].summary.totalAnnualEuros -= 4582.49
+    expect(retribucionesSplit(conCero).cuadra).toBe(true)
+    expect(ningunoACero(retribucionesSplit(conCero))).toBe(false)
+    const podado = structuredClone(ispa2024)
+    podado.years[0].concejales.pop()
+    expect(ningunoACero(retribucionesSplit(podado))).toBe(false)
+    expect(ningunoACero(null)).toBe(false)
   })
 })

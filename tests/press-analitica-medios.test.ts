@@ -5,6 +5,7 @@ import {
   LOCAL_HOSTS,
   computeTrustIndicators,
   computeTriangulation,
+  distinctOutlets,
   type ArticleTrustRow,
   type PressArticleLite,
   type TrustIndicatorsReport,
@@ -67,8 +68,11 @@ function fila(r: TrustIndicatorsReport, id: string): ArticleTrustRow {
 }
 
 describe('control: la ventana es la publicada', () => {
-  it('65 titulares, como el press-trust.json del 19-10-2026', () => {
-    expect(informe().articles).toHaveLength(65)
+  // El press-trust.json del 19-10-2026 tenía 65: 12 eran anuncios de fotocasa.es, que
+  // desde ese mismo día no son prensa (press-clasificado.ts,
+  // tests/press-laboratorio-corpus.test.ts).
+  it('53 titulares: los 65 del press-trust.json del 19-10-2026 sin los 12 anuncios', () => {
+    expect(informe().articles).toHaveLength(53)
   })
 })
 
@@ -111,14 +115,15 @@ describe('1 · «Verificado» divide entre lo cotejado', () => {
 })
 
 describe('2 · «Afirmaciones contrastables» no dice «no» de lo que nadie procesó', () => {
-  it('los 38 titulares sin desenlace del extractor salen null, no false', () => {
+  // Eran 38; 7 eran anuncios de fotocasa.es, que ya no cuentan como prensa.
+  it('los 31 titulares sin desenlace del extractor salen null, no false', () => {
     const r = informe()
     const filas = new Map(VERIF.extraccion.articulos.map((a) => [a.articleId, a]))
     const nunca = r.articles.filter((a) => {
       const f = filas.get(a.articleId)
       return !f || f.fingerprint !== a.articleFingerprint
     })
-    expect(nunca).toHaveLength(38)
+    expect(nunca).toHaveLength(31)
     for (const a of nunca) expect(a.indicators.factualClaimsPresent, a.articleId).toBeNull()
   })
 
@@ -137,7 +142,8 @@ describe('2 · «Afirmaciones contrastables» no dice «no» de lo que nadie pro
         por.false += 1
       }
     }
-    expect(por).toEqual({ true: 16, false: 11 })
+    // `false` eran 11: 5 eran anuncios de fotocasa.es que el extractor descartó.
+    expect(por).toEqual({ true: 16, false: 6 })
   })
 
   it('sin bloque de extracción (un snapshot anterior), un titular sin afirmaciones es null', () => {
@@ -222,12 +228,14 @@ describe('5 · «Cobertura local» es el Camp de Túria', () => {
 })
 
 describe('6 · un medio es un host, no un nombre', () => {
-  it('fotocasa.es es una fila de 12, no «Fotocasa» (11) y «Fotocasa.es» (1)', () => {
-    const r = informe()
-    const foto = r.outlets.filter((o) => o.outletHost === 'fotocasa.es')
-    expect(foto).toHaveLength(1)
-    expect(foto[0].articleCount).toBe(12)
-    expect(foto[0].outlet).toBe('Fotocasa')
+  // fotocasa.es era el caso: «Fotocasa» (11) y «Fotocasa.es» (1) en dos filas. Desde el
+  // 19-10-2026 sus anuncios no entran en la tabla (press-clasificado.ts), pero la regla
+  // que los juntaba es la de cualquier medio, y se fija sobre esas mismas filas.
+  it('las piezas de fotocasa.es, firmadas «Fotocasa» y «Fotocasa.es», son un solo medio', () => {
+    const foto = PRESS.filter((p) => p.sourceHost === 'fotocasa.es')
+    expect(new Set(foto.map((p) => p.source))).toEqual(new Set(['Fotocasa', 'Fotocasa.es']))
+    expect(distinctOutlets(foto)).toEqual(['Fotocasa'])
+    expect(informe().outlets.some((o) => o.outletHost === 'fotocasa.es')).toBe(false)
   })
 
   it('ningún host sale en dos filas', () => {

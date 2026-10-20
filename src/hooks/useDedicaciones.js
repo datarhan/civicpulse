@@ -89,7 +89,11 @@ export function estadoRetribucion(res, slug) {
  * the person, and a shortened one drops áreas the acuerdo names.
  * tests/dedicaciones.test.ts checks each against the 2023 acuerdo's text.
  *
- * @returns {{tramos: Array<{amountEuros: number, count: number, roles: string[]}>, sum: number, count: number}|null}
+ * Each tramo, and the whole, also says how much of its amount is personal
+ * seniority (`antiguedadEuros`, 0 when no row records any) — see
+ * `desgloseAntiguedad`.
+ *
+ * @returns {{tramos: Array<{amountEuros: number, count: number, roles: string[], antiguedadEuros: number}>, sum: number, count: number, antiguedadEuros: number}|null}
  */
 export function fijadoTramos(data) {
   const rows = data?.byOfficial || []
@@ -97,15 +101,54 @@ export function fijadoTramos(data) {
   const porImporte = new Map()
   for (const r of rows) {
     const key = r.amountEuros
-    if (!porImporte.has(key)) porImporte.set(key, { amountEuros: key, count: 0, roles: [] })
+    if (!porImporte.has(key))
+      porImporte.set(key, { amountEuros: key, count: 0, roles: [], antiguedadEuros: 0 })
     const t = porImporte.get(key)
     t.count += 1
     if (r.role) t.roles.push(r.role)
+    t.antiguedadEuros = centimos(t.antiguedadEuros + (desgloseAntiguedad(r)?.antiguedad ?? 0))
   }
   const tramos = [...porImporte.values()].sort((a, b) => b.amountEuros - a.amountEuros)
   return {
     tramos,
     sum: rows.reduce((a, r) => a + (r.amountEuros || 0), 0),
     count: rows.length,
+    antiguedadEuros: centimos(tramos.reduce((a, t) => a + t.antiguedadEuros, 0)),
   }
+}
+
+const centimos = (n) => Math.round(n * 100) / 100
+
+/**
+ * The part of a row's amount that is its holder's personal seniority, and the
+ * base that is left for the cargo — or null when the row records none.
+ *
+ * The 2026 cuadro writes the Alcaldía as «53.734,99 5.460,49 59.195,48»: base,
+ * antigüedad, total. The page printed the total as «lo fijado por cargo», and
+ * beside ISPA's 48.647,50 € for 2024 that read as a 21,7 % raise where the base
+ * rose 11,4 %. Seniority goes with the person, not the puesto. The figure comes
+ * from `antiguedadEuros`, which the validator only accepts beside a passage of
+ * the act that writes all three numbers — never from a sentence typed here.
+ *
+ * @returns {{total: number, antiguedad: number, base: number}|null}
+ */
+export function desgloseAntiguedad(fila) {
+  const a = fila?.antiguedadEuros
+  const total = fila?.amountEuros
+  if (typeof a !== 'number' || !(a > 0) || typeof total !== 'number' || !(a < total)) return null
+  return { total, antiguedad: a, base: centimos(total - a) }
+}
+
+/**
+ * The alcalde's dedicaciones row, joined by WHO the roster says is alcalde.
+ *
+ * It used to be `find(o => /alcald/i.test(o.role))`, which also matches
+ * «Primer Teniente de Alcalde»: one reordering of the file and the panel would
+ * have set a teniente's salary beside the alcalde's payroll. The join goes
+ * through officials.json's `role === 'alcalde'` and its slug instead.
+ */
+export function filaDelAlcalde(dedic, officialsData) {
+  const alcalde = (officialsData?.officials ?? []).find((o) => o.role === 'alcalde')
+  if (!alcalde) return null
+  return dedicacionForSlug(dedic, alcalde.slug)
 }
