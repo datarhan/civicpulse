@@ -36,12 +36,10 @@ import { fileURLToPath } from 'node:url'
 // id de entrega → ejercicio. Vive en src/scraper/cesel-entregas.ts, junto a la
 // guarda que lo compara con el desplegable del ministerio; esta copia local se
 // desincronizaba en silencio.
-import { ENTREGAS } from '../src/scraper/cesel-entregas'
+import { ENTREGAS, MAPA_URL as MAPA } from '../src/scraper/cesel-entregas'
 
 const __dirname = dirname(fileURLToPath(import.meta.url))
 const ROOT = join(__dirname, '..')
-const MAPA =
-  'https://serviciostelematicosext.hacienda.gob.es/SGCIEF/CESEL/Consulta/Mapa/ConsultaMapa.aspx'
 
 const CCAA_NOMBRE: Record<string, RegExp> = {
   '17': /Comunitat Valenciana/i,

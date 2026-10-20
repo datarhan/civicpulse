@@ -36,6 +36,8 @@ export const MOTIVO = {
   'atributo-ambiguo':
     'La misma magnitud está declarada dos veces con valores distintos en la misma entrega (regla 2).',
   ausente: 'La entrega no trae esta magnitud.',
+  'cifra-simbolica':
+    'La casilla trae una cifra de relleno —0,01, o 1 € de coste— en lugar de una medida. Dividirla daría un cociente que nadie midió, así que no consta (regla 14).',
 }
 
 /**

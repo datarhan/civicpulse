@@ -5,8 +5,10 @@
  * La tarjeta traía la serie como párrafo de dígitos: «2015: 46.645 €/efectivo ·
  * 2016: 50.263 €/efectivo · …», treinta palabras de mono que ocupan tres líneas
  * y que nadie lee. El comentario que lo justificaba tenía razón en el
- * diagnóstico y no en la conclusión: limpieza viaria declara 67,7 millones de
- * euros por metro cuadrado en 2015, y eso aplasta cualquier escala. Pero la
+ * diagnóstico y no en la conclusión: la división de limpieza viaria daba 67,7
+ * millones de euros por metro cuadrado en 2015 (con 0,01 m² declarados, una
+ * cifra de relleno que desde el 2026-10-19 no consta), y eso aplasta cualquier
+ * escala. Pero la
  * salida no es renunciar al gráfico, es dejar esa entrega fuera de la escala y
  * marcarla donde estaba. El dato ya sabe cuál es: `atipico` viene por punto.
  *
@@ -30,6 +32,7 @@
  * Las cifras exactas no desaparecen: siguen, año por año, en el desplegable de
  * la tarjeta. Esto es el resumen, no el sustituto.
  */
+import { GESTION } from './vocabulario'
 
 // La línea base en cero (ver `escalaSerie`) deja la serie en la franja alta de
 // la caja, que es el precio honesto de no recortar el eje. Se paga con altura.
@@ -554,7 +557,7 @@ export function SerieServicio({ puntos, formatea, unidad }) {
         {otrosModos.map((p) => (
           <span
             key={`om-${p.anio}`}
-            title={`${p.anio}: ${formatea(p.valor)} — ese año el servicio se prestaba en ${p.otroModo}, no en el régimen actual: la cifra se publica pero no es comparable con la línea (regla 4).`}
+            title={`${p.anio}: ${formatea(p.valor)} — ese año el servicio se prestaba bajo otro modo de gestión (${GESTION[p.otroModo]?.label ?? p.otroModo}), no en el régimen actual: la cifra se publica pero no es comparable con la línea (regla 4).`}
             style={{
               position: 'absolute',
               left: `${px(p.anio)}%`,

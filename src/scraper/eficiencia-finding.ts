@@ -573,6 +573,30 @@ function cotejarPares(
   return `la cifra coincide pero su comparación no: ${desajustes.join(' · ')} — refresca la medición o corrige el cuerpo`
 }
 
+/**
+ * La medición de una ficha en una línea: como la registra la bitácora de
+ * correcciones (`correct-indicador --field medicion`).
+ *
+ * Vive aquí, exportada, porque la escribían dos sitios —el CLI y la prueba de
+ * la bitácora— cada uno a mano. Y lleva el PERCENTIL: el 2026-10-19 la ficha de
+ * los denominadores pasó del 92 al 90 con la misma cifra, el mismo n y la misma
+ * mediana, y sin él la corrección quedaba registrada como «86,67 % · mediana de
+ * 52» → lo mismo, una fila que no dice qué cambió.
+ */
+export function lineaDeMedicion(m: {
+  valor: number
+  unidad: string
+  periodo: string
+  pares?: { n?: number; mediana?: number; percentil?: number } | null
+}): string {
+  const p = m.pares
+  return (
+    `${m.valor} ${m.unidad} (${m.periodo})` +
+    (p ? ` · mediana de ${p.n}: ${p.mediana}` : '') +
+    (p && typeof p.percentil === 'number' ? ` · percentil ${p.percentil}` : '')
+  )
+}
+
 export function cotejarMedicion(
   f: EficienciaFinding,
   panel: {

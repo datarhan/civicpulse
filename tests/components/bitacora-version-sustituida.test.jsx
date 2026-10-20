@@ -36,6 +36,7 @@ import {
   ROTULO_TEXTO_VIGENTE,
 } from '../../src/components/BitacoraCorrecciones'
 import { HallazgosEficiencia } from '../../src/components/eficiencia/HallazgosEficiencia'
+import { lineaDeMedicion } from '../../src/scraper/eficiencia-finding'
 import { CorrectionLog, inicioVentana } from '../../src/pages/AgenteReporte'
 import { FindingDetailCard } from '../../src/pages/Hallazgos'
 import { MARCA_GRUPO_RETENIDO } from '../../src/lib/grupo-retenido'
@@ -322,13 +323,10 @@ describe('/hallazgos: el título y el sumario, sobre la copia servida', () => {
 
 describe('/eficiencia: el título, el cuerpo y la medición de la ficha', () => {
   const EF = leer('public/data/eficiencia-findings.json')
-  /**
-   * La medición se registra en la bitácora como una línea; ésta es su forma,
-   * escrita aquí a mano a partir de lo que la ficha publica.
-   */
-  const lineaDeMedicion = (m) =>
-    `${m.valor} ${m.unidad} (${m.periodo})` +
-    (m.pares ? ` · mediana de ${m.pares.n}: ${m.pares.mediana}` : '')
+  // La medición se registra en la bitácora como una línea; su forma la
+  // exporta eficiencia-finding.ts (`lineaDeMedicion`), la misma que escribe el
+  // CLI. Estaba copiada aquí a mano y se separó en cuanto la línea ganó el
+  // percentil.
   const vigenteDe = (ficha, campo) =>
     campo === 'medicion' ? lineaDeMedicion(ficha.medicion) : ficha[campo]
   /** Un texto tal y como lo pinta la bitácora: sin asteriscos de negrita. */

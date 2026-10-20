@@ -53,6 +53,61 @@ import { useT } from '../i18n'
  * servicios los publican — y es la buena, porque aquí la salvedad del escalón
  * cabe en la misma tarjeta.
  */
+
+const estiloCita = {
+  margin: '9px 0 0',
+  fontSize: 'var(--fs-micro)',
+  color: 'var(--ink50)',
+  lineHeight: 1.6,
+  overflowWrap: 'anywhere',
+}
+
+/** «2014–2019, 2022 y 2023»: los años seguidos, como tramo. */
+function aniosEnTexto(anios) {
+  const orden = [...anios].sort((a, b) => a - b)
+  const tramos = []
+  for (const a of orden) {
+    const ultimo = tramos[tramos.length - 1]
+    if (ultimo && a === ultimo[1] + 1) ultimo[1] = a
+    else tramos.push([a, a])
+  }
+  const partes = tramos.map(([a, b]) => (a === b ? String(a) : `${a}–${b}`))
+  return partes.length <= 1
+    ? partes.join('')
+    : `${partes.slice(0, -1).join(', ')} y ${partes[partes.length - 1]}`
+}
+
+/** Un documento del ministerio y dónde están en él las dos mitades del cociente. */
+function CitaCelda({ cita, titulo }) {
+  return (
+    <p style={estiloCita}>
+      <span style={{ color: 'var(--ink70)' }}>{titulo}</span>
+      {cita.documento ? ` · ${cita.documento}` : ''}
+      {cita.coste && (
+        <>
+          <br />
+          Coste: <span className="mono">{cita.coste}</span>
+        </>
+      )}
+      {cita.unidad && (
+        <>
+          <br />
+          Unidad: <span className="mono">{cita.unidad}</span>
+        </>
+      )}
+      <br />
+      <a
+        href={cita.url}
+        target="_blank"
+        rel="noreferrer noopener"
+        style={{ color: 'var(--civic)' }}
+      >
+        Ministerio de Hacienda ↗
+      </a>
+    </p>
+  )
+}
+
 export default function ServicioDetalle() {
   const { id } = useParams()
   const t = useT()
@@ -324,34 +379,27 @@ export default function ServicioDetalle() {
               <div className="mono" style={rotulo}>
                 Fuente y réplica
               </div>
-              {cita && (
-                <p
-                  className="mono"
-                  style={{
-                    margin: '9px 0 0',
-                    fontSize: 'var(--fs-micro)',
-                    color: 'var(--ink50)',
-                    lineHeight: 1.6,
-                  }}
-                >
-                  Coste efectivo {cita.entrega} · celda{' '}
-                  <span style={{ color: 'var(--ink70)' }}>
-                    {String(i.numerador.fuente ?? '')
-                      .split(':')
-                      .slice(2)
-                      .join(':')}
-                  </span>
-                  <br />
-                  <a
-                    href={cita.url}
-                    target="_blank"
-                    rel="noreferrer noopener"
-                    style={{ color: 'var(--civic)' }}
-                  >
-                    Ministerio de Hacienda ↗
-                  </a>
-                </p>
-              )}
+              {/* Imprimía «celda CE2:a1621:Econ14» —la dirección interna de la
+                  cifra, con la forma del volcado de 2021— y enlazaba ese
+                  volcado bajo una cifra de 2024 que sale del informe por
+                  comunidad: quien seguía el enlace encontraba otra cifra. Ahora
+                  dice el documento y la hoja, fila y columna de cada mitad. */}
+              {cita && <CitaCelda cita={cita} titulo={`Coste efectivo ${cita.entrega}`} />}
+              {(i.procedencia ?? [])
+                .filter((g) => !(g.entregas.length === 1 && g.entregas[0] === cita?.entrega))
+                .map((g) => {
+                  const otras = g.entregas.filter((a) => a !== cita?.entrega)
+                  const mismaQueLaCita =
+                    cita && g.url === cita.url && g.coste === cita.coste && g.unidad === cita.unidad
+                  return mismaQueLaCita ? (
+                    <p key={g.entregas.join('-')} style={estiloCita}>
+                      {aniosEnTexto(otras)}: el mismo documento y las mismas celdas, en la entrega
+                      de cada año.
+                    </p>
+                  ) : (
+                    <CitaCelda key={g.entregas.join('-')} cita={g} titulo={aniosEnTexto(otras)} />
+                  )
+                })}
               <p
                 style={{
                   margin: '10px 0 0',

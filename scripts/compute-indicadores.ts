@@ -46,7 +46,10 @@ async function main() {
   const snap = construirIndicadores({
     municipio: fuente.municipio,
     pares: fuente.pares,
-    citaUrl: fuente.source.volcado,
+    // De qué documento salió cada entrega, como lo anotó el adaptador. Era
+    // `citaUrl: fuente.source.volcado`: el volcado de 2021 citado bajo las
+    // cifras de 2024. Sin `source.entregas` el motor se niega a citar.
+    origenes: fuente.source.entregas ?? {},
     ipc,
     supramunicipal: fuente.supramunicipal?.filas ?? [],
   })

@@ -23,7 +23,14 @@ import { dirname, join } from 'node:path'
 import { fileURLToPath } from 'node:url'
 import type { CesteRow } from '../src/scraper/coste-efectivo'
 import { esGestionPorConcesion } from '../src/scraper/modo-gestion'
-import { MIN_PARES, situacion, type Indicador } from '../src/scraper/indicadores'
+import {
+  COSTES_SIMBOLICOS,
+  MIN_PARES,
+  UNIDADES_SIMBOLICAS,
+  situacion,
+  type Indicador,
+} from '../src/scraper/indicadores'
+import type { OrigenEntrega } from '../src/scraper/cesel-procedencia'
 import { SERVICIOS } from '../src/scraper/indicador-registry'
 import { medirDeclaracionCongelada } from '../src/scraper/declaracion-congelada'
 import {
@@ -79,6 +86,7 @@ async function main() {
   const base = JSON.parse(await readFile(join(ROOT, 'public/data/coste-efectivo.json'), 'utf8'))
   const pub = JSON.parse(await readFile(join(ROOT, 'public/data/indicadores.json'), 'utf8'))
   const propias: CesteRow[] = base.municipio.filas
+  const origenes: Record<number, OrigenEntrega> = base.source?.entregas ?? {}
   const indicadores: Indicador[] = pub.indicadores
   const aniosDisponibles = [...new Set(propias.map((f) => f.anio))].sort((a, b) => a - b)
 
@@ -180,6 +188,47 @@ async function main() {
       comprobaciones++
       if (p.estado !== 'declarado' && p.valor !== null) {
         fail(`${i.id}: la serie ${p.anio} está ${p.estado} y lleva valor`)
+      }
+      // Una cifra de relleno no es una mitad del cociente (COSTES_SIMBOLICOS).
+      comprobaciones++
+      if (
+        (typeof p.numerador === 'number' && COSTES_SIMBOLICOS.includes(p.numerador)) ||
+        (typeof p.denominador === 'number' && UNIDADES_SIMBOLICAS.includes(p.denominador))
+      ) {
+        fail(`${i.id}: la serie ${p.anio} divide una cifra de relleno como si fuera una medida`)
+      }
+    }
+
+    // 6 ter. La cita lleva al documento del que sale CADA entrega.
+    //
+    //        Las quince fichas citaban el volcado de 2021 bajo la cifra de
+    //        2024, y ninguna guarda lo veía: `candidatos` comprueba que la cifra
+    //        esté en coste-efectivo.json, no que el enlace lleve a ella. Aquí se
+    //        coteja con lo que anotó el adaptador al leer cada entrega
+    //        (`source.entregas`), no con lo que el motor dedujo.
+    comprobaciones++
+    const cita = i.citas?.[0]
+    const origenBase = origenes[cita?.entrega as number]
+    if (!cita || cita.entrega !== pub.anioBase) {
+      fail(`${i.id}: la cita no es de la entrega que titula (${cita?.entrega} ≠ ${pub.anioBase})`)
+    } else if (!origenBase) {
+      fail(`${i.id}: coste-efectivo.json no dice de qué documento sale la entrega ${cita.entrega}`)
+    } else if (cita.url !== origenBase.url || !cita.coste || !cita.unidad) {
+      fail(
+        `${i.id}: la cita de ${cita.entrega} enlaza ${cita.url} y la entrega salió de ` +
+          `${origenBase.url} (${origenBase.documento})`,
+      )
+    }
+    for (const p of i.serie) {
+      comprobaciones++
+      const grupos = (i.procedencia ?? []).filter((g) => g.entregas.includes(p.anio))
+      if (grupos.length !== 1) {
+        fail(`${i.id}: la entrega ${p.anio} está en ${grupos.length} grupos de procedencia`)
+      } else if (grupos[0].url !== origenes[p.anio]?.url) {
+        fail(
+          `${i.id}: la entrega ${p.anio} cita ${grupos[0].url} y salió de ` +
+            `${origenes[p.anio]?.url ?? 'ningún documento anotado'}`,
+        )
       }
     }
 

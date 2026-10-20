@@ -42,7 +42,15 @@ import { SERVICIOS } from '../src/scraper/indicador-registry'
 // La lista de entregas y las URLs de la fuente viven en un solo sitio: estaban
 // copiadas aquí y en fetch-cesel-ccaa.ts, y `check:cesel-entregas` las coteja
 // ahora con el desplegable vivo del ministerio.
-import { ENTREGAS, CONSULTA_URL, ORDEN_URL } from '../src/scraper/cesel-entregas'
+import {
+  ENTREGAS,
+  CONSULTA_URL,
+  ORDEN_URL,
+  MAPA_URL,
+  VOLCADO_URL,
+  ANIO_VOLCADO,
+} from '../src/scraper/cesel-entregas'
+import type { OrigenEntrega } from '../src/scraper/cesel-procedencia'
 import { startRun, NO_LLM_STATS } from '../src/scraper/run-manifest'
 
 const __dirname = dirname(fileURLToPath(import.meta.url))
@@ -57,9 +65,6 @@ const CCAA_ID = 17
 const CONJUNTO = 'cv-15k-40k'
 const POP_MIN = 15_000
 const POP_MAX = 40_000
-
-const VOLCADO_URL = 'https://www.hacienda.gob.es/cdi/power%20bi/cesel-2021.xlsx'
-const ANIO_VOLCADO = 2021
 
 const conprelUrl = (year: number) =>
   'https://serviciostelematicosext.hacienda.gob.es/SGFAL/CONPREL/Consulta/DescargaFichero' +
@@ -160,6 +165,14 @@ async function main() {
   rec.judge()
   rec.record('filas', todas.length)
   const aniosConDatos = new Set<number>([ANIO_VOLCADO])
+  // De qué documento sale cada entrega, anotado AQUÍ, que es el único sitio
+  // que lo sabe. Las fichas de /eficiencia citaban el volcado de 2021 bajo
+  // cifras de 2024 que salen del informe por comunidad: la forma de la celda
+  // depende del documento, y deducirlo después del año sería adivinarlo
+  // (src/scraper/cesel-procedencia.ts).
+  const origenes: Record<number, OrigenEntrega> = {
+    [ANIO_VOLCADO]: { documento: 'volcado-nacional', url: VOLCADO_URL },
+  }
   const noPresentadas: number[] = []
   const filasSupra: Ce4Row[] = []
 
@@ -213,6 +226,10 @@ async function main() {
         continue
       }
       filasMunicipio.push(...propias)
+      origenes[anio] =
+        sub === 'ccaa'
+          ? { documento: 'informe-ccaa', url: MAPA_URL, ccaa: CCAA_ID }
+          : { documento: 'informe-ente', url: CONSULTA_URL }
       // Sólo los servicios del registro: es lo único que el motor compara, y
       // publicar el resto convertía el snapshot en un volcado de 15 MB bajo
       // public/, que se sirve entero tanto si alguien lo pide como si no.
@@ -251,7 +268,13 @@ async function main() {
   const nombre = filasMunicipio[0].nombre
   const snapshot = {
     generatedAt: new Date().toISOString(),
-    source: { volcado: VOLCADO_URL, consulta: CONSULTA_URL, orden: ORDEN_URL },
+    source: {
+      volcado: VOLCADO_URL,
+      consulta: CONSULTA_URL,
+      mapa: MAPA_URL,
+      orden: ORDEN_URL,
+      entregas: origenes,
+    },
     municipio: { ine: INE, nombre, filas: filasMunicipio },
     pares: {
       conjunto: CONJUNTO,

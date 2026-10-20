@@ -126,11 +126,15 @@ describe('scraper/indicador-lectura', () => {
       if (!tendencia) continue
       const [, desde] = /Entre (\d{4}) y (\d{4})/.exec(tendencia)!
       const punto = i.serie.find((p) => p.anio === Number(desde))!
+      // «Comprobada» es haber pasado la cordura (`contrastado`) contra la banda
+      // de su modo o, sin ella, contra todos los que declararon ese año; la
+      // mediana de su modo no hace falta para una tendencia de cifras propias.
       expect(
-        punto.medianaPares,
+        punto.contrastado === true || punto.medianaPares !== undefined,
         `${i.servicio} ancla la tendencia en ${desde}, sin comprobar`,
-      ).toBeDefined()
+      ).toBe(true)
       expect(punto.atipico).toBeFalsy()
+      expect(punto.otroModo, `${i.servicio} ancla en un año de otro régimen`).toBeUndefined()
     }
   })
 
@@ -142,7 +146,11 @@ describe('scraper/indicador-lectura', () => {
     const relativo = l.avisos.find((x) => /Medido contra sus pares/.test(x))
     expect(relativo, 'falta la lectura relativa en alumbrado').toBeDefined()
     expect(relativo).toMatch(/veces la mediana/)
-    expect(relativo).toMatch(/cuánto se declara y no en cuánto cuesta/)
+    // Lo que se movió es el COSTE declarado (36.298 € → 664.679 €) con los
+    // puntos de luz subiendo: el divisor no explica el salto, así que la frase
+    // dice qué se movió y no concluye «cuánto se declara» (2026-10-19).
+    expect(relativo).toMatch(/el coste declarado pasa de 36\.298 € a 664\.679 €/)
+    expect(relativo).not.toMatch(/cuánto se declara y no en cuánto cuesta/)
   })
 
   it('no añade la lectura relativa cuando la posición apenas se mueve', () => {

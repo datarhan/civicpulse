@@ -54,6 +54,20 @@ export const VENCE_MES = 11
 export const CONSULTA_URL =
   'https://serviciostelematicosext.hacienda.gob.es/sgcief/Cesel/Consulta/Consulta.aspx'
 
+/**
+ * La consulta POR MAPA, de la que sale el informe de cada comunidad autónoma:
+ * se elige la entrega y se pincha la región. Es el documento del que sale
+ * toda entrega que el ministerio no vuelca en abierto, así que es también lo
+ * que tiene que enlazar la cita de esas cifras (src/scraper/cesel-procedencia.ts).
+ * Vivía sólo en scripts/fetch-cesel-ccaa.ts.
+ */
+export const MAPA_URL =
+  'https://serviciostelematicosext.hacienda.gob.es/SGCIEF/CESEL/Consulta/Mapa/ConsultaMapa.aspx'
+
+/** El volcado nacional: la única entrega que el ministerio publica entera. */
+export const VOLCADO_URL = 'https://www.hacienda.gob.es/cdi/power%20bi/cesel-2021.xlsx'
+export const ANIO_VOLCADO = 2021
+
 /** La Orden que fija el plazo, para que la prosa pueda enlazarla. */
 export const ORDEN_URL = 'https://www.boe.es/buscar/doc.php?id=BOE-A-2014-11492'
 
