@@ -1,13 +1,13 @@
 {
-  "generatedAt": "2026-10-19T10:12:22.240Z",
+  "generatedAt": "2026-10-20T09:37:15.646Z",
   "source": {
     "url": "https://www.ribarroja.es/es/eventos/rss.xml",
     "platform": "Drupal RSS (oficial)"
   },
   "stats": {
     "total": 50,
-    "upcoming": 10,
-    "nextDate": "2026-10-30T21:00:00.000Z"
+    "upcoming": 11,
+    "nextDate": "2026-10-25T10:30:00.000Z"
   },
   "events": [
     {
@@ -29,16 +29,6 @@
       "publishedDate": "2026-09-03T07:46:23.000Z",
       "excerpt": "&nbsp;",
       "image": "https://www.ribarroja.es/sites/www.ribarroja.es/files/styles/interior_contenido_/public/Competiciones%20deportivas%20reducida_2.png?itok=7ArlWmzv"
-    },
-    {
-      "id": "p2hxww",
-      "title": "Actes festes Crist 2026 - dilluns 7 de setembre",
-      "link": "https://www.ribarroja.es/es/evento/actes-festes-crist-2026-dilluns-7-de-setembre",
-      "eventDate": "2026-09-07T19:00:00.000Z",
-      "eventDateText": "07 de septiembre de 2026 21:00",
-      "publishedDate": "2026-08-28T10:09:25.000Z",
-      "excerpt": "&nbsp;",
-      "image": "https://www.ribarroja.es/sites/www.ribarroja.es/files/styles/interior_contenido_/public/20260827%20FestesCrist2026_web_9.png?itok=8O7t68Vn"
     },
     {
       "id": "9gwbqs",
@@ -409,6 +399,16 @@
       "publishedDate": "2026-10-15T10:10:39.000Z",
       "excerpt": "&nbsp;",
       "image": "https://www.ribarroja.es/sites/www.ribarroja.es/files/styles/interior_contenido_/public/Competiciones%20deportivas%20reducida_9.png?itok=4a4ygyCm"
+    },
+    {
+      "id": "3r3ub6",
+      "title": "Riba-roja Pedaleja 2026",
+      "link": "https://www.ribarroja.es/es/noticia%2C-evento/riba-roja-pedaleja-2026",
+      "eventDate": "2026-10-25T10:30:00.000Z",
+      "eventDateText": "25 de octubre de 2026 11:30",
+      "publishedDate": "2026-10-19T15:57:09.000Z",
+      "excerpt": "&nbsp;",
+      "image": "https://www.ribarroja.es/sites/www.ribarroja.es/files/styles/interior_contenido_/public/20261019%20Foto%20riba-roja%20Pedaleja.jpg?itok=0GAaUVnb"
     },
     {
       "id": "kly15o",

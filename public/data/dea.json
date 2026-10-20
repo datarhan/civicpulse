@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-19T10:20:44.623Z",
+  "generatedAt": "2026-10-20T09:54:24.229Z",
   "fuente": {
     "snapshot": "coste-efectivo.json",
     "entrega": 2024,
@@ -18,10 +18,10 @@
   "declaracion": {
     "minEntregas": 4,
     "entregas": 10,
-    "unidadSeries": 282,
-    "unidadCongeladas": 176,
-    "costeSeries": 263,
-    "costeCongeladas": 4,
+    "unidadSeries": 280,
+    "unidadCongeladas": 174,
+    "costeSeries": 265,
+    "costeCongeladas": 2,
     "propias": [
       {
         "programa": "a1621",
@@ -55,11 +55,11 @@
         "unidad": "€/m²",
         "magnitud": "unidad",
         "congelada": true,
-        "entregas": 10,
+        "entregas": 8,
         "valor": 700000,
         "repeticionesFinales": 6,
         "congeladaDesde": 2018,
-        "desde": 2014,
+        "desde": 2016,
         "hasta": 2024
       },
       {
@@ -303,11 +303,11 @@
         },
         {
           "anio": 2015,
-          "n": 19,
-          "estado": "publicada",
-          "theta": 0.6079554544144496,
-          "thetaCorregido": 0.5678119864626873,
-          "eficientes": 7
+          "n": 18,
+          "estado": "insuficiente",
+          "theta": null,
+          "thetaCorregido": null,
+          "eficientes": null
         },
         {
           "anio": 2016,
@@ -521,11 +521,11 @@
         },
         {
           "anio": 2015,
-          "n": 19,
-          "estado": "publicada",
-          "theta": 0.3746285842110594,
-          "thetaCorregido": 0.34770714878822107,
-          "eficientes": 7
+          "n": 18,
+          "estado": "insuficiente",
+          "theta": null,
+          "thetaCorregido": null,
+          "eficientes": null
         },
         {
           "anio": 2016,
@@ -664,7 +664,7 @@
         },
         {
           "anio": 2015,
-          "n": 7,
+          "n": 10,
           "estado": "insuficiente",
           "theta": null,
           "thetaCorregido": null,
@@ -672,7 +672,7 @@
         },
         {
           "anio": 2016,
-          "n": 9,
+          "n": 13,
           "estado": "insuficiente",
           "theta": null,
           "thetaCorregido": null,
@@ -680,15 +680,15 @@
         },
         {
           "anio": 2017,
-          "n": 9,
-          "estado": "insuficiente",
-          "theta": null,
-          "thetaCorregido": null,
-          "eficientes": null
+          "n": 15,
+          "estado": "publicada",
+          "theta": 0.5618909303346923,
+          "thetaCorregido": 0.5018321573866295,
+          "eficientes": 5
         },
         {
           "anio": 2018,
-          "n": 12,
+          "n": 14,
           "estado": "insuficiente",
           "theta": null,
           "thetaCorregido": null,
@@ -696,18 +696,18 @@
         },
         {
           "anio": 2019,
-          "n": 15,
+          "n": 16,
           "estado": "publicada",
           "theta": 1,
-          "thetaCorregido": 0.7050520190998875,
-          "eficientes": 7
+          "thetaCorregido": 0.7950757441165512,
+          "eficientes": 8
         },
         {
           "anio": 2021,
-          "n": 15,
+          "n": 16,
           "estado": "publicada",
           "theta": 1,
-          "thetaCorregido": 0.8066609279631562,
+          "thetaCorregido": 0.8035715864460762,
           "eficientes": 8
         },
         {
@@ -720,7 +720,7 @@
         },
         {
           "anio": 2023,
-          "n": 14,
+          "n": 13,
           "estado": "insuficiente",
           "theta": null,
           "thetaCorregido": null,
@@ -813,7 +813,7 @@
         },
         {
           "anio": 2015,
-          "n": 5,
+          "n": 8,
           "estado": "insuficiente",
           "theta": null,
           "thetaCorregido": null,
@@ -821,7 +821,7 @@
         },
         {
           "anio": 2016,
-          "n": 7,
+          "n": 11,
           "estado": "insuficiente",
           "theta": null,
           "thetaCorregido": null,
@@ -829,7 +829,7 @@
         },
         {
           "anio": 2017,
-          "n": 7,
+          "n": 13,
           "estado": "insuficiente",
           "theta": null,
           "thetaCorregido": null,
@@ -837,7 +837,7 @@
         },
         {
           "anio": 2018,
-          "n": 9,
+          "n": 11,
           "estado": "insuficiente",
           "theta": null,
           "thetaCorregido": null,
@@ -853,7 +853,7 @@
         },
         {
           "anio": 2021,
-          "n": 11,
+          "n": 12,
           "estado": "insuficiente",
           "theta": null,
           "thetaCorregido": null,
@@ -869,7 +869,7 @@
         },
         {
           "anio": 2023,
-          "n": 12,
+          "n": 11,
           "estado": "insuficiente",
           "theta": null,
           "thetaCorregido": null,
