@@ -124,8 +124,16 @@ export function importeImpreso(snippet: unknown): number | null {
   return Number(m[m.length - 1][1].replace(/\./g, ''))
 }
 
-/** A menos de un euro: la cita trae euros enteros y el expediente, céntimos. */
-const esLaCifra = (valor: number, cifra: number) => Math.abs(valor - cifra) < 1
+/**
+ * La misma cifra, salvo el redondeo: la cita trae euros enteros, el expediente
+ * céntimos, y la fila los imprime redondeados. 80.666,66 € se imprime «80.667 €»
+ * y la cita dice 80.666: entre dos enteros que redondean el mismo importe puede
+ * haber un euro. Hasta el 19-10-2026 era «a menos de un euro», que con lo
+ * impreso redondeado daba por distintas dos cifras iguales; no pasaba porque la
+ * fila nunca imprimía la cifra con céntimos (desde entonces el verificador cita
+ * la fila que la imprime: `filaQueDiceLaCifra`, claim-verifier.ts).
+ */
+const esLaCifra = (valor: number, cifra: number) => Math.abs(valor - cifra) <= 1
 
 /**
  * ¿Hay dos cifras que cuadrar en esta fila? Una fila CONTRATO con enlace, bajo

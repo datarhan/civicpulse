@@ -144,7 +144,7 @@ export {
 } from './claim-verdicts'
 import type { ClaimVerdict } from './claim-verdicts'
 import { COLA_SIN_IMPORTE, leyoContratos, resumenCasi, resumenSinRegistro } from './claim-verdicts'
-import { importeDelEmparejador } from './importe-de-contrato'
+import { CAMPOS_DEL_EMPAREJADOR, importeDelEmparejador } from './importe-de-contrato'
 import { snippetDeContrato } from './snippet-de-contrato'
 import { sinEstadoSiLoDaSuContrato } from './gemelos-de-licitacion'
 import { bdnsAmount, bdnsRef, bdnsText, snippetDeBdns, type BdnsRow } from './snippet-de-bdns'
@@ -633,10 +633,69 @@ function mejorCasiPorObjeto(
   return mejor
 }
 
-function similarAmount(claimed: number, found: number): number {
+/**
+ * Un importe «prácticamente exacto»: un parecido de al menos 0,98, que es un
+ * cociente de al menos 0,99 — un 1 % de diferencia, el redondeo de una cifra
+ * dicha de viva voz («80.666» por 80.666,66 €).
+ */
+export const IMPORTE_PRACTICAMENTE_EXACTO = 0.98
+
+/**
+ * El parecido de dos importes: el cociente del menor entre el mayor, al
+ * cuadrado. Exportado con su umbral de «prácticamente exacto» porque la subida
+ * firmada (subida-firmada.ts) lo usa para decidir si la fila de un registro
+ * dice la cifra de una declaración: dos umbrales copiados acabarían diciendo
+ * cosas distintas.
+ */
+export function similarAmount(claimed: number, found: number): number {
   if (claimed <= 0 || found <= 0) return 0
   const ratio = Math.min(claimed, found) / Math.max(claimed, found)
   return Math.max(0, ratio * ratio) // quadratic so 0.9 → 0.81 (meaningful gap)
+}
+
+/**
+ * La fila del MISMO expediente que imprime la cifra dicha, con el umbral de
+ * «prácticamente exacto» (un 1 %), y el importe que imprime; o `null`.
+ *
+ * El emparejador compara UN importe por fila —el primero de
+ * `CAMPOS_DEL_EMPAREJADOR`, sin IVA donde lo hay— y elige la fila que más se
+ * parece. El 19-10-2026 eso publicó k4olcs-019-cit-b9b013 («… control del salón
+ * de plenos municipales», 80.666 €) como «Verificado» con la LICITACIÓN de
+ * 32/2024, que imprime 70.158 € (presupuesto base sin IVA): se parecía más que
+ * la adjudicación sin IVA (66.666,66). Los 80.666,66 € dichos son la
+ * adjudicación con IVA, en la fila de `contracts` del mismo expediente. Un
+ * «Verificado» encima de otra cifra dice que se comprobó lo que no se enseña.
+ *
+ * La regla —la de la subida firmada (#405) en el verificador automático—: un
+ * `verificado` cita un registro que imprime la cifra. Se buscan las filas que
+ * comparten el enlace de la elegida (licitación, contrato y lotes) y todos sus
+ * importes de `CAMPOS_DEL_EMPAREJADOR`; nunca el valor estimado, que en una
+ * concesión es el de todo su plazo. Si ninguna la imprime, el llamador cita la
+ * elegida y la marca no-fundante: el veredicto sólo puede bajar.
+ */
+function filaQueDiceLaCifra(
+  elegida: TenderRow,
+  cifra: number,
+  filas: readonly TenderRow[],
+): { row: TenderRow; valor: number } | null {
+  const ref = elegida.permalink
+  const expediente = [
+    elegida,
+    ...(ref ? filas.filter((f) => f !== elegida && f.permalink === ref) : []),
+  ]
+  let mejor: { row: TenderRow; valor: number; sim: number } | null = null
+  for (const f of expediente) {
+    const r = f as unknown as Record<string, unknown>
+    for (const campo of CAMPOS_DEL_EMPAREJADOR) {
+      const valor = Number(r[campo])
+      if (!Number.isFinite(valor) || !(valor > 0)) continue
+      const sim = similarAmount(cifra, valor)
+      if (sim >= IMPORTE_PRACTICAMENTE_EXACTO && (mejor === null || sim > mejor.sim)) {
+        mejor = { row: f, valor, sim }
+      }
+    }
+  }
+  return mejor ? { row: mejor.row, valor: mejor.valor } : null
 }
 
 // ─── Dataset readers ────────────────────────────────────────────────────────
@@ -866,7 +925,8 @@ export function verifyClaim(inputs: VerifierInputs): ClaimVerification {
         const textSim =
           m === null
             ? 0
-            : entidadContenida && (m.tokensEntidad >= 2 || amountSim >= 0.98)
+            : entidadContenida &&
+                (m.tokensEntidad >= 2 || amountSim >= IMPORTE_PRACTICAMENTE_EXACTO)
               ? 1
               : puntuacionObjeto(m)
         // contradicho-candidate: the entity names this contract AND the amount
@@ -907,18 +967,23 @@ export function verifyClaim(inputs: VerifierInputs): ClaimVerification {
         }
       }
       if (best) {
+        // La fila que se cita es la que IMPRIME la cifra dicha, si el
+        // expediente la tiene (`filaQueDiceLaCifra`); si no, se cita la elegida
+        // y no funda: puede sostener `parcial`, nunca `verificado`.
+        const dice = filaQueDiceLaCifra(best.row, amount, tenderList)
+        const fila = dice?.row ?? best.row
+        const impreso = dice?.valor ?? tenderAmount(best.row)!
         evidence.push({
           kind: 'tender',
-          ref: best.row.permalink ?? '',
-          snippet: `${tenderTitle(best.row)} · ${Math.round(tenderAmount(best.row)!).toLocaleString(
-            'es-ES',
-          )} €`,
+          ref: fila.permalink ?? '',
+          snippet: `${tenderTitle(fila)} · ${Math.round(impreso).toLocaleString('es-ES')} €`,
           similarity: Math.round(best.sim * 100) / 100,
           // `combined` blends amount and title overlap, so a 0.6 pass can come
           // from either side alone. A contract whose title happens to share
           // words with the claim has not corroborated it.
           stance: 'checked',
         })
+        if (!dice) marcarNoFundante()
       } else if (entityMatchMismatchedAmount) {
         // No strong (amount + entity) match, but an entity match with a
         // mismatched amount — that's a candidate contradiction.
@@ -969,7 +1034,9 @@ export function verifyClaim(inputs: VerifierInputs): ClaimVerification {
         const amountSim = bAmount == null ? 0 : similarAmount(amount, bAmount)
         const entidadContenida = m.tokensEntidad >= 1 && m.compartidas === m.tokensEntidad
         const textSim =
-          entidadContenida && (m.tokensEntidad >= 2 || amountSim >= 0.98) ? 1 : puntuacionObjeto(m)
+          entidadContenida && (m.tokensEntidad >= 2 || amountSim >= IMPORTE_PRACTICAMENTE_EXACTO)
+            ? 1
+            : puntuacionObjeto(m)
         // La misma regla que el camino de los contratos, en el de las
         // subvenciones: la mezcla de abajo es el mismo `sim*0,6 + texto*0,4`
         // con suelo 0,6, así que un importe exacto contra una convocatoria de
@@ -1007,7 +1074,15 @@ export function verifyClaim(inputs: VerifierInputs): ClaimVerification {
         // un registro que no trae número es decir que se cotejó lo que no se
         // cotejó. Hoy es el caso de TODA la BDNS: ninguna fila publica importe.
         // Sostiene `parcial`, que es lo que es: mismo objeto, cifra sin mirar.
-        if (bdnsAmount(best.row) == null) marcarNoFundante()
+        //
+        // Y, con importe, sólo funda si es la cifra dicha (un 1 %): la misma
+        // regla que la fila de contrato (`filaQueDiceLaCifra`).
+        const importeBdns = bdnsAmount(best.row)
+        if (
+          importeBdns == null ||
+          similarAmount(amount, importeBdns) < IMPORTE_PRACTICAMENTE_EXACTO
+        )
+          marcarNoFundante()
       }
     }
 

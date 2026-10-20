@@ -1417,7 +1417,12 @@ export default function Metodologia() {
             <ul style={{ marginTop: 6 }}>
               <li>
                 <strong>verificado</strong> — coincidencia fuerte (importe + entidad) en alguna base
-                documental.
+                documental.{' '}
+                {/* 19-10-2026: k4olcs-019-cit-b9b013 salía «Verificado» por 80.666 € con
+                    la licitación de su expediente, que imprime 70.158 €. */}
+                La fila que se cita imprime la cifra dicha, con un 1 % de margen: si el expediente
+                la trae en otra de sus filas —la adjudicación con IVA, por ejemplo—, se cita ésa; si
+                ninguna la imprime, el veredicto no pasa de <em>parcial</em>.
               </li>
               <li>
                 <strong>parcial</strong> — coincidencia moderada; entidad o importe difieren algo.{' '}
@@ -1523,10 +1528,11 @@ export default function Metodologia() {
                 licitación bajo una cita que daba la adjudicación con IVA, y el
                 lector no podía cuadrar «81 K €» con «70.158 €». 30-09-2026. */}
             <p style={{ margin: '8px 0 0' }}>
-              Cada fila de contrato imprime el importe que el verificador comparó, uno por fila, y
-              un mismo expediente trae varios: de licitación y de adjudicación, con IVA y sin él. Si
-              el impreso no es la cifra citada y otro importe del mismo expediente sí lo es, la
-              tarjeta dice debajo qué es cada uno.
+              Cada fila de contrato imprime un importe, uno por fila, y un mismo expediente trae
+              varios: de licitación y de adjudicación, con IVA y sin él. Bajo un <em>verificado</em>{' '}
+              automático es la cifra citada, redondeada a euros. En las demás, es el importe que el
+              verificador comparó; si no es la cifra citada y otro importe del mismo expediente sí
+              lo es, la tarjeta dice debajo qué es cada uno.
             </p>
             {/* Hasta el 12-10-2026 la fila imprimía «sim 1.00» suelto, y junto a
                 «Parcial» se leía como coincidencia perfecta. */}
