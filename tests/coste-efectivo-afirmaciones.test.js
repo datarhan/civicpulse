@@ -180,6 +180,27 @@ describe('coste-efectivo · lo que la verificación del 17-09-2026 encontró fal
     const hitos = pieza.cronologia.hitos.map((h) => h.f)
     expect(new Set(hitos).size).toBe(hitos.length)
   })
+
+  it('la tarifa vigente es la del DOGV de 22-12-2025, no la de 2013', () => {
+    // DOGV 2022/10776 (25-11-2022) y 2025/48443 (22-12-2025), los dos anuncios
+    // de Hidraqua que salen en el buscador del DOGV. Hasta el 20-10-2026 la
+    // sección daba la de 2013 como la última localizada y, después, decía que
+    // estos dos anuncios no se habían encontrado.
+    enNinguna(/no los hemos localizado/, 'los anuncios de 2022 y 2025 están en el DOGV')
+    enNinguna(
+      /La última modificación de las tarifas de Riba-roja que hemos localizado es ésta/,
+      'la de 2013 no es la última: hay anuncios de 2022 y 2025',
+    )
+    const urls = pieza.laTarifa.buscadoEn.map((b) => b.url)
+    expect(urls).toContain('https://dogv.gva.es/datos/2025/12/22/pdf/2025_48443_es.pdf')
+    expect(urls).toContain('https://dogv.gva.es/datos/2022/11/25/pdf/2022_10776.pdf')
+    // La vigente va primero, con sus cifras tal cual las publica el anuncio.
+    const vigente = pieza.laTarifa.buscadoEn[0]
+    expect(vigente.url).toContain('2025_48443')
+    for (const cifra of ['4,43 €', '0,2155', '0,4960', '0,6283', '0,9026 €']) {
+      expect(vigente.resultado).toContain(cifra)
+    }
+  })
 })
 
 describe('la misma premisa, en /eficiencia y /metodologia', () => {
