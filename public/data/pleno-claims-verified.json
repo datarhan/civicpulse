@@ -1,6 +1,6 @@
 {
-  "generatedAt": "2026-10-20T01:14:02.052Z",
-  "composedAt": "2026-10-20T01:14:02.218Z",
+  "generatedAt": "2026-10-20T06:45:10.098Z",
+  "composedAt": "2026-10-20T06:45:10.252Z",
   "source": {
     "description": "Fact-check verdicts for every pleno-claims-suggestions.json entry. Cross-references against tenders / BDNS / budget / promises. Pure deterministic — no LLM judgement.",
     "contract": "Machine-written verdicts; a curator reviews before surfacing contradicho or promesa-repetida editorially."
@@ -9,15 +9,15 @@
     "total": 7819,
     "byVerdict": {
       "verificado": 10,
-      "parcial": 15,
+      "parcial": 13,
       "contradicho": 0,
-      "sin-datos": 7794,
+      "sin-datos": 7796,
       "promesa-repetida": 0
     },
     "sinDatosPorque": {
       "sinCorpus": 3425,
       "comprobadoSinHallar": 3196,
-      "noConsta": 1173
+      "noConsta": 1175
     }
   },
   "items": [
@@ -27097,22 +27097,14 @@
       },
       "verification": {
         "claimId": "brxx5g-136-cit-d678aa",
-        "verdict": "parcial",
-        "summary": "La evidencia acredita que l'escola d'estiu existe como servicio municipal contratado (2018), no la afirmación de la cita sobre sus condiciones actuales.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=yrxcliuypflvYnTkQN0%2FZA%3D%3D",
-            "snippet": "Contrato para la prestación del servicio de la Escola d'Estiu Rialles 2018 destinado a niños y niñas de la escuela ordinaria de segundo ciclo de educación infantil y primaria · Ayuntamiento de Riba-roja de Túria · Ribamon. Actividades lúdicas de ocio y tiempo libre · culture · estado: formalized",
-            "similarity": 1,
-            "stance": "checked"
-          }
-        ],
+        "verdict": "sin-datos",
+        "summary": "Es una valoración («que és insoportable»): la opinión no es verificable. La única evidencia, un contrato de 2018, sólo acredita que la escola d'estiu existe, como dice el propio resumen; «parcial» sugería que los datos la respaldan en parte.",
+        "evidence": [],
         "checkedAgainst": [
           "curator-downgrade"
         ],
         "source": "curator-downgrade",
-        "downgradedBy": "persona"
+        "downgradedBy": "no-consta"
       }
     },
     {
@@ -65821,24 +65813,14 @@
       },
       "verification": {
         "claimId": "ma87e0-157-pro-7ce20e",
-        "verdict": "parcial",
-        "summary": "El parque de Valencia la Vella se puso en marcha: las obras del área de esparcimiento de su zona verde se adjudicaron por 108.876,11 € (contrato 39/2026; la adjudicación se publicó el 27-05-2026). Que pasara por pleno, y los demás parques, no constan.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=sOt%2BY8QGKwx6nTs9LZ9RhQ%3D%3D",
-            "snippet": "Contrato administrativo obras para la ejecución del proyecto Área de esparcimiento en zona verde de Valencia la Vella en el… · expediente 39/2026 · adjudicado a GEOCIVIL, S.A. por 108.876,11 € con IVA · adjudicación publicada el 27-05-2026",
-            "stance": "checked"
-          }
-        ],
+        "verdict": "sin-datos",
+        "summary": "Una promesa no se respalda con un contrato: el cumplimiento de una promesa se sigue en /promesas. Además, el contrato citado se adjudicó (anuncio del 27-05-2026) después de lo dicho en el pleno del 16-03-2026. Se retira la subida; la promesa sigue en seguimiento.",
+        "evidence": [],
         "checkedAgainst": [
-          "tenders"
+          "curator-downgrade"
         ],
-        "derivedBy": [
-          "curator-upgrade"
-        ],
-        "source": "curator-upgrade",
-        "raisedBy": "Sergei Lutchenko"
+        "source": "curator-downgrade",
+        "downgradedBy": "persona"
       }
     },
     {
