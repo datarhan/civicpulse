@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-19T20:44:14.407Z",
+  "generatedAt": "2026-10-20T01:14:03.456Z",
   "version": "1",
   "plenos": [
     {
@@ -230,7 +230,7 @@
         "empleo": 3,
         "movilidad": 1
       },
-      "bytes": 390352
+      "bytes": 390390
     },
     {
       "plenoId": "ma87e0",
