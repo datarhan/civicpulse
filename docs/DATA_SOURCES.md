@@ -82,7 +82,7 @@ written before 2026-10-11 dropped it; `subir-veredicto --backfill-sustituye
 <commit> <claimId>…` restores it from git, stamped with the commit it came from.
 
 Nothing rewrites a signed raise, so `check:veredictos` re-derives every signed
-contract row against today's `tenders.json` (`cotejarSubidasFirmadas` in
+contract row against today's `public/data/tenders.json` (`cotejarSubidasFirmadas` in
 `src/scraper/subida-firmada.ts`): `coincide`; `movido` (same contract, amount,
 date and expediente — only the writer's format or the awardee's spelling
 changed; exit 0, fixed by re-signing); `contradice` (amount, status, date,
