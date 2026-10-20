@@ -1941,7 +1941,8 @@ export const CATALOGUE = {
     // no consta es cuánto cobra cada cual, porque las filas del ISPA no llevan
     // nombre — y por eso el importe vive en el reparto, no en la tarjeta.
     'cargos.retri.asistenciasCargo': 'asistencias por sesión',
-    'cargos.retri.asistenciasCargoNota': '· sin dedicación; el ISPA no publica el nombre',
+    'cargos.retri.asistenciasCargoNota': '· sin dedicación, según el acuerdo',
+    'cargos.retri.acuerdo': 'acuerdo',
     // Mientras el fichero llega, o si falla, la tarjeta no sabe nada: ni cifra
     // ni «sin dedicación», que es una afirmación sobre la persona.
     'cargos.retri.cargando': 'retribución · cargando…',
@@ -3923,7 +3924,8 @@ export const CATALOGUE = {
       'El repartiment entre dedicació i assistències no reconstruïx el total publicat, així que els subtotals de cada columna es retiren fins que quadren. La capçalera continua sent la xifra del ministeri.',
     'cargos.retri.fijadoPor': '· dedicació {dedicacion}, fixada en l’acord',
     'cargos.retri.asistenciasCargo': 'assistències per sessió',
-    'cargos.retri.asistenciasCargoNota': '· sense dedicació; l’ISPA no publica el nom',
+    'cargos.retri.asistenciasCargoNota': '· sense dedicació, segons l’acord',
+    'cargos.retri.acuerdo': 'acord',
     'cargos.retri.cargando': 'retribució · carregant…',
     'cargos.retri.noDisponible': 'retribució no disponible',
     'cargos.retri.noDisponibleNota':

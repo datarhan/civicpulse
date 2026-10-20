@@ -237,12 +237,15 @@ function DepartmentLinks({ portfolios }) {
 // but no name, so the only honest place for their money is the distribution in
 // RetribucionesPanel. What this badge says instead is what régimen they are on
 // — which the acuerdo does state — so the card never reads as "paid nothing".
+// It cites the acuerdo and does not mention ISPA: «el ISPA no publica el
+// nombre» under a named face read as "this person is one of ISPA's anonymous
+// rows", the attribution the distribution exists to refuse.
 //
 // «Sin dedicación» is a claim, and only a snapshot that was READ can make it.
 // While the file loads, if it fails, or on the 404 fallback, the badge says it
 // does not know — it used to show every salaried councillor as paid by
 // session only in all three cases.
-function RetribucionBadge({ official }) {
+export function RetribucionBadge({ official }) {
   const res = useDedicaciones()
   const { data } = res
   const t = useT()
@@ -281,6 +284,16 @@ function RetribucionBadge({ official }) {
           {t('cargos.retri.asistenciasCargo')}
         </span>
         <span style={{ color: 'var(--ink50)' }}>{t('cargos.retri.asistenciasCargoNota')}</span>
+        {data.source?.url && (
+          <ExtLink
+            href={data.source.url}
+            title={data.source.title}
+            className="mono"
+            style={{ color: 'var(--civic)', fontSize: 'var(--fs-micro)' }}
+          >
+            {t('cargos.retri.acuerdo')} ↗
+          </ExtLink>
+        )}
       </div>
     )
   }
