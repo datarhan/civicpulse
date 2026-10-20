@@ -4,6 +4,7 @@ import { construirGrafoRutas } from '../scripts/lib/route-graph'
 import {
   ELECTORES,
   fichaDe,
+  fichasDe,
   leerDeDisco,
   type LeerSnapshot,
 } from '../scripts/lib/fichas-representativas'
@@ -192,5 +193,113 @@ describe('las reglas de elección, con datos a mano', () => {
   it('sin datos no se inventa una ficha: la clave es la plantilla, y se dirá SIN FICHA', () => {
     const f = fichaDe('/quejas/:id', datos({}))
     expect(f).toEqual({ patron: '/quejas/:id', clave: '/quejas/:id', id: null, total: 0 })
+  })
+})
+
+/**
+ * Todas las fichas de una plantilla, en el orden en que se elegirían.
+ *
+ * Leer una sola ficha basta para lo que falla en la plantilla, pero no para
+ * saber QUÉ fichas cambian: un cambio que sólo toca la de un cargo concreto
+ * pasa por delante de la elegida sin que nadie lo compare. Para poder comparar
+ * todas las fichas de una plantilla, no sólo la elegida, la lista sale del
+ * mismo elector: así no puede derivar de la elección.
+ */
+describe('fichasDe: todas las fichas de una plantilla', () => {
+  it('mide algo: con los datos publicados, varias plantillas tienen más de una ficha', () => {
+    const conVarias = patrones.filter((p) => fichasDe(p, publicados).length > 1)
+    expect(conVarias.length).toBeGreaterThanOrEqual(4)
+  })
+
+  it('la primera es siempre la que elige fichaDe, con la misma clave y el mismo total', () => {
+    for (const patron of patrones) {
+      const una = fichaDe(patron, publicados)
+      const todas = fichasDe(patron, publicados)
+      if (una.id === null) {
+        expect(todas, patron).toEqual([])
+        continue
+      }
+      expect(todas[0], patron).toEqual(una)
+      for (const f of todas) expect(f.total, f.clave).toBe(una.total)
+    }
+  })
+
+  it('cada ficha es una URL que se puede pedir, sin repetir ninguna', () => {
+    for (const patron of patrones) {
+      const todas = fichasDe(patron, publicados)
+      const prefijo = patron.slice(0, patron.indexOf(':'))
+      for (const f of todas) {
+        expect(rutaBase(f.clave), f.clave).not.toContain(':')
+        expect(rutaBase(f.clave).startsWith(prefijo), f.clave).toBe(true)
+        expect(f.patron).toBe(patron)
+      }
+      expect(new Set(todas.map((f) => f.clave)).size, patron).toBe(todas.length)
+    }
+  })
+
+  it('/hallazgos/:id: todas menos las retiradas, en el orden de la elección', () => {
+    const todas = fichasDe(
+      '/hallazgos/:id',
+      datos({
+        'pleno-findings.json': {
+          items: [
+            { id: 'leve', severity: 'informational', publishedAt: '2026-09-01' },
+            { id: 'notable', severity: 'notable', publishedAt: '2026-01-01' },
+            { id: 'retirado', severity: 'critical', publishedAt: '2026-09-10' },
+          ],
+          retractions: [{ findingId: 'retirado' }],
+        },
+      }),
+    )
+    expect(todas.map((f) => f.clave)).toEqual(['/hallazgos/notable', '/hallazgos/leve'])
+    expect(todas.map((f) => f.total)).toEqual([2, 2])
+  })
+
+  it('/plenos/:id: cada sesión lleva el estado de pestañas, como la elegida', () => {
+    const todas = fichasDe(
+      '/plenos/:id',
+      datos({
+        'plenos.json': {
+          items: [
+            { id: 'a', date: '2026-01-01' },
+            { id: 'b', date: '2026-02-01' },
+          ],
+        },
+      }),
+    )
+    expect(todas.map((f) => rutaBase(f.clave))).toEqual(['/plenos/b', '/plenos/a'])
+    for (const f of todas) expect(estadoDe(f.clave)).toBe('pestanas')
+  })
+
+  it('el id va codificado en la URL, como en la elegida', () => {
+    const todas = fichasDe(
+      '/empleo/:id',
+      datos({ 'empleo.json': { items: [{ id: 'oferta 1/2', publishedAt: '2026-09-01' }] } }),
+    )
+    expect(todas.map((f) => f.clave)).toEqual(['/empleo/oferta%201%2F2'])
+  })
+
+  it('un id repetido en los datos es UNA página: sale una vez, en su mejor puesto', () => {
+    const todas = fichasDe(
+      '/empleo/:id',
+      datos({
+        'empleo.json': {
+          items: [
+            { id: 'x', publishedAt: '2026-09-02' },
+            { id: 'y', publishedAt: '2026-09-01' },
+            { id: 'x', publishedAt: '2026-08-01' },
+          ],
+        },
+      }),
+    )
+    expect(todas.map((f) => f.id)).toEqual(['x', 'y'])
+  })
+
+  it('sin datos, ninguna ficha (no la plantilla: «SIN FICHA» lo sigue diciendo fichaDe)', () => {
+    expect(fichasDe('/quejas/:id', datos({}))).toEqual([])
+  })
+
+  it('una plantilla sin elector no tiene fichas', () => {
+    expect(fichasDe('/no-existe/:id', datos({}))).toEqual([])
   })
 })
