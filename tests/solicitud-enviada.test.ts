@@ -684,6 +684,48 @@ describe('un plazo suspendido no vence ni se da por vencido', () => {
   })
 })
 
+/**
+ * Concedido no es entregado.
+ *
+ * El 19-10-2026 la Dirección General de Comercio, Artesanía y Consumo estimó la
+ * solicitud a la Comisión de Precios (GVAGIP/2026/757), pero Hidraqua se había
+ * opuesto como tercera afectada, y entonces el art. 22.2 de la Ley 19/2013 sólo
+ * deja acceder cuando la concesión sea firme. Con `concedido`, la frase diría
+ * «lo concedieron» y el lector entendería que los documentos están en nuestras
+ * manos — es el `parcial` forzado de la Secretaría de Estado otra vez. El
+ * sentido propio lo dice; cuando lleguen, la fila pasa a `concedido`.
+ */
+describe('concedido con la entrega aplazada', () => {
+  const diferida: EnvioSolicitud = {
+    organismo: 'Comisión de Precios de la Generalitat',
+    calendario: 'generalitat-en-valencia',
+    enviadaEl: '2026-09-18',
+    via: 'el registro electrónico de la Generalitat',
+    registro: 'GVRTE/2026/4267645',
+    respuesta: { fecha: '2026-10-19', sentido: 'concedido-diferido' },
+  }
+
+  it('es un sentido del enum', () => {
+    expect(SENTIDOS_RESPUESTA).toContain('concedido-diferido')
+  })
+
+  it('respondida, y la frase dice que la entrega espera a la firmeza', () => {
+    expect(estadoDeEnvio(diferida, '2026-10-20')).toBe('respondida')
+    const f = fraseDeEnvio(diferida, '2026-10-20')
+    expect(f).toContain('El 19 de octubre de 2026 lo concedieron')
+    expect(f).toMatch(/entrega.*aplazada.*firme/)
+    expect(f).not.toMatch(/vence el|terminó/)
+  })
+
+  it('«lo concedieron» a secas queda para cuando se entrega', () => {
+    const entregada: EnvioSolicitud = {
+      ...diferida,
+      respuesta: { fecha: '2026-10-19', sentido: 'concedido' },
+    }
+    expect(fraseDeEnvio(entregada, '2026-10-20')).not.toMatch(/aplazada/)
+  })
+})
+
 // Desde el 18-09-2026 son DOS las piezas que publican solicitudes con reloj
 // (el conteo y el coste efectivo), y las dos usan este módulo. La prueba recorre
 // las instantáneas en vez de fijar una: la siguiente pieza que publique un
@@ -855,6 +897,18 @@ describe.each(PIEZAS)('instantánea publicada · %s', (slug) => {
         (e.incidencias ?? []).some((i) => i.fecha === s.fecha),
         `${e.organismo}: la suspensión del ${s.fecha} no consta en ninguna incidencia`,
       ).toBe(true)
+    }
+  })
+
+  // Una entrega aplazada tiene que decir por qué y hasta cuándo, con lo que
+  // resolvieron: la frase del sentido sólo dice que espera a la firmeza.
+  it('cada concesión con entrega aplazada lleva el resumen de lo resuelto', () => {
+    for (const e of d.solicitudes.items.filter(
+      (x) => x.respuesta?.sentido === 'concedido-diferido',
+    )) {
+      expect(e.respuesta!.resumen ?? '', `${e.organismo}: aplazada sin resumen`).toMatch(
+        /22\.2 de la Ley 19\/2013/,
+      )
     }
   })
 

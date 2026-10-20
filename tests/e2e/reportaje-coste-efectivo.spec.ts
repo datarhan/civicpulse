@@ -161,23 +161,22 @@ test.describe('Reportaje · coste efectivo (/reportajes/coste-efectivo)', () => 
         /enviada el 18 de septiembre de 2026 por el registro electrónico de la Generalitat, con registro GVRTE\/2026\/4267645/,
       ),
     ).toBeVisible()
-    // Y SE SUSPENDIÓ (29-09-2026). La Generalitat dio traslado de la solicitud
-    // a terceros afectados y el plazo para resolver quedó parado hasta que
-    // alegan o pasan sus quince días hábiles (art. 33.6 de la Ley 1/2022). El
-    // «19 de octubre» que la fila afirmaba —el 18, domingo, prorrogado— ya no es
-    // el último día, y no hay otro que contar: ninguno de los dos puede quedar en
-    // la página. La fila dice desde cuándo corría, que se suspendió y que no
-    // consta la reanudación, anclado en frases que no caducan solas.
+    // SE SUSPENDIÓ (29-09-2026) Y SE RESOLVIÓ (19-10-2026). La Generalitat dio
+    // traslado a terceros afectados (art. 33.6 de la Ley 1/2022), Hidraqua se
+    // opuso y la Dirección General estimó la solicitud; con oposición de un
+    // tercero el art. 22.2 de la Ley 19/2013 aplaza la entrega hasta la firmeza.
+    // La fila no puede decir «lo concedieron» a secas —no hay un documento
+    // entregado— ni conservar el último día de la suspensión.
     const filaComision = page.getByText(
-      /con registro GVRTE\/2026\/4267645\. El mes del artículo 20 corría desde su entrada, el 18 de septiembre de 2026\. El 29 de septiembre de 2026 se comunicó que el plazo para resolver quedaba suspendido/,
+      /con registro GVRTE\/2026\/4267645\. El 19 de octubre de 2026 lo concedieron, con la entrega aplazada hasta que la concesión sea firme/,
     )
     await expect(filaComision).toBeVisible()
-    await expect(page.getByText(/no consta todavía cuándo se reanuda/)).toBeVisible()
+    await expect(
+      page.getByText(/el artículo 22\.2 de la Ley 19\/2013 sólo permite el acceso/),
+    ).toBeVisible()
     await expect(page.getByText(/a los posibles terceros afectados/)).toBeVisible()
     expect(await page.getByText(/18 de octubre de 2026/).count()).toBe(0)
-    // El 19 se queda en la página —los dos correos del 18-09 vencen ese lunes—,
-    // así que se comprueba en la fila suspendida y no en la página entera.
-    expect(await filaComision.textContent()).not.toMatch(/19 de octubre|vence el|terminó/)
+    expect(await filaComision.textContent()).not.toMatch(/vence el|terminó|se reanuda/)
     // Con qué calendario se cuenta cada una lo dice una frase bajo la nota,
     // sacada de las filas: aquí escriben al Ayuntamiento, a la Generalitat y a un
     // ministerio, y los tres calendarios tienen que estar nombrados.

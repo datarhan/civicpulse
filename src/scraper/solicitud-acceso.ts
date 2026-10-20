@@ -87,9 +87,16 @@ export const ESTADO_SOLICITUD_TONO: Record<EstadoSolicitud, string> = {
  * publicado un acceso que no hubo. No se llama «remitida»: en la Ley 19/2013
  * remitir es reenviar la solicitud al competente (art. 19.1), y precisamente eso
  * es lo que un organismo puede no hacer al contestar así.
+ *
+ * `concedido-diferido` entró el 2026-10-20 por la misma razón: la Comisión de
+ * Precios estimó la solicitud, pero un tercero se había opuesto y el art. 22.2
+ * de la Ley 19/2013 aplaza el acceso hasta que la concesión sea firme. Con
+ * `concedido` la página diría «lo concedieron» sin un solo documento entregado.
+ * Cuando lleguen, la fila pasa a `concedido`.
  */
 export const SENTIDOS_RESPUESTA = [
   'concedido',
+  'concedido-diferido',
   'parcial',
   'denegado',
   'no-les-corresponde',
@@ -109,6 +116,8 @@ export type SentidoRespuesta = (typeof SENTIDOS_RESPUESTA)[number]
  */
 export const QUE_HICIERON: Record<SentidoRespuesta, string> = {
   concedido: 'lo concedieron',
+  'concedido-diferido':
+    'lo concedieron, con la entrega aplazada hasta que la concesión sea firme porque un tercero se opuso',
   parcial: 'lo concedieron en parte',
   denegado: 'lo denegaron',
   'no-les-corresponde': 'contestaron que no les corresponde',
