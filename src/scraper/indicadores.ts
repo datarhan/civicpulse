@@ -452,8 +452,8 @@ const fuenteUnidad = (anio: number, programa: string, atributo: string) =>
  * 0,01 efectivos: 161.045 € con ellos, 129.518 € sin ellos.
  *
  * Lo que NO está aquí, a propósito: el 1 como UNIDAD. «1 efectivo» es una
- * plantilla de una persona —once municipios de la banda lo declaran en 2024,
- * con costes de 79.777 € a 931.266 €— y «1 km» o «1 m²» no tienen ninguna
+ * plantilla de una persona —catorce municipios de la banda lo declaran en 2024, trece
+ * con coste, de 79.777 € a 931.266 €— y «1 km» o «1 m²» no tienen ninguna
  * prueba de ser relleno. Convertirlo en marca sería decidir por el
  * ayuntamiento qué quiso decir; el 1 € de COSTE, en cambio, no puede ser el
  * coste anual de un servicio.

@@ -30,7 +30,7 @@ import {
  *    Con esos dos dentro, la mediana publicada de promoción del deporte era
  *    161.045 €; sin ellos, 129.518 €.
  *
- * «1 efectivo» NO es un relleno: es una plantilla de una persona, y once
+ * «1 efectivo» NO es un relleno: es una plantilla de una persona, y catorce
  * municipios de la banda lo declaran con costes muy distintos. Nada lo
  * convierte en marca.
  *
