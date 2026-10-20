@@ -67,7 +67,21 @@ const AGENDAS = lee('plenos-agendas.json')
 const TENDERS = lee('tenders.json')
 
 const FRAGMENTO = lee(MANIFIESTO.plenos[0].chunkPath)
-const VISIBLES = gateForDisplay(MANIFIESTO.plenos.flatMap((p) => lee(p.chunkPath).items))
+/**
+ * La única declaración servida con puente de importe era k4olcs-019-cit-b9b013, y
+ * desde el 19-10-2026 el verificador cita la fila que imprime su cifra
+ * (`filaQueDiceLaCifra`, claim-verifier.ts): lo servido ya no lo necesita. Para que
+ * el rótulo del puente se siga leyendo en los dos idiomas, entra su fila de antes,
+ * congelada, en lugar de la servida.
+ */
+const CONGELADA = JSON.parse(
+  readFileSync('tests/fixtures/puente-importe-k4olcs-019_2026-10-19.json', 'utf8'),
+).item
+const VISIBLES = gateForDisplay(
+  MANIFIESTO.plenos
+    .flatMap((p) => lee(p.chunkPath).items)
+    .map((it) => (it.claim.id === CONGELADA.claim.id ? CONGELADA : it)),
+)
 
 // ─── Qué declaraciones se pintan ───────────────────────────────────────────────
 

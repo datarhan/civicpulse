@@ -38,6 +38,26 @@ const FIXTURE = JSON.parse(
 const ID = '10yl550-106-acu-dd1a86'
 const ENTRADA = FIXTURE.overlay.entries[ID]
 
+/**
+ * El contrato de la fixture, imprimiendo la cifra citada.
+ *
+ * Desde el 19-10-2026 el verificador sólo da `verificado` con una fila que
+ * IMPRIME la cifra dicha (`filaQueDiceLaCifra`, claim-verifier.ts): el contrato
+ * real dice 6.976 € sin IVA (8.440,96 con IVA) para los 8.000 € citados, y la
+ * base ya deja la acusación en `sin-datos`, así que la guarda de la
+ * recomposición no tendría nada que parar. Lo que se prueba aquí es esa guarda,
+ * no el emparejador: en la caja, el mismo contrato dice 8.000 € sin IVA, y la
+ * base vuelve a subir la acusación —un contrato de armas que no acredita lo que
+ * se denuncia—. Es la única cifra tocada de la fila real.
+ */
+const TENDERS_EN_LA_CAJA = {
+  ...FIXTURE.tenders,
+  contracts: FIXTURE.tenders.contracts.map((c: Record<string, unknown>) => ({
+    ...c,
+    finalAmountNoTaxes: 8000,
+  })),
+}
+
 // Arranca el guion de verdad (~3 s con tsx; más del doble en el runner de la CI)
 // dentro de `beforeAll`, una vez por bloque, y un gancho tiene su propio tope de 10 s que
 // `testTimeout` no cubre.
@@ -73,7 +93,7 @@ function correr(overlay: unknown, transcripcion?: string): Corrida {
   escribir('pleno-claims-suggestions.json', FIXTURE.sugerencias)
   escribir('pleno-claims-verified.json', FIXTURE.publicado)
   escribir('pleno-claims-overlay.json', overlay)
-  escribir('tenders.json', FIXTURE.tenders)
+  escribir('tenders.json', TENDERS_EN_LA_CAJA)
   if (transcripcion !== undefined) {
     writeFileSync(join(data, 'pleno-transcripts', '10yl550.txt'), transcripcion)
   }
