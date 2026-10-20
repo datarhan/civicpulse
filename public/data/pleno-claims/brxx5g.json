@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-19T17:28:34.239Z",
+  "generatedAt": "2026-10-20T05:38:58.687Z",
   "version": "1",
   "plenoId": "brxx5g",
   "plenoDate": "2026-07-06",
@@ -2687,24 +2687,16 @@
       },
       "verification": {
         "claimId": "brxx5g-136-cit-d678aa",
-        "verdict": "parcial",
-        "summary": "La evidencia acredita que l'escola d'estiu existe como servicio municipal contratado (2018), no la afirmación de la cita sobre sus condiciones actuales.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=yrxcliuypflvYnTkQN0%2FZA%3D%3D",
-            "snippet": "Contrato para la prestación del servicio de la Escola d'Estiu Rialles 2018 destinado a niños y niñas de la escuela ordinaria de segundo ciclo de educación infantil y primaria · Ayuntamiento de Riba-roja de Túria · Ribamon. Actividades lúdicas de ocio y tiempo libre · culture · estado: formalized",
-            "similarity": 1,
-            "stance": "checked"
-          }
-        ],
+        "verdict": "sin-datos",
+        "summary": "Es una valoración («que és insoportable»): la opinión no es verificable. La única evidencia, un contrato de 2018, sólo acredita que la escola d'estiu existe, como dice el propio resumen; «parcial» sugería que los datos la respaldan en parte.",
+        "evidence": [],
         "checkedAgainst": [
           "curator-downgrade"
         ],
         "source": "curator-downgrade",
-        "downgradedBy": "persona"
+        "downgradedBy": "no-consta"
       },
-      "visibility": "shown"
+      "visibility": "toggle"
     },
     {
       "claim": {

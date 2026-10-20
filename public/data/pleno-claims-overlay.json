@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "generatedAt": "2026-10-19T17:28:32.506Z",
+  "generatedAt": "2026-10-20T05:38:57.365Z",
   "entries": {
     "k4olcs-005-acu-7c0edd": {
       "verification": {
@@ -1007,44 +1007,38 @@
     "ma87e0-157-pro-7ce20e": {
       "verification": {
         "claimId": "ma87e0-157-pro-7ce20e",
-        "verdict": "parcial",
-        "summary": "El parque de Valencia la Vella se puso en marcha: las obras del área de esparcimiento de su zona verde se adjudicaron por 108.876,11 € (contrato 39/2026; la adjudicación se publicó el 27-05-2026). Que pasara por pleno, y los demás parques, no constan.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=sOt%2BY8QGKwx6nTs9LZ9RhQ%3D%3D",
-            "snippet": "Contrato administrativo obras para la ejecución del proyecto Área de esparcimiento en zona verde de Valencia la Vella en el… · expediente 39/2026 · adjudicado a GEOCIVIL, S.A. por 108.876,11 € con IVA · adjudicación publicada el 27-05-2026",
-            "stance": "checked"
-          }
-        ],
+        "verdict": "sin-datos",
+        "summary": "Una promesa no se respalda con un contrato: el cumplimiento de una promesa se sigue en /promesas. Además, el contrato citado se adjudicó (anuncio del 27-05-2026) después de lo dicho en el pleno del 16-03-2026. Se retira la subida; la promesa sigue en seguimiento.",
+        "evidence": [],
         "checkedAgainst": [
-          "tenders"
-        ],
-        "derivedBy": [
-          "curator-upgrade"
+          "curator-downgrade"
         ]
       },
-      "source": "curator-upgrade",
-      "reason": "El parque de Valencia la Vella se puso en marcha: las obras del área de esparcimiento de su zona verde se adjudicaron por 108.876,11 € (contrato 39/2026; la adjudicación se publicó el 27-05-2026). Que pasara por pleno, y los demás parques, no constan.",
+      "source": "curator-downgrade",
+      "reason": "Una promesa no se respalda con un contrato: el cumplimiento de una promesa se sigue en /promesas. Además, el contrato citado se adjudicó (anuncio del 27-05-2026) después de lo dicho en el pleno del 16-03-2026. Se retira la subida; la promesa sigue en seguimiento.",
       "editor": "Sergei Lutchenko",
-      "appliedAt": "2026-10-19T17:02:53.403Z",
-      "desde": "sin-datos",
+      "appliedAt": "2026-10-20T05:38:49.286Z",
       "sustituye": {
-        "source": "curator-downgrade",
+        "source": "curator-upgrade",
         "editor": "Sergei Lutchenko",
-        "appliedAt": "2026-10-19T17:02:51.088Z",
+        "appliedAt": "2026-10-19T17:02:53.403Z",
         "sustituye": {
-          "source": "curator-upgrade",
+          "source": "curator-downgrade",
           "editor": "Sergei Lutchenko",
-          "appliedAt": "2026-10-05T12:48:19.883Z",
+          "appliedAt": "2026-10-19T17:02:51.088Z",
           "sustituye": {
-            "source": "verdict-engine",
-            "editor": "verdict-engine:gpt-5.4-mini",
-            "appliedAt": "2026-06-24T10:14:20.744Z",
-            "recuperada": {
-              "commit": "400da7b511793ac559d2753913d103045bc7297b",
-              "editor": "civicpulse-curator",
-              "recuperadaAt": "2026-10-11T22:12:30.781Z"
+            "source": "curator-upgrade",
+            "editor": "Sergei Lutchenko",
+            "appliedAt": "2026-10-05T12:48:19.883Z",
+            "sustituye": {
+              "source": "verdict-engine",
+              "editor": "verdict-engine:gpt-5.4-mini",
+              "appliedAt": "2026-06-24T10:14:20.744Z",
+              "recuperada": {
+                "commit": "400da7b511793ac559d2753913d103045bc7297b",
+                "editor": "civicpulse-curator",
+                "recuperadaAt": "2026-10-11T22:12:30.781Z"
+              }
             }
           }
         }
@@ -25659,25 +25653,17 @@
     "brxx5g-136-cit-d678aa": {
       "verification": {
         "claimId": "brxx5g-136-cit-d678aa",
-        "verdict": "parcial",
-        "summary": "La evidencia acredita que l'escola d'estiu existe como servicio municipal contratado (2018), no la afirmación de la cita sobre sus condiciones actuales.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=yrxcliuypflvYnTkQN0%2FZA%3D%3D",
-            "snippet": "Contrato para la prestación del servicio de la Escola d'Estiu Rialles 2018 destinado a niños y niñas de la escuela ordinaria de segundo ciclo de educación infantil y primaria · Ayuntamiento de Riba-roja de Túria · Ribamon. Actividades lúdicas de ocio y tiempo libre · culture · estado: formalized",
-            "similarity": 1,
-            "stance": "checked"
-          }
-        ],
+        "verdict": "sin-datos",
+        "summary": "Es una valoración («que és insoportable»): la opinión no es verificable. La única evidencia, un contrato de 2018, sólo acredita que la escola d'estiu existe, como dice el propio resumen; «parcial» sugería que los datos la respaldan en parte.",
+        "evidence": [],
         "checkedAgainst": [
           "curator-downgrade"
         ]
       },
       "source": "curator-downgrade",
-      "reason": "La evidencia acredita que l'escola d'estiu existe como servicio municipal contratado (2018), no la afirmación de la cita sobre sus condiciones actuales.",
-      "editor": "Sergei Lutchenko",
-      "appliedAt": "2026-08-18T12:56:26.853Z"
+      "reason": "Es una valoración («que és insoportable»): la opinión no es verificable. La única evidencia, un contrato de 2018, sólo acredita que la escola d'estiu existe, como dice el propio resumen; «parcial» sugería que los datos la respaldan en parte.",
+      "editor": "civicpulse-curator",
+      "appliedAt": "2026-10-20T05:38:57.365Z"
     },
     "ma87e0-111-afi-083d71": {
       "verification": {
