@@ -17,6 +17,10 @@ import { installFetchMock } from './setup/mockFetch'
  * predicado de fecha y otro reloj. Filas reales del 28-09-2026: 45 titulares del
  * feed en la ventana y uno, `t335v0` (Actualidad Valencia, 25-09), que ya no está
  * en el feed y sí en las afirmaciones.
+ *
+ * Desde el 19-10-2026 uno de esos 45 —`1auaoi4`, «HABITALE RIBARROJA: 22 casas y pisos
+ * en venta», de fotocasa.es— es un anuncio y no cuenta (press-clasificado.ts): la
+ * lista y su total son 44 del feed + 1 fuera del feed = 45.
  */
 const ROOT = join(__dirname, '..')
 const leer = (f) => JSON.parse(readFileSync(join(ROOT, 'tests/fixtures', f), 'utf8'))
@@ -60,18 +64,18 @@ describe('el contador de /laboratorio no cuenta más de lo que tiene', () => {
     expect(Date.parse(fuera.claim.articleDate)).toBeGreaterThanOrEqual(corte)
   })
 
-  it('sin filtros, el total es lo que la lista pinta: 45 del feed + 1 fuera del feed', async () => {
+  it('sin filtros, el total es lo que la lista pinta: 44 del feed + 1 fuera del feed', async () => {
     const el = await montar()
     // Mide algo: la tarjeta que destapó el defecto está pintada.
     expect(screen.getByText('FUERA DEL FEED')).toBeInTheDocument()
-    expect(tarjetas()).toBe(46)
-    expect(contador(el)).toEqual({ x: 46, y: 46 })
+    expect(tarjetas()).toBe(45)
+    expect(contador(el)).toEqual({ x: 45, y: 45 })
   })
 
   it('el KPI de titulares cuenta el mismo universo y dice cuántos están fuera del feed', async () => {
     await montar()
     const rotulo = screen.getByText('Titulares monitorizados')
-    expect(rotulo.nextElementSibling.textContent).toBe('46')
+    expect(rotulo.nextElementSibling.textContent).toBe('45')
     // `\s` también casa el espacio que no parte con el que se escribe.
     expect(rotulo.parentElement.textContent.replace(/\s+/g, ' ')).toContain('1 fuera del feed')
   })
@@ -88,7 +92,7 @@ describe('el contador de /laboratorio no cuenta más de lo que tiene', () => {
         fireEvent.change(medio(), { target: { value: m } })
         fireEvent.change(veredicto(), { target: { value: v } })
         const { x, y } = contador(el)
-        expect(y, `${m} × ${v}`).toBe(46)
+        expect(y, `${m} × ${v}`).toBe(45)
         expect(x, `${m} × ${v}`).toBe(tarjetas())
         comprobados += 1
       }
@@ -97,6 +101,6 @@ describe('el contador de /laboratorio no cuenta más de lo que tiene', () => {
     // Uno a mano: los dos de Actualidad Valencia, el del feed y el que ya no está.
     fireEvent.change(medio(), { target: { value: 'Actualidad Valencia' } })
     fireEvent.change(veredicto(), { target: { value: 'all' } })
-    expect(contador(el)).toEqual({ x: 2, y: 46 })
+    expect(contador(el)).toEqual({ x: 2, y: 45 })
   })
 })

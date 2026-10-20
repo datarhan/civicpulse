@@ -2463,7 +2463,55 @@ export default function Metodologia() {
             afirmación o porque para las extraídas no hay datos contra los que cotejarlas. Antes
             bastaba cualquier documento cotejado, y el 28 de septiembre de 2026 una nota municipal
             sobre la sensorización de contenedores salía en verde por un contrato de pérgolas de
-            131.336 € que el verificador sólo había marcado «Parcial».
+            131.336 € que el verificador sólo había marcado «Parcial». Y sólo cuentan los datos
+            municipales: una afirmación cotejada únicamente contra el catálogo de promesas de los
+            partidos, contra lo que ya publicó otro medio o contra los verificadores externos no
+            enciende ni apaga el indicador. Hasta el 19 de octubre de 2026 sí lo hacía, y las dos
+            notas sobre la restauración de las canteras salían con el círculo vacío por una
+            afirmación que sólo se había buscado entre las promesas.
+          </li>
+          <li>
+            <strong>«No cotejada» no es «Sin registro».</strong> La pastilla de una afirmación dice
+            «Sin registro» cuando se buscó en algún dato y no se encontró nada, y «No cotejada»
+            cuando no se buscó en ninguno —porque no hay corpus para ese tipo de afirmación—. El
+            aviso de arriba dice cuántas de las extraídas se cotejaron, y contra qué. Hasta el 19 de
+            octubre de 2026 las dos salían como «Sin registro», y el aviso decía que todas «se han
+            buscado en los datos» cuando 49 de 58 no se habían buscado en ninguno.
+          </li>
+          <li>
+            <strong>Los anuncios no son prensa.</strong> El agregador de noticias trae, mezclados
+            con la prensa, los listados de portales inmobiliarios («Casas y pisos en Calle…»). Lo
+            que llega desde el dominio de uno de los portales de anuncios de su lista (Fotocasa,
+            Idealista, Habitaclia, pisos.com, Milanuncios, yaencontre) queda fuera del laboratorio:
+            de los titulares monitorizados, de la tabla por medio, de la triangulación y de las
+            lagunas de cobertura. La regla mira el dominio, no el título ni el nombre que pone el
+            agregador. Hasta el 19 de octubre de 2026 eran 12 de los 68 titulares monitorizados.
+          </li>
+          <li>
+            <strong>Lagunas de cobertura: dos palabras en un mismo titular.</strong> Un punto del
+            pleno o una promesa de los últimos 14 días cuenta como seguido por la prensa si un
+            titular de un medio independiente comparte con su título al menos dos palabras
+            significativas. No cuentan el nombre del municipio, las palabras vacías ni las fórmulas
+            de trámite («proyecto», «suministro», «nuevo», «acuerdo»…), y tampoco las notas de
+            prensa de una administración —son la fuente contándose a sí misma— ni los anuncios. Los
+            trámites fijos del orden del día —aprobar el acta anterior, dar cuenta de la relación de
+            resoluciones, ruegos y preguntas— no se examinan; una dación de cuenta con sustancia,
+            como una sentencia o una auditoría, sí. Hasta el 19 de octubre de 2026 bastaba una
+            palabra suelta en cualquier titular, y en el pleno del 5 de octubre cuatro de los cinco
+            puntos «seguidos» lo eran por casualidad —el servicio de transportes por «proyecto», una
+            moción por «Túria», el césped del estadio por «suministro» y la relación de resoluciones
+            por «cuenta»—, y también la única promesa de esos días, por «nuevo». El error contrario
+            también existe: una noticia contada con otras palabras, o en valenciano, puede salir
+            como laguna.
+          </li>
+          <li>
+            <strong>Los hallazgos automáticos se rotulan como automáticos.</strong> El laboratorio
+            publica sin revisión humana los lotes que pasan sus filtros (ninguno con una afirmación
+            contradicha). La página los cuenta como lotes «automáticos, sin revisión humana», uno
+            por historia, y no como «curados». Hasta el 19 de octubre de 2026 el contador decía «17
+            · curados» de 17 filas automáticas que eran 5 lotes, porque el curador volvía a publicar
+            el mismo lote cada vez que corría; ya no publica un lote que ya está publicado con las
+            mismas afirmaciones.
           </li>
           <li>
             <strong>Los demás indicadores tampoco dicen «no» de lo que no se miró.</strong>{' '}
