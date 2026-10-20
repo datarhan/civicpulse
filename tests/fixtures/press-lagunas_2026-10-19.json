@@ -1,0 +1,192 @@
+{
+  "_procedencia": "public/data/plenos-agendas.json (sesión zrbgic) y public/data/promises.json (las promesas con madeAt desde el 2026-09-20), copiadas tal cual el 2026-10-19",
+  "plenos": [
+    {
+      "id": "zrbgic",
+      "date": "2026-10-05",
+      "title": "Sesión de fecha 05 de octubre de 2026",
+      "kind": "ordinario",
+      "link": "https://regmeet.com/aytoribarroja/participaciones/2e3d2c4f33a7a1f58bc6c81cacd21e9c?idioma=castellano",
+      "agenda": [
+        {
+          "number": 1,
+          "title": "Aprobación Acta Ordinaria anterior de fecha 7 de septiembre de 2026",
+          "section": "resolutiva",
+          "department": null,
+          "departmentSlug": null,
+          "expediente": null
+        },
+        {
+          "number": 2,
+          "title": "Aprobación de la Cuenta General correspondiente al ejercicio 2025",
+          "section": "resolutiva",
+          "department": null,
+          "departmentSlug": null,
+          "expediente": "2947/2026/GEN"
+        },
+        {
+          "number": 3,
+          "title": "Inicio del expediente de contratación para la licitación del suministro de sustitución del pavimento de césped artificial de la instalación del estadio de fútbol Roberto Gil en régimen de arrendamiento, con opción de compra, por procedimiento abierto, varios criterios de adjudicación, con condición de ejecución de carácter social y medioambiental, contribuyendo al cumplimiento del ODS 12 de “Producción y consumo responsables” y ODS 13 “Acción por el clima” de la Agenda 2030, contrato sujeto a regulación armonizada, siendo su tramitación anticipada. (Ctto. 122/2026)",
+          "section": "resolutiva",
+          "department": "Contratación",
+          "departmentSlug": "contratacion",
+          "expediente": "4447/2026/GEN"
+        },
+        {
+          "number": 4,
+          "title": "Acuerdo sobre declaración de actividad municipalizada e inicio de la elaboración del proyecto del servicio de transportes de Riba-roja de Túria",
+          "section": "resolutiva",
+          "department": "Movilidad",
+          "departmentSlug": "movilidad",
+          "expediente": "4744/2026/GEN"
+        },
+        {
+          "number": 5,
+          "title": "Moción conjunta del Grupo Partido Popular Riba-roja de Túria y VOX para la organización de actividades conmemorativas del “9 d’octubre” con motivo de 750 aniversario de la muerte de Jaume I",
+          "section": "resolutiva",
+          "department": null,
+          "departmentSlug": null,
+          "expediente": "21/2026/PGRU"
+        },
+        {
+          "number": 6,
+          "title": "Asuntos de Urgencia. RECURSOS HUMANOS, Acuerdo para la modificación de los criterios de reparto de la asignación a los grupos políticos para la anualidad 2026",
+          "section": "resolutiva",
+          "department": "Recursos humanos",
+          "departmentSlug": "recursos-humanos",
+          "expediente": "4910/2026/GEN"
+        },
+        {
+          "number": 7,
+          "title": "Dar cuenta de las Resoluciones de la número 2850/2026 a la 3084//2026",
+          "section": "informativa",
+          "department": null,
+          "departmentSlug": null,
+          "expediente": null
+        },
+        {
+          "number": 8,
+          "title": "Ruegos y preguntas",
+          "section": "ruegos",
+          "department": null,
+          "departmentSlug": null,
+          "expediente": null
+        }
+      ],
+      "agendaCount": 8,
+      "departments": [
+        "contratacion",
+        "movilidad",
+        "recursos-humanos"
+      ],
+      "hasRuegos": true
+    }
+  ],
+  "promesas": [
+    {
+      "id": "ac-psoe-17y448o",
+      "party": "PSOE",
+      "title": "Cheque Bebé +25: ayuda de hasta 500 euros por menor",
+      "quote": "El Ayuntamiento de Riba-roja de Túria destina 104.605,36 euros de presupuesto municipal a la convocatoria del Cheque Bebé +25, una ayuda en especie dirigida a las familias con el objetivo de contribuir a los gastos derivados del nacimiento, adopción, acogimiento o tutela de un nuevo miembro y, al mismo tiempo, fomentar el consumo y dinamizar el comercio local de proximidad.",
+      "source": {
+        "url": "https://www.ribarroja.es/es/noticia/riba-roja-destina-104.605-euros-al-cheque-beb%C3%A9-%2B25-para-apoyar-a-las-familias-y-dinamizar-el-comercio-local",
+        "publisher": "Ayuntamiento Riba-roja de Túria"
+      },
+      "madeAt": "2026-10-01",
+      "topic": "social",
+      "kind": "anuncio-gobierno",
+      "status": "en-progreso",
+      "evidence": [
+        {
+          "date": "2026-10-01",
+          "url": "https://www.ribarroja.es/es/noticia/riba-roja-destina-104.605-euros-al-cheque-beb%C3%A9-%2B25-para-apoyar-a-las-familias-y-dinamizar-el-comercio-local",
+          "quote": "Riba-roja destina 104.605 euros al Cheque Bebé +25 para apoyar a las familias y dinamizar el comercio local",
+          "publisher": "Ayuntamiento de Riba-roja de Túria",
+          "kind": "press",
+          "addedBy": "auto-curation-v1"
+        }
+      ],
+      "createdAt": "2026-10-05",
+      "updatedAt": "2026-10-12",
+      "response": null,
+      "autoPublished": {
+        "at": "2026-10-12T06:30:10.935Z",
+        "by": "auto-curation-v1",
+        "confidence": 0.9,
+        "reviewState": "pending-review",
+        "priorStatus": "documentada",
+        "appendedEvidenceUrl": "https://www.ribarroja.es/es/noticia/riba-roja-destina-104.605-euros-al-cheque-beb%C3%A9-%2B25-para-apoyar-a-las-familias-y-dinamizar-el-comercio-local"
+      }
+    },
+    {
+      "id": "ac-psoe-1bkbwjs",
+      "party": "PSOE",
+      "title": "Sensorización de contenedores de residuos para control en tiempo real del llenado",
+      "quote": "El Ayuntamiento de Riba-roja de Túria ha adjudicado a la empresa Distromel, S.A. el proyecto de sensorización de contenedores de residuos, una actuación incluida en su Plan de Sostenibilidad Turística en Destino (PSTD) 2022, financiado con fondos europeos Next Generation EU a través del Plan de Recuperación, Transformación y Resiliencia (PRTR).",
+      "source": {
+        "url": "https://www.ribarroja.es/es/noticia/riba-roja-de-t%C3%BAria-impulsa-la-sensorizaci%C3%B3n-de-sus-contenedores-de-residuos-para-avanzar-hacia-una-gesti%C3%B3n-m%C3%A1s-sostenible-del-municipio",
+        "publisher": "Ayuntamiento Riba-roja de Túria"
+      },
+      "madeAt": "2026-09-25",
+      "topic": "medio-ambiente",
+      "kind": "anuncio-gobierno",
+      "status": "en-progreso",
+      "evidence": [
+        {
+          "date": "2026-06-17",
+          "url": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=Fyy%2BTlMZfRsadbH3CysQuQ%3D%3D",
+          "quote": "Contrato administrativo para la contratación de la plataforma para la gestión de la sensorización de contenedores e información del servicio de recogida de RSU, poda y voluminosos en el municipio de Riba-roja de Túria, incluido en el marco de ayudas del Plan de Recuperación, Transformación y Resiliencia financiado por la Unión Europea, Next Generation UE (Ctto.138/2025)",
+          "publisher": "PLACSP",
+          "kind": "tender",
+          "addedBy": "auto-curation-v1"
+        }
+      ],
+      "createdAt": "2026-10-05",
+      "updatedAt": "2026-10-12",
+      "response": null,
+      "autoPublished": {
+        "at": "2026-10-12T06:30:10.935Z",
+        "by": "auto-curation-v1",
+        "confidence": 0.85,
+        "reviewState": "pending-review",
+        "priorStatus": "documentada",
+        "appendedEvidenceUrl": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=Fyy%2BTlMZfRsadbH3CysQuQ%3D%3D"
+      }
+    },
+    {
+      "id": "ac-psoe-1kui43c",
+      "party": "PSOE",
+      "title": "Congelación de las tarifas del agua durante dos años tras el nuevo contrato con Veolia",
+      "quote": "El acuerdo, mantendrá las tarifas congeladas durante dos años en el municipio.",
+      "source": {
+        "url": "https://www.ribarroja.es/es/noticia/riba-roja-de-t%C3%BAria-formaliza-con-veolia-el-nuevo-contrato-del-ciclo-integral-del-agua-para-reforzar-la-sostenibilidad-y-modernizar-sus-infraestructuras",
+        "publisher": "Ayuntamiento Riba-roja de Túria"
+      },
+      "madeAt": "2026-10-08",
+      "topic": "fiscal",
+      "kind": "anuncio-gobierno",
+      "status": "en-progreso",
+      "evidence": [
+        {
+          "date": "2026-10-08",
+          "url": "https://www.ribarroja.es/es/noticia/riba-roja-de-t%C3%BAria-formaliza-con-veolia-el-nuevo-contrato-del-ciclo-integral-del-agua-para-reforzar-la-sostenibilidad-y-modernizar-sus-infraestructuras",
+          "quote": "Riba-roja de Túria formaliza con Veolia el nuevo contrato del ciclo integral del agua para reforzar la sostenibilidad y modernizar sus infraestructuras",
+          "publisher": "Ayuntamiento de Riba-roja de Túria",
+          "kind": "press",
+          "addedBy": "auto-curation-v1"
+        }
+      ],
+      "createdAt": "2026-10-12",
+      "updatedAt": "2026-10-19",
+      "response": null,
+      "autoPublished": {
+        "at": "2026-10-19T06:30:07.507Z",
+        "by": "auto-curation-v1",
+        "confidence": 0.72,
+        "reviewState": "pending-review",
+        "priorStatus": "documentada",
+        "appendedEvidenceUrl": "https://www.ribarroja.es/es/noticia/riba-roja-de-t%C3%BAria-formaliza-con-veolia-el-nuevo-contrato-del-ciclo-integral-del-agua-para-reforzar-la-sostenibilidad-y-modernizar-sus-infraestructuras"
+      }
+    }
+  ]
+}

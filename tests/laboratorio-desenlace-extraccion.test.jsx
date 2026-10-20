@@ -4,6 +4,7 @@ import { MemoryRouter } from 'react-router-dom'
 import { readFileSync } from 'node:fs'
 import { join } from 'node:path'
 
+import { esAnuncioClasificado } from '../src/scraper/press-clasificado'
 import Laboratorio from '../src/pages/Laboratorio'
 import { desenlaceVigente, textoLibroVacio } from '../src/lib/press-lab'
 import { DESENLACES_EXTRACCION } from '../src/scraper/press-extraccion'
@@ -68,8 +69,12 @@ const HOY_SIN_REGISTRO =
 
 const conAfirmaciones = new Set(VERIFICADAS.items.map((r) => r.claim.articleId))
 const corte = AHORA.getTime() - 30 * DIA
+// Sin el anuncio de fotocasa.es (1auaoi4): desde el 19-10-2026 no es prensa y no se
+// pinta (press-clasificado.ts).
 const sinAfirmaciones = PRESS.items
-  .filter((p) => Date.parse(p.date) >= corte && !conAfirmaciones.has(p.id))
+  .filter(
+    (p) => Date.parse(p.date) >= corte && !conAfirmaciones.has(p.id) && !esAnuncioClasificado(p),
+  )
   .map((p) => p.id)
   .sort()
 
@@ -148,7 +153,8 @@ describe('/laboratorio con el desenlace de cada artículo', () => {
       pendientes: sinAfirmaciones.length - 2,
     })
     expect(r.con + r.descartados + r.pendientes).toBe(tarjetas())
-    expect(tarjetas()).toBe(46)
+    // 45 del feed menos el anuncio, más 1 fuera del feed.
+    expect(tarjetas()).toBe(45)
 
     const medio = screen.getByLabelText('Filtrar por medio')
     const veredicto = screen.getByLabelText('Filtrar por veredicto')
@@ -182,7 +188,7 @@ describe('/laboratorio con el desenlace de cada artículo', () => {
 
   it('un snapshot sin `extraccion` dice lo de siempre y no inventa un recuento', async () => {
     await montar(VERIFICADAS)
-    expect(veces(HOY_SIN_REGISTRO)).toBe(46 - conAfirmaciones.size)
+    expect(veces(HOY_SIN_REGISTRO)).toBe(45 - conAfirmaciones.size)
     expect(veces(textoLibroVacio(null))).toBe(0)
     expect(screen.queryByText(RECUENTO)).toBeNull()
   })
