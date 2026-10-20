@@ -31,6 +31,15 @@
  *     officiated, attendance at other bodies and dietas (acuerdo of
  *     07/07/2023, TERCERO and CUARTO). What they receive is the curator's to
  *     word; "only" is a claim the acuerdo contradicts,
+ *   - a row whose amount includes the holder's personal seniority carries it
+ *     as `antiguedadEuros` with `antiguedadQuote`, one of the passages the
+ *     source already cites, which must write the total, the seniority AND the
+ *     base that results (total − antigüedad). The 2026 cuadro gives the
+ *     Alcaldía «53.734,99 5.460,49 59.195,48»: the page published the total as
+ *     «lo fijado por cargo», and beside ISPA's 48.647,50 € for 2024 it read as
+ *     a 21,7 % raise where the base rose 11,4 %. Seniority belongs to whoever
+ *     holds the cargo, not to the cargo, so the page has to be able to say so
+ *     — from a field, never from a sentence typed beside the figure,
  *   - slugs are unique.
  */
 
@@ -58,6 +67,14 @@ export interface DedicacionByOfficial {
   amountEuros: number
   dedicacion: 'exclusiva' | 'parcial'
   role: string
+  /**
+   * The part of `amountEuros` that is the holder's personal seniority
+   * (antigüedad, trienios), when the act writes it apart. Absent when the act
+   * gives none; never 0 — a zero says nothing a missing field does not.
+   */
+  antiguedadEuros?: number
+  /** The passage (one of the source's own) that writes base, antigüedad and total. */
+  antiguedadQuote?: string
 }
 
 export interface DedicacionesSnapshot {
@@ -106,6 +123,48 @@ export function textoContieneImporte(texto: string, n: number): boolean {
  */
 export const NOTA_SOLO_ASISTENCIAS =
   /(?<![\p{L}])(?:s[oó]lo|únicamente|exclusivamente)\s+(?:perciben\s+|cobran\s+)?(?:las\s+)?asistencias/iu
+
+/** Cents, so 59.195,48 − 5.460,49 is 53.734,99 and not 53.734,990000000005. */
+const enCentimos = (n: number) => Math.round(n * 100) / 100
+
+/**
+ * The seniority inside one row's amount, if the curator recorded it. Both
+ * fields or neither; the passage must be one the source already cites (a
+ * retyped line is not a quote) and must write all three figures, so the base
+ * the page derives is a figure the act itself prints.
+ */
+function validarAntiguedad(o: DedicacionByOfficial, pasajes: string[]) {
+  const tiene = o.antiguedadEuros !== undefined
+  const cita = o.antiguedadQuote !== undefined
+  if (!tiene && !cita) return
+  must(
+    tiene,
+    `byOfficial[${o.slug}].antiguedadEuros required beside antiguedadQuote — a passage with no figure says nothing`,
+  )
+  must(
+    cita,
+    `byOfficial[${o.slug}].antiguedadQuote required beside antiguedadEuros — seniority beside a named person needs the passage that writes it`,
+  )
+  const a = o.antiguedadEuros as number
+  must(
+    isPosNum(a) && a < o.amountEuros,
+    `byOfficial[${o.slug}].antiguedadEuros must be > 0 and below amountEuros (omit the field when the act gives none)`,
+  )
+  const q = o.antiguedadQuote as string
+  must(
+    pasajes.includes(q),
+    `byOfficial[${o.slug}].antiguedadQuote must be source.quote or one of source.amountQuotes, copied exactly`,
+  )
+  const base = enCentimos(o.amountEuros - a)
+  must(
+    textoContieneImporte(q, o.amountEuros) && textoContieneImporte(q, a),
+    `byOfficial[${o.slug}].antiguedadQuote does not write the total ${importeEnNotacionEs(o.amountEuros)[0]} and the antigüedad ${importeEnNotacionEs(a)[0]}`,
+  )
+  must(
+    textoContieneImporte(q, base),
+    `byOfficial[${o.slug}].antiguedadQuote does not write the base ${importeEnNotacionEs(base)[0]} (total − antigüedad)`,
+  )
+}
 
 export function validateDedicacionesSnapshot(json: unknown): DedicacionesSnapshot {
   const s = json as DedicacionesSnapshot
@@ -176,6 +235,7 @@ export function validateDedicacionesSnapshot(json: unknown): DedicacionesSnapsho
       `byOfficial[${o.slug}].dedicacion enum`,
     )
     must(typeof o.role === 'string' && o.role.length > 0, `byOfficial[${o.slug}].role required`)
+    validarAntiguedad(o, pasajes)
   }
 
   return s

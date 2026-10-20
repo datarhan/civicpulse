@@ -1834,6 +1834,8 @@ export const CATALOGUE = {
     'cargos.detalle.pago.sinDedicacion':
       'Sin dedicación retribuida en el acuerdo de la corporación. Percibe, en su caso, asistencias por sesión, que no constan en esta fuente.',
     'cargos.detalle.pago.fuente': 'Fuente: acuerdo plenario de retribuciones.',
+    'cargos.detalle.pago.antiguedad':
+      'Incluye {antiguedad} de antigüedad personal, que va con quien ocupa el cargo y no con el cargo; sin ella, {base}.',
     // Ni cifra ni «sin dedicación»: si el fichero no se ha podido leer, no
     // sabemos qué cobra, y decirlo es lo único cierto.
     'cargos.detalle.pago.noDisponible':
@@ -1851,6 +1853,7 @@ export const CATALOGUE = {
     'cargos.detalle.stat.areasDelegadas': 'Áreas delegadas',
     'cargos.detalle.stat.partyPromises': 'Promesas · grupo',
     'cargos.detalle.stat.agendaItems': 'Puntos en pleno',
+    'cargos.detalle.stat.noDisponible': 'No se ha podido cargar; no es un cero.',
     'cargos.detalle.stat.quejas': 'Quejas pendientes',
     'cargos.detalle.portfolios.eyebrow': 'Áreas asignadas',
     'cargos.detalle.portfolios.sinFicha': 'Sin ficha de área en /departamentos: {lista}',
@@ -1889,8 +1892,12 @@ export const CATALOGUE = {
     'cargos.ispa.total': 'retribuciones y asistencias de los {n} electos · ISPA {year}',
     'cargos.ispa.totalNota':
       'No incluye las cuotas empresariales a la Seguridad Social, el personal eventual ni la asignación a los grupos políticos.',
+    // Sólo se pinta si la fila del alcalde trae `antiguedadEuros`, y las tres
+    // cifras salen de ella: el pasaje del acta que el validador exige escribe
+    // base, antigüedad y total. Dice por qué la nómina del ISPA y el total del
+    // cuadro no se comparan de frente, y cuál es la cifra del cargo.
     'cargos.ispa.trienios':
-      'El acuerdo añade «+ trienios» a esa asignación, y el ISPA publica lo percibido cada año sin desglosarlos.',
+      'El ISPA da una sola cifra por fila, sin desglose, y no dice si la suya incluye antigüedad, así que sus {ispa} no tienen con qué compararse de frente: los {total} del cuadro llevan la antigüedad dentro, y los {base} del cargo son de otro año.',
     'cargos.hero.mandato': 'mandato {m}',
     // Quién gobierna y quién fiscaliza se DERIVA de las áreas delegadas, no del
     // nombre de un partido: la frase tiene que aguantar una coalición, un
@@ -1903,14 +1910,27 @@ export const CATALOGUE = {
     // los electos, sin cuotas empresariales, personal eventual ni asignación a
     // los grupos. Es la palabra equivocada sobre la cifra correcta, la misma
     // clase de defecto que «crédito» por «gastado» — y ya se corrigió una vez.
+    // {n} son las filas del ISPA de ese año, no el padrón de hoy: quien entró
+    // en 2025 no cobró en 2024, y quien cobró en 2024 puede haberse ido.
     'cargos.hero.coste':
-      'Los {n} percibieron {importe} en {year} entre retribuciones y asistencias, y ninguno cobró cero.',
+      'En {year}, los {n} electos de ese año percibieron {importe} entre retribuciones y asistencias, y ninguno cobró cero.',
     'cargos.hero.fichas': 'Fichas biográficas oficiales en el portal: {n} de {total}',
     'cargos.composicion.title': 'Composición del pleno · {n} escaños',
     'cargos.composicion.gobiernan': 'con áreas delegadas · gobiernan',
     'cargos.composicion.fiscalizan': 'sin áreas delegadas · fiscalizan',
     'cargos.retri.eyebrow': 'Retribuciones · los {n}, ninguno a cero',
+    // Sin el reparto cuadrado o con una fila a cero, el rótulo no lo afirma.
+    'cargos.retri.eyebrowBase': 'Retribuciones · ISPA {year}',
     'cargos.retri.title': 'Qué cobra la corporación, y de dónde sale cada cifra',
+    // La antigüedad va con la persona, no con el cargo. Las cifras salen de la
+    // fila de dedicaciones.json (antiguedadEuros), nunca de este texto.
+    'cargos.retri.antiguedadBadge': '· incluye {antiguedad} de antigüedad personal',
+    'cargos.retri.tramoAntiguedad':
+      'Incluye {antiguedad} de antigüedad personal de quien lo ocupa; sin ella, {base}.',
+    'cargos.retri.tramoAntiguedadVarios':
+      'Incluyen {antiguedad} de antigüedad personal de quienes ocupan estos cargos.',
+    'cargos.retri.notaAntiguedad':
+      '; de ellos, {antiguedad} son antigüedad personal, que va con quien ocupa el cargo y no con el cargo',
     // El techo, hecho visible: si el reparto no reconstruye el total que el
     // propio analizador calculó, la página retira los subtotales en vez de
     // publicar una aritmética que nadie ha comprobado.
@@ -1955,10 +1975,15 @@ export const CATALOGUE = {
     'cargos.detalle.promesas.title': 'Promesas del grupo parlamentario',
     'cargos.detalle.promesas.viewAll': 'Ver tracker completo →',
     'cargos.detalle.promesas.empty': 'Sin promesas documentadas para este grupo.',
+    // Ni «0» ni «sin promesas» cuando el fichero no llegó: eso no se sabe.
+    'cargos.detalle.promesas.noDisponible':
+      'No se ha podido cargar el registro de promesas; no significa que el grupo no tenga ninguna.',
     'cargos.detalle.promesas.more': 'Ver {n} promesas más →',
     'cargos.detalle.agenda.eyebrow': 'Puntos de orden del día',
     'cargos.detalle.agenda.title': 'Asuntos llevados al pleno por sus concejalías',
     'cargos.detalle.agenda.empty': 'Sin puntos registrados en las áreas que gestiona.',
+    'cargos.detalle.agenda.noDisponible':
+      'No se ha podido cargar el orden del día de los plenos; no significa que no haya puntos.',
     'cargos.detalle.agenda.more': '+ {n} puntos anteriores',
     'cargos.detalle.quejas.eyebrow': 'Canal ciudadano',
     'cargos.detalle.quejas.title': 'Quejas asignadas por el router',
@@ -3826,6 +3851,8 @@ export const CATALOGUE = {
     'cargos.detalle.pago.sinDedicacion':
       "Sense dedicació retribuïda en l'acord de la corporació. Percep, si escau, assistències per sessió, que no consten en esta font.",
     'cargos.detalle.pago.fuente': 'Font: acord plenari de retribucions.',
+    'cargos.detalle.pago.antiguedad':
+      'Inclou {antiguedad} d’antiguitat personal, que va amb qui ocupa el càrrec i no amb el càrrec; sense ella, {base}.',
     'cargos.detalle.pago.noDisponible':
       "No s'ha pogut carregar l'acord de retribucions, així que ací no consta què cobra pel càrrec. Açò no significa que no tinga dedicació.",
     'cargos.detalle.area.eyebrow': 'Contractació de les seues àrees',
@@ -3841,6 +3868,7 @@ export const CATALOGUE = {
     'cargos.detalle.stat.areasDelegadas': 'Àrees delegades',
     'cargos.detalle.stat.partyPromises': 'Promeses · grup',
     'cargos.detalle.stat.agendaItems': 'Punts al ple',
+    'cargos.detalle.stat.noDisponible': 'No s’ha pogut carregar; no és un zero.',
     'cargos.detalle.stat.quejas': 'Queixes pendents',
     'cargos.detalle.portfolios.eyebrow': 'Àrees assignades',
     'cargos.detalle.portfolios.sinFicha': 'Sense fitxa d’àrea a /departamentos: {lista}',
@@ -3869,20 +3897,28 @@ export const CATALOGUE = {
     'cargos.ispa.totalNota':
       'No inclou les quotes empresarials a la Seguretat Social, el personal eventual ni l’assignació als grups polítics.',
     'cargos.ispa.trienios':
-      'L’acord afig «+ triennis» a eixa assignació, i l’ISPA publica el que es percep cada any sense desglossar-los.',
+      'L’ISPA dona una sola xifra per fila, sense desglossament, i no diu si la seua inclou antiguitat, així que els seus {ispa} no tenen amb què comparar-se de front: els {total} del quadre porten l’antiguitat dins, i els {base} del càrrec són d’un altre any.',
     'cargos.hero.mandato': 'mandat {m}',
     'cargos.hero.lead':
       'El ple té {total} escons. {partido} suma {nGob} i es reparteix totes les àrees delegades; els {nOpo} restants no en dirigeixen cap, i eixe és el seu paper: fiscalitzar, no gestionar.',
     'cargos.hero.leadVarios':
       'El ple té {total} escons. {nGob} es reparteixen totes les àrees delegades; els {nOpo} restants no en dirigeixen cap, i eixe és el seu paper: fiscalitzar, no gestionar.',
     'cargos.hero.coste':
-      'Els {n} van percebre {importe} en {year} entre retribucions i assistències, i cap va cobrar zero.',
+      'En {year}, els {n} electes d’aquell any van percebre {importe} entre retribucions i assistències, i cap va cobrar zero.',
     'cargos.hero.fichas': 'Fitxes biogràfiques oficials al portal: {n} de {total}',
     'cargos.composicion.title': 'Composició del ple · {n} escons',
     'cargos.composicion.gobiernan': 'amb àrees delegades · governen',
     'cargos.composicion.fiscalizan': 'sense àrees delegades · fiscalitzen',
     'cargos.retri.eyebrow': 'Retribucions · els {n}, cap a zero',
+    'cargos.retri.eyebrowBase': 'Retribucions · ISPA {year}',
     'cargos.retri.title': 'Què cobra la corporació, i d’on ix cada xifra',
+    'cargos.retri.antiguedadBadge': '· inclou {antiguedad} d’antiguitat personal',
+    'cargos.retri.tramoAntiguedad':
+      'Inclou {antiguedad} d’antiguitat personal de qui l’ocupa; sense ella, {base}.',
+    'cargos.retri.tramoAntiguedadVarios':
+      'Inclouen {antiguedad} d’antiguitat personal de qui ocupa estos càrrecs.',
+    'cargos.retri.notaAntiguedad':
+      '; d’ells, {antiguedad} són antiguitat personal, que va amb qui ocupa el càrrec i no amb el càrrec',
     'cargos.retri.noCuadra':
       'El repartiment entre dedicació i assistències no reconstruïx el total publicat, així que els subtotals de cada columna es retiren fins que quadren. La capçalera continua sent la xifra del ministeri.',
     'cargos.retri.fijadoPor': '· dedicació {dedicacion}, fixada en l’acord',
@@ -3917,10 +3953,14 @@ export const CATALOGUE = {
     'cargos.detalle.promesas.title': 'Promeses del grup parlamentari',
     'cargos.detalle.promesas.viewAll': 'Veure tracker complet →',
     'cargos.detalle.promesas.empty': 'Sense promeses documentades per a este grup.',
+    'cargos.detalle.promesas.noDisponible':
+      'No s’ha pogut carregar el registre de promeses; no significa que el grup no en tinga cap.',
     'cargos.detalle.promesas.more': 'Veure {n} promeses més →',
     'cargos.detalle.agenda.eyebrow': "Punts de l'ordre del dia",
     'cargos.detalle.agenda.title': 'Assumptes portats al ple per les seues regidories',
     'cargos.detalle.agenda.empty': 'Sense punts registrats en les àrees que gestiona.',
+    'cargos.detalle.agenda.noDisponible':
+      'No s’ha pogut carregar l’ordre del dia dels plens; no significa que no hi haja punts.',
     'cargos.detalle.agenda.more': '+ {n} punts anteriors',
     'cargos.detalle.quejas.eyebrow': 'Canal ciutadà',
     'cargos.detalle.quejas.title': 'Queixes assignades pel router',
