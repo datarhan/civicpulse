@@ -1,6 +1,6 @@
 {
-  "generatedAt": "2026-10-19T07:43:22.017Z",
-  "composedAt": "2026-10-20T05:38:57.466Z",
+  "generatedAt": "2026-10-20T06:45:10.098Z",
+  "composedAt": "2026-10-20T06:45:10.252Z",
   "source": {
     "description": "Fact-check verdicts for every pleno-claims-suggestions.json entry. Cross-references against tenders / BDNS / budget / promises. Pure deterministic — no LLM judgement.",
     "contract": "Machine-written verdicts; a curator reviews before surfacing contradicho or promesa-repetida editorially."
@@ -9,14 +9,14 @@
     "total": 7819,
     "byVerdict": {
       "verificado": 10,
-      "parcial": 14,
+      "parcial": 13,
       "contradicho": 0,
-      "sin-datos": 7795,
+      "sin-datos": 7796,
       "promesa-repetida": 0
     },
     "sinDatosPorque": {
       "sinCorpus": 3425,
-      "comprobadoSinHallar": 3195,
+      "comprobadoSinHallar": 3196,
       "noConsta": 1175
     }
   },
@@ -3047,17 +3047,9 @@
       },
       "verification": {
         "claimId": "zrbgic-086-cit-ec50ea",
-        "verdict": "parcial",
-        "summary": "Coincidencia parcial: hay datos relacionados pero no idénticos al claim.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=hFrradR5sN8BPRBxZ4nJ%2Fg%3D%3D",
-            "snippet": "El objeto del presente contrato es establecer las condiciones por las que ha de regirse la adjudicación y posterior ejecución del contrato del servicio mantenimiento césped artificial en instalaciones deportivas municipales. Servicio mantenimiento césped artificial en instalaciones deportivas municipales por lotes -2 lotes-, por procedimiento abierto súper simplificado, mejor relación calidad-precio, criterios de adjudicación el precio con condiciones especiales de ejecución de carácter social y medioambiental · Ayuntamiento de Riba-roja de Túria · agriculture",
-            "similarity": 1,
-            "stance": "checked"
-          }
-        ],
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders y tenders-ted que la sostenga. Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
+        "evidence": [],
         "checkedAgainst": [
           "tenders",
           "tenders-ted"
@@ -24515,16 +24507,8 @@
       "verification": {
         "claimId": "brxx5g-052-acu-d13e87",
         "verdict": "sin-datos",
-        "summary": "El único parecido con la base municipal es el título de un contrato: no acredita lo que la acusación afirma. Se deja el documento a la vista como lo que se miró.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=eO5j98RA9t9vYnTkQN0%2FZA%3D%3D",
-            "snippet": "Aplicativo área de policía local · Ayuntamiento de Riba-roja de Túria · it · estado: void",
-            "similarity": 0.4,
-            "stance": "checked"
-          }
-        ],
+        "summary": "No se encontró registro en tenders y tenders-ted que la sostenga. Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
+        "evidence": [],
         "checkedAgainst": [
           "tenders",
           "tenders-ted"
@@ -27175,15 +27159,7 @@
         "claimId": "brxx5g-137-cit-0d7f08",
         "verdict": "sin-datos",
         "summary": "No se encontró registro en tenders y tenders-ted que la sostenga. Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=HqQWB8HdvFAQK2TEfXGy%2BA%3D%3D",
-            "snippet": "Servicio de limpieza CEIP Cervantes · Ayuntamiento de Riba-roja de Túria · environment",
-            "similarity": 0.4,
-            "stance": "checked"
-          }
-        ],
+        "evidence": [],
         "checkedAgainst": [
           "tenders",
           "tenders-ted"
@@ -28979,15 +28955,7 @@
         "claimId": "brxx5g-161-cit-616b80",
         "verdict": "sin-datos",
         "summary": "No se encontró registro en tenders y tenders-ted que la sostenga. Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=HqQWB8HdvFAQK2TEfXGy%2BA%3D%3D",
-            "snippet": "Servicio de limpieza CEIP Cervantes · Ayuntamiento de Riba-roja de Túria · environment",
-            "similarity": 0.4,
-            "stance": "checked"
-          }
-        ],
+        "evidence": [],
         "checkedAgainst": [
           "tenders",
           "tenders-ted"
@@ -50133,7 +50101,7 @@
           {
             "kind": "tender",
             "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=qDjb9WdwTN3jHF5qKI4aaw%3D%3D",
-            "snippet": "Contrato mixto suministro y servicio implantación de un sistema de debate, voto electrónico, captura, distribución, grabación de video y control para el salón de plenos del ayuntamiento de Riba-roja de Turia, por procedimiento abierto simplificado sumario, mejora relación calidad precio, varios criterios de adjudicación, con condición de ejecución de carácter social y medioambiental. · Ayuntamiento de Riba-roja de Túria · it · 70.158 €",
+            "snippet": "Contrato mixto suministro y servicio implantación de un sistema de debate, voto electrónico, captura, distribución, grabación de video y control para el salón de plenos del ayuntamiento de Riba-roja de Turia, por procedimiento abierto simplificado sumario, mejora relación calidad precio, varios criterios de adjudicación, con condición de ejecución de carácter social y medioambiental. · Ayuntamiento de Riba-roja de Túria · AMARA MEGAFONIA CCTV VOZ-DATOS, SL · it · 80.667 €",
             "similarity": 0.85,
             "stance": "checked"
           }
@@ -88407,16 +88375,8 @@
       "verification": {
         "claimId": "rx4hb4-517-acu-8cb897",
         "verdict": "sin-datos",
-        "summary": "El único parecido con la base municipal es el título de un contrato: no acredita lo que la acusación afirma. Se deja el documento a la vista como lo que se miró.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=56xTbbVhVpxxseVhcqrkhw%3D%3D",
-            "snippet": "Contratación servicio dirección de obra y dirección de ejecución material, coordinación en seguridad \ny salud para proyecto de obras “Reconstrucción de vallados de parcelas en los polígonos industriales tras los daños sufridos tras la DANA en el T.M. de Riba-roja de Túria (Valencia)” - Ctto92/2026. · Ayuntamiento de Riba-roja de Túria · José Luis Moreno Delgado · architecture · estado: awarded",
-            "similarity": 1,
-            "stance": "checked"
-          }
-        ],
+        "summary": "No se encontró registro en tenders y tenders-ted que la sostenga. Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
+        "evidence": [],
         "checkedAgainst": [
           "tenders",
           "tenders-ted"

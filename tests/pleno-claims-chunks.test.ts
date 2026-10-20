@@ -330,3 +330,82 @@ describe('manifest · las pasadas, con la misma regla que «no consta»', () => 
     expect('retenidasPorMotivo' in manifest.totals).toBe(false)
   })
 })
+
+/**
+ * «DECLARACIONES PUBLICADAS 5.112» contaba FILAS de extracción. Las ventanas del
+ * extractor se solapan, y su clave de deduplicado (`claimKey` en
+ * pleno-claim-llm.ts) lleva el tipo y el tema: una misma frase clasificada de
+ * dos maneras deja dos filas. El 19-10-2026, 291 de las 5.112 servidas repetían
+ * el literal de otra de su sesión; el par de abajo es real. No se re-identifica
+ * ni se borra nada del corpus: el manifiesto dice, además, cuántos literales
+ * distintos hay.
+ */
+describe('manifest · literales distintos, aparte de las filas', () => {
+  const real = (
+    id: string,
+    segmentIndex: number,
+    topic: 'other' | 'transparencia',
+    verbatim = 'Trece votos a favor. Ocho abstenciones.',
+    plenoId = '10yl550',
+  ): VerifiedClaimItem => ({
+    claim: {
+      ...baseClaim,
+      id,
+      plenoId,
+      plenoDate: '2026-05-11',
+      segmentIndex,
+      topic,
+      verbatim,
+    },
+    verification: { verdict: 'sin-datos', confidence: 0.5, checkedAgainst: [] },
+  })
+  const items = [
+    real('10yl550-030-afi-5e20f1', 30, 'other'),
+    // La misma frase, en la ventana siguiente, con otro tema y otra puntuación.
+    real('10yl550-031-afi-a5f40a', 31, 'transparencia', 'trece votos a favor, ocho abstenciones'),
+    // La misma frase en OTRA sesión es otra declaración.
+    real('x-1', 1, 'other', 'Trece votos a favor. Ocho abstenciones.', 'otra'),
+  ]
+  const { manifest } = buildManifest(groupItemsByPleno(items), '2026-10-19T00:00:00.000Z')
+
+  it('las filas siguen siendo filas, y los literales se cuentan aparte', () => {
+    expect(manifest.totals.items).toBe(3)
+    expect(manifest.totals.literalesDistintos).toBe(2)
+  })
+})
+
+describe('manifest · el acta de una sesión que ya publicamos no cuenta', () => {
+  const fila = (segmentIndex: number, verbatim: string): VerifiedClaimItem => ({
+    claim: {
+      ...baseClaim,
+      id: `K-${segmentIndex}`,
+      plenoId: 'k4olcs',
+      plenoDate: '2026-04-20',
+      segmentIndex,
+      verbatim,
+    },
+    verification: { verdict: 'sin-datos', confidence: 0.5, checkedAgainst: [] },
+  })
+  // Las dos son filas publicadas (k4olcs-014-afi-126921 y k4olcs-151-afi-678cbf).
+  const items = [
+    fila(
+      14,
+      'en julio del 24, en acuerdo plenario, se aprobó el documento referido a la política del sistema interno de información',
+    ),
+    fila(151, 'En el 2023 se aprobó un acuerdo plenario'),
+  ]
+  const { manifest } = buildManifest(
+    groupItemsByPleno(items),
+    '2026-10-19T00:00:00.000Z',
+    {},
+    0,
+    {},
+    null,
+    new Set(['2024-07-01', '2024-07-22', '2024-07-29']),
+  )
+
+  it('julio de 2024 está publicado; 2023, no', () => {
+    expect(manifest.totals.cobertura.porClaseDocumental.porClase.acta).toBe(1)
+    expect(manifest.totals.cobertura.porClaseDocumental.apartadas).toBe(1)
+  })
+})

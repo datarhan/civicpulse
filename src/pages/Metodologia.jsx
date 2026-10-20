@@ -1417,10 +1417,22 @@ export default function Metodologia() {
             <ul style={{ marginTop: 6 }}>
               <li>
                 <strong>verificado</strong> — coincidencia fuerte (importe + entidad) en alguna base
-                documental.
+                documental.{' '}
+                {/* 19-10-2026: k4olcs-019-cit-b9b013 salía «Verificado» por 80.666 € con
+                    la licitación de su expediente, que imprime 70.158 €. */}
+                La fila que se cita imprime la cifra dicha, con un 1 % de margen: si el expediente
+                la trae en otra de sus filas —la adjudicación con IVA, por ejemplo—, se cita ésa; si
+                ninguna la imprime, el veredicto no pasa de <em>parcial</em>.
               </li>
               <li>
-                <strong>parcial</strong> — coincidencia moderada; entidad o importe difieren algo.
+                <strong>parcial</strong> — coincidencia moderada; entidad o importe difieren algo.{' '}
+                {/* 19-10-2026: zrbgic-086-cit-ec50ea, una valoración en valenciano
+                    sobre un mantenimiento, salía «parcial» sobre el contrato del
+                    césped artificial que sólo nombraba la paráfrasis del extractor. */}
+                Cuando la cita no trae cifra y sólo nombra una obra, el expediente se busca con las
+                palabras que dijo quien habla, no con la descripción que anotó el extractor: un
+                contrato que sólo casa con esa descripción no sostiene ningún veredicto, y la
+                declaración queda en <em>sin-datos</em>.
               </li>
               <li>
                 <strong>contradicho</strong> — la base documental registra un importe distinto, o el
@@ -1464,27 +1476,48 @@ export default function Metodologia() {
                   que se leía como desmentido. 30-09-2026. */}
               {/* Los recuentos contaban «sin corpus que consultar» las filas
                   cuya lista había sustituido una pasada, debajo de tarjetas que
-                  decían «no constan». 30-09-2026. */}
+                  decían «no constan». 30-09-2026. Y el rótulo decía de más: esas
+                  filas no carecen de corpus, es que no se les lanzó ningún
+                  comparador; el padrón, el paro y las votaciones y actas de
+                  pleno están publicados. 19-10-2026. */}
               <li>
                 <strong>sin-datos</strong> — ningún registro de las bases consultadas sostiene la
-                afirmación, o no había ninguna con la que cotejarla. Puede ser cierta, pero no está
-                atestiguada (muy frecuente: reconocimientos extrajudiciales, operaciones internas).
-                La explicación de su tarjeta nombra sólo las bases que constan como consultadas —las
-                mismas que su línea «Fuentes comprobadas»— y, cuando no consta ninguna, no dice que
-                se buscara. Cuando la cifra citada se cotejó con los contratos y el título de uno
-                coincide en parte con lo citado, la tarjeta enseña ese expediente y dice que su
-                importe no es la cifra: se miró, y ni la sostiene ni la desmiente. A una cita sin
-                cifra no se le enseña ninguno, porque no hubo importe que cotejar. Los recuentos de{' '}
-                <code>/declaraciones</code>, <code>/plenos</code> y{' '}
+                afirmación, o no se lanzó ningún comparador con el que cotejarla. Puede ser cierta,
+                pero no está atestiguada (muy frecuente: reconocimientos extrajudiciales,
+                operaciones internas). La explicación de su tarjeta nombra sólo las bases que
+                constan como consultadas —las mismas que su línea «Fuentes comprobadas»— y, cuando
+                no consta ninguna, no dice que se buscara. Cuando la cifra citada se cotejó con los
+                contratos y el título de uno coincide en parte con lo citado, la tarjeta enseña ese
+                expediente y dice que su importe no es la cifra: se miró, y ni la sostiene ni la
+                desmiente. A una cita sin cifra no se le enseña ninguno, porque no hubo importe que
+                cotejar. Los recuentos de <code>/declaraciones</code>, <code>/plenos</code> y{' '}
                 <code>/laboratorio/cobertura</code> las reparten en tres, con la misma regla que esa
                 línea: <strong>comprobadas sin hallar nada</strong>, porque consta alguna base
-                consultada; <strong>sin corpus que consultar</strong>, porque no hay nada anotado
-                («ninguna»); y aquellas de las que <strong>no consta qué se consultó</strong> («no
-                constan»), porque una revisión posterior —del motor de veredictos o de un curador—
-                rehízo el veredicto y dejó su marca en lugar de la lista. Éstas no se cuentan como
-                «sin corpus»: el motor juzgó las suyas sobre contratos o subvenciones candidatos, y
+                consultada; <strong>ningún comparador lanzado</strong>, porque no hay nada anotado
+                («ninguna»): el verificador sólo lanza uno cuando la declaración trae un importe en
+                euros, cuando cita una obra por su nombre o cuando es una promesa, y eso no quiere
+                decir que no haya datos con que contrastarla —el padrón, el paro y las votaciones y
+                actas de pleno se publican en este sitio y todavía no tienen comparador—; y aquellas
+                de las que <strong>no consta qué se consultó</strong> («no constan»), porque una
+                revisión posterior —del motor de veredictos o de un curador— rehízo el veredicto y
+                dejó su marca en lugar de la lista. Éstas no se cuentan entre las de «ningún
+                comparador»: el motor juzgó las suyas sobre contratos o subvenciones candidatos, y
                 el curador, sobre la evidencia que corregía; que no conste cuáles no quiere decir
-                que no hubiera con qué.
+                que no hubiera con qué.{' '}
+                {/* «DECLARACIONES PUBLICADAS 5112» eran filas: 291 repetían el
+                    literal de otra de su sesión. 19-10-2026. */}
+                Esos recuentos cuentan filas de extracción, no frases: las ventanas del extractor se
+                solapan, y una misma frase clasificada de dos maneras deja dos filas. No se borra
+                ninguna ni se le cambia el identificador; <code>/laboratorio/cobertura</code> dice
+                además cuántos literales distintos son.{' '}
+                {/* La columna «Declaraciones que dependen» contaba por la palabra:
+                    de 14 «actas», sólo 2 o 3 remitían a un acta que no tengamos.
+                    19-10-2026. */}
+                Y su tabla de documentos que se pueden pedir cuenta las declaraciones que{' '}
+                <em>nombran</em> ese tipo de documento, por su léxico, no las que dependen de él; no
+                cuenta el acta de un pleno que ya publicamos ni la de una reunión, ni el informe, el
+                plan o el expediente de otro órgano cuando la frase lo nombra, ni el del periodo
+                medio de pago, que publica Hacienda.
               </li>
               <li>
                 <strong>promesa-repetida</strong> — la promesa coincide con una ya documentada en el
@@ -1495,10 +1528,11 @@ export default function Metodologia() {
                 licitación bajo una cita que daba la adjudicación con IVA, y el
                 lector no podía cuadrar «81 K €» con «70.158 €». 30-09-2026. */}
             <p style={{ margin: '8px 0 0' }}>
-              Cada fila de contrato imprime el importe que el verificador comparó, uno por fila, y
-              un mismo expediente trae varios: de licitación y de adjudicación, con IVA y sin él. Si
-              el impreso no es la cifra citada y otro importe del mismo expediente sí lo es, la
-              tarjeta dice debajo qué es cada uno.
+              Cada fila de contrato imprime un importe, uno por fila, y un mismo expediente trae
+              varios: de licitación y de adjudicación, con IVA y sin él. Bajo un <em>verificado</em>{' '}
+              automático es la cifra citada, redondeada a euros. En las demás, es el importe que el
+              verificador comparó; si no es la cifra citada y otro importe del mismo expediente sí
+              lo es, la tarjeta dice debajo qué es cada uno.
             </p>
             {/* Hasta el 12-10-2026 la fila imprimía «sim 1.00» suelto, y junto a
                 «Parcial» se leía como coincidencia perfecta. */}

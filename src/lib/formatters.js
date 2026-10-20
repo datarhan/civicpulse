@@ -297,6 +297,30 @@ export function decimal(n, digitos = 1) {
 }
 
 /**
+ * Un entero con separador de miles, también de cuatro cifras: «5.112», no
+ * «5112».
+ *
+ * `toLocaleString('es-ES')` no agrupa los números de cuatro cifras (la norma
+ * académica), y en una página que pone «5112» al lado de «12.403» el lector lee
+ * dos magnitudes distintas. /laboratorio/cobertura lo hacía en sus tarjetas
+ * (19-10-2026). Es la misma decisión que ya tomó la tabla del reportaje de
+ * turismo con `useGrouping: 'always'`; un navegador que no la entienda vuelve a
+ * la regla de siempre, que no rompe nada.
+ *
+ * Sin número devuelve la cadena vacía: un cero es un dato que nadie midió.
+ *
+ * @param {number|null|undefined} n
+ * @returns {string}
+ */
+export function entero(n) {
+  if (n == null || !Number.isFinite(Number(n))) return ''
+  return Number(n).toLocaleString('es-ES', {
+    maximumFractionDigits: 0,
+    useGrouping: 'always',
+  })
+}
+
+/**
  * Un porcentaje para leer: lo que no es cero no se escribe «0», ni lo que no
  * llega al total «100». Con 2 declaraciones de 1.005 la ficha de urbanismo decía
  * «0%», y quien lee concluye que no hay ninguna. Devuelve la cifra sin el signo;

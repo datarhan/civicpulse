@@ -70,6 +70,9 @@ describe('verifyClaim — verificado on tender exact match', () => {
     const v = verifyClaim({
       claim: baseClaim({
         type: 'cita_obra',
+        // El objeto tiene que estar en la cita: el camino de sólo-objeto
+        // empareja con lo que se dijo, no con la paráfrasis del extractor.
+        verbatim: 'la mejora del carril bici y de los refugios climáticos',
         entities: { referencedEntity: 'refugios climaticos carril bici' },
       }),
       tenders: {
@@ -251,6 +254,9 @@ describe('un parecido de TÍTULO no verifica, y a una acusación no la funda', (
     const v = verifyClaim({
       claim: baseClaim({
         type: 'cita_obra',
+        // El objeto tiene que estar en la cita: el camino de sólo-objeto
+        // empareja con lo que se dijo, no con la paráfrasis del extractor.
+        verbatim: 'la mejora del carril bici y de los refugios climáticos',
         entities: { referencedEntity: 'refugios climaticos carril bici' },
       }),
       tenders: { contracts: [contratoDelObjeto] },
@@ -309,6 +315,8 @@ describe('un parecido de TÍTULO no verifica, y a una acusación no la funda', (
         accusationSubtype: 'factual',
         speakerGroup: 'PP',
         topic: 'medio-ambiente',
+        verbatim:
+          '¿cómo puede ser que ustedes quiten 50.000 euros del plan de refugios climáticos?',
         entities: { amountEuros: 50_000, referencedEntity: 'plan de refugios climaticos' },
       }),
       // 83.000 € contra 50.000 citados: ratio² = 0,36 — ni casa por importe

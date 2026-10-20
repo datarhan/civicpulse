@@ -1,0 +1,44 @@
+{
+  "_comment": "La fila servida de k4olcs-019-cit-b9b013 tal como estaba en main 79949c2a (19-10-2026): «Verificado» por 80.666 € con la licitación de 32/2024, que imprime 70.158 €. Desde entonces el verificador cita la fila que imprime la cifra (claim-verifier.ts, filaQueDiceLaCifra), y esta forma ya no se sirve; se congela aquí para que el puente de importe se siga probando con una fila real.",
+  "item": {
+    "claim": {
+      "id": "k4olcs-019-cit-b9b013",
+      "plenoId": "k4olcs",
+      "plenoDate": "2026-04-20",
+      "segmentIndex": 19,
+      "type": "cita_obra",
+      "speakerGroup": null,
+      "verbatim": "sistema de debate, captura y grabación de vídeo y control del salón de plenos municipales.",
+      "context": "...la actuación 2, sistema de debate, captura y grabación de vídeo y control del salón de plenos municipales.",
+      "topic": "transparencia",
+      "entities": {
+        "amountEuros": 80666,
+        "referencedEntity": "sistema de debate, captura y grabación de vídeo y control del salón de plenos"
+      },
+      "confidence": 0.9,
+      "reasoning": "Es una referencia a un proyecto/obra municipal identificable; debería poder verificarse en el expediente de actualización del inventario.",
+      "requiresHumanApproval": true
+    },
+    "verification": {
+      "claimId": "k4olcs-019-cit-b9b013",
+      "verdict": "verificado",
+      "summary": "Cita encontrada con coincidencia fuerte en los datos municipales.",
+      "evidence": [
+        {
+          "kind": "tender",
+          "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=qDjb9WdwTN3jHF5qKI4aaw%3D%3D",
+          "snippet": "Contrato mixto suministro y servicio implantación de un sistema de debate, voto electrónico, captura, distribución, grabación de video y control para el salón de plenos del ayuntamiento de Riba-roja de Turia, por procedimiento abierto simplificado sumario, mejora relación calidad precio, varios criterios de adjudicación, con condición de ejecución de carácter social y medioambiental. · Ayuntamiento de Riba-roja de Túria · it · 70.158 €",
+          "similarity": 0.85,
+          "stance": "checked"
+        }
+      ],
+      "checkedAgainst": [
+        "tenders",
+        "tenders-ted",
+        "bdns",
+        "budget"
+      ]
+    },
+    "visibility": "shown"
+  }
+}

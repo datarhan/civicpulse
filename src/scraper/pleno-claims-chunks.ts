@@ -29,7 +29,8 @@ import {
   marcasDePasada,
   type ResumenSinDatos,
 } from './claim-verdicts'
-import { agruparPorClaseDocumental } from './clase-documental'
+import { agruparPorClaseDocumental, type FilaDocumental } from './clase-documental'
+import { normalizarLiteral } from './normalize'
 
 // The verifier emits items as { claim, verification } pairs. We keep
 // that shape verbatim in the chunks so the SPA hook can stitch the
@@ -88,6 +89,19 @@ export interface PlenoClaimsChunkManifest {
   /** Aggregate stats — same as the monolith's stats block. */
   totals: {
     items: number
+    /**
+     * Literales distintos por sesión entre los `items` servidos: pares
+     * (pleno, literal normalizado con `normalizarLiteral`).
+     *
+     * `items` cuenta FILAS de extracción, y las ventanas del extractor se
+     * solapan: su clave de deduplicado lleva el tipo y el tema, así que una
+     * misma frase clasificada de dos maneras deja dos filas. El 19-10-2026, 291
+     * de 5.112. No se re-identifica ni se borra ninguna —los ids son estables
+     * y otras capas cuelgan de ellos—; se dice cuántas frases son.
+     *
+     * Ausente en un manifiesto anterior al 19-10-2026: entonces no consta.
+     */
+    literalesDistintos?: number
     plenos: number
     byVerdict: Record<string, number>
     /**
@@ -118,12 +132,15 @@ export interface PlenoClaimsChunkManifest {
       porTema: Record<string, CasillaDeCobertura>
       corpus: Record<string, number>
       /**
-       * De las declaraciones SIN corpus que consultar, qué documento nombran.
+       * De las declaraciones a las que no se lanzó ningún comparador (casilla
+       * `sinCorpus`), qué tipo de documento NOMBRAN.
        *
-       * Es el material de una solicitud de acceso: «estas N dependen de un
-       * informe técnico que no se publica». Léxico, nunca pronóstico — y lo que
-       * no nombra ningún documento se cuenta aparte, sin repartirse, porque
-       * repartirlo haría que cualquier clase pareciera mayor de lo que es.
+       * Es el material de una solicitud de acceso. Léxico, nunca pronóstico:
+       * nombrar un tipo de documento no es depender de él, y la página lo dice
+       * así. Lo que no nombra ningún documento se cuenta aparte, sin
+       * repartirse, y lo que sólo nombra algo que no se le puede pedir a este
+       * Ayuntamiento —un acta que ya publicamos, un informe de otro órgano—,
+       * en `apartadas` (`clasesQueCuentan`, clase-documental.ts).
        *
        * La misma población que la casilla `sinCorpus`, y no la de «no consta»:
        * una fila que el motor juzgó sobre candidatos, o que un curador bajó
@@ -133,6 +150,8 @@ export interface PlenoClaimsChunkManifest {
       porClaseDocumental: {
         porClase: Record<string, number>
         sinDocumento: number
+        /** Nombran algún documento, pero todo lo que nombran se apartó. */
+        apartadas: number
         total: number
       }
       /**
@@ -149,7 +168,8 @@ export interface PlenoClaimsChunkManifest {
     }
     /**
      * Por qué `sin-datos`, sobre lo PUBLICADO (post-puerta editorial).
-     * `sinCorpus` = nada anotado, no había corpus que consultar;
+     * `sinCorpus` = nada anotado: no se lanzó ningún comparador (el nombre de la
+     * casilla es histórico; no dice que no haya corpus, ver `desenlaceDeCotejo`);
      * `comprobadoSinHallar` = se consultaron y no hubo coincidencia;
      * `noConsta` = una pasada sustituyó la lista, no consta qué se consultó.
      * Las tres suman el `sin-datos` de `byVerdict`. Ver `resumirSinDatos` en
@@ -315,6 +335,11 @@ export function buildManifest(
   retenidasSinProcedencia = 0,
   retiradas: Partial<Record<MotivoDeRetirada, number>> = {},
   retenidasPorMotivo: Record<MotivoDeRetencion, number> | null = null,
+  /**
+   * Las fechas de las sesiones cuya acta publicamos (pleno-actas.json). `null`
+   * si no se pudo leer: entonces no se aparta ninguna acta por publicada.
+   */
+  sesionesConActa: ReadonlySet<string> | null = null,
 ): {
   manifest: PlenoClaimsChunkManifest
   chunks: Map<string, PlenoClaimsChunk>
@@ -331,9 +356,11 @@ export function buildManifest(
   const porTipo: Record<string, CasillaDeCobertura> = {}
   const porTema: Record<string, CasillaDeCobertura> = {}
   const corpus: Record<string, number> = {}
-  // Los literales de las filas sin corpus que consultar, para agruparlos por
-  // el documento que nombran.
-  const sinCorpusVerbatims: string[] = []
+  // Las filas a las que no se lanzó ningún comparador, para agruparlas por el
+  // documento que nombran.
+  const sinCorpusFilas: FilaDocumental[] = []
+  // (pleno, literal normalizado): cuántas frases son las filas.
+  const literales = new Set<string>()
   const casilla = (tabla: Record<string, CasillaDeCobertura>, k: string) =>
     (tabla[k] ??= { total: 0, sinCorpus: 0, comprobadoSinHallar: 0, noConsta: 0 })
   const pasadas: ResumenDePasadas = { porMarca: {}, filas: 0, noConsta: 0, noConstaSinMarca: 0 }
@@ -385,9 +412,12 @@ export function buildManifest(
         cel.total += 1
         cel[campo] += 1
       }
-      if (desenlace === 'sin-corpus') {
-        const lit = it.claim?.verbatim
-        if (typeof lit === 'string') sinCorpusVerbatims.push(lit)
+      const lit = it.claim?.verbatim
+      if (typeof lit === 'string') {
+        literales.add(`${it.claim.plenoId}\u0000${normalizarLiteral(lit)}`)
+        if (desenlace === 'sin-corpus') {
+          sinCorpusFilas.push({ verbatim: lit, plenoDate: it.claim.plenoDate })
+        }
       }
       if (v === 'sin-datos') sinDatosPorque[campo] += 1
       if (typeof t !== 'string' || typeof v !== 'string') continue
@@ -404,6 +434,7 @@ export function buildManifest(
       plenos: plenosOut,
       totals: {
         items: totalItems,
+        literalesDistintos: literales.size,
         plenos: plenosOut.length,
         byVerdict: totalsByVerdict,
         byTopicVerdict,
@@ -411,7 +442,7 @@ export function buildManifest(
           porTipo,
           porTema,
           corpus,
-          porClaseDocumental: agruparPorClaseDocumental(sinCorpusVerbatims),
+          porClaseDocumental: agruparPorClaseDocumental(sinCorpusFilas, { sesionesConActa }),
           pasadas,
         },
         retenidas,

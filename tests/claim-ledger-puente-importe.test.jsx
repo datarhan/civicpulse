@@ -34,6 +34,13 @@ import { CATALOGUE } from '../src/i18n'
  * `tenders.json` servido, sale sólo cuando lo impreso no es la cifra y otra
  * magnitud del expediente sí lo es, y desaparece solo el día que eso deje de
  * pasar. La premisa se mide aquí: hoy las dos cifras no cuadran solas.
+ *
+ * 19-10-2026: el verificador ya cita la fila que IMPRIME la cifra dicha
+ * (`filaQueDiceLaCifra`, claim-verifier.ts), así que lo servido para esta cita
+ * imprime 80.667 € y no necesita puente. La fila de antes se congela en
+ * tests/fixtures/puente-importe-k4olcs-019_2026-10-19.json, y el puente se
+ * sigue probando con ella: es la forma que dejaría otra fuente, o una fila
+ * firmada, que imprima otra magnitud del expediente.
  */
 
 const DATA = join(__dirname, '..', 'public/data')
@@ -46,8 +53,17 @@ const trozos = readdirSync(join(DATA, 'pleno-claims'))
   .map((f) => leer(join('pleno-claims', f)))
 
 const ID = 'k4olcs-019-cit-b9b013'
-const trozoK4 = trozos.find((t) => t.plenoId === 'k4olcs')
-const fila = trozoK4?.items.find((it) => it.claim.id === ID)
+const trozoK4Servido = trozos.find((t) => t.plenoId === 'k4olcs')
+const servida = trozoK4Servido?.items.find((it) => it.claim.id === ID)
+/** La fila de antes, congelada: la que imprimía 70.158 €. */
+const fila = JSON.parse(
+  readFileSync(join(__dirname, 'fixtures/puente-importe-k4olcs-019_2026-10-19.json'), 'utf8'),
+).item
+/** El trozo servido de k4olcs con la fila congelada en su sitio. */
+const trozoK4 = {
+  ...trozoK4Servido,
+  items: trozoK4Servido.items.map((it) => (it.claim.id === ID ? fila : it)),
+}
 
 /** El importe que la fila imprime: el último «N €» de su texto, en euros enteros. */
 function impreso(snippet) {
@@ -70,11 +86,15 @@ function importesDelExpediente(ref, datos = TENDERS) {
     )
 }
 
-/** ¿Tiene esta fila puente? Lo impreso no es la cifra, y otra magnitud sí. */
+/**
+ * ¿Tiene esta fila puente? Lo impreso no es la cifra, y otra magnitud sí. Lo
+ * impreso va redondeado a euros, así que un euro de diferencia es la misma
+ * cifra (80.666,66 € se imprime «80.667 €» y se cita 80.666).
+ */
 function oraculo(cifra, e) {
   const imp = impreso(e.snippet)
   if (e.kind !== 'tender' || typeof cifra !== 'number' || imp == null) return null
-  if (Math.abs(imp - cifra) < 1) return null
+  if (Math.abs(imp - cifra) <= 1) return null
   return importesDelExpediente(e.ref).find((x) => Math.abs(x.valor - cifra) < 1) ?? null
 }
 
@@ -113,8 +133,16 @@ const pidio = (fetchFn, ruta) =>
   fetchFn.mock.calls.some(([u]) => String(u).replace(/^https?:\/\/[^/]+/, '') === ruta)
 
 describe('la premisa, medida sobre lo servido', () => {
-  it('la fila imprime 70.158 €, la cita dice 80.666 €, y el expediente trae los 80.666,66 €', () => {
-    expect(fila, `no se sirve ${ID}`).toBeDefined()
+  it('lo servido ya imprime la cifra: el verificador cita la adjudicación, no la licitación', () => {
+    expect(servida, `no se sirve ${ID}`).toBeDefined()
+    expect(servida.verification.verdict).toBe('verificado')
+    const [contrato] = servida.verification.evidence.filter((e) => e.kind === 'tender')
+    expect(impreso(contrato.snippet)).toBe(80667)
+    expect(oraculo(servida.claim.entities.amountEuros, contrato)).toBeNull()
+  })
+
+  it('la fila congelada imprime 70.158 €, la cita dice 80.666 €, y el expediente trae los 80.666,66 €', () => {
+    expect(fila.claim.id).toBe(ID)
     const cifra = fila.claim.entities.amountEuros
     const contratos = fila.verification.evidence.filter((e) => e.kind === 'tender')
     expect(contratos).toHaveLength(1)
@@ -186,9 +214,12 @@ describe('lo servido: el puente sale donde hay puente, y sólo ahí', () => {
           it.verification.evidence.some((e) => e.kind === 'tender'),
       ),
     )
-    // Mide algo, y el caso que originó esto está dentro.
+    // Mide algo, y el caso que originó esto está dentro —con la fila congelada,
+    // que es la que lleva puente; la servida ya imprime la cifra.
     expect(items.length).toBeGreaterThan(1)
     expect(items.some((it) => it.claim.id === ID)).toBe(true)
+    const conCongelada = items.map((it) => (it.claim.id === ID ? fila : it))
+    items.splice(0, items.length, ...conCongelada)
     const { container } = await pintar(items)
     const malas = []
     let conPuente = 0

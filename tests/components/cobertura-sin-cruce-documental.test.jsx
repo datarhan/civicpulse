@@ -54,10 +54,12 @@ function pintar(cobertura) {
   )
 }
 
-/** La celda «Declaraciones que dependen» de cada clase pedible, por clase. */
+/** La celda «Declaraciones que nombran ese tipo de documento» de cada clase pedible. */
 async function cifrasPorClase() {
   const tabla = (
-    await screen.findByRole('columnheader', { name: 'Declaraciones que dependen' })
+    await screen.findByRole('columnheader', {
+      name: 'Declaraciones que nombran ese tipo de documento',
+    })
   ).closest('table')
   const filas = within(tabla).getAllByRole('row').slice(1)
   // Que la prueba mire algo: una fila por clase, o no ha medido nada.
@@ -83,7 +85,7 @@ describe('/laboratorio/cobertura · el cruce documental que falta no es un cero'
   it('sin `porClaseDocumental`, dice que no se ha podido calcular', async () => {
     pintar({})
     expect(
-      await screen.findByText(/no es que no dependa ninguna.*no se ha podido calcular/i),
+      await screen.findByText(/no es que no lo nombre ninguna.*no se ha podido calcular/i),
     ).toBeTruthy()
   })
 

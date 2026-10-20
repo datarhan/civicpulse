@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-20T05:38:58.687Z",
+  "generatedAt": "2026-10-20T06:45:11.425Z",
   "version": "1",
   "plenoId": "brxx5g",
   "plenoDate": "2026-07-06",
@@ -2720,15 +2720,7 @@
         "claimId": "brxx5g-137-cit-0d7f08",
         "verdict": "sin-datos",
         "summary": "No se encontró registro en tenders y tenders-ted que la sostenga. Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=HqQWB8HdvFAQK2TEfXGy%2BA%3D%3D",
-            "snippet": "Servicio de limpieza CEIP Cervantes · Ayuntamiento de Riba-roja de Túria · environment",
-            "similarity": 0.4,
-            "stance": "checked"
-          }
-        ],
+        "evidence": [],
         "checkedAgainst": [
           "tenders",
           "tenders-ted"
@@ -3774,15 +3766,7 @@
         "claimId": "brxx5g-161-cit-616b80",
         "verdict": "sin-datos",
         "summary": "No se encontró registro en tenders y tenders-ted que la sostenga. Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=HqQWB8HdvFAQK2TEfXGy%2BA%3D%3D",
-            "snippet": "Servicio de limpieza CEIP Cervantes · Ayuntamiento de Riba-roja de Túria · environment",
-            "similarity": 0.4,
-            "stance": "checked"
-          }
-        ],
+        "evidence": [],
         "checkedAgainst": [
           "tenders",
           "tenders-ted"

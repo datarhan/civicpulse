@@ -4,6 +4,7 @@ import { MemoryRouter } from 'react-router-dom'
 
 import { installFetchMock } from '../setup/mockFetch'
 import Cobertura from '../../src/pages/Cobertura'
+import { entero } from '../../src/lib/formatters'
 import { CATALOGUE } from '../../src/i18n'
 import {
   MOTIVOS_DE_RETENCION,
@@ -115,7 +116,7 @@ describe('/laboratorio/cobertura · por qué retiene la puerta, contado', () => 
         continue
       }
       expect(linea, motivo).toBeDefined()
-      expect(linea).toContain(n.toLocaleString('es-ES'))
+      expect(linea).toContain(entero(n))
       evaluados += 1
     }
     expect(evaluados).toBe(5)
@@ -125,7 +126,7 @@ describe('/laboratorio/cobertura · por qué retiene la puerta, contado', () => 
     pintar()
     const tarjeta = await tarjetaDelUniverso()
     const total = Object.values(POR_MOTIVO).reduce((a, n) => a + n, 0)
-    expect(tarjeta.textContent).toContain(total.toLocaleString('es-ES'))
+    expect(tarjeta.textContent).toContain(entero(total))
   })
 
   it('sin reparto en el manifiesto lo dice, y no inventa motivos', async () => {

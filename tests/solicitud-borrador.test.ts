@@ -114,7 +114,7 @@ describe('la carta y la página cuentan las mismas declaraciones', () => {
   ).totals.cobertura.porClaseDocumental.porClase
 
   for (const clase of CLASES_PEDIBLES) {
-    it(`«${clase}»: tantas filas como la columna «Declaraciones que dependen»`, () => {
+    it(`«${clase}»: tantas filas como la columna «Declaraciones que nombran ese tipo de documento»`, () => {
       expect(porClase[clase], 'que haya algo que contar').toBeGreaterThan(0)
       expect(redactar(clase).n).toBe(porClase[clase])
     })

@@ -25,9 +25,15 @@ import { desenlaceDeCotejo } from '../../src/scraper/claim-verdicts'
 import {
   CLASES_PEDIBLES,
   CLASE_ETIQUETA,
-  claseDocumentalDe,
+  clasesQueCuentan,
+  deAmbitoAjeno,
   type ClasePedible,
 } from '../../src/scraper/clase-documental'
+import { sesionesConActaEnDisco } from './sesiones-con-acta'
+
+// Vivía aquí; ahora la usa también el recuento de la página. Se reexporta para
+// quien la importaba de este módulo (scripts/cotejar-etiquetado.ts).
+export { deAmbitoAjeno }
 
 const DIR_CHUNKS = resolve('public/data/pleno-claims')
 const MANIFIESTO = resolve(DIR_CHUNKS, 'index.json')
@@ -44,16 +50,18 @@ interface Fila {
 }
 
 /**
- * Las filas de una clase: publicadas, sin corpus que consultar, y que nombran
- * ese documento. Es la MISMA condición que usa el manifiesto para contar
- * (`desenlaceDeCotejo`); si se separan, la carta enseña ejemplos de una
- * población y una cifra de otra. Una fila de la que no consta qué se consultó
+ * Las filas de una clase: publicadas, sin ningún comparador lanzado, y que
+ * nombran ese tipo de documento sin que se aparte —un acta que ya publicamos, un
+ * informe de otro órgano—. Es la MISMA condición que usa el manifiesto para
+ * contar (`desenlaceDeCotejo` y `clasesQueCuentan`); si se separan, la carta
+ * enseña ejemplos de una población y una cifra de otra. Una fila de la que no consta qué se consultó
  * —la juzgó el motor sobre candidatos, o la bajó un curador leyendo un
  * contrato— tuvo algo delante: que dependa del documento no consta, y la carta
  * no lo afirma.
  */
 function filasDe(clase: ClasePedible): Fila[] {
   const out: Fila[] = []
+  const ctx = { sesionesConActa: sesionesConActaEnDisco() }
   for (const f of readdirSync(DIR_CHUNKS)) {
     if (!f.endsWith('.json') || f === 'index.json') continue
     const chunk = JSON.parse(readFileSync(resolve(DIR_CHUNKS, f), 'utf8')) as {
@@ -71,43 +79,14 @@ function filasDe(clase: ClasePedible): Fila[] {
       if (desenlaceDeCotejo(it.verification) !== 'sin-corpus') continue
       const v = it.claim?.verbatim
       if (typeof v !== 'string' || !v.trim()) continue
-      if (!claseDocumentalDe(v).includes(clase)) continue
-      out.push({ verbatim: v.trim(), fecha: it.claim?.plenoDate ?? chunk.plenoDate ?? '' })
+      const fecha = it.claim?.plenoDate ?? chunk.plenoDate ?? ''
+      if (!clasesQueCuentan({ verbatim: v, plenoDate: fecha }, ctx).includes(clase)) continue
+      out.push({ verbatim: v.trim(), fecha })
     }
   }
   // Orden estable y reproducible: sesión más reciente primero, y a igualdad, el
   // literal por orden alfabético — para que dos ejecuciones den la misma carta.
   return out.sort((a, b) => b.fecha.localeCompare(a.fecha) || a.verbatim.localeCompare(b.verbatim))
-}
-
-/**
- * Marcadores de que el documento es de ESTE Ayuntamiento.
- *
- * No se usan para exigir señal municipal —eso rechaza de más: en un pleno lo
- * municipal es el caso por defecto, y «un informe técnico y jurídico donde
- * resolvemos con el anterior contrato» es obviamente de aquí sin decir la
- * palabra—. Se usan sólo para NO excluir por error algo que sí lo es. Es la
- * misma regla del place-resolver: una omisión honesta antes que un acierto
- * inventado.
- */
-const MUNICIPAL =
-  /\b(pleno|plenari|ayuntamiento|ajuntament|ayto|municipi|municipal|concejal|regidor|secretar[ií]a|vicesecretar|intervenci[oó]n|mesa de contrataci|junta de gobierno|alcald|este consistorio)/i
-
-/**
- * Ámbito claramente AJENO: otra administración como sujeto, o historia general.
- *
- * Medido: excluye 2 de 172 filas en las cuatro clases —el Plan de Recuperación
- * europeo y «el plan de estabilización económica del Opus Dei» de 1959—, y cero
- * en las otras tres clases. Las dos aparecían como ejemplo en el escrito de
- * `plan-interno`, y pedirle a un ayuntamiento el plan del Opus Dei es la clase
- * de ejemplo que permite inadmitir por abusiva (art. 18.1.e) la petición entera.
- */
-const AJENO =
-  /\b(opus dei|falangist|aut[áa]rquic|franquis|d[ée]cada|siglo [xiv]+|gobierno de espa[ñn]a|uni[óo]n europea|directiva europea|salario m[íi]nimo|otros ayuntamientos|otras administraciones|estado espa[ñn]ol)\b/i
-
-/** Conjunción a propósito: sólo cae lo que nombra otro ámbito Y no nombra el nuestro. */
-export function deAmbitoAjeno(verbatim: string): boolean {
-  return AJENO.test(verbatim) && !MUNICIPAL.test(verbatim)
 }
 
 /** ¿Nombra el literal una fecha? Un documento fechado es identificable. */

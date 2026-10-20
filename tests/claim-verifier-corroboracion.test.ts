@@ -90,6 +90,9 @@ describe('corroborar exige el mismo objeto, no sólo un importe parecido', () =>
     const v = verifyClaim({
       claim: claim({
         type: 'cita_obra',
+        // El objeto tiene que estar en la cita: el camino de sólo-objeto
+        // empareja con lo que se dijo, no con la paráfrasis del extractor.
+        verbatim: 'la concesión del servicio de abastecimiento de agua potable a Idracua',
         entities: {
           referencedEntity: 'concesión del servicio de abastecimiento de agua potable a idracua',
         },

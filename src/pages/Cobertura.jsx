@@ -6,6 +6,7 @@ import { esMarcaDePasada } from '../scraper/claim-verdicts'
 import { MOTIVOS_DE_RETENCION, MOTIVO_DE_RETENCION_ETIQUETA } from '../scraper/claim-public-gate'
 import { diaDeLaSede } from '../scraper/queja-router'
 import { rotuloDe, useT } from '../i18n'
+import { entero } from '../lib/formatters'
 import { useSolicitudesAcceso } from '../hooks/useSolicitudesAcceso'
 import { CLASES_PEDIBLES, CLASE_ETIQUETA } from '../scraper/clase-documental'
 // La etiqueta y el tono de cada estado viven con el enum, tipados: aquí eran
@@ -23,14 +24,18 @@ import {
  * cotejarlo?
  *
  * La página contesta una pregunta sobre NOSOTROS, no sobre nadie: cuántas de
- * las declaraciones publicadas llegaron a cotejarse contra algún corpus y
- * cuántas no tenían ninguno contra el que hacerlo. Ese segundo número no dice
- * que la declaración sea falsa ni que sea cierta: dice que aún no tenemos con
- * qué comprobarla.
+ * las declaraciones publicadas llegaron a cotejarse contra algún corpus y a
+ * cuántas no se les lanzó ningún comparador. Ese segundo número no dice que la
+ * declaración sea falsa ni que sea cierta, y tampoco que no haya datos con que
+ * contrastarla: hasta el 19-10-2026 se rotulaba «sin corpus que consultar», y el
+ * padrón, el paro y las votaciones y actas de pleno estaban publicados en este
+ * mismo sitio. Lo que dice es que el verificador no tiene comparador para ella:
+ * sólo lanza uno con un importe en euros, con la obra que se cita o con una
+ * promesa.
  *
  * Y hay un tercero, que no es ninguno de los dos: las declaraciones cuyo
  * veredicto rehízo una pasada posterior —el motor, un curador— dejando su marca
- * en lugar de la lista de lo consultado. La página sacaba «sin corpus» por
+ * en lugar de la lista de lo consultado. La página sacaba la segunda por
  * resta (`total − conCorpus`) y las metía ahí sin que nadie lo afirmara; ahora
  * cada casilla se lee del manifiesto, ninguna por diferencia.
  *
@@ -38,12 +43,16 @@ import {
  *
  *   1. No nombra a nadie. Ni una persona, ni un grupo, ni una cita literal —
  *      esto son recuentos, y un recuento no necesita a quién.
- *   2. La ausencia se publica como ausencia. Un tipo de declaración sin corpus
- *      sale con su hueco a la vista, no omitido.
+ *   2. La ausencia se publica como ausencia. Un tipo de declaración sin
+ *      comparador sale con su hueco a la vista, no omitido.
  *   3. No genera hallazgos, y no cuenta para la cadencia de verificaciones. Un
  *      hueco no es una verificación, y meterlo en ese reloj para ponerlo verde
  *      sería exactamente el fraude que este repositorio persigue en su propio
  *      código.
+ *
+ * Y las cifras cuentan FILAS de extracción, no frases: las ventanas del
+ * extractor se solapan y una misma frase puede dejar dos filas. Se dice, con
+ * cuántos literales distintos son (`literalesDistintos` del manifiesto).
  *
  * El universo es lo PUBLICADO. El corpus interno lleva más declaraciones, pero
  * la puerta editorial retiene el verbatim de las acusaciones que no se han
@@ -94,8 +103,11 @@ function Barra({ conCorpus, total }) {
  */
 const RELLENO = 6
 
-/** Una cifra en el texto corrido, con el separador de miles de la página. */
-const fmt = (n) => n.toLocaleString('es-ES')
+/**
+ * Una cifra, con separador de miles también en las de cuatro cifras: las
+ * tarjetas decían «5112» al lado de tablas con «12.403» (19-10-2026).
+ */
+const fmt = entero
 
 function TablaCobertura({ titulo, filas, etiqueta, columna }) {
   const orden = useMemo(() => [...filas].sort((a, b) => b[1].total - a[1].total), [filas])
@@ -111,7 +123,7 @@ function TablaCobertura({ titulo, filas, etiqueta, columna }) {
               <th style={{ padding: `6px ${RELLENO}px 6px 0`, fontWeight: 500 }}>{columna}</th>
               <th style={th}>Total</th>
               <th style={th}>Con corpus</th>
-              <th style={th}>Sin corpus</th>
+              <th style={th}>Sin comparador</th>
               <th style={th}>No consta</th>
               <th style={{ padding: `6px 0 6px ${RELLENO}px`, fontWeight: 500, minWidth: 64 }}>
                 Cobertura
@@ -123,19 +135,19 @@ function TablaCobertura({ titulo, filas, etiqueta, columna }) {
               <tr key={clave} style={{ borderTop: '1px solid var(--border)' }}>
                 <td style={{ padding: `8px ${RELLENO}px 8px 0` }}>{etiqueta(clave)}</td>
                 <td className="mono" style={td}>
-                  {v.total}
+                  {fmt(v.total)}
                 </td>
                 <td className="mono" style={td}>
-                  {v.comprobadoSinHallar}
+                  {fmt(v.comprobadoSinHallar)}
                 </td>
                 <td
                   className="mono"
                   style={{ ...td, color: v.sinCorpus > 0 ? 'var(--warn-ink)' : 'var(--ink70)' }}
                 >
-                  {v.sinCorpus}
+                  {fmt(v.sinCorpus)}
                 </td>
                 <td className="mono" style={td}>
-                  {v.noConsta}
+                  {fmt(v.noConsta)}
                 </td>
                 <td style={{ padding: `8px 0 8px ${RELLENO}px` }}>
                   <Barra conCorpus={v.comprobadoSinHallar} total={v.total} />
@@ -167,6 +179,8 @@ export default function Cobertura() {
   // lo pintaba como «0 declaraciones» en cada documento (regla 3: un centinela
   // nunca es un valor). Con el bloque presente, una clase ausente sí es un 0.
   const porClaseDoc = cob?.porClaseDocumental?.porClase ?? null
+  // Ausente en un manifiesto anterior al 19-10-2026: entonces no se dice.
+  const cuantasApartadas = cob?.porClaseDocumental?.apartadas ?? 0
 
   // Lo que la puerta editorial retiene, por tipo. Ordenado de más a menos.
   const retenidas = useMemo(
@@ -184,7 +198,7 @@ export default function Cobertura() {
     return { filas, total: filas.reduce((a, [, n]) => a + n, 0) }
   }, [totals])
 
-  // Cada casilla, del manifiesto. «Sin corpus» salía por resta y se llevaba
+  // Cada casilla, del manifiesto. «Ningún comparador» salía por resta y se llevaba
   // las filas de las que no consta qué se consultó.
   const resumen = useMemo(() => {
     if (!cob) return null
@@ -218,6 +232,9 @@ export default function Cobertura() {
   }
 
   const pct = resumen.total > 0 ? (100 * resumen.conCorpus) / resumen.total : 0
+  // Ausente en un manifiesto anterior al 19-10-2026: entonces no se dice.
+  const literales =
+    typeof totals?.literalesDistintos === 'number' ? totals.literalesDistintos : null
   // Ausente en un manifiesto anterior al 19-10-2026: entonces no consta.
   const pasadas = cob.pasadas ?? null
 
@@ -246,27 +263,36 @@ export default function Cobertura() {
       <Card style={{ marginTop: 12 }}>
         <div style={{ display: 'flex', flexWrap: 'wrap', gap: 24, alignItems: 'baseline' }}>
           <div>
+            {/* Decía «DECLARACIONES PUBLICADAS 5112»: son filas de extracción, y
+                291 repetían el literal de otra de su sesión (19-10-2026). */}
             <div style={{ fontSize: 'var(--fs-meta)', color: 'var(--ink70)' }}>
-              DECLARACIONES PUBLICADAS
+              FILAS DE EXTRACCIÓN PUBLICADAS
             </div>
             <div className="mono" style={{ fontSize: 'var(--fs-head)' }}>
-              {resumen.total}
+              {fmt(resumen.total)}
             </div>
+            {literales !== null && (
+              <div style={{ fontSize: 'var(--fs-micro)', color: 'var(--ink70)' }}>
+                <span className="mono">{fmt(literales)}</span> literales distintos
+              </div>
+            )}
           </div>
           <div>
             <div style={{ fontSize: 'var(--fs-meta)', color: 'var(--ink70)' }}>
               COTEJADAS CONTRA ALGÚN CORPUS
             </div>
             <div className="mono" style={{ fontSize: 'var(--fs-head)', color: 'var(--ok-ink)' }}>
-              {resumen.conCorpus}
+              {fmt(resumen.conCorpus)}
             </div>
           </div>
           <div>
+            {/* Decía «SIN CORPUS QUE CONSULTAR»: cuenta las filas a las que no se
+                les lanzó ningún comparador, no las que no tienen corpus. */}
             <div style={{ fontSize: 'var(--fs-meta)', color: 'var(--ink70)' }}>
-              SIN CORPUS QUE CONSULTAR
+              NINGÚN COMPARADOR SE LANZÓ
             </div>
             <div className="mono" style={{ fontSize: 'var(--fs-head)', color: 'var(--warn-ink)' }}>
-              {resumen.sinCorpus}
+              {fmt(resumen.sinCorpus)}
             </div>
           </div>
           <div>
@@ -274,7 +300,7 @@ export default function Cobertura() {
               NO CONSTA QUÉ SE CONSULTÓ
             </div>
             <div className="mono" style={{ fontSize: 'var(--fs-head)' }}>
-              {resumen.noConsta}
+              {fmt(resumen.noConsta)}
             </div>
           </div>
           <div style={{ flex: '1 1 160px', minWidth: 120 }}>
@@ -288,6 +314,26 @@ export default function Cobertura() {
           </div>
         </div>
       </Card>
+
+      {/* Lo que las cifras son y no son. Debajo de ellas y no en el rótulo,
+          que a 375 px ya ocupa dos líneas. */}
+      <p
+        style={{
+          color: 'var(--ink70)',
+          fontSize: 'var(--fs-meta)',
+          maxWidth: '72ch',
+          lineHeight: 1.6,
+          margin: '8px 0 0',
+        }}
+      >
+        Las cifras cuentan filas de extracción, no frases: dos ventanas del extractor pueden recoger
+        la misma frase y cada una deja su fila. Que a una no se le lanzara ningún comparador no
+        quiere decir que no haya con qué comprobarla: el verificador sólo lanza un comparador cuando
+        la declaración trae un importe en euros, cuando cita una obra por su nombre o cuando es una
+        promesa, y éstas no traían nada de eso. Para algunas habría datos —el padrón, el paro, las
+        votaciones y las actas de pleno se publican en este sitio—, pero todavía no hay comparador
+        que los lea.
+      </p>
 
       <TablaCobertura
         titulo="Por tipo de declaración"
@@ -307,9 +353,9 @@ export default function Cobertura() {
         <h3 style={{ fontSize: 'var(--fs-card)', margin: '0 0 8px' }}>Contra qué se coteja</h3>
         <p style={{ color: 'var(--ink70)', fontSize: 'var(--fs-meta)', marginTop: 0 }}>
           Corpus que el verificador consultó, y cuántas veces. Una declaración cotejada contra dos
-          corpus cuenta en los dos: lo que se mide es con qué se cuenta, no cuántas filas hay. Un
-          tipo de declaración que no aparezca respaldado por ninguno de éstos es, hoy, imposible de
-          comprobar aquí.
+          corpus cuenta en los dos: lo que se mide es con qué se cuenta, no cuántas filas hay. Que
+          un tipo de declaración no aparezca respaldado por ninguno de éstos no lo hace
+          incomprobable: dice que aquí todavía no se coteja.
         </p>
         <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8 }}>
           {Object.entries(cob.corpus)
@@ -317,7 +363,8 @@ export default function Cobertura() {
             .sort((a, b) => b[1] - a[1])
             .map(([nombre, n]) => (
               <Pill key={nombre} tone="neutral" size="xs">
-                {rotuloDe(t, `ledger.corpus.${nombre}`, nombre)} <span className="mono">{n}</span>
+                {rotuloDe(t, `ledger.corpus.${nombre}`, nombre)}{' '}
+                <span className="mono">{fmt(n)}</span>
               </Pill>
             ))}
         </div>
@@ -382,7 +429,7 @@ export default function Cobertura() {
                     </>
                   )}
                   Que no sepamos qué se miró no quiere decir que no hubiera con qué: por eso cuentan
-                  en «no consta» y no en «sin corpus».{' '}
+                  en «no consta» y no en «ningún comparador».{' '}
                 </>
               ) : (
                 <>Ninguna declaración cuenta en «no consta». </>
@@ -406,8 +453,8 @@ export default function Cobertura() {
       {/*
         Lo que se ha hecho con el hueco. La tarjeta del universo dice que el
         límite no es lo que sabemos leer sino lo que no se publica; aquí se
-        cierra el bucle: qué documento hace falta, cuántas declaraciones
-        dependen de él, y si lo hemos pedido.
+        cierra el bucle: qué tipo de documento, cuántas declaraciones lo
+        nombran, y si lo hemos pedido.
       */}
       <Card style={{ marginTop: 12 }}>
         {/* El título sale de los estados que pinta la tabla: decía «Lo que hemos
@@ -429,24 +476,36 @@ export default function Cobertura() {
           </p>
         )}
         <p style={{ color: 'var(--ink70)', fontSize: 'var(--fs-meta)', marginTop: 0 }}>
-          Cuando una declaración depende de un documento municipal que no se publica, ningún corpus
-          podrá comprobarla nunca. Eso no es un límite técnico: es un documento que se puede pedir.
-          La Ley 19/2013 da un mes para contestar (art. 20) y, si no contestan, reclamación ante el
-          Consell de Transparència de la Comunitat Valenciana (art. 24).
+          Cuando una declaración remite a un documento municipal que no se publica, ningún corpus
+          podrá comprobarla. Eso no es un límite técnico: es un documento que se puede pedir. La Ley
+          19/2013 da un mes para contestar (art. 20) y, si no contestan, reclamación ante el Consell
+          de Transparència de la Comunitat Valenciana (art. 24).
         </p>
         {/* El puente entre esta columna y la cifra de arriba. Desde el
-            30-09-2026 cuenta sólo las «sin corpus»: las de «no consta» se
-            juzgaron sobre algo, y que dependan del documento no consta. */}
+            30-09-2026 cuenta sólo las de «ningún comparador»: las de «no consta»
+            se juzgaron sobre algo. Desde el 19-10-2026 dice lo que mide —qué
+            tipo de documento NOMBRAN, por su léxico— y no «que dependen»: de 14
+            «actas», sólo 2 o 3 remitían a un acta que no tengamos. */}
         {porClaseDoc ? (
           <p style={{ color: 'var(--ink70)', fontSize: 'var(--fs-meta)', marginTop: 0 }}>
-            Cada cifra cuenta, de las <span className="mono">{resumen.sinCorpus}</span>{' '}
-            declaraciones sin corpus que consultar, las que nombran ese documento. Las de «no
-            consta» no entran: se juzgaron sobre algo, y que dependan del documento no consta.
+            Cada cifra cuenta, de las <span className="mono">{fmt(resumen.sinCorpus)}</span> filas a
+            las que no se lanzó ningún comparador, las que nombran ese tipo de documento: se mide la
+            palabra, no que la declaración dependa de él. No cuentan el acta de un pleno que ya
+            publicamos ni la de una reunión, ni el informe, el plan o el expediente de otro órgano
+            cuando la frase lo nombra —el Consell Jurídic Consultiu, la Confederación Hidrográfica,
+            un ministerio—, ni el del periodo medio de pago, que publica Hacienda.
+            {cuantasApartadas > 0 && (
+              <>
+                {' '}
+                Por eso se apartan <span className="mono">{fmt(cuantasApartadas)}</span>.
+              </>
+            )}{' '}
+            Las de «no consta» no entran: se juzgaron sobre algo.
           </p>
         ) : (
           <p style={{ color: 'var(--ink70)', fontSize: 'var(--fs-meta)', marginTop: 0 }}>
-            El manifiesto de declaraciones no trae cuántas dependen de cada documento. No es que no
-            dependa ninguna: es que no se ha podido calcular.
+            El manifiesto de declaraciones no trae cuántas nombran cada tipo de documento. No es que
+            no lo nombre ninguna: es que no se ha podido calcular.
           </p>
         )}
         <div style={{ overflowX: 'auto' }} className="cp-scroll-x">
@@ -455,7 +514,7 @@ export default function Cobertura() {
               <tr style={{ textAlign: 'left', color: 'var(--ink70)' }}>
                 <th style={{ padding: '6px 8px 6px 0', fontWeight: 500 }}>Documento</th>
                 <th style={{ padding: '6px 8px', fontWeight: 500, textAlign: 'right' }}>
-                  Declaraciones que dependen
+                  Declaraciones que nombran ese tipo de documento
                 </th>
                 <th style={{ padding: '6px 0 6px 8px', fontWeight: 500 }}>Estado</th>
               </tr>
@@ -469,7 +528,7 @@ export default function Cobertura() {
                     <td style={{ padding: '8px 8px 8px 0' }}>{CLASE_ETIQUETA[clase]}</td>
                     {porClaseDoc ? (
                       <td className="mono" style={{ padding: '8px', textAlign: 'right' }}>
-                        {porClaseDoc[clase] ?? 0}
+                        {fmt(porClaseDoc[clase] ?? 0)}
                       </td>
                     ) : (
                       <td style={{ padding: '8px', textAlign: 'right', color: 'var(--ink70)' }}>
@@ -512,8 +571,8 @@ export default function Cobertura() {
             Pedirlo no lo hace comprobable por sí solo.
           </strong>{' '}
           Que publiquen el documento es condición necesaria y no suficiente: después hay que
-          construir con qué leerlo. Por eso la columna dice cuántas declaraciones <em>dependían</em>{' '}
-          de él, y no cuántas quedarían desbloqueadas.
+          construir con qué leerlo. Por eso la columna dice cuántas declaraciones{' '}
+          <em>lo nombran</em>, y no cuántas quedarían desbloqueadas.
         </p>
       </Card>
 
@@ -566,7 +625,7 @@ export default function Cobertura() {
                 {retenidas.map(([tipo, n], i) => (
                   <span key={tipo}>
                     {i > 0 ? ' · ' : ''}
-                    <span className="mono">{n.toLocaleString('es-ES')}</span> de tipo «
+                    <span className="mono">{fmt(n)}</span> de tipo «
                     {(CLAIM_TYPE_LABEL[tipo] ?? tipo).toLowerCase()}»
                   </span>
                 ))}

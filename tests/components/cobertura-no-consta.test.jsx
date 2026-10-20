@@ -57,10 +57,10 @@ async function cifraBajo(rotulo) {
 }
 
 describe('/laboratorio/cobertura · tres casillas, ninguna por resta', () => {
-  it('«sin corpus que consultar» es la del manifiesto, no lo que falta para el total', async () => {
+  it('«ningún comparador se lanzó» es la del manifiesto, no lo que falta para el total', async () => {
     pintar()
     expect(await cifraBajo('COTEJADAS CONTRA ALGÚN CORPUS')).toBe('7')
-    expect(await cifraBajo('SIN CORPUS QUE CONSULTAR')).toBe('5')
+    expect(await cifraBajo('NINGÚN COMPARADOR SE LANZÓ')).toBe('5')
     expect(await cifraBajo('NO CONSTA QUÉ SE CONSULTÓ')).toBe('8')
   })
 
@@ -73,7 +73,7 @@ describe('/laboratorio/cobertura · tres casillas, ninguna por resta', () => {
     const celdas = within(fila)
       .getAllByRole('cell')
       .map((c) => c.textContent)
-    // Tipo · Total · Con corpus · Sin corpus · No consta · (barra)
+    // Tipo · Total · Con corpus · Sin comparador · No consta · (barra)
     expect(celdas.slice(1, 5)).toEqual(['20', '7', '5', '8'])
   })
 })

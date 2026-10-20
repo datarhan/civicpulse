@@ -143,8 +143,13 @@ describe('/declaraciones · es', () => {
 
     for (const it of MUESTRA) expect(texto).toContain(`«${it.claim.verbatim}»`)
     expect(piezas).toContain('sin atribuir')
-    expect(texto).toMatch(/\b1 evidencia · /)
-    expect(texto).toMatch(/\b\d+ evidencias · /)
+    // Por elemento y no sobre `textContent` entero: ahí la cifra de la cita
+    // anterior se pega a la cuenta («€3.500.0001 evidencia») y `\b` no ve el
+    // borde. Pasó cuando la muestra servida cambió de fila (19-10-2026).
+    const empieza = (re) =>
+      [...container.querySelectorAll('*')].some((el) => re.test(el.textContent.trim()))
+    expect(empieza(/^1 evidencia · /)).toBe(true)
+    expect(empieza(/^\d+ evidencias · /)).toBe(true)
     for (const tema of TEMAS)
       expect(piezas).toContain(`· ${CATALOGUE.es[`declaraciones.tema.${tema}`]}`)
   })

@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-20T05:38:58.687Z",
+  "generatedAt": "2026-10-20T06:45:11.425Z",
   "version": "1",
   "plenoId": "zrbgic",
   "plenoDate": "2026-10-05",
@@ -1861,23 +1861,15 @@
       },
       "verification": {
         "claimId": "zrbgic-086-cit-ec50ea",
-        "verdict": "parcial",
-        "summary": "Coincidencia parcial: hay datos relacionados pero no idénticos al claim.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=hFrradR5sN8BPRBxZ4nJ%2Fg%3D%3D",
-            "snippet": "El objeto del presente contrato es establecer las condiciones por las que ha de regirse la adjudicación y posterior ejecución del contrato del servicio mantenimiento césped artificial en instalaciones deportivas municipales. Servicio mantenimiento césped artificial en instalaciones deportivas municipales por lotes -2 lotes-, por procedimiento abierto súper simplificado, mejor relación calidad-precio, criterios de adjudicación el precio con condiciones especiales de ejecución de carácter social y medioambiental · Ayuntamiento de Riba-roja de Túria · agriculture",
-            "similarity": 1,
-            "stance": "checked"
-          }
-        ],
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders y tenders-ted que la sostenga. Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
+        "evidence": [],
         "checkedAgainst": [
           "tenders",
           "tenders-ted"
         ]
       },
-      "visibility": "shown"
+      "visibility": "toggle"
     },
     {
       "claim": {

@@ -174,7 +174,9 @@ function obraTerminada(entidad: string): PlenoClaim {
     segmentIndex: 0,
     type: 'cita_obra',
     speakerGroup: 'PSOE',
-    verbatim: 'la obra ya está terminada',
+    // El objeto está en la cita: el camino de sólo-objeto empareja con lo que
+    // se dijo, no con la paráfrasis del extractor (19-10-2026).
+    verbatim: `la obra de la ${entidad} ya está terminada`,
     context: 'contexto contexto contexto contexto contexto',
     topic: 'urbanismo',
     entities: { referencedEntity: entidad },

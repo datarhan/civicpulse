@@ -144,7 +144,7 @@ export {
 } from './claim-verdicts'
 import type { ClaimVerdict } from './claim-verdicts'
 import { COLA_SIN_IMPORTE, leyoContratos, resumenCasi, resumenSinRegistro } from './claim-verdicts'
-import { importeDelEmparejador } from './importe-de-contrato'
+import { CAMPOS_DEL_EMPAREJADOR, importeDelEmparejador } from './importe-de-contrato'
 import { snippetDeContrato } from './snippet-de-contrato'
 import { sinEstadoSiLoDaSuContrato } from './gemelos-de-licitacion'
 import { bdnsAmount, bdnsRef, bdnsText, snippetDeBdns, type BdnsRow } from './snippet-de-bdns'
@@ -653,6 +653,51 @@ export function similarAmount(claimed: number, found: number): number {
   return Math.max(0, ratio * ratio) // quadratic so 0.9 → 0.81 (meaningful gap)
 }
 
+/**
+ * La fila del MISMO expediente que imprime la cifra dicha, con el umbral de
+ * «prácticamente exacto» (un 1 %), y el importe que imprime; o `null`.
+ *
+ * El emparejador compara UN importe por fila —el primero de
+ * `CAMPOS_DEL_EMPAREJADOR`, sin IVA donde lo hay— y elige la fila que más se
+ * parece. El 19-10-2026 eso publicó k4olcs-019-cit-b9b013 («… control del salón
+ * de plenos municipales», 80.666 €) como «Verificado» con la LICITACIÓN de
+ * 32/2024, que imprime 70.158 € (presupuesto base sin IVA): se parecía más que
+ * la adjudicación sin IVA (66.666,66). Los 80.666,66 € dichos son la
+ * adjudicación con IVA, en la fila de `contracts` del mismo expediente. Un
+ * «Verificado» encima de otra cifra dice que se comprobó lo que no se enseña.
+ *
+ * La regla —la de la subida firmada (#405) en el verificador automático—: un
+ * `verificado` cita un registro que imprime la cifra. Se buscan las filas que
+ * comparten el enlace de la elegida (licitación, contrato y lotes) y todos sus
+ * importes de `CAMPOS_DEL_EMPAREJADOR`; nunca el valor estimado, que en una
+ * concesión es el de todo su plazo. Si ninguna la imprime, el llamador cita la
+ * elegida y la marca no-fundante: el veredicto sólo puede bajar.
+ */
+function filaQueDiceLaCifra(
+  elegida: TenderRow,
+  cifra: number,
+  filas: readonly TenderRow[],
+): { row: TenderRow; valor: number } | null {
+  const ref = elegida.permalink
+  const expediente = [
+    elegida,
+    ...(ref ? filas.filter((f) => f !== elegida && f.permalink === ref) : []),
+  ]
+  let mejor: { row: TenderRow; valor: number; sim: number } | null = null
+  for (const f of expediente) {
+    const r = f as unknown as Record<string, unknown>
+    for (const campo of CAMPOS_DEL_EMPAREJADOR) {
+      const valor = Number(r[campo])
+      if (!Number.isFinite(valor) || !(valor > 0)) continue
+      const sim = similarAmount(cifra, valor)
+      if (sim >= IMPORTE_PRACTICAMENTE_EXACTO && (mejor === null || sim > mejor.sim)) {
+        mejor = { row: f, valor, sim }
+      }
+    }
+  }
+  return mejor ? { row: mejor.row, valor: mejor.valor } : null
+}
+
 // ─── Dataset readers ────────────────────────────────────────────────────────
 
 /**
@@ -782,6 +827,16 @@ export function verifyClaim(inputs: VerifierInputs): ClaimVerification {
   // both PLACSP and EU notices without further changes downstream.
   const tedTenders = inputs.tendersTed ? readTenders(inputs.tendersTed) : []
   const tenderList = [...localTenders, ...tedTenders]
+  /**
+   * ¿Leyó los contratos el camino del IMPORTE (bloque 2)? Es lo único que
+   * justifica enseñar el expediente parecido de `mejorCasiPorObjeto`, cuya
+   * frase habla de la cifra citada. `leyoContratos(checked)` no lo distingue:
+   * el bloque 3 también anota `tenders`, y desde que su emparejamiento se ancla
+   * en el literal (abajo), una cita sin cifra que sólo casaba por la paráfrasis
+   * del extractor volvía por esa puerta con un «no publica importe con el que
+   * cotejar la cifra citada» de una cifra que no existe.
+   */
+  let importeLeyoContratos = false
   const bdnsList = inputs.bdns ? readBdns(inputs.bdns) : []
   const promiseList = inputs.promises ? readPromises(inputs.promises) : []
 
@@ -839,6 +894,7 @@ export function verifyClaim(inputs: VerifierInputs): ClaimVerification {
     if (tenderList.length > 0) {
       if (localTenders.length > 0) note('tenders')
       if (tedTenders.length > 0) note('tenders-ted')
+      importeLeyoContratos = true
       let best: { row: TenderRow; sim: number } | null = null
       // Also look for strong-entity / weak-amount matches → potential contradicho
       let entityMatchMismatchedAmount: { row: TenderRow; textSim: number } | null = null
@@ -911,18 +967,23 @@ export function verifyClaim(inputs: VerifierInputs): ClaimVerification {
         }
       }
       if (best) {
+        // La fila que se cita es la que IMPRIME la cifra dicha, si el
+        // expediente la tiene (`filaQueDiceLaCifra`); si no, se cita la elegida
+        // y no funda: puede sostener `parcial`, nunca `verificado`.
+        const dice = filaQueDiceLaCifra(best.row, amount, tenderList)
+        const fila = dice?.row ?? best.row
+        const impreso = dice?.valor ?? tenderAmount(best.row)!
         evidence.push({
           kind: 'tender',
-          ref: best.row.permalink ?? '',
-          snippet: `${tenderTitle(best.row)} · ${Math.round(tenderAmount(best.row)!).toLocaleString(
-            'es-ES',
-          )} €`,
+          ref: fila.permalink ?? '',
+          snippet: `${tenderTitle(fila)} · ${Math.round(impreso).toLocaleString('es-ES')} €`,
           similarity: Math.round(best.sim * 100) / 100,
           // `combined` blends amount and title overlap, so a 0.6 pass can come
           // from either side alone. A contract whose title happens to share
           // words with the claim has not corroborated it.
           stance: 'checked',
         })
+        if (!dice) marcarNoFundante()
       } else if (entityMatchMismatchedAmount) {
         // No strong (amount + entity) match, but an entity match with a
         // mismatched amount — that's a candidate contradiction.
@@ -1013,7 +1074,15 @@ export function verifyClaim(inputs: VerifierInputs): ClaimVerification {
         // un registro que no trae número es decir que se cotejó lo que no se
         // cotejó. Hoy es el caso de TODA la BDNS: ninguna fila publica importe.
         // Sostiene `parcial`, que es lo que es: mismo objeto, cifra sin mirar.
-        if (bdnsAmount(best.row) == null) marcarNoFundante()
+        //
+        // Y, con importe, sólo funda si es la cifra dicha (un 1 %): la misma
+        // regla que la fila de contrato (`filaQueDiceLaCifra`).
+        const importeBdns = bdnsAmount(best.row)
+        if (
+          importeBdns == null ||
+          similarAmount(amount, importeBdns) < IMPORTE_PRACTICAMENTE_EXACTO
+        )
+          marcarNoFundante()
       }
     }
 
@@ -1085,7 +1154,27 @@ export function verifyClaim(inputs: VerifierInputs): ClaimVerification {
     // abajo —sin-datos, con el documento a la vista— en vez de convertirse en un
     // desmentido automático contra un grupo con nombre.
     const claimsCompleted = claim.type !== 'acusacion_publica' && claimsCompletion(claim.verbatim)
-    for (const t of tenderList) {
+    // El objeto se busca con las palabras QUE DIJO quien habla, no con la
+    // paráfrasis del extractor. `referencedEntity` la escribe un modelo, y
+    // casaba contra contratos palabras que la cita no trae: el 19-10-2026
+    // zrbgic-086-cit-ec50ea —«Si ha hagut un manteniment no ha sigut
+    // l'adequat…», una valoración en valenciano— salía `parcial` y enseñada
+    // con similitud 1 sobre el contrato de mantenimiento del césped
+    // artificial, porque el extractor anotó «contrato/condiciones de
+    // mantenimiento del césped artificial». Ni «césped» ni «artificial» ni
+    // «mantenimiento» están en la cita. Un parecido con lo que el modelo
+    // entendió no es un parecido con lo que se dijo, y no sube un veredicto
+    // (CLAUDE.md, regla 4: los automáticos sólo bajan).
+    //
+    // La entidad sigue sirviendo de FOCO —de un literal largo, qué palabras
+    // nombran el objeto—, pero sólo cuenta lo que de ella está en el literal.
+    // Sin ninguna, no hay con qué emparejar: la fila cae a `sin-datos`, con
+    // `tenders` anotado porque el comparador se lanzó.
+    const literal = distintivos(claim.verbatim)
+    const entidadEnLiteral = [...distintivos(claim.entities.referencedEntity)]
+      .filter((tok) => literal.has(tok))
+      .join(' ')
+    for (const t of entidadEnLiteral ? tenderList : []) {
       // Mutuo, no contención: el suelo 0,50 de `overlapScore` lo saciaban
       // «contratación», «servicio» y «procedimiento» sobre cuatro campos
       // concatenados, y así una cita sobre la concesión del agua quedó
@@ -1093,8 +1182,16 @@ export function verifyClaim(inputs: VerifierInputs): ClaimVerification {
       // `tenderCouldRefute` ya exige para acusar: ≥2 tokens distintivos
       // compartidos y Jaccard ≥ 0,34. El segundo paso LLM sigue detrás para
       // los falsos positivos que sobrevivan.
-      const m = solapamientoMutuo(claim.entities.referencedEntity, tenderTitle(t))
-      const textSim = puntuacionObjeto(m)
+      // El MENOR de los dos parecidos: con la paráfrasis entera y con lo que de
+      // ella está en el literal. Recortar la entidad no puede subir nada, y
+      // sólo con la segunda lo hacía: «A B C D» con sólo «A B» en la cita
+      // casaba ENTERA contra un título con «A B» y puntuaba 1 donde la
+      // paráfrasis daba un Jaccard de 0,3. Medido sobre la base del
+      // 19-10-2026: doce `sin-datos` subían a `parcial` así.
+      const textSim = Math.min(
+        puntuacionObjeto(solapamientoMutuo(claim.entities.referencedEntity, tenderTitle(t))),
+        puntuacionObjeto(solapamientoMutuo(entidadEnLiteral, tenderTitle(t))),
+      )
       if (textSim >= 0.34) {
         // Contradicho: speaker says "completed" but tender is open/pending.
         // Decided BEFORE the push so the ref carries its own stance rather
@@ -1247,8 +1344,12 @@ export function verifyClaim(inputs: VerifierInputs): ClaimVerification {
   // la fila salía sobre una línea de fuentes que no nombra ninguno, y la frase
   // hablaba de una cifra que la cita no trae (claim-verdicts.ts, «El expediente
   // que se parece»).
+  //
+  // Y sólo el camino del IMPORTE (`importeLeyoContratos`): el de sólo-objeto
+  // también anota `tenders`, y una cita sin cifra cuyo objeto no está en el
+  // literal no debe volver por aquí con el contrato que casó con la paráfrasis.
   const casi =
-    evidence.some((e) => e.kind === 'tender') || !leyoContratos(checked)
+    evidence.some((e) => e.kind === 'tender') || !importeLeyoContratos || !leyoContratos(checked)
       ? null
       : mejorCasiPorObjeto(claim.entities.referencedEntity, tenderList)
   if (casi) {
