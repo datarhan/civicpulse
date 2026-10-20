@@ -1,11 +1,32 @@
 {
-  "generatedAt": "2026-10-19T12:46:45.696Z",
+  "generatedAt": "2026-10-19T17:23:29.613Z",
   "windowDays": 14,
   "items": [
     {
+      "kind": "promise",
+      "refId": "ac-psoe-1kui43c",
+      "label": "Congelación de las tarifas del agua durante dos años tras el nuevo contrato con Veolia",
+      "date": "2026-10-08",
+      "keyword": ""
+    },
+    {
       "kind": "pleno-item",
-      "refId": "zrbgic:1",
-      "label": "Aprobación Acta Ordinaria anterior de fecha 7 de septiembre de 2026",
+      "refId": "zrbgic:3",
+      "label": "Contratación · Inicio del expediente de contratación para la licitación del suministro de sustitución del pavimento de césped artificial de la instalación del estadio de fútbol Roberto Gil en régimen de arrendamiento, con opción de compra, por procedimiento abierto, varios criterios de adjudicación, con condición de ejecución de carácter social y medioambiental, contribuyendo al cumplimiento del ODS 12 de “Producción y consumo responsables” y ODS 13 “Acción por el clima” de la Agenda 2030, contrato sujeto a regulación armonizada, siendo su tramitación anticipada. (Ctto. 122/2026)",
+      "date": "2026-10-05",
+      "keyword": ""
+    },
+    {
+      "kind": "pleno-item",
+      "refId": "zrbgic:4",
+      "label": "Movilidad · Acuerdo sobre declaración de actividad municipalizada e inicio de la elaboración del proyecto del servicio de transportes de Riba-roja de Túria",
+      "date": "2026-10-05",
+      "keyword": ""
+    },
+    {
+      "kind": "pleno-item",
+      "refId": "zrbgic:5",
+      "label": "Moción conjunta del Grupo Partido Popular Riba-roja de Túria y VOX para la organización de actividades conmemorativas del “9 d’octubre” con motivo de 750 aniversario de la muerte de Jaume I",
       "date": "2026-10-05",
       "keyword": ""
     },
@@ -15,19 +36,28 @@
       "label": "Recursos humanos · Asuntos de Urgencia. RECURSOS HUMANOS, Acuerdo para la modificación de los criterios de reparto de la asignación a los grupos políticos para la anualidad 2026",
       "date": "2026-10-05",
       "keyword": ""
-    },
+    }
+  ],
+  "covered": [
     {
       "kind": "pleno-item",
-      "refId": "zrbgic:8",
-      "label": "Ruegos y preguntas",
+      "refId": "zrbgic:2",
+      "label": "Aprobación de la Cuenta General correspondiente al ejercicio 2025",
       "date": "2026-10-05",
-      "keyword": ""
+      "articleId": "pqxb2e",
+      "outlet": "Valencia Plaza",
+      "shared": [
+        "cuenta",
+        "general"
+      ]
     }
   ],
   "stats": {
-    "plenoItemsUncovered": 3,
-    "promisesUncovered": 0,
-    "candidatesExamined": 9
+    "plenoItemsUncovered": 4,
+    "promisesUncovered": 1,
+    "candidatesExamined": 6,
+    "tramitesExcluidos": 3,
+    "titularesConsiderados": 23
   },
   "builtFrom": {
     "plenos-agendas.json": "54c4ffd0e494",

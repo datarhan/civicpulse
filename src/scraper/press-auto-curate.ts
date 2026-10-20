@@ -32,6 +32,7 @@
  */
 
 import { evidenceStance, toPublishedSnippet, type ClaimVerdict } from './claim-verifier'
+import { corpusReales } from './claim-verdicts'
 import type { PressClaim } from './press-claim'
 import type { PressClaimVerification } from './press-verifier'
 import type { PressFinding, PressFindingRef } from './press-finding'
@@ -265,7 +266,7 @@ export function composeFinding(opts: ComposeOpts): PressFinding {
   const title =
     `Auditoría · ${lead.claim.articleSource}: ${lead.claim.verbatim.slice(0, 80)}`.slice(0, 200)
   const summary =
-    `Los datos municipales contrastan con la cobertura citada. ` +
+    `${loQuePaso(bundle)} ` +
     `Veredictos del lote: ${verdictSummary}. ` +
     `Cobertura: ${bundle.attributedOutlets.length} medio(s) — ${bundle.attributedOutlets.join(', ')}. ` +
     // This string is PUBLISHED: it is the finding's summary, rendered on
@@ -296,6 +297,58 @@ export function composeFinding(opts: ComposeOpts): PressFinding {
     publishedAt,
     response: null,
   }
+}
+
+const plural = (n: number, uno: string, varios: string) => (n === 1 ? uno : varios)
+
+/**
+ * La primera frase del resumen: qué salió del cotejo del lote.
+ *
+ * Decía siempre «Los datos municipales contrastan con la cobertura citada», y el
+ * 19-10-2026 eso encabezaba el lote de la Cuenta General (pf-2026-10-19-140oi31+):
+ * tres afirmaciones `sin-datos`, y una de ellas sin buscar en ningún dato
+ * (`checkedAgainst: []`). Las cifras salen del lote: una frase escrita a mano se
+ * queda diciendo lo mismo pase lo que pase.
+ */
+function loQuePaso(bundle: BundleCandidate): string {
+  const total = bundle.items.length
+  const { verificado, parcial } = bundle.verdictMix
+  const de = `de las ${total} ${plural(total, 'afirmación', 'afirmaciones')} del lote`
+  if (verificado > 0) {
+    return `${verificado} ${de} ${plural(verificado, 'coincide', 'coinciden')} con un registro municipal.`
+  }
+  if (parcial > 0) {
+    return `Ninguna ${de} coincide del todo con un registro municipal; ${parcial} ${plural(parcial, 'lo hace', 'lo hacen')} sólo en parte.`
+  }
+  const sinBuscar = bundle.items.filter(
+    (it) => corpusReales(it.verification.checkedAgainst).length === 0,
+  ).length
+  const cola =
+    sinBuscar === 0
+      ? ''
+      : `; ${sinBuscar} no se ${plural(sinBuscar, 'llegó', 'llegaron')} a buscar en ningún dato`
+  return `Ninguna ${de} encontró registro en los datos municipales${cola}.`
+}
+
+/**
+ * Los hallazgos nuevos que no repiten un lote ya publicado.
+ *
+ * El id lleva la fecha (`pf-<publicado>-<huella>`), así que el mismo lote
+ * recompuesto otro día era otra fila: el 19-10-2026 press-findings.json tenía 17
+ * filas de 5 lotes, seis de ellas el de Nerco, y /laboratorio enseñaba su titular
+ * cuatro veces en cinco filas. Un lote es su historia (`articleFingerprints`) con
+ * sus afirmaciones (`sourceClaimIds`): si gana o pierde una, es otro lote y se
+ * publica. Lo publicado no se toca —nada automático reescribe lo publicado—; sólo
+ * se deja de añadir la copia.
+ */
+export function descartarLotesYaPublicados(
+  nuevos: PressFinding[],
+  publicados: readonly PressFinding[],
+): PressFinding[] {
+  const clave = (f: PressFinding) =>
+    `${[...f.articleFingerprints].sort().join('|')}#${[...f.sourceClaimIds].sort().join('|')}`
+  const vistos = new Set(publicados.map(clave))
+  return nuevos.filter((f) => !vistos.has(clave(f)))
 }
 
 export function renderQuarantineMarkdown(quarantine: BundleCandidate[]): string {
