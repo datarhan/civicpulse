@@ -52,7 +52,7 @@ describe('registroDeLaSubida · la licitación de un SDA', () => {
       stance: 'checked',
     })
     expect(r.fecha).toBe('2025-08-08')
-    expect(r.diceImporte).toBe(false)
+    expect(r.importe).toBeNull()
     expect(r.fila.snippet).not.toMatch(/adjudicad|desistid|abandon|provisional|€|3\.000\.000/i)
   })
 
@@ -104,7 +104,7 @@ describe('comprobarRegistrosConLaDeclaracion · un SDA', () => {
     expect(() =>
       comprobarRegistrosConLaDeclaracion(
         [sda()],
-        { fecha: '2025-07-01', conImporte: false },
+        { fecha: '2025-07-01', tipo: 'cita_obra', importe: null },
         'parcial',
       ),
     ).toThrow(/posterior/)
@@ -114,7 +114,7 @@ describe('comprobarRegistrosConLaDeclaracion · un SDA', () => {
     expect(() =>
       comprobarRegistrosConLaDeclaracion(
         [sda()],
-        { fecha: '2025-12-01', conImporte: false },
+        { fecha: '2025-12-01', tipo: 'cita_obra', importe: null },
         'verificado',
       ),
     ).not.toThrow()
@@ -124,7 +124,7 @@ describe('comprobarRegistrosConLaDeclaracion · un SDA', () => {
     expect(() =>
       comprobarRegistrosConLaDeclaracion(
         [sda()],
-        { fecha: '2025-12-01', conImporte: true },
+        { fecha: '2025-12-01', tipo: 'cita_obra', importe: 3000000 },
         'verificado',
       ),
     ).toThrow(/importe/)

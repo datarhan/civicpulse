@@ -73,6 +73,33 @@
  * Se compara con la base que HAY: lo que encuentra hoy el verificador. Si lo
  * publicado sale de ella lo dice `check:verified-compose`; aquí se imprimen los
  * dos sellos y cuántas entradas se cotejaron.
+ *
+ * ── El tercer cotejo: las subidas firmadas, contra el corpus de hoy ──────────
+ *
+ * `subido` sale 0 porque lo firmó una persona con el registro que lo sostenía
+ * ESE día. Nada volvía a mirarlo: el 19-10-2026 10 de las 13 subidas que citan
+ * un contrato citaban una adjudicación publicada después de lo dicho —la vía no
+ * daba fecha a un contrato—, una de ellas sosteniendo una promesa. Cada fila de
+ * contrato se vuelve a derivar contra el tenders.json de hoy
+ * (`cotejarFilaDeContrato`, src/scraper/subida-firmada.ts), con los cuatro
+ * desenlaces de CLAUDE.md «A verbatim stays put; a number does not»:
+ *
+ *   coincide      la vía escribiría hoy la misma fila · sale 0
+ *   movido        el mismo contrato; cambia el formato de la vía o la grafía de
+ *                 la adjudicataria · AVISO, sale 0: lo arregla volver a firmar
+ *   contradice    el importe, el estado, la fecha o el contrato no son los mismos
+ *                 · sale 1
+ *   sin-registro  el contrato o su lote ya no está en tenders.json · sale 1
+ *
+ * Y cada subida, con las reglas de hoy (`problemasConLaDeclaracion`): un
+ * contrato que sostiene una promesa `[promesa]`, un `verificado` cuya cifra no
+ * dice ninguna fila `[importe]`, o una fecha que falta `[sin-fecha]` · salen 1.
+ * Un registro posterior a la declaración se acepta con su motivo firmado
+ * (`registroPosterior`, decisión del curador del 19-10-2026: puede corroborar la
+ * descripción de un contrato en trámite); sin él, `[posterior-sin-motivo]` es
+ * un AVISO que sale 0, porque las subidas firmadas antes de ese día no podían
+ * guardarlo, y lo decide el curador al volver a firmarlas. Ninguna se reescribe
+ * (regla 4). Sin tenders.json en disco: SALTADO, jamás «0 contradicen».
  */
 import { readFileSync, readdirSync, existsSync } from 'node:fs'
 import { resolve, join } from 'node:path'
@@ -93,9 +120,17 @@ import {
   type Overlay,
   type VerifiedItem,
 } from '../src/scraper/verified-merge'
+import {
+  cotejarSubidasFirmadas,
+  type CotejoDeSubidas,
+  type DeclaracionCotejada,
+} from '../src/scraper/subida-firmada'
 import { BASE, VERIFIED, loadOverlay } from './verified-rebuild'
 
 const DIR = resolve('public/data/pleno-claims')
+const TENDERS = resolve('public/data/tenders.json')
+const BDNS = resolve('public/data/bdns.json')
+const AGENDAS = resolve('public/data/plenos-agendas.json')
 
 export const ESTADOS_VEREDICTO = [
   'fundado',
@@ -116,7 +151,12 @@ interface Fila {
 }
 
 interface Item {
-  claim?: { id?: string; type?: string }
+  claim?: {
+    id?: string
+    type?: string
+    plenoDate?: string
+    entities?: { amountEuros?: number | null }
+  }
   verification?: {
     verdict?: string
     checkedAgainst?: unknown[]
@@ -364,6 +404,99 @@ function informarDelCotejoConBase(c: CotejoConBase): boolean {
   return true
 }
 
+/** Un desenlace o un aviso que sale 1, con su código entre corchetes para la huella del parte. */
+const ROJOS_DE_FILA = new Set(['contradice', 'sin-registro'])
+
+/** Imprime el tercer cotejo. Devuelve si hay algo que sale 1. */
+function informarDeLasSubidas(c: CotejoDeSubidas): boolean {
+  if (c.estado === 'sin-corpus') {
+    process.stdout.write(
+      '[check-veredictos] subidas firmadas contra el corpus de hoy: SALTADO — no hay ' +
+        'public/data/tenders.json que leer. No se ha cotejado ninguna fila firmada, que no es lo ' +
+        'mismo que ninguna contradiga.\n',
+    )
+    return false
+  }
+  const cuenta = (d: string) => c.filas.filter((f) => f.desenlace === d).length
+  process.stdout.write(
+    `[check-veredictos] subidas firmadas contra el corpus de hoy: ${c.subidas} subida(s) · ` +
+      `${c.filas.length} fila(s) de contrato · ${cuenta('coincide')} coinciden · ` +
+      `${cuenta('movido')} movidas · ${cuenta('contradice')} contradicen · ` +
+      `${cuenta('sin-registro')} sin registro · ${c.otrasFilas} de otros registros, que no se ` +
+      `cotejan aquí (${c.otrasSinRegistro} sin poder volver a derivarlas) · ` +
+      `${new Set(c.posterioresSinMotivo.map((a) => a.id)).size} con un registro posterior sin ` +
+      `motivo · ${c.avisos.length} aviso(s) que salen 1\n`,
+  )
+  const movidas = c.filas.filter((f) => f.desenlace === 'movido')
+  if (movidas.length > 0) {
+    const ids = [...new Set(movidas.map((f) => f.id))]
+    process.stdout.write(
+      `  · ${movidas.length} fila(s) movidas: el mismo contrato, que la vía escribiría hoy de ` +
+        'otro modo. Se arreglan volviendo a firmar con `npm run subir-veredicto` ' +
+        `(${ids.join(', ')})\n`,
+    )
+  }
+  if (c.sinDeclaracion.length > 0) {
+    process.stdout.write(
+      `  · ${c.sinDeclaracion.length} subida(s) cuya declaración no se sirve: su fecha, tipo y ` +
+        `cifra no se han mirado (${c.sinDeclaracion.join(', ')})\n`,
+    )
+  }
+  if (c.posterioresConMotivo.length > 0) {
+    process.stdout.write(
+      `  · ${c.posterioresConMotivo.length} subida(s) citan un registro posterior a lo dicho con ` +
+        `su motivo firmado (${c.posterioresConMotivo.map((p) => p.id).join(', ')})\n`,
+    )
+  }
+  // AVISO, sale 0: las firmadas antes del 19-10-2026 no podían guardar el motivo.
+  // Lo decide el curador, y lo pone al volver a firmarlas.
+  const sinMotivo = [...new Set(c.posterioresSinMotivo.map((a) => a.id))]
+  if (sinMotivo.length > 0) {
+    process.stdout.write(
+      `  · ${sinMotivo.length} subida(s) citan un registro posterior a lo dicho sin motivo ` +
+        'registrado — decide el curador: un registro posterior corrobora la descripción de un ' +
+        'contrato en trámite, no que algo estuviera hecho; al volver a firmar, con ' +
+        '`--registro-posterior`, o se retira. Aviso, no fallo.\n',
+    )
+    for (const id of sinMotivo) {
+      const a = c.posterioresSinMotivo.find((x) => x.id === id)!
+      process.stdout.write(`    [posterior-sin-motivo] ${id}: ${a.detalle.split('. ')[0]}\n`)
+    }
+  }
+  for (const f of c.filas.filter((x) => ROJOS_DE_FILA.has(x.desenlace))) {
+    process.stderr.write(
+      `  ✗ [${f.desenlace}] ${f.id} · ${f.ref}${f.lote != null ? ` (lote ${f.lote})` : ''}: ` +
+        `${f.detalle}\n`,
+    )
+  }
+  for (const a of c.avisos) {
+    process.stderr.write(`  ✗ [${a.codigo}] ${a.id}: ${a.detalle}\n`)
+  }
+  const rojas = c.filas.filter((f) => ROJOS_DE_FILA.has(f.desenlace)).length + c.avisos.length
+  if (rojas === 0) return false
+  process.stderr.write(
+    `[check-veredictos] ${rojas} fila(s) o aviso(s) de subidas firmadas que hoy no se podrían ` +
+      'escribir. Ninguna se reescribe sola (regla 4): lo decide una persona —retirarla con ' +
+      '`npm run subir-veredicto -- --retirar`, o volver a firmarla con un registro que la ' +
+      'sostenga—.\n',
+  )
+  return true
+}
+
+/** La fecha, el tipo y la cifra de cada declaración servida, para el tercer cotejo. */
+function declaracionesServidas(items: Item[]): Map<string, DeclaracionCotejada> {
+  const m = new Map<string, DeclaracionCotejada>()
+  for (const it of items) {
+    if (!it.claim?.id) continue
+    m.set(it.claim.id, {
+      fecha: it.claim.plenoDate ?? null,
+      tipo: it.claim.type ?? null,
+      importe: it.claim.entities?.amountEuros ?? null,
+    })
+  }
+  return m
+}
+
 function main(): void {
   const asJson = process.argv.includes('--json')
 
@@ -412,6 +545,16 @@ function main(): void {
     servidas,
     publicadoGeneratedAt: typeof publicado?.generatedAt === 'string' ? publicado.generatedAt : null,
   })
+  const tenders = leerJson(TENDERS)
+  const subidasHoy = cotejarSubidasFirmadas({
+    overlay: loadOverlay(),
+    declaraciones: declaracionesServidas(items),
+    corpus: tenders
+      ? { tenders, bdns: leerJson(BDNS), agendas: leerJson(AGENDAS) ?? undefined }
+      : null,
+  })
+  const rojasDeSubidas =
+    subidasHoy.filas.some((f) => ROJOS_DE_FILA.has(f.desenlace)) || subidasHoy.avisos.length > 0
 
   // `exitCode` y no `exit()`: con la salida por tubería —el parte de la salud
   // la lee así— salir en seco puede cortar justo los renglones que dicen qué.
@@ -426,12 +569,13 @@ function main(): void {
           retiradas,
           rotos,
           base: conBase,
+          subidasFirmadas: subidasHoy,
         },
         null,
         2,
       ) + '\n',
     )
-    process.exitCode = rotos.length || conBase.porEncima.length ? 1 : 0
+    process.exitCode = rotos.length || conBase.porEncima.length || rojasDeSubidas ? 1 : 0
     return
   }
 
@@ -456,6 +600,7 @@ function main(): void {
     process.stderr.write(`  ✗ [${r.estado}] ${r.id}: ${r.verdict} — ${r.detalle}\n`)
   }
   const sobreLaBase = informarDelCotejoConBase(conBase)
+  if (informarDeLasSubidas(subidasHoy)) process.exitCode = 1
 
   // Que la comprobación haya mirado algo de verdad: si NINGÚN veredicto fuera
   // fuerte, todo saldría `fundado` por la puerta de arriba y esto imprimiría

@@ -633,7 +633,21 @@ function mejorCasiPorObjeto(
   return mejor
 }
 
-function similarAmount(claimed: number, found: number): number {
+/**
+ * Un importe «prácticamente exacto»: un parecido de al menos 0,98, que es un
+ * cociente de al menos 0,99 — un 1 % de diferencia, el redondeo de una cifra
+ * dicha de viva voz («80.666» por 80.666,66 €).
+ */
+export const IMPORTE_PRACTICAMENTE_EXACTO = 0.98
+
+/**
+ * El parecido de dos importes: el cociente del menor entre el mayor, al
+ * cuadrado. Exportado con su umbral de «prácticamente exacto» porque la subida
+ * firmada (subida-firmada.ts) lo usa para decidir si la fila de un registro
+ * dice la cifra de una declaración: dos umbrales copiados acabarían diciendo
+ * cosas distintas.
+ */
+export function similarAmount(claimed: number, found: number): number {
   if (claimed <= 0 || found <= 0) return 0
   const ratio = Math.min(claimed, found) / Math.max(claimed, found)
   return Math.max(0, ratio * ratio) // quadratic so 0.9 → 0.81 (meaningful gap)
@@ -855,7 +869,8 @@ export function verifyClaim(inputs: VerifierInputs): ClaimVerification {
         const textSim =
           m === null
             ? 0
-            : entidadContenida && (m.tokensEntidad >= 2 || amountSim >= 0.98)
+            : entidadContenida &&
+                (m.tokensEntidad >= 2 || amountSim >= IMPORTE_PRACTICAMENTE_EXACTO)
               ? 1
               : puntuacionObjeto(m)
         // contradicho-candidate: the entity names this contract AND the amount
@@ -958,7 +973,9 @@ export function verifyClaim(inputs: VerifierInputs): ClaimVerification {
         const amountSim = bAmount == null ? 0 : similarAmount(amount, bAmount)
         const entidadContenida = m.tokensEntidad >= 1 && m.compartidas === m.tokensEntidad
         const textSim =
-          entidadContenida && (m.tokensEntidad >= 2 || amountSim >= 0.98) ? 1 : puntuacionObjeto(m)
+          entidadContenida && (m.tokensEntidad >= 2 || amountSim >= IMPORTE_PRACTICAMENTE_EXACTO)
+            ? 1
+            : puntuacionObjeto(m)
         // La misma regla que el camino de los contratos, en el de las
         // subvenciones: la mezcla de abajo es el mismo `sim*0,6 + texto*0,4`
         // con suelo 0,6, así que un importe exacto contra una convocatoria de

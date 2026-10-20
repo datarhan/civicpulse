@@ -123,6 +123,15 @@ export interface OverlayEntry {
    */
   desde?: ClaimVerdict
   /**
+   * Sólo en una subida firmada que cita un registro POSTERIOR a la declaración:
+   * por qué lo sostiene igualmente, firmado por quien sube (≥20 caracteres). Un
+   * registro posterior puede corroborar la descripción de un contrato que se
+   * estaba tramitando —su objeto, sus lotes—, no que algo ya estuviera hecho, ni
+   * una promesa. Se publica con la entrada. Ver `comprobarRegistrosConLaDeclaracion`
+   * (subida-firmada.ts).
+   */
+  registroPosterior?: string
+  /**
    * Cada sustitución del motivo de una bajada de curador, en orden. Ausente
    * —nunca vacía— si el motivo es el de la bajada. Ver `enmendarMotivoDeBajada`.
    */
@@ -693,6 +702,8 @@ export interface ApplyEntry {
   editor?: string
   /** Sólo en una subida firmada: el veredicto publicado que sube (ver `OverlayEntry`). */
   desde?: ClaimVerdict
+  /** Sólo en una subida firmada: por qué la sostiene un registro posterior (ver `OverlayEntry`). */
+  registroPosterior?: string
 }
 
 const VALID_SOURCES: OverlaySource[] = [
@@ -754,6 +765,27 @@ export function validateOverlay(o: Overlay): void {
       throw new Error(
         `[overlay] ${id}: desde sólo lo lleva una subida firmada (esta entrada es de ${e.source})`,
       )
+    }
+    if (e.registroPosterior !== undefined) {
+      if (e.source !== 'curator-upgrade') {
+        throw new Error(
+          `[overlay] ${id}: registroPosterior sólo lo lleva una subida firmada (esta entrada es ` +
+            `de ${e.source})`,
+        )
+      }
+      const motivo = typeof e.registroPosterior === 'string' ? e.registroPosterior.trim() : ''
+      if (motivo.length < 20) {
+        throw new Error(
+          `[overlay] ${id}: registroPosterior dice por qué un registro posterior a la declaración ` +
+            'la sostiene, en al menos 20 caracteres',
+        )
+      }
+      const charla = charlaDeTarea(motivo)
+      if (charla) {
+        throw new Error(
+          `[overlay] ${id}: registroPosterior habla de la tarea de un modelo (${charla})`,
+        )
+      }
     }
     if (e.source === 'curator-upgrade') validarSubida(id, e)
     if (e.sustituye !== undefined) {
@@ -1453,6 +1485,9 @@ export function applyOverlayEntries(
       ...(e.editor ? { editor: e.editor } : {}),
       appliedAt: stampIso,
       ...(etapa?.firmaEnLaEntrada && e.desde ? { desde: e.desde } : {}),
+      ...(etapa?.firmaEnLaEntrada && e.registroPosterior
+        ? { registroPosterior: e.registroPosterior }
+        : {}),
       ...(sustituye ? { sustituye } : {}),
     }
   }
