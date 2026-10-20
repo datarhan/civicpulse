@@ -98,9 +98,12 @@ test.describe('Reportaje · coste efectivo (/reportajes/coste-efectivo)', () => 
     await expect(tarifa.locator('summary')).toBeVisible()
     expect(await tarifa.getAttribute('open')).toBeNull()
     await tarifa.locator('summary').click()
-    await expect(
-      page.getByRole('link', { name: /Diari Oficial de la Generalitat Valenciana/ }),
-    ).toBeVisible()
+    // Desde el 20-10-2026 son tres anuncios del DOGV (2025, 2022 y 2013): la
+    // vigente se ancla por su fecha, y los tres tienen que estar.
+    const dogv = tarifa.getByRole('link', { name: /Diari Oficial de la Generalitat Valenciana/ })
+    await expect(dogv).toHaveCount(3)
+    await expect(dogv.first()).toHaveAttribute('href', /2025_48443/)
+    await expect(dogv.first()).toBeVisible()
     // 3. Quién remite, según la norma — y ningún nombre donde la norma pone un órgano.
     await expect(page.getByText(snap.quienRemite.cuerpo.slice(0, 80))).toBeVisible()
     expect(await page.getByText(/Carrizosa/).count()).toBe(0)
@@ -187,7 +190,11 @@ test.describe('Reportaje · coste efectivo (/reportajes/coste-efectivo)', () => 
     ).toBeVisible()
     // Quién acusó y qué dijo: el acuse no resuelve nada de lo pedido, así que la
     // fila sigue «en plazo» y lo que hace es CONFIRMAR el reloj, no agotarlo.
-    await expect(page.getByText(/Dirección General de Comercio, Artesanía y Consumo/)).toBeVisible()
+    // Anclado en la fecha: desde el 20-10-2026 el anuncio de 2022 de la sección
+    // de la tarifa nombra también a esa Dirección General.
+    await expect(
+      page.getByText(/El 21 de septiembre la Dirección General de Comercio, Artesanía y Consumo/),
+    ).toBeVisible()
     // Y la cautela que sobraba desde ese momento no puede seguir en la página:
     // decir que no consta algo que ya consta miente igual que afirmar de más.
     expect(await page.getByText(/no consta todavía aquí/).count()).toBe(0)

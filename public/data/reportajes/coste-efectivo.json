@@ -46,7 +46,7 @@
       },
       {
         "fecha": "2026-10-20",
-        "texto": "**Se ha corregido lo que decíamos de la tarifa vigente del agua.** La sección de la tarifa daba la de 2013 como la última modificación que habíamos localizado y dejaba abierto si había habido revisiones posteriores; la entradilla de esa sección decía que el precio estaba publicado y se podía enlazar. Ha habido dos revisiones: el 19 de octubre la Generalitat resolvió una solicitud de acceso de esta pieza y enumera dos informes de la Comisión de Precios sobre las tarifas de Riba-roja, de 2022 y de 2025, que según la concesionaria se publicaron en el DOGV y se aplican. Las cifras de 2013 siguen en la sección como lo que son, las de 2013, y la sección dice ahora que no son las que se cobran hoy. Lo que decía la corrección del 17 de septiembre —que la tarifa está en el DOGV de 23 de enero de 2013— era cierto de aquella tarifa, no de la vigente. Ninguna otra cifra cambia."
+        "texto": "**Se ha corregido lo que decíamos de la tarifa vigente del agua.** La sección de la tarifa daba la de 2013 como la última modificación que habíamos localizado y dejaba abierto si había habido revisiones posteriores; la entradilla de esa sección decía que el precio estaba publicado y se podía enlazar. Ha habido dos revisiones: el 19 de octubre la Generalitat resolvió una solicitud de acceso de esta pieza y enumera dos informes de la Comisión de Precios sobre las tarifas de Riba-roja, de 2022 y de 2025, que según la concesionaria se publicaron en el DOGV y se aplican. Las cifras de 2013 siguen en la sección como lo que son, las de 2013, y la sección dice ahora que no son las que se cobran hoy. Lo que decía la corrección del 17 de septiembre —que la tarifa está en el DOGV de 23 de enero de 2013— era cierto de aquella tarifa, no de la vigente. Ninguna otra cifra cambia.\n\n**Y la tarifa vigente ya está en la sección.** Más tarde, ese mismo día, se localizaron en el DOGV los dos anuncios de la concesionaria: el de 25 de noviembre de 2022 y el de 22 de diciembre de 2025, que es la última publicada, con una cuota de servicio de 4,43 € al mes y bloques de 0,2155 a 0,9026 € por metro cúbico, más IVA. La sección decía que esos anuncios no se habían localizado; ahora los enlaza, con sus cifras."
       }
     ]
   },
@@ -382,6 +382,14 @@
       "url": "https://www.boe.es/buscar/act.php?id=BOE-A-2012-12423"
     },
     {
+      "label": "DOGV núm. 10266, de 22 de diciembre de 2025 · anuncio de Hidraqua de la tarifa de agua potable de Riba-roja de Túria",
+      "url": "https://dogv.gva.es/datos/2025/12/22/pdf/2025_48443_es.pdf"
+    },
+    {
+      "label": "DOGV núm. 9478, de 25 de noviembre de 2022 · anuncio de Hidraqua de las tarifas de agua potable de Riba-roja de Túria",
+      "url": "https://dogv.gva.es/datos/2022/11/25/pdf/2022_10776.pdf"
+    },
+    {
       "label": "DOGV núm. 6949, de 23 de enero de 2013 · tarifas de agua de Riba-roja de Túria, apartado 3.23",
       "url": "https://dogv.gva.es/datos/2013/01/23/pdf/2013_500.pdf"
     },
@@ -445,11 +453,21 @@
   },
   "laTarifa": {
     "titulo": "La tarifa del agua está publicada: en el diario oficial de la Generalitat y en el expediente",
-    "cuerpo": "En una concesión el dinero sale del recibo, así que la cifra que de verdad afecta a una casa de Riba-roja no es la de 55,7 millones: es lo que cuesta el metro cúbico. Ese precio se publica en el diario oficial de la Generalitat. El último que hemos podido enlazar es de 2013, y desde entonces ha habido dos revisiones que todavía no hemos visto.",
+    "cuerpo": "En una concesión el dinero sale del recibo, así que la cifra que de verdad afecta a una casa de Riba-roja no es la de 55,7 millones: es lo que cuesta el metro cúbico. Ese precio se publica en el diario oficial de la Generalitat, y se puede enlazar: el último publicado es de diciembre de 2025, y es la tercera tarifa desde 2013.",
     "buscadoEn": [
       {
+        "donde": "Diari Oficial de la Generalitat Valenciana · 22 de diciembre de 2025",
+        "resultado": "La última publicada. Es un anuncio de Hidraqua, Gestión Integral de Aguas de Levante, firmado por su gerente el 28 de noviembre de 2025: se titula de información pública, pero informa «de la aplicación de la tarifa de agua potable en el municipio de Riba-roja de Túria». Una cuota de servicio de 4,43 € al mes con contador de 13 mm y cuatro bloques de consumo, de 0,2155, 0,4960, 0,6283 y 0,9026 € por metro cúbico, más IVA. Cada cifra es un 9 % mayor que la de 2022 y un 19 % mayor que la de 2013.",
+        "url": "https://dogv.gva.es/datos/2025/12/22/pdf/2025_48443_es.pdf"
+      },
+      {
+        "donde": "Diari Oficial de la Generalitat Valenciana · 25 de noviembre de 2022",
+        "resultado": "Otro anuncio de Hidraqua: el 16 de septiembre de 2022 presentó ante la Dirección General de Comercio, Artesanía y Consumo un expediente de modificación de tarifas, y las resultantes son una cuota de servicio de 4,06 € al mes con contador de 13 mm y bloques de 0,1975, 0,4546, 0,5759 y 0,8273 € por metro cúbico, más IVA: un 9 % más que en 2013.",
+        "url": "https://dogv.gva.es/datos/2022/11/25/pdf/2022_10776.pdf"
+      },
+      {
         "donde": "Diari Oficial de la Generalitat Valenciana · 23 de enero de 2013",
-        "resultado": "En la Comunitat Valenciana la tarifa del agua pasa por la Comisión de Precios de la Generalitat, que la informa, y su autorización se publica en el DOGV. La última modificación de las tarifas de Riba-roja que hemos localizado es ésta (apartado 3.23, a solicitud de Aquagest Levante): una cuota de servicio de 3,71 € al mes con contador de 13 mm y cuatro bloques de consumo, de 0,1806, 0,4158, 0,5267 y 0,7566 € por metro cúbico, más IVA. Ha habido revisiones posteriores, y se sabe desde después de la fecha de las cifras de esta pieza, por eso esto se añadió con la corrección del 20 de octubre: el 19 de octubre de 2026, al resolver una solicitud de acceso de esta pieza, la Generalitat enumeró dos informes de la Comisión de Precios sobre las tarifas de Riba-roja, de los expedientes 133/09 2022 y 103 07 2025. Según las alegaciones de la propia concesionaria, que recoge la resolución, son las dos únicas actualizaciones posteriores al 1 de enero de 2013, las dos se tramitaron con el Decreto 68/2013, de 7 de junio —así que ninguna es la de enero de 2013—, se publicaron en el DOGV y se aplican desde entonces, así que las cifras de 2013 no son las que se cobran hoy. Los dos informes no se entregan hasta que la resolución sea firme, y los anuncios del DOGV que les correspondan no los hemos localizado todavía.",
+        "resultado": "En la Comunitat Valenciana la tarifa del agua pasa por la Comisión de Precios de la Generalitat, que la informa, y se publica en el DOGV: en 2013, como resolución de la Dirección General de Comercio y Consumo; en 2022 y en 2025, como anuncio de la concesionaria. La de 2013 es ésta (apartado 3.23, a solicitud de Aquagest Levante): una cuota de servicio de 3,71 € al mes con contador de 13 mm y cuatro bloques de consumo, de 0,1806, 0,4158, 0,5267 y 0,7566 € por metro cúbico, más IVA. Ya no es la que se cobra: la revisaron los dos anuncios de arriba. Se sabe desde después de la fecha de las cifras de esta pieza, y por eso se añadió con la corrección del 20 de octubre: el 19 de octubre la Generalitat, al resolver una solicitud de acceso de esta pieza, enumeró dos informes de la Comisión de Precios sobre estas tarifas, de los expedientes 133/09 2022 y 103 07 2025, y dos únicos anuncios publicados desde 2012; en el buscador del DOGV salen estos dos, y ninguno más. Según las alegaciones de la propia concesionaria, que recoge la resolución, las dos actualizaciones se tramitaron con el Decreto 68/2013, de 7 de junio. Los informes de la Comisión no se entregan hasta que la resolución sea firme.",
         "url": "https://dogv.gva.es/datos/2013/01/23/pdf/2013_500.pdf"
       },
       {
@@ -463,7 +481,7 @@
         "url": "https://www.ribarroja.es/es/ordenanzas/ordenanzas_contenido_economico/ordenanzas_fiscales_2025_vigentes/contenidos/7281734/9852782"
       }
     ],
-    "cierre": "Hay agregadores privados que publican un precio del agua para Riba-roja. No se recoge aquí: un agregador no es la fuente, es alguien que la copió, y esta pieza sólo publica lo que puede enlazar. Lo que queda por comprobar es otra cosa: qué dicen las revisiones de 2022 y de 2025, y con qué ordenanza se regula hoy."
+    "cierre": "Hay agregadores privados que publican un precio del agua para Riba-roja. No se recoge aquí: un agregador no es la fuente, es alguien que la copió, y esta pieza sólo publica lo que puede enlazar. Lo que queda por comprobar es otra cosa: qué dicen los informes de la Comisión de Precios sobre las revisiones de 2022 y de 2025, y con qué ordenanza se regula hoy."
   },
   "quienRemite": {
     "titulo": "Quién tiene que remitirlo",
@@ -528,7 +546,7 @@
         "respuesta": {
           "fecha": "2026-10-19",
           "sentido": "concedido-diferido",
-          "resumen": "Lo resolvió la directora general de Comercio, Artesanía y Consumo, y se notificó el 20 de octubre. La resolución estima la solicitud y enumera lo que se facilitará: la relación de los dos únicos anuncios de tarifas de abastecimiento de agua potable de Riba-roja publicados en el DOGV desde el 1 de enero de 2012 —la solicitud pedía desde 2013, y la resolución no dice si cuenta entre ellos la de enero de 2013 que esta pieza enlaza en la sección de la tarifa—, y los informes de la Comisión de Precios de dos expedientes, el 133/09 2022, tramitado por el procedimiento simplificado del Decreto 68/2013, y el 103 07 2025, por el ordinario. Añade que no consta ninguna solicitud ni informe sobre las tarifas del contrato de concesión adjudicado en 2026. Los documentos no se han entregado todavía: Hidraqua, Gestión Integral de Aguas de Levante, a la que se dio traslado como tercera afectada, se opuso el 13 de octubre alegando perjuicio para sus derechos económicos, para las funciones de control de la administración y para su secreto profesional y su propiedad intelectual, y la Dirección General consideró que esos perjuicios no habían quedado suficientemente justificados. Cuando un tercero se ha opuesto, el artículo 22.2 de la Ley 19/2013 sólo permite el acceso cuando la concesión es firme: si pasa sin recurrirse el plazo del recurso contencioso-administrativo, de dos meses, o si, recurrida o reclamada ante el Consejo Valenciano de Transparencia, se confirma. No consta cuándo se notificó a Hidraqua, que es desde donde corren sus plazos, así que no se puede dar el día en que será firme."
+          "resumen": "Lo resolvió la directora general de Comercio, Artesanía y Consumo, y se notificó el 20 de octubre. La resolución estima la solicitud y enumera lo que se facilitará: la relación de los dos únicos anuncios de tarifas de abastecimiento de agua potable de Riba-roja publicados en el DOGV desde el 1 de enero de 2012 —la solicitud pedía desde 2013; en el buscador del DOGV son los de 25 de noviembre de 2022 y 22 de diciembre de 2025, que publicó la concesionaria y que esta pieza enlaza en la sección de la tarifa—, y los informes de la Comisión de Precios de dos expedientes, el 133/09 2022, tramitado por el procedimiento simplificado del Decreto 68/2013, y el 103 07 2025, por el ordinario. Añade que no consta ninguna solicitud ni informe sobre las tarifas del contrato de concesión adjudicado en 2026. Los documentos no se han entregado todavía: Hidraqua, Gestión Integral de Aguas de Levante, a la que se dio traslado como tercera afectada, se opuso el 13 de octubre alegando perjuicio para sus derechos económicos, para las funciones de control de la administración y para su secreto profesional y su propiedad intelectual, y la Dirección General consideró que esos perjuicios no habían quedado suficientemente justificados. Cuando un tercero se ha opuesto, el artículo 22.2 de la Ley 19/2013 sólo permite el acceso cuando la concesión es firme: si pasa sin recurrirse el plazo del recurso contencioso-administrativo, de dos meses, o si, recurrida o reclamada ante el Consejo Valenciano de Transparencia, se confirma. No consta cuándo se notificó a Hidraqua, que es desde donde corren sus plazos, así que no se puede dar el día en que será firme."
         },
         "incidencias": [
           {
