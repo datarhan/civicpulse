@@ -322,6 +322,30 @@ export function corpusReales(checkedAgainst?: readonly unknown[] | null): Corpus
   return clasificarProcedencia(checkedAgainst).corpus
 }
 
+/**
+ * Los corpus de `CORPUS_IDS` que NO son datos municipales, y por eso no pueden
+ * decir si un titular «coincide con datos municipales»:
+ *
+ *   · `promises` — el catálogo de promesas electorales de los partidos. El
+ *     19-10-2026, «○ Coincide con datos municipales» salía en las dos notas de las
+ *     canteras (1w1lf6k, o3xjg4), y su única afirmación cotejada lo había sido
+ *     contra ese catálogo: el círculo vacío decía «se miró en los datos del
+ *     Ayuntamiento y no cuadra» de algo que nadie buscó en ellos.
+ *   · `prior-claims` — lo que ya dijo la prensa: otro medio no es un dato.
+ *   · `factcheck` — las verificaciones de terceros (Maldita, Newtral…).
+ *
+ * Lo demás —contratos, subvenciones, presupuesto, padrón, paro, BOE, plenos— es
+ * la lista que la entradilla de /laboratorio nombra como «datos municipales
+ * públicos». La tabla por medio sigue contando como COTEJADA una afirmación
+ * buscada en promesas (`cotejada`, en press-analytics.ts): allí la pregunta es si se buscó en algún sitio.
+ */
+export const CORPUS_NO_MUNICIPALES: readonly CorpusId[] = ['promises', 'prior-claims', 'factcheck']
+
+/** Los corpus municipales de un `checkedAgainst`: `corpusReales` sin los de arriba. */
+export function corpusMunicipales(checkedAgainst?: readonly unknown[] | null): CorpusId[] {
+  return corpusReales(checkedAgainst).filter((c) => !CORPUS_NO_MUNICIPALES.includes(c))
+}
+
 // ─── De la evidencia al corpus ──────────────────────────────────────────────
 //
 // Cada pasada escribía SU PROPIO NOMBRE en `checkedAgainst` en vez de decir

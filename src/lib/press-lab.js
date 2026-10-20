@@ -12,6 +12,8 @@
  * ratios null (→ rendered "—") when there is nothing to divide.
  */
 import { desenlaceVigente } from '../scraper/press-extraccion'
+import { esAnuncioClasificado } from '../scraper/press-clasificado'
+import { corpusMunicipales, corpusReales } from '../scraper/claim-verdicts'
 
 const WINDOW_DAYS = 30
 
@@ -35,6 +37,9 @@ const WINDOW_DAYS = 30
  * 45 · ventana 30 días»: 45 del feed y `t335v0`, FUERA DEL FEED (revisión lectora de
  * ese día). Cada tarjeta que se pinta estaba en el feed cuando se extrajeron sus
  * afirmaciones, así que también se monitorizó: cuenta en el total.
+ *
+ * Sin anuncios clasificados (`esAnuncioClasificado`, press-clasificado.ts): el
+ * 19-10-2026, 12 de los 68 titulares eran listados de Fotocasa, y no son prensa.
  */
 function articulosDeLaVentana(press, verified, now) {
   const cutoffMs = now - WINDOW_DAYS * 24 * 60 * 60 * 1000
@@ -48,6 +53,7 @@ function articulosDeLaVentana(press, verified, now) {
     const c = row?.claim
     if (!c?.articleId || delFeed.has(c.articleId) || fuera.has(c.articleId)) continue
     if (!enVentana(c.articleDate)) continue
+    if (esAnuncioClasificado({ sourceHost: c.articleSourceHost })) continue
     fuera.set(c.articleId, {
       id: c.articleId,
       title: c.articleTitle ?? c.verbatim?.slice(0, 120) ?? null,
@@ -59,7 +65,10 @@ function articulosDeLaVentana(press, verified, now) {
       orphan: true,
     })
   }
-  return [...press.filter((p) => enVentana(p?.date)), ...fuera.values()]
+  return [
+    ...press.filter((p) => enVentana(p?.date) && !esAnuncioClasificado(p ?? {})),
+    ...fuera.values(),
+  ]
 }
 
 export function pressLabSummary({ press = [], verified = [] } = {}, now = Date.now()) {
@@ -78,11 +87,20 @@ export function pressLabSummary({ press = [], verified = [] } = {}, now = Date.n
   let verificado = 0
   let contradicho = 0
   let parcial = 0
+  let cotejadas = 0
+  let cotejadasMunicipales = 0
+  let cotejadasSoloPromesas = 0
   for (const row of verified) {
     const id = row?.claim?.articleId
     if (!id || !enLaLista.has(id)) continue
     auditedIds.add(id)
     totalClaims += 1
+    const corpus = corpusReales(row?.verification?.checkedAgainst)
+    if (corpus.length > 0) {
+      cotejadas += 1
+      if (corpusMunicipales(corpus).length > 0) cotejadasMunicipales += 1
+      else if (corpus.every((c) => c === 'promises')) cotejadasSoloPromesas += 1
+    }
     const v = row?.verification?.verdict
     if (v === 'verificado') verificado += 1
     else if (v === 'contradicho') contradicho += 1
@@ -112,6 +130,14 @@ export function pressLabSummary({ press = [], verified = [] } = {}, now = Date.n
     // misma pantalla.
     auditedCount: auditedIds.size,
     totalClaims,
+    // Cuántas se buscaron de verdad en algún corpus (`corpusReales` de su
+    // `checkedAgainst`), y de ellas cuántas en datos municipales. El aviso decía
+    // «se han extraído 58 … y se han buscado en los datos» con 49 de las 58 sin
+    // buscar en ninguno (`checkedAgainst: []`, 19-10-2026).
+    cotejadasClaims: cotejadas,
+    cotejadasMunicipalesClaims: cotejadasMunicipales,
+    // Cotejadas sólo contra el catálogo de promesas, que no es un dato municipal.
+    cotejadasSoloPromesasClaims: cotejadasSoloPromesas,
     verificadoClaims: verificado,
     contradichoClaims: contradicho,
     // La tasa de VERIFICACIÓN se queda en 0: «0 de 63 verificadas» es una
@@ -169,6 +195,26 @@ export const VERDICT_LABEL = {
   'sin-datos': 'Sin registro',
   'promesa-repetida': 'Promesa repetida',
 }
+
+/**
+ * Lo que la pastilla de una afirmación dice: su veredicto, salvo que sea `sin-datos`
+ * y no se haya buscado en ningún corpus. Entonces es «No cotejada», no «Sin
+ * registro»: el 19-10-2026, 49 de las 58 afirmaciones tenían `checkedAgainst: []` y
+ * llevaban la misma pastilla que las 9 que sí se buscaron y no se encontraron. «Sin
+ * registro» se lee «se buscó y no está»; de esas 49 no se buscó nada.
+ *
+ * @param {{ verification?: { verdict?: string, checkedAgainst?: unknown[] | null } } | null | undefined} row
+ * @returns {string | undefined}
+ */
+export function estadoDeAfirmacion(row) {
+  const v = row?.verification
+  if (v?.verdict === 'sin-datos' && corpusReales(v?.checkedAgainst).length === 0)
+    return 'no-cotejada'
+  return v?.verdict
+}
+
+/** Las etiquetas de `estadoDeAfirmacion`: las de los veredictos y «No cotejada». */
+export const ESTADO_LABEL = { ...VERDICT_LABEL, 'no-cotejada': 'No cotejada' }
 
 /**
  * Qué pasó con un titular que no enseña afirmaciones, y en qué casilla del recuento de
@@ -324,24 +370,50 @@ export function avisoSinVeredicto(summary) {
         'pero todavía no se ha extraído ninguna afirmación de ellos, así que las tasas no tienen nada que medir.',
     }
   }
-  const extraidas =
-    `Se han extraído ${plural(total, 'afirmación', 'afirmaciones')} de ` +
-    `${plural(summary?.auditedCount ?? 0, 'artículo', 'artículos')} y se han buscado en los datos`
+  const extraidas = `${plural(total, 'afirmación', 'afirmaciones')} de ${plural(summary?.auditedCount ?? 0, 'artículo', 'artículos')}`
   const tasas =
     'Por eso la tasa de discrepancia aparece como «—» —no hay nada resuelto entre lo que ' +
     'dividir— y la de verificación marca el 0 % que le corresponde.'
+  const cotejo = `Se han extraído ${extraidas}, ${fraseCotejo(summary)}.`
   if (parciales > 0) {
     return {
       titulo: 'Nada resuelto todavía.',
       texto:
-        `${extraidas}, pero ninguna ha quedado confirmada ni desmentida: ` +
+        `${cotejo} Ninguna ha quedado confirmada ni desmentida: ` +
         `${parcialesMarcadas(parciales)}, y una coincidencia parcial no cuenta como resuelta. ${tasas}`,
     }
   }
   return {
     titulo: 'Sin veredictos todavía.',
-    texto: `${extraidas}, pero ninguna ha llegado a un veredicto que la confirme o la desmienta. ${tasas}`,
+    texto: `${cotejo} Ninguna ha llegado a un veredicto que la confirme o la desmienta. ${tasas}`,
   }
+}
+
+/**
+ * Cuántas de las extraídas se buscaron en algún dato, y en cuáles. Decía «y se han
+ * buscado en los datos» de todas, y el 19-10-2026 sólo 9 de 58 se habían buscado en
+ * alguno: 6 en datos municipales y 3 sólo en el catálogo de promesas, que no lo es.
+ */
+function fraseCotejo(summary) {
+  const total = summary?.totalClaims ?? 0
+  const cotejadas = summary?.cotejadasClaims ?? 0
+  const municipales = summary?.cotejadasMunicipalesClaims ?? 0
+  const soloPromesas = summary?.cotejadasSoloPromesasClaims ?? 0
+  const otras = cotejadas - municipales - soloPromesas
+  if (cotejadas === 0) return 'pero ninguna se ha cotejado todavía con ningún dato'
+  const partes = [`${numero(municipales)} con datos municipales`]
+  if (soloPromesas > 0) partes.push(`${numero(soloPromesas)} sólo con el catálogo de promesas`)
+  if (otras > 0) partes.push(`${numero(otras)} sólo con fuentes que no son municipales`)
+  const desglose =
+    partes.length === 1 ? partes[0] : `${partes.slice(0, -1).join(', ')} y ${partes.at(-1)}`
+  const resto = total - cotejadas
+  const cuantas = cotejadas === total ? 'todas' : numero(cotejadas)
+  return (
+    `y de ellas se han cotejado ${cuantas} —${desglose}—` +
+    (resto > 0
+      ? `; ${resto === 1 ? 'la otra no se ha buscado' : `las otras ${numero(resto)} no se han buscado`} en ningún dato`
+      : '')
+  )
 }
 
 export function fraseVeredictos(summary) {
@@ -380,3 +452,164 @@ export function fraseVeredictos(summary) {
   }
   return 'La mayoría llega a un veredicto: las tasas de aquí abajo dicen cuántas, y en qué sentido.'
 }
+
+/**
+ * ¿Lo escribió el curador automático? Las filas de press-auto-curate.ts llevan
+ * `curatorName: 'auto-curation-v1'`; una persona firma con su nombre.
+ *
+ * @param {{ curatorName?: string } | null | undefined} f
+ */
+export function esHallazgoAutomatico(f) {
+  return typeof f?.curatorName === 'string' && f.curatorName.startsWith('auto-')
+}
+
+/**
+ * Los hallazgos de prensa agrupados por lote, con el más reciente de cada uno.
+ *
+ * El KPI decía «Hallazgos editoriales 17 · curados» y la columna «17 verificación(es)»:
+ * el 19-10-2026 las 17 filas eran `auto-curation-v1` —ninguna la firmó una persona— y
+ * salían de 5 lotes, porque el curador automático volvía a publicar el mismo lote cada
+ * vez que corría, con la fecha en el id. La columna enseñaba el titular de Nerco cuatro
+ * veces en cinco filas. Un lote es su historia (`articleFingerprints`); lo automático y
+ * lo firmado no se mezclan en uno.
+ *
+ * @param {Array<{ id: string, publishedAt: string, curatorName?: string,
+ *   articleFingerprints?: string[], corrections?: unknown[] }>} findings
+ */
+export function resumenHallazgos(findings = []) {
+  const porLote = new Map()
+  for (const f of findings ?? []) {
+    if (!f) continue
+    const automatico = esHallazgoAutomatico(f)
+    const historia = [...(f.articleFingerprints ?? [])].sort().join('|') || f.id
+    const clave = `${automatico ? 'auto' : 'firmado'}:${historia}`
+    const l = porLote.get(clave)
+    if (!l) {
+      porLote.set(clave, {
+        finding: f,
+        automatico,
+        veces: 1,
+        primera: f.publishedAt,
+        ultima: f.publishedAt,
+        correcciones: [...(f.corrections ?? [])],
+      })
+      continue
+    }
+    l.veces += 1
+    l.correcciones.push(...(f.corrections ?? []))
+    if (f.publishedAt > l.ultima) {
+      l.ultima = f.publishedAt
+      l.finding = f
+    }
+    if (f.publishedAt < l.primera) l.primera = f.publishedAt
+  }
+  const lotes = [...porLote.values()].sort(
+    (a, b) => b.ultima.localeCompare(a.ultima) || a.finding.id.localeCompare(b.finding.id),
+  )
+  return {
+    lotes,
+    publicaciones: (findings ?? []).length,
+    automaticos: lotes.filter((l) => l.automatico).length,
+    humanos: lotes.filter((l) => !l.automatico).length,
+  }
+}
+
+const enumerar = (xs) =>
+  xs.length <= 1 ? (xs[0] ?? '') : `${xs.slice(0, -1).join(', ')} y ${xs.at(-1)}`
+
+/**
+ * La frase del carril «Verificaciones externas», sacada de factcheck.json.
+ *
+ * Decía siempre «Configurar GOOGLE_FACT_CHECK_API_KEY en .env para activar» y nombraba
+ * a EFE Verifica y AFP Factual, y el 19-10-2026 el fichero decía otra cosa: tres de tres
+ * fuentes consultadas (la API de Google, el RSS de Maldita y el de Newtral) y 61
+ * revisiones examinadas, ninguna sobre Riba-roja de Túria. La lista vacía era un
+ * resultado, no una configuración pendiente. Lee `consulta.intentos`, el registro de
+ * cada fuente con su estado (src/scraper/factcheck.ts, `IntentoFuente`): un cero de
+ * «miré y no hay» y uno de «no pude mirar» no son el mismo cero.
+ *
+ * @param {{ consulta?: { intentos?: Array<{ fuente: string, estado: string,
+ *   examinadas?: number, aceptadas?: number, motivo?: string }> } } | null | undefined} fc
+ * @returns {string}
+ */
+export function fraseFactcheck(fc) {
+  const intentos = fc?.consulta?.intentos
+  if (!Array.isArray(intentos) || intentos.length === 0) {
+    return 'No consta qué fuentes de verificación se consultaron: la última pasada no lo registró, así que una lista vacía aquí no dice nada.'
+  }
+  const n = intentos.length
+  const ok = intentos.filter((i) => i.estado === 'consultada')
+  const caidas = intentos.filter((i) => i.estado !== 'consultada')
+  const motivo = (i) => i.motivo ?? 'sin motivo registrado'
+  if (ok.length === 0) {
+    return (
+      `No se pudo consultar ninguna de las ${numero(n)} fuentes de verificación ` +
+      `(${caidas.map((i) => `${i.fuente}: ${motivo(i)}`).join('; ')}): ` +
+      'que aquí no aparezca ninguna no quiere decir que no las haya.'
+    )
+  }
+  const examinadas = ok.reduce((t, i) => t + (Number(i.examinadas) || 0), 0)
+  const aceptadas = ok.reduce((t, i) => t + (Number(i.aceptadas) || 0), 0)
+  const nombres = enumerar(ok.map((i) => i.fuente))
+  const quienes =
+    ok.length === n
+      ? n === 1
+        ? `Se consultó la única fuente, ${nombres}`
+        : `Se consultaron las ${numero(n)} fuentes —${nombres}—`
+      : `Se consultaron ${numero(ok.length)} de ${numero(n)} fuentes —${nombres}—`
+  const resultado =
+    examinadas === 0
+      ? 'no devolvieron ninguna revisión'
+      : `${plural(examinadas, 'revisión examinada', 'revisiones examinadas')}, ` +
+        (aceptadas === 0
+          ? 'ninguna sobre Riba-roja de Túria'
+          : `${numero(aceptadas)} sobre Riba-roja de Túria`)
+  const fallos = caidas.map(
+    (i) =>
+      ` ${i.fuente} no se pudo consultar (${motivo(i)}): lo que haya publicado no se ha mirado.`,
+  )
+  return `${quienes}: ${resultado}.${fallos.join('')}`
+}
+
+/**
+ * El puente entre la tabla por medio y el KPI «Titulares monitorizados».
+ *
+ * El 19-10-2026 la tabla sumaba 65 artículos y el KPI decía 68: la tabla sale de
+ * press-trust.json, que sólo ve el feed, y el KPI cuenta también las 3 tarjetas FUERA
+ * DEL FEED. Dos cifras ciertas sin puente. Y sólo se afirma que cuadran cuando cuadran:
+ * la tabla se calcula en una pasada y el KPI al abrir la página, cada uno con su ventana
+ * de 30 días, y otro día no tienen por qué coincidir.
+ *
+ * @param {Array<{ articleCount?: number }>} outlets  filas de press-trust.json
+ * @param {{ monitoredCount?: number, fueraDelFeedCount?: number }} summary  `pressLabSummary`
+ */
+export function puenteTablaMedios(outlets, summary) {
+  const suma = (outlets ?? []).reduce((t, o) => t + (Number(o?.articleCount) || 0), 0)
+  const monitorizados = summary?.monitoredCount ?? 0
+  const fuera = summary?.fueraDelFeedCount ?? 0
+  if (suma + fuera === monitorizados) {
+    if (fuera === 0)
+      return `La tabla cuenta los ${plural(suma, 'titular monitorizado', 'titulares monitorizados')}.`
+    return (
+      `La tabla cuenta ${plural(suma, 'titular', 'titulares')} del feed: los ${numero(monitorizados)} ` +
+      `monitorizados menos ${fuera === 1 ? '1 que ya no está' : `${numero(fuera)} que ya no están`} ` +
+      'en el feed, que no entran en ella.'
+    )
+  }
+  return (
+    `La tabla suma ${plural(suma, 'titular', 'titulares')} del feed, contados en la última pasada; ` +
+    `el recuento de arriba, ${numero(monitorizados)}, se hace al abrir la página con su propia ventana de 30 días` +
+    (fuera > 0 ? ` e incluye ${numero(fuera)} fuera del feed.` : '.')
+  )
+}
+
+/**
+ * Cuándo corre cada parte del laboratorio. Decía «La cadena extract → verify →
+ * summarize → analytics corre una vez por semana, los lunes, o a mano», y la analítica
+ * —indicadores, triangulación y lagunas— la recalcula también cada noche `npm run
+ * refresh`, al final de la nocturna, en cuanto cambia press.json (data-graph.ts, nodo
+ * press-trust.json). La cadena con modelo —factcheck → extract → verify → summarize →
+ * analytics → auto-curate— es la de los lunes (scripts/press-lab-pipeline.sh, launchd).
+ */
+export const CADENCIA_LABORATORIO =
+  'La extracción y el cotejo de afirmaciones, las síntesis y los hallazgos automáticos se hacen una vez por semana, los lunes, o a mano; los indicadores de cada titular, la triangulación y las lagunas de cobertura se recalculan cada noche con los titulares nuevos.'

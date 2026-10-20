@@ -135,20 +135,22 @@ describe('press-analytics — computeTrustIndicators', () => {
   it('two names Google News gives one site are one outlet, not corroboration', () => {
     // Measured 2026-10-18: 13 fotocasa.es listings, 12 named «Fotocasa» and 1
     // «Fotocasa.es», were one «story» corroborated «across outlets» — 13 of the
-    // 30 corroborated articles on /laboratorio. The host is the publisher.
+    // 30 corroborated articles on /laboratorio. The host is the publisher. Since
+    // 2026-10-19 a listings portal is not press at all (press-clasificado.ts), so
+    // the rule is pinned on a newspaper under two names.
     const press = [
       makePress({
         id: 'a-1',
-        title: 'Casas y pisos en Calle Sagunto, Riba-roja de Túria',
-        source: 'Fotocasa',
-        sourceHost: 'fotocasa.es',
+        title: 'Riba-roja aprueba el presupuesto municipal de 2027',
+        source: 'Levante-EMV',
+        sourceHost: 'levante-emv.com',
         fingerprint: 'fp-a',
       }),
       makePress({
         id: 'a-2',
-        title: 'Casas y pisos en Calle Ibiza, Riba-roja de Túria',
-        source: 'Fotocasa.es',
-        sourceHost: 'fotocasa.es',
+        title: 'Riba-roja aprueba el presupuesto municipal para 2027',
+        source: 'Levante EMV',
+        sourceHost: 'levante-emv.com',
         fingerprint: 'fp-b',
       }),
     ]
@@ -347,7 +349,7 @@ describe('press-analytics — computeCoverageGaps', () => {
   it('flags pleno items whose title tokens never appear in press headlines', () => {
     const press = [
       makePress({
-        title: 'Riba-roja invierte en el parque del Túria',
+        title: 'Riba-roja invierte en la renaturalización del parque fluvial',
         date: '2026-05-19T10:00:00Z',
       }),
     ]
@@ -364,7 +366,7 @@ describe('press-analytics — computeCoverageGaps', () => {
             },
             {
               number: 2,
-              title: 'Aprobación del parque del Túria',
+              title: 'Aprobación del proyecto de renaturalización del parque fluvial',
               department: 'MEDIO AMBIENTE',
             },
           ],
@@ -373,7 +375,9 @@ describe('press-analytics — computeCoverageGaps', () => {
     }
     const r = computeCoverageGaps({ press, agendas, now: NOW, windowDays: 14 })
     // Item 1 ("subvenciones", "reglamento", "modificación") doesn't intersect press tokens.
-    // Item 2 ("parque", "túria") shares with press → covered.
+    // Item 2 shares «renaturalización», «parque» and «fluvial» with ONE headline → covered.
+    // It used to be covered by «parque» + «túria» alone: one shared word, and the
+    // town's own name (tests/press-lagunas-cobertura.test.ts).
     expect(r.items.length).toBe(1)
     expect(r.items[0].kind).toBe('pleno-item')
     expect(r.items[0].refId).toBe('p-1:1')
