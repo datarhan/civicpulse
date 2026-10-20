@@ -29,6 +29,11 @@
  *   · Sin datos, NO se inventa una ficha: la clave es la plantilla misma y el
  *     lector la da por SIN FICHA. Tirarla sería volver al silencio de antes.
  *
+ * `fichasDe` da TODAS las fichas de una plantilla en el orden de esa misma
+ * elección —la primera es la de `fichaDe`—, para poder comparar todas las
+ * fichas de una plantilla, no sólo la elegida. Sale del mismo elector, así que
+ * la lista no puede derivar de la elección.
+ *
  * Lo que esta elección NO cubre, dicho: la ficha de quien dejó el cargo es otra
  * plantilla (FormerDetalle) y aquí se elige a alguien en ejercicio; y las notas
  * de curaduría plegadas de /laboratorio/agentes/:assignmentId no se abren.
@@ -57,6 +62,8 @@ export interface Ficha {
 interface Eleccion {
   id: string | null
   total: number
+  /** Todos los ids, en el orden de la elección (el primero es `id`), sin repetir. */
+  orden: string[]
 }
 
 // Los snapshots llegan sin tipo: los electores sólo leen campos opcionales.
@@ -96,7 +103,9 @@ function elige(
     }
     return id(a) < id(b) ? -1 : id(a) > id(b) ? 1 : 0
   })
-  return { id: orden.length > 0 ? id(orden[0]) : null, total: candidatas.length }
+  // Un id repetido es una sola página: cuenta en su mejor puesto.
+  const ids = [...new Set(orden.map(id))]
+  return { id: ids[0] ?? null, total: candidatas.length, orden: ids }
 }
 
 const gravedad = (s: unknown): number =>
@@ -248,13 +257,30 @@ export const ELECTORES: Record<
   },
 }
 
+/** La URL de la ficha `id`, con el estado que pide su plantilla. */
+function claveDe(patron: string, estado: string | undefined, id: string): string {
+  const ruta = patron.replace(/:[A-Za-z]+/, encodeURIComponent(id))
+  return estado ? conEstado(ruta, estado) : ruta
+}
+
 /** La ficha de una plantilla: su URL con el id elegido, o la plantilla si no hay. */
 export function fichaDe(patron: string, leer: LeerSnapshot): Ficha {
   const elector = ELECTORES[patron]
   const { id, total } = elector ? elector.elige(leer) : { id: null, total: 0 }
   if (!elector || !id) return { patron, clave: patron, id: null, total }
-  const ruta = patron.replace(/:[A-Za-z]+/, encodeURIComponent(id))
-  return { patron, clave: elector.estado ? conEstado(ruta, elector.estado) : ruta, id, total }
+  return { patron, clave: claveDe(patron, elector.estado, id), id, total }
+}
+
+/**
+ * Todas las fichas de una plantilla, en el orden de la elección: la primera es
+ * la de `fichaDe`. Sin fichas (o sin elector), lista vacía: la plantilla como
+ * clave, que el lector da por SIN FICHA, la sigue dando `fichaDe`.
+ */
+export function fichasDe(patron: string, leer: LeerSnapshot): Ficha[] {
+  const elector = ELECTORES[patron]
+  if (!elector) return []
+  const { orden, total } = elector.elige(leer)
+  return orden.map((id) => ({ patron, clave: claveDe(patron, elector.estado, id), id, total }))
 }
 
 export function fichasRepresentativas(patrones: string[], leer: LeerSnapshot): Ficha[] {
