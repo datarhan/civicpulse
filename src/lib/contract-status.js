@@ -240,6 +240,66 @@ export function isConcession(c) {
   return Boolean(c && CONCESSION_CONTRACT_TYPES.includes(c.contractType ?? ''))
 }
 
+/** Sin tildes ni mayúsculas ni espacios de más, para leer un título. */
+function llano(s) {
+  return String(s ?? '')
+    .normalize('NFD')
+    .replace(/[̀-ͯ]/g, '')
+    .toLowerCase()
+    .replace(/\s+/g, ' ')
+    .trim()
+}
+
+/**
+ * Lo que un título dice que es la explotación de un bien municipal: un bar, un
+ * quiosco o un local que alguien explota y por el que paga, no al que se paga.
+ * Las cuatro formas que publica el Ayuntamiento (19-10-2026): «concesión
+ * administrativa para la explotación del bar…», «concesión demanial para…»,
+ * «Servicio de explotación del bar…» —que Gobierto tipa `services`— y la
+ * licitación «Concesión administrativa de uso privativo de los
+ * bares-cafeterías…», cuyos lotes se titulan sólo «Bar Parque Maldonado».
+ */
+const EXPLOTACION = [
+  /\bexplotacion de(l| los| las)? (bar|bares|quiosco|kiosco|cafeteria|cantina)/,
+  /\bconcesion demanial\b/,
+  /\buso privativo\b/,
+]
+
+/**
+ * ¿Es un contrato por el que el Ayuntamiento COBRA, en vez de pagar? Y si lo
+ * es, de qué clase:
+ *
+ *  · `enajenacion`: vende un bien —una parcela— y la adjudicataria le paga el
+ *    precio. Por el comienzo del título, como lo publica el Ayuntamiento
+ *    («Enajenación de la parcela…»); un servicio que sólo la menciona
+ *    («asesoramiento para la enajenación…») se paga, y no casa.
+ *  · `explotacion`: cede la explotación de un bien municipal (`EXPLOTACION`);
+ *    el registro no dice si su importe es el canon de un año, el de todo el
+ *    plazo u otra cosa, ni en qué sentido va.
+ *
+ * Por el TÍTULO, que es lo contrario de `isConcession`, y a propósito: el tipo
+ * no lo dice. `patrimonial` lo llevan también un arrendamiento y dos
+ * adquisiciones de inmuebles, por los que el Ayuntamiento paga, y los bares van
+ * tipados `other`, `services` o `patrimonial`. De ahí que los patrones sean
+ * estrechos: un falso negativo deja la fila como estaba; un falso positivo
+ * diría que cobra quien paga. El título de la licitación cuenta también, para
+ * los lotes que sólo llevan el nombre del bar.
+ *
+ * Sin esto, la fila de la subida firmada decía «adjudicado a <persona física>
+ * por 12.000 €» de la explotación de un bar, como si el Ayuntamiento le pagara
+ * (src/scraper/subida-firmada.ts).
+ *
+ * @param {{title?: string|null}|null|undefined} c
+ * @param {string|null} [tituloDeLicitacion]
+ * @returns {'enajenacion'|'explotacion'|null}
+ */
+export function ingresoMunicipal(c, tituloDeLicitacion = null) {
+  const titulos = [llano(c?.title), llano(tituloDeLicitacion)].filter(Boolean)
+  if (titulos.some((t) => t.startsWith('enajenacion '))) return 'enajenacion'
+  if (titulos.some((t) => EXPLOTACION.some((re) => re.test(t)))) return 'explotacion'
+  return null
+}
+
 /**
  * El plazo del contrato en años, redondeado, a partir de sus días.
  *

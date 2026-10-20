@@ -52,6 +52,16 @@
  *    expediente y la fecha de apertura; nunca el estado, el importe estimado ni
  *    «adjudicado». La fecha y el importe, como en el orden del día. Diseño:
  *    docs/superpowers/specs/2026-10-10-licitacion-sda-design.md.
+ *  · Desde el 19-10-2026, un registro posterior a la declaración —también un
+ *    contrato, por el día en que se publicó su adjudicación, y una
+ *    convocatoria— sin un motivo firmado de por qué la sostiene
+ *    (`registroPosterior`, que se publica: puede corroborar la descripción de un
+ *    contrato en trámite, no que algo estuviera hecho); un contrato que sostenga
+ *    una promesa, con motivo o sin él; un `verificado` cuya cifra no dice
+ *    ninguna fila; la explotación de un bien municipal (la paga quien explota);
+ *    y un contrato sin fecha de adjudicación o titulado con un código CPV sin
+ *    licitación que diga de qué es. Lo ya firmado no se reescribe: lo vuelve a
+ *    mirar `cotejarSubidasFirmadas`, desde `check:veredictos`.
  *  · Un resumen de menos de 20 caracteres, con charla de la tarea de un modelo, o
  *    que es el de una máquina tal cual.
  *  · Sin evidencia: el suelo vale también para una persona.
@@ -63,11 +73,22 @@
  * Puro: sin disco y sin reloj. La CLI (scripts/subir-veredicto.ts) lee los
  * ficheros y pasa la fecha.
  */
-import { contractTermYears, isCommittedContract, isConcession } from '../lib/contract-status.js'
+import {
+  contractTermYears,
+  ingresoMunicipal,
+  isCommittedContract,
+  isConcession,
+} from '../lib/contract-status.js'
 import { charlaDeTarea } from './charla-de-tarea'
 import type { PlenoSection } from './pleno-agenda'
 import { corpusDeEvidencia, esTextoDeMaquina, type ClaimVerdict } from './claim-verdicts'
-import type { ClaimEvidence, ClaimVerification } from './claim-verifier'
+import {
+  IMPORTE_PRACTICAMENTE_EXACTO,
+  similarAmount,
+  type ClaimEvidence,
+  type ClaimVerification,
+} from './claim-verifier'
+import { decodeHtmlEntities } from './normalize'
 import { rechazoDeFirma, rechazoDeMarcador } from './firma-de-persona'
 import { TRINQUETE } from './trinquete'
 import {
@@ -116,17 +137,29 @@ export interface EvidenciaPedida {
 export interface RegistroDeLaSubida {
   fila: ClaimEvidence
   /**
-   * La fecha que acota lo que el registro puede sostener: la de la sesión de un
-   * orden del día, o la apertura de la licitación de un SDA. `null` en un
-   * contrato o una convocatoria, que esta vía nunca acotó por fecha.
+   * La fecha que acota lo que el registro puede sostener (`AAAA-MM-DD`): la de
+   * la sesión de un orden del día, la apertura de la licitación de un SDA, la
+   * publicación de una convocatoria o, en un contrato, el día en que se publicó
+   * su adjudicación. Un registro sin ella no se cita.
+   *
+   * Hasta el 19-10-2026 un contrato y una convocatoria no la tenían, y la guarda
+   * se los saltaba: 10 de las 13 subidas que citaban un contrato citaban una
+   * adjudicación publicada después de lo dicho. De las dos fechas que podían
+   * acotar un contrato —la apertura de su licitación y el anuncio de su
+   * adjudicación— es la segunda, que es la que la fila imprime y la que deja
+   * fuera más: la apertura dice que se licitó, no a quién ni por cuánto.
    */
-  fecha: string | null
-  /** ¿Dice la fila un importe? Sólo un contrato con el suyo. */
-  diceImporte: boolean
+  fecha: string
+  /**
+   * La cifra que la fila imprime y puede establecer, o `null`: sólo el importe
+   * de un contrato. El valor estimado de una concesión por todo su plazo se
+   * imprime, pero no establece un precio ni un canon anual, y no cuenta.
+   */
+  importe: number | null
 }
 
 interface FilaContrato {
-  id?: string
+  id?: string | number
   permalink?: string
   title?: string
   status?: string
@@ -141,6 +174,7 @@ interface FilaContrato {
 }
 
 interface FilaLicitacion {
+  id?: string | number
   permalink?: string
   documentNumber?: string | null
   title?: string
@@ -234,7 +268,7 @@ function registroDeLicitacionDeSda(
       stance: 'checked',
     },
     fecha: apertura,
-    diceImporte: false,
+    importe: null,
   }
 }
 
@@ -297,6 +331,14 @@ const espacios = (s: unknown) =>
     .replace(/\s+/g, ' ')
     .trim()
 
+/**
+ * Un texto del registro, como se lee: sin espacios de más y sin las entidades
+ * HTML con que lo exporta Gobierto («Construcciones Arnau&amp;March, S.L.»,
+ * cuatro adjudicatarias el 19-10-2026). Sólo para lo que viene del registro: lo
+ * que teclea quien firma no se decodifica.
+ */
+const delRegistro = (s: unknown) => espacios(decodeHtmlEntities(String(s ?? '')))
+
 /** `2024-05-29` o `2024-04-04T00:00:00.000Z` → `29-05-2024`, sin pasar por `Date`. */
 function dia(iso: unknown): string | null {
   const m = /^(\d{4})-(\d{2})-(\d{2})/.exec(String(iso ?? ''))
@@ -334,12 +376,14 @@ function conTitulo(titulo: string, cola: string): string {
  * número en los dos campos, y entonces el registro no dice si lleva IVA. Con
  * uno solo, tampoco: un campo vacío no es una afirmación sobre el otro.
  */
-function importeDeAdjudicacion(f: FilaContrato): string | null {
+function importeDeAdjudicacion(f: FilaContrato): { texto: string; cifra: number } | null {
   const conIva = positivo(f.finalAmount)
   const sinIva = positivo(f.finalAmountNoTaxes)
-  if (conIva && sinIva && Math.abs(conIva - sinIva) >= 0.005) return `${euros(conIva)} con IVA`
+  if (conIva && sinIva && Math.abs(conIva - sinIva) >= 0.005) {
+    return { texto: `${euros(conIva)} con IVA`, cifra: conIva }
+  }
   const uno = conIva ?? sinIva
-  return uno ? euros(uno) : null
+  return uno ? { texto: euros(uno), cifra: uno } : null
 }
 
 /**
@@ -371,9 +415,10 @@ function valorDeLaConcesion(f: FilaContrato, variosLotes: boolean): string | nul
  */
 function filaDeContrato(
   f: FilaContrato,
+  titulo: string,
   variosLotes: boolean,
   expediente: string | null,
-): { texto: string; diceImporte: boolean } {
+): { texto: string; importe: number | null } {
   const partes: string[] = []
   const lote = positivo(f.batchNumber)
   if (variosLotes && lote) {
@@ -381,29 +426,86 @@ function filaDeContrato(
   } else if (expediente) {
     partes.push(`expediente ${expediente}`)
   }
-  const adjudicataria = espacios(f.assignee)
-  let importe: string | null
+  const adjudicataria = delRegistro(f.assignee)
+  let cifra: number | null = null
   if (isConcession(f)) {
     partes.push(`concesión adjudicada${adjudicataria ? ` a ${adjudicataria}` : ''}`)
-    importe = valorDeLaConcesion(f, variosLotes)
-    if (importe) partes.push(importe)
-  } else {
-    importe = importeDeAdjudicacion(f)
+    // Se imprime, y no establece ninguna cifra de lo dicho: ni un precio ni un
+    // canon anual son el valor de todos sus años.
+    const valor = valorDeLaConcesion(f, variosLotes)
+    if (valor) partes.push(valor)
+  } else if (ingresoMunicipal(f) === 'enajenacion') {
+    // La paga la adjudicataria al Ayuntamiento: «adjudicado a … por» se leería
+    // como dinero que sale.
+    const importe = importeDeAdjudicacion(f)
+    cifra = importe?.cifra ?? null
     partes.push(
-      `adjudicado${adjudicataria ? ` a ${adjudicataria}` : ''}${importe ? ` por ${importe}` : ''}`,
+      `enajenación adjudicada${adjudicataria ? ` a ${adjudicataria}` : ''}` +
+        `${importe ? `, que paga al Ayuntamiento ${importe.texto}` : ''}`,
+    )
+  } else {
+    const importe = importeDeAdjudicacion(f)
+    cifra = importe?.cifra ?? null
+    partes.push(
+      `adjudicado${adjudicataria ? ` a ${adjudicataria}` : ''}` +
+        `${importe ? ` por ${importe.texto}` : ''}`,
     )
   }
   const fecha = dia(f.awardDate)
   if (fecha) partes.push(`adjudicación publicada el ${fecha}`)
-  return { texto: conTitulo(espacios(f.title), partes.join(' · ')), diceImporte: importe != null }
+  return { texto: conTitulo(titulo, partes.join(' · ')), importe: cifra }
+}
+
+/**
+ * ¿Es el título un código CPV y su descripción —«92000000-Servicios de
+ * esparcimiento, culturales y deportivos.»—? Así exporta Gobierto el título de
+ * algunos contratos derivados de un SDA: 11 de los citables el 19-10-2026.
+ */
+const TITULO_CPV = /^\s*\d{8}(?:-\d)?\s*-\s*/
+
+/**
+ * El título que la fila da al contrato. El suyo, salvo que sea un código CPV:
+ * entonces el de su licitación, que es la que dice de qué es. Un contrato
+ * derivado de un SDA no tiene licitación propia en tenders.json, pero Gobierto
+ * le da el identificador de la del SDA (`1794430#23` es de 1794430, ESDA2/2022):
+ * la fila dice entonces de qué SDA deriva y que su objeto es el que dice el CPV,
+ * no un título que el registro no da. Sin ninguna de las dos no se cita: un
+ * código no dice de qué es el contrato.
+ */
+function tituloDelContrato(
+  f: FilaContrato,
+  licitaciones: FilaLicitacion[],
+  todas: FilaLicitacion[],
+  enlace: string,
+): string {
+  const propio = delRegistro(f.title)
+  if (!TITULO_CPV.test(propio)) return propio
+  const deSuLicitacion = licitaciones
+    .map((l) => delRegistro(l.title))
+    .find((t) => t && !TITULO_CPV.test(t))
+  if (deSuLicitacion) return deSuLicitacion
+  const base = String(f.id ?? '').split('#')[0]
+  const sda = todas.find((l) => String(l?.id ?? '') === base && esLicitacionDeSda(l))
+  const expedienteDelSda = delRegistro(sda?.documentNumber)
+  if (sda && expedienteDelSda) {
+    const objeto = propio.replace(TITULO_CPV, '').replace(/\.$/, '')
+    return (
+      `Contrato derivado del sistema dinámico de adquisición ${expedienteDelSda} · ` +
+      `objeto según su CPV: ${objeto}`
+    )
+  }
+  throw new Error(
+    `${enlace}: el título del contrato es un código CPV («${propio}») y ninguna licitación de ` +
+      'tenders.json dice de qué es: la fila no diría qué contrato cita',
+  )
 }
 
 /** Una línea por lote, para que quien firma elija el suyo. */
 function lineaDeLote(f: FilaContrato): string {
   const importe = isConcession(f) ? null : importeDeAdjudicacion(f)
   return (
-    `  · lote ${f.batchNumber ?? '¿?'} · ${espacios(f.assignee) || 'sin adjudicataria'}` +
-    `${importe ? ` · ${importe}` : ''} · estado ${f.status ?? 'desconocido'}`
+    `  · lote ${f.batchNumber ?? '¿?'} · ${delRegistro(f.assignee) || 'sin adjudicataria'}` +
+    `${importe ? ` · ${importe.texto}` : ''} · estado ${f.status ?? 'desconocido'}`
   )
 }
 
@@ -466,7 +568,7 @@ function registroDelOrdenDelDia(
       stance: 'checked',
     },
     fecha: String(sesion.date).slice(0, 10),
-    diceImporte: false,
+    importe: null,
   }
 }
 
@@ -511,16 +613,22 @@ export function registroDeLaSubida(
       throw new Error(`--lote ${lotePedido}, pero ${enlace} es una convocatoria de la BDNS`)
     }
     const fecha = dia(convocatoria.date)
-    const cola = `convocatoria BDNS ${convocatoria.bdnsCode ?? '¿?'}${fecha ? ` del ${fecha}` : ''}`
+    if (!fecha) {
+      throw new Error(
+        `${enlace}: la convocatoria no tiene fecha en bdns.json, y sin ella no se sabe si es ` +
+          'anterior a lo que se dijo',
+      )
+    }
+    const cola = `convocatoria BDNS ${convocatoria.bdnsCode ?? '¿?'} del ${fecha}`
     return {
       fila: {
         kind: 'bdns',
         ref: enlace,
-        snippet: conTitulo(espacios(convocatoria.description), cola),
+        snippet: conTitulo(delRegistro(convocatoria.description), cola),
         stance: 'checked',
       },
-      fecha: null,
-      diceImporte: false,
+      fecha: String(convocatoria.date).slice(0, 10),
+      importe: null,
     }
   }
 
@@ -529,7 +637,8 @@ export function registroDeLaSubida(
   const licitaciones = lista<FilaLicitacion>(tenders?.tenders).filter(
     (r) => r?.permalink === enlace,
   )
-  const expediente = espacios(licitaciones.find((l) => l?.documentNumber)?.documentNumber) || null
+  const expediente =
+    delRegistro(licitaciones.find((l) => l?.documentNumber)?.documentNumber) || null
 
   if (contratos.length === 0) {
     // La licitación de un SDA, con cualquiera de las codificaciones de su enlace,
@@ -586,11 +695,29 @@ export function registroDeLaSubida(
         '«adjudicado» de algo que no lo está',
     )
   }
-  const { texto, diceImporte } = filaDeContrato(fila, contratos.length > 1, expediente)
+  const cual = contratos.length > 1 ? ` (lote ${lotePedido})` : ''
+  const titulo = tituloDelContrato(fila, licitaciones, lista(tenders?.tenders), enlace)
+  const deSuLicitacion = licitaciones.find((l) => l?.title)?.title ?? null
+  if (ingresoMunicipal(fila, deSuLicitacion) === 'explotacion') {
+    throw new Error(
+      `${enlace}${cual}: es la explotación de un bien municipal («${titulo}»), por la que paga ` +
+        'quien la explota, no el Ayuntamiento, y el registro no dice si su importe es el canon de ' +
+        'un año, el de todo el plazo u otra cosa. La fila diría «adjudicado … por» como si pagara ' +
+        'el Ayuntamiento: esta vía no la cita',
+    )
+  }
+  const adjudicacion = String(fila.awardDate ?? '').slice(0, 10)
+  if (!dia(adjudicacion)) {
+    throw new Error(
+      `${enlace}${cual}: el contrato no tiene fecha de adjudicación en tenders.json, y sin ella ` +
+        'no se sabe si es anterior a lo que se dijo',
+    )
+  }
+  const { texto, importe } = filaDeContrato(fila, titulo, contratos.length > 1, expediente)
   return {
     fila: { kind: 'tender', ref: enlace, snippet: texto, stance: 'checked' },
-    fecha: null,
-    diceImporte,
+    fecha: adjudicacion,
+    importe,
   }
 }
 
@@ -602,50 +729,511 @@ export function evidenciaDelRegistro(
   return registroDeLaSubida(pedida, corpus).fila
 }
 
+/** La declaración que se sube, en lo que importa para saber qué la sostiene. */
+export interface DeclaracionCotejada {
+  /** El día de su sesión (`plenoDate`). */
+  fecha: string | null
+  /** Su tipo publicado, reclasificación incluida: `promesa`, `cita_obra`… */
+  tipo?: string | null
+  /** La cifra que dice (`entities.amountEuros`), o `null`. */
+  importe?: number | null
+}
+
+/**
+ * Lo que impide a unos registros sostener una declaración, por clase:
+ *
+ *   posterior  un registro posterior a lo dicho
+ *   sin-fecha  la declaración, o un registro, sin fecha con que compararlos
+ *   promesa    un contrato citado para una promesa
+ *   importe    un `verificado` con cifra que ninguna fila dice
+ */
+export const PROBLEMAS_DE_LA_DECLARACION = ['posterior', 'sin-fecha', 'promesa', 'importe'] as const
+export type ProblemaDeLaDeclaracion = (typeof PROBLEMAS_DE_LA_DECLARACION)[number]
+
+export interface ProblemaConLaDeclaracion {
+  codigo: ProblemaDeLaDeclaracion
+  detalle: string
+}
+
+/** ¿Dice la fila la cifra de la declaración? Con el umbral del verificador. */
+const mismaCifra = (dicha: number, fila: number) =>
+  similarAmount(dicha, fila) >= IMPORTE_PRACTICAMENTE_EXACTO
+
+/**
+ * Lo que los registros citados NO pueden sostener de la declaración, uno por
+ * problema y con el porqué; vacío si la sostienen. La usan la subida, que se
+ * niega con ellos (`comprobarRegistrosConLaDeclaracion`), y el cotejo de lo ya
+ * firmado (`cotejarSubidasFirmadas`), que los señala sin reescribir nada:
+ *
+ *  · un registro posterior a la declaración no sostiene lo que se dijo antes de
+ *    él. Vale para todos, y desde el 19-10-2026 también para un contrato —con
+ *    el día en que se publicó su adjudicación— y una convocatoria;
+ *  · una promesa no la sostiene un contrato: que se contratara o se cumpliera
+ *    es otra afirmación, y se sigue en /promesas. Un orden del día anterior sí
+ *    puede sostenerla —lo que se llevó al pleno—, como hasta ahora;
+ *  · si la declaración trae una cifra, `verificado` pide una fila que diga ESA
+ *    cifra, con el umbral de «prácticamente exacto» del verificador (un 1 %:
+ *    `IMPORTE_PRACTICAMENTE_EXACTO`). Hasta el 19-10-2026 bastaba con que alguna
+ *    fila dijera un importe, el que fuera. `parcial` sí llega, y el resumen
+ *    dice qué cifra consta.
+ *
+ * Sin la fecha de la declaración no se sabe si un registro es posterior.
+ */
+export function problemasConLaDeclaracion(
+  registros: readonly RegistroDeLaSubida[],
+  declaracion: DeclaracionCotejada,
+  veredicto: ClaimVerdict,
+): ProblemaConLaDeclaracion[] {
+  const problemas: ProblemaConLaDeclaracion[] = []
+  const dicha = declaracion.fecha ? String(declaracion.fecha).slice(0, 10) : null
+  if (declaracion.tipo === 'promesa') {
+    for (const r of registros.filter((x) => x.fila.kind === 'tender')) {
+      problemas.push({
+        codigo: 'promesa',
+        detalle:
+          `${r.fila.ref}: la declaración es una promesa, y una promesa no la sostiene un ` +
+          'contrato: que se contratara o se cumpliera es otra afirmación, y se sigue en /promesas',
+      })
+    }
+  }
+  for (const r of registros) {
+    if (!r.fecha || !dia(r.fecha)) {
+      problemas.push({
+        codigo: 'sin-fecha',
+        detalle: `${r.fila.ref}: el registro no tiene fecha, y sin ella no se sabe si es posterior`,
+      })
+    } else if (dicha == null) {
+      problemas.push({
+        codigo: 'sin-fecha',
+        detalle:
+          `${r.fila.ref}: la declaración no tiene fecha, y sin ella no se sabe si el registro ` +
+          'es posterior',
+      })
+    } else if (r.fecha > dicha) {
+      problemas.push({
+        codigo: 'posterior',
+        detalle:
+          r.fila.kind === 'tender'
+            ? `${r.fila.ref}: la adjudicación se publicó el ${dia(r.fecha)}, posterior a la ` +
+              `declaración (${dia(dicha)}). ${DOCTRINA_DEL_POSTERIOR}`
+            : `${r.fila.ref}: el registro es del ${dia(r.fecha)}, posterior a la declaración ` +
+              `(${dia(dicha)}). ${DOCTRINA_DEL_POSTERIOR}`,
+      })
+    }
+  }
+  const cifra = positivo(declaracion.importe)
+  if (cifra != null && veredicto === 'verificado') {
+    const conCifra = registros.filter((r) => r.importe != null)
+    if (conCifra.length === 0) {
+      problemas.push({
+        codigo: 'importe',
+        detalle:
+          'la declaración cita un importe y ningún registro citado dice uno: no llega a ' +
+          'verificado. Como mucho, parcial, y el resumen dice que la cifra no consta.',
+      })
+    } else if (!conCifra.some((r) => mismaCifra(cifra, r.importe as number))) {
+      problemas.push({
+        codigo: 'importe',
+        detalle:
+          `la declaración dice ${euros(cifra)} y ningún registro citado dice esa cifra ` +
+          `(dicen ${conCifra.map((r) => euros(r.importe as number)).join(', ')}): no llega a ` +
+          'verificado. Como mucho, parcial, y el resumen dice qué cifra consta.',
+      })
+    }
+  }
+  // Varios lotes de un mismo enlace, con la misma fecha, dan el mismo problema:
+  // dicho una vez.
+  const vistos = new Set<string>()
+  return problemas.filter((p) => {
+    const clave = `${p.codigo}\u0000${p.detalle}`
+    if (vistos.has(clave)) return false
+    vistos.add(clave)
+    return true
+  })
+}
+
+/**
+ * Lo que la vía dice de un registro posterior a lo dicho, y lo que pide para
+ * aceptarlo. Decisión del curador, 19-10-2026: c8kr44-229, -230 y -231
+ * describían, lote a lote, el contenido de un contrato que se estaba tramitando
+ * el 08-09-2025, y la licitación de noviembre trae esos cinco lotes con esos
+ * nombres; su adjudicación, publicada el 01-04-2026, corrobora la descripción.
+ */
+export const DOCTRINA_DEL_POSTERIOR =
+  'Un registro posterior puede corroborar lo que se describió de un contrato que se estaba ' +
+  'tramitando —su objeto, sus lotes—; no que algo ya estuviera hecho, ni una promesa. Si es ' +
+  'lo primero, fírmalo con --registro-posterior "<motivo>" (o --registro-posterior-de ' +
+  '<fichero>): el motivo se publica con la subida. Si no, cita un registro anterior —el orden ' +
+  'del día de su sesión—'
+
 /**
  * Lo que los registros citados pueden sostener de la declaración que se sube.
- * Lanza, con el porqué, si no llegan:
+ * Lanza, con todos los porqués, si no llegan (`problemasConLaDeclaracion`).
  *
- *  · un registro con fecha —la sesión de un orden del día— posterior a la
- *    declaración no sostiene lo que se dijo antes de él; una promesa cumplida es
- *    otra afirmación, y se sigue en /promesas;
- *  · si la declaración trae una cifra y ninguna fila citada dice un importe, la
- *    subida no llega a `verificado`: un orden del día o una convocatoria no
- *    establecen la cifra. `parcial` sí, y el resumen dice que no consta.
- *
- * Sin la fecha de la declaración no se sabe si un registro con fecha es
- * posterior, y no se sube.
+ * Un registro posterior a lo dicho se acepta sólo con `registroPosterior`: el
+ * motivo, firmado, de que corrobore la descripción de un contrato en trámite
+ * (`DOCTRINA_DEL_POSTERIOR`). Nunca para una promesa, y nunca sin un registro
+ * posterior que justificar: un motivo que no explica nada no se publica.
  */
 export function comprobarRegistrosConLaDeclaracion(
   registros: readonly RegistroDeLaSubida[],
-  declaracion: { fecha: string | null; conImporte: boolean },
+  declaracion: DeclaracionCotejada,
   veredicto: ClaimVerdict,
+  registroPosterior: string | null = null,
 ): void {
-  const dicha = declaracion.fecha ? String(declaracion.fecha).slice(0, 10) : null
-  for (const r of registros) {
-    if (r.fecha == null) continue
-    if (dicha == null) {
+  const problemas = problemasConLaDeclaracion(registros, declaracion, veredicto)
+  const motivo = registroPosterior == null ? null : enUnaLinea(registroPosterior)
+  if (motivo != null) {
+    if (!problemas.some((p) => p.codigo === 'posterior')) {
       throw new Error(
-        `${r.fila.ref}: la declaración no tiene fecha, y sin ella no se sabe si el registro es posterior`,
+        '--registro-posterior, pero ningún registro citado es posterior a la declaración: no hay ' +
+          'nada que justificar, y el motivo se publicaría',
       )
     }
-    if (r.fecha > dicha) {
+    if (motivo.length < 20) {
       throw new Error(
-        `${r.fila.ref}: el registro es del ${dia(r.fecha)}, posterior a la declaración ` +
-          `(${dia(dicha)}): no sostiene lo que se dijo antes de él`,
+        '--registro-posterior dice por qué el registro posterior sostiene lo dicho, en al menos ' +
+          '20 caracteres',
       )
+    }
+    const charla = charlaDeTarea(motivo)
+    if (charla) {
+      throw new Error(`--registro-posterior habla de la tarea de un modelo (${charla})`)
     }
   }
-  if (
-    declaracion.conImporte &&
-    veredicto === 'verificado' &&
-    !registros.some((r) => r.diceImporte)
-  ) {
-    throw new Error(
-      'la declaración cita un importe y ningún registro citado dice uno: no llega a verificado. ' +
-        'Como mucho, parcial, y el resumen dice que la cifra no consta.',
+  const quedan = problemas.filter((p) => !(motivo != null && p.codigo === 'posterior'))
+  if (quedan.length > 0) throw new Error(quedan.map((p) => p.detalle).join('\n'))
+}
+
+// ─── Lo ya firmado, contra el corpus de hoy ─────────────────────────────────
+
+/**
+ * Los cuatro desenlaces de una fila de contrato ya firmada, vuelta a derivar
+ * contra el tenders.json de hoy. Es la forma de CLAUDE.md «A verbatim stays put;
+ * a number does not»: una fila firmada no la reescribe nada (regla 4), así que
+ * lo que haga falta lo decide una persona con lo que esto le diga.
+ *
+ *   coincide      la vía escribiría hoy la misma fila
+ *   movido        el mismo contrato, con el mismo importe, estado, fecha y
+ *                 expediente: la fila sólo cambia por el formato de la vía o
+ *                 por cómo escribe el registro la adjudicataria
+ *   contradice    el importe, el estado, la fecha, la adjudicataria o el
+ *                 contrato no son los mismos, o la vía ya no la escribiría
+ *   sin-registro  el contrato, o su lote, ya no está en tenders.json
+ *
+ * Los dos últimos salen 1 en `check:veredictos`.
+ */
+export const DESENLACES_DE_FILA = ['coincide', 'movido', 'contradice', 'sin-registro'] as const
+export type DesenlaceDeFila = (typeof DESENLACES_DE_FILA)[number]
+
+export interface CotejoDeFila {
+  ref: string
+  /** El lote que dice la fila, o `null`. */
+  lote: number | null
+  desenlace: DesenlaceDeFila
+  detalle: string
+  /** La fila que la vía escribiría hoy, o `null` si no la escribiría. */
+  filaDeHoy: string | null
+  /** El registro de hoy, para las comprobaciones de la subida. */
+  registro: RegistroDeLaSubida | null
+}
+
+/** Sin tildes, mayúsculas, entidades ni espacios de más: para comparar textos. */
+const comparable = (s: unknown) => sinTildes(decodeHtmlEntities(String(s ?? '')))
+
+/** Las formas jurídicas y las palabras vacías no distinguen a una adjudicataria. */
+const NO_DISTINGUEN = new Set([
+  'sa',
+  'sl',
+  'sau',
+  'slu',
+  'sll',
+  'slp',
+  'slne',
+  'sc',
+  'scoop',
+  'coop',
+  'sccl',
+  'scv',
+  'cb',
+  'ltd',
+  'gmbh',
+  'ag',
+  'sociedad',
+  'limitada',
+  'anonima',
+  'unipersonal',
+  'de',
+  'del',
+  'la',
+  'las',
+  'el',
+  'los',
+  'y',
+  'e',
+])
+
+const nombreDistintivo = (s: unknown) =>
+  comparable(s)
+    .replace(/[^a-z0-9]+/g, ' ')
+    .split(' ')
+    .filter((t) => t.length > 1 && !NO_DISTINGUEN.has(t))
+
+/**
+ * ¿Es la misma adjudicataria, escrita de otro modo? El registro la reescribe
+ * sin avisar —«VODAFONE ESPANA SA» y hoy «VODAFONE SA», «HIDRAQUA GESTIÓN
+ * INTEGRAL DE AGUAS DE LEVANTE, S.A.» y hoy «HIDRAQUA S.A.U», «URBEADAPTA S. L.»
+ * y hoy «URBEADAPTA, S.L»—. Lo es si, sin formas jurídicas ni palabras vacías,
+ * las palabras de una están todas en la otra; si no, es otra.
+ */
+export function mismaAdjudicataria(a: unknown, b: unknown): boolean {
+  const x = nombreDistintivo(a)
+  const y = nombreDistintivo(b)
+  if (x.length === 0 || y.length === 0) return comparable(a) === comparable(b)
+  const [corta, larga] = x.length <= y.length ? [x, new Set(y)] : [y, new Set(x)]
+  return corta.every((t) => larga.has(t))
+}
+
+/**
+ * Las cifras de una fila: «194.810,00 €» → 194810. Con o sin el punto de los
+ * millares: `toLocaleString('es-ES')` no lo pone en un número de cuatro cifras
+ * («1936,00 €»).
+ */
+function cifrasDeLaFila(texto: string): number[] {
+  return [...texto.matchAll(/(?<![\d.])(\d+(?:\.\d{3})*,\d{2})\s?€/g)].map((m) =>
+    Number(m[1].replace(/\./g, '').replace(',', '.')),
+  )
+}
+
+/** La adjudicataria que nombra una fila, de cualquiera de sus formatos. */
+function adjudicatariaDeLaFila(texto: string): string | null {
+  const m = /\badjudicad[oa] a (.+?)(?= por \d|, que paga | · |$)/.exec(texto)
+  return m ? m[1] : null
+}
+
+/**
+ * Una fila de contrato ya firmada contra el tenders.json de hoy: el mismo
+ * contrato —el enlace y, si lo dice, el lote—, y lo que la fila dice de él.
+ * Puro.
+ */
+export function cotejarFilaDeContrato(fila: ClaimEvidence, corpus: CorpusCitable): CotejoDeFila {
+  const ref = String(fila.ref ?? '')
+  const vieja = String(fila.snippet ?? '')
+  const m = /\blote (\d+)\b/.exec(vieja)
+  const lote = m ? Number(m[1]) : null
+  const con = (
+    desenlace: DesenlaceDeFila,
+    detalle: string,
+    hoy: RegistroDeLaSubida | null = null,
+  ): CotejoDeFila => ({
+    ref,
+    lote,
+    desenlace,
+    detalle,
+    filaDeHoy: hoy?.fila.snippet ?? null,
+    registro: hoy,
+  })
+
+  const tenders = corpus.tenders as { contracts?: unknown } | null
+  const contratos = lista<FilaContrato>(tenders?.contracts).filter((r) => r?.permalink === ref)
+  if (contratos.length === 0) {
+    return con('sin-registro', 'el enlace ya no lleva a ningún contrato de tenders.json')
+  }
+  let c: FilaContrato
+  if (contratos.length > 1) {
+    if (lote == null) {
+      return con(
+        'contradice',
+        `el enlace lleva hoy a ${contratos.length} contratos, uno por lote, y la fila no dice cuál`,
+      )
+    }
+    const elegidos = contratos.filter((r) => Number(r?.batchNumber) === lote)
+    if (elegidos.length === 0)
+      return con('sin-registro', `el lote ${lote} ya no está en tenders.json`)
+    if (elegidos.length > 1) {
+      return con('contradice', `el lote ${lote} son hoy ${elegidos.length} contratos`)
+    }
+    c = elegidos[0]
+  } else {
+    if (lote != null) {
+      return con(
+        'contradice',
+        `la fila cita el lote ${lote} y el enlace lleva hoy a un solo contrato`,
+      )
+    }
+    c = contratos[0]
+  }
+  if (!isCommittedContract(c)) {
+    return con(
+      'contradice',
+      `el contrato ya no está adjudicado ni formalizado (estado ${c.status ?? 'desconocido'})`,
     )
   }
+  let hoy: RegistroDeLaSubida
+  try {
+    hoy = registroDeLaSubida({ enlace: ref, lote: contratos.length > 1 ? lote : null }, corpus)
+  } catch (err) {
+    return con('contradice', `la vía ya no escribiría esta fila: ${(err as Error).message}`)
+  }
+  if (hoy.fila.snippet === vieja) return con('coincide', '', hoy)
+
+  const diferencias: string[] = []
+  const delRegistroHoy = [c.finalAmount, c.finalAmountNoTaxes, c.estimatedValue]
+    .map(positivo)
+    .filter((n): n is number => n != null)
+  for (const x of cifrasDeLaFila(vieja)) {
+    if (!delRegistroHoy.some((n) => Math.abs(n - x) < 0.005)) {
+      diferencias.push(`importe: la fila dice ${euros(x)} y el registro ya no lo da`)
+    }
+  }
+  const adjudicataria = adjudicatariaDeLaFila(vieja)
+  if (adjudicataria != null && !mismaAdjudicataria(adjudicataria, c.assignee)) {
+    diferencias.push(
+      `adjudicataria: la fila dice «${adjudicataria}» y el registro «${delRegistro(c.assignee)}»`,
+    )
+  }
+  const fechas = vieja.match(/\b\d{2}-\d{2}-\d{4}\b/g)
+  const fechaVieja = fechas ? fechas[fechas.length - 1] : null
+  if (fechaVieja && fechaVieja !== dia(c.awardDate)) {
+    diferencias.push(
+      `fecha: la fila dice ${fechaVieja} y la adjudicación se publica hoy el ` +
+        `${dia(c.awardDate) ?? 'sin fecha'}`,
+    )
+  }
+  const expediente = (t: string) => /\bexpediente (\S+?)(?= ·|$)/.exec(t)?.[1] ?? null
+  if (expediente(vieja) !== expediente(hoy.fila.snippet)) {
+    diferencias.push(
+      `expediente: la fila dice ${expediente(vieja) ?? 'ninguno'} y hoy ` +
+        `${expediente(hoy.fila.snippet) ?? 'ninguno'}`,
+    )
+  }
+  const tituloViejo = comparable(vieja.split(' · ')[0].replace(/…$/, ''))
+  const titulos = [comparable(c.title), comparable(hoy.fila.snippet)]
+  if (!titulos.some((t) => t.startsWith(tituloViejo))) {
+    diferencias.push('título: la fila no empieza por el título que el registro da hoy')
+  }
+  if (diferencias.length > 0) return con('contradice', diferencias.join('; '), hoy)
+  return con(
+    'movido',
+    'el mismo contrato, con el mismo importe, fecha y expediente: la vía la escribiría hoy de ' +
+      'otro modo (su formato o la grafía de la adjudicataria)',
+    hoy,
+  )
+}
+
+/** Un aviso sobre una subida firmada: lo que hoy no la dejaría escribir. */
+export interface AvisoDeSubida extends ProblemaConLaDeclaracion {
+  id: string
+}
+
+export interface FilaCotejada {
+  id: string
+  ref: string
+  lote: number | null
+  desenlace: DesenlaceDeFila
+  detalle: string
+}
+
+export interface CotejoDeSubidas {
+  /** `sin-corpus`: no había tenders.json que leer, y no se cotejó nada. */
+  estado: 'cotejado' | 'sin-corpus'
+  /** Las subidas firmadas que se miraron. */
+  subidas: number
+  /** Cada fila de contrato, con su desenlace. */
+  filas: FilaCotejada[]
+  /** Las filas de otros registros —convocatorias, órdenes del día, SDA—: no se cotejan aquí. */
+  otrasFilas: number
+  /** De ésas, las que no se pudieron volver a derivar para mirar su fecha. */
+  otrasSinRegistro: number
+  /**
+   * Lo que hoy no dejaría escribir la subida y ningún motivo arregla: un contrato
+   * que sostiene una promesa, un `verificado` cuya cifra no dice ninguna fila,
+   * una fecha que falta. Salen 1.
+   */
+  avisos: AvisoDeSubida[]
+  /**
+   * Un registro posterior a lo dicho, en una subida que no guarda por qué lo
+   * sostiene (`registroPosterior`). Las firmadas antes del 19-10-2026 no podían
+   * guardarlo: es un AVISO, sale 0, y lo decide el curador al volver a firmar.
+   * Una subida que ya cae en `promesa` no entra aquí: ningún motivo la arregla.
+   */
+  posterioresSinMotivo: AvisoDeSubida[]
+  /** Las que citan un registro posterior con su motivo firmado: se listan, salen 0. */
+  posterioresConMotivo: Array<{ id: string; motivo: string }>
+  /** Subidas cuya declaración no se sirve: su fecha, tipo y cifra no se miran. */
+  sinDeclaracion: string[]
+}
+
+/** El registro de una fila que no es de contrato, pedido como lo pidió la vía. */
+function pedidaDeLaFila(fila: ClaimEvidence): EvidenciaPedida {
+  const punto = fila.kind === 'agenda' ? /\bpunto (\d+):/.exec(String(fila.snippet ?? '')) : null
+  return { enlace: String(fila.ref ?? ''), lote: null, punto: punto ? Number(punto[1]) : null }
+}
+
+/**
+ * Cada subida firmada del overlay, vuelta a mirar con las reglas y el corpus de
+ * hoy: sus filas de contrato (`cotejarFilaDeContrato`) y lo que sus registros
+ * pueden sostener de su declaración (`problemasConLaDeclaracion`). No reescribe
+ * nada: una fila firmada sólo la cambia otra firma, o su retirada. Sin
+ * tenders.json no se coteja nada, y lo dice: un «0 contradicen» sin haber mirado
+ * sería el visto bueno hueco. Puro.
+ */
+export function cotejarSubidasFirmadas(input: {
+  overlay: Overlay
+  declaraciones: ReadonlyMap<string, DeclaracionCotejada>
+  corpus: CorpusCitable | null
+}): CotejoDeSubidas {
+  const { overlay, declaraciones, corpus } = input
+  const r: CotejoDeSubidas = {
+    estado: 'sin-corpus',
+    subidas: 0,
+    filas: [],
+    otrasFilas: 0,
+    otrasSinRegistro: 0,
+    avisos: [],
+    posterioresSinMotivo: [],
+    posterioresConMotivo: [],
+    sinDeclaracion: [],
+  }
+  const tenders = corpus?.tenders as { contracts?: unknown } | null | undefined
+  if (!corpus || !Array.isArray(tenders?.contracts)) return r
+  r.estado = 'cotejado'
+  for (const [id, e] of Object.entries(overlay?.entries ?? {})) {
+    if (e?.source !== CANAL_DE_LA_SUBIDA) continue
+    r.subidas += 1
+    const registros: RegistroDeLaSubida[] = []
+    for (const fila of e.verification?.evidence ?? []) {
+      if (fila.kind === 'tender') {
+        const c = cotejarFilaDeContrato(fila, corpus)
+        r.filas.push({ id, ref: c.ref, lote: c.lote, desenlace: c.desenlace, detalle: c.detalle })
+        if (c.registro) registros.push(c.registro)
+        continue
+      }
+      r.otrasFilas += 1
+      try {
+        registros.push(registroDeLaSubida(pedidaDeLaFila(fila), corpus))
+      } catch {
+        r.otrasSinRegistro += 1
+      }
+    }
+    const declaracion = declaraciones.get(id)
+    if (!declaracion) {
+      r.sinDeclaracion.push(id)
+      continue
+    }
+    const problemas = problemasConLaDeclaracion(registros, declaracion, e.verification.verdict)
+    const esPromesa = problemas.some((p) => p.codigo === 'promesa')
+    const motivo = typeof e.registroPosterior === 'string' ? e.registroPosterior : null
+    let posterior = false
+    for (const p of problemas) {
+      if (p.codigo !== 'posterior') r.avisos.push({ id, ...p })
+      else if (esPromesa) continue
+      else if (motivo) posterior = true
+      else r.posterioresSinMotivo.push({ id, ...p })
+    }
+    if (posterior && motivo) r.posterioresConMotivo.push({ id, motivo })
+  }
+  return r
 }
 
 // ─── La subida ──────────────────────────────────────────────────────────────
@@ -661,6 +1249,11 @@ export interface SubidaPedida {
   resumen: string
   /** Una persona, con su nombre. */
   editor: string
+  /**
+   * Por qué la sostiene un registro posterior a la declaración, si cita uno
+   * (`comprobarRegistrosConLaDeclaracion`). Se publica con la entrada.
+   */
+  registroPosterior?: string | null
 }
 
 /** Lo que se publica hoy de la declaración, que la subida corrige. */
@@ -745,6 +1338,9 @@ export function subirVeredicto(
         reason: resumen,
         editor: enUnaLinea(pedida.editor.normalize('NFC')),
         desde: observado.publicado,
+        ...(pedida.registroPosterior
+          ? { registroPosterior: enUnaLinea(pedida.registroPosterior) }
+          : {}),
       },
     ],
     stampIso,

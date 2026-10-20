@@ -1,0 +1,2569 @@
+{
+  "_comment": "Filas reales de main f11f0090 (19-10-2026), copiadas sin tocar: las 18 subidas firmadas de public/data/pleno-claims-overlay.json; los contratos y licitaciones de public/data/tenders.json que citan, más los de los casos latentes (enajenaciones 31583 y 285030, bares 9554, 33712, 130643 y 1538292, arrendamiento 72576 y adquisición 4684840, adjudicatarias con entidades HTML 7483049, 685889, 2801214 y 23513, títulos CPV 1794430#23 y 4889055#1, sin fecha de adjudicación 1794430#24, el bar en concesión 1892773#1 y el agua 46717) y las licitaciones de sus SDA (1794430 = ESDA2/2022, 4889055 = ESDA1/2025, 1892773); las convocatorias de public/data/bdns.json y las sesiones de public/data/plenos-agendas.json citadas; y, de cada declaración subida, la fecha, el tipo y la cifra publicados en public/data/pleno-claims/.",
+  "subidas": {
+    "k4olcs-018-afi-1077bc": {
+      "verification": {
+        "claimId": "k4olcs-018-afi-1077bc",
+        "verdict": "verificado",
+        "summary": "La actuación 1 coincide al céntimo: el contrato de cartelería digital en sedes municipales se adjudicó por 35.252,87 € (29-05-2024). La actuación 2 es el sistema de debate, voto y grabación del salón de plenos, adjudicado por 80.666,66 €.",
+        "evidence": [
+          {
+            "kind": "tender",
+            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=xkXNO23MYwoZDGvgaZEVxQ%3D%3D",
+            "snippet": "Contrato mixto suministro y servicio de implantación de cartelería digital en diversas sedes municipales del ayuntamiento de Riba-roja de Túria, p… · expediente 33/2024 · adjudicado a VODAFONE ESPANA SA por 35.252,87 € con IVA el 29-05-2024",
+            "stance": "checked"
+          },
+          {
+            "kind": "tender",
+            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=qDjb9WdwTN3jHF5qKI4aaw%3D%3D",
+            "snippet": "Contrato mixto suministro y servicio implantación de un sistema de debate, voto electrónico, captura, distribución, grabación de v… · expediente 32/2024 · adjudicado a AMARA MEGAFONIA CCTV VOZ-DATOS, SL por 80.666,66 € con IVA el 19-04-2024",
+            "stance": "checked"
+          }
+        ],
+        "checkedAgainst": [
+          "tenders"
+        ],
+        "derivedBy": [
+          "curator-upgrade"
+        ]
+      },
+      "source": "curator-upgrade",
+      "reason": "La actuación 1 coincide al céntimo: el contrato de cartelería digital en sedes municipales se adjudicó por 35.252,87 € (29-05-2024). La actuación 2 es el sistema de debate, voto y grabación del salón de plenos, adjudicado por 80.666,66 €.",
+      "editor": "Sergei Lutchenko",
+      "appliedAt": "2026-10-05T12:48:09.189Z",
+      "desde": "sin-datos",
+      "sustituye": {
+        "source": "verdict-engine",
+        "editor": "verdict-engine:gpt-5.4-mini",
+        "appliedAt": "2026-06-24T10:12:46.414Z",
+        "recuperada": {
+          "commit": "400da7b511793ac559d2753913d103045bc7297b",
+          "editor": "civicpulse-curator",
+          "recuperadaAt": "2026-10-11T22:12:30.781Z"
+        }
+      }
+    },
+    "k4olcs-101-cit-ddd6c4": {
+      "verification": {
+        "claimId": "k4olcs-101-cit-ddd6c4",
+        "verdict": "parcial",
+        "summary": "La concesión del agua (abastecimiento, alcantarillado y depuración, por procedimiento abierto) se adjudicó a Hidraqua, Gestión Integral de Aguas de Levante, S.A., el 6-08-2026. El acuerdo de pleno del 20-04-2026 no consta en el registro.",
+        "evidence": [
+          {
+            "kind": "tender",
+            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=pK1YW0Z3femXQV0WE7lYPw%3D%3D",
+            "snippet": "contrato de concesión del servicio público de abastecimiento de agua potable, servicio de gestión de alcantar… · expediente 27/2018 · adjudicado a HIDRAQUA GESTIÓN INTEGRAL DE AGUAS DE LEVANTE, S.A. por 55.685.178,79 € con IVA el 06-08-2026",
+            "stance": "checked"
+          }
+        ],
+        "checkedAgainst": [
+          "tenders"
+        ],
+        "derivedBy": [
+          "curator-upgrade"
+        ]
+      },
+      "source": "curator-upgrade",
+      "reason": "La concesión del agua (abastecimiento, alcantarillado y depuración, por procedimiento abierto) se adjudicó a Hidraqua, Gestión Integral de Aguas de Levante, S.A., el 6-08-2026. El acuerdo de pleno del 20-04-2026 no consta en el registro.",
+      "editor": "Sergei Lutchenko",
+      "appliedAt": "2026-10-05T12:48:16.370Z",
+      "desde": "sin-datos",
+      "sustituye": {
+        "source": "verdict-engine",
+        "editor": "verdict-engine:gpt-5.4-mini",
+        "appliedAt": "2026-06-24T10:12:46.414Z",
+        "recuperada": {
+          "commit": "400da7b511793ac559d2753913d103045bc7297b",
+          "editor": "civicpulse-curator",
+          "recuperadaAt": "2026-10-11T22:12:30.781Z"
+        }
+      }
+    },
+    "ma87e0-152-cit-786d7e": {
+      "verification": {
+        "claimId": "ma87e0-152-cit-786d7e",
+        "verdict": "parcial",
+        "summary": "Ribactiva es un programa municipal de apoyo al emprendimiento: el Ayuntamiento convocó las ayudas Ribactiva Emprèn IV en abril de 2024. El «foro logístico» no consta en los registros.",
+        "evidence": [
+          {
+            "kind": "bdns",
+            "ref": "https://www.pap.hacienda.gob.es/bdnstrans/GE/es/convocatoria/752816",
+            "snippet": "CONVOCATORIA DE LAS AYUDAS RIBACTIVA EMPREN IV PARA APOYAR ECONOMICAMENTE A NUEVAS ACTIVIDADES EMPRENDEDORAS EN EL AMBITO DEL COMERCIO MINORISTA Y PEQUEÑOS NEGOCIOS QUE PRESTAN SERVICIOS AL CONSUMI… · convocatoria BDNS 752816 del 04-04-2024",
+            "stance": "checked"
+          }
+        ],
+        "checkedAgainst": [
+          "bdns"
+        ],
+        "derivedBy": [
+          "curator-upgrade"
+        ]
+      },
+      "source": "curator-upgrade",
+      "reason": "Ribactiva es un programa municipal de apoyo al emprendimiento: el Ayuntamiento convocó las ayudas Ribactiva Emprèn IV en abril de 2024. El «foro logístico» no consta en los registros.",
+      "editor": "Sergei Lutchenko",
+      "appliedAt": "2026-10-05T12:48:18.102Z",
+      "desde": "sin-datos",
+      "sustituye": {
+        "source": "verdict-engine",
+        "editor": "verdict-engine:gpt-5.4-mini",
+        "appliedAt": "2026-06-24T10:14:20.744Z",
+        "recuperada": {
+          "commit": "400da7b511793ac559d2753913d103045bc7297b",
+          "editor": "civicpulse-curator",
+          "recuperadaAt": "2026-10-11T22:12:30.781Z"
+        }
+      }
+    },
+    "ma87e0-157-pro-7ce20e": {
+      "verification": {
+        "claimId": "ma87e0-157-pro-7ce20e",
+        "verdict": "parcial",
+        "summary": "El parque de Valencia la Vella se puso en marcha: las obras del área de esparcimiento de su zona verde se adjudicaron el 27-05-2026 por 108.876,11 € (contrato 39/2026). Que pasara por pleno, y los demás parques, no constan.",
+        "evidence": [
+          {
+            "kind": "tender",
+            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=sOt%2BY8QGKwx6nTs9LZ9RhQ%3D%3D",
+            "snippet": "Contrato administrativo obras para la ejecución del proyecto Área de esparcimiento en zona verde de Valencia la Vella en el T. M. de Riba-roja de Túr… · expediente 39/2026 · adjudicado a GEOCIVIL, S.A. por 108.876,11 € con IVA el 27-05-2026",
+            "stance": "checked"
+          }
+        ],
+        "checkedAgainst": [
+          "tenders"
+        ],
+        "derivedBy": [
+          "curator-upgrade"
+        ]
+      },
+      "source": "curator-upgrade",
+      "reason": "El parque de Valencia la Vella se puso en marcha: las obras del área de esparcimiento de su zona verde se adjudicaron el 27-05-2026 por 108.876,11 € (contrato 39/2026). Que pasara por pleno, y los demás parques, no constan.",
+      "editor": "Sergei Lutchenko",
+      "appliedAt": "2026-10-05T12:48:19.883Z",
+      "desde": "sin-datos",
+      "sustituye": {
+        "source": "verdict-engine",
+        "editor": "verdict-engine:gpt-5.4-mini",
+        "appliedAt": "2026-06-24T10:14:20.744Z",
+        "recuperada": {
+          "commit": "400da7b511793ac559d2753913d103045bc7297b",
+          "editor": "civicpulse-curator",
+          "recuperadaAt": "2026-10-11T22:12:30.781Z"
+        }
+      }
+    },
+    "qz6weg-273-cit-69aded": {
+      "verification": {
+        "claimId": "qz6weg-273-cit-69aded",
+        "verdict": "parcial",
+        "summary": "Los servicios sociales tienen ayudas económicas: el Ayuntamiento convocó ayudas de emergencia social para 2021 y para 2024 (BDNS). Los criterios de renta que se mencionan no constan.",
+        "evidence": [
+          {
+            "kind": "bdns",
+            "ref": "https://www.pap.hacienda.gob.es/bdnstrans/GE/es/convocatoria/734397",
+            "snippet": "Resolución de Alcaldía núm. 4891/2023, de 20 de diciembre de 2023 del Ayuntamiento de Riba-roja de Túria, por la que se convocan ayudas de emergencia social para el año 2024 · convocatoria BDNS 734397 del 20-12-2023",
+            "stance": "checked"
+          },
+          {
+            "kind": "bdns",
+            "ref": "https://www.pap.hacienda.gob.es/bdnstrans/GE/es/convocatoria/548829",
+            "snippet": "Resolución número 140, de fecha 21 de enero de 2021, de la Alcaldía del Ayuntamiento de Riba-roja de Turia, por la que se convocan las ayudas económicas de emergencia social para el ejercicio 2021 · convocatoria BDNS 548829 del 11-02-2021",
+            "stance": "checked"
+          }
+        ],
+        "checkedAgainst": [
+          "bdns"
+        ],
+        "derivedBy": [
+          "curator-upgrade"
+        ]
+      },
+      "source": "curator-upgrade",
+      "reason": "Los servicios sociales tienen ayudas económicas: el Ayuntamiento convocó ayudas de emergencia social para 2021 y para 2024 (BDNS). Los criterios de renta que se mencionan no constan.",
+      "editor": "Sergei Lutchenko",
+      "appliedAt": "2026-10-05T12:48:21.959Z",
+      "desde": "sin-datos",
+      "sustituye": {
+        "source": "verdict-engine",
+        "editor": "verdict-engine:gpt-5.4-mini",
+        "appliedAt": "2026-06-24T10:19:53.948Z",
+        "recuperada": {
+          "commit": "400da7b511793ac559d2753913d103045bc7297b",
+          "editor": "civicpulse-curator",
+          "recuperadaAt": "2026-10-11T22:12:30.781Z"
+        }
+      }
+    },
+    "1sqj7is-081-cit-50c5bb": {
+      "verification": {
+        "claimId": "1sqj7is-081-cit-50c5bb",
+        "verdict": "verificado",
+        "summary": "El orden del día de la sesión anterior, la ordinaria del 9 de febrero de 2026, llevó en su punto 2 el acuerdo de someter a información pública la versión inicial del PRI de la UE Santa Rosa 2 (expediente 5543/2020/GEN).",
+        "evidence": [
+          {
+            "kind": "agenda",
+            "ref": "https://regmeet.com/aytoribarroja/participaciones/c5b270a763686e776039618cc709f3a6?idioma=castellano",
+            "snippet": "Orden del día del pleno ordinario del 09-02-2026 · parte resolutiva · punto 2: Expedient: 5543/2020/GEN, Acord relatiu al sotmetiment a informació pública de la versió inicial del PRI de la UE Santa Rosa 2",
+            "stance": "checked"
+          }
+        ],
+        "checkedAgainst": [
+          "plenos-agendas"
+        ],
+        "derivedBy": [
+          "curator-upgrade"
+        ]
+      },
+      "source": "curator-upgrade",
+      "reason": "El orden del día de la sesión anterior, la ordinaria del 9 de febrero de 2026, llevó en su punto 2 el acuerdo de someter a información pública la versión inicial del PRI de la UE Santa Rosa 2 (expediente 5543/2020/GEN).",
+      "editor": "Sergei Lutchenko",
+      "appliedAt": "2026-10-10T20:46:11.955Z",
+      "desde": "sin-datos",
+      "sustituye": {
+        "source": "verdict-engine",
+        "editor": "verdict-engine:claude-code",
+        "appliedAt": "2026-08-02T05:17:03.490Z",
+        "recuperada": {
+          "commit": "6d2ecd8c9ed92dd278e7f6d4c80867b39f315770",
+          "editor": "civicpulse-curator",
+          "recuperadaAt": "2026-10-11T22:12:31.641Z"
+        }
+      }
+    },
+    "c8kr44-142-cit-b8c30e": {
+      "verification": {
+        "claimId": "c8kr44-142-cit-b8c30e",
+        "verdict": "parcial",
+        "summary": "La actuación existe: obras de mejora del carril bici y de refugios climáticos, licitadas por 325.662,55 € (IVA incluido) y adjudicadas en mayo de 2026 por 296.195,90 €. El importe del registro queda algo por debajo de los «algo más de 330.000 €» que se dijeron.",
+        "evidence": [
+          {
+            "kind": "tender",
+            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=E%2BOr0JaUVkecCF8sV%2BqtYA%3D%3D",
+            "snippet": "Obras ejecución del proyecto: “Mejora del carril bici y la ejecución o mejora de refugios climáticos”, por procedimiento ab… · expediente 52/2025 · adjudicado a OBRA CIVIL Y EDIFICACION ESCRIMAR S.L.L. por 296.195,90 € con IVA el 29-05-2026",
+            "stance": "checked"
+          }
+        ],
+        "checkedAgainst": [
+          "tenders"
+        ],
+        "derivedBy": [
+          "curator-upgrade"
+        ]
+      },
+      "source": "curator-upgrade",
+      "reason": "La actuación existe: obras de mejora del carril bici y de refugios climáticos, licitadas por 325.662,55 € (IVA incluido) y adjudicadas en mayo de 2026 por 296.195,90 €. El importe del registro queda algo por debajo de los «algo más de 330.000 €» que se dijeron.",
+      "editor": "Sergei Lutchenko",
+      "appliedAt": "2026-10-05T12:48:14.622Z",
+      "desde": "sin-datos",
+      "sustituye": {
+        "source": "verdict-engine",
+        "editor": "verdict-engine:claude-code",
+        "appliedAt": "2026-08-02T06:36:48.480Z",
+        "recuperada": {
+          "commit": "400da7b511793ac559d2753913d103045bc7297b",
+          "editor": "civicpulse-curator",
+          "recuperadaAt": "2026-10-11T22:12:30.781Z"
+        }
+      }
+    },
+    "19gax3o-034-cit-8ae8be": {
+      "verification": {
+        "claimId": "19gax3o-034-cit-8ae8be",
+        "verdict": "parcial",
+        "summary": "La renovación de los juegos del parque de la Asunción de Nuestra Señora se contrató: suministro e instalación adjudicados el 8-09-2026 por 40.727,10 €. Los 314.000 € del contexto no constan en este registro.",
+        "evidence": [
+          {
+            "kind": "tender",
+            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=Dsw60vrWRmm5HQrHoP3G5A%3D%3D",
+            "snippet": "Suministro con instalación de juegos infantiles en Parque Asunción de Nuestra Señora · expediente 36/2026 · adjudicado a URBEADAPTA S. L. por 40.727,10 € con IVA el 08-09-2026",
+            "stance": "checked"
+          }
+        ],
+        "checkedAgainst": [
+          "tenders"
+        ],
+        "derivedBy": [
+          "curator-upgrade"
+        ]
+      },
+      "source": "curator-upgrade",
+      "reason": "La renovación de los juegos del parque de la Asunción de Nuestra Señora se contrató: suministro e instalación adjudicados el 8-09-2026 por 40.727,10 €. Los 314.000 € del contexto no constan en este registro.",
+      "editor": "Sergei Lutchenko",
+      "appliedAt": "2026-10-05T12:48:11.033Z",
+      "desde": "sin-datos",
+      "sustituye": {
+        "source": "verdict-engine",
+        "editor": "verdict-engine:claude-code",
+        "appliedAt": "2026-08-02T13:21:54.279Z",
+        "recuperada": {
+          "commit": "400da7b511793ac559d2753913d103045bc7297b",
+          "editor": "civicpulse-curator",
+          "recuperadaAt": "2026-10-11T22:12:30.781Z"
+        }
+      }
+    },
+    "qz6weg-184-cit-8629f9": {
+      "verification": {
+        "claimId": "qz6weg-184-cit-8629f9",
+        "verdict": "parcial",
+        "summary": "En el pleno del 28 de julio de 2025 se llevó, en su parte resolutiva (punto 4), el inicio y la aprobación de la implementación de un sistema dinámico de adquisición de servicios de arquitectura e ingeniería «obert a altres entitats públiques mitjançant el sistema de compra conjunta esporàdica», y el 8 de agosto se abrió su licitación (ESDA1/2025). Respalda que se llevó al pleno pocos meses antes y que se abre a otras entidades públicas; ningún registro habla de una «bolsa de autónomos».",
+        "evidence": [
+          {
+            "kind": "agenda",
+            "ref": "https://regmeet.com/aytoribarroja/participaciones/7535bbb91c8fde347ad861f293126633?idioma=castellano",
+            "snippet": "Orden del día del pleno ordinario del 28-07-2025 · parte resolutiva · punto 4: Expedient 3913/2025/GEN, Inici i aprovació de la implementació d'un Sistema Dinàmic d'Adquisició per a la contractació de servicis d'arquitectura i enginyeria, consultoria i assistència tècnica a les diferents àrees municipals obert a altres entitats públiques mitjançant el sistema de compra conjunta esporàdica",
+            "stance": "checked"
+          },
+          {
+            "kind": "licitacion",
+            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=2N0awhGNBRR%2FR5QFTlaM4A%3D%3D",
+            "snippet": "Licitación de un sistema dinámico de adquisición · Sistema Dinámico de Adquisición para la contratación de SERVICIOS de ARQUITECTURA E INGENIERIA, CONSULTORIA Y ASISTENCIA TÉCNICA a las diferentes áreas municipales abierto a otras entidades públicas mediante el sistema de compra conjunta esporádica con condición especial de ejecución de carácter social y medioambiental contribuyendo al cumplimiento del ODS 9 (ESDA1/2025) · expediente ESDA1/2025 · ofertas desde el 08-08-2025",
+            "stance": "checked"
+          }
+        ],
+        "checkedAgainst": [
+          "plenos-agendas",
+          "tenders"
+        ],
+        "derivedBy": [
+          "curator-upgrade"
+        ]
+      },
+      "source": "curator-upgrade",
+      "reason": "En el pleno del 28 de julio de 2025 se llevó, en su parte resolutiva (punto 4), el inicio y la aprobación de la implementación de un sistema dinámico de adquisición de servicios de arquitectura e ingeniería «obert a altres entitats públiques mitjançant el sistema de compra conjunta esporàdica», y el 8 de agosto se abrió su licitación (ESDA1/2025). Respalda que se llevó al pleno pocos meses antes y que se abre a otras entidades públicas; ningún registro habla de una «bolsa de autónomos».",
+      "editor": "Sergei Lutchenko",
+      "appliedAt": "2026-10-10T20:46:13.656Z",
+      "desde": "sin-datos",
+      "sustituye": {
+        "source": "verdict-engine",
+        "editor": "verdict-engine:claude-code",
+        "appliedAt": "2026-08-02T13:30:43.172Z",
+        "recuperada": {
+          "commit": "6d2ecd8c9ed92dd278e7f6d4c80867b39f315770",
+          "editor": "civicpulse-curator",
+          "recuperadaAt": "2026-10-11T22:12:31.641Z"
+        }
+      }
+    },
+    "c8kr44-045-afi-8e7181": {
+      "verification": {
+        "claimId": "c8kr44-045-afi-8e7181",
+        "verdict": "verificado",
+        "summary": "Coincide al euro: el lote 2 del contrato 136/2025, la asistencia técnica para el control y la supervisión de la recogida de residuos, se adjudicó a Auditesa S.L. por 194.810 € con IVA (161.000 € sin IVA); el acuerdo es del 8-09-2025, el día de este pleno, y se anunció el 10-09-2025.",
+        "evidence": [
+          {
+            "kind": "tender",
+            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=oE58TiRVCfAZDGvgaZEVxQ%3D%3D",
+            "snippet": "Servicio de asistencia técnica y apoyo para el control y supervisión sobre la prestación del contrato de recogida de RSU, poda y voluminosos… · lote 2 del expediente 136/2025 · adjudicado a AUDITESA SL por 194.810,00 € con IVA el 10-09-2025",
+            "stance": "checked"
+          }
+        ],
+        "checkedAgainst": [
+          "tenders"
+        ],
+        "derivedBy": [
+          "curator-upgrade"
+        ]
+      },
+      "source": "curator-upgrade",
+      "reason": "Coincide al euro: el lote 2 del contrato 136/2025, la asistencia técnica para el control y la supervisión de la recogida de residuos, se adjudicó a Auditesa S.L. por 194.810 € con IVA (161.000 € sin IVA); el acuerdo es del 8-09-2025, el día de este pleno, y se anunció el 10-09-2025.",
+      "editor": "Sergei Lutchenko",
+      "appliedAt": "2026-10-06T06:29:12.963Z",
+      "desde": "sin-datos",
+      "sustituye": {
+        "source": "verdict-engine",
+        "editor": "verdict-engine:claude-code",
+        "appliedAt": "2026-08-02T13:40:16.830Z",
+        "recuperada": {
+          "commit": "14a9959c12f3e3295d72ae01f68532e142b0da1b",
+          "editor": "civicpulse-curator",
+          "recuperadaAt": "2026-10-11T22:12:31.232Z"
+        }
+      }
+    },
+    "c8kr44-081-cit-74fc55": {
+      "verification": {
+        "claimId": "c8kr44-081-cit-74fc55",
+        "verdict": "parcial",
+        "summary": "La asistencia técnica que fiscaliza la recogida de residuos existe: es el lote 2 del contrato 136/2025, adjudicado a Auditesa el 10-09-2025 por 194.810 €. Que «se creó una empresa» no consta en el registro.",
+        "evidence": [
+          {
+            "kind": "tender",
+            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=oE58TiRVCfAZDGvgaZEVxQ%3D%3D",
+            "snippet": "Servicio de asistencia técnica y apoyo para el control y supervisión sobre la prestación del contrato de recogida de RSU, poda y voluminosos… · lote 2 del expediente 136/2025 · adjudicado a AUDITESA SL por 194.810,00 € con IVA el 10-09-2025",
+            "stance": "checked"
+          }
+        ],
+        "checkedAgainst": [
+          "tenders"
+        ],
+        "derivedBy": [
+          "curator-upgrade"
+        ]
+      },
+      "source": "curator-upgrade",
+      "reason": "La asistencia técnica que fiscaliza la recogida de residuos existe: es el lote 2 del contrato 136/2025, adjudicado a Auditesa el 10-09-2025 por 194.810 €. Que «se creó una empresa» no consta en el registro.",
+      "editor": "Sergei Lutchenko",
+      "appliedAt": "2026-10-05T12:48:12.805Z",
+      "desde": "sin-datos",
+      "sustituye": {
+        "source": "verdict-engine",
+        "editor": "verdict-engine:claude-code",
+        "appliedAt": "2026-08-02T13:40:16.830Z",
+        "recuperada": {
+          "commit": "400da7b511793ac559d2753913d103045bc7297b",
+          "editor": "civicpulse-curator",
+          "recuperadaAt": "2026-10-11T22:12:30.781Z"
+        }
+      }
+    },
+    "c8kr44-230-cit-56b068": {
+      "verification": {
+        "claimId": "c8kr44-230-cit-56b068",
+        "verdict": "verificado",
+        "summary": "Las cinco actuaciones que se enumeran son, con sus mismos títulos, los cinco lotes del contrato de suministro e instalación de juegos infantiles 111-115/2025: Parque La Pedrera, Plaza Juez Heliodoro Gimeno (lote 2), Parque Bellavista I, Parque Molinet y Plaza Lavadero. Se licitó en noviembre de 2025 y se adjudicó en 2026.",
+        "evidence": [
+          {
+            "kind": "tender",
+            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=0sQ%2BhGrxuvbjHF5qKI4aaw%3D%3D",
+            "snippet": "Cambio de juegos y suelo de protección Parque La Pedrera · lote 1 del expediente 111-115/2025 · adjudicado a JUEGOS KOMPAN, S.A. por 45.931,60 € con IVA el 01-04-2026",
+            "stance": "checked"
+          },
+          {
+            "kind": "tender",
+            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=0sQ%2BhGrxuvbjHF5qKI4aaw%3D%3D",
+            "snippet": "Renovación de los juegos y suelo de protección Plaza Juez Heliodoro Gimeno · lote 2 del expediente 111-115/2025 · adjudicado a URBEADAPTA S. L. por 41.151,23 € con IVA el 01-04-2026",
+            "stance": "checked"
+          },
+          {
+            "kind": "tender",
+            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=0sQ%2BhGrxuvbjHF5qKI4aaw%3D%3D",
+            "snippet": "Cambio de juegos y suelo de protección Parque Bellavista I · lote 3 del expediente 111-115/2025 · adjudicado a URBEADAPTA S. L. por 29.515,26 € con IVA el 01-04-2026",
+            "stance": "checked"
+          },
+          {
+            "kind": "tender",
+            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=0sQ%2BhGrxuvbjHF5qKI4aaw%3D%3D",
+            "snippet": "Cambio de juegos y suelo de protección Parque Molinet · lote 4 del expediente 111-115/2025 · adjudicado a JUEGOS KOMPAN, S.A. por 43.342,20 € con IVA el 01-04-2026",
+            "stance": "checked"
+          },
+          {
+            "kind": "tender",
+            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=0sQ%2BhGrxuvbjHF5qKI4aaw%3D%3D",
+            "snippet": "Sustitución de los juegos y suelo de protección de la Plaza Lavadero · lote 5 del expediente 111-115/2025 · adjudicado a LUDOMAQUINA S.L por 35.348,67 € con IVA el 01-04-2026",
+            "stance": "checked"
+          }
+        ],
+        "checkedAgainst": [
+          "tenders"
+        ],
+        "derivedBy": [
+          "curator-upgrade"
+        ]
+      },
+      "source": "curator-upgrade",
+      "reason": "Las cinco actuaciones que se enumeran son, con sus mismos títulos, los cinco lotes del contrato de suministro e instalación de juegos infantiles 111-115/2025: Parque La Pedrera, Plaza Juez Heliodoro Gimeno (lote 2), Parque Bellavista I, Parque Molinet y Plaza Lavadero. Se licitó en noviembre de 2025 y se adjudicó en 2026.",
+      "editor": "Sergei Lutchenko",
+      "appliedAt": "2026-10-06T06:29:01.812Z",
+      "desde": "sin-datos",
+      "sustituye": {
+        "source": "verdict-engine",
+        "editor": "verdict-engine:gpt-4o-mini",
+        "appliedAt": "2026-08-02T13:42:55.628Z",
+        "labelCorrections": [
+          {
+            "previous": "verdict-engine:claude-code",
+            "reason": "Razonó y decidió gpt-4o-mini, según .llm-cache (engine-reason-v1 y engine-extract-v1). Leído con llmCacheEntrada bajo la clave de claude-code, donde la pasada del 02-08-2026 guardó cada respuesta: cuando claude -p fallaba contestaba openai/gpt-4o-mini, el respaldo de pago de la cadena, y el guion rotulaba con lo configurado. Causa cerrada en la PR #248.",
+            "editor": "civicpulse-curator",
+            "correctedAt": "2026-10-06T05:41:47.602Z"
+          }
+        ],
+        "recuperada": {
+          "commit": "6bee76509c3ca7d655571902542b74cef9b614ac",
+          "editor": "civicpulse-curator",
+          "recuperadaAt": "2026-10-11T21:51:33.664Z"
+        }
+      }
+    },
+    "c8kr44-229-cit-1356bf": {
+      "verification": {
+        "claimId": "c8kr44-229-cit-1356bf",
+        "verdict": "verificado",
+        "summary": "El cambio de juegos y suelo de protección del Parque Bellavista se contrató: es el lote 3 («Parque Bellavista I») del contrato de suministro e instalación de juegos infantiles 111-115/2025, licitado en noviembre de 2025 y adjudicado a Urbeadapta en 2026.",
+        "evidence": [
+          {
+            "kind": "tender",
+            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=0sQ%2BhGrxuvbjHF5qKI4aaw%3D%3D",
+            "snippet": "Cambio de juegos y suelo de protección Parque Bellavista I · lote 3 del expediente 111-115/2025 · adjudicado a URBEADAPTA S. L. por 29.515,26 € con IVA el 01-04-2026",
+            "stance": "checked"
+          }
+        ],
+        "checkedAgainst": [
+          "tenders"
+        ],
+        "derivedBy": [
+          "curator-upgrade"
+        ]
+      },
+      "source": "curator-upgrade",
+      "reason": "El cambio de juegos y suelo de protección del Parque Bellavista se contrató: es el lote 3 («Parque Bellavista I») del contrato de suministro e instalación de juegos infantiles 111-115/2025, licitado en noviembre de 2025 y adjudicado a Urbeadapta en 2026.",
+      "editor": "Sergei Lutchenko",
+      "appliedAt": "2026-10-06T06:28:49.929Z",
+      "desde": "sin-datos",
+      "sustituye": {
+        "source": "verdict-engine",
+        "editor": "verdict-engine:gpt-4o-mini",
+        "appliedAt": "2026-08-02T13:45:35.741Z",
+        "labelCorrections": [
+          {
+            "previous": "verdict-engine:claude-code",
+            "reason": "Razonó y decidió gpt-4o-mini, según .llm-cache (engine-reason-v1 y engine-extract-v1). Leído con llmCacheEntrada bajo la clave de claude-code, donde la pasada del 02-08-2026 guardó cada respuesta: cuando claude -p fallaba contestaba openai/gpt-4o-mini, el respaldo de pago de la cadena, y el guion rotulaba con lo configurado. Causa cerrada en la PR #248.",
+            "editor": "civicpulse-curator",
+            "correctedAt": "2026-10-06T05:41:47.602Z"
+          }
+        ],
+        "recuperada": {
+          "commit": "6bee76509c3ca7d655571902542b74cef9b614ac",
+          "editor": "civicpulse-curator",
+          "recuperadaAt": "2026-10-11T21:51:33.664Z"
+        }
+      }
+    },
+    "c8kr44-231-cit-faf7d3": {
+      "verification": {
+        "claimId": "c8kr44-231-cit-faf7d3",
+        "verdict": "verificado",
+        "summary": "Las dos actuaciones se contrataron: el cambio de juegos y suelo de protección del Parque Molinet y la sustitución de los de la Plaza Lavadero son los lotes 4 y 5 del contrato de suministro e instalación de juegos infantiles 111-115/2025, licitado en noviembre de 2025 y adjudicado en 2026.",
+        "evidence": [
+          {
+            "kind": "tender",
+            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=0sQ%2BhGrxuvbjHF5qKI4aaw%3D%3D",
+            "snippet": "Cambio de juegos y suelo de protección Parque Molinet · lote 4 del expediente 111-115/2025 · adjudicado a JUEGOS KOMPAN, S.A. por 43.342,20 € con IVA el 01-04-2026",
+            "stance": "checked"
+          },
+          {
+            "kind": "tender",
+            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=0sQ%2BhGrxuvbjHF5qKI4aaw%3D%3D",
+            "snippet": "Sustitución de los juegos y suelo de protección de la Plaza Lavadero · lote 5 del expediente 111-115/2025 · adjudicado a LUDOMAQUINA S.L por 35.348,67 € con IVA el 01-04-2026",
+            "stance": "checked"
+          }
+        ],
+        "checkedAgainst": [
+          "tenders"
+        ],
+        "derivedBy": [
+          "curator-upgrade"
+        ]
+      },
+      "source": "curator-upgrade",
+      "reason": "Las dos actuaciones se contrataron: el cambio de juegos y suelo de protección del Parque Molinet y la sustitución de los de la Plaza Lavadero son los lotes 4 y 5 del contrato de suministro e instalación de juegos infantiles 111-115/2025, licitado en noviembre de 2025 y adjudicado en 2026.",
+      "editor": "Sergei Lutchenko",
+      "appliedAt": "2026-10-06T06:28:59.705Z",
+      "desde": "sin-datos",
+      "sustituye": {
+        "source": "verdict-engine",
+        "editor": "verdict-engine:gpt-4o-mini",
+        "appliedAt": "2026-08-02T13:45:35.741Z",
+        "labelCorrections": [
+          {
+            "previous": "verdict-engine:claude-code",
+            "reason": "Razonó y decidió gpt-4o-mini, según .llm-cache (engine-reason-v1 y engine-extract-v1). Leído con llmCacheEntrada bajo la clave de claude-code, donde la pasada del 02-08-2026 guardó cada respuesta: cuando claude -p fallaba contestaba openai/gpt-4o-mini, el respaldo de pago de la cadena, y el guion rotulaba con lo configurado. Causa cerrada en la PR #248.",
+            "editor": "civicpulse-curator",
+            "correctedAt": "2026-10-06T05:41:47.602Z"
+          }
+        ],
+        "recuperada": {
+          "commit": "6bee76509c3ca7d655571902542b74cef9b614ac",
+          "editor": "civicpulse-curator",
+          "recuperadaAt": "2026-10-11T21:51:33.664Z"
+        }
+      }
+    },
+    "rmtyr-124-cit-a8696c": {
+      "verification": {
+        "claimId": "rmtyr-124-cit-a8696c",
+        "verdict": "parcial",
+        "summary": "La obra existe: la fase II del carril ciclopeatonal de la zona norte (Senda del Molinet, alumbrado y conexión con Paretotes, expediente 56/2025) se licitó en julio de 2025 y se adjudicó en septiembre a Nerco Infraestructuras por 262.812 € con IVA. Que se pague con los gastos derivados de la DANA no consta en el registro.",
+        "evidence": [
+          {
+            "kind": "tender",
+            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=zH8ATDFdYlU7%2B9FIQYNjeQ%3D%3D",
+            "snippet": "Obras Carril Ciclopeatonal Zona Norte: Fase II de la adecuación de la Senda del Molinet, alumbrado y conexión con la zona de Paretotes… · expediente 56/2025 · adjudicado a NERCO INFRAESTRUCTURAS, S.L. por 262.812,00 € con IVA el 24-09-2025",
+            "stance": "checked"
+          }
+        ],
+        "checkedAgainst": [
+          "tenders"
+        ],
+        "derivedBy": [
+          "curator-upgrade"
+        ]
+      },
+      "source": "curator-upgrade",
+      "reason": "La obra existe: la fase II del carril ciclopeatonal de la zona norte (Senda del Molinet, alumbrado y conexión con Paretotes, expediente 56/2025) se licitó en julio de 2025 y se adjudicó en septiembre a Nerco Infraestructuras por 262.812 € con IVA. Que se pague con los gastos derivados de la DANA no consta en el registro.",
+      "editor": "Sergei Lutchenko",
+      "appliedAt": "2026-10-06T06:29:15.043Z",
+      "desde": "sin-datos",
+      "sustituye": {
+        "source": "verdict-engine",
+        "editor": "verdict-engine:gpt-4o-mini",
+        "appliedAt": "2026-08-02T13:50:44.730Z",
+        "labelCorrections": [
+          {
+            "previous": "verdict-engine:claude-code",
+            "reason": "Razonó y decidió gpt-4o-mini, según .llm-cache (engine-reason-v1 y engine-extract-v1). Leído con llmCacheEntrada bajo la clave de claude-code, donde la pasada del 02-08-2026 guardó cada respuesta: cuando claude -p fallaba contestaba openai/gpt-4o-mini, el respaldo de pago de la cadena, y el guion rotulaba con lo configurado. Causa cerrada en la PR #248.",
+            "editor": "civicpulse-curator",
+            "correctedAt": "2026-10-06T05:41:47.602Z"
+          }
+        ],
+        "recuperada": {
+          "commit": "6bee76509c3ca7d655571902542b74cef9b614ac",
+          "editor": "civicpulse-curator",
+          "recuperadaAt": "2026-10-11T21:51:33.664Z"
+        }
+      }
+    },
+    "k4olcs-018-afi-7abae5": {
+      "verification": {
+        "claimId": "k4olcs-018-afi-7abae5",
+        "verdict": "verificado",
+        "summary": "Los 80.666 euros de la actuación 2 son el importe de su contrato: el sistema de debate, voto electrónico, captura y grabación de vídeo y control del salón de plenos se adjudicó el 19-04-2024 por 80.666,66 € con IVA (66.666,66 € sin IVA).",
+        "evidence": [
+          {
+            "kind": "tender",
+            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=qDjb9WdwTN3jHF5qKI4aaw%3D%3D",
+            "snippet": "Contrato mixto suministro y servicio implantación de un sistema de debate, voto electrónico, captura, distribución, grabación de v… · expediente 32/2024 · adjudicado a AMARA MEGAFONIA CCTV VOZ-DATOS, SL por 80.666,66 € con IVA el 19-04-2024",
+            "stance": "checked"
+          }
+        ],
+        "checkedAgainst": [
+          "tenders"
+        ],
+        "derivedBy": [
+          "curator-upgrade"
+        ]
+      },
+      "source": "curator-upgrade",
+      "reason": "Los 80.666 euros de la actuación 2 son el importe de su contrato: el sistema de debate, voto electrónico, captura y grabación de vídeo y control del salón de plenos se adjudicó el 19-04-2024 por 80.666,66 € con IVA (66.666,66 € sin IVA).",
+      "editor": "Sergei Lutchenko",
+      "appliedAt": "2026-10-06T07:29:20.818Z",
+      "desde": "sin-datos"
+    },
+    "k4olcs-019-cit-947479": {
+      "verification": {
+        "claimId": "k4olcs-019-cit-947479",
+        "verdict": "verificado",
+        "summary": "Las dos actuaciones constan como contratos adjudicados: la cartelería digital en sedes municipales, por 35.252,87 € con IVA el 29-05-2024, la cifra que se cita, al céntimo; y el sistema de debate, voto electrónico, captura y grabación de vídeo y control del salón de plenos, por 80.666,66 € con IVA el 19-04-2024.",
+        "evidence": [
+          {
+            "kind": "tender",
+            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=xkXNO23MYwoZDGvgaZEVxQ%3D%3D",
+            "snippet": "Contrato mixto suministro y servicio de implantación de cartelería digital en diversas sedes municipales del ayuntamiento de Riba-roja de Túria, p… · expediente 33/2024 · adjudicado a VODAFONE ESPANA SA por 35.252,87 € con IVA el 29-05-2024",
+            "stance": "checked"
+          },
+          {
+            "kind": "tender",
+            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=qDjb9WdwTN3jHF5qKI4aaw%3D%3D",
+            "snippet": "Contrato mixto suministro y servicio implantación de un sistema de debate, voto electrónico, captura, distribución, grabación de v… · expediente 32/2024 · adjudicado a AMARA MEGAFONIA CCTV VOZ-DATOS, SL por 80.666,66 € con IVA el 19-04-2024",
+            "stance": "checked"
+          }
+        ],
+        "checkedAgainst": [
+          "tenders"
+        ],
+        "derivedBy": [
+          "curator-upgrade"
+        ]
+      },
+      "source": "curator-upgrade",
+      "reason": "Las dos actuaciones constan como contratos adjudicados: la cartelería digital en sedes municipales, por 35.252,87 € con IVA el 29-05-2024, la cifra que se cita, al céntimo; y el sistema de debate, voto electrónico, captura y grabación de vídeo y control del salón de plenos, por 80.666,66 € con IVA el 19-04-2024.",
+      "editor": "Sergei Lutchenko",
+      "appliedAt": "2026-10-06T07:29:32.446Z",
+      "desde": "sin-datos"
+    },
+    "rx4hb4-006-cit-13b19d": {
+      "verification": {
+        "claimId": "rx4hb4-006-cit-13b19d",
+        "verdict": "verificado",
+        "summary": "El orden del día de esta misma sesión, la ordinaria del 9 de febrero de 2026, llevó en su punto 2 el acuerdo de someter a información pública la versión inicial del PRI de la UE Santa Rosa 2 (expediente 5543/2020/GEN). El título del punto no dice el plazo ni el medio de la información pública.",
+        "evidence": [
+          {
+            "kind": "agenda",
+            "ref": "https://regmeet.com/aytoribarroja/participaciones/c5b270a763686e776039618cc709f3a6?idioma=castellano",
+            "snippet": "Orden del día del pleno ordinario del 09-02-2026 · parte resolutiva · punto 2: Expedient: 5543/2020/GEN, Acord relatiu al sotmetiment a informació pública de la versió inicial del PRI de la UE Santa Rosa 2",
+            "stance": "checked"
+          }
+        ],
+        "checkedAgainst": [
+          "plenos-agendas"
+        ],
+        "derivedBy": [
+          "curator-upgrade"
+        ]
+      },
+      "source": "curator-upgrade",
+      "reason": "El orden del día de esta misma sesión, la ordinaria del 9 de febrero de 2026, llevó en su punto 2 el acuerdo de someter a información pública la versión inicial del PRI de la UE Santa Rosa 2 (expediente 5543/2020/GEN). El título del punto no dice el plazo ni el medio de la información pública.",
+      "editor": "Sergei Lutchenko",
+      "appliedAt": "2026-10-11T06:23:20.817Z",
+      "desde": "parcial"
+    }
+  },
+  "declaraciones": {
+    "19gax3o-034-cit-8ae8be": {
+      "plenoDate": "2026-01-19",
+      "type": "cita_obra",
+      "amountEuros": null
+    },
+    "1sqj7is-081-cit-50c5bb": {
+      "plenoDate": "2026-03-09",
+      "type": "cita_obra",
+      "amountEuros": null
+    },
+    "c8kr44-045-afi-8e7181": {
+      "plenoDate": "2025-09-08",
+      "type": "afirmacion_numerica",
+      "amountEuros": 194810
+    },
+    "c8kr44-081-cit-74fc55": {
+      "plenoDate": "2025-09-08",
+      "type": "cita_obra",
+      "amountEuros": null
+    },
+    "c8kr44-142-cit-b8c30e": {
+      "plenoDate": "2025-09-08",
+      "type": "cita_obra",
+      "amountEuros": 330000
+    },
+    "c8kr44-229-cit-1356bf": {
+      "plenoDate": "2025-09-08",
+      "type": "cita_obra",
+      "amountEuros": null
+    },
+    "c8kr44-230-cit-56b068": {
+      "plenoDate": "2025-09-08",
+      "type": "cita_obra",
+      "amountEuros": null
+    },
+    "c8kr44-231-cit-faf7d3": {
+      "plenoDate": "2025-09-08",
+      "type": "cita_obra",
+      "amountEuros": null
+    },
+    "k4olcs-018-afi-1077bc": {
+      "plenoDate": "2026-04-20",
+      "type": "afirmacion_numerica",
+      "amountEuros": 35252.87
+    },
+    "k4olcs-018-afi-7abae5": {
+      "plenoDate": "2026-04-20",
+      "type": "afirmacion_numerica",
+      "amountEuros": 80666
+    },
+    "k4olcs-019-cit-947479": {
+      "plenoDate": "2026-04-20",
+      "type": "cita_obra",
+      "amountEuros": 35252.87
+    },
+    "k4olcs-101-cit-ddd6c4": {
+      "plenoDate": "2026-04-20",
+      "type": "cita_convenio",
+      "amountEuros": null
+    },
+    "ma87e0-152-cit-786d7e": {
+      "plenoDate": "2026-03-16",
+      "type": "cita_obra",
+      "amountEuros": null
+    },
+    "ma87e0-157-pro-7ce20e": {
+      "plenoDate": "2026-03-16",
+      "type": "promesa",
+      "amountEuros": null
+    },
+    "qz6weg-184-cit-8629f9": {
+      "plenoDate": "2025-12-01",
+      "type": "cita_obra",
+      "amountEuros": null
+    },
+    "qz6weg-273-cit-69aded": {
+      "plenoDate": "2025-12-01",
+      "type": "cita_convenio",
+      "amountEuros": null
+    },
+    "rmtyr-124-cit-a8696c": {
+      "plenoDate": "2025-07-31",
+      "type": "cita_obra",
+      "amountEuros": null
+    },
+    "rx4hb4-006-cit-13b19d": {
+      "plenoDate": "2026-02-09",
+      "type": "cita_obra",
+      "amountEuros": null
+    }
+  },
+  "tenders": {
+    "contracts": [
+      {
+        "id": "2801214",
+        "title": "Contrato Menor 01m/2022 de Servicio de Elaboración de  un  Plan  de  Acción  Local  para  incorporación  del  municipio  a  la  Red  de  Ciudades Amigables con las personas mayores.",
+        "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=CDpke0nkPcaXQV0WE7lYPw%3D%3D",
+        "status": "awarded",
+        "contractType": "services",
+        "processType": "minor_contract",
+        "minorContract": true,
+        "startDate": "2022-03-25",
+        "endDate": "2023-02-17",
+        "awardDate": "2022-03-03",
+        "formalizedDate": null,
+        "duration": 360,
+        "batchNumber": 0,
+        "assignee": "EQUALITY RESEARCH &amp; STRATEGY CONSULTING, S.L.",
+        "contractor": "Ayuntamiento de Riba-roja de Túria",
+        "contractorId": "58096",
+        "contractorType": "Ayuntamiento",
+        "categoryId": "25",
+        "categoryTitle": "legal",
+        "cpvs": [
+          "79315000"
+        ],
+        "initialAmount": 14520,
+        "initialAmountNoTaxes": 12000,
+        "finalAmount": 8470,
+        "finalAmountNoTaxes": 7000,
+        "estimatedValue": 0,
+        "numberOfProposals": 4
+      },
+      {
+        "id": "4889055#1",
+        "title": "71000000-Servicios de arquitectura, construcción, ingeniería e inspección.",
+        "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=8p%2Fwsq%2B3XH9eKgd8LfVV9g%3D%3D",
+        "status": "awarded",
+        "contractType": "services",
+        "processType": "restricted",
+        "minorContract": false,
+        "startDate": null,
+        "endDate": "2027-07-06",
+        "awardDate": "2026-05-08",
+        "formalizedDate": null,
+        "duration": 426,
+        "batchNumber": 0,
+        "assignee": "José Luis Moreno Delgado",
+        "contractor": "Ayuntamiento de Riba-roja de Túria",
+        "contractorId": "58096",
+        "contractorType": "Ayuntamiento",
+        "categoryId": "27",
+        "categoryTitle": "architecture",
+        "cpvs": [
+          "71200000",
+          "71000000"
+        ],
+        "initialAmount": 2741.53,
+        "initialAmountNoTaxes": 2265.73,
+        "finalAmount": 1936,
+        "finalAmountNoTaxes": 1600,
+        "estimatedValue": 0,
+        "numberOfProposals": 8
+      },
+      {
+        "id": "72576",
+        "title": "Contrato privado de arrendamiento bien inmueble para dotar de aulas adicionales para el Conservatorio de Música y Danza",
+        "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=BXRNnYuo8hkBPRBxZ4nJ%2Fg%3D%3D",
+        "status": "formalized",
+        "contractType": "patrimonial",
+        "processType": "open",
+        "minorContract": false,
+        "startDate": "2018-08-01",
+        "endDate": "2020-07-31",
+        "awardDate": "2018-08-14",
+        "formalizedDate": "2018-08-14",
+        "duration": 730,
+        "batchNumber": 0,
+        "assignee": "Construcciones Bodí, S.L.",
+        "contractor": "Ayuntamiento de Riba-roja de Túria",
+        "contractorId": "58096",
+        "contractorType": "Ayuntamiento",
+        "categoryId": "47",
+        "categoryTitle": "real_estate",
+        "cpvs": [
+          "70310000"
+        ],
+        "initialAmount": 17424,
+        "initialAmountNoTaxes": 14400,
+        "finalAmount": 14887.36,
+        "finalAmountNoTaxes": 12303.6,
+        "estimatedValue": 28800,
+        "numberOfProposals": 1
+      },
+      {
+        "id": "4415608",
+        "title": "Contrato mixto suministro y servicio implantación de un sistema de debate, voto electrónico, captura, distribución, grabación de video y control para el salón de plenos del ayuntamiento de Riba-roja de Turia, por procedimiento abierto simplificado sumario, mejora relación calidad precio, varios criterios de adjudicación, con condición de ejecución de carácter social y medioambiental.",
+        "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=qDjb9WdwTN3jHF5qKI4aaw%3D%3D",
+        "status": "formalized",
+        "contractType": "services",
+        "processType": "open_simplified",
+        "minorContract": false,
+        "startDate": null,
+        "endDate": "2025-04-19",
+        "awardDate": "2024-04-19",
+        "formalizedDate": "2024-04-23",
+        "duration": 365,
+        "batchNumber": 0,
+        "assignee": "AMARA MEGAFONIA CCTV VOZ-DATOS, SL",
+        "contractor": "Ayuntamiento de Riba-roja de Túria",
+        "contractorId": "58096",
+        "contractorType": "Ayuntamiento",
+        "categoryId": "29",
+        "categoryTitle": "it",
+        "cpvs": [
+          "72000000",
+          "48000000",
+          "32330000"
+        ],
+        "initialAmount": 84890.84,
+        "initialAmountNoTaxes": 70157.72,
+        "finalAmount": 80666.66,
+        "finalAmountNoTaxes": 66666.66,
+        "estimatedValue": 70157.72,
+        "numberOfProposals": 1
+      },
+      {
+        "id": "5106922",
+        "title": "Contrato administrativo obras para la ejecución del proyecto Área de esparcimiento en zona verde de Valencia la Vella en el T. M. de Riba-roja de Túria (Valencia) - Ctto.39/2026",
+        "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=sOt%2BY8QGKwx6nTs9LZ9RhQ%3D%3D",
+        "status": "formalized",
+        "contractType": "construction",
+        "processType": "open_simplified",
+        "minorContract": false,
+        "startDate": null,
+        "endDate": "2026-07-31",
+        "awardDate": "2026-05-27",
+        "formalizedDate": "2026-06-02",
+        "duration": 60,
+        "batchNumber": 0,
+        "assignee": "GEOCIVIL, S.A.",
+        "contractor": "Ayuntamiento de Riba-roja de Túria",
+        "contractorId": "58096",
+        "contractorType": "Ayuntamiento",
+        "categoryId": "24",
+        "categoryTitle": "construction",
+        "cpvs": [
+          "45111000",
+          "45262310",
+          "45232130",
+          "45317000",
+          "45237000"
+        ],
+        "initialAmount": 128695.18,
+        "initialAmountNoTaxes": 106359.65,
+        "finalAmount": 108876.11,
+        "finalAmountNoTaxes": 89980.26,
+        "estimatedValue": 106359.65,
+        "numberOfProposals": 7
+      },
+      {
+        "id": "9554",
+        "title": "Concesión administrativa para la explotación del bar municipal sito en el C.D. La Mallá por procedimiento abierto simplificado, mejor calidad-precio, varios criterios de adjudicación con cláusulas sociales y medioambientales como criterio de adjudicación y con condición especial de ejecución de carácter social y medioambiental.",
+        "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=ye2kkqdCZyV7h85%2Fpmmsfw%3D%3D",
+        "status": "formalized",
+        "contractType": "other",
+        "processType": "open",
+        "minorContract": false,
+        "startDate": "2019-07-01",
+        "endDate": "2021-06-30",
+        "awardDate": "2019-07-25",
+        "formalizedDate": "2019-07-25",
+        "duration": 730,
+        "batchNumber": 0,
+        "assignee": "Ernestina Cabo Carrió",
+        "contractor": "Ayuntamiento de Riba-roja de Túria",
+        "contractorId": "58096",
+        "contractorType": "Ayuntamiento",
+        "categoryId": "35",
+        "categoryTitle": "catering",
+        "cpvs": [
+          "55100000"
+        ],
+        "initialAmount": 9600,
+        "initialAmountNoTaxes": 9600,
+        "finalAmount": 12000,
+        "finalAmountNoTaxes": 12000,
+        "estimatedValue": 14400,
+        "numberOfProposals": 1
+      },
+      {
+        "id": "4973577",
+        "title": "Cambio de juegos y suelo de protección Parque La Pedrera",
+        "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=0sQ%2BhGrxuvbjHF5qKI4aaw%3D%3D",
+        "status": "formalized",
+        "contractType": "supplies",
+        "processType": "open",
+        "minorContract": false,
+        "startDate": null,
+        "endDate": "2026-06-15",
+        "awardDate": "2026-04-01",
+        "formalizedDate": "2026-04-22",
+        "duration": 60,
+        "batchNumber": 1,
+        "assignee": "JUEGOS KOMPAN, S.A.",
+        "contractor": "Ayuntamiento de Riba-roja de Túria",
+        "contractorId": "58096",
+        "contractorType": "Ayuntamiento",
+        "categoryId": "30",
+        "categoryTitle": "culture",
+        "cpvs": [
+          "37535210",
+          "37535250",
+          "45112723",
+          "43325000",
+          "35261000",
+          "45112200",
+          "31523200",
+          "37535240",
+          "34928310",
+          "45233293",
+          "37535220"
+        ],
+        "initialAmount": 49852.3,
+        "initialAmountNoTaxes": 41200.25,
+        "finalAmount": 45931.6,
+        "finalAmountNoTaxes": 37960,
+        "estimatedValue": 199588.19,
+        "numberOfProposals": 5
+      },
+      {
+        "id": "4973577#1",
+        "title": "Renovación de los juegos y suelo de protección Plaza Juez Heliodoro Gimeno",
+        "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=0sQ%2BhGrxuvbjHF5qKI4aaw%3D%3D",
+        "status": "formalized",
+        "contractType": "supplies",
+        "processType": "open",
+        "minorContract": false,
+        "startDate": null,
+        "endDate": "2026-07-31",
+        "awardDate": "2026-04-01",
+        "formalizedDate": "2026-04-22",
+        "duration": 60,
+        "batchNumber": 2,
+        "assignee": "URBEADAPTA, S.L",
+        "contractor": "Ayuntamiento de Riba-roja de Túria",
+        "contractorId": "58096",
+        "contractorType": "Ayuntamiento",
+        "categoryId": "30",
+        "categoryTitle": "culture",
+        "cpvs": [
+          "37535210",
+          "37535250",
+          "45112723",
+          "43325000",
+          "35261000",
+          "45112200",
+          "31523200",
+          "37535240",
+          "34928310",
+          "45233293",
+          "37535220"
+        ],
+        "initialAmount": 51439.04,
+        "initialAmountNoTaxes": 42511.6,
+        "finalAmount": 41151.23,
+        "finalAmountNoTaxes": 34009.28,
+        "estimatedValue": 199588.19,
+        "numberOfProposals": 6
+      },
+      {
+        "id": "4973577#2",
+        "title": "Cambio de juegos y suelo de protección Parque Bellavista I",
+        "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=0sQ%2BhGrxuvbjHF5qKI4aaw%3D%3D",
+        "status": "formalized",
+        "contractType": "supplies",
+        "processType": "open",
+        "minorContract": false,
+        "startDate": null,
+        "endDate": "2026-06-15",
+        "awardDate": "2026-04-01",
+        "formalizedDate": "2026-04-22",
+        "duration": 60,
+        "batchNumber": 3,
+        "assignee": "URBEADAPTA, S.L",
+        "contractor": "Ayuntamiento de Riba-roja de Túria",
+        "contractorId": "58096",
+        "contractorType": "Ayuntamiento",
+        "categoryId": "30",
+        "categoryTitle": "culture",
+        "cpvs": [
+          "37535210",
+          "37535250",
+          "45112723",
+          "43325000",
+          "35261000",
+          "45112200",
+          "31523200",
+          "37535240",
+          "34928310",
+          "45233293",
+          "37535220"
+        ],
+        "initialAmount": 36220.55,
+        "initialAmountNoTaxes": 29934.34,
+        "finalAmount": 29515.26,
+        "finalAmountNoTaxes": 25444.19,
+        "estimatedValue": 199588.19,
+        "numberOfProposals": 6
+      },
+      {
+        "id": "4973577#3",
+        "title": "Cambio de juegos y suelo de protección Parque Molinet",
+        "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=0sQ%2BhGrxuvbjHF5qKI4aaw%3D%3D",
+        "status": "formalized",
+        "contractType": "supplies",
+        "processType": "open",
+        "minorContract": false,
+        "startDate": null,
+        "endDate": "2026-06-15",
+        "awardDate": "2026-04-01",
+        "formalizedDate": "2026-04-22",
+        "duration": 60,
+        "batchNumber": 4,
+        "assignee": "JUEGOS KOMPAN, S.A.",
+        "contractor": "Ayuntamiento de Riba-roja de Túria",
+        "contractorId": "58096",
+        "contractorType": "Ayuntamiento",
+        "categoryId": "30",
+        "categoryTitle": "culture",
+        "cpvs": [
+          "37535210",
+          "37535250",
+          "45112723",
+          "43325000",
+          "35261000",
+          "45112200",
+          "31523200",
+          "37535240",
+          "34928310",
+          "45233293",
+          "37535220"
+        ],
+        "initialAmount": 57342.5,
+        "initialAmountNoTaxes": 47390.5,
+        "finalAmount": 43342.2,
+        "finalAmountNoTaxes": 35820,
+        "estimatedValue": 199588.19,
+        "numberOfProposals": 7
+      },
+      {
+        "id": "4973577#4",
+        "title": "Sustitución de los juegos y suelo de protección de la Plaza Lavadero",
+        "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=0sQ%2BhGrxuvbjHF5qKI4aaw%3D%3D",
+        "status": "formalized",
+        "contractType": "supplies",
+        "processType": "open",
+        "minorContract": false,
+        "startDate": null,
+        "endDate": "2026-06-15",
+        "awardDate": "2026-04-01",
+        "formalizedDate": "2026-04-22",
+        "duration": 60,
+        "batchNumber": 5,
+        "assignee": "LUDOMAQUINA S.L",
+        "contractor": "Ayuntamiento de Riba-roja de Túria",
+        "contractorId": "58096",
+        "contractorType": "Ayuntamiento",
+        "categoryId": "30",
+        "categoryTitle": "culture",
+        "cpvs": [
+          "37535210",
+          "37535250",
+          "45112723",
+          "43325000",
+          "35261000",
+          "45112200",
+          "31523200",
+          "37535240",
+          "34928310",
+          "45233293",
+          "37535220"
+        ],
+        "initialAmount": 46647.31,
+        "initialAmountNoTaxes": 38551.5,
+        "finalAmount": 35348.67,
+        "finalAmountNoTaxes": 29213.78,
+        "estimatedValue": 199588.19,
+        "numberOfProposals": 5
+      },
+      {
+        "id": "285030",
+        "title": "Enajenación de la parcela M7-2.2 de la IIª fase del parque Logístico, por procedimiento abierto, mejor relación calidad-precio, varios criterios de adjudicación y con condición especial de ejecución",
+        "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=jFiGXyTf980uf4aBO%2BvQlQ%3D%3D",
+        "status": "formalized",
+        "contractType": "patrimonial",
+        "processType": "open",
+        "minorContract": false,
+        "startDate": "2019-10-01",
+        "endDate": "2019-10-31",
+        "awardDate": "2019-11-10",
+        "formalizedDate": "2019-11-10",
+        "duration": 30,
+        "batchNumber": 0,
+        "assignee": "Chema Ballester, S.L.",
+        "contractor": "Ayuntamiento de Riba-roja de Túria",
+        "contractorId": "58096",
+        "contractorType": "Ayuntamiento",
+        "categoryId": "47",
+        "categoryTitle": "real_estate",
+        "cpvs": [
+          "70123000"
+        ],
+        "initialAmount": 775405.76,
+        "initialAmountNoTaxes": 640831.21,
+        "finalAmount": 796480.08,
+        "finalAmountNoTaxes": 658248,
+        "estimatedValue": 775405.76,
+        "numberOfProposals": 1
+      },
+      {
+        "id": "1794430#23",
+        "title": "92000000-Servicios de esparcimiento, culturales y deportivos.",
+        "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=c%2Ffs089FDebua%2Fi14w%2FPLA%3D%3D",
+        "status": "awarded",
+        "contractType": "services",
+        "processType": "restricted",
+        "minorContract": false,
+        "startDate": null,
+        "endDate": "2026-07-21",
+        "awardDate": "2026-07-20",
+        "formalizedDate": null,
+        "duration": 7,
+        "batchNumber": 0,
+        "assignee": "GRUPO A RIURE",
+        "contractor": "Ayuntamiento de Riba-roja de Túria",
+        "contractorId": "58096",
+        "contractorType": "Ayuntamiento",
+        "categoryId": "28",
+        "categoryTitle": "health",
+        "cpvs": [
+          "98300000",
+          "92000000"
+        ],
+        "initialAmount": 50000,
+        "initialAmountNoTaxes": 45454.55,
+        "finalAmount": 47025.55,
+        "finalAmountNoTaxes": 42750.5,
+        "estimatedValue": 0,
+        "numberOfProposals": 2
+      },
+      {
+        "id": "1538292",
+        "title": "Concesión demanial para la explotación del bar municipal sito en el Parque Maldonado por concurrencia, procedimiento abierto simplificado, mejor calidad-precio, varios criterios de adjudicación con cláusulas sociales y medioambientales como criterio de adjudicación y con condición especial de ejecución de carácter social y medioambiental, contribuyendo al cumplimiento del ODS 11 relativo a lograr que las ciudades sean sostenibles  y del ODS 8 relativo al trabajo decente para todos.",
+        "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=EqCmThzpsT4uf4aBO%2BvQlQ%3D%3D",
+        "status": "void",
+        "contractType": "patrimonial",
+        "processType": "open_simplified",
+        "minorContract": false,
+        "startDate": "2021-11-01",
+        "endDate": "2023-09-13",
+        "awardDate": null,
+        "formalizedDate": null,
+        "duration": 730,
+        "batchNumber": 0,
+        "assignee": null,
+        "contractor": "Ayuntamiento de Riba-roja de Túria",
+        "contractorId": "58096",
+        "contractorType": "Ayuntamiento",
+        "categoryId": "35",
+        "categoryTitle": "catering",
+        "cpvs": [
+          "55100000"
+        ],
+        "initialAmount": 5200.84,
+        "initialAmountNoTaxes": 5200.84,
+        "finalAmount": 0,
+        "finalAmountNoTaxes": 0,
+        "estimatedValue": 5200.84,
+        "numberOfProposals": 1
+      },
+      {
+        "id": "1794430#24",
+        "title": "Contrato derivado del sistema dinámico de adquisición de servicios para la prestación del TALLER de FOTOGRAFÍA en la escuela pública de adultos del Ayuntamiento de Riba-roja de Turia.",
+        "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=NhvbGm6OZ9xvYnTkQN0%2FZA%3D%3D",
+        "status": "awarded",
+        "contractType": "services",
+        "processType": "restricted",
+        "minorContract": false,
+        "startDate": "2023-06-05",
+        "endDate": "2025-04-30",
+        "awardDate": null,
+        "formalizedDate": null,
+        "duration": 1095,
+        "batchNumber": 3,
+        "assignee": "Fernando Dario Cardozo",
+        "contractor": "Ayuntamiento de Riba-roja de Túria",
+        "contractorId": "58096",
+        "contractorType": "Ayuntamiento",
+        "categoryId": "28",
+        "categoryTitle": "health",
+        "cpvs": [
+          "98300000",
+          "80500000",
+          "80000000",
+          "80510000"
+        ],
+        "initialAmount": 1088.3,
+        "initialAmountNoTaxes": 1088.3,
+        "finalAmount": 1000,
+        "finalAmountNoTaxes": 1000,
+        "estimatedValue": 0,
+        "numberOfProposals": 1
+      },
+      {
+        "id": "4415701",
+        "title": "Contrato mixto suministro y servicio de implantación de cartelería digital en diversas sedes municipales del ayuntamiento de Riba-roja de Túria, por procedimiento abierto simplificado sumario, mejora relación calidad precio y varios criterios de adjudicación, con condición de ejecución de carácter social y medioambiental, contribuyendo al cumplimiento del ODS 16.",
+        "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=xkXNO23MYwoZDGvgaZEVxQ%3D%3D",
+        "status": "awarded",
+        "contractType": "services",
+        "processType": "open_simplified",
+        "minorContract": false,
+        "startDate": null,
+        "endDate": "2025-05-28",
+        "awardDate": "2024-05-29",
+        "formalizedDate": null,
+        "duration": 365,
+        "batchNumber": 0,
+        "assignee": "VODAFONE SA",
+        "contractor": "Ayuntamiento de Riba-roja de Túria",
+        "contractorId": "58096",
+        "contractorType": "Ayuntamiento",
+        "categoryId": "29",
+        "categoryTitle": "it",
+        "cpvs": [
+          "72000000",
+          "48000000"
+        ],
+        "initialAmount": 51098.3,
+        "initialAmountNoTaxes": 42230,
+        "finalAmount": 35252.87,
+        "finalAmountNoTaxes": 29134.6,
+        "estimatedValue": 42230,
+        "numberOfProposals": 3
+      },
+      {
+        "id": "31583",
+        "title": "Enajenación parcela 1-10 sito en el Sector Industrial Casanova por procedimiento abierto, mejor relación calidad-precio, varios criterios de adjudicación y condición especial de ejecución.",
+        "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=qNwTPlXJjH2rz3GQd5r6SQ%3D%3D",
+        "status": "formalized",
+        "contractType": "patrimonial",
+        "processType": "open",
+        "minorContract": false,
+        "startDate": "2018-12-14",
+        "endDate": "2019-01-13",
+        "awardDate": "2019-01-17",
+        "formalizedDate": "2019-01-17",
+        "duration": 30,
+        "batchNumber": 0,
+        "assignee": "Audibe Distribuciones, S.A.U.",
+        "contractor": "Ayuntamiento de Riba-roja de Túria",
+        "contractorId": "58096",
+        "contractorType": "Ayuntamiento",
+        "categoryId": "47",
+        "categoryTitle": "real_estate",
+        "cpvs": [
+          "70123000"
+        ],
+        "initialAmount": 1306747.66,
+        "initialAmountNoTaxes": 1079956.74,
+        "finalAmount": 2013440,
+        "finalAmountNoTaxes": 1664000,
+        "estimatedValue": 1079956.74,
+        "numberOfProposals": 2
+      },
+      {
+        "id": "33712",
+        "title": "concesión administrativa para la explotación del bar municipal sito en el Centro Social por procedimiento abierto simplificado, mejor calidad-precio, varios criterios de adjudicación con cláusulas sociales y medioambientales como criterio de adjudicación y con condición especial de ejecución de carácter social y medioambiental.",
+        "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=3aX%2FezDQcd2mq21uxhbaVQ%3D%3D",
+        "status": "formalized",
+        "contractType": "other",
+        "processType": "open_simplified",
+        "minorContract": false,
+        "startDate": "2019-09-24",
+        "endDate": "2021-09-23",
+        "awardDate": "2019-11-10",
+        "formalizedDate": "2019-12-08",
+        "duration": 730,
+        "batchNumber": 0,
+        "assignee": "María Mercedes Crespo Gómez",
+        "contractor": "Ayuntamiento de Riba-roja de Túria",
+        "contractorId": "58096",
+        "contractorType": "Ayuntamiento",
+        "categoryId": "35",
+        "categoryTitle": "catering",
+        "cpvs": [
+          "55100000"
+        ],
+        "initialAmount": 19320,
+        "initialAmountNoTaxes": 19320,
+        "finalAmount": 20520,
+        "finalAmountNoTaxes": 20520,
+        "estimatedValue": 28980,
+        "numberOfProposals": 1
+      },
+      {
+        "id": "685889",
+        "title": "Obras de reurbanización escalera sito en C/ Colón",
+        "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=wYLo2p8JLMouf4aBO%2BvQlQ%3D%3D",
+        "status": "awarded",
+        "contractType": "construction",
+        "processType": "minor_contract",
+        "minorContract": true,
+        "startDate": "2018-11-19",
+        "endDate": "2018-12-27",
+        "awardDate": "2018-11-28",
+        "formalizedDate": null,
+        "duration": 30,
+        "batchNumber": 0,
+        "assignee": "Construcciones Arnau&amp;March, S.L.",
+        "contractor": "Ayuntamiento de Riba-roja de Túria",
+        "contractorId": "58096",
+        "contractorType": "Ayuntamiento",
+        "categoryId": "23",
+        "categoryTitle": "other",
+        "cpvs": [],
+        "initialAmount": 10948.75,
+        "initialAmountNoTaxes": 9048.55,
+        "finalAmount": 10948.75,
+        "finalAmountNoTaxes": 9048.55,
+        "estimatedValue": 0,
+        "numberOfProposals": 1
+      },
+      {
+        "id": "23513",
+        "title": "El objeto del contrato es el suministro camión cesta por procedimiento abierto simplificado, mejor relación calidad-precio, varios criterios de adjudicación con cláusulas medioambientales y mejoras como criterio de adjudicación y con condición especial de ejecución de carácter medioambiental",
+        "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=eLkhK9I2AheXQV0WE7lYPw%3D%3D",
+        "status": "formalized",
+        "contractType": "supplies",
+        "processType": "open_simplified",
+        "minorContract": false,
+        "startDate": "2018-12-11",
+        "endDate": "2019-01-10",
+        "awardDate": "2019-01-10",
+        "formalizedDate": "2019-01-10",
+        "duration": 30,
+        "batchNumber": 0,
+        "assignee": "PM OIL &amp; STEEL IBERICA SL",
+        "contractor": "Ayuntamiento de Riba-roja de Túria",
+        "contractorId": "58096",
+        "contractorType": "Ayuntamiento",
+        "categoryId": "33",
+        "categoryTitle": "transportation",
+        "cpvs": [
+          "34142100"
+        ],
+        "initialAmount": 60000,
+        "initialAmountNoTaxes": 49586.78,
+        "finalAmount": 52030,
+        "finalAmountNoTaxes": 43000,
+        "estimatedValue": 49586.78,
+        "numberOfProposals": 2
+      },
+      {
+        "id": "7483049",
+        "title": "Contrato, de carácter menor, para la ejecución de las obras del proyecto de “Reconstrucción de muros y reparación de nichos en el cementerio municipal de Riba-roja de Túria” (Ctto.23M/2024)",
+        "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=noZHIbkex4zgL1BHd3qjQA%3D%3D",
+        "status": "awarded",
+        "contractType": "construction",
+        "processType": "minor_contract",
+        "minorContract": true,
+        "startDate": null,
+        "endDate": "2025-05-09",
+        "awardDate": "2025-02-20",
+        "formalizedDate": null,
+        "duration": 91,
+        "batchNumber": 0,
+        "assignee": "Construcciones Arnau&amp;March, S.L.",
+        "contractor": "Ayuntamiento de Riba-roja de Túria",
+        "contractorId": "58096",
+        "contractorType": "Ayuntamiento",
+        "categoryId": "24",
+        "categoryTitle": "construction",
+        "cpvs": [
+          "45262500",
+          "45111214"
+        ],
+        "initialAmount": 24892.73,
+        "initialAmountNoTaxes": 20572.5,
+        "finalAmount": 20366.85,
+        "finalAmountNoTaxes": 20366.85,
+        "estimatedValue": 0,
+        "numberOfProposals": 2
+      },
+      {
+        "id": "4684840",
+        "title": "Adquisición de un bien inmueble para crear un espacio dedicado a varios despachos de diferentes usos e inicio de expediente por concurso (Exp GP 1/2024)",
+        "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=3EYCqH2k0nHs%2BnLj3vAg5A%3D%3D",
+        "status": "awarded",
+        "contractType": "patrimonial",
+        "processType": "open",
+        "minorContract": false,
+        "startDate": null,
+        "endDate": "2025-09-23",
+        "awardDate": "2025-09-24",
+        "formalizedDate": null,
+        "duration": 0,
+        "batchNumber": 0,
+        "assignee": "JUAN BAUTISTA CASADES CORREA",
+        "contractor": "Ayuntamiento de Riba-roja de Túria",
+        "contractorId": "58096",
+        "contractorType": "Ayuntamiento",
+        "categoryId": "47",
+        "categoryTitle": "real_estate",
+        "cpvs": [
+          "70123000"
+        ],
+        "initialAmount": 132000,
+        "initialAmountNoTaxes": 132000,
+        "finalAmount": 84000,
+        "finalAmountNoTaxes": 84000,
+        "estimatedValue": 132000,
+        "numberOfProposals": 1
+      },
+      {
+        "id": "5198588",
+        "title": "Suministro con instalación de juegos infantiles en Parque Asunción de Nuestra Señora",
+        "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=Dsw60vrWRmm5HQrHoP3G5A%3D%3D",
+        "status": "awarded",
+        "contractType": "supplies",
+        "processType": "open_simplified",
+        "minorContract": false,
+        "startDate": null,
+        "endDate": "2026-10-27",
+        "awardDate": "2026-09-08",
+        "formalizedDate": null,
+        "duration": 60,
+        "batchNumber": 0,
+        "assignee": "URBEADAPTA, S.L",
+        "contractor": "Ayuntamiento de Riba-roja de Túria",
+        "contractorId": "58096",
+        "contractorType": "Ayuntamiento",
+        "categoryId": "41",
+        "categoryTitle": "industry",
+        "cpvs": [
+          "43325000",
+          "35261000"
+        ],
+        "initialAmount": 41138.49,
+        "initialAmountNoTaxes": 33998.75,
+        "finalAmount": 40727.1,
+        "finalAmountNoTaxes": 33658.76,
+        "estimatedValue": 33998.75,
+        "numberOfProposals": 1
+      },
+      {
+        "id": "130643",
+        "title": "Servicio de explotación del bar C.D. La Mallá",
+        "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=RWrbXsWn0eYQK2TEfXGy%2BA%3D%3D",
+        "status": "formalized",
+        "contractType": "services",
+        "processType": "open",
+        "minorContract": false,
+        "startDate": "2017-04-15",
+        "endDate": "2019-04-14",
+        "awardDate": "2017-07-06",
+        "formalizedDate": "2017-07-06",
+        "duration": 729,
+        "batchNumber": 0,
+        "assignee": "Carlos Roberto Baliño",
+        "contractor": "Ayuntamiento de Riba-roja de Túria",
+        "contractorId": "58096",
+        "contractorType": "Ayuntamiento",
+        "categoryId": "35",
+        "categoryTitle": "catering",
+        "cpvs": [
+          "55330000"
+        ],
+        "initialAmount": 9600,
+        "initialAmountNoTaxes": 9600,
+        "finalAmount": 15600,
+        "finalAmountNoTaxes": 15600,
+        "estimatedValue": 19200,
+        "numberOfProposals": 2
+      },
+      {
+        "id": "4653394",
+        "title": "Contrato de servicio público de recogida de residuos sólidos urbanos del municipio.",
+        "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=oE58TiRVCfAZDGvgaZEVxQ%3D%3D",
+        "status": "formalized",
+        "contractType": "services",
+        "processType": "open",
+        "minorContract": false,
+        "startDate": null,
+        "endDate": "2039-11-10",
+        "awardDate": "2025-09-10",
+        "formalizedDate": "2025-11-11",
+        "duration": 5113,
+        "batchNumber": 1,
+        "assignee": "GARBIALDI, S.A.",
+        "contractor": "Ayuntamiento de Riba-roja de Túria",
+        "contractorId": "58096",
+        "contractorType": "Ayuntamiento",
+        "categoryId": "31",
+        "categoryTitle": "environment",
+        "cpvs": [
+          "90511300",
+          "71356200"
+        ],
+        "initialAmount": 18106437.38,
+        "initialAmountNoTaxes": 16460397.62,
+        "finalAmount": 17383956.74,
+        "finalAmountNoTaxes": 15803597.04,
+        "estimatedValue": 16632795.3,
+        "numberOfProposals": 4
+      },
+      {
+        "id": "1892773#1",
+        "title": "Bar Parque Maldonado",
+        "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=U84335CaunpvYnTkQN0%2FZA%3D%3D",
+        "status": "formalized",
+        "contractType": "public_services_management",
+        "processType": "open_simplified",
+        "minorContract": false,
+        "startDate": "2023-02-01",
+        "endDate": "2025-01-30",
+        "awardDate": "2023-01-25",
+        "formalizedDate": "2023-02-02",
+        "duration": 730,
+        "batchNumber": 2,
+        "assignee": "MANUEL BENITEZ SIMON",
+        "contractor": "Ayuntamiento de Riba-roja de Túria",
+        "contractorId": "58096",
+        "contractorType": "Ayuntamiento",
+        "categoryId": "35",
+        "categoryTitle": "catering",
+        "cpvs": [
+          "55100000"
+        ],
+        "initialAmount": 12614.88,
+        "initialAmountNoTaxes": 6307.53,
+        "finalAmount": 6307.53,
+        "finalAmountNoTaxes": 6307.53,
+        "estimatedValue": 35634.35,
+        "numberOfProposals": 1
+      },
+      {
+        "id": "4653394#1",
+        "title": "Servicio de asistencia técnica y apoyo para el control y supervisión sobre la prestación del contrato de recogida de RSU, poda y voluminosos en el municipio de Riba-roja de Túria.",
+        "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=oE58TiRVCfAZDGvgaZEVxQ%3D%3D",
+        "status": "formalized",
+        "contractType": "services",
+        "processType": "open",
+        "minorContract": false,
+        "startDate": null,
+        "endDate": "2039-11-10",
+        "awardDate": "2025-09-10",
+        "formalizedDate": "2025-11-11",
+        "duration": 5113,
+        "batchNumber": 2,
+        "assignee": "AUDITESA SL",
+        "contractor": "Ayuntamiento de Riba-roja de Túria",
+        "contractorId": "58096",
+        "contractorType": "Ayuntamiento",
+        "categoryId": "31",
+        "categoryTitle": "environment",
+        "cpvs": [
+          "90511300",
+          "71356200"
+        ],
+        "initialAmount": 208601.12,
+        "initialAmountNoTaxes": 172397.68,
+        "finalAmount": 194810,
+        "finalAmountNoTaxes": 161000,
+        "estimatedValue": 16632795.3,
+        "numberOfProposals": 4
+      },
+      {
+        "id": "46717",
+        "title": "contrato de concesión del servicio público de abastecimiento de agua potable, servicio de gestión de alcantarillado , control de vertidos y depuración del municipio Riba-roja de Túria, por procedimiento abierto, mejor relación calidad-precio, varios criterios de adjudicación y con cláusulas medioambientales y con condición especial de ejecución de carácter medioambiental y social.",
+        "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=pK1YW0Z3femXQV0WE7lYPw%3D%3D",
+        "status": "formalized",
+        "contractType": "public_services_management",
+        "processType": "open",
+        "minorContract": false,
+        "startDate": null,
+        "endDate": "2043-10-02",
+        "awardDate": "2026-08-06",
+        "formalizedDate": "2026-10-06",
+        "duration": 6209,
+        "batchNumber": 0,
+        "assignee": "HIDRAQUA S.A.U",
+        "contractor": "Ayuntamiento de Riba-roja de Túria",
+        "contractorId": "58096",
+        "contractorType": "Ayuntamiento",
+        "categoryId": "48",
+        "categoryTitle": "public_services",
+        "cpvs": [
+          "65130000"
+        ],
+        "initialAmount": 55685178.79,
+        "initialAmountNoTaxes": 55685178.79,
+        "finalAmount": 55685178.79,
+        "finalAmountNoTaxes": 55685178.79,
+        "estimatedValue": 55685178.79,
+        "numberOfProposals": 7
+      },
+      {
+        "id": "5054473",
+        "title": "Obras  ejecución del proyecto: “Mejora del carril bici y la ejecución o mejora de refugios climáticos”, por procedimiento abierto simplificado, varios criterios de adjudicación, con condición de ejecución de carácter social y medioambiental, contribuyendo al cumplimiento del ODS 11 de la agenda 2030, en el marco del Plan de Recuperación, Transformación y Resilencia financiado por la U.E.",
+        "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=E%2BOr0JaUVkecCF8sV%2BqtYA%3D%3D",
+        "status": "formalized",
+        "contractType": "construction",
+        "processType": "open_simplified",
+        "minorContract": false,
+        "startDate": null,
+        "endDate": "2026-08-31",
+        "awardDate": "2026-05-29",
+        "formalizedDate": "2026-06-02",
+        "duration": 91,
+        "batchNumber": 0,
+        "assignee": "OBRA CIVIL Y EDIFICACION ESCRIMAR S.L.L.",
+        "contractor": "Ayuntamiento de Riba-roja de Túria",
+        "contractorId": "58096",
+        "contractorType": "Ayuntamiento",
+        "categoryId": "24",
+        "categoryTitle": "construction",
+        "cpvs": [
+          "45233140",
+          "45233226",
+          "45233162"
+        ],
+        "initialAmount": 325662.55,
+        "initialAmountNoTaxes": 269142.6,
+        "finalAmount": 296195.9,
+        "finalAmountNoTaxes": 244790,
+        "estimatedValue": 269142.6,
+        "numberOfProposals": 6
+      },
+      {
+        "id": "4811930",
+        "title": "Obras Carril Ciclopeatonal Zona Norte: Fase II de la adecuación de la Senda del Molinet, alumbrado y conexión con la zona de Paretotes de Riba-roja de Túria",
+        "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=zH8ATDFdYlU7%2B9FIQYNjeQ%3D%3D",
+        "status": "formalized",
+        "contractType": "construction",
+        "processType": "open_simplified",
+        "minorContract": false,
+        "startDate": null,
+        "endDate": "2026-04-06",
+        "awardDate": "2025-09-24",
+        "formalizedDate": "2025-10-06",
+        "duration": 182,
+        "batchNumber": 0,
+        "assignee": "NERCO INFRAESTRUCTURAS, S.L.",
+        "contractor": "Ayuntamiento de Riba-roja de Túria",
+        "contractorId": "58096",
+        "contractorType": "Ayuntamiento",
+        "categoryId": "24",
+        "categoryTitle": "construction",
+        "cpvs": [
+          "45233260",
+          "45233161"
+        ],
+        "initialAmount": 269001.08,
+        "initialAmountNoTaxes": 222314.94,
+        "finalAmount": 262812,
+        "finalAmountNoTaxes": 217200,
+        "estimatedValue": 222314.94,
+        "numberOfProposals": 3
+      }
+    ],
+    "tenders": [
+      {
+        "id": "4889055",
+        "title": "Sistema Dinámico de Adquisición para la contratación de SERVICIOS de ARQUITECTURA E INGENIERIA, CONSULTORIA Y ASISTENCIA TÉCNICA a las diferentes áreas municipales abierto a otras entidades públicas mediante el sistema de compra conjunta esporádica con condición especial de ejecución de carácter social y medioambiental contribuyendo al cumplimiento del ODS 9 (ESDA1/2025)",
+        "documentNumber": "ESDA1/2025",
+        "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=2N0awhGNBRR%2FR5QFTlaM4A%3D%3D",
+        "status": "unknown",
+        "sourceStatus": "abandoned",
+        "contractType": "services",
+        "processType": "restricted",
+        "minorContract": false,
+        "submissionDate": "2033-08-08",
+        "openProposalsDate": "2025-08-08",
+        "contractor": "Ayuntamiento de Riba-roja de Túria",
+        "contractValue": 3000000,
+        "initialAmount": 3000000,
+        "initialAmountNoTaxes": 3000000,
+        "categoryTitle": "architecture",
+        "cpvs": [
+          "71200000",
+          "79212000",
+          "71241000",
+          "72224000",
+          "71000000"
+        ],
+        "numberOfBatches": 4
+      },
+      {
+        "id": "1794430",
+        "title": "Sistema Dinámico de Adquisición para la contratación de SERVICIOS DE DIVERSA ÍNDOLE de uso recurrente por parte de las diferentes áreas municipales con condición especial de ejecución de carácter social contribuyendo al cumplimiento del ODS 8 relativo al trabajo decente para todos. (SDA 2/2022)",
+        "documentNumber": "ESDA2/2022",
+        "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=BNVBpfbsTAamq21uxhbaVQ%3D%3D",
+        "status": "unknown",
+        "sourceStatus": "abandoned",
+        "contractType": "services",
+        "processType": "restricted",
+        "minorContract": false,
+        "submissionDate": "2030-05-17",
+        "openProposalsDate": "2022-05-22",
+        "contractor": "Ayuntamiento de Riba-roja de Túria",
+        "contractValue": 788000,
+        "initialAmount": 953480,
+        "initialAmountNoTaxes": 788000,
+        "categoryTitle": "health",
+        "cpvs": [
+          "98300000",
+          "55000000",
+          "60000000",
+          "63000000",
+          "66000000",
+          "79800000",
+          "79900000",
+          "80000000",
+          "80500000",
+          "80510000",
+          "85000000",
+          "92000000",
+          "98000000"
+        ],
+        "numberOfBatches": 12
+      },
+      {
+        "id": "5198588",
+        "title": "Suministro con instalación de juegos infantiles en Parque Asunción de Nuestra Señora",
+        "documentNumber": "36/2026",
+        "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=Dsw60vrWRmm5HQrHoP3G5A%3D%3D",
+        "status": "awarded",
+        "sourceStatus": "revoked",
+        "contractType": "supplies",
+        "processType": "open_simplified",
+        "minorContract": false,
+        "submissionDate": "2026-08-11",
+        "openProposalsDate": "2026-07-28",
+        "contractor": "Ayuntamiento de Riba-roja de Túria",
+        "contractValue": 33998.75,
+        "initialAmount": 41138.49,
+        "initialAmountNoTaxes": 33998.75,
+        "categoryTitle": "industry",
+        "cpvs": [
+          "43325000",
+          "35261000"
+        ],
+        "numberOfBatches": 0
+      },
+      {
+        "id": "5106922",
+        "title": "Contrato administrativo obras para la ejecución del proyecto Área de esparcimiento en zona verde de Valencia la Vella en el T. M. de Riba-roja de Túria (Valencia) - Ctto.39/2026",
+        "documentNumber": "39/2026",
+        "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=sOt%2BY8QGKwx6nTs9LZ9RhQ%3D%3D",
+        "status": "awarded",
+        "sourceStatus": "awarded",
+        "contractType": "construction",
+        "processType": "open_simplified",
+        "minorContract": false,
+        "submissionDate": "2026-03-31",
+        "openProposalsDate": "2026-03-11",
+        "contractor": "Ayuntamiento de Riba-roja de Túria",
+        "contractValue": 106359.65,
+        "initialAmount": 128695.18,
+        "initialAmountNoTaxes": 106359.65,
+        "categoryTitle": "construction",
+        "cpvs": [
+          "45111000",
+          "45262310",
+          "45232130",
+          "45317000",
+          "45237000"
+        ],
+        "numberOfBatches": 0
+      },
+      {
+        "id": "5054473",
+        "title": "Obras  ejecución del proyecto: “Mejora del carril bici y la ejecución o mejora de refugios climáticos”, por procedimiento abierto simplificado, varios criterios de adjudicación, con condición de ejecución de carácter social y medioambiental, contribuyendo al cumplimiento del ODS 11 de la agenda 2030, en el marco del Plan de Recuperación, Transformación y Resilencia financiado por la U.E.",
+        "documentNumber": "52/2025",
+        "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=E%2BOr0JaUVkecCF8sV%2BqtYA%3D%3D",
+        "status": "awarded",
+        "sourceStatus": "awarded",
+        "contractType": "construction",
+        "processType": "open_simplified",
+        "minorContract": false,
+        "submissionDate": "2026-03-03",
+        "openProposalsDate": "2026-02-11",
+        "contractor": "Ayuntamiento de Riba-roja de Túria",
+        "contractValue": 269142.6,
+        "initialAmount": 325662.55,
+        "initialAmountNoTaxes": 269142.6,
+        "categoryTitle": "construction",
+        "cpvs": [
+          "45233140",
+          "45233226",
+          "45233162"
+        ],
+        "numberOfBatches": 0
+      },
+      {
+        "id": "4973577",
+        "title": "Contrato del suministro con instalación de juegos infantiles, dividido en 5 lotes, de por procedimiento abierto, mejor relación calidad precio, varios criterios de adjudicación y con condiciones de ejecución de carácter social, medioambiental y técnico (Ctto. 111/2025, 112/2025, 113/2025, 114/2025 y 115/2025).",
+        "documentNumber": "111-115/2025",
+        "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=0sQ%2BhGrxuvbjHF5qKI4aaw%3D%3D",
+        "status": "awarded",
+        "sourceStatus": "awarded",
+        "contractType": "supplies",
+        "processType": "open",
+        "minorContract": false,
+        "submissionDate": "2025-11-27",
+        "openProposalsDate": "2025-11-12",
+        "contractor": "Ayuntamiento de Riba-roja de Túria",
+        "contractValue": 199588.19,
+        "initialAmount": 241501.71,
+        "initialAmountNoTaxes": 199588.19,
+        "categoryTitle": "culture",
+        "cpvs": [
+          "37535210",
+          "37535250",
+          "45112723",
+          "43325000",
+          "35261000",
+          "45112200",
+          "31523200",
+          "37535240",
+          "34928310",
+          "45233293",
+          "37535220"
+        ],
+        "numberOfBatches": 5
+      },
+      {
+        "id": "4811930",
+        "title": "Obras Carril Ciclopeatonal Zona Norte: Fase II de la adecuación de la Senda del Molinet, alumbrado y conexión con la zona de Paretotes de Riba-roja de Túria",
+        "documentNumber": "56/2025",
+        "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=zH8ATDFdYlU7%2B9FIQYNjeQ%3D%3D",
+        "status": "awarded",
+        "sourceStatus": "awarded",
+        "contractType": "construction",
+        "processType": "open_simplified",
+        "minorContract": false,
+        "submissionDate": "2025-07-28",
+        "openProposalsDate": "2025-07-07",
+        "contractor": "Ayuntamiento de Riba-roja de Túria",
+        "contractValue": 222314.94,
+        "initialAmount": 269001.08,
+        "initialAmountNoTaxes": 222314.94,
+        "categoryTitle": "construction",
+        "cpvs": [
+          "45233260",
+          "45233161"
+        ],
+        "numberOfBatches": 0
+      },
+      {
+        "id": "4684840",
+        "title": "Adquisición de un bien inmueble para crear un espacio dedicado a varios despachos de diferentes usos e inicio de expediente por concurso (Exp GP 1/2024)",
+        "documentNumber": "GP 1/2024",
+        "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=3EYCqH2k0nHs%2BnLj3vAg5A%3D%3D",
+        "status": "awarded",
+        "sourceStatus": "revoked",
+        "contractType": "patrimonial",
+        "processType": "open",
+        "minorContract": false,
+        "submissionDate": "2025-06-16",
+        "openProposalsDate": "2025-05-30",
+        "contractor": "Ayuntamiento de Riba-roja de Túria",
+        "contractValue": 132000,
+        "initialAmount": 132000,
+        "initialAmountNoTaxes": 132000,
+        "categoryTitle": "real_estate",
+        "cpvs": [
+          "70123000"
+        ],
+        "numberOfBatches": 0
+      },
+      {
+        "id": "4653394",
+        "title": "Contrato servicio de recogida de residuos sólidos urbanos del municipio y servicio de asistencia técnica y apoyo para el control y supervisión sobre la prestación del mismo, dividido en dos lotes (Ctto 136/2025)",
+        "documentNumber": "136/2025",
+        "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=oE58TiRVCfAZDGvgaZEVxQ%3D%3D",
+        "status": "awarded",
+        "sourceStatus": "awarded",
+        "contractType": "services",
+        "processType": "open",
+        "minorContract": false,
+        "submissionDate": "2025-05-19",
+        "openProposalsDate": "2025-04-16",
+        "contractor": "Ayuntamiento de Riba-roja de Túria",
+        "contractValue": 16632795.3,
+        "initialAmount": 18315038.5,
+        "initialAmountNoTaxes": 16632795.3,
+        "categoryTitle": "environment",
+        "cpvs": [
+          "90511300",
+          "71356200"
+        ],
+        "numberOfBatches": 2
+      },
+      {
+        "id": "4415701",
+        "title": "Contrato mixto suministro y servicio de implantación de cartelería digital en diversas sedes municipales del ayuntamiento de Riba-roja de Túria, por procedimiento abierto simplificado sumario, mejora relación calidad precio y varios criterios de adjudicación, con condición de ejecución de carácter social y medioambiental, contribuyendo al cumplimiento del ODS 16.",
+        "documentNumber": "33/2024",
+        "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=xkXNO23MYwoZDGvgaZEVxQ%3D%3D",
+        "status": "awarded",
+        "sourceStatus": "revoked",
+        "contractType": "services",
+        "processType": "open_simplified",
+        "minorContract": false,
+        "submissionDate": "2024-03-20",
+        "openProposalsDate": "2024-03-11",
+        "contractor": "Ayuntamiento de Riba-roja de Túria",
+        "contractValue": 42230,
+        "initialAmount": 51098.3,
+        "initialAmountNoTaxes": 42230,
+        "categoryTitle": "it",
+        "cpvs": [
+          "72000000",
+          "48000000"
+        ],
+        "numberOfBatches": 0
+      },
+      {
+        "id": "4415608",
+        "title": "Contrato mixto suministro y servicio implantación de un sistema de debate, voto electrónico, captura, distribución, grabación de video y control para el salón de plenos del ayuntamiento de Riba-roja de Turia, por procedimiento abierto simplificado sumario, mejora relación calidad precio, varios criterios de adjudicación, con condición de ejecución de carácter social y medioambiental.",
+        "documentNumber": "32/2024",
+        "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=qDjb9WdwTN3jHF5qKI4aaw%3D%3D",
+        "status": "awarded",
+        "sourceStatus": "awarded",
+        "contractType": "services",
+        "processType": "open_simplified",
+        "minorContract": false,
+        "submissionDate": "2024-03-20",
+        "openProposalsDate": "2024-03-11",
+        "contractor": "Ayuntamiento de Riba-roja de Túria",
+        "contractValue": 70157.72,
+        "initialAmount": 84890.84,
+        "initialAmountNoTaxes": 70157.72,
+        "categoryTitle": "it",
+        "cpvs": [
+          "72000000",
+          "48000000",
+          "32330000"
+        ],
+        "numberOfBatches": 0
+      },
+      {
+        "id": "1892773",
+        "title": "Concesión administrativa de uso privativo de los bares-cafeterías situados en Complejo Deportivo La Mallà, Parque Maldonado y Polideportivo Municipal (Bienes de dominio público), por procedimiento abierto simplificado, mejor relación calidad-precio, varios criterios de adjudicación, con condiciones de ejecución de carácter social y medioambiental, contribuyendo al cumplimiento del ODS 11 relativo a ciudades y comunidades sostenibles.",
+        "documentNumber": "13/2022",
+        "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=U84335CaunpvYnTkQN0%2FZA%3D%3D",
+        "status": "awarded",
+        "sourceStatus": "awarded",
+        "contractType": "public_services_management",
+        "processType": "open_simplified",
+        "minorContract": false,
+        "submissionDate": "2022-09-19",
+        "openProposalsDate": "2022-08-24",
+        "contractor": "Ayuntamiento de Riba-roja de Túria",
+        "contractValue": 35634.35,
+        "initialAmount": 71268.7,
+        "initialAmountNoTaxes": 35634.35,
+        "categoryTitle": "catering",
+        "cpvs": [
+          "55100000"
+        ],
+        "numberOfBatches": 3
+      },
+      {
+        "id": "1538292",
+        "title": "Concesión demanial para la explotación del bar municipal sito en el Parque Maldonado por concurrencia, procedimiento abierto simplificado, mejor calidad-precio, varios criterios de adjudicación con cláusulas sociales y medioambientales como criterio de adjudicación y con condición especial de ejecución de carácter social y medioambiental, contribuyendo al cumplimiento del ODS 11 relativo a lograr que las ciudades sean sostenibles  y del ODS 8 relativo al trabajo decente para todos.",
+        "documentNumber": "11/2021",
+        "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=EqCmThzpsT4uf4aBO%2BvQlQ%3D%3D",
+        "status": "awarded",
+        "sourceStatus": "awarded",
+        "contractType": "patrimonial",
+        "processType": "open_simplified",
+        "minorContract": false,
+        "submissionDate": "2021-06-23",
+        "openProposalsDate": "2021-06-08",
+        "contractor": "Ayuntamiento de Riba-roja de Túria",
+        "contractValue": 5200.84,
+        "initialAmount": 5200.84,
+        "initialAmountNoTaxes": 5200.84,
+        "categoryTitle": "catering",
+        "cpvs": [
+          "55100000"
+        ],
+        "numberOfBatches": 0
+      },
+      {
+        "id": "285030",
+        "title": "Enajenación de la parcela M7-2.2 de la IIª fase del parque Logístico, por procedimiento abierto, mejor relación calidad-precio, varios criterios de adjudicación y con condición especial de ejecución",
+        "documentNumber": "73/2018",
+        "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=jFiGXyTf980uf4aBO%2BvQlQ%3D%3D",
+        "status": "awarded",
+        "sourceStatus": "awarded",
+        "contractType": "patrimonial",
+        "processType": "open",
+        "minorContract": false,
+        "submissionDate": "2019-08-05",
+        "openProposalsDate": "2019-07-19",
+        "contractor": "Ayuntamiento de Riba-roja de Túria",
+        "contractValue": 775405.76,
+        "initialAmount": 775405.76,
+        "initialAmountNoTaxes": 640831.21,
+        "categoryTitle": "real_estate",
+        "cpvs": [
+          "70123000"
+        ],
+        "numberOfBatches": 0
+      },
+      {
+        "id": "46717",
+        "title": "contrato de concesión del servicio público de abastecimiento de agua potable, servicio de gestión de alcantarillado , control de vertidos y depuración del municipio Riba-roja de Túria, por procedimiento abierto, mejor relación calidad-precio, varios criterios de adjudicación y con cláusulas medioambientales y con condición especial de ejecución de carácter medioambiental y social.",
+        "documentNumber": "27/2018",
+        "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=pK1YW0Z3femXQV0WE7lYPw%3D%3D",
+        "status": "awarded",
+        "sourceStatus": "awarded",
+        "contractType": "public_services_management",
+        "processType": "open",
+        "minorContract": false,
+        "submissionDate": "2019-05-28",
+        "openProposalsDate": "2019-04-24",
+        "contractor": "Ayuntamiento de Riba-roja de Túria",
+        "contractValue": 55685178.79,
+        "initialAmount": 55685178.79,
+        "initialAmountNoTaxes": 55685178.79,
+        "categoryTitle": "public_services",
+        "cpvs": [
+          "65130000"
+        ],
+        "numberOfBatches": 0
+      },
+      {
+        "id": "9554",
+        "title": "Concesión administrativa para la explotación del bar municipal sito en el C.D. La Mallá por procedimiento abierto simplificado, mejor calidad-precio, varios criterios de adjudicación con cláusulas sociales y medioambientales como criterio de adjudicación y con condición especial de ejecución de carácter social y medioambiental.",
+        "documentNumber": "13/2019",
+        "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=ye2kkqdCZyV7h85%2Fpmmsfw%3D%3D",
+        "status": "awarded",
+        "sourceStatus": "awarded",
+        "contractType": "other",
+        "processType": "open",
+        "minorContract": false,
+        "submissionDate": "2019-05-02",
+        "openProposalsDate": "2019-04-16",
+        "contractor": "Ayuntamiento de Riba-roja de Túria",
+        "contractValue": 14400,
+        "initialAmount": 9600,
+        "initialAmountNoTaxes": 9600,
+        "categoryTitle": "catering",
+        "cpvs": [
+          "55100000"
+        ],
+        "numberOfBatches": 0
+      },
+      {
+        "id": "33712",
+        "title": "concesión administrativa para la explotación del bar municipal sito en el Centro Social por procedimiento abierto simplificado, mejor calidad-precio, varios criterios de adjudicación con cláusulas sociales y medioambientales como criterio de adjudicación y con condición especial de ejecución de carácter social y medioambiental.",
+        "documentNumber": "34/2018",
+        "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=3aX%2FezDQcd2mq21uxhbaVQ%3D%3D",
+        "status": "awarded",
+        "sourceStatus": "awarded",
+        "contractType": "other",
+        "processType": "open_simplified",
+        "minorContract": false,
+        "submissionDate": "2019-04-25",
+        "openProposalsDate": "2019-04-10",
+        "contractor": "Ayuntamiento de Riba-roja de Túria",
+        "contractValue": 28980,
+        "initialAmount": 19320,
+        "initialAmountNoTaxes": 19320,
+        "categoryTitle": "catering",
+        "cpvs": [
+          "55100000"
+        ],
+        "numberOfBatches": 0
+      },
+      {
+        "id": "31583",
+        "title": "Enajenación parcela 1-10 sito en el Sector Industrial Casanova por procedimiento abierto, mejor relación calidad-precio, varios criterios de adjudicación y condición especial de ejecución.",
+        "documentNumber": "67/2018",
+        "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=qNwTPlXJjH2rz3GQd5r6SQ%3D%3D",
+        "status": "awarded",
+        "sourceStatus": "awarded",
+        "contractType": "patrimonial",
+        "processType": "open",
+        "minorContract": false,
+        "submissionDate": "2018-11-06",
+        "openProposalsDate": "2018-10-22",
+        "contractor": "Ayuntamiento de Riba-roja de Túria",
+        "contractValue": 1079956.74,
+        "initialAmount": 1306747.66,
+        "initialAmountNoTaxes": 1079956.74,
+        "categoryTitle": "real_estate",
+        "cpvs": [
+          "70123000"
+        ],
+        "numberOfBatches": 0
+      },
+      {
+        "id": "23513",
+        "title": "El objeto del contrato es el suministro camión cesta por procedimiento abierto simplificado, mejor relación calidad-precio, varios criterios de adjudicación con cláusulas medioambientales y mejoras como criterio de adjudicación y con condición especial de ejecución de carácter medioambiental",
+        "documentNumber": "64/2018",
+        "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=eLkhK9I2AheXQV0WE7lYPw%3D%3D",
+        "status": "awarded",
+        "sourceStatus": "awarded",
+        "contractType": "supplies",
+        "processType": "open_simplified",
+        "minorContract": false,
+        "submissionDate": "2018-11-04",
+        "openProposalsDate": "2018-10-17",
+        "contractor": "Ayuntamiento de Riba-roja de Túria",
+        "contractValue": 49586.78,
+        "initialAmount": 60000,
+        "initialAmountNoTaxes": 49586.78,
+        "categoryTitle": "transportation",
+        "cpvs": [
+          "34142100"
+        ],
+        "numberOfBatches": 0
+      },
+      {
+        "id": "72576",
+        "title": "Contrato privado de arrendamiento bien inmueble para dotar de aulas adicionales para el Conservatorio de Música y Danza",
+        "documentNumber": "32/2018",
+        "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=BXRNnYuo8hkBPRBxZ4nJ%2Fg%3D%3D",
+        "status": "awarded",
+        "sourceStatus": "awarded",
+        "contractType": "patrimonial",
+        "processType": "open",
+        "minorContract": false,
+        "submissionDate": "2018-06-20",
+        "openProposalsDate": "2018-06-05",
+        "contractor": "Ayuntamiento de Riba-roja de Túria",
+        "contractValue": 28800,
+        "initialAmount": 17424,
+        "initialAmountNoTaxes": 14400,
+        "categoryTitle": "real_estate",
+        "cpvs": [
+          "70310000"
+        ],
+        "numberOfBatches": 0
+      },
+      {
+        "id": "130643",
+        "title": "Servicio de explotación del bar C.D. La Mallá",
+        "documentNumber": "355/2016",
+        "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=RWrbXsWn0eYQK2TEfXGy%2BA%3D%3D",
+        "status": "awarded",
+        "sourceStatus": "awarded",
+        "contractType": "services",
+        "processType": "open",
+        "minorContract": false,
+        "submissionDate": "2017-04-15",
+        "openProposalsDate": "2017-04-15",
+        "contractor": "Ayuntamiento de Riba-roja de Túria",
+        "contractValue": 19200,
+        "initialAmount": 9600,
+        "initialAmountNoTaxes": 9600,
+        "categoryTitle": "catering",
+        "cpvs": [
+          "55330000"
+        ],
+        "numberOfBatches": 0
+      }
+    ]
+  },
+  "bdns": {
+    "items": [
+      {
+        "id": 954376,
+        "bdnsCode": "752816",
+        "description": "CONVOCATORIA DE LAS AYUDAS RIBACTIVA EMPREN IV PARA APOYAR ECONOMICAMENTE A NUEVAS ACTIVIDADES EMPRENDEDORAS EN EL AMBITO DEL COMERCIO MINORISTA Y PEQUEÑOS NEGOCIOS QUE PRESTAN SERVICIOS AL CONSUMIDOR FINAL DE RIBA-ROJA DE TURIA",
+        "date": "2024-04-04T00:00:00.000Z",
+        "organ": "LOCAL · RIBA-ROJA DE TÚRIA · AYUNTAMIENTO DE RIBA-ROJA DE TÚRIA",
+        "level1": "LOCAL",
+        "level2": "RIBA-ROJA DE TÚRIA",
+        "direction": "granted",
+        "sourceUrl": "https://www.pap.hacienda.gob.es/bdnstrans/GE/es/convocatoria/752816"
+      },
+      {
+        "id": 935957,
+        "bdnsCode": "734397",
+        "description": "Resolución de Alcaldía núm. 4891/2023, de 20 de diciembre de 2023 del Ayuntamiento de Riba-roja de Túria, por la que se convocan ayudas de emergencia social  para el año 2024",
+        "date": "2023-12-20T00:00:00.000Z",
+        "organ": "LOCAL · RIBA-ROJA DE TÚRIA · AYUNTAMIENTO DE RIBA-ROJA DE TÚRIA",
+        "level1": "LOCAL",
+        "level2": "RIBA-ROJA DE TÚRIA",
+        "direction": "granted",
+        "sourceUrl": "https://www.pap.hacienda.gob.es/bdnstrans/GE/es/convocatoria/734397"
+      },
+      {
+        "id": 750389,
+        "bdnsCode": "548829",
+        "description": "Resolución número 140, de fecha 21 de enero de 2021, de la Alcaldía del Ayuntamiento de Riba-roja de Turia, por la que se convocan las ayudas económicas de emergencia social para el ejercicio 2021",
+        "date": "2021-02-11T00:00:00.000Z",
+        "organ": "LOCAL · RIBA-ROJA DE TÚRIA · AYUNTAMIENTO DE RIBA-ROJA DE TÚRIA",
+        "level1": "LOCAL",
+        "level2": "RIBA-ROJA DE TÚRIA",
+        "direction": "granted",
+        "sourceUrl": "https://www.pap.hacienda.gob.es/bdnstrans/GE/es/convocatoria/548829"
+      }
+    ]
+  },
+  "agendas": {
+    "plenos": [
+      {
+        "id": "rx4hb4",
+        "date": "2026-02-09",
+        "title": "Sesión de fecha 09 de febrero de 2026",
+        "kind": "ordinario",
+        "link": "https://regmeet.com/aytoribarroja/participaciones/c5b270a763686e776039618cc709f3a6?idioma=castellano",
+        "agenda": [
+          {
+            "number": 1,
+            "title": "Aprovació Acta anterior de data 19 de gener 2026",
+            "section": "resolutiva",
+            "department": null,
+            "departmentSlug": null,
+            "expediente": null
+          },
+          {
+            "number": 2,
+            "title": "Expedient: 5543/2020/GEN, Acord relatiu al sotmetiment a informació pública de la versió inicial del PRI de la UE Santa Rosa 2",
+            "section": "resolutiva",
+            "department": null,
+            "departmentSlug": null,
+            "expediente": null
+          },
+          {
+            "number": 3,
+            "title": "Expedient: 191/2026/GEN, Desistir i deixar sense efecte parcialment modificació de crèdit del pressupost núm. 1-2026, Modalitat crèdit extraordinari, finançat amb baixes d'altres aplicacions - Direcció facultativa obres d'instal·lació de pèrgoles amb vegetació autòctona com a refugi climàtic",
+            "section": "resolutiva",
+            "department": null,
+            "departmentSlug": null,
+            "expediente": null
+          },
+          {
+            "number": 4,
+            "title": "Expedient: 5490/2025/GEN, Acord relatiu a Resolució d'al·legacions a l'Inici de la Resolució de la condició d'agent urbanitzador de la UE núm. 2 del Sector NPR-1 LA GAVINA",
+            "section": "resolutiva",
+            "department": null,
+            "departmentSlug": null,
+            "expediente": null
+          },
+          {
+            "number": 5,
+            "title": "Expedient: 346/2026/GEN, Trasllat del Conservatori Professional Municipal de Dansa de Riba-roja de Túria",
+            "section": "resolutiva",
+            "department": null,
+            "departmentSlug": null,
+            "expediente": null
+          },
+          {
+            "number": 6,
+            "title": "Moció del Grup Municipal VOX Riba-roja de Túria per a regular l'accés a dependències municipals en casos d'ocultació integral del rostre (niqab, burca o altres peces equivalents)",
+            "section": "resolutiva",
+            "department": null,
+            "departmentSlug": null,
+            "expediente": "3/2026/PGRU"
+          },
+          {
+            "number": 7,
+            "title": "Moció del Grup Municipal Socialista de Riba-roja per la defensa del nou model de finançament autonòmic proposat pel Govern",
+            "section": "resolutiva",
+            "department": null,
+            "departmentSlug": null,
+            "expediente": "4/2026/PGRU"
+          },
+          {
+            "number": 8,
+            "title": "Moció conjunta dels Grups Municipals Socialista de Riba-roja, Compromís per Riba-roja i EU-Podem Unides- Dia Internacional de les Dones 8M 2026",
+            "section": "resolutiva",
+            "department": null,
+            "departmentSlug": null,
+            "expediente": "5/2026/PGRU"
+          },
+          {
+            "number": 9,
+            "title": "Moció del Grup Municipal Popular Riba-roja de Túria per a reclamar un finançament just per a la Comunitat Valenciana",
+            "section": "resolutiva",
+            "department": null,
+            "departmentSlug": null,
+            "expediente": "2/2026/PGRU"
+          },
+          {
+            "number": 10,
+            "title": "Moció conjunta dels Grups Municipals Socialista de Riba-roja i Compromís per Riba-roja en defensa del benestar i la tinença responsable dels animals domèstics a Riba-roja de Túria",
+            "section": "resolutiva",
+            "department": null,
+            "departmentSlug": null,
+            "expediente": "6/2026/PGRU"
+          },
+          {
+            "number": 11,
+            "title": "Assumptes d'Urgència – Expedient 647/2026/GEN, “Aprovació PAI EDIL i sol·licitud de la convocatòria de senda financera”",
+            "section": "resolutiva",
+            "department": null,
+            "departmentSlug": null,
+            "expediente": null
+          },
+          {
+            "number": 12,
+            "title": "Expedient 4959/2025/GEN, Donar compte de l'adhesió de l'Ajuntament de Riba-roja de Túria a la Xarxa Espanyola de Ciutats Intel·ligents (*RECI)",
+            "section": "resolutiva",
+            "department": null,
+            "departmentSlug": null,
+            "expediente": null
+          },
+          {
+            "number": 13,
+            "title": "Donar compte de les Resolucions de la número 47/2026 a la 363/2026",
+            "section": "resolutiva",
+            "department": null,
+            "departmentSlug": null,
+            "expediente": null
+          },
+          {
+            "number": 14,
+            "title": "Precs i preguntes",
+            "section": "resolutiva",
+            "department": null,
+            "departmentSlug": null,
+            "expediente": null
+          }
+        ],
+        "agendaCount": 14,
+        "departments": [],
+        "hasRuegos": false
+      },
+      {
+        "id": "anrfd5",
+        "date": "2025-07-28",
+        "title": "Sesión de fecha 28 de julio de 2025",
+        "kind": "ordinario",
+        "link": "https://regmeet.com/aytoribarroja/participaciones/7535bbb91c8fde347ad861f293126633?idioma=castellano",
+        "agenda": [
+          {
+            "number": 1,
+            "title": "Aprovació Acta anterior de data 7 de juliol de 2025",
+            "section": "resolutiva",
+            "department": null,
+            "departmentSlug": null,
+            "expediente": null
+          },
+          {
+            "number": 2,
+            "title": "Expedient 3586/2025/GEN, Aprovació de l'expedient de reconeixement extrajudicial núm. 26/2025: llista de factures núm. 12025000036 i relació d'obligacions núm. 12025000388",
+            "section": "resolutiva",
+            "department": null,
+            "departmentSlug": null,
+            "expediente": null
+          },
+          {
+            "number": 3,
+            "title": "Expedient 3904/2025/GEN, Aprovació de l'expedient de reconeixement extrajudicial de crèdits en relació a la factura núm 12025000024 per un import total de 53.457,47 euros. FACTURES COMERÇOS XEC BEBÉ",
+            "section": "resolutiva",
+            "department": null,
+            "departmentSlug": "comercio",
+            "expediente": null
+          },
+          {
+            "number": 4,
+            "title": "Expedient 3913/2025/GEN, Inici i aprovació de la implementació d'un Sistema Dinàmic d'Adquisició per a la contractació de servicis d'arquitectura i enginyeria, consultoria i assistència tècnica a les diferents àrees municipals obert a altres entitats públiques mitjançant el sistema de compra conjunta esporàdica",
+            "section": "resolutiva",
+            "department": null,
+            "departmentSlug": "contratacion",
+            "expediente": null
+          },
+          {
+            "number": 5,
+            "title": "Expedient 2887/2025/GEN, Acord relatiu a l'Aprovació del Conveni entre Diputació de València i Ajuntament de Riba-roja de Túria per a finançament i execució de les obres de \"condicionament nova glorieta pk 0+315 CV 374.\"",
+            "section": "resolutiva",
+            "department": null,
+            "departmentSlug": null,
+            "expediente": null
+          },
+          {
+            "number": 6,
+            "title": "Expedient 3998/2025/GEN, Acord plenari relatiu a festivitats locals, exercici 2026. (Sense dictaminar)",
+            "section": "resolutiva",
+            "department": null,
+            "departmentSlug": null,
+            "expediente": null
+          },
+          {
+            "number": 7,
+            "title": "Expedient 4490/2022/GEN, Reajustament d'anualitats del Conveni entre Presidència de la Generalitat i l'Ajuntament de Riba-roja de Túria per a la finalització del centre polivalent cultural a Riba-roja de Túria. (Sense dictaminar)",
+            "section": "resolutiva",
+            "department": "Cultura",
+            "departmentSlug": "cultura",
+            "expediente": null
+          },
+          {
+            "number": 8,
+            "title": "Expedient 3932/2025/GEN, Proposta al Ple de la instal·lació d'un gual inundable, en el tram que comunica les urbanitzacions Masia de Traver, València la Vella, Els Pous i les urbanitzacions de la zona nord que possibilite l'accés de vehicles d'emergència (bombers, ambulàncies, policia local) (Sense dictaminar)",
+            "section": "resolutiva",
+            "department": "Seguridad",
+            "departmentSlug": "seguridad",
+            "expediente": null
+          },
+          {
+            "number": 9,
+            "title": "Moció conjunta dels Grups Municipals Socialista, Compromís per Riba-roja: Acord per Guanyar i EU-Unides Podem en suport a les reivindicacions dels treballadors del consorci provincial de bombers de València i per a garantir un servici adequat d'extinció d'incendis a la Província de València",
+            "section": "resolutiva",
+            "department": null,
+            "departmentSlug": null,
+            "expediente": "19/2025/PGRU"
+          },
+          {
+            "number": 10,
+            "title": "Assumptes d'Urgència. 21/2025/PGRU, Moció conjunta del Grup Polític Compromís: Acord per Guanyar i EU-Unides Podem de condemna del discurs d'odi i la violència i en favor de la convivència i la democràcia",
+            "section": "resolutiva",
+            "department": null,
+            "departmentSlug": null,
+            "expediente": null
+          },
+          {
+            "number": 11,
+            "title": "Expedient 1029/2025/GEN, Dació compta al Ple de la correcció d'errors de l'informe núm. 220/2025 d'avaluació de l'objectiu d'estabilitat pressupostària, de la regla de gasto i del límit de deute emés amb motiu de la reformulació a la liquidació del pressupost municipal corresponent a l'exercici 2024",
+            "section": "resolutiva",
+            "department": null,
+            "departmentSlug": null,
+            "expediente": null
+          },
+          {
+            "number": 12,
+            "title": "Expedient 3855/2025/GEN, Dació compta del Programa de Formació en Intel·ligència Artificial per als empleades/us públics de l'Ajuntament",
+            "section": "resolutiva",
+            "department": null,
+            "departmentSlug": null,
+            "expediente": null
+          },
+          {
+            "number": 13,
+            "title": "Donar compte de les Resolucions de la número 2344/2025 a la 2676/2025",
+            "section": "resolutiva",
+            "department": null,
+            "departmentSlug": null,
+            "expediente": null
+          },
+          {
+            "number": 14,
+            "title": "Precs i preguntes",
+            "section": "resolutiva",
+            "department": null,
+            "departmentSlug": null,
+            "expediente": null
+          }
+        ],
+        "agendaCount": 14,
+        "departments": [
+          "comercio",
+          "contratacion",
+          "cultura",
+          "seguridad"
+        ],
+        "hasRuegos": false
+      }
+    ]
+  }
+}

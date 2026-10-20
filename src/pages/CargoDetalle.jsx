@@ -7,7 +7,9 @@ import { usePromises, STATUS_LABEL, STATUS_TONE } from '../hooks/usePromises'
 import { usePlenoAgendas } from '../hooks/usePlenoAgendas'
 import { useQuejas } from '../hooks/useQuejas'
 import { useBioReportRoutes } from '../hooks/useBioReportRoutes'
-import { useDedicaciones, estadoRetribucion } from '../hooks/useDedicaciones'
+import { useDedicaciones, estadoRetribucion, desgloseAntiguedad } from '../hooks/useDedicaciones'
+import { formatEurosCents } from '../hooks/useIspa'
+import { conteoFicha } from '../lib/conteo-ficha'
 import { useDepartmentStats } from '../hooks/useDepartmentStats'
 import { useElections } from '../hooks/useElections'
 import { useTransparencyDocs } from '../hooks/useTransparencyDocs'
@@ -198,20 +200,43 @@ function Retribucion({ slug }) {
     )
   }
   const d = estado.estado === 'fijada' ? estado.d : null
+  // La antigüedad es de quien ocupa el cargo, no del cargo: se dice junto a la
+  // cifra que la incluye, y sale del fichero, nunca de un texto escrito aquí.
+  const desglose = desgloseAntiguedad(d)
   return (
     <section style={{ marginBottom: 28 }} data-retribucion={estado.estado}>
       {head}
       <Card>
         {d ? (
-          <div style={{ display: 'flex', alignItems: 'baseline', gap: 12, flexWrap: 'wrap' }}>
-            <span className="mono" style={{ fontSize: 'var(--fs-card)', fontWeight: 700 }}>
-              {d.amountEuros.toLocaleString('es-ES')} €
-            </span>
-            <Pill tone="neutral" size="xs">
-              {d.dedicacion}
-            </Pill>
-            <span style={{ fontSize: 'var(--fs-meta)', color: 'var(--ink50)' }}>{d.role}</span>
-          </div>
+          <>
+            <div style={{ display: 'flex', alignItems: 'baseline', gap: 12, flexWrap: 'wrap' }}>
+              {/* Con céntimos y millares, como en /cargos: «59195,48 €» aquí y
+                  «59.195,48 €» allí eran la misma cifra escrita de dos maneras. */}
+              <span className="mono" style={{ fontSize: 'var(--fs-card)', fontWeight: 700 }}>
+                {formatEurosCents(d.amountEuros)}
+              </span>
+              <Pill tone="neutral" size="xs">
+                {d.dedicacion}
+              </Pill>
+              <span style={{ fontSize: 'var(--fs-meta)', color: 'var(--ink50)' }}>{d.role}</span>
+            </div>
+            {desglose && (
+              <p
+                data-antiguedad
+                style={{
+                  margin: '8px 0 0',
+                  fontSize: 'var(--fs-meta)',
+                  color: 'var(--ink70)',
+                  lineHeight: 1.5,
+                }}
+              >
+                {rellena(t('cargos.detalle.pago.antiguedad'), {
+                  antiguedad: formatEurosCents(desglose.antiguedad),
+                  base: formatEurosCents(desglose.base),
+                })}
+              </p>
+            )}
+          </>
         ) : (
           <div style={{ fontSize: 'var(--fs-aux)', color: 'var(--ink50)' }}>
             {t('cargos.detalle.pago.sinDedicacion')}
@@ -453,11 +478,14 @@ function FichaOficial({ official, roster }) {
   )
 }
 
-function MiniStat({ label, value, tone }) {
+function MiniStat({ label, value, tone, estado, title }) {
   const color =
     tone === 'warn' ? 'var(--warn-ink)' : tone === 'crit' ? 'var(--crit-ink)' : 'var(--ink)'
   return (
     <div
+      data-estado={estado}
+      aria-busy={estado === 'cargando' ? 'true' : undefined}
+      title={title}
       style={{
         padding: '10px 12px',
         border: '1px solid var(--border2)',
@@ -728,6 +756,31 @@ export default function CargoDetalle() {
   )
   agendaItems.sort((a, b) => b.plenoDate.localeCompare(a.plenoDate))
 
+  // Las dos cuentas de arriba salían de `data ?? []`: mientras los ficheros
+  // cargaban, o si fallaban, la ficha decía «Puntos en pleno 0» y «Sin promesas
+  // documentadas» junto al nombre de una persona. Cargando y roto no son cero.
+  // Sí lo es, de antemano, el de quien no tiene áreas delegadas: no hay puntos
+  // en unas áreas que no dirige, y ese cero no espera a ningún fichero.
+  const promesasConteo = conteoFicha(promisesSnap, (d) => {
+    if (!Array.isArray(d.items)) throw new TypeError('promises.json sin items')
+    return partyPromises.length
+  })
+  const agendaConteo = conteoFicha(
+    agendasSnap,
+    (d) => {
+      if (!Array.isArray(d.plenos)) throw new TypeError('plenos-agendas.json sin plenos')
+      return agendaItems.length
+    },
+    { ceroCierto: slugs.length === 0 },
+  )
+  const cifraDe = (c) => (c.estado === 'listo' ? c.n : c.estado === 'cargando' ? '…' : '—')
+  const notaDe = (c) =>
+    c.estado === 'no-disponible'
+      ? t('cargos.detalle.stat.noDisponible')
+      : c.estado === 'cargando'
+        ? t('common.loading')
+        : undefined
+
   // Quejas assigned to this official (via the pre-aggregated byConcejal stats
   // from quejas.json). Never fabricate: `contadoresDeCargo` da el total —un hecho
   // del canal— y deja resueltas, pendientes y silencios en null mientras esas
@@ -918,8 +971,18 @@ export default function CargoDetalle() {
             label={t('cargos.detalle.stat.areasDelegadas')}
             value={official.portfolios?.length ?? 0}
           />
-          <MiniStat label={t('cargos.detalle.stat.partyPromises')} value={partyPromises.length} />
-          <MiniStat label={t('cargos.detalle.stat.agendaItems')} value={agendaItems.length} />
+          <MiniStat
+            label={t('cargos.detalle.stat.partyPromises')}
+            value={cifraDe(promesasConteo)}
+            estado={promesasConteo.estado}
+            title={notaDe(promesasConteo)}
+          />
+          <MiniStat
+            label={t('cargos.detalle.stat.agendaItems')}
+            value={cifraDe(agendaConteo)}
+            estado={agendaConteo.estado}
+            title={notaDe(agendaConteo)}
+          />
           <MiniStat
             label={t('cargos.detalle.stat.quejas')}
             value={quejaStats.medible ? quejaStats.pendientes : '—'}
@@ -1000,7 +1063,16 @@ export default function CargoDetalle() {
             </Link>
           }
         />
-        {partyPromises.length === 0 ? (
+        {promesasConteo.estado !== 'listo' ? (
+          <p
+            data-estado={promesasConteo.estado}
+            style={{ fontSize: 'var(--fs-aux)', color: 'var(--ink50)', marginTop: 8 }}
+          >
+            {promesasConteo.estado === 'cargando'
+              ? t('common.loading')
+              : t('cargos.detalle.promesas.noDisponible')}
+          </p>
+        ) : partyPromises.length === 0 ? (
           <p style={{ fontSize: 'var(--fs-aux)', color: 'var(--ink50)', marginTop: 8 }}>
             {t('cargos.detalle.promesas.empty')}
           </p>
@@ -1067,7 +1139,16 @@ export default function CargoDetalle() {
           eyebrow={t('cargos.detalle.agenda.eyebrow')}
           title={t('cargos.detalle.agenda.title')}
         />
-        {agendaItems.length === 0 ? (
+        {agendaConteo.estado !== 'listo' ? (
+          <p
+            data-estado={agendaConteo.estado}
+            style={{ fontSize: 'var(--fs-aux)', color: 'var(--ink50)', marginTop: 8 }}
+          >
+            {agendaConteo.estado === 'cargando'
+              ? t('common.loading')
+              : t('cargos.detalle.agenda.noDisponible')}
+          </p>
+        ) : agendaItems.length === 0 ? (
           <p style={{ fontSize: 'var(--fs-aux)', color: 'var(--ink50)', marginTop: 8 }}>
             {t('cargos.detalle.agenda.empty')}
           </p>

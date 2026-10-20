@@ -1817,16 +1817,64 @@ export default function Metodologia() {
                 concesión del agua, del Pleno de 27 de julio de 2026, se publicó el 6 de agosto—, y
                 su fecha no está en el registro.
               </li>
+              {/* 19-10-2026: una enajenación o el bar de un polideportivo se habrían
+                  escrito «adjudicado a … por», como si pagara el Ayuntamiento, y
+                  once contratos citables tenían por título un código CPV
+                  (src/scraper/subida-firmada.ts, `ingresoMunicipal` en
+                  src/lib/contract-status.js). */}
+              <li>
+                <strong>Y dice en qué sentido va el dinero.</strong> De la venta de un bien
+                municipal, la fila dice que la adjudicataria paga el precio al Ayuntamiento. La
+                explotación de un bar o un quiosco municipal no se cita por esta vía: la paga quien
+                la explota, y el registro no dice si su importe es el canon de un año, el de todo el
+                plazo u otra cosa. Cuando el registro da por título un código de la clasificación de
+                contratos (CPV), la fila toma el de su licitación o, en un contrato derivado de un
+                sistema dinámico de adquisición, dice de cuál deriva y que su objeto es el que dice
+                ese código; sin ninguna de las dos, no se cita.
+              </li>
               {/* 10-10-2026: una declaración sobre lo que se llevó a un pleno sólo la
                   sostiene un orden del día o un acta, y de actas no hay corpus
                   (src/scraper/subida-firmada.ts, `comprobarRegistrosConLaDeclaracion`). */}
               <li>
                 <strong>Un orden del día sostiene que algo se llevó a una sesión</strong>, con ese
                 título y en esa parte; no que se aprobara, ni una cifra, ni lo que se dijo en el
-                debate. Por eso su fila nunca dice «aprobado», y un orden del día posterior a la
-                declaración no la sostiene. Y si la declaración trae una cifra que ningún registro
-                citado dice —un orden del día o una convocatoria no dicen importes; un contrato, el
-                suyo—, la subida no pasa de <em>parcial</em>.
+                debate. Por eso su fila nunca dice «aprobado».
+              </li>
+              {/* 19-10-2026: la fecha no acotaba un contrato ni una convocatoria, y 10
+                  de las 13 subidas que citaban un contrato citaban una adjudicación
+                  publicada después de lo dicho; cualquier importe dejaba llegar a
+                  verificado. Decisión del curador ese día: un registro posterior se
+                  acepta con un motivo firmado y publicado (`registroPosterior`), nunca
+                  para una promesa (src/scraper/subida-firmada.ts,
+                  `comprobarRegistrosConLaDeclaracion`). */}
+              <li>
+                <strong>Un registro posterior a lo dicho sólo lo sostiene con un motivo.</strong> Un
+                orden del día de una sesión posterior, una convocatoria publicada después o un
+                contrato cuya adjudicación se publicó después no prueban que algo ya estuviera hecho
+                cuando se dijo. Sí pueden corroborar lo que se describió de un contrato que se
+                estaba tramitando —su objeto, sus lotes—: en el pleno de 8 de septiembre de 2025 se
+                describieron, uno a uno, los cinco parques de un contrato cuya licitación de
+                noviembre trae esos cinco lotes con esos nombres. Por eso la herramienta rechaza un
+                registro posterior salvo que quien firma escriba por qué lo sostiene, y ese motivo
+                se publica con la subida. Una promesa no la sostiene ningún contrato, con motivo o
+                sin él: que se contratara o se cumpliera es otra afirmación, y se sigue en{' '}
+                <a href="/promesas" style={{ color: 'var(--civic)' }}>
+                  promesas
+                </a>
+                . Y si la declaración trae una cifra, sólo llega a <em>verificado</em> si una fila
+                citada dice esa misma cifra, con un margen del 1&nbsp;% para el redondeo de lo dicho
+                de viva voz; el valor estimado de una concesión por todos sus años no cuenta como
+                precio ni como canon anual. Si no, la subida no pasa de <em>parcial</em>.
+              </li>
+              <li>
+                <strong>Lo ya firmado se vuelve a mirar.</strong> Cada noche, cada fila de contrato
+                de una subida firmada se vuelve a escribir desde los datos de contratación de ese
+                día: si el importe, el estado, la fecha o el contrato ya no son los que dice, o el
+                contrato ha desaparecido, o un contrato sostiene una promesa, o una cifra no es la
+                de su fila, la comprobación lo señala como fallo. Las subidas firmadas antes del 19
+                de octubre de 2026 no podían guardar el motivo: si citan un registro posterior, se
+                señalan como aviso, y las decide quien cura el registro al volver a firmarlas. Nada
+                la reescribe: la retira o la vuelve a firmar una persona.
               </li>
               {/* 10-10-2026: un SDA no se adjudica como un contrato; para lo que se dice
                   de él, la licitación es el registro (src/scraper/subida-firmada.ts). */}
