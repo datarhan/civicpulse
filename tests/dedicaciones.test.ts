@@ -29,6 +29,11 @@ const citado = (): DedicacionesSnapshot => {
   // `quote` ya no lo dejaría sin cita y la prueba de rechazo no podría fallar
   // por la razón que nombra (pasó al aplicar el texto del acta de 2026).
   delete c.source.amountQuotes
+  // Y por la misma razón, sin la antigüedad: su cita tiene que ser uno de los
+  // pasajes que se acaban de borrar, así que heredarla dejaría la copia
+  // inválida y estas pruebas fallarían por otra cosa (pasó al añadir la del
+  // alcalde, 20-10-2026). La antigüedad tiene sus propias pruebas.
+  c.byOfficial = c.byOfficial.map(({ antiguedadEuros, antiguedadQuote, ...fila }) => fila)
   c.source.quote =
     'Cuadro del acuerdo: ' +
     importesPublicados(c)
