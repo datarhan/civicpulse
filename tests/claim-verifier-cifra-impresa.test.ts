@@ -78,5 +78,6 @@ describe('verificado · la evidencia imprime la cifra declarada', () => {
     }
     expect(verificadas).toBeGreaterThan(0)
     expect(malas).toEqual([])
-  })
+    // Pasa por el verificador todas las citas con cifra del corpus extraído: ~9 s en la CI.
+  }, 60_000)
 })
