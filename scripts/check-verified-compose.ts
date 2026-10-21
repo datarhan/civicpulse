@@ -33,41 +33,39 @@
  * contesta «todo en orden» sin haber comprobado nada es exactamente el defecto
  * que este repositorio ya pagó con `r?.findings ?? []`.
  *
+ * Desde el 21-10-2026 el linaje es por CONTENIDO —la huella del base—, y un
+ * base local atrasado se regenera solo en vez de salir `contradice`: ver
+ * `scripts/lib/cotejo-compose.ts`.
+ *
  * Anti-hueco: imprime cuántos cotejos hizo. Uno que no evaluó nada y uno que no
  * encontró nada no pueden imprimir el mismo «✓».
  */
-import { readFileSync, existsSync } from 'node:fs'
-import { cotejarCompose, type CotejoCompose } from '../src/scraper/verified-merge'
-import { BASE, VERIFIED } from './verified-rebuild'
-
-/** El `generatedAt` de un volcado, o `null` si no está o no se deja leer. */
-function selloDe(path: string): string | null {
-  if (!existsSync(path)) return null
-  try {
-    const doc = JSON.parse(readFileSync(path, 'utf8')) as { generatedAt?: unknown }
-    return typeof doc.generatedAt === 'string' ? doc.generatedAt : null
-  } catch {
-    return null
-  }
-}
+import { cotejarSanando } from './lib/cotejo-compose'
 
 function main(): void {
   const asJson = process.argv.includes('--json')
 
   // Un publicado ilegible y un publicado ausente son la misma cosa para el
   // cotejo —no hay sello— y las dos salen `contradice`, que es lo correcto:
-  // ese fichero va comiteado y tiene que estar.
-  const cotejo: CotejoCompose = cotejarCompose({
-    baseGeneratedAt: selloDe(BASE),
-    publicadoGeneratedAt: selloDe(VERIFIED),
-  })
+  // ese fichero va comiteado y tiene que estar. Un base LOCAL más viejo que lo
+  // publicado se regenera y se vuelve a cotejar (scripts/lib/cotejo-compose.ts).
+  const { cotejo, regenerado, fallo } = cotejarSanando()
+  if (regenerado && !asJson) {
+    process.stdout.write(
+      '[check-compose] el base en disco iba por detrás de lo publicado (se compuso en otra ' +
+        'copia): regenerado con `verify:pleno-claims -- --base-only`\n',
+    )
+  }
+  if (fallo) process.stderr.write(`[check-compose] no se pudo regenerar el base: ${fallo}\n`)
 
   // Uno solo, pero se cuenta y se imprime igual: el número es lo que separa
   // «comprobé y está bien» de «no comprobé nada».
   const comprobaciones = 1
 
   if (asJson) {
-    process.stdout.write(JSON.stringify({ comprobaciones, cotejo }, null, 2) + '\n')
+    process.stdout.write(
+      JSON.stringify({ comprobaciones, cotejo, regenerado, fallo }, null, 2) + '\n',
+    )
     if (cotejo.estado === 'contradice') process.exit(1)
     return
   }
@@ -100,7 +98,13 @@ function main(): void {
       return
 
     case 'contradice':
-      process.stderr.write(`[check-compose] ✗ contradice (${sellos})\n` + `  ${cotejo.motivo}\n`)
+      process.stderr.write(
+        `[check-compose] ✗ contradice (${sellos})\n` +
+          (regenerado
+            ? '  ni con el base regenerado de los datos de hoy casa la huella: lo publicado ' +
+              'no sale de estos datos (¿editado a mano?). Mira su diff antes de republicar.\n'
+            : `  ${cotejo.motivo}\n`),
+      )
       process.exit(1)
   }
 }

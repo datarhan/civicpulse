@@ -282,9 +282,15 @@ export const INJECTIONS: Array<{
   {
     guard: 'check:verified-compose',
     file: 'public/data/pleno-claims-verified.json',
-    describe: 'un publicado MÁS NUEVO que su base, que es imposible por construcción',
+    // Desde el 21-10-2026 el linaje es la huella del contenido: mover sólo el
+    // sello ya no muerde (un base regenerado en otra copia coincide, como debe).
+    // Lo imposible es un publicado más nuevo que dice salir de un contenido que
+    // ni el base en disco ni uno regenerado de los datos de hoy producen.
+    describe: 'un publicado más nuevo que su base que dice salir de OTRO contenido',
     corrupt: (s) =>
-      s.replace(/"generatedAt": "[^"]+"/, '"generatedAt": "2099-01-01T00:00:00.000Z"'),
+      s
+        .replace(/"generatedAt": "[^"]+"/, '"generatedAt": "2099-01-01T00:00:00.000Z"')
+        .replace(/"baseHuella": "[^"]+"/, '"baseHuella": "ffffffffffff"'),
   },
   {
     guard: 'check:cobertura',
