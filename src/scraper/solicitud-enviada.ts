@@ -308,6 +308,19 @@ export function estadoDeEnvio(e: EnvioSolicitud, hoy: string): EstadoEnvio {
   return estadoDelMes(vencimientoDe(e).v, hoy)
 }
 
+/**
+ * El rótulo de la pastilla de una fila. Es el del estado salvo en una vencida
+ * que tiene incidencias: «sin respuesta» encima de un pliegue que cuenta lo que
+ * contestaron se contradice, igual que el «no han contestado» que `fraseDeEnvio`
+ * ya cambió por «sin que la hayan resuelto». Lo que falta es la resolución. El
+ * estado —y con él el tono y el recuento— no cambia: el reloj es el mismo.
+ */
+export function etiquetaDeEnvio(e: EnvioSolicitud, hoy: string): string {
+  const estado = estadoDeEnvio(e, hoy)
+  if (estado === 'vencida-sin-respuesta' && e.incidencias?.length) return 'sin resolver'
+  return ESTADO_ENVIO_ETIQUETA[estado]
+}
+
 /** «9 de octubre», o con el año si no es el del último día. */
 function diaDelNominal(nominal: string, ultimoDia: string): string {
   const largo = enCastellano(nominal)
