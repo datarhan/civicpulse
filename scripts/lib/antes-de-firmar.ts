@@ -33,6 +33,7 @@ import {
   type Capas,
 } from '../verified-rebuild'
 import { loadSupersededTexts, TRANSCRIPTS_DIR } from './transcript-corpus'
+import { huellaDelBase } from './huella-base'
 
 /** Imprime el porqué con el prefijo de la CLI y sale con `codigo`. */
 export type Salir = (codigo: number, mensaje: string) => never
@@ -83,6 +84,8 @@ export function leerComposicion(salir: Salir, accion: string): Composicion {
   const cotejo = cotejarCompose({
     baseGeneratedAt: base.generatedAt ?? null,
     publicadoGeneratedAt: publicado.generatedAt ?? null,
+    huellaBase: huellaDelBase(base),
+    huellaPublicada: (publicado as { baseHuella?: string }).baseHuella ?? null,
   })
   if (cotejo.estado !== 'coincide') {
     salir(

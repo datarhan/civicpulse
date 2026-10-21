@@ -33,7 +33,7 @@ import {
   type Observations,
 } from '../src/scraper/health-monitor'
 import { transcriptionPending, TRANSCRIBE_BLOCKLIST_IDS } from '../src/scraper/transcribe-blocklist'
-import { cotejarCompose } from '../src/scraper/verified-merge'
+import { cotejarEnDisco } from './lib/cotejo-compose'
 
 const STATE = resolve('.health-monitor-state.json')
 const DATA = resolve('public/data')
@@ -132,17 +132,6 @@ function nightlyFailStreak(): number {
     return contarNochesEnRojo(runs.map((r) => r.conclusion))
   } catch {
     return 0 // gh unavailable — do not invent a streak
-  }
-}
-
-/** El `generatedAt` de un volcado, o `null` si no está o no se deja leer. */
-function selloGenerado(path: string): string | null {
-  if (!existsSync(path)) return null
-  try {
-    const doc = JSON.parse(readFileSync(path, 'utf8')) as { generatedAt?: unknown }
-    return typeof doc.generatedAt === 'string' ? doc.generatedAt : null
-  } catch {
-    return null
   }
 }
 
@@ -401,10 +390,9 @@ async function gather(rachasPrevias: Record<string, string>): Promise<Observatio
   // El mismo cotejo que hace `check:verified-compose`, en puro, para poder
   // pintar la cola SIN levantar un subproceso y sin depender de un código de
   // salida que a propósito es 0.
-  const composeCotejo = cotejarCompose({
-    baseGeneratedAt: selloGenerado(resolve(DATA, 'pleno-claims-verified-base.json')),
-    publicadoGeneratedAt: selloGenerado(resolve(DATA, 'pleno-claims-verified.json')),
-  })
+  // Con la huella del base, como el guion: sin ella, un base regenerado cada
+  // noche con el mismo contenido pintaba la cola como pendiente.
+  const composeCotejo = cotejarEnDisco()
 
   return {
     now,

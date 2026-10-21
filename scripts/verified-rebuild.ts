@@ -55,6 +55,7 @@ import {
 } from '../src/scraper/verified-merge'
 import type { ClaimVerdict } from '../src/scraper/claim-verifier'
 import { resumirSinDatos } from '../src/scraper/claim-verdicts'
+import { huellaDelBase } from './lib/huella-base'
 
 const DATA = resolve('public/data')
 export const BASE = resolve(DATA, 'pleno-claims-verified-base.json')
@@ -510,6 +511,11 @@ export async function rebuildVerified(
     // nuevo. Moverlo aquí rompería la única señal que detecta un republicado
     // que se quedó atrás.
     generatedAt: base.generatedAt,
+    // El linaje por CONTENIDO: el sello dice de qué base salió en la copia
+    // donde se compuso, y el base está gitignorado, así que otra copia tiene
+    // otro. `cotejarCompose` casa esta huella con la del base en disco y sólo
+    // usa los sellos para ordenar el desacuerdo (scripts/lib/cotejo-compose.ts).
+    baseHuella: huellaDelBase(base),
     // Cuándo se escribió ESTO. Un cambio en el overlay reescribe el publicado
     // sin que el base se mueva —una retirada de pasada lo hizo el 27 de agosto—
     // y sin este campo el fichero fecha su contenido con el sello de otro.
