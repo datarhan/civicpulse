@@ -1,24 +1,24 @@
 {
-  "generatedAt": "2026-10-20T09:54:03.222Z",
+  "generatedAt": "2026-10-21T09:42:39.922Z",
   "source": {
-    "tenders": "2026-10-20T09:36:12.158Z",
-    "geo": "2026-10-20T09:38:48.269Z"
+    "tenders": "2026-10-21T09:32:08.727Z",
+    "geo": "2026-10-21T09:35:34.923Z"
   },
   "universe": {
-    "totalContracts": 711,
-    "totalAmount": 126049119.74999994,
+    "totalContracts": 712,
+    "totalAmount": 126064104.20999993,
     "locatedContracts": 41,
     "locatedAmount": 3480498.68,
-    "situatedContracts": 117,
-    "situatedAmount": 8820861.98,
+    "situatedContracts": 118,
+    "situatedAmount": 8835846.44,
     "danaContracts": 9,
     "danaAmount": 259915.39,
     "danaAwardedContracts": 82,
     "danaAwardedAmount": 2840148.539999998,
     "dateMin": "2018-01-18",
-    "dateMax": "2026-05-27",
+    "dateMax": "2026-10-20",
     "totalDateMin": "2017-07-03",
-    "totalDateMax": "2026-10-08"
+    "totalDateMax": "2026-10-20"
   },
   "zones": [
     {
@@ -515,6 +515,18 @@
       "danaAmount": 0
     },
     {
+      "slug": "placa-de-la-torre",
+      "name": "Plaça de la Torre",
+      "kind": "street",
+      "point": [
+        39.5472019,
+        -0.568434
+      ],
+      "contractCount": 2,
+      "amount": 39241.69,
+      "danaAmount": 0
+    },
+    {
       "slug": "castell-de-riba-roja",
       "name": "Castillo de Riba-roja de Túria",
       "kind": "poi",
@@ -632,18 +644,6 @@
       ],
       "contractCount": 1,
       "amount": 25920,
-      "danaAmount": 0
-    },
-    {
-      "slug": "placa-de-la-torre",
-      "name": "Plaça de la Torre",
-      "kind": "street",
-      "point": [
-        39.5472019,
-        -0.568434
-      ],
-      "contractCount": 1,
-      "amount": 24257.23,
       "danaAmount": 0
     },
     {
@@ -1413,6 +1413,27 @@
       }
     },
     {
+      "id": "543940",
+      "zones": [],
+      "matchedAlias": {},
+      "dana": false,
+      "amount": 13726.68,
+      "amountKind": "final",
+      "date": "2019-07-13",
+      "contractType": "construction",
+      "categoryTitle": "other",
+      "point": [
+        39.4767673,
+        -0.585373
+      ],
+      "place": {
+        "kind": "poi",
+        "name": "Cementerio de San Jaime",
+        "matchedText": "Cementerio de San Jaime",
+        "sourceId": "way-740051593"
+      }
+    },
+    {
       "id": "4486293",
       "zones": [],
       "matchedAlias": {},
@@ -1564,6 +1585,27 @@
       }
     },
     {
+      "id": "4889055#7",
+      "zones": [],
+      "matchedAlias": {},
+      "dana": false,
+      "amount": 14984.46,
+      "amountKind": "final",
+      "date": "2026-10-20",
+      "contractType": "services",
+      "categoryTitle": "architecture",
+      "point": [
+        39.5472019,
+        -0.568434
+      ],
+      "place": {
+        "kind": "street",
+        "name": "Plaça de la Torre",
+        "matchedText": "Plaça de la Torre",
+        "sourceId": "placa-de-la-torre"
+      }
+    },
+    {
       "id": "4973577#3",
       "zones": [
         "el-molinet"
@@ -1586,52 +1628,6 @@
         "name": "el Molinet",
         "matchedText": "el Molinet",
         "sourceId": "el-molinet"
-      }
-    },
-    {
-      "id": "554871",
-      "zones": [
-        "l-oliveral"
-      ],
-      "matchedAlias": {
-        "l-oliveral": "oliveral"
-      },
-      "dana": false,
-      "amount": 7950,
-      "amountKind": "final",
-      "date": "2018-04-11",
-      "contractType": "services",
-      "categoryTitle": "other",
-      "point": [
-        39.4710524,
-        -0.5366921
-      ],
-      "place": {
-        "kind": "urbanizacion",
-        "name": "l'Oliveral",
-        "matchedText": "l'Oliveral",
-        "sourceId": "l-oliveral"
-      }
-    },
-    {
-      "id": "543940",
-      "zones": [],
-      "matchedAlias": {},
-      "dana": false,
-      "amount": 13726.68,
-      "amountKind": "final",
-      "date": "2019-07-13",
-      "contractType": "construction",
-      "categoryTitle": "other",
-      "point": [
-        39.4767673,
-        -0.585373
-      ],
-      "place": {
-        "kind": "poi",
-        "name": "Cementerio de San Jaime",
-        "matchedText": "Cementerio de San Jaime",
-        "sourceId": "way-740051593"
       }
     },
     {
@@ -1819,6 +1815,31 @@
       "amountKind": "final",
       "date": "2019-01-17",
       "contractType": "construction",
+      "categoryTitle": "other",
+      "point": [
+        39.4710524,
+        -0.5366921
+      ],
+      "place": {
+        "kind": "urbanizacion",
+        "name": "l'Oliveral",
+        "matchedText": "l'Oliveral",
+        "sourceId": "l-oliveral"
+      }
+    },
+    {
+      "id": "554871",
+      "zones": [
+        "l-oliveral"
+      ],
+      "matchedAlias": {
+        "l-oliveral": "oliveral"
+      },
+      "dana": false,
+      "amount": 7950,
+      "amountKind": "final",
+      "date": "2018-04-11",
+      "contractType": "services",
       "categoryTitle": "other",
       "point": [
         39.4710524,
@@ -3618,11 +3639,11 @@
     }
   ],
   "builtFrom": {
-    "civic-poi.json": "a1881a8dc6dd",
+    "civic-poi.json": "4dd6687d4ff0",
     "gazetteer-supplement.json": "b3013a1e0efe",
-    "geo.json": "dd10436dcc7e",
+    "geo.json": "801fe22d5cfc",
     "place-overrides.json": "5878849f1684",
-    "streets.json": "a59d46bc0958",
-    "tenders.json": "dfb5b48db75e"
+    "streets.json": "9a0017ddaec2",
+    "tenders.json": "6bf6b429eab4"
   }
 }

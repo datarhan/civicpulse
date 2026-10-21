@@ -1,26 +1,731 @@
 {
-  "generatedAt": "2026-10-20T09:49:03.920Z",
+  "generatedAt": "2026-10-21T09:41:30.213Z",
   "source": {
     "origin": "https://ribaocupacio.portalemp.com",
     "platform": "portalemp — ribaocupacio · Agència de Col·locació (ADL), Ajuntament de Riba-roja de Túria",
     "listEndpoint": "https://ribaocupacio.portalemp.com/ofertas.html?acc=tableData"
   },
   "stats": {
-    "total": 41,
-    "openTotal": 40,
-    "inRibaRoja": 25,
-    "closingSoon": 13,
-    "withDetail": 41,
+    "total": 46,
+    "openTotal": 45,
+    "inRibaRoja": 29,
+    "closingSoon": 9,
+    "withDetail": 46,
     "byMonth": {
-      "2026-10": 6,
+      "2026-10": 15,
       "2026-09": 21,
-      "2026-08": 10,
+      "2026-08": 6,
       "2026-07": 1,
       "2026-05": 2,
       "2025-11": 1
     }
   },
   "items": [
+    {
+      "id": "2549",
+      "fo": 2549,
+      "codigo": "2026/00248",
+      "titulo": "Chófer reparto y almacén",
+      "publishedAt": "2026-10-21",
+      "deadline": "2026-12-21",
+      "location": "POLIGONO EL OLIVERAL Riba-roja de Túria",
+      "status": "Abierta",
+      "statusTone": "ok",
+      "url": "https://ribaocupacio.portalemp.com/ofertas.html?fo=2549",
+      "inRibaRoja": true,
+      "detail": {
+        "fields": [
+          {
+            "label": "Código",
+            "value": "2026/00248"
+          },
+          {
+            "label": "Nombre de la oferta",
+            "value": "Chófer reparto y almacén"
+          },
+          {
+            "label": "Sector CNAE",
+            "value": "TRANSPORTE Y ALMACENAMIENTO"
+          },
+          {
+            "label": "Tipo de contrato",
+            "value": "CONTRATO INDEFINIDO"
+          },
+          {
+            "label": "Duración del contrato",
+            "value": "Periodo de prueba e indefinido"
+          },
+          {
+            "label": "Número de puestos",
+            "value": "1"
+          },
+          {
+            "label": "Lugar puesto de trabajo",
+            "value": "POLIGONO EL OLIVERAL, Municipio: Riba-roja de Túria, Provincia: Valencia, CP: 46190"
+          },
+          {
+            "label": "Tipo de jornada laboral",
+            "value": "Completa"
+          },
+          {
+            "label": "Salario",
+            "value": "Desde 24000€ brutos"
+          },
+          {
+            "label": "Requiere vehículo propio",
+            "value": "Sí"
+          }
+        ],
+        "tipoContrato": "CONTRATO INDEFINIDO",
+        "duracion": "Periodo de prueba e indefinido",
+        "numPuestos": "1",
+        "municipio": "Riba-roja de Túria",
+        "provincia": "Valencia",
+        "cp": "46190",
+        "jornada": "Completa",
+        "salario": "Desde 24000€ brutos",
+        "vehiculo": "Sí",
+        "ocupaciones": []
+      }
+    },
+    {
+      "id": "2547",
+      "fo": 2547,
+      "codigo": "2026/00247",
+      "titulo": "Almacen / Calidad",
+      "publishedAt": "2026-10-21",
+      "deadline": "2026-12-21",
+      "location": "Riba-roja de Túria",
+      "status": "Abierta",
+      "statusTone": "ok",
+      "url": "https://ribaocupacio.portalemp.com/ofertas.html?fo=2547",
+      "inRibaRoja": true,
+      "detail": {
+        "fields": [
+          {
+            "label": "Código",
+            "value": "2026/00247"
+          },
+          {
+            "label": "Nombre de la oferta",
+            "value": "Almacen / Calidad"
+          },
+          {
+            "label": "Sector CNAE",
+            "value": "INDUSTRIA MANUFACTURERA"
+          },
+          {
+            "label": "Tipo de contrato",
+            "value": "CONTRATO INDEFINIDO"
+          },
+          {
+            "label": "Duración del contrato",
+            "value": "Contrato temporal con posibilidad real de continuar"
+          },
+          {
+            "label": "Número de puestos",
+            "value": "1"
+          },
+          {
+            "label": "Categoría profesional",
+            "value": "OFICIAL DE 3ª y ESPECIALISTAS"
+          },
+          {
+            "label": "Lugar puesto de trabajo",
+            "value": "Municipio: Riba-roja de Túria, Provincia: Valencia, CP: 46190"
+          },
+          {
+            "label": "Tipo de jornada laboral",
+            "value": "Completa Turnos: Turno partido"
+          },
+          {
+            "label": "Horario",
+            "value": "8:00 a 17:00"
+          },
+          {
+            "label": "Salario",
+            "value": "Según valía"
+          },
+          {
+            "label": "Funciones",
+            "value": "- Control de calidad - Preparación de pedidos - Fabricación del embalaje (aglomerado) - Organización y limpieza del almacén - Tareas varias"
+          },
+          {
+            "label": "Requiere vehículo propio",
+            "value": "Sí"
+          },
+          {
+            "label": "Habilidades",
+            "value": "- Carnet de conducir y vehículo propio para desplazarse al centro de trabajo - Carnet de carretillero - Uso básico radial - Conocimientos de soldadura"
+          }
+        ],
+        "tipoContrato": "CONTRATO INDEFINIDO",
+        "duracion": "Contrato temporal con posibilidad real de continuar",
+        "numPuestos": "1",
+        "categoria": "OFICIAL DE 3ª y ESPECIALISTAS",
+        "municipio": "Riba-roja de Túria",
+        "provincia": "Valencia",
+        "cp": "46190",
+        "jornada": "Completa Turnos: Turno partido",
+        "horario": "8:00 a 17:00",
+        "salario": "Según valía",
+        "funciones": "- Control de calidad - Preparación de pedidos - Fabricación del embalaje (aglomerado) - Organización y limpieza del almacén - Tareas varias",
+        "vehiculo": "Sí",
+        "ocupaciones": [
+          {
+            "nombre": "TÉCNICOS EN GESTIÓN DE STOCKS Y/O ALMACÉN",
+            "experiencia": "1 Años"
+          }
+        ]
+      }
+    },
+    {
+      "id": "2546",
+      "fo": 2546,
+      "codigo": "2026/00246",
+      "titulo": "Tornero/a CNC",
+      "publishedAt": "2026-10-21",
+      "deadline": "2026-12-21",
+      "location": "Riba-roja de Túria",
+      "status": "Abierta",
+      "statusTone": "ok",
+      "url": "https://ribaocupacio.portalemp.com/ofertas.html?fo=2546",
+      "inRibaRoja": true,
+      "detail": {
+        "fields": [
+          {
+            "label": "Código",
+            "value": "2026/00246"
+          },
+          {
+            "label": "Nombre de la oferta",
+            "value": "Tornero/a CNC"
+          },
+          {
+            "label": "Sector CNAE",
+            "value": "OTROS SERVICIOS"
+          },
+          {
+            "label": "Tipo de contrato",
+            "value": "CONTRATO INDEFINIDO"
+          },
+          {
+            "label": "Número de puestos",
+            "value": "1"
+          },
+          {
+            "label": "Lugar puesto de trabajo",
+            "value": "Municipio: Riba-roja de Túria, Provincia: Valencia, CP: 46190"
+          },
+          {
+            "label": "Tipo de jornada laboral",
+            "value": "Completa Turnos: Turno mañana, Turno tarde"
+          },
+          {
+            "label": "Horario",
+            "value": "Lunes a viernes en turnos rotativos de mañana/tarde"
+          },
+          {
+            "label": "Salario",
+            "value": "26000-32000 euros brutos anuales"
+          },
+          {
+            "label": "Funciones",
+            "value": "-Programación, preparación y manejo de tornos CNC (CMZ) -Interpretación de planos y especificaciones técnicas de mecanizado -Configuración de herramientas y parámetros de corte -Fabricación y mecanizado de piezas según tolerancias especificadas -Verificación y control dimensional de piezas mediante instrumentos de medición -Cambio y ajuste de herramientas de corte -Carga y descarga de materiales -Mantenimiento preventivo básico de la maquinaria -Control de calidad de las piezas mecanizadas y registro de incidencias -Cumplimiento de las normas de seguridad, prevención de riesgos laborales y mantenimiento del orden y limpieza del puesto de trabajo"
+          },
+          {
+            "label": "Requiere vehículo propio",
+            "value": "Sí"
+          }
+        ],
+        "tipoContrato": "CONTRATO INDEFINIDO",
+        "numPuestos": "1",
+        "municipio": "Riba-roja de Túria",
+        "provincia": "Valencia",
+        "cp": "46190",
+        "jornada": "Completa Turnos: Turno mañana, Turno tarde",
+        "horario": "Lunes a viernes en turnos rotativos de mañana/tarde",
+        "salario": "26000-32000 euros brutos anuales",
+        "funciones": "-Programación, preparación y manejo de tornos CNC (CMZ) -Interpretación de planos y especificaciones técnicas de mecanizado -Configuración de herramientas y parámetros de corte -Fabricación y mecanizado de piezas según tolerancias especificadas -Verificación y control dimensional de piezas mediante instrumentos de medición -Cambio y ajuste de herramientas de corte -Carga y descarga de materiales -Mantenimiento preventivo básico de la maquinaria -Control de calidad de las piezas mecanizadas y registro de incidencias -Cumplimiento de las normas de seguridad, prevención de riesgos laborales y mantenimiento del orden y limpieza del puesto de trabajo",
+        "vehiculo": "Sí",
+        "ocupaciones": [
+          {
+            "nombre": "OPERADORES TORNEROS-FRESADORES (FABRICACIÓN)",
+            "experiencia": "3 Años"
+          }
+        ]
+      }
+    },
+    {
+      "id": "2524",
+      "fo": 2524,
+      "codigo": "2026/00223",
+      "titulo": "Técnico/a en seguridad",
+      "publishedAt": "2026-10-21",
+      "deadline": "2026-12-21",
+      "location": "Riba-roja de Túria",
+      "status": "Abierta",
+      "statusTone": "ok",
+      "url": "https://ribaocupacio.portalemp.com/ofertas.html?fo=2524",
+      "inRibaRoja": true,
+      "detail": {
+        "fields": [
+          {
+            "label": "Código",
+            "value": "2026/00223"
+          },
+          {
+            "label": "Nombre de la oferta",
+            "value": "Técnico/a en seguridad"
+          },
+          {
+            "label": "Observaciones",
+            "value": "Se requiere Técnico en seguridad junior, con conocimientos de electricidad y electrónica. Se valorará la experiencia, aunque no es un requisito indispensable. Salario según convenio."
+          },
+          {
+            "label": "Sector CNAE",
+            "value": "OTROS SERVICIOS"
+          },
+          {
+            "label": "Tipo de contrato",
+            "value": "INDIFERENTE"
+          },
+          {
+            "label": "Número de puestos",
+            "value": "2"
+          },
+          {
+            "label": "Lugar puesto de trabajo",
+            "value": "Municipio: Riba-roja de Túria, Provincia: Valencia, CP: 46190"
+          },
+          {
+            "label": "Salario",
+            "value": "Según convenio"
+          },
+          {
+            "label": "Requiere vehículo propio",
+            "value": "Sí"
+          },
+          {
+            "label": "Habilidades",
+            "value": "Conocimientos de electricidad y electrónica."
+          }
+        ],
+        "tipoContrato": "INDIFERENTE",
+        "numPuestos": "2",
+        "observaciones": "Se requiere Técnico en seguridad junior, con conocimientos de electricidad y electrónica. Se valorará la experiencia, aunque no es un requisito indispensable. Salario según convenio.",
+        "municipio": "Riba-roja de Túria",
+        "provincia": "Valencia",
+        "cp": "46190",
+        "salario": "Según convenio",
+        "vehiculo": "Sí",
+        "ocupaciones": []
+      }
+    },
+    {
+      "id": "2464",
+      "fo": 2464,
+      "codigo": "2026/00165",
+      "titulo": "Peón de albañilería",
+      "publishedAt": "2026-10-21",
+      "deadline": "2026-12-21",
+      "location": "Valencia y pueblos de alrededores Riba-roja de Túria",
+      "status": "Abierta",
+      "statusTone": "ok",
+      "url": "https://ribaocupacio.portalemp.com/ofertas.html?fo=2464",
+      "inRibaRoja": true,
+      "detail": {
+        "fields": [
+          {
+            "label": "Código",
+            "value": "2026/00165"
+          },
+          {
+            "label": "Nombre de la oferta",
+            "value": "Peón de albañilería"
+          },
+          {
+            "label": "Observaciones",
+            "value": "Se necesita peon con motivación para Septiembre. Sustitución por baja de paternidad, posibilidad de continuar después"
+          },
+          {
+            "label": "Sector CNAE",
+            "value": "CONSTRUCCIÓN"
+          },
+          {
+            "label": "Tipo de contrato",
+            "value": "INDIFERENTE"
+          },
+          {
+            "label": "Duración del contrato",
+            "value": "De 1 a 6 meses"
+          },
+          {
+            "label": "Número de puestos",
+            "value": "1"
+          },
+          {
+            "label": "Categoría profesional",
+            "value": "PEONES"
+          },
+          {
+            "label": "Lugar puesto de trabajo",
+            "value": "Valencia y pueblos de alrededores, Municipio: Riba-roja de Túria, Provincia: Valencia, CP: 46190"
+          },
+          {
+            "label": "Tipo de jornada laboral",
+            "value": "Completa"
+          },
+          {
+            "label": "Horario",
+            "value": "De Lunes a viernes de 8:00 a 17:00 horas y una hora de descanso."
+          },
+          {
+            "label": "Salario",
+            "value": "Según convenio"
+          },
+          {
+            "label": "Funciones",
+            "value": "Peon de albañilería"
+          },
+          {
+            "label": "Requiere vehículo propio",
+            "value": "Sí"
+          }
+        ],
+        "tipoContrato": "INDIFERENTE",
+        "duracion": "De 1 a 6 meses",
+        "numPuestos": "1",
+        "categoria": "PEONES",
+        "observaciones": "Se necesita peon con motivación para Septiembre. Sustitución por baja de paternidad, posibilidad de continuar después",
+        "municipio": "Riba-roja de Túria",
+        "provincia": "Valencia",
+        "cp": "46190",
+        "jornada": "Completa",
+        "horario": "De Lunes a viernes de 8:00 a 17:00 horas y una hora de descanso.",
+        "salario": "Según convenio",
+        "funciones": "Peon de albañilería",
+        "vehiculo": "Sí",
+        "ocupaciones": []
+      }
+    },
+    {
+      "id": "2462",
+      "fo": 2462,
+      "codigo": "2026/00163",
+      "titulo": "Oficial albañil",
+      "publishedAt": "2026-10-21",
+      "deadline": "2026-12-21",
+      "location": "Principalmente Valencia y Riba-roja y alrederdedores Riba-roja de Túria",
+      "status": "Abierta",
+      "statusTone": "ok",
+      "url": "https://ribaocupacio.portalemp.com/ofertas.html?fo=2462",
+      "inRibaRoja": true,
+      "detail": {
+        "fields": [
+          {
+            "label": "Código",
+            "value": "2026/00163"
+          },
+          {
+            "label": "Nombre de la oferta",
+            "value": "Oficial albañil"
+          },
+          {
+            "label": "Observaciones",
+            "value": "Empresa consolidada, buscamos gente con motivación y ganas de avanzar y aprender. 14 pagas mas posibilidades de incentivos según trabajo realizado. Todo según convenio"
+          },
+          {
+            "label": "Sector CNAE",
+            "value": "CONSTRUCCIÓN"
+          },
+          {
+            "label": "Tipo de contrato",
+            "value": "CONTRATO INDEFINIDO"
+          },
+          {
+            "label": "Duración del contrato",
+            "value": "Más de 6 meses"
+          },
+          {
+            "label": "Número de puestos",
+            "value": "1"
+          },
+          {
+            "label": "Categoría profesional",
+            "value": "OFICIAL DE 1ª"
+          },
+          {
+            "label": "Lugar puesto de trabajo",
+            "value": "Principalmente Valencia y Riba-roja y alrederdedores, Municipio: Riba-roja de Túria, Provincia: Valencia, CP: 46190"
+          },
+          {
+            "label": "Tipo de jornada laboral",
+            "value": "Completa"
+          },
+          {
+            "label": "Horario",
+            "value": "De lunes a viernes de 8h a 17h"
+          },
+          {
+            "label": "Salario",
+            "value": "Según convenio más incentivos y pagas"
+          },
+          {
+            "label": "Funciones",
+            "value": "Trabajo de tabiqueria, maestreado, revestimientos, escayola, toda la albañilería en general. Trabajos en zaguanes, viviendas y facahdas principalmente"
+          }
+        ],
+        "tipoContrato": "CONTRATO INDEFINIDO",
+        "duracion": "Más de 6 meses",
+        "numPuestos": "1",
+        "categoria": "OFICIAL DE 1ª",
+        "observaciones": "Empresa consolidada, buscamos gente con motivación y ganas de avanzar y aprender. 14 pagas mas posibilidades de incentivos según trabajo realizado. Todo según convenio",
+        "municipio": "Riba-roja de Túria",
+        "provincia": "Valencia",
+        "cp": "46190",
+        "jornada": "Completa",
+        "horario": "De lunes a viernes de 8h a 17h",
+        "salario": "Según convenio más incentivos y pagas",
+        "funciones": "Trabajo de tabiqueria, maestreado, revestimientos, escayola, toda la albañilería en general. Trabajos en zaguanes, viviendas y facahdas principalmente",
+        "ocupaciones": []
+      }
+    },
+    {
+      "id": "2430",
+      "fo": 2430,
+      "codigo": "2026/00135",
+      "titulo": "Operario/a de almacén con discapacidad",
+      "publishedAt": "2026-10-21",
+      "deadline": "2026-12-21",
+      "location": "Cheste (Valencia)",
+      "status": "Abierta",
+      "statusTone": "ok",
+      "url": "https://ribaocupacio.portalemp.com/ofertas.html?fo=2430",
+      "inRibaRoja": false,
+      "detail": {
+        "fields": [
+          {
+            "label": "Código",
+            "value": "2026/00135"
+          },
+          {
+            "label": "Nombre de la oferta",
+            "value": "Operario/a de almacén con discapacidad"
+          },
+          {
+            "label": "Observaciones",
+            "value": "Se requiere carnet de carretillero."
+          },
+          {
+            "label": "Porcentaje de discapacidad",
+            "value": "Igual o superior a 33%"
+          },
+          {
+            "label": "Tipo de contrato",
+            "value": "CONTRATACION DISCAPACIDAD"
+          },
+          {
+            "label": "Duración del contrato",
+            "value": "De 1 a 6 meses"
+          },
+          {
+            "label": "Número de puestos",
+            "value": "5"
+          },
+          {
+            "label": "Categoría profesional",
+            "value": "PEONES"
+          },
+          {
+            "label": "Lugar puesto de trabajo",
+            "value": "Municipio: Cheste, Provincia: Valencia, CP: 46830"
+          },
+          {
+            "label": "Tipo de jornada laboral",
+            "value": "Completa Turnos: Turno tarde"
+          },
+          {
+            "label": "Horario",
+            "value": "12:00h-19:36h"
+          },
+          {
+            "label": "Salario",
+            "value": "1400 € brutos/mes 12 pagas"
+          },
+          {
+            "label": "Funciones",
+            "value": "Carga de camiones y tareas de almacén."
+          },
+          {
+            "label": "Requiere vehículo propio",
+            "value": "Sí"
+          }
+        ],
+        "tipoContrato": "CONTRATACION DISCAPACIDAD",
+        "duracion": "De 1 a 6 meses",
+        "numPuestos": "5",
+        "categoria": "PEONES",
+        "observaciones": "Se requiere carnet de carretillero.",
+        "municipio": "Cheste",
+        "provincia": "Valencia",
+        "cp": "46830",
+        "jornada": "Completa Turnos: Turno tarde",
+        "horario": "12:00h-19:36h",
+        "salario": "1400 € brutos/mes 12 pagas",
+        "funciones": "Carga de camiones y tareas de almacén.",
+        "vehiculo": "Sí",
+        "ocupaciones": []
+      }
+    },
+    {
+      "id": "2335",
+      "fo": 2335,
+      "codigo": "2026/00037",
+      "titulo": "Educador/a comedor escolar",
+      "publishedAt": "2026-10-21",
+      "deadline": "2026-12-21",
+      "location": "Paterna (Valencia)",
+      "status": "Abierta",
+      "statusTone": "ok",
+      "url": "https://ribaocupacio.portalemp.com/ofertas.html?fo=2335",
+      "inRibaRoja": false,
+      "detail": {
+        "fields": [
+          {
+            "label": "Código",
+            "value": "2026/00037"
+          },
+          {
+            "label": "Nombre de la oferta",
+            "value": "Educador/a comedor escolar"
+          },
+          {
+            "label": "Observaciones",
+            "value": "Requisitos: - Experiencia mínima necesaria 6 meses. - MAT o titulaciones relacionadas con el ámbito educativo. - Estar en posesión del certificado de negación de delitos de aturaleza sexual actualizado."
+          },
+          {
+            "label": "Tipo de contrato",
+            "value": "CONTRATO DE OBRA O SERVICIO DETERMINADO"
+          },
+          {
+            "label": "Duración del contrato",
+            "value": "De 1 a 6 meses"
+          },
+          {
+            "label": "Número de puestos",
+            "value": "1"
+          },
+          {
+            "label": "Lugar puesto de trabajo",
+            "value": "Municipio: Paterna, Provincia: Valencia"
+          },
+          {
+            "label": "Tipo de jornada laboral",
+            "value": "Parcial"
+          },
+          {
+            "label": "Horario",
+            "value": "De 12:30 a 15:30 horas"
+          },
+          {
+            "label": "Salario",
+            "value": "Según convenio"
+          },
+          {
+            "label": "Funciones",
+            "value": "- Gestión de grupos escolares durante el horario de comedor. - Servir y retirar mesas. - Educación en bueno ámbitos alimenticios e higiene. - Control y seguimiento de patio."
+          }
+        ],
+        "tipoContrato": "CONTRATO DE OBRA O SERVICIO DETERMINADO",
+        "duracion": "De 1 a 6 meses",
+        "numPuestos": "1",
+        "observaciones": "Requisitos: - Experiencia mínima necesaria 6 meses. - MAT o titulaciones relacionadas con el ámbito educativo. - Estar en posesión del certificado de negación de delitos de aturaleza sexual actualizado.",
+        "jornada": "Parcial",
+        "horario": "De 12:30 a 15:30 horas",
+        "salario": "Según convenio",
+        "funciones": "- Gestión de grupos escolares durante el horario de comedor. - Servir y retirar mesas. - Educación en bueno ámbitos alimenticios e higiene. - Control y seguimiento de patio.",
+        "ocupaciones": []
+      }
+    },
+    {
+      "id": "2315",
+      "fo": 2315,
+      "codigo": "2026/00017",
+      "titulo": "Operario/a almacén con discapacidad",
+      "publishedAt": "2026-10-21",
+      "deadline": "2026-12-21",
+      "location": "Cheste (Valencia)",
+      "status": "Abierta",
+      "statusTone": "ok",
+      "url": "https://ribaocupacio.portalemp.com/ofertas.html?fo=2315",
+      "inRibaRoja": false,
+      "detail": {
+        "fields": [
+          {
+            "label": "Código",
+            "value": "2026/00017"
+          },
+          {
+            "label": "Nombre de la oferta",
+            "value": "Operario/a almacén con discapacidad"
+          },
+          {
+            "label": "Observaciones",
+            "value": "Requiere: - Carnet de conducir y vehículo propio para acceder al puesto de trabajo. - Muy valorable carner de carretillero. INCOPORTACIÓN INMEDIATA ."
+          },
+          {
+            "label": "Porcentaje de discapacidad",
+            "value": "Igual o superior a 33%"
+          },
+          {
+            "label": "Tipo de contrato",
+            "value": "CONTRATO DE OBRA O SERVICIO DETERMINADO"
+          },
+          {
+            "label": "Duración del contrato",
+            "value": "Más de 6 meses"
+          },
+          {
+            "label": "Número de puestos",
+            "value": "5"
+          },
+          {
+            "label": "Lugar puesto de trabajo",
+            "value": "Municipio: Cheste, Provincia: Valencia"
+          },
+          {
+            "label": "Tipo de jornada laboral",
+            "value": "Completa"
+          },
+          {
+            "label": "Observaciones jornada",
+            "value": "Contrato temporal de larga duración"
+          },
+          {
+            "label": "Horario",
+            "value": "De lunes a domingo (2 días de descanso). De 6:00 a 13:36 horas, de 14: a 21:36 horas, de 18:00 a 01:36 horas. Turnos fijos, pero puede variar según necesidad de forma eventual."
+          },
+          {
+            "label": "Salario",
+            "value": "1400€ brutos/mes"
+          },
+          {
+            "label": "Requiere vehículo propio",
+            "value": "Sí"
+          }
+        ],
+        "tipoContrato": "CONTRATO DE OBRA O SERVICIO DETERMINADO",
+        "duracion": "Más de 6 meses",
+        "numPuestos": "5",
+        "observaciones": "Requiere: - Carnet de conducir y vehículo propio para acceder al puesto de trabajo. - Muy valorable carner de carretillero. INCOPORTACIÓN INMEDIATA .",
+        "jornada": "Completa",
+        "horario": "De lunes a domingo (2 días de descanso). De 6:00 a 13:36 horas, de 14: a 21:36 horas, de 18:00 a 01:36 horas. Turnos fijos, pero puede variar según necesidad de forma eventual.",
+        "salario": "1400€ brutos/mes",
+        "vehiculo": "Sí",
+        "ocupaciones": []
+      }
+    },
     {
       "id": "2377",
       "fo": 2377,
@@ -102,7 +807,7 @@
       "id": "2548",
       "fo": 2548,
       "codigo": "2026/00245",
-      "titulo": "OPERARIOS/AS CON DISCAPACIDAD ENVASADO Y REPALETIZADO EN CHESTE",
+      "titulo": "Operarios/as con discapacidad envasado y repaletizado en Cheste",
       "publishedAt": "2026-10-16",
       "deadline": "2026-12-16",
       "location": "Cheste (Valencia)",
@@ -118,7 +823,7 @@
           },
           {
             "label": "Nombre de la oferta",
-            "value": "OPERARIOS/AS CON DISCAPACIDAD ENVASADO Y REPALETIZADO EN CHESTE"
+            "value": "Operarios/as con discapacidad envasado y repaletizado en Cheste"
           },
           {
             "label": "Observaciones",
@@ -134,7 +839,7 @@
           },
           {
             "label": "Duración del contrato",
-            "value": "12 MESES PRORROGABLE"
+            "value": "12 meses prorrogable"
           },
           {
             "label": "Número de puestos",
@@ -154,15 +859,15 @@
           },
           {
             "label": "Horario",
-            "value": "TURNO ROTATIVO:MAÑANA TARDE Y NOCHE"
+            "value": "Turno rotativo: mañana, tarde y noche"
           },
           {
             "label": "Salario",
-            "value": "1443 EUROS/BRUTO/MENSUAL"
+            "value": "1443 euros/bruto/mensual"
           },
           {
             "label": "Funciones",
-            "value": "ENVASAR Y REPALETIZAR"
+            "value": "Envasar y repaletizar"
           },
           {
             "label": "Requiere vehículo propio",
@@ -170,14 +875,14 @@
           }
         ],
         "tipoContrato": "CONTRATACION DISCAPACIDAD",
-        "duracion": "12 MESES PRORROGABLE",
+        "duracion": "12 meses prorrogable",
         "numPuestos": "2",
         "categoria": "PEONES",
         "observaciones": "Buscamos operarios/as con discapacidad para el puesto de manipulado, envasado y paletizado de productos de limpieza (detergentes, dispensadores lavavajillas, etc.). El puesto requiere poder estar 8h de pie y tener destreza manual (para envasar). Consiste en segregar productos para su posterior reenvasado. Además de repaletizar producto envasado (de palet europea a americano). El trabajador/a debe poder agacharse y coger peso. Turno rotativo: mañana, tarde y noche. Contrato inicial de 12 meses con posibilidad de continuar. Salario 1443€ brutos al mes en 12 pagas. Es recomendable tener coche para acceder hasta el centro de trabajo ya que está situado en el polígono. Indispensable disponer del certificado de discapacidad del 33% o más.",
         "jornada": "Completa Turnos: Turno mañana, Turno tarde, Turno noche",
-        "horario": "TURNO ROTATIVO:MAÑANA TARDE Y NOCHE",
-        "salario": "1443 EUROS/BRUTO/MENSUAL",
-        "funciones": "ENVASAR Y REPALETIZAR",
+        "horario": "Turno rotativo: mañana, tarde y noche",
+        "salario": "1443 euros/bruto/mensual",
+        "funciones": "Envasar y repaletizar",
         "vehiculo": "Sí",
         "ocupaciones": []
       }
@@ -2148,93 +2853,6 @@
       }
     },
     {
-      "id": "2464",
-      "fo": 2464,
-      "codigo": "2026/00165",
-      "titulo": "Peón de albañilería",
-      "publishedAt": "2026-08-28",
-      "deadline": "2026-10-28",
-      "location": "Valencia y pueblos de alrededores Riba-roja de Túria",
-      "status": "Abierta",
-      "statusTone": "ok",
-      "url": "https://ribaocupacio.portalemp.com/ofertas.html?fo=2464",
-      "inRibaRoja": true,
-      "detail": {
-        "fields": [
-          {
-            "label": "Código",
-            "value": "2026/00165"
-          },
-          {
-            "label": "Nombre de la oferta",
-            "value": "Peón de albañilería"
-          },
-          {
-            "label": "Observaciones",
-            "value": "Se necesita peon con motivación para Septiembre. Sustitución por baja de paternidad, posibilidad de continuar después"
-          },
-          {
-            "label": "Sector CNAE",
-            "value": "CONSTRUCCIÓN"
-          },
-          {
-            "label": "Tipo de contrato",
-            "value": "INDIFERENTE"
-          },
-          {
-            "label": "Duración del contrato",
-            "value": "De 1 a 6 meses"
-          },
-          {
-            "label": "Número de puestos",
-            "value": "1"
-          },
-          {
-            "label": "Categoría profesional",
-            "value": "PEONES"
-          },
-          {
-            "label": "Lugar puesto de trabajo",
-            "value": "Valencia y pueblos de alrededores, Municipio: Riba-roja de Túria, Provincia: Valencia, CP: 46190"
-          },
-          {
-            "label": "Tipo de jornada laboral",
-            "value": "Completa"
-          },
-          {
-            "label": "Horario",
-            "value": "De Lunes a viernes de 8:00 a 17:00 horas y una hora de descanso."
-          },
-          {
-            "label": "Salario",
-            "value": "Según convenio"
-          },
-          {
-            "label": "Funciones",
-            "value": "Peon de albañilería"
-          },
-          {
-            "label": "Requiere vehículo propio",
-            "value": "Sí"
-          }
-        ],
-        "tipoContrato": "INDIFERENTE",
-        "duracion": "De 1 a 6 meses",
-        "numPuestos": "1",
-        "categoria": "PEONES",
-        "observaciones": "Se necesita peon con motivación para Septiembre. Sustitución por baja de paternidad, posibilidad de continuar después",
-        "municipio": "Riba-roja de Túria",
-        "provincia": "Valencia",
-        "cp": "46190",
-        "jornada": "Completa",
-        "horario": "De Lunes a viernes de 8:00 a 17:00 horas y una hora de descanso.",
-        "salario": "Según convenio",
-        "funciones": "Peon de albañilería",
-        "vehiculo": "Sí",
-        "ocupaciones": []
-      }
-    },
-    {
       "id": "2526",
       "fo": 2526,
       "codigo": "2026/00225",
@@ -2449,72 +3067,6 @@
         "horario": "De lunes a viernes, jornada diurna. Horario a concretar.",
         "salario": "Según convenio",
         "funciones": "- Instalación, mantenimiento preventivo y correctivo y reparación de instalaciones eléctricas y electrónicas, sistemas de protección contra incendios, CCTV, videovigilancia y sistemas de seguridad. - Diagnóstico y resolución de averías, realización de revisiones y puesta en marcha de instalaciones.",
-        "vehiculo": "Sí",
-        "ocupaciones": []
-      }
-    },
-    {
-      "id": "2524",
-      "fo": 2524,
-      "codigo": "2026/00223",
-      "titulo": "Técnico/a en seguridad",
-      "publishedAt": "2026-08-24",
-      "deadline": "2026-10-24",
-      "location": "Riba-roja de Túria",
-      "status": "Abierta",
-      "statusTone": "ok",
-      "url": "https://ribaocupacio.portalemp.com/ofertas.html?fo=2524",
-      "inRibaRoja": true,
-      "detail": {
-        "fields": [
-          {
-            "label": "Código",
-            "value": "2026/00223"
-          },
-          {
-            "label": "Nombre de la oferta",
-            "value": "Técnico/a en seguridad"
-          },
-          {
-            "label": "Observaciones",
-            "value": "Se requiere Técnico en seguridad junior, con conocimientos de electricidad y electrónica. Se valorará la experiencia, aunque no es un requisito indispensable. Salario según convenio."
-          },
-          {
-            "label": "Sector CNAE",
-            "value": "OTROS SERVICIOS"
-          },
-          {
-            "label": "Tipo de contrato",
-            "value": "INDIFERENTE"
-          },
-          {
-            "label": "Número de puestos",
-            "value": "2"
-          },
-          {
-            "label": "Lugar puesto de trabajo",
-            "value": "Municipio: Riba-roja de Túria, Provincia: Valencia, CP: 46190"
-          },
-          {
-            "label": "Salario",
-            "value": "Según convenio"
-          },
-          {
-            "label": "Requiere vehículo propio",
-            "value": "Sí"
-          },
-          {
-            "label": "Habilidades",
-            "value": "Conocimientos de electricidad y electrónica."
-          }
-        ],
-        "tipoContrato": "INDIFERENTE",
-        "numPuestos": "2",
-        "observaciones": "Se requiere Técnico en seguridad junior, con conocimientos de electricidad y electrónica. Se valorará la experiencia, aunque no es un requisito indispensable. Salario según convenio.",
-        "municipio": "Riba-roja de Túria",
-        "provincia": "Valencia",
-        "cp": "46190",
-        "salario": "Según convenio",
         "vehiculo": "Sí",
         "ocupaciones": []
       }
@@ -2759,179 +3311,6 @@
         "jornada": "Parcial Turnos: Turno mañana, Turno tarde",
         "salario": "Según convenio colectivo",
         "funciones": "- Limpieza y desinfección de aulas, pasillos y zonas comunes. - Limpieza de baños y aseos. - Barrido, fregado y aspirado de suelos. - Limpieza de mesas, sillas, puertas y mobiliario. - Vaciado de papeleras y retirada de residuos. - Limpieza de cristales y superficies cuando sea necesario. - Limpieza de escaleras, entradas y zonas de acceso. - Reposición de productos de higiene en los baños. - Mantener las instalaciones limpias, ordenadas y en buenas condiciones. - Utilizar correctamente los productos y herramientas de limpieza. - Cumplir las normas de seguridad y prevención de riesgos laborales. - Comunicar al responsable cualquier desperfecto o incidencia detectada.",
-        "ocupaciones": []
-      }
-    },
-    {
-      "id": "2521",
-      "fo": 2521,
-      "codigo": "2026/00220",
-      "titulo": "Limpiador/a (H/M/D) CON DISCAPACIDAD. Jornada PARCIAL (L'Eliana)",
-      "publishedAt": "2026-08-20",
-      "deadline": "2026-10-20",
-      "location": "el centro de trabajo está ubicado en el Centro Comercial de L'Eliana Eliana (l') (Valencia)",
-      "status": "Abierta",
-      "statusTone": "ok",
-      "url": "https://ribaocupacio.portalemp.com/ofertas.html?fo=2521",
-      "inRibaRoja": false,
-      "detail": {
-        "fields": [
-          {
-            "label": "Código",
-            "value": "2026/00220"
-          },
-          {
-            "label": "Nombre de la oferta",
-            "value": "Limpiador/a (H/M/D) CON DISCAPACIDAD. Jornada PARCIAL (L'Eliana)"
-          },
-          {
-            "label": "Observaciones",
-            "value": "Jornada parcial 18 horas/semana de LUNES a SÁBADO – Turno de TARDE de 19:00 22:00. Contrato estable: posibilidad de indefinido. Funciones: -Limpieza de oficinas. -Limpieza de zonas comunes, pasillos. -Gestión de residuos. -Manejo de productos y equipos de limpieza. -Reposición de suministros necesarios para la limpieza Requisitos: -Imprescindible medio de transporte para desplazarse al centro de trabajo (Centro Comercial El Osito). -Certificado de discapacidad / incapacidad igual o mayor 33%. -Incorporación inmediata. Estamos comprometidos con la Igualdad y la Diversidad, por ello animamos a postularse a todas las personas que crean ajustarse a los requisitos de nuestras ofertas"
-          },
-          {
-            "label": "Tipo de contrato",
-            "value": "CONTRATACION DISCAPACIDAD"
-          },
-          {
-            "label": "Duración del contrato",
-            "value": "Más de 6 meses"
-          },
-          {
-            "label": "Número de puestos",
-            "value": "1"
-          },
-          {
-            "label": "Lugar puesto de trabajo",
-            "value": "el centro de trabajo está ubicado en el Centro Comercial de L'Eliana, Municipio: Eliana (l'), Provincia: Valencia, CP: 46183"
-          },
-          {
-            "label": "Tipo de jornada laboral",
-            "value": "Parcial Turnos: Turno tarde"
-          },
-          {
-            "label": "Observaciones jornada",
-            "value": "18 horas semanales"
-          },
-          {
-            "label": "Horario",
-            "value": "de LUNES a SÁBADO de 19:00 a 22:00"
-          },
-          {
-            "label": "Salario",
-            "value": "525 € mensuales"
-          },
-          {
-            "label": "Funciones",
-            "value": "Funciones: -Limpieza de oficinas. -Limpieza de zonas comunes, pasillos. -Gestión de residuos. -Manejo de productos y equipos de limpieza. -Reposición de suministros necesarios para la limpieza"
-          },
-          {
-            "label": "Requiere vehículo propio",
-            "value": "Sí"
-          }
-        ],
-        "tipoContrato": "CONTRATACION DISCAPACIDAD",
-        "duracion": "Más de 6 meses",
-        "numPuestos": "1",
-        "observaciones": "Jornada parcial 18 horas/semana de LUNES a SÁBADO – Turno de TARDE de 19:00 22:00. Contrato estable: posibilidad de indefinido. Funciones: -Limpieza de oficinas. -Limpieza de zonas comunes, pasillos. -Gestión de residuos. -Manejo de productos y equipos de limpieza. -Reposición de suministros necesarios para la limpieza Requisitos: -Imprescindible medio de transporte para desplazarse al centro de trabajo (Centro Comercial El Osito). -Certificado de discapacidad / incapacidad igual o mayor 33%. -Incorporación inmediata. Estamos comprometidos con la Igualdad y la Diversidad, por ello animamos a postularse a todas las personas que crean ajustarse a los requisitos de nuestras ofertas",
-        "municipio": "Eliana (l')",
-        "provincia": "Valencia",
-        "cp": "46183",
-        "jornada": "Parcial Turnos: Turno tarde",
-        "horario": "de LUNES a SÁBADO de 19:00 a 22:00",
-        "salario": "525 € mensuales",
-        "funciones": "Funciones: -Limpieza de oficinas. -Limpieza de zonas comunes, pasillos. -Gestión de residuos. -Manejo de productos y equipos de limpieza. -Reposición de suministros necesarios para la limpieza",
-        "vehiculo": "Sí",
-        "ocupaciones": [
-          {
-            "nombre": "Personal de limpieza de oficinas, hoteles y otros establecimientos similares"
-          }
-        ]
-      }
-    },
-    {
-      "id": "2187",
-      "fo": 2187,
-      "codigo": "2025/00219",
-      "titulo": "Personal de Limpieza con discapacidad - Cheste",
-      "publishedAt": "2026-08-20",
-      "deadline": "2026-10-20",
-      "location": "Complejo Educativo Cheste Cheste (Valencia)",
-      "status": "Abierta",
-      "statusTone": "ok",
-      "url": "https://ribaocupacio.portalemp.com/ofertas.html?fo=2187",
-      "inRibaRoja": false,
-      "detail": {
-        "fields": [
-          {
-            "label": "Código",
-            "value": "2025/00219"
-          },
-          {
-            "label": "Nombre de la oferta",
-            "value": "Personal de Limpieza con discapacidad - Cheste"
-          },
-          {
-            "label": "Observaciones",
-            "value": "Jornada Completa - Cheste (Valencia)"
-          },
-          {
-            "label": "Sector CNAE",
-            "value": "OTROS SERVICIOS"
-          },
-          {
-            "label": "Tipo de contrato",
-            "value": "CONTRATO INDEFINIDO"
-          },
-          {
-            "label": "Duración del contrato",
-            "value": "Más de 6 meses"
-          },
-          {
-            "label": "Número de puestos",
-            "value": "15"
-          },
-          {
-            "label": "Categoría profesional",
-            "value": "PEONES"
-          },
-          {
-            "label": "Lugar puesto de trabajo",
-            "value": "Complejo Educativo Cheste, Municipio: Cheste, Provincia: Valencia, CP: 46380"
-          },
-          {
-            "label": "Tipo de jornada laboral",
-            "value": "Completa Turnos: Turno tarde"
-          },
-          {
-            "label": "Horario",
-            "value": "DE LUNES A VIERNES DE 14:00 A 22:00"
-          },
-          {
-            "label": "Salario",
-            "value": "1300 euros brutos"
-          },
-          {
-            "label": "Funciones",
-            "value": "Limpieza y desinfección centro educativo"
-          },
-          {
-            "label": "Requiere vehículo propio",
-            "value": "Sí"
-          }
-        ],
-        "tipoContrato": "CONTRATO INDEFINIDO",
-        "duracion": "Más de 6 meses",
-        "numPuestos": "15",
-        "categoria": "PEONES",
-        "observaciones": "Jornada Completa - Cheste (Valencia)",
-        "municipio": "Cheste",
-        "provincia": "Valencia",
-        "cp": "46380",
-        "jornada": "Completa Turnos: Turno tarde",
-        "horario": "DE LUNES A VIERNES DE 14:00 A 22:00",
-        "salario": "1300 euros brutos",
-        "funciones": "Limpieza y desinfección centro educativo",
-        "vehiculo": "Sí",
         "ocupaciones": []
       }
     },

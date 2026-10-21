@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-21T09:02:42.370Z",
+  "generatedAt": "2026-10-21T09:42:41.700Z",
   "windowDays": 14,
   "items": [
     {
@@ -19,9 +19,9 @@
     "titularesConsiderados": 22
   },
   "builtFrom": {
-    "plenos-agendas.json": "2486f22580c1",
+    "plenos-agendas.json": "da4faa9fb947",
     "press-claims-verified.json": "035904d802c7",
-    "press.json": "d4e17c49dab2",
+    "press.json": "6a87bdff5b93",
     "promises.json": "a4b8423e960f"
   }
 }
