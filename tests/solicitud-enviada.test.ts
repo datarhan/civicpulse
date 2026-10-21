@@ -4,6 +4,7 @@ import {
   CALENDARIOS,
   arranqueDelPlazo,
   enCastellano,
+  etiquetaDeEnvio,
   estadoDeEnvio,
   fraseDeCalendarios,
   fraseDeEnvio,
@@ -604,6 +605,17 @@ describe('una contestación que no resuelve deja el reloj corriendo', () => {
     // consta contestación alguna.
     const sinNada: EnvioSolicitud = { ...conIncidencia, incidencias: undefined }
     expect(fraseDeEnvio(sinNada, '2026-10-14')).toMatch(/y no han contestado/)
+  })
+
+  // La pastilla, igual que la frase. Decía «sin respuesta» encima de la fila de
+  // Hacienda en el coste efectivo, cuyo pliegue cuenta lo que comunicaron el 23
+  // y el 30 de septiembre: la revisión lectora lo señaló el 20-10-2026.
+  it('la pastilla de una vencida con incidencia dice «sin resolver», no «sin respuesta»', () => {
+    expect(etiquetaDeEnvio(conIncidencia, '2026-10-14')).toBe('sin resolver')
+    const sinNada: EnvioSolicitud = { ...conIncidencia, incidencias: undefined }
+    expect(etiquetaDeEnvio(sinNada, '2026-10-14')).toBe('sin respuesta')
+    // Los demás estados no cambian de rótulo por tener incidencias.
+    expect(etiquetaDeEnvio(conIncidencia, '2026-09-30')).toBe('en plazo')
   })
 })
 

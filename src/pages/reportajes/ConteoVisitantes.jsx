@@ -7,11 +7,11 @@ import { CorrectionNote } from '../../components/reportajes/CorrectionNote'
 import { SecHead } from '../../components/reportajes/Pieza'
 import {
   estadoDeEnvio,
+  etiquetaDeEnvio,
   fraseDeCalendarios,
   fraseDeEnvio,
   resumirEnvios,
   rotuloDelDetalle,
-  ESTADO_ENVIO_ETIQUETA,
   ESTADO_ENVIO_TONO,
 } from '../../scraper/solicitud-enviada'
 
@@ -394,7 +394,7 @@ export function SolicitudesEnviadas({ bloque }) {
           >
             <div style={{ marginBottom: 6 }}>
               <Pill tone={ESTADO_ENVIO_TONO[estado]} size="xs">
-                {ESTADO_ENVIO_ETIQUETA[estado]}
+                {etiquetaDeEnvio(e, hoy)}
               </Pill>
             </div>
             <div style={frase}>{fraseDeEnvio(e, hoy)}</div>
