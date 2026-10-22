@@ -124,13 +124,14 @@ describe('fusionarBoletines', () => {
     const viejo = { id: 1, idRed: 595, tipo: 'control', fecha: '2020-01-01' }
     const repetido = { id: 2, idRed: 595, tipo: 'control', fecha: '2021-01-01' }
     const nuevo = { id: 3, idRed: 595, tipo: 'control', fecha: '2026-01-01' }
-    const r = fusionarBoletines(
-      [viejo, repetido] as never[],
-      [{ ...repetido, calificacionTexto: 'otra' }, nuevo] as never[],
+    type B = { id: number; fecha: string; calificacionTexto?: string }
+    const r = fusionarBoletines<B>(
+      [viejo, repetido],
+      [{ ...repetido, calificacionTexto: 'otra' }, nuevo],
     )
     expect(r.map((b) => b.id)).toEqual([3, 2, 1])
     // Lo recién leído manda sobre lo archivado: si el ministerio corrige, se ve.
-    expect((r[1] as { calificacionTexto?: string }).calificacionTexto).toBe('otra')
+    expect(r[1].calificacionTexto).toBe('otra')
   })
 })
 
