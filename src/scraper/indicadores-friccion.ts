@@ -25,6 +25,7 @@ import { resolverCoste, resolverUnidad, type Magnitud } from './indicadores'
 import type { CesteRow } from './coste-efectivo'
 import { SERVICIOS } from './indicador-registry'
 import { medirDeclaracionCongelada, MIN_ENTREGAS_CONGELADA } from './declaracion-congelada'
+import { capituloDominante, type CapituloEjecucion } from './presupuesto-lectura'
 
 /**
  * Estados en los que un contrato ya está adjudicado.
@@ -190,6 +191,7 @@ export interface FriccionInput {
       fechaListado?: string
       gastos?: {
         total?: { inicial?: number; modificaciones?: number; actual?: number; ejecutado?: number }
+        chapters?: CapituloEjecucion[]
       }
     }
     source?: string
@@ -350,7 +352,12 @@ export function construirIndicadoresMunicipales(input: FriccionInput): Indicador
         // millones, y llamar a una «lo aprobado» y a la otra «lo definitivo»
         // sería inventarse la explicación. Una página no puede sostener las
         // dos frases.
-        'Es una cifra presupuestaria de la publicación del ministerio, no gasto ejecutado. No es el punto de partida del porcentaje de ejecución que aparece más abajo: aquélla parte del crédito del listado municipal, las dos dicen ser el mismo ejercicio y la diferencia entre ambas sigue sin explicación.',
+        // Derivada: con la hoja del 2T las dos cifras diferían en casi cuatro
+        // millones; con la del cierre, el crédito inicial del listado es el de
+        // CONPREL al céntimo, y decir «sigue sin explicación» era falso.
+        coincideConListado(gastoTotal, anio, input.budgetExecution?.latest)
+          ? 'Es una cifra presupuestaria de la publicación del ministerio, no gasto ejecutado: el crédito inicial, el mismo que da el listado municipal. El porcentaje de ejecución que aparece más abajo se mide sobre el crédito DEFINITIVO, que le suma las modificaciones del año.'
+          : 'Es una cifra presupuestaria de la publicación del ministerio, no gasto ejecutado. No es el punto de partida del porcentaje de ejecución que aparece más abajo: aquélla parte del crédito del listado municipal, las dos dicen ser el mismo ejercicio y la diferencia entre ambas sigue sin explicación.',
         'Sale de la publicación del ministerio, la misma fila cuyos ingresos y gastos no cuadran entre sí; /presupuesto lo explica.',
       ],
       citas: [
@@ -534,8 +541,7 @@ export function construirIndicadoresMunicipales(input: FriccionInput): Indicador
     periodo: eje?.fechaListado ? `${anio} (a ${eje.fechaListado})` : anio,
     caveats: [
       '«Ejecutado» son obligaciones reconocidas netas, la medida estándar de ejecución presupuestaria; no son pagos hechos.',
-      'El denominador es el crédito DEFINITIVO, que incluye las modificaciones incorporadas a lo largo del ejercicio —algunas a final de año, cuando ya no da tiempo a gastarlas—. Buena parte de un porcentaje bajo es crédito inflado, no sólo gasto que no se hizo: el capítulo de inversiones reales partió de cero crédito inicial, incorporó 22,06 M€ por modificación y ejecutó el 4,7 %.',
-      'No cuadra con la cifra de /presupuesto: aquélla viene de la publicación del ministerio y da 41,58 M€ de CRÉDITO de gastos para 2025, y el propio listado municipal parte de un crédito inicial de 37,60 M€. Las dos dicen ser el mismo ejercicio y difieren en casi cuatro millones; no sabemos cuál de las dos lo explica, y decir que una es «lo aprobado» y la otra «lo definitivo» sería inventarse la reconciliación.',
+      ...caveatsDeEjecucion(eje, bud, inicial),
     ],
     citas: [citaEje],
   })
@@ -693,4 +699,69 @@ function medirDenominadores(
       },
     ],
   }
+}
+
+/** «22,06 M€» a partir de un millón; «905.517,35 €» por debajo. */
+function euros(n: number): string {
+  if (Math.abs(n) >= 1e6) return `${(n / 1e6).toFixed(2).replace('.', ',')} M€`
+  const [ent, dec] = n.toFixed(2).split('.')
+  return `${ent.replace(/\B(?=(\d{3})+(?!\d))/g, '.')},${dec} €`
+}
+
+/**
+ * Las dos salvedades de la ejecución que dependen de cifras, DERIVADAS de ellas.
+ * Estaban escritas a mano con las de la hoja del 2T de 2025 («inversiones
+ * reales partió de cero», «37,60 M€ frente a 41,58 M€») y siguieron publicadas
+ * cuando el snapshot pasó a la hoja del cierre, donde ninguna de las dos era
+ * verdad: la frase tiene que moverse con el dato.
+ */
+function caveatsDeEjecucion(
+  eje: FriccionInput['budgetExecution']['latest'],
+  bud: FriccionInput['budget'],
+  inicial: number,
+): string[] {
+  const out: string[] = []
+  const dom = capituloDominante(eje?.gastos?.chapters, eje?.gastos?.total)
+  const base =
+    'El denominador es el crédito DEFINITIVO, que incluye las modificaciones incorporadas a lo ' +
+    'largo del ejercicio —algunas a final de año, cuando ya no da tiempo a gastarlas—.'
+  if (dom) {
+    const ini = dom.definitivo - dom.modificaciones
+    out.push(
+      `${base} El capítulo que más creció, ${dom.rotulo.toLowerCase()}, ` +
+        (ini > 0
+          ? `partió de ${euros(ini)} de crédito inicial`
+          : 'partió de cero crédito inicial') +
+        `, incorporó ${euros(dom.modificaciones)} por modificación y ejecutó el ` +
+        `${dom.pctEjecutado.toFixed(1).replace('.', ',')} %.`,
+    )
+  } else out.push(base)
+
+  const conprel = num(bud?.snapshot?.totalExpense)
+  const mismoAnio = bud?.snapshot?.year != null && bud.snapshot.year === eje?.year
+  if (mismoAnio && conprel > 0 && inicial > 0) {
+    out.push(
+      Math.abs(conprel - inicial) < 1000
+        ? `Coincide con la cifra de /presupuesto: el crédito inicial del listado municipal, ` +
+            `${euros(inicial)}, es el mismo que publica el ministerio (CONPREL) para ${eje!.year}.`
+        : `No cuadra con la cifra de /presupuesto: aquélla viene de la publicación del ministerio ` +
+            `y da ${euros(conprel)} de CRÉDITO de gastos para ${eje!.year}, y el propio listado ` +
+            `municipal parte de un crédito inicial de ${euros(inicial)}. No sabemos cuál de las dos ` +
+            `lo explica, y decir que una es «lo aprobado» y la otra «lo definitivo» sería ` +
+            `inventarse la reconciliación.`,
+    )
+  }
+  return out
+}
+
+/** El total de CONPREL es el crédito inicial del listado municipal del mismo año (±1.000 €). */
+function coincideConListado(
+  conprel: number,
+  anio: number | string | undefined,
+  eje: FriccionInput['budgetExecution']['latest'],
+): boolean {
+  const inicial = num(eje?.gastos?.total?.inicial)
+  return (
+    conprel > 0 && inicial > 0 && Number(anio) === eje?.year && Math.abs(conprel - inicial) < 1000
+  )
 }

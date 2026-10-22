@@ -1,6 +1,14 @@
 /**
  * Contraste entre las dos cifras de presupuesto que publica este sitio.
  *
+ * CORRECCIÓN 2026-10-22: el desacuerdo de gastos descrito abajo era un
+ * artefacto. El snapshot del listado municipal tomaba la hoja de gastos del 2T
+ * (impresa el 30-06-2025, 37,60 M€ iniciales) como cierre; la del 4T da
+ * 41.578.252,26 €, los de CONPREL al céntimo y capítulo a capítulo. Queda el
+ * segundo hecho, el de los ingresos: 1,94 M€ por encima de los gastos, que
+ * también trae la hoja del propio ayuntamiento. El módulo sigue midiendo, y la
+ * página sólo pinta el desacuerdo de gastos si existe.
+ *
  * `/presupuesto` enseña el presupuesto de gastos de 2025 según CONPREL —lo que
  * el ministerio publica— y `/eficiencia` la ejecución según el listado que
  * cuelga el propio ayuntamiento. Las dos dicen ser el mismo ejercicio y no
