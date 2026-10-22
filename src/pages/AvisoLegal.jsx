@@ -70,12 +70,14 @@ export default function AvisoLegal() {
           OpenStreetMap, CC0 Wikidata, reutilización abierta PLACSP/BDNS/CONPREL, REST pública de
           prensa, la API JSON del INE —índice de precios con el que se deflactan las series de
           coste, y padrón municipal—, el Portal Estadístico de Criminalidad del Ministerio del
-          Interior (Ley 37/2007; «Origen de los datos: Portal Estadístico de Criminalidad»), y la
-          capa 0503_Residuos y la cartografía de incendios forestales del Institut Cartogràfic
-          Valencià / Generalitat Valenciana (CC BY 4.0) bajo sus condiciones de reutilización, con
-          la atribución que exigen). Cada dato individual enlaza a la fuente de la que sale: un
-          registro o documento oficial o, cuando sale de la prensa —en el tracker de promesas y en
-          el laboratorio de prensa—, la noticia que lo recoge. El listado completo de feeds está en{' '}
+          Interior (Ley 37/2007; «Origen de los datos: Portal Estadístico de Criminalidad»), el
+          Sistema de Información Nacional de Aguas de Consumo (SINAC) del Ministerio de Sanidad
+          —citado con la fecha de cada boletín, como pide su aviso legal—, y la capa 0503_Residuos y
+          la cartografía de incendios forestales del Institut Cartogràfic Valencià / Generalitat
+          Valenciana (CC BY 4.0) bajo sus condiciones de reutilización, con la atribución que
+          exigen). Cada dato individual enlaza a la fuente de la que sale: un registro o documento
+          oficial o, cuando sale de la prensa —en el tracker de promesas y en el laboratorio de
+          prensa—, la noticia que lo recoge. El listado completo de feeds está en{' '}
           <a href="/datos" style={{ color: 'var(--civic)' }}>
             /datos
           </a>

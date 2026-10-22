@@ -61,8 +61,17 @@ function FiguraIndice({
   const valores = series.flatMap((s) => s.puntos.map((p) => p.indice)).concat(100)
   const x0 = Math.min(...anios)
   const x1 = Math.max(...anios)
-  const yMin = Math.min(...valores)
-  const yMax = Math.max(...valores)
+  // Un tramo mínimo de 20 puntos de índice. Sin él, la escala se ajustaba al
+  // mínimo y al máximo de la serie y un nitrato que va de 42 a 46 mg/L (±5 %)
+  // llenaba la figura de arriba abajo: la forma decía «se dispara» y la cifra
+  // de al lado, «−2 %». Lo que se mueve menos que eso se ve casi plano, que es
+  // lo que es.
+  const TRAMO_MIN = 20
+  const yLo = Math.min(...valores)
+  const yHi = Math.max(...valores)
+  const holgura = Math.max(0, TRAMO_MIN - (yHi - yLo)) / 2
+  const yMin = yLo - holgura
+  const yMax = yHi + holgura
   const pad = (yMax - yMin) * 0.12 || 10
   const W = 300
   const H = 120
@@ -247,7 +256,15 @@ function Consigue({ resultado, t, mandatoDesde }) {
           ? rellena(t('eficiencia.ccr.resultado.pares'), { p: r.percentil, n: r.nPares })
           : ''}
       </p>
-      {r.nuestro && <p className="cp-ccr-nota">{t('eficiencia.ccr.resultado.sinSerieGrupo')}</p>}
+      {/* «Del grupo sólo tenemos el último año» sólo es verdad si HAY grupo: el
+          agua no tiene comparables, y decirle lo contrario al lector era falso. */}
+      {r.nuestro && (
+        <p className="cp-ccr-nota">
+          {r.nPares != null
+            ? t('eficiencia.ccr.resultado.sinSerieGrupo')
+            : t('eficiencia.ccr.resultado.sinPares')}
+        </p>
+      )}
       {/* La frase no-causal, en el cuerpo: sin ella, un coste que sube al lado
           de un resultado que sube se lee como causa. */}
       {r.comoSeLee && <p className="cp-ccr-salvedad">{r.comoSeLee}</p>}

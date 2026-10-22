@@ -35,6 +35,7 @@ import { usePmp } from '../hooks/usePmp'
 import { useDeudaViva } from '../hooks/useDeudaViva'
 import { useIpc } from '../hooks/useIpc'
 import { useCriminalidad } from '../hooks/useCriminalidad'
+import { useAgua } from '../hooks/useAgua'
 import { fmtDateShort, fmtDateLong } from '../lib/formatters'
 import { breakdownNeedsCaveat } from '../scraper/pleno-votes'
 
@@ -125,6 +126,7 @@ function DatasetsCatalog() {
   const deudaViva = useDeudaViva().data
   const ipc = useIpc().data
   const crimen = useCriminalidad().data
+  const agua = useAgua().data
 
   const items = [
     {
@@ -380,6 +382,16 @@ function DatasetsCatalog() {
       updated: formatDate(crimen?.generatedAt),
       source: 'Portal Estadístico de Criminalidad · refresco manual',
       path: '/data/criminalidad.json',
+      fmt: ['json'],
+    },
+    {
+      name: 'Calidad del agua de consumo (resultado)',
+      rows: agua?.stats?.boletines
+        ? `${agua.stats.redes} redes · ${agua.stats.boletines} boletines desde ${agua.stats.archivoDesde?.slice(0, 4) ?? '—'}`
+        : '—',
+      updated: formatDate(agua?.generatedAt),
+      source: 'SINAC · Ministerio de Sanidad · archivo propio',
+      path: '/data/agua.json',
       fmt: ['json'],
     },
     {

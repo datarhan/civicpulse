@@ -53,6 +53,7 @@ SCRAPERS=(
   scrape:sindicatura
   scrape:sindic-expedientes
   scrape:consell-cv
+  scrape:agua
   scrape:spain-ticker
   scrape:promise-suggestions
   extract:all-pleno-votes
@@ -106,6 +107,13 @@ SCRAPERS=(
 #     scrape-ci-blocked.sh; el día que se vea que CI sí llega, se saca de aquí.
 #     El adaptador ya se niega a publicar un recorte o un cero, así que un
 #     fallo blando sólo cuesta frescura — y esa la vigila check:cadence.
+#   - scrape:agua — SINAC (Ministerio de Sanidad), a session-based form. Whether
+#     a GitHub runner reaches sinac.sanidad.gob.es is UNMEASURED; it goes in
+#     soft for the same asymmetric reason as sindic-expedientes, with its
+#     guaranteed refresh in scrape-ci-blocked.sh. The adapter refuses to write
+#     on any failure, so a soft failure only costs freshness — and the archive
+#     it keeps is why that matters: SINAC shows only the latest bulletins, so a
+#     long gap loses the ones that rotate off the page. check:cadence watches it.
 #   - scrape:consell-cv — two near-static yearly GVA tables. The adapter now
 #     refuses to write a partial snapshot when a year is unreachable (that
 #     would delete the missing year's resoluciones), so an upstream blip
@@ -140,6 +148,7 @@ BEST_EFFORT=(
   scrape:ispa
   scrape:sindicatura
   scrape:sindic-expedientes
+  scrape:agua
 )
 
 is_best_effort() {

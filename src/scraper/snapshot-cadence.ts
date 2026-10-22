@@ -99,6 +99,11 @@ export const DEFAULT_EXPECTATIONS: DatasetExpectation[] = [
     // Las actas de la pestaña «Documentos» de regmeet: mismo bloqueo que el orden
     // del día, mismo único refresco (`scrape-ci-blocked.sh`).
     'pleno-actas.json',
+    // SINAC: sin medir desde CI, como `sindic-expedientes`. Ocho días bastan
+    // aunque el fichero sea un archivo: los diez últimos de control de la red
+    // principal cubren más de un año, así que una semana perdida no pierde
+    // ningún boletín — un mes sí podría.
+    'agua.json',
   ].map((file) => ({ file, cls: 'ci-blocked' as const, maxAgeDays: 8 })),
   // Clase `local-llm`: lo que escribe `press-lab-pipeline.sh`, un agente de
   // launchd que corre los LUNES (a diario hasta el 2026-09-23; el cambio fue

@@ -347,6 +347,32 @@ overwrites it. Change the bot's SQLite instead.
   dropped 2020–2022); T4 = full year; each file also carries the prior year.
   Cadence `manual` 420d.
 
+### Calidad del agua de consumo (outcome beside the water-supply card)
+
+- **Pipeline** — `sinac.ts` → `scrape:agua` → `agua.json`; `compute:indicadores`
+  embeds `resultadoAgua()` as the `resultados` item
+  `agua-nitrato-red-principal` (nitrate, annual mean of the main network's
+  complete analyses, closed years only).
+- **Source** — SINAC, Ministerio de Sanidad: the citizen query
+  (`sinac.sanidad.gob.es/CiudadanoWeb`), a session form answered by plain POSTs
+  (municipality → networks → network ficha → bulletin detail). No bulk
+  download. Reuse per the ministry's legal notice: cite the source and the date
+  of last update; both travel in the snapshot.
+- **Archive** — the page shows only the latest bulletins per section (10
+  control, 10 complete, 5 radioactivity), so `agua.json` is an ARCHIVE:
+  `fusionarBoletines` keeps what rotates off the page, newest read wins.
+  Complete-analysis details are fetched once per bulletin id (`.cache/sinac/`).
+- **Surfaces** — `/eficiencia` (water-supply card result block, «Cuesta ·
+  Consigue»), `/datos`
+- **Gotchas** — the header says iso-8859-1, the body is UTF-8; section legends
+  changed wording within one day («Análisis de completo» → «Análisis completo»),
+  so an unrecognised «Análisis …» section fails the run; a parameter with no
+  figure is `null`, never 0; the main network is chosen by population served,
+  not by id. The two «no apta» bulletins in the archive are in small networks
+  with their own private operator, and the caveat says so. CI reach unmeasured:
+  soft in the nightly, refreshed by `scrape-ci-blocked.sh`, cadence
+  `ci-blocked` 8d.
+
 ### Recogida selectiva 2022 (single-edition outcome, waste card)
 
 - **Pipeline** — `reciclaje.ts` → `scrape:reciclaje` → `reciclaje.json`;

@@ -9,8 +9,11 @@ import {
   parseBoletin,
   parseDetalleRed,
   parseRedes,
+  resultadoAgua,
   serieParametro,
+  tipoDeLeyenda,
 } from '../src/scraper/sinac'
+import { validarResultados } from '../src/scraper/resultados'
 
 /**
  * Tres páginas REALES de la consulta ciudadana de SINAC (Ministerio de Sanidad),
@@ -52,6 +55,11 @@ describe('parseDetalleRed', () => {
     expect(rr?.poblacion).toBe(14913)
     expect(red.suministro.find((s) => s.localidad === 'MASÍA TRAVER')?.poblacion).toBe(2280)
     expect(red.dotacionLHabDia).toBeCloseTo(314.38, 5)
+  })
+
+  it('de dónde viene el agua y qué tratamiento recibe, tal cual lo dice la ficha', () => {
+    expect(red.origen).toEqual(['Pozo Entubado (1)'])
+    expect(red.procesos).toEqual(['Desinfección - Químicos'])
   })
 
   it('los boletines de cada sección, con su tipo y su fecha ISO', () => {
@@ -107,6 +115,25 @@ describe('parseBoletin', () => {
   })
 })
 
+describe('tipoDeLeyenda', () => {
+  it('reconoce la sección con y sin «de», con y sin tilde', () => {
+    // La misma ficha, el mismo día (22-10-2026): por la mañana y por la tarde.
+    expect(tipoDeLeyenda('Análisis de completo (10 últimos)')).toBe('completo')
+    expect(tipoDeLeyenda('Análisis completo (10 últimos)')).toBe('completo')
+    expect(tipoDeLeyenda('Analisis de control (10 ultimos)')).toBe('control')
+    expect(tipoDeLeyenda('Análisis de Vigilancia Sanitaria ( último)')).toBe('vigilancia')
+    expect(tipoDeLeyenda('Origen del Agua')).toBeNull()
+  })
+
+  it('una sección «Análisis …» que no sabemos leer se dice, no se pierde', () => {
+    const html = RED.replace('Análisis de radiactividad', 'Análisis de microplásticos')
+    expect(parseDetalleRed(html).seccionesSinReconocer).toEqual([
+      'Análisis de microplásticos (5 últimos)',
+    ])
+    expect(parseDetalleRed(RED).seccionesSinReconocer).toEqual([])
+  })
+})
+
 describe('calificacion', () => {
   it('traduce sólo las frases conocidas, y nada por parecido', () => {
     expect(calificacion('AGUA APTA PARA EL CONSUMO')).toBe('apta')
@@ -159,5 +186,61 @@ describe('serieParametro', () => {
       { anio: 2024, valor: 42, n: 2 },
       { anio: 2025, valor: 38, n: 1 },
     ])
+  })
+})
+
+describe('resultadoAgua', () => {
+  const AGUA = JSON.parse(readFileSync(join(__dirname, '../public/data/agua.json'), 'utf8'))
+  const IND = JSON.parse(readFileSync(join(__dirname, '../public/data/indicadores.json'), 'utf8'))
+  const r = resultadoAgua(AGUA, 2026)!
+
+  it('mide algo: hay redes, boletines y una serie con años', () => {
+    expect(AGUA.redes.length).toBeGreaterThan(0)
+    expect(r.serie.length).toBeGreaterThan(1)
+  })
+
+  it('pasa el validador de resultados y acompaña a una tarjeta que existe', () => {
+    expect(() => validarResultados({ items: [r], ausencias: [] })).not.toThrow()
+    expect(IND.indicadores.some((i: { id: string }) => i.id === r.servicioRelacionado)).toBe(true)
+    expect(r.pares).toBeNull()
+  })
+
+  it('el año en curso no entra en la serie; su última muestra va en las salvedades', () => {
+    expect(r.serie.every((p) => p.anio < 2026)).toBe(true)
+    expect(r.periodo).toBe(String(r.serie.at(-1)!.anio))
+    expect(resultadoAgua(AGUA, 1999)).toBeNull()
+  })
+
+  it('la red principal es la de más población, y la frase dice cuántos abastece', () => {
+    const mayor = [...AGUA.redes].sort(
+      (a: { poblacion: number }, b: { poblacion: number }) => b.poblacion - a.poblacion,
+    )[0]
+    expect(r.caveats[0]).toContain(mayor.nombre)
+    for (const t of [r.comoSeLee, ...r.caveats]) {
+      expect(t).not.toMatch(/undefined|NaN|null/)
+    }
+  })
+
+  it('un «no apta» se cuenta con su gestor, y no se dice «ninguno» de quien lo tuvo', () => {
+    const principal = [...AGUA.redes].sort(
+      (a: { poblacion: number }, b: { poblacion: number }) => b.poblacion - a.poblacion,
+    )[0]
+    const conFallo = {
+      ...AGUA,
+      boletines: [
+        {
+          id: 1,
+          idRed: principal.idRed,
+          tipo: 'control',
+          fecha: '2025-05-05',
+          calificacion: 'no-apta',
+          calificacionTexto: 'AGUA NO APTA PARA EL CONSUMO',
+        },
+        ...AGUA.boletines,
+      ],
+    }
+    const t = resultadoAgua(conFallo, 2026)!.caveats.join(' ')
+    expect(t).toContain(`gestor ${principal.gestor}`)
+    expect(t).not.toContain(`Ninguno en las`)
   })
 })

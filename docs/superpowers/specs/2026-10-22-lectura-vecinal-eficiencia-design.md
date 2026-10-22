@@ -230,7 +230,8 @@ in its own return.
 
 **Build order:**
 
-1. SINAC water quality (verified, per barrio network).
+1. SINAC water quality — **built** (`scrape:agua` → `agua.json`, result
+   `agua-nitrato-red-principal` on the water-supply card).
 2. Library statistics (verified): active borrowers and visits per inhabitant.
 3. DGT microdata as a **reporting** indicator for the police, with the
    question registered first.

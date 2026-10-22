@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-21T09:42:52.263Z",
+  "generatedAt": "2026-10-22T11:48:23.832Z",
   "conjunto": "cv-15k-40k",
   "anioBase": 2024,
   "source": {
@@ -8950,6 +8950,53 @@
           "nombre": "Institut Cartogràfic Valencià / GVA — capa 0503_Residuos (WFS)",
           "url": "https://terramapas.icv.gva.es/0503_Residuos",
           "atribucion": "Institut Cartogràfic Valencià · Generalitat Valenciana · CC BY 4.0"
+        }
+      },
+      {
+        "id": "agua-nitrato-red-principal",
+        "servicioRelacionado": "a161-coste-unitario",
+        "etiqueta": "Nitrato en el agua de la red principal (límite legal: 50 mg/L)",
+        "valor": 42,
+        "unidad": "mg/L",
+        "periodo": "2025",
+        "serie": [
+          {
+            "anio": 2020,
+            "valor": 43
+          },
+          {
+            "anio": 2021,
+            "valor": 43
+          },
+          {
+            "anio": 2022,
+            "valor": 46
+          },
+          {
+            "anio": 2023,
+            "valor": 44
+          },
+          {
+            "anio": 2024,
+            "valor": 44
+          },
+          {
+            "anio": 2025,
+            "valor": 42
+          }
+        ],
+        "pares": null,
+        "comoSeLee": "El nitrato llega al agua desde el acuífero —abono agrícola filtrado al subsuelo—, no desde la red: según su ficha en SINAC, la principal toma el agua de pozo entubado y la trata con desinfección química. Mide el agua que sale del grifo, no lo bien que se gestiona la red ni lo que cuesta: se publica junto al coste, nunca dividido por él.",
+        "caveats": [
+          "La serie es la de la red RIBARROJA 1: RED CASCO URBANO, que abastece a 21.242 de las 23.183 personas censadas en las 6 redes del término. Cada año es la media de sus análisis completos (análisis por año — 2020: 1; 2021: 2; 2022: 1; 2023: 1; 2024: 2; 2025: 2).",
+          "El último análisis completo, del 17-06-2026, dio 38 mg/L; 2026 no entra en la serie hasta que se cierre.",
+          "De los 73 análisis calificados en las 6 redes que la página deja ver (desde 2008), 2 salieron «no apta»: 19-06-2024, red con gestor SAFIBEL, SL (nitrato 71 mg/L); 22-06-2022, red con gestor TRADICION EDUCATIVA VALENCIANA SL (nitrato 54 mg/L). El nitrato pasaba de su límite legal (50 mg/L); el boletín no dice qué parámetro decidió la calificación. Ninguno en las 4 redes de HIDRAQUA.",
+          "SINAC sólo enseña los últimos boletines de cada red; el archivo crece desde el 22-10-2026, y lo anterior es lo que la página aún mostraba ese día."
+        ],
+        "fuente": {
+          "nombre": "SINAC · Sistema de Información Nacional de Aguas de Consumo (Ministerio de Sanidad)",
+          "url": "https://sinac.sanidad.gob.es/CiudadanoWeb/ciudadano/informacionAbastecimientoActionEntrada.do",
+          "atribucion": "Fuente: Ministerio de Sanidad, SINAC. Consultado el 2026-10-22; cada boletín lleva su fecha de toma."
         }
       }
     ],

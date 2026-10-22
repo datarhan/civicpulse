@@ -12,6 +12,7 @@ import { dirname, join } from 'node:path'
 import { fileURLToPath } from 'node:url'
 import { construirIndicadores, situacion } from '../src/scraper/indicadores'
 import { validarResultados } from '../src/scraper/resultados'
+import { resultadoAgua } from '../src/scraper/sinac'
 import { construirIndicadoresMunicipales } from '../src/scraper/indicadores-friccion'
 import { SERVICIOS } from '../src/scraper/indicador-registry'
 import { startRun, NO_LLM_STATS } from '../src/scraper/run-manifest'
@@ -154,6 +155,13 @@ async function main() {
     })
   } catch (err) {
     console.warn(`[indicadores] sin resultado de reciclaje — ${(err as Error).message ?? err}`)
+  }
+  try {
+    const agua = resultadoAgua(await leer('public/data/agua.json'), new Date().getUTCFullYear())
+    if (agua) resultados.items.push(agua)
+    else console.warn('[indicadores] sin resultado de agua — agua.json no trae ningún año cerrado')
+  } catch (err) {
+    console.warn(`[indicadores] sin resultado de agua — ${(err as Error).message ?? err}`)
   }
   resultados.ausencias.push(
     {

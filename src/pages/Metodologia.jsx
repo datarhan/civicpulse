@@ -3267,6 +3267,18 @@ export default function Metodologia() {
           un panel sin descarga reconstruible.
         </p>
         <p style={{ margin: '10px 0 0', color: 'var(--ink70)' }}>
+          <strong>El agua se archiva porque la fuente olvida.</strong> El resultado del
+          abastecimiento sale de SINAC, el sistema del Ministerio de Sanidad al que el gestor
+          notifica cada análisis del agua de consumo. Su consulta pública sólo enseña los últimos
+          boletines de cada red, así que guardamos cada uno la primera vez que aparece: el archivo
+          crece y lo que la página deja de mostrar no desaparece. Publicamos el nitrato de la red
+          que abastece a casi todo el término —un parámetro con límite legal, 50 mg/L, que no
+          ponemos nosotros—, como media de sus análisis completos y sólo de años cerrados. Las
+          calificaciones «no apta» de cualquier red del término se dicen junto a la cifra, con el
+          gestor de esa red: no todas las redes son del mismo gestor, y atribuir a uno la
+          calificación de otro sería falso.
+        </p>
+        <p style={{ margin: '10px 0 0', color: 'var(--ink70)' }}>
           <strong>El plazo de pago es la única cifra del panel con umbral legal.</strong> El periodo
           medio de pago a proveedores lo calcula el Ministerio de Hacienda con la metodología del RD
           1040/2017 para miles de ayuntamientos a la vez, y la Ley 3/2004 fija los 30 días como

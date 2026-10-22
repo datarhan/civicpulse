@@ -31,6 +31,7 @@
  * Módulo puro: sin red, sin ficheros.
  */
 import { load, type CheerioAPI } from 'cheerio'
+import { stripDiacritics } from './normalize'
 
 /** Las frases de calificación que sabemos leer. Cualquier otra es `null`. */
 export const CALIFICACIONES = ['apta', 'no-apta', 'gestionada-consejeria'] as const
@@ -75,9 +76,15 @@ export interface DetalleRed {
   suministro: { localidad: string; poblacion: number | null; pct: number | null }[]
   dotacionLHabDia: number | null
   precioEurM3: number | null
+  /** «Origen del Agua», tal cual: «Pozo Entubado (1)». */
+  origen: string[]
+  /** Los procesos unitarios del tratamiento: «Desinfección - Químicos». */
+  procesos: string[]
   /** Sin `idRed`: lo pone quien sabe qué red pidió. */
   boletines: Omit<Boletin, 'idRed'>[]
   parametros: Parametro[]
+  /** Leyendas «Análisis …» que no son ninguna de `TIPOS_ANALISIS`. */
+  seccionesSinReconocer: string[]
 }
 
 export interface DetalleBoletin {
@@ -131,9 +138,19 @@ export function calificacion(texto: string): Calificacion | null {
   return null
 }
 
-function tipoDeLeyenda(legend: string): TipoAnalisis | null {
-  const l = limpio(legend).toLowerCase()
-  if (!l.startsWith('análisis de')) return null
+/** Leyenda sin tildes ni mayúsculas: la página las cambia sin avisar. */
+const leyenda = (s: string) => stripDiacritics(limpio(s)).toLowerCase()
+
+/**
+ * La sección de boletines por su leyenda. El 22-10-2026 la misma ficha decía
+ * «Análisis de completo» por la mañana y «Análisis completo» por la tarde; un
+ * `startsWith('análisis de')` perdió la sección entera sin decir nada. Por eso
+ * se reconoce por la palabra, y lo que empieza por «análisis» y no se reconoce
+ * se devuelve aparte (`seccionesSinReconocer`) para que el CLI falle.
+ */
+export function tipoDeLeyenda(legend: string): TipoAnalisis | null {
+  const l = leyenda(legend)
+  if (!l.startsWith('analisis')) return null
   if (l.includes('control')) return 'control'
   if (l.includes('completo')) return 'completo'
   if (l.includes('radiactividad')) return 'radiactividad'
@@ -201,10 +218,36 @@ export function parseDetalleRed(html: string): DetalleRed {
       precio = numeroEs($(td).next('td').text())
   })
 
-  const boletines: DetalleRed['boletines'] = []
+  const origen: string[] = []
+  const procesos: string[] = []
   $('fieldset.bloqueFieldsetU').each((_, fs) => {
-    const tipo = tipoDeLeyenda($(fs).children('legend').first().text())
-    if (!tipo) return
+    const l = leyenda($(fs).children('legend').first().text())
+    if (l === 'origen del agua')
+      $(fs)
+        .find('label')
+        .each((_, x) => {
+          const t = limpio($(x).text())
+          if (t) origen.push(t)
+        })
+    if (l.startsWith('tratamiento'))
+      $(fs)
+        .find('tbody > tr')
+        .each((_, tr) => {
+          const celda = $(tr).children('td').eq(1).html() ?? ''
+          for (const t of celda.split(/<br\s*\/?>/i).map((x) => texto($, x)))
+            if (t) procesos.push(t)
+        })
+  })
+
+  const boletines: DetalleRed['boletines'] = []
+  const seccionesSinReconocer: string[] = []
+  $('fieldset.bloqueFieldsetU').each((_, fs) => {
+    const texto = $(fs).children('legend').first().text()
+    const tipo = tipoDeLeyenda(texto)
+    if (!tipo) {
+      if (leyenda(texto).startsWith('analisis')) seccionesSinReconocer.push(limpio(texto))
+      return
+    }
     $(fs)
       .find('tbody > tr')
       .each((_, tr) => {
@@ -227,8 +270,7 @@ export function parseDetalleRed(html: string): DetalleRed {
 
   const parametros: Parametro[] = []
   $('fieldset.bloqueFieldsetU').each((_, fs) => {
-    const legend = limpio($(fs).children('legend').first().text())
-    if (!legend.startsWith('Últimos valor notificado')) return
+    if (!leyenda($(fs).children('legend').first().text()).startsWith('ultimos valor')) return
     $(fs)
       .find('tbody > tr')
       .each((_, tr) => {
@@ -251,8 +293,11 @@ export function parseDetalleRed(html: string): DetalleRed {
     suministro,
     dotacionLHabDia: numeroEs(dotacion),
     precioEurM3: precio,
+    origen,
+    procesos,
     boletines,
     parametros,
+    seccionesSinReconocer,
   }
 }
 
@@ -338,4 +383,138 @@ export function serieParametro(
       valor: vs.reduce((s, v) => s + v, 0) / vs.length,
       n: vs.length,
     }))
+}
+
+/** El límite paramétrico del nitrato (RD 3/2023, anexo I): 50 mg/L. */
+export const LIMITE_NITRATO_MG_L = 50
+
+interface AguaSnapshot {
+  consultadoEl: string
+  fuente: { nombre: string; url: string; atribucion: string; licencia: string }
+  redes: {
+    idRed: number
+    nombre: string
+    gestor: string | null
+    poblacion: number
+    origen?: string[]
+    procesos?: string[]
+  }[]
+  boletines: Boletin[]
+}
+
+const fechaEs = (iso: string) => iso.split('-').reverse().join('-')
+const num = (n: number) => n.toLocaleString('es-ES', { maximumFractionDigits: 1 })
+
+/**
+ * El resultado que acompaña a la tarjeta de abastecimiento: el nitrato de la
+ * red que abastece a casi todo el término, año a año, y en las salvedades lo
+ * que pasó en TODAS las redes. Devuelve `null` si no hay serie que publicar,
+ * nunca un cero.
+ *
+ * Por qué el nitrato y no «% de análisis aptos»: en la red principal todos
+ * los análisis publicados salen aptos, y una serie plana en 100 % no se puede
+ * indexar ni dice nada que una frase no diga. El nitrato sí se mueve, tiene un
+ * límite legal que no ponemos nosotros, y es lo que hizo «no apta» el agua de
+ * las dos redes que lo fueron.
+ *
+ * La red principal se elige por población abastecida, no por id: si SINAC
+ * reordena o renombra, la elección sigue a los vecinos. Sólo años cerrados
+ * (`anio < anioEnCurso`): una media de un año a medias movería la línea con
+ * una sola muestra; la última muestra va en las salvedades, con su fecha.
+ */
+export function resultadoAgua(agua: AguaSnapshot, anioEnCurso: number) {
+  const redes = [...agua.redes].sort((a, b) => b.poblacion - a.poblacion)
+  const principal = redes[0]
+  if (!principal) return null
+  const total = redes.reduce((s, r) => s + r.poblacion, 0)
+  const serieCompleta = serieParametro(agua.boletines, principal.idRed, 'Nitrato')
+  const serie = serieCompleta.filter((p) => p.anio < anioEnCurso)
+  const ultimo = serie.at(-1)
+  if (!ultimo) return null
+
+  const ultimaMuestra = agua.boletines.find(
+    (b) =>
+      b.idRed === principal.idRed &&
+      b.tipo === 'completo' &&
+      typeof b.parametros?.find((p) => p.nombre === 'Nitrato')?.valor === 'number',
+  )
+  const nitratoUltima = ultimaMuestra?.parametros?.find((p) => p.nombre === 'Nitrato')?.valor
+
+  const calificados = agua.boletines.filter(
+    (b) => b.calificacion === 'apta' || b.calificacion === 'no-apta',
+  )
+  const noAptas = calificados.filter((b) => b.calificacion === 'no-apta')
+  const desde = calificados.at(-1)?.fecha.slice(0, 4)
+  const nombreRed = new Map(agua.redes.map((r) => [r.idRed, r]))
+  const detalleNoApta = noAptas.map((b) => {
+    const red = nombreRed.get(b.idRed)
+    const n = b.parametros?.find((p) => p.nombre === 'Nitrato')?.valor
+    return (
+      `${fechaEs(b.fecha)}, red con gestor ${red?.gestor ?? 'sin declarar'}` +
+      (typeof n === 'number' ? ` (nitrato ${num(n)} mg/L)` : '')
+    )
+  })
+  const principalesDelGestor = agua.redes.filter((r) => r.gestor === principal.gestor)
+  const noAptaEnGestorPrincipal = noAptas.some(
+    (b) => nombreRed.get(b.idRed)?.gestor === principal.gestor,
+  )
+
+  const origenLegible = principal.origen?.length
+    ? principal.origen.map((o) => o.replace(/\s*\(\d+\)$/, '').toLowerCase()).join(', ')
+    : 'un origen que la ficha no declara'
+  const tratamientoLegible = principal.procesos?.length
+    ? principal.procesos
+        // «Desinfección - Químicos» → «desinfección química»: la ficha da
+        // proceso y modo con un guion; la frase los necesita juntos.
+        .map((p) => p.toLowerCase().replace(/^(.+?) - químicos$/, '$1 química'))
+        .join(', ')
+    : 'un tratamiento que la ficha no declara'
+
+  const caveats = [
+    `La serie es la de la red ${principal.nombre}, que abastece a ${num(principal.poblacion)} de las ` +
+      `${num(total)} personas censadas en las ${redes.length} redes del término. Cada año es la media ` +
+      `de sus análisis completos (análisis por año — ${serie.map((p) => `${p.anio}: ${p.n}`).join('; ')}).`,
+    ...(ultimaMuestra &&
+    typeof nitratoUltima === 'number' &&
+    ultimaMuestra.fecha.slice(0, 4) >= String(anioEnCurso)
+      ? [
+          `El último análisis completo, del ${fechaEs(ultimaMuestra.fecha)}, dio ${num(nitratoUltima)} mg/L; ` +
+            `${anioEnCurso} no entra en la serie hasta que se cierre.`,
+        ]
+      : []),
+    noAptas.length
+      ? `De los ${calificados.length} análisis calificados en las ${redes.length} redes que la página ` +
+        `deja ver (desde ${desde}), ${noAptas.length} salieron «no apta»: ${detalleNoApta.join('; ')}. ` +
+        `El nitrato pasaba de su límite legal (${LIMITE_NITRATO_MG_L} mg/L); el boletín no dice ` +
+        `qué parámetro decidió la calificación.` +
+        (noAptaEnGestorPrincipal
+          ? ''
+          : ` Ninguno en las ${principalesDelGestor.length} redes de ${principal.gestor}.`)
+      : `Los ${calificados.length} análisis calificados en las ${redes.length} redes que la página ` +
+        `deja ver (desde ${desde}) salieron «apta».`,
+    'SINAC sólo enseña los últimos boletines de cada red; el archivo crece desde el 22-10-2026, ' +
+      'y lo anterior es lo que la página aún mostraba ese día.',
+  ]
+
+  return {
+    id: 'agua-nitrato-red-principal',
+    servicioRelacionado: 'a161-coste-unitario',
+    etiqueta: `Nitrato en el agua de la red principal (límite legal: ${LIMITE_NITRATO_MG_L} mg/L)`,
+    valor: ultimo.valor,
+    unidad: 'mg/L',
+    periodo: String(ultimo.anio),
+    serie: serie.map(({ anio, valor }) => ({ anio, valor })),
+    pares: null,
+    comoSeLee:
+      'El nitrato llega al agua desde el acuífero —abono agrícola filtrado al subsuelo—, no ' +
+      `desde la red: según su ficha en SINAC, la principal toma el agua de ${origenLegible} y la ` +
+      `trata con ${tratamientoLegible}. Mide el agua que sale del grifo, no lo bien que se ` +
+      'gestiona la red ni lo que cuesta: se publica junto al coste, nunca dividido por él.',
+    caveats,
+    fuente: {
+      nombre: agua.fuente.nombre,
+      url: agua.fuente.url,
+      atribucion: agua.fuente.atribucion,
+    },
+  }
 }

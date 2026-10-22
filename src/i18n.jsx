@@ -138,6 +138,7 @@ export const CATALOGUE = {
       'El valor es mayor que el de {p} de cada 100 municipios parecidos ({n} con dato).',
     'eficiencia.ccr.resultado.sinSerieGrupo':
       'De los municipios parecidos sólo tenemos el último año, no su evolución.',
+    'eficiencia.ccr.resultado.sinPares': 'Esta cifra no se compara con otros municipios.',
     'eficiencia.ccr.responde.competencia': 'Competencia delegada',
     'eficiencia.ccr.responde.loreg': 'Los nombres no se publican durante el periodo electoral.',
     'eficiencia.ccr.responde.sinAsignar': 'Ninguna delegación nombra este servicio.',
@@ -2598,6 +2599,7 @@ export const CATALOGUE = {
       'El valor és major que el de {p} de cada 100 municipis semblants ({n} amb dada).',
     'eficiencia.ccr.resultado.sinSerieGrupo':
       "Dels municipis semblants només tenim l'últim any, no la seua evolució.",
+    'eficiencia.ccr.resultado.sinPares': 'Aquesta xifra no es compara amb altres municipis.',
     'eficiencia.ccr.responde.competencia': 'Competència delegada',
     'eficiencia.ccr.responde.loreg': 'Els noms no es publiquen durant el període electoral.',
     'eficiencia.ccr.responde.sinAsignar': 'Cap delegació nomena este servei.',
