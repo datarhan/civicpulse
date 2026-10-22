@@ -8,8 +8,8 @@ import { useLocale, useT } from '../../i18n'
 
 /*
  * «Cuesta · Consigue · Responde»: para cada servicio con un resultado
- * publicado, lo que cuesta, lo que se consigue y quién responde, en los mismos
- * años y contra el mismo grupo de municipios.
+ * publicado, lo que cuesta, lo que se consigue y quién responde, uno al lado
+ * del otro y cada frase con los años que mide (no siempre son los mismos).
  *
  * Es la capa 2 del diseño (docs/superpowers/specs/2026-10-22-lectura-vecinal-
  * eficiencia-design.md §3): hechos derivados y palabras de DIRECCIÓN, nunca de
@@ -83,7 +83,10 @@ function FiguraIndice({
     s.puntos.map((p, i) => `${i ? 'L' : 'M'}${x(p.anio)},${y(p.indice)}`).join(' ')
   const xm = mandatoDesde != null && mandatoDesde > x0 && mandatoDesde < x1 ? x(mandatoDesde) : null
   const fin = (s) => s.puntos[s.puntos.length - 1]
-  const cambio = (s) => `${s.cambio >= 0 ? '+' : '−'}${pct(s.cambio)} %`
+  // Una serie que se para antes del final del eje lleva su año en la etiqueta:
+  // pegada al borde derecho, «+67 %» se leía como del último año del eje.
+  const cambio = (s) =>
+    `${s.cambio >= 0 ? '+' : '−'}${pct(s.cambio)} %` + (fin(s).anio < x1 ? ` · ${fin(s).anio}` : '')
   // Las dos etiquetas finales no se pisan: si caen a menos de 12 px, la del
   // grupo se aparta hacia el lado en que ya estaba.
   let yN = nuestra ? y(fin(nuestra).indice) : 0
@@ -175,16 +178,32 @@ function Cuesta({ coste, t, mandatoDesde }) {
   const { nuestro, grupo } = coste
   const dir = direccion(nuestro.cambio)
   const frase = {
-    sube: rellena(t('eficiencia.ccr.coste.sube'), { base: nuestro.base, pct: pct(nuestro.cambio) }),
-    baja: rellena(t('eficiencia.ccr.coste.baja'), { base: nuestro.base, pct: pct(nuestro.cambio) }),
-    igual: rellena(t('eficiencia.ccr.coste.igual'), { base: nuestro.base }),
+    sube: rellena(t('eficiencia.ccr.coste.sube'), {
+      base: nuestro.base,
+      fin: nuestro.ultimo,
+      pct: pct(nuestro.cambio),
+    }),
+    baja: rellena(t('eficiencia.ccr.coste.baja'), {
+      base: nuestro.base,
+      fin: nuestro.ultimo,
+      pct: pct(nuestro.cambio),
+    }),
+    igual: rellena(t('eficiencia.ccr.coste.igual'), { base: nuestro.base, fin: nuestro.ultimo }),
   }[dir]
   const dirG = grupo ? direccion(grupo.cambio) : null
   const fraseGrupo = grupo
     ? {
-        sube: rellena(t('eficiencia.ccr.grupo.sube'), { pct: pct(grupo.cambio) }),
-        baja: rellena(t('eficiencia.ccr.grupo.baja'), { pct: pct(grupo.cambio) }),
-        igual: t('eficiencia.ccr.grupo.igual'),
+        sube: rellena(t('eficiencia.ccr.grupo.sube'), {
+          base: grupo.base,
+          fin: grupo.ultimo,
+          pct: pct(grupo.cambio),
+        }),
+        baja: rellena(t('eficiencia.ccr.grupo.baja'), {
+          base: grupo.base,
+          fin: grupo.ultimo,
+          pct: pct(grupo.cambio),
+        }),
+        igual: rellena(t('eficiencia.ccr.grupo.igual'), { base: grupo.base, fin: grupo.ultimo }),
       }[dirG]
     : ''
   return (
@@ -224,22 +243,35 @@ function Consigue({ resultado, t, mandatoDesde }) {
   const grupo = r.nuestro ? r.grupo : null
   const fraseGrupo = grupo
     ? {
-        sube: rellena(t('eficiencia.ccr.grupo.sube'), { pct: pct(grupo.cambio) }),
-        baja: rellena(t('eficiencia.ccr.grupo.baja'), { pct: pct(grupo.cambio) }),
-        igual: t('eficiencia.ccr.grupo.igual'),
+        sube: rellena(t('eficiencia.ccr.grupo.sube'), {
+          base: grupo.base,
+          fin: grupo.ultimo,
+          pct: pct(grupo.cambio),
+        }),
+        baja: rellena(t('eficiencia.ccr.grupo.baja'), {
+          base: grupo.base,
+          fin: grupo.ultimo,
+          pct: pct(grupo.cambio),
+        }),
+        igual: rellena(t('eficiencia.ccr.grupo.igual'), { base: grupo.base, fin: grupo.ultimo }),
       }[direccion(grupo.cambio)]
     : ''
   const frase = r.nuestro
     ? {
         sube: rellena(t('eficiencia.ccr.resultado.sube'), {
           base: r.nuestro.base,
+          fin: r.nuestro.ultimo,
           pct: pct(r.nuestro.cambio),
         }),
         baja: rellena(t('eficiencia.ccr.resultado.baja'), {
           base: r.nuestro.base,
+          fin: r.nuestro.ultimo,
           pct: pct(r.nuestro.cambio),
         }),
-        igual: rellena(t('eficiencia.ccr.resultado.igual'), { base: r.nuestro.base }),
+        igual: rellena(t('eficiencia.ccr.resultado.igual'), {
+          base: r.nuestro.base,
+          fin: r.nuestro.ultimo,
+        }),
       }[dir]
     : rellena(t('eficiencia.ccr.resultado.unAnio'), { periodo: r.periodo })
   return (

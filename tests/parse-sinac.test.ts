@@ -215,6 +215,14 @@ describe('resultadoAgua', () => {
     expect(resultadoAgua(AGUA, 1999)).toBeNull()
   })
 
+  it('el nitrato «pasaba del límite» sólo si pasaba: hoy, en los dos «no apta»', () => {
+    const noAptas = AGUA.boletines.filter(
+      (b: { calificacion: string }) => b.calificacion === 'no-apta',
+    )
+    expect(noAptas.length).toBeGreaterThan(0)
+    expect(r.caveats.join(' ')).toContain('límite legal (50 mg/L) en todos')
+  })
+
   it('la red principal es la de más población, y la frase dice cuántos abastece', () => {
     const mayor = [...AGUA.redes].sort(
       (a: { poblacion: number }, b: { poblacion: number }) => b.poblacion - a.poblacion,
@@ -246,6 +254,9 @@ describe('resultadoAgua', () => {
     const t = resultadoAgua(conFallo, 2026)!.caveats.join(' ')
     expect(t).toContain(`gestor ${principal.gestor}`)
     expect(t).not.toContain(`Ninguno en las`)
+    // El añadido no trae nitrato: la frase ya no puede decir «en todos».
+    expect(t).not.toContain('límite legal (50 mg/L) en todos')
+    expect(t).toMatch(/límite legal \(50 mg\/L\) en \d+;/)
   })
 })
 

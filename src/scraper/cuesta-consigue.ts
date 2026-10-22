@@ -1,6 +1,9 @@
 /**
  * «Cuesta · Consigue · Responde»: lo que un servicio cuesta, lo que se
- * consigue y quién responde de él, en los MISMOS años y contra el MISMO grupo.
+ * consigue y quién responde de él, uno al lado del otro. NO siempre en los
+ * mismos años ni contra el mismo grupo: cada serie acaba donde acaba su fuente
+ * (el transporte sin mediana de 2024, la criminalidad con 2025) y cada resultado
+ * trae el grupo de la suya; por eso cada frase dice de qué año a qué año mide.
  *
  * El panel ya tenía las tres cosas, pero separadas: el coste en el libro, el
  * resultado dentro de la ficha y el nombre al final de la ficha. Un vecino que

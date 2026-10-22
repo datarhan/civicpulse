@@ -214,7 +214,7 @@ export default function Eficiencia() {
           conclusión y aquéllas los hechos; encima del detalle. */}
       {indicadores.length > 0 && <EnBreveEficiencia data={data} preguntas={preguntas} />}
 
-      {/* Coste, resultado y competencia en los mismos años, para los servicios
+      {/* Coste, resultado y competencia uno al lado del otro, para los servicios
           con un resultado publicado. Va antes del libro porque contesta la
           pregunta del H1 con hechos; el libro es el detalle de los quince. */}
       {indicadores.length > 0 && (

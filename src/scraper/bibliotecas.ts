@@ -312,7 +312,8 @@ export function resultadosBibliotecas(snap: BibliotecasSnapshot) {
   const inscritos = serie.map((p) => p.usuariosInscritos)
   const soloSube =
     inscritos.every((v) => typeof v === 'number') &&
-    inscritos.every((v, i) => i === 0 || v! >= inscritos[i - 1]!)
+    // Estrictamente: un año plano no es «sube».
+    inscritos.every((v, i) => i === 0 || v! > inscritos[i - 1]!)
   const visitasAntes = serie.at(-2)?.visitas
   const inscritosNota = soloSube
     ? `Los usuarios inscritos no se usan como resultado: en la serie sólo suben (de ` +
