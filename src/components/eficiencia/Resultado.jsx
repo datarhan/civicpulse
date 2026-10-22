@@ -114,6 +114,47 @@ export function Resultado({ resultado, id }) {
         </ul>
       )}
 
+      {/* Lo que han publicado terceros. Cada una dice de dónde saca el dato y
+          qué dice nuestro archivo del boletín al que se refiere: el «coincide»
+          lo calcula `otras-lecturas-agua.ts`, no se escribe a mano. */}
+      {r.otrasLecturas?.length > 0 && (
+        <div data-otras-lecturas style={{ marginTop: 10 }}>
+          <div
+            className="mono"
+            style={{
+              fontSize: 'var(--fs-micro)',
+              textTransform: 'uppercase',
+              letterSpacing: '.07em',
+              color: 'var(--ink50)',
+            }}
+          >
+            Otras lecturas
+          </div>
+          <ul
+            style={{
+              margin: '4px 0 0',
+              paddingLeft: 18,
+              fontSize: 'var(--fs-meta)',
+              color: 'var(--ink70, var(--ink50))',
+            }}
+          >
+            {r.otrasLecturas.map((l) => (
+              <li key={l.url} style={{ marginBottom: 4 }}>
+                <a
+                  href={l.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  style={{ color: 'var(--civic)' }}
+                >
+                  {l.quien}, «{l.titulo}» ↗
+                </a>{' '}
+                ({l.fecha}): {l.cita}. {l.base} {l.cotejo}
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
+
       <p
         className="mono"
         style={{ fontSize: 'var(--fs-aux)', color: 'var(--ink50)', margin: '8px 0 0' }}

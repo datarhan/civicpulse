@@ -18,6 +18,7 @@ import {
   tipoDeLeyenda,
 } from '../src/scraper/sinac'
 import { validarResultados } from '../src/scraper/resultados'
+import { OTRAS_LECTURAS_AGUA, cotejarLectura } from '../src/scraper/otras-lecturas-agua'
 
 /**
  * Tres páginas REALES de la consulta ciudadana de SINAC (Ministerio de Sanidad),
@@ -351,5 +352,30 @@ describe('el año entero, del informe del ministerio', () => {
   it('las otras zonas con «no apto» o menos del 100 % se nombran con su año', () => {
     expect(t).toContain('RIBA-ROJA 8- COLEGIO MARÍA DE ICIAR: 2 «no apto» de 5')
     expect(t).toMatch(/RESIDENCIA 3ª EDAD ENTRE NARANJOS: 66,7 % de aptos de 14/)
+  })
+})
+
+describe('otras lecturas: lo que publican terceros, cotejado con el archivo', () => {
+  const AGUA = JSON.parse(readFileSync(join(__dirname, '../public/data/agua.json'), 'utf8'))
+  const r = resultadoAgua(AGUA, 2026)!
+
+  it('mide algo: hay lecturas y cada una se coteja contra el archivo real', () => {
+    expect(OTRAS_LECTURAS_AGUA.length).toBeGreaterThan(0)
+    expect(r.otrasLecturas).toHaveLength(OTRAS_LECTURAS_AGUA.length)
+  })
+
+  it('las de hoy leen SINAC y lo dicen; su boletín está en el archivo y coincide', () => {
+    for (const l of r.otrasLecturas) {
+      expect(l.base).toContain('No tomó muestras propias')
+      expect(l.coincide).toBe(true)
+      expect(l.cotejo).toContain('71 mg/L')
+    }
+  })
+
+  it('si el boletín no está, no dice «coincide»', () => {
+    const sin = { ...AGUA, boletines: [] }
+    const l = cotejarLectura(OTRAS_LECTURAS_AGUA[0], sin)
+    expect(l.coincide).toBe(false)
+    expect(l.cotejo).not.toContain('coincide')
   })
 })

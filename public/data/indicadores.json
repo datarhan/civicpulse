@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-22T13:44:16.066Z",
+  "generatedAt": "2026-10-22T13:56:41.851Z",
   "conjunto": "cv-15k-40k",
   "anioBase": 2024,
   "source": {
@@ -9002,6 +9002,28 @@
           "Otras zonas del término en el mismo informe: 2021, RIBARROJA - 2 - POLÍGONO OLIVERAL: 55 «no apto» de 456; 2022, RIBA-ROJA 8- COLEGIO MARÍA DE ICIAR: 2 «no apto» de 5; 2023, RIBA ROJA DE TURIA 2 - MASIA DEL OLIVERAL: 99,1 % de aptos de 745; 2023, RIBA-ROJA 6 - RESIDENCIA 3ª EDAD ENTRE NARANJOS: 66,7 % de aptos de 14; 2024, RIBA ROJA DE TURIA 2 - MASIA DEL OLIVERAL: 99,2 % de aptos de 1036; 2024, RIBA-ROJA 6 - RESIDENCIA 3ª EDAD ENTRE NARANJOS: 88,9 % de aptos de 11.",
           "En los 54 municipios parecidos (cv-15k-40k), 42 de sus 180 redes tienen algún «no apta» entre los boletines que SINAC enseña (124 de 3126 análisis calificados), en 21 municipios; 19 de esas redes tienen un gestor distinto del de la red principal de su municipio.",
           "Guardamos cada boletín que SINAC enseña desde el 22-10-2026; lo anterior es lo que la página aún mostraba ese día."
+        ],
+        "otrasLecturas": [
+          {
+            "quien": "Ecologistas en Acción",
+            "titulo": "Bebiendo mierda",
+            "fecha": "junio de 2026",
+            "url": "https://www.ecologistasenaccion.org/wp-content/uploads/2026/06/informe-contaminacion-por-nitratos-agua-potable.pdf",
+            "cita": "«Riba Roja 6. Residencia Entre Naranjos» — la lista en su «Anexo I: localidades afectadas por contaminación de nitratos de su agua potable por encima del límite legal en 2024»",
+            "base": "No tomó muestras propias: lee los boletines que el gestor notifica a SINAC, los mismos que se publican aquí.",
+            "cotejo": "En nuestro archivo de SINAC, esa red tiene un análisis «no apta» del 19-06-2024 con 71 mg/L de nitrato: coincide.",
+            "coincide": true
+          },
+          {
+            "quien": "DATADISTA",
+            "titulo": "El agua de tu pueblo (infoagua.es)",
+            "fecha": "consultado el 22-10-2026",
+            "url": "https://infoagua.es/agua-de-tu-pueblo/valencia/riba-roja-de-turia/",
+            "cita": "«Incumple por nitratos en 1 de 6 redes» — lo resume así en su ficha del municipio",
+            "base": "No tomó muestras propias: lee los boletines que el gestor notifica a SINAC, los mismos que se publican aquí.",
+            "cotejo": "En nuestro archivo de SINAC, esa red tiene un análisis «no apta» del 19-06-2024 con 71 mg/L de nitrato: coincide.",
+            "coincide": true
+          }
         ],
         "fuente": {
           "nombre": "SINAC · Sistema de Información Nacional de Aguas de Consumo (Ministerio de Sanidad)",

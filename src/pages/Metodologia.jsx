@@ -3279,10 +3279,13 @@ export default function Metodologia() {
           calificación de otro sería falso. Como la consulta sólo enseña los últimos boletines de
           cada red, el año entero sale del informe anual del ministerio, zona por zona, en el
           formato en que lo publica cada año —recuentos hasta 2022, porcentaje de aptos desde 2023—,
-          sin convertir uno en otro. Para saber si la cifra es alta y si un «no apta» es raro,
-          leemos lo mismo en los municipios de la banda del coste: la media anual del nitrato en su
-          red principal, comparada sólo con el mismo año, y cuántas de sus redes tuvieron algún «no
-          apta» y con qué gestor.
+          sin convertir uno en otro. Bajo «Otras lecturas» enlazamos lo que han publicado terceros
+          sobre esta agua y decimos de dónde sacan su dato —hasta hoy, de los mismos boletines de
+          SINAC, no de muestras propias—; que su dato coincide con el nuestro no lo escribimos a
+          mano: lo comprueba el código contra el archivo, y si el boletín no está, lo dice. Para
+          saber si la cifra es alta y si un «no apta» es raro, leemos lo mismo en los municipios de
+          la banda del coste: la media anual del nitrato en su red principal, comparada sólo con el
+          mismo año, y cuántas de sus redes tuvieron algún «no apta» y con qué gestor.
         </p>
         <p style={{ margin: '10px 0 0', color: 'var(--ink70)' }}>
           <strong>La biblioteca se mide en personas y visitas, no en préstamos.</strong> El

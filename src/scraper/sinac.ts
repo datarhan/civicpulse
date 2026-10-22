@@ -33,6 +33,7 @@
 import { load, type CheerioAPI } from 'cheerio'
 import { stripDiacritics } from './normalize'
 import type { FilaAnexo, FormatoAnexo, PuntoZona } from './informe-agua'
+import { OTRAS_LECTURAS_AGUA, cotejarLectura } from './otras-lecturas-agua'
 
 /** Las frases de calificación que sabemos leer. Cualquier otra es `null`. */
 export const CALIFICACIONES = ['apta', 'no-apta', 'gestionada-consejeria'] as const
@@ -692,6 +693,9 @@ export function resultadoAgua(
       `trata con ${tratamientoLegible}. Mide el agua que sale del grifo, no lo bien que se ` +
       'gestiona la red ni lo que cuesta: se publica junto al coste, nunca dividido por él.',
     caveats,
+    // Lo que han publicado terceros, con su cotejo contra el archivo
+    // (`otras-lecturas-agua.ts`): «coincide» sólo si el boletín está.
+    otrasLecturas: OTRAS_LECTURAS_AGUA.map((l) => cotejarLectura(l, agua)),
     fuente: {
       nombre: agua.fuente.nombre,
       url: agua.fuente.url,
