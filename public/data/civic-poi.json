@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-21T09:36:19.377Z",
+  "generatedAt": "2026-10-22T09:42:47.739Z",
   "source": {
     "platform": "OSM Overpass API",
     "endpoint": "https://overpass-api.de/api/interpreter",
@@ -247,36 +247,28 @@
       "lng": -0.5626679
     },
     {
-      "id": "node-14206811854",
-      "name": "Sanchis",
-      "category": "salud",
-      "kind": "pharmacy",
-      "lat": 39.5450112,
-      "lng": -0.5730381
-    },
-    {
-      "id": "way-572095263",
-      "name": "Parc de Rosalía de Castro",
+      "id": "way-556778456",
+      "name": "Parc Lineal Arrosals",
       "category": "verde",
       "kind": "park",
-      "lat": 39.5438783,
-      "lng": -0.5767846
+      "lat": 39.5448982,
+      "lng": -0.5753428
     },
     {
       "id": "way-39589891",
       "name": "Parc Municipal Maldonado",
       "category": "verde",
       "kind": "park",
-      "lat": 39.5477716,
+      "lat": 39.5477533,
       "lng": -0.5797717
     },
     {
-      "id": "way-33654935",
-      "name": "Parc Municipal Montealcedo",
+      "id": "way-572095263",
+      "name": "Parc Rosalía de Castro",
       "category": "verde",
       "kind": "park",
-      "lat": 39.5528084,
-      "lng": -0.5415844
+      "lat": 39.5438783,
+      "lng": -0.5767846
     },
     {
       "id": "way-551533189",
@@ -296,13 +288,13 @@
     }
   ],
   "stats": {
-    "total": 36,
+    "total": 35,
     "byCategory": {
       "civico": 5,
       "cultura": 4,
       "deporte": 7,
       "educacion": 11,
-      "salud": 4,
+      "salud": 3,
       "verde": 5
     }
   }
