@@ -1,0 +1,59 @@
+{
+  "version": 1,
+  "actualizadoEl": "2026-10-22",
+  "items": [
+    {
+      "id": "policia-local-coste-2024",
+      "panel": "coste-efectivo",
+      "titulo": "La policía local cuesta un 50 % más por agente que en 2021, y el Ayuntamiento no dice por qué",
+      "cuerpo": [
+        "Entre 2021 y 2024 el coste que el Ayuntamiento declara al Ministerio por cada agente de la policía local ha subido un 50 % en euros constantes. En los municipios valencianos de tamaño parecido, ese mismo coste apenas se ha movido: un 5 %. La mayor parte del salto llegó en 2022.",
+        "En el mismo periodo, las infracciones penales conocidas en Riba-roja han subido y están entre las más altas de su grupo. Eso no prueba que el gasto no sirva: esas cifras las registran también la Guardia Civil y la Policía Nacional, y más patrullas pueden hacer que se conozcan más hechos. Pero sí deja una pregunta que el Ayuntamiento debería contestar en público.",
+        "Y no la podemos contestar nosotros porque el propio Ayuntamiento declara el mismo número de agentes, 52, desde 2019. Con ese número congelado no se sabe si el gasto ha comprado más policías en la calle o mejores sueldos para los mismos. Cualquiera de las dos cosas puede ser razonable; lo que no es razonable es que el vecino que la paga no pueda saber cuál es.",
+        "Pedimos al Ayuntamiento que publique cuántos agentes tiene hoy la policía local, cuántos tenía en 2021 y qué explica el aumento de coste de 2022."
+      ],
+      "firma": {
+        "nombre": "Sergei Lutchenko",
+        "rol": "editor"
+      },
+      "fecha": "2026-10-22",
+      "hechos": [
+        {
+          "tipo": "indicador",
+          "id": "b132-130p-coste-unitario",
+          "anio": 2021,
+          "valor": 47521.718653846154
+        },
+        {
+          "tipo": "indicador",
+          "id": "b132-130p-coste-unitario",
+          "anio": 2024,
+          "valor": 81964.66115384616
+        },
+        {
+          "tipo": "resultado",
+          "id": "crimen-infracciones-por-mil",
+          "anio": 2021,
+          "valor": 54.519935084872145
+        },
+        {
+          "tipo": "resultado",
+          "id": "crimen-infracciones-por-mil",
+          "anio": 2025,
+          "valor": 63.617159571010724
+        }
+      ],
+      "noSabemos": [
+        "Cuántos agentes tiene de verdad la policía local: el Ayuntamiento declara 52 desde 2019, sin volver a medirlo.",
+        "Si el aumento de 2022 es más plantilla, mejores sueldos u otro gasto imputado al servicio.",
+        "Si el gasto ha influido en las infracciones conocidas: las registran todos los cuerpos y dependen también de cuánto se denuncia.",
+        "Quién decidió el aumento de 2022: es anterior a las delegaciones del mandato actual, y no hemos incorporado las del anterior."
+      ],
+      "nombra": [],
+      "contactoPrevio": null,
+      "replicas": [],
+      "correcciones": []
+    }
+  ],
+  "retiradas": []
+}

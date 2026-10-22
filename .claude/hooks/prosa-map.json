@@ -2,6 +2,15 @@
   "_comentario": "Generado por scripts/build-prose-map.ts — no editar a mano. tests/stale-copy-paths.test.js falla si el código cambia y esto no.",
   "generadoDe": "src",
   "snapshots": {
+    "agua-informe-anual.json": [
+      "/datos"
+    ],
+    "agua-pares.json": [
+      "/datos"
+    ],
+    "agua.json": [
+      "/datos"
+    ],
     "area-fit.json": [
       "/cargos",
       "/cargos/:slug",
@@ -19,6 +28,9 @@
       "/datos",
       "/lab-health",
       "/presupuesto"
+    ],
+    "bibliotecas.json": [
+      "/datos"
     ],
     "boe.json": [
       "/datos",
@@ -203,6 +215,9 @@
       "/promesas",
       "/quejas/:id",
       "/quejas/dashboard"
+    ],
+    "opiniones-editor.json": [
+      "/eficiencia"
     ],
     "padron.json": [
       "/",

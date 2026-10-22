@@ -59,6 +59,7 @@ Everything produced by the convention above. Safe to delete and rebuild.
 | `eficiencia-findings.json`                          | `src/scraper/eficiencia-finding.ts` · `npm run promote-indicador`, `correct-indicador`, `retract-indicador`                                                                                                                                                                                                                       |
 | `eficiencia-preguntas.json`                         | `src/scraper/eficiencia-preguntas.ts` · curated · hand-edit via PR                                                                                                                                                                                                                                                                |
 | `competencias.json`                                 | `src/scraper/competencias.ts` · curated · hand-edit via PR · `npm run competencia-reply` · `check:competencias`                                                                                                                                                                                                                   |
+| `opiniones-editor.json`                             | `src/scraper/opinion-editor.ts` · `npm run opinion -- publicar / replica / corregir / retirar` · `check:opiniones` · drafts in `editorial/opiniones/`                                                                                                                                                                             |
 | `officials-corrections.json`                        | `src/scraper/officials-corrections.ts` · `npm run roster-correction` (`--alta` / `--baja` / `--retirar` / `--reply` / `--apply`) · `check:officials-corrections`                                                                                                                                                                  |
 | `contract-corrections.json`                         | `src/scraper/contract-corrections.ts` · `npm run contract-correction` (`--add` / `--retirar`) · `check:contract-corrections`                                                                                                                                                                                                      |
 | `sociedades.json`                                   | `src/scraper/sociedades.ts` · curated · hand-edit via PR · material vía `npm run scrape:borme`                                                                                                                                                                                                                                    |
@@ -345,6 +346,86 @@ overwrites it. Change the bot's SQLite instead.
 - **Gotchas** — era joins are BY NORMALIZED NAME (INE-keyed joins silently
   dropped 2020–2022); T4 = full year; each file also carries the prior year.
   Cadence `manual` 420d.
+
+### Calidad del agua de consumo (outcome beside the water-supply card)
+
+- **Pipeline** — `sinac.ts` → `scrape:agua` → `agua.json`; `compute:indicadores`
+  embeds `resultadoAgua()` as the `resultados` item
+  `agua-nitrato-red-principal` (nitrate, annual mean of the main network's
+  complete analyses, closed years only).
+- **Source** — SINAC, Ministerio de Sanidad: the citizen query
+  (`sinac.sanidad.gob.es/CiudadanoWeb`), a session form answered by plain POSTs
+  (municipality → networks → network ficha → bulletin detail). No bulk
+  download. Reuse per the ministry's legal notice: cite the source and the date
+  of last update; both travel in the snapshot.
+- **Archive** — the page shows only the latest bulletins per section (10
+  control, 10 complete, 5 radioactivity), so `agua.json` is an ARCHIVE:
+  `fusionarBoletines` keeps what rotates off the page, newest read wins.
+  Complete-analysis details are fetched once per bulletin id (`.cache/sinac/`).
+- **Surfaces** — `/eficiencia` (water-supply card result block, «Cuesta ·
+  Consigue»), `/datos`
+- **Gotchas** — the header says iso-8859-1, the body is UTF-8; section legends
+  changed wording within one day («Análisis de completo» → «Análisis completo»),
+  so an unrecognised «Análisis …» section fails the run; a parameter with no
+  figure is `null`, never 0; the main network is chosen by population served,
+  not by id. The two «no apta» bulletins in the archive are in small networks
+  with their own private operator, and the caveat says so. CI reach unmeasured:
+  soft in the nightly, refreshed by `scrape-ci-blocked.sh`, cadence
+  `ci-blocked` 8d.
+- **Band** — `scrape:agua-pares` → `agua-pares.json`: the same SINAC flow over
+  the cost band (`coste-efectivo.json` → `pares.filas`, Riba-roja excluded).
+  Every network's ficha, plus the complete-analysis detail of each town's
+  MAIN network only, for a like-for-like nitrate band (`paresNitrato`, ≥ 15
+  towns or no band) and a «no apta» tally that separates networks run by an
+  operator other than the town's main one (`noAptaEnPares`). Weekly by itself
+  (exits 0 inside 7 days; `--forzar`), soft-fails a town with its reason,
+  refuses to publish if > 20 % fail or ≥ 10 % of gradings are unreadable.
+  Cadence `ci-blocked` 15d.
+- **Whole year** — `informe-agua.ts` → `scrape:agua-informe` →
+  `agua-informe-anual.json`: Annex I of the ministry's annual report «Calidad
+  del agua de consumo humano en España», one row per supply zone and year
+  (`pdftotext -layout`). SINAC's citizen query shows only the latest bulletins;
+  this counts the whole year (hundreds in the main zone), and it is what showed
+  55 «no apto» of 485 in 2021 where the SINAC window showed none. Two formats,
+  never converted into each other: counts up to 2022, «% Aptos» from 2023. The
+  definitions of «apto»/«no apto» change by year and travel verbatim. Columns
+  must sum to the total or the run fails; RIBA-ROJA D'EBRE (Tarragona) is a
+  decoy the matcher excludes. Years are an explicit list (URLs move between
+  `docs/` and `informesAnteriores/docs/`); 2019–2020 are listed as pending
+  (font-obfuscated text, needs OCR). Licence on the cover: reproducible citing
+  the source. Cadence `manual` 400d.
+
+### Biblioteca: prestatarios y visitas (outcome beside the library card)
+
+- **Pipeline** — `bibliotecas.ts` → `scrape:bibliotecas` → `bibliotecas.json`;
+  `compute:indicadores` embeds `resultadosBibliotecas()` as two `resultados`
+  items on `a3321-330p-coste-unitario`: `biblioteca-prestatarios-por-mil`
+  (headline, the one «Cuesta · Consigue» carries) and
+  `biblioteca-visitas-por-habitante`.
+- **Source** — Estadística de Bibliotecas Públicas, Ministerio de Cultura
+  (`mcu.es/alziraweb`), annex 28 «Visitas y usuarios inscritos»: one HTML table
+  per province and year, read with a plain GET; the years come from the page's
+  own drop-down. Data collected by the autonomous communities on a common
+  questionnaire (ISO 2789). Reuse under the general conditions of RD 1495/2011
+  (the ministry's legal notice): «Origen de los datos: Ministerio de Cultura»,
+  no implied endorsement; the page carries no update date to cite.
+- **Peers** — `coste-efectivo.json` → `pares.miembros` (cv-15k-40k) minus
+  Riba-roja, all three provinces. Latest-year percentile over every member with
+  data (own `n`); the year-by-year line (`paresSerie`) is the median of a FIXED
+  panel, the members with data every year. Population: INE padrón tables
+  2856/2865/2903 by INE code; Riba-roja's is cross-checked against
+  `padron.json` before writing.
+- **Surfaces** — `/eficiencia` («Cuesta · Consigue», with the peer line),
+  `/eficiencia/a3321-330p-coste-unitario` (both results), `/datos`
+- **Gotchas** — answers 429 to the cloud container every time; run it from the
+  curator's machine (cadence `manual` 430d). Pages are ISO-8859-1 with HTML
+  entities. «-» is no data (null), never 0; rows must sum to the TOTAL row or
+  the run fails. Names are the ministry's, not the INE's («L' Alfàs del Pi»,
+  «Xàbia/Jávea», «Montcada/Moncada»): resolved by per-language variants without
+  article, by equality — «Eliana» is inside «Meliana» — and a tie is a miss.
+  Registered users only ever rise, so they are not an outcome; loans are the
+  cost card's divisor, so they are not used either. Raw pages cached under
+  `.cache/bibliotecas/`.
 
 ### Recogida selectiva 2022 (single-edition outcome, waste card)
 

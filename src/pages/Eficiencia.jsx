@@ -16,6 +16,10 @@ import { Supramunicipal } from '../components/eficiencia/Supramunicipal'
 import { AusenciasResultados } from '../components/eficiencia/Resultado'
 import { MARGEN_ANCLA } from '../components/eficiencia/anclas'
 import { PreguntasRegistradas } from '../components/eficiencia/PreguntasRegistradas'
+import { CuestaConsigueResponde } from '../components/eficiencia/CuestaConsigueResponde'
+import { OpinionEditor } from '../components/eficiencia/OpinionEditor'
+import EnBreveEficiencia from '../components/eficiencia/EnBreveEficiencia'
+import { useOpinionesEditor } from '../hooks/useOpinionesEditor'
 import { useIndicadores } from '../hooks/useIndicadores'
 import { useEficienciaFindings } from '../hooks/useEficienciaFindings'
 import { useEficienciaPreguntas } from '../hooks/useEficienciaPreguntas'
@@ -114,6 +118,7 @@ export default function Eficiencia() {
   const { data: hallazgos } = useEficienciaFindings()
   const { data: preguntas } = useEficienciaPreguntas()
   const { data: competencias } = useCompetencias()
+  const { data: opiniones } = useOpinionesEditor()
   // Durante la ventana LOREG la capa de nombres desaparece entera; el Map vacío
   // hace que cada tarjeta pinte sin ella, sin ninguna rama extra en el render.
   const nombresOn = useNombresVisibles()
@@ -176,7 +181,8 @@ export default function Eficiencia() {
             }}
           >
             No hay nota global del ayuntamiento en esta página y no la va a haber. Lo que se cuenta
-            aquí es qué parte de sus propias cifras se puede usar.{' '}
+            aquí es qué parte de sus propias cifras se puede usar. Cuando concluimos algo, lo firma
+            un editor con su nombre, arriba y aparte de los datos.{' '}
             <a href="/metodologia#eficiencia" style={{ color: 'var(--civic)' }}>
               Cómo se calcula →
             </a>
@@ -191,6 +197,33 @@ export default function Eficiencia() {
         <Card style={{ marginTop: 16 }}>
           <p style={{ margin: 0, color: 'var(--ink70)' }}>{t('eficiencia.empty')}</p>
         </Card>
+      )}
+
+      {/* La opinión del editor: lo único de la página que juzga, firmado y
+          rotulado como opinión. Arriba, porque es la conclusión que el H1
+          pregunta; aparte, porque no es el dato. Sin opiniones no pinta nada. */}
+      <OpinionEditor
+        opiniones={opiniones}
+        panel="coste-efectivo"
+        nombresOn={nombresOn}
+        data={data}
+      />
+
+      {/* La primera capa: cuatro preguntas de vecino, cada una con su enlace a
+          la sección que la demuestra. Debajo de la opinión, porque ésta es la
+          conclusión y aquéllas los hechos; encima del detalle. */}
+      {indicadores.length > 0 && <EnBreveEficiencia data={data} preguntas={preguntas} />}
+
+      {/* Coste, resultado y competencia uno al lado del otro, para los servicios
+          con un resultado publicado. Va antes del libro porque contesta la
+          pregunta del H1 con hechos; el libro es el detalle de los quince. */}
+      {indicadores.length > 0 && (
+        <CuestaConsigueResponde
+          data={data}
+          competencias={competencias}
+          porClave={porClave}
+          nombresOn={nombresOn}
+        />
       )}
 
       {/* El libro: los quince servicios en una pantalla y con una sola

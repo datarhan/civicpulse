@@ -11,6 +11,7 @@
  */
 import { afterEach, describe, expect, it, vi } from 'vitest'
 import { render, cleanup } from '@testing-library/react'
+import { MemoryRouter } from 'react-router-dom'
 import { LocaleProvider } from '../../src/i18n'
 
 vi.mock('react-leaflet', () => {
@@ -70,9 +71,11 @@ describe('GastoDashboard — el periodo del total', () => {
   it('rotula el total con totalDateMin/totalDateMax, no con el periodo del mapa', () => {
     tg = { universe, zones: [zona], places: [], assignments: [] }
     const texto = render(
-      <LocaleProvider>
-        <GastoDashboard />
-      </LocaleProvider>,
+      <MemoryRouter>
+        <LocaleProvider>
+          <GastoDashboard />
+        </LocaleProvider>
+      </MemoryRouter>,
     ).container.textContent
     expect(texto).toMatch(/2017.2026/)
     expect(texto).not.toMatch(/2018.2026/)
@@ -84,10 +87,49 @@ describe('GastoDashboard — el periodo del total', () => {
     const { totalDateMin, totalDateMax, ...viejo } = universe
     tg = { universe: viejo, zones: [zona], places: [], assignments: [] }
     const texto = render(
-      <LocaleProvider>
-        <GastoDashboard />
-      </LocaleProvider>,
+      <MemoryRouter>
+        <LocaleProvider>
+          <GastoDashboard />
+        </LocaleProvider>
+      </MemoryRouter>,
     ).container.textContent
     expect(texto).toMatch(/2018.2026/)
+  })
+})
+
+/**
+ * La zona abierta vive en la URL: el selector de «En breve» lleva a
+ * `?barrio=<slug>#mapa-gasto` y un vecino puede compartir el enlace de su barrio.
+ */
+describe('GastoDashboard — el barrio de la URL', () => {
+  const pinta = (url) => {
+    // El detalle de la zona pide las quejas relacionadas; aquí no hay ninguna.
+    globalThis.fetch = vi.fn(async () => new Response('', { status: 404 }))
+    tg = { universe, zones: [zona], places: [], assignments: [] }
+    return render(
+      <MemoryRouter initialEntries={[url]}>
+        <LocaleProvider>
+          <GastoDashboard />
+        </LocaleProvider>
+      </MemoryRouter>,
+    ).container
+  }
+
+  it('?barrio=<slug> abre esa zona', () => {
+    const c = pinta('/presupuesto?barrio=el-molinet')
+    expect(c.textContent).toContain('← todas las zonas')
+    expect(c.textContent).toContain('el Molinet')
+  })
+
+  it('un barrio que el mapa no conoce se dice, y el mapa sigue entero', () => {
+    const c = pinta('/presupuesto?barrio=sector-14')
+    expect(c.querySelector('[data-barrio-desconocido]')?.textContent).toContain('«sector-14»')
+    expect(c.textContent).not.toContain('← todas las zonas')
+  })
+
+  it('sin barrio en la URL no se abre ninguno (el control)', () => {
+    const c = pinta('/presupuesto')
+    expect(c.textContent).not.toContain('← todas las zonas')
+    expect(c.querySelector('[data-barrio-desconocido]')).toBeNull()
   })
 })

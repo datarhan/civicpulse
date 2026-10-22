@@ -112,6 +112,54 @@ test.describe('Eficiencia (/eficiencia)', () => {
     test.skip(!montada, '/eficiencia no está montada — reconstruye con VITE_ENABLE_EFICIENCIA=true')
   })
 
+  // «Cuesta · Consigue · Responde» (components/eficiencia/CuestaConsigueResponde.jsx):
+  // una fila por servicio con resultado; el nombre sólo en «Responde»; a 375 px
+  // nada se sale del bloque.
+  test('Cuesta · Consigue · Responde: una fila por resultado, el nombre en su columna', async ({
+    page,
+  }) => {
+    const bloque = page.locator('[data-ccr-bloque]')
+    await expect(bloque).toBeVisible()
+    const filas = bloque.locator('[data-ccr-servicio]')
+    const datos = JSON.parse(readFileSync('public/data/indicadores.json', 'utf8'))
+    const conResultado = new Set(
+      (datos.resultados?.items ?? []).map(
+        (r: { servicioRelacionado: string }) => r.servicioRelacionado,
+      ),
+    )
+    // Todos los servicios: los de resultado arriba, el resto plegado.
+    await expect(filas).toHaveCount(datos.indicadores.length)
+    await expect(bloque.locator(':scope > div [data-ccr-servicio]')).toHaveCount(conResultado.size)
+    const comp = JSON.parse(readFileSync('public/data/competencias.json', 'utf8'))
+    for (const fila of await filas.all()) {
+      const id = await fila.getAttribute('data-ccr-servicio')
+      const a = comp.asignaciones.find((x: { clave: string }) => x.clave === id)
+      if (!a) continue
+      const cols = fila.locator('.cp-ccr-columnas > section')
+      await expect(cols.nth(0)).not.toContainText(a.nombre)
+      await expect(cols.nth(2)).toContainText(a.nombre)
+    }
+  })
+
+  test('Cuesta · Consigue · Responde no se sale del bloque a 375 px', async ({ page }) => {
+    await page.setViewportSize({ width: 375, height: 812 })
+    const bloque = page.locator('[data-ccr-bloque]')
+    await expect(bloque).toBeVisible()
+    const medidas = await page.evaluate(() => {
+      const b = document.querySelector('[data-ccr-bloque]')!.getBoundingClientRect()
+      const todos = [...document.querySelectorAll('[data-ccr-bloque] *')]
+      return {
+        n: todos.length,
+        fuera: todos.filter((e) => {
+          const r = e.getBoundingClientRect()
+          return r.width > 0 && (r.left < b.left - 1 || r.right > b.right + 1)
+        }).length,
+      }
+    })
+    expect(medidas.n).toBeGreaterThan(50)
+    expect(medidas.fuera).toBe(0)
+  })
+
   test('renders unit costs with their peer position', async ({ page }) => {
     const errors = collectErrors(page)
 

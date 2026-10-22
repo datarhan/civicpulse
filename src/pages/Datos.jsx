@@ -35,6 +35,8 @@ import { usePmp } from '../hooks/usePmp'
 import { useDeudaViva } from '../hooks/useDeudaViva'
 import { useIpc } from '../hooks/useIpc'
 import { useCriminalidad } from '../hooks/useCriminalidad'
+import { useAgua, useAguaInforme, useAguaPares } from '../hooks/useAgua'
+import { useBibliotecas } from '../hooks/useBibliotecas'
 import { fmtDateShort, fmtDateLong } from '../lib/formatters'
 import { breakdownNeedsCaveat } from '../scraper/pleno-votes'
 
@@ -125,6 +127,10 @@ function DatasetsCatalog() {
   const deudaViva = useDeudaViva().data
   const ipc = useIpc().data
   const crimen = useCriminalidad().data
+  const agua = useAgua().data
+  const aguaPares = useAguaPares().data
+  const aguaInforme = useAguaInforme().data
+  const biblio = useBibliotecas().data
 
   const items = [
     {
@@ -380,6 +386,46 @@ function DatasetsCatalog() {
       updated: formatDate(crimen?.generatedAt),
       source: 'Portal Estadístico de Criminalidad · refresco manual',
       path: '/data/criminalidad.json',
+      fmt: ['json'],
+    },
+    {
+      name: 'Calidad del agua de consumo (resultado)',
+      rows: agua?.stats?.boletines
+        ? `${agua.stats.redes} redes · ${agua.stats.boletines} boletines desde ${agua.stats.archivoDesde?.slice(0, 4) ?? '—'}`
+        : '—',
+      updated: formatDate(agua?.generatedAt),
+      source: 'SINAC · Ministerio de Sanidad · archivo propio',
+      path: '/data/agua.json',
+      fmt: ['json'],
+    },
+    {
+      name: 'Calidad del agua de consumo · municipios parecidos',
+      rows: aguaPares?.stats?.leidos
+        ? `${aguaPares.stats.leidos} municipios · ${aguaPares.stats.redes} redes`
+        : '—',
+      updated: formatDate(aguaPares?.generatedAt),
+      source: 'SINAC · Ministerio de Sanidad · semanal',
+      path: '/data/agua-pares.json',
+      fmt: ['json'],
+    },
+    {
+      name: 'Calidad del agua de consumo · informe anual por zona',
+      rows: aguaInforme?.stats?.anios
+        ? `${aguaInforme.stats.anios} años · ${aguaInforme.stats.filas} filas de zona`
+        : '—',
+      updated: formatDate(aguaInforme?.generatedAt),
+      source: 'Ministerio de Sanidad · informe anual, Anexo I',
+      path: '/data/agua-informe-anual.json',
+      fmt: ['json'],
+    },
+    {
+      name: 'Biblioteca: visitas y prestatarios (resultado)',
+      rows: biblio?.stats?.anios?.length
+        ? `${biblio.stats.anios[0]}–${biblio.stats.anios.at(-1)} · ${biblio.pares?.miembros ?? '—'} municipios de comparación`
+        : '—',
+      updated: formatDate(biblio?.generatedAt),
+      source: 'Estadística de Bibliotecas Públicas · Ministerio de Cultura',
+      path: '/data/bibliotecas.json',
       fmt: ['json'],
     },
     {

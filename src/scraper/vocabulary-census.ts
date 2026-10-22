@@ -50,6 +50,7 @@
  *     palabra de Gobierto se vigila en `sourceStatus`.
  */
 import { ESTADOS_DE_LICITACION_TRADUCIDOS } from './tenders'
+import { CALIFICACIONES, TIPOS_ANALISIS } from './sinac'
 
 export interface FieldCensus {
   /** `snapshot.collection.field`, e.g. `tenders.contracts.status`. */
@@ -106,6 +107,8 @@ export const MIN_ROWS_FOR_SHARE = 30
  */
 export const CAMPOS_TRADUCIDOS: Readonly<Record<string, ReadonlySet<string>>> = {
   'tenders.tenders.status': ESTADOS_DE_LICITACION_TRADUCIDOS,
+  'agua.boletines.calificacion': new Set(CALIFICACIONES),
+  'agua.boletines.tipo': new Set(TIPOS_ANALISIS),
 }
 
 /** snapshot file → collections inside it worth censusing. */
@@ -119,6 +122,9 @@ export const WATCHED: ReadonlyArray<readonly [string, readonly string[]]> = [
   ['officials.json', ['officials']],
   ['pleno-votes.json', ['items']],
   ['promises.json', ['items']],
+  // La calificación de SINAC: `calificacionTexto` es la frase del ministerio y
+  // es la que se vigila; `calificacion` y `tipo` los escribimos nosotros.
+  ['agua.json', ['boletines']],
 ]
 
 /** Nombres de campo que nunca son vocabulario: identifican, enlazan o fechan. */

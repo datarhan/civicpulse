@@ -84,6 +84,18 @@ export const DEFAULT_EXPECTATIONS: DatasetExpectation[] = [
   // se rompiera nadie lo diría — la misma forma exacta que los seis
   // adaptadores CI-blocked de arriba, que es de donde nace este fichero.
   { file: 'quejas.json', cls: 'nightly' as const, maxAgeDays: 3 },
+  // La banda de SINAC se lee una vez por semana a propósito (unas 400
+  // peticiones por pasada); dos semanas de plazo dejan perder una pasada sin
+  // aviso y no dos.
+  { file: 'agua-pares.json', cls: 'ci-blocked' as const, maxAgeDays: 15 },
+  // El informe anual del Ministerio de Sanidad sale una vez al año, con año y
+  // pico de desfase; añadir el año nuevo es una línea en scrape-agua-informe.ts.
+  {
+    file: 'agua-informe-anual.json',
+    cls: 'manual' as const,
+    maxAgeDays: 400,
+    hint: 'npm run scrape:agua-informe (añadir el año nuevo a INFORMES)',
+  },
   ...[
     'plenos-agendas.json',
     'consell-cv.json',
@@ -99,6 +111,11 @@ export const DEFAULT_EXPECTATIONS: DatasetExpectation[] = [
     // Las actas de la pestaña «Documentos» de regmeet: mismo bloqueo que el orden
     // del día, mismo único refresco (`scrape-ci-blocked.sh`).
     'pleno-actas.json',
+    // SINAC: sin medir desde CI, como `sindic-expedientes`. Ocho días bastan
+    // aunque el fichero sea un archivo: los diez últimos de control de la red
+    // principal cubren más de un año, así que una semana perdida no pierde
+    // ningún boletín — un mes sí podría.
+    'agua.json',
   ].map((file) => ({ file, cls: 'ci-blocked' as const, maxAgeDays: 8 })),
   // Clase `local-llm`: lo que escribe `press-lab-pipeline.sh`, un agente de
   // launchd que corre los LUNES (a diario hasta el 2026-09-23; el cambio fue
@@ -221,6 +238,16 @@ export const DEFAULT_EXPECTATIONS: DatasetExpectation[] = [
     // la respuesta de entonces será marcar upstream retired, no correr nada.
     maxAgeDays: 800,
     hint: 'npm run scrape:reciclaje -- --refetch',
+  },
+  {
+    file: 'bibliotecas.json',
+    cls: 'manual' as const,
+    // La Estadística de Bibliotecas Públicas publica cada año el anterior (en
+    // octubre de 2026 la serie llega a 2024). Sólo responde desde la máquina del
+    // curador —a la nube, 429—, así que lo corre una persona: presupuesto
+    // anual largo, como criminalidad.
+    maxAgeDays: 430,
+    hint: 'npm run scrape:bibliotecas -- --refetch && npm run compute:indicadores',
   },
   {
     file: 'ipc.json',

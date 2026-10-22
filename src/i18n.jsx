@@ -41,6 +41,114 @@ export const CATALOGUE = {
     'nav.gestion': 'Gestión',
     'eficiencia.eyebrow': 'Ayuntamiento · coste efectivo de los servicios',
     'eficiencia.title': '¿Cuánto cuesta y qué se obtiene?',
+    // «En breve» de /eficiencia (components/eficiencia/EnBreveEficiencia.jsx).
+    'eficiencia.enBreve.titulo': 'En breve',
+    'eficiencia.enBreve.intro':
+      'Lo esencial del panel, en pocas preguntas. Cada respuesta enlaza a la sección que la demuestra.',
+    'eficiencia.enBreve.saltar': 'Ir al libro de los servicios ↓',
+    'eficiencia.enBreve.ver': 'Ver el detalle ↓',
+    'eficiencia.enBreve.coste.pregunta': '¿Cuánto cuestan los servicios?',
+    'eficiencia.enBreve.coste.nota': '{n} servicios · {anio}',
+    'eficiencia.enBreve.coste.frase':
+      'Es el [[costeEfectivo|coste]] que el Ayuntamiento declara al Ministerio por {n} servicios en {anio}. No es todo lo que gasta: es lo que dice que le costó prestar cada uno.',
+    'eficiencia.enBreve.coste.resto': 'Resto de servicios',
+    'eficiencia.enBreve.bien.pregunta': '¿Lo hacen bien?',
+    'eficiencia.enBreve.bien.cifra': '{n} de {de}',
+    'eficiencia.enBreve.bien.cifraNota': 'cantidades repetidas',
+    'eficiencia.enBreve.bien.frase':
+      'Con estos datos no se puede saber: el Ministerio no pide ningún dato de calidad del servicio.',
+    'eficiencia.enBreve.bien.razon':
+      'Y hay otra razón: {n} de las {de} cantidades que el Ayuntamiento declara [[cantidadSinRemedir|se repiten iguales]] año tras año, así que el coste por unidad sólo sigue al gasto.',
+    'eficiencia.enBreve.bien.ejemplo':
+      'Por ejemplo, {valor} {unidad} de {servicio}, idénticas desde {desde}.',
+    'eficiencia.enBreve.bien.figura':
+      'Las {unidad} declaradas para {servicio}: {valor} cada año, de {desde} a {hasta}.',
+    'eficiencia.enBreve.entregas.pregunta': '¿Rinde cuentas a tiempo?',
+    'eficiencia.enBreve.entregas.cifra': '{presentadas} de {obligatorias}',
+    'eficiencia.enBreve.entregas.frase':
+      'Presentó {presentadas} de las {obligatorias} [[entrega|entregas]] obligatorias al Ministerio. La de {faltan}, no.',
+    'eficiencia.enBreve.entregas.todas':
+      'Presentó las {obligatorias} [[entrega|entregas]] obligatorias al Ministerio.',
+    'eficiencia.enBreve.entregas.figura':
+      '{presentadas} de {obligatorias} entregas presentadas; la que falta va hueca.',
+    'eficiencia.enBreve.preguntas.pregunta': '¿A quién se lo pregunto?',
+    'eficiencia.enBreve.preguntas.cifraNota': 'preguntas registradas',
+    'eficiencia.enBreve.preguntas.frase':
+      'Hemos dejado {n} preguntas registradas, dirigidas a instituciones y nunca a personas. Cualquier respuesta se publicará íntegra.',
+    'eficiencia.enBreve.preguntas.nota':
+      'Quién tiene delegada cada competencia está en «Cuesta · consigue · responde», servicio a servicio.',
+    // La opinión del editor (components/eficiencia/OpinionEditor.jsx). El
+    // rótulo va antes que el titular: el lector tiene que saber que esto ya
+    // no es el dato del ministerio.
+    'opinion.rotulo': 'Opinión del editor · firmada',
+    'opinion.firma': 'Firma {nombre}, {rol} · {fecha}',
+    'opinion.hechos': 'Los hechos en que se basa',
+    'opinion.noSabemos': 'Lo que no sabemos',
+    'opinion.contacto': 'Antes de publicarla',
+    'opinion.contacto.enviado':
+      'Enviamos este texto a {nombres} el {fecha} ({canal}) y esperamos {dias} días su respuesta antes de publicarlo.',
+    'opinion.contacto.sinRespuesta':
+      'Sin respuesta en el plazo. Si llega, se publicará aquí íntegra.',
+    'opinion.replicas': 'Réplicas',
+    'opinion.fuente': 'fuente',
+    'opinion.correcciones': 'Corregida {n} vez/veces · ver qué cambió',
+    'opinion.antes': 'Antes decía:',
+    'opinion.replicaVia': 'Derecho de réplica:',
+    'opinion.avisoLegal': 'aviso legal',
+    'opinion.comoSeHace': 'cómo se escribe una opinión aquí',
+    // «Cuesta · Consigue · Responde» (components/eficiencia/CuestaConsigueResponde.jsx):
+    // palabras de DIRECCIÓN, nunca de valor. «Sube» no es «peor».
+    'eficiencia.ccr.eyebrow': 'Cuesta · consigue · responde',
+    'eficiencia.ccr.titulo': 'Lo que cuesta, lo que se consigue y quién responde',
+    'eficiencia.ccr.intro':
+      'Primero los servicios con un resultado publicado; los demás, debajo. Cada frase dice de qué año a qué año mide, y cada comparación usa el grupo de su propia fuente; las columnas no se dividen entre sí: que una suba no explica que la otra baje. El juicio es tuyo.',
+    'eficiencia.ccr.col.cuesta': 'Cuesta',
+    'eficiencia.ccr.resto':
+      'Los otros {n} servicios: coste y quién responde, sin resultado publicado',
+    'eficiencia.ccr.col.consigue': 'Consigue',
+    'eficiencia.ccr.col.responde': 'Responde',
+    'eficiencia.ccr.rotulo.nuestro': 'Riba-roja',
+    'eficiencia.ccr.rotulo.grupo': 'Mediana de municipios parecidos',
+    'eficiencia.ccr.rotulo.mandato': 'Mandato actual',
+    'eficiencia.ccr.rotulo.base': 'Índice: {base} = 100',
+    'eficiencia.ccr.coste.sube':
+      'De {base} a {fin}, el coste por unidad sube un {pct} % en euros constantes.',
+    'eficiencia.ccr.coste.baja':
+      'De {base} a {fin}, el coste por unidad baja un {pct} % en euros constantes.',
+    'eficiencia.ccr.coste.igual':
+      'De {base} a {fin}, el coste por unidad se mantiene en euros constantes.',
+    'eficiencia.ccr.grupo.sube': 'En los municipios parecidos, de {base} a {fin}, sube un {pct} %.',
+    'eficiencia.ccr.grupo.baja': 'En los municipios parecidos, de {base} a {fin}, baja un {pct} %.',
+    'eficiencia.ccr.grupo.igual': 'En los municipios parecidos, de {base} a {fin}, se mantiene.',
+    'eficiencia.ccr.coste.sinSerie': 'No hay serie de coste suficiente desde 2021.',
+    'eficiencia.ccr.coste.precio':
+      'Es un precio, no un rendimiento: que suba no dice si el servicio es mejor o peor.',
+    'eficiencia.ccr.coste.congelado':
+      'Ojo: el Ayuntamiento declara la misma cantidad de servicio desde {desde}, así que el coste por unidad sigue al coste total. No se sabe si hay más servicio o sólo más gasto.',
+    'eficiencia.ccr.coste.congeladoSinAnio':
+      'Ojo: el Ayuntamiento repite la misma cantidad de servicio en cada entrega, así que el coste por unidad sigue al coste total.',
+    'eficiencia.ccr.resultado.sin':
+      'El Ministerio no pide ningún resultado de este servicio, y no hemos encontrado otra fuente.',
+    'eficiencia.ccr.resultado.sube': 'De {base} a {fin}, la cifra sube un {pct} %.',
+    'eficiencia.ccr.resultado.baja': 'De {base} a {fin}, la cifra baja un {pct} %.',
+    'eficiencia.ccr.resultado.igual': 'De {base} a {fin}, la cifra se mantiene.',
+    'eficiencia.ccr.resultado.unAnio':
+      'Sólo hay un año publicado ({periodo}): sin serie no hay dirección.',
+    'eficiencia.ccr.resultado.pares':
+      'El valor es mayor que el de {p} de cada 100 municipios parecidos ({n} con dato).',
+    'eficiencia.ccr.resultado.sinSerieGrupo':
+      'De los municipios parecidos sólo tenemos el último año, no su evolución.',
+    'eficiencia.ccr.resultado.sinPares': 'Esta cifra no se compara con otros municipios.',
+    'eficiencia.ccr.resultado.serieGrupo':
+      'La línea gris es la mediana de los mismos {n} municipios parecidos todos los años: los que tienen dato en cada uno.',
+    'eficiencia.ccr.responde.competencia': 'Competencia delegada',
+    'eficiencia.ccr.responde.loreg': 'Los nombres no se publican durante el periodo electoral.',
+    'eficiencia.ccr.responde.sinAsignar': 'Ninguna delegación nombra este servicio.',
+    'eficiencia.ccr.responde.antes':
+      'Antes del {desde}, cuando empezó este mandato, no nombramos a nadie: aún no hemos incorporado el decreto de delegación del mandato anterior.',
+    'eficiencia.ccr.responde.promesas': 'Lo que prometió el gobierno municipal',
+    'eficiencia.ccr.responde.sinPromesa':
+      'No consta ninguna promesa sobre este servicio en /promesas.',
     'eficiencia.intro':
       'Lo que cada servicio municipal costó, dividido entre lo que produjo, y dónde queda eso entre municipios valencianos de tamaño parecido. No hay nota global ni ranking: cada indicador va con su fuente, su modo de gestión y sus salvedades.',
     'eficiencia.cobertura.titulo': 'Qué cubre esta página',
@@ -1674,6 +1782,136 @@ export const CATALOGUE = {
       '{gastos} de gastos aprobados según CONPREL · {porHab} por habitante · {hab} habitantes · actualizado {fecha}',
     'presupuesto.meta.sinTotal':
       'CONPREL no trae el total de gastos aprobados · {hab} habitantes · actualizado {fecha}',
+    // «En breve» de /metodologia: cada respuesta es una regla ya escrita en la
+    // página, dicha en corto. Sin plazos ni cifras: viven en la regla.
+    'metodologia.enBreve.titulo': 'En breve',
+    'metodologia.enBreve.intro':
+      'Cómo trabajamos, en cinco preguntas. Cada respuesta enlaza a la regla completa.',
+    'metodologia.enBreve.saltar': 'Ir a las reglas completas ↓',
+    'metodologia.enBreve.ver': 'Leer la regla ↓',
+    'metodologia.enBreve.recorrido': 'El recorrido de un dato',
+    'metodologia.enBreve.paso.1': 'Fuente pública',
+    'metodologia.enBreve.paso.2': 'Con su fecha',
+    'metodologia.enBreve.paso.3': 'Revisión',
+    'metodologia.enBreve.paso.4': 'Publicado con enlace',
+    'metodologia.enBreve.paso.5': 'Rectificable',
+    'metodologia.enBreve.fuentes.pregunta': '¿De dónde salen los datos?',
+    'metodologia.enBreve.fuentes.frase':
+      'De fuentes oficiales —el propio Ayuntamiento, los ministerios, la Plataforma de Contratación, el BOE— y de la prensa, citada como prensa. La página de datos lista cada fuente con la fecha de su última lectura.',
+    'metodologia.enBreve.fuentes.ver': 'Ver todas las fuentes →',
+    'metodologia.enBreve.maquina.pregunta': '¿Lo publica una máquina?',
+    'metodologia.enBreve.maquina.frase':
+      'A veces, y con reglas. Lo que nombra a una persona lleva siempre la firma de alguien del equipo. Una máquina sólo publica sola lo que retira algo ya publicado, o lo nuevo que no nombra a nadie y tiene su acierto medido.',
+    'metodologia.enBreve.comprobar.pregunta': '¿Cómo compruebo lo que decís?',
+    'metodologia.enBreve.comprobar.frase':
+      'Cada afirmación enlaza el documento del que sale, para que lo compruebes tú. Una promesa se atribuye con las palabras literales del partido, nunca con el titular de una noticia.',
+    'metodologia.enBreve.nota.pregunta': '¿Ponéis nota al Ayuntamiento?',
+    'metodologia.enBreve.nota.frase':
+      'No. No clasificamos partidos ni puntuamos al Ayuntamiento ni a ningún concejal: los datos van sin juicio. Cuando concluimos algo, lo firma un editor con su nombre, aparte y con derecho de réplica.',
+    'metodologia.enBreve.error.pregunta': '¿Y si os equivocáis?',
+    'metodologia.enBreve.error.frase':
+      'Cualquier persona, colectivo o partido puede pedir una rectificación, por GitHub o por correo. Tiene plazos fijos, los mismos del aviso legal.',
+    // «En breve»: la primera capa de /presupuesto, en el registro de quien no
+    // sabe qué es una obligación reconocida. `[[clave|texto]]` es un término
+    // del glosario (src/glosario.js) y se pinta como botón con su definición.
+    'presupuesto.enBreve.titulo': 'En breve',
+    'presupuesto.enBreve.intro':
+      'Lo esencial, en pocas preguntas. Cada respuesta enlaza a la sección que la demuestra.',
+    'presupuesto.enBreve.saltar': 'Saltar a todos los datos ↓',
+    'presupuesto.enBreve.ver': 'Ver el detalle ↓',
+    'presupuesto.enBreve.limite.pregunta': '¿Cuánto dinero tenía para gastar en {year}?',
+    'presupuesto.enBreve.porVecino': '{x} por vecino',
+    'presupuesto.enBreve.limite.frase':
+      'Empezó el año con {inicial} y durante el año se le añadieron {mod}. Es un [[creditoDefinitivo|tope del presupuesto]], no un gasto.',
+    'presupuesto.enBreve.limite.inicial': 'Al empezar · {x}',
+    'presupuesto.enBreve.limite.mod': 'Añadido · {x}',
+    'presupuesto.enBreve.limite.figura':
+      'Barra: {inicial} al empezar el año más {mod} añadidos, en total {definitivo}.',
+    'presupuesto.enBreve.limite.dosFuentes':
+      'El Ministerio de Hacienda (CONPREL) da otra cifra de partida para {year}: {conprel}. Las dos fuentes no cuadran y no elegimos una.',
+    'presupuesto.enBreve.aprobado.pregunta': '¿Cuánto dinero tiene para gastar en {year}?',
+    'presupuesto.enBreve.aprobado.frase':
+      'Es el presupuesto aprobado según el Ministerio de Hacienda: un [[creditoDefinitivo|tope]], no un gasto. Cuánto se ha gastado aparecerá cuando el Ayuntamiento publique su estado de ejecución.',
+    'presupuesto.enBreve.gastado.pregunta': '¿Cuánto ha gastado?',
+    'presupuesto.enBreve.gastado.cifraNota': '{n} de cada 100 €',
+    'presupuesto.enBreve.gastado.frase':
+      'De cada 100 € que podía gastar en {year}, [[obligacionesReconocidas|gastó]] {n}.',
+    'presupuesto.enBreve.gastado.fin': 'Datos a {fecha}, cierre del ejercicio.',
+    'presupuesto.enBreve.gastado.fecha': 'Datos a {fecha}.',
+    'presupuesto.enBreve.gastado.nota':
+      '«Gastado» son las facturas y gastos que el Ayuntamiento ya ha dado por buenos. Lo pagado puede ser menos.',
+    'presupuesto.enBreve.gastado.barra': 'Gastado · {pct} %',
+    'presupuesto.enBreve.gastado.avance': 'Año transcurrido',
+    'presupuesto.enBreve.gastado.figura':
+      'Barra: gastado el {pct} % de lo que podía gastar; marca del año transcurrido al {avance} %.',
+    'presupuesto.enBreve.gastado.figuraSinAvance':
+      'Barra: gastado el {pct} % de lo que podía gastar.',
+    'presupuesto.enBreve.enQue.pregunta': '¿En qué se ha ido?',
+    'presupuesto.enBreve.enQue.mayoria': 'La mayor parte fue a {a} y a {b}.',
+    'presupuesto.enBreve.enQue.primero': 'Lo que más se llevó fue {a}, seguido de {b}.',
+    'presupuesto.enBreve.enQue.uno': 'Todo lo gastado fue a {a}.',
+    'presupuesto.enBreve.enQue.dominante':
+      'En {capitulo} había {definitivo} presupuestados y se gastó {ejecutado}.',
+    'presupuesto.enBreve.enQue.resto': 'Resto',
+    'presupuesto.enBreve.enQue.figura': 'Reparto de lo gastado: {lista}.',
+    'presupuesto.enBreve.cap.1': 'Sueldos del personal',
+    'presupuesto.enBreve.cap.2': 'Compras y servicios del día a día',
+    'presupuesto.enBreve.cap.3': 'Intereses de la deuda',
+    'presupuesto.enBreve.cap.4': 'Ayudas y aportaciones a otras entidades',
+    'presupuesto.enBreve.cap.5': 'Fondo de contingencia',
+    'presupuesto.enBreve.cap.6': 'Obras e inversiones',
+    'presupuesto.enBreve.cap.7': 'Aportaciones para inversiones de otros',
+    'presupuesto.enBreve.cap.8': 'Préstamos y depósitos',
+    'presupuesto.enBreve.cap.9': 'Devolución de préstamos',
+    'presupuesto.enBreve.deuda.pregunta': '¿Debe dinero?',
+    'presupuesto.enBreve.deuda.frase':
+      'Es la [[deudaViva|deuda viva]] al cierre de {year}, según el Ministerio de Hacienda.',
+    'presupuesto.enBreve.deuda.comparacion':
+      'Debe más que {p} de cada 100 ayuntamientos de la lista del Ministerio. Pero {cero} de cada 100 no deben nada, así que la comparación dice poco por sí sola.',
+    'presupuesto.enBreve.deuda.sinDeuda': 'Sin deuda · {n} de 100',
+    'presupuesto.enBreve.deuda.nosotros': 'Riba-roja',
+    'presupuesto.enBreve.deuda.figura':
+      '100 ayuntamientos: {cero} no deben nada; Riba-roja debe más que {p}.',
+    'presupuesto.enBreve.barrio.titulo': '¿Qué se ha contratado en mi barrio?',
+    'presupuesto.enBreve.barrio.frase':
+      'Ojo: de cada 100 € contratados, sólo {n} van a contratos que nombran un barrio. Que tu barrio no salga en el mapa no quiere decir que allí no se haya contratado nada.',
+    'presupuesto.enBreve.barrio.menosDeUno':
+      'Ojo: de cada 100 € contratados, menos de 1 va a contratos que nombran un barrio. Que tu barrio no salga en el mapa no quiere decir que allí no se haya contratado nada.',
+    'presupuesto.enBreve.barrio.elige': 'Elige tu barrio',
+    'presupuesto.enBreve.barrio.placeholder': 'Elige…',
+    'presupuesto.enBreve.barrio.opcion': '{nombre} · {n} contratos',
+    'presupuesto.enBreve.barrio.opcion.uno': '{nombre} · 1 contrato',
+    'presupuesto.enBreve.barrio.otro': 'Mi barrio no aparece',
+    'presupuesto.enBreve.barrio.ver': 'Ver sus contratos',
+    'presupuesto.enBreve.barrio.otro.titulo': 'No podemos situar contratos en tu barrio',
+    'presupuesto.enBreve.barrio.otro.frase':
+      'Ningún contrato publicado nombra en su título un lugar que podamos situar con seguridad en tu barrio. Preferimos no poner un punto en el mapa a ponerlo mal.',
+    'presupuesto.enBreve.barrio.otro.queja': 'Avisar de un problema en tu calle',
+    'presupuesto.enBreve.barrio.otro.todos': 'Ver todos los contratos del municipio ↓',
+    'presupuesto.gasto.zona.desconocida':
+      'El enlace pide el barrio «{barrio}», que no está entre los que nombran los contratos. Elige uno en la lista o en el mapa.',
+    'presupuesto.enBreve.barrio.figura': 'De cada 100 € contratados, {n} nombran un barrio.',
+    'glosario.rotulo': 'Glosario',
+    'glosario.oficial': 'Nombre oficial: {nombre}',
+    'glosario.cerrar': 'Cerrar la definición',
+    'glosario.creditoDefinitivo.termino': 'Crédito definitivo',
+    'glosario.creditoDefinitivo.def':
+      'Lo máximo que el Ayuntamiento puede gastar en el año: lo aprobado al principio más lo añadido después. Es un tope, no un gasto.',
+    'glosario.obligacionesReconocidas.termino': 'Obligaciones reconocidas',
+    'glosario.obligacionesReconocidas.def':
+      'Facturas y gastos que el Ayuntamiento ya ha dado por buenos y tiene que pagar. Es la única cifra del presupuesto que es gasto. No es lo mismo que lo pagado.',
+    'glosario.costeEfectivo.termino': 'Coste efectivo',
+    'glosario.costeEfectivo.def':
+      'Lo que el Ayuntamiento declara al Ministerio de Hacienda que le costó prestar un servicio en un año. No es todo su gasto ni un dato de calidad.',
+    'glosario.cantidadSinRemedir.termino': 'Cantidad sin remedir',
+    'glosario.cantidadSinRemedir.def':
+      'Una cantidad de servicio (toneladas, metros, puntos de luz) que el Ayuntamiento declara igual, decimal a decimal, año tras año. Si no se vuelve a medir, el coste por unidad sólo sigue al gasto.',
+    'glosario.entrega.termino': 'Entrega',
+    'glosario.entrega.def':
+      'El envío anual obligatorio de estos datos al Ministerio, antes del 1 de noviembre (artículo 116 ter de la Ley de Bases de Régimen Local).',
+    'glosario.deudaViva.termino': 'Deuda viva',
+    'glosario.deudaViva.def':
+      'Lo que el Ayuntamiento debe a bancos y otras entidades al cerrar el año. No es el capítulo «Deuda pública» del presupuesto, que es lo que se aparta cada año para pagarla.',
     'presupuesto.fuentes.title': 'Dos fuentes, dos presupuestos aprobados',
     'presupuesto.fuentes.conprel': 'CONPREL · Ministerio de Hacienda',
     'presupuesto.fuentes.municipal': 'Estado de ejecución del propio Ayuntamiento',
@@ -2274,6 +2512,106 @@ export const CATALOGUE = {
     'nav.gestion': 'Gestió',
     'eficiencia.eyebrow': 'Ajuntament · cost efectiu dels serveis',
     'eficiencia.title': 'Quant costa i què se n\u2019obté?',
+    'eficiencia.enBreve.titulo': 'En resum',
+    'eficiencia.enBreve.intro':
+      "L'essencial del panell, en poques preguntes. Cada resposta enllaça amb la secció que la demostra.",
+    'eficiencia.enBreve.saltar': 'Anar al llibre dels serveis ↓',
+    'eficiencia.enBreve.ver': 'Vore el detall ↓',
+    'eficiencia.enBreve.coste.pregunta': 'Quant costen els serveis?',
+    'eficiencia.enBreve.coste.nota': '{n} serveis · {anio}',
+    'eficiencia.enBreve.coste.frase':
+      "És el [[costeEfectivo|cost]] que l'Ajuntament declara al Ministeri per {n} serveis en {anio}. No és tot el que gasta: és el que diu que li va costar prestar cadascun.",
+    'eficiencia.enBreve.coste.resto': 'Resta de serveis',
+    'eficiencia.enBreve.bien.pregunta': 'Ho fan bé?',
+    'eficiencia.enBreve.bien.cifra': '{n} de {de}',
+    'eficiencia.enBreve.bien.cifraNota': 'quantitats repetides',
+    'eficiencia.enBreve.bien.frase':
+      'Amb estes dades no es pot saber: el Ministeri no demana cap dada de qualitat del servei.',
+    'eficiencia.enBreve.bien.razon':
+      "I hi ha una altra raó: {n} de les {de} quantitats que l'Ajuntament declara [[cantidadSinRemedir|es repetixen iguals]] any rere any, així que el cost per unitat només seguix la despesa.",
+    'eficiencia.enBreve.bien.ejemplo':
+      'Per exemple, {valor} {unidad} de {servicio}, idèntiques des de {desde}.',
+    'eficiencia.enBreve.bien.figura':
+      'Les {unidad} declarades per a {servicio}: {valor} cada any, de {desde} a {hasta}.',
+    'eficiencia.enBreve.entregas.pregunta': 'Rendix comptes a temps?',
+    'eficiencia.enBreve.entregas.cifra': '{presentadas} de {obligatorias}',
+    'eficiencia.enBreve.entregas.frase':
+      'Va presentar {presentadas} de les {obligatorias} [[entrega|entregues]] obligatòries al Ministeri. La de {faltan}, no.',
+    'eficiencia.enBreve.entregas.todas':
+      'Va presentar les {obligatorias} [[entrega|entregues]] obligatòries al Ministeri.',
+    'eficiencia.enBreve.entregas.figura':
+      '{presentadas} de {obligatorias} entregues presentades; la que falta va buida.',
+    'eficiencia.enBreve.preguntas.pregunta': 'A qui li ho pregunte?',
+    'eficiencia.enBreve.preguntas.cifraNota': 'preguntes registrades',
+    'eficiencia.enBreve.preguntas.frase':
+      'Hem deixat {n} preguntes registrades, dirigides a institucions i mai a persones. Qualsevol resposta es publicarà íntegra.',
+    'eficiencia.enBreve.preguntas.nota':
+      'Qui té delegada cada competència és a «Costa · aconseguix · respon», servei a servei.',
+    'opinion.rotulo': "Opinió de l'editor · signada",
+    'opinion.firma': 'Signa {nombre}, {rol} · {fecha}',
+    'opinion.hechos': 'Els fets en què es basa',
+    'opinion.noSabemos': 'El que no sabem',
+    'opinion.contacto': 'Abans de publicar-la',
+    'opinion.contacto.enviado':
+      'Vam enviar este text a {nombres} el {fecha} ({canal}) i vam esperar {dias} dies la seua resposta abans de publicar-lo.',
+    'opinion.contacto.sinRespuesta':
+      'Sense resposta en el termini. Si arriba, es publicarà ací íntegra.',
+    'opinion.replicas': 'Rèpliques',
+    'opinion.fuente': 'font',
+    'opinion.correcciones': 'Corregida {n} vegada/es · vore què va canviar',
+    'opinion.antes': 'Abans deia:',
+    'opinion.replicaVia': 'Dret de rèplica:',
+    'opinion.avisoLegal': 'avís legal',
+    'opinion.comoSeHace': 'com s’escriu una opinió ací',
+    'eficiencia.ccr.eyebrow': 'Costa · aconseguix · respon',
+    'eficiencia.ccr.titulo': "El que costa, el que s'aconseguix i qui respon",
+    'eficiencia.ccr.intro':
+      "Primer els serveis amb un resultat publicat; la resta, davall. Cada frase diu de quin any a quin any mesura, i cada comparació usa el grup de la seua pròpia font; les columnes no es dividixen entre si: que una puge no explica que l'altra baixe. El judici és teu.",
+    'eficiencia.ccr.col.cuesta': 'Costa',
+    'eficiencia.ccr.resto': 'Els altres {n} serveis: cost i qui respon, sense resultat publicat',
+    'eficiencia.ccr.col.consigue': 'Aconseguix',
+    'eficiencia.ccr.col.responde': 'Respon',
+    'eficiencia.ccr.rotulo.nuestro': 'Riba-roja',
+    'eficiencia.ccr.rotulo.grupo': 'Mediana de municipis semblants',
+    'eficiencia.ccr.rotulo.mandato': 'Mandat actual',
+    'eficiencia.ccr.rotulo.base': 'Índex: {base} = 100',
+    'eficiencia.ccr.coste.sube':
+      'De {base} a {fin}, el cost per unitat puja un {pct} % en euros constants.',
+    'eficiencia.ccr.coste.baja':
+      'De {base} a {fin}, el cost per unitat baixa un {pct} % en euros constants.',
+    'eficiencia.ccr.coste.igual':
+      'De {base} a {fin}, el cost per unitat es manté en euros constants.',
+    'eficiencia.ccr.grupo.sube': 'En els municipis semblants, de {base} a {fin}, puja un {pct} %.',
+    'eficiencia.ccr.grupo.baja': 'En els municipis semblants, de {base} a {fin}, baixa un {pct} %.',
+    'eficiencia.ccr.grupo.igual': 'En els municipis semblants, de {base} a {fin}, es manté.',
+    'eficiencia.ccr.coste.sinSerie': 'No hi ha prou sèrie de cost des de 2021.',
+    'eficiencia.ccr.coste.precio':
+      'És un preu, no un rendiment: que puge no diu si el servei és millor o pitjor.',
+    'eficiencia.ccr.coste.congelado':
+      "Compte: l'Ajuntament declara la mateixa quantitat de servei des de {desde}, així que el cost per unitat seguix el cost total. No se sap si hi ha més servei o només més despesa.",
+    'eficiencia.ccr.coste.congeladoSinAnio':
+      "Compte: l'Ajuntament repetix la mateixa quantitat de servei en cada entrega, així que el cost per unitat seguix el cost total.",
+    'eficiencia.ccr.resultado.sin':
+      "El Ministeri no demana cap resultat d'este servei, i no hem trobat cap altra font.",
+    'eficiencia.ccr.resultado.sube': 'De {base} a {fin}, la xifra puja un {pct} %.',
+    'eficiencia.ccr.resultado.baja': 'De {base} a {fin}, la xifra baixa un {pct} %.',
+    'eficiencia.ccr.resultado.igual': 'De {base} a {fin}, la xifra es manté.',
+    'eficiencia.ccr.resultado.unAnio':
+      'Només hi ha un any publicat ({periodo}): sense sèrie no hi ha direcció.',
+    'eficiencia.ccr.resultado.pares':
+      'El valor és major que el de {p} de cada 100 municipis semblants ({n} amb dada).',
+    'eficiencia.ccr.resultado.sinSerieGrupo':
+      "Dels municipis semblants només tenim l'últim any, no la seua evolució.",
+    'eficiencia.ccr.resultado.sinPares': 'Aquesta xifra no es compara amb altres municipis.',
+    'eficiencia.ccr.resultado.serieGrupo':
+      'La línia grisa és la mediana dels mateixos {n} municipis semblants tots els anys: els que tenen dada en cada un.',
+    'eficiencia.ccr.responde.competencia': 'Competència delegada',
+    'eficiencia.ccr.responde.loreg': 'Els noms no es publiquen durant el període electoral.',
+    'eficiencia.ccr.responde.sinAsignar': 'Cap delegació nomena este servei.',
+    'eficiencia.ccr.responde.antes':
+      'Abans del {desde}, quan va començar este mandat, no nomenem ningú: encara no hem incorporat el decret de delegació del mandat anterior.',
+    'eficiencia.ccr.responde.promesas': 'El que va prometre el govern municipal',
+    'eficiencia.ccr.responde.sinPromesa': 'No consta cap promesa sobre este servei a /promesas.',
     'eficiencia.intro':
       'El que cada servei municipal va costar, dividit pel que va produir, i on queda això entre municipis valencians de mida semblant. No hi ha nota global ni rànquing: cada indicador va amb la seua font, la seua manera de gestió i els seus advertiments.',
     'eficiencia.cobertura.titulo': 'Què cobreix aquesta pàgina',
@@ -3700,6 +4038,130 @@ export const CATALOGUE = {
       '{gastos} de despeses aprovades segons CONPREL · {porHab} per habitant · {hab} habitants · actualitzat {fecha}',
     'presupuesto.meta.sinTotal':
       'CONPREL no porta el total de despeses aprovades · {hab} habitants · actualitzat {fecha}',
+    'metodologia.enBreve.titulo': 'En resum',
+    'metodologia.enBreve.intro':
+      'Com treballem, en cinc preguntes. Cada resposta enllaça amb la regla completa.',
+    'metodologia.enBreve.saltar': 'Anar a les regles completes ↓',
+    'metodologia.enBreve.ver': 'Llegir la regla ↓',
+    'metodologia.enBreve.recorrido': "El recorregut d'una dada",
+    'metodologia.enBreve.paso.1': 'Font pública',
+    'metodologia.enBreve.paso.2': 'Amb la seua data',
+    'metodologia.enBreve.paso.3': 'Revisió',
+    'metodologia.enBreve.paso.4': 'Publicat amb enllaç',
+    'metodologia.enBreve.paso.5': 'Rectificable',
+    'metodologia.enBreve.fuentes.pregunta': "D'on ixen les dades?",
+    'metodologia.enBreve.fuentes.frase':
+      'De fonts oficials —el mateix Ajuntament, els ministeris, la Plataforma de Contractació, el BOE— i de la premsa, citada com a premsa. La pàgina de dades llista cada font amb la data de la seua última lectura.',
+    'metodologia.enBreve.fuentes.ver': 'Vore totes les fonts →',
+    'metodologia.enBreve.maquina.pregunta': 'Ho publica una màquina?',
+    'metodologia.enBreve.maquina.frase':
+      "A vegades, i amb regles. El que nomena una persona porta sempre la firma d'algú de l'equip. Una màquina només publica sola el que retira alguna cosa ja publicada, o el que és nou, no nomena ningú i té l'encert mesurat.",
+    'metodologia.enBreve.comprobar.pregunta': 'Com comprove el que dieu?',
+    'metodologia.enBreve.comprobar.frase':
+      "Cada afirmació enllaça el document d'on ix, perquè ho comproves tu. Una promesa s'atribuïx amb les paraules literals del partit, mai amb el titular d'una notícia.",
+    'metodologia.enBreve.nota.pregunta': "Poseu nota a l'Ajuntament?",
+    'metodologia.enBreve.nota.frase':
+      "No. No classifiquem partits ni puntuem l'Ajuntament ni cap regidor: les dades van sense judici. Quan concloem alguna cosa, la signa un editor amb el seu nom, a banda i amb dret de rèplica.",
+    'metodologia.enBreve.error.pregunta': 'I si vos equivoqueu?',
+    'metodologia.enBreve.error.frase':
+      "Qualsevol persona, col·lectiu o partit pot demanar una rectificació, per GitHub o per correu. Té terminis fixos, els mateixos de l'avís legal.",
+    'presupuesto.enBreve.titulo': 'En resum',
+    'presupuesto.enBreve.intro':
+      "L'essencial, en poques preguntes. Cada resposta enllaça amb la secció que la demostra.",
+    'presupuesto.enBreve.saltar': 'Botar a totes les dades ↓',
+    'presupuesto.enBreve.ver': 'Vore el detall ↓',
+    'presupuesto.enBreve.limite.pregunta': 'Quants diners tenia per a gastar en {year}?',
+    'presupuesto.enBreve.porVecino': '{x} per veí',
+    'presupuesto.enBreve.limite.frase':
+      "Va començar l'any amb {inicial} i durant l'any se li van afegir {mod}. És un [[creditoDefinitivo|límit del pressupost]], no una despesa.",
+    'presupuesto.enBreve.limite.inicial': 'En començar · {x}',
+    'presupuesto.enBreve.limite.mod': 'Afegit · {x}',
+    'presupuesto.enBreve.limite.figura':
+      "Barra: {inicial} en començar l'any més {mod} afegits, en total {definitivo}.",
+    'presupuesto.enBreve.limite.dosFuentes':
+      "El Ministeri d'Hisenda (CONPREL) dona una altra xifra de partida per a {year}: {conprel}. Les dues fonts no quadren i no en triem cap.",
+    'presupuesto.enBreve.aprobado.pregunta': 'Quants diners té per a gastar en {year}?',
+    'presupuesto.enBreve.aprobado.frase':
+      "És el pressupost aprovat segons el Ministeri d'Hisenda: un [[creditoDefinitivo|límit]], no una despesa. Quant s'ha gastat apareixerà quan l'Ajuntament publique el seu estat d'execució.",
+    'presupuesto.enBreve.gastado.pregunta': 'Quant ha gastat?',
+    'presupuesto.enBreve.gastado.cifraNota': '{n} de cada 100 €',
+    'presupuesto.enBreve.gastado.frase':
+      'De cada 100 € que podia gastar en {year}, en va [[obligacionesReconocidas|gastar]] {n}.',
+    'presupuesto.enBreve.gastado.fin': "Dades a {fecha}, tancament de l'exercici.",
+    'presupuesto.enBreve.gastado.fecha': 'Dades a {fecha}.',
+    'presupuesto.enBreve.gastado.nota':
+      "«Gastat» són les factures i despeses que l'Ajuntament ja ha donat per bones. El que s'ha pagat pot ser menys.",
+    'presupuesto.enBreve.gastado.barra': 'Gastat · {pct} %',
+    'presupuesto.enBreve.gastado.avance': 'Any transcorregut',
+    'presupuesto.enBreve.gastado.figura':
+      "Barra: gastat el {pct} % del que podia gastar; marca de l'any transcorregut al {avance} %.",
+    'presupuesto.enBreve.gastado.figuraSinAvance': 'Barra: gastat el {pct} % del que podia gastar.',
+    'presupuesto.enBreve.enQue.pregunta': "En què se n'ha anat?",
+    'presupuesto.enBreve.enQue.mayoria': 'La major part va anar a {a} i a {b}.',
+    'presupuesto.enBreve.enQue.primero': "El que més se'n va endur va ser {a}, seguit de {b}.",
+    'presupuesto.enBreve.enQue.uno': 'Tot el que es va gastar va anar a {a}.',
+    'presupuesto.enBreve.enQue.dominante':
+      "En {capitulo} hi havia {definitivo} pressupostats i se'n van gastar {ejecutado}.",
+    'presupuesto.enBreve.enQue.resto': 'Resta',
+    'presupuesto.enBreve.enQue.figura': 'Repartiment del que es va gastar: {lista}.',
+    'presupuesto.enBreve.cap.1': 'Sous del personal',
+    'presupuesto.enBreve.cap.2': 'Compres i serveis del dia a dia',
+    'presupuesto.enBreve.cap.3': 'Interessos del deute',
+    'presupuesto.enBreve.cap.4': 'Ajudes i aportacions a altres entitats',
+    'presupuesto.enBreve.cap.5': 'Fons de contingència',
+    'presupuesto.enBreve.cap.6': 'Obres i inversions',
+    'presupuesto.enBreve.cap.7': "Aportacions per a inversions d'altres",
+    'presupuesto.enBreve.cap.8': 'Préstecs i depòsits',
+    'presupuesto.enBreve.cap.9': 'Devolució de préstecs',
+    'presupuesto.enBreve.deuda.pregunta': 'Deu diners?',
+    'presupuesto.enBreve.deuda.frase':
+      "És el [[deudaViva|deute viu]] al tancament de {year}, segons el Ministeri d'Hisenda.",
+    'presupuesto.enBreve.deuda.comparacion':
+      'Deu més que {p} de cada 100 ajuntaments de la llista del Ministeri. Però {cero} de cada 100 no deuen res, així que la comparació diu poc per si sola.',
+    'presupuesto.enBreve.deuda.sinDeuda': 'Sense deute · {n} de 100',
+    'presupuesto.enBreve.deuda.nosotros': 'Riba-roja',
+    'presupuesto.enBreve.deuda.figura':
+      '100 ajuntaments: {cero} no deuen res; Riba-roja deu més que {p}.',
+    'presupuesto.enBreve.barrio.titulo': "Què s'ha contractat al meu barri?",
+    'presupuesto.enBreve.barrio.frase':
+      "Compte: de cada 100 € contractats, només {n} van a contractes que nomenen un barri. Que el teu barri no isca al mapa no vol dir que allí no s'haja contractat res.",
+    'presupuesto.enBreve.barrio.menosDeUno':
+      "Compte: de cada 100 € contractats, menys d'1 va a contractes que nomenen un barri. Que el teu barri no isca al mapa no vol dir que allí no s'haja contractat res.",
+    'presupuesto.enBreve.barrio.elige': 'Tria el teu barri',
+    'presupuesto.enBreve.barrio.placeholder': 'Tria…',
+    'presupuesto.enBreve.barrio.opcion': '{nombre} · {n} contractes',
+    'presupuesto.enBreve.barrio.opcion.uno': '{nombre} · 1 contracte',
+    'presupuesto.enBreve.barrio.otro': 'El meu barri no apareix',
+    'presupuesto.enBreve.barrio.ver': 'Vore els seus contractes',
+    'presupuesto.enBreve.barrio.otro.titulo': 'No podem situar contractes al teu barri',
+    'presupuesto.enBreve.barrio.otro.frase':
+      'Cap contracte publicat nomena en el seu títol un lloc que puguem situar amb seguretat al teu barri. Preferim no posar un punt al mapa a posar-lo malament.',
+    'presupuesto.enBreve.barrio.otro.queja': "Avisar d'un problema al teu carrer",
+    'presupuesto.enBreve.barrio.otro.todos': 'Vore tots els contractes del municipi ↓',
+    'presupuesto.gasto.zona.desconocida':
+      "L'enllaç demana el barri «{barrio}», que no és entre els que nomenen els contractes. Tria'n un a la llista o al mapa.",
+    'presupuesto.enBreve.barrio.figura': 'De cada 100 € contractats, {n} nomenen un barri.',
+    'glosario.rotulo': 'Glossari',
+    'glosario.oficial': 'Nom oficial: {nombre}',
+    'glosario.cerrar': 'Tancar la definició',
+    'glosario.creditoDefinitivo.termino': 'Crèdit definitiu',
+    'glosario.creditoDefinitivo.def':
+      "El màxim que l'Ajuntament pot gastar en l'any: el que es va aprovar al principi més el que s'hi ha afegit després. És un límit, no una despesa.",
+    'glosario.obligacionesReconocidas.termino': 'Obligacions reconegudes',
+    'glosario.obligacionesReconocidas.def':
+      "Factures i despeses que l'Ajuntament ja ha donat per bones i ha de pagar. És l'única xifra del pressupost que és despesa. No és el mateix que el que s'ha pagat.",
+    'glosario.costeEfectivo.termino': 'Cost efectiu',
+    'glosario.costeEfectivo.def':
+      "El que l'Ajuntament declara al Ministeri d'Hisenda que li va costar prestar un servei en un any. No és tota la seua despesa ni una dada de qualitat.",
+    'glosario.cantidadSinRemedir.termino': 'Quantitat sense tornar a mesurar',
+    'glosario.cantidadSinRemedir.def':
+      "Una quantitat de servei (tones, metres, punts de llum) que l'Ajuntament declara igual, decimal a decimal, any rere any. Si no es torna a mesurar, el cost per unitat només seguix la despesa.",
+    'glosario.entrega.termino': 'Entrega',
+    'glosario.entrega.def':
+      "L'enviament anual obligatori d'estes dades al Ministeri, abans de l'1 de novembre (article 116 ter de la Llei de Bases de Règim Local).",
+    'glosario.deudaViva.termino': 'Deute viu',
+    'glosario.deudaViva.def':
+      "El que l'Ajuntament deu a bancs i altres entitats en tancar l'any. No és el capítol «Deute públic» del pressupost, que és el que s'aparta cada any per a pagar-lo.",
     'presupuesto.fuentes.title': 'Dos fonts, dos pressupostos aprovats',
     'presupuesto.fuentes.conprel': "CONPREL · Ministeri d'Hisenda",
     'presupuesto.fuentes.municipal': "Estat d'execució del propi Ajuntament",

@@ -144,5 +144,29 @@
       "formalized": 2,
       "unknown": 1
     }
+  },
+  {
+    "path": "agua.boletines.calificacion",
+    "values": {
+      "apta": 71,
+      "no-apta": 2,
+      "gestionada-consejeria": 2
+    }
+  },
+  {
+    "path": "agua.boletines.calificacionTexto",
+    "values": {
+      "AGUA APTA PARA EL CONSUMO": 71,
+      "AGUA NO APTA PARA EL CONSUMO": 2,
+      "Calificaciï¿½n gestionada por la Consejerï¿½a": 2
+    }
+  },
+  {
+    "path": "agua.boletines.tipo",
+    "values": {
+      "control": 37,
+      "completo": 34,
+      "radiactividad": 4
+    }
   }
 ]

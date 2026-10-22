@@ -7,6 +7,7 @@ import { useOfficials } from '../hooks/useOfficials'
 import { usePromises } from '../hooks/usePromises'
 import { useQuejas, CATEGORY_LABEL, STATE_LABEL } from '../hooks/useQuejas'
 import { usePlenoFindings } from '../hooks/usePlenoFindings'
+import { useGlosario } from '../hooks/useGlosario'
 
 /**
  * El buscador rápido, partido en dos a propósito.
@@ -68,6 +69,7 @@ function PanelCmdK({ onClose }) {
   const { data: promises } = usePromises()
   const { data: quejas } = useQuejas()
   const { data: findings } = usePlenoFindings()
+  const glosario = useGlosario()
 
   // The index only changes when a snapshot loads — not on every keystroke.
   const all = useMemo(
@@ -133,11 +135,21 @@ function PanelCmdK({ onClose }) {
         to: `/hallazgos/${f.id}`,
         icon: Ic.warn,
       })),
+      // Quien teclea «deuda viva» u «obligaciones reconocidas» busca qué quiere
+      // decir: la definición llana va en la propia fila, y el enlace lleva a la
+      // sección que lo explica con sus cifras.
+      ...glosario.map((g) => ({
+        kind: 'Glosario',
+        label: g.termino,
+        sub: g.def,
+        to: g.to,
+        icon: Ic.chart,
+      })),
       { kind: 'Datos', label: 'Dashboard de quejas', to: '/quejas/dashboard', icon: Ic.chart },
       { kind: 'Datos', label: 'Ver catálogo de datos abiertos', to: '/datos', icon: Ic.chart },
       { kind: 'Datos', label: 'Metodología del tracker', to: '/metodologia', icon: Ic.chart },
     ],
-    [officials, promises, quejas, findings],
+    [officials, promises, quejas, findings, glosario],
   )
   const filtered = useMemo(
     () =>

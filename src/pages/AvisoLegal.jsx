@@ -70,12 +70,17 @@ export default function AvisoLegal() {
           OpenStreetMap, CC0 Wikidata, reutilización abierta PLACSP/BDNS/CONPREL, REST pública de
           prensa, la API JSON del INE —índice de precios con el que se deflactan las series de
           coste, y padrón municipal—, el Portal Estadístico de Criminalidad del Ministerio del
-          Interior (Ley 37/2007; «Origen de los datos: Portal Estadístico de Criminalidad»), y la
-          capa 0503_Residuos y la cartografía de incendios forestales del Institut Cartogràfic
-          Valencià / Generalitat Valenciana (CC BY 4.0) bajo sus condiciones de reutilización, con
-          la atribución que exigen). Cada dato individual enlaza a la fuente de la que sale: un
-          registro o documento oficial o, cuando sale de la prensa —en el tracker de promesas y en
-          el laboratorio de prensa—, la noticia que lo recoge. El listado completo de feeds está en{' '}
+          Interior (Ley 37/2007; «Origen de los datos: Portal Estadístico de Criminalidad»), el
+          Sistema de Información Nacional de Aguas de Consumo (SINAC) del Ministerio de Sanidad
+          —citado con la fecha de cada boletín, como pide su aviso legal— y su informe anual de
+          calidad del agua de consumo («puede reproducirse… siempre que se mencione la fuente»), la
+          Estadística de Bibliotecas Públicas del Ministerio de Cultura (condiciones generales del
+          RD 1495/2011; «Origen de los datos: Ministerio de Cultura»), y la capa 0503_Residuos y la
+          cartografía de incendios forestales del Institut Cartogràfic Valencià / Generalitat
+          Valenciana (CC BY 4.0) bajo sus condiciones de reutilización, con la atribución que
+          exigen). Cada dato individual enlaza a la fuente de la que sale: un registro o documento
+          oficial o, cuando sale de la prensa —en el tracker de promesas y en el laboratorio de
+          prensa—, la noticia que lo recoge. El listado completo de feeds está en{' '}
           <a href="/datos" style={{ color: 'var(--civic)' }}>
             /datos
           </a>
@@ -139,6 +144,14 @@ export default function AvisoLegal() {
             .
           </li>
         </ul>
+        <p id="opinion" style={{ scrollMarginTop: 24 }}>
+          <strong>Opinión e información.</strong> Los datos de este sitio no llevan juicio. La única
+          pieza que juzga es la opinión del editor en <code>/eficiencia</code>: va firmada por una
+          persona, rotulada como opinión y separada de los datos. Quien aparezca nombrado en una
+          opinión recibe el texto antes de que se publique, con al menos siete días para responder,
+          y su respuesta se publica íntegra a su lado; si no responde, se dice. Cualquier réplica
+          posterior se tramita por esta misma vía y se añade, también íntegra.
+        </p>
       </Card>
 
       <Card style={{ marginTop: 14 }}>
@@ -293,6 +306,10 @@ export default function AvisoLegal() {
             El pleno principal del sitio, incluidas las páginas <code>/presupuesto</code>,{' '}
             <code>/cargos</code> y <code>/datos</code>, sigue operativo con datos objetivos de
             fuente pública.
+          </li>
+          <li>
+            No se publica ninguna opinión del editor que nombre a una persona, y las ya publicadas
+            que nombran a alguien dejan de mostrarse hasta que termina el periodo.
           </li>
           <li>
             Las solicitudes de rectificación siguen atendiéndose en el mismo plazo de 24/72 h.
