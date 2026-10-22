@@ -5,6 +5,7 @@ import { MemoryRouter, useLocation } from 'react-router-dom'
 
 import { CATALOGUE, LocaleProvider } from '../src/i18n'
 import { GLOSARIO, partesConTerminos, textoLlano } from '../src/glosario'
+import { useGlosario } from '../src/hooks/useGlosario'
 import { invalidateSnapshots } from '../src/lib/snapshot-store'
 import { cascadaGastos, capituloDominante } from '../src/scraper/presupuesto-lectura'
 import { avanceDelAnio, enBrevePresupuesto } from '../src/scraper/en-breve-presupuesto'
@@ -136,6 +137,25 @@ describe('el glosario', () => {
         expect(CATALOGUE[loc][`glosario.${clave}.termino`], `${loc} ${clave}`).toBeTruthy()
         expect(CATALOGUE[loc][`glosario.${clave}.def`], `${loc} ${clave}`).toBeTruthy()
       }
+  })
+
+  it('cada clave tiene su fila en useGlosario, con un destino en /presupuesto', () => {
+    let filas = []
+    function Lee() {
+      filas = useGlosario()
+      return null
+    }
+    render(
+      <LocaleProvider>
+        <Lee />
+      </LocaleProvider>,
+    )
+    expect(filas.map((f) => f.clave).sort()).toEqual([...GLOSARIO].sort())
+    for (const f of filas) {
+      expect(f.termino, f.clave).not.toMatch(/^glosario\./)
+      expect(f.def, f.clave).not.toMatch(/^glosario\./)
+      expect(f.to, f.clave).toMatch(/^\/presupuesto#(cascada|capitulos|deuda)$/)
+    }
   })
 
   it('parte la frase y deja en texto llano una clave que no existe', () => {

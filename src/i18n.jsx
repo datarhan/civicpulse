@@ -1674,6 +1674,35 @@ export const CATALOGUE = {
       '{gastos} de gastos aprobados según CONPREL · {porHab} por habitante · {hab} habitantes · actualizado {fecha}',
     'presupuesto.meta.sinTotal':
       'CONPREL no trae el total de gastos aprobados · {hab} habitantes · actualizado {fecha}',
+    // «En breve» de /metodologia: cada respuesta es una regla ya escrita en la
+    // página, dicha en corto. Sin plazos ni cifras: viven en la regla.
+    'metodologia.enBreve.titulo': 'En breve',
+    'metodologia.enBreve.intro':
+      'Cómo trabajamos, en cinco preguntas. Cada respuesta enlaza a la regla completa.',
+    'metodologia.enBreve.saltar': 'Ir a las reglas completas ↓',
+    'metodologia.enBreve.ver': 'Leer la regla ↓',
+    'metodologia.enBreve.recorrido': 'El recorrido de un dato',
+    'metodologia.enBreve.paso.1': 'Fuente pública',
+    'metodologia.enBreve.paso.2': 'Con su fecha',
+    'metodologia.enBreve.paso.3': 'Revisión',
+    'metodologia.enBreve.paso.4': 'Publicado con enlace',
+    'metodologia.enBreve.paso.5': 'Rectificable',
+    'metodologia.enBreve.fuentes.pregunta': '¿De dónde salen los datos?',
+    'metodologia.enBreve.fuentes.frase':
+      'De fuentes oficiales —el propio Ayuntamiento, los ministerios, la Plataforma de Contratación, el BOE— y de la prensa, citada como prensa. La página de datos lista cada fuente con la fecha de su última lectura.',
+    'metodologia.enBreve.fuentes.ver': 'Ver todas las fuentes →',
+    'metodologia.enBreve.maquina.pregunta': '¿Lo publica una máquina?',
+    'metodologia.enBreve.maquina.frase':
+      'A veces, y con reglas. Lo que nombra a una persona lleva siempre la firma de alguien del equipo. Una máquina sólo publica sola lo que retira algo ya publicado, o lo nuevo que no nombra a nadie y tiene su acierto medido.',
+    'metodologia.enBreve.comprobar.pregunta': '¿Cómo compruebo lo que decís?',
+    'metodologia.enBreve.comprobar.frase':
+      'Cada afirmación enlaza el documento del que sale, para que lo compruebes tú. Una promesa se atribuye con las palabras literales del partido, nunca con el titular de una noticia.',
+    'metodologia.enBreve.nota.pregunta': '¿Ponéis nota al Ayuntamiento?',
+    'metodologia.enBreve.nota.frase':
+      'No. No clasificamos partidos ni puntuamos al Ayuntamiento ni a ningún concejal. Damos la cifra con su fuente; el juicio lo hace quien vota.',
+    'metodologia.enBreve.error.pregunta': '¿Y si os equivocáis?',
+    'metodologia.enBreve.error.frase':
+      'Cualquier persona, colectivo o partido puede pedir una rectificación, por GitHub o por correo. Tiene plazos fijos, los mismos del aviso legal.',
     // «En breve»: la primera capa de /presupuesto, en el registro de quien no
     // sabe qué es una obligación reconocida. `[[clave|texto]]` es un término
     // del glosario (src/glosario.js) y se pinta como botón con su definición.
@@ -3792,6 +3821,33 @@ export const CATALOGUE = {
       '{gastos} de despeses aprovades segons CONPREL · {porHab} per habitant · {hab} habitants · actualitzat {fecha}',
     'presupuesto.meta.sinTotal':
       'CONPREL no porta el total de despeses aprovades · {hab} habitants · actualitzat {fecha}',
+    'metodologia.enBreve.titulo': 'En resum',
+    'metodologia.enBreve.intro':
+      'Com treballem, en cinc preguntes. Cada resposta enllaça amb la regla completa.',
+    'metodologia.enBreve.saltar': 'Anar a les regles completes ↓',
+    'metodologia.enBreve.ver': 'Llegir la regla ↓',
+    'metodologia.enBreve.recorrido': "El recorregut d'una dada",
+    'metodologia.enBreve.paso.1': 'Font pública',
+    'metodologia.enBreve.paso.2': 'Amb la seua data',
+    'metodologia.enBreve.paso.3': 'Revisió',
+    'metodologia.enBreve.paso.4': 'Publicat amb enllaç',
+    'metodologia.enBreve.paso.5': 'Rectificable',
+    'metodologia.enBreve.fuentes.pregunta': "D'on ixen les dades?",
+    'metodologia.enBreve.fuentes.frase':
+      'De fonts oficials —el mateix Ajuntament, els ministeris, la Plataforma de Contractació, el BOE— i de la premsa, citada com a premsa. La pàgina de dades llista cada font amb la data de la seua última lectura.',
+    'metodologia.enBreve.fuentes.ver': 'Vore totes les fonts →',
+    'metodologia.enBreve.maquina.pregunta': 'Ho publica una màquina?',
+    'metodologia.enBreve.maquina.frase':
+      "A vegades, i amb regles. El que nomena una persona porta sempre la firma d'algú de l'equip. Una màquina només publica sola el que retira alguna cosa ja publicada, o el que és nou, no nomena ningú i té l'encert mesurat.",
+    'metodologia.enBreve.comprobar.pregunta': 'Com comprove el que dieu?',
+    'metodologia.enBreve.comprobar.frase':
+      "Cada afirmació enllaça el document d'on ix, perquè ho comproves tu. Una promesa s'atribuïx amb les paraules literals del partit, mai amb el titular d'una notícia.",
+    'metodologia.enBreve.nota.pregunta': "Poseu nota a l'Ajuntament?",
+    'metodologia.enBreve.nota.frase':
+      "No. No classifiquem partits ni puntuem l'Ajuntament ni cap regidor. Donem la xifra amb la seua font; el judici el fa qui vota.",
+    'metodologia.enBreve.error.pregunta': 'I si vos equivoqueu?',
+    'metodologia.enBreve.error.frase':
+      "Qualsevol persona, col·lectiu o partit pot demanar una rectificació, per GitHub o per correu. Té terminis fixos, els mateixos de l'avís legal.",
     'presupuesto.enBreve.titulo': 'En resum',
     'presupuesto.enBreve.intro':
       "L'essencial, en poques preguntes. Cada resposta enllaça amb la secció que la demostra.",

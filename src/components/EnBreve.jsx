@@ -3,6 +3,7 @@ import { useT } from '../i18n'
 import { partesConTerminos } from '../glosario'
 import { rellena } from '../lib/formatters'
 import { useRevelado } from '../hooks/useRevelado'
+import { useGlosario } from '../hooks/useGlosario'
 
 /*
  * «En breve»: la primera capa de una página densa, para quien llega con una
@@ -50,23 +51,11 @@ function FraseConTerminos({ frase, abierto, onAbrir, idPanel }) {
   )
 }
 
-/**
- * La definición abierta. Las tres claves van literales: el guard de
- * `i18n-catalogue` lee las llamadas, no las claves compuestas.
- */
+/** La definición abierta, del glosario (`useGlosario`). */
 function Definicion({ clave, id, onCerrar }) {
   const t = useT()
-  const textos = {
-    creditoDefinitivo: [
-      t('glosario.creditoDefinitivo.termino'),
-      t('glosario.creditoDefinitivo.def'),
-    ],
-    obligacionesReconocidas: [
-      t('glosario.obligacionesReconocidas.termino'),
-      t('glosario.obligacionesReconocidas.def'),
-    ],
-    deudaViva: [t('glosario.deudaViva.termino'), t('glosario.deudaViva.def')],
-  }[clave]
+  const entrada = useGlosario().find((g) => g.clave === clave)
+  const textos = entrada && [entrada.termino, entrada.def]
   return (
     <div id={id} className="cp-en-breve-def" aria-live="polite">
       {textos && (
@@ -147,6 +136,8 @@ export function TarjetaEnBreve({
       )}
       {abierto && <Definicion clave={abierto} id={idPanel} onCerrar={() => setAbierto(null)} />}
       {salvedad && <p className="cp-en-breve-salvedad">{salvedad}</p>}
+      {/* Un <a> también para otra ruta (/datos): es lo que usan las páginas que
+          lo montan, y así el bloque no exige un router a quien lo pinta. */}
       <a href={ancla} className="cp-en-breve-ancla">
         {anclaTexto}
       </a>
@@ -155,7 +146,8 @@ export function TarjetaEnBreve({
 }
 
 /**
- * El bloque entero. `children` son las tarjetas; `pie` va debajo de la
+ * El bloque entero. `children` son las tarjetas; `figura` va entre la cabecera
+ * y la rejilla (el recorrido de un dato en /metodologia); `pie` va debajo de la
  * rejilla, a todo el ancho (la advertencia del mapa en /presupuesto).
  *
  * @param {{
@@ -164,10 +156,11 @@ export function TarjetaEnBreve({
  *   saltarA: string,
  *   saltarTexto: string,
  *   children: import('react').ReactNode,
+ *   figura?: import('react').ReactNode,
  *   pie?: import('react').ReactNode,
  * }} props
  */
-export default function EnBreve({ titulo, intro, saltarA, saltarTexto, children, pie }) {
+export default function EnBreve({ titulo, intro, saltarA, saltarTexto, children, figura, pie }) {
   const idTitulo = `${useId()}-titulo`
   const { ref, marcas } = useRevelado({ umbral: 0.15 })
   return (
@@ -189,6 +182,7 @@ export default function EnBreve({ titulo, intro, saltarA, saltarTexto, children,
           {saltarTexto}
         </a>
       </div>
+      {figura}
       <div className="cp-en-breve-rejilla">{children}</div>
       {pie}
     </section>

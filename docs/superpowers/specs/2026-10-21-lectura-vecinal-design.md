@@ -1,9 +1,12 @@
 # Lectura vecinal — a plain-language first layer for the dense pages
 
-**Status:** rollout step 1 built — `EnBreve` (`src/components/EnBreve.jsx`) on
-`/presupuesto`, its figures derived by `src/scraper/en-breve-presupuesto.ts`, the
-glossary in `src/glosario.js`. The barrio page, `/metodologia` and the Cmd+K
-glossary index are not built yet. **Scope:** `/presupuesto` first, then
+**Status:** rollout steps 1–3 built. `EnBreve` (`src/components/EnBreve.jsx`) runs on
+`/presupuesto` (figures from `src/scraper/en-breve-presupuesto.ts`) and on
+`/metodologia` (five rules, no figures copied). The barrio entry is a picker in
+the `/presupuesto` block that opens the contracting map at `?barrio=<slug>`. The
+glossary (`src/glosario.js`, `src/hooks/useGlosario.js`) is also indexed by Cmd+K.
+Step 4, the reader test with residents, is a human task and has not run.
+**Scope:** `/presupuesto` first, then
 `/metodologia`, then whichever page the reader test names next.
 
 ## The problem

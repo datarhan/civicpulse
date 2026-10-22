@@ -1,4 +1,5 @@
 import { Card, Pill, SectionHead } from '../components/Primitives'
+import EnBreveMetodologia from '../components/metodologia/EnBreveMetodologia'
 import { fmtDateLong } from '../lib/formatters'
 import { usePlenoFindings } from '../hooks/usePlenoFindings'
 import { useFindingQuoteProvenance } from '../hooks/useFindingQuoteProvenance'
@@ -436,7 +437,13 @@ export default function Metodologia() {
         repositorio público.
       </p>
 
-      <Card style={{ marginTop: 22 }}>
+      {/* La primera capa: cinco reglas de esta página, dichas en corto y
+          enlazadas a la regla entera. No añade ninguna. */}
+      <div style={{ marginTop: 22 }}>
+        <EnBreveMetodologia />
+      </div>
+
+      <Card id="principios" style={{ marginTop: 22, scrollMarginTop: 24 }}>
         <SectionHead eyebrow="Principios rectores" title="Qué hacemos y qué no hacemos" />
         <ol style={{ margin: '8px 0 0', paddingLeft: 20 }}>
           <li>
@@ -2410,7 +2417,7 @@ export default function Metodologia() {
         </ul>
       </Card>
 
-      <Card style={{ marginTop: 14 }}>
+      <Card id="rectificacion" style={{ marginTop: 14, scrollMarginTop: 24 }}>
         <SectionHead eyebrow="Proceso de corrección" title="Cómo pedir una rectificación" />
         <ol style={{ margin: '8px 0 0', paddingLeft: 20 }}>
           <li>

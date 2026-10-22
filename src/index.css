@@ -1517,6 +1517,54 @@ body.cp-kiosk .cp-live-container {
   color: var(--ink70);
 }
 
+.cp-en-breve-recorrido {
+  position: relative;
+}
+.cp-en-breve-recorrido ol {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 6px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.cp-en-breve-recorrido li {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  text-align: center;
+}
+/* La línea va de la mitad del primer paso a la mitad del último: un décimo del
+   ancho a cada lado, porque las cinco columnas son iguales. */
+.cp-en-breve-recorrido-linea {
+  position: absolute;
+  top: 13px;
+  left: 10%;
+  right: 10%;
+  height: 2px;
+  background: var(--civic-band);
+}
+.cp-en-breve-recorrido-punto {
+  position: relative;
+  width: 28px;
+  height: 28px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: var(--civic-soft);
+  border: 1.5px solid var(--civic);
+  color: var(--civic-ink);
+  font-size: var(--fs-meta);
+}
+.cp-en-breve-recorrido-rotulo {
+  font-size: var(--fs-micro);
+  line-height: 1.3;
+  color: var(--ink70);
+}
+
 /* /presupuesto — lámina 5b: del crédito inicial a lo ejecutado.
 
    Las rejillas van aquí y no en el `style` del JSX por la razón de siempre en
