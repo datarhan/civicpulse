@@ -8,6 +8,7 @@ import {
   formatoAnexo,
   normalizarZona,
   serieZona,
+  type FilaRecuento,
 } from '../src/scraper/informe-agua'
 
 /**
@@ -66,7 +67,9 @@ describe('filasRibaRoja', () => {
   it('2022: la zona principal aparece dos veces, con y sin población; la fila vacía es null', () => {
     const f = filasRibaRoja(fx(2022))
     expect(f.some((x) => x.zona.includes("D'EBRE"))).toBe(false)
-    const principales = f.filter((x) => x.zonaNormalizada === ZONA_PRINCIPAL)
+    const principales = f.filter(
+      (x): x is FilaRecuento => x.formato === 'recuento' && x.zonaNormalizada === ZONA_PRINCIPAL,
+    )
     expect(principales.map((x) => [x.poblacion, x.total])).toEqual([
       [null, 173],
       [21584, 558],
