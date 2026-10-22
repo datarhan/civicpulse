@@ -1,6 +1,9 @@
 /**
  * «Cuesta · Consigue · Responde»: lo que un servicio cuesta, lo que se
- * consigue y quién responde de él, en los MISMOS años y contra el MISMO grupo.
+ * consigue y quién responde de él, uno al lado del otro. NO siempre en los
+ * mismos años ni contra el mismo grupo: cada serie acaba donde acaba su fuente
+ * (el transporte sin mediana de 2024, la criminalidad con 2025) y cada resultado
+ * trae el grupo de la suya; por eso cada frase dice de qué año a qué año mide.
  *
  * El panel ya tenía las tres cosas, pero separadas: el coste en el libro, el
  * resultado dentro de la ficha y el nombre al final de la ficha. Un vecino que
@@ -29,7 +32,8 @@
  * efectivos o mejores sueldos, y la fila tiene que decirlo. El resultado no es
  * producto del servicio municipal (las infracciones las registran todos los
  * cuerpos). Y la serie de pares del resultado no existe todavía: sólo su último
- * percentil. Ninguna de las tres ausencias se rellena aquí.
+ * percentil — salvo donde la fuente da la de un panel fijo (`paresSerie`, las
+ * bibliotecas). Ninguna de las ausencias se rellena aquí.
  */
 
 /** Primer año que puede ser base. Ver «Por qué desde 2021» arriba. */
@@ -71,6 +75,8 @@ export interface ResultadoCC {
   periodo: string
   serie?: { anio: number; valor: number }[]
   pares?: { percentil?: number | null; mediana?: number | null; n?: number } | null
+  paresSerie?: { anio: number; mediana: number; n: number }[] | null
+  decimales?: number
   comoSeLee?: string
   caveats?: string[]
 }
@@ -104,6 +110,15 @@ export interface CuestaConsigue {
     valor: number
     /** Indexada sólo con dos años o más; un año suelto no tiene dirección. */
     nuestro: SerieIndexada | null
+    /**
+     * La mediana del grupo indexada sobre la MISMA base, cuando la fuente da su
+     * serie (`paresSerie`, panel fijo). Sin ella, del grupo sólo hay el último
+     * percentil y la fila lo dice.
+     */
+    grupo: SerieIndexada | null
+    /** n del panel fijo de `grupo`. */
+    nGrupo: number | null
+    decimales: number
     percentil: number | null
     nPares: number | null
     comoSeLee: string | null
@@ -178,6 +193,15 @@ export function cuestaConsigue(
         periodo: resultado.periodo,
         valor: ultimo.valor,
         nuestro: baseRes !== null ? indexar(serie, baseRes) : null,
+        grupo:
+          baseRes !== null && resultado.paresSerie?.length
+            ? indexar(
+                resultado.paresSerie.map((p) => ({ anio: p.anio, valor: p.mediana })),
+                baseRes,
+              )
+            : null,
+        nGrupo: resultado.paresSerie?.length ? resultado.paresSerie[0].n : null,
+        decimales: num(resultado.decimales) ? resultado.decimales : 1,
         percentil: num(resultado.pares?.percentil) ? resultado.pares!.percentil! : null,
         nPares: num(resultado.pares?.n) ? resultado.pares!.n! : null,
         comoSeLee: resultado.comoSeLee ?? null,

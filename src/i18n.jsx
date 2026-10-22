@@ -101,7 +101,7 @@ export const CATALOGUE = {
     'eficiencia.ccr.eyebrow': 'Cuesta · consigue · responde',
     'eficiencia.ccr.titulo': 'Lo que cuesta, lo que se consigue y quién responde',
     'eficiencia.ccr.intro':
-      'Primero los servicios con un resultado publicado; los demás, debajo. Las tres columnas van en los mismos años y contra el mismo grupo de municipios parecidos, pero no se dividen entre sí: que una suba no explica que la otra baje. El juicio es tuyo.',
+      'Primero los servicios con un resultado publicado; los demás, debajo. Cada frase dice de qué año a qué año mide, y cada comparación usa el grupo de su propia fuente; las columnas no se dividen entre sí: que una suba no explica que la otra baje. El juicio es tuyo.',
     'eficiencia.ccr.col.cuesta': 'Cuesta',
     'eficiencia.ccr.resto':
       'Los otros {n} servicios: coste y quién responde, sin resultado publicado',
@@ -112,14 +112,14 @@ export const CATALOGUE = {
     'eficiencia.ccr.rotulo.mandato': 'Mandato actual',
     'eficiencia.ccr.rotulo.base': 'Índice: {base} = 100',
     'eficiencia.ccr.coste.sube':
-      'Desde {base}, el coste por unidad sube un {pct} % en euros constantes.',
+      'De {base} a {fin}, el coste por unidad sube un {pct} % en euros constantes.',
     'eficiencia.ccr.coste.baja':
-      'Desde {base}, el coste por unidad baja un {pct} % en euros constantes.',
+      'De {base} a {fin}, el coste por unidad baja un {pct} % en euros constantes.',
     'eficiencia.ccr.coste.igual':
-      'Desde {base}, el coste por unidad se mantiene en euros constantes.',
-    'eficiencia.ccr.grupo.sube': 'En los municipios parecidos sube un {pct} %.',
-    'eficiencia.ccr.grupo.baja': 'En los municipios parecidos baja un {pct} %.',
-    'eficiencia.ccr.grupo.igual': 'En los municipios parecidos se mantiene.',
+      'De {base} a {fin}, el coste por unidad se mantiene en euros constantes.',
+    'eficiencia.ccr.grupo.sube': 'En los municipios parecidos, de {base} a {fin}, sube un {pct} %.',
+    'eficiencia.ccr.grupo.baja': 'En los municipios parecidos, de {base} a {fin}, baja un {pct} %.',
+    'eficiencia.ccr.grupo.igual': 'En los municipios parecidos, de {base} a {fin}, se mantiene.',
     'eficiencia.ccr.coste.sinSerie': 'No hay serie de coste suficiente desde 2021.',
     'eficiencia.ccr.coste.precio':
       'Es un precio, no un rendimiento: que suba no dice si el servicio es mejor o peor.',
@@ -129,9 +129,9 @@ export const CATALOGUE = {
       'Ojo: el Ayuntamiento repite la misma cantidad de servicio en cada entrega, así que el coste por unidad sigue al coste total.',
     'eficiencia.ccr.resultado.sin':
       'El Ministerio no pide ningún resultado de este servicio, y no hemos encontrado otra fuente.',
-    'eficiencia.ccr.resultado.sube': 'Desde {base}, la cifra sube un {pct} %.',
-    'eficiencia.ccr.resultado.baja': 'Desde {base}, la cifra baja un {pct} %.',
-    'eficiencia.ccr.resultado.igual': 'Desde {base}, la cifra se mantiene.',
+    'eficiencia.ccr.resultado.sube': 'De {base} a {fin}, la cifra sube un {pct} %.',
+    'eficiencia.ccr.resultado.baja': 'De {base} a {fin}, la cifra baja un {pct} %.',
+    'eficiencia.ccr.resultado.igual': 'De {base} a {fin}, la cifra se mantiene.',
     'eficiencia.ccr.resultado.unAnio':
       'Sólo hay un año publicado ({periodo}): sin serie no hay dirección.',
     'eficiencia.ccr.resultado.pares':
@@ -139,6 +139,8 @@ export const CATALOGUE = {
     'eficiencia.ccr.resultado.sinSerieGrupo':
       'De los municipios parecidos sólo tenemos el último año, no su evolución.',
     'eficiencia.ccr.resultado.sinPares': 'Esta cifra no se compara con otros municipios.',
+    'eficiencia.ccr.resultado.serieGrupo':
+      'La línea gris es la mediana de los mismos {n} municipios parecidos todos los años: los que tienen dato en cada uno.',
     'eficiencia.ccr.responde.competencia': 'Competencia delegada',
     'eficiencia.ccr.responde.loreg': 'Los nombres no se publican durante el periodo electoral.',
     'eficiencia.ccr.responde.sinAsignar': 'Ninguna delegación nombra este servicio.',
@@ -2564,7 +2566,7 @@ export const CATALOGUE = {
     'eficiencia.ccr.eyebrow': 'Costa · aconseguix · respon',
     'eficiencia.ccr.titulo': "El que costa, el que s'aconseguix i qui respon",
     'eficiencia.ccr.intro':
-      "Primer els serveis amb un resultat publicat; la resta, davall. Les tres columnes van en els mateixos anys i contra el mateix grup de municipis semblants, però no es dividixen entre si: que una puge no explica que l'altra baixe. El judici és teu.",
+      "Primer els serveis amb un resultat publicat; la resta, davall. Cada frase diu de quin any a quin any mesura, i cada comparació usa el grup de la seua pròpia font; les columnes no es dividixen entre si: que una puge no explica que l'altra baixe. El judici és teu.",
     'eficiencia.ccr.col.cuesta': 'Costa',
     'eficiencia.ccr.resto': 'Els altres {n} serveis: cost i qui respon, sense resultat publicat',
     'eficiencia.ccr.col.consigue': 'Aconseguix',
@@ -2574,13 +2576,14 @@ export const CATALOGUE = {
     'eficiencia.ccr.rotulo.mandato': 'Mandat actual',
     'eficiencia.ccr.rotulo.base': 'Índex: {base} = 100',
     'eficiencia.ccr.coste.sube':
-      'Des de {base}, el cost per unitat puja un {pct} % en euros constants.',
+      'De {base} a {fin}, el cost per unitat puja un {pct} % en euros constants.',
     'eficiencia.ccr.coste.baja':
-      'Des de {base}, el cost per unitat baixa un {pct} % en euros constants.',
-    'eficiencia.ccr.coste.igual': 'Des de {base}, el cost per unitat es manté en euros constants.',
-    'eficiencia.ccr.grupo.sube': 'En els municipis semblants puja un {pct} %.',
-    'eficiencia.ccr.grupo.baja': 'En els municipis semblants baixa un {pct} %.',
-    'eficiencia.ccr.grupo.igual': 'En els municipis semblants es manté.',
+      'De {base} a {fin}, el cost per unitat baixa un {pct} % en euros constants.',
+    'eficiencia.ccr.coste.igual':
+      'De {base} a {fin}, el cost per unitat es manté en euros constants.',
+    'eficiencia.ccr.grupo.sube': 'En els municipis semblants, de {base} a {fin}, puja un {pct} %.',
+    'eficiencia.ccr.grupo.baja': 'En els municipis semblants, de {base} a {fin}, baixa un {pct} %.',
+    'eficiencia.ccr.grupo.igual': 'En els municipis semblants, de {base} a {fin}, es manté.',
     'eficiencia.ccr.coste.sinSerie': 'No hi ha prou sèrie de cost des de 2021.',
     'eficiencia.ccr.coste.precio':
       'És un preu, no un rendiment: que puge no diu si el servei és millor o pitjor.',
@@ -2590,9 +2593,9 @@ export const CATALOGUE = {
       "Compte: l'Ajuntament repetix la mateixa quantitat de servei en cada entrega, així que el cost per unitat seguix el cost total.",
     'eficiencia.ccr.resultado.sin':
       "El Ministeri no demana cap resultat d'este servei, i no hem trobat cap altra font.",
-    'eficiencia.ccr.resultado.sube': 'Des de {base}, la xifra puja un {pct} %.',
-    'eficiencia.ccr.resultado.baja': 'Des de {base}, la xifra baixa un {pct} %.',
-    'eficiencia.ccr.resultado.igual': 'Des de {base}, la xifra es manté.',
+    'eficiencia.ccr.resultado.sube': 'De {base} a {fin}, la xifra puja un {pct} %.',
+    'eficiencia.ccr.resultado.baja': 'De {base} a {fin}, la xifra baixa un {pct} %.',
+    'eficiencia.ccr.resultado.igual': 'De {base} a {fin}, la xifra es manté.',
     'eficiencia.ccr.resultado.unAnio':
       'Només hi ha un any publicat ({periodo}): sense sèrie no hi ha direcció.',
     'eficiencia.ccr.resultado.pares':
@@ -2600,6 +2603,8 @@ export const CATALOGUE = {
     'eficiencia.ccr.resultado.sinSerieGrupo':
       "Dels municipis semblants només tenim l'últim any, no la seua evolució.",
     'eficiencia.ccr.resultado.sinPares': 'Aquesta xifra no es compara amb altres municipis.',
+    'eficiencia.ccr.resultado.serieGrupo':
+      'La línia grisa és la mediana dels mateixos {n} municipis semblants tots els anys: els que tenen dada en cada un.',
     'eficiencia.ccr.responde.competencia': 'Competència delegada',
     'eficiencia.ccr.responde.loreg': 'Els noms no es publiquen durant el període electoral.',
     'eficiencia.ccr.responde.sinAsignar': 'Cap delegació nomena este servei.',

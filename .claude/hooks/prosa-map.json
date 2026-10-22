@@ -29,6 +29,9 @@
       "/lab-health",
       "/presupuesto"
     ],
+    "bibliotecas.json": [
+      "/datos"
+    ],
     "boe.json": [
       "/datos",
       "/lab-health"

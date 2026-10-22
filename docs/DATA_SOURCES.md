@@ -395,6 +395,38 @@ overwrites it. Change the bot's SQLite instead.
   (font-obfuscated text, needs OCR). Licence on the cover: reproducible citing
   the source. Cadence `manual` 400d.
 
+### Biblioteca: prestatarios y visitas (outcome beside the library card)
+
+- **Pipeline** — `bibliotecas.ts` → `scrape:bibliotecas` → `bibliotecas.json`;
+  `compute:indicadores` embeds `resultadosBibliotecas()` as two `resultados`
+  items on `a3321-330p-coste-unitario`: `biblioteca-prestatarios-por-mil`
+  (headline, the one «Cuesta · Consigue» carries) and
+  `biblioteca-visitas-por-habitante`.
+- **Source** — Estadística de Bibliotecas Públicas, Ministerio de Cultura
+  (`mcu.es/alziraweb`), annex 28 «Visitas y usuarios inscritos»: one HTML table
+  per province and year, read with a plain GET; the years come from the page's
+  own drop-down. Data collected by the autonomous communities on a common
+  questionnaire (ISO 2789). Reuse under the general conditions of RD 1495/2011
+  (the ministry's legal notice): «Origen de los datos: Ministerio de Cultura»,
+  no implied endorsement; the page carries no update date to cite.
+- **Peers** — `coste-efectivo.json` → `pares.miembros` (cv-15k-40k) minus
+  Riba-roja, all three provinces. Latest-year percentile over every member with
+  data (own `n`); the year-by-year line (`paresSerie`) is the median of a FIXED
+  panel, the members with data every year. Population: INE padrón tables
+  2856/2865/2903 by INE code; Riba-roja's is cross-checked against
+  `padron.json` before writing.
+- **Surfaces** — `/eficiencia` («Cuesta · Consigue», with the peer line),
+  `/eficiencia/a3321-330p-coste-unitario` (both results), `/datos`
+- **Gotchas** — answers 429 to the cloud container every time; run it from the
+  curator's machine (cadence `manual` 430d). Pages are ISO-8859-1 with HTML
+  entities. «-» is no data (null), never 0; rows must sum to the TOTAL row or
+  the run fails. Names are the ministry's, not the INE's («L' Alfàs del Pi»,
+  «Xàbia/Jávea», «Montcada/Moncada»): resolved by per-language variants without
+  article, by equality — «Eliana» is inside «Meliana» — and a tie is a miss.
+  Registered users only ever rise, so they are not an outcome; loans are the
+  cost card's divisor, so they are not used either. Raw pages cached under
+  `.cache/bibliotecas/`.
+
 ### Recogida selectiva 2022 (single-edition outcome, waste card)
 
 - **Pipeline** — `reciclaje.ts` → `scrape:reciclaje` → `reciclaje.json`;

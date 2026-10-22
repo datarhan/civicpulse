@@ -36,6 +36,7 @@ import { useDeudaViva } from '../hooks/useDeudaViva'
 import { useIpc } from '../hooks/useIpc'
 import { useCriminalidad } from '../hooks/useCriminalidad'
 import { useAgua, useAguaInforme, useAguaPares } from '../hooks/useAgua'
+import { useBibliotecas } from '../hooks/useBibliotecas'
 import { fmtDateShort, fmtDateLong } from '../lib/formatters'
 import { breakdownNeedsCaveat } from '../scraper/pleno-votes'
 
@@ -129,6 +130,7 @@ function DatasetsCatalog() {
   const agua = useAgua().data
   const aguaPares = useAguaPares().data
   const aguaInforme = useAguaInforme().data
+  const biblio = useBibliotecas().data
 
   const items = [
     {
@@ -414,6 +416,16 @@ function DatasetsCatalog() {
       updated: formatDate(aguaInforme?.generatedAt),
       source: 'Ministerio de Sanidad · informe anual, Anexo I',
       path: '/data/agua-informe-anual.json',
+      fmt: ['json'],
+    },
+    {
+      name: 'Biblioteca: visitas y prestatarios (resultado)',
+      rows: biblio?.stats?.anios?.length
+        ? `${biblio.stats.anios[0]}–${biblio.stats.anios.at(-1)} · ${biblio.pares?.miembros ?? '—'} municipios de comparación`
+        : '—',
+      updated: formatDate(biblio?.generatedAt),
+      source: 'Estadística de Bibliotecas Públicas · Ministerio de Cultura',
+      path: '/data/bibliotecas.json',
       fmt: ['json'],
     },
     {

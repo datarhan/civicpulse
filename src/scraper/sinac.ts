@@ -614,6 +614,12 @@ export function resultadoAgua(
       (typeof n === 'number' ? ` (nitrato ${num(n)} mg/L)` : '')
     )
   })
+  // Los «no apta» cuyo nitrato pasaba del límite: la frase sólo puede decir
+  // que el nitrato lo pasaba de esos; un «no apta» por otro parámetro la haría falsa.
+  const nitratoSobreLimite = noAptas.filter((b) => {
+    const n = b.parametros?.find((p) => p.nombre === 'Nitrato')?.valor
+    return typeof n === 'number' && n > LIMITE_NITRATO_MG_L
+  }).length
 
   const origenLegible = principal.origen?.length
     ? principal.origen.map((o) => o.replace(/\s*\(\d+\)$/, '').toLowerCase()).join(', ')
@@ -646,9 +652,13 @@ export function resultadoAgua(
     `La consulta pública de SINAC enseña sólo los últimos boletines de cada red, no todos los del ` +
       `año. Entre los ${calificados.length} calificados que enseña hoy en las ${redes.length} redes, ` +
       (noAptas.length
-        ? `${noAptas.length} salieron «no apta»: ${detalleNoApta.join('; ')}. El nitrato pasaba de ` +
-          `su límite legal (${LIMITE_NITRATO_MG_L} mg/L); el boletín no dice qué parámetro decidió ` +
-          'la calificación.'
+        ? `${noAptas.length} salieron «no apta»: ${detalleNoApta.join('; ')}. ` +
+          (nitratoSobreLimite === noAptas.length
+            ? `El nitrato pasaba de su límite legal (${LIMITE_NITRATO_MG_L} mg/L) en todos; `
+            : nitratoSobreLimite
+              ? `El nitrato pasaba de su límite legal (${LIMITE_NITRATO_MG_L} mg/L) en ${nitratoSobreLimite}; `
+              : '') +
+          'el boletín no dice qué parámetro decidió la calificación.'
         : 'ninguno salió «no apta».'),
     ...frasesInforme(informe),
     ...(enPares

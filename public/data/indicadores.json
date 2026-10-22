@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-22T13:41:22.118Z",
+  "generatedAt": "2026-10-22T13:44:16.066Z",
   "conjunto": "cv-15k-40k",
   "anioBase": 2024,
   "source": {
@@ -8997,7 +8997,7 @@
         "caveats": [
           "La serie es la de la red RIBARROJA 1: RED CASCO URBANO, que abastece a 21.242 de las 23.183 personas censadas en las 6 redes del término. Cada año es la media de sus análisis completos (análisis por año — 2020: 1; 2021: 2; 2022: 1; 2023: 1; 2024: 2; 2025: 2).",
           "El último análisis completo, del 17-06-2026, dio 38 mg/L; 2026 no entra en la serie hasta que se cierre.",
-          "La consulta pública de SINAC enseña sólo los últimos boletines de cada red, no todos los del año. Entre los 73 calificados que enseña hoy en las 6 redes, 2 salieron «no apta»: 19-06-2024, red con gestor SAFIBEL, SL (nitrato 71 mg/L); 22-06-2022, red con gestor TRADICION EDUCATIVA VALENCIANA SL (nitrato 54 mg/L). El nitrato pasaba de su límite legal (50 mg/L); el boletín no dice qué parámetro decidió la calificación.",
+          "La consulta pública de SINAC enseña sólo los últimos boletines de cada red, no todos los del año. Entre los 73 calificados que enseña hoy en las 6 redes, 2 salieron «no apta»: 19-06-2024, red con gestor SAFIBEL, SL (nitrato 71 mg/L); 22-06-2022, red con gestor TRADICION EDUCATIVA VALENCIANA SL (nitrato 54 mg/L). El nitrato pasaba de su límite legal (50 mg/L) en todos; el boletín no dice qué parámetro decidió la calificación.",
           "El año entero lo cuenta el informe anual del Ministerio de Sanidad, por zona de abastecimiento. Zona RIBA-ROJA DE TURIA 1, la de la red principal: 2021, 55 «no apto» de 485; 2022, 0 «no apto» de 731 (el informe la lista dos veces, con grafías distintas; sumamos las dos); 2023, 99,1 % de aptos de 830; 2024, 99,2 % de aptos de 1037. «No apto» es, según el informe, «Boletines No Aptos para el consumo y No Aptos con riesgos para la salud». No dice qué parámetro, y desde 2023 publica sólo el porcentaje de aptos, que no separa «no apto» de «sin calificar».",
           "Otras zonas del término en el mismo informe: 2021, RIBARROJA - 2 - POLÍGONO OLIVERAL: 55 «no apto» de 456; 2022, RIBA-ROJA 8- COLEGIO MARÍA DE ICIAR: 2 «no apto» de 5; 2023, RIBA ROJA DE TURIA 2 - MASIA DEL OLIVERAL: 99,1 % de aptos de 745; 2023, RIBA-ROJA 6 - RESIDENCIA 3ª EDAD ENTRE NARANJOS: 66,7 % de aptos de 14; 2024, RIBA ROJA DE TURIA 2 - MASIA DEL OLIVERAL: 99,2 % de aptos de 1036; 2024, RIBA-ROJA 6 - RESIDENCIA 3ª EDAD ENTRE NARANJOS: 88,9 % de aptos de 11.",
           "En los 54 municipios parecidos (cv-15k-40k), 42 de sus 180 redes tienen algún «no apta» entre los boletines que SINAC enseña (124 de 3126 análisis calificados), en 21 municipios; 19 de esas redes tienen un gestor distinto del de la red principal de su municipio.",
@@ -9007,6 +9007,162 @@
           "nombre": "SINAC · Sistema de Información Nacional de Aguas de Consumo (Ministerio de Sanidad)",
           "url": "https://sinac.sanidad.gob.es/CiudadanoWeb/ciudadano/informacionAbastecimientoActionEntrada.do",
           "atribucion": "Fuente: Ministerio de Sanidad, SINAC. Consultado el 2026-10-22; cada boletín lleva su fecha de toma."
+        }
+      },
+      {
+        "id": "biblioteca-prestatarios-por-mil",
+        "servicioRelacionado": "a3321-330p-coste-unitario",
+        "etiqueta": "Prestatarios activos de la biblioteca",
+        "valor": 44.44903012794057,
+        "unidad": "por 1.000 hab.",
+        "decimales": 1,
+        "periodo": "2024",
+        "serie": [
+          {
+            "anio": 2020,
+            "valor": 37.87179825139493
+          },
+          {
+            "anio": 2021,
+            "valor": 27.588929339006096
+          },
+          {
+            "anio": 2022,
+            "valor": 39.13232104121475
+          },
+          {
+            "anio": 2023,
+            "valor": 45.34069199745277
+          },
+          {
+            "anio": 2024,
+            "valor": 44.44903012794057
+          }
+        ],
+        "pares": {
+          "conjunto": "cv-15k-40k · con dato en 2024",
+          "n": 59,
+          "percentil": 25,
+          "p25": 42.915397885577136,
+          "mediana": 59.1672753834916,
+          "p75": 70.879631917752
+        },
+        "paresSerie": [
+          {
+            "anio": 2020,
+            "mediana": 39.0682400672892,
+            "n": 56
+          },
+          {
+            "anio": 2021,
+            "mediana": 41.58619741232202,
+            "n": 56
+          },
+          {
+            "anio": 2022,
+            "mediana": 52.102905035059365,
+            "n": 56
+          },
+          {
+            "anio": 2023,
+            "mediana": 48.5769865430909,
+            "n": 56
+          },
+          {
+            "anio": 2024,
+            "mediana": 59.89254063489557,
+            "n": 56
+          }
+        ],
+        "comoSeLee": "Cuántas personas se llevaron algo en préstamo durante el año, por cada 1.000 habitantes. Lo recogen las comunidades autónomas con un cuestionario común (norma ISO 2789), y la cifra suma todas las bibliotecas públicas del término que informan a la estadística. Depende de la colección, el horario y los hábitos de lectura del pueblo, no sólo de lo que gasta el ayuntamiento: se publica junto al coste, nunca dividido por él.",
+        "caveats": [
+          "Los préstamos ya son la unidad de la tarjeta de coste (euros por préstamo); por eso aquí se cuentan personas y visitas, no préstamos.",
+          "Los usuarios inscritos no se usan como resultado: en la serie sólo suben (de 5.190 en 2020 a 6.067 en 2024; subieron también en 2024, cuando las visitas bajaron), así que cuentan carnés acumulados, no uso.",
+          "Las tasas usan el padrón a 1 de enero de cada año (INE): 2020, 22.761; 2021, 22.799; 2022, 23.050; 2023, 23.555; 2024, 24.230 habitantes.",
+          "La banda de comparación es propia: los municipios de la banda de coste (cv-15k-40k) con dato en el anexo en 2024 (n=59 de 59). La línea del grupo es la mediana de los 56 que tienen dato los 5 años, siempre los mismos; quedan fuera, por algún año sin dato, Altea, Chiva, Rojales."
+        ],
+        "fuente": {
+          "nombre": "Estadística de Bibliotecas Públicas — Ministerio de Cultura (anexo 28)",
+          "url": "https://www.mcu.es/alziraweb/alziraweb.cmd?command=GetAnexo&id=28&origen=PR&codigo=46&ejercicio=2024&porcentaje=",
+          "atribucion": "Origen de los datos: Ministerio de Cultura"
+        }
+      },
+      {
+        "id": "biblioteca-visitas-por-habitante",
+        "servicioRelacionado": "a3321-330p-coste-unitario",
+        "etiqueta": "Visitas a la biblioteca",
+        "valor": 0.8663640115559225,
+        "unidad": "por habitante",
+        "decimales": 2,
+        "periodo": "2024",
+        "serie": [
+          {
+            "anio": 2020,
+            "valor": 0.7522955933394843
+          },
+          {
+            "anio": 2021,
+            "valor": 0.749111803149261
+          },
+          {
+            "anio": 2022,
+            "valor": 1.0190889370932754
+          },
+          {
+            "anio": 2023,
+            "valor": 1.0757376353215877
+          },
+          {
+            "anio": 2024,
+            "valor": 0.8663640115559225
+          }
+        ],
+        "pares": {
+          "conjunto": "cv-15k-40k · con dato en 2024",
+          "n": 59,
+          "percentil": 29,
+          "p25": 0.7920136222628203,
+          "mediana": 1.2321433818128398,
+          "p75": 1.6759120908721568
+        },
+        "paresSerie": [
+          {
+            "anio": 2020,
+            "mediana": 0.6730432518806321,
+            "n": 56
+          },
+          {
+            "anio": 2021,
+            "mediana": 0.693440825889847,
+            "n": 56
+          },
+          {
+            "anio": 2022,
+            "mediana": 1.1008215752434314,
+            "n": 56
+          },
+          {
+            "anio": 2023,
+            "mediana": 1.2942118106948517,
+            "n": 56
+          },
+          {
+            "anio": 2024,
+            "mediana": 1.2417059626806544,
+            "n": 56
+          }
+        ],
+        "comoSeLee": "Cuántas veces se entró en la biblioteca durante el año, por habitante. Lo recogen las comunidades autónomas con un cuestionario común (norma ISO 2789), y la cifra suma todas las bibliotecas públicas del término que informan a la estadística. Depende de la colección, el horario y los hábitos de lectura del pueblo, no sólo de lo que gasta el ayuntamiento: se publica junto al coste, nunca dividido por él.",
+        "caveats": [
+          "Los préstamos ya son la unidad de la tarjeta de coste (euros por préstamo); por eso aquí se cuentan personas y visitas, no préstamos.",
+          "Los usuarios inscritos no se usan como resultado: en la serie sólo suben (de 5.190 en 2020 a 6.067 en 2024; subieron también en 2024, cuando las visitas bajaron), así que cuentan carnés acumulados, no uso.",
+          "Las tasas usan el padrón a 1 de enero de cada año (INE): 2020, 22.761; 2021, 22.799; 2022, 23.050; 2023, 23.555; 2024, 24.230 habitantes.",
+          "La banda de comparación es propia: los municipios de la banda de coste (cv-15k-40k) con dato en el anexo en 2024 (n=59 de 59). La línea del grupo es la mediana de los 56 que tienen dato los 5 años, siempre los mismos; quedan fuera, por algún año sin dato, Altea, Chiva, Rojales."
+        ],
+        "fuente": {
+          "nombre": "Estadística de Bibliotecas Públicas — Ministerio de Cultura (anexo 28)",
+          "url": "https://www.mcu.es/alziraweb/alziraweb.cmd?command=GetAnexo&id=28&origen=PR&codigo=46&ejercicio=2024&porcentaje=",
+          "atribucion": "Origen de los datos: Ministerio de Cultura"
         }
       }
     ],

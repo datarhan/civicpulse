@@ -227,6 +227,7 @@
     "scrape:agua": "npx tsx scripts/scrape-agua.ts",
     "scrape:agua-pares": "npx tsx scripts/scrape-agua-pares.ts",
     "scrape:agua-informe": "npx tsx scripts/scrape-agua-informe.ts",
+    "scrape:bibliotecas": "npx tsx scripts/scrape-bibliotecas.ts",
     "fetch:cesel-ccaa": "npx tsx scripts/fetch-cesel-ccaa.ts",
     "build:prose-map": "npx tsx scripts/build-prose-map.ts",
     "draft:indicadores": "npx tsx scripts/draft-indicador-candidates.ts",
