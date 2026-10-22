@@ -313,6 +313,13 @@ function sinImportes() {
   return mapa
 }
 
+/** Lo publicado, sin lo que sólo se pide al pulsar: este escenario no pulsa. */
+function sinPulsar() {
+  const mapa = structuredClone(sirve())
+  for (const r of AL_PULSAR) delete mapa[r]
+  return mapa
+}
+
 const pintada = (c) =>
   !!c.querySelector('h1') &&
   /\d{4}/.test(c.querySelector('h1').textContent) &&
@@ -336,6 +343,15 @@ const ESCENARIOS = [
     listo: pintada,
     interactua: recorre,
     alPulsar: AL_PULSAR,
+  },
+  {
+    // Un enlace compartido con un barrio que el mapa no conoce: la página lo
+    // dice (`presupuesto.gasto.zona.desconocida`) en vez de abrir el mapa sin más.
+    nombre: 'un enlace con un barrio que el mapa no conoce',
+    fetch: sinPulsar(),
+    ruta: '/presupuesto?barrio=sector-14',
+    pinta: () => <Presupuesto />,
+    listo: (c) => pintada(c) && !!c.querySelector('[data-barrio-desconocido]'),
   },
   {
     nombre: 'sin importes en los contratos',

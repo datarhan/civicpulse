@@ -1,4 +1,5 @@
 import { useEffect, useMemo, useState } from 'react'
+import { useSearchParams } from 'react-router-dom'
 import { Card, SectionHead, Pill } from '../Primitives'
 import { contractTypeTotals, obrasSharePct } from '../../lib/tender-geo'
 import { isCommittedContract, isConcession, importeAdjudicado } from '../../lib/contract-status'
@@ -91,7 +92,26 @@ export default function GastoDashboard() {
     return { cuota: (importe / total) * 100, importe, esConcesion: isConcession(top) }
   }, [contracts])
 
-  const [selectedZone, setSelectedZone] = useState(null)
+  // La zona vive en la URL (`?barrio=l-oliveral`), no en un estado local: así
+  // el selector de «En breve» puede abrirla desde arriba, y un vecino puede
+  // mandar el enlace de SU barrio. `replace`, porque pulsar zonas en el mapa no
+  // es navegar, y el botón «atrás» no debería recorrerlas una a una.
+  const [params, setParams] = useSearchParams()
+  const barrioPedido = params.get('barrio')
+  const selectedZone = (tg?.zones ?? []).some((z) => z.slug === barrioPedido) ? barrioPedido : null
+  // Un enlace con un barrio que el mapa no conoce (un enlace viejo, una errata)
+  // se dice, en vez de abrir el mapa como si nadie hubiera preguntado nada.
+  const barrioDesconocido = barrioPedido && !selectedZone ? barrioPedido : null
+  const setSelectedZone = (slug) =>
+    setParams(
+      (actual) => {
+        const n = new URLSearchParams(actual)
+        if (slug) n.set('barrio', slug)
+        else n.delete('barrio')
+        return n
+      },
+      { replace: true, preventScrollReset: true },
+    )
   const [sliderTime, setSliderTime] = useState(0)
   const [danaOnly, setDanaOnly] = useState(false)
   const [tab, setTab] = useState('explorar')
@@ -258,7 +278,26 @@ export default function GastoDashboard() {
               cpvDict={cpv?.codes}
             />
           ) : (
-            <CoverageMeter universe={tg.universe} zones={tg.zones} onSelectZone={setSelectedZone} />
+            <>
+              {barrioDesconocido && (
+                <p
+                  data-barrio-desconocido=""
+                  style={{
+                    margin: '0 0 12px',
+                    fontSize: 'var(--fs-aux)',
+                    lineHeight: 1.5,
+                    color: 'var(--warn-ink)',
+                  }}
+                >
+                  {rellena(t('presupuesto.gasto.zona.desconocida'), { barrio: barrioDesconocido })}
+                </p>
+              )}
+              <CoverageMeter
+                universe={tg.universe}
+                zones={tg.zones}
+                onSelectZone={setSelectedZone}
+              />
+            </>
           )}
         </div>
       </div>

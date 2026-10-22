@@ -1740,7 +1740,19 @@ export const CATALOGUE = {
       'Ojo: de cada 100 € contratados, sólo {n} van a contratos que nombran un barrio. Que tu barrio no salga en el mapa no quiere decir que allí no se haya contratado nada.',
     'presupuesto.enBreve.barrio.menosDeUno':
       'Ojo: de cada 100 € contratados, menos de 1 va a contratos que nombran un barrio. Que tu barrio no salga en el mapa no quiere decir que allí no se haya contratado nada.',
-    'presupuesto.enBreve.barrio.enlace': 'Ver el mapa por barrios ↓',
+    'presupuesto.enBreve.barrio.elige': 'Elige tu barrio',
+    'presupuesto.enBreve.barrio.placeholder': 'Elige…',
+    'presupuesto.enBreve.barrio.opcion': '{nombre} · {n} contratos',
+    'presupuesto.enBreve.barrio.opcion.uno': '{nombre} · 1 contrato',
+    'presupuesto.enBreve.barrio.otro': 'Mi barrio no aparece',
+    'presupuesto.enBreve.barrio.ver': 'Ver sus contratos',
+    'presupuesto.enBreve.barrio.otro.titulo': 'No podemos situar contratos en tu barrio',
+    'presupuesto.enBreve.barrio.otro.frase':
+      'Ningún contrato publicado nombra en su título un lugar que podamos situar con seguridad en tu barrio. Preferimos no poner un punto en el mapa a ponerlo mal.',
+    'presupuesto.enBreve.barrio.otro.queja': 'Avisar de un problema en tu calle',
+    'presupuesto.enBreve.barrio.otro.todos': 'Ver todos los contratos del municipio ↓',
+    'presupuesto.gasto.zona.desconocida':
+      'El enlace pide el barrio «{barrio}», que no está entre los que nombran los contratos. Elige uno en la lista o en el mapa.',
     'presupuesto.enBreve.barrio.figura': 'De cada 100 € contratados, {n} nombran un barrio.',
     'glosario.rotulo': 'Glosario',
     'glosario.oficial': 'Nombre oficial: {nombre}',
@@ -3842,7 +3854,19 @@ export const CATALOGUE = {
       "Compte: de cada 100 € contractats, només {n} van a contractes que nomenen un barri. Que el teu barri no isca al mapa no vol dir que allí no s'haja contractat res.",
     'presupuesto.enBreve.barrio.menosDeUno':
       "Compte: de cada 100 € contractats, menys d'1 va a contractes que nomenen un barri. Que el teu barri no isca al mapa no vol dir que allí no s'haja contractat res.",
-    'presupuesto.enBreve.barrio.enlace': 'Vore el mapa per barris ↓',
+    'presupuesto.enBreve.barrio.elige': 'Tria el teu barri',
+    'presupuesto.enBreve.barrio.placeholder': 'Tria…',
+    'presupuesto.enBreve.barrio.opcion': '{nombre} · {n} contractes',
+    'presupuesto.enBreve.barrio.opcion.uno': '{nombre} · 1 contracte',
+    'presupuesto.enBreve.barrio.otro': 'El meu barri no apareix',
+    'presupuesto.enBreve.barrio.ver': 'Vore els seus contractes',
+    'presupuesto.enBreve.barrio.otro.titulo': 'No podem situar contractes al teu barri',
+    'presupuesto.enBreve.barrio.otro.frase':
+      'Cap contracte publicat nomena en el seu títol un lloc que puguem situar amb seguretat al teu barri. Preferim no posar un punt al mapa a posar-lo malament.',
+    'presupuesto.enBreve.barrio.otro.queja': "Avisar d'un problema al teu carrer",
+    'presupuesto.enBreve.barrio.otro.todos': 'Vore tots els contractes del municipi ↓',
+    'presupuesto.gasto.zona.desconocida':
+      "L'enllaç demana el barri «{barrio}», que no és entre els que nomenen els contractes. Tria'n un a la llista o al mapa.",
     'presupuesto.enBreve.barrio.figura': 'De cada 100 € contractats, {n} nomenen un barri.',
     'glosario.rotulo': 'Glossari',
     'glosario.oficial': 'Nom oficial: {nombre}',

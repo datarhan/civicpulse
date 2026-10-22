@@ -20,8 +20,8 @@ test.describe('/presupuesto · En breve', () => {
     const hrefs = await bloque
       .locator('a[href^="#"]')
       .evaluateAll((as) => as.map((a) => a.getAttribute('href')))
-    // Mide algo: las cuatro tarjetas, el mapa y el «saltar».
-    expect(hrefs.length).toBeGreaterThanOrEqual(6)
+    // Mide algo: las cuatro tarjetas y el «saltar».
+    expect(hrefs.length).toBeGreaterThanOrEqual(5)
     for (const href of new Set(hrefs)) {
       await expect(page.locator(href!), `${href} no está en la página`).toHaveCount(1)
     }
@@ -53,5 +53,22 @@ test.describe('/presupuesto · En breve', () => {
     })
     expect(medidas.length, 'el bloque no tiene nada que medir').toBeGreaterThan(50)
     expect(medidas.filter((m) => m.fuera)).toEqual([])
+  })
+
+  test('elegir un barrio lleva al mapa con esa zona abierta', async ({ page }) => {
+    await page.goto('/presupuesto', { waitUntil: 'domcontentloaded' })
+    const selector = page.getByLabel('Elige tu barrio')
+    await expect(selector).toBeVisible({ timeout: 10000 })
+    const slug = await selector
+      .locator('option')
+      .evaluateAll((os) =>
+        os.map((o) => (o as HTMLOptionElement).value).find((v) => v && !v.startsWith('__')),
+      )
+    await selector.selectOption(slug!)
+    await page.getByRole('button', { name: 'Ver sus contratos' }).click()
+    await expect(page).toHaveURL(new RegExp(`\\?barrio=${slug}#mapa-gasto$`))
+    const mapa = page.locator('#mapa-gasto')
+    await expect(mapa.getByText('← todas las zonas')).toBeVisible()
+    await expect(mapa).toBeInViewport()
   })
 })

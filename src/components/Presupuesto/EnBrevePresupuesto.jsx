@@ -1,4 +1,5 @@
 import EnBreve, { TarjetaEnBreve } from '../EnBreve'
+import BarrioPicker from './BarrioPicker'
 import { useBudget } from '../../hooks/useBudget'
 import { useBudgetExecution } from '../../hooks/useBudgetExecution'
 import { useDeudaViva } from '../../hooks/useDeudaViva'
@@ -404,19 +405,13 @@ export default function EnBrevePresupuesto() {
 
   if (tarjetas.length === 0) return null
 
-  const pie = r.barrio && (
-    <a href="#mapa-gasto" className="cp-en-breve-barrio" data-en-breve="barrio">
-      {!r.barrio.menosDeUno && <FiguraBarrio n={r.barrio.deCada100} />}
-      <span style={{ flex: '1 1 260px', minWidth: 0 }}>
-        <span className="cp-en-breve-barrio-titulo">{t('presupuesto.enBreve.barrio.titulo')}</span>
-        <span className="cp-en-breve-barrio-frase">
-          {r.barrio.menosDeUno
-            ? t('presupuesto.enBreve.barrio.menosDeUno')
-            : rellena(t('presupuesto.enBreve.barrio.frase'), { n: r.barrio.deCada100 })}
-        </span>
-      </span>
-      <span className="cp-en-breve-barrio-enlace">{t('presupuesto.enBreve.barrio.enlace')}</span>
-    </a>
+  const zonas = (tenderGeo?.zones ?? []).filter((z) => z.slug && z.name)
+  const pie = r.barrio && zonas.length > 0 && (
+    <BarrioPicker
+      cobertura={r.barrio}
+      zonas={zonas}
+      figura={!r.barrio.menosDeUno ? <FiguraBarrio n={r.barrio.deCada100} /> : null}
+    />
   )
 
   return (

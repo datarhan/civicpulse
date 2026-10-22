@@ -858,6 +858,14 @@ body.cp-kiosk .cp-live-container {
   cursor: pointer;
 }
 
+/* Las dos columnas del mapa de contratación (mapa + deslizador | cobertura o
+   zona). Un hijo de rejilla nace con `min-width: auto`: no baja de lo que mide
+   su contenido, y a 375 px el mapa y su deslizador pedían ~410 px en una columna
+   de 285, así que la página entera se desplazaba de lado. Con `min-width: 0` la
+   columna manda y el contenido se ajusta a ella. */
+.cp-gasto-grid > * {
+  min-width: 0;
+}
 @media (max-width: 768px) {
   .cp-gasto-grid {
     grid-template-columns: 1fr !important;
@@ -1436,33 +1444,77 @@ body.cp-kiosk .cp-live-container {
 .cp-en-breve-barrio {
   display: flex;
   flex-wrap: wrap;
-  align-items: center;
+  align-items: flex-start;
   gap: 12px 18px;
   padding: 14px 16px;
   border: 1px solid var(--civic);
   border-radius: var(--r-card);
-  color: inherit;
-  text-decoration: none;
 }
-.cp-en-breve-barrio:hover {
-  background: var(--civic-soft);
+.cp-en-breve-barrio-form {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px 10px;
+  margin-top: 10px;
+}
+.cp-en-breve-barrio-label {
+  font-size: var(--fs-aux);
+  font-weight: 500;
+}
+.cp-en-breve-barrio-form select {
+  min-height: 44px;
+  min-width: 0;
+  max-width: 100%;
+  flex: 1 1 220px;
+  padding: 0 10px;
+  border: 1px solid var(--border);
+  border-radius: var(--r-input);
+  background: var(--paper);
+  color: var(--ink);
+  font: inherit;
+  font-size: var(--fs-body);
+}
+.cp-en-breve-barrio-boton {
+  min-height: 44px;
+  padding: 0 16px;
+  border: 0;
+  border-radius: var(--r-input);
+  background: var(--civic);
+  color: var(--civic-on);
+  font: inherit;
+  font-size: var(--fs-aux);
+  font-weight: 600;
+  cursor: pointer;
+}
+.cp-en-breve-barrio-boton:disabled {
+  opacity: 0.55;
+  cursor: default;
+}
+.cp-en-breve-barrio-form :is(select, .cp-en-breve-barrio-boton):focus-visible {
+  outline: 2px solid var(--civic);
+  outline-offset: 2px;
+}
+.cp-en-breve-barrio-otro {
+  margin-top: 12px;
+  padding: 10px 12px;
+  border-radius: var(--r-input);
+  background: var(--warn-soft);
+  font-size: var(--fs-aux);
+  line-height: 1.5;
+}
+.cp-en-breve-barrio-otro a {
+  color: var(--civic);
 }
 .cp-en-breve-barrio-titulo {
-  display: block;
+  margin: 0;
   font-size: var(--fs-head);
   font-weight: 600;
 }
 .cp-en-breve-barrio-frase {
-  display: block;
-  margin-top: 2px;
+  margin: 2px 0 0;
   font-size: var(--fs-aux);
   line-height: 1.5;
   color: var(--ink70);
-}
-.cp-en-breve-barrio-enlace {
-  font-size: var(--fs-aux);
-  font-weight: 500;
-  color: var(--civic);
 }
 
 /* /presupuesto — lámina 5b: del crédito inicial a lo ejecutado.

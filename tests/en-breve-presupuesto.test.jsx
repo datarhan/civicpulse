@@ -1,6 +1,7 @@
 import { afterEach, describe, expect, it } from 'vitest'
 import { readFileSync } from 'node:fs'
 import { fireEvent, render, screen, waitFor } from '@testing-library/react'
+import { MemoryRouter, useLocation } from 'react-router-dom'
 
 import { CATALOGUE, LocaleProvider } from '../src/i18n'
 import { GLOSARIO, partesConTerminos, textoLlano } from '../src/glosario'
@@ -158,10 +159,19 @@ function pinta(idioma) {
     '/data/tender-geo.json': GEO,
   })
   return render(
-    <LocaleProvider>
-      <EnBrevePresupuesto />
-    </LocaleProvider>,
+    <MemoryRouter initialEntries={['/presupuesto']}>
+      <LocaleProvider>
+        <EnBrevePresupuesto />
+        <Ubicacion />
+      </LocaleProvider>
+    </MemoryRouter>,
   )
+}
+
+/** Dónde ha dejado el selector al lector: la URL, que es lo que lee el mapa. */
+function Ubicacion() {
+  const { pathname, search, hash } = useLocation()
+  return <output data-ubicacion="">{`${pathname}${search}${hash}`}</output>
 }
 
 /** Espera a que estén las cuatro tarjetas y la advertencia del mapa. */
@@ -209,7 +219,8 @@ describe('lo que lee el vecino', () => {
     const { container } = pinta('ca')
     await listo(container)
     expect(screen.getByRole('heading', { name: 'En resum' })).toBeInTheDocument()
-    const texto = loQueSeLee(container).join(' · ')
+    // El bloque, no el contenedor: la ruta que pinta `Ubicacion` es una URL.
+    const texto = loQueSeLee(container.querySelector('[data-en-breve-bloque]')).join(' · ')
     expect(texto.length).toBeGreaterThan(200)
     expect(castellanoEn(texto)).toEqual([])
   })
@@ -231,9 +242,53 @@ describe('lo que lee el vecino', () => {
   it('cada respuesta enlaza a una sección con nombre', async () => {
     const { container } = pinta('es')
     await listo(container)
-    const anclas = [...container.querySelectorAll('[data-en-breve] a, a[data-en-breve]')].map((a) =>
-      a.getAttribute('href'),
+    const anclas = [...container.querySelectorAll('[data-en-breve] > a.cp-en-breve-ancla')].map(
+      (a) => a.getAttribute('href'),
     )
-    expect(new Set(anclas)).toEqual(new Set(['#cascada', '#capitulos', '#deuda', '#mapa-gasto']))
+    expect(new Set(anclas)).toEqual(new Set(['#cascada', '#capitulos', '#deuda']))
+  })
+})
+
+describe('el selector de barrio', () => {
+  it('ofrece todas las zonas del mapa, y la que falta', async () => {
+    const { container } = pinta('es')
+    await listo(container)
+    const opciones = [...screen.getByLabelText('Elige tu barrio').querySelectorAll('option')]
+    const valores = opciones.map((o) => o.value).filter((v) => v && !v.startsWith('__'))
+    expect(new Set(valores)).toEqual(new Set(GEO.zones.map((z) => z.slug)))
+    expect(opciones.at(-1).textContent).toBe('Mi barrio no aparece')
+    // Los recuentos son los del snapshot, no otros.
+    const oliveral = GEO.zones.find((z) => z.slug === 'l-oliveral')
+    if (oliveral)
+      expect(opciones.find((o) => o.value === 'l-oliveral').textContent).toContain(
+        `${oliveral.contractCount} contrato`,
+      )
+  })
+
+  it('elegir no navega; «Ver sus contratos» lleva al mapa con la zona abierta', async () => {
+    const { container } = pinta('es')
+    await listo(container)
+    const ubicacion = container.querySelector('[data-ubicacion]')
+    const boton = screen.getByRole('button', { name: 'Ver sus contratos' })
+    expect(boton).toBeDisabled()
+    const slug = GEO.zones[0].slug
+    fireEvent.change(screen.getByLabelText('Elige tu barrio'), { target: { value: slug } })
+    expect(ubicacion.textContent).toBe('/presupuesto')
+    fireEvent.click(boton)
+    expect(ubicacion.textContent).toBe(`/presupuesto?barrio=${slug}#mapa-gasto`)
+  })
+
+  it('«Mi barrio no aparece» se contesta aquí, sin inventar un punto', async () => {
+    const { container } = pinta('es')
+    await listo(container)
+    fireEvent.change(screen.getByLabelText('Elige tu barrio'), { target: { value: '__otro' } })
+    fireEvent.click(screen.getByRole('button', { name: 'Ver sus contratos' }))
+    const aviso = container.querySelector('[data-barrio-otro]')
+    expect(aviso?.textContent).toContain('No podemos situar contratos en tu barrio')
+    expect(container.querySelector('[data-ubicacion]').textContent).toBe('/presupuesto')
+    expect(screen.getByRole('link', { name: 'Avisar de un problema en tu calle' })).toHaveAttribute(
+      'href',
+      '/quejas',
+    )
   })
 })
