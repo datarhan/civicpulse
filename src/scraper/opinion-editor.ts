@@ -356,10 +356,17 @@ export interface PanelLike {
 /** Tolerancia relativa al cotejar un valor citado. */
 const TOLERANCIA = 0.005
 
+/**
+ * `ultimoCitado`: el año más reciente que la MISMA opinión cita de ese hecho.
+ * Una opinión que compara 2021 con 2024 cita 2021 a propósito, y que el panel
+ * tenga años posteriores a 2021 no es noticia; lo es que tenga uno posterior a
+ * 2024. Sin él, se compara con el propio año citado.
+ */
 export function cotejarHecho(
   h: Hecho,
   panel: PanelLike,
   hallazgos: { items?: { id: string }[] } | null,
+  ultimoCitado?: number,
 ): EstadoHecho {
   if (h.tipo === 'hallazgo')
     return (hallazgos?.items ?? []).some((f) => f.id === h.id) ? 'coincide' : 'sin-indicador'
@@ -374,7 +381,7 @@ export function cotejarHecho(
   if (Math.abs(punto.valor - (h.valor as number)) > Math.abs(h.valor as number) * TOLERANCIA)
     return 'contradice'
   const ultimo = Math.max(...serie.map((p) => p.anio))
-  return ultimo > h.anio ? 'movido' : 'coincide'
+  return ultimo > Math.max(h.anio, ultimoCitado ?? h.anio) ? 'movido' : 'coincide'
 }
 
 /** Un snapshot vacío, el que crea `npm run opinion -- init`. */

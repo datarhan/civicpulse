@@ -247,6 +247,15 @@ describe('la ventana LOREG y los hechos', () => {
         null,
       ),
     ).toBe('contradice')
+    // Citado a propósito junto a un año más reciente que sigue siendo el último: no es «movido».
+    expect(
+      cotejarHecho(
+        { tipo: 'indicador', id: POLICIA, anio: anterior.anio, valor: anterior.valor },
+        IND,
+        null,
+        ultimo.anio,
+      ),
+    ).toBe('coincide')
     expect(cotejarHecho({ tipo: 'indicador', id: 'no-existe' }, IND, null)).toBe('sin-indicador')
     expect(cotejarHecho({ tipo: 'hallazgo', id: 'no-existe' }, IND, { items: [] })).toBe(
       'sin-indicador',

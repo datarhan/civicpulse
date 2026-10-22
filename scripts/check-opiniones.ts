@@ -54,9 +54,13 @@ function main(): void {
   const problemas: string[] = []
   let hechos = 0
   for (const o of snap.items) {
+    // El año más reciente que la opinión cita de cada hecho: ver `cotejarHecho`.
+    const ultimoCitado = new Map<string, number>()
+    for (const h of o.hechos)
+      if (h.anio != null) ultimoCitado.set(h.id, Math.max(h.anio, ultimoCitado.get(h.id) ?? h.anio))
     for (const h of o.hechos) {
       hechos++
-      const e = cotejarHecho(h, panel, hallazgos)
+      const e = cotejarHecho(h, panel, hallazgos, ultimoCitado.get(h.id))
       cuenta[e]++
       if (e === 'contradice' || e === 'sin-indicador')
         problemas.push(`${o.id}: ${h.tipo} «${h.id}»${h.anio ? ` (${h.anio})` : ''} → ${e}`)
