@@ -14,6 +14,7 @@ import { construirIndicadores, situacion } from '../src/scraper/indicadores'
 import { validarResultados } from '../src/scraper/resultados'
 import { resultadoAgua } from '../src/scraper/sinac'
 import { INE_PROPIO } from '../src/scraper/dea-especificacion'
+import { resultadosBibliotecas } from '../src/scraper/bibliotecas'
 import { construirIndicadoresMunicipales } from '../src/scraper/indicadores-friccion'
 import { SERVICIOS } from '../src/scraper/indicador-registry'
 import { startRun, NO_LLM_STATS } from '../src/scraper/run-manifest'
@@ -177,6 +178,13 @@ async function main() {
     else console.warn('[indicadores] sin resultado de agua — agua.json no trae ningún año cerrado')
   } catch (err) {
     console.warn(`[indicadores] sin resultado de agua — ${(err as Error).message ?? err}`)
+  }
+  try {
+    const biblio = resultadosBibliotecas(await leer('public/data/bibliotecas.json'))
+    if (biblio.length) resultados.items.push(...biblio)
+    else console.warn('[indicadores] sin resultado de biblioteca — bibliotecas.json sin serie')
+  } catch (err) {
+    console.warn(`[indicadores] sin resultado de biblioteca — ${(err as Error).message ?? err}`)
   }
   resultados.ausencias.push(
     {

@@ -232,7 +232,9 @@ in its own return.
 
 1. SINAC water quality — **built** (`scrape:agua` → `agua.json`, result
    `agua-nitrato-red-principal` on the water-supply card).
-2. Library statistics (verified): active borrowers and visits per inhabitant.
+2. Library statistics — **built** (`scrape:bibliotecas` → `bibliotecas.json`,
+   results `biblioteca-prestatarios-por-mil` and `biblioteca-visitas-por-habitante`
+   on the library card, with a fixed-panel peer line).
 3. DGT microdata as a **reporting** indicator for the police, with the
    question registered first.
 4. EIEL, once its download application is back **and** the licence conflict is

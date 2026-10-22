@@ -217,8 +217,18 @@ function Cuesta({ coste, t, mandatoDesde }) {
 function Consigue({ resultado, t, mandatoDesde }) {
   if (!resultado) return <p className="cp-ccr-nota">{t('eficiencia.ccr.resultado.sin')}</p>
   const r = resultado
-  const valor = `${r.valor.toLocaleString('es-ES', { maximumFractionDigits: 1 })} ${r.unidad}`
+  const valor = `${r.valor.toLocaleString('es-ES', { maximumFractionDigits: r.decimales ?? 1 })} ${r.unidad}`
   const dir = r.nuestro ? direccion(r.nuestro.cambio) : null
+  // La línea del grupo, sólo si la fuente da su serie (panel fijo): la misma
+  // frase de dirección que la columna del coste.
+  const grupo = r.nuestro ? r.grupo : null
+  const fraseGrupo = grupo
+    ? {
+        sube: rellena(t('eficiencia.ccr.grupo.sube'), { pct: pct(grupo.cambio) }),
+        baja: rellena(t('eficiencia.ccr.grupo.baja'), { pct: pct(grupo.cambio) }),
+        igual: t('eficiencia.ccr.grupo.igual'),
+      }[direccion(grupo.cambio)]
+    : ''
   const frase = r.nuestro
     ? {
         sube: rellena(t('eficiencia.ccr.resultado.sube'), {
@@ -241,28 +251,32 @@ function Consigue({ resultado, t, mandatoDesde }) {
       {r.nuestro && (
         <FiguraIndice
           nuestra={r.nuestro}
-          grupo={null}
+          grupo={grupo}
           mandatoDesde={mandatoDesde}
-          etiqueta={frase}
+          etiqueta={grupo ? `${frase} ${fraseGrupo}` : frase}
           rotuloNuestra={t('eficiencia.ccr.rotulo.nuestro')}
-          rotuloGrupo=""
+          rotuloGrupo={grupo ? t('eficiencia.ccr.rotulo.grupo') : ''}
           rotuloMandato={t('eficiencia.ccr.rotulo.mandato')}
           rotuloBase={rellena(t('eficiencia.ccr.rotulo.base'), { base: r.nuestro.base })}
         />
       )}
       <p className="cp-ccr-frase" data-ccr="resultado">
-        {frase}{' '}
+        {frase} {fraseGrupo ? `${fraseGrupo} ` : ''}
         {r.percentil != null && r.nPares != null
           ? rellena(t('eficiencia.ccr.resultado.pares'), { p: r.percentil, n: r.nPares })
           : ''}
       </p>
-      {/* «Del grupo sólo tenemos el último año» sólo es verdad si HAY grupo: el
-          agua no tiene comparables, y decirle lo contrario al lector era falso. */}
+      {/* La nota sobre el grupo dice lo que hay, en tres casos: su serie (las
+          bibliotecas: panel fijo, con su n), sólo su último año (la
+          criminalidad), o ningún grupo (el agua). Decir «sólo el último año»
+          de un resultado sin comparables, o de uno con su serie, era falso. */}
       {r.nuestro && (
-        <p className="cp-ccr-nota">
-          {r.nPares != null
-            ? t('eficiencia.ccr.resultado.sinSerieGrupo')
-            : t('eficiencia.ccr.resultado.sinPares')}
+        <p className="cp-ccr-nota" data-ccr="nota-grupo">
+          {grupo && r.nGrupo != null
+            ? rellena(t('eficiencia.ccr.resultado.serieGrupo'), { n: r.nGrupo })
+            : r.nPares != null
+              ? t('eficiencia.ccr.resultado.sinSerieGrupo')
+              : t('eficiencia.ccr.resultado.sinPares')}
         </p>
       )}
       {/* La frase no-causal, en el cuerpo: sin ella, un coste que sube al lado

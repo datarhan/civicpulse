@@ -188,7 +188,9 @@ export default function ServicioDetalle() {
     competencia && !competencia.fotoRetirada
       ? ((padron?.officials ?? []).find((o) => o.slug === competencia.oficial)?.photoUrl ?? null)
       : null
-  const resultado = (data?.resultados?.items ?? []).find((r) => r.servicioRelacionado === i.id)
+  // TODOS los resultados de la tarjeta, no el primero: la biblioteca tiene dos
+  // (prestatarios y visitas) y el segundo no se veía en ninguna parte.
+  const resultados = (data?.resultados?.items ?? []).filter((r) => r.servicioRelacionado === i.id)
   // Todo o nada: si a una entrega declarada le falta su índice, la serie
   // entera vuelve a euros corrientes y el rótulo lo dice. Mezclar las dos
   // haría que la distancia entre la línea y la mediana dejara de significar.
@@ -516,7 +518,9 @@ export default function ServicioDetalle() {
           de la misma columna, justo detrás de la serie de coste, invitaba
           exactamente a esa lectura. Necesitaba otra superficie, no otro
           titular. */}
-      {resultado && <Resultado resultado={resultado} id={`r-${i.id}`} />}
+      {resultados.map((r, k) => (
+        <Resultado key={r.id} resultado={r} id={k === 0 ? `r-${i.id}` : `r-${r.id}`} />
+      ))}
     </div>
   )
 }

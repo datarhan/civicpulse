@@ -172,8 +172,36 @@ describe('lo que lee el vecino', () => {
 
   it('la frase no-causal del resultado va en el cuerpo', () => {
     const { container } = pinta()
-    for (const r of IND.resultados.items)
-      if (r.comoSeLee) expect(container.textContent).toContain(r.comoSeLee)
+    // El bloque lleva UN resultado por tarjeta, el primero (la biblioteca tiene
+    // dos; el de visitas vive en su ficha): se mide la frase de cada uno que lleva.
+    const llevados = FILAS.filter((f) => f.resultado).map((f) => f.resultado.id)
+    expect(llevados.length).toBeGreaterThan(0)
+    for (const r of IND.resultados.items.filter((x) => llevados.includes(x.id)))
+      expect(container.textContent).toContain(r.comoSeLee)
+  })
+
+  it('la nota del grupo dice lo que hay: su serie, sólo su último año, o ninguno', () => {
+    const { container } = pinta()
+    const casos = new Set()
+    for (const f of FILAS.filter((x) => x.resultado?.nuestro)) {
+      const fila = container.querySelector(`[data-ccr-servicio="${f.servicioId}"]`)
+      const consigue = fila.querySelectorAll('.cp-ccr-columnas > section')[1]
+      const nota = consigue.querySelector('[data-ccr="nota-grupo"]').textContent
+      if (f.resultado.grupo) {
+        casos.add('serie')
+        expect(nota).toContain(`mismos ${f.resultado.nGrupo} municipios`)
+        expect(consigue.textContent).toContain('Mediana de municipios parecidos')
+        expect(nota).not.toContain('sólo tenemos el último año')
+      } else if (f.resultado.nPares != null) {
+        casos.add('ultimo')
+        expect(nota).toContain('sólo tenemos el último año')
+      } else {
+        casos.add('ninguno')
+        expect(nota).toContain('no se compara')
+      }
+    }
+    // Los tres casos existen en los datos publicados: la prueba mide algo en cada uno.
+    expect(casos).toEqual(new Set(['serie', 'ultimo', 'ninguno']))
   })
 
   it('los servicios sin resultado van plegados, y cada uno dice que no lo tiene', () => {

@@ -3285,6 +3285,18 @@ export default function Metodologia() {
           apta» y con qué gestor.
         </p>
         <p style={{ margin: '10px 0 0', color: 'var(--ink70)' }}>
+          <strong>La biblioteca se mide en personas y visitas, no en préstamos.</strong> El
+          resultado sale de la Estadística de Bibliotecas Públicas del Ministerio de Cultura, que
+          publica cada año, municipio a municipio, lo que las comunidades autónomas recogen con un
+          cuestionario común. Publicamos los prestatarios activos por cada 1.000 habitantes y las
+          visitas por habitante, con el padrón del INE de cada año. Los préstamos no, porque ya son
+          la unidad de la tarjeta de coste; los usuarios inscritos tampoco, porque en la serie sólo
+          suben y se comportan como un acumulado de carnés, no como uso. La comparación es con los
+          municipios de la banda de coste que tienen dato, sin contar el nuestro, y su línea año a
+          año es la de un grupo fijo: los que tienen dato todos los años, para que la mediana no se
+          mueva por quién entra y quién sale.
+        </p>
+        <p style={{ margin: '10px 0 0', color: 'var(--ink70)' }}>
           <strong>El plazo de pago es la única cifra del panel con umbral legal.</strong> El periodo
           medio de pago a proveedores lo calcula el Ministerio de Hacienda con la metodología del RD
           1040/2017 para miles de ayuntamientos a la vez, y la Ley 3/2004 fija los 30 días como

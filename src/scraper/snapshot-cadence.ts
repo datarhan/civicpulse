@@ -240,6 +240,16 @@ export const DEFAULT_EXPECTATIONS: DatasetExpectation[] = [
     hint: 'npm run scrape:reciclaje -- --refetch',
   },
   {
+    file: 'bibliotecas.json',
+    cls: 'manual' as const,
+    // La Estadística de Bibliotecas Públicas publica cada año el anterior (en
+    // octubre de 2026 la serie llega a 2024). Sólo responde desde la máquina del
+    // curador —a la nube, 429—, así que lo corre una persona: presupuesto
+    // anual largo, como criminalidad.
+    maxAgeDays: 430,
+    hint: 'npm run scrape:bibliotecas -- --refetch && npm run compute:indicadores',
+  },
+  {
     file: 'ipc.json',
     cls: 'manual' as const,
     // La media anual sólo cambia cuando el INE cierra un año; con 400 días el

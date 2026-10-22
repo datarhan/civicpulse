@@ -139,6 +139,8 @@ export const CATALOGUE = {
     'eficiencia.ccr.resultado.sinSerieGrupo':
       'De los municipios parecidos sólo tenemos el último año, no su evolución.',
     'eficiencia.ccr.resultado.sinPares': 'Esta cifra no se compara con otros municipios.',
+    'eficiencia.ccr.resultado.serieGrupo':
+      'La línea gris es la mediana de los mismos {n} municipios parecidos todos los años: los que tienen dato en cada uno.',
     'eficiencia.ccr.responde.competencia': 'Competencia delegada',
     'eficiencia.ccr.responde.loreg': 'Los nombres no se publican durante el periodo electoral.',
     'eficiencia.ccr.responde.sinAsignar': 'Ninguna delegación nombra este servicio.',
@@ -2600,6 +2602,8 @@ export const CATALOGUE = {
     'eficiencia.ccr.resultado.sinSerieGrupo':
       "Dels municipis semblants només tenim l'últim any, no la seua evolució.",
     'eficiencia.ccr.resultado.sinPares': 'Aquesta xifra no es compara amb altres municipis.',
+    'eficiencia.ccr.resultado.serieGrupo':
+      'La línia grisa és la mediana dels mateixos {n} municipis semblants tots els anys: els que tenen dada en cada un.',
     'eficiencia.ccr.responde.competencia': 'Competència delegada',
     'eficiencia.ccr.responde.loreg': 'Els noms no es publiquen durant el període electoral.',
     'eficiencia.ccr.responde.sinAsignar': 'Cap delegació nomena este servei.',
