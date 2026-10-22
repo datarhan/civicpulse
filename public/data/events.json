@@ -1,13 +1,13 @@
 {
-  "generatedAt": "2026-10-21T09:33:22.331Z",
+  "generatedAt": "2026-10-22T09:36:17.370Z",
   "source": {
     "url": "https://www.ribarroja.es/es/eventos/rss.xml",
     "platform": "Drupal RSS (oficial)"
   },
   "stats": {
     "total": 50,
-    "upcoming": 11,
-    "nextDate": "2026-10-25T10:30:00.000Z"
+    "upcoming": 13,
+    "nextDate": "2026-10-24T07:00:00.000Z"
   },
   "events": [
     {
@@ -29,26 +29,6 @@
       "publishedDate": "2026-09-03T07:46:23.000Z",
       "excerpt": "&nbsp;",
       "image": "https://www.ribarroja.es/sites/www.ribarroja.es/files/styles/interior_contenido_/public/Competiciones%20deportivas%20reducida_2.png?itok=7ArlWmzv"
-    },
-    {
-      "id": "9gwbqs",
-      "title": "Actes festes Crist 2026 - dimarts 8 de setembre",
-      "link": "https://www.ribarroja.es/es/evento/actes-festes-crist-2026-dimarts-8-de-setembre",
-      "eventDate": "2026-09-08T16:00:00.000Z",
-      "eventDateText": "08 de septiembre de 2026 18:00",
-      "publishedDate": "2026-08-28T10:11:02.000Z",
-      "excerpt": "&nbsp;",
-      "image": "https://www.ribarroja.es/sites/www.ribarroja.es/files/styles/interior_contenido_/public/20260827%20FestesCrist2026_web_10.png?itok=MBEDpSkQ"
-    },
-    {
-      "id": "1cpd5o0",
-      "title": "Actes festes Crist 2026 - dimecres 9 de setembre",
-      "link": "https://www.ribarroja.es/es/evento/actes-festes-crist-2026-dimecres-9-de-setembre",
-      "eventDate": "2026-09-09T16:30:00.000Z",
-      "eventDateText": "09 de septiembre de 2026 18:30",
-      "publishedDate": "2026-08-28T10:12:34.000Z",
-      "excerpt": "&nbsp;",
-      "image": "https://www.ribarroja.es/sites/www.ribarroja.es/files/styles/interior_contenido_/public/20260827%20FestesCrist2026_web_11.png?itok=goWFDA70"
     },
     {
       "id": "1yef69d",
@@ -399,6 +379,26 @@
       "publishedDate": "2026-10-15T10:10:39.000Z",
       "excerpt": "&nbsp;",
       "image": "https://www.ribarroja.es/sites/www.ribarroja.es/files/styles/interior_contenido_/public/Competiciones%20deportivas%20reducida_9.png?itok=4a4ygyCm"
+    },
+    {
+      "id": "1an67si",
+      "title": "Competiciones deportivas 24 de octubre de 2026",
+      "link": "https://www.ribarroja.es/es/evento/competiciones-deportivas-24-de-octubre-de-2026",
+      "eventDate": "2026-10-24T07:00:00.000Z",
+      "eventDateText": "24 de octubre de 2026 09:00",
+      "publishedDate": "2026-10-21T16:09:38.000Z",
+      "excerpt": "&nbsp;",
+      "image": "https://www.ribarroja.es/sites/www.ribarroja.es/files/styles/interior_contenido_/public/Competiciones%20deportivas%20reducida_10.png?itok=Bf3BeVVw"
+    },
+    {
+      "id": "o3e0pe",
+      "title": "Competiciones deportivas 25 de octubre de 2026",
+      "link": "https://www.ribarroja.es/es/evento/competiciones-deportivas-25-de-octubre-de-2026",
+      "eventDate": "2026-10-25T10:00:00.000Z",
+      "eventDateText": "25 de octubre de 2026 11:00",
+      "publishedDate": "2026-10-21T16:12:07.000Z",
+      "excerpt": "&nbsp;",
+      "image": "https://www.ribarroja.es/sites/www.ribarroja.es/files/styles/interior_contenido_/public/Competiciones%20deportivas%20reducida_11.png?itok=rfPIb0qg"
     },
     {
       "id": "3r3ub6",
