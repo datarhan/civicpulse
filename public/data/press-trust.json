@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-21T09:42:41.686Z",
+  "generatedAt": "2026-10-22T04:49:01.441Z",
   "windowDays": 30,
   "articles": [
     {
@@ -953,30 +953,13 @@
         "opinionFraction": 0
       },
       "score": 1
-    },
-    {
-      "articleId": "1gqnt8s",
-      "articleFingerprint": "1y0jvaw",
-      "outlet": "Ayuntamiento de Riba-roja de Túria",
-      "outletHost": "ribarroja.es",
-      "url": "https://www.ribarroja.es/es/noticia/riba-roja-celebra-el-ii-certamen-nacional-de-fotograf%C3%ADa-enrique-jarab%C3%BA-en-el-marco-de-la-iii-semana-fotogr%C3%A1fica-ribafoto-organizado-por-la-asociaci%C3%B3n-de-aficionados-a-la-fotograf%C3%ADa-de-riba-roja-de-t%C3%BAria-%28aaforrt%29",
-      "date": "2026-09-21T12:24:40.000Z",
-      "indicators": {
-        "localCoverage": false,
-        "datedArticle": true,
-        "municipalSourceMatch": null,
-        "corroboratedAcrossOutlets": null,
-        "factualClaimsPresent": null,
-        "opinionFraction": 0
-      },
-      "score": 1
     }
   ],
   "outlets": [
     {
       "outlet": "Ayuntamiento de Riba-roja de Túria",
       "outletHost": "ribarroja.es",
-      "articleCount": 20,
+      "articleCount": 19,
       "verdictCounts": {
         "verificado": 0,
         "parcial": 0,
@@ -985,7 +968,7 @@
         "promesa-repetida": 0
       },
       "checkedClaims": 5,
-      "meanTrustScore": 1.5,
+      "meanTrustScore": 1.53,
       "verifiedRatio": 0,
       "contradictedRatio": null
     },
@@ -1199,7 +1182,7 @@
     }
   ],
   "builtFrom": {
-    "plenos-agendas.json": "da4faa9fb947",
+    "plenos-agendas.json": "a4d1081e6ad3",
     "press-claims-verified.json": "035904d802c7",
     "press.json": "6a87bdff5b93",
     "promises.json": "a4b8423e960f"
