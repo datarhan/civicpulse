@@ -1,0 +1,277 @@
+{
+  "generatedAt": "2026-10-22T13:02:26.859Z",
+  "fuente": {
+    "nombre": "Calidad del agua de consumo humano en España · Anexo I (Ministerio de Sanidad)",
+    "url": "https://www.sanidad.gob.es/areas/sanidadAmbiental/calidadAguas/aguasConsumoHumano/publicaciones/docs/2024_INFORME_ANUAL_AGUA_DE_CONSUMO_ZA.pdf",
+    "atribucion": "Fuente: Ministerio de Sanidad, informe anual de calidad del agua de consumo humano, Anexo I.",
+    "licencia": "«La totalidad o parte de esta publicación puede reproducirse sin permiso adicional, siempre que se mencione la fuente.»"
+  },
+  "zonaPrincipal": "RIBA-ROJA DE TURIA 1",
+  "anios": [
+    {
+      "anio": 2021,
+      "url": "https://www.sanidad.gob.es/areas/sanidadAmbiental/calidadAguas/aguasConsumoHumano/publicaciones/informesAnteriores/docs/2021_INFORME_ANUAL_AGUAS_DE_CONSUMO_ZA.pdf",
+      "formato": "recuento",
+      "definiciones": {
+        "apto": "Boletines Aptos para el consumo y Aptos con no conformidad",
+        "noApto": "Boletines No Aptos para el consumo y No Aptos con riesgos para la salud"
+      },
+      "filas": [
+        {
+          "formato": "recuento",
+          "zona": "RIBA - ROJA DE TURIA 1",
+          "zonaNormalizada": "RIBA-ROJA DE TURIA 1",
+          "poblacion": 20465,
+          "apto": 430,
+          "noApto": 55,
+          "sinCalificar": 0,
+          "total": 485
+        },
+        {
+          "formato": "recuento",
+          "zona": "RIBA - ROJA DE TURIA 5 - ELS POUS",
+          "zonaNormalizada": "RIBA-ROJA DE TURIA 5-ELS POUS",
+          "poblacion": 365,
+          "apto": 13,
+          "noApto": 0,
+          "sinCalificar": 0,
+          "total": 13
+        },
+        {
+          "formato": "recuento",
+          "zona": "RIBA-ROJA 6 - RESIDENCIA 3ª EDAD ENTRE NARANJOS",
+          "zonaNormalizada": "RIBA-ROJA 6-RESIDENCIA 3ª EDAD ENTRE NARANJOS",
+          "poblacion": 0,
+          "apto": 0,
+          "noApto": 0,
+          "sinCalificar": 0,
+          "total": 0
+        },
+        {
+          "formato": "recuento",
+          "zona": "RIBA-ROJA 8- COLEGIO MARÍA DE ICIAR",
+          "zonaNormalizada": "RIBA-ROJA 8-COLEGIO MARÍA DE ICIAR",
+          "poblacion": 0,
+          "apto": 0,
+          "noApto": 0,
+          "sinCalificar": 0,
+          "total": 0
+        },
+        {
+          "formato": "recuento",
+          "zona": "RIBARROJA - 2 - POLÍGONO OLIVERAL",
+          "zonaNormalizada": "RIBARROJA-2-POLÍGONO OLIVERAL",
+          "poblacion": 60,
+          "apto": 401,
+          "noApto": 55,
+          "sinCalificar": 0,
+          "total": 456
+        }
+      ]
+    },
+    {
+      "anio": 2022,
+      "url": "https://www.sanidad.gob.es/areas/sanidadAmbiental/calidadAguas/aguasConsumoHumano/publicaciones/informesAnteriores/docs/2022_INFORME_ANUAL_AGUAS_DE_CONSUMO_ZA.pdf",
+      "formato": "recuento",
+      "definiciones": {
+        "apto": "Boletines Aptos para el consumo y Aptos con no conformidad",
+        "noApto": "Boletines No Aptos para el consumo y No Aptos con riesgos para la salud"
+      },
+      "filas": [
+        {
+          "formato": "recuento",
+          "zona": "RIBA - ROJA DE TURIA 1",
+          "zonaNormalizada": "RIBA-ROJA DE TURIA 1",
+          "poblacion": null,
+          "apto": 168,
+          "noApto": 0,
+          "sinCalificar": 5,
+          "total": 173
+        },
+        {
+          "formato": "recuento",
+          "zona": "RIBA - ROJA DE TURIA 5 - ELS POUS",
+          "zonaNormalizada": "RIBA-ROJA DE TURIA 5-ELS POUS",
+          "poblacion": null,
+          "apto": 8,
+          "noApto": 0,
+          "sinCalificar": 0,
+          "total": 8
+        },
+        {
+          "formato": "recuento",
+          "zona": "RIBA ROJA DE TURIA 2 - MASIA DEL OLIVERAL",
+          "zonaNormalizada": "RIBA ROJA DE TURIA 2-MASIA DEL OLIVERAL",
+          "poblacion": 61,
+          "apto": 510,
+          "noApto": 0,
+          "sinCalificar": 22,
+          "total": 532
+        },
+        {
+          "formato": "recuento",
+          "zona": "RIBA-ROJA 6 - RESIDENCIA 3ª EDAD ENTRE NARANJOS",
+          "zonaNormalizada": "RIBA-ROJA 6-RESIDENCIA 3ª EDAD ENTRE NARANJOS",
+          "poblacion": null,
+          "apto": null,
+          "noApto": null,
+          "sinCalificar": null,
+          "total": null
+        },
+        {
+          "formato": "recuento",
+          "zona": "RIBA-ROJA 8- COLEGIO MARÍA DE ICIAR",
+          "zonaNormalizada": "RIBA-ROJA 8-COLEGIO MARÍA DE ICIAR",
+          "poblacion": 0,
+          "apto": 2,
+          "noApto": 2,
+          "sinCalificar": 1,
+          "total": 5
+        },
+        {
+          "formato": "recuento",
+          "zona": "RIBA-ROJA DE TURIA 1",
+          "zonaNormalizada": "RIBA-ROJA DE TURIA 1",
+          "poblacion": 21584,
+          "apto": 544,
+          "noApto": 0,
+          "sinCalificar": 14,
+          "total": 558
+        }
+      ]
+    },
+    {
+      "anio": 2023,
+      "url": "https://www.sanidad.gob.es/areas/sanidadAmbiental/calidadAguas/aguasConsumoHumano/publicaciones/informesAnteriores/docs/2023_INFORME_ANUAL_AGUAS_DE_CONSUMO_ZA.pdf",
+      "formato": "porcentaje",
+      "definiciones": {
+        "apto": null,
+        "noApto": null
+      },
+      "filas": [
+        {
+          "formato": "porcentaje",
+          "zona": "RIBA ROJA DE TURIA 2 - MASIA DEL OLIVERAL",
+          "zonaNormalizada": "RIBA ROJA DE TURIA 2-MASIA DEL OLIVERAL",
+          "boletines": 745,
+          "pctAptos": 99.1,
+          "poblacion": 56
+        },
+        {
+          "formato": "porcentaje",
+          "zona": "RIBA-ROJA 6 - RESIDENCIA 3ª EDAD ENTRE NARANJOS",
+          "zonaNormalizada": "RIBA-ROJA 6-RESIDENCIA 3ª EDAD ENTRE NARANJOS",
+          "boletines": 14,
+          "pctAptos": 66.7,
+          "poblacion": 0
+        },
+        {
+          "formato": "porcentaje",
+          "zona": "RIBA-ROJA 8- COLEGIO MARÍA DE ICIAR",
+          "zonaNormalizada": "RIBA-ROJA 8-COLEGIO MARÍA DE ICIAR",
+          "boletines": 4,
+          "pctAptos": 100,
+          "poblacion": 0
+        },
+        {
+          "formato": "porcentaje",
+          "zona": "RIBA-ROJA DE TURIA 1",
+          "zonaNormalizada": "RIBA-ROJA DE TURIA 1",
+          "boletines": 830,
+          "pctAptos": 99.1,
+          "poblacion": 21787
+        }
+      ]
+    },
+    {
+      "anio": 2024,
+      "url": "https://www.sanidad.gob.es/areas/sanidadAmbiental/calidadAguas/aguasConsumoHumano/publicaciones/docs/2024_INFORME_ANUAL_AGUA_DE_CONSUMO_ZA.pdf",
+      "formato": "porcentaje",
+      "definiciones": {
+        "apto": null,
+        "noApto": null
+      },
+      "filas": [
+        {
+          "formato": "porcentaje",
+          "zona": "RIBA ROJA DE TURIA 2 - MASIA DEL OLIVERAL",
+          "zonaNormalizada": "RIBA ROJA DE TURIA 2-MASIA DEL OLIVERAL",
+          "boletines": 1036,
+          "pctAptos": 99.2,
+          "poblacion": 56
+        },
+        {
+          "formato": "porcentaje",
+          "zona": "RIBA-ROJA 6 - RESIDENCIA 3ª EDAD ENTRE NARANJOS",
+          "zonaNormalizada": "RIBA-ROJA 6-RESIDENCIA 3ª EDAD ENTRE NARANJOS",
+          "boletines": 11,
+          "pctAptos": 88.9,
+          "poblacion": null
+        },
+        {
+          "formato": "porcentaje",
+          "zona": "RIBA-ROJA 8- COLEGIO MARÍA DE ICIAR",
+          "zonaNormalizada": "RIBA-ROJA 8-COLEGIO MARÍA DE ICIAR",
+          "boletines": null,
+          "pctAptos": null,
+          "poblacion": null
+        },
+        {
+          "formato": "porcentaje",
+          "zona": "RIBA-ROJA DE TURIA 1",
+          "zonaNormalizada": "RIBA-ROJA DE TURIA 1",
+          "boletines": 1037,
+          "pctAptos": 99.2,
+          "poblacion": 21787
+        }
+      ]
+    }
+  ],
+  "serieZonaPrincipal": [
+    {
+      "anio": 2021,
+      "formato": "recuento",
+      "noApto": 55,
+      "total": 485,
+      "sinCalificar": 0,
+      "filas": 1
+    },
+    {
+      "anio": 2022,
+      "formato": "recuento",
+      "noApto": 0,
+      "total": 731,
+      "sinCalificar": 19,
+      "filas": 2
+    },
+    {
+      "anio": 2023,
+      "formato": "porcentaje",
+      "boletines": 830,
+      "pctAptos": 99.1,
+      "filas": 1
+    },
+    {
+      "anio": 2024,
+      "formato": "porcentaje",
+      "boletines": 1037,
+      "pctAptos": 99.2,
+      "filas": 1
+    }
+  ],
+  "pendientes": [
+    {
+      "anio": 2019,
+      "motivo": "El anexo existe, pero su texto sale ofuscado al extraerlo (fuentes sin mapa): necesita OCR."
+    },
+    {
+      "anio": 2020,
+      "motivo": "El anexo existe, pero su texto sale ofuscado al extraerlo (fuentes sin mapa): necesita OCR."
+    }
+  ],
+  "stats": {
+    "anios": 4,
+    "pendientes": 2,
+    "filas": 19
+  }
+}

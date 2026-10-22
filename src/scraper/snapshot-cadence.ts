@@ -88,6 +88,14 @@ export const DEFAULT_EXPECTATIONS: DatasetExpectation[] = [
   // peticiones por pasada); dos semanas de plazo dejan perder una pasada sin
   // aviso y no dos.
   { file: 'agua-pares.json', cls: 'ci-blocked' as const, maxAgeDays: 15 },
+  // El informe anual del Ministerio de Sanidad sale una vez al año, con año y
+  // pico de desfase; añadir el año nuevo es una línea en scrape-agua-informe.ts.
+  {
+    file: 'agua-informe-anual.json',
+    cls: 'manual' as const,
+    maxAgeDays: 400,
+    hint: 'npm run scrape:agua-informe (añadir el año nuevo a INFORMES)',
+  },
   ...[
     'plenos-agendas.json',
     'consell-cv.json',

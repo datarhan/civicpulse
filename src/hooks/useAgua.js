@@ -13,6 +13,13 @@ export function useAgua() {
 // La misma fuente leída en los municipios de la banda (`scrape:agua-pares`).
 const EMPTY_PARES = { municipios: [], fallidos: [], stats: null }
 
+// El recuento anual por zona del informe del ministerio (`scrape:agua-informe`).
+const EMPTY_INFORME = { anios: [], pendientes: [], stats: null }
+
+export function useAguaInforme() {
+  return useJsonFetch('/data/agua-informe-anual.json', EMPTY_INFORME)
+}
+
 export function useAguaPares() {
   return useJsonFetch('/data/agua-pares.json', EMPTY_PARES)
 }

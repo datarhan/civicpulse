@@ -381,6 +381,19 @@ overwrites it. Change the bot's SQLite instead.
   (exits 0 inside 7 days; `--forzar`), soft-fails a town with its reason,
   refuses to publish if > 20 % fail or ≥ 10 % of gradings are unreadable.
   Cadence `ci-blocked` 15d.
+- **Whole year** — `informe-agua.ts` → `scrape:agua-informe` →
+  `agua-informe-anual.json`: Annex I of the ministry's annual report «Calidad
+  del agua de consumo humano en España», one row per supply zone and year
+  (`pdftotext -layout`). SINAC's citizen query shows only the latest bulletins;
+  this counts the whole year (hundreds in the main zone), and it is what showed
+  55 «no apto» of 485 in 2021 where the SINAC window showed none. Two formats,
+  never converted into each other: counts up to 2022, «% Aptos» from 2023. The
+  definitions of «apto»/«no apto» change by year and travel verbatim. Columns
+  must sum to the total or the run fails; RIBA-ROJA D'EBRE (Tarragona) is a
+  decoy the matcher excludes. Years are an explicit list (URLs move between
+  `docs/` and `informesAnteriores/docs/`); 2019–2020 are listed as pending
+  (font-obfuscated text, needs OCR). Licence on the cover: reproducible citing
+  the source. Cadence `manual` 400d.
 
 ### Recogida selectiva 2022 (single-edition outcome, waste card)
 

@@ -168,6 +168,10 @@ async function main() {
       paresAgua
         ? { conjunto: paresAgua.conjunto, inePropio: INE_PROPIO, municipios: paresAgua.municipios }
         : null,
+      await leer('public/data/agua-informe-anual.json').catch(() => {
+        console.warn('[indicadores] SIN agua-informe-anual.json — el agua sale sin el año entero')
+        return null
+      }),
     )
     if (agua) resultados.items.push(agua)
     else console.warn('[indicadores] sin resultado de agua — agua.json no trae ningún año cerrado')

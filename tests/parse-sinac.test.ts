@@ -313,3 +313,32 @@ describe('la banda: el mismo dato en los municipios parecidos', () => {
     })
   })
 })
+
+describe('el año entero, del informe del ministerio', () => {
+  const AGUA = JSON.parse(readFileSync(join(__dirname, '../public/data/agua.json'), 'utf8'))
+  const INFORME = JSON.parse(
+    readFileSync(join(__dirname, '../public/data/agua-informe-anual.json'), 'utf8'),
+  )
+  const t = resultadoAgua(AGUA, 2026, null, INFORME)!.caveats.join(' ')
+
+  it('mide algo: el informe trae años y la zona principal tiene serie', () => {
+    expect(INFORME.serieZonaPrincipal.length).toBeGreaterThan(1)
+  })
+
+  it('la ventana de SINAC se dice ventana, y nunca «ninguno» de una red entera', () => {
+    expect(t).toContain('sólo los últimos boletines de cada red, no todos los del año')
+    expect(t).not.toMatch(/Ninguno en las \d+ redes/)
+  })
+
+  it('cada año en su formato: recuento hasta 2022, porcentaje después, con la definición', () => {
+    expect(t).toContain('2021, 55 «no apto» de 485')
+    expect(t).toMatch(/2023, 99,1 % de aptos de 830/)
+    expect(t).toContain('No Aptos con riesgos para la salud')
+    expect(t).not.toMatch(/2023, \d+ «no apto»/)
+  })
+
+  it('las otras zonas con «no apto» o menos del 100 % se nombran con su año', () => {
+    expect(t).toContain('RIBA-ROJA 8- COLEGIO MARÍA DE ICIAR: 2 «no apto» de 5')
+    expect(t).toMatch(/RESIDENCIA 3ª EDAD ENTRE NARANJOS: 66,7 % de aptos de 14/)
+  })
+})

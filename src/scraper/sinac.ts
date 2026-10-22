@@ -32,6 +32,7 @@
  */
 import { load, type CheerioAPI } from 'cheerio'
 import { stripDiacritics } from './normalize'
+import type { FilaAnexo, FormatoAnexo, PuntoZona } from './informe-agua'
 
 /** Las frases de calificación que sabemos leer. Cualquier otra es `null`. */
 export const CALIFICACIONES = ['apta', 'no-apta', 'gestionada-consejeria'] as const
@@ -488,6 +489,58 @@ export function noAptaEnPares(municipios: MunicipioAgua[], inePropio: string) {
   }
 }
 
+/** Lo que `scrape-agua-informe.ts` escribe en agua-informe-anual.json. */
+export interface InformeAnual {
+  zonaPrincipal: string
+  anios: {
+    anio: number
+    formato: FormatoAnexo
+    definiciones: { apto: string | null; noApto: string | null }
+    filas: FilaAnexo[]
+  }[]
+  serieZonaPrincipal: PuntoZona[]
+}
+
+/**
+ * El año entero, del informe del ministerio: la zona principal año a año y las
+ * otras zonas del término que ese año tuvieron algún «no apto» (o menos del
+ * 100 % de aptos, desde que el informe sólo da porcentajes). Cada año en su
+ * formato, sin convertir un porcentaje en recuento.
+ */
+function frasesInforme(informe: InformeAnual | null | undefined): string[] {
+  if (!informe?.serieZonaPrincipal.length) return []
+  const pct = (n: number) => n.toLocaleString('es-ES', { maximumFractionDigits: 1 })
+  const principal = informe.serieZonaPrincipal
+    .map((p) =>
+      p.formato === 'recuento'
+        ? `${p.anio}, ${num(p.noApto)} «no apto» de ${num(p.total)}` +
+          (p.filas > 1
+            ? ' (el informe la lista dos veces, con grafías distintas; sumamos las dos)'
+            : '')
+        : `${p.anio}, ${pct(p.pctAptos)} % de aptos de ${num(p.boletines)}`,
+    )
+    .join('; ')
+  const otras: string[] = []
+  for (const a of [...informe.anios].sort((x, y) => x.anio - y.anio)) {
+    for (const f of a.filas) {
+      if (f.zonaNormalizada === informe.zonaPrincipal) continue
+      if (f.formato === 'recuento' && f.noApto && f.total)
+        otras.push(`${a.anio}, ${f.zona}: ${num(f.noApto)} «no apto» de ${num(f.total)}`)
+      if (f.formato === 'porcentaje' && f.pctAptos !== null && f.pctAptos < 100 && f.boletines)
+        otras.push(`${a.anio}, ${f.zona}: ${pct(f.pctAptos)} % de aptos de ${num(f.boletines)}`)
+    }
+  }
+  const def = informe.anios.find((a) => a.definiciones.noApto)?.definiciones.noApto
+  return [
+    `El año entero lo cuenta el informe anual del Ministerio de Sanidad, por zona de ` +
+      `abastecimiento. Zona ${informe.zonaPrincipal}, la de la red principal: ${principal}. ` +
+      (def ? `«No apto» es, según el informe, «${def}». ` : '') +
+      'No dice qué parámetro, y desde 2023 publica sólo el porcentaje de aptos, que no separa ' +
+      '«no apto» de «sin calificar».',
+    ...(otras.length ? [`Otras zonas del término en el mismo informe: ${otras.join('; ')}.`] : []),
+  ]
+}
+
 /** El límite paramétrico del nitrato (RD 3/2023, anexo I): 50 mg/L. */
 export const LIMITE_NITRATO_MG_L = 50
 
@@ -529,6 +582,7 @@ export function resultadoAgua(
   agua: AguaSnapshot,
   anioEnCurso: number,
   pares?: { conjunto: string; inePropio: string; municipios: MunicipioAgua[] } | null,
+  informe?: InformeAnual | null,
 ) {
   const redes = [...agua.redes].sort((a, b) => b.poblacion - a.poblacion)
   const principal = redes[0]
@@ -551,7 +605,6 @@ export function resultadoAgua(
     (b) => b.calificacion === 'apta' || b.calificacion === 'no-apta',
   )
   const noAptas = calificados.filter((b) => b.calificacion === 'no-apta')
-  const desde = calificados.at(-1)?.fecha.slice(0, 4)
   const nombreRed = new Map(agua.redes.map((r) => [r.idRed, r]))
   const detalleNoApta = noAptas.map((b) => {
     const red = nombreRed.get(b.idRed)
@@ -561,10 +614,6 @@ export function resultadoAgua(
       (typeof n === 'number' ? ` (nitrato ${num(n)} mg/L)` : '')
     )
   })
-  const principalesDelGestor = agua.redes.filter((r) => r.gestor === principal.gestor)
-  const noAptaEnGestorPrincipal = noAptas.some(
-    (b) => nombreRed.get(b.idRed)?.gestor === principal.gestor,
-  )
 
   const origenLegible = principal.origen?.length
     ? principal.origen.map((o) => o.replace(/\s*\(\d+\)$/, '').toLowerCase()).join(', ')
@@ -591,16 +640,17 @@ export function resultadoAgua(
             `${anioEnCurso} no entra en la serie hasta que se cierre.`,
         ]
       : []),
-    noAptas.length
-      ? `De los ${calificados.length} análisis calificados en las ${redes.length} redes que la página ` +
-        `deja ver (desde ${desde}), ${noAptas.length} salieron «no apta»: ${detalleNoApta.join('; ')}. ` +
-        `El nitrato pasaba de su límite legal (${LIMITE_NITRATO_MG_L} mg/L); el boletín no dice ` +
-        `qué parámetro decidió la calificación.` +
-        (noAptaEnGestorPrincipal
-          ? ''
-          : ` Ninguno en las ${principalesDelGestor.length} redes de ${principal.gestor}.`)
-      : `Los ${calificados.length} análisis calificados en las ${redes.length} redes que la página ` +
-        `deja ver (desde ${desde}) salieron «apta».`,
+    // La ventana de SINAC, dicha como ventana: «ninguno de los que se ven» se
+    // leyó como «nunca», y el informe anual de 2021 cuenta 55 en la zona
+    // principal. Lo del año entero va en la frase siguiente.
+    `La consulta pública de SINAC enseña sólo los últimos boletines de cada red, no todos los del ` +
+      `año. Entre los ${calificados.length} calificados que enseña hoy en las ${redes.length} redes, ` +
+      (noAptas.length
+        ? `${noAptas.length} salieron «no apta»: ${detalleNoApta.join('; ')}. El nitrato pasaba de ` +
+          `su límite legal (${LIMITE_NITRATO_MG_L} mg/L); el boletín no dice qué parámetro decidió ` +
+          'la calificación.'
+        : 'ninguno salió «no apta».'),
+    ...frasesInforme(informe),
     ...(enPares
       ? [
           `En los ${enPares.municipios} municipios parecidos (${pares!.conjunto}), ` +
@@ -611,8 +661,8 @@ export function resultadoAgua(
             `la red principal de su municipio.`,
         ]
       : []),
-    'SINAC sólo enseña los últimos boletines de cada red; el archivo crece desde el 22-10-2026, ' +
-      'y lo anterior es lo que la página aún mostraba ese día.',
+    'Guardamos cada boletín que SINAC enseña desde el 22-10-2026; lo anterior es lo que la ' +
+      'página aún mostraba ese día.',
   ]
 
   return {

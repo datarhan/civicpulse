@@ -35,7 +35,7 @@ import { usePmp } from '../hooks/usePmp'
 import { useDeudaViva } from '../hooks/useDeudaViva'
 import { useIpc } from '../hooks/useIpc'
 import { useCriminalidad } from '../hooks/useCriminalidad'
-import { useAgua, useAguaPares } from '../hooks/useAgua'
+import { useAgua, useAguaInforme, useAguaPares } from '../hooks/useAgua'
 import { fmtDateShort, fmtDateLong } from '../lib/formatters'
 import { breakdownNeedsCaveat } from '../scraper/pleno-votes'
 
@@ -128,6 +128,7 @@ function DatasetsCatalog() {
   const crimen = useCriminalidad().data
   const agua = useAgua().data
   const aguaPares = useAguaPares().data
+  const aguaInforme = useAguaInforme().data
 
   const items = [
     {
@@ -403,6 +404,16 @@ function DatasetsCatalog() {
       updated: formatDate(aguaPares?.generatedAt),
       source: 'SINAC · Ministerio de Sanidad · semanal',
       path: '/data/agua-pares.json',
+      fmt: ['json'],
+    },
+    {
+      name: 'Calidad del agua de consumo · informe anual por zona',
+      rows: aguaInforme?.stats?.anios
+        ? `${aguaInforme.stats.anios} años · ${aguaInforme.stats.filas} filas de zona`
+        : '—',
+      updated: formatDate(aguaInforme?.generatedAt),
+      source: 'Ministerio de Sanidad · informe anual, Anexo I',
+      path: '/data/agua-informe-anual.json',
       fmt: ['json'],
     },
     {

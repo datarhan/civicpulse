@@ -3276,10 +3276,13 @@ export default function Metodologia() {
           ponemos nosotros—, como media de sus análisis completos y sólo de años cerrados. Las
           calificaciones «no apta» de cualquier red del término se dicen junto a la cifra, con el
           gestor de esa red: no todas las redes son del mismo gestor, y atribuir a uno la
-          calificación de otro sería falso. Para saber si la cifra es alta y si un «no apta» es
-          raro, leemos lo mismo en los municipios de la banda del coste: la media anual del nitrato
-          en su red principal, comparada sólo con el mismo año, y cuántas de sus redes tuvieron
-          algún «no apta» y con qué gestor.
+          calificación de otro sería falso. Como la consulta sólo enseña los últimos boletines de
+          cada red, el año entero sale del informe anual del ministerio, zona por zona, en el
+          formato en que lo publica cada año —recuentos hasta 2022, porcentaje de aptos desde 2023—,
+          sin convertir uno en otro. Para saber si la cifra es alta y si un «no apta» es raro,
+          leemos lo mismo en los municipios de la banda del coste: la media anual del nitrato en su
+          red principal, comparada sólo con el mismo año, y cuántas de sus redes tuvieron algún «no
+          apta» y con qué gestor.
         </p>
         <p style={{ margin: '10px 0 0', color: 'var(--ink70)' }}>
           <strong>El plazo de pago es la única cifra del panel con umbral legal.</strong> El periodo
