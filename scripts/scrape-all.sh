@@ -459,6 +459,12 @@ if ! npm run check:eficiencia-findings; then
   echo "[scrape-all] FAILED: check:eficiencia-findings — ficha firmada que su fuente ya no sostiene"
   failures+=("check:eficiencia-findings")
 fi
+# La opinión del editor cita hechos del mismo panel: si una entrega nueva los
+# cambia, la opinión firmada pasa a afirmar algo que su fuente ya no dice.
+if ! npm run check:opiniones; then
+  echo "[scrape-all] FAILED: check:opiniones — opinión firmada cuyo hecho ya no se sostiene"
+  failures+=("check:opiniones")
+fi
 # Mira el desplegable del ministerio: el coste efectivo llega con año y pico de
 # desfase, así que la entrega nueva aparece sin previo aviso y sin que nada más
 # lo note. Con el ministerio caído dice «NO COMPROBADO» y sale 0 — no tiñe la

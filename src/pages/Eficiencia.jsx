@@ -17,6 +17,8 @@ import { AusenciasResultados } from '../components/eficiencia/Resultado'
 import { MARGEN_ANCLA } from '../components/eficiencia/anclas'
 import { PreguntasRegistradas } from '../components/eficiencia/PreguntasRegistradas'
 import { CuestaConsigueResponde } from '../components/eficiencia/CuestaConsigueResponde'
+import { OpinionEditor } from '../components/eficiencia/OpinionEditor'
+import { useOpinionesEditor } from '../hooks/useOpinionesEditor'
 import { useIndicadores } from '../hooks/useIndicadores'
 import { useEficienciaFindings } from '../hooks/useEficienciaFindings'
 import { useEficienciaPreguntas } from '../hooks/useEficienciaPreguntas'
@@ -115,6 +117,7 @@ export default function Eficiencia() {
   const { data: hallazgos } = useEficienciaFindings()
   const { data: preguntas } = useEficienciaPreguntas()
   const { data: competencias } = useCompetencias()
+  const { data: opiniones } = useOpinionesEditor()
   // Durante la ventana LOREG la capa de nombres desaparece entera; el Map vacío
   // hace que cada tarjeta pinte sin ella, sin ninguna rama extra en el render.
   const nombresOn = useNombresVisibles()
@@ -193,6 +196,16 @@ export default function Eficiencia() {
           <p style={{ margin: 0, color: 'var(--ink70)' }}>{t('eficiencia.empty')}</p>
         </Card>
       )}
+
+      {/* La opinión del editor: lo único de la página que juzga, firmado y
+          rotulado como opinión. Arriba, porque es la conclusión que el H1
+          pregunta; aparte, porque no es el dato. Sin opiniones no pinta nada. */}
+      <OpinionEditor
+        opiniones={opiniones}
+        panel="coste-efectivo"
+        nombresOn={nombresOn}
+        data={data}
+      />
 
       {/* Coste, resultado y competencia en los mismos años, para los servicios
           con un resultado publicado. Va antes del libro porque contesta la

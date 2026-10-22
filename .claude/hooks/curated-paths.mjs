@@ -72,6 +72,11 @@ export const CURATED = {
   // aparece en una página publicada. La deriva la caza check:competencias; la
   // única escritura programática permitida es la del CLI de réplica.
   'competencias.json': 'curated + cited — hand-edit via PR · npm run competencia-reply',
+  // La opinión del editor: el único sitio de /eficiencia donde un juicio y un
+  // nombre van juntos. La escribe y la firma una persona; ninguna máquina la
+  // toca, ni siquiera para «arreglar» una errata (eso es `corregir`, y deja
+  // registro). Esquema y reglas: src/scraper/opinion-editor.ts.
+  'opiniones-editor.json': 'npm run opinion -- publicar / replica / corregir / retirar',
   // El padrón se raspa cada noche y la web del ayuntamiento va con retraso:
   // una renuncia de mayo de 2025 seguía sin reflejarse en septiembre de 2026.
   // Este es el único sitio donde una corrección sobrevive a la nocturna, y

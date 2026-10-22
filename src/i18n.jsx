@@ -41,6 +41,25 @@ export const CATALOGUE = {
     'nav.gestion': 'Gestión',
     'eficiencia.eyebrow': 'Ayuntamiento · coste efectivo de los servicios',
     'eficiencia.title': '¿Cuánto cuesta y qué se obtiene?',
+    // La opinión del editor (components/eficiencia/OpinionEditor.jsx). El
+    // rótulo va antes que el titular: el lector tiene que saber que esto ya
+    // no es el dato del ministerio.
+    'opinion.rotulo': 'Opinión del editor · firmada',
+    'opinion.firma': 'Firma {nombre}, {rol} · {fecha}',
+    'opinion.hechos': 'Los hechos en que se basa',
+    'opinion.noSabemos': 'Lo que no sabemos',
+    'opinion.contacto': 'Antes de publicarla',
+    'opinion.contacto.enviado':
+      'Enviamos este texto a {nombres} el {fecha} ({canal}) y esperamos {dias} días su respuesta antes de publicarlo.',
+    'opinion.contacto.sinRespuesta':
+      'Sin respuesta en el plazo. Si llega, se publicará aquí íntegra.',
+    'opinion.replicas': 'Réplicas',
+    'opinion.fuente': 'fuente',
+    'opinion.correcciones': 'Corregida {n} vez/veces · ver qué cambió',
+    'opinion.antes': 'Antes decía:',
+    'opinion.replicaVia': 'Derecho de réplica:',
+    'opinion.avisoLegal': 'aviso legal',
+    'opinion.comoSeHace': 'cómo se escribe una opinión aquí',
     // «Cuesta · Consigue · Responde» (components/eficiencia/CuestaConsigueResponde.jsx):
     // palabras de DIRECCIÓN, nunca de valor. «Sube» no es «peor».
     'eficiencia.ccr.eyebrow': 'Cuesta · consigue · responde',
@@ -2445,6 +2464,22 @@ export const CATALOGUE = {
     'nav.gestion': 'Gestió',
     'eficiencia.eyebrow': 'Ajuntament · cost efectiu dels serveis',
     'eficiencia.title': 'Quant costa i què se n\u2019obté?',
+    'opinion.rotulo': "Opinió de l'editor · signada",
+    'opinion.firma': 'Signa {nombre}, {rol} · {fecha}',
+    'opinion.hechos': 'Els fets en què es basa',
+    'opinion.noSabemos': 'El que no sabem',
+    'opinion.contacto': 'Abans de publicar-la',
+    'opinion.contacto.enviado':
+      'Vam enviar este text a {nombres} el {fecha} ({canal}) i vam esperar {dias} dies la seua resposta abans de publicar-lo.',
+    'opinion.contacto.sinRespuesta':
+      'Sense resposta en el termini. Si arriba, es publicarà ací íntegra.',
+    'opinion.replicas': 'Rèpliques',
+    'opinion.fuente': 'font',
+    'opinion.correcciones': 'Corregida {n} vegada/es · vore què va canviar',
+    'opinion.antes': 'Abans deia:',
+    'opinion.replicaVia': 'Dret de rèplica:',
+    'opinion.avisoLegal': 'avís legal',
+    'opinion.comoSeHace': 'com s’escriu una opinió ací',
     'eficiencia.ccr.eyebrow': 'Costa · aconseguix · respon',
     'eficiencia.ccr.titulo': "El que costa, el que s'aconseguix i qui respon",
     'eficiencia.ccr.intro':

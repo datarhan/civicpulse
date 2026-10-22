@@ -1565,6 +1565,117 @@ body.cp-kiosk .cp-live-container {
   color: var(--ink70);
 }
 
+/* La opinión del editor (components/eficiencia/OpinionEditor.jsx). Un marco
+   propio, distinto de las tarjetas de dato: borde de tinta entero, el rótulo
+   «Opinión» antes que el titular y el titular en serif. Que se vea de un
+   vistazo que esto ya no es el dato del ministerio. */
+.cp-opiniones {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-top: 28px;
+}
+.cp-opinion {
+  padding: 20px 22px;
+  border: 1.5px solid var(--ink);
+  border-radius: var(--r-card);
+  background: var(--paper);
+}
+.cp-opinion-rotulo {
+  display: inline-block;
+  padding: 3px 10px;
+  border-radius: var(--r-pill);
+  background: var(--ink);
+  color: var(--paper);
+  font-family: var(--font-mono);
+  font-size: var(--fs-micro);
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+.cp-opinion-titulo {
+  margin: 12px 0 0;
+  font-family: Georgia, 'Times New Roman', serif;
+  font-size: var(--fs-card);
+  font-weight: 700;
+  line-height: 1.25;
+}
+.cp-opinion-firma {
+  margin: 6px 0 0;
+  font-size: var(--fs-meta);
+  color: var(--ink70);
+}
+.cp-opinion-cuerpo {
+  max-width: 70ch;
+  font-size: var(--fs-body);
+  line-height: 1.65;
+}
+.cp-opinion-cuerpo p {
+  margin: 12px 0 0;
+}
+.cp-opinion-anexos {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr));
+  gap: 12px 24px;
+  margin-top: 16px;
+  padding-top: 14px;
+  border-top: 1px solid var(--border2);
+}
+.cp-opinion-anexos h3,
+.cp-opinion-contacto h3 {
+  margin: 0;
+  font-size: var(--fs-micro);
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--ink70);
+}
+.cp-opinion-anexos ul,
+.cp-opinion-correcciones ul {
+  margin: 6px 0 0;
+  padding-left: 18px;
+  font-size: var(--fs-aux);
+  line-height: 1.55;
+}
+.cp-opinion a {
+  color: var(--civic);
+}
+.cp-opinion-contacto {
+  margin-top: 14px;
+  padding-top: 12px;
+  border-top: 1px solid var(--border2);
+  font-size: var(--fs-aux);
+  line-height: 1.55;
+}
+.cp-opinion-contacto p {
+  margin: 6px 0 0;
+}
+.cp-opinion-replica {
+  margin: 8px 0 0;
+  padding: 10px 12px;
+  border-radius: var(--r-input);
+  background: var(--soft);
+}
+.cp-opinion-replica p {
+  margin: 0;
+}
+.cp-opinion-replica footer,
+.cp-opinion-meta {
+  font-size: var(--fs-meta);
+  color: var(--ink50);
+}
+.cp-opinion > .cp-opinion-meta {
+  margin: 14px 0 0;
+}
+.cp-opinion-correcciones {
+  margin-top: 12px;
+  font-size: var(--fs-aux);
+}
+.cp-opinion-correcciones > summary {
+  cursor: pointer;
+  color: var(--civic);
+}
+
 /* «Cuesta · Consigue · Responde» en /eficiencia
    (components/eficiencia/CuestaConsigueResponde.jsx). Tres columnas que se
    reparten solas con auto-fit: tres en escritorio, una en móvil. La salvedad
