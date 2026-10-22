@@ -385,6 +385,109 @@ export function serieParametro(
     }))
 }
 
+/** Un municipio leído en SINAC, en la forma que guardan agua.json y agua-pares.json. */
+export interface MunicipioAgua {
+  ine: string
+  nombre: string
+  redes: { idRed: number; nombre: string; gestor: string | null; poblacion: number }[]
+  boletines: Boletin[]
+}
+
+/**
+ * La red que abastece a más gente censada. `null` si ninguna declara
+ * población: una red de 0 habitantes no representa al municipio, y elegir la
+ * primera de la lista sería elegir por el orden de la página.
+ */
+export function redPrincipal(m: Pick<MunicipioAgua, 'redes'>) {
+  const r = [...m.redes].sort((a, b) => b.poblacion - a.poblacion || a.idRed - b.idRed)[0]
+  return r && r.poblacion > 0 ? r : null
+}
+
+/** Cuartiles con interpolación lineal, como el resto de bandas de la casa. */
+function cuantil(ordenados: number[], p: number): number {
+  const i = (ordenados.length - 1) * p
+  const lo = Math.floor(i)
+  const hi = Math.ceil(i)
+  return ordenados[lo] + (ordenados[hi] - ordenados[lo]) * (i - lo)
+}
+
+/** Por debajo de esto no se publica banda: la misma regla que reciclaje. */
+export const MIN_PARES = 15
+
+/**
+ * La banda del nitrato: el MISMO dato que el propio —media del año `anio` en
+ * los análisis completos de la red principal— en cada municipio de la banda.
+ * Quien no tiene análisis completos con nitrato ese año queda fuera y no
+ * cuenta en `n`. El propio municipio no entra en su banda.
+ */
+export function paresNitrato(
+  municipios: MunicipioAgua[],
+  anio: number,
+  valorPropio: number,
+  conjunto: string,
+  inePropio: string,
+) {
+  const vals: number[] = []
+  for (const m of municipios) {
+    if (m.ine === inePropio) continue
+    const red = redPrincipal(m)
+    if (!red) continue
+    const v = serieParametro(m.boletines, red.idRed, 'Nitrato').find((p) => p.anio === anio)
+    if (v) vals.push(v.valor)
+  }
+  if (vals.length < MIN_PARES) return null
+  vals.sort((a, b) => a - b)
+  return {
+    conjunto: `${conjunto} · nitrato medio de ${anio} en su red principal`,
+    n: vals.length,
+    percentil: Math.round((100 * vals.filter((v) => v <= valorPropio).length) / vals.length),
+    p25: cuantil(vals, 0.25),
+    mediana: cuantil(vals, 0.5),
+    p75: cuantil(vals, 0.75),
+  }
+}
+
+/**
+ * ¿Es raro un «no apta»? Cuenta, en los municipios de la banda, las redes con
+ * algún boletín «no apta» entre los que SINAC enseña, y separa las que tienen
+ * un gestor distinto del de la red principal de su municipio: en Riba-roja las
+ * dos que lo tuvieron son de ésas, y la pregunta es si eso es un patrón.
+ */
+export function noAptaEnPares(municipios: MunicipioAgua[], inePropio: string) {
+  let redes = 0
+  let redesConNoApta = 0
+  let otroGestor = 0
+  let calificados = 0
+  let noAptas = 0
+  const conNoApta = new Set<string>()
+  for (const m of municipios) {
+    if (m.ine === inePropio) continue
+    const principal = redPrincipal(m)
+    for (const r of m.redes) {
+      redes++
+      const suyos = m.boletines.filter((b) => b.idRed === r.idRed)
+      const cal = suyos.filter((b) => b.calificacion === 'apta' || b.calificacion === 'no-apta')
+      const malos = cal.filter((b) => b.calificacion === 'no-apta')
+      calificados += cal.length
+      noAptas += malos.length
+      if (malos.length) {
+        redesConNoApta++
+        conNoApta.add(m.ine)
+        if (principal && r.gestor !== principal.gestor) otroGestor++
+      }
+    }
+  }
+  return {
+    municipios: municipios.filter((m) => m.ine !== inePropio).length,
+    municipiosConNoApta: conNoApta.size,
+    redes,
+    redesConNoApta,
+    redesConNoAptaOtroGestor: otroGestor,
+    calificados,
+    noAptas,
+  }
+}
+
 /** El límite paramétrico del nitrato (RD 3/2023, anexo I): 50 mg/L. */
 export const LIMITE_NITRATO_MG_L = 50
 
@@ -422,7 +525,11 @@ const num = (n: number) => n.toLocaleString('es-ES', { maximumFractionDigits: 1 
  * (`anio < anioEnCurso`): una media de un año a medias movería la línea con
  * una sola muestra; la última muestra va en las salvedades, con su fecha.
  */
-export function resultadoAgua(agua: AguaSnapshot, anioEnCurso: number) {
+export function resultadoAgua(
+  agua: AguaSnapshot,
+  anioEnCurso: number,
+  pares?: { conjunto: string; inePropio: string; municipios: MunicipioAgua[] } | null,
+) {
   const redes = [...agua.redes].sort((a, b) => b.poblacion - a.poblacion)
   const principal = redes[0]
   if (!principal) return null
@@ -470,6 +577,8 @@ export function resultadoAgua(agua: AguaSnapshot, anioEnCurso: number) {
         .join(', ')
     : 'un tratamiento que la ficha no declara'
 
+  const enPares = pares?.municipios.length ? noAptaEnPares(pares.municipios, pares.inePropio) : null
+
   const caveats = [
     `La serie es la de la red ${principal.nombre}, que abastece a ${num(principal.poblacion)} de las ` +
       `${num(total)} personas censadas en las ${redes.length} redes del término. Cada año es la media ` +
@@ -492,6 +601,16 @@ export function resultadoAgua(agua: AguaSnapshot, anioEnCurso: number) {
           : ` Ninguno en las ${principalesDelGestor.length} redes de ${principal.gestor}.`)
       : `Los ${calificados.length} análisis calificados en las ${redes.length} redes que la página ` +
         `deja ver (desde ${desde}) salieron «apta».`,
+    ...(enPares
+      ? [
+          `En los ${enPares.municipios} municipios parecidos (${pares!.conjunto}), ` +
+            `${enPares.redesConNoApta} de sus ${enPares.redes} redes tienen algún «no apta» entre ` +
+            `los boletines que SINAC enseña (${enPares.noAptas} de ${enPares.calificados} ` +
+            `análisis calificados), en ${enPares.municipiosConNoApta} municipios; ` +
+            `${enPares.redesConNoAptaOtroGestor} de esas redes tienen un gestor distinto del de ` +
+            `la red principal de su municipio.`,
+        ]
+      : []),
     'SINAC sólo enseña los últimos boletines de cada red; el archivo crece desde el 22-10-2026, ' +
       'y lo anterior es lo que la página aún mostraba ese día.',
   ]
@@ -504,7 +623,9 @@ export function resultadoAgua(agua: AguaSnapshot, anioEnCurso: number) {
     unidad: 'mg/L',
     periodo: String(ultimo.anio),
     serie: serie.map(({ anio, valor }) => ({ anio, valor })),
-    pares: null,
+    pares: pares
+      ? paresNitrato(pares.municipios, ultimo.anio, ultimo.valor, pares.conjunto, pares.inePropio)
+      : null,
     comoSeLee:
       'El nitrato llega al agua desde el acuífero —abono agrícola filtrado al subsuelo—, no ' +
       `desde la red: según su ficha en SINAC, la principal toma el agua de ${origenLegible} y la ` +

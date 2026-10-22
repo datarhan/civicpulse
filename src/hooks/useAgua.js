@@ -9,3 +9,10 @@ const EMPTY = { municipio: null, redes: [], boletines: [], fuente: null, stats: 
 export function useAgua() {
   return useJsonFetch('/data/agua.json', EMPTY)
 }
+
+// La misma fuente leída en los municipios de la banda (`scrape:agua-pares`).
+const EMPTY_PARES = { municipios: [], fallidos: [], stats: null }
+
+export function useAguaPares() {
+  return useJsonFetch('/data/agua-pares.json', EMPTY_PARES)
+}

@@ -9,6 +9,10 @@ import {
   parseBoletin,
   parseDetalleRed,
   parseRedes,
+  MIN_PARES,
+  noAptaEnPares,
+  paresNitrato,
+  redPrincipal,
   resultadoAgua,
   serieParametro,
   tipoDeLeyenda,
@@ -242,5 +246,70 @@ describe('resultadoAgua', () => {
     const t = resultadoAgua(conFallo, 2026)!.caveats.join(' ')
     expect(t).toContain(`gestor ${principal.gestor}`)
     expect(t).not.toContain(`Ninguno en las`)
+  })
+})
+
+describe('la banda: el mismo dato en los municipios parecidos', () => {
+  /** Un municipio con una red principal (HIDRAQUA, 10.000) y otra privada. */
+  const muni = (ine: string, nitrato: number | null, anio = 2025, noAptaPrivada = false) => ({
+    ine,
+    nombre: `M${ine}`,
+    redes: [
+      { idRed: 1, nombre: 'principal', gestor: 'HIDRAQUA', poblacion: 10000 },
+      { idRed: 2, nombre: 'colegio', gestor: 'PRIVADA SL', poblacion: 0 },
+    ],
+    boletines: [
+      {
+        id: Number(ine) * 10,
+        idRed: 1,
+        tipo: 'completo' as const,
+        fecha: `${anio}-05-01`,
+        calificacion: 'apta' as const,
+        calificacionTexto: 'AGUA APTA PARA EL CONSUMO',
+        parametros: [{ nombre: 'Nitrato', valor: nitrato, unidad: 'mg/L' }],
+      },
+      {
+        id: Number(ine) * 10 + 1,
+        idRed: 2,
+        tipo: 'control' as const,
+        fecha: `${anio}-06-01`,
+        calificacion: noAptaPrivada ? ('no-apta' as const) : ('apta' as const),
+        calificacionTexto: '',
+      },
+    ],
+  })
+  const banda = (n: number) => Array.from({ length: n }, (_, i) => muni(String(46000 + i), 10 + i))
+
+  it('la red principal es la de más población; sin población no hay principal', () => {
+    expect(redPrincipal(muni('1', 5))!.idRed).toBe(1)
+    expect(redPrincipal({ redes: [{ idRed: 9, nombre: 'x', gestor: null, poblacion: 0 }] })).toBe(
+      null,
+    )
+  })
+
+  it('por debajo del mínimo no hay banda; con él, n propio y percentil', () => {
+    expect(paresNitrato(banda(MIN_PARES - 1), 2025, 20, 'cv', '46214')).toBeNull()
+    const p = paresNitrato(banda(20), 2025, 19, 'cv', '46214')!
+    expect(p.n).toBe(20)
+    expect(p.percentil).toBe(50)
+    expect(p.mediana).toBeCloseTo(19.5, 5)
+  })
+
+  it('el propio no entra en su banda, y quien no midió ese año no cuenta', () => {
+    const m = [...banda(20), muni('46214', 999), muni('47000', null), muni('47001', 30, 2024)]
+    expect(paresNitrato(m, 2025, 19, 'cv', '46214')!.n).toBe(20)
+  })
+
+  it('cuenta los «no apta» y separa los de un gestor distinto del principal', () => {
+    const m = [muni('1', 10, 2025, true), muni('2', 10), muni('46214', 10, 2025, true)]
+    expect(noAptaEnPares(m, '46214')).toEqual({
+      municipios: 2,
+      municipiosConNoApta: 1,
+      redes: 4,
+      redesConNoApta: 1,
+      redesConNoAptaOtroGestor: 1,
+      calificados: 4,
+      noAptas: 1,
+    })
   })
 })

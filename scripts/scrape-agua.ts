@@ -30,52 +30,17 @@ import { mkdir, readFile, writeFile } from 'node:fs/promises'
 import { existsSync } from 'node:fs'
 import { dirname, join } from 'node:path'
 import { fileURLToPath } from 'node:url'
-import {
-  CALIFICACIONES,
-  fusionarBoletines,
-  parseBoletin,
-  parseDetalleRed,
-  parseRedes,
-  type Boletin,
-} from '../src/scraper/sinac'
+import { CALIFICACIONES, fusionarBoletines, type Boletin } from '../src/scraper/sinac'
 import { INE_PROPIO } from '../src/scraper/dea-especificacion'
 import { startRun, NO_LLM_STATS } from '../src/scraper/run-manifest'
+import { ENTRADA, abrirSesion, leerDetalle, leerFicha, leerRedes } from './lib/sinac-fetch'
 
 const __dirname = dirname(fileURLToPath(import.meta.url))
 const ROOT = join(__dirname, '..')
 const CACHE = join(ROOT, '.cache/sinac')
 const OUT = join(ROOT, 'public/data/agua.json')
-const BASE = 'https://sinac.sanidad.gob.es/CiudadanoWeb/ciudadano'
-const ENTRADA = `${BASE}/informacionAbastecimientoActionEntrada.do`
-const UA = 'CivicPulse/1.0 (civic monitor Riba-roja; +https://github.com/datarhan/civicpulse)'
-const PAUSA_MS = 1200
 /** El techo de fallback: más de esto sin reconocer es que cambió el vocabulario. */
 const TECHO_SIN_CALIFICAR = 0.1
-
-const esperar = (ms: number) => new Promise((r) => setTimeout(r, ms))
-
-let cookie = ''
-async function pedir(url: string, form?: Record<string, string>): Promise<string> {
-  await esperar(PAUSA_MS)
-  const res = await fetch(url, {
-    method: form ? 'POST' : 'GET',
-    headers: {
-      'User-Agent': UA,
-      ...(cookie ? { Cookie: cookie } : {}),
-      ...(form ? { 'Content-Type': 'application/x-www-form-urlencoded' } : {}),
-    },
-    body: form ? new URLSearchParams(form).toString() : undefined,
-    signal: AbortSignal.timeout(30_000),
-  })
-  const nuevas = res.headers.getSetCookie?.() ?? []
-  if (nuevas.length) cookie = nuevas.map((c) => c.split(';')[0]).join('; ')
-  if (!res.ok) throw new Error(`[agua] ${url} respondió ${res.status}`)
-  // La cabecera dice iso-8859-1; el cuerpo es UTF-8 (comprobado el 22-10-2026).
-  const html = new TextDecoder('utf-8').decode(await res.arrayBuffer())
-  if (html.includes('Debido a un problema técnico'))
-    throw new Error(`[agua] ${url} contestó con su página de error técnico`)
-  return html
-}
 
 async function main() {
   const rec = startRun('scrape-agua', { mode: 'fetch', getStats: () => NO_LLM_STATS })
@@ -86,44 +51,19 @@ async function main() {
   const previo = existsSync(OUT) ? JSON.parse(await readFile(OUT, 'utf8')) : null
   const archivados: Boletin[] = previo?.boletines ?? []
 
-  await pedir(ENTRADA)
-  const formMunicipio = {
-    provinciaMapa: '',
-    codComunidad: '10',
-    codProvincia: INE_PROPIO.slice(0, 2),
-    codMunicipio: INE_PROPIO,
-  }
-  const redesHtml = await pedir(`${BASE}/informacionRedes.do`, formMunicipio)
-  const redes = parseRedes(redesHtml)
+  const sesion = await abrirSesion()
+  const { redes, denMunicipio: den } = await leerRedes(sesion, INE_PROPIO)
   if (redes.length === 0) throw new Error('[agua] SINAC no devolvió ninguna red para el municipio')
-  const denMunicipio =
-    redesHtml.match(/name="denMunicipio" value="([^"]*)"/)?.[1] ?? 'RIBA-ROJA DE TÚRIA'
+  const denMunicipio = den || 'RIBA-ROJA DE TÚRIA'
 
   const leidos: Boletin[] = []
   const fichas = []
   let detallesNuevos = 0
   for (const r of redes) {
     rec.attempt()
-    const base = {
-      codMunicipio: INE_PROPIO,
-      codProvincia: INE_PROPIO.slice(0, 2),
-      denProvincia: '',
-      denComunidad: '',
-      denMunicipio,
-      idRed: String(r.idRed),
-      provinciaMapa: '',
-    }
-    const fichaHtml = await pedir(`${BASE}/informacionAbastecimientoActionDetalleRed.do`, base)
+    const { html: fichaHtml, ficha } = await leerFicha(sesion, INE_PROPIO, denMunicipio, r)
     // La ficha de hoy, cruda: es lo único que no se puede volver a pedir mañana.
     await writeFile(join(CACHE, hoy, `red-${r.idRed}.html`), fichaHtml)
-    const ficha = parseDetalleRed(fichaHtml)
-    if (ficha.seccionesSinReconocer.length)
-      throw new Error(
-        `[agua] la red ${r.idRed} trae secciones que no sabemos leer: ` +
-          `${ficha.seccionesSinReconocer.join(' · ')} — añadirlas a TIPOS_ANALISIS`,
-      )
-    if (ficha.boletines.length === 0 && ficha.parametros.length === 0)
-      throw new Error(`[agua] la ficha de la red ${r.idRed} llegó vacía — ¿cambió la página?`)
 
     for (const b of ficha.boletines) {
       const boletin: Boletin = { ...b, idRed: r.idRed }
@@ -131,25 +71,15 @@ async function main() {
         const enArchivo = archivados.find((x) => x.id === b.id && x.parametros?.length)
         if (enArchivo) boletin.parametros = enArchivo.parametros
         else {
-          const cache = join(CACHE, 'boletines', `${b.id}.html`)
-          let html: string
-          if (existsSync(cache)) html = await readFile(cache, 'utf8')
-          else {
-            html = await pedir(`${BASE}/detalleBoletin.do`, {
-              ...base,
-              idBoletin: String(b.id),
-              denRed: r.nombre,
-            })
-            await writeFile(cache, html)
-            detallesNuevos++
-          }
-          const d = parseBoletin(html)
-          // La sesión mezcla formularios: un detalle de otra red o de otra
-          // fecha no se archiva bajo ésta.
-          if (d.id !== b.id || d.fecha !== b.fecha || d.red !== r.nombre)
-            throw new Error(
-              `[agua] el boletín ${b.id} no casa con su fila (${d.id}, ${d.fecha}, ${d.red})`,
-            )
+          const d = await leerDetalle(
+            sesion,
+            INE_PROPIO,
+            denMunicipio,
+            r,
+            b,
+            join(CACHE, 'boletines'),
+          )
+          if (d.descargado) detallesNuevos++
           boletin.parametros = d.parametros
         }
       }

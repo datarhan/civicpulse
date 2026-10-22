@@ -35,7 +35,7 @@ import { usePmp } from '../hooks/usePmp'
 import { useDeudaViva } from '../hooks/useDeudaViva'
 import { useIpc } from '../hooks/useIpc'
 import { useCriminalidad } from '../hooks/useCriminalidad'
-import { useAgua } from '../hooks/useAgua'
+import { useAgua, useAguaPares } from '../hooks/useAgua'
 import { fmtDateShort, fmtDateLong } from '../lib/formatters'
 import { breakdownNeedsCaveat } from '../scraper/pleno-votes'
 
@@ -127,6 +127,7 @@ function DatasetsCatalog() {
   const ipc = useIpc().data
   const crimen = useCriminalidad().data
   const agua = useAgua().data
+  const aguaPares = useAguaPares().data
 
   const items = [
     {
@@ -392,6 +393,16 @@ function DatasetsCatalog() {
       updated: formatDate(agua?.generatedAt),
       source: 'SINAC · Ministerio de Sanidad · archivo propio',
       path: '/data/agua.json',
+      fmt: ['json'],
+    },
+    {
+      name: 'Calidad del agua de consumo · municipios parecidos',
+      rows: aguaPares?.stats?.leidos
+        ? `${aguaPares.stats.leidos} municipios · ${aguaPares.stats.redes} redes`
+        : '—',
+      updated: formatDate(aguaPares?.generatedAt),
+      source: 'SINAC · Ministerio de Sanidad · semanal',
+      path: '/data/agua-pares.json',
       fmt: ['json'],
     },
     {

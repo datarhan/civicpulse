@@ -84,6 +84,10 @@ export const DEFAULT_EXPECTATIONS: DatasetExpectation[] = [
   // se rompiera nadie lo diría — la misma forma exacta que los seis
   // adaptadores CI-blocked de arriba, que es de donde nace este fichero.
   { file: 'quejas.json', cls: 'nightly' as const, maxAgeDays: 3 },
+  // La banda de SINAC se lee una vez por semana a propósito (unas 400
+  // peticiones por pasada); dos semanas de plazo dejan perder una pasada sin
+  // aviso y no dos.
+  { file: 'agua-pares.json', cls: 'ci-blocked' as const, maxAgeDays: 15 },
   ...[
     'plenos-agendas.json',
     'consell-cv.json',

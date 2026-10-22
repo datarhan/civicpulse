@@ -91,6 +91,9 @@ ADAPTERS=(
   # enseña los últimos boletines y `agua.json` es el archivo de los que rotan
   # fuera; una pasada perdida no se recupera mañana.
   scrape:agua
+  # La banda de SINAC (los municipios parecidos). Semanal por su cuenta: dentro
+  # de los 7 días sale 0 sin pedir nada.
+  scrape:agua-pares
 )
 
 failed=()
@@ -165,7 +168,7 @@ if ! cron_git_stage_and_check \
        public/data/procesos-selectivos.json public/data/asociaciones.json \
        public/data/obras.json public/data/sindicatura.json \
        public/data/sindic-expedientes.json public/data/transparency-docs.json \
-       public/data/pleno-actas.json public/data/agua.json \
+       public/data/pleno-actas.json public/data/agua.json public/data/agua-pares.json \
        $REDERIVADOS; then
   echo "[ci-blocked] no changes"
   exit ${#failed[@]}

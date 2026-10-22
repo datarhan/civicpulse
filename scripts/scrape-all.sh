@@ -54,6 +54,7 @@ SCRAPERS=(
   scrape:sindic-expedientes
   scrape:consell-cv
   scrape:agua
+  scrape:agua-pares
   scrape:spain-ticker
   scrape:promise-suggestions
   extract:all-pleno-votes
@@ -114,6 +115,8 @@ SCRAPERS=(
 #     on any failure, so a soft failure only costs freshness — and the archive
 #     it keeps is why that matters: SINAC shows only the latest bulletins, so a
 #     long gap loses the ones that rotate off the page. check:cadence watches it.
+#     scrape:agua-pares is the same source for the comparable towns; it runs
+#     weekly by itself (exits 0 doing nothing inside 7 days) and is soft too.
 #   - scrape:consell-cv — two near-static yearly GVA tables. The adapter now
 #     refuses to write a partial snapshot when a year is unreachable (that
 #     would delete the missing year's resoluciones), so an upstream blip
@@ -149,6 +152,7 @@ BEST_EFFORT=(
   scrape:sindicatura
   scrape:sindic-expedientes
   scrape:agua
+  scrape:agua-pares
 )
 
 is_best_effort() {

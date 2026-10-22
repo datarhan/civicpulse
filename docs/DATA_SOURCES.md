@@ -372,6 +372,15 @@ overwrites it. Change the bot's SQLite instead.
   with their own private operator, and the caveat says so. CI reach unmeasured:
   soft in the nightly, refreshed by `scrape-ci-blocked.sh`, cadence
   `ci-blocked` 8d.
+- **Band** — `scrape:agua-pares` → `agua-pares.json`: the same SINAC flow over
+  the cost band (`coste-efectivo.json` → `pares.filas`, Riba-roja excluded).
+  Every network's ficha, plus the complete-analysis detail of each town's
+  MAIN network only, for a like-for-like nitrate band (`paresNitrato`, ≥ 15
+  towns or no band) and a «no apta» tally that separates networks run by an
+  operator other than the town's main one (`noAptaEnPares`). Weekly by itself
+  (exits 0 inside 7 days; `--forzar`), soft-fails a town with its reason,
+  refuses to publish if > 20 % fail or ≥ 10 % of gradings are unreadable.
+  Cadence `ci-blocked` 15d.
 
 ### Recogida selectiva 2022 (single-edition outcome, waste card)
 
