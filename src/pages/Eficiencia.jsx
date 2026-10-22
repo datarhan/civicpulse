@@ -16,6 +16,7 @@ import { Supramunicipal } from '../components/eficiencia/Supramunicipal'
 import { AusenciasResultados } from '../components/eficiencia/Resultado'
 import { MARGEN_ANCLA } from '../components/eficiencia/anclas'
 import { PreguntasRegistradas } from '../components/eficiencia/PreguntasRegistradas'
+import { CuestaConsigueResponde } from '../components/eficiencia/CuestaConsigueResponde'
 import { useIndicadores } from '../hooks/useIndicadores'
 import { useEficienciaFindings } from '../hooks/useEficienciaFindings'
 import { useEficienciaPreguntas } from '../hooks/useEficienciaPreguntas'
@@ -191,6 +192,18 @@ export default function Eficiencia() {
         <Card style={{ marginTop: 16 }}>
           <p style={{ margin: 0, color: 'var(--ink70)' }}>{t('eficiencia.empty')}</p>
         </Card>
+      )}
+
+      {/* Coste, resultado y competencia en los mismos años, para los servicios
+          con un resultado publicado. Va antes del libro porque contesta la
+          pregunta del H1 con hechos; el libro es el detalle de los quince. */}
+      {indicadores.length > 0 && (
+        <CuestaConsigueResponde
+          data={data}
+          competencias={competencias}
+          porClave={porClave}
+          nombresOn={nombresOn}
+        />
       )}
 
       {/* El libro: los quince servicios en una pantalla y con una sola

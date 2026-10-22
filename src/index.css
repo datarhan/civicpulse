@@ -1565,6 +1565,125 @@ body.cp-kiosk .cp-live-container {
   color: var(--ink70);
 }
 
+/* «Cuesta · Consigue · Responde» en /eficiencia
+   (components/eficiencia/CuestaConsigueResponde.jsx). Tres columnas que se
+   reparten solas con auto-fit: tres en escritorio, una en móvil. La salvedad
+   lleva el tono «warn» de las salvedades de ficha; nada va en rojo, porque
+   aquí no se documenta ningún fallo. */
+.cp-ccr-intro {
+  margin: 6px 0 0;
+  max-width: 72ch;
+  font-size: var(--fs-aux);
+  line-height: 1.55;
+  color: var(--ink70);
+}
+.cp-ccr-fila {
+  padding-top: 14px;
+  border-top: 1px solid var(--border2);
+}
+.cp-ccr-servicio {
+  margin: 0;
+  font-size: var(--fs-head);
+  font-weight: 600;
+}
+.cp-ccr-servicio a {
+  color: inherit;
+}
+.cp-ccr-columnas {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr));
+  gap: 14px 22px;
+  margin-top: 10px;
+}
+.cp-ccr-columnas > section {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.cp-ccr-col {
+  font-family: var(--font-mono);
+  font-size: var(--fs-micro);
+  font-weight: 700;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  color: var(--civic-ink);
+}
+.cp-ccr-subrotulo {
+  font-size: var(--fs-micro);
+  font-weight: 600;
+  color: var(--ink70);
+}
+.cp-ccr-frase {
+  margin: 0;
+  font-size: var(--fs-body);
+  line-height: 1.5;
+}
+.cp-ccr-nota {
+  margin: 0;
+  font-size: var(--fs-meta);
+  line-height: 1.5;
+  color: var(--ink50);
+}
+.cp-ccr-salvedad {
+  margin: 0;
+  padding: 8px 10px;
+  border-radius: var(--r-input);
+  background: var(--warn-soft);
+  color: var(--warn-ink);
+  font-size: var(--fs-meta);
+  line-height: 1.5;
+}
+.cp-ccr-cifra {
+  font-size: var(--fs-card);
+  font-weight: 500;
+}
+.cp-ccr-leyenda {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 14px;
+  font-size: var(--fs-micro);
+  color: var(--ink50);
+}
+.cp-ccr-muestra {
+  display: inline-block;
+  width: 16px;
+  height: 3px;
+  margin-right: 6px;
+  vertical-align: middle;
+}
+.cp-ccr-muestra-banda {
+  height: 10px;
+  background: var(--soft);
+  border: 1px solid var(--border);
+}
+.cp-ccr-muestra-discontinua {
+  background: repeating-linear-gradient(90deg, var(--ink50) 0 4px, transparent 4px 7px);
+}
+.cp-ccr-resto {
+  margin-top: 18px;
+  padding-top: 14px;
+  border-top: 1px solid var(--border2);
+}
+.cp-ccr-resto > summary {
+  cursor: pointer;
+  min-height: 44px;
+  display: flex;
+  align-items: center;
+  font-size: var(--fs-aux);
+  font-weight: 600;
+  color: var(--civic);
+}
+.cp-ccr-promesas {
+  margin: 0;
+  padding-left: 16px;
+  font-size: var(--fs-aux);
+  line-height: 1.5;
+}
+.cp-ccr-promesas a {
+  color: var(--civic);
+}
+
 /* /presupuesto — lámina 5b: del crédito inicial a lo ejecutado.
 
    Las rejillas van aquí y no en el `style` del JSX por la razón de siempre en

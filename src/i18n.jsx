@@ -41,6 +41,56 @@ export const CATALOGUE = {
     'nav.gestion': 'Gestión',
     'eficiencia.eyebrow': 'Ayuntamiento · coste efectivo de los servicios',
     'eficiencia.title': '¿Cuánto cuesta y qué se obtiene?',
+    // «Cuesta · Consigue · Responde» (components/eficiencia/CuestaConsigueResponde.jsx):
+    // palabras de DIRECCIÓN, nunca de valor. «Sube» no es «peor».
+    'eficiencia.ccr.eyebrow': 'Cuesta · consigue · responde',
+    'eficiencia.ccr.titulo': 'Lo que cuesta, lo que se consigue y quién responde',
+    'eficiencia.ccr.intro':
+      'Primero los servicios con un resultado publicado; los demás, debajo. Las tres columnas van en los mismos años y contra el mismo grupo de municipios parecidos, pero no se dividen entre sí: que una suba no explica que la otra baje. El juicio es tuyo.',
+    'eficiencia.ccr.col.cuesta': 'Cuesta',
+    'eficiencia.ccr.resto':
+      'Los otros {n} servicios: coste y quién responde, sin resultado publicado',
+    'eficiencia.ccr.col.consigue': 'Consigue',
+    'eficiencia.ccr.col.responde': 'Responde',
+    'eficiencia.ccr.rotulo.nuestro': 'Riba-roja',
+    'eficiencia.ccr.rotulo.grupo': 'Mediana de municipios parecidos',
+    'eficiencia.ccr.rotulo.mandato': 'Mandato actual',
+    'eficiencia.ccr.rotulo.base': 'Índice: {base} = 100',
+    'eficiencia.ccr.coste.sube':
+      'Desde {base}, el coste por unidad sube un {pct} % en euros constantes.',
+    'eficiencia.ccr.coste.baja':
+      'Desde {base}, el coste por unidad baja un {pct} % en euros constantes.',
+    'eficiencia.ccr.coste.igual':
+      'Desde {base}, el coste por unidad se mantiene en euros constantes.',
+    'eficiencia.ccr.grupo.sube': 'En los municipios parecidos sube un {pct} %.',
+    'eficiencia.ccr.grupo.baja': 'En los municipios parecidos baja un {pct} %.',
+    'eficiencia.ccr.grupo.igual': 'En los municipios parecidos se mantiene.',
+    'eficiencia.ccr.coste.sinSerie': 'No hay serie de coste suficiente desde 2021.',
+    'eficiencia.ccr.coste.precio':
+      'Es un precio, no un rendimiento: que suba no dice si el servicio es mejor o peor.',
+    'eficiencia.ccr.coste.congelado':
+      'Ojo: el Ayuntamiento declara la misma cantidad de servicio desde {desde}, así que el coste por unidad sigue al coste total. No se sabe si hay más servicio o sólo más gasto.',
+    'eficiencia.ccr.coste.congeladoSinAnio':
+      'Ojo: el Ayuntamiento repite la misma cantidad de servicio en cada entrega, así que el coste por unidad sigue al coste total.',
+    'eficiencia.ccr.resultado.sin':
+      'El Ministerio no pide ningún resultado de este servicio, y no hemos encontrado otra fuente.',
+    'eficiencia.ccr.resultado.sube': 'Desde {base}, la cifra sube un {pct} %.',
+    'eficiencia.ccr.resultado.baja': 'Desde {base}, la cifra baja un {pct} %.',
+    'eficiencia.ccr.resultado.igual': 'Desde {base}, la cifra se mantiene.',
+    'eficiencia.ccr.resultado.unAnio':
+      'Sólo hay un año publicado ({periodo}): sin serie no hay dirección.',
+    'eficiencia.ccr.resultado.pares':
+      'El valor es mayor que el de {p} de cada 100 municipios parecidos ({n} con dato).',
+    'eficiencia.ccr.resultado.sinSerieGrupo':
+      'De los municipios parecidos sólo tenemos el último año, no su evolución.',
+    'eficiencia.ccr.responde.competencia': 'Competencia delegada',
+    'eficiencia.ccr.responde.loreg': 'Los nombres no se publican durante el periodo electoral.',
+    'eficiencia.ccr.responde.sinAsignar': 'Ninguna delegación nombra este servicio.',
+    'eficiencia.ccr.responde.antes':
+      'Antes del {desde}, cuando empezó este mandato, no nombramos a nadie: aún no hemos incorporado el decreto de delegación del mandato anterior.',
+    'eficiencia.ccr.responde.promesas': 'Lo que prometió el gobierno municipal',
+    'eficiencia.ccr.responde.sinPromesa':
+      'No consta ninguna promesa sobre este servicio en /promesas.',
     'eficiencia.intro':
       'Lo que cada servicio municipal costó, dividido entre lo que produjo, y dónde queda eso entre municipios valencianos de tamaño parecido. No hay nota global ni ranking: cada indicador va con su fuente, su modo de gestión y sus salvedades.',
     'eficiencia.cobertura.titulo': 'Qué cubre esta página',
@@ -2395,6 +2445,51 @@ export const CATALOGUE = {
     'nav.gestion': 'Gestió',
     'eficiencia.eyebrow': 'Ajuntament · cost efectiu dels serveis',
     'eficiencia.title': 'Quant costa i què se n\u2019obté?',
+    'eficiencia.ccr.eyebrow': 'Costa · aconseguix · respon',
+    'eficiencia.ccr.titulo': "El que costa, el que s'aconseguix i qui respon",
+    'eficiencia.ccr.intro':
+      "Primer els serveis amb un resultat publicat; la resta, davall. Les tres columnes van en els mateixos anys i contra el mateix grup de municipis semblants, però no es dividixen entre si: que una puge no explica que l'altra baixe. El judici és teu.",
+    'eficiencia.ccr.col.cuesta': 'Costa',
+    'eficiencia.ccr.resto': 'Els altres {n} serveis: cost i qui respon, sense resultat publicat',
+    'eficiencia.ccr.col.consigue': 'Aconseguix',
+    'eficiencia.ccr.col.responde': 'Respon',
+    'eficiencia.ccr.rotulo.nuestro': 'Riba-roja',
+    'eficiencia.ccr.rotulo.grupo': 'Mediana de municipis semblants',
+    'eficiencia.ccr.rotulo.mandato': 'Mandat actual',
+    'eficiencia.ccr.rotulo.base': 'Índex: {base} = 100',
+    'eficiencia.ccr.coste.sube':
+      'Des de {base}, el cost per unitat puja un {pct} % en euros constants.',
+    'eficiencia.ccr.coste.baja':
+      'Des de {base}, el cost per unitat baixa un {pct} % en euros constants.',
+    'eficiencia.ccr.coste.igual': 'Des de {base}, el cost per unitat es manté en euros constants.',
+    'eficiencia.ccr.grupo.sube': 'En els municipis semblants puja un {pct} %.',
+    'eficiencia.ccr.grupo.baja': 'En els municipis semblants baixa un {pct} %.',
+    'eficiencia.ccr.grupo.igual': 'En els municipis semblants es manté.',
+    'eficiencia.ccr.coste.sinSerie': 'No hi ha prou sèrie de cost des de 2021.',
+    'eficiencia.ccr.coste.precio':
+      'És un preu, no un rendiment: que puge no diu si el servei és millor o pitjor.',
+    'eficiencia.ccr.coste.congelado':
+      "Compte: l'Ajuntament declara la mateixa quantitat de servei des de {desde}, així que el cost per unitat seguix el cost total. No se sap si hi ha més servei o només més despesa.",
+    'eficiencia.ccr.coste.congeladoSinAnio':
+      "Compte: l'Ajuntament repetix la mateixa quantitat de servei en cada entrega, així que el cost per unitat seguix el cost total.",
+    'eficiencia.ccr.resultado.sin':
+      "El Ministeri no demana cap resultat d'este servei, i no hem trobat cap altra font.",
+    'eficiencia.ccr.resultado.sube': 'Des de {base}, la xifra puja un {pct} %.',
+    'eficiencia.ccr.resultado.baja': 'Des de {base}, la xifra baixa un {pct} %.',
+    'eficiencia.ccr.resultado.igual': 'Des de {base}, la xifra es manté.',
+    'eficiencia.ccr.resultado.unAnio':
+      'Només hi ha un any publicat ({periodo}): sense sèrie no hi ha direcció.',
+    'eficiencia.ccr.resultado.pares':
+      'El valor és major que el de {p} de cada 100 municipis semblants ({n} amb dada).',
+    'eficiencia.ccr.resultado.sinSerieGrupo':
+      "Dels municipis semblants només tenim l'últim any, no la seua evolució.",
+    'eficiencia.ccr.responde.competencia': 'Competència delegada',
+    'eficiencia.ccr.responde.loreg': 'Els noms no es publiquen durant el període electoral.',
+    'eficiencia.ccr.responde.sinAsignar': 'Cap delegació nomena este servei.',
+    'eficiencia.ccr.responde.antes':
+      'Abans del {desde}, quan va començar este mandat, no nomenem ningú: encara no hem incorporat el decret de delegació del mandat anterior.',
+    'eficiencia.ccr.responde.promesas': 'El que va prometre el govern municipal',
+    'eficiencia.ccr.responde.sinPromesa': 'No consta cap promesa sobre este servei a /promesas.',
     'eficiencia.intro':
       'El que cada servei municipal va costar, dividit pel que va produir, i on queda això entre municipis valencians de mida semblant. No hi ha nota global ni rànquing: cada indicador va amb la seua font, la seua manera de gestió i els seus advertiments.',
     'eficiencia.cobertura.titulo': 'Què cobreix aquesta pàgina',
