@@ -1768,7 +1768,7 @@ export const CATALOGUE = {
       'Cada afirmación enlaza el documento del que sale, para que lo compruebes tú. Una promesa se atribuye con las palabras literales del partido, nunca con el titular de una noticia.',
     'metodologia.enBreve.nota.pregunta': '¿Ponéis nota al Ayuntamiento?',
     'metodologia.enBreve.nota.frase':
-      'No. No clasificamos partidos ni puntuamos al Ayuntamiento ni a ningún concejal. Damos la cifra con su fuente; el juicio lo hace quien vota.',
+      'No. No clasificamos partidos ni puntuamos al Ayuntamiento ni a ningún concejal: los datos van sin juicio. Cuando concluimos algo, lo firma un editor con su nombre, aparte y con derecho de réplica.',
     'metodologia.enBreve.error.pregunta': '¿Y si os equivocáis?',
     'metodologia.enBreve.error.frase':
       'Cualquier persona, colectivo o partido puede pedir una rectificación, por GitHub o por correo. Tiene plazos fijos, los mismos del aviso legal.',
@@ -3974,7 +3974,7 @@ export const CATALOGUE = {
       "Cada afirmació enllaça el document d'on ix, perquè ho comproves tu. Una promesa s'atribuïx amb les paraules literals del partit, mai amb el titular d'una notícia.",
     'metodologia.enBreve.nota.pregunta': "Poseu nota a l'Ajuntament?",
     'metodologia.enBreve.nota.frase':
-      "No. No classifiquem partits ni puntuem l'Ajuntament ni cap regidor. Donem la xifra amb la seua font; el judici el fa qui vota.",
+      "No. No classifiquem partits ni puntuem l'Ajuntament ni cap regidor: les dades van sense judici. Quan concloem alguna cosa, la signa un editor amb el seu nom, a banda i amb dret de rèplica.",
     'metodologia.enBreve.error.pregunta': 'I si vos equivoqueu?',
     'metodologia.enBreve.error.frase':
       "Qualsevol persona, col·lectiu o partit pot demanar una rectificació, per GitHub o per correu. Té terminis fixos, els mateixos de l'avís legal.",

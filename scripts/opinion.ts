@@ -31,6 +31,7 @@ import {
   type OpinionesSnapshot,
 } from '../src/scraper/opinion-editor'
 import { rechazarOpcionesDesconocidas } from '../src/scraper/opciones-cli'
+import { nombresVisibles } from '../src/scraper/competencias'
 
 const FICHERO = resolve('public/data/opiniones-editor.json')
 const COMPETENCIAS = resolve('public/data/competencias.json')
@@ -101,7 +102,10 @@ function main(): void {
           falla('uso: publicar --de <borrador.json> --confirmo-firma "<Nombre Apellido>"', 2)
         const comp = JSON.parse(readFileSync(COMPETENCIAS, 'utf8'))
         const borrador = JSON.parse(readFileSync(resolve(de), 'utf8'))
-        const s = publicarOpinion(leer(), borrador, firma, hoy(), comp)
+        // La misma ventana que apaga los nombres en la página (`npm run freeze:set`).
+        const promesas = JSON.parse(readFileSync(resolve('public/data/promises.json'), 'utf8'))
+        const nombresOn = nombresVisibles(promesas.frozenUntil ?? null, hoy())
+        const s = publicarOpinion(leer(), borrador, firma, hoy(), comp, nombresOn)
         escribir(s)
         process.stdout.write(`[opinion] publicada «${borrador.id}», firmada por ${firma}\n`)
         return

@@ -393,9 +393,16 @@ export function publicarOpinion(
   confirmoFirma: string,
   hoy: string,
   comp: CompetenciasLike,
+  /** `nombresVisibles(frozenUntil, hoy)`: falso durante la ventana LOREG. */
+  nombresOn = true,
 ): OpinionesSnapshot {
   barreProhibidos(borrador, 'borrador')
   const o = validarOpinion(borrador, 'borrador')
+  if (!nombresOn && o.nombra.length > 0)
+    falla(
+      'publicar',
+      'periodo electoral: no se publica ninguna opinión que nombre a alguien hasta que se levante la congelación',
+    )
   if (confirmoFirma.trim() !== o.firma.nombre.trim())
     falla(
       'publicar',

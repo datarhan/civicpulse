@@ -2942,9 +2942,13 @@ export default function Metodologia() {
         </p>
         <p style={{ margin: '10px 0 0', color: 'var(--ink70)' }}>
           <strong>No se publica ninguna nota global</strong>, ni por dimensión ni de conjunto, ni un
-          puesto del municipio en una tabla. Un índice 0–100 convierte la ponderación elegida en la
-          noticia, y la ponderación la habríamos elegido nosotros. Se publican los componentes y se
-          rechaza la suma, igual que en{' '}
+          puesto del municipio en una tabla. (Lo que sí puede haber es una{' '}
+          <a href="#opinion-editor" style={{ color: 'var(--civic)' }}>
+            opinión firmada
+          </a>
+          , aparte de los datos y en palabras, nunca en cifra.) Un índice 0–100 convierte la
+          ponderación elegida en la noticia, y la ponderación la habríamos elegido nosotros. Se
+          publican los componentes y se rechaza la suma, igual que en{' '}
           <a href="/metodologia#encaje" style={{ color: 'var(--civic)' }}>
             encaje declarado
           </a>
@@ -3389,6 +3393,64 @@ export default function Metodologia() {
           congelada, porque el fichero del que salen los cargos se raspa cada noche y un proceso
           automático no puede cambiar qué persona aparece junto a una cifra ya publicada.
         </p>
+      </Card>
+
+      {/* La opinión del editor (src/scraper/opinion-editor.ts). Cada regla de
+          esta tarjeta la impone el esquema o el CLI, no sólo este texto: si una
+          cambia, cambian los dos en el mismo PR. */}
+      <Card style={{ marginTop: 14, scrollMarginTop: 24 }} id="opinion-editor">
+        <SectionHead
+          eyebrow="Opinión del editor · /eficiencia"
+          title="Cuándo juzgamos, quién firma y qué tiene que llevar"
+        />
+        <p style={{ margin: '8px 0 0', color: 'var(--ink70)' }}>
+          Los datos de este sitio no ponen nota, y eso no cambia. Pero un vecino llega preguntando
+          si el ayuntamiento lo hace bien, y una página que nunca contesta se queda en archivo. Así
+          que hay una pieza que sí juzga: <strong>la opinión del editor</strong>, arriba en{' '}
+          <a href="/eficiencia" style={{ color: 'var(--civic)' }}>
+            /eficiencia
+          </a>
+          , en su propio marco y rotulada como opinión antes que el titular. No es una nota: no hay
+          cifra, escala ni ranking. Es lo que un periódico separa como editorial.
+        </p>
+        <ol style={{ margin: '10px 0 0', paddingLeft: 20, color: 'var(--ink70)' }}>
+          <li>
+            <strong>La escribe y la firma una persona</strong> con nombre y apellido. Ninguna
+            máquina la redacta ni la edita: el fichero rechaza cualquier marca de procedencia
+            automática, y sólo la publica quien la firma.
+          </li>
+          <li>
+            <strong>Cada hecho que afirma va enlazado</strong> a un indicador, un resultado o un
+            hallazgo firmado del panel, y se vuelve a comprobar contra la fuente: si deja de
+            sostenerse, la comprobación se pone en rojo hasta que el editor la revise.
+          </li>
+          <li>
+            <strong>Siempre dice lo que no sabemos.</strong> Una opinión que no marca dónde se acaba
+            lo que sabe se lee como certeza.
+          </li>
+          <li>
+            <strong>Sólo nombra a una persona como titular de la competencia delegada</strong>, sólo
+            para el periodo de su delegación y nunca como causa de un resultado. Lo que pasó antes
+            del mandato actual no se atribuye a quien tiene hoy la delegación.
+          </li>
+          <li>
+            <strong>Antes de publicarla, el texto se envía a quien nombra</strong>, con al menos
+            siete días para responder. La respuesta se publica íntegra a su lado; el silencio se
+            publica como silencio.
+          </li>
+          <li>
+            <strong>Nada se reescribe en silencio:</strong> una corrección guarda el texto anterior
+            y una retirada deja su motivo.
+          </li>
+          <li>
+            <strong>En periodo electoral</strong> no se publica ninguna opinión que nombre a una
+            persona, y las publicadas que nombran a alguien dejan de mostrarse (
+            <a href="/aviso-legal#opinion" style={{ color: 'var(--civic)' }}>
+              aviso legal
+            </a>
+            ).
+          </li>
+        </ol>
       </Card>
 
       <Card style={{ marginTop: 14 }} id="corporacion">

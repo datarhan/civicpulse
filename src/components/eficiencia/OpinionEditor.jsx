@@ -140,7 +140,7 @@ function Opinion({ o, etiquetas, resultados }) {
       )}
 
       <p className="cp-opinion-meta">
-        {t('opinion.replicaVia')} <a href="/aviso-legal#rectificacion">{t('opinion.avisoLegal')}</a>
+        {t('opinion.replicaVia')} <a href="/aviso-legal#opinion">{t('opinion.avisoLegal')}</a>
         {' · '}
         <a href="/metodologia#opinion-editor">{t('opinion.comoSeHace')}</a>
       </p>

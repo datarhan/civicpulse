@@ -180,7 +180,8 @@ export default function Eficiencia() {
             }}
           >
             No hay nota global del ayuntamiento en esta página y no la va a haber. Lo que se cuenta
-            aquí es qué parte de sus propias cifras se puede usar.{' '}
+            aquí es qué parte de sus propias cifras se puede usar. Cuando concluimos algo, lo firma
+            un editor con su nombre, arriba y aparte de los datos.{' '}
             <a href="/metodologia#eficiencia" style={{ color: 'var(--civic)' }}>
               Cómo se calcula →
             </a>

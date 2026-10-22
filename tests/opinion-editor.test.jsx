@@ -175,6 +175,16 @@ describe('publicar, corregir, retirar', () => {
     expect(s.items).toHaveLength(1)
   })
 
+  it('en periodo electoral no se publica una opinión que nombra; sin nombres, sí', () => {
+    const conPlazo = conNombre()
+    expect(() =>
+      publicarOpinion(vacio, conPlazo, 'Firmante Ficticio', '2026-11-20', COMP, false),
+    ).toThrow(/periodo electoral/)
+    expect(
+      publicarOpinion(vacio, base(), 'Firmante Ficticio', '2026-11-20', COMP, false).items,
+    ).toHaveLength(1)
+  })
+
   it('un borrador con marca de máquina no se publica', () => {
     expect(() =>
       publicarOpinion(

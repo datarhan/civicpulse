@@ -139,6 +139,14 @@ export default function AvisoLegal() {
             .
           </li>
         </ul>
+        <p id="opinion" style={{ scrollMarginTop: 24 }}>
+          <strong>Opinión e información.</strong> Los datos de este sitio no llevan juicio. La única
+          pieza que juzga es la opinión del editor en <code>/eficiencia</code>: va firmada por una
+          persona, rotulada como opinión y separada de los datos. Quien aparezca nombrado en una
+          opinión recibe el texto antes de que se publique, con al menos siete días para responder,
+          y su respuesta se publica íntegra a su lado; si no responde, se dice. Cualquier réplica
+          posterior se tramita por esta misma vía y se añade, también íntegra.
+        </p>
       </Card>
 
       <Card style={{ marginTop: 14 }}>
@@ -293,6 +301,10 @@ export default function AvisoLegal() {
             El pleno principal del sitio, incluidas las páginas <code>/presupuesto</code>,{' '}
             <code>/cargos</code> y <code>/datos</code>, sigue operativo con datos objetivos de
             fuente pública.
+          </li>
+          <li>
+            No se publica ninguna opinión del editor que nombre a una persona, y las ya publicadas
+            que nombran a alguien dejan de mostrarse hasta que termina el periodo.
           </li>
           <li>
             Las solicitudes de rectificación siguen atendiéndose en el mismo plazo de 24/72 h.

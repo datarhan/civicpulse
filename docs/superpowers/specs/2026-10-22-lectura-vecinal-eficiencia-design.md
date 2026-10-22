@@ -1,9 +1,20 @@
 # Lectura vecinal — `/eficiencia` (v2: conclusions, names, results)
 
-**Status:** proposal, unbuilt. v2 after the maintainer asked for conclusions at
-the top, councillors' names tied to the data, and a way to tell whether the
-administration does its job. The maintainer proposed that the conclusions run as
-a signed **editor's opinion**.
+**Status:** rollout steps 1–2 built.
+
+- «Cuesta · Consigue · Responde» covers all 15 services
+  (`src/components/eficiencia/CuestaConsigueResponde.jsx`).
+- The editor's-opinion block, file, validator, CLI and checks are in place
+  (`src/scraper/opinion-editor.ts`, `npm run opinion`, `check:opiniones`).
+- The editorial contract is updated.
+- **No opinion is published yet.** It needs a named editor and, if it names
+  anyone, the prior contact.
+- A first police draft waits in `editorial/opiniones/` (not versioned).
+
+v2 written after the maintainer asked for conclusions at the top, councillors'
+names tied to the data, and a way to tell whether the administration does its
+job. The maintainer proposed that the conclusions run as a signed **editor's
+opinion**, and accepted every recommendation in §7.
 
 **Figures:** the worked example uses the 2026-10-22 snapshots, to test the
 design against real data. The page itself must derive every figure; none goes
@@ -195,6 +206,25 @@ incorporado» and names no one for those years.
 | **2019–2023 delegation decree**                                                     | BOP València                                                        | tenure ribbon before 2023                                          |
 | More **results**: recycling rate, water quality (SINAC), and others                 | Generalitat / Consorci; Ministerio de Sanidad                       | «Consigue» for more than one service                               |
 | **Question clock**: questions sent as formal access requests (Ley 19/2013, 1 month) | `docs/superpowers/specs/2026-08-27-solicitudes-de-acceso-design.md` | turns «preguntas registradas» into a measurable answer rate        |
+
+### Outcome sources for the other 13 services — leads, NOT verified
+
+A research pass on 2026-10-22 could not reach any of these hosts from its
+sandbox (proxy refused every fetch). Everything below is from search results
+only, and each source must be opened and checked for a Riba-roja row, its
+licence and its years before an adapter is written.
+
+| Lead                                                                                                                           | Services                                                                                          | Status                | Note                                                                                                                                                                                                                                                                                                               |
+| ------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------- | --------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| **EIEL** (Encuesta de Infraestructura y Equipamientos Locales; Ministerio de Política Territorial, collected by the Diputació) | pavement, lighting, water, sewer, school buildings, sports facilities, parks, cemetery saturation | partial               | Municipalities < 50.000, so Riba-roja and all its peers are in. Downloadable phases to 2020, data per núcleo. Licence to confirm (possibly CC BY-NC-SA). It is the surveyors' assessment of each facility's state: coarse, lagging, and moved by provincial and regional investment, not only by municipal upkeep. |
+| **SINAC** (Ministerio de Sanidad)                                                                                              | drinking water                                                                                    | partial               | Share of compliant analyses per supply zone. No bulk download found, so it would need scraping. A supply zone is not the municipality.                                                                                                                                                                             |
+| **DGT accident microdata**                                                                                                     | pavement (context only)                                                                           | partial               | One row per accident, with an INE municipality code, 2022–2024. Accidents depend on traffic and on roads the council does not run.                                                                                                                                                                                 |
+| **EEA UWWTD Waterbase** (CC BY)                                                                                                | sewerage                                                                                          | partial               | Agglomeration compliance with art. 3 (collection). Needs checking that it maps onto Riba-roja.                                                                                                                                                                                                                     |
+| **The coste efectivo «viajeros» box**                                                                                          | urban transport                                                                                   | already in the return | Riba-roja declares 0 passengers; 22 peers report a figure.                                                                                                                                                                                                                                                         |
+
+No outcome source was found for urbanism, sports promotion, street cleaning or
+the library. For the library, a formal access request for visits and members is
+the realistic route.
 
 ## 6. What changes in the editorial contract
 

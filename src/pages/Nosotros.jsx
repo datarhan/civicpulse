@@ -240,7 +240,13 @@ export default function Nosotros() {
           : la puntuación cambia según cuál de varias cestas de indicadores igual de defendibles
           elijamos, y con las más completas casi nunca se puede calcular, así que una nota diría más
           de nuestras decisiones que de tu pueblo. Publicamos el método —incluidas las
-          especificaciones que fallaron— y nos negamos a publicar la tabla.
+          especificaciones que fallaron— y nos negamos a publicar la tabla. Cuando sacamos una
+          conclusión, no la disfrazamos de cifra: la firma un editor con su nombre, aparte de los
+          datos y con derecho de réplica (
+          <a href="/metodologia#opinion-editor" style={{ color: 'var(--civic)' }}>
+            cómo
+          </a>
+          ).
         </p>
         <p>
           Riba-roja de Túria es el primer municipio. Todo lleva su fuente y su derecho de réplica —

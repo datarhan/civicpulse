@@ -119,6 +119,16 @@ publica el propio ministerio (ahí los pares sí se nombran, porque la división
 es suya y no nuestra), la serie para verla moverse, y el mapa de dónde se
 acaban los datos. Con eso el juicio se puede hacer, y lo hace quien vota.
 
+**Y, aparte, una opinión firmada.** Desde octubre de 2026, `/eficiencia` puede
+llevar arriba la opinión de un editor de CivicPulse: una persona con nombre y
+apellido, rotulada como opinión antes que el titular, con los hechos en que se
+basa enlazados, lo que no sabemos, el texto enviado antes a quien nombre y su
+réplica íntegra al lado. **No es una nota**: no hay cifra, ni escala, ni
+ranking, y no la escribe ninguna máquina. Es lo que un periódico separa como
+editorial — el dato sigue sin juicio, y el juicio que publicamos lleva firma.
+Las reglas están en `/metodologia#opinion-editor` y el esquema que las impone
+en `src/scraper/opinion-editor.ts`.
+
 Y una consecuencia que no se negocia: **no se clasifica a otros municipios.**
 Ni por eficiencia ni por transparencia. Lo único que se publica de cobertura
 es la nuestra —«pudimos leer 7 de 12 fuentes»—, que es un hecho sobre nuestro
@@ -262,30 +272,30 @@ esta web.
 Cada frase de los bloques, y qué la sostiene. Si una fila deja de ser cierta,
 la frase sale de los textos **antes** de que la copia se envíe a nadie.
 
-| La frase                                                                                      | Qué la sostiene                                                                                                                                              |
-| --------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| «quién ocupa cada cargo y qué áreas dirige»                                                   | `/cargos` — `officials.json` (raspado ⊕ correcciones curadas) + `competencias.json`.                                                                          |
-| «qué formación y experiencia declaró, y si guardan relación con lo que dirige»                | `/cargos` — **encaje declarado**: 40 filas firmadas por curador, por (concejal × área), con evidencia citada. Valores `relacionada` / `sin-relacion-declarada` / `no-consta`. **Nunca un porcentaje.** |
-| «la retribución fijada para ese cargo en el acuerdo de pleno»                                 | `dedicaciones.json` — retribuciones brutas anuales por puesto: Acuerdo del Pleno de 16/03/2026 (expte. 1462/2026/GEN), que actualiza el de 07/07/2023 (expte. 4533/2023/GEN). El acuerdo fija el importe por puesto; quién ocupa cada puesto lo atribuye el curador por los actos de nombramiento y delegación. |
-| «a un concejal la ley no le pide ninguna titulación»                                          | LOREG art. 6.1 — mayoría de edad, censo y no inelegibilidad. Renderizado en `QueExigeLaLey`, **siempre en la misma tarjeta que el encaje**.                   |
-| «al interventor y al secretario, grado y oposición nacional»                                  | RD 128/2018, arts. 17–19. Misma tarjeta.                                                                                                                     |
-| «cómo se cubren las plazas»                                                                   | `/empleo-publico` — `procesos-selectivos` + `plantilla.json`.                                                                                                 |
-| «qué paga el pueblo por cada servicio y si es caro o barato frente a municipios de su tamaño» | `/eficiencia` — coste efectivo (MinHac). La comparación es la división del propio ministerio; los pares se nombran allí porque la cifra es suya, no nuestra. |
-| «la recogida de residuos, la pavimentación de sus calles»                                     | Servicios reales del panel (`coste-efectivo.json`).                                                                                                          |
-| «en cuántos días paga a sus proveedores»                                                      | `/gestion` — serie PMP; ficha de hallazgo firmada.                                                                                                           |
-| «cuánto del presupuesto aprobado se ejecuta»                                                  | `/gestion` — ejecución presupuestaria (liquidaciones).                                                                                                       |
-| «qué se prometió y qué consta cumplido, con la cita literal»                                  | `/promesas` — los estados fuertes no publican sin cita fechada con URL (`V1_STATUSES`).                                                                      |
-| «qué se vota en cada pleno»                                                                   | `/plenos` + `/hallazgos` — votos curados, hallazgos verificados.                                                                                             |
-| «a qué empresas va cada contrato»                                                             | `/presupuesto` + mapa de la portada.                                                                                                                         |
-| «situado en el mapa cuando el propio contrato nombra el lugar»                                | `place-resolver` (cuatro puertas, infra-empareja a propósito); `MoneyCoverage` declara la fracción cubierta.                                                 |
-| «las quejas vecinales con su reloj legal»                                                     | `/quejas` — plazos LPACAP + escalado al Síndic.                                                                                                              |
-| «reportajes de investigación publicados»                                                      | `/reportajes` — los que lista `src/reportajes.js` con `meta.estado === 'publicado'`. **La frase no lleva recuento:** «cuatro investigaciones publicadas» se quedó vieja en cuanto se publicó la siguiente; el número se lee del índice, nunca se escribe aquí. |
-| «dónde se acaban los datos oficiales»                                                         | `/lab-health` + `MoneyCoverage` + las especificaciones fallidas de `/laboratorio/frontera`.                                                                   |
+| La frase                                                                                      | Qué la sostiene                                                                                                                                                                                                                                                                                                             |
+| --------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| «quién ocupa cada cargo y qué áreas dirige»                                                   | `/cargos` — `officials.json` (raspado ⊕ correcciones curadas) + `competencias.json`.                                                                                                                                                                                                                                        |
+| «qué formación y experiencia declaró, y si guardan relación con lo que dirige»                | `/cargos` — **encaje declarado**: 40 filas firmadas por curador, por (concejal × área), con evidencia citada. Valores `relacionada` / `sin-relacion-declarada` / `no-consta`. **Nunca un porcentaje.**                                                                                                                      |
+| «la retribución fijada para ese cargo en el acuerdo de pleno»                                 | `dedicaciones.json` — retribuciones brutas anuales por puesto: Acuerdo del Pleno de 16/03/2026 (expte. 1462/2026/GEN), que actualiza el de 07/07/2023 (expte. 4533/2023/GEN). El acuerdo fija el importe por puesto; quién ocupa cada puesto lo atribuye el curador por los actos de nombramiento y delegación.             |
+| «a un concejal la ley no le pide ninguna titulación»                                          | LOREG art. 6.1 — mayoría de edad, censo y no inelegibilidad. Renderizado en `QueExigeLaLey`, **siempre en la misma tarjeta que el encaje**.                                                                                                                                                                                 |
+| «al interventor y al secretario, grado y oposición nacional»                                  | RD 128/2018, arts. 17–19. Misma tarjeta.                                                                                                                                                                                                                                                                                    |
+| «cómo se cubren las plazas»                                                                   | `/empleo-publico` — `procesos-selectivos` + `plantilla.json`.                                                                                                                                                                                                                                                               |
+| «qué paga el pueblo por cada servicio y si es caro o barato frente a municipios de su tamaño» | `/eficiencia` — coste efectivo (MinHac). La comparación es la división del propio ministerio; los pares se nombran allí porque la cifra es suya, no nuestra.                                                                                                                                                                |
+| «la recogida de residuos, la pavimentación de sus calles»                                     | Servicios reales del panel (`coste-efectivo.json`).                                                                                                                                                                                                                                                                         |
+| «en cuántos días paga a sus proveedores»                                                      | `/gestion` — serie PMP; ficha de hallazgo firmada.                                                                                                                                                                                                                                                                          |
+| «cuánto del presupuesto aprobado se ejecuta»                                                  | `/gestion` — ejecución presupuestaria (liquidaciones).                                                                                                                                                                                                                                                                      |
+| «qué se prometió y qué consta cumplido, con la cita literal»                                  | `/promesas` — los estados fuertes no publican sin cita fechada con URL (`V1_STATUSES`).                                                                                                                                                                                                                                     |
+| «qué se vota en cada pleno»                                                                   | `/plenos` + `/hallazgos` — votos curados, hallazgos verificados.                                                                                                                                                                                                                                                            |
+| «a qué empresas va cada contrato»                                                             | `/presupuesto` + mapa de la portada.                                                                                                                                                                                                                                                                                        |
+| «situado en el mapa cuando el propio contrato nombra el lugar»                                | `place-resolver` (cuatro puertas, infra-empareja a propósito); `MoneyCoverage` declara la fracción cubierta.                                                                                                                                                                                                                |
+| «las quejas vecinales con su reloj legal»                                                     | `/quejas` — plazos LPACAP + escalado al Síndic.                                                                                                                                                                                                                                                                             |
+| «reportajes de investigación publicados»                                                      | `/reportajes` — los que lista `src/reportajes.js` con `meta.estado === 'publicado'`. **La frase no lleva recuento:** «cuatro investigaciones publicadas» se quedó vieja en cuanto se publicó la siguiente; el número se lee del índice, nunca se escribe aquí.                                                              |
+| «dónde se acaban los datos oficiales»                                                         | `/lab-health` + `MoneyCoverage` + las especificaciones fallidas de `/laboratorio/frontera`.                                                                                                                                                                                                                                 |
 | «la puntuación cambia según cuál de varias cestas igual de defendibles elijamos»              | `/laboratorio/frontera` — `dea.json`: `propia.theta` de cada cesta publicada en la misma entrega; ninguna entrega con dos cestas publicadas les dio la misma. Sustituye a «cuatro cestas… mueven la puntuación media escala», que ninguna entrega sostuvo: de 2014 a 2024 nunca hubo cuatro cestas con puntuación a la vez. |
-| «con las más completas casi nunca se puede calcular»                                          | `dea.json` — `serie[].estado` de las cestas de cuatro y cinco servicios: `insuficiente` casi todas las entregas (la de cinco, todas); el motivo, en `motivoEstado`. |
-| «todo abierto — código, datos y método»                                                       | AGPL-3.0 + `/datos` + `/metodologia`.                                                                                                                        |
-| «derecho de réplica»                                                                          | Flujo extremo a extremo: issue → CLI con validador → commit.                                                                                                 |
-| «los ~8.100 municipios por código INE»                                                        | CONPREL, PLACSP, BDNS, INE, SEPE y boletines indexan por municipio a escala estatal. Censo vigente: **8.132** municipios.                                    |
+| «con las más completas casi nunca se puede calcular»                                          | `dea.json` — `serie[].estado` de las cestas de cuatro y cinco servicios: `insuficiente` casi todas las entregas (la de cinco, todas); el motivo, en `motivoEstado`.                                                                                                                                                         |
+| «todo abierto — código, datos y método»                                                       | AGPL-3.0 + `/datos` + `/metodologia`.                                                                                                                                                                                                                                                                                       |
+| «derecho de réplica»                                                                          | Flujo extremo a extremo: issue → CLI con validador → commit.                                                                                                                                                                                                                                                                |
+| «los ~8.100 municipios por código INE»                                                        | CONPREL, PLACSP, BDNS, INE, SEPE y boletines indexan por municipio a escala estatal. Censo vigente: **8.132** municipios.                                                                                                                                                                                                   |
 
 ## Reglas de registro
 
@@ -315,6 +325,10 @@ la frase sale de los textos **antes** de que la copia se envíe a nadie.
   comparación que publica el ministerio y el método —fallos incluidos—; el
   juicio lo hace quien lee. Y la descripción **lo dice**, en vez de dejar que
   el lector lo descubra y se vaya con la sensación de que falta algo.
+- **Una opinión firmada no es una nota.** La opinión del editor de `/eficiencia`
+  concluye en palabras, con nombre de quien firma, hechos enlazados, «lo que no
+  sabemos» y réplica; nunca con una cifra ni un puesto. Si una frase de copia
+  la presenta como «la nota de CivicPulse», está mal escrita.
 - **Nunca «auditoría» / «auditor» en copia pública.** Es un término regulado y
   la Sindicatura de Comptes es el órgano real — nuestro argumento es
   precisamente que el tramo municipal queda sin fiscalizar. Verbos permitidos:
@@ -345,14 +359,14 @@ la frase sale de los textos **antes** de que la copia se envíe a nadie.
 
 ## Superficies derivadas
 
-| Superficie                            | Qué toma de aquí                                                            |
-| ------------------------------------- | --------------------------------------------------------------------------- |
-| `README.md`                           | tagline · «Why this exists» · tabla de superficies                          |
-| `src/pages/Nosotros.jsx`              | tarjeta «Qué es CivicPulse»                                                 |
-| `src/pages/About.jsx`                 | primera tarjeta (identidad) + «The gap» + «The proof»                       |
-| `index.html`                          | la ficha del sitio: `description`, `og:description`, `twitter:description`  |
-| `/blog/building-civicpulse-with-ai`   | la cifra de los desiertos informativos con su cita                          |
-| `docs/blog/…-solo-with-ai.md`         | la misma cifra (copia cruzada de esa entrada)                                |
+| Superficie                          | Qué toma de aquí                                                           |
+| ----------------------------------- | -------------------------------------------------------------------------- |
+| `README.md`                         | tagline · «Why this exists» · tabla de superficies                         |
+| `src/pages/Nosotros.jsx`            | tarjeta «Qué es CivicPulse»                                                |
+| `src/pages/About.jsx`               | primera tarjeta (identidad) + «The gap» + «The proof»                      |
+| `index.html`                        | la ficha del sitio: `description`, `og:description`, `twitter:description` |
+| `/blog/building-civicpulse-with-ai` | la cifra de los desiertos informativos con su cita                         |
+| `docs/blog/…-solo-with-ai.md`       | la misma cifra (copia cruzada de esa entrada)                              |
 
 > **Las superficies de campaña ya no viven en el repositorio.** El kit de
 > Goteo, la propuesta de NLnet y el kit de prensa derivan igualmente de este

@@ -204,6 +204,9 @@
       "/quejas/:id",
       "/quejas/dashboard"
     ],
+    "opiniones-editor.json": [
+      "/eficiencia"
+    ],
     "padron.json": [
       "/",
       "/datos",

@@ -78,7 +78,7 @@ export default function EnBreveMetodologia() {
         id="nota"
         pregunta={t('metodologia.enBreve.nota.pregunta')}
         frases={[t('metodologia.enBreve.nota.frase')]}
-        ancla="#frontera"
+        ancla="#opinion-editor"
         anclaTexto={leer}
       />
       <TarjetaEnBreve
