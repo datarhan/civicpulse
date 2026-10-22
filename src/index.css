@@ -1254,6 +1254,217 @@ body.cp-kiosk .cp-live-container {
   }
 }
 
+/* «En breve» — la primera capa de una página densa (components/EnBreve.jsx).
+
+   La rejilla se reparte sola con `auto-fit`: cuatro tarjetas en escritorio,
+   dos en tableta, una en móvil, sin una @media que mantener. Va aquí y no en
+   el `style` del JSX por lo de siempre: un estilo inline no colapsa.
+
+   El término del glosario es un <button> con subrayado de puntos —se pulsa
+   con el teclado igual que con el dedo— y su definición se abre DENTRO de la
+   tarjeta, en el flujo, no en un globo flotante: a 375 px un globo se sale
+   del borde. La salvedad lleva el tono «warn» de la tarjeta «dos fuentes»,
+   que dice lo mismo en la capa de abajo. */
+.cp-en-breve {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+.cp-en-breve-cabeza {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 8px 16px;
+}
+.cp-en-breve-titulo {
+  margin: 0;
+  font-size: var(--fs-meta);
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--civic-ink);
+}
+.cp-en-breve-intro {
+  margin: 4px 0 0;
+  font-size: var(--fs-aux);
+  line-height: 1.5;
+  color: var(--ink70);
+}
+.cp-en-breve-saltar {
+  font-size: var(--fs-aux);
+  font-weight: 500;
+  color: var(--civic);
+}
+.cp-en-breve-rejilla {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 240px), 1fr));
+  gap: 14px;
+}
+.cp-en-breve-tarjeta {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  min-width: 0;
+  padding: 16px;
+  border: 1px solid var(--border2);
+  border-radius: var(--r-card);
+}
+.cp-en-breve-pregunta {
+  margin: 0;
+  font-size: var(--fs-head);
+  font-weight: 600;
+  line-height: 1.3;
+}
+.cp-en-breve-cifra {
+  font-size: var(--fs-card);
+  font-weight: 500;
+  letter-spacing: -0.01em;
+}
+.cp-en-breve-cifra-nota {
+  font-size: var(--fs-aux);
+  color: var(--ink50);
+}
+.cp-en-breve-frase {
+  margin: 0;
+  font-size: var(--fs-body);
+  line-height: 1.55;
+  text-wrap: pretty;
+}
+.cp-en-breve-nota {
+  margin: 0;
+  font-size: var(--fs-meta);
+  line-height: 1.5;
+  color: var(--ink50);
+}
+.cp-en-breve-salvedad {
+  margin: 0;
+  padding: 8px 10px;
+  border-radius: var(--r-input);
+  background: var(--warn-soft);
+  color: var(--warn-ink);
+  font-size: var(--fs-meta);
+  line-height: 1.5;
+}
+.cp-en-breve-ancla {
+  margin-top: auto;
+  font-size: var(--fs-aux);
+  color: var(--civic);
+}
+.cp-en-breve-figura {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.cp-en-breve-barra {
+  position: relative;
+  display: flex;
+  overflow: hidden;
+  background: var(--soft);
+}
+.cp-en-breve-marca {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: var(--ink);
+}
+.cp-en-breve-leyenda {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 2px 10px;
+  font-size: var(--fs-micro);
+  color: var(--ink50);
+}
+.cp-en-breve-fila {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  font-size: var(--fs-aux);
+}
+.cp-en-breve-fila > .mono {
+  flex: none;
+  white-space: nowrap;
+}
+.cp-termino {
+  all: unset;
+  cursor: pointer;
+  color: inherit;
+  border-bottom: 1.5px dotted var(--civic);
+}
+.cp-termino:hover,
+.cp-termino[aria-expanded='true'] {
+  background: var(--civic-soft);
+}
+.cp-termino:focus-visible {
+  outline: 2px solid var(--civic);
+  outline-offset: 2px;
+}
+.cp-en-breve-def {
+  display: flex;
+  gap: 8px;
+  align-items: flex-start;
+  padding: 10px 12px;
+  border-radius: var(--r-input);
+  background: var(--civic-soft);
+}
+.cp-en-breve-def-rotulo {
+  font-size: var(--fs-micro);
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--civic-ink);
+}
+.cp-en-breve-cerrar {
+  all: unset;
+  cursor: pointer;
+  flex: none;
+  width: 44px;
+  height: 44px;
+  margin: -10px -10px 0 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--r-input);
+  color: var(--civic-ink);
+}
+.cp-en-breve-cerrar:focus-visible {
+  outline: 2px solid var(--civic);
+  outline-offset: -2px;
+}
+.cp-en-breve-barrio {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px 18px;
+  padding: 14px 16px;
+  border: 1px solid var(--civic);
+  border-radius: var(--r-card);
+  color: inherit;
+  text-decoration: none;
+}
+.cp-en-breve-barrio:hover {
+  background: var(--civic-soft);
+}
+.cp-en-breve-barrio-titulo {
+  display: block;
+  font-size: var(--fs-head);
+  font-weight: 600;
+}
+.cp-en-breve-barrio-frase {
+  display: block;
+  margin-top: 2px;
+  font-size: var(--fs-aux);
+  line-height: 1.5;
+  color: var(--ink70);
+}
+.cp-en-breve-barrio-enlace {
+  font-size: var(--fs-aux);
+  font-weight: 500;
+  color: var(--civic);
+}
+
 /* /presupuesto — lámina 5b: del crédito inicial a lo ejecutado.
 
    Las rejillas van aquí y no en el `style` del JSX por la razón de siempre en

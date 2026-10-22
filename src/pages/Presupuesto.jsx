@@ -37,6 +37,7 @@ import { EFICIENCIA_ENABLED } from '../flags'
 import { useLocale, useT } from '../i18n'
 import Paginacion from '../components/Paginacion'
 import GastoDashboard from '../components/Presupuesto/GastoDashboard'
+import EnBrevePresupuesto from '../components/Presupuesto/EnBrevePresupuesto'
 import { TedNotices } from '../components/Presupuesto/TedNotices'
 
 /*
@@ -725,7 +726,7 @@ function CapitulosCard() {
   }
 
   return (
-    <Card>
+    <Card id="capitulos" style={{ scrollMarginTop: 24 }}>
       <SectionHead
         eyebrow={rellena(t('presupuesto.cap.eyebrow'), { year: p.year })}
         title={t('presupuesto.cap.title')}
@@ -987,7 +988,7 @@ function AprobadoPar() {
   const aCeroIng = capitulosACero(s.revenueByEconomicChapter)
 
   return (
-    <div className="cp-presu-duo">
+    <div id="aprobado" className="cp-presu-duo" style={{ scrollMarginTop: 24 }}>
       <Card>
         <SectionHead
           eyebrow={rellena(t('presupuesto.econ.eyebrow'), { year: s.year })}
@@ -1286,7 +1287,7 @@ function DeudaVivaSection() {
   const percentil = data?.ultimo?.percentil
 
   return (
-    <Card className="cp-presu-deuda-marco">
+    <Card id="deuda" className="cp-presu-deuda-marco" style={{ scrollMarginTop: 24 }}>
       <SectionHead
         eyebrow={t('presupuesto.deuda.eyebrow')}
         title={titularDeuda(tendencia, t)}
@@ -2140,6 +2141,11 @@ export default function Presupuesto() {
       }}
     >
       <Cabecera />
+      {/* La primera capa, para quien llega con una pregunta y no con el
+          vocabulario de la Intervención. Resume y enlaza; no sustituye a nada
+          de lo que va debajo. */}
+      <EnBrevePresupuesto />
+      <div id="todos-los-datos" style={{ scrollMarginTop: 24 }} />
       <CascadaCard />
       <CapitulosCard />
       <AprobadoPar />

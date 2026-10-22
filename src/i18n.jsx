@@ -1674,6 +1674,86 @@ export const CATALOGUE = {
       '{gastos} de gastos aprobados según CONPREL · {porHab} por habitante · {hab} habitantes · actualizado {fecha}',
     'presupuesto.meta.sinTotal':
       'CONPREL no trae el total de gastos aprobados · {hab} habitantes · actualizado {fecha}',
+    // «En breve»: la primera capa de /presupuesto, en el registro de quien no
+    // sabe qué es una obligación reconocida. `[[clave|texto]]` es un término
+    // del glosario (src/glosario.js) y se pinta como botón con su definición.
+    'presupuesto.enBreve.titulo': 'En breve',
+    'presupuesto.enBreve.intro':
+      'Lo esencial, en pocas preguntas. Cada respuesta enlaza a la sección que la demuestra.',
+    'presupuesto.enBreve.saltar': 'Saltar a todos los datos ↓',
+    'presupuesto.enBreve.ver': 'Ver el detalle ↓',
+    'presupuesto.enBreve.limite.pregunta': '¿Cuánto dinero tenía para gastar en {year}?',
+    'presupuesto.enBreve.porVecino': '{x} por vecino',
+    'presupuesto.enBreve.limite.frase':
+      'Empezó el año con {inicial} y durante el año se le añadieron {mod}. Es un [[creditoDefinitivo|tope del presupuesto]], no un gasto.',
+    'presupuesto.enBreve.limite.inicial': 'Al empezar · {x}',
+    'presupuesto.enBreve.limite.mod': 'Añadido · {x}',
+    'presupuesto.enBreve.limite.figura':
+      'Barra: {inicial} al empezar el año más {mod} añadidos, en total {definitivo}.',
+    'presupuesto.enBreve.limite.dosFuentes':
+      'El Ministerio de Hacienda (CONPREL) da otra cifra de partida para {year}: {conprel}. Las dos fuentes no cuadran y no elegimos una.',
+    'presupuesto.enBreve.aprobado.pregunta': '¿Cuánto dinero tiene para gastar en {year}?',
+    'presupuesto.enBreve.aprobado.frase':
+      'Es el presupuesto aprobado según el Ministerio de Hacienda: un [[creditoDefinitivo|tope]], no un gasto. Cuánto se ha gastado aparecerá cuando el Ayuntamiento publique su estado de ejecución.',
+    'presupuesto.enBreve.gastado.pregunta': '¿Cuánto ha gastado?',
+    'presupuesto.enBreve.gastado.cifraNota': '{n} de cada 100 €',
+    'presupuesto.enBreve.gastado.frase':
+      'De cada 100 € que podía gastar en {year}, [[obligacionesReconocidas|gastó]] {n}.',
+    'presupuesto.enBreve.gastado.fin': 'Datos a {fecha}, cierre del ejercicio.',
+    'presupuesto.enBreve.gastado.fecha': 'Datos a {fecha}.',
+    'presupuesto.enBreve.gastado.nota':
+      '«Gastado» son las facturas y gastos que el Ayuntamiento ya ha dado por buenos. Lo pagado puede ser menos.',
+    'presupuesto.enBreve.gastado.barra': 'Gastado · {pct} %',
+    'presupuesto.enBreve.gastado.avance': 'Año transcurrido',
+    'presupuesto.enBreve.gastado.figura':
+      'Barra: gastado el {pct} % de lo que podía gastar; marca del año transcurrido al {avance} %.',
+    'presupuesto.enBreve.gastado.figuraSinAvance':
+      'Barra: gastado el {pct} % de lo que podía gastar.',
+    'presupuesto.enBreve.enQue.pregunta': '¿En qué se ha ido?',
+    'presupuesto.enBreve.enQue.mayoria': 'La mayor parte fue a {a} y a {b}.',
+    'presupuesto.enBreve.enQue.primero': 'Lo que más se llevó fue {a}, seguido de {b}.',
+    'presupuesto.enBreve.enQue.uno': 'Todo lo gastado fue a {a}.',
+    'presupuesto.enBreve.enQue.dominante':
+      'En {capitulo} había {definitivo} presupuestados y se gastó {ejecutado}.',
+    'presupuesto.enBreve.enQue.resto': 'Resto',
+    'presupuesto.enBreve.enQue.figura': 'Reparto de lo gastado: {lista}.',
+    'presupuesto.enBreve.cap.1': 'Sueldos del personal',
+    'presupuesto.enBreve.cap.2': 'Compras y servicios del día a día',
+    'presupuesto.enBreve.cap.3': 'Intereses de la deuda',
+    'presupuesto.enBreve.cap.4': 'Ayudas y aportaciones a otras entidades',
+    'presupuesto.enBreve.cap.5': 'Fondo de contingencia',
+    'presupuesto.enBreve.cap.6': 'Obras e inversiones',
+    'presupuesto.enBreve.cap.7': 'Aportaciones para inversiones de otros',
+    'presupuesto.enBreve.cap.8': 'Préstamos y depósitos',
+    'presupuesto.enBreve.cap.9': 'Devolución de préstamos',
+    'presupuesto.enBreve.deuda.pregunta': '¿Debe dinero?',
+    'presupuesto.enBreve.deuda.frase':
+      'Es la [[deudaViva|deuda viva]] al cierre de {year}, según el Ministerio de Hacienda.',
+    'presupuesto.enBreve.deuda.comparacion':
+      'Debe más que {p} de cada 100 ayuntamientos de la lista del Ministerio. Pero {cero} de cada 100 no deben nada, así que la comparación dice poco por sí sola.',
+    'presupuesto.enBreve.deuda.sinDeuda': 'Sin deuda · {n} de 100',
+    'presupuesto.enBreve.deuda.nosotros': 'Riba-roja',
+    'presupuesto.enBreve.deuda.figura':
+      '100 ayuntamientos: {cero} no deben nada; Riba-roja debe más que {p}.',
+    'presupuesto.enBreve.barrio.titulo': '¿Qué se ha contratado en mi barrio?',
+    'presupuesto.enBreve.barrio.frase':
+      'Ojo: de cada 100 € contratados, sólo {n} van a contratos que nombran un barrio. Que tu barrio no salga en el mapa no quiere decir que allí no se haya contratado nada.',
+    'presupuesto.enBreve.barrio.menosDeUno':
+      'Ojo: de cada 100 € contratados, menos de 1 va a contratos que nombran un barrio. Que tu barrio no salga en el mapa no quiere decir que allí no se haya contratado nada.',
+    'presupuesto.enBreve.barrio.enlace': 'Ver el mapa por barrios ↓',
+    'presupuesto.enBreve.barrio.figura': 'De cada 100 € contratados, {n} nombran un barrio.',
+    'glosario.rotulo': 'Glosario',
+    'glosario.oficial': 'Nombre oficial: {nombre}',
+    'glosario.cerrar': 'Cerrar la definición',
+    'glosario.creditoDefinitivo.termino': 'Crédito definitivo',
+    'glosario.creditoDefinitivo.def':
+      'Lo máximo que el Ayuntamiento puede gastar en el año: lo aprobado al principio más lo añadido después. Es un tope, no un gasto.',
+    'glosario.obligacionesReconocidas.termino': 'Obligaciones reconocidas',
+    'glosario.obligacionesReconocidas.def':
+      'Facturas y gastos que el Ayuntamiento ya ha dado por buenos y tiene que pagar. Es la única cifra del presupuesto que es gasto. No es lo mismo que lo pagado.',
+    'glosario.deudaViva.termino': 'Deuda viva',
+    'glosario.deudaViva.def':
+      'Lo que el Ayuntamiento debe a bancos y otras entidades al cerrar el año. No es el capítulo «Deuda pública» del presupuesto, que es lo que se aparta cada año para pagarla.',
     'presupuesto.fuentes.title': 'Dos fuentes, dos presupuestos aprobados',
     'presupuesto.fuentes.conprel': 'CONPREL · Ministerio de Hacienda',
     'presupuesto.fuentes.municipal': 'Estado de ejecución del propio Ayuntamiento',
@@ -3700,6 +3780,82 @@ export const CATALOGUE = {
       '{gastos} de despeses aprovades segons CONPREL · {porHab} per habitant · {hab} habitants · actualitzat {fecha}',
     'presupuesto.meta.sinTotal':
       'CONPREL no porta el total de despeses aprovades · {hab} habitants · actualitzat {fecha}',
+    'presupuesto.enBreve.titulo': 'En resum',
+    'presupuesto.enBreve.intro':
+      "L'essencial, en poques preguntes. Cada resposta enllaça amb la secció que la demostra.",
+    'presupuesto.enBreve.saltar': 'Botar a totes les dades ↓',
+    'presupuesto.enBreve.ver': 'Vore el detall ↓',
+    'presupuesto.enBreve.limite.pregunta': 'Quants diners tenia per a gastar en {year}?',
+    'presupuesto.enBreve.porVecino': '{x} per veí',
+    'presupuesto.enBreve.limite.frase':
+      "Va començar l'any amb {inicial} i durant l'any se li van afegir {mod}. És un [[creditoDefinitivo|límit del pressupost]], no una despesa.",
+    'presupuesto.enBreve.limite.inicial': 'En començar · {x}',
+    'presupuesto.enBreve.limite.mod': 'Afegit · {x}',
+    'presupuesto.enBreve.limite.figura':
+      "Barra: {inicial} en començar l'any més {mod} afegits, en total {definitivo}.",
+    'presupuesto.enBreve.limite.dosFuentes':
+      "El Ministeri d'Hisenda (CONPREL) dona una altra xifra de partida per a {year}: {conprel}. Les dues fonts no quadren i no en triem cap.",
+    'presupuesto.enBreve.aprobado.pregunta': 'Quants diners té per a gastar en {year}?',
+    'presupuesto.enBreve.aprobado.frase':
+      "És el pressupost aprovat segons el Ministeri d'Hisenda: un [[creditoDefinitivo|límit]], no una despesa. Quant s'ha gastat apareixerà quan l'Ajuntament publique el seu estat d'execució.",
+    'presupuesto.enBreve.gastado.pregunta': 'Quant ha gastat?',
+    'presupuesto.enBreve.gastado.cifraNota': '{n} de cada 100 €',
+    'presupuesto.enBreve.gastado.frase':
+      'De cada 100 € que podia gastar en {year}, en va [[obligacionesReconocidas|gastar]] {n}.',
+    'presupuesto.enBreve.gastado.fin': "Dades a {fecha}, tancament de l'exercici.",
+    'presupuesto.enBreve.gastado.fecha': 'Dades a {fecha}.',
+    'presupuesto.enBreve.gastado.nota':
+      "«Gastat» són les factures i despeses que l'Ajuntament ja ha donat per bones. El que s'ha pagat pot ser menys.",
+    'presupuesto.enBreve.gastado.barra': 'Gastat · {pct} %',
+    'presupuesto.enBreve.gastado.avance': 'Any transcorregut',
+    'presupuesto.enBreve.gastado.figura':
+      "Barra: gastat el {pct} % del que podia gastar; marca de l'any transcorregut al {avance} %.",
+    'presupuesto.enBreve.gastado.figuraSinAvance': 'Barra: gastat el {pct} % del que podia gastar.',
+    'presupuesto.enBreve.enQue.pregunta': "En què se n'ha anat?",
+    'presupuesto.enBreve.enQue.mayoria': 'La major part va anar a {a} i a {b}.',
+    'presupuesto.enBreve.enQue.primero': "El que més se'n va endur va ser {a}, seguit de {b}.",
+    'presupuesto.enBreve.enQue.uno': 'Tot el que es va gastar va anar a {a}.',
+    'presupuesto.enBreve.enQue.dominante':
+      "En {capitulo} hi havia {definitivo} pressupostats i se'n van gastar {ejecutado}.",
+    'presupuesto.enBreve.enQue.resto': 'Resta',
+    'presupuesto.enBreve.enQue.figura': 'Repartiment del que es va gastar: {lista}.',
+    'presupuesto.enBreve.cap.1': 'Sous del personal',
+    'presupuesto.enBreve.cap.2': 'Compres i serveis del dia a dia',
+    'presupuesto.enBreve.cap.3': 'Interessos del deute',
+    'presupuesto.enBreve.cap.4': 'Ajudes i aportacions a altres entitats',
+    'presupuesto.enBreve.cap.5': 'Fons de contingència',
+    'presupuesto.enBreve.cap.6': 'Obres i inversions',
+    'presupuesto.enBreve.cap.7': "Aportacions per a inversions d'altres",
+    'presupuesto.enBreve.cap.8': 'Préstecs i depòsits',
+    'presupuesto.enBreve.cap.9': 'Devolució de préstecs',
+    'presupuesto.enBreve.deuda.pregunta': 'Deu diners?',
+    'presupuesto.enBreve.deuda.frase':
+      "És el [[deudaViva|deute viu]] al tancament de {year}, segons el Ministeri d'Hisenda.",
+    'presupuesto.enBreve.deuda.comparacion':
+      'Deu més que {p} de cada 100 ajuntaments de la llista del Ministeri. Però {cero} de cada 100 no deuen res, així que la comparació diu poc per si sola.',
+    'presupuesto.enBreve.deuda.sinDeuda': 'Sense deute · {n} de 100',
+    'presupuesto.enBreve.deuda.nosotros': 'Riba-roja',
+    'presupuesto.enBreve.deuda.figura':
+      '100 ajuntaments: {cero} no deuen res; Riba-roja deu més que {p}.',
+    'presupuesto.enBreve.barrio.titulo': "Què s'ha contractat al meu barri?",
+    'presupuesto.enBreve.barrio.frase':
+      "Compte: de cada 100 € contractats, només {n} van a contractes que nomenen un barri. Que el teu barri no isca al mapa no vol dir que allí no s'haja contractat res.",
+    'presupuesto.enBreve.barrio.menosDeUno':
+      "Compte: de cada 100 € contractats, menys d'1 va a contractes que nomenen un barri. Que el teu barri no isca al mapa no vol dir que allí no s'haja contractat res.",
+    'presupuesto.enBreve.barrio.enlace': 'Vore el mapa per barris ↓',
+    'presupuesto.enBreve.barrio.figura': 'De cada 100 € contractats, {n} nomenen un barri.',
+    'glosario.rotulo': 'Glossari',
+    'glosario.oficial': 'Nom oficial: {nombre}',
+    'glosario.cerrar': 'Tancar la definició',
+    'glosario.creditoDefinitivo.termino': 'Crèdit definitiu',
+    'glosario.creditoDefinitivo.def':
+      "El màxim que l'Ajuntament pot gastar en l'any: el que es va aprovar al principi més el que s'hi ha afegit després. És un límit, no una despesa.",
+    'glosario.obligacionesReconocidas.termino': 'Obligacions reconegudes',
+    'glosario.obligacionesReconocidas.def':
+      "Factures i despeses que l'Ajuntament ja ha donat per bones i ha de pagar. És l'única xifra del pressupost que és despesa. No és el mateix que el que s'ha pagat.",
+    'glosario.deudaViva.termino': 'Deute viu',
+    'glosario.deudaViva.def':
+      "El que l'Ajuntament deu a bancs i altres entitats en tancar l'any. No és el capítol «Deute públic» del pressupost, que és el que s'aparta cada any per a pagar-lo.",
     'presupuesto.fuentes.title': 'Dos fonts, dos pressupostos aprovats',
     'presupuesto.fuentes.conprel': "CONPREL · Ministeri d'Hisenda",
     'presupuesto.fuentes.municipal': "Estat d'execució del propi Ajuntament",

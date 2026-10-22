@@ -120,7 +120,7 @@ export default function GastoDashboard() {
     `${(n / 1e6).toLocaleString('es-ES', { minimumFractionDigits: 1, maximumFractionDigits: 1 })} M€`
 
   return (
-    <Card>
+    <Card id="mapa-gasto" style={{ scrollMarginTop: 24 }}>
       {/* El rótulo dice de QUÉ habla la sección, de cuándo y de dónde sale; no
           que hay un mapa, que eso ya se ve. «Mapa de lo adjudicado» repetía el
           «adjudicado sin IVA» de la cifra de al lado y no añadía un solo dato.

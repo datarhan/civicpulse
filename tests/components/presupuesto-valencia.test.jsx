@@ -70,9 +70,10 @@ const SIGLAS = [
  * Lo que el valencià escribe igual que el castellano sin ser un valor entero del
  * catálogo: «Cap.» abrevia «capítulo» y «capítol»; «adj.», «adjudicado» y
  * «adjudicat»; y «Patrimonial» es el mismo tipo de contrato en los dos idiomas
- * cuando va pegado a su importe en el `title` de la barra.
+ * cuando va pegado a su importe en el `title` de la barra. «de cada 100» es la
+ * cifra de «En breve» («30 de cada 100 €»), que se escribe igual en los dos.
  */
-const IGUALES_EN_LOS_DOS = ['Cap.', 'adj.', 'Patrimonial']
+const IGUALES_EN_LOS_DOS = ['Cap.', 'adj.', 'Patrimonial', 'de cada 100']
 
 /** Las unidades de las cifras, leídas de los formateadores y no escritas. */
 const DINERO_COMPACTO = new Intl.NumberFormat('es-ES', {
