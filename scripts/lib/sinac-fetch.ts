@@ -23,6 +23,7 @@ import {
   type Parametro,
   type Red,
 } from '../../src/scraper/sinac'
+import { decodeHtmlEntities } from '../../src/scraper/normalize'
 
 export const BASE = 'https://sinac.sanidad.gob.es/CiudadanoWeb/ciudadano'
 export const ENTRADA = `${BASE}/informacionAbastecimientoActionEntrada.do`
@@ -88,7 +89,8 @@ export async function leerRedes(
   })
   return {
     redes: parseRedes(html),
-    denMunicipio: html.match(/name="denMunicipio" value="([^"]*)"/)?.[1] ?? '',
+    // Atributo HTML crudo: «L&#39;ELIANA» hasta decodificarlo.
+    denMunicipio: decodeHtmlEntities(html.match(/name="denMunicipio" value="([^"]*)"/)?.[1] ?? ''),
   }
 }
 
