@@ -478,6 +478,19 @@ const ABIERTOS: Caso[] = [
  */
 const CERRADOS: Caso[] = [
   {
+    orden: 'opinion',
+    script: 'opinion.ts',
+    argv: [
+      'publicar',
+      '--de',
+      'editorial/opiniones/una.json',
+      '--confirmo-firma',
+      'Nombre Apellido',
+    ],
+    datos: ['opiniones-editor.json', 'competencias.json', 'promises.json'],
+    fuera: ['editorial/opiniones/una.json'],
+  },
+  {
     orden: 'promote-claim',
     script: 'promote-claim.ts',
     argv: [

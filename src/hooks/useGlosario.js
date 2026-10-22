@@ -35,6 +35,24 @@ export function useGlosario() {
         def: t('glosario.deudaViva.def'),
         to: '/presupuesto#deuda',
       },
+      {
+        clave: 'costeEfectivo',
+        termino: t('glosario.costeEfectivo.termino'),
+        def: t('glosario.costeEfectivo.def'),
+        to: '/eficiencia#sec-servicios',
+      },
+      {
+        clave: 'cantidadSinRemedir',
+        termino: t('glosario.cantidadSinRemedir.termino'),
+        def: t('glosario.cantidadSinRemedir.def'),
+        to: '/eficiencia#sec-declaracion',
+      },
+      {
+        clave: 'entrega',
+        termino: t('glosario.entrega.termino'),
+        def: t('glosario.entrega.def'),
+        to: '/eficiencia#sec-entregas',
+      },
     ],
     [t],
   )

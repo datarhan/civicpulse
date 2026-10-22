@@ -41,6 +41,42 @@ export const CATALOGUE = {
     'nav.gestion': 'Gestión',
     'eficiencia.eyebrow': 'Ayuntamiento · coste efectivo de los servicios',
     'eficiencia.title': '¿Cuánto cuesta y qué se obtiene?',
+    // «En breve» de /eficiencia (components/eficiencia/EnBreveEficiencia.jsx).
+    'eficiencia.enBreve.titulo': 'En breve',
+    'eficiencia.enBreve.intro':
+      'Lo esencial del panel, en pocas preguntas. Cada respuesta enlaza a la sección que la demuestra.',
+    'eficiencia.enBreve.saltar': 'Ir al libro de los servicios ↓',
+    'eficiencia.enBreve.ver': 'Ver el detalle ↓',
+    'eficiencia.enBreve.coste.pregunta': '¿Cuánto cuestan los servicios?',
+    'eficiencia.enBreve.coste.nota': '{n} servicios · {anio}',
+    'eficiencia.enBreve.coste.frase':
+      'Es el [[costeEfectivo|coste]] que el Ayuntamiento declara al Ministerio por {n} servicios en {anio}. No es todo lo que gasta: es lo que dice que le costó prestar cada uno.',
+    'eficiencia.enBreve.coste.resto': 'Resto de servicios',
+    'eficiencia.enBreve.bien.pregunta': '¿Lo hacen bien?',
+    'eficiencia.enBreve.bien.cifra': '{n} de {de}',
+    'eficiencia.enBreve.bien.cifraNota': 'cantidades repetidas',
+    'eficiencia.enBreve.bien.frase':
+      'Con estos datos no se puede saber: el Ministerio no pide ningún dato de calidad del servicio.',
+    'eficiencia.enBreve.bien.razon':
+      'Y hay otra razón: {n} de las {de} cantidades que el Ayuntamiento declara [[cantidadSinRemedir|se repiten iguales]] año tras año, así que el coste por unidad sólo sigue al gasto.',
+    'eficiencia.enBreve.bien.ejemplo':
+      'Por ejemplo, {valor} {unidad} de {servicio}, idénticas desde {desde}.',
+    'eficiencia.enBreve.bien.figura':
+      'Las {unidad} declaradas para {servicio}: {valor} cada año, de {desde} a {hasta}.',
+    'eficiencia.enBreve.entregas.pregunta': '¿Rinde cuentas a tiempo?',
+    'eficiencia.enBreve.entregas.cifra': '{presentadas} de {obligatorias}',
+    'eficiencia.enBreve.entregas.frase':
+      'Presentó {presentadas} de las {obligatorias} [[entrega|entregas]] obligatorias al Ministerio. La de {faltan}, no.',
+    'eficiencia.enBreve.entregas.todas':
+      'Presentó las {obligatorias} [[entrega|entregas]] obligatorias al Ministerio.',
+    'eficiencia.enBreve.entregas.figura':
+      '{presentadas} de {obligatorias} entregas presentadas; la que falta va hueca.',
+    'eficiencia.enBreve.preguntas.pregunta': '¿A quién se lo pregunto?',
+    'eficiencia.enBreve.preguntas.cifraNota': 'preguntas registradas',
+    'eficiencia.enBreve.preguntas.frase':
+      'Hemos dejado {n} preguntas registradas, dirigidas a instituciones y nunca a personas. Cualquier respuesta se publicará íntegra.',
+    'eficiencia.enBreve.preguntas.nota':
+      'Quién tiene delegada cada competencia está en «Cuesta · consigue · responde», servicio a servicio.',
     // La opinión del editor (components/eficiencia/OpinionEditor.jsx). El
     // rótulo va antes que el titular: el lector tiene que saber que esto ya
     // no es el dato del ministerio.
@@ -1861,6 +1897,15 @@ export const CATALOGUE = {
     'glosario.obligacionesReconocidas.termino': 'Obligaciones reconocidas',
     'glosario.obligacionesReconocidas.def':
       'Facturas y gastos que el Ayuntamiento ya ha dado por buenos y tiene que pagar. Es la única cifra del presupuesto que es gasto. No es lo mismo que lo pagado.',
+    'glosario.costeEfectivo.termino': 'Coste efectivo',
+    'glosario.costeEfectivo.def':
+      'Lo que el Ayuntamiento declara al Ministerio de Hacienda que le costó prestar un servicio en un año. No es todo su gasto ni un dato de calidad.',
+    'glosario.cantidadSinRemedir.termino': 'Cantidad sin remedir',
+    'glosario.cantidadSinRemedir.def':
+      'Una cantidad de servicio (toneladas, metros, puntos de luz) que el Ayuntamiento declara igual, decimal a decimal, año tras año. Si no se vuelve a medir, el coste por unidad sólo sigue al gasto.',
+    'glosario.entrega.termino': 'Entrega',
+    'glosario.entrega.def':
+      'El envío anual obligatorio de estos datos al Ministerio, antes del 1 de noviembre (artículo 116 ter de la Ley de Bases de Régimen Local).',
     'glosario.deudaViva.termino': 'Deuda viva',
     'glosario.deudaViva.def':
       'Lo que el Ayuntamiento debe a bancos y otras entidades al cerrar el año. No es el capítulo «Deuda pública» del presupuesto, que es lo que se aparta cada año para pagarla.',
@@ -2464,6 +2509,41 @@ export const CATALOGUE = {
     'nav.gestion': 'Gestió',
     'eficiencia.eyebrow': 'Ajuntament · cost efectiu dels serveis',
     'eficiencia.title': 'Quant costa i què se n\u2019obté?',
+    'eficiencia.enBreve.titulo': 'En resum',
+    'eficiencia.enBreve.intro':
+      "L'essencial del panell, en poques preguntes. Cada resposta enllaça amb la secció que la demostra.",
+    'eficiencia.enBreve.saltar': 'Anar al llibre dels serveis ↓',
+    'eficiencia.enBreve.ver': 'Vore el detall ↓',
+    'eficiencia.enBreve.coste.pregunta': 'Quant costen els serveis?',
+    'eficiencia.enBreve.coste.nota': '{n} serveis · {anio}',
+    'eficiencia.enBreve.coste.frase':
+      "És el [[costeEfectivo|cost]] que l'Ajuntament declara al Ministeri per {n} serveis en {anio}. No és tot el que gasta: és el que diu que li va costar prestar cadascun.",
+    'eficiencia.enBreve.coste.resto': 'Resta de serveis',
+    'eficiencia.enBreve.bien.pregunta': 'Ho fan bé?',
+    'eficiencia.enBreve.bien.cifra': '{n} de {de}',
+    'eficiencia.enBreve.bien.cifraNota': 'quantitats repetides',
+    'eficiencia.enBreve.bien.frase':
+      'Amb estes dades no es pot saber: el Ministeri no demana cap dada de qualitat del servei.',
+    'eficiencia.enBreve.bien.razon':
+      "I hi ha una altra raó: {n} de les {de} quantitats que l'Ajuntament declara [[cantidadSinRemedir|es repetixen iguals]] any rere any, així que el cost per unitat només seguix la despesa.",
+    'eficiencia.enBreve.bien.ejemplo':
+      'Per exemple, {valor} {unidad} de {servicio}, idèntiques des de {desde}.',
+    'eficiencia.enBreve.bien.figura':
+      'Les {unidad} declarades per a {servicio}: {valor} cada any, de {desde} a {hasta}.',
+    'eficiencia.enBreve.entregas.pregunta': 'Rendix comptes a temps?',
+    'eficiencia.enBreve.entregas.cifra': '{presentadas} de {obligatorias}',
+    'eficiencia.enBreve.entregas.frase':
+      'Va presentar {presentadas} de les {obligatorias} [[entrega|entregues]] obligatòries al Ministeri. La de {faltan}, no.',
+    'eficiencia.enBreve.entregas.todas':
+      'Va presentar les {obligatorias} [[entrega|entregues]] obligatòries al Ministeri.',
+    'eficiencia.enBreve.entregas.figura':
+      '{presentadas} de {obligatorias} entregues presentades; la que falta va buida.',
+    'eficiencia.enBreve.preguntas.pregunta': 'A qui li ho pregunte?',
+    'eficiencia.enBreve.preguntas.cifraNota': 'preguntes registrades',
+    'eficiencia.enBreve.preguntas.frase':
+      'Hem deixat {n} preguntes registrades, dirigides a institucions i mai a persones. Qualsevol resposta es publicarà íntegra.',
+    'eficiencia.enBreve.preguntas.nota':
+      'Qui té delegada cada competència és a «Costa · aconseguix · respon», servei a servei.',
     'opinion.rotulo': "Opinió de l'editor · signada",
     'opinion.firma': 'Signa {nombre}, {rol} · {fecha}',
     'opinion.hechos': 'Els fets en què es basa',
@@ -4063,6 +4143,15 @@ export const CATALOGUE = {
     'glosario.obligacionesReconocidas.termino': 'Obligacions reconegudes',
     'glosario.obligacionesReconocidas.def':
       "Factures i despeses que l'Ajuntament ja ha donat per bones i ha de pagar. És l'única xifra del pressupost que és despesa. No és el mateix que el que s'ha pagat.",
+    'glosario.costeEfectivo.termino': 'Cost efectiu',
+    'glosario.costeEfectivo.def':
+      "El que l'Ajuntament declara al Ministeri d'Hisenda que li va costar prestar un servei en un any. No és tota la seua despesa ni una dada de qualitat.",
+    'glosario.cantidadSinRemedir.termino': 'Quantitat sense tornar a mesurar',
+    'glosario.cantidadSinRemedir.def':
+      "Una quantitat de servei (tones, metres, punts de llum) que l'Ajuntament declara igual, decimal a decimal, any rere any. Si no es torna a mesurar, el cost per unitat només seguix la despesa.",
+    'glosario.entrega.termino': 'Entrega',
+    'glosario.entrega.def':
+      "L'enviament anual obligatori d'estes dades al Ministeri, abans de l'1 de novembre (article 116 ter de la Llei de Bases de Règim Local).",
     'glosario.deudaViva.termino': 'Deute viu',
     'glosario.deudaViva.def':
       "El que l'Ajuntament deu a bancs i altres entitats en tancar l'any. No és el capítol «Deute públic» del pressupost, que és el que s'aparta cada any per a pagar-lo.",

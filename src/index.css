@@ -1565,6 +1565,56 @@ body.cp-kiosk .cp-live-container {
   color: var(--ink70);
 }
 
+/* «En breve» de /eficiencia: la cifra quieta (un recuadro por año con el
+   MISMO número dentro) y las entregas (la que falta, hueca). Rejillas que se
+   reparten solas para caber a 375 px. */
+.cp-efi-congelada,
+.cp-efi-entregas {
+  display: grid;
+  gap: 4px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.cp-efi-congelada {
+  grid-template-columns: repeat(auto-fill, minmax(64px, 1fr));
+}
+.cp-efi-congelada li {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 4px 2px;
+  border: 1px solid var(--border);
+  border-radius: var(--r-input);
+  background: var(--warn-soft);
+}
+.cp-efi-congelada-anio {
+  font-size: var(--fs-micro);
+  color: var(--ink50);
+}
+.cp-efi-congelada-valor {
+  font-size: var(--fs-meta);
+  color: var(--warn-ink);
+}
+.cp-efi-entregas {
+  grid-template-columns: repeat(auto-fill, minmax(38px, 1fr));
+}
+.cp-efi-entregas li {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 26px;
+  border-radius: var(--r-input);
+  background: var(--civic);
+  color: var(--civic-on);
+  font-size: var(--fs-micro);
+}
+.cp-efi-entregas li.cp-efi-entrega-falta {
+  background: transparent;
+  border: 1.5px dashed var(--warn-ink);
+  color: var(--warn-ink);
+}
+
 /* La opinión del editor (components/eficiencia/OpinionEditor.jsx). Un marco
    propio, distinto de las tarjetas de dato: borde de tinta entero, el rótulo
    «Opinión» antes que el titular y el titular en serif. Que se vea de un

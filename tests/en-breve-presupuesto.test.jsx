@@ -139,7 +139,7 @@ describe('el glosario', () => {
       }
   })
 
-  it('cada clave tiene su fila en useGlosario, con un destino en /presupuesto', () => {
+  it('cada clave tiene su fila en useGlosario, con un destino en la sección que la explica', () => {
     let filas = []
     function Lee() {
       filas = useGlosario()
@@ -154,7 +154,9 @@ describe('el glosario', () => {
     for (const f of filas) {
       expect(f.termino, f.clave).not.toMatch(/^glosario\./)
       expect(f.def, f.clave).not.toMatch(/^glosario\./)
-      expect(f.to, f.clave).toMatch(/^\/presupuesto#(cascada|capitulos|deuda)$/)
+      expect(f.to, f.clave).toMatch(
+        /^\/(presupuesto#(cascada|capitulos|deuda)|eficiencia#sec-(servicios|declaracion|entregas))$/,
+      )
     }
   })
 

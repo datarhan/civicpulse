@@ -18,6 +18,7 @@ import { MARGEN_ANCLA } from '../components/eficiencia/anclas'
 import { PreguntasRegistradas } from '../components/eficiencia/PreguntasRegistradas'
 import { CuestaConsigueResponde } from '../components/eficiencia/CuestaConsigueResponde'
 import { OpinionEditor } from '../components/eficiencia/OpinionEditor'
+import EnBreveEficiencia from '../components/eficiencia/EnBreveEficiencia'
 import { useOpinionesEditor } from '../hooks/useOpinionesEditor'
 import { useIndicadores } from '../hooks/useIndicadores'
 import { useEficienciaFindings } from '../hooks/useEficienciaFindings'
@@ -207,6 +208,11 @@ export default function Eficiencia() {
         nombresOn={nombresOn}
         data={data}
       />
+
+      {/* La primera capa: cuatro preguntas de vecino, cada una con su enlace a
+          la sección que la demuestra. Debajo de la opinión, porque ésta es la
+          conclusión y aquéllas los hechos; encima del detalle. */}
+      {indicadores.length > 0 && <EnBreveEficiencia data={data} preguntas={preguntas} />}
 
       {/* Coste, resultado y competencia en los mismos años, para los servicios
           con un resultado publicado. Va antes del libro porque contesta la

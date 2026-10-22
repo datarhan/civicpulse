@@ -171,16 +171,51 @@ test.describe('Ventana LOREG · la capa de nombres', () => {
   }
 
   /**
-   * El libro de servicios no nombra a nadie NUNCA, y eso es una decisión.
+   * En /eficiencia, un nombre sólo puede ir en la columna «Responde» de
+   * «Cuesta · Consigue · Responde», y nunca en el libro.
    *
-   * Es la afirmación más fuerte que se puede hacer aquí y por eso se comprueba
-   * fuera de la ventana: /eficiencia es una tabla de comparación, y un nombre
-   * propio en una fila construye «mira lo que cuesta lo suyo» sin sitio donde
-   * quepa la frase que lo corrige. El nombre vive en la ficha, donde la
-   * salvedad del escalón entra en la misma tarjeta. Si alguien devuelve una
-   * columna de titulares al libro, esto se pone rojo antes de que se publique.
+   * Hasta octubre de 2026 esta prueba exigía que la página no nombrara a nadie
+   * en absoluto. El mantenedor pidió nombres junto a los datos, y el diseño
+   * (docs/superpowers/specs/2026-10-22-lectura-vecinal-eficiencia-design.md §3)
+   * los admite en un único sitio: la columna «Responde», al final de cada fila
+   * y con la salvedad que los desarma en la misma tarjeta (`CompetenciaDelegada`).
+   * El libro sigue siendo una tabla de comparación, y un nombre en una fila
+   * construye «mira lo que cuesta lo suyo» sin sitio para corregirlo: ahí sigue
+   * prohibido. Si alguien devuelve una columna de titulares al libro, o saca un
+   * nombre fuera de «Responde», esto se pone rojo antes de que se publique.
    */
-  test('/eficiencia no nombra a nadie, tampoco fuera de la ventana', async ({ page }) => {
+  test('/eficiencia sólo nombra en «Responde», nunca en el libro', async ({ page }) => {
+    await montar(
+      page,
+      '/eficiencia',
+      /¿Cuánto cuesta y qué se obtiene\?/i,
+      (PANEL.indicadores as Etiquetado[]).find((i) => i.valor !== null)!.etiqueta,
+    )
+    const fueraDeResponde = await page.evaluate((nombres) => {
+      // El texto de la página SIN las columnas «Responde», ni las opiniones
+      // firmadas, que son el otro sitio donde un nombre puede ir (y van con su
+      // propio contacto previo y réplica).
+      const copia = document.body.cloneNode(true) as HTMLElement
+      for (const fila of copia.querySelectorAll('[data-ccr-servicio]')) {
+        const cols = fila.querySelectorAll('.cp-ccr-columnas > section')
+        cols[2]?.remove()
+      }
+      for (const o of copia.querySelectorAll('[data-opinion]')) o.remove()
+      const texto = copia.textContent ?? ''
+      return nombres.filter((n) => texto.includes(n))
+    }, NOMBRES)
+    expect(fueraDeResponde, 'un nombre de competencias.json fuera de «Responde»').toEqual([])
+    const enLibro = await page.locator('#sec-servicios a[href^="/cargos/"]').count()
+    expect(enLibro, 'el libro volvió a enlazar a fichas de cargo').toBe(0)
+    // Mide algo: fuera de la ventana, «Responde» sí nombra.
+    const enResponde = await page
+      .locator('[data-ccr-servicio] .cp-ccr-columnas > section:nth-child(3)')
+      .allInnerTexts()
+    expect(NOMBRES.some((n) => enResponde.join(' ').includes(n))).toBe(true)
+  })
+
+  test('/eficiencia · congelada no nombra a nadie, tampoco en «Responde»', async ({ page }) => {
+    await congelar(page)
     await montar(
       page,
       '/eficiencia',
@@ -188,7 +223,7 @@ test.describe('Ventana LOREG · la capa de nombres', () => {
       (PANEL.indicadores as Etiquetado[]).find((i) => i.valor !== null)!.etiqueta,
     )
     const { etiquetas, nombres } = await cuenta(page)
-    expect(etiquetas, 'el libro volvió a enlazar a fichas de cargo').toBe(0)
-    expect(nombres, 'el libro volvió a nombrar a alguien de competencias.json').toBe(0)
+    expect(etiquetas, '/eficiencia rotula competencias dentro de la ventana').toBe(0)
+    expect(nombres, '/eficiencia nombra a alguien dentro de la ventana').toBe(0)
   })
 })

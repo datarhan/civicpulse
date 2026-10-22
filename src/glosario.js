@@ -16,7 +16,14 @@
  */
 
 /** Las claves del glosario. Un `[[clave|…]]` fuera de esta lista no se publica. */
-export const GLOSARIO = ['creditoDefinitivo', 'obligacionesReconocidas', 'deudaViva']
+export const GLOSARIO = [
+  'creditoDefinitivo',
+  'obligacionesReconocidas',
+  'deudaViva',
+  'costeEfectivo',
+  'cantidadSinRemedir',
+  'entrega',
+]
 
 const MARCA = /\[\[(\w+)\|([^\]]+)\]\]/g
 
