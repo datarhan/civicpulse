@@ -726,7 +726,9 @@ const SIN_REJILLAS = new Set([
   '/laboratorio/coste-esperado',
   '/nosotros',
   '/about',
-  '/metodologia',
+  // `/metodologia` salió de aquí el 22-10-2026: su «En breve» trae dos
+  // rejillas (las preguntas y la tira del dato), y desde entonces el control
+  // de abajo mide que cada bloque quepa en su caja.
   '/aviso-legal',
   // La ficha de quien dejó el cargo: la baja con su fuente, la identidad y el
   // mandato, en bloques apilados. Ninguna rejilla.
