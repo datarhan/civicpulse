@@ -22,7 +22,14 @@ export interface ExecLine {
 export interface ExecDoc {
   kind: ExecKind
   year: number
+  /**
+   * «Fecha de listado igual a: …», tal cual. Es un PARÁMETRO del informe, no el
+   * corte de los datos: la hoja del 2T de 2025, impresa el 30 de junio, dice
+   * 31/12/2025. El corte es `fechaDeCorte`.
+   */
   fechaListado: string | null
+  /** La fecha de impresión de la cabecera («30 de Junio del 2025»), dd/mm/aaaa. */
+  fechaImpresion: string | null
   chapters: ExecLine[]
   total: Omit<ExecLine, 'capitulo' | 'label'>
 }
@@ -67,6 +74,7 @@ export function parseBudgetExecutionPdf(text: string): ExecDoc {
   const kind: ExecKind = /Estado de ejecuci[oó]n de Ingresos/i.test(text) ? 'ingresos' : 'gastos'
   const year = Number((text.match(/Periodo:\s*(\d{4})/) || [])[1]) || 0
   const fechaListado = (text.match(/Fecha de listado[^:]*:\s*([\d/]+)/) || [])[1] || null
+  const fechaImpresion = fechaDeCabecera(text)
 
   const chapters: ExecLine[] = []
   // Marker → label = chars up to the first amount digit (handles both the
@@ -100,13 +108,84 @@ export function parseBudgetExecutionPdf(text: string): ExecDoc {
   const totAmounts =
     ti >= 0 ? firstAmounts(text.slice(ti + totMarker.length, ti + totMarker.length + 220), 9) : []
 
-  return { kind, year, fechaListado, chapters, total: amountsToLine(totAmounts, kind) }
+  return {
+    kind,
+    year,
+    fechaListado,
+    fechaImpresion,
+    chapters,
+    total: amountsToLine(totAmounts, kind),
+  }
+}
+
+const MESES = [
+  'enero',
+  'febrero',
+  'marzo',
+  'abril',
+  'mayo',
+  'junio',
+  'julio',
+  'agosto',
+  'septiembre',
+  'octubre',
+  'noviembre',
+  'diciembre',
+]
+
+/** «30 de Junio del 2025», la primera de la cabecera → «30/06/2025». */
+function fechaDeCabecera(text: string): string | null {
+  const m = text.slice(0, 400).match(/(\d{1,2}) de ([A-Za-zÁÉÍÓÚáéíóú]+) del? (\d{4})/)
+  if (!m) return null
+  const mes = MESES.indexOf(m[2].toLowerCase()) + 1
+  if (!mes) return null
+  return `${m[1].padStart(2, '0')}/${String(mes).padStart(2, '0')}/${m[3]}`
+}
+
+/** dd/mm/aaaa → aaaammdd, para comparar; null si no es una fecha. */
+function clave(f: string | null | undefined): string | null {
+  const m = f?.match(/^(\d{1,2})\/(\d{1,2})\/(\d{4})$/)
+  return m ? `${m[3]}${m[2].padStart(2, '0')}${m[1].padStart(2, '0')}` : null
+}
+
+/**
+ * Hasta cuándo llegan los datos de una hoja: la ANTERIOR de su parámetro de
+ * listado y su fecha de impresión. Una hoja impresa el 30 de junio no puede
+ * traer obligaciones de diciembre, diga lo que diga el parámetro.
+ */
+export function fechaDeCorte(doc: Pick<ExecDoc, 'fechaListado' | 'fechaImpresion'>): string | null {
+  const l = clave(doc.fechaListado)
+  const i = clave(doc.fechaImpresion)
+  if (l && i) return l <= i ? doc.fechaListado : doc.fechaImpresion
+  return l ? doc.fechaListado : i ? doc.fechaImpresion : null
+}
+
+/**
+ * De las hojas de un mismo periodo, la que publicar: con total válido, la de
+ * corte más tardío y, a igual corte, la de más capítulos (el detalle gana al
+ * resumen). Antes sólo contaban los capítulos, y con el 2T y el 4T de 2025 a
+ * ocho cada uno ganaba el primero de la página: el de junio.
+ */
+export function elegirDocumento(docs: ExecDoc[]): ExecDoc | null {
+  const validos = docs.filter((d) => d.total.actual > 0)
+  validos.sort((a, b) => {
+    const ca = clave(fechaDeCorte(a)) ?? ''
+    const cb = clave(fechaDeCorte(b)) ?? ''
+    if (ca !== cb) return cb.localeCompare(ca)
+    return b.chapters.length - a.chapters.length
+  })
+  return validos[0] ?? null
 }
 
 export interface BudgetExecutionPeriod {
   year: number
   trimestre: number | null
+  /** El CORTE de los datos (`fechaDeCorte` de las hojas): lo que la página dice «a …». */
   fechaListado: string | null
+  /** El parámetro «Fecha de listado» de la hoja, tal cual. */
+  fechaListadoFuente: string | null
+  /** false si gastos e ingresos salen de hojas con cortes distintos: no se publica. */
+  mismoCorte: boolean
   gastos: { total: ExecDoc['total']; chapters: ExecLine[] }
   ingresos: { total: ExecDoc['total']; chapters: ExecLine[] }
   ejecucionPct: { gastos: number; ingresos: number }
@@ -125,7 +204,12 @@ export function mergeExecutionPeriod(
   return {
     year: gastos.year || ingresos.year,
     trimestre: meta.trimestre,
-    fechaListado: gastos.fechaListado ?? ingresos.fechaListado,
+    fechaListado: fechaDeCorte(gastos) ?? fechaDeCorte(ingresos),
+    fechaListadoFuente: gastos.fechaListado ?? ingresos.fechaListado,
+    mismoCorte:
+      !fechaDeCorte(gastos) ||
+      !fechaDeCorte(ingresos) ||
+      fechaDeCorte(gastos) === fechaDeCorte(ingresos),
     gastos: { total: gastos.total, chapters: gastos.chapters },
     ingresos: { total: ingresos.total, chapters: ingresos.chapters },
     ejecucionPct: {
