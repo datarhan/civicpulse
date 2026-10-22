@@ -164,6 +164,12 @@ export interface AvisoMagnitud {
   palabra: string
   /** El fragmento, para que quien lo lea vea el problema sin abrir nada. */
   fragmento: string
+  /**
+   * Otras magnitudes con la MISMA cifra. En el cierre de 2025 el crédito
+   * inicial del ayuntamiento y el de CONPREL son el mismo 41.578.252,26 €, y
+   * la misma frase salía dos veces.
+   */
+  tambien?: string[]
 }
 
 /**
@@ -177,6 +183,9 @@ export function revisarMagnitudes(
   const hay = norm(texto)
   const avisos: AvisoMagnitud[] = []
   const vistos = new Set<string>()
+  // Una aparición de una cifra en el texto da UN aviso, aunque la cifra sea de
+  // dos magnitudes: las demás van en `tambien`.
+  const porAparicion = new Map<string, AvisoMagnitud>()
   for (const m of magnitudes) {
     if (m.esEjecucion) continue
     if (m.valor < SUELO_MAGNITUD) continue
@@ -199,10 +208,19 @@ export function revisarMagnitudes(
         if (!prevision) {
           const palabra = PALABRAS_DE_EJECUCION.find((p) => contienePalabra(ventana, p))
           if (palabra !== undefined) {
-            const clave = `${m.clave}|${palabra}`
-            if (!vistos.has(clave)) {
-              vistos.add(clave)
-              avisos.push({ clave: m.clave, forma, palabra, fragmento: ventana.trim() })
+            const aparicion = `${i}|${forma.length}`
+            const previo = porAparicion.get(aparicion)
+            if (previo) {
+              if (previo.clave !== m.clave && !previo.tambien?.includes(m.clave))
+                previo.tambien = [...(previo.tambien ?? []), m.clave]
+            } else {
+              const clave = `${m.clave}|${palabra}`
+              if (!vistos.has(clave)) {
+                vistos.add(clave)
+                const aviso = { clave: m.clave, forma, palabra, fragmento: ventana.trim() }
+                avisos.push(aviso)
+                porAparicion.set(aparicion, aviso)
+              }
             }
           }
         }

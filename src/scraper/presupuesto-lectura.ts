@@ -189,8 +189,11 @@ export function capituloDominante(
 /**
  * De quién es el cero del capítulo dominante. /presupuesto publica DOS
  * presupuestos aprobados del mismo ejercicio —el estado de ejecución del
- * propio Ayuntamiento y el remitido a CONPREL— y no se reconcilian: en 2025 el
- * primero abre Inversiones reales en 0 € y el segundo le da 905.517,35 €.
+ * propio Ayuntamiento y el remitido a CONPREL— y pueden no reconciliarse. Hasta
+ * el 2026-10-22 parecía que en 2025 el primero abría Inversiones reales en 0 €
+ * y el segundo le daba 905.517,35 €; era la hoja del 2T leída como cierre, y
+ * la del 4T da también 905.517,35 €. La lectura sigue aquí para el ejercicio
+ * que de verdad abra un capítulo en cero.
  * «Un capítulo que había empezado en cero», dicho en singular, elige una de
  * las dos sin nombrarla, justo donde más discrepan.
  *

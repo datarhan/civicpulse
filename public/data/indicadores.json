@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-22T14:20:06.744Z",
+  "generatedAt": "2026-10-25T07:44:09.769Z",
   "conjunto": "cv-15k-40k",
   "anioBase": 2024,
   "source": {
@@ -8634,7 +8634,7 @@
       },
       "caveats": [
         "Es una medida de ENTRADA: cuánto se presupuesta por vecino. Gastar más no es peor ni mejor —puede ser más servicio o menos eficiencia— y esta cifra sola no distingue las dos cosas.",
-        "Es una cifra presupuestaria de la publicación del ministerio, no gasto ejecutado. No es el punto de partida del porcentaje de ejecución que aparece más abajo: aquélla parte del crédito del listado municipal, las dos dicen ser el mismo ejercicio y la diferencia entre ambas sigue sin explicación.",
+        "Es una cifra presupuestaria de la publicación del ministerio, no gasto ejecutado: el crédito inicial, el mismo que da el listado municipal. El porcentaje de ejecución que aparece más abajo se mide sobre el crédito DEFINITIVO, que le suma las modificaciones del año.",
         "Sale de la publicación del ministerio, la misma fila cuyos ingresos y gastos no cuadran entre sí; /presupuesto lo explica."
       ],
       "citas": [
@@ -8740,16 +8740,16 @@
       "etiqueta": "Modificaciones sobre el presupuesto aprobado",
       "descripcion": "Crédito añadido durante el ejercicio, sobre el crédito inicial que aprobó el pleno.",
       "numerador": {
-        "valor": 24523314.93,
+        "valor": 25494616.63,
         "estado": "declarado",
         "fuente": "budget-execution:2025:gastos.total.modificaciones"
       },
       "denominador": {
-        "valor": 37599838.15,
+        "valor": 41578252.26,
         "estado": "declarado",
         "fuente": "budget-execution:2025:gastos.total.inicial"
       },
-      "valor": 0.6522186300953532,
+      "valor": 0.6131719166687263,
       "formato": "porcentaje",
       "periodo": "2025 (a 31/12/2025)",
       "caveats": [
@@ -8769,22 +8769,22 @@
       "etiqueta": "Ejecución del presupuesto de gastos",
       "descripcion": "Gasto reconocido sobre el crédito definitivo, inicial más modificaciones.",
       "numerador": {
-        "valor": 18909465.12,
+        "valor": 40344388.83,
         "estado": "declarado",
         "fuente": "budget-execution:2025:gastos.total.ejecutado"
       },
       "denominador": {
-        "valor": 62123153.08,
+        "valor": 67072868.89,
         "estado": "declarado",
         "fuente": "budget-execution:2025:gastos.total.actual"
       },
-      "valor": 0.3043867573117073,
+      "valor": 0.6015008676036371,
       "formato": "porcentaje",
       "periodo": "2025 (a 31/12/2025)",
       "caveats": [
         "«Ejecutado» son obligaciones reconocidas netas, la medida estándar de ejecución presupuestaria; no son pagos hechos.",
-        "El denominador es el crédito DEFINITIVO, que incluye las modificaciones incorporadas a lo largo del ejercicio —algunas a final de año, cuando ya no da tiempo a gastarlas—. Buena parte de un porcentaje bajo es crédito inflado, no sólo gasto que no se hizo: el capítulo de inversiones reales partió de cero crédito inicial, incorporó 22,06 M€ por modificación y ejecutó el 4,7 %.",
-        "No cuadra con la cifra de /presupuesto: aquélla viene de la publicación del ministerio y da 41,58 M€ de CRÉDITO de gastos para 2025, y el propio listado municipal parte de un crédito inicial de 37,60 M€. Las dos dicen ser el mismo ejercicio y difieren en casi cuatro millones; no sabemos cuál de las dos lo explica, y decir que una es «lo aprobado» y la otra «lo definitivo» sería inventarse la reconciliación."
+        "El denominador es el crédito DEFINITIVO, que incluye las modificaciones incorporadas a lo largo del ejercicio —algunas a final de año, cuando ya no da tiempo a gastarlas—. El capítulo que más creció, inversiones reales, partió de 905.517,35 € de crédito inicial, incorporó 22,78 M€ por modificación y ejecutó el 10,4 %.",
+        "Coincide con la cifra de /presupuesto: el crédito inicial del listado municipal, 41,58 M€, es el mismo que publica el ministerio (CONPREL) para 2025."
       ],
       "citas": [
         {
