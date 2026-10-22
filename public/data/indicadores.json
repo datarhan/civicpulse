@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-22T13:56:41.851Z",
+  "generatedAt": "2026-10-22T14:11:46.068Z",
   "conjunto": "cv-15k-40k",
   "anioBase": 2024,
   "source": {
@@ -8987,11 +8987,11 @@
         ],
         "pares": {
           "conjunto": "cv-15k-40k · nitrato medio de 2025 en su red principal",
-          "n": 54,
-          "percentil": 94,
-          "p25": 3.75,
+          "n": 57,
+          "percentil": 95,
+          "p25": 3.5,
           "mediana": 11,
-          "p75": 17.25
+          "p75": 17.333333333333332
         },
         "comoSeLee": "El nitrato llega al agua desde el acuífero —abono agrícola filtrado al subsuelo—, no desde la red: según su ficha en SINAC, la principal toma el agua de pozo entubado y la trata con desinfección química. Mide el agua que sale del grifo, no lo bien que se gestiona la red ni lo que cuesta: se publica junto al coste, nunca dividido por él.",
         "caveats": [
@@ -9000,7 +9000,7 @@
           "La consulta pública de SINAC enseña sólo los últimos boletines de cada red, no todos los del año. Entre los 73 calificados que enseña hoy en las 6 redes, 2 salieron «no apta»: 19-06-2024, red con gestor SAFIBEL, SL (nitrato 71 mg/L); 22-06-2022, red con gestor TRADICION EDUCATIVA VALENCIANA SL (nitrato 54 mg/L). El nitrato pasaba de su límite legal (50 mg/L) en todos; el boletín no dice qué parámetro decidió la calificación.",
           "El año entero lo cuenta el informe anual del Ministerio de Sanidad, por zona de abastecimiento. Zona RIBA-ROJA DE TURIA 1, la de la red principal: 2021, 55 «no apto» de 485; 2022, 0 «no apto» de 731 (el informe la lista dos veces, con grafías distintas; sumamos las dos); 2023, 99,1 % de aptos de 830; 2024, 99,2 % de aptos de 1037. «No apto» es, según el informe, «Boletines No Aptos para el consumo y No Aptos con riesgos para la salud». No dice qué parámetro, y desde 2023 publica sólo el porcentaje de aptos, que no separa «no apto» de «sin calificar».",
           "Otras zonas del término en el mismo informe: 2021, RIBARROJA - 2 - POLÍGONO OLIVERAL: 55 «no apto» de 456; 2022, RIBA-ROJA 8- COLEGIO MARÍA DE ICIAR: 2 «no apto» de 5; 2023, RIBA ROJA DE TURIA 2 - MASIA DEL OLIVERAL: 99,1 % de aptos de 745; 2023, RIBA-ROJA 6 - RESIDENCIA 3ª EDAD ENTRE NARANJOS: 66,7 % de aptos de 14; 2024, RIBA ROJA DE TURIA 2 - MASIA DEL OLIVERAL: 99,2 % de aptos de 1036; 2024, RIBA-ROJA 6 - RESIDENCIA 3ª EDAD ENTRE NARANJOS: 88,9 % de aptos de 11.",
-          "En los 54 municipios parecidos (cv-15k-40k), 42 de sus 180 redes tienen algún «no apta» entre los boletines que SINAC enseña (124 de 3126 análisis calificados), en 21 municipios; 19 de esas redes tienen un gestor distinto del de la red principal de su municipio.",
+          "En los 57 municipios parecidos (cv-15k-40k), 45 de sus 187 redes tienen algún «no apta» entre los boletines que SINAC enseña (129 de 3243 análisis calificados), en 22 municipios; 20 de esas redes tienen un gestor distinto del de la red principal de su municipio.",
           "Guardamos cada boletín que SINAC enseña desde el 22-10-2026; lo anterior es lo que la página aún mostraba ese día."
         ],
         "otrasLecturas": [
