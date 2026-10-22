@@ -1,230 +1,233 @@
-# Lectura vecinal — `/eficiencia`
+# Lectura vecinal — `/eficiencia` (v2: conclusions, names, results)
 
-**Status:** proposal, unbuilt. A sibling of
-[`2026-10-21-lectura-vecinal-design.md`](2026-10-21-lectura-vecinal-design.md),
-whose «En breve» pattern (`src/components/EnBreve.jsx`) this reuses.
-**Figures:** the examples are as the page read on the 2026-10-22 build, to show
-the copy. None of them may be written into the page by hand: each one is derived
-from the snapshot, as the rest of the page already does.
+**Status:** proposal, unbuilt. v2 after the maintainer asked for conclusions at
+the top, councillors' names tied to the data, and a way to tell whether the
+administration does its job. The maintainer proposed that the conclusions run as
+a signed **editor's opinion**.
 
-`/eficiencia` is **legally material** (CLAUDE.md, «Legally material
-surfaces»). Every proposal below is checked against those rules in
-[Guardrails](#guardrails), and two of them need a maintainer decision
-([Decisions](#decisions-for-the-maintainer)).
+**Figures:** the worked example uses the 2026-10-22 snapshots, to test the
+design against real data. The page itself must derive every figure; none goes
+into copy by hand.
 
-## The problem
+Sibling of [`2026-10-21-lectura-vecinal-design.md`](2026-10-21-lectura-vecinal-design.md).
+`/eficiencia` is legally material (CLAUDE.md).
 
-The page's H1 asks the resident's question: **«¿Cuánto cuesta y qué se
-obtiene?»** What follows it answers a statistician's question.
+## 1. The problem, restated
 
-- **The short answer is method, not an answer.** «La respuesta corta tiene dos
-  partes y manda la segunda: de los 14 servicios comparables, 6 no se
-  distinguen de la mediana … 13 de las 15 divisiones se hacen entre una
-  cantidad que nadie vuelve a medir, así que sus series no se pueden leer como
-  gestión.» Every claim in it is true. But a resident has to know what a
-  median, a division and a «serie» are before any of it lands. And it never
-  says how much anything costs.
-- **The «Estado de la rendición» card speaks in auditor's terms.** «cantidades
-  sin remedir desde 2018-2019 · 13 de 15», «entregas publicadas que no pueden
-  ser un coste · 5».
-- **Each row of the book carries six encodings:** total cost, unit cost, the
-  divisor with its frozen flag, «×1,25» against the median, a percentile bar
-  with a plausible band («p85 · banda 75-94 · por encima»), and a deflated
-  sparkline. A two-line legend in micro type explains the bar. The filter chips
-  are «Posición que se distingue · 8», «Sin cociente · 0».
-- **The strongest finding is buried.** The council has declared the same
-  physical quantities for years: the same 11.059,41 tonnes of waste, the same
-  700.000 m² of street cleaning, the same 4.514 street lights. That is the
-  most concrete and most shareable fact on the page. It sits in the third
-  section, behind «Denominadores que el ayuntamiento no vuelve a medir», and in
-  the signed finding at the very bottom.
-- **Length:** about 3.300 words; ~5.600 px on desktop, ~12.700 px at 375 px.
-  The method tail («Cómo se lee», «Qué cubre esta página») is longer than the
-  book.
-- **Language:** `RespuestaCorta`, `EstadoRendicion` and `LoQuePermite` hold
-  their copy as literal Castilian in JSX, so the top of the page never
-  translates (`docs/REVIEW_2026-09.md` §16).
+v1 made the page readable. It did not make it **conclusive**, and a resident
+still leaves without the answer to «¿lo hacen bien?». The page already holds
+the three things that question needs, but they are separated:
 
-What the page already does well, and must keep:
+| Ingredient             | Where it lives today                                                                                                                                       | How a resident meets it                           |
+| ---------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------- |
+| **What it costs**      | `indicadores.json`: cost per service, its series in constant euros, and the peer median per year                                                           | as a percentile bar in a row of the book          |
+| **What was obtained**  | `indicadores.json → resultados`: so far, known penal infractions per 1.000 inhabitants (Portal Estadístico de Criminalidad), placed beside the police card | only inside the service's ficha, after the method |
+| **Who answers for it** | `competencias.json`: curated, frozen, sourced from the delegation decree                                                                                   | only in the ficha, in the same card as the caveat |
 
-- It refuses a grade (`docs/DESCRIPCION.md`).
-- It does not colour position («un coste unitario alto es un precio, no un
-  suspenso»).
-- It says what the numbers cannot conclude («Lo que no»).
-- It addresses its questions to institutions, never to people.
+Nobody draws the line between them, and the page deliberately refuses to draw it
+by machine. The proposal draws it **by a person, signed, as opinion**. Below
+that opinion, the page shows the facts in a shape that makes the reader's own
+judgment easy.
 
-The redesign changes the reading order and the register. It does not change any
-of those decisions.
+## 2. Worked example: policía local
 
-## What a resident actually asks
+This is the case the maintainer raised («they spend much more on police but
+crime grows»). The design has to get this one right.
 
-| Question                                  | Answer, in plain words (2026-10-22 build)                                                                                                                                                                                                   | Built from                                               | Proves it             |
-| ----------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------- | --------------------- |
-| ¿Cuánto cuestan los servicios?            | «Los 15 servicios que mide el Ministerio costaron 19,5 M€ en 2024.» The largest: policía local, colegios, urbanismo. Caveat in the card: it is the cost the council _declares_, not all municipal spending and not «lo gastado».            | `costeDeclarado` per indicator; `anioBase`               | `#sec-servicios`      |
-| ¿Es caro comparado con pueblos parecidos? | «En 8 de 14 servicios Riba-roja se sale del grupo de municipios parecidos: en 6 cuesta menos por unidad, en 2 más. En los otros 6 no se distingue.» Caveat: a unit cost is a price, not a grade, and the «unit» is the next card's problem. | `particionPosiciones` (already used by `RespuestaCorta`) | `#sec-servicios`      |
-| ¿Lo hacen bien?                           | «Esta página no lo puede decir: el Ministerio no pide ningún dato de calidad. Y además, 13 de las 15 cantidades que el Ayuntamiento declara llevan años sin cambiar, como las mismas 11.059,41 toneladas de basura desde 2019.»             | `recuentos().congelados`, `declaracion.denominador`      | `#sec-declaracion`    |
-| ¿Cumple con rendir cuentas?               | «Presentó 10 de las 11 entregas obligatorias. La de 2020, no.»                                                                                                                                                                              | `cobertura.entregasNoPresentadas`                        | `#sec-entregas`       |
-| ¿A quién se lo pregunto?                  | «Dejamos 7 preguntas registradas, cada una dirigida a una institución, y su respuesta se publicará entera.»                                                                                                                                 | `eficiencia-preguntas.json`                              | the preguntas section |
+| Fact (source)                                                         | 2021     | 2024     | Change                                |
+| --------------------------------------------------------------------- | -------- | -------- | ------------------------------------- |
+| Declared cost, nominal (MinHac coste efectivo)                        | 2,47 M€  | 4,26 M€  | +72 %, of which +54 % in 2022 alone   |
+| Cost per officer, constant 2024 € (ours, from the ministry's figures) | 54.808 € | 81.965 € | **+49,5 %**                           |
+| Same, median of the 48 comparable towns                               | 62.646 € | 65.496 € | **+4,5 %**                            |
+| Officers declared (the divisor)                                       | 52       | 52       | frozen since 2019, 5 filings in a row |
+| Known penal infractions ‰ inhabitants (Interior)                      | 54,5     | 58,6     | +7 % (63,6 in 2025: +17 % on 2021)    |
+| Same, position in its group (45 towns > 20.000 inhabitants)           | —        | —        | p87 in 2025; group median 46,3 ‰      |
 
-Two things in this table do the most work.
+What it supports, plainly:
 
-**The third card is the page's real finding, said concretely.** «Las mismas
-toneladas desde 2019» is something anyone can judge. «Denominadores
-congelados» is not.
+- Riba-roja pays far more per declared officer than it did, and far more than
+  similar towns, whose cost barely moved.
+- Known crime per inhabitant is high for its group and higher than in 2021.
 
-**The second card turns the percentile bar into words**, one to one with the
-three states the bar already has:
+What it does **not** support, and the opinion block must say so:
 
-| The bar today                    | Plain words                                        |
-| -------------------------------- | -------------------------------------------------- |
-| «por encima»                     | «cuesta más por unidad que la mayoría del grupo»   |
-| «por debajo»                     | «cuesta menos por unidad que la mayoría del grupo» |
-| «cruza la mediana»               | «no se distingue del grupo»                        |
-| «no llegan a quince comparables» | «no hay bastantes municipios para comparar»        |
+- **More officers or higher pay?** Unknown. The council has declared 52 officers
+  every year since 2019. A cost rise over a frozen headcount reads as «more
+  per officer» even if the force grew.
+- **Did the spending work?** The infraction count includes Guardia Civil and
+  Policía Nacional, counts _known_ facts (more patrols can raise it), and 2020
+  is a pandemic floor. It is not a product of the local police.
+- **Who decided?** Most of the rise is in 2022. The current delegations date
+  from the 2023–2027 mandate, so attributing the 2022 jump to the current
+  holder of the delegation would be false. Attribution has to follow tenure.
 
-The plain words never add a fourth state or a degree («mucho más caro»), and
-they always sit in the same card as the caveat that unlocks them.
+This example sets the rules for the whole design. The facts are strong enough
+for a pointed opinion. They are not strong enough for the opinion to say the
+service is badly run, or to say who is to blame.
 
-## The proposal
-
-### 1. «En breve» above the current short answer
-
-Five question cards using `EnBreve`, in the order of the table. Each card has
-one figure, one sentence, its caveat and a «Ver el detalle ↓».
-
-- **¿Cuánto cuestan?** Horizontal bars for the five largest services by
-  declared cost, with plain names («Policía local», «Colegios»). The official
-  name goes in the `title` and in the book below. A sixth bar, «Resto», is in
-  grey.
-- **¿Es caro comparado?** Three groups of service chips: _cuesta menos por
-  unidad_ · _no se distingue_ · _cuesta más por unidad_. Chip colour is the
-  same neutral petrol for all three: position is not coloured, as on the page
-  today.
-- **¿Lo hacen bien?** The **frozen-number strip**: one service's declared
-  quantity, year by year, in a row of year chips. The chips appear in order
-  and the number does not move. That is the motion: marks enter, and the text
-  (the frozen value) never changes, because not changing is the point. Below
-  it: «13 de 15 cantidades, iguales año tras año».
-- **¿Cumple?** The existing 11 boxes of `EntregasBarras`, small, with 2020
-  hollow.
-- **¿A quién pregunto?** The count of registered questions, and their
-  addressees as institutions (Alcaldía, the council, Consorci València
-  Interior).
-
-The current `RespuestaCorta` stays, moved under «En breve» and renamed for what
-it is: «La lectura técnica». `EstadoRendicion` stays as the expert's sidebar.
-Nothing below is removed.
-
-### 2. The book, readable without the legend
-
-The book is where a resident looks for _their_ service (the bins, the police,
-the library). Each row keeps every expert encoding, but leads with a plain
-line:
+## 3. The design: three layers, kept apart on purpose
 
 ```
-Recogida de residuos                               740.272 €
-Cuesta menos por unidad que la mayoría de pueblos parecidos.
-⚠ La cantidad que divide (toneladas) no se remide desde 2019.
-──────────────────────────────────────────────────────────────
-66,94 €/t · ÷ 11.059,41 t · ×0,52 · p13 · banda 3-27 · ▁▂▁▁▁
+┌──────────────────────────────────────────────────────────────────┐
+│ LA OPINIÓN DEL EDITOR · firmada · 14-11-2026                     │  ← layer 1
+│ «La policía local cuesta hoy un 50 % más por agente que en 2021  │    human, signed,
+│  y sus vecinos parecidos apenas han subido. No sabemos si son    │    opinion
+│  más agentes o mejores sueldos: el Ayuntamiento declara 52 desde │
+│  2019. Debería decirlo…»                                         │
+│ Hechos en que se basa ↓ · Lo que no sabemos ↓ · Respuesta ↓      │
+├──────────────────────────────────────────────────────────────────┤
+│ CUESTA · CONSIGUE · RESPONDE   (one row per service)             │  ← layer 2
+│  [cost slope vs group] [result slope vs group] [who · asked ·    │    derived facts,
+│                                                 answered?]       │    no valence
+├──────────────────────────────────────────────────────────────────┤
+│ En breve (v1) · el libro · método · hallazgos firmados           │  ← layer 3
+└──────────────────────────────────────────────────────────────────┘    unchanged
 ```
 
-- The plain line is derived from the same `posicion` field as the bar, through
-  the table above.
-- The frozen-divisor warning is already on the row («cantidad sin remedir
-  desde 2019»). It moves next to the plain line, because it is what qualifies
-  it.
-- Filter chips take plain names:
-  - «Se sale del grupo · 8»
-  - «Como el grupo · 6»
-  - «Sin bastantes comparables · 1»
-- At 375 px the expert line folds into the row's link to its ficha, which
-  already carries all of it.
+### Layer 1 — «La opinión del editor»: conclusions at the top
 
-### 3. Glossary
+The maintainer's proposal, made safe by construction. **It is the only place on
+the page where a judgment and a name can meet.**
 
-Add to `src/glosario.js` the terms the page and its fichas use. The «En breve»
-cards and the book's headers mark them with `[[clave|…]]`, and Cmd+K finds
-them.
+- **Written and signed by a person.** It has a named editor and a date. It is
+  never generated: no model writes it, and no script edits it. «Nothing
+  automatic rewrites published prose» (data-integrity rule 4) applies in full.
+- **Labelled as opinion**, in its own visual frame, like a newspaper editorial
+  next to the news. It is not a data card and carries no data-card styling. The
+  label sits at its top, not in a footnote.
+- **A factual basis is mandatory and linked.** Every sentence that states a
+  fact cites an indicator, result or signed finding by id. Spanish case law
+  protects opinion more broadly than information, but an opinion still needs a
+  sufficient factual basis. A value judgment that implies a false fact is
+  judged as information.
+- **«Lo que no sabemos» is mandatory.** For police: headcount, causality, and
+  tenure (§2).
+- **Tenure-aware naming.** A name may appear only for the period in which that
+  person held the competence (§4), and only as the holder of the competence,
+  never as the cause of an outcome.
+- **«Sin sorpresas».** Before publication the named holder gets the text, a
+  deadline, and the right to have a reply printed **beside** the opinion. This is
+  the pre-publication contact in `docs/REVIEW_2026-09.md` Phase 2. Silence is
+  recorded as silence, with its dates.
+- **Corrections leave a record**, through the corrections CLI, never a silent
+  edit.
+- **LOREG.** Recommendation: no new editorial that names a candidate after the
+  elections are called, and published ones freeze. `frozenUntil` already
+  freezes every automated path; this extends the same discipline to the one
+  human path that names candidates. The maintainer decides; see §7.
 
-| Term                 | Plain definition (draft)                                                                                                           |
-| -------------------- | ---------------------------------------------------------------------------------------------------------------------------------- |
-| Coste efectivo       | Lo que el Ayuntamiento declara al Ministerio que le costó prestar un servicio en un año. No es todo el gasto municipal.            |
-| Coste unitario       | El coste del servicio dividido entre la cantidad que presta: euros por tonelada, por metro, por usuario.                           |
-| Mediana              | El municipio del medio: la mitad de los parecidos cuesta más y la otra mitad menos.                                                |
-| Banda plausible      | El margen dentro del cual podría estar la posición de Riba-roja con estos datos. Si incluye la mediana, no se distingue del grupo. |
-| Cantidad sin remedir | Una cantidad que el Ayuntamiento declara igual, decimal a decimal, año tras año.                                                   |
-| Entrega              | El envío anual obligatorio de estos datos al Ministerio (art. 116 ter LRBRL).                                                      |
+Mechanics, so the safeguards stay encoded and not just written down:
 
-### 4. The method tail stays, shorter to reach
+- A new curated file, `public/data/opiniones-editor.json`, entered in `CURATED`
+  (`.claude/hooks/curated-paths.mjs`) with its own CLI (`npm run opinion`). The
+  guard hook then denies any automated write.
+- Its validator requires `firma`, `fecha`, `hechos[]` (ids that must resolve),
+  `noSabemos[]` (non-empty), and `contactoPrevio { fecha, canal, plazo, respuesta | null }`
+  whenever a name appears. It rejects `requiresHumanApproval` (machine
+  provenance), an empty `hechos`, and a name outside the person's tenure.
+- `check:opiniones` re-reads every cited fact with the four outcomes of
+  `check:eficiencia-findings` (`coincide` · `movido` · `contradice` ·
+  `sin-indicador`). An opinion whose basis now says something else shows a
+  notice on the page until the editor revisits it.
+- Draft opinions that name a person live in `editorial/` (gitignored) until
+  signed, as all unreviewed prose about a living person must
+  (`check:editorial`).
 
-«Método, cobertura y lo firmado» stays entire and in place. **«Hallazgos
-firmados» is never folded:** it is legally material, carries the right of
-reply, and is the page's signed claim. Only «Cómo se lee un coste unitario» and
-«Qué cubre esta página» could become `<details>` closed by default at ≤ 768 px.
-That is the single change that cuts the mobile page by about a third. It is
-optional, and a reader who opens them gets the full text.
+### Layer 2 — «Cuesta · Consigue · Responde», one row per service
 
-### 5. Valencià
+Facts only, derived, with no valence words. This is the creative core: the
+resident sees the three ingredients side by side, on the same years, against
+the same comparison group, and can judge without being told.
 
-The new layer is catalogue strings, so it translates from day one. Moving
-`RespuestaCorta`, `EstadoRendicion` and `LoQuePermite` into the catalogue is a
-separate, mechanical follow-up.
+- **Cuesta:** an _indexed slope chart_ (2021 = 100). Riba-roja's real cost
+  against the peer median. Police: 100 → 150 against 100 → 105. Motion: both
+  lines draw (`cp-traza`), and the end labels are static text.
+- **Consigue:** the same chart for the service's result, where one exists:
+  infractions ‰ for police, recycling rate for waste, and so on, each from an
+  independent public source. Where none exists, the cell says «el Ministerio no
+  pide ningún resultado de este servicio», not a blank.
+- **Responde:**
+  - who held the delegated competence, per period (the tenure ribbon, §4);
+  - the registered question for this service and its **clock**: «preguntado el
+    12-09 · plazo legal 1 mes · 40 días sin respuesta»;
+  - the governing party's promise for the area from `/promesas`, or «no
+    consta ninguna promesa sobre esto».
+- **Mandate shading** behind both slopes (2019–2023, 2023–2027), so a jump is
+  read against who was in office.
+- **Words of direction, never of value.** «sube», «baja», «más que el grupo»,
+  «menos que el grupo». Never «mejor», «peor», «mal gestionado». The
+  thresholds for «más que el grupo» are the band rules the book already uses.
 
-## Guardrails
+What makes this layer more than the ficha's «al lado, nunca dividido»:
 
-These are the `/eficiencia` rules from CLAUDE.md, and how the proposal stays
-inside each one:
+- the same index base for cost and result;
+- the peer trend as the counterfactual («¿subió en todas partes?»), which is
+  what a resident cannot get anywhere else;
+- the response clock, which turns «a quién pregunto» into «¿contestan?».
+  Answering is conduct, attributable to the holder without any causal claim.
 
-- **A finding describes a service or a process, never a person.** No card
-  names anyone. «¿A quién pregunto?» names _institutions_, exactly as the
-  preguntas section does. Delegated-competence names stay where they are today:
-  only in the ficha, in the same card as the caveat that disarms them.
-- **Group by functional area, never by concejalía.** The «¿Cuánto cuestan?»
-  bars are services, not portfolios. A future «agrupar» stays on `AREAS`.
-- **No grade, no scoreboard.** No total score and no green/red. «Cuesta
-  menos» is not «lo hace mejor», and the card says so. The «¿Lo hacen bien?»
-  card's answer is literally «no se puede decir», with the reason.
-- **Peers are named only because the division is the ministry's.** «Pueblos
-  parecidos» is the ministry's band (Comunitat Valenciana, 15.000–40.000
-  inhabitants). It is described, never ranked, and no other municipality is
-  named in the summary.
-- **A number is not a verbatim.** Every figure in «En breve» is derived at
-  render time from `indicadores` / `cobertura`. None is frozen in copy, so
-  `check:eficiencia-findings`' four outcomes keep governing only the signed
-  fichas, as today.
-- **LOREG freeze.** «En breve» names no candidate and moves no claim, so the
-  freeze does not need to hide it. Any competence line added later would fall
-  under it, like the existing layer.
-- **`/metodologia` and `/aviso-legal`** are not changed by a reading layer.
-  If decision 2 below adds a per-resident figure, `/metodologia#eficiencia`
-  must say how it is computed, in the same PR.
+### Layer 3 — unchanged
 
-## Decisions for the maintainer
+v1's «En breve», the book, the method tail and the signed findings stay as
+designed.
 
-1. **Plain-language position wording.** Is «cuesta más / menos por unidad que
-   la mayoría de pueblos parecidos» acceptable on a legally material surface,
-   always paired with «un precio no es una nota» and the frozen-divisor
-   warning? The alternative is to keep only the bar and «se sale / no se
-   sale del grupo», which is safer but less clear.
-2. **Euros per resident.** Residents understand «173 € por vecino al año para
-   la policía local» far better than «81.965 €/efectivo». But it is a division
-   _we_ would make (ministry cost ÷ INE padrón of the same year), not one the
-   ministry publishes. Options:
-   - publish it, labelled «cálculo nuestro» with its padrón year, and
-     documented in `/metodologia`;
-   - or leave it out.
+## 4. Names, tied to the data honestly
 
-   It must never be compared across municipalities, which would turn it into
-   the ranking the page refuses.
+| Kind of fact                                     | May carry a name?                                                                                                               | Example                                                                       |
+| ------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------- |
+| **A decision** (vote, decree, award)             | Yes. It is an act, sourced to the acta or the BOP, at bloc level unless a curator promotes it (single-seat blocs = individual). | «El presupuesto de 2022 lo aprobaron con sus votos …»                         |
+| **Conduct** (answered? filed? met the deadline?) | Yes, as holder of the competence, with dates.                                                                                   | «Pregunta a la delegación de Seguridad y emergencias: 40 días sin respuesta.» |
+| **An outcome** (crime, recycling, cost per unit) | **No**, not by itself. Only inside the signed opinion, as context, never as cause.                                              | —                                                                             |
 
-## Rollout
+The **tenure ribbon** under each series names who held the delegated
+competence in each period, from the delegation decrees. Today
+`competencias.json` holds only the 2023–2027 mandate. The 2019–2023 decree has to
+be curated first; until then the ribbon says «2019–2023: sin decreto
+incorporado» and names no one for those years.
 
-1. «En breve» cards 1, 3, 4 and 5, which need no decision. Glossary terms.
-2. Card 2 and the book's plain line, after decision 1.
-3. The per-resident figure, only if decision 2 says yes.
-4. `/gestion`, the sibling page (PMP, CONPREL, contractors, execution), with
-   the same pattern.
-5. The reader test from the parent spec, with the task «¿cuánto cuesta la
-   recogida de basura y está bien?», which this page currently cannot answer
-   in plain words.
+## 5. Data work this needs
+
+| Gap                                                                                 | Source                                                              | Why                                                                |
+| ----------------------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------ |
+| Peer **trend** of infractions (only the latest percentile is stored)                | the same Interior CSVs `scrape-criminalidad` already reads          | the counterfactual: did crime rise in similar towns too?           |
+| **Real headcount** of the Policía Local                                             | the budget's _anexo de personal_ / RPT, published with each budget  | unfreezes the police divisor independently of the council's filing |
+| **Budget approval votes** (`pleno-votes.json` has 16 items, no budget approval)     | the actas of the budget plenos                                      | the «decision» row of §4                                           |
+| **2019–2023 delegation decree**                                                     | BOP València                                                        | tenure ribbon before 2023                                          |
+| More **results**: recycling rate, water quality (SINAC), and others                 | Generalitat / Consorci; Ministerio de Sanidad                       | «Consigue» for more than one service                               |
+| **Question clock**: questions sent as formal access requests (Ley 19/2013, 1 month) | `docs/superpowers/specs/2026-08-27-solicitudes-de-acceso-design.md` | turns «preguntas registradas» into a measurable answer rate        |
+
+## 6. What changes in the editorial contract
+
+An editor's opinion changes a published promise, and the same PR must say so:
+
+- **`docs/DESCRIPCION.md`** «Lo que esta herramienta no te va a dar: una nota».
+  The data still gives none. The editor may give an opinion, signed and
+  separate.
+- **`/metodologia`**: a new section on «La opinión del editor» (who writes it,
+  what it must cite, pre-publication contact, reply, corrections, LOREG).
+  Update the «¿Ponéis nota al Ayuntamiento?» card of «En breve», which today
+  answers «No …».
+- **`/aviso-legal`**: opinion versus information, and the right of reply to an
+  opinion.
+
+## 7. Decisions for the maintainer
+
+1. **Who signs.** A named person (recommended: accountability needs a name on
+   both sides), or «la redacción de CivicPulse»?
+2. **Pre-publication contact.** How many days the holder gets to reply before an
+   opinion naming them goes up. Recommended: 7.
+3. **LOREG.** Freeze editorials that name candidates from the call of elections
+   (recommended), or keep publishing signed opinion through the campaign?
+4. **Per-resident euros** (from v1): still open.
+5. **First opinion.** Police is the strongest case. Recommended: publish it only
+   after the headcount gap is closed or explicitly asked in the opinion itself.
+
+## 8. Rollout
+
+1. Layer 2 for police and waste (the two services with results). Tenure ribbon
+   for 2023–2027 only, so far.
+2. The opinion block with its file, validator, CLI, guard entry and checks, and
+   the editorial-contract changes, in the same PR.
+3. The data work in §5, one adapter at a time (TDD cadence).
+4. The first signed opinion, after §7 is decided and the pre-publication
+   contact has run.
