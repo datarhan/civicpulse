@@ -1,19 +1,19 @@
 {
-  "generatedAt": "2026-10-22T09:48:02.995Z",
+  "generatedAt": "2026-10-23T09:38:12.341Z",
   "source": {
     "origin": "https://ribaocupacio.portalemp.com",
     "platform": "portalemp — ribaocupacio · Agència de Col·locació (ADL), Ajuntament de Riba-roja de Túria",
     "listEndpoint": "https://ribaocupacio.portalemp.com/ofertas.html?acc=tableData"
   },
   "stats": {
-    "total": 43,
-    "openTotal": 42,
+    "total": 41,
+    "openTotal": 40,
     "inRibaRoja": 28,
-    "closingSoon": 9,
-    "withDetail": 43,
+    "closingSoon": 8,
+    "withDetail": 41,
     "byMonth": {
       "2026-10": 15,
-      "2026-09": 21,
+      "2026-09": 19,
       "2026-08": 4,
       "2026-05": 2,
       "2025-11": 1
@@ -2040,92 +2040,6 @@
       }
     },
     {
-      "id": "2534",
-      "fo": 2534,
-      "codigo": "2026/00233",
-      "titulo": "Enfermero/a",
-      "publishedAt": "2026-09-10",
-      "deadline": "2026-11-10",
-      "location": "San Antonio de Benagéber (Valencia)",
-      "status": "Abierta",
-      "statusTone": "ok",
-      "url": "https://ribaocupacio.portalemp.com/ofertas.html?fo=2534",
-      "inRibaRoja": false,
-      "detail": {
-        "fields": [
-          {
-            "label": "Código",
-            "value": "2026/00233"
-          },
-          {
-            "label": "Nombre de la oferta",
-            "value": "Enfermero/a"
-          },
-          {
-            "label": "Observaciones",
-            "value": "Se requiere: - Titulación de Enfermería - Vehíchulo para acceder al puesto de trabajo"
-          },
-          {
-            "label": "Sector CNAE",
-            "value": "ACTIVIDADES SANITARIAS Y DE SERVICIOS SOCIALES"
-          },
-          {
-            "label": "Tipo de contrato",
-            "value": "CONTRATO INDEFINIDO"
-          },
-          {
-            "label": "Número de puestos",
-            "value": "1"
-          },
-          {
-            "label": "Categoría profesional",
-            "value": "Ingenieros y licenciados. Personal de Alta Dirección"
-          },
-          {
-            "label": "Lugar puesto de trabajo",
-            "value": "Municipio: San Antonio de Benagéber, Provincia: Valencia, CP: 46184"
-          },
-          {
-            "label": "Tipo de jornada laboral",
-            "value": "Parcial Turnos: Turno mañana, Turno tarde"
-          },
-          {
-            "label": "Horario",
-            "value": "Mañanas o tardes, según planilla"
-          },
-          {
-            "label": "Salario",
-            "value": "1.301,42 € bruto / mes"
-          },
-          {
-            "label": "Funciones",
-            "value": "Atención sanitaria a personas mayores"
-          },
-          {
-            "label": "Requiere vehículo propio",
-            "value": "Sí"
-          }
-        ],
-        "tipoContrato": "CONTRATO INDEFINIDO",
-        "numPuestos": "1",
-        "categoria": "Ingenieros y licenciados. Personal de Alta Dirección",
-        "observaciones": "Se requiere: - Titulación de Enfermería - Vehíchulo para acceder al puesto de trabajo",
-        "municipio": "San Antonio de Benagéber",
-        "provincia": "Valencia",
-        "cp": "46184",
-        "jornada": "Parcial Turnos: Turno mañana, Turno tarde",
-        "horario": "Mañanas o tardes, según planilla",
-        "salario": "1.301,42 € bruto / mes",
-        "funciones": "Atención sanitaria a personas mayores",
-        "vehiculo": "Sí",
-        "ocupaciones": [
-          {
-            "nombre": "ENFERMEROS DE CUIDADOS GENERALES"
-          }
-        ]
-      }
-    },
-    {
       "id": "2533",
       "fo": 2533,
       "codigo": "2026/00232",
@@ -2581,101 +2495,6 @@
         "salario": "Según convenio",
         "funciones": "Instalación de ventanas, puertas, mosquiteras, mamparas",
         "ocupaciones": []
-      }
-    },
-    {
-      "id": "2529",
-      "fo": 2529,
-      "codigo": "2026/00228",
-      "titulo": "Auxiliar gerocultor/a",
-      "publishedAt": "2026-09-02",
-      "deadline": "2026-11-02",
-      "location": "RESIDENCIA DE MAYORES SAN ANTONIO DE BENAGÉBER San Antonio de Benagéber (Valencia)",
-      "status": "Abierta",
-      "statusTone": "ok",
-      "url": "https://ribaocupacio.portalemp.com/ofertas.html?fo=2529",
-      "inRibaRoja": false,
-      "detail": {
-        "fields": [
-          {
-            "label": "Código",
-            "value": "2026/00228"
-          },
-          {
-            "label": "Nombre de la oferta",
-            "value": "Auxiliar gerocultor/a"
-          },
-          {
-            "label": "Observaciones",
-            "value": "Vacante por sustitución de reducción de jornada de 07:00 h. a 08:30 h. (contrato de 7.5 h./semana)."
-          },
-          {
-            "label": "Sector CNAE",
-            "value": "ACTIVIDADES SANITARIAS Y DE SERVICIOS SOCIALES"
-          },
-          {
-            "label": "Tipo de contrato",
-            "value": "CONTRATO DE OBRA O SERVICIO DETERMINADO"
-          },
-          {
-            "label": "Duración del contrato",
-            "value": "vacante por sustitución de reducción de jornada de 07:00 h. a 08:30 h. (contrato de 7.5 h./semana)."
-          },
-          {
-            "label": "Número de puestos",
-            "value": "1"
-          },
-          {
-            "label": "Categoría profesional",
-            "value": "Ingenieros Técnicos, Peritos y Ayudantes Titulados"
-          },
-          {
-            "label": "Lugar puesto de trabajo",
-            "value": "RESIDENCIA DE MAYORES SAN ANTONIO DE BENAGÉBER, Municipio: San Antonio de Benagéber, Provincia: Valencia, CP: 46184"
-          },
-          {
-            "label": "Tipo de jornada laboral",
-            "value": "Parcial Turnos: Turno mañana"
-          },
-          {
-            "label": "Observaciones jornada",
-            "value": "vacante por sustitución de reducción de jornada de 07:00 h. a 08:30 h. (contrato de 7.5 h./semana)."
-          },
-          {
-            "label": "Horario",
-            "value": "Horario de mañana"
-          },
-          {
-            "label": "Salario",
-            "value": "270,63 € BRUTO AL MES"
-          },
-          {
-            "label": "Funciones",
-            "value": "Atención a personas mayores en las actividades de la vida diaria."
-          },
-          {
-            "label": "Requiere vehículo propio",
-            "value": "Sí"
-          }
-        ],
-        "tipoContrato": "CONTRATO DE OBRA O SERVICIO DETERMINADO",
-        "duracion": "vacante por sustitución de reducción de jornada de 07:00 h. a 08:30 h. (contrato de 7.5 h./semana).",
-        "numPuestos": "1",
-        "categoria": "Ingenieros Técnicos, Peritos y Ayudantes Titulados",
-        "observaciones": "Vacante por sustitución de reducción de jornada de 07:00 h. a 08:30 h. (contrato de 7.5 h./semana).",
-        "municipio": "San Antonio de Benagéber",
-        "provincia": "Valencia",
-        "cp": "46184",
-        "jornada": "Parcial Turnos: Turno mañana",
-        "horario": "Horario de mañana",
-        "salario": "270,63 € BRUTO AL MES",
-        "funciones": "Atención a personas mayores en las actividades de la vida diaria.",
-        "vehiculo": "Sí",
-        "ocupaciones": [
-          {
-            "nombre": "AUXILIARES DE ENFERMERÍA DE GERIATRÍA"
-          }
-        ]
       }
     },
     {

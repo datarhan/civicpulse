@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-22T09:36:15.946Z",
+  "generatedAt": "2026-10-23T09:31:32.770Z",
   "feeds": [
     {
       "url": "https://www.ribarroja.es/es/noticias/rss.xml",
@@ -22,8 +22,8 @@
   ],
   "stats": {
     "total": 153,
-    "sources": 23,
-    "latestDate": "2026-10-21T15:46:01.000Z",
+    "sources": 25,
+    "latestDate": "2026-10-23T09:10:05.000Z",
     "carriedForward": 0
   },
   "sources": [
@@ -31,10 +31,12 @@
     "Ayuntamiento de Riba-roja de Túria",
     "Cadena SER",
     "Comunica GVA",
+    "Costa Blanca Noticias",
     "El Confidencial",
     "El Periódico de Aquí",
     "Fotocasa",
     "Fotocasa.es",
+    "Industria Química",
     "Interdiario",
     "Interempresas Media",
     "Las Provincias",
@@ -52,6 +54,33 @@
     "rfet.es"
   ],
   "items": [
+    {
+      "id": "15x25lk",
+      "title": "Veolia reutiliza casi el 65% del agua tratada en la Comunitat Valenciana para hacer frente al cambio climático",
+      "link": "https://news.google.com/rss/articles/CBMi2gFBVV95cUxPRHJpaHZHcnN0bWlpM2xEdEktYkZQOUdyaFBLSmtLU3YyM3l0NkVrYzhYYy1sWFYtMTMxenNnT0ZmY3dNQXctNDFmYnh4WGpZSlp3bHJnb1BObF9jWjNnYWxtX0lzTmVvak56NE1DRXB5YzNPZS1fVGVIU2VBMjV0NVBLWWlpRFNtMVh5ZGppMVhIczlnaHJoaUU1ZlE2Z1Z3eXVQRDMtZndTX3ZvY3U1WjZxUExUaUt3ZEFzb0hxcUowb1hHcTJNeGdXZjJua3pwRlpFdFE5Vzcwdw?oc=5",
+      "source": "Costa Blanca Noticias",
+      "sourceHost": "cbnoticias.com",
+      "date": "2026-10-23T09:10:05.000Z",
+      "fingerprint": "1jt3otj"
+    },
+    {
+      "id": "1dfdixf",
+      "title": "Así se creó el dulce visigodo del amor y la amistad de Riba-roja que podrá disfrutarse en la Festa del Dux",
+      "link": "https://news.google.com/rss/articles/CBMi0gFBVV95cUxPYlZsTFU4b2czaHg5c1JxN19hNTNqQXVJQ3lxNFY5NzhLS1ZydWdwTDRxSEYtc2Y0X09rOUZwSG9kM3BXR3hzdnYtVmJhZ2U5Y3lSS3g2M21Nakt3bFpPS1VHZjRUZk5pOFVzSnVTb2NRWGFWVjN5S00zSExUa3JScmFjS3Zkd1lUVS14T0xCdEh4ZU0zQ0plVWY2NW9ER2ktSU9QSUFicDE0Ym42NUs4eGdCYkZNTjFUUTVyVkxtRlE2MDc0SHFaZnBaRkFoRi1OOFHSAdcBQVVfeXFMUGE0aERudm83OXFkZ0JtRGNVWmdVbkM1VXB3Qi1nSmxoR2JURU9md1pscUZmVzlaaUF0VnkxTUVpakUzSGRyYlNzdHljb3JRMnpzdV9tLUk0YlZCb3NqZ0Ezb3dkZXhaa3hJOWNwNnpJZ2JuS2FnbnRVczFucUsyc3FLNW5LeXNHUG1sQkVJZ24wWG5KTGNLbkdHYkFEZFc5dVd3TGpwbWdLWE9EaFg5dFM0NzNZaDZaMDBudXlUemR1ZTJvbnd4UER2VG4xalJUT2M5OUY3cjg?oc=5",
+      "source": "Levante-EMV",
+      "sourceHost": "levante-emv.com",
+      "date": "2026-10-23T03:30:42.000Z",
+      "fingerprint": "1yzpxiw"
+    },
+    {
+      "id": "f9c0sf",
+      "title": "CIRCSYST desarrolla un sistema inteligente para reutilizar agua regenerada en entornos industriales",
+      "link": "https://news.google.com/rss/articles/CBMi3AFBVV95cUxQTkpncEdvN0tfVGlPZDRHSERRSmRUQXhpbGxZN092M1kweko1NjdMaEJuYXFNUy1EZ3FrQldyODhZSnlUd1BRcUVwdnlNT2EydThDeXVPakhfSGJEMUlscDlNcFcxZjJTdUNkcUtDV2JlTkF3YzBOd2xReUJqYWVRdzZMTHRseWplSWo5YkpMeGVtSngzV0hvOWc5Zy13bXlIRTFRNG96VEpQLUpZNk54ZHJDdy1WN09Ia0lkaThHVzlLTk9URGhOa3lQWHJjWnpLVHFDX1NiZzJJNU1O?oc=5",
+      "source": "Industria Química",
+      "sourceHost": "industriaquimica.es",
+      "date": "2026-10-23T00:33:59.000Z",
+      "fingerprint": "xrrow0"
+    },
     {
       "id": "mdcrso",
       "title": "Els pobles riberencs de Castella, Aragó i València se citen el 8 de novembre en Riba-roja per a homenatjar el Túria",
@@ -79,16 +108,7 @@
       "date": "2026-10-21T12:53:50.000Z",
       "fingerprint": "1y848m7",
       "official": true,
-      "section": "Patrimonio y Turismo"
-    },
-    {
-      "id": "i3ly3c",
-      "title": "La Ofrena al riu Túria regresa a Riba-roja con un homenaje al río tras la dana",
-      "link": "https://news.google.com/rss/articles/CBMiowFBVV95cUxQbTlDdkFYVzIxNW1vOTFvbWxSbTQzQkxRZkZOeFotZC1Ic3FQQ0VyNHJWRmdIbkd6bzRTV2ZCSDRwSzZHZUs4UFc0TS0weTVpNlJGZVlnT2w1TGZVRHo2OG1LVWdhRWwyS2ItcWN3Tnl1a1pPS3huVUN4MENHTHlmYVRzZU12bmNVVENaeGdzWGxHTy1HTF9jNUIwRFZRd3Y2RzVV0gGoAUFVX3lxTE1ZOUZ2ajN4YWxZazh0bnBHb0otVW82WVlOM2Uwb1FVSTA1NlZfYTUzQmVRX3VUT2luWHZCZkU3bmgwOGlidFE1NEtnNTQwTmI0WE81WU5JMWU3R0xkLUxhTTg2NExGMEpSSklreC13a0VINjFwOFQ3NVp3ZGRPRmp3UHQ2b0ctb05uczJwT3NENzFEQmVVYnVDSllYbXNCLUxJWFM4MGtXQQ?oc=5",
-      "source": "Levante-EMV",
-      "sourceHost": "levante-emv.com",
-      "date": "2026-10-21T11:54:56.000Z",
-      "fingerprint": "1vav3b0"
+      "section": "Patrimoni y Turisme"
     },
     {
       "id": "1h5jap4",
@@ -126,7 +146,7 @@
       "date": "2026-10-19T15:57:09.000Z",
       "fingerprint": "101nprs",
       "official": true,
-      "section": "Deportes"
+      "section": "Esports"
     },
     {
       "id": "z718i4",
@@ -137,7 +157,7 @@
       "date": "2026-10-19T15:41:40.000Z",
       "fingerprint": "1mvwziw",
       "official": true,
-      "section": "Fomento economico y Comercio"
+      "section": "Foment economic i Comerc"
     },
     {
       "id": "13zosn4",
@@ -148,16 +168,7 @@
       "date": "2026-10-19T11:27:23.000Z",
       "fingerprint": "1r7w0wk",
       "official": true,
-      "section": "Educacion"
-    },
-    {
-      "id": "18sga9a",
-      "title": "Empresas y autónomos crecen con fuerza en las comarcas valencianas en el último año",
-      "link": "https://news.google.com/rss/articles/CBMipwFBVV95cUxNaFNfSDZDY3lfaHhtazBJdl9DSy00aFNZLTNFbHNBZEpIWDRZQW4xcGc3UDlfVzd2WDNsUkVjTUpLZkhsX3VGbGlGRkdPX2dVQXRDaVJ6eV9OUkRJUzc5SGNJUENYUUtUT3ZOS1lsSjl4YVFHUF9DNXRQc2tWMDMzM1VyVEhlSnpaQUQ3dzVEdWVmdktsdWtkZFNWWWotZjE1azdOc0s5d9IBrAFBVV95cUxObkNCS040TDQwYUpqbktQdFZabV9sMnVrcVZEdDh6UGJqVUFUS2VDWjJtblFMdVBSaXNXUWNKZ0lRMS1DZlh4aEJZZ1R6NVpHMEZLenI4NzZQU0x5LTdHWmpHcEdMLUZ3U0x5cHlBR0hNUjY4M0JuXzR4ZHBnVUNvM0RiZkRqbWdndXBucVRRckktZlRzTVhpaUhpSElRSFhMMzNHRHFjOWotYnU5?oc=5",
-      "source": "Levante-EMV",
-      "sourceHost": "levante-emv.com",
-      "date": "2026-10-17T04:00:33.000Z",
-      "fingerprint": "yeftxc"
+      "section": "Educacio"
     },
     {
       "id": "1n4h2ak",
@@ -195,7 +206,7 @@
       "date": "2026-10-16T11:22:48.000Z",
       "fingerprint": "y87p2g",
       "official": true,
-      "section": "Accion Social"
+      "section": "Accio Social"
     },
     {
       "id": "hkahd4",
@@ -233,7 +244,7 @@
       "date": "2026-10-15T12:07:23.000Z",
       "fingerprint": "1yzxzcj",
       "official": true,
-      "section": "Fomento economico y Comercio"
+      "section": "Foment economic i Comerc"
     },
     {
       "id": "9k4v28",
@@ -280,7 +291,7 @@
       "date": "2026-10-13T11:39:38.000Z",
       "fingerprint": "1oeuiiq",
       "official": true,
-      "section": "Hacienda"
+      "section": "Hisenda"
     },
     {
       "id": "100ms28",
@@ -310,15 +321,6 @@
       "fingerprint": "13x15ss"
     },
     {
-      "id": "1bfp5g8",
-      "title": "1 Casas y pisos en Calle Jorge Martinez Aspar, Riba-roja de Túria",
-      "link": "https://news.google.com/rss/articles/CBMingFBVV95cUxPSzdRQkFNcUQ2N3djdU0tb0VzTzg4b2Ryd1MzYmZ4MHAxc0ZmanpVQ2FTc3dzOHVUdjJtT0QwVG5pZEV2N2dOZTRJZU5LZlROQnM1bUxmcUNkOG1BV3BzOEVBd3lTOGdKNXJPRUlnVDNEeFp3MmdLZXE5SGFxRnI4a2dzYjdwYkgzeUJPM2owa1BzR2NEbkVjbDh6NUNzZw?oc=5",
-      "source": "Fotocasa",
-      "sourceHost": "fotocasa.es",
-      "date": "2026-10-09T11:38:39.000Z",
-      "fingerprint": "1cgbsla"
-    },
-    {
       "id": "1w1lf6k",
       "title": "Riba-roja restaurarà les quatre pedreres",
       "link": "https://www.infoturia.com/riba-roja-de-turia/86666-riba-roja-restaurara-les-quatre-pedreres.html",
@@ -346,15 +348,6 @@
       "fingerprint": "10i4wsk"
     },
     {
-      "id": "1w31adk",
-      "title": "2 Casas y pisos en Calle Corazon de Jesus, Riba-roja de Túria",
-      "link": "https://news.google.com/rss/articles/CBMimAFBVV95cUxNOVZqbWFHdktqbXV1VVR0V2JWeEVBMHJGOUVKV3pEWndpZm5oTnQ3YmZMMk1hN0RuSVhiZTNMRmVFalFrZjgweDBfcVhwM0wzallvTlJuc0JHaDJtVlloNEJiYWlReU50SGZGNVNhWklpY3ZQTUh4YVBGYUUxYlE1am0yaWNiV1ptc1FicDJvcFF4NU1qRnVUSA?oc=5",
-      "source": "Fotocasa",
-      "sourceHost": "fotocasa.es",
-      "date": "2026-10-09T03:19:32.000Z",
-      "fingerprint": "1a7s7tk"
-    },
-    {
       "id": "1qtypb7",
       "title": "1 Casas y pisos de alquiler en Calle San Gabriel, Riba-roja de Túria",
       "link": "https://news.google.com/rss/articles/CBMikwFBVV95cUxOc1V5eS1FVzV0ZndXX2M2clNDOE5hNUJsWEc2S05zdWg2VXRnR0xPcHk3ak5yQk9ETmg0bnVfUHZPYVJCZUttT09hWlBvX185OHRISDRZOUkwQlhSN2JvT3dRY3M0NXlRVTlaTWdVZ2gtSGpTOU1Yb25OREVndTY1VVFqTTFhNUZIWVQ3allmVVJLNk0?oc=5",
@@ -371,15 +364,6 @@
       "sourceHost": "fotocasa.es",
       "date": "2026-10-08T21:45:01.000Z",
       "fingerprint": "1cdzisj"
-    },
-    {
-      "id": "1fcue1k",
-      "title": "1 Casas y pisos de alquiler en Calle Carniceria, Riba-roja de Túria",
-      "link": "https://news.google.com/rss/articles/CBMikgFBVV95cUxPSk1oN1dWeTJvRmkycEU3eS1LUmE2Q1dCek02NEVHeXIxN0RkN1pGMEJvd2I0Z3FVTGpCdExCQkNUTW9KTEtzZDZfQ2RGSE45ZFFVQmwwVV9PVHFaWHJwVkJNZy1jUzBNX3lmdjRqZlhmRXVEOXB5dE15bklTV3RPdlhxeUVYcmJQdGk2d2lkbEhKUQ?oc=5",
-      "source": "Fotocasa",
-      "sourceHost": "fotocasa.es",
-      "date": "2026-10-08T20:10:29.000Z",
-      "fingerprint": "wo9jc0"
     },
     {
       "id": "1oxvb8w",
@@ -399,7 +383,7 @@
       "date": "2026-10-08T12:37:13.000Z",
       "fingerprint": "7rfyh4",
       "official": true,
-      "section": "Medio ambiente"
+      "section": "Medi ambient"
     },
     {
       "id": "1a9am3c",
@@ -428,7 +412,7 @@
       "date": "2026-10-08T09:08:42.000Z",
       "fingerprint": "1k3l80",
       "official": true,
-      "section": "Medio ambiente"
+      "section": "Medi ambient"
     },
     {
       "id": "ol3xa0",
@@ -485,6 +469,15 @@
       "fingerprint": "o6da4r"
     },
     {
+      "id": "1u3qvtw",
+      "title": "1 Casas y pisos en Calle Federico Garcia Lorca, Riba-roja de Túria",
+      "link": "https://news.google.com/rss/articles/CBMinwFBVV95cUxPWkJscHM5REkyS2gtRU1MOGRpMmlEZEpDSHdFZEgwM2x2c1p3YmRiOXJnTjEyOVpzeFVKM1AzbGk3d2Nrd2xjUVV6cmwwS0RuU3l6VEcxazVHRWlXU2trMmxDOUlRRC01NzZhRENxTUxnUkRIQ0x1UHJDTjdBTjVzYWVFMTBVZVhVMTgtTkFFck11MThpNjVwa2t3a3N2RTg?oc=5",
+      "source": "Fotocasa",
+      "sourceHost": "fotocasa.es",
+      "date": "2026-10-07T22:32:23.000Z",
+      "fingerprint": "zjhcfw"
+    },
+    {
       "id": "1pt7sow",
       "title": "2 Casas y pisos en Calle Numancia, Riba-roja de Túria",
       "link": "https://news.google.com/rss/articles/CBMijgFBVV95cUxPWnBDYXR0RVByVElKTGNXNXFuT3JhQ2RLSmZ5SlV1NlhMMnRKckxfNnZiWG83YjNoTTliRHUybXd2SW1LbUkxQXVMUzhhd3UwbUFzdlJ0VEdSTTc3UDY2WVp2ZmxKbUcyVnpOOHZoVVY1aXRFRGFfcDUteVBXUkdfc19kbzltQzFvWlAtZVBB?oc=5",
@@ -529,7 +522,7 @@
       "date": "2026-10-07T10:03:16.000Z",
       "fingerprint": "lbh17l",
       "official": true,
-      "section": "Fiestas"
+      "section": "Festes"
     },
     {
       "id": "1boppz8",
@@ -549,7 +542,7 @@
       "date": "2026-10-07T07:36:34.000Z",
       "fingerprint": "10b978",
       "official": true,
-      "section": "Deportes"
+      "section": "Esports"
     },
     {
       "id": "fo1g7a",
@@ -570,15 +563,6 @@
       "fingerprint": "s5dny8"
     },
     {
-      "id": "my8kfg",
-      "title": "Riba-roja, Cheste y Loriguilla unen sus áreas industriales para impulsar una gran plataforma logística junto a la A3",
-      "link": "https://news.google.com/rss/articles/CBMiggJBVV95cUxQNzlKNHBiSlhxYk94bGtDclBmckgtZkZyczNSbFctQzlWY1k2X3NtTndBOGlSSDdDM1MtMThvSWJMUTYydEZqVzh1TDRLSmdPcVpoRk1mZWp0QWpVem1Md0xWdWhpVnJsaFBOYmhhdWhxQ0hXU3FvSjRrM0pDbktORUFSa2JlUE1lWUdBNmQ5YzFBUVJBd3ZId05kdU5DRlhpMHFKM1VLV2tsZFQ3akRkRUhLTmpDV2FBcS1HTmR1c1NNM3RZVzdPeUMwTlMxeDdvYWFFcHVxYXFRajBxOF9OX2lib1lESml4UmoyNHZ4a0lTdThlSWdjZXBaeHl5alNwTkE?oc=5",
-      "source": "El Periódico de Aquí",
-      "sourceHost": "elperiodicodeaqui.com",
-      "date": "2026-10-06T15:14:35.000Z",
-      "fingerprint": "65bcx4"
-    },
-    {
       "id": "ccsnc0",
       "title": "Riba-roja de Túria, Cheste y Loriguilla ratifican en Asamblea los estatutos de la Mancomunitat Industrial A3",
       "link": "https://www.ribarroja.es/es/noticia/riba-roja-de-t%C3%BAria%2C-cheste-y-loriguilla-ratifican-en-asamblea-los-estatutos-de-la-mancomunitat-industrial-a3",
@@ -587,7 +571,7 @@
       "date": "2026-10-06T09:45:08.000Z",
       "fingerprint": "11ifeuo",
       "official": true,
-      "section": "Industriales"
+      "section": "Industrials"
     },
     {
       "id": "9eug5k",
@@ -597,6 +581,15 @@
       "sourceHost": "infoturia.com",
       "date": "2026-10-06T08:22:28.000Z",
       "fingerprint": "uyukz8"
+    },
+    {
+      "id": "my8kfg",
+      "title": "Riba-roja, Cheste y Loriguilla unen sus áreas industriales para impulsar una gran plataforma logística junto a la A3",
+      "link": "https://news.google.com/rss/articles/CBMiggJBVV95cUxQNzlKNHBiSlhxYk94bGtDclBmckgtZkZyczNSbFctQzlWY1k2X3NtTndBOGlSSDdDM1MtMThvSWJMUTYydEZqVzh1TDRLSmdPcVpoRk1mZWp0QWpVem1Md0xWdWhpVnJsaFBOYmhhdWhxQ0hXU3FvSjRrM0pDbktORUFSa2JlUE1lWUdBNmQ5YzFBUVJBd3ZId05kdU5DRlhpMHFKM1VLV2tsZFQ3akRkRUhLTmpDV2FBcS1HTmR1c1NNM3RZVzdPeUMwTlMxeDdvYWFFcHVxYXFRajBxOF9OX2lib1lESml4UmoyNHZ4a0lTdThlSWdjZXBaeHl5alNwTkE?oc=5",
+      "source": "El Periódico de Aquí",
+      "sourceHost": "elperiodicodeaqui.com",
+      "date": "2026-10-06T07:00:00.000Z",
+      "fingerprint": "65bcx4"
     },
     {
       "id": "1ljaipo",
@@ -627,7 +620,7 @@
       "date": "2026-10-02T11:50:52.000Z",
       "fingerprint": "1208oo5",
       "official": true,
-      "section": "Patrimonio y Turismo"
+      "section": "Patrimoni y Turisme"
     },
     {
       "id": "8de6x4",
@@ -656,7 +649,7 @@
       "date": "2026-10-01T12:20:24.000Z",
       "fingerprint": "7ptpmg",
       "official": true,
-      "section": "Educacion"
+      "section": "Educacio"
     },
     {
       "id": "w4u7tv",
@@ -695,15 +688,6 @@
       "fingerprint": "1qtvb14"
     },
     {
-      "id": "dtsc0b",
-      "title": "1 Casas y pisos de alquiler en Calle Sella, Riba-roja de Túria",
-      "link": "https://news.google.com/rss/articles/CBMiiwFBVV95cUxPMXZYdF9DRmFyNjE1Y1hWandzcEc3cDFqNERWR05USFVpVkpUWC1mLWpBc0lQVXd5RGt4OG9CZGtsZzZHWTFnZm16bGhNa0ZMc3M4UmpOZ3Zkb0txZlpxbWcxWmExWU1JQjRYWHQ4aG1KUFdtZkRjcTBHMkx0V1VRUktkcWo3MU03VVRN?oc=5",
-      "source": "Fotocasa",
-      "sourceHost": "fotocasa.es",
-      "date": "2026-09-29T22:10:31.000Z",
-      "fingerprint": "uj1gvs"
-    },
-    {
       "id": "uemsec",
       "title": "La V Nit Violeta reúne a varias generaciones de Riba-roja por la igualdad con la entrega de los I Reconocimientos «Ponts per la Igualtat»",
       "link": "https://www.ribarroja.es/es/noticia/la-v-nit-violeta-re%C3%BAne-a-varias-generaciones-de-riba-roja-por-la-igualdad-con-la-entrega-de-los-i-reconocimientos-%C2%ABponts-per-la-igualtat%C2%BB",
@@ -712,7 +696,7 @@
       "date": "2026-09-28T11:07:11.000Z",
       "fingerprint": "1pwdoy8",
       "official": true,
-      "section": "Igualdad"
+      "section": "Igualtat"
     },
     {
       "id": "1lk4zls",
@@ -723,7 +707,7 @@
       "date": "2026-09-25T09:54:12.000Z",
       "fingerprint": "vsmbot",
       "official": true,
-      "section": "Servicios publicos"
+      "section": "Servicis publics"
     },
     {
       "id": "11s7c3b",
@@ -752,7 +736,7 @@
       "date": "2026-09-24T07:53:50.000Z",
       "fingerprint": "1jpl94s",
       "official": true,
-      "section": "Accion Social"
+      "section": "Accio Social"
     },
     {
       "id": "1cibswi",
@@ -823,7 +807,7 @@
       "date": "2026-09-17T14:37:32.000Z",
       "fingerprint": "mns35o",
       "official": true,
-      "section": "Igualdad"
+      "section": "Igualtat"
     },
     {
       "id": "d2zytc",
@@ -845,7 +829,7 @@
       "date": "2026-09-16T11:42:06.000Z",
       "fingerprint": "1j0z0p4",
       "official": true,
-      "section": "Deportes"
+      "section": "Esports"
     },
     {
       "id": "1voiyyo",
@@ -856,7 +840,7 @@
       "date": "2026-09-16T07:22:59.000Z",
       "fingerprint": "1bdpfig",
       "official": true,
-      "section": "Fiestas"
+      "section": "Festes"
     },
     {
       "id": "153mirg",
@@ -867,7 +851,7 @@
       "date": "2026-09-11T08:10:15.000Z",
       "fingerprint": "2w05ns",
       "official": true,
-      "section": "Patrimonio y Turismo"
+      "section": "Patrimoni y Turisme"
     },
     {
       "id": "1xjj30k",
@@ -896,7 +880,7 @@
       "date": "2026-09-10T12:00:05.000Z",
       "fingerprint": "zeuxbp",
       "official": true,
-      "section": "Educacion"
+      "section": "Educacio"
     },
     {
       "id": "tel2rn",
@@ -916,7 +900,7 @@
       "date": "2026-09-09T12:42:33.000Z",
       "fingerprint": "e93t0c",
       "official": true,
-      "section": "Educacion"
+      "section": "Educacio"
     },
     {
       "id": "jxh8xl",
@@ -938,7 +922,7 @@
       "date": "2026-09-04T10:56:54.000Z",
       "fingerprint": "1n28ylo",
       "official": true,
-      "section": "Servicios publicos"
+      "section": "Servicis publics"
     },
     {
       "id": "161q2v1",
@@ -949,7 +933,7 @@
       "date": "2026-09-01T12:39:24.000Z",
       "fingerprint": "1slb5ao",
       "official": true,
-      "section": "Medio ambiente"
+      "section": "Medi ambient"
     },
     {
       "id": "1t1ctq4",
@@ -980,7 +964,7 @@
       "date": "2026-08-28T07:40:38.000Z",
       "fingerprint": "1l29f9c",
       "official": true,
-      "section": "Fiestas"
+      "section": "Festes"
     },
     {
       "id": "1mmcz50",
@@ -991,7 +975,7 @@
       "date": "2026-08-27T12:34:23.000Z",
       "fingerprint": "6q56yt",
       "official": true,
-      "section": "Deportes"
+      "section": "Esports"
     },
     {
       "id": "3jikj8",
@@ -1002,7 +986,7 @@
       "date": "2026-08-27T11:26:49.000Z",
       "fingerprint": "1haxv4s",
       "official": true,
-      "section": "Patrimonio y Turismo"
+      "section": "Patrimoni y Turisme"
     },
     {
       "id": "pbm4v6",
@@ -1033,7 +1017,7 @@
       "date": "2026-08-25T06:55:58.000Z",
       "fingerprint": "sy1fbk",
       "official": true,
-      "section": "Urbanismo"
+      "section": "Urbanisme"
     },
     {
       "id": "1jchzrw",
@@ -1044,7 +1028,7 @@
       "date": "2026-08-24T09:10:00.000Z",
       "fingerprint": "9gfa58",
       "official": true,
-      "section": "Fomento economico y Comercio"
+      "section": "Foment economic i Comerc"
     },
     {
       "id": "17iw9j4",
@@ -1113,7 +1097,7 @@
       "date": "2026-08-18T09:26:42.000Z",
       "fingerprint": "1ij1q5o",
       "official": true,
-      "section": "Accion Social"
+      "section": "Accio Social"
     },
     {
       "id": "15tpe88",
@@ -1124,7 +1108,7 @@
       "date": "2026-08-17T11:54:37.000Z",
       "fingerprint": "1v2ow04",
       "official": true,
-      "section": "Urbanismo"
+      "section": "Urbanisme"
     },
     {
       "id": "bp13b8",
@@ -1164,7 +1148,7 @@
       "date": "2026-08-13T09:51:38.000Z",
       "fingerprint": "3j7e78",
       "official": true,
-      "section": "Medio ambiente"
+      "section": "Medi ambient"
     },
     {
       "id": "1z015jk",
@@ -1197,7 +1181,7 @@
       "date": "2026-08-11T08:56:32.000Z",
       "fingerprint": "1fv95cm",
       "official": true,
-      "section": "Medio ambiente"
+      "section": "Medi ambient"
     },
     {
       "id": "rlu040",
@@ -1208,7 +1192,7 @@
       "date": "2026-08-10T09:09:31.000Z",
       "fingerprint": "10if6vd",
       "official": true,
-      "section": "Servicios publicos"
+      "section": "Servicis publics"
     },
     {
       "id": "e6l42s",
@@ -1219,7 +1203,7 @@
       "date": "2026-08-07T10:03:38.000Z",
       "fingerprint": "fxc6ts",
       "official": true,
-      "section": "Servicios publicos"
+      "section": "Servicis publics"
     },
     {
       "id": "1kpsquw",
@@ -1239,7 +1223,7 @@
       "date": "2026-08-06T11:27:50.000Z",
       "fingerprint": "2boyl9",
       "official": true,
-      "section": "Fomento economico y Comercio"
+      "section": "Foment economic i Comerc"
     },
     {
       "id": "l5r394",
@@ -1330,6 +1314,15 @@
       "sourceHost": "valenciabonita.es",
       "date": "2026-07-07T07:00:00.000Z",
       "fingerprint": "k2dhbg"
+    },
+    {
+      "id": "1547xm0",
+      "title": "Riba-roja aprueba el Plan Territorial Municipal de Emergencias para proteger a la población frente a las olas de calor, los incendios, las inundaciones o los temporales",
+      "link": "https://news.google.com/rss/articles/CBMixwJBVV95cUxNX0NZVU5CeU5jNzRhR0ZfTkV1ZnZtcFhYbFZCZDA5UFBrUHBpdUh2dGdqWi0teDZKa2c4aEo3ZDNMUl9VUzBmQVZmWlpCUlctbFdjMUROSVd0NVZzMWt5MnYwZ0hnbXhaejBSa1N6UHRxVmduQmdqaUp5b2ktNWZ2TzFxQ2Y4NXlIcnVjQnVpQmdabGlVenpQS1BsRW52SVIxYkROdmJZTDRzMzlwbmFuVm1JVTBnYkFVSm9WdEpiYXNZNHBxZkFYUy1XSVMzYTR4TEU5ZmlWNlZ4N1haWUc3dVoxNVlrTkpuX0h3THBiTmZqU3luVHFINWxhMFdfR0Vuc2p5cEtJdXMzanJnZjBMS0JiVmdhbEZLU2dBTEdXTFl0bkllXzhDejQxb3FnTTQyUGlhcVpBZVkta0RVSXpGeDhod2xIX28?oc=5",
+      "source": "Valencia Plaza",
+      "sourceHost": "valenciaplaza.com",
+      "date": "2026-07-03T07:00:00.000Z",
+      "fingerprint": "e4vfjg"
     },
     {
       "id": "2crdrk",
@@ -1440,22 +1433,31 @@
       "fingerprint": "hic6yp"
     },
     {
-      "id": "15b5xfk",
-      "title": "Riba-roja eliminará al máximo el riesgo de inundación en sus polígonos con infraestructuras para reducir caudales",
-      "link": "https://news.google.com/rss/articles/CBMigAJBVV95cUxNM1JWN1FmYTc5bkdoRXVvM3Z0dXpidks5bFc2VGphT29ZUEtOeF9WaHNNOE9DYWo1WTZzVUs1WjJfZWhKV0I4RGpkZlVLY0VWVndfajRiR28xQVBOSzFDVFQ5NU1VRllLQ0Q2eFZzdVlJUHdSczF2YnJLZ1E4WFdJV2lDbW9DRTVWRkhWYTM4Q0ttUGFBcmJ2V1RSNmlRSFlRakx2anBPNzNiWEtxLWlzMUhrcENsMFdUd2w2WEV6cndJOXB6VDRZWGFhS1JMOExLdGx0ZVo2TG1NYW9oamw1ZmlaT0RIUTlpdWE5WW1JUWJxVnUtZmttVDBWYWlSSGtI?oc=5",
-      "source": "Valencia Plaza",
-      "sourceHost": "valenciaplaza.com",
+      "id": "1qtey1w",
+      "title": "La Casa del Abogado en Riba-roja de Túria abre sus puertas para difundir el patrimonio visigodo",
+      "link": "https://news.google.com/rss/articles/CBMiuAFBVV95cUxNUmZubDE5YlpjMXRpYVVjVlpJZ1pNMEIwTGtEYjVaSGZYZElRQmlscUxFRTNWZlpzM2pXOXN2aXVqSkdIVHlITjBRcHNOVWhBdkY0ZHVfTzlzb0V5SHRSTUUxSTdkdW5jQ0Z4aUVyNDF6OExCWkhaNzJvTWtEZ0czWFVFamF6eEJWREZBUzlmSDNDVUY3eEx1RG9PNmRLYVh3Vjd0RzhwcXZDZGRBZnBNN3R2b29Vd2xM0gG-AUFVX3lxTE94b3dDaHBlTWxVdE91WmI3bnpVWkRVd1NZMC04WnNYaHNHYjlNOXcxam91dEswYXRxMjJCVWszQUxkbjJQY0ppajlxX3JjZmNnN1RTNVFzYlgzdXRXTWQ4bU1HRHIyWk9LcVlRZklTak1XN255WVdjTTBZSGtVM00tazFadG9FdXhnNEstdUVJOTE1VklkUXBsajFQcHQyMlFUV09QRTRtc0JUb3o3eWZTRVVXUW1RSmtJWkJCMWc?oc=5",
+      "source": "Levante-EMV",
+      "sourceHost": "levante-emv.com",
+      "date": "2026-05-25T07:00:00.000Z",
+      "fingerprint": "jifbaw"
+    },
+    {
+      "id": "y4a6wr",
+      "title": "Riba-roja eliminará al máximo el riesgo de inundación en sus polígonos con nuevas infraestructuras hidráulicas",
+      "link": "https://news.google.com/rss/articles/CBMi_gFBVV95cUxNVFJmQlF0NEI5VFktcWJLazNmUy00VGlNb19wVFJHaG5XMG1KOHByRE5KZnNKMFE3N001RFgtUV80UUc2U2tfbm80djl5QjhEUFFvenpaY2tUOEFxTUNtZFlCeHZTSHJoOVh6UEtack84a1pqQ09fajBxQXBPSkpKY1B6SE5jVXFyUkE5LUd4MTlwUmd0VXlubWdIbHR5Wmlha2hBWEJCVkNTSEVhQVJlX0g0aFMyM011MVA2Z2psOF9WbU9QQlA0cjc3Q3M1aGI1aC1VemhwZ2JiZTVlUzRROGFiUG16R1NTMDk2ajFZY0FQYWRwcUt5LU5DV2Z0UdIBgwJBVV95cUxNOHVVNTlwM2RkTXVQRHlsalJTeFAxeGlpSVF2Z2tuMFRocnhJaVNTMDczb0U5OXpRd2dFU0N3djgtS2VHWXpjZTZDWXR2THpsc0pJWFpFZ05lQy0zWTNvZW0zU2ptVENqMGdUYU4yN0xyek1hektKTE9lbkJfZUJlMWJXOENyUy1nRksyTFQtRGNmUGxrLWRzR0twNFFFeHB5bkNXLVB5NkxPZk1QNVpwb0VOZnBmdlZ6OHNLZXZBWERPeFNxV2ROWXVsU3lad2YxQjdrSF9Dd3VYbDFmdkktVHgtUkV4Z3YwdFlrYUFINWM1MFAtcVBOLVRtOXFVeDI2UU9z?oc=5",
+      "source": "Levante-EMV",
+      "sourceHost": "levante-emv.com",
       "date": "2026-05-19T07:00:00.000Z",
       "fingerprint": "ddqyqc"
     },
     {
-      "id": "11uwwaw",
-      "title": "La Generalitat acuerda con Riba-roja de Túria la construcción de 36 viviendas protegidas industrializadas en el marco del Plan Vive Dana",
-      "link": "https://news.google.com/rss/articles/CBMib0FVX3lxTFBZbEd6d0tIQVpvaGtySWY4VVFQR1JDREpvaEJMOV83V2ZUUmNXczllTjV1TDFrSGxPUHRycy05YkhKdWZicldYbnhJUm1XX1R1NFZhY2hjdFRVSjRoajd3RlZ3QVNJTEItSGtoY0hTbw?oc=5",
-      "source": "Comunica GVA",
-      "sourceHost": "comunica.gva.es",
+      "id": "z0fd7w",
+      "title": "La Generalitat y Riba-roja de Túria acuerdan la construcción de 36 viviendas protegidas en el marco del Plan Vive Dana",
+      "link": "https://news.google.com/rss/articles/CBMihwJBVV95cUxQUDZUUXF2WnBXR0l3cmpJZE1rUExhMWExNUtGSkFuZWhJaXBzNmVJdGgwN19uWHZacVZ2MTlYTTRqLWQ0Z0JPRmpZbW0xZkpvY3lqVUJ3Q3NNWFI3QjJSNUxwa196YkxEcXhCWk5FdTktMU5PUk1waVBkbHhXVUZtbDFtQjJtWUpRZ18xZFIxdTlqMEh6LTJlVDVoSEx3aDE2UEhlQ1h3bFRZNW96cm5HV2JaSmRMdmFTeVZKcWoya1B6bTdHSlJzSVM2SC1rbjRtckY2eERWWlVKbFNKMFBLdmVuNkt6SXh6d1BCQ0g3aXQ3Smljb3gtWVV5c19hN0Q0ME9GSzJ0Yw?oc=5",
+      "source": "Valencia Plaza",
+      "sourceHost": "valenciaplaza.com",
       "date": "2026-05-18T07:00:00.000Z",
-      "fingerprint": "hz8a60"
+      "fingerprint": "1kfbqfk"
     },
     {
       "id": "6jjhh4",
