@@ -1,25 +1,17 @@
 {
-  "generatedAt": "2026-10-22T09:49:08.183Z",
+  "generatedAt": "2026-10-23T08:59:57.197Z",
   "windowDays": 14,
-  "items": [
-    {
-      "kind": "promise",
-      "refId": "ac-psoe-1kui43c",
-      "label": "Congelación de las tarifas del agua durante dos años tras el nuevo contrato con Veolia",
-      "date": "2026-10-08",
-      "keyword": ""
-    }
-  ],
+  "items": [],
   "covered": [],
   "stats": {
     "plenoItemsUncovered": 0,
-    "promisesUncovered": 1,
-    "candidatesExamined": 1,
+    "promisesUncovered": 0,
+    "candidatesExamined": 0,
     "tramitesExcluidos": 0,
-    "titularesConsiderados": 19
+    "titularesConsiderados": 16
   },
   "builtFrom": {
-    "plenos-agendas.json": "1fcb95658316",
+    "plenos-agendas.json": "ec769cf04d66",
     "press-claims-verified.json": "035904d802c7",
     "press.json": "4750856668be",
     "promises.json": "a4b8423e960f"
