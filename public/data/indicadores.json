@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-23T09:40:03.793Z",
+  "generatedAt": "2026-10-24T09:15:48.074Z",
   "conjunto": "cv-15k-40k",
   "anioBase": 2024,
   "source": {
@@ -9028,7 +9028,7 @@
         "fuente": {
           "nombre": "SINAC · Sistema de Información Nacional de Aguas de Consumo (Ministerio de Sanidad)",
           "url": "https://sinac.sanidad.gob.es/CiudadanoWeb/ciudadano/informacionAbastecimientoActionEntrada.do",
-          "atribucion": "Fuente: Ministerio de Sanidad, SINAC. Consultado el 2026-10-23; cada boletín lleva su fecha de toma."
+          "atribucion": "Fuente: Ministerio de Sanidad, SINAC. Consultado el 2026-10-24; cada boletín lleva su fecha de toma."
         }
       },
       {

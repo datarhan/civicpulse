@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-23T09:39:42.923Z",
+  "generatedAt": "2026-10-24T09:15:20.738Z",
   "frozen": false,
   "frozenUntil": null,
   "notice": "Sugerencias generadas automáticamente. Requieren aprobación humana antes de aplicarse al estado de cada promesa.",
@@ -41,7 +41,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-10-23T09:39:42.854Z"
+      "generatedAt": "2026-10-24T09:15:20.621Z"
     },
     {
       "promiseId": "ac-psoe-jfg7bc",
@@ -60,7 +60,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-10-23T09:39:42.854Z"
+      "generatedAt": "2026-10-24T09:15:20.621Z"
     },
     {
       "promiseId": "ac-psoe-1ah9zqk",
@@ -79,7 +79,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-10-23T09:39:42.854Z"
+      "generatedAt": "2026-10-24T09:15:20.621Z"
     },
     {
       "promiseId": "ac-psoe-ppa53a",
@@ -87,7 +87,7 @@
       "confidence": 0,
       "reasoning": [],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-10-23T09:39:42.854Z"
+      "generatedAt": "2026-10-24T09:15:20.621Z"
     },
     {
       "promiseId": "ac-psoe-1m04lfw",
@@ -95,7 +95,7 @@
       "confidence": 0,
       "reasoning": [],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-10-23T09:39:42.854Z"
+      "generatedAt": "2026-10-24T09:15:20.621Z"
     },
     {
       "promiseId": "ac-psoe-sysee8",
@@ -114,7 +114,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-10-23T09:39:42.854Z"
+      "generatedAt": "2026-10-24T09:15:20.621Z"
     },
     {
       "promiseId": "ac-psoe-1ryndd8",
@@ -151,7 +151,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-10-23T09:39:42.854Z"
+      "generatedAt": "2026-10-24T09:15:20.621Z"
     },
     {
       "promiseId": "ac-psoe-43brfs",
@@ -216,7 +216,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-10-23T09:39:42.854Z"
+      "generatedAt": "2026-10-24T09:15:20.621Z"
     },
     {
       "promiseId": "ac-psoe-17y448o",
@@ -302,7 +302,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-10-23T09:39:42.854Z"
+      "generatedAt": "2026-10-24T09:15:20.621Z"
     },
     {
       "promiseId": "ac-psoe-1bkbwjs",
@@ -370,7 +370,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-10-23T09:39:42.854Z"
+      "generatedAt": "2026-10-24T09:15:20.621Z"
     },
     {
       "promiseId": "ac-psoe-1xeq50",
@@ -427,7 +427,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-10-23T09:39:42.854Z"
+      "generatedAt": "2026-10-24T09:15:20.621Z"
     },
     {
       "promiseId": "ac-psoe-1kui43c",
@@ -471,21 +471,10 @@
             "anos",
             "contrato"
           ]
-        },
-        {
-          "url": "https://news.google.com/rss/articles/CBMi2gFBVV95cUxPRHJpaHZHcnN0bWlpM2xEdEktYkZQOUdyaFBLSmtLU3YyM3l0NkVrYzhYYy1sWFYtMTMxenNnT0ZmY3dNQXctNDFmYnh4WGpZSlp3bHJnb1BObF9jWjNnYWxtX0lzTmVvak56NE1DRXB5YzNPZS1fVGVIU2VBMjV0NVBLWWlpRFNtMVh5ZGppMVhIczlnaHJoaUU1ZlE2Z1Z3eXVQRDMtZndTX3ZvY3U1WjZxUExUaUt3ZEFzb0hxcUowb1hHcTJNeGdXZjJua3pwRlpFdFE5Vzcwdw?oc=5",
-          "date": "2026-10-23",
-          "quote": "Veolia reutiliza casi el 65% del agua tratada en la Comunitat Valenciana para hacer frente al cambio climático",
-          "kind": "press",
-          "publisher": "Costa Blanca Noticias",
-          "matchedKeywords": [
-            "agua",
-            "veolia"
-          ]
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-10-23T09:39:42.854Z"
+      "generatedAt": "2026-10-24T09:15:20.621Z"
     }
   ],
   "llmEvidence": [],
