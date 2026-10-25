@@ -2,7 +2,7 @@ import { useMemo } from 'react'
 import { Link, useParams } from 'react-router-dom'
 import { Card, Pill, SectionHead, ExtLink } from '../components/Primitives'
 import DataAsOf from '../components/DataAsOf'
-import { useEmpleo, deadlineInfo, OFERTA_STATUS_TONE } from '../hooks/useEmpleo'
+import { useEmpleo, deadlineInfo, effectiveStatus } from '../hooks/useEmpleo'
 import { fmtDateLong } from '../lib/formatters'
 import { useT } from '../i18n'
 
@@ -123,6 +123,7 @@ export default function EmpleoDetalle() {
 
   const d = offer.detail
   const info = deadlineInfo(offer.deadline)
+  const estado = effectiveStatus(offer)
   const lugar = [d?.municipio, d?.provincia].filter(Boolean).join(', ')
 
   return (
@@ -144,8 +145,10 @@ export default function EmpleoDetalle() {
           <span className="mono" style={{ fontSize: 'var(--fs-micro)', color: 'var(--ink50)' }}>
             {offer.codigo}
           </span>
-          <Pill tone={OFERTA_STATUS_TONE[offer.status] || offer.statusTone || 'neutral'} size="xs">
-            {offer.status}
+          {/* El mismo estado que pinta el listado: el portal sigue diciendo
+              «Abierta» de ofertas cuyo plazo ya pasó, y aquí salía tal cual. */}
+          <Pill tone={estado.tone} size="xs">
+            {estado.label}
           </Pill>
           {offer.inRibaRoja && (
             <Pill tone="civic" size="xs">

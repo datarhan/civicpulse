@@ -13,8 +13,7 @@
     ],
     "area-fit.json": [
       "/cargos",
-      "/cargos/:slug",
-      "/departamentos"
+      "/cargos/:slug"
     ],
     "asociaciones.json": [
       "/datos"
@@ -454,8 +453,7 @@
     ],
     "requisitos-cargo.json": [
       "/cargos",
-      "/cargos/:slug",
-      "/departamentos"
+      "/cargos/:slug"
     ],
     "sindic-expedientes.json": [
       "/datos",

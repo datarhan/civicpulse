@@ -129,7 +129,10 @@ const ROUTES: Route[] = [
   { path: '/plenos', ready: /celebrado \d+ sesiones/i },
   { path: `/plenos/${FIRST_PLENO_ID}`, ready: /\d{1,2} de [a-záéíóúñ]+ de \d{4}/i }, // session date
   { path: '/promesas', ready: /\d+ compromisos en seguimiento/ },
-  { path: '/departamentos', ready: /De \d+ concejalías con delegación/ },
+  // La señal era la frase que contaba el encaje de los cargos, retirada porque
+  // docs/DESCRIPCION.md no admite «un recuento de encaje». La nueva sale de las
+  // tarjetas: también depende de los datos (la contratación de cada área).
+  { path: '/departamentos', ready: /\d+ contratos/ },
   { path: '/departamentos/urbanismo', ready: /\d+% cotejadas · \d+ en total/ },
   { path: '/hallazgos', ready: /TOTAL HALLAZGOS \d+/ },
   // La página propia de una ficha: su titular sale del snapshot, no de una cadena.

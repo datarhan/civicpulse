@@ -2210,13 +2210,13 @@ export const CATALOGUE = {
       'Ya no forma parte de la corporación: {motivo}. El Pleno tomó razón el {fecha}.',
     'cargos.detalle.baja.fuente': 'Fuente',
     'cargos.detalle.portfolios.title': 'Concejalías que gestiona',
-    'cargos.detalle.promesas.eyebrow': 'Atribución de grupo',
-    'cargos.detalle.promesas.title': 'Promesas del grupo parlamentario',
+    'cargos.detalle.promesas.eyebrow': 'Atribución al partido',
+    'cargos.detalle.promesas.title': 'Promesas del partido',
     'cargos.detalle.promesas.viewAll': 'Ver tracker completo →',
-    'cargos.detalle.promesas.empty': 'Sin promesas documentadas para este grupo.',
+    'cargos.detalle.promesas.empty': 'Sin promesas documentadas de este partido.',
     // Ni «0» ni «sin promesas» cuando el fichero no llegó: eso no se sabe.
     'cargos.detalle.promesas.noDisponible':
-      'No se ha podido cargar el registro de promesas; no significa que el grupo no tenga ninguna.',
+      'No se ha podido cargar el registro de promesas; no significa que el partido no tenga ninguna.',
     'cargos.detalle.promesas.more': 'Ver {n} promesas más →',
     'cargos.detalle.agenda.eyebrow': 'Puntos de orden del día',
     'cargos.detalle.agenda.title': 'Asuntos llevados al pleno por sus concejalías',
@@ -2229,7 +2229,7 @@ export const CATALOGUE = {
     'cargos.detalle.quejas.viewAll': 'Ver canal completo →',
     'cargos.detalle.quejas.empty': 'Sin quejas asignadas actualmente.',
     'cargos.detalle.methodology':
-      'Las promesas se atribuyen a nivel de grupo parlamentario, no a personas. Los puntos de orden del día se cuentan cuando la concejalía proponente coincide con un área asignada.',
+      'Las promesas se atribuyen al partido, no a personas. Los puntos de orden del día se cuentan cuando la concejalía proponente coincide con un área asignada.',
     'cargos.detalle.methodology.link': 'Leer metodología →',
 
     'encaje.eyebrow': 'Encaje declarado',
@@ -2310,8 +2310,6 @@ export const CATALOGUE = {
     'encaje.ley.title': 'Qué exige la ley para cada puesto',
     'encaje.ley.titulacion': 'Titulación exigida',
     'encaje.ley.ninguna': 'ninguna',
-    'departamentos.encaje':
-      'De {cargos} concejalías con delegación, en {conFormacion} el responsable declara formación del campo del área y en {sinRelacion} lo declarado corresponde a otra materia.',
 
     'departamentos.eyebrow': 'Rendición de cuentas',
     'departamentos.title': 'Departamentos · compromisos y plazos',
@@ -2351,7 +2349,9 @@ export const CATALOGUE = {
     // La leyenda de la barra: los veredictos son `declaraciones.veredicto.*`.
     'departamentos.detalle.barra.sinContraste': 'Sin contraste',
     'departamentos.detalle.empty.votes':
-      '0 votos transcritos para esta concejalía — contribuye vía `npm run pleno-vote` o la plantilla de issue.',
+      'Todavía no hemos transcrito ninguna votación de esta concejalía. Cuando se transcriba alguna, aparecerá aquí.',
+    'departamentos.detalle.error.votes':
+      'No se han podido cargar las votaciones; no significa que no haya ninguna transcrita.',
     'departamentos.detalle.empty.promesas': 'Sin promesas registradas para esta concejalía.',
     'departamentos.detalle.empty.quejas': 'Sin quejas ciudadanas activas para esta concejalía.',
     'plazo.vencido': 'plazo vencido · sin evidencia de ejecución',
@@ -4413,12 +4413,12 @@ export const CATALOGUE = {
       'Ja no forma part de la corporació: {motivo}. El Ple en va prendre raó el {fecha}.',
     'cargos.detalle.baja.fuente': 'Font',
     'cargos.detalle.portfolios.title': 'Regidories que gestiona',
-    'cargos.detalle.promesas.eyebrow': 'Atribució de grup',
-    'cargos.detalle.promesas.title': 'Promeses del grup parlamentari',
+    'cargos.detalle.promesas.eyebrow': 'Atribució al partit',
+    'cargos.detalle.promesas.title': 'Promeses del partit',
     'cargos.detalle.promesas.viewAll': 'Veure tracker complet →',
-    'cargos.detalle.promesas.empty': 'Sense promeses documentades per a este grup.',
+    'cargos.detalle.promesas.empty': "Sense promeses documentades d'este partit.",
     'cargos.detalle.promesas.noDisponible':
-      'No s’ha pogut carregar el registre de promeses; no significa que el grup no en tinga cap.',
+      'No s’ha pogut carregar el registre de promeses; no significa que el partit no en tinga cap.',
     'cargos.detalle.promesas.more': 'Veure {n} promeses més →',
     'cargos.detalle.agenda.eyebrow': "Punts de l'ordre del dia",
     'cargos.detalle.agenda.title': 'Assumptes portats al ple per les seues regidories',
@@ -4431,7 +4431,7 @@ export const CATALOGUE = {
     'cargos.detalle.quejas.viewAll': 'Veure canal complet →',
     'cargos.detalle.quejas.empty': 'Sense queixes assignades actualment.',
     'cargos.detalle.methodology':
-      "Les promeses s'atribueixen a nivell de grup parlamentari, no a persones. Els punts de l'ordre del dia es compten quan la regidoria proposant coincideix amb una àrea assignada.",
+      "Les promeses s'atribueixen al partit, no a persones. Els punts de l'ordre del dia es compten quan la regidoria proposant coincideix amb una àrea assignada.",
     'cargos.detalle.methodology.link': 'Llegir metodologia →',
 
     'encaje.eyebrow': 'Encaix declarat',
@@ -4477,8 +4477,6 @@ export const CATALOGUE = {
     'encaje.ley.title': 'Què exigeix la llei per a cada lloc',
     'encaje.ley.titulacion': 'Titulació exigida',
     'encaje.ley.ninguna': 'cap',
-    'departamentos.encaje':
-      'De {cargos} regidories amb delegació, en {conFormacion} el responsable declara formació del camp de l’àrea i en {sinRelacion} el que declara correspon a una altra matèria.',
 
     'departamentos.eyebrow': 'Rendició de comptes',
     'departamentos.title': 'Departaments · compromisos i terminis',
@@ -4517,7 +4515,9 @@ export const CATALOGUE = {
     'departamentos.detalle.barra.resto': 'acarades · {total} en total',
     'departamentos.detalle.barra.sinContraste': 'Sense contrast',
     'departamentos.detalle.empty.votes':
-      "0 vots transcrits per a aquesta regidoria — contribueix via `npm run pleno-vote` o la plantilla d'issue.",
+      "Encara no hem transcrit cap votació d'aquesta regidoria. Quan se'n transcriga alguna, apareixerà ací.",
+    'departamentos.detalle.error.votes':
+      "No s'han pogut carregar les votacions; no vol dir que no n'hi haja cap de transcrita.",
     'departamentos.detalle.empty.promesas': 'Sense promeses registrades per a aquesta regidoria.',
     'departamentos.detalle.empty.quejas':
       'Sense queixes ciutadanes actives per a aquesta regidoria.',

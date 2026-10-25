@@ -3,7 +3,7 @@
  * Qué fila de la trayectoria política es un CARGO, cuál es el cargo actual y
  * desde cuándo se ocupa sin interrupción.
  *
- * El chip «EN EL CARGO desde …» tomaba el año más bajo de toda la trayectoria,
+ * El chip «desde …» (hoy rotulado «En la corporación») tomaba el año más bajo de toda la trayectoria,
  * candidaturas incluidas: una candidata sin escaño en 2019 salía «desde 2019»
  * (entró en 2023) y el alcalde «desde 2010» por un acta suelta de concejal,
  * cuando lo es sin interrupción desde 2015. Tres sitios (chip, subtítulo,

@@ -57,7 +57,10 @@ const RUTAS: Ruta[] = [
   // La medida del hallazgo: la tarjeta de capítulos, la del mapa de contratos y
   // la de la deuda usan las tres la misma forma.
   { path: '/presupuesto', ready: /[\d.,]+ M€ de gastos aprobados/, minimo: 3 },
-  { path: '/departamentos', ready: /De \d+ concejalías con delegación/, minimo: 1 },
+  // La señal era la frase que contaba el encaje de los cargos, retirada porque
+  // docs/DESCRIPCION.md no admite «un recuento de encaje». La nueva sale de las
+  // tarjetas: también depende de los datos (la contratación de cada área).
+  { path: '/departamentos', ready: /\d+ contratos/, minimo: 1 },
   { path: '/cambios', ready: /Total: \d+ cambios · ventana de \d+ días/, minimo: 1 },
 ]
 

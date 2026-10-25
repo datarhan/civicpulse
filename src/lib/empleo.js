@@ -173,6 +173,51 @@ export function matchesFilters(offer, filters = EMPTY_FILTERS, now = Date.now())
 }
 
 /**
+ * Las ofertas que enseña la portada: abiertas, la que cierra antes primero, y
+ * después las que no traen plazo.
+ *
+ * La portada ordenaba por plazo sin mirar si ya había pasado, así que la
+ * primera oferta que veía un vecino era la más vieja: el 25-10-2026, un
+ * «Auxiliar Administrativo» cerrado el 15-01-2026, pintado «cierra 15 ene». El
+ * portal sigue llamando «Abierta» a ofertas vencidas; el corte es el mismo
+ * `isOfferClosed` que usan el listado, la ficha y el recuento de `stats`.
+ *
+ * @param {any[]} offers
+ * @param {number} [n]
+ * @param {number} [now]
+ */
+export function ofertasDePortada(offers, n = 3, now = Date.now()) {
+  const abiertas = (offers || []).filter((o) => !isOfferClosed(o, now))
+  const conPlazo = abiertas
+    .filter((o) => o.deadline)
+    .sort((a, b) => String(a.deadline).localeCompare(String(b.deadline)))
+  const sinPlazo = abiertas.filter((o) => !o.deadline)
+  return [...conPlazo, ...sinPlazo].slice(0, n)
+}
+
+/**
+ * «27 oct», o «15 ene 2027» cuando el cierre no es de este año: sin el año, un
+ * «15 ene» se lee como el próximo enero.
+ *
+ * El plazo llega como «AAAA-MM-DD», que es un DÍA de calendario y no un
+ * instante: `new Date('2026-10-27')` es la medianoche UTC, y al oeste de
+ * Greenwich eso ya es el 26. Así que un plazo de sólo fecha se pinta en UTC, y
+ * el año se compara en la cadena, no en un `Date`.
+ *
+ * @param {string} iso
+ * @param {string} locale
+ * @param {number} [now]
+ */
+export function fechaDeCierre(iso, locale, now = Date.now()) {
+  const s = String(iso)
+  const anio = Number(s.slice(0, 4))
+  const opts = /** @type {Intl.DateTimeFormatOptions} */ ({ day: 'numeric', month: 'short' })
+  if (/^\d{4}-\d{2}-\d{2}$/.test(s)) opts.timeZone = 'UTC'
+  if (anio !== new Date(now).getFullYear()) opts.year = 'numeric'
+  return new Date(s).toLocaleDateString(locale === 'ca' ? 'ca-ES' : 'es-ES', opts)
+}
+
+/**
  * Slice `list` into a 1-based page of `perPage`, clamping out-of-range pages.
  * @returns {{ items: any[], page: number, totalPages: number, total: number }}
  */
