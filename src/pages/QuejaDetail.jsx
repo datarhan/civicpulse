@@ -614,7 +614,17 @@ export default function QuejaDetail() {
               {conHuecos(t('quejas.detalle.foto.pie'), {
                 '{olvidar}': <code>/olvidar {queja.service_request_id}</code>,
                 '{aviso}': (
-                  <Link to="/aviso-legal" style={{ color: 'var(--civic)' }}>
+                  // Subrayado como los enlaces de `p a[href]` en index.css, que no
+                  // alcanza a un <figcaption>: sólo el color lo distinguía del pie
+                  // (WCAG 1.4.1, `link-in-text-block`).
+                  <Link
+                    to="/aviso-legal"
+                    style={{
+                      color: 'var(--civic)',
+                      textDecoration: 'underline',
+                      textUnderlineOffset: 2,
+                    }}
+                  >
                     {t('quejas.detalle.foto.avisoLegal')}
                   </Link>
                 ),
