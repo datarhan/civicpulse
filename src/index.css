@@ -1624,6 +1624,40 @@ body.cp-kiosk .cp-live-container {
   flex-direction: column;
   gap: 16px;
   margin-top: 28px;
+  container: opiniones / inline-size;
+}
+/* Con sitio, los hechos y «lo que no sabemos» van AL LADO del cuerpo. El cuerpo
+   se queda en su medida de lectura (70ch) y la tarjeta ocupa toda la columna,
+   así que apilados dejaban media tarjeta en blanco a la derecha. Es una
+   consulta de contenedor y no de pantalla: la anchura que importa es la de la
+   tarjeta, que cambia con la barra lateral. Por debajo, todo apilado como
+   siempre. */
+@container opiniones (min-width: 880px) {
+  .cp-opinion {
+    display: grid;
+    grid-template-columns: minmax(0, 70ch) minmax(240px, 1fr);
+    column-gap: 40px;
+    align-items: start;
+  }
+  .cp-opinion > * {
+    grid-column: 1 / -1;
+  }
+  .cp-opinion > .cp-opinion-rotulo {
+    justify-self: start;
+  }
+  .cp-opinion > .cp-opinion-cuerpo {
+    grid-column: 1;
+    grid-row: 4;
+  }
+  .cp-opinion > .cp-opinion-anexos {
+    grid-column: 2;
+    grid-row: 4;
+    grid-template-columns: minmax(0, 1fr);
+    margin-top: 12px;
+    padding: 0 0 0 24px;
+    border-top: 0;
+    border-left: 1px solid var(--border2);
+  }
 }
 .cp-opinion {
   padding: 20px 22px;
