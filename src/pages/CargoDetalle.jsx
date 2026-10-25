@@ -21,6 +21,7 @@ import { EncajeMatrix, QueExigeLaLey } from '../components/EncajeDeclarado'
 import { useT, useLocale } from '../i18n'
 import { contadoresDeCargo } from '../lib/reloj-lpacap'
 import { entreParentesis } from '../lib/cotejo'
+import { useDocumentTitle } from '../hooks/useDocumentTitle'
 
 // El correo se parte antes que ensanchar la ficha. Un correo no tiene por dónde
 // cortarse, y «popularesribarroja@gmail.com» —el de los siete concejales del PP
@@ -706,6 +707,8 @@ export default function CargoDetalle() {
   const agendasSnap = usePlenoAgendas()
   const quejasSnap = useQuejas()
   const bioRoutes = useBioReportRoutes()
+  // La pestaña lleva el nombre: es lo que distingue esta ficha de las otras 20.
+  useDocumentTitle(findOfficial(officialsSnap.data, slug).official?.name)
 
   if (officialsSnap.loading) {
     return (

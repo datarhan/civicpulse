@@ -2,6 +2,7 @@ import { Outlet, useLocation } from 'react-router-dom'
 import Compartir from '../../components/Compartir'
 import { MasReportajes, ProgresoLectura } from '../../components/reportajes/Pieza'
 import { useReportaje } from '../../hooks/useReportaje'
+import { useDocumentTitle } from '../../hooks/useDocumentTitle'
 
 /**
  * Lo que rodea a cada pieza y no es la pieza: la barra de lectura, compartirla y
@@ -17,12 +18,26 @@ export default function Armazon() {
   const actual = pathname.replace(/\/+$/, '').split('/').pop() ?? ''
   return (
     <>
+      <TituloDePieza slug={actual} />
       <ProgresoLectura />
       <Outlet />
       <CompartirPieza slug={actual} />
       <MasReportajes actual={actual} />
     </>
   )
+}
+
+/**
+ * El titular de la pieza en la pestaña, con la misma regla que `prerender-meta`
+ * para su HTML: sólo si está publicada. Un borrador lleva el de la sección.
+ *
+ * @param {{ slug: string }} props
+ */
+function TituloDePieza({ slug }) {
+  const { data } = useReportaje(slug)
+  const m = data?.meta
+  useDocumentTitle(m && m.estado === 'publicado' ? m.titulo : null)
+  return null
 }
 
 /**

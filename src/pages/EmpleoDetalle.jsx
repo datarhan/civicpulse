@@ -5,6 +5,7 @@ import DataAsOf from '../components/DataAsOf'
 import { useEmpleo, deadlineInfo, effectiveStatus } from '../hooks/useEmpleo'
 import { fmtDateLong } from '../lib/formatters'
 import { useT } from '../i18n'
+import { useDocumentTitle } from '../hooks/useDocumentTitle'
 
 /** At-a-glance fact tile. */
 function Tile({ label, value, tone }) {
@@ -79,6 +80,7 @@ export default function EmpleoDetalle() {
   const { id } = useParams()
   const { loading, error, data } = useEmpleo()
   const offer = useMemo(() => (data?.items ?? []).find((o) => o.id === id) || null, [data, id])
+  useDocumentTitle(offer?.titulo)
 
   if (loading) {
     return (

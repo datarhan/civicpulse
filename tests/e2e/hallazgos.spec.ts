@@ -362,7 +362,7 @@ test.describe('Hallazgo (/hallazgos/:id)', () => {
       expect(href, nombre).toContain(publica)
     }
 
-    await expect(page).toHaveTitle(/· CivicPulse$/)
+    await expect(page).toHaveTitle(/ · CivicPulse · Riba-roja de Túria$/)
     expect(await page.title()).toContain(primero.title)
     expect(appErrors(errors)).toEqual([])
   })

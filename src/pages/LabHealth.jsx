@@ -14,6 +14,7 @@ import { useLabHealth } from '../hooks/useLabHealth'
 import { ageHours, freshnessTone } from '../lib/data-freshness'
 import { expectationFor } from '../scraper/snapshot-cadence'
 import { timeAgo } from '../hooks/usePress'
+import { useDocumentTitle } from '../hooks/useDocumentTitle'
 
 const GROUP_LABEL = {
   core: 'Corpus cívico (ciudadano)',
@@ -172,6 +173,7 @@ function Stat({ label, value, tone }) {
 }
 
 export default function LabHealth() {
+  useDocumentTitle('Salud del laboratorio')
   const { loading, rows } = useLabHealth()
 
   const sorted = useMemo(() => {

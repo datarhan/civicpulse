@@ -3,6 +3,8 @@
 // chrome stays Spanish; this is funder/engineer-facing content, like /about.
 // Long-form editorial typography mirrors the /reportajes pattern.
 
+import { useDocumentTitle } from '../../hooks/useDocumentTitle'
+
 const SERIF = "'Fraunces', Georgia, serif"
 
 function SecHead({ num, kicker, title }) {
@@ -64,6 +66,7 @@ const CORRECCION = {
 }
 
 export default function BuildingCivicPulse() {
+  useDocumentTitle('Building CivicPulse with AI')
   return (
     <div
       className="cp-page"

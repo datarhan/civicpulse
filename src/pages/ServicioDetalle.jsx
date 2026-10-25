@@ -23,6 +23,7 @@ import { useIndicadores } from '../hooks/useIndicadores'
 import { useCompetencias, indexarCompetencias, useNombresVisibles } from '../hooks/useCompetencias'
 import { useOfficials } from '../hooks/useOfficials'
 import { useT } from '../i18n'
+import { useDocumentTitle } from '../hooks/useDocumentTitle'
 
 /**
  * /eficiencia/:id — la ficha de un servicio.
@@ -120,6 +121,7 @@ export default function ServicioDetalle() {
   const nombresOn = useNombresVisibles()
 
   const i = (data?.indicadores ?? []).find((x) => x.id === id)
+  useDocumentTitle(i?.etiqueta)
 
   const formatea = (v) => {
     if (typeof v !== 'number') return '—'

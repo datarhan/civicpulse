@@ -21,6 +21,7 @@ import { latestCorrection } from '../scraper/pleno-votes'
 import { rotuloDe, useLocale, useT } from '../i18n'
 import { transcriptKind } from '../lib/transcript-kind.js'
 import { cuentaCotejadas, desgloseCotejadas, entreParentesis } from '../lib/cotejo'
+import { useDocumentTitle } from '../hooks/useDocumentTitle'
 
 function EmptyNote({ children }) {
   return (
@@ -302,6 +303,9 @@ export default function PlenoDetalle() {
   const [tab, setTab] = useState('resumen')
 
   const pleno = useMemo(() => (plenosData?.items ?? []).find((p) => p.id === id), [plenosData, id])
+  // «Pleno · Sesión de fecha …», como el HTML que escribe prerender-meta y el
+  // botón de compartir.
+  useDocumentTitle(pleno?.title ? `Pleno · ${pleno.title}` : null)
   const agenda = useMemo(
     () => (agendasData?.plenos ?? []).find((a) => a.id === id),
     [agendasData, id],
