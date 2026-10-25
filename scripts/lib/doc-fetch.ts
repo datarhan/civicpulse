@@ -140,6 +140,13 @@ export async function classifyUrl(url: string): Promise<UrlVerdict> {
       //
       // A negative HEAD is therefore never a verdict, only a hint: confirm
       // with GET. Costs one extra request per non-2xx URL, which are rare.
+      //
+      // Only the status is wanted, so the body is cancelled before either
+      // exit. Left unread, a body that stalls holds its socket — and the event
+      // loop — open after the timer is cleared: on 2026-10-25 check:citations
+      // printed its report and then sat for half an hour on ~9 PLACSP GETs,
+      // with scrape-ci-blocked.sh's commit and push waiting behind it.
+      await res.body?.cancel().catch(() => {})
       if (method === 'HEAD' && !(res.status >= 200 && res.status < 300)) continue
       return { url, state: stateForStatus(res.status), status: res.status }
     } catch (e) {

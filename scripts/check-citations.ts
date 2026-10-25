@@ -219,6 +219,11 @@ async function main(): Promise<void> {
     out('\nBLOCKED — a published claim has a citation that does not hold.')
     process.exit(1)
   }
+  // Explicit, not «let the event loop drain»: on 2026-10-25 the report was
+  // printed and the process then sat for half an hour on keep-alive sockets to
+  // PLACSP, holding scrape-ci-blocked.sh's commit and push behind it. Once the
+  // report is out there is nothing left to wait for.
+  process.exit(0)
 }
 
 main().catch((e) => {
