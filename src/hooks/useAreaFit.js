@@ -190,24 +190,3 @@ export function citesNothing(rows, fields = ['formacion', 'experiencia']) {
 export function avisosForSlug(data, slug, eje) {
   return (data?.avisos || []).filter((a) => a.officialSlug === slug && (!eje || a.eje === eje))
 }
-
-/** Corporation-wide counts for the /departamentos aggregate. Names nobody. */
-export function fitAggregate(data) {
-  const rows = data?.rows || []
-  if (!rows.length) return null
-  const bySlug = new Map()
-  for (const r of rows) {
-    if (!bySlug.has(r.officialSlug)) bySlug.set(r.officialSlug, [])
-    bySlug.get(r.officialSlug).push(r)
-  }
-  let conFormacion = 0
-  let sinRelacion = 0
-  let noConsta = 0
-  for (const [, group] of bySlug) {
-    const v = overallValue(group, 'formacion')
-    if (v === 'relacionada') conFormacion += 1
-    else if (v === 'no-consta') noConsta += 1
-    else if (v === 'sin-relacion-declarada') sinRelacion += 1
-  }
-  return { cargos: bySlug.size, conFormacion, sinRelacion, noConsta }
-}

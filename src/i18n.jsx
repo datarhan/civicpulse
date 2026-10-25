@@ -2310,8 +2310,6 @@ export const CATALOGUE = {
     'encaje.ley.title': 'Qué exige la ley para cada puesto',
     'encaje.ley.titulacion': 'Titulación exigida',
     'encaje.ley.ninguna': 'ninguna',
-    'departamentos.encaje':
-      'De {cargos} concejalías con delegación, en {conFormacion} el responsable declara formación del campo del área y en {sinRelacion} lo declarado corresponde a otra materia.',
 
     'departamentos.eyebrow': 'Rendición de cuentas',
     'departamentos.title': 'Departamentos · compromisos y plazos',
@@ -2351,7 +2349,7 @@ export const CATALOGUE = {
     // La leyenda de la barra: los veredictos son `declaraciones.veredicto.*`.
     'departamentos.detalle.barra.sinContraste': 'Sin contraste',
     'departamentos.detalle.empty.votes':
-      '0 votos transcritos para esta concejalía — contribuye vía `npm run pleno-vote` o la plantilla de issue.',
+      'Todavía no hemos transcrito ninguna votación de esta concejalía. Cuando se transcriba alguna, aparecerá aquí.',
     'departamentos.detalle.empty.promesas': 'Sin promesas registradas para esta concejalía.',
     'departamentos.detalle.empty.quejas': 'Sin quejas ciudadanas activas para esta concejalía.',
     'plazo.vencido': 'plazo vencido · sin evidencia de ejecución',
@@ -4477,8 +4475,6 @@ export const CATALOGUE = {
     'encaje.ley.title': 'Què exigeix la llei per a cada lloc',
     'encaje.ley.titulacion': 'Titulació exigida',
     'encaje.ley.ninguna': 'cap',
-    'departamentos.encaje':
-      'De {cargos} regidories amb delegació, en {conFormacion} el responsable declara formació del camp de l’àrea i en {sinRelacion} el que declara correspon a una altra matèria.',
 
     'departamentos.eyebrow': 'Rendició de comptes',
     'departamentos.title': 'Departaments · compromisos i terminis',
@@ -4517,7 +4513,7 @@ export const CATALOGUE = {
     'departamentos.detalle.barra.resto': 'acarades · {total} en total',
     'departamentos.detalle.barra.sinContraste': 'Sense contrast',
     'departamentos.detalle.empty.votes':
-      "0 vots transcrits per a aquesta regidoria — contribueix via `npm run pleno-vote` o la plantilla d'issue.",
+      "Encara no hem transcrit cap votació d'aquesta regidoria. Quan se'n transcriga alguna, apareixerà ací.",
     'departamentos.detalle.empty.promesas': 'Sense promeses registrades per a aquesta regidoria.',
     'departamentos.detalle.empty.quejas':
       'Sense queixes ciutadanes actives per a aquesta regidoria.',
