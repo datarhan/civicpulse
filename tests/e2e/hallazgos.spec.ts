@@ -174,7 +174,7 @@ test.describe('Cargo detail (/cargos/:slug)', () => {
     await expect(page.getByText(/Alcald.a/).first()).toBeVisible()
 
     // Methodology disclaimer at the bottom
-    await expect(page.getByText(/Atribución|nivel de grupo parlamentario/i).first()).toBeVisible({
+    await expect(page.getByText(/Atribución|nivel de grupo municipal/i).first()).toBeVisible({
       timeout: 5000,
     })
 

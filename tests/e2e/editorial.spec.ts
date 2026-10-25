@@ -7,9 +7,9 @@ test.describe('Editorial chrome (/metodologia, /aviso-legal, catch-all)', () => 
 
     await page.goto('/metodologia', { waitUntil: 'domcontentloaded' })
 
-    await expect(
-      page.getByRole('heading', { name: 'Metodología del tracker de promesas' }),
-    ).toBeVisible({ timeout: 8000 })
+    await expect(page.getByRole('heading', { name: 'Metodología de CivicPulse' })).toBeVisible({
+      timeout: 8000,
+    })
     await expect(page.getByText('Qué hacemos y qué no hacemos').first()).toBeVisible()
     await expect(page.getByText(/Verificación de declaraciones de pleno/i).first()).toBeVisible()
 

@@ -147,7 +147,7 @@ function PanelCmdK({ onClose }) {
       })),
       { kind: 'Datos', label: 'Dashboard de quejas', to: '/quejas/dashboard', icon: Ic.chart },
       { kind: 'Datos', label: 'Ver catálogo de datos abiertos', to: '/datos', icon: Ic.chart },
-      { kind: 'Datos', label: 'Metodología del tracker', to: '/metodologia', icon: Ic.chart },
+      { kind: 'Datos', label: 'Metodología', to: '/metodologia', icon: Ic.chart },
     ],
     [officials, promises, quejas, findings, glosario],
   )

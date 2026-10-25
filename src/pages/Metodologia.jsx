@@ -428,13 +428,16 @@ export default function Metodologia() {
           marginTop: 2,
         }}
       >
-        Metodología del tracker de promesas
+        Metodología de CivicPulse
       </h1>
+      {/* Decía «del tracker de promesas», de cuando la página sólo explicaba
+          las promesas; hoy es el contrato editorial de todo el sitio. */}
       <p style={{ color: 'var(--ink70)' }}>
-        Este documento explica exactamente cómo se recopilan, clasifican y muestran los compromisos
-        políticos en CivicPulse. Está pensado para ser diseccionable por cualquier vecino,
-        periodista o cargo público. Si algún punto te parece ambiguo, abre una issue en nuestro
-        repositorio público.
+        Este documento explica exactamente de dónde salen los datos de CivicPulse, cómo se
+        comprueban, cómo se publican y cómo se corrigen: las promesas, los plenos, las quejas, los
+        cargos y los costes de los servicios. Está pensado para ser diseccionable por cualquier
+        vecino, periodista o cargo público. Si algún punto te parece ambiguo, escríbenos o abre una
+        incidencia en nuestro repositorio público.
       </p>
 
       {/* La primera capa: cinco reglas de esta página, dichas en corto y
