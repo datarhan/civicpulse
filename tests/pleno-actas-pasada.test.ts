@@ -96,7 +96,8 @@ describe('tocaPedir — una pasada diaria no relee las 63 sesiones', () => {
   it('la rotación recorre todo el archivo en pocos días', () => {
     const resto = n - SIEMPRE_RECIENTES
     const dias = Math.ceil(resto / ROTACION_POR_PASADA)
-    expect(dias).toBeLessThanOrEqual(14)
+    // La promesa de check:cadence para pleno-actas.json (src/scraper/snapshot-cadence.ts).
+    expect(dias).toBeLessThanOrEqual(8)
     const vistas = new Set<number>()
     for (let d = 0; d < dias; d++) for (const i of pedidas(500 + d)) vistas.add(i)
     expect(vistas.size).toBe(n)

@@ -59,8 +59,13 @@ export function desenlaceSesion(l: LecturaSesion): {
  * aparecer cualquier día.
  */
 export const SIEMPRE_RECIENTES = 6
-/** Sesiones del resto que se releen en cada pasada, rotando por días. */
-export const ROTACION_POR_PASADA = 6
+/**
+ * Sesiones del resto que se releen en cada pasada, rotando por días. Con 57
+ * sesiones en el resto, 8 por pasada recorren el archivo en 8 días: lo mismo
+ * que `check:cadence` promete para `pleno-actas.json` (`maxAgeDays: 8`), para
+ * que un fichero «fresco» no esconda una sesión sin releer desde hace más.
+ */
+export const ROTACION_POR_PASADA = 8
 
 /**
  * ¿Pide esta pasada la página de la sesión `indice` (0 = la más reciente)?
