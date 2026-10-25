@@ -16,7 +16,13 @@
  * paralelismo. regmeet bloquea los runners de GitHub: este adaptador sólo se
  * refresca desde `scripts/scrape-ci-blocked.sh`.
  *
- * Uso: npm run scrape:pleno-actas
+ * Incremental desde el 25-10-2026: cada pasada pide sólo las sesiones que le
+ * tocan (`tocaPedir`: las más recientes y una ventana rotatoria del resto) y
+ * conserva sin petición las demás. Pedir las 63 a diario hacía que regmeet
+ * cerrase la conexión (ECONNREFUSED) a mitad de pasada desde el 16-10, y el
+ * índice se quedó diez días sin escribirse. `--completo` fuerza la pasada entera.
+ *
+ * Uso: npm run scrape:pleno-actas [-- --completo]
  */
 import { sha256Short } from '../src/scraper/hash'
 import { spawnSync } from 'node:child_process'
@@ -30,7 +36,7 @@ import {
   parseRegmeetDocumentos,
   type RegmeetDocumento,
 } from '../src/scraper/regmeet-documentos'
-import { desenlaceSesion, puedeEscribirIndice } from '../src/scraper/pleno-actas-pasada'
+import { desenlaceSesion, puedeEscribirIndice, tocaPedir } from '../src/scraper/pleno-actas-pasada'
 
 const __dirname = dirname(fileURLToPath(import.meta.url))
 const PROJECT_ROOT = join(__dirname, '..')
@@ -79,7 +85,11 @@ async function descargar(url: string, accept: string): Promise<Buffer | null> {
     return Buffer.from(await res.arrayBuffer())
   } catch (err) {
     // Un null mudo escondió una vez un bloqueo del WAF durante días: siempre deja rastro.
-    console.warn(`\n[pleno-actas] ${url} falló: ${(err as Error).message}`)
+    // «fetch failed» a secas escondió diez días que regmeet nos rechazaba la
+    // conexión (ECONNREFUSED): la causa va en `cause`, y se dice.
+    const e = err as Error & { cause?: { code?: string; message?: string } }
+    const causa = e.cause ? ` (${e.cause.code ?? e.cause.message ?? 'sin código'})` : ''
+    console.warn(`\n[pleno-actas] ${url} falló: ${e.message}${causa}`)
     return null
   }
 }
@@ -130,10 +140,15 @@ async function main() {
     sinIntentar: 0,
     // De las fallidas o sin intentar, cuántas conservan el acta de la pasada anterior.
     arrastradas: 0,
+    // Las que hoy no tocaba pedir (`tocaPedir`), y de ellas cuántas tenían acta.
+    conservadas: 0,
+    conservadasConActa: 0,
     // PDF que no hizo falta volver a bajar: el de .cache tiene el hash indexado.
     pdfReutilizados: 0,
   }
   const items: ActaIndexada[] = []
+  const completo = process.argv.includes('--completo')
+  const dia = Math.floor(Date.now() / 86_400_000)
   let fallosSeguidos = 0
   let primera = true
   const pedir = async (url: string, accept: string) => {
@@ -151,6 +166,23 @@ async function main() {
         items.push(prev)
         stats.arrastradas += 1
       }
+    }
+    const toca = tocaPedir({
+      indice: i,
+      sesiones: sesiones.length,
+      dia,
+      completo,
+      faltaTexto: anteriorPorPleno.has(p.id) && !existsSync(join(CACHE, `${p.id}.txt`)),
+    })
+    if (!toca) {
+      const prev = anteriorPorPleno.get(p.id)
+      console.log(prev ? 'conservada (hoy no toca)' : 'sin acta, hoy no toca')
+      stats.conservadas += 1
+      if (prev) {
+        items.push(prev)
+        stats.conservadasConActa += 1
+      }
+      continue
     }
     if (fallosSeguidos >= MAX_FALLOS_SEGUIDOS) {
       console.log('sin intentar (regmeet no responde)')
@@ -241,8 +273,11 @@ async function main() {
     console.log(`${documentos.length} documento(s) → ${desenlace}`)
   }
 
+  const tocaban = stats.sesiones - stats.conservadas
   const resumen =
-    `[pleno-actas] intentadas ${stats.sesiones - stats.sinIntentar} de ${stats.sesiones} · ` +
+    `[pleno-actas] ${completo ? 'pasada completa · ' : ''}` +
+    `tocaban ${tocaban} de ${stats.sesiones} · intentadas ${tocaban - stats.sinIntentar} · ` +
+    `conservadas sin pedir ${stats.conservadas} (${stats.conservadasConActa} con acta) · ` +
     `con acta ${stats.conActa} · sin documentos ${stats.sinDocumentos} · ` +
     `sólo otros ${stats.soloOtros} · fecha no coincide ${stats.fechaNoCoincide} · ` +
     `fallidas ${stats.fallidas} · sin intentar ${stats.sinIntentar} · ` +
@@ -252,7 +287,7 @@ async function main() {
   // El cortacircuitos de scrape-pleno-agendas, más uno propio: con media pasada
   // perdida, o con menos de la mitad de las actas que había, el fichero anterior
   // vale más que uno nuevo a medias, y no se toca (`puedeEscribirIndice`).
-  const puerta = puedeEscribirIndice({ ...stats, previas: anterior.length })
+  const puerta = puedeEscribirIndice({ ...stats, tocaban, previas: anterior.length })
   if (!puerta.ok) {
     console.error(`[pleno-actas] ${puerta.motivo} — se deja ${OUT} como estaba`)
     process.exit(1)
