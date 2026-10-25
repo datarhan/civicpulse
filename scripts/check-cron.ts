@@ -50,6 +50,22 @@
  *   queda separado de «no arrancó». Sin ella, un agente que se salta cada día
  *   parece uno que trabaja cada día.
  *
+ * ## Corrió, pero no publica
+ *
+ * El 2026-10-22 la flota corrió a su hora todos los días y no publicó nada en
+ * tres: hallazgos dejó 862c98a4 en local, el push chocó con la nocturna en cinco
+ * derivados, y cada pull inicial de cada agente chocó igual — el abort dejaba el
+ * árbol utilizable y el reintento seguía siendo imposible. Esta guarda no lo
+ * vio, porque los logs se movían y nadie decía OMITIDO. Dos señales lo cierran:
+ *
+ * · **`cron-sin-publicar`**: `main` local por delante de `origin/main` con un
+ *   commit de más de {@link HORAS_SIN_PUBLICAR} h. Por la fecha de AUTOR: un
+ *   rebase reescribe la del committer y la racha volvería a cero cada pasada.
+ * · **`cron-pull-atascado`**: los últimos {@link PULLS_FALLIDOS_SEGUIDOS} pulls
+ *   de toda la flota, por orden de hora, fallaron. Lo leen las marcas
+ *   `pull-estado ok|FALLIDO` que `cron_git_pull_rebase` escribe en cada pull —
+ *   también en el bueno, que es lo que corta la racha.
+ *
  * ## Anti-hueco
  *
  * Sin un solo plist —CI, un clon fresco, otro sistema operativo— esto NO pasa en
@@ -97,7 +113,21 @@ export interface EstadoAgente {
   /** La hora a la que le tocaba por última vez; null si no tiene horario. */
   tocaba: Date | null
   omitidoEn: Date | null
+  /** Las marcas `pull-estado` de la cola del log, en orden. */
+  pulls: EventoPull[]
 }
+
+export interface EventoPull {
+  agente: string
+  at: Date
+  ok: boolean
+}
+
+/** Pulls fallidos seguidos, en toda la flota, a partir de los cuales es rojo. */
+export const PULLS_FALLIDOS_SEGUIDOS = 3
+
+/** Horas que puede esperar un commit local sin publicar antes de ser rojo. */
+export const HORAS_SIN_PUBLICAR = 24
 
 export interface Hallazgo {
   code: string
@@ -118,6 +148,92 @@ export function ultimoOmitido(texto: string): Date | null {
     if (!Number.isNaN(d.getTime())) ultima = d
   }
   return ultima
+}
+
+/**
+ * Las marcas `pull-estado ok|FALLIDO` que `cron_git_pull_rebase` escribe por
+ * `cron_git_log`, con su hora.
+ */
+export function pullsDelLog(texto: string, agente: string): EventoPull[] {
+  const re =
+    /^\[[a-z0-9-]+\] \[(\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2})\] pull-estado (ok|FALLIDO)\b/gm
+  const out: EventoPull[] = []
+  for (const m of texto.matchAll(re)) {
+    const at = new Date(m[1].replace(' ', 'T'))
+    if (!Number.isNaN(at.getTime())) out.push({ agente, at, ok: m[2] === 'ok' })
+  }
+  return out
+}
+
+/**
+ * Rojo cuando los últimos `umbral` pulls de la flota, juntos y por hora,
+ * fallaron. De la flota y no por agente: el 22-10 cada agente pullaba una vez
+ * al día, y por agente la racha tardaba tres días en llegar a tres.
+ */
+export function juzgarPulls(eventos: EventoPull[], umbral = PULLS_FALLIDOS_SEGUIDOS): Hallazgo[] {
+  const orden = [...eventos].sort((a, b) => a.at.getTime() - b.at.getTime())
+  let racha = 0
+  for (let i = orden.length - 1; i >= 0 && !orden[i].ok; i--) racha++
+  if (racha < umbral) return []
+  const fallidos = orden.slice(-racha)
+  const agentes = [...new Set(fallidos.map((e) => e.agente))].join(', ')
+  const desde = fallidos[0].at.toISOString().slice(0, 16).replace('T', ' ')
+  return [
+    {
+      code: 'cron-pull-atascado',
+      message: `los últimos ${racha} pulls de la flota fallaron (desde ${desde}; ${agentes}). Un reintento que choca igual cada vez no se arregla solo: mira «en conflicto:» en esos logs.`,
+    },
+  ]
+}
+
+export interface SinPublicar {
+  commits: number
+  /** Fecha de AUTOR del commit sin publicar más antiguo. */
+  masAntiguo: Date
+}
+
+/**
+ * Lo que `main` local tiene y `origin/main` no, según las referencias del
+ * repositorio en `cwd` (compartidas por todos sus worktrees). Sin red: mide la
+ * última vez que alguien hizo fetch, que en esta flota es cada pull. `null` si
+ * no hay `main` u `origin/main` que comparar — no es un «al día».
+ */
+export function leerSinPublicar(
+  cwd = process.cwd(),
+  rama = process.env.CRON_GIT_MAIN_BRANCH ?? 'main',
+): SinPublicar | null {
+  let salida: string
+  try {
+    salida = execFileSync(
+      'git',
+      ['log', '--format=%at', `refs/remotes/origin/${rama}..refs/heads/${rama}`],
+      { cwd, encoding: 'utf8', stdio: ['ignore', 'pipe', 'ignore'] },
+    )
+  } catch {
+    return null
+  }
+  const tiempos = salida
+    .split('\n')
+    .map((l) => Number(l.trim()))
+    .filter((n) => Number.isFinite(n) && n > 0)
+  if (tiempos.length === 0) return { commits: 0, masAntiguo: new Date(NaN) }
+  return { commits: tiempos.length, masAntiguo: new Date(Math.min(...tiempos) * 1000) }
+}
+
+export function juzgarSinPublicar(
+  s: SinPublicar,
+  ahora: Date,
+  umbralHoras = HORAS_SIN_PUBLICAR,
+): Hallazgo[] {
+  if (s.commits === 0) return []
+  const horas = (ahora.getTime() - s.masAntiguo.getTime()) / 3_600_000
+  if (!(horas > umbralHoras)) return []
+  return [
+    {
+      code: 'cron-sin-publicar',
+      message: `main local lleva ${s.commits} commit(s) por delante de origin/main, el más antiguo de hace ${Math.round(horas)} h. La flota corre pero no publica: lo normal es un pull que choca en cada pasada.`,
+    },
+  ]
 }
 
 /** Los agentes que la carpeta declara. Ignora los `.plist.disabled`. */
@@ -157,13 +273,15 @@ export function medirAgente(a: AgenteProgramado, ahora: Date): EstadoAgente {
   const tocaba = ultimaProgramada(a.horarios, ahora)
   let ultimo: Date | null = null
   let omitidoEn: Date | null = null
+  let pulls: EventoPull[] = []
   if (a.log)
     try {
       ultimo = statSync(a.log).mtime
       // Sólo la cola: estos logs pasan de los 300 KB y lo único que se busca está
       // al final.
-      const texto = readFileSync(a.log, 'utf8')
-      omitidoEn = ultimoOmitido(texto.slice(-20_000))
+      const cola = readFileSync(a.log, 'utf8').slice(-20_000)
+      omitidoEn = ultimoOmitido(cola)
+      pulls = pullsDelLog(cola, a.label.replace(/^com\.civicpulse\./, ''))
     } catch {
       ultimo = null
     }
@@ -174,6 +292,7 @@ export function medirAgente(a: AgenteProgramado, ahora: Date): EstadoAgente {
     ultimo,
     tocaba,
     omitidoEn,
+    pulls,
   }
 }
 
@@ -236,7 +355,12 @@ function main(): void {
 
   const ahora = new Date()
   const estados = flota.map((a) => medirAgente(a, ahora))
-  const hallazgos = juzgar(estados)
+  const sinPublicar = leerSinPublicar()
+  const hallazgos = [
+    ...juzgar(estados),
+    ...juzgarPulls(estados.flatMap((e) => e.pulls)),
+    ...(sinPublicar ? juzgarSinPublicar(sinPublicar, ahora) : []),
+  ]
 
   if (asJson) {
     process.stdout.write(JSON.stringify({ agentes: flota.length, hallazgos }, null, 2) + '\n')
@@ -255,6 +379,17 @@ function main(): void {
       )
     }
     process.stdout.write('[check-cron] todos han corrido desde su última hora programada\n')
+  }
+  if (!sinPublicar) {
+    process.stdout.write(
+      `  · main frente a origin/main: NO COMPROBADO, que no es un visto bueno — no hay main u origin/main que comparar en ${process.cwd()}\n`,
+    )
+  } else if (sinPublicar.commits === 0) {
+    process.stdout.write('  ✓ main local no tiene nada sin publicar\n')
+  } else if (!hallazgos.some((h) => h.code === 'cron-sin-publicar')) {
+    process.stdout.write(
+      `  · main local lleva ${sinPublicar.commits} commit(s) sin publicar, dentro de las ${HORAS_SIN_PUBLICAR} h de margen\n`,
+    )
   }
   process.exit(hallazgos.length > 0 ? 1 : 0)
 }

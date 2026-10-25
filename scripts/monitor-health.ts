@@ -241,6 +241,11 @@ async function gather(rachasPrevias: Record<string, string>): Promise<Observatio
     // run que muere en la guarda no escribe ninguno — su último manifiesto sólo
     // envejece. Además `assertExpectationsAreReal` prohíbe listar un script sin
     // instrumentar, y `press-lab` y `review-sweep` no instrumentan nada.
+    //
+    // Y desde el 2026-10-25, la otra mitad: la flota que corre y no PUBLICA.
+    // Del 22 al 25 cada pull inicial chocó con la nocturna sobre el mismo
+    // commit local y nada avisó; ahora `main` por delante de origin más de un
+    // día, o una racha de pulls fallidos en los logs, sale aquí en rojo.
     'check:cron',
     // La misma pregunta, para los ganchos de git: ¿corren? El 27-09-2026 nueve
     // de doce worktrees comiteaban y empujaban sin ninguno, porque husky deja

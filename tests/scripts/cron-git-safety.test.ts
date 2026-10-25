@@ -57,6 +57,9 @@ import { join, resolve } from 'node:path'
 
 import { afterAll, describe, expect, it } from 'vitest'
 
+import { pullsDelLog } from '../../scripts/check-cron'
+import { rutasDerivadas } from '../../scripts/refresh'
+
 const REPO = resolve(__dirname, '../..')
 
 /** The shipped cron scripts under test, by sandbox-relative path. */
@@ -257,6 +260,20 @@ if [ "$name" = "speaker-map:backlog" ]; then
   echo "sandboxpleno"
   exit 0
 fi
+# \`refresh -- --derived-paths\` es otra CONSULTA: cron-git.sh la lee para saber
+# qué rutas son derivadas. Contesta con la lista que el arenero copió del grafo
+# DE VERDAD (rutasDerivadas), no con una escrita aquí a mano.
+if [ "$name" = "refresh" ] && [ "\${2:-}" = "--derived-paths" ]; then
+  echo "[stub] ran refresh --derived-paths" >&2
+  cat scripts/stub-derived-paths.txt
+  exit 0
+fi
+# Un refresh que de verdad reescribe un derivado, para ver que el rebase lo
+# vuelve a derivar en vez de quedarse con el sello de origin tal cual.
+if [ "$name" = "refresh" ] && [ -n "\${STUB_REFRESH_RESTAMP:-}" ] && [ -e "\${STUB_REFRESH_RESTAMP}" ]; then
+  printf '{"generatedAt":"rederivado","items":[]}\\n' > "\${STUB_REFRESH_RESTAMP}"
+  echo "\${STUB_REFRESH_RESTAMP}"
+fi
 echo "[stub] ran $name"
 # A concurrent subagent stages its work WHILE the cron runs — after the
 # pipeline's opening pull --rebase --autostash, exactly as on 2026-08-09.
@@ -302,6 +319,7 @@ for f in $outs; do printf '{"items":[{"id":"run-%s-%s"}]}\\n' "$name" "\${STUB_S
 exit 0
 `
   writeFileSync(join(dir, 'scripts/stub-step.sh'), stub)
+  writeFileSync(join(dir, 'scripts/stub-derived-paths.txt'), `${rutasDerivadas().join('\n')}\n`)
 
   // hallazgos llama a la transcripción con `bash`, no por npm, y la de verdad
   // escribe aquí. Ningún pleno del arenero tiene vídeo salvo que una prueba se
@@ -1625,5 +1643,160 @@ describe('cron pipelines · un autostash que no vuelve no puede encallar la flot
     expect(r.log, 'se desencalló en silencio: nadie se entera de que hubo trabajo local').toMatch(
       /queja-contract-relations\.json/,
     )
+  }, 120_000)
+})
+
+// ---------------------------------------------------------------------------
+// El reintento que no podía salir nunca.
+//
+// El 2026-10-22 el agente de hallazgos comiteó 862c98a4 en local y su push
+// chocó con la nocturna de CI, que había reescrito los MISMOS derivados
+// (press-trust, press-triangulation, press-coverage-gaps, plenos-agendas,
+// finding-quote-provenance): diferencias sólo de sello, `generatedAt` y
+// `builtFrom`. `_cron_git_desatascar_rebase` abortó limpio y escribió «el
+// próximo run lo reintenta» — y el próximo run chocó exactamente igual, y el
+// siguiente, en los cuatro agentes, tres días, hasta que alguien lo resolvió a
+// mano el 25 tomando origin y corriendo `npm run refresh`. Nada avisó.
+//
+// Abortar estaba bien para lo que se diseñó (dejar el árbol utilizable); lo que
+// faltaba es que un choque entre dos escritores del MISMO DERIVADO tiene una
+// resolución mecánica, y es la que se hizo a mano: el lado de origin y volver a
+// derivar. Cualquier otra ruta en conflicto sigue abortando como siempre.
+describe('cron pipelines · un choque de sellos en un derivado no encalla la flota', () => {
+  const DERIVADO = 'public/data/press-trust.json'
+  const CURADO = 'public/data/promises.json'
+  const SUBJECT_LOCAL = 'cron local: sin publicar (862c98a4)'
+
+  const sello = (quien: string) =>
+    `{\n  "generatedAt": "2026-10-22T05:00:00.000Z-${quien}",\n  "builtFrom": { "press.json": "${quien}" },\n  "items": []\n}\n`
+
+  /**
+   * Dos escritores reescriben las mismas rutas: un commit local que nunca llegó
+   * a publicarse y uno de origin (la nocturna), empujado desde un clon aparte.
+   * El local lleva además un fichero propio que no choca con nada, que es el
+   * trabajo que se perdía.
+   */
+  function chocarConOrigen(dir: string, rutas: string[]): void {
+    const otro = mkdtempSync(join(tmpdir(), 'cron-git-nocturna-'))
+    sandboxes.push(otro)
+    execFileSync('git', ['clone', '-q', `${dir}.origin.git`, otro])
+    for (const r of rutas) writeFileSync(join(otro, r), sello('origin'))
+    execFileSync('git', ['add', '--', ...rutas], { cwd: otro })
+    execFileSync(
+      'git',
+      ['-c', 'user.email=ci@x', '-c', 'user.name=ci', 'commit', '-qm', 'nocturna: sellos'],
+      { cwd: otro },
+    )
+    execFileSync('git', ['push', '-q', 'origin', 'HEAD:main'], { cwd: otro })
+
+    for (const r of rutas) writeFileSync(join(dir, r), sello('local'))
+    writeFileSync(join(dir, 'public/data/paro.json'), '{"items":[{"id":"trabajo-local"}]}\n')
+    git(dir, 'add', '--', ...rutas, 'public/data/paro.json')
+    git(dir, 'commit', '-qm', SUBJECT_LOCAL)
+  }
+
+  /**
+   * Las rutas que chocarían al fusionar main con origin/main, medidas por git
+   * ANTES del run y sin tocar el árbol. Es la prueba de que el reproductor
+   * reproduce: sin conflicto, «el run publicó» no demuestra nada.
+   */
+  function conflictosPrevistos(dir: string): string[] {
+    git(dir, 'fetch', '-q', 'origin')
+    try {
+      git(dir, 'merge-tree', '--write-tree', '--name-only', 'main', 'origin/main')
+      return []
+    } catch (err) {
+      const out = (err as { stdout?: string }).stdout ?? ''
+      // Primera línea: el árbol; luego las rutas en conflicto hasta la línea vacía.
+      const [, ...resto] = out.split('\n')
+      const fin = resto.indexOf('')
+      return (fin < 0 ? resto : resto.slice(0, fin)).map((s) => s.trim()).filter(Boolean)
+    }
+  }
+
+  function enOrigen(dir: string, ...args: string[]): string {
+    return execFileSync('git', args, { cwd: `${dir}.origin.git`, encoding: 'utf8' })
+  }
+
+  it('el arenero conoce los derivados por el grafo, y el del incidente está entre ellos — control', () => {
+    expect(rutasDerivadas()).toContain(DERIVADO)
+    expect(rutasDerivadas(), 'un curado no puede tomarse de origin a ciegas').not.toContain(CURADO)
+  })
+
+  it('un commit local y uno de origin que reescriben el sello del mismo derivado: la pasada siguiente publica', () => {
+    const dir = makeSandbox()
+    chocarConOrigen(dir, [DERIVADO])
+    expect(conflictosPrevistos(dir), 'el reproductor no choca: no mide nada').toEqual([DERIVADO])
+
+    const r = runScript(dir, 'scripts/scrape-ci-blocked.sh', { STUB_REFRESH_RESTAMP: DERIVADO })
+
+    expect(r.status, r.log).toBe(0)
+    expect(r.branchAfter, 'quedó un rebase a medias').toBe('main')
+    expect(r.log).toMatch(/press-trust\.json/)
+    // Publicado: origin tiene el commit que llevaba tres días esperando…
+    expect(
+      enOrigen(dir, 'log', '--format=%s', 'main'),
+      'el commit local no llegó a origin',
+    ).toContain(SUBJECT_LOCAL)
+    expect(r.originHead, 'main local y origin no coinciden: el push no salió').toBe(r.head)
+    // …con su trabajo propio dentro…
+    expect(enOrigen(dir, 'show', 'main:public/data/paro.json')).not.toContain('baseline')
+    // …y el derivado vuelto a derivar, no el sello de ninguno de los dos.
+    const sha = enOrigen(
+      dir,
+      'log',
+      '--format=%H',
+      `--grep=${SUBJECT_LOCAL}`,
+      '--fixed-strings',
+      'main',
+    )
+      .trim()
+      .split('\n')[0]
+    const derivadoEnElCommit = enOrigen(dir, 'show', `${sha}:${DERIVADO}`)
+    expect(derivadoEnElCommit, 'el derivado no se volvió a derivar durante el rebase').toContain(
+      'rederivado',
+    )
+    expect(derivadoEnElCommit).not.toMatch(/^<{7} |^>{7} /m)
+    // Y check:cron lo lee como un pull bueno, que es lo que corta la racha.
+    expect(pullsDelLog(r.log, 'ci').map((e) => e.ok)[0], 'el pull inicial no dejó su marca').toBe(
+      true,
+    )
+  }, 120_000)
+
+  it('un conflicto en un fichero curado sigue abortando — no se toma origin a ciegas', () => {
+    const dir = makeSandbox()
+    chocarConOrigen(dir, [CURADO])
+    expect(conflictosPrevistos(dir), 'el reproductor no choca: no mide nada').toEqual([CURADO])
+    const localAntes = tip(dir, 'main')
+
+    const r = runScript(dir, 'scripts/scrape-ci-blocked.sh')
+
+    expect(r.status, 'el pull inicial chocó y el run siguió').toBe(1)
+    expect(r.branchAfter, 'quedó un rebase a medias').toBe('main')
+    expect(tip(dir, 'main'), 'el commit local se reescribió o se perdió').toBe(localAntes)
+    expect(enOrigen(dir, 'log', '--format=%s', 'main')).not.toContain(SUBJECT_LOCAL)
+    expect(git(dir, 'show', `HEAD:${CURADO}`)).toContain('local')
+    // El reintento chocará igual: que check:cron pueda contarlo.
+    expect(
+      pullsDelLog(r.log, 'ci').map((e) => e.ok),
+      'el pull fallido no dejó su marca',
+    ).toEqual([false])
+  }, 120_000)
+
+  it('derivado y curado en el mismo choque: aborta entero, no resuelve la mitad', () => {
+    const dir = makeSandbox()
+    chocarConOrigen(dir, [DERIVADO, CURADO])
+    expect(conflictosPrevistos(dir).sort()).toEqual([CURADO, DERIVADO].sort())
+    const localAntes = tip(dir, 'main')
+
+    const r = runScript(dir, 'scripts/scrape-ci-blocked.sh')
+
+    expect(r.status).toBe(1)
+    expect(r.branchAfter).toBe('main')
+    expect(tip(dir, 'main')).toBe(localAntes)
+    expect(
+      git(dir, 'show', `HEAD:${DERIVADO}`),
+      'resolvió el derivado y abandonó el resto',
+    ).toContain('local')
   }, 120_000)
 })

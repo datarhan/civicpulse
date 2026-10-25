@@ -5,9 +5,15 @@ import { tmpdir } from 'node:os'
 import { join, resolve } from 'node:path'
 
 import {
+  HORAS_SIN_PUBLICAR,
+  PULLS_FALLIDOS_SEGUIDOS,
   TOLERANCIA_HORAS,
   describirHorarios,
   juzgar,
+  juzgarPulls,
+  juzgarSinPublicar,
+  leerSinPublicar,
+  pullsDelLog,
   leerFlota,
   medirAgente,
   ultimaProgramada,
@@ -368,5 +374,127 @@ describe('lo que imprime llega al parte de salud', () => {
     expect(salida, 'sin flota tiene que salir distinto de cero y decirlo').toContain('sin-flota')
     expect(pickCheckDiagnosis(salida), 'el parte no vería esta guarda').not.toBe('')
     expect(pickCheckDiagnosis(salida)).toContain('sin-flota')
+  }, 60_000)
+})
+
+/**
+ * Corrió, pero no publica. Del 22 al 25-10-2026 la flota arrancó a su hora cada
+ * día —logs movidos, ningún OMITIDO— y no publicó nada: un commit local de
+ * hallazgos chocaba con la nocturna en cada pull inicial de cada agente. Esta
+ * guarda lo daba por sano.
+ */
+describe('corrió, pero no publica', () => {
+  const linea = (hora: string, estado: 'ok' | 'FALLIDO (rc=1)') =>
+    `[hallazgos-pipeline] [2026-10-${hora}] pull-estado ${estado} · git pull inicial\n`
+
+  it('lee las marcas pull-estado con su hora, y nada más', () => {
+    const texto =
+      linea('22 09:30:01', 'ok') +
+      '[hallazgos-pipeline] [2026-10-22 09:31:00]     en conflicto: public/data/press-trust.json\n' +
+      linea('23 09:30:01', 'FALLIDO (rc=1)')
+    const ev = pullsDelLog(texto, 'hallazgos')
+    expect(ev.map((e) => e.ok)).toEqual([true, false])
+    expect(ev[1].at.toISOString()).toBe(new Date('2026-10-23T09:30:01').toISOString())
+  })
+
+  it(`${PULLS_FALLIDOS_SEGUIDOS} pulls fallidos seguidos en la flota: rojo, nombrando a los agentes`, () => {
+    const ev = [
+      ...pullsDelLog(linea('22 06:55:00', 'ok'), 'scrape-ci-blocked'),
+      ...pullsDelLog(linea('22 09:30:00', 'FALLIDO (rc=1)'), 'hallazgos'),
+      ...pullsDelLog(linea('22 10:15:00', 'FALLIDO (rc=1)'), 'press-lab'),
+      ...pullsDelLog(linea('23 06:55:00', 'FALLIDO (rc=1)'), 'scrape-ci-blocked'),
+    ]
+    const h = juzgarPulls(ev)
+    expect(h.map((x) => x.code)).toEqual(['cron-pull-atascado'])
+    expect(h[0].message).toContain('hallazgos')
+    expect(h[0].message).toContain('press-lab')
+  })
+
+  it('un pull bueno corta la racha, venga del agente que venga', () => {
+    const ev = [
+      ...pullsDelLog(linea('22 09:30:00', 'FALLIDO (rc=1)'), 'hallazgos'),
+      ...pullsDelLog(linea('22 10:15:00', 'FALLIDO (rc=1)'), 'press-lab'),
+      ...pullsDelLog(linea('23 06:55:00', 'FALLIDO (rc=1)'), 'scrape-ci-blocked'),
+      ...pullsDelLog(linea('23 08:30:00', 'ok'), 'auto-curate'),
+    ]
+    expect(juzgarPulls(ev)).toEqual([])
+    // …y uno menos del umbral tampoco es rojo.
+    expect(juzgarPulls(ev.slice(0, PULLS_FALLIDOS_SEGUIDOS - 1))).toEqual([])
+  })
+
+  it(`main por delante de origin más de ${HORAS_SIN_PUBLICAR} h: rojo; menos, no`, () => {
+    const ahora = new Date('2026-10-25T11:00:00Z')
+    const hace = (h: number) => new Date(ahora.getTime() - h * 3_600_000)
+    expect(
+      juzgarSinPublicar({ commits: 1, masAntiguo: hace(HORAS_SIN_PUBLICAR + 1) }, ahora).map(
+        (x) => x.code,
+      ),
+    ).toEqual(['cron-sin-publicar'])
+    expect(
+      juzgarSinPublicar({ commits: 1, masAntiguo: hace(HORAS_SIN_PUBLICAR - 1) }, ahora),
+    ).toEqual([])
+    expect(juzgarSinPublicar({ commits: 0, masAntiguo: new Date(NaN) }, ahora)).toEqual([])
+  })
+
+  it('lee lo sin publicar de un repositorio de verdad, por la fecha de AUTOR', () => {
+    const dir = mkdtempSync(join(tmpdir(), 'check-cron-git-'))
+    const g = (...a: string[]) =>
+      execFileSync('git', a, {
+        cwd: dir,
+        encoding: 'utf8',
+        env: { ...process.env, HOME: dir, GIT_AUTHOR_DATE: '2026-10-22T09:30:00Z' },
+      })
+    try {
+      g('init', '-q', '-b', 'main')
+      g('-c', 'user.email=a@b', '-c', 'user.name=a', 'commit', '-q', '--allow-empty', '-m', 'base')
+      g('update-ref', 'refs/remotes/origin/main', 'HEAD')
+      expect(leerSinPublicar(dir)).toEqual({ commits: 0, masAntiguo: new Date(NaN) })
+      g(
+        '-c',
+        'user.email=a@b',
+        '-c',
+        'user.name=a',
+        'commit',
+        '-q',
+        '--allow-empty',
+        '-m',
+        '862c98a4',
+      )
+      const s = leerSinPublicar(dir)
+      expect(s?.commits).toBe(1)
+      expect(s?.masAntiguo.toISOString()).toBe('2026-10-22T09:30:00.000Z')
+      // Sin origin/main no hay nada que comparar: null, no «al día».
+      g('update-ref', '-d', 'refs/remotes/origin/main')
+      expect(leerSinPublicar(dir)).toBeNull()
+    } finally {
+      rmSync(dir, { recursive: true, force: true })
+    }
+  })
+})
+
+describe.skipIf(!HAY_PLUTIL)('corrió, pero no publica · llega al parte de salud', () => {
+  it('la racha de pulls fallidos sale 1 y pickCheckDiagnosis la nombra', () => {
+    const contenido = [1, 2, 3]
+      .map(
+        (i) =>
+          `[hallazgos-pipeline] [2026-10-2${i + 1} 09:30:01] pull-estado FALLIDO (rc=1) · git pull inicial\n`,
+      )
+      .join('')
+    const e = escenario({ horarios: DIARIO(9, 30), contenido })
+    let salida = ''
+    let codigo = 0
+    try {
+      execFileSync('npx', ['tsx', resolve('scripts/check-cron.ts')], {
+        env: { ...process.env, CRON_AGENTS_DIR: e.dir },
+        encoding: 'utf8',
+      })
+    } catch (err) {
+      codigo = (err as { status?: number }).status ?? -1
+      salida = String((err as { stdout?: string }).stdout ?? '')
+    } finally {
+      e.limpiar()
+    }
+    expect(codigo, 'tres pulls fallidos seguidos y la guarda sale 0').toBe(1)
+    expect(pickCheckDiagnosis(salida)).toContain('cron-pull-atascado')
   }, 60_000)
 })
