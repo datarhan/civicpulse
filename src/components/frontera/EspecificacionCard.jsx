@@ -172,10 +172,15 @@ export function EspecificacionCard({ e, principal }) {
                   : 'el extremo inferior se sale de la escala: esta cesta no acota nada por abajo'
               }
             />
+            {/* Decía «Por debajo de ella · 17 %» tras «Distancia a la frontera», y «ella»
+                se leía la frontera, que deja debajo a 15 de las 24. El 17 % es otra cosa:
+                las unidades con una distancia menor que la de Riba-roja (`percentil`, que
+                cuenta las estrictamente menores). La nota traía además las 9 de la frontera
+                sin decir que eran otro grupo, y 9 de 24 no es el 17 %. */}
             <Cifra
-              rotulo="Por debajo de ella"
+              rotulo="Por debajo de Riba-roja"
               valor={`${Math.round(e.propia.percentil)} %`}
-              nota={`${e.distribucion.eficientes} de ${e.distribucion.n} sin nadie por delante`}
+              nota={`${Math.round((e.propia.percentil / 100) * e.distribucion.n)} de ${e.distribucion.n} unidades, con distancia menor · ${e.distribucion.eficientes} en la frontera, sin nadie por delante`}
             />
           </div>
 
