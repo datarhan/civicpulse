@@ -1,6 +1,6 @@
 {
   "version": "1.0",
-  "generatedAt": "2026-10-18T20:37:16.686Z",
+  "generatedAt": "2026-10-25T20:05:44.841Z",
   "legalNotice": "Este registro recoge hallazgos editoriales sobre las intervenciones de los plenos. Los redacta un proceso automático a partir de declaraciones extraídas de la transcripción, salvo los que llevan la firma de una persona, y cada ficha indica quién la editó: un nombre como «auto-curation-v1» significa que el título y el resumen los escribió una máquina, no una persona. Cada hallazgo cita una o más afirmaciones literales (verbatim) del pleno y los documentos municipales que confirman o contradicen cada afirmación. Las réplicas de los grupos políticos se publican íntegras y sin editar.",
   "contactUrl": "https://github.com/datarhan/civicpulse/issues/new/choose",
   "methodologyUrl": "/metodologia",
@@ -345,7 +345,7 @@
       "plenoId": "10yl550",
       "plenoDate": "2026-05-11",
       "title": "Pleno del Ayuntamiento de Riba-roja de Túria del 2026-05-11 sobre vivienda",
-      "summary": "En la sesión del pleno del 11 de mayo de 2026, el grupo PSOE sostuvo que Riba-roja es técnicamente un mercado de vivienda tensionado y defendió la constitucionalidad de la ley estatal de vivienda. El debate incluyó además reproches sobre subvenciones europeas que no se detallan aquí: la transcripción de esas intervenciones está degradada y ninguna cita mostrable las sostiene.",
+      "summary": "En la sesión del pleno del 11 de mayo de 2026, el grupo PSOE sostuvo que Riba-roja es técnicamente un mercado de vivienda tensionado y defendió la constitucionalidad de la ley estatal de vivienda. El debate incluyó además reproches sobre subvenciones europeas que no se reproducen aquí, porque ningún registro municipal los respalda ni los desmiente.",
       "severity": "informational",
       "sourceClaimIds": [
         "10yl550-062-acu-1adbf3",
@@ -434,9 +434,17 @@
           "field": "summary",
           "original": "En la sesión del pleno del 11 de mayo de 2026, el grupo PSOE afirmó que se han perdido subvenciones importantes debido a la falta de compromiso con la agenda europea. Además, el PSOE señaló que Riba Roja es un mercado de vivienda tensionado y defendió la constitucionalidad de la ley estatal de vivienda.",
           "corrected": "En la sesión del pleno del 11 de mayo de 2026, el grupo PSOE sostuvo que Riba-roja es técnicamente un mercado de vivienda tensionado y defendió la constitucionalidad de la ley estatal de vivienda. El debate incluyó además reproches sobre subvenciones europeas que no se detallan aquí: la transcripción de esas intervenciones está degradada y ninguna cita mostrable las sostiene.",
-          "reason": "La primera frase se apoyaba sólo en intervenciones que la puerta editorial retiene y cuya transcripción está degradada; la única cita mostrable de la ficha sostiene la segunda, no aquella.",
+          "reason": "La primera frase se apoyaba sólo en intervenciones que la puerta editorial retiene; la única cita mostrable de la ficha sostiene la segunda, no aquella.",
           "editor": "Sergei Lutchenko",
-          "correctedAt": "2026-08-11T09:06:43.855Z"
+          "correctedAt": "2026-08-11T09:06:43.855Z",
+          "reasonAmendments": [
+            {
+              "previous": "motivo · sha256:7864f86726b2",
+              "reason": "El motivo decía además que la transcripción de esas intervenciones está degradada. No lo estaba: la transcripción vigente de la sesión, del 1-08-2026, ya las recogía enteras cuando se escribió. Se quita esa parte; el resto del motivo no cambia. Revisión de superficies del 25-10-2026.",
+              "editor": "Sergei Lutchenko",
+              "amendedAt": "2026-10-25T20:05:44.566Z"
+            }
+          ]
         },
         {
           "field": "quote.1.speakerGroup",
@@ -445,6 +453,14 @@
           "reason": "La cita no es del PP: tras el turno del portavoz popular, la presidencia da la palabra a otro grupo, y quien habla se refiere al regidor del Partido Popular en tercera persona y recibe al acabar el agradecimiento por su nombre (transcripción y vídeo, 7.036–7.237 s). Ese grupo tiene un solo concejal, así que se retira la atribución en lugar de sustituirla.",
           "editor": "civicpulse-curator",
           "correctedAt": "2026-10-18T20:37:16.686Z"
+        },
+        {
+          "field": "summary",
+          "original": "En la sesión del pleno del 11 de mayo de 2026, el grupo PSOE sostuvo que Riba-roja es técnicamente un mercado de vivienda tensionado y defendió la constitucionalidad de la ley estatal de vivienda. El debate incluyó además reproches sobre subvenciones europeas que no se detallan aquí: la transcripción de esas intervenciones está degradada y ninguna cita mostrable las sostiene.",
+          "corrected": "En la sesión del pleno del 11 de mayo de 2026, el grupo PSOE sostuvo que Riba-roja es técnicamente un mercado de vivienda tensionado y defendió la constitucionalidad de la ley estatal de vivienda. El debate incluyó además reproches sobre subvenciones europeas que no se reproducen aquí, porque ningún registro municipal los respalda ni los desmiente.",
+          "reason": "El sumario decía que esos reproches no se detallaban porque «la transcripción de esas intervenciones está degradada». No lo está: la transcripción vigente de la sesión los recoge enteros (2.832–2.858 s), y la cita 1 de la ficha 1adbf3 consta en ella. Lo que los deja fuera es la puerta editorial, que retiene como acusación no contrastada lo que ningún registro municipal respalda ni desmiente. Se dice el motivo que es; lo que se dijo no cambia.",
+          "editor": "Sergei Lutchenko",
+          "correctedAt": "2026-10-25T20:05:44.290Z"
         }
       ]
     },
@@ -1476,7 +1492,7 @@
           "field": "summary",
           "original": "El grupo PSOE afirma que el plan edificante ha movilizado hasta 1.700 millones de euros para la construcción y mejora de infraestructuras educativas, mientras que VOX se compromete a garantizar una enseñanza de calidad con libertad. El registro municipal incluye contratos relacionados con mejoras en centros educativos y servicios de formación.",
           "corrected": "El grupo PSOE afirma que el pla Edificant —el programa autonómico de la Generalitat para infraestructuras educativas, cuya cifra corresponde al conjunto de la Comunitat y no al presupuesto de este ayuntamiento— ha movilizado hasta 1.700 millones de euros para la construcción y mejora de infraestructuras educativas, mientras que VOX se compromete a garantizar una enseñanza de calidad con libertad. El registro municipal incluye contratos relacionados con mejoras en centros educativos y servicios de formación.",
-          "reason": "Junto a los datos de contratación y presupuesto municipales, la cifra de 1.700 millones se leía como imputable a Riba-roja, cuyo presupuesto inicial de gastos de 2025 es de 41,6 millones según CONPREL, unas cuarenta veces menos; es un programa autonómico. Señalamiento de la revisión de superficies del 18-08-2026.",
+          "reason": "Junto a los datos de contratación y presupuesto municipales, la cifra de 1.700 millones se leía como imputable a Riba-roja, cuyo presupuesto inicial de gastos de 2025 es de 41,6 millones según CONPREL, unas cuarenta veces menos, y cuyo crédito definitivo al cierre de ese año fue de 67,1 millones, unas veinticinco veces menos; es un programa autonómico. Señalamiento de la revisión de superficies del 18-08-2026.",
           "editor": "Sergei Lutchenko",
           "correctedAt": "2026-08-18T16:28:02.199Z",
           "reasonAmendments": [
@@ -1485,6 +1501,12 @@
               "reason": "El motivo decía que el presupuesto municipal es «dos órdenes de magnitud» menor, unas cien veces. Con el presupuesto inicial de gastos de 2025 en CONPREL (41,6 millones) la proporción es de unas cuarenta veces, y con el crédito definitivo del año, de unas veintisiete. Revisión de superficies del 14-10-2026.",
               "editor": "Sergei Lutchenko",
               "amendedAt": "2026-10-14T13:53:52.282Z"
+            },
+            {
+              "previous": "motivo · sha256:b02f7914d73a",
+              "reason": "La enmienda del 14-10-2026 decía que, con el crédito definitivo del año, la proporción era de unas veintisiete. Aquel crédito, 62,12 millones, era el de la hoja del segundo trimestre, que el sitio leía entonces como cierre del ejercicio; el cierre de 2025 da 67,07 millones, y la proporción es de unas veinticinco. El motivo da ahora las dos proporciones con las cifras del cierre. Revisión de superficies del 25-10-2026.",
+              "editor": "Sergei Lutchenko",
+              "amendedAt": "2026-10-25T20:05:44.839Z"
             }
           ]
         },

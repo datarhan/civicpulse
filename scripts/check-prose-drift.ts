@@ -42,6 +42,18 @@ function main() {
   const tenders = read('tenders.json')
   const geo = read('tender-geo.json')
   const budget = read('budget.json')
+  // El cierre de 2025 del estado de ejecución municipal. Sin un periodo de 2025
+  // a 31/12 con un solo corte, NaN: la cifra sale «no comparada», nunca contra
+  // la hoja de otro trimestre. Ésa fue la que el sitio leyó como cierre hasta
+  // #417, y de ella se escribió a mano «18,91 millones» en la pieza de la DANA.
+  const cierre2025 = (
+    (read('budget-execution.json')?.periods ?? []) as Array<{
+      year?: number
+      fechaListado?: string
+      mismoCorte?: boolean
+      gastos?: { total?: { inicial?: number; actual?: number; ejecutado?: number } }
+    }>
+  ).find((p) => p.year === 2025 && p.fechaListado === '31/12/2025' && p.mismoCorte)?.gastos?.total
 
   /** Importe de un contrato por id, o NaN — que el comparador trata como «no comparada». */
   const importeContrato = (id: string): number =>
@@ -99,6 +111,18 @@ function main() {
       label: 'tenders.stats.awardedTotalEuros − contrato 46717',
       value: (tenders?.stats?.awardedTotalEuros ?? NaN) - importeContrato('46717'),
     },
+    ejecucion2025Inicial: {
+      label: 'budget-execution · 2025 a 31/12 · gastos.total.inicial',
+      value: cierre2025?.inicial ?? NaN,
+    },
+    ejecucion2025Definitivo: {
+      label: 'budget-execution · 2025 a 31/12 · gastos.total.actual',
+      value: cierre2025?.actual ?? NaN,
+    },
+    ejecucion2025Reconocido: {
+      label: 'budget-execution · 2025 a 31/12 · gastos.total.ejecutado',
+      value: cierre2025?.ejecutado ?? NaN,
+    },
   }
 
   // Frozen figures worth tracking. Deliberately an explicit list: scraping every
@@ -117,6 +141,25 @@ function main() {
         where: 'reconstruccion-dana.totals.situatedAmount',
         value: dana.totals.situatedAmount,
         anchor: 'situatedAmount',
+      },
+    )
+  }
+  if (dana?.ejecucion2025) {
+    frozen.push(
+      {
+        where: 'reconstruccion-dana.ejecucion2025.creditoInicial',
+        value: dana.ejecucion2025.creditoInicial,
+        anchor: 'ejecucion2025Inicial',
+      },
+      {
+        where: 'reconstruccion-dana.ejecucion2025.creditoDefinitivo',
+        value: dana.ejecucion2025.creditoDefinitivo,
+        anchor: 'ejecucion2025Definitivo',
+      },
+      {
+        where: 'reconstruccion-dana.ejecucion2025.obligacionesReconocidas',
+        value: dana.ejecucion2025.obligacionesReconocidas,
+        anchor: 'ejecucion2025Reconocido',
       },
     )
   }

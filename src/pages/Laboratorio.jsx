@@ -898,7 +898,9 @@ export default function Laboratorio() {
     )
   }
 
-  const triangulated3Plus = lab.triangulation?.stats?.triangulated3Plus ?? 0
+  // `null`, no 0, si el fichero no llega: `fmtNumber` lo pinta «—». Un cero aquí
+  // diría que se miró y no hay ninguna.
+  const triangulated3Plus = lab.triangulation?.stats?.triangulated3Plus ?? null
 
   return (
     <div
@@ -1026,10 +1028,15 @@ export default function Laboratorio() {
           value={fmtPct(summary.contradichoRatio)}
           hint={`${summary.contradichoClaims} de ${summary.resueltasClaims} resueltas · últimos 30 días`}
         />
+        {/* Decía sólo «historias en ≥3 medios», y su 0 se leía «ninguna noticia ha
+            salido en tres medios». El 21-10-2026 la Ofrena al Túria salió en Periòdic
+            (en valencià), Valenciabonita y Levante-EMV, y el agrupado por título
+            (`clusterArticlesByStory`) no la vio: la cifra cuenta lo que ese agrupado
+            reconoce. Cada fila ya lo decía en «Cobertura cruzada»; la cifra, no. */}
         <KPI
           label="Triangulación"
           value={fmtNumber(triangulated3Plus)}
-          hint="historias en ≥3 medios"
+          hint="historias en ≥3 medios, agrupadas por título: no reconoce la misma noticia contada con otras palabras ni en la otra lengua"
         />
         {/* Decía «Hallazgos editoriales 17 · curados»: las 17 filas eran del curador
             automático, de 5 lotes repetidos (`resumenHallazgos`). Cuenta lotes, y

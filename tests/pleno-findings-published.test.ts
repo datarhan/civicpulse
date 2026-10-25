@@ -445,7 +445,14 @@ const expectWithdrawn = (id: string): void => {
  * la atribución se retira a «sin identificar» en vez de sustituirse. Va detrás de la fila del
  * lote 4 de esa ficha, así que ningún lote cambia; sí cambian sus `groups`.
  */
-const TOTAL_CORRECTIONS = 242
+/*
+ * 242 → 243 (bloque «1adbf3 y 25e6ea, motivos que el dato ya no sostiene»). Una fila de
+ * `correct-pleno-finding --field summary` firmada por una persona, el 25-10-2026, en
+ * `f-2026-05-11-acu-1adbf3`: el sumario daba por degradada la transcripción de unos reproches
+ * que la vigente recoge enteros. Va detrás de la fila del 18-10 de esa ficha, así que ningún
+ * lote cambia.
+ */
+const TOTAL_CORRECTIONS = 243
 const TOTAL_REMOVALS = 37
 
 /** One row of a review batch's fixture: enough to locate its own entries. */
@@ -593,7 +600,10 @@ describe('published pleno findings — the correction ledger is append-only', ()
 // grupo de un solo escaño (#214); los enmendó una persona sin el nombre.
 // +1 el 14-10-2026: el motivo de la fila [1] de 25e6ea decía que el presupuesto municipal es «dos
 // órdenes de magnitud» menor que 1.700 millones; es unas cuarenta veces (revisión de superficies).
-const TOTAL_REASON_AMENDMENTS = 7
+// +2 el 25-10-2026: el motivo de la fila [4] de 1adbf3 daba por degradada una transcripción que
+// ya estaba entera, y la enmienda del 14-10 de 25e6ea [1] contaba «unas veintisiete» con el
+// crédito de la hoja del segundo trimestre; con el del cierre son unas veinticinco.
+const TOTAL_REASON_AMENDMENTS = 9
 
 describe('published pleno findings — un motivo enmendado no borra el anterior', () => {
   const enmiendas = allCorrections.flatMap((c) => c.reasonAmendments ?? [])
@@ -4869,5 +4879,55 @@ describe('published pleno findings — 377216, la Chen Machor que el motor susti
     expect(filas[2].corrected).toBe(f.summary)
     expect(filas[2].original).toContain("(transcrito también como 'Xemachor' o 'Chemachor')")
     expect(f.corrections).toHaveLength(6)
+  })
+})
+
+describe('published pleno findings — 1adbf3 y 25e6ea, motivos que el dato ya no sostiene', () => {
+  // Revisión lectora del 25-10-2026, cotejada y firmada por una persona.
+  const FIRMA = 'Sergei Lutchenko'
+
+  it('1adbf3: el sumario dice el motivo que es, y la premisa se mide', () => {
+    const f = byId('f-2026-05-11-acu-1adbf3')
+    expect(f.summary).not.toContain('degradada')
+    expect(f.summary).toContain(
+      'no se reproducen aquí, porque ningún registro municipal los respalda ni los desmiente',
+    )
+    // La cita 1 consta en la transcripción vigente: no había nada degradado.
+    const procedencia = JSON.parse(
+      readFileSync(resolve('public/data/finding-quote-provenance.json'), 'utf8'),
+    )
+    expect(procedencia.quotes[f.id][0]).toEqual({ status: 'en-vigente', gate: 'hidden' })
+    const fila = (f.corrections ?? []).at(-1)!
+    expect(fila.field).toBe('summary')
+    expect(fila.editor).toBe(FIRMA)
+    expect(fila.corrected).toBe(f.summary)
+    // Nombra su ficha: en /hallazgos las tarjetas van seguidas (fichas-contiguas).
+    expect(fila.reason).toContain('la cita 1 de la ficha 1adbf3')
+  })
+
+  it('1adbf3: el motivo de la fila 4 deja de decirlo, y la enmienda va firmada', () => {
+    const c = byId('f-2026-05-11-acu-1adbf3').corrections![4]
+    expect(c.correctedAt).toBe('2026-08-11T09:06:43.855Z')
+    expect(c.reason).not.toContain('degradada')
+    expect(c.reasonAmendments).toHaveLength(1)
+    expect(c.reasonAmendments![0].editor).toBe(FIRMA)
+  })
+
+  it('25e6ea: el motivo da las proporciones del cierre de 2025, que cuadran', () => {
+    const c = byId('f-2026-04-20-cit-25e6ea').corrections![1]
+    expect(c.reason).toContain('unas cuarenta veces menos')
+    expect(c.reason).toContain('67,1 millones, unas veinticinco veces menos')
+    expect(c.reason).not.toContain('veintisiete')
+    expect(c.reasonAmendments).toHaveLength(2)
+    expect(c.reasonAmendments![1].editor).toBe(FIRMA)
+    expect(c.reasonAmendments![1].reason).toContain('62,12 millones')
+    const cierre = JSON.parse(
+      readFileSync(resolve('public/data/budget-execution.json'), 'utf8'),
+    ).periods.find(
+      (p: { year: number; fechaListado: string }) =>
+        p.year === 2025 && p.fechaListado === '31/12/2025',
+    ).gastos.total
+    expect(Math.round(1_700e6 / cierre.actual)).toBe(25)
+    expect(Math.round(1_700e6 / cierre.inicial / 10) * 10).toBe(40)
   })
 })
