@@ -20,7 +20,7 @@ import {
   ultimoOmitido,
   type Horario,
 } from '../scripts/check-cron'
-import { pickCheckDiagnosis } from '../src/scraper/health-monitor'
+import { clasificarGuarda, pickCheckDiagnosis } from '../src/scraper/health-monitor'
 
 /**
  * La guarda que le faltaba al parte: ¿ha corrido hoy la flota local?
@@ -473,6 +473,23 @@ describe('corrió, pero no publica', () => {
 })
 
 describe.skipIf(!HAY_PLUTIL)('corrió, pero no publica · llega al parte de salud', () => {
+  it('sin una sola marca pull-estado no da la racha por buena: NO COMPROBADO', () => {
+    const e = escenario({ horarios: DIARIO(9, 30) })
+    let salida = ''
+    try {
+      salida = execFileSync('npx', ['tsx', resolve('scripts/check-cron.ts')], {
+        env: { ...process.env, CRON_AGENTS_DIR: e.dir },
+        encoding: 'utf8',
+      })
+    } catch (err) {
+      salida = String((err as { stdout?: string }).stdout ?? '')
+    } finally {
+      e.limpiar()
+    }
+    expect(clasificarGuarda(0, salida).desenlace).toBe('sin-comprobar')
+    expect(salida).toMatch(/racha de pulls: NO COMPROBADO/)
+  }, 60_000)
+
   it('la racha de pulls fallidos sale 1 y pickCheckDiagnosis la nombra', () => {
     const contenido = [1, 2, 3]
       .map(

@@ -380,6 +380,13 @@ function main(): void {
     }
     process.stdout.write('[check-cron] todos han corrido desde su última hora programada\n')
   }
+  // Cero marcas no es «ningún pull fallido»: es que ningún log las tiene aún
+  // (la flota anterior a la marca) o que la cola se las comió. Se dice.
+  if (estados.every((e) => e.pulls.length === 0)) {
+    process.stdout.write(
+      '  · racha de pulls: NO COMPROBADO, que no es un visto bueno — ningún log de la flota lleva marcas pull-estado\n',
+    )
+  }
   if (!sinPublicar) {
     process.stdout.write(
       `  · main frente a origin/main: NO COMPROBADO, que no es un visto bueno — no hay main u origin/main que comparar en ${process.cwd()}\n`,
