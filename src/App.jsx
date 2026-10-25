@@ -9,6 +9,7 @@ import { TweaksPanel } from './components/TweaksPanel'
 import { SkipLink } from './components/SkipLink'
 import ErrorBoundary from './components/ErrorBoundary'
 import { useHashScroll } from './hooks/useHashScroll'
+import { useTituloDeRuta } from './hooks/useDocumentTitle'
 import { useScrollAlNavegar } from './hooks/useScrollAlNavegar'
 import { useT } from './i18n'
 import { PERIODISTAS_ENABLED, EFICIENCIA_ENABLED } from './flags'
@@ -224,6 +225,13 @@ export default function App() {
   useScrollAlNavegar()
 
   const onLanding = location.pathname === '/'
+
+  // El título de la pestaña por defecto: la etiqueta de navegación de la ruta,
+  // la misma que usa `prerender-meta` para el HTML de esa ruta. Una ficha lo
+  // afina con su dato (`useDocumentTitle`); la portada lleva el del sitio.
+  const t = useT()
+  const entrada = entradaNavActiva(location.pathname)
+  useTituloDeRuta(onLanding || !entrada ? null : t(entrada.labelKey))
 
   useEffect(() => {
     const darkActive = tweaks.dark && !onLanding

@@ -306,6 +306,7 @@ export default function QuejaDetail() {
       >
         <Card>
           <SectionHead
+            as="h1"
             eyebrow={t('quejas.detalle.noEncontrada.eyebrow')}
             title={rellena(t('quejas.detalle.noEncontrada.titulo'), { id })}
           />
@@ -418,16 +419,16 @@ export default function QuejaDetail() {
             >
               {rellena(t('quejas.detalle.eyebrow'), { id: queja.service_request_id })}
             </div>
-            <div
+            <h1
               style={{
                 fontSize: 'var(--fs-card)',
                 fontWeight: 700,
                 letterSpacing: '-.01em',
-                marginTop: 4,
+                margin: '4px 0 0',
               }}
             >
               {queja.description.split('\n')[0].slice(0, 120)}
-            </div>
+            </h1>
           </div>
           <div style={{ display: 'flex', gap: 6, alignItems: 'center' }}>
             <ShareWA

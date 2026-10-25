@@ -49,7 +49,7 @@ export default function HallazgoDetalle() {
   if (error) {
     return (
       <div className="cp-page" style={ENVOLTORIO}>
-        <SectionHead eyebrow={t('nav.hallazgos')} title={t('hallazgo.errorCarga')} />
+        <SectionHead as="h1" eyebrow={t('nav.hallazgos')} title={t('hallazgo.errorCarga')} />
         <Link to="/hallazgos" style={VOLVER}>
           {t('hallazgo.volver')}
         </Link>
@@ -67,6 +67,7 @@ export default function HallazgoDetalle() {
         </Link>
         <div style={{ marginTop: 12 }}>
           <SectionHead
+            as="h1"
             eyebrow={t('nav.hallazgos')}
             title={retirada ? t('hallazgo.retirado') : t('hallazgo.noEncontrado')}
           />
@@ -119,7 +120,7 @@ export default function HallazgoDetalle() {
           ? t('hallazgo.cabecera.automatica')
           : t('hallazgo.cabecera.editorial')}
       </div>
-      <FindingDetailCard f={hallazgo} permalink={`/hallazgos/${hallazgo.id}`} />
+      <FindingDetailCard f={hallazgo} permalink={`/hallazgos/${hallazgo.id}`} nivelTitulo="h1" />
       <div style={{ marginTop: 12 }}>
         <Compartir titulo={hallazgo.title} />
       </div>

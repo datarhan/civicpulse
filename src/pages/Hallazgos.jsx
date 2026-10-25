@@ -70,7 +70,7 @@ function MiniStat({ label, value, tone }) {
  * que un lector abre desde un permalink; que la marca de procedencia salga
  * aquí no puede quedar cubierto por el hecho de que salga en FindingCard.
  */
-export function FindingDetailCard({ f, permalink }) {
+export function FindingDetailCard({ f, permalink, nivelTitulo: Titulo = 'div' }) {
   // Which transcript each of this finding's verbatims actually comes from. One
   // fetch per session for the whole page — the snapshot store single-flights it
   // — and the marker itself lives in PlenoFindings so /plenos/:id renders the
@@ -114,7 +114,11 @@ export function FindingDetailCard({ f, permalink }) {
           {rellena(t('findings.detalle.enlace'), { ficha })}
         </a>
       </div>
-      <div style={{ fontSize: 'var(--fs-head)', fontWeight: 600, lineHeight: 1.35 }}>{f.title}</div>
+      {/* `h1` en /hallazgos/:id, donde la ficha ES la página; en la lista sigue
+          siendo un bloque, y el `h1` de la página es el de la lista. */}
+      <Titulo style={{ fontSize: 'var(--fs-head)', fontWeight: 600, lineHeight: 1.35, margin: 0 }}>
+        {f.title}
+      </Titulo>
       {f.individualSpeaker && (
         <div
           style={{
@@ -675,16 +679,16 @@ export default function Hallazgos() {
               })
             : t('hallazgo.cabecera.editorial')}
         </div>
-        <div
+        <h1
           style={{
             fontSize: 'var(--fs-page)',
             fontWeight: 700,
             letterSpacing: '-.015em',
-            marginTop: 2,
+            margin: '2px 0 0',
           }}
         >
           {t('hallazgos.lista.titulo')}
-        </div>
+        </h1>
         <p
           style={{
             fontSize: 'var(--fs-aux)',

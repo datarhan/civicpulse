@@ -34,6 +34,7 @@ import {
 import { useJournalistAssignments } from '../hooks/useJournalistAssignments'
 import { useJournalistReportById } from '../hooks/useJournalistReports'
 import { quienReplica } from '../scraper/journalist/replica'
+import { useDocumentTitle } from '../hooks/useDocumentTitle'
 
 const SECTION_LABEL = {
   identity: 'Identidad',
@@ -342,6 +343,18 @@ export default function AgenteReporte() {
   const sourceMap = useMemo(() => (report ? SOURCE_INDEX(report.sources) : new Map()), [report])
   const tocItems = useMemo(() => (report ? sectionsToToc(report.sections) : []), [report])
   const subjectName = assignment?.subject.name ?? report?.assignmentId ?? ''
+  // No el nombre a secas: ése ya es el título de su ficha en /cargos.
+  // Sólo con el nombre de la asignación: `subjectName` cae al `assignmentId`
+  // («a-teresa-pozuelo-bio») mientras las asignaciones cargan, y un código
+  // interno no va en la pestaña.
+  const nombreAsignado = assignment?.subject?.name
+  useDocumentTitle(
+    report && nombreAsignado
+      ? assignment.kind === 'biography'
+        ? `Biografía de ${nombreAsignado}`
+        : nombreAsignado
+      : null,
+  )
   const portraitPayload = report?.sections.find((s) => s.kind === 'portrait')?.payload
   const officialsState = useOfficials()
   const party = officialsState.data?.officials?.find(

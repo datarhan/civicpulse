@@ -25,6 +25,7 @@ import { VoteBreakdownCorrected } from '../components/plenos/VoteBreakdownCorrec
 import { VoteProvenance } from '../components/plenos/VoteProvenance'
 import { deptSlugToClaimTopics, promiseDeptSlug } from '../lib/department-claim-topics.js'
 import { useT, useLocale } from '../i18n'
+import { useDocumentTitle } from '../hooks/useDocumentTitle'
 
 function flattenAgendas(snap) {
   if (!snap?.plenos) return []
@@ -461,6 +462,8 @@ export default function DepartamentoDetalle() {
   const votesSnap = usePlenoVotes()
   const promisesSnap = usePromises()
   const frozen = isPromiseFrozen(promisesSnap.data)
+  const deTitulo = stats.data?.bySlug?.[slug]
+  useDocumentTitle(deTitulo ? (locale === 'ca' ? deTitulo.labelCa : deTitulo.labelEs) : null)
 
   if (stats.loading) {
     return (
@@ -510,7 +513,7 @@ export default function DepartamentoDetalle() {
         {t('departamentos.detalle.back')}
       </Link>
 
-      <SectionHead eyebrow={t('departamentos.eyebrow')} title={label} />
+      <SectionHead eyebrow={t('departamentos.eyebrow')} title={label} as="h1" />
 
       {official ? (
         <div

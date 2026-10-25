@@ -218,6 +218,7 @@ export default function Cobertura() {
     return (
       <>
         <SectionHead
+          as="h1"
           eyebrow="Laboratorio · cobertura de comprobación"
           title="Qué podemos comprobar"
         />
@@ -241,6 +242,7 @@ export default function Cobertura() {
   return (
     <>
       <SectionHead
+        as="h1"
         eyebrow="Laboratorio · cobertura de comprobación"
         title="Qué podemos comprobar"
       />

@@ -1040,16 +1040,16 @@ export default function Datos() {
         >
           {t('datos.eyebrow')}
         </div>
-        <div
+        <h1
           style={{
             fontSize: 'var(--fs-page)',
             fontWeight: 700,
             letterSpacing: '-.015em',
-            marginTop: 2,
+            margin: '2px 0 0',
           }}
         >
           {t('datos.title')}
-        </div>
+        </h1>
         <div
           style={{ fontSize: 'var(--fs-aux)', color: 'var(--ink50)', marginTop: 4, maxWidth: 620 }}
         >

@@ -323,16 +323,16 @@ export default function Empleo() {
           {t('empleo.eyebrow')}
         </div>
         <div style={{ display: 'flex', alignItems: 'baseline', gap: 10, flexWrap: 'wrap' }}>
-          <div
+          <h1
             style={{
               fontSize: 'var(--fs-page)',
               fontWeight: 700,
               letterSpacing: '-.015em',
-              marginTop: 2,
+              margin: '2px 0 0',
             }}
           >
             {t('empleo.title')}
-          </div>
+          </h1>
           {data?.generatedAt && <DataAsOf iso={data.generatedAt} label="Empleo" />}
           <a
             href="/data/empleo-rss.xml"

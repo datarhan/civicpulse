@@ -362,7 +362,7 @@ export default function Declaraciones() {
 
   return (
     <div style={{ padding: '28px 28px 48px', maxWidth: 1100, margin: '0 auto' }}>
-      <SectionHead eyebrow={t('declaraciones.eyebrow')} title={t('declaraciones.title')} />
+      <SectionHead eyebrow={t('declaraciones.eyebrow')} title={t('declaraciones.title')} as="h1" />
       <p
         style={{
           fontSize: 'var(--fs-aux)',
