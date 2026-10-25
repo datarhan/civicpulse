@@ -586,7 +586,7 @@ test.describe('Cargos (/cargos)', () => {
     expect(href).toMatch(/^\/cargos\/[a-z0-9-]+$/)
     await link.click()
     await expect(page).toHaveURL(new RegExp(`${href!.replace(/\//g, '\\/')}$`))
-    await expect(page.getByText(/nivel de grupo municipal|Atribución/i).first()).toBeVisible({
+    await expect(page.getByText(/se atribuyen al partido|Atribución/i).first()).toBeVisible({
       timeout: 8000,
     })
   })

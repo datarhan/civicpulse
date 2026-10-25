@@ -1,10 +1,11 @@
 import { describe, it, expect } from 'vitest'
 import { hechosClave } from '../src/components/journalist/HeroBand'
 
-// La forma de las secciones de un informe publicado (journalist-reports/*.json),
-// reducida a lo que leen los chips. Los importes son los de a-teresa-pozuelo-bio
-// el 25-10-2026: el sueldo es el del acuerdo de 2023, no el de 2026 que pinta su
-// ficha de /cargos.
+// Filas copiadas de public/data/journalist-reports/a-teresa-pozuelo-bio.json
+// (25-10-2026), reducidas a los campos que leen los chips. El sueldo es el del
+// acuerdo de 2023, no el de 2026 que pinta su ficha de /cargos; y el cargo
+// actual trae `org: 'Ayuntamiento'`, que el subtítulo pinta como «en
+// Ayuntamiento · desde 2023».
 const informe = {
   sections: [
     {
@@ -13,7 +14,12 @@ const informe = {
         items: [
           { metric: 'salary', year: 2023, amountEuros: 43067.36 },
           { metric: 'declared-assets', year: 2023, amountEuros: 394118.84 },
-          { metric: 'business', year: 2023, description: 'Sin actividad empresarial declarada' },
+          {
+            metric: 'business',
+            year: 2023,
+            description:
+              'Sin actividad empresarial declarada: la única actividad que recoge su declaración oficial de actividades (toma de posesión 2023) es la concejalía del Ayuntamiento de Riba-roja de Túria, con inicio consignado el 15/06/2019.',
+          },
         ],
       },
     },
@@ -22,22 +28,21 @@ const informe = {
       payload: {
         items: [
           {
-            role: 'Concejala · Primera Teniente de Alcalde',
+            role: 'Regidora — planificación urbanística, urbanismo, cementerios, obras y servicios (según su CV; su declaración estatutaria consigna el inicio el 15/06/2019)',
             org: 'Ayuntamiento de Riba-roja de Túria',
             startYear: 2015,
-            endYear: 2019,
+            endYear: 2023,
           },
           {
-            role: 'Concejala · Primera Teniente de Alcalde',
+            role: 'Concejala · Primera Teniente de Alcalde y portavoz del grupo socialista (mandato 2019-2023)',
             org: 'Ayuntamiento de Riba-roja de Túria',
             startYear: 2019,
             endYear: 2023,
           },
           {
-            role: 'Concejala · Primera Teniente de Alcalde',
-            org: 'Ayuntamiento de Riba-roja de Túria',
+            role: 'Concejala · Primera Teniente de Alcalde — Urbanismo, Vivienda, Obra Pública, Áreas Industriales y Cementerio',
+            org: 'Ayuntamiento',
             startYear: 2023,
-            endYear: null,
           },
         ],
       },
@@ -58,10 +63,20 @@ describe('biografía — los chips de «lo esencial»', () => {
     expect(porRotulo(hechosClave(informe))['Patrimonio declarado 2023']).toMatch(/394\.119 €/)
   })
 
-  it('«desde» se rotula como lo que mide: la cadena de cargos en el Ayuntamiento', () => {
+  it('«desde» se rotula como lo que mide: la cadena de cargos en la corporación', () => {
     const f = porRotulo(hechosClave(informe))
-    expect(f['En el Ayuntamiento']).toBe('desde 2015')
+    expect(f['En la corporación']).toBe('desde 2015')
     expect(f).not.toHaveProperty('En el cargo')
+  })
+
+  it('el rótulo no repite la palabra del subtítulo, que lleva la otra fecha', () => {
+    // El subtítulo pinta «… en <org> · desde <startYear>» del cargo actual: aquí,
+    // «en Ayuntamiento · desde 2023». Un chip «En el Ayuntamiento · desde 2015»
+    // ponía dos fechas ciertas sobre la misma palabra.
+    const actual = informe.sections[1].payload.items.at(-1)
+    for (const { k } of hechosClave(informe)) {
+      expect(k.toLowerCase()).not.toContain(actual.org.toLowerCase())
+    }
   })
 
   it('una cifra sin año conserva el rótulo sin inventarle uno', () => {

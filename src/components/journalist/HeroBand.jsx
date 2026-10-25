@@ -14,7 +14,9 @@ const fmtEur = (n) => `${Number(n).toLocaleString('es-ES', { maximumFractionDigi
 // 2026: dos sueldos ciertos que el lector no podía casar. Y «En el cargo desde
 // 2015» chocaba con el «desde 2023» del subtítulo, que es el puesto actual:
 // `officeSince` cuenta la cadena de cargos municipales sin hueco, así que el
-// rótulo dice eso, «En el Ayuntamiento».
+// rótulo dice eso, «En la corporación». No «En el Ayuntamiento»: el subtítulo
+// termina «en Ayuntamiento · desde 2023» (el `org` del informe), y las dos
+// fechas volvían a chocar sobre la misma palabra.
 export function hechosClave(report) {
   const fin = report.sections.find((s) => s.kind === 'financial')?.payload?.items ?? []
   const salary = fin
@@ -34,7 +36,7 @@ export function hechosClave(report) {
   const facts = []
   if (age != null) facts.push({ k: 'Edad', v: `${age} años`, href: '#sec-identity' })
   if (since)
-    facts.push({ k: 'En el Ayuntamiento', v: `desde ${since}`, href: '#sec-career-political' })
+    facts.push({ k: 'En la corporación', v: `desde ${since}`, href: '#sec-career-political' })
   if (salary)
     facts.push({
       k: conAnio('Retribución', salary),

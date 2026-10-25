@@ -2211,7 +2211,7 @@ export const CATALOGUE = {
     'cargos.detalle.baja.fuente': 'Fuente',
     'cargos.detalle.portfolios.title': 'Concejalías que gestiona',
     'cargos.detalle.promesas.eyebrow': 'Atribución de grupo',
-    'cargos.detalle.promesas.title': 'Promesas del grupo municipal',
+    'cargos.detalle.promesas.title': 'Promesas del partido',
     'cargos.detalle.promesas.viewAll': 'Ver tracker completo →',
     'cargos.detalle.promesas.empty': 'Sin promesas documentadas para este grupo.',
     // Ni «0» ni «sin promesas» cuando el fichero no llegó: eso no se sabe.
@@ -2229,7 +2229,7 @@ export const CATALOGUE = {
     'cargos.detalle.quejas.viewAll': 'Ver canal completo →',
     'cargos.detalle.quejas.empty': 'Sin quejas asignadas actualmente.',
     'cargos.detalle.methodology':
-      'Las promesas se atribuyen a nivel de grupo municipal, no a personas. Los puntos de orden del día se cuentan cuando la concejalía proponente coincide con un área asignada.',
+      'Las promesas se atribuyen al partido, no a personas. Los puntos de orden del día se cuentan cuando la concejalía proponente coincide con un área asignada.',
     'cargos.detalle.methodology.link': 'Leer metodología →',
 
     'encaje.eyebrow': 'Encaje declarado',
@@ -2350,6 +2350,8 @@ export const CATALOGUE = {
     'departamentos.detalle.barra.sinContraste': 'Sin contraste',
     'departamentos.detalle.empty.votes':
       'Todavía no hemos transcrito ninguna votación de esta concejalía. Cuando se transcriba alguna, aparecerá aquí.',
+    'departamentos.detalle.error.votes':
+      'No se han podido cargar las votaciones; no significa que no haya ninguna transcrita.',
     'departamentos.detalle.empty.promesas': 'Sin promesas registradas para esta concejalía.',
     'departamentos.detalle.empty.quejas': 'Sin quejas ciudadanas activas para esta concejalía.',
     'plazo.vencido': 'plazo vencido · sin evidencia de ejecución',
@@ -4412,7 +4414,7 @@ export const CATALOGUE = {
     'cargos.detalle.baja.fuente': 'Font',
     'cargos.detalle.portfolios.title': 'Regidories que gestiona',
     'cargos.detalle.promesas.eyebrow': 'Atribució de grup',
-    'cargos.detalle.promesas.title': 'Promeses del grup municipal',
+    'cargos.detalle.promesas.title': 'Promeses del partit',
     'cargos.detalle.promesas.viewAll': 'Veure tracker complet →',
     'cargos.detalle.promesas.empty': 'Sense promeses documentades per a este grup.',
     'cargos.detalle.promesas.noDisponible':
@@ -4429,7 +4431,7 @@ export const CATALOGUE = {
     'cargos.detalle.quejas.viewAll': 'Veure canal complet →',
     'cargos.detalle.quejas.empty': 'Sense queixes assignades actualment.',
     'cargos.detalle.methodology':
-      "Les promeses s'atribueixen a nivell de grup municipal, no a persones. Els punts de l'ordre del dia es compten quan la regidoria proposant coincideix amb una àrea assignada.",
+      "Les promeses s'atribueixen al partit, no a persones. Els punts de l'ordre del dia es compten quan la regidoria proposant coincideix amb una àrea assignada.",
     'cargos.detalle.methodology.link': 'Llegir metodologia →',
 
     'encaje.eyebrow': 'Encaix declarat',
@@ -4514,6 +4516,8 @@ export const CATALOGUE = {
     'departamentos.detalle.barra.sinContraste': 'Sense contrast',
     'departamentos.detalle.empty.votes':
       "Encara no hem transcrit cap votació d'aquesta regidoria. Quan se'n transcriga alguna, apareixerà ací.",
+    'departamentos.detalle.error.votes':
+      "No s'han pogut carregar les votacions; no vol dir que no n'hi haja cap de transcrita.",
     'departamentos.detalle.empty.promesas': 'Sense promeses registrades per a aquesta regidoria.',
     'departamentos.detalle.empty.quejas':
       'Sense queixes ciutadanes actives per a aquesta regidoria.',

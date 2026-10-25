@@ -41,15 +41,18 @@ function VotesSection({ slug, frozen }) {
   const t = useT()
   const votesSnap = usePlenoVotes()
   if (votesSnap.loading) return null
-  const votes = (votesSnap.data?.items ?? []).filter(
-    (v) => canonicalizeDepartment(v.department) === slug,
-  )
+  // Una carga fallida no es «ninguna votación transcrita»: sin el fichero no se
+  // sabe, y la frase de vacío lo afirmaría.
+  const fallo = votesSnap.error || !Array.isArray(votesSnap.data?.items)
+  const votes = fallo
+    ? []
+    : votesSnap.data.items.filter((v) => canonicalizeDepartment(v.department) === slug)
   if (votes.length === 0) {
     return (
       <p
         style={{ fontSize: 'var(--fs-aux)', color: 'var(--ink50)', lineHeight: 1.5, marginTop: 8 }}
       >
-        {t('departamentos.detalle.empty.votes')}
+        {fallo ? t('departamentos.detalle.error.votes') : t('departamentos.detalle.empty.votes')}
       </p>
     )
   }

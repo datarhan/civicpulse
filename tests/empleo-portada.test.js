@@ -64,4 +64,18 @@ describe('empleo — la fecha de cierre en la portada', () => {
     expect(fechaDeCierre('2027-01-15', 'es', HOY)).toMatch(/2027/)
     expect(fechaDeCierre('2026-01-15', 'es', Date.parse('2027-02-01T10:00:00Z'))).toMatch(/2026/)
   })
+
+  it('un plazo AAAA-MM-DD es un día de calendario: al oeste de Greenwich no sale el anterior', () => {
+    // `new Date('2026-10-27')` es la medianoche UTC; en Nueva York eso es el 26
+    // por la tarde, y la primera versión pintaba «26 oct». Las 39 ofertas de
+    // empleo.json traen el plazo así.
+    const antes = process.env.TZ
+    process.env.TZ = 'America/New_York'
+    try {
+      expect(fechaDeCierre('2026-10-27', 'es', HOY)).toMatch(/^27\b/)
+    } finally {
+      if (antes === undefined) delete process.env.TZ
+      else process.env.TZ = antes
+    }
+  })
 })

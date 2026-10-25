@@ -199,18 +199,22 @@ export function ofertasDePortada(offers, n = 3, now = Date.now()) {
  * «27 oct», o «15 ene 2027» cuando el cierre no es de este año: sin el año, un
  * «15 ene» se lee como el próximo enero.
  *
- * El año se compara en la cadena ISO y no en un `Date`, para que una medianoche
- * UTC no cambie de año con el huso.
+ * El plazo llega como «AAAA-MM-DD», que es un DÍA de calendario y no un
+ * instante: `new Date('2026-10-27')` es la medianoche UTC, y al oeste de
+ * Greenwich eso ya es el 26. Así que un plazo de sólo fecha se pinta en UTC, y
+ * el año se compara en la cadena, no en un `Date`.
  *
  * @param {string} iso
  * @param {string} locale
  * @param {number} [now]
  */
 export function fechaDeCierre(iso, locale, now = Date.now()) {
-  const anio = Number(String(iso).slice(0, 4))
+  const s = String(iso)
+  const anio = Number(s.slice(0, 4))
   const opts = /** @type {Intl.DateTimeFormatOptions} */ ({ day: 'numeric', month: 'short' })
+  if (/^\d{4}-\d{2}-\d{2}$/.test(s)) opts.timeZone = 'UTC'
   if (anio !== new Date(now).getFullYear()) opts.year = 'numeric'
-  return new Date(iso).toLocaleDateString(locale === 'ca' ? 'ca-ES' : 'es-ES', opts)
+  return new Date(s).toLocaleDateString(locale === 'ca' ? 'ca-ES' : 'es-ES', opts)
 }
 
 /**
