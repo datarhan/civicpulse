@@ -350,7 +350,7 @@ _cron_git_desatascar_rebase() {
   done <<< "$salida_abort"
 
   if [ "$rc_abort" -eq 0 ]; then
-    cron_git_log "  rebase abortado · HEAD vuelve a '$(_cron_git_head_label "$(_cron_git_head_ref)")'. Lo que este run comiteó SIGUE en local, sin publicar: el próximo run lo reintenta."
+    cron_git_log "  rebase abortado · HEAD vuelve a '$(_cron_git_head_label "$(_cron_git_head_ref)")'. Lo que este run comiteó SIGUE en local, sin publicar. El próximo run lo reintenta, pero con los mismos dos commits chocará igual: si el conflicto no se resuelve a mano, check:cron lo dará en rojo (main por delante de origin, pulls fallidos seguidos)."
   else
     cron_git_log "  ATENCIÓN: «git rebase --abort» TAMBIÉN falló. El árbol sigue a medias y los cron posteriores se van a saltar en silencio. Esto necesita una persona."
   fi
@@ -363,6 +363,123 @@ _cron_git_desatascar_rebase() {
   _cron_git_desatascar_autostash "$ctx" || true
 }
 
+# ---------------------------------------------------------------------------
+# _cron_git_rutas_derivadas
+#
+# Las rutas que escribe un nodo `derived` del grafo, una por línea, preguntadas
+# a `refresh` — nunca una lista copiada aquí. Vacío si no se pudo preguntar, y
+# quien llama lo lee como «no sé cuáles son derivadas»: aborta como siempre.
+# ---------------------------------------------------------------------------
+_cron_git_rutas_derivadas() {
+  npm run --silent refresh -- --derived-paths 2>/dev/null || true
+}
+
+# ¿Es <ruta> una de las líneas de <lista>? Exacta, sin patrones: un comodín aquí
+# convertiría un curado con nombre parecido en «derivado».
+_cron_git_en_lista() {
+  local ruta="$1" lista="$2" linea
+  while IFS= read -r linea; do
+    [ -n "$linea" ] && [ "$linea" = "$ruta" ] && return 0
+  done <<< "$lista"
+  return 1
+}
+
+# ---------------------------------------------------------------------------
+# _cron_git_resolver_derivados <contexto>
+#
+# El rebase que `_cron_git_desatascar_rebase` abortaba y que no se podía
+# reintentar nunca. El 2026-10-22 hallazgos comiteó 862c98a4 en local y su push
+# chocó con la nocturna de CI, que había reescrito los mismos cinco derivados
+# (press-trust, press-triangulation, press-coverage-gaps, plenos-agendas,
+# finding-quote-provenance) — diferencias sólo de sello, `generatedAt` y
+# `builtFrom`. Se abortó limpio, se escribió «el próximo run lo reintenta», y el
+# próximo run chocó EXACTAMENTE igual: los dos commits seguían siendo los
+# mismos. Así los cuatro agentes, en su pull inicial, tres días, hasta que se
+# resolvió a mano el 25 — tomar origin en esos cinco, `npm run refresh`, seguir.
+# Abortar deja el árbol utilizable; no hace que el reintento pueda salir.
+#
+# Esto hace lo mismo que se hizo a mano, y SÓLO cuando cada ruta en conflicto
+# es la salida de un nodo `derived`: su contenido es función de otras
+# instantáneas, así que el lado de origin más una rederivación sobre el árbol
+# fusionado es lo correcto por construcción, no una apuesta. Basta UNA ruta que
+# no lo sea —un curado, un raspado, código— para devolver 1 sin tocar nada más,
+# y el llamador aborta como siempre: un curado no se resuelve a ciegas.
+#
+# En un rebase los lados van al revés de lo que se lee: `--ours` es la base
+# sobre la que se reaplica, o sea origin; `--theirs`, el commit local.
+#
+# Puede haber varios commits locales en cola, cada uno con su choque, así que
+# se repite mientras el rebase siga abierto, con tope.
+#
+#   rc 0 — el rebase terminó.   rc 1 — no se tocó o no se pudo: que aborte.
+# ---------------------------------------------------------------------------
+_cron_git_resolver_derivados() {
+  local ctx="$1" derivados conflictos fichero rederivadas pasos=0
+  local max="${CRON_GIT_REBASE_PASOS_MAX:-20}"
+
+  derivados="$(_cron_git_rutas_derivadas)"
+  if [ -z "$derivados" ]; then
+    cron_git_log "$ctx: no se pudo preguntar al grafo qué rutas son derivadas (refresh --derived-paths) — no se resuelve nada"
+    return 1
+  fi
+
+  while _cron_git_rebase_en_curso; do
+    pasos=$((pasos + 1))
+    if [ "$pasos" -gt "$max" ]; then
+      cron_git_log "$ctx: el rebase sigue abierto tras $max pasos resolviendo derivados — se deja de intentar"
+      return 1
+    fi
+
+    conflictos="$(git diff --name-only --diff-filter=U 2>/dev/null)"
+    if [ -z "$conflictos" ]; then
+      cron_git_log "$ctx: el rebase está parado sin rutas en conflicto — no es un choque de derivados, no se toca"
+      return 1
+    fi
+    while IFS= read -r fichero; do
+      [ -n "$fichero" ] || continue
+      if ! _cron_git_en_lista "$fichero" "$derivados"; then
+        cron_git_log "$ctx: $fichero está en conflicto y NO es la salida de un nodo derivado — no se resuelve a ciegas"
+        return 1
+      fi
+    done <<< "$conflictos"
+
+    cron_git_log "$ctx: el choque es SÓLO de derivados (dos escritores del mismo sello). Se toma origin y se vuelve a derivar, como se hizo a mano el 2026-10-25:"
+    while IFS= read -r fichero; do
+      [ -n "$fichero" ] || continue
+      cron_git_log "    derivado en conflicto: $fichero — se toma el de origin"
+      if ! git checkout --ours -- "$fichero" 2>/dev/null || ! git add -- "$fichero" 2>/dev/null; then
+        cron_git_log "    no se pudo tomar el lado de origin de $fichero (¿borrado en un lado?) — no se sigue"
+        return 1
+      fi
+    done <<< "$conflictos"
+
+    # Sobre el árbol fusionado: si el commit local movió una ENTRADA de esos
+    # derivados, el sello de origin ya no la describe. Sólo se añade lo que el
+    # grafo llama derivado; un refresh que fallara deja el lado de origin, que
+    # la rederivación de después del pull vuelve a mirar.
+    rederivadas="$(cron_rutas_rederivadas)"
+    while IFS= read -r fichero; do
+      [ -n "$fichero" ] || continue
+      _cron_git_en_lista "$fichero" "$derivados" || continue
+      git add -- "$fichero" 2>/dev/null || true
+      cron_git_log "    rederivado: $fichero"
+    done <<< "$rederivadas"
+
+    # Un commit que sólo traía esos sellos se queda vacío al tomar origin, y
+    # `--continue` sobre un commit vacío se para en vez de seguir.
+    if git diff --cached --quiet 2>/dev/null; then
+      cron_git_log "    el commit local se queda vacío tras tomar origin — se salta"
+      GIT_EDITOR=true git rebase --skip >/dev/null 2>&1 || true
+    else
+      GIT_EDITOR=true git rebase --continue >/dev/null 2>&1 || true
+    fi
+    # Si el paso siguiente choca, el rebase sigue abierto y la vuelta lo mira.
+  done
+
+  cron_git_log "$ctx: rebase completado tomando origin en los derivados · HEAD en '$(_cron_git_head_label "$(_cron_git_head_ref)")'"
+  return 0
+}
+
 cron_git_pull_rebase() {
   local ctx="${1:-git pull --rebase}"
   cron_git_assert_head "$ctx"
@@ -370,6 +487,12 @@ cron_git_pull_rebase() {
   local alijos_antes
   alijos_antes="$(git stash list 2>/dev/null | wc -l | tr -d " ")"
   git pull --rebase --autostash origin "${CRON_GIT_MAIN_BRANCH:-main}" || rc=$?
+  # Un choque de sellos entre dos escritores del mismo derivado se repetiría
+  # idéntico en cada reintento (2026-10-22), así que se resuelve aquí; todo lo
+  # demás sigue al abort de abajo.
+  if [ "$rc" -ne 0 ] && _cron_git_rebase_en_curso && _cron_git_resolver_derivados "$ctx"; then
+    rc=0
+  fi
   # Un fallo del pull puede ser «no hay red» o puede ser «te he dejado un rebase
   # abierto». Sólo el segundo inutiliza la flota entera, y sólo se distingue
   # mirando. Se aborta ANTES de rebaselinar el contador, para que el retorno a
@@ -390,6 +513,15 @@ cron_git_pull_rebase() {
     # algo distinto de lo que había. El árbol ya quedó utilizable, que es lo
     # que hace verdad el «mañana se reintenta».
     rc=1
+  fi
+  # Una marca por pull, buena o mala, con su hora: `check:cron` cuenta los
+  # fallidos SEGUIDOS en los logs de la flota. Sin la buena no hay racha que
+  # cortar — un pull sano no escribía nada por aquí, y un indicador que sólo se
+  # mueve cuando hay problemas no distingue «sigue roto» de «ya no se ejecuta».
+  if [ "$rc" -eq 0 ]; then
+    cron_git_log "pull-estado ok · $ctx"
+  else
+    cron_git_log "pull-estado FALLIDO (rc=$rc) · $ctx"
   fi
   # Our own pull is a legitimate HEAD movement, so re-baseline the counter after
   # it. Only the counter — the approved REF stays pinned, so a pull that leaves

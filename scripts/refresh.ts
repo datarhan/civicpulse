@@ -5,6 +5,7 @@
  *   npm run refresh                 rebuild what is stale
  *   npm run refresh -- --dry-run    report, run nothing
  *   npm run refresh -- --list llm   just the backlog a pipeline should work
+ *   npm run refresh -- --derived-paths   every path a `derived` node writes
  *
  * Walks `data-graph.ts` in dependency order. Rebuilds `derived` nodes; never
  * runs a `curated` one, and never spends a model call on an `llm` one — those
@@ -75,6 +76,26 @@ export function rutasEscritas(rows: Row[]): string[] {
   return [...out].sort()
 }
 
+/**
+ * Todas las rutas que escribe un nodo `derived`, se hayan movido o no.
+ *
+ * Es la lista que `cron-git.sh` consulta cuando un `pull --rebase` choca: si
+ * TODAS las rutas en conflicto salen de aquí, el choque es entre dos escritores
+ * del mismo derivado —sellos `generatedAt`/`builtFrom`— y se resuelve tomando
+ * origin y volviendo a derivar. Sale del grafo y no de una lista a mano, por la
+ * misma razón que el resto de este fichero: el 22-10-2026 una lista así habría
+ * tenido que acertar cinco ficheros, y el día que el grafo gane un nodo la
+ * copia ya no los acierta.
+ */
+export function rutasDerivadas(graph: readonly DataNode[] = DATA_GRAPH): string[] {
+  const out = new Set<string>()
+  for (const n of graph) {
+    if (n.tier !== 'derived') continue
+    for (const w of n.writes) out.add(rutaDeSalida(w))
+  }
+  return [...out].sort()
+}
+
 function run(command: string): { ok: boolean; detail: string } {
   try {
     execFileSync('bash', ['-lc', command], { stdio: 'pipe', encoding: 'utf8' })
@@ -105,6 +126,10 @@ function main() {
   // el informe humano se va a stderr para no ensuciar la sustitución de quien
   // llama. Lo usa la tubería que comitea para añadirlas a su pathspec.
   const rutasPorStdout = argv.includes('--rebuilt-paths')
+  if (argv.includes('--derived-paths')) {
+    for (const ruta of rutasDerivadas()) process.stdout.write(`${ruta}\n`)
+    return
+  }
   const listIdx = argv.indexOf('--list')
   const listTier = listIdx >= 0 ? (argv[listIdx + 1] as NodeTier | undefined) : undefined
 
