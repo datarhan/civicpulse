@@ -160,11 +160,40 @@ test.describe('Presupuesto · la cascada de ejecución', () => {
       ).toBeLessThanOrEqual(f.amp!.der + 1)
     }
 
-    // El hallazgo de la página, dibujado: un capítulo con crédito inicial 0 y
-    // definitivo grande. Su tramo gris mide CERO y el ámbar es la barra entera.
-    // Si algún día deja de haberlo, esta prueba lo dice en vez de pasar sola.
+    // Un capítulo que abre en cero, dibujado: su tramo gris mide CERO y el ámbar
+    // es la barra entera. Qué capítulos son lo dice el DATO publicado, no esta
+    // prueba: la primera versión exigía «al menos uno» porque el snapshot de
+    // 2025 traía Inversiones reales a 0 €, y era la hoja del 2T leída como
+    // cierre; en la del 4T abre con 905.517,35 €. La página tiene que marcar
+    // exactamente los que el dato marca —ninguno, si no hay— y pintar un
+    // crédito inicial pequeño pero no nulo como lo que es.
+    const datos = await page.evaluate(async () => {
+      const r = await fetch('/data/budget-execution.json')
+      const j = await r.json()
+      return (j.latest?.gastos?.chapters ?? []).map(
+        (c: { capitulo: number; inicial: number; actual: number }) => ({
+          cap: String(c.capitulo),
+          inicial: c.inicial,
+          actual: c.actual,
+        }),
+      )
+    })
+    expect(datos.length, 'el snapshot no trae capítulos').toBeGreaterThanOrEqual(8)
+    const esperados = datos
+      .filter((d: { inicial: number; actual: number }) => d.inicial === 0 && d.actual > 0)
+      .map((d: { cap: string }) => d.cap)
+      .sort()
     const enCero = filas.filter((f) => f.texto.includes('crédito inicial 0 €'))
-    expect(enCero.length, 'ningún capítulo declara haber abierto en cero').toBeGreaterThanOrEqual(1)
+    expect(
+      enCero.map((f) => f.cap).sort(),
+      'los capítulos que la página dice abrir en cero no son los del dato',
+    ).toEqual(esperados)
+    for (const d of datos.filter(
+      (x: { inicial: number; actual: number }) => x.inicial > 0 && x.inicial / x.actual > 0.02,
+    )) {
+      const f = filas.find((x) => x.cap === d.cap)!
+      expect(f.ini!.w, `cap.${d.cap} tiene crédito inicial y no lo pinta`).toBeGreaterThan(0.5)
+    }
     for (const f of enCero) {
       expect(
         f.ini!.w,
