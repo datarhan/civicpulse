@@ -222,8 +222,10 @@ async function main(): Promise<void> {
   // Explicit, not «let the event loop drain»: on 2026-10-25 the report was
   // printed and the process then sat for half an hour on keep-alive sockets to
   // PLACSP, holding scrape-ci-blocked.sh's commit and push behind it. Once the
-  // report is out there is nothing left to wait for.
-  process.exit(0)
+  // report is out there is nothing left to wait for. The exit waits for stdout
+  // to flush: on macOS a write to a pipe is asynchronous, and an immediate
+  // exit can cut the report short for whoever captures it (check:guards).
+  process.stdout.write('', () => process.exit(0))
 }
 
 main().catch((e) => {
