@@ -289,6 +289,7 @@ export default function Departamentos() {
   return (
     <div style={{ padding: '28px 28px 48px', maxWidth: 1180, margin: '0 auto' }}>
       <SectionHead
+        as="h1"
         eyebrow={t('departamentos.eyebrow')}
         title={t('departamentos.title')}
         right={

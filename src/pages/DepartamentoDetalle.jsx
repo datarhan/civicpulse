@@ -510,7 +510,7 @@ export default function DepartamentoDetalle() {
         {t('departamentos.detalle.back')}
       </Link>
 
-      <SectionHead eyebrow={t('departamentos.eyebrow')} title={label} />
+      <SectionHead eyebrow={t('departamentos.eyebrow')} title={label} as="h1" />
 
       {official ? (
         <div

@@ -345,7 +345,7 @@ export default function PlenoDetalle() {
         data-no-resuelta
         style={{ padding: '24px', maxWidth: 900, margin: '0 auto' }}
       >
-        <SectionHead eyebrow="Plenos" title={t('plenoDetail.notFound')} />
+        <SectionHead as="h1" eyebrow="Plenos" title={t('plenoDetail.notFound')} />
         <Link to="/plenos" style={{ color: 'var(--civic)', fontSize: 'var(--fs-aux)' }}>
           {t('plenoDetail.back')}
         </Link>
@@ -399,9 +399,16 @@ export default function PlenoDetalle() {
           flexWrap: 'wrap',
         }}
       >
-        <div style={{ fontSize: 'var(--fs-page)', fontWeight: 700, letterSpacing: '-.015em' }}>
+        <h1
+          style={{
+            fontSize: 'var(--fs-page)',
+            fontWeight: 700,
+            letterSpacing: '-.015em',
+            margin: 0,
+          }}
+        >
           {fmtDateLong(pleno.date, locale)}
-        </div>
+        </h1>
         <Pill tone={PLENO_TONE[pleno.kind] || 'ghost'} size="xs">
           {rotuloDe(t, `pleno.tipo.${pleno.kind}`, pleno.kind)}
         </Pill>

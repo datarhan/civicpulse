@@ -633,9 +633,16 @@ function FormerDetalle({ official, color, bioRoute, t }) {
               ).replace('{fecha}', fmtDateLong(official.until))}
             </span>
           </div>
-          <div style={{ fontSize: 'var(--fs-card)', fontWeight: 700, letterSpacing: '-.01em' }}>
+          <h1
+            style={{
+              fontSize: 'var(--fs-card)',
+              fontWeight: 700,
+              letterSpacing: '-.01em',
+              margin: 0,
+            }}
+          >
             {official.name}
-          </div>
+          </h1>
           <div
             style={{
               display: 'flex',
@@ -862,9 +869,16 @@ export default function CargoDetalle() {
               </span>
             )}
           </div>
-          <div style={{ fontSize: 'var(--fs-card)', fontWeight: 700, letterSpacing: '-.01em' }}>
+          <h1
+            style={{
+              fontSize: 'var(--fs-card)',
+              fontWeight: 700,
+              letterSpacing: '-.01em',
+              margin: 0,
+            }}
+          >
             {official.name}
-          </div>
+          </h1>
           {official.portfolios?.length > 0 && (
             <div
               style={{

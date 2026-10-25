@@ -161,16 +161,16 @@ export default function Cambios() {
           >
             {t('cambios.eyebrow') || 'Esta semana en Riba-roja'}
           </div>
-          <div
+          <h1
             style={{
               fontSize: 'var(--fs-page)',
               fontWeight: 700,
               letterSpacing: '-.015em',
-              marginTop: 2,
+              margin: '2px 0 0',
             }}
           >
             {t('cambios.title') || 'Novedades'}
-          </div>
+          </h1>
           <div
             style={{
               fontSize: 'var(--fs-aux)',
