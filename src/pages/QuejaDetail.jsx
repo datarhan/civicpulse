@@ -9,7 +9,14 @@ import {
 } from '../hooks/useQuejaContractRelations'
 import { useOfficials, partyColor } from '../hooks/useOfficials'
 import { useDocumentTitle } from '../hooks/useDocumentTitle'
-import { fmtDateHuman, nombreDeBarrio, rellena } from '../lib/formatters'
+import {
+  entero,
+  fmtDateHuman,
+  fmtDateLong,
+  nombreDeBarrio,
+  rellena,
+  truncateAtWord,
+} from '../lib/formatters'
 import { conHuecos } from '../lib/huecos'
 import { rotuloDe, useLocale } from '../i18n'
 import { CLAVE_RELACION } from '../scraper/relation-labels'
@@ -227,6 +234,46 @@ function CorrelationsCard({ quejaId }) {
                 )}
               </span>
             </div>
+            {/* Qué contrato es: su título, cuándo se adjudicó y por cuánto. Antes la
+                tarjeta sólo decía la clase de relación y «Ver contrato», y tres
+                tarjetas de la misma queja eran indistinguibles. Un enlace de un
+                fichero anterior, sin estos campos, se pinta como antes. */}
+            {l.tenderTitle && (
+              <div
+                title={l.tenderTitle}
+                style={{
+                  fontSize: 'var(--fs-aux)',
+                  fontWeight: 600,
+                  lineHeight: 1.4,
+                  marginBottom: 2,
+                }}
+              >
+                {truncateAtWord(l.tenderTitle, 140)}
+              </div>
+            )}
+            {(l.tenderAwardDate || 'tenderAmount' in l) && (
+              <div
+                className="mono"
+                style={{ fontSize: 'var(--fs-micro)', color: 'var(--ink50)', marginBottom: 4 }}
+              >
+                {l.tenderAwardDate &&
+                  rellena(t('quejas.detalle.relacion.adjudicado'), {
+                    fecha: fmtDateLong(l.tenderAwardDate, locale),
+                  })}
+                {l.tenderAwardDate && 'tenderAmount' in l && ' · '}
+                {/* La cifra no se separa de su «€»: a 375 px «89.980» quedaba al
+                    final de una línea y «€ sin IVA» al principio de la otra. */}
+                {'tenderAmount' in l && (
+                  <span style={{ whiteSpace: 'nowrap' }}>
+                    {typeof l.tenderAmount === 'number'
+                      ? rellena(t('quejas.detalle.relacion.importe'), {
+                          importe: entero(Math.round(l.tenderAmount)),
+                        })
+                      : t('quejas.detalle.relacion.importeNoPublicado')}
+                  </span>
+                )}
+              </div>
+            )}
             <div
               style={{
                 fontSize: 'var(--fs-aux)',
@@ -567,7 +614,17 @@ export default function QuejaDetail() {
               {conHuecos(t('quejas.detalle.foto.pie'), {
                 '{olvidar}': <code>/olvidar {queja.service_request_id}</code>,
                 '{aviso}': (
-                  <Link to="/aviso-legal" style={{ color: 'var(--civic)' }}>
+                  // Subrayado como los enlaces de `p a[href]` en index.css, que no
+                  // alcanza a un <figcaption>: sólo el color lo distinguía del pie
+                  // (WCAG 1.4.1, `link-in-text-block`).
+                  <Link
+                    to="/aviso-legal"
+                    style={{
+                      color: 'var(--civic)',
+                      textDecoration: 'underline',
+                      textUnderlineOffset: 2,
+                    }}
+                  >
                     {t('quejas.detalle.foto.avisoLegal')}
                   </Link>
                 ),

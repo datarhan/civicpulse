@@ -30,6 +30,24 @@ export const PRIMERA_RETIRADA: string | undefined = HALLAZGOS.retractions?.[0]?.
 export const FIRST_OFERTA_ID = JSON.parse(readFileSync('public/data/empleo.json', 'utf8'))
   .items?.[0]?.id
 
+/**
+ * Una queja con contratos relacionados —con foto, si alguna la tiene— para
+ * `/quejas/:id`. Sólo pasaba `/quejas/q-no-existe`, la tarjeta de «no aparece»,
+ * así que las tarjetas de contrato y el pie de la foto nunca se leían: el
+ * «aviso legal» de ese pie, distinguible sólo por el color, pasó sin aviso.
+ */
+const CON_CONTRATOS = new Set(
+  JSON.parse(readFileSync('public/data/queja-contract-relations.json', 'utf8')).links?.map(
+    (l: { quejaId: string }) => l.quejaId,
+  ),
+)
+const QUEJAS_CON_CONTRATOS = (
+  JSON.parse(readFileSync('public/data/quejas.json', 'utf8')).items ?? []
+).filter((q: { service_request_id: string }) => CON_CONTRATOS.has(q.service_request_id))
+export const QUEJA_CON_CONTRATOS: string | undefined = (
+  QUEJAS_CON_CONTRATOS.find((q: { photo: unknown }) => q.photo) ?? QUEJAS_CON_CONTRATOS[0]
+)?.service_request_id
+
 export const STRICT_ROUTES = [
   '/',
   '/cargos',
@@ -56,6 +74,7 @@ export const STRICT_ROUTES = [
   `/empleo/${FIRST_OFERTA_ID}`,
   '/quejas',
   '/quejas/dashboard',
+  ...(QUEJA_CON_CONTRATOS ? [`/quejas/${QUEJA_CON_CONTRATOS}`] : []),
   '/quejas/q-no-existe',
   '/cambios',
   '/eficiencia',

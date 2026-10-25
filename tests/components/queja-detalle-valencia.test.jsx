@@ -137,7 +137,18 @@ const SIN_MAS = {
 const permalink = (n) =>
   `https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=guarda-${n}`
 const CONTRATOS = [
-  { ...SIN_MAS, id: 'G-1', permalink: permalink(1), department: 'urbanismo', places: [BARRIO] },
+  // Con título, fecha e importe, para que la tarjeta pinte las tres piezas que dicen
+  // qué contrato es. Los otros dos se quedan sin importe: «importe no publicado».
+  {
+    ...SIN_MAS,
+    id: 'G-1',
+    permalink: permalink(1),
+    department: 'urbanismo',
+    places: [BARRIO],
+    title: 'Contrato de obras de instalación de alumbrado público en el acceso al barrio',
+    awardDate: '2022-01-11',
+    amount: 54552.7,
+  },
   { ...SIN_MAS, id: 'G-2', permalink: permalink(2), department: 'cultura', zones: [BARRIO] },
   {
     ...SIN_MAS,

@@ -12,6 +12,21 @@
  */
 
 /**
+ * Un «AAAA-MM-DD» es un DÍA de calendario, no un instante: se formatea en UTC.
+ *
+ * `new Date('2026-05-27')` es la medianoche UTC del 27, y al oeste de Greenwich
+ * eso ya es el 26: la adjudicación de un contrato, el plazo de una oferta o la
+ * fecha de un pleno salían un día antes. En hora peninsular y canaria no se
+ * notaba. Un instante con hora sigue en la hora del lector.
+ *
+ * @param {string} iso
+ * @returns {{ timeZone?: string }}
+ */
+function husoDe(iso) {
+  return /^\d{4}-\d{2}-\d{2}$/.test(String(iso)) ? { timeZone: 'UTC' } : {}
+}
+
+/**
  * The two canonical Spanish absolute-date formats. Previously ~21 inline
  * `.toLocaleDateString('es-ES', …)` copies across pages had already drifted
  * (some omitted the year); pages should import these instead. The deliberate
@@ -33,6 +48,7 @@ export function fmtDateShort(iso, idioma = 'es') {
     day: 'numeric',
     month: 'short',
     year: 'numeric',
+    ...husoDe(iso),
   })
 }
 
@@ -54,8 +70,14 @@ export function fmtDateShort(iso, idioma = 'es') {
 export function fmtDateCompacta(iso, idioma = 'es') {
   if (!iso) return ''
   const d = new Date(iso)
-  const mes = d.toLocaleDateString(idioma === 'ca' ? 'ca-ES' : 'es-ES', { month: 'short' })
-  return `${d.getDate()} ${mes} ${d.getFullYear()}`
+  const huso = husoDe(iso)
+  const mes = d.toLocaleDateString(idioma === 'ca' ? 'ca-ES' : 'es-ES', {
+    month: 'short',
+    ...huso,
+  })
+  const dia = huso.timeZone ? d.getUTCDate() : d.getDate()
+  const anio = huso.timeZone ? d.getUTCFullYear() : d.getFullYear()
+  return `${dia} ${mes} ${anio}`
 }
 
 /**
@@ -69,6 +91,7 @@ export function fmtDateLong(iso, idioma = 'es') {
     day: 'numeric',
     month: 'long',
     year: 'numeric',
+    ...husoDe(iso),
   })
 }
 
