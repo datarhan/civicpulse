@@ -109,7 +109,9 @@ test.describe('Presupuesto · la cascada de ejecución', () => {
     expect(sobreIni).toBeGreaterThan(sobreDef)
   })
 
-  test('capítulo a capítulo: el que abrió en cero se ve abriendo en cero', async ({ page }) => {
+  test('capítulo a capítulo: el tramo gris mide el crédito inicial, también cuando es cero', async ({
+    page,
+  }) => {
     await page.goto('/presupuesto', { waitUntil: 'domcontentloaded' })
     await expect(page.getByText('Dónde se amplió el crédito y dónde se ejecutó')).toBeVisible({
       timeout: 8000,
@@ -160,46 +162,39 @@ test.describe('Presupuesto · la cascada de ejecución', () => {
       ).toBeLessThanOrEqual(f.amp!.der + 1)
     }
 
-    // Un capítulo que abre en cero, dibujado: su tramo gris mide CERO y el ámbar
-    // es la barra entera. Qué capítulos son lo dice el DATO publicado, no esta
-    // prueba: la primera versión exigía «al menos uno» porque el snapshot de
-    // 2025 traía Inversiones reales a 0 €, y era la hoja del 2T leída como
-    // cierre; en la del 4T abre con 905.517,35 €. La página tiene que marcar
-    // exactamente los que el dato marca —ninguno, si no hay— y pintar un
-    // crédito inicial pequeño pero no nulo como lo que es.
-    const datos = await page.evaluate(async () => {
-      const r = await fetch('/data/budget-execution.json')
-      const j = await r.json()
-      return (j.latest?.gastos?.chapters ?? []).map(
-        (c: { capitulo: number; inicial: number; actual: number }) => ({
-          cap: String(c.capitulo),
-          inicial: c.inicial,
-          actual: c.actual,
-        }),
+    // El tramo gris es el crédito inicial dibujado: un % del definitivo, que a
+    // su vez va sobre la escala común (`capMax`). Así que en pantalla su ancho
+    // es proporcional al crédito inicial, capítulo a capítulo — y un capítulo
+    // que abrió en cero pinta cero.
+    //
+    // Hasta el 25-10-2026 esto exigía que hubiera un capítulo abierto en cero:
+    // «inversiones reales» lo parecía, pero era un artefacto de la hoja de junio
+    // que el raspador tomaba por la del cierre (`elegirDocumento`). Con el cierre
+    // real ya no hay ninguno, y la prueba exigía un dato falso. Ahora mide todos
+    // los capítulos contra lo que dicen los datos publicados, haya cero o no.
+    const iniciales: Record<string, number> = await page.evaluate(async () => {
+      const d = await (await fetch('/data/budget-execution.json')).json()
+      return Object.fromEntries(
+        (d.latest?.gastos?.chapters ?? []).map((c: { capitulo: number; inicial: number }) => [
+          String(c.capitulo),
+          c.inicial,
+        ]),
       )
     })
-    expect(datos.length, 'el snapshot no trae capítulos').toBeGreaterThanOrEqual(8)
-    const esperados = datos
-      .filter((d: { inicial: number; actual: number }) => d.inicial === 0 && d.actual > 0)
-      .map((d: { cap: string }) => d.cap)
-      .sort()
-    const enCero = filas.filter((f) => f.texto.includes('crédito inicial 0 €'))
-    expect(
-      enCero.map((f) => f.cap).sort(),
-      'los capítulos que la página dice abrir en cero no son los del dato',
-    ).toEqual(esperados)
-    for (const d of datos.filter(
-      (x: { inicial: number; actual: number }) => x.inicial > 0 && x.inicial / x.actual > 0.02,
-    )) {
-      const f = filas.find((x) => x.cap === d.cap)!
-      expect(f.ini!.w, `cap.${d.cap} tiene crédito inicial y no lo pinta`).toBeGreaterThan(0.5)
-    }
-    for (const f of enCero) {
+    const conDato = filas.filter((f) => typeof iniciales[f.cap] === 'number')
+    expect(conDato.length, 'ningún capítulo de la pantalla está en los datos').toBe(filas.length)
+    const ref = conDato.reduce((a, b) => (iniciales[b.cap] > iniciales[a.cap] ? b : a))
+    expect(ref.ini!.w, 'el capítulo con más crédito inicial no pinta tramo gris').toBeGreaterThan(
+      20,
+    )
+    for (const f of conDato) {
+      const esperado = (ref.ini!.w * iniciales[f.cap]) / iniciales[ref.cap]
       expect(
-        f.ini!.w,
-        `cap.${f.cap} dice abrir en cero y pinta crédito inicial`,
-      ).toBeLessThanOrEqual(0.5)
-      expect(f.amp!.w, `cap.${f.cap} abre en cero y no pinta ampliación`).toBeGreaterThan(20)
+        Math.abs(f.ini!.w - esperado),
+        `cap.${f.cap}: el tramo gris mide ${f.ini!.w.toFixed(1)} px y su crédito inicial pide ${esperado.toFixed(1)}`,
+      ).toBeLessThanOrEqual(1.5)
+      if (iniciales[f.cap] === 0)
+        expect(f.ini!.w, `cap.${f.cap} abre en cero y pinta gris`).toBeLessThanOrEqual(0.5)
     }
   })
 

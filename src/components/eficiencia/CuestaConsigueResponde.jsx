@@ -1,5 +1,6 @@
 import { Card, SectionHead } from '../Primitives'
-import { CompetenciaDelegada } from './CompetenciaDelegada'
+import { CompetenciaDelegada, fotoDeCompetencia } from './CompetenciaDelegada'
+import { useOfficials } from '../../hooks/useOfficials'
 import { usePromises, STATUS_LABEL } from '../../hooks/usePromises'
 import { useRevelado } from '../../hooks/useRevelado'
 import { direccion, filasCuestaConsigue } from '../../scraper/cuesta-consigue'
@@ -318,13 +319,13 @@ function Consigue({ resultado, t, mandatoDesde }) {
   )
 }
 
-function Responde({ asignacion, fuente, frozen, promesas, desde, t }) {
+function Responde({ asignacion, foto, fuente, frozen, promesas, desde, t }) {
   const { locale } = useLocale()
   return (
     <>
       <div className="cp-ccr-subrotulo">{t('eficiencia.ccr.responde.competencia')}</div>
       {asignacion ? (
-        <CompetenciaDelegada asignacion={asignacion} conFoto fuente={fuente} />
+        <CompetenciaDelegada asignacion={asignacion} conFoto foto={foto} fuente={fuente} />
       ) : frozen ? (
         <p className="cp-ccr-nota">{t('eficiencia.ccr.responde.loreg')}</p>
       ) : (
@@ -363,6 +364,7 @@ function Responde({ asignacion, fuente, frozen, promesas, desde, t }) {
 export function CuestaConsigueResponde({ data, competencias, porClave, nombresOn }) {
   const t = useT()
   const { data: promesasData } = usePromises()
+  const { data: padron } = useOfficials()
   const filas = filasCuestaConsigue(data ?? {})
   if (filas.length === 0) return null
   const etiquetas = new Map((data?.indicadores ?? []).map((i) => [i.id, i.etiqueta]))
@@ -391,6 +393,7 @@ export function CuestaConsigueResponde({ data, competencias, porClave, nombresOn
           <div className="cp-ccr-col">{t('eficiencia.ccr.col.responde')}</div>
           <Responde
             asignacion={porClave.get(f.servicioId)}
+            foto={fotoDeCompetencia(porClave.get(f.servicioId), padron?.officials)}
             fuente={competencias?.fuente}
             frozen={!nombresOn}
             promesas={f.promesas.map((id) => porIdPromesa.get(id)).filter(Boolean)}
