@@ -173,6 +173,47 @@ export function matchesFilters(offer, filters = EMPTY_FILTERS, now = Date.now())
 }
 
 /**
+ * Las ofertas que enseña la portada: abiertas, la que cierra antes primero, y
+ * después las que no traen plazo.
+ *
+ * La portada ordenaba por plazo sin mirar si ya había pasado, así que la
+ * primera oferta que veía un vecino era la más vieja: el 25-10-2026, un
+ * «Auxiliar Administrativo» cerrado el 15-01-2026, pintado «cierra 15 ene». El
+ * portal sigue llamando «Abierta» a ofertas vencidas; el corte es el mismo
+ * `isOfferClosed` que usan el listado, la ficha y el recuento de `stats`.
+ *
+ * @param {any[]} offers
+ * @param {number} [n]
+ * @param {number} [now]
+ */
+export function ofertasDePortada(offers, n = 3, now = Date.now()) {
+  const abiertas = (offers || []).filter((o) => !isOfferClosed(o, now))
+  const conPlazo = abiertas
+    .filter((o) => o.deadline)
+    .sort((a, b) => String(a.deadline).localeCompare(String(b.deadline)))
+  const sinPlazo = abiertas.filter((o) => !o.deadline)
+  return [...conPlazo, ...sinPlazo].slice(0, n)
+}
+
+/**
+ * «27 oct», o «15 ene 2027» cuando el cierre no es de este año: sin el año, un
+ * «15 ene» se lee como el próximo enero.
+ *
+ * El año se compara en la cadena ISO y no en un `Date`, para que una medianoche
+ * UTC no cambie de año con el huso.
+ *
+ * @param {string} iso
+ * @param {string} locale
+ * @param {number} [now]
+ */
+export function fechaDeCierre(iso, locale, now = Date.now()) {
+  const anio = Number(String(iso).slice(0, 4))
+  const opts = /** @type {Intl.DateTimeFormatOptions} */ ({ day: 'numeric', month: 'short' })
+  if (anio !== new Date(now).getFullYear()) opts.year = 'numeric'
+  return new Date(iso).toLocaleDateString(locale === 'ca' ? 'ca-ES' : 'es-ES', opts)
+}
+
+/**
  * Slice `list` into a 1-based page of `perPage`, clamping out-of-range pages.
  * @returns {{ items: any[], page: number, totalPages: number, total: number }}
  */

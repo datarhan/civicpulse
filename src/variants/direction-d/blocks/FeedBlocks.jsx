@@ -15,6 +15,7 @@ import { useParticipa, KIND_ICON } from '../../../hooks/useParticipa'
 import { usePress, timeAgo as pressTimeAgo } from '../../../hooks/usePress'
 import { useEvents, upcomingEvents, formatEventWhen } from '../../../hooks/useEvents'
 import { useEmpleo } from '../../../hooks/useEmpleo'
+import { ofertasDePortada, fechaDeCierre } from '../../../lib/empleo'
 import { PALETTE } from '../tokens'
 import { SectionHeader } from '../SectionHeader'
 import { ExtLink } from '../../../components/Primitives'
@@ -33,14 +34,9 @@ export function EmpleoBlockD() {
   const { t, locale } = useLocale()
   const { loading, error, data } = useEmpleo()
   if (loading || error || !data) return null
-  const items = data.items || []
-  if (items.length === 0) return null
-  // Closing-soon first (offers with a deadline), else newest.
-  const withDeadline = items.filter((o) => o.deadline)
-  const picks = (withDeadline.length ? withDeadline : items)
-    .slice()
-    .sort((a, b) => (a.deadline && b.deadline ? a.deadline.localeCompare(b.deadline) : 0))
-    .slice(0, 3)
+  // Abiertas, la que cierra antes primero; una vencida nunca (src/lib/empleo.js).
+  const picks = ofertasDePortada(data.items || [], 3)
+  if (picks.length === 0) return null
   return (
     <div>
       <SectionHeader
@@ -70,7 +66,7 @@ export function EmpleoBlockD() {
             <div className="mono" style={{ fontSize: 'var(--fs-micro)', color: PALETTE.ink60 }}>
               {muni.length > 30 ? muni.slice(0, 30) + '…' : muni}
               {o.deadline
-                ? ` · ${rellena(t('landing.empleo.cierra'), { fecha: diaYMes(o.deadline, locale) })}`
+                ? ` · ${rellena(t('landing.empleo.cierra'), { fecha: fechaDeCierre(o.deadline, locale) })}`
                 : ''}
             </div>
           </div>
