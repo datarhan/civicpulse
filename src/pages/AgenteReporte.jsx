@@ -344,11 +344,15 @@ export default function AgenteReporte() {
   const tocItems = useMemo(() => (report ? sectionsToToc(report.sections) : []), [report])
   const subjectName = assignment?.subject.name ?? report?.assignmentId ?? ''
   // No el nombre a secas: ése ya es el título de su ficha en /cargos.
+  // Sólo con el nombre de la asignación: `subjectName` cae al `assignmentId`
+  // («a-teresa-pozuelo-bio») mientras las asignaciones cargan, y un código
+  // interno no va en la pestaña.
+  const nombreAsignado = assignment?.subject?.name
   useDocumentTitle(
-    report && subjectName
-      ? assignment?.kind === 'biography'
-        ? `Biografía de ${subjectName}`
-        : subjectName
+    report && nombreAsignado
+      ? assignment.kind === 'biography'
+        ? `Biografía de ${nombreAsignado}`
+        : nombreAsignado
       : null,
   )
   const portraitPayload = report?.sections.find((s) => s.kind === 'portrait')?.payload
