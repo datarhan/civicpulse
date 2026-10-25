@@ -2089,7 +2089,7 @@ export const CATALOGUE = {
     'cargos.detalle.area.note':
       'Solo contratos ya adjudicados y de categoría atribuible a un área; la cifra se queda corta antes que asignar un responsable equivocado.',
     'cargos.detalle.stat.areasDelegadas': 'Áreas delegadas',
-    'cargos.detalle.stat.partyPromises': 'Promesas · grupo',
+    'cargos.detalle.stat.partyPromises': 'Promesas · partido',
     'cargos.detalle.stat.agendaItems': 'Puntos en pleno',
     'cargos.detalle.stat.noDisponible': 'No se ha podido cargar; no es un cero.',
     'cargos.detalle.stat.quejas': 'Quejas pendientes',
@@ -2460,7 +2460,7 @@ export const CATALOGUE = {
     'landing.kpi.pleno': 'Último pleno',
     'landing.kpi.pleno.sesiones': '{n} sesiones',
     'landing.alcalde.promesas': 'promesas',
-    'landing.alcalde.promesas.title': 'Promesas documentadas del grupo {grupo}',
+    'landing.alcalde.promesas.title': 'Promesas documentadas del partido {grupo}',
     'landing.alcalde.puntos': 'puntos en pleno',
     'landing.alcalde.puntos.title':
       'Puntos de orden del día gestionados por concejalías del Alcalde',
@@ -4329,7 +4329,7 @@ export const CATALOGUE = {
     'cargos.detalle.area.note':
       'Només contractes ja adjudicats i de categoria atribuïble a una àrea; la xifra es queda curta abans que assignar un responsable equivocat.',
     'cargos.detalle.stat.areasDelegadas': 'Àrees delegades',
-    'cargos.detalle.stat.partyPromises': 'Promeses · grup',
+    'cargos.detalle.stat.partyPromises': 'Promeses · partit',
     'cargos.detalle.stat.agendaItems': 'Punts al ple',
     'cargos.detalle.stat.noDisponible': 'No s’ha pogut carregar; no és un zero.',
     'cargos.detalle.stat.quejas': 'Queixes pendents',
@@ -4611,7 +4611,7 @@ export const CATALOGUE = {
     'landing.kpi.pleno': 'Últim ple',
     'landing.kpi.pleno.sesiones': '{n} sessions',
     'landing.alcalde.promesas': 'promeses',
-    'landing.alcalde.promesas.title': 'Promeses documentades del grup {grupo}',
+    'landing.alcalde.promesas.title': 'Promeses documentades del partit {grupo}',
     'landing.alcalde.puntos': 'punts en ple',
     'landing.alcalde.puntos.title':
       'Punts de l’orde del dia gestionats per regidories de l’Alcalde',

@@ -168,7 +168,7 @@ test.describe('Cargo detail (/cargos/:slug)', () => {
 
     // Stats strip
     await expect(page.getByText(/Concejalías/i).first()).toBeVisible()
-    await expect(page.getByText(/Promesas · grupo/i).first()).toBeVisible()
+    await expect(page.getByText(/Promesas · partido/i).first()).toBeVisible()
 
     // Portfolio chips render; alcalde has Alcaldía + Innovación at least
     await expect(page.getByText(/Alcald.a/).first()).toBeVisible()
