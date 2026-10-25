@@ -288,3 +288,69 @@ describe('el resultado no depende del huso del equipo que construye el fichero',
     expect(normalizeQueja({ service_request_id: 'Q-1', requested_datetime: marca })).toBeNull()
   })
 })
+
+describe('el enlace lleva el contrato que nombra', () => {
+  // La ficha de una queja pintaba, por cada contrato relacionado, «misma zona y
+  // materia · Ver contrato en contrataciondelestado.es →» y nada más: tres
+  // tarjetas iguales en Q-KJY6XSVG, sin título, fecha ni importe. El motor tenía
+  // los tres en la mano (`RelContract`) y no los copiaba al enlace. La página,
+  // para sacarlos, habría tenido que descargar tenders.json entero (1,4 MB).
+  it('copia al enlace el título, la fecha de adjudicación y el importe', () => {
+    const l = scoreRelation(
+      q({ department: 'urbanismo', placeSlug: 'valencia-la-vella' }),
+      c({
+        id: '5106922',
+        title:
+          'Contrato administrativo obras para la ejecución del proyecto Área de esparcimiento en zona verde de Valencia la Vella',
+        department: 'urbanismo',
+        places: ['valencia-la-vella'],
+        awardDate: '2026-05-27',
+        amount: 89980.26,
+      }),
+    )
+    expect(l?.tier).toBe('A')
+    expect(l?.tenderTitle).toMatch(/^Contrato administrativo obras/)
+    expect(l?.tenderAwardDate).toBe('2026-05-27')
+    expect(l?.tenderAmount).toBe(89980.26)
+  })
+
+  it('sin importe publicado, el enlace dice null y no inventa un cero', () => {
+    const l = scoreRelation(q(), c({ places: ['valencia-la-vella'], amount: null }))
+    expect(l?.tenderAmount).toBeNull()
+  })
+})
+
+describe('buildRelContracts — el importe es el de la regla del sitio', () => {
+  // `importeAdjudicado` (src/lib/contract-status.js) da el importe sin IVA cuando
+  // la fuente lo trae, y null —no 0— cuando no lo publica. El motor tomaba
+  // `finalAmount` tal cual: con IVA, y a 0 en los 100 contratos que lo traen así.
+  const fila = (o: Record<string, unknown>) => ({
+    id: '5106922',
+    permalink: 'p',
+    title: 'Contrato administrativo obras',
+    status: 'formalized',
+    categoryTitle: 'construction',
+    cpvs: ['45111000'],
+    awardDate: '2026-05-27',
+    assignee: 'GEOCIVIL, S.A.',
+    ...o,
+  })
+
+  it('prefiere el importe sin IVA (fila real 5106922)', () => {
+    const [r] = buildRelContracts(
+      [fila({ finalAmount: 108876.11, finalAmountNoTaxes: 89980.26 })],
+      { assignments: [] },
+      [],
+    )
+    expect(r.amount).toBe(89980.26)
+  })
+
+  it('un importe a 0 no es un importe: null', () => {
+    const [r] = buildRelContracts(
+      [fila({ finalAmount: 0, finalAmountNoTaxes: 0 })],
+      { assignments: [] },
+      [],
+    )
+    expect(r.amount).toBeNull()
+  })
+})
