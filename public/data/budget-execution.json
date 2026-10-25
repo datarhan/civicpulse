@@ -1,66 +1,68 @@
 {
-  "generatedAt": "2026-10-22T09:35:11.098Z",
+  "generatedAt": "2026-10-22T13:41:39.178Z",
   "source": "https://www.ribarroja.es/es/1_gestion_presupuestaria/2_estados_ejecucion_presupuesto",
   "periods": [
     {
       "year": 2025,
       "trimestre": null,
       "fechaListado": "31/12/2025",
+      "fechaListadoFuente": "31/12/2025",
+      "mismoCorte": true,
       "gastos": {
         "total": {
-          "inicial": 37599838.15,
-          "modificaciones": 24523314.93,
-          "actual": 62123153.08,
-          "ejecutado": 18909465.12
+          "inicial": 41578252.26,
+          "modificaciones": 25494616.63,
+          "actual": 67072868.89,
+          "ejecutado": 40344388.83
         },
         "chapters": [
           {
             "capitulo": 1,
             "label": "GASTOS DE PERSONAL",
-            "inicial": 19516194.19,
-            "modificaciones": 1366419.78,
-            "actual": 20882613.97,
-            "ejecutado": 9050222.8
+            "inicial": 20338112.65,
+            "modificaciones": 1347148.29,
+            "actual": 21685260.94,
+            "ejecutado": 19277380.26
           },
           {
             "capitulo": 2,
             "label": "GASTOS CORRIENTES EN BIENES Y SERVICIOS",
-            "inicial": 14311925.08,
-            "modificaciones": 1079901.38,
-            "actual": 15391826.46,
-            "ejecutado": 7565289.65
+            "inicial": 16288669.58,
+            "modificaciones": 1436891.36,
+            "actual": 17725560.94,
+            "ejecutado": 15243508.58
           },
           {
             "capitulo": 3,
             "label": "GASTOS FINANCIEROS",
-            "inicial": 362680.17,
+            "inicial": 283520.17,
             "modificaciones": 0,
-            "actual": 362680.17,
-            "ejecutado": 54661.03
+            "actual": 283520.17,
+            "ejecutado": 167280.65
           },
           {
             "capitulo": 4,
             "label": "TRANSFERENCIAS CORRIENTES",
-            "inicial": 2149520.62,
-            "modificaciones": 13258.44,
-            "actual": 2162779.06,
-            "ejecutado": 540939.25
+            "inicial": 2595582.99,
+            "modificaciones": -67075.92,
+            "actual": 2528507.07,
+            "ejecutado": 2061794.82
           },
           {
             "capitulo": 6,
             "label": "INVERSIONES REALES",
-            "inicial": 0,
-            "modificaciones": 22063735.33,
-            "actual": 22063735.33,
-            "ejecutado": 1034230.67
+            "inicial": 905517.35,
+            "modificaciones": 22777652.9,
+            "actual": 23683170.25,
+            "ejecutado": 2461372.98
           },
           {
             "capitulo": 7,
             "label": "TRANSFERENCIAS DE CAPITAL",
-            "inicial": 338668.57,
+            "inicial": 246000,
             "modificaciones": 0,
-            "actual": 338668.57,
-            "ejecutado": 204622.72
+            "actual": 246000,
+            "ejecutado": 216752.02
           },
           {
             "capitulo": 8,
@@ -68,7 +70,7 @@
             "inicial": 25000,
             "modificaciones": 0,
             "actual": 25000,
-            "ejecutado": 11750
+            "ejecutado": 20450
           },
           {
             "capitulo": 9,
@@ -76,7 +78,7 @@
             "inicial": 895849.52,
             "modificaciones": 0,
             "actual": 895849.52,
-            "ejecutado": 447749
+            "ejecutado": 895849.52
           }
         ]
       },
@@ -163,7 +165,7 @@
         ]
       },
       "ejecucionPct": {
-        "gastos": 30.4,
+        "gastos": 60.2,
         "ingresos": 85.4
       }
     }
@@ -172,61 +174,63 @@
     "year": 2025,
     "trimestre": null,
     "fechaListado": "31/12/2025",
+    "fechaListadoFuente": "31/12/2025",
+    "mismoCorte": true,
     "gastos": {
       "total": {
-        "inicial": 37599838.15,
-        "modificaciones": 24523314.93,
-        "actual": 62123153.08,
-        "ejecutado": 18909465.12
+        "inicial": 41578252.26,
+        "modificaciones": 25494616.63,
+        "actual": 67072868.89,
+        "ejecutado": 40344388.83
       },
       "chapters": [
         {
           "capitulo": 1,
           "label": "GASTOS DE PERSONAL",
-          "inicial": 19516194.19,
-          "modificaciones": 1366419.78,
-          "actual": 20882613.97,
-          "ejecutado": 9050222.8
+          "inicial": 20338112.65,
+          "modificaciones": 1347148.29,
+          "actual": 21685260.94,
+          "ejecutado": 19277380.26
         },
         {
           "capitulo": 2,
           "label": "GASTOS CORRIENTES EN BIENES Y SERVICIOS",
-          "inicial": 14311925.08,
-          "modificaciones": 1079901.38,
-          "actual": 15391826.46,
-          "ejecutado": 7565289.65
+          "inicial": 16288669.58,
+          "modificaciones": 1436891.36,
+          "actual": 17725560.94,
+          "ejecutado": 15243508.58
         },
         {
           "capitulo": 3,
           "label": "GASTOS FINANCIEROS",
-          "inicial": 362680.17,
+          "inicial": 283520.17,
           "modificaciones": 0,
-          "actual": 362680.17,
-          "ejecutado": 54661.03
+          "actual": 283520.17,
+          "ejecutado": 167280.65
         },
         {
           "capitulo": 4,
           "label": "TRANSFERENCIAS CORRIENTES",
-          "inicial": 2149520.62,
-          "modificaciones": 13258.44,
-          "actual": 2162779.06,
-          "ejecutado": 540939.25
+          "inicial": 2595582.99,
+          "modificaciones": -67075.92,
+          "actual": 2528507.07,
+          "ejecutado": 2061794.82
         },
         {
           "capitulo": 6,
           "label": "INVERSIONES REALES",
-          "inicial": 0,
-          "modificaciones": 22063735.33,
-          "actual": 22063735.33,
-          "ejecutado": 1034230.67
+          "inicial": 905517.35,
+          "modificaciones": 22777652.9,
+          "actual": 23683170.25,
+          "ejecutado": 2461372.98
         },
         {
           "capitulo": 7,
           "label": "TRANSFERENCIAS DE CAPITAL",
-          "inicial": 338668.57,
+          "inicial": 246000,
           "modificaciones": 0,
-          "actual": 338668.57,
-          "ejecutado": 204622.72
+          "actual": 246000,
+          "ejecutado": 216752.02
         },
         {
           "capitulo": 8,
@@ -234,7 +238,7 @@
           "inicial": 25000,
           "modificaciones": 0,
           "actual": 25000,
-          "ejecutado": 11750
+          "ejecutado": 20450
         },
         {
           "capitulo": 9,
@@ -242,7 +246,7 @@
           "inicial": 895849.52,
           "modificaciones": 0,
           "actual": 895849.52,
-          "ejecutado": 447749
+          "ejecutado": 895849.52
         }
       ]
     },
@@ -329,7 +333,7 @@
       ]
     },
     "ejecucionPct": {
-      "gastos": 30.4,
+      "gastos": 60.2,
       "ingresos": 85.4
     }
   }
