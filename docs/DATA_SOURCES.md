@@ -167,7 +167,17 @@ overwrites it. Change the bot's SQLite instead.
 
 - **Pipeline** — `budget-execution.ts` → `budget-execution.json`
 - **Source** — Ayuntamiento estados de ejecución PDFs (SICALWIN)
-- **Surfaces** — `/presupuesto` "Ejecución presupuestaria"
+- **Surfaces** — `/presupuesto` "Ejecución presupuestaria", its «En breve», `/gestion`
+- **Gotchas** — a year's page carries every quarter's sheets side by side, and
+  «Fecha de listado igual a: …» is the report's PARAMETER, not the data's
+  cut-off: the 2025 2T sheet, printed 30-06-2025, says 31/12/2025. The cut-off
+  is the earlier of that and the print date in the header (`fechaDeCorte`);
+  `elegirDocumento` takes the latest cut-off, then the most chapters. Until
+  2026-10-22 only chapters counted, the 2T and 4T tied at 8, and the June
+  spending sheet was published as the year's close (30 % executed; the close
+  says 60 %) beside December income — which also manufactured a «chapter 6
+  opened at zero» and a 4 M€ disagreement with CONPREL that the close sheet
+  does not have. A period whose two sides have different cut-offs is dropped.
 
 ### Coste efectivo de los servicios (art. 116 ter LRSAL)
 

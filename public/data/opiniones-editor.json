@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "actualizadoEl": "2026-10-22",
+  "actualizadoEl": "2026-10-25",
   "items": [
     {
       "id": "policia-local-coste-2024",
@@ -48,6 +48,48 @@
         "Si el aumento de 2022 es más plantilla, mejores sueldos u otro gasto imputado al servicio.",
         "Si el gasto ha influido en las infracciones conocidas: las registran todos los cuerpos y dependen también de cuánto se denuncia.",
         "Quién decidió el aumento de 2022: es anterior a las delegaciones del mandato actual, y no hemos incorporado las del anterior."
+      ],
+      "nombra": [],
+      "contactoPrevio": null,
+      "replicas": [],
+      "correcciones": []
+    },
+    {
+      "id": "agua-nitratos-2025",
+      "panel": "coste-efectivo",
+      "titulo": "El agua de Riba-roja lleva casi cuatro veces más nitratos que la de los pueblos parecidos, y nadie ha explicado los 55 análisis «no apto» de 2021",
+      "cuerpo": [
+        "El agua de la red principal de Riba-roja, la que llega a unas 21.000 personas, tuvo en 2025 una media de 42 miligramos de nitrato por litro. En los 57 municipios valencianos de tamaño parecido la media es de 11: aquí hay casi cuatro veces más, y sólo tres de esos 57 están por encima. No es un mal año: desde 2020 la media anual no ha bajado de 42. El límite legal es 50, así que el agua cumple, pero con poco margen, y muy lejos de lo que beben los vecinos de pueblos como el nuestro.",
+        "Hay dos lecturas más altas, y también son oficiales. En la red de la residencia de mayores Entre Naranjos, un análisis completo del 19 de junio de 2024 dio 71 mg/L, y el agua se calificó «no apta». En la del colegio María de Iziar, uno del 22 de junio de 2022 dio 54 mg/L, también «no apta». No son de HIDRAQUA, que no gestiona esas dos redes: son análisis de autocontrol que el gestor de cada una encargó a un laboratorio externo y que constan en SINAC, el registro del Ministerio de Sanidad, con el Ayuntamiento como responsable. Después, el colegio volvió a 10 mg/L en mayo de 2023; de la residencia, SINAC sólo enseña un control posterior «apto», de diciembre de 2024, sin cifra de nitrato.",
+        "El nitrato viene del abono que se filtra al acuífero, no de la red, y el agua de esta red sale de pozos sin más tratamiento que la desinfección, según la ficha oficial del Ministerio de Sanidad. Eso no hace culpable a nadie de la red de hoy. Sí quiere decir que el margen que queda hasta el límite es pequeño y que no depende de lo que haga el gestor, sino de lo que pase en el subsuelo.",
+        "Y hay algo que sí pide explicación. El informe anual del Ministerio de Sanidad cuenta, para la zona que abastece al casco urbano, 55 análisis «no apto» de 485 en 2021. El informe no dice qué parámetro falló, y la consulta pública de SINAC ya no enseña esos boletines. En 2022 fueron cero. Que durante un año uno de cada nueve análisis de la zona que abastece a 20.000 personas saliera «no apto», y que eso sólo conste en una tabla del anexo de un informe del ministerio, sin ninguna explicación que un vecino pueda leer, es lo que nos parece que no puede quedar así.",
+        "Pedimos al Ayuntamiento, responsable del abastecimiento según el propio SINAC, que publique qué pasó en 2021, cuándo y en qué parámetro; si se avisó a los vecinos; y qué plan hay para el nitrato de los pozos, si lo hay."
+      ],
+      "firma": {
+        "nombre": "Sergei Lutchenko",
+        "rol": "editor"
+      },
+      "fecha": "2026-10-25",
+      "hechos": [
+        {
+          "tipo": "resultado",
+          "id": "agua-nitrato-red-principal",
+          "anio": 2020,
+          "valor": 43
+        },
+        {
+          "tipo": "resultado",
+          "id": "agua-nitrato-red-principal",
+          "anio": 2025,
+          "valor": 42
+        }
+      ],
+      "noSabemos": [
+        "Qué parámetro hizo «no apto» los 55 análisis de 2021: el informe del ministerio no lo dice, y SINAC ya no enseña aquellos boletines.",
+        "Por qué la zona del Polígono Oliveral cuenta exactamente los mismos 55 «no apto» ese año: el informe no lo explica.",
+        "Si se avisó a los vecinos en 2021, y de qué.",
+        "Si el nitrato de los pozos bajará: el último análisis completo, de junio de 2026, dio 38, pero es una sola muestra.",
+        "Cuánto nitrato tiene hoy el agua de la residencia Entre Naranjos: tras los 71 mg/L de junio de 2024, SINAC sólo enseña un control «apto» sin esa cifra."
       ],
       "nombra": [],
       "contactoPrevio": null,

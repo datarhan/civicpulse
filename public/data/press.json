@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-24T09:04:06.324Z",
+  "generatedAt": "2026-10-25T09:26:26.583Z",
   "feeds": [
     {
       "url": "https://www.ribarroja.es/es/noticias/rss.xml",
@@ -16,15 +16,16 @@
     {
       "url": "https://news.google.com/rss/search?q=%22Riba-roja%20de%20T%C3%BAria%22&hl=es&gl=ES&ceid=ES:es",
       "platform": "Google News RSS",
-      "ok": true,
-      "items": 98
+      "ok": false,
+      "items": 93,
+      "carriedForward": 93
     }
   ],
   "stats": {
     "total": 153,
     "sources": 23,
     "latestDate": "2026-10-23T11:37:52.000Z",
-    "carriedForward": 0
+    "carriedForward": 93
   },
   "sources": [
     "Ayuntamiento de Cheste",

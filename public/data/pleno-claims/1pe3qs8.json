@@ -1,91 +1,63 @@
 {
-  "generatedAt": "2026-10-21T11:51:42.436Z",
+  "generatedAt": "2026-10-22T09:29:26.086Z",
   "version": "1",
   "plenoId": "1pe3qs8",
   "plenoDate": "2026-01-07",
   "items": [
     {
       "claim": {
-        "id": "1pe3qs8-000-afi-59b50b",
+        "id": "1pe3qs8-006-afi-70c54e",
         "plenoId": "1pe3qs8",
         "plenoDate": "2026-01-07",
-        "segmentIndex": 0,
+        "segmentIndex": 6,
         "type": "afirmacion_numerica",
         "speakerGroup": null,
-        "verbatim": "votamos a favor del grupo socialista y la abstención del grupo político",
-        "context": "El presidente somete a votación la ratificación del carácter urgente de la sesión (punto 1 del orden del día). Declara el resultado: el grupo socialista votó a favor y un grupo político —nombre degradado por Whisper— se abstuvo. No se menciona resultado numérico de escaños.",
-        "topic": "transparencia",
-        "entities": {
-          "date": "2026-01-07",
-          "referencedEntity": "votación ratificación carácter urgente de la sesión (punto 1 del orden del día)"
-        },
-        "confidence": 0.55,
-        "reasoning": "Es el resultado declarado de la votación sobre la urgencia de la sesión; verificable cruzando con el acta oficial o con pleno-votes.json. La confianza es baja porque Whisper degradó el nombre del grupo que se abstuvo ('grupo político' en lugar del nombre real del partido) y el texto no desglosa votos por número de escaños.",
-        "requiresHumanApproval": true
-      },
-      "verification": {
-        "claimId": "1pe3qs8-000-afi-59b50b",
-        "verdict": "sin-datos",
-        "summary": "Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
-        "evidence": [],
-        "checkedAgainst": []
-      },
-      "visibility": "toggle"
-    },
-    {
-      "claim": {
-        "id": "1pe3qs8-004-afi-409d52",
-        "plenoId": "1pe3qs8",
-        "plenoDate": "2026-01-07",
-        "segmentIndex": 4,
-        "type": "afirmacion_numerica",
-        "speakerGroup": null,
-        "verbatim": "en el pleno extraordinario del 23 de diciembre, se inició el expediente de imposición de penalidades al contratista por un importe de 143.000 euros",
-        "context": "El portavoz explica los antecedentes del expediente: en el pleno extraordinario del 23 de diciembre se abrió el expediente sancionador contra el contratista del servicio de recogida de residuos por un importe de 143.000 euros.",
+        "verbatim": "por un importe de 143.000 euros,",
+        "context": "se inició el expediente de imposición de penalidades al contratista, por un importe de 143.000 euros, que equivale al 1% del contrato,",
         "topic": "medio-ambiente",
         "entities": {
           "amountEuros": 143000,
+          "referencedEntity": "penalidad impuesta al contratista del servicio de recogida de residuos (lote 1)"
+        },
+        "confidence": 0.9,
+        "reasoning": "Cifra concreta de penalidad citada como hecho, verificable contra el expediente 615/2025/GEN y la resolución de imposición de penalidad.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "1pe3qs8-006-afi-70c54e",
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders, tenders-ted, bdns y budget que la sostenga. Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
+        "evidence": [],
+        "checkedAgainst": [
+          "tenders",
+          "tenders-ted",
+          "bdns",
+          "budget"
+        ]
+      },
+      "visibility": "toggle"
+    },
+    {
+      "claim": {
+        "id": "1pe3qs8-006-afi-7bd610",
+        "plenoId": "1pe3qs8",
+        "plenoDate": "2026-01-07",
+        "segmentIndex": 6,
+        "type": "afirmacion_numerica",
+        "speakerGroup": null,
+        "verbatim": "en el Pleno Extraordinario del 23 de diciembre, se inició el expediente de imposición de penalidades al contratista,",
+        "context": "En primer lugar, y en el Pleno Extraordinario del 23 de diciembre, se inició el expediente de imposición de penalidades al contratista, por un importe de 143.000 euros,",
+        "topic": "medio-ambiente",
+        "entities": {
           "date": "2025-12-23",
-          "referencedEntity": "pleno extraordinario 23 de diciembre · expediente imposición de penalidades al contratista"
+          "referencedEntity": "expediente de imposición de penalidades al contratista"
         },
-        "confidence": 0.92,
-        "reasoning": "Cifra concreta (143.000 €) vinculada a una fecha de pleno verificable (2025-12-23); comprobable en el acta del pleno extraordinario y en el expediente 136/2025 del orden del día.",
+        "confidence": 0.85,
+        "reasoning": "Afirma un hecho con fecha concreta (Pleno Extraordinario del 23 de diciembre) verificable contra el acta de ese pleno y la apertura formal del expediente de penalidad.",
         "requiresHumanApproval": true
       },
       "verification": {
-        "claimId": "1pe3qs8-004-afi-409d52",
-        "verdict": "sin-datos",
-        "summary": "Ningún candidato respalda la afirmación. La afirmación trata de la apertura, en el pleno extraordinario del 23/12/2025, de un expediente de penalidades de 143.000 € contra el contratista del servicio de recogida de residuos.",
-        "evidence": [],
-        "checkedAgainst": [],
-        "derivedBy": [
-          "verdict-engine"
-        ],
-        "confidence": 0.2,
-        "source": "verdict-engine"
-      },
-      "visibility": "toggle"
-    },
-    {
-      "claim": {
-        "id": "1pe3qs8-004-afi-2fb00e",
-        "plenoId": "1pe3qs8",
-        "plenoDate": "2026-01-07",
-        "segmentIndex": 4,
-        "type": "afirmacion_numerica",
-        "speakerGroup": null,
-        "verbatim": "que equivale al 1% del contrato",
-        "context": "Tras citar los 143.000 euros de penalidad, el portavoz precisa que dicho importe equivale al 1% del contrato, conforme a los límites establecidos en el artículo 192 de la Ley de Contratos del Sector Público.",
-        "topic": "medio-ambiente",
-        "entities": {
-          "referencedEntity": "contrato lote 1 servicio de recogida de residuos sólidos urbanos, poda y voluminosos"
-        },
-        "confidence": 0.88,
-        "reasoning": "Afirma que 143.000 € = 1% del valor total del contrato (lo que implica un valor contractual de ~14,3 M€). Verificable cruzando el importe adjudicado en el expediente de contratación publicado en PLACSP/Gobierto.",
-        "requiresHumanApproval": true
-      },
-      "verification": {
-        "claimId": "1pe3qs8-004-afi-2fb00e",
+        "claimId": "1pe3qs8-006-afi-7bd610",
         "verdict": "sin-datos",
         "summary": "Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
         "evidence": [],
@@ -95,85 +67,26 @@
     },
     {
       "claim": {
-        "id": "1pe3qs8-004-cit-ddee35",
+        "id": "1pe3qs8-006-afi-c651b6",
         "plenoId": "1pe3qs8",
         "plenoDate": "2026-01-07",
-        "segmentIndex": 4,
-        "type": "cita_convenio",
-        "speakerGroup": null,
-        "verbatim": "de acuerdo con el artículo 192 de la Ley 9.017 de Contratos del Sector Público",
-        "context": "El portavoz justifica la cuantía de la penalidad (143.000 €, 1% del contrato) citando como base legal el artículo 192 de la Ley 9/2017 de Contratos del Sector Público y los límites que establece.",
-        "topic": "other",
-        "entities": {
-          "referencedEntity": "artículo 192 ley 9/2017 de contratos del sector público (lcsp)"
-        },
-        "confidence": 0.78,
-        "reasoning": "Cita normativa verificable (art. 192 LCSP regula la imposición de penalidades). Confianza rebajada porque Whisper transcribió '9.017' en lugar de '9/2017', indicando posible degradación del número de ley.",
-        "requiresHumanApproval": true
-      },
-      "verification": {
-        "claimId": "1pe3qs8-004-cit-ddee35",
-        "verdict": "sin-datos",
-        "summary": "Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
-        "evidence": [],
-        "checkedAgainst": []
-      },
-      "visibility": "toggle"
-    },
-    {
-      "claim": {
-        "id": "1pe3qs8-004-afi-098488",
-        "plenoId": "1pe3qs8",
-        "plenoDate": "2026-01-07",
-        "segmentIndex": 4,
+        "segmentIndex": 6,
         "type": "afirmacion_numerica",
         "speakerGroup": null,
-        "verbatim": "respaldado por los informes de la empresa auditora del servicio, Auditesa, la cual le requirió en sus informes que subcontratara servicios para corregi",
-        "context": "Al explicar el sustento técnico de la penalidad, el portavoz menciona los informes de la auditora Auditesa, que constataron los incumplimientos y requirieron a la empresa contratista que subcontratara para corregirlos (la transcripción queda cortada).",
-        "topic": "medio-ambiente",
-        "entities": {
-          "referencedEntity": "empresa auditora auditesa · informes de seguimiento del servicio de recogida"
-        },
-        "confidence": 0.72,
-        "reasoning": "Referencia a una entidad auditora concreta (Auditesa) y a sus informes escritos; verificable solicitando los informes de seguimiento del contrato al amparo de la Ley de Transparencia. Confianza reducida porque el nombre 'Auditesa' podría ser una distorsión de Whisper.",
-        "requiresHumanApproval": true
-      },
-      "verification": {
-        "claimId": "1pe3qs8-004-afi-098488",
-        "verdict": "sin-datos",
-        "summary": "La afirmación sostiene que los informes de la auditora Auditesa constataron incumplimientos del contratista y le requirieron subcontratar servicios para corregirlos. Ninguno de los candidatos menciona a Auditesa, ni informes de auditoría del servicio, ni requerimientos de subcontratación.",
-        "evidence": [],
-        "checkedAgainst": [],
-        "derivedBy": [
-          "verdict-engine"
-        ],
-        "confidence": 0.2,
-        "source": "verdict-engine"
-      },
-      "visibility": "toggle"
-    },
-    {
-      "claim": {
-        "id": "1pe3qs8-005-afi-c651b6",
-        "plenoId": "1pe3qs8",
-        "plenoDate": "2026-01-07",
-        "segmentIndex": 5,
-        "type": "afirmacion_numerica",
-        "speakerGroup": null,
-        "verbatim": "que equivale al 1% del contrato, conforme a la base y los límites establecidos y de acuerdo con el artículo 192 de la Ley 9.017 de Contratos del Sector Público",
-        "context": "Se justifica la cuantía de la penalidad (143.000 €) como equivalente al 1% del contrato total, al amparo del artículo 192 de la LCSP (Ley 9/2017 — Whisper transcribió '9.017').",
+        "verbatim": "que equivale al 1% del contrato,",
+        "context": "por un importe de 143.000 euros, que equivale al 1% del contrato, conforme a la base y los límites establecidos",
         "topic": "medio-ambiente",
         "entities": {
           "count": 1,
           "countUnit": "% del valor del contrato",
-          "referencedEntity": "ley 9/2017 de contratos del sector público, artículo 192"
+          "referencedEntity": "importe total del contrato de recogida de residuos (lote 1)"
         },
-        "confidence": 0.87,
-        "reasoning": "Si 143.000 € = 1 %, el valor total del contrato (lote 1) sería ~14,3 M €; verificable contra tenders.json (Gobierto/PLACSP). El número de ley es un error ortográfico de Whisper ('9.017' → '9/2017'), reduciendo levemente la confianza.",
+        "confidence": 0.7,
+        "reasoning": "Relaciona el importe de la penalidad con un porcentaje del valor total del contrato, dato verificable cruzando el importe de adjudicación del contrato con los 143.000 euros citados.",
         "requiresHumanApproval": true
       },
       "verification": {
-        "claimId": "1pe3qs8-005-afi-c651b6",
+        "claimId": "1pe3qs8-006-afi-c651b6",
         "verdict": "sin-datos",
         "summary": "Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
         "evidence": [],
@@ -183,87 +96,51 @@
     },
     {
       "claim": {
-        "id": "1pe3qs8-005-cit-6af61c",
-        "plenoId": "1pe3qs8",
-        "plenoDate": "2026-01-07",
-        "segmentIndex": 5,
-        "type": "cita_convenio",
-        "speakerGroup": null,
-        "verbatim": "los informes de la empresa auditora del servicio, Auditesa, la cual le requirió en sus informes que subcontratara servicios para corregir las deficiencias",
-        "context": "Se cita expresamente a Auditesa como empresa auditora externa del servicio de recogida de residuos, cuyas recomendaciones documentadas instaron al contratista a subcontratar para subsanar las deficiencias detectadas.",
-        "topic": "medio-ambiente",
-        "entities": {
-          "referencedEntity": "auditesa — empresa auditora del servicio de recogida rsu"
-        },
-        "confidence": 0.78,
-        "reasoning": "La existencia y autoría de los informes de Auditesa es verificable como evidencia documental en el expediente 615/2025/GEN; el nombre propio puede estar ligeramente degradado por Whisper (WER ~5-10 % en nombres propios).",
-        "requiresHumanApproval": true
-      },
-      "verification": {
-        "claimId": "1pe3qs8-005-cit-6af61c",
-        "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
-        "evidence": [],
-        "checkedAgainst": [
-          "verdict-engine"
-        ],
-        "source": "verdict-engine"
-      },
-      "visibility": "toggle"
-    },
-    {
-      "claim": {
-        "id": "1pe3qs8-006-cit-b453d1",
+        "id": "1pe3qs8-006-afi-6eb275",
         "plenoId": "1pe3qs8",
         "plenoDate": "2026-01-07",
         "segmentIndex": 6,
+        "type": "afirmacion_numerica",
+        "speakerGroup": null,
+        "verbatim": "de acuerdo con el artículo 192 de la ley 9.027 de Contratos del Sector Público.",
+        "context": "conforme a la base y los límites establecidos, y de acuerdo con el artículo 192 de la ley 9.027 de Contratos del Sector Público.",
+        "topic": "medio-ambiente",
+        "entities": {
+          "referencedEntity": "artículo 192 de la ley 9/2017 de contratos del sector público (posible transcripción degradada de '9/2017')"
+        },
+        "confidence": 0.5,
+        "reasoning": "Cita una base legal concreta para la penalidad; verificable contra el texto normativo real, aunque Whisper probablemente degradó '9/2017' a '9.027'.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "1pe3qs8-006-afi-6eb275",
+        "verdict": "sin-datos",
+        "summary": "Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
+        "evidence": [],
+        "checkedAgainst": []
+      },
+      "visibility": "toggle"
+    },
+    {
+      "claim": {
+        "id": "1pe3qs8-014-cit-a9b960",
+        "plenoId": "1pe3qs8",
+        "plenoDate": "2026-01-07",
+        "segmentIndex": 14,
         "type": "cita_convenio",
         "speakerGroup": null,
-        "verbatim": "se propone notificar el presente acuerdo al contratista Garbialdi S.A. y al avalista Banco Santander S.A.",
-        "context": "Se propone notificar el presente acuerdo al contratista Garbialdi S.A. y al avalista Banco Santander S.A. La mención del avalista revela la estructura de garantías del contrato de servicio de recogida de RSU.",
+        "verbatim": "la empresa adjudicataria ha sido absorbida por la empresa ISS Facility Services.",
+        "context": "Asimismo, la empresa adjudicataria ha sido absorbida por la empresa ISS Facility Services. requiriendo esta empresa la transmisión del contrato por absorción de la empresa Garbialdi, adjudicataria inicial del servicio de R_S_U_",
         "topic": "medio-ambiente",
         "entities": {
-          "referencedEntity": "garbialdi s.a. (contratista) / banco santander s.a. (avalista)"
+          "referencedEntity": "contrato servicio recogida rsu (lot 1) - absorción garbialdi por iss facility services"
         },
-        "confidence": 0.82,
-        "reasoning": "La identificación de Banco Santander S.A. como avalista de Garbialdi S.A. es un dato contractual verificable en la documentación de licitación publicada en PLACSP/Gobierto (tenders.json).",
+        "confidence": 0.75,
+        "reasoning": "Afirma un hecho corporativo concreto (absorción de una empresa por otra) directamente relacionado con el expediente 615/2025 del orden del día; verificable contra el registro mercantil y los documentos del expediente de contratación.",
         "requiresHumanApproval": true
       },
       "verification": {
-        "claimId": "1pe3qs8-006-cit-b453d1",
-        "verdict": "sin-datos",
-        "summary": "Ningún candidato respalda la afirmación. La afirmación es una propuesta de notificación a un contratista concreto (Garbialdi S.A.) y a un avalista (Banco Santander S.A.) en el contrato de recogida de RSU.",
-        "evidence": [],
-        "checkedAgainst": [],
-        "derivedBy": [
-          "verdict-engine"
-        ],
-        "confidence": 0.2,
-        "source": "verdict-engine"
-      },
-      "visibility": "toggle"
-    },
-    {
-      "claim": {
-        "id": "1pe3qs8-009-afi-ee6ae9",
-        "plenoId": "1pe3qs8",
-        "plenoDate": "2026-01-07",
-        "segmentIndex": 9,
-        "type": "afirmacion_numerica",
-        "speakerGroup": null,
-        "verbatim": "se mantienen numerosas quejas de ciudadanas",
-        "context": "[337.6→339.9] Tras enumerar los servicios no prestados, el ponente añade que persisten numerosas quejas ciudadanas sobre el servicio.",
-        "topic": "medio-ambiente",
-        "entities": {
-          "countUnit": "quejas ciudadanas",
-          "referencedEntity": "quejas ciudadanas servicio rsu municipio riba-roja de túria"
-        },
-        "confidence": 0.62,
-        "reasoning": "Afirma existencia de quejas ciudadanas como evidencia del incumplimiento; verificable contra el registro municipal de quejas y el sistema de quejas del bot. Confianza moderada porque 'numerosas' no es cuantificado.",
-        "requiresHumanApproval": true
-      },
-      "verification": {
-        "claimId": "1pe3qs8-009-afi-ee6ae9",
+        "claimId": "1pe3qs8-014-cit-a9b960",
         "verdict": "sin-datos",
         "summary": "Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
         "evidence": [],
@@ -273,24 +150,24 @@
     },
     {
       "claim": {
-        "id": "1pe3qs8-009-afi-7e05ca",
+        "id": "1pe3qs8-014-cit-70d284",
         "plenoId": "1pe3qs8",
         "plenoDate": "2026-01-07",
-        "segmentIndex": 9,
-        "type": "afirmacion_numerica",
+        "segmentIndex": 14,
+        "type": "cita_convenio",
         "speakerGroup": null,
-        "verbatim": "Esto se recoge en el propio informe de la auditora externa, además de los informes técnicos y jurídicos del propio ayuntamiento",
-        "context": "[340.5→349.1] El ponente cita como fuente documental el informe de una auditora externa y los informes técnicos y jurídicos del propio ayuntamiento para justificar el inicio de resolución del contrato.",
+        "verbatim": "requiriendo esta empresa la transmisión del contrato por absorción de la empresa Garbialdi, adjudicataria inicial del servicio de R_S_U_",
+        "context": "la empresa adjudicataria ha sido absorbida por la empresa ISS Facility Services. requiriendo esta empresa la transmisión del contrato por absorción de la empresa Garbialdi, adjudicataria inicial del servicio de R_S_U_ Sin embargo, y tal como recoge la jurisprudencia...",
         "topic": "medio-ambiente",
         "entities": {
-          "referencedEntity": "informe auditora externa + informes técnicos y jurídicos ayuntamiento riba-roja de túria (expediente 615/2025/gen)"
+          "referencedEntity": "garbialdi s.a. - adjudicataria inicial contrato rsu; solicitud de sucesión contractual"
         },
-        "confidence": 0.78,
-        "reasoning": "Afirma la existencia de un informe de auditoría externa y de informes técnico-jurídicos municipales que documentan los incumplimientos; verificable solicitando acceso al expediente 615/2025/GEN bajo la Ley 19/2013 de Transparencia.",
+        "confidence": 0.7,
+        "reasoning": "Identifica a Garbialdi como adjudicataria original del servicio de RSU y la solicitud de transmisión del contrato, dato contrastable contra el expediente de contratación 136/2025 citado en el orden del día.",
         "requiresHumanApproval": true
       },
       "verification": {
-        "claimId": "1pe3qs8-009-afi-7e05ca",
+        "claimId": "1pe3qs8-014-cit-70d284",
         "verdict": "sin-datos",
         "summary": "Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
         "evidence": [],
@@ -300,24 +177,78 @@
     },
     {
       "claim": {
-        "id": "1pe3qs8-009-pro-ed3ecc",
+        "id": "1pe3qs8-019-cit-d82ec2",
         "plenoId": "1pe3qs8",
         "plenoDate": "2026-01-07",
-        "segmentIndex": 9,
+        "segmentIndex": 19,
+        "type": "cita_convenio",
+        "speakerGroup": null,
+        "verbatim": "se propone al Pleno desestimar la solicitud de sucesión en la posición de contratista presentada por la mercantil Garbialdí S.A. y I.S.S. Facility Service SAU, y notificar el presente acuerdo a las partes.",
+        "context": "Por este motivo, y de acuerdo con los informes jurídicos, se propone al Pleno desestimar la solicitud de sucesión en la posición de contratista presentada por la mercantil Garbialdí S.A. y I.S.S. Facility Service SAU, y notificar el presente acuerdo a las partes.",
+        "topic": "medio-ambiente",
+        "entities": {
+          "referencedEntity": "sucesión de contratista en contrato de recogida de residuos (garbialdí s.a. / iss facility service sau)"
+        },
+        "confidence": 0.75,
+        "reasoning": "Es una propuesta formal al Pleno con voto asociado, verificable contra el acta/votación del pleno y el expediente de contratación 136/2025 sobre la solicitud de sucesión de contratista rechazada.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "1pe3qs8-019-cit-d82ec2",
+        "verdict": "sin-datos",
+        "summary": "Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
+        "evidence": [],
+        "checkedAgainst": []
+      },
+      "visibility": "toggle"
+    },
+    {
+      "claim": {
+        "id": "1pe3qs8-020-cit-dd01fe",
+        "plenoId": "1pe3qs8",
+        "plenoDate": "2026-01-07",
+        "segmentIndex": 20,
+        "type": "cita_convenio",
+        "speakerGroup": null,
+        "verbatim": "proponemos al Pleno declarar que el contrato continúa vigente con la empresa contratista originaria: Garbialdi S.A.",
+        "context": "Tras indicar que el servicio debe continuar mientras no se resuelva o reliquide el contrato conforme a los procesos legales, se propone declarar vigente el contrato con Garbialdi S.A.",
+        "topic": "medio-ambiente",
+        "entities": {
+          "referencedEntity": "contrato de recogida de residuos sólidos urbanos con garbialdi s.a."
+        },
+        "confidence": 0.75,
+        "reasoning": "Es una propuesta formal al Pleno sobre la vigencia de un contrato público concreto (expedient 615/2025/GEN), verificable contra el acta de votación y el expediente de contratación.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "1pe3qs8-020-cit-dd01fe",
+        "verdict": "sin-datos",
+        "summary": "Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
+        "evidence": [],
+        "checkedAgainst": []
+      },
+      "visibility": "toggle"
+    },
+    {
+      "claim": {
+        "id": "1pe3qs8-020-pro-a1c9b2",
+        "plenoId": "1pe3qs8",
+        "plenoDate": "2026-01-07",
+        "segmentIndex": 20,
         "type": "promesa",
         "speakerGroup": null,
-        "verbatim": "se propone al Pleno, inicio de la resolución del contrato, por incumplimiento grave y reiterado de las obligaciones esenciales de ejecución del servicio",
-        "context": "[361.8→372.6] El portavoz formula ante el Pleno la propuesta de iniciar formalmente el procedimiento de resolución del contrato con Garbialdi por incumplimiento grave y reiterado.",
+        "verbatim": "se propone al Pleno habilitar en su caso a la Alcaldía para que realice los contratos de emergencia indispensables y necesarios para que el servicio se preste de forma adecuada conforme está establecido en el pliego de prescripciones técnicas",
+        "context": "Tras calificar el servicio de insuficiente e inadecuado, se propone habilitar a la Alcaldía para realizar contratos de emergencia conforme al pliego de prescripciones técnicas y de cláusulas administrativas.",
         "topic": "medio-ambiente",
         "entities": {
-          "referencedEntity": "resolución contrato lote 1 recogida rsu garbialdi s.a. / expediente 615/2025/gen"
+          "referencedEntity": "contratos de emergencia para el servicio de recogida de residuos sólidos urbanos"
         },
-        "confidence": 0.87,
-        "reasoning": "Compromiso concreto y verificable: propuesta formal de inicio de resolución contractual ante el Pleno; el resultado del voto quedará registrado en el acta y será contrastable contra pleno-votes.json.",
+        "confidence": 0.7,
+        "reasoning": "Es un compromiso concreto de habilitar a la Alcaldía para suscribir contratos de emergencia; verificable contra futuras resoluciones de Alcaldía y contratos de emergencia efectivamente formalizados.",
         "requiresHumanApproval": true
       },
       "verification": {
-        "claimId": "1pe3qs8-009-pro-ed3ecc",
+        "claimId": "1pe3qs8-020-pro-a1c9b2",
         "verdict": "sin-datos",
         "summary": "No se encontró registro en promises que la sostenga. Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
         "evidence": [],
@@ -329,24 +260,1117 @@
     },
     {
       "claim": {
-        "id": "1pe3qs8-009-afi-ba60b0",
+        "id": "1pe3qs8-021-pro-8d72c9",
         "plenoId": "1pe3qs8",
         "plenoDate": "2026-01-07",
-        "segmentIndex": 9,
-        "type": "afirmacion_numerica",
+        "segmentIndex": 21,
+        "type": "promesa",
         "speakerGroup": null,
-        "verbatim": "la empresa adjudicataria ha sido absorbida por la empresa ISS Facility Service, requiriendo a esta empresa la transmisión del contrato por absorción de la empresa Garbialdi, adjudicataria",
-        "context": "[374.4→390.4] El ponente informa de que Garbialdi S.A. (empresa adjudicataria del lote 1) ha sido absorbida por ISS Facility Services S.A.U. y describe la solicitud de transmisión contractual bajo el art. 98 LCSP.",
+        "verbatim": "el Ayuntamiento va a reclamar y va a exigir al contratista por daños y perjuicios que ha ocasionado a este Ayuntamiento y a sus vecinos",
+        "context": "Se anuncia que, además de la resolución del contrato, el Ayuntamiento reclamará al contratista por los daños y perjuicios ocasionados al municipio y a los vecinos.",
         "topic": "medio-ambiente",
         "entities": {
-          "referencedEntity": "absorción mercantil garbialdi s.a. por iss facility services s.a.u."
+          "referencedEntity": "reclamación de daños y perjuicios al contratista del servicio de residuos"
         },
-        "confidence": 0.88,
-        "reasoning": "Hecho societario concreto (operación de absorción) verificable contra el Registro Mercantil y el expediente 615/2025/GEN; la desestimación de la transmisión figura en el propio orden del día de la sesión.",
+        "confidence": 0.75,
+        "reasoning": "Compromiso verificable de iniciar una reclamación formal por daños y perjuicios contra el contratista; puede contrastarse con expedientes administrativos o judiciales posteriores que confirmen si se presentó la reclamación.",
         "requiresHumanApproval": true
       },
       "verification": {
-        "claimId": "1pe3qs8-009-afi-ba60b0",
+        "claimId": "1pe3qs8-021-pro-8d72c9",
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en promises que la sostenga. Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
+        "evidence": [],
+        "checkedAgainst": [
+          "promises"
+        ]
+      },
+      "visibility": "toggle"
+    },
+    {
+      "claim": {
+        "id": "1pe3qs8-021-pro-355766",
+        "plenoId": "1pe3qs8",
+        "plenoDate": "2026-01-07",
+        "segmentIndex": 21,
+        "type": "promesa",
+        "speakerGroup": null,
+        "verbatim": "se encomienda a los servicios técnicos municipales la elaboración de la liquidación del contrato y la cuantificación de los daños y perjuicios que en su caso proceda a exigir al contratista",
+        "context": "Como parte de la resolución del contrato, se encarga a los servicios técnicos municipales que elaboren la liquidación del contrato y cuantifiquen los daños y perjuicios exigibles al contratista.",
+        "topic": "medio-ambiente",
+        "entities": {
+          "referencedEntity": "liquidación del contrato de residuos sólidos urbanos"
+        },
+        "confidence": 0.7,
+        "reasoning": "Encargo administrativo concreto cuyo cumplimiento (elaboración efectiva del informe de liquidación y cuantificación de daños) es verificable en expedientes municipales posteriores.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "1pe3qs8-021-pro-355766",
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en promises que la sostenga. Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
+        "evidence": [],
+        "checkedAgainst": [
+          "promises"
+        ]
+      },
+      "visibility": "toggle"
+    },
+    {
+      "claim": {
+        "id": "1pe3qs8-022-pro-4b1c90",
+        "plenoId": "1pe3qs8",
+        "plenoDate": "2026-01-07",
+        "segmentIndex": 22,
+        "type": "promesa",
+        "speakerGroup": null,
+        "verbatim": "las consecuencias y la necesidad de hacer contratos de emergencia deben ser asumidos económicamente por la empresa adjudicataria del servicio",
+        "context": "Como consecuencia de la resolución, incluyendo la adopción de medidas alternativas para garantizar la continuidad del servicio, es decir, las consecuencias y la necesidad de hacer contratos de emergencia deben ser asumidos económicamente por la empresa adjudicataria del servicio.",
+        "topic": "fiscal",
+        "entities": {
+          "referencedEntity": "contratos de emergencia derivados de la resolución del contrato de residuos"
+        },
+        "confidence": 0.6,
+        "reasoning": "Afirma que el coste de los contratos de emergencia para mantener el servicio debe repercutirse en la empresa adjudicataria; verificable comprobando si en la liquidación final del contrato se imputaron esos costes a dicha empresa.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "1pe3qs8-022-pro-4b1c90",
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en promises que la sostenga. Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
+        "evidence": [],
+        "checkedAgainst": [
+          "promises"
+        ]
+      },
+      "visibility": "toggle"
+    },
+    {
+      "claim": {
+        "id": "1pe3qs8-024-afi-fbaf59",
+        "plenoId": "1pe3qs8",
+        "plenoDate": "2026-01-07",
+        "segmentIndex": 24,
+        "type": "afirmacion_numerica",
+        "speakerGroup": null,
+        "verbatim": "si la empresa s'havia contactat el dia 1 de desembre, que és quan se ficava en vigor el contracte en esta empresa",
+        "context": "I en el seu dia vàrem dir que si la empresa s'havia contactat el dia 1 de desembre, que és quan se ficava en vigor el contracte en esta empresa, si estava preparada per realitzar el servei.",
+        "topic": "medio-ambiente",
+        "entities": {
+          "date": "2025-12-01",
+          "referencedEntity": "entrada en vigor del contracte del servici de residuos amb la nova empresa"
+        },
+        "confidence": 0.5,
+        "reasoning": "Afirma una fecha concreta (1 de diciembre) de entrada en vigor del contrato con la empresa; verificable contra la fecha de adjudicación/entrada en vigor registrada en el expediente del contrato, aunque la transcripción Whisper y la fraseología condicional reducen la certeza.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "1pe3qs8-024-afi-fbaf59",
+        "verdict": "sin-datos",
+        "summary": "Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
+        "evidence": [],
+        "checkedAgainst": []
+      },
+      "visibility": "toggle"
+    },
+    {
+      "claim": {
+        "id": "1pe3qs8-025-afi-9dcde9",
+        "plenoId": "1pe3qs8",
+        "plenoDate": "2026-01-07",
+        "segmentIndex": 25,
+        "type": "afirmacion_numerica",
+        "speakerGroup": null,
+        "verbatim": "I en el seu dia vàrem dir que si la empresa s'havia contactat el dia 1 de desembre, que és quan se ficava en vigor el contracte en esta empresa, si estava preparada per realitzar el servei.",
+        "context": "Nosaltres, ja diguérem en el seu dia, votarem en contra d'este contracte. I en el seu dia vàrem dir que si la empresa s'havia contactat el dia 1 de desembre, que és quan se ficava en vigor el contracte en esta empresa, si estava preparada per realitzar el servei. Estem a favor de les penalitats, per supòs.",
+        "topic": "medio-ambiente",
+        "entities": {
+          "date": "2025-12-01",
+          "referencedEntity": "entrada en vigor del contracte de recollida de residus amb la nova empresa (lot 1)"
+        },
+        "confidence": 0.55,
+        "reasoning": "Cita una fecha concreta (1 de diciembre) como momento de entrada en vigor del contrato con la empresa; verificable contra la fecha de inicio/adjudicación registrada en el expediente 136/2025 o 615/2025.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "1pe3qs8-025-afi-9dcde9",
+        "verdict": "sin-datos",
+        "summary": "Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
+        "evidence": [],
+        "checkedAgainst": []
+      },
+      "visibility": "toggle"
+    },
+    {
+      "claim": {
+        "id": "1pe3qs8-030-cit-8eb915",
+        "plenoId": "1pe3qs8",
+        "plenoDate": "2026-01-07",
+        "segmentIndex": 30,
+        "type": "cita_convenio",
+        "speakerGroup": null,
+        "verbatim": "Un contracte que se faça a partir del dia set d'urgència perquè s'hi tindrà que fer, perquè suposa que l'empresa no donarà abast en el seu compromís en l'arreplega, se farà a preu del dos mil vint-i-sis.",
+        "context": "Un contracte que se faça a partir del dia set d'urgència perquè s'hi tindrà que fer, perquè suposa que l'empresa no donarà abast en el seu compromís en l'arreplega, se farà a preu del dos mil vint-i-sis. I el següent contracte d'urgència se farà a preu del dos mil vint-i-sis, no al preu del contracte que tenim establit en un principi.",
+        "topic": "medio-ambiente",
+        "entities": {
+          "date": "2026-01-07",
+          "referencedEntity": "contracte d'urgència de recollida de residus"
+        },
+        "confidence": 0.5,
+        "reasoning": "Especifica que un nuevo contrato de urgencia de recogida de residuos arrancará el día 7 y se facturará a precios de 2026; es verificable contrastando el expediente de contratación y la fecha/precio efectivos del contrato de urgencia.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "1pe3qs8-030-cit-8eb915",
+        "verdict": "sin-datos",
+        "summary": "Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
+        "evidence": [],
+        "checkedAgainst": []
+      },
+      "visibility": "toggle"
+    },
+    {
+      "claim": {
+        "id": "1pe3qs8-037-pro-1191bf",
+        "plenoId": "1pe3qs8",
+        "plenoDate": "2026-01-07",
+        "segmentIndex": 37,
+        "type": "promesa",
+        "speakerGroup": null,
+        "verbatim": "sí que vamos a apoyar esa denegación porque no puede ser de otra manera",
+        "context": "es clara la transmisión de una rama de actividad o cambio de titularidad no eximen de la responsabilidad del contratista ni implica que automáticamente se tenga que producir una subrogación. Por lo tanto, sí que vamos a apoyar esa denegación porque no puede ser de otra manera. Hasta que nos acredita completamente, que cumple e y justifica todos los plazos informáticos, técnicos, jurídicos, etc.",
+        "topic": "medio-ambiente",
+        "entities": {
+          "referencedEntity": "denegación de solicitud de sucesión en la posición de contratista del contrato de recogida de residuos sólidos urbanos"
+        },
+        "confidence": 0.6,
+        "reasoning": "Es una declaración explícita de intención de voto sobre el punto del orden del día relativo a la denegación de la solicitud de sucesión del contratista; contrastable contra el acta de votación del pleno.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "1pe3qs8-037-pro-1191bf",
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en promises que la sostenga. Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
+        "evidence": [],
+        "checkedAgainst": [
+          "promises"
+        ]
+      },
+      "visibility": "toggle"
+    },
+    {
+      "claim": {
+        "id": "1pe3qs8-043-pro-d5554d",
+        "plenoId": "1pe3qs8",
+        "plenoDate": "2026-01-07",
+        "segmentIndex": 43,
+        "type": "promesa",
+        "speakerGroup": null,
+        "verbatim": "el començament dels informes per quantificar els danys",
+        "context": "I sí que m'agradaria puntualitzar dues qüestions. Una, eh lo que ha comentat el regidor José Ángel de el el començament dels informes per quantificar els danys, perquè crec que és essencial quantificar els danys a nivell tècnic.",
+        "topic": "other",
+        "entities": {
+          "referencedEntity": "informes tècnics de quantificació de danys (expedient 615/2025/gen)"
+        },
+        "confidence": 0.5,
+        "reasoning": "Referencia un compromiso de iniciar informes técnicos para cuantificar los daños derivados del incumplimiento contractual, verificable contra la documentación del expediente administrativo correspondiente.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "1pe3qs8-043-pro-d5554d",
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en promises que la sostenga. Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
+        "evidence": [],
+        "checkedAgainst": [
+          "promises"
+        ]
+      },
+      "visibility": "toggle"
+    },
+    {
+      "claim": {
+        "id": "1pe3qs8-044-pro-ce62d0",
+        "plenoId": "1pe3qs8",
+        "plenoDate": "2026-01-07",
+        "segmentIndex": 44,
+        "type": "promesa",
+        "speakerGroup": null,
+        "verbatim": "no anava a generar sobrecostos perquè s'havia de fer amb els contractes d'emergència",
+        "context": "I a més, una segona qüestió que parlava dels costos. Que ja se va plantejar en la reunió que el que vàrem parlar és que no anava a generar sobrecostos perquè s'havia de fer amb els contractes d'emergència, i lo que no feia la empresa Garbialdi o anava a fer la segona empresa, en este caso la que queda segona.",
+        "topic": "fiscal",
+        "entities": {
+          "referencedEntity": "contractes d'emergència (servici de recollida de residus sòlids urbans)"
+        },
+        "confidence": 0.5,
+        "reasoning": "Se afirma que la gestión mediante contratos de emergencia tras la rescisión/incumplimiento del contratista no generará sobrecostos; es verificable contrastando el gasto real ejecutado en dichos contratos de emergencia frente al contrato original en el expediente 615/2025/GEN.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "1pe3qs8-044-pro-ce62d0",
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en promises que la sostenga. Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
+        "evidence": [],
+        "checkedAgainst": [
+          "promises"
+        ]
+      },
+      "visibility": "toggle"
+    },
+    {
+      "claim": {
+        "id": "1pe3qs8-050-afi-7e2c77",
+        "plenoId": "1pe3qs8",
+        "plenoDate": "2026-01-07",
+        "segmentIndex": 50,
+        "type": "afirmacion_numerica",
+        "speakerGroup": null,
+        "verbatim": "es va crear una comissió de contractació en la qual estem representats tots els espais polítics.",
+        "context": "S'ha de oïtar, es va crear una comissió de contractació en la qual estem representats tots els espais polítics. En en eixa comissió estem els portaveus de tots els partits que conformem este plenari.",
+        "topic": "transparencia",
+        "entities": {
+          "referencedEntity": "comisión de contratación"
+        },
+        "confidence": 0.55,
+        "reasoning": "Afirma la existencia de una comisión de contratación con representación de todos los grupos políticos del plenario, dato institucional verificable contra actas municipales o normativa de composición de comisiones.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "1pe3qs8-050-afi-7e2c77",
+        "verdict": "sin-datos",
+        "summary": "Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
+        "evidence": [],
+        "checkedAgainst": []
+      },
+      "visibility": "toggle"
+    },
+    {
+      "claim": {
+        "id": "1pe3qs8-050-afi-482116",
+        "plenoId": "1pe3qs8",
+        "plenoDate": "2026-01-07",
+        "segmentIndex": 50,
+        "type": "afirmacion_numerica",
+        "speakerGroup": null,
+        "verbatim": "esa comisión se ha reunido al voltante una vez al mes.",
+        "context": "Que en esta legislatura, desde comenzar el 2023, en junio del 2023 y fin a la fecha, esa comisión se ha reunido al voltante una vez al mes.",
+        "topic": "transparencia",
+        "entities": {
+          "count": 1,
+          "countUnit": "reunión al mes",
+          "date": "2023-06-01",
+          "referencedEntity": "comisión de contratación"
+        },
+        "confidence": 0.65,
+        "reasoning": "Afirma una frecuencia concreta de reuniones (aproximadamente mensual) de la comisión de contratación desde junio de 2023, verificable contra las actas o calendario de convocatorias de dicha comisión.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "1pe3qs8-050-afi-482116",
+        "verdict": "sin-datos",
+        "summary": "Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
+        "evidence": [],
+        "checkedAgainst": []
+      },
+      "visibility": "toggle"
+    },
+    {
+      "claim": {
+        "id": "1pe3qs8-051-afi-09bcfa",
+        "plenoId": "1pe3qs8",
+        "plenoDate": "2026-01-07",
+        "segmentIndex": 51,
+        "type": "afirmacion_numerica",
+        "speakerGroup": null,
+        "verbatim": "En nueve de esas reuniones se ha tratado este contrato. Se nos ha dado información.",
+        "context": "esa comisión se ha reunido al voltante una vez al mes. En nueve de esas reuniones se ha tratado este contrato. Se nos ha dado información. des plecs de condicions tècniques i condicions administratives.",
+        "topic": "transparencia",
+        "entities": {
+          "count": 9,
+          "countUnit": "reuniones",
+          "referencedEntity": "contrato de recogida de residuos sólidos urbanos (lot 1)"
+        },
+        "confidence": 0.7,
+        "reasoning": "Cifra concreta de reuniones (9) en que se trató el contrato de residuos; verificable contrastando las actas de la comisión de contratación.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "1pe3qs8-051-afi-09bcfa",
+        "verdict": "sin-datos",
+        "summary": "Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
+        "evidence": [],
+        "checkedAgainst": []
+      },
+      "visibility": "toggle"
+    },
+    {
+      "claim": {
+        "id": "1pe3qs8-053-cit-d2821c",
+        "plenoId": "1pe3qs8",
+        "plenoDate": "2026-01-07",
+        "segmentIndex": 53,
+        "type": "cita_convenio",
+        "speakerGroup": null,
+        "verbatim": "Se va a informar que la empresa que se había adjudicado este contrato, Garbialdi,",
+        "context": "evidentment ha estat la secretària... Se va a informar que la empresa que se había adjudicado este contrato, Garbialdi, Eh se había puesto en contacto en el en el equipo de gobierno.",
+        "topic": "medio-ambiente",
+        "entities": {
+          "referencedEntity": "garbialdi - contracte de recollida de residus sòlids urbans"
+        },
+        "confidence": 0.65,
+        "reasoning": "Cita a la empresa Garbialdi como adjudicataria del contrato de recogida de residuos, dato verificable contra el expediente de contratación (136/2025) y el objeto del punto del orden del día.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "1pe3qs8-053-cit-d2821c",
+        "verdict": "sin-datos",
+        "summary": "Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
+        "evidence": [],
+        "checkedAgainst": []
+      },
+      "visibility": "toggle"
+    },
+    {
+      "claim": {
+        "id": "1pe3qs8-053-cit-c34e33",
+        "plenoId": "1pe3qs8",
+        "plenoDate": "2026-01-07",
+        "segmentIndex": 53,
+        "type": "cita_convenio",
+        "speakerGroup": null,
+        "verbatim": "this company is going to commit to formalizar el contracte en totes les clàusules i totes les mesures que n'hi ha.",
+        "context": "there had been a meeting in the office of the deputy mayor, in which was in l representatives of the enterprise, was the secretary, was the technic uh y were the public respondents of the different areas affected, in which this company is going to commit to formalizar el contracte en totes les clàusules i totes les mesures que n'hi ha.",
+        "topic": "medio-ambiente",
+        "entities": {
+          "referencedEntity": "reunió comissió de contractació - compromís de garbialdi de formalitzar el contracte"
+        },
+        "confidence": 0.5,
+        "reasoning": "Describe un compromiso concreto asumido en una reunión de la comisión de contratación (asistencia de secretaria, técnico y responsables de área) para formalizar el contrato con sus cláusulas; verificable contra el acta de dicha reunión o el expediente 615/2025/GEN. Transcripción degradada por Whisper (mezcla de inglés/catalán) reduce la confianza.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "1pe3qs8-053-cit-c34e33",
+        "verdict": "sin-datos",
+        "summary": "Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
+        "evidence": [],
+        "checkedAgainst": []
+      },
+      "visibility": "toggle"
+    },
+    {
+      "claim": {
+        "id": "1pe3qs8-055-afi-461dc0",
+        "plenoId": "1pe3qs8",
+        "plenoDate": "2026-01-07",
+        "segmentIndex": 55,
+        "type": "afirmacion_numerica",
+        "speakerGroup": null,
+        "verbatim": "este contrato lleva desde el dos mil veintitrés, desde mediados de dos mil veintitrés trabajándose",
+        "context": "Bueno, en primer en primer lugar eh la empresa, esto este contrato lleva desde el dos mil veintitrés, desde mediados de dos mil veintitrés trabajándose, como estaba comentando Rafa, lo hemos llevado a la mesa de contratación donde estamos todos los todos los grupos políticos.",
+        "topic": "medio-ambiente",
+        "entities": {
+          "referencedEntity": "contrato de recogida de residuos sólidos urbanos / mesa de contratación"
+        },
+        "confidence": 0.55,
+        "reasoning": "Afirma que el expediente de contratación (recogida de residuos) lleva trabajándose desde mediados de 2023, dato verificable contra las fechas del expediente 136/2025 y actas de la mesa de contratación; Whisper puede haber degradado la fecha exacta.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "1pe3qs8-055-afi-461dc0",
+        "verdict": "sin-datos",
+        "summary": "Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
+        "evidence": [],
+        "checkedAgainst": []
+      },
+      "visibility": "toggle"
+    },
+    {
+      "claim": {
+        "id": "1pe3qs8-056-afi-5be8bf",
+        "plenoId": "1pe3qs8",
+        "plenoDate": "2026-01-07",
+        "segmentIndex": 56,
+        "type": "afirmacion_numerica",
+        "speakerGroup": null,
+        "verbatim": "lo hemos llevado a la mesa de contratación donde estamos todos los todos los grupos políticos",
+        "context": "este contrato lleva desde el dos mil veintitrés, desde mediados de dos mil veintitrés trabajándose, como estaba comentando Rafa, lo hemos llevado a la mesa de contratación donde estamos todos los todos los grupos políticos. Eh recordar que hemos peleado incluso la fórmula",
+        "topic": "transparencia",
+        "entities": {
+          "referencedEntity": "mesa de contratación del contrato de recogida de residuos"
+        },
+        "confidence": 0.5,
+        "reasoning": "Afirma que todos los grupos políticos del ayuntamiento están presentes en la mesa de contratación de este expediente; verificable contra la composición oficial de la mesa de contratación y sus actas.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "1pe3qs8-056-afi-5be8bf",
+        "verdict": "sin-datos",
+        "summary": "Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
+        "evidence": [],
+        "checkedAgainst": []
+      },
+      "visibility": "toggle"
+    },
+    {
+      "claim": {
+        "id": "1pe3qs8-057-cit-08ca93",
+        "plenoId": "1pe3qs8",
+        "plenoDate": "2026-01-07",
+        "segmentIndex": 57,
+        "type": "cita_convenio",
+        "speakerGroup": null,
+        "verbatim": "lo hemos llevado a la mesa de contratación donde estamos todos los todos los grupos políticos",
+        "context": "este contrato lleva desde el dos mil veintitrés, desde mediados de dos mil veintitrés trabajándose, como estaba comentando Rafa, lo hemos llevado a la mesa de contratación donde estamos todos los todos los grupos políticos. Eh recordar que hemos peleado incluso la fórmula",
+        "topic": "transparencia",
+        "entities": {
+          "referencedEntity": "mesa de contratación del expediente de residuos sólidos urbanos"
+        },
+        "confidence": 0.5,
+        "reasoning": "Afirma que todos los grupos políticos municipales participan/participaron en la mesa de contratación de este expediente; verificable contra las actas de composición de la mesa de contratación.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "1pe3qs8-057-cit-08ca93",
+        "verdict": "sin-datos",
+        "summary": "Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
+        "evidence": [],
+        "checkedAgainst": []
+      },
+      "visibility": "toggle"
+    },
+    {
+      "claim": {
+        "id": "1pe3qs8-057-cit-e3b631",
+        "plenoId": "1pe3qs8",
+        "plenoDate": "2026-01-07",
+        "segmentIndex": 57,
+        "type": "cita_convenio",
+        "speakerGroup": null,
+        "verbatim": "hemos peleado incluso la fórmula la fórmula económica para que en principio no hubiera ningún kamikaze viniera y entrara en esta adjudicación",
+        "context": "Eh recordar que hemos peleado incluso la fórmula la fórmula económica para que en principio no hubiera ningún kamikaze viniera y entrara en esta adjudicación. Se realizaron todo aquello que mejorara este contrato,",
+        "topic": "medio-ambiente",
+        "entities": {
+          "referencedEntity": "fórmula económica del pliego de adjudicación del servicio de residuos"
+        },
+        "confidence": 0.5,
+        "reasoning": "Afirma que la fórmula económica del pliego se diseñó deliberadamente para evitar bajas temerarias ('kamikaze'); verificable contra el texto del pliego de condiciones de la licitación.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "1pe3qs8-057-cit-e3b631",
+        "verdict": "sin-datos",
+        "summary": "Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
+        "evidence": [],
+        "checkedAgainst": []
+      },
+      "visibility": "toggle"
+    },
+    {
+      "claim": {
+        "id": "1pe3qs8-060-afi-1292e3",
+        "plenoId": "1pe3qs8",
+        "plenoDate": "2026-01-07",
+        "segmentIndex": 60,
+        "type": "afirmacion_numerica",
+        "speakerGroup": null,
+        "verbatim": "es más presentó pues como no no tenía que ser de otra manera su aval de 800.000 euros",
+        "context": "Tras explicar que la empresa adjudicataria presentó la mejor oferta y acreditó su solvencia técnica y económica, se afirma que presentó un aval de 800.000 euros, previo a mencionar que el Ayuntamiento recurrirá a dicho aval para cobrar una penalidad.",
+        "topic": "medio-ambiente",
+        "entities": {
+          "amountEuros": 800000,
+          "referencedEntity": "aval de solvencia del contratista del servicio de recogida de residuos"
+        },
+        "confidence": 0.8,
+        "reasoning": "Cifra concreta de aval presentado por el contratista, verificable contra el expediente de contratación 136/2025 o el expediente de penalidad 615/2025.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "1pe3qs8-060-afi-1292e3",
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders, tenders-ted, bdns y budget que la sostenga. Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
+        "evidence": [],
+        "checkedAgainst": [
+          "tenders",
+          "tenders-ted",
+          "bdns",
+          "budget"
+        ]
+      },
+      "visibility": "toggle"
+    },
+    {
+      "claim": {
+        "id": "1pe3qs8-061-afi-ee7b3d",
+        "plenoId": "1pe3qs8",
+        "plenoDate": "2026-01-07",
+        "segmentIndex": 61,
+        "type": "afirmacion_numerica",
+        "speakerGroup": null,
+        "verbatim": "esa penalidad de 143.000 euros que hoy se propone al Pleno",
+        "context": "aval del cual el Ayuntamiento tirará mano de esa penalidad de 143.000 euros que hoy se propone al Pleno y que algunos van a aprobar y otros pues, en fin, parece ser que se van a abstener.",
+        "topic": "transparencia",
+        "entities": {
+          "amountEuros": 143000,
+          "referencedEntity": "penalidad impuesta al contratista del servicio de recogida de residuos"
+        },
+        "confidence": 0.75,
+        "reasoning": "Cifra concreta de penalidad propuesta al pleno, verificable contra el expediente 615/2025/GEN y el importe exacto aprobado en acta.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "1pe3qs8-061-afi-ee7b3d",
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders, tenders-ted, bdns y budget que la sostenga. Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
+        "evidence": [],
+        "checkedAgainst": [
+          "tenders",
+          "tenders-ted",
+          "bdns",
+          "budget"
+        ]
+      },
+      "visibility": "toggle"
+    },
+    {
+      "claim": {
+        "id": "1pe3qs8-064-afi-9ce0ab",
+        "plenoId": "1pe3qs8",
+        "plenoDate": "2026-01-07",
+        "segmentIndex": 64,
+        "type": "afirmacion_numerica",
+        "speakerGroup": null,
+        "verbatim": "no se podía mantener un contrato ya de 14 años con vehículos que cada dos por tres estaban estropeados",
+        "context": "Con un contrato que la verdad es que mejoraba sustancialmente el anterior contrato. Que por cierto, no se podía mantener un contrato ya de 14 años con vehículos que cada dos por tres estaban estropeados, con vehículos que se los llevó la dana...",
+        "topic": "medio-ambiente",
+        "entities": {
+          "count": 14,
+          "countUnit": "años",
+          "referencedEntity": "contrato de recogida de residuos sólidos urbanos"
+        },
+        "confidence": 0.75,
+        "reasoning": "Cita la duración del contrato de residuos (14 años) como hecho degradante del servicio; verificable contra el expediente/pliego del contrato anterior.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "1pe3qs8-064-afi-9ce0ab",
+        "verdict": "sin-datos",
+        "summary": "Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
+        "evidence": [],
+        "checkedAgainst": []
+      },
+      "visibility": "toggle"
+    },
+    {
+      "claim": {
+        "id": "1pe3qs8-064-afi-1e0c61",
+        "plenoId": "1pe3qs8",
+        "plenoDate": "2026-01-07",
+        "segmentIndex": 64,
+        "type": "afirmacion_numerica",
+        "speakerGroup": null,
+        "verbatim": "con los mismos servicios del 2011 que los del 2025",
+        "context": "en el sentido que la población ya se había incrementado y no era la misma población. con los mismos servicios del 2011 que los del 2025.",
+        "topic": "medio-ambiente",
+        "entities": {
+          "referencedEntity": "contrato de recogida de residuos sólidos urbanos"
+        },
+        "confidence": 0.65,
+        "reasoning": "Afirma que el nivel de servicio se mantuvo invariable entre 2011 y 2025 a pesar del crecimiento poblacional, dato comprobable contra los pliegos de ambos contratos y datos de población municipal.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "1pe3qs8-064-afi-1e0c61",
+        "verdict": "sin-datos",
+        "summary": "Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
+        "evidence": [],
+        "checkedAgainst": []
+      },
+      "visibility": "toggle"
+    },
+    {
+      "claim": {
+        "id": "1pe3qs8-069-pro-62240a",
+        "plenoId": "1pe3qs8",
+        "plenoDate": "2026-01-07",
+        "segmentIndex": 69,
+        "type": "promesa",
+        "speakerGroup": null,
+        "verbatim": "que prestar al alcalde para que pueda ejercer y pueda hacer contratos de emergencia para resolver el grave problema del servicio que está prestando esta empresa inadecuadamente e ineficientemente.",
+        "context": "El interviniente plantea, como parte de la propuesta sobre el expediente de recogida de residuos, facultar al alcalde para tramitar contratos de emergencia que resuelvan el problema del servicio prestado por la empresa adjudicataria.",
+        "topic": "medio-ambiente",
+        "entities": {
+          "referencedEntity": "contrato de emergencia / servicio de recogida de residuos sólidos urbanos"
+        },
+        "confidence": 0.55,
+        "reasoning": "Es un compromiso concreto de habilitar al alcalde para contratos de emergencia, verificable contra las actas/acuerdos del pleno y los expedientes de contratación de emergencia posteriores; la construcción gramatical sugiere degradación de Whisper, lo que reduce la confianza.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "1pe3qs8-069-pro-62240a",
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en promises que la sostenga. Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
+        "evidence": [],
+        "checkedAgainst": [
+          "promises"
+        ]
+      },
+      "visibility": "toggle"
+    },
+    {
+      "claim": {
+        "id": "1pe3qs8-069-pro-fbf6de",
+        "plenoId": "1pe3qs8",
+        "plenoDate": "2026-01-07",
+        "segmentIndex": 69,
+        "type": "promesa",
+        "speakerGroup": null,
+        "verbatim": "no solo es que se realicen los servicios adecuadamente, sino que no le cueste un duro más o un euro más al Ayuntamiento ni a la ciudadanía.",
+        "context": "Dentro de la explicación de la parte económica de la propuesta, se afirma que el objetivo no es solo la correcta prestación del servicio sino evitar cualquier coste adicional para el Ayuntamiento o los vecinos.",
+        "topic": "fiscal",
+        "entities": {
+          "referencedEntity": "coste del contrato de recogida de residuos para el ayuntamiento"
+        },
+        "confidence": 0.65,
+        "reasoning": "Es un compromiso verificable de que la resolución del problema contractual no generará coste adicional al Ayuntamiento ni a la ciudadanía, contrastable contra las facturas/presupuestos del servicio en periodos posteriores.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "1pe3qs8-069-pro-fbf6de",
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en promises que la sostenga. Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
+        "evidence": [],
+        "checkedAgainst": [
+          "promises"
+        ]
+      },
+      "visibility": "toggle"
+    },
+    {
+      "claim": {
+        "id": "1pe3qs8-069-pro-b5e9ab",
+        "plenoId": "1pe3qs8",
+        "plenoDate": "2026-01-07",
+        "segmentIndex": 69,
+        "type": "promesa",
+        "speakerGroup": null,
+        "verbatim": "el Ayuntamiento va a reclamar y va a exigir al contratista por los daños y perjuicios que ha ocasionado a este Ayuntamiento y a sus vecinos.",
+        "context": "Como parte de las propuestas presentadas sobre el expediente del servicio de recogida de residuos, se anuncia que el Ayuntamiento reclamará al contratista por los daños y perjuicios causados.",
+        "topic": "fiscal",
+        "entities": {
+          "referencedEntity": "contratista del servicio de recogida de residuos sólidos urbanos"
+        },
+        "confidence": 0.7,
+        "reasoning": "Es un compromiso concreto de iniciar reclamación de daños y perjuicios contra el contratista, verificable contra expedientes administrativos o judiciales posteriores de reclamación de responsabilidad.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "1pe3qs8-069-pro-b5e9ab",
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en promises que la sostenga. Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
+        "evidence": [],
+        "checkedAgainst": [
+          "promises"
+        ]
+      },
+      "visibility": "toggle"
+    },
+    {
+      "claim": {
+        "id": "1pe3qs8-070-pro-d37ffc",
+        "plenoId": "1pe3qs8",
+        "plenoDate": "2026-01-07",
+        "segmentIndex": 70,
+        "type": "promesa",
+        "speakerGroup": null,
+        "verbatim": "no solo es que se realicen los servicios adecuadamente, sino que no le cueste un duro más o un euro más al Ayuntamiento ni a la ciudadanía",
+        "context": "El interviniente introduce el punto subrayando que, además de la correcta prestación del servicio, el coste no debe incrementarse para el Ayuntamiento ni para los vecinos.",
+        "topic": "medio-ambiente",
+        "entities": {
+          "referencedEntity": "coste del servicio de recogida de residuos"
+        },
+        "confidence": 0.7,
+        "reasoning": "Es un compromiso de que el coste del servicio no aumentará para el Ayuntamiento ni la ciudadanía; verificable comparando el coste del contrato/liquidación antes y después del expediente.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "1pe3qs8-070-pro-d37ffc",
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en promises que la sostenga. Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
+        "evidence": [],
+        "checkedAgainst": [
+          "promises"
+        ]
+      },
+      "visibility": "toggle"
+    },
+    {
+      "claim": {
+        "id": "1pe3qs8-071-pro-844520",
+        "plenoId": "1pe3qs8",
+        "plenoDate": "2026-01-07",
+        "segmentIndex": 71,
+        "type": "promesa",
+        "speakerGroup": null,
+        "verbatim": "los servicios técnicos realizarán el estudio adecuado de la de de la liquidación y la parte económica de esos daños y que se presentarán por supuesto a todos los a todos los partidos, a todos los eh grupos aquí pre representados y a la y a la ciudadanía",
+        "context": "y que los servicios técnicos realizarán el estudio adecuado de la de de la liquidación y la parte económica de esos daños y que se presentarán por supuesto a todos los a todos los partidos, a todos los eh grupos aquí pre representados y a la y a la ciudadanía. En definitiva, todo lo que llevamos aquí, el paquete de medidas",
+        "topic": "transparencia",
+        "entities": {
+          "referencedEntity": "estudio técnico-económico sobre liquidación de daños"
+        },
+        "confidence": 0.55,
+        "reasoning": "Compromiso concreto de encargar y presentar públicamente a todos los grupos y a la ciudadanía un estudio sobre liquidación económica de daños; se puede verificar si dicho informe se elaboró y se difundió efectivamente.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "1pe3qs8-071-pro-844520",
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en promises que la sostenga. Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
+        "evidence": [],
+        "checkedAgainst": [
+          "promises"
+        ]
+      },
+      "visibility": "toggle"
+    },
+    {
+      "claim": {
+        "id": "1pe3qs8-079-afi-527d99",
+        "plenoId": "1pe3qs8",
+        "plenoDate": "2026-01-07",
+        "segmentIndex": 79,
+        "type": "afirmacion_numerica",
+        "speakerGroup": null,
+        "verbatim": "Soles faltaria que 15 anys després fora un servici més deficient que l'antic, efecte en el 2011.",
+        "context": "Que és una millora del servici antic? Soles faltaria que 15 anys després fora un servici més deficient que l'antic, efecte en el 2011.",
+        "topic": "medio-ambiente",
+        "entities": {
+          "count": 15,
+          "countUnit": "anys",
+          "referencedEntity": "contracte antic de recollida de residus (2011)"
+        },
+        "confidence": 0.5,
+        "reasoning": "Situa l'inici o efecte del contracte anterior de residus l'any 2011, dada contrastable amb els registres d'adjudicació municipal; transcripció Whisper ambigua en 'efecte en el 2011'.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "1pe3qs8-079-afi-527d99",
+        "verdict": "sin-datos",
+        "summary": "Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
+        "evidence": [],
+        "checkedAgainst": []
+      },
+      "visibility": "toggle"
+    },
+    {
+      "claim": {
+        "id": "1pe3qs8-088-pro-ccbf64",
+        "plenoId": "1pe3qs8",
+        "plenoDate": "2026-01-07",
+        "segmentIndex": 88,
+        "type": "promesa",
+        "speakerGroup": null,
+        "verbatim": "no va a haver ningún sobrecost porque lo que no se paga una empresa va a pagar otra",
+        "context": "és que no va a haver ningún sobrecost porque lo que no se paga una empresa va a pagar otra, y esto sí que es una cosa que que es clara, y es lo que está haciendo, sí que lo que está diciendo el equipo de gobierno",
+        "topic": "fiscal",
+        "entities": {
+          "referencedEntity": "sucesión de contratista en el servicio de recogida de residuos (expedient 615/2025/gen)"
+        },
+        "confidence": 0.55,
+        "reasoning": "Se afirma que el cambio de contratista en el servicio de residuos no generará sobrecoste porque lo no abonado a una empresa se trasladará a la otra; es verificable comparando el coste del contrato antes y después de la sucesión/resolución contractual en los expedientes 615/2025 y 136/2025.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "1pe3qs8-088-pro-ccbf64",
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en promises que la sostenga. Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
+        "evidence": [],
+        "checkedAgainst": [
+          "promises"
+        ]
+      },
+      "visibility": "toggle"
+    },
+    {
+      "claim": {
+        "id": "1pe3qs8-089-afi-73131b",
+        "plenoId": "1pe3qs8",
+        "plenoDate": "2026-01-07",
+        "segmentIndex": 89,
+        "type": "afirmacion_numerica",
+        "speakerGroup": null,
+        "verbatim": "Des de... des del 2011, eh, la coalició compromís té representació en este plenari",
+        "context": "Des de... des del 2011, eh, la coalició compromís té representació en este plenari",
+        "topic": "other",
+        "entities": {
+          "referencedEntity": "coalició compromís"
+        },
+        "confidence": 0.7,
+        "reasoning": "Afirmación histórica verificable contra las actas/resultados electorales municipales que determinan desde qué año una coalición tiene representación en el pleno de Riba-roja de Túria.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "1pe3qs8-089-afi-73131b",
+        "verdict": "sin-datos",
+        "summary": "Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
+        "evidence": [],
+        "checkedAgainst": []
+      },
+      "visibility": "toggle"
+    },
+    {
+      "claim": {
+        "id": "1pe3qs8-106-cit-9315e8",
+        "plenoId": "1pe3qs8",
+        "plenoDate": "2026-01-07",
+        "segmentIndex": 106,
+        "type": "cita_convenio",
+        "speakerGroup": null,
+        "verbatim": "Nosaltres, des que govername, l'any 2015, conjuntament en el pacte de la Ateneu, amb altres grups polítics, decidirem no estar en els taules de contractació.",
+        "context": "El interviniente explica que desde que gobiernan, en 2015, junto con el 'pacte de la Ateneu' y otros grupos políticos, decidieron no formar parte de las mesas de contratación, a diferencia de otros ayuntamientos.",
+        "topic": "transparencia",
+        "entities": {
+          "referencedEntity": "pacte de l'ateneu"
+        },
+        "confidence": 0.6,
+        "reasoning": "Afirma una decisión concreta de 2015, vinculada a un pacto político nombrado ('pacte de l'Ateneu'), verificable contra actas de pleno/composición histórica de la mesa de contratación de ese año; Whisper probablemente degradó 'governem' a 'govername'.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "1pe3qs8-106-cit-9315e8",
+        "verdict": "sin-datos",
+        "summary": "Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
+        "evidence": [],
+        "checkedAgainst": []
+      },
+      "visibility": "toggle"
+    },
+    {
+      "claim": {
+        "id": "1pe3qs8-113-cit-f4f70d",
+        "plenoId": "1pe3qs8",
+        "plenoDate": "2026-01-07",
+        "segmentIndex": 113,
+        "type": "cita_obra",
+        "speakerGroup": null,
+        "verbatim": "I el dia 1 es comença a treballar esta empresa suposadament en tots els condicionants per donar un bon servei.",
+        "context": "I el dia 1 es comença a treballar esta empresa suposadament en tots els condicionants per donar un bon servei. El dia 1. Dia 1 de desembre.",
+        "topic": "medio-ambiente",
+        "entities": {
+          "date": "2025-12-01",
+          "referencedEntity": "servici de recollida de residus sòlids urbans"
+        },
+        "confidence": 0.55,
+        "reasoning": "Fixa una data concreta (1 de desembre, inferida com 2025 pel context de l'expedient 2025/GEN i la data del ple de gener de 2026) d'inici d'execució del servei, verificable contra l'acta d'inici de contracte o informe de supervisió.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "1pe3qs8-113-cit-f4f70d",
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders y tenders-ted que la sostenga. Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
+        "evidence": [],
+        "checkedAgainst": [
+          "tenders",
+          "tenders-ted"
+        ]
+      },
+      "visibility": "toggle"
+    },
+    {
+      "claim": {
+        "id": "1pe3qs8-123-afi-8f14e8",
+        "plenoId": "1pe3qs8",
+        "plenoDate": "2026-01-07",
+        "segmentIndex": 123,
+        "type": "afirmacion_numerica",
+        "speakerGroup": null,
+        "verbatim": "la Generalitat Valenciana, y hay 230 muertos,",
+        "context": "Porque aquí hay, a quienes estáis co-gobernando, la Generalitat Valenciana, y hay 230 muertos, no tendríais que ir todos, irse todos y convocar elecciones.",
+        "topic": "other",
+        "entities": {
+          "count": 230,
+          "countUnit": "muertos",
+          "referencedEntity": "dana / generalitat valenciana"
+        },
+        "confidence": 0.65,
+        "reasoning": "Cifra de fallecidos citada como hecho en relación con la gestión de la Generalitat Valenciana (aparentemente la DANA); verificable contra el balance oficial de víctimas de la catástrofe.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "1pe3qs8-123-afi-8f14e8",
+        "verdict": "sin-datos",
+        "summary": "Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
+        "evidence": [],
+        "checkedAgainst": []
+      },
+      "visibility": "toggle"
+    },
+    {
+      "claim": {
+        "id": "1pe3qs8-123-cit-ab0483",
+        "plenoId": "1pe3qs8",
+        "plenoDate": "2026-01-07",
+        "segmentIndex": 123,
+        "type": "cita_obra",
+        "speakerGroup": null,
+        "verbatim": "he dit que avui els veïns tenen millor servei que fa quinze dies",
+        "context": "Fem dos plens i ara per emergència el que estem fent és solucionar un problema. I he dit que avui els veïns tenen millor servei que fa quinze dies.",
+        "topic": "medio-ambiente",
+        "entities": {
+          "referencedEntity": "servicio de recogida de residuos sólidos urbanos"
+        },
+        "confidence": 0.55,
+        "reasoning": "Afirmación de que el servicio (aparentemente de recogida de residuos, en relación con el punto del orden del día sobre el contrato de recollida de residus) ha mejorado en los últimos quince días; verificable contra incidencias o quejas municipales registradas en ese periodo.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "1pe3qs8-123-cit-ab0483",
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders y tenders-ted que la sostenga. Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
+        "evidence": [],
+        "checkedAgainst": [
+          "tenders",
+          "tenders-ted"
+        ]
+      },
+      "visibility": "toggle"
+    },
+    {
+      "claim": {
+        "id": "1pe3qs8-124-cit-d30afe",
+        "plenoId": "1pe3qs8",
+        "plenoDate": "2026-01-07",
+        "segmentIndex": 124,
+        "type": "cita_obra",
+        "speakerGroup": null,
+        "verbatim": "I he dit que avui els veïns tenen millor servei que fa quinze dies.",
+        "context": "Fem dos plens i ara per emergència el que estem fent és solucionar un problema. I he dit que avui els veïns tenen millor servei que fa quinze dies.",
+        "topic": "medio-ambiente",
+        "entities": {
+          "referencedEntity": "servicio de recogida de residuos sólidos urbanos"
+        },
+        "confidence": 0.6,
+        "reasoning": "Afirma una mejora comprobable del servicio de residuos (vinculado al punto del orden del día sobre el contrato de recogida) en los últimos quince días; verificable contra informes de servicio o quejas vecinales.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "1pe3qs8-124-cit-d30afe",
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders y tenders-ted que la sostenga. Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
+        "evidence": [],
+        "checkedAgainst": [
+          "tenders",
+          "tenders-ted"
+        ]
+      },
+      "visibility": "toggle"
+    },
+    {
+      "claim": {
+        "id": "1pe3qs8-132-pro-eb9328",
+        "plenoId": "1pe3qs8",
+        "plenoDate": "2026-01-07",
+        "segmentIndex": 132,
+        "type": "promesa",
+        "speakerGroup": null,
+        "verbatim": "Obviamente el contrato no se va a pagar ni un euro más de lo que técnicamente constituya que vale ese contrato. Ni un euro.",
+        "context": "Tras referirse a impugnaciones previas de la empresa, el interviniente afirma: 'Obviamente el contrato no se va a pagar ni un euro más de lo que técnicamente constituya que vale ese contrato. Ni un euro.' como garantía sobre la gestión del pago del contrato de recogida de residuos.",
+        "topic": "fiscal",
+        "entities": {
+          "referencedEntity": "contrato del servicio de recollida de residus sòlids urbans"
+        },
+        "confidence": 0.6,
+        "reasoning": "Es un compromiso concreto sobre el límite de pago del contrato que puede contrastarse con las facturas/certificaciones finalmente abonadas al contratista en el expediente.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "1pe3qs8-132-pro-eb9328",
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en promises que la sostenga. Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
+        "evidence": [],
+        "checkedAgainst": [
+          "promises"
+        ]
+      },
+      "visibility": "toggle"
+    },
+    {
+      "claim": {
+        "id": "1pe3qs8-136-pro-1a71f3",
+        "plenoId": "1pe3qs8",
+        "plenoDate": "2026-01-07",
+        "segmentIndex": 136,
+        "type": "promesa",
+        "speakerGroup": null,
+        "verbatim": "lo més important per al nostre govern és, primera, regularitzar la situació laboral, que els treballadors cobren, que",
+        "context": "I per acabar dir-vos que lo més important per al nostre govern és, primera, regularitzar la situació laboral, que els treballadors cobren, que l'empresa que té cada responsabilitat que va vindre després tingui que parlar en ella.",
+        "topic": "empleo",
+        "entities": {
+          "referencedEntity": "regularización situación laboral de los trabajadores del servicio"
+        },
+        "confidence": 0.55,
+        "reasoning": "Es un compromiso de gobierno (regularizar la situación laboral y asegurar el cobro a los trabajadores); verificable comprobando si posteriormente se formalizó la regularización laboral y los pagos pendientes a la plantilla del servicio afectado.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "1pe3qs8-136-pro-1a71f3",
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en promises que la sostenga. Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
+        "evidence": [],
+        "checkedAgainst": [
+          "promises"
+        ]
+      },
+      "visibility": "toggle"
+    },
+    {
+      "claim": {
+        "id": "1pe3qs8-140-afi-486693",
+        "plenoId": "1pe3qs8",
+        "plenoDate": "2026-01-07",
+        "segmentIndex": 140,
+        "type": "afirmacion_numerica",
+        "speakerGroup": null,
+        "verbatim": "la Junta Jurídica Consultiva mos obliga a 14 anys, no perquè nosaltres volem.",
+        "context": "Lo dels 14 anys no és perquè este Govern vol, ni la secretària vol... Les 14 anys de xismes, treballar més, consultar més... és perquè la Junta Jurídica Consultiva mos obliga a 14 anys, no perquè nosaltres volem.",
+        "topic": "other",
+        "entities": {
+          "count": 14,
+          "countUnit": "anys",
+          "referencedEntity": "junta jurídica consultiva"
+        },
+        "confidence": 0.55,
+        "reasoning": "Se afirma que un informe de la Junta Jurídica Consultiva obliga a fijar un plazo de 14 años; es verificable contrastando el informe oficial citado y si efectivamente establece ese mínimo.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "1pe3qs8-140-afi-486693",
+        "verdict": "sin-datos",
+        "summary": "Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
+        "evidence": [],
+        "checkedAgainst": []
+      },
+      "visibility": "toggle"
+    },
+    {
+      "claim": {
+        "id": "1pe3qs8-143-afi-e02a08",
+        "plenoId": "1pe3qs8",
+        "plenoDate": "2026-01-07",
+        "segmentIndex": 143,
+        "type": "afirmacion_numerica",
+        "speakerGroup": null,
+        "verbatim": "en menys de quaranta dies este govern ha estat treballant, treballant tot el govern en èpoques que altres, bioèticament, estan de vacances i no han anat a treballar",
+        "context": "I hi ha gent dient que el millor servei sí, que no és encàrrec que tenen que tindre, que el que tenien fa cinc dies, que en menys de quaranta dies este govern ha estat treballant, treballant tot el govern en èpoques que altres, bioèticament, estan de vacances i no han anat a treballar.",
+        "topic": "medio-ambiente",
+        "entities": {
+          "count": 40,
+          "countUnit": "dies"
+        },
+        "confidence": 0.5,
+        "reasoning": "Se afirma un plazo concreto ('menys de quaranta dies') de trabajo del gobierno municipal sobre el expediente del servicio de residuos, lo cual podría contrastarse con las fechas reales del expediente 615/2025/GEN y las actas de la Junta de Portavoces.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "1pe3qs8-143-afi-e02a08",
         "verdict": "sin-datos",
         "summary": "Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
         "evidence": [],

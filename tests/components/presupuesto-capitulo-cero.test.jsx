@@ -54,7 +54,22 @@ vi.mock('react-leaflet', () => {
   }
 })
 
-const publicado = (ruta) => JSON.parse(readFileSync(resolve('public', `.${ruta}`), 'utf8'))
+/*
+ * La ejecución sale del snapshot REAL publicado hasta el 2026-10-21, congelado.
+ * Aquel snapshot tomaba la hoja de gastos del 2T de 2025 (impresa el
+ * 30-06-2025) como cierre, y en ella Inversiones reales abría en 0 €; en la del
+ * 4T, que es la que se publica ahora, abre con 905.517,35 €, como en CONPREL, y
+ * el caso que esta guarda juzga ya no está en la página. La guarda sigue
+ * valiendo para el ejercicio que de verdad abra un capítulo en cero.
+ */
+const HOJA_2T = resolve('tests/fixtures/budget-execution_publicado-2026-10-21_hoja-2t2025.json')
+const publicado = (ruta) =>
+  JSON.parse(
+    readFileSync(
+      ruta === '/data/budget-execution.json' ? HOJA_2T : resolve('public', `.${ruta}`),
+      'utf8',
+    ),
+  )
 
 const RUTAS = [
   '/data/budget.json',

@@ -137,9 +137,17 @@ describe('scraper/indicadores-friccion', () => {
     const gasto = byId('gasto-por-habitante')
     const ejecucion = byId('ejecucion-presupuestaria')
     // Una página no puede sostener las dos frases, así que se comprueban juntas.
-    expect(ejecucion.caveats.some((c) => /inventarse la reconciliación/i.test(c))).toBe(true)
+    // Con el cierre de 2025 las dos cifras coinciden, y las dos tarjetas lo
+    // dicen igual; con cifras distintas, las dos se niegan a reconciliarlas.
+    const coinciden = ejecucion.caveats.some((c) => /^Coincide con la cifra/.test(c))
     expect(gasto.caveats.some((c) => /presupuesto aprobado/i.test(c))).toBe(false)
-    expect(gasto.caveats.some((c) => /sigue sin explicación/i.test(c))).toBe(true)
+    if (coinciden) {
+      expect(gasto.caveats.some((c) => /el mismo que da el listado municipal/.test(c))).toBe(true)
+      expect(gasto.caveats.some((c) => /sigue sin explicación/i.test(c))).toBe(false)
+    } else {
+      expect(ejecucion.caveats.some((c) => /inventarse la reconciliación/i.test(c))).toBe(true)
+      expect(gasto.caveats.some((c) => /sigue sin explicación/i.test(c))).toBe(true)
+    }
   })
 
   it('no compara el gasto por habitante sin banda que lo sostenga', () => {
@@ -283,5 +291,38 @@ describe('cada indicador municipal declara en qué página vive', () => {
         `${m.id} cita el coste efectivo y vive fuera de /eficiencia`,
       ).not.toMatch(/coste efectivo/)
     }
+  })
+})
+
+/**
+ * Las salvedades de la ejecución salen de las cifras. Escritas a mano, las del
+ * 2T de 2025 («partió de cero», «37,60 M€ frente a 41,58 M€») siguieron
+ * publicadas cuando el snapshot pasó a la hoja del cierre, donde ya no eran
+ * verdad.
+ */
+describe('salvedades de la ejecución, derivadas', () => {
+  const salvedades = (be: unknown) =>
+    construirIndicadoresMunicipales({ tenders, budgetExecution: be as never, budget }).find(
+      (i) => i.id === 'ejecucion-presupuestaria',
+    )!.caveats
+
+  it('con el cierre publicado: inversiones reales con su crédito inicial, y las dos fuentes coinciden', () => {
+    const t = salvedades(budgetExecution).join(' ')
+    expect(t).toContain('partió de 905.517,35 € de crédito inicial')
+    expect(t).toContain('Coincide con la cifra de /presupuesto')
+    expect(t).not.toContain('No cuadra')
+  })
+
+  it('con la hoja del 2T (real, publicada hasta el 21-10): cero inicial y casi cuatro millones de diferencia', () => {
+    const junio = JSON.parse(
+      readFileSync(
+        join(ROOT, 'tests/fixtures/budget-execution_publicado-2026-10-21_hoja-2t2025.json'),
+        'utf8',
+      ),
+    )
+    const t = salvedades(junio).join(' ')
+    expect(t).toContain('partió de cero crédito inicial')
+    expect(t).toContain('41,58 M€ de CRÉDITO')
+    expect(t).toContain('crédito inicial de 37,60 M€')
   })
 })

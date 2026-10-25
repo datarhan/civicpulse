@@ -5,9 +5,38 @@ import { contrastarPresupuesto, TOLERANCIA_EQUILIBRIO } from '../src/scraper/bud
 
 const ROOT = join(__dirname, '..')
 const budget = JSON.parse(readFileSync(join(ROOT, 'public/data/budget.json'), 'utf8'))
-const ejecucion = JSON.parse(readFileSync(join(ROOT, 'public/data/budget-execution.json'), 'utf8'))
+/**
+ * El desacuerdo que este módulo mide existió en lo PUBLICADO hasta el
+ * 2026-10-21, y era un artefacto: el snapshot tomaba la hoja de gastos del 2T
+ * (impresa el 30-06-2025, presupuesto aún no en vigor: 37,60 M€ iniciales) como
+ * cierre. Con la hoja del 4T los gastos iniciales son 41.578.252,26, los de
+ * CONPREL al céntimo. El camino de código sigue siendo el que vale si algún día
+ * vuelven a discrepar, así que se prueba sobre aquel snapshot real, congelado.
+ */
+const ejecucion = JSON.parse(
+  readFileSync(
+    join(ROOT, 'tests/fixtures/budget-execution_publicado-2026-10-21_hoja-2t2025.json'),
+    'utf8',
+  ),
+)
+const publicado = JSON.parse(readFileSync(join(ROOT, 'public/data/budget-execution.json'), 'utf8'))
 
-describe('scraper/budget-contraste', () => {
+describe('budget-contraste con el cierre publicado', () => {
+  const c = contrastarPresupuesto(budget.snapshot, publicado.latest)!
+
+  it('las dos fuentes coinciden en gastos iniciales, capítulo a capítulo', () => {
+    expect(c.anio).toBe(budget.snapshot.year)
+    expect(Math.abs(c.diferenciaGastos)).toBeLessThan(TOLERANCIA_EQUILIBRIO)
+    expect(c.capitulos.every((x) => x.diferencia === null || Math.abs(x.diferencia) < 1)).toBe(true)
+  })
+
+  it('el superávit inicial sigue ahí, y no es de CONPREL: es del ejercicio', () => {
+    expect(Math.abs(c.desequilibrioConprel!)).toBeGreaterThan(TOLERANCIA_EQUILIBRIO)
+    expect(c.ingresosCoinciden).toBe(true)
+  })
+})
+
+describe('scraper/budget-contraste (snapshot real del 2026-10-21, hoja del 2T)', () => {
   const c = contrastarPresupuesto(budget.snapshot, ejecucion.latest)!
 
   it('mide el desacuerdo real entre las dos fuentes publicadas', () => {

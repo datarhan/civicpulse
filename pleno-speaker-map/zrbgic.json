@@ -1,6 +1,6 @@
 {
   "plenoId": "zrbgic",
-  "generatedAt": "2026-10-19T07:42:16.381Z",
+  "generatedAt": "2026-10-22T07:36:03.830Z",
   "model": "gemini-3.5-flash",
   "promptVersion": "speaker-map-v2",
   "chunkSeconds": 600,
@@ -5994,118 +5994,1210 @@
       "text": "no coincideixen en les de Compromís."
     },
     {
-      "start": 6003.1,
-      "end": 6007.6,
-      "speaker": "c09/SPEAKER_04",
-      "text": "Però bueno, jo no dic a vostès que"
+      "start": 1800,
+      "end": 1807.1,
+      "speaker": "c03/SPEAKER_01",
+      "text": "I ha hagut una esmena d'un criteri normal que la part més antiga tinguera la solvència de les meues intervencions ahí,"
     },
     {
-      "start": 6007.6,
-      "end": 6012.1,
-      "speaker": "c09/SPEAKER_04",
-      "text": "són el l'octau passatger de Vox."
+      "start": 1807.1,
+      "end": 1812,
+      "speaker": "c03/SPEAKER_01",
+      "text": "a pesar de que va haver-hi una comparativa per a mi illògica de les altres carrers,"
     },
     {
-      "start": 6012.1,
-      "end": 6014,
-      "speaker": "c09/SPEAKER_04",
+      "start": 1812,
+      "end": 1816,
+      "speaker": "c03/SPEAKER_01",
+      "text": "pois en esta setmana que ve i la de darrere acabaran de fer lo que digueren."
+    },
+    {
+      "start": 1816,
+      "end": 1828.1,
+      "speaker": "c03/SPEAKER_01",
+      "text": "Pues tinen els contenidors no sols millors, sinó que tindran una tecnologia aplicada per a saber quan passa el camió, quants quilos carreguen cada contenidor i pràcticament serem dels pocs de la comarca, per no dir l'únic,"
+    },
+    {
+      "start": 1828.1,
+      "end": 1834,
+      "speaker": "c03/SPEAKER_01",
+      "text": "que tindrà a més una informació addicional que igualment tot en subvencions, que també és important."
+    },
+    {
+      "start": 1834,
+      "end": 1839.5,
+      "speaker": "c03/SPEAKER_01",
+      "text": "I per últim dir-li que oblidem un tema importantíssim: la gestió dels nostres vaixadors és molt important,"
+    },
+    {
+      "start": 1839.5,
+      "end": 1847.3,
+      "speaker": "c03/SPEAKER_01",
+      "text": "i en cap de la segona fase diríem de la reconstrucció de la DANA."
+    },
+    {
+      "start": 1847.3,
+      "end": 1857.5,
+      "speaker": "c03/SPEAKER_01",
+      "text": "Vos dic que les inversions han sigut les que han sigut. S'oblida dir que una catàstrofe tan important per ser mal gestionada pel Govern de València en aquell moment,"
+    },
+    {
+      "start": 1857.5,
+      "end": 1869.8,
+      "speaker": "c03/SPEAKER_01",
+      "text": "hem recuperat a passos gegantins, encara que ens queda moltíssim, però totes les infraestructures claus estratègiques pel sector industrial, per les nostres vides, la zona nord, aquelles importants importants s'han fet i estan en funcionament."
+    },
+    {
+      "start": 1869.8,
+      "end": 1874.3,
+      "speaker": "c03/SPEAKER_01",
+      "text": "I jo crec que només en eixe treball ja seria digne d'aprovar la gestió."
+    },
+    {
+      "start": 1874.3,
+      "end": 1885.5,
+      "speaker": "c03/SPEAKER_01",
+      "text": "Però si damunt n'hi ha un compte general que ja vam debatre en la liquidació del dos mil de març de dos mil vint-i-cinc, que és positiva, que clarament eix esforç que hem fet en el pla econòmic financer l'hem complit,"
+    },
+    {
+      "start": 1885.5,
+      "end": 1893.3,
+      "speaker": "c03/SPEAKER_01",
+      "text": "pues home, algo haurem fet bé. Segurament per a vostè no haurem fet res bé, però nosaltres creiem que sí. I per tant, en eixe sentit,"
+    },
+    {
+      "start": 1893.3,
+      "end": 1900.8,
+      "speaker": "c03/SPEAKER_01",
+      "text": "acabar dient-li que no se preocupe que el camí per a vostè va a ser molt llarg. Bueno, per a vostè no ho sé, igual ja s'ha curtat,"
+    },
+    {
+      "start": 1900.8,
+      "end": 1905.7,
+      "speaker": "c03/SPEAKER_01",
+      "text": "però per al Partit Popular va a ser llarguíssim per a governar este Ajuntament, dic."
+    },
+    {
+      "start": 1905.7,
+      "end": 1912.5,
+      "speaker": "c03/SPEAKER_01",
+      "text": "En altres aspectes pues ho veurem. Com ha parlat de política general, jo sempre he dit que hi ha que tindre paciència i prudència"
+    },
+    {
+      "start": 1912.5,
+      "end": 1919.5,
+      "speaker": "c03/SPEAKER_01",
+      "text": "i perseverança, lo de la Mediterrània, perquè a vegades les victòries semblen me me perfectes i després tenen sofocos com els que els passen."
+    },
+    {
+      "start": 1919.5,
+      "end": 1927.1,
+      "speaker": "c03/SPEAKER_01",
+      "text": "Aleshores anar a veure què passa, la gent votarà el dia vint-i-nou, triarà lo que considere i després els diputats en Corts"
+    },
+    {
+      "start": 1927.1,
+      "end": 1931.6,
+      "speaker": "c03/SPEAKER_01",
+      "text": "triaran al president o presidenta que vulguen."
+    },
+    {
+      "start": 1931.6,
+      "end": 1940.7,
+      "speaker": "c03/SPEAKER_01",
+      "text": "Per tant, des de eixa concepció, benvinguda la votació, benvinguda la democràcia i estarem ahí pues tots dient allò que volem fer per al bé d'Espanya, val?"
+    },
+    {
+      "start": 1940.7,
+      "end": 1945.8,
+      "speaker": "c03/SPEAKER_01",
+      "text": "Així és que benvinguda la notícia que ens han donat hui. Nosaltres estem molt contents."
+    },
+    {
+      "start": 1945.8,
+      "end": 1951.7,
+      "speaker": "c03/SPEAKER_01",
+      "text": "Passem a la votació, este el votem, sí? Votem, val. Passem a votar este punt."
+    },
+    {
+      "start": 1951.7,
+      "end": 1955,
+      "speaker": "c03/SPEAKER_01",
+      "text": "[pausa]"
+    },
+    {
+      "start": 1955,
+      "end": 1961,
+      "speaker": "c03/SPEAKER_01",
+      "text": "Em falten dos. Em falta, anem a veure, em falta un, no? Sí, no, ja està."
+    },
+    {
+      "start": 1961,
+      "end": 1968,
+      "speaker": "c03/SPEAKER_01",
+      "text": "Pues queda aprovat per onze vots a favor, huit en contra i dos abstencions."
+    },
+    {
+      "start": 1968,
+      "end": 1975.7,
+      "speaker": "c03/SPEAKER_01",
+      "text": "Passem al següent punt del dia, que és el tercer: inici de l'expedient, no?"
+    },
+    {
+      "start": 1975.7,
+      "end": 1978.6,
+      "speaker": "c03/SPEAKER_01",
+      "text": "Ah, sí, perdó, que se me'n va faltar, el portaveu este."
+    },
+    {
+      "start": 1978.6,
+      "end": 1981.7,
+      "speaker": "c03/SPEAKER_01",
+      "text": "Ah, sí, correcte, me faltava. Eh, un socialista?"
+    },
+    {
+      "start": 1981.7,
+      "end": 1982.8,
+      "speaker": "c03/SPEAKER_02",
+      "text": "A favor."
+    },
+    {
+      "start": 1982.8,
+      "end": 1984.2,
+      "speaker": "c03/SPEAKER_01",
+      "text": "Este és el vot d'este punt que hem aprovat. PP?"
+    },
+    {
+      "start": 1984.2,
+      "end": 1985,
+      "speaker": "c03/SPEAKER_03",
+      "text": "En contra."
+    },
+    {
+      "start": 1985,
+      "end": 1985.7,
+      "speaker": "c03/SPEAKER_01",
+      "text": "Eh, Vox?"
+    },
+    {
+      "start": 1985.7,
+      "end": 1986.6,
+      "speaker": "c03/SPEAKER_04",
+      "text": "En contra."
+    },
+    {
+      "start": 1986.6,
+      "end": 1987.9,
+      "speaker": "c03/SPEAKER_01",
+      "text": "Eh, Esquerra Unida Podem?"
+    },
+    {
+      "start": 1987.9,
+      "end": 1988.7,
+      "speaker": "c03/SPEAKER_05",
+      "text": "Abstenció."
+    },
+    {
+      "start": 1988.7,
+      "end": 1989.6,
+      "speaker": "c03/SPEAKER_01",
+      "text": "Compromís?"
+    },
+    {
+      "start": 1989.6,
+      "end": 1990.5,
+      "speaker": "c03/SPEAKER_06",
+      "text": "Abstenció."
+    },
+    {
+      "start": 1990.5,
+      "end": 1998.8,
+      "speaker": "c03/SPEAKER_01",
+      "text": "Val. Passem ací al punt del dia, que és el tercer, que és aprovació del te del inici de l'expedient"
+    },
+    {
+      "start": 1998.8,
+      "end": 2008.5,
+      "speaker": "c03/SPEAKER_01",
+      "text": "de contractació per a la licitació del subministrament de del reemplaçament de gespa artificial en l'instal·lació de l'estadi de futbol Roberto Gil. El va a exposar..."
+    },
+    {
+      "start": 2008.5,
+      "end": 2011.2,
+      "speaker": "c03/SPEAKER_01",
+      "text": "Rafa? No. Ah, tu, contractació, correcte. José Ángel."
+    },
+    {
+      "start": 2011.2,
+      "end": 2018.4,
+      "speaker": "c03/SPEAKER_07",
+      "text": "Vale. En este... bueno, llevamos a licitación la sustitución del césped artificial del estadio de fútbol Roberto Gil en régimen de arrendamiento con opción de compra. Con la propuesta de hoy y su aprobación iniciamos el procedimiento para el cambio del césped del estadio Roberto Gil"
+    },
+    {
+      "start": 2018.4,
+      "end": 2024.2,
+      "speaker": "c03/SPEAKER_07",
+      "text": "y ¿qué incluye en el contrato que hoy proponemos para su aprobación? Bueno, pues se trata de un arrendamiento a cinco años con opción a compra,"
+    },
+    {
+      "start": 2024.2,
+      "end": 2032.8,
+      "speaker": "c03/SPEAKER_07",
+      "text": "el precio base de licitación de esta inversión es de doscientos veintinueve mil euros más el mantenimiento de cinco años, que suponen veintitrés mil euros más, más el IVA,"
+    },
+    {
+      "start": 2032.8,
+      "end": 2038.8,
+      "speaker": "c03/SPEAKER_07",
+      "text": "y con la opción de compra al final de los cinco años por un importe de dos mil doscientos cincuenta euros."
+    },
+    {
+      "start": 2038.8,
+      "end": 2044.7,
+      "speaker": "c03/SPEAKER_07",
+      "text": "¿Qué incluye esta licitación? Pues incluye la retirada del césped actual, la gestión de los materiales retirados, revisión del drenaje, reparación y regularización de la base,"
+    },
+    {
+      "start": 2044.7,
+      "end": 2051.2,
+      "speaker": "c03/SPEAKER_07",
+      "text": "suministro e instalación, por supuesto, desde luego césped, el mantenimiento durante cinco años y la garantía de ocho años."
+    },
+    {
+      "start": 2051.2,
+      "end": 2056.4,
+      "speaker": "c03/SPEAKER_07",
+      "text": "La vida útil está prevista entre los ocho y doce años, tiempo superior al periodo de amortización de la propia inversión."
+    },
+    {
+      "start": 2056.4,
+      "end": 2063.2,
+      "speaker": "c03/SPEAKER_07",
+      "text": "El valor residual, como he dicho, es de dos mil doscientos cincuenta euros y es posible que se quede en cero, ya que la licitación contempla la valoración"
+    },
+    {
+      "start": 2063.2,
+      "end": 2067.4,
+      "speaker": "c03/SPEAKER_07",
+      "text": "que el licitador reduzca de ese importe, incluso hasta cero."
+    },
+    {
+      "start": 2067.4,
+      "end": 2073.7,
+      "speaker": "c03/SPEAKER_07",
+      "text": "El expediente realizado por los técnicos del Ayuntamiento en base a otros ya realizados anteriormente en las mismas condiciones para los campos de fútbol"
+    },
+    {
+      "start": 2073.7,
+      "end": 2079.1,
+      "speaker": "c03/SPEAKER_07",
+      "text": "contempla las máximas garantías y calidad de material, con la homologación FIFA Quality Pro."
+    },
+    {
+      "start": 2079.1,
+      "end": 2085.3,
+      "speaker": "c03/SPEAKER_07",
+      "text": "Y su arrendamiento además incluye el mantenimiento, como he dicho, durante cinco años, ampliable durante la vida útil del césped entre ocho a doce años."
+    },
+    {
+      "start": 2085.3,
+      "end": 2090.8,
+      "speaker": "c03/SPEAKER_07",
+      "text": "Y bueno, y esta es la propuesta de inversión para el campo del estadio de fútbol de Roberto Gil. Gracias."
+    },
+    {
+      "start": 2090.8,
+      "end": 2094,
+      "speaker": "c03/SPEAKER_01",
+      "text": "Més paraules? Eh, Alberto."
+    },
+    {
+      "start": 2094,
+      "end": 2097.8,
+      "speaker": "c03/SPEAKER_08",
+      "text": "Anava a esperar, gràcies, senyor alcalde. Jo com no tenim"
+    },
+    {
+      "start": 2097.8,
+      "end": 2103.4,
+      "speaker": "c03/SPEAKER_08",
+      "text": "temps després per a contestar-li a les speeches que vostè fa, eh el xec bebé, la gestió diu el xec bebé de l'any vint-i-cinc."
+    },
+    {
+      "start": 2103.4,
+      "end": 2110.8,
+      "speaker": "c03/SPEAKER_08",
+      "text": "Deu mesos per a computar els naixements passats fins a desembre del vint-i-cinc. Deu mesos després arreplega el xec bebé."
+    },
+    {
+      "start": 2110.8,
+      "end": 2118,
+      "speaker": "c03/SPEAKER_08",
+      "text": "Transport públic públic gratuït, públic fins que tractem el següent punt que volen privatitzar-lo."
+    },
+    {
+      "start": 2118,
+      "end": 2122.8,
+      "speaker": "c03/SPEAKER_08",
+      "text": "El polígon industrial, cap gestió."
+    },
+    {
+      "start": 2122.8,
+      "end": 2129.8,
+      "speaker": "c03/SPEAKER_08",
+      "text": "Nosaltres des de que està el PP anaven en carro, en carro i en camisa de terra per el polígon industrial pareixia,"
+    },
+    {
+      "start": 2129.8,
+      "end": 2136.5,
+      "speaker": "c03/SPEAKER_08",
+      "text": "perquè si no n'hi ha cap inversió en el polígon industrial digan vostès com creixien i creixen les empreses. Però bueno,"
+    },
+    {
+      "start": 2136.5,
+      "end": 2142.3,
+      "speaker": "c03/SPEAKER_08",
+      "text": "i ja entrant en este punt, eh José Ángel, te vaig preguntar en comissions si"
+    },
+    {
+      "start": 2142.3,
+      "end": 2148.6,
+      "speaker": "c03/SPEAKER_08",
+      "text": "la duració del camp de la gespa actual. Em vas dir que nou anys."
+    },
+    {
+      "start": 2148.6,
+      "end": 2155,
+      "speaker": "c03/SPEAKER_08",
+      "text": "Nou anys i se canvia perquè està feta pols no ara,"
+    },
+    {
+      "start": 2155,
+      "end": 2161.3,
+      "speaker": "c03/SPEAKER_08",
+      "text": "farà un any o dos. Eh nosaltres pensem que és"
+    },
+    {
+      "start": 2161.3,
+      "end": 2168.5,
+      "speaker": "c03/SPEAKER_08",
+      "text": "necessària el canvi, per supost que és necessari i la anem a aprovar i la anem a a"
+    },
+    {
+      "start": 2168.5,
+      "end": 2175.3,
+      "speaker": "c03/SPEAKER_08",
+      "text": "estar al costat de vostès, però la forma del contracte hauria de mirar-se si el manteniment i el rènting podria ser superior."
+    },
+    {
+      "start": 2175.3,
+      "end": 2183.1,
+      "speaker": "c03/SPEAKER_08",
+      "text": "No per els diners que costa, perquè al final se sap que quan la empresa acaba el manteniment als cinc anys no no el manté ningú."
+    },
+    {
+      "start": 2183.1,
+      "end": 2188.9,
+      "speaker": "c03/SPEAKER_08",
+      "text": "Ningún operari de l'Ajuntament manté lo que és la gespa."
+    },
+    {
+      "start": 2188.9,
+      "end": 2194.4,
+      "speaker": "c03/SPEAKER_08",
+      "text": "Que no em parle d'anys del camp de futbol, vestuaris, tanques, xarxes,"
+    },
+    {
+      "start": 2194.4,
+      "end": 2200.6,
+      "speaker": "c03/SPEAKER_08",
+      "text": "la gespa no se manté perquè no tenim els mitjans i mai els hem tingut."
+    },
+    {
+      "start": 2200.6,
+      "end": 2208.8,
+      "speaker": "c03/SPEAKER_08",
+      "text": "I què passa? Són molts xiquets, molts jugadors de futbol i jugadores de futbol les que passen per el camp. Aleshores pensem que el manteniment és necessari durant"
+    },
+    {
+      "start": 2208.8,
+      "end": 2215.7,
+      "speaker": "c03/SPEAKER_08",
+      "text": "tota la vida útil per a que la vida útil se extinga o se o o arribe al fi dels dotze anys que vostè ha dit"
+    },
+    {
+      "start": 2215.7,
+      "end": 2220.2,
+      "speaker": "c03/SPEAKER_08",
+      "text": "o per a que la pràctica del futbol en este cas siga la idònia. Moltes gràcies."
+    },
+    {
+      "start": 2220.2,
+      "end": 2223.2,
+      "speaker": "c03/SPEAKER_01",
+      "text": "Més paraules, eh José."
+    },
+    {
+      "start": 2223.2,
+      "end": 2229.6,
+      "speaker": "c03/SPEAKER_04",
+      "text": "Muchas gracias. Eh estamos votando o, mejor dicho, se está exponiendo aquí para posteriormente votar un inicio de expediente de contratación para"
+    },
+    {
+      "start": 2229.6,
+      "end": 2235.6,
+      "speaker": "c03/SPEAKER_04",
+      "text": "la licitación de un suministro de sustitución que creo que todos estamos de acuerdo que es necesario."
+    },
+    {
+      "start": 2235.6,
+      "end": 2242.2,
+      "speaker": "c03/SPEAKER_04",
+      "text": "Eh es necesario cambiar el césped porque está, pero no solamente eso, sino a ver de qué de qué manera también la iluminación sobre todo"
+    },
+    {
+      "start": 2242.2,
+      "end": 2250.4,
+      "speaker": "c03/SPEAKER_04",
+      "text": "eh de una parte de un gol se podría hacer porque realmente cuando vamos a algún partido pues es complicado verlo. Así que por esa parte estamos todos de acuerdo que hay que cambiarlo."
+    },
+    {
+      "start": 2250.4,
+      "end": 2256.2,
+      "speaker": "c03/SPEAKER_04",
+      "text": "Ahora bien, eh y así en vez de estar en en la Liga de la Comunitat pasaría a Tercera, tal, y sería un un honor para para el municipio."
+    },
+    {
+      "start": 2256.2,
+      "end": 2265.1,
+      "speaker": "c03/SPEAKER_04",
+      "text": "Pero en esta eh en esta exposición hay algo que es que a mí me chirría, como me imagino que sabrán, que es \"contribuyendo al cumplimiento de la ODS doce y trece\"."
+    },
+    {
+      "start": 2265.1,
+      "end": 2273,
+      "speaker": "c03/SPEAKER_04",
+      "text": "Y les voy a decir lo que creo que saben, y es que desde nuestra perspectiva, desde la perspectiva de Vox, eh la Agenda 2030 y sus ODS ODS doce y trece"
+    },
+    {
+      "start": 2273,
+      "end": 2281.5,
+      "speaker": "c03/SPEAKER_04",
+      "text": "son herramientas de globalismo, de adoctrinamiento progresista y subordinan a España, como estamos viendo aquí, a incluirlo en una propuesta,"
+    },
+    {
+      "start": 2281.5,
+      "end": 2289.6,
+      "speaker": "c03/SPEAKER_04",
+      "text": "a organismos internacionales y de la Unión Europea sin ningún tipo de respaldo directo. Les explico."
+    },
+    {
+      "start": 2289.6,
+      "end": 2298.4,
+      "speaker": "c03/SPEAKER_04",
+      "text": "La ODS doce, la meta principal es cambiar la forma que producimos y consumimos bienes y recursos. Y eso es aplicado por un globalismo fanático"
+    },
+    {
+      "start": 2298.4,
+      "end": 2305.4,
+      "speaker": "c03/SPEAKER_04",
+      "text": "de intervencionismo regulatorio, encareciendo un... Es que es así. O sea, es encareciendo un consumo, ataque al modelo productivo tradicional, al campo, la industria y energía,"
+    },
+    {
+      "start": 2305.4,
+      "end": 2312.4,
+      "speaker": "c03/SPEAKER_04",
+      "text": "y al final cada vez más los agricultores se dan cuenta que cuando alguien expone de verdad que esto lo único que hace es eh importar o de Marruecos"
+    },
+    {
+      "start": 2312.4,
+      "end": 2319.8,
+      "speaker": "c03/SPEAKER_04",
+      "text": "o de países donde no cumplen nada de fitosanitarios, donde la Seguridad Social allí no existe. Pero ¿por qué? Porque ese globalismo fanático lo que hace"
+    },
+    {
+      "start": 2319.8,
+      "end": 2327.1,
+      "speaker": "c03/SPEAKER_04",
+      "text": "es que producen allí y aquí el agricultor, que tiene criterio, deja de producir. Pero la trece es el fanatismo climático"
+    },
+    {
+      "start": 2327.1,
+      "end": 2335.1,
+      "speaker": "c03/SPEAKER_04",
+      "text": "llegado a extremos increíbles. Justifican el cierre de centrales nucleares. Alemania está en crisis porque han centrado, han cerrado la mayoría de centrales nucleares, el gas de"
+    },
+    {
+      "start": 2335.1,
+      "end": 2340.3,
+      "speaker": "c03/SPEAKER_04",
+      "text": "Rusia ya no lo pueden importar y ahora están en una fase realmente de declive. Eh la dependencia energética y el aumento de"
+    },
+    {
+      "start": 6000,
+      "end": 6006.2,
+      "speaker": "c10/SPEAKER_00",
+      "text": "Has dit que en el prec se va fer menció, pues ja ha valgut algo per a algo esta moció."
+    },
+    {
+      "start": 6006.2,
+      "end": 6010.7,
+      "speaker": "c10/SPEAKER_00",
+      "text": "Si la vols votar, pues votar el text. Si no la vols votar, no la vols votar. Yo,"
+    },
+    {
+      "start": 6010.7,
+      "end": 6016.4,
+      "speaker": "c10/SPEAKER_00",
+      "text": "pero no vingau en lo que se diu en els plenaris perquè lo que se diu molts viatges no té res que veure en lo que s'aprova,"
+    },
+    {
+      "start": 6016.4,
+      "end": 6021,
+      "speaker": "c10/SPEAKER_00",
+      "text": "ni en lo que se no s'aprova. Vale? Yo,"
+    },
+    {
+      "start": 6021,
+      "end": 6028.5,
+      "speaker": "c10/SPEAKER_00",
+      "text": "ara ho agrairé, pero si no ho aneu a fer, pues pues ho sent molt. Eh és una moció, ho torne a repetir, apolítica."
+    },
+    {
+      "start": 6028.5,
+      "end": 6034.6,
+      "speaker": "c10/SPEAKER_00",
+      "text": "Si la llegiu, si la llegiu, lo que fica no té menció política cap, i soles és cultura"
+    },
+    {
+      "start": 6034.6,
+      "end": 6043.6,
+      "speaker": "c10/SPEAKER_00",
+      "text": "i tradició i història. Gràcies."
+    },
+    {
+      "start": 6043.6,
+      "end": 6049.8,
+      "speaker": "c10/SPEAKER_01",
+      "text": "Bueno, pero és que té explicat de la política perquè, claro, evidentment el paper lo que és una una síntesi del desenvolupament parlamentari,"
+    },
+    {
+      "start": 6049.8,
+      "end": 6057.6,
+      "speaker": "c10/SPEAKER_01",
+      "text": "i ací hem escoltat coses molt grosses. Però molt grosses. I molt preocupants. I és la coalició que vostès estan mantenint, PP-Vox, en tota Espanya."
+    },
+    {
+      "start": 6057.6,
+      "end": 6103.2,
+      "speaker": "c10/SPEAKER_01",
+      "text": "Vostè no vostè no governarà, i espere que vostè tampoc, en les pròximes, però si governa serà amb Vox. I la agenda la marcarà Vox, com la està marcant en tots els llocs."
+    },
+    {
+      "start": 6103.2,
+      "end": 6121.2,
+      "speaker": "c10/SPEAKER_01",
+      "text": "I per tant, per a ells, el sentit humanista seu i cristià és que qualsevol persona pobre, immigrant, pues hi hauria que menys que afusellar-lo."
+    },
+    {
+      "start": 6121.2,
+      "end": 6127.8,
+      "speaker": "c10/SPEAKER_01",
+      "text": "I en eixa no anem a estar d'acord. Vamos. Sí, yo yo sé lo que dic perfectament,"
+    },
+    {
+      "start": 6127.8,
+      "end": 6137.9,
+      "speaker": "c10/SPEAKER_01",
+      "text": "i com o dic, ho mantinc, val? Perquè eixes reaccions de xenòfobes no tenen parangó."
+    },
+    {
+      "start": 6137.9,
+      "end": 6147.2,
+      "speaker": "c10/SPEAKER_01",
+      "text": "En Espanya, que gràcies als immigrants, no d'ara, dels anys seixanta, setanta, com bé ha dit José Manuel, ha tirat cap avant."
+    },
+    {
+      "start": 6147.2,
+      "end": 6156.4,
+      "speaker": "c10/SPEAKER_01",
+      "text": "Una Espanya que té que ser diversa, inclusiva, que té que respectar els drets humans, que té que tindre una economia com la que va, però encara millor."
+    },
+    {
+      "start": 6156.4,
+      "end": 6166.4,
+      "speaker": "c10/SPEAKER_01",
+      "text": "I i no és una moció política? Pues si arriba a ser política, si no és una moció política lo que han acabat vostès d'explicar ací, baixaria el que crega i i ho veja."
+    },
+    {
+      "start": 6166.4,
+      "end": 6171.8,
+      "speaker": "c10/SPEAKER_01",
+      "text": "No, home, no, per favor. Per favor, estaben per a arribar."
+    },
+    {
+      "start": 6171.8,
+      "end": 6180.2,
+      "speaker": "c10/SPEAKER_01",
+      "text": "Per tant, ací hem escoltat coses que, bueno, cadascú ja ho explicarà on tinga que explicar-ho, que no compartim per a res, absolutament per a res."
+    },
+    {
+      "start": 6180.2,
+      "end": 6186.2,
+      "speaker": "c10/SPEAKER_01",
+      "text": "M'hi ratifique en lo que ha dit el regidor de del meu grup del grup socialista, perquè ho va fer perfectament."
+    },
+    {
+      "start": 6186.2,
+      "end": 6195.3,
+      "speaker": "c10/SPEAKER_01",
+      "text": "Nosaltres ací tinguerem, no fa solament tindre, eh, abans dels àrabs tinguerem als visigots i grans personatges, Conde Demir o Teodomiro, i pactàrem l'entrada en els àrabs."
+    },
+    {
+      "start": 6195.3,
+      "end": 6202.9,
+      "speaker": "c10/SPEAKER_01",
+      "text": "Els moros pues quedava molt bé, però eren els àrabs, val? I ho van fer acordant. I primer estigueren els romans, i primer els ibers."
+    },
+    {
+      "start": 6202.9,
+      "end": 6211.7,
+      "speaker": "c10/SPEAKER_01",
+      "text": "I això és un poble d'encontre, i va seguir seguint-ho, a pesar d'alguns discursos xenòfobs que s'han fet ací, i que vostès comparteixen, perquè quan no ho condemnen és que ho comparteixen."
+    },
+    {
+      "start": 6211.7,
+      "end": 6220.8,
+      "speaker": "c10/SPEAKER_01",
+      "text": "Ací i en els altres estaments. I ja ho veurem, i espere equivocar-me, espere equivocar-me. Per tant, en eixe sentit, està clar el debat."
+    },
+    {
+      "start": 6220.8,
+      "end": 6228.6,
+      "speaker": "c10/SPEAKER_01",
+      "text": "Efectivament, José Manuel ho ha dit, és extemporània esta moció, perquè ja ho estem fent, però no d'ara, de des de fa molt de temps."
+    },
+    {
+      "start": 6228.6,
+      "end": 6234.8,
+      "speaker": "c10/SPEAKER_01",
+      "text": "La defensa del valencià en totes les seues, eh, e- e- procronics que té."
+    },
+    {
+      "start": 6234.8,
+      "end": 6241.6,
+      "speaker": "c10/SPEAKER_01",
+      "text": "La defensa dels senyals nostres, les referències a Jaume I, no a Jaime Primero, a Jaume I."
+    },
+    {
+      "start": 6241.6,
+      "end": 6248.8,
+      "speaker": "c10/SPEAKER_01",
+      "text": "El defensar l'autogovern."
+    },
+    {
+      "start": 6248.8,
+      "end": 6258.4,
+      "speaker": "c10/SPEAKER_01",
+      "text": "I aixina, podria fer un decàleg de tot lo que ha fet la Esquerra o el Botànic i altres governs progressistes per a defensar realment i no fer demagògia en estos temes, val?"
+    },
+    {
+      "start": 6258.4,
+      "end": 6263.8,
+      "speaker": "c10/SPEAKER_01",
+      "text": "I aixina és que en eixe sentit crec que queden les posicions claríssimes."
+    },
+    {
+      "start": 6263.8,
+      "end": 6278.8,
+      "speaker": "c10/SPEAKER_01",
+      "text": "Sent molt l'última part del debat, eh, de la intervenció de José Luis, perquè el considere una persona moderada i crec que se n'ha anat de tot, personalment ho pense,"
+    },
+    {
+      "start": 6278.8,
+      "end": 6288,
+      "speaker": "c10/SPEAKER_01",
+      "text": "i crec que no no són les solucions que se planteja. I si el divuit de novembre hi han eleccions, pues cadascú posarà el seu programa i lo que té que dir,"
+    },
+    {
+      "start": 6288,
+      "end": 6297.8,
+      "speaker": "c10/SPEAKER_01",
+      "text": "i espere que foren unes eleccions no per a dividir al poble espanyol, no per a confrontar, sinó per a unir i fer una Espanya més gran, una Espanya millor, els pobles, uns unes comunitats, unes regions,"
+    },
+    {
+      "start": 6297.8,
+      "end": 6303.8,
+      "speaker": "c10/SPEAKER_01",
+      "text": "i aquells que se consideren del país, pues també del país, val?"
+    },
+    {
+      "start": 6303.8,
+      "end": 6309.2,
+      "speaker": "c10/SPEAKER_01",
+      "text": "Perquè la convivència és lo més important. La Constitució Espanyola,"
+    },
+    {
+      "start": 6309.2,
+      "end": 6318,
+      "speaker": "c10/SPEAKER_01",
+      "text": "lo més important després de dècades de guerres que hem tingut internes entre els germans, monàrquiques, carlistes, en fi, de tot tipus."
+    },
+    {
+      "start": 6318,
+      "end": 6327.1,
+      "speaker": "c10/SPEAKER_01",
+      "text": "I el període més important d'estar tranquils en l'època democràtica, que té quaranta- és un bebé encara, estem intentant ja trencar-lo. Això és preocupant no, lo següent. Això sí que és preocupant."
+    },
+    {
+      "start": 6327.1,
+      "end": 6333.8,
+      "speaker": "c10/SPEAKER_01",
+      "text": "Passem a la votació de d'esta moció, per favor."
+    },
+    {
+      "start": 6333.8,
+      "end": 6356.5,
+      "speaker": "c10/SPEAKER_01",
+      "text": "Pues no queda aprovada per huit vots a favor i tretze en contra. Eh, grup Socialista? En contra."
+    },
+    {
+      "start": 6356.5,
+      "end": 6360.5,
+      "speaker": "c10/SPEAKER_01",
+      "text": "Partit Popular? A favor. Eh Vox? A favor."
+    },
+    {
+      "start": 6360.5,
+      "end": 6365.8,
+      "speaker": "c10/SPEAKER_01",
+      "text": "Esquerra Unida Podem? En contra. Compromís? En contra."
+    },
+    {
+      "start": 6365.8,
+      "end": 6377.9,
+      "speaker": "c10/SPEAKER_01",
+      "text": "Passem al sisé punt de l'ordre del dia, que són ja assumptes d'urgència. Bé, primer de 7.5, anirem bé de temps, per a què també..."
+    },
+    {
+      "start": 6377.9,
+      "end": 6384.8,
+      "speaker": "c10/SPEAKER_01",
+      "text": "Eh, primer que res, eh, n'hi ha un expedient de de la modificació de criteris de repart de l'assignació dels grups polítics, que té la paraula José Ángel."
+    },
+    {
+      "start": 6384.8,
+      "end": 6388.1,
+      "speaker": "c10/SPEAKER_01",
+      "text": "Votem la urgència d'este punt, que igualment ja ho hem parlat."
+    },
+    {
+      "start": 6388.1,
+      "end": 6393.9,
+      "speaker": "c10/SPEAKER_01",
+      "text": "Anem a votar la urgència d'este punt, no sé si us pareix... Votamos aquí."
+    },
+    {
+      "start": 6393.9,
+      "end": 6409.2,
+      "speaker": "c10/SPEAKER_01",
+      "text": "Votem la urgència."
+    },
+    {
+      "start": 6409.2,
+      "end": 6413.2,
+      "speaker": "c10/SPEAKER_01",
+      "text": "Pues crec que és per unanimitat. S'aprova per unanimitat. Passem al punt, José Ángel."
+    },
+    {
+      "start": 6427,
+      "end": 6432.8,
+      "speaker": "c10/SPEAKER_01",
+      "text": "Gràcies per la brevetat. Alguna paraula? Alguna paraula? Passem a la votació d'este punt."
+    },
+    {
+      "start": 6432.8,
+      "end": 6443.3,
+      "speaker": "c10/SPEAKER_01",
+      "text": "S'aprova per unanimitat i ara sí passem"
+    },
+    {
+      "start": 6443.3,
+      "end": 6452.8,
+      "speaker": "c10/SPEAKER_01",
+      "text": "S'aprova per unanimitat. Vale? Passem a al següent punt,"
+    },
+    {
+      "start": 6452.8,
+      "end": 6462.8,
+      "speaker": "c10/SPEAKER_01",
+      "text": "que seria donar compte de les resolucions de de la número set... ah, perdón, de la 2850 a la 3084. Resolucions, resolucions?"
+    },
+    {
+      "start": 6462.8,
+      "end": 6472,
+      "speaker": "c10/SPEAKER_01",
+      "text": "Pues passem al següent punt, que seria precs i preguntes. Vale? Precs i preguntes, anem per blocs, Partit Popular, precs i preguntes del Partit Popular."
+    },
+    {
+      "start": 6472,
+      "end": 6478.8,
+      "speaker": "c10/SPEAKER_00",
+      "text": "Gràcies. Eh, un prec. Lo que s'aprova en els plenaris no és una síntesi lo que queda reflectat en el paper, és lo que està en el paper. El paper serà molt suprit, però s'aprova lo que queda reflectat en el paper."
+    },
+    {
+      "start": 6478.8,
+      "end": 6485.4,
+      "speaker": "c10/SPEAKER_00",
+      "text": "No lo que es parla queda reflectat en el paper, sinó lo que el paper diu és lo que s'aprova. En qualsevol proposta d'acord, en qualsevol expedient administratiu és lo que s'aprova, textualment."
+    },
+    {
+      "start": 6485.4,
+      "end": 6498.4,
+      "speaker": "c10/SPEAKER_00",
+      "text": "I que dir que el PP i Vox compartim ideals, també ho podia dir jo de vostès en el govern d'Espanya, en EH Bildu, en Junts, els separatistes, els terroristes i els assas- assassins."
+    },
+    {
+      "start": 6498.4,
+      "end": 6504.2,
+      "speaker": "c10/SPEAKER_00",
+      "text": "Hores d'ara, dir que perquè compartisques govern en una altra partit polític compartisques els ideals, espallen lo que diuen,"
+    },
+    {
+      "start": 6504.2,
+      "end": 6511.2,
+      "speaker": "c10/SPEAKER_00",
+      "text": "perquè ací tots fiquen barreres a la convivència, però tots volen la convivència."
+    },
+    {
+      "start": 6511.2,
+      "end": 6522,
+      "speaker": "c10/SPEAKER_00",
+      "text": "Que vostè nos diga que compartim els ideals, també podria dir-ho jo del Partit Socialista que compartix els ideals amb EH Bildu, mort a qui no vulga País Basco,"
+    },
+    {
+      "start": 6522,
+      "end": 6527.1,
+      "speaker": "c10/SPEAKER_00",
+      "text": "als separatistes que volen desmembrar l'Estat espanyol en Catalunya..."
+    },
+    {
+      "start": 6527.1,
+      "end": 6530.8,
+      "speaker": "c10/SPEAKER_01",
+      "text": "El prec quin és?"
+    },
+    {
+      "start": 6530.8,
+      "end": 6538.5,
+      "speaker": "c10/SPEAKER_00",
+      "text": "El prec és que no ens comparen quan vostès no vulguen ser comparats, perquè les comparacions sempre eixen son odioses. Eh, dos preguntes. Eh,"
+    },
+    {
+      "start": 6538.5,
+      "end": 6548.8,
+      "speaker": "c10/SPEAKER_00",
+      "text": "des de en La Cebera se veuen un fotó de contenidors nous i no sabem la utilitat que tenen eixos contenidors nous en La Cebera, quan deurien estar per tota la via pública, que estan tots els conten- tots no, ara ja no, però la majoria dels contenidors estan reventats"
+    },
+    {
+      "start": 6548.8,
+      "end": 6557.8,
+      "speaker": "c10/SPEAKER_00",
+      "text": "i no entenem per què estan nous, si algú nos pot explicar per què tots eixos contenidors... hi ha molts contenidors nous en La Cebera."
+    },
+    {
+      "start": 6557.8,
+      "end": 6567.2,
+      "speaker": "c10/SPEAKER_00",
+      "text": "I la segon pregunta que tinc jo és el l'accés peatonal que s'està fent en el barranc dels Moros, entre el Salut Barranc,"
+    },
+    {
+      "start": 6567.2,
+      "end": 6572.8,
+      "speaker": "c10/SPEAKER_00",
+      "text": "eh, si ja està recepcionada l'obra, si va haver variació en l'obra després de la la demostració que hi ha de o com s'ha vist afectada l'obra per les pluges,"
+    },
+    {
+      "start": 6572.8,
+      "end": 6585.8,
+      "speaker": "c10/SPEAKER_00",
+      "text": "eh, si es pensa fer continuar avant o netejar i ja està o això. Jo per la meua part, ja."
+    },
+    {
+      "start": 6585.8,
+      "end": 6590.2,
+      "speaker": "c10/SPEAKER_01",
+      "text": "Més preguntes del Partit Popular?"
+    },
+    {
+      "start": 6590.2,
+      "end": 6600,
+      "speaker": "c10/SPEAKER_03",
+      "text": "A veure, vostè, eh, si s'ha fixat en La Cebera, estan tots els contenidors que ja estan tots els contenidors de que se van a canviar tant de casc urbà com d'urbanitzacions, però això necessita un procés de muntatge que s'ha iniciat hui. Aleshores, eh, diguem que això no arriba en un bloc que ja ve muntat, això arriba per parts, per blocs, i després s'inicia una cadena de muntatge que és la que se va a realitzar, i en les pròximes setmanes, crec que ho ha comentat abans l'alcalde, en les pròximes quatre o cinc setmanes, tot eixe procés de muntatge irà acompanyat de, a mesura que se munten, se van canviant, a mesura que se..."
+    },
+    {
+      "start": 7200,
+      "end": 7205.5,
+      "speaker": "c12/SPEAKER_00",
+      "text": "Passem a... Néstor, té preguntes? Eh, aclaració? Sí, clar, qualsevol regidor. Ha passat ja el turno del PP, però bueno."
+    },
+    {
+      "start": 7216,
+      "end": 7227.5,
+      "speaker": "c12/SPEAKER_01",
+      "text": "Eh, els contenidors que se estan portant vells, la seua nova ubicació va a ser, eh, la zona de la antiga discoteca? Perquè he vist que allí n'hi han molts contenidors. No sé si és que se va a convertir en un vertedero nou o algo."
+    },
+    {
+      "start": 7227.5,
+      "end": 7235,
+      "speaker": "c12/SPEAKER_01",
       "text": "Gràcies."
     },
     {
-      "start": 6014,
-      "end": 6017.2,
-      "speaker": "c09/SPEAKER_01",
-      "text": "Més paraules? ÚLTIMA INTERVENCIÓ UN MINUT."
+      "start": 7235,
+      "end": 7238,
+      "speaker": "c12/SPEAKER_00",
+      "text": "Eh, Jose, Rafa."
     },
     {
-      "start": 6017.2,
-      "end": 6021.7,
-      "speaker": "c09/SPEAKER_05",
-      "text": "Podria fer-te un relat, Rafa, dels viatges que"
+      "start": 7238,
+      "end": 7253,
+      "speaker": "c12/SPEAKER_02",
+      "text": "No, Jose o jo, igual. S'estan acumulant allí ara mateix en el sentit del desplaçament, però no solo que se va a convertir en un vertedero nou, sinó que se li va a dar una bona una nova vida perquè se va a se va a fer un projecte de reciclatge amb ells. Se va a reciclar eixe plàstic, per a dir-ho així."
     },
     {
-      "start": 6021.7,
-      "end": 6026.2,
-      "speaker": "c09/SPEAKER_05",
-      "text": "he hagut de dir dreta i extrema dreta juntamos"
+      "start": 7253,
+      "end": 7262,
+      "speaker": "c12/SPEAKER_00",
+      "text": "I I I per a que va, per a que se m'ha queixat, perquè s'ha fet exposició ací en en en en pincellada molt grossa, mire, nosaltres no gobernem amb Bildu."
     },
     {
-      "start": 6026.2,
-      "end": 6030.7,
-      "speaker": "c09/SPEAKER_05",
-      "text": "les dos en la mateixa posició quan José Manuel"
+      "start": 7262,
+      "end": 7275,
+      "speaker": "c12/SPEAKER_00",
+      "text": "Acordem propostes amb Bildu com acordem Compromís, com acordem Esquerra Unida o acordem amb molts. El govern nostre és un govern que es diu Sumar, que és progressista, que està claríssim, i això és un govern, un pacte de govern. Hi ha un programa clar que hem pogut defensar al màxim lo que hem pogut, lo que no hem pogut, no. I això és govern."
     },
     {
-      "start": 6030.7,
-      "end": 6035.1,
-      "speaker": "c09/SPEAKER_05",
-      "text": "ho ha acabat de fer una, dos, tres o"
+      "start": 7275,
+      "end": 7289,
+      "speaker": "c12/SPEAKER_00",
+      "text": "Nosaltres no gobernem ni tenim un pacte de govern, ningú. Ni amb Bildu, ni els filoterroristes que vostè diu, i totes eixes coses, és que han votat vostès i han pactat amb Bildu és en el País Basco."
     },
     {
-      "start": 6035.1,
-      "end": 6039.6,
-      "speaker": "c09/SPEAKER_05",
-      "text": "quatre vegades en la última intervenció. I jo, i"
+      "start": 7289,
+      "end": 7299,
+      "speaker": "c12/SPEAKER_00",
+      "text": "L'Esquerra Abertzale neta ha sigut Aznar. Què li deia vegeu que ho diga el representant de Bildu. Jo mai m'he reunit amb ETA. Qui es va reunir fou Aznar. I va ser un representant de Bildu per tal de la per tal de la, per ser de la rama cristiana. Cal d'aclarir-ho també, val?"
     },
     {
-      "start": 6039.6,
-      "end": 6044.1,
-      "speaker": "c09/SPEAKER_05",
-      "text": "jo ni he mencionat eleccions, ni he mencionat"
+      "start": 7299,
+      "end": 7311,
+      "speaker": "c12/SPEAKER_00",
+      "text": "Aleshores lo que vull dir és que nosaltres el pacte de govern d'Espanya el tenim en una formació política o en dos formacions polítiques i és claríssim. Ni hem pactat amb Bildu, ni amb ningú. Vostès tenen un pacte en una servilleta,"
     },
     {
-      "start": 6044.1,
-      "end": 6048.5,
-      "speaker": "c09/SPEAKER_05",
-      "text": "guerres, ni he mencionat els moros"
+      "start": 7311,
+      "end": 7324,
+      "speaker": "c12/SPEAKER_00",
+      "text": "en una servilleta amb Vox, signat, que estan duent, que estan duent a l'extrem de lo que van signar a la servilleta ací en la Generalitat, de govern. És tindre el govern. En pacte de govern, tindre conselleries,"
     },
     {
-      "start": 6048.5,
-      "end": 6053,
-      "speaker": "c09/SPEAKER_05",
-      "text": "com a moros que se'n tenen que anar, ni he dit res"
+      "start": 7324,
+      "end": 7331,
+      "speaker": "c12/SPEAKER_00",
+      "text": "tindre secretaries autonòmiques. Val? Això ve per la il·lusió que ha fet vostè equivocada perquè ho solta i ja està i això no és correcte. Vostè pot dir..."
     },
     {
-      "start": 6053,
-      "end": 6057.5,
-      "speaker": "c09/SPEAKER_05",
-      "text": "d'això. No sé què em consideres, dreta"
+      "start": 7331,
+      "end": 7332.5,
+      "speaker": "c12/SPEAKER_03",
+      "text": "Vostè, està passant el temps..."
     },
     {
-      "start": 6057.5,
-      "end": 6061.9,
-      "speaker": "c09/SPEAKER_05",
-      "text": "o extrema dreta, però jo això no ho he mencionat"
+      "start": 7332.5,
+      "end": 7337.5,
+      "speaker": "c12/SPEAKER_00",
+      "text": "Estic parlant jo. Jo l'he escoltat. Jo l'he... Vostè ha fet un prec, vostè ha fet un prec i jo l'he escoltat i vostè..."
     },
     {
-      "start": 6061.9,
-      "end": 6066.4,
-      "speaker": "c09/SPEAKER_05",
-      "text": "en tot el discurs. Jo, la moció,"
+      "start": 7337.5,
+      "end": 7339,
+      "speaker": "c12/SPEAKER_03",
+      "text": "Sí, claro, és que és un prec..."
     },
     {
-      "start": 6066.4,
-      "end": 6070.9,
-      "speaker": "c09/SPEAKER_05",
-      "text": "lo que se va a votar, lo que se diu"
+      "start": 7339,
+      "end": 7351,
+      "speaker": "c12/SPEAKER_00",
+      "text": "Pero no t'ha... Pero com és un prec, atenga un momentet, i la i ja tinc la paraula jo, vull contestar eixe prec i vostè me l'atén. Vostè se calla i me l'escolta com jo m'he callat per a escoltar tot lo que ha dit. Que no estava d'acord, i abans d'acabar volia clarificar el prec que ha fet."
     },
     {
-      "start": 6070.9,
-      "end": 6075.3,
-      "speaker": "c09/SPEAKER_05",
-      "text": "no se va a votar, lo que se va a votar és lo que"
+      "start": 7351,
+      "end": 7353,
+      "speaker": "c12/SPEAKER_03",
+      "text": "A clarificar la seua idea."
     },
     {
-      "start": 6075.3,
-      "end": 6079.8,
-      "speaker": "c09/SPEAKER_05",
-      "text": "queda reflectat. Esta moció, gràcies"
+      "start": 7353,
+      "end": 7360,
+      "speaker": "c12/SPEAKER_00",
+      "text": "Bueno, la meua idea. Si em deixa parlar, si em deixa parlar, que no té educació mai per a aguantar quan tu no parles..."
     },
     {
-      "start": 6079.8,
-      "end": 6084,
-      "speaker": "c09/SPEAKER_05",
-      "text": "José Manuel, eh José Manuel, Zoe, regidor de"
+      "start": 7360,
+      "end": 7362,
+      "speaker": "c12/SPEAKER_03",
+      "text": "Jo volia preguntar sobre eixa..."
+    },
+    {
+      "start": 7362,
+      "end": 7368,
+      "speaker": "c12/SPEAKER_00",
+      "text": "És que la presidència la tinc jo i per tant quan duc la presidència fins que no canvie el format és la presidència..."
+    },
+    {
+      "start": 7368,
+      "end": 7371,
+      "speaker": "c12/SPEAKER_03",
+      "text": "Això no canviarà ara, no."
+    },
+    {
+      "start": 7371,
+      "end": 7378,
+      "speaker": "c12/SPEAKER_00",
+      "text": "El que no canviarà és vostè. Igual que dic que no hi havia manteniment mentre la gestió estava tan tranquil i així li passa una..."
+    },
+    {
+      "start": 7378,
+      "end": 7380,
+      "speaker": "c12/SPEAKER_03",
+      "text": "Que estic tranquil perquè no n'hi havia."
+    },
+    {
+      "start": 7380,
+      "end": 7394,
+      "speaker": "c12/SPEAKER_00",
+      "text": "Bueno, pues si vostè diu que que no hi ha manteniment, en fi, allà veurà vostè. Ara quan quan vaig a les màquines i faig el manteniment va i vostè diu: \"mira, altra cosa és que el cèsped siga vell\". Pero bueno, vostè a la seua perquè com se va... Lo que volia dir-li i que quede clar és que nosaltres no gobernem amb Bildu. No gobernem amb Esquerra Republicana, no gobernem amb Junts..."
+    },
+    {
+      "start": 7394,
+      "end": 7396,
+      "speaker": "c12/SPEAKER_03",
+      "text": "I nosaltres en Vox tampoc."
+    },
+    {
+      "start": 7396,
+      "end": 7398,
+      "speaker": "c12/SPEAKER_00",
+      "text": "Vostès ací a la Generalitat Valenciana..."
+    },
+    {
+      "start": 7398,
+      "end": 7400,
+      "speaker": "c12/SPEAKER_03",
+      "text": "No gobernem en Vox."
+    },
+    {
+      "start": 7400,
+      "end": 7403,
+      "speaker": "c12/SPEAKER_00",
+      "text": "Vostès si m'escoltara i no interrompera, aguantara-se un poquet..."
+    },
+    {
+      "start": 7403,
+      "end": 7408,
+      "speaker": "c12/SPEAKER_03",
+      "text": "No, perquè no em va a deixar parlar, què més me dona? Al final vostè..."
+    },
+    {
+      "start": 7408,
+      "end": 7419,
+      "speaker": "c12/SPEAKER_00",
+      "text": "Pero vostè no entén que que que jo sóc el la presidència i puc acabar el ple? Yo lo que no entenc, lo que lo que no entenc és que permanentment"
+    },
+    {
+      "start": 7419,
+      "end": 7425,
+      "speaker": "c12/SPEAKER_00",
+      "text": "que no fa cap regidor d'este ple, ningú, estiga interrompent intervencions. No ho entenc. Bueno, sí ho entenc. Saps com se diu això? Bueno, no vaig a dir-ho perquè si no..."
+    },
+    {
+      "start": 7425,
+      "end": 7428,
+      "speaker": "c12/SPEAKER_03",
+      "text": "Sense que al final ho fa igual."
+    },
+    {
+      "start": 7428,
+      "end": 7432,
+      "speaker": "c12/SPEAKER_00",
+      "text": "Ha fet un prec. Ha dit lo que volia dir. L'hem d'escoltar tots."
+    },
+    {
+      "start": 7432,
+      "end": 7445,
+      "speaker": "c12/SPEAKER_00",
+      "text": "Val? No ha demanat la paraula per a intervenir com este senyor, que ha volgut parlar i hi ha demanat la paraula, li l'hem donat i ha dit lo que volia. Però això ho fa habitualment. Va en el seu ADN, i per tant en eixe sentit, quan fa un prec, haguera pogut tancar el ple explicant que d'eixe prec que vostè ha fet, nosaltres no gobernem amb Bildu,"
+    },
+    {
+      "start": 7445,
+      "end": 7460,
+      "speaker": "c12/SPEAKER_00",
+      "text": "no gobernem Esquerra Republicana, no gobernem amb Junts, no gobernem en en altres partits. Gobernem en una coalició que es diu, eh, Esquerra Unida - Sumar i que estem governant el país. A més o a menys o a grats o a menys."
+    },
+    {
+      "start": 7460,
+      "end": 7473,
+      "speaker": "c12/SPEAKER_00",
+      "text": "I lo que vull dir és que vostès tenen un pacte de govern i estan en el govern amb Vox en la Generalitat, per a lo bo o per a lo roïn. I per tant en eixe sentit, eixe pacte se està complint en les condicions que Vox està marcant-li per a donar-li la majoria, entre ells el tema del canvi climàtic, eixir-se'n de la 2030,"
+    },
+    {
+      "start": 7473,
+      "end": 7483,
+      "speaker": "c12/SPEAKER_00",
+      "text": "en temes de, eh, xiringuitos que diuen i així li podria fer un un decàleg de qüestions que han fet. Val? I això és govern. Nosaltres no gobernem en filoterroristes com vostè diu, que per cert són partits ja democràtics per molt que tinguen, per això la seua crítica política com la té de Vox,"
+    },
+    {
+      "start": 7483,
+      "end": 7488,
+      "speaker": "c12/SPEAKER_00",
+      "text": "val? Vox és igual de democràtic que qualsevol partit constituït democràticament."
+    },
+    {
+      "start": 7488,
+      "end": 7489,
+      "speaker": "c12/SPEAKER_03",
+      "text": "I llavors?"
+    },
+    {
+      "start": 7489,
+      "end": 7498,
+      "speaker": "c12/SPEAKER_00",
+      "text": "Altra cosa és que no compartim les idees, val? Altra cosa és que no compartim les idees. Anem a acabar el ple perquè el algú del públic vol dir alguna qüestió?"
+    },
+    {
+      "start": 7498,
+      "end": 7499,
+      "speaker": "c12/SPEAKER_03",
+      "text": "No."
+    },
+    {
+      "start": 7499,
+      "end": 7504,
+      "speaker": "c12/SPEAKER_00",
+      "text": "No n'hi ha ningú. Bueno, molt millor. Excepte... Bueno, espereu-se sis minutets perquè a les set i mitja estarem ací."
+    },
+    {
+      "start": 7504,
+      "end": 7506,
+      "speaker": "c12/SPEAKER_03",
+      "text": "I se senten en el mateix mantell?"
+    },
+    {
+      "start": 7506,
+      "end": 7511,
+      "speaker": "c12/SPEAKER_00",
+      "text": "Eh? Sí, ells... Mireu, explique... Quan ja s'ha acabat el ple vos ho explique."
     }
   ],
   "rows": [
@@ -6151,6 +7243,38 @@
           "spokenBy": "c05/SPEAKER_01",
           "at": 3324.9,
           "quote": "Alberto.",
+          "relation": "turn-grant"
+        }
+      ],
+      "namesIndividual": false,
+      "weak": false
+    },
+    {
+      "label": "c03/SPEAKER_07",
+      "bloc": "PSOE",
+      "slug": "jose-angel-hernandez-carrizosa",
+      "heardAs": "José Ángel",
+      "evidence": [
+        {
+          "spokenBy": "c03/SPEAKER_01",
+          "at": 2010.6,
+          "quote": "José Ángel",
+          "relation": "turn-grant"
+        }
+      ],
+      "namesIndividual": false,
+      "weak": false
+    },
+    {
+      "label": "c03/SPEAKER_08",
+      "bloc": "PP",
+      "slug": "alberto-gimeno-calvo",
+      "heardAs": "Alberto",
+      "evidence": [
+        {
+          "spokenBy": "c03/SPEAKER_01",
+          "at": 2093.2,
+          "quote": "Eh, Alberto",
           "relation": "turn-grant"
         }
       ],
@@ -6348,41 +7472,65 @@
       "label": "c09/SPEAKER_04",
       "reason": "evidence-speaker-mismatch",
       "detail": "393.3s is SPEAKER_04, cited as SPEAKER_01"
+    },
+    {
+      "label": "c03/SPEAKER_01",
+      "reason": "unresolvable",
+      "detail": "heard \"alcalde\" matches nobody"
+    },
+    {
+      "label": "c03/SPEAKER_04",
+      "reason": "ambiguous",
+      "detail": "heard \"José\" fits 6: José Luis Ramos March, José Ángel Hernández Carrizosa, José Manuel Vila Oltra, María José Pradas Ramo, José Luis Fernández Santamaría, José Manuel Gallardo Martínez"
+    },
+    {
+      "label": "c10/SPEAKER_02",
+      "reason": "relation-contradicted",
+      "detail": "turn-grant, but 384.8s is followed by SPEAKER_01"
+    },
+    {
+      "label": "c10/SPEAKER_03",
+      "reason": "unresolvable",
+      "detail": "no name in the cited quote and the party is not single-seat"
+    },
+    {
+      "label": "c12/SPEAKER_00",
+      "reason": "unresolvable",
+      "detail": "no name in the cited quote and the party is not single-seat"
+    },
+    {
+      "label": "c12/SPEAKER_02",
+      "reason": "ambiguous",
+      "detail": "heard \"Rafa\" fits 2: Rafael Gómez Sánchez, Rafael Folgado Navarro"
     }
   ],
   "stats": {
     "chunksExpected": 13,
-    "chunksTranscribed": 9,
+    "chunksTranscribed": 12,
     "failedChunks": [
       {
-        "chunk": 3,
-        "why": "HTTP 503: This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later."
-      },
-      {
-        "chunk": 10,
-        "why": "never attempted (call budget spent; resumes next run)"
-      },
-      {
         "chunk": 11,
-        "why": "never attempted (call budget spent; resumes next run)"
-      },
-      {
-        "chunk": 12,
-        "why": "never attempted (call budget spent; resumes next run)"
+        "why": "covered 80% (floor 85%)",
+        "attempts": 1,
+        "givenUpUnder": {
+          "prompt": "speaker-map-v2",
+          "floor": 0.85,
+          "thinking": "low"
+        }
       }
     ],
-    "labelsSeen": 40,
-    "rowsAccepted": 3,
-    "rowsRejected": 38,
+    "labelsSeen": 15,
+    "rowsAccepted": 5,
+    "rowsRejected": 44,
     "rejectedBy": {
-      "unresolvable": 7,
-      "relation-contradicted": 9,
+      "unresolvable": 10,
+      "relation-contradicted": 10,
       "evidence-speaker-mismatch": 18,
       "evidence-outside-transcript": 1,
-      "ambiguous": 3
+      "ambiguous": 5
     },
-    "attemptedThisRun": 8,
-    "apiCalls": 17,
-    "coverage": 0.8221906581117023
+    "attemptedThisRun": 4,
+    "apiCalls": 8,
+    "coverage": 1
   }
 }

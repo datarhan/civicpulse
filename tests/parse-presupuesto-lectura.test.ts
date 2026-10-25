@@ -40,6 +40,20 @@ const ROOT = join(__dirname, '..')
 const ejecucion = JSON.parse(readFileSync(join(ROOT, 'public/data/budget-execution.json'), 'utf8'))
 const budget = JSON.parse(readFileSync(join(ROOT, 'public/data/budget.json'), 'utf8'))
 const deuda = JSON.parse(readFileSync(join(ROOT, 'public/data/deuda-viva.json'), 'utf8'))
+/**
+ * El «capítulo que abrió en cero» existió en lo PUBLICADO hasta el 2026-10-21 y
+ * era un artefacto: el snapshot tomaba la hoja de gastos del 2T (impresa el
+ * 30-06-2025, con Inversiones reales a 0 € iniciales) como cierre. La del 4T da
+ * a ese capítulo 905.517,35 € de entrada, lo mismo que CONPREL. El camino de
+ * código del cero sigue siendo el que vale si un ejercicio de verdad abre un
+ * capítulo en cero, así que se prueba sobre aquel snapshot real, congelado.
+ */
+const junio = JSON.parse(
+  readFileSync(
+    join(ROOT, 'tests/fixtures/budget-execution_publicado-2026-10-21_hoja-2t2025.json'),
+    'utf8',
+  ),
+)
 
 describe('cascadaGastos · del crédito inicial a lo ejecutado', () => {
   const c = cascadaGastos(ejecucion.latest.gastos.total)!
@@ -92,15 +106,18 @@ describe('lecturaCapitulos · dónde se amplió y dónde se ejecutó', () => {
     expect(suma).toBeCloseTo(1, 6)
   })
 
-  it('marca el capítulo que abrió en cero y termina con crédito', () => {
-    const enCero = filas.filter((f) => f.abrioEnCero)
+  it('marca el capítulo que abrió en cero y termina con crédito (hoja del 2T, real)', () => {
+    const enCero = lecturaCapitulos(junio.latest.gastos.chapters, junio.latest.gastos.total).filter(
+      (f) => f.abrioEnCero,
+    )
     expect(enCero.length).toBeGreaterThanOrEqual(1)
     for (const f of enCero) {
       expect(f.inicial).toBe(0)
       expect(f.definitivo).toBeGreaterThan(0)
     }
     // Y un capítulo con crédito inicial no lleva la marca, por grande que sea
-    // su ampliación.
+    // su ampliación: en el cierre publicado, ninguno abre en cero.
+    expect(filas.some((f) => f.abrioEnCero)).toBe(false)
     const conCredito = filas.filter((f) => f.inicial > 0)
     expect(conCredito.every((f) => !f.abrioEnCero)).toBe(true)
   })
@@ -115,12 +132,19 @@ describe('lecturaCapitulos · dónde se amplió y dónde se ejecutó', () => {
 })
 
 describe('capituloDominante · «casi toda la ampliación fue a…»', () => {
-  it('en 2025 es Inversiones reales, que abrió en cero y se llevó la mayoría', () => {
+  it('en el cierre de 2025 es Inversiones reales, que NO abrió en cero: 905.517,35 €', () => {
     const d = capituloDominante(ejecucion.latest.gastos.chapters, ejecucion.latest.gastos.total)!
     expect(d).not.toBeNull()
     expect(d.capitulo).toBe(6)
-    expect(d.abrioEnCero).toBe(true)
+    expect(d.abrioEnCero).toBe(false)
     expect(d.cuotaAmpliacion).toBeGreaterThan(0.5)
+    expect(ceroDelDominante(d, budget.snapshot, ejecucion.latest.year)).toBeNull()
+  })
+
+  it('en la hoja del 2T (real, publicada hasta el 21-10) abría en cero', () => {
+    const d = capituloDominante(junio.latest.gastos.chapters, junio.latest.gastos.total)!
+    expect(d.capitulo).toBe(6)
+    expect(d.abrioEnCero).toBe(true)
   })
 
   it('devuelve null cuando la ampliación se reparte y nadie tiene mayoría', () => {
@@ -144,25 +168,22 @@ describe('capituloDominante · «casi toda la ampliación fue a…»', () => {
   })
 })
 
-describe('ceroDelDominante · ¿de quién es el cero?', () => {
-  const dominante = capituloDominante(
-    ejecucion.latest.gastos.chapters,
-    ejecucion.latest.gastos.total,
-  )!
+describe('ceroDelDominante · ¿de quién es el cero? (hoja del 2T, real)', () => {
+  const dominante = capituloDominante(junio.latest.gastos.chapters, junio.latest.gastos.total)!
   const conCapitulo6 = (amount: number | null) => ({
-    year: ejecucion.latest.year,
+    year: junio.latest.year,
     expenseByEconomicChapter: [{ code: '6', amount }],
   })
 
-  it('en 2025 las dos fuentes discrepan: CONPREL da 905.517,35 € de entrada', () => {
-    expect(ceroDelDominante(dominante, budget.snapshot, ejecucion.latest.year)).toEqual({
+  it('contra la hoja del 2T las dos fuentes discrepaban: CONPREL da 905.517,35 € de entrada', () => {
+    expect(ceroDelDominante(dominante, budget.snapshot, junio.latest.year)).toEqual({
       estado: 'discrepan',
       conprel: 905517.35,
     })
   })
 
   it('coinciden con CONPREL a cero; sin dato con la celda null', () => {
-    const y = ejecucion.latest.year
+    const y = junio.latest.year
     expect(ceroDelDominante(dominante, conCapitulo6(0), y)?.estado).toBe('coinciden')
     expect(ceroDelDominante(dominante, conCapitulo6(null), y)).toEqual({
       estado: 'sinConprel',
@@ -171,7 +192,7 @@ describe('ceroDelDominante · ¿de quién es el cero?', () => {
   })
 
   it('sin contraste si CONPREL es de otro ejercicio o no ha llegado', () => {
-    const y = ejecucion.latest.year
+    const y = junio.latest.year
     expect(ceroDelDominante(dominante, { ...conCapitulo6(0), year: y - 1 }, y)?.estado).toBe(
       'sinContraste',
     )

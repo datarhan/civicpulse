@@ -33,6 +33,22 @@
 import { useT } from '../../i18n'
 import { RetratoCargo } from './RetratoCargo'
 
+/**
+ * El retrato de quien tiene la competencia: del padrón (`officials.json`) por el
+ * slug `oficial` que la asignación ya trae firmado, nunca deducido del nombre.
+ * `fotoRetirada` manda sobre todo — la promesa de /aviso-legal: se va la foto,
+ * se queda el registro — y entonces, igual que sin entrada en el padrón, es
+ * `null` y la tarjeta pinta iniciales.
+ *
+ * Una sola copia para la ficha del servicio y para «Responde»: «Responde»
+ * pasaba `conFoto` sin `foto` y pintaba iniciales a todos, y dos copias de
+ * esta regla son dos sitios donde la retirada puede olvidarse.
+ */
+export function fotoDeCompetencia(asignacion, officials) {
+  if (!asignacion || asignacion.fotoRetirada) return null
+  return (officials ?? []).find((o) => o.slug === asignacion.oficial)?.photoUrl ?? null
+}
+
 export function CompetenciaDelegada({ asignacion, conFoto = false, foto = null, fuente = null }) {
   const t = useT()
   if (!asignacion) return null
