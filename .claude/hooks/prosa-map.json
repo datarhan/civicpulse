@@ -208,6 +208,7 @@
       "/declaraciones",
       "/departamentos",
       "/departamentos/:slug",
+      "/eficiencia",
       "/eficiencia/:id",
       "/lab-health",
       "/laboratorio/agentes/:assignmentId",
