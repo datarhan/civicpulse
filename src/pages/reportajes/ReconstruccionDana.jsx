@@ -414,6 +414,7 @@ export default function ReconstruccionDana() {
 
   const t = data.totals
   const m = data.meta
+  const ej = data.ejecucion2025
   const danaSituado = danaSituadoDe(data.danaPlaces)
   const ola = mesDeLaOla(data.timelineFull)
 
@@ -602,8 +603,23 @@ export default function ReconstruccionDana() {
           el dato: el Ayuntamiento lo atribuyó a los daños de la riada y presentó las cuentas como
           el presupuesto de la reconstrucción. No es una partida de 43,5 millones para reconstruir
           —es el presupuesto entero del municipio, cuyo crédito de gastos rendido al ministerio para
-          2025 era de 41,58 millones—, sino el año completo ordenado alrededor de ella. Lo
-          efectivamente reconocido a 31 de diciembre fue menos de la mitad: 18,91 millones.
+          2025 era de 41,58 millones—, sino el año completo ordenado alrededor de ella.
+          {/* Decía «Lo efectivamente reconocido a 31 de diciembre fue menos de la mitad: 18,91
+              millones», escrito a mano desde la hoja del segundo trimestre que el sitio leyó
+              como cierre hasta el 22-10-2026 (#417). El arreglo de los datos no llegó a la
+              frase, así que ahora sale de `ejecucion2025`, congelado en el JSON de la pieza y
+              vigilado por check:drift contra el cierre de budget-execution.json. */}
+          {ej && (
+            <>
+              {' '}
+              A 31 de diciembre se habían reconocido obligaciones por{' '}
+              {millones(ej.obligacionesReconocidas)} millones: el{' '}
+              {Math.round((ej.obligacionesReconocidas / ej.creditoInicial) * 100)} % del crédito
+              inicial y el {Math.round((ej.obligacionesReconocidas / ej.creditoDefinitivo) * 100)} %
+              del crédito definitivo, que las modificaciones del año llevaron a{' '}
+              {millones(ej.creditoDefinitivo)} millones.
+            </>
+          )}
         </p>
 
         <SecHead num="06" kicker="El vacío" title="Quién audita esto, y con qué lupa" />
