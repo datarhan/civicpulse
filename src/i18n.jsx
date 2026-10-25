@@ -1346,6 +1346,9 @@ export const CATALOGUE = {
     'quejas.detalle.relacion.pastilla':
       'Relación determinista y verificable — coincidencia de zona y/o materia',
     'quejas.detalle.relacion.verContrato': 'Ver contrato en contrataciondelestado.es →',
+    'quejas.detalle.relacion.adjudicado': 'Adjudicado el {fecha}',
+    'quejas.detalle.relacion.importe': '{importe} € sin IVA',
+    'quejas.detalle.relacion.importeNoPublicado': 'importe no publicado',
     'quejas.detalle.reloj.eyebrow': 'Reloj legal',
     'quejas.detalle.reloj.titulo': 'Plazo LPACAP en curso',
     'quejas.detalle.reloj.registrada': 'Registrada',
@@ -3652,6 +3655,9 @@ export const CATALOGUE = {
     'quejas.detalle.relacion.pastilla':
       'Relació determinista i verificable — coincidència de zona i/o matèria',
     'quejas.detalle.relacion.verContrato': 'Veure el contracte a contrataciondelestado.es →',
+    'quejas.detalle.relacion.adjudicado': 'Adjudicat el {fecha}',
+    'quejas.detalle.relacion.importe': '{importe} € sense IVA',
+    'quejas.detalle.relacion.importeNoPublicado': 'import no publicat',
     'quejas.detalle.reloj.eyebrow': 'Rellotge legal',
     'quejas.detalle.reloj.titulo': 'Termini LPACAP en curs',
     'quejas.detalle.reloj.registrada': 'Registrada',
