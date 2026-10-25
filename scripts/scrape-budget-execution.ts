@@ -11,6 +11,7 @@ import { fileURLToPath } from 'node:url'
 import {
   parseBudgetExecutionPdf,
   mergeExecutionPeriod,
+  elegirDocumento,
   type BudgetExecutionPeriod,
   type ExecDoc,
   type ExecKind,
@@ -53,6 +54,7 @@ const emptyDoc = (kind: ExecKind): ExecDoc => ({
   kind,
   year: 0,
   fechaListado: null,
+  fechaImpresion: null,
   chapters: [],
   total: { inicial: 0, modificaciones: 0, actual: 0, ejecutado: 0 },
 })
@@ -75,10 +77,10 @@ async function selectBestDoc(urls: string[], kind: ExecKind): Promise<ExecDoc> {
       await sleep(400)
     }
   }
-  const best = docs
-    .filter((d) => d.total.actual > 0)
-    .sort((a, b) => b.chapters.length - a.chapters.length)[0]
-  return best ?? emptyDoc(kind)
+  // El corte más tardío primero, y a igualdad el de más capítulos: la página de
+  // 2025 cuelga el 2T y el 4T juntos, los dos con 8 capítulos, y sólo contar
+  // capítulos publicó junio como cierre del ejercicio (elegirDocumento).
+  return elegirDocumento(docs) ?? emptyDoc(kind)
 }
 
 // A period only ships if the figures are internally plausible: real year,
@@ -98,7 +100,10 @@ function isPlausiblePeriod(p: BudgetExecutionPeriod): boolean {
     p.ejecucionPct.ingresos > 0 &&
     p.ejecucionPct.ingresos <= 110 &&
     p.gastos.chapters.length > 0 &&
-    p.ingresos.chapters.length > 0
+    p.ingresos.chapters.length > 0 &&
+    // Gastos e ingresos del mismo corte: el 2025 publicado juntaba los gastos
+    // de junio con los ingresos de diciembre (30 % frente a 85 %).
+    p.mismoCorte
   )
 }
 

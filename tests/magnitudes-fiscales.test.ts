@@ -91,8 +91,12 @@ describe('las siete frases de aquel día', () => {
   })
 
   it('nombra la cifra y la palabra que la califica', () => {
-    const [a] = revisarMagnitudes('cuyo gasto liquidado en todo 2025 fue de 41,58 millones', M)
-    expect(a.clave).toBe('conprel')
+    const avisos = revisarMagnitudes('cuyo gasto liquidado en todo 2025 fue de 41,58 millones', M)
+    // Una frase, un aviso. En el cierre de 2025, 41,58 M€ es a la vez el crédito
+    // inicial del ayuntamiento y el de CONPREL: el aviso nombra los dos.
+    expect(avisos).toHaveLength(1)
+    const [a] = avisos
+    expect([a.clave, ...(a.tambien ?? [])]).toContain('conprel')
     expect(a.palabra).toBe('gasto')
     expect(a.fragmento).toContain('liquidado')
   })

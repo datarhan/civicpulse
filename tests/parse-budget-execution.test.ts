@@ -2,7 +2,12 @@ import { describe, it, expect } from 'vitest'
 import { readFileSync } from 'node:fs'
 import { join } from 'node:path'
 import { parseSpanishAmount, parseBudgetExecutionPdf } from '../src/scraper/budget-execution'
-import { mergeExecutionPeriod, pct } from '../src/scraper/budget-execution'
+import {
+  mergeExecutionPeriod,
+  pct,
+  fechaDeCorte,
+  elegirDocumento,
+} from '../src/scraper/budget-execution'
 
 const fx = (n: string) => readFileSync(join(__dirname, 'fixtures', n), 'utf8')
 
@@ -96,5 +101,53 @@ describe('mergeExecutionPeriod', () => {
     expect(p.ejecucionPct.gastos).toBe(30.4)
     expect(p.ejecucionPct.ingresos).toBe(61.8)
     expect(p.ingresos.chapters.length).toBeGreaterThan(0)
+  })
+})
+
+/**
+ * Dos hojas REALES de gastos de 2025 que el ayuntamiento cuelga en la MISMA
+ * página: la del 2T (impresa el 30-06-2025) y la del 4T (impresa el
+ * 11-02-2026). Las dos dicen «Fecha de listado igual a: 31/12/2025» — es el
+ * parámetro del informe, no el corte de los datos — y las dos tienen 8
+ * capítulos. El primer snapshot eligió la del 2T por el orden de la página y la
+ * publicó como cierre del ejercicio: «gastó 30 de cada 100» donde el cierre
+ * dice 60, y junto a unos ingresos del 4T.
+ */
+describe('fecha de corte y elección entre hojas de un mismo año', () => {
+  const g2 = parseBudgetExecutionPdf(fx('budget-execution-gastos_2t2025.txt'))
+  const g4 = parseBudgetExecutionPdf(fx('budget-execution-gastos_4t2025.txt'))
+  const i2 = parseBudgetExecutionPdf(fx('budget-execution-ingresos_2t2025.txt'))
+
+  it('lee la fecha de impresión de la cabecera y guarda el parámetro del informe tal cual', () => {
+    expect(g2.fechaImpresion).toBe('30/06/2025')
+    expect(g4.fechaImpresion).toBe('11/02/2026')
+    expect(g2.fechaListado).toBe('31/12/2025')
+    expect(g4.fechaListado).toBe('31/12/2025')
+  })
+
+  it('el corte es la fecha anterior: una hoja no trae datos posteriores a su impresión', () => {
+    expect(fechaDeCorte(g2)).toBe('30/06/2025')
+    expect(fechaDeCorte(g4)).toBe('31/12/2025')
+  })
+
+  it('el 4T real: 40.344.388,83 de 67.072.868,89 (60,15 % en la propia hoja)', () => {
+    expect(g4.total.actual).toBe(67072868.89)
+    expect(g4.total.ejecutado).toBe(40344388.83)
+    expect(g4.chapters).toHaveLength(g2.chapters.length)
+  })
+
+  it('entre hojas del mismo año gana el corte más tardío, sea cual sea el orden de la página', () => {
+    expect(elegirDocumento([g2, g4])).toBe(g4)
+    expect(elegirDocumento([g4, g2])).toBe(g4)
+    expect(elegirDocumento([])).toBeNull()
+  })
+
+  it('un periodo con gastos e ingresos de cortes distintos se marca, y su fecha es el corte', () => {
+    const mezclado = mergeExecutionPeriod(g4, i2, { trimestre: null })
+    expect(mezclado.mismoCorte).toBe(false)
+    const junio = mergeExecutionPeriod(g2, i2, { trimestre: null })
+    expect(junio.mismoCorte).toBe(true)
+    expect(junio.fechaListado).toBe('30/06/2025')
+    expect(junio.fechaListadoFuente).toBe('31/12/2025')
   })
 })

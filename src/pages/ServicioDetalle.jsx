@@ -9,7 +9,10 @@ import { SerieServicio, enTerminosReales } from '../components/eficiencia/SerieS
 import { Lectura } from '../components/eficiencia/Lectura'
 import { Resultado } from '../components/eficiencia/Resultado'
 import { Concesion } from '../components/eficiencia/Concesion'
-import { CompetenciaDelegada } from '../components/eficiencia/CompetenciaDelegada'
+import {
+  CompetenciaDelegada,
+  fotoDeCompetencia,
+} from '../components/eficiencia/CompetenciaDelegada'
 import { GESTION, MOTIVO } from '../components/eficiencia/vocabulario'
 import { leerIndicador, lecturaVisible, chipDeclaracion } from '../scraper/indicador-lectura'
 import {
@@ -184,10 +187,7 @@ export default function ServicioDetalle() {
    * es quien distingue esos dos casos y avisa, porque un hueco silencioso en la
    * página no puede.
    */
-  const foto =
-    competencia && !competencia.fotoRetirada
-      ? ((padron?.officials ?? []).find((o) => o.slug === competencia.oficial)?.photoUrl ?? null)
-      : null
+  const foto = fotoDeCompetencia(competencia, padron?.officials)
   // TODOS los resultados de la tarjeta, no el primero: la biblioteca tiene dos
   // (prestatarios y visitas) y el segundo no se veía en ninguna parte.
   const resultados = (data?.resultados?.items ?? []).filter((r) => r.servicioRelacionado === i.id)

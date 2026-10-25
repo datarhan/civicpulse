@@ -25,6 +25,7 @@ const leer = (f) => JSON.parse(readFileSync(`public/data/${f}`, 'utf8'))
 const IND = leer('indicadores.json')
 const COMP = leer('competencias.json')
 const PROM = leer('promises.json')
+const OFICIALES = leer('officials.json')
 const FILAS = filasCuestaConsigue(IND)
 
 describe('la derivación', () => {
@@ -100,14 +101,14 @@ describe('la derivación', () => {
   })
 })
 
-function pinta({ nombresOn = true, data = IND } = {}) {
-  installFetchMock({ '/data/promises.json': PROM })
+function pinta({ nombresOn = true, data = IND, competencias = COMP } = {}) {
+  installFetchMock({ '/data/promises.json': PROM, '/data/officials.json': OFICIALES })
   return render(
     <LocaleProvider>
       <CuestaConsigueResponde
         data={data}
-        competencias={COMP}
-        porClave={nombresOn ? indexarCompetencias(COMP) : new Map()}
+        competencias={competencias}
+        porClave={nombresOn ? indexarCompetencias(competencias) : new Map()}
         nombresOn={nombresOn}
       />
     </LocaleProvider>,
@@ -230,5 +231,34 @@ describe('lo que lee el vecino', () => {
     expect(resto.querySelector('summary').textContent).toContain(String(sin.length))
     for (const fila of resto.querySelectorAll('[data-ccr-servicio]'))
       expect(fila.textContent).toContain('El Ministerio no pide ningún resultado de este servicio')
+  })
+})
+
+describe('el retrato en «Responde»', () => {
+  const POLICIA = 'b132-130p-coste-unitario'
+  const titular = COMP.asignaciones.find((a) => a.clave === POLICIA)
+  const foto = OFICIALES.officials.find((o) => o.slug === titular.oficial)?.photoUrl
+
+  it('mide algo: el titular de la policía tiene retrato en el padrón', () => {
+    expect(foto).toMatch(/\.jpg$/)
+  })
+
+  it('pinta la foto del padrón, no las iniciales (pasaba conFoto sin foto)', async () => {
+    const { container } = pinta()
+    const fila = container.querySelector(`[data-ccr-servicio="${POLICIA}"]`)
+    await waitFor(() => expect(fila.querySelector(`img[src="${foto}"]`)).not.toBeNull())
+  })
+
+  it('con la foto retirada no la pinta: se va la foto, se queda el nombre', async () => {
+    const retirada = {
+      ...COMP,
+      asignaciones: COMP.asignaciones.map((a) =>
+        a.oficial === titular.oficial ? { ...a, fotoRetirada: true } : a,
+      ),
+    }
+    const { container } = pinta({ competencias: retirada })
+    const fila = container.querySelector(`[data-ccr-servicio="${POLICIA}"]`)
+    await waitFor(() => expect(fila.textContent).toContain(titular.nombre))
+    expect(fila.querySelector('img')).toBeNull()
   })
 })
