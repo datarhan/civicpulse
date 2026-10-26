@@ -620,8 +620,8 @@ export default function PlenoDetalle() {
 
           {/* Siempre, con o sin votaciones. Sin ninguna transcrita el bloque
               desaparecía, y el «sin transcribir» quedaba en la ficha de arriba y
-              en una pestaña que no se monta hasta pulsarla: en 56 sesiones de 63
-              (26-10-2026) el resumen no decía nada de las votaciones. */}
+              en una pestaña que no se monta hasta pulsarla: el resumen de esas
+              sesiones no decía nada de las votaciones. */}
           <div>
             <OLabel>{t('plenoDetail.votes')}</OLabel>
             {votes.length > 0 ? (

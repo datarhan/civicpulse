@@ -68,9 +68,15 @@ const CON_VOTOS = AGENDAS.plenos.find(
     VOTOS.items.some((v) => v.plenoId === a.id && v.outcome === 'aprobado') && a.agenda.length >= 2,
 )?.id
 
+/**
+ * Sin «del acta»: la frase decía «las votaciones del acta de esta sesión», y ni el
+ * resultado sale del acta —sale de la sesión en regmeet, y el desglose de nuestra
+ * transcripción del audio (`provenance` en pleno-votes.json)— ni el acta existe
+ * todavía para las sesiones más recientes: zrbgic no está en pleno-actas.json.
+ */
 const PENDIENTE = {
-  es: 'Todavía no hemos transcrito las votaciones del acta de esta sesión. No significa que no las hubiera.',
-  ca: "Encara no hem transcrit les votacions de l'acta d'aquesta sessió. No vol dir que no n'hi haguera.",
+  es: 'Todavía no hemos transcrito las votaciones de esta sesión. No significa que no las hubiera.',
+  ca: "Encara no hem transcrit les votacions d'aquesta sessió. No vol dir que no n'hi haguera.",
 }
 const APROBADO = { es: 'Aprobado', ca: 'Aprovat' }
 

@@ -1141,8 +1141,11 @@ export const CATALOGUE = {
     'plenoDetail.transcriptMissing': 'Transcripción no disponible para esta sesión.',
     'plenoDetail.video': '▸ Ver vídeo',
     'plenoDetail.empty.agenda': 'Sin orden del día publicado para esta sesión.',
+    // Sin «del acta»: el resultado sale de la sesión en regmeet y el desglose de la
+    // transcripción del audio, y de las sesiones más recientes aún no hay acta
+    // publicada. Desde el 26-10-2026 la frase sale también en el resumen.
     'plenoDetail.empty.votes':
-      'Todavía no hemos transcrito las votaciones del acta de esta sesión. No significa que no las hubiera.',
+      'Todavía no hemos transcrito las votaciones de esta sesión. No significa que no las hubiera.',
     'plenoDetail.votesPending': 'sin transcribir',
     // La nota de la ficha de votaciones cuando hay alguna: el número a secas se leía
     // como las votaciones de la sesión, y son las que hemos transcrito.
@@ -3538,7 +3541,7 @@ export const CATALOGUE = {
     'plenoDetail.video': '▸ Veure vídeo',
     'plenoDetail.empty.agenda': 'Sense ordre del dia publicat per a aquesta sessió.',
     'plenoDetail.empty.votes':
-      "Encara no hem transcrit les votacions de l'acta d'aquesta sessió. No vol dir que no n'hi haguera.",
+      "Encara no hem transcrit les votacions d'aquesta sessió. No vol dir que no n'hi haguera.",
     'plenoDetail.votesPending': 'sense transcriure',
     'plenoDetail.votesTranscribed.uno': 'transcrita',
     'plenoDetail.votesTranscribed.varios': 'transcrites',
