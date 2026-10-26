@@ -7,9 +7,9 @@
  *    /presupuesto separa las dos cifras en dos tarjetas; aquí, en una, la grande
  *    es lo gastado y el tope va en una frase que lo llama tope.
  * 2. La tarjeta del barrio dice «de cada 100 €, 3 nombran un barrio» a unos
- *    píxeles del mapa de la portada, que imprime «7 %» porque mide otra cosa (los
- *    contratos con un sitio). Las dos son ciertas; la tarjeta nombra las dos y
- *    por qué difieren.
+ *    píxeles del mapa de la portada, que sitúa 7 de cada 100 porque mide otra
+ *    cosa (los contratos con un sitio). Las dos son ciertas; la tarjeta nombra
+ *    las dos y por qué difieren.
  *
  * Se pinta con las instantáneas publicadas: las cifras esperadas salen de las
  * mismas funciones que la página, no escritas aquí.
@@ -21,7 +21,7 @@ import { resolve } from 'node:path'
 import { EnBrevePortada } from '../../src/variants/direction-d/blocks/EnBrevePortada'
 import { enBrevePresupuesto } from '../../src/scraper/en-breve-presupuesto'
 import { eurM } from '../../src/components/Presupuesto/FigurasEnBreve'
-import { porcentajeDelMapa } from '../../src/components/LiveCity/controls/MoneyCoverage'
+import { deCada100DelMapa } from '../../src/components/LiveCity/controls/MoneyCoverage'
 import { pintaYLee } from '../setup/pinta-y-lee'
 
 const publicado = (f) => JSON.parse(readFileSync(resolve('public/data', f), 'utf8'))
@@ -92,14 +92,18 @@ describe('«Tu ayuntamiento en 30 segundos»: cifras que no se leen mal', () => 
   })
 
   it('la tarjeta del barrio reconcilia su cifra con la del mapa de la portada', async () => {
-    const enMapa = porcentajeDelMapa(DATOS['/data/tender-geo.json'].universe)
-    const aqui = String(presupuesto.barrio.deCada100)
-    // Hoy son distintas: si coincidieran no habría puente y la prueba no mediría nada.
+    const enMapa = deCada100DelMapa(DATOS['/data/tender-geo.json'].universe)
+    const aqui = presupuesto.barrio.deCada100
+    // Hoy son distintas, y las dos de 1 o más: si coincidieran no habría puente y
+    // la prueba no mediría nada.
     expect(enMapa).not.toBeNull()
-    expect(enMapa).not.toBe(aqui)
+    expect(enMapa.menosDeUno || presupuesto.barrio.menosDeUno).toBe(false)
+    expect(enMapa.deCada100).not.toBe(aqui)
 
     const t = await tarjetas()
     expect(t.barrio).toContain(`sólo ${aqui} van a contratos que nombran un barrio`)
-    expect(t.barrio).toContain(`El mapa de esta página dice ${enMapa} %, y no ${aqui},`)
+    expect(t.barrio).toContain(
+      `El mapa de esta página sitúa ${enMapa.deCada100} de cada 100 €, y no ${aqui},`,
+    )
   })
 })

@@ -1,5 +1,7 @@
 import { usePadron } from '../../hooks/usePadron'
-import { useBudget, formatEuros as formatBudgetEuros } from '../../hooks/useBudget'
+import { useBudget } from '../../hooks/useBudget'
+import { eur0, eurM } from '../../components/Presupuesto/FigurasEnBreve'
+import { hoyEnRibarroja, ultimoPleno } from '../../scraper/en-breve-portada'
 import { useBudgetExecution } from '../../hooks/useBudgetExecution'
 import { magnitudDelEjercicio } from '../../scraper/presupuesto-lectura'
 import { useTenders } from '../../hooks/useTenders'
@@ -45,12 +47,16 @@ function MiniSpark({ data, color }) {
 const TONE_TEXT = { ok: PALETTE.okInk, warn: PALETTE.warnInk, crit: PALETTE.crit }
 const TONE_FILL = { ok: PALETTE.ok, warn: PALETTE.warn, crit: PALETTE.crit }
 
-function Kpi({ label, value, delta, tone, sub, spark, sparkColor, serif }) {
+// `titulo`: la cifra exacta y su fuente, al pasar por encima. La celda habla en
+// palabras de vecino y redondea; lo exacto sigue a un gesto, y en la página de
+// cada tema.
+function Kpi({ label, value, delta, tone, sub, spark, sparkColor, serif, titulo }) {
   const color = TONE_TEXT[tone] ?? PALETTE.ink
   const fill = TONE_FILL[tone] ?? PALETTE.ink
   return (
     <div
       className="d-kpi-cell"
+      title={titulo || undefined}
       style={{
         padding: '10px 16px',
         borderRight: '1px solid ' + PALETTE.hair,
@@ -124,10 +130,17 @@ function KpiStrip() {
   const ejecucion = useBudgetExecution().data
 
   const popSpark = padron?.series?.total?.slice(-10).map((p) => p.value) || null
-  const popLatest = padron ? Math.round(padron.latestTotal / 100) / 10 : null
+  // Entera y con el punto de millar: «24.6k» era jerga, y su punto, el decimal
+  // inglés, se leía en castellano como «veinticuatro mil seis».
+  const popLatest = padron ? padron.latestTotal.toLocaleString('es-ES') : null
   const popDecade = padron ? padron.growth.decadePct : 0
   const popDeltaStr = padron
-    ? (popDecade >= 0 ? '▲ ' : '▼ ') + Math.abs(popDecade).toFixed(1) + '%'
+    ? (popDecade >= 0 ? '▲ ' : '▼ ') +
+      Math.abs(popDecade).toLocaleString('es-ES', {
+        minimumFractionDigits: 1,
+        maximumFractionDigits: 1,
+      }) +
+      ' %'
     : '—'
 
   // La cifra que representa el ejercicio, ELEGIDA en un módulo probado y no
@@ -139,20 +152,46 @@ function KpiStrip() {
   // elección de la cifra. La celda dice siempre QUÉ etapa y DE QUIÉN es.
   const magnitud = magnitudDelEjercicio(budget?.snapshot, ejecucion?.latest)
   const budgetYear = magnitud?.year ?? budget?.snapshot?.year
-  const budgetValue = magnitud ? formatBudgetEuros(magnitud.valor, { compact: true }) : '—'
+  const budgetValue = magnitud ? eurM(magnitud.valor) : '—'
+  // Lo gastado lleva la fecha del listado del que sale, en la misma celda: un
+  // listado de junio leído como el cierre fue el defecto de #358. Y la cifra se
+  // nombra «tope de gasto» antes que «gastado»: con las dos palabras al revés,
+  // el crédito definitivo se leía como dinero gastado (la tarjeta del dinero de
+  // «Tu ayuntamiento en 30 segundos», 26-10-2026).
+  const fechaEjecucion =
+    magnitud?.etapa === 'definitivo' ? (ejecucion?.latest?.fechaListado ?? null) : null
   const budgetSub = magnitud
     ? magnitud.etapa === 'definitivo'
       ? `${t('landing.kpi.presupuesto.definitivo')}${
           magnitud.pctEjecutado !== null
-            ? ` · ${rellena(t('landing.kpi.presupuesto.ejec'), { pct: Math.round(magnitud.pctEjecutado) })}`
+            ? ` · ${rellena(
+                t(
+                  fechaEjecucion
+                    ? 'landing.kpi.presupuesto.ejecFecha'
+                    : 'landing.kpi.presupuesto.ejec',
+                ),
+                { pct: Math.round(magnitud.pctEjecutado), fecha: fechaEjecucion },
+              )}`
             : ''
         }`
       : t('landing.kpi.presupuesto.aprobado')
     : t('landing.kpi.sinDato')
+  const budgetTitulo = magnitud
+    ? magnitud.etapa === 'definitivo'
+      ? rellena(t('landing.kpi.presupuesto.titulo'), {
+          valor: eur0(magnitud.valor),
+          anio: magnitud.year,
+          ejecutado: eur0(magnitud.ejecutado ?? 0),
+        })
+      : rellena(t('landing.kpi.presupuesto.tituloAprobado'), {
+          valor: eur0(magnitud.valor),
+          anio: magnitud.year,
+        })
+    : undefined
 
   const awardedTotal = tenders?.stats?.awardedTotalEuros
   const awardedCount = tenders?.stats?.awardedContracts
-  const awardedValue = awardedTotal ? formatBudgetEuros(awardedTotal, { compact: true }) : '—'
+  const awardedValue = awardedTotal ? eurM(awardedTotal) : '—'
   // Span of the award dates, so the cumulative total carries its own period.
   //
   // Measured over EXACTLY the rows the cell counts — the committed contracts
@@ -170,16 +209,61 @@ function KpiStrip() {
   // los firmados, que son cinco más. La diferencia no es cero euros, es un
   // importe que la fuente no da, y por eso se dice en vez de cuadrarlo.
   const sinImporte = comprometidosSinImporte(tenders?.contracts)
+  const awardedSub = awardedCount
+    ? `${rellena(
+        t(awardedYears ? 'landing.kpi.contratos.sub' : 'landing.kpi.contratos.subSinAnios'),
+        { n: awardedCount, anios: awardedYears },
+      )}${
+        // Entre paréntesis y no detrás de un « · »: si la línea se corta antes de
+        // la salvedad, un paréntesis se lee como unidad y un punto queda huérfano.
+        sinImporte > 0 ? ` (${rellena(t('landing.contratos.sinImporte'), { n: sinImporte })})` : ''
+      }`
+    : t('landing.kpi.sinDato')
 
-  const nextPleno = (plenos?.items || [])[0]
-  const plenoDate = nextPleno
-    ? new Date(nextPleno.date).toLocaleDateString(locale === 'ca' ? 'ca-ES' : 'es-ES', {
-        day: 'numeric',
-        month: 'short',
-      })
+  // La última sesión CELEBRADA, con la misma regla que la tarjeta del pleno de
+  // «Tu ayuntamiento en 30 segundos»: anterior a hoy en Riba-roja. Con el primer
+  // elemento del listado, una sesión listada antes de celebrarse haría que la
+  // portada diera dos «últimos plenos» distintos.
+  const ultimo = ultimoPleno(
+    (plenos?.items ?? []).map((p) => ({ id: p.id, date: p.date, puntos: null, votos: null })),
+    hoyEnRibarroja(),
+  )
+  const ultimoItem = ultimo ? plenos.items.find((p) => p.id === ultimo.id) : null
+  const plenoDate = ultimo
+    ? // Un día, no un instante: leído en UTC, al oeste de Greenwich salía el día anterior.
+      new Date(`${ultimo.fecha}T00:00:00Z`).toLocaleDateString(
+        locale === 'ca' ? 'ca-ES' : 'es-ES',
+        { day: 'numeric', month: 'short', timeZone: 'UTC' },
+      )
     : '—'
-  const plenoKind = nextPleno ? rotuloDe(t, `pleno.tipo.${nextPleno.kind}`, nextPleno.kind) : ''
+  const plenoKind = ultimoItem ? rotuloDe(t, `pleno.tipo.${ultimoItem.kind}`, ultimoItem.kind) : ''
   const totalPlenos = plenos?.stats?.total
+
+  // «2026-09» → «sept 2026»: el mes del dato en palabras, en el idioma de la página.
+  const mesEnPalabras = (periodo) =>
+    /^\d{4}-\d{2}$/.test(periodo ?? '')
+      ? new Date(`${periodo}-01T00:00:00Z`).toLocaleDateString(
+          locale === 'ca' ? 'ca-ES' : 'es-ES',
+          { month: 'short', year: 'numeric', timeZone: 'UTC' },
+        )
+      : (periodo ?? '')
+  const periodoParo = mesEnPalabras(paro?.latestPeriod)
+  // La flecha compara con la entrada anterior de la serie, que no siempre es el
+  // mes anterior: la publicada salta de 2026-04 a 2026-07, y en julio «respecto
+  // al mes anterior» habría comparado con abril. Entonces se nombra el mes.
+  const serieParo = paro?.series ?? []
+  const previoParo = serieParo.length >= 2 ? serieParo[serieParo.length - 2].period : null
+  const ultimoParo = serieParo.length >= 1 ? serieParo[serieParo.length - 1].period : null
+  const mesesEntre = (a, b) => {
+    const [ya, ma] = String(a).split('-').map(Number)
+    const [yb, mb] = String(b).split('-').map(Number)
+    return yb * 12 + mb - (ya * 12 + ma)
+  }
+  const paroSub = !previoParo
+    ? t('landing.kpi.paro.subSinPrevio')
+    : mesesEntre(previoParo, ultimoParo) === 1
+      ? t('landing.kpi.paro.sub')
+      : rellena(t('landing.kpi.paro.subDesde'), { periodo: mesEnPalabras(previoParo) })
 
   return (
     // `.d-kpi` owns height + overflow: below the breakpoint the six cells no
@@ -208,7 +292,7 @@ function KpiStrip() {
             ? rellena(t('landing.kpi.poblacionAnio'), { anio: padron.latestYear })
             : t('landing.kpi.poblacion')
         }
-        value={popLatest ? popLatest.toFixed(1) + 'k' : '—'}
+        value={popLatest ?? '—'}
         delta={popDeltaStr}
         tone={popDecade > 0 ? 'ok' : 'warn'}
         sub={padron ? t('landing.kpi.poblacion.sub') : t('landing.kpi.poblacion.subSinDato')}
@@ -231,6 +315,7 @@ function KpiStrip() {
         }
         value={budgetValue}
         sub={budgetSub}
+        titulo={budgetTitulo}
       />
       {/* «Gastos personal» leía como dinero ya pagado, y es el Cap.1 del
           CRÉDITO del ejercicio, no de lo reconocido a 31-12. La tarjeta de al
@@ -244,12 +329,23 @@ function KpiStrip() {
           de `magnitudDelEjercicio`: divergir dejó de ser posible. */}
       <Kpi
         label={t('landing.kpi.personal')}
-        value={
-          magnitud?.personal ? formatBudgetEuros(magnitud.personal.valor, { compact: true }) : '—'
-        }
-        delta={magnitud?.personal ? `${magnitud.personal.pct.toFixed(0)}%` : '—'}
+        value={magnitud?.personal ? eurM(magnitud.personal.valor) : '—'}
+        delta={magnitud?.personal ? `${Math.round(magnitud.personal.pct)} %` : '—'}
         tone="civic"
-        sub={t('landing.kpi.personal.sub')}
+        sub={
+          budgetYear
+            ? rellena(t('landing.kpi.personal.sub'), { anio: budgetYear })
+            : t('landing.kpi.sinDato')
+        }
+        titulo={
+          magnitud?.personal
+            ? rellena(t('landing.kpi.personal.titulo'), {
+                valor: eur0(magnitud.personal.valor),
+                total: eur0(magnitud.valor),
+                anio: magnitud.year,
+              })
+            : undefined
+        }
       />
       {/* The period is not decoration. This sits next to "Presup. 2025 · €41,6M",
           an ANNUAL figure, while this one is CUMULATIVE over a decade of awards
@@ -264,31 +360,28 @@ function KpiStrip() {
           come from the snapshot. Two of them had already gone stale in this
           comment (€68,0M and «the €15,8M waste contract») while nothing on
           screen was wrong — the drift this repo built a hook for. */}
+      {/* El periodo y el recuento van en la segunda línea, «717 en 2017–2026,
+          sumados»: con los años en el rótulo, «Contratos adj. 2017–2026» partía
+          en dos a 1280 px, se montaba sobre la cifra y la salvedad del final
+          quedaba fuera de la celda. */}
       <Kpi
-        label={
-          awardedYears
-            ? rellena(t('landing.kpi.contratosAnios'), { anios: awardedYears })
-            : t('landing.kpi.contratos')
-        }
+        label={t('landing.kpi.contratos')}
         value={awardedValue}
-        delta={awardedCount ? '· ' + awardedCount : '—'}
         tone="ok"
-        // Entre paréntesis, no detrás de un « · », porque en esta celda el
-        // rótulo cabe justo y la salvedad se va a la segunda línea: con el
-        // separador delante, esa línea empieza por «· 5 sin importe publicado»,
-        // que es un punto huérfano. Un paréntesis se lee como unidad esté donde
-        // esté el corte. Las otras dos superficies encadenan con « · » porque
-        // allí la línea rompe dentro de la frase, no antes del separador.
-        sub={
-          sinImporte > 0
-            ? `${t('landing.kpi.contratos.sub')} (${rellena(t('landing.contratos.sinImporte'), { n: sinImporte })})`
-            : t('landing.kpi.contratos.sub')
+        sub={awardedSub}
+        titulo={
+          awardedTotal
+            ? rellena(t('landing.kpi.contratos.titulo'), {
+                total: eur0(awardedTotal),
+                anios: awardedYears ?? '',
+              })
+            : undefined
         }
       />
       <Kpi
         label={
           paro
-            ? rellena(t('landing.kpi.paroPeriodo'), { periodo: paro.latestPeriod || '' })
+            ? rellena(t('landing.kpi.paroPeriodo'), { periodo: periodoParo })
             : t('landing.kpi.paro')
         }
         value={paro ? paro.latestTotal.toLocaleString('es-ES') : '—'}
@@ -305,7 +398,7 @@ function KpiStrip() {
           const prev = paro.series[paro.series.length - 2].total
           return last < prev ? 'ok' : 'warn'
         })()}
-        sub={t('landing.kpi.paro.sub')}
+        sub={paroSub}
         spark={paro?.series?.slice(-12).map((p) => p.total) || null}
         sparkColor={PALETTE.accent}
       />

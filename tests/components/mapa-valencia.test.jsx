@@ -506,7 +506,13 @@ const LEYENDAS = [
         onPlegar={noHaceNada}
       />
     ),
-    listo: (c) => !!c.querySelector('input[type=range]') && c.textContent.includes(UNIDAD_MILLONES),
+    // La razón en euros va desde el 26-10-2026 en el `title` de la frase de
+    // cobertura, que la lectura también lee.
+    listo: (c) =>
+      !!c.querySelector('input[type=range]') &&
+      [...c.querySelectorAll('.cp-cobertura [title]')].some((el) =>
+        el.getAttribute('title').includes(UNIDAD_MILLONES),
+      ),
   },
   {
     nombre: 'la leyenda de inundación, cargando y cuando el servicio falla',

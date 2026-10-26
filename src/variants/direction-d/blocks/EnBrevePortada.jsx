@@ -1,6 +1,6 @@
 import EnBreve, { TarjetaEnBreve } from '../../../components/EnBreve'
 import BarrioPicker from '../../../components/Presupuesto/BarrioPicker'
-import { porcentajeDelMapa } from '../../../components/LiveCity/controls/MoneyCoverage'
+import { deCada100DelMapa } from '../../../components/LiveCity/controls/MoneyCoverage'
 import {
   FiguraBarrio,
   FiguraGastado,
@@ -221,14 +221,14 @@ export function EnBrevePortada() {
   // no los que nombran un barrio) a unos píxeles de esta tarjeta. Las dos cifras
   // son ciertas y ninguna contiene a la otra, así que se nombran las dos y por
   // qué difieren; si coinciden, no hay nada que reconciliar.
-  const enMapa = porcentajeDelMapa(tenderGeo?.universe)
-  const menosDeUno = t('landing.enBreve.barrio.menosDeUno')
-  const aqui = r.barrio && (r.barrio.menosDeUno ? '<1' : String(r.barrio.deCada100))
+  const enMapa = deCada100DelMapa(tenderGeo?.universe)
+  const comoSeDice = (c) =>
+    c.menosDeUno ? t('landing.enBreve.barrio.menosDeUno') : String(c.deCada100)
   const puente =
-    enMapa && aqui && enMapa !== aqui
+    enMapa && r.barrio && comoSeDice(enMapa) !== comoSeDice(r.barrio)
       ? rellena(t('landing.enBreve.barrio.puente'), {
-          pct: enMapa === '<1' ? menosDeUno : enMapa,
-          n: aqui === '<1' ? menosDeUno : aqui,
+          mapa: comoSeDice(enMapa),
+          n: comoSeDice(r.barrio),
         })
       : null
   const pie = r.barrio && zonas.length > 0 && (

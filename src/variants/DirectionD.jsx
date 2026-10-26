@@ -184,7 +184,10 @@ export default function DirectionD() {
             border-left: none; border-top: 1px solid ${PALETTE.hair};
           }
           .d-kpi { height: auto; overflow-x: auto; -webkit-overflow-scrolling: touch; }
-          .d-kpi-cell { flex: 0 0 auto; min-width: 150px; }
+          /* Con tope: la segunda línea de cada celda es una frase («717 en
+             2017–2026, sumados»), y sin él cada celda medía su frase entera en
+             una sola línea —hasta 370 px— y la tira se desplazaba el doble. */
+          .d-kpi-cell { flex: 0 0 auto; min-width: 150px; max-width: 220px; }
         }
 
         /* La pila de controles del mapa. Sus reglas que cambian con el ancho viven
@@ -193,8 +196,12 @@ export default function DirectionD() {
            chips salta de línea y el botón de plegar no existe. */
         .cp-capas-chips { flex-wrap: wrap; }
         /* 232 partía la cabecera de la tarjeta del dinero (título y los dos filtros)
-           en tres líneas. */
-        .cp-dinero { width: 268px; }
+           en tres líneas. Y 320 y no 268 desde el 26-10-2026: la frase de vecino
+           de la cobertura ocupa dos líneas donde la razón en euros ocupaba una, y
+           la pila crece hacia arriba sobre el pueblo. Más ancha, la nota pierde una
+           línea y la tarjeta queda por debajo de lo que medía; la caja de la pila
+           ya mide lo que la fila de chips (600 px), así que no tapa más a lo ancho. */
+        .cp-dinero { width: 320px; }
         .cp-cobertura { margin-top: 6px; padding-top: 6px; border-top: 1px solid #E6E1D4; }
         .cp-pila-plegar { display: none; }
         /* La clave de Metrovalencia, tarjeta de la pila (NetworkLegend.jsx). Su

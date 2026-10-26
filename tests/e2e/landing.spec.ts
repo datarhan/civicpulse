@@ -17,7 +17,7 @@ test.describe('Landing (/)', () => {
     // Mayor name from officials.json (real data, not mock)
     await expect(page.getByText(/Robert Raga/i).first()).toBeVisible({ timeout: 8000 })
 
-    // KPI strip: the labels include the current year ("Población 2025", "Presup. 2025" etc.)
+    // KPI strip: the labels include the current year ("Población 2025", "Presupuesto 2025" etc.)
     //
     // Scoped to the strip's cells. The section bar's closed panels carry
     // «población» and «Presupuesto» in hidden text that comes first in the DOM,
@@ -77,10 +77,10 @@ test.describe('Landing (/)', () => {
     // `toContainText` compares against `textContent`, which is also why the
     // uppercase text-transform is not in the way.
 
-    // 1 · KPI strip cell — sits two cells away from «Presup. 2025 · €41,6M».
-    const kpi = page.locator('.d-kpi-cell', { hasText: /Contratos adj/i }).first()
-    await expect(kpi).toContainText(`Contratos adj. ${span}`, { timeout: 8000 })
-    await expect(kpi).toContainText(awarded)
+    // 1 · KPI strip cell — sits two cells away from the one-year budget. The
+    // count and the span share its second line: «717 en 2017–2026, sumados».
+    const kpi = page.locator('.d-kpi-cell', { hasText: /Contratos adjudicados/i }).first()
+    await expect(kpi).toContainText(`${awarded} en ${span}, sumados`, { timeout: 8000 })
 
     // 2 · editorial column band — the count sits directly above a list of
     // awards all dated this July, which is what invites "recent" over
@@ -235,9 +235,17 @@ test.describe('Landing (/)', () => {
     // label implying completeness — so the coverage line is not decoration, it
     // is the difference between a map and a claim. The denominator is nine
     // exercises of awards sitting a few hundred pixels above a one-year
-    // «Presup. 2025 · €41,6M», so the span is part of the disclosure, not a
+    // «Presupuesto 2025», so the span is part of the disclosure, not a
     // decoration on it: the regex requires it rather than tolerating it.
-    const coverage = page.getByText(/M€ de [\d.,]+\s?M€ \(\d{4}(–\d{4})?\) · [\d,]+%/).first()
+    //
+    // Since 2026-10-26 the visible line is the resident's sentence, with the
+    // period inside it; the exact euro ratio is its title. The sentence never
+    // folds, at any map height.
+    const coverage = page
+      .getByText(
+        /El mapa sólo sitúa (\d+|menos de 1) de cada 100 € de contratos \(\d{4}(–\d{4})?\)/,
+      )
+      .first()
     await expect(coverage).toBeVisible({ timeout: 8000 })
     // Assert the check evaluated something: a regex that matched an empty or
     // absent node would pass `toBeVisible` on nothing at all.

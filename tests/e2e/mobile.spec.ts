@@ -103,7 +103,10 @@ const ROUTES: Route[] = [
   // water concession landed on 2026-08-06 («… de 123,7 M€»), and `\d+ M€`
   // stopped matching. The guard then refused to measure — correctly, but for a
   // stale reason. A readiness signal must survive the copy it waits on.
-  { path: '/', ready: /M€ de [\d.,]+ M€/ }, // situated-spend ticker (tenders snapshot)
+  // Since 2026-10-26 the visible coverage line is a sentence and the euro ratio
+  // lives in its title, so the signal is the sentence's figure, which only
+  // renders once tender-geo.json has arrived.
+  { path: '/', ready: /sitúa (\d+|menos de 1) de cada 100 €/ }, // map coverage (tender-geo snapshot)
   { path: '/cargos', ready: /Robert Raga Gadea/ }, // officials snapshot
   { path: '/cargos/robert-raga-gadea', ready: /@ribarroja\.es/ }, // the official's own record
   // El peor correo del padrón en cada ficha: la señal es el propio correo.

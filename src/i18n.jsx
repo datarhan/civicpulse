@@ -524,7 +524,12 @@ export const CATALOGUE = {
     // filtro puesto que sin él.
     'map.money.accum': 'adjudicado acumulado',
     'map.money.detalle': 'Detalle',
-    'map.money.of': 'de',
+    // `{periodo}` lleva el paréntesis con los años del total, o nada: el periodo
+    // del denominador va en la misma frase que la cifra (MoneyCoverage.jsx).
+    'map.money.deCada100': 'El mapa sólo sitúa {n} de cada 100 € de contratos{periodo}.',
+    // La misma cobertura, exacta, en el `title` de la frase de arriba.
+    'map.money.exacta': '{situado} situados de {total} adjudicados{periodo} · {pct} %',
+    'map.money.menosDeUno': 'menos de 1',
     // «Un único lugar, o lugares uno dentro de otro»: la regla de
     // `resolveUnambiguousPlace`. Y no más largo que la versión anterior: a 375 px
     // el panel crece hacia arriba y ya roza la franja «Directo».
@@ -2421,7 +2426,7 @@ export const CATALOGUE = {
     'landing.enBreve.dinero.topeCifra':
       'Podía gastar {limite}: un [[creditoDefinitivo|tope del presupuesto]], no un gasto.',
     'landing.enBreve.barrio.puente':
-      'El mapa de esta página dice {pct} %, y no {n}, porque cuenta otra cosa: los contratos que nombran un sitio concreto, como una calle o un colegio, estén o no en un barrio.',
+      'El mapa de esta página sitúa {mapa} de cada 100 €, y no {n}, porque cuenta otra cosa: los contratos que nombran un sitio concreto, como una calle o un colegio, estén o no en un barrio.',
     'landing.enBreve.barrio.menosDeUno': 'menos de 1',
     'landing.enBreve.pleno.pregunta': '¿Qué se decidió en el último pleno?',
     'landing.enBreve.pleno.puntos': 'Trató {n} puntos del orden del día.',
@@ -2494,22 +2499,35 @@ export const CATALOGUE = {
     // Las cifras siguen en es-ES en los dos idiomas.
     'landing.kpi.poblacion': 'Población',
     'landing.kpi.poblacionAnio': 'Población {anio}',
-    'landing.kpi.poblacion.sub': '10 años · INE',
+    'landing.kpi.poblacion.sub': 'en 10 años · INE',
     'landing.kpi.poblacion.subSinDato': 'INE Padrón',
     'landing.kpi.presupuesto': 'Presupuesto',
-    'landing.kpi.presupuestoAnio': 'Presup. {anio}',
-    'landing.kpi.presupuesto.definitivo': 'Ayto. · definitivo',
-    'landing.kpi.presupuesto.ejec': '{pct} % ejec.',
-    'landing.kpi.presupuesto.aprobado': 'CONPREL · aprobado',
+    'landing.kpi.presupuestoAnio': 'Presupuesto {anio}',
+    // La tira habla en palabras de vecino; lo exacto y la fuente, en el `title`
+    // de cada celda (`*.titulo`).
+    'landing.kpi.presupuesto.definitivo': 'tope de gasto',
+    'landing.kpi.presupuesto.ejec': 'gastado el {pct} %',
+    'landing.kpi.presupuesto.ejecFecha': 'gastado el {pct} % a {fecha}',
+    'landing.kpi.presupuesto.aprobado': 'aprobado · Ministerio de Hacienda',
+    'landing.kpi.presupuesto.titulo':
+      '{valor} de crédito definitivo en {anio}, de los que se han gastado {ejecutado}. Estado de ejecución del Ayuntamiento.',
+    'landing.kpi.presupuesto.tituloAprobado':
+      '{valor} aprobados para {anio}, según la base CONPREL del Ministerio de Hacienda.',
     'landing.kpi.sinDato': 'sin dato',
-    'landing.kpi.personal': 'Presup. personal',
-    'landing.kpi.personal.sub': 'Cap.1 económico',
-    'landing.kpi.contratos': 'Contratos adj.',
-    'landing.kpi.contratosAnios': 'Contratos adj. {anios}',
-    'landing.kpi.contratos.sub': 'acumulado · Gobierto/PLACSP',
+    'landing.kpi.personal': 'Para el personal',
+    'landing.kpi.personal.sub': 'del presupuesto {anio}',
+    'landing.kpi.personal.titulo':
+      '{valor} del capítulo 1, gastos de personal, de los {total} del presupuesto {anio}.',
+    'landing.kpi.contratos': 'Contratos adjudicados',
+    'landing.kpi.contratos.sub': '{n} en {anios}, sumados',
+    'landing.kpi.contratos.subSinAnios': '{n}, sumados',
+    'landing.kpi.contratos.titulo':
+      '{total}: la suma de los contratos adjudicados en {anios} que publican su importe. Gobierto y Plataforma de Contratación del Sector Público.',
     'landing.kpi.paro': 'Paro',
-    'landing.kpi.paroPeriodo': 'Paro {periodo}',
-    'landing.kpi.paro.sub': 'SEPE · paro registrado',
+    'landing.kpi.paroPeriodo': 'Paro · {periodo}',
+    'landing.kpi.paro.sub': 'respecto al mes anterior · SEPE',
+    'landing.kpi.paro.subDesde': 'respecto a {periodo} · SEPE',
+    'landing.kpi.paro.subSinPrevio': 'paro registrado · SEPE',
     'landing.kpi.pleno': 'Último pleno',
     'landing.kpi.pleno.sesiones': '{n} sesiones',
     'landing.alcalde.promesas': 'promesas',
@@ -2982,7 +3000,9 @@ export const CATALOGUE = {
     // que pinta todo el gasto situado. Aquí además estaba sin traducir.
     'map.money.accum': 'adjudicat acumulat',
     'map.money.detalle': 'Detall',
-    'map.money.of': 'de',
+    'map.money.deCada100': 'El mapa només situa {n} de cada 100 € de contractes{periodo}.',
+    'map.money.exacta': '{situado} situats de {total} adjudicats{periodo} · {pct} %',
+    'map.money.menosDeUno': "menys d'1",
     'map.money.coverage':
       "Només els contractes el títol dels quals nomena un únic lloc, o llocs l'un dins de l'altre. La resta és sobretot serveis d'àmbit municipal —la concessió de l'aigua, la recollida de residus, la neteja viària— adjudicats per tot el seu termini.",
     'map.poi.title': 'Serveis públics',
@@ -4632,7 +4652,7 @@ export const CATALOGUE = {
     'landing.enBreve.dinero.topeCifra':
       'Podia gastar {limite}: un [[creditoDefinitivo|límit del pressupost]], no una despesa.',
     'landing.enBreve.barrio.puente':
-      "El mapa d'esta pàgina diu {pct} %, i no {n}, perquè compta una altra cosa: els contractes que nomenen un lloc concret, com un carrer o un col·legi, estiguen o no en un barri.",
+      "El mapa d'esta pàgina en situa {mapa} de cada 100 €, i no {n}, perquè compta una altra cosa: els contractes que nomenen un lloc concret, com un carrer o un col·legi, estiguen o no en un barri.",
     'landing.enBreve.barrio.menosDeUno': "menys d'1",
     'landing.enBreve.pleno.pregunta': "Què es va decidir en l'últim ple?",
     'landing.enBreve.pleno.puntos': "Va tractar {n} punts de l'ordre del dia.",
@@ -4693,22 +4713,33 @@ export const CATALOGUE = {
     // Lo que la portada escribía a mano fuera del catálogo: ver la nota castellana.
     'landing.kpi.poblacion': 'Població',
     'landing.kpi.poblacionAnio': 'Població {anio}',
-    'landing.kpi.poblacion.sub': '10 anys · INE',
+    'landing.kpi.poblacion.sub': 'en 10 anys · INE',
     'landing.kpi.poblacion.subSinDato': 'INE Padró',
     'landing.kpi.presupuesto': 'Pressupost',
-    'landing.kpi.presupuestoAnio': 'Pressup. {anio}',
-    'landing.kpi.presupuesto.definitivo': 'Ajunt. · definitiu',
-    'landing.kpi.presupuesto.ejec': '{pct} % exec.',
-    'landing.kpi.presupuesto.aprobado': 'CONPREL · aprovat',
+    'landing.kpi.presupuestoAnio': 'Pressupost {anio}',
+    'landing.kpi.presupuesto.definitivo': 'límit de despesa',
+    'landing.kpi.presupuesto.ejec': 'gastat el {pct} %',
+    'landing.kpi.presupuesto.ejecFecha': 'gastat el {pct} % a {fecha}',
+    'landing.kpi.presupuesto.aprobado': "aprovat · Ministeri d'Hisenda",
+    'landing.kpi.presupuesto.titulo':
+      "{valor} de crèdit definitiu en {anio}, dels quals s'han gastat {ejecutado}. Estat d'execució de l'Ajuntament.",
+    'landing.kpi.presupuesto.tituloAprobado':
+      "{valor} aprovats per a {anio}, segons la base CONPREL del Ministeri d'Hisenda.",
     'landing.kpi.sinDato': 'sense dada',
-    'landing.kpi.personal': 'Pressup. personal',
-    'landing.kpi.personal.sub': 'Cap. 1 econòmic',
-    'landing.kpi.contratos': 'Contractes adj.',
-    'landing.kpi.contratosAnios': 'Contractes adj. {anios}',
-    'landing.kpi.contratos.sub': 'acumulat · Gobierto/PLACSP',
+    'landing.kpi.personal': 'Per al personal',
+    'landing.kpi.personal.sub': 'del pressupost {anio}',
+    'landing.kpi.personal.titulo':
+      '{valor} del capítol 1, despeses de personal, dels {total} del pressupost {anio}.',
+    'landing.kpi.contratos': 'Contractes adjudicats',
+    'landing.kpi.contratos.sub': '{n} en {anios}, sumats',
+    'landing.kpi.contratos.subSinAnios': '{n}, sumats',
+    'landing.kpi.contratos.titulo':
+      '{total}: la suma dels contractes adjudicats en {anios} que publiquen el seu import. Gobierto i Plataforma de Contractació del Sector Públic.',
     'landing.kpi.paro': 'Atur',
-    'landing.kpi.paroPeriodo': 'Atur {periodo}',
-    'landing.kpi.paro.sub': 'SEPE · atur registrat',
+    'landing.kpi.paroPeriodo': 'Atur · {periodo}',
+    'landing.kpi.paro.sub': 'respecte al mes anterior · SEPE',
+    'landing.kpi.paro.subDesde': 'respecte a {periodo} · SEPE',
+    'landing.kpi.paro.subSinPrevio': 'atur registrat · SEPE',
     'landing.kpi.pleno': 'Últim ple',
     'landing.kpi.pleno.sesiones': '{n} sessions',
     'landing.alcalde.promesas': 'promeses',
