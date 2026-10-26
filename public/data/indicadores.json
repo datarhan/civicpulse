@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-25T09:36:19.581Z",
+  "generatedAt": "2026-10-26T07:46:32.015Z",
   "conjunto": "cv-15k-40k",
   "anioBase": 2024,
   "source": {
@@ -88,8 +88,8 @@
     "entregasNoPresentadas": [
       2020
     ],
-    "motivoFaltantes": "El ministerio sólo publica volcado masivo de 2021; el resto de entregas se obtienen del informe por comunidad autónoma de la aplicación de consulta, que se pide con `npm run fetch:cesel-ccaa` y se guarda en .cache/cesel/ccaa.",
-    "fuenteGeneratedAt": "2026-10-19T17:45:25.169Z"
+    "motivoFaltantes": "El ministerio sólo publica de una vez el volcado de 2021; el resto de entregas se obtienen una a una del informe por comunidad autónoma de su aplicación de consulta.",
+    "fuenteGeneratedAt": "2026-10-26T07:45:48.803Z"
   },
   "indicadores": [
     {
@@ -9028,7 +9028,7 @@
         "fuente": {
           "nombre": "SINAC · Sistema de Información Nacional de Aguas de Consumo (Ministerio de Sanidad)",
           "url": "https://sinac.sanidad.gob.es/CiudadanoWeb/ciudadano/informacionAbastecimientoActionEntrada.do",
-          "atribucion": "Fuente: Ministerio de Sanidad, SINAC. Consultado el 2026-10-25; cada boletín lleva su fecha de toma."
+          "atribucion": "Fuente: Ministerio de Sanidad, SINAC. Consultado el 2026-10-26; cada boletín lleva su fecha de toma."
         }
       },
       {
