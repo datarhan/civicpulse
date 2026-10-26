@@ -66,9 +66,14 @@ test.describe('/presupuesto · En breve', () => {
       )
     await selector.selectOption(slug!)
     await page.getByRole('button', { name: 'Ver sus contratos' }).click()
-    await expect(page).toHaveURL(new RegExp(`\\?barrio=${slug}#mapa-gasto$`))
-    const mapa = page.locator('#mapa-gasto')
-    await expect(mapa.getByText('← todas las zonas')).toBeVisible()
-    await expect(mapa).toBeInViewport()
+    // A la lista del barrio, no al rótulo de la sección. `toBeInViewport()` sobre
+    // la sección entera pasaba con sólo su rótulo en pantalla, y a 375 px la lista
+    // quedaba fuera (landing.spec.ts lo mide a ese ancho).
+    await expect(page).toHaveURL(new RegExp(`\\?barrio=${slug}#mapa-gasto-barrio$`))
+    const lista = page.locator('#mapa-gasto-barrio')
+    await expect(lista.getByText('← todas las zonas')).toBeInViewport()
+    await expect
+      .poll(() => lista.evaluate((el) => el.getBoundingClientRect().top))
+      .toBeLessThan(160)
   })
 })

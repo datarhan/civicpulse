@@ -5,6 +5,23 @@ import { afirmaPulsables, cargaYEncuadra, sondea } from './_estaciones'
 import { afirma, entraPorElPin, mide } from './_pines-y-barrios'
 import { contractTermYears, isConcession } from '../../src/lib/contract-status'
 
+/**
+ * Dónde queda un ancla tras saltar a ella: el borde de arriba de su elemento en
+ * la ventana. `useHashScroll` la deja bajo la barra pegajosa (unos 64 px); un
+ * ancla que el lector no ve, o que se pasó por arriba, cuenta como no
+ * aterrizada (`Infinity`), para que ni «fuera por abajo» ni «fuera por arriba»
+ * pasen por un número pequeño.
+ */
+const ATERRIZA_PX = 160
+function arribaDe(page: import('@playwright/test').Page, id: string) {
+  return page.evaluate((id) => {
+    const el = document.getElementById(id)
+    if (!el) return Infinity
+    const arriba = el.getBoundingClientRect().top
+    return arriba < -8 ? Infinity : arriba
+  }, id)
+}
+
 test.describe('Landing (/)', () => {
   test('renders editorial column + KPI strip with real data', async ({ page }) => {
     const errors = collectErrors(page)
@@ -204,12 +221,61 @@ test.describe('Landing (/)', () => {
         timeout: 10_000,
       })
       const fragmento = href.split('#')[1]
-      if (fragmento)
+      if (fragmento) {
         await expect(page.locator(`[id="${fragmento}"]`), `${href}: el ancla no está`).toHaveCount(
           1,
           { timeout: 10_000 },
         )
+        // Que exista no dice que el lector llegue: se mide dónde queda.
+        await expect
+          .poll(() => arribaDe(page, fragmento), { message: `${href}: no aterriza en su ancla` })
+          .toBeLessThan(ATERRIZA_PX)
+      }
     }
+  })
+
+  test.describe('a 375 px', () => {
+    test.use({ viewport: { width: 375, height: 812 } })
+
+    test('«Ver sus contratos» deja la lista del barrio a la vista, no el rótulo de la sección', async ({
+      page,
+    }) => {
+      // Lo vio el operador el 26-10-2026: a 375 px el ancla de la sección
+      // (#mapa-gasto) dejaba a la vista su rótulo y su párrafo, con el mapa debajo y
+      // la lista del barrio fuera de la pantalla. En escritorio no se ve: la lista
+      // va al lado del mapa.
+      await page.goto('/', { waitUntil: 'domcontentloaded' })
+      const tarjeta = page.locator('[data-en-breve="barrio"]')
+      const selector = tarjeta.getByLabel('Elige tu barrio')
+      await expect(selector).toBeVisible({ timeout: 10_000 })
+      const slug = await selector
+        .locator('option')
+        .evaluateAll((os) =>
+          os.map((o) => (o as HTMLOptionElement).value).find((v) => v && !v.startsWith('__')),
+        )
+      await selector.selectOption(slug!)
+      await tarjeta.getByRole('button', { name: 'Ver sus contratos' }).click()
+      await expect(page).toHaveURL(new RegExp(`/presupuesto\\?barrio=${slug}#mapa-gasto-barrio$`))
+      await expect
+        .poll(() => arribaDe(page, 'mapa-gasto-barrio'), { timeout: 10_000 })
+        .toBeLessThan(ATERRIZA_PX)
+      await expect(
+        page.locator('#mapa-gasto-barrio').getByText('← todas las zonas'),
+      ).toBeInViewport()
+    })
+
+    test('«Saltar el resumen» baja al bloque de después, no sube al mapa', async ({ page }) => {
+      // Apuntaba a #contenido, el <main> que contiene el propio resumen: a 375 px,
+      // con el mapa encima, el enlace subía al principio de la página.
+      await page.goto('/', { waitUntil: 'domcontentloaded' })
+      const saltar = page.locator('[data-en-breve-bloque] .cp-en-breve-saltar')
+      await expect(saltar).toBeVisible({ timeout: 10_000 })
+      await saltar.scrollIntoViewIfNeeded()
+      const antes = await page.evaluate(() => window.scrollY)
+      await saltar.click()
+      await expect.poll(() => page.evaluate(() => window.scrollY)).toBeGreaterThan(antes)
+      await expect.poll(() => arribaDe(page, 'portada-tras-resumen')).toBeLessThan(ATERRIZA_PX)
+    })
   })
 
   test('interactive map layers: money default, coverage disclosure, neighborhood popup', async ({

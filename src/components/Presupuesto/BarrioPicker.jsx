@@ -11,8 +11,8 @@ import { useT } from '../../i18n'
  * el límite («de cada 100 €, sólo N…») y sólo después deja elegir.
  *
  * Elegir no responde aquí: lleva al mapa de contratación de más abajo con la
- * zona abierta (`?barrio=<slug>#mapa-gasto`, que lee `GastoDashboard`), donde
- * están los contratos con su enlace a la Plataforma. Un selector y un botón,
+ * zona abierta (`?barrio=<slug>#mapa-gasto-barrio`, que lee `GastoDashboard`),
+ * en la lista de sus contratos con su enlace a la Plataforma. Un selector y un botón,
  * no un `onChange` que navega: con el teclado, recorrer las opciones de un
  * <select> no debe sacar al lector de donde está (WCAG 3.2.2).
  *
@@ -61,7 +61,10 @@ export default function BarrioPicker({ cobertura, zonas, figura, ruta = '', puen
       return
     }
     setOtro(false)
-    if (eleccion) navigate(`${ruta}?barrio=${encodeURIComponent(eleccion)}#mapa-gasto`)
+    // A la lista de contratos de la zona, no al rótulo de la sección: a 375 px
+    // el rótulo, su párrafo y el mapa van antes, y la lista quedaba fuera de la
+    // pantalla (GastoDashboard.jsx).
+    if (eleccion) navigate(`${ruta}?barrio=${encodeURIComponent(eleccion)}#mapa-gasto-barrio`)
   }
 
   return (

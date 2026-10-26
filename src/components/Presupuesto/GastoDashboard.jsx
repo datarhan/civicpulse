@@ -265,7 +265,12 @@ export default function GastoDashboard() {
             onChange={setSliderTime}
           />
         </div>
-        <div>
+        {/* Con una zona abierta, esta columna es la lista de sus contratos, y
+            «Ver sus contratos» de «En breve» (BarrioPicker) aterriza AQUÍ y no
+            en `#mapa-gasto`. A 375 px las dos columnas se apilan: el ancla de la
+            sección dejaba al lector en su rótulo y su párrafo, con el mapa
+            debajo y la lista, que es lo que había pedido, fuera de la pantalla. */}
+        <div id={selectedZone ? 'mapa-gasto-barrio' : undefined} style={{ scrollMarginTop: 24 }}>
           {selectedZone ? (
             <ZoneDrilldown
               snapshot={tg}
