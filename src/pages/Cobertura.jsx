@@ -7,6 +7,7 @@ import { MOTIVOS_DE_RETENCION, MOTIVO_DE_RETENCION_ETIQUETA } from '../scraper/c
 import { diaDeLaSede } from '../scraper/queja-router'
 import { rotuloDe, useT } from '../i18n'
 import { entero } from '../lib/formatters'
+import { estadoLlano } from '../lib/estado-llano.js'
 import { useSolicitudesAcceso } from '../hooks/useSolicitudesAcceso'
 import { CLASES_PEDIBLES, CLASE_ETIQUETA } from '../scraper/clase-documental'
 // La etiqueta y el tono de cada estado viven con el enum, tipados: aquí eran
@@ -402,8 +403,10 @@ export default function Cobertura() {
                 .filter(([nombre]) => esMarcaDePasada(nombre))
                 .sort((a, b) => b[1].filas - a[1].filas)
                 .map(([nombre, p]) => (
-                  <Pill key={nombre} tone="ghost" size="xs">
-                    {nombre} <span className="mono">{fmt(p.filas)}</span>
+                  // El nombre de la etapa, el de /metodologia; la marca tal como va en
+                  // los datos, al pasar el ratón. Decía «verdict-engine 826».
+                  <Pill key={nombre} tone="ghost" size="xs" title={nombre}>
+                    {estadoLlano(t, 'pasada', nombre)} <span className="mono">{fmt(p.filas)}</span>
                   </Pill>
                 ))}
             </div>

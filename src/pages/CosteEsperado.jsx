@@ -3,6 +3,8 @@ import { Pill } from '../components/Primitives'
 import { Embudo } from '../components/coste-esperado/Embudo'
 import DataAsOf from '../components/DataAsOf'
 import { useCosteEsperado } from '../hooks/useCosteEsperado'
+import { useT } from '../i18n'
+import { estadoLlano } from '../lib/estado-llano.js'
 
 /**
  * /laboratorio/coste-esperado — el gasto observado contra el esperado dada la
@@ -108,6 +110,7 @@ function ServicioEsperado({ e }) {
 }
 
 export default function CosteEsperado() {
+  const t = useT()
   const { loading, error, data } = useCosteEsperado()
   const especificaciones = data?.especificaciones ?? []
   const publicadas = [...especificaciones.filter((e) => e.estado === 'publicada')].sort(
@@ -235,7 +238,8 @@ export default function CosteEsperado() {
                 key={e.programa}
                 style={{ display: 'flex', gap: 10, alignItems: 'baseline', padding: '6px 0' }}
               >
-                <Pill tone="neutral">{e.estado}</Pill>
+                {/* Decía el código, «muestra-insuficiente» o «sin-declaracion-propia». */}
+                <Pill tone="neutral">{estadoLlano(t, 'especificacionEsperada', e.estado)}</Pill>
                 <div>
                   <strong style={{ fontSize: 'var(--fs-meta)' }}>{e.label}</strong>
                   <p

@@ -153,9 +153,13 @@ describe('/laboratorio/cobertura · las pasadas cuadran con «no consta»', () =
     pintar()
     const titulo = await screen.findByText('Pasadas de revisión (no son fuentes)')
     const tarjeta = titulo.parentElement
-    // `corpus['verdict-engine']` es 6; las filas con su marca, 10.
-    expect(tarjeta.textContent).toMatch(/verdict-engine\s*10/)
-    expect(tarjeta.textContent).not.toMatch(/verdict-engine\s*6\b/)
+    // `corpus['verdict-engine']` es 6; las filas con su marca, 10. La píldora dice
+    // el nombre de la etapa (EstadoLlano), y la marca de los datos queda en `title`.
+    const rotulo = CATALOGUE.es['estado.pasada.verdict-engine']
+    expect(tarjeta.textContent).toMatch(new RegExp(`${rotulo}\\s*10`))
+    expect(tarjeta.textContent).not.toMatch(new RegExp(`${rotulo}\\s*6\\b`))
+    expect(tarjeta.textContent).not.toContain('verdict-engine')
+    expect(tarjeta.querySelector('[title="verdict-engine"]')?.textContent).toMatch(/10/)
   })
 
   it('el puente entre las píldoras y «no consta» se dice con cifras del manifiesto', async () => {

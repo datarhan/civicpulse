@@ -2,6 +2,8 @@ import { test, expect } from '@playwright/test'
 import AxeBuilder from '@axe-core/playwright'
 import { readFileSync } from 'node:fs'
 import { collectErrors, appErrors } from './_console'
+import { CATALOGUE } from '../../src/i18n'
+import { ESTADO_LLANO } from '../../src/lib/estado-llano'
 
 // Se lee el snapshot en vez de reescribir sus cifras: estos números se mueven
 // con cada entrega del ministerio, y una spec que los restituye se queda verde
@@ -90,7 +92,10 @@ test.describe('Coste esperado (/laboratorio/coste-esperado)', () => {
     await expect(page.getByRole('heading', { name: /publicadas como fallidas/i })).toBeVisible()
     for (const e of FALLIDAS) {
       await expect(page.getByText(e.label, { exact: true })).toBeVisible()
-      await expect(page.getByText(e.estado, { exact: true }).first()).toBeVisible()
+      // El rótulo del estado, no su código: la pastilla decía «muestra-insuficiente».
+      const rotulo = CATALOGUE.es[`${ESTADO_LLANO.especificacionEsperada}.${e.estado}`]
+      await expect(page.getByText(rotulo, { exact: true }).first()).toBeVisible()
+      await expect(page.getByText(e.estado, { exact: true })).toHaveCount(0)
     }
   })
 

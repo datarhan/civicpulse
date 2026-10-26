@@ -21,11 +21,12 @@ const TONES = {
  */
 export const TONE_NAMES = Object.keys(TONES)
 
-export function Pill({ tone = 'neutral', children, size = 'sm', style = {} }) {
+export function Pill({ tone = 'neutral', children, size = 'sm', style = {}, title = undefined }) {
   const t = TONES[tone] || TONES.neutral
   return (
     <span
       className="mono"
+      title={title}
       style={{
         display: 'inline-flex',
         alignItems: 'center',
