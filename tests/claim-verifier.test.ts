@@ -255,9 +255,19 @@ describe('un parecido de TÍTULO no verifica, y a una acusación no la funda', (
     },
   })
 
-  /** Una convocatoria del mismo objeto que no publica importe: no funda nada. */
+  /**
+   * Una convocatoria del mismo objeto que no publica importe: no funda nada. Con
+   * los campos de bdns.json (`bdnsCode`, `description`, `sourceUrl`), que como
+   * todas sus filas no trae importe (src/scraper/snippet-de-bdns.ts).
+   */
   const convocatoriaSinImporte = {
-    items: [{ titulo: 'Plan de refugios climáticos', url: 'https://bdns.example/r' }],
+    items: [
+      {
+        bdnsCode: '000001',
+        description: 'Plan de refugios climáticos',
+        sourceUrl: 'https://bdns.example/r',
+      },
+    ],
   }
 
   it('una cita casada sólo por el título se queda en parcial', () => {
