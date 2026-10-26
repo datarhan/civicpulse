@@ -241,14 +241,24 @@ describe('un parecido de TÍTULO no verifica, y a una acusación no la funda', (
     status: 'awarded',
   }
 
-  /** Un presupuesto cuyo capítulo de medio ambiente casa con el importe citado. */
+  /**
+   * Un presupuesto cuyo capítulo de medio ambiente casa con el importe citado,
+   * con la forma de budget.json (`label`, src/scraper/budget.ts). Ésta decía
+   * `name`, que es lo que leía el verificador y el fichero publicado no trae:
+   * en producción no casó nunca (tests/claim-verifier-presupuesto-sin-cotejo.test.ts).
+   */
   const presupuestoDe = (amount: number) => ({
     snapshot: {
       year: 2026,
       totalExpense: 41_000_000,
-      expenseByProgram: [{ code: '1621', name: 'Residuos y medio ambiente', amount }],
+      expenseByProgram: [{ label: 'Residuos y medio ambiente', amount }],
     },
   })
+
+  /** Una convocatoria del mismo objeto que no publica importe: no funda nada. */
+  const convocatoriaSinImporte = {
+    items: [{ titulo: 'Plan de refugios climáticos', url: 'https://bdns.example/r' }],
+  }
 
   it('una cita casada sólo por el título se queda en parcial', () => {
     const v = verifyClaim({
@@ -304,11 +314,12 @@ describe('un parecido de TÍTULO no verifica, y a una acusación no la funda', (
    * sobre «todas las filas de evidencia» o sobre un camino concreto, cuando lo
    * que hay que decidir es si ALGUNA fila funda.
    */
-  it('una fila de presupuesto no rescata la acusación: sigue sin fundar', () => {
+  it('una fila de otro tipo que no funda no rescata la acusación: sigue sin fundar', () => {
     // La puerta preguntaba «¿son TODAS de título?»; bastaba una fila de otro
-    // tipo para que no disparara. Y la de presupuesto es, por su propio
-    // comentario, «una comprobación de plausibilidad: plausible no es
-    // corroborado» — así que rescataba la acusación una fila que no prueba nada.
+    // tipo para que no disparara. La revisión lo construyó con una fila de
+    // presupuesto, que ya no existe (el presupuesto no se coteja); la regla es
+    // la misma con una convocatoria sin importe, que por la suya tampoco funda
+    // nada: mismo objeto, cifra sin mirar.
     const v = verifyClaim({
       claim: baseClaim({
         type: 'acusacion_publica',
@@ -322,16 +333,15 @@ describe('un parecido de TÍTULO no verifica, y a una acusación no la funda', (
       // 83.000 € contra 50.000 citados: ratio² = 0,36 — ni casa por importe
       // (umbral 0,5) ni es una discrepancia material (umbral 0,3), así que la
       // afirmación cae a la vía de títulos y la evidencia que queda son la fila
-      // sólo-título y la de presupuesto. Exactamente el caso que la revisión
-      // construyó.
+      // sólo-título y la convocatoria sin importe.
       tenders: { contracts: [{ ...contratoDelObjeto, finalAmount: 83_000 }] },
-      budget: presupuestoDe(50_000),
+      bdns: convocatoriaSinImporte,
     })
-    expect(v.evidence.map((e) => e.kind).sort()).toEqual(['budget', 'tender'])
+    expect(v.evidence.map((e) => e.kind).sort()).toEqual(['bdns', 'tender'])
     expect(v.verdict).toBe('sin-datos')
   })
 
-  it('una fila de presupuesto tampoco basta para VERIFICAR una cita', () => {
+  it('el presupuesto llega y no se coteja: un capítulo de la misma cifra no da fila', () => {
     const v = verifyClaim({
       claim: baseClaim({
         type: 'afirmacion_numerica',
@@ -340,10 +350,11 @@ describe('un parecido de TÍTULO no verifica, y a una acusación no la funda', (
       }),
       budget: presupuestoDe(50_000),
     })
-    // La fila de presupuesto entra como lo que se miró…
-    expect(v.evidence.some((e) => e.kind === 'budget')).toBe(true)
-    // …pero un orden de magnitud plausible no es una comprobación.
-    expect(v.verdict).not.toBe('verificado')
+    // Daba una fila «plausible» que sostenía `parcial`; leyendo `label`, la
+    // daría a cualquier cifra cercana al capítulo de su tema.
+    expect(v.evidence.filter((e) => e.kind === 'budget')).toEqual([])
+    expect(v.checkedAgainst).not.toContain('budget')
+    expect(v.verdict).toBe('sin-datos')
   })
 
   it('y una subvención que sólo coincide en la cifra tampoco corrobora', () => {

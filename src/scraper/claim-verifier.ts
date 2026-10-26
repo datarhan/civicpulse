@@ -4,8 +4,8 @@
  * Given a PlenoClaim + all dataset snapshots, emit a verdict + citations.
  * Pure function, no fetch, no LLM — this is the deterministic "fact check"
  * layer that takes whatever the LLM extracted and checks it against the
- * paper trail (tenders, BDNS grants, budget chapters, existing promises,
- * prior-year plenos).
+ * paper trail (tenders, BDNS grants, existing promises, prior-year plenos).
+ * The budget is not one of them: see `VerifierInputs.budget`.
  *
  * Verdict discipline — no fabrication, no "probably":
  *
@@ -31,7 +31,7 @@
 
 import { stripSimilarityAnnotation } from '../llm/candidate-annotation'
 import { stripDiacritics } from './normalize'
-import type { PlenoClaim, ClaimTopic } from './pleno-claim'
+import type { PlenoClaim } from './pleno-claim'
 
 // ─── Completion signal keywords ─────────────────────────────────────────────
 // A cita_obra whose verbatim asserts the work is finished/done/completed,
@@ -319,6 +319,21 @@ export interface VerifierInputs {
    */
   tendersTed?: unknown
   bdns?: unknown
+  /**
+   * Se acepta y NO se lee: el presupuesto no se coteja.
+   *
+   * Hubo un bloque que buscaba, por pistas del tema, un capítulo cuyo total se
+   * pareciera a la cifra citada. Leía `c.name` y budget.json rotula en `label`
+   * (src/scraper/budget.ts), así que no casó nunca; y anotaba `budget` antes de
+   * buscar, con lo que 541 filas de pleno y 10 de prensa decían en su tarjeta
+   * haber buscado en el presupuesto (26-10-2026, /plenos/1sqj7is). Leyendo
+   * `label` habría sido peor: una afirmación fiscal se compara con «Deuda
+   * pública» (1,1 M€) y nunca con el total, y 21 `sin-datos` subían a `parcial`
+   * por decir «un millón». Un cotejo con el presupuesto tendría que decir qué
+   * magnitud compara —crédito inicial, definitivo u obligaciones reconocidas—
+   * y de qué ejercicio, y se decide aparte
+   * (tests/claim-verifier-presupuesto-sin-cotejo.test.ts).
+   */
   budget?: unknown
   promises?: unknown
   /** Other claims from prior plenos — for promesa-repetida detection. */
@@ -336,22 +351,6 @@ interface TenderRow {
   amount?: number
   status?: string
   date?: string
-}
-
-interface BudgetChapter {
-  code?: string
-  name?: string
-  amount?: number
-}
-
-interface BudgetSnapshot {
-  snapshot?: {
-    year?: number
-    totalExpense?: number
-    totalRevenue?: number
-    expenseByEconomicChapter?: BudgetChapter[]
-    expenseByProgram?: BudgetChapter[]
-  }
 }
 
 interface PromiseRow {
@@ -764,27 +763,6 @@ function readPromises(data: unknown): PromiseRow[] {
   return ((data as { items?: PromiseRow[] }).items ?? []) as PromiseRow[]
 }
 
-// ─── Topic → budget chapter hint map ───────────────────────────────────────
-// Used when the claim cites a large amount against a specific topic; we check
-// the budget chapter totals for semantic alignment. Cheap heuristic — not a
-// hard denial surface, just "does the magnitude make sense?"
-
-const TOPIC_TO_BUDGET_HINTS: Record<ClaimTopic, string[]> = {
-  fiscal: ['hacienda', 'deuda', 'finan'],
-  vivienda: ['vivienda', 'habitat'],
-  movilidad: ['transport', 'movilidad', 'vias', 'infraestr'],
-  'medio-ambiente': ['medio ambien', 'sostenib', 'residuos'],
-  social: ['servicios sociales', 'bienestar', 'social'],
-  cultura: ['cultura', 'patrimonio'],
-  seguridad: ['seguridad', 'policia'],
-  empleo: ['empleo', 'fomento', 'promocion'],
-  urbanismo: ['urbanism', 'ordenacion', 'obras'],
-  salud: ['salud', 'sanitar'],
-  transparencia: ['administrac', 'gobierno'],
-  educacion: ['educacion', 'ensenanza', 'ensenanz'],
-  other: [],
-}
-
 // ─── The verifier ──────────────────────────────────────────────────────────
 
 export function verifyClaim(inputs: VerifierInputs): ClaimVerification {
@@ -1086,36 +1064,9 @@ export function verifyClaim(inputs: VerifierInputs): ClaimVerification {
       }
     }
 
-    // Budget magnitude check (loose — just "is the amount plausible given
-    // chapter totals?")
-    const budget = (inputs.budget as BudgetSnapshot | undefined)?.snapshot
-    if (budget && (budget.totalExpense ?? 0) > 0) {
-      note('budget')
-      const hints = TOPIC_TO_BUDGET_HINTS[claim.topic] ?? []
-      const chapters = [
-        ...(budget.expenseByProgram ?? []),
-        ...(budget.expenseByEconomicChapter ?? []),
-      ]
-      const candidate = chapters.find((c) => hints.some((h) => norm(c.name).includes(h)))
-      if (candidate && candidate.amount) {
-        const sim = similarAmount(amount, candidate.amount)
-        if (sim >= 0.5) {
-          evidence.push({
-            kind: 'budget',
-            ref: `budget:${budget.year}:${candidate.code ?? candidate.name}`,
-            snippet: `${candidate.name ?? candidate.code} · ${Math.round(
-              candidate.amount,
-            ).toLocaleString('es-ES')} €`,
-            similarity: Math.round(sim * 100) / 100,
-            // Explicitly a plausibility check ("is this figure the right order
-            // of magnitude for the chapter?"). Plausible is not corroborated.
-            stance: 'checked',
-          })
-          // …y por eso no funda: se enseña, no verifica.
-          marcarNoFundante()
-        }
-      }
-    }
+    // Aquí iba la comprobación de «plausibilidad» contra el presupuesto, y no
+    // comparó nunca nada mientras anotaba `budget`: `VerifierInputs.budget`
+    // cuenta por qué se quitó en vez de repararla.
   }
 
   // 3. Entity-only match (cita_obra): look for any tender whose title
