@@ -254,6 +254,7 @@
       "/plenos/:id"
     ],
     "pleno-votes.json": [
+      "/",
       "/cargos/:slug",
       "/datos",
       "/departamentos",

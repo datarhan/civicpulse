@@ -31,9 +31,19 @@ const claveDeOrden = (nombre) => nombre.replace(/^Urbanitzaci[óo]n?\s+/i, '')
  *   cobertura: { deCada100: number, menosDeUno: boolean },
  *   zonas: { slug: string, name: string, contractCount?: number }[],
  *   figura?: import('react').ReactNode,
+ *   ruta?: string,
+ *   puente?: string | null,
  * }} props
+ *
+ * `ruta` es la página del mapa: vacía en /presupuesto, que es donde está; la
+ * portada pasa `/presupuesto`, porque allí un `?barrio=…#mapa-gasto` relativo
+ * se quedaba en la propia portada.
+ *
+ * `puente` es la frase que reconcilia esta cifra con otra que el lector tiene
+ * al lado: en la portada, el mapa mide los contratos con un sitio y no los que
+ * nombran un barrio, y da otro porcentaje.
  */
-export default function BarrioPicker({ cobertura, zonas, figura }) {
+export default function BarrioPicker({ cobertura, zonas, figura, ruta = '', puente = null }) {
   const t = useT()
   const navigate = useNavigate()
   const id = useId()
@@ -51,7 +61,7 @@ export default function BarrioPicker({ cobertura, zonas, figura }) {
       return
     }
     setOtro(false)
-    if (eleccion) navigate(`?barrio=${encodeURIComponent(eleccion)}#mapa-gasto`)
+    if (eleccion) navigate(`${ruta}?barrio=${encodeURIComponent(eleccion)}#mapa-gasto`)
   }
 
   return (
@@ -63,6 +73,7 @@ export default function BarrioPicker({ cobertura, zonas, figura }) {
           {cobertura.menosDeUno
             ? t('presupuesto.enBreve.barrio.menosDeUno')
             : rellena(t('presupuesto.enBreve.barrio.frase'), { n: cobertura.deCada100 })}
+          {puente ? ` ${puente}` : null}
         </p>
         <form className="cp-en-breve-barrio-form" onSubmit={ver}>
           <label htmlFor={`${id}-sel`} className="cp-en-breve-barrio-label">
@@ -103,7 +114,7 @@ export default function BarrioPicker({ cobertura, zonas, figura }) {
             <p style={{ margin: '4px 0 0' }}>{t('presupuesto.enBreve.barrio.otro.frase')}</p>
             <p style={{ margin: '8px 0 0', display: 'flex', flexWrap: 'wrap', gap: '6px 16px' }}>
               <Link to="/quejas">{t('presupuesto.enBreve.barrio.otro.queja')}</Link>
-              <a href="#mapa-gasto">{t('presupuesto.enBreve.barrio.otro.todos')}</a>
+              <a href={`${ruta}#mapa-gasto`}>{t('presupuesto.enBreve.barrio.otro.todos')}</a>
             </p>
           </div>
         )}

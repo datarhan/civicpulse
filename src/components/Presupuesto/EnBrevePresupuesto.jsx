@@ -1,5 +1,6 @@
 import EnBreve, { TarjetaEnBreve } from '../EnBreve'
 import BarrioPicker from './BarrioPicker'
+import { Barra, FiguraBarrio, FiguraGastado, Leyenda, eur0, eurM } from './FigurasEnBreve'
 import { useBudget } from '../../hooks/useBudget'
 import { useBudgetExecution } from '../../hooks/useBudgetExecution'
 import { useDeudaViva } from '../../hooks/useDeudaViva'
@@ -21,38 +22,6 @@ import { useT } from '../../i18n'
  * añadido, petróleo lo ejecutado—, para que la misma marca signifique lo mismo
  * en las dos capas. Nada en rojo: aquí no se documenta ningún fallo.
  */
-
-const eur0 = (n) =>
-  new Intl.NumberFormat('es-ES', {
-    style: 'currency',
-    currency: 'EUR',
-    maximumFractionDigits: 0,
-  }).format(n)
-const eurM = (n) =>
-  `${(n / 1e6).toLocaleString('es-ES', { minimumFractionDigits: 1, maximumFractionDigits: 1 })} M€`
-const pct0 = (n) => Math.round(n).toLocaleString('es-ES')
-
-function Barra({ children, alto = 12, etiqueta }) {
-  return (
-    <div
-      role="img"
-      aria-label={etiqueta}
-      className="cp-en-breve-barra"
-      style={{ height: alto, borderRadius: 'var(--r-pill)' }}
-    >
-      {children}
-    </div>
-  )
-}
-
-function Leyenda({ izquierda, derecha }) {
-  return (
-    <div className="cp-en-breve-leyenda" aria-hidden="true">
-      <span>{izquierda}</span>
-      {derecha && <span>{derecha}</span>}
-    </div>
-  )
-}
 
 function FiguraLimite({ limite }) {
   const t = useT()
@@ -78,43 +47,6 @@ function FiguraLimite({ limite }) {
       <Leyenda
         izquierda={rellena(t('presupuesto.enBreve.limite.inicial'), { x: eurM(limite.inicial) })}
         derecha={rellena(t('presupuesto.enBreve.limite.mod'), { x: eurM(limite.modificaciones) })}
-      />
-    </div>
-  )
-}
-
-function FiguraGastado({ gastado }) {
-  const t = useT()
-  const avance = gastado.avanceDelAnio
-  const etiqueta =
-    avance != null
-      ? rellena(t('presupuesto.enBreve.gastado.figura'), {
-          pct: pct0(gastado.pct),
-          avance: pct0(avance * 100),
-        })
-      : rellena(t('presupuesto.enBreve.gastado.figuraSinAvance'), { pct: pct0(gastado.pct) })
-  return (
-    <div className="cp-en-breve-figura">
-      <Barra etiqueta={etiqueta}>
-        <div
-          className="cp-crece-x"
-          style={{
-            width: `${Math.min(100, gastado.pct)}%`,
-            background: 'var(--civic)',
-            borderRadius: 'inherit',
-          }}
-        />
-        {avance != null && (
-          <div
-            className="cp-en-breve-marca"
-            style={{ left: `calc(${avance * 100}% - 1px)` }}
-            data-avance={pct0(avance * 100)}
-          />
-        )}
-      </Barra>
-      <Leyenda
-        izquierda={rellena(t('presupuesto.enBreve.gastado.barra'), { pct: pct0(gastado.pct) })}
-        derecha={avance != null ? `${t('presupuesto.enBreve.gastado.avance')} ▏` : null}
       />
     </div>
   )
@@ -204,35 +136,6 @@ function FiguraDeuda({ deuda }) {
         derecha={`● ${t('presupuesto.enBreve.deuda.nosotros')}`}
       />
     </div>
-  )
-}
-
-function FiguraBarrio({ n }) {
-  const t = useT()
-  const cuadros = Array.from({ length: 100 }, (_, i) => i)
-  return (
-    <svg
-      viewBox="0 0 100 100"
-      width="64"
-      height="64"
-      role="img"
-      aria-label={rellena(t('presupuesto.enBreve.barrio.figura'), { n })}
-      style={{ flex: 'none' }}
-    >
-      {cuadros.map((i) => (
-        <rect
-          key={i}
-          x={(i % 10) * 10 + 1}
-          y={Math.floor(i / 10) * 10 + 1}
-          width={8}
-          height={8}
-          rx={1.5}
-          fill={i < n ? 'var(--civic)' : 'var(--soft)'}
-          stroke={i < n ? 'none' : 'var(--border)'}
-          strokeWidth={0.6}
-        />
-      ))}
-    </svg>
   )
 }
 

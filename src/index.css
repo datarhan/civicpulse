@@ -2,7 +2,15 @@
    CivicPulse — Design tokens (Direction A · Municipal Dashboard)
    ============================================================= */
 
-:root {
+/* La portada (`.d-shell`) no sigue el modo oscuro: lleva su paleta de papel fijo
+   (direction-d/tokens.jsx), y App.jsx no le pone `html.dark`. Sus bloques propios
+   pintan con esa paleta, pero «Tu ayuntamiento en 30 segundos» reutiliza las
+   tarjetas de «En breve», que pintan con estos tokens. Con `html.dark` puesto en
+   la portada —lo pone a mano la prueba de contraste medido— el fondo se iba a
+   oscuro y el texto, de la paleta fija, se quedaba oscuro: 1,08:1. La portada
+   vuelve a declarar los valores claros, y los hereda todo lo que cuelga de ella. */
+:root,
+html.dark .d-shell {
   --ink: #0b0f19;
   --surf: #f8fafc;
   --paper: #ffffff;

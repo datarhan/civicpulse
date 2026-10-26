@@ -36,6 +36,7 @@ import { KpiStrip } from '../../src/variants/direction-d/KpiStrip'
 import { Header } from '../../src/variants/direction-d/Topbar'
 import { AlcaldeBox } from '../../src/variants/direction-d/blocks/AlcaldeBox'
 import { EditorialMasthead, QuejaCTA } from '../../src/variants/direction-d/blocks/Masthead'
+import { EnBrevePortada } from '../../src/variants/direction-d/blocks/EnBrevePortada'
 import {
   ReportajeBlockD,
   reportajeTopic,
@@ -163,6 +164,10 @@ const RUTAS_COLUMNA = [
   '/data/empleo.json',
   '/data/events.json',
   '/data/participa.json',
+  // «Tu ayuntamiento en 30 segundos»: el último pleno y la cobertura del barrio.
+  '/data/plenos.json',
+  '/data/pleno-votes.json',
+  '/data/tender-geo.json',
   ...REPORTAJE_SLUGS.map((slug) => `/data/reportajes/${slug}.json`),
 ]
 const RUTAS_TIRA = [
@@ -174,9 +179,10 @@ const RUTAS_TIRA = [
   '/data/tenders.json',
 ]
 
-/** Los doce bloques que monta la columna, en su orden. */
+/** Los trece bloques que monta la columna, en su orden. */
 const LA_COLUMNA = [
   EditorialMasthead,
+  EnBrevePortada,
   QuejaCTA,
   AlcaldeBox,
   ReportajeBlockD,
