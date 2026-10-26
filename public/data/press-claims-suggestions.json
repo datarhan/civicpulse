@@ -1,58 +1,58 @@
 {
-  "generatedAt": "2026-10-19T08:28:17.385Z",
+  "generatedAt": "2026-10-26T09:27:06.953Z",
   "source": {
     "description": "Press claims extracted by the laboratory pipeline",
     "contract": "src/scraper/press-claim.ts"
   },
   "stats": {
-    "total": 58,
+    "total": 96,
     "byType": {
-      "promesa": 3,
-      "afirmacion_numerica": 37,
+      "promesa": 16,
+      "afirmacion_numerica": 49,
       "cita_obra": 0,
-      "cita_convenio": 1,
+      "cita_convenio": 4,
       "acusacion_publica": 0,
-      "dato_municipal": 17
+      "dato_municipal": 27
     },
     "bySource": {
-      "Periòdic del Camp de Túria": 19,
-      "Levante-EMV": 3,
+      "Periòdic del Camp de Túria": 32,
+      "Levante-EMV": 5,
       "Actualidad Valencia": 1,
-      "Valencia Plaza": 4,
-      "Ayuntamiento de Riba-roja de Túria": 26,
+      "Valencia Plaza": 6,
+      "Ayuntamiento de Riba-roja de Túria": 47,
       "Las Provincias": 2,
       "El Periódico de Aquí": 1,
       "elperiodic.com": 2
     },
     "byTopic": {
-      "fiscal": 7,
+      "fiscal": 13,
       "vivienda": 0,
-      "movilidad": 5,
-      "medio-ambiente": 17,
-      "social": 3,
-      "cultura": 2,
-      "seguridad": 0,
-      "empleo": 1,
-      "urbanismo": 5,
+      "movilidad": 12,
+      "medio-ambiente": 25,
+      "social": 4,
+      "cultura": 7,
+      "seguridad": 2,
+      "empleo": 2,
+      "urbanismo": 11,
       "salud": 0,
       "transparencia": 3,
       "educacion": 1,
       "demografia": 2,
-      "other": 12
+      "other": 14
     },
     "byAttributedSource": {
-      "outlet": 33,
-      "municipal": 23,
+      "outlet": 54,
+      "municipal": 40,
       "opposition": 0,
       "unspecified": 2
     },
     "articlesProcessed": 25,
-    "articlesAvailable": 154,
+    "articlesAvailable": 153,
     "llmUnavailable": 0,
     "extraccionesSinRespuesta": 0,
-    "windowFrom": "2026-10-08T14:27:28.000Z",
-    "windowTo": "2026-10-17T04:00:33.000Z",
-    "articulosVistos": 32
+    "windowFrom": "2026-10-08T06:31:01.000Z",
+    "windowTo": "2026-10-23T11:37:52.000Z",
+    "articulosVistos": 57
   },
   "articulos": [
     {
@@ -62,10 +62,22 @@
       "procesadoEl": "2026-10-19T08:28:17.385Z"
     },
     {
+      "articleId": "13zosn4",
+      "fingerprint": "1r7w0wk",
+      "desenlace": "descartado-en-triaje",
+      "procesadoEl": "2026-10-26T09:27:06.953Z"
+    },
+    {
       "articleId": "140oi31",
       "fingerprint": "1oeuiiq",
       "desenlace": "extraido",
       "procesadoEl": "2026-10-19T08:28:17.385Z"
+    },
+    {
+      "articleId": "16twcj4",
+      "fingerprint": "1p3agfc",
+      "desenlace": "extraido",
+      "procesadoEl": "2026-10-26T09:27:06.953Z"
     },
     {
       "articleId": "18sga9a",
@@ -80,6 +92,12 @@
       "procesadoEl": "2026-10-19T08:28:17.385Z"
     },
     {
+      "articleId": "1br7vos",
+      "fingerprint": "7iaovw",
+      "desenlace": "sin-afirmaciones",
+      "procesadoEl": "2026-10-26T09:27:06.953Z"
+    },
+    {
       "articleId": "1brxjo4",
       "fingerprint": "19fhtds",
       "desenlace": "extraido",
@@ -92,10 +110,34 @@
       "procesadoEl": "2026-10-19T08:28:17.385Z"
     },
     {
+      "articleId": "1dfdixf",
+      "fingerprint": "1yzpxiw",
+      "desenlace": "descartado-en-triaje",
+      "procesadoEl": "2026-10-26T09:27:06.953Z"
+    },
+    {
+      "articleId": "1gnmztq",
+      "fingerprint": "1xnap1s",
+      "desenlace": "descartado-en-triaje",
+      "procesadoEl": "2026-10-26T09:27:06.953Z"
+    },
+    {
       "articleId": "1h22n93",
       "fingerprint": "j5j8nk",
       "desenlace": "descartado-en-triaje",
       "procesadoEl": "2026-10-19T08:28:17.385Z"
+    },
+    {
+      "articleId": "1h5jap4",
+      "fingerprint": "1pt8540",
+      "desenlace": "extraido",
+      "procesadoEl": "2026-10-26T09:27:06.953Z"
+    },
+    {
+      "articleId": "1i5ln84",
+      "fingerprint": "10i4wsk",
+      "desenlace": "descartado-en-triaje",
+      "procesadoEl": "2026-10-26T09:27:06.953Z"
     },
     {
       "articleId": "1icj1ls",
@@ -108,6 +150,18 @@
       "fingerprint": "1nw85ai",
       "desenlace": "sin-afirmaciones",
       "procesadoEl": "2026-10-19T08:28:17.385Z"
+    },
+    {
+      "articleId": "1kpso1z",
+      "fingerprint": "535kj8",
+      "desenlace": "sin-afirmaciones",
+      "procesadoEl": "2026-10-26T09:27:06.953Z"
+    },
+    {
+      "articleId": "1kvsb24",
+      "fingerprint": "et7lsi",
+      "desenlace": "sin-afirmaciones",
+      "procesadoEl": "2026-10-26T09:27:06.953Z"
     },
     {
       "articleId": "1n4h2ak",
@@ -126,6 +180,24 @@
       "fingerprint": "o337v6",
       "desenlace": "sin-afirmaciones",
       "procesadoEl": "2026-10-19T08:28:17.385Z"
+    },
+    {
+      "articleId": "1pi6hi4",
+      "fingerprint": "1y848m7",
+      "desenlace": "extraido",
+      "procesadoEl": "2026-10-26T09:27:06.953Z"
+    },
+    {
+      "articleId": "1qtypb7",
+      "fingerprint": "753ip8",
+      "desenlace": "descartado-en-triaje",
+      "procesadoEl": "2026-10-26T09:27:06.953Z"
+    },
+    {
+      "articleId": "1sfn68k",
+      "fingerprint": "1ffhzqr",
+      "desenlace": "descartado-en-triaje",
+      "procesadoEl": "2026-10-26T09:27:06.953Z"
     },
     {
       "articleId": "1tg7jey",
@@ -164,10 +236,22 @@
       "procesadoEl": "2026-10-19T08:28:17.385Z"
     },
     {
+      "articleId": "3da6js",
+      "fingerprint": "1qxdo8g",
+      "desenlace": "descartado-en-triaje",
+      "procesadoEl": "2026-10-26T09:27:06.953Z"
+    },
+    {
       "articleId": "3lfz44",
       "fingerprint": "1oun3zs",
       "desenlace": "extraido",
       "procesadoEl": "2026-10-12T08:31:15.395Z"
+    },
+    {
+      "articleId": "3r3ub6",
+      "fingerprint": "101nprs",
+      "desenlace": "descartado-en-triaje",
+      "procesadoEl": "2026-10-26T09:27:06.953Z"
     },
     {
       "articleId": "9k4v28",
@@ -176,10 +260,46 @@
       "procesadoEl": "2026-10-19T08:28:17.385Z"
     },
     {
+      "articleId": "9k9b2w",
+      "fingerprint": "1pbmyzs",
+      "desenlace": "extraido",
+      "procesadoEl": "2026-10-26T09:27:06.953Z"
+    },
+    {
+      "articleId": "a21vs4",
+      "fingerprint": "13x15ss",
+      "desenlace": "descartado-en-triaje",
+      "procesadoEl": "2026-10-26T09:27:06.953Z"
+    },
+    {
+      "articleId": "bk83aw",
+      "fingerprint": "uylhex",
+      "desenlace": "extraido",
+      "procesadoEl": "2026-10-26T09:27:06.953Z"
+    },
+    {
       "articleId": "dg07lo",
       "fingerprint": "1pti7lg",
       "desenlace": "extraido",
       "procesadoEl": "2026-10-19T08:28:17.385Z"
+    },
+    {
+      "articleId": "eg0h5w",
+      "fingerprint": "o6da4r",
+      "desenlace": "descartado-en-triaje",
+      "procesadoEl": "2026-10-26T09:27:06.953Z"
+    },
+    {
+      "articleId": "f9c0sf",
+      "fingerprint": "xrrow0",
+      "desenlace": "descartado-en-triaje",
+      "procesadoEl": "2026-10-26T09:27:06.953Z"
+    },
+    {
+      "articleId": "hbl63g",
+      "fingerprint": "7rfyh4",
+      "desenlace": "extraido",
+      "procesadoEl": "2026-10-26T09:27:06.953Z"
     },
     {
       "articleId": "hkahd4",
@@ -206,10 +326,22 @@
       "procesadoEl": "2026-10-19T08:28:17.385Z"
     },
     {
+      "articleId": "mdcrso",
+      "fingerprint": "1bsbuko",
+      "desenlace": "descartado-en-triaje",
+      "procesadoEl": "2026-10-26T09:27:06.953Z"
+    },
+    {
       "articleId": "o3xjg4",
       "fingerprint": "1k3l80",
       "desenlace": "extraido",
       "procesadoEl": "2026-10-12T08:31:15.395Z"
+    },
+    {
+      "articleId": "ol3xa0",
+      "fingerprint": "1l708r1",
+      "desenlace": "descartado-en-triaje",
+      "procesadoEl": "2026-10-26T09:27:06.953Z"
     },
     {
       "articleId": "plfgoc",
@@ -222,6 +354,12 @@
       "fingerprint": "18wtlak",
       "desenlace": "extraido",
       "procesadoEl": "2026-10-19T08:28:17.385Z"
+    },
+    {
+      "articleId": "q2h7m8",
+      "fingerprint": "1cdzisj",
+      "desenlace": "descartado-en-triaje",
+      "procesadoEl": "2026-10-26T09:27:06.953Z"
     },
     {
       "articleId": "qvuwag",
@@ -246,6 +384,18 @@
       "fingerprint": "3zj37c",
       "desenlace": "sin-afirmaciones",
       "procesadoEl": "2026-10-19T08:28:17.385Z"
+    },
+    {
+      "articleId": "z718i4",
+      "fingerprint": "1mvwziw",
+      "desenlace": "descartado-en-triaje",
+      "procesadoEl": "2026-10-26T09:27:06.953Z"
+    },
+    {
+      "articleId": "zbljuo",
+      "fingerprint": "1xesrm4",
+      "desenlace": "descartado-en-triaje",
+      "procesadoEl": "2026-10-26T09:27:06.953Z"
     }
   ],
   "items": [
@@ -1631,6 +1781,888 @@
       },
       "confidence": 0.55,
       "reasoning": "Cifra concreta de superávit municipal (4,5 millones de euros) verificable contra las cuentas generales aprobadas, aunque solo se dispone del titular y no del cuerpo del artículo.",
+      "requiresHumanApproval": true
+    },
+    {
+      "id": "16twcj4-0-num",
+      "articleId": "16twcj4",
+      "articleFingerprint": "1p3agfc",
+      "articleSource": "Periòdic del Camp de Túria",
+      "articleSourceHost": "infoturia.com",
+      "articleUrl": "https://www.infoturia.com/riba-roja-de-turia/86873-riba-roja-projecta-30-quilometres-de-vies-per-a-bicis-i-vianants-per-a-recuperar-la-senda-del-parc-fluvial-del-turia.html",
+      "articleDate": "2026-10-23T11:37:52.000Z",
+      "segmentIndex": 0,
+      "segmentKind": "body",
+      "type": "afirmacion_numerica",
+      "attributedSource": "outlet",
+      "verbatim": "de la qual formen part 98 municipis, amb una representativitat de 16 milions de persones",
+      "context": "L'alcalde de Riba-roja de Túria, Robert Raga va assistir hui a la XIII Assemblea General com a membre del Consell de Govern de la Xarxa, de la qual formen part 98 municipis, amb una representativitat de 16 milions de persones.",
+      "topic": "movilidad",
+      "entities": {
+        "count": 98,
+        "countUnit": "municipis",
+        "referencedEntity": "Xarxa de Ciutats que Caminen"
+      },
+      "confidence": 0.7,
+      "reasoning": "Cifra sobre el número de municipios y población representada por la red, contrastable con datos públicos de la organización.",
+      "requiresHumanApproval": true
+    },
+    {
+      "id": "16twcj4-1-dat",
+      "articleId": "16twcj4",
+      "articleFingerprint": "1p3agfc",
+      "articleSource": "Periòdic del Camp de Túria",
+      "articleSourceHost": "infoturia.com",
+      "articleUrl": "https://www.infoturia.com/riba-roja-de-turia/86873-riba-roja-projecta-30-quilometres-de-vies-per-a-bicis-i-vianants-per-a-recuperar-la-senda-del-parc-fluvial-del-turia.html",
+      "articleDate": "2026-10-23T11:37:52.000Z",
+      "segmentIndex": 1,
+      "segmentKind": "body",
+      "type": "dato_municipal",
+      "attributedSource": "outlet",
+      "verbatim": "Al febrer de 2022, el Ple va aprovar la seva entrada en la Xarxa",
+      "context": "L'Ajuntament de Riba-roja porta treballant en aquest model des de fa una dècada. Al febrer de 2022, el Ple va aprovar la seva entrada en la Xarxa per a impulsar la mobilitat per als vianants i el respecte al medi ambient.",
+      "topic": "movilidad",
+      "entities": {
+        "date": "febrer de 2022",
+        "referencedEntity": "Ple de l'Ajuntament de Riba-roja de Túria"
+      },
+      "confidence": 0.8,
+      "reasoning": "Afirma una fecha y un acto formal de aprobación plenaria, verificable en las actas municipales.",
+      "requiresHumanApproval": true
+    },
+    {
+      "id": "16twcj4-2-dat",
+      "articleId": "16twcj4",
+      "articleFingerprint": "1p3agfc",
+      "articleSource": "Periòdic del Camp de Túria",
+      "articleSourceHost": "infoturia.com",
+      "articleUrl": "https://www.infoturia.com/riba-roja-de-turia/86873-riba-roja-projecta-30-quilometres-de-vies-per-a-bicis-i-vianants-per-a-recuperar-la-senda-del-parc-fluvial-del-turia.html",
+      "articleDate": "2026-10-23T11:37:52.000Z",
+      "segmentIndex": 2,
+      "segmentKind": "body",
+      "type": "dato_municipal",
+      "attributedSource": "outlet",
+      "verbatim": "l'aprovació del Pla Municipal de Mobilitat Urbana Sostenible (PMUS) de Riba-roja al setembre de 2022",
+      "context": "Amb l'aprovació del Pla Municipal de Mobilitat Urbana Sostenible (PMUS) de Riba-roja al setembre de 2022, el consistori va intensificar el treball en aquesta línia amb la finalitat de crear hàbits més sostenibles de mobilitat.",
+      "topic": "movilidad",
+      "entities": {
+        "date": "setembre de 2022",
+        "referencedEntity": "Pla Municipal de Mobilitat Urbana Sostenible (PMUS)"
+      },
+      "confidence": 0.8,
+      "reasoning": "Cita la aprobación de un plan municipal con fecha concreta, verificable en los acuerdos del pleno.",
+      "requiresHumanApproval": true
+    },
+    {
+      "id": "16twcj4-3-num",
+      "articleId": "16twcj4",
+      "articleFingerprint": "1p3agfc",
+      "articleSource": "Periòdic del Camp de Túria",
+      "articleSourceHost": "infoturia.com",
+      "articleUrl": "https://www.infoturia.com/riba-roja-de-turia/86873-riba-roja-projecta-30-quilometres-de-vies-per-a-bicis-i-vianants-per-a-recuperar-la-senda-del-parc-fluvial-del-turia.html",
+      "articleDate": "2026-10-23T11:37:52.000Z",
+      "segmentIndex": 3,
+      "segmentKind": "body",
+      "type": "afirmacion_numerica",
+      "attributedSource": "outlet",
+      "verbatim": "més de mig milió de desplaçaments a l'any",
+      "context": "Una aposta es reforça amb el compromís municipal amb el transport públic gratuït -Connecta Metre i arRibabús- que compta amb realitza més de mig milió de desplaçaments a l'any.",
+      "topic": "movilidad",
+      "entities": {
+        "count": 500000,
+        "countUnit": "desplaçaments/any",
+        "referencedEntity": "Connecta Metro i arRibabús (transport públic gratuït)"
+      },
+      "confidence": 0.6,
+      "reasoning": "Cifra de uso del servicio de transporte público gratuito, contrastable con datos reales de uso del servicio.",
+      "requiresHumanApproval": true
+    },
+    {
+      "id": "16twcj4-4-num",
+      "articleId": "16twcj4",
+      "articleFingerprint": "1p3agfc",
+      "articleSource": "Periòdic del Camp de Túria",
+      "articleSourceHost": "infoturia.com",
+      "articleUrl": "https://www.infoturia.com/riba-roja-de-turia/86873-riba-roja-projecta-30-quilometres-de-vies-per-a-bicis-i-vianants-per-a-recuperar-la-senda-del-parc-fluvial-del-turia.html",
+      "articleDate": "2026-10-23T11:37:52.000Z",
+      "segmentIndex": 4,
+      "segmentKind": "body",
+      "type": "afirmacion_numerica",
+      "attributedSource": "outlet",
+      "verbatim": "la creació d'una xarxa de 12 quilòmetres de cicle per als vianants que connecten el centre urbà amb les àrees industrials i les dues línies de Metrovalencia",
+      "context": "S'han realitzat avanços amb la conversió en zona de vianants d'alguns espais públics... i la creació d'una xarxa de 12 quilòmetres de cicle per als vianants que connecten el centre urbà amb les àrees industrials i les dues línies de Metrovalencia.",
+      "topic": "movilidad",
+      "entities": {
+        "count": 12,
+        "countUnit": "quilòmetres",
+        "referencedEntity": "xarxa de vies ciclo-peatonals de Riba-roja de Túria"
+      },
+      "confidence": 0.75,
+      "reasoning": "Cifra concreta sobre la longitud de la red ciclo-peatonal existente, verificable con datos municipales de infraestructura.",
+      "requiresHumanApproval": true
+    },
+    {
+      "id": "16twcj4-5-pro",
+      "articleId": "16twcj4",
+      "articleFingerprint": "1p3agfc",
+      "articleSource": "Periòdic del Camp de Túria",
+      "articleSourceHost": "infoturia.com",
+      "articleUrl": "https://www.infoturia.com/riba-roja-de-turia/86873-riba-roja-projecta-30-quilometres-de-vies-per-a-bicis-i-vianants-per-a-recuperar-la-senda-del-parc-fluvial-del-turia.html",
+      "articleDate": "2026-10-23T11:37:52.000Z",
+      "segmentIndex": 5,
+      "segmentKind": "body",
+      "type": "promesa",
+      "attributedSource": "municipal",
+      "verbatim": "L’objectiu és ampliar aquesta xarxa fins a aconseguir els 30 quilòmetres, connectant la població, a mitjà termini, amb Loriguilla i La Reva, pel sud i amb Vilamarxant, Benaguasil i Llíria, a través de l’antiga via del tren, per l’oest",
+      "context": "“L’objectiu és ampliar aquesta xarxa fins a aconseguir els 30 quilòmetres, connectant la població, a mitjà termini, amb Loriguilla i La Reva, pel sud i amb Vilamarxant, Benaguasil i Llíria, a través de l’antiga via del tren, per l’oest”, subratlla l’alcalde.",
+      "topic": "movilidad",
+      "entities": {
+        "count": 30,
+        "countUnit": "quilòmetres",
+        "referencedEntity": "Loriguilla, La Reva, Vilamarxant, Benaguasil, Llíria"
+      },
+      "confidence": 0.65,
+      "reasoning": "Promesa cuantificable de ampliación de la red ciclo-peatonal a medio plazo, verificable por su cumplimiento futuro.",
+      "requiresHumanApproval": true
+    },
+    {
+      "id": "16twcj4-6-pro",
+      "articleId": "16twcj4",
+      "articleFingerprint": "1p3agfc",
+      "articleSource": "Periòdic del Camp de Túria",
+      "articleSourceHost": "infoturia.com",
+      "articleUrl": "https://www.infoturia.com/riba-roja-de-turia/86873-riba-roja-projecta-30-quilometres-de-vies-per-a-bicis-i-vianants-per-a-recuperar-la-senda-del-parc-fluvial-del-turia.html",
+      "articleDate": "2026-10-23T11:37:52.000Z",
+      "segmentIndex": 6,
+      "segmentKind": "body",
+      "type": "promesa",
+      "attributedSource": "municipal",
+      "verbatim": "recuperarem també la senda del Parc Natural del Túria, una de les vies ciclistes i per als vianants naturals més transitades abans de la Dana",
+      "context": "...subratlla l’alcalde i matisa, “recuperarem també la senda del Parc Natural del Túria, una de les vies ciclistes i per als vianants naturals més transitades abans de la Dana”.",
+      "topic": "medio-ambiente",
+      "entities": {
+        "referencedEntity": "Parc Natural del Túria"
+      },
+      "confidence": 0.6,
+      "reasoning": "Promesa de recuperación de una senda natural, contrastable por su ejecución futura y su estado previo a la DANA.",
+      "requiresHumanApproval": true
+    },
+    {
+      "id": "16twcj4-7-pro",
+      "articleId": "16twcj4",
+      "articleFingerprint": "1p3agfc",
+      "articleSource": "Periòdic del Camp de Túria",
+      "articleSourceHost": "infoturia.com",
+      "articleUrl": "https://www.infoturia.com/riba-roja-de-turia/86873-riba-roja-projecta-30-quilometres-de-vies-per-a-bicis-i-vianants-per-a-recuperar-la-senda-del-parc-fluvial-del-turia.html",
+      "articleDate": "2026-10-23T11:37:52.000Z",
+      "segmentIndex": 7,
+      "segmentKind": "body",
+      "type": "promesa",
+      "attributedSource": "outlet",
+      "verbatim": "treballant en una transformació més ‘amable i habitable” de l’Avinguda de la Pau, amb un model semipeatonal, que comptarà amb plataforma única, vegetació i nou mobiliari urbà",
+      "context": "L’Ajuntament de Riba-roja de Túria... en l’actualitat està treballant en una transformació més ‘amable i habitable” de l’Avinguda de la Pau, amb un model semipeatonal, que comptarà amb plataforma única, vegetació i nou mobiliari urbà per a un major gaudi dels veïns i veïnes.",
+      "topic": "urbanismo",
+      "entities": {
+        "referencedEntity": "Avinguda de la Pau"
+      },
+      "confidence": 0.6,
+      "reasoning": "Describe un proyecto urbanístico en marcha con elementos concretos, verificable por su ejecución posterior.",
+      "requiresHumanApproval": true
+    },
+    {
+      "id": "16twcj4-8-pro",
+      "articleId": "16twcj4",
+      "articleFingerprint": "1p3agfc",
+      "articleSource": "Periòdic del Camp de Túria",
+      "articleSourceHost": "infoturia.com",
+      "articleUrl": "https://www.infoturia.com/riba-roja-de-turia/86873-riba-roja-projecta-30-quilometres-de-vies-per-a-bicis-i-vianants-per-a-recuperar-la-senda-del-parc-fluvial-del-turia.html",
+      "articleDate": "2026-10-23T11:37:52.000Z",
+      "segmentIndex": 8,
+      "segmentKind": "body",
+      "type": "promesa",
+      "attributedSource": "outlet",
+      "verbatim": "la plaça Germanies, la plaça Constitució i el carrer Joan Martorell, que es convertirà en una zona semipeatonalizada",
+      "context": "Un altre dels eixos viaris sobre els quals s’actuarà en els pròxims anys serà el que comprèn la plaça Germanies, la plaça Constitució i el carrer Joan Martorell, que es convertirà en una zona semipeatonalizada.",
+      "topic": "urbanismo",
+      "entities": {
+        "referencedEntity": "plaça Germanies, plaça Constitució, carrer Joan Martorell"
+      },
+      "confidence": 0.6,
+      "reasoning": "Anuncia una intervención urbanística futura concreta y localizable, contrastable con su ejecución posterior.",
+      "requiresHumanApproval": true
+    },
+    {
+      "id": "16twcj4-9-dat",
+      "articleId": "16twcj4",
+      "articleFingerprint": "1p3agfc",
+      "articleSource": "Periòdic del Camp de Túria",
+      "articleSourceHost": "infoturia.com",
+      "articleUrl": "https://www.infoturia.com/riba-roja-de-turia/86873-riba-roja-projecta-30-quilometres-de-vies-per-a-bicis-i-vianants-per-a-recuperar-la-senda-del-parc-fluvial-del-turia.html",
+      "articleDate": "2026-10-23T11:37:52.000Z",
+      "segmentIndex": 9,
+      "segmentKind": "body",
+      "type": "dato_municipal",
+      "attributedSource": "outlet",
+      "verbatim": "incrementar la seguretat en els entorns escolars amb semipeatonalizaciones com la del col·legi Cervantes",
+      "context": "Precisament, incrementar la seguretat en els entorns escolars amb semipeatonalizaciones com la del col·legi Cervantes, és un dels objectius que es marcarà el govern municipal per a la resta de centres educatius.",
+      "topic": "seguridad",
+      "entities": {
+        "referencedEntity": "Col·legi Cervantes"
+      },
+      "confidence": 0.65,
+      "reasoning": "Describe una medida de semipeatonalización ya implementada en un centro escolar concreto, verificable sobre el terreno.",
+      "requiresHumanApproval": true
+    },
+    {
+      "id": "16twcj4-10-pro",
+      "articleId": "16twcj4",
+      "articleFingerprint": "1p3agfc",
+      "articleSource": "Periòdic del Camp de Túria",
+      "articleSourceHost": "infoturia.com",
+      "articleUrl": "https://www.infoturia.com/riba-roja-de-turia/86873-riba-roja-projecta-30-quilometres-de-vies-per-a-bicis-i-vianants-per-a-recuperar-la-senda-del-parc-fluvial-del-turia.html",
+      "articleDate": "2026-10-23T11:37:52.000Z",
+      "segmentIndex": 10,
+      "segmentKind": "body",
+      "type": "promesa",
+      "attributedSource": "outlet",
+      "verbatim": "és un dels objectius que es marcarà el govern municipal per a la resta de centres educatius",
+      "context": "...amb semipeatonalizaciones com la del col·legi Cervantes, és un dels objectius que es marcarà el govern municipal per a la resta de centres educatius.",
+      "topic": "seguridad",
+      "entities": {
+        "referencedEntity": "centres educatius de Riba-roja de Túria"
+      },
+      "confidence": 0.55,
+      "reasoning": "Objetivo municipal futuro de extender medidas de seguridad escolar, contrastable por su cumplimiento posterior.",
+      "requiresHumanApproval": true
+    },
+    {
+      "id": "16twcj4-11-pro",
+      "articleId": "16twcj4",
+      "articleFingerprint": "1p3agfc",
+      "articleSource": "Periòdic del Camp de Túria",
+      "articleSourceHost": "infoturia.com",
+      "articleUrl": "https://www.infoturia.com/riba-roja-de-turia/86873-riba-roja-projecta-30-quilometres-de-vies-per-a-bicis-i-vianants-per-a-recuperar-la-senda-del-parc-fluvial-del-turia.html",
+      "articleDate": "2026-10-23T11:37:52.000Z",
+      "segmentIndex": 11,
+      "segmentKind": "body",
+      "type": "promesa",
+      "attributedSource": "outlet",
+      "verbatim": "garantirà la seguretat de vianants i ciclistes que accedeixin a través del Pont Vell una vegada finalitzi la seva rehabilitació al començament d’any",
+      "context": "Una altra de les actuacions revertirà del Camí de les Ànimes garantirà la seguretat de vianants i ciclistes que accedeixin a través del Pont Vell una vegada finalitzi la seva rehabilitació al començament d’any.",
+      "topic": "urbanismo",
+      "entities": {
+        "date": "començament d'any",
+        "referencedEntity": "Pont Vell"
+      },
+      "confidence": 0.6,
+      "reasoning": "Promesa ligada a la finalización de una rehabilitación con fecha aproximada, contrastable por su cumplimiento.",
+      "requiresHumanApproval": true
+    },
+    {
+      "id": "16twcj4-12-pro",
+      "articleId": "16twcj4",
+      "articleFingerprint": "1p3agfc",
+      "articleSource": "Periòdic del Camp de Túria",
+      "articleSourceHost": "infoturia.com",
+      "articleUrl": "https://www.infoturia.com/riba-roja-de-turia/86873-riba-roja-projecta-30-quilometres-de-vies-per-a-bicis-i-vianants-per-a-recuperar-la-senda-del-parc-fluvial-del-turia.html",
+      "articleDate": "2026-10-23T11:37:52.000Z",
+      "segmentIndex": 12,
+      "segmentKind": "body",
+      "type": "promesa",
+      "attributedSource": "outlet",
+      "verbatim": "permetrà la connexió de la zona nord amb el centre urbà, a través de la transformació del Barranc dels Moros",
+      "context": "Aquest eix permetrà la connexió de la zona nord amb el centre urbà, a través de la transformació del Barranc dels Moros.",
+      "topic": "urbanismo",
+      "entities": {
+        "referencedEntity": "Barranc dels Moros"
+      },
+      "confidence": 0.55,
+      "reasoning": "Proyecto de conexión urbana mediante transformación de un barranco, contrastable por su ejecución futura.",
+      "requiresHumanApproval": true
+    },
+    {
+      "id": "bk83aw-0-num",
+      "articleId": "bk83aw",
+      "articleFingerprint": "uylhex",
+      "articleSource": "Valencia Plaza",
+      "articleSourceHost": "valenciaplaza.com",
+      "articleUrl": "https://news.google.com/rss/articles/CBMiggJBVV95cUxOZThBWG1ZeG4yX3QwN05yQnItUUFySEZORjAzZUpLQWY0cmFod28ycEhyQXpoNmlnc3gwN29EYkdBVWdEcm4xaDYyejRzdnVWQnNHMmpMaHhWanpyU2NUYmFIUzlsMXJBbDhubW51MHZGd0FTekUzWVRhU09XS0tYTW1ydmZRV3A2UUo2Qi1RTlQwa1pRdUxNYUJJOE9aQ0hWWlNoeE1CaFVXTlUtWm5zcVlLb3dOQXJ2cTV6U2h2NW0wczRIOHlpeUoyZUE1QUhVdGVaSXBtU1FRTE45Tk53VFA4V3pKMVloZUJ0SkN6N2VOQ0JaLXJBcW1zOEFmVXk4cUE?oc=5",
+      "articleDate": "2026-10-23T10:37:41.000Z",
+      "segmentIndex": 0,
+      "segmentKind": "title",
+      "type": "afirmacion_numerica",
+      "attributedSource": "outlet",
+      "verbatim": "Riba-roja proyecta 30 kilómetros de vías ciclopeatonales para conectar el municipio y recuperar la senda del Túria",
+      "context": "TITULAR: Riba-roja proyecta 30 kilómetros de vías ciclopeatonales para conectar el municipio y recuperar la senda del Túria",
+      "topic": "movilidad",
+      "entities": {
+        "count": 30,
+        "countUnit": "kilómetros",
+        "referencedEntity": "vías ciclopeatonales / senda del Túria"
+      },
+      "confidence": 0.5,
+      "reasoning": "El titular contiene una cifra concreta (30 km de vías ciclopeatonales proyectadas) que es verificable contra el proyecto municipal real, aunque no se dispone del cuerpo del artículo para contextualizarla más.",
+      "requiresHumanApproval": true
+    },
+    {
+      "id": "1pi6hi4-0-dat",
+      "articleId": "1pi6hi4",
+      "articleFingerprint": "1y848m7",
+      "articleSource": "Ayuntamiento de Riba-roja de Túria",
+      "articleSourceHost": "ribarroja.es",
+      "articleUrl": "https://www.ribarroja.es/es/noticia/los-pueblos-ribere%C3%B1os-de-castilla%2C-arag%C3%B3n-y-valencia-se-citan-el-pr%C3%B3ximo-8-de-noviembre-en-riba-roja-para-homenajear-al-t%C3%BAria",
+      "articleDate": "2026-10-21T12:53:50.000Z",
+      "segmentIndex": 0,
+      "segmentKind": "body",
+      "type": "dato_municipal",
+      "attributedSource": "outlet",
+      "verbatim": "Declarada fiesta de Interés Turístico provincial en 2010",
+      "context": "La VII Ofrena al Riu Túria constituye una cita de especial relevancia cultural, patrimonial y turística para el conjunto del territorio vinculado al río Turia. Declarada fiesta de Interés Turístico provincial en 2010, esta tradición se celebra desde 1980 como homenaje al río.",
+      "topic": "cultura",
+      "entities": {
+        "date": "2010",
+        "referencedEntity": "Ofrena al Riu Túria"
+      },
+      "confidence": 0.65,
+      "reasoning": "Es una fecha de declaración oficial de interés turístico, verificable en registros administrativos.",
+      "requiresHumanApproval": true
+    },
+    {
+      "id": "1pi6hi4-1-dat",
+      "articleId": "1pi6hi4",
+      "articleFingerprint": "1y848m7",
+      "articleSource": "Ayuntamiento de Riba-roja de Túria",
+      "articleSourceHost": "ribarroja.es",
+      "articleUrl": "https://www.ribarroja.es/es/noticia/los-pueblos-ribere%C3%B1os-de-castilla%2C-arag%C3%B3n-y-valencia-se-citan-el-pr%C3%B3ximo-8-de-noviembre-en-riba-roja-para-homenajear-al-t%C3%BAria",
+      "articleDate": "2026-10-21T12:53:50.000Z",
+      "segmentIndex": 1,
+      "segmentKind": "body",
+      "type": "dato_municipal",
+      "attributedSource": "outlet",
+      "verbatim": "esta tradición se celebra desde 1980 como homenaje al río que da nombre y vida al municipio",
+      "context": "Declarada fiesta de Interés Turístico provincial en 2010, esta tradición se celebra desde 1980 como homenaje al río que da nombre y vida al municipio y reunirá durante la jornada dominical a los pueblos que bañan el Túria.",
+      "topic": "cultura",
+      "entities": {
+        "date": "1980",
+        "referencedEntity": "Ofrena al Riu Túria"
+      },
+      "confidence": 0.65,
+      "reasoning": "Afirma un año de origen concreto de la tradición, contrastable con registros históricos del municipio.",
+      "requiresHumanApproval": true
+    },
+    {
+      "id": "1pi6hi4-2-dat",
+      "articleId": "1pi6hi4",
+      "articleFingerprint": "1y848m7",
+      "articleSource": "Ayuntamiento de Riba-roja de Túria",
+      "articleSourceHost": "ribarroja.es",
+      "articleUrl": "https://www.ribarroja.es/es/noticia/los-pueblos-ribere%C3%B1os-de-castilla%2C-arag%C3%B3n-y-valencia-se-citan-el-pr%C3%B3ximo-8-de-noviembre-en-riba-roja-para-homenajear-al-t%C3%BAria",
+      "articleDate": "2026-10-21T12:53:50.000Z",
+      "segmentIndex": 2,
+      "segmentKind": "body",
+      "type": "dato_municipal",
+      "attributedSource": "outlet",
+      "verbatim": "La Covid en 2020 y las graves consecuencias de la Dana impidieron realizar la celebración prevista para el año 2025.",
+      "context": "Cada cinco años, los pueblos ribereños del Turia participan en una ofrenda floral. La Covid en 2020 y las graves consecuencias de la Dana impidieron realizar la celebración prevista para el año 2025. Ahora, cuando se cumplen dos años de la tragedia se recupera esta tradición.",
+      "topic": "other",
+      "entities": {
+        "date": "2025",
+        "referencedEntity": "Dana"
+      },
+      "confidence": 0.6,
+      "reasoning": "Afirma causas concretas (pandemia y Dana) de la cancelación de una edición en una fecha específica, verificable.",
+      "requiresHumanApproval": true
+    },
+    {
+      "id": "1pi6hi4-3-num",
+      "articleId": "1pi6hi4",
+      "articleFingerprint": "1y848m7",
+      "articleSource": "Ayuntamiento de Riba-roja de Túria",
+      "articleSourceHost": "ribarroja.es",
+      "articleUrl": "https://www.ribarroja.es/es/noticia/los-pueblos-ribere%C3%B1os-de-castilla%2C-arag%C3%B3n-y-valencia-se-citan-el-pr%C3%B3ximo-8-de-noviembre-en-riba-roja-para-homenajear-al-t%C3%BAria",
+      "articleDate": "2026-10-21T12:53:50.000Z",
+      "segmentIndex": 3,
+      "segmentKind": "body",
+      "type": "afirmacion_numerica",
+      "attributedSource": "outlet",
+      "verbatim": "la Gala de los Premios Ecoriba que llega este año a su décima edición",
+      "context": "En el marco de las actividades de la Ofrenda, la noche del 5 de noviembre se celebrará la Gala de los Premios Ecoriba que llega este año a su décima edición, como un reconocimiento a las iniciativas en favor de la sostenibilidad y el medio ambiente.",
+      "topic": "medio-ambiente",
+      "entities": {
+        "count": 10,
+        "countUnit": "edición",
+        "referencedEntity": "Premios Ecoriba"
+      },
+      "confidence": 0.65,
+      "reasoning": "Especifica el número de edición de unos premios municipales, verificable con el histórico de ediciones anteriores.",
+      "requiresHumanApproval": true
+    },
+    {
+      "id": "1pi6hi4-4-dat",
+      "articleId": "1pi6hi4",
+      "articleFingerprint": "1y848m7",
+      "articleSource": "Ayuntamiento de Riba-roja de Túria",
+      "articleSourceHost": "ribarroja.es",
+      "articleUrl": "https://www.ribarroja.es/es/noticia/los-pueblos-ribere%C3%B1os-de-castilla%2C-arag%C3%B3n-y-valencia-se-citan-el-pr%C3%B3ximo-8-de-noviembre-en-riba-roja-para-homenajear-al-t%C3%BAria",
+      "articleDate": "2026-10-21T12:53:50.000Z",
+      "segmentIndex": 4,
+      "segmentKind": "body",
+      "type": "dato_municipal",
+      "attributedSource": "outlet",
+      "verbatim": "El Ayuntamiento de Riba-roja de Túria ha previsto un amplio programa que se llevarán a cabo del 24 de octubre al 8 de noviembre.",
+      "context": "El Ayuntamiento de Riba-roja de Túria ha previsto un amplio programa que se llevarán a cabo del 24 de octubre al 8 de noviembre. Incluye actos reivindicativos, culturales y lúdicos como la exposición de fotografía 'El ciclo de la gratitud'.",
+      "topic": "cultura",
+      "entities": {
+        "date": "24 de octubre - 8 de noviembre de 2026",
+        "referencedEntity": "programa de la VII Ofrena al tiu Túria"
+      },
+      "confidence": 0.6,
+      "reasoning": "Establece un rango de fechas concreto para el programa municipal, contrastable con la agenda oficial publicada.",
+      "requiresHumanApproval": true
+    },
+    {
+      "id": "1pi6hi4-5-dat",
+      "articleId": "1pi6hi4",
+      "articleFingerprint": "1y848m7",
+      "articleSource": "Ayuntamiento de Riba-roja de Túria",
+      "articleSourceHost": "ribarroja.es",
+      "articleUrl": "https://www.ribarroja.es/es/noticia/los-pueblos-ribere%C3%B1os-de-castilla%2C-arag%C3%B3n-y-valencia-se-citan-el-pr%C3%B3ximo-8-de-noviembre-en-riba-roja-para-homenajear-al-t%C3%BAria",
+      "articleDate": "2026-10-21T12:53:50.000Z",
+      "segmentIndex": 5,
+      "segmentKind": "body",
+      "type": "dato_municipal",
+      "attributedSource": "outlet",
+      "verbatim": "cuando se cumplen dos años de la tragedia y en pleno proceso de reconstrucción",
+      "context": "Ahora, cuando se cumplen dos años de la tragedia y en pleno proceso de reconstrucción se recupera con especial ilusión esta tradición tan querida, que adquiere además un significado más relevante tras los difíciles momentos vividos.",
+      "topic": "other",
+      "entities": {
+        "date": "2026",
+        "referencedEntity": "Dana"
+      },
+      "confidence": 0.55,
+      "reasoning": "Sitúa temporalmente el evento respecto a la Dana (dos años después) y afirma un proceso de reconstrucción en curso, ambos contrastables.",
+      "requiresHumanApproval": true
+    },
+    {
+      "id": "1h5jap4-0-num",
+      "articleId": "1h5jap4",
+      "articleFingerprint": "1pt8540",
+      "articleSource": "Levante-EMV",
+      "articleSourceHost": "levante-emv.com",
+      "articleUrl": "https://news.google.com/rss/articles/CBMi3AFBVV95cUxQMVNCcl9scmFTR09WeVQ5dllUMmFPOVZUbXpSZGRNZVRScmlBeHl4YTNudWxJOHo0cDhkTnQ4Ml90cDF1TFZndWVXNGRxNElHQ29Cd3NpdEdIYjlOcVIyX3FMaXdGRnIyV241UmF2R3diR0Z3bnVqelVjbk9OZTc3RFR1d2k2T2FQU3RZTDZ3OVpKZXR5SmpfVkJIN285UnA5MkViNjUtOExQZHMta2tQRlAyM1FwdVNSTUdFSHhENnVDZVRmNkhMaG1PaV9sWEx1V0FOSi11UzF1T1Fl0gHiAUFVX3lxTE14SkVwbjBYeWpBVmU2SFFwdEJlVnI1NmFWb0xkVEVjN0ZsZERhdVY5SWp6QWxHU2tnMnB1UEgwR0ZKNXQ0WWtqcTB3cWdwRmlGcXFyeEpILVdWbGwtdmhpXzA3ejlHTm9HT2kxTTBnb2w5STN5QXAyWDBESVpkTWF1NVpkTWh2bVA1WDM1OTJ1RXpRcHVmbkRrdUlDNE5tQ1BYdEpuVU41blZpNDE4MG9Pd2Z3dTk3N2VaRmFZR2ZLWVh5cmhIX282alF3Nml3SkZ2djM3bzJuTTlHMHFMZURlckE?oc=5",
+      "articleDate": "2026-10-21T11:52:42.000Z",
+      "segmentIndex": 0,
+      "segmentKind": "title",
+      "type": "afirmacion_numerica",
+      "attributedSource": "outlet",
+      "verbatim": "Riba-roja recupera la Ofrena al riu Túria once años después de su última edición",
+      "context": "Riba-roja recupera la Ofrena al riu Túria once años después de su última edición: el covid y la dana aplazaron una tradición que vuelve el 8 de noviembre",
+      "topic": "cultura",
+      "entities": {
+        "count": 11,
+        "countUnit": "años",
+        "referencedEntity": "Ofrena al riu Túria"
+      },
+      "confidence": 0.6,
+      "reasoning": "El titular afirma una cifra concreta de años transcurridos desde la última edición del evento, verificable con registros municipales o de prensa anteriores.",
+      "requiresHumanApproval": true
+    },
+    {
+      "id": "1h5jap4-1-dat",
+      "articleId": "1h5jap4",
+      "articleFingerprint": "1pt8540",
+      "articleSource": "Levante-EMV",
+      "articleSourceHost": "levante-emv.com",
+      "articleUrl": "https://news.google.com/rss/articles/CBMi3AFBVV95cUxQMVNCcl9scmFTR09WeVQ5dllUMmFPOVZUbXpSZGRNZVRScmlBeHl4YTNudWxJOHo0cDhkTnQ4Ml90cDF1TFZndWVXNGRxNElHQ29Cd3NpdEdIYjlOcVIyX3FMaXdGRnIyV241UmF2R3diR0Z3bnVqelVjbk9OZTc3RFR1d2k2T2FQU3RZTDZ3OVpKZXR5SmpfVkJIN285UnA5MkViNjUtOExQZHMta2tQRlAyM1FwdVNSTUdFSHhENnVDZVRmNkhMaG1PaV9sWEx1V0FOSi11UzF1T1Fl0gHiAUFVX3lxTE14SkVwbjBYeWpBVmU2SFFwdEJlVnI1NmFWb0xkVEVjN0ZsZERhdVY5SWp6QWxHU2tnMnB1UEgwR0ZKNXQ0WWtqcTB3cWdwRmlGcXFyeEpILVdWbGwtdmhpXzA3ejlHTm9HT2kxTTBnb2w5STN5QXAyWDBESVpkTWF1NVpkTWh2bVA1WDM1OTJ1RXpRcHVmbkRrdUlDNE5tQ1BYdEpuVU41blZpNDE4MG9Pd2Z3dTk3N2VaRmFZR2ZLWVh5cmhIX282alF3Nml3SkZ2djM3bzJuTTlHMHFMZURlckE?oc=5",
+      "articleDate": "2026-10-21T11:52:42.000Z",
+      "segmentIndex": 1,
+      "segmentKind": "title",
+      "type": "dato_municipal",
+      "attributedSource": "outlet",
+      "verbatim": "el covid y la dana aplazaron una tradición que vuelve el 8 de noviembre",
+      "context": "Riba-roja recupera la Ofrena al riu Túria once años después de su última edición: el covid y la dana aplazaron una tradición que vuelve el 8 de noviembre",
+      "topic": "cultura",
+      "entities": {
+        "date": "8 de noviembre",
+        "referencedEntity": "Ofrena al riu Túria"
+      },
+      "confidence": 0.55,
+      "reasoning": "Indica una fecha concreta de celebración y atribuye causas de aplazamiento (covid y dana) que son hechos verificables de forma independiente.",
+      "requiresHumanApproval": true
+    },
+    {
+      "id": "hbl63g-0-num",
+      "articleId": "hbl63g",
+      "articleFingerprint": "7rfyh4",
+      "articleSource": "Ayuntamiento de Riba-roja de Túria",
+      "articleSourceHost": "ribarroja.es",
+      "articleUrl": "https://www.ribarroja.es/es/noticia/riba-roja-de-t%C3%BAria-formaliza-con-veolia-el-nuevo-contrato-del-ciclo-integral-del-agua-para-reforzar-la-sostenibilidad-y-modernizar-sus-infraestructuras",
+      "articleDate": "2026-10-08T12:37:13.000Z",
+      "segmentIndex": 0,
+      "segmentKind": "body",
+      "type": "afirmacion_numerica",
+      "attributedSource": "municipal",
+      "verbatim": "suscrito para los próximos 17 años",
+      "context": "El acuerdo, suscrito para los próximos 17 años, asegura una aportación inicial de 2,3 millones de euros para inversiones en el municipio y fija una tarifa finalista a coste cero para los abonados.",
+      "topic": "medio-ambiente",
+      "entities": {
+        "count": 17,
+        "countUnit": "años",
+        "referencedEntity": "contrato del ciclo integral del agua con Veolia"
+      },
+      "confidence": 0.85,
+      "reasoning": "La duración de la concesión es un dato contractual concreto y verificable.",
+      "requiresHumanApproval": true
+    },
+    {
+      "id": "hbl63g-1-num",
+      "articleId": "hbl63g",
+      "articleFingerprint": "7rfyh4",
+      "articleSource": "Ayuntamiento de Riba-roja de Túria",
+      "articleSourceHost": "ribarroja.es",
+      "articleUrl": "https://www.ribarroja.es/es/noticia/riba-roja-de-t%C3%BAria-formaliza-con-veolia-el-nuevo-contrato-del-ciclo-integral-del-agua-para-reforzar-la-sostenibilidad-y-modernizar-sus-infraestructuras",
+      "articleDate": "2026-10-08T12:37:13.000Z",
+      "segmentIndex": 1,
+      "segmentKind": "body",
+      "type": "afirmacion_numerica",
+      "attributedSource": "municipal",
+      "verbatim": "el acuerdo contempla una inyección anticipada a las arcas municipales de 2,3 millones de euros por derechos de uso de las instalaciones, abonada con carácter previo a la firma",
+      "context": "Asimismo, el acuerdo contempla una inyección anticipada a las arcas municipales de 2,3 millones de euros por derechos de uso de las instalaciones, abonada con carácter previo a la firma.",
+      "topic": "fiscal",
+      "entities": {
+        "amountEuros": 2300000,
+        "referencedEntity": "Ayuntamiento de Riba-roja de Túria"
+      },
+      "confidence": 0.85,
+      "reasoning": "El importe de la aportación inicial es una cifra concreta verificable en las cuentas municipales.",
+      "requiresHumanApproval": true
+    },
+    {
+      "id": "hbl63g-2-num",
+      "articleId": "hbl63g",
+      "articleFingerprint": "7rfyh4",
+      "articleSource": "Ayuntamiento de Riba-roja de Túria",
+      "articleSourceHost": "ribarroja.es",
+      "articleUrl": "https://www.ribarroja.es/es/noticia/riba-roja-de-t%C3%BAria-formaliza-con-veolia-el-nuevo-contrato-del-ciclo-integral-del-agua-para-reforzar-la-sostenibilidad-y-modernizar-sus-infraestructuras",
+      "articleDate": "2026-10-08T12:37:13.000Z",
+      "segmentIndex": 2,
+      "segmentKind": "body",
+      "type": "afirmacion_numerica",
+      "attributedSource": "municipal",
+      "verbatim": "el establecimiento de una tarifa finalista de 0,00 euros por abonado y mes, garantizando un impacto económico nulo de esta partida en los recibos de los hogares",
+      "context": "Entre sus principales novedades económicas y sociales destaca el establecimiento de una tarifa finalista de 0,00 euros por abonado y mes, garantizando un impacto económico nulo de esta partida en los recibos de los hogares.",
+      "topic": "fiscal",
+      "entities": {
+        "amountEuros": 0,
+        "countUnit": "euros/abonado/mes",
+        "referencedEntity": "abonados del servicio municipal de agua"
+      },
+      "confidence": 0.85,
+      "reasoning": "La cuantía exacta de la tarifa finalista es comprobable directamente en los recibos.",
+      "requiresHumanApproval": true
+    },
+    {
+      "id": "hbl63g-3-pro",
+      "articleId": "hbl63g",
+      "articleFingerprint": "7rfyh4",
+      "articleSource": "Ayuntamiento de Riba-roja de Túria",
+      "articleSourceHost": "ribarroja.es",
+      "articleUrl": "https://www.ribarroja.es/es/noticia/riba-roja-de-t%C3%BAria-formaliza-con-veolia-el-nuevo-contrato-del-ciclo-integral-del-agua-para-reforzar-la-sostenibilidad-y-modernizar-sus-infraestructuras",
+      "articleDate": "2026-10-08T12:37:13.000Z",
+      "segmentIndex": 3,
+      "segmentKind": "body",
+      "type": "promesa",
+      "attributedSource": "municipal",
+      "verbatim": "El acuerdo, mantendrá las tarifas congeladas durante dos años en el municipio.",
+      "context": "El acuerdo, mantendrá las tarifas congeladas durante dos años en el municipio.",
+      "topic": "fiscal",
+      "entities": {
+        "count": 2,
+        "countUnit": "años",
+        "referencedEntity": "tarifas del servicio municipal de agua"
+      },
+      "confidence": 0.75,
+      "reasoning": "Es una promesa de congelación tarifaria contrastable comparando los recibos de los próximos dos años.",
+      "requiresHumanApproval": true
+    },
+    {
+      "id": "hbl63g-4-num",
+      "articleId": "hbl63g",
+      "articleFingerprint": "7rfyh4",
+      "articleSource": "Ayuntamiento de Riba-roja de Túria",
+      "articleSourceHost": "ribarroja.es",
+      "articleUrl": "https://www.ribarroja.es/es/noticia/riba-roja-de-t%C3%BAria-formaliza-con-veolia-el-nuevo-contrato-del-ciclo-integral-del-agua-para-reforzar-la-sostenibilidad-y-modernizar-sus-infraestructuras",
+      "articleDate": "2026-10-08T12:37:13.000Z",
+      "segmentIndex": 4,
+      "segmentKind": "body",
+      "type": "afirmacion_numerica",
+      "attributedSource": "municipal",
+      "verbatim": "un canon anual variable fijado en 0,16 euros por metro cúbico facturado",
+      "context": "A esta cuantía se suma un canon anual variable fijado en 0,16 euros por metro cúbico facturado - lo que representará una aportación estimada superior a los 400.000 euros durante el primer ejercicio.",
+      "topic": "fiscal",
+      "entities": {
+        "amountEuros": 0.16,
+        "countUnit": "euros/m3",
+        "referencedEntity": "canon anual de Veolia"
+      },
+      "confidence": 0.85,
+      "reasoning": "El tipo de canon por metro cúbico facturado es un dato contractual verificable.",
+      "requiresHumanApproval": true
+    },
+    {
+      "id": "hbl63g-5-num",
+      "articleId": "hbl63g",
+      "articleFingerprint": "7rfyh4",
+      "articleSource": "Ayuntamiento de Riba-roja de Túria",
+      "articleSourceHost": "ribarroja.es",
+      "articleUrl": "https://www.ribarroja.es/es/noticia/riba-roja-de-t%C3%BAria-formaliza-con-veolia-el-nuevo-contrato-del-ciclo-integral-del-agua-para-reforzar-la-sostenibilidad-y-modernizar-sus-infraestructuras",
+      "articleDate": "2026-10-08T12:37:13.000Z",
+      "segmentIndex": 5,
+      "segmentKind": "body",
+      "type": "afirmacion_numerica",
+      "attributedSource": "municipal",
+      "verbatim": "lo que representará una aportación estimada superior a los 400.000 euros durante el primer ejercicio",
+      "context": "fijado en 0,16 euros por metro cúbico facturado - lo que representará una aportación estimada superior a los 400.000 euros durante el primer ejercicio – lo que cuatruplica la cuantía mínima establecida inicialmente en los pliegos.",
+      "topic": "fiscal",
+      "entities": {
+        "amountEuros": 400000,
+        "referencedEntity": "canon anual de Veolia"
+      },
+      "confidence": 0.7,
+      "reasoning": "La estimación de ingresos del primer ejercicio es contrastable con la ejecución presupuestaria real.",
+      "requiresHumanApproval": true
+    },
+    {
+      "id": "hbl63g-6-num",
+      "articleId": "hbl63g",
+      "articleFingerprint": "7rfyh4",
+      "articleSource": "Ayuntamiento de Riba-roja de Túria",
+      "articleSourceHost": "ribarroja.es",
+      "articleUrl": "https://www.ribarroja.es/es/noticia/riba-roja-de-t%C3%BAria-formaliza-con-veolia-el-nuevo-contrato-del-ciclo-integral-del-agua-para-reforzar-la-sostenibilidad-y-modernizar-sus-infraestructuras",
+      "articleDate": "2026-10-08T12:37:13.000Z",
+      "segmentIndex": 6,
+      "segmentKind": "body",
+      "type": "afirmacion_numerica",
+      "attributedSource": "municipal",
+      "verbatim": "lo que cuatruplica la cuantía mínima establecida inicialmente en los pliegos",
+      "context": "representará una aportación estimada superior a los 400.000 euros durante el primer ejercicio – lo que cuatruplica la cuantía mínima establecida inicialmente en los pliegos.",
+      "topic": "fiscal",
+      "entities": {
+        "count": 4,
+        "countUnit": "veces",
+        "referencedEntity": "pliegos del contrato"
+      },
+      "confidence": 0.65,
+      "reasoning": "La comparación con la cuantía mínima de los pliegos es verificable consultando el expediente de contratación.",
+      "requiresHumanApproval": true
+    },
+    {
+      "id": "hbl63g-7-pro",
+      "articleId": "hbl63g",
+      "articleFingerprint": "7rfyh4",
+      "articleSource": "Ayuntamiento de Riba-roja de Túria",
+      "articleSourceHost": "ribarroja.es",
+      "articleUrl": "https://www.ribarroja.es/es/noticia/riba-roja-de-t%C3%BAria-formaliza-con-veolia-el-nuevo-contrato-del-ciclo-integral-del-agua-para-reforzar-la-sostenibilidad-y-modernizar-sus-infraestructuras",
+      "articleDate": "2026-10-08T12:37:13.000Z",
+      "segmentIndex": 7,
+      "segmentKind": "body",
+      "type": "promesa",
+      "attributedSource": "municipal",
+      "verbatim": "la concesionaria asume la obligación de elaborar durante el primer año una auditoría integral de la huella de carbono del servicio",
+      "context": "En materia medioambiental, la concesionaria asume la obligación de elaborar durante el primer año una auditoría integral de la huella de carbono del servicio, con el compromiso vinculante de reducir las emisiones en más de un 10%.",
+      "topic": "medio-ambiente",
+      "entities": {
+        "count": 1,
+        "countUnit": "año",
+        "referencedEntity": "Veolia"
+      },
+      "confidence": 0.75,
+      "reasoning": "El plazo de un año para elaborar la auditoría de huella de carbono es un compromiso verificable documentalmente.",
+      "requiresHumanApproval": true
+    },
+    {
+      "id": "hbl63g-8-pro",
+      "articleId": "hbl63g",
+      "articleFingerprint": "7rfyh4",
+      "articleSource": "Ayuntamiento de Riba-roja de Túria",
+      "articleSourceHost": "ribarroja.es",
+      "articleUrl": "https://www.ribarroja.es/es/noticia/riba-roja-de-t%C3%BAria-formaliza-con-veolia-el-nuevo-contrato-del-ciclo-integral-del-agua-para-reforzar-la-sostenibilidad-y-modernizar-sus-infraestructuras",
+      "articleDate": "2026-10-08T12:37:13.000Z",
+      "segmentIndex": 8,
+      "segmentKind": "body",
+      "type": "promesa",
+      "attributedSource": "municipal",
+      "verbatim": "el compromiso vinculante de reducir las emisiones en más de un 10% a lo largo de la vigencia del contrato",
+      "context": "una auditoría integral de la huella de carbono del servicio, con el compromiso vinculante de reducir las emisiones en más de un 10% a lo largo de la vigencia del contrato.",
+      "topic": "medio-ambiente",
+      "entities": {
+        "count": 10,
+        "countUnit": "%",
+        "referencedEntity": "Veolia"
+      },
+      "confidence": 0.75,
+      "reasoning": "El porcentaje mínimo de reducción de emisiones es un compromiso cuantificable y auditable.",
+      "requiresHumanApproval": true
+    },
+    {
+      "id": "hbl63g-9-con",
+      "articleId": "hbl63g",
+      "articleFingerprint": "7rfyh4",
+      "articleSource": "Ayuntamiento de Riba-roja de Túria",
+      "articleSourceHost": "ribarroja.es",
+      "articleUrl": "https://www.ribarroja.es/es/noticia/riba-roja-de-t%C3%BAria-formaliza-con-veolia-el-nuevo-contrato-del-ciclo-integral-del-agua-para-reforzar-la-sostenibilidad-y-modernizar-sus-infraestructuras",
+      "articleDate": "2026-10-08T12:37:13.000Z",
+      "segmentIndex": 9,
+      "segmentKind": "body",
+      "type": "cita_convenio",
+      "attributedSource": "municipal",
+      "verbatim": "prohibiendo cualquier vertido al cauce del río y asumiendo la propia empresa el pago del canon de vertidos ante la Confederación Hidrográfica del Júcar",
+      "context": "Igualmente, el documento blinda de manera rigurosa el Dominio Público Hidráulico, prohibiendo cualquier vertido al cauce del río y asumiendo la propia empresa el pago del canon de vertidos ante la Confederación Hidrográfica del Júcar.",
+      "topic": "medio-ambiente",
+      "entities": {
+        "referencedEntity": "Confederación Hidrográfica del Júcar"
+      },
+      "confidence": 0.75,
+      "reasoning": "La cláusula de prohibición de vertidos y asunción del canon es verificable en el texto del contrato.",
+      "requiresHumanApproval": true
+    },
+    {
+      "id": "hbl63g-10-con",
+      "articleId": "hbl63g",
+      "articleFingerprint": "7rfyh4",
+      "articleSource": "Ayuntamiento de Riba-roja de Túria",
+      "articleSourceHost": "ribarroja.es",
+      "articleUrl": "https://www.ribarroja.es/es/noticia/riba-roja-de-t%C3%BAria-formaliza-con-veolia-el-nuevo-contrato-del-ciclo-integral-del-agua-para-reforzar-la-sostenibilidad-y-modernizar-sus-infraestructuras",
+      "articleDate": "2026-10-08T12:37:13.000Z",
+      "segmentIndex": 10,
+      "segmentKind": "body",
+      "type": "cita_convenio",
+      "attributedSource": "municipal",
+      "verbatim": "la garantía estricta de las condiciones laborales y convenios colectivos del personal",
+      "context": "El pliego integra además cláusulas de responsabilidad social, tales como la garantía estricta de las condiciones laborales y convenios colectivos del personal, planes de prevención de riesgos y el uso de un lenguaje inclusivo y no sexista.",
+      "topic": "empleo",
+      "entities": {
+        "referencedEntity": "personal del servicio de aguas"
+      },
+      "confidence": 0.65,
+      "reasoning": "La cláusula sobre condiciones laborales es verificable consultando el pliego de condiciones del contrato.",
+      "requiresHumanApproval": true
+    },
+    {
+      "id": "hbl63g-11-con",
+      "articleId": "hbl63g",
+      "articleFingerprint": "7rfyh4",
+      "articleSource": "Ayuntamiento de Riba-roja de Túria",
+      "articleSourceHost": "ribarroja.es",
+      "articleUrl": "https://www.ribarroja.es/es/noticia/riba-roja-de-t%C3%BAria-formaliza-con-veolia-el-nuevo-contrato-del-ciclo-integral-del-agua-para-reforzar-la-sostenibilidad-y-modernizar-sus-infraestructuras",
+      "articleDate": "2026-10-08T12:37:13.000Z",
+      "segmentIndex": 11,
+      "segmentKind": "body",
+      "type": "cita_convenio",
+      "attributedSource": "municipal",
+      "verbatim": "el uso de un lenguaje inclusivo y no sexista en la atención a la ciudadanía",
+      "context": "planes de prevención de riesgos y el uso de un lenguaje inclusivo y no sexista en la atención a la ciudadanía.",
+      "topic": "social",
+      "entities": {
+        "referencedEntity": "servicio de atención a la ciudadanía"
+      },
+      "confidence": 0.6,
+      "reasoning": "Es una cláusula contractual cuyo cumplimiento es verificable mediante seguimiento del servicio.",
+      "requiresHumanApproval": true
+    },
+    {
+      "id": "hbl63g-12-pro",
+      "articleId": "hbl63g",
+      "articleFingerprint": "7rfyh4",
+      "articleSource": "Ayuntamiento de Riba-roja de Túria",
+      "articleSourceHost": "ribarroja.es",
+      "articleUrl": "https://www.ribarroja.es/es/noticia/riba-roja-de-t%C3%BAria-formaliza-con-veolia-el-nuevo-contrato-del-ciclo-integral-del-agua-para-reforzar-la-sostenibilidad-y-modernizar-sus-infraestructuras",
+      "articleDate": "2026-10-08T12:37:13.000Z",
+      "segmentIndex": 12,
+      "segmentKind": "body",
+      "type": "promesa",
+      "attributedSource": "municipal",
+      "verbatim": "los proyectos técnicos de mejora y adecuación sean presentados en un plazo máximo de tres meses",
+      "context": "El plan de trabajo suscrito prevé que los proyectos técnicos de mejora y adecuación sean presentados en un plazo máximo de tres meses, debiendo ejecutarse el conjunto de las obras estructurales dentro de los tres primeros años de servicio.",
+      "topic": "urbanismo",
+      "entities": {
+        "count": 3,
+        "countUnit": "meses",
+        "referencedEntity": "Veolia"
+      },
+      "confidence": 0.75,
+      "reasoning": "El plazo de presentación de proyectos técnicos es un compromiso con fecha límite verificable.",
+      "requiresHumanApproval": true
+    },
+    {
+      "id": "hbl63g-13-pro",
+      "articleId": "hbl63g",
+      "articleFingerprint": "7rfyh4",
+      "articleSource": "Ayuntamiento de Riba-roja de Túria",
+      "articleSourceHost": "ribarroja.es",
+      "articleUrl": "https://www.ribarroja.es/es/noticia/riba-roja-de-t%C3%BAria-formaliza-con-veolia-el-nuevo-contrato-del-ciclo-integral-del-agua-para-reforzar-la-sostenibilidad-y-modernizar-sus-infraestructuras",
+      "articleDate": "2026-10-08T12:37:13.000Z",
+      "segmentIndex": 13,
+      "segmentKind": "body",
+      "type": "promesa",
+      "attributedSource": "municipal",
+      "verbatim": "debiendo ejecutarse el conjunto de las obras estructurales dentro de los tres primeros años de servicio",
+      "context": "sean presentados en un plazo máximo de tres meses, debiendo ejecutarse el conjunto de las obras estructurales dentro de los tres primeros años de servicio.",
+      "topic": "urbanismo",
+      "entities": {
+        "count": 3,
+        "countUnit": "años",
+        "referencedEntity": "Veolia"
+      },
+      "confidence": 0.75,
+      "reasoning": "El plazo de ejecución de las obras estructurales es un compromiso temporal verificable.",
+      "requiresHumanApproval": true
+    },
+    {
+      "id": "hbl63g-14-dat",
+      "articleId": "hbl63g",
+      "articleFingerprint": "7rfyh4",
+      "articleSource": "Ayuntamiento de Riba-roja de Túria",
+      "articleSourceHost": "ribarroja.es",
+      "articleUrl": "https://www.ribarroja.es/es/noticia/riba-roja-de-t%C3%BAria-formaliza-con-veolia-el-nuevo-contrato-del-ciclo-integral-del-agua-para-reforzar-la-sostenibilidad-y-modernizar-sus-infraestructuras",
+      "articleDate": "2026-10-08T12:37:13.000Z",
+      "segmentIndex": 14,
+      "segmentKind": "body",
+      "type": "dato_municipal",
+      "attributedSource": "municipal",
+      "verbatim": "El Ayuntamiento de Riba-roja de Túria ha firmado este jueves con la mercantil Veolia, la formalización del nuevo contrato",
+      "context": "El Ayuntamiento de Riba-roja de Túria ha firmado este jueves con la mercantil Veolia, la formalización del nuevo contrato para la gestión integral de los servicios de abastecimiento de agua potable, alcantarillado, control de vertidos y depuración del término municipal.",
+      "topic": "medio-ambiente",
+      "entities": {
+        "date": "2026-10-08",
+        "referencedEntity": "Veolia"
+      },
+      "confidence": 0.8,
+      "reasoning": "La fecha de firma y las partes contratantes son datos municipales objetivamente verificables.",
+      "requiresHumanApproval": true
+    },
+    {
+      "id": "9k9b2w-0-pro",
+      "articleId": "9k9b2w",
+      "articleFingerprint": "1pbmyzs",
+      "articleSource": "Valencia Plaza",
+      "articleSourceHost": "valenciaplaza.com",
+      "articleUrl": "https://news.google.com/rss/articles/CBMi7AFBVV95cUxNU3U2SmtSd2ptRkVTbFFFY1FVTmwtakl0dnRxTHNGV1piNU8tbG9FaE9JaHdCelFuVlBPbmpBT29QX1BVeDUyNXZjeUpjRFluWVFZZngwM002RXZPN2trZkpCY3RNbEVFWUNkcU1UNGQ1b0NDRi1RN0h1SHQ0c0ktMXgzT2pNNGZDcTYwN3dwSlI3cmllYmxLdmFJMFpUVHBCTWZzYndmR1J6Y2E5LWZjNXBmQlRXSmE4ZmhFOE5GSW1pMGY0MHlvc3U4djRnNVpYYVZ3aUp5ak8yeVNyYWQtZmxfZUxLYTFZSkM1NQ?oc=5",
+      "articleDate": "2026-10-08T07:00:00.000Z",
+      "segmentIndex": 0,
+      "segmentKind": "title",
+      "type": "promesa",
+      "attributedSource": "outlet",
+      "verbatim": "Riba-roja de Túria ejecutará un plan director de restauración de las cuatro canteras del municipio",
+      "context": "Titular de Valencia Plaza (08/10/2026): \"Riba-roja de Túria ejecutará un plan director de restauración de las cuatro canteras del municipio\". No se dispone del cuerpo del artículo con más detalle.",
+      "topic": "medio-ambiente",
+      "entities": {
+        "count": 4,
+        "countUnit": "canteras",
+        "referencedEntity": "Riba-roja de Túria"
+      },
+      "confidence": 0.45,
+      "reasoning": "Es un compromiso de acción futura (ejecución de un plan director) sobre un número concreto de canteras, verificable si llega a materializarse, pero solo se dispone del titular sin cuerpo del artículo.",
       "requiresHumanApproval": true
     }
   ]
