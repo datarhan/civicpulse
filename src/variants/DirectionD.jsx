@@ -88,7 +88,7 @@ export default function DirectionD() {
           propia tira, y el panel ya no cuelga de ella — el porqué y el cambio
           de ancla en estrecho están en vivo.css.js.
         */
-        .d-topbar { height: 54px; position: relative; z-index: 3; }
+        .d-topbar { display: flex; height: 54px; position: relative; z-index: 3; }
         .d-brand { min-width: 0; }
         .d-root { flex: 1; display: flex; min-height: 0; }
         .d-kpi { height: 76px; }
@@ -139,11 +139,41 @@ export default function DirectionD() {
              cierra. La guarda de tests/css-en-literal.test.js sólo descubre las
              hojas *.css.js, así que a este bloque sólo lo cubre la build.) */
           .d-shell { height: auto; min-height: 100vh; }
+          /* La cabecera estrecha es una REJILLA de filas fijas, y no una fila
+             flexible que salta de línea, porque el ancho del chip «Hoy» cambia
+             después del primer pintado: llega el tiempo («Hoy · L9 7 min» pasa a
+             «🌤 Hoy · 26° · L9 7 min», de 164 a 245 px) y el metro cambia de
+             texto con la hora («ahora», «7 min», «419 min (mañana)», 317 px).
+             Saltando de línea, el reparto en filas salía de lo que cupiera: a
+             375 el reloj caía a una tercera fila al llegar el tiempo y la
+             cabecera pasaba de 70 a 116 px, con el mapa y todo lo de debajo
+             bajando 46 px un instante después de pintar; entre 430 y 1023 se
+             movía de 1 a 46 px según llegara el tiempo y según el texto del
+             metro. Hasta el 26-10-2026 lo tapaba el círculo «MP», que caía
+             siempre a la tercera fila.
+
+             En la rejilla el número de filas no depende del contenido: el chip
+             tiene su columna, y si un texto no cabe se desliza dentro de la
+             tira (vivo.css.js) en vez de empujar a nadie de fila. Ni alto
+             mínimo ni tope de ancho: con un alto reservado las piezas seguían
+             cambiando de fila DENTRO de la cabecera, y con el chip topado a 375
+             su texto más largo perdía el final, que es justo «(mañana)», la
+             palabra que dice que el tren es el primero del día siguiente.
+             (cabecera-portada.spec.ts lo mide.) */
           .d-topbar {
             height: auto; min-height: 54px;
-            flex-wrap: wrap; padding: 8px 14px; row-gap: 8px; column-gap: 12px;
+            display: grid;
+            grid-template-columns: minmax(0, 1fr) auto auto;
+            grid-template-areas: 'marca marca marca' 'vivo buscar reloj';
+            padding: 8px 14px; row-gap: 8px; column-gap: 12px;
           }
-          .d-brand { flex-wrap: wrap; }
+          .d-brand { flex-wrap: wrap; grid-area: marca; }
+          .d-topbar > .cp-vivo { grid-area: vivo; }
+          .d-topbar > .cp-topbar-search { grid-area: buscar; }
+          .d-reloj { grid-area: reloj; }
+          /* El hueco que empuja el buscador a la derecha en la fila de escritorio;
+             aquí lo hace la columna flexible. */
+          .d-hueco { display: none; }
           .d-root { flex-direction: column; min-height: 0; }
           .d-main { flex-direction: column; }
           /* Enough map to be a map, not so much that it buries the column. */
@@ -184,6 +214,14 @@ export default function DirectionD() {
         @media (max-width: ${MAPA_COMPACTO}px) {
           .d-mappane { height: 44vh; min-height: 260px; }
           .d-region { display: none; }
+          /* Aquí el chip no cabe junto al buscador y el reloj ni con el texto de
+             cada día (245 + 36 + 75 px más los huecos, en los 335 que quedan a
+             375 px): en esa columna se deslizaría casi siempre. Va solo en su
+             fila, y el buscador y el reloj juntos en la tercera: 116 px, llegue
+             o no el tiempo (ver .d-topbar arriba). */
+          .d-topbar {
+            grid-template-areas: 'marca marca marca' 'vivo vivo vivo' '. buscar reloj';
+          }
         }
 
         /* El pliegue de la pila, por el ALTO del mapa y no por el ancho de la
