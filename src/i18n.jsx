@@ -837,8 +837,11 @@ export const CATALOGUE = {
     'plenos.indice.lede.votos': 'votaciones transcritas de {n}',
     'plenos.indice.lede.aviso':
       'Lo que esta página no cuenta no es que no ocurriera: es que aún no lo hemos leído.',
-    'plenos.indice.actaEnRegmeet':
-      'Cada sesión enlaza a su acta en regmeet.com, el gestor del propio ayuntamiento.',
+    // De dónde salen el orden del día y el resultado, no un enlace: la página no
+    // enlaza a regmeet desde 16dc0b4d, y el `link` de cada sesión lleva a su página
+    // en regmeet, no al acta.
+    'plenos.indice.fuenteRegmeet':
+      'El orden del día y el resultado de cada votación proceden de la página de la sesión en regmeet.com, el gestor del propio ayuntamiento.',
     'plenos.indice.comoSeProcesa': 'Cómo se procesa una sesión →',
     'plenos.indice.fuente':
       'Fuente: actas y vídeos publicados por el Ayuntamiento de Riba-roja de Túria en regmeet.com.',
@@ -3269,8 +3272,8 @@ export const CATALOGUE = {
     'plenos.indice.lede.votos': 'votacions transcrites de {n}',
     'plenos.indice.lede.aviso':
       'El que esta pàgina no compta no vol dir que no passara: vol dir que encara no ho hem llegit.',
-    'plenos.indice.actaEnRegmeet':
-      'Cada sessió enllaça amb la seua acta a regmeet.com, el gestor del mateix ajuntament.',
+    'plenos.indice.fuenteRegmeet':
+      'L’ordre del dia i el resultat de cada votació procedeixen de la pàgina de la sessió a regmeet.com, el gestor del mateix ajuntament.',
     'plenos.indice.comoSeProcesa': 'Com es processa una sessió →',
     'plenos.indice.fuente':
       'Font: actes i vídeos publicats per l’Ajuntament de Riba-roja de Túria a regmeet.com.',
