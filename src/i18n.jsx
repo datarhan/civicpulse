@@ -1156,10 +1156,6 @@ export const CATALOGUE = {
     'plenoDetail.agendaPendingLong': 'Orden del día aún no recogido para esta sesión',
     'plenoDetail.empty.agendaPending':
       'Todavía no hemos podido recoger el orden del día de esta sesión desde la sede de plenos. La sesión se celebró; el dato falta por nuestra parte, no por la del Ayuntamiento.',
-    'plenoDetail.empty.summary':
-      'Sesión registrada. Aún no hay votaciones transcritas, declaraciones contrastables ni hallazgos para esta sesión.',
-    'plenoDetail.empty.summaryNoAgenda':
-      'Sesión registrada. Todavía no hemos recogido su orden del día, y aún no hay votaciones transcritas, declaraciones contrastables ni hallazgos.',
     // La línea del resumen, pieza a pieza, en singular y en plural. «Transcritas»,
     // como el índice de /plenos: son las votaciones que hemos transcrito, no las
     // que hubo, y detrás va el aviso del índice (`plenos.indice.lede.aviso`).
@@ -3552,10 +3548,6 @@ export const CATALOGUE = {
     'plenoDetail.agendaPendingLong': 'Ordre del dia encara no recollit per a aquesta sessió',
     'plenoDetail.empty.agendaPending':
       "Encara no hem pogut recollir l'ordre del dia d'aquesta sessió des de la seu de plens. La sessió es va celebrar; la dada falta per la nostra banda, no per la de l'Ajuntament.",
-    'plenoDetail.empty.summary':
-      'Sessió registrada. Encara no hi ha votacions transcrites, declaracions contrastables ni troballes per a aquesta sessió.',
-    'plenoDetail.empty.summaryNoAgenda':
-      'Sessió registrada. Encara no hem recollit el seu ordre del dia, i encara no hi ha votacions transcrites, declaracions contrastables ni troballes.',
     'plenoDetail.line.agenda.uno': '{n} punt en l’ordre del dia',
     'plenoDetail.line.agenda.varios': '{n} punts en l’ordre del dia',
     'plenoDetail.line.votes.uno': '{n} votació transcrita ({aprobadas})',

@@ -618,12 +618,27 @@ export default function PlenoDetalle() {
             {t('plenos.indice.lede.aviso')}
           </p>
 
-          {votes.length > 0 && (
-            <div>
-              <OLabel>{t('plenoDetail.votes')}</OLabel>
+          {/* Siempre, con o sin votaciones. Sin ninguna transcrita el bloque
+              desaparecía, y el «sin transcribir» quedaba en la ficha de arriba y
+              en una pestaña que no se monta hasta pulsarla: en 56 sesiones de 63
+              (26-10-2026) el resumen no decía nada de las votaciones. */}
+          <div>
+            <OLabel>{t('plenoDetail.votes')}</OLabel>
+            {votes.length > 0 ? (
               <VoteOutcomeBar votes={votes} />
-            </div>
-          )}
+            ) : (
+              <p
+                style={{
+                  margin: 0,
+                  fontSize: 'var(--fs-aux)',
+                  color: 'var(--ink70)',
+                  lineHeight: 1.55,
+                }}
+              >
+                {t('plenoDetail.empty.votes')}
+              </p>
+            )}
+          </div>
 
           {claimItems.length > 0 && (
             <div>
@@ -677,12 +692,50 @@ export default function PlenoDetalle() {
             </div>
           )}
 
-          {votes.length === 0 && claimItems.length === 0 && findings.length === 0 && (
-            <EmptyNote>
-              {agendaKnown
-                ? t('plenoDetail.empty.summary')
-                : t('plenoDetail.empty.summaryNoAgenda')}
-            </EmptyNote>
+          {/* Lo que sí tienen todas las sesiones recogidas: de qué trató. El
+              resumen se hacía sólo con las capas que hay que curar —votaciones,
+              veredictos, hallazgos—, y en /plenos/zrbgic el operador leyó una
+              pestaña «sin datos» con el orden del día entero en la de al lado.
+              Va detrás, para no mover lo de arriba en las sesiones que lo tienen,
+              y sin área, expediente ni sección: eso es la pestaña del orden del
+              día. El título, tal cual lo publica la sede. Con esto y la frase de
+              las votaciones, la nota de «sesión registrada, aún no hay…» que
+              ocupaba el resumen vacío repetía lo que ya dicen la línea y los
+              bloques, y se ha ido. */}
+          {agendaItems.length > 0 && (
+            <div>
+              <OLabel>{t('plenoDetail.agenda')}</OLabel>
+              <ol
+                style={{
+                  listStyle: 'none',
+                  margin: 0,
+                  padding: 0,
+                  display: 'flex',
+                  flexDirection: 'column',
+                  gap: 6,
+                }}
+              >
+                {agendaItems.map((it, i) => (
+                  <li
+                    key={i}
+                    style={{
+                      display: 'grid',
+                      gridTemplateColumns: '2em 1fr',
+                      gap: 8,
+                      fontSize: 'var(--fs-aux)',
+                      lineHeight: 1.45,
+                    }}
+                  >
+                    <span className="mono" style={{ color: 'var(--ink50)', textAlign: 'right' }}>
+                      {it.number}.
+                    </span>
+                    <span style={{ color: 'var(--ink)', minWidth: 0, overflowWrap: 'anywhere' }}>
+                      {it.title}
+                    </span>
+                  </li>
+                ))}
+              </ol>
+            </div>
           )}
         </div>
       )}
