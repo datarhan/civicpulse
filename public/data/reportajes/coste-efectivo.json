@@ -47,6 +47,10 @@
       {
         "fecha": "2026-10-20",
         "texto": "**Se ha corregido lo que decíamos de la tarifa vigente del agua.** La sección de la tarifa daba la de 2013 como la última modificación que habíamos localizado y dejaba abierto si había habido revisiones posteriores; la entradilla de esa sección decía que el precio estaba publicado y se podía enlazar. Ha habido dos revisiones: el 19 de octubre la Generalitat resolvió una solicitud de acceso de esta pieza y enumera dos informes de la Comisión de Precios sobre las tarifas de Riba-roja, de 2022 y de 2025, que según la concesionaria se publicaron en el DOGV y se aplican. Las cifras de 2013 siguen en la sección como lo que son, las de 2013, y la sección dice ahora que no son las que se cobran hoy. Lo que decía la corrección del 17 de septiembre —que la tarifa está en el DOGV de 23 de enero de 2013— era cierto de aquella tarifa, no de la vigente. Ninguna otra cifra cambia.\n\n**Y la tarifa vigente ya está en la sección.** Más tarde, ese mismo día, se localizaron en el DOGV los dos anuncios de la concesionaria: el de 25 de noviembre de 2022 y el de 22 de diciembre de 2025, que es la última publicada, con una cuota de servicio de 4,43 € al mes y bloques de 0,2155 a 0,9026 € por metro cúbico, más IVA. La sección decía que esos anuncios no se habían localizado; ahora los enlaza, con sus cifras."
+      },
+      {
+        "fecha": "2026-10-26",
+        "texto": "**Se ha completado lo que resolvieron los tribunales sobre el pliego: faltaban cuatro hitos y qué decía la cláusula anulada.** La pieza contaba que el TACRC inadmitió en 2019 los recursos de Acciona Agua y de Aqualia, y no que los dos siguieron. En 2022 el Tribunal Superior de Justicia anuló esa inadmisión —el plazo se había contado sin descontar dos festivos de Madrid—, juzgó él mismo el recurso de Aqualia y anuló la cláusula 12.1.3, y devolvió el de Acciona al TACRC, que anuló además la cláusula de revisión de tarifas y mandó volver a la fase anterior a la aprobación del pliego; en 2023 el Tribunal Superior devolvió esa cláusula al pliego y limitó la vuelta atrás a la valoración de las ofertas. La sentencia de noviembre de 2022, en el pleito de Global Omnium, se remite a la de marzo. La cronología trae ahora esos cuatro hitos.\n\nDecía también que se anuló la 12.1.3 sin decir qué era: daba hasta diez puntos por aumentar el dinero para colaboraciones culturales y educativas, y el tribunal consideró esa puntuación desproporcionada. La sección explica ahora qué criterios se discutieron y qué dijo de ellos cada tribunal. Las sentencias se añaden a las fuentes con su enlace al buscador del Consejo General del Poder Judicial, y la del Supremo enlaza ya la publicación de ese buscador, no la copia notificada que cuelga la ficha del expediente. Y decíamos que las sentencias se podían leer en la ficha: allí sólo está la del Supremo. Ninguna cifra cambia."
       }
     ]
   },
@@ -87,7 +91,7 @@
     "url": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=pK1YW0Z3femXQV0WE7lYPw%3D%3D"
   },
   "cronologia": {
-    "nota": "Fechas tomadas de la ficha del expediente en la Plataforma de Contratación del Sector Público y de los documentos que publica. Donde el documento fecha el acto en otro día que su publicación, se da la fecha del acto y se dice cuándo lo publicó la ficha. Que la suspensión cautelar durara hasta la resolución definitiva, y que ésta fuera la sentencia del Supremo, lo recoge el acta del Pleno de 27 de julio de 2026, en los antecedentes del acuerdo de adjudicación.",
+    "nota": "Fechas tomadas de la ficha del expediente en la Plataforma de Contratación del Sector Público y de los documentos que publica. Donde el documento fecha el acto en otro día que su publicación, se da la fecha del acto y se dice cuándo lo publicó la ficha. Que la suspensión cautelar durara hasta la resolución definitiva, y que ésta fuera la sentencia del Supremo, lo recoge el acta del Pleno de 27 de julio de 2026, en los antecedentes del acuerdo de adjudicación. Las sentencias del Tribunal Superior de Justicia, que la ficha no publica, se leyeron en el buscador del Consejo General del Poder Judicial; la resolución del TACRC de 2022, en la sentencia de 2023, que reproduce su parte dispositiva.",
     "hitos": [
       {
         "f": "17 de abril de 2019",
@@ -134,8 +138,24 @@
         "ficha": "2021-02-11"
       },
       {
+        "f": "9 de febrero de 2022",
+        "t": "El Tribunal Superior de Justicia de la Comunitat Valenciana anula la inadmisión del recurso de Acciona Agua: el TACRC había contado el plazo sin descontar dos festivos de Madrid, donde tiene su sede, el 2 y el 15 de mayo, y el Ayuntamiento no se opuso. Ordena al TACRC que tramite el recurso (sentencia 111/2022)."
+      },
+      {
+        "f": "30 de marzo de 2022",
+        "t": "En el recurso de Aqualia contra la misma inadmisión, el Tribunal Superior la anula por la misma razón y, en lugar de devolverlo al TACRC, juzga él mismo el pliego: rechaza el resto de la impugnación y anula una cláusula, la 12.1.3 (sentencia 269/2022)."
+      },
+      {
+        "f": "21 de septiembre de 2022",
+        "t": "El TACRC resuelve el recurso de Acciona Agua: anula la cláusula 12.1.3 y la trigésima, la de revisión de tarifas, que dejaba al concesionario pedir revisiones de hasta el 1,5 % anual sin fijar en el pliego la fórmula para calcularlas, y ordena volver a la fase anterior a la aprobación del pliego (resolución 1087/2022)."
+      },
+      {
         "f": "22 de noviembre de 2022",
-        "t": "El Tribunal Superior de Justicia de la Comunitat Valenciana estima la apelación del Ayuntamiento y de Hidraqua, revoca la sentencia de 2020 y anula sólo una cláusula del pliego, la 12.1.3 (sentencia 904/2022)."
+        "t": "El Tribunal Superior de Justicia de la Comunitat Valenciana estima la apelación del Ayuntamiento y de Hidraqua, revoca la sentencia de 2020 y anula sólo una cláusula del pliego, la 12.1.3 (sentencia 904/2022). No vuelve a razonar el caso: se remite a lo que había resuelto en marzo en el recurso de Aqualia."
+      },
+      {
+        "f": "17 de octubre de 2023",
+        "t": "A recurso del Ayuntamiento y de Hidraqua, el Tribunal Superior anula la resolución del TACRC en lo que toca a la cláusula de revisión de tarifas, que queda en vigor: un contrato de agua como éste está fuera de la regulación armonizada, y en esos la ley admite revisar precios sin una fórmula predeterminada. Mantiene anulada la 12.1.3 y limita la vuelta atrás a la fase en que la mesa de contratación examina las ofertas (sentencia 635/2023)."
       },
       {
         "f": "23 de febrero de 2026",
@@ -161,7 +181,11 @@
         "ficha": "2026-09-03"
       }
     ],
-    "loQueNoConsta": "Los recursos y las sentencias se pueden leer en la propia ficha del expediente. Los dos recursos de 2019 impugnaban el pliego, y el TACRC no llegó a entrar en el fondo: los inadmitió. El pleito que paró el concurso cinco años fue otro, el de Global Omnium, y acabó con el pliego confirmado salvo una cláusula. Esta pieza resume lo que resolvieron los tribunales; no valora quién tenía razón."
+    "queSeJuzgo": [
+      "Los pleitos discutieron sobre todo cómo puntuaba el pliego las ofertas. De cien puntos, cuarenta y cinco dependían de un juicio de valor y cincuenta y cinco salían de fórmulas, en cuatro criterios: hasta 30 puntos por rebajar la «tarifa finalista» con la que se financian las obras del contrato, cuyo máximo era de 0,33 € por abonado y mes; hasta 10 por lo que el concesionario ofreciera pagar cada año al Ayuntamiento por el derecho de uso de las instalaciones, por encima de un mínimo de 100.200,32 €; hasta 10 por añadir dinero a los 17.000 € anuales que la concesión ya destinaba a colaboraciones con entidades culturales y educativas y a campañas de concienciación ambiental, a un punto por cada 1.000 € —ésa es la cláusula 12.1.3—, y 5 por comprometerse a asistir a las guardias municipales en instalaciones hidráulicas. Global Omnium sostenía que esas fórmulas tenían umbrales de saciedad —topes a partir de los cuales una oferta mejor ya no suma puntos—, que cualquier licitador sabía de antemano qué ofrecer para llevarse el máximo y que así el concurso lo acababa decidiendo el juicio de valor. El Ayuntamiento y Hidraqua respondían que los criterios estaban ligados al objeto del contrato, se habían publicado de antemano y estaban justificados.",
+      "El juzgado estimó en 2020 el recurso de Global Omnium: los topes no estaban justificados en el expediente, el estudio de las necesidades del servicio, puntuado por juicio de valor, ponía en ventaja al concesionario de entonces, y la cláusula de las colaboraciones permitía pagar con la tarifa del agua cualquier actividad cultural o educativa. El Tribunal Superior de Justicia, en sus dos sentencias de 2022 sobre el fondo, rechazó todo eso salvo lo de las colaboraciones, y por otro motivo: dijo que ese criterio sí guardaba relación con el servicio, pero que diez puntos de cincuenta y cinco era una puntuación desproporcionada. Al Supremo llegaron los criterios de la tarifa y del abono anual, y confirmó que eran conformes a la ley: que se pudiera prever cómo llevarse el máximo no basta por sí solo para anular una cláusula, y aquí no discriminó a ningún licitador ni impidió competir. Los umbrales de saciedad, dijo, no están prohibidos «siempre que estén justificados en el expediente en relación con las prestaciones que constituyan el objeto del contrato». El TACRC anuló además en 2022 la cláusula de revisión de tarifas, y el Tribunal Superior la devolvió al pliego en 2023. Sin la 12.1.3, el reparto quedó en cuarenta y cinco puntos por fórmulas y cuarenta y cinco por juicio de valor, y la mesa de contratación pidió que se volvieran a valorar las ofertas sin ella, según los antecedentes del acuerdo de adjudicación."
+    ],
+    "loQueNoConsta": "Los recursos de Acciona Agua y de Aqualia y la sentencia del Supremo se pueden leer en la propia ficha del expediente; las sentencias del Tribunal Superior de Justicia, en el buscador del Consejo General del Poder Judicial, y el acta del Pleno que adjudicó el contrato enumera las firmes. El TACRC inadmitió en 2019 esos dos recursos sin entrar en el fondo, pero los dos siguieron: en 2022 el Tribunal Superior anuló la inadmisión, juzgó él mismo el de Aqualia y devolvió el de Acciona al TACRC, cuya resolución revisó en 2023. El pleito que paró el concurso cinco años fue otro, el de Global Omnium. Al final de los tres, el pliego quedó confirmado salvo la cláusula 12.1.3; la de revisión de tarifas, que el TACRC había anulado en el de Acciona, volvió al pliego. Esta pieza resume lo que resolvieron los tribunales; no valora quién tenía razón."
   },
   "panelCiego": {
     "nota": "Los dos servicios del contrato son también las dos fichas que el panel de /eficiencia sólo puede calcular la mitad de los años. No es un hueco de esta página: es lo que el ayuntamiento declaró.",
@@ -358,7 +382,7 @@
       "url": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=pK1YW0Z3femXQV0WE7lYPw%3D%3D"
     },
     {
-      "label": "Acta del Pleno de 27 de julio de 2026 · acuerdo de adjudicación del agua, antecedentes quincuagésimo segundo a cuarto",
+      "label": "Acta del Pleno de 27 de julio de 2026 · acuerdo de adjudicación del agua, antecedentes quincuagésimo segundo a sexto",
       "url": "https://regmeet.com/files/uploads/aytoribarroja/27-07-2026.Pleno2026-07-29_23-32-33/documentos/2026-07-30_13-49-04_0.pdf"
     },
     {
@@ -398,8 +422,24 @@
       "url": "https://contrataciondelestado.es/FileSystem/servlet/GetDocumentByIdServlet?cifrado=QUC1GjXXSiLkydRHJBmbpw%3D%3D&DocumentIdParam=zpUyMDGjYYbfY5wXh4UoAf%2BfAEdbU8g38S5q/2w7B5/b1WTnlvjUGZ/Q4pGVQHCmoiF%2Bx/ppi%2B21UlH8k6j2MkOupV96W3Kk%2BfF7afVlxu8%3D"
     },
     {
-      "label": "Sentencia del Tribunal Supremo 205/2026 · en la ficha del expediente",
-      "url": "https://contrataciondelestado.es/FileSystem/servlet/GetDocumentByIdServlet?cifrado=QUC1GjXXSiLkydRHJBmbpw%3D%3D&DocumentIdParam=jnqd81/mVQXhnGN3JO00ptv2TBYFRFMdUzHFE1gRhIYas3I3ZaRjWpwU7Is1/XEJ8GBEhNSSWhOvm8wLNhXywZUDqL7bIdlsVNUzM/%2BAp0j6CYyL7SIrUOBFfNf52ZqA"
+      "label": "Sentencia del Tribunal Supremo 205/2026, de 23 de febrero, en el pleito de Global Omnium · CENDOJ, Roj STS 780/2026",
+      "url": "https://www.poderjudicial.es/search/AN/openDocument/3be1f5aca6773060a0a8778d75e36f0d/20260305"
+    },
+    {
+      "label": "Sentencia del Tribunal Superior de Justicia de la Comunitat Valenciana 111/2022, de 9 de febrero, en el recurso de Acciona Agua · CENDOJ, Roj STSJ CV 314/2022",
+      "url": "https://www.poderjudicial.es/search/AN/openDocument/496b3a230bd52ea6/20220330"
+    },
+    {
+      "label": "Sentencia del Tribunal Superior de Justicia de la Comunitat Valenciana 269/2022, de 30 de marzo, en el recurso de Aqualia · CENDOJ, Roj STSJ CV 1250/2022",
+      "url": "https://www.poderjudicial.es/search/AN/openDocument/d032c1148b0dade8/20220524"
+    },
+    {
+      "label": "Sentencia del Tribunal Superior de Justicia de la Comunitat Valenciana 904/2022, de 22 de noviembre, en el pleito de Global Omnium · CENDOJ, Roj STSJ CV 5692/2022",
+      "url": "https://www.poderjudicial.es/search/AN/openDocument/9be47d9dcc60f331a0a8778d75e36f0d/20221216"
+    },
+    {
+      "label": "Sentencia del Tribunal Superior de Justicia de la Comunitat Valenciana 635/2023, de 17 de octubre, sobre la resolución 1087/2022 del TACRC, cuya parte dispositiva reproduce · CENDOJ, Roj STSJ CV 5121/2023",
+      "url": "https://www.poderjudicial.es/search/AN/openDocument/05f64988329d38a2a0a8778d75e36f0d/20231108"
     },
     {
       "label": "Ley 9/2017 de Contratos del Sector Público",
@@ -415,7 +455,7 @@
     }
   ],
   "metodo": [
-    "Los datos de la concesión —adjudicataria, importe, fechas, número de licitadores y el historial de documentos— se leyeron uno a uno en la ficha del expediente en la Plataforma de Contratación del Sector Público y en los documentos que publica: pliego, estudio de viabilidad, actas, recursos, sentencias y adjudicación. No se tomaron del volcado intermedio del portal municipal: ese volcado publica el mismo expediente dos veces, como licitación y como contrato, con estados que se contradicen entre sí.",
+    "Los datos de la concesión —adjudicataria, importe, fechas, número de licitadores y el historial de documentos— se leyeron uno a uno en la ficha del expediente en la Plataforma de Contratación del Sector Público y en los documentos que publica: pliego, estudio de viabilidad, actas, recursos, la sentencia del Supremo y adjudicación. Las sentencias del Tribunal Superior de Justicia, que la ficha no publica, se leyeron en el buscador del Consejo General del Poder Judicial. No se tomaron del volcado intermedio del portal municipal: ese volcado publica el mismo expediente dos veces, como licitación y como contrato, con estados que se contradicen entre sí.",
     "Del importe se dice lo que es: el valor estimado del contrato por sus diecisiete años. No es gasto anual y no sale del presupuesto municipal.",
     "Las cifras de contratación (concentración, licitador único, adjudicación sin llamada abierta) son un recuento propio sobre los contratos adjudicados del portal municipal, y llevan al lado la cautela de que una sola concesión pesa el 45 % del importe del periodo.",
     "Las cifras del coste efectivo salen de los libros por comunidad autónoma de la aplicación de consulta del ministerio (once entregas, 2014-2024), leídos con las reglas de filtrado y comparabilidad publicadas en la metodología.",
