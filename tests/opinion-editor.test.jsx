@@ -297,4 +297,20 @@ describe('lo que lee el vecino', () => {
   it('en la ventana LOREG, una opinión que nombra no se pinta', () => {
     expect(pinta(conNombre(), false).textContent).toBe('')
   })
+
+  it('el registro de correcciones cuenta en castellano, no con un plural de máquina', () => {
+    // Decía «Corregida 1 vez/veces» bajo la opinión de la policía (26-10-2026).
+    const una = {
+      fecha: '2026-11-21',
+      motivo: 'Motivo de prueba.',
+      antes: { titulo: 'a', cuerpo: ['b'] },
+    }
+    const resumen = (n) =>
+      pinta(base({ correcciones: Array(n).fill(una) })).querySelector(
+        '.cp-opinion-correcciones summary',
+      ).textContent
+    expect(resumen(1)).toBe('Corregida una vez · ver qué cambió')
+    expect(resumen(2)).toBe('Corregida 2 veces · ver qué cambió')
+    expect(resumen(1) + resumen(2)).not.toContain('/')
+  })
 })

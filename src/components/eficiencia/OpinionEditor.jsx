@@ -125,7 +125,12 @@ function Opinion({ o, etiquetas, resultados }) {
 
       {o.correcciones.length > 0 && (
         <details className="cp-opinion-correcciones">
-          <summary>{rellena(t('opinion.correcciones'), { n: o.correcciones.length })}</summary>
+          {/* Decía «Corregida 1 vez/veces»: el plural de máquina, con una sola. */}
+          <summary>
+            {o.correcciones.length === 1
+              ? t('opinion.correcciones.una')
+              : rellena(t('opinion.correcciones'), { n: o.correcciones.length })}
+          </summary>
           <ul>
             {o.correcciones.map((k, i) => (
               <li key={i}>
