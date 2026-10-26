@@ -1,15 +1,15 @@
 {
   "version": 1,
-  "actualizadoEl": "2026-10-25",
+  "actualizadoEl": "2026-10-26",
   "items": [
     {
       "id": "policia-local-coste-2024",
       "panel": "coste-efectivo",
-      "titulo": "La policía local cuesta un 50 % más por agente que en 2021, y el Ayuntamiento no dice por qué",
+      "titulo": "La policía local cuesta un 50 % más por persona de su plantilla que en 2021, y el Ayuntamiento no dice por qué",
       "cuerpo": [
-        "Entre 2021 y 2024 el coste que el Ayuntamiento declara al Ministerio por cada agente de la policía local ha subido un 50 % en euros constantes. En los municipios valencianos de tamaño parecido, ese mismo coste apenas se ha movido: un 5 %. La mayor parte del salto llegó en 2022.",
+        "Entre 2021 y 2024 el coste que el Ayuntamiento declara al Ministerio por cada persona asignada a la policía local —agentes y demás personal— ha subido un 50 % en euros constantes. En los municipios valencianos de tamaño parecido, ese mismo coste apenas se ha movido: un 5 %. La mayor parte del salto llegó en 2022.",
         "En el mismo periodo, las infracciones penales conocidas en Riba-roja han subido y están entre las más altas de su grupo. Eso no prueba que el gasto no sirva: esas cifras las registran también la Guardia Civil y la Policía Nacional, y más patrullas pueden hacer que se conozcan más hechos. Pero sí deja una pregunta que el Ayuntamiento debería contestar en público.",
-        "Y no la podemos contestar nosotros porque el propio Ayuntamiento declara el mismo número de agentes, 52, desde 2019. Con ese número congelado no se sabe si el gasto ha comprado más policías en la calle o mejores sueldos para los mismos. Cualquiera de las dos cosas puede ser razonable; lo que no es razonable es que el vecino que la paga no pueda saber cuál es.",
+        "Y no la podemos contestar nosotros porque el propio Ayuntamiento declara el mismo número de personas asignadas al servicio, 52, desde 2019, sin decir cuántas son agentes. Con ese número congelado no se sabe si el gasto ha comprado más policías en la calle o mejores sueldos para los mismos. Cualquiera de las dos cosas puede ser razonable; lo que no es razonable es que el vecino que la paga no pueda saber cuál es.",
         "Pedimos al Ayuntamiento que publique cuántos agentes tiene hoy la policía local, cuántos tenía en 2021 y qué explica el aumento de coste de 2022."
       ],
       "firma": {
@@ -52,7 +52,21 @@
       "nombra": [],
       "contactoPrevio": null,
       "replicas": [],
-      "correcciones": []
+      "correcciones": [
+        {
+          "fecha": "2026-10-26",
+          "motivo": "El titular y el cuerpo decían «por agente» y «el mismo número de agentes, 52». La cifra que el Ayuntamiento declara al Ministerio es el «Nº efectivos asignados al servicio»: agentes y demás personal asignado a la policía local, sin desglosar. El 50 % no cambia, porque el divisor es el mismo los dos años; cambia de qué es la cifra.",
+          "antes": {
+            "titulo": "La policía local cuesta un 50 % más por agente que en 2021, y el Ayuntamiento no dice por qué",
+            "cuerpo": [
+              "Entre 2021 y 2024 el coste que el Ayuntamiento declara al Ministerio por cada agente de la policía local ha subido un 50 % en euros constantes. En los municipios valencianos de tamaño parecido, ese mismo coste apenas se ha movido: un 5 %. La mayor parte del salto llegó en 2022.",
+              "En el mismo periodo, las infracciones penales conocidas en Riba-roja han subido y están entre las más altas de su grupo. Eso no prueba que el gasto no sirva: esas cifras las registran también la Guardia Civil y la Policía Nacional, y más patrullas pueden hacer que se conozcan más hechos. Pero sí deja una pregunta que el Ayuntamiento debería contestar en público.",
+              "Y no la podemos contestar nosotros porque el propio Ayuntamiento declara el mismo número de agentes, 52, desde 2019. Con ese número congelado no se sabe si el gasto ha comprado más policías en la calle o mejores sueldos para los mismos. Cualquiera de las dos cosas puede ser razonable; lo que no es razonable es que el vecino que la paga no pueda saber cuál es.",
+              "Pedimos al Ayuntamiento que publique cuántos agentes tiene hoy la policía local, cuántos tenía en 2021 y qué explica el aumento de coste de 2022."
+            ]
+          }
+        }
+      ]
     },
     {
       "id": "agua-nitratos-2025",
