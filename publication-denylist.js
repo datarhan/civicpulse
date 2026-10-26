@@ -259,13 +259,13 @@ export async function servirHallazgosEnDist(dirDatos) {
   )
   if (conTexto.length) {
     throw new Error(
-      `[publication-guard] dist/data/pleno-findings.json sigue sirviendo el literal de ` +
+      `[publication-guard] ${rutaHallazgos} sigue sirviendo el literal de ` +
         `${conTexto.length} cita(s) retenida(s): ${conTexto.join(', ')}`,
     )
   }
   if (conGrupo.length) {
     throw new Error(
-      `[publication-guard] dist/data/pleno-findings.json sigue nombrando a un grupo de un solo ` +
+      `[publication-guard] ${rutaHallazgos} sigue nombrando a un grupo de un solo ` +
         `escaño en ${conGrupo.length} lado(s) de su bitácora: ${conGrupo.join(', ')}`,
     )
   }
@@ -273,22 +273,33 @@ export async function servirHallazgosEnDist(dirDatos) {
 }
 
 /**
- * Complemento de Vite que aplica la lista sobre `dist/` al terminar la
- * compilación, que es el momento en que ya se ha copiado `public/` entero.
+ * Complemento de Vite que aplica la lista sobre la salida (`dist/`) al terminar
+ * la compilación, que es el momento en que ya se ha copiado `public/` entero.
  *
  * Informa de las tres suertes por separado —quitado / no estaba / no se pudo—
  * en vez de callar. Un fichero que no estaba es lo normal cuando además está
  * en `.gitignore`; un borrado que falla NO puede pasar por «ya no estaba»,
  * porque es exactamente el caso en que el fichero sigue publicándose. Doblar
  * las tres en un silencio es la avería que esta lista existe para cerrar.
+ *
+ * La salida es la que resolvió Vite (`build.outDir` contra `root`), no `dist/`
+ * escrito a mano. Hasta el 26-10-2026 lo era, y un `vite build --outDir X`
+ * dejaba en X los literales retenidos y los borradores de la lista, mientras
+ * la guarda volvía a retener el `dist/` ya servido (huellas de huellas).
+ * `tests/publication-guard-outdir.test.ts` lo fija.
  */
 export function vitePublicationGuard() {
+  /** @type {{ root: string, outDir: string } | null} */
+  let deVite = null
   return {
     name: 'civicpulse:publication-guard',
     apply: 'build',
+    configResolved(config) {
+      deVite = { root: config.root, outDir: config.build.outDir }
+    },
     closeBundle: {
       // `sequential` + `order: post`: cualquier otro complemento que escriba
-      // en `dist/` lo hace antes que esto, así que nada puede reponer un
+      // en la salida lo hace antes que esto, así que nada puede reponer un
       // fichero después de que lo hayamos quitado.
       sequential: true,
       order: 'post',
@@ -296,7 +307,14 @@ export function vitePublicationGuard() {
         const { rm, stat } = await import('node:fs/promises')
         const { resolve, dirname } = await import('node:path')
         const { fileURLToPath } = await import('node:url')
+        // `root` es el repositorio, de donde se lee el código del front;
+        // `salida`, donde escribió Vite. Sin `configResolved` no se sabe dónde
+        // escribió, y suponer `dist/` es la avería de antes: se cae.
         const root = dirname(fileURLToPath(import.meta.url))
+        if (!deVite) {
+          throw new Error('[publication-guard] Vite no dio su configuración: no se sabe qué juzgar')
+        }
+        const salida = resolve(deVite.root, deVite.outDir)
 
         const { readdir, readFile } = await import('node:fs/promises')
         const { join, relative } = await import('node:path')
@@ -337,7 +355,7 @@ export function vitePublicationGuard() {
             const p = join(d, e.name)
             if (e.isDirectory()) await andaDatos(p)
             else if (e.name.endsWith('.json')) {
-              const rel = relative(resolve(root, 'dist'), p)
+              const rel = relative(salida, p)
               try {
                 hojas.push({ rel, texto: await readFile(p, 'utf8') })
               } catch {
@@ -346,7 +364,7 @@ export function vitePublicationGuard() {
             }
           }
         }
-        await andaDatos(resolve(root, 'dist', 'data'))
+        await andaDatos(resolve(salida, 'data'))
 
         const reparto = repartir({ hojas, referencias })
         const derivadas = reparto.denegar.map((rel) => `public/${rel}`)
@@ -356,7 +374,7 @@ export function vitePublicationGuard() {
         const ausentes = []
         const fallidos = []
         for (const rel of todas) {
-          const destino = resolve(root, 'dist', rel.replace(/^public\//, ''))
+          const destino = resolve(salida, rel.replace(/^public\//, ''))
           try {
             await stat(destino)
           } catch {
@@ -389,11 +407,13 @@ export function vitePublicationGuard() {
         if (fallidos.length) {
           // Que la compilación termine bien dejando dentro un fichero que la
           // lista prohíbe es publicarlo. Se cae aquí.
-          throw new Error(`[publication-guard] no se pudo retirar de dist/: ${fallidos.join(', ')}`)
+          throw new Error(
+            `[publication-guard] no se pudo retirar de ${salida}: ${fallidos.join(', ')}`,
+          )
         }
 
         // Un fichero que sí se sirve, sin los campos que no deben servirse.
-        await servirHallazgosEnDist(resolve(root, 'dist', 'data'))
+        await servirHallazgosEnDist(resolve(salida, 'data'))
       },
     },
   }
