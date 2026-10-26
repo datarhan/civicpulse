@@ -148,7 +148,7 @@ export default function DirectionD() {
              375 el reloj caía a una tercera fila al llegar el tiempo y la
              cabecera pasaba de 70 a 116 px, con el mapa y todo lo de debajo
              bajando 46 px un instante después de pintar; entre 430 y 1023 se
-             movía 8, 9 o 46 px según llegara el tiempo y según el texto del
+             movía de 1 a 46 px según llegara el tiempo y según el texto del
              metro. Hasta el 26-10-2026 lo tapaba el círculo «MP», que caía
              siempre a la tercera fila.
 
