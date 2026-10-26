@@ -113,11 +113,14 @@ jobs:
       # Medido el 2026-10-26 en la ejecución 40317895520 (#435): este trabajo
       # cayó tres veces seguidas en `install-deps`, cortado a los 5 min por un
       # espejo a ~40 kB/s, sin que llegara a correr una sola prueba. Lo que
-      # bajaba eran 9 paquetes nuevos, todos de fuentes, y 8 actualizaciones de
-      # paquetes ya instalados; cada biblioteca que Chromium necesita salía
-      # «already the newest version». Si un día la imagen pierde una, esa prueba
-      # sale roja con el error de arranque a la vista: entonces `install-deps`
-      # vuelve aquí, con su saneador y su tope, como en `playwright`.
+      # bajaba eran 9 paquetes nuevos, fuentes y sus utilidades (`fonts-*`,
+      # `xfonts-*`), y 8 actualizaciones de paquetes ya instalados. Las 21
+      # bibliotecas que Playwright pide para Chromium en Ubuntu 24.04 estaban
+      # todas: 19 en su última versión y `libnss3` y `libglib2.0-0t64` con una
+      # actualización pendiente que Chromium no necesita para arrancar. Si un día
+      # la imagen pierde una, esa prueba sale roja con el error de arranque a la
+      # vista: entonces `install-deps` vuelve aquí, con su saneador y su tope,
+      # como en `playwright`.
       - name: Install Playwright Chromium (browser only, no apt)
         if: steps.cache-pw.outputs.cache-hit != 'true'
         timeout-minutes: 5
