@@ -24,8 +24,14 @@ export const ESTACIONES_LOCALES: string[] = (GEO.railways?.stations ?? []).map((
 
 export interface Sonda {
   nombre: string
+  /** El centro del disco en la ventana: donde cae un toque. */
   x: number
   y: number
+  /**
+   * El mismo centro contado desde la esquina superior izquierda del mapa: el
+   * encuadre. Lo que cambie de alto por encima del mapa mueve `y`, y esto no.
+   */
+  enMapa: { x: number; y: number } | null
   dentroDelMapa: boolean
   pulsable: boolean
   tapadaPor: string | null
@@ -97,6 +103,7 @@ export function sondea(page: Page): Promise<Sonda[]> {
         nombre: disco.getAttribute('data-estacion') ?? '',
         x: Math.round(x),
         y: Math.round(y),
+        enMapa: mapa ? { x: Math.round(x - mapa.left), y: Math.round(y - mapa.top) } : null,
         dentroDelMapa,
         pulsable,
         tapadaPor,
