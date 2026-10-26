@@ -104,12 +104,30 @@ describe('coste-efectivo · lo que la verificación del 17-09-2026 encontró fal
   })
 
   it('los recursos y la sentencia están en la ficha, y la suspensión la ordenó un juzgado', () => {
-    // Auto de 9-12-2020 del Juzgado C-A nº 3 de València (PO 291/2019), STSJCV
-    // 904/2022 y STS 205/2026, todo descargable de la ficha del expediente.
+    // Auto de 9-12-2020 del Juzgado C-A nº 3 de València (PO 291/2019) y la STS
+    // 205/2026 se descargan de la ficha del expediente; las STSJCV, del CENDOJ.
     enNinguna(/no están en la ficha pública/, 'recursos y sentencia se descargan de la ficha')
     enNinguna(/no los ha visto/, 'los documentos se han leído')
     expect(cuerpo).toMatch(/Juzgado de lo Contencioso-Administrativo nº 3/)
     expect(cuerpo).toMatch(/205\/2026/)
+  })
+
+  it('la inadmisión de 2019 no fue el final, y la ficha sólo trae la sentencia del Supremo', () => {
+    // Leído el 26-10-2026. La STSJCV 111/2022 (Acciona) y la 269/2022 (Aqualia)
+    // anularon la inadmisión del TACRC (Res. 711/2019); siguieron la Res.
+    // 1087/2022 del TACRC y la STSJCV 635/2023. El acta del Pleno de 27-07-2026
+    // enumera las cinco sentencias firmes. La ficha trae «Recurso TACRC»,
+    // «Recurso TACRC 2» y una sola «Sentencia recurso», la del Supremo.
+    enNinguna(
+      /Los recursos y las sentencias se pueden leer en la propia ficha/,
+      'la ficha sólo publica la sentencia del Supremo',
+    )
+    for (const n of ['111/2022', '269/2022', '1087/2022', '904/2022', '635/2023', '205/2026']) {
+      expect(
+        pieza.cronologia.hitos.some((h) => h.t.includes(n)),
+        `la cronología no trae el hito de ${n}`,
+      ).toBe(true)
+    }
   })
 
   it('no hay once actas de la primera a la undécima: no hay ninguna nº 7', () => {

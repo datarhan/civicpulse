@@ -1,6 +1,6 @@
 {
   "plenoId": "zrbgic",
-  "generatedAt": "2026-10-22T07:36:03.830Z",
+  "generatedAt": "2026-10-26T08:32:33.243Z",
   "model": "gemini-3.5-flash",
   "promptVersion": "speaker-map-v2",
   "chunkSeconds": 600,
@@ -7198,6 +7198,318 @@
       "end": 7511,
       "speaker": "c12/SPEAKER_00",
       "text": "Eh? Sí, ells... Mireu, explique... Quan ja s'ha acabat el ple vos ho explique."
+    },
+    {
+      "start": 6600,
+      "end": 6608.2,
+      "speaker": "c11/SPEAKER_00",
+      "text": "montando se va cambiando para que todo para que todos los contenedores como dijimos tanto de casco urbano como de urbanizaciones pues en una semana estén cambiados"
+    },
+    {
+      "start": 6617.8,
+      "end": 6621.7,
+      "speaker": "c11/SPEAKER_01",
+      "text": "Vale. Perdón."
+    },
+    {
+      "start": 6621.7,
+      "end": 6631,
+      "speaker": "c11/SPEAKER_01",
+      "text": "Arranco de Moros. Hemos hecho dos actuaciones que una ha sido la la la obra civil y luego la parte de alumbrado y demás está teníamos una fecha de de recepción para cumplir la subvención europea del PSTD."
+    },
+    {
+      "start": 6635.8,
+      "end": 6647.7,
+      "speaker": "c11/SPEAKER_01",
+      "text": "No se ha abierto todavía eh porque tenemos algunas siempre cuando se acaban las obras hay una serie de repasos que las empresas tienen que rematar y algunas de ellas se había eh tenían que realizarse sin estar todavía abierto al público."
+    },
+    {
+      "start": 6647.7,
+      "end": 6653,
+      "speaker": "c11/SPEAKER_01",
+      "text": "Nos ha ocurrido el tema de las lluvias y demás que nos ha venido muy bien para ver cómo cómo ha respondido y esta semana el jueves tenemos a las nueve la reunión última con la empresa adjudicataria que ha sido Pavasal e la dirección facultativa que es"
+    },
+    {
+      "start": 6653,
+      "end": 6661.2,
+      "speaker": "c11/SPEAKER_01",
+      "text": "Vexen o la dirección facultativa que es Bechtu para ver ese compromiso de aquellas cosas que hay que hacer pues algunos rejuntes y demás que no es bueno tener abierto porque está el albañil ahí con el capataz haciendo cosas y tampoco es cuestión de que pase la gente"
+    },
+    {
+      "start": 6661.2,
+      "end": 6672,
+      "speaker": "c11/SPEAKER_01",
+      "text": "pero de momento ellos se comprometen a acabar aquellos remates en los que no es bueno compartir el paso y que ellos rematen para luego tener abierto Hemos abierto una parte si lo habéis visto de la calle Colón hacia abajo sí que se puede pasar"
+    },
+    {
+      "start": 6672,
+      "end": 6680.5,
+      "speaker": "c11/SPEAKER_01",
+      "text": "pero hay un tramo donde tenemos sobre todo la aplacado de piedra y lo que son los las conexiones con la boca del barranco que son las que hemos dejado pendientes hasta terminar de hacer esos repasos."
+    },
+    {
+      "start": 6680.5,
+      "end": 6692.1,
+      "speaker": "c11/SPEAKER_01",
+      "text": "Aun así seguramente luego tendremos la apertura con restricciones porque nos falta la fase tres que sería la jardinería que esa no estaba dentro del PSTD pero sí que la queremos ejecutar"
+    },
+    {
+      "start": 6692.1,
+      "end": 6700.8,
+      "speaker": "c11/SPEAKER_01",
+      "text": "y luego la fase de la conversión de todas las aguas que eso lo estamos viendo con nuestra empresa adjudicataria del agua que ahora ya podemos hablar de que ha sido Veolia"
+    },
+    {
+      "start": 6700.8,
+      "end": 6709.8,
+      "speaker": "c11/SPEAKER_01",
+      "text": "y nos va a hacer todo el estudio del Barranco de Moros de lo que sería eh Jaume I precisamente de la calle Jaume I donde está el Rebol"
+    },
+    {
+      "start": 6709.8,
+      "end": 6719.7,
+      "speaker": "c11/SPEAKER_01",
+      "text": "de ahí toda la toda la recogida de esas aguas y cómo convergen para la conexión a al barranco. Eso sería también una fase de toda esa recogida de aguas porque si si visteis un poco el proyecto inicial con el que hicimos la llegada al metro"
+    },
+    {
+      "start": 6719.7,
+      "end": 6731.2,
+      "speaker": "c11/SPEAKER_01",
+      "text": "al centro de salud en todo el proyecto iba toda una zona de de parque con zonas inundables que todo se ha tenido que bueno que fraccionarse porque el metro todavía no ha llegado pero no no perdemos ese objetivo de que tiene que llegar"
+    },
+    {
+      "start": 6731.2,
+      "end": 6736.6,
+      "speaker": "c11/SPEAKER_01",
+      "text": "pero mientras llega pues hay que hacer toda una serie de actuaciones y van a ir en esa en esa progresión."
+    },
+    {
+      "start": 6736.6,
+      "end": 6741,
+      "speaker": "c11/SPEAKER_01",
+      "text": "A ver tanto tanto la de la de la jardinería como la recogida de aguas. Y la otra te la dejo a ti si quieres comentarla."
+    },
+    {
+      "start": 6741,
+      "end": 6762.2,
+      "speaker": "c11/SPEAKER_02",
+      "text": "No, bueno, eh ah ah ampliar información porque es un tema eh di que ha habido mucho debate y es normal, que es el tema de la arreplegada de RSU, de residuos, en el sentido de que de que hoy lo decía antes, pero es importante que que lo sepáis porque eh eh el montaje de bueno, primero que la empresa que se lo ha quedado en un concurso es del pueblo y por tanto, en fin, estemos contentos que se lo haya se lo haya quedado una empresa en condiciones de calidad y del pueblo que se ha visto afectada por la DANA, ese es el primer punto."
+    },
+    {
+      "start": 6762.2,
+      "end": 6773.2,
+      "speaker": "c11/SPEAKER_02",
+      "text": "Segundo, que los plazos se están cumpliendo. Nosotros simplemente decir que en noviembre aproximadamente tendríamos todos los contenedores ya distribuidos y esos 36 o 30 que tenemos de carga lateral"
+    },
+    {
+      "start": 6773.2,
+      "end": 6783.1,
+      "speaker": "c11/SPEAKER_02",
+      "text": "que son los que han puesto en la bolsa de la provisión ya hace tiempo y los estamos poniendo los pondremos en en todo el pueblo. Y necesitamos dos temas importantes que los he dicho ahí pero voy a ampliar en el sentido de la importancia."
+    },
+    {
+      "start": 6783.1,
+      "end": 6792.1,
+      "speaker": "c11/SPEAKER_02",
+      "text": "Son los pedales, que es que es otra empresa los que los eh produce y el ensamblaje por eso ahora la logística ha sido importante. La Senyera ha hecho un papel"
+    },
+    {
+      "start": 6792.1,
+      "end": 6802.9,
+      "speaker": "c11/SPEAKER_02",
+      "text": "importante porque el ensamblaje de los pedales en los contenedores, que lo va a hacer la empresa Solo, vale, que ha contratado a las que hacen los pedales, se tiene que hacer en un lugar que después puedan la logística de cada día de la empresa FCC"
+    },
+    {
+      "start": 6802.9,
+      "end": 6813.2,
+      "speaker": "c11/SPEAKER_02",
+      "text": "finalmente repartir, porque claro hay que retirar los que están llenos y distribuir los nuevos. O sea ya veis que están trenzados como como bien he dicho. Y después un tema importante que no es menor, e insistís, es el tema de los sensores,"
+    },
+    {
+      "start": 6813.2,
+      "end": 6822,
+      "speaker": "c11/SPEAKER_02",
+      "text": "que han tratado en el PSTD lo pasemos de largo pero significa una subvención de dos millones y pico de euros y que al final prácticamente tornaremos 35 o 40 000 euros"
+    },
+    {
+      "start": 6822,
+      "end": 6832,
+      "speaker": "c11/SPEAKER_02",
+      "text": "que eso casi es, vamos, lo nunca visto. Porque son subvenciones muy complejas, entre ellas de la que hablo Teresa, estamos hablando de dos millones, lo digo por aquello que no hacíamos inversiones,"
+    },
+    {
+      "start": 6832,
+      "end": 6841.9,
+      "speaker": "c11/SPEAKER_02",
+      "text": "dos millones de euros que se han gastado en la mejora tecnológica, de movilidad de nuestro pueblo. Y ahí esa parte del PSTD"
+    },
+    {
+      "start": 6841.9,
+      "end": 6850.7,
+      "speaker": "c11/SPEAKER_02",
+      "text": "hemos peleado hasta última hora para que la subvención pudiera entrar y no perderla, que eran casi 12 000 o 16 y pico mil euros. ¿Qué quiere decir? Que cada contenedor ser de los primeros de la comarca"
+    },
+    {
+      "start": 6850.7,
+      "end": 6860.6,
+      "speaker": "c11/SPEAKER_02",
+      "text": "que tendrá el sensor correspondiente, tendremos una base para controlar cómo cargan efectivamente registrados los camiones de carga, cuántos kilos descarga"
+    },
+    {
+      "start": 6860.6,
+      "end": 6871.7,
+      "speaker": "c11/SPEAKER_02",
+      "text": "cada contenedor, cuántos pasan a cargarlos, que es muy importante y por tanto en ese sentido tenemos un servicio diríamos, no quiero decir pionero, porque siempre puede haber alguno que lo mejore, pero pionero en cuanto a la eficiencia de la arreplegada"
+    },
+    {
+      "start": 6871.7,
+      "end": 6882.8,
+      "speaker": "c11/SPEAKER_02",
+      "text": "de residuos. Y los vecinos tienen que saber que todo lo que ha empatado en el mes de noviembre estará solventado. Después hará falta el contrato definitivo para acabar la emergencia y tener un contrato ya pues para los años que correspondan, que también mejorará."
+    },
+    {
+      "start": 6882.8,
+      "end": 6892.8,
+      "speaker": "c11/SPEAKER_02",
+      "text": "Y en cuanto a la parte que ha dicho Teresa, eh añadir que efectivamente el tema del desagua es un tema que preocupa mucho. Bueno, de hecho ya saben que las emergencias están teniendo un papel fundamental ahora y en el futuro también"
+    },
+    {
+      "start": 6892.8,
+      "end": 6903.8,
+      "speaker": "c11/SPEAKER_02",
+      "text": "para este gobierno. Para este gobierno y para el que iguale. ¿Por qué? Pues porque efectivamente pasan del fuego a la a la agua en un trís tras. Y los barrancos que tenemos por suerte son un papel"
+    },
+    {
+      "start": 6903.8,
+      "end": 6914.9,
+      "speaker": "c11/SPEAKER_02",
+      "text": "fundamental en los desahogues que tenemos naturales al río. Entonces, el Barranc de Moros, que es un papel fundamental en toda la reurbanización que hemos hecho de ese barranco, desde Camí de les Ànimes"
+    },
+    {
+      "start": 6914.9,
+      "end": 6924.9,
+      "speaker": "c11/SPEAKER_02",
+      "text": "hasta la futura estación de metro, porque además he ido peleando y ni habrá una futura estación de metro en el centro de salud, vale, adecuada técnicamente, pues efectivamente necesita una mejora de recogida de aguas."
+    },
+    {
+      "start": 6924.9,
+      "end": 6933.8,
+      "speaker": "c11/SPEAKER_02",
+      "text": "Eso lo hará Veolia, como bien ha dicho nuestra concejala, pero quiero anunciar también que esa recogida de aguas que se hará o se ha dicho tanto en en en el rey Jaume, avenida la Malla que también"
+    },
+    {
+      "start": 6933.8,
+      "end": 6944.8,
+      "speaker": "c11/SPEAKER_02",
+      "text": "y una parte que nos ha demostrado el agua eh cuando se ha producido, pero además quiero hablar de dos colectores importantísimos que también van en el contrato de la adjudicación que hemos hecho o que que tienen que trabajar,"
+    },
+    {
+      "start": 6944.8,
+      "end": 6953.9,
+      "speaker": "c11/SPEAKER_02",
+      "text": "que es el Rosalía de Castro, que tiene que recoger todas las aguas de Pacadar cap a la avenida Pacabajo, porque sé que los vecinos están preocupados, que es un colector muy importante que ronda un millón y medio de euros,"
+    },
+    {
+      "start": 6953.9,
+      "end": 6963.9,
+      "speaker": "c11/SPEAKER_02",
+      "text": "están trabajando también y el colector de el instituto que me pega las aguas de eh eh Uno de Maig que que vienen de la montañeta que hay enfrente de la Falla la Amistad. Esos son"
+    },
+    {
+      "start": 6963.9,
+      "end": 6973.9,
+      "speaker": "c11/SPEAKER_02",
+      "text": "dos temas que yo pensé que son fundamentales en cuanto al tema del desagua. Y por último acabar en la financiación de nueve millones y medio del conjunto que financia el nuevo, que es la recogida también"
+    },
+    {
+      "start": 6973.9,
+      "end": 6983.8,
+      "speaker": "c11/SPEAKER_02",
+      "text": "a través de Pacadar de un sistema de drenaje innovador dentro de la Agenda 2030, eh científicamente espectacular para poder competir en eh diríamos en cuanto a tener un pueblo"
+    },
+    {
+      "start": 6983.8,
+      "end": 6993.8,
+      "speaker": "c11/SPEAKER_02",
+      "text": "innovador, moderno y que recoja las aguas de su entorno, que es uno de los grandes problemas que tenemos todavía no resuelto por este gobierno ni por los anteriores, por supuesto, ¿vale? Y pasemos a más preguntas si os parece, eh José Luis."
+    },
+    {
+      "start": 6993.8,
+      "end": 6998.9,
+      "speaker": "c11/SPEAKER_03",
+      "text": "Muchas gracias, es un ruego. Entiendo las críticas que me han... ¡ahora! Vale."
+    },
+    {
+      "start": 6998.9,
+      "end": 7007.9,
+      "speaker": "c11/SPEAKER_03",
+      "text": "Muchas gracias, alcalde. Entiendo las críticas que antes me han dirigido sobre mi exposición histórica de lo que fue el nueve de octubre."
+    },
+    {
+      "start": 7007.9,
+      "end": 7021.2,
+      "speaker": "c11/SPEAKER_03",
+      "text": "Las entiendo porque ustedes permanentemente están más con Hamás, eh su presidente Pedro Sánchez subyugado al Reino de Marruecos, y eso lo acepto democráticamente. Ustedes han hecho una exposición."
+    },
+    {
+      "start": 7021.2,
+      "end": 7031.1,
+      "speaker": "c11/SPEAKER_03",
+      "text": "Pero lo que sí que le ruego es que, por lo menos, o se pidan disculpas o se retire en el que a mí me gustaría fusilar a los inmigrantes. Me parece que no es lo correcto, ni no es lo que se debería hacer."
+    },
+    {
+      "start": 7031.1,
+      "end": 7040,
+      "speaker": "c11/SPEAKER_03",
+      "text": "Estoy en defensa de la vida y en contra de la pena de muerte. Lo digo públicamente. Entonces, por favor, ruego esto lo retire porque me parece eh que no es de recibo"
+    },
+    {
+      "start": 7040,
+      "end": 7047,
+      "speaker": "c11/SPEAKER_03",
+      "text": "que diga que a mí me encantaría fusilar a los inmigrantes como usted ha dicho y ha quedado grabado. Entiendo que ha podido ser un calentón y lo vamos a dejar ahí. Pero eh me parece que ha estado fuera de tono. Gracias."
+    },
+    {
+      "start": 7047,
+      "end": 7057,
+      "speaker": "c11/SPEAKER_02",
+      "text": "Bien, no me refería a usted, me refería a Vox y cuando ha defendido, para mí, pero no es un tema personal, pero bueno no pasa nada, yo retiro las palabras, no pasa nada."
+    },
+    {
+      "start": 7057,
+      "end": 7067,
+      "speaker": "c11/SPEAKER_02",
+      "text": "Le he dicho, he hecho una un buen matiz sobre creo la equivocación de su intervención porque es una persona que considero moderada, ¿vale? Las guerras siempre llevan muertes, siempre,"
+    },
+    {
+      "start": 7067,
+      "end": 7077,
+      "speaker": "c11/SPEAKER_02",
+      "text": "por fusilamientos, por represión o por lo que sea y ha defendido claramente o casi ha incitado a una guerra usted en su intervención y por tanto yo creo que es fuera de tono."
+    },
+    {
+      "start": 7077,
+      "end": 7087,
+      "speaker": "c11/SPEAKER_02",
+      "text": "Y por la otra parte, retiro en cuanto a a cuanto a usted como persona pero no defendiendo para nada la política de Vox que justifica fusilamientos como pasan en Palestina,"
+    },
+    {
+      "start": 7087,
+      "end": 7097,
+      "speaker": "c11/SPEAKER_02",
+      "text": "eh atrocidades y que lo ha justificado simplemente por el hecho de tener una política alineada con Trump. Y por eso es crítica política absoluta. Yo condeno absolutamente tanto la guerra con Ucrania"
+    },
+    {
+      "start": 7097,
+      "end": 7107,
+      "speaker": "c11/SPEAKER_02",
+      "text": "como con Palestina como cualquier tipo de guerra sin exclusión, sin exclusión. Por tanto en ese sentido si se ha sentido ofendido por las palabras mías yo las retiro no pasa nada,"
+    },
+    {
+      "start": 7107,
+      "end": 7116,
+      "speaker": "c11/SPEAKER_02",
+      "text": "pero quiero que quede bien claro mi exposición sobre Vox y cómo tienen un comportamiento para mí inadecuado. Vale."
     }
   ],
   "rows": [
@@ -7502,35 +7814,39 @@
       "label": "c12/SPEAKER_02",
       "reason": "ambiguous",
       "detail": "heard \"Rafa\" fits 2: Rafael Gómez Sánchez, Rafael Folgado Navarro"
+    },
+    {
+      "label": "c11/SPEAKER_01",
+      "reason": "relation-contradicted",
+      "detail": "reply, but 324.9s follows SPEAKER_02"
+    },
+    {
+      "label": "c11/SPEAKER_02",
+      "reason": "unresolvable",
+      "detail": "heard \"alcalde\" matches nobody"
+    },
+    {
+      "label": "c11/SPEAKER_03",
+      "reason": "evidence-speaker-mismatch",
+      "detail": "393.8s is SPEAKER_03, cited as SPEAKER_02"
     }
   ],
   "stats": {
     "chunksExpected": 13,
-    "chunksTranscribed": 12,
-    "failedChunks": [
-      {
-        "chunk": 11,
-        "why": "covered 80% (floor 85%)",
-        "attempts": 1,
-        "givenUpUnder": {
-          "prompt": "speaker-map-v2",
-          "floor": 0.85,
-          "thinking": "low"
-        }
-      }
-    ],
-    "labelsSeen": 15,
+    "chunksTranscribed": 13,
+    "failedChunks": [],
+    "labelsSeen": 4,
     "rowsAccepted": 5,
-    "rowsRejected": 44,
+    "rowsRejected": 47,
     "rejectedBy": {
-      "unresolvable": 10,
-      "relation-contradicted": 10,
-      "evidence-speaker-mismatch": 18,
+      "unresolvable": 11,
+      "relation-contradicted": 11,
+      "evidence-speaker-mismatch": 19,
       "evidence-outside-transcript": 1,
       "ambiguous": 5
     },
-    "attemptedThisRun": 4,
-    "apiCalls": 8,
+    "attemptedThisRun": 1,
+    "apiCalls": 2,
     "coverage": 1
   }
 }

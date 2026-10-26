@@ -770,6 +770,12 @@ export default function CosteEfectivo() {
       </P>
       <P>{c.importeQue}</P>
       <Cronologia cronologia={data.cronologia} />
+      {/* Qué se juzgó del pliego: la cronología dice qué sentencia anuló qué,
+          y esto qué decían las cláusulas y por qué cayó la que cayó. Va antes
+          de `loQueNoConsta`, que se cierra con la formalización. */}
+      {data.cronologia.queSeJuzgo?.map((p) => (
+        <P key={p.slice(0, 40)}>{p}</P>
+      ))}
       <P>
         {data.cronologia.loQueNoConsta} {c.formalizacion}
       </P>
