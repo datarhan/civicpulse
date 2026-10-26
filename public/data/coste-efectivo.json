@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-19T17:45:25.169Z",
+  "generatedAt": "2026-10-26T07:45:48.803Z",
   "source": {
     "volcado": "https://www.hacienda.gob.es/cdi/power%20bi/cesel-2021.xlsx",
     "consulta": "https://serviciostelematicosext.hacienda.gob.es/sgcief/Cesel/Consulta/Consulta.aspx",
@@ -8871,7 +8871,7 @@
       "popMax": 40000,
       "tipoEnte": "AA"
     },
-    "resolvedAt": "2026-10-19T17:45:25.169Z",
+    "resolvedAt": "2026-10-26T07:45:48.803Z",
     "anios": [
       2014,
       2015,
@@ -152826,7 +152826,7 @@
     "entregasNoPresentadas": [
       2020
     ],
-    "motivoFaltantes": "El ministerio sólo publica volcado masivo de 2021; el resto de entregas se obtienen del informe por comunidad autónoma de la aplicación de consulta, que se pide con `npm run fetch:cesel-ccaa` y se guarda en .cache/cesel/ccaa."
+    "motivoFaltantes": "El ministerio sólo publica de una vez el volcado de 2021; el resto de entregas se obtienen una a una del informe por comunidad autónoma de su aplicación de consulta."
   },
   "supramunicipal": {
     "filas": [
