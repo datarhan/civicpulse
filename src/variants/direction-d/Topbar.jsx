@@ -7,15 +7,16 @@ function Header({ now }) {
   const { t, locale } = useLocale()
   const abrirBuscador = useAbrirBuscador()
   return (
-    // Fixed 54px row on desktop; below the breakpoint it wraps and grows
-    // instead (see `.d-topbar` in DirectionD). Squeezed at 375 it used to force
-    // the brand block into a three-line column AND push 476px of live chips
-    // past the viewport — invisible while the shell was position:fixed and
-    // clipping them, a document-wide horizontal scroll once it wasn't.
+    // Fixed 54px row on desktop; below the breakpoint it becomes a grid of
+    // fixed rows instead (see `.d-topbar` in DirectionD), so `display` lives in
+    // that stylesheet and not here, where it would outrank the media query.
+    // Squeezed at 375 it used to force the brand block into a three-line column
+    // AND push 476px of live chips past the viewport — invisible while the shell
+    // was position:fixed and clipping them, a document-wide horizontal scroll
+    // once it wasn't.
     <header
       className="d-topbar"
       style={{
-        display: 'flex',
         alignItems: 'center',
         gap: 16,
         padding: '0 20px',
@@ -66,7 +67,7 @@ function Header({ now }) {
       </div>
 
       <Vivo />
-      <div style={{ flex: 1 }} />
+      <div className="d-hueco" style={{ flex: 1 }} />
 
       {/* El buscador de la portada estaba pintado y muerto: sin `onClick`, y con
           `CmdK` sin montar en la rama de `/`, ni el botón ni el atajo abrían
@@ -120,6 +121,7 @@ function Header({ now }) {
       </button>
 
       <div
+        className="d-reloj"
         style={{
           display: 'flex',
           flexDirection: 'column',
