@@ -25,7 +25,9 @@ for (const alto of [812, 629]) {
       await expect(pila).toHaveAttribute('data-plegada', 'true')
       const cobertura = pila.locator('.cp-cobertura')
       await expect(cobertura).toBeVisible()
-      await expect(cobertura).toHaveText(/M€\s*de\s*[\d.,]+\s*M€/)
+      // La frase de vecino, que es lo que la pila plegada deja a la vista desde el
+      // 26-10-2026 (la razón en euros va en su `title`).
+      await expect(cobertura).toHaveText(/sitúa\s*(\d+|menos de 1)\s*de cada 100\s*€/)
       await expect(
         page.getByRole('slider', { name: /línea de tiempo de los contratos situados/i }),
       ).toBeHidden()
