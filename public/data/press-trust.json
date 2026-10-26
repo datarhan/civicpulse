@@ -1,7 +1,58 @@
 {
-  "generatedAt": "2026-10-26T09:35:25.378Z",
+  "generatedAt": "2026-10-26T10:35:58.174Z",
   "windowDays": 30,
   "articles": [
+    {
+      "articleId": "g1o0wg",
+      "articleFingerprint": "1oq9rbg",
+      "outlet": "Actualidad Valencia",
+      "outletHost": "actualidadvalencia.com",
+      "url": "https://news.google.com/rss/articles/CBMidkFVX3lxTFBGeWdhX012Y2dwNDhnc0tqY3F0Ri1LMFpoaHlibHJFRGdTdkhpeVZCZ3RCMXE2TnExeWxyblVXZE9sNG04eHd4U25vQWItS0x5RTBTSGFncUEwZkxFRGZlcEZEcnVuOGVxMW90SHV3VGFMY1hFRHc?oc=5",
+      "date": "2026-10-26T09:11:12.000Z",
+      "indicators": {
+        "localCoverage": false,
+        "datedArticle": true,
+        "municipalSourceMatch": null,
+        "corroboratedAcrossOutlets": null,
+        "factualClaimsPresent": null,
+        "opinionFraction": 0
+      },
+      "score": 1
+    },
+    {
+      "articleId": "mw12pc",
+      "articleFingerprint": "1oulkno",
+      "outlet": "Noticias de la Comunidad Valenciana",
+      "outletHost": "noticiascv.com",
+      "url": "https://news.google.com/rss/articles/CBMiiwFBVV95cUxOZ1cwZEZ4blhfRUpydmRpNGpxOXMxNTNSQ1gwVlowN1FFQ044c1pGZVd5c0swbXdHTW4yUUUzWUlpbV9JdVB4Zno0aVo3WnZqTTV3Z2wtaGd4X1dBVWZjNUQzeE1sNkhJTlJGb3FzdjRWaW5Yckx4ZjdqTWhoVmVINDFzeS1xWUF5dnBr?oc=5",
+      "date": "2026-10-26T06:24:55.000Z",
+      "indicators": {
+        "localCoverage": false,
+        "datedArticle": true,
+        "municipalSourceMatch": null,
+        "corroboratedAcrossOutlets": null,
+        "factualClaimsPresent": null,
+        "opinionFraction": 0
+      },
+      "score": 1
+    },
+    {
+      "articleId": "s8y2w",
+      "articleFingerprint": "1bkxacq",
+      "outlet": "Valencia Plaza",
+      "outletHost": "valenciaplaza.com",
+      "url": "https://news.google.com/rss/articles/CBMi5wFBVV95cUxQejNYRnF0VFhDdXhhcDBJdGY4R29iaHRFY0VmS25mNHNQWi1BVHBiNER3enF2NTZEYW1hV0pveE1fdjBTNDNaNG51dm8tRXByQUR2dnMzWDRUWTR1b3FTcGJkc3hjaWlYbkZZbVk0WkxMZXlaenktcXpzdVdwbnBZeHRXbERfV3hzUlNJeGRxRG9WV2p0dnZuVTREX3diUUNXU3ItLUVFSXV1MDJ1THZaWEh1Y3F5ZS1sYkotcnJGUk9TdkJmNHEyckNvWExRaWlIdW9zZ2M0VmlqcEdWbVVRUW5qaXBsaU0?oc=5",
+      "date": "2026-10-26T05:00:39.000Z",
+      "indicators": {
+        "localCoverage": false,
+        "datedArticle": true,
+        "municipalSourceMatch": null,
+        "corroboratedAcrossOutlets": null,
+        "factualClaimsPresent": null,
+        "opinionFraction": 0
+      },
+      "score": 1
+    },
     {
       "articleId": "16twcj4",
       "articleFingerprint": "1p3agfc",
@@ -156,6 +207,23 @@
       "score": 1
     },
     {
+      "articleId": "dcoykf",
+      "articleFingerprint": "19x50kk",
+      "outlet": "El Periódico de Aquí",
+      "outletHost": "elperiodicodeaqui.com",
+      "url": "https://news.google.com/rss/articles/CBMizAFBVV95cUxOOFd5OGxXendlWVdTQndtYU5iTUNwU0U4ZGI3OFB0OTZvcC0tYktfeDQ3TmY2SlBHQWFpYlliYkFZMlhWSTg0VGdlcjlLY1h0cGhXQzVta1BYaGlpUTRRc1FxdFVfdHlZS3gzcldiZ2sxR0xVMDZEU2NwVXlNc3RRSzBSR0V6amlOY2hqaGZwREVBb2txeldLOURONHlvd25rd2hRU3FZMkN5dHYzYTFsUDRvS2tJcDRwYlVTQnpCNmU2VWR2QXQ5bWhmZEo?oc=5",
+      "date": "2026-10-19T16:10:00.000Z",
+      "indicators": {
+        "localCoverage": false,
+        "datedArticle": true,
+        "municipalSourceMatch": null,
+        "corroboratedAcrossOutlets": null,
+        "factualClaimsPresent": null,
+        "opinionFraction": 0
+      },
+      "score": 1
+    },
+    {
       "articleId": "3r3ub6",
       "articleFingerprint": "101nprs",
       "outlet": "Ayuntamiento de Riba-roja de Túria",
@@ -196,23 +264,6 @@
       "outletHost": "ribarroja.es",
       "url": "https://www.ribarroja.es/es/noticia/el-programa-educativo-%27meteoaula%27-acerca-las-respuestas-el-cambio-clim%C3%A1tico-al-alumnado-de-riba-roja-de-turia",
       "date": "2026-10-19T11:27:23.000Z",
-      "indicators": {
-        "localCoverage": false,
-        "datedArticle": true,
-        "municipalSourceMatch": null,
-        "corroboratedAcrossOutlets": null,
-        "factualClaimsPresent": false,
-        "opinionFraction": 0
-      },
-      "score": 1
-    },
-    {
-      "articleId": "1n4h2ak",
-      "articleFingerprint": "1mm0diu",
-      "outlet": "PressReader",
-      "outletHost": "pressreader.com",
-      "url": "https://news.google.com/rss/articles/CBMiigFBVV95cUxPU2xCTXJ2aEFUMlM0SnhNcEZUME5aUlR0MVJEek5hVW9HUU9DZ3FCN3dOTGRLakFXYzY1eEJabVQ3WVdNcl96ZGducXVVV1o5enN0V0pSWEx1cHJsN3ZpM2RNcmw1YzE2dXlsaXNQOGNfSlVHYUlMNnpZQWEyWUw5czNMckJZSDJ5Wmc?oc=5",
-      "date": "2026-10-16T23:32:43.000Z",
       "indicators": {
         "localCoverage": false,
         "datedArticle": true,
@@ -280,7 +331,7 @@
       "outlet": "elperiodic.com",
       "outletHost": "elperiodic.com",
       "url": "https://news.google.com/rss/articles/CBMi4AFBVV95cUxOaFhQZmo5aTR4dkFOS2hXZzk2em9udHlNNGprRHN4Yno2cTdSUkJLcHFlTmtpb0Zvb3hiQW1XN0wwNGI5NU5CeUFwcjZNd19Fc1pzR25ieVFqQV9ydVdqMDU2X080QU9zd1lsdDdjWjFOLVdPOWdmR1pzLVp0Vkh2TGN5SFpGcHFVT2wyZlhWRW9KQzVoVEVMdjd6VF9la3JuTzVmeGVZdnRKbk9lbzZNRndGTUt1dS1lenJ0REowc1VwUU40aXo3a0xwVHhfNmRhS09YUFQ5UlZsU0poX1UzSQ?oc=5",
-      "date": "2026-10-16T08:03:18.000Z",
+      "date": "2026-10-16T07:00:00.000Z",
       "indicators": {
         "localCoverage": false,
         "datedArticle": true,
@@ -530,40 +581,6 @@
       "score": 1
     },
     {
-      "articleId": "1kpso1z",
-      "articleFingerprint": "535kj8",
-      "outlet": "Interempresas Media",
-      "outletHost": "interempresas.net",
-      "url": "https://news.google.com/rss/articles/CBMizAFBVV95cUxORlQwejZtMVgyQkZHOHhSdnQ4RGczRVlQSzcxYjhMX0VKYzFfNWRUcE9JRW5JVk9zMFlRalNVZGR2NVpDZDFnLU81TU4tWFp4N3BMR1BfdVZOc1R1QklZODI2UXUtelVLcEZUbkE2SWduekhLWW5FdmxHMDNQRjlYdnYtc0JSS3V1cm8yWXB6bVJuWDNLX184QzRJSG85cGR0V3BCakVlYWhPcjdVY0VkLXVweWFKRWFlSGVuckZ2LXEzcnFrU3RWYzA2dmM?oc=5",
-      "date": "2026-10-08T07:00:00.000Z",
-      "indicators": {
-        "localCoverage": false,
-        "datedArticle": true,
-        "municipalSourceMatch": null,
-        "corroboratedAcrossOutlets": null,
-        "factualClaimsPresent": false,
-        "opinionFraction": 0
-      },
-      "score": 1
-    },
-    {
-      "articleId": "9k9b2w",
-      "articleFingerprint": "1pbmyzs",
-      "outlet": "Valencia Plaza",
-      "outletHost": "valenciaplaza.com",
-      "url": "https://news.google.com/rss/articles/CBMi7AFBVV95cUxNU3U2SmtSd2ptRkVTbFFFY1FVTmwtakl0dnRxTHNGV1piNU8tbG9FaE9JaHdCelFuVlBPbmpBT29QX1BVeDUyNXZjeUpjRFluWVFZZngwM002RXZPN2trZkpCY3RNbEVFWUNkcU1UNGQ1b0NDRi1RN0h1SHQ0c0ktMXgzT2pNNGZDcTYwN3dwSlI3cmllYmxLdmFJMFpUVHBCTWZzYndmR1J6Y2E5LWZjNXBmQlRXSmE4ZmhFOE5GSW1pMGY0MHlvc3U4djRnNVpYYVZ3aUp5ak8yeVNyYWQtZmxfZUxLYTFZSkM1NQ?oc=5",
-      "date": "2026-10-08T07:00:00.000Z",
-      "indicators": {
-        "localCoverage": false,
-        "datedArticle": true,
-        "municipalSourceMatch": null,
-        "corroboratedAcrossOutlets": null,
-        "factualClaimsPresent": false,
-        "opinionFraction": 0
-      },
-      "score": 2
-    },
-    {
       "articleId": "plfgoc",
       "articleFingerprint": "18f1xjw",
       "outlet": "Valencia Plaza",
@@ -579,6 +596,40 @@
         "opinionFraction": 0
       },
       "score": 3
+    },
+    {
+      "articleId": "1brxjo4",
+      "articleFingerprint": "19fhtds",
+      "outlet": "Las Provincias",
+      "outletHost": "lasprovincias.es",
+      "url": "https://news.google.com/rss/articles/CBMiugFBVV95cUxPTG9BTGJwbURqVThIaElBSGx3N0kzbGJtYXg0STlKU1d4TWRCb1pXMV9KeklQYUN3NkdlV2Y3bkpaMGx0MG5pT2UxWFRHaldxNkVKRC03LW9Hc2JCS09vUmpJSjhCcjlJMGxHZFd5N2cxZXJQOFNmN2VadlhCbkR3NE1sUHpZM29kZmFqblpIXy1HcC1COU1HU3Fac0xhN0ZZNVlWUkphcGU5ZTVZc1gyQ0Z3MmxRclVKcXfSAb8BQVVfeXFMT3ZnX05wcE0temcxV0tXanZsWUM3aFdEcmVrcWJUd0x1emVjUlRzbFptQ19UM2FTdkRaZTNiWHlJWml0VTFxbDBWR0p5ZFRjbHJyclpwUmJzSjlDTDgzbjRWQnNEZGJoTlgwdjRhUnF0bDhQUFVOc2tUMkI5aU54TDdHdUpQd0lsUFJMeEVFbzY2T1pOTms3SXI1UWFYMnRLTVVJQ2Jrc0ctbG8za1JYeXZyeWZyR0hHYUVvS3dueDA?oc=5",
+      "date": "2026-10-08T07:00:00.000Z",
+      "indicators": {
+        "localCoverage": false,
+        "datedArticle": true,
+        "municipalSourceMatch": null,
+        "corroboratedAcrossOutlets": null,
+        "factualClaimsPresent": false,
+        "opinionFraction": 0
+      },
+      "score": 2
+    },
+    {
+      "articleId": "1kpso1z",
+      "articleFingerprint": "535kj8",
+      "outlet": "Interempresas Media",
+      "outletHost": "interempresas.net",
+      "url": "https://news.google.com/rss/articles/CBMizAFBVV95cUxORlQwejZtMVgyQkZHOHhSdnQ4RGczRVlQSzcxYjhMX0VKYzFfNWRUcE9JRW5JVk9zMFlRalNVZGR2NVpDZDFnLU81TU4tWFp4N3BMR1BfdVZOc1R1QklZODI2UXUtelVLcEZUbkE2SWduekhLWW5FdmxHMDNQRjlYdnYtc0JSS3V1cm8yWXB6bVJuWDNLX184QzRJSG85cGR0V3BCakVlYWhPcjdVY0VkLXVweWFKRWFlSGVuckZ2LXEzcnFrU3RWYzA2dmM?oc=5",
+      "date": "2026-10-08T07:00:00.000Z",
+      "indicators": {
+        "localCoverage": false,
+        "datedArticle": true,
+        "municipalSourceMatch": null,
+        "corroboratedAcrossOutlets": null,
+        "factualClaimsPresent": false,
+        "opinionFraction": 0
+      },
+      "score": 1
     },
     {
       "articleId": "xh27f9",
@@ -630,6 +681,23 @@
         "opinionFraction": 0
       },
       "score": 3
+    },
+    {
+      "articleId": "8pt3dw",
+      "articleFingerprint": "1kbbklm",
+      "outlet": "Levante-EMV",
+      "outletHost": "levante-emv.com",
+      "url": "https://news.google.com/rss/articles/CBMi4AFBVV95cUxNcUpIMHVzMVVkSjNYNXpRLWdMekZiNzM3bXhnVm8tNFlNZ084YzVibmtfeVI2a2x6VVNYakM3V09vRFMtd1ktSlUyaXNiNjhXOVpnU1REckRsbFlYOUtNanVIVUlmbndmNDl2TkJQV1Y0UEE1YW02WWZKU0U5MmpFYkNJeWFScXI1dV9BS1NBWVhTQlF1cHVuVUhFdllHRXZLRjM5TUN0WXZBcjRRSVVtcXRPSnBQTm5zb3hweVNaMWYtUkd3RGtabVVGNVd1dU9WQXNaNVRjQ0JCT3AyS2tjUtIB5gFBVV95cUxOYkFXREZoaHBJQVg0V1k4NkZxMUUxUzQ3Nl9yQkttWF9USWdsOG8zSERCQkJ2RThsQUZyRVpXT3lDa2hzOWV6Tlhpd2ZCOHgxMXloS1hPejhVbnNzSTFSSU9Rb0ZwUkdmTl9jUXpzUkVTVUZVcEtLWVM1RjZkQkt4MW9CM3plbkNMblRSbzFIRG1CejNreGI0U0dUU0F4akxtd1RDNHk1aGczbnRVVURxRllrdUVidjdORkRhYUViblZJb0ptSmozLTNfTkd4UXRDZ3Y0eG1uX2RlZUp4NGNwM1BXNW9Sdw?oc=5",
+      "date": "2026-10-07T07:00:00.000Z",
+      "indicators": {
+        "localCoverage": false,
+        "datedArticle": true,
+        "municipalSourceMatch": null,
+        "corroboratedAcrossOutlets": null,
+        "factualClaimsPresent": null,
+        "opinionFraction": 0
+      },
+      "score": 1
     },
     {
       "articleId": "ccsnc0",
@@ -802,40 +870,6 @@
       "score": 1
     },
     {
-      "articleId": "18jsd8",
-      "articleFingerprint": "1e6j1fc",
-      "outlet": "Interdiario",
-      "outletHost": "interdiario.es",
-      "url": "https://news.google.com/rss/articles/CBMizgFBVV95cUxPX0ZTQ1p6NW1HNmllTGxzMl9fVmU5elN5RElIY0RwZEp5TXg1al9qakI4eDlqYTZUajRPSDhob1hMU09nTGMtQkxuLXVReXRWcXFlcU9wVVkwb2RZcmYzOGZZczVkV1dRdWxUcWs1bndOeU44SDJkdXZ0NVliSnpfaU5TeURJSXdrakhVV1Y4MTMyZDg2eTc3QWVPZXZVRnhBNy1qTlN1NnU3ZEhqZi1HbVVaVE1LUzd4Mkd2MlVXOHQ0bFBUbmc4Q0VKNG5SQQ?oc=5",
-      "date": "2026-09-30T20:38:00.000Z",
-      "indicators": {
-        "localCoverage": false,
-        "datedArticle": true,
-        "municipalSourceMatch": null,
-        "corroboratedAcrossOutlets": null,
-        "factualClaimsPresent": null,
-        "opinionFraction": 0
-      },
-      "score": 1
-    },
-    {
-      "articleId": "dtyvvs",
-      "articleFingerprint": "1qtvb14",
-      "outlet": "El Confidencial",
-      "outletHost": "elconfidencial.com",
-      "url": "https://news.google.com/rss/articles/CBMiygFBVV95cUxObVBKRkR3Z0xfc1hFUnVjTk5Mak9rV2MxdlpBZXNvZTdnSGJFYzhiLU9oWU15YWRZcVQ5WWRPeE9hOWVpOVcyVnZLcndwMjdLNDJPckFrZGo2ZnhmcjBZTEZmVXJhblZNRzFIeDY4eEw4bWRDTUVfNHhZaWR5UGQ5RU45aFhLdHZGT0VnS3B6dTVRVHZZOV9uMFN1dnVSbEstanF1eHoyWUpLVGFnZUlhSFlwRnZoOVp2SmFnT3Ruc21YS3d2RVZoZ1RR?oc=5",
-      "date": "2026-09-30T07:00:00.000Z",
-      "indicators": {
-        "localCoverage": false,
-        "datedArticle": true,
-        "municipalSourceMatch": null,
-        "corroboratedAcrossOutlets": null,
-        "factualClaimsPresent": null,
-        "opinionFraction": 0
-      },
-      "score": 1
-    },
-    {
       "articleId": "uemsec",
       "articleFingerprint": "1pwdoy8",
       "outlet": "Ayuntamiento de Riba-roja de Túria",
@@ -887,25 +921,9 @@
       "contradictedRatio": null
     },
     {
-      "outlet": "Valencia Plaza",
-      "outletHost": "valenciaplaza.com",
-      "articleCount": 6,
-      "verdictCounts": {
-        "verificado": 0,
-        "parcial": 1,
-        "contradicho": 0,
-        "sin-datos": 5,
-        "promesa-repetida": 0
-      },
-      "checkedClaims": 2,
-      "meanTrustScore": 2.5,
-      "verifiedRatio": 0,
-      "contradictedRatio": null
-    },
-    {
       "outlet": "Levante-EMV",
       "outletHost": "levante-emv.com",
-      "articleCount": 6,
+      "articleCount": 7,
       "verdictCounts": {
         "verificado": 0,
         "parcial": 0,
@@ -914,14 +932,30 @@
         "promesa-repetida": 0
       },
       "checkedClaims": 1,
-      "meanTrustScore": 1.67,
+      "meanTrustScore": 1.57,
+      "verifiedRatio": 0,
+      "contradictedRatio": null
+    },
+    {
+      "outlet": "Valencia Plaza",
+      "outletHost": "valenciaplaza.com",
+      "articleCount": 6,
+      "verdictCounts": {
+        "verificado": 0,
+        "parcial": 1,
+        "contradicho": 0,
+        "sin-datos": 4,
+        "promesa-repetida": 0
+      },
+      "checkedClaims": 1,
+      "meanTrustScore": 2.33,
       "verifiedRatio": 0,
       "contradictedRatio": null
     },
     {
       "outlet": "El Periódico de Aquí",
       "outletHost": "elperiodicodeaqui.com",
-      "articleCount": 2,
+      "articleCount": 3,
       "verdictCounts": {
         "verificado": 0,
         "parcial": 0,
@@ -930,7 +964,7 @@
         "promesa-repetida": 0
       },
       "checkedClaims": 0,
-      "meanTrustScore": 2.5,
+      "meanTrustScore": 2,
       "verifiedRatio": null,
       "contradictedRatio": null
     },
@@ -947,6 +981,38 @@
       },
       "checkedClaims": 0,
       "meanTrustScore": 2.5,
+      "verifiedRatio": null,
+      "contradictedRatio": null
+    },
+    {
+      "outlet": "Actualidad Valencia",
+      "outletHost": "actualidadvalencia.com",
+      "articleCount": 1,
+      "verdictCounts": {
+        "verificado": 0,
+        "parcial": 0,
+        "contradicho": 0,
+        "sin-datos": 0,
+        "promesa-repetida": 0
+      },
+      "checkedClaims": 0,
+      "meanTrustScore": 1,
+      "verifiedRatio": null,
+      "contradictedRatio": null
+    },
+    {
+      "outlet": "Noticias de la Comunidad Valenciana",
+      "outletHost": "noticiascv.com",
+      "articleCount": 1,
+      "verdictCounts": {
+        "verificado": 0,
+        "parcial": 0,
+        "contradicho": 0,
+        "sin-datos": 0,
+        "promesa-repetida": 0
+      },
+      "checkedClaims": 0,
+      "meanTrustScore": 1,
       "verifiedRatio": null,
       "contradictedRatio": null
     },
@@ -999,8 +1065,8 @@
       "contradictedRatio": null
     },
     {
-      "outlet": "PressReader",
-      "outletHost": "pressreader.com",
+      "outlet": "Ayuntamiento de Cheste",
+      "outletHost": "cheste.es",
       "articleCount": 1,
       "verdictCounts": {
         "verificado": 0,
@@ -1010,19 +1076,19 @@
         "promesa-repetida": 0
       },
       "checkedClaims": 0,
-      "meanTrustScore": 1,
+      "meanTrustScore": 2,
       "verifiedRatio": null,
       "contradictedRatio": null
     },
     {
-      "outlet": "Ayuntamiento de Cheste",
-      "outletHost": "cheste.es",
+      "outlet": "Las Provincias",
+      "outletHost": "lasprovincias.es",
       "articleCount": 1,
       "verdictCounts": {
         "verificado": 0,
         "parcial": 0,
         "contradicho": 0,
-        "sin-datos": 0,
+        "sin-datos": 1,
         "promesa-repetida": 0
       },
       "checkedClaims": 0,
@@ -1045,44 +1111,12 @@
       "meanTrustScore": 1,
       "verifiedRatio": null,
       "contradictedRatio": null
-    },
-    {
-      "outlet": "Interdiario",
-      "outletHost": "interdiario.es",
-      "articleCount": 1,
-      "verdictCounts": {
-        "verificado": 0,
-        "parcial": 0,
-        "contradicho": 0,
-        "sin-datos": 0,
-        "promesa-repetida": 0
-      },
-      "checkedClaims": 0,
-      "meanTrustScore": 1,
-      "verifiedRatio": null,
-      "contradictedRatio": null
-    },
-    {
-      "outlet": "El Confidencial",
-      "outletHost": "elconfidencial.com",
-      "articleCount": 1,
-      "verdictCounts": {
-        "verificado": 0,
-        "parcial": 0,
-        "contradicho": 0,
-        "sin-datos": 0,
-        "promesa-repetida": 0
-      },
-      "checkedClaims": 0,
-      "meanTrustScore": 1,
-      "verifiedRatio": null,
-      "contradictedRatio": null
     }
   ],
   "builtFrom": {
-    "plenos-agendas.json": "409dcc85a3f5",
+    "plenos-agendas.json": "824fd2405074",
     "press-claims-verified.json": "d02b0153f392",
-    "press.json": "bd722853e0ec",
+    "press.json": "ef8be0987770",
     "promises.json": "a4b8423e960f"
   }
 }
