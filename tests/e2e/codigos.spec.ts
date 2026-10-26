@@ -50,7 +50,11 @@ const RUTAS = [
  * (`lang="en"`, /about y el blog): allí «profile» o «investigation» son palabras.
  */
 async function textoVisible(page: import('@playwright/test').Page, ruta: string) {
-  await page.goto(ruta, { waitUntil: 'networkidle' })
+  await page.goto(ruta, { waitUntil: 'domcontentloaded' })
+  // A que lleguen los datos, con tope: la portada no llega nunca a «networkidle»
+  // —el mapa vivo pide teselas y posiciones sin parar—, y en la CI esperarlo
+  // agotó los 30 s de la prueba.
+  await page.waitForLoadState('networkidle', { timeout: 8_000 }).catch(() => {})
   await page.evaluate(() => {
     document.querySelectorAll('details').forEach((d) => (d.open = true))
     document
