@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-25T09:36:08.773Z",
+  "generatedAt": "2026-10-26T05:48:12.644Z",
   "windowDays": 30,
   "articles": [
     {
@@ -851,30 +851,13 @@
         "opinionFraction": 0
       },
       "score": 1
-    },
-    {
-      "articleId": "1lk4zls",
-      "articleFingerprint": "vsmbot",
-      "outlet": "Ayuntamiento de Riba-roja de Túria",
-      "outletHost": "ribarroja.es",
-      "url": "https://www.ribarroja.es/es/noticia/riba-roja-de-t%C3%BAria-impulsa-la-sensorizaci%C3%B3n-de-sus-contenedores-de-residuos-para-avanzar-hacia-una-gesti%C3%B3n-m%C3%A1s-sostenible-del-municipio",
-      "date": "2026-09-25T09:54:12.000Z",
-      "indicators": {
-        "localCoverage": false,
-        "datedArticle": true,
-        "municipalSourceMatch": null,
-        "corroboratedAcrossOutlets": null,
-        "factualClaimsPresent": null,
-        "opinionFraction": 0
-      },
-      "score": 1
     }
   ],
   "outlets": [
     {
       "outlet": "Ayuntamiento de Riba-roja de Túria",
       "outletHost": "ribarroja.es",
-      "articleCount": 17,
+      "articleCount": 16,
       "verdictCounts": {
         "verificado": 0,
         "parcial": 0,
@@ -883,7 +866,7 @@
         "promesa-repetida": 0
       },
       "checkedClaims": 5,
-      "meanTrustScore": 1.59,
+      "meanTrustScore": 1.63,
       "verifiedRatio": 0,
       "contradictedRatio": null
     },
@@ -1097,7 +1080,7 @@
     }
   ],
   "builtFrom": {
-    "plenos-agendas.json": "e3236a89eac3",
+    "plenos-agendas.json": "af100f72b501",
     "press-claims-verified.json": "035904d802c7",
     "press.json": "bd722853e0ec",
     "promises.json": "a4b8423e960f"
