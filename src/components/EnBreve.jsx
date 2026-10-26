@@ -31,12 +31,16 @@ import { useGlosario } from '../hooks/useGlosario'
  * definición está abierta (`aria-expanded`) y a qué panel apunta.
  */
 function FraseConTerminos({ frase, abierto, onAbrir, idPanel }) {
-  return partesConTerminos(frase).map((p, i) =>
-    typeof p === 'string' ? (
-      <Fragment key={i}>{p}</Fragment>
-    ) : (
+  const partes = partesConTerminos(frase)
+  const out = []
+  for (let i = 0; i < partes.length; i++) {
+    const p = partes[i]
+    if (typeof p === 'string') {
+      out.push(<Fragment key={i}>{p}</Fragment>)
+      continue
+    }
+    const boton = (
       <button
-        key={i}
         type="button"
         className="cp-termino"
         aria-expanded={abierto === p.clave}
@@ -47,8 +51,26 @@ function FraseConTerminos({ frase, abierto, onAbrir, idPanel }) {
       >
         {p.texto}
       </button>
-    ),
-  )
+    )
+    // La puntuación que sigue al término va pegada a él. Un <button> se maqueta
+    // como una caja aunque sea `inline`, así que la línea podía partirse entre el
+    // término y su coma: «tope del presupuesto» al final de una línea y «, no un
+    // gasto» al principio de la siguiente.
+    const siguiente = partes[i + 1]
+    const pegada = typeof siguiente === 'string' ? siguiente.match(/^[,.;:)»?!]+/) : null
+    if (pegada) {
+      out.push(
+        <span key={i} style={{ whiteSpace: 'nowrap' }}>
+          {boton}
+          {pegada[0]}
+        </span>,
+      )
+      partes[i + 1] = siguiente.slice(pegada[0].length)
+    } else {
+      out.push(<Fragment key={i}>{boton}</Fragment>)
+    }
+  }
+  return out
 }
 
 /** La definición abierta, del glosario (`useGlosario`). */
