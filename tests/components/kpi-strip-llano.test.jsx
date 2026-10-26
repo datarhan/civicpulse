@@ -85,6 +85,36 @@ describe('la tira de la portada, en palabras de vecino', () => {
     expect(personal.texto).not.toMatch(/Cap\.\s?1/)
   })
 
+  it('el paro dice con qué mes compara: «el mes anterior» sólo si lo es', async () => {
+    const paro = DATOS['/data/paro.json']
+    const n = paro.series.length
+    // Hoy las dos últimas entradas son meses seguidos; si no, el primer caso no
+    // mediría nada.
+    const meses = (p) => {
+      const [y, m] = p.split('-').map(Number)
+      return y * 12 + m
+    }
+    const [a, b] = paro.series.slice(-2).map((x) => x.period)
+    expect(meses(b) - meses(a)).toBe(1)
+    const [, , , , hoy] = await celdas(DATOS, 'tira publicada')
+    expect(hoy.texto).toContain('respecto al mes anterior')
+
+    // La forma de julio de 2026: la serie publicada saltaba de 2026-04 a 2026-07.
+    const conHueco = { ...paro, series: [...paro.series.slice(0, n - 2), paro.series[n - 1]] }
+    const [, , , , julio] = await celdas(
+      { ...DATOS, '/data/paro.json': conHueco },
+      'tira con un mes sin dato',
+    )
+    expect(julio.texto).not.toContain('mes anterior')
+    const previo = conHueco.series.at(-2).period
+    const mes = new Date(`${previo}-01T00:00:00Z`).toLocaleDateString('es-ES', {
+      month: 'short',
+      year: 'numeric',
+      timeZone: 'UTC',
+    })
+    expect(julio.texto).toContain(`respecto a ${mes}`)
+  })
+
   it('«Último pleno» es la última sesión celebrada, no una listada antes de celebrarse', async () => {
     const plenos = DATOS['/data/plenos.json']
     const hoy = hoyEnRibarroja()

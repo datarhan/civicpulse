@@ -240,12 +240,30 @@ function KpiStrip() {
   const totalPlenos = plenos?.stats?.total
 
   // «2026-09» → «sept 2026»: el mes del dato en palabras, en el idioma de la página.
-  const periodoParo = /^\d{4}-\d{2}$/.test(paro?.latestPeriod ?? '')
-    ? new Date(`${paro.latestPeriod}-01T00:00:00Z`).toLocaleDateString(
-        locale === 'ca' ? 'ca-ES' : 'es-ES',
-        { month: 'short', year: 'numeric', timeZone: 'UTC' },
-      )
-    : (paro?.latestPeriod ?? '')
+  const mesEnPalabras = (periodo) =>
+    /^\d{4}-\d{2}$/.test(periodo ?? '')
+      ? new Date(`${periodo}-01T00:00:00Z`).toLocaleDateString(
+          locale === 'ca' ? 'ca-ES' : 'es-ES',
+          { month: 'short', year: 'numeric', timeZone: 'UTC' },
+        )
+      : (periodo ?? '')
+  const periodoParo = mesEnPalabras(paro?.latestPeriod)
+  // La flecha compara con la entrada anterior de la serie, que no siempre es el
+  // mes anterior: la publicada salta de 2026-04 a 2026-07, y en julio «respecto
+  // al mes anterior» habría comparado con abril. Entonces se nombra el mes.
+  const serieParo = paro?.series ?? []
+  const previoParo = serieParo.length >= 2 ? serieParo[serieParo.length - 2].period : null
+  const ultimoParo = serieParo.length >= 1 ? serieParo[serieParo.length - 1].period : null
+  const mesesEntre = (a, b) => {
+    const [ya, ma] = String(a).split('-').map(Number)
+    const [yb, mb] = String(b).split('-').map(Number)
+    return yb * 12 + mb - (ya * 12 + ma)
+  }
+  const paroSub = !previoParo
+    ? t('landing.kpi.paro.subSinPrevio')
+    : mesesEntre(previoParo, ultimoParo) === 1
+      ? t('landing.kpi.paro.sub')
+      : rellena(t('landing.kpi.paro.subDesde'), { periodo: mesEnPalabras(previoParo) })
 
   return (
     // `.d-kpi` owns height + overflow: below the breakpoint the six cells no
@@ -380,7 +398,7 @@ function KpiStrip() {
           const prev = paro.series[paro.series.length - 2].total
           return last < prev ? 'ok' : 'warn'
         })()}
-        sub={t('landing.kpi.paro.sub')}
+        sub={paroSub}
         spark={paro?.series?.slice(-12).map((p) => p.total) || null}
         sparkColor={PALETTE.accent}
       />
