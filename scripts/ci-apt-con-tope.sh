@@ -4,11 +4,13 @@
 # lo dice con su nombre.
 #
 # EL FALLO, medido el 2026-10-26 en la ejecución 40305149332 (#431): el espejo
-# de Ubuntu del runner sirvió los paquetes a 13,6 kB/s, con reintentos de cinco
-# minutos por fichero, y `npx playwright install-deps chromium` tardó 1.044 s en
-# vez de ~20. Se comió el presupuesto entero del trabajo: a las pruebas de
-# unidad les quedaron 96 s, el trabajo se canceló a los 20 min y el PR quedó en
-# rojo con el código bien. Al relanzarlo pasó.
+# de Ubuntu del runner sirvió los paquetes a 13,6 kB/s de media: 3 de los 17 se
+# atascaron 3 min 1 s, 5 min 7 s y 3 min 5 s antes de reintentarse. El paso que
+# instala las dependencias de Chromium tardó 1.044 s en vez de ~20 (1.035 de
+# ellos, `npx playwright install-deps chromium`; el saneador de fuentes, 9). Se
+# comió el presupuesto entero del trabajo: a las pruebas de unidad les quedaron
+# 96 s, el trabajo se canceló a los 20 min y el PR quedó en rojo con el código
+# bien. Al relanzarlo pasó.
 #
 # POR QUÉ UN GUION Y NO SÓLO `timeout-minutes` EN EL PASO. El tope del paso
 # corta igual, pero sale como «The action has timed out», que no dice qué

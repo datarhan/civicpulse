@@ -10,8 +10,8 @@ import { load } from 'js-yaml'
  * Pudo, el 2026-10-26 (ejecución 40305149332, #431). `e2e.yml` era entonces un
  * solo trabajo de 20 min que lo hacía todo en fila, las ejecuciones sanas
  * tardaban 16–19,5, y el espejo de Ubuntu sirvió los paquetes a 13,6 kB/s:
- * `playwright install-deps` tardó 1.044 s en vez de ~20, a la suite de unidad
- * le quedaron 96 s y el trabajo se canceló con el código bien.
+ * el paso de `playwright install-deps` tardó 1.044 s en vez de ~20, a la suite
+ * de unidad le quedaron 96 s y el trabajo se canceló con el código bien.
  *
  * El arreglo tiene dos mitades y aquí se fijan las dos. El workflow se partió
  * en trabajos paralelos, que dan el margen; y apt lleva tope propio,
