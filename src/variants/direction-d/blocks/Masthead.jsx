@@ -54,6 +54,18 @@ export function EditorialMasthead({ now }) {
       >
         {t('landing.masthead.tagline')}
       </div>
+      {/* Qué es esto, en una frase: la canónica de docs/DESCRIPCION.md. Hasta el
+          26-10-2026 la portada no lo decía en ninguna parte. */}
+      <p
+        style={{
+          margin: '10px 0 0',
+          fontSize: 'var(--fs-meta)',
+          lineHeight: 1.45,
+          color: PALETTE.ink,
+        }}
+      >
+        {t('landing.masthead.proposito')}
+      </p>
     </div>
   )
 }

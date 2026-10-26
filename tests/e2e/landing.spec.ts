@@ -179,6 +179,39 @@ test.describe('Landing (/)', () => {
     expect(Math.min(...levels.map((l) => l.level))).toBe(1)
   })
 
+  test('«Tu ayuntamiento en 30 segundos»: cada tarjeta lleva a una página que existe', async ({
+    page,
+  }) => {
+    // La lectura vecinal de la portada: cada respuesta enlaza a la página que la
+    // demuestra, y a otra ruta, así que en-breve-anclas.spec.ts (que sigue los
+    // `#…` de la misma página) no la mira. Un destino que no existe deja al vecino
+    // en la portada sin saberlo.
+    await page.goto('/', { waitUntil: 'domcontentloaded' })
+    const bloque = page.locator('[data-en-breve-bloque]')
+    await expect(bloque).toBeVisible({ timeout: 10_000 })
+    // Quién manda, el dinero, el último pleno y el barrio.
+    await expect
+      .poll(() => bloque.locator('[data-en-breve]').count(), { timeout: 10_000 })
+      .toBeGreaterThanOrEqual(4)
+    const destinos = await bloque
+      .locator('.cp-en-breve-ancla')
+      .evaluateAll((as) => as.map((a) => a.getAttribute('href') ?? ''))
+    expect(destinos.length).toBeGreaterThanOrEqual(3)
+    for (const href of destinos) {
+      expect(href, 'una tarjeta de la portada sin destino').toMatch(/^\/[a-z]/)
+      await page.goto(href, { waitUntil: 'domcontentloaded' })
+      await expect(page.locator('h1'), `${href} no pinta su <h1>`).toHaveCount(1, {
+        timeout: 10_000,
+      })
+      const fragmento = href.split('#')[1]
+      if (fragmento)
+        await expect(page.locator(`[id="${fragmento}"]`), `${href}: el ancla no está`).toHaveCount(
+          1,
+          { timeout: 10_000 },
+        )
+    }
+  })
+
   test('interactive map layers: money default, coverage disclosure, neighborhood popup', async ({
     page,
   }) => {

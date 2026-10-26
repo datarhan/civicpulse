@@ -59,21 +59,10 @@ function Header({ now }) {
           ›
         </span>
         <span style={{ fontSize: 'var(--fs-aux)', fontWeight: 600 }}>Riba-roja de Túria</span>
-        <span
-          style={{
-            fontFamily: MONO,
-            fontSize: 'var(--fs-micro)',
-            color: 'white',
-            background: PALETTE.accent,
-            padding: '2px 6px',
-            borderRadius: 'var(--r-input)',
-            fontWeight: 700,
-            letterSpacing: '.08em',
-            marginLeft: 4,
-          }}
-        >
-          MVP
-        </span>
+        {/* Aquí iba una pastilla «MVP», jerga de empresa emergente en el rojo de
+            acento junto al nombre del pueblo, y al final de la barra un círculo
+            «MP» que parecía el menú de una cuenta que no existe (auditoría de las
+            dos lecturas, 25-10-2026). */}
       </div>
 
       <Vivo />
@@ -159,22 +148,6 @@ function Header({ now }) {
         >
           {t('landing.topbar.edicion')}
         </span>
-      </div>
-
-      <div
-        style={{
-          width: 30,
-          height: 30,
-          borderRadius: '50%',
-          background: 'linear-gradient(135deg,' + PALETTE.civic + ',' + PALETTE.accent2 + ')',
-          color: 'white',
-          display: 'grid',
-          placeItems: 'center',
-          fontSize: 'var(--fs-micro)',
-          fontWeight: 700,
-        }}
-      >
-        MP
       </div>
     </header>
   )
