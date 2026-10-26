@@ -1,5 +1,6 @@
 import EnBreve, { TarjetaEnBreve } from '../../../components/EnBreve'
 import BarrioPicker from '../../../components/Presupuesto/BarrioPicker'
+import { porcentajeDelMapa } from '../../../components/LiveCity/controls/MoneyCoverage'
 import {
   FiguraBarrio,
   FiguraGastado,
@@ -125,25 +126,34 @@ export function EnBrevePortada() {
         ? rellena(t('presupuesto.enBreve.gastado.fin'), { fecha: g.fecha })
         : rellena(t('presupuesto.enBreve.gastado.fecha'), { fecha: g.fecha })
       : ''
+    // Con lo gastado, la cifra grande es lo gastado, como en la tarjeta «¿Cuánto
+    // ha gastado?» de /presupuesto, y el tope va en una frase que lo llama tope.
+    // Con el tope arriba y la barra «Gastado» debajo, la revisión lectora leyó
+    // «67,1 M€ … gastado»: /presupuesto separa las dos cifras en dos tarjetas, y
+    // aquí, en una sola, la grande tiene que ser la que la barra mide.
     tarjetas.push(
       <TarjetaEnBreve
         key="dinero"
         id="dinero"
         pregunta={rellena(t('landing.enBreve.dinero.pregunta'), { year: l.year })}
-        cifra={eurM(l.definitivo)}
+        cifra={eurM(g ? g.ejecutado : l.definitivo)}
         cifraNota={
-          l.porVecino != null
-            ? rellena(t('presupuesto.enBreve.porVecino'), { x: eur0(l.porVecino) })
-            : undefined
+          g
+            ? rellena(t('landing.enBreve.dinero.cifraNota'), { year: g.year })
+            : l.porVecino != null
+              ? rellena(t('presupuesto.enBreve.porVecino'), { x: eur0(l.porVecino) })
+              : undefined
         }
         figura={g ? <FiguraGastado gastado={g} /> : undefined}
-        frases={[
-          t('landing.enBreve.dinero.tope'),
+        frases={
           g
-            ? rellena(t('presupuesto.enBreve.gastado.frase'), { year: g.year, n: g.deCada100 })
-            : t('landing.enBreve.dinero.sinGastado'),
-          fecha,
-        ]}
+            ? [
+                rellena(t('presupuesto.enBreve.gastado.frase'), { year: g.year, n: g.deCada100 }),
+                rellena(t('landing.enBreve.dinero.topeCifra'), { limite: eurM(l.definitivo) }),
+                fecha,
+              ]
+            : [t('landing.enBreve.dinero.tope'), t('landing.enBreve.dinero.sinGastado')]
+        }
         nota={g ? t('presupuesto.enBreve.gastado.nota') : undefined}
         salvedad={
           l.conprelDiscrepa != null
@@ -207,11 +217,26 @@ export function EnBrevePortada() {
   if (tarjetas.length === 0) return null
 
   const zonas = (tenderGeo?.zones ?? []).filter((z) => z.slug && z.name)
+  // El mapa de la portada imprime otro porcentaje (los contratos con un sitio,
+  // no los que nombran un barrio) a unos píxeles de esta tarjeta. Las dos cifras
+  // son ciertas y ninguna contiene a la otra, así que se nombran las dos y por
+  // qué difieren; si coinciden, no hay nada que reconciliar.
+  const enMapa = porcentajeDelMapa(tenderGeo?.universe)
+  const menosDeUno = t('landing.enBreve.barrio.menosDeUno')
+  const aqui = r.barrio && (r.barrio.menosDeUno ? '<1' : String(r.barrio.deCada100))
+  const puente =
+    enMapa && aqui && enMapa !== aqui
+      ? rellena(t('landing.enBreve.barrio.puente'), {
+          pct: enMapa === '<1' ? menosDeUno : enMapa,
+          n: aqui === '<1' ? menosDeUno : aqui,
+        })
+      : null
   const pie = r.barrio && zonas.length > 0 && (
     <BarrioPicker
       cobertura={r.barrio}
       zonas={zonas}
       ruta="/presupuesto"
+      puente={puente}
       figura={!r.barrio.menosDeUno ? <FiguraBarrio n={r.barrio.deCada100} /> : null}
     />
   )

@@ -32,13 +32,18 @@ const claveDeOrden = (nombre) => nombre.replace(/^Urbanitzaci[óo]n?\s+/i, '')
  *   zonas: { slug: string, name: string, contractCount?: number }[],
  *   figura?: import('react').ReactNode,
  *   ruta?: string,
+ *   puente?: string | null,
  * }} props
  *
  * `ruta` es la página del mapa: vacía en /presupuesto, que es donde está; la
  * portada pasa `/presupuesto`, porque allí un `?barrio=…#mapa-gasto` relativo
  * se quedaba en la propia portada.
+ *
+ * `puente` es la frase que reconcilia esta cifra con otra que el lector tiene
+ * al lado: en la portada, el mapa mide los contratos con un sitio y no los que
+ * nombran un barrio, y da otro porcentaje.
  */
-export default function BarrioPicker({ cobertura, zonas, figura, ruta = '' }) {
+export default function BarrioPicker({ cobertura, zonas, figura, ruta = '', puente = null }) {
   const t = useT()
   const navigate = useNavigate()
   const id = useId()
@@ -68,6 +73,7 @@ export default function BarrioPicker({ cobertura, zonas, figura, ruta = '' }) {
           {cobertura.menosDeUno
             ? t('presupuesto.enBreve.barrio.menosDeUno')
             : rellena(t('presupuesto.enBreve.barrio.frase'), { n: cobertura.deCada100 })}
+          {puente ? ` ${puente}` : null}
         </p>
         <form className="cp-en-breve-barrio-form" onSubmit={ver}>
           <label htmlFor={`${id}-sel`} className="cp-en-breve-barrio-label">

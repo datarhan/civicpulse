@@ -45,6 +45,19 @@ const fmtM = (n) =>
 const fmtPct = (n) => new Intl.NumberFormat('es-ES', { maximumFractionDigits: 1 }).format(n)
 
 /**
+ * El porcentaje tal como lo imprime esta línea («7», «7,4», «<1»), o null si no
+ * se imprime. Exportado para que la tarjeta del barrio de la portada, que mide
+ * otra cosa justo al lado, cite la misma cifra que el lector ve en el mapa.
+ *
+ * @param {{ situatedAmount?: number, totalAmount?: number } | null | undefined} u
+ */
+export function porcentajeDelMapa(u) {
+  if (!u || !u.totalAmount || !u.situatedAmount) return null
+  const pct = (100 * u.situatedAmount) / u.totalAmount
+  return pct < 1 ? '<1' : fmtPct(pct)
+}
+
+/**
  * @param {{ snapshot?: { universe?: { situatedAmount?: number, totalAmount?: number,
  *   dateMin?: string|null, dateMax?: string|null, totalDateMin?: string|null,
  *   totalDateMax?: string|null } },
@@ -59,8 +72,8 @@ export function MoneyCoverage({ snapshot, accion = null }) {
   // (placeAmountsAt), y su total es `situatedAmount`. Hasta el 15-10-2026 esta
   // línea imprimía `locatedAmount` —las ZONAS de /presupuesto— y declaraba un
   // tercio de lo que el mapa pintaba al lado.
-  if (!u || !u.totalAmount || !u.situatedAmount) return null
-  const pct = (100 * u.situatedAmount) / u.totalAmount
+  const pct = porcentajeDelMapa(u)
+  if (pct == null) return null
   // El periodo es el del DENOMINADOR: `totalDateMin`/`totalDateMax` abarcan todos
   // los contratos que suma `totalAmount`, y no sólo los que tienen sitio en el
   // mapa (eso es `dateMin`/`dateMax`, que mueve el deslizador). Así el periodo
@@ -86,7 +99,7 @@ export function MoneyCoverage({ snapshot, accion = null }) {
         style={{ fontSize: 'var(--fs-micro)', color: 'rgba(11,15,25,.86)', fontWeight: 700 }}
       >
         {fmtM(u.situatedAmount)} {t('map.money.of')} {fmtM(u.totalAmount)}
-        {span ? ` (${span})` : ''} · {pct < 1 ? '<1' : fmtPct(pct)}%{accion}
+        {span ? ` (${span})` : ''} · {pct}%{accion}
       </div>
       <div id="cp-dinero-nota" className="cp-plegable" style={{ marginTop: 3 }}>
         {t('map.money.coverage')}

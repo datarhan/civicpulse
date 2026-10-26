@@ -2417,6 +2417,12 @@ export const CATALOGUE = {
     'landing.enBreve.dinero.tope':
       'Es lo que podía gastar: un [[creditoDefinitivo|tope del presupuesto]], no un gasto.',
     'landing.enBreve.dinero.sinGastado': 'Todavía no tenemos lo que gastó ese año.',
+    'landing.enBreve.dinero.cifraNota': 'gastados en {year}',
+    'landing.enBreve.dinero.topeCifra':
+      'Podía gastar {limite}: un [[creditoDefinitivo|tope del presupuesto]], no un gasto.',
+    'landing.enBreve.barrio.puente':
+      'El mapa de esta página dice {pct} %, y no {n}, porque cuenta otra cosa: los contratos que nombran un sitio concreto, como una calle o un colegio, estén o no en un barrio.',
+    'landing.enBreve.barrio.menosDeUno': 'menos de 1',
     'landing.enBreve.pleno.pregunta': '¿Qué se decidió en el último pleno?',
     'landing.enBreve.pleno.puntos': 'Trató {n} puntos del orden del día.',
     'landing.enBreve.pleno.puntos.uno': 'Trató un punto del orden del día.',
@@ -4622,6 +4628,12 @@ export const CATALOGUE = {
     'landing.enBreve.dinero.tope':
       'És el que podia gastar: un [[creditoDefinitivo|límit del pressupost]], no una despesa.',
     'landing.enBreve.dinero.sinGastado': 'Encara no tenim el que va gastar eixe any.',
+    'landing.enBreve.dinero.cifraNota': 'gastats en {year}',
+    'landing.enBreve.dinero.topeCifra':
+      'Podia gastar {limite}: un [[creditoDefinitivo|límit del pressupost]], no una despesa.',
+    'landing.enBreve.barrio.puente':
+      "El mapa d'esta pàgina diu {pct} %, i no {n}, perquè compta una altra cosa: els contractes que nomenen un lloc concret, com un carrer o un col·legi, estiguen o no en un barri.",
+    'landing.enBreve.barrio.menosDeUno': "menys d'1",
     'landing.enBreve.pleno.pregunta': "Què es va decidir en l'últim ple?",
     'landing.enBreve.pleno.puntos': "Va tractar {n} punts de l'ordre del dia.",
     'landing.enBreve.pleno.puntos.uno': "Va tractar un punt de l'ordre del dia.",
