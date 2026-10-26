@@ -2,7 +2,12 @@ import { describe, expect, it } from 'vitest'
 import { readFileSync } from 'node:fs'
 import { resolve } from 'node:path'
 
-import { enBrevePortada, quienManda, ultimoPleno } from '../src/scraper/en-breve-portada'
+import {
+  enBrevePortada,
+  hoyEnRibarroja,
+  quienManda,
+  ultimoPleno,
+} from '../src/scraper/en-breve-portada'
 import { enBrevePresupuesto } from '../src/scraper/en-breve-presupuesto'
 import { partyOfAlcaldia } from '../src/scraper/corporation-seats'
 import { summarizeSessions } from '../src/lib/pleno-summary.js'
@@ -32,7 +37,7 @@ const FILAS = summarizeSessions({
   agendas: AGENDAS.plenos,
   votesByPleno: VOTOS.stats?.byPleno ?? {},
 })
-const HOY = new Date().toISOString().slice(0, 10)
+const HOY = hoyEnRibarroja()
 const R = enBrevePortada({
   officials: OFFICIALS,
   presupuesto: PRESUPUESTO,
@@ -95,8 +100,8 @@ describe('¿Cuánto dinero? — la misma cifra que /presupuesto', () => {
 })
 
 describe('¿Qué se decidió? — la última sesión celebrada, como en /plenos', () => {
-  it('es la de fecha más alta que no pasa de hoy, con sus mismas cifras', () => {
-    const pasadas = FILAS.filter((f) => f.date <= HOY)
+  it('es la de fecha más alta anterior a hoy, con sus mismas cifras', () => {
+    const pasadas = FILAS.filter((f) => f.date < HOY)
     const ultima = pasadas.reduce((a, b) => (b.date > a.date ? b : a))
     expect(R.pleno).toEqual({
       id: ultima.id,
@@ -112,8 +117,25 @@ describe('¿Qué se decidió? — la última sesión celebrada, como en /plenos'
       { id: 'b', date: '2026-11-02', puntos: null, votos: null },
     ]
     expect(ultimoPleno(filas, '2026-10-26')!.id).toBe('a')
-    expect(ultimoPleno(filas, '2026-11-02')!.id).toBe('b')
+    expect(ultimoPleno(filas, '2026-11-03')!.id).toBe('b')
     expect(ultimoPleno([], '2026-10-26')).toBeNull()
+  })
+
+  it('la de hoy tampoco, todavía: puede no haberse celebrado', () => {
+    const filas = [
+      { id: 'a', date: '2026-10-05', puntos: 8, votos: null },
+      { id: 'b', date: '2026-11-02', puntos: 9, votos: null },
+    ]
+    expect(ultimoPleno(filas, '2026-11-02')!.id).toBe('a')
+  })
+
+  it('«hoy» es el día de Riba-roja, no el de UTC, en invierno y en verano', () => {
+    // 23:30 UTC: ya es mañana en Madrid, a +1 en octubre (tras el cambio del
+    // 25-10-2026) y a +2 en julio.
+    expect(hoyEnRibarroja(new Date('2026-10-26T23:30:00Z'))).toBe('2026-10-27')
+    expect(hoyEnRibarroja(new Date('2026-07-01T22:30:00Z'))).toBe('2026-07-02')
+    // Y a las 22:30 UTC de octubre todavía es el mismo día.
+    expect(hoyEnRibarroja(new Date('2026-10-26T22:30:00Z'))).toBe('2026-10-26')
   })
 
   it('sin votaciones transcritas, null y no cero', () => {

@@ -15,7 +15,7 @@ import { usePlenos } from '../../../hooks/usePlenos'
 import { usePlenoAgendas } from '../../../hooks/usePlenoAgendas'
 import { usePlenoVotes } from '../../../hooks/usePlenoVotes'
 import { enBrevePresupuesto } from '../../../scraper/en-breve-presupuesto'
-import { enBrevePortada } from '../../../scraper/en-breve-portada'
+import { enBrevePortada, hoyEnRibarroja } from '../../../scraper/en-breve-portada'
 import { summarizeSessions } from '../../../lib/pleno-summary.js'
 import { fmtDateLong, rellena } from '../../../lib/formatters'
 import { useLocale } from '../../../i18n'
@@ -84,7 +84,7 @@ export function EnBrevePortada() {
             votesByPleno: votos.stats?.byPleno ?? {},
           })
         : [],
-    hoy: new Date().toISOString().slice(0, 10),
+    hoy: hoyEnRibarroja(),
   })
   const ver = t('landing.enBreve.ver')
   const tarjetas = []

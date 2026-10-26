@@ -95,12 +95,33 @@ export interface FilaSesion {
   votos: number | null
 }
 
+const CALENDARIO_DE_RIBARROJA = new Intl.DateTimeFormat('en-US', {
+  timeZone: 'Europe/Madrid',
+  year: 'numeric',
+  month: '2-digit',
+  day: '2-digit',
+})
+
 /**
- * La sesión celebrada más reciente: la de fecha más alta que no pase de `hoy`.
- * Una sesión convocada para mañana no es «el último pleno».
+ * El día civil de Riba-roja en un instante, «AAAA-MM-DD». Las fechas de las
+ * sesiones son días de allí; el de UTC (`toISOString`) se queda en el de ayer
+ * entre la medianoche y la una o las dos, según la estación.
+ */
+export function hoyEnRibarroja(ahora: Date = new Date()): string {
+  const p = Object.fromEntries(
+    CALENDARIO_DE_RIBARROJA.formatToParts(ahora).map((x) => [x.type, x.value]),
+  )
+  return `${p.year}-${p.month}-${p.day}`
+}
+
+/**
+ * La sesión celebrada más reciente: la de fecha más alta ANTERIOR a `hoy`. Una
+ * convocada para mañana no es «el último pleno», y la de hoy tampoco todavía:
+ * las sesiones salen en el listado antes de celebrarse, y la tarjeta dice
+ * «Trató N puntos», en pasado, a las diez de la mañana de un pleno de tarde.
  */
 export function ultimoPleno(filas: readonly FilaSesion[], hoy: string): PlenoEnBreve | null {
-  const pasadas = filas.filter((f) => f.date && f.date.slice(0, 10) <= hoy.slice(0, 10))
+  const pasadas = filas.filter((f) => f.date && f.date.slice(0, 10) < hoy.slice(0, 10))
   if (!pasadas.length) return null
   const f = pasadas.reduce((a, b) => (b.date! > a.date! ? b : a))
   return { id: f.id, fecha: f.date!.slice(0, 10), puntos: f.puntos, votos: f.votos }
