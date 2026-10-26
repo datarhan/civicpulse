@@ -14,6 +14,7 @@ import { oneSeatBlocsOf } from '../scraper/corporation-seats'
 import { blocLabel } from '../lib/party-label.js'
 import { etiquetaVerificador, evidenciaSegunFuentes } from '../lib/claim-provenance.js'
 import { snippetDeEvidencia } from '../lib/crosschecked-status.js'
+import { estadoLlano } from '../lib/estado-llano.js'
 import { PuenteDeImporte } from '../components/PuenteDeImporte'
 
 const PAGE_SIZE = 50
@@ -392,10 +393,27 @@ export default function Declaraciones() {
         {/* Sin verde: el agregado incluye las contradichas, y en verde se leía como respaldo.
             Las cifras de cada veredicto, al lado, conservan su tono. */}
         <MiniStat label={t('declaraciones.stat.conEvidencia')} value={stats.withEvidence} />
-        <MiniStat label="verificado" value={stats.byVerdict.verificado} tone="ok" />
-        <MiniStat label="parcial" value={stats.byVerdict.parcial} tone="warn" />
-        <MiniStat label="contradicho" value={stats.byVerdict.contradicho} tone="crit" />
-        <MiniStat label="sin-datos" value={stats.byVerdict['sin-datos']} />
+        {/* Los rótulos del veredicto, no sus códigos: «sin-datos» salía «SIN-DATOS»
+            en mayúsculas, y en valencià los cuatro seguían en castellano. */}
+        <MiniStat
+          label={estadoLlano(t, 'veredicto', 'verificado')}
+          value={stats.byVerdict.verificado}
+          tone="ok"
+        />
+        <MiniStat
+          label={estadoLlano(t, 'veredicto', 'parcial')}
+          value={stats.byVerdict.parcial}
+          tone="warn"
+        />
+        <MiniStat
+          label={estadoLlano(t, 'veredicto', 'contradicho')}
+          value={stats.byVerdict.contradicho}
+          tone="crit"
+        />
+        <MiniStat
+          label={estadoLlano(t, 'veredicto', 'sin-datos')}
+          value={stats.byVerdict['sin-datos']}
+        />
       </div>
 
       {/*
