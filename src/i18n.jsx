@@ -1141,8 +1141,11 @@ export const CATALOGUE = {
     'plenoDetail.transcriptMissing': 'Transcripción no disponible para esta sesión.',
     'plenoDetail.video': '▸ Ver vídeo',
     'plenoDetail.empty.agenda': 'Sin orden del día publicado para esta sesión.',
+    // Sin «del acta»: el resultado sale de la sesión en regmeet y el desglose de la
+    // transcripción del audio, y de las sesiones más recientes aún no hay acta
+    // publicada. Desde el 26-10-2026 la frase sale también en el resumen.
     'plenoDetail.empty.votes':
-      'Todavía no hemos transcrito las votaciones del acta de esta sesión. No significa que no las hubiera.',
+      'Todavía no hemos transcrito las votaciones de esta sesión. No significa que no las hubiera.',
     'plenoDetail.votesPending': 'sin transcribir',
     // La nota de la ficha de votaciones cuando hay alguna: el número a secas se leía
     // como las votaciones de la sesión, y son las que hemos transcrito.
@@ -1156,10 +1159,6 @@ export const CATALOGUE = {
     'plenoDetail.agendaPendingLong': 'Orden del día aún no recogido para esta sesión',
     'plenoDetail.empty.agendaPending':
       'Todavía no hemos podido recoger el orden del día de esta sesión desde la sede de plenos. La sesión se celebró; el dato falta por nuestra parte, no por la del Ayuntamiento.',
-    'plenoDetail.empty.summary':
-      'Sesión registrada. Aún no hay votaciones transcritas, declaraciones contrastables ni hallazgos para esta sesión.',
-    'plenoDetail.empty.summaryNoAgenda':
-      'Sesión registrada. Todavía no hemos recogido su orden del día, y aún no hay votaciones transcritas, declaraciones contrastables ni hallazgos.',
     // La línea del resumen, pieza a pieza, en singular y en plural. «Transcritas»,
     // como el índice de /plenos: son las votaciones que hemos transcrito, no las
     // que hubo, y detrás va el aviso del índice (`plenos.indice.lede.aviso`).
@@ -3542,7 +3541,7 @@ export const CATALOGUE = {
     'plenoDetail.video': '▸ Veure vídeo',
     'plenoDetail.empty.agenda': 'Sense ordre del dia publicat per a aquesta sessió.',
     'plenoDetail.empty.votes':
-      "Encara no hem transcrit les votacions de l'acta d'aquesta sessió. No vol dir que no n'hi haguera.",
+      "Encara no hem transcrit les votacions d'aquesta sessió. No vol dir que no n'hi haguera.",
     'plenoDetail.votesPending': 'sense transcriure',
     'plenoDetail.votesTranscribed.uno': 'transcrita',
     'plenoDetail.votesTranscribed.varios': 'transcrites',
@@ -3552,10 +3551,6 @@ export const CATALOGUE = {
     'plenoDetail.agendaPendingLong': 'Ordre del dia encara no recollit per a aquesta sessió',
     'plenoDetail.empty.agendaPending':
       "Encara no hem pogut recollir l'ordre del dia d'aquesta sessió des de la seu de plens. La sessió es va celebrar; la dada falta per la nostra banda, no per la de l'Ajuntament.",
-    'plenoDetail.empty.summary':
-      'Sessió registrada. Encara no hi ha votacions transcrites, declaracions contrastables ni troballes per a aquesta sessió.',
-    'plenoDetail.empty.summaryNoAgenda':
-      'Sessió registrada. Encara no hem recollit el seu ordre del dia, i encara no hi ha votacions transcrites, declaracions contrastables ni troballes.',
     'plenoDetail.line.agenda.uno': '{n} punt en l’ordre del dia',
     'plenoDetail.line.agenda.varios': '{n} punts en l’ordre del dia',
     'plenoDetail.line.votes.uno': '{n} votació transcrita ({aprobadas})',
