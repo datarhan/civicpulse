@@ -24,9 +24,10 @@ import { INSTALA_CON_APT } from './setup/workflows.js'
  * Vigila las instalaciones que PASAN POR APT. Desde el 2026-10-26 (#435)
  * `unidad` baja sólo el navegador, sin apt: su única prueba con navegador no
  * pinta texto y las bibliotecas de Chromium ya vienen en el runner, mientras
- * que `install-deps` lo tumbó tres veces por bajar fuentes. Esa instalación no
- * necesita tope de apt, pero su trabajo sigue entrando en el presupuesto de
- * abajo, que mira todos.
+ * que `install-deps` lo tumbó tres veces bajando, de un espejo lento, paquetes
+ * que no necesita (sobre todo fuentes). Esa instalación no necesita tope de
+ * apt, pero su trabajo sigue entrando en el presupuesto de abajo, que mira
+ * todos.
  *
  * El tope por defecto se LEE del guion, no se copia aquí: una prueba que
  * repite un valor de producción sigue verde cuando producción cambia (regla 1
