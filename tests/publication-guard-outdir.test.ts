@@ -27,25 +27,39 @@ import {
 } from 'node:fs'
 import { tmpdir } from 'node:os'
 import { join, resolve } from 'node:path'
-import { copiaServidaDeHallazgos, vitePublicationGuard } from '../publication-denylist.js'
+import {
+  PUBLICATION_DENYLIST,
+  copiaServidaDeHallazgos,
+  vitePublicationGuard,
+} from '../publication-denylist.js'
 import { citaRetenida } from '../src/lib/cita-retenida.js'
 
 const REPO = resolve(__dirname, '..')
 const PUBLIC_DATA = join(REPO, 'public', 'data')
 const HALLAZGOS_EN_DIST = join(REPO, 'dist', 'data', 'pleno-findings.json')
 
-/** Huella del `dist/` del repositorio que la guarda podría tocar; `null` si no existe. */
+// Sin `dist/` construido, «no lo tocó» compara una ausencia con otra y sale
+// verde también con el código anterior, que es como corre el job `unidad` de
+// la CI (`npm test` sin compilar). Se DECLARA saltada, como en
+// `publication-denylist.test.ts`.
+const SIN_DIST = !existsSync(HALLAZGOS_EN_DIST)
+if (SIN_DIST) {
+  console.warn(
+    '[publication-guard-outdir] dist/data/pleno-findings.json ausente — no se ha comprobado ' +
+      'que la guarda deje dist/ en paz. Se genera con `npm run build`.',
+  )
+}
+
+/** Huella del `dist/` del repositorio, el que la guarda tocaba antes. */
 const huellaDeDist = () =>
-  existsSync(HALLAZGOS_EN_DIST)
-    ? createHash('sha256').update(readFileSync(HALLAZGOS_EN_DIST)).digest('hex')
-    : null
+  createHash('sha256').update(readFileSync(HALLAZGOS_EN_DIST)).digest('hex')
 
 const leer = (ruta: string) => JSON.parse(readFileSync(ruta, 'utf8'))
 
 describe('vitePublicationGuard con un outDir que no es dist/', () => {
   let raiz: string
   let datos: string
-  let distAntes: string | null
+  let distAntes: string | undefined
 
   beforeAll(async () => {
     raiz = mkdtempSync(join(tmpdir(), 'cp-outdir-'))
@@ -56,11 +70,13 @@ describe('vitePublicationGuard con un outDir que no es dist/', () => {
     for (const f of ['pleno-findings.json', 'finding-quote-provenance.json', 'officials.json']) {
       copyFileSync(join(PUBLIC_DATA, f), join(datos, f))
     }
-    // Uno de la lista escrita y uno derivado: un borrador que ninguna página pide.
-    writeFileSync(join(datos, 'pleno-claims-verified.json'), '[]\n')
+    // Los de la lista escrita y uno derivado: un borrador que ninguna página pide.
+    for (const rel of PUBLICATION_DENYLIST) {
+      writeFileSync(join(raiz, 'salida', rel.replace(/^public\//, '')), '[]\n')
+    }
     writeFileSync(join(datos, 'borrador-sin-pedir.json'), '[{"requiresHumanApproval": true}]\n')
 
-    distAntes = huellaDeDist()
+    if (!SIN_DIST) distAntes = huellaDeDist()
     const guarda = vitePublicationGuard()
     guarda.configResolved({ root: raiz, build: { outDir: 'salida' } })
     await guarda.closeBundle.handler()
@@ -92,17 +108,19 @@ describe('vitePublicationGuard con un outDir que no es dist/', () => {
   })
 
   it('aplica la lista en ESA salida, la escrita y la derivada', () => {
-    expect(existsSync(join(datos, 'pleno-claims-verified.json'))).toBe(false)
+    const quedan = PUBLICATION_DENYLIST.filter((rel) =>
+      existsSync(join(raiz, 'salida', rel.replace(/^public\//, ''))),
+    )
+    expect(quedan).toEqual([])
     expect(existsSync(join(datos, 'borrador-sin-pedir.json'))).toBe(false)
     // Y no quita de más: lo limpio se queda.
     expect(existsSync(join(datos, 'officials.json'))).toBe(true)
   })
 
-  it('no toca el dist/ del repositorio', () => {
-    expect(
-      huellaDeDist(),
-      'dist/data/pleno-findings.json cambió (o apareció) al construir en otra salida',
-    ).toBe(distAntes)
+  it.skipIf(SIN_DIST)('no toca el dist/ del repositorio', () => {
+    expect(huellaDeDist(), 'dist/data/pleno-findings.json cambió al construir en otra salida').toBe(
+      distAntes,
+    )
   })
 })
 
