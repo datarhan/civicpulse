@@ -3,6 +3,7 @@ import { readFileSync } from 'node:fs'
 import { spawnSync } from 'node:child_process'
 import { join } from 'node:path'
 import { load } from 'js-yaml'
+import { INSTALA_CON_APT } from './setup/workflows.js'
 
 /**
  * ¿Puede un espejo de apt lento comerse el trabajo entero de CI?
@@ -20,6 +21,14 @@ import { load } from 'js-yaml'
  * saltara el guion volvería a poder comerse el trabajo sin que nada lo
  * señalara.
  *
+ * Vigila las instalaciones que PASAN POR APT. Desde el 2026-10-26 (#435)
+ * `unidad` baja sólo el navegador, sin apt: su única prueba con navegador no
+ * pinta texto y las bibliotecas de Chromium ya vienen en el runner, mientras
+ * que `install-deps` lo tumbó tres veces bajando, de un espejo lento, paquetes
+ * que no necesita (sobre todo fuentes). Esa instalación no necesita tope de
+ * apt, pero su trabajo sigue entrando en el presupuesto de abajo, que mira
+ * todos.
+ *
  * El tope por defecto se LEE del guion, no se copia aquí: una prueba que
  * repite un valor de producción sigue verde cuando producción cambia (regla 1
  * de DATA_INTEGRITY).
@@ -27,7 +36,7 @@ import { load } from 'js-yaml'
 const RAIZ = join(__dirname, '..')
 const GUION = join(RAIZ, 'scripts', 'ci-apt-con-tope.sh')
 const E2E = join(RAIZ, '.github', 'workflows', 'e2e.yml')
-const INSTALA = /npx\s+playwright\s+install/
+const INSTALA = INSTALA_CON_APT
 const POR_EL_TOPE = /\bbash\s+scripts\/ci-apt-con-tope\.sh\s+npx\s+playwright\s+install/
 // Checkout, setup-node, `npm ci` y la caché: lo que corre sin tope propio.
 const RESERVA_MIN = 2
@@ -46,12 +55,11 @@ const instalaciones = trabajos.flatMap(({ id, pasos }) =>
   pasos.filter(esInstalacion).map((paso) => ({ id, nombre: paso.name, paso })),
 )
 
-describe('e2e.yml · cada instalación de Chromium pasa por el tope de apt', () => {
+describe('e2e.yml · cada instalación de Chromium con apt pasa por el tope', () => {
   // Regla 2 de DATA_INTEGRITY: cero instalaciones haría pasar todo lo de abajo
-  // sin haber mirado nada.
-  it('encuentra las instalaciones que dice vigilar, en más de un trabajo', () => {
-    expect(instalaciones.length).toBeGreaterThanOrEqual(4)
-    expect(new Set(instalaciones.map((i) => i.id)).size).toBeGreaterThanOrEqual(2)
+  // sin haber mirado nada. Dos: la de caché fallada y la de caché acertada.
+  it('encuentra las instalaciones con apt que dice vigilar', () => {
+    expect(instalaciones.length).toBeGreaterThanOrEqual(2)
   })
 
   it('lee el tope por defecto del guion', () => {
@@ -75,21 +83,24 @@ describe('e2e.yml · cada instalación de Chromium pasa por el tope de apt', () 
   })
 
   // Lo que el 26-10 faltaba: aun con apt en su tope, el resto de los pasos con
-  // tope cabe en el trabajo. Las dos instalaciones de un trabajo se excluyen
-  // por su `if:` (caché fallada o acertada), así que cuenta la mayor.
-  it.each(trabajos.filter((t) => t.pasos.some(esInstalacion)))(
-    '$id · apt en su tope no se come el trabajo',
-    ({ trabajo, pasos }) => {
-      const minutos = (p) => p['timeout-minutes'] ?? 0
-      const apt = Math.max(...pasos.filter(esInstalacion).map(minutos))
-      const resto = pasos.filter((p) => !esInstalacion(p)).reduce((t, p) => t + minutos(p), 0)
-      expect(typeof trabajo['timeout-minutes']).toBe('number')
-      expect(
-        apt + resto + RESERVA_MIN,
-        `apt (${apt}) + pasos con tope (${resto}) + ${RESERVA_MIN} de reserva no caben en ${trabajo['timeout-minutes']}`,
-      ).toBeLessThanOrEqual(trabajo['timeout-minutes'])
-    },
-  )
+  // tope cabe en el trabajo. Las dos instalaciones con apt de un trabajo se
+  // excluyen por su `if:` (caché fallada o acertada), así que cuenta la mayor.
+  // Mira TODOS los trabajos, también los que no pasan por apt: el tope de
+  // `npm test` vive en `unidad`.
+  it('mira el presupuesto de cada trabajo', () => {
+    expect(trabajos.length).toBeGreaterThan(0)
+  })
+
+  it.each(trabajos)('$id · los pasos con tope caben en el trabajo', ({ trabajo, pasos }) => {
+    const minutos = (p) => p['timeout-minutes'] ?? 0
+    const apt = Math.max(0, ...pasos.filter(esInstalacion).map(minutos))
+    const resto = pasos.filter((p) => !esInstalacion(p)).reduce((t, p) => t + minutos(p), 0)
+    expect(typeof trabajo['timeout-minutes']).toBe('number')
+    expect(
+      apt + resto + RESERVA_MIN,
+      `apt (${apt}) + pasos con tope (${resto}) + ${RESERVA_MIN} de reserva no caben en ${trabajo['timeout-minutes']}`,
+    ).toBeLessThanOrEqual(trabajo['timeout-minutes'])
+  })
 })
 
 const correr = (args, { env = {}, bash = 'bash' } = {}) =>

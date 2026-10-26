@@ -84,3 +84,17 @@ export function enElBot(doc, trabajo, paso) {
     /--prefix[= ]\.?\/?bot\b/.test(paso.run)
   )
 }
+
+/*
+ * ¿Pasa por apt esta instalación de Chromium?
+ *
+ * `npx playwright install-deps` y `npx playwright install --with-deps` hacen
+ * `apt-get update` e instalan paquetes del sistema: a ésas les hacen falta el
+ * saneador de fuentes rotas (`workflows-apt-fuentes-rotas`) y el tope de apt
+ * (`ci-apt-con-tope`). `npx playwright install chromium` a secas baja el
+ * navegador del CDN de Playwright y no toca apt, así que ninguna de las dos
+ * cosas le aplica: el trabajo `unidad` de e2e.yml instala así desde el
+ * 2026-10-26 (#435). Vive aquí porque lo usan las dos pruebas, y dos copias
+ * acabarían contestando cosas distintas.
+ */
+export const INSTALA_CON_APT = /npx\s+playwright\s+install(?:-deps\b|\b.*\s--with-deps\b)/
