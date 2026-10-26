@@ -245,7 +245,7 @@ export function EnBrevePortada() {
     <EnBreve
       titulo={t('landing.enBreve.titulo')}
       intro={t('landing.enBreve.intro')}
-      saltarA="#contenido"
+      saltarA="#portada-tras-resumen"
       saltarTexto={t('landing.enBreve.saltar')}
       pie={pie}
     >

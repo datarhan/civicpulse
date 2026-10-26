@@ -74,8 +74,14 @@ export function QuejaCTA() {
   const t = useT()
   // TODO operator: paste a Loom share URL here to enable the embed.
   return (
+    // `id`: el «Saltar el resumen ↓» de «Tu ayuntamiento en 30 segundos» viene
+    // aquí, al primer bloque de después. Apuntaba a `#contenido`, el <main> que
+    // contiene el propio resumen: en escritorio no se movía nada y a 375 px,
+    // con el mapa encima, subía al principio de la página, contra su flecha.
     <div
+      id="portada-tras-resumen"
       style={{
+        scrollMarginTop: 12,
         padding: '14px 16px',
         background: '#EEF4FF',
         border: '1px solid #C7D7F8',

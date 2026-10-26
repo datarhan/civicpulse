@@ -2411,7 +2411,7 @@ export const CATALOGUE = {
     'landing.enBreve.titulo': 'Tu ayuntamiento en 30 segundos',
     'landing.enBreve.intro':
       'Lo esencial, en cuatro preguntas. Cada respuesta enlaza a la página que la demuestra.',
-    'landing.enBreve.saltar': 'Ver el mapa y todos los datos ↓',
+    'landing.enBreve.saltar': 'Saltar el resumen ↓',
     'landing.enBreve.ver': 'Ver el detalle →',
     'landing.enBreve.manda.pregunta': '¿Quién manda en el Ayuntamiento?',
     'landing.enBreve.manda.cifra': '{escanos} de {total}',
@@ -4637,7 +4637,7 @@ export const CATALOGUE = {
     'landing.enBreve.titulo': 'El teu ajuntament en 30 segons',
     'landing.enBreve.intro':
       "L'essencial, en quatre preguntes. Cada resposta enllaça amb la pàgina que la demostra.",
-    'landing.enBreve.saltar': 'Vore el mapa i totes les dades ↓',
+    'landing.enBreve.saltar': 'Ometre el resum ↓',
     'landing.enBreve.ver': 'Vore el detall →',
     'landing.enBreve.manda.pregunta': "Qui mana a l'Ajuntament?",
     'landing.enBreve.manda.cifra': '{escanos} dels {total}',
