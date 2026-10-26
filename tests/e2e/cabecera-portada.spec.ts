@@ -1,5 +1,6 @@
 import { test, expect } from '@playwright/test'
 import { CATALOGUE } from '../../src/i18n'
+import { rellena } from '../../src/lib/formatters'
 import { STACK_BREAKPOINT } from '../../src/variants/direction-d/tokens'
 
 /**
@@ -61,6 +62,49 @@ async function sirveElTiempo(page: import('@playwright/test').Page) {
       body: JSON.stringify(route.request().url().includes('air-quality') ? AIRE : CLIMA),
     }),
   )
+}
+
+/**
+ * Los dos extremos del texto del chip, compuestos con las plantillas del
+ * catálogo y no escritos aquí: el más corto es «Hoy» a secas, y el más largo, el
+ * de la noche —tiempo, y el primer tren de mañana— con tres cifras de espera y
+ * una temperatura bajo cero, en el idioma en que salga más largo.
+ */
+const TEXTO_MAS_CORTO = CATALOGUE.es['vivo.hoy.chip.solo']
+const TEXTO_MAS_LARGO = (['es', 'ca'] as const)
+  .map((idioma) =>
+    rellena(CATALOGUE[idioma]['vivo.hoy.chip'], {
+      t: -10,
+      m: rellena(CATALOGUE[idioma]['vivo.hoy.manana'], { m: 999 }),
+    }),
+  )
+  .sort((a, b) => b.length - a.length)[0]
+
+/**
+ * El alto de la cabecera y dónde empieza el mapa, que es lo que el lector ve
+ * saltar; y el ancho del CONTENIDO de la tira, para comprobar que lo que se
+ * plantó o llegó la cambió de verdad. Con `texto`, lo planta antes de medir, en
+ * la misma tarea, para que un repintado de React no se cuele entre las dos cosas.
+ */
+async function mideCabecera(page: import('@playwright/test').Page, texto?: string) {
+  return page.evaluate((plantado) => {
+    const chip = document.querySelector('.cp-vivo-chip')
+    if (plantado != null) {
+      const rotulo = chip?.querySelector('.mono')
+      if (!rotulo) throw new Error('el chip no tiene rótulo donde plantar el texto')
+      rotulo.textContent = plantado
+    }
+    const barra = document.querySelector('.d-topbar')?.getBoundingClientRect()
+    const mapa = document.querySelector('.d-mappane')?.getBoundingClientRect()
+    const tira = document.querySelector('[data-vivo-tira]')
+    if (!barra || !mapa || !tira) throw new Error('falta la cabecera, el mapa o la tira')
+    return {
+      alto: Math.round(barra.height),
+      mapa: Math.round(mapa.top),
+      tira: tira.scrollWidth,
+      chip: chip instanceof HTMLElement ? chip.innerText.replace(/\s+/g, ' ').trim() : '',
+    }
+  }, texto ?? null)
 }
 
 /** Qué está pintado en el pie del panel: el panel mismo, o quien lo recorta. */
@@ -234,8 +278,8 @@ test.describe('Cabecera de la portada', () => {
   test('a 375 el buscador se queda en icono y conserva su nombre', async ({ page }) => {
     // La clase `cp-topbar-search` trae más que la regla de impresión que decía su
     // comentario: por debajo de 720px `index.css` esconde la pista y el «⌘K» con
-    // `!important`, así que el botón se queda SIN texto visible. Medido: 57×28 px
-    // pegado a la derecha, sin desbordar el documento, que está bien.
+    // `!important`, así que el botón se queda SIN texto visible. Medido: 36×28 px
+    // en la tercera fila, junto al reloj, sin desbordar el documento, que está bien.
     //
     // Lo que no puede pasar es que se quede además sin nombre, y ese es el fallo
     // que ningún ancho de escritorio puede ver: aquí el nombre sólo puede venir
@@ -269,4 +313,76 @@ test.describe('Cabecera de la portada', () => {
     await buscar.click()
     await expect(page.getByPlaceholder('Saltar a…')).toBeVisible({ timeout: 5000 })
   })
+
+  // Lo que llega después del primer pintado no puede mover la cabecera. A 375,
+  // al contestar Open-Meteo el chip pasaba de 164 a 245 px, el reloj caía a una
+  // tercera fila y la cabecera de 70 a 116: el mapa y todo lo de debajo bajaban
+  // 46 px un instante después de pintar (y estaciones-mobile.spec.ts fallaba a
+  // ratos por eso, PR #438). Y el texto del metro cambia con la hora, así que el
+  // alto cambiaba también sin red de por medio.
+  //
+  // Open-Meteo se RETIENE, no se corta: así la medida de antes se toma con la
+  // petición en vuelo, que es lo que ve el lector, y la de después con el tiempo
+  // pintado. 768 es el estrecho con dos filas, donde la marca y el chip
+  // compartían la primera mientras el chip cupiera.
+  for (const [ancho, alto] of [
+    [320, 700],
+    [375, 812],
+    [768, 1024],
+  ] as const) {
+    test(`a ${ancho} px la cabecera mide lo mismo antes y después del tiempo, y con cualquier texto del chip`, async ({
+      page,
+    }) => {
+      await page.setViewportSize({ width: ancho, height: alto })
+      let sueltaElTiempo = () => {}
+      const llegaElTiempo = new Promise<void>((resolver) => (sueltaElTiempo = resolver))
+      await page.route(/open-meteo\.com/, async (route) => {
+        await llegaElTiempo
+        await route.fulfill({
+          status: 200,
+          contentType: 'application/json',
+          body: JSON.stringify(route.request().url().includes('air-quality') ? AIRE : CLIMA),
+        })
+      })
+      await page.goto('/', { waitUntil: 'domcontentloaded' })
+      const chip = page.getByRole('button', { name: CHIP_HOY })
+      await expect(chip).toBeVisible({ timeout: 8000 })
+
+      // ABLACIÓN: que la primera medida sea de verdad la de ANTES del tiempo. Sin
+      // esto, un Open-Meteo que llegara antes de medir daría dos medidas iguales
+      // del mismo estado, y la prueba pasaría sin haber visto el cambio.
+      await expect(page.locator('[data-vivo-cargando]')).toHaveCount(1)
+      await expect(chip).not.toContainText('°')
+      const sinTiempo = await mideCabecera(page)
+
+      sueltaElTiempo()
+      await expect(chip).toContainText('°', { timeout: 8000 })
+      const conTiempo = await mideCabecera(page)
+      expect(conTiempo.tira, 'el tiempo llegó y la tira no se ensanchó').toBeGreaterThan(
+        sinTiempo.tira,
+      )
+      expect(
+        { alto: conTiempo.alto, mapa: conTiempo.mapa },
+        `a ${ancho} px la cabecera cambia al llegar el tiempo («${sinTiempo.chip}» → «${conTiempo.chip}»)`,
+      ).toEqual({ alto: sinTiempo.alto, mapa: sinTiempo.mapa })
+
+      // Los dos extremos del texto, plantados: el metro no espera a la hora de la
+      // prueba para decir «ahora» o «419 min (mañana)».
+      for (const [texto, sentido] of [
+        [TEXTO_MAS_CORTO, 'estrecha'],
+        [TEXTO_MAS_LARGO, 'ensancha'],
+      ] as const) {
+        const plantado = await mideCabecera(page, texto)
+        expect(plantado.chip, 'el texto no se plantó en el chip').toContain(texto)
+        // Y que el texto plantado mueva la tira de verdad: si no, la comparación
+        // de abajo no mediría nada.
+        if (sentido === 'ensancha') expect(plantado.tira).toBeGreaterThan(conTiempo.tira)
+        else expect(plantado.tira).toBeLessThan(sinTiempo.tira)
+        expect(
+          { alto: plantado.alto, mapa: plantado.mapa },
+          `a ${ancho} px la cabecera cambia con el texto «${texto}» en el chip`,
+        ).toEqual({ alto: sinTiempo.alto, mapa: sinTiempo.mapa })
+      }
+    })
+  }
 })
