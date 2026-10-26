@@ -758,7 +758,9 @@ export default function CosteEfectivo() {
           agosto… adjudicó», y el 6 de agosto es cuando la ficha PUBLICÓ la
           adjudicación: el acuerdo es del 27 de julio. Y decía «hasta 2043»,
           una fecha de fin que la fuente no da —dice «17 Año(s)»— para un
-          contrato que aún no se ha formalizado. */}
+          contrato que entonces no se había formalizado. El que se firmó el
+          2-10-2026 cuenta los 17 años desde el acta de inicio del servicio,
+          que no tiene fecha. */}
       <P>
         El {enCastellano(c.adjudicadaEl)} el Ayuntamiento acordó adjudicar a{' '}
         <strong>{c.adjudicataria}</strong> la concesión del {c.objeto.toLowerCase()}, por un valor
