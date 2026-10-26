@@ -13,10 +13,26 @@ on:
       - '**/*.md'
   workflow_dispatch:
 
+# Tres trabajos en paralelo y no uno en fila. Hasta el 2026-10-26 esto era un
+# solo trabajo, `playwright`, con tope de 20 min, que lo hacía todo seguido:
+# lo estático, la suite de unidad (377–493 s), la build y Playwright (500–555
+# s). Las ejecuciones sanas tardaban 16–19,5 min, así que el margen era de
+# segundos. Ese día un espejo de apt lento estiró la instalación de las
+# dependencias de Chromium de ~20 s a 1.044 s, a la suite de unidad le quedaron
+# 96 s y el trabajo se canceló a los 20 min con el código bien (ejecución
+# 40305149332, #431). Subir el tope sólo habría escondido el siguiente tropiezo.
+#
+# Separados, el más largo dura ~10 min bajo un tope de 20, y apt tiene el suyo
+# propio (`scripts/ci-apt-con-tope.sh`). Un fallo de infraestructura se relanza
+# con «Re-run failed jobs» sin repetir los otros dos.
+#
+# `playwright` conserva su nombre. `main` no tiene protección de rama ni reglas
+# que exijan un check por nombre (comprobado el 2026-10-26); si algún día las
+# tiene, los checks de este workflow son estos tres.
 jobs:
-  playwright:
+  estatico:
     runs-on: ubuntu-latest
-    timeout-minutes: 20
+    timeout-minutes: 10
     steps:
       - uses: actions/checkout@v5
 
@@ -64,6 +80,22 @@ jobs:
       - name: Typecheck (tsc --noEmit)
         run: npm run typecheck
 
+  unidad:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v5
+
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 22
+          cache: 'npm'
+
+      - name: Install npm dependencies
+        run: npm ci
+
+      # Chromium también aquí, y no sólo en `playwright`: una prueba de unidad
+      # levanta un navegador de verdad (ver el paso de la suite, abajo).
       - name: Cache Playwright browsers
         id: cache-pw
         uses: actions/cache@v4
@@ -71,25 +103,33 @@ jobs:
           path: ~/.cache/ms-playwright
           key: playwright-${{ runner.os }}-${{ hashFiles('package-lock.json') }}
 
+      # Tope a apt: 5 min dentro del guion, que si lo agota lo dice con su
+      # nombre —espejo lento, no el código; relanza el trabajo—, y 7 en el paso
+      # de respaldo, por si apt no muere con la señal. Lo sano son ~20 s; el
+      # 2026-10-26 fueron 1.044 y se comieron el trabajo entero. La cabecera de
+      # `scripts/ci-apt-con-tope.sh` lo cuenta, y
+      # `tests/ci-apt-con-tope.test.js` exige el tope en cada instalación.
       - name: Install Playwright Chromium
         if: steps.cache-pw.outputs.cache-hit != 'true'
+        timeout-minutes: 7
         run: |
           # apt sale en error EN BLOQUE por una sola fuente rota, y la del
           # runner que sobra tumbó CI cuatro veces el 2026-09-09. Va aquí
           # dentro y no en un paso hermano para que no pueda separarse de la
           # instalación que protege ni perder su `if:`.
           bash scripts/ci-apt-fuentes-rotas.sh
-          npx playwright install --with-deps chromium
+          bash scripts/ci-apt-con-tope.sh npx playwright install --with-deps chromium
 
       - name: Install Playwright system deps (cache hit)
         if: steps.cache-pw.outputs.cache-hit == 'true'
+        timeout-minutes: 7
         run: |
           # apt sale en error EN BLOQUE por una sola fuente rota, y la del
           # runner que sobra tumbó CI cuatro veces el 2026-09-09. Va aquí
           # dentro y no en un paso hermano para que no pueda separarse de la
           # instalación que protege ni perder su `if:`.
           bash scripts/ci-apt-fuentes-rotas.sh
-          npx playwright install-deps chromium
+          bash scripts/ci-apt-con-tope.sh npx playwright install-deps chromium
 
       # Las pruebas de UNIDAD, que hasta el 2026-09-14 no ejecutaba ningún PR.
       #
@@ -101,12 +141,57 @@ jobs:
       #
       # DESPUÉS de instalar Chromium, porque `reader-review-resiliencia` levanta
       # un navegador de verdad y sin él falla con «Executable doesn't exist», que
-      # no se parece a su causa. ANTES de la build, porque falla más barato que el
-      # e2e. `tests/workflows-unidad-en-pr.test.js` fija el paso, su directorio y
-      # su orden.
+      # no se parece a su causa. Desde el 2026-10-26 van en su propio trabajo, en
+      # paralelo con la build y Playwright y no por delante de ellos.
+      # `tests/workflows-unidad-en-pr.test.js` fija el paso, su directorio y su
+      # orden dentro del trabajo.
       - name: Unit tests (npm test)
         timeout-minutes: 10
         run: npm test
+
+  playwright:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v5
+
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 22
+          cache: 'npm'
+
+      - name: Install npm dependencies
+        run: npm ci
+
+      - name: Cache Playwright browsers
+        id: cache-pw
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/ms-playwright
+          key: playwright-${{ runner.os }}-${{ hashFiles('package-lock.json') }}
+
+      # El mismo tope a apt que en `unidad`, por el mismo motivo.
+      - name: Install Playwright Chromium
+        if: steps.cache-pw.outputs.cache-hit != 'true'
+        timeout-minutes: 7
+        run: |
+          # apt sale en error EN BLOQUE por una sola fuente rota, y la del
+          # runner que sobra tumbó CI cuatro veces el 2026-09-09. Va aquí
+          # dentro y no en un paso hermano para que no pueda separarse de la
+          # instalación que protege ni perder su `if:`.
+          bash scripts/ci-apt-fuentes-rotas.sh
+          bash scripts/ci-apt-con-tope.sh npx playwright install --with-deps chromium
+
+      - name: Install Playwright system deps (cache hit)
+        if: steps.cache-pw.outputs.cache-hit == 'true'
+        timeout-minutes: 7
+        run: |
+          # apt sale en error EN BLOQUE por una sola fuente rota, y la del
+          # runner que sobra tumbó CI cuatro veces el 2026-09-09. Va aquí
+          # dentro y no en un paso hermano para que no pueda separarse de la
+          # instalación que protege ni perder su `if:`.
+          bash scripts/ci-apt-fuentes-rotas.sh
+          bash scripts/ci-apt-con-tope.sh npx playwright install-deps chromium
 
       - name: Build production bundle
         run: npm run build
