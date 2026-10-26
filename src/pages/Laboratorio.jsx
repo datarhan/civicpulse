@@ -947,9 +947,8 @@ export default function Laboratorio() {
               tasas: escrita a mano, decía «la mayoría» encima de «0 de 64»
               (revisión lectora, 15-09-2026). */}
           De cada titular sobre Riba-roja se extraen sus afirmaciones y se intenta contrastarlas
-          contra los datos municipales públicos (presupuesto, contratos PLACSP, subvenciones BDNS,
-          padrón INE, paro SEPE, plenos). {fraseVeredictos(summary)} Indicadores de fiabilidad
-          inspirados en el{' '}
+          contra los datos municipales públicos (contratos PLACSP, subvenciones BDNS, padrón INE,
+          paro SEPE, plenos). {fraseVeredictos(summary)} Indicadores de fiabilidad inspirados en el{' '}
           <a
             href="https://thetrustproject.org/"
             target="_blank"
