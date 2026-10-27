@@ -2553,8 +2553,11 @@ export const CATALOGUE = {
     'landing.alcalde.puntos.title':
       'Puntos de orden del día gestionados por concejalías del Alcalde',
     'landing.alcalde.gobierno': 'Gobierno municipal',
-    // Las palabras de la tira de indicadores, y la cifra exacta en el title.
-    'landing.alcalde.tope': 'tope de gasto {anio}',
+    // «tope del presupuesto», como «Tu ayuntamiento en 30 segundos», y la cifra
+    // exacta en el title. «tope de gasto» ponía «gasto» pegado al crédito
+    // definitivo sin una palabra de previsión al lado, y la comprobación de
+    // magnitudes (src/scraper/magnitudes-fiscales.ts) lo señaló.
+    'landing.alcalde.tope': 'tope del presupuesto {anio}',
     'landing.alcalde.definitivo.title':
       '{valor} de crédito definitivo en {anio} —lo aprobado más las modificaciones de crédito—, de los que se han gastado {ejecutado} (obligaciones reconocidas). Estado de ejecución del Ayuntamiento.',
     'landing.alcalde.gastados': 'gastados',
@@ -4775,7 +4778,7 @@ export const CATALOGUE = {
     'landing.alcalde.puntos.title':
       'Punts de l’orde del dia gestionats per regidories de l’Alcalde',
     'landing.alcalde.gobierno': 'Govern municipal',
-    'landing.alcalde.tope': 'límit de despesa {anio}',
+    'landing.alcalde.tope': 'límit del pressupost {anio}',
     'landing.alcalde.definitivo.title':
       '{valor} de crèdit definitiu en {anio} —allò aprovat més les modificacions de crèdit—, dels quals s’han gastat {ejecutado} (obligacions reconegudes). Estat d’execució de l’Ajuntament.',
     'landing.alcalde.gastados': 'gastats',

@@ -300,8 +300,10 @@ export function AlcaldeBox() {
                   informativa de todas. La revisión lectora lo señaló tres
                   veces; las dos primeras se intentó arreglar con la etiqueta y
                   volvió, porque lo que estaba mal era la cifra elegida.
-                  Con las palabras de la tira: «tope de gasto» y «gastados»,
-                  con la fecha del listado del que sale lo gastado (#358).
+                  En palabras llanas: «tope del presupuesto», como el resumen
+                  de 30 segundos, y «gastados» con la fecha del listado del que
+                  sale lo gastado (#358). «tope de gasto» ponía «gasto» pegado
+                  al crédito definitivo, y magnitudes-fiscales lo señaló.
                 */}
                 <span style={{ color: PALETTE.ink50 }}>
                   {magnitud?.etapa === 'definitivo'

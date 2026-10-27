@@ -6,6 +6,7 @@ import { MemoryRouter } from 'react-router-dom'
 import { CATALOGUE, LocaleProvider } from '../../src/i18n'
 import { invalidateSnapshots } from '../../src/lib/snapshot-store'
 import { magnitudDelEjercicio } from '../../src/scraper/presupuesto-lectura'
+import { magnitudesDe, revisarMagnitudes } from '../../src/scraper/magnitudes-fiscales'
 import { ALLOWED_DEPARTMENT_SLUGS } from '../../src/scraper/departments'
 import { partyOfAlcaldia } from '../../src/scraper/corporation-seats'
 import { eur0, eurM } from '../../src/components/Presupuesto/FigurasEnBreve'
@@ -82,19 +83,35 @@ describe('AlcaldeBox · gobierno municipal en euros redondeados', () => {
     expect(stats.awardedTotalEuros).toBeGreaterThan(0)
   })
 
-  it('el presupuesto, redondeado y con las palabras de la tira; exacto en el title', async () => {
+  it('el presupuesto, redondeado y en palabras llanas; exacto en el title', async () => {
     const { container } = pinta(<AlcaldeBox />)
     const fecha = REAL['/data/budget-execution.json'].latest.fechaListado
-    await waitFor(() => expect(container.textContent).toContain(`${eurM(m.valor)} tope de gasto`))
-    expect(container.textContent).toContain(`${eurM(m.valor)} tope de gasto ${m.year}`)
+    await waitFor(() =>
+      expect(container.textContent).toContain(`${eurM(m.valor)} tope del presupuesto`),
+    )
+    expect(container.textContent).toContain(`${eurM(m.valor)} tope del presupuesto ${m.year}`)
     expect(container.textContent).toContain(`${eurM(m.ejecutado)} gastados a ${fecha}`)
     // La cifra a la unidad ya no se lee, pero sigue a un toque: en el title.
     expect(container.textContent).not.toContain(eur0(m.valor))
     const enlace = [...container.querySelectorAll('a[title]')].find((a) =>
-      a.textContent.includes('tope de gasto'),
+      a.textContent.includes('tope del presupuesto'),
     )
     expect(enlace.getAttribute('title')).toContain(eur0(m.valor))
     expect(enlace.getAttribute('title')).toContain(eur0(m.ejecutado))
+  })
+
+  // «67,1 M€ tope de gasto 2025» ponía «gasto» pegado al crédito definitivo, y
+  // la revisión lectora lo señaló con esta misma comprobación, sin modelo.
+  it('ninguna cifra que no es gasto lleva al lado una palabra de gasto', async () => {
+    const { container } = pinta(<AlcaldeBox />)
+    await waitFor(() => expect(container.textContent).toContain('tope del presupuesto'))
+    const M = magnitudesDe(REAL['/data/budget.json'], REAL['/data/budget-execution.json'])
+    expect(M.length, 'mide algo: hay magnitudes con que comparar').toBeGreaterThan(0)
+    const leido = [
+      container.textContent,
+      ...[...container.querySelectorAll('[title]')].map((e) => e.getAttribute('title')),
+    ]
+    for (const texto of leido) expect(revisarMagnitudes(texto, M), texto).toEqual([])
   })
 
   it('los contratos, redondeados y «sumados»; la suma exacta en el title', async () => {
