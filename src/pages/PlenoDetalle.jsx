@@ -346,6 +346,19 @@ function DeclMixBar({ items }) {
   )
 }
 
+/**
+ * «Pleno del 11 de mayo de 2026» / «Ple de l’11 de maig del 2026»: en valenciano,
+ * el 1 y el 11 se leen con vocal y piden «de l’». prerender-meta escribe la forma
+ * castellana para el HTML de cada sesión (`tituloDeSesionEs`).
+ */
+function tituloDeSesion(fecha, t, locale) {
+  const dia = Number(String(fecha).slice(8, 10))
+  return rellena(
+    t(dia === 1 || dia === 11 ? 'plenoDetail.tituloPestana.vocal' : 'plenoDetail.tituloPestana'),
+    { fecha: fmtDateLong(fecha, locale) },
+  )
+}
+
 /** Las claves de las pestañas, en su orden: las que un ancla puede abrir. */
 const PESTANAS = ['resumen', 'agenda', 'votos', 'declaraciones', 'hallazgos', 'transcripcion']
 
@@ -413,9 +426,15 @@ function DetalleDeSesion({ id }) {
   }
 
   const pleno = useMemo(() => (plenosData?.items ?? []).find((p) => p.id === id), [plenosData, id])
-  // «Pleno · Sesión de fecha …», como el HTML que escribe prerender-meta y el
-  // botón de compartir.
-  useDocumentTitle(pleno?.title ? `Pleno · ${pleno.title}` : null)
+  // «Pleno del 11 de mayo de 2026», como el HTML que escribe prerender-meta y el
+  // botón de compartir. Era «Pleno · Sesión de fecha 11 de mayo de 2026», el
+  // título que da regmeet (auditoría de las dos lecturas, §10). Sin fecha, ése.
+  const tituloSesion = pleno?.date
+    ? tituloDeSesion(pleno.date, t, locale)
+    : pleno?.title
+      ? `Pleno · ${pleno.title}`
+      : null
+  useDocumentTitle(tituloSesion)
   const agenda = useMemo(
     () => (agendasData?.plenos ?? []).find((a) => a.id === id),
     [agendasData, id],
@@ -549,10 +568,7 @@ function DetalleDeSesion({ id }) {
       </div>
       <div style={{ marginTop: 10 }}>
         {/* Se comparte el enlace legible, se haya llegado por él o por el id. */}
-        <Compartir
-          titulo={`Pleno · ${pleno.title}`}
-          ruta={rutaDeSesion(pleno, plenosData?.items ?? [])}
-        />
+        <Compartir titulo={tituloSesion} ruta={rutaDeSesion(pleno, plenosData?.items ?? [])} />
       </div>
 
       {/* Sticky tab bar */}
