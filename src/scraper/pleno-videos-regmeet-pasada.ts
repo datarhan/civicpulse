@@ -99,6 +99,17 @@ export function desenlaceVideo(a: {
 }
 
 /**
+ * El sello del fichero: la descarga de la página más reciente que se leyó, no la
+ * hora de la pasada. La pasada relee cada día la caché que deja la de actas; si
+ * ésta deja de bajar páginas (regmeet bloqueado), un sello de pasada diría «hoy»
+ * sobre páginas de hace semanas y `check:cadence` no lo vería nunca
+ * (I-2026-10-27-videos-regmeet-sello-de-pasada). null sin páginas.
+ */
+export function selloDePaginas(descargas: readonly string[]): string | null {
+  return descargas.length === 0 ? null : [...descargas].sort().at(-1)!
+}
+
+/**
  * ¿Se puede escribir el fichero nuevo? No sin una sola página que leer (¿corrió
  * `scrape:pleno-actas`?), ni con la mitad de lo leído sin marcador o ilegible: una
  * página de reto servida con 200 no lleva marcador, y una caché llena de ellas no

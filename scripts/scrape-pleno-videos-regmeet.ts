@@ -31,6 +31,7 @@ import { parseRegmeetVideo } from '../src/scraper/regmeet-video'
 import {
   desenlaceVideo,
   puedeEscribirVideos,
+  selloDePaginas,
   type FilaVideoRegmeet,
 } from '../src/scraper/pleno-videos-regmeet-pasada'
 import { discrepanciasDeVideo, type VideoCanal } from '../src/scraper/pleno-video-fuentes'
@@ -95,6 +96,7 @@ async function main() {
     desaparecido: 'desaparecidos',
   } as const
   const items: FilaVideoRegmeet[] = []
+  const descargas: string[] = []
 
   for (let i = 0; i < sesiones.length; i++) {
     const p = sesiones[i]
@@ -115,7 +117,9 @@ async function main() {
     }
 
     stats.leidas += 1
-    const descargadaEl = (await stat(ruta)).mtime.toISOString().slice(0, 10)
+    const descargada = (await stat(ruta)).mtime.toISOString()
+    descargas.push(descargada)
+    const descargadaEl = descargada.slice(0, 10)
     const lectura = parseRegmeetVideo(await readFile(ruta, 'utf8'))
     const r = desenlaceVideo({
       plenoId: p.id,
@@ -156,11 +160,13 @@ async function main() {
 
   items.sort((a, b) => (a.fecha < b.fecha ? 1 : a.fecha > b.fecha ? -1 : 0))
   const payload = {
-    generatedAt: new Date().toISOString(),
+    // La descarga de la página más reciente, no la hora de esta pasada: si la de
+    // actas deja de bajar páginas, el fichero envejece con ellas y check:cadence lo ve.
+    generatedAt: selloDePaginas(descargas),
     source: {
       baseUrl: 'https://regmeet.com',
       description:
-        'Vídeo que incrusta la página de cada sesión de pleno del Ayuntamiento de Riba-roja de Túria en regmeet.com (aytoribarroja): el `#videoId` que su reproductor de YouTube lee. Una fila por sesión leída, con el día en que se descargó su página; una sesión sin fila no se ha leído, que no es «sin vídeo». No alimenta la cola de transcripción.',
+        'Vídeo que incrusta la página de cada sesión de pleno del Ayuntamiento de Riba-roja de Túria en regmeet.com (aytoribarroja): el `#videoId` que su reproductor de YouTube lee. Una fila por sesión leída, con el día en que se descargó su página; una sesión sin fila no se ha leído, que no es «sin vídeo». generatedAt es la descarga de la página más reciente, no la hora de la pasada. No alimenta la cola de transcripción.',
     },
     stats,
     items,

@@ -1,8 +1,8 @@
 {
-  "generatedAt": "2026-10-27T07:30:41.381Z",
+  "generatedAt": "2026-10-27T07:26:16.465Z",
   "source": {
     "baseUrl": "https://regmeet.com",
-    "description": "Vídeo que incrusta la página de cada sesión de pleno del Ayuntamiento de Riba-roja de Túria en regmeet.com (aytoribarroja): el `#videoId` que su reproductor de YouTube lee. Una fila por sesión leída, con el día en que se descargó su página; una sesión sin fila no se ha leído, que no es «sin vídeo». No alimenta la cola de transcripción."
+    "description": "Vídeo que incrusta la página de cada sesión de pleno del Ayuntamiento de Riba-roja de Túria en regmeet.com (aytoribarroja): el `#videoId` que su reproductor de YouTube lee. Una fila por sesión leída, con el día en que se descargó su página; una sesión sin fila no se ha leído, que no es «sin vídeo». generatedAt es la descarga de la página más reciente, no la hora de la pasada. No alimenta la cola de transcripción."
   },
   "stats": {
     "sesiones": 63,

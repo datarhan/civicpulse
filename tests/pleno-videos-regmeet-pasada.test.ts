@@ -6,6 +6,7 @@ import { describe, it, expect } from 'vitest'
 import {
   desenlaceVideo,
   puedeEscribirVideos,
+  selloDePaginas,
   type FilaVideoRegmeet,
 } from '../src/scraper/pleno-videos-regmeet-pasada'
 import { LECTURAS_VIDEO_REGMEET } from '../src/scraper/regmeet-video'
@@ -92,5 +93,22 @@ describe('puedeEscribirVideos', () => {
 
   it('sin sesiones de regmeet no hay nada que escribir', () => {
     expect(puedeEscribirVideos({ ...base, sesiones: 0 }).ok).toBe(false)
+  })
+})
+
+describe('selloDePaginas', () => {
+  it('el fichero lleva la fecha de su página más reciente, no la de la pasada', () => {
+    // Si la pasada de actas deja de bajar páginas, el sello envejece con ellas.
+    expect(
+      selloDePaginas([
+        '2026-10-20T05:46:02.000Z',
+        '2026-10-27T07:25:13.000Z',
+        '2026-10-19T05:45:58.000Z',
+      ]),
+    ).toBe('2026-10-27T07:25:13.000Z')
+  })
+
+  it('sin páginas no hay sello que poner', () => {
+    expect(selloDePaginas([])).toBeNull()
   })
 })

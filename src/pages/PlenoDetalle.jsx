@@ -300,7 +300,7 @@ export default function PlenoDetalle() {
   const { data: votesData } = usePlenoVotes()
   const { data: findingsData } = usePlenoFindings()
   const { data: videosData } = usePlenoVideos()
-  const { data: videosRegmeetData } = usePlenoVideosRegmeet()
+  const { data: videosRegmeetData, loading: videosRegmeetLoading } = usePlenoVideosRegmeet()
   const [tab, setTab] = useState('resumen')
 
   const pleno = useMemo(() => (plenosData?.items ?? []).find((p) => p.id === id), [plenosData, id])
@@ -319,9 +319,15 @@ export default function PlenoDetalle() {
     () => (findingsData?.items ?? []).filter((f) => f.plenoId === id),
     [findingsData, id],
   )
+  // Hasta que la instantánea de regmeet llega —o falta—, no se elige vídeo: «aún
+  // no ha llegado» no es «regmeet no dice nada», y una sesión en la que las dos
+  // fuentes discrepan pintaría mientras tanto la del canal.
   const video = useMemo(
-    () => indexVideosByPleno(videosData, plenosData, videosRegmeetData).get(id),
-    [videosData, plenosData, videosRegmeetData, id],
+    () =>
+      videosRegmeetLoading
+        ? undefined
+        : indexVideosByPleno(videosData, plenosData, videosRegmeetData).get(id),
+    [videosData, plenosData, videosRegmeetData, videosRegmeetLoading, id],
   )
 
   const agendaItems = agenda?.agenda ?? []
