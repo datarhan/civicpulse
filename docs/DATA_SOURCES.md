@@ -589,8 +589,8 @@ overwrites it. Change the bot's SQLite instead.
 ### Pleno agendas
 
 - **Pipeline** — `pleno-agenda.ts` → `plenos-agendas.json`
-- **Source** — Scrapes each individual session's convocatoria HTML on `ribarroja.es`, extracts the ORDEN DEL DÍA, splits into {resolutiva / informativa / ruegos}, resolves department + expediente tuples
-- **Surfaces** — `/plenos` — `TopDepartmentsCard` + inline "Ver orden del día" expander per session
+- **Source** — each session's page on `regmeet.com` (aytoribarroja), whose `#tableOrdenDia` is the ORDEN DEL DÍA; the old `ribarroja.es` convocatorias still parse, for Wayback captures. Resolves department + expediente tuples. regmeet does not mark the part of each item, so the split into {resolutiva / informativa / ruegos} is read from the item's title, in Castilian and Valencian (`seccionPorTitulo`), and re-derived for every stored session on each run (`reclasificaSecciones`): only the newest sessions are fetched again, and the ones convened in Valencian are older
+- **Surfaces** — `/plenos` (the session table and the area breakdown) and `/plenos/:id` (the «Orden del día» tab, with the part of each item as a pill); the department counts also feed `/departamentos`, `/cargos/:slug` and the landing
 - **Cited by** — `subir-veredicto --evidencia <session link> --punto <n>` (since 2026-10-10): a signed raise may cite one agenda item as evidence (kind `agenda`, corpus `plenos-agendas`). The row is written from the record — session, date, part and the item's whole title — and never says «aprobado»; a later session cannot support an earlier statement, and with a figure in the statement no agenda row reaches `verificado` (`comprobarRegistrosConLaDeclaracion` in `src/scraper/subida-firmada.ts`)
 
 ### Pleno actas (signed minutes, regmeet «Documentos» tab)
