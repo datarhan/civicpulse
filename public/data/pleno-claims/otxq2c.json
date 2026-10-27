@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-27T21:14:25.591Z",
+  "generatedAt": "2026-10-27T21:28:37.144Z",
   "version": "1",
   "plenoId": "otxq2c",
   "plenoDate": "2025-10-06",
@@ -7344,13 +7344,9 @@
       "verification": {
         "claimId": "otxq2c-202-afi-b7c7e3",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders, tenders-ted y bdns que la sostenga. Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
+        "summary": "Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
         "evidence": [],
-        "checkedAgainst": [
-          "tenders",
-          "tenders-ted",
-          "bdns"
-        ]
+        "checkedAgainst": []
       },
       "visibility": "toggle"
     },
@@ -7404,13 +7400,9 @@
       "verification": {
         "claimId": "otxq2c-203-afi-fa6737",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders, tenders-ted y bdns que la sostenga. Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
+        "summary": "Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
         "evidence": [],
-        "checkedAgainst": [
-          "tenders",
-          "tenders-ted",
-          "bdns"
-        ]
+        "checkedAgainst": []
       },
       "visibility": "toggle"
     },

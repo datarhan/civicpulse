@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-27T21:14:25.591Z",
+  "generatedAt": "2026-10-27T21:28:37.144Z",
   "version": "1",
   "plenoId": "k4olcs",
   "plenoDate": "2026-04-20",
@@ -1144,8 +1144,7 @@
         ],
         "checkedAgainst": [
           "tenders",
-          "tenders-ted",
-          "bdns"
+          "tenders-ted"
         ]
       },
       "visibility": "shown"
