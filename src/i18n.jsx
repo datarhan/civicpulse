@@ -1529,6 +1529,11 @@ export const CATALOGUE = {
     // WHICH date is being shown, so «7 feb 2023» beneath a 2026 debate cannot
     // be read as the debate's own date.
     'findings.refs.crossChecked': 'Documentos cotejados',
+    // Bajo el rótulo, lo que la lista no dice. Se leía como «lo que respalda la
+    // ficha» encima de contratos que sólo compartían palabras con las citas
+    // (PlenoFindings.jsx, `RefList`).
+    'findings.refs.crossChecked.nota':
+      'Estos documentos se cotejaron con las citas: estar en la lista no dice que las confirmen.',
     // La grabación de la sesión NO es un documento cotejado: es de donde salen
     // las citas. Iban en la misma lista, así que una ficha cuyo único cotejo
     // era el vídeo del propio pleno enseñaba «DOCUMENTOS COTEJADOS ·
@@ -3960,6 +3965,8 @@ export const CATALOGUE = {
       'El que sí que s’ha retirat és a dalt, en les **{n}** fitxes que es van quedar sense cap cita publicable.',
     'hallazgos.lista.contraste.enlace': 'Per què es publiquen ací →',
     'findings.refs.crossChecked': 'Documents acarats',
+    'findings.refs.crossChecked.nota':
+      'Aquests documents es van acarar amb les cites: ser a la llista no diu que les confirmen.',
     'findings.refs.provenance': 'Procedència de les cites',
     'findings.refs.contradiction': 'Documents que contradiuen',
     'findings.refs.ficha': 'fitxa {ficha}',

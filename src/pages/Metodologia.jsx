@@ -1448,7 +1448,13 @@ export default function Metodologia() {
                 significativas o más: 940.520 € sí; 25.000 €, que cabe a menos de un 1 % de
                 cualquier contrato menor redondeado, no. La tarjeta dice lo que se cotejó —que un
                 contrato o una subvención imprime la cifra citada y nombra el mismo objeto— y nada
-                más: de lo demás que diga la frase, el registro no sabe.
+                más: de lo demás que diga la frase, el registro no sabe.{' '}
+                {/* 27-10-2026: k4olcs-019-cit-b9b013, «sistema de debate, captura y
+                    grabación de vídeo…», salía «verificado» con los 80.666 € que se
+                    dijeron en la frase siguiente. */}
+                Y la cifra citada tiene que estar en las palabras de la cita: el extractor anota a
+                veces la que oyó en la frase de al lado, y ésa no se coteja —ni la tarjeta la pinta
+                como de la cita—.
               </li>
               <li>
                 <strong>parcial</strong> — coincidencia moderada; entidad o importe difieren algo.{' '}
@@ -1512,11 +1518,18 @@ export default function Metodologia() {
                 pero no está atestiguada (muy frecuente: reconocimientos extrajudiciales,
                 operaciones internas). La explicación de su tarjeta nombra sólo las bases que
                 constan como consultadas —las mismas que su línea «Fuentes comprobadas»— y, cuando
-                no consta ninguna, no dice que se buscara. Cuando la cifra citada se cotejó con los
-                contratos y el título de uno coincide en parte con lo citado, la tarjeta enseña ese
-                expediente y dice que su importe no es la cifra: se miró, y ni la sostiene ni la
-                desmiente. A una cita sin cifra no se le enseña ninguno, porque no hubo importe que
-                cotejar. Los recuentos de <code>/declaraciones</code>, <code>/plenos</code> y{' '}
+                no consta ninguna, no dice que se buscara.{' '}
+                {/* 27-10-2026: «en un presupuesto de cuarenta y pico millones»
+                    (/plenos/1sqj7is) llevaba sólo «No se encontró registro en
+                    contratos, … que la sostenga». */}
+                Si la cita habla del presupuesto municipal y lo que se consultó son contratos o
+                subvenciones, dice también que en el presupuesto no se buscó: «no se encontró
+                registro» no puede leerse como que nada la sostiene cuando la fuente que la
+                sostendría no se miró. Cuando la cifra citada se cotejó con los contratos y el
+                título de uno coincide en parte con lo citado, la tarjeta enseña ese expediente y
+                dice que su importe no es la cifra: se miró, y ni la sostiene ni la desmiente. A una
+                cita sin cifra no se le enseña ninguno, porque no hubo importe que cotejar. Los
+                recuentos de <code>/declaraciones</code>, <code>/plenos</code> y{' '}
                 <code>/laboratorio/cobertura</code> las reparten en tres, con la misma regla que esa
                 línea: <strong>comprobadas sin hallar nada</strong>, porque consta alguna base
                 consultada; <strong>ningún comparador lanzado</strong>, porque no hay nada anotado
@@ -1976,8 +1989,9 @@ export default function Metodologia() {
             verbatim y los documentos con los que se ha cotejado. Esa lista es lo que se cotejó, no
             lo que da la razón: el campo se llama <code>crossChecked</code> y recoge toda la
             evidencia que el verificador encontró para las citas del hallazgo, así que la ficha la
-            publica bajo el rótulo neutro «documentos cotejados». Hasta el 5 de agosto de 2026 ese
-            mismo campo se llamaba <code>corroboration</code> con exactamente el mismo contenido:{' '}
+            publica bajo el rótulo neutro «documentos cotejados», y debajo lo dice: estar en la
+            lista no dice que confirmen las citas. Hasta el 5 de agosto de 2026 ese mismo campo se
+            llamaba <code>corroboration</code> con exactamente el mismo contenido:{' '}
             <strong>ningún</strong> paso de este proceso comprueba que un documento respalde una
             frase —los cruces son coincidencias de importe o de palabras en un título— y el nombre
             afirmaba lo que la lista no había medido. Se renombró sin tocar una sola referencia,

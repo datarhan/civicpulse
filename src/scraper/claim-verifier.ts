@@ -151,6 +151,7 @@ import {
   resumenSinRegistro,
   resumenVerificado,
 } from './claim-verdicts'
+import { IMPORTE_PRACTICAMENTE_EXACTO, cifraEnElLiteral, similarAmount } from './cifra-en-literal'
 import { CAMPOS_DEL_EMPAREJADOR, importeDelEmparejador } from './importe-de-contrato'
 import { snippetDeContrato } from './snippet-de-contrato'
 import { sinEstadoSiLoDaSuContrato } from './gemelos-de-licitacion'
@@ -639,25 +640,11 @@ function mejorCasiPorObjeto(
   return mejor
 }
 
-/**
- * Un importe «prácticamente exacto»: un parecido de al menos 0,98, que es un
- * cociente de al menos 0,99 — un 1 % de diferencia, el redondeo de una cifra
- * dicha de viva voz («80.666» por 80.666,66 €).
- */
-export const IMPORTE_PRACTICAMENTE_EXACTO = 0.98
-
-/**
- * El parecido de dos importes: el cociente del menor entre el mayor, al
- * cuadrado. Exportado con su umbral de «prácticamente exacto» porque la subida
- * firmada (subida-firmada.ts) lo usa para decidir si la fila de un registro
- * dice la cifra de una declaración: dos umbrales copiados acabarían diciendo
- * cosas distintas.
- */
-export function similarAmount(claimed: number, found: number): number {
-  if (claimed <= 0 || found <= 0) return 0
-  const ratio = Math.min(claimed, found) / Math.max(claimed, found)
-  return Math.max(0, ratio * ratio) // quadratic so 0.9 → 0.81 (meaningful gap)
-}
+// El parecido de dos importes y su umbral de «prácticamente exacto» viven con
+// `cifraEnElLiteral` (cifra-en-literal.ts), que los necesita para leer el
+// literal y que la tarjeta importa sin cargar el verificador. Se siguen
+// exportando desde aquí para quien ya los pedía a este módulo.
+export { IMPORTE_PRACTICAMENTE_EXACTO, similarAmount }
 
 /** La mezcla del camino del importe, en contratos y en subvenciones: cifra 0,6, objeto 0,4. */
 const mezcla = (amountSim: number, textSim: number) => amountSim * 0.6 + textSim * 0.4
@@ -933,12 +920,22 @@ export function verifyClaim(inputs: VerifierInputs): ClaimVerification {
   ) {
     const amount = claim.entities.amountEuros
     const entity = claim.entities.referencedEntity
+    // La cifra se coteja si la DICE la cita (cifra-en-literal.ts). El
+    // extractor la saca a veces de la frase de al lado: k4olcs-019-cit-b9b013
+    // —«sistema de debate, captura y grabación de vídeo…», sin cifra— salía
+    // `verificado` con los 80.666 € que se dijeron en la frase siguiente, bajo
+    // «un contrato publicado imprime la cifra citada». Como la entidad en el
+    // bloque 3: sin cifra en el literal no hay con qué emparejar, y la cita cae
+    // a lo que el resto de la verificación sostenga, con los corpus anotados
+    // porque el comparador se lanzó. Sólo baja: una cifra que no se dijo no
+    // funda `verificado`, ni `contradicho`, ni el expediente «que se parece».
+    const cifraDicha = cifraEnElLiteral(claim.verbatim, amount)
 
     // Tenders lookup (cita_obra or numeric with entity hint)
     if (tenderList.length > 0) {
       if (localTenders.length > 0) note('tenders')
       if (tedTenders.length > 0) note('tenders-ted')
-      importeLeyoContratos = true
+      importeLeyoContratos = cifraDicha
       let best: { row: TenderRow; sim: number } | null = null
       // Also look for strong-entity / weak-amount matches → potential contradicho
       let entityMatchMismatchedAmount: { row: TenderRow; textSim: number } | null = null
@@ -949,7 +946,7 @@ export function verifyClaim(inputs: VerifierInputs): ClaimVerification {
         const a = tenderAmount(t)
         if (a != null && a > maxContract) maxContract = a
       }
-      for (const t of tenderList) {
+      for (const t of cifraDicha ? tenderList : []) {
         const tAmount = tenderAmount(t)
         if (tAmount == null) continue
         // Corroborar exige el mismo objeto (`parecidoDelObjeto`): un 0,85 de
@@ -1060,7 +1057,7 @@ export function verifyClaim(inputs: VerifierInputs): ClaimVerification {
     if (bdnsList.length > 0) {
       note('bdns')
       let best: { row: BdnsRow; sim: number } | null = null
-      for (const b of bdnsList) {
+      for (const b of cifraDicha ? bdnsList : []) {
         const bAmount = bdnsAmount(b)
         // EL MISMO OBJETO, con la misma vara que el tramo de contratos.
         //
@@ -1400,10 +1397,12 @@ export function verifyClaim(inputs: VerifierInputs): ClaimVerification {
   // que se hubiera mirado: una promesa cotejada sólo con el tracker, o una
   // afirmación con la que no corrió ningún comparador, decían haber buscado en
   // tres corpus que su propia lista no nombra, y la tarjeta imprime las dos.
+  // Con el literal, dice además que el presupuesto no se buscó cuando la cita
+  // habla de él (`callaElPresupuesto`).
   return {
     claimId: claim.id,
     verdict: 'sin-datos',
-    summary: resumenSinRegistro(checked),
+    summary: resumenSinRegistro(checked, undefined, claim.verbatim),
     evidence,
     checkedAgainst: checked,
   }
