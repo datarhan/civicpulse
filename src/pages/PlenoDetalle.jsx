@@ -21,6 +21,7 @@ import { fmtDateLong, fmtDateShort, rellena } from '../lib/formatters'
 import { conHuecos } from '../lib/huecos'
 import { breakdownNeedsCaveat, latestCorrection, VOTE_SOURCE_KINDS } from '../scraper/pleno-votes'
 import { rutaDeSesion, sesionDeParametro } from '../scraper/ruta-de-sesion'
+import { hallazgosPorTema } from '../scraper/hallazgos-por-tema'
 import { rotuloDe, useLocale, useT } from '../i18n'
 import { transcriptKind } from '../lib/transcript-kind.js'
 import { cuentaCotejadas, desgloseCotejadas, entreParentesis } from '../lib/cotejo'
@@ -209,6 +210,85 @@ function OLabel({ children }) {
 }
 
 /**
+ * Los hallazgos de la sesión por tema (`hallazgosPorTema`): un rótulo por grupo
+ * y debajo los hallazgos, pintados por quien llama. Sin ningún tema —el
+ * fragmento de declaraciones aún no ha llegado, o ninguna de las que citan está
+ * publicada—, la lista va seguida y sin rótulos: un único grupo «sin tema» no
+ * ordenaría nada.
+ *
+ * `Rotulo` es el elemento del rótulo: un `h2` en la pestaña de hallazgos, donde
+ * los grupos son lo que se lee; un `div` en el resumen, que ya tiene sus títulos.
+ */
+function GruposDeHallazgos({ grupos, Rotulo, gap, pinta }) {
+  const t = useT()
+  const lista = (hallazgos) => (
+    <div style={{ display: 'flex', flexDirection: 'column', gap }}>{hallazgos.map(pinta)}</div>
+  )
+  if (!grupos.some((g) => g.tema !== null)) return lista(grupos.flatMap((g) => g.hallazgos))
+  return (
+    <div data-hallazgos-por-tema="" style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
+      <p style={{ margin: 0, fontSize: 'var(--fs-aux)', color: 'var(--ink70)', lineHeight: 1.5 }}>
+        {t('plenoDetail.hallazgos.porTema')}
+      </p>
+      {grupos.map((g) => (
+        <div key={g.tema ?? '—'}>
+          <Rotulo
+            className="mono"
+            style={{
+              margin: '0 0 8px',
+              fontSize: 'var(--fs-micro)',
+              fontWeight: 700,
+              color: 'var(--ink70)',
+              textTransform: 'uppercase',
+              letterSpacing: '.06em',
+            }}
+          >
+            {g.tema === null
+              ? t('plenoDetail.hallazgos.sinTema')
+              : rotuloDe(t, `declaraciones.tema.${g.tema}`, g.tema)}{' '}
+            · {g.hallazgos.length}
+          </Rotulo>
+          {lista(g.hallazgos)}
+        </div>
+      ))}
+    </div>
+  )
+}
+
+/** Las claves de cada gravedad, singular y plural, literales para el guard del catálogo. */
+const GRAVEDADES = [
+  ['critical', 'plenoDetail.hallazgos.critical.uno', 'plenoDetail.hallazgos.critical'],
+  ['notable', 'plenoDetail.hallazgos.notable.uno', 'plenoDetail.hallazgos.notable'],
+  [
+    'informational',
+    'plenoDetail.hallazgos.informational.uno',
+    'plenoDetail.hallazgos.informational',
+  ],
+]
+
+/**
+ * Cuántos hallazgos hay de cada gravedad, en una frase: «Por su gravedad: 9
+ * informativos.» La lista los llevaba todos con su píldora, y «Informativo»
+ * delante de cada título se leía como un género y no como un grado; ahora la
+ * píldora sólo marca los que no son informativos, y la cuenta de todos va aquí.
+ */
+function GravedadDeLosHallazgos({ hallazgos }) {
+  const { t, locale } = useLocale()
+  const partes = GRAVEDADES.map(([clave, uno, varios]) => {
+    const n = hallazgos.filter((h) => h.severity === clave).length
+    return n > 0 ? rellena(t(n === 1 ? uno : varios), { n }) : null
+  }).filter(Boolean)
+  if (partes.length === 0) return null
+  return (
+    <p style={{ margin: '0 0 10px', fontSize: 'var(--fs-aux)', color: 'var(--ink70)' }}>
+      {rellena(t('plenoDetail.hallazgos.gravedad'), {
+        lista: new Intl.ListFormat(locale, { style: 'long', type: 'conjunction' }).format(partes),
+      })}
+    </p>
+  )
+}
+
+/**
  * Cotejadas frente a sin contraste, en las declaraciones de la sesión. Sin
  * verde: «cotejadas» incluye las contradichas, y en verde se leía como respaldo.
  * La leyenda estaba escrita en castellano en el JSX y salía igual en valencià.
@@ -372,6 +452,10 @@ function DetalleDeSesion({ id }) {
   // extraer» sólo se distinguen por de dónde vino.
   const extraida = chunkExtraido(chunk)
   const cotejadas = useMemo(() => cuentaCotejadas(claimItems), [claimItems])
+  const gruposDeHallazgos = useMemo(
+    () => hallazgosPorTema(findings, claimItems),
+    [findings, claimItems],
+  )
   const groundedCount = cotejadas.total
   const aprobados = votes.filter((v) => v.outcome === 'aprobado').length
 
@@ -683,8 +767,12 @@ function DetalleDeSesion({ id }) {
             {findings.length > 0 && (
               <div>
                 <OLabel>{t('plenoDetail.findings')}</OLabel>
-                <div style={{ display: 'flex', flexDirection: 'column', gap: 6 }}>
-                  {findings.map((f) => (
+                <GravedadDeLosHallazgos hallazgos={findings} />
+                <GruposDeHallazgos
+                  grupos={gruposDeHallazgos}
+                  Rotulo="div"
+                  gap={6}
+                  pinta={(f) => (
                     <button
                       key={f.id}
                       type="button"
@@ -702,26 +790,19 @@ function DetalleDeSesion({ id }) {
                         alignItems: 'baseline',
                       }}
                     >
-                      <Pill
-                        tone={
-                          f.severity === 'critical'
-                            ? 'crit'
-                            : f.severity === 'notable'
-                              ? 'warn'
-                              : 'neutral'
-                        }
-                        size="xs"
-                      >
-                        {rotuloDe(t, `pleno.gravedad.${f.severity}`, f.severity)}
-                      </Pill>
+                      {f.severity !== 'informational' && (
+                        <Pill tone={f.severity === 'critical' ? 'crit' : 'warn'} size="xs">
+                          {rotuloDe(t, `pleno.gravedad.${f.severity}`, f.severity)}
+                        </Pill>
+                      )}
                       <span
                         style={{ fontSize: 'var(--fs-aux)', color: 'var(--ink)', fontWeight: 600 }}
                       >
                         {f.title}
                       </span>
                     </button>
-                  ))}
-                </div>
+                  )}
+                />
               </div>
             )}
           </div>
@@ -806,11 +887,12 @@ function DetalleDeSesion({ id }) {
 
       {tab === 'hallazgos' &&
         (findings.length > 0 ? (
-          <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
-            {findings.map((f) => (
-              <FindingCard key={f.id} f={f} />
-            ))}
-          </div>
+          <GruposDeHallazgos
+            grupos={gruposDeHallazgos}
+            Rotulo="h2"
+            gap={10}
+            pinta={(f) => <FindingCard key={f.id} f={f} />}
+          />
         ) : (
           <EmptyNote>{t('plenoDetail.empty.findings')}</EmptyNote>
         ))}

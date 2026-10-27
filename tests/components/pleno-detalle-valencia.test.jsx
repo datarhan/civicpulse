@@ -265,18 +265,39 @@ const escenario = (nombre, mapa, transcripcion) => ({
   alPulsar: ['/data/finding-quote-provenance.json', '/data/tenders.json'],
 })
 
-/** La sesión con una sola de sus votaciones, para el singular del resumen. */
+/**
+ * La sesión con una sola de sus votaciones, para el singular del resumen. Y sus
+ * hallazgos con las gravedades que la sesión publicada no reparte —uno
+ * informativo, dos relevantes, dos críticos—, más uno de otra sesión: las
+ * declaraciones que cita no están en el fragmento de ésta, así que cae en el
+ * grupo sin tema.
+ */
 function unaVotacion() {
   const mapa = structuredClone(sirve())
   const votos = mapa['/data/pleno-votes.json']
   const una = votos.items.find((v) => v.plenoId === ID && !v.votesRetracted)
   votos.items = votos.items.filter((v) => v.plenoId !== ID || v === una)
+  const hallazgos = mapa['/data/pleno-findings.json']
+  const ajeno = hallazgos.items.find((f) => f.plenoId !== ID)
+  hallazgos.items.push({ ...ajeno, id: `${ajeno.id}-forma`, plenoId: ID })
+  const prov = mapa['/data/finding-quote-provenance.json']
+  prov.quotes[`${ajeno.id}-forma`] = prov.quotes[ajeno.id]
+  const gravedades = ['informational', 'notable', 'notable', 'critical', 'critical']
+  hallazgos.items
+    .filter((f) => f.plenoId === ID)
+    .forEach((f, i) => {
+      f.severity = gravedades[i % gravedades.length]
+    })
   return mapa
 }
 
 const ESCENARIOS = [
   escenario(`/plenos/${ID} tal cual se publica`, sirve(), TRANSCRIPCION),
-  escenario(`/plenos/${ID} con una sola votación transcrita`, unaVotacion(), TRANSCRIPCION),
+  escenario(
+    `/plenos/${ID} con una sola votación transcrita y hallazgos de cada gravedad`,
+    unaVotacion(),
+    TRANSCRIPCION,
+  ),
   escenario(
     `/plenos/${ID} con cada sección, desenlace y gravedad, y la transcripción de un acta`,
     cadaForma(),
@@ -506,6 +527,7 @@ describe(`/plenos/${ID}: cobertura de la guarda`, () => {
     const claves = Object.keys(CATALOGUE.es).filter(
       (k) =>
         k.startsWith('plenoDetail.resumen.') ||
+        k.startsWith('plenoDetail.hallazgos.') ||
         k === 'plenos.vocabulario' ||
         k.startsWith('plenos.palabra.') ||
         k === 'plenoDetail.voto.salvedadReparto',

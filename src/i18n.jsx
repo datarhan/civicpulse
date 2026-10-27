@@ -1235,6 +1235,18 @@ export const CATALOGUE = {
     // Encima de la barra de una votación cuyo reparto necesita salvedad: va con
     // la cifra, no en la fila de la fuente de debajo.
     'plenoDetail.voto.salvedadReparto': 'Quién votó qué: {nota}.',
+    // Los hallazgos de la sesión por tema (scraper/hallazgos-por-tema.ts): el tema es el de
+    // las declaraciones que citan, y la gravedad se cuenta una vez en vez de ir delante de
+    // cada título.
+    'plenoDetail.hallazgos.porTema': 'Agrupados por el tema de las declaraciones que citan.',
+    'plenoDetail.hallazgos.sinTema': 'Sin declaraciones publicadas que den su tema',
+    'plenoDetail.hallazgos.gravedad': 'Por su gravedad: {lista}.',
+    'plenoDetail.hallazgos.critical.uno': '{n} crítico',
+    'plenoDetail.hallazgos.critical': '{n} críticos',
+    'plenoDetail.hallazgos.notable.uno': '{n} relevante',
+    'plenoDetail.hallazgos.notable': '{n} relevantes',
+    'plenoDetail.hallazgos.informational.uno': '{n} informativo',
+    'plenoDetail.hallazgos.informational': '{n} informativos',
     'plenoDetail.voto.desgloseRetirado': 'DESGLOSE POR GRUPOS RETIRADO',
     'plenoDetail.voto.desgloseCorregido': 'DESGLOSE POR GRUPOS CORREGIDO',
     'pleno.desenlace.aprobado': 'Aprobado',
@@ -3692,6 +3704,15 @@ export const CATALOGUE = {
     'plenoDetail.voto.desglose': 'Desglossament',
     'plenoDetail.voto.cotejadoContra': 'acarat amb {fuente}',
     'plenoDetail.voto.salvedadReparto': 'Qui va votar què: {nota}.',
+    'plenoDetail.hallazgos.porTema': 'Agrupades pel tema de les declaracions que citen.',
+    'plenoDetail.hallazgos.sinTema': 'Sense declaracions publicades que en donen el tema',
+    'plenoDetail.hallazgos.gravedad': 'Per la seua gravetat: {lista}.',
+    'plenoDetail.hallazgos.critical.uno': '{n} crítica',
+    'plenoDetail.hallazgos.critical': '{n} crítiques',
+    'plenoDetail.hallazgos.notable.uno': '{n} rellevant',
+    'plenoDetail.hallazgos.notable': '{n} rellevants',
+    'plenoDetail.hallazgos.informational.uno': '{n} informativa',
+    'plenoDetail.hallazgos.informational': '{n} informatives',
     'plenoDetail.voto.desgloseRetirado': 'DESGLOSSAMENT PER GRUPS RETIRAT',
     'plenoDetail.voto.desgloseCorregido': 'DESGLOSSAMENT PER GRUPS CORREGIT',
     'pleno.desenlace.aprobado': 'Aprovat',
