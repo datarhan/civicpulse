@@ -7,7 +7,9 @@ import {
   plenoSinFecha,
   matchVideosToPlenos,
   decideEscrituraIndice,
+  grabacionMasHonda,
   VENTANA_CANAL,
+  MARGEN_AVISO,
   CAUSAS_BAJA,
   BAJAS_TOLERADAS,
   PLENO_VIDEO_KINDS,
@@ -33,8 +35,9 @@ import {
  *   · rr_youtube_channel_sin-lang_2026-10-27.jsonl — las mismas 121 entradas que
  *     rr_youtube_channel_2026-10-27.jsonl, pedidas SIN `lang`, como las pedía el
  *     CLI hasta #448: L6Cy1hTrpIc vuelve como «Extraordinary Plenary Session
- *     July 3, 2026». Es la pasada que, de julio a septiembre, sacó ese pleno del
- *     índice tres veces sin que nadie lo viera.
+ *     July 3, 2026», y AHxn3d-Kc6g también en inglés. Es la pasada que, de
+ *     julio a septiembre, sacó el primero del índice tres veces sin que nadie
+ *     lo viera.
  */
 
 const ENTERO = readFileSync(
@@ -104,6 +107,15 @@ describe('pleno-videos · la ventana sobre el canal', () => {
     const masHonda = Math.max(...hondas)
     expect(masHonda).toBe(291)
     expect(VENTANA_CANAL - masHonda).toBeGreaterThanOrEqual(150)
+    // Lo que el CLI imprime en cada pasada, para que el margen se vea gastarse
+    // en el canal vivo y no sólo en este volcado congelado.
+    expect(grabacionMasHonda(ENTERO, EN_EL_CANAL, fechas)).toEqual({
+      ytId: 'kS5fyq_a6CY',
+      plenoDate: '2023-02-13',
+      pestana: 'Ajuntament de Riba-roja de Túria - Vídeos',
+      posicion: 291,
+    })
+    expect(VENTANA_CANAL - 291).toBeGreaterThan(MARGEN_AVISO)
   })
 
   it('un título viejo no se ata a nada: los anteriores a la primera sesión se quedan sin sesión', () => {
@@ -160,7 +172,10 @@ describe('pleno-videos · la ventana sobre el canal', () => {
 })
 
 describe('pleno-videos · guarda: el índice no encoge callado', () => {
-  it('el título traducido: una baja, con su causa y su título de ahora; escribe y la nombra', () => {
+  it('los títulos traducidos: cada baja con su causa y su título de ahora, nombradas', () => {
+    // Pedido una hora después que la fixture con `lang`, YouTube ya traducía
+    // DOS plenos, no uno: AHxn3d-Kc6g todavía salía en valenciano a las 08:52.
+    // Eso es el vaivén entero: qué título vuelve cambia de una hora a otra.
     const d = decideEscrituraIndice({
       nuevo: snapshot(SIN_LANG),
       jsonl: SIN_LANG,
@@ -174,9 +189,17 @@ describe('pleno-videos · guarda: el índice no encoge callado', () => {
         causa: 'no-pleno',
         tituloAhora: 'Extraordinary Plenary Session July 3, 2026',
       },
+      {
+        ytId: 'AHxn3d-Kc6g',
+        title: 'Ple extrordinari i urgent 26 de desembre de 2025',
+        plenoDate: '2025-12-26',
+        causa: 'no-pleno',
+        tituloAhora: 'Extraordinary and urgent plenary session December 26, 2025',
+      },
     ])
+    // Dos de 35 está en lo tolerado: escribe, y las dos van por su nombre.
     expect(d.escribir).toBe(true)
-    expect(d.motivo).toMatch(/1 baja/)
+    expect(d.motivo).toMatch(/2 bajas de 35/)
   })
 
   it('cuenta leídas, con fecha y sin fecha por separado, y cuadran con lo escrito', () => {

@@ -70,6 +70,13 @@ export interface PlenoVideoEntry {
   url: string
 }
 
+export interface PestanaLeida {
+  /** `playlist_title` tal cual lo da yt-dlp («… - Vídeos», «… - En directe»). */
+  pestana: string
+  leidas: number
+  total: number | null
+}
+
 export interface PlenoVideosSnapshot {
   generatedAt: string
   source: {
@@ -82,6 +89,12 @@ export interface PlenoVideosSnapshot {
     byKind: Record<PlenoVideoKind, number>
     /** Pleno titles left without a date — `sinFecha.length`. */
     plenosSinFecha: number
+    /**
+     * Lo leído de cada pestaña del canal y lo que tiene: la diferencia es lo
+     * que la ventana dejó sin leer, que no es lo mismo que «no hay más».
+     * `total` es null cuando yt-dlp no lo dice.
+     */
+    pestanas: PestanaLeida[]
   }
   items: PlenoVideoEntry[]
   sinFecha: PlenoSinFecha[]
@@ -164,6 +177,7 @@ type LecturaTitulo =
  *   "Pleno ordinario 7 ade abril de 2025"          — the channel's typo
  * Not a pleno (intentionally — not the session itself):
  *   "Declaracions portaveus Ple ordinari 9 de febrer de 2026"
+ *   "Ple ordinari 4 desembre 2023 declaracions protaveus"
  *   Anything that does not START with "Ple " or "Pleno " — retrospective
  *   clips, trailers, «COMPARECENCIA ALCALDE …», and the English titles YouTube
  *   hands back when the listing is not asked for in a language
@@ -172,8 +186,11 @@ type LecturaTitulo =
 function leeTitulo(title: string): LecturaTitulo {
   const t = normaliseTitle(title).toLowerCase()
 
-  // Reject press-conference titles that quote a session date.
-  if (/^declaracions|declaracions portaveus/.test(t)) return { tipo: 'no-pleno' }
+  // Reject press-conference titles that quote a session date. Anywhere in the
+  // title, not just at the start: «Ple ordinari 4 desembre 2023 declaracions
+  // protaveus» (GpLGP5eRLiw, 14 min) is the spokespeople's statements, and read
+  // as a pleno it became a second «ordinario» video for that session.
+  if (/declaraci/.test(t)) return { tipo: 'no-pleno' }
   // The title must START WITH "Ple"/"Pleno". This guards against
   // retrospective clips and trailers.
   if (!/^ple(?:no)?\s/.test(t)) return { tipo: 'no-pleno' }
@@ -207,6 +224,34 @@ function leeTitulo(title: string): LecturaTitulo {
 }
 
 /**
+ * Cuántas entradas se leen de CADA pestaña del canal (`--playlist-end`).
+ *
+ * Fue 60 hasta el 27-10-2026, «enough to cover ~2 years». No lo era, y no por
+ * la pestaña que se miraba. Medido ese día: en «En directe» la 60.ª era el
+ * pleno más antiguo de `plenos.json` (EKoMiCY-HUk, 23-01-2023), pero 22
+ * sesiones tienen su grabación SUBIDA, no emitida, y esas viven en «Vídeos»
+ * entre la 90.ª y la 291.ª, detrás de los programas de Tele Riba-roja.
+ * «Vídeos» crecía unas 78 entradas al año (la 1.ª era del 22-10-2026, la
+ * 300.ª del 12-12-2022): 500 deja más de 200 de margen sobre la 291.ª, unos
+ * dos años y medio. «En directe» entra entera.
+ *
+ * Leer el canal entero también cubriría, pero mete los plenos de 2011–2012,
+ * que el parser rechaza como `fecha-imposible` por su suelo de 2013, y ninguna
+ * sesión que atar. Lo que entra con 500 y es anterior a 2023 no se ata a nada:
+ * `matchVideosToPlenos` casa por fecha exacta y `plenos.json` empieza en 2023
+ * (`tests/parse-pleno-videos-ventana.test.ts`).
+ *
+ * La prueba mide el margen sobre un volcado congelado, así que no envejece con
+ * el canal: lo que avisa de que se acaba es el CLI, que en cada pasada dice en
+ * qué posición está la grabación de sesión más honda (`grabacionMasHonda`) y
+ * avisa por debajo de `MARGEN_AVISO`.
+ */
+export const VENTANA_CANAL = 500
+
+/** Entradas hasta el borde por debajo de las cuales el CLI avisa: ~15 meses de «Vídeos». */
+export const MARGEN_AVISO = 100
+
+/**
  * Los argumentos con que `scripts/scrape-pleno-videos.ts` llama a yt-dlp.
  *
  * `--extractor-args youtube:lang=ca`: sin él, yt-dlp pide los listados con
@@ -233,6 +278,8 @@ export interface RawYtdlpEntry {
   title?: unknown
   url?: unknown
   channel_url?: unknown
+  playlist_title?: unknown
+  playlist_count?: unknown
 }
 
 function lecturaDe(raw: RawYtdlpEntry): LecturaTitulo | null {
@@ -288,6 +335,7 @@ export function parseChannelFeed(
   const seen = new Set<string>()
   const items: PlenoVideoEntry[] = []
   const sinFecha: PlenoSinFecha[] = []
+  const pestanas = new Map<string, PestanaLeida>()
   let totalVideosScanned = 0
 
   for (const line of lines) {
@@ -296,9 +344,16 @@ export function parseChannelFeed(
     try {
       parsed = JSON.parse(line)
     } catch {
-      continue
+      parsed = {}
     }
     const raw = parsed as RawYtdlpEntry
+    // Una línea ilegible también se leyó: cuenta en su pestaña desconocida, o
+    // la suma de las pestañas dejaría de cuadrar con `totalVideosScanned`.
+    const nombre = typeof raw.playlist_title === 'string' ? raw.playlist_title : '(sin pestaña)'
+    const pestana = pestanas.get(nombre) ?? { pestana: nombre, leidas: 0, total: null }
+    pestana.leidas += 1
+    if (typeof raw.playlist_count === 'number') pestana.total = raw.playlist_count
+    pestanas.set(nombre, pestana)
     const entry = parseVideoEntry(raw)
     if (!entry) {
       const sin = plenoSinFecha(raw)
@@ -333,9 +388,224 @@ export function parseChannelFeed(
       plenoVideosMatched: items.length,
       byKind,
       plenosSinFecha: sinFecha.length,
+      pestanas: [...pestanas.values()],
     },
     items,
     sinFecha,
+  }
+}
+
+/** Cada entrada del listado por su id: el título con que vino y dónde estaba. */
+function leeListado(
+  jsonl: string,
+): Map<string, { title: string | null; pestana: string | null; posicion: number | null }> {
+  const listado = new Map<
+    string,
+    { title: string | null; pestana: string | null; posicion: number | null }
+  >()
+  for (const line of jsonl.split(/\r?\n/)) {
+    if (line.trim().length === 0) continue
+    let raw: RawYtdlpEntry & { playlist_index?: unknown }
+    try {
+      raw = JSON.parse(line)
+    } catch {
+      continue
+    }
+    if (typeof raw?.id !== 'string' || listado.has(raw.id)) continue
+    listado.set(raw.id, {
+      title: typeof raw.title === 'string' ? raw.title.trim() : null,
+      pestana: typeof raw.playlist_title === 'string' ? raw.playlist_title : null,
+      posicion: typeof raw.playlist_index === 'number' ? raw.playlist_index : null,
+    })
+  }
+  return listado
+}
+
+/**
+ * La grabación de una sesión que está más hondo en su pestaña: lo que la
+ * ventana tiene que seguir alcanzando. `fechas` son las de `plenos.json`; null
+ * cuando ninguna grabación del listado es de una de ellas.
+ */
+export function grabacionMasHonda(
+  jsonl: string,
+  snap: PlenoVideosSnapshot,
+  fechas: ReadonlySet<string>,
+): { ytId: string; plenoDate: string; pestana: string; posicion: number } | null {
+  const listado = leeListado(jsonl)
+  let honda: { ytId: string; plenoDate: string; pestana: string; posicion: number } | null = null
+  for (const v of snap.items) {
+    if (!fechas.has(v.plenoDate)) continue
+    const l = listado.get(v.ytId)
+    if (l?.posicion == null || l.pestana == null) continue
+    if (!honda || l.posicion > honda.posicion) {
+      honda = { ytId: v.ytId, plenoDate: v.plenoDate, pestana: l.pestana, posicion: l.posicion }
+    }
+  }
+  return honda
+}
+
+/**
+ * Por qué un vídeo que estaba en el índice publicado no está en el nuevo:
+ *   · `fuera-del-listado` — su id no vino: la ventana lo dejó atrás, una
+ *     pestaña no llegó, o YouTube ya no lo lista.
+ *   · `sin-fecha` — vino, y su título sigue siendo de un pleno pero ya no da
+ *     fecha.
+ *   · `no-pleno` — vino, y su título ya no se lee como pleno: traducido
+ *     («Extraordinary Plenary Session July 3, 2026»), renombrado o vacío.
+ */
+export const CAUSAS_BAJA = ['fuera-del-listado', 'sin-fecha', 'no-pleno'] as const
+export type CausaBaja = (typeof CAUSAS_BAJA)[number]
+
+export interface BajaIndice {
+  ytId: string
+  /** El título con que estaba en el índice publicado. */
+  title: string
+  plenoDate: string
+  causa: CausaBaja
+  /** El título con que vuelve en esta pasada; null si no vuelve. */
+  tituloAhora: string | null
+}
+
+/**
+ * Bajas que una pasada puede traer sin que se niegue a escribir: el mayor de
+ * `BAJAS_TOLERADAS` y la fracción `FRACCION_BAJAS_TOLERADA` del índice
+ * anterior. Con la ventana ancha ningún vídeo debería irse; uno suelto es un
+ * título que cambió o un vídeo retirado, y se escribe nombrándolo. Varios a la
+ * vez son el listado roto —una pestaña que no llegó, títulos devueltos en otro
+ * idioma—, y escribir encima sería publicar el hueco como si fuera el canal.
+ */
+export const BAJAS_TOLERADAS = 2
+export const FRACCION_BAJAS_TOLERADA = 0.05
+
+export interface DecisionIndice {
+  escribir: boolean
+  /** Se imprime tal cual: qué rama se tomó y por qué. */
+  motivo: string
+  /** Entradas del listado que se leyeron (= `stats.totalVideosScanned`). */
+  leidas: number
+  /** Plenos con fecha (= `items.length`). */
+  conFecha: number
+  /** Plenos sin fecha legible (= `sinFecha.length`). */
+  sinFecha: number
+  /** Vídeos del índice publicado; null si no lo había o no se pudo leer. */
+  anteriores: number | null
+  /** Del índice publicado, los que siguen. */
+  conservadas: number
+  /** Los que no estaban en el índice publicado. */
+  nuevas: number
+  bajas: BajaIndice[]
+}
+
+/**
+ * ¿Puede esta pasada escribir encima de `pleno-videos.json`?
+ *
+ * Hasta el 27-10-2026 el CLI escribía lo que hubiera casado, y un índice que
+ * encogía no lo decía en ninguna parte: L6Cy1hTrpIc salió y entró tres veces
+ * entre julio y septiembre porque YouTube devolvía su título en inglés, y lo
+ * único que lo notaba era un aviso de `check:relations` que lo atribuía a la
+ * ventana. La sesión dejaba de tener vídeo, y la cola de transcripción con ella.
+ *
+ * Se cuentan BAJAS por identidad —vídeos del índice publicado que no están en
+ * el nuevo—, no la diferencia de totales: una pestaña que no llega mientras
+ * otra trae más deja el total igual o mayor y pierde todos los plenos de la
+ * primera. Cada baja lleva su causa (`CAUSAS_BAJA`) y el título con que vuelve.
+ *
+ * Una pasada que no leyó ninguna entrada no escribe nunca: yt-dlp saliendo 0
+ * sin listado no es un canal vacío. `aceptarBajas` es la puerta del operador
+ * cuando las bajas son de verdad (vídeos retirados); el motivo lo dice.
+ *
+ * Pura: `anteriorRaw` se pasa leído, para que fichero ausente, ilegible y
+ * encogido se prueben sin tocar el disco (como `decideSnapshotWrite`).
+ */
+export function decideEscrituraIndice(args: {
+  nuevo: PlenoVideosSnapshot
+  jsonl: string
+  anteriorRaw: string | null
+  aceptarBajas?: boolean
+}): DecisionIndice {
+  const { nuevo, jsonl, anteriorRaw, aceptarBajas = false } = args
+  const cuenta = {
+    leidas: nuevo.stats.totalVideosScanned,
+    conFecha: nuevo.items.length,
+    sinFecha: nuevo.sinFecha.length,
+  }
+  const resumen = `leídas ${cuenta.leidas} · con fecha ${cuenta.conFecha} · sin fecha ${cuenta.sinFecha}`
+
+  let anteriores: PlenoVideoEntry[] | null = null
+  let porQueSinAnterior = 'sin índice anterior'
+  if (anteriorRaw != null) {
+    porQueSinAnterior = 'índice anterior ilegible'
+    try {
+      const parsed = JSON.parse(anteriorRaw) as { items?: unknown }
+      if (Array.isArray(parsed?.items)) anteriores = parsed.items as PlenoVideoEntry[]
+    } catch {
+      // ilegible: se queda en null
+    }
+  }
+
+  const nuevos = new Set(nuevo.items.map((v) => v.ytId))
+  const listado = leeListado(jsonl)
+  const sinFechaAhora = new Set(nuevo.sinFecha.map((s) => s.ytId))
+  const bajas: BajaIndice[] = []
+  for (const v of anteriores ?? []) {
+    if (typeof v?.ytId !== 'string' || nuevos.has(v.ytId)) continue
+    const vuelve = listado.get(v.ytId)
+    const causa: CausaBaja = !vuelve
+      ? 'fuera-del-listado'
+      : sinFechaAhora.has(v.ytId)
+        ? 'sin-fecha'
+        : 'no-pleno'
+    bajas.push({
+      ytId: v.ytId,
+      title: v.title,
+      plenoDate: v.plenoDate,
+      causa,
+      tituloAhora: vuelve?.title ?? null,
+    })
+  }
+  const conservadas = (anteriores?.length ?? 0) - bajas.length
+  const base = {
+    ...cuenta,
+    anteriores: anteriores?.length ?? null,
+    conservadas,
+    nuevas: cuenta.conFecha - conservadas,
+    bajas,
+  }
+
+  if (cuenta.leidas === 0) {
+    return {
+      ...base,
+      escribir: false,
+      motivo:
+        'se niega: yt-dlp no devolvió ninguna entrada, y un listado vacío no es un canal vacío',
+    }
+  }
+  if (anteriores == null) {
+    return {
+      ...base,
+      escribir: true,
+      motivo: `${porQueSinAnterior}: escribe sin comparar · ${resumen}`,
+    }
+  }
+
+  const tolera = Math.max(BAJAS_TOLERADAS, Math.floor(anteriores.length * FRACCION_BAJAS_TOLERADA))
+  const bajasTxt = `${bajas.length} baja${bajas.length === 1 ? '' : 's'} de ${anteriores.length} (tolera ${tolera})`
+  if (bajas.length > tolera && !aceptarBajas) {
+    return {
+      ...base,
+      escribir: false,
+      motivo:
+        `se niega: ${bajasTxt} — el índice publicado se queda como está; ` +
+        `si las bajas son de verdad, --aceptar-bajas · ${resumen}`,
+    }
+  }
+  return {
+    ...base,
+    escribir: true,
+    motivo:
+      bajas.length > tolera
+        ? `escribe con ${bajasTxt} aceptadas por el operador · ${resumen}`
+        : `escribe: ${bajasTxt} · ${resumen}`,
   }
 }
 
