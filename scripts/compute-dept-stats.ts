@@ -3,9 +3,9 @@
  * from the already-scraped JSON snapshots and writes a scalar back
  * into plenos-agendas.json.stats.plazosVencidosCount.
  *
- * Runs after scrape:all so the landing page can read ONE number to
- * drive the LiveTicker chip instead of fetching five JSON files on
- * the most-trafficked route.
+ * Runs after scrape:all so the landing page can read ONE number —the
+ * accountability block's overdue badge and its «en N consta» coverage— instead
+ * of fetching five JSON files on the most-trafficked route.
  *
  * This script never mutates the curated files (promises.json,
  * pleno-votes.json, quejas.json) — it only writes stats back into

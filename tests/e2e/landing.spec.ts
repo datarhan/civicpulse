@@ -169,6 +169,21 @@ test.describe('Landing (/)', () => {
     }
   })
 
+  // La cinta «DIRECTO» se quitó de la portada (auditoría «dos lecturas»,
+  // 25-10-2026, §1.5). Pasaba luz, Euríbor, BCE e IPC nacionales, avisos de la
+  // provincia y «N incidencias» de la DGT contadas a lo largo de la A-7 y la A-3
+  // en toda España —el dato no trae lugar, así que no se puede ceñir al
+  // municipio—; lo único del Ayuntamiento, los titulares y los plazos vencidos,
+  // ya está en la columna. Y un punto rojo latiendo con «DIRECTO» prometía datos
+  // del Ayuntamiento en vivo que no había.
+  test('no hay cinta «DIRECTO» sobre el mapa', async ({ page }) => {
+    await page.goto('/', { waitUntil: 'domcontentloaded' })
+    // Mide algo: la portada ha pintado el mapa y su pila de controles.
+    await expect(page.locator('.cp-mapa-pila .cp-cobertura')).toBeVisible({ timeout: 15_000 })
+    await expect(page.locator('[data-live-ticker]')).toHaveCount(0)
+    await expect(page.getByText('DIRECTO', { exact: true })).toHaveCount(0)
+  })
+
   test('has a heading outline a screen reader can navigate', async ({ page }) => {
     // Regression guard. The landing's ONLY heading used to be the LeadStory
     // press headline — so the homepage h1 was a third-party article title, and
@@ -395,7 +410,8 @@ test.describe('Landing (/)', () => {
     // (1 de 12 en local). Medido una sola vez fuera del reintento, el mismo
     // índice viejo se repetía en cada intento. El aspa se pulsa con un evento y
     // no con un clic en sus coordenadas: una ficha alta llega hasta arriba del
-    // mapa y deja el aspa debajo de la cinta «DIRECTO», que se llevaba el clic.
+    // mapa y dejaba el aspa debajo de la cinta «DIRECTO» (quitada el 27-10-2026),
+    // que se llevaba el clic.
     const pulsaElPrimeroLibre = (selector: string, enLaFicha: RegExp) =>
       expect(async () => {
         const aspa = page.locator('.leaflet-popup-close-button')
