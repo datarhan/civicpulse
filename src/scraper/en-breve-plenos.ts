@@ -191,11 +191,12 @@ export function votosDeLaSesion(
 
 /**
  * La aprobación del acta anterior: abre casi todos los ordinarios
- * («Aprobación Acta anterior de fecha…», «Aprovació Acta anterior de data…»).
- * Sin `\b`, que no ve frontera tras «Aprovació»: con letras Unicode.
+ * («Aprobación Acta anterior de fecha…», «Aprovació Acta anterior de data…»),
+ * y a veces de dos («Aprobación Actas anteriores de fecha 3 de julio… y 6 de
+ * julio…»). Sin `\b`, que no ve frontera tras «Aprovació»: con letras Unicode.
  */
 const APROBACION_DE_ACTA =
-  /^(?:aprobaci[oó]n|aprovaci[oó])(?!\p{L})[^.]{0,40}(?<!\p{L})acta(?!\p{L})[^.]{0,40}(?<!\p{L})anterior(?!\p{L})/iu
+  /^(?:aprobaci[oó]n|aprovaci[oó])(?!\p{L})[^.]{0,40}(?<!\p{L})act(?:a|as|es)(?!\p{L})[^.]{0,40}(?<!\p{L})anterior(?:s|es)?(?!\p{L})/iu
 
 export function esAprobacionDeActa(titulo: string): boolean {
   return APROBACION_DE_ACTA.test(titulo)

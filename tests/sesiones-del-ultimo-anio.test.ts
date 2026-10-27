@@ -42,6 +42,7 @@ describe('esAprobacionDeActa', () => {
     'Aprobación Acta Ordinaria anterior de fecha 7 de septiembre de 2026',
     'Aprovació Acta anterior de data 03 de novembre de 2025',
     "Aprovació Acta anterior de data 06 d'octubre de 2025",
+    'Aprobación Actas anteriores de fecha 3 de julio de 2026 (Extraordinaria) y 6 de julio de 2026 (Ordinaria)',
   ])('«%s» sí', (t) => expect(esAprobacionDeActa(t)).toBe(true))
 
   it.each([
