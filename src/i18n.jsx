@@ -791,6 +791,48 @@ export const CATALOGUE = {
     'cargos.title': 'Cargos y departamentos',
     'plenos.eyebrow': 'Órganos de gobierno',
     'plenos.title': 'Plenos municipales',
+    // «El último pleno», la lectura vecinal de /plenos (components/plenos/
+    // EnBrevePlenos.jsx). «Para decidir» es lo que se llevó a votar, no lo que
+    // se aprobó: el resultado sólo consta en las votaciones transcritas.
+    'plenos.enBreve.titulo': 'El último pleno',
+    'plenos.enBreve.intro':
+      'De qué trató la última sesión y qué sabemos de sus votaciones, en palabras llanas. El título literal de cada punto está en la página de la sesión.',
+    'plenos.enBreve.saltar': 'Todas las sesiones ↓',
+    'plenos.enBreve.tipo': 'pleno {tipo}',
+    'plenos.enBreve.orden.pregunta': '¿Qué se llevó al último pleno?',
+    'plenos.enBreve.orden.total': 'El orden del día tenía {n} puntos: {partes}.',
+    'plenos.enBreve.orden.total.uno': 'El orden del día tenía un punto: {partes}.',
+    'plenos.enBreve.parte.decidir': '{n} para decidir',
+    'plenos.enBreve.parte.informes': '{n} informes (no se votan)',
+    'plenos.enBreve.parte.informes.uno': '1 informe (no se vota)',
+    'plenos.enBreve.parte.otros': '{n} sin parte en la convocatoria',
+    'plenos.enBreve.parte.ruegos': 'el turno de ruegos y preguntas',
+    'plenos.enBreve.orden.decidir': 'Para decidir',
+    'plenos.enBreve.orden.informes': 'Informes, que no se votan',
+    'plenos.enBreve.orden.otros': 'Sin parte en la convocatoria',
+    'plenos.enBreve.urgente': 'de urgencia',
+    'plenos.enBreve.orden.ver': 'El orden del día literal, en la página de la sesión →',
+    'plenos.enBreve.votos.pregunta': '¿Qué se votó?',
+    'plenos.enBreve.votos.transcrita': 'votación transcrita',
+    'plenos.enBreve.votos.transcritas': 'votaciones transcritas',
+    'plenos.enBreve.votos.desenlace': 'Resultado: {lista}.',
+    'plenos.enBreve.votos.aprobada': '1 aprobada',
+    'plenos.enBreve.votos.aprobadas': '{n} aprobadas',
+    'plenos.enBreve.votos.rechazada': '1 rechazada',
+    'plenos.enBreve.votos.rechazadas': '{n} rechazadas',
+    'plenos.enBreve.votos.otra': '1 retirada o aplazada',
+    'plenos.enBreve.votos.otras': '{n} retiradas o aplazadas',
+    'plenos.enBreve.votos.cobertura':
+      'Tenemos votaciones transcritas de {n} de las {total} sesiones.',
+    'plenos.enBreve.votos.reparto':
+      'En {n} de ellas, quién votó qué sale de la transcripción automática del vídeo, sin cotejar con el acta.',
+    'plenos.enBreve.votos.reparto.todas':
+      'Quién votó qué sale de la transcripción automática del vídeo, sin cotejar con el acta.',
+    'plenos.enBreve.video': 'Ver el vídeo de la sesión',
+    'plenos.enBreve.votos.ver': 'Las votaciones, en la página de la sesión →',
+    // El paso de la lectura vecinal a la experta (components/DivisorLecturas.jsx).
+    'lecturas.divisor':
+      'Hasta aquí, lo esencial. Debajo, todos los datos, para quien quiera comprobarlos.',
     // El índice de sesiones (/plenos): la entradilla, la escalera de cobertura, la
     // tabla con sus filtros, las tarjetas de votaciones y declaraciones y el reparto
     // por área. Las retiradas de votaciones, por alcance, en singular y en plural.
@@ -3216,6 +3258,43 @@ export const CATALOGUE = {
     'cargos.title': 'Càrrecs i departaments',
     'plenos.eyebrow': 'Òrgans de govern',
     'plenos.title': 'Plens municipals',
+    'plenos.enBreve.titulo': 'L’últim ple',
+    'plenos.enBreve.intro':
+      'De què va tractar l’última sessió i què en sabem de les votacions, en paraules planes. El títol literal de cada punt és a la pàgina de la sessió.',
+    'plenos.enBreve.saltar': 'Totes les sessions ↓',
+    'plenos.enBreve.tipo': 'ple {tipo}',
+    'plenos.enBreve.orden.pregunta': 'Què es va portar a l’últim ple?',
+    'plenos.enBreve.orden.total': 'L’ordre del dia tenia {n} punts: {partes}.',
+    'plenos.enBreve.orden.total.uno': 'L’ordre del dia tenia un punt: {partes}.',
+    'plenos.enBreve.parte.decidir': '{n} per a decidir',
+    'plenos.enBreve.parte.informes': '{n} informes (no es voten)',
+    'plenos.enBreve.parte.informes.uno': '1 informe (no es vota)',
+    'plenos.enBreve.parte.otros': '{n} sense part en la convocatòria',
+    'plenos.enBreve.parte.ruegos': 'el torn de precs i preguntes',
+    'plenos.enBreve.orden.decidir': 'Per a decidir',
+    'plenos.enBreve.orden.informes': 'Informes, que no es voten',
+    'plenos.enBreve.orden.otros': 'Sense part en la convocatòria',
+    'plenos.enBreve.urgente': 'd’urgència',
+    'plenos.enBreve.orden.ver': 'L’ordre del dia literal, a la pàgina de la sessió →',
+    'plenos.enBreve.votos.pregunta': 'Què es va votar?',
+    'plenos.enBreve.votos.transcrita': 'votació transcrita',
+    'plenos.enBreve.votos.transcritas': 'votacions transcrites',
+    'plenos.enBreve.votos.desenlace': 'Resultat: {lista}.',
+    'plenos.enBreve.votos.aprobada': '1 aprovada',
+    'plenos.enBreve.votos.aprobadas': '{n} aprovades',
+    'plenos.enBreve.votos.rechazada': '1 rebutjada',
+    'plenos.enBreve.votos.rechazadas': '{n} rebutjades',
+    'plenos.enBreve.votos.otra': '1 retirada o ajornada',
+    'plenos.enBreve.votos.otras': '{n} retirades o ajornades',
+    'plenos.enBreve.votos.cobertura': 'Tenim votacions transcrites de {n} de les {total} sessions.',
+    'plenos.enBreve.votos.reparto':
+      'En {n} d’elles, qui va votar què ix de la transcripció automàtica del vídeo, sense acarar amb l’acta.',
+    'plenos.enBreve.votos.reparto.todas':
+      'Qui va votar què ix de la transcripció automàtica del vídeo, sense acarar amb l’acta.',
+    'plenos.enBreve.video': 'Veure el vídeo de la sessió',
+    'plenos.enBreve.votos.ver': 'Les votacions, a la pàgina de la sessió →',
+    'lecturas.divisor':
+      'Fins ací, l’essencial. A sota, totes les dades, per a qui les vulga comprovar.',
     'plenos.indice.lede.celebradas': 'L’ajuntament ha celebrat {sesiones} des del {fecha}.',
     'plenos.indice.lede.celebradasSinFecha': 'L’ajuntament ha celebrat {sesiones}.',
     'plenos.indice.nSesiones': '{n} sessions',

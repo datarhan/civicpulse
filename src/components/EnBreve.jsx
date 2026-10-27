@@ -34,10 +34,14 @@ import { DefinicionGlosario, FraseConTerminos } from './Termino'
  *   figura?: import('react').ReactNode,
  *   frases: string[],
  *   nota?: string,
+ *   detalle?: import('react').ReactNode,
  *   salvedad?: string,
  *   ancla: string,
  *   anclaTexto: string,
  * }} props
+ *
+ * `detalle` va detrás de la frase: lo que la frase resume, cuando cabe en la
+ * tarjeta (los puntos del último pleno en /plenos). `figura` va delante.
  */
 export function TarjetaEnBreve({
   id,
@@ -47,6 +51,7 @@ export function TarjetaEnBreve({
   figura,
   frases,
   nota,
+  detalle,
   salvedad,
   ancla,
   anclaTexto,
@@ -75,6 +80,7 @@ export function TarjetaEnBreve({
       {abierto && (
         <DefinicionGlosario clave={abierto} id={idPanel} onCerrar={() => setAbierto(null)} />
       )}
+      {detalle}
       {salvedad && <p className="cp-en-breve-salvedad">{salvedad}</p>}
       {/* Un <a> también para otra ruta (/datos): es lo que usan las páginas que
           lo montan, y así el bloque no exige un router a quien lo pinta. */}

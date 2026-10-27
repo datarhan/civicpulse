@@ -21,6 +21,67 @@ test.describe('Plenos index (/plenos)', () => {
   })
 })
 
+/**
+ * «El último pleno», la lectura vecinal de /plenos. La sesión esperada sale de
+ * los snapshots y del día de hoy en Riba-roja, no de una fecha escrita aquí.
+ */
+test.describe('«El último pleno» (/plenos)', () => {
+  const hoy = new Intl.DateTimeFormat('en-CA', { timeZone: 'Europe/Madrid' }).format(new Date())
+  const sesiones: Array<{ id: string; date: string }> = JSON.parse(
+    readFileSync('public/data/plenos.json', 'utf8'),
+  ).items
+  const ultima = sesiones
+    .filter((s) => s.date.slice(0, 10) < hoy)
+    .reduce((a, b) => (b.date > a.date ? b : a))
+  const agenda: Array<{ number: number; section: string }> =
+    JSON.parse(readFileSync('public/data/plenos-agendas.json', 'utf8')).plenos.find(
+      (p: { id: string }) => p.id === ultima.id,
+    )?.agenda ?? []
+
+  test('habla de la última sesión celebrada, con su orden del día en palabras llanas', async ({
+    page,
+  }) => {
+    await page.goto('/plenos', { waitUntil: 'networkidle' })
+    const tarjeta = page.locator('[data-en-breve="orden-del-dia"]')
+    await expect(tarjeta).toBeVisible()
+    await expect(tarjeta.locator(`a[href="/plenos/${ultima.id}"]`)).toBeVisible()
+
+    // Se mide algo: la sesión tiene orden del día y puntos para decidir.
+    const decidir = agenda.filter((a) => a.section === 'resolutiva')
+    expect(decidir.length).toBeGreaterThan(0)
+    await expect(tarjeta.locator('.cp-plenos-puntos').first().locator('li')).toHaveCount(
+      decidir.length,
+    )
+
+    // Ni un número de expediente en la capa vecinal.
+    const bloque = page.locator('[data-en-breve-bloque]')
+    expect(await bloque.innerText()).not.toMatch(/Expedient(?:e)?\s*:?\s*\d|Expte\.?\s*\d/i)
+  })
+
+  test('el divisor va entre el último pleno y todas las sesiones', async ({ page }) => {
+    await page.goto('/plenos', { waitUntil: 'networkidle' })
+    const bloque = await page.locator('[data-en-breve-bloque]').boundingBox()
+    const divisor = await page.locator('[data-divisor-lecturas]').boundingBox()
+    const tabla = await page.locator('#sesiones').boundingBox()
+    expect(bloque && divisor && tabla).toBeTruthy()
+    expect(bloque!.y + bloque!.height).toBeLessThanOrEqual(divisor!.y)
+    expect(divisor!.y + divisor!.height).toBeLessThanOrEqual(tabla!.y)
+  })
+
+  test('a 375 px empieza en la primera pantalla y no desborda', async ({ page }) => {
+    await page.setViewportSize({ width: 375, height: 812 })
+    await page.goto('/plenos', { waitUntil: 'networkidle' })
+    const bloque = page.locator('[data-en-breve-bloque]')
+    await expect(bloque).toBeVisible()
+    const caja = await bloque.boundingBox()
+    expect(caja!.y).toBeLessThan(812)
+    const desborde = await page.evaluate(
+      () => document.documentElement.scrollWidth - document.documentElement.clientWidth,
+    )
+    expect(desborde).toBe(0)
+  })
+})
+
 test.describe('Pleno detail (/plenos/:id)', () => {
   test('shows the per-session sections and ships no hidden accusations', async ({ page }) => {
     const chunkBodies: Array<{ items?: unknown[] }> = []
