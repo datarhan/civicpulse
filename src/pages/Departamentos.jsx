@@ -7,6 +7,7 @@ import { useT, useLocale } from '../i18n'
 import { celdaPlazosVencidos, rotuloPlazosVencidos } from '../lib/plazos-vencidos'
 import { yearSpan } from '../lib/year-span'
 import { desgloseCotejadas } from '../lib/cotejo'
+import { rellena } from '../lib/formatters'
 
 /** Compact euros for a card stat: 61.262.695 € reads as "61,3 M€". */
 function formatEurosCompact(eur) {
@@ -346,7 +347,10 @@ export default function Departamentos() {
           marginBottom: 24,
         }}
       >
-        {t('departamentos.subtitle')}
+        {t('departamentos.subtitle')}{' '}
+        {/* Las reglas viven aquí, donde se aplican; la portada las decía de
+            pasada en su bloque de rendición de cuentas. */}
+        {rellena(t('departamentos.reglas'), { casilla: t('departamentos.card.quejas') })}
       </p>
       <div
         style={{

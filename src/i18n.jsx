@@ -2345,6 +2345,11 @@ export const CATALOGUE = {
     'departamentos.title': 'Departamentos · compromisos y plazos',
     'departamentos.subtitle':
       'Seguimiento por concejalía de los acuerdos aprobados en pleno y las promesas con plazo. Las votaciones transcritas son el hecho primario; las promesas son secundarias.',
+    // Las dos reglas que la portada decía de pasada. La de las quejas es por
+    // concejalía, como la aplica lib/department-stats: una vez registrada una,
+    // cuentan todas las no cerradas; no «cada queja desde que se registra».
+    'departamentos.reglas':
+      'La casilla «{casilla}» de una concejalía sale con «—» hasta que al menos una de sus quejas ha llegado al registro del Ayuntamiento: hasta entonces no le debe ninguna respuesta. Un plazo vencido se señala como aviso; nunca cambia el estado de un acuerdo ni de una promesa.',
     'departamentos.card.responsable': 'Responsable',
     'departamentos.card.sinResponsable': 'Sin concejal asignado',
     'departamentos.card.votes': 'Votos',
@@ -2490,14 +2495,18 @@ export const CATALOGUE = {
     'landing.alcalde.role': 'Alcalde',
     'landing.empleo.all': 'Ver todas las ofertas →',
     'landing.promesas.blurb':
-      'Compromisos públicos documentados, cada uno con su cita y la fuente que la recoge: el documento oficial o la noticia. Sin juicios automáticos de cumplimiento.',
+      'Compromisos públicos documentados, cada uno con su cita y la fuente que la recoge: el documento oficial o la noticia.',
+    // «del partido de la alcaldía», no «del que gobierna»: el padrón no
+    // registra pactos de gobierno (`quienManda`, src/scraper/en-breve-portada.ts).
+    'landing.promesas.delAlcaldia': '{n} promesas del partido de la alcaldía ({partido})',
+    'landing.promesas.delAlcaldia.una': '1 promesa del partido de la alcaldía ({partido})',
+    'landing.promesas.porPartido': '{n} promesas, por partido:',
     'landing.promesas.cta': 'Ver tracker completo →',
     'landing.rendicion.blurb':
-      'Reúne por concejalía los votos de pleno, las promesas electorales y las quejas del canal, que sólo se cuentan como pendientes de respuesta cuando han llegado al registro del ayuntamiento. Un plazo vencido se marca como aviso editorial — el estado nunca se modifica de forma automática.',
+      'Reúne por concejalía los votos de pleno, las promesas electorales y las quejas del canal.',
     'landing.rendicion.cta': 'Ver dashboard por departamento →',
-    'landing.rendicion.concejalias': 'Concejalías',
-    'landing.rendicion.conResponsable': 'Con responsable',
-    'landing.rendicion.concejales': 'Concejales',
+    'landing.rendicion.cobertura': '{total} concejalías; en {n} consta quién la lleva.',
+    'landing.rendicion.total': '{total} concejalías.',
     'landing.escanos': 'escaños',
     'landing.titulares': 'titulares',
     'landing.medios': 'medios',
@@ -2544,17 +2553,24 @@ export const CATALOGUE = {
     'landing.alcalde.puntos.title':
       'Puntos de orden del día gestionados por concejalías del Alcalde',
     'landing.alcalde.gobierno': 'Gobierno municipal',
-    'landing.alcalde.definitivo': 'crédito definitivo',
+    // Las palabras de la tira de indicadores, y la cifra exacta en el title.
+    'landing.alcalde.tope': 'tope de gasto {anio}',
     'landing.alcalde.definitivo.title':
-      'Crédito definitivo del ejercicio: lo aprobado más las modificaciones de crédito, según el estado de ejecución del Ayuntamiento. Al lado, las obligaciones reconocidas.',
-    'landing.alcalde.aprobado': 'presupuesto aprobado',
+      '{valor} de crédito definitivo en {anio} —lo aprobado más las modificaciones de crédito—, de los que se han gastado {ejecutado} (obligaciones reconocidas). Estado de ejecución del Ayuntamiento.',
+    'landing.alcalde.gastados': 'gastados',
+    'landing.alcalde.gastadosA': 'gastados a {fecha}',
+    'landing.alcalde.aprobado': 'presupuesto aprobado {anio}',
     'landing.alcalde.aprobado.title':
-      'Presupuesto de gastos aprobado del ejercicio, según CONPREL (Ministerio de Hacienda). No es lo ejecutado.',
-    'landing.alcalde.ejecutado': 'ejecutado',
-    'landing.alcalde.contratos': 'contratos acumulados',
+      '{valor} de presupuesto de gastos aprobado para {anio}, según CONPREL (Ministerio de Hacienda). No es lo gastado.',
+    'landing.alcalde.contratos': 'contratos adjudicados',
+    'landing.alcalde.contratosEn': 'contratos adjudicados en {anios}',
+    'landing.alcalde.sumados': 'sumados',
     'landing.alcalde.contratos.title':
-      'Contratos adjudicados registrados en el portal de contratación, no solo los de este mandato',
-    'landing.alcalde.subvenciones': 'subvenciones',
+      '{total}: la suma de los contratos adjudicados en {anios} que publican su importe, no sólo los de este mandato. Gobierto y Plataforma de Contratación del Sector Público.',
+    'landing.alcalde.contratos.titleSinAnios':
+      '{total}: la suma de los contratos adjudicados que publican su importe, no sólo los de este mandato. Gobierto y Plataforma de Contratación del Sector Público.',
+    'landing.alcalde.subvenciones': 'subvenciones concedidas',
+    'landing.alcalde.subvencionesEn': 'subvenciones concedidas en {anios}',
     'landing.alcalde.subvenciones.title':
       'Subvenciones concedidas por el Ayuntamiento (registro BDNS)',
     'landing.promesas.congelado': 'LOREG · congelado',
@@ -4580,6 +4596,8 @@ export const CATALOGUE = {
     'departamentos.title': 'Departaments · compromisos i terminis',
     'departamentos.subtitle':
       'Seguiment per regidoria dels acords aprovats en ple i de les promeses amb termini. Les votacions transcrites són el fet primari; les promeses són secundàries.',
+    'departamentos.reglas':
+      "La casella «{casilla}» d'una regidoria ix amb «—» fins que almenys una de les seues queixes ha arribat al registre de l'Ajuntament: fins aleshores no li deu cap resposta. Un termini vençut s'assenyala com a avís; mai canvia l'estat d'un acord ni d'una promesa.",
     'departamentos.card.responsable': 'Responsable',
     'departamentos.card.sinResponsable': 'Sense regidor/a assignat',
     'departamentos.card.votes': 'Vots',
@@ -4705,14 +4723,16 @@ export const CATALOGUE = {
     'landing.alcalde.role': 'Alcalde',
     'landing.empleo.all': 'Veure totes les ofertes →',
     'landing.promesas.blurb':
-      'Compromisos públics documentats, cadascun amb la seua cita i la font que la recull: el document oficial o la notícia. Sense judicis automàtics de compliment.',
+      'Compromisos públics documentats, cadascun amb la seua cita i la font que la recull: el document oficial o la notícia.',
+    'landing.promesas.delAlcaldia': "{n} promeses del partit de l'alcaldia ({partido})",
+    'landing.promesas.delAlcaldia.una': "1 promesa del partit de l'alcaldia ({partido})",
+    'landing.promesas.porPartido': '{n} promeses, per partit:',
     'landing.promesas.cta': 'Veure el tracker complet →',
     'landing.rendicion.blurb':
-      "Reunix per regidoria els vots de ple, les promeses electorals i les queixes del canal, que només es compten com a pendents de resposta quan han arribat al registre de l'ajuntament. Un termini vençut es marca com a avís editorial — l'estat mai es modifica de manera automàtica.",
+      'Reunix per regidoria els vots de ple, les promeses electorals i les queixes del canal.',
     'landing.rendicion.cta': 'Veure el tauler per departament →',
-    'landing.rendicion.concejalias': 'Regidories',
-    'landing.rendicion.conResponsable': 'Amb responsable',
-    'landing.rendicion.concejales': 'Regidors',
+    'landing.rendicion.cobertura': '{total} regidories; en {n} consta qui la porta.',
+    'landing.rendicion.total': '{total} regidories.',
     'landing.escanos': 'escons',
     'landing.titulares': 'titulars',
     'landing.medios': 'mitjans',
@@ -4755,17 +4775,23 @@ export const CATALOGUE = {
     'landing.alcalde.puntos.title':
       'Punts de l’orde del dia gestionats per regidories de l’Alcalde',
     'landing.alcalde.gobierno': 'Govern municipal',
-    'landing.alcalde.definitivo': 'crèdit definitiu',
+    'landing.alcalde.tope': 'límit de despesa {anio}',
     'landing.alcalde.definitivo.title':
-      'Crèdit definitiu de l’exercici: allò aprovat més les modificacions de crèdit, segons l’estat d’execució de l’Ajuntament. Al costat, les obligacions reconegudes.',
-    'landing.alcalde.aprobado': 'pressupost aprovat',
+      '{valor} de crèdit definitiu en {anio} —allò aprovat més les modificacions de crèdit—, dels quals s’han gastat {ejecutado} (obligacions reconegudes). Estat d’execució de l’Ajuntament.',
+    'landing.alcalde.gastados': 'gastats',
+    'landing.alcalde.gastadosA': 'gastats a {fecha}',
+    'landing.alcalde.aprobado': 'pressupost aprovat {anio}',
     'landing.alcalde.aprobado.title':
-      'Pressupost de despeses aprovat de l’exercici, segons CONPREL (Ministeri d’Hisenda). No és allò executat.',
-    'landing.alcalde.ejecutado': 'executat',
-    'landing.alcalde.contratos': 'contractes acumulats',
+      '{valor} de pressupost de despeses aprovat per a {anio}, segons CONPREL (Ministeri d’Hisenda). No és allò gastat.',
+    'landing.alcalde.contratos': 'contractes adjudicats',
+    'landing.alcalde.contratosEn': 'contractes adjudicats en {anios}',
+    'landing.alcalde.sumados': 'sumats',
     'landing.alcalde.contratos.title':
-      'Contractes adjudicats registrats al portal de contractació, no sols els d’este mandat',
-    'landing.alcalde.subvenciones': 'subvencions',
+      '{total}: la suma dels contractes adjudicats en {anios} que publiquen el seu import, no sols els d’este mandat. Gobierto i Plataforma de Contractació del Sector Públic.',
+    'landing.alcalde.contratos.titleSinAnios':
+      '{total}: la suma dels contractes adjudicats que publiquen el seu import, no sols els d’este mandat. Gobierto i Plataforma de Contractació del Sector Públic.',
+    'landing.alcalde.subvenciones': 'subvencions concedides',
+    'landing.alcalde.subvencionesEn': 'subvencions concedides en {anios}',
     'landing.alcalde.subvenciones.title': 'Subvencions concedides per l’Ajuntament (registre BDNS)',
     'landing.promesas.congelado': 'LOREG · congelat',
     'landing.topbar.edicion': 'ed. matí',

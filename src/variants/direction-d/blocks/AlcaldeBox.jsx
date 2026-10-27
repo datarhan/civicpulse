@@ -1,7 +1,8 @@
 import { useOfficials, partyColor } from '../../../hooks/useOfficials'
 import { usePromises } from '../../../hooks/usePromises'
 import { usePlenoAgendas } from '../../../hooks/usePlenoAgendas'
-import { useBudget, formatEuros as formatBudgetEuros } from '../../../hooks/useBudget'
+import { useBudget } from '../../../hooks/useBudget'
+import { eur0, eurM } from '../../../components/Presupuesto/FigurasEnBreve'
 import { useBudgetExecution } from '../../../hooks/useBudgetExecution'
 import { magnitudDelEjercicio } from '../../../scraper/presupuesto-lectura'
 import { useTenders } from '../../../hooks/useTenders'
@@ -36,6 +37,10 @@ export function AlcaldeBox() {
   const magnitud = magnitudDelEjercicio(budgetData?.snapshot, ejecucionData?.latest)
   const budgetYear = magnitud?.year ?? budgetData?.snapshot?.year
   const budgetEuros = magnitud?.valor
+  // Lo gastado lleva la fecha del listado del que sale, como en la tira: un
+  // listado de junio leído como el cierre fue el defecto de #358.
+  const fechaEjecucion =
+    magnitud?.etapa === 'definitivo' ? (ejecucionData?.latest?.fechaListado ?? null) : null
   const tendersAwarded = tendersData?.stats?.awardedContracts
   const tendersEuros = tendersData?.stats?.awardedTotalEuros
   const bdnsGranted = bdnsData?.stats?.granted
@@ -260,13 +265,22 @@ export function AlcaldeBox() {
               <a
                 href="/presupuesto"
                 style={{ color: PALETTE.ink80, textDecoration: 'none' }}
+                // La cifra a la unidad, aquí: la línea la redondea como un vecino
+                // la diría, y quien la quiera exacta la tiene a un toque.
                 title={
                   magnitud?.etapa === 'definitivo'
-                    ? t('landing.alcalde.definitivo.title')
-                    : t('landing.alcalde.aprobado.title')
+                    ? rellena(t('landing.alcalde.definitivo.title'), {
+                        valor: eur0(budgetEuros),
+                        anio: budgetYear,
+                        ejecutado: magnitud.ejecutado ? eur0(magnitud.ejecutado) : '—',
+                      })
+                    : rellena(t('landing.alcalde.aprobado.title'), {
+                        valor: eur0(budgetEuros),
+                        anio: budgetYear,
+                      })
                 }
               >
-                <span style={{ fontWeight: 700 }}>{formatBudgetEuros(budgetEuros)}</span>{' '}
+                <span style={{ fontWeight: 700 }}>{eurM(budgetEuros)}</span>{' '}
                 {/*
                   El año va AQUÍ, no sólo en el encabezado. Era la única cifra
                   de la fila sin período propio —los contratos llevan
@@ -286,20 +300,27 @@ export function AlcaldeBox() {
                   informativa de todas. La revisión lectora lo señaló tres
                   veces; las dos primeras se intentó arreglar con la etiqueta y
                   volvió, porque lo que estaba mal era la cifra elegida.
+                  Con las palabras de la tira: «tope de gasto» y «gastados»,
+                  con la fecha del listado del que sale lo gastado (#358).
                 */}
                 <span style={{ color: PALETTE.ink50 }}>
                   {magnitud?.etapa === 'definitivo'
-                    ? t('landing.alcalde.definitivo')
-                    : t('landing.alcalde.aprobado')}
-                  {budgetYear ? ` ${budgetYear}` : ''}
+                    ? rellena(t('landing.alcalde.tope'), { anio: budgetYear })
+                    : rellena(t('landing.alcalde.aprobado'), { anio: budgetYear })}
                 </span>
-                {magnitud?.ejecutado ? (
+                {magnitud?.etapa === 'definitivo' && magnitud.ejecutado ? (
                   <span style={{ color: PALETTE.ink50 }}>
                     {' · '}
-                    <span style={{ fontWeight: 700, color: PALETTE.ink80 }}>
-                      {formatBudgetEuros(magnitud.ejecutado)}
-                    </span>{' '}
-                    {t('landing.alcalde.ejecutado')}
+                    {/* Cifra, palabra y fecha juntas: partida, la línea dejaba
+                        «gastados a» arriba y la fecha sola debajo. */}
+                    <span style={{ whiteSpace: 'nowrap' }}>
+                      <span style={{ fontWeight: 700, color: PALETTE.ink80 }}>
+                        {eurM(magnitud.ejecutado)}
+                      </span>{' '}
+                      {fechaEjecucion
+                        ? rellena(t('landing.alcalde.gastadosA'), { fecha: fechaEjecucion })
+                        : t('landing.alcalde.gastados')}
+                    </span>
                   </span>
                 ) : null}
               </a>
@@ -320,22 +341,43 @@ export function AlcaldeBox() {
                 // structurally could not observe it and re-flagged the page
                 // every run. A fix applied where it cannot be read is the
                 // front-end twin of a test that is green while measuring
-                // nothing.
-                title={t('landing.alcalde.contratos.title')}
+                // nothing. The title only adds the exact sum.
+                title={
+                  tendersEuros
+                    ? rellena(
+                        t(
+                          tendersYears
+                            ? 'landing.alcalde.contratos.title'
+                            : 'landing.alcalde.contratos.titleSinAnios',
+                        ),
+                        { total: eur0(tendersEuros), anios: tendersYears },
+                      )
+                    : undefined
+                }
               >
                 <span style={{ fontWeight: 700 }}>{tendersAwarded}</span>{' '}
                 <span style={{ color: PALETTE.ink50 }}>
-                  {/* «acumulados», no sólo el período: es la palabra que llevan las
-              otras dos superficies que publican este mismo par —la tira de KPI
-              («acumulado · Gobierto/PLACSP») y FeedBlocks («Acumulado
-              2017–2026»)—, y ésta era la única de las tres sin ella. */}
-                  {t('landing.alcalde.contratos')}
-                  {tendersYears ? ` ${tendersYears}` : ''}
-                  {tendersEuros ? ` · ${formatBudgetEuros(tendersEuros)}` : ''}
-                  {tendersEuros && sinImporteContratos > 0
-                    ? ` · ${rellena(t('landing.contratos.sinImporte'), { n: sinImporteContratos })}`
-                    : ''}
+                  {/* «sumados», como la tira de indicadores: los euros son la
+                      suma de los que publican importe, y los que no, se dicen
+                      detrás. */}
+                  {tendersYears
+                    ? rellena(t('landing.alcalde.contratosEn'), { anios: tendersYears })
+                    : t('landing.alcalde.contratos')}
+                  {tendersEuros ? ' · ' : ''}
                 </span>
+                {tendersEuros ? (
+                  <>
+                    <span style={{ whiteSpace: 'nowrap' }}>
+                      <span style={{ fontWeight: 700 }}>{eurM(tendersEuros)}</span>{' '}
+                      <span style={{ color: PALETTE.ink50 }}>{t('landing.alcalde.sumados')}</span>
+                    </span>
+                    {sinImporteContratos > 0 && (
+                      <span style={{ color: PALETTE.ink50 }}>
+                        {` · ${rellena(t('landing.contratos.sinImporte'), { n: sinImporteContratos })}`}
+                      </span>
+                    )}
+                  </>
+                ) : null}
               </a>
             )}
             {bdnsGranted && (
@@ -346,8 +388,9 @@ export function AlcaldeBox() {
               >
                 <span style={{ fontWeight: 700 }}>{bdnsGranted}</span>{' '}
                 <span style={{ color: PALETTE.ink50 }}>
-                  {t('landing.alcalde.subvenciones')}
-                  {bdnsYears ? ` ${bdnsYears}` : ''}
+                  {bdnsYears
+                    ? rellena(t('landing.alcalde.subvencionesEn'), { anios: bdnsYears })
+                    : t('landing.alcalde.subvenciones')}
                 </span>
               </a>
             )}
