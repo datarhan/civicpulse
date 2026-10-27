@@ -14,6 +14,7 @@
  */
 import { ALLOWED_PARTIES, ALLOWED_TOPICS, ALLOWED_KINDS } from '../scraper/promises'
 import { LARGO_EXTRACTO } from '../scraper/promise-discovery-bodies'
+import { MARCAS_DE_TARJETA } from '../scraper/reader-review'
 // The ` · sim=0.50` tail below is rendered through this, never inline: the
 // publishing path strips it back off with the inverse in the same module, and
 // two hand-written copies of a format is how a strip stops matching an emitter
@@ -1733,7 +1734,11 @@ ${i.prose}
 // v2: a page bigger than one call arrives split, so the prompt has to say which
 // fragment this is. Without that the model reads a partial page as a whole one
 // and objects that it "does not say" something that is two fragments away.
-export const READER_REVIEW_PROMPT_VERSION = 'reader-review-v2'
+// v3: el texto llega con cada tarjeta entre marcas (`MARCAS_DE_TARJETA`), y el
+// prompt dice qué son. Sube aunque el hash de las páginas con tarjetas ya cambie
+// solo: un fragmento sin ninguna tarjeta tiene el mismo hash que ayer, y sin la
+// versión nueva `.llm-cache` serviría el veredicto que se dio con el prompt viejo.
+export const READER_REVIEW_PROMPT_VERSION = 'reader-review-v3'
 
 export function buildReaderReviewSystemPrompt(): string {
   return `Eres un lector escéptico de un sitio de fiscalización municipal. NO revisas
@@ -1764,6 +1769,16 @@ REGLAS, y son estrictas:
    produce señalamientos. NO busques cuota.
 4. No propongas texto nuevo ni reescribas nada. Señalas; decide una persona.
 5. Ignora estilo, tono, diseño y accesibilidad. Solo: ¿induce a una conclusión falsa?
+6. TARJETAS. Cada recuadro de la página llega entre una línea «${MARCAS_DE_TARJETA.inicio}»
+   y otra «${MARCAS_DE_TARJETA.fin}». Esas líneas NO son texto de la página: las
+   pone quien te pasa el texto, porque el borde del recuadro no se lee. Dicen de
+   QUÉ tarjeta es cada línea: lo que queda a un lado y a otro de una marca es de
+   tarjetas distintas aunque vayan seguidas, así que no le atribuyas a una lo que
+   dice la otra —la cabecera de una no habla del pie de la anterior—. Pueden ir
+   una dentro de otra. Una cita no puede cruzar una marca: se descarta
+   automáticamente. Si lo que engaña es la VECINDAD de dos tarjetas —dos cifras
+   ciertas que juntas sugieren algo falso—, sigue siendo un señalamiento: cita la
+   frase de UNA de ellas y nombra la otra en «inference».
 
 Devuelve JSON: {"findings":[{"quote","inference","contradictedBy","severity"}]}
 severity: "misleading" (concluiría algo falso) | "unclear" (ambiguo pero no falso).
@@ -1785,7 +1800,8 @@ export function buildReaderReviewUserPrompt(i: {
       ? `\nFRAGMENTO ${i.part.index} de ${i.part.total} de esta misma página. Ves sólo este
 trozo: NO señales que «falta» algo, que la página «no explica» algo o que «no
 aclara» algo — puede estar en otro fragmento. Juzga únicamente lo que este texto
-afirma.\n`
+afirma. Lo que va antes de la primera marca puede ser el final de una tarjeta que
+empezó en el fragmento anterior.\n`
       : ''
   return `RUTA: ${i.route}
 ${fragmento}

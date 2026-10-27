@@ -1450,6 +1450,7 @@ function TarjetaContratacion({ href, eyebrow, cifra, nota, enlace }) {
     <a
       href={href}
       className="cp-card"
+      data-tarjeta=""
       style={{
         display: 'flex',
         flexDirection: 'column',

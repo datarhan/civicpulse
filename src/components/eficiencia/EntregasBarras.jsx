@@ -44,6 +44,7 @@ export function EntregasBarras({ cobertura, sinAncla = false }) {
     <div
       id={sinAncla ? undefined : 'sec-entregas'}
       className="cp-card"
+      data-tarjeta=""
       style={{ scrollMarginTop: MARGEN_ANCLA }}
     >
       <SectionHead
