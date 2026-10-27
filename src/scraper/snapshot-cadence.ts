@@ -111,6 +111,11 @@ export const DEFAULT_EXPECTATIONS: DatasetExpectation[] = [
     // Las actas de la pestaña «Documentos» de regmeet: mismo bloqueo que el orden
     // del día, mismo único refresco (`scrape-ci-blocked.sh`).
     'pleno-actas.json',
+    // El vídeo que incrusta cada página de sesión de regmeet: mismo bloqueo,
+    // mismo refresco. Su sello es la descarga de la página más reciente que leyó
+    // (no la hora de la pasada), así que si la de actas deja de bajar páginas este
+    // fichero envejece con ellas; la edad de cada sesión la dice su `comprobadoEl`.
+    'pleno-videos-regmeet.json',
     // SINAC: sin medir desde CI, como `sindic-expedientes`. Ocho días bastan
     // aunque el fichero sea un archivo: los diez últimos de control de la red
     // principal cubren más de un año, así que una semana perdida no pierde

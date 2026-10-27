@@ -174,7 +174,7 @@ async function main() {
 
   process.stdout.write(
     `[transcription-health] ${doneCount}/${transcribable.length} transcritas ` +
-      `(${backlog.totalSessions} sesiones en total, ${backlog.withoutVideo} sin vídeo conocido) · ` +
+      `(${backlog.totalSessions} sesiones en total, ${backlog.withoutVideo} sin vídeo en el canal) · ` +
       `${remaining.length} pendientes · última hace ${daysSince === Infinity ? '—' : daysSince.toFixed(1)} días\n`,
   )
 
