@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-26T10:29:51.555Z",
+  "generatedAt": "2026-10-27T10:06:03.310Z",
   "source": {
     "platform": "OSM Overpass API",
     "endpoint": "https://overpass-api.de/api/interpreter",
@@ -394,6 +394,16 @@
       "point": [
         39.5211009,
         -0.5236753
+      ]
+    },
+    {
+      "id": "way-20021565",
+      "name": "Calle Fadrins",
+      "slug": "calle-fadrins",
+      "kind": "calle",
+      "point": [
+        39.5436683,
+        -0.5602407
       ]
     },
     {
@@ -5408,10 +5418,10 @@
     }
   ],
   "stats": {
-    "total": 540,
+    "total": 541,
     "byKind": {
       "avenida": 37,
-      "calle": 464,
+      "calle": 465,
       "camino": 21,
       "carretera": 13,
       "plaza": 5

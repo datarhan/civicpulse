@@ -1,18 +1,28 @@
 {
-  "generatedAt": "2026-10-26T10:26:16.583Z",
+  "generatedAt": "2026-10-27T10:01:31.876Z",
   "source": {
     "name": "Boletín Oficial de la Provincia de València",
     "home": "https://bop.dival.es/bop/",
     "note": "Last 30 days · anuncios del Ayuntamiento de Riba-roja de Túria"
   },
   "stats": {
-    "total": 6,
-    "daysCovered": 20,
+    "total": 7,
+    "daysCovered": 21,
     "daysRequested": 30,
     "fetchFailures": 0,
-    "latestDate": "2026-10-20"
+    "latestDate": "2026-10-27"
   },
   "anuncios": [
+    {
+      "id": "aeb0b2f9b76d",
+      "regNumber": "2026/12980",
+      "title": "Anuncio del Ayuntamiento de Riba-roja de Túria sobre la aprobación del padrón de la tasa por la prestación de servicios de recogida de residuos sólidos urbanos, y la recogida domiciliaria de poda y voluminosos, del ejercicio 2026",
+      "entity": "Ayuntamiento de Riba-roja de Túria",
+      "date": "2026-10-27",
+      "bulletinDate": "27/10/2026",
+      "pdfUrl": "https://bop.dival.es/bop/downloads?anuncioNumReg=2026%2F12980",
+      "bulletinUrl": "https://bop.dival.es/bop/downloads?boletinFecha=27%2F10%2F2026"
+    },
     {
       "id": "37ad44c65c99",
       "regNumber": "2026/12611",
