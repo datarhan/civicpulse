@@ -146,6 +146,7 @@ const STEP_OUTPUTS: Record<string, string> = {
   'scrape:pleno-actas': 'public/data/pleno-actas.json',
   'scrape:agua': 'public/data/agua.json',
   'scrape:agua-pares': 'public/data/agua-pares.json',
+  'scrape:pleno-videos-regmeet': 'public/data/pleno-videos-regmeet.json',
   'scrape:pleno-videos': 'public/data/pleno-videos.json',
   'auto-curate': 'public/data/pleno-findings.json',
   // steps that produce nothing this suite needs to see

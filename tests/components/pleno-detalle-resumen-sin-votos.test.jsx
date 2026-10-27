@@ -37,6 +37,7 @@ const AGENDAS = lee('plenos-agendas.json')
 const VOTOS = lee('pleno-votes.json')
 const HALLAZGOS = lee('pleno-findings.json')
 const VIDEOS = lee('pleno-videos.json')
+const VIDEOS_REGMEET = lee('pleno-videos-regmeet.json')
 const MANIFIESTO = lee('pleno-claims/index.json')
 
 const conVotos = (id) => VOTOS.items.some((v) => v.plenoId === id)
@@ -88,6 +89,7 @@ function escenarioDe(id, nombre) {
     '/data/pleno-votes.json': VOTOS,
     '/data/pleno-findings.json': HALLAZGOS,
     '/data/pleno-videos.json': VIDEOS,
+    '/data/pleno-videos-regmeet.json': VIDEOS_REGMEET,
   }
   const trozo = trozoDe(id)
   const url = `/data/pleno-claims/${id}.json`

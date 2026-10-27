@@ -45,6 +45,7 @@ const PLENOS = lee('plenos.json')
 const VOTOS = lee('pleno-votes.json')
 const HALLAZGOS = lee('pleno-findings.json')
 const VIDEOS = lee('pleno-videos.json')
+const VIDEOS_REGMEET = lee('pleno-videos-regmeet.json')
 const AGENDAS = lee('plenos-agendas.json')
 const INDICE = lee('pleno-claims/index.json').plenos
 const cotejadasDe = (p) => VEREDICTOS_COTEJADOS.reduce((n, v) => n + (p.byVerdict?.[v] ?? 0), 0)
@@ -71,6 +72,7 @@ function monta({ votos = [], hallazgos = [], chunk = null } = {}) {
       items: hallazgos.map((f) => ({ ...f, plenoId: ID })),
     },
     '/data/pleno-videos.json': { ...VIDEOS, items: [] },
+    '/data/pleno-videos-regmeet.json': { ...VIDEOS_REGMEET, items: [] },
     '/data/plenos-agendas.json': { ...AGENDAS, plenos: [] },
   }
   if (chunk) mapa[CHUNK_URL] = chunk
