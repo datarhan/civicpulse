@@ -1939,6 +1939,9 @@ export const CATALOGUE = {
     'glosario.deudaViva.termino': 'Deuda viva',
     'glosario.deudaViva.def':
       'Lo que el Ayuntamiento debe a bancos y otras entidades al cerrar el año. No es el capítulo «Deuda pública» del presupuesto, que es lo que se aparta cada año para pagarla.',
+    'glosario.correccion.termino': 'Corrección',
+    'glosario.correccion.def':
+      'Una nota fechada que añadimos al final de una pieza ya publicada cuando la cambiamos, y que explica qué cambió. Unas arreglan un error; otras precisan una frase o añaden un dato que faltaba. Una misma nota puede recoger varios cambios hechos a la vez.',
     'presupuesto.fuentes.title': 'Dos fuentes, dos presupuestos aprobados',
     'presupuesto.fuentes.conprel': 'CONPREL · Ministerio de Hacienda',
     'presupuesto.fuentes.municipal': 'Estado de ejecución del propio Ayuntamiento',
@@ -2479,8 +2482,11 @@ export const CATALOGUE = {
     'landing.reportajes.all': 'Todos los reportajes →',
     'landing.reportajes.piece': 'pieza',
     'landing.reportajes.pieces': 'piezas',
-    'landing.reportajes.correction': 'corrección publicada',
-    'landing.reportajes.corrections': 'correcciones publicadas',
+    // Una frase, no un rótulo en mayúsculas: «9 CORRECCIONES PUBLICADAS» en rojo
+    // se leía como «se equivocó nueve veces». El término abre el glosario y
+    // abarca «publicada»: suelta tras el botón, se leía igual en valencià.
+    'reportajes.correcciones.una': 'Con 1 [[correccion|corrección publicada]]',
+    'reportajes.correcciones': 'Con {n} [[correccion|correcciones publicadas]]',
     'landing.alcalde.role': 'Alcalde',
     'landing.empleo.all': 'Ver todas las ofertas →',
     'landing.promesas.blurb':
@@ -4251,6 +4257,9 @@ export const CATALOGUE = {
     'glosario.deudaViva.termino': 'Deute viu',
     'glosario.deudaViva.def':
       "El que l'Ajuntament deu a bancs i altres entitats en tancar l'any. No és el capítol «Deute públic» del pressupost, que és el que s'aparta cada any per a pagar-lo.",
+    'glosario.correccion.termino': 'Correcció',
+    'glosario.correccion.def':
+      "Una nota datada que afegim al final d'una peça ja publicada quan la canviem, i que explica què va canviar. Unes arreglen un error; altres precisen una frase o afegixen una dada que faltava. Una mateixa nota pot recollir diversos canvis fets alhora.",
     'presupuesto.fuentes.title': 'Dos fonts, dos pressupostos aprovats',
     'presupuesto.fuentes.conprel': "CONPREL · Ministeri d'Hisenda",
     'presupuesto.fuentes.municipal': "Estat d'execució del propi Ajuntament",
@@ -4691,8 +4700,8 @@ export const CATALOGUE = {
     'landing.reportajes.all': 'Tots els reportatges →',
     'landing.reportajes.piece': 'peça',
     'landing.reportajes.pieces': 'peces',
-    'landing.reportajes.correction': 'correcció publicada',
-    'landing.reportajes.corrections': 'correccions publicades',
+    'reportajes.correcciones.una': 'Amb 1 [[correccion|correcció publicada]]',
+    'reportajes.correcciones': 'Amb {n} [[correccion|correccions publicades]]',
     'landing.alcalde.role': 'Alcalde',
     'landing.empleo.all': 'Veure totes les ofertes →',
     'landing.promesas.blurb':

@@ -100,8 +100,11 @@ describe('ReportajeBlockD — the landing lead', () => {
       '/data/reportajes/uno.json',
       pieza({ correcciones: [{ fecha: '2026-08-02', texto: 'x' }] }),
     )
-    draw()
-    expect(await screen.findByText(/1 corrección publicada/)).toBeTruthy()
+    const { container } = draw()
+    await screen.findByText(/Dos millones/)
+    // «correcciones» es un botón del glosario dentro de la frase: el texto se
+    // lee entero en el contenedor, no en un solo nodo.
+    expect(container.textContent).toContain('Con 1 corrección publicada')
   })
 
   it('pluralises the corrections disclosure', async () => {
@@ -109,8 +112,9 @@ describe('ReportajeBlockD — the landing lead', () => {
       '/data/reportajes/uno.json',
       pieza({ correcciones: [{ texto: 'a' }, { texto: 'b' }] }),
     )
-    draw()
-    expect(await screen.findByText(/2 correcciones publicadas/)).toBeTruthy()
+    const { container } = draw()
+    await screen.findByText(/Dos millones/)
+    expect(container.textContent).toContain('Con 2 correcciones publicadas')
   })
 
   it('says nothing about corrections when there are none', async () => {

@@ -10,7 +10,7 @@ import { useT } from '../i18n'
  * cadenas se usan. Una clave nueva en `GLOSARIO` (src/glosario.js) necesita su
  * fila aquí; `tests/en-breve-presupuesto.test.jsx` lo comprueba.
  *
- * @returns {{ clave: string, termino: string, def: string, to: string }[]}
+ * @returns {{ clave: string, termino: string, def: string, to: string, propio?: boolean }[]}
  */
 export function useGlosario() {
   const t = useT()
@@ -52,6 +52,16 @@ export function useGlosario() {
         termino: t('glosario.entrega.termino'),
         def: t('glosario.entrega.def'),
         to: '/eficiencia#sec-entregas',
+      },
+      // Una palabra nuestra, no el nombre llano de una magnitud oficial: la
+      // definición no lleva «Nombre oficial». Cada pieza guarda su registro al
+      // final; la sección que lo explica para todas es cómo pedir una.
+      {
+        clave: 'correccion',
+        termino: t('glosario.correccion.termino'),
+        def: t('glosario.correccion.def'),
+        to: '/metodologia#rectificacion',
+        propio: true,
       },
     ],
     [t],
