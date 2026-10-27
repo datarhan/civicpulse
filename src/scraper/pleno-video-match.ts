@@ -13,6 +13,13 @@
  * lee una persona, no la zanja el transcriptor. Un vídeo que sólo da regmeet NO
  * se resuelve aquí: la cola de transcripción lee sólo el canal hasta que el
  * operador decida otra cosa.
+ *
+ * Y regmeet tampoco desempata. Con dos grabaciones del canal para una fecha (el
+ * directo y una subida del 23-12-2025; el «Part I» y el «Part II» del 13-02-2023),
+ * que la página de la sesión incruste una no dice cuál se transcribió: el mapa de
+ * hablantes y los recortes de voz cortan en los tiempos de ESA transcripción, y
+ * la grabación de la que salió no consta en ningún fichero. Elegir la de regmeet
+ * bajaría otra, con otros tiempos; por eso sigue lanzando «ambiguo».
  */
 import { videoDeSesion, type FilaRegmeet } from './pleno-video-fuentes'
 
@@ -82,18 +89,7 @@ export function resolveVideoForPleno(
     return { url: chosen.url, video: chosen, warnings }
   }
 
-  // Varios vídeos comparten la fecha. Que la página de la sesión nombre uno lo
-  // decide mejor que un tipo leído en un título.
-  const confirmado =
-    testigo?.estado === 'coinciden' ? sameDate.find((v) => v.ytId === testigo.video?.ytId) : null
-  if (confirmado) {
-    warnings.push(
-      `varios vídeos (${sameDate.length}) comparten la fecha ${pleno.date}; elegido el que incrusta la página de la sesión en regmeet`,
-    )
-    return { url: confirmado.url, video: confirmado, warnings }
-  }
-
-  // Si no, por el tipo.
+  // Multiple videos share this date — try to disambiguate by kind.
   const byKind = pleno.kind ? sameDate.filter((v) => v.kind === pleno.kind) : []
   if (byKind.length === 1) {
     warnings.push(

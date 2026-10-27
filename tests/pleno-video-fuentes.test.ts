@@ -221,6 +221,29 @@ describe('resolveVideoForPleno (lo que descarga el transcriptor)', () => {
     }
   })
 
+  it('con dos grabaciones del canal para la fecha, que regmeet confirme una no desempata', () => {
+    // 23-12-2025: el directo (OGM7-9SLePc) y una subida (5bpHZRUclkk), las dos del
+    // canal. La transcripción y el mapa de hablantes de 1qi8axv salieron del directo;
+    // elegir la que incrusta regmeet bajaría otra grabación, con otros tiempos.
+    const sesion = PLENOS.items.find((p: { id: string }) => p.id === '1qi8axv')
+    const directo = CANAL.find((v: { ytId: string }) => v.ytId === 'OGM7-9SLePc')
+    expect(directo?.plenoDate).toBe(sesion.date)
+    const subida = {
+      ...directo,
+      ytId: '5bpHZRUclkk',
+      url: 'https://www.youtube.com/watch?v=5bpHZRUclkk',
+      title: 'Pleno extrordinario y urgente 23 de diciembre de 2025',
+    }
+    expect(() =>
+      resolveVideoForPleno(
+        '1qi8axv',
+        PLENOS.items,
+        [directo, subida],
+        [fila('1qi8axv', '5bpHZRUclkk')],
+      ),
+    ).toThrow(/ambiguo/)
+  })
+
   it('un vídeo que sólo da regmeet no entra en la cola de transcripción', () => {
     expect(() =>
       resolveVideoForPleno('1237hbp', PLENOS.items, CANAL, [fila('1237hbp', 'L6Cy1hTrpIc')]),
