@@ -1,19 +1,36 @@
 {
-  "generatedAt": "2026-10-27T08:16:24.993Z",
+  "generatedAt": "2026-10-27T08:44:57.178Z",
   "source": {
     "channelUrl": "https://www.youtube.com/@ajuntam_riba_roja_de_turia",
     "description": "Ajuntament de Riba-roja YouTube channel — pleno recordings only. Feed produced via `yt-dlp --flat-playlist --dump-json --extractor-args youtube:lang=ca`. A pleno whose title yields no date (no day, no year, or a form the parser cannot read) is listed in `sinFecha` with its reason, never tied to a session."
   },
   "stats": {
-    "totalVideosScanned": 121,
-    "plenoVideosMatched": 35,
+    "totalVideosScanned": 670,
+    "plenoVideosMatched": 79,
     "byKind": {
-      "ordinario": 25,
-      "extraordinario": 4,
-      "urgente": 6,
-      "otro": 0
+      "ordinario": 56,
+      "extraordinario": 10,
+      "urgente": 10,
+      "otro": 3
     },
-    "plenosSinFecha": 13
+    "plenosSinFecha": 65,
+    "pestanas": [
+      {
+        "pestana": "Ajuntament de Riba-roja de Túria - Vídeos",
+        "leidas": 500,
+        "total": null
+      },
+      {
+        "pestana": "Ajuntament de Riba-roja de Túria - En directe",
+        "leidas": 169,
+        "total": 169
+      },
+      {
+        "pestana": "Ajuntament de Riba-roja de Túria - Curts",
+        "leidas": 1,
+        "total": 1
+      }
+    ]
   },
   "items": [
     {
@@ -171,11 +188,39 @@
       "url": "https://www.youtube.com/watch?v=eTAGc-4hlws"
     },
     {
+      "ytId": "6UfU4IsO9pU",
+      "title": "Ple ordinari 7 de juliol de 2025",
+      "plenoDate": "2025-07-07",
+      "kind": "ordinario",
+      "url": "https://www.youtube.com/watch?v=6UfU4IsO9pU"
+    },
+    {
+      "ytId": "jtO-zyp6sj4",
+      "title": "Ple ordinari 2 de juny de 2025",
+      "plenoDate": "2025-06-02",
+      "kind": "ordinario",
+      "url": "https://www.youtube.com/watch?v=jtO-zyp6sj4"
+    },
+    {
+      "ytId": "bfkd-ZAjiNk",
+      "title": "Pleno ordinario 12 de mayo de 2025",
+      "plenoDate": "2025-05-12",
+      "kind": "ordinario",
+      "url": "https://www.youtube.com/watch?v=bfkd-ZAjiNk"
+    },
+    {
       "ytId": "vR_XPJJPoBg",
       "title": "Pleno ordinario 7 ade abril de 2025",
       "plenoDate": "2025-04-07",
       "kind": "ordinario",
       "url": "https://www.youtube.com/watch?v=vR_XPJJPoBg"
+    },
+    {
+      "ytId": "udh3dGNIZc4",
+      "title": "Ple ordinari 3 de març de 2025",
+      "plenoDate": "2025-03-03",
+      "kind": "ordinario",
+      "url": "https://www.youtube.com/watch?v=udh3dGNIZc4"
     },
     {
       "ytId": "gKUtAb8aMqw",
@@ -185,6 +230,48 @@
       "url": "https://www.youtube.com/watch?v=gKUtAb8aMqw"
     },
     {
+      "ytId": "f4Y_dp0H8R4",
+      "title": "Ple ordinari 20 de gener de 2025",
+      "plenoDate": "2025-01-20",
+      "kind": "ordinario",
+      "url": "https://www.youtube.com/watch?v=f4Y_dp0H8R4"
+    },
+    {
+      "ytId": "zDi99e9-CcQ",
+      "title": "Ple extraordinari 26 de desembre de 2024",
+      "plenoDate": "2024-12-26",
+      "kind": "extraordinario",
+      "url": "https://www.youtube.com/watch?v=zDi99e9-CcQ"
+    },
+    {
+      "ytId": "DveLRugIT3c",
+      "title": "Ple ordinari 2 de desembre de 2024",
+      "plenoDate": "2024-12-02",
+      "kind": "ordinario",
+      "url": "https://www.youtube.com/watch?v=DveLRugIT3c"
+    },
+    {
+      "ytId": "KUEL1W34kCs",
+      "title": "Ple ordinari 4 de novembre de 2024",
+      "plenoDate": "2024-11-04",
+      "kind": "ordinario",
+      "url": "https://www.youtube.com/watch?v=KUEL1W34kCs"
+    },
+    {
+      "ytId": "j2EGFiyMzuw",
+      "title": "Ple extraordinari 21 d'octubre de 2024",
+      "plenoDate": "2024-10-21",
+      "kind": "extraordinario",
+      "url": "https://www.youtube.com/watch?v=j2EGFiyMzuw"
+    },
+    {
+      "ytId": "5rswAjxOPcg",
+      "title": "Ple ordinari 7 d'octubre de 2024",
+      "plenoDate": "2024-10-07",
+      "kind": "ordinario",
+      "url": "https://www.youtube.com/watch?v=5rswAjxOPcg"
+    },
+    {
       "ytId": "as17tOqHIN0",
       "title": "Ple ordinari 9 de setembre de 2024",
       "plenoDate": "2024-09-09",
@@ -192,11 +279,60 @@
       "url": "https://www.youtube.com/watch?v=as17tOqHIN0"
     },
     {
+      "ytId": "jwqxC_ppmGk",
+      "title": "Ple ordinari 29 de juliol de 2024",
+      "plenoDate": "2024-07-29",
+      "kind": "ordinario",
+      "url": "https://www.youtube.com/watch?v=jwqxC_ppmGk"
+    },
+    {
+      "ytId": "c_Zs2sc1VKw",
+      "title": "Ple extraordinari 22 de juliol de 2024",
+      "plenoDate": "2024-07-22",
+      "kind": "extraordinario",
+      "url": "https://www.youtube.com/watch?v=c_Zs2sc1VKw"
+    },
+    {
+      "ytId": "VHeccyYH1NE",
+      "title": "Ple ordinari 3 de juny de 2024",
+      "plenoDate": "2024-06-03",
+      "kind": "ordinario",
+      "url": "https://www.youtube.com/watch?v=VHeccyYH1NE"
+    },
+    {
+      "ytId": "uxDOEGowNeU",
+      "title": "Ple ordinari 6 de maig de 2024",
+      "plenoDate": "2024-05-06",
+      "kind": "ordinario",
+      "url": "https://www.youtube.com/watch?v=uxDOEGowNeU"
+    },
+    {
+      "ytId": "nDAjyDx6HlU",
+      "title": "Ple extraordinari i urgent 28 de març de 2024",
+      "plenoDate": "2024-03-28",
+      "kind": "urgente",
+      "url": "https://www.youtube.com/watch?v=nDAjyDx6HlU"
+    },
+    {
       "ytId": "hV-VURSC5y4",
       "title": "Ple ordinari 4 de març de 2024",
       "plenoDate": "2024-03-04",
       "kind": "ordinario",
       "url": "https://www.youtube.com/watch?v=hV-VURSC5y4"
+    },
+    {
+      "ytId": "3fR59mHGGmY",
+      "title": "Ple ordinari 5 de febrer de 2024",
+      "plenoDate": "2024-02-05",
+      "kind": "ordinario",
+      "url": "https://www.youtube.com/watch?v=3fR59mHGGmY"
+    },
+    {
+      "ytId": "ks2s9f1IF1s",
+      "title": "Ple ordinari 15 de gener de 2024",
+      "plenoDate": "2024-01-15",
+      "kind": "ordinario",
+      "url": "https://www.youtube.com/watch?v=ks2s9f1IF1s"
     },
     {
       "ytId": "GFo7NjFStf8",
@@ -227,6 +363,27 @@
       "url": "https://www.youtube.com/watch?v=BUW79jOqnIc"
     },
     {
+      "ytId": "p9o7hb6lLA4",
+      "title": "Ple ordinari 11 de setembre 2023",
+      "plenoDate": "2023-09-11",
+      "kind": "ordinario",
+      "url": "https://www.youtube.com/watch?v=p9o7hb6lLA4"
+    },
+    {
+      "ytId": "dAK-BNIt9Y8",
+      "title": "Ple 17 de juny de 2023. Ple de Constitució de la Corporació Municipal i Elecció de l'Alcalde.",
+      "plenoDate": "2023-06-17",
+      "kind": "otro",
+      "url": "https://www.youtube.com/watch?v=dAK-BNIt9Y8"
+    },
+    {
+      "ytId": "Xf8JhyiUChw",
+      "title": "Ple ordinari 24 de maig de 2023",
+      "plenoDate": "2023-05-24",
+      "kind": "ordinario",
+      "url": "https://www.youtube.com/watch?v=Xf8JhyiUChw"
+    },
+    {
       "ytId": "pu-3Pzx_dO8",
       "title": "Ple ordinari 8 de maig de 2023",
       "plenoDate": "2023-05-08",
@@ -239,6 +396,13 @@
       "plenoDate": "2023-05-02",
       "kind": "extraordinario",
       "url": "https://www.youtube.com/watch?v=kIBhRIMxuok"
+    },
+    {
+      "ytId": "kS5fyq_a6CY",
+      "title": "Ple ordinari 13 de febrer de 2023 c",
+      "plenoDate": "2023-02-13",
+      "kind": "ordinario",
+      "url": "https://www.youtube.com/watch?v=kS5fyq_a6CY"
     },
     {
       "ytId": "QF3xwnV4ycQ",
@@ -260,9 +424,180 @@
       "plenoDate": "2023-01-23",
       "kind": "ordinario",
       "url": "https://www.youtube.com/watch?v=EKoMiCY-HUk"
+    },
+    {
+      "ytId": "HVKLkdTLqtk",
+      "title": "Ple ordinari 12 de desembre de 2022",
+      "plenoDate": "2022-12-12",
+      "kind": "ordinario",
+      "url": "https://www.youtube.com/watch?v=HVKLkdTLqtk"
+    },
+    {
+      "ytId": "s5ZWATwM3nw",
+      "title": "Ple ordinari 14 de novembre de 2022",
+      "plenoDate": "2022-11-14",
+      "kind": "ordinario",
+      "url": "https://www.youtube.com/watch?v=s5ZWATwM3nw"
+    },
+    {
+      "ytId": "G9Bk9ORVZbE",
+      "title": "Ple extraordinari 27 de setembre de 2022",
+      "plenoDate": "2022-09-27",
+      "kind": "extraordinario",
+      "url": "https://www.youtube.com/watch?v=G9Bk9ORVZbE"
+    },
+    {
+      "ytId": "VCrxHY5mfLU",
+      "title": "Pleno 25 de julio de 2022",
+      "plenoDate": "2022-07-25",
+      "kind": "otro",
+      "url": "https://www.youtube.com/watch?v=VCrxHY5mfLU"
+    },
+    {
+      "ytId": "fT4RF78-arc",
+      "title": "Pleno 4 de julio de 2022",
+      "plenoDate": "2022-07-04",
+      "kind": "otro",
+      "url": "https://www.youtube.com/watch?v=fT4RF78-arc"
+    },
+    {
+      "ytId": "x4El5jXrJ8k",
+      "title": "Ple extraordinari 14 de juny de 2022",
+      "plenoDate": "2022-06-14",
+      "kind": "extraordinario",
+      "url": "https://www.youtube.com/watch?v=x4El5jXrJ8k"
+    },
+    {
+      "ytId": "tKNw4aMAA4s",
+      "title": "Ple ordinari 6 de juny de 2022",
+      "plenoDate": "2022-06-06",
+      "kind": "ordinario",
+      "url": "https://www.youtube.com/watch?v=tKNw4aMAA4s"
+    },
+    {
+      "ytId": "sPQQlGjskcM",
+      "title": "Ple ordinari 23 de maig de 2022",
+      "plenoDate": "2022-05-23",
+      "kind": "ordinario",
+      "url": "https://www.youtube.com/watch?v=sPQQlGjskcM"
+    },
+    {
+      "ytId": "dMeyb8P48UM",
+      "title": "Ple ordinari 7 de març de 2022",
+      "plenoDate": "2022-03-07",
+      "kind": "ordinario",
+      "url": "https://www.youtube.com/watch?v=dMeyb8P48UM"
+    },
+    {
+      "ytId": "ZbrC8Qls6_Y",
+      "title": "Ple ordinari 17 de gener de 2022",
+      "plenoDate": "2022-01-17",
+      "kind": "ordinario",
+      "url": "https://www.youtube.com/watch?v=ZbrC8Qls6_Y"
+    },
+    {
+      "ytId": "cA1tG4VzUDk",
+      "title": "Ple extraordinari i urgent 14 de desembre de 2021",
+      "plenoDate": "2021-12-14",
+      "kind": "urgente",
+      "url": "https://www.youtube.com/watch?v=cA1tG4VzUDk"
+    },
+    {
+      "ytId": "LMGZe5Y5pvU",
+      "title": "Ple ordinari 13 de desembre de 2021",
+      "plenoDate": "2021-12-13",
+      "kind": "ordinario",
+      "url": "https://www.youtube.com/watch?v=LMGZe5Y5pvU"
+    },
+    {
+      "ytId": "oL2r03CAaTY",
+      "title": "Ple ordinari 8 de novembre de 2021",
+      "plenoDate": "2021-11-08",
+      "kind": "ordinario",
+      "url": "https://www.youtube.com/watch?v=oL2r03CAaTY"
+    },
+    {
+      "ytId": "ACxLjJuNsR8",
+      "title": "Ple ordinari 4 d'octubre de 2021",
+      "plenoDate": "2021-10-04",
+      "kind": "ordinario",
+      "url": "https://www.youtube.com/watch?v=ACxLjJuNsR8"
+    },
+    {
+      "ytId": "hWYHWNrHFYs",
+      "title": "Ple ordinari 26 de juliol de 2021",
+      "plenoDate": "2021-07-26",
+      "kind": "ordinario",
+      "url": "https://www.youtube.com/watch?v=hWYHWNrHFYs"
+    },
+    {
+      "ytId": "6L-r88Llk14",
+      "title": "Ple ordinari 5 de juliol de 2021",
+      "plenoDate": "2021-07-05",
+      "kind": "ordinario",
+      "url": "https://www.youtube.com/watch?v=6L-r88Llk14"
+    },
+    {
+      "ytId": "yyOBgg-F1u0",
+      "title": "Ple extraordinari 22 de juny de 2021",
+      "plenoDate": "2021-06-22",
+      "kind": "extraordinario",
+      "url": "https://www.youtube.com/watch?v=yyOBgg-F1u0"
+    },
+    {
+      "ytId": "QZAs_hxFYcI",
+      "title": "Ple ordinari 7 de juny de 2021",
+      "plenoDate": "2021-06-07",
+      "kind": "ordinario",
+      "url": "https://www.youtube.com/watch?v=QZAs_hxFYcI"
+    },
+    {
+      "ytId": "VkHcfkMGafM",
+      "title": "Ple ordinari 10 de maig de 2021",
+      "plenoDate": "2021-05-10",
+      "kind": "ordinario",
+      "url": "https://www.youtube.com/watch?v=VkHcfkMGafM"
+    },
+    {
+      "ytId": "rjU6qhrUj_I",
+      "title": "Ple ordinari 19 d'abril de 2021",
+      "plenoDate": "2021-04-19",
+      "kind": "ordinario",
+      "url": "https://www.youtube.com/watch?v=rjU6qhrUj_I"
+    },
+    {
+      "ytId": "8Vn6oX2OwUk",
+      "title": "Ple extraordinari i urgent 23 de maig de 2019",
+      "plenoDate": "2019-05-23",
+      "kind": "urgente",
+      "url": "https://www.youtube.com/watch?v=8Vn6oX2OwUk"
+    },
+    {
+      "ytId": "LQJT1UsIRmw",
+      "title": "Ple extraordinari i urgent de 26 de desembre de 2018",
+      "plenoDate": "2018-12-26",
+      "kind": "urgente",
+      "url": "https://www.youtube.com/watch?v=LQJT1UsIRmw"
+    },
+    {
+      "ytId": "pj0NAT6A8iU",
+      "title": "Ple ordinari 7 de novembre de 2016 Ajuntament Riba-roja de Túria",
+      "plenoDate": "2016-11-07",
+      "kind": "ordinario",
+      "url": "https://www.youtube.com/watch?v=pj0NAT6A8iU"
     }
   ],
   "sinFecha": [
+    {
+      "ytId": "RaghAKWpip0",
+      "title": "Ple ordinari 7 de feber de 2022",
+      "motivo": "mes-desconocido"
+    },
+    {
+      "ytId": "KsQmJrPoxiM",
+      "title": "Ple extraordinari 21 de septembre de 2021",
+      "motivo": "mes-desconocido"
+    },
     {
       "ytId": "SrXYerYa_pQ",
       "title": "Pleno ordinario 2 de diciembre",
@@ -326,6 +661,256 @@
     {
       "ytId": "Ndp3emhfYhM",
       "title": "PLE ORDINARI MARÇ 2023",
+      "motivo": "sin-dia"
+    },
+    {
+      "ytId": "J6xbzWxLg1Y",
+      "title": "Ple extraordinari de pressupostos 2023",
+      "motivo": "sin-dia"
+    },
+    {
+      "ytId": "bCwWpDmc6LE",
+      "title": "Ple ordinari de novembre",
+      "motivo": "sin-dia"
+    },
+    {
+      "ytId": "cQUOlhj09VQ",
+      "title": "Ple extraordinari d'octubre",
+      "motivo": "sin-dia"
+    },
+    {
+      "ytId": "SpDafICg-CI",
+      "title": "Ple extraordinari d'octubre",
+      "motivo": "sin-dia"
+    },
+    {
+      "ytId": "elBP0q0JOqE",
+      "title": "Ple ordinari d'octubre",
+      "motivo": "sin-dia"
+    },
+    {
+      "ytId": "B015Tw5-bVg",
+      "title": "Ple ordinari setembre 2022",
+      "motivo": "sin-dia"
+    },
+    {
+      "ytId": "lvvrAGAteFY",
+      "title": "Pleno ordinario 23 de mayo",
+      "motivo": "sin-año"
+    },
+    {
+      "ytId": "ZSBe5Vdykr4",
+      "title": "Pleno ordinario 07 de marzo",
+      "motivo": "sin-año"
+    },
+    {
+      "ytId": "gV6fpSlOQg4",
+      "title": "Pleno ordinario 07 de febrero",
+      "motivo": "sin-año"
+    },
+    {
+      "ytId": "xylBGZpoNa4",
+      "title": "Pleno extraordinario 17 de enero",
+      "motivo": "sin-año"
+    },
+    {
+      "ytId": "6JMsg-sTAiY",
+      "title": "Pleno extraordinario 14 de diciembre",
+      "motivo": "sin-año"
+    },
+    {
+      "ytId": "gEWpLlwnBzI",
+      "title": "Pleno ordinario 13 de diciembre",
+      "motivo": "sin-año"
+    },
+    {
+      "ytId": "THUuJtujDkc",
+      "title": "Pleno ordinario 08 de noviembre",
+      "motivo": "sin-año"
+    },
+    {
+      "ytId": "1addadrrzIU",
+      "title": "Pleno ordinario 04 de octubre",
+      "motivo": "sin-año"
+    },
+    {
+      "ytId": "3TdNkV4fLzQ",
+      "title": "Pleno ordinario 21 de septiembre",
+      "motivo": "sin-año"
+    },
+    {
+      "ytId": "i522Ta0jkGg",
+      "title": "Pleno ordinario 6 de septiembre",
+      "motivo": "sin-año"
+    },
+    {
+      "ytId": "XwzoEAbDjb8",
+      "title": "Pleno ordinario 26 de julio",
+      "motivo": "sin-año"
+    },
+    {
+      "ytId": "o-jwU6qzf4Y",
+      "title": "Pleno ordinario 5 de julio",
+      "motivo": "sin-año"
+    },
+    {
+      "ytId": "zg8C0hyUF-Q",
+      "title": "Pleno extraordinario 22 de junio",
+      "motivo": "sin-año"
+    },
+    {
+      "ytId": "DN3u4tiU7pY",
+      "title": "Pleno ordinario 7 de junio",
+      "motivo": "sin-año"
+    },
+    {
+      "ytId": "3XJwug7GJCU",
+      "title": "Pleno ordinario 1 de mayo",
+      "motivo": "sin-año"
+    },
+    {
+      "ytId": "VpIceHvx-qo",
+      "title": "Pleno ordinario 19 de abril",
+      "motivo": "sin-año"
+    },
+    {
+      "ytId": "fodxpefKNco",
+      "title": "Pleno extraordinario 13 de abril",
+      "motivo": "sin-año"
+    },
+    {
+      "ytId": "hp8q5cwMtaM",
+      "title": "Pleno ordinario 1 de marzo",
+      "motivo": "sin-año"
+    },
+    {
+      "ytId": "kAJLDcwK-Bs",
+      "title": "Pleno ordinario 8 de febrero",
+      "motivo": "sin-año"
+    },
+    {
+      "ytId": "Fd1TZTk1B20",
+      "title": "Ple ordinari 4 de juny",
+      "motivo": "sin-año"
+    },
+    {
+      "ytId": "eGwD87oHj7I",
+      "title": "Ple ordinari  14 mayo",
+      "motivo": "sin-año"
+    },
+    {
+      "ytId": "09u45C5BiC4",
+      "title": "Ple ordinari  14 mayo",
+      "motivo": "sin-año"
+    },
+    {
+      "ytId": "Hbr1NmkzLF8",
+      "title": "Ple ordinari  10 mayo",
+      "motivo": "sin-año"
+    },
+    {
+      "ytId": "1C3DyNlwjqI",
+      "title": "Ple ordinari  10 mayo",
+      "motivo": "sin-año"
+    },
+    {
+      "ytId": "rLB55k8wQ5c",
+      "title": "Ple ordinari  10 mayo",
+      "motivo": "sin-año"
+    },
+    {
+      "ytId": "7Yobtc6LOxI",
+      "title": "Ple ordinari  5 març",
+      "motivo": "sin-año"
+    },
+    {
+      "ytId": "l0JczlfRJoo",
+      "title": "Ple ordinari  5 febrer",
+      "motivo": "sin-año"
+    },
+    {
+      "ytId": "GMBiBGtEGhY",
+      "title": "Ple ordinari  15 gener",
+      "motivo": "sin-año"
+    },
+    {
+      "ytId": "URCqqnSzFYk",
+      "title": "Ple 4 de desembre de2017",
+      "motivo": "formato-desconocido"
+    },
+    {
+      "ytId": "5sXToIuI77U",
+      "title": "Ple 06/11/2017",
+      "motivo": "formato-desconocido"
+    },
+    {
+      "ytId": "fNHssVNW1bc",
+      "title": "Ple 02/10/2017",
+      "motivo": "formato-desconocido"
+    },
+    {
+      "ytId": "mSv8eudA6Rg",
+      "title": "Ple 11/09/2017",
+      "motivo": "formato-desconocido"
+    },
+    {
+      "ytId": "IuEmout7omM",
+      "title": "Ple 31/07/2017",
+      "motivo": "formato-desconocido"
+    },
+    {
+      "ytId": "i_HRtoiM9Fo",
+      "title": "Ple Riba-roja 05/06/2017",
+      "motivo": "formato-desconocido"
+    },
+    {
+      "ytId": "9Q_x4dzQblg",
+      "title": "Ple Riba-roja 22/05/2017",
+      "motivo": "formato-desconocido"
+    },
+    {
+      "ytId": "9EdKI68v1Ts",
+      "title": "Ple Riba-roja 8/05/2017",
+      "motivo": "formato-desconocido"
+    },
+    {
+      "ytId": "ScIAZO9fP2I",
+      "title": "Ple Riba-roja 3/04/2017",
+      "motivo": "formato-desconocido"
+    },
+    {
+      "ytId": "y_1jkm_fHtY",
+      "title": "Ple Riba-roja 31/03/2017",
+      "motivo": "formato-desconocido"
+    },
+    {
+      "ytId": "hZzibHiVFB0",
+      "title": "Ple Riba-roja 06/03/2017",
+      "motivo": "formato-desconocido"
+    },
+    {
+      "ytId": "InPuBX-J6vg",
+      "title": "Ple Riba-roja 20/02/2017",
+      "motivo": "formato-desconocido"
+    },
+    {
+      "ytId": "Zqd4TCzyySY",
+      "title": "Ple Riba-roja 6/02/2017",
+      "motivo": "formato-desconocido"
+    },
+    {
+      "ytId": "qUa7KxF8hIU",
+      "title": "Ple Riba-roja 9/01/2017",
+      "motivo": "formato-desconocido"
+    },
+    {
+      "ytId": "i4N1-dkGXG8",
+      "title": "Ple Riba-roja 15 dic 2016",
+      "motivo": "mes-desconocido"
+    },
+    {
+      "ytId": "4BZEHq59aw8",
+      "title": "Ple Riba-roja de Túria",
       "motivo": "sin-dia"
     }
   ]
