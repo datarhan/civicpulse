@@ -512,8 +512,8 @@ overwrites it. Change the bot's SQLite instead.
 
 ### Registered unemployment (monthly series)
 
-- **Pipeline** — `paro.ts` → `paro.json`
-- **Source** — **SEPE** Muniacteco XLS feeds (3-sheet: AMBOS / HOMBRES / MUJERES); CLI walks back up to 24 months
+- **Pipeline** — `paro-fetch.ts` (the walk) → `paro.ts` (parser + `componerSerieParo`) → `paro.json`
+- **Source** — **SEPE** Muniacteco XLS feeds (3-sheet: AMBOS / HOMBRES / MUJERES); CLI walks back up to 24 months. A month the walk does not read keeps the row the published file already had — only a fresh reading adds, changes or drops one — and `stats` names every month kept or missing, with its state (`ausente` / `ilegible` / `sin-respuesta`)
 - **Surfaces** — Direction D KPI strip (Paro panel with MoM delta + 12-month sparkline)
 
 ### Plenos (council sessions)
