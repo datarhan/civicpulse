@@ -25,6 +25,8 @@ import { CATALOGUE } from '../../src/i18n'
 import Plenos from '../../src/pages/Plenos'
 import { DEPARTMENT_LABEL } from '../../src/scraper/departments'
 import { RETRACTION_SCOPES } from '../../src/scraper/pleno-votes'
+import { etiquetaDelPunto } from '../../src/scraper/etiqueta-llana'
+import { hoyEnRibarroja } from '../../src/scraper/en-breve-portada'
 import {
   cadenasDe,
   datosPintados,
@@ -62,8 +64,64 @@ const RUTAS = {
   manifiesto: '/data/pleno-claims/index.json',
   votos: '/data/pleno-votes.json',
   hallazgos: '/data/pleno-findings.json',
+  // «El último pleno» enlaza el vídeo de la sesión, como su página.
+  videos: '/data/pleno-videos.json',
+  videosRegmeet: '/data/pleno-videos-regmeet.json',
 }
 const sirve = () => Object.fromEntries(Object.values(RUTAS).map((r) => [r, publicado(r)]))
+
+/**
+ * Las etiquetas llanas de los puntos: son el título del punto en la lengua en
+ * que se convocó, recortado, y no se traducen. No salen tal cual en el JSON, así
+ * que `datosPintados` no las reconoce: se derivan con la misma función.
+ */
+const etiquetasDe = (mapa) =>
+  (mapa[RUTAS.agendas].plenos ?? []).flatMap((p) =>
+    p.agenda.map((a) => etiquetaDelPunto(a.title).texto),
+  )
+
+/** La última sesión celebrada antes de hoy en Riba-roja: la de «El último pleno». */
+const ultimaDe = (mapa) => {
+  const hoy = hoyEnRibarroja()
+  return mapa[RUTAS.plenos].items
+    .filter((s) => s.date && s.date.slice(0, 10) < hoy)
+    .reduce((a, b) => (b.date > a.date ? b : a)).id
+}
+
+/**
+ * «El último pleno» con votaciones transcritas de los desenlaces dados y, si se
+ * pide, más informes, puntos sin parte o un solo punto. El dato de hoy no trae
+ * votaciones de esa sesión, así que cada rama de la tarjeta de votaciones nacería
+ * sin leer en valencià. Cada votación es una copia de una fila publicada.
+ */
+function ultimoPlenoCon(
+  desenlaces,
+  { reparto = 0, informes = 0, otros = 0, unPunto = false } = {},
+) {
+  const mapa = structuredClone(sirve())
+  const id = ultimaDe(mapa)
+  const votos = mapa[RUTAS.votos]
+  const modelo = votos.items.find((v) => v.provenance?.breakdown)
+  desenlaces.forEach((outcome, i) => {
+    const fila = structuredClone(modelo)
+    fila.id = `${id}-9${i}`
+    fila.plenoId = id
+    fila.itemNumber = 90 + i
+    fila.outcome = outcome
+    fila.provenance.breakdown.kind = i < reparto ? 'transcripcion' : 'acta'
+    votos.items.push(fila)
+  })
+  votos.stats.byPleno[id] = desenlaces.length
+  const sesion = mapa[RUTAS.agendas].plenos.find((p) => p.id === id)
+  const resolutivas = sesion.agenda.filter((a) => a.section === 'resolutiva')
+  for (const a of resolutivas.slice(0, informes)) a.section = 'informativa'
+  for (const a of resolutivas.slice(informes, informes + otros)) a.section = 'apertura'
+  if (unPunto) {
+    sesion.agenda = sesion.agenda.slice(0, 1)
+    sesion.agendaCount = 1
+  }
+  return mapa
+}
 
 const idsCon = (mapa) => ({
   orden: new Set((mapa[RUTAS.agendas].plenos ?? []).map((p) => p.id)),
@@ -184,11 +242,18 @@ function sinFechas() {
 const filasDe = (mapa) => mapa[RUTAS.plenos].items.length
 
 /** La tabla, las tarjetas y el reparto ya pintados. */
+/** ¿Hay un último pleno que contar? Sin ninguna sesión con fecha, no hay tarjeta. */
+const hayUltimo = (mapa) => {
+  const hoy = hoyEnRibarroja()
+  return mapa[RUTAS.plenos].items.some((s) => s.date && s.date.slice(0, 10) < hoy)
+}
+
 const pintada = (mapa) => (c) =>
   c.querySelectorAll('.cp-plenos-fila').length === filasDe(mapa) &&
   c.querySelectorAll('[role="group"] button').length > 1 &&
   c.querySelectorAll('h2').length >= 4 &&
-  c.querySelectorAll('.cp-plenos-area').length > 0
+  c.querySelectorAll('.cp-plenos-area').length > 0 &&
+  (!hayUltimo(mapa) || c.querySelector('[data-en-breve="votaciones"]') !== null)
 
 /** Pulsa cada filtro y lee la página cada vez: la cabecera y las notas de año cambian. */
 async function pulsaCadaFiltro(container) {
@@ -228,6 +293,22 @@ const ESCENARIOS = [
     variasSinOrdenUnaSinDecl(),
   ),
   escenario('sin fechas: la entradilla y el pie sin ventana', sinFechas()),
+  escenario(
+    'el último pleno con votaciones de cada desenlace, dos informes y un punto sin parte',
+    ultimoPlenoCon(['aprobado', 'aprobado', 'rechazado', 'rechazado', 'retirado'], {
+      reparto: 2,
+      informes: 1,
+      otros: 1,
+    }),
+  ),
+  escenario(
+    'el último pleno con una de cada desenlace, todas repartidas por la transcripción',
+    ultimoPlenoCon(['aprobado', 'rechazado', 'aplazado', 'retirado'], { reparto: 4 }),
+  ),
+  escenario(
+    'el último pleno con un solo punto y una votación',
+    ultimoPlenoCon(['aprobado'], { unPunto: true }),
+  ),
 ]
 
 afterEach(() => localStorage.clear())
@@ -294,7 +375,12 @@ describe('el índice de plenos en valencià: nada se lee igual que en castellano
       expect.soft(es.pedidasSinServir, 'la página pide datos que la prueba no sirve').toEqual([])
 
       const datos = datosPintados(es.piezas, cadenasDe(esc.fetch))
-      const noSeTraduce = masLargasPrimero([...datos, ...SIGLAS, ...AREAS_IGUALES])
+      const noSeTraduce = masLargasPrimero([
+        ...datos,
+        ...etiquetasDe(esc.fetch),
+        ...SIGLAS,
+        ...AREAS_IGUALES,
+      ])
       const { sinTraducir } = detectorDeCastellano(
         masLargasPrimero([...noSeTraduce, ...ENTRE_CIFRAS]),
       )
@@ -328,9 +414,13 @@ describe('el índice de plenos en valencià: nada se lee igual que en castellano
  * rótulo nuevo sin escenario nace sin leer en valencià y nadie lo notaría.
  */
 describe('cobertura de la guarda del índice de plenos', () => {
-  it('toda cadena plenos.indice.* y plenos.retirada.* se pinta en algún escenario', async () => {
+  it('toda cadena plenos.indice.*, plenos.retirada.*, plenos.enBreve.* y lecturas.* se pinta en algún escenario', async () => {
     const claves = Object.keys(CATALOGUE.es).filter(
-      (k) => k.startsWith('plenos.indice.') || k.startsWith('plenos.retirada.'),
+      (k) =>
+        k.startsWith('plenos.indice.') ||
+        k.startsWith('plenos.retirada.') ||
+        k.startsWith('plenos.enBreve.') ||
+        k.startsWith('lecturas.'),
     )
     // Mide algo: sin claves no hay nada que cubrir.
     expect(claves.length, 'el catálogo no tiene cadenas del índice').toBeGreaterThan(30)
