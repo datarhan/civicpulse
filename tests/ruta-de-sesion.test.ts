@@ -60,6 +60,17 @@ describe('sobre lo publicado', () => {
   })
 })
 
+describe('una sesión sin fecha', () => {
+  it('se enlaza por su id, y no rompe la resolución de las demás', () => {
+    const sinFecha = { id: 'sin-fecha', date: null, kind: 'ordinario' }
+    const lista = [...sesiones, sinFecha]
+    expect(rutaDeSesion(sinFecha, lista)).toBe('/plenos/sin-fecha')
+    expect(sesionDeParametro('sin-fecha', lista)).toBe(sinFecha)
+    const s = sesiones[0]
+    expect(sesionDeParametro(aliasDeSesion(s), lista)).toBe(s)
+  })
+})
+
 describe('dos sesiones el mismo día', () => {
   const s = sesiones.find((x) => x.kind === 'ordinario')!
   const otra = { ...s, id: 'otra-del-dia', kind: 'extraordinario' }

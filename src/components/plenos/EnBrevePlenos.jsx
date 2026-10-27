@@ -8,6 +8,8 @@ import {
   indexVideosByPleno,
 } from '../../hooks/usePlenoVideos'
 import { ultimoPlenoEnBreve, vocabularioDelOrdenDelDia } from '../../scraper/en-breve-plenos'
+import { rutaDeSesion } from '../../scraper/ruta-de-sesion'
+import { REGIMEN_DE_SESIONES, proximoPleno } from '../../scraper/proximo-pleno'
 import { hoyEnRibarroja } from '../../scraper/en-breve-portada'
 import { fmtDateLong, rellena } from '../../lib/formatters'
 import { estiloEnBrevePlenos } from './plenos.css.js'
@@ -25,6 +27,60 @@ import { rotuloDe, useLocale } from '../../i18n'
  * «Para decidir» rotula lo que se llevó a votar, no lo que se aprobó: el
  * resultado de cada punto sólo consta en las votaciones que hemos transcrito.
  */
+
+/**
+ * «¿Cuándo es el próximo?» Con la sesión en el índice, su fecha y su enlace.
+ * Sin ella, que no la tenemos, la regla que el Pleno aprobó para el mandato
+ * —enlazada al acta, en la pestaña de su transcripción— y cuántos ordinarios
+ * cayeron en lunes y en el primer lunes del mes.
+ */
+function TarjetaProximo({ prox, sesiones }) {
+  const { t, locale } = useLocale()
+  const c = prox.convocado
+  if (c) {
+    const sesion = sesiones.find((s) => s.id === c.id)
+    const tipo = c.tipo ? rotuloDe(t, `pleno.tipo.${c.tipo}`, null) : null
+    return (
+      <TarjetaEnBreve
+        id="proximo"
+        pregunta={t('plenos.enBreve.proximo.pregunta')}
+        cifra={fmtDateLong(c.fecha, locale)}
+        cifraNota={
+          tipo
+            ? rellena(t('plenos.enBreve.tipo'), { tipo: tipo.toLocaleLowerCase(locale) })
+            : undefined
+        }
+        frases={[t('plenos.enBreve.proximo.convocado')]}
+        ancla={sesion ? rutaDeSesion(sesion, sesiones) : `/plenos/${c.id}`}
+        anclaTexto={t('plenos.enBreve.proximo.verSesion')}
+      />
+    )
+  }
+  const acuerdo = sesiones.find((s) => s.id === REGIMEN_DE_SESIONES.plenoId)
+  return (
+    <TarjetaEnBreve
+      id="proximo"
+      pregunta={t('plenos.enBreve.proximo.pregunta')}
+      frases={[t('plenos.enBreve.proximo.sinFecha'), t('plenos.enBreve.proximo.regla')]}
+      nota={
+        prox.ordinarios > 0
+          ? rellena(
+              t(
+                prox.enLunes === prox.ordinarios
+                  ? 'plenos.enBreve.proximo.cuenta.todos'
+                  : 'plenos.enBreve.proximo.cuenta',
+              ),
+              { n: prox.ordinarios, lunes: prox.enLunes, primer: prox.primerLunes },
+            )
+          : undefined
+      }
+      ancla={acuerdo ? `${rutaDeSesion(acuerdo, sesiones)}#pestana-transcripcion` : undefined}
+      anclaTexto={rellena(t('plenos.enBreve.proximo.verAcuerdo'), {
+        fecha: fmtDateLong(REGIMEN_DE_SESIONES.fecha, locale),
+      })}
+    />
+  )
+}
 
 /**
  * @param {{
@@ -64,10 +120,18 @@ export function EnBrevePlenos({ filas, agendas, votos, plenos, cobertura }) {
         : undefined,
     [r, videosData, plenos, videosRegmeet, videosRegmeetLoading],
   )
+  // «¿Cuándo es el próximo?»: la sesión desde hoy si el índice ya la tiene; si
+  // no, la regla del acta de 2023 y lo que cuentan las fechas, nunca una fecha
+  // deducida (`scraper/proximo-pleno`).
+  const prox = useMemo(
+    () => (plenos ? proximoPleno({ sesiones: plenos.items ?? [], hoy: hoyEnRibarroja() }) : null),
+    [plenos],
+  )
   if (!r) return null
 
   const tipo = r.tipo ? rotuloDe(t, `pleno.tipo.${r.tipo}`, null) : null
-  const sesion = `/plenos/${r.id}`
+  const fila = filas.find((f) => f.id === r.id)
+  const sesion = fila ? rutaDeSesion(fila, filas) : `/plenos/${r.id}`
   const o = r.ordenDelDia
   // Las palabras de la sede que salen en los títulos, con su definición: el
   // glosario las manda aquí, a un orden del día de verdad.
@@ -181,6 +245,7 @@ export function EnBrevePlenos({ filas, agendas, votos, plenos, cobertura }) {
           ancla={sesion}
           anclaTexto={t('plenos.enBreve.votos.ver')}
         />
+        {prox && <TarjetaProximo prox={prox} sesiones={plenos?.items ?? []} />}
       </EnBreve>
     </div>
   )

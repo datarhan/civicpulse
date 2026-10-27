@@ -5,6 +5,7 @@ import { MemoryRouter } from 'react-router-dom'
 import { TablaSesiones } from '../../src/components/plenos/TablaSesiones'
 import { resumenPlenos } from '../../src/lib/pleno-summary'
 import { CATALOGUE } from '../../src/i18n'
+import { rutaDeSesion } from '../../src/scraper/ruta-de-sesion'
 
 /**
  * La tabla del índice de plenos, y las dos cosas que la hacen distinta de la
@@ -54,8 +55,10 @@ function pinta() {
   return r
 }
 
+/** La fila de una sesión, por el enlace con que la tabla la enlaza (su alias legible). */
 function fila(id) {
-  return document.querySelector(`a[href="/plenos/${id}"]`)
+  const sesion = SNAPSHOTS.plenos.items.find((s) => s.id === id)
+  return document.querySelector(`a[href="${rutaDeSesion(sesion, SNAPSHOTS.plenos.items)}"]`)
 }
 
 describe('TablaSesiones · la ausencia se dibuja aparte del cero', () => {
@@ -111,5 +114,13 @@ describe('TablaSesiones · las cifras describen lo que se ve', () => {
       fireEvent.click(screen.getByRole('button', { name: new RegExp(`${rotulo} · ${f.n}`) }))
       expect(document.querySelectorAll('.cp-plenos-fila').length, rotulo).toBe(f.n)
     }
+  })
+})
+
+describe('TablaSesiones · el enlace de cada fila', () => {
+  it('lleva al alias legible de la sesión, y no al id', () => {
+    pinta()
+    expect(document.querySelector('a[href="/plenos/2026-05-11-ordinario"]')).toBeTruthy()
+    expect(document.querySelector('a[href="/plenos/a"]')).toBeNull()
   })
 })

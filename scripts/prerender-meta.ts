@@ -26,6 +26,7 @@ import {
   sinUrlPropia,
   type PaginaConParametro,
 } from '../src/scraper/meta-og.ts'
+import { rutaDeSesion, type SesionConFecha } from '../src/scraper/ruta-de-sesion.ts'
 
 const DIST = resolve('dist')
 const BASE = 'https://www.civicpulse.es'
@@ -187,11 +188,34 @@ function main(): void {
     mkdirSync(destino, { recursive: true })
     writeFileSync(join(destino, 'index.html'), inyectarMeta(plantilla, m))
   }
+  // Los alias legibles de cada sesión (`/plenos/2026-10-05-ordinario`, ver
+  // src/scraper/ruta-de-sesion.ts): son los que enlazan el índice y la portada, y
+  // los que comparte el botón de la sesión. Sin fichero propio, quien recibe uno
+  // vería la ficha del sitio. Llevan la ficha de su sesión tal cual —con su
+  // canónica, que es la del id— y no entran en el mapa del sitio: son otra forma
+  // de llegar a la misma página.
+  const sesiones: SesionConFecha[] = existsSync(resolve('public/data/plenos.json'))
+    ? (JSON.parse(readFileSync(resolve('public/data/plenos.json'), 'utf8')).items ?? []).filter(
+        (x: SesionConFecha) => typeof x.id === 'string' && typeof x.date === 'string',
+      )
+    : []
+  let alias = 0
+  for (const m of conParametro) {
+    if (!m.ruta.startsWith('/plenos/')) continue
+    const s = sesiones.find((x) => `/plenos/${x.id}` === m.ruta)
+    if (!s) continue
+    const ruta = rutaDeSesion(s, sesiones)
+    if (ruta === m.ruta) continue
+    const destino = join(DIST, ruta.replace(/^\//, ''))
+    mkdirSync(destino, { recursive: true })
+    writeFileSync(join(destino, 'index.html'), inyectarMeta(plantilla, m))
+    alias++
+  }
   const rp = resumirMetas(conParametro)
   process.stdout.write(
     `[prerender-meta] ${conParametro.length} página(s) con parámetro · ` +
       `${rp.porOrigen.hallazgo} hallazgo(s) · ${rp.porOrigen.cargo} cargo(s) · ` +
-      `${rp.porOrigen.pleno} pleno(s)\n`,
+      `${rp.porOrigen.pleno} pleno(s) · ${alias} alias de pleno\n`,
   )
 
   // El mapa del sitio: las rutas públicas de arriba MÁS esas páginas, que un

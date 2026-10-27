@@ -796,7 +796,7 @@ export const CATALOGUE = {
     // se aprobó: el resultado sólo consta en las votaciones transcritas.
     'plenos.enBreve.titulo': 'El último pleno',
     'plenos.enBreve.intro':
-      'De qué trató la última sesión y qué sabemos de sus votaciones, en palabras llanas. El título literal de cada punto está en la página de la sesión.',
+      'De qué trató la última sesión, qué sabemos de sus votaciones y cuándo toca la próxima, en palabras llanas. El título literal de cada punto está en la página de la sesión.',
     'plenos.enBreve.saltar': 'Todas las sesiones ↓',
     'plenos.enBreve.tipo': 'pleno {tipo}',
     'plenos.enBreve.orden.pregunta': '¿Qué se llevó al último pleno?',
@@ -831,6 +831,19 @@ export const CATALOGUE = {
       'Quién votó qué sale de la transcripción automática del vídeo, sin cotejar con el acta.',
     'plenos.enBreve.video': 'Ver el vídeo de la sesión',
     'plenos.enBreve.votos.ver': 'Las votaciones, en la página de la sesión →',
+    // «¿Cuándo es el próximo?» (scraper/proximo-pleno.ts): la regla es la del acta del
+    // 7-07-2023, punto 8; la cuenta sale de las fechas; una fecha deducida, nunca.
+    'plenos.enBreve.proximo.pregunta': '¿Cuándo es el próximo?',
+    'plenos.enBreve.proximo.convocado': 'Ya está en el portal de sesiones del Ayuntamiento.',
+    'plenos.enBreve.proximo.verSesion': 'La sesión, con su orden del día →',
+    'plenos.enBreve.proximo.sinFecha': 'Todavía no tenemos su fecha.',
+    'plenos.enBreve.proximo.regla':
+      'Para este mandato, el Pleno acordó celebrar el ordinario el primer lunes de cada mes a las 17:30, salvo en agosto, y el lunes siguiente si es festivo. Las fechas de cada año las fijan los portavoces de los grupos.',
+    'plenos.enBreve.proximo.cuenta':
+      'De los {n} plenos ordinarios que tenemos, {lunes} fueron en lunes y {primer}, el primer lunes del mes.',
+    'plenos.enBreve.proximo.cuenta.todos':
+      'De los {n} plenos ordinarios que tenemos, todos fueron en lunes y {primer}, el primer lunes del mes.',
+    'plenos.enBreve.proximo.verAcuerdo': 'El acuerdo, en el acta del {fecha} →',
     // El paso de la lectura vecinal a la experta (components/DivisorLecturas.jsx).
     'lecturas.divisor':
       'Hasta aquí, lo esencial. Debajo, todos los datos, para quien quiera comprobarlos.',
@@ -3304,7 +3317,7 @@ export const CATALOGUE = {
     'plenos.title': 'Plens municipals',
     'plenos.enBreve.titulo': 'L’últim ple',
     'plenos.enBreve.intro':
-      'De què va tractar l’última sessió i què en sabem de les votacions, en paraules planes. El títol literal de cada punt és a la pàgina de la sessió.',
+      'De què va tractar l’última sessió, què en sabem de les votacions i quan toca la pròxima, en paraules planes. El títol literal de cada punt és a la pàgina de la sessió.',
     'plenos.enBreve.saltar': 'Totes les sessions ↓',
     'plenos.enBreve.tipo': 'ple {tipo}',
     'plenos.enBreve.orden.pregunta': 'Què es va portar a l’últim ple?',
@@ -3337,6 +3350,17 @@ export const CATALOGUE = {
       'Qui va votar què ix de la transcripció automàtica del vídeo, sense acarar amb l’acta.',
     'plenos.enBreve.video': 'Veure el vídeo de la sessió',
     'plenos.enBreve.votos.ver': 'Les votacions, a la pàgina de la sessió →',
+    'plenos.enBreve.proximo.pregunta': 'Quan és el pròxim?',
+    'plenos.enBreve.proximo.convocado': 'Ja és al portal de sessions de l’Ajuntament.',
+    'plenos.enBreve.proximo.verSesion': 'La sessió, amb el seu ordre del dia →',
+    'plenos.enBreve.proximo.sinFecha': 'Encara no en tenim la data.',
+    'plenos.enBreve.proximo.regla':
+      'Per a este mandat, el Ple va acordar celebrar l’ordinari el primer dilluns de cada mes a les 17.30, excepte a l’agost, i el dilluns següent si és festiu. Les dates de cada any les fixen els portaveus dels grups.',
+    'plenos.enBreve.proximo.cuenta':
+      'Dels {n} plens ordinaris que tenim, {lunes} van ser en dilluns i {primer}, el primer dilluns del mes.',
+    'plenos.enBreve.proximo.cuenta.todos':
+      'Dels {n} plens ordinaris que tenim, tots van ser en dilluns i {primer}, el primer dilluns del mes.',
+    'plenos.enBreve.proximo.verAcuerdo': 'L’acord, en l’acta del {fecha} →',
     'lecturas.divisor':
       'Fins ací, l’essencial. A sota, totes les dades, per a qui les vulga comprovar.',
     'plenos.vocabulario': 'Paraules d’este ordre del dia: {lista}.',
