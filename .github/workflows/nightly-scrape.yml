@@ -7,7 +7,7 @@ on:
   workflow_dispatch:
     inputs:
       adapters:
-        description: 'Adapter set (all | officials | budget | tenders | padron | participa | press | geo | bdns | paro | plenos | pleno-agendas | empleo | wikidata | ctbg | consell-cv | spain-ticker | promise-suggestions)'
+        description: 'Adapter set (all | officials | budget | tenders | padron | participa | press | geo | bdns | paro | plenos | pleno-agendas | empleo | wikidata | ctbg | consell-cv | promise-suggestions)'
         default: 'all'
 
 concurrency:
@@ -149,7 +149,6 @@ jobs:
             wikidata)              npm run scrape:wikidata || rc=$? ;;
             ctbg)                  npm run scrape:ctbg || rc=$? ;;
             consell-cv)            npm run scrape:consell-cv || rc=$? ;;
-            spain-ticker)          npm run scrape:spain-ticker || rc=$? ;;
             promise-suggestions)   npm run scrape:promise-suggestions || rc=$? ;;
             *) echo "unknown adapter set"; exit 1 ;;
           esac

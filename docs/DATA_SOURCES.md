@@ -586,12 +586,6 @@ overwrites it. Change the bot's SQLite instead.
 - **Source** — Wikidata `Special:EntityData/Q23701.json`
 - **Surfaces** — `/datos` `WikidataCard` above the population chart
 
-### Spain-wide live ticker (Luz PVPC · Gasolina 95 · Diésel · Euribor 12m · BCE MRO · IPC interanual · AEMET avisos · DGT tráfico)
-
-- **Pipeline** — `spain-ticker.ts` → `spain-ticker.json`
-- **Source** — **REE apidatos** (`apidatos.ree.es/precios-mercados-tiempo-real`) · **Minetur Carburantes** REST (municipio `7177`) · **ECB SDMX** (`FM/M.U2.EUR.RT.MM.EURIBOR1YD_.HSTA` + `FM/D.U2.EUR.4F.KR.MRR_FR.LEV`) · **INE Tempus3** (serie `IPC251856`) · **AEMET** avisos HTML (`p=46`) · **DGT DATEX II v3.6** XML filtered to Valencia-area roads `A-3 / A-7 / CV-35 / V-30 / V-31 / V-11`
-- **Surfaces** — none since 2026-10-27. The landing's «DIRECTO» marquee (`LiveTicker`) was removed: its series are national or provincial rather than about the council, and the DGT filter matches road names across Spain because the feed gives no location, so its incident count was not local. The snapshot is still scraped nightly and listed on `/lab-health`; retiring the pipeline is a separate task.
-
 ### Pleno agendas
 
 - **Pipeline** — `pleno-agenda.ts` → `plenos-agendas.json`
