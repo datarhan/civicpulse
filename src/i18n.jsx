@@ -851,6 +851,18 @@ export const CATALOGUE = {
     // dictaminar…): el título es literal y no admite marca, así que la tarjeta
     // del orden del día las nombra aparte, con su entrada del glosario.
     'plenos.vocabulario': 'Palabras de este orden del día: {lista}.',
+    // «Los plenos del último año» (components/plenos/SesionesDelAnio.jsx): de qué trató
+    // cada sesión, en vez de cuánto hemos procesado de ella.
+    'plenos.anio.titulo': 'Los plenos del último año',
+    'plenos.anio.intro':
+      'Las sesiones anteriores de los últimos doce meses y lo primero que se llevó a votar en cada una.',
+    'plenos.anio.saltar': 'Todas las sesiones, con sus cifras ↓',
+    'plenos.anio.decidir': 'Para decidir',
+    'plenos.anio.mas': 'y {n} más',
+    'plenos.anio.sinOrden': 'Todavía no hemos recogido su orden del día.',
+    'plenos.anio.soloActa': 'Para decidir, sólo la aprobación del acta anterior.',
+    'plenos.anio.soloInformes': 'Sólo informes, que no se votan.',
+    'plenos.anio.nadaQueDecidir': 'Ningún punto para decidir en su orden del día.',
     'plenos.palabra.mocion': 'moción',
     'plenos.palabra.reconocimientoExtrajudicial': 'reconocimiento extrajudicial',
     'plenos.palabra.sinDictaminar': 'sin dictaminar',
@@ -960,7 +972,11 @@ export const CATALOGUE = {
     'plenos.indice.decl.cotejadas': 'Parciales o verificadas',
     'plenos.indice.decl.cotejadas.nota': 'lo único que cotejó un documento municipal',
     'plenos.indice.decl.eyebrow': 'Declaraciones extraídas · {n} sesiones',
-    'plenos.indice.decl.titulo': '{extraidas} declaraciones, {verificado} verificadas',
+    // «7946 declaraciones, 10 verificadas» se leía como «sólo 10 eran ciertas»: las demás
+    // no se pudieron cotejar con ningún documento municipal, que es otra cosa (auditoría de
+    // las dos lecturas, §9). Cotejadas = parciales + verificadas + contradichas.
+    'plenos.indice.decl.titulo':
+      '{extraidas} declaraciones extraídas; {cotejadas} cotejadas con un documento municipal',
     'plenos.indice.decl.sinDatosNota':
       'Un «sin datos» no desmiente nada: dice que no encontramos ningún documento municipal que hable de eso. De los {sinDatos}, {sinCorpus}, {comprobado} se comprobaron sin hallar nada y de {noConsta} no consta qué se consultó.',
     'plenos.indice.decl.sinCorpus': '{n} no pasaron por ningún comparador',
@@ -1175,6 +1191,10 @@ export const CATALOGUE = {
     'plenoDetail.notFound': 'Sesión no encontrada',
     'plenoDetail.back': '← Todos los plenos',
     'plenoDetail.summary': 'Resumen',
+    // El título de la pestaña del navegador y del enlace que se comparte. El 1 y el 11
+    // piden «de l’» en valenciano; en castellano las dos claves dicen lo mismo.
+    'plenoDetail.tituloPestana': 'Pleno del {fecha}',
+    'plenoDetail.tituloPestana.vocal': 'Pleno del {fecha}',
     'plenoDetail.agenda': 'Orden del día',
     'plenoDetail.votes': 'Votaciones',
     'plenoDetail.declarations': 'Declaraciones cotejadas',
@@ -3376,6 +3396,16 @@ export const CATALOGUE = {
     'lecturas.divisor':
       'Fins ací, l’essencial. A sota, totes les dades, per a qui les vulga comprovar.',
     'plenos.vocabulario': 'Paraules d’este ordre del dia: {lista}.',
+    'plenos.anio.titulo': 'Els plens de l’últim any',
+    'plenos.anio.intro':
+      'Les sessions anteriors dels últims dotze mesos i el primer que es va portar a votació en cadascuna.',
+    'plenos.anio.saltar': 'Totes les sessions, amb les seues xifres ↓',
+    'plenos.anio.decidir': 'Per a decidir',
+    'plenos.anio.mas': 'i {n} més',
+    'plenos.anio.sinOrden': 'Encara no n’hem recollit l’ordre del dia.',
+    'plenos.anio.soloActa': 'Per a decidir, només l’aprovació de l’acta anterior.',
+    'plenos.anio.soloInformes': 'Només informes, que no es voten.',
+    'plenos.anio.nadaQueDecidir': 'Cap punt per a decidir en el seu ordre del dia.',
     'plenos.palabra.mocion': 'moció',
     'plenos.palabra.reconocimientoExtrajudicial': 'reconeixement extrajudicial',
     'plenos.palabra.sinDictaminar': 'sense dictaminar',
@@ -3481,7 +3511,8 @@ export const CATALOGUE = {
     'plenos.indice.decl.cotejadas': 'Parcials o verificades',
     'plenos.indice.decl.cotejadas.nota': 'l’única cosa que va acarar un document municipal',
     'plenos.indice.decl.eyebrow': 'Declaracions extretes · {n} sessions',
-    'plenos.indice.decl.titulo': '{extraidas} declaracions, {verificado} verificades',
+    'plenos.indice.decl.titulo':
+      '{extraidas} declaracions extretes; {cotejadas} acarades amb un document municipal',
     'plenos.indice.decl.sinDatosNota':
       'Un «sense dades» no desmentix res: diu que no hem trobat cap document municipal que en parle. Dels {sinDatos}, {sinCorpus}, {comprobado} es van comprovar sense trobar res i de {noConsta} no consta què es va consultar.',
     'plenos.indice.decl.sinCorpus': '{n} no van passar per cap comparador',
@@ -3660,6 +3691,8 @@ export const CATALOGUE = {
     // Pleno detail (/plenos/:id)
     'plenoDetail.notFound': 'Sessió no trobada',
     'plenoDetail.back': '← Tots els plens',
+    'plenoDetail.tituloPestana': 'Ple del {fecha}',
+    'plenoDetail.tituloPestana.vocal': 'Ple de l’{fecha}',
     'plenoDetail.summary': 'Resum',
     'plenoDetail.agenda': 'Ordre del dia',
     'plenoDetail.votes': 'Votacions',

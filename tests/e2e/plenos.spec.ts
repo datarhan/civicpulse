@@ -1,7 +1,9 @@
 import { test, expect } from '@playwright/test'
 import { readFileSync } from 'node:fs'
 import { rutaDeSesion } from '../../src/scraper/ruta-de-sesion'
+import { tituloDeSesionEs } from '../../src/scraper/meta-og'
 import { REGIMEN_DE_SESIONES, proximoPleno } from '../../src/scraper/proximo-pleno'
+import { esAprobacionDeActa, sesionesDelUltimoAnio } from '../../src/scraper/en-breve-plenos'
 
 // A real pleno id with claims, read from the committed manifest.
 const FIRST_ID = (() => {
@@ -35,10 +37,9 @@ test.describe('«El último pleno» (/plenos)', () => {
   const ultima = sesiones
     .filter((s) => s.date.slice(0, 10) < hoy)
     .reduce((a, b) => (b.date > a.date ? b : a))
+  const agendas = JSON.parse(readFileSync('public/data/plenos-agendas.json', 'utf8')).plenos
   const agenda: Array<{ number: number; section: string }> =
-    JSON.parse(readFileSync('public/data/plenos-agendas.json', 'utf8')).plenos.find(
-      (p: { id: string }) => p.id === ultima.id,
-    )?.agenda ?? []
+    agendas.find((p: { id: string }) => p.id === ultima.id)?.agenda ?? []
 
   test('habla de la última sesión celebrada, con su orden del día en palabras llanas', async ({
     page,
@@ -75,7 +76,7 @@ test.describe('«El último pleno» (/plenos)', () => {
     // ella, el HTML de reserva, también para el id); Vercel lo sirve sin barra.
     const html = await (await page.request.get(`${ruta}/`)).text()
     expect(html).toMatch(new RegExp(`<link rel="canonical" href="[^"]*/plenos/${ultima.id}"`))
-    expect(html).toContain(`Pleno · ${ultima.title}`)
+    expect(html).toContain(`<title>${tituloDeSesionEs(ultima.date)} · `)
   })
 
   test('«¿Cuándo es el próximo?» dice lo que cuentan las fechas, sin deducir una', async ({
@@ -115,6 +116,29 @@ test.describe('«El último pleno» (/plenos)', () => {
     expect(votos!.x).toBeGreaterThan(orden!.x + orden!.width - 1)
     expect(Math.abs(prox!.x - votos!.x)).toBeLessThan(1)
     expect(prox!.y).toBeGreaterThanOrEqual(votos!.y + votos!.height)
+  })
+
+  test('los plenos del último año: una fila por sesión, por su alias, sin el acta', async ({
+    page,
+  }) => {
+    const filas = sesionesDelUltimoAnio({ sesiones, agendas, hoy })
+    expect(filas.length, 'mide algo').toBeGreaterThan(3)
+    await page.goto('/plenos', { waitUntil: 'networkidle' })
+    const lista = page.locator('[data-plenos-anio] .cp-plenos-anio-lista > li')
+    await expect(lista).toHaveCount(filas.length)
+    // La primera es la sesión anterior a la última, y enlaza por su alias.
+    const primera = sesiones.find((s) => s.id === filas[0].id)!
+    await expect(
+      lista.first().locator(`a[href="${rutaDeSesion(primera, sesiones)}"]`),
+    ).toBeVisible()
+    // La aprobación del acta no sale entre los puntos, aunque se vote.
+    const textos = await page.locator('[data-plenos-anio] .cp-plenos-puntos-texto').allInnerTexts()
+    expect(textos.length).toBeGreaterThan(0)
+    expect(textos.filter((x) => esAprobacionDeActa(x))).toEqual([])
+    // Y va en la lectura vecinal, encima del divisor.
+    const bloque = await page.locator('[data-plenos-anio]').boundingBox()
+    const divisor = await page.locator('[data-divisor-lecturas]').boundingBox()
+    expect(bloque!.y + bloque!.height).toBeLessThanOrEqual(divisor!.y)
   })
 
   test('el divisor va entre el último pleno y todas las sesiones', async ({ page }) => {

@@ -27,6 +27,7 @@ import {
   type PaginaConParametro,
 } from '../src/scraper/meta-og.ts'
 import { rutaDeSesion, type SesionConFecha } from '../src/scraper/ruta-de-sesion.ts'
+import { tituloDeSesionEs } from '../src/scraper/meta-og.ts'
 
 const DIST = resolve('dist')
 const BASE = 'https://www.civicpulse.es'
@@ -171,9 +172,11 @@ function main(): void {
       })),
     ),
     ...desdeVolcado(grafo.rutas, '/plenos/:id', 'plenos.json', (j) =>
-      (j.items ?? []).map((pl: { id?: string; title?: string }) => ({
+      (j.items ?? []).map((pl: { id?: string; title?: string; date?: string }) => ({
         valor: pl.id,
-        titulo: pl.title ? `Pleno · ${pl.title}` : undefined,
+        // El mismo título que pone la página (`plenoDetail.tituloPestana`, en
+        // castellano); sin fecha, el de regmeet.
+        titulo: pl.date ? tituloDeSesionEs(pl.date) : pl.title ? `Pleno · ${pl.title}` : undefined,
         origen: 'pleno' as const,
       })),
     ),

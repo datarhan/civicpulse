@@ -5,6 +5,7 @@ import DataAsOf from '../components/DataAsOf'
 import { estiloPlenos } from '../components/plenos/plenos.css.js'
 import { EscaleraCobertura } from '../components/plenos/EscaleraCobertura'
 import { TablaSesiones } from '../components/plenos/TablaSesiones'
+import { SesionesDelAnio } from '../components/plenos/SesionesDelAnio'
 import { TarjetaVotaciones } from '../components/plenos/TarjetaVotaciones'
 import { TarjetaDeclaraciones } from '../components/plenos/TarjetaDeclaraciones'
 import { RepartoPorArea } from '../components/plenos/RepartoPorArea'
@@ -112,6 +113,7 @@ export default function Plenos() {
         plenos={plenosData}
         cobertura={{ sesiones: r.votos.sesiones, total: r.total }}
       />
+      <SesionesDelAnio filas={r.filas} agendas={agendasData} />
       <DivisorLecturas />
 
       <div className="cp-plenos-hero" style={{ marginBottom: 30 }}>
