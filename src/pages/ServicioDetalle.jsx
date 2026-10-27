@@ -323,7 +323,11 @@ export default function ServicioDetalle() {
                 explica su casilla de viajeros a cero. Una ficha menos hablada
                 sin que nadie lo pidiera. */}
             {(chip || i.avisoDeclaracion) && (
-              <div className="cp-card" style={{ borderLeft: '3px solid var(--warn)' }}>
+              <div
+                className="cp-card"
+                data-tarjeta=""
+                style={{ borderLeft: '3px solid var(--warn)' }}
+              >
                 <div className="mono" style={{ ...rotulo, color: 'var(--warn-ink)' }}>
                   Sobre la declaración
                 </div>
@@ -379,7 +383,7 @@ export default function ServicioDetalle() {
               </div>
             )}
 
-            <div className="cp-card">
+            <div className="cp-card" data-tarjeta="">
               <div className="mono" style={rotulo}>
                 Fuente y réplica
               </div>
@@ -422,7 +426,7 @@ export default function ServicioDetalle() {
               </p>
             </div>
 
-            <div className="cp-card">
+            <div className="cp-card" data-tarjeta="">
               <div className="mono" style={rotulo}>
                 Salvedades · {salvedades.length}
               </div>
@@ -490,7 +494,7 @@ export default function ServicioDetalle() {
                 de CompetenciaDelegada defiende sigue siendo el orden en que se
                 lee, también en dos columnas. */}
             {competencia && (
-              <div className="cp-card">
+              <div className="cp-card" data-tarjeta="">
                 <div className="mono" style={rotulo}>
                   Quién responde de esta área
                 </div>

@@ -38,6 +38,15 @@
  * non-zero. It used to slice silently at 12.000 characters — 34% of
  * /metodologia — and print «nada que señalar». See `chunkRenderedText`.
  *
+ * CADA TARJETA LLEGA ENTRE MARCAS. `innerText` aplana los recuadros en una
+ * tira de líneas, y el 26-10-2026 eso dio un señalamiento sobre /plenos/c8kr44
+ * que cosía el pie de una declaración con la cabecera de la siguiente y las
+ * leía como una sola tarjeta. La lectura escribe ahora «── tarjeta ──» y
+ * «── fin de tarjeta ──» alrededor de cada `data-tarjeta`, el prompt dice qué
+ * son y el filtro de literalidad descarta la cita que cruce una. No son texto
+ * de la página y no cuentan en la cobertura: «N de M caracteres» son de la
+ * página. Ver `MARCAS_DE_TARJETA` en src/scraper/reader-review.ts.
+ *
  * NEVER edits. Output is a lead for a human, exactly like every other
  * LLM-touching path in this repo.
  */
@@ -67,7 +76,9 @@ import {
   estadoDe,
   rutasDeEntrada,
   leerPestanas,
-  textoTrasLaBarra,
+  textoConTarjetas,
+  MARCAS_DE_TARJETA,
+  sinMarcas,
   abrirLoPlegado,
   ESTADO_PESTANAS,
 } from '../src/scraper/reader-review'
@@ -810,7 +821,11 @@ async function main() {
     }
 
     // The WHOLE page. No `.slice()` here, ever — see `chunkRenderedText`.
-    let renderedText = await page.locator('body').innerText()
+    // Con cada tarjeta entre sus marcas: ver `MARCAS_DE_TARJETA`.
+    let renderedText = await page.evaluate(textoConTarjetas, {
+      ambito: 'pagina',
+      marcas: MARCAS_DE_TARJETA,
+    })
 
     // Y lo que va tras las pestañas que la carga no abre, DESPUÉS de leer la
     // página tal como carga: al terminar de pulsar queda abierta la última, y
@@ -833,7 +848,8 @@ async function main() {
           const { plegados } = await page.evaluate(abrirLoPlegado)
           if (plegados > 0) await page.waitForTimeout(300)
         },
-        region: () => page.evaluate(textoTrasLaBarra),
+        region: () =>
+          page.evaluate(textoConTarjetas, { ambito: 'tras-la-barra', marcas: MARCAS_DE_TARJETA }),
       })
       if (r.leidas.length === 0 && r.sinCambio.length === 0) {
         // Pedía pestañas y no hay ninguna: se leería el resumen como si fuera
@@ -860,7 +876,10 @@ async function main() {
         )
       }
     }
-    textoPorRuta.set(route, renderedText)
+    // Lo que el lector ve, sin marcas: aquí se pregunta si una frase descartada
+    // sigue publicada, y una frase que ocupa dos tarjetas lo sigue estando.
+    const textoDeLaPagina = sinMarcas(renderedText)
+    textoPorRuta.set(route, textoDeLaPagina)
 
     // ── El pase DETERMINISTA, antes de gastar una sola llamada ──────────────
     //
@@ -874,7 +893,10 @@ async function main() {
     // Sus avisos salen por el MISMO canal que los del modelo: el mismo caché, el
     // mismo `check:surfaces` y el mismo registro de descartes. Un segundo canal
     // sería una guarda más que nadie mira.
-    const avisosDeterministas: ReaderFinding[] = revisarMagnitudes(renderedText, magnitudes).map(
+    //
+    // Sobre el texto sin marcas, como antes de que las hubiera: la ventana que
+    // mira alrededor de una cifra se mide en caracteres de la página.
+    const avisosDeterministas: ReaderFinding[] = revisarMagnitudes(textoDeLaPagina, magnitudes).map(
       (a) => ({
         quote: a.fragmento.slice(0, 200),
         inference: `Un lector concluye que esa cifra es dinero ya gastado, porque «${a.palabra}» la califica.`,
@@ -1069,7 +1091,8 @@ async function main() {
       }
       chunksReviewed += 1
       if (getRunStats().cacheHits > aciertosAntes) deCache += 1
-      charsReviewed += chunk.length
+      // Caracteres de la PÁGINA: las marcas no cuentan ni aquí ni en el total.
+      charsReviewed += sinMarcas(chunk).length
       findings.push(...r.findings)
       dropped.push(...r.dropped)
     }
@@ -1078,7 +1101,7 @@ async function main() {
     // ruta a medias: no dependen de haber llamado a nadie.
     findings.push(...avisosDeterministas)
 
-    const coverage = renderedText.length ? charsReviewed / renderedText.length : 0
+    const coverage = textoDeLaPagina.length ? charsReviewed / textoDeLaPagina.length : 0
     const consulted = chunksReviewed > 0
     const complete = consulted && chunksReviewed === chunks.length
     all.push({
@@ -1087,7 +1110,7 @@ async function main() {
       dropped,
       consulted,
       reason,
-      chars: renderedText.length,
+      chars: textoDeLaPagina.length,
       charsReviewed,
       chunks: chunks.length,
       chunksReviewed,
@@ -1153,7 +1176,7 @@ async function main() {
       // this line exists for was not that the tool reviewed a third of the page;
       // it was that nothing in the output said so.
       console.log(
-        `   cobertura: ${num(charsReviewed)} de ${num(renderedText.length)} caracteres ` +
+        `   cobertura: ${num(charsReviewed)} de ${num(textoDeLaPagina.length)} caracteres ` +
           `(${pct(coverage)}) · ${chunksReviewed}/${chunks.length} fragmento(s)` +
           // Un fragmento servido de `.llm-cache` está CUBIERTO pero no se ha
           // leído ahora, y las dos cosas no son la misma. Callarlo sería el

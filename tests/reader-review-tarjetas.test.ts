@@ -25,8 +25,10 @@ describe('el reparto en fragmentos no separa una tarjeta de su marca', () => {
   it('un fragmento nunca acaba en la marca que abre una tarjeta', () => {
     // Sólo marcas, que no deciden fronteras: todo corte es por tamaño, y con
     // 50 caracteres de máximo cae una y otra vez justo detrás de una de inicio.
-    // Ahí la marca pasa al fragmento siguiente, con la tarjeta que abre.
-    const texto = Array.from({ length: 40 }, () => [fin, inicio])
+    // Ahí la marca pasa al fragmento siguiente, con la tarjeta que abre. Cada
+    // tarjeta se cierra, como en una página de verdad: una marca de inicio con
+    // la que acaba el texto no tiene detrás nada con lo que irse.
+    const texto = Array.from({ length: 40 }, () => [inicio, fin])
       .flat()
       .join('\n')
     const cs = chunkRenderedText(texto, 50)

@@ -429,6 +429,20 @@ export function parseReviewArgs(argv: string[], budgetEnv?: string) {
  * El fallo es hacia MÁS relectura, nunca hacia menos: si una frontera se mueve,
  * el fragmento se relee. Nada se deja de mirar por culpa de esto, y por eso los
  * parámetros se pueden tocar sin que nadie se quede sin revisar.
+ *
+ * Las marcas de tarjeta (`MARCAS_DE_TARJETA`) tienen dos reglas aquí:
+ *
+ *   · No deciden fronteras. No son contenido, y se repiten idénticas en cada
+ *     tarjeta: si el hash de una saliera frontera, la página se cortaría tras
+ *     cada tarjeta en cientos de fragmentos de una llamada cada uno.
+ *   · Una marca de inicio no cierra un fragmento. Si el máximo obliga a cortar
+ *     justo detrás de una, pasa al fragmento siguiente con la tarjeta que abre;
+ *     y si lo que sigue es una línea demasiado larga, encabeza su primer trozo.
+ *
+ * Un fragmento sí puede empezar por una marca de fin: cierra una tarjeta que
+ * empezó en el anterior, y eso no junta dos tarjetas. Nada de esto puede
+ * coserlas, porque el reparto sólo corta —no quita ni reordena líneas—, así que
+ * dentro de un fragmento entre dos tarjetas siempre queda su marca.
  */
 const CORTE_MINIMO = 0.12 // del máximo: por debajo no se corta, para no hacer migajas
 const OBJETIVO_FRONTERA = 3_000 // caracteres esperados entre fronteras
@@ -469,18 +483,29 @@ export function chunkRenderedText(text: string, size = REVIEW_CHUNK_CHARS): stri
     length = 0
   }
   for (const line of text.split('\n')) {
-    if (line.length > size) {
+    // +1 for the newline this line will be rejoined with.
+    if (length && length + line.length + 1 > size) {
+      // Las marcas de inicio del final no se quedan aquí: van con su tarjeta.
+      let corte = current.length
+      while (corte > 0 && current[corte - 1].trim() === MARCAS_DE_TARJETA.inicio) corte -= 1
+      const pasan = current.splice(corte)
       flush()
-      for (let i = 0; i < line.length; i += size) chunks.push(line.slice(i, i + size))
+      current = pasan
+      length = pasan.reduce((s, l) => s + l.length + 1, 0)
+    }
+    if (length + line.length > size) {
+      // Ni sola cabe: se parte por tamaño, con las marcas que la abren delante.
+      const entera = [...current, line].join('\n')
+      current = []
+      length = 0
+      for (let i = 0; i < entera.length; i += size) chunks.push(entera.slice(i, i + size))
       continue
     }
-    // +1 for the newline this line will be rejoined with.
-    if (length && length + line.length + 1 > size) flush()
     current.push(line)
     length += line.length + 1
     // Frontera por contenido, una vez pasado el mínimo. El máximo sigue siendo
     // el corte duro de arriba: esto adelanta la frontera, nunca la retrasa.
-    if (length >= minimo && esFrontera(line)) flush()
+    if (length >= minimo && !esMarca(line) && esFrontera(line)) flush()
   }
   flush()
   return chunks.filter((c) => c.trim())
@@ -504,12 +529,23 @@ function normalise(s: string): string {
  * to its own restatement. That produces confident, unfalsifiable complaints. If
  * the sentence is not on the page, there is nothing to fix — and requiring the
  * quote makes a false positive visible in one glance instead of arguable.
+ *
+ * Y la cita tiene que caber en UN tramo entre marcas de tarjeta: una que cruce
+ * una marca junta dos tarjetas, que es la lectura de /plenos/c8kr44 del
+ * 26-10-2026 (ver `MARCAS_DE_TARJETA`). Da igual que copie las marcas o que se
+ * las salte: ninguna de las dos está en la página tal como la ve el lector.
+ * Sin marcas en el texto hay un solo tramo, y el filtro es el de siempre.
  */
 export function partitionFindings(
   findings: ReaderFinding[],
   input: SurfaceInput,
 ): { kept: ReaderFinding[]; dropped: ReaderFinding[] } {
-  const hay = normalise(input.renderedText)
+  const tramos: string[][] = [[]]
+  for (const linea of input.renderedText.split('\n')) {
+    if (esMarca(linea)) tramos.push([])
+    else tramos[tramos.length - 1].push(linea)
+  }
+  const enUnTramo = tramos.map((t) => normalise(t.join('\n')))
   const kept: ReaderFinding[] = []
   const dropped: ReaderFinding[] = []
   for (const f of findings ?? []) {
@@ -520,7 +556,7 @@ export function partitionFindings(
     const q = normalise(f.quote)
     // Long enough to identify a real claim; short enough that a model quoting a
     // whole section does not sneak past by including one true sentence.
-    if (q.length < 12 || q.length > 400 || !hay.includes(q)) dropped.push(f)
+    if (q.length < 12 || q.length > 400 || !enUnTramo.some((t) => t.includes(q))) dropped.push(f)
     else kept.push(f)
   }
   return { kept, dropped }
@@ -730,19 +766,108 @@ export async function leerPestanas(
 }
 
 /**
- * El texto de lo que va detrás de la barra de pestañas: el panel abierto.
+ * ## Dónde acaba una tarjeta
+ *
+ * `innerText` aplana los recuadros de la página en una tira de líneas, y el
+ * borde que separa dos tarjetas no es texto: no llega. El 26-10-2026 la revisión
+ * señaló /plenos/c8kr44 con una cita que empezaba en el pie de
+ * c8kr44-142-cit-b8c30e —«Fuentes comprobadas: contratos», «Veredicto: subido
+ * por una persona · firmado por …»— y seguía con la cabecera de
+ * c8kr44-008-afi-abc45b —«Afirmación numérica / 2025-09-08 / 92 €»—, y la leyó
+ * como UNA tarjeta cuya cabecera nombraba una fuente y su resumen cuatro. Las
+ * notas del curador ya lo decían de otras pasadas: cuando la cita señalada es
+ * cierta, el problema suele estar en la tarjeta de al lado.
+ *
+ * Así que la frontera se escribe: una línea al abrir cada tarjeta y otra al
+ * cerrarla. Las dos, y no sólo la de inicio, para que lo que va detrás de la
+ * última tarjeta de una lista —el título del apartado siguiente— no se lea como
+ * su pie. Se anidan como las tarjetas.
+ *
+ * No son texto de la página, y todo lo que mide la página las quita:
+ * `sinMarcas` para la cobertura, para el pase de «gastado» y para el rastro de
+ * los descartes. Lo que sí las ve es lo que se le da al modelo, el hash de la
+ * caché —una tarjeta partida en dos es otra página para quien la lee— y el
+ * filtro de literalidad, que ya no acepta una cita que cruce una.
+ */
+export const MARCAS_DE_TARJETA = {
+  inicio: '── tarjeta ──',
+  fin: '── fin de tarjeta ──',
+} as const
+
+/** ¿Es esta línea una marca de tarjeta, y no texto de la página? */
+function esMarca(linea: string): boolean {
+  const l = linea.trim()
+  return l === MARCAS_DE_TARJETA.inicio || l === MARCAS_DE_TARJETA.fin
+}
+
+/** El texto tal como lo ve el lector: sin las líneas de marca. */
+export function sinMarcas(texto: string): string {
+  return texto
+    .split('\n')
+    .filter((l) => !esMarca(l))
+    .join('\n')
+}
+
+/** Lo que `textoConTarjetas` necesita saber: qué leer y con qué marcas. */
+export interface Lectura {
+  /**
+   * `pagina`: el `<body>` entero, como carga. `tras-la-barra`: lo que va detrás
+   * de la barra de pestañas, que es el panel abierto.
+   */
+  ambito: 'pagina' | 'tras-la-barra'
+  /** `MARCAS_DE_TARJETA`. Va por argumento porque el cuerpo no puede importarla. */
+  marcas: { inicio: string; fin: string }
+}
+
+/**
+ * El texto que lee la revisión, con cada tarjeta entre sus marcas.
+ *
+ * Una tarjeta es lo que lleva `data-tarjeta`: el `Card` de Primitives y las
+ * cajas pintadas a mano con `cp-card`. Un atributo y no la clase, porque la
+ * clase es de quien pinta y renombrarla no puede apagar esto en silencio
+ * (tests/components/tarjetas-en-la-lectura.test.jsx cuenta las cajas a mano).
+ *
+ * Mete un nodo con la marca al principio y al final de cada tarjeta, lee, y los
+ * quita en el `finally`: todo dentro de una evaluación, así que React no corre
+ * entre medias y nunca ve nodos ajenos en su árbol —la revisión sigue pulsando
+ * pestañas después de leer—. Una tarjeta oculta no se pinta, y sus marcas
+ * tampoco: no se lee lo que no se ve.
  *
  * Se pasa tal cual a `page.evaluate`, así que no puede tocar nada de fuera de
  * su cuerpo —ni imports ni funciones auxiliares—: Playwright serializa el
- * texto de la función y lo ejecuta en el navegador.
+ * texto de la función y lo ejecuta en el navegador. Por eso no hay ninguna
+ * función con nombre dentro: el `keepNames` de esbuild, que usa tsx, las
+ * envolvería en un `__name` que en la página no existe.
  */
-export function textoTrasLaBarra(): string {
-  const barra = document.querySelector('[data-pestana]')?.parentElement
-  let texto = ''
-  for (let n = barra?.nextElementSibling ?? null; n; n = n.nextElementSibling) {
-    texto += `${(n as HTMLElement).innerText ?? n.textContent ?? ''}\n`
+export function textoConTarjetas({ ambito, marcas }: Lectura): string {
+  const puestas: HTMLElement[] = []
+  for (const tarjeta of Array.from(document.querySelectorAll('[data-tarjeta]'))) {
+    for (const [texto, alPrincipio] of [
+      [marcas.inicio, true],
+      [marcas.fin, false],
+    ] as const) {
+      const m = document.createElement('div')
+      m.textContent = texto
+      // Una línea propia, y tal cual: dentro de una tarjeta en versalitas
+      // saldría en mayúsculas y ya no casaría con la constante.
+      m.style.display = 'block'
+      m.style.textTransform = 'none'
+      if (alPrincipio) tarjeta.prepend(m)
+      else tarjeta.append(m)
+      puestas.push(m)
+    }
   }
-  return texto
+  try {
+    if (ambito === 'pagina') return document.body.innerText
+    const barra = document.querySelector('[data-pestana]')?.parentElement
+    let texto = ''
+    for (let n = barra?.nextElementSibling ?? null; n; n = n.nextElementSibling) {
+      texto += `${(n as HTMLElement).innerText ?? n.textContent ?? ''}\n`
+    }
+    return texto
+  } finally {
+    for (const m of puestas) m.remove()
+  }
 }
 
 /**
@@ -769,7 +894,7 @@ export function textoTrasLaBarra(): string {
  * sólo cabía en caché; hasta que el barrido la caliente saldrá PARCIAL, y lo
  * dirá.
  *
- * Como `textoTrasLaBarra`, se pasa tal cual a `page.evaluate`: nada de fuera
+ * Como `textoConTarjetas`, se pasa tal cual a `page.evaluate`: nada de fuera
  * de su cuerpo.
  */
 export function abrirLoPlegado(): { paneles: number; plegados: number } {

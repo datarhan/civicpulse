@@ -105,11 +105,15 @@ export function Delta({ v, size = 11 }) {
  *
  * `style` sigue ganando a la clase —es un atributo inline— así que las llamadas
  * que ya pasan su propio `padding` o `background` no cambian de aspecto.
+ *
+ * `data-tarjeta` no pinta nada: le dice a la revisión lectora dónde empieza y
+ * acaba el recuadro, que `innerText` no ve (`textoConTarjetas` en
+ * src/scraper/reader-review.ts). Va detrás de `rest` para que nadie lo quite.
  */
 export function Card({ children, style = {}, pad = true, hover = false, className = '', ...rest }) {
   const clases = ['cp-card', pad ? '' : 'cp-card-flush', hover ? 'cp-card-hover' : '', className]
   return (
-    <div {...rest} className={clases.filter(Boolean).join(' ')} style={style}>
+    <div {...rest} data-tarjeta="" className={clases.filter(Boolean).join(' ')} style={style}>
       {children}
     </div>
   )

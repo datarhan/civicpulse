@@ -190,6 +190,7 @@ export default function EnBreve({ titulo, intro, saltarA, saltarTexto, children,
       ref={ref}
       {...marcas}
       className="cp-card cp-en-breve"
+      data-tarjeta=""
       aria-labelledby={idTitulo}
       data-en-breve-bloque=""
     >
