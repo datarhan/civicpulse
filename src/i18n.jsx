@@ -851,6 +851,18 @@ export const CATALOGUE = {
     // dictaminar…): el título es literal y no admite marca, así que la tarjeta
     // del orden del día las nombra aparte, con su entrada del glosario.
     'plenos.vocabulario': 'Palabras de este orden del día: {lista}.',
+    // «Los plenos del último año» (components/plenos/SesionesDelAnio.jsx): de qué trató
+    // cada sesión, en vez de cuánto hemos procesado de ella.
+    'plenos.anio.titulo': 'Los plenos del último año',
+    'plenos.anio.intro':
+      'Las sesiones anteriores de los últimos doce meses y lo primero que se llevó a votar en cada una.',
+    'plenos.anio.saltar': 'Todas las sesiones, con sus cifras ↓',
+    'plenos.anio.decidir': 'Para decidir',
+    'plenos.anio.mas': 'y {n} más',
+    'plenos.anio.sinOrden': 'Todavía no hemos recogido su orden del día.',
+    'plenos.anio.soloActa': 'Para decidir, sólo la aprobación del acta anterior.',
+    'plenos.anio.soloInformes': 'Sólo informes, que no se votan.',
+    'plenos.anio.nadaQueDecidir': 'Ningún punto para decidir en su orden del día.',
     'plenos.palabra.mocion': 'moción',
     'plenos.palabra.reconocimientoExtrajudicial': 'reconocimiento extrajudicial',
     'plenos.palabra.sinDictaminar': 'sin dictaminar',
@@ -3384,6 +3396,16 @@ export const CATALOGUE = {
     'lecturas.divisor':
       'Fins ací, l’essencial. A sota, totes les dades, per a qui les vulga comprovar.',
     'plenos.vocabulario': 'Paraules d’este ordre del dia: {lista}.',
+    'plenos.anio.titulo': 'Els plens de l’últim any',
+    'plenos.anio.intro':
+      'Les sessions anteriors dels últims dotze mesos i el primer que es va portar a votació en cadascuna.',
+    'plenos.anio.saltar': 'Totes les sessions, amb les seues xifres ↓',
+    'plenos.anio.decidir': 'Per a decidir',
+    'plenos.anio.mas': 'i {n} més',
+    'plenos.anio.sinOrden': 'Encara no n’hem recollit l’ordre del dia.',
+    'plenos.anio.soloActa': 'Per a decidir, només l’aprovació de l’acta anterior.',
+    'plenos.anio.soloInformes': 'Només informes, que no es voten.',
+    'plenos.anio.nadaQueDecidir': 'Cap punt per a decidir en el seu ordre del dia.',
     'plenos.palabra.mocion': 'moció',
     'plenos.palabra.reconocimientoExtrajudicial': 'reconeixement extrajudicial',
     'plenos.palabra.sinDictaminar': 'sense dictaminar',

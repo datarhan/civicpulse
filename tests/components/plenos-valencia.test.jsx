@@ -28,6 +28,7 @@ import { RETRACTION_SCOPES } from '../../src/scraper/pleno-votes'
 import { etiquetaDelPunto } from '../../src/scraper/etiqueta-llana'
 import { hoyEnRibarroja } from '../../src/scraper/en-breve-portada'
 import { REGIMEN_DE_SESIONES, proximoPleno } from '../../src/scraper/proximo-pleno'
+import { esAprobacionDeActa, sesionesDelUltimoAnio } from '../../src/scraper/en-breve-plenos'
 import {
   cadenasDe,
   datosPintados,
@@ -272,6 +273,34 @@ function unOrdinarioEnMartes() {
   return mapa
 }
 
+/**
+ * «Los plenos del último año» con cada forma que el dato de hoy no trae: una
+ * sesión sin orden del día, una con sólo informes, una con sólo el acta para
+ * decidir y una sin nada que decidir ni informar. Son cuatro sesiones reales de
+ * la ventana, con su orden del día repartido de otra manera.
+ */
+function anioConCadaForma() {
+  const mapa = structuredClone(sirve())
+  const agendas = mapa[RUTAS.agendas]
+  const filas = sesionesDelUltimoAnio({
+    sesiones: mapa[RUTAS.plenos].items,
+    agendas: agendas.plenos,
+    hoy: hoyEnRibarroja(),
+  })
+  const deId = (id) => agendas.plenos.find((p) => p.id === id)
+  const conActa = filas.find((f) => deId(f.id)?.agenda.some((a) => esAprobacionDeActa(a.title)))
+  const otras = filas.filter((f) => f !== conActa && deId(f.id)).map((f) => f.id)
+  const [sinOrden, informes, nada] = otras
+  deId(conActa.id).agenda = deId(conActa.id).agenda.map((a) => ({
+    ...a,
+    section: esAprobacionDeActa(a.title) ? 'resolutiva' : 'informativa',
+  }))
+  deId(informes).agenda = deId(informes).agenda.map((a) => ({ ...a, section: 'informativa' }))
+  deId(nada).agenda = deId(nada).agenda.map((a) => ({ ...a, section: 'ruegos' }))
+  agendas.plenos = agendas.plenos.filter((p) => p.id !== sinOrden)
+  return mapa
+}
+
 // ─── Escenarios ────────────────────────────────────────────────────────────────
 
 const filasDe = (mapa) => mapa[RUTAS.plenos].items.length
@@ -346,6 +375,7 @@ const ESCENARIOS = [
   ),
   escenario('el próximo pleno ya en el índice', conElProximo()),
   escenario('un pleno ordinario que no fue en lunes', unOrdinarioEnMartes()),
+  escenario('los plenos del último año, cada uno de una forma', anioConCadaForma()),
 ]
 
 afterEach(() => localStorage.clear())
@@ -353,6 +383,27 @@ afterEach(() => localStorage.clear())
 // ─── Lo que se compara ─────────────────────────────────────────────────────────
 
 describe('las mutaciones abren las ramas que dicen', () => {
+  it('«Los plenos del último año» sale con cada forma en algún escenario', () => {
+    const hoy = hoyEnRibarroja()
+    const formas = new Set(
+      ESCENARIOS.flatMap((e) =>
+        sesionesDelUltimoAnio({
+          sesiones: e.fetch[RUTAS.plenos].items,
+          agendas: e.fetch[RUTAS.agendas].plenos ?? [],
+          hoy,
+        }).map((f) => {
+          const o = f.ordenDelDia
+          if (!o) return 'sinOrden'
+          if (o.destacados.length > 0) return o.masDecidir > 0 ? 'conMas' : 'destacados'
+          return o.masDecidir > 0 ? 'soloActa' : o.informes > 0 ? 'soloInformes' : 'nada'
+        }),
+      ),
+    )
+    for (const forma of ['conMas', 'sinOrden', 'soloActa', 'soloInformes', 'nada']) {
+      expect(formas.has(forma), forma).toBe(true)
+    }
+  })
+
   it('el próximo pleno sale con fecha en un escenario, y en otro la cuenta sin «todos»', () => {
     const hoy = hoyEnRibarroja()
     const prox = ESCENARIOS.map((e) => proximoPleno({ sesiones: e.fetch[RUTAS.plenos].items, hoy }))
@@ -465,6 +516,7 @@ describe('cobertura de la guarda del índice de plenos', () => {
         k.startsWith('plenos.indice.') ||
         k.startsWith('plenos.retirada.') ||
         k.startsWith('plenos.enBreve.') ||
+        k.startsWith('plenos.anio.') ||
         k.startsWith('lecturas.'),
     )
     // Mide algo: sin claves no hay nada que cubrir.
