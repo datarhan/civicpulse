@@ -1524,8 +1524,8 @@ export default function Metodologia() {
                     contratos, … que la sostenga». */}
                 Si la cita habla del presupuesto municipal y lo que se consultó son contratos o
                 subvenciones, dice también que en el presupuesto no se buscó: «no se encontró
-                registro» no puede leerse como que nada la sostiene cuando la fuente que la
-                sostendría no se miró. Cuando la cifra citada se cotejó con los contratos y el
+                registro» no puede leerse como que nada la sostiene cuando la fuente que podría
+                sostenerla no se miró. Cuando la cifra citada se cotejó con los contratos y el
                 título de uno coincide en parte con lo citado, la tarjeta enseña ese expediente y
                 dice que su importe no es la cifra: se miró, y ni la sostiene ni la desmiente. A una
                 cita sin cifra no se le enseña ninguno, porque no hubo importe que cotejar. Los
