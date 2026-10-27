@@ -1,6 +1,7 @@
 import { test, expect } from '@playwright/test'
 import { readFileSync } from 'node:fs'
 import { rutaDeSesion } from '../../src/scraper/ruta-de-sesion'
+import { tituloDeSesionEs } from '../../src/scraper/meta-og'
 import { REGIMEN_DE_SESIONES, proximoPleno } from '../../src/scraper/proximo-pleno'
 import { esAprobacionDeActa, sesionesDelUltimoAnio } from '../../src/scraper/en-breve-plenos'
 
@@ -75,7 +76,7 @@ test.describe('«El último pleno» (/plenos)', () => {
     // ella, el HTML de reserva, también para el id); Vercel lo sirve sin barra.
     const html = await (await page.request.get(`${ruta}/`)).text()
     expect(html).toMatch(new RegExp(`<link rel="canonical" href="[^"]*/plenos/${ultima.id}"`))
-    expect(html).toContain(`Pleno · ${ultima.title}`)
+    expect(html).toContain(`<title>${tituloDeSesionEs(ultima.date)} · `)
   })
 
   test('«¿Cuándo es el próximo?» dice lo que cuentan las fechas, sin deducir una', async ({
