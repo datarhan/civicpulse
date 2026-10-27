@@ -5,8 +5,9 @@ import { useJsonFetch } from './useJsonFetch'
 //
 //   · KIND_LABEL / KIND_TONE — PlenoDetalle renders only `video.url` and
 //     `video.title`, so a video's `kind` reaches no surface. Which is just as
-//     well: the classifier misses the upstream typo "Ple extrordinari" and
-//     disagrees with plenos.json on two records.
+//     well: the classifier reads only the title, and the title can disagree
+//     with plenos.json (2025-07-31: «Ple Extraordinari», the session is
+//     «urgente»). Since 2026-10-27 it reads the upstream typo «extrordinari».
 //   · usePlenoVoteSuggestions — pleno-votes-suggestions.json is regenerated
 //     daily by the pipeline and rendered nowhere. The curator vote queue reads
 //     it server-side, not through this hook. (It also lived in the wrong
