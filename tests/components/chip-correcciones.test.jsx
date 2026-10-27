@@ -51,6 +51,17 @@ describe('ChipCorrecciones', () => {
     expect(pinta(undefined).container.innerHTML).toBe('')
   })
 
+  // La etiqueta cuenta las notas de `meta.correcciones`, y una nota puede traer
+  // varios cambios: la de coste-efectivo del 17-09-2026 recoge «cuatro errores
+  // de fondo y varios menores». Una definición que dijera «un cambio» haría que
+  // «Con 10 correcciones» se leyera como diez cambios, y fueron más.
+  it('la definición cuenta notas, no cambios: una nota puede recoger varios', () => {
+    expect(CATALOGUE.es['glosario.correccion.def']).toMatch(/^Una nota fechada/)
+    expect(CATALOGUE.es['glosario.correccion.def']).toMatch(/varios cambios/)
+    expect(CATALOGUE.ca['glosario.correccion.def']).toMatch(/^Una nota datada/)
+    expect(CATALOGUE.ca['glosario.correccion.def']).toMatch(/diversos canvis/)
+  })
+
   it('en tono neutro y sin mayúsculas: ni rojo, ni ámbar, ni versalitas', () => {
     const { container } = pinta(9)
     const chip = container.querySelector('[data-correcciones]')

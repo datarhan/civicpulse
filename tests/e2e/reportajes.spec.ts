@@ -55,7 +55,9 @@ test.describe('Reportajes index (/reportajes)', () => {
       await termino.click()
       await expect(termino).toHaveAttribute('aria-expanded', 'true')
       const panel = page.locator(`[id="${await termino.getAttribute('aria-controls')}"]`)
-      await expect(panel).toContainText('Un cambio que hicimos en una pieza ya publicada')
+      await expect(panel).toContainText(
+        'Una nota fechada que añadimos al final de una pieza ya publicada',
+      )
       await expect(page).toHaveURL(/\/reportajes$/)
     })
   }
@@ -82,7 +84,7 @@ test.describe('Landing editorial feed', () => {
     await expect(termino).toHaveAttribute('aria-expanded', 'true')
     await expect(
       page.locator(`[id="${await termino.getAttribute('aria-controls')}"]`),
-    ).toContainText('Un cambio que hicimos en una pieza ya publicada')
+    ).toContainText('Una nota fechada que añadimos al final de una pieza ya publicada')
   })
 })
 

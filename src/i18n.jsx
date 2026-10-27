@@ -1941,7 +1941,7 @@ export const CATALOGUE = {
       'Lo que el Ayuntamiento debe a bancos y otras entidades al cerrar el año. No es el capítulo «Deuda pública» del presupuesto, que es lo que se aparta cada año para pagarla.',
     'glosario.correccion.termino': 'Corrección',
     'glosario.correccion.def':
-      'Un cambio que hicimos en una pieza ya publicada. Unas arreglan un error; otras precisan una frase o añaden un dato que faltaba. Cada una queda anotada al final de la pieza, con su fecha y lo que cambió.',
+      'Una nota fechada que añadimos al final de una pieza ya publicada cuando la cambiamos, y que explica qué cambió. Unas arreglan un error; otras precisan una frase o añaden un dato que faltaba. Una misma nota puede recoger varios cambios hechos a la vez.',
     'presupuesto.fuentes.title': 'Dos fuentes, dos presupuestos aprobados',
     'presupuesto.fuentes.conprel': 'CONPREL · Ministerio de Hacienda',
     'presupuesto.fuentes.municipal': 'Estado de ejecución del propio Ayuntamiento',
@@ -4259,7 +4259,7 @@ export const CATALOGUE = {
       "El que l'Ajuntament deu a bancs i altres entitats en tancar l'any. No és el capítol «Deute públic» del pressupost, que és el que s'aparta cada any per a pagar-lo.",
     'glosario.correccion.termino': 'Correcció',
     'glosario.correccion.def':
-      'Un canvi que vam fer en una peça ja publicada. Unes arreglen un error; altres precisen una frase o afegixen una dada que faltava. Cada una queda anotada al final de la peça, amb la seua data i el que va canviar.',
+      "Una nota datada que afegim al final d'una peça ja publicada quan la canviem, i que explica què va canviar. Unes arreglen un error; altres precisen una frase o afegixen una dada que faltava. Una mateixa nota pot recollir diversos canvis fets alhora.",
     'presupuesto.fuentes.title': 'Dos fonts, dos pressupostos aprovats',
     'presupuesto.fuentes.conprel': "CONPREL · Ministeri d'Hisenda",
     'presupuesto.fuentes.municipal': "Estat d'execució del propi Ajuntament",
