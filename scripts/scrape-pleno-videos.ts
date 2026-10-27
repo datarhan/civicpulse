@@ -9,7 +9,7 @@
 import { execFileSync } from 'node:child_process'
 import { writeFileSync } from 'node:fs'
 import { resolve } from 'node:path'
-import { parseChannelFeed } from '../src/scraper/pleno-videos'
+import { argumentosYtdlp, parseChannelFeed } from '../src/scraper/pleno-videos'
 
 const CHANNEL_URL = 'https://www.youtube.com/@ajuntam_riba_roja_de_turia'
 const OUT_PATH = resolve('public/data/pleno-videos.json')
@@ -17,11 +17,11 @@ const PLAYLIST_LIMIT = 60 // enough to cover ~2 years of monthly sessions
 
 function run(): string {
   try {
-    const raw = execFileSync(
-      'yt-dlp',
-      ['--flat-playlist', '--dump-json', '--playlist-end', String(PLAYLIST_LIMIT), CHANNEL_URL],
-      { encoding: 'utf8', stdio: ['ignore', 'pipe', 'pipe'], maxBuffer: 32 * 1024 * 1024 },
-    )
+    const raw = execFileSync('yt-dlp', argumentosYtdlp(CHANNEL_URL, PLAYLIST_LIMIT), {
+      encoding: 'utf8',
+      stdio: ['ignore', 'pipe', 'pipe'],
+      maxBuffer: 32 * 1024 * 1024,
+    })
     return raw
   } catch (err: unknown) {
     const msg = err instanceof Error ? err.message : String(err)
@@ -39,8 +39,14 @@ function main() {
   process.stdout.write(
     `[pleno-videos] scanned ${snap.stats.totalVideosScanned} · matched ${snap.stats.plenoVideosMatched} pleno(s) ` +
       `(ordinario ${snap.stats.byKind.ordinario}, extraordinario ${snap.stats.byKind.extraordinario}, ` +
-      `urgente ${snap.stats.byKind.urgente}, otro ${snap.stats.byKind.otro}) → ${OUT_PATH}\n`,
+      `urgente ${snap.stats.byKind.urgente}, otro ${snap.stats.byKind.otro}) · ` +
+      `${snap.stats.plenosSinFecha} pleno(s) sin día o sin año, sin fecha → ${OUT_PATH}\n`,
   )
+  // Un pleno sin fecha no se ata a una sesión (eso lo hace regmeet): se nombra
+  // para que el hueco se vea y no se lea como «el canal no tiene ese vídeo».
+  for (const s of snap.sinFecha) {
+    process.stdout.write(`[pleno-videos]   sin fecha (${s.motivo}): ${s.ytId} «${s.title}»\n`)
+  }
 }
 
 main()

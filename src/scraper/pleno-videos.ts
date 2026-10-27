@@ -212,7 +212,8 @@ function leeTitulo(title: string): LecturaTitulo {
  * `--extractor-args youtube:lang=ca`: sin él, yt-dlp pide los listados con
  * `hl=en` y YouTube devuelve TRADUCIDOS los títulos que tienen traducción. El
  * 27-10-2026 eran ocho, entre ellos el pleno del 03-07-2026 («Extraordinary
- * Plenary Session July 3, 2026», L6Cy1hTrpIc), que así salió del índice; con
+ * Plenary Session July 3, 2026», L6Cy1hTrpIc), que entró y salió del índice
+ * tres veces entre julio y septiembre según qué título devolviera YouTube; con
  * `lang=ca` y con `lang=es` los 121 títulos salieron idénticos: el original.
  */
 export function argumentosYtdlp(channelUrl: string, limit: number): string[] {
