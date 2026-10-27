@@ -27,7 +27,6 @@ import { TONOS_RECENCIA } from '../src/lib/incendios'
 import { KIND_ICON } from '../src/hooks/useParticipa'
 import { PLENO_TONE } from '../src/hooks/usePlenos'
 import { CLAVE_RELACION, RELATION_LABELS } from '../src/scraper/queja-contract-relations'
-import { NIVELES_AEMET } from '../src/scraper/spain-ticker'
 import { CLAIM_VERDICTS, CORPUS_IDS } from '../src/scraper/claim-verdicts'
 import { ALLOWED_CLAIM_TOPICS, ALLOWED_CLAIM_TYPES } from '../src/scraper/pleno-claim'
 import { EVIDENCE_KINDS } from '../src/scraper/claim-verifier'
@@ -145,11 +144,6 @@ const FAMILIAS = [
       (valor) =>
         (CLAVE_RELACION as Record<string, string> | undefined)?.[valor] ?? `sin-clave·${valor}`,
     ),
-  },
-  {
-    familia: 'niveles de aviso de AEMET (NIVELES_AEMET)',
-    prefijo: 'liveTicker.aemet.nivel.',
-    valores: lista(NIVELES_AEMET),
   },
   {
     familia: 'estados de una queja (QuejaState, en el bot)',

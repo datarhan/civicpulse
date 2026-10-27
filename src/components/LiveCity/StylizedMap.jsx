@@ -7,7 +7,7 @@ import { useTenders } from '../../hooks/useTenders'
 import { useObras } from '../../hooks/useObras'
 import { EMPTY_TENDER_GEO } from '../../lib/tender-geo'
 import { agrupaPorExpediente } from '../../lib/tender-lotes'
-import { BAJO_LA_CINTA, DEFAULT_CENTER, ResizeOnMount } from './shared'
+import { AIRE_ARRIBA, DEFAULT_CENTER, ResizeOnMount } from './shared'
 import { MunicipalBoundary } from './network/MunicipalBoundary'
 import { Railways } from './network/Railways'
 import { FullNetwork } from './network/FullNetwork'
@@ -261,11 +261,11 @@ export default function StylizedMap({ center = DEFAULT_CENTER }) {
           viewport entirely, unreachable rather than merely overlapping. The
           chip row is the last flex child, so it is what stays pinned.
 
-          El tope se mide desde el pie de la cinta «DIRECTO», no desde el borde
-          del mapa. Medido desde el borde dejaba subir la pila hasta 12 px del
-          techo, y la cinta va encima (401 contra 400): a 375×812, con el detalle
-          del dinero abierto, la primera línea de la tarjeta quedaba debajo de la
-          cinta (17-10-2026). */}
+          El tope deja `AIRE_ARRIBA` libre arriba. Se midió contra el pie de
+          la cinta «DIRECTO»: a 375×812, con el detalle del dinero abierto, la
+          primera línea de la tarjeta quedaba debajo de ella (17-10-2026). La
+          cinta se quitó el 27-10-2026 y el tope se queda, para que la pila no
+          cambie de tamaño con ella. */}
       <div
         ref={pilaRef}
         className="cp-mapa-pila"
@@ -279,7 +279,7 @@ export default function StylizedMap({ center = DEFAULT_CENTER }) {
           flexDirection: 'column-reverse',
           gap: 8,
           maxWidth: 'calc(100% - 24px)',
-          maxHeight: `calc(100% - ${PILA_ABAJO + BAJO_LA_CINTA}px)`,
+          maxHeight: `calc(100% - ${PILA_ABAJO + AIRE_ARRIBA}px)`,
           overflowY: 'auto',
           overscrollBehavior: 'contain',
         }}

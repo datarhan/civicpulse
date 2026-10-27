@@ -120,7 +120,8 @@ const MAPA_PLEGADO_ALTO = 700
 // Alto del MAPA por debajo del cual la clave de Metrovalencia no se enseña ni con
 // la pila desplegada. Es una tarjeta de la pila desde el 18-10-2026, y en un móvil
 // (mapa de 277 a 357 px) desplegada empujaba la tarjeta del dinero, con su detalle
-// abierto, por debajo de la cinta «DIRECTO» (mobile.spec.ts). Antes tampoco se
+// abierto, por debajo de la cinta «DIRECTO», que entonces cubría lo alto del mapa
+// (mobile.spec.ts; la cinta se quitó el 27-10-2026). Antes tampoco se
 // leía: flotaba más ancha que el mapa y tapada un 97 %. En tableta (468 a 593) cabe
 // desplegada. Lo lee la container query de DirectionD.jsx.
 const MAPA_SIN_LEYENDA_ALTO = 420

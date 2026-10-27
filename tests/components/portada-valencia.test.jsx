@@ -23,7 +23,6 @@
  * nunca a «listo».
  */
 import { afterEach, describe, expect, it, vi } from 'vitest'
-import { fireEvent, waitFor } from '@testing-library/react'
 import { readFileSync } from 'node:fs'
 import { resolve } from 'node:path'
 
@@ -53,7 +52,6 @@ import {
   ParticipaBlockD,
   PressBlockD,
 } from '../../src/variants/direction-d/blocks/FeedBlocks'
-import LiveTicker from '../../src/components/LiveTicker'
 import {
   cadenasDe,
   datosPintados,
@@ -252,88 +250,6 @@ function columnaEnSusRamasRaras() {
   return mapa
 }
 
-// ─── La cinta de datos nacionales ──────────────────────────────────────────────
-
-const HACE_TRES_HORAS = new Date(Date.now() - 3 * 60 * 60 * 1000).toISOString()
-const INCIDENCIAS = [
-  ['CV-374', 'Obras en la calzada, carril derecho cortado'],
-  ['A-3', 'Retención por accidente en el kilómetro 340'],
-  ['CV-50', 'Firme deslizante por lluvia'],
-  ['V-30', 'Vehículo averiado en el arcén'],
-  ['CV-370', 'Corte total por obras de mantenimiento'],
-  ['A-7', 'Circulación lenta en sentido Barcelona'],
-  ['CV-36', 'Paso alternativo regulado por señalistas'],
-].map(([road, description]) => ({ road, description }))
-const PRENSA = {
-  id: 'p-1',
-  source: 'Levante-EMV',
-  title: 'El pleno de Riba-roja aprueba el plan de caminos rurales',
-  date: HACE_TRES_HORAS,
-  link: 'https://www.levante-emv.com/pleno-riba-roja-caminos',
-}
-const CINTA = {
-  generatedAt: '2026-09-15T06:00:00.000Z',
-  sources: {
-    luz: {
-      ok: true,
-      currentValue: 0.1234,
-      deltaVsYesterdayPct: -2.5,
-      hourlyCurve: [0.1, 0.12, 0.15, 0.11],
-      dayMin: 0.1,
-      dayMax: 0.15,
-      sourceUrl: 'https://www.ree.es/es/datos/mercados',
-    },
-    gasolina: {
-      ok: true,
-      gasolina95: 1.589,
-      diesel: 1.459,
-      stationCount: 7,
-      sourceUrl: 'https://geoportalgasolineras.es/',
-    },
-    euribor12m: {
-      ok: true,
-      value: 2.345,
-      history: [{ value: 2.401 }, { value: 2.345 }],
-      sourceUrl: 'https://www.bde.es/',
-    },
-    ipc: {
-      ok: true,
-      yoyChange: 2.7,
-      period: '2026M08',
-      history: [{ value: 2.5 }, { value: 2.7 }],
-      sourceUrl: 'https://www.ine.es/',
-    },
-    bceMRO: { ok: true, value: 2.15, sourceUrl: 'https://www.ecb.europa.eu/' },
-    aemet: { ok: true, active: true, highestLevel: 'naranja', sourceUrl: 'https://www.aemet.es/' },
-    dgt: { ok: true, incidents: INCIDENCIAS, sourceUrl: 'https://infocar.dgt.es/' },
-  },
-}
-/**
- * Los chips que abren un panel, buscados por un texto que es dato y se escribe igual
- * en los dos idiomas: el precio de la luz, una carretera, el IPC y el titular.
- */
-const ABREN_PANEL = ['0.123 €/kWh', INCIDENCIAS[0].road, '2.7%', PRENSA.title]
-
-async function abreCadaPanel(container) {
-  const leido = []
-  for (const texto of ABREN_PANEL) {
-    const chip = [...container.querySelectorAll('button')].find((b) =>
-      b.textContent.includes(texto),
-    )
-    expect(chip, `no hay chip que diga ${texto}`).toBeTruthy()
-    fireEvent.click(chip)
-    const panel = await waitFor(() => {
-      const d = container.querySelector('[role="dialog"]')
-      expect(d, `el chip de ${texto} no abrió su panel`).not.toBeNull()
-      return d
-    })
-    leido.push(...lectura(panel))
-    fireEvent.click(panel.querySelector('button'))
-    await waitFor(() => expect(container.querySelector('[role="dialog"]')).toBeNull())
-  }
-  return leido
-}
-
 // ─── Escenarios ────────────────────────────────────────────────────────────────
 
 const COLUMNA_DE_HOY = sirve(RUTAS_COLUMNA)
@@ -380,20 +296,6 @@ const ESCENARIOS = [
     fetch: {},
     pinta: () => <Header now={AHORA} />,
     listo: (c) => c.textContent.includes('CivicPulse'),
-  },
-  {
-    nombre: 'la cinta de datos nacionales: todas las series, un titular y sus paneles abiertos',
-    cubre: [LiveTicker],
-    fetch: {
-      '/data/spain-ticker.json': CINTA,
-      '/data/press.json': { stats: { total: 1, sources: 1 }, items: [PRENSA] },
-      '/data/plenos-agendas.json': { plenos: [], stats: { plazosVencidosCount: 2 } },
-      '/data/promises.json': { items: [] },
-    },
-    pinta: () => <LiveTicker />,
-    listo: (c) =>
-      c.textContent.includes(PRENSA.title) && c.textContent.includes(INCIDENCIAS[0].road),
-    interactua: abreCadaPanel,
   },
 ]
 
@@ -494,7 +396,7 @@ describe('cobertura de la guarda de la portada', () => {
     )
     const cubiertos = new Set(ESCENARIOS.flatMap((e) => e.cubre))
     expect(componentes.filter(({ valor }) => !cubiertos.has(valor)).map(({ id }) => id)).toEqual([])
-    for (const fuera of [EditorialColumn, KpiStrip, Header, LiveTicker]) {
+    for (const fuera of [EditorialColumn, KpiStrip, Header]) {
       expect(cubiertos.has(fuera), `${fuera.name} sin escenario`).toBe(true)
     }
   })

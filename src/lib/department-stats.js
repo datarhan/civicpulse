@@ -3,8 +3,8 @@
  * Pure aggregator — reduces the five-source snapshot (officials, promises,
  * pleno-agendas, pleno-votes, quejas) to per-department stats keyed by
  * canonical DepartmentSlug. No fetch, no React — so both the hook and the
- * LiveTicker build-time scalar can share this logic, and it's trivially
- * unit-testable.
+ * build-time scalars (scripts/compute-dept-stats.ts) can share this logic, and
+ * it's trivially unit-testable.
  *
  * Libel-critical rule: an agenda item only counts as a "commitment" when a
  * matching pleno-vote exists (joined on plenoId + itemNumber). Agenda items

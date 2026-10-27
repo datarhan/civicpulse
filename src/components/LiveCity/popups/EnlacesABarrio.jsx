@@ -23,8 +23,9 @@ const ENLACE = {
  * mismo punto—; el nombre se escribe igual, porque a poco zoom puede ser otro.
  *
  * Con varios barrios, un rótulo y los nombres seguidos, no una línea por barrio. A
- * 375×629 el mapa deja unos 115 px entre la cinta «Directo» y la pila de controles
- * plegada, y la ficha del Passeig del Molinet llevaba tres líneas de enlace: la
+ * 375×629 el mapa deja unos 115 px entre el aire de arriba (`AIRE_ARRIBA`; hasta
+ * el 27-10-2026, la cinta «DIRECTO») y la pila de controles plegada, y la ficha
+ * del Passeig del Molinet llevaba tres líneas de enlace: la
  * tercera, Santa Mònica, quedaba debajo de la pila (17-10-2026, al quitarse el pin
  * propio de Santa Mònica, cuyo punto pasó a ceder al del Molinet).
  */

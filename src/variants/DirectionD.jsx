@@ -1,5 +1,4 @@
 import StylizedMap from '../components/LiveCity/StylizedMap'
-import LiveTicker from '../components/LiveTicker'
 import {
   RIBA_ROJA_CENTER,
   PALETTE,
@@ -58,7 +57,6 @@ export default function DirectionD() {
         scroll", which is precisely what the clipping produced.
       */}
       <style>{`
-        @keyframes ribaPulse { 0%,100% { opacity: 1 } 50% { opacity: .3 } }
         .d-root .leaflet-container { background: #0B0F19; }
         .d-root .leaflet-control-zoom { display: none; }
         .d-root .leaflet-tooltip {
@@ -237,7 +235,7 @@ export default function DirectionD() {
              la tarjeta que la lleva, y ella nunca. */
           .cp-capas-titulo { display: none; }
           /* Desplegada, la tarjeta del dinero tiene que caber entera entre la pila
-             de chips y la cinta «DIRECTO» (el tope de la pila está en
+             de chips y el aire de arriba del mapa (el tope de la pila está en
              StylizedMap.jsx). Con los 268 px de escritorio la nota de cobertura
              iba en seis líneas, la tarjeta medía 253 px y la pila se pasaba 32 de
              lo que cabe a 375×812: toma el ancho de la pila. Y su título se va,
@@ -297,7 +295,10 @@ export default function DirectionD() {
         <main id="contenido" tabIndex={-1} className="d-main" aria-label={t('a11y.mainLabel')}>
           <div className="d-mappane">
             <StylizedMap center={RIBA_ROJA_CENTER} />
-            <LiveTicker />
+            {/* Sin la cinta «DIRECTO» desde el 27-10-2026: sus series eran
+                nacionales o de la provincia, sus incidencias de la DGT no
+                tenían lugar, y lo del Ayuntamiento ya está en la columna. Los
+                avisos de participación de hoy y mañana sí son del municipio. */}
             <EventTicker />
           </div>
 
