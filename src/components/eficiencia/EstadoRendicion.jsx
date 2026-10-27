@@ -146,6 +146,7 @@ export function EstadoRendicion({ data, firmados = 0, sinAncla = false }) {
     <div
       id={sinAncla ? undefined : 'sec-lectura'}
       className="cp-card"
+      data-tarjeta=""
       style={{
         marginTop: sinAncla ? 0 : 16,
         scrollMarginTop: MARGEN_ANCLA,

@@ -1420,10 +1420,17 @@ export default function Metodologia() {
             </p>
           </li>
           <li>
+            {/* Decía «subvenciones (bdns.json), presupuesto (budget.json) y
+                promesas». El bloque del presupuesto no comparó nunca nada —leía
+                `name` y budget.json rotula en `label`— y anotaba `budget` igual,
+                así que las tarjetas lo daban por consultado (revisión lectora,
+                /plenos/1sqj7is). Se quitó en vez de repararlo: elegía un capítulo
+                por el tema y nunca miraba el total. 26-10-2026. */}
             <strong>Contraste determinista</strong> (sin LLM) contra la base de datos municipal:
-            contratos (<code>tenders.json</code>), subvenciones (<code>bdns.json</code>),
-            presupuesto (<code>budget.json</code>) y promesas documentadas (
-            <code>promises.json</code>). El verificador emite uno de cinco veredictos:
+            contratos (<code>tenders.json</code>), subvenciones (<code>bdns.json</code>) y promesas
+            documentadas (<code>promises.json</code>). El presupuesto no entra en este cotejo: hasta
+            octubre de 2026 las tarjetas lo nombraban entre las fuentes comprobadas sin que se
+            hubiera comparado con él ninguna cifra. El verificador emite uno de cinco veredictos:
             <ul style={{ marginTop: 6 }}>
               <li>
                 <strong>verificado</strong> — coincidencia fuerte (importe + entidad) en alguna base
@@ -2235,7 +2242,7 @@ export default function Metodologia() {
             servida ya no lo lleva, el repositorio sí). */}
         <p style={{ margin: '8px 0 0', color: 'var(--ink70)' }}>
           Cada afirmación que extraemos de un pleno se coteja automáticamente con la base documental
-          del ayuntamiento: contratos, subvenciones, presupuesto y promesas publicadas. Una{' '}
+          del ayuntamiento: contratos, subvenciones y promesas publicadas. Una{' '}
           <strong>puerta editorial</strong> decide después qué puede salir a la vista, y su regla es
           fallar del lado prudente: si el cotejo no encontró datos, la afirmación no se presenta
           como comprobada. La puerta da uno de tres resultados: la afirmación se enseña con sus
@@ -2455,15 +2462,14 @@ export default function Metodologia() {
           aplica el contraste editorial habitual de la verificación de hechos al flujo de prensa
           local. Cada afirmación citada se extrae de forma textual y se cruza, de forma
           determinista, contra el rastro de datos municipales públicos (PLACSP, TED, BDNS, BOE,
-          presupuesto CONPREL, plenos, padrón INE, paro SEPE). La fuente primaria siempre gana.
+          plenos, padrón INE, paro SEPE). La fuente primaria siempre gana.
         </p>
 
         <h3 style={{ marginTop: 16, fontSize: 'var(--fs-head)' }}>Escala de veredictos</h3>
         <ul style={{ margin: '6px 0 0', paddingLeft: 20 }}>
           <li>
             <strong>Verificado.</strong> El número, fecha o hecho citado coincide con el documento
-            municipal autoritativo (contrato adjudicado, convocatoria BDNS, gaceta BOE, asiento
-            presupuestario).
+            municipal autoritativo (contrato adjudicado, convocatoria BDNS, gaceta BOE).
           </li>
           <li>
             <strong>Parcial.</strong> Existe la entidad pero el detalle no coincide en su totalidad

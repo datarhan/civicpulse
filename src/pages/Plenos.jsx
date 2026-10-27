@@ -141,7 +141,7 @@ export default function Plenos() {
               maxWidth: '66ch',
             }}
           >
-            {t('plenos.indice.actaEnRegmeet')}{' '}
+            {t('plenos.indice.fuenteRegmeet')}{' '}
             <Link to="/metodologia" style={{ color: 'var(--civic)' }}>
               {t('plenos.indice.comoSeProcesa')}
             </Link>

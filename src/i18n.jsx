@@ -792,7 +792,7 @@ export const CATALOGUE = {
     'declaraciones.eyebrow': 'Verificación de declaraciones',
     'declaraciones.title': 'Declaraciones en pleno',
     'declaraciones.subtitle':
-      'Cada afirmación, promesa o acusación detectada en los plenos municipales, cruzada contra los datos abiertos publicados (PLACSP, BDNS, presupuesto, promesas electorales). Atribución a nivel de grupo. El veredicto de cada fila lo pone un cotejo automático, salvo en las que llevan la marca «corregido por un curador», donde una persona lo ha rectificado a la baja: las declaraciones sin atribuir o sin evidencia se mantienen visibles porque se han hecho, y ninguna de ellas se convierte en un hallazgo editorial sin que una persona lo firme.',
+      'Cada afirmación, promesa o acusación detectada en los plenos municipales, cruzada contra los datos abiertos publicados (PLACSP, BDNS, promesas electorales). Atribución a nivel de grupo. El veredicto de cada fila lo pone un cotejo automático, salvo en las que llevan la marca «corregido por un curador», donde una persona lo ha rectificado a la baja: las declaraciones sin atribuir o sin evidencia se mantienen visibles porque se han hecho, y ninguna de ellas se convierte en un hallazgo editorial sin que una persona lo firme.',
     'declaraciones.stat.total': 'Total',
     'declaraciones.stat.conEvidencia': 'Cotejadas',
     'declaraciones.filter.verdict': 'Verdicto',
@@ -837,8 +837,11 @@ export const CATALOGUE = {
     'plenos.indice.lede.votos': 'votaciones transcritas de {n}',
     'plenos.indice.lede.aviso':
       'Lo que esta página no cuenta no es que no ocurriera: es que aún no lo hemos leído.',
-    'plenos.indice.actaEnRegmeet':
-      'Cada sesión enlaza a su acta en regmeet.com, el gestor del propio ayuntamiento.',
+    // De dónde salen el orden del día y el resultado, no un enlace: la página no
+    // enlaza a regmeet desde 16dc0b4d, y el `link` de cada sesión lleva a su página
+    // en regmeet, no al acta.
+    'plenos.indice.fuenteRegmeet':
+      'El orden del día y el resultado de cada votación proceden de la página de la sesión en regmeet.com, el gestor del propio ayuntamiento.',
     'plenos.indice.comoSeProcesa': 'Cómo se procesa una sesión →',
     'plenos.indice.fuente':
       'Fuente: actas y vídeos publicados por el Ayuntamiento de Riba-roja de Túria en regmeet.com.',
@@ -1564,9 +1567,9 @@ export const CATALOGUE = {
     // Si algún dato municipal respalda lo que dicen (`CONTRAST_MARK`, por la puerta
     // de claim-public-gate.ts).
     'findings.citas.contraste.lead.una':
-      '{citas} se cotejó automáticamente con la base documental municipal —la contratación desde 2017, las subvenciones, el presupuesto vigente y las promesas publicadas— y no apareció ningún dato que la confirme ni que la desmienta. Eso no la convierte en falsa: quiere decir que no lo sabemos — y sobre hechos anteriores a esa cobertura, que no podíamos saberlo.',
+      '{citas} se cotejó automáticamente con la base documental municipal —la contratación desde 2017, las subvenciones y las promesas publicadas— y no apareció ningún dato que la confirme ni que la desmienta. Eso no la convierte en falsa: quiere decir que no lo sabemos — y sobre hechos anteriores a esa cobertura, que no podíamos saberlo.',
     'findings.citas.contraste.lead.varias':
-      '{citas} se cotejaron automáticamente con la base documental municipal —la contratación desde 2017, las subvenciones, el presupuesto vigente y las promesas publicadas— y no apareció ningún dato que las confirme ni que las desmienta. Eso no las convierte en falsas: quiere decir que no lo sabemos — y sobre hechos anteriores a esa cobertura, que no podíamos saberlo.',
+      '{citas} se cotejaron automáticamente con la base documental municipal —la contratación desde 2017, las subvenciones y las promesas publicadas— y no apareció ningún dato que las confirme ni que las desmienta. Eso no las convierte en falsas: quiere decir que no lo sabemos — y sobre hechos anteriores a esa cobertura, que no podíamos saberlo.',
     'findings.citas.contraste.toggle.chip': 'sin contraste en los datos',
     'findings.citas.contraste.toggle.title':
       'El verificador no halló ningún dato municipal que confirme ni desmienta lo que se afirma aquí.',
@@ -3227,7 +3230,7 @@ export const CATALOGUE = {
     'declaraciones.eyebrow': 'Verificació de declaracions',
     'declaraciones.title': 'Declaracions en plenari',
     'declaraciones.subtitle':
-      "Cada afirmació, promesa o acusació detectada als plens municipals, creuada contra les dades obertes publicades (PLACSP, BDNS, pressupost, promeses electorals). Atribució a nivell de grup. El veredicte de cada fila el posa un acarament automàtic: les declaracions sense atribuir o sense evidència es mantenen visibles perquè es van fer, i cap d'elles es converteix en una troballa editorial sense que una persona la signe.",
+      "Cada afirmació, promesa o acusació detectada als plens municipals, creuada contra les dades obertes publicades (PLACSP, BDNS, promeses electorals). Atribució a nivell de grup. El veredicte de cada fila el posa un acarament automàtic: les declaracions sense atribuir o sense evidència es mantenen visibles perquè es van fer, i cap d'elles es converteix en una troballa editorial sense que una persona la signe.",
     'declaraciones.stat.total': 'Total',
     'declaraciones.stat.conEvidencia': 'Acarades',
     'declaraciones.filter.verdict': 'Veredicte',
@@ -3268,8 +3271,8 @@ export const CATALOGUE = {
     'plenos.indice.lede.votos': 'votacions transcrites de {n}',
     'plenos.indice.lede.aviso':
       'El que esta pàgina no compta no vol dir que no passara: vol dir que encara no ho hem llegit.',
-    'plenos.indice.actaEnRegmeet':
-      'Cada sessió enllaça amb la seua acta a regmeet.com, el gestor del mateix ajuntament.',
+    'plenos.indice.fuenteRegmeet':
+      'L’ordre del dia i el resultat de cada votació procedeixen de la pàgina de la sessió a regmeet.com, el gestor del mateix ajuntament.',
     'plenos.indice.comoSeProcesa': 'Com es processa una sessió →',
     'plenos.indice.fuente':
       'Font: actes i vídeos publicats per l’Ajuntament de Riba-roja de Túria a regmeet.com.',
@@ -3898,9 +3901,9 @@ export const CATALOGUE = {
       'La transcripció vigent d’esta sessió és més curta que la que va substituir, així que l’absència de les paraules de {sujeto} pot deure’s al canvi de motor o a un tram que la nova passada no cobreix. No afirmem cap de les dues coses.',
     'findings.citas.procedencia.enlace': 'Com es comprova una cita →',
     'findings.citas.contraste.lead.una':
-      '{citas} es va acarar automàticament amb la base documental municipal —la contractació des de 2017, les subvencions, el pressupost vigent i les promeses publicades— i no va aparéixer cap dada que la confirme ni que la desmentisca. Això no la fa falsa: vol dir que no ho sabem — i sobre fets anteriors a eixa cobertura, que no podíem saber-ho.',
+      '{citas} es va acarar automàticament amb la base documental municipal —la contractació des de 2017, les subvencions i les promeses publicades— i no va aparéixer cap dada que la confirme ni que la desmentisca. Això no la fa falsa: vol dir que no ho sabem — i sobre fets anteriors a eixa cobertura, que no podíem saber-ho.',
     'findings.citas.contraste.lead.varias':
-      '{citas} es van acarar automàticament amb la base documental municipal —la contractació des de 2017, les subvencions, el pressupost vigent i les promeses publicades— i no va aparéixer cap dada que les confirme ni que les desmentisca. Això no les fa falses: vol dir que no ho sabem — i sobre fets anteriors a eixa cobertura, que no podíem saber-ho.',
+      '{citas} es van acarar automàticament amb la base documental municipal —la contractació des de 2017, les subvencions i les promeses publicades— i no va aparéixer cap dada que les confirme ni que les desmentisca. Això no les fa falses: vol dir que no ho sabem — i sobre fets anteriors a eixa cobertura, que no podíem saber-ho.',
     'findings.citas.contraste.toggle.chip': 'sense contrast en les dades',
     'findings.citas.contraste.toggle.title':
       'El verificador no va trobar cap dada municipal que confirme ni desmentisca el que s’afirma ací.',

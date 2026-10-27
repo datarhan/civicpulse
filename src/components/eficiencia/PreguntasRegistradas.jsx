@@ -74,6 +74,7 @@ export function PreguntasRegistradas({ data, panel, sinAncla = false }) {
           <div
             key={b.titulo}
             className="cp-card"
+            data-tarjeta=""
             style={{ display: 'flex', flexDirection: 'column', gap: 12 }}
           >
             <div>
