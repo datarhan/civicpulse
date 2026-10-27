@@ -130,7 +130,9 @@ describe('k4olcs-019-cit-b9b013: la cita sin cifra no se verifica con la de la f
     expect(filas[0].ref).toMatch(/qDjb9WdwTN3jHF5qKI4aaw/)
     // Y su fila no imprime un importe que se lea contra la cita.
     expect(filas[0].snippet).not.toMatch(IMPRIME_IMPORTE)
-    expect(v.checkedAgainst).toEqual(['tenders', 'tenders-ted', 'bdns'])
+    // Y nombra lo que la comparó —los contratos, por su título—, no las
+    // subvenciones, con las que sin cifra no se compara nada.
+    expect(v.checkedAgainst).toEqual(['tenders', 'tenders-ted'])
   })
 
   it('con la cifra dicha en el literal, el mismo objeto sí se verifica (control)', () => {
@@ -157,8 +159,10 @@ describe('qz6weg-023-cit-aae985: ni el expediente «que se parece» de una cifra
     expect(v.verdict).toBe('sin-datos')
     expect(v.evidence.filter((e) => e.kind === 'tender')).toEqual([])
     expect(v.summary).not.toMatch(/cifra citada/)
-    // Los contratos se miraron igual: la lista no cambia.
-    expect(v.checkedAgainst).toEqual(['tenders', 'tenders-ted', 'bdns'])
+    // Y no dice haber mirado contratos ni subvenciones: sin cifra en el literal
+    // no hubo nada que comparar con ellos (la regla por la que se quitó el
+    // presupuesto, `VerifierInputs.budget`).
+    expect(v.checkedAgainst).toEqual([])
   })
 })
 
@@ -182,6 +186,22 @@ describe('todas las citas: lo que funda o enseña una cifra es la que la cita di
           ),
       )
       .map(({ c, v }) => `${c.id} ${v.verdict}: ${v.summary.slice(0, 80)}`)
+    expect(malas).toEqual([])
+  }, 60_000)
+
+  it('ninguna cita sin su cifra en el literal dice haber cotejado subvenciones, que sólo se miran por la cifra', () => {
+    const fuera = CITAS.filter(
+      (c) =>
+        c.entities.amountEuros != null && !cifraEnElLiteral(c.verbatim, c.entities.amountEuros),
+    )
+    // El control: con su cifra en el literal, el camino del importe sí las anota.
+    const conCifra = verifyClaim({ claim: cita('k4olcs-018-afi-7abae5'), ...DATOS })
+    expect(conCifra.checkedAgainst).toContain('bdns')
+    const malas = fuera
+      .map((c) => ({ c, v: verifyClaim({ claim: c, ...DATOS }) }))
+      .filter(({ v }) => v.checkedAgainst.includes('bdns'))
+      .map(({ c }) => c.id)
+    expect(fuera.length).toBeGreaterThan(10)
     expect(malas).toEqual([])
   }, 60_000)
 })

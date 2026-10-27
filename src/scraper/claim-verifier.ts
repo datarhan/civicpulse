@@ -911,8 +911,20 @@ export function verifyClaim(inputs: VerifierInputs): ClaimVerification {
   const isVerifiableAccusation =
     claim.type === 'acusacion_publica' &&
     (claim.accusationSubtype === 'factual' || claim.accusationSubtype === 'contra-datos')
+  // Y sólo con la cifra que la cita DICE (cifra-en-literal.ts). El extractor la
+  // saca a veces de la frase de al lado: k4olcs-019-cit-b9b013 —«sistema de
+  // debate, captura y grabación de vídeo…», sin cifra— salía `verificado` con
+  // los 80.666 € que se dijeron en la frase siguiente, bajo «un contrato
+  // publicado imprime la cifra citada». Sin cifra en el literal este camino no
+  // corre, y tampoco anota los corpus: un comparador que no compara nada no
+  // figura como consultado (la regla por la que se quitó el presupuesto,
+  // `VerifierInputs.budget`). La cita cae a lo que el resto de la verificación
+  // sostenga —una obra citada, al bloque 3, que la busca por sus palabras—.
+  // Sólo baja: una cifra que no se dijo no funda `verificado`, ni
+  // `contradicho`, ni el expediente «que se parece».
   if (
     claim.entities.amountEuros != null &&
+    cifraEnElLiteral(claim.verbatim, claim.entities.amountEuros) &&
     (claim.type === 'afirmacion_numerica' ||
       claim.type === 'cita_obra' ||
       claim.type === 'cita_convenio' ||
@@ -920,22 +932,12 @@ export function verifyClaim(inputs: VerifierInputs): ClaimVerification {
   ) {
     const amount = claim.entities.amountEuros
     const entity = claim.entities.referencedEntity
-    // La cifra se coteja si la DICE la cita (cifra-en-literal.ts). El
-    // extractor la saca a veces de la frase de al lado: k4olcs-019-cit-b9b013
-    // —«sistema de debate, captura y grabación de vídeo…», sin cifra— salía
-    // `verificado` con los 80.666 € que se dijeron en la frase siguiente, bajo
-    // «un contrato publicado imprime la cifra citada». Como la entidad en el
-    // bloque 3: sin cifra en el literal no hay con qué emparejar, y la cita cae
-    // a lo que el resto de la verificación sostenga, con los corpus anotados
-    // porque el comparador se lanzó. Sólo baja: una cifra que no se dijo no
-    // funda `verificado`, ni `contradicho`, ni el expediente «que se parece».
-    const cifraDicha = cifraEnElLiteral(claim.verbatim, amount)
 
     // Tenders lookup (cita_obra or numeric with entity hint)
     if (tenderList.length > 0) {
       if (localTenders.length > 0) note('tenders')
       if (tedTenders.length > 0) note('tenders-ted')
-      importeLeyoContratos = cifraDicha
+      importeLeyoContratos = true
       let best: { row: TenderRow; sim: number } | null = null
       // Also look for strong-entity / weak-amount matches → potential contradicho
       let entityMatchMismatchedAmount: { row: TenderRow; textSim: number } | null = null
@@ -946,7 +948,7 @@ export function verifyClaim(inputs: VerifierInputs): ClaimVerification {
         const a = tenderAmount(t)
         if (a != null && a > maxContract) maxContract = a
       }
-      for (const t of cifraDicha ? tenderList : []) {
+      for (const t of tenderList) {
         const tAmount = tenderAmount(t)
         if (tAmount == null) continue
         // Corroborar exige el mismo objeto (`parecidoDelObjeto`): un 0,85 de
@@ -1057,7 +1059,7 @@ export function verifyClaim(inputs: VerifierInputs): ClaimVerification {
     if (bdnsList.length > 0) {
       note('bdns')
       let best: { row: BdnsRow; sim: number } | null = null
-      for (const b of cifraDicha ? bdnsList : []) {
+      for (const b of bdnsList) {
         const bAmount = bdnsAmount(b)
         // EL MISMO OBJETO, con la misma vara que el tramo de contratos.
         //
