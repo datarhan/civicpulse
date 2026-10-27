@@ -94,7 +94,7 @@ test.describe('«El último pleno» (/plenos)', () => {
     expect(p.ordinarios).toBeGreaterThan(10)
     const texto = await tarjeta.innerText()
     expect(texto).toContain('Todavía no tenemos su fecha.')
-    expect(texto).toContain(`De los ${p.ordinarios} plenos ordinarios que tenemos`)
+    expect(texto).toContain(`De los ${p.ordinarios} plenos ordinarios desde ese acuerdo`)
     expect(texto).toContain(`${p.primerLunes}, el primer lunes del mes`)
     // Ninguna fecha: ni un día de un mes en la tarjeta, salvo el del acta que enlaza.
     const sinEnlace = texto.replace(/El acuerdo, en el acta del .*/, '')

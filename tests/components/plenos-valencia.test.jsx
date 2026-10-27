@@ -27,7 +27,7 @@ import { DEPARTMENT_LABEL } from '../../src/scraper/departments'
 import { RETRACTION_SCOPES } from '../../src/scraper/pleno-votes'
 import { etiquetaDelPunto } from '../../src/scraper/etiqueta-llana'
 import { hoyEnRibarroja } from '../../src/scraper/en-breve-portada'
-import { proximoPleno } from '../../src/scraper/proximo-pleno'
+import { REGIMEN_DE_SESIONES, proximoPleno } from '../../src/scraper/proximo-pleno'
 import {
   cadenasDe,
   datosPintados,
@@ -259,12 +259,15 @@ function conElProximo() {
 }
 
 /**
- * Un ordinario que no fue en lunes: el más antiguo, un día después. Con el dato
- * de hoy todos los ordinarios fueron en lunes y sólo se pintaba esa frase.
+ * Un ordinario que no fue en lunes: el más antiguo desde el acuerdo de 2023, un
+ * día después. Con el dato de hoy todos fueron en lunes y sólo se pintaba esa
+ * frase; uno de antes del acuerdo no cuenta.
  */
 function unOrdinarioEnMartes() {
   const mapa = structuredClone(sirve())
-  const viejo = mapa[RUTAS.plenos].items.filter((s) => s.kind === 'ordinario').at(-1)
+  const viejo = mapa[RUTAS.plenos].items
+    .filter((s) => s.kind === 'ordinario' && s.date >= REGIMEN_DE_SESIONES.fecha)
+    .at(-1)
   viejo.date = masDias(viejo.date, 1)
   return mapa
 }

@@ -10,9 +10,12 @@
  * - **Si una sesión de hoy en adelante llega al índice**, es ésa: la más
  *   próxima.
  * - **Si no, la regla y lo que dicen las fechas de ella**, contado sobre los
- *   ordinarios recogidos: cuántos fueron en lunes y cuántos el primer lunes
- *   del mes. Contado, nunca escrito: la portavocía fija las fechas cada año, y
- *   muchos ordinarios no caen el primer lunes.
+ *   ordinarios celebrados DESDE EL ACUERDO: cuántos fueron en lunes y cuántos
+ *   el primer lunes del mes. Contado, nunca escrito: la portavocía fija las
+ *   fechas cada año, y muchos ordinarios no caen el primer lunes. Contaba todos
+ *   los del índice, que empieza en enero de 2023: cinco eran de antes de la
+ *   regla, y la cuenta se leía como cumplimiento de una regla que aún no
+ *   existía (I-2026-10-27-la-tarjeta-cuando-es-el-proximo-de-pleno).
  * - **Nunca se deduce una fecha de la regla.** Una fecha deducida sería una
  *   cifra que ninguna fuente publica, y en cuanto la portavocía la mueve, falsa.
  */
@@ -35,7 +38,7 @@ export const REGIMEN_DE_SESIONES = {
 export interface ProximoPleno {
   /** La sesión más próxima de hoy en adelante, si el índice ya la tiene. */
   convocado: { id: string; fecha: string; tipo: string | null } | null
-  /** Ordinarios recogidos, y de ellos cuántos en lunes y cuántos el primer lunes del mes. */
+  /** Ordinarios desde el acuerdo, y de ellos cuántos en lunes y cuántos el primer lunes del mes. */
   ordinarios: number
   enLunes: number
   primerLunes: number
@@ -56,7 +59,9 @@ export function proximoPleno(e: {
   const desdeHoy = conFecha
     .filter((s) => s.date.slice(0, 10) >= e.hoy.slice(0, 10))
     .sort((a, b) => a.date.localeCompare(b.date))[0]
-  const ordinarios = conFecha.filter((s) => s.kind === 'ordinario')
+  const ordinarios = conFecha.filter(
+    (s) => s.kind === 'ordinario' && s.date.slice(0, 10) >= REGIMEN_DE_SESIONES.fecha,
+  )
   const lunes = ordinarios.filter((s) => dia(s.date).getUTCDay() === 1)
   return {
     convocado: desdeHoy

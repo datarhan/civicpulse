@@ -59,9 +59,11 @@ describe('proximoPleno', () => {
   manana.setUTCDate(manana.getUTCDate() + 1)
   const hoy = manana.toISOString().slice(0, 10)
 
-  it('sin ninguna sesión desde hoy, la regla y lo que cuentan los ordinarios recogidos', () => {
+  it('sin ninguna sesión desde hoy, la regla y lo que cuentan los ordinarios desde el acuerdo', () => {
     const r = proximoPleno({ sesiones, hoy })
-    const ordinarios = sesiones.filter((s) => s.kind === 'ordinario')
+    const ordinarios = sesiones.filter(
+      (s) => s.kind === 'ordinario' && s.date.slice(0, 10) >= REGIMEN_DE_SESIONES.fecha,
+    )
     const lunes = ordinarios.filter((s) => dia(s.date).getUTCDay() === 1)
     const primerLunes = lunes.filter((s) => dia(s.date).getUTCDate() <= 7)
     expect(r).toEqual({
@@ -71,6 +73,20 @@ describe('proximoPleno', () => {
       primerLunes: primerLunes.length,
     })
     expect(ordinarios.length, 'mide algo').toBeGreaterThan(10)
+  })
+
+  it('un ordinario de antes del acuerdo no cuenta: la regla aún no existía', () => {
+    const antes = { id: 'antes', date: '2023-05-08', kind: 'ordinario' }
+    const sin = proximoPleno({ sesiones, hoy })
+    const con = proximoPleno({
+      sesiones: [...sesiones.filter((s) => s.id !== 'antes'), antes],
+      hoy,
+    })
+    expect(con.ordinarios).toBe(sin.ordinarios)
+    expect(
+      sesiones.some((s) => s.kind === 'ordinario' && s.date < REGIMEN_DE_SESIONES.fecha),
+      'el índice trae ordinarios de antes',
+    ).toBe(true)
   })
 
   it('con una sesión desde hoy, ésa: la más próxima, aunque sea hoy', () => {

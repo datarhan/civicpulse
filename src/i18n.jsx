@@ -840,9 +840,9 @@ export const CATALOGUE = {
     'plenos.enBreve.proximo.regla':
       'Para este mandato, el Pleno acordó celebrar el ordinario el primer lunes de cada mes a las 17:30, salvo en agosto, y el lunes siguiente si es festivo. Las fechas de cada año las fijan los portavoces de los grupos.',
     'plenos.enBreve.proximo.cuenta':
-      'De los {n} plenos ordinarios que tenemos, {lunes} fueron en lunes y {primer}, el primer lunes del mes.',
+      'De los {n} plenos ordinarios desde ese acuerdo, {lunes} fueron en lunes y {primer}, el primer lunes del mes.',
     'plenos.enBreve.proximo.cuenta.todos':
-      'De los {n} plenos ordinarios que tenemos, todos fueron en lunes y {primer}, el primer lunes del mes.',
+      'De los {n} plenos ordinarios desde ese acuerdo, todos fueron en lunes y {primer}, el primer lunes del mes.',
     'plenos.enBreve.proximo.verAcuerdo': 'El acuerdo, en el acta del {fecha} →',
     // El paso de la lectura vecinal a la experta (components/DivisorLecturas.jsx).
     'lecturas.divisor':
@@ -3357,9 +3357,9 @@ export const CATALOGUE = {
     'plenos.enBreve.proximo.regla':
       'Per a este mandat, el Ple va acordar celebrar l’ordinari el primer dilluns de cada mes a les 17.30, excepte a l’agost, i el dilluns següent si és festiu. Les dates de cada any les fixen els portaveus dels grups.',
     'plenos.enBreve.proximo.cuenta':
-      'Dels {n} plens ordinaris que tenim, {lunes} van ser en dilluns i {primer}, el primer dilluns del mes.',
+      'Dels {n} plens ordinaris des d’eixe acord, {lunes} van ser en dilluns i {primer}, el primer dilluns del mes.',
     'plenos.enBreve.proximo.cuenta.todos':
-      'Dels {n} plens ordinaris que tenim, tots van ser en dilluns i {primer}, el primer dilluns del mes.',
+      'Dels {n} plens ordinaris des d’eixe acord, tots van ser en dilluns i {primer}, el primer dilluns del mes.',
     'plenos.enBreve.proximo.verAcuerdo': 'L’acord, en l’acta del {fecha} →',
     'lecturas.divisor':
       'Fins ací, l’essencial. A sota, totes les dades, per a qui les vulga comprovar.',
