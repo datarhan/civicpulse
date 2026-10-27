@@ -44,22 +44,33 @@ function readSheet(buf: Buffer | ArrayBuffer, name: string): unknown[][] | null 
 
 function munoTotal(rows: unknown[][], muniKey: string): number | null {
   const target = strip(muniKey)
+  // The label column is not fixed. The labels sit in column B, but
+  // sheet_to_json counts from the start of the sheet's declared range: A1 up
+  // to April 2026 and again from July, B1 in May and June 2026, so the label
+  // came at index 1 or 0. Find the cell, and read the TOTAL label from the
+  // same column: matching TOTAL in any cell would stop at the block's header
+  // row, whose last activity heading is "TOTAL", and return its last code (99).
   let hit = -1
-  for (let i = 0; i < rows.length; i++) {
-    const cell = String(rows[i]?.[1] ?? '')
-    if (strip(cell).includes(`MUNICIPIO: ${target}`)) {
-      hit = i
-      break
+  let col = -1
+  for (let i = 0; i < rows.length && hit < 0; i++) {
+    const row = rows[i] ?? []
+    for (let j = 0; j < row.length; j++) {
+      if (strip(String(row[j] ?? '')).includes(`MUNICIPIO: ${target}`)) {
+        hit = i
+        col = j
+        break
+      }
     }
   }
   if (hit < 0) return null
-  // Scan down a reasonable window for the TOTAL row.
-  for (let i = hit; i < Math.min(hit + 30, rows.length); i++) {
+  // Scan down a reasonable window for the TOTAL row, but never past the next
+  // municipality's header: a block is 14 rows, so the window reaches the next
+  // one, whose TOTAL would be published as ours.
+  for (let i = hit + 1; i < Math.min(hit + 30, rows.length); i++) {
     const row = rows[i]
     if (!row) continue
-    const label = String(row[1] ?? '')
-      .trim()
-      .toUpperCase()
+    const label = strip(String(row[col] ?? ''))
+    if (label.startsWith('MUNICIPIO:')) break
     if (label !== 'TOTAL') continue
     // Last non-empty cell is the grand total.
     for (let j = row.length - 1; j >= 0; j--) {
