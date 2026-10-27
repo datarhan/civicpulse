@@ -1,7 +1,7 @@
 {
-  "generatedAt": "2026-10-26T21:45:46.053Z",
-  "baseHuella": "3092d040ddc5",
-  "composedAt": "2026-10-26T21:45:46.273Z",
+  "generatedAt": "2026-10-27T17:16:29.816Z",
+  "baseHuella": "5da41a7541aa",
+  "composedAt": "2026-10-27T17:16:30.035Z",
   "source": {
     "description": "Fact-check verdicts for every pleno-claims-suggestions.json entry. Cross-references against tenders / BDNS / budget / promises. Pure deterministic — no LLM judgement.",
     "contract": "Machine-written verdicts; a curator reviews before surfacing contradicho or promesa-repetida editorially."
@@ -49950,13 +49950,13 @@
       "verification": {
         "claimId": "k4olcs-019-cit-b9b013",
         "verdict": "verificado",
-        "summary": "Cita encontrada con coincidencia fuerte en los datos municipales.",
+        "summary": "Lo que se cotejó: un contrato publicado imprime la cifra citada, con un 1 % de margen, y nombra el mismo objeto.",
         "evidence": [
           {
             "kind": "tender",
             "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=qDjb9WdwTN3jHF5qKI4aaw%3D%3D",
             "snippet": "Contrato mixto suministro y servicio implantación de un sistema de debate, voto electrónico, captura, distribución, grabación de video y control para el salón de plenos del ayuntamiento de Riba-roja de Turia, por procedimiento abierto simplificado sumario, mejora relación calidad precio, varios criterios de adjudicación, con condición de ejecución de carácter social y medioambiental. · Ayuntamiento de Riba-roja de Túria · AMARA MEGAFONIA CCTV VOZ-DATOS, SL · it · 80.667 €",
-            "similarity": 0.85,
+            "similarity": 1,
             "stance": "checked"
           }
         ],
