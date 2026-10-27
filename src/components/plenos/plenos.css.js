@@ -28,6 +28,66 @@ export const estiloPlenos = `
   align-items: start;
 }
 
+/* ── «El último pleno»: la lectura vecinal ─────────────────────────────── */
+
+/* Dos tarjetas: el orden del día, que es lista, al doble que las votaciones.
+   Lo decide el ancho del bloque y no el de la ventana, por lo mismo que la
+   tabla: con la barra lateral, la columna no es la ventana. Por debajo de
+   640 px de bloque, una columna. */
+.cp-plenos-en-breve { container: plenos-en-breve / inline-size; }
+@container plenos-en-breve (min-width: 640px) {
+  .cp-plenos-en-breve .cp-en-breve-rejilla {
+    grid-template-columns: minmax(0, 2fr) minmax(0, 1fr);
+  }
+}
+
+.cp-plenos-puntos-rotulo {
+  margin: 4px 0 6px;
+  font-size: var(--fs-meta);
+  font-weight: 600;
+  color: var(--ink70);
+}
+.cp-plenos-puntos ol {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.cp-plenos-puntos li {
+  display: grid;
+  grid-template-columns: 2.2em minmax(0, 1fr);
+  gap: 6px;
+  font-size: var(--fs-aux);
+  line-height: 1.45;
+}
+.cp-plenos-puntos-numero { color: var(--ink50); text-align: right; }
+/* Tres líneas como mucho: hay títulos de cuatrocientos caracteres. El texto
+   entero sigue en el DOM y en el title, y el título literal, en la sesión. */
+.cp-plenos-puntos-texto {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+  line-clamp: 3;
+  overflow: hidden;
+  overflow-wrap: anywhere;
+}
+.cp-plenos-puntos-urgente {
+  display: inline-block;
+  margin-top: 2px;
+  padding: 0 6px;
+  border-radius: var(--r-pill);
+  background: var(--soft);
+  color: var(--ink70);
+  font-size: var(--fs-micro);
+  white-space: nowrap;
+}
+.cp-plenos-en-breve-video {
+  font-size: var(--fs-aux);
+  color: var(--civic);
+}
+
 /* ── La tabla de sesiones ─────────────────────────────────────────────── */
 
 /* La tabla o las fichas las decide el ancho de la TABLA, no el de la ventana.

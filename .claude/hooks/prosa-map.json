@@ -250,10 +250,12 @@
       "/plenos/:id"
     ],
     "pleno-videos-regmeet.json": [
+      "/plenos",
       "/plenos/:id"
     ],
     "pleno-videos.json": [
       "/lab-health",
+      "/plenos",
       "/plenos/:id"
     ],
     "pleno-votes.json": [

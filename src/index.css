@@ -1234,6 +1234,32 @@ body.cp-kiosk .cp-live-container {
   }
 }
 
+/* El paso de la lectura vecinal a la experta (components/DivisorLecturas.jsx):
+   una raya a cada lado de la frase, y la frase entera en cualquier ancho —a
+   375 px las rayas encogen hasta desaparecer antes que partir una palabra. */
+.cp-divisor-lecturas {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 28px 0;
+  font-size: var(--fs-aux);
+  line-height: 1.45;
+  color: var(--ink70);
+}
+.cp-divisor-lecturas::before,
+.cp-divisor-lecturas::after {
+  content: '';
+  flex: 1 1 24px;
+  min-width: 0;
+  height: 1px;
+  background: var(--border);
+}
+.cp-divisor-lecturas > span {
+  flex: 0 1 auto;
+  text-align: center;
+  text-wrap: balance;
+}
+
 /* «En breve» — la primera capa de una página densa (components/EnBreve.jsx).
 
    La rejilla se reparte sola con `auto-fit`: cuatro tarjetas en escritorio,

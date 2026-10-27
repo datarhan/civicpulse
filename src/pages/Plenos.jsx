@@ -8,6 +8,8 @@ import { TablaSesiones } from '../components/plenos/TablaSesiones'
 import { TarjetaVotaciones } from '../components/plenos/TarjetaVotaciones'
 import { TarjetaDeclaraciones } from '../components/plenos/TarjetaDeclaraciones'
 import { RepartoPorArea } from '../components/plenos/RepartoPorArea'
+import { EnBrevePlenos } from '../components/plenos/EnBrevePlenos'
+import DivisorLecturas from '../components/DivisorLecturas'
 import { usePlenos } from '../hooks/usePlenos'
 import { usePlenoClaimsManifest } from '../hooks/usePlenoClaims'
 import { usePlenoAgendas } from '../hooks/usePlenoAgendas'
@@ -74,36 +76,52 @@ export default function Plenos() {
     >
       <style>{estiloPlenos}</style>
 
+      <div style={{ marginBottom: 22 }}>
+        <div
+          className="mono"
+          style={{
+            fontSize: 'var(--fs-micro)',
+            color: 'var(--ink50)',
+            textTransform: 'uppercase',
+            letterSpacing: '.08em',
+          }}
+        >
+          {t('plenos.eyebrow')}
+        </div>
+        <h1
+          style={{
+            fontSize: 'var(--fs-page)',
+            fontWeight: 700,
+            letterSpacing: '-.015em',
+            margin: '6px 0 0',
+            lineHeight: 1.14,
+          }}
+        >
+          {t('plenos.title')}
+        </h1>
+      </div>
+
+      {/* Las dos lecturas (auditoría del 25-10-2026, §9): arriba, el último
+          pleno en palabras llanas; debajo del divisor, todo lo que esta página
+          ya tenía, empezando por la cobertura y su escalera, que son el
+          denominador de la tabla. */}
+      <EnBrevePlenos
+        filas={r.filas}
+        agendas={agendasData}
+        votos={votesData}
+        plenos={plenosData}
+        cobertura={{ sesiones: r.votos.sesiones, total: r.total }}
+      />
+      <DivisorLecturas />
+
       <div className="cp-plenos-hero" style={{ marginBottom: 30 }}>
         <div>
-          <div
-            className="mono"
-            style={{
-              fontSize: 'var(--fs-micro)',
-              color: 'var(--ink50)',
-              textTransform: 'uppercase',
-              letterSpacing: '.08em',
-            }}
-          >
-            {t('plenos.eyebrow')}
-          </div>
-          <h1
-            style={{
-              fontSize: 'var(--fs-page)',
-              fontWeight: 700,
-              letterSpacing: '-.015em',
-              margin: '6px 0 0',
-              lineHeight: 1.14,
-            }}
-          >
-            {t('plenos.title')}
-          </h1>
           {/* El lede lleva los cuatro números de la escalera en prosa, porque
               un lector que no mira la tarjeta de al lado tiene que salir de
               aquí sabiendo el denominador. */}
           <p
             style={{
-              margin: '14px 0 0',
+              margin: 0,
               fontSize: 'var(--fs-head)',
               lineHeight: 1.5,
               color: 'var(--ink)',
@@ -152,7 +170,9 @@ export default function Plenos() {
 
       <div style={{ height: 1, background: 'var(--border)', margin: '0 0 30px' }} />
 
-      <TablaSesiones filas={r.filas} filtros={r.filtros} porAnio={r.porAnio} loading={loading} />
+      <div id="sesiones">
+        <TablaSesiones filas={r.filas} filtros={r.filtros} porAnio={r.porAnio} loading={loading} />
+      </div>
 
       <div className="cp-plenos-duo" style={{ marginTop: 30 }}>
         <TarjetaVotaciones votos={r.votos} total={r.total} />
