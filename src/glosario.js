@@ -23,6 +23,9 @@ export const GLOSARIO = [
   'costeEfectivo',
   'cantidadSinRemedir',
   'entrega',
+  // La única palabra nuestra y no de la fuente: la cuenta de correcciones de un
+  // reportaje se leía como «se equivocó N veces», y es el registro que llevamos.
+  'correccion',
 ]
 
 const MARCA = /\[\[(\w+)\|([^\]]+)\]\]/g

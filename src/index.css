@@ -2326,6 +2326,30 @@ main:focus:not(:focus-visible) {
   flex-wrap: wrap;
   gap: 8px 14px;
 }
+/* Las correcciones de una pieza (`ChipCorrecciones`), en su ficha de /reportajes
+   y en la de la portada. Tono neutro: en rojo se leían como fallos. Etiqueta y
+   definición van ENCIMA del `::after` de `.cp-rj-enlace`, que hace de la ficha
+   un solo enlace; debajo, el clic en «correcciones» abría la pieza. */
+.cp-correcciones {
+  position: relative;
+  z-index: 1;
+  display: inline-block;
+  padding: 2px 7px;
+  border-radius: var(--r-input);
+  background: var(--soft);
+  color: var(--ink70);
+  font-size: var(--fs-micro);
+  line-height: 1.5;
+}
+.cp-correcciones-def {
+  position: relative;
+  z-index: 1;
+  flex-basis: 100%;
+  margin-top: 8px;
+}
+.cp-rj-pie .cp-correcciones-def {
+  margin-top: 0;
+}
 .cp-rj-leer {
   display: inline-block;
   font-size: var(--fs-meta);
