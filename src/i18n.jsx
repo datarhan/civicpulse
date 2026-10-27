@@ -802,11 +802,12 @@ export const CATALOGUE = {
     'plenos.enBreve.orden.pregunta': '¿Qué se llevó al último pleno?',
     'plenos.enBreve.orden.total': 'El orden del día tenía {n} puntos: {partes}.',
     'plenos.enBreve.orden.total.uno': 'El orden del día tenía un punto: {partes}.',
-    'plenos.enBreve.parte.decidir': '{n} para decidir',
-    'plenos.enBreve.parte.informes': '{n} informes (no se votan)',
-    'plenos.enBreve.parte.informes.uno': '1 informe (no se vota)',
+    // Las dos partes y el turno de ruegos llevan su entrada del glosario.
+    'plenos.enBreve.parte.decidir': '{n} [[parteResolutiva|para decidir]]',
+    'plenos.enBreve.parte.informes': '{n} [[dacionDeCuenta|informes (no se votan)]]',
+    'plenos.enBreve.parte.informes.uno': '1 [[dacionDeCuenta|informe (no se vota)]]',
     'plenos.enBreve.parte.otros': '{n} sin parte en la convocatoria',
-    'plenos.enBreve.parte.ruegos': 'el turno de ruegos y preguntas',
+    'plenos.enBreve.parte.ruegos': 'el turno de [[ruegosYPreguntas|ruegos y preguntas]]',
     'plenos.enBreve.orden.decidir': 'Para decidir',
     'plenos.enBreve.orden.informes': 'Informes, que no se votan',
     'plenos.enBreve.orden.otros': 'Sin parte en la convocatoria',
@@ -833,6 +834,25 @@ export const CATALOGUE = {
     // El paso de la lectura vecinal a la experta (components/DivisorLecturas.jsx).
     'lecturas.divisor':
       'Hasta aquí, lo esencial. Debajo, todos los datos, para quien quiera comprobarlos.',
+    // Las palabras de la sede que salen dentro de los títulos (moción, sin
+    // dictaminar…): el título es literal y no admite marca, así que la tarjeta
+    // del orden del día las nombra aparte, con su entrada del glosario.
+    'plenos.vocabulario': 'Palabras de este orden del día: {lista}.',
+    'plenos.palabra.mocion': 'moción',
+    'plenos.palabra.reconocimientoExtrajudicial': 'reconocimiento extrajudicial',
+    'plenos.palabra.sinDictaminar': 'sin dictaminar',
+    'plenos.palabra.urgencia': 'de urgencia',
+    // El «Resumen» de /plenos/:id: la sesión en palabras llanas, encima de sus cifras.
+    'plenoDetail.resumen.titulo': 'La sesión, en breve',
+    'plenoDetail.resumen.intro':
+      'Lo que se llevó al pleno y lo que hemos transcrito de sus votaciones, en palabras llanas. Los títulos oficiales, con su expediente, están en la pestaña «Orden del día».',
+    'plenoDetail.resumen.saltar': 'Las cifras de la sesión ↓',
+    'plenoDetail.resumen.orden.pregunta': '¿Qué se llevó a este pleno?',
+    'plenoDetail.resumen.orden.ver': 'Los títulos oficiales, con su expediente ↓',
+    'plenoDetail.resumen.votos': 'Hemos transcrito {n} votaciones de esta sesión.',
+    'plenoDetail.resumen.votos.una': 'Hemos transcrito una votación de esta sesión.',
+    'plenoDetail.resumen.votos.retirado': 'reparto por grupos retirado',
+    'plenoDetail.resumen.votos.ver': 'Quién votó qué, con sus fuentes ↓',
     // El índice de sesiones (/plenos): la entradilla, la escalera de cobertura, la
     // tabla con sus filtros, las tarjetas de votaciones y declaraciones y el reparto
     // por área. Las retiradas de votaciones, por alcance, en singular y en plural.
@@ -1199,6 +1219,9 @@ export const CATALOGUE = {
     'plenoDetail.voto.resultado': 'Resultado',
     'plenoDetail.voto.desglose': 'Desglose',
     'plenoDetail.voto.cotejadoContra': 'cotejado contra {fuente}',
+    // Encima de la barra de una votación cuyo reparto necesita salvedad: va con
+    // la cifra, no en la fila de la fuente de debajo.
+    'plenoDetail.voto.salvedadReparto': 'Quién votó qué: {nota}.',
     'plenoDetail.voto.desgloseRetirado': 'DESGLOSE POR GRUPOS RETIRADO',
     'plenoDetail.voto.desgloseCorregido': 'DESGLOSE POR GRUPOS CORREGIDO',
     'pleno.desenlace.aprobado': 'Aprobado',
@@ -3287,11 +3310,11 @@ export const CATALOGUE = {
     'plenos.enBreve.orden.pregunta': 'Què es va portar a l’últim ple?',
     'plenos.enBreve.orden.total': 'L’ordre del dia tenia {n} punts: {partes}.',
     'plenos.enBreve.orden.total.uno': 'L’ordre del dia tenia un punt: {partes}.',
-    'plenos.enBreve.parte.decidir': '{n} per a decidir',
-    'plenos.enBreve.parte.informes': '{n} informes (no es voten)',
-    'plenos.enBreve.parte.informes.uno': '1 informe (no es vota)',
+    'plenos.enBreve.parte.decidir': '{n} [[parteResolutiva|per a decidir]]',
+    'plenos.enBreve.parte.informes': '{n} [[dacionDeCuenta|informes (no es voten)]]',
+    'plenos.enBreve.parte.informes.uno': '1 [[dacionDeCuenta|informe (no es vota)]]',
     'plenos.enBreve.parte.otros': '{n} sense part en la convocatòria',
-    'plenos.enBreve.parte.ruegos': 'el torn de precs i preguntes',
+    'plenos.enBreve.parte.ruegos': 'el torn de [[ruegosYPreguntas|precs i preguntes]]',
     'plenos.enBreve.orden.decidir': 'Per a decidir',
     'plenos.enBreve.orden.informes': 'Informes, que no es voten',
     'plenos.enBreve.orden.otros': 'Sense part en la convocatòria',
@@ -3316,6 +3339,21 @@ export const CATALOGUE = {
     'plenos.enBreve.votos.ver': 'Les votacions, a la pàgina de la sessió →',
     'lecturas.divisor':
       'Fins ací, l’essencial. A sota, totes les dades, per a qui les vulga comprovar.',
+    'plenos.vocabulario': 'Paraules d’este ordre del dia: {lista}.',
+    'plenos.palabra.mocion': 'moció',
+    'plenos.palabra.reconocimientoExtrajudicial': 'reconeixement extrajudicial',
+    'plenos.palabra.sinDictaminar': 'sense dictaminar',
+    'plenos.palabra.urgencia': 'd’urgència',
+    'plenoDetail.resumen.titulo': 'La sessió, en breu',
+    'plenoDetail.resumen.intro':
+      'El que es va portar al ple i el que hem transcrit de les seues votacions, en paraules planes. Els títols oficials, amb el seu expedient, són a la pestanya «Ordre del dia».',
+    'plenoDetail.resumen.saltar': 'Les xifres de la sessió ↓',
+    'plenoDetail.resumen.orden.pregunta': 'Què es va portar a este ple?',
+    'plenoDetail.resumen.orden.ver': 'Els títols oficials, amb el seu expedient ↓',
+    'plenoDetail.resumen.votos': 'Hem transcrit {n} votacions d’esta sessió.',
+    'plenoDetail.resumen.votos.una': 'Hem transcrit una votació d’esta sessió.',
+    'plenoDetail.resumen.votos.retirado': 'desglossament per grups retirat',
+    'plenoDetail.resumen.votos.ver': 'Qui va votar què, amb les seues fonts ↓',
     'plenos.indice.lede.celebradas': 'L’ajuntament ha celebrat {sesiones} des del {fecha}.',
     'plenos.indice.lede.celebradasSinFecha': 'L’ajuntament ha celebrat {sesiones}.',
     'plenos.indice.nSesiones': '{n} sessions',
@@ -3629,6 +3667,7 @@ export const CATALOGUE = {
     'plenoDetail.voto.resultado': 'Resultat',
     'plenoDetail.voto.desglose': 'Desglossament',
     'plenoDetail.voto.cotejadoContra': 'acarat amb {fuente}',
+    'plenoDetail.voto.salvedadReparto': 'Qui va votar què: {nota}.',
     'plenoDetail.voto.desgloseRetirado': 'DESGLOSSAMENT PER GRUPS RETIRAT',
     'plenoDetail.voto.desgloseCorregido': 'DESGLOSSAMENT PER GRUPS CORREGIT',
     'pleno.desenlace.aprobado': 'Aprovat',

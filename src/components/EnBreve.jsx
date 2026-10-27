@@ -35,13 +35,18 @@ import { DefinicionGlosario, FraseConTerminos } from './Termino'
  *   frases: string[],
  *   nota?: string,
  *   detalle?: import('react').ReactNode,
+ *   pie?: string,
  *   salvedad?: string,
- *   ancla: string,
- *   anclaTexto: string,
+ *   ancla?: string,
+ *   anclaTexto?: string,
  * }} props
  *
  * `detalle` va detrás de la frase: lo que la frase resume, cuando cabe en la
- * tarjeta (los puntos del último pleno en /plenos). `figura` va delante.
+ * tarjeta (los puntos del último pleno en /plenos). `figura` va delante. `pie`
+ * es una frase con términos del glosario que habla del `detalle` —las palabras
+ * de un orden del día— y abre su definición debajo de ella, no encima de la
+ * lista. Sin `ancla`, la tarjeta no enlaza: no hay sección que lo demuestre
+ * mejor que ella.
  */
 export function TarjetaEnBreve({
   id,
@@ -52,13 +57,26 @@ export function TarjetaEnBreve({
   frases,
   nota,
   detalle,
+  pie,
   salvedad,
   ancla,
   anclaTexto,
 }) {
   const [abierto, setAbierto] = useState(null)
+  const [enElPie, setEnElPie] = useState(false)
   const idPanel = `${useId()}-def`
   const frase = frases.filter(Boolean).join(' ')
+  const abreArriba = (clave) => {
+    setAbierto(clave)
+    setEnElPie(false)
+  }
+  const abreEnElPie = (clave) => {
+    setAbierto(clave)
+    setEnElPie(true)
+  }
+  const definicion = abierto && (
+    <DefinicionGlosario clave={abierto} id={idPanel} onCerrar={() => setAbierto(null)} />
+  )
   return (
     <article className="cp-en-breve-tarjeta" data-en-breve={id}>
       <h3 className="cp-en-breve-pregunta">{pregunta}</h3>
@@ -70,23 +88,29 @@ export function TarjetaEnBreve({
       )}
       {figura}
       <p className="cp-en-breve-frase">
-        <FraseConTerminos frase={frase} abierto={abierto} onAbrir={setAbierto} idPanel={idPanel} />
+        <FraseConTerminos frase={frase} abierto={abierto} onAbrir={abreArriba} idPanel={idPanel} />
       </p>
       {nota && (
         <p className="cp-en-breve-nota">
-          <FraseConTerminos frase={nota} abierto={abierto} onAbrir={setAbierto} idPanel={idPanel} />
+          <FraseConTerminos frase={nota} abierto={abierto} onAbrir={abreArriba} idPanel={idPanel} />
         </p>
       )}
-      {abierto && (
-        <DefinicionGlosario clave={abierto} id={idPanel} onCerrar={() => setAbierto(null)} />
-      )}
+      {!enElPie && definicion}
       {detalle}
+      {pie && (
+        <p className="cp-en-breve-nota">
+          <FraseConTerminos frase={pie} abierto={abierto} onAbrir={abreEnElPie} idPanel={idPanel} />
+        </p>
+      )}
+      {enElPie && definicion}
       {salvedad && <p className="cp-en-breve-salvedad">{salvedad}</p>}
       {/* Un <a> también para otra ruta (/datos): es lo que usan las páginas que
           lo montan, y así el bloque no exige un router a quien lo pinta. */}
-      <a href={ancla} className="cp-en-breve-ancla">
-        {anclaTexto}
-      </a>
+      {ancla && (
+        <a href={ancla} className="cp-en-breve-ancla">
+          {anclaTexto}
+        </a>
+      )}
     </article>
   )
 }

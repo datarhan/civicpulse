@@ -1,14 +1,16 @@
 import { useMemo } from 'react'
 import EnBreve, { TarjetaEnBreve } from '../EnBreve'
+import { TarjetaOrdenDelDia, lista } from './OrdenDelDiaEnBreve'
 import { ExtLink } from '../Primitives'
 import {
   usePlenoVideos,
   usePlenoVideosRegmeet,
   indexVideosByPleno,
 } from '../../hooks/usePlenoVideos'
-import { ultimoPlenoEnBreve } from '../../scraper/en-breve-plenos'
+import { ultimoPlenoEnBreve, vocabularioDelOrdenDelDia } from '../../scraper/en-breve-plenos'
 import { hoyEnRibarroja } from '../../scraper/en-breve-portada'
 import { fmtDateLong, rellena } from '../../lib/formatters'
+import { estiloEnBrevePlenos } from './plenos.css.js'
 import { rotuloDe, useLocale } from '../../i18n'
 
 /*
@@ -23,35 +25,6 @@ import { rotuloDe, useLocale } from '../../i18n'
  * «Para decidir» rotula lo que se llevó a votar, no lo que se aprobó: el
  * resultado de cada punto sólo consta en las votaciones que hemos transcrito.
  */
-
-function lista(partes, locale) {
-  return new Intl.ListFormat(locale, { style: 'long', type: 'conjunction' }).format(partes)
-}
-
-/** Los puntos de una parte, con su etiqueta llana; el título entero en `title`. */
-function Puntos({ rotulo, puntos, urgente }) {
-  if (puntos.length === 0) return null
-  return (
-    <div className="cp-plenos-puntos">
-      <h4 className="cp-plenos-puntos-rotulo">{rotulo}</h4>
-      <ol>
-        {puntos.map((p) => (
-          <li key={p.numero}>
-            <span className="mono cp-plenos-puntos-numero">{p.numero}.</span>
-            {/* La marca de urgencia va fuera del texto recortado: dentro, un
-                título largo la escondía detrás de los puntos suspensivos. */}
-            <span>
-              <span className="cp-plenos-puntos-texto" title={p.titulo}>
-                {p.texto}
-              </span>
-              {p.urgente && <span className="cp-plenos-puntos-urgente">{urgente}</span>}
-            </span>
-          </li>
-        ))}
-      </ol>
-    </div>
-  )
-}
 
 /**
  * @param {{
@@ -96,23 +69,11 @@ export function EnBrevePlenos({ filas, agendas, votos, plenos, cobertura }) {
   const tipo = r.tipo ? rotuloDe(t, `pleno.tipo.${r.tipo}`, null) : null
   const sesion = `/plenos/${r.id}`
   const o = r.ordenDelDia
-
-  const partes = o
-    ? [
-        o.decidir.length > 0 && rellena(t('plenos.enBreve.parte.decidir'), { n: o.decidir.length }),
-        o.informes.length > 0 &&
-          rellena(
-            t(
-              o.informes.length === 1
-                ? 'plenos.enBreve.parte.informes.uno'
-                : 'plenos.enBreve.parte.informes',
-            ),
-            { n: o.informes.length },
-          ),
-        o.otros.length > 0 && rellena(t('plenos.enBreve.parte.otros'), { n: o.otros.length }),
-        o.ruegos && t('plenos.enBreve.parte.ruegos'),
-      ].filter(Boolean)
-    : []
+  // Las palabras de la sede que salen en los títulos, con su definición: el
+  // glosario las manda aquí, a un orden del día de verdad.
+  const vocabulario = vocabularioDelOrdenDelDia(
+    (agendas.plenos ?? []).find((a) => a.id === r.id)?.agenda ?? [],
+  )
 
   const v = r.votos
   const desenlace = v
@@ -143,52 +104,24 @@ export function EnBrevePlenos({ filas, agendas, votos, plenos, cobertura }) {
     : []
 
   return (
-    <div className="cp-plenos-en-breve">
+    <div className="cp-plenos-en-breve" id="ultimo-pleno">
+      <style>{estiloEnBrevePlenos}</style>
       <EnBreve
         titulo={t('plenos.enBreve.titulo')}
         intro={t('plenos.enBreve.intro')}
         saltarA="#sesiones"
         saltarTexto={t('plenos.enBreve.saltar')}
       >
-        <TarjetaEnBreve
+        <TarjetaOrdenDelDia
           id="orden-del-dia"
           pregunta={t('plenos.enBreve.orden.pregunta')}
+          ordenDelDia={o}
+          vocabulario={vocabulario}
           cifra={fmtDateLong(r.fecha, locale)}
           cifraNota={
             tipo
               ? rellena(t('plenos.enBreve.tipo'), { tipo: tipo.toLocaleLowerCase(locale) })
               : undefined
-          }
-          frases={[
-            o
-              ? rellena(
-                  t(
-                    o.total === 1 ? 'plenos.enBreve.orden.total.uno' : 'plenos.enBreve.orden.total',
-                  ),
-                  { n: o.total, partes: lista(partes, locale) },
-                )
-              : t('landing.enBreve.pleno.sinPuntos'),
-          ]}
-          detalle={
-            o && (
-              <>
-                <Puntos
-                  rotulo={t('plenos.enBreve.orden.decidir')}
-                  puntos={o.decidir}
-                  urgente={t('plenos.enBreve.urgente')}
-                />
-                <Puntos
-                  rotulo={t('plenos.enBreve.orden.informes')}
-                  puntos={o.informes}
-                  urgente={t('plenos.enBreve.urgente')}
-                />
-                <Puntos
-                  rotulo={t('plenos.enBreve.orden.otros')}
-                  puntos={o.otros}
-                  urgente={t('plenos.enBreve.urgente')}
-                />
-              </>
-            )
           }
           ancla={sesion}
           anclaTexto={t('plenos.enBreve.orden.ver')}
