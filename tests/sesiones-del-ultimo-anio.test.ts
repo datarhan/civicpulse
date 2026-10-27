@@ -62,7 +62,10 @@ describe('sesionesDelUltimoAnio', () => {
   const filas = sesionesDelUltimoAnio({ sesiones, agendas: agendas.plenos, hoy })
 
   it('las del último año antes de hoy, sin la última, de la más nueva a la más vieja', () => {
-    const ultima = ultimoPleno(sesiones, hoy)!.id
+    const ultima = ultimoPleno(
+      sesiones.map((s) => ({ ...s, puntos: null, votos: null })),
+      hoy,
+    )!.id
     const esperadas = sesiones
       .filter((s) => s.date.slice(0, 10) < hoy && s.date.slice(0, 10) >= haceUnAnio)
       .filter((s) => s.id !== ultima)

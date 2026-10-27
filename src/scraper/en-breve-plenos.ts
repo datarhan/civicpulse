@@ -189,6 +189,83 @@ export function votosDeLaSesion(
     }))
 }
 
+/**
+ * La aprobación del acta anterior: abre casi todos los ordinarios
+ * («Aprobación Acta anterior de fecha…», «Aprovació Acta anterior de data…»).
+ * Sin `\b`, que no ve frontera tras «Aprovació»: con letras Unicode.
+ */
+const APROBACION_DE_ACTA =
+  /^(?:aprobaci[oó]n|aprovaci[oó])(?!\p{L})[^.]{0,40}(?<!\p{L})acta(?!\p{L})[^.]{0,40}(?<!\p{L})anterior(?!\p{L})/iu
+
+export function esAprobacionDeActa(titulo: string): boolean {
+  return APROBACION_DE_ACTA.test(titulo)
+}
+
+export interface SesionDelAnio {
+  id: string
+  /** «AAAA-MM-DD». */
+  fecha: string
+  tipo: string | null
+  /** null si no hemos recogido su orden del día. */
+  ordenDelDia: {
+    /** Los primeros puntos para decidir, sin la aprobación del acta. */
+    destacados: PuntoEnBreve[]
+    /** Los demás puntos para decidir, la aprobación del acta incluida. */
+    masDecidir: number
+    informes: number
+  } | null
+}
+
+/**
+ * Las sesiones del último año antes de hoy, de la más nueva a la más vieja, sin
+ * la última —que ya tiene su tarjeta, «El último pleno»—: la fecha, el tipo y
+ * lo primero que se llevó a votar (auditoría de las dos lecturas, §9). La lista
+ * entera, con sus recuentos, es la tabla de sesiones.
+ *
+ * La aprobación del acta no se enseña entre los destacados: pondría la misma
+ * línea en cada ordinario. Cuenta en `masDecidir`, porque se vota.
+ */
+export function sesionesDelUltimoAnio(e: {
+  /** Las del índice: sólo se leen el id, la fecha y el tipo. */
+  sesiones: readonly { id: string; date?: string; kind?: string | null }[]
+  agendas: readonly { id: string; agenda?: PlenoAgendaItem[] }[]
+  hoy: string
+  /** Cuántos puntos para decidir se enseñan de cada sesión. */
+  cuantos?: number
+}): SesionDelAnio[] {
+  const hoy = e.hoy.slice(0, 10)
+  const desde = `${Number(hoy.slice(0, 4)) - 1}${hoy.slice(4)}`
+  // La misma que «El último pleno» y la portada: `ultimoPleno` elige por fecha, y
+  // lo que cuenta de cada fila no hace falta aquí.
+  const ultima = ultimoPleno(
+    e.sesiones.map((s) => ({ id: s.id, date: s.date, puntos: null, votos: null })),
+    hoy,
+  )?.id
+  const cuantos = e.cuantos ?? 2
+  return e.sesiones
+    .filter((s): s is typeof s & { date: string } => Boolean(s.date))
+    .filter((s) => s.id !== ultima && s.date.slice(0, 10) < hoy && s.date.slice(0, 10) >= desde)
+    .sort((a, b) => b.date.localeCompare(a.date))
+    .map((s) => {
+      const agenda = e.agendas.find((a) => a.id === s.id)?.agenda
+      if (!agenda || agenda.length === 0) {
+        return { id: s.id, fecha: s.date.slice(0, 10), tipo: s.kind ?? null, ordenDelDia: null }
+      }
+      const o = ordenDelDiaEnBreve(agenda)
+      const destacados = o.decidir.filter((p) => !esAprobacionDeActa(p.titulo)).slice(0, cuantos)
+      return {
+        id: s.id,
+        fecha: s.date.slice(0, 10),
+        tipo: s.kind ?? null,
+        ordenDelDia: {
+          destacados,
+          masDecidir: o.decidir.length - destacados.length,
+          informes: o.informes.length,
+        },
+      }
+    })
+}
+
 export function ultimoPlenoEnBreve(e: {
   sesiones: readonly FilaSesionPlenos[]
   agendas: readonly { id: string; agenda?: PlenoAgendaItem[] }[]
