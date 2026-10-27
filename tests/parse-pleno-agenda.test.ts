@@ -4,6 +4,7 @@ import { join } from 'node:path'
 import {
   parsePlenoAgenda,
   reclasificaSecciones,
+  seccionPorTitulo,
   tallyDepartments,
   type EnrichedPleno,
   type PlenoAgendaItem,
@@ -178,6 +179,28 @@ describe('scraper/pleno-agenda — la parte de un punto en valenciano', () => {
       expect(porNumero[n].section, porNumero[n].title).toBe('resolutiva')
     }
   })
+
+  // Títulos copiados tal cual de plenos-agendas.json: la misma convocatoria
+  // escribe el informe «Dació compte», «Dació de comptes» o «Dació compta».
+  it.each([
+    "Expedient: 396/2025/GEN, Dació compta dels informes de les diferents àrees del Departament de Tresoreria de l'Exercici 2024",
+    "INTERVENCIÓ, Expedient: 485/2024/GEN, Dació compta al Ple de l'informe anual d'avaluació del compliment de la normativa en matèria de morositat (exercici de referència: 2023). Control Financer Permanent Planificable derivat d'una obligació legal",
+    "Expedient 1029/2025/GEN, Dació compta al Ple de la correcció d'errors de l'informe núm. 220/2025 d'avaluació de l'objectiu d'estabilitat pressupostària, de la regla de gasto i del límit de deute emés amb motiu de la reformulació a la liquidació del pressupost municipal corresponent a l'exercici 2024",
+  ])('«Dació compta» también es un informe: %s', (titulo) => {
+    expect(seccionPorTitulo(titulo)).toBe('informativa')
+  })
+
+  // Y lo que se aprueba no se confunde con un informe por llevar «compte» o
+  // «informe» dentro.
+  it.each([
+    "Expedient: 2445/2025/GEN, Proposta d'acord d'aprovació del Compte General corresponent a l'exercici 2024",
+    'Aprobación de la Cuenta General correspondiente al ejercicio 2025',
+    "Expedient: 2903/2025/GEN, Plantejament de discrepàncies al ple de la corporació vist l'objecció emesa en l'informe FLP núm. 573/2025",
+    // Nombra una «dació compta» dentro de otro asunto: es la votación de la urgencia.
+    "Pronunciament del Ple sobre la urgència. Es justifica la urgència sobre la base del que es disposa en els informes del Regidor d'Hisenda de data 13/12/2023, per a l'aprovació definitiva de les Ordenances d'IBI, IAE i ICIO, així com de la dació compta de l'EJEC TRIMESTRAL 3T-2023 i Bases d'Execució del Pressupost",
+  ])('lo que se aprueba sigue resolutiva: %s', (titulo) => {
+    expect(seccionPorTitulo(titulo)).toBe('resolutiva')
+  })
 })
 
 /**
@@ -206,6 +229,18 @@ describe('reclasificaSecciones — lo que el snapshot ya guarda', () => {
     const primera = reclasificaSecciones(guardadas())
     expect(primera.reclasificados).toBe(3)
     expect(reclasificaSecciones(primera.plenos).reclasificados).toBe(0)
+  })
+
+  it('lo que ya era informe o ruegos lo sigue siendo si la sesión se vuelve a pedir', () => {
+    // Las seis sesiones más recientes pasan por el parser cada noche: una regla
+    // que no reconociera lo que la vieja sí reconocía las devolvería a «resolutiva».
+    const noResolutivas = guardadas().flatMap((p) =>
+      p.agenda.filter((i) => i.section !== 'resolutiva'),
+    )
+    expect(noResolutivas.length).toBeGreaterThan(0)
+    for (const it of noResolutivas) {
+      expect(seccionPorTitulo(it.title), it.title).toBe(it.section)
+    }
   })
 
   it('no toca las sesiones en castellano, que ya salían bien', () => {

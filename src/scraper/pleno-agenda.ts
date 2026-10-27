@@ -214,6 +214,75 @@ function parseItems(text: string): { items: PlenoAgendaItem[]; raw: string } {
   return { items, raw: body.slice(0, 5000) }
 }
 
+/** «Ruegos y preguntas», en las dos lenguas en que se convocan los plenos. */
+const RUEGOS = /ruegos?\s+y\s+preguntas|^ruegos\b|\bpreguntas?\b|\bprecs\s+[iy]\s+preguntes\b/i
+
+/**
+ * Un informe que se da al pleno y no se vota: «dación de cuenta», «donar
+ * compte». Las convocatorias en valenciano escriben «Dació compte», «Dació de
+ * comptes» y también «Dació compta».
+ *
+ * No cuenta cuando va detrás de «de» o «la»: entonces la frase nombra un
+ * informe dentro de otro asunto. El punto 1 del 15-12-2023 es la votación de la
+ * urgencia «…per a l'aprovació definitiva de les Ordenances…, així com de la
+ * dació compta de l'EJEC TRIMESTRAL…», y se vota.
+ */
+const INFORME =
+  /(?<!\b(?:de|la|el|del)\s)(?:daci[oó]n\s+(?:de\s+)?cuenta|dar\s+cuenta|rendici[oó]n\s+de\s+cuentas|daci[oó]\s+(?:de\s+)?compt[ae]s?\b|donar\s+compt[ae]s?\b|rendici[oó]\s+de\s+comptes|retiment\s+de\s+comptes)/i
+
+/**
+ * La parte del orden del día de un punto, leída de su título: ruegos y
+ * preguntas > informe > resolutiva.
+ *
+ * regmeet no marca la parte de cada punto como hacía la sede vieja con «PARTE
+ * RESOLUTIVA», así que se deduce del título, y la regla sólo sabía castellano.
+ * La corporación convoca muchos plenos en valenciano, y en ellos «Dació
+ * compte…», «Donar compte de les Resolucions…» y «Precs i preguntes» salían
+ * «Resolutiva» en la pestaña del orden del día: un informe que no se vota,
+ * rotulado como un punto que se decide.
+ */
+export function seccionPorTitulo(title: string): PlenoSection {
+  if (RUEGOS.test(title)) return 'ruegos'
+  if (INFORME.test(title)) return 'informativa'
+  return 'resolutiva'
+}
+
+/**
+ * Re-deriva la parte de cada punto ya guardado a partir de su título, como el
+ * guion hace con el departamento.
+ *
+ * Lo guardado no vuelve a pasar por el parser: cada noche sólo se piden de
+ * nuevo las sesiones más recientes, y las convocadas en valenciano son
+ * anteriores. Sin esto, una regla mejor sólo llegaba a las sesiones que nadie
+ * iba a releer.
+ *
+ * Sólo SACA un punto de «resolutiva», cuando su título dice que es un informe
+ * o los ruegos; nunca mete uno. Las filas de la sede vieja traen la parte de la
+ * cabecera de la convocatoria —donde una moción podía ir en la de información
+ * y control—, y ahí manda la convocatoria, no el título.
+ *
+ * Devuelve cuántos puntos cambió (regla 2 de DATA_INTEGRITY: la pasada dice
+ * qué hizo) y no muta lo que recibe. `hasRuegos` se recalcula con las partes
+ * nuevas.
+ */
+export function reclasificaSecciones(plenos: EnrichedPleno[]): {
+  plenos: EnrichedPleno[]
+  reclasificados: number
+} {
+  let reclasificados = 0
+  const nuevas = plenos.map((p) => {
+    const agenda = p.agenda.map((it) => {
+      if (it.section !== 'resolutiva') return it
+      const section = seccionPorTitulo(it.title)
+      if (section === it.section) return it
+      reclasificados += 1
+      return { ...it, section }
+    })
+    return { ...p, agenda, hasRuegos: agenda.some((a) => a.section === 'ruegos') }
+  })
+  return { plenos: nuevas, reclasificados }
+}
+
 /**
  * Parse the Regmeet (post-2026-05 upstream) session page. The Ayuntamiento
  * migrated its plenos from the in-house ribarroja.es CMS to regmeet.com, which
@@ -263,12 +332,7 @@ function parseRegmeetAgenda(html: string): { items: PlenoAgendaItem[]; raw: stri
     const title = body.replace(/\.$/, '').trim()
     if (title.length < 3) return
 
-    // Section: ruegos y preguntas > informativa (dación/dar cuenta) > resolutiva.
-    const section: PlenoSection = /ruegos?\s+y\s+preguntas|^ruegos\b|\bpreguntas?\b/i.test(title)
-      ? 'ruegos'
-      : /daci[oó]n\s+(?:de\s+)?cuenta|dar\s+cuenta|rendici[oó]n\s+de\s+cuentas/i.test(title)
-        ? 'informativa'
-        : 'resolutiva'
+    const section = seccionPorTitulo(title)
 
     const slug = canonicalizeDepartment(title)
     const department = slug ? DEPARTMENT_LABEL[slug].es : null
