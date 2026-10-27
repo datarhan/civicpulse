@@ -38,11 +38,14 @@ export const TRANSCRIBE_BLOCKLIST: readonly BlockedPleno[] = [
     id: '1l7hhu7',
     since: '2023-02-13',
     why:
-      'El único vídeo publicado en el canal es un «Part I» de 22:36 cuyo audio no ' +
-      'lleva habla inteligible (whisper devuelve todo puntos; volumedetect da casi ' +
-      'silencio). Aun con una transcripción limpia, un Part-I suelto representaría ' +
-      'mal la sesión entera, así que este pleno se queda honestamente vacío hasta ' +
-      'que aparezca una grabación completa.',
+      'El «Part I» del canal (7_q2QYdJsAA, 22:36) no lleva habla inteligible ' +
+      '(whisper devuelve todo puntos; volumedetect da casi silencio), y un Part-I ' +
+      'suelto representaría mal la sesión entera. El canal tiene también un ' +
+      '«Part II» (QF3xwnV4ycQ, 2 h 50 min) que el índice no leía hasta el ' +
+      '27-10-2026 por su título («Ple ordinari de 13 febrer de 2023 - Part II»). ' +
+      'Con las dos partes en el índice el resolvedor se niega (dos vídeos ordinarios ' +
+      'para una fecha) y la cola toma un vídeo por sesión: transcribir la sesión ' +
+      'entera, o sólo el Part II, lo decide el operador.',
   },
 ]
 

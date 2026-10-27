@@ -23,6 +23,7 @@
 import { execFileSync } from 'node:child_process'
 import { existsSync, mkdirSync, readFileSync, writeFileSync } from 'node:fs'
 import { resolve } from 'node:path'
+import { resolveVideoForPleno } from '../src/scraper/pleno-video-match'
 
 const OFFICIALS = resolve('public/data/officials.json')
 const VIDEOS = resolve('public/data/pleno-videos.json')
@@ -250,9 +251,20 @@ async function main() {
     process.exit(1)
   }
   const videos = JSON.parse(readFileSync(VIDEOS, 'utf8')).items
-  const video = videos.find((v: any) => v.plenoDate === pleno.date)
-  if (!video) {
-    console.error(`[voice-refs] no video for ${plenoId} (${pleno.date}) — cannot sample audio`)
+  // El mismo resolvedor que el transcriptor, no «el primero de la fecha»: los
+  // recortes salen de los tiempos de la transcripción, y el 2025-12-23 tiene dos
+  // grabaciones de la misma sesión (el directo, 5 556 s, y una subida, 5 878 s).
+  // Con la que no es, cada recorte caería en otro momento y en otra voz. Si no
+  // puede elegir, se niega.
+  let video: { ytId?: string; url: string }
+  try {
+    const match = resolveVideoForPleno(plenoId, plenos, videos)
+    for (const w of match.warnings) console.error(`[voice-refs] WARN: ${w}`)
+    video = match.video
+  } catch (err) {
+    console.error(
+      `[voice-refs] ${err instanceof Error ? err.message : String(err)} — cannot sample audio`,
+    )
     process.exit(1)
   }
 
