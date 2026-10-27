@@ -66,10 +66,12 @@ export function sindicEnBreve(e: {
   } | null
   fichas: readonly { fecha: string; titulo: string }[]
 }): SindicEnBreve | null {
-  if (!e.indice) return null
+  // Sin la lista de expedientes no hay cifra que dar: «0 expedientes» sería un
+  // cero que nadie midió. Sin índice, o sin su lista, la tarjeta no se pinta.
+  if (!e.indice || !Array.isArray(e.indice.contraAyuntamiento)) return null
   const ultima = [...e.fichas].sort((a, b) => b.fecha.localeCompare(a.fecha))[0]
   return {
-    expedientes: e.indice.contraAyuntamiento?.length ?? 0,
+    expedientes: e.indice.contraAyuntamiento.length,
     desde: e.indice.cobertura?.contraAyuntamientoDesde ?? null,
     recomendaciones: e.fichas.length,
     porFaltaDeRespuesta: e.fichas.filter((f) => /falta de respuesta/i.test(f.titulo)).length,

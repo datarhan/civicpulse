@@ -81,8 +81,11 @@ describe('sindicEnBreve — el índice del Síndic y las fichas que hemos firmad
     expect(s.ultima).toEqual({ fecha: ultima.fecha, titulo: ultima.titulo })
   })
 
-  it('sin índice, null; sin fichas, ninguna recomendación y ninguna última', () => {
+  it('sin índice, o sin su lista de expedientes, null; sin fichas, ninguna recomendación y ninguna última', () => {
     expect(sindicEnBreve({ indice: null, fichas })).toBeNull()
+    // Un índice sin la lista no es «0 expedientes»: no se ha medido nada.
+    const { contraAyuntamiento: _sinLista, ...sinLista } = indice
+    expect(sindicEnBreve({ indice: sinLista, fichas })).toBeNull()
     const sinFichas = sindicEnBreve({ indice, fichas: [] })!
     expect(sinFichas.recomendaciones).toBe(0)
     expect(sinFichas.porFaltaDeRespuesta).toBe(0)
