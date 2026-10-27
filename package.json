@@ -62,7 +62,6 @@
     "check:transcripts": "npx tsx scripts/check-transcript-sanity.ts",
     "check:relations": "npx tsx scripts/check-relations.ts",
     "embed:agent-corpus": "npx tsx scripts/embed-agent-corpus.ts",
-    "scrape:spain-ticker": "npx tsx scripts/scrape-spain-ticker.ts",
     "transcribe:pleno": "bash scripts/transcribe-pleno.sh",
     "transcribe:batch": "bash scripts/transcribe-pleno-batch.sh",
     "llm:doctor": "npx tsx scripts/llm-doctor.ts",

@@ -74,7 +74,6 @@ export const DEFAULT_EXPECTATIONS: DatasetExpectation[] = [
     'plenos.json',
     'press.json',
     'empleo.json',
-    'spain-ticker.json',
     'wikidata.json',
     'ctbg.json',
     'transparency-docs.json',

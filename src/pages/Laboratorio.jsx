@@ -11,7 +11,7 @@
  * Loads 7 JSON snapshots via `usePressLab`. Renders honest empty-states
  * when any file is missing (e.g., first run with no LLM extraction yet).
  *
- * Touches NO other surface — landing, live ticker, /cambios stay
+ * Touches NO other surface — landing, /cambios stay
  * visually identical. The page reads its own JSONs and renders
  * server-static-style: no LLM at runtime, no animations.
  */

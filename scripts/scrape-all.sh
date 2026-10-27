@@ -55,7 +55,6 @@ SCRAPERS=(
   scrape:consell-cv
   scrape:agua
   scrape:agua-pares
-  scrape:spain-ticker
   scrape:promise-suggestions
   extract:all-pleno-votes
   scrape:elections

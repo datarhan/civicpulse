@@ -29,7 +29,9 @@
 set -euo pipefail
 
 PATRON='dl\.google\.com/linux/chrome'
-DIR=/etc/apt/sources.list.d
+# Las dos variables sólo las cambian las pruebas (tests/ci-apt-fuentes-rotas.test.js).
+DIR="${CI_APT_FUENTES_DIR:-/etc/apt/sources.list.d}"
+LISTA="${CI_APT_LISTA:-/etc/apt/sources.list}"
 retiradas=0
 
 # Vale tanto para el formato clásico `.list` como para el `.sources` de deb822:
@@ -48,21 +50,30 @@ if [ -d "$DIR" ]; then
 fi
 
 # Y la misma línea puede estar suelta en el fichero principal.
-if grep -qE "$PATRON" /etc/apt/sources.list 2>/dev/null; then
-  sudo sed -i -E "\\#$PATRON#d" /etc/apt/sources.list
-  echo "[ci-apt] retirada la línea de /etc/apt/sources.list"
+if grep -qE "$PATRON" "$LISTA" 2>/dev/null; then
+  sudo sed -i -E "\\#$PATRON#d" "$LISTA"
+  echo "[ci-apt] retirada la línea de $LISTA"
   retiradas=$((retiradas + 1))
 fi
 
+# Sin nada retirado no hay nada que comprobar, y la comprobación no es gratis:
+# el 2026-10-27 (ejecución 40523528957, #453) la imagen ya no traía la fuente,
+# este `apt-get update` corrió igual, sin tope, el espejo se atascó y el paso
+# murió a los 7 min con «The action has timed out» sin llegar a la instalación.
+# La instalación que viene detrás hace su propio `update`, con tope.
 if [ "$retiradas" -eq 0 ]; then
   echo "[ci-apt] no había ninguna fuente de Google Chrome configurada (imagen distinta: este paso ya no hace falta)"
-else
-  echo "[ci-apt] $retiradas fuente(s) de Google Chrome retirada(s)"
+  echo "[ci-apt] sin comprobación de apt: no se retiró nada"
+  exit 0
 fi
+echo "[ci-apt] $retiradas fuente(s) de Google Chrome retirada(s)"
 
 # La prueba de que ha servido. Si apt sigue roto, que falle AQUÍ y con el
 # motivo a la vista, en vez de salir más tarde como un «exit code: 100» dentro
 # del envoltorio de playwright, que es lo que costó cuatro reintentos entender.
+# Va por el tope, con uno corto (un `update` sano tarda ~9 s): así deja sitio a
+# la instalación, que comparte paso con esto y tiene el suyo.
 echo "[ci-apt] comprobando que apt-get update vuelve a funcionar…"
-sudo apt-get update -qq
+CI_APT_TOPE="${CI_APT_TOPE_COMPROBACION:-1m}" \
+  bash "$(dirname "${BASH_SOURCE[0]}")/ci-apt-con-tope.sh" sudo apt-get update -qq
 echo "[ci-apt] apt-get update correcto"

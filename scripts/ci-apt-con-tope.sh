@@ -26,8 +26,8 @@
 #
 #   bash scripts/ci-apt-con-tope.sh npx playwright install-deps chromium
 #
-# CI_APT_TOPE cambia el tope (sintaxis de `timeout`: 300, 5m…); sólo lo usan
-# las pruebas.
+# CI_APT_TOPE cambia el tope (sintaxis de `timeout`: 300, 5m…); lo usan las
+# pruebas y la comprobación de `ci-apt-fuentes-rotas.sh`, que lleva uno corto.
 set -uo pipefail
 
 TOPE="${CI_APT_TOPE:-5m}"
