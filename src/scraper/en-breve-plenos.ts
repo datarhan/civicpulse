@@ -115,6 +115,80 @@ export function votosEnBreve(votos: readonly VotoPublicado[]): VotosEnBreve | nu
   }
 }
 
+/**
+ * Las palabras de la sede que el glosario explica y que no salen de la parte
+ * del punto: «para decidir», «informe» y «ruegos y preguntas» ya van en la
+ * frase del orden del día. Éstas van dentro del título, que es literal y no
+ * admite marca, así que la página las nombra aparte. El orden es el de la
+ * lista que se pinta.
+ */
+export const PALABRAS_DEL_PLENO = [
+  'mocion',
+  'reconocimientoExtrajudicial',
+  'sinDictaminar',
+  'urgencia',
+] as const
+
+export type PalabraDelPleno = (typeof PALABRAS_DEL_PLENO)[number]
+
+/*
+ * Sin `\b`: en JavaScript una letra con tilde no es «de palabra», y «Moció»
+ * no tendría frontera detrás. Las fronteras se piden con letras Unicode.
+ * «Dictamen del Consell Jurídic» no es «sin dictaminar», ni «promoción» es
+ * «moción».
+ */
+const EN_EL_TITULO: Record<Exclude<PalabraDelPleno, 'urgencia'>, RegExp> = {
+  mocion: /(?<!\p{L})moci(?:ón|on|ó|ò|o)(?!\p{L})/iu,
+  reconocimientoExtrajudicial: /(?<!\p{L})(?:reconocimiento|reconeixement)\s+extrajudicial/iu,
+  sinDictaminar: /(?<!\p{L})(?:sin|sense)\s+dictaminar(?!\p{L})/iu,
+}
+
+/**
+ * Qué palabras del glosario salen en el orden del día de una sesión, una vez
+ * cada una. La urgencia es la misma marca que pinta la etiqueta llana
+ * (`etiquetaDelPunto`), para que la lista no nombre una urgencia que ningún
+ * punto lleva, ni calle una que se ve.
+ */
+export function vocabularioDelOrdenDelDia(
+  agenda: readonly Pick<PlenoAgendaItem, 'title'>[],
+): PalabraDelPleno[] {
+  return PALABRAS_DEL_PLENO.filter((p) =>
+    agenda.some((a) =>
+      p === 'urgencia' ? etiquetaDelPunto(a.title).urgente : EN_EL_TITULO[p].test(a.title),
+    ),
+  )
+}
+
+export interface VotoDeLaSesion {
+  numero: number
+  /** La etiqueta llana del punto votado. */
+  texto: string
+  /** El título tal cual lo publica el registro de votaciones. */
+  titulo: string
+  outcome: VoteOutcome
+  /** El reparto por grupos se retiró; el resultado sigue publicado. */
+  retirado: boolean
+}
+
+/** Las votaciones transcritas de una sesión, en el orden del día. */
+export function votosDeLaSesion(
+  votos: readonly (VotoPublicado & {
+    itemNumber: number
+    title: string
+    votesRetracted?: unknown
+  })[],
+): VotoDeLaSesion[] {
+  return [...votos]
+    .sort((a, b) => a.itemNumber - b.itemNumber)
+    .map((v) => ({
+      numero: v.itemNumber,
+      texto: etiquetaDelPunto(v.title).texto,
+      titulo: v.title,
+      outcome: v.outcome,
+      retirado: v.votesRetracted != null,
+    }))
+}
+
 export function ultimoPlenoEnBreve(e: {
   sesiones: readonly FilaSesionPlenos[]
   agendas: readonly { id: string; agenda?: PlenoAgendaItem[] }[]

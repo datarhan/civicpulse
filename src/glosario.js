@@ -26,6 +26,16 @@ export const GLOSARIO = [
   // La única palabra nuestra y no de la fuente: la cuenta de correcciones de un
   // reportaje se leía como «se equivocó N veces», y es el registro que llevamos.
   'correccion',
+  // El vocabulario del pleno. Las dos partes del orden del día van con su
+  // palabra llana («para decidir», «informe»); las demás son ya el nombre de la
+  // sede, y la definición dice qué quieren decir (`PALABRAS_DEL_PLENO`).
+  'parteResolutiva',
+  'dacionDeCuenta',
+  'ruegosYPreguntas',
+  'mocion',
+  'reconocimientoExtrajudicial',
+  'sinDictaminar',
+  'urgencia',
 ]
 
 const MARCA = /\[\[(\w+)\|([^\]]+)\]\]/g

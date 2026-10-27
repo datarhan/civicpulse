@@ -66,7 +66,8 @@ export function FraseConTerminos({ frase, abierto, onAbrir, idPanel }) {
 /**
  * La definición abierta, del glosario (`useGlosario`). Una entrada `propio` es
  * una palabra nuestra —«corrección»—, no una magnitud oficial con otro nombre, y
- * no lleva la línea «Nombre oficial: …», que repetiría la palabra.
+ * no lleva la línea «Nombre oficial: …», que repetiría la palabra. Tampoco la
+ * lleva una `mismoNombre`, que se pinta ya con el nombre de la sede («moción»).
  */
 export function DefinicionGlosario({ clave, id, onCerrar, className }) {
   const t = useT()
@@ -84,7 +85,7 @@ export function DefinicionGlosario({ clave, id, onCerrar, className }) {
             <p style={{ margin: '4px 0 0', fontSize: 'var(--fs-aux)', lineHeight: 1.5 }}>
               {entrada.def}
             </p>
-            {!entrada.propio && (
+            {!entrada.propio && !entrada.mismoNombre && (
               <p style={{ margin: '4px 0 0', fontSize: 'var(--fs-micro)', color: 'var(--ink50)' }}>
                 {rellena(t('glosario.oficial'), { nombre: entrada.termino })}
               </p>
