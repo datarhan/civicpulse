@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-27T17:16:31.277Z",
+  "generatedAt": "2026-10-27T19:59:07.611Z",
   "version": "1",
   "plenos": [
     {
@@ -585,7 +585,7 @@
         "vivienda": 6,
         "salud": 1
       },
-      "bytes": 352669
+      "bytes": 352790
     },
     {
       "plenoId": "1tgd1h4",

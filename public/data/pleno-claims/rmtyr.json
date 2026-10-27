@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-27T17:16:31.277Z",
+  "generatedAt": "2026-10-27T19:59:07.611Z",
   "version": "1",
   "plenoId": "rmtyr",
   "plenoDate": "2025-07-31",
@@ -645,13 +645,14 @@
       "verification": {
         "claimId": "rmtyr-033-afi-219148",
         "verdict": "sin-datos",
-        "summary": "Ninguno de los candidatos presenta un respaldo genuino a la afirmación sobre la partida de 25.000 euros. Todos los contratos y subvenciones listados tienen montos significativamente inferiores a los 25.000 euros mencionados en la afirmación, lo que indica que no hay coincidencia en el importe.",
+        "summary": "Ni los contratos ni las subvenciones publicados acreditan esta partida de 25.000 € —la frase entera habla de las actividades del ECA— ni que se haya reducido. El contrato de RIBAJOVE de diciembre de 2023 (actividades de ocio, 24.975 € sin IVA) que se le llegó a emparejar no nombra el ECA: sólo coincidía en la palabra «actividades» y en un importe parecido.",
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
         ],
         "confidence": 0.2,
-        "source": "verdict-engine"
+        "source": "verdict-engine",
+        "reasonSignedBy": "Sergei Lutchenko"
       },
       "visibility": "toggle"
     },

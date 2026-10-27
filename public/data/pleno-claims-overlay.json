@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "generatedAt": "2026-10-20T05:38:57.365Z",
+  "generatedAt": "2026-10-27T19:59:05.525Z",
   "entries": {
     "k4olcs-005-acu-7c0edd": {
       "verification": {
@@ -19401,7 +19401,7 @@
       "verification": {
         "claimId": "rmtyr-033-afi-219148",
         "verdict": "sin-datos",
-        "summary": "Ninguno de los candidatos presenta un respaldo genuino a la afirmación sobre la partida de 25.000 euros. Todos los contratos y subvenciones listados tienen montos significativamente inferiores a los 25.000 euros mencionados en la afirmación, lo que indica que no hay coincidencia en el importe.",
+        "summary": "Ni los contratos ni las subvenciones publicados acreditan esta partida de 25.000 € —la frase entera habla de las actividades del ECA— ni que se haya reducido. El contrato de RIBAJOVE de diciembre de 2023 (actividades de ocio, 24.975 € sin IVA) que se le llegó a emparejar no nombra el ECA: sólo coincidía en la palabra «actividades» y en un importe parecido.",
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
@@ -19418,6 +19418,14 @@
           "reason": "Razonó y decidió gpt-4o-mini, según .llm-cache (engine-reason-v1 y engine-extract-v1). Leído con llmCacheEntrada bajo la clave de claude-code, donde la pasada del 02-08-2026 guardó cada respuesta: cuando claude -p fallaba contestaba openai/gpt-4o-mini, el respaldo de pago de la cadena, y el guion rotulaba con lo configurado. Causa cerrada en la PR #248.",
           "editor": "civicpulse-curator",
           "correctedAt": "2026-10-06T05:41:47.602Z"
+        }
+      ],
+      "reasonAmendments": [
+        {
+          "previous": "motivo · sha256:5c945a207b68",
+          "reason": "La explicación del motor (gpt-4o-mini, 05-10-2026) decía que todos los contratos y subvenciones listados tenían montos «significativamente inferiores» a los 25.000 euros; el contrato que el verificador emparejaba hasta el 27-10-2026 era de 24.975 € sin IVA, a un 0,1 %. La retractación es correcta; su explicación, no. Se sustituye por una escrita desde los registros.",
+          "editor": "Sergei Lutchenko",
+          "amendedAt": "2026-10-27T19:59:05.525Z"
         }
       ]
     },
