@@ -1452,9 +1452,10 @@ export default function Metodologia() {
                 {/* 27-10-2026: k4olcs-019-cit-b9b013, «sistema de debate, captura y
                     grabación de vídeo…», salía «verificado» con los 80.666 € que se
                     dijeron en la frase siguiente. */}
-                Y la cifra citada tiene que estar en las palabras de la cita: el extractor anota a
-                veces la que oyó en la frase de al lado, y ésa no se coteja —ni la tarjeta la pinta
-                como de la cita—.
+                Y la cifra tiene que estar en las palabras de la cita: escrita en dígitos, tiene que
+                ser ésa; en letra, basta con que la cita diga un número. El extractor anota a veces
+                la que oyó en la frase de al lado, y en una cita que no dice ninguna esa cifra no se
+                coteja, ni la tarjeta la pinta como de la cita.
               </li>
               <li>
                 <strong>parcial</strong> — coincidencia moderada; entidad o importe difieren algo.{' '}
