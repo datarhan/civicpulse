@@ -7,6 +7,7 @@ import { installFetchMock } from './setup/mockFetch'
 import { ClaimLedger } from '../src/components/ClaimLedger'
 import Declaraciones from '../src/pages/Declaraciones'
 import { CATALOGUE } from '../src/i18n'
+import { cifraCitada } from '../src/scraper/cifra-en-literal'
 
 /**
  * Dos cifras ciertas en la misma tarjeta, y el puente que las cuadra.
@@ -41,6 +42,13 @@ import { CATALOGUE } from '../src/i18n'
  * tests/fixtures/puente-importe-k4olcs-019_2026-10-19.json, y el puente se
  * sigue probando con ella: es la forma que dejaría otra fuente, o una fila
  * firmada, que imprima otra magnitud del expediente.
+ *
+ * 27-10-2026: la cita k4olcs-019 no DICE los 80.666 € —se dijeron en la frase
+ * siguiente, y el extractor se los anotó también a ésta—, así que la tarjeta ya
+ * no los pinta como «la cifra citada», ni en la cabecera ni en el puente
+ * (src/scraper/cifra-en-literal.ts, `cifraCitada`), y el verificador no los
+ * coteja. La fila congelada se prueba con la cifra dicha en su literal: el
+ * puente es de una cita que la dice.
  */
 
 const DATA = join(__dirname, '..', 'public/data')
@@ -56,9 +64,17 @@ const ID = 'k4olcs-019-cit-b9b013'
 const trozoK4Servido = trozos.find((t) => t.plenoId === 'k4olcs')
 const servida = trozoK4Servido?.items.find((it) => it.claim.id === ID)
 /** La fila de antes, congelada: la que imprimía 70.158 €. */
-const fila = JSON.parse(
+const congelada = JSON.parse(
   readFileSync(join(__dirname, 'fixtures/puente-importe-k4olcs-019_2026-10-19.json'), 'utf8'),
 ).item
+/** …con los 80.666 € dichos en su literal, que es de lo que habla un puente. */
+const fila = {
+  ...congelada,
+  claim: {
+    ...congelada.claim,
+    verbatim: `${congelada.claim.verbatim} por importe de 80.666 euros.`,
+  },
+}
 /** El trozo servido de k4olcs con la fila congelada en su sitio. */
 const trozoK4 = {
   ...trozoK4Servido,
@@ -133,12 +149,13 @@ const pidio = (fetchFn, ruta) =>
   fetchFn.mock.calls.some(([u]) => String(u).replace(/^https?:\/\/[^/]+/, '') === ruta)
 
 describe('la premisa, medida sobre lo servido', () => {
-  it('lo servido ya imprime la cifra: el verificador cita la adjudicación, no la licitación', () => {
+  it('lo servido no coteja una cifra que la cita no dice: ni la imprime ni la puentea', () => {
     expect(servida, `no se sirve ${ID}`).toBeDefined()
-    expect(servida.verification.verdict).toBe('verificado')
-    const [contrato] = servida.verification.evidence.filter((e) => e.kind === 'tender')
-    expect(impreso(contrato.snippet)).toBe(80667)
-    expect(oraculo(servida.claim.entities.amountEuros, contrato)).toBeNull()
+    expect(congelada.claim.verbatim).toBe(servida.claim.verbatim)
+    expect(cifraCitada(servida.claim)).toBeNull()
+    expect(servida.verification.verdict).not.toBe('verificado')
+    for (const e of servida.verification.evidence.filter((x) => x.kind === 'tender'))
+      expect(impreso(e.snippet), e.snippet).toBeNull()
   })
 
   it('la fila congelada imprime 70.158 €, la cita dice 80.666 €, y el expediente trae los 80.666,66 €', () => {
@@ -226,8 +243,9 @@ describe('lo servido: el puente sale donde hay puente, y sólo ahí', () => {
     for (const it of items) {
       const card = tarjetaDe(container, it)
       expect(card, it.claim.id).toBeDefined()
+      // La cifra que la tarjeta llama «citada»: la que la cita dice.
       const esperados = it.verification.evidence
-        .map((e) => oraculo(it.claim.entities.amountEuros, e))
+        .map((e) => oraculo(cifraCitada(it.claim), e))
         .filter(Boolean)
       const pintados = puentes(card).map((p) => p.textContent)
       conPuente += esperados.length

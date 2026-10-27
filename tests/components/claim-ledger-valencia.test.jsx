@@ -47,6 +47,7 @@ import { snippetDeEvidencia } from '../../src/lib/crosschecked-status.js'
 import { CATALOGUE } from '../../src/i18n'
 import { desenlaceDeCotejo } from '../../src/scraper/claim-verdicts'
 import { puenteDeImporte } from '../../src/scraper/importe-de-contrato'
+import { cifraCitada } from '../../src/scraper/cifra-en-literal'
 import {
   cadenasDe,
   datosPintados,
@@ -74,10 +75,21 @@ const FRAGMENTO = lee(MANIFIESTO.plenos[0].chunkPath)
  * (`filaQueDiceLaCifra`, claim-verifier.ts): lo servido ya no lo necesita. Para que
  * el rótulo del puente se siga leyendo en los dos idiomas, entra su fila de antes,
  * congelada, en lugar de la servida.
+ *
+ * Y con la cifra dicha en su literal: la cita publicada no trae los 80.666 € —se
+ * dijeron en la frase siguiente—, y desde el 27-10-2026 la tarjeta sólo llama «la
+ * cifra citada» a la que la cita dice (src/scraper/cifra-en-literal.ts).
  */
-const CONGELADA = JSON.parse(
+const FILA_CONGELADA = JSON.parse(
   readFileSync('tests/fixtures/puente-importe-k4olcs-019_2026-10-19.json', 'utf8'),
 ).item
+const CONGELADA = {
+  ...FILA_CONGELADA,
+  claim: {
+    ...FILA_CONGELADA.claim,
+    verbatim: `${FILA_CONGELADA.claim.verbatim} por importe de 80.666 euros.`,
+  },
+}
 const VISIBLES = gateForDisplay(
   MANIFIESTO.plenos
     .flatMap((p) => lee(p.chunkPath).items)
@@ -101,9 +113,7 @@ function rasgosDe(it) {
     ...filas.map((e) => `fila:${e.kind}`),
     ...(filas.some((e) => typeof e.similarity === 'number') ? ['parecido'] : []),
     ...(resumenPublicable(v) === null ? ['retirada'] : []),
-    ...(filas.some((e) => puenteDeImporte(it.claim.entities?.amountEuros, e, TENDERS))
-      ? ['puente']
-      : []),
+    ...(filas.some((e) => puenteDeImporte(cifraCitada(it.claim), e, TENDERS)) ? ['puente'] : []),
   ]
 }
 
@@ -147,7 +157,7 @@ const DERIVADOS = ELEGIDAS.flatMap((it) => {
       const fila = snippetDeEvidencia(f, (k) => CATALOGUE.es[k] ?? k)
       return [fila, ...fila.split(' · ')]
     }),
-    resumenSegunFuentes(v, resumenPublicable(v)),
+    resumenSegunFuentes(v, resumenPublicable(v), it.claim.verbatim),
     e.count && e.countUnit ? `${e.count} ${e.countUnit}` : null,
   ].filter((s) => typeof s === 'string' && s !== '')
 })

@@ -55,9 +55,24 @@ const cita = (id: string) => {
   return c!
 }
 
+/**
+ * k4olcs-019-cit-b9b013 con la cifra DICHA en su literal. La cita publicada no
+ * la trae —los 80.666 € se dijeron en la frase siguiente— y desde el
+ * 27-10-2026 el camino del importe no coteja una cifra que la cita no dice
+ * (src/scraper/cifra-en-literal.ts; tests/claim-verifier-cifra-en-literal.test.ts
+ * lo prueba sobre la fila publicada). Lo que estas pruebas miden —la frase de un
+ * `verificado` y el parecido de la fila que cita— es de la cita con su cifra, y
+ * así se reconstruye: el objeto y la cifra que quien hablaba dijo seguidos.
+ */
+const conSuCifra = () => ({
+  ...cita('k4olcs-019-cit-b9b013'),
+  verbatim:
+    'sistema de debate, captura y grabación de vídeo y control del salón de plenos municipales. por importe de 80.666 euros.',
+})
+
 describe('verificado · la explicación dice lo que se cotejó', () => {
-  it('k4olcs-019-cit-b9b013: un contrato imprime la cifra citada y nombra el objeto', () => {
-    const v = verifyClaim({ claim: cita('k4olcs-019-cit-b9b013'), ...DATOS })
+  it('k4olcs-019-cit-b9b013, con su cifra: un contrato imprime la cifra citada y nombra el objeto', () => {
+    const v = verifyClaim({ claim: conSuCifra(), ...DATOS })
     expect(v.verdict).toBe('verificado')
     expect(v.summary).toBe(resumenVerificado('tender'))
   })
@@ -75,8 +90,8 @@ describe('verificado · la explicación dice lo que se cotejó', () => {
 })
 
 describe('verificado · la fila imprime SU parecido, no el de otra fila del expediente', () => {
-  it('k4olcs-019-cit-b9b013: la adjudicación que imprime 80.666,66 € puntúa 1, no el 0,85 de la licitación', () => {
-    const v = verifyClaim({ claim: cita('k4olcs-019-cit-b9b013'), ...DATOS })
+  it('k4olcs-019-cit-b9b013, con su cifra: la adjudicación que imprime 80.666,66 € puntúa 1, no el 0,85 de la licitación', () => {
+    const v = verifyClaim({ claim: conSuCifra(), ...DATOS })
     const filas = v.evidence.filter((e) => e.kind === 'tender')
     expect(filas).toHaveLength(1)
     expect(filas[0].snippet).toMatch(/80\.667 €$/)
@@ -102,7 +117,7 @@ describe('verificado · la fila imprime SU parecido, no el de otra fila del expe
         type: 'afirmacion_numerica',
         topic: 'medio-ambiente',
         speakerGroup: null,
-        verbatim: 'x'.repeat(30),
+        verbatim: 'son 121.000 euros',
         context: '',
         entities: { amountEuros: 121_000, referencedEntity: 'suministro contenedores carga' },
         confidence: 0.9,
@@ -138,7 +153,7 @@ describe('verificado · una palabra suelta sólo funda con una cifra que identif
           type: 'afirmacion_numerica',
           topic: 'cultura',
           speakerGroup: null,
-          verbatim: 'x'.repeat(30),
+          verbatim: `son ${amountEuros.toLocaleString('es-ES')} euros`,
           context: '',
           entities: { amountEuros, referencedEntity: 'actividades del eca' },
           confidence: 0.9,
