@@ -64,10 +64,26 @@ interface Fila {
 const lineas = (jsonl: string) => jsonl.split('\n').filter((l) => l.trim().length > 0)
 const filas = (jsonl: string) => lineas(jsonl).map((l) => JSON.parse(l) as Fila)
 
-/** Lo que devolvería `yt-dlp --playlist-end n`: cada pestaña, cortada en n. */
+/**
+ * Lo que devolvería `yt-dlp --playlist-end n`: cada pestaña, cortada en n. Una
+ * pestaña cortada viene SIN su total —medido el 27-10-2026 con
+ * `--playlist-end 3`: «Vídeos» y «En directe» con `playlist_count: null`,
+ * «Curts», entera, con 1—, así que se le quita aquí; el volcado entero lo
+ * trae porque nada lo cortó. Hasta que se vio en la pasada real, esta función
+ * dejaba el 995 y la prueba de pestañas afirmaba un total que el CLI no ve.
+ */
 function listado(n: number, jsonl = ENTERO): string {
+  const tamano = new Map<string, number>()
+  for (const f of filas(jsonl))
+    tamano.set(f.playlist_title, (tamano.get(f.playlist_title) ?? 0) + 1)
   return lineas(jsonl)
     .filter((l) => (JSON.parse(l) as Fila).playlist_index <= n)
+    .map((l) => {
+      const f = JSON.parse(l) as Fila & { playlist_count: number | null }
+      return (tamano.get(f.playlist_title) ?? 0) > n
+        ? JSON.stringify({ ...f, playlist_count: null })
+        : l
+    })
     .join('\n')
 }
 const snapshot = (jsonl: string) => parseChannelFeed(jsonl, { generatedAt: '2026-10-27T00:00:00Z' })
@@ -160,11 +176,12 @@ describe('pleno-videos · la ventana sobre el canal', () => {
     )
   })
 
-  it('cuenta, por pestaña, lo leído y lo que la ventana dejó sin leer', () => {
+  it('cuenta, por pestaña, lo leído, y si la ventana la cortó', () => {
+    // Cortada: leídas = la ventana y total desconocido. Entera: su total.
     const { pestanas, totalVideosScanned } = EN_VENTANA.stats
     expect(pestanas.reduce((s, p) => s + p.leidas, 0)).toBe(totalVideosScanned)
     expect(pestanas).toEqual([
-      { pestana: 'Ajuntament de Riba-roja de Túria - Vídeos', leidas: VENTANA_CANAL, total: 995 },
+      { pestana: 'Ajuntament de Riba-roja de Túria - Vídeos', leidas: VENTANA_CANAL, total: null },
       { pestana: 'Ajuntament de Riba-roja de Túria - En directe', leidas: 169, total: 169 },
       { pestana: 'Ajuntament de Riba-roja de Túria - Curts', leidas: 1, total: 1 },
     ])

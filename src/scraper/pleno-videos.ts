@@ -90,9 +90,10 @@ export interface PlenoVideosSnapshot {
     /** Pleno titles left without a date — `sinFecha.length`. */
     plenosSinFecha: number
     /**
-     * Lo leído de cada pestaña del canal y lo que tiene: la diferencia es lo
-     * que la ventana dejó sin leer, que no es lo mismo que «no hay más».
-     * `total` es null cuando yt-dlp no lo dice.
+     * Lo leído de cada pestaña del canal y, si se leyó entera, cuántas tiene.
+     * yt-dlp sólo da el total de una pestaña que no cortó (medido el
+     * 27-10-2026): `total` null con `leidas` igual a la ventana es «la ventana
+     * la cortó y lo de detrás no se pidió», que no es lo mismo que «no hay más».
      */
     pestanas: PestanaLeida[]
   }

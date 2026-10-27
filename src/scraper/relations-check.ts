@@ -143,7 +143,7 @@ export interface RelationsCheckInputs {
     contracts?: Array<{ id?: string | number; permalink?: string }>
     tenders?: Array<{ id?: string | number; permalink?: string }>
   } | null
-  /** pleno-videos.json — a 60-item window over the channel feed, NOT an archive. */
+  /** pleno-videos.json — a window over each tab of the channel (`VENTANA_CANAL`), NOT an archive. */
   videos?: { items?: Array<{ url?: string; plenoDate?: string }> } | null
   relations?: { links?: Array<{ quejaId?: string; tenderId?: string | number }> } | null
   approvedRelations?: {
@@ -485,12 +485,12 @@ export function runRelationsChecks(inputs: RelationsCheckInputs): RelationCheckR
     /**
      * The pleno recording a finding cites as provenance should be the video
      * for THAT session. `warn`, not `error`, for a measured reason:
-     * pleno-videos.json is a 60-item window over the council's channel feed,
-     * not an archive, so a correct citation ages out as the channel uploads
-     * other content. The citation is right and the snapshot is the
-     * limitation, so this must surface as debt and never red a nightly. A
-     * DATE mismatch is the case worth reading: that would be a finding
-     * pointing at the wrong session's recording.
+     * pleno-videos.json is a window over each tab of the council's channel
+     * (`VENTANA_CANAL`), not an archive, so a correct citation can still age
+     * out as the channel uploads other content. The citation is right and the
+     * snapshot is the limitation, so this must surface as debt and never red a
+     * nightly. A DATE mismatch is the case worth reading: that would be a
+     * finding pointing at the wrong session's recording.
      *
      * Las dos citas que este aviso arrastró desde julio de 2026 (las del pleno
      * del 03-07-2026, L6Cy1hTrpIc) no eran la ventana. El vídeo entró y salió
@@ -498,9 +498,10 @@ export function runRelationsChecks(inputs: RelationsCheckInputs): RelationCheckR
      * dentro el 15-09, fuera el 16-09), y una ventana sólo saca lo más viejo;
      * el 27-10-2026 seguía 6.º en la pestaña Live. YouTube devolvía su título
      * unas veces en valenciano y otras traducido al inglés, y el parser
-     * descartaba el inglés. Lo arregló `argumentosYtdlp` (pleno-videos.ts).
-     * Antes de leer uno de estos avisos como «salió de la ventana», busca el
-     * vídeo en el volcado del canal.
+     * descartaba el inglés. Lo arregló `argumentosYtdlp` (pleno-videos.ts), y
+     * desde el 27-10-2026 la pasada que pierde un vídeo del índice lo nombra
+     * con su causa (`decideEscrituraIndice`): antes de leer uno de estos avisos
+     * como «salió de la ventana», busca su BAJA en el log de la pasada.
      */
     check('findings-crosschecked-video', 'warn', findings != null && videos != null, () => {
       let checked = 0
