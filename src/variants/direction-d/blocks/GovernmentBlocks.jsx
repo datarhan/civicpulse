@@ -4,6 +4,9 @@ import { usePlenoAgendas } from '../../../hooks/usePlenoAgendas'
 import { PALETTE, MONO } from '../tokens'
 import { useT } from '../../../i18n'
 import { rotuloPlazosVencidos } from '../../../lib/plazos-vencidos'
+import { rellena } from '../../../lib/formatters'
+import { ALLOWED_DEPARTMENT_SLUGS } from '../../../scraper/departments'
+import { promesasPorPartido } from '../../../scraper/en-breve-portada'
 import { SectionHeader } from '../SectionHeader'
 
 export function CoalitionRing() {
@@ -82,21 +85,18 @@ export function CoalitionRing() {
 export function PromesasBlockD() {
   const t = useT()
   const { loading, error, data } = usePromises()
-  if (loading || error || !data) return null
+  // El padrón decide si la frase puede nombrar la alcaldía: se espera a que
+  // llegue, para no pintar el reparto por partidos y cambiarlo un instante después.
+  const officials = useOfficials()
+  if (loading || error || !data || officials.loading) return null
   const frozen = isPromiseFrozen(data)
-  const total = data.items?.length ?? 0
+  const { total, partidos, todasDeLaAlcaldia } = promesasPorPartido(data.items, officials.data)
   if (total === 0) return null
-  const byParty = (data.items || []).reduce((acc, p) => {
-    acc[p.party] = (acc[p.party] || 0) + 1
-    return acc
-  }, {})
-  const parties = Object.entries(byParty).sort((a, b) => b[1] - a[1])
   return (
     <div>
       <SectionHeader
         tone="promesas"
         title={t('landing.section.promesas')}
-        meta={total}
         badge={
           frozen && (
             <span
@@ -117,32 +117,52 @@ export function PromesasBlockD() {
           )
         }
       />
+      {/* Una frase, no «12 · PSOE · 12»: el número de la cabecera y el de la
+          pastilla eran el mismo dicho dos veces, sin decir de qué. */}
       <div
         style={{
-          display: 'flex',
-          gap: 6,
-          flexWrap: 'wrap',
-          fontSize: 'var(--fs-micro)',
-          marginBottom: 8,
+          fontSize: 'var(--fs-aux)',
+          fontWeight: 600,
+          color: PALETTE.ink,
+          lineHeight: 1.4,
+          marginBottom: 6,
         }}
       >
-        {parties.map(([party, n]) => (
-          <span
-            key={party}
-            style={{
-              fontFamily: MONO,
-              fontSize: 'var(--fs-micro)',
-              fontWeight: 700,
-              color: 'white',
-              background: partyColor(party),
-              padding: '2px 7px',
-              borderRadius: 'var(--r-pill)',
-            }}
-          >
-            {party} · {n}
-          </span>
-        ))}
+        {todasDeLaAlcaldia
+          ? rellena(
+              t(total === 1 ? 'landing.promesas.delAlcaldia.una' : 'landing.promesas.delAlcaldia'),
+              { n: total, partido: todasDeLaAlcaldia },
+            )
+          : rellena(t('landing.promesas.porPartido'), { n: total })}
       </div>
+      {!todasDeLaAlcaldia && (
+        <div
+          style={{
+            display: 'flex',
+            gap: 6,
+            flexWrap: 'wrap',
+            fontSize: 'var(--fs-micro)',
+            marginBottom: 8,
+          }}
+        >
+          {partidos.map(([party, n]) => (
+            <span
+              key={party}
+              style={{
+                fontFamily: MONO,
+                fontSize: 'var(--fs-micro)',
+                fontWeight: 700,
+                color: 'white',
+                background: partyColor(party),
+                padding: '2px 7px',
+                borderRadius: 'var(--r-pill)',
+              }}
+            >
+              {party} · {n}
+            </span>
+          ))}
+        </div>
+      )}
       <div
         style={{
           fontSize: 'var(--fs-aux)',
@@ -171,14 +191,15 @@ export function PromesasBlockD() {
 export function DepartamentosBlockD() {
   const t = useT()
   const { data: agendas } = usePlenoAgendas()
-  const officialsSnap = useOfficials()
   const promisesSnap = usePromises()
   if (!agendas?.stats) return null
   const frozen = isPromiseFrozen(promisesSnap.data)
   const vencidos = frozen ? 0 : (agendas.stats.plazosVencidosCount ?? 0)
+  // `deptCoverage` cuenta, sobre el registro de concejalías, las que tienen un
+  // concejal responsable (scripts/compute-dept-stats.ts). El total sale del
+  // mismo registro: era un 28 escrito aquí, cierto hasta que cambiara la lista.
   const coverage = agendas.stats.deptCoverage ?? null
-  const totalDepts = 28
-  const totalOfficials = officialsSnap.data?.officials?.length ?? null
+  const totalDepts = ALLOWED_DEPARTMENT_SLUGS.length
   return (
     <div>
       <SectionHeader
@@ -205,75 +226,22 @@ export function DepartamentosBlockD() {
           )
         }
       />
+      {/* Una frase en vez de «28 · 26/28 · 21». Los 21 concejales se van: al lado
+          de 28 concejalías se leían como que se las reparten, y la oposición no
+          lleva ninguna. Los escaños ya están en el bloque del pleno. «Consta»:
+          que no conste quién lleva una no prueba que nadie la lleve. */}
       <div
         style={{
-          display: 'grid',
-          gridTemplateColumns: 'repeat(3, minmax(0, 1fr))',
-          gap: 8,
-          marginBottom: 10,
+          fontSize: 'var(--fs-aux)',
+          fontWeight: 600,
+          color: PALETTE.ink,
+          lineHeight: 1.4,
+          marginBottom: 6,
         }}
       >
-        <div>
-          <div
-            className="mono"
-            style={{
-              fontSize: 'var(--fs-micro)',
-              color: PALETTE.ink50,
-              textTransform: 'uppercase',
-              letterSpacing: '.1em',
-            }}
-          >
-            {t('landing.rendicion.concejalias')}
-          </div>
-          <div
-            className="mono"
-            style={{ fontSize: 'var(--fs-head)', fontWeight: 700, color: PALETTE.ink }}
-          >
-            {totalDepts}
-          </div>
-        </div>
-        {coverage !== null && (
-          <div>
-            <div
-              className="mono"
-              style={{
-                fontSize: 'var(--fs-micro)',
-                color: PALETTE.ink50,
-                textTransform: 'uppercase',
-                letterSpacing: '.1em',
-              }}
-            >
-              {t('landing.rendicion.conResponsable')}
-            </div>
-            <div
-              className="mono"
-              style={{ fontSize: 'var(--fs-head)', fontWeight: 700, color: PALETTE.ink }}
-            >
-              {coverage}/{totalDepts}
-            </div>
-          </div>
-        )}
-        {totalOfficials !== null && (
-          <div>
-            <div
-              className="mono"
-              style={{
-                fontSize: 'var(--fs-micro)',
-                color: PALETTE.ink50,
-                textTransform: 'uppercase',
-                letterSpacing: '.1em',
-              }}
-            >
-              {t('landing.rendicion.concejales')}
-            </div>
-            <div
-              className="mono"
-              style={{ fontSize: 'var(--fs-head)', fontWeight: 700, color: PALETTE.ink }}
-            >
-              {totalOfficials}
-            </div>
-          </div>
-        )}
+        {coverage !== null
+          ? rellena(t('landing.rendicion.cobertura'), { total: totalDepts, n: coverage })
+          : rellena(t('landing.rendicion.total'), { total: totalDepts })}
       </div>
       <div
         style={{

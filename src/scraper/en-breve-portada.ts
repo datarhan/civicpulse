@@ -87,6 +87,35 @@ export function quienManda(doc: OfficialsDoc | null | undefined): MandaEnBreve |
   return { alcalde: alcaldes[0].name, slug: alcaldes[0].slug, partido, escanos, total }
 }
 
+export interface PromesasPorPartido {
+  total: number
+  /** [partido, promesas], de más a menos; una promesa sin partido no entra. */
+  partidos: Array<[string, number]>
+  /** El partido de la alcaldía cuando TODAS las promesas son suyas; si no, `null`. */
+  todasDeLaAlcaldia: string | null
+}
+
+/**
+ * Las promesas del seguimiento, por partido.
+ *
+ * La portada decía «12 · PSOE · 12». Si todas son del partido de la alcaldía,
+ * ahora lo dice con palabras; si hay más de un partido, o una promesa sin él, o
+ * no hay un único alcalde con partido, no nombra la alcaldía y las reparte. De
+ * la alcaldía, no «del que gobierna», por lo mismo que `quienManda`.
+ */
+export function promesasPorPartido(
+  items: ReadonlyArray<{ party?: string | null }> | null | undefined,
+  doc: OfficialsDoc | null | undefined,
+): PromesasPorPartido {
+  const lista = items ?? []
+  const cuenta = new Map<string, number>()
+  for (const p of lista) if (p.party) cuenta.set(p.party, (cuenta.get(p.party) ?? 0) + 1)
+  const partidos = [...cuenta.entries()].sort((a, b) => b[1] - a[1])
+  const alcaldia = partyOfAlcaldia(doc)
+  const todas = lista.length > 0 && alcaldia !== null && lista.every((p) => p.party === alcaldia)
+  return { total: lista.length, partidos, todasDeLaAlcaldia: todas ? alcaldia : null }
+}
+
 /** Una fila de `summarizeSessions` (src/lib/pleno-summary.js), lo que aquí se lee. */
 export interface FilaSesion {
   id: string
