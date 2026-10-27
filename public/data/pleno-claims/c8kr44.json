@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-27T19:59:07.611Z",
+  "generatedAt": "2026-10-27T22:12:13.866Z",
   "version": "1",
   "plenoId": "c8kr44",
   "plenoDate": "2025-09-08",
@@ -3235,13 +3235,14 @@
       "verification": {
         "claimId": "c8kr44-123-cit-1a94f7",
         "verdict": "sin-datos",
-        "summary": "Análisis completado: la afirmación es una opinión subjetiva sin datos verificables (sin importe/fecha/sujeto concreto), y los candidatos son contratos de obra sobre edificios distintos al \"Pabellón de Escoto\" mencionado, con similitud baja. No hay respaldo genuino.",
+        "summary": "Es una valoración —que el edificio y el pabellón de Escoto son un tema importantísimo—, y una valoración no la acredita ni la desmiente un registro. El contrato de las obras del pabellón deportivo cubierto del CEIP Mas d’Escoto (fase I, adjudicado en 2019) es de ese pabellón, pero no dice nada de su importancia.",
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
         ],
         "confidence": 0.2,
-        "source": "verdict-engine"
+        "source": "verdict-engine",
+        "reasonSignedBy": "Sergei Lutchenko"
       },
       "visibility": "toggle"
     },
@@ -4076,13 +4077,14 @@
       "verification": {
         "claimId": "c8kr44-148-cit-2fadb2",
         "verdict": "sin-datos",
-        "summary": "La afirmación se refiere a la transformación de la plaza de la estación, pero los candidatos listados no presentan información específica sobre obras o proyectos relacionados directamente con dicha plaza.",
+        "summary": "Compara cómo era la plaza de la Estación con cómo es: es una valoración, y un registro no la acredita ni la desmiente. Las obras sí están publicadas —el contrato de reurbanización de la zona de la plaza de la Estación y la calle Muelle—, pero un contrato no dice si el resultado «va en esa línea».",
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
         ],
         "confidence": 0.2,
-        "source": "verdict-engine"
+        "source": "verdict-engine",
+        "reasonSignedBy": "Sergei Lutchenko"
       },
       "visibility": "toggle"
     },

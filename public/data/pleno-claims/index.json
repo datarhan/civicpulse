@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-27T19:59:07.611Z",
+  "generatedAt": "2026-10-27T22:12:13.866Z",
   "version": "1",
   "plenos": [
     {
@@ -458,7 +458,7 @@
         "movilidad": 2,
         "seguridad": 1
       },
-      "bytes": 589630
+      "bytes": 589776
     },
     {
       "plenoId": "1du4rf5",
@@ -552,7 +552,7 @@
         "movilidad": 15,
         "cultura": 3
       },
-      "bytes": 331268
+      "bytes": 331517
     },
     {
       "plenoId": "rmtyr",

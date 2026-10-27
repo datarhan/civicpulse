@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "generatedAt": "2026-10-27T19:59:05.525Z",
+  "generatedAt": "2026-10-27T22:12:12.353Z",
   "entries": {
     "k4olcs-005-acu-7c0edd": {
       "verification": {
@@ -9583,7 +9583,7 @@
       "verification": {
         "claimId": "qz6weg-249-cit-3e02ef",
         "verdict": "sin-datos",
-        "summary": "La afirmación es una promesa/intención futura: volver a la consellería en enero para ver el estado del proyecto del centro de salud. Ninguno de los candidatos trata de un centro de salud ni de gestiones con la consellería.",
+        "summary": "Anuncia una gestión futura —volver a la consellería en enero por el proyecto del centro de salud—, y una intención no la acredita ni la desmiente un registro. El contrato publicado que nombra el Centro de Salud es el de una carpa para la zona de triaje exterior (11.495 € con IVA, 2021), que no trata de ese proyecto.",
         "evidence": [],
         "checkedAgainst": [],
         "derivedBy": [
@@ -9594,7 +9594,15 @@
       "source": "verdict-engine",
       "reason": "verdict-engine (claude-code) re-derivó la retractación (sigue sin-datos): La afirmación es una promesa/intención futura: volver a la consellería en enero para ver el estado del proyecto del centro de salud. Ninguno de los candidatos trata de un centro de salud ni de gestiones con la consellería.",
       "editor": "verdict-engine:claude-code",
-      "appliedAt": "2026-10-04T17:21:52.099Z"
+      "appliedAt": "2026-10-04T17:21:52.099Z",
+      "reasonAmendments": [
+        {
+          "previous": "motivo · sha256:6c9c22ae4054",
+          "reason": "La explicación del motor (claude-code, 04-10-2026) decía que ningún candidato trataba de un centro de salud; el registro que el verificador emparejaba con esta declaración es el contrato de una carpa para la zona exterior del Centro de Salud. La retractación es correcta; su explicación, no. Se sustituye por una escrita desde los registros.",
+          "editor": "Sergei Lutchenko",
+          "amendedAt": "2026-10-27T22:12:12.353Z"
+        }
+      ]
     },
     "qz6weg-247-cit-e3c4c2": {
       "verification": {
@@ -11029,7 +11037,7 @@
       "verification": {
         "claimId": "c8kr44-123-cit-1a94f7",
         "verdict": "sin-datos",
-        "summary": "Análisis completado: la afirmación es una opinión subjetiva sin datos verificables (sin importe/fecha/sujeto concreto), y los candidatos son contratos de obra sobre edificios distintos al \"Pabellón de Escoto\" mencionado, con similitud baja. No hay respaldo genuino.",
+        "summary": "Es una valoración —que el edificio y el pabellón de Escoto son un tema importantísimo—, y una valoración no la acredita ni la desmiente un registro. El contrato de las obras del pabellón deportivo cubierto del CEIP Mas d’Escoto (fase I, adjudicado en 2019) es de ese pabellón, pero no dice nada de su importancia.",
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
@@ -11039,7 +11047,15 @@
       "source": "verdict-engine",
       "reason": "verdict-engine (claude-code) re-judged parcial→sin-datos: Análisis completado: la afirmación es una opinión subjetiva sin datos verificables (sin importe/fecha/sujeto concreto), y los candidatos son contratos de obra sobre edificios distintos al \"Pabellón de Escoto\" mencionado, con similitud baja. No hay respaldo genuino.",
       "editor": "verdict-engine:claude-code",
-      "appliedAt": "2026-08-02T06:24:13.421Z"
+      "appliedAt": "2026-08-02T06:24:13.421Z",
+      "reasonAmendments": [
+        {
+          "previous": "motivo · sha256:3e1f7ea7897b",
+          "reason": "La explicación del motor (claude-code, 02-08-2026) decía que los candidatos eran obras sobre edificios distintos del pabellón de Escoto y de similitud baja; el registro que el verificador emparejaba con esta declaración, con parecido 1, es el contrato de las obras del pabellón deportivo del CEIP Mas d’Escoto. La retractación es correcta; su explicación, no. Se sustituye por una escrita desde los registros.",
+          "editor": "Sergei Lutchenko",
+          "amendedAt": "2026-10-27T22:12:10.317Z"
+        }
+      ]
     },
     "c8kr44-140-cit-bbc2ce": {
       "verification": {
@@ -17955,7 +17971,7 @@
       "verification": {
         "claimId": "c8kr44-148-cit-2fadb2",
         "verdict": "sin-datos",
-        "summary": "La afirmación se refiere a la transformación de la plaza de la estación, pero los candidatos listados no presentan información específica sobre obras o proyectos relacionados directamente con dicha plaza.",
+        "summary": "Compara cómo era la plaza de la Estación con cómo es: es una valoración, y un registro no la acredita ni la desmiente. Las obras sí están publicadas —el contrato de reurbanización de la zona de la plaza de la Estación y la calle Muelle—, pero un contrato no dice si el resultado «va en esa línea».",
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
@@ -17972,6 +17988,14 @@
           "reason": "Razonó y decidió gpt-4o-mini, según .llm-cache (engine-reason-v1 y engine-extract-v1). Leído con llmCacheEntrada bajo la clave de claude-code, donde la pasada del 02-08-2026 guardó cada respuesta: cuando claude -p fallaba contestaba openai/gpt-4o-mini, el respaldo de pago de la cadena, y el guion rotulaba con lo configurado. Causa cerrada en la PR #248.",
           "editor": "civicpulse-curator",
           "correctedAt": "2026-10-06T05:41:47.602Z"
+        }
+      ],
+      "reasonAmendments": [
+        {
+          "previous": "motivo · sha256:d302c5ed2e6c",
+          "reason": "La explicación del motor (gpt-4o-mini, 05-10-2026) decía que ningún candidato presentaba obras relacionadas con la plaza de la Estación; el registro que el verificador emparejaba con esta declaración es el contrato de reurbanización de esa plaza. La retractación es correcta; su explicación, no. Se sustituye por una escrita desde los registros.",
+          "editor": "Sergei Lutchenko",
+          "amendedAt": "2026-10-27T22:12:08.296Z"
         }
       ]
     },
