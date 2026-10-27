@@ -427,9 +427,12 @@ describe('cobertura de la guarda del índice de plenos', () => {
     const leido = []
     for (const esc of ESCENARIOS) leido.push(...(await pintaYLee(esc, 'es')).piezas)
     const texto = leido.join('\n')
+    // Un término del glosario, `[[clave|texto]]`, se pinta como un botón con su
+    // «texto»: la lectura lo da como una pieza aparte de lo que lo rodea, así que
+    // se corta por él igual que por un hueco.
     const sinPintar = claves.filter((clave) =>
       CATALOGUE.es[clave]
-        .split(/\{\w+\}/)
+        .split(/\{\w+\}|\[\[\w+\||\]\]/)
         .map((trozo) => trozo.trim())
         .filter((trozo) => /\p{L}/u.test(trozo))
         .some((trozo) => !texto.includes(trozo)),

@@ -7,6 +7,8 @@ import { VoteTallyBar, DirectionLegend } from '../components/plenos/VoteTallyBar
 import { VoteBreakdownRetracted } from '../components/plenos/VoteBreakdownRetracted'
 import { VoteBreakdownCorrected } from '../components/plenos/VoteBreakdownCorrected'
 import { VoteProvenance } from '../components/plenos/VoteProvenance'
+import { ResumenSesion } from '../components/plenos/ResumenSesion'
+import DivisorLecturas from '../components/DivisorLecturas'
 import { FindingCard } from '../components/PlenoFindings'
 import { ClaimLedger } from '../components/ClaimLedger'
 import { usePlenos, PLENO_TONE } from '../hooks/usePlenos'
@@ -17,7 +19,7 @@ import { usePlenoVideos, usePlenoVideosRegmeet, indexVideosByPleno } from '../ho
 import { usePlenoFindings } from '../hooks/usePlenoFindings'
 import { fmtDateLong, fmtDateShort, rellena } from '../lib/formatters'
 import { conHuecos } from '../lib/huecos'
-import { latestCorrection } from '../scraper/pleno-votes'
+import { breakdownNeedsCaveat, latestCorrection, VOTE_SOURCE_KINDS } from '../scraper/pleno-votes'
 import { rotuloDe, useLocale, useT } from '../i18n'
 import { transcriptKind } from '../lib/transcript-kind.js'
 import { cuentaCotejadas, desgloseCotejadas, entreParentesis } from '../lib/cotejo'
@@ -143,62 +145,34 @@ function TranscriptPanel({ plenoId }) {
   )
 }
 
-/** Coloured proportion bar for the vote outcomes in this session. */
-function VoteOutcomeBar({ votes }) {
+/**
+ * La salvedad de un reparto por grupos, encima de su barra. Estaba al final de
+ * la fila «Desglose» de las fuentes, en letra pequeña y detrás del enlace,
+ * debajo de la barra que matiza: es lo que hace honesto el reparto y va con él
+ * (auditoría de las dos lecturas, §10). La pregunta es la de `VoteProvenance`
+ * (`breakdownNeedsCaveat`) y la nota, la de su clase de fuente: un reparto
+ * del acta, o cotejado, no la lleva.
+ */
+function SalvedadDelReparto({ fuente }) {
   const t = useT()
-  const rotulo = (k) => rotuloDe(t, `pleno.desenlace.${k}`, k)
-  const counts = votes.reduce((acc, v) => {
-    acc[v.outcome] = (acc[v.outcome] || 0) + 1
-    return acc
-  }, {})
-  const segs = [
-    { k: 'aprobado', color: 'var(--ok)' },
-    { k: 'rechazado', color: 'var(--crit)' },
-    { k: 'retirado', color: 'var(--warn)' },
-    { k: 'aplazado', color: 'var(--ink50)' },
-  ].filter((s) => counts[s.k] > 0)
-  if (segs.length === 0) return null
+  if (!breakdownNeedsCaveat(fuente)) return null
+  const nota = rotuloDe(
+    t,
+    `pleno.fuenteVoto.${fuente.kind}.sinCotejar`,
+    VOTE_SOURCE_KINDS[fuente.kind]?.unverifiedNote ?? '',
+  )
   return (
-    <div style={{ marginBottom: 14 }}>
-      <div
-        style={{
-          display: 'flex',
-          height: 10,
-          borderRadius: 'var(--r-pill)',
-          overflow: 'hidden',
-          gap: 2,
-        }}
-      >
-        {segs.map((s) => (
-          <div
-            key={s.k}
-            title={`${rotulo(s.k)}: ${counts[s.k]}`}
-            style={{ flex: counts[s.k], background: s.color, minWidth: 6 }}
-          />
-        ))}
-      </div>
-      <div style={{ display: 'flex', flexWrap: 'wrap', gap: '4px 12px', marginTop: 8 }}>
-        {segs.map((s) => (
-          <span
-            key={s.k}
-            style={{
-              display: 'inline-flex',
-              alignItems: 'center',
-              gap: 5,
-              fontSize: 'var(--fs-micro)',
-            }}
-          >
-            <span
-              style={{ width: 9, height: 9, borderRadius: 'var(--r-input)', background: s.color }}
-            />
-            <span style={{ color: 'var(--ink70)' }}>{rotulo(s.k)}</span>
-            <strong className="mono" style={{ color: 'var(--ink)' }}>
-              {counts[s.k]}
-            </strong>
-          </span>
-        ))}
-      </div>
-    </div>
+    <p
+      data-salvedad-reparto=""
+      style={{
+        margin: '0 0 6px',
+        fontSize: 'var(--fs-aux)',
+        color: 'var(--ink70)',
+        lineHeight: 1.45,
+      }}
+    >
+      {rellena(t('plenoDetail.voto.salvedadReparto'), { nota })}
+    </p>
   )
 }
 
@@ -291,6 +265,9 @@ function DeclMixBar({ items }) {
   )
 }
 
+/** Las claves de las pestañas, en su orden: las que un ancla puede abrir. */
+const PESTANAS = ['resumen', 'agenda', 'votos', 'declaraciones', 'hallazgos', 'transcripcion']
+
 export default function PlenoDetalle() {
   const { locale, t } = useLocale()
   const { id } = useParams()
@@ -302,6 +279,29 @@ export default function PlenoDetalle() {
   const { data: videosData } = usePlenoVideos()
   const { data: videosRegmeetData, loading: videosRegmeetLoading } = usePlenoVideosRegmeet()
   const [tab, setTab] = useState('resumen')
+  // Una pestaña se abre también por su ancla, `#pestana-<clave>`: así enlazan las
+  // tarjetas del resumen a la pestaña que lo demuestra, y un enlace de fuera
+  // puede abrir una. Al pulsar una pestaña, un ancla de pestaña que ya no dice
+  // lo abierto se quita sin navegar (replaceState no dispara hashchange): con
+  // ella puesta, volver a pulsar el mismo enlace no cambiaría el ancla y no
+  // abriría nada. No se escribe la de la pestaña pulsada: el ancla quedaría en
+  // la dirección de la página para la siguiente vez que se monte.
+  useEffect(() => {
+    const lee = () => {
+      const clave = /^#pestana-(\w+)$/.exec(window.location.hash)?.[1]
+      if (clave && PESTANAS.includes(clave)) setTab(clave)
+    }
+    lee()
+    window.addEventListener('hashchange', lee)
+    return () => window.removeEventListener('hashchange', lee)
+  }, [])
+  const abrePestana = (clave) => {
+    setTab(clave)
+    if (/^#pestana-/.test(window.location.hash)) {
+      const { pathname, search } = window.location
+      window.history.replaceState(window.history.state, '', pathname + search)
+    }
+  }
 
   const pleno = useMemo(() => (plenosData?.items ?? []).find((p) => p.id === id), [plenosData, id])
   // «Pleno · Sesión de fecha …», como el HTML que escribe prerender-meta y el
@@ -438,54 +438,6 @@ export default function PlenoDetalle() {
         <Compartir titulo={`Pleno · ${pleno.title}`} />
       </div>
 
-      {/* Tira de resumen. La rejilla vive en `.cp-pleno-fichas` (src/index.css)
-          porque pasa de cuatro columnas a dos y a una según el ancho de la tira,
-          y un `style` inline no admite esa consulta. */}
-      <div className="cp-pleno-resumen">
-        <div className="cp-pleno-fichas">
-          <Tile
-            label={t('plenoDetail.agenda')}
-            value={agendaKnown ? agendaItems.length : '—'}
-            sub={agendaKnown ? undefined : t('plenoDetail.agendaPending')}
-          />
-          {/* «—» y no 0 para lo que nadie ha medido. Las votaciones se transcriben a
-              mano desde el acta y una sesión puede no tener ninguna transcrita: «0»
-              afirmaba que un pleno ordinario no votó nada, y seguro que votó. Las
-              declaraciones y los hallazgos, igual: de una sesión sin extraer no hay
-              cero que dar. La ficha del orden del día ya lo distinguía.
-              Con alguna transcrita, la nota dice «transcritas» y no las aprobadas:
-              «1» con «1 aprob.» es el mismo número que la revisión lectora del
-              04-10-2026 leyó en la línea del resumen como las votaciones de la sesión,
-              y se lee igual. Las aprobadas van en esa línea. */}
-          <Tile
-            label={t('plenoDetail.votes')}
-            value={votes.length > 0 ? votes.length : '—'}
-            sub={t(
-              votes.length === 0
-                ? 'plenoDetail.votesPending'
-                : votes.length === 1
-                  ? 'plenoDetail.votesTranscribed.uno'
-                  : 'plenoDetail.votesTranscribed.varios',
-            )}
-          />
-          <Tile
-            label={t('plenoDetail.declarations')}
-            value={extraida ? groundedCount : '—'}
-            sub={
-              extraida
-                ? desgloseCotejadas(t, cotejadas) || undefined
-                : t('plenoDetail.extractionPending')
-            }
-          />
-          <Tile
-            label={t('plenoDetail.findings')}
-            value={findings.length > 0 || extraida ? findings.length : '—'}
-            sub={findings.length > 0 || extraida ? undefined : t('plenoDetail.extractionPending')}
-            tone={findings.length ? 'crit' : undefined}
-          />
-        </div>
-      </div>
-
       {/* Sticky tab bar */}
       <div
         style={{
@@ -507,7 +459,8 @@ export default function PlenoDetalle() {
             <button
               key={tb.key}
               type="button"
-              onClick={() => setTab(tb.key)}
+              id={`pestana-${tb.key}`}
+              onClick={() => abrePestana(tb.key)}
               // Las pestañas se montan al pulsarlas, así que una carga sólo ve
               // el resumen. `review:surfaces` las abre por este atributo, que no
               // cambia con el idioma (estado `pestanas`, reader-review.ts).
@@ -551,200 +504,195 @@ export default function PlenoDetalle() {
 
       {/* Tab content */}
       {tab === 'resumen' && (
-        <div style={{ display: 'flex', flexDirection: 'column', gap: 22 }}>
-          {/* Cada cifra dice qué cuenta, con las palabras del índice de /plenos. «15
-              puntos en el orden del día · 1 votaciones» se leía como que la sesión votó
-              una sola cosa (revisión lectora del 04-10-2026, en 10yl550): son las que
-              hemos transcrito, y ningún dato registra que estén todas, así que el aviso
-              del índice va siempre detrás. Sin declaraciones extraídas no hay cero que
-              dar: «sin extraer», como su ficha. */}
-          <p
-            style={{
-              margin: 0,
-              fontSize: 'var(--fs-aux)',
-              color: 'var(--ink70)',
-              lineHeight: 1.55,
-            }}
+        <>
+          {/* La lectura vecinal: la sesión en palabras llanas. Espera a las dos
+              instantáneas (ver `ResumenSesion`). Lo que había antes en esta
+              pestaña —la tira, la línea de cifras, las declaraciones y los
+              hallazgos— sigue debajo del divisor. La barra de resultados y la
+              lista de títulos literales se han ido: las votaciones van en su
+              tarjeta, y los títulos, en su pestaña. */}
+          {agendasData && votesData && <ResumenSesion agenda={agenda} votos={votes} />}
+          <DivisorLecturas />
+          <div
+            id="pleno-cifras"
+            style={{ display: 'flex', flexDirection: 'column', gap: 22, scrollMarginTop: 56 }}
           >
-            {agendaKnown ? (
-              <PiezaResumen
-                n={agendaItems.length}
-                uno="plenoDetail.line.agenda.uno"
-                varios="plenoDetail.line.agenda.varios"
-              />
-            ) : (
-              <span>{t('plenoDetail.agendaPendingLong')}</span>
-            )}
-            {votes.length > 0 && (
-              <>
-                {' · '}
-                <PiezaResumen
-                  n={votes.length}
-                  uno="plenoDetail.line.votes.uno"
-                  varios="plenoDetail.line.votes.varios"
-                  huecos={{
-                    '{aprobadas}': rellena(
-                      t(
-                        aprobados === 1
-                          ? 'plenoDetail.line.approved.uno'
-                          : 'plenoDetail.line.approved.varios',
-                      ),
-                      { n: aprobados },
-                    ),
-                  }}
+            {/* Tira de resumen. La rejilla vive en `.cp-pleno-fichas` (src/index.css)
+               porque pasa de cuatro columnas a dos y a una según el ancho de la tira,
+               y un `style` inline no admite esa consulta. */}
+            <div className="cp-pleno-resumen">
+              <div className="cp-pleno-fichas">
+                <Tile
+                  label={t('plenoDetail.agenda')}
+                  value={agendaKnown ? agendaItems.length : '—'}
+                  sub={agendaKnown ? undefined : t('plenoDetail.agendaPending')}
                 />
-              </>
-            )}
-            {' · '}
-            {extraida ? (
-              <>
-                <PiezaResumen
-                  n={groundedCount}
-                  uno="plenoDetail.line.declarations.uno"
-                  varios="plenoDetail.line.declarations.varios"
+                {/* «—» y no 0 para lo que nadie ha medido. Las votaciones se transcriben a
+                   mano desde el acta y una sesión puede no tener ninguna transcrita: «0»
+                   afirmaba que un pleno ordinario no votó nada, y seguro que votó. Las
+                   declaraciones y los hallazgos, igual: de una sesión sin extraer no hay
+                   cero que dar. La ficha del orden del día ya lo distinguía.
+                   Con alguna transcrita, la nota dice «transcritas» y no las aprobadas:
+                   «1» con «1 aprob.» es el mismo número que la revisión lectora del
+                   04-10-2026 leyó en la línea del resumen como las votaciones de la sesión,
+                   y se lee igual. Las aprobadas van en esa línea. */}
+                <Tile
+                  label={t('plenoDetail.votes')}
+                  value={votes.length > 0 ? votes.length : '—'}
+                  sub={t(
+                    votes.length === 0
+                      ? 'plenoDetail.votesPending'
+                      : votes.length === 1
+                        ? 'plenoDetail.votesTranscribed.uno'
+                        : 'plenoDetail.votesTranscribed.varios',
+                  )}
                 />
-                {/* «2 declaraciones contrastadas» se leía comprobadas siendo las dos
-                    parciales: va detrás cuántas son de cada veredicto. */}
-                {entreParentesis(t, cotejadas)}
-              </>
-            ) : (
-              t('plenoDetail.line.declarationsPending')
-            )}
-            {findings.length > 0 && (
-              <>
-                {' · '}
-                <PiezaResumen
-                  n={findings.length}
-                  uno="plenoDetail.line.findings.uno"
-                  varios="plenoDetail.line.findings.varios"
-                  color="var(--crit-ink)"
+                <Tile
+                  label={t('plenoDetail.declarations')}
+                  value={extraida ? groundedCount : '—'}
+                  sub={
+                    extraida
+                      ? desgloseCotejadas(t, cotejadas) || undefined
+                      : t('plenoDetail.extractionPending')
+                  }
                 />
-              </>
-            )}
-            {'. '}
-            {t('plenos.indice.lede.aviso')}
-          </p>
-
-          {/* Siempre, con o sin votaciones. Sin ninguna transcrita el bloque
-              desaparecía, y el «sin transcribir» quedaba en la ficha de arriba y
-              en una pestaña que no se monta hasta pulsarla: el resumen de esas
-              sesiones no decía nada de las votaciones. */}
-          <div>
-            <OLabel>{t('plenoDetail.votes')}</OLabel>
-            {votes.length > 0 ? (
-              <VoteOutcomeBar votes={votes} />
-            ) : (
-              <p
-                style={{
-                  margin: 0,
-                  fontSize: 'var(--fs-aux)',
-                  color: 'var(--ink70)',
-                  lineHeight: 1.55,
-                }}
-              >
-                {t('plenoDetail.empty.votes')}
-              </p>
-            )}
-          </div>
-
-          {claimItems.length > 0 && (
-            <div>
-              <OLabel>{t('plenoDetail.declarations')}</OLabel>
-              <DeclMixBar items={claimItems} />
-            </div>
-          )}
-
-          {findings.length > 0 && (
-            <div>
-              <OLabel>{t('plenoDetail.findings')}</OLabel>
-              <div style={{ display: 'flex', flexDirection: 'column', gap: 6 }}>
-                {findings.map((f) => (
-                  <button
-                    key={f.id}
-                    type="button"
-                    onClick={() => setTab('hallazgos')}
-                    style={{
-                      textAlign: 'left',
-                      appearance: 'none',
-                      background: 'var(--soft)',
-                      border: '1px solid var(--border2)',
-                      borderRadius: 'var(--r-input)',
-                      padding: '8px 12px',
-                      cursor: 'pointer',
-                      display: 'flex',
-                      gap: 8,
-                      alignItems: 'baseline',
-                    }}
-                  >
-                    <Pill
-                      tone={
-                        f.severity === 'critical'
-                          ? 'crit'
-                          : f.severity === 'notable'
-                            ? 'warn'
-                            : 'neutral'
-                      }
-                      size="xs"
-                    >
-                      {rotuloDe(t, `pleno.gravedad.${f.severity}`, f.severity)}
-                    </Pill>
-                    <span
-                      style={{ fontSize: 'var(--fs-aux)', color: 'var(--ink)', fontWeight: 600 }}
-                    >
-                      {f.title}
-                    </span>
-                  </button>
-                ))}
+                <Tile
+                  label={t('plenoDetail.findings')}
+                  value={findings.length > 0 || extraida ? findings.length : '—'}
+                  sub={
+                    findings.length > 0 || extraida ? undefined : t('plenoDetail.extractionPending')
+                  }
+                  tone={findings.length ? 'crit' : undefined}
+                />
               </div>
             </div>
-          )}
 
-          {/* Lo que sí tienen todas las sesiones recogidas: de qué trató. El
-              resumen se hacía sólo con las capas que hay que curar —votaciones,
-              veredictos, hallazgos—, y en /plenos/zrbgic el operador leyó una
-              pestaña «sin datos» con el orden del día entero en la de al lado.
-              Va detrás, para no mover lo de arriba en las sesiones que lo tienen,
-              y sin área, expediente ni sección: eso es la pestaña del orden del
-              día. El título, tal cual lo publica la sede. Con esto y la frase de
-              las votaciones, la nota de «sesión registrada, aún no hay…» que
-              ocupaba el resumen vacío repetía lo que ya dicen la línea y los
-              bloques, y se ha ido. */}
-          {agendaItems.length > 0 && (
-            <div>
-              <OLabel>{t('plenoDetail.agenda')}</OLabel>
-              <ol
-                style={{
-                  listStyle: 'none',
-                  margin: 0,
-                  padding: 0,
-                  display: 'flex',
-                  flexDirection: 'column',
-                  gap: 6,
-                }}
-              >
-                {agendaItems.map((it, i) => (
-                  <li
-                    key={i}
-                    style={{
-                      display: 'grid',
-                      gridTemplateColumns: '2em 1fr',
-                      gap: 8,
-                      fontSize: 'var(--fs-aux)',
-                      lineHeight: 1.45,
+            {/* Cada cifra dice qué cuenta, con las palabras del índice de /plenos. «15
+               puntos en el orden del día · 1 votaciones» se leía como que la sesión votó
+               una sola cosa (revisión lectora del 04-10-2026, en 10yl550): son las que
+               hemos transcrito, y ningún dato registra que estén todas, así que el aviso
+               del índice va siempre detrás. Sin declaraciones extraídas no hay cero que
+               dar: «sin extraer», como su ficha. */}
+            <p
+              style={{
+                margin: 0,
+                fontSize: 'var(--fs-aux)',
+                color: 'var(--ink70)',
+                lineHeight: 1.55,
+              }}
+            >
+              {agendaKnown ? (
+                <PiezaResumen
+                  n={agendaItems.length}
+                  uno="plenoDetail.line.agenda.uno"
+                  varios="plenoDetail.line.agenda.varios"
+                />
+              ) : (
+                <span>{t('plenoDetail.agendaPendingLong')}</span>
+              )}
+              {votes.length > 0 && (
+                <>
+                  {' · '}
+                  <PiezaResumen
+                    n={votes.length}
+                    uno="plenoDetail.line.votes.uno"
+                    varios="plenoDetail.line.votes.varios"
+                    huecos={{
+                      '{aprobadas}': rellena(
+                        t(
+                          aprobados === 1
+                            ? 'plenoDetail.line.approved.uno'
+                            : 'plenoDetail.line.approved.varios',
+                        ),
+                        { n: aprobados },
+                      ),
                     }}
-                  >
-                    <span className="mono" style={{ color: 'var(--ink50)', textAlign: 'right' }}>
-                      {it.number}.
-                    </span>
-                    <span style={{ color: 'var(--ink)', minWidth: 0, overflowWrap: 'anywhere' }}>
-                      {it.title}
-                    </span>
-                  </li>
-                ))}
-              </ol>
-            </div>
-          )}
-        </div>
+                  />
+                </>
+              )}
+              {' · '}
+              {extraida ? (
+                <>
+                  <PiezaResumen
+                    n={groundedCount}
+                    uno="plenoDetail.line.declarations.uno"
+                    varios="plenoDetail.line.declarations.varios"
+                  />
+                  {/* «2 declaraciones contrastadas» se leía comprobadas siendo las dos
+                    parciales: va detrás cuántas son de cada veredicto. */}
+                  {entreParentesis(t, cotejadas)}
+                </>
+              ) : (
+                t('plenoDetail.line.declarationsPending')
+              )}
+              {findings.length > 0 && (
+                <>
+                  {' · '}
+                  <PiezaResumen
+                    n={findings.length}
+                    uno="plenoDetail.line.findings.uno"
+                    varios="plenoDetail.line.findings.varios"
+                    color="var(--crit-ink)"
+                  />
+                </>
+              )}
+              {'. '}
+              {t('plenos.indice.lede.aviso')}
+            </p>
+
+            {claimItems.length > 0 && (
+              <div>
+                <OLabel>{t('plenoDetail.declarations')}</OLabel>
+                <DeclMixBar items={claimItems} />
+              </div>
+            )}
+
+            {findings.length > 0 && (
+              <div>
+                <OLabel>{t('plenoDetail.findings')}</OLabel>
+                <div style={{ display: 'flex', flexDirection: 'column', gap: 6 }}>
+                  {findings.map((f) => (
+                    <button
+                      key={f.id}
+                      type="button"
+                      onClick={() => abrePestana('hallazgos')}
+                      style={{
+                        textAlign: 'left',
+                        appearance: 'none',
+                        background: 'var(--soft)',
+                        border: '1px solid var(--border2)',
+                        borderRadius: 'var(--r-input)',
+                        padding: '8px 12px',
+                        cursor: 'pointer',
+                        display: 'flex',
+                        gap: 8,
+                        alignItems: 'baseline',
+                      }}
+                    >
+                      <Pill
+                        tone={
+                          f.severity === 'critical'
+                            ? 'crit'
+                            : f.severity === 'notable'
+                              ? 'warn'
+                              : 'neutral'
+                        }
+                        size="xs"
+                      >
+                        {rotuloDe(t, `pleno.gravedad.${f.severity}`, f.severity)}
+                      </Pill>
+                      <span
+                        style={{ fontSize: 'var(--fs-aux)', color: 'var(--ink)', fontWeight: 600 }}
+                      >
+                        {f.title}
+                      </span>
+                    </button>
+                  ))}
+                </div>
+              </div>
+            )}
+          </div>
+        </>
       )}
 
       {tab === 'agenda' &&
@@ -796,6 +744,7 @@ export default function PlenoDetalle() {
                     <VoteBreakdownRetracted retraction={rec.votesRetracted} />
                   ) : (
                     <>
+                      <SalvedadDelReparto fuente={rec.provenance?.breakdown} />
                       <VoteTallyBar tally={rec.votes} />
                       <VoteBreakdownCorrected
                         correction={votesData ? latestCorrection(votesData, rec.id) : null}
@@ -805,7 +754,7 @@ export default function PlenoDetalle() {
                   {/* This tab showed a tally with no citation at all — the
                       reader could not tell the outcome and the breakdown come
                       from two different sources, let alone which. */}
-                  <VoteProvenance provenance={rec.provenance} />
+                  <VoteProvenance provenance={rec.provenance} salvedadArriba />
                 </div>
               ))}
             </Card>

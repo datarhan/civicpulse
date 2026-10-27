@@ -802,11 +802,12 @@ export const CATALOGUE = {
     'plenos.enBreve.orden.pregunta': '¿Qué se llevó al último pleno?',
     'plenos.enBreve.orden.total': 'El orden del día tenía {n} puntos: {partes}.',
     'plenos.enBreve.orden.total.uno': 'El orden del día tenía un punto: {partes}.',
-    'plenos.enBreve.parte.decidir': '{n} para decidir',
-    'plenos.enBreve.parte.informes': '{n} informes (no se votan)',
-    'plenos.enBreve.parte.informes.uno': '1 informe (no se vota)',
+    // Las dos partes y el turno de ruegos llevan su entrada del glosario.
+    'plenos.enBreve.parte.decidir': '{n} [[parteResolutiva|para decidir]]',
+    'plenos.enBreve.parte.informes': '{n} [[dacionDeCuenta|informes (no se votan)]]',
+    'plenos.enBreve.parte.informes.uno': '1 [[dacionDeCuenta|informe (no se vota)]]',
     'plenos.enBreve.parte.otros': '{n} sin parte en la convocatoria',
-    'plenos.enBreve.parte.ruegos': 'el turno de ruegos y preguntas',
+    'plenos.enBreve.parte.ruegos': 'el turno de [[ruegosYPreguntas|ruegos y preguntas]]',
     'plenos.enBreve.orden.decidir': 'Para decidir',
     'plenos.enBreve.orden.informes': 'Informes, que no se votan',
     'plenos.enBreve.orden.otros': 'Sin parte en la convocatoria',
@@ -833,6 +834,25 @@ export const CATALOGUE = {
     // El paso de la lectura vecinal a la experta (components/DivisorLecturas.jsx).
     'lecturas.divisor':
       'Hasta aquí, lo esencial. Debajo, todos los datos, para quien quiera comprobarlos.',
+    // Las palabras de la sede que salen dentro de los títulos (moción, sin
+    // dictaminar…): el título es literal y no admite marca, así que la tarjeta
+    // del orden del día las nombra aparte, con su entrada del glosario.
+    'plenos.vocabulario': 'Palabras de este orden del día: {lista}.',
+    'plenos.palabra.mocion': 'moción',
+    'plenos.palabra.reconocimientoExtrajudicial': 'reconocimiento extrajudicial',
+    'plenos.palabra.sinDictaminar': 'sin dictaminar',
+    'plenos.palabra.urgencia': 'de urgencia',
+    // El «Resumen» de /plenos/:id: la sesión en palabras llanas, encima de sus cifras.
+    'plenoDetail.resumen.titulo': 'La sesión, en breve',
+    'plenoDetail.resumen.intro':
+      'Lo que se llevó al pleno y lo que hemos transcrito de sus votaciones, en palabras llanas. Los títulos oficiales, con su expediente, están en la pestaña «Orden del día».',
+    'plenoDetail.resumen.saltar': 'Las cifras de la sesión ↓',
+    'plenoDetail.resumen.orden.pregunta': '¿Qué se llevó a este pleno?',
+    'plenoDetail.resumen.orden.ver': 'Los títulos oficiales, con su expediente ↓',
+    'plenoDetail.resumen.votos': 'Hemos transcrito {n} votaciones de esta sesión.',
+    'plenoDetail.resumen.votos.una': 'Hemos transcrito una votación de esta sesión.',
+    'plenoDetail.resumen.votos.retirado': 'reparto por grupos retirado',
+    'plenoDetail.resumen.votos.ver': 'Quién votó qué, con sus fuentes ↓',
     // El índice de sesiones (/plenos): la entradilla, la escalera de cobertura, la
     // tabla con sus filtros, las tarjetas de votaciones y declaraciones y el reparto
     // por área. Las retiradas de votaciones, por alcance, en singular y en plural.
@@ -1199,6 +1219,9 @@ export const CATALOGUE = {
     'plenoDetail.voto.resultado': 'Resultado',
     'plenoDetail.voto.desglose': 'Desglose',
     'plenoDetail.voto.cotejadoContra': 'cotejado contra {fuente}',
+    // Encima de la barra de una votación cuyo reparto necesita salvedad: va con
+    // la cifra, no en la fila de la fuente de debajo.
+    'plenoDetail.voto.salvedadReparto': 'Quién votó qué: {nota}.',
     'plenoDetail.voto.desgloseRetirado': 'DESGLOSE POR GRUPOS RETIRADO',
     'plenoDetail.voto.desgloseCorregido': 'DESGLOSE POR GRUPOS CORREGIDO',
     'pleno.desenlace.aprobado': 'Aprobado',
@@ -1949,6 +1972,27 @@ export const CATALOGUE = {
     'glosario.correccion.termino': 'Corrección',
     'glosario.correccion.def':
       'Una nota fechada que añadimos al final de una pieza ya publicada cuando la cambiamos, y que explica qué cambió. Unas arreglan un error; otras precisan una frase o añaden un dato que faltaba. Una misma nota puede recoger varios cambios hechos a la vez.',
+    'glosario.parteResolutiva.termino': 'Parte resolutiva',
+    'glosario.parteResolutiva.def':
+      'La parte del orden del día que el pleno vota: propuestas de acuerdo, mociones, ordenanzas. Que un punto esté en ella no dice cómo acabó: se puede aprobar, rechazar, retirar o dejar para otra sesión.',
+    'glosario.dacionDeCuenta.termino': 'Dación de cuenta',
+    'glosario.dacionDeCuenta.def':
+      'Un punto en el que el gobierno municipal informa al pleno: de sus decretos, de un informe, de datos que la ley le obliga a comunicar. No se vota.',
+    'glosario.ruegosYPreguntas.termino': 'Ruegos y preguntas',
+    'glosario.ruegosYPreguntas.def':
+      'El último turno del pleno ordinario: los grupos y sus concejales piden algo al gobierno municipal (ruegos) o le preguntan (preguntas). No se vota.',
+    'glosario.mocion.termino': 'Moción',
+    'glosario.mocion.def':
+      'Una propuesta que se lleva directamente al pleno, casi siempre de un grupo municipal: suele pedir al gobierno municipal que haga algo, o fijar una postura del Ayuntamiento. Se vota.',
+    'glosario.reconocimientoExtrajudicial.termino': 'Reconocimiento extrajudicial de crédito',
+    'glosario.reconocimientoExtrajudicial.def':
+      'El pleno aprueba pagar facturas de gastos que se hicieron sin seguir antes el trámite del gasto, o sin crédito en el presupuesto del año en que se hicieron. Sin esa aprobación no se pueden pagar.',
+    'glosario.sinDictaminar.termino': 'Sin dictaminar',
+    'glosario.sinDictaminar.def':
+      'El punto llega al pleno sin pasar antes por la comisión informativa, donde los grupos estudian los asuntos antes de cada pleno. Para tomar un acuerdo sobre él, el pleno tiene que ratificar antes que entre en el orden del día.',
+    'glosario.urgencia.termino': 'Asunto de urgencia',
+    'glosario.urgencia.def':
+      'Un asunto que no estaba en el orden del día con que se convocó el pleno y que se presenta por razones de urgencia. El pleno vota primero si lo debate; sólo si lo acepta se trata.',
     'presupuesto.fuentes.title': 'Dos fuentes, dos presupuestos aprobados',
     'presupuesto.fuentes.conprel': 'CONPREL · Ministerio de Hacienda',
     'presupuesto.fuentes.municipal': 'Estado de ejecución del propio Ayuntamiento',
@@ -3266,11 +3310,11 @@ export const CATALOGUE = {
     'plenos.enBreve.orden.pregunta': 'Què es va portar a l’últim ple?',
     'plenos.enBreve.orden.total': 'L’ordre del dia tenia {n} punts: {partes}.',
     'plenos.enBreve.orden.total.uno': 'L’ordre del dia tenia un punt: {partes}.',
-    'plenos.enBreve.parte.decidir': '{n} per a decidir',
-    'plenos.enBreve.parte.informes': '{n} informes (no es voten)',
-    'plenos.enBreve.parte.informes.uno': '1 informe (no es vota)',
+    'plenos.enBreve.parte.decidir': '{n} [[parteResolutiva|per a decidir]]',
+    'plenos.enBreve.parte.informes': '{n} [[dacionDeCuenta|informes (no es voten)]]',
+    'plenos.enBreve.parte.informes.uno': '1 [[dacionDeCuenta|informe (no es vota)]]',
     'plenos.enBreve.parte.otros': '{n} sense part en la convocatòria',
-    'plenos.enBreve.parte.ruegos': 'el torn de precs i preguntes',
+    'plenos.enBreve.parte.ruegos': 'el torn de [[ruegosYPreguntas|precs i preguntes]]',
     'plenos.enBreve.orden.decidir': 'Per a decidir',
     'plenos.enBreve.orden.informes': 'Informes, que no es voten',
     'plenos.enBreve.orden.otros': 'Sense part en la convocatòria',
@@ -3295,6 +3339,21 @@ export const CATALOGUE = {
     'plenos.enBreve.votos.ver': 'Les votacions, a la pàgina de la sessió →',
     'lecturas.divisor':
       'Fins ací, l’essencial. A sota, totes les dades, per a qui les vulga comprovar.',
+    'plenos.vocabulario': 'Paraules d’este ordre del dia: {lista}.',
+    'plenos.palabra.mocion': 'moció',
+    'plenos.palabra.reconocimientoExtrajudicial': 'reconeixement extrajudicial',
+    'plenos.palabra.sinDictaminar': 'sense dictaminar',
+    'plenos.palabra.urgencia': 'd’urgència',
+    'plenoDetail.resumen.titulo': 'La sessió, en breu',
+    'plenoDetail.resumen.intro':
+      'El que es va portar al ple i el que hem transcrit de les seues votacions, en paraules planes. Els títols oficials, amb el seu expedient, són a la pestanya «Ordre del dia».',
+    'plenoDetail.resumen.saltar': 'Les xifres de la sessió ↓',
+    'plenoDetail.resumen.orden.pregunta': 'Què es va portar a este ple?',
+    'plenoDetail.resumen.orden.ver': 'Els títols oficials, amb el seu expedient ↓',
+    'plenoDetail.resumen.votos': 'Hem transcrit {n} votacions d’esta sessió.',
+    'plenoDetail.resumen.votos.una': 'Hem transcrit una votació d’esta sessió.',
+    'plenoDetail.resumen.votos.retirado': 'desglossament per grups retirat',
+    'plenoDetail.resumen.votos.ver': 'Qui va votar què, amb les seues fonts ↓',
     'plenos.indice.lede.celebradas': 'L’ajuntament ha celebrat {sesiones} des del {fecha}.',
     'plenos.indice.lede.celebradasSinFecha': 'L’ajuntament ha celebrat {sesiones}.',
     'plenos.indice.nSesiones': '{n} sessions',
@@ -3608,6 +3667,7 @@ export const CATALOGUE = {
     'plenoDetail.voto.resultado': 'Resultat',
     'plenoDetail.voto.desglose': 'Desglossament',
     'plenoDetail.voto.cotejadoContra': 'acarat amb {fuente}',
+    'plenoDetail.voto.salvedadReparto': 'Qui va votar què: {nota}.',
     'plenoDetail.voto.desgloseRetirado': 'DESGLOSSAMENT PER GRUPS RETIRAT',
     'plenoDetail.voto.desgloseCorregido': 'DESGLOSSAMENT PER GRUPS CORREGIT',
     'pleno.desenlace.aprobado': 'Aprovat',
@@ -4286,6 +4346,27 @@ export const CATALOGUE = {
     'glosario.correccion.termino': 'Correcció',
     'glosario.correccion.def':
       "Una nota datada que afegim al final d'una peça ja publicada quan la canviem, i que explica què va canviar. Unes arreglen un error; altres precisen una frase o afegixen una dada que faltava. Una mateixa nota pot recollir diversos canvis fets alhora.",
+    'glosario.parteResolutiva.termino': 'Part resolutiva',
+    'glosario.parteResolutiva.def':
+      "La part de l'ordre del dia que el ple vota: propostes d'acord, mocions, ordenances. Que un punt hi estiga no diu com va acabar: es pot aprovar, rebutjar, retirar o deixar per a una altra sessió.",
+    'glosario.dacionDeCuenta.termino': 'Dació de compte',
+    'glosario.dacionDeCuenta.def':
+      "Un punt en què el govern municipal informa el ple: dels seus decrets, d'un informe, de dades que la llei l'obliga a comunicar. No es vota.",
+    'glosario.ruegosYPreguntas.termino': 'Precs i preguntes',
+    'glosario.ruegosYPreguntas.def':
+      "L'últim torn del ple ordinari: els grups i els seus regidors demanen alguna cosa al govern municipal (precs) o li pregunten (preguntes). No es vota.",
+    'glosario.mocion.termino': 'Moció',
+    'glosario.mocion.def':
+      "Una proposta que es porta directament al ple, quasi sempre d'un grup municipal: sol demanar al govern municipal que faça alguna cosa, o fixar una postura de l'Ajuntament. Es vota.",
+    'glosario.reconocimientoExtrajudicial.termino': 'Reconeixement extrajudicial de crèdit',
+    'glosario.reconocimientoExtrajudicial.def':
+      "El ple aprova pagar factures de despeses que es van fer sense seguir abans el tràmit de la despesa, o sense crèdit en el pressupost de l'any en què es van fer. Sense eixa aprovació no es poden pagar.",
+    'glosario.sinDictaminar.termino': 'Sense dictaminar',
+    'glosario.sinDictaminar.def':
+      "El punt arriba al ple sense passar abans per la comissió informativa, on els grups estudien els assumptes abans de cada ple. Per a prendre un acord sobre ell, el ple ha de ratificar abans que entre en l'ordre del dia.",
+    'glosario.urgencia.termino': "Assumpte d'urgència",
+    'glosario.urgencia.def':
+      "Un assumpte que no estava en l'ordre del dia amb què es va convocar el ple i que es presenta per raons d'urgència. El ple vota primer si el debat; només si ho accepta es tracta.",
     'presupuesto.fuentes.title': 'Dos fonts, dos pressupostos aprovats',
     'presupuesto.fuentes.conprel': "CONPREL · Ministeri d'Hisenda",
     'presupuesto.fuentes.municipal': "Estat d'execució del propi Ajuntament",

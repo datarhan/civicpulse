@@ -43,6 +43,7 @@ import { resumenPublicable } from '../../src/lib/resumenes-retirados.js'
 import { QUOTE_PROVENANCE_STATUS_IDS } from '../../src/scraper/quote-provenance'
 import { CLAIM_VISIBILITIES } from '../../src/scraper/claim-public-gate'
 import { HUMAN_CURATORS } from '../../src/scraper/finding-authorship'
+import { etiquetaDelPunto } from '../../src/scraper/etiqueta-llana'
 import {
   cadenasDe,
   datosPintados,
@@ -53,6 +54,19 @@ import {
 import { pintaYLee } from '../setup/pinta-y-lee'
 
 const lee = (f) => JSON.parse(readFileSync(`public/data/${f}`, 'utf8'))
+
+/**
+ * Las etiquetas llanas que pinta el resumen: el título del punto —del orden del
+ * día o de la votación— en la lengua en que se convocó, recortado. Son dato y no
+ * se traducen, pero no salen tal cual en el JSON y `datosPintados` no las
+ * reconoce: se derivan con la misma función que las pinta.
+ */
+const etiquetasDe = (mapa) => [
+  ...(mapa['/data/plenos-agendas.json'].plenos ?? []).flatMap((p) =>
+    p.agenda.map((a) => etiquetaDelPunto(a.title).texto),
+  ),
+  ...(mapa['/data/pleno-votes.json'].items ?? []).map((v) => etiquetaDelPunto(v.title).texto),
+]
 
 /** La sesión de la ficha bef239, con votaciones, hallazgos y declaraciones. */
 const ID = 'qz6weg'
@@ -85,6 +99,12 @@ function cadaForma() {
     ...it,
     section: secciones[i % secciones.length],
   }))
+  // Y un asunto de urgencia, que la sesión no trae: su palabra del glosario sale
+  // en el resumen. El título es el de otra sesión publicada.
+  const urgente = mapa['/data/plenos-agendas.json'].plenos
+    .flatMap((p) => p.agenda)
+    .find((a) => etiquetaDelPunto(a.title).urgente)
+  sesion.agenda.push({ ...urgente, number: sesion.agenda.length + 1, section: 'resolutiva' })
   const desenlaces = Object.keys(OUTCOME_LABEL)
   const votos = mapa['/data/pleno-votes.json']
   const otras = votos.items.filter((v) => v.plenoId !== ID).slice(0, desenlaces.length)
@@ -245,8 +265,18 @@ const escenario = (nombre, mapa, transcripcion) => ({
   alPulsar: ['/data/finding-quote-provenance.json', '/data/tenders.json'],
 })
 
+/** La sesión con una sola de sus votaciones, para el singular del resumen. */
+function unaVotacion() {
+  const mapa = structuredClone(sirve())
+  const votos = mapa['/data/pleno-votes.json']
+  const una = votos.items.find((v) => v.plenoId === ID && !v.votesRetracted)
+  votos.items = votos.items.filter((v) => v.plenoId !== ID || v === una)
+  return mapa
+}
+
 const ESCENARIOS = [
   escenario(`/plenos/${ID} tal cual se publica`, sirve(), TRANSCRIPCION),
+  escenario(`/plenos/${ID} con una sola votación transcrita`, unaVotacion(), TRANSCRIPCION),
   escenario(
     `/plenos/${ID} con cada sección, desenlace y gravedad, y la transcripción de un acta`,
     cadaForma(),
@@ -380,6 +410,9 @@ const deLaPestana = (piezas) =>
     return { pestana, texto }
   })
 
+/** Lo leído en castellano en cada escenario, para la prueba de cobertura del final. */
+const LEIDO_ES = []
+
 describe(`/plenos/${ID}: cada pestaña, sin tokens y en valencià sin castellano`, () => {
   it.each(ESCENARIOS)(
     '$nombre',
@@ -393,6 +426,7 @@ describe(`/plenos/${ID}: cada pestaña, sin tokens y en valencià sin castellano
         { ...esc, interactua: pulsaCadaPestana(lecturas, 'ca', esc.transcripcion) },
         'ca',
       )
+      LEIDO_ES.push(...deLaPestana(lecturas.es.enteras).map((p) => p.texto))
       expect.soft(es.pedidasSinServir, 'la página pide datos que la prueba no sirve').toEqual([])
       expect.soft(es.servidasSinPedir, 'servidas y nunca pedidas').toEqual([])
       const leidas = new Set(deLaPestana(lecturas.es.enteras).map((p) => p.pestana))
@@ -430,6 +464,7 @@ describe(`/plenos/${ID}: cada pestaña, sin tokens y en valencià sin castellano
       )
       const noSeTraduce = masLargasPrimero([
         ...datos,
+        ...etiquetasDe(esc.fetch),
         ...SIGLAS,
         ...AREAS_IGUALES,
         ...DATO_DE_LAS_DECLARACIONES(esc.fetch),
@@ -458,4 +493,33 @@ describe(`/plenos/${ID}: cada pestaña, sin tokens y en valencià sin castellano
     },
     180000,
   )
+})
+
+/**
+ * Cobertura: cada cadena del resumen en palabras llanas, de su vocabulario y de
+ * la salvedad del reparto se pinta en algún escenario de arriba. Una cadena nueva
+ * sin escenario nacería sin leer en valencià. Corre detrás de los escenarios, que
+ * son los que leen.
+ */
+describe(`/plenos/${ID}: cobertura de la guarda`, () => {
+  it('toda cadena plenoDetail.resumen.*, plenos.vocabulario, plenos.palabra.* y la salvedad del reparto se pinta', () => {
+    const claves = Object.keys(CATALOGUE.es).filter(
+      (k) =>
+        k.startsWith('plenoDetail.resumen.') ||
+        k === 'plenos.vocabulario' ||
+        k.startsWith('plenos.palabra.') ||
+        k === 'plenoDetail.voto.salvedadReparto',
+    )
+    expect(claves.length, 'el catálogo no tiene cadenas del resumen').toBeGreaterThan(10)
+    expect(LEIDO_ES.length, 'los escenarios no leyeron nada').toBeGreaterThan(0)
+    const texto = LEIDO_ES.join('\n')
+    const sinPintar = claves.filter((clave) =>
+      CATALOGUE.es[clave]
+        .split(/\{\w+\}/)
+        .map((trozo) => trozo.replace(/[↓→]/g, '').trim())
+        .filter((trozo) => /\p{L}/u.test(trozo))
+        .some((trozo) => !texto.includes(trozo)),
+    )
+    expect(sinPintar).toEqual([])
+  })
 })

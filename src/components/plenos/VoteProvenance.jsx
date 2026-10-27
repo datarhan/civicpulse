@@ -44,8 +44,12 @@ import { rellena } from '../../lib/formatters'
  *                 `acta` and `regmeet` (the document states the claim in the
  *                 council's own words) and a real caveat for `transcripcion`
  *                 and `video` (the claim is there only via a reading).
+ *
+ * `salvedadArriba`: quien pinta la barra ya ha dicho la salvedad del reparto
+ * encima de ella (/plenos/:id, `SalvedadDelReparto`), y aquí no se repite. La
+ * de «cotejado contra…» sí va: no es una salvedad, es de dónde sale.
  */
-export function VoteProvenance({ provenance }) {
+export function VoteProvenance({ provenance, salvedadArriba = false }) {
   const t = useT()
   if (!provenance?.outcome) return null
   // Los rótulos de las fuentes, en el idioma de quien lee; el castellano de
@@ -84,7 +88,7 @@ export function VoteProvenance({ provenance }) {
           ? rellena(t('plenoDetail.voto.cotejadoContra'), {
               fuente: fuente(ref.verifiedAgainst.kind),
             })
-          : breakdownNeedsCaveat(ref)
+          : breakdownNeedsCaveat(ref) && !(salvedadArriba && key === 'breakdown')
             ? sinCotejar(ref.kind)
             : null
         return (
