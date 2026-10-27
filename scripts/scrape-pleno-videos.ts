@@ -40,7 +40,7 @@ function main() {
     `[pleno-videos] scanned ${snap.stats.totalVideosScanned} · matched ${snap.stats.plenoVideosMatched} pleno(s) ` +
       `(ordinario ${snap.stats.byKind.ordinario}, extraordinario ${snap.stats.byKind.extraordinario}, ` +
       `urgente ${snap.stats.byKind.urgente}, otro ${snap.stats.byKind.otro}) · ` +
-      `${snap.stats.plenosSinFecha} pleno(s) sin día o sin año, sin fecha → ${OUT_PATH}\n`,
+      `${snap.stats.plenosSinFecha} pleno(s) sin fecha legible → ${OUT_PATH}\n`,
   )
   // Un pleno sin fecha no se ata a una sesión (eso lo hace regmeet): se nombra
   // para que el hueco se vea y no se lea como «el canal no tiene ese vídeo».

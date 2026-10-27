@@ -326,7 +326,7 @@ export function parseChannelFeed(
     source: {
       channelUrl: opts.channelUrl ?? 'https://www.youtube.com/@ajuntam_riba_roja_de_turia',
       description:
-        'Ajuntament de Riba-roja YouTube channel — pleno recordings only. Feed produced via `yt-dlp --flat-playlist --dump-json --extractor-args youtube:lang=ca`. A pleno whose title gives no day or no year is listed in `sinFecha`, never tied to a session.',
+        'Ajuntament de Riba-roja YouTube channel — pleno recordings only. Feed produced via `yt-dlp --flat-playlist --dump-json --extractor-args youtube:lang=ca`. A pleno whose title yields no date (no day, no year, or a form the parser cannot read) is listed in `sinFecha` with its reason, never tied to a session.',
     },
     stats: {
       totalVideosScanned,
