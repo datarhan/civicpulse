@@ -5,8 +5,28 @@
  * Salió de scripts/scrape-paro.ts para que las pruebas fijen el recorrido con
  * un `fetchImpl` inyectado, sin red —la misma razón que boe-fetch.ts—: el
  * parser sigue puro en paro.ts y el CLI sólo lee y escribe el fichero.
+ *
+ * El 2026-10-27 a las 06:20, `scrape-ci-blocked` publicó un paro.json con dos
+ * meses menos (2026-09 y 2025-07) y salió con 0. `fetch()` había devuelto las
+ * cabeceras a la primera, y el `AbortSignal.timeout` de 30 s cortó después la
+ * lectura del cuerpo, `res.arrayBuffer()`, que estaba FUERA del try de los
+ * reintentos. La excepción subía a un catch de main() que la anotaba como
+ * «skipped», no la contaba para el cortacircuitos y seguía: el mes que nadie
+ * llegó a leer se publicó como un mes que no existe, y `latestPeriod`
+ * retrocedió de 2026-09 a 2026-08 (clase E05 del atlas; regla 2 de CLAUDE.md).
+ * Ahora cada mes acaba en uno de cuatro estados (`MesParo`), la lectura del
+ * cuerpo va dentro de cada intento, y la serie se compone sobre la del fichero
+ * anterior: un mes sin leer conserva su fila y `stats` lo nombra
+ * (`componerSerieParo`, en paro.ts). tests/paro-fetch.test.ts reproduce esa
+ * pasada.
  */
-import { parseSepeParoMonth, type ParoSnapshot } from './paro'
+import {
+  componerSerieParo,
+  parseSepeParoMonth,
+  type MesParo,
+  type ParoSnapshot,
+  type ParoStats,
+} from './paro'
 
 export const MUNI = 'Riba-roja de Túria'
 const MONTHS_ES = [
@@ -23,6 +43,7 @@ const MONTHS_ES = [
   'noviembre',
   'diciembre',
 ]
+const MESES_RECORRIDOS = 24
 
 export function candidateUrl(year: number, monthIdx: number): string {
   const m = MONTHS_ES[monthIdx]
@@ -39,13 +60,14 @@ export function candidateUrl(year: number, monthIdx: number): string {
 // of the 24 months used to throw straight up through main() → exit(1) and red
 // the whole nightly (and skip that night's deploy). Retry transient network
 // errors a few times with backoff so one slow handshake doesn't lose the
-// month. The parser's "0/24 months → exit 1, keep yesterday's snapshot" guard
-// in construirParo() stays the real failure backstop, so a genuine SEPE outage
+// month. The "0 months read → keep yesterday's snapshot" guard in
+// construirParo() stays the real failure backstop, so a genuine SEPE outage
 // still reds the run — it is never silently masked.
 const FETCH_ATTEMPTS = 3
-// Consecutive months failing at the NETWORK level (never an HTTP status —
-// a not-yet-published month 404s and must not count) that abort the walk.
-// When SEPE blackholes the caller's IP range (GitHub-runner IPs since
+// Consecutive months with no complete answer (`sin-respuesta`: no handshake,
+// a body cut short, or an error status other than 404 — never a 404, which is
+// how a not-yet-published month answers and must not count) that abort the
+// walk. When SEPE blackholes the caller's IP range (GitHub-runner IPs since
 // 2026-07-11), all 24 months fail identically; retrying each one used to
 // burn ~15 min of the nightly's 20-min budget, the job timed out CANCELLED,
 // and the !cancelled() commit step threw away every other adapter's fresh
@@ -62,6 +84,8 @@ export interface ParoDeps {
   esperar?: (ms: number) => Promise<void>
   /** Override the parser — tests pass one that needs no 3 MB workbook. */
   parse?: typeof parseSepeParoMonth
+  /** La serie del paro.json publicado: de ella sale la fila de un mes que esta pasada no lea. */
+  previo?: readonly ParoSnapshot[] | null
 }
 
 export interface ParoPayload {
@@ -70,6 +94,7 @@ export interface ParoPayload {
   municipio: string
   latestPeriod: string | null
   latestTotal: number | null
+  stats: ParoStats
   series: ParoSnapshot[]
 }
 
@@ -78,14 +103,17 @@ export type ResultadoParo = { ok: true; payload: ParoPayload } | { ok: false; mo
 
 const esperarDeVerdad = (ms: number) => new Promise<void>((r) => setTimeout(r, ms))
 
+/** `buf: null` is SEPE saying the month is not there; `fallo` is no complete answer at all. */
+type Descarga = { status: number; buf: Buffer | null } | { fallo: string }
+
 async function fetchMonthXls(
   url: string,
   fetchImpl: typeof fetch,
   esperar: (ms: number) => Promise<void>,
-): Promise<Response | null> {
+): Promise<Descarga> {
   for (let attempt = 1; attempt <= FETCH_ATTEMPTS; attempt++) {
     try {
-      return await fetchImpl(url, {
+      const res = await fetchImpl(url, {
         headers: {
           'User-Agent':
             'CivicPulse/0.1 (+https://github.com/datarhan/civicpulse) civic-tech ingestion',
@@ -96,11 +124,21 @@ async function fetchMonthXls(
         // (30 s × 3 attempts × 3 breaker months ≈ 5 min worst case).
         signal: AbortSignal.timeout(30_000),
       })
+      // 404 es como contesta el SEPE un mes que aún no ha publicado (medido el
+      // 2026-10-27 con octubre): un no, y nada que reintentar.
+      if (res.status === 404 || res.status === 410) return { status: res.status, buf: null }
+      // Cualquier otro error no dice nada del mes: se reintenta como un
+      // apretón de manos caído, y si persiste es `sin-respuesta`.
+      if (!res.ok) throw new Error(`HTTP ${res.status}`)
+      // El cuerpo se lee DENTRO del intento: la señal de 30 s también lo
+      // corta, y fuera de este try ese corte se saltaba los reintentos y el
+      // cortacircuitos (la cabecera cuenta el 2026-10-27).
+      return { status: res.status, buf: Buffer.from(await res.arrayBuffer()) }
     } catch (err) {
       const detail = err instanceof Error ? err.message : String(err)
       if (attempt === FETCH_ATTEMPTS) {
         console.warn(`[paro] ${url} — network error after ${FETCH_ATTEMPTS} attempts: ${detail}`)
-        return null
+        return { fallo: detail }
       }
       const backoffMs = attempt * 2000
       console.warn(
@@ -109,31 +147,31 @@ async function fetchMonthXls(
       await esperar(backoffMs)
     }
   }
-  return null
+  return { fallo: `${FETCH_ATTEMPTS} attempts` }
 }
 
-// netFail distinguishes "the host never answered" (feeds the circuit
-// breaker) from "answered but no data for that month" (404 / nav page —
-// normal for the newest months, never counted against the breaker).
-async function tryMonth(
+async function leerMes(
   year: number,
   monthIdx: number,
   fetchImpl: typeof fetch,
   esperar: (ms: number) => Promise<void>,
   parse: typeof parseSepeParoMonth,
-): Promise<{ snap: ParoSnapshot | null; netFail: boolean }> {
-  const url = candidateUrl(year, monthIdx)
-  const res = await fetchMonthXls(url, fetchImpl, esperar)
-  if (!res) return { snap: null, netFail: true }
-  if (!res.ok) return { snap: null, netFail: false }
-  const ct = res.headers.get('content-type') || ''
-  if (!/excel|octet|msword/.test(ct) && res.headers.get('content-length') === '0')
-    return { snap: null, netFail: false }
-  const buf = Buffer.from(await res.arrayBuffer())
-  // SEPE XLS starts with D0 CF 11 E0 (CDFV2); anything else is the nav page
-  if (buf[0] !== 0xd0 || buf[1] !== 0xcf) return { snap: null, netFail: false }
+): Promise<MesParo> {
   const period = `${year}-${String(monthIdx + 1).padStart(2, '0')}`
-  return { snap: parse(buf, { municipio: MUNI, period }), netFail: false }
+  const d = await fetchMonthXls(candidateUrl(year, monthIdx), fetchImpl, esperar)
+  if ('fallo' in d) return { period, estado: 'sin-respuesta', motivo: d.fallo }
+  if (!d.buf) return { period, estado: 'ausente', motivo: `HTTP ${d.status}` }
+  // SEPE XLS starts with D0 CF 11 E0 (CDFV2); anything else is the nav page
+  if (d.buf[0] !== 0xd0 || d.buf[1] !== 0xcf)
+    return { period, estado: 'ausente', motivo: 'la página de SEPE en lugar del XLS' }
+  try {
+    const snap = parse(d.buf, { municipio: MUNI, period })
+    return snap
+      ? { period, estado: 'leido', snap }
+      : { period, estado: 'ilegible', motivo: `el XLS no trae la fila de ${MUNI}` }
+  } catch (err) {
+    return { period, estado: 'ilegible', motivo: err instanceof Error ? err.message : String(err) }
+  }
 }
 
 export async function construirParo(deps: ParoDeps = {}): Promise<ResultadoParo> {
@@ -141,52 +179,58 @@ export async function construirParo(deps: ParoDeps = {}): Promise<ResultadoParo>
   const fetchImpl = deps.fetchImpl ?? fetch
   const esperar = deps.esperar ?? esperarDeVerdad
   const parse = deps.parse ?? parseSepeParoMonth
-  const results: ParoSnapshot[] = []
+  const meses: MesParo[] = []
   let consecutiveNetFailures = 0
-  // Walk back 24 months from now.
-  for (let back = 0; back < 24; back++) {
+  // Walk back 24 months from now. A month that fails on its own never aborts
+  // the walk: leerMes() turns every network or parse failure into a state, and
+  // componerSerieParo() keeps that month's published row. The one exception:
+  // MAX_CONSECUTIVE_NET_FAILURES months in a row with no complete answer means
+  // WE are unreachable/blocked — walking the rest would only burn the
+  // nightly's time budget.
+  for (let back = 0; back < MESES_RECORRIDOS; back++) {
     const d = new Date(now.getFullYear(), now.getMonth() - back, 1)
-    // One month failing (network or parse) must never abort the 24-month walk —
-    // the months that DID resolve still make a valid snapshot. Only a fully
-    // empty walk is a real failure, handled by the 0/24 guard below. The one
-    // exception: MAX_CONSECUTIVE_NET_FAILURES months in a row that never got
-    // an answer from the host means WE are unreachable/blocked — walking the
-    // remaining months would only burn the nightly's time budget.
-    let snap: ParoSnapshot | null = null
-    try {
-      const attempt = await tryMonth(d.getFullYear(), d.getMonth(), fetchImpl, esperar, parse)
-      snap = attempt.snap
-      consecutiveNetFailures = attempt.netFail ? consecutiveNetFailures + 1 : 0
-    } catch (err) {
-      const detail = err instanceof Error ? err.message : String(err)
-      console.warn(`[paro] ${d.getFullYear()}-${d.getMonth() + 1} skipped: ${detail}`)
+    const mes = await leerMes(d.getFullYear(), d.getMonth(), fetchImpl, esperar, parse)
+    meses.push(mes)
+    if (mes.estado === 'leido') {
+      const s = mes.snap
+      console.log(`[paro] ${s.period}: ${s.total} total (${s.men}H / ${s.women}M)`)
+    } else {
+      const log = mes.estado === 'ausente' ? console.log : console.warn
+      log(`[paro] ${mes.period}: ${mes.estado} — ${mes.motivo}`)
     }
-    if (snap) {
-      results.push(snap)
-      console.log(`[paro] ${snap.period}: ${snap.total} total (${snap.men}H / ${snap.women}M)`)
-    }
+    consecutiveNetFailures = mes.estado === 'sin-respuesta' ? consecutiveNetFailures + 1 : 0
     if (consecutiveNetFailures >= MAX_CONSECUTIVE_NET_FAILURES) {
       // Writing the partial walk would shrink the published series (same
-      // reasoning as the 0/24 guard below: an unreachable host is not a
+      // reasoning as the 0-read guard below: an unreachable host is not a
       // data state). Keep yesterday's snapshot and red the run.
+      const leidos = meses.filter((m) => m.estado === 'leido').length
       return {
         ok: false,
         motivo:
           `${consecutiveNetFailures} consecutive months unreachable at the network level — ` +
           `sepe.es is down or blocking this IP range; aborting the walk early ` +
-          `(${results.length} months fetched, existing snapshot left untouched)`,
+          `(${leidos} months read, existing snapshot left untouched)`,
       }
     }
   }
-  results.sort((a, b) => a.period.localeCompare(b.period))
 
-  // Zero months parsed across a 24-month walk is never a real data state —
-  // it means SEPE moved/blocked the feed. Refuse to overwrite yesterday's
-  // snapshot with an empty one (the silent-freeze failure mode).
-  if (results.length === 0) {
-    return { ok: false, motivo: '0/24 months fetched — leaving the existing snapshot untouched' }
+  // Zero months read across the walk is never a real data state — it means
+  // SEPE moved/blocked the feed. Refuse to rewrite yesterday's snapshot, even
+  // though the previous rows could fill the whole series: that would be
+  // yesterday's file with today's date (the silent-freeze failure mode).
+  if (!meses.some((m) => m.estado === 'leido')) {
+    return {
+      ok: false,
+      motivo: `0/${MESES_RECORRIDOS} months read — leaving the existing snapshot untouched`,
+    }
   }
 
+  const { series, stats } = componerSerieParo(meses, deps.previo ?? null)
+  for (const a of stats.arrastrados) {
+    console.warn(
+      `[paro] ${a.period}: kept from the previous snapshot — not read this run (${a.estado}: ${a.motivo})`,
+    )
+  }
   return {
     ok: true,
     payload: {
@@ -197,9 +241,10 @@ export async function construirParo(deps: ParoDeps = {}): Promise<ResultadoParo>
           'https://sepe.es/SiteSepe/…/municipios_20_45/<YEAR>/<MES>_<YEAR>/Muniacteco_20-45_COM.VALENCIANA.xls',
       },
       municipio: MUNI,
-      latestPeriod: results[results.length - 1]?.period ?? null,
-      latestTotal: results[results.length - 1]?.total ?? null,
-      series: results,
+      latestPeriod: series[series.length - 1]?.period ?? null,
+      latestTotal: series[series.length - 1]?.total ?? null,
+      stats,
+      series,
     },
   }
 }

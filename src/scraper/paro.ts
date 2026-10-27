@@ -97,3 +97,75 @@ export function parseSepeParoMonth(
     source: 'SEPE Muniacteco 20-45',
   }
 }
+
+/** Lo que dio una pasada con un mes. Sólo `leido` trae fila; los otros tres dicen por qué no. */
+export type MesParo =
+  /** SEPE sirvió el libro del mes y la fila de Riba-roja estaba en él. */
+  | { period: string; estado: 'leido'; snap: ParoSnapshot }
+  /** SEPE contestó que el mes no está: 404/410, o su página en lugar del XLS. Lo normal del mes más nuevo. */
+  | { period: string; estado: 'ausente'; motivo: string }
+  /** El libro llegó entero y el parser no encontró la fila, o reventó. */
+  | { period: string; estado: 'ilegible'; motivo: string }
+  /** Ninguna respuesta completa tras todos los intentos: conexión, cuerpo o un error HTTP del servidor. */
+  | { period: string; estado: 'sin-respuesta'; motivo: string }
+
+export type MesSinLeer = Exclude<MesParo, { estado: 'leido' }>
+
+export interface ParoStats {
+  /** Meses que recorrió la pasada; las tres cuentas de abajo suman esto. */
+  mesesRecorridos: number
+  /** Meses leídos en esta pasada. */
+  leidos: number
+  /** Meses que esta pasada no leyó y que conservan la fila del fichero anterior. */
+  arrastrados: MesSinLeer[]
+  /** Meses sin fila: no se leyeron ahora y el fichero anterior tampoco los tenía. */
+  fueraDeLaSerie: MesSinLeer[]
+}
+
+/**
+ * Compone la serie publicable de una pasada sobre la del fichero anterior.
+ *
+ * Una fila sólo entra, cambia o sale por una LECTURA nueva. Un mes que la
+ * pasada no leyó —sin respuesta, ilegible o hasta con un 404— conserva la fila
+ * que ya estaba publicada: el SEPE no retira un mes que ya sirvió, así que un
+ * 404 donde ayer había libro es antes un tropiezo del servidor que un dato, y
+ * la fila caduca sola cuando el mes sale de la ventana (los meses previos que
+ * la pasada no recorrió no se miran). Lo que se conserva no se disimula:
+ * `stats.arrastrados` nombra cada mes y su motivo. Así un fallo de red no
+ * puede encoger la serie ni hacer retroceder `latestPeriod` (el 2026-10-27
+ * lo hizo; la cabecera de paro-fetch.ts lo cuenta).
+ */
+export function componerSerieParo(
+  meses: readonly MesParo[],
+  previo: readonly ParoSnapshot[] | null,
+): { series: ParoSnapshot[]; stats: ParoStats } {
+  const anterior = new Map((previo ?? []).map((r) => [r.period, r]))
+  const series: ParoSnapshot[] = []
+  const arrastrados: MesSinLeer[] = []
+  const fueraDeLaSerie: MesSinLeer[] = []
+  let leidos = 0
+  for (const m of meses) {
+    if (m.estado === 'leido') {
+      series.push(m.snap)
+      leidos += 1
+      continue
+    }
+    const sinLeer: MesSinLeer = { period: m.period, estado: m.estado, motivo: m.motivo }
+    const fila = anterior.get(m.period)
+    if (fila) {
+      series.push(fila)
+      arrastrados.push(sinLeer)
+    } else {
+      fueraDeLaSerie.push(sinLeer)
+    }
+  }
+  const porPeriodo = (a: { period: string }, b: { period: string }) =>
+    a.period.localeCompare(b.period)
+  series.sort(porPeriodo)
+  arrastrados.sort(porPeriodo)
+  fueraDeLaSerie.sort(porPeriodo)
+  return {
+    series,
+    stats: { mesesRecorridos: meses.length, leidos, arrastrados, fueraDeLaSerie },
+  }
+}
