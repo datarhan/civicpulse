@@ -435,9 +435,17 @@ export function parseReviewArgs(argv: string[], budgetEnv?: string) {
  *   · No deciden fronteras. No son contenido, y se repiten idénticas en cada
  *     tarjeta: si el hash de una saliera frontera, la página se cortaría tras
  *     cada tarjeta en cientos de fragmentos de una llamada cada uno.
- *   · Una marca de inicio no cierra un fragmento. Si el máximo obliga a cortar
- *     justo detrás de una, pasa al fragmento siguiente con la tarjeta que abre;
- *     y si lo que sigue es una línea demasiado larga, encabeza su primer trozo.
+ *   · Cuando corta el máximo, corta entre dos tarjetas: tras la última que se
+ *     cerró, si lo que pasa al siguiente cabe. Las marcas alargan el texto un
+ *     3 % y movían el corte; la auditoría del 27-10-2026 lo vio caer en
+ *     /laboratorio dentro de la tabla de cobertura, entre «0 de 14 cotejadas» y
+ *     «33 sin cotejar», la fila de un señalamiento vivo. Una frontera por
+ *     contenido sí puede caer dentro de una tarjeta, como antes: moverla
+ *     costaría la estabilidad que justifica todo lo de arriba.
+ *   · Una marca de inicio no cierra un fragmento. Si no hay tarjeta cerrada
+ *     donde cortar y el corte cae justo detrás de una, pasa al fragmento
+ *     siguiente con la tarjeta que abre; y si lo que sigue es una línea
+ *     demasiado larga, encabeza su primer trozo.
  *
  * Un fragmento sí puede empezar por una marca de fin: cierra una tarjeta que
  * empezó en el anterior, y eso no junta dos tarjetas. Nada de esto puede
@@ -485,9 +493,25 @@ export function chunkRenderedText(text: string, size = REVIEW_CHUNK_CHARS): stri
   for (const line of text.split('\n')) {
     // +1 for the newline this line will be rejoined with.
     if (length && length + line.length + 1 > size) {
-      // Las marcas de inicio del final no se quedan aquí: van con su tarjeta.
-      let corte = current.length
-      while (corte > 0 && current[corte - 1].trim() === MARCAS_DE_TARJETA.inicio) corte -= 1
+      // Corta el máximo, así que se elige dónde: tras la última tarjeta que se
+      // cerró, si lo que queda antes no es una migaja y lo que pasa —el
+      // principio de la tarjeta abierta— cabe con la línea que viene.
+      let corte = -1
+      let pasa = 0
+      for (let k = current.length; k > 0; k -= 1) {
+        if (k < current.length) pasa += current[k].length + 1
+        if (pasa + line.length > size || length - pasa < minimo) break
+        if (current[k - 1].trim() === MARCAS_DE_TARJETA.fin) {
+          corte = k
+          break
+        }
+      }
+      // Si no hay ninguna, se corta aquí, y las marcas de inicio del final no se
+      // quedan: van con su tarjeta.
+      if (corte === -1) {
+        corte = current.length
+        while (corte > 0 && current[corte - 1].trim() === MARCAS_DE_TARJETA.inicio) corte -= 1
+      }
       const pasan = current.splice(corte)
       flush()
       current = pasan
