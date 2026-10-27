@@ -54,10 +54,13 @@ const MARCAS_DE_CHARLA =
  */
 const CHARLA = '1qi8axv-023-cit-3e6224'
 /**
- * Un resumen del motor que se queda: dice «la respuesta del Ayuntamiento», que
- * es de lo que trata la cita, no de la tarea del modelo.
+ * Una explicación que se queda. Era un resumen del motor (1tgd1h4-308-cit-f9bd00)
+ * hasta que el 27-10-2026 la tarjeta dejó de imprimir las de las retractaciones
+ * del motor sin firma, que hablan de una lista que no se guardó
+ * (claim-provenance.js, `explicacionSinLista`). Ésta es la de una rebaja de
+ * curador: la escribió quien la decidió.
  */
-const EXPLICACION = '1tgd1h4-308-cit-f9bd00'
+const EXPLICACION = '15000go-096-cit-e013c8'
 
 function pintar(it) {
   return render(

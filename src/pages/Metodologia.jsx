@@ -1758,7 +1758,8 @@ export default function Metodologia() {
             (nunca sube ni introduce un veredicto nuevo). El resultado es más conservador: retira
             afirmaciones que el trazado de datos abiertos no atestigua, dejando el motivo verbatim
             en el overlay. Nunca marca <em>contradicho</em>. Su razonamiento, recortado, es la
-            explicación que la tarjeta de la declaración enseña bajo la cita.{' '}
+            explicación que se guarda con la retractación; la tarjeta de la declaración no la
+            imprime si no la firma una persona (lo explica el final de este apartado).{' '}
             {/* 05-10-2026: en 36 de las 52 retractaciones que la re-derivación de #233
                 dejó como «ya no la retractaría», el razonamiento concluía que nada las
                 respaldaba y el paso de formatear devolvía «parcial»; y casi todas sus citas
@@ -1776,7 +1777,7 @@ export default function Metodologia() {
                 número en la lista que leyó («a lo sumo [0] aporta contexto»), y la tarjeta
                 de una retractación no enseña esa lista (src/scraper/claim-verifier-engine.ts). */}
             Si esa frase nombra un candidato por el número que tenía en la lista que leyó el modelo
-            —«[0]», «el candidato 5»—, que la tarjeta no enseña, se publica sin la parte que lo
+            —«[0]», «el candidato 5»—, que la tarjeta no enseña, se guarda sin la parte que lo
             nombra: se corta en un punto y coma o en unos dos puntos, y el corte se marca con «…».
             Cuando el número va en la parte misma de la conclusión, la frase sale entera. Y cuando
             lo único que el modelo cita es el título de un registro, el motor no lo da por respaldo,
@@ -1800,7 +1801,21 @@ export default function Metodologia() {
             modelo razonó. Las que se anotaron sin que el modelo las viera se devuelven al veredicto
             del comparador determinista —«sin datos» en todas, así que ninguna cambia de veredicto,
             sólo de firma—, y las demás se vuelven a derivar para que la explicación sea la del
-            modelo.
+            modelo.{' '}
+            {/* 27-10-2026: de las 465 explicaciones servidas que nombraban «candidatos» o
+                «listados», 452 eran de la pasada del 02-08-2026, cuya caché sólo guarda el
+                razonamiento bajo el id de la declaración; tres contradecían el registro que el
+                comparador determinista emparejaba con la misma declaración. La medición, en
+                editorial/ (src/lib/claim-provenance.js, `explicacionSinLista`). */}
+            Desde el 27 de octubre de 2026 la tarjeta no imprime la explicación de una retractación
+            del motor que no haya firmado una persona. Esa explicación cuenta qué había en la lista
+            de candidatos que leyó el modelo —«los contratos listados», «ninguno de los
+            candidatos»—, una lista que la tarjeta no enseña y que en las pasadas de agosto y de
+            principios de octubre de 2026 no se guardó: nadie puede comprobar lo que dice de ella, y
+            donde se pudo cotejar con el registro que el comparador determinista emparejaba con la
+            misma declaración, alguna lo contradecía. En su lugar la tarjeta dice «Explicación
+            retirada» y por qué. El veredicto, «Fuentes comprobadas» y el rótulo del verificador no
+            cambian, y el texto del motor sigue en el overlay publicado.
           </li>
           {/* La vía nació el 10-10-2026: cuatro retractaciones del motor publicaban
               «Explicación retirada», y la explicación que una lectura del 06-10
@@ -1810,15 +1825,16 @@ export default function Metodologia() {
             <strong>Explicación firmada (sin mover el veredicto).</strong> Cuando la explicación de
             una retractación del motor no sirve —un parte del modelo sobre su encargo, o un
             razonamiento que no dice lo que muestran los registros—, una persona puede escribir
-            otra, con su nombre, desde los registros que leyó. El veredicto sigue siendo el del
-            motor, <em>sin datos</em>, y la tarjeta lo dice: «verificador LLM · explicación firmada
-            por…». Es la misma enmienda que la del motivo de una rebaja: queda en la entrada del
-            motor, con la fecha, el porqué y una huella de la explicación anterior, y lo que decidió
-            el motor —su registro, su rótulo y su fecha— no se toca. La herramienta rechaza una
-            explicación que sea la de una máquina tal cual, no la acepta durante el periodo
-            electoral ni sobre una acusación pública, y ninguna pasada automática la reescribe
-            después: el motor se salta las que firmó una persona. «Fuentes comprobadas» sigue
-            diciendo lo que apuntó el motor; lo que la persona leyó lo dice su explicación.
+            otra, con su nombre, desde los registros que leyó. Es la única explicación de una
+            retractación del motor que la tarjeta imprime. El veredicto sigue siendo el del motor,{' '}
+            <em>sin datos</em>, y la tarjeta lo dice: «verificador LLM · explicación firmada por…».
+            Es la misma enmienda que la del motivo de una rebaja: queda en la entrada del motor, con
+            la fecha, el porqué y una huella de la explicación anterior, y lo que decidió el motor
+            —su registro, su rótulo y su fecha— no se toca. La herramienta rechaza una explicación
+            que sea la de una máquina tal cual, no la acepta durante el periodo electoral ni sobre
+            una acusación pública, y ninguna pasada automática la reescribe después: el motor se
+            salta las que firmó una persona. «Fuentes comprobadas» sigue diciendo lo que apuntó el
+            motor; lo que la persona leyó lo dice su explicación.
           </li>
           {/* La vía nació el 05-10-2026, de una lectura del día anterior: ocho
               declaraciones que el motor había retractado tenían un registro que

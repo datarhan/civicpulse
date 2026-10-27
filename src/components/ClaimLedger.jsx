@@ -12,8 +12,10 @@ import { cuentaCotejadas, entreParentesis } from '../lib/cotejo'
 import { blocLabel } from '../lib/party-label.js'
 import { snippetDeEvidencia } from '../lib/crosschecked-status.js'
 import {
+  CLAVE_RESUMEN_SIN_LISTA,
   etiquetaVerificador,
   evidenciaSegunFuentes,
+  explicacionSinLista,
   fuentesComprobadas,
   resumenSegunFuentes,
   rotuloDeParecido,
@@ -93,6 +95,10 @@ function EvidenceRow({ e, cifra }) {
 function ClaimCard({ item }) {
   const t = useT()
   const { claim, verification } = item
+  // Una retractación del motor sin firma cuenta qué había en una lista que la
+  // tarjeta no enseña y que no se guardó: en su lugar, la tarjeta dice por qué
+  // no la imprime (src/lib/claim-provenance.js, `explicacionSinLista`).
+  const sinLista = explicacionSinLista(verification)
   // `null` cuando el resumen guardado habla de la tarea del verificador y no de
   // esta declaración (src/lib/resumenes-retirados.js): la tarjeta dice que lo
   // retiró en vez de imprimirlo bajo la cita. El «no se encontró registro» se
@@ -210,10 +216,14 @@ function ClaimCard({ item }) {
           color: 'var(--ink50)',
           marginTop: 8,
           lineHeight: 1.5,
-          fontStyle: resumen === null ? 'italic' : 'normal',
+          fontStyle: resumen === null || sinLista ? 'italic' : 'normal',
         }}
       >
-        {resumen ?? t(CLAVE_RESUMEN_RETIRADO)}
+        {resumen === null
+          ? t(CLAVE_RESUMEN_RETIRADO)
+          : sinLista
+            ? t(CLAVE_RESUMEN_SIN_LISTA)
+            : resumen}
       </div>
       {evidencia.length > 0 && (
         <div

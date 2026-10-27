@@ -40,6 +40,7 @@ import { tipoAMostrar } from '../../src/lib/claim-type-label.js'
 import {
   etiquetaVerificador,
   evidenciaSegunFuentes,
+  explicacionSinLista,
   resumenSegunFuentes,
 } from '../../src/lib/claim-provenance.js'
 import { resumenPublicable } from '../../src/lib/resumenes-retirados.js'
@@ -112,6 +113,7 @@ function rasgosDe(it) {
     `fuentes:${desenlaceDeCotejo(v)}`,
     ...filas.map((e) => `fila:${e.kind}`),
     ...(filas.some((e) => typeof e.similarity === 'number') ? ['parecido'] : []),
+    ...(resumenPublicable(v) !== null && explicacionSinLista(v) ? ['sinLista'] : []),
     ...(resumenPublicable(v) === null ? ['retirada'] : []),
     ...(filas.some((e) => puenteDeImporte(cifraCitada(it.claim), e, TENDERS)) ? ['puente'] : []),
   ]
