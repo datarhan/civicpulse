@@ -1802,20 +1802,20 @@ export default function Metodologia() {
             del comparador determinista —«sin datos» en todas, así que ninguna cambia de veredicto,
             sólo de firma—, y las demás se vuelven a derivar para que la explicación sea la del
             modelo.{' '}
-            {/* 27-10-2026: de las 465 explicaciones servidas que nombraban «candidatos» o
+            {/* 27-10-2026: de las 465 explicaciones del motor en pleno-claims-verified.json que nombraban «candidatos» o
                 «listados», 452 eran de la pasada del 02-08-2026, cuya caché sólo guarda el
                 razonamiento bajo el id de la declaración; tres contradecían el registro que el
                 comparador determinista emparejaba con la misma declaración. La medición, en
                 editorial/ (src/lib/claim-provenance.js, `explicacionSinLista`). */}
             Desde el 27 de octubre de 2026 la tarjeta no imprime la explicación de una retractación
-            del motor que no haya firmado una persona. Esa explicación cuenta qué había en la lista
-            de candidatos que leyó el modelo —«los contratos listados», «ninguno de los
-            candidatos»—, una lista que la tarjeta no enseña y que en las pasadas de agosto y de
-            principios de octubre de 2026 no se guardó: nadie puede comprobar lo que dice de ella, y
-            donde se pudo cotejar con el registro que el comparador determinista emparejaba con la
-            misma declaración, alguna lo contradecía. En su lugar la tarjeta dice «Explicación
-            retirada» y por qué. El veredicto, «Fuentes comprobadas» y el rótulo del verificador no
-            cambian, y el texto del motor sigue en el overlay publicado.
+            del motor que no haya firmado una persona. El modelo juzga contra una lista de
+            candidatos que la tarjeta no enseña y que el motor no guarda, y su explicación se apoya
+            en ella; muchas cuentan qué había en esa lista —«los contratos listados», «ninguno de
+            los candidatos»—. Nadie puede comprobar lo que dicen de ella, y donde se pudo cotejar
+            con el registro que el comparador determinista emparejaba con la misma declaración,
+            alguna lo contradecía. En su lugar la tarjeta dice «Explicación retirada» y por qué. El
+            veredicto, «Fuentes comprobadas» y el rótulo del verificador no cambian, y el texto del
+            motor sigue en el overlay publicado.
           </li>
           {/* La vía nació el 10-10-2026: cuatro retractaciones del motor publicaban
               «Explicación retirada», y la explicación que una lectura del 06-10

@@ -360,10 +360,12 @@ export const CLAVE_RESUMEN_SIN_LISTA = 'ledger.resumenSinLista'
  * la línea de debajo dice «Fuentes comprobadas: no constan», así que el lector
  * no tenía cómo comprobar lo que la explicación contaba de la lista.
  *
- * Nosotros tampoco: la lista no se guardó. Medido el 27-10-2026 sobre las 465
- * explicaciones servidas que nombran «candidatos» o «listados», 452 eran de la
- * pasada del 02-08-2026, cuya clave de caché sólo lleva el id de la declaración
- * (la huella de los candidatos entró el 05-10-2026). Donde se pudo cotejar con
+ * Nosotros tampoco: el motor no guarda la lista, y la clave de caché lleva, como
+ * mucho, su huella (desde el 05-10-2026), que sirve para cotejar una lista
+ * rehecha, no para recuperarla. Medido el 27-10-2026 sobre las 465 explicaciones
+ * del motor en pleno-claims-verified.json que nombran «candidatos» o «listados»
+ * (335 en los trozos servidos), 452 eran de la pasada del 02-08-2026, cuya clave
+ * sólo lleva el id de la declaración. Donde se pudo cotejar con
  * el registro que el verificador determinista emparejaba con la misma
  * declaración, tres lo contradecían, como la de rmtyr-033-afi-219148 que firmó
  * una persona en #461. La medición está en editorial/, que no se publica.
