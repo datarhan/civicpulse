@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-26T11:21:26.028Z",
+  "generatedAt": "2026-10-26T21:45:47.462Z",
   "version": "1",
   "plenoId": "19gax3o",
   "plenoDate": "2026-01-19",
@@ -71,8 +71,7 @@
         "checkedAgainst": [
           "tenders",
           "tenders-ted",
-          "bdns",
-          "budget"
+          "bdns"
         ]
       },
       "visibility": "toggle"
@@ -101,13 +100,12 @@
       "verification": {
         "claimId": "19gax3o-003-afi-86039f",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders, tenders-ted, bdns y budget que la sostenga. Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
+        "summary": "No se encontró registro en tenders, tenders-ted y bdns que la sostenga. Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
         "evidence": [],
         "checkedAgainst": [
           "tenders",
           "tenders-ted",
-          "bdns",
-          "budget"
+          "bdns"
         ]
       },
       "visibility": "toggle"
@@ -134,13 +132,12 @@
       "verification": {
         "claimId": "19gax3o-004-afi-ef5b60",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders, tenders-ted, bdns y budget que la sostenga. Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
+        "summary": "No se encontró registro en tenders, tenders-ted y bdns que la sostenga. Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
         "evidence": [],
         "checkedAgainst": [
           "tenders",
           "tenders-ted",
-          "bdns",
-          "budget"
+          "bdns"
         ]
       },
       "visibility": "toggle"
@@ -2568,13 +2565,12 @@
       "verification": {
         "claimId": "19gax3o-047-afi-6bf6ae",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders, tenders-ted, bdns y budget que la sostenga. Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
+        "summary": "No se encontró registro en tenders, tenders-ted y bdns que la sostenga. Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
         "evidence": [],
         "checkedAgainst": [
           "tenders",
           "tenders-ted",
-          "bdns",
-          "budget"
+          "bdns"
         ]
       },
       "visibility": "toggle"
@@ -4017,13 +4013,12 @@
       "verification": {
         "claimId": "19gax3o-071-cit-3a4e6c",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders, tenders-ted, bdns y budget que la sostenga. Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
+        "summary": "No se encontró registro en tenders, tenders-ted y bdns que la sostenga. Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
         "evidence": [],
         "checkedAgainst": [
           "tenders",
           "tenders-ted",
-          "bdns",
-          "budget"
+          "bdns"
         ]
       },
       "visibility": "toggle"
@@ -4635,13 +4630,12 @@
       "verification": {
         "claimId": "19gax3o-084-afi-26ebee",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders, tenders-ted, bdns y budget que la sostenga. Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
+        "summary": "No se encontró registro en tenders, tenders-ted y bdns que la sostenga. Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
         "evidence": [],
         "checkedAgainst": [
           "tenders",
           "tenders-ted",
-          "bdns",
-          "budget"
+          "bdns"
         ]
       },
       "visibility": "toggle"
@@ -4764,13 +4758,12 @@
       "verification": {
         "claimId": "19gax3o-085-afi-2c1293",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders, tenders-ted, bdns y budget que la sostenga. Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
+        "summary": "No se encontró registro en tenders, tenders-ted y bdns que la sostenga. Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
         "evidence": [],
         "checkedAgainst": [
           "tenders",
           "tenders-ted",
-          "bdns",
-          "budget"
+          "bdns"
         ]
       },
       "visibility": "toggle"
@@ -4797,13 +4790,12 @@
       "verification": {
         "claimId": "19gax3o-085-afi-52cc8c",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders, tenders-ted, bdns y budget que la sostenga. Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
+        "summary": "No se encontró registro en tenders, tenders-ted y bdns que la sostenga. Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
         "evidence": [],
         "checkedAgainst": [
           "tenders",
           "tenders-ted",
-          "bdns",
-          "budget"
+          "bdns"
         ]
       },
       "visibility": "toggle"
@@ -4830,13 +4822,12 @@
       "verification": {
         "claimId": "19gax3o-085-afi-81bb3a",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders, tenders-ted, bdns y budget que la sostenga. Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
+        "summary": "No se encontró registro en tenders, tenders-ted y bdns que la sostenga. Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
         "evidence": [],
         "checkedAgainst": [
           "tenders",
           "tenders-ted",
-          "bdns",
-          "budget"
+          "bdns"
         ]
       },
       "visibility": "toggle"
@@ -4863,13 +4854,12 @@
       "verification": {
         "claimId": "19gax3o-085-afi-a3604a",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders, tenders-ted, bdns y budget que la sostenga. Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
+        "summary": "No se encontró registro en tenders, tenders-ted y bdns que la sostenga. Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
         "evidence": [],
         "checkedAgainst": [
           "tenders",
           "tenders-ted",
-          "bdns",
-          "budget"
+          "bdns"
         ]
       },
       "visibility": "toggle"
@@ -4928,13 +4918,12 @@
       "verification": {
         "claimId": "19gax3o-086-afi-4c7b5a",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders, tenders-ted, bdns y budget que la sostenga. Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
+        "summary": "No se encontró registro en tenders, tenders-ted y bdns que la sostenga. Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
         "evidence": [],
         "checkedAgainst": [
           "tenders",
           "tenders-ted",
-          "bdns",
-          "budget"
+          "bdns"
         ]
       },
       "visibility": "toggle"
@@ -5504,13 +5493,12 @@
       "verification": {
         "claimId": "19gax3o-097-afi-b00db6",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders, tenders-ted, bdns y budget que la sostenga. Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
+        "summary": "No se encontró registro en tenders, tenders-ted y bdns que la sostenga. Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
         "evidence": [],
         "checkedAgainst": [
           "tenders",
           "tenders-ted",
-          "bdns",
-          "budget"
+          "bdns"
         ]
       },
       "visibility": "toggle"
@@ -5537,13 +5525,12 @@
       "verification": {
         "claimId": "19gax3o-098-afi-ed0bd5",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders, tenders-ted, bdns y budget que la sostenga. Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
+        "summary": "No se encontró registro en tenders, tenders-ted y bdns que la sostenga. Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
         "evidence": [],
         "checkedAgainst": [
           "tenders",
           "tenders-ted",
-          "bdns",
-          "budget"
+          "bdns"
         ]
       },
       "visibility": "toggle"
@@ -6163,13 +6150,12 @@
       "verification": {
         "claimId": "19gax3o-111-afi-863848",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders, tenders-ted, bdns y budget que la sostenga. Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
+        "summary": "No se encontró registro en tenders, tenders-ted y bdns que la sostenga. Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
         "evidence": [],
         "checkedAgainst": [
           "tenders",
           "tenders-ted",
-          "bdns",
-          "budget"
+          "bdns"
         ]
       },
       "visibility": "toggle"
@@ -6226,13 +6212,12 @@
       "verification": {
         "claimId": "19gax3o-112-cit-d26a5f",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders, tenders-ted, bdns y budget que la sostenga. Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
+        "summary": "No se encontró registro en tenders, tenders-ted y bdns que la sostenga. Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
         "evidence": [],
         "checkedAgainst": [
           "tenders",
           "tenders-ted",
-          "bdns",
-          "budget"
+          "bdns"
         ]
       },
       "visibility": "toggle"
@@ -7075,13 +7060,12 @@
       "verification": {
         "claimId": "19gax3o-137-afi-2af3a2",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders, tenders-ted, bdns y budget que la sostenga. Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
+        "summary": "No se encontró registro en tenders, tenders-ted y bdns que la sostenga. Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
         "evidence": [],
         "checkedAgainst": [
           "tenders",
           "tenders-ted",
-          "bdns",
-          "budget"
+          "bdns"
         ]
       },
       "visibility": "toggle"
@@ -7386,13 +7370,12 @@
       "verification": {
         "claimId": "19gax3o-141-cit-3fb0f1",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders, tenders-ted, bdns y budget que la sostenga. Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
+        "summary": "No se encontró registro en tenders, tenders-ted y bdns que la sostenga. Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
         "evidence": [],
         "checkedAgainst": [
           "tenders",
           "tenders-ted",
-          "bdns",
-          "budget"
+          "bdns"
         ]
       },
       "visibility": "toggle"
@@ -7532,13 +7515,12 @@
       "verification": {
         "claimId": "19gax3o-143-afi-536c26",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders, tenders-ted, bdns y budget que la sostenga. Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
+        "summary": "No se encontró registro en tenders, tenders-ted y bdns que la sostenga. Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
         "evidence": [],
         "checkedAgainst": [
           "tenders",
           "tenders-ted",
-          "bdns",
-          "budget"
+          "bdns"
         ]
       },
       "visibility": "toggle"
@@ -7597,13 +7579,12 @@
       "verification": {
         "claimId": "19gax3o-143-afi-66333d",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders, tenders-ted, bdns y budget que la sostenga. Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
+        "summary": "No se encontró registro en tenders, tenders-ted y bdns que la sostenga. Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
         "evidence": [],
         "checkedAgainst": [
           "tenders",
           "tenders-ted",
-          "bdns",
-          "budget"
+          "bdns"
         ]
       },
       "visibility": "toggle"
@@ -7630,13 +7611,12 @@
       "verification": {
         "claimId": "19gax3o-144-afi-c5a012",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders, tenders-ted, bdns y budget que la sostenga. Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
+        "summary": "No se encontró registro en tenders, tenders-ted y bdns que la sostenga. Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
         "evidence": [],
         "checkedAgainst": [
           "tenders",
           "tenders-ted",
-          "bdns",
-          "budget"
+          "bdns"
         ]
       },
       "visibility": "toggle"
@@ -7663,13 +7643,12 @@
       "verification": {
         "claimId": "19gax3o-144-afi-415935",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders, tenders-ted, bdns y budget que la sostenga. Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
+        "summary": "No se encontró registro en tenders, tenders-ted y bdns que la sostenga. Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
         "evidence": [],
         "checkedAgainst": [
           "tenders",
           "tenders-ted",
-          "bdns",
-          "budget"
+          "bdns"
         ]
       },
       "visibility": "toggle"
@@ -8065,13 +8044,12 @@
       "verification": {
         "claimId": "19gax3o-149-afi-b8c62b",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders, tenders-ted, bdns y budget que la sostenga. Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
+        "summary": "No se encontró registro en tenders, tenders-ted y bdns que la sostenga. Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
         "evidence": [],
         "checkedAgainst": [
           "tenders",
           "tenders-ted",
-          "bdns",
-          "budget"
+          "bdns"
         ]
       },
       "visibility": "toggle"
@@ -8127,13 +8105,12 @@
       "verification": {
         "claimId": "19gax3o-150-afi-1f4710",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders, tenders-ted, bdns y budget que la sostenga. Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
+        "summary": "No se encontró registro en tenders, tenders-ted y bdns que la sostenga. Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
         "evidence": [],
         "checkedAgainst": [
           "tenders",
           "tenders-ted",
-          "bdns",
-          "budget"
+          "bdns"
         ]
       },
       "visibility": "toggle"
@@ -8160,13 +8137,12 @@
       "verification": {
         "claimId": "19gax3o-150-afi-b1bc33",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders, tenders-ted, bdns y budget que la sostenga. Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
+        "summary": "No se encontró registro en tenders, tenders-ted y bdns que la sostenga. Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
         "evidence": [],
         "checkedAgainst": [
           "tenders",
           "tenders-ted",
-          "bdns",
-          "budget"
+          "bdns"
         ]
       },
       "visibility": "toggle"
@@ -8193,13 +8169,12 @@
       "verification": {
         "claimId": "19gax3o-151-afi-de1a33",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders, tenders-ted, bdns y budget que la sostenga. Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
+        "summary": "No se encontró registro en tenders, tenders-ted y bdns que la sostenga. Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
         "evidence": [],
         "checkedAgainst": [
           "tenders",
           "tenders-ted",
-          "bdns",
-          "budget"
+          "bdns"
         ]
       },
       "visibility": "toggle"
@@ -9132,13 +9107,12 @@
       "verification": {
         "claimId": "19gax3o-171-afi-c5dd56",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders, tenders-ted, bdns y budget que la sostenga. Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
+        "summary": "No se encontró registro en tenders, tenders-ted y bdns que la sostenga. Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
         "evidence": [],
         "checkedAgainst": [
           "tenders",
           "tenders-ted",
-          "bdns",
-          "budget"
+          "bdns"
         ]
       },
       "visibility": "toggle"
