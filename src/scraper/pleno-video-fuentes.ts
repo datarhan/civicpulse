@@ -135,14 +135,16 @@ export function videoDeSesion(
       }
     }
   }
-  for (const ytId of new Set([...(propia ? [propia] : []), ...idsCanal])) {
-    const otras = deOtraSesion(ytId)
-    if (otras.length > 0) {
-      anota(
-        'otra-sesion',
-        `${ytId} es también el vídeo que regmeet incrusta en ${otras.map((f) => `${f.plenoId} (${f.fecha})`).join(', ')}`,
-      )
-    }
+  // Sólo el vídeo que esta sesión enseñaría: con dos sesiones el mismo día, el
+  // canal da a las dos los dos vídeos de la fecha, y el de la otra no es una
+  // discrepancia de ésta.
+  const mostrado = propia ?? delCanal[delCanal.length - 1]?.ytId ?? null
+  const otras = mostrado ? deOtraSesion(mostrado) : []
+  if (otras.length > 0) {
+    anota(
+      'otra-sesion',
+      `${mostrado} es también el vídeo que regmeet incrusta en ${otras.map((f) => `${f.plenoId} (${f.fecha})`).join(', ')}`,
+    )
   }
 
   if (discrepancias.length > 0) return { estado: 'discrepan', video: null, discrepancias }

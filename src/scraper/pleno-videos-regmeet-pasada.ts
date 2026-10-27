@@ -2,14 +2,17 @@
  * Las decisiones de `scrape:pleno-videos-regmeet` que pueden perder un vídeo o
  * inventar un «sin vídeo», sacadas aquí para probarlas sin red.
  *
- * Es la tercera pasada que lee las páginas de sesión de regmeet, después del orden
- * del día y de las actas, y regmeet cierra la conexión (ECONNREFUSED) a quien pide
- * de más: desde el 16-10-2026 le pasó a la de actas a mitad de sus 63 páginas, y
- * el 27-10 rechazaba a la máquina del curador minutos después de que las otras dos
- * pasadas terminasen (07:22 servía, 07:28 ya no). Así que ésta pide poco: un vídeo
- * incrustado no cambia de un día para otro.
+ * La pasada NO pide nada a regmeet: lee las páginas de sesión que
+ * `scrape:pleno-actas` ya descarga cada día y deja en `.cache/regmeet-sesiones/`.
+ * Medido el 27-10-2026: una pasada propia por las 63 páginas (de 1 a 3 MB cada
+ * una) leyó 20 y regmeet cortó la conexión (UND_ERR_SOCKET, luego ECONNREFUSED,
+ * casi una hora); esa misma mañana, la máquina del curador ya estaba rechazada
+ * minutos después de que las pasadas de orden del día y actas (6 + 14 páginas)
+ * terminasen. Una tercera pasada detrás de esas dos encontraría la puerta cerrada
+ * cada día. La de actas relee el archivo entero en 8 días (`tocaPedir`), y un
+ * vídeo incrustado no cambia de un día para otro.
  *
- * Puro — sin red.
+ * Puro — sin red, sin fs.
  */
 import { urlDeVideo, type LecturaVideoRegmeet } from './regmeet-video'
 
@@ -21,65 +24,25 @@ export interface FilaVideoRegmeet {
   lectura: Extract<LecturaVideoRegmeet, 'con-video' | 'sin-video'>
   ytId: string | null
   url: string | null
-  /** Día (YYYY-MM-DD) de la lectura que escribió la fila. Una fila conservada guarda el suyo. */
+  /** Día (YYYY-MM-DD) en que se descargó la página que escribió la fila. */
   comprobadoEl: string
 }
 
-/** Las más recientes se piden siempre: el vídeo de un pleno puede aparecer días después. */
-export const VIDEO_SIEMPRE_RECIENTES = 3
-/**
- * Del resto, las que se releen por pasada, rotando por días: con 60 en el resto,
- * el archivo entero se relee en 15 días. Releer más a menudo un vídeo que ya está
- * no aporta nada y gasta la paciencia de regmeet.
- */
-export const VIDEO_ROTACION_POR_PASADA = 4
-/**
- * Sesiones nunca leídas que entran por pasada. La primera pasada, sin fichero
- * previo, pediría las 63 de golpe — lo que hacía que regmeet cerrase la conexión
- * a la de actas. Con este cupo el archivo se completa en una semana; `--completo`
- * lo hace de una vez cuando quien la corre lo decide.
- */
-export const VIDEO_NUEVAS_POR_PASADA = 10
-
-export type PlanSesion = 'pedir' | 'conservar' | 'pendiente'
+export type DesenlaceVideo = LecturaVideoRegmeet | 'desaparecido'
 
 /**
- * Qué hace esta pasada con cada sesión (`sesiones`, la más reciente primero):
- * `pedir`; `conservar` la fila que ya tiene, sin petición; o dejarla `pendiente`,
- * nunca leída y fuera del cupo de hoy. `dia` = días UTC desde la época.
- */
-export function planDePasada(a: {
-  sesiones: ReadonlyArray<{ id: string; leida: boolean }>
-  dia: number
-  completo: boolean
-}): PlanSesion[] {
-  const n = a.sesiones.length
-  const resto = n - VIDEO_SIEMPRE_RECIENTES
-  const inicio = resto > 0 ? (((a.dia * VIDEO_ROTACION_POR_PASADA) % resto) + resto) % resto : 0
-  let nuevas = 0
-  return a.sesiones.map((s, i) => {
-    if (a.completo || i < VIDEO_SIEMPRE_RECIENTES) return 'pedir'
-    if (!s.leida) return nuevas++ < VIDEO_NUEVAS_POR_PASADA ? 'pedir' : 'pendiente'
-    if (resto <= VIDEO_ROTACION_POR_PASADA) return 'pedir'
-    const pos = i - VIDEO_SIEMPRE_RECIENTES
-    return (pos - inicio + resto) % resto < VIDEO_ROTACION_POR_PASADA ? 'pedir' : 'conservar'
-  })
-}
-
-export type DesenlaceVideo = LecturaVideoRegmeet | 'desaparecido' | 'fallida'
-
-/**
- * Qué fue de una sesión pedida y qué fila queda. `lectura` null = la descarga
- * falló. Sólo `con-video` y `sin-video` escriben fila nueva; lo demás conserva la
- * anterior, o ninguna si no la había: la sesión sigue sin leer, que no es «sin
- * vídeo». Un vídeo que estaba y ya no está es `desaparecido` y conserva su fila:
- * como un acta, no se despublica solo.
+ * Qué fue de una sesión cuya página está en la caché, y qué fila queda. Sólo
+ * `con-video` y `sin-video` escriben fila nueva; lo demás conserva la anterior, o
+ * ninguna si no la había: la sesión sigue sin leer, que no es «sin vídeo». Un
+ * vídeo que estaba y ya no está es `desaparecido` y conserva su fila: como un
+ * acta, no se despublica solo. `descargadaEl` es el día de la página, no el de
+ * la pasada: una página de hace una semana sigue diciendo lo de hace una semana.
  */
 export function desenlaceVideo(a: {
   plenoId: string
   fecha: string
-  hoy: string
-  lectura: LecturaVideoRegmeet | null
+  descargadaEl: string
+  lectura: LecturaVideoRegmeet
   ytId: string | null
   url: string | null
   anterior: FilaVideoRegmeet | null
@@ -90,9 +53,6 @@ export function desenlaceVideo(a: {
   motivo: string | null
 } {
   const { anterior } = a
-  if (a.lectura === null) {
-    return { desenlace: 'fallida', fila: anterior, cambiado: false, motivo: null }
-  }
   if (a.lectura === 'sin-marcador' || a.lectura === 'ilegible') {
     return { desenlace: a.lectura, fila: anterior, cambiado: false, motivo: null }
   }
@@ -113,7 +73,7 @@ export function desenlaceVideo(a: {
         lectura: 'sin-video',
         ytId: null,
         url: null,
-        comprobadoEl: a.hoy,
+        comprobadoEl: a.descargadaEl,
       },
       cambiado: false,
       motivo: null,
@@ -129,7 +89,7 @@ export function desenlaceVideo(a: {
       lectura: 'con-video',
       ytId,
       url: a.url ?? urlDeVideo(ytId),
-      comprobadoEl: a.hoy,
+      comprobadoEl: a.descargadaEl,
     },
     cambiado,
     motivo: cambiado
@@ -139,27 +99,27 @@ export function desenlaceVideo(a: {
 }
 
 /**
- * ¿Se puede escribir el fichero nuevo? No con media pasada perdida: fallidas, sin
- * marcador (una página de reto servida con 200 no lo lleva), ilegibles y sin
- * intentar suman contra lo que tocaba pedir hoy. Lo leído antes se conserva igual;
- * lo que no se escribe es un fichero que diga «comprobado hoy» sobre una pasada
- * que no comprobó nada.
+ * ¿Se puede escribir el fichero nuevo? No sin una sola página que leer (¿corrió
+ * `scrape:pleno-actas`?), ni con la mitad de lo leído sin marcador o ilegible: una
+ * página de reto servida con 200 no lleva marcador, y una caché llena de ellas no
+ * es una pasada que haya comprobado nada.
  */
 export function puedeEscribirVideos(s: {
   sesiones: number
-  tocaban: number
-  fallidas: number
+  leidas: number
   sinMarcador: number
   ilegibles: number
-  sinIntentar: number
 }): { ok: boolean; motivo: string | null } {
   if (s.sesiones === 0) return { ok: false, motivo: 'ninguna sesión de regmeet en plenos.json' }
-  const perdidas = s.fallidas + s.sinMarcador + s.ilegibles + s.sinIntentar
-  if (s.tocaban > 0 && perdidas >= s.tocaban / 2) {
+  if (s.leidas === 0) {
     return {
       ok: false,
-      motivo: `${perdidas} de ${s.tocaban} sesiones fallidas, sin marcador, ilegibles o sin intentar`,
+      motivo: 'ninguna página de sesión en la caché (¿ha corrido scrape:pleno-actas?)',
     }
+  }
+  const malas = s.sinMarcador + s.ilegibles
+  if (malas >= s.leidas / 2) {
+    return { ok: false, motivo: `${malas} de ${s.leidas} páginas sin marcador o ilegibles` }
   }
   return { ok: true, motivo: null }
 }

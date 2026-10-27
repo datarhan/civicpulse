@@ -131,6 +131,24 @@ describe('videoDeSesion', () => {
     expect(r.discrepancias.map((d) => d.tipo)).toEqual(['otra-sesion'])
   })
 
+  it('dos sesiones el mismo día, cada una con su vídeo: ninguna discrepa por el de la otra', () => {
+    // Hoy no hay dos sesiones con la misma fecha en plenos.json; la forma es la de
+    // dos filas reales del canal y de regmeet con la fecha compartida.
+    const dia = '2026-12-01'
+    const canal = [
+      { ytId: 'C7SSTb7q0ys', url: 'https://www.youtube.com/watch?v=C7SSTb7q0ys', plenoDate: dia },
+      { ytId: 'L6Cy1hTrpIc', url: 'https://www.youtube.com/watch?v=L6Cy1hTrpIc', plenoDate: dia },
+    ]
+    const regmeet: FilaRegmeet[] = [
+      { plenoId: 'ord', fecha: dia, lectura: 'con-video', ytId: 'C7SSTb7q0ys', url: canal[0].url },
+      { plenoId: 'ext', fecha: dia, lectura: 'con-video', ytId: 'L6Cy1hTrpIc', url: canal[1].url },
+    ]
+    const ord = videoDeSesion({ id: 'ord', date: dia }, canal, regmeet)
+    const ext = videoDeSesion({ id: 'ext', date: dia }, canal, regmeet)
+    expect([ord.estado, ord.video?.ytId]).toEqual(['coinciden', 'C7SSTb7q0ys'])
+    expect([ext.estado, ext.video?.ytId]).toEqual(['coinciden', 'L6Cy1hTrpIc'])
+  })
+
   it('todo estado, fuente y tipo cae en el vocabulario exportado', () => {
     const casos = [
       videoDeSesion(ZRBGIC, CANAL, [fila('zrbgic', 'C7SSTb7q0ys')]),
