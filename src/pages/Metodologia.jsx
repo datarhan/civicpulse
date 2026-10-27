@@ -1439,7 +1439,16 @@ export default function Metodologia() {
                     la licitación de su expediente, que imprime 70.158 €. */}
                 La fila que se cita imprime la cifra dicha, con un 1 % de margen: si el expediente
                 la trae en otra de sus filas —la adjudicación con IVA, por ejemplo—, se cita ésa; si
-                ninguna la imprime, el veredicto no pasa de <em>parcial</em>.
+                ninguna la imprime, el veredicto no pasa de <em>parcial</em>.{' '}
+                {/* 27-10-2026: rmtyr-033-afi-219148, «una partida de 25.000 euros» para
+                    las actividades del ECA, salía «verificado» en la base con un contrato
+                    de RIBAJOVE de 24.975 € por la palabra «actividades». */}
+                Si de la entidad sólo queda una palabra —las de menos de cuatro letras no cuentan—,
+                es la cifra la que tiene que señalar el expediente, y sólo lo hace con cuatro cifras
+                significativas o más: 940.520 € sí; 25.000 €, que cabe a menos de un 1 % de
+                cualquier contrato menor redondeado, no. La tarjeta dice lo que se cotejó —que un
+                contrato o una subvención imprime la cifra citada y nombra el mismo objeto— y nada
+                más: de lo demás que diga la frase, el registro no sabe.
               </li>
               <li>
                 <strong>parcial</strong> — coincidencia moderada; entidad o importe difieren algo.{' '}
@@ -1559,7 +1568,12 @@ export default function Metodologia() {
               como «parecido con lo citado», de 0 a 1. Ese número dice cuánto trata la fila de lo
               mismo que la cita, no si la confirma: una cita «Parcial» puede llevar un 1,00, porque
               el expediente es el que se nombró pero no acredita lo que se dijo de él. Lo que la
-              fila acredita lo dice el veredicto.
+              fila acredita lo dice el veredicto.{' '}
+              {/* 27-10-2026: k4olcs-019-cit-b9b013 enseñaba la adjudicación de 80.666,66 €
+                  con el 0,85 de la licitación, puntuada con sus 70.157,72 € sin IVA. */}
+              El número es el de la fila que se enseña, puntuada con el importe que imprime, y no el
+              de otra fila del mismo expediente; si se parece más que aquella con la que el
+              verificador eligió el expediente, el veredicto no sube por eso.
             </p>
           </li>
           <li>

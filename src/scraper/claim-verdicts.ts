@@ -526,6 +526,43 @@ export function leyoContratos(checkedAgainst?: readonly unknown[] | null): boole
   return corpusReales(checkedAgainst).some((c) => c === 'tenders' || c === 'tenders-ted')
 }
 
+// ─── Lo que funda un `verificado` ───────────────────────────────────────────
+//
+// Todo `verificado` automático salía con la misma frase: «Cita encontrada con
+// coincidencia fuerte en los datos municipales.». No decía qué se encontró, y
+// lo que se encuentra no es la cita: es un registro que imprime la cifra dicha
+// —con el 1 % de `IMPORTE_PRACTICAMENTE_EXACTO`— y cuyo título nombra el mismo
+// objeto. El 27-10-2026 la revisión lectora la leyó en /plenos/k4olcs encima de
+// la única fila de evidencia, rotulada «parecido con lo citado 0,85 · no mide
+// si lo confirma»: la tarjeta decía que el único número que enseñaba no medía
+// la confirmación, y no decía qué la medía. La frase dice ahora lo que se
+// cotejó, y con eso el número queda en lo que es, un parecido.
+
+/** Los registros que pueden fundar un `verificado` automático, dichos para la frase. */
+const REGISTRO_QUE_FUNDA = {
+  tender: 'un contrato publicado',
+  bdns: 'una subvención publicada',
+} as const
+
+export type KindQueFunda = keyof typeof REGISTRO_QUE_FUNDA
+
+export function esKindQueFunda(kind: unknown): kind is KindQueFunda {
+  return typeof kind === 'string' && Object.hasOwn(REGISTRO_QUE_FUNDA, kind)
+}
+
+/**
+ * La explicación de un `verificado` automático, según el registro que lo funda.
+ *
+ * Dice lo que se cotejó y nada más: la cifra y el objeto. De lo demás que diga
+ * la frase citada —«y se ha reducido», «la primera vez»— el registro no sabe.
+ */
+export function resumenVerificado(kind: KindQueFunda): string {
+  return (
+    `Lo que se cotejó: ${REGISTRO_QUE_FUNDA[kind]} imprime la cifra citada, con un 1 % de ` +
+    'margen, y nombra el mismo objeto.'
+  )
+}
+
 // ─── El texto de una máquina ────────────────────────────────────────────────
 //
 // Las dos vías en que una persona escribe lo que la tarjeta imprime bajo la
