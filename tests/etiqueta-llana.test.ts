@@ -76,6 +76,16 @@ describe('etiquetaDelPunto — lo que se quita', () => {
       "Expedient 1562/2018/GEN, Acceptació proposada d'adjudicació mesa de contractació relatiu al contracte de concessió del servici públic de proveïment d'aigua potable, servici de gestió de clavegueram, control d'abocaments i depuració del municipi Riba-roja de Túria, per procediment obert, millor relació qualitat preu, diversos criteris d'adjudicació i amb clàusules mediambientals i amb condició especial d'execució de caràcter mediambiental i social. (Ctto. 27/2018)",
       "Acceptació proposada d'adjudicació mesa de contractació relatiu al contracte de concessió del servici públic de proveïment d'aigua potable, servici de gestió de clavegueram, control d'abocaments i depuració del municipi Riba-roja de Túria, per procediment obert, millor relació qualitat preu, diversos criteris d'adjudicació i amb clàusules mediambientals i amb condició especial d'execució de caràcter mediambiental i social",
     ],
+    // 15158ww #15: el «de» repetido de la convocatoria
+    [
+      "Donar compte de de la Sentència 635/2023, de 17 d'octubre, en PO 349/2022 i PO 363/2022",
+      "Sentència 635/2023, de 17 d'octubre, en PO 349/2022 i PO 363/2022",
+    ],
+    // 1ea8wn5 #8: código de moción sin la barra antes de PGRU
+    [
+      '27/2023PGRU Moció del Grup Municipal EUPV – Unides Podem per Riba-roja sobre la reversió de la gestió del Departament de Salut de Manises a la gestió pública',
+      'Moció del Grup Municipal EUPV – Unides Podem per Riba-roja sobre la reversió de la gestió del Departament de Salut de Manises a la gestió pública',
+    ],
   ])('%s', (titulo, llana) => {
     expect(etiquetaDelPunto(titulo)).toEqual({ texto: llana, urgente: false })
   })
@@ -160,7 +170,9 @@ describe('etiquetaDelPunto — sobre un snapshot entero', () => {
   it('ninguna empieza por un expediente, un área seguida de expediente o «Dar cuenta»', () => {
     for (const t of titulos) {
       const { texto } = etiquetaDelPunto(t)
-      expect(texto, t).not.toMatch(/^(?:Expedient|Expte|\d+\/\d{4}\/)/i)
+      // Un número de expediente, no la palabra: «Expedient de minimització…»
+      // es de lo que trata el punto.
+      expect(texto, t).not.toMatch(/^(?:Expediente?|Expte)\.?\s*:?\s*\d|^\d+\/\d{4}\/?[A-Z]/i)
       expect(texto, t).not.toMatch(/^[A-ZÀ-Ý ]{4,}[,.]?\s+Exp/)
       expect(texto, t).not.toMatch(/^(?:Dar cuenta|Donar compte|Daci[oó]n? )/i)
     }
