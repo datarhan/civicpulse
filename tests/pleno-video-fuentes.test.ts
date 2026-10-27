@@ -23,10 +23,21 @@ const lee = (f: string) => JSON.parse(readFileSync(`public/data/${f}`, 'utf8'))
 const PLENOS = lee('plenos.json')
 const VIDEOS = lee('pleno-videos.json')
 const sesion = (id: string) => PLENOS.items.find((p: { id: string }) => p.id === id)
-const CANAL = VIDEOS.items
+const CANAL_HOY = VIDEOS.items
+/**
+ * El canal tal como estaba cuando se midió la discrepancia (27-10-2026), antes de
+ * que el parser leyera los títulos en castellano y los que YouTube traducía al
+ * inglés (#448): sin L6Cy1hTrpIc (03-07-2026) y sin la subida del 23-12-2025. Es la
+ * instantánea publicada menos esas dos filas, que son las que #448 añadió en esas
+ * fechas; hoy las dos fuentes ya no discrepan en ninguna sesión, y las pruebas de
+ * discrepancia necesitan una.
+ */
+const CANAL = CANAL_HOY.filter(
+  (v: { ytId: string }) => !['L6Cy1hTrpIc', '5bpHZRUclkk'].includes(v.ytId),
+)
 
 // zrbgic (05-10-2026): el canal y regmeet incrustan C7SSTb7q0ys (medido el 26-10-2026).
-// 1237hbp (03-07-2026): regmeet incrusta L6Cy1hTrpIc; el canal ya no lo lista.
+// 1237hbp (03-07-2026): regmeet incrusta L6Cy1hTrpIc; el canal de antes no lo listaba.
 const ZRBGIC = sesion('zrbgic')
 const H1237 = sesion('1237hbp')
 const fila = (plenoId: string, ytId: string | null, lectura = 'con-video'): FilaRegmeet => ({
@@ -44,6 +55,22 @@ describe('mide algo', () => {
     expect(CANAL.some((v: { ytId: string }) => v.ytId === 'C7SSTb7q0ys')).toBe(true)
     expect(CANAL.some((v: { ytId: string }) => v.ytId === 'L6Cy1hTrpIc')).toBe(false)
     expect(CANAL.some((v: { plenoDate: string }) => v.plenoDate === H1237.date)).toBe(false)
+    // Las dos filas que se quitan existen de verdad en la instantánea de hoy.
+    expect(CANAL_HOY.length - CANAL.length).toBe(2)
+  })
+})
+
+describe('con el canal de hoy (#448), las dos fuentes coinciden', () => {
+  it('1qi8axv y 1237hbp: el vídeo en que coinciden canal y regmeet, con su título', () => {
+    const q = videoDeSesion(sesion('1qi8axv'), CANAL_HOY, [fila('1qi8axv', '5bpHZRUclkk')])
+    expect([q.estado, q.video?.ytId, q.video?.fuentes]).toEqual([
+      'coinciden',
+      '5bpHZRUclkk',
+      ['canal', 'regmeet'],
+    ])
+    expect(q.video?.title).toMatch(/^Pleno extrordinario y urgente 23 de diciembre de 2025/)
+    const h = videoDeSesion(H1237, CANAL_HOY, [fila('1237hbp', 'L6Cy1hTrpIc')])
+    expect([h.estado, h.video?.ytId]).toEqual(['coinciden', 'L6Cy1hTrpIc'])
   })
 })
 
@@ -185,7 +212,7 @@ describe('discrepanciasDeVideo', () => {
 describe('indexVideosByPleno (lo que pinta /plenos/:id)', () => {
   it('sin la instantánea de regmeet, es el índice de siempre: un vídeo del canal por fecha', () => {
     const idx = indexVideosByPleno(VIDEOS, PLENOS)
-    const fechas = new Set(CANAL.map((v: { plenoDate: string }) => v.plenoDate))
+    const fechas = new Set(CANAL_HOY.map((v: { plenoDate: string }) => v.plenoDate))
     const conVideo = PLENOS.items.filter((p: { date: string }) => fechas.has(p.date))
     expect(conVideo.length).toBeGreaterThan(0)
     expect(idx.size).toBe(conVideo.length)
