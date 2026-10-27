@@ -16,6 +16,8 @@ import { fmtDateShort, nombreDeBarrio, porcentajeLegible } from '../lib/formatte
 import { medibilidad, registroUtilizable } from '../lib/reloj-lpacap'
 import { contarConsideraciones } from '../lib/sindic-consideraciones'
 import { useT } from '../i18n'
+import { EnBreveQuejas } from '../components/Quejas/EnBreveQuejas'
+import DivisorLecturas from '../components/DivisorLecturas'
 
 const TELEGRAM_BOT_URL = 'https://t.me/munigraph_bot'
 
@@ -125,7 +127,7 @@ function SindicCard() {
   const porExpediente = new Map(fichas.map((f) => [f.expediente, f]))
 
   return (
-    <Card style={{ marginTop: 14 }}>
+    <Card style={{ marginTop: 14, scrollMarginTop: 24 }} id="sindic">
       <SectionHead
         eyebrow="Escalado externo · Síndic de Greuges CV"
         title="Expedientes del Síndic sobre Riba-roja de Túria"
@@ -1353,19 +1355,29 @@ export default function Quejas() {
         </div>
       </div>
 
-      {loading && (
-        <div style={{ color: 'var(--ink50)', fontSize: 'var(--fs-aux)' }}>Cargando feed…</div>
-      )}
-      {error && (
-        <Card>
-          <div style={{ color: 'var(--warn-ink)', fontSize: 'var(--fs-aux)' }}>
-            No se pudo cargar /data/quejas.json. Puede que el bot aún no haya publicado su primer
-            snapshot.
-          </div>
-        </Card>
-      )}
-      {!loading && !error && data && (data.stats?.total ?? 0) === 0 && <EmptyState />}
-      {!loading && !error && data && (data.stats?.total ?? 0) > 0 && <DashboardView data={data} />}
+      {/* Las dos lecturas (auditoría de las dos lecturas, §18): arriba, cómo
+          quejarse, el plazo dibujado y qué pasa si no contestan; debajo del
+          divisor, todo lo que esta página ya tenía. */}
+      <EnBreveQuejas bot={TELEGRAM_BOT_URL} />
+      <DivisorLecturas />
+
+      <div id="quejas-canal" style={{ scrollMarginTop: 24 }}>
+        {loading && (
+          <div style={{ color: 'var(--ink50)', fontSize: 'var(--fs-aux)' }}>Cargando feed…</div>
+        )}
+        {error && (
+          <Card>
+            <div style={{ color: 'var(--warn-ink)', fontSize: 'var(--fs-aux)' }}>
+              No se pudo cargar /data/quejas.json. Puede que el bot aún no haya publicado su primer
+              snapshot.
+            </div>
+          </Card>
+        )}
+        {!loading && !error && data && (data.stats?.total ?? 0) === 0 && <EmptyState />}
+        {!loading && !error && data && (data.stats?.total ?? 0) > 0 && (
+          <DashboardView data={data} />
+        )}
+      </div>
       <SindicCard />
       <SindicaturaCard />
       <ConsellCvCard />
