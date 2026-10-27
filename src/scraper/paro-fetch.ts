@@ -104,7 +104,7 @@ export type ResultadoParo = { ok: true; payload: ParoPayload } | { ok: false; mo
 const esperarDeVerdad = (ms: number) => new Promise<void>((r) => setTimeout(r, ms))
 
 /** `buf: null` is SEPE saying the month is not there; `fallo` is no complete answer at all. */
-type Descarga = { status: number; buf: Buffer | null } | { fallo: string }
+type Descarga = { status: number; tipo: string; buf: Buffer | null } | { fallo: string }
 
 async function fetchMonthXls(
   url: string,
@@ -126,14 +126,15 @@ async function fetchMonthXls(
       })
       // 404 es como contesta el SEPE un mes que aún no ha publicado (medido el
       // 2026-10-27 con octubre): un no, y nada que reintentar.
-      if (res.status === 404 || res.status === 410) return { status: res.status, buf: null }
+      const tipo = res.headers.get('content-type') ?? ''
+      if (res.status === 404 || res.status === 410) return { status: res.status, tipo, buf: null }
       // Cualquier otro error no dice nada del mes: se reintenta como un
       // apretón de manos caído, y si persiste es `sin-respuesta`.
       if (!res.ok) throw new Error(`HTTP ${res.status}`)
       // El cuerpo se lee DENTRO del intento: la señal de 30 s también lo
       // corta, y fuera de este try ese corte se saltaba los reintentos y el
       // cortacircuitos (la cabecera cuenta el 2026-10-27).
-      return { status: res.status, buf: Buffer.from(await res.arrayBuffer()) }
+      return { status: res.status, tipo, buf: Buffer.from(await res.arrayBuffer()) }
     } catch (err) {
       const detail = err instanceof Error ? err.message : String(err)
       if (attempt === FETCH_ATTEMPTS) {
@@ -161,16 +162,27 @@ async function leerMes(
   const d = await fetchMonthXls(candidateUrl(year, monthIdx), fetchImpl, esperar)
   if ('fallo' in d) return { period, estado: 'sin-respuesta', motivo: d.fallo }
   if (!d.buf) return { period, estado: 'ausente', motivo: `HTTP ${d.status}` }
-  // SEPE XLS starts with D0 CF 11 E0 (CDFV2); anything else is the nav page
+  // SEPE XLS starts with D0 CF 11 E0 (CDFV2). Anything else was, per the
+  // original comment here, SEPE's nav page; on 2026-10-27 the unpublished
+  // month answered 404 instead, so the motivo says what arrived, not whose.
   if (d.buf[0] !== 0xd0 || d.buf[1] !== 0xcf)
-    return { period, estado: 'ausente', motivo: 'la página de SEPE en lugar del XLS' }
+    return {
+      period,
+      estado: 'ausente',
+      motivo: `HTTP ${d.status} sin un XLS (${d.tipo || 'sin content-type'})`,
+    }
+  // Los dos motivos de `ilegible` hablan del parser, no del libro: el de
+  // mayo de 2026 SÍ trae la fila, en otra columna (atlas
+  // I-2026-10-27-paro-columna-municipio). Decir «el XLS no la trae» culpaba
+  // a SEPE de un fallo nuestro de lectura.
   try {
     const snap = parse(d.buf, { municipio: MUNI, period })
     return snap
       ? { period, estado: 'leido', snap }
-      : { period, estado: 'ilegible', motivo: `el XLS no trae la fila de ${MUNI}` }
+      : { period, estado: 'ilegible', motivo: `el parser no sacó la fila de ${MUNI} del XLS` }
   } catch (err) {
-    return { period, estado: 'ilegible', motivo: err instanceof Error ? err.message : String(err) }
+    const detail = err instanceof Error ? err.message : String(err)
+    return { period, estado: 'ilegible', motivo: `el parser falló con el XLS: ${detail}` }
   }
 }
 

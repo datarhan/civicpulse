@@ -22,11 +22,13 @@ const PROJECT_ROOT = join(__dirname, '..')
 const OUT = join(PROJECT_ROOT, 'public/data/paro.json')
 
 async function leerPrevio(): Promise<ParoSnapshot[] | null> {
-  let texto: string
+  let texto = ''
   try {
     texto = await readFile(OUT, 'utf8')
-  } catch {
-    return null // no snapshot yet: nothing to keep a month from
+  } catch (err) {
+    // No snapshot yet: nothing to keep a month from. Any other read error
+    // falls through to the warning below rather than passing for that case.
+    if ((err as NodeJS.ErrnoException).code === 'ENOENT') return null
   }
   try {
     const prev = JSON.parse(texto) as { series?: unknown }

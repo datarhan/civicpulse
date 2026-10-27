@@ -213,13 +213,19 @@ describe('construirParo — un mes sin leer no sale de la serie', () => {
     expect(llamadas.filter((p) => p === '2026-08')).toHaveLength(3)
   })
 
-  it('un libro sin la fila de Riba-roja tampoco borra la que había, y se nombra aparte', async () => {
+  it('un libro del que el parser no saca la fila tampoco borra la que había, y se nombra aparte', async () => {
     const { deps } = montar({ '2026-10': '404' }, { '2026-05': null })
     const r = await construirParo({ ...deps, previo: PREVIO })
     if (r.ok === false) throw new Error(r.motivo)
     expect(r.payload.series.find((s) => s.period === '2026-05')).toEqual(valorPrevio('2026-05'))
+    // El motivo culpa al parser, no al libro: el de mayo de 2026 SÍ trae la
+    // fila, en la columna 0 (atlas I-2026-10-27-paro-motivo-ilegible-falso).
     expect(r.payload.stats.arrastrados).toEqual([
-      expect.objectContaining({ period: '2026-05', estado: 'ilegible' }),
+      {
+        period: '2026-05',
+        estado: 'ilegible',
+        motivo: 'el parser no sacó la fila de Riba-roja de Túria del XLS',
+      },
     ])
   })
 
@@ -257,12 +263,17 @@ describe('construirParo — lo normal sigue siendo normal', () => {
     expect(llamadas.filter((p) => p === '2026-10')).toHaveLength(1)
   })
 
-  it('la página de SEPE en lugar del XLS para el mes más nuevo es «ausente», no un fallo', async () => {
+  it('un 200 sin XLS para el mes más nuevo es «ausente», no un fallo', async () => {
     const { llamadas, deps } = montar({ '2026-10': 'html' })
     const r = await construirParo({ ...deps, previo: PREVIO })
     if (r.ok === false) throw new Error(r.motivo)
+    // Dice lo que llegó, sin atribuírselo a nadie.
     expect(r.payload.stats.fueraDeLaSerie).toEqual([
-      expect.objectContaining({ period: '2026-10', estado: 'ausente' }),
+      {
+        period: '2026-10',
+        estado: 'ausente',
+        motivo: 'HTTP 200 sin un XLS (text/html;charset=UTF-8)',
+      },
     ])
     expect(llamadas.filter((p) => p === '2026-10')).toHaveLength(1)
   })

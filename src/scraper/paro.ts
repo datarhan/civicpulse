@@ -102,9 +102,9 @@ export function parseSepeParoMonth(
 export type MesParo =
   /** SEPE sirvió el libro del mes y la fila de Riba-roja estaba en él. */
   | { period: string; estado: 'leido'; snap: ParoSnapshot }
-  /** SEPE contestó que el mes no está: 404/410, o su página en lugar del XLS. Lo normal del mes más nuevo. */
+  /** SEPE contestó sin libro: 404/410, o un 200 que no es un XLS. Lo normal del mes más nuevo. */
   | { period: string; estado: 'ausente'; motivo: string }
-  /** El libro llegó entero y el parser no encontró la fila, o reventó. */
+  /** El libro llegó entero y el parser no sacó la fila, o reventó: un fallo de lectura, no de SEPE. */
   | { period: string; estado: 'ilegible'; motivo: string }
   /** Ninguna respuesta completa tras todos los intentos: conexión, cuerpo o un error HTTP del servidor. */
   | { period: string; estado: 'sin-respuesta'; motivo: string }
