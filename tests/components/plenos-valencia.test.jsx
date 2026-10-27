@@ -27,6 +27,7 @@ import { DEPARTMENT_LABEL } from '../../src/scraper/departments'
 import { RETRACTION_SCOPES } from '../../src/scraper/pleno-votes'
 import { etiquetaDelPunto } from '../../src/scraper/etiqueta-llana'
 import { hoyEnRibarroja } from '../../src/scraper/en-breve-portada'
+import { REGIMEN_DE_SESIONES, proximoPleno } from '../../src/scraper/proximo-pleno'
 import {
   cadenasDe,
   datosPintados,
@@ -237,6 +238,40 @@ function sinFechas() {
   return mapa
 }
 
+/** Un día de calendario «AAAA-MM-DD» movido `n` días. */
+const masDias = (fecha, n) => {
+  const d = new Date(`${fecha.slice(0, 10)}T00:00:00Z`)
+  d.setUTCDate(d.getUTCDate() + n)
+  return d.toISOString().slice(0, 10)
+}
+
+/**
+ * El próximo pleno ya en el índice: una copia de la última sesión, una semana
+ * después de hoy. El dato de hoy no trae ninguna sesión futura, así que la
+ * tarjeta con fecha nacería sin leer en valencià.
+ */
+function conElProximo() {
+  const mapa = structuredClone(sirve())
+  const items = mapa[RUTAS.plenos].items
+  const ultima = items.find((s) => s.id === ultimaDe(mapa))
+  items.unshift({ ...ultima, id: 'proxima-forma', date: masDias(hoyEnRibarroja(), 7) })
+  return mapa
+}
+
+/**
+ * Un ordinario que no fue en lunes: el más antiguo desde el acuerdo de 2023, un
+ * día después. Con el dato de hoy todos fueron en lunes y sólo se pintaba esa
+ * frase; uno de antes del acuerdo no cuenta.
+ */
+function unOrdinarioEnMartes() {
+  const mapa = structuredClone(sirve())
+  const viejo = mapa[RUTAS.plenos].items
+    .filter((s) => s.kind === 'ordinario' && s.date >= REGIMEN_DE_SESIONES.fecha)
+    .at(-1)
+  viejo.date = masDias(viejo.date, 1)
+  return mapa
+}
+
 // ─── Escenarios ────────────────────────────────────────────────────────────────
 
 const filasDe = (mapa) => mapa[RUTAS.plenos].items.length
@@ -309,6 +344,8 @@ const ESCENARIOS = [
     'el último pleno con un solo punto y una votación',
     ultimoPlenoCon(['aprobado'], { unPunto: true }),
   ),
+  escenario('el próximo pleno ya en el índice', conElProximo()),
+  escenario('un pleno ordinario que no fue en lunes', unOrdinarioEnMartes()),
 ]
 
 afterEach(() => localStorage.clear())
@@ -316,6 +353,14 @@ afterEach(() => localStorage.clear())
 // ─── Lo que se compara ─────────────────────────────────────────────────────────
 
 describe('las mutaciones abren las ramas que dicen', () => {
+  it('el próximo pleno sale con fecha en un escenario, y en otro la cuenta sin «todos»', () => {
+    const hoy = hoyEnRibarroja()
+    const prox = ESCENARIOS.map((e) => proximoPleno({ sesiones: e.fetch[RUTAS.plenos].items, hoy }))
+    expect(prox.some((p) => p.convocado?.id === 'proxima-forma')).toBe(true)
+    expect(prox.some((p) => !p.convocado && p.enLunes < p.ordinarios)).toBe(true)
+    expect(prox.some((p) => !p.convocado && p.enLunes === p.ordinarios)).toBe(true)
+  })
+
   it('cada alcance de retirada sale en singular y en plural en algún escenario', () => {
     const vistos = new Set()
     for (const e of ESCENARIOS) {

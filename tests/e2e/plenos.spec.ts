@@ -1,5 +1,7 @@
 import { test, expect } from '@playwright/test'
 import { readFileSync } from 'node:fs'
+import { rutaDeSesion } from '../../src/scraper/ruta-de-sesion'
+import { REGIMEN_DE_SESIONES, proximoPleno } from '../../src/scraper/proximo-pleno'
 
 // A real pleno id with claims, read from the committed manifest.
 const FIRST_ID = (() => {
@@ -27,7 +29,7 @@ test.describe('Plenos index (/plenos)', () => {
  */
 test.describe('«El último pleno» (/plenos)', () => {
   const hoy = new Intl.DateTimeFormat('en-CA', { timeZone: 'Europe/Madrid' }).format(new Date())
-  const sesiones: Array<{ id: string; date: string }> = JSON.parse(
+  const sesiones: Array<{ id: string; date: string; kind: string; title: string }> = JSON.parse(
     readFileSync('public/data/plenos.json', 'utf8'),
   ).items
   const ultima = sesiones
@@ -44,7 +46,10 @@ test.describe('«El último pleno» (/plenos)', () => {
     await page.goto('/plenos', { waitUntil: 'networkidle' })
     const tarjeta = page.locator('[data-en-breve="orden-del-dia"]')
     await expect(tarjeta).toBeVisible()
-    await expect(tarjeta.locator(`a[href="/plenos/${ultima.id}"]`)).toBeVisible()
+    // Enlaza por el alias legible, y el alias lleva a esa sesión.
+    const ruta = rutaDeSesion(ultima, sesiones)
+    expect(ruta).not.toBe(`/plenos/${ultima.id}`)
+    await expect(tarjeta.locator(`a[href="${ruta}"]`)).toBeVisible()
 
     // Se mide algo: la sesión tiene orden del día y puntos para decidir.
     const decidir = agenda.filter((a) => a.section === 'resolutiva')
@@ -56,6 +61,60 @@ test.describe('«El último pleno» (/plenos)', () => {
     // Ni un número de expediente en la capa vecinal.
     const bloque = page.locator('[data-en-breve-bloque]')
     expect(await bloque.innerText()).not.toMatch(/Expedient(?:e)?\s*:?\s*\d|Expte\.?\s*\d/i)
+  })
+
+  test('el enlace legible abre la sesión, con la ficha y la canónica de su id', async ({
+    page,
+  }) => {
+    const ruta = rutaDeSesion(ultima, sesiones)
+    await page.goto(ruta, { waitUntil: 'networkidle' })
+    await expect(page.locator('h1')).toContainText(String(Number(ultima.date.slice(8, 10))))
+    await expect(page.getByRole('button', { name: /Ver transcripción/i }).first()).toBeVisible()
+    // El alias tiene su fichero de prerender-meta, con la ficha y la canónica del id.
+    // `vite preview` sólo sirve el índice de una carpeta con la barra final (sin
+    // ella, el HTML de reserva, también para el id); Vercel lo sirve sin barra.
+    const html = await (await page.request.get(`${ruta}/`)).text()
+    expect(html).toMatch(new RegExp(`<link rel="canonical" href="[^"]*/plenos/${ultima.id}"`))
+    expect(html).toContain(`Pleno · ${ultima.title}`)
+  })
+
+  test('«¿Cuándo es el próximo?» dice lo que cuentan las fechas, sin deducir una', async ({
+    page,
+  }) => {
+    await page.goto('/plenos', { waitUntil: 'networkidle' })
+    const tarjeta = page.locator('[data-en-breve="proximo"]')
+    await expect(tarjeta).toBeVisible()
+    const p = proximoPleno({ sesiones, hoy })
+    if (p.convocado) {
+      const s = sesiones.find((x) => x.id === p.convocado!.id)!
+      await expect(tarjeta.locator(`a[href="${rutaDeSesion(s, sesiones)}"]`)).toBeVisible()
+      return
+    }
+    // Mide algo: hay ordinarios que contar.
+    expect(p.ordinarios).toBeGreaterThan(10)
+    const texto = await tarjeta.innerText()
+    expect(texto).toContain('Todavía no tenemos su fecha.')
+    expect(texto).toContain(`De los ${p.ordinarios} plenos ordinarios desde ese acuerdo`)
+    expect(texto).toContain(`${p.primerLunes}, el primer lunes del mes`)
+    // Ninguna fecha: ni un día de un mes en la tarjeta, salvo el del acta que enlaza.
+    const sinEnlace = texto.replace(/El acuerdo, en el acta del .*/, '')
+    expect(sinEnlace).not.toMatch(/\d{1,2} de [a-záéíóú]+ de \d{4}/i)
+    const acuerdo = sesiones.find((x) => x.id === REGIMEN_DE_SESIONES.plenoId)!
+    await expect(
+      tarjeta.locator(`a[href="${rutaDeSesion(acuerdo, sesiones)}#pestana-transcripcion"]`),
+    ).toBeVisible()
+  })
+
+  test('a la derecha del orden del día, las votaciones y debajo el próximo', async ({ page }) => {
+    await page.goto('/plenos', { waitUntil: 'networkidle' })
+    const caja = (id: string) => page.locator(`[data-en-breve="${id}"]`).boundingBox()
+    const orden = await caja('orden-del-dia')
+    const votos = await caja('votaciones')
+    const prox = await caja('proximo')
+    expect(orden && votos && prox).toBeTruthy()
+    expect(votos!.x).toBeGreaterThan(orden!.x + orden!.width - 1)
+    expect(Math.abs(prox!.x - votos!.x)).toBeLessThan(1)
+    expect(prox!.y).toBeGreaterThanOrEqual(votos!.y + votos!.height)
   })
 
   test('el divisor va entre el último pleno y todas las sesiones', async ({ page }) => {

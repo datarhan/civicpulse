@@ -20,6 +20,7 @@ import { usePlenoFindings } from '../hooks/usePlenoFindings'
 import { fmtDateLong, fmtDateShort, rellena } from '../lib/formatters'
 import { conHuecos } from '../lib/huecos'
 import { breakdownNeedsCaveat, latestCorrection, VOTE_SOURCE_KINDS } from '../scraper/pleno-votes'
+import { rutaDeSesion, sesionDeParametro } from '../scraper/ruta-de-sesion'
 import { hallazgosPorTema } from '../scraper/hallazgos-por-tema'
 import { rotuloDe, useLocale, useT } from '../i18n'
 import { transcriptKind } from '../lib/transcript-kind.js'
@@ -348,9 +349,37 @@ function DeclMixBar({ items }) {
 /** Las claves de las pestañas, en su orden: las que un ancla puede abrir. */
 const PESTANAS = ['resumen', 'agenda', 'votos', 'declaraciones', 'hallazgos', 'transcripcion']
 
+/** Un alias legible empieza por la fecha; ningún id publicado lo hace (tests/ruta-de-sesion). */
+const ES_ALIAS = /^\d{4}-\d{2}-\d{2}/
+
+/**
+ * /plenos/:id lleva el id de la sesión o su alias legible, «2026-10-05-ordinario»
+ * (`scraper/ruta-de-sesion`). Un id monta la página en seguida, como siempre, y
+ * pide sus ficheros a la vez que el índice. Un alias espera al índice para saber
+ * de qué sesión es, y entonces monta la misma página con el id: de ahí abajo
+ * todo se cruza por id, y ningún fichero se pide con un nombre que no existe.
+ */
 export default function PlenoDetalle() {
+  const { id: parametro = '' } = useParams()
+  return ES_ALIAS.test(parametro) ? (
+    <SesionPorAlias alias={parametro} />
+  ) : (
+    <DetalleDeSesion key={parametro} id={parametro} />
+  )
+}
+
+function SesionPorAlias({ alias }) {
+  const { data, loading } = usePlenos()
+  if (loading) {
+    return <div style={{ padding: 32, color: 'var(--ink50)', fontSize: 'var(--fs-aux)' }}>…</div>
+  }
+  // Sin sesión para el alias, la página de un id que no existe: «Sesión no encontrada».
+  const id = sesionDeParametro(alias, data?.items ?? [])?.id ?? alias
+  return <DetalleDeSesion key={id} id={id} />
+}
+
+function DetalleDeSesion({ id }) {
   const { locale, t } = useLocale()
-  const { id } = useParams()
   const { data: plenosData, loading: plenosLoading } = usePlenos()
   const { data: chunk } = usePlenoChunk(id)
   const { data: agendasData } = usePlenoAgendas()
@@ -519,7 +548,11 @@ export default function PlenoDetalle() {
         )}
       </div>
       <div style={{ marginTop: 10 }}>
-        <Compartir titulo={`Pleno · ${pleno.title}`} />
+        {/* Se comparte el enlace legible, se haya llegado por él o por el id. */}
+        <Compartir
+          titulo={`Pleno · ${pleno.title}`}
+          ruta={rutaDeSesion(pleno, plenosData?.items ?? [])}
+        />
       </div>
 
       {/* Sticky tab bar */}

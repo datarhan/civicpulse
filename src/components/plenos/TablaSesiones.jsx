@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import { Card, Pill } from '../Primitives'
 import { PLENO_TONE } from '../../hooks/usePlenos'
 import { fmtDateCompacta, rellena } from '../../lib/formatters'
+import { rutaDeSesion } from '../../scraper/ruta-de-sesion'
 import { rotuloDe, useLocale } from '../../i18n'
 
 /** Las columnas de la tabla; su rótulo es `plenos.indice.columna.<id>`. */
@@ -59,10 +60,15 @@ function Celda({ rotulo, n, ausente, tono }) {
   )
 }
 
-function Fila({ fila, maximoPuntos }) {
+/**
+ * Una sesión de la tabla. El enlace va por el alias legible
+ * (`/plenos/2026-10-05-ordinario`) cuando lleva de vuelta a esa sesión entre
+ * TODAS las del índice, no sólo entre las que deja ver el filtro.
+ */
+function Fila({ fila, sesiones, maximoPuntos }) {
   const { locale, t } = useLocale()
   return (
-    <Link to={`/plenos/${fila.id}`} className="cp-plenos-fila">
+    <Link to={rutaDeSesion(fila, sesiones)} className="cp-plenos-fila">
       <span className="cp-plenos-celda">
         <span className="cp-plenos-rotulo">{t('plenos.indice.columna.fecha')}</span>
         <span className="mono" style={{ fontSize: 'var(--fs-meta)', color: 'var(--ink70)' }}>
@@ -306,7 +312,7 @@ export function TablaSesiones({ filas, filtros, porAnio, loading }) {
                     </span>
                   </div>
                 )}
-                <Fila fila={fila} maximoPuntos={maximoPuntos} />
+                <Fila fila={fila} sesiones={filas} maximoPuntos={maximoPuntos} />
               </div>
             )
           })}

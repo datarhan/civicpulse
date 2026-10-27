@@ -17,6 +17,7 @@ import { usePlenoVotes } from '../../../hooks/usePlenoVotes'
 import { enBrevePresupuesto } from '../../../scraper/en-breve-presupuesto'
 import { enBrevePortada, hoyEnRibarroja } from '../../../scraper/en-breve-portada'
 import { summarizeSessions } from '../../../lib/pleno-summary.js'
+import { rutaDeSesion } from '../../../scraper/ruta-de-sesion'
 import { fmtDateLong, rellena } from '../../../lib/formatters'
 import { useLocale } from '../../../i18n'
 
@@ -186,6 +187,9 @@ export function EnBrevePortada() {
 
   if (r.pleno) {
     const p = r.pleno
+    // El enlace legible, como en /plenos: «/plenos/2026-10-05-ordinario».
+    const sesiones = plenos?.items ?? []
+    const sesion = sesiones.find((s) => s.id === p.id)
     tarjetas.push(
       <TarjetaEnBreve
         key="pleno"
@@ -208,7 +212,7 @@ export function EnBrevePortada() {
         // frase de arriba ya lo dice, y «puede haber más» detrás de «ninguna» no
         // se entiende.
         nota={p.votos != null ? t('landing.enBreve.pleno.aviso') : undefined}
-        ancla={`/plenos/${p.id}`}
+        ancla={sesion ? rutaDeSesion(sesion, sesiones) : `/plenos/${p.id}`}
         anclaTexto={ver}
       />,
     )

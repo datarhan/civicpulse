@@ -518,9 +518,9 @@ overwrites it. Change the bot's SQLite instead.
 
 ### Plenos (council sessions)
 
-- **Pipeline** — `plenos.ts` → `plenos.json`
-- **Source** — Scraped HTML from `ribarroja.es/plenos/<year>`, Spanish-date → ISO, kind classifier (ordinario / extraordinario / urgente / otro)
-- **Surfaces** — `/plenos` "Plenos recientes" card with linked titles + kind pills
+- **Pipeline** — `scripts/scrape-plenos.ts` → `plenos.ts` → `plenos.json`
+- **Source** — regmeet's per-year session list (`regmeet.com/aytoribarroja/sesiones_categorias/<entity>/<year>`; `ribarroja.es/plenos/<year>` until 2026-05-25), Spanish-date → ISO, kind classifier (ordinario / extraordinario / urgente / otro). The year page lists sessions already held, not convened ones (checked 2026-10-27).
+- **Surfaces** — the `/plenos` session table, «El último pleno» and `/plenos/:id`. Sessions are linked by a readable alias, `/plenos/<date>-<kind>` (`src/scraper/ruta-de-sesion.ts`); the id stays canonical and is what the sitemap lists, and `prerender-meta` writes each alias page with the id's card and canonical. «¿Cuándo es el próximo?» shows a session from today on if the list has one; otherwise the session schedule the Pleno approved on 2023-07-07, quoted from that session's acta, and how many ordinary sessions fell on a Monday and on the first Monday (`src/scraper/proximo-pleno.ts`).
 
 ### Citizen participation
 

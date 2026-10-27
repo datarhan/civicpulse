@@ -229,6 +229,12 @@ export const estiloEnBrevePlenos = `
   .cp-plenos-en-breve .cp-en-breve-rejilla {
     grid-template-columns: minmax(0, 2fr) minmax(0, 1fr);
   }
+  /* Con la tarjeta del próximo pleno (/plenos), el orden del día ocupa las dos
+     filas de la izquierda y las otras dos se apilan a su derecha. */
+  .cp-plenos-en-breve .cp-en-breve-rejilla:has(> [data-en-breve='proximo'])
+    > [data-en-breve='orden-del-dia'] {
+    grid-row: span 2;
+  }
 }
 
 .cp-plenos-puntos-rotulo {
