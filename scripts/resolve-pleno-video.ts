@@ -7,9 +7,13 @@
  *
  *   npx tsx scripts/resolve-pleno-video.ts <plenoId>
  */
-import { readFileSync } from 'node:fs'
+import { existsSync, readFileSync } from 'node:fs'
 import { resolve } from 'node:path'
 import { resolveVideoForPleno } from '../src/scraper/pleno-video-match'
+
+// La página de la sesión en regmeet, como segundo testigo: si no dice lo mismo
+// que el canal, no se transcribe. Sin el fichero, el canal solo, como siempre.
+const REGMEET = resolve('public/data/pleno-videos-regmeet.json')
 
 const plenoId = process.argv[2]
 if (!plenoId) {
@@ -20,7 +24,8 @@ if (!plenoId) {
 try {
   const plenos = JSON.parse(readFileSync(resolve('public/data/plenos.json'), 'utf8')).items
   const videos = JSON.parse(readFileSync(resolve('public/data/pleno-videos.json'), 'utf8')).items
-  const match = resolveVideoForPleno(plenoId, plenos, videos)
+  const regmeet = existsSync(REGMEET) ? JSON.parse(readFileSync(REGMEET, 'utf8')).items : undefined
+  const match = resolveVideoForPleno(plenoId, plenos, videos, regmeet)
   for (const w of match.warnings) process.stderr.write(`[resolve-video] WARN: ${w}\n`)
   process.stdout.write(match.url)
 } catch (err) {

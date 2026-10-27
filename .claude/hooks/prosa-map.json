@@ -249,6 +249,9 @@
       "/plenos",
       "/plenos/:id"
     ],
+    "pleno-videos-regmeet.json": [
+      "/plenos/:id"
+    ],
     "pleno-videos.json": [
       "/lab-health",
       "/plenos/:id"

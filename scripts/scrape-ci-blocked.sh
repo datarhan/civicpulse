@@ -85,6 +85,12 @@ ADAPTERS=(
   # refresco de `pleno-actas.json`. Sin él, un acta nueva no entraría nunca en
   # el cotejo de `check:votos-acta` de más abajo.
   scrape:pleno-actas
+  # El vídeo que incrusta cada página de sesión de regmeet, la segunda fuente de
+  # vídeo de /plenos/:id. No pide nada: lee las páginas que la pasada de actas
+  # acaba de guardar en .cache/regmeet-sesiones/, así que va DETRÁS de ella. Una
+  # pasada propia por las mismas páginas encontraba la conexión cerrada
+  # (cabecera de src/scraper/pleno-videos-regmeet-pasada.ts).
+  scrape:pleno-videos-regmeet
   # SINAC, la calidad del agua red a red. Que un runner de GitHub llegue a
   # sinac.sanidad.gob.es está sin medir, así que en la nocturna entra en blando
   # y éste es su refresco garantizado. Importa más que en otros: la página sólo
@@ -169,6 +175,7 @@ if ! cron_git_stage_and_check \
        public/data/obras.json public/data/sindicatura.json \
        public/data/sindic-expedientes.json public/data/transparency-docs.json \
        public/data/pleno-actas.json public/data/agua.json public/data/agua-pares.json \
+       public/data/pleno-videos-regmeet.json \
        $REDERIVADOS; then
   echo "[ci-blocked] no changes"
   exit ${#failed[@]}

@@ -13,7 +13,7 @@ import { usePlenos, PLENO_TONE } from '../hooks/usePlenos'
 import { usePlenoChunk, chunkExtraido } from '../hooks/usePlenoClaims'
 import { usePlenoAgendas } from '../hooks/usePlenoAgendas'
 import { usePlenoVotes, OUTCOME_TONE } from '../hooks/usePlenoVotes'
-import { usePlenoVideos, indexVideosByPleno } from '../hooks/usePlenoVideos'
+import { usePlenoVideos, usePlenoVideosRegmeet, indexVideosByPleno } from '../hooks/usePlenoVideos'
 import { usePlenoFindings } from '../hooks/usePlenoFindings'
 import { fmtDateLong, fmtDateShort, rellena } from '../lib/formatters'
 import { conHuecos } from '../lib/huecos'
@@ -300,6 +300,7 @@ export default function PlenoDetalle() {
   const { data: votesData } = usePlenoVotes()
   const { data: findingsData } = usePlenoFindings()
   const { data: videosData } = usePlenoVideos()
+  const { data: videosRegmeetData } = usePlenoVideosRegmeet()
   const [tab, setTab] = useState('resumen')
 
   const pleno = useMemo(() => (plenosData?.items ?? []).find((p) => p.id === id), [plenosData, id])
@@ -319,8 +320,8 @@ export default function PlenoDetalle() {
     [findingsData, id],
   )
   const video = useMemo(
-    () => indexVideosByPleno(videosData, plenosData).get(id),
-    [videosData, plenosData, id],
+    () => indexVideosByPleno(videosData, plenosData, videosRegmeetData).get(id),
+    [videosData, plenosData, videosRegmeetData, id],
   )
 
   const agendaItems = agenda?.agenda ?? []

@@ -8,6 +8,17 @@ Everything past step 1 is **opt-in and off by default**. Plain Whisper output
 keeps the dependency surface minimal; each stage below buys attribution quality
 at a cost in setup, runtime or money.
 
+**Which sessions can be transcribed** is decided by `pleno-videos.json` alone —
+the council's YouTube channel, matched by the date in the title. Since
+2026-10-27 a second source, the video each session page on regmeet embeds
+(`pleno-videos-regmeet.json`), fills `/plenos/:id` for sessions the channel no
+longer lists, but it does **not** join the backlog: a session only regmeet
+knows is shown, not transcribed, until the operator decides otherwise, because
+each new transcript feeds the claim extractor and, from there, published
+statements. What regmeet does change here is a refusal: when the session page
+and the channel name different videos, `resolve-pleno-video.ts` will not pick
+one (`docs/DATA_SOURCES.md`, «Pleno videos»).
+
 ## 1 · Whisper engine (`WHISPER_ENGINE`)
 
 | Value    | Cost / speed                                  | Notes                                                                                                                                                                                                                                                                                                                                   |

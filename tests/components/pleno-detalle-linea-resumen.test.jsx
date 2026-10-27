@@ -42,6 +42,7 @@ const AGENDAS = lee('plenos-agendas.json')
 const VOTOS = lee('pleno-votes.json')
 const HALLAZGOS = lee('pleno-findings.json')
 const VIDEOS = lee('pleno-videos.json')
+const VIDEOS_REGMEET = lee('pleno-videos-regmeet.json')
 const MANIFIESTO = lee('pleno-claims/index.json')
 
 /** La sesión de la revisión lectora. */
@@ -96,6 +97,7 @@ function sirve({ puntos = AGENDA.agenda, votos = [], hallazgos = [], declaracion
       items: hallazgos.map((f) => ({ ...f, plenoId: ID })),
     },
     '/data/pleno-videos.json': VIDEOS,
+    '/data/pleno-videos-regmeet.json': VIDEOS_REGMEET,
   }
   if (declaraciones) mapa[CHUNK_URL] = { ...FRAGMENTO, plenoId: ID, items: declaraciones }
   return mapa
@@ -264,6 +266,7 @@ describe('/plenos/:id · la sesión de la revisión, tal cual se publica', () =>
       '/data/pleno-votes.json': VOTOS,
       '/data/pleno-findings.json': HALLAZGOS,
       '/data/pleno-videos.json': VIDEOS,
+      '/data/pleno-videos-regmeet.json': VIDEOS_REGMEET,
     }
     const entrada = MANIFIESTO.plenos.find((p) => p.plenoId === ID_PUBLICADA)
     if (entrada) fetch[`/data/pleno-claims/${ID_PUBLICADA}.json`] = lee(entrada.chunkPath)

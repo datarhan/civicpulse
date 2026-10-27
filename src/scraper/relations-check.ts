@@ -35,6 +35,8 @@ import {
   type ClaimVisibilityInput,
 } from './claim-public-gate'
 import { QUOTE_PROVENANCE_STATUS_IDS } from './quote-provenance'
+import { discrepanciasDeVideo, type FilaRegmeet, type VideoCanal } from './pleno-video-fuentes'
+import { LECTURAS_VIDEO_REGMEET } from './regmeet-video'
 
 export type CheckLevel = 'error' | 'warn'
 export type CheckStatus = 'ok' | 'broken' | 'empty' | 'skipped'
@@ -96,7 +98,7 @@ export interface RelationsCheckInputs {
     contraste?: { stats?: { porContraste?: Record<string, number> } }
     quotes?: Record<string, Array<{ status?: string; reason?: string; gate?: string | null }>>
   } | null
-  plenos?: { items?: Array<{ id?: string }> } | null
+  plenos?: { items?: Array<{ id?: string; date?: string }> } | null
   votes?: {
     items?: Array<{
       id?: string
@@ -144,7 +146,17 @@ export interface RelationsCheckInputs {
     tenders?: Array<{ id?: string | number; permalink?: string }>
   } | null
   /** pleno-videos.json — a 60-item window over the channel feed, NOT an archive. */
-  videos?: { items?: Array<{ url?: string; plenoDate?: string }> } | null
+  videos?: { items?: Array<{ url?: string; plenoDate?: string; ytId?: string }> } | null
+  /** pleno-videos-regmeet.json — el vídeo que incrusta la página de cada sesión. */
+  videosRegmeet?: {
+    items?: Array<{
+      plenoId?: string
+      fecha?: string
+      lectura?: string
+      ytId?: string | null
+      url?: string | null
+    }>
+  } | null
   relations?: { links?: Array<{ quejaId?: string; tenderId?: string | number }> } | null
   approvedRelations?: {
     approvals?: Array<{ quejaId?: string; tenderId?: string | number }>
@@ -243,6 +255,7 @@ export function runRelationsChecks(inputs: RelationsCheckInputs): RelationCheckR
     quejas,
     tenders,
     videos,
+    videosRegmeet,
     relations,
     approvedRelations,
     dedicaciones,
@@ -289,6 +302,20 @@ export function runRelationsChecks(inputs: RelationsCheckInputs): RelationCheckR
       .filter((v): v is { url: string; plenoDate?: string } => !!v?.url)
       .map((v) => [v.url, v.plenoDate]),
   )
+  // El vídeo que regmeet incrusta en la página de la sesión no sale de ninguna
+  // ventana. Si el canal le pone otra fecha a la misma URL, gana la del canal
+  // aquí y la discrepancia la cuenta `video-fuentes`.
+  const filasRegmeet = (videosRegmeet?.items ?? []).filter(
+    (f): f is FilaRegmeet =>
+      typeof f?.plenoId === 'string' &&
+      typeof f?.fecha === 'string' &&
+      (LECTURAS_VIDEO_REGMEET as readonly (string | undefined)[]).includes(f?.lectura),
+  )
+  for (const f of filasRegmeet) {
+    if (f.lectura === 'con-video' && f.url && !videoDateByUrl.has(f.url)) {
+      videoDateByUrl.set(f.url, f.fecha)
+    }
+  }
   const linkPairs = new Set(
     (relations?.links ?? []).map((l) => `${l?.quejaId}→${String(l?.tenderId)}`),
   )
@@ -493,6 +520,10 @@ export function runRelationsChecks(inputs: RelationsCheckInputs): RelationCheckR
      * snapshot is the limitation, so this must surface as debt and never
      * red a nightly. A DATE mismatch is the case worth reading: that would be
      * a finding pointing at the wrong session's recording.
+     *
+     * Desde el 27-10-2026 también cuenta el vídeo que incrusta la página de la
+     * sesión en regmeet (`pleno-videos-regmeet.json`), que no caduca: el del
+     * 3 de julio, L6Cy1hTrpIc, es el que incrusta la página de esa sesión.
      */
     check('findings-crosschecked-video', 'warn', findings != null && videos != null, () => {
       let checked = 0
@@ -513,6 +544,40 @@ export function runRelationsChecks(inputs: RelationsCheckInputs): RelationCheckR
       }
       return { checked, broken }
     }),
+
+    /**
+     * Las dos fuentes de vídeo de una sesión —el canal, por la fecha de un
+     * título; regmeet, por la página de la sesión— tienen que decir lo mismo
+     * cuando las dos hablan. Cuando no, ninguna superficie elige
+     * (`pleno-video-fuentes.ts`): /plenos/:id calla el vídeo y el transcriptor
+     * se niega. `error` porque es lo que una persona tiene que leer —un vídeo
+     * atado a otra sesión es una transcripción atribuida a otro pleno—, y
+     * porque así llega a monitor:health; en la nocturna esta guarda corre en
+     * `--soft` y no la tumba. `checked` = sesiones con vídeo en regmeet, que son
+     * las que se cotejan.
+     */
+    check(
+      'video-fuentes',
+      'error',
+      plenos != null && videos != null && videosRegmeet != null,
+      () => {
+        const sesiones = (plenos?.items ?? []).filter(
+          (p): p is { id: string; date: string } =>
+            typeof p?.id === 'string' && typeof p?.date === 'string',
+        )
+        const canal = (videos?.items ?? []).filter(
+          (v): v is VideoCanal =>
+            typeof v?.ytId === 'string' &&
+            typeof v?.url === 'string' &&
+            typeof v?.plenoDate === 'string',
+        )
+        const checked = filasRegmeet.filter((f) => f.lectura === 'con-video' && f.ytId).length
+        const broken = discrepanciasDeVideo(sesiones, canal, filasRegmeet).map(
+          (d) => `${d.plenoId} (${d.fecha}) ${d.tipo}: ${d.detalle}`,
+        )
+        return { checked, broken }
+      },
+    ),
 
     check('manifest-chunks', 'error', manifest != null && chunkFiles != null, () => {
       let checked = 0

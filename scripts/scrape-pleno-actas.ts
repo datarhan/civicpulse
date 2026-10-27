@@ -4,6 +4,8 @@
  * cada sesión de pleno, y escribe
  *   public/data/pleno-actas.json   — URL, fechas, páginas y hash. NINGÚN texto.
  *   .cache/pleno-actas/<plenoId>.txt — el texto (pdftotext, sin `-layout`), gitignorado.
+ *   .cache/regmeet-sesiones/<plenoId>.html — la página de sesión tal cual, gitignorada:
+ *     de ella saca el vídeo `scrape:pleno-videos-regmeet`, sin volver a pedirla.
  *
  * El texto no se publica: un acta nombra a cada concejal y a particulares, y lo
  * que se publica de ella pasa por un curador. Lo usa `check:votos-acta`, que
@@ -31,6 +33,7 @@ import { copyFile, mkdir, readFile, writeFile } from 'node:fs/promises'
 import { dirname, join } from 'node:path'
 import { fileURLToPath } from 'node:url'
 import { fetchConCookies } from './lib/regmeet-fetch'
+import { PAGINAS_SESION, paginaDeSesion } from './lib/regmeet-paginas'
 import {
   clasificarDocumento,
   parseRegmeetDocumentos,
@@ -128,6 +131,7 @@ async function main() {
   const anteriorPorUrl = new Map(anterior.map((a) => [a.url, a]))
   const anteriorPorPleno = new Map(anterior.map((a) => [a.plenoId, a]))
   await mkdir(CACHE, { recursive: true })
+  await mkdir(PAGINAS_SESION, { recursive: true })
 
   const stats = {
     sesiones: sesiones.length,
@@ -200,6 +204,9 @@ async function main() {
       continue
     }
     fallosSeguidos = 0
+    // La página se guarda tal cual: de ella saca su vídeo `scrape:pleno-videos-regmeet`,
+    // que no la vuelve a pedir (scripts/lib/regmeet-paginas.ts).
+    await writeFile(paginaDeSesion(p.id), html)
 
     const documentos = parseRegmeetDocumentos(html.toString('utf8'))
     let algunaFallo = false
