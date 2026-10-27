@@ -80,6 +80,40 @@ describe('el reparto en fragmentos no separa una tarjeta de su marca', () => {
     }
     expect(cs.join('\n')).toBe(texto)
   })
+
+  /**
+   * La auditoría del 27-10-2026 lo encontró en /laboratorio: las marcas alargan
+   * el texto un 3 %, el corte por tamaño se movió y cayó dentro de la tabla de
+   * cobertura —una sola tarjeta—, entre «0 de 14 cotejadas» y «33 sin cotejar»,
+   * justo la fila de un señalamiento vivo. Sin marcas había caído en otro sitio
+   * por suerte. Cuando es el máximo quien corta, ahora corta tras la última
+   * tarjeta cerrada, si lo que pasa al siguiente cabe.
+   */
+  it('cuando corta el máximo, corta entre dos tarjetas: ninguna que quepa queda partida', () => {
+    const fila = (i: number) => `fila ${i}`
+    const filas = Array.from({ length: 10 }, (_, i) => fila(i))
+    // Que estas líneas no son frontera por contenido se MIDE, no se supone:
+    // sin marcas, todo corte es por tamaño y cada fragmento sale lleno.
+    const sinTarjetas = chunkRenderedText(
+      Array.from({ length: 200 }, () => filas)
+        .flat()
+        .join('\n'),
+      300,
+    )
+    for (const c of sinTarjetas.slice(0, -1)) expect(c.length).toBeGreaterThan(300 - 8)
+
+    const texto = Array.from({ length: 60 }, () => [inicio, ...filas, fin])
+      .flat()
+      .join('\n')
+    const cs = chunkRenderedText(texto, 300)
+    expect(cs.length).toBeGreaterThan(10)
+    for (const c of cs) {
+      expect(c.split('\n')[0]).toBe(inicio)
+      expect(ultima(c)).toBe(fin)
+      expect(c.length).toBeLessThanOrEqual(300)
+    }
+    expect(cs.join('\n')).toBe(texto)
+  })
 })
 
 describe('una cita no puede coser dos tarjetas', () => {
