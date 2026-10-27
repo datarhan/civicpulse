@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-27T10:09:41.058Z",
+  "generatedAt": "2026-10-27T16:09:46.278Z",
   "source": {
     "baseUrl": "https://regmeet.com",
     "description": "Ayuntamiento de Riba-roja de Túria — sesiones plenarias en regmeet.com (aytoribarroja); cada página individual publica el orden del día en la tabla #tableOrdenDia. El departamento se infiere del título del punto."
@@ -8,7 +8,7 @@
     "plenosFetched": 63,
     "agendaItemsTotal": 627,
     "agendaItemsWithDepartment": 222,
-    "plenosWithRuegos": 10,
+    "plenosWithRuegos": 41,
     "uniqueDepartments": 24,
     "sessionsTotal": 63,
     "sessionsWithAgenda": 63,
@@ -768,7 +768,7 @@
         {
           "number": 8,
           "title": "Dació compte de la VIII Memòria Anual de Gestió i Resultats de la Contractació Pública de l'Ajuntament de Riba-roja de Túria corresponent a l'exercici 2025",
-          "section": "resolutiva",
+          "section": "informativa",
           "department": "Contratación",
           "departmentSlug": "contratacion",
           "expediente": "1909/2026/GEN"
@@ -776,7 +776,7 @@
         {
           "number": 9,
           "title": "Expedient: 121/2026/GEN, Dació compte al Ple de la Liquidació de l'exercici 2025",
-          "section": "resolutiva",
+          "section": "informativa",
           "department": null,
           "departmentSlug": null,
           "expediente": null
@@ -784,7 +784,7 @@
         {
           "number": 10,
           "title": "Expedient: 1420/2026/GEN, Dació compte Ple resum anual actuacions control 2025 i fiscalització rd 424-17",
-          "section": "resolutiva",
+          "section": "informativa",
           "department": null,
           "departmentSlug": null,
           "expediente": null
@@ -792,7 +792,7 @@
         {
           "number": 11,
           "title": "Donar compte de les Resolucions de la número 785/2026 a la 1261/2026",
-          "section": "resolutiva",
+          "section": "informativa",
           "department": null,
           "departmentSlug": null,
           "expediente": null
@@ -800,7 +800,7 @@
         {
           "number": 12,
           "title": "Precs i preguntes",
-          "section": "resolutiva",
+          "section": "ruegos",
           "department": null,
           "departmentSlug": null,
           "expediente": null
@@ -811,7 +811,7 @@
         "educacion",
         "contratacion"
       ],
-      "hasRuegos": false
+      "hasRuegos": true
     },
     {
       "id": "ma87e0",
@@ -1086,7 +1086,7 @@
         {
           "number": 12,
           "title": "Expedient 4959/2025/GEN, Donar compte de l'adhesió de l'Ajuntament de Riba-roja de Túria a la Xarxa Espanyola de Ciutats Intel·ligents (*RECI)",
-          "section": "resolutiva",
+          "section": "informativa",
           "department": null,
           "departmentSlug": null,
           "expediente": null
@@ -1094,7 +1094,7 @@
         {
           "number": 13,
           "title": "Donar compte de les Resolucions de la número 47/2026 a la 363/2026",
-          "section": "resolutiva",
+          "section": "informativa",
           "department": null,
           "departmentSlug": null,
           "expediente": null
@@ -1102,7 +1102,7 @@
         {
           "number": 14,
           "title": "Precs i preguntes",
-          "section": "resolutiva",
+          "section": "ruegos",
           "department": null,
           "departmentSlug": null,
           "expediente": null
@@ -1110,7 +1110,7 @@
       ],
       "agendaCount": 14,
       "departments": [],
-      "hasRuegos": false
+      "hasRuegos": true
     },
     {
       "id": "19gax3o",
@@ -1178,7 +1178,7 @@
         {
           "number": 8,
           "title": "Expedient: 5396/2025/GEN, Donar compte de l'execució pressupostària (3t 2025) i la informació a subministrar al Ple Municipal",
-          "section": "resolutiva",
+          "section": "informativa",
           "department": null,
           "departmentSlug": null,
           "expediente": null
@@ -1186,7 +1186,7 @@
         {
           "number": 9,
           "title": "Donar compte de les Resolucions de la número 4195/2025 a la 46/2026",
-          "section": "resolutiva",
+          "section": "informativa",
           "department": null,
           "departmentSlug": null,
           "expediente": null
@@ -1194,7 +1194,7 @@
         {
           "number": 10,
           "title": "Precs i preguntes",
-          "section": "resolutiva",
+          "section": "ruegos",
           "department": null,
           "departmentSlug": null,
           "expediente": null
@@ -1204,7 +1204,7 @@
       "departments": [
         "contratacion"
       ],
-      "hasRuegos": false
+      "hasRuegos": true
     },
     {
       "id": "1pe3qs8",
@@ -1438,7 +1438,7 @@
         {
           "number": 13,
           "title": "Expedient: 307/2025/GEN, Donar compte de la Memòria de Secretaria de 2024 de l'Ajuntament de Riba-roja de Túria alineada amb els Objectius de Desenrotllament Sostenible (ODS)",
-          "section": "resolutiva",
+          "section": "informativa",
           "department": "Servicios generales",
           "departmentSlug": "servicios-generales",
           "expediente": null
@@ -1454,7 +1454,7 @@
         {
           "number": 15,
           "title": "Expedient: 5544/2025/GEN, Donar compte al Ple de la informació trimestral corresponent al Tercer Trimestre de 2025: Càlcul del Període Mitjà de pagament a proveïdors i Informe trimestral de seguiment de deute comercial",
-          "section": "resolutiva",
+          "section": "informativa",
           "department": null,
           "departmentSlug": "comercio",
           "expediente": null
@@ -1462,7 +1462,7 @@
         {
           "number": 16,
           "title": "Expedient: 2141/2025/GEN, Donar compte al Ple del Pla Anual de Control Financer 2025-2026 (sense dictaminar)",
-          "section": "resolutiva",
+          "section": "informativa",
           "department": null,
           "departmentSlug": null,
           "expediente": null
@@ -1470,7 +1470,7 @@
         {
           "number": 17,
           "title": "Donar compte de les Resolucions de la número 3732/2025 a la 4194/2025",
-          "section": "resolutiva",
+          "section": "informativa",
           "department": null,
           "departmentSlug": null,
           "expediente": null
@@ -1478,7 +1478,7 @@
         {
           "number": 18,
           "title": "Precs i preguntes",
-          "section": "resolutiva",
+          "section": "ruegos",
           "department": null,
           "departmentSlug": null,
           "expediente": null
@@ -1491,7 +1491,7 @@
         "servicios-generales",
         "comercio"
       ],
-      "hasRuegos": false
+      "hasRuegos": true
     },
     {
       "id": "1du4rf5",
@@ -1599,7 +1599,7 @@
         {
           "number": 13,
           "title": "Donar compte de les Resolucions de la número 3432/2025 a la 3731/2025",
-          "section": "resolutiva",
+          "section": "informativa",
           "department": null,
           "departmentSlug": null,
           "expediente": null
@@ -1607,7 +1607,7 @@
         {
           "number": 14,
           "title": "Precs i preguntes",
-          "section": "resolutiva",
+          "section": "ruegos",
           "department": null,
           "departmentSlug": null,
           "expediente": null
@@ -1617,7 +1617,7 @@
       "departments": [
         "cultura"
       ],
-      "hasRuegos": false
+      "hasRuegos": true
     },
     {
       "id": "otxq2c",
@@ -1693,7 +1693,7 @@
         {
           "number": 9,
           "title": "SECRETARIA, Expedient: 3567/2025/GEN , Donar compte de la concessió de pròrroga de la Jutgessa de Pau substituta de Riba-roja de Túria",
-          "section": "resolutiva",
+          "section": "informativa",
           "department": "Servicios generales",
           "departmentSlug": "servicios-generales",
           "expediente": null
@@ -1701,7 +1701,7 @@
         {
           "number": 10,
           "title": "INTERVENCIÓ, Expedient: 3658/2025, Donar compte de l'execució pressupostària (2t 2025) i l’informació a subministrar al Ple municipal",
-          "section": "resolutiva",
+          "section": "informativa",
           "department": null,
           "departmentSlug": "hacienda",
           "expediente": null
@@ -1709,7 +1709,7 @@
         {
           "number": 11,
           "title": "Donar compte de les Resolucions de la número 3111/2025 a la 3431/2025",
-          "section": "resolutiva",
+          "section": "informativa",
           "department": null,
           "departmentSlug": null,
           "expediente": null
@@ -1717,7 +1717,7 @@
         {
           "number": 12,
           "title": "Precs i preguntes",
-          "section": "resolutiva",
+          "section": "ruegos",
           "department": null,
           "departmentSlug": null,
           "expediente": null
@@ -1731,7 +1731,7 @@
         "servicios-generales",
         "hacienda"
       ],
-      "hasRuegos": false
+      "hasRuegos": true
     },
     {
       "id": "c8kr44",
@@ -1831,7 +1831,7 @@
         {
           "number": 12,
           "title": "Expedient: 7208/2022/GEN, Donar compte al Ple de l'adhesió automàtica al conveni subscrit en data 15 de juliol, que regula la possibilitat d'efectuar embargaments de deutes fora dels respectius àmbits de competència territorial, mitjançant els pertinents convenis amb la AEAT.- Donar compte de l'informe de 23 de juliol de la Tresorera i Recaptadora municipal",
-          "section": "resolutiva",
+          "section": "informativa",
           "department": null,
           "departmentSlug": null,
           "expediente": null
@@ -1839,7 +1839,7 @@
         {
           "number": 13,
           "title": "Expedient: 3653/2025/GEN, Donar compte al Ple de la informació trimestral corresponent al Segon Trimestre de 2025: Càlcul del Període Mitjà de pagament a proveïdors i Informe trimestral de seguiment de deute comercial",
-          "section": "resolutiva",
+          "section": "informativa",
           "department": null,
           "departmentSlug": "comercio",
           "expediente": null
@@ -1847,7 +1847,7 @@
         {
           "number": 14,
           "title": "Expedient: 3644/2025/GEN, Dació de comptes al Ple de la resolució núm. 3040/2025 de 22/08/2025 per a la modificació del pressupost municipal mitjançant la generació de crèdits número 34/2025/GEN per a l'actuació de Subministrament amb Instal·lació de 5 Lots de Jocs Infantils del Pla Obert d’ Inversions 24-27 de l'Excel·lentíssima Diputació Provincial de València Núm. Exp. POI/2024/1171/24",
-          "section": "resolutiva",
+          "section": "informativa",
           "department": null,
           "departmentSlug": null,
           "expediente": null
@@ -1855,7 +1855,7 @@
         {
           "number": 15,
           "title": "Donar compte de les Resolucions de la número 2677/2025 a la 3110/2025",
-          "section": "resolutiva",
+          "section": "informativa",
           "department": null,
           "departmentSlug": null,
           "expediente": null
@@ -1863,7 +1863,7 @@
         {
           "number": 16,
           "title": "Precs y preguntes",
-          "section": "resolutiva",
+          "section": "ruegos",
           "department": null,
           "departmentSlug": null,
           "expediente": null
@@ -1873,7 +1873,7 @@
       "departments": [
         "comercio"
       ],
-      "hasRuegos": false
+      "hasRuegos": true
     },
     {
       "id": "rmtyr",
@@ -2001,7 +2001,7 @@
         {
           "number": 11,
           "title": "Expedient 1029/2025/GEN, Dació compta al Ple de la correcció d'errors de l'informe núm. 220/2025 d'avaluació de l'objectiu d'estabilitat pressupostària, de la regla de gasto i del límit de deute emés amb motiu de la reformulació a la liquidació del pressupost municipal corresponent a l'exercici 2024",
-          "section": "resolutiva",
+          "section": "informativa",
           "department": null,
           "departmentSlug": null,
           "expediente": null
@@ -2009,7 +2009,7 @@
         {
           "number": 12,
           "title": "Expedient 3855/2025/GEN, Dació compta del Programa de Formació en Intel·ligència Artificial per als empleades/us públics de l'Ajuntament",
-          "section": "resolutiva",
+          "section": "informativa",
           "department": null,
           "departmentSlug": null,
           "expediente": null
@@ -2017,7 +2017,7 @@
         {
           "number": 13,
           "title": "Donar compte de les Resolucions de la número 2344/2025 a la 2676/2025",
-          "section": "resolutiva",
+          "section": "informativa",
           "department": null,
           "departmentSlug": null,
           "expediente": null
@@ -2025,7 +2025,7 @@
         {
           "number": 14,
           "title": "Precs i preguntes",
-          "section": "resolutiva",
+          "section": "ruegos",
           "department": null,
           "departmentSlug": null,
           "expediente": null
@@ -2038,7 +2038,7 @@
         "cultura",
         "seguridad"
       ],
-      "hasRuegos": false
+      "hasRuegos": true
     },
     {
       "id": "1sk3q3c",
@@ -2066,7 +2066,7 @@
         {
           "number": 3,
           "title": "Expedient 3400/2025/GEN, Dació compte de la modificació de la composició i càrrec de portaveu suplent del grup polític municipal del Partit Popular de l'Ajuntament de Riba-roja de Túria",
-          "section": "resolutiva",
+          "section": "informativa",
           "department": null,
           "departmentSlug": null,
           "expediente": null
@@ -2178,7 +2178,7 @@
         {
           "number": 17,
           "title": "Expedient: 905/2025/GEN, Donar compte al Ple de l'informe d'auditoria de sistemes del registre comptable de factures previst en l'art. 12.3 de la Llei 25/2013 (exercici de referència: 2024). Control Financer Permanent Planificable derivat d'una obligació legal",
-          "section": "resolutiva",
+          "section": "informativa",
           "department": null,
           "departmentSlug": null,
           "expediente": null
@@ -2186,7 +2186,7 @@
         {
           "number": 18,
           "title": "Expedient: 906/2025/GEN, Donar compte al Ple de l'informe de control financer permanent planificable derivat d'una obligació legal: compte 413 Creditors per obligacions pendents d'aplicar a pressupost (exercici de referència 2024)",
-          "section": "resolutiva",
+          "section": "informativa",
           "department": null,
           "departmentSlug": null,
           "expediente": null
@@ -2194,7 +2194,7 @@
         {
           "number": 19,
           "title": "Expedient: 2175/2019/GEN Dació compta al Ple dimissió i nomenament Consell Assessor del ECA",
-          "section": "resolutiva",
+          "section": "informativa",
           "department": null,
           "departmentSlug": null,
           "expediente": null
@@ -2202,7 +2202,7 @@
         {
           "number": 20,
           "title": "Donar compte de les Resolucions de la número 1851/2025 a la 2343/2025",
-          "section": "resolutiva",
+          "section": "informativa",
           "department": null,
           "departmentSlug": null,
           "expediente": null
@@ -2210,7 +2210,7 @@
         {
           "number": 21,
           "title": "Precs y preguntes",
-          "section": "resolutiva",
+          "section": "ruegos",
           "department": null,
           "departmentSlug": null,
           "expediente": null
@@ -2220,7 +2220,7 @@
       "departments": [
         "contratacion"
       ],
-      "hasRuegos": false
+      "hasRuegos": true
     },
     {
       "id": "1ci5p5s",
@@ -2375,7 +2375,7 @@
         {
           "number": 7,
           "title": "Expedient: 1883/2025/GEN, Donar compte de l'aprovació del Pla de Tresoreria de l'Ajuntament de Riba-roja de Túria exercici econòmic 2025",
-          "section": "resolutiva",
+          "section": "informativa",
           "department": null,
           "departmentSlug": "hacienda",
           "expediente": null
@@ -2383,7 +2383,7 @@
         {
           "number": 8,
           "title": "Expedient: 1029/2025/GEN, Donar compte Resolució d'Alcaldia 783/2025 que aprova la liquidació de l'exercici 2024",
-          "section": "resolutiva",
+          "section": "informativa",
           "department": "Alcaldía",
           "departmentSlug": "alcaldia",
           "expediente": null
@@ -2391,7 +2391,7 @@
         {
           "number": 9,
           "title": "Expedient: 1382/2025/GEN, Donar compte al Ple de la Corporació dels informes 131/2025 i informe 132/2025 de l'actuació de la funció interventora, objeccions i omissions",
-          "section": "resolutiva",
+          "section": "informativa",
           "department": null,
           "departmentSlug": null,
           "expediente": null
@@ -2399,7 +2399,7 @@
         {
           "number": 10,
           "title": "Expedient: 904/2025/GEN, Donar compte al ple de l'informe anual d'avaluació del compliment de la normativa en matèria de morositat (exercici de referència: 2024)",
-          "section": "resolutiva",
+          "section": "informativa",
           "department": null,
           "departmentSlug": null,
           "expediente": null
@@ -2407,7 +2407,7 @@
         {
           "number": 11,
           "title": "Expedient:1029/2025/GEN Donar compte al Ple de la Resolució d'Alcaldia 1428/2025, que aprova la reformulació de la liquidació del pressupost 2024",
-          "section": "resolutiva",
+          "section": "informativa",
           "department": "Alcaldía",
           "departmentSlug": "alcaldia",
           "expediente": null
@@ -2415,7 +2415,7 @@
         {
           "number": 12,
           "title": "Expedient: 3979/2023/GEN, Donar compte de la Resolució d'Alcaldia núm. 1314/2025, d'11 d'abril, relativa a la modificació de les àrees de gestió política 2023-2027 i delegació en favor de Regidors",
-          "section": "resolutiva",
+          "section": "informativa",
           "department": "Alcaldía",
           "departmentSlug": "alcaldia",
           "expediente": null
@@ -2423,7 +2423,7 @@
         {
           "number": 13,
           "title": "Donar compte de les Resolucions de la número 1139/2025 a la 1494/2025",
-          "section": "resolutiva",
+          "section": "informativa",
           "department": null,
           "departmentSlug": null,
           "expediente": null
@@ -2431,7 +2431,7 @@
         {
           "number": 14,
           "title": "Precs y preguntes",
-          "section": "resolutiva",
+          "section": "ruegos",
           "department": null,
           "departmentSlug": null,
           "expediente": null
@@ -2443,7 +2443,7 @@
         "hacienda",
         "alcaldia"
       ],
-      "hasRuegos": false
+      "hasRuegos": true
     },
     {
       "id": "hp3y4s",
@@ -2713,7 +2713,7 @@
         {
           "number": 10,
           "title": "Donar compte de les Resolucions de la número 432/2025 a la 689/2025",
-          "section": "resolutiva",
+          "section": "informativa",
           "department": null,
           "departmentSlug": null,
           "expediente": null
@@ -2721,7 +2721,7 @@
         {
           "number": 11,
           "title": "Precs y preguntes",
-          "section": "resolutiva",
+          "section": "ruegos",
           "department": null,
           "departmentSlug": null,
           "expediente": null
@@ -2729,7 +2729,7 @@
       ],
       "agendaCount": 11,
       "departments": [],
-      "hasRuegos": false
+      "hasRuegos": true
     },
     {
       "id": "11k71c8",
@@ -2829,7 +2829,7 @@
         {
           "number": 12,
           "title": "Expedient: 396/2025/GEN, Dació compta dels informes de les diferents àrees del Departament de Tresoreria de l'Exercici 2024",
-          "section": "resolutiva",
+          "section": "informativa",
           "department": null,
           "departmentSlug": "hacienda",
           "expediente": null
@@ -2837,7 +2837,7 @@
         {
           "number": 13,
           "title": "Donar compte de les Resolucions de la número 89/2024 a la 431/2025",
-          "section": "resolutiva",
+          "section": "informativa",
           "department": null,
           "departmentSlug": null,
           "expediente": null
@@ -2845,7 +2845,7 @@
         {
           "number": 14,
           "title": "Precs y preguntes",
-          "section": "resolutiva",
+          "section": "ruegos",
           "department": null,
           "departmentSlug": null,
           "expediente": null
@@ -2858,7 +2858,7 @@
         "servicios-generales",
         "hacienda"
       ],
-      "hasRuegos": false
+      "hasRuegos": true
     },
     {
       "id": "of2npg",
@@ -2918,7 +2918,7 @@
         {
           "number": 7,
           "title": "Expedient: 4264/2024/GEN Dació compta al Ple dels contractes administratius adjudicats en el segon semestre de 2024 per l'Ajuntament de Riba-roja de Túria",
-          "section": "resolutiva",
+          "section": "informativa",
           "department": null,
           "departmentSlug": null,
           "expediente": null
@@ -2926,7 +2926,7 @@
         {
           "number": 8,
           "title": "Donar compte de les Resolucions de la número 4109/2024 a la 88/2025",
-          "section": "resolutiva",
+          "section": "informativa",
           "department": null,
           "departmentSlug": null,
           "expediente": null
@@ -2934,7 +2934,7 @@
         {
           "number": 9,
           "title": "Precs i Preguntes",
-          "section": "resolutiva",
+          "section": "ruegos",
           "department": null,
           "departmentSlug": null,
           "expediente": null
@@ -2945,7 +2945,7 @@
         "contratacion",
         "hacienda"
       ],
-      "hasRuegos": false
+      "hasRuegos": true
     },
     {
       "id": "1e0jjw",
@@ -3262,7 +3262,7 @@
         {
           "number": 10,
           "title": "Expedient: 2220/2024/GEN, Donar compte al Ple de l'informe definitiu de control financer permanent planificable sobre el compte 413 en l'exercici 2023, en compliment del que es disposa en la DA TERCERA de la EL 9/2013",
-          "section": "resolutiva",
+          "section": "informativa",
           "department": null,
           "departmentSlug": null,
           "expediente": null
@@ -3270,7 +3270,7 @@
         {
           "number": 11,
           "title": "Donar compte de les Resolucions de la número 2669/2024 a la 3000/2024",
-          "section": "resolutiva",
+          "section": "informativa",
           "department": null,
           "departmentSlug": null,
           "expediente": null
@@ -3278,7 +3278,7 @@
         {
           "number": 12,
           "title": "Precs i Preguntes",
-          "section": "resolutiva",
+          "section": "ruegos",
           "department": null,
           "departmentSlug": null,
           "expediente": null
@@ -3288,7 +3288,7 @@
       "departments": [
         "hacienda"
       ],
-      "hasRuegos": false
+      "hasRuegos": true
     },
     {
       "id": "1tgd1h4",
@@ -3372,7 +3372,7 @@
         {
           "number": 10,
           "title": "Urbanisme, Expedient 4307/2024/GEN, Donar compte de la Calendarització de les prioritats en matèria de Gestió Urbanística del Departament d'Urbanisme",
-          "section": "resolutiva",
+          "section": "informativa",
           "department": null,
           "departmentSlug": "urbanismo",
           "expediente": null
@@ -3380,7 +3380,7 @@
         {
           "number": 11,
           "title": "Servicis Jurídics, Expedient 4343/2024/GEN, Donar compte dels antecedents i pronunciaments judicials respecte al PAI en el Sector Més de Porxinos",
-          "section": "resolutiva",
+          "section": "informativa",
           "department": null,
           "departmentSlug": "servicios-generales",
           "expediente": null
@@ -3388,7 +3388,7 @@
         {
           "number": 12,
           "title": "Servicis Jurídics, Expedient 4358/2024/GEN, Donar compte del sobreseïment del PA 1045/2017 instruït pel Jutjat de Primera Instància i Instrucció nº4 de Llíria contra Roberto Raga i altres",
-          "section": "resolutiva",
+          "section": "informativa",
           "department": null,
           "departmentSlug": "servicios-generales",
           "expediente": null
@@ -3396,7 +3396,7 @@
         {
           "number": 13,
           "title": "Contractació, Expedient 4264/2024/GEN, Donar compte al Ple dels contractes administratius adjudicats en el primer semestre de 2024 per l'Ajuntament de Riba-roja de Túria",
-          "section": "resolutiva",
+          "section": "informativa",
           "department": null,
           "departmentSlug": "contratacion",
           "expediente": null
@@ -3412,7 +3412,7 @@
         {
           "number": 15,
           "title": "Innovació. Expedient 4799/2023/GEN, Donar compte de la bitàcola de la BOOTCAMP del Hub d'Innovació RIBA_LAB a l'Ajuntament de Riba-roja de Túria per a potenciar les competències en matèria de col·laboració, creativitat i innovació",
-          "section": "resolutiva",
+          "section": "informativa",
           "department": null,
           "departmentSlug": "innovacion",
           "expediente": null
@@ -3420,7 +3420,7 @@
         {
           "number": 16,
           "title": "Donar compte de les Resolucions de la número 2378/2024 a la 2668/2024",
-          "section": "resolutiva",
+          "section": "informativa",
           "department": null,
           "departmentSlug": null,
           "expediente": null
@@ -3428,7 +3428,7 @@
         {
           "number": 17,
           "title": "Precs i Preguntes",
-          "section": "resolutiva",
+          "section": "ruegos",
           "department": null,
           "departmentSlug": null,
           "expediente": null
@@ -3446,7 +3446,7 @@
         "comercio",
         "innovacion"
       ],
-      "hasRuegos": false
+      "hasRuegos": true
     },
     {
       "id": "1pe6awk",
@@ -3504,7 +3504,7 @@
         {
           "number": 3,
           "title": "TRESORERIA, Expedient: 876/2024/GEN, Dació de compte de l'aprovació del Pla de Tresoreria de l'Ajuntament de Riba-roja de Túria exercici econòmic 2024",
-          "section": "resolutiva",
+          "section": "informativa",
           "department": "Hacienda",
           "departmentSlug": "hacienda",
           "expediente": null
@@ -3512,7 +3512,7 @@
         {
           "number": 4,
           "title": "FOMENT ECONÒMIC, Expedient: 3629/2024/GEN, Dació de compte de la Valoració campanya Ruta de la Tapa \"Riba-roja és la Canya 2024”",
-          "section": "resolutiva",
+          "section": "informativa",
           "department": "Empleo y economía",
           "departmentSlug": "empleo-economia",
           "expediente": null
@@ -3520,7 +3520,7 @@
         {
           "number": 5,
           "title": "Donar compte de les Resolucions de la número 2022/2024 a la 2377/2024",
-          "section": "resolutiva",
+          "section": "informativa",
           "department": null,
           "departmentSlug": null,
           "expediente": null
@@ -3528,7 +3528,7 @@
         {
           "number": 6,
           "title": "Precs i Preguntes",
-          "section": "resolutiva",
+          "section": "ruegos",
           "department": null,
           "departmentSlug": null,
           "expediente": null
@@ -3540,7 +3540,7 @@
         "hacienda",
         "empleo-economia"
       ],
-      "hasRuegos": false
+      "hasRuegos": true
     },
     {
       "id": "15jtq5k",
@@ -3580,7 +3580,7 @@
         {
           "number": 2,
           "title": "SECRETARIA, Expedient: 377/2024/GEN, Donar compte de la Memòria de Secretaria de 2023 de l'Ajuntament de Riba-roja de Túria alineada amb els Objectius de Desenvolupament Sostenible (ODS)",
-          "section": "resolutiva",
+          "section": "informativa",
           "department": "Servicios generales",
           "departmentSlug": "servicios-generales",
           "expediente": null
@@ -3604,7 +3604,7 @@
         {
           "number": 5,
           "title": "INTEGRITAT, Expedient: 2723/2023/GEN, Dació compta de l'I Informe anual de seguiment, supervisió i avaluació de les mesures arreplegades en el Pla de Mesures Antifrau (PMA) de l'Ajuntament de Riba-roja de Túria",
-          "section": "resolutiva",
+          "section": "informativa",
           "department": null,
           "departmentSlug": null,
           "expediente": null
@@ -3644,7 +3644,7 @@
         {
           "number": 10,
           "title": "Donar compte de les Resolucions de la número 1596/2024 a la 2021/2024",
-          "section": "resolutiva",
+          "section": "informativa",
           "department": null,
           "departmentSlug": null,
           "expediente": null
@@ -3652,7 +3652,7 @@
         {
           "number": 11,
           "title": "Precs i Preguntes",
-          "section": "resolutiva",
+          "section": "ruegos",
           "department": null,
           "departmentSlug": null,
           "expediente": null
@@ -3664,7 +3664,7 @@
         "seguridad",
         "urbanismo"
       ],
-      "hasRuegos": false
+      "hasRuegos": true
     },
     {
       "id": "yhp4sc",
@@ -3768,7 +3768,7 @@
         {
           "number": 10,
           "title": "TRESORERIA, Expedient: 875/2024/GEN, Dació compta al PLE de l'aprovació del Pla de Disposició de Fons de la Tresoreria de l'Ajuntament de Riba-roja de Túria exercici 2024 i següents",
-          "section": "resolutiva",
+          "section": "informativa",
           "department": "Hacienda",
           "departmentSlug": "hacienda",
           "expediente": null
@@ -3776,7 +3776,7 @@
         {
           "number": 11,
           "title": "TRESORERIA, Expedient: 2264/2024/GEN, Dació compta al PLE de la informació trimestral corresponent al PRIMER TRIMESTRE de 2024: Càlcul del Període Mitjà de pagament a proveïdors i Informe trimestral de seguiment de deute comercial",
-          "section": "resolutiva",
+          "section": "informativa",
           "department": "Hacienda",
           "departmentSlug": "hacienda",
           "expediente": null
@@ -3784,7 +3784,7 @@
         {
           "number": 12,
           "title": "Donar compte de les Resolucions de la número 1314/2024 a la 1595/2024",
-          "section": "resolutiva",
+          "section": "informativa",
           "department": null,
           "departmentSlug": null,
           "expediente": null
@@ -3792,7 +3792,7 @@
         {
           "number": 13,
           "title": "Precs i Preguntes",
-          "section": "resolutiva",
+          "section": "ruegos",
           "department": null,
           "departmentSlug": null,
           "expediente": null
@@ -3805,7 +3805,7 @@
         "vivienda",
         "hacienda"
       ],
-      "hasRuegos": false
+      "hasRuegos": true
     },
     {
       "id": "1080zow",
@@ -3889,7 +3889,7 @@
         {
           "number": 10,
           "title": "COMERÇ, Expedient: 1912/2024/GEN, Dació compta valoració campanya Bono Comercio Riba-roja 2023",
-          "section": "resolutiva",
+          "section": "informativa",
           "department": "Comercio",
           "departmentSlug": "comercio",
           "expediente": null
@@ -3897,7 +3897,7 @@
         {
           "number": 11,
           "title": "INTERVENCIÓ, Expedient: 996/2024/GEN, Dació compta al Ple aprovació liquidació Pressupost exercici 2023",
-          "section": "resolutiva",
+          "section": "informativa",
           "department": null,
           "departmentSlug": "hacienda",
           "expediente": null
@@ -3905,7 +3905,7 @@
         {
           "number": 12,
           "title": "INTERVENCIÓ, Expedient: 485/2024/GEN, Dació compta al Ple de l'informe anual d'avaluació del compliment de la normativa en matèria de morositat (exercici de referència: 2023). Control Financer Permanent Planificable derivat d'una obligació legal",
-          "section": "resolutiva",
+          "section": "informativa",
           "department": null,
           "departmentSlug": "hacienda",
           "expediente": null
@@ -3913,7 +3913,7 @@
         {
           "number": 13,
           "title": "INTERVENCIÓ, Expedient: 33/2024/GEN, Dació compta al Ple de l'informe d'auditoria de sistemes del registre comptable de factures en els exercicis 2021, 2022 i 2023",
-          "section": "resolutiva",
+          "section": "informativa",
           "department": null,
           "departmentSlug": "hacienda",
           "expediente": null
@@ -3921,7 +3921,7 @@
         {
           "number": 14,
           "title": "INTERVENCIÓ, Expedient: 1312/2024/GEN, Dació compta al Ple de la Corporació juntament amb la liquidació del Pressupost Municipal corresponent a l'exercici 2023, dels informes 218/2023 i informe 219/2023 de les actuació de la funció interventora , objeccions i omissions de conformitat amb el que s'establix en l'art. 218 del TRLRHL i resum anual de les actuacions de control de 2023, RD 424/2017",
-          "section": "resolutiva",
+          "section": "informativa",
           "department": null,
           "departmentSlug": "hacienda",
           "expediente": null
@@ -3929,7 +3929,7 @@
         {
           "number": 15,
           "title": "Donar compte de les Resolucions de la número 0806/2024 a la 1313/2024",
-          "section": "resolutiva",
+          "section": "informativa",
           "department": null,
           "departmentSlug": null,
           "expediente": null
@@ -3937,7 +3937,7 @@
         {
           "number": 16,
           "title": "Precs i Preguntes",
-          "section": "resolutiva",
+          "section": "ruegos",
           "department": null,
           "departmentSlug": null,
           "expediente": null
@@ -3951,7 +3951,7 @@
         "comercio",
         "hacienda"
       ],
-      "hasRuegos": false
+      "hasRuegos": true
     },
     {
       "id": "1rb2dsm",
@@ -4049,7 +4049,7 @@
         {
           "number": 7,
           "title": "CONTRACTACIÓ, Expedient: 6549/2023/GEN, Dació compta de la V Memòria Anual de Gestió i Resultats de la Contractació Pública de l'Ajuntament de Riba-roja de Túria corresponent a l'exercici 2023",
-          "section": "resolutiva",
+          "section": "informativa",
           "department": "Contratación",
           "departmentSlug": "contratacion",
           "expediente": null
@@ -4089,7 +4089,7 @@
         {
           "number": 12,
           "title": "TRESORERIA, Expedient: 364/2024/GEN, Dació compta al PLE de la informació trimestral corresponent al Quart Trimestre de 2023: Càlcul del Període Mitjà de pagament a proveïdors i Informe trimestral de seguiment de deute comercial",
-          "section": "resolutiva",
+          "section": "informativa",
           "department": "Hacienda",
           "departmentSlug": "hacienda",
           "expediente": null
@@ -4097,7 +4097,7 @@
         {
           "number": 13,
           "title": "INTERVENCIÓ, Expedient: 282/2024/GEN, Dació compta Ple execució trimestral 4t trimestre-2023 i Base Execució Pressupostària 48",
-          "section": "resolutiva",
+          "section": "informativa",
           "department": "Hacienda",
           "departmentSlug": "hacienda",
           "expediente": null
@@ -4113,7 +4113,7 @@
         {
           "number": 15,
           "title": "Donar compte de les Resolucions de la número 0409/2024 a la 0805/2024",
-          "section": "resolutiva",
+          "section": "informativa",
           "department": null,
           "departmentSlug": null,
           "expediente": null
@@ -4121,7 +4121,7 @@
         {
           "number": 16,
           "title": "Precs i Preguntes",
-          "section": "resolutiva",
+          "section": "ruegos",
           "department": null,
           "departmentSlug": null,
           "expediente": null
@@ -4135,7 +4135,7 @@
         "comunicacion",
         "hacienda"
       ],
-      "hasRuegos": false
+      "hasRuegos": true
     },
     {
       "id": "1ue92u4",
@@ -4211,7 +4211,7 @@
         {
           "number": 9,
           "title": "CONTRACTACIÓ, Expedient: 6549/2023/GEN, Dació compta al Ple dels contractes administratius adjudicats en el segon semestre de 2023 per l'Ajuntament de Riba-roja de Túria",
-          "section": "resolutiva",
+          "section": "informativa",
           "department": "Contratación",
           "departmentSlug": "contratacion",
           "expediente": null
@@ -4219,7 +4219,7 @@
         {
           "number": 10,
           "title": "TRESORERIA, Expedient: 214/2024/GEN, Dació compta dels informes de les diferents àrees del Departament de Tresoreria de l'Exercici 2023",
-          "section": "resolutiva",
+          "section": "informativa",
           "department": "Hacienda",
           "departmentSlug": "hacienda",
           "expediente": null
@@ -4227,7 +4227,7 @@
         {
           "number": 11,
           "title": "Donar compte de les Resolucions de la número 0001/2024 a la 0408/2024",
-          "section": "resolutiva",
+          "section": "informativa",
           "department": null,
           "departmentSlug": null,
           "expediente": null
@@ -4235,7 +4235,7 @@
         {
           "number": 12,
           "title": "Precs i Preguntes",
-          "section": "resolutiva",
+          "section": "ruegos",
           "department": null,
           "departmentSlug": null,
           "expediente": null
@@ -4248,7 +4248,7 @@
         "medio-ambiente",
         "hacienda"
       ],
-      "hasRuegos": false
+      "hasRuegos": true
     },
     {
       "id": "1qisc4g",
@@ -4284,7 +4284,7 @@
         {
           "number": 5,
           "title": "Intervenció, Expedient 7150/2023/GEN Dació compta al Ple de l'informe anual d'avaluació del compliment de la normativa en matèria de morositat (exercicis de referència: 2021 i 2022)",
-          "section": "resolutiva",
+          "section": "informativa",
           "department": "Hacienda",
           "departmentSlug": "hacienda",
           "expediente": null
@@ -4292,7 +4292,7 @@
         {
           "number": 6,
           "title": "Tresoreria, Expedient 6193/2023/GEN Dació compta al Ple de l'actualització de les mensualitats pendents de novembre i desembre corresponent al Pla de Tresoreria vigent de l'exercici 2023, per les conseqüències de l'incompliment del Període Mitjà de pagament (PMP) referit al Tercer Trimestre de 2023",
-          "section": "resolutiva",
+          "section": "informativa",
           "department": "Hacienda",
           "departmentSlug": "hacienda",
           "expediente": null
@@ -4300,7 +4300,7 @@
         {
           "number": 7,
           "title": "Donar compte de les Resolucions de la número 4496/2023 a la 5002/2023",
-          "section": "resolutiva",
+          "section": "informativa",
           "department": null,
           "departmentSlug": null,
           "expediente": null
@@ -4308,7 +4308,7 @@
         {
           "number": 8,
           "title": "Precs i Preguntes",
-          "section": "resolutiva",
+          "section": "ruegos",
           "department": null,
           "departmentSlug": null,
           "expediente": null
@@ -4319,7 +4319,7 @@
         "educacion",
         "hacienda"
       ],
-      "hasRuegos": false
+      "hasRuegos": true
     },
     {
       "id": "mvb5nl",
@@ -4363,7 +4363,7 @@
         {
           "number": 5,
           "title": "Dacio compte",
-          "section": "resolutiva",
+          "section": "informativa",
           "department": null,
           "departmentSlug": null,
           "expediente": null
@@ -4410,7 +4410,7 @@
         {
           "number": 4,
           "title": "SECRETARIA, Expedient 7253/2023/GEN, Donar compte de la Guia Didàctica elaborada pel Departament de Secretaria, Corporació Municipal 2023-2027",
-          "section": "resolutiva",
+          "section": "informativa",
           "department": "Servicios generales",
           "departmentSlug": "servicios-generales",
           "expediente": null
@@ -4450,7 +4450,7 @@
         {
           "number": 9,
           "title": "MEDI AMBIENT, Expedient 5486/2021/GEN, Dació compta de la realització de l'Estudi de Viabilitat Reestructuració Agrària",
-          "section": "resolutiva",
+          "section": "informativa",
           "department": "Medio ambiente",
           "departmentSlug": "medio-ambiente",
           "expediente": null
@@ -4458,7 +4458,7 @@
         {
           "number": 10,
           "title": "CONTRACTACIÓ, Expedient 5356/2022/GEN, Dació compta al Ple de la Corporació de la inclusió de nous contractes no previstos en el Pla de Contractació Anual exercici 2023, després d'acords adoptats per la Junta de Govern Local, d'aprovació de les modificacions del Pla Anual de Contractació 2023, edicions setzena a vint-i-unena",
-          "section": "resolutiva",
+          "section": "informativa",
           "department": "Contratación",
           "departmentSlug": "contratacion",
           "expediente": null
@@ -4466,7 +4466,7 @@
         {
           "number": 11,
           "title": "INTERVENCIÓ, Expedient 7083/2023/GEN, Dació compta al Ple del Pla Anual de Control Financer de l'Ajuntament de Riba-roja de Túria 2023-2024",
-          "section": "resolutiva",
+          "section": "informativa",
           "department": "Hacienda",
           "departmentSlug": "hacienda",
           "expediente": null
@@ -4474,7 +4474,7 @@
         {
           "number": 12,
           "title": "Donar compte de les Resolucions de la número 4031/2023 a la 4495/2023",
-          "section": "resolutiva",
+          "section": "informativa",
           "department": null,
           "departmentSlug": null,
           "expediente": null
@@ -4482,7 +4482,7 @@
         {
           "number": 13,
           "title": "Precs i preguntes",
-          "section": "resolutiva",
+          "section": "ruegos",
           "department": null,
           "departmentSlug": null,
           "expediente": null
@@ -4497,7 +4497,7 @@
         "contratacion",
         "hacienda"
       ],
-      "hasRuegos": false
+      "hasRuegos": true
     },
     {
       "id": "15158ww",
@@ -4597,7 +4597,7 @@
         {
           "number": 12,
           "title": "TRESORERIA Expedient: 6193/2023/GEN Donar compte al Ple de la informació trimestral corresponent al Tercer Trimestre de 2023: Càlcul del Període Mitjà de pagament a proveïdors i Informe trimestral de seguiment de deute comercial",
-          "section": "resolutiva",
+          "section": "informativa",
           "department": "Hacienda",
           "departmentSlug": "hacienda",
           "expediente": null
@@ -4605,7 +4605,7 @@
         {
           "number": 13,
           "title": "CONTRACTACIÓ Expedient: 6549/2023/GEN Donar compte al Ple dels contractes administratius adjudicats en el primer semestre de 2023 per l'Ajuntament de Riba-Roja de Túria",
-          "section": "resolutiva",
+          "section": "informativa",
           "department": "Contratación",
           "departmentSlug": "contratacion",
           "expediente": null
@@ -4613,7 +4613,7 @@
         {
           "number": 14,
           "title": "CONTRACTACIÓ Expedient: 5356/2022/GEN Donar compte al Ple de la Corporació de la inclusió de nous contractes no previstos en el Pla de Contractació Anual, a celebrar en l'exercici 2023 dins del cronograma del primer semestre, després d'acords adoptats per la Junta de Govern Local, modificació desena sisena a denovena",
-          "section": "resolutiva",
+          "section": "informativa",
           "department": "Contratación",
           "departmentSlug": "contratacion",
           "expediente": null
@@ -4621,7 +4621,7 @@
         {
           "number": 15,
           "title": "Donar compte de de la Sentència 635/2023, de 17 d'octubre, en PO 349/2022 i PO 363/2022",
-          "section": "resolutiva",
+          "section": "informativa",
           "department": null,
           "departmentSlug": null,
           "expediente": null
@@ -4629,7 +4629,7 @@
         {
           "number": 16,
           "title": "Donar compte de les Resolucions de la número 3617/2023 a la 4030/2023",
-          "section": "resolutiva",
+          "section": "informativa",
           "department": null,
           "departmentSlug": null,
           "expediente": null
@@ -4637,7 +4637,7 @@
         {
           "number": 17,
           "title": "Precs i Preguntes",
-          "section": "resolutiva",
+          "section": "ruegos",
           "department": null,
           "departmentSlug": null,
           "expediente": null
@@ -4652,7 +4652,7 @@
         "hacienda",
         "contratacion"
       ],
-      "hasRuegos": false
+      "hasRuegos": true
     },
     {
       "id": "z7prps",
@@ -4815,7 +4815,7 @@
         {
           "number": 13,
           "title": "Donar compte de les Resolucions de la número 3248/2023 a la 3616/2022",
-          "section": "resolutiva",
+          "section": "informativa",
           "department": null,
           "departmentSlug": null,
           "expediente": null
@@ -4899,7 +4899,7 @@
         {
           "number": 8,
           "title": "INTERVENCIÓ, Expedient: 4681/2023/GEN, Donar compte al ple de l'EXECUCIÓ TRIMESTRAL 2T-2023 I BEP 48",
-          "section": "resolutiva",
+          "section": "informativa",
           "department": "Hacienda",
           "departmentSlug": "hacienda",
           "expediente": null
@@ -4907,7 +4907,7 @@
         {
           "number": 9,
           "title": "CONTRATACIÓ, Expedient: 5356/2022/GEN, Dació compta al Ple de la Corporació de la inclusió de nous contractes no previstos en el Pla de Contractació Anual, a celebrar en l'exercici 2023, després d'acords adoptats per la Junta de Govern Local, després d'aprovació de les modificacions del Pla Anual de Contractació 2023 dècima a catorzena",
-          "section": "resolutiva",
+          "section": "informativa",
           "department": "Contratación",
           "departmentSlug": "contratacion",
           "expediente": null
@@ -4915,7 +4915,7 @@
         {
           "number": 10,
           "title": "TESORERIA, Expedient: 4929/2023/GEN, Dació compta al PLE de la informació trimestral corresponent al SEGON TRIMESTRE de 2023: Càlcul del Període Mitjà de pagament a proveïdors i Informe trimestral de seguiment de deute comercial",
-          "section": "resolutiva",
+          "section": "informativa",
           "department": "Comercio",
           "departmentSlug": "comercio",
           "expediente": null
@@ -4923,7 +4923,7 @@
         {
           "number": 11,
           "title": "CONTRACTACIÓ, Expedient: 5662/2023/GEN Dació compta al Ple de la Corporació de la concessió de la concessió del premi a la Innovació en l'en la Gestió Pública atorgat pel Ministeri d'Hisenda i Funció Pública dins del programa de reconeixement del marc general per a la millora de la qualitat en l'Administració General de l'Estat",
-          "section": "resolutiva",
+          "section": "informativa",
           "department": "Contratación",
           "departmentSlug": "contratacion",
           "expediente": null
@@ -4931,7 +4931,7 @@
         {
           "number": 12,
           "title": "SECRETARIA Y SERVEI JURÍDIC, Dació compta al Ple de la Corporació de la Sentència número 429/2023 del Tribunal Superior de Justícia de la Comunitat Valenciana per la qual es desestima el recurs interposat per LITORAL DE L'EST",
-          "section": "resolutiva",
+          "section": "informativa",
           "department": "Servicios generales",
           "departmentSlug": "servicios-generales",
           "expediente": null
@@ -4947,7 +4947,7 @@
         {
           "number": 14,
           "title": "Donar compte de les Resolucions de la número 2741/2023 a la 3247/2023",
-          "section": "resolutiva",
+          "section": "informativa",
           "department": null,
           "departmentSlug": null,
           "expediente": null
@@ -4955,7 +4955,7 @@
         {
           "number": 15,
           "title": "Precs i Preguntes",
-          "section": "resolutiva",
+          "section": "ruegos",
           "department": null,
           "departmentSlug": null,
           "expediente": null
@@ -4971,7 +4971,7 @@
         "servicios-generales",
         "juventud"
       ],
-      "hasRuegos": false
+      "hasRuegos": true
     },
     {
       "id": "jpr4fk",
@@ -5079,7 +5079,7 @@
         {
           "number": 13,
           "title": "Expedient: 4649/2023/GEN Dació compta al Ple de la Corporació de la Resolució d'Alcaldia 2764/2023 de 6 de Juliol, sobre el nomenament de Presidències dels Consells Sectorials",
-          "section": "resolutiva",
+          "section": "informativa",
           "department": "Alcaldía",
           "departmentSlug": "alcaldia",
           "expediente": null
@@ -5087,7 +5087,7 @@
         {
           "number": 14,
           "title": "Expedient: 3235/2023/GEN: Dació de compte al Ple de la Corporació de l'Execució Trimestral (1T) i la informació a subministrar al Ple municipal",
-          "section": "resolutiva",
+          "section": "informativa",
           "department": null,
           "departmentSlug": null,
           "expediente": null
@@ -5119,7 +5119,7 @@
         {
           "number": 18,
           "title": "Donar compte de les Resolucions de la número 1743/2023 a la 2740/2023",
-          "section": "resolutiva",
+          "section": "informativa",
           "department": null,
           "departmentSlug": null,
           "expediente": null
@@ -5127,7 +5127,7 @@
         {
           "number": 19,
           "title": "Precs i Preguntes",
-          "section": "resolutiva",
+          "section": "ruegos",
           "department": null,
           "departmentSlug": null,
           "expediente": null
@@ -5144,7 +5144,7 @@
         "educacion",
         "recursos-humanos"
       ],
-      "hasRuegos": false
+      "hasRuegos": true
     },
     {
       "id": "16ujrlm",
@@ -5339,7 +5339,7 @@
         {
           "number": 5,
           "title": "URBANISME, : Donar compte de l'informe Ambiental i Estratègic de la UE CASC 1",
-          "section": "resolutiva",
+          "section": "informativa",
           "department": "Urbanismo",
           "departmentSlug": "urbanismo",
           "expediente": "13/2019/GEN"
@@ -5347,7 +5347,7 @@
         {
           "number": 6,
           "title": "URBANISME, Expedient 5543/2020: Donar compte de l'informe Ambiental i Estratègic de la UE Santa Rosa",
-          "section": "resolutiva",
+          "section": "informativa",
           "department": "Urbanismo",
           "departmentSlug": "urbanismo",
           "expediente": null
@@ -5409,7 +5409,7 @@
         {
           "number": 6,
           "title": "SECRETARIA Expte 1382/2023/GEN Dació compta de la Memòria de Secretaria de 2022 de l'Ajuntament de Riba-roja de Túria alineada amb els Objectius de Desenvolupament Sostenible (ODS)",
-          "section": "resolutiva",
+          "section": "informativa",
           "department": "Servicios generales",
           "departmentSlug": "servicios-generales",
           "expediente": null
@@ -5473,7 +5473,7 @@
         {
           "number": 14,
           "title": "TRESORERIA Expte 727/2023/GEN Dació compta de l'aprovació del Pla de Tresoreria de l'Ajuntament de Riba-roja de Túria exercici econòmic 2023",
-          "section": "resolutiva",
+          "section": "informativa",
           "department": "Hacienda",
           "departmentSlug": "hacienda",
           "expediente": null
@@ -5481,7 +5481,7 @@
         {
           "number": 15,
           "title": "CONTRACTACIÓ Expte 6632/2021/GEN Dació compta i memòria anual Pla de Formació Contínua per a la Professionalització de la Contractació Pública",
-          "section": "resolutiva",
+          "section": "informativa",
           "department": "Contratación",
           "departmentSlug": "contratacion",
           "expediente": null
@@ -5489,7 +5489,7 @@
         {
           "number": 16,
           "title": "CONTRACTACIÓ Expte 5356/2022/GEN Dació compte al Ple de la Corporació de la inclusió de nous contractes no previstos en el Pla de Contractació Anual, a celebrar en l'exercici 2023 dins del cronograma del primer semestre, després d'acords adoptats per la Junta de Govern Local, modificació sisena a novena",
-          "section": "resolutiva",
+          "section": "informativa",
           "department": "Contratación",
           "departmentSlug": "contratacion",
           "expediente": null
@@ -5497,7 +5497,7 @@
         {
           "number": 17,
           "title": "INTERVENCIÓ Expedient 2130/2023/GEN Dació de compte de l'aprovació del Pla Pressupostari a mitjà termini 2023-2026",
-          "section": "resolutiva",
+          "section": "informativa",
           "department": "Hacienda",
           "departmentSlug": "hacienda",
           "expediente": null
@@ -5505,7 +5505,7 @@
         {
           "number": 18,
           "title": "Per la Sra. Regidora Gomez Laredo es procedirà a donar compta de la Declaració de la Zona Arqueològica de València la Vella com a Bé d'Interés Cultural (BIC)",
-          "section": "resolutiva",
+          "section": "informativa",
           "department": "Cultura",
           "departmentSlug": "cultura",
           "expediente": null
@@ -5529,7 +5529,7 @@
         {
           "number": 21,
           "title": "Donar compte de les Resolucions de la número 1295/2023 a la 1742/2023",
-          "section": "resolutiva",
+          "section": "informativa",
           "department": null,
           "departmentSlug": null,
           "expediente": null
@@ -5537,7 +5537,7 @@
         {
           "number": 22,
           "title": "Precs i Preguntes",
-          "section": "resolutiva",
+          "section": "ruegos",
           "department": null,
           "departmentSlug": null,
           "expediente": null
@@ -5553,7 +5553,7 @@
         "cultura",
         "urbanismo"
       ],
-      "hasRuegos": false
+      "hasRuegos": true
     },
     {
       "id": "buag5g",
@@ -5617,7 +5617,7 @@
         {
           "number": 5,
           "title": "CONTRACTACIÓ, Expedient: 3007/2022/GEN, Dació compta de la V memòria anual de gestió i resultats de la contractació de l'Ajuntament de Riba-roja de Túria corresponent a l'exercici 2022",
-          "section": "resolutiva",
+          "section": "informativa",
           "department": "Contratación",
           "departmentSlug": "contratacion",
           "expediente": null
@@ -5641,7 +5641,7 @@
         {
           "number": 8,
           "title": "CONTRACTACIÓ, Expedient: 5356/2022/GEN, Dació compta al Ple de la Corporació de la inclusió de nous contractes no previstos en el Pla de Contractació Anual, a celebrar en l'exercici 2023 dins del cronograma del primer semestre, després d'acords adoptats per la Junta de Govern Local",
-          "section": "resolutiva",
+          "section": "informativa",
           "department": "Contratación",
           "departmentSlug": "contratacion",
           "expediente": null
@@ -5649,7 +5649,7 @@
         {
           "number": 9,
           "title": "INTERVENCIÓ Expedient: 315/2023/GEN, Dació compta al Ple de la Corporació de l'aprovació de la liquidació del Pressupost Municipal corresponent a l'exercici 2022",
-          "section": "resolutiva",
+          "section": "informativa",
           "department": "Hacienda",
           "departmentSlug": "hacienda",
           "expediente": null
@@ -5657,7 +5657,7 @@
         {
           "number": 10,
           "title": "INTERVENCIÓ Expedient: 2136/2023/GEN, Donar compte informe resum anual de control exercici 2022, informe funció interventora i relació informes segons disposat en l'art 218 del Text Refós llei Reguladora de les Hisendes locals i Reglament control intern en les entitats del Sector Públic Local",
-          "section": "resolutiva",
+          "section": "informativa",
           "department": "Hacienda",
           "departmentSlug": "hacienda",
           "expediente": null
@@ -5665,7 +5665,7 @@
         {
           "number": 11,
           "title": "Donar compte de les Resolucions de la número 0861/2023 a la 1294/2023",
-          "section": "resolutiva",
+          "section": "informativa",
           "department": null,
           "departmentSlug": null,
           "expediente": null
@@ -5673,7 +5673,7 @@
         {
           "number": 12,
           "title": "Precs i Preguntes",
-          "section": "resolutiva",
+          "section": "ruegos",
           "department": null,
           "departmentSlug": null,
           "expediente": null
@@ -5686,7 +5686,7 @@
         "contratacion",
         "hacienda"
       ],
-      "hasRuegos": false
+      "hasRuegos": true
     },
     {
       "id": "1edrlv4",
@@ -5786,7 +5786,7 @@
         {
           "number": 12,
           "title": "CONTRACTACIÓ, Expedient: 5356/2022/GEN, Dació compta al Ple de la Corporació de la segona inclusió de nous contractes no previstos en el Pla de Contractació Anual, a celebrar en l'exercici 2023, per acord adoptat de la Junta de Govern Local segons sessió celebrada el passat 21 de febrer de 2023",
-          "section": "resolutiva",
+          "section": "informativa",
           "department": "Contratación",
           "departmentSlug": "contratacion",
           "expediente": null
@@ -5794,7 +5794,7 @@
         {
           "number": 13,
           "title": "TURISME I PATRIMONI Expedient: 1150/2023/GEN Dació compta al ple plans Àrees de Turisme i Patrimoni",
-          "section": "resolutiva",
+          "section": "informativa",
           "department": "Turismo",
           "departmentSlug": "turismo",
           "expediente": null
@@ -5802,7 +5802,7 @@
         {
           "number": 14,
           "title": "Donar compte de les Resolucions de la número 0383/2023 a la 0860/2023",
-          "section": "resolutiva",
+          "section": "informativa",
           "department": null,
           "departmentSlug": null,
           "expediente": null
@@ -5810,7 +5810,7 @@
         {
           "number": 15,
           "title": "Precs i Preguntes",
-          "section": "resolutiva",
+          "section": "ruegos",
           "department": null,
           "departmentSlug": null,
           "expediente": null
@@ -5826,7 +5826,7 @@
         "comercio",
         "turismo"
       ],
-      "hasRuegos": false
+      "hasRuegos": true
     },
     {
       "id": "1l7hhu7",
@@ -5910,7 +5910,7 @@
         {
           "number": 10,
           "title": "GESTIÓ TRIBUTÀRIA/TRESORERIA Expedient: 69/2023/GEN, Dació compta dels informes de les diferents àrees del Departament de Tresoreria de l'Exercici 2022",
-          "section": "resolutiva",
+          "section": "informativa",
           "department": "Hacienda",
           "departmentSlug": "hacienda",
           "expediente": null
@@ -5918,7 +5918,7 @@
         {
           "number": 11,
           "title": "INTERVENCIÓ Expedient: 543/2023/GEN Dació compta al ple de la corporacion informacion trimestral art 207 RD/2004 ORDRE hap 2105 2012 corresponent al QUART TRIMESTRE de 2022: càlcul del Període Mitjà de pagament a proveïdors; informe trimestral de seguiment de deute comercial; actualització CIR Local; execució trimestral del pressupost municipal",
-          "section": "resolutiva",
+          "section": "informativa",
           "department": "Hacienda",
           "departmentSlug": "hacienda",
           "expediente": null
@@ -5926,7 +5926,7 @@
         {
           "number": 12,
           "title": "RECURSOS HUMANS, Dació compta al ple per part del Regidor de Recursos Humans de la Memòria d'activitats, serveis i rutines de rellevància efectuades pel departament de Recursos Humans en el període 2019-2023",
-          "section": "resolutiva",
+          "section": "informativa",
           "department": "Urbanismo",
           "departmentSlug": "urbanismo",
           "expediente": null
@@ -5934,7 +5934,7 @@
         {
           "number": 13,
           "title": "Donar compte de les Resolucions de la número 0001/2023 a la 0382/2023",
-          "section": "resolutiva",
+          "section": "informativa",
           "department": null,
           "departmentSlug": null,
           "expediente": null
@@ -5942,7 +5942,7 @@
         {
           "number": 14,
           "title": "Precs i Preguntes",
-          "section": "resolutiva",
+          "section": "ruegos",
           "department": null,
           "departmentSlug": null,
           "expediente": null
@@ -5957,7 +5957,7 @@
         "alcaldia",
         "urbanismo"
       ],
-      "hasRuegos": false
+      "hasRuegos": true
     },
     {
       "id": "1r6yy0",
@@ -5985,7 +5985,7 @@
         {
           "number": 3,
           "title": "SECRETARIA, Expedient: 4603/2021/GEN Dació compta de la Memòria Anual de Secretaria de la gestió Municipal de l'Ajuntament de Riba-roja de Túria de 2021 i de l'inici d'elaboració Memòria Anual de Secretaria de la gestió Municipal de l'Ajuntament de Riba-roja de Túria durant 2022",
-          "section": "resolutiva",
+          "section": "informativa",
           "department": "Servicios generales",
           "departmentSlug": "servicios-generales",
           "expediente": null
@@ -6033,7 +6033,7 @@
         {
           "number": 9,
           "title": "Despatx d'urgència. 9.1. Donar Compte",
-          "section": "resolutiva",
+          "section": "informativa",
           "department": null,
           "departmentSlug": null,
           "expediente": null
@@ -6041,7 +6041,7 @@
         {
           "number": 10,
           "title": "CONTRACTACIÓ, Expedient: 3007/2022/GEN Dació compta al Ple dels contractes administratius adjudicats en el quart trimestre de 2022 per l'Ajuntament de Riba-roja de Túria",
-          "section": "resolutiva",
+          "section": "informativa",
           "department": "Contratación",
           "departmentSlug": "contratacion",
           "expediente": null
@@ -6049,7 +6049,7 @@
         {
           "number": 11,
           "title": "Donar compte de les Resolucions de la número 3624/2022 a la 4134/2022",
-          "section": "resolutiva",
+          "section": "informativa",
           "department": null,
           "departmentSlug": null,
           "expediente": null
@@ -6057,7 +6057,7 @@
         {
           "number": 12,
           "title": "Precs i Preguntes",
-          "section": "resolutiva",
+          "section": "ruegos",
           "department": null,
           "departmentSlug": null,
           "expediente": null
@@ -6070,7 +6070,7 @@
         "servicios-sociales",
         "contratacion"
       ],
-      "hasRuegos": false
+      "hasRuegos": true
     }
   ],
   "builtFrom": {

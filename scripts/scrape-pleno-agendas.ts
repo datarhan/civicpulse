@@ -19,6 +19,7 @@ import {
   crearPresupuestoArchivo,
   parsePlenoAgenda,
   mergeAgendaPlenos,
+  reclasificaSecciones,
   tallyDepartments,
   type PlenoAgendaItem,
   type EnrichedPleno,
@@ -221,7 +222,17 @@ async function main() {
   // Merge over the stored snapshot: coverage only ever grows, and an empty
   // walk can neither erase a good agenda nor publish a session as having
   // zero points (the f4fa424 incident).
-  const { plenos: merged, carriedForward, refreshed } = mergeAgendaPlenos(existing, results)
+  const fusion = mergeAgendaPlenos(existing, results)
+  const { carriedForward, refreshed } = fusion
+
+  // La parte de cada punto, re-derivada de su título como el departamento de
+  // abajo. Lo guardado no vuelve a pasar por el parser, y la regla sólo sabía
+  // castellano: los informes y los ruegos de los plenos convocados en
+  // valenciano salían «Resolutiva». Ver `reclasificaSecciones`.
+  const { plenos: merged, reclasificados } = reclasificaSecciones(fusion.plenos)
+  if (reclasificados > 0) {
+    console.log(`[pleno-agendas] re-derived the section of ${reclasificados} agenda item(s)`)
+  }
 
   // Re-derive the department of EVERY stored item from its own title, not just
   // the ones fetched this run. departmentSlug is stamped at parse time, so a
