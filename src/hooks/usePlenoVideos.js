@@ -1,5 +1,6 @@
 // @ts-check
 import { useJsonFetch } from './useJsonFetch'
+import { videoDeSesion } from '../scraper/pleno-video-fuentes'
 
 // Removed 2026-08-01, all unused with zero importers anywhere in src/:
 //
@@ -19,16 +20,25 @@ export function usePlenoVideos() {
   return useJsonFetch('/data/pleno-videos.json')
 }
 
-/** Build a Map<plenoId, videoEntry> for O(1) lookups in render. */
-export function indexVideosByPleno(videosData, plenosData) {
-  const videos = videosData?.items || []
+/** El vídeo que incrusta la página de cada sesión en regmeet (segunda fuente). */
+export function usePlenoVideosRegmeet() {
+  return useJsonFetch('/data/pleno-videos-regmeet.json')
+}
+
+/**
+ * Map<plenoId, { ytId, url, title, fuentes }> para buscar en el render. Una
+ * sesión en la que el canal y regmeet discrepan no entra: no se enseña ninguno
+ * de los dos (`src/scraper/pleno-video-fuentes.ts`). Sin `regmeetData` (aún
+ * cargando, o ausente) es el índice del canal por fecha de siempre.
+ */
+export function indexVideosByPleno(videosData, plenosData, regmeetData = null) {
+  const canal = videosData?.items || []
+  const regmeet = regmeetData?.items || []
   const plenos = plenosData?.items || []
-  const byDate = new Map()
-  for (const v of videos) byDate.set(v.plenoDate, v)
   const byPleno = new Map()
   for (const p of plenos) {
-    const v = byDate.get(p.date)
-    if (v) byPleno.set(p.id, v)
+    const { video } = videoDeSesion(p, canal, regmeet)
+    if (video) byPleno.set(p.id, video)
   }
   return byPleno
 }
