@@ -37,8 +37,10 @@ import { euros, eurosExactos, fmtDateLong, rellena } from '../lib/formatters'
 import { useT, useLocale } from '../i18n'
 import { useDocumentTitle } from '../hooks/useDocumentTitle'
 import EnBreveCargos from '../components/Cargos/EnBreveCargos'
+import ListaDeCargos from '../components/Cargos/ListaDeCargos'
+import Retrato from '../components/Cargos/Retrato'
 import DivisorLecturas from '../components/DivisorLecturas'
-import { sinAreasDelegadas } from '../scraper/en-breve-cargos'
+import { conAreasDelegadas, sinAreasDelegadas } from '../scraper/en-breve-cargos'
 
 /**
  * Verified public accounts for this official.
@@ -1140,50 +1142,6 @@ function Correo({ o, kinds }) {
   )
 }
 
-function Retrato({ o, size, radius = 'var(--r-card)' }) {
-  const color = partyColor(o.party)
-  if (o.photoUrl) {
-    return (
-      <img
-        src={o.photoUrl}
-        alt={o.name}
-        width={size}
-        height={size}
-        style={{
-          width: size,
-          height: size,
-          borderRadius: radius,
-          objectFit: 'cover',
-          flexShrink: 0,
-          border: `2px solid ${color}22`,
-        }}
-      />
-    )
-  }
-  return (
-    <div
-      title={o.photoNote || undefined}
-      style={{
-        width: size,
-        height: size,
-        borderRadius: radius,
-        flexShrink: 0,
-        display: 'grid',
-        placeItems: 'center',
-        background: 'var(--soft)',
-        color: 'var(--ink50)',
-        fontWeight: 700,
-      }}
-    >
-      {o.name
-        .split(' ')
-        .slice(0, 2)
-        .map((x) => x[0])
-        .join('')}
-    </div>
-  )
-}
-
 /**
  * One card per person, in the register the page is reading them in.
  *
@@ -1469,16 +1427,12 @@ function CorporacionMunicipal() {
     )
   }
 
-  const mayor = data.officials.find((o) => o.role === 'alcalde')
   // Who governs and who scrutinises, DERIVED from the delegated áreas rather
   // than from a party name: the sentence has to survive a coalition, a
-  // reshuffle, and a councillor who leaves the governing group.
-  const conAreas = data.officials.filter((o) => (o.portfolios ?? []).length > 0)
-  const gobierno = [
-    ...(mayor && conAreas.includes(mayor) ? [mayor] : []),
-    ...conAreas.filter((o) => o !== mayor),
-  ]
-  // La misma regla que cuenta «¿Quién vigila al gobierno?» en la lectura vecinal.
+  // reshuffle, and a councillor who leaves the governing group. The same two
+  // calls split the list of the 21 above the divider and «¿Quién vigila al
+  // gobierno?», so no two parts of the page can count a different government.
+  const gobierno = conAreasDelegadas(data.officials)
   const oposicion = sinAreasDelegadas(data.officials)
   const partidosGobierno = [...new Set(gobierno.map((o) => o.party))]
   const partidoUnico = partidosGobierno.length === 1 ? partidosGobierno[0] : null
@@ -1659,11 +1613,15 @@ function CorporacionMunicipal() {
         </Card>
       </div>
 
-      {/* Las dos lecturas (auditoría de las dos lecturas, §3): arriba, cuánto
-          cobran y quién vigila, en palabras llanas; debajo, todo lo de siempre,
-          que es lo que lo demuestra. */}
+      {/* Las dos lecturas (auditoría de las dos lecturas, §3): arriba, a quién
+          se pregunta, cuánto cobran, quién vigila y los 21 con lo que lleva
+          cada uno, en palabras llanas; debajo, todo lo de siempre, que es lo
+          que lo demuestra. */}
       <div style={{ marginTop: 22 }}>
         <EnBreveCargos lista={data} />
+      </div>
+      <div style={{ marginTop: 14 }}>
+        <ListaDeCargos total={data.count} gobierno={gobierno} oposicion={oposicion} />
       </div>
       <DivisorLecturas />
 
