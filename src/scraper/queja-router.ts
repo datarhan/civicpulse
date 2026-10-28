@@ -205,7 +205,7 @@ export const LEGAL_CATALOG: Record<string, LegalArticle> = {
     law: 'Ley 1/2022 Transparencia CV',
     article: 'art. 38',
     url: 'https://www.boe.es/buscar/act.php?id=BOE-A-2022-8187#a3-10',
-    says: 'Ante las resoluciones, expresas o presuntas, de las solicitudes de acceso a la información, las personas interesadas podrán presentar ante el Consejo Valenciano de Transparencia, con carácter potestativo y antes de la vía contencioso-administrativa, una reclamación en el plazo de un mes desde el día siguiente a la notificación o a aquel en que se produzcan los efectos del silencio.',
+    says: 'Ante las resoluciones, expresas o presuntas, de las solicitudes de acceso a la información, las personas interesadas podrán presentar ante el Consejo Valenciano de Transparencia, con carácter potestativo y antes de la vía contencioso-administrativa, una reclamación en el plazo de un mes desde el día siguiente a la notificación o a aquel en que se produzcan los efectos del silencio. Esta reclamación tendrá carácter sustitutivo de los recursos administrativos (art. 112.2 LPACAP).',
   },
   LJCA_46: {
     law: 'Ley 29/1998 LJCA',
@@ -1160,20 +1160,36 @@ export const ESCALATION_PROFILES: Record<string, EscalationStep[]> = {
       step: 3,
       whenDays: 30,
       // Sin «o CTBG»: para una solicitud al Ayuntamiento, el órgano es el Consell
-      // (art. 24.6 y DA 4ª Ley 19/2013; arts. 3.1.d y 38 Ley 1/2022 CV).
+      // (art. 24.6 y DA 4ª Ley 19/2013; arts. 3.1.d y 38 Ley 1/2022 CV). Y sin
+      // reposición: la reclamación la sustituye (art. 23.1 Ley 19/2013; art. 38.3
+      // Ley 1/2022, por el art. 112.2 LPACAP).
       action:
-        'Reclamación ante el Consell de Transparència de la Comunitat Valenciana · 1 mes para interponerla',
+        'Reclamación ante el Consell de Transparència de la Comunitat Valenciana · potestativa; sustituye al recurso de reposición · 1 mes para interponerla',
       who: 'Consell de Transparència de la Comunitat Valenciana',
       basis: LEGAL_CATALOG.LTCV_38,
       template: 'https://conselltransparencia.gva.es/es/presentacion',
     },
     {
       step: 4,
-      whenDays: 90,
+      // Desde el silencio, no a los 90 días: la reclamación es potestativa y la
+      // desestimación se recurre directamente (art. 20.5 Ley 19/2013; art. 34.6
+      // Ley 1/2022). Antes sólo se ofrecía tras la reclamación.
+      whenDays: 30,
       action:
-        'Recurso contencioso-administrativo (2 meses desde resolución de la reclamación, o 6 meses si silencio)',
+        'Recurso contencioso-administrativo, también sin reclamar antes (art. 20.5 Ley 19/2013; art. 34.6 Ley 1/2022): 6 meses desde el silencio; si se reclamó, 2 meses desde la resolución del Consell, o 6 meses si no resuelve en 3 (art. 38.2 Ley 1/2022)',
       who: 'Ciudadano · órgano judicial',
       basis: LEGAL_CATALOG.LJCA_46,
+    },
+    {
+      step: 5,
+      whenDays: 30,
+      // La escalera general lo tiene; aquí faltaba. No interrumpe el plazo de la
+      // reclamación, que es una acción en vía administrativa (art. 32.3 Ley 2/2021).
+      action:
+        'Queja al Síndic de Greuges de la Comunitat Valenciana (gratuita, art. 27 Ley 2/2021; no interrumpe los plazos para reclamar ni para recurrir, art. 32.3)',
+      who: 'Síndic de Greuges CV',
+      basis: LEGAL_CATALOG.SINDIC_CV,
+      template: SINDIC_PRESENTAR_QUEJA,
     },
   ],
 }
@@ -1295,6 +1311,28 @@ function composeExplanation(ctx: {
   const resolucionHumano =
     profile.resolucionMeses === 1 ? '1 mes' : `${profile.resolucionMeses} meses`
 
+  const sindic = (plazos: string) =>
+    `Queja al Síndic de Greuges de la Comunitat Valenciana, gratuita (art. 27 de la Ley 2/2021), que no interrumpe los plazos ${plazos} (art. 32.3 de la Ley 2/2021): ${SINDIC_PRESENTAR_QUEJA}`
+
+  // Para el acceso a la información la lista era la de todas, con la reposición
+  // primero. Pero la reclamación al Consell es «sustitutiva de los recursos
+  // administrativos» (art. 23.1 Ley 19/2013; art. 38.3 Ley 1/2022) y potestativa:
+  // lo que queda es reclamar o ir directamente al contencioso (art. 34.6).
+  const vias =
+    category === 'transparencia'
+      ? [
+          `Si transcurre el plazo sin respuesta, la solicitud se entiende desestimada (art. 20.4 de la Ley 19/2013 y art. 34.3 de la Ley 1/2022 de la Comunitat Valenciana). No cabe recurso de reposición: lo sustituye la reclamación al Consell (art. 23.1 de la Ley 19/2013 y art. 38.3 de la Ley 1/2022, que remite al art. 112.2 LPACAP). Las vías abiertas son:`,
+          `1. Reclamación ante el Consell de Transparència de la Comunitat Valenciana, potestativa, en el plazo de un mes desde el día siguiente a aquel en que se produzcan los efectos del silencio (art. 24 de la Ley 19/2013 y art. 38 de la Ley 1/2022 de la Comunitat Valenciana). Contra lo que resuelva el Consell, o si no resuelve en tres meses, sólo cabe recurso contencioso-administrativo (art. 38.2 y 38.7 de la Ley 1/2022).`,
+          `2. O, sin reclamar, recurso contencioso-administrativo directamente ante el Juzgado de lo Contencioso-Administrativo de Valencia (art. 20.5 de la Ley 19/2013 y art. 34.6 de la Ley 1/2022; 6 meses desde el silencio — art. 46 Ley 29/1998).`,
+          `3. ${sindic('para reclamar ni para recurrir')}`,
+        ]
+      : [
+          `Si transcurre el plazo sin respuesta, las vías abiertas son:`,
+          `1. Recurso potestativo de reposición ante el mismo órgano (1 mes — art. 123 LPACAP).`,
+          `2. ${sindic('para recurrir')}`,
+          `3. Recurso contencioso-administrativo ante el Juzgado de lo Contencioso-Administrativo de Valencia (6 meses desde el silencio — art. 46 Ley 29/1998).`,
+        ]
+
   return [
     `Asunto: ${queja.title}`,
     ``,
@@ -1306,12 +1344,7 @@ function composeExplanation(ctx: {
     `- Plazo máximo aplicable en este caso: ${resolucionHumano} desde la entrada en el Registro Electrónico.`,
     `- Tipo de silencio: ${silencioText}.`,
     ``,
-    `Si transcurre el plazo sin respuesta, las vías abiertas son:`,
-    `1. Recurso potestativo de reposición ante el mismo órgano (1 mes — art. 123 LPACAP).`,
-    `2. Queja al Síndic de Greuges de la Comunitat Valenciana, gratuita (art. 27 de la Ley 2/2021), que no interrumpe los plazos para recurrir (art. 32.3 de la Ley 2/2021): ${SINDIC_PRESENTAR_QUEJA}`,
-    category === 'transparencia'
-      ? `3. Reclamación ante el Consell de Transparència de la Comunitat Valenciana, en el plazo de un mes (art. 24 de la Ley 19/2013 y art. 38 de la Ley 1/2022 de la Comunitat Valenciana).`
-      : `3. Recurso contencioso-administrativo ante el Juzgado de lo Contencioso-Administrativo de Valencia (6 meses desde el silencio — art. 46 Ley 29/1998).`,
+    ...vias,
     ``,
     `El alcalde, ${alcalde.honorific ?? ''} ${alcalde.name}, representa al Ayuntamiento (art. 21 LRBRL) y responde en todo caso de la omisión de respuesta.`,
   ].join('\n')
