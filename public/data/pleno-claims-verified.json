@@ -1,7 +1,7 @@
 {
-  "generatedAt": "2026-10-27T21:28:35.635Z",
+  "generatedAt": "2026-10-28T06:49:20.565Z",
   "baseHuella": "e0089ba4f299",
-  "composedAt": "2026-10-27T21:28:35.866Z",
+  "composedAt": "2026-10-28T06:49:43.420Z",
   "source": {
     "description": "Fact-check verdicts for every pleno-claims-suggestions.json entry. Cross-references against tenders / BDNS / budget / promises. Pure deterministic — no LLM judgement.",
     "contract": "Machine-written verdicts; a curator reviews before surfacing contradicho or promesa-repetida editorially."
@@ -134778,14 +134778,15 @@
       "verification": {
         "claimId": "qz6weg-249-cit-3e02ef",
         "verdict": "sin-datos",
-        "summary": "La afirmación es una promesa/intención futura: volver a la consellería en enero para ver el estado del proyecto del centro de salud. Ninguno de los candidatos trata de un centro de salud ni de gestiones con la consellería.",
+        "summary": "Anuncia una gestión futura —volver a la consellería en enero por el proyecto del centro de salud—, y una intención no la acredita ni la desmiente un registro. El contrato publicado que nombra el Centro de Salud es el de una carpa para la zona de triaje exterior (11.495 € con IVA, 2021), que no trata de ese proyecto.",
         "evidence": [],
         "checkedAgainst": [],
         "derivedBy": [
           "verdict-engine"
         ],
         "confidence": 0.2,
-        "source": "verdict-engine"
+        "source": "verdict-engine",
+        "reasonSignedBy": "Sergei Lutchenko"
       }
     },
     {
@@ -173741,13 +173742,14 @@
       "verification": {
         "claimId": "c8kr44-123-cit-1a94f7",
         "verdict": "sin-datos",
-        "summary": "Análisis completado: la afirmación es una opinión subjetiva sin datos verificables (sin importe/fecha/sujeto concreto), y los candidatos son contratos de obra sobre edificios distintos al \"Pabellón de Escoto\" mencionado, con similitud baja. No hay respaldo genuino.",
+        "summary": "Es una valoración —que el edificio y el pabellón de Escoto son un tema importantísimo—, y una valoración no la acredita ni la desmiente un registro. El contrato de las obras del pabellón deportivo cubierto del CEIP Mas d’Escoto (fase I, adjudicado en 2019) es de ese pabellón, pero no dice nada de su importancia.",
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
         ],
         "confidence": 0.2,
-        "source": "verdict-engine"
+        "source": "verdict-engine",
+        "reasonSignedBy": "Sergei Lutchenko"
       }
     },
     {
@@ -174555,13 +174557,14 @@
       "verification": {
         "claimId": "c8kr44-148-cit-2fadb2",
         "verdict": "sin-datos",
-        "summary": "La afirmación se refiere a la transformación de la plaza de la estación, pero los candidatos listados no presentan información específica sobre obras o proyectos relacionados directamente con dicha plaza.",
+        "summary": "Compara cómo era la plaza de la Estación con cómo es: es una valoración, y un registro no la acredita ni la desmiente. Las obras sí están publicadas —el contrato de reurbanización de la zona de la plaza de la Estación y la calle Muelle—, pero un contrato no dice si el resultado «va en esa línea».",
         "evidence": [],
         "checkedAgainst": [
           "verdict-engine"
         ],
         "confidence": 0.2,
-        "source": "verdict-engine"
+        "source": "verdict-engine",
+        "reasonSignedBy": "Sergei Lutchenko"
       }
     },
     {
