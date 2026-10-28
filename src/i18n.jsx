@@ -1082,6 +1082,23 @@ export const CATALOGUE = {
     'quejas.datosTecnicos.fichero': 'Fichero completo:',
     'dashboard.eyebrow': 'Voz ciudadana · Dashboard',
     'dashboard.title': 'Salud del canal de quejas',
+    'dashboard.intro':
+      'Vista detallada del canal de quejas: en qué punto está cada una, por área municipal y por barrio, y las que más apoyos tienen.',
+    'dashboard.volver': '← Cómo quejarse y qué plazos tiene el Ayuntamiento, en Quejas ciudadanas',
+    'dashboard.estados.eyebrow': 'Estado',
+    'dashboard.estados.titulo': 'En qué punto está cada queja',
+    'dashboard.areas.eyebrow': 'Por área municipal',
+    'dashboard.areas.titulo': 'Quejas por área',
+    'dashboard.areas.intro':
+      'Cada queja se asigna automáticamente al área municipal de su categoría. Junto al área figura quien la tiene a su cargo, como en Departamentos.',
+    'dashboard.areas.col.area': 'Área',
+    'dashboard.areas.col.quejas': 'Quejas',
+    'dashboard.areas.col.abiertas': 'Abiertas',
+    'dashboard.areas.col.silencios': 'Silencios',
+    'dashboard.areas.leyenda':
+      'Abiertas: las que no están resueltas ni cerradas sin registrar. Silencios: las que pasaron el plazo legal sin respuesta.',
+    'dashboard.areas.sinArea.una': 'Una queja no corresponde a ningún área de la lista.',
+    'dashboard.areas.sinArea': '{n} quejas no corresponden a ningún área de la lista.',
 
     // Plenos vote block
     'plenos.votes.heading': 'Votaciones registradas',
@@ -3704,6 +3721,23 @@ export const CATALOGUE = {
     'quejas.datosTecnicos.fichero': 'Fitxer complet:',
     'dashboard.eyebrow': 'Veu ciutadana · Tauler',
     'dashboard.title': 'Salut del canal de queixes',
+    'dashboard.intro':
+      'Vista detallada del canal de queixes: en quin punt està cadascuna, per àrea municipal i per barri, i les que tenen més suports.',
+    'dashboard.volver': '← Com queixar-se i quins terminis té l’Ajuntament, en Queixes ciutadanes',
+    'dashboard.estados.eyebrow': 'Estat',
+    'dashboard.estados.titulo': 'En quin punt està cada queixa',
+    'dashboard.areas.eyebrow': 'Per àrea municipal',
+    'dashboard.areas.titulo': 'Queixes per àrea',
+    'dashboard.areas.intro':
+      'Cada queixa s’assigna automàticament a l’àrea municipal de la seua categoria. Al costat de l’àrea figura qui la té al seu càrrec, com en Departaments.',
+    'dashboard.areas.col.area': 'Àrea',
+    'dashboard.areas.col.quejas': 'Queixes',
+    'dashboard.areas.col.abiertas': 'Obertes',
+    'dashboard.areas.col.silencios': 'Silencis',
+    'dashboard.areas.leyenda':
+      'Obertes: les que no estan resoltes ni tancades sense registrar. Silencis: les que han passat el termini legal sense resposta.',
+    'dashboard.areas.sinArea.una': 'Una queixa no correspon a cap àrea de la llista.',
+    'dashboard.areas.sinArea': '{n} queixes no corresponen a cap àrea de la llista.',
 
     'plenos.votes.heading': 'Votacions registrades',
     'plenos.votes.empty.eyebrow': 'Sense dades',
