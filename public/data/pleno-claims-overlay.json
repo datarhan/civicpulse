@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "generatedAt": "2026-10-27T22:12:12.353Z",
+  "generatedAt": "2026-10-28T06:49:43.230Z",
   "entries": {
     "k4olcs-005-acu-7c0edd": {
       "verification": {
@@ -9600,7 +9600,7 @@
           "previous": "motivo · sha256:6c9c22ae4054",
           "reason": "La explicación del motor (claude-code, 04-10-2026) decía que ningún candidato trataba de un centro de salud; el registro que el verificador emparejaba con esta declaración es el contrato de una carpa para la zona exterior del Centro de Salud. La retractación es correcta; su explicación, no. Se sustituye por una escrita desde los registros.",
           "editor": "Sergei Lutchenko",
-          "amendedAt": "2026-10-27T22:12:12.353Z"
+          "amendedAt": "2026-10-28T06:49:43.230Z"
         }
       ]
     },
@@ -11053,7 +11053,7 @@
           "previous": "motivo · sha256:3e1f7ea7897b",
           "reason": "La explicación del motor (claude-code, 02-08-2026) decía que los candidatos eran obras sobre edificios distintos del pabellón de Escoto y de similitud baja; el registro que el verificador emparejaba con esta declaración, con parecido 1, es el contrato de las obras del pabellón deportivo del CEIP Mas d’Escoto. La retractación es correcta; su explicación, no. Se sustituye por una escrita desde los registros.",
           "editor": "Sergei Lutchenko",
-          "amendedAt": "2026-10-27T22:12:10.317Z"
+          "amendedAt": "2026-10-28T06:49:41.196Z"
         }
       ]
     },
@@ -17995,7 +17995,7 @@
           "previous": "motivo · sha256:d302c5ed2e6c",
           "reason": "La explicación del motor (gpt-4o-mini, 05-10-2026) decía que ningún candidato presentaba obras relacionadas con la plaza de la Estación; el registro que el verificador emparejaba con esta declaración es el contrato de reurbanización de esa plaza. La retractación es correcta; su explicación, no. Se sustituye por una escrita desde los registros.",
           "editor": "Sergei Lutchenko",
-          "amendedAt": "2026-10-27T22:12:08.296Z"
+          "amendedAt": "2026-10-28T06:49:29.710Z"
         }
       ]
     },

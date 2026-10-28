@@ -27,6 +27,7 @@
  */
 import { CLAIM_TYPE_TONE } from '../hooks/usePlenoClaims.js'
 import { CATALOGUE, rotuloDe } from '../i18n'
+import { CARDINALES_EN_LETRA, plano } from '../scraper/cifra-en-literal'
 
 /** La clave del rótulo neutro. No es un `ClaimType`: nadie la escribe en un dato. */
 export const TIPO_NEUTRO = 'afirmacion'
@@ -38,79 +39,17 @@ const TONO = CLAIM_TYPE_TONE
 /** @param {string} clave */
 const castellano = (clave) => /** @type {Record<string,string>} */ (CATALOGUE.es)[clave] ?? clave
 
-/** @param {string} s */
-function plano(s) {
-  return s.normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase()
-}
-
-// Números en letra, castellano y valenciano. «un/una/uno» quedan fuera: son
-// artículos casi siempre, y con ellos toda frase tendría «cifra».
+// Números en letra, castellano y valenciano: los cardinales del verificador
+// (src/scraper/cifra-en-literal.ts), que no se copian aquí, y las cantidades
+// aproximadas que el rótulo también cuenta como cifra —«miles», «la mitad», «un
+// porcentaje»— y el verificador no, porque no dicen un importe.
 const NUMERO_EN_LETRA = new RegExp(
   '\\b(' +
     [
-      'dos',
-      'tres',
-      'cuatro',
-      'quatre',
-      'cinco',
-      'cinc',
-      'seis',
-      'sis',
-      'siete',
-      'set',
-      'ocho',
-      'huit',
-      'vuit',
-      'nueve',
-      'nou',
-      'diez',
-      'deu',
-      'once',
-      'onze',
-      'doce',
-      'dotze',
-      'trece',
-      'tretze',
-      'catorce',
-      'catorze',
-      'quince',
-      'quinze',
-      'setze',
-      'disset',
-      'divuit',
-      'dinou',
-      'dieci\\w+',
-      'veint\\w*',
-      'vint\\w*',
-      'treinta\\w*',
-      'trenta\\w*',
-      'cuarenta\\w*',
-      'quaranta\\w*',
-      'cincuenta\\w*',
-      'cinquanta\\w*',
-      'sesenta\\w*',
-      'seixanta\\w*',
-      'setenta\\w*',
-      'setanta\\w*',
-      'ochenta\\w*',
-      'huitanta\\w*',
-      'vuitanta\\w*',
-      'noventa\\w*',
-      'noranta\\w*',
-      'cien',
-      'ciento',
-      'cientos',
-      'cientas',
-      '\\w+cientos',
-      '\\w+cientas',
-      'cent',
-      'cents',
+      ...CARDINALES_EN_LETRA,
       'centenar\\w*',
-      'mil',
       'miles',
       'milers',
-      'millon\\w*',
-      'milio\\w*',
       'mitad',
       'meitat',
       'doble',

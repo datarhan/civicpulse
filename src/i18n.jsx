@@ -1009,6 +1009,45 @@ export const CATALOGUE = {
     'presup.title': 'Presupuesto municipal',
     'quejas.eyebrow': 'Voz ciudadana',
     'quejas.title': 'Quejas ciudadanas',
+    // La lectura vecinal de /quejas (components/Quejas/EnBreveQuejas.jsx): el camino de
+    // una queja. Las cifras salen de scraper/en-breve-quejas.ts; ninguna se escribe aquí.
+    'quejas.enBreve.titulo': 'Cómo quejarse y qué pasa después',
+    'quejas.enBreve.intro':
+      'Lo que hay que saber antes de quejarse, en palabras llanas. Las quejas publicadas y los registros de quien vigila al Ayuntamiento están debajo.',
+    'quejas.enBreve.saltar': 'Las quejas publicadas ↓',
+    'quejas.enBreve.como.pregunta': '¿Cómo me quejo?',
+    'quejas.enBreve.como.frase':
+      'Escribe al bot de Telegram con tu queja, una foto y dónde está. Una persona la revisa antes de publicarla aquí. Si {apoyos} vecinos la apoyan, una persona voluntaria la presenta en el registro electrónico del Ayuntamiento.',
+    'quejas.enBreve.como.bot': 'Abrir el bot en Telegram',
+    'quejas.enBreve.como.ver': 'El camino completo, en la metodología →',
+    'quejas.enBreve.plazo.pregunta': '¿Me tienen que contestar?',
+    'quejas.enBreve.plazo.figura': 'El plazo de una queja, desde que entra en el registro',
+    'quejas.enBreve.plazo.paso.registro': 'Entra en el registro',
+    'quejas.enBreve.plazo.paso.registro.cuando': 'Desde ese día corre el plazo.',
+    'quejas.enBreve.plazo.paso.acuse': 'Acuse de recibo',
+    'quejas.enBreve.plazo.paso.acuse.cuando': 'En {n} días como mucho.',
+    'quejas.enBreve.plazo.paso.respuesta': 'Respuesta',
+    'quejas.enBreve.plazo.paso.respuesta.cuando': 'En {n} meses como mucho.',
+    'quejas.enBreve.plazo.paso.sindic': 'Si no contesta',
+    'quejas.enBreve.plazo.paso.sindic.cuando': 'Puedes acudir al Síndic de Greuges.',
+    'quejas.enBreve.plazo.frase':
+      'Sí. Desde que la queja entra en el registro, el Ayuntamiento tiene {dias} días para acusar recibo y {meses} meses para contestar, con carácter general.',
+    'quejas.enBreve.plazo.transparencia':
+      'Si es una petición de transparencia, el plazo para contestar es de {n} meses.',
+    'quejas.enBreve.plazo.transparencia.uno':
+      'Si es una petición de transparencia, el plazo para contestar es de un mes.',
+    'quejas.enBreve.plazo.ver': 'Los plazos y su base legal →',
+    'quejas.enBreve.sindic.pregunta': '¿Y si no contestan?',
+    'quejas.enBreve.sindic.cifraNota': 'expedientes sobre el Ayuntamiento desde {desde}',
+    'quejas.enBreve.sindic.cifraNota.sinFecha': 'expedientes sobre el Ayuntamiento',
+    'quejas.enBreve.sindic.frase':
+      'Puedes acudir al Síndic de Greuges, el defensor del pueblo de la Comunitat Valenciana. Es gratis y no te quita otros recursos.',
+    'quejas.enBreve.sindic.recomendaciones':
+      'En {n} de esos expedientes, que hemos leído uno a uno, el Síndic se dirigió al Ayuntamiento para recomendarle algo o recordarle sus deberes legales; {falta} de ellos los titula el propio Síndic «falta de respuesta».',
+    'quejas.enBreve.sindic.recomendaciones.sinFalta':
+      'En {n} de esos expedientes, que hemos leído uno a uno, el Síndic se dirigió al Ayuntamiento para recomendarle algo o recordarle sus deberes legales.',
+    'quejas.enBreve.sindic.ultima': 'El más reciente que hemos leído es del {fecha}: «{titulo}»',
+    'quejas.enBreve.sindic.ver': 'Todos los expedientes ↓',
     // El cruce por barrio. La columna de euros son las zonas de
     // `tender-geo.json`: importe de ADJUDICACIÓN sin IVA, los mismos euros que
     // la portada rotula «adjudicado acumulado» y /presupuesto «adjudicado sin
@@ -1562,6 +1601,11 @@ export const CATALOGUE = {
     // WHICH date is being shown, so «7 feb 2023» beneath a 2026 debate cannot
     // be read as the debate's own date.
     'findings.refs.crossChecked': 'Documentos cotejados',
+    // Bajo el rótulo, lo que la lista no dice. Se leía como «lo que respalda la
+    // ficha» encima de contratos que sólo compartían palabras con las citas
+    // (PlenoFindings.jsx, `RefList`).
+    'findings.refs.crossChecked.nota':
+      'Estos documentos se cotejaron con las citas: estar en la lista no dice que las confirmen.',
     // La grabación de la sesión NO es un documento cotejado: es de donde salen
     // las citas. Iban en la misma lista, así que una ficha cuyo único cotejo
     // era el vídeo del propio pleno enseñaba «DOCUMENTOS COTEJADOS ·
@@ -3545,6 +3589,43 @@ export const CATALOGUE = {
     'presup.title': 'Pressupost municipal',
     'quejas.eyebrow': 'Veu ciutadana',
     'quejas.title': 'Queixes ciutadanes',
+    'quejas.enBreve.titulo': 'Com queixar-se i què passa després',
+    'quejas.enBreve.intro':
+      'El que cal saber abans de queixar-se, en paraules planes. Les queixes publicades i els registres de qui vigila l’Ajuntament són a sota.',
+    'quejas.enBreve.saltar': 'Les queixes publicades ↓',
+    'quejas.enBreve.como.pregunta': 'Com em queixe?',
+    'quejas.enBreve.como.frase':
+      'Escriu al bot de Telegram amb la teua queixa, una foto i on és. Una persona la revisa abans de publicar-la ací. Si {apoyos} veïns la recolzen, una persona voluntària la presenta en el registre electrònic de l’Ajuntament.',
+    'quejas.enBreve.como.bot': 'Obrir el bot en Telegram',
+    'quejas.enBreve.como.ver': 'El camí complet, en la metodologia →',
+    'quejas.enBreve.plazo.pregunta': 'M’han de contestar?',
+    'quejas.enBreve.plazo.figura': 'El termini d’una queixa, des que entra en el registre',
+    'quejas.enBreve.plazo.paso.registro': 'Entra en el registre',
+    'quejas.enBreve.plazo.paso.registro.cuando': 'Des d’eixe dia corre el termini.',
+    'quejas.enBreve.plazo.paso.acuse': 'Justificant de recepció',
+    'quejas.enBreve.plazo.paso.acuse.cuando': 'En {n} dies com a molt.',
+    'quejas.enBreve.plazo.paso.respuesta': 'Resposta',
+    'quejas.enBreve.plazo.paso.respuesta.cuando': 'En {n} mesos com a molt.',
+    'quejas.enBreve.plazo.paso.sindic': 'Si no contesta',
+    'quejas.enBreve.plazo.paso.sindic.cuando': 'Pots acudir al Síndic de Greuges.',
+    'quejas.enBreve.plazo.frase':
+      'Sí. Des que la queixa entra en el registre, l’Ajuntament té {dias} dies per a enviar el justificant de recepció i {meses} mesos per a contestar, amb caràcter general.',
+    'quejas.enBreve.plazo.transparencia':
+      'Si és una petició de transparència, el termini per a contestar és de {n} mesos.',
+    'quejas.enBreve.plazo.transparencia.uno':
+      'Si és una petició de transparència, el termini per a contestar és d’un mes.',
+    'quejas.enBreve.plazo.ver': 'Els terminis i la seua base legal →',
+    'quejas.enBreve.sindic.pregunta': 'I si no contesten?',
+    'quejas.enBreve.sindic.cifraNota': 'expedients sobre l’Ajuntament des de {desde}',
+    'quejas.enBreve.sindic.cifraNota.sinFecha': 'expedients sobre l’Ajuntament',
+    'quejas.enBreve.sindic.frase':
+      'Pots acudir al Síndic de Greuges, el defensor del poble de la Comunitat Valenciana. És gratuït i no et lleva altres recursos.',
+    'quejas.enBreve.sindic.recomendaciones':
+      'En {n} d’eixos expedients, que hem llegit un a un, el Síndic es va adreçar a l’Ajuntament per a recomanar-li alguna cosa o recordar-li els seus deures legals; {falta} d’ells, segons el títol que els posa el mateix Síndic, per falta de resposta.',
+    'quejas.enBreve.sindic.recomendaciones.sinFalta':
+      'En {n} d’eixos expedients, que hem llegit un a un, el Síndic es va adreçar a l’Ajuntament per a recomanar-li alguna cosa o recordar-li els seus deures legals.',
+    'quejas.enBreve.sindic.ultima': 'El més recent que hem llegit és del {fecha}: «{titulo}»',
+    'quejas.enBreve.sindic.ver': 'Tots els expedients ↓',
     'quejas.cruce.eyebrow': 'Creuament de dades · sense causalitat',
     'quejas.cruce.titulo': 'Queixes i contractes situats per barri',
     'quejas.cruce.intro':
@@ -4017,6 +4098,8 @@ export const CATALOGUE = {
       'El que sí que s’ha retirat és a dalt, en les **{n}** fitxes que es van quedar sense cap cita publicable.',
     'hallazgos.lista.contraste.enlace': 'Per què es publiquen ací →',
     'findings.refs.crossChecked': 'Documents acarats',
+    'findings.refs.crossChecked.nota':
+      'Aquests documents es van acarar amb les cites: ser a la llista no diu que les confirmen.',
     'findings.refs.provenance': 'Procedència de les cites',
     'findings.refs.contradiction': 'Documents que contradiuen',
     'findings.refs.ficha': 'fitxa {ficha}',
