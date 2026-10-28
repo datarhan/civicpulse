@@ -221,7 +221,7 @@ function afirmacionesContrastables(
 }
 
 /** The outlet is the publisher host; with no host, the name is all there is. */
-function claveDeMedio(a: { sourceHost: string | null; source: string }): string {
+export function claveDeMedio(a: { sourceHost: string | null; source: string }): string {
   return a.sourceHost ?? `name:${a.source}`
 }
 
@@ -471,6 +471,15 @@ function titlesSameStory(a: Set<string>, b: Set<string>): boolean {
   if (shared < TRIANGULATION_MIN_SHARED_TOKENS) return false
   const union = a.size + b.size - shared
   return union > 0 && shared / union >= TRIANGULATION_MIN_JACCARD
+}
+
+/**
+ * The same test on two headlines, for a caller that pairs them itself:
+ * /cambios (`prensa-por-noticia.ts`) adds a date and an outlet condition, so it
+ * cannot reuse the components `clusterArticlesByStory` builds.
+ */
+export function titularesDeLaMismaHistoria(a: string, b: string): boolean {
+  return titlesSameStory(new Set(tokenise(a)), new Set(tokenise(b)))
 }
 
 /**
