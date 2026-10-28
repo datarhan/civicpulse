@@ -5,6 +5,7 @@ import {
   officeItems,
   currentOffice,
   officeSince,
+  officeBefore,
   latestOffice,
 } from '../src/lib/journalist-facts.js'
 
@@ -119,6 +120,61 @@ describe('officeSince: la cadena contigua hasta el cargo actual', () => {
   })
 })
 
+/**
+ * Lo que «desde» deja fuera. La etiqueta decía «En la corporación · desde 2015» a
+ * José Ángel Hernández, cuya trayectoria, justo debajo, lista también un acta de
+ * 2010; y «desde 2023» a Rafael Folgado, concejal de 2015 a 2019. La revisión
+ * lectora lo señaló el 28-10-2026. «Desde» sigue siendo la cadena sin hueco —un
+ * acta suelta no la mueve—; lo anterior se dice aparte.
+ */
+describe('officeBefore: los cargos anteriores al hueco', () => {
+  it('un acta suelta anterior al hueco (Hernández, Raga)', () => {
+    const items = [
+      row('Concejal — corporación 2007-2011', 2010, 2010),
+      row('Concejal', 2015, 2019),
+      row('Concejal · Segundo Teniente de Alcalde', 2019, 2023),
+      row('Concejal · Tercer Teniente de Alcalde', 2023, null),
+    ]
+    expect(officeBefore(items)).toEqual([{ desde: 2010, hasta: 2010 }])
+  })
+
+  it('un mandato entero antes del hueco (Folgado)', () => {
+    const items = [row('Concejal de Compromís', 2015, 2019), row('Concejal y portavoz', 2023, null)]
+    expect(officeBefore(items)).toEqual([{ desde: 2015, hasta: 2019 }])
+  })
+
+  it('dos mandatos seguidos antes del hueco son un tramo; dos separados, dos', () => {
+    const seguidos = [
+      row('Concejal', 2003, 2007),
+      row('Concejal', 2007, 2011),
+      row('Alcalde', 2015, null),
+    ]
+    expect(officeBefore(seguidos)).toEqual([{ desde: 2003, hasta: 2011 }])
+    const separados = [
+      row('Concejal', 2003, 2007),
+      row('Concejal', 2010, 2010),
+      row('Alcalde', 2015, null),
+    ]
+    expect(officeBefore(separados)).toEqual([
+      { desde: 2003, hasta: 2007 },
+      { desde: 2010, hasta: 2010 },
+    ])
+  })
+
+  it('una candidatura sin escaño no es un cargo anterior (Guzmán)', () => {
+    const items = [
+      row('Candidata n.º 9 del PP, sin obtener escaño', 2019, 2019),
+      row('Concejal', 2023, null),
+    ]
+    expect(officeBefore(items)).toEqual([])
+  })
+
+  it('sin cargo actual no hay «antes»', () => {
+    expect(officeBefore([row('Concejal', 2015, 2019)])).toEqual([])
+    expect(officeBefore([])).toEqual([])
+  })
+})
+
 describe('latestOffice: el subtítulo de un ex cargo', () => {
   it('devuelve el mandato cerrado más reciente cuando no hay ninguno abierto', () => {
     const items = [row('Concejal', 2015, 2019), row('Concejal y portavoz suplente', 2023, 2025)]
@@ -163,6 +219,20 @@ describe('contra los informes publicados (años medidos a mano el 06-09-2026)', 
       expect(officeSince(careerOf(id))).toBe(year)
     })
   }
+
+  it('sólo dos biografías tienen un cargo anterior al hueco, y son éstas', () => {
+    // Mide algo: recorre TODOS los informes publicados, no dos elegidos.
+    const conAntes = Object.fromEntries(
+      REPORTS.items
+        .map((r) => [r.assignmentId, officeBefore(careerOf(r.assignmentId))])
+        .filter(([, antes]) => antes.length > 0),
+    )
+    expect(REPORTS.items.length).toBeGreaterThan(15)
+    expect(conAntes).toEqual({
+      'a-jose-angel-hernandez-bio': [{ desde: 2010, hasta: 2010 }],
+      'a-rfolgado-bio': [{ desde: 2015, hasta: 2019 }],
+    })
+  })
 
   it('Gimeno: el cargo actual es el del ayuntamiento, no la asesoría en la Diputació', () => {
     const c = currentOffice(careerOf('a-alberto-gimeno-bio-v2'))
