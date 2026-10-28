@@ -446,10 +446,14 @@ export default function QuejaDetail() {
               detail: rellena(t('quejas.detalle.hito.verificada.detalle'), { n: queja.apoyos }),
             }
           : {
-              label: rellena(t('quejas.detalle.camino.apoyos.ahora'), {
-                n: camino.apoyos,
-                umbral: camino.umbral,
-              }),
+              // Sin la cifra, el rótulo del estado: no se pinta «lleva 0 de 10».
+              label:
+                camino.apoyos == null
+                  ? t('quejas.estado.capturada')
+                  : rellena(t('quejas.detalle.camino.apoyos.ahora'), {
+                      n: camino.apoyos,
+                      umbral: camino.umbral,
+                    }),
               detail: rellena(t('quejas.detalle.camino.apoyos.detalle'), {
                 umbral: camino.umbral,
               }),

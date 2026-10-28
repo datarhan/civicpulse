@@ -83,6 +83,12 @@ describe('el camino de cada estado', () => {
     expect(c.pasos[1].fecha).toBeNull()
   })
 
+  it('sin la cifra de apoyos no hay cuenta: null, no un cero', () => {
+    const c = caminoDeLaQueja(con({ apoyos: undefined as unknown as number }))!
+    expect(c.apoyos).toBeNull()
+    expect(forma(c.pasos)[1]).toBe('apoyos:ahora')
+  })
+
   it('con los apoyos: el registro es lo que toca, y los apoyos se fechan', () => {
     const c = caminoDeLaQueja(con({ status: 'apoyada_verificada', apoyos: 10 }))!
     expect(forma(c.pasos)).toEqual([

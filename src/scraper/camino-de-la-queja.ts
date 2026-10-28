@@ -55,7 +55,7 @@ export interface PasoDelCamino {
 export interface CaminoDeLaQueja {
   pasos: PasoDelCamino[]
   /** Los apoyos que lleva, y los que hacen falta para el lote. */
-  apoyos: number
+  apoyos: number | null
   umbral: number
   /** Días para acusar recibo; null en transparencia, cuyo perfil no lo trae. */
   acuseDias: number | null
@@ -68,7 +68,7 @@ export interface CaminoDeLaQueja {
 export interface QuejaDelCamino {
   status: string
   service_code: string
-  apoyos: number
+  apoyos: number | null | undefined
   requested_datetime: string
   updated_datetime: string | null
   registered_at: string | null
@@ -98,8 +98,10 @@ export function caminoDeLaQueja(q: QuejaDelCamino): CaminoDeLaQueja | null {
   // Transparencia es el perfil cuyo plazo funda el art. 20 de la Ley 19/2013: así
   // lo decide el enrutador (`plazoDeResolucion`), que no exporta el perfil.
   const transparencia = plazo.basis === LEGAL_CATALOG.LTBG_20
-  const apoyos = Number.isFinite(q.apoyos) ? q.apoyos : 0
-  const llego = apoyos >= general.apoyos
+  // El bot publica los apoyos contados (`countApoyos`); sin la cifra no hay cuenta
+  // que dar, y «lleva 0 de 10» sería un cero que nadie contó.
+  const apoyos = typeof q.apoyos === 'number' && Number.isFinite(q.apoyos) ? q.apoyos : null
+  const llego = apoyos != null && apoyos >= general.apoyos
   // El bot cambia el estado al llegar al umbral, pero una instantánea puede ir por
   // detrás: «capturada» con los apoyos ya pasados no está «reuniendo» nada, y lo
   // que toca es el registro. Los apoyos van sin fecha, como en cualquier otro
