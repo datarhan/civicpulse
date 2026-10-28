@@ -142,10 +142,14 @@ function rotuloDeSubida(v, t) {
  * mirar que la firma nombre a una persona.
  */
 function conExplicacionFirmada(rotulo, v, t) {
+  const firma = firmaDeLaExplicacion(v)
+  return firma ? rellena(t('verificador.explicacionFirmada'), { rotulo, firma }) : rotulo
+}
+
+/** Quién firmó la explicación de una retractación del motor, o `null` si nadie. */
+function firmaDeLaExplicacion(v) {
   const firma = v?.source === 'verdict-engine' ? v?.reasonSignedBy : undefined
-  return typeof firma === 'string' && nombraAUnaPersona(firma)
-    ? rellena(t('verificador.explicacionFirmada'), { rotulo, firma })
-    : rotulo
+  return typeof firma === 'string' && nombraAUnaPersona(firma) ? firma : null
 }
 
 const lista = (x) => (Array.isArray(x) ? x : [])
@@ -341,6 +345,65 @@ export function evidenciaSegunFuentes(v) {
   if (v?.verdict !== 'sin-datos' || !esResumenCasi(v?.summary) || leyoContratos(v?.checkedAgainst))
     return evidencia
   return evidencia.filter((e) => e?.kind !== 'tender')
+}
+
+/** La clave del aviso que la tarjeta imprime en lugar de la explicación (`explicacionSinLista`). */
+export const CLAVE_RESUMEN_SIN_LISTA = 'ledger.resumenSinLista'
+
+/**
+ * ¿Es la explicación de una retractación del motor que la tarjeta no imprime?
+ *
+ * El motor juzga contra los candidatos de una lista corta, y lo que se guarda
+ * como explicación es su razonamiento sobre esa lista: «los contratos listados
+ * tienen montos significativamente inferiores», «ninguno de los candidatos
+ * trata de un centro de salud». Una retractación no lleva filas de evidencia y
+ * la línea de debajo dice «Fuentes comprobadas: no constan», así que el lector
+ * no tenía cómo comprobar lo que la explicación contaba de la lista.
+ *
+ * Nosotros tampoco: el motor no guarda la lista, y la clave de caché lleva, como
+ * mucho, su huella (desde el 05-10-2026), que sirve para cotejar una lista
+ * rehecha, no para recuperarla. Medido el 27-10-2026 sobre las 465 explicaciones
+ * del motor en pleno-claims-verified.json que nombran «candidatos» o «listados»
+ * (335 en los trozos servidos), 452 eran de la pasada del 02-08-2026, cuya clave
+ * sólo lleva el id de la declaración. Donde se pudo cotejar con
+ * el registro que el verificador determinista emparejaba con la misma
+ * declaración, tres lo contradecían, como la de rmtyr-033-afi-219148 que firmó
+ * una persona en #461. La medición está en editorial/, que no se publica.
+ *
+ * Por la forma, no por las palabras: `sin-datos`, ninguna fila de evidencia, el
+ * motor entre sus pasadas, ninguna de una persona —una rebaja de curador o una
+ * subida firmada traen su propia explicación— y sin explicación firmada
+ * (`firmaDeLaExplicacion`). Una expresión regular sobre «candidatos» dejaba
+ * fuera el singular, «Ningún candidato respalda…», y las que hablan de la lista
+ * sin nombrarla; la de resumenes-retirados.js encontraba 67 de 101.
+ *
+ * Y sólo el texto del modelo. Hay retractaciones del motor que guardan como
+ * resumen el texto fijo del verificador determinista —«No se encontró registro
+ * en tenders / BDNS / presupuesto…», 25 en los trozos servidos el 28-10-2026—:
+ * no habla de ninguna lista, y `resumenSegunFuentes` ya lo re-deriva. El aviso
+ * diría de ellas que lo escribió el verificador LLM.
+ *
+ * Es una retirada, el nivel A de `decideAutomation`: la tarjeta deja de
+ * imprimir el texto y dice por qué, sin escribir otra explicación del motor en
+ * su lugar. El veredicto, «Fuentes comprobadas» y el rótulo del verificador no
+ * cambian, y el texto sigue en public/data/pleno-claims-overlay.json. La
+ * explicación que escriba y firme una persona (`downgrade-verdict
+ * --amend-reason`) se imprime, como antes. Y la que ya retira
+ * resumenes-retirados.js conserva su propio aviso, que dice más.
+ *
+ * @param {{ verdict?: string, summary?: string, evidence?: unknown[] | null,
+ *   source?: string, derivedBy?: unknown[] | null, checkedAgainst?: unknown[] | null,
+ *   reasonSignedBy?: string } | null | undefined} v  la verificación servida, entera.
+ * @returns {boolean}
+ */
+export function explicacionSinLista(v) {
+  if (v?.verdict !== 'sin-datos' || lista(v?.evidence).length > 0) return false
+  if (esResumenSinRegistro(v?.summary) || esResumenCasi(v?.summary)) return false
+  const pasadas = pasadasDe(v)
+  if (!pasadas.includes('verdict-engine')) return false
+  const clases = pasadas.map((p) => CLASE_DE_PASADA[p])
+  if (clases.includes('curador') || clases.includes('persona')) return false
+  return firmaDeLaExplicacion(v) === null
 }
 
 /**

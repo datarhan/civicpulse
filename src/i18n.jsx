@@ -1216,6 +1216,10 @@ export const CATALOGUE = {
     // (resumenes-retirados.js).
     'ledger.resumenRetirado':
       'Explicación retirada: el verificador LLM guardó aquí una nota sobre su propia tarea.',
+    // Donde iba la explicación de una retractación del motor sin firma: habla de una lista
+    // de candidatos que no se guardó (claim-provenance.js, `explicacionSinLista`).
+    'ledger.resumenSinLista':
+      'Explicación retirada: el verificador LLM la escribió sobre una lista de registros que no se guardó, y sin esa lista no se puede comprobar. Un «sin datos» no es un desmentido: la afirmación puede ser cierta.',
     'ledger.cargando': 'Cargando verificaciones…',
     // El puente de importe bajo una fila CONTRATO (importe-de-contrato.ts): qué es la
     // cifra que imprime la fila y qué importe del mismo expediente es la citada.
@@ -3785,6 +3789,8 @@ export const CATALOGUE = {
     'verificador.explicacionFirmada': '{rotulo} · explicació signada per {firma}',
     'ledger.resumenRetirado':
       'Explicació retirada: el verificador LLM va guardar ací una nota sobre la seua pròpia tasca.',
+    'ledger.resumenSinLista':
+      'Explicació retirada: el verificador LLM la va escriure sobre una llista de registres que no es va guardar, i sense eixa llista no es pot comprovar. Un «sense dades» no és un desmentiment: l’afirmació pot ser certa.',
     'ledger.cargando': 'Carregant verificacions…',
     'puente.frase': '{impreso} és {queEs}. {sujeto} {magnitud}: la xifra citada ({cifra}).',
     'puente.sujeto.expediente': 'El mateix expedient',
