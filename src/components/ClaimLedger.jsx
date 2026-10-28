@@ -20,6 +20,7 @@ import {
 } from '../lib/claim-provenance.js'
 import { CLAVE_RESUMEN_RETIRADO, resumenPublicable } from '../lib/resumenes-retirados.js'
 import { PuenteDeImporte } from './PuenteDeImporte'
+import { cifraCitada } from '../scraper/cifra-en-literal'
 
 function formatEuros(n) {
   if (typeof n !== 'number' || !Number.isFinite(n)) return ''
@@ -99,8 +100,13 @@ function ClaimCard({ item }) {
   // guardado, nombraba fuentes que la línea no lista. Y con la misma regla se
   // deja de pintar el expediente «que se parece» de una verificación que no
   // cotejó contratos: salía encima de «Fuentes comprobadas: ninguna».
-  const resumen = resumenSegunFuentes(verification, resumenPublicable(verification))
+  const resumen = resumenSegunFuentes(verification, resumenPublicable(verification), claim.verbatim)
   const evidencia = evidenciaSegunFuentes(verification)
+  // La cifra que la tarjeta pinta como de la cita es la que la cita DICE
+  // (src/scraper/cifra-en-literal.ts). El extractor saca a veces la suya de la
+  // frase de al lado: k4olcs-019-cit-b9b013 llevaba «81 K €» en la cabecera
+  // encima de «sistema de debate, captura y grabación…», que no trae ninguna.
+  const cifra = cifraCitada(claim)
   return (
     <Card>
       <div
@@ -162,12 +168,12 @@ function ClaimCard({ item }) {
             >
               {claim.plenoDate}
             </span>
-            {claim.entities.amountEuros && (
+            {cifra != null && (
               <span
                 className="mono"
                 style={{ fontSize: 'var(--fs-micro)', fontWeight: 700, color: 'var(--ink)' }}
               >
-                {formatEuros(claim.entities.amountEuros)}
+                {formatEuros(cifra)}
               </span>
             )}
             {claim.entities.count && claim.entities.countUnit && (
@@ -218,7 +224,7 @@ function ClaimCard({ item }) {
           }}
         >
           {evidencia.map((e, i) => (
-            <EvidenceRow key={i} e={e} cifra={claim.entities.amountEuros} />
+            <EvidenceRow key={i} e={e} cifra={cifra} />
           ))}
         </div>
       )}

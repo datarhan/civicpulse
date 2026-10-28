@@ -7,6 +7,14 @@ import { verifyClaim } from '../src/scraper/claim-verifier'
  * the real corpus the deterministic matcher produced 49 of them and got all 49
  * wrong. Each case below is one of those, reproduced from the published data.
  */
+// La cifra, dicha en el literal: el camino del importe sólo coteja la que la
+// cita trae (src/scraper/cifra-en-literal.ts). Con el «x» de antes, cada
+// prueba de este fichero pasaría sin que el emparejador llegara a mirar nada.
+const dicha = (overrides: Record<string, unknown>) => {
+  const cifra = (overrides.entities as { amountEuros?: number } | undefined)?.amountEuros
+  return cifra == null ? 'x'.repeat(30) : `se habló de ${cifra.toLocaleString('es-ES')} euros`
+}
+
 const claim = (overrides: Record<string, unknown> = {}) =>
   ({
     id: 'c1',
@@ -14,7 +22,7 @@ const claim = (overrides: Record<string, unknown> = {}) =>
     type: 'afirmacion_numerica',
     topic: 'hacienda',
     speakerGroup: 'PSOE',
-    verbatim: 'x'.repeat(30),
+    verbatim: dicha(overrides),
     context: '',
     entities: {},
     confidence: 0.9,

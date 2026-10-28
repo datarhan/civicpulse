@@ -40,12 +40,25 @@ const DATOS = {
 }
 const CITAS = (leer('pleno-claims-suggestions.json') as { items: PlenoClaim[] }).items
 
+/**
+ * k4olcs-019-cit-b9b013 con los 80.666 € DICHOS en su literal. La publicada no
+ * los trae —se dijeron en la frase siguiente— y desde el 27-10-2026 el camino del
+ * importe no coteja una cifra que la cita no dice (src/scraper/cifra-en-literal.ts,
+ * tests/claim-verifier-cifra-en-literal.test.ts). Lo que esta prueba mide, qué
+ * fila del expediente se cita, es de la cita con su cifra.
+ */
+const conSuCifra = (): PlenoClaim => ({
+  ...CITAS.find((x) => x.id === 'k4olcs-019-cit-b9b013')!,
+  verbatim:
+    'sistema de debate, captura y grabación de vídeo y control del salón de plenos municipales. por importe de 80.666 euros.',
+})
+
 /** El 1 % del verificador, dicho como cociente: 0,99² ≈ 0,98. */
 const dentroDelUnoPorCiento = (a: number, b: number) => Math.min(a, b) / Math.max(a, b) >= 0.99
 
 describe('verificado · la evidencia imprime la cifra declarada', () => {
-  it('k4olcs-019-cit-b9b013: cita la adjudicación de 80.666,66 €, no la licitación de 70.158 €', () => {
-    const c = CITAS.find((x) => x.id === 'k4olcs-019-cit-b9b013')!
+  it('k4olcs-019-cit-b9b013, con su cifra: cita la adjudicación de 80.666,66 €, no la licitación de 70.158 €', () => {
+    const c = conSuCifra()
     expect(c.entities.amountEuros).toBe(80666)
     const v = verifyClaim({ claim: c, ...DATOS })
     expect(v.verdict).toBe('verificado')
@@ -61,7 +74,11 @@ describe('verificado · la evidencia imprime la cifra declarada', () => {
   it('ninguna cita con cifra del corpus extraído sale verificada sobre otra cifra', () => {
     // Sobre TODAS las citas con importe, no una muestra: la regla es del
     // veredicto, y una fila que la rompa es una tarjeta publicable.
-    const conCifra = CITAS.filter((c) => c.entities.amountEuros != null)
+    // …más la de k4olcs con su cifra dicha: desde que el camino del importe sólo
+    // coteja la cifra del literal, ninguna cita del corpus sale `verificado` de
+    // forma automática (la única era k4olcs-019, que no la dice), y sin un
+    // verificado la regla de abajo no miraría nada.
+    const conCifra = [...CITAS.filter((c) => c.entities.amountEuros != null), conSuCifra()]
     expect(conCifra.length).toBeGreaterThan(100) // que mida algo
     let verificadas = 0
     const malas: string[] = []

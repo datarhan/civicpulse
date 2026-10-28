@@ -151,6 +151,7 @@ import {
   resumenSinRegistro,
   resumenVerificado,
 } from './claim-verdicts'
+import { IMPORTE_PRACTICAMENTE_EXACTO, cifraEnElLiteral, similarAmount } from './cifra-en-literal'
 import { CAMPOS_DEL_EMPAREJADOR, importeDelEmparejador } from './importe-de-contrato'
 import { snippetDeContrato } from './snippet-de-contrato'
 import { sinEstadoSiLoDaSuContrato } from './gemelos-de-licitacion'
@@ -639,25 +640,11 @@ function mejorCasiPorObjeto(
   return mejor
 }
 
-/**
- * Un importe «prácticamente exacto»: un parecido de al menos 0,98, que es un
- * cociente de al menos 0,99 — un 1 % de diferencia, el redondeo de una cifra
- * dicha de viva voz («80.666» por 80.666,66 €).
- */
-export const IMPORTE_PRACTICAMENTE_EXACTO = 0.98
-
-/**
- * El parecido de dos importes: el cociente del menor entre el mayor, al
- * cuadrado. Exportado con su umbral de «prácticamente exacto» porque la subida
- * firmada (subida-firmada.ts) lo usa para decidir si la fila de un registro
- * dice la cifra de una declaración: dos umbrales copiados acabarían diciendo
- * cosas distintas.
- */
-export function similarAmount(claimed: number, found: number): number {
-  if (claimed <= 0 || found <= 0) return 0
-  const ratio = Math.min(claimed, found) / Math.max(claimed, found)
-  return Math.max(0, ratio * ratio) // quadratic so 0.9 → 0.81 (meaningful gap)
-}
+// El parecido de dos importes y su umbral de «prácticamente exacto» viven con
+// `cifraEnElLiteral` (cifra-en-literal.ts), que los necesita para leer el
+// literal y que la tarjeta importa sin cargar el verificador. Se siguen
+// exportando desde aquí para quien ya los pedía a este módulo.
+export { IMPORTE_PRACTICAMENTE_EXACTO, similarAmount }
 
 /** La mezcla del camino del importe, en contratos y en subvenciones: cifra 0,6, objeto 0,4. */
 const mezcla = (amountSim: number, textSim: number) => amountSim * 0.6 + textSim * 0.4
@@ -924,8 +911,20 @@ export function verifyClaim(inputs: VerifierInputs): ClaimVerification {
   const isVerifiableAccusation =
     claim.type === 'acusacion_publica' &&
     (claim.accusationSubtype === 'factual' || claim.accusationSubtype === 'contra-datos')
+  // Y sólo con la cifra que la cita DICE (cifra-en-literal.ts). El extractor la
+  // saca a veces de la frase de al lado: k4olcs-019-cit-b9b013 —«sistema de
+  // debate, captura y grabación de vídeo…», sin cifra— salía `verificado` con
+  // los 80.666 € que se dijeron en la frase siguiente, bajo «un contrato
+  // publicado imprime la cifra citada». Sin cifra en el literal este camino no
+  // corre, y tampoco anota los corpus: un comparador que no compara nada no
+  // figura como consultado (la regla por la que se quitó el presupuesto,
+  // `VerifierInputs.budget`). La cita cae a lo que el resto de la verificación
+  // sostenga —una obra citada, al bloque 3, que la busca por sus palabras—.
+  // Sólo baja: una cifra que no se dijo no funda `verificado`, ni
+  // `contradicho`, ni el expediente «que se parece».
   if (
     claim.entities.amountEuros != null &&
+    cifraEnElLiteral(claim.verbatim, claim.entities.amountEuros) &&
     (claim.type === 'afirmacion_numerica' ||
       claim.type === 'cita_obra' ||
       claim.type === 'cita_convenio' ||
@@ -1400,10 +1399,12 @@ export function verifyClaim(inputs: VerifierInputs): ClaimVerification {
   // que se hubiera mirado: una promesa cotejada sólo con el tracker, o una
   // afirmación con la que no corrió ningún comparador, decían haber buscado en
   // tres corpus que su propia lista no nombra, y la tarjeta imprime las dos.
+  // Con el literal, dice además que el presupuesto no se buscó cuando la cita
+  // habla de él (`callaElPresupuesto`).
   return {
     claimId: claim.id,
     verdict: 'sin-datos',
-    summary: resumenSinRegistro(checked),
+    summary: resumenSinRegistro(checked, undefined, claim.verbatim),
     evidence,
     checkedAgainst: checked,
   }

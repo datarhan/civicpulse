@@ -16,6 +16,7 @@ import { etiquetaVerificador, evidenciaSegunFuentes } from '../lib/claim-provena
 import { snippetDeEvidencia } from '../lib/crosschecked-status.js'
 import { estadoLlano } from '../lib/estado-llano.js'
 import { PuenteDeImporte } from '../components/PuenteDeImporte'
+import { cifraCitada } from '../scraper/cifra-en-literal'
 
 const PAGE_SIZE = 50
 
@@ -110,7 +111,10 @@ function ClaimRow({ item, plenoTitle }) {
   // gris sobre una formación que no reconocemos.
   const speakerColor = c.speakerGroup ? PARTY_TONE[c.speakerGroup] : undefined
   const ent = []
-  if (c.entities?.amountEuros) ent.push('€' + c.entities.amountEuros.toLocaleString('es-ES'))
+  // Sólo la cifra que la cita dice (src/scraper/cifra-en-literal.ts): la del
+  // extractor puede venir de la frase de al lado, y aquí se lee como de ésta.
+  const cifra = cifraCitada(c)
+  if (cifra != null) ent.push('€' + cifra.toLocaleString('es-ES'))
   if (c.entities?.count)
     ent.push(c.entities.count + (c.entities.countUnit ? ' ' + c.entities.countUnit : ''))
   if (c.entities?.date) ent.push(c.entities.date)
@@ -219,7 +223,7 @@ function ClaimRow({ item, plenoTitle }) {
                   Gobierto por su rótulo («· construction ·» → «Construcción»).
                   Sólo en pantalla; el dato no se toca. */}
               {snippetDeEvidencia(e, t)}
-              <PuenteDeImporte cifra={c.entities?.amountEuros} evidencia={e} />
+              <PuenteDeImporte cifra={cifra} evidencia={e} />
             </div>
           ))}
         </div>
