@@ -513,13 +513,21 @@ export default function ReconstruccionDana() {
               (99.000 euros, siete contratos)»: los contratos eran TODOS los del lugar, no los
               de la DANA, y el mapa era el de la versión del 06-07. Rehecho el 18-10-2026 sobre
               la misma lista que dibuja el mapa; el porqué, en la corrección de esa fecha. */}
-          Situados sobre el mapa del municipio, esos contratos se concentran donde más golpeó el
-          agua. El poblado de <b>l'Oliveral</b> absorbe el mayor gasto DANA geolocalizado (125.000
-          euros en dos contratos, el mayor de ellos en calles de los polígonos industriales El
-          Oliveral y Sector 14); le siguen el <b>polideportivo municipal</b> (114.000 euros, un
-          contrato: el cambio de pavimento de sus pistas) y la urbanización <b>La Reva</b> (101.000
-          euros, cuatro contratos). El alcalde, Robert Raga (PSPV), cifró en unas 1.400 empresas y
-          20.000 trabajadores el tejido del área industrial afectada por la DANA.
+          {/* Decía «Situados sobre el mapa del municipio, esos contratos se concentran donde más
+              golpeó el agua»: ningún dato de la pieza mide dónde golpeó más, y lo que decide si un
+              contrato sale en el mapa es que su título nombre un lugar, no el daño de ese lugar.
+              Las cifras salen de la misma lista que las barras de §04 (corrección del
+              28-10-2026). */}
+          De esos contratos, el mapa solo sitúa los que su título permite ubicar:{' '}
+          {danaSituado.contratos} de los {t.danaContracts}, por {eurC(danaSituado.importe)} de{' '}
+          {eurC(t.danaAmount)}. Su reparto dice qué lugares nombran esos títulos, no dónde golpeó
+          más el agua: eso no lo mide ningún dato de esta pieza. El poblado de <b>l'Oliveral</b>{' '}
+          absorbe el mayor gasto DANA geolocalizado (125.000 euros en dos contratos, el mayor de
+          ellos en calles de los polígonos industriales El Oliveral y Sector 14); le siguen el{' '}
+          <b>polideportivo municipal</b> (114.000 euros, un contrato: el cambio de pavimento de sus
+          pistas) y la urbanización <b>La Reva</b> (101.000 euros, cuatro contratos). El alcalde,
+          Robert Raga (PSPV), cifró en unas 1.400 empresas y 20.000 trabajadores el tejido del área
+          industrial afectada por la DANA.
         </p>
         <Card style={{ margin: '18px 0 8px' }}>
           <SectionHead eyebrow="Dónde" title="Contratos municipales geolocalizados" />

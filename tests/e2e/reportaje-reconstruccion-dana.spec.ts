@@ -28,6 +28,19 @@ test.describe('Reportaje · reconstrucción DANA (/reportajes/reconstruccion-dan
     ).toHaveCount(1)
     expect(cuerpo).not.toMatch(/22 contratos por 1,39 millones/)
 
+    // §02 decía que los contratos del mapa «se concentran donde más golpeó el
+    // agua», y ningún dato de la pieza mide dónde golpeó más: el mapa sitúa
+    // solo una parte, la que su título permite ubicar (corrección del
+    // 28-10-2026). La parte sale de la misma lista que las barras de §04.
+    expect(cuerpo).not.toMatch(/donde más golpeó el agua/)
+    const situados = snap.danaPlaces.reduce(
+      (a: number, p: { danaContractCount: number }) => a + p.danaContractCount,
+      0,
+    )
+    expect(cuerpo).toContain(
+      `el mapa solo sitúa los que su título permite ubicar: ${situados} de los ${snap.totals.danaContracts}, por`,
+    )
+
     // EL MAPA, sobre el mapa base y no a mano: un círculo por lugar, en el
     // panel de Leaflet, y los dos con más gasto DANA con su nombre a la vista.
     // Se espera al mapa de verdad: el hueco que guarda su sitio mientras carga
