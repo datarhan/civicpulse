@@ -1234,6 +1234,71 @@ body.cp-kiosk .cp-live-container {
   }
 }
 
+/* La lista de los 21 en la lectura vecinal (components/Cargos/ListaDeCargos.jsx):
+   cara, nombre, partido y lo que lleva. La rejilla se reparte sola con
+   `auto-fill`, como la de «En breve», y la oposición usa la MISMA rejilla para
+   que se lea como una sola lista con dos rótulos. El suelo de 250px deja el
+   nombre más largo, «Salvador Evaristo Ferrer Cortina», en dos líneas como
+   mucho al lado de una foto de 40. */
+.cp-cargos-lista {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 250px), 1fr));
+  gap: 10px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.cp-cargos-lista-rotulo {
+  margin: 0 0 8px;
+  font-size: var(--fs-micro);
+  font-weight: 600;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  color: var(--ink50);
+}
+.cp-cargos-lista-cara {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+  min-width: 0;
+  padding: 10px 12px;
+  border: 1px solid var(--border2);
+  border-radius: var(--r-card);
+}
+.cp-cargos-lista-texto {
+  flex: 1;
+  min-width: 0;
+}
+/* El subrayado lo pone `li a[href]`, como a todo enlace en una lista (WCAG
+   1.4.1): el nombre es el enlace a la ficha y se ve sin depender del color. */
+.cp-cargos-lista-nombre {
+  font-size: var(--fs-body);
+  font-weight: 600;
+  line-height: 1.25;
+  color: var(--ink);
+  overflow-wrap: anywhere;
+}
+.cp-cargos-lista-meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px;
+  margin-top: 4px;
+  font-size: var(--fs-micro);
+}
+.cp-cargos-lista-alcalde {
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--civic-ink);
+}
+.cp-cargos-lista-lleva {
+  margin: 6px 0 0;
+  font-size: var(--fs-aux);
+  line-height: 1.45;
+  color: var(--ink70);
+}
+
 /* El paso de la lectura vecinal a la experta (components/DivisorLecturas.jsx):
    una raya a cada lado de la frase, y la frase entera en cualquier ancho —a
    375 px las rayas encogen hasta desaparecer antes que partir una palabra. */

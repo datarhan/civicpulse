@@ -8,7 +8,12 @@
 import { describe, expect, it } from 'vitest'
 import { readFileSync } from 'node:fs'
 
-import { quienFiscaliza, sinAreasDelegadas, sueldosEnBreve } from '../src/scraper/en-breve-cargos'
+import {
+  conAreasDelegadas,
+  quienFiscaliza,
+  sinAreasDelegadas,
+  sueldosEnBreve,
+} from '../src/scraper/en-breve-cargos'
 
 const lee = (f: string) => JSON.parse(readFileSync(`public/data/${f}`, 'utf8'))
 const DEDIC = lee('dedicaciones.json')
@@ -100,5 +105,45 @@ describe('quienFiscaliza', () => {
     const todosGobiernan = LISTA.officials.filter((o: any) => (o.portfolios ?? []).length > 0)
     expect(quienFiscaliza(todosGobiernan)).toBeNull()
     expect(quienFiscaliza([])).toBeNull()
+  })
+})
+
+// El orden de «Quién dirige qué» y de la lista de los 21: las dos salen de aquí.
+describe('conAreasDelegadas', () => {
+  const ALCALDE = LISTA.officials.find((o: any) => o.role === 'alcalde')
+
+  it('mide algo: hay quien tiene áreas, y el alcalde es uno de ellos', () => {
+    expect(ALCALDE).toBeDefined()
+    expect(ALCALDE.portfolios.length).toBeGreaterThan(0)
+    expect(conAreasDelegadas(LISTA.officials).length).toBeGreaterThan(0)
+  })
+
+  it('con y sin áreas reparten a los 21 sin repetir a nadie', () => {
+    const con = conAreasDelegadas(LISTA.officials)
+    const sin = sinAreasDelegadas(LISTA.officials)
+    expect(con.length + sin.length).toBe(LISTA.count)
+    expect(new Set([...con, ...sin].map((o: any) => o.slug)).size).toBe(LISTA.count)
+    for (const o of con) expect(o.portfolios.length).toBeGreaterThan(0)
+  })
+
+  it('el alcalde va delante y los demás en el orden de la lista', () => {
+    const con = conAreasDelegadas(LISTA.officials)
+    expect(con[0]).toBe(ALCALDE)
+    const resto = LISTA.officials.filter(
+      (o: any) => o !== ALCALDE && (o.portfolios ?? []).length > 0,
+    )
+    expect(con.slice(1)).toEqual(resto)
+  })
+
+  it('va delante aunque la lista lo traiga el último', () => {
+    const otraVez = [...LISTA.officials.filter((o: any) => o !== ALCALDE), ALCALDE]
+    expect(conAreasDelegadas(otraVez)[0]).toBe(ALCALDE)
+  })
+
+  it('un alcalde sin áreas delegadas no entra por ser alcalde', () => {
+    const sinAreas = { ...ALCALDE, portfolios: [] }
+    const lista = LISTA.officials.map((o: any) => (o === ALCALDE ? sinAreas : o))
+    expect(conAreasDelegadas(lista)).not.toContain(sinAreas)
+    expect(sinAreasDelegadas(lista)).toContain(sinAreas)
   })
 })

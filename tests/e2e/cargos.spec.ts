@@ -364,9 +364,10 @@ test.describe('Cargos (/cargos)', () => {
     const nota = page.locator('[data-nota-fijado]')
     await expect(nota).toContainText('5.460,49')
     expect(await nota.innerText()).not.toMatch(/fijado por cargo/)
-    // Y la tarjeta del alcalde lo dice junto a su cifra.
+    // Y la tarjeta del alcalde lo dice junto a su cifra. La de su sección: la
+    // lista de los 21, arriba, también enlaza su ficha y también es una .cp-card.
     const tarjeta = page
-      .locator('.cp-card')
+      .locator('#quien-dirige .cp-card')
       .filter({ has: page.locator('a[href="/cargos/robert-raga-gadea"]') })
       .first()
     await expect(tarjeta.locator('[data-retribucion="fijada"]')).toContainText('5.460,49')
@@ -537,9 +538,10 @@ test.describe('Cargos (/cargos)', () => {
     await page.goto('/cargos', { waitUntil: 'domcontentloaded' })
     // Anclada al enlace de ESA ficha, no al nombre: `hasText` casa también con
     // cualquier tarjeta ancestra que lo contenga, y la aserción se mudaría de
-    // sitio sin avisar.
+    // sitio sin avisar. Y dentro de las secciones de tarjetas completas: la
+    // lista de los 21, arriba, también enlaza la ficha y también es una .cp-card.
     const tarjeta = page
-      .locator('.cp-card')
+      .locator('#quien-dirige .cp-card, #quien-fiscaliza .cp-card')
       .filter({ has: page.locator(`a[href="/cargos/${c!.slug}"]`) })
       .first()
     await expect(tarjeta).toBeVisible({ timeout: 8000 })
@@ -593,4 +595,29 @@ test.describe('Cargos (/cargos)', () => {
       timeout: 8000,
     })
   })
+
+  // La lista de los 21 de la lectura vecinal: una cara por escaño, y cada una
+  // dentro de su caja —el nombre y lo que lleva enteros— a 375 y en escritorio.
+  for (const ancho of [375, 1280]) {
+    test(`la lista de los 21 cabe en su caja a ${ancho}px`, async ({ page }) => {
+      const lista = JSON.parse(readFileSync('public/data/officials.json', 'utf8'))
+      await page.setViewportSize({ width: ancho, height: 900 })
+      await page.goto('/cargos', { waitUntil: 'domcontentloaded' })
+      const caras = page.locator('[data-lista-cargos] [data-cargo]')
+      await expect(caras).toHaveCount(lista.count, { timeout: 8000 })
+      const medidas = await page.locator('[data-lista-cargos]').evaluate((s) => {
+        const caja = s.getBoundingClientRect()
+        return [...s.querySelectorAll('[data-cargo]')].map((li) => {
+          const r = li.getBoundingClientRect()
+          const texto = li.querySelector('.cp-cargos-lista-texto')!
+          return {
+            dentro: r.left >= caja.left - 0.5 && r.right <= caja.right + 0.5,
+            sinRecorte: texto.scrollWidth <= texto.clientWidth + 1,
+          }
+        })
+      })
+      expect(medidas).toHaveLength(lista.count)
+      for (const m of medidas) expect(m).toEqual({ dentro: true, sinRecorte: true })
+    })
+  }
 })

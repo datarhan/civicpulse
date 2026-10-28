@@ -19,8 +19,11 @@
  * - «¿Quién vigila al gobierno?» sale de la lista de cargos: quien no tiene
  *   ninguna área delegada, la misma regla que reparte la página en «Quién
  *   dirige qué» y «Quién fiscaliza» (`sinAreasDelegadas`).
+ * - La lista de los 21 de la lectura vecinal reparte con la misma regla y el
+ *   mismo orden que las tarjetas de abajo (`conAreasDelegadas`).
  *
- * Nada aquí nombra a una persona: un tramo de importes y unos partidos.
+ * Ninguna frase de aquí nombra a una persona: un tramo de importes y unos
+ * partidos. La lista devuelve las filas de la lista de cargos tal cual.
  */
 
 export interface FilaDeDedicacion {
@@ -74,12 +77,25 @@ export function sueldosEnBreve(
 
 export interface Cargo {
   party: string
+  role?: string
   portfolios?: string[] | null
 }
 
 /** Quien no tiene ninguna área delegada: no gobierna, fiscaliza. */
 export function sinAreasDelegadas<T extends Cargo>(cargos: readonly T[]): T[] {
   return cargos.filter((o) => (o.portfolios ?? []).length === 0)
+}
+
+/**
+ * Quien tiene alguna área delegada, el complemento exacto de
+ * `sinAreasDelegadas`: el alcalde delante y los demás en el orden de la lista.
+ * Es el orden de «Quién dirige qué» y el de la lista de los 21, que así no
+ * pueden contar a dos gobiernos distintos. Un alcalde sin áreas no entra por
+ * ser alcalde: la regla son las áreas, no el cargo.
+ */
+export function conAreasDelegadas<T extends Cargo>(cargos: readonly T[]): T[] {
+  const con = cargos.filter((o) => (o.portfolios ?? []).length > 0)
+  return [...con.filter((o) => o.role === 'alcalde'), ...con.filter((o) => o.role !== 'alcalde')]
 }
 
 export interface QuienFiscaliza {

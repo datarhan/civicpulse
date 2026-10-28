@@ -2552,6 +2552,15 @@ export const CATALOGUE = {
     'cargos.oposicion.title': 'Quién fiscaliza',
     'cargos.oposicion.nota':
       'Su tarjeta está vacía de gestión por institución, no por falta de datos. Lo que sí tienen es voto en el pleno y derecho a preguntar.',
+    // La lista de los 21 en la lectura vecinal: cara, nombre, partido y lo que
+    // lleva cada uno; la oposición, rotulada una vez.
+    'cargos.lista.titulo': 'Los {n} concejales',
+    'cargos.lista.intro':
+      'Quién gobierna y qué áreas lleva cada uno, y quién no gobierna. Cada nombre abre su ficha.',
+    'cargos.lista.saltar': 'Las tarjetas completas ↓',
+    'cargos.lista.gobiernan': 'Gobiernan · {n}',
+    'cargos.lista.noGobiernan': 'No gobiernan · {n} · sin áreas delegadas',
+    'cargos.lista.lleva': 'Lleva: {areas}',
     'cargos.plantilla.eyebrow': 'Otra cosa · no son los cargos electos',
     'cargos.plantilla.title': 'Plantilla municipal',
     'cargos.plantilla.personas': 'personas empleadas',
@@ -5126,6 +5135,13 @@ export const CATALOGUE = {
     'cargos.oposicion.title': 'Qui fiscalitza',
     'cargos.oposicion.nota':
       'La seua fitxa està buida de gestió per institució, no per falta de dades. El que sí que tenen és vot en el ple i dret a preguntar.',
+    'cargos.lista.titulo': 'Els {n} regidors',
+    'cargos.lista.intro':
+      'Qui governa i quines àrees porta cadascú, i qui no governa. Cada nom obri la seua fitxa.',
+    'cargos.lista.saltar': 'Les targetes completes ↓',
+    'cargos.lista.gobiernan': 'Governen · {n}',
+    'cargos.lista.noGobiernan': 'No governen · {n} · sense àrees delegades',
+    'cargos.lista.lleva': 'Porta: {areas}',
     'cargos.plantilla.eyebrow': 'Una altra cosa · no són els càrrecs electes',
     'cargos.plantilla.title': 'Plantilla municipal',
     'cargos.plantilla.personas': 'persones empleades',
