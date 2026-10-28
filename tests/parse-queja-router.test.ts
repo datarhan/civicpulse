@@ -922,6 +922,8 @@ describe('queja-router — transparencia: la reclamación sustituye a la reposic
 
   it('la explicación no ofrece el recurso de reposición, y dice por qué', () => {
     const e = transparencia().explanationEs
+    // Sin líneas numeradas, el bucle de abajo pasaría sin mirar nada.
+    expect(vias(e)).toHaveLength(3)
     for (const via of vias(e)) expect(via).not.toMatch(/reposición/)
     expect(e).not.toMatch(/art\. 123 LPACAP/)
     expect(e).toMatch(/No cabe recurso de reposición/)
@@ -969,6 +971,10 @@ describe('queja-router — transparencia: la reclamación sustituye a la reposic
     expect(contencioso?.whenDays).toBe(silencio?.whenDays)
     expect(contencioso?.action).toMatch(/sin reclamar/)
     expect(contencioso?.action).toMatch(/art\. 34\.6 Ley 1\/2022/)
+    // Los dos meses corren desde la notificación, no desde que se dicta (art. 46.1 LJCA).
+    expect(contencioso?.action).toMatch(
+      /2 meses desde la notificación de la resolución del Consell/,
+    )
     expect(contencioso?.basis).toBe(LEGAL_CATALOG.LJCA_46)
   })
 
@@ -988,6 +994,7 @@ describe('queja-router — transparencia: la reclamación sustituye a la reposic
 
   it('la escalera va ordenada por días y numerada sin huecos', () => {
     const escalera = transparencia().escalation
+    expect(escalera.length).toBeGreaterThan(1)
     escalera.forEach((e, i) => {
       expect(e.step).toBe(i + 1)
       if (i > 0) expect(e.whenDays).toBeGreaterThanOrEqual(escalera[i - 1].whenDays)

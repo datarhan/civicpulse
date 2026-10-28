@@ -1176,7 +1176,7 @@ export const ESCALATION_PROFILES: Record<string, EscalationStep[]> = {
       // Ley 1/2022). Antes sólo se ofrecía tras la reclamación.
       whenDays: 30,
       action:
-        'Recurso contencioso-administrativo, también sin reclamar antes (art. 20.5 Ley 19/2013; art. 34.6 Ley 1/2022): 6 meses desde el silencio; si se reclamó, 2 meses desde la resolución del Consell, o 6 meses si no resuelve en 3 (art. 38.2 Ley 1/2022)',
+        'Recurso contencioso-administrativo, también sin reclamar antes (art. 20.5 Ley 19/2013; art. 34.6 Ley 1/2022): 6 meses desde el silencio; si se reclamó, 2 meses desde la notificación de la resolución del Consell, o 6 meses si no resuelve en 3 (art. 38.2 Ley 1/2022)',
       who: 'Ciudadano · órgano judicial',
       basis: LEGAL_CATALOG.LJCA_46,
     },
