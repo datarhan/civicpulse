@@ -3,7 +3,7 @@ import { Card, Pill, SectionHead, ShareWA, ExtLink } from '../components/Primiti
 import { useCambios, KIND_LABEL_ES, KIND_TONE } from '../hooks/useCambios'
 import { useDocumentTitle } from '../hooks/useDocumentTitle'
 import { rotuloDe, useT } from '../i18n'
-import { rellena } from '../lib/formatters'
+import { entero, rellena } from '../lib/formatters'
 import { useState } from 'react'
 import { FraseDeLaSemana } from '../components/Cambios/FraseDeLaSemana'
 import DivisorLecturas from '../components/DivisorLecturas'
@@ -53,6 +53,25 @@ function WindowToggle({ current, onChange }) {
       ))}
     </div>
   )
+}
+
+/**
+ * La línea de un contrato: a quién se adjudicó y por cuánto. Era «Ayuntamiento de
+ * Riba-roja de Túria · €14.984,46 · ADJUDICATARIA»: el órgano es el mismo en los
+ * 814 contratos, y el importe salía con otro formato que el resto del sitio. Sin
+ * importe publicado lo dice, en vez de callarlo.
+ */
+function lineaDeContrato(t, it) {
+  return [
+    it.adjudicataria
+      ? rellena(t('cambios.contrato.adjudicataria'), { nombre: it.adjudicataria })
+      : null,
+    it.importe != null
+      ? rellena(t('cambios.contrato.importe'), { importe: entero(Math.round(it.importe)) })
+      : t('cambios.contrato.importeNoPublicado'),
+  ]
+    .filter(Boolean)
+    .join(' · ')
 }
 
 function KindCard({ kind, items, formatDate }) {
@@ -113,12 +132,27 @@ function KindCard({ kind, items, formatDate }) {
                   {it.title}
                 </Link>
               )}
-              {it.subtitle && (
+              {/* Un contrato se titula con su etiqueta llana; si dice menos que el
+                  título oficial, éste va debajo, entero. */}
+              {it.tituloOficial && (
+                <div
+                  data-titulo-oficial=""
+                  style={{
+                    fontSize: 'var(--fs-micro)',
+                    color: 'var(--ink50)',
+                    marginTop: 2,
+                    lineHeight: 1.45,
+                  }}
+                >
+                  {rellena(t('cambios.contrato.tituloOficial'), { titulo: it.tituloOficial })}
+                </div>
+              )}
+              {(it.subtitle || kind === 'licitacion') && (
                 <div
                   className="mono"
                   style={{ fontSize: 'var(--fs-micro)', color: 'var(--ink50)', marginTop: 2 }}
                 >
-                  {it.subtitle}
+                  {kind === 'licitacion' ? lineaDeContrato(t, it) : it.subtitle}
                 </div>
               )}
             </div>

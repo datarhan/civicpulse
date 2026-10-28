@@ -1607,6 +1607,10 @@ export const CATALOGUE = {
     'cambios.total': 'Total: {n} cambios · ventana de {dias} días',
     'cambios.vacio':
       'No hay ninguna tarjeta que enseñar en esta ventana. Prueba a ampliarla a 14 o 30 días.',
+    'cambios.contrato.adjudicataria': 'Adjudicado a {nombre}',
+    'cambios.contrato.importe': '{importe} € sin IVA',
+    'cambios.contrato.importeNoPublicado': 'importe no publicado',
+    'cambios.contrato.tituloOficial': 'Título oficial: {titulo}',
     'cambios.frase.titulo': 'En una frase',
     'cambios.frase.hechos': 'En los últimos {dias} días, el Ayuntamiento {lista}.',
     'cambios.frase.hecho.pleno.uno': 'celebró 1 pleno',
@@ -4224,6 +4228,10 @@ export const CATALOGUE = {
     'cambios.total': 'Total: {n} canvis · finestra de {dias} dies',
     'cambios.vacio':
       'No hi ha cap targeta per a mostrar en esta finestra. Prova d’ampliar-la a 14 o 30 dies.',
+    'cambios.contrato.adjudicataria': 'Adjudicat a {nombre}',
+    'cambios.contrato.importe': '{importe} € sense IVA',
+    'cambios.contrato.importeNoPublicado': 'import no publicat',
+    'cambios.contrato.tituloOficial': 'Títol oficial: {titulo}',
     'cambios.frase.titulo': 'En una frase',
     'cambios.frase.hechos': 'En els últims {dias} dies, l’Ajuntament {lista}.',
     'cambios.frase.hecho.pleno.uno': 'va celebrar 1 ple',

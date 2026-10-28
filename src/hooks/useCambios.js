@@ -2,7 +2,8 @@
 import { useMemo } from 'react'
 import { useQuejas, CATEGORY_LABEL, STATE_LABEL } from './useQuejas'
 import { useGeo } from './useGeo'
-import { nombreDeBarrio } from '../lib/formatters'
+import { entero, nombreDeBarrio } from '../lib/formatters'
+import { etiquetaDeContrato } from '../scraper/etiqueta-de-contrato'
 import { usePlenos } from './usePlenos'
 import { usePress } from './usePress'
 import { useTenders, formatDate } from './useTenders'
@@ -120,16 +121,26 @@ export function useCambios(days = DEFAULT_WINDOW_DAYS) {
       // the feed would have announced one as if it stood. Same predicate the
       // money totals use, so "adjudicado" means one thing across the site.
       if (!isCommittedContract(c)) continue
-      const amt = importeAdjudicado(c) ?? 0 // sin IVA (PLACSP)
-      const amount = amt > 0 ? `€${amt.toLocaleString('es-ES')}` : ''
+      // Lo adjudicado sin IVA (PLACSP), o null si la fila no lo publica: nunca un
+      // cero (`importeAdjudicado`). La tarjeta lo escribe como el resto del
+      // sitio, «14.984 € sin IVA», y no «€14.984,46».
+      const importe = importeAdjudicado(c)
+      // Qué es, en una línea; el título oficial va debajo si la etiqueta dice
+      // menos (`etiquetaDeContrato`). El órgano no se pinta: en los 814
+      // contratos publicados es el propio Ayuntamiento.
+      const { etiqueta, recortada } = etiquetaDeContrato(c.title)
       out.push({
         kind: 'licitacion',
         date: c.awardDate,
-        title: c.title,
-        subtitle: [c.contractor, amount, c.assignee].filter(Boolean).join(' · '),
+        title: etiqueta || c.title,
+        tituloOficial: recortada ? c.title : null,
+        importe,
+        adjudicataria: c.assignee ?? null,
         url: c.permalink,
         external: true,
-        shareText: `Contrato adjudicado · ${c.title}${amount ? ' · ' + amount : ''}`,
+        shareText: `Contrato adjudicado · ${etiqueta || c.title}${
+          importe != null ? ` · ${entero(Math.round(importe))} € sin IVA` : ''
+        }`,
       })
     }
 
