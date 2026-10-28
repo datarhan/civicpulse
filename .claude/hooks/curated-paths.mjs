@@ -86,6 +86,11 @@ export const CURATED = {
   // por encima de lo que publica el registro municipal: lo firma una persona
   // con el anuncio de la Plataforma delante, y sólo escribe el CLI.
   'contract-corrections.json': 'npm run contract-correction -- --add|--retirar',
+  // El vocabulario del buscador «¿A quién le pregunto por…?» de /cargos (decisión
+  // D3): lleva de una palabra a un área delegada, y de ahí la página saca a la
+  // persona. No nombra a nadie, pero un salto «editorial» mal puesto mandaría a
+  // un vecino a la persona equivocada: sólo escribe el CLI, que lo re-valida.
+  'temas-cargos.json': 'npm run tema-cargo -- --add|--retirar',
   // El registro de solicitudes de acceso. Lo escribe una persona porque una
   // persona presentó el escrito y una persona leyó la respuesta: que lo
   // rellenara una máquina sería inventar un hecho sobre una administración.

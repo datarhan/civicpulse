@@ -34,7 +34,7 @@ const SERVICIOS = area('servicios públicos')
 function vocabulario(cambios: Partial<TemasCargos> = {}): TemasCargos {
   return {
     generatedAt: '2026-10-28T00:00:00.000Z',
-    nota: 'Vocabulario curado de prueba: qué área delegada corresponde a cada asunto.',
+    note: 'Vocabulario curado de prueba: qué área delegada corresponde a cada asunto.',
     fuente: { titulo: 'Corporación municipal', url: 'https://www.ribarroja.es/' },
     temas: [
       {

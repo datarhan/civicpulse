@@ -81,7 +81,7 @@ describe('npm run tema-cargo', () => {
     const v = JSON.parse(readFileSync(publicado(dir), 'utf8'))
     expect(v.temas).toEqual([ENTRADA])
     expect(v.sinAsignar).toEqual([])
-    expect(v.nota.length).toBeGreaterThan(40)
+    expect(v.note.length).toBeGreaterThan(40)
     expect(v.fuente.url).toMatch(/^https:\/\//)
     expect(Date.parse(v.generatedAt)).not.toBeNaN()
   })
@@ -120,7 +120,15 @@ describe('npm run tema-cargo', () => {
     const r = correr(dir, [
       '--add',
       '--from-file',
-      borrador(dir, { ...ENTRADA, tema: 'tumbas', palabras: ['tumbas', 'nichos'] }),
+      // Una fila válida por sí sola —editorial, con su razón—: lo único que la
+      // tumba es «nichos», que ya lleva a «cementerio».
+      borrador(dir, {
+        ...ENTRADA,
+        tema: 'tumbas',
+        palabras: ['tumbas', 'nichos'],
+        confianza: 'editorial',
+        razon: 'El cargo no nombra las tumbas; se le atribuye por ser el área del cementerio.',
+      }),
     ])
     expect(r.status).toBe(1)
     expect(r.stderr).toMatch(/nichos/)
