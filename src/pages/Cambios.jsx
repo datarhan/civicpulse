@@ -2,16 +2,27 @@ import { Link } from 'react-router-dom'
 import { Card, Pill, SectionHead, ShareWA, ExtLink } from '../components/Primitives'
 import { useCambios, KIND_LABEL_ES, KIND_TONE } from '../hooks/useCambios'
 import { useDocumentTitle } from '../hooks/useDocumentTitle'
-import { useT } from '../i18n'
+import { rotuloDe, useT } from '../i18n'
+import { rellena } from '../lib/formatters'
 import { useState } from 'react'
+import { FraseDeLaSemana } from '../components/Cambios/FraseDeLaSemana'
+import DivisorLecturas from '../components/DivisorLecturas'
 
-const WINDOW_OPTIONS = [
-  { days: 7, label: '7 días' },
-  { days: 14, label: '14 días' },
-  { days: 30, label: '30 días' },
-]
+const WINDOW_OPTIONS = [7, 14, 30]
+
+/**
+ * El orden de las tarjetas: primero lo que hace el Ayuntamiento, luego el canal
+ * de quejas y al final la prensa. Antes la prensa iba en medio, y con doce
+ * noticias de fiestas tapaba al único contrato de la semana (auditoría de las
+ * dos lecturas, §2).
+ */
+const KINDS = ['pleno', 'licitacion', 'subvencion', 'participa', 'queja', 'prensa']
+
+/** El rótulo de una clase en el idioma de la interfaz; el castellano de reserva. */
+const rotuloDeClase = (t, kind) => rotuloDe(t, `cambios.kind.${kind}`, KIND_LABEL_ES[kind] || kind)
 
 function WindowToggle({ current, onChange }) {
+  const t = useT()
   return (
     <div
       style={{
@@ -22,21 +33,22 @@ function WindowToggle({ current, onChange }) {
         borderRadius: 'var(--r-input)',
       }}
     >
-      {WINDOW_OPTIONS.map((o) => (
+      {WINDOW_OPTIONS.map((days) => (
         <button
-          key={o.days}
-          onClick={() => onChange(o.days)}
+          key={days}
+          onClick={() => onChange(days)}
+          aria-pressed={current === days}
           style={{
             padding: '4px 10px',
             borderRadius: 'var(--r-input)',
             fontSize: 'var(--fs-meta)',
-            fontWeight: current === o.days ? 600 : 500,
-            background: current === o.days ? 'var(--paper)' : 'transparent',
-            color: current === o.days ? 'var(--ink)' : 'var(--ink50)',
-            boxShadow: current === o.days ? '0 1px 2px rgba(0,0,0,.06)' : 'none',
+            fontWeight: current === days ? 600 : 500,
+            background: current === days ? 'var(--paper)' : 'transparent',
+            color: current === days ? 'var(--ink)' : 'var(--ink50)',
+            boxShadow: current === days ? '0 1px 2px rgba(0,0,0,.06)' : 'none',
           }}
         >
-          {o.label}
+          {rellena(t('cambios.ventana'), { n: days })}
         </button>
       ))}
     </div>
@@ -44,12 +56,15 @@ function WindowToggle({ current, onChange }) {
 }
 
 function KindCard({ kind, items, formatDate }) {
+  const t = useT()
   if (!items || items.length === 0) return null
   return (
     <Card>
       <SectionHead
-        eyebrow={`${items.length} ${items.length === 1 ? 'cambio' : 'cambios'}`}
-        title={KIND_LABEL_ES[kind] || kind}
+        eyebrow={
+          items.length === 1 ? t('cambios.n.uno') : rellena(t('cambios.n'), { n: items.length })
+        }
+        title={rotuloDeClase(t, kind)}
         right={
           <Pill tone={KIND_TONE[kind] || 'ghost'} size="xs">
             {items.length}
@@ -113,12 +128,14 @@ function KindCard({ kind, items, formatDate }) {
             />
           </div>
         ))}
+        {/* Era «+ N más · ver Prensa completo», sin enlace a ninguna parte: un
+            botón que no lo era. Ahora dice lo que hay, y nada más. */}
         {items.length > 10 && (
           <div
             className="mono"
             style={{ fontSize: 'var(--fs-micro)', color: 'var(--ink50)', marginTop: 4 }}
           >
-            + {items.length - 10} más · ver {KIND_LABEL_ES[kind] || kind} completo
+            {rellena(t('cambios.mas'), { n: items.length - 10 })}
           </div>
         )}
       </div>
@@ -129,10 +146,8 @@ function KindCard({ kind, items, formatDate }) {
 export default function Cambios() {
   const t = useT()
   const [days, setDays] = useState(7)
-  const { loading, byKind, totalCount, windowDays, formatDate } = useCambios(days)
-  useDocumentTitle(t('cambios.title') || 'Novedades')
-
-  const kinds = ['queja', 'pleno', 'licitacion', 'subvencion', 'prensa', 'participa']
+  const { loading, byKind, fuentes, totalCount, windowDays, formatDate } = useCambios(days)
+  useDocumentTitle(t('cambios.title'))
 
   return (
     <div
@@ -159,7 +174,7 @@ export default function Cambios() {
               letterSpacing: '.08em',
             }}
           >
-            {t('cambios.eyebrow') || 'Esta semana en Riba-roja'}
+            {t('cambios.eyebrow')}
           </div>
           <h1
             style={{
@@ -169,8 +184,10 @@ export default function Cambios() {
               margin: '2px 0 0',
             }}
           >
-            {t('cambios.title') || 'Novedades'}
+            {t('cambios.title')}
           </h1>
+          {/* La entradilla explicaba además «un botón verde (WA)»: el botón ya
+              dice lo que es. */}
           <div
             style={{
               fontSize: 'var(--fs-aux)',
@@ -179,63 +196,67 @@ export default function Cambios() {
               maxWidth: 720,
             }}
           >
-            Todo lo que ha cambiado en los últimos {windowDays} días: quejas nuevas, plenos,
-            contratos adjudicados, subvenciones, prensa y participación ciudadana. Cada tarjeta
-            lleva un botón verde (WA) para compartir por WhatsApp.
+            {rellena(t('cambios.intro'), { dias: windowDays })}
           </div>
         </div>
         <WindowToggle current={days} onChange={setDays} />
       </div>
 
-      {!loading && totalCount === 0 && (
-        <Card>
-          <SectionHead
-            eyebrow="Sin cambios"
-            title={`Sin novedades en los últimos ${windowDays} días`}
-          />
-          <div style={{ fontSize: 'var(--fs-aux)', color: 'var(--ink50)', marginTop: 6 }}>
-            No se han registrado quejas, plenos, contratos, subvenciones ni prensa en este periodo.
-            Prueba a ampliar la ventana a 14 o 30 días.
-          </div>
-        </Card>
-      )}
-
-      {!loading && totalCount > 0 && (
-        <>
-          <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8, marginBottom: 14 }}>
-            {kinds
-              .filter((k) => byKind[k]?.length)
-              .map((k) => (
-                <Pill key={k} tone={KIND_TONE[k]} size="sm">
-                  {KIND_LABEL_ES[k]} · {byKind[k].length}
-                </Pill>
-              ))}
-          </div>
-          <div style={{ display: 'grid', gap: 14 }}>
-            {kinds.map((k) => (
-              <KindCard key={k} kind={k} items={byKind[k]} formatDate={formatDate} />
-            ))}
-          </div>
-          <div
-            style={{
-              marginTop: 18,
-              fontSize: 'var(--fs-meta)',
-              color: 'var(--ink50)',
-              textAlign: 'center',
-            }}
-          >
-            Total: {totalCount} cambio{totalCount === 1 ? '' : 's'} · ventana de {windowDays} días ·
-            cada evento enlazable, compartible y con cita a la fuente.
-          </div>
-        </>
-      )}
-
       {loading && (
         <Card>
           <div style={{ fontSize: 'var(--fs-aux)', color: 'var(--ink50)' }}>
-            Cargando novedades…
+            {t('common.loading')}
           </div>
         </Card>
+      )}
+
+      {!loading && (
+        <>
+          {/* Las dos lecturas (auditoría de las dos lecturas, §2): arriba, en una
+              frase, lo que hizo el Ayuntamiento, lo que no consta y lo que no se
+              sabe; debajo, las tarjetas de siempre. */}
+          <FraseDeLaSemana byKind={byKind} fuentes={fuentes} dias={windowDays} />
+          <DivisorLecturas />
+
+          {totalCount === 0 ? (
+            // La frase de arriba ya dice qué no consta y de qué no hay datos: aquí
+            // sólo queda que no hay tarjetas. Esta caja decía «no se han
+            // registrado quejas, plenos, contratos…» aunque la fuente estuviera
+            // atrasada.
+            <Card>
+              <div style={{ fontSize: 'var(--fs-aux)', color: 'var(--ink50)' }}>
+                {t('cambios.vacio')}
+              </div>
+            </Card>
+          ) : (
+            <>
+              <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8, marginBottom: 14 }}>
+                {KINDS.filter((k) => byKind[k]?.length).map((k) => (
+                  <Pill key={k} tone={KIND_TONE[k]} size="sm">
+                    {rotuloDeClase(t, k)} · {byKind[k].length}
+                  </Pill>
+                ))}
+              </div>
+              <div style={{ display: 'grid', gap: 14 }}>
+                {KINDS.map((k) => (
+                  <KindCard key={k} kind={k} items={byKind[k]} formatDate={formatDate} />
+                ))}
+              </div>
+              <div
+                style={{
+                  marginTop: 18,
+                  fontSize: 'var(--fs-meta)',
+                  color: 'var(--ink50)',
+                  textAlign: 'center',
+                }}
+              >
+                {totalCount === 1
+                  ? rellena(t('cambios.total.uno'), { dias: windowDays })
+                  : rellena(t('cambios.total'), { n: totalCount, dias: windowDays })}
+              </div>
+            </>
+          )}
+        </>
       )}
     </div>
   )
