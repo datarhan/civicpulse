@@ -45,7 +45,11 @@
  * un medio), y de ellos el primero que la publicó.
  */
 
-import { claveDeMedio, palabrasDeContenido, titularesDeLaMismaHistoria } from './press-analytics'
+import {
+  claveDeMedio,
+  palabrasDeContenido,
+  titularesDeLaMismaHistoria,
+} from './titulares-de-prensa'
 import { esFuenteOficial } from './press-fuente-oficial'
 
 /** Lo más que puede haber entre dos piezas de la misma noticia, en días de calendario. */

@@ -58,8 +58,7 @@ async function pinta(idioma) {
   const catorce = rellena(CATALOGUE[idioma]['cambios.ventana'], { n: 14 })
   fireEvent.click(await screen.findByRole('button', { name: catorce }, { timeout: 15000 }))
   await waitFor(
-    () =>
-      expect(container.querySelectorAll('[data-clase="prensa"] [data-noticia]').length).toBe(10),
+    () => expect(container.querySelectorAll('[data-clase="prensa"] [data-fila]').length).toBe(10),
     { timeout: 15000 },
   )
   return { container, unmount }
@@ -75,7 +74,7 @@ describe('/cambios · la prensa, una fila por noticia', () => {
   it('la misma noticia en dos medios es una fila, con los dos enlazados', async () => {
     const { container } = await pinta('es')
     const tarjeta = container.querySelector('[data-clase="prensa"]')
-    const filas = [...tarjeta.querySelectorAll('[data-noticia]')]
+    const filas = [...tarjeta.querySelectorAll('[data-fila]')]
     const conElTitular = filas.filter((f) => f.textContent.includes(VPLAZA.title))
     expect(conElTitular).toHaveLength(1)
     // El titular en valenciano no es otra fila: va en el enlace a su medio.
@@ -105,7 +104,7 @@ describe('/cambios · la prensa, una fila por noticia', () => {
   it('las cuentas cuadran: las piezas de las filas más «y N más» son las de la cabecera', async () => {
     const { container } = await pinta('es')
     const tarjeta = container.querySelector('[data-clase="prensa"]')
-    const pintadas = [...tarjeta.querySelectorAll('[data-noticia]')].reduce(
+    const pintadas = [...tarjeta.querySelectorAll('[data-fila]')].reduce(
       (s, f) => s + Number(f.getAttribute('data-piezas')),
       0,
     )

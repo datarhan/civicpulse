@@ -74,11 +74,51 @@ function lineaDeContrato(t, it) {
     .join(' · ')
 }
 
-function KindCard({ kind, items, formatDate }) {
+/**
+ * Los sitios que publicaron una noticia de prensa, cada uno enlazado a su pieza
+ * y con su propio titular al pasar por encima: la fila lleva el de uno solo, y
+ * así se ve qué juntó `agruparPorNoticia`. Un nombre repetido lleva un número.
+ */
+function PublicadaEn({ piezas }) {
+  const t = useT()
+  const vistos = new Map()
+  return (
+    <div
+      data-publicada-en=""
+      className="mono"
+      style={{ fontSize: 'var(--fs-micro)', color: 'var(--ink50)', marginTop: 2 }}
+    >
+      {t('cambios.prensa.publicadaEn')}{' '}
+      {piezas.map((p, i) => {
+        const nombre = p.subtitle || p.origen || p.url
+        const n = (vistos.get(nombre) ?? 0) + 1
+        vistos.set(nombre, n)
+        return (
+          <span key={p.id ?? i}>
+            {i > 0 && ' · '}
+            <ExtLink href={p.url} title={p.title} style={{ color: 'var(--ink70)' }}>
+              {n > 1 ? `${nombre} (${n})` : nombre}
+            </ExtLink>
+          </span>
+        )
+      })}
+    </div>
+  )
+}
+
+/**
+ * Una tarjeta por clase. `filas` agrupa las piezas que cuentan lo mismo (la
+ * prensa, por noticia); sin ella, cada pieza es una fila. La cabecera cuenta
+ * piezas, y «y N más» las que quedan fuera de las diez primeras filas, para que
+ * las cuentas cuadren.
+ */
+function KindCard({ kind, items, filas, formatDate }) {
   const t = useT()
   if (!items || items.length === 0) return null
+  const visibles = (filas ?? items.map((it) => ({ principal: it, piezas: [it] }))).slice(0, 10)
+  const fuera = items.length - visibles.reduce((s, f) => s + f.piezas.length, 0)
   return (
-    <Card>
+    <Card data-clase={kind}>
       <SectionHead
         eyebrow={
           items.length === 1 ? t('cambios.n.uno') : rellena(t('cambios.n'), { n: items.length })
@@ -91,9 +131,11 @@ function KindCard({ kind, items, formatDate }) {
         }
       />
       <div style={{ marginTop: 8, display: 'flex', flexDirection: 'column', gap: 8 }}>
-        {items.slice(0, 10).map((it, i) => (
+        {visibles.map(({ principal: it, piezas }, i) => (
           <div
             key={i}
+            data-fila=""
+            data-piezas={piezas.length}
             style={{
               display: 'grid',
               gridTemplateColumns: '90px 1fr min-content',
@@ -147,13 +189,17 @@ function KindCard({ kind, items, formatDate }) {
                   {rellena(t('cambios.contrato.tituloOficial'), { titulo: it.tituloOficial })}
                 </div>
               )}
-              {(it.subtitle || kind === 'licitacion') && (
-                <div
-                  className="mono"
-                  style={{ fontSize: 'var(--fs-micro)', color: 'var(--ink50)', marginTop: 2 }}
-                >
-                  {kind === 'licitacion' ? lineaDeContrato(t, it) : it.subtitle}
-                </div>
+              {piezas.length > 1 ? (
+                <PublicadaEn piezas={piezas} />
+              ) : (
+                (it.subtitle || kind === 'licitacion') && (
+                  <div
+                    className="mono"
+                    style={{ fontSize: 'var(--fs-micro)', color: 'var(--ink50)', marginTop: 2 }}
+                  >
+                    {kind === 'licitacion' ? lineaDeContrato(t, it) : it.subtitle}
+                  </div>
+                )
               )}
             </div>
             <ShareWA
@@ -164,12 +210,12 @@ function KindCard({ kind, items, formatDate }) {
         ))}
         {/* Era «+ N más · ver Prensa completo», sin enlace a ninguna parte: un
             botón que no lo era. Ahora dice lo que hay, y nada más. */}
-        {items.length > 10 && (
+        {fuera > 0 && (
           <div
             className="mono"
             style={{ fontSize: 'var(--fs-micro)', color: 'var(--ink50)', marginTop: 4 }}
           >
-            {rellena(t('cambios.mas'), { n: items.length - 10 })}
+            {rellena(t('cambios.mas'), { n: fuera })}
           </div>
         )}
       </div>
@@ -180,7 +226,8 @@ function KindCard({ kind, items, formatDate }) {
 export default function Cambios() {
   const t = useT()
   const [days, setDays] = useState(7)
-  const { loading, byKind, fuentes, totalCount, windowDays, formatDate } = useCambios(days)
+  const { loading, byKind, prensaPorNoticia, fuentes, totalCount, windowDays, formatDate } =
+    useCambios(days)
   useDocumentTitle(t('cambios.title'))
 
   return (
@@ -273,7 +320,13 @@ export default function Cambios() {
               </div>
               <div style={{ display: 'grid', gap: 14 }}>
                 {KINDS.map((k) => (
-                  <KindCard key={k} kind={k} items={byKind[k]} formatDate={formatDate} />
+                  <KindCard
+                    key={k}
+                    kind={k}
+                    items={byKind[k]}
+                    filas={k === 'prensa' ? prensaPorNoticia : undefined}
+                    formatDate={formatDate}
+                  />
                 ))}
               </div>
               <div
