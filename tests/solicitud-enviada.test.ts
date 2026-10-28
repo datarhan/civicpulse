@@ -1186,6 +1186,7 @@ describe('un apartado de solicitudes que se movió tras publicarse lo dice', () 
       e.remitida?.fecha,
       e.remitida?.recibidaEl,
       e.suspendida?.fecha,
+      e.ampliada?.fecha,
       ...(e.incidencias ?? []).map((i) => i.fecha),
     ].filter((f): f is string => !!f)
 

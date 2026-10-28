@@ -597,7 +597,16 @@
         "registro": "2026014914",
         "entradaEl": "2026-09-28",
         "pide": "La misma carta del 18 de septiembre, presentada por el Registro de Entrada del Ayuntamiento a indicación de su Área de Transparencia, sin retirar la del correo.",
-        "respuesta": null
+        "respuesta": null,
+        "incidencias": [
+          {
+            "fecha": "2026-10-27",
+            "texto": "El 27 de octubre el Departamento de Transparencia y Participación Ciudadana del Ayuntamiento notificó que amplía un mes el plazo para resolverla (expediente 4870/2026/GEN), con el artículo 34.2 de la Ley 1/2022: hay que «recabar y contrastar información» de varias unidades, «en particular Intervención, Tesorería» y los servicios que gestionan y contrataron el abastecimiento y el alcantarillado, y comprobar «la existencia y localización de determinados documentos contractuales y tarifarios». El oficio cuenta desde la entrada del 28 de septiembre y dice que el nuevo plazo «finalizará el 28 de noviembre de 2026», y que la ampliación «no supone una denegación ni una limitación del derecho de acceso». No resuelve nada de lo pedido."
+          }
+        ],
+        "ampliada": {
+          "fecha": "2026-10-27"
+        }
       },
       {
         "organismo": "Comisión de Precios de la Generalitat",
