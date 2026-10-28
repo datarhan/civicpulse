@@ -11,6 +11,8 @@ import { useBdns } from './useBdns'
 import { useParticipa, KIND_LABEL } from './useParticipa'
 import { isCommittedContract, importeAdjudicado } from '../lib/contract-status.js'
 import { diaDeLaSede } from '../scraper/queja-router'
+import { sinAnunciosClasificados } from '../scraper/press-clasificado'
+import { agruparPorNoticia } from '../scraper/prensa-por-noticia'
 
 /**
  * Hook that aggregates "what changed" across every real-data corpus into a
@@ -26,7 +28,11 @@ import { diaDeLaSede } from '../scraper/queja-router'
  *   { kind, date, title, subtitle, url, canonicalPath, shareText }
  *
  * Returns:
- *   { loading, changes, byKind, totalCount, windowDays }
+ *   { loading, changes, byKind, prensaPorNoticia, fuentes, totalCount, windowDays }
+ *
+ * `prensaPorNoticia` is the press card's rows, `{ principal, piezas }` events
+ * (`agruparPorNoticia`); `changes` and `byKind.prensa` hold one event per
+ * story, its row's headline.
  */
 
 const DEFAULT_WINDOW_DAYS = 7
@@ -42,6 +48,22 @@ function cutoff(days) {
   return d.toISOString().slice(0, 10)
 }
 
+/** Una pieza de press.json como evento de /cambios. */
+function eventoDePrensa(it) {
+  return {
+    kind: 'prensa',
+    id: it.id,
+    date: it.date.slice(0, 10),
+    title: it.title,
+    subtitle: it.source || it.sourceHost,
+    // El anfitrión, para que «En una frase» cuente aparte la web municipal.
+    origen: it.sourceHost ?? null,
+    url: it.link,
+    external: true,
+    shareText: `"${it.title}" — ${it.source || ''} (${it.date.slice(0, 10)})`,
+  }
+}
+
 export function useCambios(days = DEFAULT_WINDOW_DAYS) {
   const { data: quejas, loading: qL, error: qE } = useQuejas()
   const { data: plenos, loading: pL, error: pE } = usePlenos()
@@ -54,6 +76,29 @@ export function useCambios(days = DEFAULT_WINDOW_DAYS) {
   const { data: geo } = useGeo()
 
   const loading = qL || pL || prL || tL || bL || paL
+
+  // La prensa de la ventana, sin los anuncios de un portal inmobiliario: un piso
+  // en venta de Fotocasa no es una noticia, y la frase lo contaba como una. Es el
+  // mismo filtro que aplica /laboratorio (`sinAnunciosClasificados`).
+  const prensaEnVentana = useMemo(() => {
+    const cut = cutoff(days)
+    const items = /** @type {any[]} */ (press?.items || [])
+    return sinAnunciosClasificados(items).filter((it) => inWindow(it.date?.slice(0, 10), cut))
+  }, [press, days])
+
+  // La prensa, una noticia por fila: la misma en dos medios, o en castellano y
+  // en valenciano, contaba y salía dos veces (`agruparPorNoticia`). La noticia es
+  // la unidad de toda la página —la frase, la cabecera de la tarjeta, «Y N más»
+  // y el total—, y la fila dice «En 2 sitios» cuando junta piezas. Contando
+  // piezas, la frase decía «Hay 13 noticias» junto a una tarjeta de once.
+  const prensaPorNoticia = useMemo(
+    () =>
+      agruparPorNoticia(prensaEnVentana).map((g) => ({
+        principal: eventoDePrensa(g.principal),
+        piezas: g.piezas.map(eventoDePrensa),
+      })),
+    [prensaEnVentana],
+  )
 
   const changes = useMemo(() => {
     const cut = cutoff(days)
@@ -97,21 +142,8 @@ export function useCambios(days = DEFAULT_WINDOW_DAYS) {
       })
     }
 
-    // Press — Google News aggregation.
-    for (const it of press?.items || []) {
-      if (!inWindow(it.date?.slice(0, 10), cut)) continue
-      out.push({
-        kind: 'prensa',
-        date: it.date.slice(0, 10),
-        title: it.title,
-        subtitle: it.source || it.sourceHost,
-        // El anfitrión, para que «En una frase» cuente aparte la web municipal.
-        origen: it.sourceHost ?? null,
-        url: it.link,
-        external: true,
-        shareText: `"${it.title}" — ${it.source || ''} (${it.date.slice(0, 10)})`,
-      })
-    }
+    // Press — Google News aggregation: una noticia, con el titular de su fila.
+    for (const g of prensaPorNoticia) out.push(g.principal)
 
     // Tenders — new adjudications (awardDate fresh).
     for (const c of tenders?.contracts || []) {
@@ -176,7 +208,7 @@ export function useCambios(days = DEFAULT_WINDOW_DAYS) {
 
     out.sort((a, b) => (b.date || '').localeCompare(a.date || ''))
     return out
-  }, [quejas, plenos, press, tenders, bdns, participa, geo, days])
+  }, [quejas, plenos, prensaPorNoticia, tenders, bdns, participa, geo, days])
 
   const byKind = useMemo(() => {
     const m = {}
@@ -209,6 +241,7 @@ export function useCambios(days = DEFAULT_WINDOW_DAYS) {
     loading,
     changes,
     byKind,
+    prensaPorNoticia,
     fuentes,
     totalCount: changes.length,
     windowDays: days,
