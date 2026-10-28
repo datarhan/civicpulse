@@ -150,3 +150,53 @@ describe('CorrectionLog: la ventana enseña lo que cambió', () => {
     expect(distintas, 'ninguna corrección que cambie texto: esto no mide nada').toBeGreaterThan(0)
   })
 })
+
+/**
+ * Las dos filas nuevas del 28-10-2026 (`correct-journalist-report`): un motivo
+ * enmendado y una fuente añadida. La enmienda se pinta como en /hallazgos —el
+ * motivo vigente rotulado «enmendado el …», y debajo la fecha, la firma, el
+ * porqué y la huella del anterior, nunca su texto—, y una fuente añadida no
+ * retiró nada, así que no lleva rótulo de texto retirado sobre un tachado vacío.
+ */
+describe('CorrectionLog: motivo enmendado y fuente añadida', () => {
+  const enmendada = {
+    field: 'warnings[1]',
+    original: 'Las delegaciones han variado durante el mandato.',
+    corrected: 'Las delegaciones han variado: Resolución 2513/2023 y Resolución 2639/2023.',
+    reason:
+      'El cambio de delegaciones lo dictó la Resolución 2639/2023, once días después del decreto original, y se publicó en el BOP el 10-07-2023.',
+    editor: 'Sergei Lutchenko',
+    correctedAt: '2026-09-05',
+    reasonAmendments: [
+      {
+        previous: 'motivo · sha256:5f3a1c2e9b01',
+        reason:
+          'Once días median entre los dos decretos; el BOP publicó la modificación el 10-07-2023.',
+        editor: 'Sergei Lutchenko',
+        amendedAt: '2026-10-28',
+      },
+    ],
+  }
+
+  it('el motivo enmendado lo dice delante, con la enmienda y la huella debajo', () => {
+    const { container } = render(<CorrectionLog corrections={[enmendada]} />)
+    const t = container.textContent
+    expect(t).toContain('Motivo (enmendado el 2026-10-28):')
+    expect(t).toContain('Motivo enmendado: 2026-10-28 · Sergei Lutchenko')
+    expect(t).toContain('5f3a1c2e9b01')
+  })
+
+  it('una fuente añadida no pinta «texto retirado» sobre nada', () => {
+    const anadida = {
+      field: 'sources.src-126',
+      original: '',
+      corrected: 'PLACSP · expediente 27/2018 · https://contrataciondelestado.es/…',
+      reason: 'La frase corregida necesitaba la ficha de PLACSP que la sostiene.',
+      editor: 'civicpulse-curator',
+      correctedAt: '2026-10-28',
+    }
+    const { container } = render(<CorrectionLog corrections={[anadida]} />)
+    expect(container.querySelector('del')).toBeNull()
+    expect(container.textContent).toContain('PLACSP · expediente 27/2018')
+  })
+})

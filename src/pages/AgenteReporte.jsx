@@ -15,10 +15,15 @@ import { useMemo, useState } from 'react'
 import { useParams, Link } from 'react-router-dom'
 import { Card, ExtLink, SectionHead } from '../components/Primitives'
 import {
+  ROTULO_ENMIENDA_ANTERIOR,
+  ROTULO_MOTIVO_ENMENDADO,
+  ROTULO_MOTIVO_ENMENDADO_EL,
   ROTULO_TEXTO_RETIRADO,
+  huellaSinEtiqueta,
   rotuloTextoPuesto,
   sustitutas,
 } from '../components/BitacoraCorrecciones'
+import { rellena } from '../lib/formatters'
 import { trozos } from '../lib/texto-negrita.js'
 import { heroCvUrl } from '../lib/journalist-facts.js'
 import { useOfficials } from '../hooks/useOfficials'
@@ -180,13 +185,19 @@ export function CorrectionLog({ corrections }) {
               </div>
               <div style={{ marginTop: 4, color: 'var(--ink50)' }}>
                 {/* Rotulado, no sólo tachado: un estilo no viaja en `textContent`
-                  y esta ficha nombra a personas. Ver BitacoraCorrecciones.jsx. */}
-                <span className="mono" style={{ fontSize: 'var(--fs-micro)' }}>
-                  {ROTULO_TEXTO_RETIRADO}:{' '}
-                </span>
-                <del>
-                  <Recorte texto={c.original} desde={desde} />
-                </del>{' '}
+                  y esta ficha nombra a personas. Ver BitacoraCorrecciones.jsx.
+                  Una fuente añadida no retiró nada: sin texto que tachar, no hay
+                  rótulo de texto retirado. */}
+                {c.original ? (
+                  <>
+                    <span className="mono" style={{ fontSize: 'var(--fs-micro)' }}>
+                      {ROTULO_TEXTO_RETIRADO}:{' '}
+                    </span>
+                    <del>
+                      <Recorte texto={c.original} desde={desde} />
+                    </del>{' '}
+                  </>
+                ) : null}
                 <span className="mono" style={{ fontSize: 'var(--fs-micro)' }}>
                   {rotuloTextoPuesto(despues[i])}:{' '}
                 </span>
@@ -194,7 +205,26 @@ export function CorrectionLog({ corrections }) {
                   <Recorte texto={c.corrected} desde={desde} />
                 </span>
               </div>
-              <div style={{ marginTop: 4, color: 'var(--ink50)' }}>{c.reason}</div>
+              {/* Un motivo enmendado lo dice delante, y cada enmienda lleva su
+                  fecha, su firma, su porqué y la huella del motivo que sustituyó,
+                  como en /hallazgos (bloque ENMIENDA DEL MOTIVO, pleno-finding.ts). */}
+              <div style={{ marginTop: 4, color: 'var(--ink50)' }}>
+                {c.reasonAmendments?.length > 0
+                  ? `${rellena(ROTULO_MOTIVO_ENMENDADO_EL, {
+                      fecha: String(c.reasonAmendments.at(-1).amendedAt).slice(0, 10),
+                    })} `
+                  : ''}
+                {c.reason}
+              </div>
+              {(c.reasonAmendments ?? []).map((a, j) => (
+                <div key={j} style={{ marginTop: 2, color: 'var(--ink50)' }}>
+                  <span className="mono" style={{ fontSize: 'var(--fs-micro)' }}>
+                    {ROTULO_MOTIVO_ENMENDADO}: {String(a.amendedAt).slice(0, 10)} · {a.editor}
+                  </span>
+                  . {a.reason} {ROTULO_ENMIENDA_ANTERIOR}{' '}
+                  <span className="mono">{huellaSinEtiqueta(a.previous)}</span>.
+                </div>
+              ))}
             </li>
           )
         })}

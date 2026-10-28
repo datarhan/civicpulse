@@ -120,8 +120,12 @@ npm run promote-report -- a-robert-raga-bio \
 npm run correct-journalist-report -- <reportId> \
     --field <narrative.<heading>.bodyMarkdown | narrative.<heading>.heading | quote.<index>.attributedTo \
             | portrait.portfolios[<index>] | warnings[<index>] | career-political[<index>].endYear \
-            | timeline[<index>].label> \
+            | timeline[<index>].label | sources.<id>.excerpt> \
     --new "<text>" --reason "<≥20 chars>" --editor "<name>"
+npm run correct-journalist-report -- <reportId> \
+    --add-source <fuente.json> --section "<narrative heading>" --reason "<≥20 chars>"
+npm run correct-journalist-report -- <reportId> \
+    --amend-reason <i> --new "<motivo nuevo>" --reason "<≥20 chars>" --editor "<Nombre Apellido>"
 
 npm run journalist:archive -- <assignmentId> --superseded-by <newAssignmentId> \
     --reason "<≥20 chars>" [--curator "<name>"] [--dry-run]
@@ -316,6 +320,20 @@ fetch|pdf|chrome`; `trust` is never accepted from the file — it comes from
   pleno had since raised. The wording only: the date and the sources are what
   make the row an event. One timeline section, index in range, no blank, no
   no-op.
+- **…and three more on 2026-10-28**, all from the reader review of #478's audit:
+  - `sources.<id>.excerpt` rewords the excerpt of one of OUR measurements
+    (`kind: 'local-snapshot'`) and refuses an external one, which is the
+    document's own words. Four bios cited «804 contratos adjudicados
+    examinados» from a corpus of 804 expedientes, adjudicados o no.
+  - `--add-source <fuente.json> --section "<heading>"` adds a citation and links
+    it to one narrative section, because a correction that puts a new figure in
+    signed prose needs the document that carries it. Excerpt required; a URL the
+    report already cites is refused; ledger row `sources.<id>`, from '' to
+    «title · url».
+  - `--amend-reason <i>` replaces the reason of a ledger row and leaves the
+    amendment in it, through the same `enmendarMotivoDeFila` as
+    `correct-pleno-finding`: previous reason only as a digest, signed by a person,
+    no new row. The bio's `CorrectionLog` renders it as /hallazgos does.
 
 What the first v2 taught (Gimeno, 2026-09-06/07), each fixed in code:
 

@@ -449,6 +449,25 @@ export interface JournalistReportCorrection {
   reason: string
   editor: string
   correctedAt: string
+  /**
+   * Cada sustitución de `reason`, en orden. Ausente —nunca vacía— en una fila
+   * cuyo motivo es el de su publicación. La misma forma y la misma regla que
+   * `PlenoFindingReasonAmendment`: bloque ENMIENDA DEL MOTIVO de
+   * src/scraper/pleno-finding.ts.
+   */
+  reasonAmendments?: JournalistReportReasonAmendment[]
+}
+
+/** Una sustitución del motivo de una fila de la bitácora de una biografía. */
+export interface JournalistReportReasonAmendment {
+  /** Huella del motivo sustituido (`motivo · sha256:<12 hex>`), nunca su texto. */
+  previous: string
+  /** Por qué se enmendó (≥20 caracteres). Se publica en la bitácora. */
+  reason: string
+  /** Una persona, con su nombre (`firma-de-persona.ts`). */
+  editor: string
+  /** Fecha ISO de la enmienda; nunca anterior a la de la fila que enmienda. */
+  amendedAt: string
 }
 
 export interface JournalistReportResponse {
