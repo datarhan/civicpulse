@@ -6,7 +6,8 @@
  *   - time limits (acuse de 10 días, resolución de 1 o 3 MESES, silencio type),
  *     counted in the sede's calendar with its días inhábiles (`relojDelPlazo`,
  *     `FESTIVOS_DE_LA_SEDE`)
- *   - escalation ladder (sede → Síndic CV → CTBG → contencioso-administrativo)
+ *   - escalation ladder (sede → Síndic CV → Consell de Transparència CV →
+ *     contencioso-administrativo)
  *   - Spanish human-readable explanation
  *
  * Pure function. No network. No mutation. Deterministic for a given
@@ -189,11 +190,22 @@ export const LEGAL_CATALOG: Record<string, LegalArticle> = {
     url: 'https://www.boe.es/buscar/act.php?id=BOE-A-2013-12887#a20',
     says: 'La resolución de la solicitud de acceso a la información pública deberá notificarse al solicitante en el plazo máximo de un mes desde la recepción de la solicitud.',
   },
+  // El art. 24.1 nombra al CTBG, pero el 24.6 le deja sólo lo que una comunidad
+  // no atribuye a un órgano propio (disposición adicional cuarta), y la Comunitat
+  // Valenciana se lo atribuye al suyo: para el Ayuntamiento, ver LTCV_38.
   LTBG_24: {
     law: 'Ley 19/2013 Transparencia',
     article: 'art. 24',
     url: 'https://www.boe.es/buscar/act.php?id=BOE-A-2013-12887#a24',
-    says: 'Frente a toda resolución expresa o presunta en materia de acceso, podrá interponerse reclamación ante el Consejo de Transparencia y Buen Gobierno.',
+    says: 'Frente a toda resolución expresa o presunta en materia de acceso podrá interponerse una reclamación, potestativa y previa a la vía contencioso-administrativa, en el plazo de un mes. La resuelve el Consejo de Transparencia y Buen Gobierno salvo que la comunidad autónoma atribuya la competencia a un órgano propio (art. 24.6 y disposición adicional cuarta): para un ayuntamiento valenciano, el Consell de Transparència de la Comunitat Valenciana.',
+  },
+  // El BOE numera así los anclajes de esta ley: #a3-10 es el art. 38, no un
+  // apartado (#a38 no existe). Comprobado en la página el 28-10-2026.
+  LTCV_38: {
+    law: 'Ley 1/2022 Transparencia CV',
+    article: 'art. 38',
+    url: 'https://www.boe.es/buscar/act.php?id=BOE-A-2022-8187#a3-10',
+    says: 'Ante las resoluciones, expresas o presuntas, de las solicitudes de acceso a la información, las personas interesadas podrán presentar ante el Consejo Valenciano de Transparencia, con carácter potestativo y antes de la vía contencioso-administrativa, una reclamación en el plazo de un mes desde el día siguiente a la notificación o a aquel en que se produzcan los efectos del silencio.',
   },
   LJCA_46: {
     law: 'Ley 29/1998 LJCA',
@@ -201,11 +213,13 @@ export const LEGAL_CATALOG: Record<string, LegalArticle> = {
     url: 'https://www.boe.es/buscar/act.php?id=BOE-A-1998-16718#a46',
     says: 'El plazo para interponer recurso contencioso-administrativo será de dos meses desde la notificación del acto, o de seis meses en caso de silencio.',
   },
+  // La Ley 11/1988 que se citaba aquí la derogó ésta (disposición derogatoria
+  // única), en vigor desde el 30-04-2021.
   SINDIC_CV: {
-    law: 'Ley 11/1988 Síndic de Greuges',
-    article: 'art. 1',
-    url: 'https://www.elsindic.com',
-    says: 'El Síndic de Greuges de la Comunitat Valenciana protege los derechos de la ciudadanía frente a las administraciones y publica sus resoluciones.',
+    law: 'Ley 2/2021 Síndic de Greuges CV',
+    article: 'art. 1.2',
+    url: 'https://www.boe.es/buscar/act.php?id=BOE-A-2021-6051#a1',
+    says: 'El Síndic de Greuges de la Comunitat Valenciana es el alto comisionado de las Corts Valencianes designado por estas para velar por la defensa de los derechos y las libertades reconocidos en el título I de la Constitución y en el título II del Estatuto de Autonomía.',
   },
   CONSTITUCION_29: {
     law: 'Constitución Española',
@@ -513,7 +527,7 @@ const PROFILE_STANDARD: LegalProfile = {
 }
 
 const PROFILE_TRANSPARENCIA: LegalProfile = {
-  basis: ['LTBG_8', 'LTBG_20', 'LTBG_24', 'LPACAP_16'],
+  basis: ['LTBG_8', 'LTBG_20', 'LTBG_24', 'LTCV_38', 'LPACAP_16'],
   acuseDays: 0, // no formal 10-day acuse; resolución en 1 mes
   resolucionMeses: 1, // art. 20 Ley 19/2013
   silencio: 'negativo',
@@ -1070,6 +1084,14 @@ export function relojDelPlazo(
 // Escalation profiles
 // ============================================================================
 
+/**
+ * La página del Síndic para presentar una queja. La de antes,
+ * `/es/presenta-una-queja`, ya no existe: el 28-10-2026 redirigía a una noticia
+ * sobre otra queja. La enlazan la escalera y el escrito del bot.
+ */
+export const SINDIC_PRESENTAR_QUEJA =
+  'https://www.elsindic.com/te-ayudamos/presentar-una-queja-consulta/'
+
 export const ESCALATION_PROFILES: Record<string, EscalationStep[]> = {
   standard: [
     {
@@ -1103,11 +1125,13 @@ export const ESCALATION_PROFILES: Record<string, EscalationStep[]> = {
     {
       step: 5,
       whenDays: 90,
+      // «No perjudica otros recursos» callaba lo que importa: la queja no para el
+      // reloj de la reposición ni del contencioso (art. 32.3 Ley 2/2021).
       action:
-        'Queja al Síndic de Greuges de la Comunitat Valenciana (sin coste, no perjudica otros recursos)',
+        'Queja al Síndic de Greuges de la Comunitat Valenciana (gratuita, art. 27 Ley 2/2021; no interrumpe los plazos para recurrir, art. 32.3)',
       who: 'Síndic de Greuges CV',
       basis: LEGAL_CATALOG.SINDIC_CV,
-      template: 'https://www.elsindic.com/es/presenta-una-queja',
+      template: SINDIC_PRESENTAR_QUEJA,
     },
     {
       step: 6,
@@ -1135,11 +1159,13 @@ export const ESCALATION_PROFILES: Record<string, EscalationStep[]> = {
     {
       step: 3,
       whenDays: 30,
+      // Sin «o CTBG»: para una solicitud al Ayuntamiento, el órgano es el Consell
+      // (art. 24.6 y DA 4ª Ley 19/2013; arts. 3.1.d y 38 Ley 1/2022 CV).
       action:
-        'Reclamación ante el Consell de Transparència de la CV (o CTBG) · 1 mes para interponerla',
-      who: 'Consell de Transparència CV / CTBG',
-      basis: LEGAL_CATALOG.LTBG_24,
-      template: 'https://www.consejodetransparencia.es/ct_Home/Actividad/Reclamaciones.html',
+        'Reclamación ante el Consell de Transparència de la Comunitat Valenciana · 1 mes para interponerla',
+      who: 'Consell de Transparència de la Comunitat Valenciana',
+      basis: LEGAL_CATALOG.LTCV_38,
+      template: 'https://conselltransparencia.gva.es/es/presentacion',
     },
     {
       step: 4,
@@ -1282,9 +1308,9 @@ function composeExplanation(ctx: {
     ``,
     `Si transcurre el plazo sin respuesta, las vías abiertas son:`,
     `1. Recurso potestativo de reposición ante el mismo órgano (1 mes — art. 123 LPACAP).`,
-    `2. Queja al Síndic de Greuges de la Comunitat Valenciana, sin coste y sin perjudicar otros recursos (https://www.elsindic.com).`,
+    `2. Queja al Síndic de Greuges de la Comunitat Valenciana, gratuita (art. 27 de la Ley 2/2021), que no interrumpe los plazos para recurrir (art. 32.3 de la Ley 2/2021): ${SINDIC_PRESENTAR_QUEJA}`,
     category === 'transparencia'
-      ? `3. Reclamación ante el Consell de Transparència de la CV o el Consejo de Transparencia y Buen Gobierno (art. 24 Ley 19/2013).`
+      ? `3. Reclamación ante el Consell de Transparència de la Comunitat Valenciana, en el plazo de un mes (art. 24 de la Ley 19/2013 y art. 38 de la Ley 1/2022 de la Comunitat Valenciana).`
       : `3. Recurso contencioso-administrativo ante el Juzgado de lo Contencioso-Administrativo de Valencia (6 meses desde el silencio — art. 46 Ley 29/1998).`,
     ``,
     `El alcalde, ${alcalde.honorific ?? ''} ${alcalde.name}, representa al Ayuntamiento (art. 21 LRBRL) y responde en todo caso de la omisión de respuesta.`,

@@ -3,9 +3,18 @@
  *
  * Generates a pre-filled queja al Síndic for a single queja that has
  * hit silencio negativo. The Síndic has statutory authority under Ley
- * 11/1988 to investigate administrations and publish resoluciones
- * naming the non-cooperative entity — i.e. the sanction is theirs,
- * not ours.
+ * 2/2021, de 26 de marzo, to investigate the inactivity of local
+ * administrations (art. 17.1.d) and to publish its resoluciones (art. 34.1)
+ * and the entity's refusal to cooperate (art. 35.3) or failure to comply
+ * (art. 41.d) — i.e. the sanction is theirs, not ours.
+ *
+ * Until 2026-10-28 the escrito invoked Ley 11/1988 and its arts. 18 and 29:
+ * that law was repealed by Ley 2/2021 (disposición derogatoria única) with
+ * effect from 2021-04-30. The articles were mapped from the BOE text, not by
+ * number: the report the Síndic asks of the administration (old art. 18.1,
+ * fifteen days) is now art. 31.2 (one month); the resolution that states the
+ * legal duties breached and makes recommendations (old art. 29.1) is now
+ * art. 33.2.
  *
  * Pure function. Same pattern as services/batch.ts.
  */
@@ -19,11 +28,14 @@ import {
   diasTranscurridos,
   plazoHumano,
   relojDelPlazo,
+  SINDIC_PRESENTAR_QUEJA,
   ZONA_DE_LA_SEDE,
 } from '../../../src/scraper/queja-router.ts'
 import { fechaHoraDeLaSede } from './recibo-sede.ts'
 
-const SINDIC_PORTAL = 'https://www.elsindic.com/es/presenta-una-queja'
+const LEY_DEL_SINDIC =
+  'Ley 2/2021, de 26 de marzo, del Síndic de Greuges de la Comunitat Valenciana'
+const LEY_DEL_SINDIC_BOE = 'https://www.boe.es/buscar/act.php?id=BOE-A-2021-6051'
 
 export interface SindicTemplate {
   queja: QuejaRow
@@ -142,8 +154,8 @@ export function renderSindicMarkdown(t: SindicTemplate): string {
   lines.push('# QUEJA ANTE EL SÍNDIC DE GREUGES DE LA COMUNITAT VALENCIANA')
   lines.push('')
   lines.push('**Administración afectada:** Ayuntamiento de Riba-roja de Túria')
-  lines.push(`**Portal:** ${SINDIC_PORTAL}`)
-  lines.push(`**Base legal:** Ley 11/1988, de 26 de diciembre, del Síndic de Greuges`)
+  lines.push(`**Portal:** ${SINDIC_PRESENTAR_QUEJA}`)
+  lines.push(`**Base legal:** ${LEY_DEL_SINDIC}`)
   lines.push('')
   lines.push('---')
   lines.push('')
@@ -185,16 +197,16 @@ export function renderSindicMarkdown(t: SindicTemplate): string {
   lines.push('')
   lines.push('## Solicitud al Síndic')
   lines.push('')
-  lines.push('Al amparo de lo dispuesto en la Ley 11/1988 del Síndic de Greuges, se solicita:')
+  lines.push(`Al amparo de lo dispuesto en la ${LEY_DEL_SINDIC}, se solicita:`)
   lines.push('')
   lines.push(
-    `1. Que el Síndic admita a trámite la presente queja frente al Ayuntamiento de Riba-roja de Túria por **inactividad administrativa** en el expediente referido.`,
+    `1. Que el Síndic admita a trámite la presente queja frente al Ayuntamiento de Riba-roja de Túria por **inactividad administrativa** en el expediente referido (art. 17.1.d de la Ley 2/2021).`,
   )
   lines.push(
-    `2. Que el Síndic requiera al Ayuntamiento un informe sobre las causas de la falta de resolución expresa dentro del plazo legal (art. 18 Ley 11/1988).`,
+    `2. Que el Síndic requiera al Ayuntamiento el informe detallado y razonado sobre los hechos, y en particular sobre las causas de la falta de resolución expresa dentro del plazo legal (art. 31.2 de la Ley 2/2021).`,
   )
   lines.push(
-    `3. Que, tras las actuaciones oportunas, se dicte resolución pública que establezca las recomendaciones, sugerencias o recordatorios de deberes legales que procedan (art. 29 Ley 11/1988), y que dicha resolución quede publicada en el registro de resoluciones del Síndic.`,
+    `3. Que, tras las actuaciones oportunas, se dicte resolución motivada que concrete los deberes legales incumplidos e inste a su cumplimiento —en particular, a resolver en tiempo y en forma la solicitud presentada— y formule las recomendaciones o advertencias que procedan (art. 33.2 de la Ley 2/2021), y que dicha resolución se haga pública a través de la página web de la institución (art. 34.1 de la Ley 2/2021).`,
   )
   lines.push('')
   lines.push('---')
@@ -204,14 +216,14 @@ export function renderSindicMarkdown(t: SindicTemplate): string {
   for (const l of routing.legalBasis) {
     lines.push(`- ${l.law} ${l.article} — ${l.url}`)
   }
-  lines.push(`- Ley 11/1988, del Síndic de Greuges — https://www.elsindic.com`)
+  lines.push(`- ${LEY_DEL_SINDIC}, arts. 17.1.d, 31.2, 33.2 y 34.1 — ${LEY_DEL_SINDIC_BOE}`)
   lines.push('')
   lines.push('---')
   lines.push('')
   lines.push(`Riba-roja de Túria, ${today}.`)
   lines.push('')
   lines.push(
-    `*Documento generado por CivicPulse a partir del seguimiento público del expediente ${q.id}. El reclamante puede añadir, modificar o retirar cualquier parte de este texto antes de presentarlo en ${SINDIC_PORTAL}.*`,
+    `*Documento generado por CivicPulse a partir del seguimiento público del expediente ${q.id}. El reclamante puede añadir, modificar o retirar cualquier parte de este texto antes de presentarlo en ${SINDIC_PRESENTAR_QUEJA}.*`,
   )
   return lines.join('\n')
 }
