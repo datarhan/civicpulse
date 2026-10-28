@@ -1,6 +1,6 @@
 {
   "version": "1.0",
-  "generatedAt": "2026-10-28T20:10:57.909Z",
+  "generatedAt": "2026-10-28T21:05:50.439Z",
   "legalNotice": "Informes periodísticos elaborados por un agente automático y revisados por curación humana antes de su publicación. Cada afirmación incluye cita verbatim, enlace de archivo cuando procede y derecho de réplica abierto vía formulario público en github.com/datarhan/civicpulse.",
   "contactUrl": "https://github.com/datarhan/civicpulse/issues/new/choose",
   "methodologyUrl": "/metodologia",
@@ -3559,7 +3559,7 @@
           "kind": "local-snapshot",
           "title": "public/data/tenders.json · comprobación nominal sobre el corpus de contratación",
           "retrievedAt": "2026-07-31T12:40:03.553Z",
-          "excerpt": "804 contratos examinados: ningún adjudicatario coincide con «Pamblanco», ni con sus empleadoras declaradas (Vorwerk, FVMP, Opt-Media Marketing Solutions). Candidata en 2015 (puesto 12, como independiente, BOP n.º 79) y 2019 (puesto 16, n.º 82) sin obtener acta; electa en 2023.",
+          "excerpt": "804 expedientes de contratación examinados, adjudicados o no: ningún adjudicatario coincide con «Pamblanco», ni con sus empleadoras declaradas (Vorwerk, FVMP, Opt-Media Marketing Solutions). Candidata en 2015 (puesto 12, como independiente, BOP n.º 79) y 2019 (puesto 16, n.º 82) sin obtener acta; electa en 2023.",
           "localPath": "public/data/tenders.json",
           "trust": "high",
           "selfDeclared": false
@@ -3974,6 +3974,14 @@
           "reason": "El Pleno del 16/03/2026 (exp. 1462/2026/GEN) actualizó para 2026 las retribuciones fijadas el 07/07/2023; la cifra de 2023 se presentaba como vigente.",
           "editor": "Sergei Lutchenko",
           "correctedAt": "2026-10-18"
+        },
+        {
+          "field": "sources.src-074.excerpt",
+          "original": "804 contratos examinados: ningún adjudicatario coincide con «Pamblanco», ni con sus empleadoras declaradas (Vorwerk, FVMP, Opt-Media Marketing Solutions). Candidata en 2015 (puesto 12, como independiente, BOP n.º 79) y 2019 (puesto 16, n.º 82) sin obtener acta; electa en 2023.",
+          "corrected": "804 expedientes de contratación examinados, adjudicados o no: ningún adjudicatario coincide con «Pamblanco», ni con sus empleadoras declaradas (Vorwerk, FVMP, Opt-Media Marketing Solutions). Candidata en 2015 (puesto 12, como independiente, BOP n.º 79) y 2019 (puesto 16, n.º 82) sin obtener acta; electa en 2023.",
+          "reason": "Los 804 eran todos los expedientes de contratación del corpus municipal en julio de 2026, adjudicados o no —711 adjudicados o formalizados, según el estado que hoy les da la fuente—, y no 804 contratos. La v2 de esta biografía ya lo dice así en su narrativa y en su laguna; el extracto de su medición seguía con la palabra anterior.",
+          "editor": "Sergei Lutchenko",
+          "correctedAt": "2026-10-28"
         }
       ],
       "response": null
@@ -10771,7 +10779,7 @@
               },
               {
                 "field": "Vínculos societarios y personales",
-                "reason": "El Registro Mercantil no se ha consultado de forma independiente y las relaciones personales no constan en fuentes públicas. Las comprobaciones nominales (804 contratos, incluidas sus empleadoras declaradas) no arrojaron coincidencia alguna."
+                "reason": "El Registro Mercantil no se ha consultado de forma independiente y las relaciones personales no constan en fuentes públicas. Las comprobaciones nominales (804 expedientes de contratación en julio de 2026, adjudicados o no, incluidas sus empleadoras declaradas) no arrojaron coincidencia alguna."
               }
             ]
           }
@@ -11019,7 +11027,7 @@
           "kind": "local-snapshot",
           "title": "public/data/tenders.json · comprobación nominal sobre el corpus de contratación",
           "retrievedAt": "2026-07-31T12:25:02.891Z",
-          "excerpt": "804 contratos examinados: ningún adjudicatario coincide con «Vila Oltra», ni con sus empleadoras declaradas (Cajamar/Ruralcaja, Cimenta2, Haya Real Estate). Contratos del ámbito cultural desde 07-2023: 12 — muestra demasiado pequeña para comparar. Ausente de las candidaturas de 2015 (BOP n.º 79) y 2019 (n.º 82): la de 2023 es su primera lista.",
+          "excerpt": "804 expedientes de contratación examinados, adjudicados o no: ningún adjudicatario coincide con «Vila Oltra», ni con sus empleadoras declaradas (Cajamar/Ruralcaja, Cimenta2, Haya Real Estate). Contratos del ámbito cultural desde 07-2023: 12 — muestra demasiado pequeña para comparar. Ausente de las candidaturas de 2015 (BOP n.º 79) y 2019 (n.º 82): la de 2023 es su primera lista.",
           "localPath": "public/data/tenders.json",
           "trust": "high",
           "selfDeclared": false
@@ -11039,6 +11047,22 @@
           "original": "Las conexiones de José Manuel Vila Oltra que constan en documentos públicos son de naturaleza político-administrativa: número ocho y uno de los independientes del grupo municipal socialista, integrante de la Junta de Gobierno Local y titular del área que le delegó el decreto del alcalde Roberto Raga, además de la entidad «Cajamar» consignada en su propia declaración de actividades.\n\nComo comprobación rutinaria, esta redacción ha cruzado sus apellidos y sus empleadoras declaradas con el corpus de contratación municipal: en 804 contratos adjudicados no consta ningún adjudicatario con sus apellidos, y ni Cajamar/Ruralcaja, ni Cimenta2, ni Haya Real Estate constan como adjudicatarias municipales. En el ámbito cultural de su delegación se identifican 12 contratos desde julio de 2023 — muestra demasiado pequeña para comparar indicadores, y ninguno con vínculo nominal con el concejal.\n\nEl registro municipal de asociaciones no publica directivos y la BDNS no publica beneficiarios nominales; el Registro Mercantil no se ha consultado de forma independiente, y las relaciones estrictamente personales no constan en fuentes públicas y no se publican sin constancia documental.",
           "corrected": "Las conexiones de José Manuel Vila Oltra que constan en documentos públicos son de naturaleza político-administrativa: número ocho y uno de los independientes del grupo municipal socialista, integrante de la Junta de Gobierno Local y titular del área que le delegó el decreto del alcalde Roberto Raga, además de la entidad «Cajamar» consignada en su propia declaración de actividades.\n\nComo comprobación rutinaria, esta redacción ha cruzado sus apellidos y sus empleadoras declaradas con el corpus de contratación municipal: en los 804 expedientes de contratación que constaban en el corpus municipal en julio de 2026 —adjudicados o no— no consta ningún adjudicatario con sus apellidos, y ni Cajamar/Ruralcaja, ni Cimenta2, ni Haya Real Estate constan como adjudicatarias municipales. En el ámbito cultural de su delegación se identifican 12 contratos desde julio de 2023 — muestra demasiado pequeña para comparar indicadores, y ninguno con vínculo nominal con el concejal.\n\nEl registro municipal de asociaciones no publica directivos y la BDNS no publica beneficiarios nominales; el Registro Mercantil no se ha consultado de forma independiente, y las relaciones estrictamente personales no constan en fuentes públicas y no se publican sin constancia documental.",
           "reason": "Los 804 eran todos los expedientes de contratación del corpus municipal en julio de 2026, adjudicados o no —711 adjudicados o formalizados, según el estado que hoy les da la fuente—, y no 804 contratos adjudicados. La v2 de la biografía de Raquel Pamblanco ya lo corrigió con estas mismas palabras.",
+          "editor": "Sergei Lutchenko",
+          "correctedAt": "2026-10-28"
+        },
+        {
+          "field": "gaps.Vínculos societarios y personales.reason",
+          "original": "El Registro Mercantil no se ha consultado de forma independiente y las relaciones personales no constan en fuentes públicas. Las comprobaciones nominales (804 contratos, incluidas sus empleadoras declaradas) no arrojaron coincidencia alguna.",
+          "corrected": "El Registro Mercantil no se ha consultado de forma independiente y las relaciones personales no constan en fuentes públicas. Las comprobaciones nominales (804 expedientes de contratación en julio de 2026, adjudicados o no, incluidas sus empleadoras declaradas) no arrojaron coincidencia alguna.",
+          "reason": "Los 804 eran todos los expedientes de contratación del corpus municipal en julio de 2026, adjudicados o no —711 adjudicados o formalizados, según el estado que hoy les da la fuente—, y no 804 contratos. La narrativa de esta biografía se corrigió el 28-10-2026 con las mismas palabras; esta laguna seguía con las de antes.",
+          "editor": "Sergei Lutchenko",
+          "correctedAt": "2026-10-28"
+        },
+        {
+          "field": "sources.src-077.excerpt",
+          "original": "804 contratos examinados: ningún adjudicatario coincide con «Vila Oltra», ni con sus empleadoras declaradas (Cajamar/Ruralcaja, Cimenta2, Haya Real Estate). Contratos del ámbito cultural desde 07-2023: 12 — muestra demasiado pequeña para comparar. Ausente de las candidaturas de 2015 (BOP n.º 79) y 2019 (n.º 82): la de 2023 es su primera lista.",
+          "corrected": "804 expedientes de contratación examinados, adjudicados o no: ningún adjudicatario coincide con «Vila Oltra», ni con sus empleadoras declaradas (Cajamar/Ruralcaja, Cimenta2, Haya Real Estate). Contratos del ámbito cultural desde 07-2023: 12 — muestra demasiado pequeña para comparar. Ausente de las candidaturas de 2015 (BOP n.º 79) y 2019 (n.º 82): la de 2023 es su primera lista.",
+          "reason": "Los 804 eran todos los expedientes de contratación del corpus municipal en julio de 2026, adjudicados o no —711 adjudicados o formalizados, según el estado que hoy les da la fuente—, y no 804 contratos. Las otras cuatro biografías del 804 corrigieron este mismo extracto el 28-10-2026.",
           "editor": "Sergei Lutchenko",
           "correctedAt": "2026-10-28"
         }
@@ -11472,7 +11496,7 @@
               },
               {
                 "field": "Vínculos societarios y personales",
-                "reason": "El Registro Mercantil no se ha consultado de forma independiente y las relaciones personales no constan en fuentes públicas. Las comprobaciones nominales (804 contratos, incluidas sus ocho empleadoras declaradas) no arrojaron coincidencia alguna."
+                "reason": "El Registro Mercantil no se ha consultado de forma independiente y las relaciones personales no constan en fuentes públicas. Las comprobaciones nominales (804 expedientes de contratación en julio de 2026, adjudicados o no, incluidas sus ocho empleadoras declaradas) no arrojaron coincidencia alguna."
               }
             ]
           }
@@ -11674,7 +11698,7 @@
           "kind": "local-snapshot",
           "title": "public/data/tenders.json · comprobación nominal sobre el corpus de contratación",
           "retrievedAt": "2026-07-31T10:34:18.162Z",
-          "excerpt": "804 contratos examinados: ningún adjudicatario coincide con «Gómez Laredo», y ninguna de sus empleadoras declaradas (Banco Mediolanum, Aviva, ASEVAL, Indra SSI, GFT Iberia, SENER, IDOM, ERIA) consta como adjudicataria. Contratos de sus áreas desde 07-2023: 6 — muestra demasiado pequeña para comparar. Ausente de la candidatura de 2015 (BOP n.º 79); en 2019 concurrió en el puesto 10 (BOP n.º 82).",
+          "excerpt": "804 expedientes de contratación examinados, adjudicados o no: ningún adjudicatario coincide con «Gómez Laredo», y ninguna de sus empleadoras declaradas (Banco Mediolanum, Aviva, ASEVAL, Indra SSI, GFT Iberia, SENER, IDOM, ERIA) consta como adjudicataria. Contratos de sus áreas desde 07-2023: 6 — muestra demasiado pequeña para comparar. Ausente de la candidatura de 2015 (BOP n.º 79); en 2019 concurrió en el puesto 10 (BOP n.º 82).",
           "localPath": "public/data/tenders.json",
           "trust": "high",
           "selfDeclared": false
@@ -11719,6 +11743,22 @@
           "original": "Las conexiones de María Esther Gómez Laredo que constan en documentos públicos son de dos tipos: las político-administrativas (número siete del grupo municipal socialista y titular de las áreas que le delegó el decreto del alcalde Roberto Raga) y la actividad financiera privada declarada en sus propios documentos oficiales (Banco Mediolanum).\n\nComo comprobación rutinaria, esta redacción ha cruzado sus apellidos y todas sus empleadoras declaradas con el corpus de contratación municipal: en 804 contratos adjudicados no consta ningún adjudicatario con sus apellidos, y ni Banco Mediolanum, ni Aviva, ni ASEVAL, ni Indra SSI, ni GFT Iberia, ni SENER, ni IDOM o ERIA constan como adjudicatarias municipales. En sus áreas delegadas se identifican 6 contratos desde julio de 2023 — muestra demasiado pequeña para comparar indicadores, y ninguno con vínculo nominal con la concejala.\n\nEl registro municipal de asociaciones no publica directivos y la BDNS no publica beneficiarios nominales; el Registro Mercantil no se ha consultado de forma independiente, y las relaciones estrictamente personales no constan en fuentes públicas y no se publican sin constancia documental.",
           "corrected": "Las conexiones de María Esther Gómez Laredo que constan en documentos públicos son de dos tipos: las político-administrativas (número siete del grupo municipal socialista y titular de las áreas que le delegó el decreto del alcalde Roberto Raga) y la actividad financiera privada declarada en sus propios documentos oficiales (Banco Mediolanum).\n\nComo comprobación rutinaria, esta redacción ha cruzado sus apellidos y todas sus empleadoras declaradas con el corpus de contratación municipal: en los 804 expedientes de contratación que constaban en el corpus municipal en julio de 2026 —adjudicados o no— no consta ningún adjudicatario con sus apellidos, y ni Banco Mediolanum, ni Aviva, ni ASEVAL, ni Indra SSI, ni GFT Iberia, ni SENER, ni IDOM o ERIA constan como adjudicatarias municipales. En sus áreas delegadas se identifican 6 contratos desde julio de 2023 — muestra demasiado pequeña para comparar indicadores, y ninguno con vínculo nominal con la concejala.\n\nEl registro municipal de asociaciones no publica directivos y la BDNS no publica beneficiarios nominales; el Registro Mercantil no se ha consultado de forma independiente, y las relaciones estrictamente personales no constan en fuentes públicas y no se publican sin constancia documental.",
           "reason": "Los 804 eran todos los expedientes de contratación del corpus municipal en julio de 2026, adjudicados o no —711 adjudicados o formalizados, según el estado que hoy les da la fuente—, y no 804 contratos adjudicados. La v2 de la biografía de Raquel Pamblanco ya lo corrigió con estas mismas palabras.",
+          "editor": "Sergei Lutchenko",
+          "correctedAt": "2026-10-28"
+        },
+        {
+          "field": "gaps.Vínculos societarios y personales.reason",
+          "original": "El Registro Mercantil no se ha consultado de forma independiente y las relaciones personales no constan en fuentes públicas. Las comprobaciones nominales (804 contratos, incluidas sus ocho empleadoras declaradas) no arrojaron coincidencia alguna.",
+          "corrected": "El Registro Mercantil no se ha consultado de forma independiente y las relaciones personales no constan en fuentes públicas. Las comprobaciones nominales (804 expedientes de contratación en julio de 2026, adjudicados o no, incluidas sus ocho empleadoras declaradas) no arrojaron coincidencia alguna.",
+          "reason": "Los 804 eran todos los expedientes de contratación del corpus municipal en julio de 2026, adjudicados o no —711 adjudicados o formalizados, según el estado que hoy les da la fuente—, y no 804 contratos. La narrativa de esta biografía se corrigió el 28-10-2026 con las mismas palabras; esta laguna seguía con las de antes.",
+          "editor": "Sergei Lutchenko",
+          "correctedAt": "2026-10-28"
+        },
+        {
+          "field": "sources.src-074.excerpt",
+          "original": "804 contratos examinados: ningún adjudicatario coincide con «Gómez Laredo», y ninguna de sus empleadoras declaradas (Banco Mediolanum, Aviva, ASEVAL, Indra SSI, GFT Iberia, SENER, IDOM, ERIA) consta como adjudicataria. Contratos de sus áreas desde 07-2023: 6 — muestra demasiado pequeña para comparar. Ausente de la candidatura de 2015 (BOP n.º 79); en 2019 concurrió en el puesto 10 (BOP n.º 82).",
+          "corrected": "804 expedientes de contratación examinados, adjudicados o no: ningún adjudicatario coincide con «Gómez Laredo», y ninguna de sus empleadoras declaradas (Banco Mediolanum, Aviva, ASEVAL, Indra SSI, GFT Iberia, SENER, IDOM, ERIA) consta como adjudicataria. Contratos de sus áreas desde 07-2023: 6 — muestra demasiado pequeña para comparar. Ausente de la candidatura de 2015 (BOP n.º 79); en 2019 concurrió en el puesto 10 (BOP n.º 82).",
+          "reason": "Los 804 eran todos los expedientes de contratación del corpus municipal en julio de 2026, adjudicados o no —711 adjudicados o formalizados, según el estado que hoy les da la fuente—, y no 804 contratos. Las otras cuatro biografías del 804 corrigieron este mismo extracto el 28-10-2026.",
           "editor": "Sergei Lutchenko",
           "correctedAt": "2026-10-28"
         }
@@ -12078,7 +12118,7 @@
               },
               {
                 "field": "Vínculos societarios y personales",
-                "reason": "Su declaración no recoge actividad empresarial. El Registro Mercantil no se ha consultado de forma independiente y las relaciones personales no constan en fuentes públicas. Las comprobaciones nominales (804 contratos; 12 del ámbito educativo) no arrojaron coincidencia alguna."
+                "reason": "Su declaración no recoge actividad empresarial. El Registro Mercantil no se ha consultado de forma independiente y las relaciones personales no constan en fuentes públicas. Las comprobaciones nominales (804 expedientes de contratación en julio de 2026, adjudicados o no; 12 del ámbito educativo) no arrojaron coincidencia alguna."
               }
             ]
           }
@@ -12302,6 +12342,14 @@
           "original": "804 contratos adjudicados examinados: ningún adjudicatario coincide con «Lara Catalá». Contratos del ámbito educativo desde julio de 2023: 12 identificados — muestra demasiado pequeña para comparar indicadores de competencia; ninguno con vínculo nominal con la concejala. No figura en las candidaturas de 2015 (BOP n.º 79) ni de 2019 (BOP n.º 82): la de 2023 es su primera lista.",
           "corrected": "804 expedientes de contratación examinados, adjudicados o no: ningún adjudicatario coincide con «Lara Catalá». Contratos del ámbito educativo desde julio de 2023: 12 identificados — muestra demasiado pequeña para comparar indicadores de competencia; ninguno con vínculo nominal con la concejala. No figura en las candidaturas de 2015 (BOP n.º 79) ni de 2019 (BOP n.º 82): la de 2023 es su primera lista.",
           "reason": "Los 804 eran todos los expedientes de contratación del corpus municipal en julio de 2026, adjudicados o no —711 adjudicados o formalizados, según el estado que hoy les da la fuente—, y no 804 contratos adjudicados. La v2 de la biografía de Raquel Pamblanco ya lo corrigió con estas mismas palabras.",
+          "editor": "Sergei Lutchenko",
+          "correctedAt": "2026-10-28"
+        },
+        {
+          "field": "gaps.Vínculos societarios y personales.reason",
+          "original": "Su declaración no recoge actividad empresarial. El Registro Mercantil no se ha consultado de forma independiente y las relaciones personales no constan en fuentes públicas. Las comprobaciones nominales (804 contratos; 12 del ámbito educativo) no arrojaron coincidencia alguna.",
+          "corrected": "Su declaración no recoge actividad empresarial. El Registro Mercantil no se ha consultado de forma independiente y las relaciones personales no constan en fuentes públicas. Las comprobaciones nominales (804 expedientes de contratación en julio de 2026, adjudicados o no; 12 del ámbito educativo) no arrojaron coincidencia alguna.",
+          "reason": "Los 804 eran todos los expedientes de contratación del corpus municipal en julio de 2026, adjudicados o no —711 adjudicados o formalizados, según el estado que hoy les da la fuente—, y no 804 contratos. La narrativa de esta biografía se corrigió el 28-10-2026 con las mismas palabras; esta laguna seguía con las de antes.",
           "editor": "Sergei Lutchenko",
           "correctedAt": "2026-10-28"
         }
@@ -12761,7 +12809,7 @@
               },
               {
                 "field": "Vínculos societarios y personales",
-                "reason": "Su declaración de 2023 no recoge actividad empresarial vigente. Las comprobaciones nominales (804 contratos, incluidas las cuatro sociedades de su CV) no arrojaron coincidencia alguna; las relaciones personales no constan en fuentes públicas."
+                "reason": "Su declaración de 2023 no recoge actividad empresarial vigente. Las comprobaciones nominales (804 expedientes de contratación en julio de 2026, adjudicados o no, incluidas las cuatro sociedades de su CV) no arrojaron coincidencia alguna; las relaciones personales no constan en fuentes públicas."
               }
             ]
           }
@@ -13122,6 +13170,14 @@
           "original": "804 contratos adjudicados examinados: ningún adjudicatario coincide con «Hernández Carrizosa». Las cuatro sociedades donde trabajó según su CV — Nexo Nivel SL (administrador solidario 2008-2015), Grupo Serratable SL, Artículos de Carpintería Moreno SL y Vilarsal SL — no constan como adjudicatarias ni licitadoras. Corpus completo desde julio de 2023 (su delegación incluye Compra Pública): 282 contratos, 55% con un solo licitador, 20% menores.",
           "corrected": "804 expedientes de contratación examinados, adjudicados o no: ningún adjudicatario coincide con «Hernández Carrizosa». Las cuatro sociedades donde trabajó según su CV — Nexo Nivel SL (administrador solidario 2008-2015), Grupo Serratable SL, Artículos de Carpintería Moreno SL y Vilarsal SL — no constan como adjudicatarias ni licitadoras. Corpus completo desde julio de 2023 (su delegación incluye Compra Pública): 282 contratos, 55% con un solo licitador, 20% menores.",
           "reason": "Los 804 eran todos los expedientes de contratación del corpus municipal en julio de 2026, adjudicados o no —711 adjudicados o formalizados, según el estado que hoy les da la fuente—, y no 804 contratos adjudicados. La v2 de la biografía de Raquel Pamblanco ya lo corrigió con estas mismas palabras.",
+          "editor": "Sergei Lutchenko",
+          "correctedAt": "2026-10-28"
+        },
+        {
+          "field": "gaps.Vínculos societarios y personales.reason",
+          "original": "Su declaración de 2023 no recoge actividad empresarial vigente. Las comprobaciones nominales (804 contratos, incluidas las cuatro sociedades de su CV) no arrojaron coincidencia alguna; las relaciones personales no constan en fuentes públicas.",
+          "corrected": "Su declaración de 2023 no recoge actividad empresarial vigente. Las comprobaciones nominales (804 expedientes de contratación en julio de 2026, adjudicados o no, incluidas las cuatro sociedades de su CV) no arrojaron coincidencia alguna; las relaciones personales no constan en fuentes públicas.",
+          "reason": "Los 804 eran todos los expedientes de contratación del corpus municipal en julio de 2026, adjudicados o no —711 adjudicados o formalizados, según el estado que hoy les da la fuente—, y no 804 contratos. La narrativa de esta biografía se corrigió el 28-10-2026 con las mismas palabras; esta laguna seguía con las de antes.",
           "editor": "Sergei Lutchenko",
           "correctedAt": "2026-10-28"
         }
@@ -13573,7 +13629,7 @@
               },
               {
                 "field": "Vínculos societarios y personales",
-                "reason": "Su declaración oficial recoge la condición de pensionista sin actividad empresarial. El Registro Mercantil no se ha consultado de forma independiente y las relaciones personales no constan en fuentes públicas. Las comprobaciones nominales (804 contratos, incluidas sus antiguas entidades bancarias empleadoras) no arrojaron coincidencia alguna."
+                "reason": "Su declaración oficial recoge la condición de pensionista sin actividad empresarial. El Registro Mercantil no se ha consultado de forma independiente y las relaciones personales no constan en fuentes públicas. Las comprobaciones nominales (804 expedientes de contratación en julio de 2026, adjudicados o no, incluidas sus antiguas entidades bancarias empleadoras) no arrojaron coincidencia alguna."
               }
             ]
           }
@@ -13902,6 +13958,14 @@
           "original": "804 contratos adjudicados examinados: ningún adjudicatario coincide con «Ramos March», y sus antiguos empleadores declarados del sector bancario (Cajamar, Caja Campo, Banco de València) no constan como adjudicatarios. Contratos en materias de sus áreas desde julio de 2023 (agricultura, edificios públicos, energía y clima, comercio, fondos europeos): 34 de 282; un solo licitador 13/34 (38%) frente a 156/282 (55%) del conjunto; contratos menores 7/34 (21%).",
           "corrected": "804 expedientes de contratación examinados, adjudicados o no: ningún adjudicatario coincide con «Ramos March», y sus antiguos empleadores declarados del sector bancario (Cajamar, Caja Campo, Banco de València) no constan como adjudicatarios. Contratos en materias de sus áreas desde julio de 2023 (agricultura, edificios públicos, energía y clima, comercio, fondos europeos): 34 de 282; un solo licitador 13/34 (38%) frente a 156/282 (55%) del conjunto; contratos menores 7/34 (21%).",
           "reason": "Los 804 eran todos los expedientes de contratación del corpus municipal en julio de 2026, adjudicados o no —711 adjudicados o formalizados, según el estado que hoy les da la fuente—, y no 804 contratos adjudicados. La v2 de la biografía de Raquel Pamblanco ya lo corrigió con estas mismas palabras.",
+          "editor": "Sergei Lutchenko",
+          "correctedAt": "2026-10-28"
+        },
+        {
+          "field": "gaps.Vínculos societarios y personales.reason",
+          "original": "Su declaración oficial recoge la condición de pensionista sin actividad empresarial. El Registro Mercantil no se ha consultado de forma independiente y las relaciones personales no constan en fuentes públicas. Las comprobaciones nominales (804 contratos, incluidas sus antiguas entidades bancarias empleadoras) no arrojaron coincidencia alguna.",
+          "corrected": "Su declaración oficial recoge la condición de pensionista sin actividad empresarial. El Registro Mercantil no se ha consultado de forma independiente y las relaciones personales no constan en fuentes públicas. Las comprobaciones nominales (804 expedientes de contratación en julio de 2026, adjudicados o no, incluidas sus antiguas entidades bancarias empleadoras) no arrojaron coincidencia alguna.",
+          "reason": "Los 804 eran todos los expedientes de contratación del corpus municipal en julio de 2026, adjudicados o no —711 adjudicados o formalizados, según el estado que hoy les da la fuente—, y no 804 contratos. La narrativa de esta biografía se corrigió el 28-10-2026 con las mismas palabras; esta laguna seguía con las de antes.",
           "editor": "Sergei Lutchenko",
           "correctedAt": "2026-10-28"
         }
@@ -14349,7 +14413,7 @@
               },
               {
                 "field": "Vínculos societarios y personales",
-                "reason": "La declaración oficial no recoge actividad empresarial. El Registro Mercantil no se ha consultado de forma independiente y las relaciones personales no constan en fuentes públicas. Las comprobaciones nominales (804 contratos, incluidos sus antiguos empleadores Grupo Tremon SA y Pavituria SL, asociaciones, BDNS) no arrojaron coincidencia alguna."
+                "reason": "La declaración oficial no recoge actividad empresarial. El Registro Mercantil no se ha consultado de forma independiente y las relaciones personales no constan en fuentes públicas. Las comprobaciones nominales (804 expedientes de contratación en julio de 2026, adjudicados o no, incluidos sus antiguos empleadores Grupo Tremon SA y Pavituria SL, asociaciones, BDNS) no arrojaron coincidencia alguna."
               }
             ]
           }
@@ -14664,6 +14728,14 @@
           "original": "804 contratos adjudicados examinados: ningún adjudicatario coincide con «Pozuelo», y sus antiguos empleadores declarados (Grupo Tremon SA, Pavituria SL) no constan como adjudicatarios. Contratos en materias de sus áreas desde julio de 2023 (urbanismo, vivienda, obra pública, industriales, cementerio): 77 de 282; un solo licitador 34/77 (44%) frente a 156/282 (55%) del conjunto; contratos menores 18/77 (23%) frente a 57/282 (20%).",
           "corrected": "804 expedientes de contratación examinados, adjudicados o no: ningún adjudicatario coincide con «Pozuelo», y sus antiguos empleadores declarados (Grupo Tremon SA, Pavituria SL) no constan como adjudicatarios. Contratos en materias de sus áreas desde julio de 2023 (urbanismo, vivienda, obra pública, industriales, cementerio): 77 de 282; un solo licitador 34/77 (44%) frente a 156/282 (55%) del conjunto; contratos menores 18/77 (23%) frente a 57/282 (20%).",
           "reason": "Los 804 eran todos los expedientes de contratación del corpus municipal en julio de 2026, adjudicados o no —711 adjudicados o formalizados, según el estado que hoy les da la fuente—, y no 804 contratos adjudicados. La v2 de la biografía de Raquel Pamblanco ya lo corrigió con estas mismas palabras.",
+          "editor": "Sergei Lutchenko",
+          "correctedAt": "2026-10-28"
+        },
+        {
+          "field": "gaps.Vínculos societarios y personales.reason",
+          "original": "La declaración oficial no recoge actividad empresarial. El Registro Mercantil no se ha consultado de forma independiente y las relaciones personales no constan en fuentes públicas. Las comprobaciones nominales (804 contratos, incluidos sus antiguos empleadores Grupo Tremon SA y Pavituria SL, asociaciones, BDNS) no arrojaron coincidencia alguna.",
+          "corrected": "La declaración oficial no recoge actividad empresarial. El Registro Mercantil no se ha consultado de forma independiente y las relaciones personales no constan en fuentes públicas. Las comprobaciones nominales (804 expedientes de contratación en julio de 2026, adjudicados o no, incluidos sus antiguos empleadores Grupo Tremon SA y Pavituria SL, asociaciones, BDNS) no arrojaron coincidencia alguna.",
+          "reason": "Los 804 eran todos los expedientes de contratación del corpus municipal en julio de 2026, adjudicados o no —711 adjudicados o formalizados, según el estado que hoy les da la fuente—, y no 804 contratos. La narrativa de esta biografía se corrigió el 28-10-2026 con las mismas palabras; esta laguna seguía con las de antes.",
           "editor": "Sergei Lutchenko",
           "correctedAt": "2026-10-28"
         }

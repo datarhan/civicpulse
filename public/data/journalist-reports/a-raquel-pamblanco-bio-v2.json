@@ -805,7 +805,7 @@
       "kind": "local-snapshot",
       "title": "public/data/tenders.json · comprobación nominal sobre el corpus de contratación",
       "retrievedAt": "2026-07-31T12:40:03.553Z",
-      "excerpt": "804 contratos examinados: ningún adjudicatario coincide con «Pamblanco», ni con sus empleadoras declaradas (Vorwerk, FVMP, Opt-Media Marketing Solutions). Candidata en 2015 (puesto 12, como independiente, BOP n.º 79) y 2019 (puesto 16, n.º 82) sin obtener acta; electa en 2023.",
+      "excerpt": "804 expedientes de contratación examinados, adjudicados o no: ningún adjudicatario coincide con «Pamblanco», ni con sus empleadoras declaradas (Vorwerk, FVMP, Opt-Media Marketing Solutions). Candidata en 2015 (puesto 12, como independiente, BOP n.º 79) y 2019 (puesto 16, n.º 82) sin obtener acta; electa en 2023.",
       "localPath": "public/data/tenders.json",
       "trust": "high",
       "selfDeclared": false
@@ -1220,6 +1220,14 @@
       "reason": "El Pleno del 16/03/2026 (exp. 1462/2026/GEN) actualizó para 2026 las retribuciones fijadas el 07/07/2023; la cifra de 2023 se presentaba como vigente.",
       "editor": "Sergei Lutchenko",
       "correctedAt": "2026-10-18"
+    },
+    {
+      "field": "sources.src-074.excerpt",
+      "original": "804 contratos examinados: ningún adjudicatario coincide con «Pamblanco», ni con sus empleadoras declaradas (Vorwerk, FVMP, Opt-Media Marketing Solutions). Candidata en 2015 (puesto 12, como independiente, BOP n.º 79) y 2019 (puesto 16, n.º 82) sin obtener acta; electa en 2023.",
+      "corrected": "804 expedientes de contratación examinados, adjudicados o no: ningún adjudicatario coincide con «Pamblanco», ni con sus empleadoras declaradas (Vorwerk, FVMP, Opt-Media Marketing Solutions). Candidata en 2015 (puesto 12, como independiente, BOP n.º 79) y 2019 (puesto 16, n.º 82) sin obtener acta; electa en 2023.",
+      "reason": "Los 804 eran todos los expedientes de contratación del corpus municipal en julio de 2026, adjudicados o no —711 adjudicados o formalizados, según el estado que hoy les da la fuente—, y no 804 contratos. La v2 de esta biografía ya lo dice así en su narrativa y en su laguna; el extracto de su medición seguía con la palabra anterior.",
+      "editor": "Sergei Lutchenko",
+      "correctedAt": "2026-10-28"
     }
   ],
   "response": null

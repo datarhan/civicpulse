@@ -439,7 +439,7 @@
           },
           {
             "field": "Vínculos societarios y personales",
-            "reason": "La declaración oficial no recoge actividad empresarial. El Registro Mercantil no se ha consultado de forma independiente y las relaciones personales no constan en fuentes públicas. Las comprobaciones nominales (804 contratos, incluidos sus antiguos empleadores Grupo Tremon SA y Pavituria SL, asociaciones, BDNS) no arrojaron coincidencia alguna."
+            "reason": "La declaración oficial no recoge actividad empresarial. El Registro Mercantil no se ha consultado de forma independiente y las relaciones personales no constan en fuentes públicas. Las comprobaciones nominales (804 expedientes de contratación en julio de 2026, adjudicados o no, incluidos sus antiguos empleadores Grupo Tremon SA y Pavituria SL, asociaciones, BDNS) no arrojaron coincidencia alguna."
           }
         ]
       }
@@ -754,6 +754,14 @@
       "original": "804 contratos adjudicados examinados: ningún adjudicatario coincide con «Pozuelo», y sus antiguos empleadores declarados (Grupo Tremon SA, Pavituria SL) no constan como adjudicatarios. Contratos en materias de sus áreas desde julio de 2023 (urbanismo, vivienda, obra pública, industriales, cementerio): 77 de 282; un solo licitador 34/77 (44%) frente a 156/282 (55%) del conjunto; contratos menores 18/77 (23%) frente a 57/282 (20%).",
       "corrected": "804 expedientes de contratación examinados, adjudicados o no: ningún adjudicatario coincide con «Pozuelo», y sus antiguos empleadores declarados (Grupo Tremon SA, Pavituria SL) no constan como adjudicatarios. Contratos en materias de sus áreas desde julio de 2023 (urbanismo, vivienda, obra pública, industriales, cementerio): 77 de 282; un solo licitador 34/77 (44%) frente a 156/282 (55%) del conjunto; contratos menores 18/77 (23%) frente a 57/282 (20%).",
       "reason": "Los 804 eran todos los expedientes de contratación del corpus municipal en julio de 2026, adjudicados o no —711 adjudicados o formalizados, según el estado que hoy les da la fuente—, y no 804 contratos adjudicados. La v2 de la biografía de Raquel Pamblanco ya lo corrigió con estas mismas palabras.",
+      "editor": "Sergei Lutchenko",
+      "correctedAt": "2026-10-28"
+    },
+    {
+      "field": "gaps.Vínculos societarios y personales.reason",
+      "original": "La declaración oficial no recoge actividad empresarial. El Registro Mercantil no se ha consultado de forma independiente y las relaciones personales no constan en fuentes públicas. Las comprobaciones nominales (804 contratos, incluidos sus antiguos empleadores Grupo Tremon SA y Pavituria SL, asociaciones, BDNS) no arrojaron coincidencia alguna.",
+      "corrected": "La declaración oficial no recoge actividad empresarial. El Registro Mercantil no se ha consultado de forma independiente y las relaciones personales no constan en fuentes públicas. Las comprobaciones nominales (804 expedientes de contratación en julio de 2026, adjudicados o no, incluidos sus antiguos empleadores Grupo Tremon SA y Pavituria SL, asociaciones, BDNS) no arrojaron coincidencia alguna.",
+      "reason": "Los 804 eran todos los expedientes de contratación del corpus municipal en julio de 2026, adjudicados o no —711 adjudicados o formalizados, según el estado que hoy les da la fuente—, y no 804 contratos. La narrativa de esta biografía se corrigió el 28-10-2026 con las mismas palabras; esta laguna seguía con las de antes.",
       "editor": "Sergei Lutchenko",
       "correctedAt": "2026-10-28"
     }
