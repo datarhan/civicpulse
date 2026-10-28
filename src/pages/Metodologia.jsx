@@ -1806,16 +1806,20 @@ export default function Metodologia() {
                 «listados», 452 eran de la pasada del 02-08-2026, cuya caché sólo guarda el
                 razonamiento bajo el id de la declaración; tres contradecían el registro que el
                 comparador determinista emparejaba con la misma declaración. La medición, en
-                editorial/ (src/lib/claim-provenance.js, `explicacionSinLista`). */}
+                editorial/ (src/lib/claim-provenance.js, `explicacionSinLista`). El 28-10-2026,
+                25 retractaciones del motor servidas guardaban todavía la frase estándar del
+                comparador; la regla las deja fuera. */}
             Desde el 27 de octubre de 2026 la tarjeta no imprime la explicación de una retractación
             del motor que no haya firmado una persona. El modelo juzga contra una lista de
             candidatos que la tarjeta no enseña y que el motor no guarda, y su explicación se apoya
             en ella; muchas cuentan qué había en esa lista —«los contratos listados», «ninguno de
             los candidatos»—. Nadie puede comprobar lo que dicen de ella, y donde se pudo cotejar
             con el registro que el comparador determinista emparejaba con la misma declaración,
-            alguna lo contradecía. En su lugar la tarjeta dice «Explicación retirada» y por qué. El
-            veredicto, «Fuentes comprobadas» y el rótulo del verificador no cambian, y el texto del
-            motor sigue en el overlay publicado.
+            alguna lo contradecía. En su lugar la tarjeta dice «Explicación retirada» y por qué. Las
+            pocas que todavía guardan la frase estándar del comparador —«No se encontró registro…»—
+            no son del modelo ni hablan de ninguna lista, y la tarjeta las trata como las del
+            comparador. El veredicto, «Fuentes comprobadas» y el rótulo del verificador no cambian,
+            y el texto del motor sigue en el overlay publicado.
           </li>
           {/* La vía nació el 10-10-2026: cuatro retractaciones del motor publicaban
               «Explicación retirada», y la explicación que una lectura del 06-10
