@@ -56,6 +56,7 @@
       "/datos"
     ],
     "competencias.json": [
+      "/cargos",
       "/eficiencia",
       "/eficiencia/:id",
       "/gestion"
@@ -482,6 +483,9 @@
     ],
     "streets.json": [
       "/datos"
+    ],
+    "temas-cargos.json": [
+      "/cargos"
     ],
     "tender-geo.json": [
       "/",

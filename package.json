@@ -241,6 +241,7 @@
     "check:contract-corrections": "npx tsx scripts/check-contract-corrections.ts",
     "roster-correction": "npx tsx scripts/apply-officials-correction.ts",
     "contract-correction": "npx tsx scripts/contract-correction.ts",
+    "tema-cargo": "npx tsx scripts/tema-cargo.ts",
     "check:derivados": "npx tsx scripts/check-derivados.ts",
     "indicador-reply": "npx tsx scripts/reply-indicador.ts",
     "render:og": "node scripts/render-og.mjs",

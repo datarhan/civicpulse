@@ -1,0 +1,802 @@
+{
+  "generatedAt": "2026-10-28T16:25:39.006Z",
+  "note": "Vocabulario curado del buscador «¿A quién le pregunto por…?» de /cargos: qué área delegada corresponde a cada asunto de la vida diaria. Las áreas son las cadenas literales de la lista de cargos; quién tiene hoy cada una sale de esa lista, no de aquí, y este fichero no nombra a nadie. «literal» es cuando el área nombra el asunto con sus palabras; «editorial», cuando el salto lo damos nosotros, y va con su razón. Un asunto que ninguna área nombra va a sinAsignar con su motivo. Sólo lo escribe npm run tema-cargo.",
+  "fuente": {
+    "titulo": "Corporación municipal · Ayuntamiento de Riba-roja de Túria",
+    "url": "https://www.ribarroja.es/es/ayuntamiento/corporacion_municipal"
+  },
+  "temas": [
+    {
+      "tema": "basura",
+      "palabras": [
+        "basura",
+        "residuos",
+        "contenedores",
+        "recogida de basura",
+        "reciclaje",
+        "fem",
+        "fems",
+        "escombraries",
+        "residus",
+        "contenidors",
+        "reciclatge"
+      ],
+      "cargo": "Servicios públicos municipales",
+      "confianza": "editorial",
+      "razon": "El área no nombra la recogida de basura; se le atribuye por ser la de servicios públicos municipales, que es la que agrupa los servicios urbanos de prestación continua.",
+      "fecha": "2026-10-28"
+    },
+    {
+      "tema": "limpieza de calles",
+      "palabras": [
+        "limpieza de calles",
+        "limpieza viaria",
+        "calles sucias",
+        "barrenderos",
+        "neteja de carrers",
+        "neteja viària",
+        "carrers bruts"
+      ],
+      "cargo": "Servicios públicos municipales",
+      "confianza": "editorial",
+      "razon": "El área no nombra la limpieza viaria; se le atribuye por ser la de servicios públicos municipales, que es la que agrupa los servicios urbanos de prestación continua.",
+      "fecha": "2026-10-28"
+    },
+    {
+      "tema": "alumbrado",
+      "palabras": [
+        "alumbrado",
+        "alumbrado público",
+        "farolas",
+        "farola",
+        "enllumenat",
+        "enllumenat públic",
+        "fanals",
+        "fanal"
+      ],
+      "cargo": "Servicios públicos municipales",
+      "confianza": "editorial",
+      "razon": "El área no nombra el alumbrado público; se le atribuye por ser la de servicios públicos municipales, que es la que agrupa el mantenimiento urbano.",
+      "fecha": "2026-10-28"
+    },
+    {
+      "tema": "agua",
+      "palabras": [
+        "agua",
+        "agua potable",
+        "abastecimiento de agua",
+        "factura del agua",
+        "aigua",
+        "aigua potable",
+        "factura de l'aigua"
+      ],
+      "cargo": "Servicios públicos municipales",
+      "confianza": "editorial",
+      "razon": "El área no nombra el abastecimiento de agua; se le atribuye por ser la de servicios públicos municipales. El servicio está en concesión, así que lo presta la empresa concesionaria.",
+      "fecha": "2026-10-28"
+    },
+    {
+      "tema": "alcantarillado",
+      "palabras": [
+        "alcantarillado",
+        "alcantarilla",
+        "alcantarillas",
+        "saneamiento",
+        "aguas residuales",
+        "clavegueram",
+        "clavegueres",
+        "aigües residuals",
+        "sanejament"
+      ],
+      "cargo": "Servicios públicos municipales",
+      "confianza": "editorial",
+      "razon": "El área no nombra el alcantarillado; se le atribuye por ser la de servicios públicos municipales. El servicio está en concesión, así que lo presta la empresa concesionaria.",
+      "fecha": "2026-10-28"
+    },
+    {
+      "tema": "parques y jardines",
+      "palabras": [
+        "parques y jardines",
+        "parques",
+        "jardines",
+        "zonas verdes",
+        "parque infantil",
+        "parcs",
+        "jardins",
+        "zones verdes",
+        "parc infantil"
+      ],
+      "cargo": "Servicios públicos municipales",
+      "confianza": "editorial",
+      "razon": "El área no nombra los parques y jardines; se le atribuye por ser la de servicios públicos municipales, que es la que agrupa el mantenimiento urbano.",
+      "fecha": "2026-10-28"
+    },
+    {
+      "tema": "baches",
+      "palabras": [
+        "baches",
+        "bache",
+        "asfalto",
+        "asfaltado",
+        "aceras",
+        "pavimento",
+        "clots",
+        "sots",
+        "asfalt",
+        "asfaltat",
+        "voreres",
+        "paviment"
+      ],
+      "cargo": "Obra Pública",
+      "confianza": "editorial",
+      "razon": "El área no nombra el asfaltado; se le atribuye por ser la de obra pública, que es donde el ayuntamiento tramita el firme viario.",
+      "fecha": "2026-10-28"
+    },
+    {
+      "tema": "obra pública",
+      "palabras": [
+        "obra pública",
+        "obras públicas",
+        "obres públiques"
+      ],
+      "cargo": "Obra Pública",
+      "confianza": "literal",
+      "fecha": "2026-10-28"
+    },
+    {
+      "tema": "cementerio",
+      "palabras": [
+        "cementerio",
+        "nichos",
+        "nicho",
+        "cementeri"
+      ],
+      "cargo": "Áreas Industriales y Cementerio",
+      "confianza": "literal",
+      "fecha": "2026-10-28"
+    },
+    {
+      "tema": "áreas industriales",
+      "palabras": [
+        "áreas industriales",
+        "polígono industrial",
+        "polígonos industriales",
+        "polígono",
+        "polígonos",
+        "àrees industrials",
+        "polígon industrial",
+        "polígons industrials",
+        "polígon",
+        "polígons"
+      ],
+      "cargo": "Áreas Industriales y Cementerio",
+      "confianza": "literal",
+      "fecha": "2026-10-28"
+    },
+    {
+      "tema": "urbanismo",
+      "palabras": [
+        "urbanismo",
+        "planeamiento",
+        "plan general",
+        "urbanisme",
+        "planejament",
+        "pla general"
+      ],
+      "cargo": "Urbanismo",
+      "confianza": "literal",
+      "fecha": "2026-10-28"
+    },
+    {
+      "tema": "licencias de obra",
+      "palabras": [
+        "licencias de obra",
+        "licencia de obra",
+        "licencia urbanística",
+        "obras en casa",
+        "llicències d'obra",
+        "llicència d'obra",
+        "llicència urbanística",
+        "obres a casa"
+      ],
+      "cargo": "Urbanismo",
+      "confianza": "editorial",
+      "razon": "El área no nombra las licencias de obra; se le atribuye por ser la de urbanismo, que es donde se tramitan las licencias urbanísticas.",
+      "fecha": "2026-10-28"
+    },
+    {
+      "tema": "vivienda",
+      "palabras": [
+        "vivienda",
+        "viviendas",
+        "vivienda protegida",
+        "alquiler social",
+        "habitatge",
+        "habitatges",
+        "habitatge protegit",
+        "lloguer social"
+      ],
+      "cargo": "Vivienda",
+      "confianza": "literal",
+      "fecha": "2026-10-28"
+    },
+    {
+      "tema": "educación",
+      "palabras": [
+        "educación",
+        "educació"
+      ],
+      "cargo": "Educación",
+      "confianza": "literal",
+      "fecha": "2026-10-28"
+    },
+    {
+      "tema": "colegio",
+      "palabras": [
+        "colegio",
+        "colegios",
+        "escuela",
+        "escuelas",
+        "escolarización",
+        "col·legi",
+        "col·legis",
+        "escola",
+        "escoles",
+        "escolarització"
+      ],
+      "cargo": "Educación",
+      "confianza": "editorial",
+      "razon": "El área no nombra los colegios; se le atribuye por ser la de educación.",
+      "aviso": "La enseñanza la imparte la Generalitat, y conservar los edificios de los colegios cruza con el área de Actividades y Edificios públicos, delegada en otro concejal.",
+      "fecha": "2026-10-28"
+    },
+    {
+      "tema": "biblioteca",
+      "palabras": [
+        "biblioteca",
+        "bibliotecas",
+        "biblioteques"
+      ],
+      "cargo": "Arte y Cultura",
+      "confianza": "editorial",
+      "razon": "El área no nombra la biblioteca; se le atribuye por ser la de cultura, que es donde el ayuntamiento sitúa el servicio bibliotecario.",
+      "fecha": "2026-10-28"
+    },
+    {
+      "tema": "cultura",
+      "palabras": [
+        "cultura",
+        "arte",
+        "actividades culturales",
+        "art",
+        "activitats culturals"
+      ],
+      "cargo": "Arte y Cultura",
+      "confianza": "literal",
+      "fecha": "2026-10-28"
+    },
+    {
+      "tema": "fiestas",
+      "palabras": [
+        "fiestas",
+        "fiestas patronales",
+        "tradiciones",
+        "festes",
+        "festes patronals",
+        "tradicions"
+      ],
+      "cargo": "Fiestas y Tradiciones",
+      "confianza": "literal",
+      "fecha": "2026-10-28"
+    },
+    {
+      "tema": "fallas",
+      "palabras": [
+        "fallas",
+        "falla",
+        "comisiones falleras",
+        "falles",
+        "comissions falleres"
+      ],
+      "cargo": "Fallas",
+      "confianza": "literal",
+      "fecha": "2026-10-28"
+    },
+    {
+      "tema": "deportes",
+      "palabras": [
+        "deportes",
+        "deporte",
+        "polideportivo",
+        "piscina municipal",
+        "instalaciones deportivas",
+        "esports",
+        "esport",
+        "poliesportiu",
+        "instal·lacions esportives"
+      ],
+      "cargo": "Movilidad y Deportes",
+      "confianza": "literal",
+      "fecha": "2026-10-28"
+    },
+    {
+      "tema": "movilidad",
+      "palabras": [
+        "movilidad",
+        "autobús",
+        "transporte público",
+        "aparcamiento",
+        "carril bici",
+        "mobilitat",
+        "transport públic",
+        "aparcament"
+      ],
+      "cargo": "Movilidad y Deportes",
+      "confianza": "literal",
+      "fecha": "2026-10-28"
+    },
+    {
+      "tema": "seguridad",
+      "palabras": [
+        "seguridad",
+        "policía",
+        "policía local",
+        "emergencias",
+        "protección civil",
+        "seguretat",
+        "emergències",
+        "protecció civil"
+      ],
+      "cargo": "Seguridad y emergencias",
+      "confianza": "literal",
+      "fecha": "2026-10-28"
+    },
+    {
+      "tema": "igualdad",
+      "palabras": [
+        "igualdad",
+        "violencia de género",
+        "violencia machista",
+        "igualtat",
+        "violència de gènere",
+        "violència masclista"
+      ],
+      "cargo": "Igualdad",
+      "confianza": "literal",
+      "fecha": "2026-10-28"
+    },
+    {
+      "tema": "bienestar animal",
+      "palabras": [
+        "bienestar animal",
+        "animales",
+        "perros",
+        "gatos",
+        "mascotas",
+        "colonias felinas",
+        "benestar animal",
+        "animals",
+        "gossos",
+        "gats",
+        "mascotes",
+        "colònies felines"
+      ],
+      "cargo": "Protocolo y Bienestar Animal",
+      "confianza": "literal",
+      "fecha": "2026-10-28"
+    },
+    {
+      "tema": "acción social",
+      "palabras": [
+        "acción social",
+        "servicios sociales",
+        "ayudas sociales",
+        "trabajadora social",
+        "trabajador social",
+        "acció social",
+        "serveis socials",
+        "ajudes socials",
+        "treballadora social",
+        "treballador social"
+      ],
+      "cargo": "Acción social y políticas inclusivas",
+      "confianza": "literal",
+      "fecha": "2026-10-28"
+    },
+    {
+      "tema": "mayores",
+      "palabras": [
+        "mayores",
+        "personas mayores",
+        "tercera edad",
+        "jubilados",
+        "majors",
+        "persones majors",
+        "gent gran",
+        "jubilats"
+      ],
+      "cargo": "Mayores",
+      "confianza": "literal",
+      "fecha": "2026-10-28"
+    },
+    {
+      "tema": "juventud",
+      "palabras": [
+        "juventud",
+        "jóvenes",
+        "joventut",
+        "joves"
+      ],
+      "cargo": "Juventud y Servicios Jurídicos",
+      "confianza": "literal",
+      "fecha": "2026-10-28"
+    },
+    {
+      "tema": "servicios jurídicos",
+      "palabras": [
+        "servicios jurídicos",
+        "asesoría jurídica",
+        "serveis jurídics",
+        "assessoria jurídica"
+      ],
+      "cargo": "Juventud y Servicios Jurídicos",
+      "confianza": "literal",
+      "fecha": "2026-10-28"
+    },
+    {
+      "tema": "infancia",
+      "palabras": [
+        "infancia",
+        "adolescencia",
+        "niños",
+        "adolescentes",
+        "xiquets",
+        "xiquetes",
+        "adolescents"
+      ],
+      "cargo": "Infancia y Adolescencia y Memoria Histórica",
+      "confianza": "literal",
+      "fecha": "2026-10-28"
+    },
+    {
+      "tema": "memoria histórica",
+      "palabras": [
+        "memoria histórica"
+      ],
+      "cargo": "Infancia y Adolescencia y Memoria Histórica",
+      "confianza": "literal",
+      "fecha": "2026-10-28"
+    },
+    {
+      "tema": "recaudación",
+      "palabras": [
+        "recaudación",
+        "impuestos",
+        "ibi",
+        "tasas",
+        "recibos",
+        "plusvalía",
+        "recaptació",
+        "imposts",
+        "taxes",
+        "rebuts",
+        "plusvàlua"
+      ],
+      "cargo": "Finanzas públicas y recaudación",
+      "confianza": "literal",
+      "fecha": "2026-10-28"
+    },
+    {
+      "tema": "empleo",
+      "palabras": [
+        "empleo",
+        "trabajo",
+        "buscar trabajo",
+        "emprendimiento",
+        "emprender",
+        "ocupació",
+        "treball",
+        "buscar treball",
+        "emprenedoria",
+        "emprendre"
+      ],
+      "cargo": "Empleo y Emprendimiento",
+      "confianza": "literal",
+      "fecha": "2026-10-28"
+    },
+    {
+      "tema": "fomento económico",
+      "palabras": [
+        "fomento económico",
+        "ayudas a empresas",
+        "foment econòmic",
+        "ajudes a empreses"
+      ],
+      "cargo": "Fomento económico",
+      "confianza": "literal",
+      "fecha": "2026-10-28"
+    },
+    {
+      "tema": "comercio",
+      "palabras": [
+        "comercio",
+        "comercio local",
+        "tiendas",
+        "comerç",
+        "comerç local",
+        "botigues"
+      ],
+      "cargo": "Comercio",
+      "confianza": "literal",
+      "fecha": "2026-10-28"
+    },
+    {
+      "tema": "turismo",
+      "palabras": [
+        "turismo",
+        "patrimonio histórico",
+        "patrimonio",
+        "turisme",
+        "patrimoni històric",
+        "patrimoni"
+      ],
+      "cargo": "Turismo y patrimonio histórico",
+      "confianza": "literal",
+      "fecha": "2026-10-28"
+    },
+    {
+      "tema": "salud",
+      "palabras": [
+        "salud",
+        "centro de salud",
+        "sanidad",
+        "salut",
+        "centre de salut",
+        "sanitat"
+      ],
+      "cargo": "Promoción de la Salud e Infraestructuras sanitarias",
+      "confianza": "literal",
+      "aviso": "La atención sanitaria la presta la Conselleria de Sanidad; el área municipal lleva la promoción de la salud y las infraestructuras sanitarias.",
+      "fecha": "2026-10-28"
+    },
+    {
+      "tema": "participación",
+      "palabras": [
+        "participación",
+        "participación ciudadana",
+        "presupuestos participativos",
+        "transparencia",
+        "participació",
+        "participació ciutadana",
+        "pressupostos participatius"
+      ],
+      "cargo": "Participación y transparencia",
+      "confianza": "literal",
+      "fecha": "2026-10-28"
+    },
+    {
+      "tema": "atención a la ciudadanía",
+      "palabras": [
+        "atención a la ciudadanía",
+        "atención ciudadana",
+        "cita previa",
+        "registro general",
+        "atenció a la ciutadania",
+        "atenció ciutadana",
+        "registre general"
+      ],
+      "cargo": "Atención a la ciudadanía",
+      "confianza": "literal",
+      "fecha": "2026-10-28"
+    },
+    {
+      "tema": "agricultura",
+      "palabras": [
+        "agricultura",
+        "agricultores",
+        "campo",
+        "huerta",
+        "agricultors",
+        "camp"
+      ],
+      "cargo": "Agricultura",
+      "confianza": "literal",
+      "fecha": "2026-10-28"
+    },
+    {
+      "tema": "emergencia climática",
+      "palabras": [
+        "emergencia climática",
+        "cambio climático",
+        "clima",
+        "canvi climàtic"
+      ],
+      "cargo": "Emergencia climática",
+      "confianza": "literal",
+      "fecha": "2026-10-28"
+    },
+    {
+      "tema": "agenda 2030",
+      "palabras": [
+        "agenda 2030",
+        "objetivos de desarrollo sostenible",
+        "ods",
+        "objectius de desenvolupament sostenible"
+      ],
+      "cargo": "Agenda 2030",
+      "confianza": "literal",
+      "fecha": "2026-10-28"
+    },
+    {
+      "tema": "fondos europeos",
+      "palabras": [
+        "fondos europeos",
+        "subvenciones europeas",
+        "fons europeus",
+        "subvencions europees"
+      ],
+      "cargo": "Fondos Europeos",
+      "confianza": "literal",
+      "fecha": "2026-10-28"
+    },
+    {
+      "tema": "compra pública",
+      "palabras": [
+        "compra pública",
+        "contratos",
+        "contratación",
+        "licitaciones",
+        "contractes",
+        "contractació",
+        "licitacions"
+      ],
+      "cargo": "Compra Pública",
+      "confianza": "literal",
+      "fecha": "2026-10-28"
+    },
+    {
+      "tema": "recursos humanos",
+      "palabras": [
+        "recursos humanos",
+        "oposiciones",
+        "empleo público",
+        "funcionarios",
+        "plantilla municipal",
+        "recursos humans",
+        "oposicions",
+        "ocupació pública",
+        "funcionaris"
+      ],
+      "cargo": "Recursos Humanos",
+      "confianza": "literal",
+      "fecha": "2026-10-28"
+    },
+    {
+      "tema": "administración",
+      "palabras": [
+        "administración",
+        "servicios generales",
+        "administració",
+        "serveis generals"
+      ],
+      "cargo": "Administración y Servicios Generales",
+      "confianza": "literal",
+      "fecha": "2026-10-28"
+    },
+    {
+      "tema": "urbanizaciones",
+      "palabras": [
+        "urbanizaciones",
+        "urbanización",
+        "urbanitzacions",
+        "urbanització"
+      ],
+      "cargo": "Urbanizaciones",
+      "confianza": "literal",
+      "fecha": "2026-10-28"
+    },
+    {
+      "tema": "barrios",
+      "palabras": [
+        "barrios",
+        "barrio",
+        "diseminados",
+        "barris",
+        "barri",
+        "disseminats"
+      ],
+      "cargo": "barrios y diseminados",
+      "confianza": "literal",
+      "fecha": "2026-10-28"
+    },
+    {
+      "tema": "actividades",
+      "palabras": [
+        "actividades",
+        "licencia de actividad",
+        "licencia de apertura",
+        "activitats",
+        "llicència d'activitat",
+        "llicència d'obertura"
+      ],
+      "cargo": "Actividades y Edificios públicos",
+      "confianza": "literal",
+      "fecha": "2026-10-28"
+    },
+    {
+      "tema": "edificios públicos",
+      "palabras": [
+        "edificios públicos",
+        "edificios municipales",
+        "edificis públics",
+        "edificis municipals"
+      ],
+      "cargo": "Actividades y Edificios públicos",
+      "confianza": "literal",
+      "fecha": "2026-10-28"
+    },
+    {
+      "tema": "comunicación",
+      "palabras": [
+        "comunicación",
+        "información municipal",
+        "comunicació",
+        "informació municipal"
+      ],
+      "cargo": "Comunicación e información",
+      "confianza": "literal",
+      "fecha": "2026-10-28"
+    },
+    {
+      "tema": "innovación",
+      "palabras": [
+        "innovación",
+        "innovació"
+      ],
+      "cargo": "Innovación",
+      "confianza": "literal",
+      "fecha": "2026-10-28"
+    },
+    {
+      "tema": "integridad",
+      "palabras": [
+        "integridad",
+        "integritat"
+      ],
+      "cargo": "Integridad",
+      "confianza": "literal",
+      "fecha": "2026-10-28"
+    },
+    {
+      "tema": "grandes proyectos",
+      "palabras": [
+        "grandes proyectos",
+        "planificación estratégica",
+        "cooperación",
+        "grans projectes",
+        "planificació estratègica",
+        "cooperació"
+      ],
+      "cargo": "Planificación estratégica y grandes proyectos y cooperación nacional e internacional",
+      "confianza": "literal",
+      "fecha": "2026-10-28"
+    }
+  ],
+  "sinAsignar": [
+    {
+      "tema": "padrón",
+      "palabras": [
+        "padrón",
+        "empadronarse",
+        "empadronamiento",
+        "certificado de empadronamiento",
+        "padró",
+        "empadronar-se",
+        "empadronament",
+        "certificat d'empadronament"
+      ],
+      "motivo": "Ninguna de las áreas delegadas que publica la lista de cargos nombra el padrón de habitantes.",
+      "fecha": "2026-10-28"
+    }
+  ]
+}

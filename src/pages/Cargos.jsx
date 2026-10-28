@@ -1723,7 +1723,8 @@ function CorporacionMunicipal() {
         <RetribucionesPanel />
       </div>
 
-      <div style={{ marginTop: 26 }}>
+      {/* El ancla del buscador «¿A quién le pregunto por…?». */}
+      <div id="quien-dirige" style={{ marginTop: 26, scrollMarginTop: 16 }}>
         <SectionHead
           as="h2"
           eyebrow={t('cargos.gobierno.eyebrow').replace('{n}', gobierno.length)}
