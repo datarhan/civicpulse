@@ -9,6 +9,7 @@ import { useLocale, useT } from '../i18n'
 import { diasTranscurridos, plazoDeResolucion, relojDelPlazo } from '../scraper/queja-router'
 import { medibilidad, registroUtilizable } from '../lib/reloj-lpacap'
 import { quejasPorArea } from '../lib/quejas-por-area'
+import { ESTADOS_DE_LA_QUEJA } from '../scraper/camino-de-la-queja'
 
 const TELEGRAM_BOT_URL = 'https://t.me/munigraph_bot'
 
@@ -278,17 +279,9 @@ function StateBreakdown({ byState, total }) {
   const t = useT()
   const etiqueta = useEtiquetasDeQueja()
   if (total === 0) return null
-  const order = [
-    'capturada',
-    'apoyada_verificada',
-    'registrada',
-    'notificada_10d',
-    'en_tramite',
-    'resuelta',
-    'silencio_negativo',
-    'escalada_sindic',
-    'cerrada_no_registrada',
-  ]
+  // Los estados del bot, en el orden del camino: la lista exportada, no una copia
+  // (`ESTADOS_DE_LA_QUEJA` se coteja con la fuente del bot en su prueba).
+  const order = ESTADOS_DE_LA_QUEJA
   const max = Math.max(...Object.values(byState || {}), 1)
   return (
     <Card>
