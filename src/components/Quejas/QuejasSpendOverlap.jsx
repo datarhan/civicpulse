@@ -4,7 +4,7 @@ import { Card, SectionHead, Marcado } from '../Primitives'
 import { useGeo } from '../../hooks/useGeo'
 import { useTenderGeo } from '../../hooks/useTenderGeo'
 import { useQuejas } from '../../hooks/useQuejas'
-import { computeOverlapRows } from '../../lib/neighborhood-aggregate'
+import { computeOverlapRows, cruceDibujable } from '../../lib/neighborhood-aggregate'
 import { yearSpan } from '../../lib/year-span'
 import { diaDeLaSede } from '../../scraper/queja-router'
 import { rellena } from '../../lib/formatters'
@@ -56,6 +56,34 @@ export default function QuejasSpendOverlap() {
     instantanea: quejas,
   })
   if (rows.length === 0) return null
+
+  // Con quejas en uno o dos barrios, la tabla no reparte nada: con una queja
+  // publicada eran trece filas con «—» en doce. Hasta el umbral, una frase dice
+  // por qué no se dibuja y cuántos barrios traen quejas (`cruceDibujable`). Con
+  // ninguno, dice que no hay quejas situadas en un barrio del mapa, no que no
+  // lo digan: una con un barrio que geo.json no conoce lo dice y tampoco cuenta
+  // (como en `coberturaDeBarrios`).
+  const cruce = cruceDibujable(rows)
+  if (!cruce.dibujable) {
+    return (
+      <Card style={{ marginTop: 14 }} data-cruce-pendiente="">
+        <SectionHead eyebrow={t('quejas.cruce.eyebrow')} title={t('quejas.cruce.titulo')} />
+        <p
+          style={{
+            fontSize: 'var(--fs-aux)',
+            color: 'var(--ink70)',
+            lineHeight: 1.55,
+            margin: '6px 0 0',
+          }}
+        >
+          {rellena(t('quejas.cruce.pendiente'), { minimo: cruce.minimo })}
+          {cruce.conQuejas > 0
+            ? rellena(t('quejas.cruce.pendiente.n'), { n: cruce.conQuejas })
+            : t('quejas.cruce.pendiente.ninguno')}
+        </p>
+      </Card>
+    )
+  }
 
   // The two columns do NOT cover the same window, and side by side they invite
   // exactly the reading they cannot support: that a barrio with one queja and

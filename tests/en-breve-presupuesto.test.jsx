@@ -155,7 +155,7 @@ describe('el glosario', () => {
       expect(f.termino, f.clave).not.toMatch(/^glosario\./)
       expect(f.def, f.clave).not.toMatch(/^glosario\./)
       expect(f.to, f.clave).toMatch(
-        /^\/(presupuesto#(cascada|capitulos|deuda)|eficiencia#sec-(servicios|declaracion|entregas)|metodologia#rectificacion|plenos#ultimo-pleno)$/,
+        /^\/(presupuesto#(cascada|capitulos|deuda)|eficiencia#sec-(servicios|declaracion|entregas)|metodologia#rectificacion|plenos#ultimo-pleno|quejas#(sindic|consell-transparencia|ctbg|sindicatura))$/,
       )
     }
   })

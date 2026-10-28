@@ -36,6 +36,13 @@ export const GLOSARIO = [
   'reconocimientoExtrajudicial',
   'sinDictaminar',
   'urgencia',
+  // Quién más vigila al Ayuntamiento (/quejas). Son nombres propios, y cada
+  // tarjeta de su registro abre con esta definición: una línea de qué es la
+  // institución antes de lo que consta en ella.
+  'sindicDeGreuges',
+  'consellDeTransparencia',
+  'ctbg',
+  'sindicaturaDeComptes',
 ]
 
 const MARCA = /\[\[(\w+)\|([^\]]+)\]\]/g
