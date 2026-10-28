@@ -284,24 +284,32 @@ export function fuentesComprobadas(v, t = castellano) {
  * con ellos, la fija de antes —que hablaba de «la cifra del claim» y acababa
  * en «el que hay no dice eso»— se cambia por la de ahora.
  *
+ * Con el `literal` de la cita, la re-derivada dice también que el presupuesto
+ * no se buscó cuando la cita habla de él y lo que se miró son contratos o
+ * subvenciones (claim-verdicts.ts, `callaElPresupuesto`): «no se encontró
+ * registro en contratos… que la sostenga» bajo «un presupuesto de cuarenta y
+ * pico millones» se leía como que nada la sostiene. Lo guardado antes de ese
+ * aviso no lo trae, y así lo trae también.
+ *
  * @param {{ verdict?: string, summary?: string, checkedAgainst?: unknown[] | null,
  *   evidence?: Array<{ kind?: string, snippet?: string }> | null }
  *   | null | undefined} v  la verificación servida, entera.
  * @param {string | null | undefined} [texto]  la explicación a imprimir; por
  *   defecto, el `summary`. `null` (retirada) pasa tal cual.
+ * @param {string | null} [literal]  el `verbatim` de la cita.
  * @returns {string | null | undefined}
  */
-export function resumenSegunFuentes(v, texto = v?.summary) {
+export function resumenSegunFuentes(v, texto = v?.summary, literal = null) {
   if (v?.verdict !== 'sin-datos') return texto
   if (esResumenCasi(texto)) {
     if (!leyoContratos(v?.checkedAgainst))
-      return resumenSinRegistro(v?.checkedAgainst, enCastellano)
+      return resumenSinRegistro(v?.checkedAgainst, enCastellano, literal)
     if (texto !== RESUMEN_CASI_FIJO) return texto
     const fila = lista(v?.evidence).find((e) => e?.kind === 'tender')
     return resumenCasi(!String(fila?.snippet ?? '').endsWith(COLA_SIN_IMPORTE))
   }
   if (!esResumenSinRegistro(texto)) return texto
-  return resumenSinRegistro(v?.checkedAgainst, enCastellano)
+  return resumenSinRegistro(v?.checkedAgainst, enCastellano, literal)
 }
 
 /**

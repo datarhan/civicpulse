@@ -18,6 +18,14 @@ import { verifyClaim } from '../src/scraper/claim-verifier'
  * compartía una. Con el control de abajo, el arreglo no puede pasar matando
  * la corroboración de un contrato que sí nombra su objeto.
  */
+// La cifra, dicha en el literal: el camino del importe sólo coteja la que la
+// cita trae (src/scraper/cifra-en-literal.ts). Con el «x» de antes, cada
+// prueba de este fichero pasaría sin que el emparejador llegara a mirar nada.
+const dicha = (overrides: Record<string, unknown>) => {
+  const cifra = (overrides.entities as { amountEuros?: number } | undefined)?.amountEuros
+  return cifra == null ? 'x'.repeat(30) : `se habló de ${cifra.toLocaleString('es-ES')} euros`
+}
+
 const claim = (overrides: Record<string, unknown> = {}) =>
   ({
     id: 'c1',
@@ -25,7 +33,7 @@ const claim = (overrides: Record<string, unknown> = {}) =>
     type: 'afirmacion_numerica',
     topic: 'fiscal',
     speakerGroup: null,
-    verbatim: 'x'.repeat(30),
+    verbatim: dicha(overrides),
     context: '',
     entities: {},
     confidence: 0.9,

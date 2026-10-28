@@ -99,6 +99,10 @@ const NOVENTA_Y_DOS: PlenoClaim = {
 /** Lo que una explicación diría del presupuesto, con el identificador o con su nombre. */
 const NOMBRA_PRESUPUESTO = /\bbudget\b|presupuest/i
 
+/** Lo que la frase dice haber mirado: lo que va entre «registro en» y «que la sostenga». */
+const consultadoSegunLaFrase = (frase: string) =>
+  frase.match(/registro en (.+?) que la sostenga/)?.[1] ?? ''
+
 describe('verifyClaim · el presupuesto, que no se coteja', () => {
   it('la premisa: el presupuesto publicado sí trae un total de cuarenta y pico millones', () => {
     // Lo que la revisión vio. Si un día el fichero no lo trae, la prueba de
@@ -120,12 +124,31 @@ describe('verifyClaim · el presupuesto, que no se coteja', () => {
       // Lo positivo primero: los comparadores que sí corrieron siguen dichos.
       expect(corpusReales(v.checkedAgainst)).toEqual(['tenders', 'tenders-ted', 'bdns'])
       expect(v.summary).toMatch(/tenders/)
-      // Y el que no compara nada, ni en la lista ni en la frase.
+      // Y el que no compara nada, ni en la lista ni entre lo que la frase dice
+      // haber mirado.
       expect(v.checkedAgainst).not.toContain('budget')
-      expect(v.summary).not.toMatch(NOMBRA_PRESUPUESTO)
+      expect(consultadoSegunLaFrase(v.summary)).not.toMatch(NOMBRA_PRESUPUESTO)
       expect(v.evidence.filter((e) => e.kind === 'budget')).toEqual([])
     })
   }
+
+  it('«cuarenta y pico millones»: la frase dice que en el presupuesto no se buscó', () => {
+    // La revisión lectora del 27-10-2026 sobre la misma tarjeta: nombrar sólo
+    // contratos, TED y BDNS se leía como que nada sostiene la cifra, cuando la
+    // fuente que la sostendría —el presupuesto, 41,58 M€ de crédito inicial en
+    // 2025— no se miró (claim-verdicts.ts, `callaElPresupuesto`).
+    const v = verifyClaim({ claim: CUARENTA_Y_PICO, ...DATOS })
+    expect(v.summary).toBe(
+      'No se encontró registro en tenders, tenders-ted y bdns que la sostenga. ' +
+        'En el presupuesto municipal no se buscó. ' +
+        'Un «sin datos» no es un desmentido: la afirmación puede ser cierta.',
+    )
+  })
+
+  it('la retribución de 92 € (control): su cita no habla del presupuesto y la frase tampoco', () => {
+    const v = verifyClaim({ claim: NOVENTA_Y_DOS, ...DATOS })
+    expect(v.summary).not.toMatch(NOMBRA_PRESUPUESTO)
+  })
 
   it('ninguna cita publicada lista el presupuesto ni saca de él una fila', () => {
     // Todas las citas extraídas, con el presupuesto publicado como único

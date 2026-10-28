@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-27T19:59:07.611Z",
+  "generatedAt": "2026-10-27T21:28:37.144Z",
   "version": "1",
   "plenoId": "c8kr44",
   "plenoDate": "2025-09-08",
@@ -3267,7 +3267,7 @@
       "verification": {
         "claimId": "c8kr44-125-afi-bbe9d1",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders, tenders-ted y bdns que la sostenga. Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
+        "summary": "No se encontró registro en tenders, tenders-ted y bdns que la sostenga. En el presupuesto municipal no se buscó. Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
         "evidence": [],
         "checkedAgainst": [
           "tenders",
@@ -3363,7 +3363,7 @@
       "verification": {
         "claimId": "c8kr44-126-afi-c3ac8f",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders, tenders-ted y bdns que la sostenga. Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
+        "summary": "No se encontró registro en tenders, tenders-ted y bdns que la sostenga. En el presupuesto municipal no se buscó. Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
         "evidence": [],
         "checkedAgainst": [
           "tenders",
@@ -3395,7 +3395,7 @@
       "verification": {
         "claimId": "c8kr44-126-afi-ec0ea2",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders, tenders-ted y bdns que la sostenga. Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
+        "summary": "No se encontró registro en tenders, tenders-ted y bdns que la sostenga. En el presupuesto municipal no se buscó. Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
         "evidence": [],
         "checkedAgainst": [
           "tenders",

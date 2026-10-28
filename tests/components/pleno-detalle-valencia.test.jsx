@@ -338,7 +338,12 @@ const DATO_DE_LAS_DECLARACIONES = (mapa) => [
   ...mapa[RUTA_FRAGMENTO].items
     .map(
       (it) =>
-        it.verification && resumenSegunFuentes(it.verification, resumenPublicable(it.verification)),
+        it.verification &&
+        resumenSegunFuentes(
+          it.verification,
+          resumenPublicable(it.verification),
+          it.claim?.verbatim,
+        ),
     )
     .filter((s) => typeof s === 'string' && s !== ''),
   ...mapa[RUTA_FRAGMENTO].items
