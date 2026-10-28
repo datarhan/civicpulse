@@ -78,17 +78,21 @@ function lineaDeContrato(t, it) {
  * Los sitios que publicaron una noticia de prensa, cada uno enlazado a su pieza
  * y con su propio titular al pasar por encima: la fila lleva el de uno solo, y
  * así se ve qué juntó `agruparPorNoticia`. Un nombre repetido lleva un número.
+ *
+ * Dice cuántos: la cabecera cuenta piezas, y con «En 2 sitios» las filas suman lo
+ * que dice. Con «Publicada en:» la revisión lectora leyó diez filas y «Y 1 más»
+ * frente a «13 cambios», y no le cuadraba.
  */
-function PublicadaEn({ piezas }) {
+function EnSitios({ piezas }) {
   const t = useT()
   const vistos = new Map()
   return (
     <div
-      data-publicada-en=""
+      data-sitios=""
       className="mono"
       style={{ fontSize: 'var(--fs-micro)', color: 'var(--ink50)', marginTop: 2 }}
     >
-      {t('cambios.prensa.publicadaEn')}{' '}
+      {rellena(t('cambios.prensa.enSitios'), { n: piezas.length })}{' '}
       {piezas.map((p, i) => {
         const nombre = p.subtitle || p.origen || p.url
         const n = (vistos.get(nombre) ?? 0) + 1
@@ -190,7 +194,7 @@ function KindCard({ kind, items, filas, formatDate }) {
                 </div>
               )}
               {piezas.length > 1 ? (
-                <PublicadaEn piezas={piezas} />
+                <EnSitios piezas={piezas} />
               ) : (
                 (it.subtitle || kind === 'licitacion') && (
                   <div

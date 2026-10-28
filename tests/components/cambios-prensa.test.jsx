@@ -81,9 +81,9 @@ describe('/cambios · la prensa, una fila por noticia', () => {
     expect(tarjeta.textContent).not.toContain(INFOTURIA.title)
     const fila = conElTitular[0]
     expect(fila.getAttribute('data-piezas')).toBe('2')
-    const linea = fila.querySelector('[data-publicada-en]')
+    const linea = fila.querySelector('[data-sitios]')
     expect(linea.textContent).toBe(
-      `${CATALOGUE.es['cambios.prensa.publicadaEn']} Valencia Plaza · Periòdic del Camp de Túria`,
+      `${rellena(CATALOGUE.es['cambios.prensa.enSitios'], { n: 2 })} Valencia Plaza · Periòdic del Camp de Túria`,
     )
     const enlaces = [...linea.querySelectorAll('a')]
     expect(enlaces.map((a) => a.getAttribute('href'))).toEqual([VPLAZA.link, INFOTURIA.link])
@@ -104,18 +104,29 @@ describe('/cambios · la prensa, una fila por noticia', () => {
   it('las cuentas cuadran: las piezas de las filas más «y N más» son las de la cabecera', async () => {
     const { container } = await pinta('es')
     const tarjeta = container.querySelector('[data-clase="prensa"]')
-    const pintadas = [...tarjeta.querySelectorAll('[data-fila]')].reduce(
-      (s, f) => s + Number(f.getAttribute('data-piezas')),
-      0,
-    )
+    const filas = [...tarjeta.querySelectorAll('[data-fila]')]
+    const pintadas = filas.reduce((s, f) => s + Number(f.getAttribute('data-piezas')), 0)
     const resto = 25 - pintadas
     expect(resto).toBeGreaterThan(0)
     expect(tarjeta.textContent).toContain(rellena(CATALOGUE.es['cambios.mas'], { n: resto }))
+    // Y el lector puede hacer la suma con lo que lee: una fila que junta piezas
+    // dice cuántas. La revisión lectora leyó diez filas y «Y 1 más» frente a «13
+    // cambios» cuando la fila decía «Publicada en:» sin el número.
+    const [antes, despues] = CATALOGUE.es['cambios.prensa.enSitios'].split('{n}')
+    const leidas = filas.reduce((s, f) => {
+      const linea = f.querySelector('[data-sitios]')?.textContent ?? ''
+      const m = linea.startsWith(antes) ? linea.slice(antes.length).split(despues)[0] : null
+      return s + (m ? Number(m) : 1)
+    }, 0)
+    expect(leidas).toBe(pintadas)
+    expect(filas.length).toBeLessThan(pintadas)
   }, 60000)
 
   it('en valencià, la línea también', async () => {
     const { container } = await pinta('ca')
-    const linea = container.querySelector('[data-clase="prensa"] [data-publicada-en]')
-    expect(linea.textContent.startsWith(CATALOGUE.ca['cambios.prensa.publicadaEn'])).toBe(true)
+    const linea = container.querySelector('[data-clase="prensa"] [data-sitios]')
+    expect(
+      linea.textContent.startsWith(rellena(CATALOGUE.ca['cambios.prensa.enSitios'], { n: 2 })),
+    ).toBe(true)
   }, 60000)
 })
