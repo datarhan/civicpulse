@@ -35,6 +35,10 @@ import { EncajeCard } from '../components/EncajeDeclarado'
 import { mailboxKinds } from '../lib/mailboxes'
 import { euros, eurosExactos, fmtDateLong, rellena } from '../lib/formatters'
 import { useT, useLocale } from '../i18n'
+import { useDocumentTitle } from '../hooks/useDocumentTitle'
+import EnBreveCargos from '../components/Cargos/EnBreveCargos'
+import DivisorLecturas from '../components/DivisorLecturas'
+import { sinAreasDelegadas } from '../scraper/en-breve-cargos'
 
 /**
  * Verified public accounts for this official.
@@ -510,6 +514,7 @@ function AlcaldeSerie({ data }) {
  */
 function RetribucionesPanel() {
   const t = useT()
+  const { locale } = useLocale()
   const { data } = useIspa()
   const { data: dedic } = useDedicaciones()
   const { data: padron } = useOfficials()
@@ -732,7 +737,7 @@ function RetribucionesPanel() {
                 Los importes de arriba son los totales que <strong>fija</strong> el cuadro del{' '}
                 {dedic?.source?.url ? (
                   <ExtLink href={dedic.source.url} style={{ color: 'var(--civic)' }}>
-                    acuerdo de pleno de {fmtDateLong(dedic.source.date)} ↗
+                    acuerdo de pleno de {fmtDateLong(dedic.source.date, locale)} ↗
                   </ExtLink>
                 ) : (
                   'acuerdo de pleno'
@@ -912,6 +917,7 @@ function RetribucionesPanel() {
  */
 function PlantillaBanda() {
   const t = useT()
+  const { locale } = useLocale()
   const { data } = useJsonFetch('/data/plantilla.json', null)
   if (!data || !data.total) return null
   const pct = (n) => Math.round((n / data.total) * 100)
@@ -1069,7 +1075,7 @@ function PlantillaBanda() {
             >
               {t('cargos.plantilla.fuenteSexo')}{' '}
               <ExtLink href={data.source.url} style={{ color: 'var(--civic)' }}>
-                {data.source.publisher}, {fmtDateLong(data.source.date)} ↗
+                {data.source.publisher}, {fmtDateLong(data.source.date, locale)} ↗
               </ExtLink>
             </p>
           )}
@@ -1197,6 +1203,7 @@ function Retrato({ o, size, radius = 'var(--r-card)' }) {
  */
 function OfficialCard({ o, bioRoute, kinds, variant = 'gobierno' }) {
   const t = useT()
+  const { locale } = useLocale()
   const former = variant === 'former'
   const oposicion = variant === 'oposicion'
   const sourceUrl = former ? o.source?.url : o.correccion?.source?.url
@@ -1219,7 +1226,7 @@ function OfficialCard({ o, bioRoute, kinds, variant = 'gobierno' }) {
                   color: 'var(--civic-ink)',
                 }}
               >
-                Alcalde
+                {t(o.honorific === 'Sra.' ? 'cargos.card.alcaldesa' : 'cargos.card.alcalde')}
               </span>
             )}
           </div>
@@ -1235,7 +1242,7 @@ function OfficialCard({ o, bioRoute, kinds, variant = 'gobierno' }) {
             >
               {t(o.honorific === 'Sra.' ? 'cargos.card.hastaF' : 'cargos.card.hastaM').replace(
                 '{fecha}',
-                fmtDateLong(o.until),
+                fmtDateLong(o.until, locale),
               )}
               {' · '}
               {t(`cargos.baja.${o.reason}`)}
@@ -1246,7 +1253,10 @@ function OfficialCard({ o, bioRoute, kinds, variant = 'gobierno' }) {
               className="mono"
               style={{ fontSize: 'var(--fs-micro)', color: 'var(--ink50)', marginTop: 4 }}
             >
-              {t('cargos.card.altaDesde').replace('{fecha}', fmtDateLong(o.correccion.since))}
+              {t('cargos.card.altaDesde').replace(
+                '{fecha}',
+                fmtDateLong(o.correccion.since, locale),
+              )}
             </div>
           )}
           {o.photoNote && (
@@ -1342,10 +1352,10 @@ function OfficialCard({ o, bioRoute, kinds, variant = 'gobierno' }) {
           {bioRoute && (
             <Link
               to={bioRoute}
-              title="Informe biográfico del agente periodista de CivicPulse"
+              title={t('cargos.card.biografia.title')}
               style={{ color: 'var(--civic)', textDecoration: 'none', fontWeight: 500 }}
             >
-              Biografía →
+              {t('cargos.card.biografia')}
             </Link>
           )}
         </span>
@@ -1423,6 +1433,7 @@ function CompositionBar({ composition, total }) {
 
 function CorporacionMunicipal() {
   const t = useT()
+  const { locale } = useLocale()
   const { loading, error, data } = useOfficials()
   const bioRoutes = useBioReportRoutes()
   const ispa = useIspa()
@@ -1435,7 +1446,7 @@ function CorporacionMunicipal() {
   if (loading) {
     return (
       <div style={{ marginBottom: 28, color: 'var(--ink50)', fontSize: 'var(--fs-aux)' }}>
-        Cargando Corporación Municipal…
+        {t('cargos.cargando')}
       </div>
     )
   }
@@ -1451,8 +1462,9 @@ function CorporacionMunicipal() {
           fontSize: 'var(--fs-aux)',
         }}
       >
-        No se pudo cargar la Corporación Municipal. Ejecuta <code>npm run scrape:officials</code>{' '}
-        para regenerar los datos.
+        {/* Decía «Ejecuta npm run scrape:officials para regenerar los datos»:
+            una orden de quien mantiene el sitio, dicha a quien lo lee. */}
+        {t('cargos.error')}
       </div>
     )
   }
@@ -1466,7 +1478,8 @@ function CorporacionMunicipal() {
     ...(mayor && conAreas.includes(mayor) ? [mayor] : []),
     ...conAreas.filter((o) => o !== mayor),
   ]
-  const oposicion = data.officials.filter((o) => (o.portfolios ?? []).length === 0)
+  // La misma regla que cuenta «¿Quién vigila al gobierno?» en la lectura vecinal.
+  const oposicion = sinAreasDelegadas(data.officials)
   const partidosGobierno = [...new Set(gobierno.map((o) => o.party))]
   const partidoUnico = partidosGobierno.length === 1 ? partidosGobierno[0] : null
   const former = data.formerOfficials ?? []
@@ -1475,7 +1488,27 @@ function CorporacionMunicipal() {
   // Derived from the snapshot's own block, never typed: the second line of
   // the stamp exists exactly when a correction does, and counts what it counts.
   const nCorr = corr ? (corr.bajas ?? 0) + (corr.altas ?? 0) : 0
-  const generatedDate = fmtDateLong(data.generatedAt)
+  // Cada cambio con su palabra y su número —«una baja», «2 altas»—, y el que es
+  // cero no se nombra: decía «1 baja(s) y 0 alta(s)».
+  const bajas = corr?.bajas ?? 0
+  const altas = corr?.altas ?? 0
+  const cambios = new Intl.ListFormat(locale === 'ca' ? 'ca' : 'es', {
+    type: 'conjunction',
+  }).format(
+    [
+      bajas === 1
+        ? t('cargos.corporacion.baja.una')
+        : bajas > 1
+          ? rellena(t('cargos.corporacion.bajas'), { n: bajas })
+          : null,
+      altas === 1
+        ? t('cargos.corporacion.alta.una')
+        : altas > 1
+          ? rellena(t('cargos.corporacion.altas'), { n: altas })
+          : null,
+    ].filter(Boolean),
+  )
+  const generatedDate = fmtDateLong(data.generatedAt, locale)
   // La página que las publica TODAS, que es el propio origen del padrón.
   //
   // Esto salía de `officials.find(o => o.cvUrl).cvUrl`, y funcionaba mientras
@@ -1626,13 +1659,23 @@ function CorporacionMunicipal() {
         </Card>
       </div>
 
+      {/* Las dos lecturas (auditoría de las dos lecturas, §3): arriba, cuánto
+          cobran y quién vigila, en palabras llanas; debajo, todo lo de siempre,
+          que es lo que lo demuestra. */}
+      <div style={{ marginTop: 22 }}>
+        <EnBreveCargos lista={data} />
+      </div>
+      <DivisorLecturas />
+
       <div
+        id="todos-los-datos"
         style={{
           display: 'flex',
           alignItems: 'baseline',
           gap: 10,
           marginTop: 18,
           flexWrap: 'wrap',
+          scrollMarginTop: 16,
         }}
       >
         <div
@@ -1644,12 +1687,13 @@ function CorporacionMunicipal() {
             letterSpacing: '.08em',
           }}
         >
-          Corporación Municipal
+          {t('cargos.corporacion.eyebrow')}
         </div>
         <div className="mono" style={{ fontSize: 'var(--fs-micro)', color: 'var(--ink50)' }}>
-          · {t('cargos.corporacion.raspado').replace('{fecha}', generatedDate)}
+          · {rellena(t('cargos.corporacion.raspado'), { fecha: generatedDate })}
         </div>
-        <DataAsOf iso={data.generatedAt} label="Officials" />
+        {/* Decía «Officials · hace 3 h», el nombre interno del fichero. */}
+        <DataAsOf iso={data.generatedAt} file="officials.json" />
       </div>
       {nCorr > 0 && (
         <div
@@ -1662,10 +1706,9 @@ function CorporacionMunicipal() {
             marginTop: 8,
           }}
         >
-          {t('cargos.corporacion.correcciones')
-            .replace('{n}', nCorr)
-            .replace('{bajas}', corr.bajas ?? 0)
-            .replace('{altas}', corr.altas ?? 0)}{' '}
+          {nCorr === 1
+            ? rellena(t('cargos.corporacion.correcciones.una'), { cambios })
+            : rellena(t('cargos.corporacion.correcciones'), { n: nCorr, cambios })}{' '}
           <Link
             to="/metodologia#corporacion"
             style={{ color: 'var(--civic)', textDecoration: 'underline' }}
@@ -1675,7 +1718,10 @@ function CorporacionMunicipal() {
         </div>
       )}
 
-      <RetribucionesPanel />
+      {/* El ancla de «¿Cuánto cobran?»: existe aunque el panel no se pinte. */}
+      <div id="retribuciones" style={{ scrollMarginTop: 16 }}>
+        <RetribucionesPanel />
+      </div>
 
       <div style={{ marginTop: 26 }}>
         <SectionHead
@@ -1697,7 +1743,7 @@ function CorporacionMunicipal() {
       </div>
 
       {oposicion.length > 0 && (
-        <div style={{ marginTop: 26 }}>
+        <div id="quien-fiscaliza" style={{ marginTop: 26, scrollMarginTop: 16 }}>
           <SectionHead
             as="h2"
             eyebrow={t('cargos.oposicion.eyebrow').replace('{n}', oposicion.length)}
@@ -1791,7 +1837,7 @@ function CorporacionMunicipal() {
         >
           {t('cargos.fuentes')
             .replace('{fecha}', generatedDate)
-            .replace('{acuerdo}', fmtDateLong(dedic?.source?.date) || '—')}
+            .replace('{acuerdo}', fmtDateLong(dedic?.source?.date, locale) || '—')}
         </p>
         <span style={{ flex: 1 }} />
         <div
@@ -1804,13 +1850,13 @@ function CorporacionMunicipal() {
           }}
         >
           <Link to="/departamentos" style={{ color: 'var(--civic)' }}>
-            Departamentos →
+            {t('nav.departamentos')} →
           </Link>
           <Link to="/promesas" style={{ color: 'var(--civic)' }}>
-            Promesas →
+            {t('nav.promesas')} →
           </Link>
           <Link to="/quejas" style={{ color: 'var(--civic)' }}>
-            Quejas →
+            {t('nav.quejas')} →
           </Link>
         </div>
       </div>
@@ -1819,6 +1865,10 @@ function CorporacionMunicipal() {
 }
 
 export default function Cargos() {
+  const t = useT()
+  // El de la pestaña, el mismo que el <h1>: el armazón ponía «Cargos», la
+  // etiqueta de la navegación.
+  useDocumentTitle(t('cargos.title'))
   return (
     <div
       className="cp-page"

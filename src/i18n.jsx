@@ -2398,7 +2398,11 @@ export const CATALOGUE = {
     'cargos.card.hastaF': 'Concejala hasta el {fecha}',
     'cargos.card.hastaM': 'Concejal hasta el {fecha}',
     'cargos.card.acta': 'acta ↗',
-    // El buzón compartido se CUENTA en el padrón, no se lista a mano: once
+    'cargos.card.alcalde': 'Alcalde',
+    'cargos.card.alcaldesa': 'Alcaldesa',
+    'cargos.card.biografia': 'Biografía →',
+    'cargos.card.biografia.title': 'Informe biográfico del agente periodista de CivicPulse',
+    // El buzón compartido se CUENTA en la lista de cargos, no se teclea: once
     // cargos comparten el de alcaldía y seis el del grupo del PP, y bajo una
     // cara un mostrador compartido se lee como la línea directa de esa persona.
     'cargos.card.buzonCompartido': '· buzón compartido por {n} cargos',
@@ -2407,10 +2411,48 @@ export const CATALOGUE = {
     'cargos.baja.perdida-condicion': 'pérdida de la condición de concejal',
     // La segunda línea del sello sólo existe cuando hay correcciones: se deriva
     // del fichero, no se escribe, para que no pueda quedarse vieja.
-    'cargos.corporacion.raspado': 'padrón raspado de ribarroja.es · actualizado {fecha}',
+    // «Lista de cargos», nunca «padrón»: para cualquier vecino el padrón es el
+    // censo de habitantes (auditoría de las dos lecturas, §3).
+    'cargos.corporacion.eyebrow': 'Corporación Municipal',
+    'cargos.corporacion.raspado': 'lista de cargos de ribarroja.es · actualizada el {fecha}',
+    // Una frase por número, y los cambios contados con su propia palabra: decía
+    // «1 corrección(es) documentada(s)… 1 baja(s) y 0 alta(s)».
+    'cargos.corporacion.correcciones.una':
+      'Una corrección documentada: la página del ayuntamiento todavía no recoge {cambios} que el Pleno ya acordó; se aplica con el acta al lado.',
     'cargos.corporacion.correcciones':
-      '{n} corrección(es) documentada(s): la página del ayuntamiento no recoge aún {bajas} baja(s) y {altas} alta(s) que el Pleno ya acordó; se aplican con el acta al lado.',
-    'cargos.corporacion.correccionesLink': 'cómo se corrige el padrón',
+      '{n} correcciones documentadas: la página del ayuntamiento todavía no recoge {cambios} que el Pleno ya acordó; se aplican con el acta al lado.',
+    'cargos.corporacion.baja.una': 'una baja',
+    'cargos.corporacion.bajas': '{n} bajas',
+    'cargos.corporacion.alta.una': 'un alta',
+    'cargos.corporacion.altas': '{n} altas',
+    'cargos.corporacion.correccionesLink': 'cómo se corrige la lista',
+    'cargos.cargando': 'Cargando la lista de cargos…',
+    'cargos.error': 'No se pudo cargar la lista de cargos.',
+    // La lectura vecinal (auditoría de las dos lecturas, §3). Las cifras salen de
+    // `scraper/en-breve-cargos`; aquí sólo se eligen las palabras.
+    'cargos.enBreve.titulo': 'En breve',
+    'cargos.enBreve.intro':
+      'Lo esencial, en pocas preguntas. Cada respuesta enlaza a la sección que la demuestra.',
+    'cargos.enBreve.saltar': 'Saltar a todos los datos ↓',
+    'cargos.enBreve.sueldos.pregunta': '¿Cuánto cobran?',
+    'cargos.enBreve.sueldos.cifra': '{n} de {total}',
+    'cargos.enBreve.sueldos.cifraNota': 'con sueldo fijado por el pleno',
+    'cargos.enBreve.sueldos.frase':
+      'Cobran entre {minimo} y {maximo} € brutos al año, según el puesto. Los otros {sin} cobran por cada sesión a la que asisten.',
+    'cargos.enBreve.sueldos.nota': 'Importes de {anio}, fijados por el pleno el {fecha}.',
+    // El cuadro de retribuciones separa la antigüedad personal del sueldo del
+    // cargo; sin esta frase, el importe mayor se leería como el del cargo.
+    'cargos.enBreve.sueldos.antiguedad':
+      'El más alto incluye {antiguedad} € de antigüedad personal.',
+    'cargos.enBreve.sueldos.ancla': 'Las retribuciones, cifra a cifra ↓',
+    'cargos.enBreve.fiscalizan.pregunta': '¿Quién vigila al gobierno?',
+    'cargos.enBreve.fiscalizan.cifra': '{n} de {total}',
+    'cargos.enBreve.fiscalizan.cifraNota': 'sin áreas delegadas',
+    'cargos.enBreve.fiscalizan.frase':
+      'No dirigen ningún área: votan en el pleno y tienen derecho a preguntar al gobierno.',
+    'cargos.enBreve.fiscalizan.partidos': 'Son de {n} partidos: {lista}.',
+    'cargos.enBreve.fiscalizan.partido': 'Todos son de {partido}.',
+    'cargos.enBreve.fiscalizan.ancla': 'Quién fiscaliza ↓',
     'cargos.bajas.title': 'Ya no forman parte de la corporación',
     'cargos.bajas.note':
       'Se conservan con su fecha de cese y el acta que la recoge. Nada en presente —retribución, áreas, quejas, encaje— se pinta sobre quien ya no ocupa el escaño.',
@@ -2496,7 +2538,7 @@ export const CATALOGUE = {
     // La fecha del acuerdo se DERIVA de dedicaciones.json, no se teclea: un
     // «07/07/2023» escrito aquí sobrevive al mandato que nombra.
     'cargos.fuentes':
-      'Fuentes: corporación y fotografías de ribarroja.es · retribuciones fijadas en el acuerdo de pleno de {acuerdo} · importes percibidos del ISPA, Ministerio de Hacienda y Función Pública. Padrón actualizado el {fecha}.',
+      'Fuentes: corporación y fotografías de ribarroja.es · retribuciones fijadas en el acuerdo de pleno de {acuerdo} · importes percibidos del ISPA, Ministerio de Hacienda y Función Pública. Lista de cargos actualizada el {fecha}.',
     'cargos.detalle.baja.banner':
       'Ya no forma parte de la corporación: {motivo}. El Pleno tomó razón el {fecha}.',
     'cargos.detalle.baja.fuente': 'Fuente',
@@ -4950,14 +4992,47 @@ export const CATALOGUE = {
     'cargos.card.hastaF': 'Regidora fins al {fecha}',
     'cargos.card.hastaM': 'Regidor fins al {fecha}',
     'cargos.card.acta': 'acta ↗',
+    'cargos.card.alcalde': 'Alcalde',
+    'cargos.card.alcaldesa': 'Alcaldessa',
+    'cargos.card.biografia': 'Biografia →',
+    'cargos.card.biografia.title': 'Informe biogràfic de l’agent periodista de CivicPulse',
     'cargos.card.buzonCompartido': '· bústia compartida per {n} càrrecs',
     'cargos.baja.renuncia': 'renúncia a l’acta',
     'cargos.baja.fallecimiento': 'defunció',
     'cargos.baja.perdida-condicion': 'pèrdua de la condició de regidor',
-    'cargos.corporacion.raspado': 'padró raspat de ribarroja.es · actualitzat {fecha}',
+    'cargos.corporacion.eyebrow': 'Corporació Municipal',
+    'cargos.corporacion.raspado': 'llista de càrrecs de ribarroja.es · actualitzada el {fecha}',
+    'cargos.corporacion.correcciones.una':
+      'Una correcció documentada: la pàgina de l’ajuntament encara no recull {cambios} que el Ple ja va acordar; s’aplica amb l’acta al costat.',
     'cargos.corporacion.correcciones':
-      '{n} correcció(ns) documentada(es): la pàgina de l’ajuntament encara no recull {bajas} baixa(es) i {altas} alta(es) que el Ple ja va acordar; s’apliquen amb l’acta al costat.',
-    'cargos.corporacion.correccionesLink': 'com es corregeix el padró',
+      '{n} correccions documentades: la pàgina de l’ajuntament encara no recull {cambios} que el Ple ja va acordar; s’apliquen amb l’acta al costat.',
+    'cargos.corporacion.baja.una': 'una baixa',
+    'cargos.corporacion.bajas': '{n} baixes',
+    'cargos.corporacion.alta.una': 'una alta',
+    'cargos.corporacion.altas': '{n} altes',
+    'cargos.corporacion.correccionesLink': 'com es corregeix la llista',
+    'cargos.cargando': 'Carregant la llista de càrrecs…',
+    'cargos.error': 'No s’ha pogut carregar la llista de càrrecs.',
+    'cargos.enBreve.titulo': 'En resum',
+    'cargos.enBreve.intro':
+      "L'essencial, en poques preguntes. Cada resposta enllaça amb la secció que la demostra.",
+    'cargos.enBreve.saltar': 'Botar a totes les dades ↓',
+    'cargos.enBreve.sueldos.pregunta': 'Quant cobren?',
+    'cargos.enBreve.sueldos.cifra': '{n} de {total}',
+    'cargos.enBreve.sueldos.cifraNota': 'amb sou fixat pel ple',
+    'cargos.enBreve.sueldos.frase':
+      'Cobren entre {minimo} i {maximo} € bruts a l’any, segons el lloc. Els altres {sin} cobren per cada sessió a què assistixen.',
+    'cargos.enBreve.sueldos.nota': 'Imports de {anio}, fixats pel ple el {fecha}.',
+    'cargos.enBreve.sueldos.antiguedad': 'El més alt inclou {antiguedad} € d’antiguitat personal.',
+    'cargos.enBreve.sueldos.ancla': 'Les retribucions, xifra a xifra ↓',
+    'cargos.enBreve.fiscalizan.pregunta': 'Qui vigila el govern?',
+    'cargos.enBreve.fiscalizan.cifra': '{n} de {total}',
+    'cargos.enBreve.fiscalizan.cifraNota': 'sense àrees delegades',
+    'cargos.enBreve.fiscalizan.frase':
+      'No dirigixen cap àrea: voten en el ple i tenen dret a preguntar al govern.',
+    'cargos.enBreve.fiscalizan.partidos': 'Són de {n} partits: {lista}.',
+    'cargos.enBreve.fiscalizan.partido': 'Tots són de {partido}.',
+    'cargos.enBreve.fiscalizan.ancla': 'Qui fiscalitza ↓',
     'cargos.bajas.title': 'Ja no formen part de la corporació',
     'cargos.bajas.note':
       'Es conserven amb la data de cessament i l’acta que la recull. Res en present —retribució, àrees, queixes, encaix— es pinta sobre qui ja no ocupa l’escó.',
@@ -5013,7 +5088,7 @@ export const CATALOGUE = {
     'cargos.plantilla.fuenteSexo':
       'El desglossament per sexe és l’última xifra publicada, i la seua font és un periòdic comarcal, no l’ajuntament:',
     'cargos.fuentes':
-      'Fonts: corporació i fotografies de ribarroja.es · retribucions fixades en l’acord de ple de {acuerdo} · imports percebuts de l’ISPA, Ministeri d’Hisenda i Funció Pública. Padró actualitzat el {fecha}.',
+      'Fonts: corporació i fotografies de ribarroja.es · retribucions fixades en l’acord de ple de {acuerdo} · imports percebuts de l’ISPA, Ministeri d’Hisenda i Funció Pública. Llista de càrrecs actualitzada el {fecha}.',
     'cargos.detalle.baja.banner':
       'Ja no forma part de la corporació: {motivo}. El Ple en va prendre raó el {fecha}.',
     'cargos.detalle.baja.fuente': 'Font',

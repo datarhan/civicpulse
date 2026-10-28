@@ -277,11 +277,11 @@ function MudanzaDelPortal() {
       />
       <p style={{ margin: '8px 0 0', color: 'var(--ink70)' }}>
         A principios de <strong>septiembre de 2026</strong> el ayuntamiento mudó su portal. La
-        página «Corporación Municipal» de la que sale este padrón cambió de dirección, y la anterior{' '}
-        <strong>no redirige: contesta 403</strong> —«prohibido»—, que de las tres respuestas
-        posibles es la única que no dice lo que ha pasado. Un 301 habría llevado al lector a la
-        página nueva; un 404 habría dicho que ya no está. El 403 dice que no tienes permiso, y eso
-        es falso: la página está publicada y enlazada desde el menú del propio sitio.
+        página «Corporación Municipal» de la que sale la lista de cargos cambió de dirección, y la
+        anterior <strong>no redirige: contesta 403</strong> —«prohibido»—, que de las tres
+        respuestas posibles es la única que no dice lo que ha pasado. Un 301 habría llevado al
+        lector a la página nueva; un 404 habría dicho que ya no está. El 403 dice que no tienes
+        permiso, y eso es falso: la página está publicada y enlazada desde el menú del propio sitio.
       </p>
       <p style={{ margin: '10px 0 0', color: 'var(--ink70)' }}>
         {/* Decía «El raspado nocturno falló desde el 2 de septiembre», y esa
@@ -291,10 +291,10 @@ function MudanzaDelPortal() {
             en ese verde: sus cinco rojas son de después, y officials.json no
             cambió de `generatedAt` hasta #114 (8-09). Revisión lectora del
             30-09-2026. */}
-        <strong>Aquí costó seis días de padrón congelado.</strong> El raspado nocturno leyó la
-        página vieja por última vez el 2 de septiembre, falló desde la noche siguiente, y hasta el 8
-        esta web publicó la corporación tal como estaba antes de la mudanza. No se inventó nada en
-        ese hueco —el fichero conserva la fecha en que se generó y ésa es la que se enseña—, pero
+        <strong>Aquí costó seis días de lista de cargos congelada.</strong> El raspado nocturno leyó
+        la página vieja por última vez el 2 de septiembre, falló desde la noche siguiente, y hasta
+        el 8 esta web publicó la corporación tal como estaba antes de la mudanza. No se inventó nada
+        en ese hueco —el fichero conserva la fecha en que se generó y ésa es la que se enseña—, pero
         durante seis días lo publicado no era lo vigente.
       </p>
       <p style={{ margin: '10px 0 0', color: 'var(--ink70)' }}>
@@ -315,12 +315,12 @@ function MudanzaDelPortal() {
             de ésta falló (`ok: false` en b38676c0) en la misma pasada en que la
             del padrón contestó. Revisión lectora del 30-09-2026. */}
         <strong>Lo que NO ocurrió, y conviene decirlo:</strong> la mudanza no se llevó ningún
-        currículo. No vivían en la página del padrón sino en otra del portal de transparencia,
-        «Datos biográficos del alcalde/sa y concejales», que este sitio leyó 67 veces entre el 19 de
-        junio y el 1 de septiembre de 2026 y que listó siempre los mismos 17. Esa página ya falló en
-        la lectura del 2 de septiembre, la misma pasada en la que la del padrón todavía contestó;
-        por eso las 67 acaban el día 1. Con la mudanza, esos 17 pasaron a un PDF junto a cada
-        concejal, que es una forma mejor de publicarlos. Hoy hay{' '}
+        currículo. No vivían en la página de la lista de cargos sino en otra del portal de
+        transparencia, «Datos biográficos del alcalde/sa y concejales», que este sitio leyó 67 veces
+        entre el 19 de junio y el 1 de septiembre de 2026 y que listó siempre los mismos 17. Esa
+        página ya falló en la lectura del 2 de septiembre, la misma pasada en la que la de la lista
+        de cargos todavía contestó; por eso las 67 acaban el día 1. Con la mudanza, esos 17 pasaron
+        a un PDF junto a cada concejal, que es una forma mejor de publicarlos. Hoy hay{' '}
         <strong style={{ color: 'var(--ink)' }}>
           {conFicha} de {total}
         </strong>{' '}
@@ -339,8 +339,8 @@ function MudanzaDelPortal() {
             currículos recién nombrada, «anterior» podía ser cualquiera de las
             dos. Revisión lectora del 30-09-2026. */}
         <strong>Lo que sí se estrechó son las formas de contactar.</strong> El 2 de septiembre de
-        2026, en la última lectura de la página vieja del padrón, tres concejales publicaban una
-        dirección de correo propia del ayuntamiento. En la página nueva{' '}
+        2026, en la última lectura de la página vieja de la lista de cargos, tres concejales
+        publicaban una dirección de correo propia del ayuntamiento. En la página nueva{' '}
         {propias === 0 ? (
           <strong style={{ color: 'var(--ink)' }}>no hay ninguna</strong>
         ) : (
@@ -3546,7 +3546,7 @@ export default function Metodologia() {
 
       <Card style={{ marginTop: 14 }} id="corporacion">
         <SectionHead
-          eyebrow="Cargos · padrón de la corporación"
+          eyebrow="Cargos · la lista de la corporación"
           title="Qué pasa cuando la web del ayuntamiento va por detrás del Pleno"
         />
         <p style={{ margin: '8px 0 0', color: 'var(--ink70)' }}>
@@ -3565,8 +3565,8 @@ export default function Metodologia() {
             La corrección es curada, citada y firmada, y nunca la escribe un proceso automático.
           </strong>{' '}
           Vive en un fichero aparte del raspado; cada entrada cita el acta literal y lleva quién la
-          firmó y cuándo. Se aplica al componer el padrón, de modo que el fichero publicado lleva
-          las dos cosas —lo que raspó y lo que el acta corrige— y el sello de la página dice cuántas
+          firmó y cuándo. Se aplica al componer la lista, de modo que el fichero publicado lleva las
+          dos cosas —lo que raspó y lo que el acta corrige— y el sello de la página dice cuántas
           correcciones hay. Una corrección no añade ninguna afirmación sobre nadie: republica que
           alguien dejó el cargo y por cuál de los motivos que la ley contempla, y que alguien tomó
           posesión con credencial de la Junta Electoral Central. Su esquema no tiene ningún campo

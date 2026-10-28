@@ -212,8 +212,10 @@ test.describe('Cargos (/cargos)', () => {
     expect(sitting).toMatch(/fijada en el acuerdo|asistencias por sesión/)
     // The composition bar still counts 21 seats: a former member is not one.
     expect(body).toMatch(/Total 21 escaños/)
-    // The stamp says how many corrections it carries, derived from the data.
-    expect(body).toMatch(/\d+ corrección\(es\) documentada\(s\)/)
+    // The stamp says how many corrections it carries, derived from the data —
+    // in words, not «1 corrección(es) documentada(s)».
+    expect(body).toMatch(/Una corrección documentada|\d+ correcciones documentadas/)
+    expect(body).not.toMatch(/\((es|s)\)/)
     // And the person's own record resolves, leading with the departure.
     const link = page.locator('a[href="/cargos/soraya-trejo-delgado"]').first()
     await expect(link).toBeVisible({ timeout: 8000 })
@@ -293,13 +295,14 @@ test.describe('Cargos (/cargos)', () => {
     // ISPA row placed under a named face is a claim the source cannot support,
     // and it would be the `Otro` sentinel again: naming by elimination.
     await page.goto('/cargos', { waitUntil: 'domcontentloaded' })
-    await expect(page.getByText('Quién fiscaliza').first()).toBeVisible({ timeout: 8000 })
-    const body = await page.locator('body').innerText()
-    const i = body.indexOf('Quién fiscaliza')
-    expect(i, 'la rejilla de oposición tiene que estar en la página').toBeGreaterThan(0)
-    // Up to the plantilla band, which is a different subject with its own figures.
-    const j = body.indexOf('Plantilla municipal')
-    const oposicion = body.slice(i, j > i ? j : undefined)
+    // The section by its id, not by the first «Quién fiscaliza» in the body:
+    // the «En breve» card links to it with those words, and slicing from there
+    // swallowed the pay panel with its euros.
+    const seccion = page.locator('#quien-fiscaliza')
+    await expect(seccion, 'la rejilla de oposición tiene que estar en la página').toBeVisible({
+      timeout: 8000,
+    })
+    const oposicion = await seccion.innerText()
     // It really contains the cards (an empty slice would pass the next line).
     expect(oposicion).toMatch(/asistencias por sesión/i)
     expect(oposicion).not.toMatch(/\d[\d.]*,\d{2}\s*€/)
