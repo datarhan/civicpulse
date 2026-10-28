@@ -14,6 +14,7 @@ import {
   FESTIVOS_DE_LA_SEDE,
   LEGAL_CATALOG,
   ESCALATION_PROFILES,
+  SINDIC_PRESENTAR_QUEJA,
   type FestivoDeLaSede,
   type FestivosPorAnio,
   type OfficialsSnapshot,
@@ -798,13 +799,13 @@ describe('queja-router — escalation path', () => {
     expect(contencioso?.basis.law).toMatch(/29\/1998|LJCA/)
   })
 
-  it('transparencia escalates to the CTBG (reclamación especial)', () => {
+  it('transparencia escalates to the Consell de Transparència CV (reclamación especial)', () => {
     const r = routeQueja(
       { title: 'Acceso a información pública', detail: 'pido contratos' },
       officials,
     )
-    const ctbg = r.escalation.find((e) => e.who.includes('CTBG') || e.who.includes('Consell'))
-    expect(ctbg).toBeDefined()
+    const consell = r.escalation.find((e) => e.who.includes('Consell'))
+    expect(consell).toBeDefined()
   })
 
   it('every escalation step cites a BOE or official institution URL', () => {
@@ -821,6 +822,84 @@ describe('queja-router — escalation path', () => {
     for (let i = 1; i < r.escalation.length; i++) {
       expect(r.escalation[i].whenDays).toBeGreaterThanOrEqual(r.escalation[i - 1].whenDays)
     }
+  })
+})
+
+/**
+ * La ley que se cita tiene que ser la vigente, y el órgano, el que resuelve.
+ *
+ * El Síndic se citaba por la Ley 11/1988, derogada por la Ley 2/2021, de 26 de
+ * marzo (disposición derogatoria única), en vigor desde el 30-04-2021. Y la
+ * reclamación de transparencia ofrecía el CTBG como alternativa al Consell: el
+ * art. 24.6 de la Ley 19/2013 deja al CTBG sólo lo que una comunidad no atribuye
+ * a un órgano propio (disposición adicional cuarta), y la Ley 1/2022 de la
+ * Comunitat Valenciana se la atribuye al suyo (arts. 3.1.d y 38). Para una
+ * solicitud al Ayuntamiento de Riba-roja no hay «o».
+ */
+describe('queja-router — la ley vigente y el órgano que resuelve', () => {
+  const transparencia = () =>
+    routeQueja({ title: 'Acceso a información pública', detail: 'pido contratos' }, officials)
+
+  it('el Síndic se cita por la Ley 2/2021, con el artículo que define la institución', () => {
+    const s = LEGAL_CATALOG.SINDIC_CV
+    expect(s.law).toMatch(/^Ley 2\/2021 /)
+    expect(s.article).toBe('art. 1.2')
+    expect(s.url).toBe('https://www.boe.es/buscar/act.php?id=BOE-A-2021-6051#a1')
+    expect(s.says).toMatch(/alto comisionado de las Corts Valencianes/)
+  })
+
+  it('ninguna entrada del catálogo ni de las escaleras cita la Ley 11/1988', () => {
+    expect(JSON.stringify(LEGAL_CATALOG)).not.toMatch(/11\/1988/)
+    expect(JSON.stringify(ESCALATION_PROFILES)).not.toMatch(/11\/1988/)
+  })
+
+  it('la reclamación de transparencia va al Consell, sin el CTBG como alternativa', () => {
+    const paso = transparencia().escalation.find((e) => /^Reclamación/.test(e.action))
+    expect(paso?.who).toBe('Consell de Transparència de la Comunitat Valenciana')
+    expect(paso?.action).not.toMatch(/CTBG|Consejo de Transparencia y Buen Gobierno/)
+    expect(paso?.template).toBe('https://conselltransparencia.gva.es/es/presentacion')
+    expect(paso?.basis).toBe(LEGAL_CATALOG.LTCV_38)
+  })
+
+  it('el art. 38 de la Ley 1/2022 de la Comunitat Valenciana es base legal de la reclamación', () => {
+    const a = LEGAL_CATALOG.LTCV_38
+    expect(a.law).toMatch(/^Ley 1\/2022 /)
+    expect(a.article).toBe('art. 38')
+    expect(a.url).toMatch(/^https:\/\/www\.boe\.es\/buscar\/act\.php\?id=BOE-A-2022-8187#/)
+    expect(a.says).toMatch(/Consejo Valenciano de Transparencia/)
+    expect(a.says).toMatch(/un mes/)
+    expect(transparencia().legalBasis).toContain(a)
+  })
+
+  it('el art. 24 de la Ley 19/2013 dice que el CTBG cede ante el órgano autonómico', () => {
+    const says = LEGAL_CATALOG.LTBG_24.says
+    expect(says).toMatch(/disposición adicional cuarta/)
+    expect(says).toMatch(/Consell de Transparència de la Comunitat Valenciana/)
+  })
+
+  it('la queja al Síndic enlaza su página para presentarla y avisa de que no para los plazos', () => {
+    // La de antes, /es/presenta-una-queja, ya no existe: el 28-10-2026 redirigía a
+    // una noticia sobre la inadmisión de un niño en un colegio. Y «no perjudica
+    // otros recursos» callaba lo que la ley y el propio Síndic avisan: la queja no
+    // interrumpe los plazos para recurrir (art. 32.3 Ley 2/2021).
+    const r = routeQueja({ title: 'Bache', detail: 'bache' }, officials)
+    const paso = r.escalation.find((e) => e.who.includes('Síndic'))
+    expect(SINDIC_PRESENTAR_QUEJA).toBe(
+      'https://www.elsindic.com/te-ayudamos/presentar-una-queja-consulta/',
+    )
+    expect(paso?.template).toBe(SINDIC_PRESENTAR_QUEJA)
+    expect(paso?.action).toMatch(/no interrumpe los plazos para recurrir/)
+    expect(paso?.action).not.toMatch(/perjudica/)
+    expect(r.explanationEs).toMatch(/no interrumpe los plazos para recurrir \(art\. 32\.3/)
+    expect(r.explanationEs).toContain(SINDIC_PRESENTAR_QUEJA)
+    expect(r.explanationEs).not.toMatch(/perjudica/)
+  })
+
+  it('la explicación no ofrece el CTBG para una solicitud al Ayuntamiento', () => {
+    const e = transparencia().explanationEs
+    expect(e).not.toMatch(/CTBG|Consejo de Transparencia y Buen Gobierno/)
+    expect(e).toMatch(/Consell de Transparència de la Comunitat Valenciana/)
+    expect(e).toMatch(/art\. 38 de la Ley 1\/2022/)
   })
 })
 
