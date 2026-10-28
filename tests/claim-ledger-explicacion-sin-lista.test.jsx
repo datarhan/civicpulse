@@ -5,8 +5,13 @@ import { render } from '@testing-library/react'
 import { MemoryRouter } from 'react-router-dom'
 import { installFetchMock } from './setup/mockFetch'
 import { ClaimLedger } from '../src/components/ClaimLedger'
-import { CLAVE_RESUMEN_SIN_LISTA, explicacionSinLista } from '../src/lib/claim-provenance.js'
+import {
+  CLAVE_RESUMEN_SIN_LISTA,
+  explicacionSinLista,
+  resumenSegunFuentes,
+} from '../src/lib/claim-provenance.js'
 import { ROTULO_RESUMEN_RETIRADO, resumenPublicable } from '../src/lib/resumenes-retirados.js'
+import { esResumenCasi, esResumenSinRegistro } from '../src/scraper/claim-verdicts'
 import { CATALOGUE } from '../src/i18n'
 
 /**
@@ -46,8 +51,21 @@ const porId = new Map(servidas.map((it) => [it.claim.id, it]))
 const SIN_LISTA = CATALOGUE.es[CLAVE_RESUMEN_SIN_LISTA]
 const SIN_LISTA_VA = CATALOGUE.ca[CLAVE_RESUMEN_SIN_LISTA]
 
-/** Una de las tres que el registro emparejado contradice (27-10-2026). */
-const SIN_FIRMA = 'c8kr44-148-cit-2fadb2'
+/**
+ * Una que cuenta la lista: «Los cuatro son expedientes de contratación…». No es
+ * ninguna de las tres que se firmaron después (c8kr44-148, c8kr44-123,
+ * qz6weg-249): firmadas, ya no caen en la regla.
+ */
+const SIN_FIRMA = '19gax3o-067-cit-dcdcf6'
+/**
+ * Del motor por la pasada, pero su resumen es el texto fijo del verificador
+ * determinista, «No se encontró registro en tenders / BDNS / presupuesto…»: no
+ * lo escribió el modelo y la tarjeta ya lo re-deriva (`resumenSegunFuentes`).
+ * Eran 25 el 28-10-2026.
+ */
+const DE_PLANTILLA = '19gax3o-030-afi-8eff52'
+/** El texto fijo del verificador determinista, no el del modelo. */
+const esTextoFijo = (s) => esResumenSinRegistro(s) || esResumenCasi(s)
 /** La explicación que una persona reescribió y firmó (#461). */
 const FIRMADA = 'rmtyr-033-afi-219148'
 /** Retirada por charla de la tarea: su propio aviso manda. */
@@ -107,6 +125,14 @@ describe('explicacionSinLista', () => {
     ],
     ['del verificador determinista', { verdict: 'sin-datos', checkedAgainst: ['tenders'] }],
     ['de la segunda pasada LLM', { ...motor, source: 'llm', derivedBy: [] }],
+    [
+      'con el texto fijo del verificador determinista',
+      {
+        ...motor,
+        summary:
+          'No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.',
+      },
+    ],
     ['sin verificación', null],
   ])('no: %s', (_, v) => {
     expect(explicacionSinLista(v)).toBe(false)
@@ -121,9 +147,22 @@ describe('lo servido', () => {
     expect(delMotor.some((it) => it.verification.reasonSignedBy)).toBe(true)
   })
 
+  it('ninguna con el texto fijo del verificador cae en la regla, y hay de ésas', () => {
+    const fijas = delMotor.filter((it) => esTextoFijo(it.verification.summary))
+    expect(fijas.length).toBeGreaterThan(0)
+    expect(
+      fijas.filter((it) => explicacionSinLista(it.verification)).map((it) => it.claim.id),
+    ).toEqual([])
+  })
+
   it('toda retractación del motor sin firma cae en la regla; las firmadas, no', () => {
     const fuera = delMotor
-      .filter((it) => !it.verification.reasonSignedBy && !explicacionSinLista(it.verification))
+      .filter(
+        (it) =>
+          !it.verification.reasonSignedBy &&
+          !esTextoFijo(it.verification.summary) &&
+          !explicacionSinLista(it.verification),
+      )
       .map((it) => it.claim.id)
     expect(fuera.slice(0, 5), `${fuera.length} sin firma fuera de la regla`).toEqual([])
     const firmadasDentro = delMotor
@@ -165,6 +204,19 @@ describe('la tarjeta', () => {
     const it = fila(DE_CURADOR)
     const { container } = pintar(it)
     expect(container.textContent).toContain(it.verification.summary)
+    expect(container.textContent).not.toContain(SIN_LISTA)
+  })
+
+  it('el texto fijo del verificador sigue re-derivado, sin el aviso', () => {
+    const it = fila(DE_PLANTILLA)
+    const { container } = pintar(it)
+    const rederivado = resumenSegunFuentes(
+      it.verification,
+      resumenPublicable(it.verification),
+      it.claim.verbatim,
+    )
+    expect(rederivado).toBeTruthy()
+    expect(container.textContent).toContain(rederivado)
     expect(container.textContent).not.toContain(SIN_LISTA)
   })
 
