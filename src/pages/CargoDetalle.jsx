@@ -87,6 +87,8 @@ function AreaSpend({ slugs }) {
     .filter((b) => b && b.contratacion.contratos > 0)
     .sort((a, b) => b.contratacion.importeEur - a.contratacion.importeEur)
   if (rows.length === 0) return null
+  // Un área con contratos y 0 € es un área cuyos contratos no publican importe
+  // (`importeAdjudicado` da null y no suma): se pinta «—», no «0 €».
   const totalEur = rows.reduce((n, b) => n + b.contratacion.importeEur, 0)
   const totalN = rows.reduce((n, b) => n + b.contratacion.contratos, 0)
   // El periodo de EXACTAMENTE las filas que se suman: el de cada área, unido. Sin
@@ -136,7 +138,7 @@ function AreaSpend({ slugs }) {
             </Link>
             <span>
               <span className="mono" style={{ fontWeight: 600 }}>
-                {eurosBreves(b.contratacion.importeEur)}
+                {eurosBreves(b.contratacion.importeEur || null) || '—'}
               </span>
               <span style={{ color: 'var(--ink50)', fontSize: 'var(--fs-micro)', marginLeft: 8 }}>
                 {b.contratacion.contratos} {t('departamentos.card.contratos')}
@@ -153,7 +155,7 @@ function AreaSpend({ slugs }) {
           }}
           className="mono"
         >
-          {t('cargos.detalle.area.note')} · {totalN} · {eurosBreves(totalEur)}
+          {t('cargos.detalle.area.note')} · {totalN} · {eurosBreves(totalEur || null) || '—'}
         </div>
       </Card>
     </section>

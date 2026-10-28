@@ -128,8 +128,10 @@ function DepartmentCard({ bucket, frozen }) {
                   : t('departamentos.card.contratacion')
               }
               value={
-                bucket.contratacion.contratos > 0
-                  ? eurosBreves(bucket.contratacion.importeEur) || '—'
+                // Contratos sin ningún importe publicado suman 0 € (`importeAdjudicado`
+                // da null y no suma): eso es «—», no un cero que nadie midió.
+                bucket.contratacion.contratos > 0 && bucket.contratacion.importeEur > 0
+                  ? eurosBreves(bucket.contratacion.importeEur)
                   : '—'
               }
               muted={bucket.contratacion.contratos === 0}
