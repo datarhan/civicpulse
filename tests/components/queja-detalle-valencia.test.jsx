@@ -329,6 +329,38 @@ const ESCENARIOS = [
     listo: (c) =>
       pintaLa(c, QUEJA.description) && c.querySelectorAll('[data-section-head]').length >= 4,
   },
+  // El camino entero de la queja pinta, según el estado, lo que toca ahora: cada
+  // rama tiene su escenario para que la cobertura de abajo no quede sin leer.
+  {
+    nombre: 'con los apoyos: lista para el registro',
+    ruta: `/quejas/${ID}`,
+    pinta: laFicha,
+    fetch: sirve({ queja: { ...QUEJA, status: 'apoyada_verificada', apoyos: 10 } }),
+    listo: (c) => c.querySelector('[data-paso="registro"][data-estado="ahora"]') !== null,
+  },
+  {
+    nombre: 'cerrada sin registrar',
+    ruta: `/quejas/${ID}`,
+    pinta: laFicha,
+    fetch: sirve({ queja: { ...QUEJA, status: 'cerrada_no_registrada' } }),
+    listo: (c) => c.querySelector('[data-paso="cerrada"]') !== null,
+  },
+  {
+    nombre: 'transparencia en silencio: la reclamación al Consell',
+    ruta: `/quejas/${ID}`,
+    pinta: laFicha,
+    fetch: sirve({
+      queja: {
+        ...QUEJA,
+        status: 'silencio_negativo',
+        service_code: 'transparencia',
+        service_name: 'transparencia',
+        registro_entry_number: '2026-RE-0412',
+        registered_at: haceDias(60),
+      },
+    }),
+    listo: (c) => c.querySelector('[data-paso="escalado"][data-estado="ahora"]') !== null,
+  },
   {
     nombre: 'una queja que el fichero no publica',
     ruta: '/quejas/Q-NOESTA99',
