@@ -100,7 +100,11 @@ export function caminoDeLaQueja(q: QuejaDelCamino): CaminoDeLaQueja | null {
   const transparencia = plazo.basis === LEGAL_CATALOG.LTBG_20
   const apoyos = Number.isFinite(q.apoyos) ? q.apoyos : 0
   const llego = apoyos >= general.apoyos
-  const tramo = TRAMO[status]
+  // El bot cambia el estado al llegar al umbral, pero una instantánea puede ir por
+  // detrás: «capturada» con los apoyos ya pasados no está «reuniendo» nada, y lo
+  // que toca es el registro. Los apoyos van sin fecha, como en cualquier otro
+  // estado que no sea el suyo.
+  const tramo = status === 'capturada' && llego ? 2 : TRAMO[status]
   const actual = q.updated_datetime ?? null
 
   const pasos: PasoDelCamino[] = [

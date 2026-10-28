@@ -69,6 +69,20 @@ describe('el camino de cada estado', () => {
     expect(c.apoyos).toBe(3)
   })
 
+  it('aún «capturada» pero con el umbral pasado: no dice «lleva 12 de 10»', () => {
+    // El bot cambia el estado al llegar al umbral; una instantánea puede ir por
+    // detrás. Los apoyos se dan por alcanzados, sin fecha, y toca el registro.
+    const c = caminoDeLaQueja(con({ apoyos: 12 }))!
+    expect(forma(c.pasos)).toEqual([
+      'enviada:hecho',
+      'apoyos:hecho',
+      'registro:ahora',
+      'respuesta:pendiente',
+      'escalado:pendiente',
+    ])
+    expect(c.pasos[1].fecha).toBeNull()
+  })
+
   it('con los apoyos: el registro es lo que toca, y los apoyos se fechan', () => {
     const c = caminoDeLaQueja(con({ status: 'apoyada_verificada', apoyos: 10 }))!
     expect(forma(c.pasos)).toEqual([
