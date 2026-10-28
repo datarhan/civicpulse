@@ -2,12 +2,13 @@ import { Link } from 'react-router-dom'
 import { Card, Pill, SectionHead } from '../components/Primitives'
 import { useQuejas, useEtiquetasDeQueja, STATE_TONE } from '../hooks/useQuejas'
 import { useGeo } from '../hooks/useGeo'
-import { nombreDeBarrio } from '../lib/formatters'
+import { nombreDeBarrio, porcentajeLegible, rellena } from '../lib/formatters'
 import { useOfficials, partyColor } from '../hooks/useOfficials'
 import { useDocumentTitle } from '../hooks/useDocumentTitle'
-import { useT } from '../i18n'
+import { useLocale, useT } from '../i18n'
 import { diasTranscurridos, plazoDeResolucion, relojDelPlazo } from '../scraper/queja-router'
-import { contadoresDeCargo } from '../lib/reloj-lpacap'
+import { medibilidad, registroUtilizable } from '../lib/reloj-lpacap'
+import { quejasPorArea } from '../lib/quejas-por-area'
 
 const TELEGRAM_BOT_URL = 'https://t.me/munigraph_bot'
 
@@ -115,138 +116,154 @@ function Bar({ label, n, max, color, subline }) {
 }
 
 /**
- * Resueltas, pendientes y silencios por cargo — y «—» cuando esas tres cifras no
- * significan nada todavía.
+ * Las quejas por área municipal, con quien tiene el área a su cargo nombrado
+ * una vez por área (auditoría de las dos lecturas, §19).
  *
- * Contaban respuestas del ayuntamiento aunque ninguna queja hubiera llegado a su
- * registro, que es desde donde corre el plazo de la LPACAP: con la única queja
- * publicada, capturada y sin registrar, la fila decía «⏳ 1 · ⚠ 0» junto al
- * nombre de una concejala. El cero se leía como un aprobado y el uno como una
- * deuda del ayuntamiento; ninguno de los dos era una afirmación sostenible.
- * `contadoresDeCargo` decide, y el motivo se publica: corto en la fila, entero
- * al pie una vez por motivo presente.
+ * Aquí había una tabla de resueltas, pendientes y silencios por CARGO, «Quejas
+ * por responsable político»: con volumen, un marcador de personas. Las filas son
+ * ahora las áreas de /departamentos y sus cifras salen de la misma regla
+ * (`quejasPorArea` → `computeDepartmentStats`). Lo que esa tabla aprendió sigue
+ * valiendo: abiertas y silencios son «—» hasta que alguna queja del área llega
+ * al registro, con el motivo corto en la fila y entero al pie, una vez.
  */
-const TITULO_SLA = 'Quejas por responsable político'
-
-function SlaPanel({ quejas, officials }) {
-  const t = useT()
-  const entries = Object.entries(quejas?.stats?.byConcejal || {})
-    .map(([slug]) => {
-      const off = officials?.officials?.find((o) => o.slug === slug)
-      return {
-        slug,
-        name: off?.name || slug,
-        party: off?.party || '',
-        ...contadoresDeCargo(quejas, slug),
-      }
-    })
-    .sort((a, b) => b.total - a.total)
-  if (entries.length === 0) return null
-  // Los motivos presentes, para explicarlos una vez al pie en vez de repetir la
-  // misma frase en cada fila.
-  const motivos = [...new Set(entries.filter((e) => !e.medible).map((e) => e.motivo))]
+function AreaPanel({ quejas, officials }) {
+  const { t, locale } = useLocale()
+  const { filas, sinArea, motivo } = quejasPorArea({ quejas, officials })
+  if (filas.length === 0 && !motivo) return null
+  const motivos = motivo
+    ? [motivo]
+    : [...new Set(filas.filter((f) => !f.medible).map((f) => f.motivo))]
+  const cabecera = {
+    fontSize: 'var(--fs-micro)',
+    color: 'var(--ink50)',
+    textTransform: 'uppercase',
+    letterSpacing: '.06em',
+    textAlign: 'right',
+  }
+  const cifra = { fontSize: 'var(--fs-meta)', textAlign: 'right' }
   return (
-    <Card role="region" aria-label={TITULO_SLA} style={{ marginTop: 14 }}>
-      <SectionHead eyebrow="Rendición de cuentas · concejalía" title={TITULO_SLA} />
-      <div style={{ marginTop: 10, display: 'flex', flexDirection: 'column', gap: 6 }}>
-        {entries.map((e) => (
-          <div
-            key={e.slug}
-            // La rejilla vive en `index.css` (`.cp-sla-fila`): necesita un punto
-            // de ruptura para partirse en el móvil, y una @media no cabe en el
-            // prop `style`.
-            className="cp-sla-fila"
-            style={{
-              padding: '8px 0',
-              borderBottom: '1px dotted var(--border2)',
-            }}
-          >
-            <div style={{ display: 'flex', alignItems: 'center', gap: 8, minWidth: 0 }}>
-              {e.party && (
-                <span
-                  className="mono"
-                  style={{
-                    fontSize: 'var(--fs-micro)',
-                    fontWeight: 700,
-                    letterSpacing: '.1em',
-                    textTransform: 'uppercase',
-                    background: partyColor(e.party),
-                    color: 'white',
-                    padding: '2px 5px',
-                    borderRadius: 'var(--r-pill)',
-                    flexShrink: 0,
-                  }}
+    <Card style={{ marginTop: 14 }} data-quejas-por-area="">
+      <SectionHead eyebrow={t('dashboard.areas.eyebrow')} title={t('dashboard.areas.titulo')} />
+      <p
+        style={{
+          fontSize: 'var(--fs-aux)',
+          color: 'var(--ink70)',
+          lineHeight: 1.5,
+          margin: '6px 0 0',
+        }}
+      >
+        {t('dashboard.areas.intro')}
+      </p>
+      {filas.length > 0 && (
+        // Una tabla, dicha con roles: la rejilla vive en `index.css`
+        // (`.cp-sla-fila`), donde en el móvil el área ocupa su línea y las tres
+        // cifras se reparten la siguiente, y una <table> no se parte así.
+        <div
+          role="table"
+          aria-label={t('dashboard.areas.titulo')}
+          style={{ marginTop: 10, display: 'flex', flexDirection: 'column', gap: 6 }}
+        >
+          <div role="row" className="cp-sla-fila mono">
+            <span role="columnheader" style={{ ...cabecera, textAlign: 'left' }}>
+              {t('dashboard.areas.col.area')}
+            </span>
+            <span role="columnheader" style={cabecera}>
+              {t('dashboard.areas.col.quejas')}
+            </span>
+            <span role="columnheader" style={cabecera}>
+              {t('dashboard.areas.col.abiertas')}
+            </span>
+            <span role="columnheader" style={cabecera}>
+              {t('dashboard.areas.col.silencios')}
+            </span>
+          </div>
+          {filas.map((f) => (
+            <div
+              key={f.slug}
+              role="row"
+              data-area={f.slug}
+              className="cp-sla-fila"
+              style={{ padding: '8px 0', borderTop: '1px dotted var(--border2)' }}
+            >
+              <div role="rowheader" style={{ minWidth: 0 }}>
+                <Link
+                  to={`/departamentos/${f.slug}`}
+                  style={{ fontSize: 'var(--fs-aux)', fontWeight: 600, color: 'var(--civic)' }}
                 >
-                  {e.party}
-                </span>
-              )}
-              <div
-                style={{
-                  fontSize: 'var(--fs-aux)',
-                  fontWeight: 500,
-                  overflow: 'hidden',
-                  textOverflow: 'ellipsis',
-                  whiteSpace: 'nowrap',
-                }}
-              >
-                {e.name}
-              </div>
-              {!e.medible && (
-                <span
-                  className="mono"
+                  {locale === 'ca' ? f.labelCa : f.labelEs}
+                </Link>
+                <div
                   style={{
                     fontSize: 'var(--fs-micro)',
                     color: 'var(--ink50)',
-                    flexShrink: 0,
+                    marginTop: 2,
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: 6,
+                    flexWrap: 'wrap',
                   }}
                 >
-                  {t(`quejas.reloj.${e.motivo}.corto`)}
-                </span>
-              )}
+                  {f.responsable ? (
+                    <>
+                      {f.responsable.party && (
+                        <span
+                          className="mono"
+                          style={{
+                            fontWeight: 700,
+                            letterSpacing: '.1em',
+                            textTransform: 'uppercase',
+                            background: partyColor(f.responsable.party),
+                            color: 'white',
+                            padding: '1px 5px',
+                            borderRadius: 'var(--r-pill)',
+                          }}
+                        >
+                          {f.responsable.party}
+                        </span>
+                      )}
+                      <span>{f.responsable.name}</span>
+                    </>
+                  ) : (
+                    <span>{t('departamentos.card.sinResponsable')}</span>
+                  )}
+                  {!f.medible && (
+                    <span className="mono">· {t(`quejas.reloj.${f.motivo}.corto`)}</span>
+                  )}
+                </div>
+              </div>
+              <div role="cell" className="mono" style={cifra}>
+                {f.total}
+              </div>
+              <div role="cell" className="mono" style={{ ...cifra, color: 'var(--civic)' }}>
+                {f.medible ? f.abiertas : '—'}
+              </div>
+              <div
+                role="cell"
+                className="mono"
+                style={{
+                  ...cifra,
+                  color: f.medible && f.silencios > 0 ? 'var(--crit-ink)' : 'var(--ink50)',
+                }}
+              >
+                {f.medible ? f.silencios : '—'}
+              </div>
             </div>
-            <div
-              className="mono"
-              style={{ fontSize: 'var(--fs-meta)', color: 'var(--ok-ink)', textAlign: 'right' }}
-            >
-              {e.medible ? `✓ ${e.resueltas}` : '—'}
-            </div>
-            <div
-              className="mono"
-              style={{ fontSize: 'var(--fs-meta)', color: 'var(--civic)', textAlign: 'right' }}
-            >
-              {e.medible ? `⏳ ${e.pendientes}` : '—'}
-            </div>
-            <div
-              className="mono"
-              style={{
-                fontSize: 'var(--fs-meta)',
-                color: e.medible && e.silencios > 0 ? 'var(--crit)' : 'var(--ink50)',
-                textAlign: 'right',
-              }}
-            >
-              {e.medible ? `⚠ ${e.silencios}` : '—'}
-            </div>
-          </div>
-        ))}
-      </div>
+          ))}
+        </div>
+      )}
       <div
-        style={{
-          fontSize: 'var(--fs-aux)',
-          color: 'var(--ink50)',
-          marginTop: 10,
-          lineHeight: 1.5,
-        }}
+        style={{ fontSize: 'var(--fs-aux)', color: 'var(--ink50)', marginTop: 10, lineHeight: 1.5 }}
       >
-        {/* La leyenda de los símbolos sólo si hay alguna fila que los use: una
-            clave de ✓ ⏳ ⚠ sobre una tabla entera de «—» explica lo que no está. */}
-        {entries.some((e) => e.medible) && (
-          <>
-            ✓ resueltas · ⏳ pendientes (capturadas + registradas + en trámite) · ⚠ silencios
-            (&gt;plazo LPACAP sin respuesta).{' '}
-          </>
+        {/* La leyenda sólo si alguna fila tiene cifras: explicar «abiertas» sobre
+            una columna entera de «—» explica lo que no está. */}
+        {filas.some((f) => f.medible) && <div>{t('dashboard.areas.leyenda')}</div>}
+        {sinArea > 0 && (
+          <div style={{ marginTop: 6 }}>
+            {sinArea === 1
+              ? t('dashboard.areas.sinArea.una')
+              : rellena(t('dashboard.areas.sinArea'), { n: sinArea })}
+          </div>
         )}
-        Las quejas se asignan al área municipal competente automáticamente; el responsable político
-        figura como titular de esa área.
         {motivos.map((m) => (
           <div key={m} style={{ marginTop: 6 }}>
             <span className="mono">—</span> {t(`quejas.reloj.${m}`)}
@@ -258,6 +275,7 @@ function SlaPanel({ quejas, officials }) {
 }
 
 function StateBreakdown({ byState, total }) {
+  const t = useT()
   const etiqueta = useEtiquetasDeQueja()
   if (total === 0) return null
   const order = [
@@ -274,7 +292,7 @@ function StateBreakdown({ byState, total }) {
   const max = Math.max(...Object.values(byState || {}), 1)
   return (
     <Card>
-      <SectionHead eyebrow="Estado legal" title="Ciclo de vida LPACAP" />
+      <SectionHead eyebrow={t('dashboard.estados.eyebrow')} title={t('dashboard.estados.titulo')} />
       <div style={{ marginTop: 12 }}>
         {order.map((s) => {
           const n = byState?.[s] ?? 0
@@ -595,18 +613,22 @@ export default function QuejasDashboard() {
   }
   const resueltas = stats.byState.resuelta || 0
   const silencios = (stats.byState.silencio_negativo || 0) + (stats.byState.escalada_sindic || 0)
-  // See the same guard on /quejas. The LPACAP clock starts at registration in
-  // sede, so with nothing registered this counter is pinned at 0 by arithmetic.
-  // Worse here than there: the tile painted that 0 GREEN, turning "we have not
-  // measured anything yet" into a clean bill of health for the Ayuntamiento.
-  const conRelojEnMarcha = items.filter((q) => q.registered_at).length
+  // Resueltas y silencios son respuestas del ayuntamiento, y sólo puede darlas
+  // —o callar— desde que la queja entra en su registro: la regla de /quejas, que
+  // vive en lib/reloj-lpacap. Aquí «Resueltas» seguía en verde con «0 · 0 % del
+  // total» antes de que el ayuntamiento hubiera recibido ninguna, y «Silencios»
+  // contaba como registrada cualquier `registered_at`, también uno que el reloj
+  // no sabe leer.
+  const reloj = medibilidad(data, () => true)
+  const registradas = items.filter((q) => registroUtilizable(q.registered_at)).length
+  const sobreRegistradas = `sobre ${registradas} registrada${registradas === 1 ? '' : 's'}`
+  const motivo = reloj.medible ? null : t(`quejas.reloj.${reloj.motivo}.corto`)
   const pendientes =
     (stats.byState.capturada || 0) +
     (stats.byState.apoyada_verificada || 0) +
     (stats.byState.registrada || 0) +
     (stats.byState.notificada_10d || 0) +
     (stats.byState.en_tramite || 0)
-  const resolucionPct = stats.total > 0 ? Math.round((resueltas / stats.total) * 100) : 0
 
   return (
     <div
@@ -635,26 +657,32 @@ export default function QuejasDashboard() {
         >
           {t('dashboard.title')}
         </h1>
-        <div
-          style={{ fontSize: 'var(--fs-aux)', color: 'var(--ink50)', marginTop: 4, maxWidth: 720 }}
+        {/* Esta página es la lectura experta de /quejas (auditoría de las dos
+            lecturas, §19): lo dice, y lleva a la llana. */}
+        <p
+          style={{
+            fontSize: 'var(--fs-aux)',
+            color: 'var(--ink70)',
+            margin: '4px 0 0',
+            maxWidth: 720,
+            lineHeight: 1.5,
+          }}
         >
-          Vista agregada de todas las quejas capturadas vía{' '}
-          <a
-            href={TELEGRAM_BOT_URL}
-            target="_blank"
-            rel="noreferrer"
-            style={{ color: 'var(--civic)' }}
-          >
-            Telegram
-          </a>
-          . Métricas LPACAP, concejalía responsable y presión vecinal.{' '}
-          <Link
-            to="/quejas"
-            style={{ color: 'var(--civic)', textDecoration: 'underline', textUnderlineOffset: 2 }}
-          >
-            ← Feed público
-          </Link>
-        </div>
+          {t('dashboard.intro')}
+        </p>
+        <Link
+          to="/quejas"
+          style={{
+            display: 'inline-block',
+            marginTop: 6,
+            fontSize: 'var(--fs-aux)',
+            color: 'var(--civic)',
+            textDecoration: 'underline',
+            textUnderlineOffset: 2,
+          }}
+        >
+          {t('dashboard.volver')}
+        </Link>
       </div>
 
       {stats.total === 0 ? (
@@ -693,9 +721,13 @@ export default function QuejasDashboard() {
             <StatTile label="Total quejas" value={stats.total} sub="desde el inicio del canal" />
             <StatTile
               label="Resueltas"
-              value={resueltas}
-              tone="ok"
-              sub={`${resolucionPct}% del total`}
+              value={reloj.medible ? resueltas : '—'}
+              tone={reloj.medible ? 'ok' : 'neutral'}
+              sub={
+                reloj.medible
+                  ? `${porcentajeLegible(resueltas, registradas)}% · ${sobreRegistradas}`
+                  : motivo
+              }
             />
             <StatTile
               label="Pendientes"
@@ -705,13 +737,9 @@ export default function QuejasDashboard() {
             />
             <StatTile
               label="Silencios + escaladas"
-              value={conRelojEnMarcha === 0 ? '—' : silencios}
-              tone={conRelojEnMarcha === 0 ? 'ghost' : silencios > 0 ? 'crit' : 'ok'}
-              sub={
-                conRelojEnMarcha === 0
-                  ? 'ninguna queja registrada en sede todavía'
-                  : `>plazo LPACAP · sobre ${conRelojEnMarcha} registrada${conRelojEnMarcha === 1 ? '' : 's'}`
-              }
+              value={reloj.medible ? silencios : '—'}
+              tone={reloj.medible ? (silencios > 0 ? 'crit' : 'ok') : 'neutral'}
+              sub={reloj.medible ? `>plazo LPACAP · ${sobreRegistradas}` : motivo}
             />
           </div>
 
@@ -730,7 +758,7 @@ export default function QuejasDashboard() {
           </div>
 
           <ReadyToEscalate items={items} />
-          <SlaPanel quejas={data} officials={officials} />
+          <AreaPanel quejas={data} officials={officials} />
           <TopPending items={items} />
         </>
       )}
