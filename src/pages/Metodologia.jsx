@@ -3592,6 +3592,45 @@ export default function Metodologia() {
         </p>
       </Card>
 
+      {/* El buscador de /cargos (decisión D3 de la auditoría de las dos lecturas):
+          lo que publica y lo que no, en el contrato. Reglas en código:
+          src/scraper/temas-cargos.ts. */}
+      <Card style={{ marginTop: 14 }} id="a-quien-se-pregunta">
+        <SectionHead
+          eyebrow="Cargos · a quién se pregunta"
+          title="Qué dice el buscador «¿A quién le pregunto por…?»"
+        />
+        <p style={{ margin: '8px 0 0', color: 'var(--ink70)' }}>
+          En{' '}
+          <a href="/cargos" style={{ color: 'var(--civic)' }}>
+            /cargos
+          </a>{' '}
+          se escribe un asunto —«basura», «colegio»— y la página dice qué área delegada lo lleva y
+          quién la tiene hoy.{' '}
+          <strong>
+            El paso del asunto al área está en un vocabulario curado que no nombra a nadie
+          </strong>
+          : lo escribe una persona, con una herramienta que lo comprueba entero antes de guardarlo.
+          Quién tiene cada área sale de la lista de cargos, la misma de las tarjetas.
+        </p>
+        <p style={{ margin: '10px 0 0', color: 'var(--ink70)' }}>
+          <strong>
+            Cuando el área no nombra el asunto, el salto lo damos nosotros, y lo decimos
+          </strong>
+          , con la razón al lado: «la recogida de basura» no figura en ninguna delegación, y se
+          atribuye al área de servicios públicos municipales porque es la que agrupa los servicios
+          urbanos. Nombrar a quien tiene el área es decir a quién se pregunta, no quién responde de
+          cada caso, y la respuesta lo dice junto al nombre.
+        </p>
+        <p style={{ margin: '10px 0 0', color: 'var(--ink70)' }}>
+          <strong>Nunca adivina.</strong> Un asunto que ninguna área nombra remite al registro
+          general; uno que no está en el vocabulario lo dice; y si el área de un asunto ya no figura
+          en la lista de cargos —un cambio de reparto, un área con otro nombre—, la página dice que
+          hoy no lo sabe en vez de decir que no la tiene nadie, y una comprobación se pone en rojo
+          hasta que se cure. En periodo electoral dice el área sin el nombre de quien la tiene.
+        </p>
+      </Card>
+
       <MudanzaDelPortal />
 
       <Card style={{ marginTop: 14 }} id="biografias">
