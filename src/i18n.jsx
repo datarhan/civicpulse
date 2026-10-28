@@ -2457,6 +2457,7 @@ export const CATALOGUE = {
     // pregunta, con la salvedad en la misma respuesta; sin área, el registro
     // general, nunca una conjetura.
     'cargos.enBreve.buscador.pregunta': '¿A quién le pregunto por…?',
+    'cargos.enBreve.buscador.asunto': 'Sobre «{tema}»:',
     'cargos.enBreve.buscador.frase':
       'Escribe un asunto y te decimos qué área lo lleva y quién la tiene hoy.',
     'cargos.enBreve.buscador.etiqueta': 'Asunto',
@@ -5058,6 +5059,7 @@ export const CATALOGUE = {
     'cargos.enBreve.fiscalizan.partido': 'Tots són de {partido}.',
     'cargos.enBreve.fiscalizan.ancla': 'Qui fiscalitza ↓',
     'cargos.enBreve.buscador.pregunta': 'A qui li pregunte per…?',
+    'cargos.enBreve.buscador.asunto': 'Sobre «{tema}»:',
     'cargos.enBreve.buscador.frase':
       'Escriu un assumpte i et diem quina àrea el porta i qui la té hui.',
     'cargos.enBreve.buscador.etiqueta': 'Assumpte',

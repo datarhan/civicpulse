@@ -155,10 +155,26 @@ describe('/cargos · ¿A quién le pregunto por…?', () => {
     const r = respuestaDeTema(tema('basura'), LISTA.officials)
     const caja = await escribe(container, 'basura')
     await waitFor(() =>
-      expect(caja.textContent).toBe(
+      expect(caja.textContent).toContain(
         rellena(es['cargos.enBreve.buscador.congelado'], { cargo: r.cargo }),
       ),
     )
     for (const o of r.titulares) expect(caja.textContent).not.toContain(o.name)
+  }, 60000)
+
+  // «calles» daba el titular de la limpieza sin decir que contestaba por la
+  // limpieza; quien preguntaba por un bache leía otro nombre.
+  it('un trozo de palabra dice qué asunto ha elegido antes de contestar', async () => {
+    const elegido = tema('call')
+    const { container } = await monta()
+    const caja = await escribe(container, 'call')
+    await waitFor(() => expect(caja.querySelector('[data-asunto]')).not.toBeNull())
+    expect(caja.querySelector('[data-asunto]').textContent).toBe(
+      rellena(es['cargos.enBreve.buscador.asunto'], { tema: elegido.tema }),
+    )
+    // Y va antes del nombre.
+    const asunto = caja.querySelector('[data-asunto]')
+    const quien = caja.querySelector('[data-quien]')
+    expect(asunto.compareDocumentPosition(quien) & Node.DOCUMENT_POSITION_FOLLOWING).toBeTruthy()
   }, 60000)
 })

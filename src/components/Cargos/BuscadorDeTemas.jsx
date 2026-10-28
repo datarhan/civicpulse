@@ -113,11 +113,24 @@ function Respuesta({ resultado, lista, nombresVisibles, alElegir }) {
     )
   }
   const r = respuestaDeTema(resultado.entrada, lista.officials)
+  // Qué asunto contesta, siempre: un trozo de palabra elige un asunto, y sin
+  // decirlo «calles» contestaba por la limpieza a quien preguntaba por un bache.
+  const asunto = (
+    <p data-asunto="" className="cp-buscador-nota">
+      {rellena(t('cargos.enBreve.buscador.asunto'), { tema: resultado.entrada.tema })}
+    </p>
+  )
   if (r.tipo === 'sinTitular')
-    return <p>{rellena(t('cargos.enBreve.buscador.sinTitular'), { cargo: r.cargo })}</p>
+    return (
+      <>
+        {asunto}
+        <p>{rellena(t('cargos.enBreve.buscador.sinTitular'), { cargo: r.cargo })}</p>
+      </>
+    )
   if (r.tipo === 'sinAsignar') {
     return (
       <>
+        {asunto}
         <p>{t('cargos.enBreve.buscador.sinAsignar')}</p>
         <p className="cp-buscador-nota">{r.motivo}</p>
         {r.aviso && <p className="cp-buscador-nota">{r.aviso}</p>}
@@ -125,7 +138,12 @@ function Respuesta({ resultado, lista, nombresVisibles, alElegir }) {
     )
   }
   if (!nombresVisibles)
-    return <p>{rellena(t('cargos.enBreve.buscador.congelado'), { cargo: r.cargo })}</p>
+    return (
+      <>
+        {asunto}
+        <p>{rellena(t('cargos.enBreve.buscador.congelado'), { cargo: r.cargo })}</p>
+      </>
+    )
   const plantilla =
     r.titulares.length > 1
       ? rellena(t('cargos.enBreve.buscador.llevan'), { cargo: r.cargo })
@@ -133,6 +151,7 @@ function Respuesta({ resultado, lista, nombresVisibles, alElegir }) {
   const [antes, despues] = partePorHueco(plantilla, '{quien}')
   return (
     <>
+      {asunto}
       <p data-quien="">
         {antes}
         <Quien titulares={r.titulares} locale={locale} />
