@@ -135,6 +135,33 @@ describe('npm run tema-cargo', () => {
     expect(readFileSync(publicado(dir), 'utf8')).toBe(antes)
   })
 
+  it('a un asunto que existe, --add sólo le añade palabras', () => {
+    const dir = caja()
+    expect(correr(dir, ['--add', '--from-file', borrador(dir, ENTRADA)]).status).toBe(0)
+    const r = correr(dir, [
+      '--add',
+      '--from-file',
+      borrador(dir, { tema: 'cementerio', palabras: ['cementeri', 'nichos'] }),
+    ])
+    expect(r.status, r.stderr).toBe(0)
+    const [fila] = JSON.parse(readFileSync(publicado(dir), 'utf8')).temas
+    expect(fila).toEqual({ ...ENTRADA, palabras: ['cementerio', 'nichos', 'cementeri'] })
+  })
+
+  it('y no le cambia el área: eso es --retirar y --add', () => {
+    const dir = caja()
+    expect(correr(dir, ['--add', '--from-file', borrador(dir, ENTRADA)]).status).toBe(0)
+    const antes = readFileSync(publicado(dir), 'utf8')
+    const r = correr(dir, [
+      '--add',
+      '--from-file',
+      borrador(dir, { tema: 'cementerio', palabras: ['tanatorio'], cargo: 'Otra área' }),
+    ])
+    expect(r.status).toBe(1)
+    expect(r.stderr).toMatch(/--retirar y --add/)
+    expect(readFileSync(publicado(dir), 'utf8')).toBe(antes)
+  })
+
   it('--list las enseña y --retirar quita un asunto', () => {
     const dir = caja()
     expect(correr(dir, ['--add', '--from-file', borrador(dir, ENTRADA)]).status).toBe(0)

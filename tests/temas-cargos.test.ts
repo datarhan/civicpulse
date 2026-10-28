@@ -12,6 +12,7 @@ import { existsSync, readFileSync } from 'node:fs'
 
 import {
   buscaTema,
+  normaliza,
   respuestaDeTema,
   temasSinTitular,
   validateTemasCargos,
@@ -172,6 +173,13 @@ describe('buscaTema', () => {
 
   it('menos de tres letras sin palabra exacta no busca', () => {
     expect(buscaTema(v, 'ci').tipo).toBe('vacio')
+  })
+
+  it('lo que en valenciano se teclea de dos maneras es una palabra', () => {
+    expect(normaliza('Col·legi')).toBe('collegi')
+    expect(normaliza('col.legi')).toBe('collegi')
+    expect(normaliza('collegi')).toBe('collegi')
+    expect(normaliza('llicència d’obra')).toBe(normaliza("llicencia d'obra"))
   })
 
   it('lo que no está en el vocabulario es «ninguno», nunca una conjetura', () => {

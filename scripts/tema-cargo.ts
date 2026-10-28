@@ -8,7 +8,9 @@
  *   npm run tema-cargo -- --retirar <tema>
  *
  * `--from-file` trae una fila o una lista. Una fila con `cargo` va a `temas`;
- * una con `motivo`, a `sinAsignar`. El fichero está en la lista CURATED del
+ * una con `motivo`, a `sinAsignar`. Una fila de un asunto que ya existe sólo
+ * puede traer `tema` y `palabras`, y le añade esas palabras: así entran los
+ * sinónimos y las formas en valenciano sin tocar el área ni la razón. El fichero está en la lista CURATED del
  * gancho de escrituras curadas (decisión D3): este CLI re-valida el fichero
  * ENTERO antes de escribir (`writeSnapshot`), mueve su `generatedAt` y deja en
  * git una línea por acto. Además se niega a apuntar un asunto a un área que hoy
@@ -22,6 +24,7 @@ import { resolve } from 'node:path'
 import { pathToFileURL } from 'node:url'
 import { writeSnapshot } from './lib/snapshot-io'
 import {
+  normaliza,
   temasSinTitular,
   validateTemasCargos,
   type EntradaDeTema,
@@ -119,15 +122,40 @@ function main() {
     if (!desde) usage()
     const leido = JSON.parse(readFileSync(resolve(desde), 'utf8')) as
       EntradaDeTema | EntradaDeTema[]
-    const nuevas = Array.isArray(leido) ? leido : [leido]
+    const leidas = Array.isArray(leido) ? leido : [leido]
     const actual = cargar()
+    // Un asunto que ya existe sólo puede ganar palabras —un sinónimo, la forma
+    // en valenciano—. Cambiarle el área o la razón es otro acto, y deja otra
+    // línea en git: --retirar y --add.
+    const existentes = new Set(
+      [...actual.temas, ...actual.sinAsignar].map((e) => normaliza(e.tema)),
+    )
+    const ampliaciones = leidas.filter((e) => existentes.has(normaliza(e.tema)))
+    const nuevas = leidas.filter((e) => !existentes.has(normaliza(e.tema)))
+    for (const a of ampliaciones) {
+      const otros = Object.keys(a).filter((k) => k !== 'tema' && k !== 'palabras')
+      if (otros.length > 0) {
+        console.error(
+          `[tema-cargo] no se escribe nada: «${a.tema}» ya existe, y a un asunto que existe --add sólo le añade palabras (trae ${otros.join(', ')}). Para cambiarle el área o la razón: --retirar y --add.`,
+        )
+        process.exit(1)
+      }
+    }
+    const amplia = <T extends EntradaDeTema>(e: T): T => {
+      const extra = ampliaciones
+        .filter((a) => normaliza(a.tema) === normaliza(e.tema))
+        .flatMap((a) => a.palabras ?? [])
+      const ya = new Set(e.palabras.map(normaliza))
+      const anadir = [...new Set(extra)].filter((p) => !ya.has(normaliza(p)))
+      return anadir.length ? { ...e, palabras: [...e.palabras, ...anadir] } : e
+    }
     const siguiente: TemasCargos = {
       ...actual,
       note: actual.note || NOTE,
       fuente: actual.fuente ?? FUENTE,
-      temas: [...actual.temas, ...nuevas.filter(esConCargo)],
+      temas: [...actual.temas.map(amplia), ...nuevas.filter(esConCargo)],
       sinAsignar: [
-        ...actual.sinAsignar,
+        ...actual.sinAsignar.map(amplia),
         ...nuevas.filter((e): e is TemaSinAsignar => !esConCargo(e)),
       ],
     }
@@ -143,7 +171,9 @@ function main() {
       process.exit(1)
     }
     escribe(siguiente)
-    console.log(`[tema-cargo] añadidos ${nuevas.map((e) => e.tema).join(', ')}`)
+    if (nuevas.length) console.log(`[tema-cargo] añadidos ${nuevas.map((e) => e.tema).join(', ')}`)
+    if (ampliaciones.length)
+      console.log(`[tema-cargo] con palabras nuevas ${ampliaciones.map((e) => e.tema).join(', ')}`)
     return
   }
 

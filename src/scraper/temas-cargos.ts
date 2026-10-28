@@ -89,9 +89,20 @@ const CLAVES_FUENTE = new Set(['titulo', 'url'])
 /** Lo bastante para decir por qué, no una etiqueta. */
 const MIN_EXPLICACION = 20
 
-/** En minúsculas, sin tildes y con los espacios plegados: «Básura » es «basura». */
+/**
+ * En minúsculas, sin tildes y con los espacios plegados: «Básura » es «basura».
+ * Y lo que se teclea de dos maneras en valenciano, de una: la ele geminada
+ * («col·legi», «col.legi» y «collegi») y el apóstrofo (’ y ').
+ */
 export function normaliza(s: string): string {
-  return stripDiacritics(String(s).toLowerCase()).replace(/\s+/g, ' ').trim()
+  return stripDiacritics(
+    String(s)
+      .toLowerCase()
+      .replace(/l[·.]l/g, 'll')
+      .replace(/[’‘´`]/g, "'"),
+  )
+    .replace(/\s+/g, ' ')
+    .trim()
 }
 
 const esCadena = (v: unknown): v is string => typeof v === 'string' && v.trim().length > 0

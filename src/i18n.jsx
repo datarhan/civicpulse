@@ -2453,6 +2453,30 @@ export const CATALOGUE = {
     'cargos.enBreve.fiscalizan.partidos': 'Son de {n} partidos: {lista}.',
     'cargos.enBreve.fiscalizan.partido': 'Todos son de {partido}.',
     'cargos.enBreve.fiscalizan.ancla': 'Quién fiscaliza ↓',
+    // El buscador (decisión D3). Nombra a quien tiene el área, que es a quien se
+    // pregunta, con la salvedad en la misma respuesta; sin área, el registro
+    // general, nunca una conjetura.
+    'cargos.enBreve.buscador.pregunta': '¿A quién le pregunto por…?',
+    'cargos.enBreve.buscador.frase':
+      'Escribe un asunto y te decimos qué área lo lleva y quién la tiene hoy.',
+    'cargos.enBreve.buscador.etiqueta': 'Asunto',
+    'cargos.enBreve.buscador.ejemplos': 'Por ejemplo: {ejemplos}',
+    'cargos.enBreve.buscador.lleva': 'Lo lleva {quien}, en el área «{cargo}».',
+    'cargos.enBreve.buscador.llevan': 'Lo llevan {quien}, en el área «{cargo}».',
+    'cargos.enBreve.buscador.razon': 'La atribución la hacemos nosotros. {razon}',
+    'cargos.enBreve.buscador.competencia':
+      'Es a quien se pregunta: tener un área delegada no es responder de cada caso.',
+    'cargos.enBreve.buscador.escribele': 'Escríbele:',
+    'cargos.enBreve.buscador.congelado':
+      'Es del área «{cargo}». Durante el periodo electoral no ponemos aquí el nombre de quien la lleva: está en «Quién dirige qué».',
+    'cargos.enBreve.buscador.sinTitular':
+      'Hoy no podemos decir quién lo lleva: el área «{cargo}» ya no figura en la lista de cargos.',
+    'cargos.enBreve.buscador.sinAsignar':
+      'Ningún concejal tiene delegada esta área: pregunta en el registro general.',
+    'cargos.enBreve.buscador.varios': '¿Cuál de estos?',
+    'cargos.enBreve.buscador.ninguno':
+      'No lo tenemos en la lista. Las áreas de cada concejal están en «Quién dirige qué».',
+    'cargos.enBreve.buscador.ancla': 'Las áreas de cada concejal ↓',
     'cargos.bajas.title': 'Ya no forman parte de la corporación',
     'cargos.bajas.note':
       'Se conservan con su fecha de cese y el acta que la recoge. Nada en presente —retribución, áreas, quejas, encaje— se pinta sobre quien ya no ocupa el escaño.',
@@ -5033,6 +5057,27 @@ export const CATALOGUE = {
     'cargos.enBreve.fiscalizan.partidos': 'Són de {n} partits: {lista}.',
     'cargos.enBreve.fiscalizan.partido': 'Tots són de {partido}.',
     'cargos.enBreve.fiscalizan.ancla': 'Qui fiscalitza ↓',
+    'cargos.enBreve.buscador.pregunta': 'A qui li pregunte per…?',
+    'cargos.enBreve.buscador.frase':
+      'Escriu un assumpte i et diem quina àrea el porta i qui la té hui.',
+    'cargos.enBreve.buscador.etiqueta': 'Assumpte',
+    'cargos.enBreve.buscador.ejemplos': 'Per exemple: {ejemplos}',
+    'cargos.enBreve.buscador.lleva': 'El porta {quien}, en l’àrea «{cargo}».',
+    'cargos.enBreve.buscador.llevan': 'El porten {quien}, en l’àrea «{cargo}».',
+    'cargos.enBreve.buscador.razon': 'L’atribució la fem nosaltres. {razon}',
+    'cargos.enBreve.buscador.competencia':
+      'És a qui es pregunta: tindre una àrea delegada no és respondre de cada cas.',
+    'cargos.enBreve.buscador.escribele': 'Escriu-li:',
+    'cargos.enBreve.buscador.congelado':
+      'És de l’àrea «{cargo}». Durant el període electoral no posem ací el nom de qui la porta: és en «Qui dirigix què».',
+    'cargos.enBreve.buscador.sinTitular':
+      'Hui no podem dir qui el porta: l’àrea «{cargo}» ja no figura en la llista de càrrecs.',
+    'cargos.enBreve.buscador.sinAsignar':
+      'Cap regidor té delegada esta àrea: pregunta en el registre general.',
+    'cargos.enBreve.buscador.varios': 'Quin d’estos?',
+    'cargos.enBreve.buscador.ninguno':
+      'No el tenim en la llista. Les àrees de cada regidor són en «Qui dirigix què».',
+    'cargos.enBreve.buscador.ancla': 'Les àrees de cada regidor ↓',
     'cargos.bajas.title': 'Ja no formen part de la corporació',
     'cargos.bajas.note':
       'Es conserven amb la data de cessament i l’acta que la recull. Res en present —retribució, àrees, queixes, encaix— es pinta sobre qui ja no ocupa l’escó.',
