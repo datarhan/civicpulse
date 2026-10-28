@@ -1,6 +1,6 @@
 {
   "version": "1.0",
-  "generatedAt": "2026-10-18T11:47:34.997Z",
+  "generatedAt": "2026-10-28T20:10:57.909Z",
   "legalNotice": "Informes periodísticos elaborados por un agente automático y revisados por curación humana antes de su publicación. Cada afirmación incluye cita verbatim, enlace de archivo cuando procede y derecho de réplica abierto vía formulario público en github.com/datarhan/civicpulse.",
   "contactUrl": "https://github.com/datarhan/civicpulse/issues/new/choose",
   "methodologyUrl": "/metodologia",
@@ -123,7 +123,7 @@
           "kind": "narrative",
           "payload": {
             "heading": "Conexiones documentadas y comprobaciones de este medio",
-            "bodyMarkdown": "Las conexiones de Rafael Gómez Sánchez que constan en documentos públicos son de naturaleza político-administrativa: fue miembro de la Junta de Gobierno Local durante siete días de junio de 2023 —nombrado por la Resolución 2556/2023, de 21 de junio, y cesado por la Resolución 2640/2023, de 28 de junio—; pertenece al grupo municipal socialista, integrado por 11 de los 21 concejales; y sus áreas de gestión proceden del decreto de delegación del alcalde Roberto Raga.\n\nComo comprobación rutinaria, esta redacción ha cruzado su nombre con el corpus de contratación municipal: en los 725 contratos con fecha de adjudicación que recoge el registro no consta ningún adjudicatario con sus apellidos, y los contratos del ámbito del transporte —su sector profesional entre 2001 y 2015, según su CV autodeclarado— y del ámbito deportivo se adjudicaron a empresas sin coincidencia nominal con el concejal.\n\nEl registro municipal de asociaciones no publica directivos y la BDNS no publica beneficiarios nominales, por lo que esas vías no permiten trazar vínculos personales. Sí se ha consultado el Boletín Oficial del Registro Mercantil: el barrido del registro de la provincia de València entre enero de 2009 y septiembre de 2026, sobre 542.284 anuncios, no devuelve ningún cargo societario atribuible al concejal. Las relaciones estrictamente personales no constan en fuentes públicas y no se publican sin constancia documental.\n\nEsta redacción ha repetido además la medición de la competencia en la contratación de sus áreas con un criterio explícito: los contratos cuyo título o cuyo CPV de cabecera corresponde a deportes, transporte y movilidad, urbanizaciones, parques y jardines, limpieza viaria, residuos, alumbrado, agua o alcantarillado. Con ese criterio son 218 de los 579 contratos adjudicados desde julio de 2019, y los otros 361 quedan fuera. La proporción adjudicada con un solo licitador es prácticamente la misma a un lado y a otro: 107 de 218 (49,1 %) en sus áreas y 182 de 361 (50,4 %) en el resto. En contratos menores sí hay diferencia, y a la baja: 32 de 218 (14,7 %) en sus áreas frente a 115 de 361 (31,9 %) en el resto. Los dos grandes contratos del ámbito, la limpieza viaria y el transporte urbano, se adjudicaron en procedimientos con entre tres y cinco ofertas.",
+            "bodyMarkdown": "Las conexiones de Rafael Gómez Sánchez que constan en documentos públicos son de naturaleza político-administrativa: fue miembro de la Junta de Gobierno Local durante siete días de junio de 2023 —nombrado por la Resolución 2556/2023, de 21 de junio, y cesado por la Resolución 2640/2023, de 28 de junio—; pertenece al grupo municipal socialista, integrado por 11 de los 21 concejales; y sus áreas de gestión proceden del decreto de delegación del alcalde Roberto Raga.\n\nComo comprobación rutinaria, esta redacción ha cruzado su nombre con el corpus de contratación municipal: en los 725 contratos con fecha de adjudicación que recoge el registro no consta ningún adjudicatario con sus apellidos, y los contratos del ámbito del transporte —su sector profesional entre 2001 y 2015, según su CV autodeclarado— y del ámbito deportivo se adjudicaron a empresas sin coincidencia nominal con el concejal.\n\nEl registro municipal de asociaciones no publica directivos y la BDNS no publica beneficiarios nominales, por lo que esas vías no permiten trazar vínculos personales. Sí se ha consultado el Boletín Oficial del Registro Mercantil: el barrido del registro de la provincia de València entre enero de 2009 y septiembre de 2026, sobre 542.284 anuncios, no devuelve ningún cargo societario atribuible al concejal. Las relaciones estrictamente personales no constan en fuentes públicas y no se publican sin constancia documental.\n\nEsta redacción ha repetido además la medición de la competencia en la contratación de sus áreas con un criterio explícito: los contratos cuyo título o cuyo CPV de cabecera corresponde a deportes, transporte y movilidad, urbanizaciones, parques y jardines, limpieza viaria, residuos, alumbrado, agua o alcantarillado. Con ese criterio son 218 de los 579 contratos adjudicados desde julio de 2019, y los otros 361 quedan fuera. La proporción adjudicada con un solo licitador es prácticamente la misma a un lado y a otro: 107 de 218 (49,1 %) en sus áreas y 182 de 361 (50,4 %) en el resto. En contratos menores sí hay diferencia, y a la baja: 32 de 218 (14,7 %) en sus áreas frente a 115 de 361 (31,9 %) en el resto. Con ese mismo criterio, los cuatro mayores contratos del ámbito se adjudicaron con varias ofertas: la concesión del abastecimiento de agua (valor estimado de 55,7 M€), con siete licitadores; la recogida de residuos (15,8 M€ sin IVA), con cuatro admitidos —un quinto llegó fuera de plazo—; la limpieza viaria (3,4 M€ sin IVA), con cinco, y el mantenimiento de parques y jardines (3,2 M€ sin IVA), con seis.",
             "sourceIds": [
               "src-025",
               "src-062",
@@ -131,7 +131,12 @@
               "src-002",
               "src-124",
               "src-120",
-              "src-121"
+              "src-121",
+              "src-125",
+              "src-126",
+              "src-127",
+              "src-128",
+              "src-129"
             ]
           }
         },
@@ -990,6 +995,61 @@
           "localPath": "public/data/tenders.json",
           "trust": "high",
           "selfDeclared": false
+        },
+        {
+          "id": "src-125",
+          "kind": "local-snapshot",
+          "title": "public/data/tenders.json · los cuatro mayores contratos del ámbito, mismo criterio",
+          "retrievedAt": "2026-10-28T20:10:55.780Z",
+          "excerpt": "Mismo criterio que la medición de competencia de esta sección; adjudicados desde el 01-07-2019, por importe: concesión del abastecimiento de agua (exp. 27/2018), 55.685.178,79 €, 7 ofertas; recogida de residuos (exp. 136/2025, lote 1), 15.803.597,04 € sin IVA, 4; limpieza viaria (exp. 17/2020), 3.418.772,55 € sin IVA, 5; parques y jardines (exp. 17/2021), 3.212.524,48 € sin IVA, 6. El quinto, 1.263.421,48 €. Medido el 28-10-2026.",
+          "localPath": "public/data/tenders.json",
+          "trust": "high",
+          "selfDeclared": false
+        },
+        {
+          "id": "src-126",
+          "kind": "official-doc",
+          "url": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=pK1YW0Z3femXQV0WE7lYPw%3D%3D",
+          "title": "PLACSP · expediente 27/2018 · concesión del servicio público de abastecimiento de agua potable",
+          "publisher": "Plataforma de Contratación del Sector Público",
+          "retrievedAt": "2026-10-28T20:10:56.074Z",
+          "excerpt": "Valor estimado del contrato 55.685.178,79 Euros … Resultado Formalizado Adjudicatario HIDRAQUA GESTIÓN INTEGRAL DE AGUAS DE LEVANTE, S.A. Nº de Licitadores Presentados 7",
+          "trust": "high",
+          "selfDeclared": false
+        },
+        {
+          "id": "src-127",
+          "kind": "official-doc",
+          "url": "https://contrataciondelestado.es/FileSystem/servlet/GetDocumentByIdServlet?cifrado=QUC1GjXXSiLkydRHJBmbpw%3D%3D&DocumentIdParam=qGaMlU3Zwe5vSkb9Ykz3o17yQAchD4eD%2BnsiwtBQalAZetV9rgXRm2BMn9ooDnKVqmfX6YEN08PURtj9QK2Cbl/eLMyjXgq%2B0HusL0xUKxN45ClyWkoJ44mKM70IFcOu",
+          "title": "PLACSP · expediente 136/2025 · Acta 1 de la Mesa de Contratación, apertura del sobre A",
+          "publisher": "Plataforma de Contratación del Sector Público",
+          "publishedAt": "2025-05-23",
+          "retrievedAt": "2026-10-28T20:10:56.385Z",
+          "excerpt": "La propia plataforma advierte de la presentación fuera de plazo, de la entidad licitadora EVEN AMBIENTAL SLL. … Respecto del Lote nº 1 - Servicio de recogida de residuos sólidos urbanos (RSU), poda y voluminosos del municipio: … FCC MEDIO AMBIENTE SAU … GARBIALDI, S.A. … SOCIEDAD DE AGRICULTORES DE LA VEGA DE VALENCIA … URBASER, S.A",
+          "trust": "high",
+          "selfDeclared": false
+        },
+        {
+          "id": "src-128",
+          "kind": "official-doc",
+          "url": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=bWCiPeMjwnKmq21uxhbaVQ%3D%3D",
+          "title": "PLACSP · expediente 17/2020 · servicio de limpieza viaria",
+          "publisher": "Plataforma de Contratación del Sector Público",
+          "retrievedAt": "2026-10-28T20:10:56.731Z",
+          "excerpt": "Resultado Adjudicado Adjudicatario AGRICULTORES DE LA VEGA DE VALENCIA SA Nº de Licitadores Presentados 5 Importe de Adjudicación 3418772.55 Euros",
+          "trust": "high",
+          "selfDeclared": false
+        },
+        {
+          "id": "src-129",
+          "kind": "official-doc",
+          "url": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=PWq6zyuzw1qmq21uxhbaVQ%3D%3D",
+          "title": "PLACSP · expediente 17/2021 · conservación y mantenimiento de parques, jardines y zonas verdes",
+          "publisher": "Plataforma de Contratación del Sector Público",
+          "retrievedAt": "2026-10-28T20:10:57.031Z",
+          "excerpt": "Resultado Adjudicado Adjudicatario AGRICULTORES DE LA VEGA DE VALENCIA, SA Nº de Licitadores Presentados 6 Importe de Adjudicación 3212524.48 Euros",
+          "trust": "high",
+          "selfDeclared": false
         }
       ],
       "warnings": [
@@ -1008,6 +1068,54 @@
           "reason": "El Pleno del 16/03/2026 (exp. 1462/2026/GEN) actualizó para 2026 las retribuciones fijadas el 07/07/2023; la cifra de 2023 se presentaba como vigente.",
           "editor": "Sergei Lutchenko",
           "correctedAt": "2026-10-18"
+        },
+        {
+          "field": "sources.src-125",
+          "original": "",
+          "corrected": "public/data/tenders.json · los cuatro mayores contratos del ámbito, mismo criterio",
+          "reason": "Se añade la medición sobre public/data/tenders.json que sostiene la frase corregida: los cuatro mayores contratos del ámbito con el criterio de la propia sección, sus importes y sus ofertas.",
+          "editor": "Sergei Lutchenko",
+          "correctedAt": "2026-10-28"
+        },
+        {
+          "field": "sources.src-126",
+          "original": "",
+          "corrected": "PLACSP · expediente 27/2018 · concesión del servicio público de abastecimiento de agua potable · https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=pK1YW0Z3femXQV0WE7lYPw%3D%3D",
+          "reason": "Se añade la ficha de PLACSP del expediente 27/2018: valor estimado de la concesión del agua (55.685.178,79 €) y siete licitadores presentados.",
+          "editor": "Sergei Lutchenko",
+          "correctedAt": "2026-10-28"
+        },
+        {
+          "field": "sources.src-127",
+          "original": "",
+          "corrected": "PLACSP · expediente 136/2025 · Acta 1 de la Mesa de Contratación, apertura del sobre A · https://contrataciondelestado.es/FileSystem/servlet/GetDocumentByIdServlet?cifrado=QUC1GjXXSiLkydRHJBmbpw%3D%3D&DocumentIdParam=qGaMlU3Zwe5vSkb9Ykz3o17yQAchD4eD%2BnsiwtBQalAZetV9rgXRm2BMn9ooDnKVqmfX6YEN08PURtj9QK2Cbl/eLMyjXgq%2B0HusL0xUKxN45ClyWkoJ44mKM70IFcOu",
+          "reason": "Se añade el acta 1 de la mesa del expediente 136/2025: cuatro licitadores admitidos al lote 1 (recogida de residuos) y uno fuera de plazo.",
+          "editor": "Sergei Lutchenko",
+          "correctedAt": "2026-10-28"
+        },
+        {
+          "field": "sources.src-128",
+          "original": "",
+          "corrected": "PLACSP · expediente 17/2020 · servicio de limpieza viaria · https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=bWCiPeMjwnKmq21uxhbaVQ%3D%3D",
+          "reason": "Se añade la ficha de PLACSP del expediente 17/2020: limpieza viaria, 3.418.772,55 € y cinco licitadores presentados.",
+          "editor": "Sergei Lutchenko",
+          "correctedAt": "2026-10-28"
+        },
+        {
+          "field": "sources.src-129",
+          "original": "",
+          "corrected": "PLACSP · expediente 17/2021 · conservación y mantenimiento de parques, jardines y zonas verdes · https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=PWq6zyuzw1qmq21uxhbaVQ%3D%3D",
+          "reason": "Se añade la ficha de PLACSP del expediente 17/2021: parques y jardines, 3.212.524,48 € y seis licitadores presentados.",
+          "editor": "Sergei Lutchenko",
+          "correctedAt": "2026-10-28"
+        },
+        {
+          "field": "narrative.Conexiones documentadas y comprobaciones de este medio.bodyMarkdown",
+          "original": "Las conexiones de Rafael Gómez Sánchez que constan en documentos públicos son de naturaleza político-administrativa: fue miembro de la Junta de Gobierno Local durante siete días de junio de 2023 —nombrado por la Resolución 2556/2023, de 21 de junio, y cesado por la Resolución 2640/2023, de 28 de junio—; pertenece al grupo municipal socialista, integrado por 11 de los 21 concejales; y sus áreas de gestión proceden del decreto de delegación del alcalde Roberto Raga.\n\nComo comprobación rutinaria, esta redacción ha cruzado su nombre con el corpus de contratación municipal: en los 725 contratos con fecha de adjudicación que recoge el registro no consta ningún adjudicatario con sus apellidos, y los contratos del ámbito del transporte —su sector profesional entre 2001 y 2015, según su CV autodeclarado— y del ámbito deportivo se adjudicaron a empresas sin coincidencia nominal con el concejal.\n\nEl registro municipal de asociaciones no publica directivos y la BDNS no publica beneficiarios nominales, por lo que esas vías no permiten trazar vínculos personales. Sí se ha consultado el Boletín Oficial del Registro Mercantil: el barrido del registro de la provincia de València entre enero de 2009 y septiembre de 2026, sobre 542.284 anuncios, no devuelve ningún cargo societario atribuible al concejal. Las relaciones estrictamente personales no constan en fuentes públicas y no se publican sin constancia documental.\n\nEsta redacción ha repetido además la medición de la competencia en la contratación de sus áreas con un criterio explícito: los contratos cuyo título o cuyo CPV de cabecera corresponde a deportes, transporte y movilidad, urbanizaciones, parques y jardines, limpieza viaria, residuos, alumbrado, agua o alcantarillado. Con ese criterio son 218 de los 579 contratos adjudicados desde julio de 2019, y los otros 361 quedan fuera. La proporción adjudicada con un solo licitador es prácticamente la misma a un lado y a otro: 107 de 218 (49,1 %) en sus áreas y 182 de 361 (50,4 %) en el resto. En contratos menores sí hay diferencia, y a la baja: 32 de 218 (14,7 %) en sus áreas frente a 115 de 361 (31,9 %) en el resto. Los dos grandes contratos del ámbito, la limpieza viaria y el transporte urbano, se adjudicaron en procedimientos con entre tres y cinco ofertas.",
+          "corrected": "Las conexiones de Rafael Gómez Sánchez que constan en documentos públicos son de naturaleza político-administrativa: fue miembro de la Junta de Gobierno Local durante siete días de junio de 2023 —nombrado por la Resolución 2556/2023, de 21 de junio, y cesado por la Resolución 2640/2023, de 28 de junio—; pertenece al grupo municipal socialista, integrado por 11 de los 21 concejales; y sus áreas de gestión proceden del decreto de delegación del alcalde Roberto Raga.\n\nComo comprobación rutinaria, esta redacción ha cruzado su nombre con el corpus de contratación municipal: en los 725 contratos con fecha de adjudicación que recoge el registro no consta ningún adjudicatario con sus apellidos, y los contratos del ámbito del transporte —su sector profesional entre 2001 y 2015, según su CV autodeclarado— y del ámbito deportivo se adjudicaron a empresas sin coincidencia nominal con el concejal.\n\nEl registro municipal de asociaciones no publica directivos y la BDNS no publica beneficiarios nominales, por lo que esas vías no permiten trazar vínculos personales. Sí se ha consultado el Boletín Oficial del Registro Mercantil: el barrido del registro de la provincia de València entre enero de 2009 y septiembre de 2026, sobre 542.284 anuncios, no devuelve ningún cargo societario atribuible al concejal. Las relaciones estrictamente personales no constan en fuentes públicas y no se publican sin constancia documental.\n\nEsta redacción ha repetido además la medición de la competencia en la contratación de sus áreas con un criterio explícito: los contratos cuyo título o cuyo CPV de cabecera corresponde a deportes, transporte y movilidad, urbanizaciones, parques y jardines, limpieza viaria, residuos, alumbrado, agua o alcantarillado. Con ese criterio son 218 de los 579 contratos adjudicados desde julio de 2019, y los otros 361 quedan fuera. La proporción adjudicada con un solo licitador es prácticamente la misma a un lado y a otro: 107 de 218 (49,1 %) en sus áreas y 182 de 361 (50,4 %) en el resto. En contratos menores sí hay diferencia, y a la baja: 32 de 218 (14,7 %) en sus áreas frente a 115 de 361 (31,9 %) en el resto. Con ese mismo criterio, los cuatro mayores contratos del ámbito se adjudicaron con varias ofertas: la concesión del abastecimiento de agua (valor estimado de 55,7 M€), con siete licitadores; la recogida de residuos (15,8 M€ sin IVA), con cuatro admitidos —un quinto llegó fuera de plazo—; la limpieza viaria (3,4 M€ sin IVA), con cinco, y el mantenimiento de parques y jardines (3,2 M€ sin IVA), con seis.",
+          "reason": "Con el criterio que declara la propia sección, los mayores contratos del ámbito eran la concesión del agua, la recogida de residuos, la limpieza viaria y los parques y jardines; el transporte urbano (295.500 € y 207.489,70 € sin IVA) no estaba entre ellos. Las cifras salen de PLACSP y de la medición sobre tenders.json, que se citan en la sección.",
+          "editor": "Sergei Lutchenko",
+          "correctedAt": "2026-10-28"
         }
       ],
       "response": null
@@ -9182,7 +9290,7 @@
           "kind": "narrative",
           "payload": {
             "heading": "Juntsumem, S.L.: la empresa, el contrato municipal y las fechas",
-            "bodyMarkdown": "Su declaración estatutaria consigna que fue **directivo de Juntsumem, S.L. entre 2017 y 2019**; su CV precisa el cargo — **director de RRHH** — y escribe el nombre «Juntsumen». En ese periodo tenía entre 21 y 23 años.\n\nEl registro municipal de contratación documenta que **el Ayuntamiento de Riba-roja adjudicó a Juntsumem, S.L. el 08-02-2018** — en mitad de esa etapa — el «Servicio para la ejecución del Plan de Formación, Ocio y Tiempo Libre para personas con diversidad funcional y/o dificultades en el aprendizaje»: procedimiento abierto, 2 licitadores, 115.000,00 € de licitación y **104.545,45 € de adjudicación**, con ejecución de octubre de 2017 a octubre de 2019 — ventana que coincide con su etapa declarada en la empresa. El área material del contrato — servicios sociales para personas con diversidad funcional (CPV 85320000) — es la misma que hoy dirige como concejal delegado.\n\nLos mismos datos abiertos acotan el alcance: es la **única adjudicación a Juntsumem, S.L. en todo el corpus municipal**. Las ediciones posteriores del programa fueron a otros prestadores — Fundación Juan I. Muñoz Bastide (2021 y 2025), Riba Actua (2022) y AUCA Projectes Educatius (2025), estas dos últimas ya bajo su mandato como delegado del área.\n\n**Este medio no afirma irregularidad alguna**: la adjudicación es anterior a todos sus cargos públicos (entró como personal eventual en 2019 y como concejal en 2023), ningún documento consultado acredita su participación en aquel procedimiento, y la empresa no vuelve a contratar con el Ayuntamiento. Se publican las fechas y los importes porque un registro público de trayectoria debe documentar la secuencia completa: directivo de una empresa adjudicataria del área social → personal eventual del Ayuntamiento → concejal delegado de esa misma área.",
+            "bodyMarkdown": "Su declaración estatutaria consigna que fue **directivo de Juntsumem, S.L. entre 2017 y 2019**; su CV precisa el cargo — **director de RRHH** — y escribe el nombre «Juntsumen». En ese periodo tenía entre 21 y 23 años.\n\nEl registro municipal de contratación documenta que **el Ayuntamiento de Riba-roja adjudicó a Juntsumem, S.L. el 08-02-2018** — en mitad de esa etapa — el «Servicio para la ejecución del Plan de Formación, Ocio y Tiempo Libre para personas con diversidad funcional y/o dificultades en el aprendizaje»: procedimiento abierto, 2 licitadores, 115.000,00 € de licitación y **104.545,45 € de adjudicación**, con ejecución de octubre de 2017 a octubre de 2019 — ventana que coincide con su etapa declarada en la empresa. El área material del contrato — servicios sociales para personas con diversidad funcional (CPV 85320000) — es la misma que hoy dirige como concejal delegado.\n\nLos mismos datos abiertos acotan el alcance: es la **única adjudicación a Juntsumem, S.L. en todo el corpus municipal**. Las ediciones posteriores del programa fueron a otros prestadores — Fundación Juan I. Muñoz Bastide (2021 y 2025), Riba Actua (2022) y AUCA Projectes Educatius (2025); las dos de 2025, ya bajo su mandato como delegado del área.\n\n**Este medio no afirma irregularidad alguna**: la adjudicación es anterior a todos sus cargos públicos (entró como personal eventual en 2019 y como concejal en 2023), ningún documento consultado acredita su participación en aquel procedimiento, y la empresa no vuelve a contratar con el Ayuntamiento. Se publican las fechas y los importes porque un registro público de trayectoria debe documentar la secuencia completa: directivo de una empresa adjudicataria del área social → personal eventual del Ayuntamiento → concejal delegado de esa misma área.",
             "sourceIds": [
               "src-069",
               "src-060",
@@ -9608,6 +9716,14 @@
           "reason": "El Pleno del 16/03/2026 (exp. 1462/2026/GEN) actualizó para 2026 las retribuciones fijadas el 07/07/2023; la cifra de 2023 se presentaba como vigente.",
           "editor": "Sergei Lutchenko",
           "correctedAt": "2026-10-18"
+        },
+        {
+          "field": "narrative.Juntsumem, S.L.: la empresa, el contrato municipal y las fechas.bodyMarkdown",
+          "original": "Su declaración estatutaria consigna que fue **directivo de Juntsumem, S.L. entre 2017 y 2019**; su CV precisa el cargo — **director de RRHH** — y escribe el nombre «Juntsumen». En ese periodo tenía entre 21 y 23 años.\n\nEl registro municipal de contratación documenta que **el Ayuntamiento de Riba-roja adjudicó a Juntsumem, S.L. el 08-02-2018** — en mitad de esa etapa — el «Servicio para la ejecución del Plan de Formación, Ocio y Tiempo Libre para personas con diversidad funcional y/o dificultades en el aprendizaje»: procedimiento abierto, 2 licitadores, 115.000,00 € de licitación y **104.545,45 € de adjudicación**, con ejecución de octubre de 2017 a octubre de 2019 — ventana que coincide con su etapa declarada en la empresa. El área material del contrato — servicios sociales para personas con diversidad funcional (CPV 85320000) — es la misma que hoy dirige como concejal delegado.\n\nLos mismos datos abiertos acotan el alcance: es la **única adjudicación a Juntsumem, S.L. en todo el corpus municipal**. Las ediciones posteriores del programa fueron a otros prestadores — Fundación Juan I. Muñoz Bastide (2021 y 2025), Riba Actua (2022) y AUCA Projectes Educatius (2025), estas dos últimas ya bajo su mandato como delegado del área.\n\n**Este medio no afirma irregularidad alguna**: la adjudicación es anterior a todos sus cargos públicos (entró como personal eventual en 2019 y como concejal en 2023), ningún documento consultado acredita su participación en aquel procedimiento, y la empresa no vuelve a contratar con el Ayuntamiento. Se publican las fechas y los importes porque un registro público de trayectoria debe documentar la secuencia completa: directivo de una empresa adjudicataria del área social → personal eventual del Ayuntamiento → concejal delegado de esa misma área.",
+          "corrected": "Su declaración estatutaria consigna que fue **directivo de Juntsumem, S.L. entre 2017 y 2019**; su CV precisa el cargo — **director de RRHH** — y escribe el nombre «Juntsumen». En ese periodo tenía entre 21 y 23 años.\n\nEl registro municipal de contratación documenta que **el Ayuntamiento de Riba-roja adjudicó a Juntsumem, S.L. el 08-02-2018** — en mitad de esa etapa — el «Servicio para la ejecución del Plan de Formación, Ocio y Tiempo Libre para personas con diversidad funcional y/o dificultades en el aprendizaje»: procedimiento abierto, 2 licitadores, 115.000,00 € de licitación y **104.545,45 € de adjudicación**, con ejecución de octubre de 2017 a octubre de 2019 — ventana que coincide con su etapa declarada en la empresa. El área material del contrato — servicios sociales para personas con diversidad funcional (CPV 85320000) — es la misma que hoy dirige como concejal delegado.\n\nLos mismos datos abiertos acotan el alcance: es la **única adjudicación a Juntsumem, S.L. en todo el corpus municipal**. Las ediciones posteriores del programa fueron a otros prestadores — Fundación Juan I. Muñoz Bastide (2021 y 2025), Riba Actua (2022) y AUCA Projectes Educatius (2025); las dos de 2025, ya bajo su mandato como delegado del área.\n\n**Este medio no afirma irregularidad alguna**: la adjudicación es anterior a todos sus cargos públicos (entró como personal eventual en 2019 y como concejal en 2023), ningún documento consultado acredita su participación en aquel procedimiento, y la empresa no vuelve a contratar con el Ayuntamiento. Se publican las fechas y los importes porque un registro público de trayectoria debe documentar la secuencia completa: directivo de una empresa adjudicataria del área social → personal eventual del Ayuntamiento → concejal delegado de esa misma área.",
+          "reason": "Riba Actua (expediente 16/2022, adjudicación publicada el 01-07-2022) es anterior a la delegación del área, que le atribuye el punto 11 de la Resolución 2513/2023, de 17 de junio. Las dos ediciones bajo su mandato son los dos lotes del expediente 69/2025, acordados el 23-07-2025: Fundación Juan Ignacio Muñoz Bastide y AUCA Projectes Educatius.",
+          "editor": "Sergei Lutchenko",
+          "correctedAt": "2026-10-28"
         }
       ],
       "response": null
@@ -10417,7 +10533,7 @@
           "kind": "narrative",
           "payload": {
             "heading": "Conexiones documentadas y comprobaciones de este medio",
-            "bodyMarkdown": "Las conexiones de José Manuel Vila Oltra que constan en documentos públicos son de naturaleza político-administrativa: número ocho y uno de los independientes del grupo municipal socialista, integrante de la Junta de Gobierno Local y titular del área que le delegó el decreto del alcalde Roberto Raga, además de la entidad «Cajamar» consignada en su propia declaración de actividades.\n\nComo comprobación rutinaria, esta redacción ha cruzado sus apellidos y sus empleadoras declaradas con el corpus de contratación municipal: en 804 contratos adjudicados no consta ningún adjudicatario con sus apellidos, y ni Cajamar/Ruralcaja, ni Cimenta2, ni Haya Real Estate constan como adjudicatarias municipales. En el ámbito cultural de su delegación se identifican 12 contratos desde julio de 2023 — muestra demasiado pequeña para comparar indicadores, y ninguno con vínculo nominal con el concejal.\n\nEl registro municipal de asociaciones no publica directivos y la BDNS no publica beneficiarios nominales; el Registro Mercantil no se ha consultado de forma independiente, y las relaciones estrictamente personales no constan en fuentes públicas y no se publican sin constancia documental.",
+            "bodyMarkdown": "Las conexiones de José Manuel Vila Oltra que constan en documentos públicos son de naturaleza político-administrativa: número ocho y uno de los independientes del grupo municipal socialista, integrante de la Junta de Gobierno Local y titular del área que le delegó el decreto del alcalde Roberto Raga, además de la entidad «Cajamar» consignada en su propia declaración de actividades.\n\nComo comprobación rutinaria, esta redacción ha cruzado sus apellidos y sus empleadoras declaradas con el corpus de contratación municipal: en los 804 expedientes de contratación que constaban en el corpus municipal en julio de 2026 —adjudicados o no— no consta ningún adjudicatario con sus apellidos, y ni Cajamar/Ruralcaja, ni Cimenta2, ni Haya Real Estate constan como adjudicatarias municipales. En el ámbito cultural de su delegación se identifican 12 contratos desde julio de 2023 — muestra demasiado pequeña para comparar indicadores, y ninguno con vínculo nominal con el concejal.\n\nEl registro municipal de asociaciones no publica directivos y la BDNS no publica beneficiarios nominales; el Registro Mercantil no se ha consultado de forma independiente, y las relaciones estrictamente personales no constan en fuentes públicas y no se publican sin constancia documental.",
             "sourceIds": [
               "src-077",
               "src-062",
@@ -10917,7 +11033,16 @@
       "promotedBy": "Sergei Lutchenko",
       "promotedAt": "2026-07-31T12:25:04.095Z",
       "curatorNotes": "REVISIÓN DE CURADURÍA 2026-07-31 (previa a la promoción): borrador más delgado de la serie (6 secciones) completado con primarios pre-localizados. CV descargado directamente: nacido 08-09-1960 en Riba-roja (segundo sujeto nacido en el municipio), graduado en Lengua y Literatura Españolas tras estudios de Económicas — filólogo al frente de Arte y Cultura —, 36 años en Caja Rural Valencia/Ruralcaja (de botones a director de zona), Cimenta2 (Grupo Cajamar) 2013-14 y Haya Real Estate 2015-20. PAPEL CONSTITUCIONAL verificado literalmente: como electo de mayor edad PRESIDIÓ la Mesa de Edad de la sesión constitutiva («asumiendo la Presidencia el primero de ellos»), comprobó credenciales, declaró constituido el Ayuntamiento (cita nominal literal integrada) y entregó la vara al alcalde. Cadena: número ocho del grupo como INDEPENDIENTE, integrante de la JGL, punto 8 del decreto (Arte y Cultura); sin dedicación (asistencias). Primera lista 2023 verificada por ausencia en BOP n.º 79 y 82. Declaración: activo 151.130,75 € (aritmética verificada), pasivo 13.860,30 €; la tabla de actividades consigna «Cajamar» SIN cargo ni fechas — publicado verbatim con la cronología del CV al lado y laguna de ambigüedad, sin afirmar irregularidad. Comprobaciones: 0/804 con sus apellidos ni con Cajamar/Cimenta2/Haya; 12 contratos culturales (muestra pequeña). La narrativa de programas-líder VERIFICADA contra el acta del 15-04-2024 (1080zow): fecha y programas correctos — las advertencias del verificador sobre ella eran falsas.",
-      "corrections": [],
+      "corrections": [
+        {
+          "field": "narrative.Conexiones documentadas y comprobaciones de este medio.bodyMarkdown",
+          "original": "Las conexiones de José Manuel Vila Oltra que constan en documentos públicos son de naturaleza político-administrativa: número ocho y uno de los independientes del grupo municipal socialista, integrante de la Junta de Gobierno Local y titular del área que le delegó el decreto del alcalde Roberto Raga, además de la entidad «Cajamar» consignada en su propia declaración de actividades.\n\nComo comprobación rutinaria, esta redacción ha cruzado sus apellidos y sus empleadoras declaradas con el corpus de contratación municipal: en 804 contratos adjudicados no consta ningún adjudicatario con sus apellidos, y ni Cajamar/Ruralcaja, ni Cimenta2, ni Haya Real Estate constan como adjudicatarias municipales. En el ámbito cultural de su delegación se identifican 12 contratos desde julio de 2023 — muestra demasiado pequeña para comparar indicadores, y ninguno con vínculo nominal con el concejal.\n\nEl registro municipal de asociaciones no publica directivos y la BDNS no publica beneficiarios nominales; el Registro Mercantil no se ha consultado de forma independiente, y las relaciones estrictamente personales no constan en fuentes públicas y no se publican sin constancia documental.",
+          "corrected": "Las conexiones de José Manuel Vila Oltra que constan en documentos públicos son de naturaleza político-administrativa: número ocho y uno de los independientes del grupo municipal socialista, integrante de la Junta de Gobierno Local y titular del área que le delegó el decreto del alcalde Roberto Raga, además de la entidad «Cajamar» consignada en su propia declaración de actividades.\n\nComo comprobación rutinaria, esta redacción ha cruzado sus apellidos y sus empleadoras declaradas con el corpus de contratación municipal: en los 804 expedientes de contratación que constaban en el corpus municipal en julio de 2026 —adjudicados o no— no consta ningún adjudicatario con sus apellidos, y ni Cajamar/Ruralcaja, ni Cimenta2, ni Haya Real Estate constan como adjudicatarias municipales. En el ámbito cultural de su delegación se identifican 12 contratos desde julio de 2023 — muestra demasiado pequeña para comparar indicadores, y ninguno con vínculo nominal con el concejal.\n\nEl registro municipal de asociaciones no publica directivos y la BDNS no publica beneficiarios nominales; el Registro Mercantil no se ha consultado de forma independiente, y las relaciones estrictamente personales no constan en fuentes públicas y no se publican sin constancia documental.",
+          "reason": "Los 804 eran todos los expedientes de contratación del corpus municipal en julio de 2026, adjudicados o no —711 adjudicados o formalizados, según el estado que hoy les da la fuente—, y no 804 contratos adjudicados. La v2 de la biografía de Raquel Pamblanco ya lo corrigió con estas mismas palabras.",
+          "editor": "Sergei Lutchenko",
+          "correctedAt": "2026-10-28"
+        }
+      ],
       "response": null
     },
     {
@@ -11117,7 +11242,7 @@
           "kind": "narrative",
           "payload": {
             "heading": "Conexiones documentadas y comprobaciones de este medio",
-            "bodyMarkdown": "Las conexiones de María Esther Gómez Laredo que constan en documentos públicos son de dos tipos: las político-administrativas (número siete del grupo municipal socialista y titular de las áreas que le delegó el decreto del alcalde Roberto Raga) y la actividad financiera privada declarada en sus propios documentos oficiales (Banco Mediolanum).\n\nComo comprobación rutinaria, esta redacción ha cruzado sus apellidos y todas sus empleadoras declaradas con el corpus de contratación municipal: en 804 contratos adjudicados no consta ningún adjudicatario con sus apellidos, y ni Banco Mediolanum, ni Aviva, ni ASEVAL, ni Indra SSI, ni GFT Iberia, ni SENER, ni IDOM o ERIA constan como adjudicatarias municipales. En sus áreas delegadas se identifican 6 contratos desde julio de 2023 — muestra demasiado pequeña para comparar indicadores, y ninguno con vínculo nominal con la concejala.\n\nEl registro municipal de asociaciones no publica directivos y la BDNS no publica beneficiarios nominales; el Registro Mercantil no se ha consultado de forma independiente, y las relaciones estrictamente personales no constan en fuentes públicas y no se publican sin constancia documental.",
+            "bodyMarkdown": "Las conexiones de María Esther Gómez Laredo que constan en documentos públicos son de dos tipos: las político-administrativas (número siete del grupo municipal socialista y titular de las áreas que le delegó el decreto del alcalde Roberto Raga) y la actividad financiera privada declarada en sus propios documentos oficiales (Banco Mediolanum).\n\nComo comprobación rutinaria, esta redacción ha cruzado sus apellidos y todas sus empleadoras declaradas con el corpus de contratación municipal: en los 804 expedientes de contratación que constaban en el corpus municipal en julio de 2026 —adjudicados o no— no consta ningún adjudicatario con sus apellidos, y ni Banco Mediolanum, ni Aviva, ni ASEVAL, ni Indra SSI, ni GFT Iberia, ni SENER, ni IDOM o ERIA constan como adjudicatarias municipales. En sus áreas delegadas se identifican 6 contratos desde julio de 2023 — muestra demasiado pequeña para comparar indicadores, y ninguno con vínculo nominal con la concejala.\n\nEl registro municipal de asociaciones no publica directivos y la BDNS no publica beneficiarios nominales; el Registro Mercantil no se ha consultado de forma independiente, y las relaciones estrictamente personales no constan en fuentes públicas y no se publican sin constancia documental.",
             "sourceIds": [
               "src-074",
               "src-062",
@@ -11569,9 +11694,17 @@
           "field": "warnings[1]",
           "original": "Las delegaciones han variado durante el mandato: el decreto de 07-2023 recogía Participación, Atención a la ciudadanía y Turismo; el registro vigente añade Promoción de la Salud e Infraestructuras sanitarias.",
           "corrected": "Las delegaciones han variado durante el mandato: la Resolución 2513/2023, de 17-06-2023 (BOP València núm. 127, anuncio 2023/08603, 03-07-2023) recogía Participación y transparencia, Atención a la ciudadanía y Turismo y patrimonio histórico; la Resolución 2639/2023, de 28-06-2023, que la modifica (BOP núm. 132, anuncio 2023/08985, 10-07-2023), añade Promoción de la Salud e Infraestructuras sanitarias.",
-          "reason": "El cambio de delegaciones no consta sólo en el registro municipal: se publicó en el BOP de València once días después del decreto original; atribuirlo al registro ocultaba la fuente oficial que lo sostiene.",
+          "reason": "El cambio de delegaciones no consta sólo en el registro municipal: lo dictó la Resolución 2639/2023, once días después del decreto original, y se publicó en el BOP de València el 10-07-2023; atribuirlo al registro ocultaba la fuente oficial que lo sostiene.",
           "editor": "Sergei Lutchenko",
-          "correctedAt": "2026-09-05"
+          "correctedAt": "2026-09-05",
+          "reasonAmendments": [
+            {
+              "previous": "motivo · sha256:2f8c46609e48",
+              "reason": "Los once días median entre los dos decretos (Resolución 2513/2023, de 17 de junio, y Resolución 2639/2023, de 28 de junio), no hasta la publicación: el BOP publicó la modificación el 10-07-2023, veintitrés días después del decreto original.",
+              "editor": "Sergei Lutchenko",
+              "amendedAt": "2026-10-28"
+            }
+          ]
         },
         {
           "field": "narrative.Retribución.bodyMarkdown",
@@ -11580,6 +11713,14 @@
           "reason": "El Pleno del 16/03/2026 (exp. 1462/2026/GEN) actualizó para 2026 las retribuciones fijadas el 07/07/2023; la cifra de 2023 se presentaba como vigente.",
           "editor": "Sergei Lutchenko",
           "correctedAt": "2026-10-18"
+        },
+        {
+          "field": "narrative.Conexiones documentadas y comprobaciones de este medio.bodyMarkdown",
+          "original": "Las conexiones de María Esther Gómez Laredo que constan en documentos públicos son de dos tipos: las político-administrativas (número siete del grupo municipal socialista y titular de las áreas que le delegó el decreto del alcalde Roberto Raga) y la actividad financiera privada declarada en sus propios documentos oficiales (Banco Mediolanum).\n\nComo comprobación rutinaria, esta redacción ha cruzado sus apellidos y todas sus empleadoras declaradas con el corpus de contratación municipal: en 804 contratos adjudicados no consta ningún adjudicatario con sus apellidos, y ni Banco Mediolanum, ni Aviva, ni ASEVAL, ni Indra SSI, ni GFT Iberia, ni SENER, ni IDOM o ERIA constan como adjudicatarias municipales. En sus áreas delegadas se identifican 6 contratos desde julio de 2023 — muestra demasiado pequeña para comparar indicadores, y ninguno con vínculo nominal con la concejala.\n\nEl registro municipal de asociaciones no publica directivos y la BDNS no publica beneficiarios nominales; el Registro Mercantil no se ha consultado de forma independiente, y las relaciones estrictamente personales no constan en fuentes públicas y no se publican sin constancia documental.",
+          "corrected": "Las conexiones de María Esther Gómez Laredo que constan en documentos públicos son de dos tipos: las político-administrativas (número siete del grupo municipal socialista y titular de las áreas que le delegó el decreto del alcalde Roberto Raga) y la actividad financiera privada declarada en sus propios documentos oficiales (Banco Mediolanum).\n\nComo comprobación rutinaria, esta redacción ha cruzado sus apellidos y todas sus empleadoras declaradas con el corpus de contratación municipal: en los 804 expedientes de contratación que constaban en el corpus municipal en julio de 2026 —adjudicados o no— no consta ningún adjudicatario con sus apellidos, y ni Banco Mediolanum, ni Aviva, ni ASEVAL, ni Indra SSI, ni GFT Iberia, ni SENER, ni IDOM o ERIA constan como adjudicatarias municipales. En sus áreas delegadas se identifican 6 contratos desde julio de 2023 — muestra demasiado pequeña para comparar indicadores, y ninguno con vínculo nominal con la concejala.\n\nEl registro municipal de asociaciones no publica directivos y la BDNS no publica beneficiarios nominales; el Registro Mercantil no se ha consultado de forma independiente, y las relaciones estrictamente personales no constan en fuentes públicas y no se publican sin constancia documental.",
+          "reason": "Los 804 eran todos los expedientes de contratación del corpus municipal en julio de 2026, adjudicados o no —711 adjudicados o formalizados, según el estado que hoy les da la fuente—, y no 804 contratos adjudicados. La v2 de la biografía de Raquel Pamblanco ya lo corrigió con estas mismas palabras.",
+          "editor": "Sergei Lutchenko",
+          "correctedAt": "2026-10-28"
         }
       ],
       "response": null
@@ -11728,7 +11869,7 @@
           "kind": "narrative",
           "payload": {
             "heading": "Conexiones documentadas y comprobaciones de este medio",
-            "bodyMarkdown": "Las conexiones de Eva Lara Catalá que constan en documentos públicos son de naturaleza político-administrativa: integrante del grupo municipal socialista como independiente, cuarta miembro de la Junta de Gobierno Local y titular de las áreas que le delegó el decreto del alcalde Roberto Raga. Su empleadora es la Generalitat Valenciana (plaza docente pública).\n\nComo comprobación rutinaria, esta redacción ha cruzado sus apellidos con el corpus de contratación municipal: en 804 contratos adjudicados no consta ningún adjudicatario con sus apellidos. En el ámbito de su delegación se identifican 12 contratos educativos desde julio de 2023 — una muestra demasiado pequeña para comparar indicadores de competencia, y ninguno con vínculo nominal con la concejala.\n\nEl registro municipal de asociaciones no publica directivos y la BDNS no publica beneficiarios nominales; el Registro Mercantil no se ha consultado de forma independiente, y las relaciones estrictamente personales no constan en fuentes públicas y no se publican sin constancia documental.",
+            "bodyMarkdown": "Las conexiones de Eva Lara Catalá que constan en documentos públicos son de naturaleza político-administrativa: integrante del grupo municipal socialista como independiente, cuarta miembro de la Junta de Gobierno Local y titular de las áreas que le delegó el decreto del alcalde Roberto Raga. Su empleadora es la Generalitat Valenciana (plaza docente pública).\n\nComo comprobación rutinaria, esta redacción ha cruzado sus apellidos con el corpus de contratación municipal: en los 804 expedientes de contratación que constaban en el corpus municipal en julio de 2026 —adjudicados o no— no consta ningún adjudicatario con sus apellidos. En el ámbito de su delegación se identifican 12 contratos educativos desde julio de 2023 — una muestra demasiado pequeña para comparar indicadores de competencia, y ninguno con vínculo nominal con la concejala.\n\nEl registro municipal de asociaciones no publica directivos y la BDNS no publica beneficiarios nominales; el Registro Mercantil no se ha consultado de forma independiente, y las relaciones estrictamente personales no constan en fuentes públicas y no se publican sin constancia documental.",
             "sourceIds": [
               "src-073",
               "src-062"
@@ -12133,7 +12274,7 @@
           "kind": "local-snapshot",
           "title": "public/data/tenders.json · comprobación nominal sobre el corpus de contratación",
           "retrievedAt": "2026-07-31T08:54:21.979Z",
-          "excerpt": "804 contratos adjudicados examinados: ningún adjudicatario coincide con «Lara Catalá». Contratos del ámbito educativo desde julio de 2023: 12 identificados — muestra demasiado pequeña para comparar indicadores de competencia; ninguno con vínculo nominal con la concejala. No figura en las candidaturas de 2015 (BOP n.º 79) ni de 2019 (BOP n.º 82): la de 2023 es su primera lista.",
+          "excerpt": "804 expedientes de contratación examinados, adjudicados o no: ningún adjudicatario coincide con «Lara Catalá». Contratos del ámbito educativo desde julio de 2023: 12 identificados — muestra demasiado pequeña para comparar indicadores de competencia; ninguno con vínculo nominal con la concejala. No figura en las candidaturas de 2015 (BOP n.º 79) ni de 2019 (BOP n.º 82): la de 2023 es su primera lista.",
           "localPath": "public/data/tenders.json",
           "trust": "high",
           "selfDeclared": false
@@ -12147,7 +12288,24 @@
       "promotedBy": "Sergei Lutchenko",
       "promotedAt": "2026-07-31T08:54:38.614Z",
       "curatorNotes": "REVISIÓN DE CURADURÍA 2026-07-31 (previa a la promoción): la corrida perdió el recall semántico (cuota de embeddings de OpenAI agotada — anotado para el operador) y produjo un borrador de 8 secciones; la curaduría integró los documentos primarios pre-localizados. CV descargado directamente (PSOE-Eva-Lara-Catala.pdf; el floor volvió a fallar sobre el listado): nacida 22-05-1979 en Valencia, licenciada en Historia (UV), profesora del IES El Quint desde 2006 y coordinadora del proyecto Memoria Democrática — coherente con su delegación. Cadena de nombramiento con ventanas literales: electa y posesión (17-06-2023), número cinco del grupo socialista como INDEPENDIENTE, cuarta integrante de la JGL, punto 5 del decreto de áreas; sin dedicación (asistencias 221,82/162,31 €). Primera lista en 2023 VERIFICADA por ausencia en las candidaturas de 2015 (BOP n.º 79) y 2019 (BOP n.º 82). Declaración estatutaria integrada (activo 66.027 €, pasivo 61.085,76 €; actividad: plaza docente) + BOP n.º 180. DISCREPANCIA publicada sin resolver: docente desde 2006 (CV) frente a 09/2008 (declaración). Comprobaciones: 0/804 contratos con sus apellidos; 12 contratos educativos desde 07-2023 (muestra pequeña, sin comparación de indicadores). Retirado el press-sparkline (titulares que nunca la nombran — advertencia del verificador CORRECTA); las advertencias sobre src-036/041 eran falsas (los extractos constan).",
-      "corrections": [],
+      "corrections": [
+        {
+          "field": "narrative.Conexiones documentadas y comprobaciones de este medio.bodyMarkdown",
+          "original": "Las conexiones de Eva Lara Catalá que constan en documentos públicos son de naturaleza político-administrativa: integrante del grupo municipal socialista como independiente, cuarta miembro de la Junta de Gobierno Local y titular de las áreas que le delegó el decreto del alcalde Roberto Raga. Su empleadora es la Generalitat Valenciana (plaza docente pública).\n\nComo comprobación rutinaria, esta redacción ha cruzado sus apellidos con el corpus de contratación municipal: en 804 contratos adjudicados no consta ningún adjudicatario con sus apellidos. En el ámbito de su delegación se identifican 12 contratos educativos desde julio de 2023 — una muestra demasiado pequeña para comparar indicadores de competencia, y ninguno con vínculo nominal con la concejala.\n\nEl registro municipal de asociaciones no publica directivos y la BDNS no publica beneficiarios nominales; el Registro Mercantil no se ha consultado de forma independiente, y las relaciones estrictamente personales no constan en fuentes públicas y no se publican sin constancia documental.",
+          "corrected": "Las conexiones de Eva Lara Catalá que constan en documentos públicos son de naturaleza político-administrativa: integrante del grupo municipal socialista como independiente, cuarta miembro de la Junta de Gobierno Local y titular de las áreas que le delegó el decreto del alcalde Roberto Raga. Su empleadora es la Generalitat Valenciana (plaza docente pública).\n\nComo comprobación rutinaria, esta redacción ha cruzado sus apellidos con el corpus de contratación municipal: en los 804 expedientes de contratación que constaban en el corpus municipal en julio de 2026 —adjudicados o no— no consta ningún adjudicatario con sus apellidos. En el ámbito de su delegación se identifican 12 contratos educativos desde julio de 2023 — una muestra demasiado pequeña para comparar indicadores de competencia, y ninguno con vínculo nominal con la concejala.\n\nEl registro municipal de asociaciones no publica directivos y la BDNS no publica beneficiarios nominales; el Registro Mercantil no se ha consultado de forma independiente, y las relaciones estrictamente personales no constan en fuentes públicas y no se publican sin constancia documental.",
+          "reason": "Los 804 eran todos los expedientes de contratación del corpus municipal en julio de 2026, adjudicados o no —711 adjudicados o formalizados, según el estado que hoy les da la fuente—, y no 804 contratos adjudicados. La v2 de la biografía de Raquel Pamblanco ya lo corrigió con estas mismas palabras.",
+          "editor": "Sergei Lutchenko",
+          "correctedAt": "2026-10-28"
+        },
+        {
+          "field": "sources.src-073.excerpt",
+          "original": "804 contratos adjudicados examinados: ningún adjudicatario coincide con «Lara Catalá». Contratos del ámbito educativo desde julio de 2023: 12 identificados — muestra demasiado pequeña para comparar indicadores de competencia; ninguno con vínculo nominal con la concejala. No figura en las candidaturas de 2015 (BOP n.º 79) ni de 2019 (BOP n.º 82): la de 2023 es su primera lista.",
+          "corrected": "804 expedientes de contratación examinados, adjudicados o no: ningún adjudicatario coincide con «Lara Catalá». Contratos del ámbito educativo desde julio de 2023: 12 identificados — muestra demasiado pequeña para comparar indicadores de competencia; ninguno con vínculo nominal con la concejala. No figura en las candidaturas de 2015 (BOP n.º 79) ni de 2019 (BOP n.º 82): la de 2023 es su primera lista.",
+          "reason": "Los 804 eran todos los expedientes de contratación del corpus municipal en julio de 2026, adjudicados o no —711 adjudicados o formalizados, según el estado que hoy les da la fuente—, y no 804 contratos adjudicados. La v2 de la biografía de Raquel Pamblanco ya lo corrigió con estas mismas palabras.",
+          "editor": "Sergei Lutchenko",
+          "correctedAt": "2026-10-28"
+        }
+      ],
       "response": null
     },
     {
@@ -12264,7 +12422,7 @@
           "kind": "narrative",
           "payload": {
             "heading": "Conexiones documentadas y comprobaciones de este medio",
-            "bodyMarkdown": "Las conexiones de José Ángel Hernández Carrizosa que constan en documentos públicos son de naturaleza político-administrativa: número cuatro y portavoz suplente del grupo municipal socialista, Tercer Teniente de Alcalde, tercer miembro de la Junta de Gobierno Local y titular de las áreas que le delegó el decreto del alcalde Roberto Raga — entre ellas, la propia Compra Pública municipal.\n\nPrecisamente por esa responsabilidad, esta redacción ha cruzado sus apellidos y las cuatro sociedades donde trabajó según su CV con el corpus de contratación municipal: en 804 contratos adjudicados no consta ningún adjudicatario con sus apellidos, y ni Nexo Nivel SL —de la que fue administrador solidario hasta 2015—, ni Grupo Serratable SL, ni Artículos de Carpintería Moreno SL, ni Vilarsal SL constan como adjudicatarias ni licitadoras.\n\nEl registro municipal de asociaciones no publica directivos y la BDNS no publica beneficiarios nominales; el Registro Mercantil no se ha consultado de forma independiente, y las relaciones estrictamente personales no constan en fuentes públicas y no se publican sin constancia documental.",
+            "bodyMarkdown": "Las conexiones de José Ángel Hernández Carrizosa que constan en documentos públicos son de naturaleza político-administrativa: número cuatro y portavoz suplente del grupo municipal socialista, Tercer Teniente de Alcalde, tercer miembro de la Junta de Gobierno Local y titular de las áreas que le delegó el decreto del alcalde Roberto Raga — entre ellas, la propia Compra Pública municipal.\n\nPrecisamente por esa responsabilidad, esta redacción ha cruzado sus apellidos y las cuatro sociedades donde trabajó según su CV con el corpus de contratación municipal: en los 804 expedientes de contratación que constaban en el corpus municipal en julio de 2026 —adjudicados o no— no consta ningún adjudicatario con sus apellidos, y ni Nexo Nivel SL —de la que fue administrador solidario hasta 2015—, ni Grupo Serratable SL, ni Artículos de Carpintería Moreno SL, ni Vilarsal SL constan como adjudicatarias ni licitadoras.\n\nEl registro municipal de asociaciones no publica directivos y la BDNS no publica beneficiarios nominales; el Registro Mercantil no se ha consultado de forma independiente, y las relaciones estrictamente personales no constan en fuentes públicas y no se publican sin constancia documental.",
             "sourceIds": [
               "src-075",
               "src-062",
@@ -12849,7 +13007,7 @@
           "kind": "local-snapshot",
           "title": "public/data/tenders.json · comprobación nominal sobre el corpus de contratación",
           "retrievedAt": "2026-07-31T07:45:31.798Z",
-          "excerpt": "804 contratos adjudicados examinados: ningún adjudicatario coincide con «Hernández Carrizosa». Las cuatro sociedades donde trabajó según su CV — Nexo Nivel SL (administrador solidario 2008-2015), Grupo Serratable SL, Artículos de Carpintería Moreno SL y Vilarsal SL — no constan como adjudicatarias ni licitadoras. Corpus completo desde julio de 2023 (su delegación incluye Compra Pública): 282 contratos, 55% con un solo licitador, 20% menores.",
+          "excerpt": "804 expedientes de contratación examinados, adjudicados o no: ningún adjudicatario coincide con «Hernández Carrizosa». Las cuatro sociedades donde trabajó según su CV — Nexo Nivel SL (administrador solidario 2008-2015), Grupo Serratable SL, Artículos de Carpintería Moreno SL y Vilarsal SL — no constan como adjudicatarias ni licitadoras. Corpus completo desde julio de 2023 (su delegación incluye Compra Pública): 282 contratos, 55% con un solo licitador, 20% menores.",
           "localPath": "public/data/tenders.json",
           "trust": "high",
           "selfDeclared": false
@@ -12950,6 +13108,22 @@
           "reason": "El Pleno del 16/03/2026 (exp. 1462/2026/GEN) actualizó para 2026 las retribuciones fijadas el 07/07/2023; la cifra de 2023 se presentaba como vigente.",
           "editor": "Sergei Lutchenko",
           "correctedAt": "2026-10-18"
+        },
+        {
+          "field": "narrative.Conexiones documentadas y comprobaciones de este medio.bodyMarkdown",
+          "original": "Las conexiones de José Ángel Hernández Carrizosa que constan en documentos públicos son de naturaleza político-administrativa: número cuatro y portavoz suplente del grupo municipal socialista, Tercer Teniente de Alcalde, tercer miembro de la Junta de Gobierno Local y titular de las áreas que le delegó el decreto del alcalde Roberto Raga — entre ellas, la propia Compra Pública municipal.\n\nPrecisamente por esa responsabilidad, esta redacción ha cruzado sus apellidos y las cuatro sociedades donde trabajó según su CV con el corpus de contratación municipal: en 804 contratos adjudicados no consta ningún adjudicatario con sus apellidos, y ni Nexo Nivel SL —de la que fue administrador solidario hasta 2015—, ni Grupo Serratable SL, ni Artículos de Carpintería Moreno SL, ni Vilarsal SL constan como adjudicatarias ni licitadoras.\n\nEl registro municipal de asociaciones no publica directivos y la BDNS no publica beneficiarios nominales; el Registro Mercantil no se ha consultado de forma independiente, y las relaciones estrictamente personales no constan en fuentes públicas y no se publican sin constancia documental.",
+          "corrected": "Las conexiones de José Ángel Hernández Carrizosa que constan en documentos públicos son de naturaleza político-administrativa: número cuatro y portavoz suplente del grupo municipal socialista, Tercer Teniente de Alcalde, tercer miembro de la Junta de Gobierno Local y titular de las áreas que le delegó el decreto del alcalde Roberto Raga — entre ellas, la propia Compra Pública municipal.\n\nPrecisamente por esa responsabilidad, esta redacción ha cruzado sus apellidos y las cuatro sociedades donde trabajó según su CV con el corpus de contratación municipal: en los 804 expedientes de contratación que constaban en el corpus municipal en julio de 2026 —adjudicados o no— no consta ningún adjudicatario con sus apellidos, y ni Nexo Nivel SL —de la que fue administrador solidario hasta 2015—, ni Grupo Serratable SL, ni Artículos de Carpintería Moreno SL, ni Vilarsal SL constan como adjudicatarias ni licitadoras.\n\nEl registro municipal de asociaciones no publica directivos y la BDNS no publica beneficiarios nominales; el Registro Mercantil no se ha consultado de forma independiente, y las relaciones estrictamente personales no constan en fuentes públicas y no se publican sin constancia documental.",
+          "reason": "Los 804 eran todos los expedientes de contratación del corpus municipal en julio de 2026, adjudicados o no —711 adjudicados o formalizados, según el estado que hoy les da la fuente—, y no 804 contratos adjudicados. La v2 de la biografía de Raquel Pamblanco ya lo corrigió con estas mismas palabras.",
+          "editor": "Sergei Lutchenko",
+          "correctedAt": "2026-10-28"
+        },
+        {
+          "field": "sources.src-075.excerpt",
+          "original": "804 contratos adjudicados examinados: ningún adjudicatario coincide con «Hernández Carrizosa». Las cuatro sociedades donde trabajó según su CV — Nexo Nivel SL (administrador solidario 2008-2015), Grupo Serratable SL, Artículos de Carpintería Moreno SL y Vilarsal SL — no constan como adjudicatarias ni licitadoras. Corpus completo desde julio de 2023 (su delegación incluye Compra Pública): 282 contratos, 55% con un solo licitador, 20% menores.",
+          "corrected": "804 expedientes de contratación examinados, adjudicados o no: ningún adjudicatario coincide con «Hernández Carrizosa». Las cuatro sociedades donde trabajó según su CV — Nexo Nivel SL (administrador solidario 2008-2015), Grupo Serratable SL, Artículos de Carpintería Moreno SL y Vilarsal SL — no constan como adjudicatarias ni licitadoras. Corpus completo desde julio de 2023 (su delegación incluye Compra Pública): 282 contratos, 55% con un solo licitador, 20% menores.",
+          "reason": "Los 804 eran todos los expedientes de contratación del corpus municipal en julio de 2026, adjudicados o no —711 adjudicados o formalizados, según el estado que hoy les da la fuente—, y no 804 contratos adjudicados. La v2 de la biografía de Raquel Pamblanco ya lo corrigió con estas mismas palabras.",
+          "editor": "Sergei Lutchenko",
+          "correctedAt": "2026-10-28"
         }
       ],
       "response": null
@@ -13063,7 +13237,7 @@
           "kind": "narrative",
           "payload": {
             "heading": "Conexiones documentadas y comprobaciones de este medio",
-            "bodyMarkdown": "Las conexiones de José Luis Ramos March que constan en documentos públicos son de naturaleza político-administrativa: número tres y portavoz suplente del grupo municipal socialista, Segundo Teniente de Alcalde, segundo miembro de la Junta de Gobierno Local y titular de las áreas que le delegó el decreto del alcalde Roberto Raga.\n\nComo comprobación rutinaria, esta redacción ha cruzado sus apellidos y sus empleadores previos declarados con el corpus de contratación municipal: en 804 contratos adjudicados no consta ningún adjudicatario con sus apellidos, y ninguna de las entidades bancarias donde ejerció según su CV (Banco de València, Caja Campo, Cajamar) consta como adjudicataria municipal. Los indicadores de competencia de la contratación en sus áreas desde julio de 2023 (34 contratos identificados): el 38% se adjudicó con un solo licitador, frente al 55% del conjunto municipal, y el 21% fueron contratos menores.\n\nEl registro municipal de asociaciones no publica directivos y la BDNS no publica beneficiarios nominales; el Registro Mercantil no se ha consultado de forma independiente, y las relaciones estrictamente personales no constan en fuentes públicas y no se publican sin constancia documental.",
+            "bodyMarkdown": "Las conexiones de José Luis Ramos March que constan en documentos públicos son de naturaleza político-administrativa: número tres y portavoz suplente del grupo municipal socialista, Segundo Teniente de Alcalde, segundo miembro de la Junta de Gobierno Local y titular de las áreas que le delegó el decreto del alcalde Roberto Raga.\n\nComo comprobación rutinaria, esta redacción ha cruzado sus apellidos y sus empleadores previos declarados con el corpus de contratación municipal: en los 804 expedientes de contratación que constaban en el corpus municipal en julio de 2026 —adjudicados o no— no consta ningún adjudicatario con sus apellidos, y ninguna de las entidades bancarias donde ejerció según su CV (Banco de València, Caja Campo, Cajamar) consta como adjudicataria municipal. Los indicadores de competencia de la contratación en sus áreas desde julio de 2023 (34 contratos identificados): el 38% se adjudicó con un solo licitador, frente al 55% del conjunto municipal, y el 21% fueron contratos menores.\n\nEl registro municipal de asociaciones no publica directivos y la BDNS no publica beneficiarios nominales; el Registro Mercantil no se ha consultado de forma independiente, y las relaciones estrictamente personales no constan en fuentes públicas y no se publican sin constancia documental.",
             "sourceIds": [
               "src-073",
               "src-061"
@@ -13652,7 +13826,7 @@
           "kind": "local-snapshot",
           "title": "public/data/tenders.json · comprobación nominal sobre el corpus de contratación",
           "retrievedAt": "2026-07-31T07:25:34.362Z",
-          "excerpt": "804 contratos adjudicados examinados: ningún adjudicatario coincide con «Ramos March», y sus antiguos empleadores declarados del sector bancario (Cajamar, Caja Campo, Banco de València) no constan como adjudicatarios. Contratos en materias de sus áreas desde julio de 2023 (agricultura, edificios públicos, energía y clima, comercio, fondos europeos): 34 de 282; un solo licitador 13/34 (38%) frente a 156/282 (55%) del conjunto; contratos menores 7/34 (21%).",
+          "excerpt": "804 expedientes de contratación examinados, adjudicados o no: ningún adjudicatario coincide con «Ramos March», y sus antiguos empleadores declarados del sector bancario (Cajamar, Caja Campo, Banco de València) no constan como adjudicatarios. Contratos en materias de sus áreas desde julio de 2023 (agricultura, edificios públicos, energía y clima, comercio, fondos europeos): 34 de 282; un solo licitador 13/34 (38%) frente a 156/282 (55%) del conjunto; contratos menores 7/34 (21%).",
           "localPath": "public/data/tenders.json",
           "trust": "high",
           "selfDeclared": false
@@ -13703,9 +13877,33 @@
           "field": "warnings[1]",
           "original": "Las áreas delegadas han variado durante el mandato: el decreto de julio de 2023 incluía Comercio; el registro municipal vigente recoge en su lugar Actividades y Edificios públicos. Se publican ambas con su fuente.",
           "corrected": "Las áreas delegadas han variado durante el mandato: la Resolución 2513/2023, de 17-06-2023 (BOP València núm. 127, anuncio 2023/08603, 03-07-2023) incluía Comercio; la Resolución 2639/2023, de 28-06-2023, que la modifica (BOP núm. 132, anuncio 2023/08985, 10-07-2023), recoge en su lugar Actividades y Edificios públicos. Se publican ambas con su fuente.",
-          "reason": "El cambio de delegaciones no consta sólo en el registro municipal: se publicó en el BOP de València once días después del decreto original; atribuirlo al registro ocultaba la fuente oficial que lo sostiene.",
+          "reason": "El cambio de delegaciones no consta sólo en el registro municipal: lo dictó la Resolución 2639/2023, once días después del decreto original, y se publicó en el BOP de València el 10-07-2023; atribuirlo al registro ocultaba la fuente oficial que lo sostiene.",
           "editor": "Sergei Lutchenko",
-          "correctedAt": "2026-09-05"
+          "correctedAt": "2026-09-05",
+          "reasonAmendments": [
+            {
+              "previous": "motivo · sha256:2f8c46609e48",
+              "reason": "Los once días median entre los dos decretos (Resolución 2513/2023, de 17 de junio, y Resolución 2639/2023, de 28 de junio), no hasta la publicación: el BOP publicó la modificación el 10-07-2023, veintitrés días después del decreto original.",
+              "editor": "Sergei Lutchenko",
+              "amendedAt": "2026-10-28"
+            }
+          ]
+        },
+        {
+          "field": "narrative.Conexiones documentadas y comprobaciones de este medio.bodyMarkdown",
+          "original": "Las conexiones de José Luis Ramos March que constan en documentos públicos son de naturaleza político-administrativa: número tres y portavoz suplente del grupo municipal socialista, Segundo Teniente de Alcalde, segundo miembro de la Junta de Gobierno Local y titular de las áreas que le delegó el decreto del alcalde Roberto Raga.\n\nComo comprobación rutinaria, esta redacción ha cruzado sus apellidos y sus empleadores previos declarados con el corpus de contratación municipal: en 804 contratos adjudicados no consta ningún adjudicatario con sus apellidos, y ninguna de las entidades bancarias donde ejerció según su CV (Banco de València, Caja Campo, Cajamar) consta como adjudicataria municipal. Los indicadores de competencia de la contratación en sus áreas desde julio de 2023 (34 contratos identificados): el 38% se adjudicó con un solo licitador, frente al 55% del conjunto municipal, y el 21% fueron contratos menores.\n\nEl registro municipal de asociaciones no publica directivos y la BDNS no publica beneficiarios nominales; el Registro Mercantil no se ha consultado de forma independiente, y las relaciones estrictamente personales no constan en fuentes públicas y no se publican sin constancia documental.",
+          "corrected": "Las conexiones de José Luis Ramos March que constan en documentos públicos son de naturaleza político-administrativa: número tres y portavoz suplente del grupo municipal socialista, Segundo Teniente de Alcalde, segundo miembro de la Junta de Gobierno Local y titular de las áreas que le delegó el decreto del alcalde Roberto Raga.\n\nComo comprobación rutinaria, esta redacción ha cruzado sus apellidos y sus empleadores previos declarados con el corpus de contratación municipal: en los 804 expedientes de contratación que constaban en el corpus municipal en julio de 2026 —adjudicados o no— no consta ningún adjudicatario con sus apellidos, y ninguna de las entidades bancarias donde ejerció según su CV (Banco de València, Caja Campo, Cajamar) consta como adjudicataria municipal. Los indicadores de competencia de la contratación en sus áreas desde julio de 2023 (34 contratos identificados): el 38% se adjudicó con un solo licitador, frente al 55% del conjunto municipal, y el 21% fueron contratos menores.\n\nEl registro municipal de asociaciones no publica directivos y la BDNS no publica beneficiarios nominales; el Registro Mercantil no se ha consultado de forma independiente, y las relaciones estrictamente personales no constan en fuentes públicas y no se publican sin constancia documental.",
+          "reason": "Los 804 eran todos los expedientes de contratación del corpus municipal en julio de 2026, adjudicados o no —711 adjudicados o formalizados, según el estado que hoy les da la fuente—, y no 804 contratos adjudicados. La v2 de la biografía de Raquel Pamblanco ya lo corrigió con estas mismas palabras.",
+          "editor": "Sergei Lutchenko",
+          "correctedAt": "2026-10-28"
+        },
+        {
+          "field": "sources.src-073.excerpt",
+          "original": "804 contratos adjudicados examinados: ningún adjudicatario coincide con «Ramos March», y sus antiguos empleadores declarados del sector bancario (Cajamar, Caja Campo, Banco de València) no constan como adjudicatarios. Contratos en materias de sus áreas desde julio de 2023 (agricultura, edificios públicos, energía y clima, comercio, fondos europeos): 34 de 282; un solo licitador 13/34 (38%) frente a 156/282 (55%) del conjunto; contratos menores 7/34 (21%).",
+          "corrected": "804 expedientes de contratación examinados, adjudicados o no: ningún adjudicatario coincide con «Ramos March», y sus antiguos empleadores declarados del sector bancario (Cajamar, Caja Campo, Banco de València) no constan como adjudicatarios. Contratos en materias de sus áreas desde julio de 2023 (agricultura, edificios públicos, energía y clima, comercio, fondos europeos): 34 de 282; un solo licitador 13/34 (38%) frente a 156/282 (55%) del conjunto; contratos menores 7/34 (21%).",
+          "reason": "Los 804 eran todos los expedientes de contratación del corpus municipal en julio de 2026, adjudicados o no —711 adjudicados o formalizados, según el estado que hoy les da la fuente—, y no 804 contratos adjudicados. La v2 de la biografía de Raquel Pamblanco ya lo corrigió con estas mismas palabras.",
+          "editor": "Sergei Lutchenko",
+          "correctedAt": "2026-10-28"
         }
       ],
       "response": null
@@ -13817,7 +14015,7 @@
           "kind": "narrative",
           "payload": {
             "heading": "Conexiones documentadas y comprobaciones de este medio",
-            "bodyMarkdown": "Las conexiones de Teresa Pozuelo Martín que constan en documentos públicos son de naturaleza político-administrativa: portavoz del grupo municipal socialista, Primera Teniente de Alcalde, miembro de la Junta de Gobierno Local y titular de las áreas que le delegó el decreto del alcalde Roberto Raga.\n\nComo comprobación rutinaria, esta redacción ha cruzado su apellido y sus empleadores previos declarados con el corpus de contratación municipal: en 804 contratos adjudicados no consta ningún adjudicatario con su apellido, y ni Grupo Tremon SA ni Pavituria SL —donde trabajó entre 1997 y 2010, según su CV— constan como adjudicatarios municipales. Los indicadores de competencia de la contratación en sus áreas desde julio de 2023 (77 contratos identificados): el 44% se adjudicó con un solo licitador, frente al 55% del conjunto municipal, y el 23% fueron contratos menores (20% en el conjunto).\n\nEl registro municipal de asociaciones no publica directivos y la BDNS no publica beneficiarios nominales; el Registro Mercantil no se ha consultado de forma independiente, y las relaciones estrictamente personales no constan en fuentes públicas y no se publican sin constancia documental.",
+            "bodyMarkdown": "Las conexiones de Teresa Pozuelo Martín que constan en documentos públicos son de naturaleza político-administrativa: portavoz del grupo municipal socialista, Primera Teniente de Alcalde, miembro de la Junta de Gobierno Local y titular de las áreas que le delegó el decreto del alcalde Roberto Raga.\n\nComo comprobación rutinaria, esta redacción ha cruzado su apellido y sus empleadores previos declarados con el corpus de contratación municipal: en los 804 expedientes de contratación que constaban en el corpus municipal en julio de 2026 —adjudicados o no— no consta ningún adjudicatario con su apellido, y ni Grupo Tremon SA ni Pavituria SL —donde trabajó entre 1997 y 2010, según su CV— constan como adjudicatarios municipales. Los indicadores de competencia de la contratación en sus áreas desde julio de 2023 (77 contratos identificados): el 44% se adjudicó con un solo licitador, frente al 55% del conjunto municipal, y el 23% fueron contratos menores (20% en el conjunto).\n\nEl registro municipal de asociaciones no publica directivos y la BDNS no publica beneficiarios nominales; el Registro Mercantil no se ha consultado de forma independiente, y las relaciones estrictamente personales no constan en fuentes públicas y no se publican sin constancia documental.",
             "sourceIds": [
               "src-073",
               "src-061"
@@ -14355,7 +14553,7 @@
           "kind": "local-snapshot",
           "title": "public/data/tenders.json · comprobación nominal sobre el corpus de contratación",
           "retrievedAt": "2026-07-30T22:35:41.293Z",
-          "excerpt": "804 contratos adjudicados examinados: ningún adjudicatario coincide con «Pozuelo», y sus antiguos empleadores declarados (Grupo Tremon SA, Pavituria SL) no constan como adjudicatarios. Contratos en materias de sus áreas desde julio de 2023 (urbanismo, vivienda, obra pública, industriales, cementerio): 77 de 282; un solo licitador 34/77 (44%) frente a 156/282 (55%) del conjunto; contratos menores 18/77 (23%) frente a 57/282 (20%).",
+          "excerpt": "804 expedientes de contratación examinados, adjudicados o no: ningún adjudicatario coincide con «Pozuelo», y sus antiguos empleadores declarados (Grupo Tremon SA, Pavituria SL) no constan como adjudicatarios. Contratos en materias de sus áreas desde julio de 2023 (urbanismo, vivienda, obra pública, industriales, cementerio): 77 de 282; un solo licitador 34/77 (44%) frente a 156/282 (55%) del conjunto; contratos menores 18/77 (23%) frente a 57/282 (20%).",
           "localPath": "public/data/tenders.json",
           "trust": "high",
           "selfDeclared": false
@@ -14452,6 +14650,22 @@
           "reason": "El hito de 2023 decía «percibe» en presente; el Pleno del 16/03/2026 (exp. 1462/2026/GEN) actualizó esa retribución para 2026.",
           "editor": "Sergei Lutchenko",
           "correctedAt": "2026-10-18"
+        },
+        {
+          "field": "narrative.Conexiones documentadas y comprobaciones de este medio.bodyMarkdown",
+          "original": "Las conexiones de Teresa Pozuelo Martín que constan en documentos públicos son de naturaleza político-administrativa: portavoz del grupo municipal socialista, Primera Teniente de Alcalde, miembro de la Junta de Gobierno Local y titular de las áreas que le delegó el decreto del alcalde Roberto Raga.\n\nComo comprobación rutinaria, esta redacción ha cruzado su apellido y sus empleadores previos declarados con el corpus de contratación municipal: en 804 contratos adjudicados no consta ningún adjudicatario con su apellido, y ni Grupo Tremon SA ni Pavituria SL —donde trabajó entre 1997 y 2010, según su CV— constan como adjudicatarios municipales. Los indicadores de competencia de la contratación en sus áreas desde julio de 2023 (77 contratos identificados): el 44% se adjudicó con un solo licitador, frente al 55% del conjunto municipal, y el 23% fueron contratos menores (20% en el conjunto).\n\nEl registro municipal de asociaciones no publica directivos y la BDNS no publica beneficiarios nominales; el Registro Mercantil no se ha consultado de forma independiente, y las relaciones estrictamente personales no constan en fuentes públicas y no se publican sin constancia documental.",
+          "corrected": "Las conexiones de Teresa Pozuelo Martín que constan en documentos públicos son de naturaleza político-administrativa: portavoz del grupo municipal socialista, Primera Teniente de Alcalde, miembro de la Junta de Gobierno Local y titular de las áreas que le delegó el decreto del alcalde Roberto Raga.\n\nComo comprobación rutinaria, esta redacción ha cruzado su apellido y sus empleadores previos declarados con el corpus de contratación municipal: en los 804 expedientes de contratación que constaban en el corpus municipal en julio de 2026 —adjudicados o no— no consta ningún adjudicatario con su apellido, y ni Grupo Tremon SA ni Pavituria SL —donde trabajó entre 1997 y 2010, según su CV— constan como adjudicatarios municipales. Los indicadores de competencia de la contratación en sus áreas desde julio de 2023 (77 contratos identificados): el 44% se adjudicó con un solo licitador, frente al 55% del conjunto municipal, y el 23% fueron contratos menores (20% en el conjunto).\n\nEl registro municipal de asociaciones no publica directivos y la BDNS no publica beneficiarios nominales; el Registro Mercantil no se ha consultado de forma independiente, y las relaciones estrictamente personales no constan en fuentes públicas y no se publican sin constancia documental.",
+          "reason": "Los 804 eran todos los expedientes de contratación del corpus municipal en julio de 2026, adjudicados o no —711 adjudicados o formalizados, según el estado que hoy les da la fuente—, y no 804 contratos adjudicados. La v2 de la biografía de Raquel Pamblanco ya lo corrigió con estas mismas palabras.",
+          "editor": "Sergei Lutchenko",
+          "correctedAt": "2026-10-28"
+        },
+        {
+          "field": "sources.src-073.excerpt",
+          "original": "804 contratos adjudicados examinados: ningún adjudicatario coincide con «Pozuelo», y sus antiguos empleadores declarados (Grupo Tremon SA, Pavituria SL) no constan como adjudicatarios. Contratos en materias de sus áreas desde julio de 2023 (urbanismo, vivienda, obra pública, industriales, cementerio): 77 de 282; un solo licitador 34/77 (44%) frente a 156/282 (55%) del conjunto; contratos menores 18/77 (23%) frente a 57/282 (20%).",
+          "corrected": "804 expedientes de contratación examinados, adjudicados o no: ningún adjudicatario coincide con «Pozuelo», y sus antiguos empleadores declarados (Grupo Tremon SA, Pavituria SL) no constan como adjudicatarios. Contratos en materias de sus áreas desde julio de 2023 (urbanismo, vivienda, obra pública, industriales, cementerio): 77 de 282; un solo licitador 34/77 (44%) frente a 156/282 (55%) del conjunto; contratos menores 18/77 (23%) frente a 57/282 (20%).",
+          "reason": "Los 804 eran todos los expedientes de contratación del corpus municipal en julio de 2026, adjudicados o no —711 adjudicados o formalizados, según el estado que hoy les da la fuente—, y no 804 contratos adjudicados. La v2 de la biografía de Raquel Pamblanco ya lo corrigió con estas mismas palabras.",
+          "editor": "Sergei Lutchenko",
+          "correctedAt": "2026-10-28"
         }
       ],
       "response": null

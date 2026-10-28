@@ -107,7 +107,7 @@
       "kind": "narrative",
       "payload": {
         "heading": "Conexiones documentadas y comprobaciones de este medio",
-        "bodyMarkdown": "Las conexiones de José Luis Ramos March que constan en documentos públicos son de naturaleza político-administrativa: número tres y portavoz suplente del grupo municipal socialista, Segundo Teniente de Alcalde, segundo miembro de la Junta de Gobierno Local y titular de las áreas que le delegó el decreto del alcalde Roberto Raga.\n\nComo comprobación rutinaria, esta redacción ha cruzado sus apellidos y sus empleadores previos declarados con el corpus de contratación municipal: en 804 contratos adjudicados no consta ningún adjudicatario con sus apellidos, y ninguna de las entidades bancarias donde ejerció según su CV (Banco de València, Caja Campo, Cajamar) consta como adjudicataria municipal. Los indicadores de competencia de la contratación en sus áreas desde julio de 2023 (34 contratos identificados): el 38% se adjudicó con un solo licitador, frente al 55% del conjunto municipal, y el 21% fueron contratos menores.\n\nEl registro municipal de asociaciones no publica directivos y la BDNS no publica beneficiarios nominales; el Registro Mercantil no se ha consultado de forma independiente, y las relaciones estrictamente personales no constan en fuentes públicas y no se publican sin constancia documental.",
+        "bodyMarkdown": "Las conexiones de José Luis Ramos March que constan en documentos públicos son de naturaleza político-administrativa: número tres y portavoz suplente del grupo municipal socialista, Segundo Teniente de Alcalde, segundo miembro de la Junta de Gobierno Local y titular de las áreas que le delegó el decreto del alcalde Roberto Raga.\n\nComo comprobación rutinaria, esta redacción ha cruzado sus apellidos y sus empleadores previos declarados con el corpus de contratación municipal: en los 804 expedientes de contratación que constaban en el corpus municipal en julio de 2026 —adjudicados o no— no consta ningún adjudicatario con sus apellidos, y ninguna de las entidades bancarias donde ejerció según su CV (Banco de València, Caja Campo, Cajamar) consta como adjudicataria municipal. Los indicadores de competencia de la contratación en sus áreas desde julio de 2023 (34 contratos identificados): el 38% se adjudicó con un solo licitador, frente al 55% del conjunto municipal, y el 21% fueron contratos menores.\n\nEl registro municipal de asociaciones no publica directivos y la BDNS no publica beneficiarios nominales; el Registro Mercantil no se ha consultado de forma independiente, y las relaciones estrictamente personales no constan en fuentes públicas y no se publican sin constancia documental.",
         "sourceIds": [
           "src-073",
           "src-061"
@@ -696,7 +696,7 @@
       "kind": "local-snapshot",
       "title": "public/data/tenders.json · comprobación nominal sobre el corpus de contratación",
       "retrievedAt": "2026-07-31T07:25:34.362Z",
-      "excerpt": "804 contratos adjudicados examinados: ningún adjudicatario coincide con «Ramos March», y sus antiguos empleadores declarados del sector bancario (Cajamar, Caja Campo, Banco de València) no constan como adjudicatarios. Contratos en materias de sus áreas desde julio de 2023 (agricultura, edificios públicos, energía y clima, comercio, fondos europeos): 34 de 282; un solo licitador 13/34 (38%) frente a 156/282 (55%) del conjunto; contratos menores 7/34 (21%).",
+      "excerpt": "804 expedientes de contratación examinados, adjudicados o no: ningún adjudicatario coincide con «Ramos March», y sus antiguos empleadores declarados del sector bancario (Cajamar, Caja Campo, Banco de València) no constan como adjudicatarios. Contratos en materias de sus áreas desde julio de 2023 (agricultura, edificios públicos, energía y clima, comercio, fondos europeos): 34 de 282; un solo licitador 13/34 (38%) frente a 156/282 (55%) del conjunto; contratos menores 7/34 (21%).",
       "localPath": "public/data/tenders.json",
       "trust": "high",
       "selfDeclared": false
@@ -747,9 +747,33 @@
       "field": "warnings[1]",
       "original": "Las áreas delegadas han variado durante el mandato: el decreto de julio de 2023 incluía Comercio; el registro municipal vigente recoge en su lugar Actividades y Edificios públicos. Se publican ambas con su fuente.",
       "corrected": "Las áreas delegadas han variado durante el mandato: la Resolución 2513/2023, de 17-06-2023 (BOP València núm. 127, anuncio 2023/08603, 03-07-2023) incluía Comercio; la Resolución 2639/2023, de 28-06-2023, que la modifica (BOP núm. 132, anuncio 2023/08985, 10-07-2023), recoge en su lugar Actividades y Edificios públicos. Se publican ambas con su fuente.",
-      "reason": "El cambio de delegaciones no consta sólo en el registro municipal: se publicó en el BOP de València once días después del decreto original; atribuirlo al registro ocultaba la fuente oficial que lo sostiene.",
+      "reason": "El cambio de delegaciones no consta sólo en el registro municipal: lo dictó la Resolución 2639/2023, once días después del decreto original, y se publicó en el BOP de València el 10-07-2023; atribuirlo al registro ocultaba la fuente oficial que lo sostiene.",
       "editor": "Sergei Lutchenko",
-      "correctedAt": "2026-09-05"
+      "correctedAt": "2026-09-05",
+      "reasonAmendments": [
+        {
+          "previous": "motivo · sha256:2f8c46609e48",
+          "reason": "Los once días median entre los dos decretos (Resolución 2513/2023, de 17 de junio, y Resolución 2639/2023, de 28 de junio), no hasta la publicación: el BOP publicó la modificación el 10-07-2023, veintitrés días después del decreto original.",
+          "editor": "Sergei Lutchenko",
+          "amendedAt": "2026-10-28"
+        }
+      ]
+    },
+    {
+      "field": "narrative.Conexiones documentadas y comprobaciones de este medio.bodyMarkdown",
+      "original": "Las conexiones de José Luis Ramos March que constan en documentos públicos son de naturaleza político-administrativa: número tres y portavoz suplente del grupo municipal socialista, Segundo Teniente de Alcalde, segundo miembro de la Junta de Gobierno Local y titular de las áreas que le delegó el decreto del alcalde Roberto Raga.\n\nComo comprobación rutinaria, esta redacción ha cruzado sus apellidos y sus empleadores previos declarados con el corpus de contratación municipal: en 804 contratos adjudicados no consta ningún adjudicatario con sus apellidos, y ninguna de las entidades bancarias donde ejerció según su CV (Banco de València, Caja Campo, Cajamar) consta como adjudicataria municipal. Los indicadores de competencia de la contratación en sus áreas desde julio de 2023 (34 contratos identificados): el 38% se adjudicó con un solo licitador, frente al 55% del conjunto municipal, y el 21% fueron contratos menores.\n\nEl registro municipal de asociaciones no publica directivos y la BDNS no publica beneficiarios nominales; el Registro Mercantil no se ha consultado de forma independiente, y las relaciones estrictamente personales no constan en fuentes públicas y no se publican sin constancia documental.",
+      "corrected": "Las conexiones de José Luis Ramos March que constan en documentos públicos son de naturaleza político-administrativa: número tres y portavoz suplente del grupo municipal socialista, Segundo Teniente de Alcalde, segundo miembro de la Junta de Gobierno Local y titular de las áreas que le delegó el decreto del alcalde Roberto Raga.\n\nComo comprobación rutinaria, esta redacción ha cruzado sus apellidos y sus empleadores previos declarados con el corpus de contratación municipal: en los 804 expedientes de contratación que constaban en el corpus municipal en julio de 2026 —adjudicados o no— no consta ningún adjudicatario con sus apellidos, y ninguna de las entidades bancarias donde ejerció según su CV (Banco de València, Caja Campo, Cajamar) consta como adjudicataria municipal. Los indicadores de competencia de la contratación en sus áreas desde julio de 2023 (34 contratos identificados): el 38% se adjudicó con un solo licitador, frente al 55% del conjunto municipal, y el 21% fueron contratos menores.\n\nEl registro municipal de asociaciones no publica directivos y la BDNS no publica beneficiarios nominales; el Registro Mercantil no se ha consultado de forma independiente, y las relaciones estrictamente personales no constan en fuentes públicas y no se publican sin constancia documental.",
+      "reason": "Los 804 eran todos los expedientes de contratación del corpus municipal en julio de 2026, adjudicados o no —711 adjudicados o formalizados, según el estado que hoy les da la fuente—, y no 804 contratos adjudicados. La v2 de la biografía de Raquel Pamblanco ya lo corrigió con estas mismas palabras.",
+      "editor": "Sergei Lutchenko",
+      "correctedAt": "2026-10-28"
+    },
+    {
+      "field": "sources.src-073.excerpt",
+      "original": "804 contratos adjudicados examinados: ningún adjudicatario coincide con «Ramos March», y sus antiguos empleadores declarados del sector bancario (Cajamar, Caja Campo, Banco de València) no constan como adjudicatarios. Contratos en materias de sus áreas desde julio de 2023 (agricultura, edificios públicos, energía y clima, comercio, fondos europeos): 34 de 282; un solo licitador 13/34 (38%) frente a 156/282 (55%) del conjunto; contratos menores 7/34 (21%).",
+      "corrected": "804 expedientes de contratación examinados, adjudicados o no: ningún adjudicatario coincide con «Ramos March», y sus antiguos empleadores declarados del sector bancario (Cajamar, Caja Campo, Banco de València) no constan como adjudicatarios. Contratos en materias de sus áreas desde julio de 2023 (agricultura, edificios públicos, energía y clima, comercio, fondos europeos): 34 de 282; un solo licitador 13/34 (38%) frente a 156/282 (55%) del conjunto; contratos menores 7/34 (21%).",
+      "reason": "Los 804 eran todos los expedientes de contratación del corpus municipal en julio de 2026, adjudicados o no —711 adjudicados o formalizados, según el estado que hoy les da la fuente—, y no 804 contratos adjudicados. La v2 de la biografía de Raquel Pamblanco ya lo corrigió con estas mismas palabras.",
+      "editor": "Sergei Lutchenko",
+      "correctedAt": "2026-10-28"
     }
   ],
   "response": null

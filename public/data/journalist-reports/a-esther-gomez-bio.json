@@ -195,7 +195,7 @@
       "kind": "narrative",
       "payload": {
         "heading": "Conexiones documentadas y comprobaciones de este medio",
-        "bodyMarkdown": "Las conexiones de María Esther Gómez Laredo que constan en documentos públicos son de dos tipos: las político-administrativas (número siete del grupo municipal socialista y titular de las áreas que le delegó el decreto del alcalde Roberto Raga) y la actividad financiera privada declarada en sus propios documentos oficiales (Banco Mediolanum).\n\nComo comprobación rutinaria, esta redacción ha cruzado sus apellidos y todas sus empleadoras declaradas con el corpus de contratación municipal: en 804 contratos adjudicados no consta ningún adjudicatario con sus apellidos, y ni Banco Mediolanum, ni Aviva, ni ASEVAL, ni Indra SSI, ni GFT Iberia, ni SENER, ni IDOM o ERIA constan como adjudicatarias municipales. En sus áreas delegadas se identifican 6 contratos desde julio de 2023 — muestra demasiado pequeña para comparar indicadores, y ninguno con vínculo nominal con la concejala.\n\nEl registro municipal de asociaciones no publica directivos y la BDNS no publica beneficiarios nominales; el Registro Mercantil no se ha consultado de forma independiente, y las relaciones estrictamente personales no constan en fuentes públicas y no se publican sin constancia documental.",
+        "bodyMarkdown": "Las conexiones de María Esther Gómez Laredo que constan en documentos públicos son de dos tipos: las político-administrativas (número siete del grupo municipal socialista y titular de las áreas que le delegó el decreto del alcalde Roberto Raga) y la actividad financiera privada declarada en sus propios documentos oficiales (Banco Mediolanum).\n\nComo comprobación rutinaria, esta redacción ha cruzado sus apellidos y todas sus empleadoras declaradas con el corpus de contratación municipal: en los 804 expedientes de contratación que constaban en el corpus municipal en julio de 2026 —adjudicados o no— no consta ningún adjudicatario con sus apellidos, y ni Banco Mediolanum, ni Aviva, ni ASEVAL, ni Indra SSI, ni GFT Iberia, ni SENER, ni IDOM o ERIA constan como adjudicatarias municipales. En sus áreas delegadas se identifican 6 contratos desde julio de 2023 — muestra demasiado pequeña para comparar indicadores, y ninguno con vínculo nominal con la concejala.\n\nEl registro municipal de asociaciones no publica directivos y la BDNS no publica beneficiarios nominales; el Registro Mercantil no se ha consultado de forma independiente, y las relaciones estrictamente personales no constan en fuentes públicas y no se publican sin constancia documental.",
         "sourceIds": [
           "src-074",
           "src-062",
@@ -647,9 +647,17 @@
       "field": "warnings[1]",
       "original": "Las delegaciones han variado durante el mandato: el decreto de 07-2023 recogía Participación, Atención a la ciudadanía y Turismo; el registro vigente añade Promoción de la Salud e Infraestructuras sanitarias.",
       "corrected": "Las delegaciones han variado durante el mandato: la Resolución 2513/2023, de 17-06-2023 (BOP València núm. 127, anuncio 2023/08603, 03-07-2023) recogía Participación y transparencia, Atención a la ciudadanía y Turismo y patrimonio histórico; la Resolución 2639/2023, de 28-06-2023, que la modifica (BOP núm. 132, anuncio 2023/08985, 10-07-2023), añade Promoción de la Salud e Infraestructuras sanitarias.",
-      "reason": "El cambio de delegaciones no consta sólo en el registro municipal: se publicó en el BOP de València once días después del decreto original; atribuirlo al registro ocultaba la fuente oficial que lo sostiene.",
+      "reason": "El cambio de delegaciones no consta sólo en el registro municipal: lo dictó la Resolución 2639/2023, once días después del decreto original, y se publicó en el BOP de València el 10-07-2023; atribuirlo al registro ocultaba la fuente oficial que lo sostiene.",
       "editor": "Sergei Lutchenko",
-      "correctedAt": "2026-09-05"
+      "correctedAt": "2026-09-05",
+      "reasonAmendments": [
+        {
+          "previous": "motivo · sha256:2f8c46609e48",
+          "reason": "Los once días median entre los dos decretos (Resolución 2513/2023, de 17 de junio, y Resolución 2639/2023, de 28 de junio), no hasta la publicación: el BOP publicó la modificación el 10-07-2023, veintitrés días después del decreto original.",
+          "editor": "Sergei Lutchenko",
+          "amendedAt": "2026-10-28"
+        }
+      ]
     },
     {
       "field": "narrative.Retribución.bodyMarkdown",
@@ -658,6 +666,14 @@
       "reason": "El Pleno del 16/03/2026 (exp. 1462/2026/GEN) actualizó para 2026 las retribuciones fijadas el 07/07/2023; la cifra de 2023 se presentaba como vigente.",
       "editor": "Sergei Lutchenko",
       "correctedAt": "2026-10-18"
+    },
+    {
+      "field": "narrative.Conexiones documentadas y comprobaciones de este medio.bodyMarkdown",
+      "original": "Las conexiones de María Esther Gómez Laredo que constan en documentos públicos son de dos tipos: las político-administrativas (número siete del grupo municipal socialista y titular de las áreas que le delegó el decreto del alcalde Roberto Raga) y la actividad financiera privada declarada en sus propios documentos oficiales (Banco Mediolanum).\n\nComo comprobación rutinaria, esta redacción ha cruzado sus apellidos y todas sus empleadoras declaradas con el corpus de contratación municipal: en 804 contratos adjudicados no consta ningún adjudicatario con sus apellidos, y ni Banco Mediolanum, ni Aviva, ni ASEVAL, ni Indra SSI, ni GFT Iberia, ni SENER, ni IDOM o ERIA constan como adjudicatarias municipales. En sus áreas delegadas se identifican 6 contratos desde julio de 2023 — muestra demasiado pequeña para comparar indicadores, y ninguno con vínculo nominal con la concejala.\n\nEl registro municipal de asociaciones no publica directivos y la BDNS no publica beneficiarios nominales; el Registro Mercantil no se ha consultado de forma independiente, y las relaciones estrictamente personales no constan en fuentes públicas y no se publican sin constancia documental.",
+      "corrected": "Las conexiones de María Esther Gómez Laredo que constan en documentos públicos son de dos tipos: las político-administrativas (número siete del grupo municipal socialista y titular de las áreas que le delegó el decreto del alcalde Roberto Raga) y la actividad financiera privada declarada en sus propios documentos oficiales (Banco Mediolanum).\n\nComo comprobación rutinaria, esta redacción ha cruzado sus apellidos y todas sus empleadoras declaradas con el corpus de contratación municipal: en los 804 expedientes de contratación que constaban en el corpus municipal en julio de 2026 —adjudicados o no— no consta ningún adjudicatario con sus apellidos, y ni Banco Mediolanum, ni Aviva, ni ASEVAL, ni Indra SSI, ni GFT Iberia, ni SENER, ni IDOM o ERIA constan como adjudicatarias municipales. En sus áreas delegadas se identifican 6 contratos desde julio de 2023 — muestra demasiado pequeña para comparar indicadores, y ninguno con vínculo nominal con la concejala.\n\nEl registro municipal de asociaciones no publica directivos y la BDNS no publica beneficiarios nominales; el Registro Mercantil no se ha consultado de forma independiente, y las relaciones estrictamente personales no constan en fuentes públicas y no se publican sin constancia documental.",
+      "reason": "Los 804 eran todos los expedientes de contratación del corpus municipal en julio de 2026, adjudicados o no —711 adjudicados o formalizados, según el estado que hoy les da la fuente—, y no 804 contratos adjudicados. La v2 de la biografía de Raquel Pamblanco ya lo corrigió con estas mismas palabras.",
+      "editor": "Sergei Lutchenko",
+      "correctedAt": "2026-10-28"
     }
   ],
   "response": null
