@@ -377,6 +377,12 @@ export const CLAVE_RESUMEN_SIN_LISTA = 'ledger.resumenSinLista'
  * fuera el singular, «Ningún candidato respalda…», y las que hablan de la lista
  * sin nombrarla; la de resumenes-retirados.js encontraba 67 de 101.
  *
+ * Y sólo el texto del modelo. Hay retractaciones del motor que guardan como
+ * resumen el texto fijo del verificador determinista —«No se encontró registro
+ * en tenders / BDNS / presupuesto…», 25 en los trozos servidos el 28-10-2026—:
+ * no habla de ninguna lista, y `resumenSegunFuentes` ya lo re-deriva. El aviso
+ * diría de ellas que lo escribió el verificador LLM.
+ *
  * Es una retirada, el nivel A de `decideAutomation`: la tarjeta deja de
  * imprimir el texto y dice por qué, sin escribir otra explicación del motor en
  * su lugar. El veredicto, «Fuentes comprobadas» y el rótulo del verificador no
@@ -385,13 +391,14 @@ export const CLAVE_RESUMEN_SIN_LISTA = 'ledger.resumenSinLista'
  * --amend-reason`) se imprime, como antes. Y la que ya retira
  * resumenes-retirados.js conserva su propio aviso, que dice más.
  *
- * @param {{ verdict?: string, evidence?: unknown[] | null, source?: string,
- *   derivedBy?: unknown[] | null, checkedAgainst?: unknown[] | null,
+ * @param {{ verdict?: string, summary?: string, evidence?: unknown[] | null,
+ *   source?: string, derivedBy?: unknown[] | null, checkedAgainst?: unknown[] | null,
  *   reasonSignedBy?: string } | null | undefined} v  la verificación servida, entera.
  * @returns {boolean}
  */
 export function explicacionSinLista(v) {
   if (v?.verdict !== 'sin-datos' || lista(v?.evidence).length > 0) return false
+  if (esResumenSinRegistro(v?.summary) || esResumenCasi(v?.summary)) return false
   const pasadas = pasadasDe(v)
   if (!pasadas.includes('verdict-engine')) return false
   const clases = pasadas.map((p) => CLASE_DE_PASADA[p])
