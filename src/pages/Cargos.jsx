@@ -31,7 +31,8 @@ import { useQuejas } from '../hooks/useQuejas'
 import { contadoresDeCargo } from '../lib/reloj-lpacap'
 import { useSocialFor, SOCIAL_PLATFORM_META } from '../hooks/useOfficialsSocial'
 import { canonicalizeDepartments, DEPARTMENT_LABEL } from '../scraper/departments'
-import { EncajeCard } from '../components/EncajeDeclarado'
+import { EncajeCard, NotaRespaldoSeccion } from '../components/EncajeDeclarado'
+import { useAreaFit, respaldoDeSeccion } from '../hooks/useAreaFit'
 import { mailboxKinds } from '../lib/mailboxes'
 import { euros, eurosExactos, fmtDateLong, rellena } from '../lib/formatters'
 import { useT, useLocale } from '../i18n'
@@ -1159,7 +1160,7 @@ function Correo({ o, kinds }) {
  * and the compact card exists so that absence reads as the institutional fact
  * it is rather than as a card somebody forgot to fill in.
  */
-function OfficialCard({ o, bioRoute, kinds, variant = 'gobierno' }) {
+function OfficialCard({ o, bioRoute, kinds, variant = 'gobierno', respaldoEnSeccion = null }) {
   const t = useT()
   const { locale } = useLocale()
   const former = variant === 'former'
@@ -1261,15 +1262,16 @@ function OfficialCard({ o, bioRoute, kinds, variant = 'gobierno' }) {
         <>
           <RetribucionBadge official={o} />
           <DepartmentLinks portfolios={o.portfolios} />
-          <EncajeCard official={o} bioRoute={bioRoute} />
+          <EncajeCard official={o} bioRoute={bioRoute} respaldoEnSeccion={respaldoEnSeccion} />
           <QuejaBadge slug={o.slug} />
           <SocialLinks slug={o.slug} />
         </>
       )}
 
+      {/* «Quién fiscaliza» explains the blank encaje block once, in its head. */}
       {oposicion && (
         <>
-          <EncajeCard official={o} bioRoute={bioRoute} />
+          <EncajeCard official={o} bioRoute={bioRoute} notaEnSeccion />
           <RetribucionBadge official={o} />
           <QuejaBadge slug={o.slug} />
         </>
@@ -1396,6 +1398,9 @@ function CorporacionMunicipal() {
   const bioRoutes = useBioReportRoutes()
   const ispa = useIspa()
   const split = retribucionesSplit(ispa.data)
+  // The encaje block's section heads read the same data the cards do; under
+  // the LOREG freeze `data` comes back empty and both stay silent.
+  const { data: areaFit, frozen: encajeCongelado } = useAreaFit()
   // The mandate is the ACUERDO's own declaration, not a constant typed here:
   // officials.json does not carry one, and a hand-written «2023-2027» would
   // outlive the mandate it names.
@@ -1434,6 +1439,13 @@ function CorporacionMunicipal() {
   // gobierno?», so no two parts of the page can count a different government.
   const gobierno = conAreasDelegadas(data.officials)
   const oposicion = sinAreasDelegadas(data.officials)
+  // The backing every government card agrees on, said once in «Quién dirige
+  // qué» and marked on each card; null the moment one card disagrees, and then
+  // every card says its own (auditoría de las dos lecturas, §3, punto 2).
+  const respaldoEnSeccion = respaldoDeSeccion(
+    areaFit,
+    gobierno.map((o) => o.slug),
+  )
   const partidosGobierno = [...new Set(gobierno.map((o) => o.party))]
   const partidoUnico = partidosGobierno.length === 1 ? partidosGobierno[0] : null
   const former = data.formerOfficials ?? []
@@ -1688,6 +1700,7 @@ function CorporacionMunicipal() {
           eyebrow={t('cargos.gobierno.eyebrow').replace('{n}', gobierno.length)}
           title={t('cargos.gobierno.title')}
         />
+        <NotaRespaldoSeccion value={respaldoEnSeccion} />
         <div className="cp-cargos-gob">
           {gobierno.map((o) => (
             <OfficialCard
@@ -1696,6 +1709,7 @@ function CorporacionMunicipal() {
               variant="gobierno"
               kinds={kinds}
               bioRoute={bioRoutes.get(o.slug)}
+              respaldoEnSeccion={respaldoEnSeccion}
             />
           ))}
         </div>
@@ -1718,6 +1732,11 @@ function CorporacionMunicipal() {
             }}
           >
             {t('cargos.oposicion.nota')}
+            {/* Said here once, not in each card's blank encaje block; the
+                cards keep the label. Not while the freeze hides the block. */}
+            {!encajeCongelado && (
+              <span data-sin-delegacion-seccion=""> {t('encaje.sinDelegacion.seccion')}</span>
+            )}
           </p>
           <div className="cp-cargos-opo">
             {oposicion.map((o) => (
