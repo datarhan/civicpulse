@@ -90,28 +90,40 @@ describe('/cambios · la prensa, una fila por noticia', () => {
     expect(enlaces[1].getAttribute('title')).toBe(INFOTURIA.title)
   }, 60000)
 
+  // 26 piezas en el fixture; 25 sin el anuncio; 19 noticias, porque cinco salen
+  // en más de un sitio (prensa-por-noticia.test.ts).
+  const NOTICIAS = 19
+
   it('un anuncio de Fotocasa no es prensa: ni fila ni cuenta', async () => {
     const { container } = await pinta('es')
     expect(container.textContent).not.toContain(FOTOCASA.title)
-    // 26 piezas en el fixture, 25 sin el anuncio.
     expect(container.textContent).toContain(
-      rellena(CATALOGUE.es['cambios.frase.prensa'], { n: 25 }),
+      rellena(CATALOGUE.es['cambios.frase.prensa'], { n: NOTICIAS }),
     )
-    const tarjeta = container.querySelector('[data-clase="prensa"]')
-    expect(tarjeta.textContent).toContain(rellena(CATALOGUE.es['cambios.n'], { n: 25 }))
   }, 60000)
 
-  it('las cuentas cuadran: las piezas de las filas más «y N más» son las de la cabecera', async () => {
+  it('la frase, la cabecera y las filas cuentan lo mismo: noticias', async () => {
     const { container } = await pinta('es')
     const tarjeta = container.querySelector('[data-clase="prensa"]')
     const filas = [...tarjeta.querySelectorAll('[data-fila]')]
+    // La revisión lectora leyó «Hay 13 noticias» en la frase, que contaba piezas,
+    // junto a una tarjeta de once filas.
+    expect(container.textContent).toContain(
+      rellena(CATALOGUE.es['cambios.frase.prensa'], { n: NOTICIAS }),
+    )
+    expect(tarjeta.textContent).toContain(rellena(CATALOGUE.es['cambios.n'], { n: NOTICIAS }))
+    expect(tarjeta.textContent).toContain(
+      rellena(CATALOGUE.es['cambios.mas'], { n: NOTICIAS - filas.length }),
+    )
+  }, 60000)
+
+  it('y una fila que junta piezas dice cuántas, con lo que se lee', async () => {
+    const { container } = await pinta('es')
+    const filas = [...container.querySelectorAll('[data-clase="prensa"] [data-fila]')]
     const pintadas = filas.reduce((s, f) => s + Number(f.getAttribute('data-piezas')), 0)
-    const resto = 25 - pintadas
-    expect(resto).toBeGreaterThan(0)
-    expect(tarjeta.textContent).toContain(rellena(CATALOGUE.es['cambios.mas'], { n: resto }))
-    // Y el lector puede hacer la suma con lo que lee: una fila que junta piezas
-    // dice cuántas. La revisión lectora leyó diez filas y «Y 1 más» frente a «13
-    // cambios» cuando la fila decía «Publicada en:» sin el número.
+    expect(filas.length).toBeLessThan(pintadas)
+    // Con «Publicada en:» y sin el número, la revisión lectora sumó diez filas y
+    // «Y 1 más» frente a una cabecera que contaba trece piezas.
     const [antes, despues] = CATALOGUE.es['cambios.prensa.enSitios'].split('{n}')
     const leidas = filas.reduce((s, f) => {
       const linea = f.querySelector('[data-sitios]')?.textContent ?? ''
@@ -119,7 +131,6 @@ describe('/cambios · la prensa, una fila por noticia', () => {
       return s + (m ? Number(m) : 1)
     }, 0)
     expect(leidas).toBe(pintadas)
-    expect(filas.length).toBeLessThan(pintadas)
   }, 60000)
 
   it('en valencià, la línea también', async () => {

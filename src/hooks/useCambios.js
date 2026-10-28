@@ -31,7 +31,8 @@ import { agruparPorNoticia } from '../scraper/prensa-por-noticia'
  *   { loading, changes, byKind, prensaPorNoticia, fuentes, totalCount, windowDays }
  *
  * `prensaPorNoticia` is the press card's rows, `{ principal, piezas }` events
- * (`agruparPorNoticia`); `byKind.prensa` still lists every piece.
+ * (`agruparPorNoticia`); `changes` and `byKind.prensa` hold one event per
+ * story, its row's headline.
  */
 
 const DEFAULT_WINDOW_DAYS = 7
@@ -85,6 +86,20 @@ export function useCambios(days = DEFAULT_WINDOW_DAYS) {
     return sinAnunciosClasificados(items).filter((it) => inWindow(it.date?.slice(0, 10), cut))
   }, [press, days])
 
+  // La prensa, una noticia por fila: la misma en dos medios, o en castellano y
+  // en valenciano, contaba y salía dos veces (`agruparPorNoticia`). La noticia es
+  // la unidad de toda la página —la frase, la cabecera de la tarjeta, «Y N más»
+  // y el total—, y la fila dice «En 2 sitios» cuando junta piezas. Contando
+  // piezas, la frase decía «Hay 13 noticias» junto a una tarjeta de once.
+  const prensaPorNoticia = useMemo(
+    () =>
+      agruparPorNoticia(prensaEnVentana).map((g) => ({
+        principal: eventoDePrensa(g.principal),
+        piezas: g.piezas.map(eventoDePrensa),
+      })),
+    [prensaEnVentana],
+  )
+
   const changes = useMemo(() => {
     const cut = cutoff(days)
     const out = []
@@ -127,8 +142,8 @@ export function useCambios(days = DEFAULT_WINDOW_DAYS) {
       })
     }
 
-    // Press — Google News aggregation, sin anuncios (`prensaEnVentana`).
-    for (const it of prensaEnVentana) out.push(eventoDePrensa(it))
+    // Press — Google News aggregation: una noticia, con el titular de su fila.
+    for (const g of prensaPorNoticia) out.push(g.principal)
 
     // Tenders — new adjudications (awardDate fresh).
     for (const c of tenders?.contracts || []) {
@@ -193,19 +208,7 @@ export function useCambios(days = DEFAULT_WINDOW_DAYS) {
 
     out.sort((a, b) => (b.date || '').localeCompare(a.date || ''))
     return out
-  }, [quejas, plenos, prensaEnVentana, tenders, bdns, participa, geo, days])
-
-  // La tarjeta de prensa, una fila por noticia: la misma en dos medios, o en
-  // castellano y en valenciano, era dos filas (`agruparPorNoticia`). `byKind`
-  // sigue contando piezas, que es lo que cuentan la frase y la cabecera.
-  const prensaPorNoticia = useMemo(
-    () =>
-      agruparPorNoticia(prensaEnVentana).map((g) => ({
-        principal: eventoDePrensa(g.principal),
-        piezas: g.piezas.map(eventoDePrensa),
-      })),
-    [prensaEnVentana],
-  )
+  }, [quejas, plenos, prensaPorNoticia, tenders, bdns, participa, geo, days])
 
   const byKind = useMemo(() => {
     const m = {}

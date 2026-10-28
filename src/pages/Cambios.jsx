@@ -79,9 +79,8 @@ function lineaDeContrato(t, it) {
  * y con su propio titular al pasar por encima: la fila lleva el de uno solo, y
  * así se ve qué juntó `agruparPorNoticia`. Un nombre repetido lleva un número.
  *
- * Dice cuántos: la cabecera cuenta piezas, y con «En 2 sitios» las filas suman lo
- * que dice. Con «Publicada en:» la revisión lectora leyó diez filas y «Y 1 más»
- * frente a «13 cambios», y no le cuadraba.
+ * Dice cuántos, porque la página cuenta noticias y no piezas: «En 2 sitios» es lo
+ * que une las once noticias de la frase con las trece piezas que hay detrás.
  */
 function EnSitios({ piezas }) {
   const t = useT()
@@ -111,16 +110,16 @@ function EnSitios({ piezas }) {
 }
 
 /**
- * Una tarjeta por clase. `filas` agrupa las piezas que cuentan lo mismo (la
- * prensa, por noticia); sin ella, cada pieza es una fila. La cabecera cuenta
- * piezas, y «y N más» las que quedan fuera de las diez primeras filas, para que
- * las cuentas cuadren.
+ * Una tarjeta por clase, una fila por cambio. `filas` trae las piezas de cada
+ * fila (la prensa, agrupada por noticia); sin ella, cada cambio es una fila de
+ * una pieza. La cabecera y «Y N más» cuentan filas, como la frase y el total.
  */
 function KindCard({ kind, items, filas, formatDate }) {
   const t = useT()
   if (!items || items.length === 0) return null
-  const visibles = (filas ?? items.map((it) => ({ principal: it, piezas: [it] }))).slice(0, 10)
-  const fuera = items.length - visibles.reduce((s, f) => s + f.piezas.length, 0)
+  const todas = filas ?? items.map((it) => ({ principal: it, piezas: [it] }))
+  const visibles = todas.slice(0, 10)
+  const fuera = todas.length - visibles.length
   return (
     <Card data-clase={kind}>
       <SectionHead

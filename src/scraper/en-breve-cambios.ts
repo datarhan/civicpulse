@@ -56,7 +56,13 @@ export interface FraseDeLaSemana {
   sinDatos: { kind: ClaseDeCambios; desde: string | null }[]
   /** Quejas del canal enviadas en la ventana; null si no se sabe. */
   quejas: number | null
-  /** Noticias que mencionan Riba-roja, y cuántas de la web municipal; null si no se sabe. */
+  /**
+   * Noticias que mencionan Riba-roja, y cuántas de la web municipal; null si no
+   * se sabe. Una noticia es una fila de la tarjeta: useCambios junta en una las
+   * piezas que cuentan lo mismo (`agruparPorNoticia`), y la fila lleva el titular
+   * de un medio si alguno la publicó. «De la web municipal» es, entonces, la
+   * noticia que sólo publicó el Ayuntamiento, o con la que no se juntó ninguna.
+   */
   prensa: { n: number; municipales: number } | null
 }
 
