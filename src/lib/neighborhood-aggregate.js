@@ -250,3 +250,36 @@ export function computeOverlapRows({ neighborhoods = [], zones = [], instantanea
     .filter((r) => r.quejas > 0 || r.amount > 0)
     .sort((x, y) => y.quejas - x.quejas || y.amount - x.amount)
 }
+
+/**
+ * Cuántos barrios con quejas hacen falta para dibujar el cruce de /quejas.
+ *
+ * Con una sola queja publicada, la tabla eran trece filas con «—» en doce: su
+ * columna de quejas no repartía nada, y una tabla casi vacía se lee como si
+ * dijera algo (auditoría de las dos lecturas, 25-10-2026, §18). Tres es el
+ * mínimo para que esa columna sea un reparto: con dos, cualquier diferencia es
+ * la de una pareja. Es una decisión editorial, no una medida, y por eso tiene
+ * nombre.
+ *
+ * No es la puerta del registro de arriba: no esconde una cifra que no se pueda
+ * publicar. Las quejas por barrio siguen en «Dónde pasa» y en el mapa; lo que
+ * espera es la comparación.
+ */
+export const BARRIOS_PARA_EL_CRUCE = 3
+
+/**
+ * Si el cruce se dibuja, y cuántos barrios traen quejas para decirlo cuando no.
+ * Cuenta barrios con quejas, no filas: `computeOverlapRows` trae también los
+ * que sólo tienen contratos situados.
+ *
+ * @param {{ quejas: number }[]} filas  las de `computeOverlapRows`
+ * @returns {{ dibujable: boolean, conQuejas: number, minimo: number }}
+ */
+export function cruceDibujable(filas) {
+  const conQuejas = filas.filter((f) => f.quejas > 0).length
+  return {
+    dibujable: conQuejas >= BARRIOS_PARA_EL_CRUCE,
+    conQuejas,
+    minimo: BARRIOS_PARA_EL_CRUCE,
+  }
+}
