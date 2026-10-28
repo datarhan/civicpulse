@@ -42,12 +42,12 @@ function cutoff(days) {
 }
 
 export function useCambios(days = DEFAULT_WINDOW_DAYS) {
-  const { data: quejas, loading: qL } = useQuejas()
-  const { data: plenos, loading: pL } = usePlenos()
-  const { data: press, loading: prL } = usePress()
-  const { data: tenders, loading: tL } = useTenders()
-  const { data: bdns, loading: bL } = useBdns()
-  const { data: participa, loading: paL } = useParticipa()
+  const { data: quejas, loading: qL, error: qE } = useQuejas()
+  const { data: plenos, loading: pL, error: pE } = usePlenos()
+  const { data: press, loading: prL, error: prE } = usePress()
+  const { data: tenders, loading: tL, error: tE } = useTenders()
+  const { data: bdns, loading: bL, error: bE } = useBdns()
+  const { data: participa, loading: paL, error: paE } = useParticipa()
   // Sólo para escribir el barrio de una queja con su nombre de OSM. No entra en
   // `loading`: sin geo.json el barrio cae en el slug capitalizado, no se calla.
   const { data: geo } = useGeo()
@@ -104,6 +104,8 @@ export function useCambios(days = DEFAULT_WINDOW_DAYS) {
         date: it.date.slice(0, 10),
         title: it.title,
         subtitle: it.source || it.sourceHost,
+        // El anfitrión, para que «En una frase» cuente aparte la web municipal.
+        origen: it.sourceHost ?? null,
         url: it.link,
         external: true,
         shareText: `"${it.title}" — ${it.source || ''} (${it.date.slice(0, 10)})`,
@@ -139,6 +141,8 @@ export function useCambios(days = DEFAULT_WINDOW_DAYS) {
         date: b.date.slice(0, 10),
         title: b.description,
         subtitle: b.organ,
+        // Quién convoca (`bdns.ts`): sólo las propias son un acto del Ayuntamiento.
+        direction: b.direction,
         url: b.sourceUrl,
         external: true,
         shareText: `Subvención · ${b.description}`,
@@ -172,7 +176,33 @@ export function useCambios(days = DEFAULT_WINDOW_DAYS) {
     return m
   }, [changes])
 
-  return { loading, changes, byKind, totalCount: changes.length, windowDays: days, formatDate }
+  // De qué copia sale cada clase, y si se pudo leer: «En una frase» no dice
+  // «no consta» de una fuente atrasada o caída (`fraseDeLaSemana`).
+  const fuentes = useMemo(() => {
+    const f = (fichero, data, error) => ({
+      fichero,
+      generatedAt: data?.generatedAt ?? null,
+      leida: !error && data != null,
+    })
+    return {
+      queja: f('quejas.json', quejas, qE),
+      pleno: f('plenos.json', plenos, pE),
+      prensa: f('press.json', press, prE),
+      licitacion: f('tenders.json', tenders, tE),
+      subvencion: f('bdns.json', bdns, bE),
+      participa: f('participa.json', participa, paE),
+    }
+  }, [quejas, plenos, press, tenders, bdns, participa, qE, pE, prE, tE, bE, paE])
+
+  return {
+    loading,
+    changes,
+    byKind,
+    fuentes,
+    totalCount: changes.length,
+    windowDays: days,
+    formatDate,
+  }
 }
 
 export const KIND_LABEL_ES = {
