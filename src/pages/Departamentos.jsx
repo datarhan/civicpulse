@@ -7,15 +7,7 @@ import { useT, useLocale } from '../i18n'
 import { celdaPlazosVencidos, rotuloPlazosVencidos } from '../lib/plazos-vencidos'
 import { yearSpan } from '../lib/year-span'
 import { desgloseCotejadas } from '../lib/cotejo'
-import { rellena } from '../lib/formatters'
-
-/** Compact euros for a card stat: 61.262.695 € reads as "61,3 M€". */
-function formatEurosCompact(eur) {
-  if (!eur) return '—'
-  if (eur >= 1e6) return `${(eur / 1e6).toFixed(1).replace('.', ',')} M€`
-  if (eur >= 1e3) return `${Math.round(eur / 1e3)} k€`
-  return `${Math.round(eur)} €`
-}
+import { eurosBreves, rellena } from '../lib/formatters'
 
 function DepartmentCard({ bucket, frozen }) {
   const t = useT()
@@ -137,7 +129,7 @@ function DepartmentCard({ bucket, frozen }) {
               }
               value={
                 bucket.contratacion.contratos > 0
-                  ? formatEurosCompact(bucket.contratacion.importeEur)
+                  ? eurosBreves(bucket.contratacion.importeEur) || '—'
                   : '—'
               }
               muted={bucket.contratacion.contratos === 0}

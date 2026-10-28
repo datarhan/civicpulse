@@ -25,6 +25,8 @@
 import type { Indicador, Tier } from './indicadores'
 import { cruzaMediana } from './indicador-areas'
 import { esGestionPorConcesion } from './modo-gestion'
+// `euros` ya es aquí la escala de las tarifas por unidad (2,02 € y 81.965 €).
+import { euros as eurosLlanos } from '../lib/formatters'
 import type { IndicadorMunicipal } from './indicadores-friccion'
 
 export interface Lectura {
@@ -560,11 +562,7 @@ export function leerIndicadorMunicipal(m: IndicadorMunicipal): Lectura {
       ? `${(m.valor * 100).toLocaleString('es-ES', { maximumFractionDigits: 1 })} %`
       : m.formato === 'dias'
         ? `${m.valor.toLocaleString('es-ES', { maximumFractionDigits: 1 })} días`
-        : m.valor.toLocaleString('es-ES', {
-            style: 'currency',
-            currency: 'EUR',
-            maximumFractionDigits: 0,
-          })
+        : eurosLlanos(m.valor)
   const que = `${cifra} en ${m.periodo}.`
 
   const donde = m.pares

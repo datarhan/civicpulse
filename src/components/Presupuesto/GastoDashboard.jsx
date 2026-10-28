@@ -14,7 +14,7 @@ import TimeSlider from './TimeSlider'
 import ContractsExplorer from './ContractsExplorer'
 import ContractorLeaderboard from './ContractorLeaderboard'
 import SpendingTypeBreakdown from './SpendingTypeBreakdown'
-import { rellena } from '../../lib/formatters'
+import { eurosBreves, rellena } from '../../lib/formatters'
 import { conHuecos } from '../../lib/huecos'
 import { useT } from '../../i18n'
 
@@ -136,8 +136,6 @@ export default function GastoDashboard() {
   const span = yearMin && yearMax ? `${yearMin}–${yearMax}` : null
   const nEjercicios = span ? Number(yearMax) - Number(yearMin) + 1 : null
   const totalUniverso = tg.universe?.totalAmount || 0
-  const eurM = (n) =>
-    `${(n / 1e6).toLocaleString('es-ES', { minimumFractionDigits: 1, maximumFractionDigits: 1 })} M€`
 
   return (
     <Card id="mapa-gasto" style={{ scrollMarginTop: 24 }}>
@@ -167,7 +165,7 @@ export default function GastoDashboard() {
                 className="mono"
                 style={{ fontSize: 'var(--fs-card)', fontWeight: 500, letterSpacing: '-.02em' }}
               >
-                {eurM(totalUniverso)}
+                {eurosBreves(totalUniverso)}
               </div>
               <div style={{ fontSize: 'var(--fs-micro)', color: 'var(--ink50)', marginTop: 2 }}>
                 {t('presupuesto.gasto.adjudicadoSinIva')}
@@ -220,10 +218,7 @@ export default function GastoDashboard() {
                   : 'presupuesto.gasto.intro.mayor',
               ),
               {
-                importe: (mayor.importe / 1e6).toLocaleString('es-ES', {
-                  minimumFractionDigits: 2,
-                  maximumFractionDigits: 2,
-                }),
+                importe: eurosBreves(mayor.importe),
                 pct: pct0(mayor.cuota),
               },
             )}

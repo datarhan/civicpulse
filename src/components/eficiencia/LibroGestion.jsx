@@ -1,12 +1,13 @@
 import { EjePercentil } from './EjePercentil'
 import { Sparkline } from '../Charts'
 import { estiloLibro } from './libro.css.js'
+import { euros } from '../../lib/formatters'
 
 const fmt = (v, formato) =>
   formato === 'porcentaje'
     ? `${(v * 100).toLocaleString('es-ES', { minimumFractionDigits: 1, maximumFractionDigits: 1 })} %`
     : formato === 'euros'
-      ? `${v.toLocaleString('es-ES', { maximumFractionDigits: 0 })} €`
+      ? euros(v)
       : v.toLocaleString('es-ES', { minimumFractionDigits: 1, maximumFractionDigits: 1 })
 
 const SUFIJO = { dias: 'días', euros: '', porcentaje: '' }

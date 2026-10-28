@@ -1,6 +1,5 @@
 import { usePadron } from '../../hooks/usePadron'
 import { useBudget } from '../../hooks/useBudget'
-import { eur0, eurM } from '../../components/Presupuesto/FigurasEnBreve'
 import { hoyEnRibarroja, ultimoPleno } from '../../scraper/en-breve-portada'
 import { useBudgetExecution } from '../../hooks/useBudgetExecution'
 import { magnitudDelEjercicio } from '../../scraper/presupuesto-lectura'
@@ -8,7 +7,7 @@ import { useTenders } from '../../hooks/useTenders'
 import { useParo } from '../../hooks/useParo'
 import { usePlenos } from '../../hooks/usePlenos'
 import { isCommittedContract, comprometidosSinImporte } from '../../lib/contract-status'
-import { rellena } from '../../lib/formatters'
+import { euros, eurosBreves, rellena } from '../../lib/formatters'
 import { yearSpan } from '../../lib/year-span'
 import { PALETTE, SERIF, SANS, MONO } from './tokens'
 import { rotuloDe, useLocale } from '../../i18n'
@@ -152,7 +151,7 @@ function KpiStrip() {
   // elección de la cifra. La celda dice siempre QUÉ etapa y DE QUIÉN es.
   const magnitud = magnitudDelEjercicio(budget?.snapshot, ejecucion?.latest)
   const budgetYear = magnitud?.year ?? budget?.snapshot?.year
-  const budgetValue = magnitud ? eurM(magnitud.valor) : '—'
+  const budgetValue = magnitud ? eurosBreves(magnitud.valor) : '—'
   // Lo gastado lleva la fecha del listado del que sale, en la misma celda: un
   // listado de junio leído como el cierre fue el defecto de #358. Y la cifra se
   // nombra «tope de gasto» antes que «gastado»: con las dos palabras al revés,
@@ -179,19 +178,19 @@ function KpiStrip() {
   const budgetTitulo = magnitud
     ? magnitud.etapa === 'definitivo'
       ? rellena(t('landing.kpi.presupuesto.titulo'), {
-          valor: eur0(magnitud.valor),
+          valor: euros(magnitud.valor),
           anio: magnitud.year,
-          ejecutado: eur0(magnitud.ejecutado ?? 0),
+          ejecutado: euros(magnitud.ejecutado ?? 0),
         })
       : rellena(t('landing.kpi.presupuesto.tituloAprobado'), {
-          valor: eur0(magnitud.valor),
+          valor: euros(magnitud.valor),
           anio: magnitud.year,
         })
     : undefined
 
   const awardedTotal = tenders?.stats?.awardedTotalEuros
   const awardedCount = tenders?.stats?.awardedContracts
-  const awardedValue = awardedTotal ? eurM(awardedTotal) : '—'
+  const awardedValue = awardedTotal ? eurosBreves(awardedTotal) : '—'
   // Span of the award dates, so the cumulative total carries its own period.
   //
   // Measured over EXACTLY the rows the cell counts — the committed contracts
@@ -329,7 +328,7 @@ function KpiStrip() {
           de `magnitudDelEjercicio`: divergir dejó de ser posible. */}
       <Kpi
         label={t('landing.kpi.personal')}
-        value={magnitud?.personal ? eurM(magnitud.personal.valor) : '—'}
+        value={magnitud?.personal ? eurosBreves(magnitud.personal.valor) : '—'}
         delta={magnitud?.personal ? `${Math.round(magnitud.personal.pct)} %` : '—'}
         tone="civic"
         sub={
@@ -340,8 +339,8 @@ function KpiStrip() {
         titulo={
           magnitud?.personal
             ? rellena(t('landing.kpi.personal.titulo'), {
-                valor: eur0(magnitud.personal.valor),
-                total: eur0(magnitud.valor),
+                valor: euros(magnitud.personal.valor),
+                total: euros(magnitud.valor),
                 anio: magnitud.year,
               })
             : undefined
@@ -372,7 +371,7 @@ function KpiStrip() {
         titulo={
           awardedTotal
             ? rellena(t('landing.kpi.contratos.titulo'), {
-                total: eur0(awardedTotal),
+                total: euros(awardedTotal),
                 anios: awardedYears ?? '',
               })
             : undefined

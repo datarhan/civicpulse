@@ -9,21 +9,6 @@ export function useBudget() {
   return useJsonFetch('/data/budget.json')
 }
 
-export function formatEuros(amount, opts = {}) {
-  const { compact = false, maximumFractionDigits = 0 } = opts
-  if (compact && Math.abs(amount) >= 1_000_000) {
-    return `€${(amount / 1_000_000).toFixed(1).replace('.', ',')}M`
-  }
-  if (compact && Math.abs(amount) >= 1_000) {
-    return `€${Math.round(amount / 1_000)}k`
-  }
-  return new Intl.NumberFormat('es-ES', {
-    style: 'currency',
-    currency: 'EUR',
-    maximumFractionDigits,
-  }).format(amount)
-}
-
 // §07: «Magnitud · un solo color». Aquí había dos arcoíris —nueve colores por
 // capítulo y seis por área— sobre filas que YA llevan su nombre escrito al
 // lado: `Cap.1 · Personal`, y debajo el porcentaje. El color no codificaba

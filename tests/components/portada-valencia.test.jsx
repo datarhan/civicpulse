@@ -29,7 +29,7 @@ import { resolve } from 'node:path'
 import { REPORTAJE_SLUGS } from '../../src/reportajes'
 import { CONCESSION_CONTRACT_TYPES } from '../../src/lib/contract-status'
 import { canonicalizeDepartment, DEPARTMENT_LABEL } from '../../src/scraper/departments'
-import { formatEuros } from '../../src/hooks/useBudget'
+import { euros, eurosBreves } from '../../src/lib/formatters'
 import { EditorialColumn } from '../../src/variants/direction-d/EditorialColumn'
 import { KpiStrip } from '../../src/variants/direction-d/KpiStrip'
 import { Header } from '../../src/variants/direction-d/Topbar'
@@ -134,8 +134,8 @@ const sinCifras = (s) =>
 const UNIDADES = masLargasPrimero([
   ...sinCifras(DINERO_COMPACTO.format(55_000_000)),
   ...sinCifras(DINERO_COMPACTO.format(418_000)),
-  ...sinCifras(formatEuros(41_578_252, { compact: true })),
-  ...sinCifras(formatEuros(41_578_252)),
+  ...sinCifras(eurosBreves(41_578_252)),
+  ...sinCifras(euros(41_578_252)),
   '€/kWh',
   '€/L',
   'bps',

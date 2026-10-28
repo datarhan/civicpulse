@@ -1,14 +1,6 @@
-import { rellena } from '../../lib/formatters'
+import { rellena, eurosBreves } from '../../lib/formatters'
 import { conHuecos } from '../../lib/huecos'
 import { useT } from '../../i18n'
-
-const fmtEur = (n) =>
-  new Intl.NumberFormat('es-ES', {
-    style: 'currency',
-    currency: 'EUR',
-    maximumFractionDigits: 0,
-    notation: 'compact',
-  }).format(n)
 
 export default function CoverageMeter({ universe, zones, onSelectZone }) {
   const t = useT()
@@ -43,14 +35,14 @@ export default function CoverageMeter({ universe, zones, onSelectZone }) {
               : 'presupuesto.gasto.cobertura.sinPeriodo',
           ),
           {
-            '{total}': <strong>{fmtEur(total)}</strong>,
+            '{total}': <strong>{eurosBreves(total)}</strong>,
             '{periodo}': (
               <strong>
                 {rellena(t('presupuesto.gasto.cobertura.aLoLargo'), { periodo: span })}
               </strong>
             ),
             '{n}': yearMax - yearMin + 1,
-            '{situado}': <strong>{fmtEur(located)}</strong>,
+            '{situado}': <strong>{eurosBreves(located)}</strong>,
             '{pct}': pct.toFixed(0),
           },
         )}
@@ -101,7 +93,7 @@ export default function CoverageMeter({ universe, zones, onSelectZone }) {
               }}
             />
             <span className="mono" style={{ fontWeight: 700, fontSize: 'var(--fs-micro)' }}>
-              {fmtEur(z.amount)}
+              {eurosBreves(z.amount)}
             </span>
           </button>
         ))}

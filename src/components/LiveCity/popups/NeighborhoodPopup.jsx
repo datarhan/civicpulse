@@ -1,15 +1,7 @@
 // @ts-check
 import { useT } from '../../../i18n'
-import { rellena } from '../../../lib/formatters'
+import { rellena, eurosBreves } from '../../../lib/formatters'
 import { NIVELES_QUEJAS } from '../controls/QuejasLegend'
-
-const fmtEur = (n) =>
-  new Intl.NumberFormat('es-ES', {
-    style: 'currency',
-    currency: 'EUR',
-    maximumFractionDigits: 0,
-    notation: 'compact',
-  }).format(n)
 
 const labelStyle = {
   fontFamily: "'DM Mono', monospace",
@@ -56,12 +48,12 @@ export function NeighborhoodPopup({ agg }) {
           {contractCount > 0 ? (
             <>
               <div style={valueStyle}>
-                {fmtEur(amount)} · {contractCount}{' '}
+                {eurosBreves(amount)} · {contractCount}{' '}
                 {t(contractCount === 1 ? 'map.contratos.uno' : 'map.contratos.varios')}
               </div>
               {danaAmount > 0 && (
                 <div style={subStyle}>
-                  {rellena(t('map.barrio.danaIncluida'), { importe: fmtEur(danaAmount) })}
+                  {rellena(t('map.barrio.danaIncluida'), { importe: eurosBreves(danaAmount) })}
                 </div>
               )}
             </>

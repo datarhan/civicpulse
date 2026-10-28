@@ -11,18 +11,10 @@ import {
 import { BASEMAP_ATTRIBUTION, BASEMAP_URL } from '../../lib/basemap'
 import { useGeo } from '../../hooks/useGeo'
 import { moneyRadiusMeters, zoneAmountsAt } from '../../lib/tender-geo'
-import { rellena } from '../../lib/formatters'
+import { rellena, eurosBreves } from '../../lib/formatters'
 import { useT } from '../../i18n'
 
 const RIBA_CENTER = [39.52, -0.55]
-const fmtEur = (n) =>
-  new Intl.NumberFormat('es-ES', {
-    style: 'currency',
-    currency: 'EUR',
-    maximumFractionDigits: 0,
-    notation: 'compact',
-  }).format(n)
-
 function ResizeOnMount() {
   const map = useMap()
   useEffect(() => {
@@ -126,7 +118,7 @@ export default function GastoMap({ snapshot, sliderTime, danaOnly, selectedZone,
                   <strong>{z.name}</strong>
                   <br />
                   {/* Contratos, no «obras»: ver ZoneDrilldown. */}
-                  {fmtEur(z.live.amount)} ·{' '}
+                  {eurosBreves(z.live.amount)} ·{' '}
                   {rellena(
                     t(
                       z.live.count === 1

@@ -13,8 +13,6 @@ import { barItems } from '../lib/party-order'
 import {
   useIspa,
   ispaLatest,
-  formatEuros,
-  formatEurosCents,
   retribucionesSplit,
   alcaldeSerie,
   ningunoACero,
@@ -35,7 +33,7 @@ import { useSocialFor, SOCIAL_PLATFORM_META } from '../hooks/useOfficialsSocial'
 import { canonicalizeDepartments, DEPARTMENT_LABEL } from '../scraper/departments'
 import { EncajeCard } from '../components/EncajeDeclarado'
 import { mailboxKinds } from '../lib/mailboxes'
-import { fmtDateLong, rellena } from '../lib/formatters'
+import { euros, eurosExactos, fmtDateLong, rellena } from '../lib/formatters'
 import { useT, useLocale } from '../i18n'
 
 /**
@@ -302,7 +300,7 @@ export function RetribucionBadge({ official }) {
   return (
     <div style={linea} data-retribucion="fijada">
       <span className="mono" style={{ fontWeight: 700, color: 'var(--ink)' }}>
-        {formatEurosCents(d.amountEuros)}
+        {eurosExactos(d.amountEuros)}
       </span>
       <span style={{ color: 'var(--ink50)' }}>
         {t('cargos.retri.fijadoPor').replace('{dedicacion}', d.dedicacion)}
@@ -312,7 +310,7 @@ export function RetribucionBadge({ official }) {
       {desglose && (
         <span style={{ color: 'var(--ink70)' }}>
           {rellena(t('cargos.retri.antiguedadBadge'), {
-            antiguedad: formatEurosCents(desglose.antiguedad),
+            antiguedad: eurosExactos(desglose.antiguedad),
           })}
         </span>
       )}
@@ -418,7 +416,7 @@ function AlcaldeSerie({ data }) {
               fill="var(--civic)"
               data-barra={s.year}
             >
-              <title>{`${s.year}: ${formatEurosCents(s.amountEuros)}`}</title>
+              <title>{`${s.year}: ${eurosExactos(s.amountEuros)}`}</title>
             </rect>
           ) : null,
         )}
@@ -442,7 +440,7 @@ function AlcaldeSerie({ data }) {
                   className="mono"
                   style={{ fontSize: 'var(--fs-micro)', color: 'var(--ink70)', fontWeight: 700 }}
                 >
-                  {formatEuros(s.amountEuros)}
+                  {euros(s.amountEuros)}
                 </div>
               </>
             ) : (
@@ -566,7 +564,7 @@ function RetribucionesPanel() {
             className="mono"
             style={{ fontSize: 'var(--fs-card)', fontWeight: 700, letterSpacing: '-.02em' }}
           >
-            {formatEurosCents(split.total)}
+            {eurosExactos(split.total)}
           </div>
           {/* «Retribuciones y asistencias», nunca «coste de la corporación»: el
               ISPA suma lo percibido por los electos y deja fuera las cuotas
@@ -610,7 +608,7 @@ function RetribucionesPanel() {
             }}
           >
             {split.con.count} con dedicación exclusiva
-            {split.cuadra && ` · ${formatEuros(split.con.sum)} percibidos`}
+            {split.cuadra && ` · ${euros(split.con.sum)} percibidos`}
           </div>
           {fijado && (
             <div style={{ marginTop: 10 }}>
@@ -675,7 +673,7 @@ function RetribucionesPanel() {
                         flexShrink: 0,
                       }}
                     >
-                      {formatEurosCents(tr.amountEuros)}
+                      {eurosExactos(tr.amountEuros)}
                     </span>
                   </div>
                   {/* The puesto as dedicaciones.json words it — meant to be
@@ -707,11 +705,11 @@ function RetribucionesPanel() {
                     >
                       {tr.count === 1
                         ? rellena(t('cargos.retri.tramoAntiguedad'), {
-                            antiguedad: formatEurosCents(tr.antiguedadEuros),
-                            base: formatEurosCents(tr.amountEuros - tr.antiguedadEuros),
+                            antiguedad: eurosExactos(tr.antiguedadEuros),
+                            base: eurosExactos(tr.amountEuros - tr.antiguedadEuros),
                           })
                         : rellena(t('cargos.retri.tramoAntiguedadVarios'), {
-                            antiguedad: formatEurosCents(tr.antiguedadEuros),
+                            antiguedad: eurosExactos(tr.antiguedadEuros),
                           })}
                     </div>
                   )}
@@ -740,10 +738,10 @@ function RetribucionesPanel() {
                   'acuerdo de pleno'
                 )}
                 {dedic?.source?.expediente ? ` (exp. ${dedic.source.expediente})` : ''} y suman{' '}
-                <span className="mono">{formatEurosCents(fijado.sum)}</span>
+                <span className="mono">{eurosExactos(fijado.sum)}</span>
                 {fijado.antiguedadEuros > 0 &&
                   rellena(t('cargos.retri.notaAntiguedad'), {
-                    antiguedad: formatEurosCents(fijado.antiguedadEuros),
+                    antiguedad: eurosExactos(fijado.antiguedadEuros),
                   })}
                 . El total de la cabecera es otra serie: lo <strong>percibido</strong> en{' '}
                 {latest.year} según el ISPA.
@@ -763,7 +761,7 @@ function RetribucionesPanel() {
             }}
           >
             {split.sin.count} sin dedicación
-            {split.cuadra && ` · ${formatEuros(split.sin.sum)} en asistencias`}
+            {split.cuadra && ` · ${euros(split.sin.sum)} en asistencias`}
           </div>
           <div
             style={{
@@ -777,7 +775,7 @@ function RetribucionesPanel() {
             {split.sin.amounts.map((v, i) => (
               <span
                 key={i}
-                title={`${formatEurosCents(v)} · concejal sin identificar (las filas del ISPA son anónimas)`}
+                title={`${eurosExactos(v)} · concejal sin identificar (las filas del ISPA son anónimas)`}
                 style={{
                   flex: 1,
                   minWidth: 0,
@@ -798,11 +796,11 @@ function RetribucionesPanel() {
               color: 'var(--ink50)',
             }}
           >
-            <span>{formatEurosCents(split.sin.min)}</span>
+            <span>{eurosExactos(split.sin.min)}</span>
             <span style={{ textAlign: 'center' }}>
               {split.sin.count} concejales, de menor a mayor
             </span>
-            <span>{formatEurosCents(split.sin.max)}</span>
+            <span>{eurosExactos(split.sin.max)}</span>
           </div>
           <p
             style={{
@@ -850,20 +848,19 @@ function RetribucionesPanel() {
                 ISPA year that is older, and without both years on the line
                 the gap between them reads as one of the two being wrong. */}
             El acuerdo de pleno le <em>fija</em>{' '}
-            <span className="mono">{formatEurosCents(alcaldeAcuerdo.amountEuros)}</span> brutos
-            anuales
+            <span className="mono">{eurosExactos(alcaldeAcuerdo.amountEuros)}</span> brutos anuales
             {anioAcuerdo ? ` para ${anioAcuerdo}` : ''}
             {desgloseAlcalde && (
               <>
                 {': '}
-                <span className="mono">{formatEurosCents(desgloseAlcalde.base)}</span> de sueldo del
-                cargo y <span className="mono">{formatEurosCents(desgloseAlcalde.antiguedad)}</span>{' '}
-                de antigüedad personal, que va con quien lo ocupa y no con el cargo
+                <span className="mono">{eurosExactos(desgloseAlcalde.base)}</span> de sueldo del
+                cargo y <span className="mono">{eurosExactos(desgloseAlcalde.antiguedad)}</span> de
+                antigüedad personal, que va con quien lo ocupa y no con el cargo
               </>
             )}
             . El ISPA publica lo que <em>percibió</em> en {latest.year}:{' '}
-            <span className="mono">{formatEurosCents(alcaldeIspa)}</span>. No se contradicen —una es
-            la asignación, la otra la nómina
+            <span className="mono">{eurosExactos(alcaldeIspa)}</span>. No se contradicen —una es la
+            asignación, la otra la nómina
             {anioAcuerdo && anioAcuerdo !== String(latest.year) ? ', y son de años distintos' : ''}—
             y sumar o comparar las dos series es el error que esta página facilitaba.{' '}
             {/* Derived, never restated: the seniority clause renders only from
@@ -874,9 +871,9 @@ function RetribucionesPanel() {
                 it qualified went up by the antigüedad. */}
             {desgloseAlcalde &&
               rellena(t('cargos.ispa.trienios'), {
-                ispa: formatEurosCents(alcaldeIspa),
-                total: formatEurosCents(desgloseAlcalde.total),
-                base: formatEurosCents(desgloseAlcalde.base),
+                ispa: eurosExactos(alcaldeIspa),
+                total: eurosExactos(desgloseAlcalde.total),
+                base: eurosExactos(desgloseAlcalde.base),
               })}
           </p>
         </div>
@@ -1540,7 +1537,7 @@ function CorporacionMunicipal() {
             {ningunoACero(split) && (
               <>
                 {t('cargos.hero.coste')
-                  .replace('{importe}', formatEuros(split.total))
+                  .replace('{importe}', euros(split.total))
                   .replace('{n}', perceptoresIspa(split))
                   .replace('{year}', split.year)}
               </>

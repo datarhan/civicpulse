@@ -1,6 +1,6 @@
 import EnBreve, { TarjetaEnBreve } from '../EnBreve'
 import { enBreveEficiencia } from '../../scraper/en-breve-eficiencia'
-import { rellena } from '../../lib/formatters'
+import { eurosBreves, rellena } from '../../lib/formatters'
 import { useT } from '../../i18n'
 
 /*
@@ -15,8 +15,6 @@ import { useT } from '../../i18n'
  * firmada de arriba, nunca esta tarjeta.
  */
 
-const eurM = (n) =>
-  `${(n / 1e6).toLocaleString('es-ES', { minimumFractionDigits: 1, maximumFractionDigits: 1 })} M€`
 const num = (n) => n.toLocaleString('es-ES', { maximumFractionDigits: 2 })
 
 function FiguraCoste({ coste, t }) {
@@ -38,14 +36,14 @@ function FiguraCoste({ coste, t }) {
     <div
       className="cp-en-breve-figura"
       role="img"
-      aria-label={filas.map((f) => `${f.etiqueta} ${eurM(f.coste)}`).join(', ')}
+      aria-label={filas.map((f) => `${f.etiqueta} ${eurosBreves(f.coste)}`).join(', ')}
       style={{ gap: 8 }}
     >
       {filas.map((f, i) => (
         <div key={f.id} aria-hidden="true">
           <div className="cp-en-breve-fila">
             <span>{f.etiqueta}</span>
-            <span className="mono">{eurM(f.coste)}</span>
+            <span className="mono">{eurosBreves(f.coste)}</span>
           </div>
           <div
             className="cp-en-breve-barra"
@@ -138,7 +136,7 @@ export default function EnBreveEficiencia({ data, preguntas }) {
         key="coste"
         id="coste"
         pregunta={t('eficiencia.enBreve.coste.pregunta')}
-        cifra={eurM(c.total)}
+        cifra={eurosBreves(c.total)}
         cifraNota={rellena(t('eficiencia.enBreve.coste.nota'), { n: c.n, anio: c.anio })}
         figura={<FiguraCoste coste={c} t={t} />}
         frases={[rellena(t('eficiencia.enBreve.coste.frase'), { n: c.n, anio: c.anio })]}

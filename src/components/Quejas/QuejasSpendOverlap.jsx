@@ -7,15 +7,8 @@ import { useQuejas } from '../../hooks/useQuejas'
 import { computeOverlapRows, cruceDibujable } from '../../lib/neighborhood-aggregate'
 import { yearSpan } from '../../lib/year-span'
 import { diaDeLaSede } from '../../scraper/queja-router'
-import { rellena } from '../../lib/formatters'
+import { rellena, euros } from '../../lib/formatters'
 import { useT } from '../../i18n'
-
-const fmtEur = (n) =>
-  new Intl.NumberFormat('es-ES', {
-    style: 'currency',
-    currency: 'EUR',
-    maximumFractionDigits: 0,
-  }).format(n || 0)
 
 const HEAD = {
   fontWeight: 700,
@@ -173,7 +166,7 @@ export default function QuejasSpendOverlap() {
               {r.quejas || '—'}
             </div>
             <div className="mono" style={{ textAlign: 'right', color: 'var(--ink70)' }}>
-              {r.amount ? fmtEur(r.amount) : '—'}
+              {r.amount ? euros(r.amount) : '—'}
             </div>
           </Fragment>
         ))}

@@ -23,7 +23,8 @@ import { resolve } from 'node:path'
 
 import { CATALOGUE } from '../../src/i18n'
 import { peekSnapshot } from '../../src/lib/snapshot-store'
-import Presupuesto, { formatEuros } from '../../src/pages/Presupuesto'
+import Presupuesto from '../../src/pages/Presupuesto'
+import { euros, eurosBreves } from '../../src/lib/formatters'
 import { lecturaCapitulos } from '../../src/scraper/presupuesto-lectura'
 import { isCommittedContract } from '../../src/lib/contract-status'
 import { topContractors } from '../../src/lib/tender-geo'
@@ -91,8 +92,8 @@ const sinCifras = (s) =>
 const UNIDADES = masLargasPrimero([
   ...sinCifras(DINERO_COMPACTO.format(55_000_000)),
   ...sinCifras(DINERO_COMPACTO.format(418_000)),
-  ...sinCifras(formatEuros(41_578_252, { compact: true })),
-  ...sinCifras(formatEuros(41_578_252)),
+  ...sinCifras(eurosBreves(41_578_252)),
+  ...sinCifras(euros(41_578_252)),
   'M€',
   'k€',
 ])

@@ -142,6 +142,14 @@ Tone names (`TONE_NAMES` in `components/Primitives.jsx`) flow through `Pill`,
 and `Delta` colours by sign; add semantic colours there, not inline. `.mono` is
 DM Mono with tabular numerals, for every numeric value.
 
+Money is written three ways and no others, all in `src/lib/formatters.js`:
+`euros` («14.984 €», the default), `eurosExactos` («14.984,46 €», only where the
+cent is the datum) and `eurosBreves` («19,3 M€», only where space is short; no
+«mil €» or «k€»). They return `''` for a missing amount, never «0 €»; the caller
+says «importe no publicado» and owns the «sin IVA». Published reportajes and unit
+rates («66,94 €/t») keep their own. `tests/formato-euros-unico.test.js` reds on a
+local `fmtEur`.
+
 Components use **inline styles driven by those variables**, not CSS modules or
 styled-components. Keep it that way unless asked — theming works through the
 single token layer. The corollary: inline styles cannot hold media queries and

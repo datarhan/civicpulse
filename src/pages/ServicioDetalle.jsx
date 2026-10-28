@@ -24,6 +24,7 @@ import { useCompetencias, indexarCompetencias, useNombresVisibles } from '../hoo
 import { useOfficials } from '../hooks/useOfficials'
 import { useT } from '../i18n'
 import { useDocumentTitle } from '../hooks/useDocumentTitle'
+import { eurosExactos } from '../lib/formatters'
 
 /**
  * /eficiencia/:id — la ficha de un servicio.
@@ -276,7 +277,7 @@ export default function ServicioDetalle() {
                 alcanza — pero sólo mientras el motor no vuelva a inventarse un
                 cuarto motivo para no dividir. */}
             {i.numerador.valor !== null
-              ? `Coste declarado: ${i.numerador.valor.toLocaleString('es-ES')} €`
+              ? `Coste declarado: ${eurosExactos(i.numerador.valor)}`
               : 'El ayuntamiento no declara coste para este servicio: la casilla viene vacía, no a cero.'}
           </p>
           {/* Sin el `que`: para una ficha bloqueada, `MOTIVO` dice lo mismo y

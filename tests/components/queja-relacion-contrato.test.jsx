@@ -122,9 +122,7 @@ describe('queja · contratos relacionados', () => {
     expect(await screen.findByText(/Centros Culturales/)).toBeInTheDocument()
     const tarjeta = tarjetaDe(SIN_IMPORTE.permalink)
     expect(
-      within(tarjeta).getByText(
-        new RegExp(CATALOGUE.es['quejas.detalle.relacion.importeNoPublicado']),
-      ),
+      within(tarjeta).getByText(new RegExp(CATALOGUE.es['importe.noPublicado'])),
     ).toBeInTheDocument()
     expect(tarjeta.textContent).not.toMatch(/\b0 €/)
   })

@@ -13,6 +13,7 @@ import { magnitudesDe, revisarMagnitudes } from '../src/scraper/magnitudes-fisca
 import EnBrevePresupuesto from '../src/components/Presupuesto/EnBrevePresupuesto'
 import { installFetchMock } from './setup/mockFetch'
 import { detectorDeCastellano, loQueSeLee } from './setup/castellano'
+import { eurosBreves } from '../src/lib/formatters'
 
 /**
  * «En breve», la primera capa de /presupuesto (docs/superpowers/specs/
@@ -215,8 +216,7 @@ describe('lo que lee el vecino', () => {
     await listo(container)
     const texto = container.textContent
     // Mide algo: las dos cifras que más se confunden están en el texto.
-    const m = (n) =>
-      `${(n / 1e6).toLocaleString('es-ES', { minimumFractionDigits: 1, maximumFractionDigits: 1 })} M€`
+    const m = eurosBreves
     expect(texto).toContain(m(R.limite.definitivo))
     expect(texto).toContain(m(R.gastado.ejecutado))
     const M = magnitudesDe(BUDGET, EJEC)

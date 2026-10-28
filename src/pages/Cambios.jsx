@@ -3,7 +3,7 @@ import { Card, Pill, SectionHead, ShareWA, ExtLink } from '../components/Primiti
 import { useCambios, KIND_LABEL_ES, KIND_TONE } from '../hooks/useCambios'
 import { useDocumentTitle } from '../hooks/useDocumentTitle'
 import { rotuloDe, useT } from '../i18n'
-import { entero, rellena } from '../lib/formatters'
+import { euros, rellena } from '../lib/formatters'
 import { useState } from 'react'
 import { FraseDeLaSemana } from '../components/Cambios/FraseDeLaSemana'
 import DivisorLecturas from '../components/DivisorLecturas'
@@ -67,8 +67,8 @@ function lineaDeContrato(t, it) {
       ? rellena(t('cambios.contrato.adjudicataria'), { nombre: it.adjudicataria })
       : null,
     it.importe != null
-      ? rellena(t('cambios.contrato.importe'), { importe: entero(Math.round(it.importe)) })
-      : t('cambios.contrato.importeNoPublicado'),
+      ? rellena(t('importe.sinIva'), { importe: euros(it.importe) })
+      : t('importe.noPublicado'),
   ]
     .filter(Boolean)
     .join(' · ')

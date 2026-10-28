@@ -1518,8 +1518,6 @@ export const CATALOGUE = {
       'Relación determinista y verificable — coincidencia de zona y/o materia',
     'quejas.detalle.relacion.verContrato': 'Ver contrato en contrataciondelestado.es →',
     'quejas.detalle.relacion.adjudicado': 'Adjudicado el {fecha}',
-    'quejas.detalle.relacion.importe': '{importe} € sin IVA',
-    'quejas.detalle.relacion.importeNoPublicado': 'importe no publicado',
     'quejas.detalle.reloj.eyebrow': 'Reloj legal',
     'quejas.detalle.reloj.titulo': 'Plazo LPACAP en curso',
     'quejas.detalle.reloj.registrada': 'Registrada',
@@ -1608,8 +1606,11 @@ export const CATALOGUE = {
     'cambios.vacio':
       'No hay ninguna tarjeta que enseñar en esta ventana. Prueba a ampliarla a 14 o 30 días.',
     'cambios.contrato.adjudicataria': 'Adjudicado a {nombre}',
-    'cambios.contrato.importe': '{importe} € sin IVA',
-    'cambios.contrato.importeNoPublicado': 'importe no publicado',
+    // Un importe con su IVA dicho, y la falta de importe dicha: las comparten /cambios,
+    // la ficha de queja y las tarjetas de contrato. La cifra llega ya con su «€»
+    // (`euros`, lib/formatters).
+    'importe.sinIva': '{importe} sin IVA',
+    'importe.noPublicado': 'importe no publicado',
     'cambios.contrato.tituloOficial': 'Título oficial: {titulo}',
     'cambios.frase.titulo': 'En una frase',
     'cambios.frase.hechos': 'En los últimos {dias} días, el Ayuntamiento {lista}.',
@@ -1880,9 +1881,9 @@ export const CATALOGUE = {
       'Y es de {periodo}, no de un solo ejercicio: puesto sin periodo al lado de un presupuesto anual se lee mucho mayor de lo que es.',
     'presupuesto.gasto.intro.noRepartido': 'No es un volumen repartido:',
     'presupuesto.gasto.intro.mayorConcesion':
-      'el mayor contrato —una concesión de {importe} M€— se lleva él solo el {pct} % del total, porque una concesión se adjudica por todo su plazo de una vez.',
+      'el mayor contrato —una concesión de {importe}— se lleva él solo el {pct} % del total, porque una concesión se adjudica por todo su plazo de una vez.',
     'presupuesto.gasto.intro.mayor':
-      'el mayor contrato —{importe} M€— se lleva él solo el {pct} % del total.',
+      'el mayor contrato —{importe}— se lleva él solo el {pct} % del total.',
     'presupuesto.gasto.intro.situados':
       'Solo se sitúan los contratos cuyo título nombra una zona, y ahí sí predominan las obras ({pct} %). Tamaño del círculo = € adjudicado en la zona · ámbar cuando la mitad o más es recuperación DANA.',
     'presupuesto.gasto.intro.situadosSinPct':
@@ -4140,8 +4141,6 @@ export const CATALOGUE = {
       'Relació determinista i verificable — coincidència de zona i/o matèria',
     'quejas.detalle.relacion.verContrato': 'Veure el contracte a contrataciondelestado.es →',
     'quejas.detalle.relacion.adjudicado': 'Adjudicat el {fecha}',
-    'quejas.detalle.relacion.importe': '{importe} € sense IVA',
-    'quejas.detalle.relacion.importeNoPublicado': 'import no publicat',
     'quejas.detalle.reloj.eyebrow': 'Rellotge legal',
     'quejas.detalle.reloj.titulo': 'Termini LPACAP en curs',
     'quejas.detalle.reloj.registrada': 'Registrada',
@@ -4229,8 +4228,8 @@ export const CATALOGUE = {
     'cambios.vacio':
       'No hi ha cap targeta per a mostrar en esta finestra. Prova d’ampliar-la a 14 o 30 dies.',
     'cambios.contrato.adjudicataria': 'Adjudicat a {nombre}',
-    'cambios.contrato.importe': '{importe} € sense IVA',
-    'cambios.contrato.importeNoPublicado': 'import no publicat',
+    'importe.sinIva': '{importe} sense IVA',
+    'importe.noPublicado': 'import no publicat',
     'cambios.contrato.tituloOficial': 'Títol oficial: {titulo}',
     'cambios.frase.titulo': 'En una frase',
     'cambios.frase.hechos': 'En els últims {dias} dies, l’Ajuntament {lista}.',
@@ -4459,9 +4458,9 @@ export const CATALOGUE = {
       'I és de {periodo}, no d’un sol exercici: posat sense període al costat d’un pressupost anual es llig molt més gran del que és.',
     'presupuesto.gasto.intro.noRepartido': 'No és un volum repartit:',
     'presupuesto.gasto.intro.mayorConcesion':
-      'el contracte més gran —una concessió de {importe} M€— s’emporta ell sol el {pct} % del total, perquè una concessió s’adjudica per tot el seu termini d’una vegada.',
+      'el contracte més gran —una concessió de {importe}— s’emporta ell sol el {pct} % del total, perquè una concessió s’adjudica per tot el seu termini d’una vegada.',
     'presupuesto.gasto.intro.mayor':
-      'el contracte més gran —{importe} M€— s’emporta ell sol el {pct} % del total.',
+      'el contracte més gran —{importe}— s’emporta ell sol el {pct} % del total.',
     'presupuesto.gasto.intro.situados':
       'Només se situen els contractes el títol dels quals anomena una zona, i ací sí que predominen les obres ({pct} %). Mida del cercle = € adjudicat a la zona · ambre quan la meitat o més és recuperació DANA.',
     'presupuesto.gasto.intro.situadosSinPct':

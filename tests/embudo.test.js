@@ -2,7 +2,6 @@ import { describe, it, expect } from 'vitest'
 import {
   ticksLog,
   curvaBanda,
-  etiquetaEuros,
   etiquetaHabitantes,
 } from '../src/components/coste-esperado/embudo-geometria'
 import { ajustarOls } from '../src/scraper/coste-esperado'
@@ -35,8 +34,6 @@ describe('la geometría del embudo', () => {
   })
 
   it('las etiquetas cortas de los ejes', () => {
-    expect(etiquetaEuros(1_000_000)).toBe('1 M€')
-    expect(etiquetaEuros(10_000)).toBe('10 k€')
     expect(etiquetaHabitantes(10_000)).toBe('10 mil hab')
   })
 })

@@ -2,7 +2,6 @@ import { useOfficials, partyColor } from '../../../hooks/useOfficials'
 import { usePromises } from '../../../hooks/usePromises'
 import { usePlenoAgendas } from '../../../hooks/usePlenoAgendas'
 import { useBudget } from '../../../hooks/useBudget'
-import { eur0, eurM } from '../../../components/Presupuesto/FigurasEnBreve'
 import { useBudgetExecution } from '../../../hooks/useBudgetExecution'
 import { magnitudDelEjercicio } from '../../../scraper/presupuesto-lectura'
 import { useTenders } from '../../../hooks/useTenders'
@@ -10,7 +9,7 @@ import { useBdns } from '../../../hooks/useBdns'
 import { isCommittedContract, comprometidosSinImporte } from '../../../lib/contract-status'
 import { yearSpan } from '../../../lib/year-span'
 import { canonicalizeDepartment, DEPARTMENT_LABEL } from '../../../scraper/departments'
-import { rellena } from '../../../lib/formatters'
+import { euros, eurosBreves, rellena } from '../../../lib/formatters'
 import { PALETTE, MONO } from '../tokens'
 import { useLocale } from '../../../i18n'
 
@@ -270,17 +269,17 @@ export function AlcaldeBox() {
                 title={
                   magnitud?.etapa === 'definitivo'
                     ? rellena(t('landing.alcalde.definitivo.title'), {
-                        valor: eur0(budgetEuros),
+                        valor: euros(budgetEuros),
                         anio: budgetYear,
-                        ejecutado: magnitud.ejecutado ? eur0(magnitud.ejecutado) : '—',
+                        ejecutado: magnitud.ejecutado ? euros(magnitud.ejecutado) : '—',
                       })
                     : rellena(t('landing.alcalde.aprobado.title'), {
-                        valor: eur0(budgetEuros),
+                        valor: euros(budgetEuros),
                         anio: budgetYear,
                       })
                 }
               >
-                <span style={{ fontWeight: 700 }}>{eurM(budgetEuros)}</span>{' '}
+                <span style={{ fontWeight: 700 }}>{eurosBreves(budgetEuros)}</span>{' '}
                 {/*
                   El año va AQUÍ, no sólo en el encabezado. Era la única cifra
                   de la fila sin período propio —los contratos llevan
@@ -317,7 +316,7 @@ export function AlcaldeBox() {
                         «gastados a» arriba y la fecha sola debajo. */}
                     <span style={{ whiteSpace: 'nowrap' }}>
                       <span style={{ fontWeight: 700, color: PALETTE.ink80 }}>
-                        {eurM(magnitud.ejecutado)}
+                        {eurosBreves(magnitud.ejecutado)}
                       </span>{' '}
                       {fechaEjecucion
                         ? rellena(t('landing.alcalde.gastadosA'), { fecha: fechaEjecucion })
@@ -352,7 +351,7 @@ export function AlcaldeBox() {
                             ? 'landing.alcalde.contratos.title'
                             : 'landing.alcalde.contratos.titleSinAnios',
                         ),
-                        { total: eur0(tendersEuros), anios: tendersYears },
+                        { total: euros(tendersEuros), anios: tendersYears },
                       )
                     : undefined
                 }
@@ -370,7 +369,7 @@ export function AlcaldeBox() {
                 {tendersEuros ? (
                   <>
                     <span style={{ whiteSpace: 'nowrap' }}>
-                      <span style={{ fontWeight: 700 }}>{eurM(tendersEuros)}</span>{' '}
+                      <span style={{ fontWeight: 700 }}>{eurosBreves(tendersEuros)}</span>{' '}
                       <span style={{ color: PALETTE.ink50 }}>{t('landing.alcalde.sumados')}</span>
                     </span>
                     {sinImporteContratos > 0 && (

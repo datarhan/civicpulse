@@ -10,7 +10,7 @@ import {
 import { useOfficials, partyColor } from '../hooks/useOfficials'
 import { useDocumentTitle } from '../hooks/useDocumentTitle'
 import {
-  entero,
+  euros,
   fmtDateHuman,
   fmtDateLong,
   nombreDeBarrio,
@@ -302,10 +302,8 @@ function CorrelationsCard({ quejaId }) {
                 {'tenderAmount' in l && (
                   <span style={{ whiteSpace: 'nowrap' }}>
                     {typeof l.tenderAmount === 'number'
-                      ? rellena(t('quejas.detalle.relacion.importe'), {
-                          importe: entero(Math.round(l.tenderAmount)),
-                        })
-                      : t('quejas.detalle.relacion.importeNoPublicado')}
+                      ? rellena(t('importe.sinIva'), { importe: euros(l.tenderAmount) })
+                      : t('importe.noPublicado')}
                   </span>
                 )}
               </div>

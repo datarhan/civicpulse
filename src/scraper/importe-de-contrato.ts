@@ -27,7 +27,7 @@
  * una magnitud distinta de la que el emparejador leyó.
  */
 
-import { rellena } from '../lib/formatters'
+import { euros, eurosExactos, rellena } from '../lib/formatters'
 
 /**
  * Los campos de importe que el emparejador lee de una fila, en su orden, sin
@@ -193,14 +193,6 @@ export function puenteDeImporte(
   return null
 }
 
-// Espacio de no separación ante el «€»: en la línea de 68 caracteres de la
-// tarjeta, «80.666,66» se quedaba al final de un renglón y su «€» al principio
-// del siguiente.
-const NBSP = ' '
-const entero = (v: number) => `${Math.round(v).toLocaleString('es-ES')}${NBSP}€`
-const conCentimos = (v: number) =>
-  `${v.toLocaleString('es-ES', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}${NBSP}€`
-
 /**
  * El puente, dicho para el lector en el idioma de `t`: qué es la cifra de la fila, y
  * dónde está la citada. Las cifras van con el formato de `es-ES`, que es también el
@@ -213,10 +205,10 @@ export function textoDelPuente(p: Puente, t: Traductor): string {
       ? rellena(t('puente.sujeto.lote'), { n: p.citado.lote.numero })
       : t('puente.sujeto.loteSinNumero')
   return rellena(t('puente.frase'), {
-    impreso: entero(p.impreso.valor),
+    impreso: euros(p.impreso.valor),
     queEs: t(`puente.queEs.${p.impreso.campo}`),
     sujeto,
-    magnitud: MAGNITUDES[p.citado.campo](t, conCentimos(p.citado.valor)),
-    cifra: entero(p.cifra),
+    magnitud: MAGNITUDES[p.citado.campo](t, eurosExactos(p.citado.valor)),
+    cifra: euros(p.cifra),
   })
 }

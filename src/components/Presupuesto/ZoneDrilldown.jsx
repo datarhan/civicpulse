@@ -5,15 +5,8 @@ import {
   relatedQuejasForContract,
 } from '../../hooks/useQuejaContractRelations'
 import { useQuejas } from '../../hooks/useQuejas'
-import { rellena } from '../../lib/formatters'
+import { rellena, euros } from '../../lib/formatters'
 import { useT } from '../../i18n'
-
-const fmtEur = (n) =>
-  new Intl.NumberFormat('es-ES', {
-    style: 'currency',
-    currency: 'EUR',
-    maximumFractionDigits: 0,
-  }).format(n)
 
 export default function ZoneDrilldown({
   snapshot,
@@ -56,7 +49,7 @@ export default function ZoneDrilldown({
           suministros, en 8 de las 12 zonas. Una zona con cinco servicios y una obra
           decía «6 obras». */}
       <div className="mono" style={{ fontSize: 'var(--fs-aux)', fontWeight: 700 }}>
-        {fmtEur(total)} ·{' '}
+        {euros(total)} ·{' '}
         {rellena(
           t(
             works.length === 1

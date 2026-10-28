@@ -1,3 +1,5 @@
+import { eurosExactos } from '../../lib/formatters'
+
 /**
  * La división, escrita como división.
  *
@@ -70,7 +72,7 @@ export function EcuacionCoste({ indicador, formatea, entrega }) {
       {celda(
         'num',
         `Coste declarado ${entrega ?? ''}`.trim(),
-        `${i.numerador.valor.toLocaleString('es-ES', { maximumFractionDigits: 0 })} €`,
+        eurosExactos(i.numerador.valor),
         'actualizado cada entrega',
       )}
       {signo('÷', 'div')}

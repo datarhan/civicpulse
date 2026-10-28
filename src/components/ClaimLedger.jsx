@@ -4,7 +4,7 @@ import { MarcaDeFirma } from './MarcaDeFirma'
 import { tramoDeFirma } from '../lib/atribucion-firmada'
 import { rotuloDe, useT } from '../i18n'
 import { conHuecos } from '../lib/huecos'
-import { rellena } from '../lib/formatters'
+import { eurosBreves, rellena } from '../lib/formatters'
 import { usePlenoClaims, VERDICT_TONE } from '../hooks/usePlenoClaims'
 import { rotuloDeTipo } from '../lib/claim-type-label.js'
 import { gateForDisplay, sortSignalFirst } from '../lib/claim-ledger'
@@ -23,13 +23,6 @@ import {
 import { CLAVE_RESUMEN_RETIRADO, resumenPublicable } from '../lib/resumenes-retirados.js'
 import { PuenteDeImporte } from './PuenteDeImporte'
 import { cifraCitada } from '../scraper/cifra-en-literal'
-
-function formatEuros(n) {
-  if (typeof n !== 'number' || !Number.isFinite(n)) return ''
-  if (n >= 1_000_000) return (n / 1_000_000).toFixed(1).replace(/\.0$/, '') + ' M €'
-  if (n >= 1000) return (n / 1000).toFixed(0) + ' K €'
-  return n.toFixed(0) + ' €'
-}
 
 /**
  * Una fila de evidencia, y debajo —fuera del enlace, que es de la fila— el
@@ -179,7 +172,7 @@ function ClaimCard({ item }) {
                 className="mono"
                 style={{ fontSize: 'var(--fs-micro)', fontWeight: 700, color: 'var(--ink)' }}
               >
-                {formatEuros(cifra)}
+                {eurosBreves(cifra)}
               </span>
             )}
             {claim.entities.count && claim.entities.countUnit && (

@@ -13,7 +13,7 @@ import { MemoryRouter } from 'react-router-dom'
 
 import Cambios from '../../src/pages/Cambios'
 import { CATALOGUE, LocaleProvider } from '../../src/i18n'
-import { entero, rellena } from '../../src/lib/formatters'
+import { euros, rellena } from '../../src/lib/formatters'
 import { etiquetaDeContrato } from '../../src/scraper/etiqueta-de-contrato'
 import { importeAdjudicado } from '../../src/lib/contract-status'
 import { installFetchMock } from '../setup/mockFetch'
@@ -89,11 +89,11 @@ describe('/cambios · los contratos', () => {
 
   it('a quién y por cuánto, como el resto del sitio; y sin importe, lo dice', async () => {
     const { container } = await pinta('es')
-    const importe = entero(Math.round(importeAdjudicado(CONTRATO)))
+    const importe = euros(importeAdjudicado(CONTRATO))
     expect(container.textContent).toContain(
-      `${rellena(CATALOGUE.es['cambios.contrato.adjudicataria'], { nombre: CONTRATO.assignee })} · ${importe} € sin IVA`,
+      `${rellena(CATALOGUE.es['cambios.contrato.adjudicataria'], { nombre: CONTRATO.assignee })} · ${importe} sin IVA`,
     )
-    expect(container.textContent).toContain(CATALOGUE.es['cambios.contrato.importeNoPublicado'])
+    expect(container.textContent).toContain(CATALOGUE.es['importe.noPublicado'])
     // Ni el formato de antes ni el órgano, que es el mismo en todos.
     expect(container.textContent).not.toMatch(/€\d/)
     expect(container.textContent).not.toContain('Ayuntamiento de Riba-roja de Túria ·')
@@ -105,7 +105,7 @@ describe('/cambios · los contratos', () => {
       rellena(CATALOGUE.ca['cambios.contrato.adjudicataria'], { nombre: CONTRATO.assignee }),
     )
     expect(container.textContent).toContain('€ sense IVA')
-    expect(container.textContent).toContain(CATALOGUE.ca['cambios.contrato.importeNoPublicado'])
+    expect(container.textContent).toContain(CATALOGUE.ca['importe.noPublicado'])
     expect(container.querySelector('[data-titulo-oficial]').textContent).toMatch(/^Títol oficial: /)
   }, 60000)
 })

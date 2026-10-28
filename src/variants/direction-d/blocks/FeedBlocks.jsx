@@ -20,7 +20,7 @@ import { PALETTE } from '../tokens'
 import { SectionHeader } from '../SectionHeader'
 import { ExtLink } from '../../../components/Primitives'
 import { RetiredSourceNote } from '../../../components/RetiredSourceNote'
-import { rellena } from '../../../lib/formatters'
+import { eurosBreves, rellena } from '../../../lib/formatters'
 import { rotuloDe, useLocale } from '../../../i18n'
 
 /** Día y mes corto, en el idioma de la interfaz: «15 sept» salía igual en valencià. */
@@ -101,14 +101,6 @@ export function LiveContracts() {
   // expediente entero. Ver `src/lib/tender-lotes.js`.
   const grupos = agrupaPorExpediente(data.contracts ?? [])
 
-  const fmtEur = (n) =>
-    new Intl.NumberFormat('es-ES', {
-      style: 'currency',
-      currency: 'EUR',
-      maximumFractionDigits: 0,
-      notation: n >= 100_000 ? 'compact' : 'standard',
-    }).format(n)
-
   // The period, derived from the same rows the counter counts. The four
   // contracts listed below are the MOST RECENT awards — all of them July 2026 —
   // so an undated «698 · 68 M€» beside them reads as this summer's spending
@@ -141,7 +133,7 @@ export function LiveContracts() {
         // surface reviewer's `innerText`, so a period hidden there is a fix
         // that cannot be observed — the front-end twin of a green test that
         // measured nothing.
-        meta={`${data.stats.awardedContracts} · ${fmtEur(data.stats.awardedTotalEuros)}`}
+        meta={`${data.stats.awardedContracts} · ${eurosBreves(data.stats.awardedTotalEuros)}`}
       />
       {awardedYears && (
         <div
@@ -233,7 +225,7 @@ export function LiveContracts() {
                   publica importe. Aquí no cabe explicarlo —la portada da una
                   línea por contrato— y de las dos formas de callarlo, el guión
                   es la que no afirma nada. */}
-                {importe === null ? '—' : fmtEur(importe)}
+                {importe === null ? '—' : eurosBreves(importe)}
               </span>
             </div>
             {/* El enlace de esta fila NO lleva a esta fila: ver `NotaDeLote`. */}
