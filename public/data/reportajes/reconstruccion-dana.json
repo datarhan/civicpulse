@@ -10,6 +10,10 @@
     "derechoReplica": "sin-respuesta",
     "correcciones": [
       {
+        "fecha": "2026-10-28",
+        "texto": "**Se ha corregido la frase que presentaba el mapa: no muestra dónde golpeó más el agua.** El apartado 2 decía «Situados sobre el mapa del municipio, esos contratos se concentran donde más golpeó el agua». Ningún dato de esta pieza mide dónde golpeó más el agua, y el mapa no sitúa esos contratos, sino una parte: los que su título permite ubicar, 9 de los 75 con referencia a la DANA, por 367 k€ de 2,75 M€, como ya contaba el apartado 4. Que un contrato salga en el mapa depende de que su título nombre un lugar, no de los daños de ese lugar. La frase dice ahora cuántos sitúa el mapa y que su reparto no mide dónde golpeó más el agua. Ninguna cifra cambia."
+      },
+      {
         "fecha": "2026-10-25",
         "texto": "**Se ha corregido lo reconocido en 2025: no fue menos de la mitad.** Decíamos «Lo efectivamente reconocido a 31 de diciembre fue menos de la mitad: 18,91 millones». Esa cifra no era el cierre del año. El Ayuntamiento cuelga las hojas trimestrales del estado de ejecución en una misma página, y nuestro lector tomó la del segundo trimestre —impresa el 30 de junio, aunque su parámetro de listado dice 31/12/2025— por la del cierre, hasta que el 22 de octubre se arregló. El cierre de 2025 da 40,34 millones de obligaciones reconocidas: el 97 % del crédito inicial, de 41,58 millones, y el 60 % del crédito definitivo, que las modificaciones del año llevaron a 67,07 millones. La frase decía lo contrario de lo que dice el dato: el Ayuntamiento reconoció casi todo su crédito inicial. La cifra estaba escrita a mano en el texto, y por eso el arreglo de los datos no la alcanzó; ahora sale de las cifras congeladas de la pieza, que se comparan cada noche con el estado de ejecución publicado."
       },
