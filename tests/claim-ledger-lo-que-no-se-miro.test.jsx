@@ -8,6 +8,7 @@ import { ClaimLedger } from '../src/components/ClaimLedger'
 import { gateForDisplay, sortSignalFirst } from '../src/lib/claim-ledger'
 import { callaElPresupuesto, corpusReales } from '../src/scraper/claim-verdicts'
 import { cifraEnElLiteral } from '../src/scraper/cifra-en-literal'
+import { eurosBreves } from '../src/lib/formatters'
 
 /**
  * La tarjeta de una declaración no se lee como «nada la sostiene» cuando lo que
@@ -139,7 +140,7 @@ describe('todas las tarjetas servidas', () => {
     expect(k4.cabecera).not.toMatch(/€/)
     // El control, en la misma sesión: la frase que sí la dice la pinta.
     const conCifra = deLaCita(leidas, 'por importe de 80.666 euros')
-    expect(conCifra.cabecera).toMatch(/81 K €/)
+    expect(conCifra.cabecera).toContain(eurosBreves(80666))
     // Y en todas: con € en la cabecera, la cifra está en el literal.
     const malas = leidas
       .filter((t) => t.item && /€/.test(t.cabecera))

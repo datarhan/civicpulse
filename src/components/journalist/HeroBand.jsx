@@ -2,8 +2,7 @@
 import { ExtLink, Pill } from '../Primitives'
 import { ageFromDate, formatEventDate } from './Sections'
 import { latestOffice, officeSince } from '../../lib/journalist-facts.js'
-
-const fmtEur = (n) => `${Number(n).toLocaleString('es-ES', { maximumFractionDigits: 0 })} €`
+import { euros } from '../../lib/formatters'
 
 // «Lo esencial» — at-a-glance facts computed strictly from the report's
 // structured payloads (no new claims); each chip deep-links to the section
@@ -40,13 +39,13 @@ export function hechosClave(report) {
   if (salary)
     facts.push({
       k: conAnio('Retribución', salary),
-      v: `${fmtEur(salary.amountEuros)}/año`,
+      v: `${euros(salary.amountEuros)}/año`,
       href: '#sec-financial',
     })
   if (assets)
     facts.push({
       k: conAnio('Patrimonio declarado', assets),
-      v: `${fmtEur(assets.amountEuros)} activo`,
+      v: `${euros(assets.amountEuros)} activo`,
       href: '#sec-financial',
     })
   if (business)

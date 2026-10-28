@@ -15,6 +15,7 @@ import { blocLabel } from '../lib/party-label.js'
 import { etiquetaVerificador, evidenciaSegunFuentes } from '../lib/claim-provenance.js'
 import { snippetDeEvidencia } from '../lib/crosschecked-status.js'
 import { estadoLlano } from '../lib/estado-llano.js'
+import { eurosBreves } from '../lib/formatters'
 import { PuenteDeImporte } from '../components/PuenteDeImporte'
 import { cifraCitada } from '../scraper/cifra-en-literal'
 
@@ -114,7 +115,7 @@ function ClaimRow({ item, plenoTitle }) {
   // Sólo la cifra que la cita dice (src/scraper/cifra-en-literal.ts): la del
   // extractor puede venir de la frase de al lado, y aquí se lee como de ésta.
   const cifra = cifraCitada(c)
-  if (cifra != null) ent.push('€' + cifra.toLocaleString('es-ES'))
+  if (cifra != null) ent.push(eurosBreves(cifra))
   if (c.entities?.count)
     ent.push(c.entities.count + (c.entities.countUnit ? ' ' + c.entities.countUnit : ''))
   if (c.entities?.date) ent.push(c.entities.date)

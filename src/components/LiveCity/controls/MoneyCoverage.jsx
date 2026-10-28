@@ -1,7 +1,7 @@
 // @ts-check
 import { useT } from '../../../i18n'
 import { yearSpan } from '../../../lib/year-span'
-import { rellena } from '../../../lib/formatters'
+import { rellena, eurosBreves } from '../../../lib/formatters'
 
 /**
  * Qué parte de la contratación municipal puede enseñar este mapa.
@@ -32,14 +32,6 @@ import { rellena } from '../../../lib/formatters'
  * (`accion`). El margen y el borde de arriba viven en la clase `cp-cobertura` y no en
  * el style: plegada, la línea pierde el borde, y un style gana a cualquier clase.
  */
-
-const fmtM = (n) =>
-  new Intl.NumberFormat('es-ES', {
-    style: 'currency',
-    currency: 'EUR',
-    maximumFractionDigits: n >= 1e6 ? 1 : 0,
-    notation: 'compact',
-  }).format(n)
 
 // toFixed() would print "3.3%" — an English decimal point in a Spanish UI,
 // sitting directly beside euro figures that Intl correctly renders as "2,2 M€".
@@ -97,8 +89,8 @@ export function MoneyCoverage({ snapshot, accion = null }) {
   // la frase y no en una línea propia, porque la pila crece hacia arriba sobre el
   // mapa y cada línea de más tapaba una estación (landing.spec.ts).
   const exacta = rellena(t('map.money.exacta'), {
-    situado: fmtM(u.situatedAmount),
-    total: fmtM(u.totalAmount),
+    situado: eurosBreves(u.situatedAmount),
+    total: eurosBreves(u.totalAmount),
     periodo: span ? ` (${span})` : '',
     pct: pct < 1 ? '<1' : fmtPct(pct),
   })

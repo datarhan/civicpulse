@@ -20,7 +20,10 @@ import { resolve } from 'node:path'
 
 import { EnBrevePortada } from '../../src/variants/direction-d/blocks/EnBrevePortada'
 import { enBrevePresupuesto } from '../../src/scraper/en-breve-presupuesto'
-import { eurM } from '../../src/components/Presupuesto/FigurasEnBreve'
+import { eurosBreves as eurosBrevesDuro } from '../../src/lib/formatters'
+
+// `porTarjeta` colapsa los espacios, también el duro que va antes del «€».
+const eurosBreves = (n) => eurosBrevesDuro(n).replace(/\s+/g, ' ')
 import { deCada100DelMapa } from '../../src/components/LiveCity/controls/MoneyCoverage'
 import { pintaYLee } from '../setup/pinta-y-lee'
 
@@ -84,8 +87,10 @@ describe('«Tu ayuntamiento en 30 segundos»: cifras que no se leen mal', () => 
     const pregunta = `¿Cuánto dinero tuvo en ${limite.year}, y cuánto gastó?`
     expect(t.dinero.startsWith(pregunta)).toBe(true)
     // Lo primero tras la pregunta es la cifra grande.
-    expect(t.dinero.slice(pregunta.length).trim().startsWith(eurM(gastado.ejecutado))).toBe(true)
-    const tope = eurM(limite.definitivo)
+    expect(t.dinero.slice(pregunta.length).trim().startsWith(eurosBreves(gastado.ejecutado))).toBe(
+      true,
+    )
+    const tope = eurosBreves(limite.definitivo)
     expect(t.dinero).toContain(`Podía gastar ${tope}:`)
     // Una sola vez, y es la de la frase del tope.
     expect(t.dinero.split(tope).length - 1).toBe(1)

@@ -1,12 +1,12 @@
 import EnBreve, { TarjetaEnBreve } from '../EnBreve'
 import BarrioPicker from './BarrioPicker'
-import { Barra, FiguraBarrio, FiguraGastado, Leyenda, eur0, eurM } from './FigurasEnBreve'
+import { Barra, FiguraBarrio, FiguraGastado, Leyenda } from './FigurasEnBreve'
 import { useBudget } from '../../hooks/useBudget'
 import { useBudgetExecution } from '../../hooks/useBudgetExecution'
 import { useDeudaViva } from '../../hooks/useDeudaViva'
 import { useTenderGeo } from '../../hooks/useTenderGeo'
 import { enBrevePresupuesto } from '../../scraper/en-breve-presupuesto'
-import { rellena } from '../../lib/formatters'
+import { euros, eurosBreves, rellena } from '../../lib/formatters'
 import { useT } from '../../i18n'
 
 /*
@@ -30,9 +30,9 @@ function FiguraLimite({ limite }) {
     <div className="cp-en-breve-figura">
       <Barra
         etiqueta={rellena(t('presupuesto.enBreve.limite.figura'), {
-          inicial: eurM(limite.inicial),
-          mod: eurM(limite.modificaciones),
-          definitivo: eurM(limite.definitivo),
+          inicial: eurosBreves(limite.inicial),
+          mod: eurosBreves(limite.modificaciones),
+          definitivo: eurosBreves(limite.definitivo),
         })}
       >
         <div
@@ -45,8 +45,12 @@ function FiguraLimite({ limite }) {
         />
       </Barra>
       <Leyenda
-        izquierda={rellena(t('presupuesto.enBreve.limite.inicial'), { x: eurM(limite.inicial) })}
-        derecha={rellena(t('presupuesto.enBreve.limite.mod'), { x: eurM(limite.modificaciones) })}
+        izquierda={rellena(t('presupuesto.enBreve.limite.inicial'), {
+          x: eurosBreves(limite.inicial),
+        })}
+        derecha={rellena(t('presupuesto.enBreve.limite.mod'), {
+          x: eurosBreves(limite.modificaciones),
+        })}
       />
     </div>
   )
@@ -54,7 +58,7 @@ function FiguraLimite({ limite }) {
 
 function FiguraEnQue({ filas, nombre }) {
   const t = useT()
-  const lista = filas.map((f) => `${nombre(f)} ${eurM(f.ejecutado)}`).join(', ')
+  const lista = filas.map((f) => `${nombre(f)} ${eurosBreves(f.ejecutado)}`).join(', ')
   return (
     <div
       className="cp-en-breve-figura"
@@ -66,7 +70,7 @@ function FiguraEnQue({ filas, nombre }) {
         <div key={f.capitulo ?? 'resto'} aria-hidden="true" title={f.label ?? undefined}>
           <div className="cp-en-breve-fila">
             <span>{nombre(f)}</span>
-            <span className="mono">{eurM(f.ejecutado)}</span>
+            <span className="mono">{eurosBreves(f.ejecutado)}</span>
           </div>
           <div
             className="cp-en-breve-barra"
@@ -174,24 +178,24 @@ export default function EnBrevePresupuesto() {
         key="limite"
         id="limite"
         pregunta={rellena(t('presupuesto.enBreve.limite.pregunta'), { year: l.year })}
-        cifra={eurM(l.definitivo)}
+        cifra={eurosBreves(l.definitivo)}
         cifraNota={
           l.porVecino != null
-            ? rellena(t('presupuesto.enBreve.porVecino'), { x: eur0(l.porVecino) })
+            ? rellena(t('presupuesto.enBreve.porVecino'), { x: euros(l.porVecino) })
             : undefined
         }
         figura={<FiguraLimite limite={l} />}
         frases={[
           rellena(t('presupuesto.enBreve.limite.frase'), {
-            inicial: eurM(l.inicial),
-            mod: eurM(l.modificaciones),
+            inicial: eurosBreves(l.inicial),
+            mod: eurosBreves(l.modificaciones),
           }),
         ]}
         salvedad={
           l.conprelDiscrepa != null
             ? rellena(t('presupuesto.enBreve.limite.dosFuentes'), {
                 year: l.year,
-                conprel: eurM(l.conprelDiscrepa),
+                conprel: eurosBreves(l.conprelDiscrepa),
               })
             : undefined
         }
@@ -205,7 +209,7 @@ export default function EnBrevePresupuesto() {
         key="aprobado"
         id="aprobado"
         pregunta={rellena(t('presupuesto.enBreve.aprobado.pregunta'), { year: r.aprobado.year })}
-        cifra={eurM(r.aprobado.total)}
+        cifra={eurosBreves(r.aprobado.total)}
         frases={[t('presupuesto.enBreve.aprobado.frase')]}
         ancla="#aprobado"
         anclaTexto={ver}
@@ -225,7 +229,7 @@ export default function EnBrevePresupuesto() {
         key="gastado"
         id="gastado"
         pregunta={t('presupuesto.enBreve.gastado.pregunta')}
-        cifra={eurM(g.ejecutado)}
+        cifra={eurosBreves(g.ejecutado)}
         cifraNota={rellena(t('presupuesto.enBreve.gastado.cifraNota'), { n: g.deCada100 })}
         figura={<FiguraGastado gastado={g} />}
         frases={[
@@ -265,8 +269,8 @@ export default function EnBrevePresupuesto() {
           dom
             ? rellena(t('presupuesto.enBreve.enQue.dominante'), {
                 capitulo: enFrase(NOMBRES[dom.capitulo] ?? String(dom.capitulo)),
-                definitivo: eurM(dom.definitivo),
-                ejecutado: eurM(dom.ejecutado),
+                definitivo: eurosBreves(dom.definitivo),
+                ejecutado: eurosBreves(dom.ejecutado),
               })
             : '',
         ]}
@@ -284,10 +288,10 @@ export default function EnBrevePresupuesto() {
         key="deuda"
         id="deuda"
         pregunta={t('presupuesto.enBreve.deuda.pregunta')}
-        cifra={eurM(d.deudaEuros)}
+        cifra={eurosBreves(d.deudaEuros)}
         cifraNota={
           d.porVecino != null
-            ? rellena(t('presupuesto.enBreve.porVecino'), { x: eur0(d.porVecino) })
+            ? rellena(t('presupuesto.enBreve.porVecino'), { x: euros(d.porVecino) })
             : undefined
         }
         figura={comparable ? <FiguraDeuda deuda={d} /> : undefined}

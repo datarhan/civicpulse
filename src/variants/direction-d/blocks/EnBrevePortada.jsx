@@ -1,12 +1,7 @@
 import EnBreve, { TarjetaEnBreve } from '../../../components/EnBreve'
 import BarrioPicker from '../../../components/Presupuesto/BarrioPicker'
 import { deCada100DelMapa } from '../../../components/LiveCity/controls/MoneyCoverage'
-import {
-  FiguraBarrio,
-  FiguraGastado,
-  eur0,
-  eurM,
-} from '../../../components/Presupuesto/FigurasEnBreve'
+import { FiguraBarrio, FiguraGastado } from '../../../components/Presupuesto/FigurasEnBreve'
 import { useOfficials } from '../../../hooks/useOfficials'
 import { useBudget } from '../../../hooks/useBudget'
 import { useBudgetExecution } from '../../../hooks/useBudgetExecution'
@@ -18,7 +13,7 @@ import { enBrevePresupuesto } from '../../../scraper/en-breve-presupuesto'
 import { enBrevePortada, hoyEnRibarroja } from '../../../scraper/en-breve-portada'
 import { summarizeSessions } from '../../../lib/pleno-summary.js'
 import { rutaDeSesion } from '../../../scraper/ruta-de-sesion'
-import { fmtDateLong, rellena } from '../../../lib/formatters'
+import { euros, eurosBreves, fmtDateLong, rellena } from '../../../lib/formatters'
 import { useLocale } from '../../../i18n'
 
 /*
@@ -137,12 +132,12 @@ export function EnBrevePortada() {
         key="dinero"
         id="dinero"
         pregunta={rellena(t('landing.enBreve.dinero.pregunta'), { year: l.year })}
-        cifra={eurM(g ? g.ejecutado : l.definitivo)}
+        cifra={eurosBreves(g ? g.ejecutado : l.definitivo)}
         cifraNota={
           g
             ? rellena(t('landing.enBreve.dinero.cifraNota'), { year: g.year })
             : l.porVecino != null
-              ? rellena(t('presupuesto.enBreve.porVecino'), { x: eur0(l.porVecino) })
+              ? rellena(t('presupuesto.enBreve.porVecino'), { x: euros(l.porVecino) })
               : undefined
         }
         figura={g ? <FiguraGastado gastado={g} /> : undefined}
@@ -150,7 +145,9 @@ export function EnBrevePortada() {
           g
             ? [
                 rellena(t('presupuesto.enBreve.gastado.frase'), { year: g.year, n: g.deCada100 }),
-                rellena(t('landing.enBreve.dinero.topeCifra'), { limite: eurM(l.definitivo) }),
+                rellena(t('landing.enBreve.dinero.topeCifra'), {
+                  limite: eurosBreves(l.definitivo),
+                }),
                 fecha,
               ]
             : [t('landing.enBreve.dinero.tope'), t('landing.enBreve.dinero.sinGastado')]
@@ -160,7 +157,7 @@ export function EnBrevePortada() {
           l.conprelDiscrepa != null
             ? rellena(t('presupuesto.enBreve.limite.dosFuentes'), {
                 year: l.year,
-                conprel: eurM(l.conprelDiscrepa),
+                conprel: eurosBreves(l.conprelDiscrepa),
               })
             : undefined
         }
@@ -177,7 +174,7 @@ export function EnBrevePortada() {
         key="aprobado"
         id="aprobado"
         pregunta={rellena(t('presupuesto.enBreve.aprobado.pregunta'), { year: r.aprobado.year })}
-        cifra={eurM(r.aprobado.total)}
+        cifra={eurosBreves(r.aprobado.total)}
         frases={[t('presupuesto.enBreve.aprobado.frase')]}
         ancla="/presupuesto#aprobado"
         anclaTexto={ver}

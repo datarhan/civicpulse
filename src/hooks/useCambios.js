@@ -2,7 +2,7 @@
 import { useMemo } from 'react'
 import { useQuejas, CATEGORY_LABEL, STATE_LABEL } from './useQuejas'
 import { useGeo } from './useGeo'
-import { entero, nombreDeBarrio } from '../lib/formatters'
+import { euros, nombreDeBarrio } from '../lib/formatters'
 import { etiquetaDeContrato } from '../scraper/etiqueta-de-contrato'
 import { usePlenos } from './usePlenos'
 import { usePress } from './usePress'
@@ -171,7 +171,7 @@ export function useCambios(days = DEFAULT_WINDOW_DAYS) {
         url: c.permalink,
         external: true,
         shareText: `Contrato adjudicado · ${etiqueta || c.title}${
-          importe != null ? ` · ${entero(Math.round(importe))} € sin IVA` : ''
+          importe != null ? ` · ${euros(importe)} sin IVA` : ''
         }`,
       })
     }

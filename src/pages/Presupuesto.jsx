@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom'
 import { Card, ExtLink, Marcado, Pill, SectionHead } from '../components/Primitives'
 import DataAsOf from '../components/DataAsOf'
-import { useBudget, formatEuros } from '../hooks/useBudget'
+import { useBudget } from '../hooks/useBudget'
 import { contrastarPresupuesto, TOLERANCIA_EQUILIBRIO } from '../scraper/budget-contraste'
 import { useBudgetExecution } from '../hooks/useBudgetExecution'
 import { useObras } from '../hooks/useObras'
@@ -29,7 +29,15 @@ import {
   committedAwardYearSpan,
   importeAdjudicado,
 } from '../lib/contract-status'
-import { decimal, fmtDateCompacta, fmtDateLong, rellena } from '../lib/formatters'
+import {
+  decimal,
+  entero,
+  euros,
+  eurosBreves,
+  fmtDateCompacta,
+  fmtDateLong,
+  rellena,
+} from '../lib/formatters'
 import { conHuecos } from '../lib/huecos'
 import { titularDeuda } from '../lib/deuda-titular'
 import { yearSpan } from '../lib/year-span'
@@ -67,14 +75,6 @@ import { TedNotices } from '../components/Presupuesto/TedNotices'
 /** Las obras van de diez en diez, igual que el listado de contratos. */
 const POR_PAGINA_OBRAS = 10
 
-const eur0 = (n) =>
-  new Intl.NumberFormat('es-ES', {
-    style: 'currency',
-    currency: 'EUR',
-    maximumFractionDigits: 0,
-  }).format(n)
-const eurM = (n, d = 1) =>
-  `${(n / 1e6).toLocaleString('es-ES', { minimumFractionDigits: d, maximumFractionDigits: d })} M€`
 const pct1 = (n) =>
   n.toLocaleString('es-ES', { minimumFractionDigits: 1, maximumFractionDigits: 1 })
 const pct0 = (n) => Math.round(n).toLocaleString('es-ES')
@@ -155,7 +155,7 @@ function ChapterRow({ label, amount, total, escala, nota }) {
           )}
         </span>
         <span className="mono" style={{ fontSize: 'var(--fs-aux)', fontWeight: 700 }}>
-          {eur0(amount)}
+          {euros(amount)}
         </span>
         <span
           className="mono"
@@ -286,10 +286,10 @@ function Cabecera() {
   let lede
   if (cascada && cascada.cuadra) {
     lede = rellena(t('presupuesto.lede'), {
-      inicial: eurM(cascada.inicial),
-      mod: eurM(cascada.modificaciones),
+      inicial: eurosBreves(cascada.inicial),
+      mod: eurosBreves(cascada.modificaciones),
       pct: pct0(cascada.ampliacionPct),
-      ejecutado: eurM(cascada.ejecutado),
+      ejecutado: eurosBreves(cascada.ejecutado),
     })
     if (dominante) {
       // El cero del capítulo es de UNA de las dos fuentes que publica la
@@ -317,7 +317,7 @@ function Cabecera() {
           capitulo: dominante.rotulo.toLowerCase(),
           // Al euro, como en el pie: remite a la tarjeta de CONPREL de más
           // abajo, que lo publica así.
-          conprel: eur0(cero?.conprel ?? 0),
+          conprel: euros(cero?.conprel ?? 0),
         },
       )
     }
@@ -337,7 +337,7 @@ function Cabecera() {
             ? 'presupuesto.lede.soloAprobado'
             : 'presupuesto.lede.soloAprobado.sinTotal',
       ),
-      { year: s.year, gastos: hayTotal ? eurM(s.totalExpense, 2) : '' },
+      { year: s.year, gastos: hayTotal ? eurosBreves(s.totalExpense) : '' },
     )
   }
 
@@ -402,8 +402,8 @@ function Cabecera() {
         >
           <span>
             {rellena(t(perCapita !== null ? 'presupuesto.meta' : 'presupuesto.meta.sinTotal'), {
-              gastos: hayTotal ? eurM(s.totalExpense, 2) : '',
-              porHab: perCapita !== null ? eur0(perCapita) : '',
+              gastos: hayTotal ? eurosBreves(s.totalExpense) : '',
+              porHab: perCapita !== null ? euros(perCapita) : '',
               hab: s.population > 0 ? num(s.population) : '—',
               fecha: fmtDateLong(data.generatedAt, locale),
             })}
@@ -462,7 +462,7 @@ function Cabecera() {
                     color: resalta ? 'var(--warn-ink)' : 'var(--ink)',
                   }}
                 >
-                  {eur0(v)}
+                  {euros(v)}
                 </span>
               </div>
             ))}
@@ -596,7 +596,7 @@ function CascadaCard() {
                 whiteSpace: 'nowrap',
               }}
             >
-              {eur0(f.v)}
+              {euros(f.v)}
             </div>
           </div>
         ))}
@@ -605,7 +605,7 @@ function CascadaCard() {
       {!c.cuadra && (
         <p style={{ margin: '12px 0 0', fontSize: 'var(--fs-meta)', color: 'var(--warn-ink)' }}>
           {rellena(t('presupuesto.cascada.noCuadra'), {
-            suma: eur0(c.inicial + c.modificaciones),
+            suma: euros(c.inicial + c.modificaciones),
           })}
         </p>
       )}
@@ -635,9 +635,9 @@ function CascadaCard() {
                     mucho:
                       ingresos.ejecutado / c.ejecutado >= 2 ? t('presupuesto.callout.mucho') : '',
                     pctIng: pct1(pctIng),
-                    ingEj: eurM(ingresos.ejecutado),
+                    ingEj: eurosBreves(ingresos.ejecutado),
                     pctGas: pct1(c.ejecutadoSobreDefinitivoPct),
-                    gasEj: eurM(c.ejecutado),
+                    gasEj: eurosBreves(c.ejecutado),
                   },
                 )}
               />
@@ -875,7 +875,7 @@ function CapitulosCard() {
                   whiteSpace: 'nowrap',
                 }}
               >
-                {eur0(f.ejecutado)}
+                {euros(f.ejecutado)}
               </div>
               <div
                 className="mono"
@@ -938,8 +938,8 @@ function CapitulosCard() {
               ),
               {
                 capitulo: dominante.rotulo,
-                definitivo: eurM(dominante.definitivo, 2),
-                inicial: eurM(dominante.definitivo - dominante.modificaciones, 2),
+                definitivo: eurosBreves(dominante.definitivo),
+                inicial: eurosBreves(dominante.definitivo - dominante.modificaciones),
                 cuota: pct0(dominante.cuotaAmpliacion * 100),
                 pct: pct1(dominante.pctEjecutado),
                 // Al euro, no en millones como el resto de la frase: esta cifra
@@ -947,7 +947,7 @@ function CapitulosCard() {
                 // más abajo, donde ese capítulo aparece como «905.517 €». La
                 // frase existe para que el lector lo compruebe allí, y un
                 // «0,91 M€» le pone una conversión por delante.
-                conprel: eur0(cero?.conprel ?? 0),
+                conprel: euros(cero?.conprel ?? 0),
               },
             )}
           />
@@ -1088,9 +1088,9 @@ function AprobadoPar() {
             <Aviso tone="warn" id="descuadre">
               <Marcado
                 texto={rellena(t('presupuesto.descuadre'), {
-                  ingresos: eur0(s.totalRevenue),
-                  gastos: eur0(s.totalExpense),
-                  dif: eur0(Math.abs(desequilibrio)),
+                  ingresos: euros(s.totalRevenue),
+                  gastos: euros(s.totalExpense),
+                  dif: euros(Math.abs(desequilibrio)),
                 })}
               />
             </Aviso>
@@ -1135,7 +1135,7 @@ function ProgramasCard() {
         eyebrow={rellena(t('presupuesto.prog.eyebrow'), { year: s.year })}
         title={
           hayTotal
-            ? rellena(t('presupuesto.prog.title'), { total: eurM(s.totalExpense, 2) })
+            ? rellena(t('presupuesto.prog.title'), { total: eurosBreves(s.totalExpense) })
             : t('presupuesto.prog.title.sinTotal')
         }
         right={
@@ -1199,7 +1199,7 @@ function ProgramasCard() {
                   whiteSpace: 'nowrap',
                 }}
               >
-                {eur0(g.amount)}
+                {euros(g.amount)}
               </div>
               <div
                 className="mono"
@@ -1246,8 +1246,8 @@ function ProgramasCard() {
           }}
         >
           {rellena(t('presupuesto.prog.deuda'), {
-            importe: eurM(deudaPrograma.amount, 2),
-            deuda: eurM(ultimoDeuda.deudaEuros, 2),
+            importe: eurosBreves(deudaPrograma.amount),
+            deuda: eurosBreves(ultimoDeuda.deudaEuros),
           })}
         </p>
       )}
@@ -1297,7 +1297,7 @@ function DeudaVivaSection() {
               className="mono"
               style={{ fontSize: 'var(--fs-card)', fontWeight: 500, letterSpacing: '-.02em' }}
             >
-              {eur0(ultimo.deudaEuros)}
+              {euros(ultimo.deudaEuros)}
             </div>
             <div style={{ fontSize: 'var(--fs-micro)', color: 'var(--ink50)', marginTop: 2 }}>
               {rellena(t('presupuesto.deuda.saldo'), { year: ultimo.ejercicio })}
@@ -1340,7 +1340,7 @@ function DeudaVivaSection() {
                   className="mono"
                   style={{ fontSize: 'var(--fs-meta)', textAlign: 'right', whiteSpace: 'nowrap' }}
                 >
-                  {eur0(p.deudaEuros)}
+                  {euros(p.deudaEuros)}
                 </span>
                 <span
                   className="mono"
@@ -1360,7 +1360,7 @@ function DeudaVivaSection() {
                 >
                   {p.delta === null
                     ? '—'
-                    : `${p.delta > 0 ? '+' : p.delta < 0 ? '−' : ''}${eur0(Math.abs(p.delta)).replace(/\s?€$/, '')}`}
+                    : `${p.delta > 0 ? '+' : p.delta < 0 ? '−' : ''}${entero(Math.round(Math.abs(p.delta)))}`}
                 </span>
               </div>
             ))}
@@ -1371,7 +1371,7 @@ function DeudaVivaSection() {
           >
             {rellena(t('presupuesto.deuda.desde'), {
               anio: primero.ejercicio,
-              delta: `${delta > 0 ? '+' : ''}${eur0(delta)}`,
+              delta: `${delta > 0 ? '+' : ''}${euros(delta)}`,
             })}
           </div>
         </div>
@@ -1389,7 +1389,7 @@ function DeudaVivaSection() {
                 importe:
                   programaDeuda && budget?.snapshot?.year
                     ? rellena(t('presupuesto.deuda.nota1.importe'), {
-                        x: eurM(programaDeuda.amount, 2),
+                        x: eurosBreves(programaDeuda.amount),
                         year: budget.snapshot.year,
                       })
                     : '',
@@ -1410,8 +1410,8 @@ function DeudaVivaSection() {
                   percentil,
                   n: num(reparto.n),
                   aCero: num(reparto.aCero),
-                  mediana: eur0(reparto.mediana ?? 0),
-                  p90: eurM(reparto.p90, 2),
+                  mediana: euros(reparto.mediana ?? 0),
+                  p90: eurosBreves(reparto.p90),
                 })}
               />
             </p>
@@ -1549,7 +1549,7 @@ function ContratacionBanda() {
       nota: rellena(t('presupuesto.contra.menores.nota'), {
         span: spanMenores ? ` ${spanMenores}` : '',
         adj: num(adjudicados.length),
-        importe: eurM(r.importeSinIva, 2),
+        importe: eurosBreves(r.importeSinIva),
         pctN: pct0((r.n / adjudicados.length) * 100),
         pctImporte: totalNeto > 0 ? pct1((r.importeSinIva / totalNeto) * 100) : '—',
       }),
@@ -1577,7 +1577,7 @@ function ContratacionBanda() {
         rellena(t('presupuesto.contra.ted.nota'), {
           span: spanTed ? ` ${spanTed}` : '',
           valued: num(valorados.length),
-          total: eurM(totalTed, 2),
+          total: eurosBreves(totalTed),
         }) +
         (cuotaMayor >= 0.25
           ? rellena(t('presupuesto.contra.ted.mayor'), { pct: pct0(cuotaMayor * 100) })
@@ -1596,7 +1596,7 @@ function ContratacionBanda() {
           ? rellena(t('presupuesto.contra.bdns.recibidas'), {
               n: num(concBdns.total),
               span: spanConc ? ` ${spanConc}` : '',
-              importe: eurM(concBdns.importe, 1),
+              importe: eurosBreves(concBdns.importe),
             })
           : ''),
       enlace: t('presupuesto.contra.bdns.link'),
@@ -1700,7 +1700,7 @@ function RealSubsidies() {
               n: num(conc.total),
               span: spanConc ? ` ${spanConc}` : '',
               conv: num(conc.convocatorias),
-              importe: eurM(conc.importe, 1),
+              importe: eurosBreves(conc.importe),
               desde: conc.desde ? conc.desde.slice(0, 4) : '—',
             })}
           </p>
@@ -1722,7 +1722,7 @@ function RealSubsidies() {
                 }}
               >
                 <span className="mono" style={{ fontSize: 'var(--fs-aux)', fontWeight: 600 }}>
-                  {typeof c.importe === 'number' ? eur0(c.importe) : '—'}
+                  {typeof c.importe === 'number' ? euros(c.importe) : '—'}
                 </span>
                 <span
                   className="mono"
@@ -1754,7 +1754,7 @@ function ObrasEnCursoSection() {
   const { data } = useObras()
   const obras = data?.obras ?? []
   if (obras.length === 0) return null
-  const eur = (n) => (typeof n === 'number' ? eur0(n) : '—')
+  const eur = (n) => (typeof n === 'number' ? euros(n) : '—')
   const renove = obras.filter((o) => o.programa === 'renove')
   const feder = obras.filter((o) => o.programa !== 'renove')
   return (
@@ -1904,7 +1904,7 @@ function ContratacionMenorSection() {
   const r = resumenMenores(contratos)
   if (r.n === 0) return null
 
-  const eur = eur0
+  const eur = euros
   // El denominador son los ADJUDICADOS, no las filas del snapshot: de las 809
   // hay 108 anuladas, revocadas, desistidas o sin clasificar. Compararse con
   // ellas diluye el peso de la vía directa —23 % en vez del 26 % real— y lo
@@ -2170,7 +2170,3 @@ export default function Presupuesto() {
     </div>
   )
 }
-
-// Se exporta para que una prueba pueda comprobar que el ejecutado se pinta con
-// el nombre de la magnitud y no con una palabra prestada.
-export { formatEuros }

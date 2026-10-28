@@ -1,3 +1,5 @@
+import { euros } from '../../lib/formatters'
+
 /**
  * La división, escrita como división.
  *
@@ -70,7 +72,10 @@ export function EcuacionCoste({ indicador, formatea, entrega }) {
       {celda(
         'num',
         `Coste declarado ${entrega ?? ''}`.trim(),
-        `${i.numerador.valor.toLocaleString('es-ES', { maximumFractionDigits: 0 })} €`,
+        // Al euro, no al céntimo: el dato de la ecuación es el cociente, y la lectura
+        // de debajo dice la misma cifra con `euros`. Con céntimos la celda no cabía en
+        // su rejilla de 1001 a 1013 px con la barra lateral (mobile.spec).
+        euros(i.numerador.valor),
         'actualizado cada entrega',
       )}
       {signo('÷', 'div')}

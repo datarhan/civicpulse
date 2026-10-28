@@ -55,12 +55,12 @@ const porRotulo = (facts) => Object.fromEntries(facts.map((f) => [f.k, f.v]))
 describe('biografía — los chips de «lo esencial»', () => {
   it('la retribución dice de qué año es', () => {
     const f = porRotulo(hechosClave(informe))
-    expect(f['Retribución 2023']).toBe('43.067 €/año')
+    expect(f['Retribución 2023']).toBe('43.067\u00a0€/año')
     expect(f).not.toHaveProperty('Retribución')
   })
 
   it('el patrimonio declarado dice de qué año es', () => {
-    expect(porRotulo(hechosClave(informe))['Patrimonio declarado 2023']).toMatch(/394\.119 €/)
+    expect(porRotulo(hechosClave(informe))['Patrimonio declarado 2023']).toMatch(/394\.119\u00a0€/)
   })
 
   it('«desde» se rotula como lo que mide: la cadena de cargos en la corporación', () => {

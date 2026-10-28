@@ -1,18 +1,10 @@
 import { useLocale } from '../../i18n'
-import { rellena } from '../../lib/formatters'
+import { eurosExactos, rellena } from '../../lib/formatters'
 import { infoLote } from '../../lib/tender-lotes'
 
-// El presupuesto base va al CÉNTIMO y sin notación compacta: existe para que
-// el lector lo case con lo que va a leer en PLACSP —«53.409,63 Euros»— y un
-// «53 mil €» no se casa con nada. Además esquiva la deriva de CLDR entre el
-// portátil y la CI, que sólo afecta a la unidad compacta.
-const fmtEurExacto = (n) =>
-  new Intl.NumberFormat('es-ES', {
-    style: 'currency',
-    currency: 'EUR',
-    minimumFractionDigits: 2,
-    maximumFractionDigits: 2,
-  }).format(n)
+// El presupuesto base va al CÉNTIMO (`eurosExactos`) y nunca en compacto:
+// existe para que el lector lo case con lo que va a leer en PLACSP —«53.409,63
+// Euros»—, y un «53 mil €» no se casa con nada.
 
 /**
  * La línea que dice por qué el enlace de esta fila enseña otra cifra.
@@ -53,7 +45,7 @@ export default function NotaDeLote({ contract, grupos, tenders, color, style }) 
           n: lote.numero,
           total: lote.total,
           exp,
-          base: fmtEurExacto(lote.presupuestoBase),
+          base: eurosExactos(lote.presupuestoBase),
         })
       : lote.numero && lote.total
         ? rellena(t('landing.contratos.lote.deTotal'), {

@@ -2,13 +2,12 @@ import { Link, useParams } from 'react-router-dom'
 import { Card, CorreoPartible, Pill, SectionHead, ExtLink } from '../components/Primitives'
 import Compartir from '../components/Compartir'
 import { useOfficials, partyColor, findOfficial } from '../hooks/useOfficials'
-import { fmtDateLong, rellena } from '../lib/formatters'
+import { eurosBreves, eurosExactos, fmtDateLong, rellena } from '../lib/formatters'
 import { usePromises, STATUS_LABEL, STATUS_TONE } from '../hooks/usePromises'
 import { usePlenoAgendas } from '../hooks/usePlenoAgendas'
 import { useQuejas } from '../hooks/useQuejas'
 import { useBioReportRoutes } from '../hooks/useBioReportRoutes'
 import { useDedicaciones, estadoRetribucion, desgloseAntiguedad } from '../hooks/useDedicaciones'
-import { formatEurosCents } from '../hooks/useIspa'
 import { conteoFicha } from '../lib/conteo-ficha'
 import { useDepartmentStats } from '../hooks/useDepartmentStats'
 import { useElections } from '../hooks/useElections'
@@ -88,6 +87,8 @@ function AreaSpend({ slugs }) {
     .filter((b) => b && b.contratacion.contratos > 0)
     .sort((a, b) => b.contratacion.importeEur - a.contratacion.importeEur)
   if (rows.length === 0) return null
+  // Un área con contratos y 0 € es un área cuyos contratos no publican importe
+  // (`importeAdjudicado` da null y no suma): se pinta «—», no «0 €».
   const totalEur = rows.reduce((n, b) => n + b.contratacion.importeEur, 0)
   const totalN = rows.reduce((n, b) => n + b.contratacion.contratos, 0)
   // El periodo de EXACTAMENTE las filas que se suman: el de cada área, unido. Sin
@@ -137,7 +138,7 @@ function AreaSpend({ slugs }) {
             </Link>
             <span>
               <span className="mono" style={{ fontWeight: 600 }}>
-                {(b.contratacion.importeEur / 1e6).toFixed(2).replace('.', ',')} M€
+                {eurosBreves(b.contratacion.importeEur || null) || '—'}
               </span>
               <span style={{ color: 'var(--ink50)', fontSize: 'var(--fs-micro)', marginLeft: 8 }}>
                 {b.contratacion.contratos} {t('departamentos.card.contratos')}
@@ -154,8 +155,7 @@ function AreaSpend({ slugs }) {
           }}
           className="mono"
         >
-          {t('cargos.detalle.area.note')} · {totalN} ·{' '}
-          {(totalEur / 1e6).toFixed(2).replace('.', ',')} M€
+          {t('cargos.detalle.area.note')} · {totalN} · {eurosBreves(totalEur || null) || '—'}
         </div>
       </Card>
     </section>
@@ -214,7 +214,7 @@ function Retribucion({ slug }) {
               {/* Con céntimos y millares, como en /cargos: «59195,48 €» aquí y
                   «59.195,48 €» allí eran la misma cifra escrita de dos maneras. */}
               <span className="mono" style={{ fontSize: 'var(--fs-card)', fontWeight: 700 }}>
-                {formatEurosCents(d.amountEuros)}
+                {eurosExactos(d.amountEuros)}
               </span>
               <Pill tone="neutral" size="xs">
                 {d.dedicacion}
@@ -232,8 +232,8 @@ function Retribucion({ slug }) {
                 }}
               >
                 {rellena(t('cargos.detalle.pago.antiguedad'), {
-                  antiguedad: formatEurosCents(desglose.antiguedad),
-                  base: formatEurosCents(desglose.base),
+                  antiguedad: eurosExactos(desglose.antiguedad),
+                  base: eurosExactos(desglose.base),
                 })}
               </p>
             )}

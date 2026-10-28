@@ -1,6 +1,7 @@
 import { Card, ExtLink } from '../Primitives'
 import { useTendersTed } from '../../hooks/useTendersTed'
 import { yearSpan } from '../../lib/year-span'
+import { eurosBreves } from '../../lib/formatters'
 import { rotuloDe, useT } from '../../i18n'
 
 /**
@@ -18,8 +19,7 @@ function naturalezaDe(t, anuncio) {
   return tipo ? rotuloDe(t, `contrato.tipo.${tipo}`, naturaleza) : naturaleza
 }
 
-const eur = (n) =>
-  n >= 1e6 ? `${(n / 1e6).toFixed(2).replace('.', ',')} M€` : `${Math.round(n / 1e3)} k€`
+const eur = eurosBreves
 
 /**
  * Contracts published above the EU threshold.

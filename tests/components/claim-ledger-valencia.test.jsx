@@ -58,6 +58,7 @@ import {
   masLargasPrimero,
 } from '../setup/castellano'
 import { pintaYLee } from '../setup/pinta-y-lee'
+import { eurosBreves } from '../../src/lib/formatters'
 
 const lee = (f) => JSON.parse(readFileSync(`public/data/${f}`, 'utf8'))
 const MANIFIESTO = lee('pleno-claims/index.json')
@@ -171,8 +172,10 @@ const DERIVADOS = ELEGIDAS.flatMap((it) => {
  */
 const IDENTIFICADORES = [
   ...ELEGIDAS.map((it) => it.claim.entities?.countUnit).filter((u) => typeof u === 'string'),
-  'K €',
-  'M €',
+  // `eurosBreves` escribe los millones «55,7 M€»; los miles, enteros.
+  eurosBreves(2_000_000)
+    .replace(/^[\d.,\s]+/u, '')
+    .trim(),
 ]
 
 /**

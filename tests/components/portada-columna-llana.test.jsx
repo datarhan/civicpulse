@@ -9,7 +9,7 @@ import { magnitudDelEjercicio } from '../../src/scraper/presupuesto-lectura'
 import { magnitudesDe, revisarMagnitudes } from '../../src/scraper/magnitudes-fiscales'
 import { ALLOWED_DEPARTMENT_SLUGS } from '../../src/scraper/departments'
 import { partyOfAlcaldia } from '../../src/scraper/corporation-seats'
-import { eur0, eurM } from '../../src/components/Presupuesto/FigurasEnBreve'
+import { euros, eurosBreves } from '../../src/lib/formatters'
 import { yearSpan } from '../../src/lib/year-span'
 import { isCommittedContract } from '../../src/lib/contract-status'
 import { AlcaldeBox } from '../../src/variants/direction-d/blocks/AlcaldeBox'
@@ -87,17 +87,19 @@ describe('AlcaldeBox · gobierno municipal en euros redondeados', () => {
     const { container } = pinta(<AlcaldeBox />)
     const fecha = REAL['/data/budget-execution.json'].latest.fechaListado
     await waitFor(() =>
-      expect(container.textContent).toContain(`${eurM(m.valor)} tope del presupuesto`),
+      expect(container.textContent).toContain(`${eurosBreves(m.valor)} tope del presupuesto`),
     )
-    expect(container.textContent).toContain(`${eurM(m.valor)} tope del presupuesto ${m.year}`)
-    expect(container.textContent).toContain(`${eurM(m.ejecutado)} gastados a ${fecha}`)
+    expect(container.textContent).toContain(
+      `${eurosBreves(m.valor)} tope del presupuesto ${m.year}`,
+    )
+    expect(container.textContent).toContain(`${eurosBreves(m.ejecutado)} gastados a ${fecha}`)
     // La cifra a la unidad ya no se lee, pero sigue a un toque: en el title.
-    expect(container.textContent).not.toContain(eur0(m.valor))
+    expect(container.textContent).not.toContain(euros(m.valor))
     const enlace = [...container.querySelectorAll('a[title]')].find((a) =>
       a.textContent.includes('tope del presupuesto'),
     )
-    expect(enlace.getAttribute('title')).toContain(eur0(m.valor))
-    expect(enlace.getAttribute('title')).toContain(eur0(m.ejecutado))
+    expect(enlace.getAttribute('title')).toContain(euros(m.valor))
+    expect(enlace.getAttribute('title')).toContain(euros(m.ejecutado))
   })
 
   // «67,1 M€ tope de gasto 2025» ponía «gasto» pegado al crédito definitivo, y
@@ -120,12 +122,12 @@ describe('AlcaldeBox · gobierno municipal en euros redondeados', () => {
     expect(container.textContent).toContain(
       `${stats.awardedContracts} contratos adjudicados en ${anios}`,
     )
-    expect(container.textContent).toContain(`${eurM(stats.awardedTotalEuros)} sumados`)
-    expect(container.textContent).not.toContain(eur0(stats.awardedTotalEuros))
+    expect(container.textContent).toContain(`${eurosBreves(stats.awardedTotalEuros)} sumados`)
+    expect(container.textContent).not.toContain(euros(stats.awardedTotalEuros))
     const enlace = [...container.querySelectorAll('a[title]')].find((a) =>
       a.textContent.includes('contratos adjudicados'),
     )
-    expect(enlace.getAttribute('title')).toContain(eur0(stats.awardedTotalEuros))
+    expect(enlace.getAttribute('title')).toContain(euros(stats.awardedTotalEuros))
   })
 })
 

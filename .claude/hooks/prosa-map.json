@@ -168,8 +168,7 @@
       "/datos"
     ],
     "ispa.json": [
-      "/cargos",
-      "/cargos/:slug"
+      "/cargos"
     ],
     "journalist-assignments.json": [
       "/cargos",

@@ -4,6 +4,7 @@ import { Embudo } from '../components/coste-esperado/Embudo'
 import DataAsOf from '../components/DataAsOf'
 import { useCosteEsperado } from '../hooks/useCosteEsperado'
 import { useT } from '../i18n'
+import { eurosBreves } from '../lib/formatters'
 import { estadoLlano } from '../lib/estado-llano.js'
 
 /**
@@ -23,10 +24,7 @@ import { estadoLlano } from '../lib/estado-llano.js'
  * tubería de fichas firmadas.
  */
 
-const formateaEuros = (v) =>
-  v >= 1e6
-    ? `${(v / 1e6).toLocaleString('es-ES', { maximumFractionDigits: 2 })} M€`
-    : `${Math.round(v).toLocaleString('es-ES')} €`
+const formateaEuros = eurosBreves
 
 // Los motivos de exclusión son slugs del esquema; aquí llevan su tilde. Un
 // motivo sin entrada se enseña con el slug tal cual — visible antes que mudo.

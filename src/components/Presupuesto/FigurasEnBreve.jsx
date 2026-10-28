@@ -8,16 +8,8 @@ import { useT } from '../../i18n'
  * este módulo no arrastra ningún snapshot al grafo de rutas de quien lo usa.
  */
 
-// Compartidos con la portada («Tu ayuntamiento en 30 segundos»), que dice las
-// mismas cifras con las mismas figuras y el mismo formato.
-export const eur0 = (n) =>
-  new Intl.NumberFormat('es-ES', {
-    style: 'currency',
-    currency: 'EUR',
-    maximumFractionDigits: 0,
-  }).format(n)
-export const eurM = (n) =>
-  `${(n / 1e6).toLocaleString('es-ES', { minimumFractionDigits: 1, maximumFractionDigits: 1 })} M€`
+// Los euros salen de `euros` y `eurosBreves` (lib/formatters), como en el resto
+// del sitio; aquí sólo queda el porcentaje que comparten con la portada.
 export const pct0 = (n) => Math.round(n).toLocaleString('es-ES')
 
 export function Barra({ children, alto = 12, etiqueta }) {

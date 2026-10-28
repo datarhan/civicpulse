@@ -8,6 +8,7 @@ import { Sparkline } from '../Charts'
 import { CitationPills } from './Citations'
 import { usePromises, STATUS_LABEL, STATUS_TONE } from '../../hooks/usePromises'
 import { trozos } from '../../lib/texto-negrita.js'
+import { eurosExactos } from '../../lib/formatters'
 
 // ─── Section: portrait (now slim — most info is in HeroBand) ─────────────
 
@@ -310,7 +311,7 @@ export function FinancialPanel({ payload, sourceMap }) {
           >
             <th style={{ padding: '6px 8px 6px 0' }}>Año</th>
             <th style={{ padding: '6px 8px' }}>Concepto</th>
-            <th style={{ padding: '6px 8px', textAlign: 'right' }}>Importe (€)</th>
+            <th style={{ padding: '6px 8px', textAlign: 'right' }}>Importe</th>
             <th style={{ padding: '6px 0 6px 8px' }}>Fuente</th>
           </tr>
         </thead>
@@ -341,7 +342,7 @@ export function FinancialPanel({ payload, sourceMap }) {
                   whiteSpace: 'nowrap',
                 }}
               >
-                {f.amountEuros !== undefined ? f.amountEuros.toLocaleString('es-ES') : '—'}
+                {eurosExactos(f.amountEuros) || '—'}
               </td>
               <td style={{ padding: '8px 0 8px 8px' }}>
                 <CitationPills ids={f.sourceIds} sourceMap={sourceMap} />

@@ -3,9 +3,10 @@
  * Shared presentation formatters. Kept dependency-free (no React, no fetch)
  * so any hook, component, or page can import them.
  *
- * NOTE on scope: `formatEuros` (useBudget) stays deliberately NOT centralised
- * here — its local copies (ClaimLedger.jsx etc.) have genuinely different
- * output (suffix "M €" vs prefix "€…M"). `useTenders.formatDate` remains the
+ * Euros: `euros`, `eurosExactos` and `eurosBreves` below are the ONE way the
+ * site writes money (convention fixed by the operator on 2026-10-28). The
+ * published reportajes and unit rates (€/t, €/kWh…) keep their own formats; the
+ * header of `euros` lists why. `useTenders.formatDate` remains the
  * import path pages historically use, but it now delegates to fmtDateShort;
  * the "—"-fallback variants (Datos/Laboratorio/QuejaDetail) compose it as
  * `fmtDateShort(iso) || '—'`.
@@ -341,6 +342,94 @@ export function entero(n) {
     maximumFractionDigits: 0,
     useGrouping: 'always',
   })
+}
+
+/** Espacio duro: el «€» no se queda solo al principio de la línea siguiente. */
+const NBSP = ' '
+
+/** Sólo un número es un importe: «» o «14984» de un JSON sin validar, no. */
+const esImporte = (/** @type {unknown} */ n) => typeof n === 'number' && Number.isFinite(n)
+
+/**
+ * Un importe en euros, para leer: «14.984 €».
+ *
+ * La convención del sitio, fijada por el operador el 28-10-2026. Hasta entonces
+ * convivían doce formas —«€14.984,46», «126.1 M €» con punto inglés, «879 mil
+ * €», «19,30 M€», «€5112»…—, cada componente con su copia de `fmtEur`, y la
+ * misma concesión del agua salía «55,7 M€» en la portada y «56 M €» en el mapa.
+ * Tres funciones y nada más:
+ *
+ *   euros         «14.984 €»     la lectura llana, la de por defecto
+ *   eurosExactos  «14.984,46 €»  sólo donde el céntimo es el dato
+ *   eurosBreves   «19,3 M€»      sólo donde falta sitio
+ *
+ * Las tres ponen el símbolo detrás con un espacio duro, agrupan los miles
+ * también con cuatro cifras («5.112 €», como `entero`) y, sin número, devuelven
+ * la cadena vacía: un «0 €» es un dato que nadie midió. Quien pinta decide qué
+ * va en su lugar —«importe no publicado», «—»— y el «sin IVA»: el formato no
+ * sabe de qué importe se trata. En valencià se escribe igual, así que no hay
+ * idioma.
+ *
+ * No se monta con `style: 'currency'`: el CLDR de la CI no es el del portátil
+ * (en compacto uno escribe «2 M €» y el otro «2 M€»), y la cifra sí es estable.
+ *
+ * Quedan fuera, y escriben lo que escribían: los reportajes publicados (sus
+ * cifras están congeladas con la pieza), las tarifas por unidad («66,94 €/t»,
+ * cuyos decimales son parte de la medida) y la prosa que cita una cifra tal
+ * como la imprime su fuente.
+ *
+ * @param {number|null|undefined} n
+ * @returns {string}
+ */
+export function euros(n) {
+  if (!esImporte(n)) return ''
+  // `|| 0`: −0,4 redondea a −0, y `toLocaleString` lo escribiría «-0».
+  return `${entero(Math.round(/** @type {number} */ (n)) || 0)}${NBSP}€`
+}
+
+/**
+ * Un importe al céntimo: «14.984,46 €», siempre con dos decimales.
+ *
+ * Sólo donde el céntimo es el dato: una retribución fijada en un acuerdo, el
+ * presupuesto base de un lote, una cifra que se coteja con su fuente céntimo a
+ * céntimo. En cualquier otro sitio, `euros`.
+ *
+ * @param {number|null|undefined} n
+ * @returns {string}
+ */
+export function eurosExactos(n) {
+  if (!esImporte(n)) return ''
+  const cifra = /** @type {number} */ (n).toLocaleString('es-ES', {
+    minimumFractionDigits: 2,
+    maximumFractionDigits: 2,
+    useGrouping: 'always',
+  })
+  return `${cifra}${NBSP}€`
+}
+
+/**
+ * Un importe donde falta sitio —la cifra de una tarjeta, un globo del mapa, el
+ * rótulo de una barra—: «19,3 M€» desde el millón, con un decimal siempre.
+ *
+ * Por debajo del millón escribe lo mismo que `euros`. No hay «879 mil €» ni «879
+ * k€»: «879.000 €» ocupa los mismos nueve caracteres y es una forma menos.
+ *
+ * El umbral se mira sobre el importe ya redondeado al euro: 999.999,6 € es «1,0
+ * M€» y no «1.000.000 €», que sería la misma cifra escrita de la otra manera.
+ *
+ * @param {number|null|undefined} n
+ * @returns {string}
+ */
+export function eurosBreves(n) {
+  if (!esImporte(n)) return ''
+  const v = /** @type {number} */ (n)
+  if (Math.abs(Math.round(v)) < 1e6) return euros(v)
+  const millones = (v / 1e6).toLocaleString('es-ES', {
+    minimumFractionDigits: 1,
+    maximumFractionDigits: 1,
+    useGrouping: 'always',
+  })
+  return `${millones}${NBSP}M€`
 }
 
 /**
