@@ -2188,6 +2188,25 @@ body.cp-kiosk .cp-live-container {
   }
 }
 
+/* /quejas/:id — el camino de la queja: fecha (o «Ahora», «Pendiente»), el
+   punto y el paso. La columna de la fecha medía 120 px en cualquier pantalla,
+   lo que pedía «2 de julio de 2026» en una línea; desde que los pasos que faltan
+   llevan una frase, a 375 px el texto se quedaba en una columna de 150 px y
+   cada frase en cinco líneas. Por debajo de 720 la fecha se parte en dos y la
+   columna baja a 84 px, donde caben «Pendiente» y «2 de julio» en mono. */
+.cp-camino-paso {
+  display: grid;
+  grid-template-columns: 120px 12px 1fr;
+  gap: 12px;
+  align-items: flex-start;
+}
+@media (max-width: 720px) {
+  .cp-camino-paso {
+    grid-template-columns: 84px 12px 1fr;
+    gap: 10px;
+  }
+}
+
 /* /quejas — el cruce quejas–contratos: el barrio y dos cifras. Las columnas de
    cifras se dimensionan a su contenido y la del barrio a su palabra más larga,
    así que el mínimo de la tabla son tres palabras que no se parten

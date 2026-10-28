@@ -122,13 +122,10 @@ function PasoItem({ paso, label, tone = 'neutral', detail, idioma, t }) {
     <div
       data-paso={paso.clave}
       data-estado={paso.estado}
-      style={{
-        display: 'grid',
-        gridTemplateColumns: '120px 12px 1fr',
-        gap: 12,
-        alignItems: 'flex-start',
-        padding: '10px 0',
-      }}
+      // La rejilla vive en `index.css` (`.cp-camino-paso`): en el móvil estrecha
+      // la columna de la fecha, y una @media no cabe en el prop `style`.
+      className="cp-camino-paso"
+      style={{ padding: '10px 0' }}
     >
       <div
         className="mono"
