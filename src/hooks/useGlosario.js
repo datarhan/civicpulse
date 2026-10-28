@@ -112,6 +112,37 @@ export function useGlosario() {
         def: t('glosario.urgencia.def'),
         to: '/plenos#ultimo-pleno',
       },
+      // Quién más vigila al Ayuntamiento. Cada una lleva a su tarjeta de /quejas,
+      // con lo que consta en ella sobre Riba-roja; son nombres propios, que se
+      // pintan tal cual (`mismoNombre`).
+      {
+        clave: 'sindicDeGreuges',
+        termino: t('glosario.sindicDeGreuges.termino'),
+        def: t('glosario.sindicDeGreuges.def'),
+        to: '/quejas#sindic',
+        mismoNombre: true,
+      },
+      {
+        clave: 'consellDeTransparencia',
+        termino: t('glosario.consellDeTransparencia.termino'),
+        def: t('glosario.consellDeTransparencia.def'),
+        to: '/quejas#consell-transparencia',
+        mismoNombre: true,
+      },
+      {
+        clave: 'ctbg',
+        termino: t('glosario.ctbg.termino'),
+        def: t('glosario.ctbg.def'),
+        to: '/quejas#ctbg',
+        mismoNombre: true,
+      },
+      {
+        clave: 'sindicaturaDeComptes',
+        termino: t('glosario.sindicaturaDeComptes.termino'),
+        def: t('glosario.sindicaturaDeComptes.def'),
+        to: '/quejas#sindicatura',
+        mismoNombre: true,
+      },
     ],
     [t],
   )

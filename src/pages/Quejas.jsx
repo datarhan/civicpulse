@@ -17,6 +17,8 @@ import { medibilidad, registroUtilizable } from '../lib/reloj-lpacap'
 import { contarConsideraciones } from '../lib/sindic-consideraciones'
 import { useT } from '../i18n'
 import { EnBreveQuejas } from '../components/Quejas/EnBreveQuejas'
+import { QuienMasVigila, QueEsLaInstitucion } from '../components/Quejas/QuienMasVigila'
+import { DatosTecnicos } from '../components/Quejas/DatosTecnicos'
 import DivisorLecturas from '../components/DivisorLecturas'
 
 const TELEGRAM_BOT_URL = 'https://t.me/munigraph_bot'
@@ -131,7 +133,10 @@ function SindicCard() {
       <SectionHead
         eyebrow="Escalado externo · Síndic de Greuges CV"
         title="Expedientes del Síndic sobre Riba-roja de Túria"
+        as="h3"
+        size="head"
       />
+      <QueEsLaInstitucion clave="sindicDeGreuges" />
 
       <div
         style={{ fontSize: 'var(--fs-aux)', color: 'var(--ink70)', lineHeight: 1.55, marginTop: 8 }}
@@ -445,11 +450,14 @@ function SindicaturaCard() {
     </div>
   )
   return (
-    <Card style={{ marginTop: 14 }}>
+    <Card style={{ marginTop: 14, scrollMarginTop: 24 }} id="sindicatura">
       <SectionHead
         eyebrow="Fiscalización externa · Sindicatura de Comptes CV"
         title="Auditorías del órgano de control externo sobre Riba-roja"
+        as="h3"
+        size="head"
       />
+      <QueEsLaInstitucion clave="sindicaturaDeComptes" />
       {dedicated.length === 0 && sectoral.length === 0 ? (
         <div
           style={{
@@ -472,17 +480,8 @@ function SindicaturaCard() {
         </div>
       ) : (
         <div style={{ marginTop: 8 }}>
-          <div
-            style={{
-              fontSize: 'var(--fs-aux)',
-              color: 'var(--ink50)',
-              lineHeight: 1.5,
-              marginBottom: 4,
-            }}
-          >
-            La Sindicatura audita <em>a posteriori</em> si el dinero público se gestionó
-            correctamente — el complemento fiscalizador al Síndic de Greuges y el CTBG.
-          </div>
+          {/* Qué es la Sindicatura lo dice ya la línea del glosario de arriba;
+              aquí había otra frase que lo repetía con otras palabras. */}
           {a218 && <Art218 a={a218} />}
           {dedicated.map((r) => (
             <Report key={r.id} r={r} dedicatedRow />
@@ -556,11 +555,14 @@ function ConsellCvCard() {
     return 'var(--ink50)'
   }
   return (
-    <Card style={{ marginTop: 14 }}>
+    <Card style={{ marginTop: 14, scrollMarginTop: 24 }} id="consell-transparencia">
       <SectionHead
         eyebrow="Escalado externo · Consell de Transparència CV"
         title="Resoluciones autonómicas de transparencia"
+        as="h3"
+        size="head"
       />
+      <QueEsLaInstitucion clave="consellDeTransparencia" />
       <div style={{ display: 'flex', gap: 20, marginTop: 10, flexWrap: 'wrap' }}>
         <div>
           <div
@@ -676,11 +678,14 @@ function CtbgCard() {
   const { stats, matched } = data
   const when = fmtDateShort(data.generatedAt)
   return (
-    <Card style={{ marginTop: 14 }}>
+    <Card style={{ marginTop: 14, scrollMarginTop: 24 }} id="ctbg">
       <SectionHead
         eyebrow="Escalado externo · CTBG"
         title="Resoluciones estatales sobre Riba-roja"
+        as="h3"
+        size="head"
       />
+      <QueEsLaInstitucion clave="ctbg" />
       <div style={{ display: 'flex', gap: 20, marginTop: 10, flexWrap: 'wrap' }}>
         <div>
           <div
@@ -1234,10 +1239,6 @@ function DashboardView({ data }) {
             </Link>
           ))}
         </div>
-        <div style={{ fontSize: 'var(--fs-micro)', color: 'var(--ink50)', marginTop: 12 }}>
-          Snapshot: {data.generatedAt ? new Date(data.generatedAt).toLocaleString('es-ES') : '—'} ·{' '}
-          Fuente: {data.source?.platform} · Formato: {data.source?.spec}
-        </div>
       </Card>
     </>
   )
@@ -1378,11 +1379,17 @@ export default function Quejas() {
           <DashboardView data={data} />
         )}
       </div>
-      <SindicCard />
-      <SindicaturaCard />
-      <ConsellCvCard />
-      <CtbgCard />
+      {/* Primero a quién puede acudir un vecino —el Síndic con cualquier queja,
+          el Consell con una petición de información—; luego el órgano estatal,
+          que dice adónde no ir, y la Sindicatura, que audita las cuentas. */}
+      <QuienMasVigila>
+        <SindicCard />
+        <ConsellCvCard />
+        <CtbgCard />
+        <SindicaturaCard />
+      </QuienMasVigila>
       <BopCard />
+      {data && <DatosTecnicos data={data} />}
     </div>
   )
 }

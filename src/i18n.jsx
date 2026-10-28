@@ -1068,6 +1068,19 @@ export const CATALOGUE = {
     'quejas.cruce.col.quejas': 'Quejas',
     'quejas.cruce.col.adjudicado': 'Adjudicado situado',
     'quejas.cruce.sinSituado': 'sin contratos situados',
+    'quejas.cruce.pendiente':
+      'Esta tabla pone, barrio a barrio, las quejas al lado de lo adjudicado en contratos situados allí, y se dibuja cuando haya quejas en al menos {minimo} barrios.',
+    'quejas.cruce.pendiente.n': ' De momento, las hay en {n}.',
+    'quejas.cruce.pendiente.ninguno':
+      ' De momento, ninguna queja publicada dice en qué barrio está.',
+    'quejas.vigilan.titulo': 'Si el Ayuntamiento no responde: quién más vigila',
+    'quejas.vigilan.intro':
+      'Instituciones públicas que no dependen del Ayuntamiento. Cada tarjeta dice qué hace la institución y qué consta sobre Riba-roja en lo que publica.',
+    'quejas.datosTecnicos.rotulo': 'Datos técnicos',
+    'quejas.datosTecnicos.copia': 'Copia de los datos: {fecha}',
+    'quejas.datosTecnicos.fuente': 'Fuente: {fuente}',
+    'quejas.datosTecnicos.formato': 'Formato: {formato}',
+    'quejas.datosTecnicos.fichero': 'Fichero completo:',
     'dashboard.eyebrow': 'Voz ciudadana · Dashboard',
     'dashboard.title': 'Salud del canal de quejas',
 
@@ -2077,6 +2090,18 @@ export const CATALOGUE = {
     'glosario.urgencia.termino': 'Asunto de urgencia',
     'glosario.urgencia.def':
       'Un asunto que no estaba en el orden del día con que se convocó el pleno y que se presenta por razones de urgencia. El pleno vota primero si lo debate; sólo si lo acepta se trata.',
+    'glosario.sindicDeGreuges.termino': 'Síndic de Greuges',
+    'glosario.sindicDeGreuges.def':
+      'El defensor del pueblo de la Comunitat Valenciana. Atiende gratis las quejas de cualquier persona contra una administración valenciana, ayuntamientos incluidos, por ejemplo cuando no contesta. Sus resoluciones recomiendan o recuerdan deberes legales; no obligan.',
+    'glosario.consellDeTransparencia.termino': 'Consell de Transparència',
+    'glosario.consellDeTransparencia.def':
+      'El órgano valenciano que resuelve las reclamaciones de transparencia: las de quien pide información pública a una administración valenciana, ayuntamientos incluidos, y no la obtiene.',
+    'glosario.ctbg.termino': 'Consejo de Transparencia y Buen Gobierno',
+    'glosario.ctbg.def':
+      'El órgano estatal de transparencia. Una reclamación de transparencia contra un ayuntamiento valenciano no va a él, sino al Consell de Transparència.',
+    'glosario.sindicaturaDeComptes.termino': 'Sindicatura de Comptes',
+    'glosario.sindicaturaDeComptes.def':
+      'El órgano de control externo de la Comunitat Valenciana: audita, después de gastado el dinero, si las cuentas del sector público valenciano, ayuntamientos incluidos, y su gestión se ajustan a la ley.',
     'presupuesto.fuentes.title': 'Dos fuentes, dos presupuestos aprobados',
     'presupuesto.fuentes.conprel': 'CONPREL · Ministerio de Hacienda',
     'presupuesto.fuentes.municipal': 'Estado de ejecución del propio Ayuntamiento',
@@ -3636,6 +3661,18 @@ export const CATALOGUE = {
     'quejas.cruce.col.quejas': 'Queixes',
     'quejas.cruce.col.adjudicado': 'Adjudicat situat',
     'quejas.cruce.sinSituado': 'sense contractes situats',
+    'quejas.cruce.pendiente':
+      'Aquesta taula posa, barri a barri, les queixes al costat del que s’ha adjudicat en contractes situats allí, i es dibuixa quan hi haja queixes en almenys {minimo} barris.',
+    'quejas.cruce.pendiente.n': ' De moment, n’hi ha en {n}.',
+    'quejas.cruce.pendiente.ninguno': ' De moment, cap queixa publicada no diu en quin barri és.',
+    'quejas.vigilan.titulo': 'Si l’Ajuntament no respon: qui més vigila',
+    'quejas.vigilan.intro':
+      'Institucions públiques que no depenen de l’Ajuntament. Cada targeta diu què fa la institució i què hi consta sobre Riba-roja en el que publica.',
+    'quejas.datosTecnicos.rotulo': 'Dades tècniques',
+    'quejas.datosTecnicos.copia': 'Còpia de les dades: {fecha}',
+    'quejas.datosTecnicos.fuente': 'Font: {fuente}',
+    'quejas.datosTecnicos.formato': 'Format: {formato}',
+    'quejas.datosTecnicos.fichero': 'Fitxer complet:',
     'dashboard.eyebrow': 'Veu ciutadana · Tauler',
     'dashboard.title': 'Salut del canal de queixes',
 
@@ -4521,6 +4558,18 @@ export const CATALOGUE = {
     'glosario.urgencia.termino': "Assumpte d'urgència",
     'glosario.urgencia.def':
       "Un assumpte que no estava en l'ordre del dia amb què es va convocar el ple i que es presenta per raons d'urgència. El ple vota primer si el debat; només si ho accepta es tracta.",
+    'glosario.sindicDeGreuges.termino': 'Síndic de Greuges',
+    'glosario.sindicDeGreuges.def':
+      'El defensor del poble de la Comunitat Valenciana. Atén de franc les queixes de qualsevol persona contra una administració valenciana, ajuntaments inclosos, per exemple quan no contesta. Les seues resolucions recomanen o recorden deures legals; no obliguen.',
+    'glosario.consellDeTransparencia.termino': 'Consell de Transparència',
+    'glosario.consellDeTransparencia.def':
+      "L'òrgan valencià que resol les reclamacions de transparència: les de qui demana informació pública a una administració valenciana, ajuntaments inclosos, i no l'obté.",
+    'glosario.ctbg.termino': 'Consejo de Transparencia y Buen Gobierno',
+    'glosario.ctbg.def':
+      "L'òrgan estatal de transparència. Una reclamació de transparència contra un ajuntament valencià no va a ell, sinó al Consell de Transparència.",
+    'glosario.sindicaturaDeComptes.termino': 'Sindicatura de Comptes',
+    'glosario.sindicaturaDeComptes.def':
+      "L'òrgan de control extern de la Comunitat Valenciana: audita, després de gastats els diners, si els comptes del sector públic valencià, ajuntaments inclosos, i la seua gestió s'ajusten a la llei.",
     'presupuesto.fuentes.title': 'Dos fonts, dos pressupostos aprovats',
     'presupuesto.fuentes.conprel': "CONPREL · Ministeri d'Hisenda",
     'presupuesto.fuentes.municipal': "Estat d'execució del propi Ajuntament",
