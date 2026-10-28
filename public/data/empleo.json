@@ -1,25 +1,586 @@
 {
-  "generatedAt": "2026-10-27T10:10:09.674Z",
+  "generatedAt": "2026-10-28T10:54:29.641Z",
   "source": {
     "origin": "https://ribaocupacio.portalemp.com",
     "platform": "portalemp — ribaocupacio · Agència de Col·locació (ADL), Ajuntament de Riba-roja de Túria",
     "listEndpoint": "https://ribaocupacio.portalemp.com/ofertas.html?acc=tableData"
   },
   "stats": {
-    "total": 38,
-    "openTotal": 37,
-    "inRibaRoja": 25,
+    "total": 43,
+    "openTotal": 42,
+    "inRibaRoja": 29,
     "closingSoon": 8,
-    "withDetail": 38,
+    "withDetail": 43,
     "byMonth": {
-      "2026-10": 15,
-      "2026-09": 19,
-      "2026-08": 1,
+      "2026-10": 22,
+      "2026-09": 18,
       "2026-05": 2,
       "2025-11": 1
     }
   },
   "items": [
+    {
+      "id": "2554",
+      "fo": 2554,
+      "codigo": "2026/00253",
+      "titulo": "Operario/a para control de calidad en obras de construcción",
+      "publishedAt": "2026-10-28",
+      "deadline": "2026-12-28",
+      "location": "C/ Pedrapiquers, s/n-Pol. Ind. Riba-roja de Túria",
+      "status": "Abierta",
+      "statusTone": "ok",
+      "url": "https://ribaocupacio.portalemp.com/ofertas.html?fo=2554",
+      "inRibaRoja": true,
+      "detail": {
+        "fields": [
+          {
+            "label": "Código",
+            "value": "2026/00253"
+          },
+          {
+            "label": "Nombre de la oferta",
+            "value": "Operario/a para control de calidad en obras de construcción"
+          },
+          {
+            "label": "Observaciones",
+            "value": "Requisitos:"
+          },
+          {
+            "label": "Tipo de contrato",
+            "value": "CONTRATO INDEFINIDO"
+          },
+          {
+            "label": "Número de puestos",
+            "value": "1"
+          },
+          {
+            "label": "Lugar puesto de trabajo",
+            "value": "C/ Pedrapiquers, s/n-Pol. Ind., Municipio: Riba-roja de Túria, Provincia: Valencia, CP: 46190"
+          },
+          {
+            "label": "Tipo de jornada laboral",
+            "value": "Completa"
+          },
+          {
+            "label": "Observaciones jornada",
+            "value": "Jornada de lunes a viernes de 08:00h. a 18:00h."
+          },
+          {
+            "label": "Horario",
+            "value": "Jornada de lunes a viernes de 08:00h. a 18:00h."
+          },
+          {
+            "label": "Salario",
+            "value": "Según convenio + variable"
+          },
+          {
+            "label": "Funciones",
+            "value": "La persona seleccionada tendrá como misión realizar el control de calidad en obra acudiendo con la furgoneta de empresa, siguiendo la ruta marcada por el responsable, realizando las siguientes funciones: - Realización de ensayos de materiales en obra según normativa. - Toma de muestras. - Registro de datos de las muestras recogidas. - Recogida de muestras de materiales de obra (hormigón, morteros, aceros, ladrillos, suelos, zahorras, etc.). - Categorización de las muestras obtenidas. - Transporte de muestras recogidas al laboratorio para su posterior análisis. - Mantenimiento básico de equipos y vehículos. - Apoyo en el laboratorio descargando, cargando y desmoldando probetas. Orden y limpieza."
+          }
+        ],
+        "tipoContrato": "CONTRATO INDEFINIDO",
+        "numPuestos": "1",
+        "observaciones": "Requisitos:",
+        "municipio": "Riba-roja de Túria",
+        "provincia": "Valencia",
+        "cp": "46190",
+        "jornada": "Completa",
+        "horario": "Jornada de lunes a viernes de 08:00h. a 18:00h.",
+        "salario": "Según convenio + variable",
+        "funciones": "La persona seleccionada tendrá como misión realizar el control de calidad en obra acudiendo con la furgoneta de empresa, siguiendo la ruta marcada por el responsable, realizando las siguientes funciones: - Realización de ensayos de materiales en obra según normativa. - Toma de muestras. - Registro de datos de las muestras recogidas. - Recogida de muestras de materiales de obra (hormigón, morteros, aceros, ladrillos, suelos, zahorras, etc.). - Categorización de las muestras obtenidas. - Transporte de muestras recogidas al laboratorio para su posterior análisis. - Mantenimiento básico de equipos y vehículos. - Apoyo en el laboratorio descargando, cargando y desmoldando probetas. Orden y limpieza.",
+        "ocupaciones": []
+      }
+    },
+    {
+      "id": "2555",
+      "fo": 2555,
+      "codigo": "2026/00252",
+      "titulo": "Operario/a para control de calidad en obras de construcción (climatización, electricidad, fontanería)",
+      "publishedAt": "2026-10-28",
+      "deadline": "2026-12-28",
+      "location": "C/ Pedrapiquers, s/n-Pol. Ind. \"El Oliveral\" 46190 Ribarroja del Turia (Valencia) Riba-roja de Túria",
+      "status": "Abierta",
+      "statusTone": "ok",
+      "url": "https://ribaocupacio.portalemp.com/ofertas.html?fo=2555",
+      "inRibaRoja": true,
+      "detail": {
+        "fields": [
+          {
+            "label": "Código",
+            "value": "2026/00252"
+          },
+          {
+            "label": "Nombre de la oferta",
+            "value": "Operario/a para control de calidad en obras de construcción (climatización, electricidad, fontanería)"
+          },
+          {
+            "label": "Observaciones",
+            "value": "Requisitos:"
+          },
+          {
+            "label": "Tipo de contrato",
+            "value": "CONTRATO INDEFINIDO"
+          },
+          {
+            "label": "Número de puestos",
+            "value": "1"
+          },
+          {
+            "label": "Lugar puesto de trabajo",
+            "value": "C/ Pedrapiquers, s/n-Pol. Ind. \"El Oliveral\" 46190 Ribarroja del Turia (Valencia), Municipio: Riba-roja de Túria, Provincia: Valencia, CP: 46190"
+          },
+          {
+            "label": "Tipo de jornada laboral",
+            "value": "Completa"
+          },
+          {
+            "label": "Observaciones jornada",
+            "value": "Jornada de lunes a viernes de 08:00h. a 18:00h."
+          },
+          {
+            "label": "Horario",
+            "value": "Jornada de lunes a viernes de 08:00h. a 18:00h."
+          },
+          {
+            "label": "Salario",
+            "value": "Según convenio + variable"
+          },
+          {
+            "label": "Funciones",
+            "value": "La persona seleccionada tendrá como misión realizar el control de calidad en obra acudiendo con la furgoneta de empresa, siguiendo la ruta marcada por el responsable, realizando las siguientes funciones: - Realización de ensayos en obra según normativa. - Pruebas de estanqueidad en cubiertas y ventanas para comprobar filtraciones, pruebas de fontanería, saneamiento, baja tensión, PCI, ACS, climatización, Blower Door - Registro de datos de los ensayos realizados. - Mantenimiento básico de equipos y vehículos. - Apoyo en oficina técnica. - Realización de informes. - Apoyo en el laboratorio. Orden y limpieza."
+          },
+          {
+            "label": "Requiere vehículo propio",
+            "value": "Sí"
+          }
+        ],
+        "tipoContrato": "CONTRATO INDEFINIDO",
+        "numPuestos": "1",
+        "observaciones": "Requisitos:",
+        "municipio": "Riba-roja de Túria",
+        "provincia": "Valencia",
+        "cp": "46190",
+        "jornada": "Completa",
+        "horario": "Jornada de lunes a viernes de 08:00h. a 18:00h.",
+        "salario": "Según convenio + variable",
+        "funciones": "La persona seleccionada tendrá como misión realizar el control de calidad en obra acudiendo con la furgoneta de empresa, siguiendo la ruta marcada por el responsable, realizando las siguientes funciones: - Realización de ensayos en obra según normativa. - Pruebas de estanqueidad en cubiertas y ventanas para comprobar filtraciones, pruebas de fontanería, saneamiento, baja tensión, PCI, ACS, climatización, Blower Door - Registro de datos de los ensayos realizados. - Mantenimiento básico de equipos y vehículos. - Apoyo en oficina técnica. - Realización de informes. - Apoyo en el laboratorio. Orden y limpieza.",
+        "vehiculo": "Sí",
+        "ocupaciones": []
+      }
+    },
+    {
+      "id": "2375",
+      "fo": 2375,
+      "codigo": "2026/00077",
+      "titulo": "Operario/a peón muestreador",
+      "publishedAt": "2026-10-28",
+      "deadline": "2026-12-28",
+      "location": "Pol. Ind. Entrevies Riba-roja de Túria",
+      "status": "Abierta",
+      "statusTone": "ok",
+      "url": "https://ribaocupacio.portalemp.com/ofertas.html?fo=2375",
+      "inRibaRoja": true,
+      "detail": {
+        "fields": [
+          {
+            "label": "Código",
+            "value": "2026/00077"
+          },
+          {
+            "label": "Nombre de la oferta",
+            "value": "Operario/a peón muestreador"
+          },
+          {
+            "label": "Observaciones",
+            "value": "Formación a cargo de la empresa No requiere titulación. Se valorarán conocimientos en las áreas citadas y formación en PRL. Imprescindible carnet de conducir"
+          },
+          {
+            "label": "Sector CNAE",
+            "value": "ACTIVIDADES PROFESIONALES, CIENTÍFICAS Y TÉCNICAS"
+          },
+          {
+            "label": "Tipo de contrato",
+            "value": "CONTRATO INDEFINIDO"
+          },
+          {
+            "label": "Número de puestos",
+            "value": "2"
+          },
+          {
+            "label": "Categoría profesional",
+            "value": "PEONES"
+          },
+          {
+            "label": "Lugar puesto de trabajo",
+            "value": "Pol. Ind. Entrevies, Municipio: Riba-roja de Túria, Provincia: Valencia, CP: 46190"
+          },
+          {
+            "label": "Tipo de jornada laboral",
+            "value": "Completa Turnos: Turno partido"
+          },
+          {
+            "label": "Horario",
+            "value": "7:30-13:30 / 15:00-17:00"
+          },
+          {
+            "label": "Salario",
+            "value": "15000-18000"
+          },
+          {
+            "label": "Funciones",
+            "value": "- Toma de muestra en obra y fabricación de probetas de hormigón fresco, marcado, traslado, desmolde, limpieza y guardado de las mimas. - Toma de muestra en obra de acero, áridos, cementos, morteros, hormigón endurecido, prefabricados, etc. - Auxiliar para realización ensayos sobre materiales: preparación de muestras de acero, áridos, cementos, morteros, prefabricados, etc. - Pruebas de servicio en cubiertas, fachadas, saneamiento y fontanería. - Limpieza y mantenimiento de los equipos y las instalaciones."
+          },
+          {
+            "label": "Requiere vehículo propio",
+            "value": "Sí"
+          }
+        ],
+        "tipoContrato": "CONTRATO INDEFINIDO",
+        "numPuestos": "2",
+        "categoria": "PEONES",
+        "observaciones": "Formación a cargo de la empresa No requiere titulación. Se valorarán conocimientos en las áreas citadas y formación en PRL. Imprescindible carnet de conducir",
+        "municipio": "Riba-roja de Túria",
+        "provincia": "Valencia",
+        "cp": "46190",
+        "jornada": "Completa Turnos: Turno partido",
+        "horario": "7:30-13:30 / 15:00-17:00",
+        "salario": "15000-18000",
+        "funciones": "- Toma de muestra en obra y fabricación de probetas de hormigón fresco, marcado, traslado, desmolde, limpieza y guardado de las mimas. - Toma de muestra en obra de acero, áridos, cementos, morteros, hormigón endurecido, prefabricados, etc. - Auxiliar para realización ensayos sobre materiales: preparación de muestras de acero, áridos, cementos, morteros, prefabricados, etc. - Pruebas de servicio en cubiertas, fachadas, saneamiento y fontanería. - Limpieza y mantenimiento de los equipos y las instalaciones.",
+        "vehiculo": "Sí",
+        "ocupaciones": []
+      }
+    },
+    {
+      "id": "2269",
+      "fo": 2269,
+      "codigo": "2025/00300",
+      "titulo": "Ayudante de sondista",
+      "publishedAt": "2026-10-28",
+      "deadline": "2026-12-28",
+      "location": "C/ Sequia de LLorca, nº 53 - Pol. Ind. Entrevies Riba-roja de Túria",
+      "status": "Abierta",
+      "statusTone": "ok",
+      "url": "https://ribaocupacio.portalemp.com/ofertas.html?fo=2269",
+      "inRibaRoja": true,
+      "detail": {
+        "fields": [
+          {
+            "label": "Código",
+            "value": "2025/00300"
+          },
+          {
+            "label": "Nombre de la oferta",
+            "value": "Ayudante de sondista"
+          },
+          {
+            "label": "Sector CNAE",
+            "value": "ACTIVIDADES PROFESIONALES, CIENTÍFICAS Y TÉCNICAS"
+          },
+          {
+            "label": "Tipo de contrato",
+            "value": "CONTRATO INDEFINIDO"
+          },
+          {
+            "label": "Duración del contrato",
+            "value": "Más de 6 meses"
+          },
+          {
+            "label": "Número de puestos",
+            "value": "1"
+          },
+          {
+            "label": "Categoría profesional",
+            "value": "OFICIAL DE 2ª"
+          },
+          {
+            "label": "Lugar puesto de trabajo",
+            "value": "C/ Sequia de LLorca, nº 53 - Pol. Ind. Entrevies, Municipio: Riba-roja de Túria, Provincia: Valencia, CP: 46190"
+          },
+          {
+            "label": "Tipo de jornada laboral",
+            "value": "Completa Turnos: Turno partido"
+          },
+          {
+            "label": "Horario",
+            "value": "7:30 a 13:30 y 15:00 a 17:00"
+          },
+          {
+            "label": "Salario",
+            "value": "18000-25000 a convenir"
+          },
+          {
+            "label": "Funciones",
+            "value": "El puesto que se oferta es para ayudante de sondista para perforación de sondeos para estudios geotécnicos en el centro de Riba-roja, a continuación les indicamos las principales funciones del puesto: Ayuda al sondista a la realización de perforaciones. Carga y descarga de material de perforación, cajas de sondeos, etc. Ayuda con el suministro de agua. Traslado con camión del equipo de sondeo. Imprescindible Permiso tipo C y CAP Se valorará experiencia en el sector y formación PRL"
+          }
+        ],
+        "tipoContrato": "CONTRATO INDEFINIDO",
+        "duracion": "Más de 6 meses",
+        "numPuestos": "1",
+        "categoria": "OFICIAL DE 2ª",
+        "municipio": "Riba-roja de Túria",
+        "provincia": "Valencia",
+        "cp": "46190",
+        "jornada": "Completa Turnos: Turno partido",
+        "horario": "7:30 a 13:30 y 15:00 a 17:00",
+        "salario": "18000-25000 a convenir",
+        "funciones": "El puesto que se oferta es para ayudante de sondista para perforación de sondeos para estudios geotécnicos en el centro de Riba-roja, a continuación les indicamos las principales funciones del puesto: Ayuda al sondista a la realización de perforaciones. Carga y descarga de material de perforación, cajas de sondeos, etc. Ayuda con el suministro de agua. Traslado con camión del equipo de sondeo. Imprescindible Permiso tipo C y CAP Se valorará experiencia en el sector y formación PRL",
+        "ocupaciones": [
+          {
+            "nombre": "OPERADORES DE PLANTA DE PROSPECCIONES Y SONDEOS"
+          }
+        ]
+      }
+    },
+    {
+      "id": "2553",
+      "fo": 2553,
+      "codigo": "2026/00251",
+      "titulo": "Pinche de cocina",
+      "publishedAt": "2026-10-27",
+      "deadline": "2026-12-27",
+      "location": "San Antonio de Benagéber (Valencia)",
+      "status": "Abierta",
+      "statusTone": "ok",
+      "url": "https://ribaocupacio.portalemp.com/ofertas.html?fo=2553",
+      "inRibaRoja": false,
+      "detail": {
+        "fields": [
+          {
+            "label": "Código",
+            "value": "2026/00251"
+          },
+          {
+            "label": "Nombre de la oferta",
+            "value": "Pinche de cocina"
+          },
+          {
+            "label": "Observaciones",
+            "value": "Sustitución de licencia de un mes de duración desde el 17/12/26, jornada completa, turno partido."
+          },
+          {
+            "label": "Sector CNAE",
+            "value": "ACTIVIDADES SANITARIAS Y DE SERVICIOS SOCIALES"
+          },
+          {
+            "label": "Tipo de contrato",
+            "value": "CONTRATO DE RELEVO"
+          },
+          {
+            "label": "Duración del contrato",
+            "value": "De 1 a 6 meses"
+          },
+          {
+            "label": "Número de puestos",
+            "value": "1"
+          },
+          {
+            "label": "Categoría profesional",
+            "value": "Ayudantes no titulados"
+          },
+          {
+            "label": "Lugar puesto de trabajo",
+            "value": "Municipio: San Antonio de Benagéber, Provincia: Valencia, CP: 46184"
+          },
+          {
+            "label": "Tipo de jornada laboral",
+            "value": "Completa Turnos: Turno partido"
+          },
+          {
+            "label": "Observaciones jornada",
+            "value": "Jornada partida"
+          },
+          {
+            "label": "Horario",
+            "value": "Mañanas de 09:30 A 15:00 H. Tardes de 19:00 A 21:30 H."
+          },
+          {
+            "label": "Salario",
+            "value": "1.331 € BRUTO MES"
+          },
+          {
+            "label": "Funciones",
+            "value": "LIMPIEZA DE COCINA Y DE OFFICE, Y AYUDA A LA COCINERA EN LA ELABORACIÓN DE LOS MENÚS"
+          }
+        ],
+        "tipoContrato": "CONTRATO DE RELEVO",
+        "duracion": "De 1 a 6 meses",
+        "numPuestos": "1",
+        "categoria": "Ayudantes no titulados",
+        "observaciones": "Sustitución de licencia de un mes de duración desde el 17/12/26, jornada completa, turno partido.",
+        "municipio": "San Antonio de Benagéber",
+        "provincia": "Valencia",
+        "cp": "46184",
+        "jornada": "Completa Turnos: Turno partido",
+        "horario": "Mañanas de 09:30 A 15:00 H. Tardes de 19:00 A 21:30 H.",
+        "salario": "1.331 € BRUTO MES",
+        "funciones": "LIMPIEZA DE COCINA Y DE OFFICE, Y AYUDA A LA COCINERA EN LA ELABORACIÓN DE LOS MENÚS",
+        "ocupaciones": [
+          {
+            "nombre": "PINCHES DE COCINA"
+          }
+        ]
+      }
+    },
+    {
+      "id": "2552",
+      "fo": 2552,
+      "codigo": "2026/00250",
+      "titulo": "Auxiliar gerocultor/a",
+      "publishedAt": "2026-10-27",
+      "deadline": "2026-12-26",
+      "location": "RESIDENCIA DE MAYORES SAN ANTONIO DE BENAGÉBER San Antonio de Benagéber (Valencia)",
+      "status": "Abierta",
+      "statusTone": "ok",
+      "url": "https://ribaocupacio.portalemp.com/ofertas.html?fo=2552",
+      "inRibaRoja": false,
+      "detail": {
+        "fields": [
+          {
+            "label": "Código",
+            "value": "2026/00250"
+          },
+          {
+            "label": "Nombre de la oferta",
+            "value": "Auxiliar gerocultor/a"
+          },
+          {
+            "label": "Observaciones",
+            "value": "7 plazas por sustitución de licencia de un mes de duración (4 de mañana, 1 de tarde y 2 de noche) a jornada completa."
+          },
+          {
+            "label": "Sector CNAE",
+            "value": "ACTIVIDADES SANITARIAS Y DE SERVICIOS SOCIALES"
+          },
+          {
+            "label": "Tipo de contrato",
+            "value": "CONTRATO DE OBRA O SERVICIO DETERMINADO"
+          },
+          {
+            "label": "Duración del contrato",
+            "value": "De 1 a 6 meses"
+          },
+          {
+            "label": "Número de puestos",
+            "value": "7"
+          },
+          {
+            "label": "Categoría profesional",
+            "value": "Ingenieros Técnicos, Peritos y Ayudantes Titulados"
+          },
+          {
+            "label": "Lugar puesto de trabajo",
+            "value": "RESIDENCIA DE MAYORES SAN ANTONIO DE BENAGÉBER, Municipio: San Antonio de Benagéber, Provincia: Valencia, CP: 46184"
+          },
+          {
+            "label": "Tipo de jornada laboral",
+            "value": "Completa Turnos: Turno mañana, Turno tarde, Turno noche"
+          },
+          {
+            "label": "Observaciones jornada",
+            "value": "7 plazas por sustitución de licencia de un mes de duración (4 de mañana, 1 de tarde y 2 de noche) a jornada completa."
+          },
+          {
+            "label": "Horario",
+            "value": "Horario de mañana, o de tarde o de noche."
+          },
+          {
+            "label": "Salario",
+            "value": "1.443,41 € BRUTO AL MES"
+          },
+          {
+            "label": "Funciones",
+            "value": "Atención a personas mayores en las actividades de la vida diaria."
+          },
+          {
+            "label": "Requiere vehículo propio",
+            "value": "Sí"
+          }
+        ],
+        "tipoContrato": "CONTRATO DE OBRA O SERVICIO DETERMINADO",
+        "duracion": "De 1 a 6 meses",
+        "numPuestos": "7",
+        "categoria": "Ingenieros Técnicos, Peritos y Ayudantes Titulados",
+        "observaciones": "7 plazas por sustitución de licencia de un mes de duración (4 de mañana, 1 de tarde y 2 de noche) a jornada completa.",
+        "municipio": "San Antonio de Benagéber",
+        "provincia": "Valencia",
+        "cp": "46184",
+        "jornada": "Completa Turnos: Turno mañana, Turno tarde, Turno noche",
+        "horario": "Horario de mañana, o de tarde o de noche.",
+        "salario": "1.443,41 € BRUTO AL MES",
+        "funciones": "Atención a personas mayores en las actividades de la vida diaria.",
+        "vehiculo": "Sí",
+        "ocupaciones": [
+          {
+            "nombre": "AUXILIARES DE ENFERMERÍA DE GERIATRÍA"
+          }
+        ]
+      }
+    },
+    {
+      "id": "2551",
+      "fo": 2551,
+      "codigo": "2026/00249",
+      "titulo": "Personal de limpieza",
+      "publishedAt": "2026-10-27",
+      "deadline": "2026-12-27",
+      "location": "Riba-roja de Túria",
+      "status": "Abierta",
+      "statusTone": "ok",
+      "url": "https://ribaocupacio.portalemp.com/ofertas.html?fo=2551",
+      "inRibaRoja": true,
+      "detail": {
+        "fields": [
+          {
+            "label": "Código",
+            "value": "2026/00249"
+          },
+          {
+            "label": "Nombre de la oferta",
+            "value": "Personal de limpieza"
+          },
+          {
+            "label": "Observaciones",
+            "value": "Jornada total: 17 horas y 30 minutos semanales. IMPRESCINDIBLE VEHÍCULO para acceder a las distintas zonas de trabajo."
+          },
+          {
+            "label": "Tipo de contrato",
+            "value": "CONTRATO A TIEMPO PARCIAL"
+          },
+          {
+            "label": "Duración del contrato",
+            "value": "De 1 a 6 meses"
+          },
+          {
+            "label": "Número de puestos",
+            "value": "1"
+          },
+          {
+            "label": "Lugar puesto de trabajo",
+            "value": "Municipio: Riba-roja de Túria, Provincia: Valencia"
+          },
+          {
+            "label": "Tipo de jornada laboral",
+            "value": "Parcial"
+          },
+          {
+            "label": "Horario",
+            "value": "Jornada total: 17 horas y 30 minutos semanales."
+          },
+          {
+            "label": "Salario",
+            "value": "SEGUN CONVENIO"
+          }
+        ],
+        "tipoContrato": "CONTRATO A TIEMPO PARCIAL",
+        "duracion": "De 1 a 6 meses",
+        "numPuestos": "1",
+        "observaciones": "Jornada total: 17 horas y 30 minutos semanales. IMPRESCINDIBLE VEHÍCULO para acceder a las distintas zonas de trabajo.",
+        "jornada": "Parcial",
+        "horario": "Jornada total: 17 horas y 30 minutos semanales.",
+        "salario": "SEGUN CONVENIO",
+        "ocupaciones": []
+      }
+    },
     {
       "id": "2549",
       "fo": 2549,
@@ -1972,74 +2533,6 @@
       }
     },
     {
-      "id": "2535",
-      "fo": 2535,
-      "codigo": "2026/00234",
-      "titulo": "Técnico/a",
-      "publishedAt": "2026-09-15",
-      "deadline": "2026-11-15",
-      "location": "C/ Pedrapiquers, s/n-Pol. Ind. \"El Oliveral\" 46190 Ribarroja del Turia (Valencia) Riba-roja de Túria",
-      "status": "Abierta",
-      "statusTone": "ok",
-      "url": "https://ribaocupacio.portalemp.com/ofertas.html?fo=2535",
-      "inRibaRoja": true,
-      "detail": {
-        "fields": [
-          {
-            "label": "Código",
-            "value": "2026/00234"
-          },
-          {
-            "label": "Nombre de la oferta",
-            "value": "Técnico/a"
-          },
-          {
-            "label": "Observaciones",
-            "value": "En CyTEM, laboratorio especializado en control de calidad para el sector de la construcción, queremos incorporar un/a Técnico/a para unirse al departamento de pruebas de servicio e instalaciones. Si eres una persona meticulosa y organizada y buscas un rol técnico para trabajar con autonomía, queremos conocerte. ¿Qué buscamos? Estudios Universitarios: Grado en Ingeniería Técnica Industrial, Grado en Arquitectura Técnica, Grado en Ingeniería Eléctrica o similar. Manejo de Excel y Autocad. Carnet de conducir y vehículo propio para acceder al centro de trabajo. Ser una persona organizada y meticulosa. Valorable experiencia en obras de edificación. ¡Disponer de motivación y ganas de querer dar lo mejor desde el primer día para crecer con todo el equipo! ¡No es imprescindible contar con experiencia previa! En CyTEM formaremos a la persona que se incorpore. Ubicación y movilidad: El centro de trabajo está ubicado en Ribarroja del Turia y se podrán realizar desplazamientos puntuales al centro de Alicante para formación y visitas a obras para realizar pruebas de servicio e instalaciones. ¿Qué ofrecemos? Incorporación inmediata. Contrato indefinido. Jornada completa. Horario de 08:00h. a 18:00h. de lunes a jueves y viernes de 08:00h. a 14:30h. ¡Viernes por la tarde libre! Estabilidad laboral. Empresa en continuo crecimiento con proyección de futuro preocupada por el bienestar del personal. Comunicación abierta y equipo cercano. Buen ambiente de trabajo, con profesionales altamente cualificad@s y caracterizados por un alto grado de especialización. Cultura basada en el rigor, la calidad y el compromiso. Si estás buscando un proyecto profesional donde crecer junto a un equipo comprometido, ¡Laboratorios CyTEM es tu lugar! Envíanos tu candidatura y sé parte del equipo de #CyTEM. Web: https://www.cytemsl.com/"
-          },
-          {
-            "label": "Tipo de contrato",
-            "value": "CONTRATO INDEFINIDO"
-          },
-          {
-            "label": "Número de puestos",
-            "value": "1"
-          },
-          {
-            "label": "Lugar puesto de trabajo",
-            "value": "C/ Pedrapiquers, s/n-Pol. Ind. \"El Oliveral\" 46190 Ribarroja del Turia (Valencia), Municipio: Riba-roja de Túria, Provincia: Valencia, CP: 46190"
-          },
-          {
-            "label": "Tipo de jornada laboral",
-            "value": "Completa"
-          },
-          {
-            "label": "Salario",
-            "value": "Según convenio + variable"
-          },
-          {
-            "label": "Funciones",
-            "value": "- Emitirás actas del departamento de pruebas de servicio e instalaciones. - Realizarás informes técnicos. - Visitarás obras para realizar ensayos."
-          },
-          {
-            "label": "Requiere vehículo propio",
-            "value": "Sí"
-          }
-        ],
-        "tipoContrato": "CONTRATO INDEFINIDO",
-        "numPuestos": "1",
-        "observaciones": "En CyTEM, laboratorio especializado en control de calidad para el sector de la construcción, queremos incorporar un/a Técnico/a para unirse al departamento de pruebas de servicio e instalaciones. Si eres una persona meticulosa y organizada y buscas un rol técnico para trabajar con autonomía, queremos conocerte. ¿Qué buscamos? Estudios Universitarios: Grado en Ingeniería Técnica Industrial, Grado en Arquitectura Técnica, Grado en Ingeniería Eléctrica o similar. Manejo de Excel y Autocad. Carnet de conducir y vehículo propio para acceder al centro de trabajo. Ser una persona organizada y meticulosa. Valorable experiencia en obras de edificación. ¡Disponer de motivación y ganas de querer dar lo mejor desde el primer día para crecer con todo el equipo! ¡No es imprescindible contar con experiencia previa! En CyTEM formaremos a la persona que se incorpore. Ubicación y movilidad: El centro de trabajo está ubicado en Ribarroja del Turia y se podrán realizar desplazamientos puntuales al centro de Alicante para formación y visitas a obras para realizar pruebas de servicio e instalaciones. ¿Qué ofrecemos? Incorporación inmediata. Contrato indefinido. Jornada completa. Horario de 08:00h. a 18:00h. de lunes a jueves y viernes de 08:00h. a 14:30h. ¡Viernes por la tarde libre! Estabilidad laboral. Empresa en continuo crecimiento con proyección de futuro preocupada por el bienestar del personal. Comunicación abierta y equipo cercano. Buen ambiente de trabajo, con profesionales altamente cualificad@s y caracterizados por un alto grado de especialización. Cultura basada en el rigor, la calidad y el compromiso. Si estás buscando un proyecto profesional donde crecer junto a un equipo comprometido, ¡Laboratorios CyTEM es tu lugar! Envíanos tu candidatura y sé parte del equipo de #CyTEM. Web: https://www.cytemsl.com/",
-        "municipio": "Riba-roja de Túria",
-        "provincia": "Valencia",
-        "cp": "46190",
-        "jornada": "Completa",
-        "salario": "Según convenio + variable",
-        "funciones": "- Emitirás actas del departamento de pruebas de servicio e instalaciones. - Realizarás informes técnicos. - Visitarás obras para realizar ensayos.",
-        "vehiculo": "Sí",
-        "ocupaciones": []
-      }
-    },
-    {
       "id": "2533",
       "fo": 2533,
       "codigo": "2026/00232",
@@ -2666,71 +3159,6 @@
         "horario": "L a D (2 días descanso) Turnos Tarde (14:00 a 21:36) ó Noche (18:20 - 01:56). Turnos fijos, no rotativos.",
         "salario": "1400 € brutos/mes 12 pagas",
         "funciones": "Recogida de cartón, plástico y papel. Orden y desplazamiento de palets, clasificado y retirada de mermas, recepción y recogida de camiones, mantemiento de zonas comunes",
-        "vehiculo": "Sí",
-        "ocupaciones": []
-      }
-    },
-    {
-      "id": "2526",
-      "fo": 2526,
-      "codigo": "2026/00225",
-      "titulo": "Personal de Limpieza",
-      "publishedAt": "2026-08-27",
-      "deadline": "2026-10-27",
-      "location": "La pobla de Vallbona, Bétera y Paterna Bétera (Valencia)",
-      "status": "Abierta",
-      "statusTone": "ok",
-      "url": "https://ribaocupacio.portalemp.com/ofertas.html?fo=2526",
-      "inRibaRoja": false,
-      "detail": {
-        "fields": [
-          {
-            "label": "Código",
-            "value": "2026/00225"
-          },
-          {
-            "label": "Nombre de la oferta",
-            "value": "Personal de Limpieza"
-          },
-          {
-            "label": "Observaciones",
-            "value": "Tareas de limpieza en oficinas y servicio doméstico."
-          },
-          {
-            "label": "Tipo de contrato",
-            "value": "CONTRATO A TIEMPO PARCIAL"
-          },
-          {
-            "label": "Duración del contrato",
-            "value": "Más de 6 meses"
-          },
-          {
-            "label": "Número de puestos",
-            "value": "1"
-          },
-          {
-            "label": "Lugar puesto de trabajo",
-            "value": "La pobla de Vallbona, Bétera y Paterna, Municipio: Bétera, Provincia: Valencia"
-          },
-          {
-            "label": "Horario",
-            "value": "Jornada parcial , normalmente por las mañanas. 11 horas semanales."
-          },
-          {
-            "label": "Salario",
-            "value": "Según convenio"
-          },
-          {
-            "label": "Requiere vehículo propio",
-            "value": "Sí"
-          }
-        ],
-        "tipoContrato": "CONTRATO A TIEMPO PARCIAL",
-        "duracion": "Más de 6 meses",
-        "numPuestos": "1",
-        "observaciones": "Tareas de limpieza en oficinas y servicio doméstico.",
-        "horario": "Jornada parcial , normalmente por las mañanas. 11 horas semanales.",
-        "salario": "Según convenio",
         "vehiculo": "Sí",
         "ocupaciones": []
       }
