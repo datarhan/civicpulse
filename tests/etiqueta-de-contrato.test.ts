@@ -53,6 +53,39 @@ describe('casos', () => {
     expect(etiquetaDeContrato(titulo).etiqueta).toBe(etiqueta)
   })
 
+  it.each([
+    [
+      'Contrato de servicio alumbrado ornamental navideño año 2025-2026 a través del contrato derivado del SDA de servicios de diversa índole',
+      'Servicio alumbrado ornamental navideño año 2025-2026',
+    ],
+    [
+      'Contrato de servicio de producción, programación, redacción y realización de contenidos multimedia mediante contrato derivado del SDA de servicios de diversa índole (Ctto. 27/2025)',
+      'Servicio de producción, programación, redacción y realización de contenidos multimedia',
+    ],
+    [
+      'Contrato del obras de ejecución bloque de nichos en el cementerio municipal, por procedimiento abierto simplificado',
+      'Obras de ejecución bloque de nichos en el cementerio municipal',
+    ],
+    [
+      'Inicio, aprobación del expediente y adjudicación del contrato para el suministro de energía eléctrica',
+      'Suministro de energía eléctrica',
+    ],
+    [
+      'Acuerdo inicio expediente y adjudicación contrato emergencia acondicionamiento caminos rurales',
+      'Emergencia acondicionamiento caminos rurales',
+    ],
+    [
+      'Objeto contratación es la adquisición de vestuario laboral y EPIs',
+      'Adquisición de vestuario laboral y EPIs',
+    ],
+    [
+      'Contratación derivada del sistema dinámico de adquisición (SDA) de servicios de diversa índole para el servicio de limpieza',
+      'Servicio de limpieza',
+    ],
+  ])('cortado antes del procedimiento, sin palabra colgando: %s', (titulo, etiqueta) => {
+    expect(etiquetaDeContrato(titulo).etiqueta).toBe(etiqueta)
+  })
+
   it('lo que dice qué clase de contrato es se queda: «emergencia», el lote', () => {
     expect(
       etiquetaDeContrato('Contrato verbal de emergencia para trabajos de limpieza de caminos')
@@ -64,6 +97,16 @@ describe('casos', () => {
       etiqueta: 'Lote 1 - Servicio Ayuda a Domicilio personas sin grado de dependencia',
       recortada: false,
     })
+  })
+
+  it('un título que la fuente ya trae cortado no acaba en «de»', () => {
+    expect(etiquetaDeContrato('Contrato de suministro de')).toEqual({
+      etiqueta: 'Suministro',
+      recortada: true,
+    })
+    expect(etiquetaDeContrato('Instalación Solar Fotovoltaica EDIFICIO A').etiqueta).toBe(
+      'Instalación Solar Fotovoltaica EDIFICIO A',
+    )
   })
 
   it('un título corto se queda como está, y no es «recortado»', () => {
@@ -109,9 +152,10 @@ describe('con los 814 títulos publicados', () => {
     expect(largas).toEqual([])
   })
 
-  it('si se corta, no acaba en una preposición o un artículo colgando', () => {
+  it('no acaba en una preposición, un artículo o un «mediante» colgando', () => {
+    // En minúscula: en «Instalación Solar Fotovoltaica EDIFICIO A» la «A» es un nombre.
     const colgando = TITULOS.map((t) => etiquetaDeContrato(t).etiqueta).filter((e) =>
-      /\s(de|del|la|el|los|las|en|y|e|a|al|por|para|con|sin|sobre)…$/i.test(e),
+      /\s(de|del|la|el|los|las|en|y|e|a|al|por|para|con|sin|sobre|mediante|trav[eé]s)…?$/.test(e),
     )
     expect(colgando).toEqual([])
   })
@@ -123,8 +167,15 @@ describe('con los 814 títulos publicados', () => {
     expect(malas).toEqual([])
   })
 
-  it('recorta de verdad: la mayoría de los largos sale más corta', () => {
-    const largos = TITULOS.filter((t) => plano(t).length > ETIQUETA_MAXIMA)
+  it('recorta de verdad: todo título que no cabe sale marcado como recortado', () => {
+    // «Largo» sin el punto final ni el código CPV, que la etiqueta quita sin
+    // perder nada: un título de 101 caracteres por su punto cabe entero.
+    const largos = TITULOS.filter(
+      (t) =>
+        plano(t)
+          .replace(/^\d{8}(?:-\d)?\s*-\s*/, '')
+          .replace(/[\s.]+$/, '').length > ETIQUETA_MAXIMA,
+    )
     const cortados = largos.filter((t) => etiquetaDeContrato(t).recortada)
     expect(cortados.length).toBe(largos.length)
   })
