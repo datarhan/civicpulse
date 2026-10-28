@@ -79,6 +79,59 @@ describe('biografía — los chips de «lo esencial»', () => {
     }
   })
 
+  // Filas copiadas de a-jose-angel-hernandez-bio.json y a-rfolgado-bio.json
+  // (28-10-2026). La etiqueta decía «desde 2015» con la trayectoria de debajo
+  // abriendo en 2010, y «desde 2023» a quien fue concejal de 2015 a 2019.
+  it('lo anterior al hueco se dice, sin mover el «desde»', () => {
+    const AYTO = 'Ayuntamiento de Riba-roja de Túria'
+    const conTrayectoria = (items) => ({
+      sections: [{ kind: 'career-political', payload: { items } }],
+    })
+    const hernandez = conTrayectoria([
+      {
+        role: 'Concejal — consta en el acta del pleno de 10-03-2010 (corporación 2007-2011)',
+        org: AYTO,
+        startYear: 2010,
+        endYear: 2010,
+      },
+      {
+        role: 'Concejal (electo en 2015, puesto 5 de la lista del PSOE)',
+        org: AYTO,
+        startYear: 2015,
+        endYear: 2019,
+      },
+      {
+        role: 'Concejal · Segundo Teniente de Alcalde (mandato 2019-2023)',
+        org: AYTO,
+        startYear: 2019,
+        endYear: 2023,
+      },
+      { role: 'Concejal · Tercer Teniente de Alcalde', org: AYTO, startYear: 2023 },
+    ])
+    const folgado = conTrayectoria([
+      {
+        role: 'Concejal de Compromís (cabeza de lista); con la delegación de Fomento Económico, Empleo, Actividades y Agricultura según su CV',
+        org: AYTO,
+        startYear: 2015,
+        endYear: 2019,
+      },
+      {
+        role: 'Concejal y portavoz del Grupo Municipal Compromís (cabeza de lista)',
+        org: AYTO,
+        startYear: 2023,
+        endYear: null,
+      },
+    ])
+    expect(porRotulo(hechosClave(hernandez))['En la corporación']).toBe(
+      'desde 2015 · antes, en 2010',
+    )
+    expect(porRotulo(hechosClave(folgado))['En la corporación']).toBe(
+      'desde 2023 · antes, de 2015 a 2019',
+    )
+    // Y sin nada anterior, lo de siempre.
+    expect(porRotulo(hechosClave(informe))['En la corporación']).toBe('desde 2015')
+  })
+
   it('una cifra sin año conserva el rótulo sin inventarle uno', () => {
     const sinAnio = {
       sections: [

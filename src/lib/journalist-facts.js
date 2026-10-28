@@ -78,6 +78,39 @@ export function officeSince(items) {
 }
 
 /**
+ * Los cargos que quedan ANTES del hueco de `officeSince`, como tramos de años.
+ *
+ * «Desde» es la cadena sin hueco, y un acta suelta de otra corporación no la
+ * mueve. Pero callarla tampoco es neutro: la etiqueta decía «En la corporación ·
+ * desde 2015» encima de una trayectoria que abre en 2010 (Hernández), y «desde
+ * 2023» a quien fue concejal de 2015 a 2019 (Folgado). Lo anterior se dice aparte
+ * (revisión lectora, 28-10-2026). Dos mandatos seguidos son un tramo; separados por
+ * otro hueco, dos. Sin cargo actual no hay «desde», ni por tanto «antes».
+ *
+ * @param {CareerItem[] | null | undefined} items
+ * @returns {{ desde: number, hasta: number }[]}
+ */
+export function officeBefore(items) {
+  const since = officeSince(items)
+  if (since == null) return []
+  const antes = officeItems(items)
+    .filter((i) => i.endYear != null && /** @type {number} */ (i.endYear) < since)
+    .map((i) => ({
+      desde: /** @type {number} */ (i.startYear),
+      hasta: /** @type {number} */ (i.endYear),
+    }))
+    .sort((a, b) => a.desde - b.desde)
+  /** @type {{ desde: number, hasta: number }[]} */
+  const tramos = []
+  for (const t of antes) {
+    const ultimo = tramos.at(-1)
+    if (ultimo && t.desde <= ultimo.hasta) ultimo.hasta = Math.max(ultimo.hasta, t.hasta)
+    else tramos.push({ ...t })
+  }
+  return tramos
+}
+
+/**
  * La fila de cargo más reciente, abierta o cerrada — para el subtítulo de un
  * ex cargo, que sigue teniendo un último mandato aunque ya no tenga uno actual.
  *
