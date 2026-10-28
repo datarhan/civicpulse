@@ -120,7 +120,7 @@ npm run promote-report -- a-robert-raga-bio \
 npm run correct-journalist-report -- <reportId> \
     --field <narrative.<heading>.bodyMarkdown | narrative.<heading>.heading | quote.<index>.attributedTo \
             | portrait.portfolios[<index>] | warnings[<index>] | career-political[<index>].endYear \
-            | timeline[<index>].label | sources.<id>.excerpt> \
+            | timeline[<index>].label | sources.<id>.excerpt | gaps.<field>.reason> \
     --new "<text>" --reason "<≥20 chars>" --editor "<name>"
 npm run correct-journalist-report -- <reportId> \
     --add-source <fuente.json> --section "<narrative heading>" --reason "<≥20 chars>"
@@ -334,6 +334,14 @@ fetch|pdf|chrome`; `trust` is never accepted from the file — it comes from
     amendment in it, through the same `enmendarMotivoDeFila` as
     `correct-pleno-finding`: previous reason only as a digest, signed by a person,
     no new row. The bio's `CorrectionLog` renders it as /hallazgos does.
+  - `gaps.<field>.reason` rewords why one «Laguna detectada» is a gap, addressed
+    by the row's name (split on the LAST dot: some names carry one), never by
+    index. Six bios corrected to «804 expedientes, adjudicados o no» still said
+    «Las comprobaciones nominales (804 contratos, …)» in their gaps. The reason
+    only; one gaps-detected section, one row with that name, no blank, no no-op.
+  - The correction CLI does not re-export `public/data/souls/<slug>.md`: after
+    a correction run `npm run journalist:export-soul -- <assignmentId>`, or
+    `journalist-souls.test.ts` goes red.
 
 What the first v2 taught (Gimeno, 2026-09-06/07), each fixed in code:
 

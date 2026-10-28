@@ -47,6 +47,15 @@
  *     pleno had since raised (2026-10-18), and one tense was a full re-run.
  *     The label only: the date and sources make the row an event. Exactly one
  *     timeline section, index in range, no blank, no no-op.
+ *   · gaps.<field>.reason                — reword why one «Laguna detectada» is
+ *     a gap, addressed by the row's `field` («Vínculos societarios y
+ *     personales»), not by index: the name is what the reader sees, and an
+ *     index off by one would rewrite the wrong limit. Exists because six
+ *     biographies said «Las comprobaciones nominales (804 contratos, …)» there
+ *     after their narrative had been corrected to 804 expedientes, adjudicados
+ *     o no (28-10-2026). The reason only — adding or dropping a gap is a
+ *     re-run. Exactly one gaps-detected section, exactly one row with that
+ *     field, no blank, no no-op.
  *
  * Two more ways in, each its own mode (mutually exclusive with `--field`):
  *
@@ -141,6 +150,7 @@ function usage(): never {
       '  · career-political[<index>].endYear   (--new YYYY; never null)\n' +
       '  · timeline[<index>].label             (the wording only; never the date)\n' +
       '  · sources.<id>.excerpt                (local-snapshot sources only)\n' +
+      '  · gaps.<field>.reason                 (one «Laguna detectada», by its name)\n' +
       '\n' +
       '  npm run correct-journalist-report -- <reportId> --add-source <fuente.json> \\\n' +
       '      --section "<heading>" --reason "<≥20 chars>" [--editor "<name>"]\n' +
@@ -344,6 +354,33 @@ export function applyCorrection(
         `timeline[${targetIndex}].label already reads that — a no-op correction is a mistake, not a record`,
       )
     events[targetIndex].label = trimmed
+    return { sections, original }
+  }
+  if (fieldPath.startsWith('gaps')) {
+    // Por el nombre de la fila, y partiendo por el ÚLTIMO punto: hay nombres
+    // de laguna con puntos dentro.
+    const rest = fieldPath.startsWith('gaps.') ? fieldPath.slice('gaps.'.length) : ''
+    const lastDot = rest.lastIndexOf('.')
+    if (lastDot <= 0 || rest.slice(lastDot + 1) !== 'reason')
+      throw new Error(`gaps must be addressed as gaps.<field>.reason, got ${fieldPath}`)
+    const field = rest.slice(0, lastDot)
+    const gaps = sections.filter((s) => s.kind === 'gaps-detected') as Array<
+      Extract<ReportSection, { kind: 'gaps-detected' }>
+    >
+    if (gaps.length !== 1)
+      throw new Error(`expected exactly 1 gaps-detected section, found ${gaps.length}`)
+    const rows = gaps[0].payload.missing.filter((g) => g.field === field)
+    if (rows.length !== 1)
+      throw new Error(`expected exactly 1 gap named "${field}", found ${rows.length}`)
+    const trimmed = newValue.trim()
+    if (!trimmed)
+      throw new Error('a gap reason cannot be blank — dropping a gap is a re-run, not a correction')
+    const original = rows[0].reason
+    if (trimmed === original.trim())
+      throw new Error(
+        `gaps.${field}.reason already reads that — a no-op correction is a mistake, not a record`,
+      )
+    rows[0].reason = trimmed
     return { sections, original }
   }
   if (fieldPath.startsWith('warnings')) {
