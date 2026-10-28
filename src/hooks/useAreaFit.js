@@ -181,6 +181,29 @@ export function citesNothing(rows, fields = ['formacion', 'experiencia']) {
 }
 
 /**
+ * The backing every card of a section agrees on, so the section can say it once.
+ *
+ * `sharedRespaldo` already says it once per card; on /cargos that still printed
+ * the same sentence on eight cards in a row. This is the same rule one level
+ * up: the value every card that cites anything shares, or null the moment one
+ * card disagrees or carries per-item marks — and then every card says its own,
+ * as before. A card that cites nothing has no backing to agree or disagree with
+ * and is left out of the vote; it keeps its own «what was compared» line.
+ *
+ * @param {{ rows?: any[] } | null | undefined} data
+ * @param {string[]} slugs
+ * @returns {string | null}
+ */
+export function respaldoDeSeccion(data, slugs) {
+  const valores = slugs
+    .map((slug) => fitRowsForSlug(data, slug))
+    .filter((rows) => rows.length > 0 && !citesNothing(rows))
+    .map((rows) => sharedRespaldo(rows))
+  if (!valores.length) return null
+  return valores.every((v) => v !== null && v === valores[0]) ? valores[0] : null
+}
+
+/**
  * Signed warning mappings for one official, optionally on one axis.
  *
  * Reads only what a curator signed: drafts live in the gitignored queue and

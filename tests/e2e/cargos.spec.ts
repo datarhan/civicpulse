@@ -52,9 +52,15 @@ test.describe('Cargos (/cargos)', () => {
     await expect(card).toBeVisible({ timeout: 8000 })
     await expect(page.getByText('Sin delegación de área').first()).toBeVisible({ timeout: 8000 })
     await expect(page.getByText(/no hay área con la que comparar/i).first()).toBeVisible()
+    // The label on every opposition card, the reason once in the section head.
+    const seccion = page.locator('#quien-fiscaliza')
+    const tarjetas = await seccion.locator('.cp-card').count()
+    expect(tarjetas).toBeGreaterThan(0)
+    await expect(seccion.getByText('Sin delegación de área')).toHaveCount(tarjetas)
+    await expect(seccion.getByText(/no hay área con la que comparar/i)).toHaveCount(1)
   })
 
-  test('the encaje block states its backing once per card, never as a repeated badge', async ({
+  test('the encaje block states its backing once per section, with a mark on each card', async ({
     page,
   }) => {
     // Against the REAL snapshot, not a stub: the rule under test is about how
@@ -65,13 +71,21 @@ test.describe('Cargos (/cargos)', () => {
     const body = await page.locator('body').innerText()
     const count = (re: RegExp) => (body.match(re) ?? []).length
     const cards = count(/ENCAJE DECLARADO/g)
-    const sentences = count(/Lo que aquí se cita procede del CV/g)
+    const porTarjeta = count(/Lo que aquí se cita procede del CV/g)
+    const porSeccion = count(/lo que citan las tarjetas procede del CV/g)
+    const marcas = await page.locator('[data-respaldo-marca]').count()
 
     // It renders at all (an assertion that measures nothing is the failure mode
-    // this repo keeps hitting), and never more than once per card.
+    // this repo keeps hitting). Every citing government card agrees on its
+    // backing today, so «Quién dirige qué» says it once and each card keeps the
+    // four-word mark that links to it. The day one card disagrees this goes
+    // red, and every card says its own again — which is the designed fallback.
     expect(cards).toBeGreaterThan(0)
-    expect(sentences).toBeGreaterThan(0)
-    expect(sentences).toBeLessThanOrEqual(cards)
+    expect(porSeccion).toBe(1)
+    expect(porTarjeta).toBe(0)
+    expect(marcas).toBeGreaterThan(0)
+    expect(marcas).toBeLessThanOrEqual(cards)
+    await expect(page.locator('#quien-dirige #encaje-respaldo')).toHaveCount(1)
     // And NOT as a mark beside every chip. While all the assessments agree —
     // they all do today — the per-item mark must not appear anywhere at all.
     // Matched as a bare word rather than a whole line: the mark is a flex item

@@ -2665,6 +2665,16 @@ export const CATALOGUE = {
     'encaje.sinDelegacion.label': 'Sin delegación de área',
     'encaje.sinDelegacion.note':
       'No dirige ninguna concejalía, así que no hay área con la que comparar. El bloque en blanco refleja quién gobierna, no quién está formado.',
+    // Las dos frases que /cargos repetía en cada tarjeta, dichas una vez en la
+    // cabeza de su sección; la tarjeta se queda con la etiqueta o con la marca
+    // (auditoría de las dos lecturas, §3, punto 2). «Lo que citan las tarjetas»
+    // y no «las tarjetas»: una tarjeta que no cita nada no se comprobó contra
+    // nada, y conserva su propia frase de qué se comparó.
+    'encaje.sinDelegacion.seccion':
+      'No dirigen ninguna concejalía, así que en «Encaje declarado» no hay área con la que comparar. El bloque en blanco refleja quién gobierna, no quién está formado.',
+    'encaje.seccion.autodeclarada':
+      'En «Encaje declarado», lo que citan las tarjetas procede del CV que publica la propia persona; ninguna fuente independiente lo corrobora.',
+    'encaje.card.marca.autodeclarada': 'CV declarado por la persona',
     'encaje.sinRevisar.label': 'Todavía sin revisar',
     'encaje.sinRevisar.note':
       'Dirige un área y aún no hemos revisado qué formación y experiencia declara. El hueco es nuestro, no suyo: no dice nada de esta persona, sólo que todavía no hemos hecho el trabajo.',
@@ -5208,6 +5218,11 @@ export const CATALOGUE = {
     'encaje.sinDelegacion.label': 'Sense delegació d’àrea',
     'encaje.sinDelegacion.note':
       'No dirigeix cap regidoria, així que no hi ha àrea amb què comparar. El bloc en blanc reflecteix qui governa, no qui està format.',
+    'encaje.sinDelegacion.seccion':
+      'No dirigeixen cap regidoria, així que en «Encaix declarat» no hi ha àrea amb què comparar. El bloc en blanc reflecteix qui governa, no qui està format.',
+    'encaje.seccion.autodeclarada':
+      'En «Encaix declarat», el que citen les targetes procedeix del CV que publica la mateixa persona; cap font independent no ho corrobora.',
+    'encaje.card.marca.autodeclarada': 'CV declarat per la persona',
     'encaje.sinRevisar.label': 'Encara sense revisar',
     'encaje.sinRevisar.note':
       'Dirigeix una àrea i encara no hem revisat quina formació i experiència declara. El buit és nostre, no seu: no diu res d’aquesta persona, només que encara no hem fet la feina.',
