@@ -149,7 +149,7 @@ describe('scraper/indicador-lectura', () => {
     // Lo que se movió es el COSTE declarado (36.298 € → 664.679 €) con los
     // puntos de luz subiendo: el divisor no explica el salto, así que la frase
     // dice qué se movió y no concluye «cuánto se declara» (2026-10-19).
-    expect(relativo).toMatch(/el coste declarado pasa de 36\.298 € a 664\.679 €/)
+    expect(relativo).toMatch(/el coste declarado pasa de 36\.298\s€ a 664\.679\s€/)
     expect(relativo).not.toMatch(/cuánto se declara y no en cuánto cuesta/)
   })
 
