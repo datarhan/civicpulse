@@ -553,7 +553,7 @@ function validateRef(r: unknown, idx: number, label: string, ri: number): Findin
  * última cambió algo. Si su huella es la del motivo vigente, alguien devolvió a
  * mano el texto anterior y dejó la enmienda diciendo que hubo otro.
  */
-function validateReasonAmendments(
+export function validateReasonAmendments(
   raw: unknown,
   where: string,
   correctedAt: string,
@@ -1266,6 +1266,27 @@ export function applyReasonAmendment(
         `fila${log.length === 1 ? '' : 's'}${log.length > 0 ? ` (0–${log.length - 1})` : ''}`,
     )
   }
+  return { previous: enmendarMotivoDeFila(row, newReason, amendment), row }
+}
+
+/**
+ * Las vallas 2 a 5 de `applyReasonAmendment` y la enmienda misma, sobre UNA fila
+ * de bitácora. Muta la fila y devuelve la huella del motivo sustituido.
+ *
+ * Aparte porque la bitácora de las biografías del agente (`corrections[]` de
+ * src/scraper/journalist) tiene la misma forma y el mismo problema: un motivo
+ * publicado que resulta ser falso (28-10-2026, «once días»). Una sola función
+ * para las dos es una sola regla; dos copias serían dos reglas que derivan.
+ */
+export function enmendarMotivoDeFila(
+  row: {
+    reason: string
+    correctedAt: string
+    reasonAmendments?: PlenoFindingReasonAmendment[]
+  },
+  newReason: string,
+  amendment: { reason: string; editor: string; amendedAt: string },
+): string {
   const rechazo = rechazoDeFirma(amendment.editor)
   if (rechazo) {
     throw new Error(`una enmienda de motivo la firma una persona, con su nombre: ${rechazo}`)
@@ -1276,8 +1297,7 @@ export function applyReasonAmendment(
   }
   if (nuevo === row.reason.trim()) {
     throw new Error(
-      `el motivo de corrections[${index}] ya es ese texto: una enmienda que no cambia nada ` +
-        'no se registra',
+      'el motivo de esa fila ya es ese texto: una enmienda que no cambia nada ' + 'no se registra',
     )
   }
   const porque = amendment.reason.trim()
@@ -1317,5 +1337,5 @@ export function applyReasonAmendment(
     },
   ]
   row.reason = nuevo
-  return { previous, row }
+  return previous
 }

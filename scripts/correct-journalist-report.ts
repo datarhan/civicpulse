@@ -34,11 +34,48 @@
  *     never `null` or blank — re-opening a closed mandate is a re-run. The
  *     ledger's `original` is `'null'` for an open row, the previous year for
  *     a closed one, so the reader sees `null → 2025`.
+ *   · sources.<id>.excerpt               — reword the excerpt of one of OUR OWN
+ *     measurements (`kind: 'local-snapshot'`, e.g. «public/data/tenders.json ·
+ *     comprobación nominal…»). Exists because four biographies cited «804
+ *     contratos adjudicados examinados» from a corpus of 804 expedientes,
+ *     adjudicados o no (28-10-2026), and correcting the narrative alone left
+ *     the citation saying the opposite. An external excerpt is the document's
+ *     own words and is refused: `repoint-source-url` moves it, nothing rewrites
+ *     it. ≤500 characters, no blank, no no-op.
  *   · timeline[<index>].label            — reword one dated event (0-indexed).
  *     Exists because a 2023 row still said a councillor «percibe» a salary the
  *     pleno had since raised (2026-10-18), and one tense was a full re-run.
  *     The label only: the date and sources make the row an event. Exactly one
  *     timeline section, index in range, no blank, no no-op.
+ *
+ * Two more ways in, each its own mode (mutually exclusive with `--field`):
+ *
+ *   npm run correct-journalist-report -- <reportId> \
+ *       --add-source <fuente.json> --section "<narrative heading>" \
+ *       --reason "<≥20 chars>" [--editor "<name>"]
+ *
+ *   Adds a citation and links it to one narrative section. A correction that
+ *   puts a new figure in signed prose needs a document that carries it, and the
+ *   only other way to add one was a full re-run (Rafael Gómez, 28-10-2026: the
+ *   «dos grandes contratos» were not the largest, and the largest are in
+ *   PLACSP pages no section cited). The JSON carries kind, title, excerpt,
+ *   trust and url (or localPath for a local-snapshot); `retrievedAt` is stamped
+ *   here and `id` is the next free `src-NNN`. An excerpt is required —a
+ *   citation without the words that support the sentence supports nothing—,
+ *   and a URL the report already cites is refused: link that source instead.
+ *   The ledger row is `sources.<id>`, from '' to «<title> · <url>».
+ *
+ *   npm run correct-journalist-report -- <reportId> \
+ *       --amend-reason <i> --new "<motivo nuevo>" \
+ *       --reason "<por qué se enmienda, ≥20>" --editor "<Nombre Apellido>"
+ *
+ *   Replaces the MOTIVO of `corrections[<i>]` and leaves the amendment in that
+ *   row, exactly as `correct-pleno-finding --amend-reason` does —same function
+ *   (`enmendarMotivoDeFila`), same validator, same rules: the previous reason
+ *   only as a digest, signed by a PERSON, dated, no new row. Exists because two
+ *   biographies published «se publicó en el BOP once días después del decreto
+ *   original» as the reason of a correction, and the BOP published it on the
+ *   23rd day; the eleven days are between the two decrees.
  *
  * Re-validates the whole reports snapshot before writing — which, for a
  * warning, includes the judicial-token gate: a corrected caveat that names a
@@ -73,13 +110,17 @@
 import { existsSync, readFileSync } from 'node:fs'
 import { rewriteJsonIfPresent, writeSnapshot } from './lib/snapshot-io'
 import { resolve } from 'node:path'
-import { rechazoDeMarcador } from '../src/scraper/firma-de-persona'
+import { rechazoDeFirma, rechazoDeMarcador } from '../src/scraper/firma-de-persona'
+import { enmendarMotivoDeFila } from '../src/scraper/pleno-finding'
 import {
+  ALLOWED_CITATION_KINDS,
+  ALLOWED_CITATION_TRUST,
   validateReportsSnapshot,
   type JournalistReport,
   type JournalistReportCorrection,
   type JournalistReportsSnapshot,
   type ReportSection,
+  type SourceCitation,
 } from '../src/scraper/journalist'
 
 const REPORTS = resolve('public/data/journalist-reports.json')
@@ -98,7 +139,13 @@ function usage(): never {
       '  · portrait.portfolios[<index>]\n' +
       '  · warnings[<index>]\n' +
       '  · career-political[<index>].endYear   (--new YYYY; never null)\n' +
-      '  · timeline[<index>].label             (the wording only; never the date)\n',
+      '  · timeline[<index>].label             (the wording only; never the date)\n' +
+      '  · sources.<id>.excerpt                (local-snapshot sources only)\n' +
+      '\n' +
+      '  npm run correct-journalist-report -- <reportId> --add-source <fuente.json> \\\n' +
+      '      --section "<heading>" --reason "<≥20 chars>" [--editor "<name>"]\n' +
+      '  npm run correct-journalist-report -- <reportId> --amend-reason <i> \\\n' +
+      '      --new "<motivo nuevo>" --reason "<≥20 chars>" --editor "<Nombre Apellido>"\n',
   )
   process.exit(2)
 }
@@ -109,6 +156,12 @@ interface Opts {
   newValue: string
   reason: string
   editor: string
+  /** `--add-source`: the JSON file with the citation to add. */
+  addSource: string
+  /** `--section`: the narrative heading the added citation is linked to. */
+  section: string
+  /** `--amend-reason`: the index of the ledger row whose reason is replaced. */
+  amendReason: string
 }
 
 function parseArgs(argv: string[]): Opts {
@@ -118,6 +171,9 @@ function parseArgs(argv: string[]): Opts {
     newValue: '',
     reason: '',
     editor: 'civicpulse-curator',
+    addSource: '',
+    section: '',
+    amendReason: '',
   }
   for (let i = 0; i < argv.length; i++) {
     const a = argv[i]
@@ -125,13 +181,34 @@ function parseArgs(argv: string[]): Opts {
     else if (a === '--new') o.newValue = argv[++i]
     else if (a === '--reason') o.reason = argv[++i]
     else if (a === '--editor') o.editor = argv[++i]
+    else if (a === '--add-source') o.addSource = argv[++i]
+    else if (a === '--section') o.section = argv[++i]
+    else if (a === '--amend-reason') o.amendReason = argv[++i]
     else if (a === '-h' || a === '--help') usage()
     else if (a.startsWith('--')) {
       process.stderr.write(`[correct-journalist-report] unknown flag ${a}\n`)
       process.exit(2)
     } else if (!o.reportId) o.reportId = a
   }
-  if (!o.reportId || !o.field || !o.newValue || !o.reason) usage()
+  const modos = [o.field, o.addSource, o.amendReason].filter(Boolean)
+  if (modos.length > 1) {
+    process.stderr.write(
+      '[correct-journalist-report] --field, --add-source and --amend-reason are mutually exclusive\n',
+    )
+    process.exit(2)
+  }
+  if (!o.reportId || modos.length === 0 || !o.reason) usage()
+  if ((o.field || o.amendReason) && !o.newValue) usage()
+  if (o.addSource && !o.section) {
+    process.stderr.write('[correct-journalist-report] --add-source needs --section "<heading>"\n')
+    process.exit(2)
+  }
+  if (o.amendReason && !/^\d+$/.test(o.amendReason)) {
+    process.stderr.write(
+      '[correct-journalist-report] --amend-reason takes the index of a ledger row (0, 1, …)\n',
+    )
+    process.exit(2)
+  }
   if (o.reason.trim().length < 20) {
     process.stderr.write('[correct-journalist-report] --reason must be ≥20 chars\n')
     process.exit(2)
@@ -143,6 +220,15 @@ function parseArgs(argv: string[]): Opts {
     process.stderr.write(`[correct-journalist-report] --editor: ${hueco}\n`)
     process.exit(2)
   }
+  // Una enmienda de motivo la firma una persona, con su nombre: la cuenta de rol
+  // por defecto no basta (lo exige también el validador).
+  if (o.amendReason) {
+    const rechazo = rechazoDeFirma(o.editor)
+    if (rechazo) {
+      process.stderr.write(`[correct-journalist-report] --amend-reason --editor: ${rechazo}\n`)
+      process.exit(2)
+    }
+  }
   return o
 }
 
@@ -150,14 +236,46 @@ const PORTFOLIO_PATH = /^portrait\.portfolios\[(\d+)\]$/
 const WARNING_PATH = /^warnings\[(\d+)\]$/
 const CAREER_END_PATH = /^career-political\[(\d+)\]\.endYear$/
 const TIMELINE_LABEL_PATH = /^timeline\[(\d+)\]\.label$/
+const SOURCE_EXCERPT_PATH = /^sources\.([A-Za-z0-9_-]+)\.excerpt$/
+const EXCERPT_MAX = 500
 const YEAR = /^\d{4}$/
 
 export function applyCorrection(
   report: JournalistReport,
   fieldPath: string,
   newValue: string,
-): { sections: ReportSection[]; warnings?: string[]; original: string } {
+): {
+  sections: ReportSection[]
+  warnings?: string[]
+  sources?: SourceCitation[]
+  original: string
+} {
   const sections = JSON.parse(JSON.stringify(report.sections)) as ReportSection[]
+  if (fieldPath.startsWith('sources')) {
+    const m = SOURCE_EXCERPT_PATH.exec(fieldPath)
+    if (!m) throw new Error(`sources must be addressed as sources.<id>.excerpt, got ${fieldPath}`)
+    const sources = JSON.parse(JSON.stringify(report.sources)) as SourceCitation[]
+    const source = sources.find((x) => x.id === m[1])
+    if (!source) throw new Error(`no source ${m[1]} in this report`)
+    // Un extracto externo son las palabras del documento; sólo el de una medición
+    // nuestra se puede redactar de nuevo.
+    if (source.kind !== 'local-snapshot')
+      throw new Error(
+        `sources.${m[1]} is ${source.kind}: only a local-snapshot excerpt (our own ` +
+          'measurement) can be reworded — an external excerpt is the document itself',
+      )
+    const trimmed = newValue.trim()
+    if (!trimmed) throw new Error('an excerpt cannot be blank — it is what the citation shows')
+    if (trimmed.length > EXCERPT_MAX)
+      throw new Error(`an excerpt must be ≤${EXCERPT_MAX} characters (got ${trimmed.length})`)
+    const original = source.excerpt ?? ''
+    if (trimmed === original.trim())
+      throw new Error(
+        `sources.${m[1]}.excerpt already reads that — a no-op correction is a mistake, not a record`,
+      )
+    source.excerpt = trimmed
+    return { sections, sources, original }
+  }
   if (fieldPath.startsWith('career-political')) {
     const m = CAREER_END_PATH.exec(fieldPath)
     if (!m)
@@ -317,6 +435,82 @@ export function applyCorrection(
   throw new Error(`unsupported fieldPath ${fieldPath} — see --help`)
 }
 
+/**
+ * Añade una cita al informe y la enlaza a UNA sección narrativa. Las vallas, antes
+ * de tocar nada: la forma de la cita (las del validador, más un extracto
+ * obligatorio), una URL que el informe ya no cite y una sola sección con ese
+ * encabezado. Devuelve el informe nuevo (secciones y fuentes) y el id asignado.
+ */
+export function applyAddSource(
+  report: JournalistReport,
+  raw: unknown,
+  heading: string,
+  retrievedAt: string,
+): { sections: ReportSection[]; sources: SourceCitation[]; id: string; corrected: string } {
+  if (typeof raw !== 'object' || raw === null || Array.isArray(raw))
+    throw new Error('the source must be a JSON object')
+  const o = raw as Record<string, unknown>
+  const ALLOWED_KEYS = [
+    'id',
+    'kind',
+    'title',
+    'url',
+    'localPath',
+    'publisher',
+    'publishedAt',
+    'excerpt',
+    'trust',
+    'selfDeclared',
+  ]
+  const extra = Object.keys(o).filter((k) => !ALLOWED_KEYS.includes(k))
+  if (extra.length) throw new Error(`unknown keys in the source: ${extra.join(', ')}`)
+  if (!(ALLOWED_CITATION_KINDS as readonly string[]).includes(String(o.kind)))
+    throw new Error(`kind must be one of ${ALLOWED_CITATION_KINDS.join(', ')}`)
+  if (!(ALLOWED_CITATION_TRUST as readonly string[]).includes(String(o.trust)))
+    throw new Error(`trust must be one of ${ALLOWED_CITATION_TRUST.join(', ')}`)
+  const excerpt = typeof o.excerpt === 'string' ? o.excerpt.trim() : ''
+  if (!excerpt)
+    throw new Error(
+      'an added source needs its excerpt: a citation without the words supports nothing',
+    )
+  if (excerpt.length > EXCERPT_MAX)
+    throw new Error(`an excerpt must be ≤${EXCERPT_MAX} characters (got ${excerpt.length})`)
+  const url = typeof o.url === 'string' ? o.url : undefined
+  if (url && report.sources.some((s) => s.url === url))
+    throw new Error(`the report already cites ${url}: link that source instead of adding a copy`)
+
+  const usados = new Set(report.sources.map((s) => s.id))
+  let id = typeof o.id === 'string' ? o.id : ''
+  if (id && usados.has(id)) throw new Error(`source id ${id} is already taken`)
+  if (!id) {
+    const max = Math.max(
+      0,
+      ...report.sources.map((s) => Number(/^src-(\d+)$/.exec(s.id)?.[1] ?? 0)),
+    )
+    id = `src-${String(max + 1).padStart(3, '0')}`
+  }
+
+  const sections = JSON.parse(JSON.stringify(report.sections)) as ReportSection[]
+  const destino = sections.filter(
+    (s) =>
+      s.kind === 'narrative' &&
+      (s as Extract<ReportSection, { kind: 'narrative' }>).payload.heading === heading,
+  ) as Array<Extract<ReportSection, { kind: 'narrative' }>>
+  if (destino.length !== 1)
+    throw new Error(`expected exactly 1 narrative section «${heading}», found ${destino.length}`)
+  const payload = destino[0].payload as { sourceIds?: string[] }
+  payload.sourceIds = [...(payload.sourceIds ?? []), id]
+
+  const source = {
+    ...(o as Partial<SourceCitation>),
+    id,
+    excerpt,
+    retrievedAt,
+  } as SourceCitation
+  const sources = [...report.sources, source]
+  return { sections, sources, id, corrected: url ? `${source.title} · ${url}` : source.title }
+}
+
 function main(): void {
   const opts = parseArgs(process.argv.slice(2))
   if (!existsSync(REPORTS)) {
@@ -330,26 +524,70 @@ function main(): void {
     process.exit(1)
   }
   const report = snap.items[idx]
-  let updated: { sections: ReportSection[]; warnings?: string[]; original: string }
+  const hoy = new Date().toISOString().slice(0, 10)
+  let next: JournalistReport
+  let campo = opts.field
   try {
-    updated = applyCorrection(report, opts.field, opts.newValue)
+    if (opts.amendReason) {
+      // No añade fila: la enmienda queda en la fila enmendada (ENMIENDA DEL MOTIVO).
+      const i = Number(opts.amendReason)
+      const corrections = JSON.parse(
+        JSON.stringify(report.corrections),
+      ) as JournalistReportCorrection[]
+      if (!corrections[i])
+        throw new Error(
+          `corrections[${i}] does not exist: ${report.id} has ${corrections.length} ledger row(s)`,
+        )
+      const previous = enmendarMotivoDeFila(corrections[i], opts.newValue, {
+        reason: opts.reason,
+        editor: opts.editor,
+        amendedAt: hoy,
+      })
+      campo = `corrections[${i}].reason (sustituye ${previous})`
+      next = { ...report, corrections }
+    } else if (opts.addSource) {
+      const raw = JSON.parse(readFileSync(resolve(opts.addSource), 'utf8')) as unknown
+      const added = applyAddSource(report, raw, opts.section, new Date().toISOString())
+      campo = `sources.${added.id}`
+      next = {
+        ...report,
+        sections: added.sections,
+        sources: added.sources,
+        corrections: [
+          ...report.corrections,
+          {
+            field: campo,
+            original: '',
+            corrected: added.corrected,
+            reason: opts.reason.trim(),
+            editor: opts.editor,
+            correctedAt: hoy,
+          },
+        ],
+      }
+    } else {
+      const updated = applyCorrection(report, opts.field, opts.newValue)
+      next = {
+        ...report,
+        sections: updated.sections,
+        warnings: updated.warnings ?? report.warnings,
+        sources: updated.sources ?? report.sources,
+        corrections: [
+          ...report.corrections,
+          {
+            field: opts.field,
+            original: updated.original,
+            corrected: opts.newValue,
+            reason: opts.reason.trim(),
+            editor: opts.editor,
+            correctedAt: hoy,
+          },
+        ],
+      }
+    }
   } catch (err) {
     process.stderr.write(`[correct-journalist-report] ${(err as Error).message}\n`)
     process.exit(1)
-  }
-  const correction: JournalistReportCorrection = {
-    field: opts.field,
-    original: updated.original,
-    corrected: opts.newValue,
-    reason: opts.reason.trim(),
-    editor: opts.editor,
-    correctedAt: new Date().toISOString().slice(0, 10),
-  }
-  const next: JournalistReport = {
-    ...report,
-    sections: updated.sections,
-    warnings: updated.warnings ?? report.warnings,
-    corrections: [...report.corrections, correction],
   }
   const items = [...snap.items]
   items[idx] = next
@@ -358,7 +596,7 @@ function main(): void {
   // Refresh per-id chunk if present.
   rewriteJsonIfPresent(resolve(CHUNK_DIR, `${next.assignmentId}.json`), next)
   process.stdout.write(
-    `[correct-journalist-report] applied correction to ${report.id} · field=${opts.field} · editor=${opts.editor}\n`,
+    `[correct-journalist-report] applied correction to ${report.id} · field=${campo} · editor=${opts.editor}\n`,
   )
 }
 

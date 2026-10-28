@@ -76,6 +76,9 @@ export const ROTULO_TEXTO_SUSTITUIDO = partePorHueco(
   ', sustituido el {fecha}',
 )[0]
 export const ROTULO_MOTIVO_ENMENDADO = enCastellano('bitacora.motivoEnmendado')
+/** «Motivo (enmendado el {fecha}):» y la frase de la huella, para la bitácora del informe. */
+export const ROTULO_MOTIVO_ENMENDADO_EL = enCastellano('bitacora.motivoEnmendadoEl')
+export const ROTULO_ENMIENDA_ANTERIOR = enCastellano('bitacora.enmienda.anterior')
 
 const fecha = (iso) => String(iso ?? '').slice(0, 10)
 
@@ -160,7 +163,7 @@ export const rotuloTextoPuesto = (posterior, t = enCastellano) =>
  * algoritmo se queda, que es lo que necesita quien quiera rehacerla. Igual que
  * la huella de una fila de cita retenida, más abajo.
  */
-const huellaSinEtiqueta = (huella) => String(huella).split(' · ')[1] ?? String(huella)
+export const huellaSinEtiqueta = (huella) => String(huella).split(' · ')[1] ?? String(huella)
 
 const rotulo = {
   fontSize: 'var(--fs-micro)',

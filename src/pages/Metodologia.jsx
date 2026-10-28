@@ -2794,8 +2794,9 @@ export default function Metodologia() {
           <li>
             El <strong>motivo</strong> de una corrección también puede resultar equivocado, o
             reproducir algo que no debe seguir publicándose. Entonces se enmienda (
-            <code>correct-pleno-finding --amend-reason</code>): la fila conserva su campo, sus
-            textos, su editor/a y su fecha; el motivo nuevo sustituye al anterior, que{' '}
+            <code>correct-pleno-finding --amend-reason</code>, y en las biografías del agente
+            periodista <code>correct-journalist-report --amend-reason</code>): la fila conserva su
+            campo, sus textos, su editor/a y su fecha; el motivo nuevo sustituye al anterior, que{' '}
             <strong>no se reproduce sino que queda en huella</strong> (
             <code>motivo · sha256:…</code>
             ), y la enmienda lleva su propia fecha, su porqué y la firma de una persona con su
@@ -2803,6 +2804,14 @@ export default function Metodologia() {
             enmendado lo dice delante, y cada enmienda enseña quién la hizo, cuándo, por qué y la
             huella del motivo que sustituyó. No es una corrección nueva del hallazgo: no cambia nada
             de lo que la ficha afirma, sino la explicación de un cambio anterior.
+          </li>
+          <li>
+            Cuando una corrección pone en una biografía una cifra que ninguna de sus citas llevaba,
+            la corrección <strong>añade la fuente que la sostiene</strong> —con su extracto, la
+            fecha en que se consultó y el enlace al documento— a la sección corregida, y esa
+            incorporación deja su propia fila en la bitácora. El extracto de una fuente externa es
+            el del documento y no se reescribe; sólo se puede corregir el de una medición propia
+            sobre los datos publicados del sitio.
           </li>
           <li id="bitacora-escano-unico" style={{ scrollMarginTop: 24 }}>
             En los hallazgos de pleno, la versión de un titular, de un sumario o del grupo de una
