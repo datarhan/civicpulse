@@ -1434,7 +1434,7 @@ export const CATALOGUE = {
     // La ficha de una queja (/quejas/:id). El estado y la categoría son enums del
     // bot: las tablas STATE_LABEL y CATEGORY_LABEL de useQuejas leen su castellano
     // de aquí, para que las páginas que aún no se traducen no puedan discrepar.
-    'quejas.estado.capturada': 'Capturada',
+    'quejas.estado.capturada': 'Reuniendo apoyos',
     'quejas.estado.apoyada_verificada': 'Verificada',
     'quejas.estado.registrada': 'Registrada en sede',
     'quejas.estado.notificada_10d': 'Acuse recibido',
@@ -1513,10 +1513,31 @@ export const CATALOGUE = {
     'quejas.detalle.reloj.sinCalendario':
       'Falta el calendario de días inhábiles de {anio}, y sin él no se sabe si el último día se prorroga (art. 30.5 LPACAP). Hasta que se añada, este reloj no cuenta los días ni da el plazo por vencido.',
     'quejas.detalle.reloj.asiento': 'Asiento sede',
-    'quejas.detalle.historial.eyebrow': 'Historial',
-    'quejas.detalle.historial.titulo': 'Línea temporal',
-    'quejas.detalle.hito.capturada': 'Capturada en CivicPulse',
-    'quejas.detalle.hito.capturada.detalle': 'Vía Telegram bot · barrio {barrio}',
+    'quejas.detalle.historial.eyebrow': 'Hecho y por hacer',
+    'quejas.detalle.historial.titulo': 'El camino de esta queja',
+    'quejas.detalle.camino.ahora': 'Ahora',
+    'quejas.detalle.camino.pendiente': 'Pendiente',
+    'quejas.detalle.camino.apoyos.ahora': 'Reuniendo apoyos: lleva {n} de {umbral}',
+    'quejas.detalle.camino.apoyos.detalle':
+      'Con {umbral} apoyos, una persona voluntaria la presenta en el registro del Ayuntamiento.',
+    'quejas.detalle.camino.registro': 'Entrada en el registro del Ayuntamiento',
+    'quejas.detalle.camino.registro.ahora': 'Lista para presentar en el registro del Ayuntamiento',
+    'quejas.detalle.camino.registro.detalle':
+      'Desde que entra en el registro corre el plazo para contestar.',
+    'quejas.detalle.camino.respuesta': 'Contestación del Ayuntamiento',
+    'quejas.detalle.camino.respuesta.detalle':
+      'Tiene {acuse} días para acusar recibo y {plazo} para contestar, desde el registro.',
+    'quejas.detalle.camino.respuesta.detalle.transparencia':
+      'Tiene {plazo} para contestar, desde el registro.',
+    'quejas.detalle.camino.sindic': 'Si no contesta a tiempo: el Síndic de Greuges',
+    'quejas.detalle.camino.sindic.ahora': 'Se puede acudir al Síndic de Greuges',
+    'quejas.detalle.camino.sindic.detalle': 'Es gratis y no quita otros recursos.',
+    'quejas.detalle.camino.consell':
+      'Si no contesta a tiempo: una reclamación al Consell de Transparència',
+    'quejas.detalle.camino.consell.ahora': 'Se puede reclamar al Consell de Transparència',
+    'quejas.detalle.camino.cerrada': 'Cerrada sin presentar en el registro',
+    'quejas.detalle.hito.capturada': 'Enviada al bot de CivicPulse',
+    'quejas.detalle.hito.capturada.detalle': 'Por Telegram · barrio {barrio}',
     'quejas.detalle.hito.verificada': 'Verificada por la comunidad',
     'quejas.detalle.hito.verificada.detalle':
       '{n} apoyos vecinales · umbral del lote semanal alcanzado',
@@ -1526,7 +1547,7 @@ export const CATALOGUE = {
     'quejas.detalle.hito.silencio': 'Silencio administrativo negativo',
     'quejas.detalle.hito.silencio.detalle': 'Plazo legal vencido · art. 24 LPACAP',
     'quejas.detalle.hito.sindic': 'Escalada al Síndic de Greuges CV',
-    'quejas.detalle.hito.sindic.detalle': 'Ley 11/1988 · resoluciones públicas',
+    'quejas.detalle.hito.sindic.detalle': 'Ley 2/2021 · resoluciones públicas',
     'quejas.detalle.hito.resuelta': 'Resuelta',
     'quejas.detalle.replica.eyebrow': 'Derecho de réplica oficial',
     'quejas.detalle.replica.titulo': 'Respuesta del Ayuntamiento',
@@ -3962,7 +3983,7 @@ export const CATALOGUE = {
       'El mapa situa {nPintadas} de les {nPublicadas} queixes publicades. El llistat publicat no coincideix amb el recompte del bot, així que no es pot saber quantes de les altres tenen barri.',
     'quejas.mapa.coberturaDesglose':
       'El mapa situa {nPintadas} de les {nPublicadas} queixes publicades. De les altres, sense barri: {nSinBarrio}; amb un barri que el mapa no té: {nDesconocidas}.',
-    'quejas.estado.capturada': 'Capturada',
+    'quejas.estado.capturada': 'Arreplegant suports',
     'quejas.estado.apoyada_verificada': 'Verificada',
     'quejas.estado.registrada': 'Registrada en seu',
     'quejas.estado.notificada_10d': 'Justificant rebut',
@@ -4042,10 +4063,31 @@ export const CATALOGUE = {
     'quejas.detalle.reloj.sinCalendario':
       "Falta el calendari de dies inhàbils de {anio}, i sense ell no se sap si l'últim dia es prorroga (art. 30.5 LPACAP). Fins que s'afegisca, este rellotge no compta els dies ni dona el termini per vençut.",
     'quejas.detalle.reloj.asiento': 'Assentament en seu',
-    'quejas.detalle.historial.eyebrow': 'Historial',
-    'quejas.detalle.historial.titulo': 'Línia temporal',
-    'quejas.detalle.hito.capturada': 'Capturada a CivicPulse',
-    'quejas.detalle.hito.capturada.detalle': 'Via bot de Telegram · barri {barrio}',
+    'quejas.detalle.historial.eyebrow': 'Fet i per fer',
+    'quejas.detalle.historial.titulo': 'El camí d’aquesta queixa',
+    'quejas.detalle.camino.ahora': 'Ara',
+    'quejas.detalle.camino.pendiente': 'Pendent',
+    'quejas.detalle.camino.apoyos.ahora': 'Arreplegant suports: en té {n} de {umbral}',
+    'quejas.detalle.camino.apoyos.detalle':
+      'Amb {umbral} suports, una persona voluntària la presenta en el registre de l’Ajuntament.',
+    'quejas.detalle.camino.registro': 'Entrada en el registre de l’Ajuntament',
+    'quejas.detalle.camino.registro.ahora': 'Llesta per a presentar en el registre de l’Ajuntament',
+    'quejas.detalle.camino.registro.detalle':
+      'Des que entra en el registre corre el termini per a contestar.',
+    'quejas.detalle.camino.respuesta': 'Contestació de l’Ajuntament',
+    'quejas.detalle.camino.respuesta.detalle':
+      'Té {acuse} dies per a justificar la recepció i {plazo} per a contestar, des del registre.',
+    'quejas.detalle.camino.respuesta.detalle.transparencia':
+      'Té {plazo} per a contestar, des del registre.',
+    'quejas.detalle.camino.sindic': 'Si no contesta a temps: el Síndic de Greuges',
+    'quejas.detalle.camino.sindic.ahora': 'Es pot acudir al Síndic de Greuges',
+    'quejas.detalle.camino.sindic.detalle': 'És gratuït i no lleva altres recursos.',
+    'quejas.detalle.camino.consell':
+      'Si no contesta a temps: una reclamació al Consell de Transparència',
+    'quejas.detalle.camino.consell.ahora': 'Es pot reclamar al Consell de Transparència',
+    'quejas.detalle.camino.cerrada': 'Tancada sense presentar en el registre',
+    'quejas.detalle.hito.capturada': 'Enviada al bot de CivicPulse',
+    'quejas.detalle.hito.capturada.detalle': 'Per Telegram · barri {barrio}',
     'quejas.detalle.hito.verificada': 'Verificada per la comunitat',
     'quejas.detalle.hito.verificada.detalle':
       '{n} suports veïnals · llindar del lot setmanal assolit',
@@ -4055,7 +4097,7 @@ export const CATALOGUE = {
     'quejas.detalle.hito.silencio': 'Silenci administratiu negatiu',
     'quejas.detalle.hito.silencio.detalle': 'Termini legal vençut · art. 24 LPACAP',
     'quejas.detalle.hito.sindic': 'Elevada al Síndic de Greuges CV',
-    'quejas.detalle.hito.sindic.detalle': 'Llei 11/1988 · resolucions públiques',
+    'quejas.detalle.hito.sindic.detalle': 'Llei 2/2021 · resolucions públiques',
     'quejas.detalle.hito.resuelta': 'Resolta',
     'quejas.detalle.replica.eyebrow': 'Dret de rèplica oficial',
     'quejas.detalle.replica.titulo': 'Resposta de l’Ajuntament',

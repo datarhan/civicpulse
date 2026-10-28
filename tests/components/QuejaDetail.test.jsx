@@ -72,7 +72,7 @@ describe('/quejas/:id', () => {
     expect(screen.getAllByText(/Bache profundo sin reparar/i).length).toBeGreaterThan(0)
     expect(screen.getByText(/Teresa Pozuelo Martín/i)).toBeInTheDocument()
     expect(screen.getByText(/Plazo LPACAP en curso/i)).toBeInTheDocument()
-    expect(screen.getByText('Línea temporal')).toBeInTheDocument()
+    expect(screen.getByText('El camino de esta queja')).toBeInTheDocument()
   })
 
   it('renders the right-of-reply card verbatim when there is a matching response', async () => {
@@ -398,5 +398,55 @@ describe('/quejas/:id · el hito de los apoyos', () => {
       .parentElement.parentElement
     expect(hito.textContent).toMatch(/—/)
     expect(hito.textContent).not.toMatch(/marzo/)
+  })
+})
+
+/**
+ * El camino entero y lo que se puede hacer, arriba (auditoría de las dos
+ * lecturas, §19). «¿Qué puedes hacer?» era lo último de la página; la línea
+ * temporal pintaba sólo lo ocurrido, y una queja recién publicada tenía un hito.
+ */
+describe('/quejas/:id · el camino de la queja', () => {
+  const con = (patch) => ({
+    ...BASE_QUEJAS,
+    items: [{ ...BASE_QUEJAS.items[0], ...patch }],
+  })
+  const pinta = (data) =>
+    mountAt('/quejas/q-abc12301', {
+      '/data/quejas.json': data,
+      '/data/quejas-responses.json': { generatedAt: '2026-04-20T00:00:00Z', items: [] },
+      '/data/officials.json': BASE_OFFICIALS,
+    })
+
+  it('recién publicada: lo hecho, lo que toca y lo que falta, en ese orden', async () => {
+    const { container } = pinta(
+      con({ status: 'capturada', apoyos: 3, registered_at: null, registro_entry_number: null }),
+    )
+    await waitFor(() => expect(container.querySelector('[data-camino]')).not.toBeNull())
+    const pasos = [...container.querySelectorAll('[data-paso]')].map(
+      (p) => `${p.dataset.paso}:${p.dataset.estado}`,
+    )
+    expect(pasos).toEqual([
+      'enviada:hecho',
+      'apoyos:ahora',
+      'registro:pendiente',
+      'respuesta:pendiente',
+      'escalado:pendiente',
+    ])
+    const ahora = container.querySelector('[data-estado="ahora"]')
+    expect(ahora.textContent).toContain('Ahora')
+    expect(ahora.textContent).toContain('lleva 3 de 10')
+    for (const p of container.querySelectorAll('[data-estado="pendiente"]'))
+      expect(p.textContent).toContain('Pendiente')
+  })
+
+  it('«¿Qué puedes hacer?» va debajo de la queja, antes del camino', async () => {
+    const { container } = pinta(BASE_QUEJAS)
+    await waitFor(() => expect(container.querySelector('[data-camino]')).not.toBeNull())
+    const acciones = container.querySelector('[data-acciones]')
+    const camino = container.querySelector('[data-camino]')
+    // DOCUMENT_POSITION_FOLLOWING: el camino va después de las acciones.
+    expect(acciones.compareDocumentPosition(camino) & 4).toBe(4)
+    expect(acciones.textContent).toContain('/apoyar Q-ABC12301')
   })
 })
