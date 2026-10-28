@@ -166,10 +166,21 @@ export function CorrectionLog({ corrections }) {
   // Un cuerpo que otra fila volvió a corregir ya no es el del informe: la regla
   // y el rótulo son los de BitacoraCorrecciones.jsx.
   const despues = sustitutas(corrections)
+  // `overflowWrap: 'anywhere'`, como en BitacoraCorrecciones.jsx: la fila de una
+  // fuente añadida lleva «título · URL», y una URL no tiene dónde partirse. Sin
+  // él, la biografía de Rafael Gómez medía 480 px de ancho en un teléfono.
   return (
     <Card>
       <SectionHead title="Bitácora de correcciones" />
-      <ol style={{ margin: 0, padding: 0, listStyle: 'none', fontSize: 'var(--fs-meta)' }}>
+      <ol
+        style={{
+          margin: 0,
+          padding: 0,
+          listStyle: 'none',
+          fontSize: 'var(--fs-meta)',
+          overflowWrap: 'anywhere',
+        }}
+      >
         {corrections.map((c, i) => {
           const desde = inicioVentana(c.original, c.corrected)
           return (
