@@ -1519,7 +1519,7 @@ export const CATALOGUE = {
     'quejas.detalle.camino.pendiente': 'Pendiente',
     'quejas.detalle.camino.apoyos.ahora': 'Reuniendo apoyos: lleva {n} de {umbral}',
     'quejas.detalle.camino.apoyos.detalle':
-      'Con {umbral} apoyos, una persona voluntaria la presenta en el registro del Ayuntamiento.',
+      'Con {umbral} apoyos pasa a la lista que una persona voluntaria presenta en el registro del Ayuntamiento, en lotes semanales.',
     'quejas.detalle.camino.registro': 'Entrada en el registro del Ayuntamiento',
     'quejas.detalle.camino.registro.ahora': 'Lista para presentar en el registro del Ayuntamiento',
     'quejas.detalle.camino.registro.detalle':
@@ -4069,7 +4069,7 @@ export const CATALOGUE = {
     'quejas.detalle.camino.pendiente': 'Pendent',
     'quejas.detalle.camino.apoyos.ahora': 'Arreplegant suports: en té {n} de {umbral}',
     'quejas.detalle.camino.apoyos.detalle':
-      'Amb {umbral} suports, una persona voluntària la presenta en el registre de l’Ajuntament.',
+      'Amb {umbral} suports passa a la llista que una persona voluntària presenta en el registre de l’Ajuntament, en lots setmanals.',
     'quejas.detalle.camino.registro': 'Entrada en el registre de l’Ajuntament',
     'quejas.detalle.camino.registro.ahora': 'Llesta per a presentar en el registre de l’Ajuntament',
     'quejas.detalle.camino.registro.detalle':
