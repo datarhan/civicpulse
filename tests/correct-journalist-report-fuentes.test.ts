@@ -14,7 +14,9 @@
  *     que `correct-pleno-finding`).
  *
  * Las filas salen de public/data/journalist-reports.json, no de una forma
- * escrita a mano: el validador que las relee es el de verdad.
+ * escrita a mano: el validador que las relee es el de verdad. Y esas filas ya
+ * llevan las correcciones del 28-10-2026, así que ninguna prueba supone el texto
+ * de antes: cada una compara con lo publicado hoy.
  */
 import { describe, it, expect } from 'vitest'
 import { readFileSync } from 'node:fs'
@@ -44,14 +46,14 @@ const revalida = (next: JournalistReport) => {
 describe('sources.<id>.excerpt — sólo una medición nuestra', () => {
   // src-073 de Eva Lara: «public/data/tenders.json · comprobación nominal…».
   const ID = 'src-073'
-  const NUEVO =
-    '804 expedientes de contratación examinados, adjudicados o no: ningún adjudicatario coincide con «Lara Catalá».'
+  const NUEVO = 'Extracto de prueba: 804 expedientes de contratación examinados, adjudicados o no.'
 
   it('reescribe el extracto de una fuente local-snapshot y devuelve el anterior', () => {
     const r = informe('a-eva-lara-bio')
-    expect(r.sources.find((s) => s.id === ID)?.kind).toBe('local-snapshot')
+    const fuente = r.sources.find((s) => s.id === ID)!
+    expect(fuente.kind).toBe('local-snapshot')
     const { sources, original } = applyCorrection(r, `sources.${ID}.excerpt`, NUEVO)
-    expect(original).toMatch(/^804 contratos adjudicados examinados/)
+    expect(original).toBe(fuente.excerpt)
     expect(sources!.find((s) => s.id === ID)!.excerpt).toBe(NUEVO)
     const releida = revalida({ ...r, sources: sources! })
     expect(releida.sources.find((s) => s.id === ID)!.excerpt).toBe(NUEVO)
@@ -81,8 +83,9 @@ describe('--add-source — una cita nueva, enlazada a una sección', () => {
   const SECCION = 'Conexiones documentadas y comprobaciones de este medio'
   const PLACSP = {
     kind: 'official-doc',
-    title: 'PLACSP · expediente 27/2018 · concesión del abastecimiento de agua potable',
-    url: 'https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=pK1YW0Z3femXQV0WE7lYPw%3D%3D',
+    // Una URL que ningún informe cita: la de verdad (27/2018) ya es src-126.
+    title: 'PLACSP · expediente de prueba',
+    url: 'https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=prueba-no-citada',
     publisher: 'Plataforma de Contratación del Sector Público',
     excerpt: 'Valor estimado del contrato 55.685.178,79 Euros',
     trust: 'high',
@@ -145,23 +148,49 @@ describe('--amend-reason — el motivo de una corrección, enmendado como en /ha
     amendedAt: '2026-10-28',
   }
 
+  // Una fila publicada sin enmiendas y anterior a la enmienda; la [0] de esta
+  // biografía ya lleva la suya, y otra se suma a la lista (prueba siguiente).
+  const sinEnmendar = (r: JournalistReport) =>
+    r.corrections.findIndex(
+      (c) => !c.reasonAmendments?.length && c.correctedAt <= ENMIENDA.amendedAt,
+    )
+  const con = (r: JournalistReport, i: number, fila: JournalistReport['corrections'][number]) => ({
+    ...r,
+    corrections: r.corrections.map((c, j) => (j === i ? fila : c)),
+  })
+
   it('sustituye el motivo, deja la huella del anterior y el validador la conserva', () => {
     const r = informe('a-esther-gomez-bio')
-    const fila = JSON.parse(JSON.stringify(r.corrections[0]))
+    const i = sinEnmendar(r)
+    expect(i).toBeGreaterThanOrEqual(0)
+    const fila = JSON.parse(JSON.stringify(r.corrections[i]))
     const anterior = fila.reason
-    expect(anterior).toMatch(/once días después del decreto original/)
     const previous = enmendarMotivoDeFila(fila, NUEVO, ENMIENDA)
     expect(previous).toBe(reasonDigest(anterior))
     expect(fila.reason).toBe(NUEVO)
-    const releida = revalida({ ...r, corrections: [fila, ...r.corrections.slice(1)] })
-    expect(releida.corrections[0].reasonAmendments).toEqual([{ previous, ...ENMIENDA }])
+    const releida = revalida(con(r, i, fila))
+    expect(releida.corrections[i].reasonAmendments).toEqual([{ previous, ...ENMIENDA }])
     // El motivo anterior no viaja en la fila: sólo su huella.
-    expect(JSON.stringify(releida.corrections[0])).not.toContain(anterior)
+    expect(JSON.stringify(releida.corrections[i])).not.toContain(anterior)
+  })
+
+  it('una segunda enmienda se suma a la primera, no la reemplaza', () => {
+    const r = informe('a-esther-gomez-bio')
+    const i = r.corrections.findIndex((c) => c.reasonAmendments?.length)
+    expect(i).toBeGreaterThanOrEqual(0)
+    const fila = JSON.parse(JSON.stringify(r.corrections[i]))
+    const antes = fila.reasonAmendments.length
+    const segunda = { ...ENMIENDA, reason: 'Segunda enmienda de prueba, con su porqué.' }
+    enmendarMotivoDeFila(fila, `${fila.reason} (enmendado de nuevo en la prueba)`, segunda)
+    const releida = revalida(con(r, i, fila))
+    expect(releida.corrections[i].reasonAmendments).toHaveLength(antes + 1)
+    expect(releida.corrections[i].reasonAmendments!.at(-1)!.reason).toBe(segunda.reason)
   })
 
   it('la firma una persona: la cuenta de rol no basta, tampoco al releer', () => {
     const r = informe('a-esther-gomez-bio')
-    const fila = JSON.parse(JSON.stringify(r.corrections[0]))
+    const i = sinEnmendar(r)
+    const fila = JSON.parse(JSON.stringify(r.corrections[i]))
     expect(() =>
       enmendarMotivoDeFila(fila, NUEVO, { ...ENMIENDA, editor: 'civicpulse-curator' }),
     ).toThrow(/persona/)
@@ -172,8 +201,6 @@ describe('--amend-reason — el motivo de una corrección, enmendado como en /ha
         { previous: reasonDigest(fila.reason), ...ENMIENDA, editor: 'civicpulse-curator' },
       ],
     }
-    expect(() => revalida({ ...r, corrections: [mala, ...r.corrections.slice(1)] })).toThrow(
-      /persona/,
-    )
+    expect(() => revalida(con(r, i, mala))).toThrow(/persona/)
   })
 })

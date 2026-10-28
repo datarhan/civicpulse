@@ -139,7 +139,9 @@ describe('CorrectionLog: la ventana enseña lo que cambió', () => {
     let distintas = 0
     for (const r of informes.filter((x) => x.corrections?.length)) {
       for (const c of r.corrections) {
-        if (c.original === c.corrected) continue
+        // Una fuente añadida no retiró nada: no hay tachado que comparar
+        // (la prueba de abajo, «una fuente añadida…», mira esa fila).
+        if (c.original === c.corrected || !c.original) continue
         distintas += 1
         const { container } = render(<CorrectionLog corrections={[c]} />)
         const v = versiones(container)
@@ -198,5 +200,13 @@ describe('CorrectionLog: motivo enmendado y fuente añadida', () => {
     const { container } = render(<CorrectionLog corrections={[anadida]} />)
     expect(container.querySelector('del')).toBeNull()
     expect(container.textContent).toContain('PLACSP · expediente 27/2018')
+  })
+
+  // La fila de una fuente añadida lleva la URL entera, que no tiene dónde
+  // partirse: sin `anywhere`, la biografía de Rafael Gómez medía 480 px de ancho
+  // a 375 (28-10-2026). jsdom no maqueta, así que se fija la regla, no el ancho.
+  it('la bitácora parte una URL larga en vez de ensanchar la ficha', () => {
+    const { container } = render(<CorrectionLog corrections={[enmendada]} />)
+    expect(container.querySelector('ol').style.overflowWrap).toBe('anywhere')
   })
 })
