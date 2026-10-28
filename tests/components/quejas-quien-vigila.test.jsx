@@ -184,9 +184,12 @@ const escenario = (nombre, quejas) => ({
     c.querySelector('[data-cruce-pendiente]') !== null,
 })
 
+// La tercera trae un barrio que geo.json no conoce: no está «sin barrio», y por
+// eso la frase dice «situada en un barrio del mapa» y no que la queja no lo diga.
 const ESCENARIOS = [
   escenario('una queja, en un barrio', conUnaQueja(GEO.neighborhoods[0].slug)),
   escenario('una queja, sin barrio', conUnaQueja(null)),
+  escenario('una queja, en un barrio que el mapa no conoce', conUnaQueja('barrio-que-no-esta')),
 ]
 
 /** Nombres propios y lo que se escribe igual en los dos idiomas. */
@@ -200,13 +203,14 @@ const SIGLAS = [
 ]
 
 describe('/quejas · quién más vigila, el cruce y el pie, en los dos idiomas', () => {
-  it('mide algo: los dos escenarios dan las dos frases del cruce', async () => {
+  it('mide algo: los escenarios dan las dos frases del cruce', async () => {
     // Uno detrás de otro: pintaYLee comparte la caché de instantáneas.
     const leidos = []
     for (const esc of ESCENARIOS) leidos.push((await pintaYLee(esc, 'es')).piezas.join('\n'))
-    const [enBarrio, sinBarrio] = leidos
+    const [enBarrio, sinBarrio, desconocido] = leidos
     expect(enBarrio).toContain(rellena(CATALOGUE.es['quejas.cruce.pendiente.n'], { n: 1 }).trim())
     expect(sinBarrio).toContain(CATALOGUE.es['quejas.cruce.pendiente.ninguno'].trim())
+    expect(desconocido).toContain(CATALOGUE.es['quejas.cruce.pendiente.ninguno'].trim())
   }, 60000)
 
   it.each(ESCENARIOS)(

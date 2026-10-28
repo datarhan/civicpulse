@@ -1071,8 +1071,7 @@ export const CATALOGUE = {
     'quejas.cruce.pendiente':
       'Esta tabla pone, barrio a barrio, las quejas al lado de lo adjudicado en contratos situados allí, y se dibuja cuando haya quejas en al menos {minimo} barrios.',
     'quejas.cruce.pendiente.n': ' De momento, las hay en {n}.',
-    'quejas.cruce.pendiente.ninguno':
-      ' De momento, ninguna queja publicada dice en qué barrio está.',
+    'quejas.cruce.pendiente.ninguno': ' De momento, no hay ninguna situada en un barrio del mapa.',
     'quejas.vigilan.titulo': 'Si el Ayuntamiento no responde: quién más vigila',
     'quejas.vigilan.intro':
       'Instituciones públicas que no dependen del Ayuntamiento. Cada tarjeta dice qué hace la institución y qué consta sobre Riba-roja en lo que publica.',
@@ -3669,7 +3668,7 @@ export const CATALOGUE = {
     'quejas.cruce.pendiente':
       'Aquesta taula posa, barri a barri, les queixes al costat del que s’ha adjudicat en contractes situats allí, i es dibuixa quan hi haja queixes en almenys {minimo} barris.',
     'quejas.cruce.pendiente.n': ' De moment, n’hi ha en {n}.',
-    'quejas.cruce.pendiente.ninguno': ' De moment, cap queixa publicada no diu en quin barri és.',
+    'quejas.cruce.pendiente.ninguno': ' De moment, no n’hi ha cap situada en un barri del mapa.',
     'quejas.vigilan.titulo': 'Si l’Ajuntament no respon: qui més vigila',
     'quejas.vigilan.intro':
       'Institucions públiques que no depenen de l’Ajuntament. Cada targeta diu què fa la institució i què hi consta sobre Riba-roja en el que publica.',

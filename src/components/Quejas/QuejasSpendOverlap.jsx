@@ -59,7 +59,10 @@ export default function QuejasSpendOverlap() {
 
   // Con quejas en uno o dos barrios, la tabla no reparte nada: con una queja
   // publicada eran trece filas con «—» en doce. Hasta el umbral, una frase dice
-  // por qué no se dibuja y cuántos barrios traen quejas (`cruceDibujable`).
+  // por qué no se dibuja y cuántos barrios traen quejas (`cruceDibujable`). Con
+  // ninguno, dice que no hay quejas situadas en un barrio del mapa, no que no
+  // lo digan: una con un barrio que geo.json no conoce lo dice y tampoco cuenta
+  // (como en `coberturaDeBarrios`).
   const cruce = cruceDibujable(rows)
   if (!cruce.dibujable) {
     return (
