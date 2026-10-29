@@ -260,6 +260,13 @@
       "reason": "Es el cierre de la corrección del 29-08-2026, y la entrada siguiente del mismo registro, la del 02-09-2026, la retira por su nombre: «El panel ya calcula las dos fichas del agua, y esta pieza decía que no podía», con 7,01 €/m de red para el agua y 1,73 €/m para el alcantarillado en la entrega de 2024. Comprobado el 19-10-2026 en indicadores.json: a161-coste-unitario = 7,013 y a160-coste-unitario = 1,735, en €/m de red. El registro de correcciones es histórico, y cada entrada dice lo que se sabía ese día; reescribir la del 29-08 borraría lo que la del 02-09 corrige. Es el mismo caso que el descarte de la frase de la tarifa (02-09, retirada el 17-09). Descartado por encargo de Sergei Lutchenko (19-10-2026).",
       "editor": "claude-opus-5.5",
       "at": "2026-10-19"
+    },
+    {
+      "route": "/reportajes/basuras",
+      "quote": "La conclusión no cambia. El registro se mantiene al día, y lo que falta en él sigue siendo la anotación del contrato de FCC.",
+      "reason": "El señalamiento era cierto, y se ha corregido en el registro de la pieza, no aquí: es el cierre de la corrección del 29-08-2026, y la entrada del 29-10-2026 la precisa por su nombre —«lo que falta en él» se leía como exhaustivo cuando la misma nota acababa de contar 43 filas sin estado ni adjudicatario—. Comprobado el 29-10-2026 sobre el tenders.json de aquel día (commit 698e94cc): 808 filas = 700 adjudicadas o formalizadas + 65 anuladas, revocadas o desistidas + 43 `unknown`; 43 / (808 − 700) = 43 / 108 = 39,8 %, el «cerca del 40 %». En el fixture del registro esas filas traen `status` vacío, no un valor que el parser no reconozca. Ninguna de las 43 tiene adjudicatario ni es del servicio de recogida, y ninguna de las 808 nombra a FCC. El registro de correcciones es histórico; reescribir la del 29-08 borraría lo que la del 29-10 precisa. Es el mismo caso que el descarte de /reportajes/coste-efectivo del 19-10-2026. Descartado por encargo de Sergei Lutchenko (29-10-2026).",
+      "editor": "claude-opus-5.5",
+      "at": "2026-10-29"
     }
   ]
 }
