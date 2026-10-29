@@ -1,4 +1,5 @@
 import Emblema, { cifrasDelEmblema } from './Emblema'
+import ClavesPieza from './ClavesPieza'
 import { CorrectionNotice } from './CorrectionNote'
 import { IndicePieza } from './Pieza'
 import { fmtDateHuman } from '../../lib/formatters'
@@ -170,6 +171,9 @@ export default function CabeceraPieza({ slug, data, borrador, kpis, nota, entrad
       {/* Texto: un párrafo. Nodos: los párrafos que la pieza escribe, con
           `ENTRADILLA` de estilo (lo exporta este fichero). */}
       {typeof lede === 'string' ? <p style={ENTRADILLA}>{lede}</p> : lede}
+
+      {/* Lo que la pieza encontró, antes del cuerpo que lo prueba. */}
+      <ClavesPieza claves={data.claves} />
 
       <IndicePieza />
     </>
