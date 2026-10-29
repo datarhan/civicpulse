@@ -14,15 +14,19 @@ import {
 // palabra y sin aviso—; la compartida apila cada fila en pares etiqueta ·
 // valor. La cita propia no decía qué documento hablaba.
 import { Cita, Tabla } from './ConteoVisitantes'
-import { STATUS_LABEL } from '../../hooks/useTenders'
+import { CATALOGUE } from '../../i18n'
 
 /**
  * El estado del contrato como lo diría la prosa. La instantánea lo guarda en la
  * palabra de Gobierto (`formalized`), y la sección 06 la imprimía tal cual en
- * mitad de una frase en castellano; el rótulo es el del listado de /presupuesto.
+ * mitad de una frase en castellano. El rótulo es el castellano del catálogo,
+ * el mismo que lee el listado de /presupuesto; se lee de aquí y no de
+ * `useTenders`, porque importar ese hook ataría la pieza a tenders.json en el
+ * mapa de prosa sin que la pieza lea ese fichero.
  * Exportada para que la prueba vea que el estado congelado tiene uno.
  */
-export const estadoEnCastellano = (estado) => STATUS_LABEL[estado]?.toLowerCase()
+export const estadoEnCastellano = (estado) =>
+  CATALOGUE.es[`contrato.estado.${estado}`]?.toLowerCase()
 
 function eur(n, dec = 0) {
   return new Intl.NumberFormat('es-ES', {
