@@ -20,6 +20,7 @@ import { EnBreveQuejas } from '../components/Quejas/EnBreveQuejas'
 import { QuienMasVigila, QueEsLaInstitucion } from '../components/Quejas/QuienMasVigila'
 import { DatosTecnicos } from '../components/Quejas/DatosTecnicos'
 import DivisorLecturas from '../components/DivisorLecturas'
+import { SeccionExperta } from '../components/Lecturas'
 
 const TELEGRAM_BOT_URL = 'https://t.me/munigraph_bot'
 
@@ -1362,7 +1363,14 @@ export default function Quejas() {
       <EnBreveQuejas bot={TELEGRAM_BOT_URL} />
       <DivisorLecturas />
 
-      <div id="quejas-canal" style={{ scrollMarginTop: 24 }}>
+      {/* Las tres secciones de abajo son las que pliega «Ver: lo esencial»
+          (components/Lecturas.jsx). Los datos técnicos ya van plegados en su
+          propio <details>. */}
+      <SeccionExperta
+        id="quejas-canal"
+        titulo={t('quejas.seccion.publicadas')}
+        style={{ scrollMarginTop: 24 }}
+      >
         {loading && (
           <div style={{ color: 'var(--ink50)', fontSize: 'var(--fs-aux)' }}>Cargando feed…</div>
         )}
@@ -1378,17 +1386,21 @@ export default function Quejas() {
         {!loading && !error && data && (data.stats?.total ?? 0) > 0 && (
           <DashboardView data={data} />
         )}
-      </div>
+      </SeccionExperta>
       {/* Primero a quién puede acudir un vecino —el Síndic con cualquier queja,
           el Consell con una petición de información—; luego el órgano estatal,
           que dice adónde no ir, y la Sindicatura, que audita las cuentas. */}
-      <QuienMasVigila>
-        <SindicCard />
-        <ConsellCvCard />
-        <CtbgCard />
-        <SindicaturaCard />
-      </QuienMasVigila>
-      <BopCard />
+      <SeccionExperta id="quejas-vigilancia" titulo={t('quejas.vigilan.titulo')}>
+        <QuienMasVigila>
+          <SindicCard />
+          <ConsellCvCard />
+          <CtbgCard />
+          <SindicaturaCard />
+        </QuienMasVigila>
+      </SeccionExperta>
+      <SeccionExperta id="quejas-bop" titulo={t('quejas.seccion.bop')}>
+        <BopCard />
+      </SeccionExperta>
       {data && <DatosTecnicos data={data} />}
     </div>
   )

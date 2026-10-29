@@ -203,7 +203,9 @@ test.describe('Departamentos (/departamentos)', () => {
     // /plenos se entra a la ficha de un departamento.
     test.skip(!agendaHasDepartments(), 'plenos-agendas.json has no departments in this snapshot')
     await page.goto('/plenos', { waitUntil: 'domcontentloaded' })
-    await expect(page.getByText(/Qué áreas llevan el orden del día/i).first()).toBeVisible({
+    await expect(
+      page.getByRole('heading', { name: /Qué áreas llevan el orden del día/i }),
+    ).toBeVisible({
       timeout: 8000,
     })
     const chip = page.locator('a[href^="/departamentos/"]').first()

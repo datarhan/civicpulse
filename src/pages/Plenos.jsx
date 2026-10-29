@@ -11,6 +11,7 @@ import { TarjetaDeclaraciones } from '../components/plenos/TarjetaDeclaraciones'
 import { RepartoPorArea } from '../components/plenos/RepartoPorArea'
 import { EnBrevePlenos } from '../components/plenos/EnBrevePlenos'
 import DivisorLecturas from '../components/DivisorLecturas'
+import { SeccionExperta } from '../components/Lecturas'
 import { usePlenos } from '../hooks/usePlenos'
 import { usePlenoClaimsManifest } from '../hooks/usePlenoClaims'
 import { usePlenoAgendas } from '../hooks/usePlenoAgendas'
@@ -116,74 +117,89 @@ export default function Plenos() {
       <SesionesDelAnio filas={r.filas} agendas={agendasData} />
       <DivisorLecturas />
 
-      <div className="cp-plenos-hero" style={{ marginBottom: 30 }}>
-        <div>
-          {/* El lede lleva los cuatro números de la escalera en prosa, porque
+      {/* Las cuatro secciones de abajo son las que pliega «Ver: lo esencial»
+          (components/Lecturas.jsx); el pie, con la fuente y los enlaces, se
+          queda a la vista en los dos estados. */}
+      <SeccionExperta id="plenos-cobertura" titulo={t('plenos.indice.escalera.titulo')}>
+        <div className="cp-plenos-hero" style={{ marginBottom: 30 }}>
+          <div>
+            {/* El lede lleva los cuatro números de la escalera en prosa, porque
               un lector que no mira la tarjeta de al lado tiene que salir de
               aquí sabiendo el denominador. */}
-          <p
-            style={{
-              margin: 0,
-              fontSize: 'var(--fs-head)',
-              lineHeight: 1.5,
-              color: 'var(--ink)',
-              maxWidth: '62ch',
-            }}
-          >
-            {conHuecos(
-              t(
-                r.ventana.desde
-                  ? 'plenos.indice.lede.celebradas'
-                  : 'plenos.indice.lede.celebradasSinFecha',
-              ),
-              {
-                '{sesiones}': (
-                  <strong>{rellena(t('plenos.indice.nSesiones'), { n: r.total })}</strong>
+            <p
+              style={{
+                margin: 0,
+                fontSize: 'var(--fs-head)',
+                lineHeight: 1.5,
+                color: 'var(--ink)',
+                maxWidth: '62ch',
+              }}
+            >
+              {conHuecos(
+                t(
+                  r.ventana.desde
+                    ? 'plenos.indice.lede.celebradas'
+                    : 'plenos.indice.lede.celebradasSinFecha',
                 ),
-                '{fecha}': fmtDateLong(r.ventana.desde, locale),
-              },
-            )}{' '}
-            {conHuecos(t('plenos.indice.lede.cobertura'), {
-              '{agenda}': r.agenda.sesiones,
-              '{decl}': r.embudo.sesiones,
-              '{votos}': (
-                <strong>{rellena(t('plenos.indice.lede.votos'), { n: r.votos.sesiones })}</strong>
-              ),
-            })}{' '}
-            {t('plenos.indice.lede.aviso')}
-          </p>
-          <p
-            style={{
-              margin: '12px 0 0',
-              fontSize: 'var(--fs-aux)',
-              lineHeight: 1.55,
-              color: 'var(--ink70)',
-              maxWidth: '66ch',
-            }}
-          >
-            {t('plenos.indice.fuenteRegmeet')}{' '}
-            <Link to="/metodologia" style={{ color: 'var(--civic)' }}>
-              {t('plenos.indice.comoSeProcesa')}
-            </Link>
-          </p>
+                {
+                  '{sesiones}': (
+                    <strong>{rellena(t('plenos.indice.nSesiones'), { n: r.total })}</strong>
+                  ),
+                  '{fecha}': fmtDateLong(r.ventana.desde, locale),
+                },
+              )}{' '}
+              {conHuecos(t('plenos.indice.lede.cobertura'), {
+                '{agenda}': r.agenda.sesiones,
+                '{decl}': r.embudo.sesiones,
+                '{votos}': (
+                  <strong>{rellena(t('plenos.indice.lede.votos'), { n: r.votos.sesiones })}</strong>
+                ),
+              })}{' '}
+              {t('plenos.indice.lede.aviso')}
+            </p>
+            <p
+              style={{
+                margin: '12px 0 0',
+                fontSize: 'var(--fs-aux)',
+                lineHeight: 1.55,
+                color: 'var(--ink70)',
+                maxWidth: '66ch',
+              }}
+            >
+              {t('plenos.indice.fuenteRegmeet')}{' '}
+              <Link to="/metodologia" style={{ color: 'var(--civic)' }}>
+                {t('plenos.indice.comoSeProcesa')}
+              </Link>
+            </p>
+          </div>
+          <EscaleraCobertura escalera={r.escalera} excepciones={r.escaleraExcepciones} />
         </div>
-        <EscaleraCobertura escalera={r.escalera} excepciones={r.escaleraExcepciones} />
-      </div>
 
-      <div style={{ height: 1, background: 'var(--border)', margin: '0 0 30px' }} />
+        <div style={{ height: 1, background: 'var(--border)', margin: '0 0 30px' }} />
+      </SeccionExperta>
 
-      <div id="sesiones">
+      <SeccionExperta id="sesiones" titulo={t('plenos.indice.tabla.titulo')}>
         <TablaSesiones filas={r.filas} filtros={r.filtros} porAnio={r.porAnio} loading={loading} />
-      </div>
+      </SeccionExperta>
 
-      <div className="cp-plenos-duo" style={{ marginTop: 30 }}>
-        <TarjetaVotaciones votos={r.votos} total={r.total} />
-        <TarjetaDeclaraciones embudo={r.embudo} />
-      </div>
+      <SeccionExperta
+        id="plenos-votos-declaraciones"
+        titulo={t('plenos.indice.seccion.votosYDeclaraciones')}
+        style={{ marginTop: 30 }}
+      >
+        <div className="cp-plenos-duo">
+          <TarjetaVotaciones votos={r.votos} total={r.total} />
+          <TarjetaDeclaraciones embudo={r.embudo} />
+        </div>
+      </SeccionExperta>
 
-      <div style={{ marginTop: 30 }}>
+      <SeccionExperta
+        id="plenos-reparto"
+        titulo={t('plenos.indice.reparto.titulo')}
+        style={{ marginTop: 30 }}
+      >
         <RepartoPorArea departamentos={r.departamentos} agenda={r.agenda} sesiones={r.total} />
-      </div>
+      </SeccionExperta>
 
       <div className="cp-plenos-pie" style={{ marginTop: 30 }}>
         <p

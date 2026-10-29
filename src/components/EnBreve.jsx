@@ -11,7 +11,9 @@ import { DefinicionGlosario, FraseConTerminos } from './Termino'
  *
  * - No sustituye a la página: va encima y cada respuesta enlaza a la sección
  *   que la demuestra. Nada de un «modo fácil» aparte, que escondería las
- *   salvedades a quien lo eligiera.
+ *   salvedades a quien lo eligiera. Lo que sí hay es un pliegue de la lectura
+ *   experta que elige el lector (`Lecturas.jsx`, salvaguarda 4 del diseño):
+ *   este bloque no se pliega nunca, y sus enlaces abren lo que esté plegado.
  * - La salvedad va en la MISMA tarjeta que la cifra, como el aviso de tramo en
  *   /eficiencia: una cifra resumida sin su «pero» deja de ser cierta.
  * - Las frases no se escriben aquí: llegan ya derivadas del dato. Este
@@ -149,7 +151,8 @@ export default function EnBreve({ titulo, intro, saltarA, saltarTexto, children,
           </h2>
           <p className="cp-en-breve-intro">{intro}</p>
         </div>
-        <a href={saltarA} className="cp-en-breve-saltar">
+        {/* «Todos los datos»: con la lectura experta plegada, las abre todas. */}
+        <a href={saltarA} className="cp-en-breve-saltar" data-abre-todo="">
           {saltarTexto}
         </a>
       </div>

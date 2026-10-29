@@ -201,9 +201,13 @@ test.describe('Cargos (/cargos)', () => {
     // only asserts the sitting grid would stay green while the former member
     // quietly came back as a sitting one. Against the REAL snapshot.
     await page.goto('/cargos', { waitUntil: 'domcontentloaded' })
-    await expect(page.getByText('Ya no forman parte de la corporación').first()).toBeVisible({
-      timeout: 8000,
-    })
+    // Dentro del cuerpo de su sección: la pestaña del pliegue lleva el mismo
+    // título, siempre en el DOM y oculta con «todo» (components/Lecturas.jsx).
+    await expect(
+      page
+        .locator('#ya-no-forman-parte > .cp-experta-cuerpo')
+        .getByText('Ya no forman parte de la corporación'),
+    ).toBeVisible({ timeout: 8000 })
     const body = await page.locator('body').innerText()
     const i = body.indexOf('YA NO FORMAN PARTE DE LA CORPORACIÓN')
     expect(i).toBeGreaterThan(0)
@@ -290,8 +294,11 @@ test.describe('Cargos (/cargos)', () => {
     // ahí, no un fallo nuevo. La tarjeta de retribuciones devuelve `null`
     // hasta que están ISPA y dedicaciones, así que su titular es la única
     // señal que significa «los datos que esto afirma ya han llegado».
+    // Por su papel de encabezado y no por su texto: la pestaña del pliegue
+    // (components/Lecturas.jsx) lleva el mismo título, siempre en el DOM y
+    // oculta con «todo», y no espera a ningún dato.
     await expect(
-      page.getByText('Qué cobra la corporación, y de dónde sale cada cifra').first(),
+      page.getByRole('heading', { name: 'Qué cobra la corporación, y de dónde sale cada cifra' }),
     ).toBeVisible({ timeout: 10000 })
     const body = await page.locator('body').innerText()
     // The distribution renders with both ends named, so the reader can see the
@@ -480,7 +487,9 @@ test.describe('Cargos (/cargos)', () => {
     // es la página de la corporación —la que las publica todas—, no el
     // documento de nadie.
     await page.goto('/cargos', { waitUntil: 'domcontentloaded' })
-    await expect(page.getByText('Quién dirige qué').first()).toBeVisible({ timeout: 8000 })
+    await expect(page.getByRole('heading', { name: 'Quién dirige qué' })).toBeVisible({
+      timeout: 8000,
+    })
     const listadoMuerto =
       'https://www.ribarroja.es/es/portal_de_transparencia/informacion_sobre_la_corporacion_municipal/datos_biograficos_del_alcalde_sa_y_concejales/contenidos/864708/0835919'
     await expect(page.locator(`a[href="${listadoMuerto}"]`)).toHaveCount(0)
