@@ -2,6 +2,7 @@ import { describe, it, expect } from 'vitest'
 import { readFileSync } from 'node:fs'
 import { join } from 'node:path'
 import { contrastarPresupuesto, TOLERANCIA_EQUILIBRIO } from '../src/scraper/budget-contraste'
+import { periodoDelAnio } from '../src/scraper/budget-execution'
 
 const ROOT = join(__dirname, '..')
 const budget = JSON.parse(readFileSync(join(ROOT, 'public/data/budget.json'), 'utf8'))
@@ -125,5 +126,39 @@ describe('scraper/budget-contraste (snapshot real del 2026-10-21, hoja del 2T)',
     expect(
       contrastarPresupuesto({ ...budget.snapshot, totalExpense: null }, ejecucion.latest),
     ).toBeNull()
+  })
+})
+
+describe('el cotejo con CONPREL usa la ejecución del AÑO de CONPREL', () => {
+  // Con el 1T de 2026 como periodo más nuevo, cotejar CONPREL de 2025 contra
+  // `latest` devolvía null —años distintos— y el aviso «no cuadra en la fuente
+  // del ministerio» de /presupuesto dejó de pintarse sin que nada lo dijera.
+  const publicado = JSON.parse(
+    readFileSync(join(ROOT, 'public/data/budget-execution.json'), 'utf8'),
+  )
+
+  it('el periodo del año de CONPREL es su cierre, aunque haya uno más nuevo', () => {
+    const anio = budget.snapshot.year
+    const p = periodoDelAnio(publicado, anio)!
+    expect(p.year).toBe(anio)
+    expect(p.fechaListado).toBe(`31/12/${anio}`)
+    // Y hay de verdad uno más nuevo: si no, esta prueba no mediría nada.
+    expect(publicado.latest.year).toBeGreaterThan(anio)
+    expect(periodoDelAnio(publicado, publicado.latest.year)).toEqual(publicado.latest)
+    expect(periodoDelAnio(publicado, 2019)).toBeNull()
+    expect(periodoDelAnio(null, anio)).toBeNull()
+  })
+
+  it('con él, el desequilibrio de CONPREL vuelve a medirse', () => {
+    const c = contrastarPresupuesto(
+      budget.snapshot,
+      periodoDelAnio(publicado, budget.snapshot.year),
+    )!
+    expect(c).not.toBeNull()
+    expect(c.desequilibrioConprel).toBeCloseTo(
+      budget.snapshot.totalRevenue - budget.snapshot.totalExpense,
+      2,
+    )
+    expect(Math.abs(c.desequilibrioConprel!)).toBeGreaterThanOrEqual(TOLERANCIA_EQUILIBRIO)
   })
 })

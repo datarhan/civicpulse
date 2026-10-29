@@ -3,7 +3,7 @@ import { Card, ExtLink, Marcado, Pill, SectionHead } from '../components/Primiti
 import DataAsOf from '../components/DataAsOf'
 import { useBudget } from '../hooks/useBudget'
 import { contrastarPresupuesto, TOLERANCIA_EQUILIBRIO } from '../scraper/budget-contraste'
-import { esCierre } from '../scraper/budget-execution'
+import { esCierre, periodoDelAnio } from '../scraper/budget-execution'
 import { useBudgetExecution } from '../hooks/useBudgetExecution'
 import { useObras } from '../hooks/useObras'
 import { useBdns } from '../hooks/useBdns'
@@ -273,8 +273,9 @@ function Cabecera() {
   // worse defect than the ambiguity. `contrastarPresupuesto` gates on the
   // years matching: comparing a CONPREL year against an execution statement
   // from a different exercise would manufacture a discrepancy that does not
-  // exist.
-  const contraste = contrastarPresupuesto(s, exec)
+  // exist. So it is fed the execution of CONPREL's OWN year (`periodoDelAnio`),
+  // not `latest`, which can be a newer year's quarter.
+  const contraste = contrastarPresupuesto(s, periodoDelAnio(execData, s.year))
   const dosFuentes =
     contraste && Math.abs(contraste.diferenciaGastos) >= TOLERANCIA_EQUILIBRIO ? contraste : null
   // El lede habla de la ejecución cuando es la del MISMO ejercicio que CONPREL
@@ -1032,7 +1033,10 @@ function AprobadoPar() {
   const { data: execData } = useBudgetExecution()
   if (loading || error || !data) return null
   const s = data.snapshot
-  const contraste = contrastarPresupuesto(s, execData?.latest)
+  // Con la ejecución del MISMO año que CONPREL, no con `latest`: cuando el
+  // periodo más nuevo es de otro año, el cotejo devolvía null y este aviso —que
+  // habla sólo de CONPREL, de sus ingresos frente a sus gastos— dejaba de salir.
+  const contraste = contrastarPresupuesto(s, periodoDelAnio(execData, s.year))
   const desequilibrio =
     contraste &&
     contraste.desequilibrioConprel !== null &&
