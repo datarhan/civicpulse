@@ -14,6 +14,15 @@ import {
 // palabra y sin aviso—; la compartida apila cada fila en pares etiqueta ·
 // valor. La cita propia no decía qué documento hablaba.
 import { Cita, Tabla } from './ConteoVisitantes'
+import { STATUS_LABEL } from '../../hooks/useTenders'
+
+/**
+ * El estado del contrato como lo diría la prosa. La instantánea lo guarda en la
+ * palabra de Gobierto (`formalized`), y la sección 06 la imprimía tal cual en
+ * mitad de una frase en castellano; el rótulo es el del listado de /presupuesto.
+ * Exportada para que la prueba vea que el estado congelado tiene uno.
+ */
+export const estadoEnCastellano = (estado) => STATUS_LABEL[estado]?.toLowerCase()
 
 function eur(n, dec = 0) {
   return new Intl.NumberFormat('es-ES', {
@@ -425,9 +434,9 @@ export default function Basuras() {
         <p>
           Las fechas importan. El Ayuntamiento adjudicó el 10 de septiembre de 2025. ISS notificó la
           compra a la CNMC el 22 de septiembre, doce días después. La CNMC la autorizó el 1 de
-          octubre. ISS la hizo pública el 21 de octubre. Y el Ayuntamiento formalizó el contrato el
-          11 de noviembre, tres semanas después de que se supiera que la adjudicataria había
-          cambiado de manos.
+          octubre. ISS completó la compra el 21 de octubre, y lo hizo público el 5 de noviembre, en
+          su informe trimestral. Y el Ayuntamiento formalizó el contrato el 11 de noviembre, tres
+          semanas después de que la adjudicataria cambiara de manos.
         </p>
         <p>
           En enero, cuando el nuevo propietario pidió que se le reconociera como contratista, el
@@ -471,11 +480,10 @@ export default function Basuras() {
         <p>
           Hay una segunda discordancia, y es comprobable en un minuto. El{' '}
           {data.registro.comprobadoEl}, el registro público de la contratación municipal seguía
-          dando el contrato por <span className="mono">{data.registro.estadoPublicado}</span> a
-          nombre de {data.registro.adjudicatariaPublicada}, vigente hasta el{' '}
-          {data.registro.finPublicado}, por {eur(data.registro.importePublicado)} sin IVA. No consta
-          la resolución. Y no consta ningún contrato de FCC, la empresa que presta el servicio desde
-          marzo.
+          dando el contrato por {estadoEnCastellano(data.registro.estadoPublicado)} a nombre de{' '}
+          {data.registro.adjudicatariaPublicada}, vigente hasta el {data.registro.finPublicado}, por{' '}
+          {eur(data.registro.importePublicado)} sin IVA. No consta la resolución. Y no consta ningún
+          contrato de FCC, la empresa que presta el servicio desde marzo.
         </p>
         <Aparte title="El control que hicimos antes de decir esto">
           Un registro desactualizado podría estar sencillamente abandonado, y entonces esto no sería
