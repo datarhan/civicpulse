@@ -47,6 +47,11 @@ function formatDate(iso) {
 /** «· N retiradas» for the vote catalogue row, or nothing when none are.
  *  Counts live (non-revoked) retractions only — a revoked one is back in
  *  `items[]` and would be counted twice. */
+/** «1 queja», «2 quejas»: un recuento con su palabra en singular o en plural. */
+function cuenta(n, una, varias) {
+  return `${n.toLocaleString('es-ES')} ${n === 1 ? una : varias}`
+}
+
 function retractionNote(retracted) {
   const n = Object.values(retracted ?? {}).reduce((s, x) => s + (x ?? 0), 0)
   return n > 0 ? ` · ${n} retirada${n === 1 ? '' : 's'}` : ''
@@ -135,7 +140,7 @@ function DatasetsCatalog() {
   const items = [
     {
       name: 'Corporación municipal',
-      rows: officials ? `${officials.count} cargos` : '—',
+      rows: officials?.count != null ? cuenta(officials.count, 'cargo', 'cargos') : '—',
       updated: formatDate(officials?.generatedAt),
       source: 'ribarroja.es · scraper',
       path: '/data/officials.json',
@@ -181,7 +186,7 @@ function DatasetsCatalog() {
     },
     {
       name: 'Subvenciones BDNS',
-      rows: bdns?.stats?.total ? `${bdns.stats.total.toLocaleString('es-ES')} convocatorias` : '—',
+      rows: bdns?.stats?.total ? cuenta(bdns.stats.total, 'convocatoria', 'convocatorias') : '—',
       updated: formatDate(bdns?.generatedAt),
       source: 'BDNS · pap.hacienda.gob.es',
       path: '/data/bdns.json',
@@ -189,7 +194,7 @@ function DatasetsCatalog() {
     },
     {
       name: 'Plenos municipales',
-      rows: plenos?.stats?.total ? `${plenos.stats.total} sesiones` : '—',
+      rows: plenos?.stats?.total ? cuenta(plenos.stats.total, 'sesión', 'sesiones') : '—',
       updated: formatDate(plenos?.generatedAt),
       source: 'ribarroja.es/plenos',
       path: '/data/plenos.json',
@@ -197,7 +202,9 @@ function DatasetsCatalog() {
     },
     {
       name: 'Órdenes del día de pleno',
-      rows: agendas?.stats?.agendaItemsTotal ? `${agendas.stats.agendaItemsTotal} puntos` : '—',
+      rows: agendas?.stats?.agendaItemsTotal
+        ? cuenta(agendas.stats.agendaItemsTotal, 'punto', 'puntos')
+        : '—',
       updated: formatDate(agendas?.generatedAt),
       source: 'ribarroja.es · convocatorias',
       path: '/data/plenos-agendas.json',
@@ -205,7 +212,9 @@ function DatasetsCatalog() {
     },
     {
       name: 'Ofertas de empleo',
-      rows: empleo?.stats?.openTotal ? `${empleo.stats.openTotal} ofertas abiertas` : '—',
+      rows: empleo?.stats?.openTotal
+        ? cuenta(empleo.stats.openTotal, 'oferta abierta', 'ofertas abiertas')
+        : '—',
       updated: formatDate(empleo?.generatedAt),
       source: 'ribaocupacio.portalemp.com · ADL',
       path: '/data/empleo.json',
@@ -213,7 +222,7 @@ function DatasetsCatalog() {
     },
     {
       name: 'Prensa local',
-      rows: press?.stats?.total ? `${press.stats.total} titulares` : '—',
+      rows: press?.stats?.total ? cuenta(press.stats.total, 'titular', 'titulares') : '—',
       updated: formatDate(press?.generatedAt),
       source: `${press?.stats?.sources ?? '—'} medios · RSS + agregadores`,
       path: '/data/press.json',
@@ -221,7 +230,9 @@ function DatasetsCatalog() {
     },
     {
       name: 'Participación ciudadana',
-      rows: participa?.stats?.total ? `${participa.stats.total} publicaciones` : '—',
+      rows: participa?.stats?.total
+        ? cuenta(participa.stats.total, 'publicación', 'publicaciones')
+        : '—',
       updated: formatDate(participa?.generatedAt),
       source: 'participa.ribarroja.es',
       path: '/data/participa.json',
@@ -249,7 +260,9 @@ function DatasetsCatalog() {
     },
     {
       name: 'Geografía del municipio',
-      rows: geo?.neighborhoods ? `${geo.neighborhoods.length} barrios OSM` : '—',
+      rows: geo?.neighborhoods
+        ? cuenta(geo.neighborhoods.length, 'barrio OSM', 'barrios OSM')
+        : '—',
       updated: formatDate(geo?.generatedAt),
       source: 'OpenStreetMap · relación 342356',
       path: '/data/geo.json',
@@ -265,7 +278,7 @@ function DatasetsCatalog() {
     },
     {
       name: 'Promesas políticas',
-      rows: promises?.items ? `${promises.items.length} compromisos` : '—',
+      rows: promises?.items ? cuenta(promises.items.length, 'compromiso', 'compromisos') : '—',
       updated: formatDate(promises?.generatedAt),
       source: 'curación editorial · documento oficial o noticia',
       path: '/data/promises.json',
@@ -273,7 +286,7 @@ function DatasetsCatalog() {
     },
     {
       name: 'Hallazgos editoriales',
-      rows: findings?.items ? `${findings.items.length} hallazgos` : '—',
+      rows: findings?.items ? cuenta(findings.items.length, 'hallazgo', 'hallazgos') : '—',
       updated: formatDate(findings?.generatedAt),
       source: 'curación editorial · claim-verifier',
       path: '/data/pleno-findings.json',
@@ -299,7 +312,7 @@ function DatasetsCatalog() {
     },
     {
       name: 'Quejas ciudadanas',
-      rows: quejas?.items ? `${quejas.items.length} quejas` : '—',
+      rows: quejas?.items ? cuenta(quejas.items.length, 'queja', 'quejas') : '—',
       updated: formatDate(quejas?.generatedAt),
       source: 'Telegram bot · Open311',
       path: '/data/quejas.json',
@@ -330,7 +343,7 @@ function DatasetsCatalog() {
     },
     {
       name: 'Periodo medio de pago (serie)',
-      rows: pmp?.stats?.puntos ? `${pmp.stats.puntos} trimestres` : '—',
+      rows: pmp?.stats?.puntos ? cuenta(pmp.stats.puntos, 'trimestre', 'trimestres') : '—',
       updated: formatDate(pmp?.generatedAt),
       source: 'MinHac · RD 1040/2017 · refresco manual',
       path: '/data/pmp.json',
@@ -338,7 +351,9 @@ function DatasetsCatalog() {
     },
     {
       name: 'Deuda viva del ayuntamiento (serie)',
-      rows: deudaViva?.stats?.puntos ? `${deudaViva.stats.puntos} ejercicios` : '—',
+      rows: deudaViva?.stats?.puntos
+        ? cuenta(deudaViva.stats.puntos, 'ejercicio', 'ejercicios')
+        : '—',
       updated: formatDate(deudaViva?.generatedAt),
       source: 'MinHac CDI · entrega anual · refresco manual',
       path: '/data/deuda-viva.json',
@@ -346,7 +361,7 @@ function DatasetsCatalog() {
     },
     {
       name: 'Índice de precios (deflactor)',
-      rows: ipc?.stats?.anios ? `${ipc.stats.anios} años` : '—',
+      rows: ipc?.stats?.anios ? cuenta(ipc.stats.anios, 'año', 'años') : '—',
       updated: formatDate(ipc?.generatedAt),
       source: 'INE · IPC general · refresco manual',
       path: '/data/ipc.json',
@@ -354,7 +369,9 @@ function DatasetsCatalog() {
     },
     {
       name: 'Hallazgos de eficiencia (fichas firmadas)',
-      rows: fichasEficiencia?.items ? `${fichasEficiencia.items.length} fichas` : '—',
+      rows: fichasEficiencia?.items
+        ? cuenta(fichasEficiencia.items.length, 'ficha', 'fichas')
+        : '—',
       updated: formatDate(fichasEficiencia?.generatedAt),
       source: 'curación editorial · promote-indicador',
       path: '/data/eficiencia-findings.json',
@@ -382,7 +399,7 @@ function DatasetsCatalog() {
     },
     {
       name: 'Criminalidad municipal (resultado)',
-      rows: crimen?.stats?.anios ? `${crimen.stats.anios} años` : '—',
+      rows: crimen?.stats?.anios ? cuenta(crimen.stats.anios, 'año', 'años') : '—',
       updated: formatDate(crimen?.generatedAt),
       source: 'Portal Estadístico de Criminalidad · refresco manual',
       path: '/data/criminalidad.json',
@@ -453,7 +470,7 @@ function DatasetsCatalog() {
     },
     {
       name: 'Empleo público (procesos selectivos)',
-      rows: procesos?.procesos ? `${procesos.procesos.length} procesos` : '—',
+      rows: procesos?.procesos ? cuenta(procesos.procesos.length, 'proceso', 'procesos') : '—',
       updated: formatDate(procesos?.generatedAt),
       source: 'ribarroja.es · scraper',
       path: '/data/procesos-selectivos.json',
@@ -461,7 +478,9 @@ function DatasetsCatalog() {
     },
     {
       name: 'Registro de asociaciones',
-      rows: asociaciones?.asociaciones ? `${asociaciones.asociaciones.length} entidades` : '—',
+      rows: asociaciones?.asociaciones
+        ? cuenta(asociaciones.asociaciones.length, 'entidad', 'entidades')
+        : '—',
       updated: formatDate(asociaciones?.generatedAt),
       source: 'Registro Municipal · Ayto.',
       path: '/data/asociaciones.json',
@@ -469,7 +488,7 @@ function DatasetsCatalog() {
     },
     {
       name: 'Obras de infraestructura (2019–2024)',
-      rows: obras?.obras ? `${obras.obras.length} obras` : '—',
+      rows: obras?.obras ? cuenta(obras.obras.length, 'obra', 'obras') : '—',
       updated: formatDate(obras?.generatedAt),
       source: 'Transparencia + Plan RENOVE · Ayto.',
       path: '/data/obras.json',
@@ -495,6 +514,14 @@ function DatasetsCatalog() {
     })),
   ]
 
+  // Un fichero, una ficha. La lista escrita a mano (`EXTRA_DATASETS`) repetía
+  // cuatro que ya estaban arriba con su recuento —obras, procesos selectivos,
+  // asociaciones y las ofertas de la ADL, ésta además rotulada «Empleo
+  // público», que es otra cosa—. Se quitaron de la lista, y esto impide que
+  // vuelva a pasar: gana la primera, la que trae su recuento.
+  const vistos = new Set()
+  const catalogo = items.filter((d) => !vistos.has(d.path) && vistos.add(d.path))
+
   return (
     // El `min(…, 100%)` es para la columna que queda sola: sin él conservaba
     // sus 320 px en una caja de 272 (320 px de pantalla).
@@ -505,8 +532,8 @@ function DatasetsCatalog() {
         gap: 14,
       }}
     >
-      {items.map((d) => (
-        <Card key={d.path} hover>
+      {catalogo.map((d) => (
+        <Card key={d.path} hover data-ficha-catalogo={d.path}>
           <div
             style={{
               display: 'flex',
@@ -581,6 +608,10 @@ function DatasetsCatalog() {
 
 function WikidataCard() {
   const { loading, error, data } = useWikidata()
+  // El nombre oficial es el del INE (padron.json). La etiqueta de Wikidata es
+  // «Ribarroja del Turia», una forma castellana antigua que el resto del sitio
+  // no usa: salía como título, como si fuera el nombre del pueblo.
+  const nombreOficial = usePadron().data?.name ?? null
   if (loading || error || !data?.facts) return null
   const f = data.facts
   const generated = fmtDateLong(data.generatedAt)
@@ -612,7 +643,10 @@ function WikidataCard() {
   )
   return (
     <Card>
-      <SectionHead eyebrow={`Identidad del municipio · Wikidata ${f.qid}`} title={f.label} />
+      <SectionHead
+        eyebrow={`Identidad del municipio · Wikidata ${f.qid}`}
+        title={nombreOficial ?? f.label}
+      />
       <div
         style={{
           fontSize: 'var(--fs-meta)',
@@ -621,6 +655,9 @@ function WikidataCard() {
           marginBottom: 12,
         }}
       >
+        {nombreOficial && nombreOficial !== f.label && (
+          <>Nombre oficial, del INE. En Wikidata figura como «{f.label}»: </>
+        )}
         {f.description} · actualizado {generated}
       </div>
       <div
@@ -942,42 +979,61 @@ function AsociacionesCard() {
         eyebrow={`Registro municipal${data?.fechaRegistro ? ` · ${data.fechaRegistro}` : ''}`}
         title={`Entidades y asociaciones (${rows.length})`}
       />
-      <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8, margin: '10px 0 16px' }}>
+      {/* Por tipo, de más a menos, y cada tipo plegado: abiertas, las cien
+          entidades una por línea eran pantallas enteras entre el catálogo y el
+          resto de la página. Cerradas, cada tipo dice cuántas tiene. */}
+      <div style={{ margin: '10px 0 0' }}>
         {tipos.map(([t, n]) => (
-          <Pill key={t} tone="neutral">
-            {t} · <span className="mono">{n}</span>
-          </Pill>
-        ))}
-      </div>
-      <div
-        style={{
-          display: 'grid',
-          gridTemplateColumns: 'repeat(auto-fill, minmax(220px, 1fr))',
-          gap: '4px 16px',
-        }}
-      >
-        {rows.map((a, i) => (
-          <div
-            key={i}
-            style={{
-              fontSize: 'var(--fs-meta)',
-              color: 'var(--ink70)',
-              padding: '3px 0',
-              borderBottom: '1px solid var(--border2)',
-              // El nombre sale tal cual del PDF del registro, y con el de julio de
-              // 2026 alguna fila llegó con las columnas pegadas
-              // —«…TúriaG98409055asocultaurina…@gmail.com», sin un solo espacio—:
-              // a 320 px eso se salía 41 px de su columna y ensanchaba la página.
-              // Lo pegado se arregló donde nace, en el lector del PDF (la columna
-              // CIF, src/scraper/asociaciones.ts); esto se queda para la próxima
-              // palabra larga sin espacios: se parte por donde haga falta antes
-              // que empujar la página.
-              overflowWrap: 'anywhere',
-            }}
+          <details
+            key={t}
+            data-asociaciones-tipo={t}
+            style={{ borderBottom: '1px solid var(--border2)' }}
           >
-            {a.nombre}
-            {a.tipo && <span style={{ color: 'var(--ink50)' }}> · {a.tipo}</span>}
-          </div>
+            <summary
+              style={{
+                cursor: 'pointer',
+                padding: '8px 0',
+                fontSize: 'var(--fs-meta)',
+                fontWeight: 600,
+                color: 'var(--ink)',
+              }}
+            >
+              {t} · <span className="mono">{n}</span>
+            </summary>
+            <div
+              style={{
+                display: 'grid',
+                gridTemplateColumns: 'repeat(auto-fill, minmax(min(220px, 100%), 1fr))',
+                gap: '4px 16px',
+                padding: '4px 0 10px',
+              }}
+            >
+              {rows
+                .filter((a) => (a.tipo || 'Otras') === t)
+                .map((a, i) => (
+                  <div
+                    key={i}
+                    style={{
+                      fontSize: 'var(--fs-meta)',
+                      color: 'var(--ink70)',
+                      padding: '3px 0',
+                      borderBottom: '1px solid var(--border2)',
+                      // El nombre sale tal cual del PDF del registro, y con el de
+                      // julio de 2026 alguna fila llegó con las columnas pegadas
+                      // —«…TúriaG98409055asocultaurina…@gmail.com», sin un solo
+                      // espacio—: a 320 px eso se salía 41 px de su columna y
+                      // ensanchaba la página. Lo pegado se arregló donde nace, en
+                      // el lector del PDF (la columna CIF, src/scraper/asociaciones.ts);
+                      // esto se queda para la próxima palabra larga sin espacios:
+                      // se parte por donde haga falta antes que empujar la página.
+                      overflowWrap: 'anywhere',
+                    }}
+                  >
+                    {a.nombre}
+                  </div>
+                ))}
+            </div>
+          </details>
         ))}
       </div>
       <p
@@ -1012,13 +1068,18 @@ const EXTRA_DATASETS = [
   ['Síndic de Greuges CV · expedientes', '/data/sindic-expedientes.json', 'elsindic.com'],
   ['CTBG · reclamaciones', '/data/ctbg.json', 'MinHac · CTBG'],
   ['Consell de Transparència CV', '/data/consell-cv.json', 'GVA · CTCV'],
-  ['Obras municipales', '/data/obras.json', 'Portal de Transparencia'],
   ['Incendios forestales · geometría', '/data/incendios-perimetros.json', 'ICV/GVA · CC BY 4.0'],
-  ['Procesos selectivos', '/data/procesos-selectivos.json', 'ribarroja.es'],
-  ['Registro de asociaciones', '/data/asociaciones.json', 'Registro Municipal'],
   ['Servicios civiles (POI)', '/data/civic-poi.json', 'OpenStreetMap'],
   ['Callejero', '/data/streets.json', 'OpenStreetMap'],
-  ['Empleo público · ADL', '/data/empleo.json', 'ribaocupacio.portalemp.com'],
+]
+
+/** Dónde se lee mejor una cifra suelta: las páginas que la explican. */
+const ATAJOS = [
+  ['/presupuesto', 'nav.presup'],
+  ['/plenos', 'nav.plenos'],
+  ['/cargos', 'nav.cargos'],
+  ['/quejas', 'nav.quejas'],
+  ['/empleo', 'nav.empleo'],
 ]
 
 export default function Datos() {
@@ -1050,12 +1111,39 @@ export default function Datos() {
         >
           {t('datos.title')}
         </h1>
-        <div
-          style={{ fontSize: 'var(--fs-aux)', color: 'var(--ink50)', marginTop: 4, maxWidth: 620 }}
+        {/* La lectura vecinal de /datos (auditoría de las dos lecturas, §22):
+            qué es esto y dónde se lee mejor una cifra suelta. */}
+        <p
+          data-datos-frase=""
+          style={{
+            fontSize: 'var(--fs-body)',
+            color: 'var(--ink)',
+            lineHeight: 1.6,
+            margin: '8px 0 0',
+            maxWidth: '70ch',
+          }}
         >
-          Todo lo que alimenta CivicPulse, descargable y consultable vía API. Periodismo,
-          investigación y transparencia.
-        </div>
+          {t('datos.frase.descargar')} {t('datos.frase.atajo')}{' '}
+          {ATAJOS.map(([to, clave], i) => (
+            <span key={to}>
+              <a
+                href={to}
+                style={{
+                  color: 'var(--civic)',
+                  textDecoration: 'underline',
+                  textUnderlineOffset: 2,
+                }}
+              >
+                {t(clave)}
+              </a>
+              {i < ATAJOS.length - 2
+                ? ', '
+                : i === ATAJOS.length - 2
+                  ? ` ${t('datos.frase.o')} `
+                  : '.'}
+            </span>
+          ))}
+        </p>
         <div style={{ marginTop: 8, fontSize: 'var(--fs-meta)' }}>
           <a
             href="/lab-health"
@@ -1068,6 +1156,28 @@ export default function Datos() {
           </span>
         </div>
       </div>
+
+      {/* El catálogo primero: es para lo que se viene a esta página, y antes
+          quedaba al final, detrás de las cien asociaciones. */}
+      <section id="catalogo" aria-labelledby="catalogo-titulo" style={{ marginBottom: 28 }}>
+        <h2
+          id="catalogo-titulo"
+          style={{ fontSize: 'var(--fs-head)', fontWeight: 700, margin: 0, lineHeight: 1.3 }}
+        >
+          {t('datos.catalogo.titulo')}
+        </h2>
+        <p
+          style={{
+            fontSize: 'var(--fs-aux)',
+            color: 'var(--ink50)',
+            margin: '4px 0 12px',
+            maxWidth: '70ch',
+          }}
+        >
+          {t('datos.catalogo.intro')}
+        </p>
+        <DatasetsCatalog />
+      </section>
 
       <div style={{ marginBottom: 16 }}>
         <WikidataCard />
@@ -1085,20 +1195,6 @@ export default function Datos() {
       <div style={{ marginBottom: 18 }}>
         <AsociacionesCard />
       </div>
-
-      <div
-        className="mono"
-        style={{
-          fontSize: 'var(--fs-micro)',
-          color: 'var(--ink50)',
-          textTransform: 'uppercase',
-          letterSpacing: '.08em',
-          marginBottom: 8,
-        }}
-      >
-        Catálogo de datasets · snapshots JSON regenerados por el pipeline
-      </div>
-      <DatasetsCatalog />
     </div>
   )
 }

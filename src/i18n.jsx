@@ -1065,6 +1065,14 @@ export const CATALOGUE = {
     'promesas.title': 'Promesas por partido',
     'datos.eyebrow': 'Base estadística',
     'datos.title': 'Datos abiertos',
+    // La lectura vecinal de /datos (Datos.jsx): qué es y dónde se lee mejor una cifra.
+    'datos.frase.descargar':
+      'Aquí se pueden descargar los principales conjuntos de datos que usa CivicPulse.',
+    'datos.frase.atajo': 'Si buscas una cifra concreta, se lee mejor en su página:',
+    'datos.frase.o': 'o',
+    'datos.catalogo.titulo': 'Catálogo de datos',
+    'datos.catalogo.intro':
+      'Cada ficha es un fichero JSON: qué cuenta, de dónde sale y cuándo se actualizó.',
     'presup.eyebrow': 'Hacienda pública',
     'presup.title': 'Presupuesto municipal',
     'quejas.eyebrow': 'Voz ciudadana',
@@ -3976,6 +3984,13 @@ export const CATALOGUE = {
     'promesas.title': 'Promeses per partit',
     'datos.eyebrow': 'Base estadística',
     'datos.title': 'Dades obertes',
+    'datos.frase.descargar':
+      'Ací es poden descarregar els principals conjunts de dades que fa servir CivicPulse.',
+    'datos.frase.atajo': 'Si busques una xifra concreta, es llig millor en la seua pàgina:',
+    'datos.frase.o': 'o',
+    'datos.catalogo.titulo': 'Catàleg de dades',
+    'datos.catalogo.intro':
+      'Cada fitxa és un fitxer JSON: què compta, d’on ix i quan es va actualitzar.',
     'presup.eyebrow': 'Hisenda pública',
     'presup.title': 'Pressupost municipal',
     'quejas.eyebrow': 'Veu ciutadana',

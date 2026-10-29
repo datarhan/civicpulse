@@ -40,4 +40,18 @@ test.describe('LabHealth (/lab-health)', () => {
     const link = page.locator('a[href="/lab-health"]').first()
     await expect(link).toBeVisible({ timeout: 8000 })
   })
+
+  // La lectura vecinal (auditoría de las dos lecturas, §27): la frase sale de
+  // las mismas filas que las cifras de abajo, así que tienen que cuadrar.
+  test('la frase de arriba cuenta los mismos ficheros que la cifra «Fuentes»', async ({ page }) => {
+    await page.goto('/lab-health', { waitUntil: 'domcontentloaded' })
+    const frase = page.locator('[data-lab-health-frase]')
+    await expect(frase).toBeVisible({ timeout: 10_000 })
+    const fuentes = await page
+      .getByText('Fuentes', { exact: true })
+      .locator('xpath=following-sibling::*[1]')
+      .innerText()
+    await expect(frase).toContainText(`los ${fuentes.trim()} ficheros de datos del sitio`)
+    await expect(frase).toContainText('El que lleva más tiempo sin cambiar')
+  })
 })
