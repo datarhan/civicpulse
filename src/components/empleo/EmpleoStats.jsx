@@ -165,7 +165,7 @@ export default function EmpleoStats({ stats, t, totalAll, offers }) {
           tone={stats.closingSoon ? 'crit' : undefined}
         />
         {/* Su propia casilla, rotulada. Iba suelta debajo de la fila, y su
-            «85 %» caía bajo «Cierran ≤14 días» como si fuera de ellas
+            porcentaje caía bajo «Cierran ≤14 días» como si fuera de ellas
             (auditoría de las dos lecturas, §20). Y en número sobre las
             mostradas, no en porcentaje: la ficha sólo dice «Sí» cuando lo
             pide, nunca «No», así que las demás no lo indican. */}

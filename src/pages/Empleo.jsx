@@ -19,6 +19,7 @@ import {
   normalizeJornada,
   enBreveEmpleo,
   DIAS_CIERRE_PRONTO,
+  ordenarOfertas,
 } from '../lib/empleo'
 import { fmtDateShort, rellena } from '../lib/formatters'
 import { useT } from '../i18n'
@@ -241,11 +242,21 @@ function FraseEmpleo({ items, t }) {
   const frases = []
   if (f.abiertas === 0) frases.push(t('empleo.frase.ninguna'))
   else {
-    frases.push(
-      f.abiertas === 1
-        ? t('empleo.frase.abiertas.una')
-        : rellena(t('empleo.frase.abiertas'), { n: f.abiertas }),
-    )
+    // La agencia sigue listando ofertas con el plazo vencido y el contador de
+    // la lista las cuenta: si hay alguna, la frase da las dos cifras.
+    const conCerradas = f.publicadas > f.abiertas
+    if (f.abiertas === 1)
+      frases.push(
+        conCerradas
+          ? rellena(t('empleo.frase.abiertasDe.una'), { total: f.publicadas })
+          : t('empleo.frase.abiertas.una'),
+      )
+    else
+      frases.push(
+        conCerradas
+          ? rellena(t('empleo.frase.abiertasDe'), { n: f.abiertas, total: f.publicadas })
+          : rellena(t('empleo.frase.abiertas'), { n: f.abiertas }),
+      )
     frases.push(
       f.enRiba === 0
         ? t('empleo.frase.enRiba.ninguna')
@@ -346,18 +357,14 @@ export default function Empleo() {
   const municipios = useMemo(() => distinctMunicipios(items), [items])
   const contracts = useMemo(() => distinctContracts(items), [items])
 
-  const filtered = useMemo(() => {
-    const out = items.filter((o) => matchesFilters(o, filters))
-    out.sort((a, b) => {
-      if (sortBy === 'published') return b.publishedAt.localeCompare(a.publishedAt)
-      // deadline ascending — soonest-closing first, offers with no deadline last
-      if (!a.deadline && !b.deadline) return b.publishedAt.localeCompare(a.publishedAt)
-      if (!a.deadline) return 1
-      if (!b.deadline) return -1
-      return a.deadline.localeCompare(b.deadline)
-    })
-    return out
-  }, [items, filters, sortBy])
+  const filtered = useMemo(
+    () =>
+      ordenarOfertas(
+        items.filter((o) => matchesFilters(o, filters)),
+        sortBy,
+      ),
+    [items, filters, sortBy],
+  )
 
   const stats = useMemo(() => computeEmpleoStats(filtered), [filtered])
   const pageData = paginate(filtered, page, PER_PAGE)

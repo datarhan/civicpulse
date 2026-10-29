@@ -78,12 +78,40 @@ const cierraPronto = (o, now) => {
  * @param {number} [now]  epoch ms (injectable for tests)
  */
 export function enBreveEmpleo(offers, now = Date.now()) {
-  const abiertas = (offers || []).filter((o) => !isOfferClosed(o, now))
+  const todas = offers || []
+  const abiertas = todas.filter((o) => !isOfferClosed(o, now))
   return {
+    // La agencia sigue listando ofertas con el plazo vencido, y el contador de
+    // la lista las cuenta: la frase da las dos cifras para que cuadren.
+    publicadas: todas.length,
     abiertas: abiertas.length,
     enRiba: abiertas.filter((o) => o.inRibaRoja).length,
     cierranPronto: abiertas.filter((o) => cierraPronto(o, now)).length,
   }
+}
+
+/**
+ * El orden de la lista. Por cierre, las abiertas primero y la que cierra antes
+ * arriba; las que no tienen plazo, detrás; las cerradas, al final. Ordenar sólo
+ * por fecha ponía la de plazo vencido la primera, porque es la más antigua.
+ * Por publicación, la más reciente arriba, abierta o cerrada.
+ * @param {any[]} offers
+ * @param {'deadline'|'published'} sortBy
+ * @param {number} [now]  epoch ms (injectable for tests)
+ */
+export function ordenarOfertas(offers, sortBy, now = Date.now()) {
+  const reciente = (a, b) => String(b.publishedAt).localeCompare(String(a.publishedAt))
+  return [...(offers || [])].sort((a, b) => {
+    if (sortBy === 'published') return reciente(a, b)
+    const ca = isOfferClosed(a, now)
+    const cb = isOfferClosed(b, now)
+    if (ca !== cb) return ca ? 1 : -1
+    if (ca) return reciente(a, b)
+    if (!a.deadline && !b.deadline) return reciente(a, b)
+    if (!a.deadline) return 1
+    if (!b.deadline) return -1
+    return a.deadline.localeCompare(b.deadline)
+  })
 }
 
 /**
