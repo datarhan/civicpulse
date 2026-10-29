@@ -10,9 +10,11 @@
  *
  * El título de la página no siempre es el del enlace con el final que le
  * faltaba: el de la bolsa de ayudante de auditorio está redactado de otra
- * manera. Por eso la comprobación de que es el mismo proceso no compara
- * prefijos sino palabras, y sólo puede DEJAR el título cortado, nunca poner
- * otro: la identidad del proceso la da la URL del enlace.
+ * manera. Por eso la comprobación no compara prefijos sino palabras, y sólo
+ * puede DEJAR el título cortado, nunca poner otro. No elige entre procesos —
+ * los títulos de este portal son de fórmula y dos procesos distintos comparten
+ * casi todas sus palabras—: qué proceso es lo dice la URL del enlace. Sólo
+ * rechaza una página cuyo título habla de otra cosa.
  *
  * Y la lista vacía no se publica: un cambio de maquetación que deja el parser
  * sin enlaces daría «No hay procesos selectivos publicados ahora mismo», un
@@ -127,11 +129,27 @@ describe('procesos selectivos · completar el título', () => {
     expect(r.proceso).toEqual(entero)
   })
 
-  it('el título de OTRO proceso no casa: se queda el cortado', () => {
+  it('un título que habla de otra cosa no casa: se queda el cortado', () => {
     const c1 = fila(PAGINAS.c1.url)
-    const r = completaTitulo(c1, tituloDePagina(PAGINAS.auditorio.html))
-    expect(r.resultado).toBe('no-casa')
-    expect(r.proceso).toEqual(c1)
+    for (const otro of ['Página no encontrada', tituloDePagina(PAGINAS.auditorio.html)]) {
+      const r = completaTitulo(c1, otro)
+      expect(r.resultado, String(otro)).toBe('no-casa')
+      expect(r.proceso).toEqual(c1)
+    }
+  })
+
+  it('su límite, dicho: no distingue dos procesos de títulos de fórmula', () => {
+    // El enlace de los 11 auxiliares contra el título de las 18 técnicas de
+    // educación infantil: comparten casi todo y pasaría. Por eso la identidad
+    // la da la URL, y esta comprobación no se vende como otra cosa.
+    const r = completaTitulo(
+      {
+        ...fila(PAGINAS.auxiliar.url),
+        titulo: 'Proceso selectivo promoción interna restringida 11 plazas de auxiliar administr…',
+      },
+      'Proceso selectivo promoción interna restringida 18 plazas técnico/a superior educación infantil',
+    )
+    expect(r.resultado).toBe('completado')
   })
 
   it('sin título en la página: se queda el cortado', () => {
