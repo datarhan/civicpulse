@@ -56,7 +56,11 @@
  * seguidas —tomó la versión de doce servicios por la anterior a la de diez, y la
  * de trece por la vigente, que es la de quince— y de ahí sacó una contradicción
  * en una frase que la propia bitácora daba por retirada el 24-08. Ahora dice
- * «vigente hasta el {fecha}»: rigió, y desde ese día ya no.
+ * «vigente hasta el {fecha}, cuando otra corrección lo cambió»: rigió, desde ese
+ * día ya no, y lo que manda está en una fila posterior. La cola no es adorno: sin
+ * ella, la relectura de ese mismo día leyó «Corregido el 2026-08-16 … vigente
+ * hasta el 2026-08-16» —dos correcciones del mismo campo el mismo día— como una
+ * contradicción, y no sabía si volvía a valer el texto retirado.
  */
 
 import { MARCA_GRUPO_RETENIDO } from '../lib/grupo-retenido'
