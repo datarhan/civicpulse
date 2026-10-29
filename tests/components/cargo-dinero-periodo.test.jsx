@@ -99,6 +99,20 @@ describe('/cargos/:slug · el dinero de sus áreas dice de qué años es', () =>
     expect(entradilla.textContent).not.toMatch(/periodo/)
   })
 
+  // Un contrato sin fecha suma euros y no tiene año (department-stats.js): con él
+  // dentro, «todos los contratos son de 2024» sería falso. Hoy no hay ningún cargo
+  // así —el único área de un solo año, Bienestar animal, tiene su contrato fechado—,
+  // y por eso lo prueba una fila escrita a mano.
+  it('con un año y un contrato sin fecha, no dice «todos»: dice de cuáles habla', async () => {
+    monta([contrato('u1', 'architecture', '2024-01-10'), contrato('v1', 'real_estate', null)])
+    expect(
+      await screen.findByText(
+        'Dinero adjudicado en las concejalías que hoy dirige: los contratos con fecha son de 2024',
+      ),
+    ).toBeInTheDocument()
+    expect(screen.queryByText(/todos los contratos son de/)).toBeNull()
+  })
+
   it('en valencià, el periodo en valencià', async () => {
     monta(
       [contrato('u1', 'architecture', '2019-05-02'), contrato('v1', 'real_estate', '2024-03-01')],

@@ -2536,6 +2536,8 @@ export const CATALOGUE = {
     // periodo» se leía como dos periodos distintos (revisión lectora, 29-10-2026).
     'cargos.detalle.area.titleAnio':
       'Dinero adjudicado en las concejalías que hoy dirige: todos los contratos son de {anio}',
+    'cargos.detalle.area.titleAnioConFecha':
+      'Dinero adjudicado en las concejalías que hoy dirige: los contratos con fecha son de {anio}',
     'cargos.detalle.area.intro':
       'Importes adjudicados en las áreas de las que hoy es responsable, sumados a lo largo de todo el registro, las dirigiera quien las dirigiera: no es la contratación de su mandato. Es contratación de la concejalía, no de la persona: los contratos los adjudica el órgano de contratación del Ayuntamiento.',
     'cargos.detalle.area.note':
@@ -5315,6 +5317,8 @@ export const CATALOGUE = {
       'Diners adjudicats entre {desde} i {hasta} a les regidories que hui dirigeix',
     'cargos.detalle.area.titleAnio':
       'Diners adjudicats a les regidories que hui dirigeix: tots els contractes són del {anio}',
+    'cargos.detalle.area.titleAnioConFecha':
+      'Diners adjudicats a les regidories que hui dirigeix: els contractes amb data són del {anio}',
     'cargos.detalle.area.intro':
       "Imports adjudicats a les àrees de què hui és responsable, sumats al llarg de tot el registre, les dirigira qui les dirigira: no és la contractació del seu mandat. És contractació de la regidoria, no de la persona: els contractes els adjudica l'òrgan de contractació de l'Ajuntament.",
     'cargos.detalle.area.note':
