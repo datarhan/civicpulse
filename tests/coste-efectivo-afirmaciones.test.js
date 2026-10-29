@@ -219,6 +219,16 @@ describe('coste-efectivo · lo que la verificación del 17-09-2026 encontró fal
       expect(vigente.resultado).toContain(cifra)
     }
   })
+
+  it('de la ordenanza de la tarifa consta que no está publicada, no que no exista', () => {
+    // «No hay ninguna que regule la tarifa del agua» afirmaba que no existe, y
+    // la frase siguiente sólo decía que no la habíamos encontrado publicada
+    // (revisión lectora, 29-10-2026). Comprobado ese día en todas las listas de
+    // ribarroja.es: económicas de 2024, 2025, 2026 y anteriores, y generales.
+    enNinguna(/No hay ninguna que regule la tarifa/, 'no consta publicada, que no es no existir')
+    const ordenanzas = pieza.laTarifa.buscadoEn.find((b) => /ordenanzas/i.test(b.donde))
+    expect(ordenanzas.resultado).toMatch(/^Ninguna de las que publica en su web regula la tarifa/)
+  })
 })
 
 describe('la misma premisa, en /eficiencia y /metodologia', () => {
