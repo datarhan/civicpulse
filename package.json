@@ -304,7 +304,7 @@
     "eslint-plugin-react": "^7.37.5",
     "eslint-plugin-react-hooks": "^7.1.1",
     "globals": "^17.13.0",
-    "happy-dom": "^20.14.6",
+    "happy-dom": "^21.0.4",
     "mupdf": "^1.28.1",
     "prettier": "^3.9.9",
     "tesseract.js": "^7.0.0",
