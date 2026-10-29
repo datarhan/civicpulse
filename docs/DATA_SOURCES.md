@@ -213,9 +213,9 @@ overwrites it. Change the bot's SQLite instead.
   reads and sums: the F.1.1 forms' «definitivo» is the «Estimación … al final
   de ejercicio», modifications planned to year end included, and they print
   no percentage. And 1T 2024 is dropped although it reconciles: printed on
-  9-4-2024, its income ledger had not a euro recognised in chapter 4 — where
-  the State's monthly payments go — only refunds, so its 0,08 % says what had
-  been entered, not what came in.
+  9-4-2024, its income ledger had chapter 4 — where the State's monthly
+  payments go — below zero in NET rights, more refunded than recognised, so
+  its 0,08 % says what had been entered, not what came in.
 - **What is not read, and why** — the snapshot's `lectura` block lists every
   period dropped with its reason and every sheet with no text layer (scanned
   PDFs: 3T 2025 and the income side of 2024's close; they wait for an OCR

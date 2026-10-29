@@ -687,7 +687,7 @@ export function motivoDeDescarte(
   if (estimados.length)
     return (
       `el «definitivo» de ${estimados.join(' y de ')} es la estimación a fin de ejercicio ` +
-      `del formulario F.1.1 del Ministerio, no el crédito a ${p.fechaListado ?? 'la fecha'}`
+      `del formulario F.1.1 del Ministerio, no el vigente a ${p.fechaListado ?? 'la fecha'}`
     )
   for (const lado of LADOS) {
     const impreso = p.cotejo[lado].pctImpreso
@@ -698,15 +698,18 @@ export function motivoDeDescarte(
       return `la ejecución de ${lado} leída (${cifra(leido)} %) no es la que imprime la hoja (${cifra(impreso)} %)`
   }
   // Las entregas a cuenta del Estado llegan cada mes y se apuntan en el
-  // capítulo 4. Sin un euro reconocido en él, la hoja se sacó antes de
-  // contabilizar los ingresos: su porcentaje no dice cuánto se ingresó, sino
-  // cuánto se había apuntado —el 1T de 2024, impreso el 9 de abril, un 0,08 %—.
+  // capítulo 4. Con sus derechos NETOS a cero o en negativo —más devoluciones
+  // que derechos—, la hoja se sacó antes de contabilizar los ingresos: su
+  // porcentaje no dice cuánto se ingresó, sino cuánto se había apuntado —el 1T
+  // de 2024, impreso el 9 de abril: 3.597,18 € reconocidos, 14.700 devueltos,
+  // un 0,08 % del total—.
   const c4 = p.ingresos.chapters.find((c) => c.capitulo === 4)
   if (c4 && c4.actual > 0 && c4.ejecutado <= 0)
     return (
       `ingresos sin contabilizar a ${p.fechaListado ?? 'la fecha de la hoja'}: las transferencias ` +
       `corrientes (cap. 4), donde entran las entregas mensuales del Estado, suman ` +
-      `${cifra(c4.ejecutado)} € reconocidos de ${cifra(c4.actual)} € previstos`
+      `${cifra(c4.ejecutado)} € de derechos netos —más devoluciones que derechos— de ` +
+      `${cifra(c4.actual)} € previstos`
     )
   if (!enRango(p.ejecucionPct.gastos))
     return `ejecución de gastos fuera de rango (${p.ejecucionPct.gastos} %)`

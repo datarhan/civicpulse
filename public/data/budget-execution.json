@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-29T09:09:19.548Z",
+  "generatedAt": "2026-10-29T09:21:06.454Z",
   "source": "https://www.ribarroja.es/es/1_gestion_presupuestaria/2_estados_ejecucion_presupuesto",
   "periods": [
     {
@@ -1072,12 +1072,12 @@
       {
         "year": 2023,
         "trimestre": 2,
-        "motivo": "el «definitivo» de gastos y de ingresos es la estimación a fin de ejercicio del formulario F.1.1 del Ministerio, no el crédito a 30/06/2023"
+        "motivo": "el «definitivo» de gastos y de ingresos es la estimación a fin de ejercicio del formulario F.1.1 del Ministerio, no el vigente a 30/06/2023"
       },
       {
         "year": 2024,
         "trimestre": 1,
-        "motivo": "ingresos sin contabilizar a 09/04/2024: las transferencias corrientes (cap. 4), donde entran las entregas mensuales del Estado, suman -11.102,82 € reconocidos de 10.645.513,21 € previstos"
+        "motivo": "ingresos sin contabilizar a 09/04/2024: las transferencias corrientes (cap. 4), donde entran las entregas mensuales del Estado, suman -11.102,82 € de derechos netos —más devoluciones que derechos— de 10.645.513,21 € previstos"
       },
       {
         "year": 2024,

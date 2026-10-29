@@ -301,12 +301,14 @@ describe('qué se publica: cada periodo cuadra, o se calla diciendo por qué', (
     expect(p.mismoCorte).toBe(true)
     expect(p.fechaListado).toBe('09/04/2024')
     // Las transferencias corrientes —las del Estado se ingresan cada mes—
-    // suman en negativo: sólo hay devoluciones. Un 0,08 % así no dice cuánto se
-    // ingresó en el trimestre, sino que la hoja se sacó antes de apuntarlo.
+    // suman en negativo en derechos NETOS: 3.597,18 € reconocidos y 14.700
+    // devueltos. Un 0,08 % así no dice cuánto se ingresó en el trimestre, sino
+    // que la hoja se sacó antes de apuntarlo.
     expect(i.chapters.find((c) => c.capitulo === 4)!.ejecutado).toBe(-11102.82)
     const motivo = motivoDeDescarte(p, { year: 2024 })
     expect(motivo).toMatch(/^ingresos sin contabilizar/)
     expect(motivo).toMatch(/cap\. 4/)
+    expect(motivo).toMatch(/-11\.102,82 € de derechos netos/)
     expect(motivo).toMatch(/09\/04\/2024/)
   })
 
@@ -323,7 +325,10 @@ describe('qué se publica: cada periodo cuadra, o se calla diciendo por qué', (
     expect(p.mismoCorte).toBe(true)
     expect(p.fechaListado).toBe('30/06/2023')
     expect(p.cotejo.gastos).toEqual({ pctImpreso: null, definitivo: 'estimado' })
-    expect(motivoDeDescarte(p, { year: 2023 })).toMatch(/estimación a fin de ejercicio/)
+    const motivo = motivoDeDescarte(p, { year: 2023 })
+    expect(motivo).toMatch(/estimación a fin de ejercicio/)
+    // Gastos e ingresos a la vez: «crédito» es la palabra de un solo lado.
+    expect(motivo).toMatch(/no el vigente a 30\/06\/2023$/)
   })
 
   // Las guardas, cada una con la hoja real y UN defecto: si no saltan aquí, no
