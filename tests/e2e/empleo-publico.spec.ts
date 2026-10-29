@@ -16,6 +16,40 @@ test.describe('Empleo público (/empleo-publico)', () => {
     expect(appErrors(errors)).toEqual([])
   })
 
+  // La lectura vecinal: cómo se entra, con las palabras de los títulos
+  // definidas, y los procesos bajo un título por tipo.
+  test('«¿Cómo se entra…?» define las cuatro palabras, y la lista va por tipos', async ({
+    page,
+  }) => {
+    const { procesos } = JSON.parse(readFileSync('public/data/procesos-selectivos.json', 'utf8'))
+    await page.goto('/empleo-publico', { waitUntil: 'domcontentloaded' })
+    const como = page.locator('#como-se-entra')
+    await expect(como.getByRole('heading', { level: 2 })).toHaveText(
+      '¿Cómo se entra a trabajar en el Ayuntamiento?',
+      { timeout: 8000 },
+    )
+    await expect(como.locator('dt')).toHaveText([
+      'Oposición',
+      'Concurso',
+      'Bolsa de trabajo',
+      'Estabilización',
+    ])
+    for (const dd of await como.locator('dd').all()) {
+      expect((await dd.innerText()).length).toBeGreaterThan(40)
+    }
+    // Ningún proceso se pierde al agruparlos: tantos enlaces como procesos, y
+    // un título por cada tipo que trae la instantánea.
+    const lista = page.locator('#procesos')
+    await expect(lista.locator('a[href^="http"]')).toHaveCount(procesos.length)
+    const tipos = new Set(procesos.map((p: { tipo: string }) => p.tipo))
+    await expect(lista.getByRole('heading', { level: 3 })).toHaveCount(tipos.size)
+  })
+
+  test('el destino del glosario existe y aterriza en la sección', async ({ page }) => {
+    await page.goto('/empleo-publico#como-se-entra', { waitUntil: 'domcontentloaded' })
+    await expect(page.locator('#como-se-entra')).toBeInViewport({ timeout: 8000 })
+  })
+
   // La plantilla municipal, traída de /cargos: la pregunta, la frase que dice
   // por qué sus dos cifras no se restan, y las cifras con sus fuentes.
   test('la plantilla municipal, con la frase que cuadra sus dos cifras', async ({ page }) => {

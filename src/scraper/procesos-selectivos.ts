@@ -5,7 +5,9 @@
  * classified from the title. No I/O; per-process document extraction (bases /
  * listas / tribunal PDFs on the detail pages) is a deferred follow-up.
  */
-export type ProcesoTipo = 'oposicion' | 'bolsa' | 'estabilizacion' | 'otro'
+/** Los tipos, en el orden en que /empleo-publico los agrupa. `otro` es el cajón de sastre. */
+export const PROCESO_TIPOS = ['oposicion', 'bolsa', 'estabilizacion', 'otro'] as const
+export type ProcesoTipo = (typeof PROCESO_TIPOS)[number]
 
 export interface ProcesoSelectivo {
   id: string

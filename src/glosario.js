@@ -43,6 +43,12 @@ export const GLOSARIO = [
   'consellDeTransparencia',
   'ctbg',
   'sindicaturaDeComptes',
+  // Cómo se entra a trabajar en el Ayuntamiento (/empleo-publico): las palabras
+  // de los títulos de sus procesos selectivos. Son el nombre de la sede.
+  'oposicion',
+  'concurso',
+  'bolsaDeTrabajo',
+  'estabilizacion',
 ]
 
 const MARCA = /\[\[(\w+)\|([^\]]+)\]\]/g

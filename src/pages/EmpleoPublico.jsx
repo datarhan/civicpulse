@@ -1,19 +1,31 @@
-import { Card, Pill } from '../components/Primitives'
+import { Card } from '../components/Primitives'
 import Plantilla from '../components/EmpleoPublico/Plantilla'
+import ComoSeEntra from '../components/EmpleoPublico/ComoSeEntra'
 import { useProcesosSelectivos } from '../hooks/useProcesosSelectivos'
+import { agruparProcesos } from '../lib/empleo-publico'
 import { useT } from '../i18n'
 
-const TIPO = {
-  oposicion: { label: 'Oposición / concurso', tone: 'civic' },
-  bolsa: { label: 'Bolsa de trabajo', tone: 'intel' },
-  estabilizacion: { label: 'Estabilización', tone: 'ok' },
-  otro: { label: 'Otro', tone: 'neutral' },
+/** El título de cada grupo. Llamadas literales: el guard del catálogo las lee. */
+function tituloDeTipo(tipo, t) {
+  if (tipo === 'oposicion') return t('empleoPublico.tipo.oposicion')
+  if (tipo === 'bolsa') return t('empleoPublico.tipo.bolsa')
+  if (tipo === 'estabilizacion') return t('empleoPublico.tipo.estabilizacion')
+  return t('empleoPublico.tipo.otro')
 }
+
+/*
+ * La lectura vecinal (auditoría de las dos lecturas, §21): primero cómo se
+ * entra a trabajar en el Ayuntamiento, con las palabras de los títulos
+ * definidas; luego los procesos, bajo un título por tipo en vez de una píldora
+ * en cada tarjeta, y diciendo que la lista no sabe cuáles siguen abiertos; al
+ * final, cuánta gente trabaja ya en él.
+ */
 
 export default function EmpleoPublico() {
   const t = useT()
   const { loading, error, data } = useProcesosSelectivos()
   const procesos = data?.procesos ?? []
+  const grupos = agruparProcesos(procesos)
   return (
     <div className="cp-page" style={{ padding: 24, maxWidth: 900, margin: '0 auto' }}>
       <div
@@ -53,33 +65,64 @@ export default function EmpleoPublico() {
         </Card>
       )}
 
-      <div style={{ display: 'flex', flexDirection: 'column', gap: 10, marginTop: 16 }}>
-        {procesos.map((p) => {
-          const t = TIPO[p.tipo] ?? TIPO.otro
-          return (
-            <Card key={p.id} hover>
-              <div
-                style={{
-                  display: 'flex',
-                  gap: 12,
-                  alignItems: 'flex-start',
-                  justifyContent: 'space-between',
-                }}
+      <ComoSeEntra />
+
+      {grupos.length > 0 && (
+        <section
+          id="procesos"
+          aria-labelledby="procesos-titulo"
+          style={{ marginTop: 32, scrollMarginTop: 16 }}
+        >
+          <h2
+            id="procesos-titulo"
+            style={{ fontSize: 'var(--fs-head)', fontWeight: 700, margin: 0, lineHeight: 1.3 }}
+          >
+            {t('empleoPublico.procesos.titulo')}
+          </h2>
+          <p
+            style={{ margin: '8px 0 0', color: 'var(--ink70)', lineHeight: 1.55, maxWidth: '64ch' }}
+          >
+            {t('empleoPublico.procesos.sinEstado')}
+          </p>
+          {grupos.map((g) => (
+            <section
+              key={g.tipo}
+              aria-labelledby={`procesos-${g.tipo}`}
+              data-tipo-proceso={g.tipo}
+              style={{ marginTop: 20 }}
+            >
+              <h3
+                id={`procesos-${g.tipo}`}
+                style={{ fontSize: 'var(--fs-card)', fontWeight: 700, margin: 0, lineHeight: 1.3 }}
               >
-                <a
-                  href={p.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  style={{ color: 'var(--ink)', fontWeight: 600, textDecoration: 'none', flex: 1 }}
-                >
-                  {p.titulo}
-                </a>
-                <Pill tone={t.tone}>{t.label}</Pill>
+                {tituloDeTipo(g.tipo, t)}{' '}
+                <span className="mono" style={{ color: 'var(--ink50)', fontWeight: 400 }}>
+                  {g.procesos.length}
+                </span>
+              </h3>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: 8, marginTop: 10 }}>
+                {g.procesos.map((p) => (
+                  <Card key={p.url} hover>
+                    <a
+                      href={p.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      style={{
+                        display: 'block',
+                        color: 'var(--ink)',
+                        fontWeight: 600,
+                        textDecoration: 'none',
+                      }}
+                    >
+                      {p.titulo}
+                    </a>
+                  </Card>
+                ))}
               </div>
-            </Card>
-          )
-        })}
-      </div>
+            </section>
+          ))}
+        </section>
+      )}
 
       {/* Quién trabaja ya en el Ayuntamiento, con sus dos cifras y el puente
           entre ellas. Vivía en /cargos, que ahora enlaza aquí. */}
