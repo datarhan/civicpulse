@@ -95,6 +95,21 @@ export function estaCortado(titulo: string): boolean {
   return /(…|\.\.\.)\s*$/.test(titulo)
 }
 
+/**
+ * Sólo se pide una página del propio portal, por https. La lista puede enlazar
+ * a otro sitio y el enlace se publica igual, pero el raspador corre en el
+ * portátil del curador: seguir cualquier href que traiga una página ajena le
+ * haría pedir lo que esa página quiera, `localhost` incluido.
+ */
+export function esPaginaDelPortal(url: string): boolean {
+  try {
+    const u = new URL(url)
+    return u.protocol === 'https:' && u.hostname === new URL(HOST).hostname
+  } catch {
+    return false
+  }
+}
+
 const NOMBRE_DEL_SITIO = 'Ayuntamiento de Riba-roja de Túria'
 
 const ENTIDADES: Record<string, string> = {

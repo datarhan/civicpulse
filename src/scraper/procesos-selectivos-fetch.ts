@@ -1,4 +1,6 @@
 /** Node-only fetcher for the procesos-selectivos list page and each process page. */
+import { esPaginaDelPortal } from './procesos-selectivos'
+
 const UA = 'Mozilla/5.0 (compatible; CivicPulse/0.1; +https://github.com/datarhan/civicpulse)'
 
 export const PROCESOS_URL = 'https://www.ribarroja.es/es/noticia/publicaciones-procesos-selectivos'
@@ -13,11 +15,13 @@ export async function fetchProcesosHtml(): Promise<string | null> {
  * La página de un proceso, para leer su título entero. Una redirección no
  * vale: la URL del enlace de la lista es lo que dice qué proceso es
  * (`UMBRAL_MISMO_PROCESO` en procesos-selectivos.ts), y una página a la que
- * se llegó por otro camino puede ser la de otro.
+ * se llegó por otro camino puede ser la de otro. Y sólo del propio portal
+ * (`esPaginaDelPortal`): un enlace a otro sitio no se sigue.
  */
 export async function fetchPaginaDeProceso(
   url: string,
 ): Promise<{ html: string } | { error: string }> {
+  if (!esPaginaDelPortal(url)) return { error: 'host-ajeno' }
   try {
     const res = await fetch(url, {
       headers: { 'User-Agent': UA },

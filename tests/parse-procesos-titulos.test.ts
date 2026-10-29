@@ -20,7 +20,7 @@
  * sin enlaces daría «No hay procesos selectivos publicados ahora mismo», un
  * cero que no se midió.
  */
-import { describe, it, expect } from 'vitest'
+import { describe, it, expect, vi, afterEach } from 'vitest'
 import { readFileSync } from 'node:fs'
 import { join } from 'node:path'
 import {
@@ -29,9 +29,11 @@ import {
   tituloDePagina,
   completaTitulo,
   exigeProcesos,
+  esPaginaDelPortal,
   RESULTADOS_TITULO,
   type ProcesoSelectivo,
 } from '../src/scraper/procesos-selectivos'
+import { fetchPaginaDeProceso } from '../src/scraper/procesos-selectivos-fetch'
 
 const fx = (f: string) => readFileSync(join(__dirname, 'fixtures', f), 'utf8')
 const lista = parseProcesosList(fx('procesos-selectivos_2026-10-29.html'))
@@ -197,5 +199,33 @@ describe('procesos selectivos · la lista vacía no se publica', () => {
 
   it('con procesos, los devuelve tal cual', () => {
     expect(exigeProcesos(lista)).toBe(lista)
+  })
+})
+
+describe('procesos selectivos · sólo se piden páginas del propio portal', () => {
+  afterEach(() => vi.restoreAllMocks())
+
+  it('premisa: hoy todos los enlaces de la lista son del portal', () => {
+    for (const p of lista) expect(esPaginaDelPortal(p.url), p.url).toBe(true)
+  })
+
+  it('otro sitio, otro protocolo o una URL rota no son del portal', () => {
+    for (const url of [
+      'http://localhost:5173/curator',
+      'http://127.0.0.1/',
+      'https://www.ribarroja.es.ejemplo.com/es/pagina/x',
+      'http://www.ribarroja.es/es/pagina/x',
+      'https://sede.ribarroja.es/x',
+      'no es una url',
+    ])
+      expect(esPaginaDelPortal(url), url).toBe(false)
+  })
+
+  it('el raspador no llega a pedir una página ajena', async () => {
+    const pedir = vi.spyOn(globalThis, 'fetch')
+    expect(await fetchPaginaDeProceso('http://localhost:5173/curator')).toEqual({
+      error: 'host-ajeno',
+    })
+    expect(pedir).not.toHaveBeenCalled()
   })
 })
