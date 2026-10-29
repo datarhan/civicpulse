@@ -452,7 +452,14 @@ const expectWithdrawn = (id: string): void => {
  * que la vigente recoge enteros. Va detrás de la fila del 18-10 de esa ficha, así que ningún
  * lote cambia.
  */
-const TOTAL_CORRECTIONS = 243
+/*
+ * 243 → 244 (revisión de superficies del 29-10-2026). Una fila de
+ * `correct-pleno-finding --redact summary` (cuenta de rol, texto aprobado por el operador) en
+ * `f-2026-07-03-cit-df8455`: el sumario daba con otras palabras el contenido de la cita 3, que
+ * la puerta editorial retiene. Va detrás de la fila del 05-10 de esa ficha, así que ningún lote
+ * cambia; las tres filas de sumario anteriores pasan a huella.
+ */
+const TOTAL_CORRECTIONS = 244
 const TOTAL_REMOVALS = 37
 
 /** One row of a review batch's fixture: enough to locate its own entries. */
@@ -603,7 +610,10 @@ describe('published pleno findings — the correction ledger is append-only', ()
 // +2 el 25-10-2026: el motivo de la fila [4] de 1adbf3 daba por degradada una transcripción que
 // ya estaba entera, y la enmienda del 14-10 de 25e6ea [1] contaba «unas veintisiete» con el
 // crédito de la hoja del segundo trimestre; con el del cierre son unas veinticinco.
-const TOTAL_REASON_AMENDMENTS = 9
+// +1 el 29-10-2026: el motivo de la fila [0] de 25e6ea decía que los dos documentos que quedan
+// «lo siguen sosteniendo», y sólo sostienen la última frase del sumario, la que los nombra
+// (revisión de superficies).
+const TOTAL_REASON_AMENDMENTS = 10
 
 describe('published pleno findings — un motivo enmendado no borra el anterior', () => {
   const enmiendas = allCorrections.flatMap((c) => c.reasonAmendments ?? [])

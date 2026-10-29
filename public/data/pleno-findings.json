@@ -1,6 +1,6 @@
 {
   "version": "1.0",
-  "generatedAt": "2026-10-25T20:05:44.841Z",
+  "generatedAt": "2026-10-29T20:28:22.922Z",
   "legalNotice": "Este registro recoge hallazgos editoriales sobre las intervenciones de los plenos. Los redacta un proceso automático a partir de declaraciones extraídas de la transcripción, salvo los que llevan la firma de una persona, y cada ficha indica quién la editó: un nombre como «auto-curation-v1» significa que el título y el resumen los escribió una máquina, no una persona. Cada hallazgo cita una o más afirmaciones literales (verbatim) del pleno y los documentos municipales que confirman o contradicen cada afirmación. Las réplicas de los grupos políticos se publican íntegras y sin editar.",
   "contactUrl": "https://github.com/datarhan/civicpulse/issues/new/choose",
   "methodologyUrl": "/metodologia",
@@ -134,7 +134,7 @@
       "plenoId": "1237hbp",
       "plenoDate": "2026-07-03",
       "title": "Pleno 2026-07-03: debate sobre contenedores y contrato de recogida de RSU",
-      "summary": "En el debate se afirma que el Ayuntamiento dispone de herramientas para rescindir el contrato con la empresa licitadora que, según se señala, no cumplía, y que la compra de contenedores se hará con recursos propios. Una intervención sin atribuir recuerda su satisfacción con la adjudicación, y el PP señala que ya en diciembre se advertía del deterioro. El registro municipal incluye el «Contrato administrativo para la contratación de la plataforma para la gestión de la sensorización de contenedores e información del servicio de recogida de RSU».",
+      "summary": "En el debate se afirma que el Ayuntamiento dispone de herramientas para rescindir el contrato con la empresa licitadora que, según se señala, no cumplía, y que la compra de contenedores se hará con recursos propios. Una intervención sin atribuir recuerda su satisfacción con la adjudicación. El PP formula además una acusación que el verificador no pudo contrastar con ningún dato municipal y que no se reproduce aquí. El registro municipal incluye el «Contrato administrativo para la contratación de la plataforma para la gestión de la sensorización de contenedores e información del servicio de recogida de RSU».",
       "severity": "informational",
       "sourceClaimIds": [
         "1237hbp-004-cit-df8455",
@@ -194,8 +194,8 @@
       "corrections": [
         {
           "field": "summary",
-          "original": "Compromís afirma que el Ayuntamiento dispone de herramientas para rescindir el contrato con la empresa licitadora que, según señala, no cumplía, y manifiesta que la compra de contenedores se hará con recursos propios. El grupo Otro expresa su satisfacción con la adjudicación y el PP señala que ya en diciembre se advertía del deterioro. El registro municipal incluye el «Contrato administrativo para la contratación de la plataforma para la gestión de la sensorización de contenedores e información del servicio de recogida de RSU».",
-          "corrected": "Compromís afirma que el Ayuntamiento dispone de herramientas para rescindir el contrato con la empresa licitadora que, según señala, no cumplía, y manifiesta que la compra de contenedores se hará con recursos propios. Un grupo no identificado expresa su satisfacción con la adjudicación y el PP señala que ya en diciembre se advertía del deterioro. El registro municipal incluye el «Contrato administrativo para la contratación de la plataforma para la gestión de la sensorización de contenedores e información del servicio de recogida de RSU».",
+          "original": "sumario · sha256:6a9e742ffb24",
+          "corrected": "sumario · sha256:f20ad2106337",
           "reason": "\"Otro\" no era el nombre de ningún grupo municipal: era el valor de relleno que el extractor usaba cuando no podía determinar quién hablaba. Publicado como si fuera un grupo, atribuía declaraciones a una formación inexistente. Se sustituye por una descripción neutra; la atribución real sigue sin determinarse.",
           "editor": "civicpulse-curator",
           "correctedAt": "2026-08-01T18:55:09.196Z"
@@ -218,19 +218,27 @@
         },
         {
           "field": "summary",
-          "original": "Compromís afirma que el Ayuntamiento dispone de herramientas para rescindir el contrato con la empresa licitadora que, según señala, no cumplía, y manifiesta que la compra de contenedores se hará con recursos propios. Un grupo no identificado expresa su satisfacción con la adjudicación y el PP señala que ya en diciembre se advertía del deterioro. El registro municipal incluye el «Contrato administrativo para la contratación de la plataforma para la gestión de la sensorización de contenedores e información del servicio de recogida de RSU».",
-          "corrected": "En el debate se afirma que el Ayuntamiento dispone de herramientas para rescindir el contrato con la empresa licitadora que, según se señala, no cumplía, y que la compra de contenedores se hará con recursos propios. Un grupo no identificado expresa su satisfacción con la adjudicación y el PP señala que ya en diciembre se advertía del deterioro. El registro municipal incluye el «Contrato administrativo para la contratación de la plataforma para la gestión de la sensorización de contenedores e información del servicio de recogida de RSU».",
+          "original": "sumario · sha256:f20ad2106337",
+          "corrected": "sumario · sha256:173a0a05c1b4",
           "reason": "El sumario atribuía dos intervenciones a un grupo municipal con un solo concejal, lo que identifica a esa persona por eliminación; la atribución la puso la curación automática sin firma de curador. Se retira del sumario igual que de las citas; lo que se dijo no cambia.",
           "editor": "civicpulse-curator",
           "correctedAt": "2026-09-30T05:48:06.461Z"
         },
         {
           "field": "summary",
-          "original": "En el debate se afirma que el Ayuntamiento dispone de herramientas para rescindir el contrato con la empresa licitadora que, según se señala, no cumplía, y que la compra de contenedores se hará con recursos propios. Un grupo no identificado expresa su satisfacción con la adjudicación y el PP señala que ya en diciembre se advertía del deterioro. El registro municipal incluye el «Contrato administrativo para la contratación de la plataforma para la gestión de la sensorización de contenedores e información del servicio de recogida de RSU».",
-          "corrected": "En el debate se afirma que el Ayuntamiento dispone de herramientas para rescindir el contrato con la empresa licitadora que, según se señala, no cumplía, y que la compra de contenedores se hará con recursos propios. Una intervención sin atribuir recuerda su satisfacción con la adjudicación, y el PP señala que ya en diciembre se advertía del deterioro. El registro municipal incluye el «Contrato administrativo para la contratación de la plataforma para la gestión de la sensorización de contenedores e información del servicio de recogida de RSU».",
+          "original": "sumario · sha256:173a0a05c1b4",
+          "corrected": "sumario · sha256:69f07ca7a392",
           "reason": "El sumario llamaba «un grupo no identificado» a quien pronuncia una cita que la ficha no atribuye a ningún grupo. Esa fórmula sustituyó el 1-08 al valor de relleno del extractor y, como ya dice el motivo firmado el 30-09-2026 en f-2026-01-19-afi-5238db, afirma que no se sabe quién habla; junto a un grupo nombrado, además, se lee como otro grupo distinto. La ficha no dice ninguna de las dos cosas: rotula la cita «sin atribuir», y así lo dice ahora el sumario, sin atribuirla a nadie ni contar quién habla. El verbo pasa al pasado: la cita habla de la satisfacción de entonces con la adjudicación, no de una actual.",
           "editor": "civicpulse-curator",
           "correctedAt": "2026-10-05T22:48:08.773Z"
+        },
+        {
+          "field": "summary",
+          "original": "sumario · sha256:69f07ca7a392",
+          "corrected": "En el debate se afirma que el Ayuntamiento dispone de herramientas para rescindir el contrato con la empresa licitadora que, según se señala, no cumplía, y que la compra de contenedores se hará con recursos propios. Una intervención sin atribuir recuerda su satisfacción con la adjudicación. El PP formula además una acusación que el verificador no pudo contrastar con ningún dato municipal y que no se reproduce aquí. El registro municipal incluye el «Contrato administrativo para la contratación de la plataforma para la gestión de la sensorización de contenedores e información del servicio de recogida de RSU».",
+          "reason": "El sumario daba con otras palabras el contenido de la cita 3 de la ficha df8455, que la puerta editorial retiene por ser una acusación que el verificador no pudo contrastar con ningún dato municipal; se describe sin su contenido. Revisión de superficies del 29-10-2026.",
+          "editor": "civicpulse-curator",
+          "correctedAt": "2026-10-29T20:28:22.638Z"
         }
       ]
     },
@@ -1484,9 +1492,17 @@
           "field": "crossChecked.2",
           "original": "documento cotejado · sha256:0b21b0dc940b",
           "corrected": "retirado del hallazgo",
-          "reason": "Se retira del cotejo una fila que no es un expediente sino un código de clasificación, sin objeto ni adjudicación propios: publicarla bajo el epígrafe de documentos cotejados presenta como registro del caso lo que sólo es una etiqueta. El sumario no la nombraba y no se toca; los otros dos documentos lo siguen sosteniendo.",
+          "reason": "Se retira del cotejo una fila que no es un expediente sino un código de clasificación, sin objeto ni adjudicación propios: publicarla bajo el epígrafe de documentos cotejados presenta como registro del caso lo que sólo es una etiqueta. El sumario no la nombraba y no se toca. Los otros dos documentos siguen en la lista: son los contratos a los que se refiere su última frase, y ninguno de los dos confirma ni desmiente las citas.",
           "editor": "civicpulse-curator",
-          "correctedAt": "2026-08-09T16:58:25.746Z"
+          "correctedAt": "2026-08-09T16:58:25.746Z",
+          "reasonAmendments": [
+            {
+              "previous": "motivo · sha256:0a1f9dcf1396",
+              "reason": "El motivo decía que los otros dos documentos «lo siguen sosteniendo», y se leía como respaldo del hallazgo; la misma ficha advierte que estar en la lista de documentos cotejados no dice que confirmen las citas. Sólo sostienen la última frase del sumario, la que los nombra. Revisión de superficies del 29-10-2026.",
+              "editor": "Sergei Lutchenko",
+              "amendedAt": "2026-10-29T20:28:22.920Z"
+            }
+          ]
         },
         {
           "field": "summary",
