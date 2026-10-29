@@ -1,7 +1,11 @@
 import { describe, it, expect } from 'vitest'
 import { readFileSync } from 'node:fs'
 import { join } from 'node:path'
-import { contrastarPresupuesto, TOLERANCIA_EQUILIBRIO } from '../src/scraper/budget-contraste'
+import {
+  contrastarPresupuesto,
+  desequilibrioDeConprel,
+  TOLERANCIA_EQUILIBRIO,
+} from '../src/scraper/budget-contraste'
 import { periodoDelAnio } from '../src/scraper/budget-execution'
 
 const ROOT = join(__dirname, '..')
@@ -160,5 +164,17 @@ describe('el cotejo con CONPREL usa la ejecución del AÑO de CONPREL', () => {
       2,
     )
     expect(Math.abs(c.desequilibrioConprel!)).toBeGreaterThanOrEqual(TOLERANCIA_EQUILIBRIO)
+  })
+
+  it('el desequilibrio de CONPREL no depende de la ejecución: sale aunque no haya ninguna', () => {
+    const d = desequilibrioDeConprel(budget.snapshot)
+    expect(d).toBeCloseTo(budget.snapshot.totalRevenue - budget.snapshot.totalExpense, 2)
+    // Sin ejecución del año el cotejo calla, y el desequilibrio sigue ahí.
+    expect(contrastarPresupuesto(budget.snapshot, null)).toBeNull()
+    expect(Math.abs(d!)).toBeGreaterThanOrEqual(TOLERANCIA_EQUILIBRIO)
+    // Sin uno de los dos totales, null y no cero.
+    expect(desequilibrioDeConprel({ ...budget.snapshot, totalRevenue: null })).toBeNull()
+    expect(desequilibrioDeConprel({ ...budget.snapshot, totalExpense: null })).toBeNull()
+    expect(desequilibrioDeConprel(null)).toBeNull()
   })
 })
