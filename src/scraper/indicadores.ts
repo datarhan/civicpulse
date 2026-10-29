@@ -45,7 +45,7 @@ import {
 } from './coste-efectivo'
 import { procedenciaCesel, type OrigenEntrega, type Procedencia } from './cesel-procedencia'
 import { crearPrng, semillaDesde } from './prng'
-import { SERVICIOS, type ServicioDef, type Divisor } from './indicador-registry'
+import { SERVICIOS, idDeServicio, type ServicioDef, type Divisor } from './indicador-registry'
 import { medirDeclaracionCongelada, MIN_ENTREGAS_CONGELADA } from './declaracion-congelada'
 import { SALVEDAD_DENOMINADOR_CONGELADO, paresDeclaracionCongelada } from './indicador-lectura'
 import { cruzaMediana } from './indicador-areas'
@@ -1339,7 +1339,7 @@ export function construirIndicadores(input: ConstruirInput): IndicadoresSnapshot
     }
 
     indicadores.push({
-      id: `${programa.replace(/[^a-z0-9]/gi, '-').toLowerCase()}-coste-unitario`,
+      id: idDeServicio(programa),
       dimension: 'operativa',
       tier: def.tier,
       servicio: programa,

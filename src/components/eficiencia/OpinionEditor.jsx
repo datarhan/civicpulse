@@ -1,4 +1,5 @@
 import { opinionesVisibles } from '../../scraper/opinion-editor'
+import { rutaDeServicio } from '../../scraper/ruta-de-servicio'
 import { fmtDateLong, rellena } from '../../lib/formatters'
 import { useLocale, useT } from '../../i18n'
 
@@ -19,10 +20,10 @@ import { useLocale, useT } from '../../i18n'
  */
 
 function enlaceDeHecho(h, resultados) {
-  if (h.tipo === 'indicador') return `/eficiencia/${h.id}`
+  if (h.tipo === 'indicador') return rutaDeServicio(h.id)
   if (h.tipo === 'resultado') {
     const r = resultados.find((x) => x.id === h.id)
-    return r ? `/eficiencia/${r.servicioRelacionado}` : '#sec-cuesta'
+    return r ? rutaDeServicio(r.servicioRelacionado) : '#sec-cuesta'
   }
   return '#hallazgos'
 }

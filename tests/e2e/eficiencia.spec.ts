@@ -9,6 +9,7 @@ import {
   particionPosiciones,
   fraseParticion,
 } from '../../src/scraper/indicador-areas'
+import { rutaDeServicio } from '../../src/scraper/ruta-de-servicio'
 import type { Indicador } from '../../src/scraper/indicadores'
 import type { IndicadorMunicipal } from '../../src/scraper/indicadores-friccion'
 import { collectErrors, appErrors } from './_console'
@@ -176,7 +177,7 @@ test.describe('Eficiencia (/eficiencia)', () => {
     // a su ficha.
     await expect(page.locator('.cp-libro tbody tr')).toHaveCount(SNAP.indicadores.length)
     await expect(
-      page.locator(`.cp-libro .cp-c-servicio a[href="/eficiencia/${CON_RATIO[0].id}"]`),
+      page.locator(`.cp-libro .cp-c-servicio a[href="${rutaDeServicio(CON_RATIO[0].id)}"]`),
     ).toBeVisible()
 
     // La franja de cobertura vive en SU pestaña, y por eso se abre: desde que
@@ -293,10 +294,10 @@ test.describe('Eficiencia (/eficiencia)', () => {
       .locator('.cp-libro tbody .cp-c-servicio a')
       .evaluateAll((els) => els.map((e) => (e as HTMLAnchorElement).getAttribute('href')))
     const esperado = [
-      ...grupos.flatMap((g) => g.indicadores.map((i) => `/eficiencia/${i.id}`)),
+      ...grupos.flatMap((g) => g.indicadores.map((i) => rutaDeServicio(i.id))),
       ...SNAP.indicadores
         .filter((i: Indicador) => i.valor === null)
-        .map((i: Indicador) => `/eficiencia/${i.id}`),
+        .map((i: Indicador) => rutaDeServicio(i.id)),
     ]
     expect(enDom).toEqual(esperado)
   })
@@ -313,7 +314,7 @@ test.describe('Eficiencia (/eficiencia)', () => {
 
     for (const i of situados) {
       const celda = page.locator(
-        `.cp-libro tbody tr:has(a[href="/eficiencia/${i.id}"]) .cp-c-posicion`,
+        `.cp-libro tbody tr:has(a[href="${rutaDeServicio(i.id)}"]) .cp-c-posicion`,
       )
       await expect(celda, i.id).toContainText(`p${i.pares.percentil}`, { timeout: 8000 })
       const b = i.pares.percentilBanda
@@ -441,7 +442,7 @@ test.describe('Eficiencia (/eficiencia)', () => {
     // en su mitad corta.
     const hoisted = congelados.length === conCociente.length
     for (const i of congelados) {
-      const fila = page.locator(`.cp-libro tbody tr:has(a[href="/eficiencia/${i.id}"])`)
+      const fila = page.locator(`.cp-libro tbody tr:has(a[href="${rutaDeServicio(i.id)}"])`)
       await expect(
         fila.locator('.cp-divisor-desde'),
         `${i.servicio} publica su cociente sin marcar el denominador parado`,
@@ -454,7 +455,7 @@ test.describe('Eficiencia (/eficiencia)', () => {
     // Y las que NO están congeladas no llevan marca, para que la marca
     // signifique algo: sin esto, un chip pintado en todas pasaría igual.
     for (const i of conCociente.filter((x: Indicador) => !chipDeclaracion(x))) {
-      const fila = page.locator(`.cp-libro tbody tr:has(a[href="/eficiencia/${i.id}"])`)
+      const fila = page.locator(`.cp-libro tbody tr:has(a[href="${rutaDeServicio(i.id)}"])`)
       await expect(
         fila.locator('.cp-divisor-desde'),
         `${i.servicio} remide su denominador y aun así sale marcado`,
@@ -480,7 +481,7 @@ test.describe('Eficiencia (/eficiencia)', () => {
       els.map((e) => (e as HTMLAnchorElement).getAttribute('href')),
     )
     for (const i of SNAP.indicadores) {
-      expect(hrefs, `el libro no enlaza la ficha de ${i.id}`).toContain(`/eficiencia/${i.id}`)
+      expect(hrefs, `el libro no enlaza la ficha de ${i.id}`).toContain(rutaDeServicio(i.id))
     }
 
     // El total es el de los servicios CON cociente, no el del panel entero: es
@@ -570,7 +571,7 @@ test.describe('Eficiencia (/eficiencia)', () => {
     expect(CONCESION.length).toBeGreaterThan(0)
     const c = CONCESION[0]
 
-    const fila = page.locator(`.cp-libro tbody tr:has(a[href="/eficiencia/${c.id}"])`)
+    const fila = page.locator(`.cp-libro tbody tr:has(a[href="${rutaDeServicio(c.id)}"])`)
     await expect(fila).toBeVisible({ timeout: 8000 })
     // Hay cociente, y con su unidad: la raya de antes era nuestra, no de la
     // fuente.
@@ -891,7 +892,7 @@ test.describe('Eficiencia (/eficiencia)', () => {
         const id = aFicha[1]
         await page.goto(it.href, { waitUntil: 'domcontentloaded' })
         await expect(page, `${it.href} no aterriza en su ficha`).toHaveURL(
-          new RegExp(`/eficiencia/${id}$`),
+          new RegExp(`${rutaDeServicio(id)}$`),
           { timeout: 8000 },
         )
         await abrir(page, 'sec-preguntas')

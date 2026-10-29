@@ -4,6 +4,7 @@ import { useOfficials } from '../../hooks/useOfficials'
 import { usePromises, STATUS_LABEL } from '../../hooks/usePromises'
 import { useRevelado } from '../../hooks/useRevelado'
 import { direccion, filasCuestaConsigue } from '../../scraper/cuesta-consigue'
+import { rutaDeServicio } from '../../scraper/ruta-de-servicio'
 import { fmtDateLong, rellena } from '../../lib/formatters'
 import { useLocale, useT } from '../../i18n'
 
@@ -378,7 +379,7 @@ export function CuestaConsigueResponde({ data, competencias, porClave, nombresOn
   const fila = (f) => (
     <article key={f.servicioId} className="cp-ccr-fila" data-ccr-servicio={f.servicioId}>
       <h3 className="cp-ccr-servicio">
-        <a href={`/eficiencia/${f.servicioId}`}>{etiquetas.get(f.servicioId)}</a>
+        <a href={rutaDeServicio(f.servicioId)}>{etiquetas.get(f.servicioId)}</a>
       </h3>
       <div className="cp-ccr-columnas">
         <section>

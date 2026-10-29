@@ -15,6 +15,7 @@ import {
   validarOpinionesSnapshot,
 } from '../src/scraper/opinion-editor'
 import { OpinionEditor } from '../src/components/eficiencia/OpinionEditor'
+import { rutaDeServicio } from '../src/scraper/ruta-de-servicio'
 
 /**
  * La opinión del editor (src/scraper/opinion-editor.ts): lo único de /eficiencia
@@ -284,7 +285,7 @@ describe('lo que lee el vecino', () => {
     expect(texto).toContain('Firmante Ficticio')
     expect(texto).toContain('Los hechos en que se basa')
     expect(texto).toContain(base().noSabemos[0])
-    expect(marco.querySelector(`a[href="/eficiencia/${POLICIA}"]`)).not.toBeNull()
+    expect(marco.querySelector(`a[href="${rutaDeServicio(POLICIA)}"]`)).not.toBeNull()
   })
 
   it('el contacto previo se dice, y el silencio se publica como silencio', () => {
