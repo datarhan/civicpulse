@@ -24,7 +24,7 @@
       },
       {
         "fecha": "2026-10-29",
-        "texto": "**Se ha precisado cómo terminaba la corrección del 29 de agosto, que concluía más de lo que había medido.** Cerraba diciendo que «lo que falta en él sigue siendo la anotación del contrato de FCC», y así escrito se lee como que eso es lo único que le falta al registro. La misma nota acababa de contar lo contrario: 43 de sus 808 filas no traían estado ni adjudicatario.\n\nSon dos huecos distintos. En esas 43 filas el expediente está y le faltan el estado y el adjudicatario; el contrato de FCC no está en ninguna. Lo hemos comprobado de nuevo sobre el registro de aquel día: ninguna de las 43 es del servicio de recogida, y FCC no aparece en ninguna de las 808. Que el registro siga anotando adjudicaciones es lo que impide atribuir esa ausencia a un registro abandonado; no dice que el resto esté completo.\n\nLa nota del 29 de agosto se deja como estaba, porque dice lo que se sabía ese día; ésta la precisa. **La conclusión del reportaje no cambia:** el registro no está abandonado, y en él no consta ningún contrato de FCC."
+        "texto": "**Se ha precisado cómo terminaba la corrección del 29 de agosto, que concluía más de lo que había medido.** Cerraba diciendo que «lo que falta en él sigue siendo la anotación del contrato de FCC», y así escrito se lee como que eso es lo único que le falta al registro. La misma nota acababa de contar lo contrario: 43 de sus 808 filas no traían estado ni adjudicatario.\n\nSon dos huecos distintos. En esas 43 filas el expediente está y le faltan el estado y el adjudicatario; el contrato de FCC no está en ninguna. Lo hemos comprobado de nuevo sobre el registro de aquel día: ninguna de las 43 es del servicio de recogida, y FCC no aparece en ninguna de las 808. Que el registro siga anotando adjudicaciones es lo que impide atribuir esa ausencia a un registro abandonado; no dice que el resto esté completo.\n\nLa nota del 29 de agosto se deja como estaba, porque dice lo que se sabía ese día; ésta la precisa. **La conclusión del reportaje no cambia:** el registro no está abandonado, y en él no consta ningún contrato de FCC.\n\n**Se ha corregido también qué pasó el 21 de octubre de 2025.** La sección de la venta decía «ISS la hizo pública el 21 de octubre», y que el Ayuntamiento firmó el contrato «tres semanas después de que se supiera» que la adjudicataria había cambiado de manos; la cronología y una de las preguntas al Ayuntamiento contaban esas tres semanas desde la misma fecha. No hemos encontrado ningún anuncio de ISS de ese día, ni anterior. Lo que ISS publicó, el 5 de noviembre y en su informe trimestral, es que el 21 de octubre completó la compra: es cuando la adjudicataria cambió de manos, no cuando se supo. La sección, la cronología y la pregunta lo dicen ahora así, y la pregunta ya no da la compra por «publicada tres semanas antes», sino completada entonces y hecha pública por ISS seis días antes de la firma. El informe de ISS pasa a la lista de fuentes. Las tres semanas entre el cambio de manos y la firma no cambian.\n\n**Y la sección del registro daba el estado del contrato en una palabra que no es castellano.** Decía que el registro «seguía dando el contrato por formalized»: es la palabra con que esta web guarda el estado que exporta el registro. En castellano es «formalizado», como dicen el método y la pregunta sobre el registro, y así lo dice ahora. Ni el estado ni ninguna cifra cambian."
       }
     ]
   },
@@ -132,13 +132,18 @@
       "fuente": "CNMC C/1600/25"
     },
     {
+      "fecha": "2025-10-21",
+      "hito": "ISS completa la compra de Garbialdi. Lo hace público el 5 de noviembre, en su informe trimestral.",
+      "fuente": "ISS A/S, informe trimestral de 5-11-2025"
+    },
+    {
       "fecha": "2025-11-04",
       "hito": "Vence el contrato de limpieza viaria de SAV. No consta sucesor en el registro público.",
       "fuente": "PLACSP"
     },
     {
       "fecha": "2025-11-11",
-      "hito": "Riba-roja formaliza el contrato con Garbialdi, tres semanas después de que ISS hiciera pública la compra.",
+      "hito": "Riba-roja formaliza el contrato con Garbialdi, tres semanas después de que ISS completara la compra.",
       "fuente": "PLACSP"
     },
     {
@@ -404,7 +409,8 @@
     "expediente": "C/1600/25",
     "notificada": "2025-09-22",
     "autorizada": "2025-10-01",
-    "anunciada": "2025-10-21",
+    "completada": "2025-10-21",
+    "completadaPublicadaEl": "2025-11-05",
     "vendedores": [
       "Jesús María «Josu» Olazarán Sagarduy (fallecido en marzo de 2024)",
       "José Luis Castellanos Palacios, director general"
@@ -603,8 +609,8 @@
             "base": "DOUE 249954-2025: proyecto técnico, 34 puntos; precio, 32. Los informes municipales documentan que lo incumplido fue precisamente lo comprometido: medios personales y materiales."
           },
           {
-            "q": "¿Sabía el Ayuntamiento, al firmar el 11 de noviembre, que la totalidad del capital de la adjudicataria había cambiado de manos? Si lo sabía, ¿qué comprobaciones hizo antes de firmar? Y si no lo sabía, ¿cómo pudo no saberlo, con la operación publicada tres semanas antes?",
-            "base": "Adjudicación, 10-9-2025; notificación a la CNMC, 22-9; autorización, 1-10; anuncio público de ISS, 21-10; formalización, 11-11."
+            "q": "¿Sabía el Ayuntamiento, al firmar el 11 de noviembre, que la totalidad del capital de la adjudicataria había cambiado de manos? Si lo sabía, ¿qué comprobaciones hizo antes de firmar? Y si no lo sabía, ¿cómo pudo no saberlo, con la compra completada tres semanas antes y hecha pública por ISS seis días antes de la firma?",
+            "base": "Adjudicación, 10-9-2025; notificación a la CNMC, 22-9; autorización, 1-10; ISS completa la compra, 21-10, y lo hace público el 5-11; formalización, 11-11."
           },
           {
             "q": "¿Qué responsabilidades concretas se temía que se eludieran al denegar la sucesión del contratista a ISS, y cuáles se han exigido desde entonces, a Garbialdi o a su nuevo dueño?",
@@ -686,6 +692,10 @@
     {
       "label": "CNMC · Expediente C/1600/25 ISS/GARBIALDI (resolución de 1 de octubre de 2025)",
       "url": "https://www.cnmc.es/expedientes/c160025"
+    },
+    {
+      "label": "ISS A/S · «Trading update for 1 January - 30 September 2025» (5-11-2025): completó la compra de Garbialdi el 21 de octubre de 2025",
+      "url": "https://www.issworld.com/insights/news-and-press/trading-update-for-1-january-30-september-2025"
     },
     {
       "label": "DOUE · Anuncio de licitación 249954-2025 (ponderación de criterios)",

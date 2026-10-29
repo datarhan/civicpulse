@@ -59,13 +59,6 @@
       "at": "2026-09-05"
     },
     {
-      "route": "/reportajes/basuras",
-      "quote": "Riba-roja formaliza el contrato con Garbialdi, tres semanas después de que ISS hiciera pública la compra.",
-      "reason": "El revisor ancla «hacer pública la compra» en la NOTIFICACIÓN a la CNMC (2025-09-22) y de ahí saca siete semanas. El reportaje distingue tres fechas del mismo expediente C/1600/25 y las publica las tres: notificada 2025-09-22, autorizada 2025-10-01 y ANUNCIADA 2025-10-21. Del anuncio a la formalización del 2025-11-11 hay 21 días exactos: tres semanas, que es lo que dice la frase. Mismo patrón que los descartes de /gestion y /quejas — el revisor juzga la frase contra un universo más ancho que el que la frase nombra. Comprobado contra public/data/reportajes/basuras.json el 5-09-2026.",
-      "editor": "claude-opus-5",
-      "at": "2026-09-05"
-    },
-    {
       "route": "/presupuesto",
       "quote": "En qué prevé gastarse el dinero público",
       "reason": "El titular ya dice «PREVÉ gastarse» desde hoy, precisamente para que nadie lea ejecución donde hay presupuesto. Lo que el revisor objeta ahora es otra cosa: que la suma de los capítulos (41,56 M€, la cifra de CONPREL) no coincide con el crédito del listado municipal —inicial 37.599.838,15 €, actual 62.123.153,08 €—. Es cierto y la página lo publica y se niega a reconciliarlo por escrito: «elegir una sería inventar el puente entre dos fuentes oficiales». La discrepancia entre dos fuentes OFICIALES no es un defecto de cada rótulo que mencione una de ellas. Comprobado el 5-09-2026.",
@@ -265,6 +258,13 @@
       "route": "/reportajes/basuras",
       "quote": "La conclusión no cambia. El registro se mantiene al día, y lo que falta en él sigue siendo la anotación del contrato de FCC.",
       "reason": "El señalamiento era cierto, y se ha corregido en el registro de la pieza, no aquí: es el cierre de la corrección del 29-08-2026, y la entrada del 29-10-2026 la precisa por su nombre —«lo que falta en él» se leía como exhaustivo cuando la misma nota acababa de contar 43 filas sin estado ni adjudicatario—. Comprobado el 29-10-2026 sobre el tenders.json de aquel día (commit 698e94cc): 808 filas = 700 adjudicadas o formalizadas + 65 anuladas, revocadas o desistidas + 43 `unknown`; 43 / (808 − 700) = 43 / 108 = 39,8 %, el «cerca del 40 %». En el fixture del registro esas filas traen `status` vacío, no un valor que el parser no reconozca. Ninguna de las 43 tiene adjudicatario ni es del servicio de recogida, y ninguna de las 808 nombra a FCC. El registro de correcciones es histórico; reescribir la del 29-08 borraría lo que la del 29-10 precisa. Es el mismo caso que el descarte de /reportajes/coste-efectivo del 19-10-2026. Descartado por encargo de Sergei Lutchenko (29-10-2026).",
+      "editor": "claude-opus-5.5",
+      "at": "2026-10-29"
+    },
+    {
+      "route": "/reportajes/inteligencia-turistica",
+      "quote": "Revisadas todas las cifras de esta pieza contra el registro corregido.",
+      "reason": "El señalamiento era cierto, y se ha corregido en el registro de la pieza, no aquí: es la frase con que abre la corrección del 02-08-2026, que a continuación admite no haber vuelto a comprobar el ≈1,56 M€. La entrada del 29-10-2026 la precisa por su nombre y hace la comprobación que faltaba: el ≈1,56 M€ es la suma de las 16 filas `pstd` de `cluster` (1.561.590 €), las mismas desde la publicación del 15-07-2026 (commit 44a8db7a), y la nota de la tabla ya decía «Suman ≈1,56 M€ sin IVA». Cotejadas el 29-10-2026 con public/data/tenders.json: las 16 están, 18 contratos (BECSA y Vetges, dos cada una), 1.561.588,84 €; 8 de las 16 en `formalized`, la Smart Office de Sien (64.960 €) entre ellas. En el tenders.json del 15-07-2026 (commit 3d8e9819) esas 8 venían en `unknown` —el defecto que cuenta la nota del 02-08— y aun así están en la tabla desde ese día: se eligieron por su objeto. El registro de correcciones es histórico; reescribir la del 02-08 borraría lo que la del 29-10 precisa. Mismo caso que el descarte de /reportajes/basuras del 29-10-2026. Propuesto en la misma PR que la corrección, que el operador aprueba antes de fusionar.",
       "editor": "claude-opus-5.5",
       "at": "2026-10-29"
     }
