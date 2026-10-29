@@ -61,12 +61,16 @@ describe('parseBudgetExecutionPdf — ingresos 2T2025', () => {
     expect(doc.year).toBe(2025)
   })
 
-  it('uses the ingresos column layout: actual = col 1, ejecutado (DR) = col 3', () => {
+  it('uses the ingresos column layout: actual = col 1, ejecutado = DR Netos (2nd line, col 2)', () => {
     // Ingresos has no Modificación column; actual is the previsión definitiva.
     expect(doc.total.inicial).toBe(39034883.74)
     expect(doc.total.actual).toBe(59611751.19)
-    expect(doc.total.ejecutado).toBe(36814321.64) // Derechos Reconocidos ≈ 61.8% ejecución
+    // Derechos reconocidos NETOS, en la segunda línea del total: los «DR» de la
+    // primera (36.814.321,64) son brutos, antes de anulaciones y devoluciones,
+    // y daban un 61,8 % donde la hoja imprime «61,37%».
+    expect(doc.total.ejecutado).toBe(36583883.8)
     expect(doc.total.modificaciones).toBe(20576867.45) // derived: actual − inicial
+    expect(doc.pctImpreso).toBe(61.37)
   })
 
   it('extracts revenue chapters incl. Cap 1 Impuestos directos', () => {
@@ -75,7 +79,7 @@ describe('parseBudgetExecutionPdf — ingresos 2T2025', () => {
     expect(c1.label).toBe('Impuestos directos')
     expect(c1.inicial).toBe(17963497.13)
     expect(c1.actual).toBe(17963497.13)
-    expect(c1.ejecutado).toBe(12730686.61)
+    expect(c1.ejecutado).toBe(12567444.65) // DR netos: «69,96%» del capítulo
   })
 
   it('dedups repeated Total Capítulo lines (unique capítulos)', () => {
@@ -99,7 +103,7 @@ describe('mergeExecutionPeriod', () => {
     expect(p.trimestre).toBe(2)
     expect(p.gastos.total.actual).toBe(62123153.08)
     expect(p.ejecucionPct.gastos).toBe(30.4)
-    expect(p.ejecucionPct.ingresos).toBe(61.8)
+    expect(p.ejecucionPct.ingresos).toBe(61.4)
     expect(p.ingresos.chapters.length).toBeGreaterThan(0)
   })
 })

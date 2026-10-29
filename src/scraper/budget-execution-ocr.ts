@@ -313,6 +313,10 @@ function leerResumen(texto: string, kind: ExecKind): LecturaOcr {
       fechaImpresion: fechaImpresaOcr(texto),
       chapters: capitulos.map((f) => ({ capitulo: f.capitulo!, label: f.label, ...linea(f) })),
       total: linea(total!),
+      // El porcentaje que imprime su fila «Total», ya cotejado arriba, en
+      // puntos (las cifras de la lectura van en centésimas).
+      pctImpreso: total!.pcts[0] / 100,
+      definitivo: 'a-la-fecha',
     },
   }
 }
@@ -423,6 +427,10 @@ function leerEstado(texto: string, kind: ExecKind): LecturaOcr {
       fechaImpresion: fechaImpresaOcr(texto),
       chapters: capitulos.map((f) => ({ capitulo: f.capitulo!, label: f.label, ...linea(f) })),
       total: linea(total!),
+      // El porcentaje que imprime su fila «Total», ya cotejado arriba, en
+      // puntos (las cifras de la lectura van en centésimas).
+      pctImpreso: total!.pcts[0] / 100,
+      definitivo: 'a-la-fecha',
     },
   }
 }
