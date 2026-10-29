@@ -7,18 +7,31 @@ const UA = 'Mozilla/5.0 (compatible; CivicPulse/0.1; +https://github.com/datarha
 export const EXEC_INDEX_URL =
   'https://www.ribarroja.es/es/1_gestion_presupuestaria/2_estados_ejecucion_presupuesto'
 
-export async function fetchPdfText(url: string): Promise<string | null> {
+/** Los bytes del PDF, o null si no responde con un PDF. */
+export async function fetchPdf(url: string): Promise<Buffer | null> {
   const res = await fetch(url, { headers: { 'User-Agent': UA, Accept: 'application/pdf,*/*' } })
   if (!res.ok) return null
   const ct = res.headers.get('content-type') || ''
   if (!/pdf/i.test(ct) && !/\.pdf/i.test(url)) return null
-  const buf = Buffer.from(await res.arrayBuffer())
+  return Buffer.from(await res.arrayBuffer())
+}
+
+/**
+ * La capa de texto de un PDF. Va sobre una copia: los mismos bytes pueden ir
+ * después al OCR (budget-execution-ocr-fetch.ts) si la capa sale vacía.
+ */
+export async function textoDePdf(pdf: Buffer): Promise<string> {
   // pdf-parse v1: default export → { text }. Lazy-load (heavy pdfjs dep).
   const mod = (await import('pdf-parse')) as unknown as {
     default: (b: Buffer) => Promise<{ text: string }>
   }
-  const { text } = await mod.default(buf)
+  const { text } = await mod.default(Buffer.from(pdf))
   return text
+}
+
+export async function fetchPdfText(url: string): Promise<string | null> {
+  const pdf = await fetchPdf(url)
+  return pdf ? textoDePdf(pdf) : null
 }
 
 export async function fetchExecutionIndex(): Promise<Array<{ label: string; href: string }>> {
