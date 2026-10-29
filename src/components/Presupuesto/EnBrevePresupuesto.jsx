@@ -346,6 +346,37 @@ export default function EnBrevePresupuesto() {
     )
   }
 
+  // «¿Hay algo raro?» sólo cuando hay una anomalía que la fuente misma muestra
+  // —hoy, que el presupuesto rendido a CONPREL no cuadra—, dicha como un hecho
+  // y enlazada al aviso que la explica. Sin anomalía no hay tarjeta: un «todo
+  // correcto» afirmaría algo que esta página no ha comprobado.
+  if (r.rareza) {
+    const z = r.rareza
+    tarjetas.push(
+      <TarjetaEnBreve
+        key="rareza"
+        id="rareza"
+        pregunta={t('presupuesto.enBreve.rareza.pregunta')}
+        cifra={eurosBreves(Math.abs(z.diferencia))}
+        cifraNota={t('presupuesto.enBreve.rareza.cifraNota')}
+        frases={[
+          z.diferencia > 0
+            ? rellena(t('presupuesto.enBreve.rareza.sobra'), {
+                year: z.year,
+                dif: eurosBreves(z.diferencia),
+              })
+            : rellena(t('presupuesto.enBreve.rareza.falta'), {
+                year: z.year,
+                dif: eurosBreves(-z.diferencia),
+              }),
+        ]}
+        nota={t('presupuesto.enBreve.rareza.nota')}
+        ancla="#descuadre"
+        anclaTexto={ver}
+      />,
+    )
+  }
+
   if (tarjetas.length === 0) return null
 
   const zonas = (tenderGeo?.zones ?? []).filter((z) => z.slug && z.name)

@@ -33,7 +33,11 @@ test.describe('Presupuesto (/presupuesto)', () => {
     await page.goto('/presupuesto', { waitUntil: 'domcontentloaded' })
 
     // New money-map dashboard (src/components/Presupuesto/GastoDashboard.jsx)
-    await expect(page.getByText('¿A dónde va el dinero en contratos?').first()).toBeVisible({
+    // Por su papel de encabezado: la pestaña del pliegue (components/Lecturas.jsx)
+    // lleva el mismo título, siempre en el DOM y oculta con «todo».
+    await expect(
+      page.getByRole('heading', { name: '¿A dónde va el dinero en contratos?' }),
+    ).toBeVisible({
       timeout: 8000,
     })
     await expect(page.getByRole('tab', { name: /Explorar contratos/ })).toBeVisible()
@@ -43,7 +47,7 @@ test.describe('Presupuesto (/presupuesto)', () => {
     // presupuestados (41,58 M€), no obligaciones reconocidas (18,91 M€).
     await expect(page.getByText('En qué prevé gastarse el dinero público').first()).toBeVisible()
     await expect(page.getByText('De dónde vienen los ingresos municipales').first()).toBeVisible()
-    await expect(page.getByText('Subvenciones · Base Nacional').first()).toBeVisible()
+    await expect(page.getByRole('heading', { name: 'Subvenciones · Base Nacional' })).toBeVisible()
     await expect(page.getByText(/€/).first()).toBeVisible()
 
     expect(appErrors(errors)).toEqual([])
@@ -147,7 +151,11 @@ test.describe('Presupuesto (/presupuesto)', () => {
     // medio, su tarjeta —la más alta de la página— dejaba el endeudamiento y la
     // contratación a más de 6.000 px del principio.
     await page.goto('/presupuesto', { waitUntil: 'domcontentloaded' })
-    await expect(page.getByText('¿A dónde va el dinero en contratos?').first()).toBeVisible({
+    // Por su papel de encabezado: la pestaña del pliegue (components/Lecturas.jsx)
+    // lleva el mismo título, siempre en el DOM y oculta con «todo».
+    await expect(
+      page.getByRole('heading', { name: '¿A dónde va el dinero en contratos?' }),
+    ).toBeVisible({
       timeout: 8000,
     })
 

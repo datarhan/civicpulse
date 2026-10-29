@@ -9,6 +9,7 @@ import { useGlosario } from '../src/hooks/useGlosario'
 import { invalidateSnapshots } from '../src/lib/snapshot-store'
 import { cascadaGastos, capituloDominante } from '../src/scraper/presupuesto-lectura'
 import { avanceDelAnio, enBrevePresupuesto } from '../src/scraper/en-breve-presupuesto'
+import { desequilibrioDeConprel, TOLERANCIA_EQUILIBRIO } from '../src/scraper/budget-contraste'
 import { magnitudesDe, revisarMagnitudes } from '../src/scraper/magnitudes-fiscales'
 import EnBrevePresupuesto from '../src/components/Presupuesto/EnBrevePresupuesto'
 import { installFetchMock } from './setup/mockFetch'
@@ -109,6 +110,25 @@ describe('lo que no se puede responder es null, nunca un cero', () => {
     const r = enBrevePresupuesto({ budget, ejecucion: EJEC, deuda: DEUDA })
     expect(r.limite.porVecino).toBeNull()
     expect(r.deuda.porVecino).toBeNull()
+  })
+
+  it('«¿Hay algo raro?» sólo con una anomalía, y es la misma cifra que el aviso de abajo', () => {
+    // Hoy CONPREL no cuadra: si un día cuadra, la segunda mitad lo prueba igual.
+    const dif = desequilibrioDeConprel(BUDGET.snapshot)
+    if (dif !== null && Math.abs(dif) >= TOLERANCIA_EQUILIBRIO) {
+      expect(R.rareza).toEqual({
+        year: BUDGET.snapshot.year,
+        ingresos: BUDGET.snapshot.totalRevenue,
+        gastos: BUDGET.snapshot.totalExpense,
+        diferencia: dif,
+      })
+    } else expect(R.rareza).toBeNull()
+    // Un presupuesto que cuadra no da tarjeta: nunca un «todo correcto».
+    const cuadra = { snapshot: { ...BUDGET.snapshot, totalRevenue: BUDGET.snapshot.totalExpense } }
+    expect(enBrevePresupuesto({ budget: cuadra }).rareza).toBeNull()
+    // Sin uno de los totales, tampoco: no se sabe.
+    const sin = { snapshot: { ...BUDGET.snapshot, totalRevenue: null } }
+    expect(enBrevePresupuesto({ budget: sin }).rareza).toBeNull()
   })
 
   it('el avance del año sólo se lee de una fecha del mismo ejercicio', () => {
@@ -269,7 +289,9 @@ describe('lo que lee el vecino', () => {
     const anclas = [...container.querySelectorAll('[data-en-breve] > a.cp-en-breve-ancla')].map(
       (a) => a.getAttribute('href'),
     )
-    expect(new Set(anclas)).toEqual(new Set(['#cascada', '#capitulos', '#deuda']))
+    // «¿Hay algo raro?» enlaza al aviso de CONPREL cuando la tarjeta sale.
+    const esperadas = ['#cascada', '#capitulos', '#deuda', ...(R.rareza ? ['#descuadre'] : [])]
+    expect(new Set(anclas)).toEqual(new Set(esperadas))
   })
 })
 
