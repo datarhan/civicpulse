@@ -13,6 +13,7 @@ import { Card, Pill, SectionHead } from '../components/Primitives'
 import { useLabHealth } from '../hooks/useLabHealth'
 import { ageHours, freshnessTone } from '../lib/data-freshness'
 import { expectationFor } from '../scraper/snapshot-cadence'
+import { fraseLabHealth } from '../lib/lecturas-laboratorio'
 import { timeAgo } from '../hooks/usePress'
 import { useDocumentTitle } from '../hooks/useDocumentTitle'
 
@@ -197,6 +198,17 @@ export default function LabHealth() {
     return out
   }, [rows])
 
+  // La lectura vecinal (auditoría de las dos lecturas, §27): cuántos ficheros
+  // se comprueban, si alguno va atrasado y cuál lleva más sin cambiar. Con los
+  // mismos tonos que las filas de abajo.
+  const frase = useMemo(
+    () =>
+      fraseLabHealth(
+        rows.map((r) => ({ label: r.label, tono: toneOf(r), horas: ageHours(r.generatedAt) })),
+      ),
+    [rows],
+  )
+
   const grouped = useMemo(() => {
     const map = new Map()
     for (const r of sorted) {
@@ -232,6 +244,35 @@ export default function LabHealth() {
         >
           Salud del laboratorio
         </h1>
+        {!loading && frase && (
+          <section aria-labelledby="lh-en-breve" data-lab-health-frase="" style={{ marginTop: 10 }}>
+            <h2
+              id="lh-en-breve"
+              className="mono"
+              style={{
+                fontSize: 'var(--fs-micro)',
+                color: 'var(--ink50)',
+                textTransform: 'uppercase',
+                letterSpacing: '.08em',
+                fontWeight: 700,
+                margin: 0,
+              }}
+            >
+              En breve
+            </h2>
+            <p
+              style={{
+                fontSize: 'var(--fs-body)',
+                color: 'var(--ink)',
+                lineHeight: 1.6,
+                margin: '4px 0 0',
+                maxWidth: '70ch',
+              }}
+            >
+              {frase}
+            </p>
+          </section>
+        )}
         <p
           style={{
             fontSize: 'var(--fs-aux)',

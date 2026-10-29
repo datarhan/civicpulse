@@ -8,6 +8,7 @@ import { diaDeLaSede } from '../scraper/queja-router'
 import { rotuloDe, useT } from '../i18n'
 import { entero } from '../lib/formatters'
 import { estadoLlano } from '../lib/estado-llano.js'
+import { fraseCobertura } from '../lib/lecturas-laboratorio'
 import { useSolicitudesAcceso } from '../hooks/useSolicitudesAcceso'
 import { CLASES_PEDIBLES, CLASE_ETIQUETA } from '../scraper/clase-documental'
 // La etiqueta y el tono de cada estado viven con el enum, tipados: aquí eran
@@ -256,6 +257,43 @@ export default function Cobertura() {
         no un reproche a quien habla: que no tengamos con qué comprobar una cifra no la hace ni
         falsa ni cierta.
       </p>
+
+      {/* La respuesta corta (auditoría de las dos lecturas, §25), después del
+          aviso de lo que esta página no es: contada del mismo resumen que la
+          barra de abajo. */}
+      {fraseCobertura(resumen) && (
+        <section
+          aria-labelledby="cobertura-en-breve"
+          data-cobertura-frase=""
+          style={{ margin: '4px 0 10px' }}
+        >
+          <h2
+            id="cobertura-en-breve"
+            className="mono"
+            style={{
+              fontSize: 'var(--fs-micro)',
+              color: 'var(--ink50)',
+              textTransform: 'uppercase',
+              letterSpacing: '.08em',
+              fontWeight: 700,
+              margin: 0,
+            }}
+          >
+            En breve
+          </h2>
+          <p
+            style={{
+              fontSize: 'var(--fs-body)',
+              color: 'var(--ink)',
+              lineHeight: 1.6,
+              margin: '4px 0 0',
+              maxWidth: '72ch',
+            }}
+          >
+            {fraseCobertura(resumen)}
+          </p>
+        </section>
+      )}
 
       <DataAsOf
         iso={manifest.data?.generatedAt}

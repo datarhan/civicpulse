@@ -157,4 +157,28 @@ test.describe('Coste esperado (/laboratorio/coste-esperado)', () => {
       'violaciones bloqueantes de accesibilidad en /laboratorio/coste-esperado',
     ).toEqual([])
   })
+
+  // La respuesta corta, contada del snapshot y DESPUÉS de «no es un aprobado»
+  // (auditoría de las dos lecturas, §24): nunca en lugar del aviso.
+  test('responde la pregunta con los servicios del snapshot, después del aviso', async ({
+    page,
+  }) => {
+    await expect(
+      page.getByRole('heading', {
+        name: '¿Gasta Riba-roja más de lo normal para un municipio de su tamaño?',
+      }),
+    ).toBeVisible()
+    const respuesta = page.locator('[data-coste-esperado-respuesta]')
+    const fuera = PUBLICADAS.filter(
+      (e: { propia: { dentroDeLoEsperado: boolean } }) => !e.propia.dentroDeLoEsperado,
+    ).length
+    await expect(respuesta).toContainText(`${PUBLICADAS.length} servicios que se pueden comparar`)
+    if (fuera === 0) await expect(respuesta).toContainText('cae dentro de la banda')
+    if (FALLIDAS.length > 1)
+      await expect(respuesta).toContainText(`Otros ${FALLIDAS.length} no se pueden comparar`)
+    const texto = await respuesta.innerText()
+    expect(texto.indexOf('no es un aprobado')).toBeGreaterThan(-1)
+    expect(texto.indexOf('no es un aprobado')).toBeLessThan(texto.indexOf('servicios'))
+    expect(texto).not.toMatch(/×|veces lo esperado/)
+  })
 })
