@@ -894,11 +894,18 @@ export function QuoteCard({ payload, sourceMap, withHead = false }) {
           {src.url && (
             <>
               {' '}
+              {/* Subrayado: sigue a «Fuente: …» en la misma línea y sólo el
+                  color lo distinguía del texto (WCAG 1.4.1, `link-in-text-block`).
+                  `p a[href]` no lo alcanza: esto es un <div>. */}
               <a
                 href={src.url}
                 target="_blank"
                 rel="noreferrer"
-                style={{ color: 'var(--civic)', textDecoration: 'none' }}
+                style={{
+                  color: 'var(--civic)',
+                  textDecoration: 'underline',
+                  textUnderlineOffset: 2,
+                }}
               >
                 ver original ↗
               </a>

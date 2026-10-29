@@ -501,7 +501,10 @@ export default function AgenteReporte() {
       <div className="cp-agente-shell">
         <StickyToc items={tocItems} />
 
-        <main className="cp-main">
+        {/* <article> y no <main>: el <main> de la página ya lo pone App.jsx, y
+            uno dentro de otro daba al lector de pantalla dos regiones
+            «principal» (axe: landmark-no-duplicate-main). */}
+        <article className="cp-main">
           <LegalSensitivityBadge level={report.legalSensitivity} warnings={report.warnings} />
 
           {renderedSections.map(({ section, anchorId }, i) => (
@@ -533,7 +536,7 @@ export default function AgenteReporte() {
               publicado {report.promotedAt.slice(0, 10)}
             </span>
           </div>
-        </main>
+        </article>
 
         <FactsSidebar report={report} subjectName={subjectName} assignment={assignment} />
       </div>
