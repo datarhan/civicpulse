@@ -236,6 +236,12 @@ export function revisarMagnitudes(
  * escribe a mano: una tabla de cifras dentro de un control contra cifras mal
  * rotuladas se quedaría rancia ella misma.
  */
+interface PeriodoConGastos {
+  gastos?: {
+    total?: { inicial?: number; modificaciones?: number; actual?: number; ejecutado?: number }
+  }
+}
+
 export function magnitudesDe(
   budget: {
     snapshot?: {
@@ -244,11 +250,13 @@ export function magnitudesDe(
     }
   } | null,
   ejecucion: {
-    latest?: {
-      gastos?: {
-        total?: { inicial?: number; modificaciones?: number; actual?: number; ejecutado?: number }
-      }
-    }
+    latest?: PeriodoConGastos | null
+    /**
+     * El último cierre, cuando el periodo más nuevo es un trimestre en curso:
+     * /gestion mide el año sobre él, así que sus cifras también se publican y
+     * también hay que reconocerlas (budget-execution.ts, `ultimoCierre`).
+     */
+    ultimoCierre?: PeriodoConGastos | null
   } | null,
 ): MagnitudFiscal[] {
   const out: MagnitudFiscal[] = []
@@ -262,6 +270,31 @@ export function magnitudesDe(
   push('credito-actual', g?.actual, 'crédito DEFINITIVO (inicial + modificaciones)', false)
   push('conprel', budget?.snapshot?.totalExpense, 'crédito de gastos rendido a CONPREL', false)
   push('reconocido', g?.ejecutado, 'obligaciones RECONOCIDAS (lo efectivamente gastado)', true)
+  // Las del último cierre, con su propia clave, sólo si es otro periodo: las
+  // claves de arriba siguen siendo las del más nuevo, que es lo que ya
+  // reconocían los descartes guardados.
+  const c = ejecucion?.ultimoCierre?.gastos?.total
+  if (c && ejecucion?.ultimoCierre !== ejecucion?.latest && c.ejecutado !== g?.ejecutado) {
+    push('credito-inicial-cierre', c.inicial, 'crédito INICIAL de gasto, último cierre', false)
+    push(
+      'modificaciones-cierre',
+      c.modificaciones,
+      'modificaciones de crédito, último cierre',
+      false,
+    )
+    push(
+      'credito-actual-cierre',
+      c.actual,
+      'crédito DEFINITIVO (inicial + modificaciones), último cierre',
+      false,
+    )
+    push(
+      'reconocido-cierre',
+      c.ejecutado,
+      'obligaciones RECONOCIDAS (lo efectivamente gastado), último cierre',
+      true,
+    )
+  }
   for (const c of budget?.snapshot?.expenseByEconomicChapter ?? []) {
     push(
       `capitulo-${c.code ?? c.label ?? '?'}`,
