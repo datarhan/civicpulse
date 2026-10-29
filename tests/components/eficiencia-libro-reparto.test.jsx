@@ -4,6 +4,7 @@ import { readFileSync } from 'node:fs'
 import { resolve } from 'node:path'
 
 import { LibroServicios } from '../../src/components/eficiencia/LibroServicios'
+import { idDeParametro } from '../../src/scraper/ruta-de-servicio'
 
 /**
  * Las pastillas de «Ver» del libro de /eficiencia tienen que repartir los
@@ -54,10 +55,10 @@ function pastillas() {
 
 const cifra = (rotulo) => Number(/(\d+)$/.exec(rotulo)[1])
 
-/** Los id de las filas que pinta la tabla. */
+/** Los id de las filas que pinta la tabla: cada enlace lleva el alias legible. */
 const filasPintadas = (container) =>
   [...container.querySelectorAll('.cp-libro tbody .cp-c-servicio a')].map((a) =>
-    a.getAttribute('href').replace('/eficiencia/', ''),
+    idDeParametro(a.getAttribute('href').replace('/eficiencia/', '')),
   )
 
 describe('/eficiencia · las pastillas de «Ver» reparten el libro publicado', () => {

@@ -19,6 +19,7 @@ import {
   SALVEDAD_DENOMINADOR_CONGELADO,
   paresDeclaracionCongelada,
 } from '../scraper/indicador-lectura'
+import { idDeParametro } from '../scraper/ruta-de-servicio'
 import { useIndicadores } from '../hooks/useIndicadores'
 import { useCompetencias, indexarCompetencias, useNombresVisibles } from '../hooks/useCompetencias'
 import { useOfficials } from '../hooks/useOfficials'
@@ -114,7 +115,10 @@ function CitaCelda({ cita, titulo }) {
 }
 
 export default function ServicioDetalle() {
-  const { id } = useParams()
+  // El parámetro es el id o el alias legible («policia-local»); de aquí abajo
+  // todo se cruza por id (`scraper/ruta-de-servicio`).
+  const { id: parametro = '' } = useParams()
+  const id = idDeParametro(parametro)
   const t = useT()
   const { loading, error, data } = useIndicadores()
   const { data: competencias } = useCompetencias()

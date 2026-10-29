@@ -25,6 +25,7 @@ import { useEficienciaFindings } from '../hooks/useEficienciaFindings'
 import { useEficienciaPreguntas } from '../hooks/useEficienciaPreguntas'
 import { useCompetencias, indexarCompetencias, useNombresVisibles } from '../hooks/useCompetencias'
 import { useT } from '../i18n'
+import { rutaDeServicio } from '../scraper/ruta-de-servicio'
 
 /**
  * /eficiencia — cuánto costó cada servicio y qué se obtuvo a cambio.
@@ -108,10 +109,11 @@ export default function Eficiencia() {
   // registradas, que es exactamente ese recorrido.
   useEffect(() => {
     // `#s-<id>` era la ficha y `#r-<id>` su bloque de resultado. Los dos viven
-    // ahora dentro de /eficiencia/<id>, y `eficiencia-preguntas.json` —curado,
-    // se edita por PR y nunca desde aquí— cita uno de cada.
+    // ahora dentro de la ficha, y `eficiencia-preguntas.json` —curado, se edita
+    // por PR y nunca desde aquí— cita uno de cada. Aterrizan en su dirección
+    // legible, la misma que pintan los enlaces de la página.
     const m = /^#([sr])-(.+)$/.exec(hash)
-    if (m) navigate(`/eficiencia/${m[2]}`, { replace: true })
+    if (m) navigate(rutaDeServicio(m[2]), { replace: true })
   }, [hash, navigate])
 
   const { loading, error, data } = useIndicadores()

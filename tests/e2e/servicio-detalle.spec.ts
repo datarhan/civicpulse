@@ -3,6 +3,7 @@ import AxeBuilder from '@axe-core/playwright'
 import { readFileSync } from 'node:fs'
 import type { Indicador } from '../../src/scraper/indicadores'
 import { cruzaMediana } from '../../src/scraper/indicador-areas'
+import { rutaDeServicio } from '../../src/scraper/ruta-de-servicio'
 import { collectErrors, appErrors } from './_console'
 
 /**
@@ -47,6 +48,36 @@ test.describe('Ficha de servicio (/eficiencia/:id)', () => {
       )
     }
     test.skip(!montada, '/eficiencia/:id no está montada — VITE_ENABLE_EFICIENCIA=true')
+  })
+
+  test('la dirección legible lleva a la misma ficha que el id, y el libro enlaza por ella', async ({
+    page,
+  }) => {
+    // El id sigue valiendo —lo acaba de abrir el beforeEach—; el alias es otra
+    // forma de llegar, y la que pinta el libro (`scraper/ruta-de-servicio`).
+    const ruta = rutaDeServicio(COMPARABLE.id)
+    expect(ruta, 'el servicio no tiene alias: la prueba no miraría nada').not.toBe(
+      `/eficiencia/${COMPARABLE.id}`,
+    )
+    await page.goto(ruta, { waitUntil: 'domcontentloaded' })
+    await expect(page.getByRole('heading', { level: 1, name: COMPARABLE.etiqueta })).toBeVisible({
+      timeout: 8000,
+    })
+    await expect(page.locator('[data-no-resuelta]')).toHaveCount(0)
+
+    await page.goto('/eficiencia', { waitUntil: 'domcontentloaded' })
+    const enlace = page.locator(`.cp-libro .cp-c-servicio a[href="${ruta}"]`)
+    await expect(enlace).toHaveCount(1, { timeout: 8000 })
+    await enlace.click()
+    await expect(page).toHaveURL(new RegExp(`${ruta}$`))
+    await expect(page.getByRole('heading', { level: 1, name: COMPARABLE.etiqueta })).toBeVisible({
+      timeout: 8000,
+    })
+  })
+
+  test('un parámetro que no es ni id ni alias dice que no hay ficha', async ({ page }) => {
+    await page.goto('/eficiencia/no-existe', { waitUntil: 'domcontentloaded' })
+    await expect(page.locator('[data-no-resuelta]')).toHaveCount(1, { timeout: 8000 })
   })
 
   test('la división se enseña entera: sus dos mitades y sus dos fechas', async ({ page }) => {
