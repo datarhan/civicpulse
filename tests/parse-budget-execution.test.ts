@@ -61,7 +61,7 @@ describe('parseBudgetExecutionPdf — ingresos 2T2025', () => {
     expect(doc.year).toBe(2025)
   })
 
-  it('uses the ingresos column layout: actual = col 1, ejecutado = DR Netos (col 11)', () => {
+  it('uses the ingresos column layout: actual = col 1, ejecutado = DR Netos (2nd line, col 2)', () => {
     // Ingresos has no Modificación column; actual is the previsión definitiva.
     expect(doc.total.inicial).toBe(39034883.74)
     expect(doc.total.actual).toBe(59611751.19)

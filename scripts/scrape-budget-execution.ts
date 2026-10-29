@@ -50,6 +50,8 @@ const emptyDoc = (kind: ExecKind): ExecDoc => ({
   fechaImpresion: null,
   chapters: [],
   total: { inicial: 0, modificaciones: 0, actual: 0, ejecutado: 0 },
+  pctImpreso: null,
+  definitivo: 'a-la-fecha',
 })
 
 interface Lectura {
