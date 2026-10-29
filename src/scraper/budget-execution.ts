@@ -339,6 +339,59 @@ export function hojasDePagina(pagina: { label: string; enlaces: string[] }): Hoj
   return [...porHref.values()]
 }
 
+/**
+ * Por qué un periodo no se publica, o null si se publica. Las cifras tienen que
+ * sostenerse solas: los dos totales, los capítulos de los dos lados —una hoja
+ * con totales y sin desglose es la que publicaba ingresos al 0,1 %—, una
+ * ejecución entre 0 y 110 %, el mismo corte en gastos y en ingresos —el 2025
+ * publicado juntó los gastos de junio con los ingresos de diciembre—, y el año
+ * de la hoja igual al del enlace. Se dice el motivo para que el raspador cuente
+ * lo que descartó, y por qué, en vez de callarlo.
+ */
+export function motivoDeDescarte(
+  p: BudgetExecutionPeriod,
+  esperado: { year: number },
+): string | null {
+  const enRango = (x: number) => x > 0 && x <= 110
+  if (!(p.gastos.total.actual > 0)) return 'gastos sin total legible'
+  if (!(p.ingresos.total.actual > 0)) return 'ingresos sin total legible'
+  if (p.gastos.chapters.length === 0) return 'gastos sin capítulos'
+  if (p.ingresos.chapters.length === 0) return 'ingresos sin capítulos'
+  if (!enRango(p.ejecucionPct.gastos))
+    return `ejecución de gastos fuera de rango (${p.ejecucionPct.gastos} %)`
+  if (!enRango(p.ejecucionPct.ingresos))
+    return `ejecución de ingresos fuera de rango (${p.ejecucionPct.ingresos} %)`
+  if (!p.mismoCorte) return 'gastos e ingresos con cortes distintos'
+  if (p.year !== esperado.year)
+    return `la hoja dice ${p.year || 'sin año'} y el enlace ${esperado.year}`
+  return null
+}
+
+/**
+ * Si un periodo es el cierre de su ejercicio: su corte es el 31 de diciembre de
+ * su año. Lo que no lo es, es un año en curso, y se cuenta en presente —«lleva
+ * gastados», no «gastó»—: decir de un primer trimestre que el año «acabó con»
+ * algo es afirmar un cierre que no ha llegado.
+ */
+export function esCierre(
+  p: { year?: number | null; fechaListado?: string | null } | null | undefined,
+): boolean {
+  return !!p?.year && p.fechaListado === `31/12/${p.year}`
+}
+
+/**
+ * El último ejercicio cerrado: el periodo más tardío cuyo corte es el 31 de
+ * diciembre de su año. Lo que compara un año con otro —el porcentaje de
+ * ejecución, las modificaciones sobre lo aprobado— se mide sobre él, no sobre
+ * un trimestre a medias.
+ */
+export function ultimoCierre<T extends Pick<BudgetExecutionPeriod, 'year' | 'fechaListado'>>(
+  periodos: T[],
+): T | null {
+  const cierres = periodos.filter(esCierre)
+  return cierres.sort((a, b) => a.year - b.year)[cierres.length - 1] ?? null
+}
+
 export interface PeriodoDelIndice {
   year: number
   trimestre: number

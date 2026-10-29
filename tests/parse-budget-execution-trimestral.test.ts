@@ -25,7 +25,11 @@ import {
   anioDeEnlace,
   hojasDePagina,
   periodosDelIndice,
+  esCierre,
+  ultimoCierre,
+  motivoDeDescarte,
 } from '../src/scraper/budget-execution'
+import { enBrevePresupuesto } from '../src/scraper/en-breve-presupuesto'
 
 const fx = (n: string) => readFileSync(join(__dirname, 'fixtures', n), 'utf8')
 const PAGINAS = JSON.parse(fx('budget-execution-paginas_2026-10-29.json')) as {
@@ -211,5 +215,69 @@ describe('los periodos del índice', () => {
     const enPeriodos = periodos.flatMap((p) => [...p.gastos, ...p.ingresos])
     const conClase = PAGINAS.paginas.flatMap((p) => hojasDePagina(p)).filter((h) => h.kind !== null)
     expect(new Set(enPeriodos).size).toBe(conClase.length)
+  })
+})
+
+describe('qué se publica, y qué se calla diciendo por qué', () => {
+  const q1 = () =>
+    mergeExecutionPeriod(
+      parseBudgetExecutionPdf(fx('budget-execution-gastos-resumen_1t2026.txt')),
+      parseBudgetExecutionPdf(fx('budget-execution-ingresos-resumen_1t2026.txt')),
+      { trimestre: 1 },
+    )
+
+  it('el 1T de 2026 se publica', () => {
+    expect(motivoDeDescarte(q1(), { year: 2026 })).toBeNull()
+  })
+
+  it('un desglose sin totales no hace un periodo: se dice que el gasto no tiene total', () => {
+    const p = mergeExecutionPeriod(
+      parseBudgetExecutionPdf(fx('budget-execution-gastos-detalle-corriente_1t2026.txt')),
+      parseBudgetExecutionPdf(fx('budget-execution-ingresos-resumen_1t2026.txt')),
+      { trimestre: 1 },
+    )
+    expect(motivoDeDescarte(p, { year: 2026 })).toBe('gastos sin total legible')
+  })
+
+  it('una hoja de otro año que el del enlace no se publica en el año del enlace', () => {
+    expect(motivoDeDescarte(q1(), { year: 2025 })).toBe('la hoja dice 2026 y el enlace 2025')
+  })
+})
+
+describe('el cierre de un año y el año en curso', () => {
+  const publicado = JSON.parse(
+    readFileSync(join(__dirname, '..', 'public/data/budget-execution.json'), 'utf8'),
+  )
+
+  it('es cierre lo que corta el 31 de diciembre de su propio año, y nada más', () => {
+    expect(esCierre({ year: 2025, fechaListado: '31/12/2025' })).toBe(true)
+    expect(esCierre({ year: 2026, fechaListado: '27/04/2026' })).toBe(false)
+    expect(esCierre({ year: 2026, fechaListado: '31/12/2025' })).toBe(false)
+    expect(esCierre({ year: 2026, fechaListado: null })).toBe(false)
+    expect(esCierre(null)).toBe(false)
+  })
+
+  it('el snapshot publicado separa el último cierre del periodo más nuevo', () => {
+    expect(publicado.periods.length).toBeGreaterThan(1)
+    expect(publicado.ultimoCierre).toEqual(ultimoCierre(publicado.periods))
+    expect(esCierre(publicado.ultimoCierre)).toBe(true)
+    expect(publicado.latest).toEqual(publicado.periods[publicado.periods.length - 1])
+    // Y cuenta lo que no pudo publicar, con su motivo: «no había» no es «no se leyó».
+    expect(publicado.lectura.publicados).toBe(publicado.periods.length)
+    expect(publicado.lectura.periodos).toBe(
+      publicado.lectura.publicados + publicado.lectura.descartados.length,
+    )
+    for (const d of publicado.lectura.descartados) expect(d.motivo.length).toBeGreaterThan(5)
+  })
+
+  it('«En breve» cuenta en presente un año sin cerrar, y en pasado el cierre', () => {
+    const enCurso = enBrevePresupuesto({ ejecucion: { latest: publicado.latest } })
+    const cierre = enBrevePresupuesto({ ejecucion: { latest: publicado.ultimoCierre } })
+    // Mide algo: los dos periodos dan las dos tarjetas.
+    expect(enCurso.gastado && cierre.gastado && enCurso.limite && cierre.limite).toBeTruthy()
+    expect(enCurso.gastado!.enCurso).toBe(!esCierre(publicado.latest))
+    expect(enCurso.limite!.enCurso).toBe(!esCierre(publicado.latest))
+    expect(cierre.gastado!.enCurso).toBe(false)
+    expect(cierre.limite!.enCurso).toBe(false)
   })
 })

@@ -97,16 +97,41 @@ describe('scraper/indicadores-friccion', () => {
     expect(byId('licitador-unico').periodo).toMatch(/^\d{4}–\d{4}$/)
   })
 
-  it('reads the budget indicators off the published execution snapshot', () => {
+  it('reads the budget indicators off the last CLOSED year of the published snapshot', () => {
+    // El snapshot trae ya el trimestre en curso como `latest`; un indicador que
+    // mide un año se mide sobre el último cierre. Con el 1T de 2026 habría
+    // dicho «ejecución 11 %» de un año que va por su primer trimestre.
+    const cierre = budgetExecution.ultimoCierre
+    expect(cierre).toBeTruthy()
+    expect(cierre.fechaListado).toBe(`31/12/${cierre.year}`)
     const mod = byId('modificaciones-presupuestarias')
     const eje = byId('ejecucion-presupuestaria')
-    expect(mod.numerador.valor).toBe(budgetExecution.latest.gastos.total.modificaciones)
-    expect(mod.denominador.valor).toBe(budgetExecution.latest.gastos.total.inicial)
-    expect(eje.numerador.valor).toBe(budgetExecution.latest.gastos.total.ejecutado)
-    expect(eje.denominador.valor).toBe(budgetExecution.latest.gastos.total.actual)
+    expect(mod.numerador.valor).toBe(cierre.gastos.total.modificaciones)
+    expect(mod.denominador.valor).toBe(cierre.gastos.total.inicial)
+    expect(eje.numerador.valor).toBe(cierre.gastos.total.ejecutado)
+    expect(eje.denominador.valor).toBe(cierre.gastos.total.actual)
     expect(mod.dimension).toBe('fiscal')
     // The listing date matters: 30 % executed in June is not 30 % in December.
-    expect(eje.periodo).toContain(String(budgetExecution.latest.year))
+    expect(eje.periodo).toBe(`${cierre.year} (a 31/12/${cierre.year})`)
+  })
+
+  it('un trimestre en curso no se mide como un año; un snapshot viejo, sin cierre aparte, por su latest', () => {
+    const enCurso = budgetExecution.latest
+    expect(enCurso.fechaListado).not.toBe(`31/12/${enCurso.year}`)
+    // Con el campo y sin cierre: no hay año que medir.
+    const sinCierre = construirIndicadoresMunicipales({
+      tenders,
+      budgetExecution: { latest: enCurso, ultimoCierre: null },
+      budget,
+    }).find((i) => i.id === 'ejecucion-presupuestaria')!
+    expect(sinCierre.valor).toBeNull()
+    // Sin el campo, la forma anterior: se lee `latest`.
+    const viejo = construirIndicadoresMunicipales({
+      tenders,
+      budgetExecution: { latest: budgetExecution.ultimoCierre },
+      budget,
+    }).find((i) => i.id === 'ejecucion-presupuestaria')!
+    expect(viejo.numerador.valor).toBe(budgetExecution.ultimoCierre.gastos.total.ejecutado)
   })
 
   it('sitúa el gasto por habitante entre municipios del mismo tamaño', () => {

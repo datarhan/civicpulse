@@ -37,7 +37,14 @@ import {
 } from '../src/scraper/presupuesto-lectura'
 
 const ROOT = join(__dirname, '..')
-const ejecucion = JSON.parse(readFileSync(join(ROOT, 'public/data/budget-execution.json'), 'utf8'))
+const publicado = JSON.parse(readFileSync(join(ROOT, 'public/data/budget-execution.json'), 'utf8'))
+/**
+ * Estas pruebas leen el CIERRE de 2025: el ejercicio que también da CONPREL, el
+ * de las cifras que citan. Desde que el snapshot lee los trimestres, `latest`
+ * es el más nuevo publicado y el cierre va en `ultimoCierre`; el periodo en
+ * curso se prueba aparte, con `publicado.latest`.
+ */
+const ejecucion = { latest: publicado.ultimoCierre }
 const budget = JSON.parse(readFileSync(join(ROOT, 'public/data/budget.json'), 'utf8'))
 const deuda = JSON.parse(readFileSync(join(ROOT, 'public/data/deuda-viva.json'), 'utf8'))
 /**
@@ -342,6 +349,19 @@ describe('magnitudDelEjercicio · qué cifra representa el año en una sola celd
     // Sin ejecución no se inventa un porcentaje.
     expect(m.ejecutado).toBeNull()
     expect(m.pctEjecutado).toBeNull()
+  })
+
+  it('un listado MÁS NUEVO que CONPREL gobierna, con SU año', () => {
+    // Octubre de 2026: el Ministerio da el aprobado de 2025 y el Ayuntamiento
+    // ya ha publicado el 1T de 2026. La cifra es la de 2026 y dice 2026.
+    const nuevo = publicado.latest
+    expect(nuevo.year).toBeGreaterThan(budget.snapshot.year)
+    const m = magnitudDelEjercicio(budget.snapshot, nuevo)!
+    expect(m.etapa).toBe('definitivo')
+    expect(m.fuente).toBe('municipal')
+    expect(m.year).toBe(nuevo.year)
+    expect(m.valor).toBe(nuevo.gastos.total.actual)
+    expect(m.ejecutado).toBe(nuevo.gastos.total.ejecutado)
   })
 
   it('NO mezcla ejercicios: un listado de otro año no gobierna este titular', () => {

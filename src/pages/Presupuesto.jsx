@@ -3,6 +3,7 @@ import { Card, ExtLink, Marcado, Pill, SectionHead } from '../components/Primiti
 import DataAsOf from '../components/DataAsOf'
 import { useBudget } from '../hooks/useBudget'
 import { contrastarPresupuesto, TOLERANCIA_EQUILIBRIO } from '../scraper/budget-contraste'
+import { esCierre } from '../scraper/budget-execution'
 import { useBudgetExecution } from '../hooks/useBudgetExecution'
 import { useObras } from '../hooks/useObras'
 import { useBdns } from '../hooks/useBdns'
@@ -276,21 +277,38 @@ function Cabecera() {
   const contraste = contrastarPresupuesto(s, exec)
   const dosFuentes =
     contraste && Math.abs(contraste.diferenciaGastos) >= TOLERANCIA_EQUILIBRIO ? contraste : null
-  // El lede sólo habla de la ejecución cuando es la del MISMO ejercicio que
-  // el titular; si no, describe lo aprobado y deja la cascada, más abajo, con
-  // su propio año en el rótulo.
+  // El lede habla de la ejecución cuando es la del MISMO ejercicio que CONPREL
+  // o una MÁS NUEVA: en octubre de 2026 el Ministerio aún da el aprobado de
+  // 2025 y el Ayuntamiento ya ha publicado el primer trimestre de 2026, y la
+  // página va por el año más nuevo, con su año en el titular. Una ejecución más
+  // VIEJA que CONPREL no gobierna: el lede describe lo aprobado y la cascada,
+  // más abajo, lleva su propio año en el rótulo.
   const mismoAnio = exec && exec.year === s.year
-  const cascada = mismoAnio ? cascadaGastos(exec.gastos?.total) : null
-  const dominante = mismoAnio ? capituloDominante(exec.gastos?.chapters, exec.gastos?.total) : null
+  const masNuevo = exec && exec.year > s.year
+  const cascada = mismoAnio || masNuevo ? cascadaGastos(exec.gastos?.total) : null
+  const dominante =
+    mismoAnio || masNuevo ? capituloDominante(exec.gastos?.chapters, exec.gastos?.total) : null
+  // Un año sin cerrar se cuenta en presente: «lleva ejecutados», no «ejecutó».
+  const enCurso = !!exec?.fechaListado && !esCierre(exec)
+  const anio = masNuevo ? exec.year : s.year
 
   let lede
   if (cascada && cascada.cuadra) {
-    lede = rellena(t('presupuesto.lede'), {
-      inicial: eurosBreves(cascada.inicial),
-      mod: eurosBreves(cascada.modificaciones),
-      pct: pct0(cascada.ampliacionPct),
-      ejecutado: eurosBreves(cascada.ejecutado),
-    })
+    lede = enCurso
+      ? rellena(t('presupuesto.lede.enCurso'), {
+          year: exec.year,
+          inicial: eurosBreves(cascada.inicial),
+          mod: eurosBreves(cascada.modificaciones),
+          pct: pct0(cascada.ampliacionPct),
+          ejecutado: eurosBreves(cascada.ejecutado),
+          fecha: exec.fechaListado,
+        })
+      : rellena(t('presupuesto.lede'), {
+          inicial: eurosBreves(cascada.inicial),
+          mod: eurosBreves(cascada.modificaciones),
+          pct: pct0(cascada.ampliacionPct),
+          ejecutado: eurosBreves(cascada.ejecutado),
+        })
     if (dominante) {
       // El cero del capítulo es de UNA de las dos fuentes que publica la
       // página, y el lede lo decía plano: «un capítulo que había empezado en
@@ -302,15 +320,25 @@ function Cabecera() {
       const cero = ceroDelDominante(dominante, s, exec.year)
       lede += rellena(
         t(
-          !cero
-            ? 'presupuesto.lede.dominante'
-            : cero.estado === 'discrepan'
-              ? 'presupuesto.lede.dominanteCeroDiscrepan'
-              : cero.estado === 'sinConprel'
-                ? 'presupuesto.lede.dominanteCeroSinConprel'
-                : cero.estado === 'sinContraste'
-                  ? 'presupuesto.lede.dominanteCeroSinContraste'
-                  : 'presupuesto.lede.dominanteCero',
+          enCurso
+            ? !cero
+              ? 'presupuesto.lede.dominante.enCurso'
+              : cero.estado === 'discrepan'
+                ? 'presupuesto.lede.dominanteCeroDiscrepan.enCurso'
+                : cero.estado === 'sinConprel'
+                  ? 'presupuesto.lede.dominanteCeroSinConprel.enCurso'
+                  : cero.estado === 'sinContraste'
+                    ? 'presupuesto.lede.dominanteCeroSinContraste.enCurso'
+                    : 'presupuesto.lede.dominanteCero.enCurso'
+            : !cero
+              ? 'presupuesto.lede.dominante'
+              : cero.estado === 'discrepan'
+                ? 'presupuesto.lede.dominanteCeroDiscrepan'
+                : cero.estado === 'sinConprel'
+                  ? 'presupuesto.lede.dominanteCeroSinConprel'
+                  : cero.estado === 'sinContraste'
+                    ? 'presupuesto.lede.dominanteCeroSinContraste'
+                    : 'presupuesto.lede.dominanteCero',
         ),
         {
           cuota: pct0(dominante.cuotaAmpliacion * 100),
@@ -321,6 +349,9 @@ function Cabecera() {
         },
       )
     }
+    // Con la ejecución por delante de CONPREL, lo que sigue en la página del
+    // Ministerio es de otro año: se dice aquí, y cada tarjeta lleva el suyo.
+    if (masNuevo) lede += rellena(t('presupuesto.lede.conprelAnterior'), { year: s.year })
   } else {
     // Dos ausencias distintas, dos frases distintas: que el listado municipal
     // no esté publicado para este ejercicio, y que esté publicado pero no
@@ -345,9 +376,16 @@ function Cabecera() {
     <div className={dosFuentes ? 'cp-presu-hero' : undefined}>
       <div>
         <Eyebrow>
-          {rellena(t(cascada ? 'presupuesto.eyebrow' : 'presupuesto.eyebrow.aprobado'), {
-            year: s.year,
-          })}
+          {rellena(
+            t(
+              !cascada
+                ? 'presupuesto.eyebrow.aprobado'
+                : enCurso
+                  ? 'presupuesto.eyebrow.enCurso'
+                  : 'presupuesto.eyebrow',
+            ),
+            { year: anio },
+          )}
         </Eyebrow>
         <h1
           style={{
@@ -358,7 +396,7 @@ function Cabecera() {
             lineHeight: 1.15,
           }}
         >
-          {rellena(t('presupuesto.title'), { year: s.year })}
+          {rellena(t('presupuesto.title'), { year: anio })}
         </h1>
         <p
           style={{
@@ -402,6 +440,7 @@ function Cabecera() {
         >
           <span>
             {rellena(t(perCapita !== null ? 'presupuesto.meta' : 'presupuesto.meta.sinTotal'), {
+              year: s.year,
               gastos: hayTotal ? eurosBreves(s.totalExpense) : '',
               porHab: perCapita !== null ? euros(perCapita) : '',
               hab: s.population > 0 ? num(s.population) : '—',
@@ -495,6 +534,7 @@ function CascadaCard() {
   const p = data?.latest
   const c = cascadaGastos(p?.gastos?.total)
   if (!p || !c) return null
+  const enCurso = !!p.fechaListado && !esCierre(p)
 
   const ingresos = p.ingresos?.total
   const pctIng =
@@ -543,9 +583,11 @@ function CascadaCard() {
       <SectionHead
         eyebrow={rellena(t('presupuesto.cascada.eyebrow'), { year: p.year, periodo })}
         title={
-          c.cuadra
-            ? rellena(t('presupuesto.cascada.title'), { pct: pct0(c.ampliacionPct) })
-            : t('presupuesto.cascada.title.sinCuadre')
+          !c.cuadra
+            ? t('presupuesto.cascada.title.sinCuadre')
+            : enCurso
+              ? rellena(t('presupuesto.cascada.title.enCurso'), { pct: pct0(c.ampliacionPct) })
+              : rellena(t('presupuesto.cascada.title'), { pct: pct0(c.ampliacionPct) })
         }
       />
       <div
@@ -615,14 +657,25 @@ function CascadaCard() {
           {c.modificaciones > 0 && (
             <Aviso tone="warn">
               <Marcado
-                texto={rellena(t('presupuesto.callout.denominador'), {
-                  pctDef: pct1(c.ejecutadoSobreDefinitivoPct),
-                  pctIni: pct1(c.ejecutadoSobreInicialPct),
-                })}
+                texto={
+                  enCurso
+                    ? rellena(t('presupuesto.callout.denominador.enCurso'), {
+                        pctDef: pct1(c.ejecutadoSobreDefinitivoPct),
+                        pctIni: pct1(c.ejecutadoSobreInicialPct),
+                      })
+                    : rellena(t('presupuesto.callout.denominador'), {
+                        pctDef: pct1(c.ejecutadoSobreDefinitivoPct),
+                        pctIni: pct1(c.ejecutadoSobreInicialPct),
+                      })
+                }
               />
             </Aviso>
           )}
-          {pctIng != null && ingresos.ejecutado !== c.ejecutado && (
+          {/* La asimetría es el dato de un año CERRADO. A mitad de año, gastos e
+              ingresos no se reconocen al mismo ritmo, y decir que su diferencia
+              «es el dato» sería sacar una conclusión que el corte no sostiene:
+              las dos cifras siguen en la cascada, sin el comentario. */}
+          {!enCurso && pctIng != null && ingresos.ejecutado !== c.ejecutado && (
             <Aviso tone="civic">
               <Marcado
                 texto={rellena(
@@ -703,6 +756,7 @@ function CapitulosCard() {
   const total = p?.gastos?.total
   const filas = lecturaCapitulos(p?.gastos?.chapters, total)
   if (!p || filas.length === 0 || !(total?.actual > 0)) return null
+  const enCurso = !!p.fechaListado && !esCierre(p)
   const dominante = capituloDominante(p.gastos.chapters, total)
   const capMax = Math.max(...filas.map((f) => f.definitivo), 1)
   // Qué dice de ese mismo capítulo la OTRA fuente: `ceroDelDominante`, la
@@ -926,15 +980,25 @@ function CapitulosCard() {
               // al literal, y con la clave escondida en un ayudante se pone
               // rojo, que es lo que tiene que hacer un guard que no puede mirar.
               t(
-                !dominante.abrioEnCero
-                  ? 'presupuesto.cap.pie.dominante'
-                  : cero.estado === 'discrepan'
-                    ? 'presupuesto.cap.pie.ceroDiscrepan'
-                    : cero.estado === 'sinConprel'
-                      ? 'presupuesto.cap.pie.ceroSinConprel'
-                      : cero.estado === 'sinContraste'
-                        ? 'presupuesto.cap.pie.ceroSinContraste'
-                        : 'presupuesto.cap.pie.cero',
+                enCurso
+                  ? !dominante.abrioEnCero
+                    ? 'presupuesto.cap.pie.dominante.enCurso'
+                    : cero.estado === 'discrepan'
+                      ? 'presupuesto.cap.pie.ceroDiscrepan.enCurso'
+                      : cero.estado === 'sinConprel'
+                        ? 'presupuesto.cap.pie.ceroSinConprel.enCurso'
+                        : cero.estado === 'sinContraste'
+                          ? 'presupuesto.cap.pie.ceroSinContraste.enCurso'
+                          : 'presupuesto.cap.pie.cero.enCurso'
+                  : !dominante.abrioEnCero
+                    ? 'presupuesto.cap.pie.dominante'
+                    : cero.estado === 'discrepan'
+                      ? 'presupuesto.cap.pie.ceroDiscrepan'
+                      : cero.estado === 'sinConprel'
+                        ? 'presupuesto.cap.pie.ceroSinConprel'
+                        : cero.estado === 'sinContraste'
+                          ? 'presupuesto.cap.pie.ceroSinContraste'
+                          : 'presupuesto.cap.pie.cero',
               ),
               {
                 capitulo: dominante.rotulo,

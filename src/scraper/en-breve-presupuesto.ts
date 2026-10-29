@@ -22,6 +22,7 @@
  *    presupuesto se dice tope.
  */
 import { contrastarPresupuesto, TOLERANCIA_EQUILIBRIO } from './budget-contraste'
+import { esCierre } from './budget-execution'
 import {
   cascadaGastos,
   capituloDominante,
@@ -61,6 +62,8 @@ export interface LimiteEnBreve {
   porVecino: number | null
   /** El total de CONPREL, sólo cuando discrepa del listado municipal. */
   conprelDiscrepa: number | null
+  /** El año no ha cerrado: se dice en presente («tiene», «se le han añadido»). */
+  enCurso: boolean
 }
 
 export interface GastadoEnBreve {
@@ -74,6 +77,12 @@ export interface GastadoEnBreve {
   fecha: string | null
   /** Parte del año transcurrida a la fecha del listado, 0..1; null sin fecha legible. */
   avanceDelAnio: number | null
+  /**
+   * El listado tiene fecha y no es la del cierre: el año sigue, y lo gastado se
+   * dice «lleva gastados», no «gastó». Sin fecha no se sabe, y se dice como
+   * hasta ahora.
+   */
+  enCurso: boolean
 }
 
 export interface FilaEnQue {
@@ -158,6 +167,7 @@ export function enBrevePresupuesto(e: EntradaEnBreve): EnBrevePresupuesto {
   let enQue: EnQueEnBreve | null = null
   if (exec && valida) {
     const hab = poblacion(exec.year)
+    const enCurso = !!exec.fechaListado && !esCierre(exec)
     const contraste = mismoAnioConprel ? contrastarPresupuesto(s, exec) : null
     limite = {
       year: exec.year,
@@ -169,6 +179,7 @@ export function enBrevePresupuesto(e: EntradaEnBreve): EnBrevePresupuesto {
         contraste && Math.abs(contraste.diferenciaGastos) >= TOLERANCIA_EQUILIBRIO
           ? contraste.gastosConprel
           : null,
+      enCurso,
     }
     gastado = {
       year: exec.year,
@@ -177,6 +188,7 @@ export function enBrevePresupuesto(e: EntradaEnBreve): EnBrevePresupuesto {
       pct: valida.ejecutadoSobreDefinitivoPct,
       fecha: exec.fechaListado ?? null,
       avanceDelAnio: avanceDelAnio(exec.fechaListado, exec.year),
+      enCurso,
     }
     const caps = lecturaCapitulos(exec.gastos?.chapters, exec.gastos?.total)
       .filter((c) => c.ejecutado > 0)

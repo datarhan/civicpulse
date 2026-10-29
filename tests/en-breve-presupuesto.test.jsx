@@ -250,7 +250,9 @@ describe('lo que lee el vecino', () => {
   it('pulsar un término abre su definición, y volver a pulsarlo la cierra', async () => {
     const { container } = pinta('es')
     await listo(container)
-    const boton = screen.getByRole('button', { name: 'gastó' })
+    // El término del glosario va en la frase del gasto, que habla en pasado del
+    // cierre y en presente de un año en curso: «gastó» o «gastados».
+    const boton = screen.getByRole('button', { name: R.gastado.enCurso ? 'gastados' : 'gastó' })
     expect(boton).toHaveAttribute('aria-expanded', 'false')
     fireEvent.click(boton)
     expect(boton).toHaveAttribute('aria-expanded', 'true')
