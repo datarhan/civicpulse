@@ -13,7 +13,14 @@ import { FIRST_PLENO_ID } from './_rutas'
  * «nada plegado» y «el texto no cambia» pasarían sin haber medido nada.
  */
 
-const RUTAS = ['/cambios', '/cargos', '/plenos', `/plenos/${FIRST_PLENO_ID}`, '/quejas']
+const RUTAS = [
+  '/cambios',
+  '/cargos',
+  '/plenos',
+  `/plenos/${FIRST_PLENO_ID}`,
+  '/quejas',
+  '/presupuesto',
+]
 
 const ESENCIAL = JSON.stringify({ lecturas: 'esencial' })
 

@@ -114,7 +114,11 @@ test.describe('Presupuesto · la cascada de ejecución', () => {
     page,
   }) => {
     await page.goto('/presupuesto', { waitUntil: 'domcontentloaded' })
-    await expect(page.getByText('Dónde se amplió el crédito y dónde se ejecutó')).toBeVisible({
+    // Por su papel de encabezado: la pestaña del pliegue (components/Lecturas.jsx)
+    // lleva el mismo título, siempre en el DOM y oculta con «todo».
+    await expect(
+      page.getByRole('heading', { name: 'Dónde se amplió el crédito y dónde se ejecutó' }),
+    ).toBeVisible({
       timeout: 8000,
     })
 

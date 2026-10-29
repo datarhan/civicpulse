@@ -51,6 +51,8 @@ import { useLocale, useT } from '../i18n'
 import Paginacion from '../components/Paginacion'
 import GastoDashboard from '../components/Presupuesto/GastoDashboard'
 import EnBrevePresupuesto from '../components/Presupuesto/EnBrevePresupuesto'
+import DivisorLecturas from '../components/DivisorLecturas'
+import { SeccionExperta } from '../components/Lecturas'
 import { TedNotices } from '../components/Presupuesto/TedNotices'
 
 /*
@@ -2196,6 +2198,7 @@ function PiePresupuesto() {
 }
 
 export default function Presupuesto() {
+  const t = useT()
   return (
     <div
       className="cp-page"
@@ -2213,26 +2216,59 @@ export default function Presupuesto() {
           vocabulario de la Intervención. Resume y enlaza; no sustituye a nada
           de lo que va debajo. */}
       <EnBrevePresupuesto />
-      <div id="todos-los-datos" style={{ scrollMarginTop: 24 }} />
-      <CascadaCard />
-      <CapitulosCard />
-      <AprobadoPar />
-      <ProgramasCard />
-      <DeudaVivaSection />
-      <ContratacionBanda />
-      <ContratacionMenorSection />
-      <ObrasEnCursoSection />
-      <div id="ted" style={{ scrollMarginTop: 24 }}>
-        <TedNotices />
+      {/* Las dos lecturas (auditoría de las dos lecturas, §5): arriba, «En
+          breve»; debajo del divisor, todo lo de siempre, partido en secciones
+          que «Ver: lo esencial» pliega hasta su título (components/Lecturas.jsx).
+          «Saltar a todos los datos» aterriza en el divisor, que es donde
+          empiezan. El pie, con las fuentes, se queda a la vista. */}
+      <div id="todos-los-datos" style={{ scrollMarginTop: 24 }}>
+        <DivisorLecturas />
       </div>
-      <RealSubsidies />
+      <SeccionExperta id="presupuesto-cascada" titulo={t('presupuesto.cascada.title.sinCuadre')}>
+        <CascadaCard />
+      </SeccionExperta>
+      <SeccionExperta id="presupuesto-capitulos" titulo={t('presupuesto.cap.title')}>
+        <CapitulosCard />
+      </SeccionExperta>
+      <SeccionExperta id="presupuesto-aprobado" titulo={t('presupuesto.seccion.aprobado')}>
+        <AprobadoPar />
+      </SeccionExperta>
+      <SeccionExperta id="presupuesto-programas" titulo={t('presupuesto.prog.title.sinTotal')}>
+        <ProgramasCard />
+      </SeccionExperta>
+      <SeccionExperta id="presupuesto-deuda" titulo={t('presupuesto.seccion.deuda')}>
+        <DeudaVivaSection />
+      </SeccionExperta>
+      <SeccionExperta id="presupuesto-contratacion" titulo={t('presupuesto.contra.title')}>
+        <ContratacionBanda />
+      </SeccionExperta>
+      <SeccionExperta id="presupuesto-menores" titulo={t('presupuesto.seccion.menores')}>
+        <ContratacionMenorSection />
+      </SeccionExperta>
+      <SeccionExperta id="presupuesto-obras" titulo={t('presupuesto.seccion.obras')}>
+        <ObrasEnCursoSection />
+      </SeccionExperta>
+      {/* El ancla `#ted` es la propia sección: sin anuncios, su cuerpo queda
+          vacío y la pestaña plegada no sale. */}
+      <SeccionExperta
+        id="ted"
+        titulo={t('presupuesto.seccion.ted')}
+        style={{ scrollMarginTop: 24 }}
+      >
+        <TedNotices />
+      </SeccionExperta>
+      <SeccionExperta id="presupuesto-subvenciones" titulo={t('presupuesto.subvenciones.titulo')}>
+        <RealSubsidies />
+      </SeccionExperta>
       {/* El mapa va el ÚLTIMO de los bloques. Es la vista geográfica de la
           contratación, y sólo puede situar el 1,8 % del dinero, así que cierra
           el recorrido en vez de partirlo: antes se metía entre el presupuesto y
           la deuda, y su tarjeta —la más alta de la página— dejaba todo lo demás
           fuera de la pantalla. El pie se queda debajo, que es donde van las
           fuentes. */}
-      <GastoDashboard />
+      <SeccionExperta id="presupuesto-mapa" titulo={t('presupuesto.gasto.titulo')}>
+        <GastoDashboard />
+      </SeccionExperta>
       <PiePresupuesto />
     </div>
   )
