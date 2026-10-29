@@ -12,6 +12,10 @@
       {
         "fecha": "2026-10-19",
         "texto": "**Se ha corregido el cierre del apartado sobre la sección de descargas, que contradecía su propio título.** El apartado se titula «Una promesa que se puede comprobar sin pedir nada» y terminaba diciendo que era «una promesa sin fecha que hoy no se puede comprobar». Comprobarla no exige ninguna solicitud: el 14 de octubre la buscamos y no encontramos la sección. Dice ahora que es una promesa sin fecha y que comprobar si se cumple no exige pedir nada.\n\nNo cambia ningún hecho: la búsqueda del 14 de octubre, lo que no se encontró y que su ausencia no es un incumplimiento, porque el pliego no fija plazo."
+      },
+      {
+        "fecha": "2026-10-29",
+        "texto": "**Se ha añadido al apartado 04 lo que mostraba la señal de plazas el 29 de octubre, y se ha corregido en el método cuántas fotografías se publican recortadas.** El 11 de octubre sus tres contadores mostraban sólo guiones, y la tabla del apartado lo sigue diciendo, porque es lo que se observó ese día. El 29 de octubre marcaban 123, 456 y 789. Esa observación va debajo de las fotografías de la visita, fechada y con dos imágenes nuevas.\n\nEl método decía que una de las fotografías se publicaba recortada. Desde la publicación eran dos —la de la señal y su detalle—, y con el detalle nuevo son tres. Ningún otro hecho publicado cambia."
       }
     ],
     "kpisEnTexto": [
@@ -148,6 +152,28 @@
         "pie": "Valle de Porxinos: uno de los cinco postes observados junto a las rutas.",
         "w": 825,
         "h": 1100
+      }
+    ],
+    "seguimiento": [
+      {
+        "fecha": "2026-10-29",
+        "texto": "La señal de plazas de la Carretera de València ya no mostraba guiones. Sus tres contadores marcaban 123 (Castell/ADL), 456 (Vlqz./Asunción) y 789 (A. Suárez/CIJ), este último en rojo: los nueve dígitos, del 1 al 9, en orden. Este medio no sabe de dónde salen esas cifras ni si en alguno de los tres aparcamientos funciona ya un sistema que cuente plazas.",
+        "fotos": [
+          {
+            "src": "/reportajes/matriculas-y-moviles/panel-led-2026-10-29.jpg",
+            "alt": "La señal de aparcamientos vista desde abajo, con una farola en lo alto del poste y una palmera detrás: los contadores de Castell/ADL y de Vlqz./Asunción encendidos en verde y el de A. Suárez/CIJ en rojo, cada uno con una flecha.",
+            "pie": "La misma señal, el 29 de octubre de 2026: los tres contadores encendidos, con cifras.",
+            "w": 825,
+            "h": 1100
+          },
+          {
+            "src": "/reportajes/matriculas-y-moviles/panel-led-2026-10-29-detalle.jpg",
+            "alt": "Detalle de los tres contadores LED: arriba 123 en verde, en medio 456 en verde y abajo 789 en rojo, con parte de los puntos de cada cifra apagados en la foto.",
+            "pie": "Detalle: 123, 456 y 789. La cámara capta sólo parte de los puntos de cada cifra, como suele pasar al fotografiar una pantalla de LED; las cifras se leyeron en el sitio.",
+            "w": 470,
+            "h": 680
+          }
+        ]
       }
     ],
     "limites": [
@@ -327,7 +353,7 @@
   "metodo": [
     "Los pliegos técnico y administrativo de los expedientes 98/2025 y 100/2025 se descargaron de la Plataforma de Contratación del Sector Público en septiembre de 2026. Cada cita de los pliegos se ha cotejado palabra por palabra contra esos documentos; las de la nota municipal, contra su texto, copiado por este medio el 14 de octubre.",
     "Que los pliegos no exigen una evaluación de impacto ni fijan un plazo de conservación se afirma tras leer los cuatro documentos completos, buscando cada término en todas sus formas. La única mención a las evaluaciones de impacto, la del clausulado de encargado, se cita en el apartado 06.",
-    "La visita se hizo el domingo 11 de octubre de 2026, a pie y desde la vía pública, sin entrar en ninguna propiedad. Las fotografías se publican reducidas —una, además, recortada— y sin metadatos de localización; ninguna muestra una matrícula ni un rostro.",
+    "La visita se hizo el domingo 11 de octubre de 2026, a pie y desde la vía pública, sin entrar en ninguna propiedad. La señal de plazas se volvió a fotografiar el 29 de octubre, también desde la vía pública. Las fotografías se publican reducidas —tres, además, recortadas— y sin metadatos de localización; ninguna muestra una matrícula ni un rostro.",
     "La versión municipal se cita de la nota que el Ayuntamiento publicó en su web el 30 de julio de 2026, de la que este medio guarda copia.",
     "El importe y las fechas del contrato proceden del registro de contratación que publica este sitio, cotejados contra la ficha de la Plataforma; el importe se da sin IVA y con IVA.",
     "Las cifras están congeladas a la fecha de publicación: si algo cambia, se anota como corrección y se dice qué cambió."
