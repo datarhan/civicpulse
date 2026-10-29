@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-28T10:56:06.671Z",
+  "generatedAt": "2026-10-29T10:39:31.069Z",
   "windowDays": 30,
   "articles": [
     {
@@ -868,30 +868,13 @@
         "opinionFraction": 0
       },
       "score": 1
-    },
-    {
-      "articleId": "uemsec",
-      "articleFingerprint": "1pwdoy8",
-      "outlet": "Ayuntamiento de Riba-roja de Túria",
-      "outletHost": "ribarroja.es",
-      "url": "https://www.ribarroja.es/es/noticia/la-v-nit-violeta-re%C3%BAne-a-varias-generaciones-de-riba-roja-por-la-igualdad-con-la-entrega-de-los-i-reconocimientos-%C2%ABponts-per-la-igualtat%C2%BB",
-      "date": "2026-09-28T11:07:11.000Z",
-      "indicators": {
-        "localCoverage": false,
-        "datedArticle": true,
-        "municipalSourceMatch": null,
-        "corroboratedAcrossOutlets": null,
-        "factualClaimsPresent": null,
-        "opinionFraction": 0
-      },
-      "score": 1
     }
   ],
   "outlets": [
     {
       "outlet": "Ayuntamiento de Riba-roja de Túria",
       "outletHost": "ribarroja.es",
-      "articleCount": 16,
+      "articleCount": 15,
       "verdictCounts": {
         "verificado": 0,
         "parcial": 0,
@@ -900,7 +883,7 @@
         "promesa-repetida": 1
       },
       "checkedClaims": 14,
-      "meanTrustScore": 1.88,
+      "meanTrustScore": 1.93,
       "verifiedRatio": 0,
       "contradictedRatio": null
     },
@@ -1130,7 +1113,7 @@
     }
   ],
   "builtFrom": {
-    "plenos-agendas.json": "6f3d6bba842f",
+    "plenos-agendas.json": "d26cea5fb63f",
     "press-claims-verified.json": "2dbfb96512c5",
     "press.json": "d6d91766ec83",
     "promises.json": "a4b8423e960f"
