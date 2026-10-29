@@ -274,6 +274,14 @@
       "reason": "La cifra y la hoja son las que dice la enmienda. La enmienda del 25-10-2026 al motivo de la fila [1] de f-2026-04-20-cit-25e6ea habla de la hoja de ejecución del segundo trimestre de 2025, la que el sitio publicó como cierre del ejercicio hasta el 25-10-2026 (#419): en budget-execution.json, el periodo 2025 T2 (30/06/2025) da un crédito actual de gastos de 62.123.153,08 € (62,12 M), y el snapshot publicado el 14-10-2026, día de la enmienda anterior (commit 2e3e2f4c), llevaba esa misma cifra rotulada «2025, a 31/12/2025»; lo arregló 69eb7947. El revisor la comparó con la hoja del primer trimestre de 2026 (27/04/2026, 62.187.488,85 €), que es de otro ejercicio y no es la que cita el motivo. Las demás cifras del motivo cuadran: cierre de 2025, 67.072.868,89 € (1.700 / 67,07 ≈ 25), y CONPREL, 41.578.252,26 € (≈ 41). Comprobado el 29-10-2026. Propuesto en la PR de la revisión del 29-10-2026, que el operador aprueba antes de fusionar.",
       "editor": "claude-opus-5.5",
       "at": "2026-10-29"
+    },
+    {
+      "route": "/hallazgos",
+      "quote": "El PP formula además una acusación que el verificador no pudo contrastar con ningún dato municipal y que no se reproduce aquí.",
+      "anchor": "cita 4 de la ficha df8455",
+      "reason": "El revisor cruzó la cita 3 con la 4. La frase es del sumario de f-2026-07-03-cit-df8455 tras la corrección --redact del 29-10-2026, y describe su cita 3 (quote.2), la retenida, que la propia ficha atribuye al PP: en la copia servida quote.2 lleva speakerGroup «PP» y literalRetenido. El PP tiene varios escaños, así que nombrarlo es de bloque y no señala a nadie. Las dos atribuciones retiradas a un grupo de un solo escaño son de las citas 2 y 4 (quote.1 y quote.3, «sin identificar» desde el 30-09-2026): la que el revisor cita es la de la cita 4. El sumario anterior ya atribuía esa intervención al PP. Ancla en «cita 4 de la ficha df8455» para que otra objeción a la misma frase siga viva. Comprobado el 29-10-2026 sobre dist/data/pleno-findings.json. Propuesto en la PR de la revisión del 29-10-2026, que el operador aprueba antes de fusionar.",
+      "editor": "claude-opus-5.5",
+      "at": "2026-10-29"
     }
   ]
 }
