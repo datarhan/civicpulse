@@ -58,6 +58,62 @@ function daysUntil(deadline, now) {
   return (t - now) / 86_400_000
 }
 
+/** «Cierran pronto»: las próximas dos semanas. Lo usan el contador y la frase. */
+export const DIAS_CIERRE_PRONTO = 14
+
+const cierraPronto = (o, now) => {
+  const d = daysUntil(o.deadline, now)
+  return d !== null && d >= 0 && d <= DIAS_CIERRE_PRONTO
+}
+
+/**
+ * La frase de la lectura vecinal de /empleo: cuántas ofertas hay abiertas,
+ * cuántas son para trabajar en Riba-roja y cuántas cierran pronto.
+ *
+ * Sobre TODAS las ofertas y no sobre las filtradas: dice cómo está la bolsa
+ * hoy, no lo que enseña el filtro de cada lector. Y sólo de las abiertas, con
+ * el mismo predicado que la píldora de cada tarjeta (`isOfferClosed`): una
+ * oferta cerrada no «es en Riba-roja» para quien busca trabajo.
+ * @param {any[]} offers
+ * @param {number} [now]  epoch ms (injectable for tests)
+ */
+export function enBreveEmpleo(offers, now = Date.now()) {
+  const todas = offers || []
+  const abiertas = todas.filter((o) => !isOfferClosed(o, now))
+  return {
+    // La agencia sigue listando ofertas con el plazo vencido, y el contador de
+    // la lista las cuenta: la frase da las dos cifras para que cuadren.
+    publicadas: todas.length,
+    abiertas: abiertas.length,
+    enRiba: abiertas.filter((o) => o.inRibaRoja).length,
+    cierranPronto: abiertas.filter((o) => cierraPronto(o, now)).length,
+  }
+}
+
+/**
+ * El orden de la lista. Por cierre, las abiertas primero y la que cierra antes
+ * arriba; las que no tienen plazo, detrás; las cerradas, al final. Ordenar sólo
+ * por fecha ponía la de plazo vencido la primera, porque es la más antigua.
+ * Por publicación, la más reciente arriba, abierta o cerrada.
+ * @param {any[]} offers
+ * @param {'deadline'|'published'} sortBy
+ * @param {number} [now]  epoch ms (injectable for tests)
+ */
+export function ordenarOfertas(offers, sortBy, now = Date.now()) {
+  const reciente = (a, b) => String(b.publishedAt).localeCompare(String(a.publishedAt))
+  return [...(offers || [])].sort((a, b) => {
+    if (sortBy === 'published') return reciente(a, b)
+    const ca = isOfferClosed(a, now)
+    const cb = isOfferClosed(b, now)
+    if (ca !== cb) return ca ? 1 : -1
+    if (ca) return reciente(a, b)
+    if (!a.deadline && !b.deadline) return reciente(a, b)
+    if (!a.deadline) return 1
+    if (!b.deadline) return -1
+    return a.deadline.localeCompare(b.deadline)
+  })
+}
+
 /**
  * Aggregate stats over an offer list (already filtered by the caller, so the
  * numbers track the active filter set).
@@ -113,8 +169,7 @@ export function computeEmpleoStats(offers, now = Date.now()) {
     // puente: lo que el gráfico no puede colocar es todo lo que no tiene
     // `detail.municipio`, haya ficha o no.
     if (!d && o.inRibaRoja) sinMunicipioEnRiba++
-    const du = daysUntil(o.deadline, now)
-    if (du !== null && du >= 0 && du <= 14) closingSoon++
+    if (cierraPronto(o, now)) closingSoon++
     const ym = (o.publishedAt || '').slice(0, 7)
     if (/^\d{4}-\d{2}$/.test(ym)) monthMap.set(ym, (monthMap.get(ym) || 0) + 1)
   }
@@ -139,7 +194,6 @@ export function computeEmpleoStats(offers, now = Date.now()) {
     inRibaRojaPct: total ? Math.round((inRibaRoja / total) * 100) : 0,
     closingSoon,
     vehicleRequired,
-    vehiclePct: total ? Math.round((vehicleRequired / total) * 100) : 0,
     byMonth,
     byContract,
     byMunicipio,

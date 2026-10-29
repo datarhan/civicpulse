@@ -20,6 +20,7 @@ const RUTAS = [
   `/plenos/${FIRST_PLENO_ID}`,
   '/quejas',
   '/presupuesto',
+  '/empleo',
 ]
 
 const ESENCIAL = JSON.stringify({ lecturas: 'esencial' })
@@ -35,11 +36,12 @@ async function conEsencial(page: Page) {
 }
 
 /**
- * La capa vecinal de /cambios es una frase que no enlaza hacia abajo: ahí no
- * hay anclas que probar. Se dice aquí, y la prueba de anclas exige CERO en esa
- * ruta: si un día enlaza, la prueba lo dice en vez de seguir sin medir nada.
+ * La capa vecinal de /cambios y la de /empleo son una frase que no enlaza hacia
+ * abajo: ahí no hay anclas que probar. Se dice aquí, y la prueba de anclas
+ * exige CERO en esas rutas: si un día enlazan, la prueba lo dice en vez de
+ * seguir sin medir nada.
  */
-const SIN_ANCLAS = new Set(['/cambios'])
+const SIN_ANCLAS = new Set(['/cambios', '/empleo'])
 
 /** Espera a que la página tenga sus secciones y a que dejen de llegar datos. */
 async function lista(page: Page, ruta: string) {

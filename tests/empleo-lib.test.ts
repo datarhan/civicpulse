@@ -9,6 +9,9 @@ import {
   distinctContracts,
   offersByMunicipioGeo,
   EMPTY_FILTERS,
+  enBreveEmpleo,
+  DIAS_CIERRE_PRONTO,
+  ordenarOfertas,
 } from '../src/lib/empleo'
 
 // A deterministic "now" so deadline windows don't drift with the clock.
@@ -132,9 +135,19 @@ describe('empleo/computeEmpleoStats', () => {
   it('counts offers closing within 14 days (excludes already-closed + null)', () => {
     expect(s.closingSoon).toBe(2) // fo1 (+5d) + fo4 (+2d); fo5 closed, fo2 +30d, fo3 null
   })
-  it('computes the vehicle-required share', () => {
+  it('la frase vecinal cuenta sólo las abiertas, y las mismas «cierran pronto» que el contador', () => {
+    const f = enBreveEmpleo(OFFERS, NOW)
+    // fo5 cerró ayer: no está; fo3 no tiene plazo y sigue abierta.
+    expect(f).toEqual({ publicadas: 5, abiertas: 4, enRiba: 3, cierranPronto: 2 })
+    // La frase da las dos cifras: el contador de la lista cuenta también la cerrada.
+    expect(f.publicadas).toBe(s.total)
+    expect(f.abiertas).toBe(s.open)
+    expect(f.cierranPronto).toBe(s.closingSoon)
+    expect(DIAS_CIERRE_PRONTO).toBe(14)
+  })
+  it('counts the offers that ask for a vehicle (a count, not a share: the ficha never says «No»)', () => {
     expect(s.vehicleRequired).toBe(3) // fo1, fo2, fo5
-    expect(s.vehiclePct).toBe(60)
+    expect(s).not.toHaveProperty('vehiclePct')
   })
   it('bins publications by month, ascending', () => {
     expect(s.byMonth).toEqual([
@@ -150,6 +163,23 @@ describe('empleo/computeEmpleoStats', () => {
   it('ranks municipios desc', () => {
     expect(s.byMunicipio[0]).toEqual({ name: 'Riba-roja de Túria', count: 2 })
     expect(s.byMunicipio.map((m) => m.name)).toContain('Cheste')
+  })
+})
+
+describe('empleo/ordenarOfertas', () => {
+  const fos = (list: any[]) => list.map((o) => o.fo)
+  it('por cierre: las abiertas primero, la que cierra antes arriba; las cerradas al final', () => {
+    // fo5 cerró ayer: con el plazo más antiguo, ordenar sólo por fecha la ponía
+    // la primera, justo debajo de «Hay 4 ofertas abiertas».
+    expect(fos(ordenarOfertas(OFFERS, 'deadline', NOW))).toEqual([4, 1, 2, 3, 5])
+  })
+  it('por publicación: la más reciente arriba, abierta o cerrada', () => {
+    expect(fos(ordenarOfertas(OFFERS, 'published', NOW))).toEqual([5, 4, 3, 2, 1])
+  })
+  it('no toca la lista que recibe', () => {
+    const copia = [...OFFERS]
+    ordenarOfertas(OFFERS, 'deadline', NOW)
+    expect(OFFERS).toEqual(copia)
   })
 })
 
