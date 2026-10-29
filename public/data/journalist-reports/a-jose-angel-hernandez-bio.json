@@ -451,7 +451,7 @@
           },
           {
             "field": "Vínculos societarios y personales",
-            "reason": "Su declaración de 2023 no recoge actividad empresarial vigente. Las comprobaciones nominales (804 contratos, incluidas las cuatro sociedades de su CV) no arrojaron coincidencia alguna; las relaciones personales no constan en fuentes públicas."
+            "reason": "Su declaración de 2023 no recoge actividad empresarial vigente. Las comprobaciones nominales (804 expedientes de contratación en julio de 2026, adjudicados o no, incluidas las cuatro sociedades de su CV) no arrojaron coincidencia alguna; las relaciones personales no constan en fuentes públicas."
           }
         ]
       }
@@ -812,6 +812,14 @@
       "original": "804 contratos adjudicados examinados: ningún adjudicatario coincide con «Hernández Carrizosa». Las cuatro sociedades donde trabajó según su CV — Nexo Nivel SL (administrador solidario 2008-2015), Grupo Serratable SL, Artículos de Carpintería Moreno SL y Vilarsal SL — no constan como adjudicatarias ni licitadoras. Corpus completo desde julio de 2023 (su delegación incluye Compra Pública): 282 contratos, 55% con un solo licitador, 20% menores.",
       "corrected": "804 expedientes de contratación examinados, adjudicados o no: ningún adjudicatario coincide con «Hernández Carrizosa». Las cuatro sociedades donde trabajó según su CV — Nexo Nivel SL (administrador solidario 2008-2015), Grupo Serratable SL, Artículos de Carpintería Moreno SL y Vilarsal SL — no constan como adjudicatarias ni licitadoras. Corpus completo desde julio de 2023 (su delegación incluye Compra Pública): 282 contratos, 55% con un solo licitador, 20% menores.",
       "reason": "Los 804 eran todos los expedientes de contratación del corpus municipal en julio de 2026, adjudicados o no —711 adjudicados o formalizados, según el estado que hoy les da la fuente—, y no 804 contratos adjudicados. La v2 de la biografía de Raquel Pamblanco ya lo corrigió con estas mismas palabras.",
+      "editor": "Sergei Lutchenko",
+      "correctedAt": "2026-10-28"
+    },
+    {
+      "field": "gaps.Vínculos societarios y personales.reason",
+      "original": "Su declaración de 2023 no recoge actividad empresarial vigente. Las comprobaciones nominales (804 contratos, incluidas las cuatro sociedades de su CV) no arrojaron coincidencia alguna; las relaciones personales no constan en fuentes públicas.",
+      "corrected": "Su declaración de 2023 no recoge actividad empresarial vigente. Las comprobaciones nominales (804 expedientes de contratación en julio de 2026, adjudicados o no, incluidas las cuatro sociedades de su CV) no arrojaron coincidencia alguna; las relaciones personales no constan en fuentes públicas.",
+      "reason": "Los 804 eran todos los expedientes de contratación del corpus municipal en julio de 2026, adjudicados o no —711 adjudicados o formalizados, según el estado que hoy les da la fuente—, y no 804 contratos. La narrativa de esta biografía se corrigió el 28-10-2026 con las mismas palabras; esta laguna seguía con las de antes.",
       "editor": "Sergei Lutchenko",
       "correctedAt": "2026-10-28"
     }
