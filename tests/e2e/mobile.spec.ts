@@ -62,6 +62,18 @@ const correoMasLargo = (cargos: Cargo[]) =>
 const CORREO_EN_EL_CARGO = correoMasLargo(PADRON.officials)
 const CORREO_DE_QUIEN_LO_DEJO = correoMasLargo(PADRON.formerOfficials ?? [])
 
+// Una biografía del agente periodista, y la de Rafael Gómez porque junta las
+// dos cosas que ensanchaban estas fichas: una tabla de declaraciones de cinco
+// filas y una bitácora con URL de PLACSP sin un solo punto de corte. La señal es
+// el recuento de fuentes de la ficha rápida, que sale del informe publicado.
+const BIOGRAFIA = 'a-rafael-gomez-bio-v2'
+const FUENTES_DE_LA_BIOGRAFIA = (
+  JSON.parse(readFileSync('public/data/journalist-reports.json', 'utf8')).items as {
+    assignmentId: string
+    sources: unknown[]
+  }[]
+).find((r) => r.assignmentId === BIOGRAFIA)!.sources.length
+
 // ---------------------------------------------------------------------------
 // Why this spec measures the way it does.
 //
@@ -200,6 +212,20 @@ const ROUTES: Route[] = [
   {
     path: '/laboratorio/coste-esperado',
     ready: /veces\s+lo esperado|municipios en gestión directa/,
+  },
+  // Ninguna biografía estaba en esta lista, así que nadie medía
+  // /laboratorio/agentes/:id. Medido el 28-10-2026 sobre la build de producción
+  // con las dos banderas: a 320 px, veinte de las veintiuna medían de 337 a
+  // 360 px de ancho, y con la barra lateral, donde la columna del informe baja
+  // a 277 px (en esta, de 821 a 869 px de ventana), se salía 52 px de su caja.
+  // La causa era la tabla de declaraciones financieras, que pedía ~290 px en
+  // una tarjeta de 235 y, al estirar la pista `auto` de `.cp-main`, arrastraba
+  // a todas las tarjetas: la guarda de rejillas nombraba la primera, la de
+  // sensibilidad legal, que no tenía culpa.
+  {
+    path: `/laboratorio/agentes/${BIOGRAFIA}`,
+    ready: new RegExp(`${FUENTES_DE_LA_BIOGRAFIA} citadas`),
+    flag: 'VITE_ENABLE_PERIODISTAS',
   },
   { path: '/nosotros', ready: /es el primer municipio/ },
   { path: '/about', ready: /All funding is disclosed publicly/ },

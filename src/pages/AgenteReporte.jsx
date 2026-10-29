@@ -474,6 +474,16 @@ export default function AgenteReporte() {
         .cp-toc { position: sticky; top: 80px; align-self: start; }
         .cp-facts { position: sticky; top: 80px; align-self: start; padding: 18px; border: 1px solid var(--border); border-radius: var(--r-card); background: var(--paper); }
         .cp-main { display: grid; gap: var(--gap-block); min-width: 0; max-width: var(--reading-w); margin: 0 auto; width: 100%; }
+        /* La columna de arriba es una sola pista auto implícita: crece hasta el
+           min-content más ancho de sus tarjetas y las arrastra a todas. La tabla
+           de declaraciones financieras pide ~290 px, y a 320 px —y con la barra
+           lateral, donde esta columna baja a 277— todas las tarjetas se salían
+           de la columna, hasta 67 px (28-10-2026). Su Deslizable la desplaza
+           dentro de la tarjeta, y la contención de ancho deja el de la tabla
+           fuera de la pista: la tarjeta da el ancho al deslizador, nunca al
+           revés. Sólo se excluye el deslizador; cualquier otra tarjeta que
+           crezca sigue ensanchando la pista, que es donde la ve mobile.spec.ts. */
+        .cp-main .cp-desliza { contain: inline-size; }
         /* width:100% + border-box: with only margin:0 auto, a grid item does not
            stretch — it sizes to its content, and the ledger table's 720px
            min-width pushed the whole page to 810px on a phone (06-09-2026). */

@@ -1,9 +1,9 @@
 // Journalist UI — the per-section renderers (one component per ReportSection
 // kind) plus the formatYearSpan helper. Dispatched by ReportSectionRenderer
 // in ./index.jsx.
-import { useState } from 'react'
+import { useId, useState } from 'react'
 import { Link } from 'react-router-dom'
-import { Card, ExtLink, Pill, SectionHead } from '../Primitives'
+import { Card, Deslizable, ExtLink, Pill, SectionHead } from '../Primitives'
 import { Sparkline } from '../Charts'
 import { CitationPills } from './Citations'
 import { usePromises, STATUS_LABEL, STATUS_TONE } from '../../hooks/usePromises'
@@ -63,7 +63,15 @@ export function NarrativeBlock({ payload, sourceMap }) {
 // ─── Section: identity card ──────────────────────────────────────────────
 
 export function IdentityCard({ payload, sourceMap }) {
-  const cellStyle = { fontSize: 'var(--fs-aux)', color: 'var(--ink70)', padding: '6px 0' }
+  // `margin: 0`: el <dd> traía los 40 px de sangría del navegador además del
+  // `columnGap`, y con ellos la tarjeta pedía hasta 280 px en una columna que,
+  // a 320 px y con la barra lateral, mide 277; el valor quedaba en 55 px.
+  const cellStyle = {
+    fontSize: 'var(--fs-aux)',
+    color: 'var(--ink70)',
+    padding: '6px 0',
+    margin: 0,
+  }
   const labelStyle = {
     fontSize: 'var(--fs-micro)',
     letterSpacing: '.06em',
@@ -293,64 +301,71 @@ export function LegalRecord({ payload, sourceMap }) {
 
 // ─── Section: financial ──────────────────────────────────────────────────
 
+// Cuatro columnas que piden ~290 px: más que la tarjeta a 320 px de pantalla o
+// con la barra lateral (235 px de caja en el peor). Se desliza dentro de ella,
+// como la tabla de /laboratorio/frontera, en vez de partir el importe o la
+// fila; el porqué de que no ensanche la columna está en AgenteReporte.jsx.
 export function FinancialPanel({ payload, sourceMap }) {
+  const idTitulo = useId()
   if (!payload.items?.length) return null
   return (
     <Card>
-      <SectionHead title="Declaraciones financieras" />
-      <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: 'var(--fs-meta)' }}>
-        <thead>
-          <tr
-            style={{
-              textAlign: 'left',
-              color: 'var(--ink50)',
-              fontSize: 'var(--fs-micro)',
-              textTransform: 'uppercase',
-              letterSpacing: '.06em',
-            }}
-          >
-            <th style={{ padding: '6px 8px 6px 0' }}>Año</th>
-            <th style={{ padding: '6px 8px' }}>Concepto</th>
-            <th style={{ padding: '6px 8px', textAlign: 'right' }}>Importe</th>
-            <th style={{ padding: '6px 0 6px 8px' }}>Fuente</th>
-          </tr>
-        </thead>
-        <tbody>
-          {payload.items.map((f, i) => (
-            <tr key={i} style={{ borderTop: '1px solid var(--border)' }}>
-              <td className="mono" style={{ padding: '8px 8px 8px 0', color: 'var(--ink50)' }}>
-                {f.year}
-              </td>
-              <td style={{ padding: '8px', color: 'var(--ink70)' }}>
-                <div style={{ fontWeight: 500 }}>
-                  {f.metric === 'salary'
-                    ? 'Salario público'
-                    : f.metric === 'declared-assets'
-                      ? 'Bienes declarados'
-                      : 'Actividad empresarial'}
-                </div>
-                <div style={{ color: 'var(--ink50)', fontSize: 'var(--fs-micro)' }}>
-                  {f.description}
-                </div>
-              </td>
-              <td
-                className="mono"
-                style={{
-                  padding: '8px',
-                  textAlign: 'right',
-                  color: 'var(--ink)',
-                  whiteSpace: 'nowrap',
-                }}
-              >
-                {eurosExactos(f.amountEuros) || '—'}
-              </td>
-              <td style={{ padding: '8px 0 8px 8px' }}>
-                <CitationPills ids={f.sourceIds} sourceMap={sourceMap} />
-              </td>
+      <SectionHead title="Declaraciones financieras" id={idTitulo} />
+      <Deslizable tituloId={idTitulo}>
+        <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: 'var(--fs-meta)' }}>
+          <thead>
+            <tr
+              style={{
+                textAlign: 'left',
+                color: 'var(--ink50)',
+                fontSize: 'var(--fs-micro)',
+                textTransform: 'uppercase',
+                letterSpacing: '.06em',
+              }}
+            >
+              <th style={{ padding: '6px 8px 6px 0' }}>Año</th>
+              <th style={{ padding: '6px 8px' }}>Concepto</th>
+              <th style={{ padding: '6px 8px', textAlign: 'right' }}>Importe</th>
+              <th style={{ padding: '6px 0 6px 8px' }}>Fuente</th>
             </tr>
-          ))}
-        </tbody>
-      </table>
+          </thead>
+          <tbody>
+            {payload.items.map((f, i) => (
+              <tr key={i} style={{ borderTop: '1px solid var(--border)' }}>
+                <td className="mono" style={{ padding: '8px 8px 8px 0', color: 'var(--ink50)' }}>
+                  {f.year}
+                </td>
+                <td style={{ padding: '8px', color: 'var(--ink70)' }}>
+                  <div style={{ fontWeight: 500 }}>
+                    {f.metric === 'salary'
+                      ? 'Salario público'
+                      : f.metric === 'declared-assets'
+                        ? 'Bienes declarados'
+                        : 'Actividad empresarial'}
+                  </div>
+                  <div style={{ color: 'var(--ink50)', fontSize: 'var(--fs-micro)' }}>
+                    {f.description}
+                  </div>
+                </td>
+                <td
+                  className="mono"
+                  style={{
+                    padding: '8px',
+                    textAlign: 'right',
+                    color: 'var(--ink)',
+                    whiteSpace: 'nowrap',
+                  }}
+                >
+                  {eurosExactos(f.amountEuros) || '—'}
+                </td>
+                <td style={{ padding: '8px 0 8px 8px' }}>
+                  <CitationPills ids={f.sourceIds} sourceMap={sourceMap} />
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </Deslizable>
     </Card>
   )
 }
