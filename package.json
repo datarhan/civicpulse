@@ -290,14 +290,14 @@
     "react-router-dom": "^7.18.4"
   },
   "devDependencies": {
-    "@axe-core/playwright": "^4.13.0",
+    "@axe-core/playwright": "^4.14.0",
     "@eslint/js": "^9.39.5",
     "@playwright/test": "^1.59.1",
     "@tesseract.js-data/spa": "^1.0.0",
     "@testing-library/jest-dom": "^6.9.1",
     "@testing-library/react": "^16.3.3",
     "@vitejs/plugin-react": "^4.3.4",
-    "@vitest/ui": "^4.1.11",
+    "@vitest/ui": "^4.1.12",
     "cheerio": "^1.2.0",
     "csv-parse": "^7.0.3",
     "eslint": "^9.39.4",
@@ -306,13 +306,13 @@
     "globals": "^17.13.0",
     "happy-dom": "^20.14.6",
     "mupdf": "^1.28.1",
-    "prettier": "^3.9.9",
+    "prettier": "^3.9.10",
     "tesseract.js": "^7.0.0",
     "tsx": "^4.23.15",
-    "typescript-eslint": "^8.71.1",
-    "vite": "^6.4.4",
+    "typescript-eslint": "^8.72.0",
+    "vite": "^6.4.5",
     "vitest": "^4.1.11",
     "xlsx": "https://cdn.sheetjs.com/xlsx-0.20.3/xlsx-0.20.3.tgz",
-    "zod": "^4.6.5"
+    "zod": "^4.6.7"
   }
 }
