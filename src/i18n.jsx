@@ -1478,7 +1478,7 @@ export const CATALOGUE = {
     'bitacora.enmendados.varios': '{n} motivos enmendados',
     'bitacora.textoRetirado': 'Texto retirado',
     'bitacora.textoVigente': 'Texto vigente',
-    'bitacora.textoSustituido': 'Texto que puso esta corrección, sustituido el {fecha}',
+    'bitacora.textoSustituido': 'Texto que puso esta corrección, vigente hasta el {fecha}',
     'bitacora.textoRetiradoDespues': 'Texto que puso esta corrección; la cita se retiró el {fecha}',
     // Qué cita de la ficha es la de una fila `quote.<i>…`: el campo cuenta desde 0
     // y la ficha desde 1 (src/lib/posicion-en-bitacora.js).
@@ -4342,7 +4342,7 @@ export const CATALOGUE = {
     'bitacora.enmendados.varios': '{n} motius esmenats',
     'bitacora.textoRetirado': 'Text retirat',
     'bitacora.textoVigente': 'Text vigent',
-    'bitacora.textoSustituido': 'Text que va posar esta correcció, substituït el {fecha}',
+    'bitacora.textoSustituido': 'Text que va posar esta correcció, vigent fins al {fecha}',
     'bitacora.textoRetiradoDespues':
       'Text que va posar esta correcció; la cita es va retirar el {fecha}',
     'bitacora.campo.cita': 'cita {n}',

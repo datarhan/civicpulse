@@ -49,6 +49,14 @@
  * última de cada campo sigue siendo la vigente. /eficiencia y la bitácora del
  * informe del agente pintan su propio marcado, pero con estas mismas piezas: la
  * regla vive aquí una vez.
+ *
+ * Ese rótulo decía «…, sustituido el {fecha}» hasta el 29-10-2026, y
+ * «sustituido» junto a «Texto retirado» se lee como sinónimo: lo sustituido es
+ * lo viejo. La revisión lectora de /eficiencia lo leyó así en dos pasadas
+ * seguidas —tomó la versión de doce servicios por la anterior a la de diez, y la
+ * de trece por la vigente, que es la de quince— y de ahí sacó una contradicción
+ * en una frase que la propia bitácora daba por retirada el 24-08. Ahora dice
+ * «vigente hasta el {fecha}»: rigió, y desde ese día ya no.
  */
 
 import { MARCA_GRUPO_RETENIDO } from '../lib/grupo-retenido'
@@ -69,11 +77,11 @@ export const ROTULO_TEXTO_VIGENTE = enCastellano('bitacora.textoVigente')
 /**
  * Lo que puso una fila cuando una posterior volvió a cambiar el mismo campo: ni
  * lo retiró ella ni es lo que la ficha publica hoy. Es lo que el catálogo dice
- * antes de «, sustituido el {fecha}».
+ * antes de «, vigente hasta el {fecha}».
  */
 export const ROTULO_TEXTO_SUSTITUIDO = partePorHueco(
   enCastellano('bitacora.textoSustituido'),
-  ', sustituido el {fecha}',
+  ', vigente hasta el {fecha}',
 )[0]
 export const ROTULO_MOTIVO_ENMENDADO = enCastellano('bitacora.motivoEnmendado')
 /** «Motivo (enmendado el {fecha}):» y la frase de la huella, para la bitácora del informe. */
@@ -142,7 +150,7 @@ function citaDeLaFila(correcciones, i, t, ficha) {
 
 /**
  * El rótulo de lo que puso una fila: «Texto vigente», o, si `posterior` lo
- * volvió a cambiar, «Texto que puso esta corrección, sustituido el 2026-09-30»
+ * volvió a cambiar, «Texto que puso esta corrección, vigente hasta el 2026-09-30»
  * con el día de esa fila, que es la que el lector tiene que ir a buscar; si
  * `posterior` retiró la cita entera, lo dice así. En el idioma de `t`; sin él,
  * en castellano.
