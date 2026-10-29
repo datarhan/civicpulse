@@ -2,8 +2,12 @@ import { Link } from 'react-router-dom'
 import { Card, ExtLink, Marcado, Pill, SectionHead } from '../components/Primitives'
 import DataAsOf from '../components/DataAsOf'
 import { useBudget } from '../hooks/useBudget'
-import { contrastarPresupuesto, TOLERANCIA_EQUILIBRIO } from '../scraper/budget-contraste'
-import { esCierre } from '../scraper/budget-execution'
+import {
+  contrastarPresupuesto,
+  desequilibrioDeConprel,
+  TOLERANCIA_EQUILIBRIO,
+} from '../scraper/budget-contraste'
+import { esCierre, periodoDelAnio } from '../scraper/budget-execution'
 import { useBudgetExecution } from '../hooks/useBudgetExecution'
 import { useObras } from '../hooks/useObras'
 import { useBdns } from '../hooks/useBdns'
@@ -273,8 +277,9 @@ function Cabecera() {
   // worse defect than the ambiguity. `contrastarPresupuesto` gates on the
   // years matching: comparing a CONPREL year against an execution statement
   // from a different exercise would manufacture a discrepancy that does not
-  // exist.
-  const contraste = contrastarPresupuesto(s, exec)
+  // exist. So it is fed the execution of CONPREL's OWN year (`periodoDelAnio`),
+  // not `latest`, which can be a newer year's quarter.
+  const contraste = contrastarPresupuesto(s, periodoDelAnio(execData, s.year))
   const dosFuentes =
     contraste && Math.abs(contraste.diferenciaGastos) >= TOLERANCIA_EQUILIBRIO ? contraste : null
   // El lede habla de la ejecución cuando es la del MISMO ejercicio que CONPREL
@@ -1029,16 +1034,14 @@ function CapitulosCard() {
 function AprobadoPar() {
   const t = useT()
   const { loading, error, data } = useBudget()
-  const { data: execData } = useBudgetExecution()
   if (loading || error || !data) return null
   const s = data.snapshot
-  const contraste = contrastarPresupuesto(s, execData?.latest)
-  const desequilibrio =
-    contraste &&
-    contraste.desequilibrioConprel !== null &&
-    Math.abs(contraste.desequilibrioConprel) >= TOLERANCIA_EQUILIBRIO
-      ? contraste.desequilibrioConprel
-      : null
+  // De CONPREL solo, sin la ejecución: este aviso habla de sus ingresos frente
+  // a sus gastos. Se sacaba del cotejo con el listado municipal, y cuando el
+  // periodo más nuevo fue de otro año el cotejo dio null y el aviso dejó de
+  // salir (`desequilibrioDeConprel`).
+  const d = desequilibrioDeConprel(s)
+  const desequilibrio = d !== null && Math.abs(d) >= TOLERANCIA_EQUILIBRIO ? d : null
   const aCero = capitulosACero(s.expenseByEconomicChapter)
   // Lo que CONPREL no trae (null en el snapshot) no es un capítulo a cero: se
   // dice aparte, con su propia frase, y nunca entra en la lista de «a 0 €».

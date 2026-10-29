@@ -392,6 +392,30 @@ export function ultimoCierre<T extends Pick<BudgetExecutionPeriod, 'year' | 'fec
   return cierres.sort((a, b) => a.year - b.year)[cierres.length - 1] ?? null
 }
 
+/**
+ * La ejecución de UN ejercicio, para cotejarla con otra fuente del mismo año:
+ * su cierre si lo hay, y si no el periodo más tardío de ese año. null si el
+ * snapshot no tiene ninguno.
+ *
+ * Existe porque `latest` dejó de ser el cierre: con el 1T de 2026 como periodo
+ * más nuevo, lo que cotejaba CONPREL de 2025 contra `latest` se quedaba sin
+ * nada que cotejar —los años no casan— y el aviso de que el presupuesto del
+ * Ministerio no cuadra dejó de pintarse, sin que nada lo dijera.
+ */
+export function periodoDelAnio<T extends { year?: number | null; fechaListado?: string | null }>(
+  ejecucion:
+    { latest?: T | null; ultimoCierre?: T | null; periods?: T[] | null } | null | undefined,
+  year: number | null | undefined,
+): T | null {
+  if (!ejecucion || !year) return null
+  const delAnio = [
+    ejecucion.ultimoCierre,
+    ...[...(ejecucion.periods ?? [])].reverse(),
+    ejecucion.latest,
+  ].filter((p): p is T => !!p && p.year === year)
+  return delAnio.find(esCierre) ?? delAnio[0] ?? null
+}
+
 export interface PeriodoDelIndice {
   year: number
   trimestre: number

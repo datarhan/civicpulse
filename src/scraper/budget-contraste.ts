@@ -88,6 +88,21 @@ const num = (v: unknown): number => (typeof v === 'number' && Number.isFinite(v)
 const cifra = (v: unknown): number | null =>
   typeof v === 'number' && Number.isFinite(v) ? v : null
 
+/**
+ * Ingresos menos gastos del presupuesto que el Ayuntamiento rinde a CONPREL; null
+ * sin uno de los dos totales. Es un hecho de CONPREL solo y no necesita la
+ * ejecución: el aviso «no cuadra en la fuente del ministerio» se calculaba
+ * dentro del cotejo con el listado municipal, y el día que el periodo más nuevo
+ * fue de otro año el cotejo dio null y el aviso desapareció.
+ */
+export function desequilibrioDeConprel(
+  conprel: Pick<BudgetSnapshotLike, 'totalRevenue' | 'totalExpense'> | null | undefined,
+): number | null {
+  const gastos = cifra(conprel?.totalExpense)
+  const ingresos = cifra(conprel?.totalRevenue)
+  return gastos === null || gastos <= 0 || ingresos === null ? null : ingresos - gastos
+}
+
 export function contrastarPresupuesto(
   conprel: BudgetSnapshotLike | null | undefined,
   ejecucion: EjecucionLike | null | undefined,
@@ -115,7 +130,7 @@ export function contrastarPresupuesto(
   })
 
   const ingresosConprel = cifra(conprel.totalRevenue)
-  const desequilibrioConprel = ingresosConprel === null ? null : ingresosConprel - gastosConprel
+  const desequilibrioConprel = desequilibrioDeConprel(conprel)
   const diferenciaGastos = gastosConprel - gastosMunicipal
 
   return {

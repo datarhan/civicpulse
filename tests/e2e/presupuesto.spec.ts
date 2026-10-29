@@ -1,5 +1,7 @@
 import { test, expect } from '@playwright/test'
+import { readFileSync } from 'node:fs'
 import { collectErrors, appErrors } from './_console'
+import { euros } from '../../src/lib/formatters'
 
 /**
  * Espera a que el listado tenga FILAS, no a que tenga texto.
@@ -319,5 +321,22 @@ test.describe('Presupuesto (/presupuesto)', () => {
     await page.getByRole('tab', { name: /Quién recibe el dinero/ }).click()
     // Leaderboard rows render contractor names; the explorer search box is gone.
     await expect(page.getByPlaceholder('Buscar contrato o empresa…')).toHaveCount(0)
+  })
+
+  // El aviso habla sólo de CONPREL —sus ingresos frente a sus gastos—, pero se
+  // calculaba cotejando con `latest`, y con el 1T de 2026 como periodo más
+  // nuevo dejó de pintarse sin que ninguna prueba lo notara. Se decide con el
+  // propio budget.json: si el Ministerio da ingresos y gastos distintos, el
+  // aviso tiene que estar, con la diferencia.
+  test('el aviso de que CONPREL no cuadra sale cuando sus dos totales difieren', async ({
+    page,
+  }) => {
+    const s = JSON.parse(readFileSync('public/data/budget.json', 'utf8')).snapshot
+    const dif = Math.abs(s.totalRevenue - s.totalExpense)
+    test.skip(dif < 1000, 'CONPREL cuadra este ejercicio: no hay aviso que buscar')
+    await page.goto('/presupuesto', { waitUntil: 'domcontentloaded' })
+    const aviso = page.locator('#descuadre')
+    await expect(aviso).toBeVisible({ timeout: 10_000 })
+    await expect(aviso).toContainText(euros(dif))
   })
 })
