@@ -2065,9 +2065,9 @@ export const CATALOGUE = {
       'Esta página distingue en todo momento tres cosas que suelen confundirse: lo **aprobado**, lo **definitivo** tras modificaciones y lo **ejecutado**.',
     'presupuesto.tres.link': 'Cómo se leen los tres ↓',
     'presupuesto.meta':
-      '{gastos} de gastos aprobados según CONPREL · {porHab} por habitante · {hab} habitantes · actualizado {fecha}',
+      '{gastos} de gastos aprobados para {year} según CONPREL · {porHab} por habitante · {hab} habitantes · actualizado {fecha}',
     'presupuesto.meta.sinTotal':
-      'CONPREL no trae el total de gastos aprobados · {hab} habitantes · actualizado {fecha}',
+      'CONPREL no trae el total de gastos aprobados para {year} · {hab} habitantes · actualizado {fecha}',
     // «En breve» de /metodologia: cada respuesta es una regla ya escrita en la
     // página, dicha en corto. Sin plazos ni cifras: viven en la regla.
     'metodologia.enBreve.titulo': 'En breve',
@@ -2288,6 +2288,53 @@ export const CATALOGUE = {
       '**{capitulo} se llevó el {cuota} % de toda la ampliación**: de {inicial} a {definitivo}, de los que se ejecutó el {pct} %.',
     'presupuesto.cap.pie.cociente':
       ' El porcentaje de la derecha es ejecutado ÷ definitivo: obligaciones reconocidas netas.',
+    // El año en curso (`esCierre`, scraper/budget-execution.ts): mientras el
+    // estado de ejecución no es el del 31 de diciembre, la página dice lo mismo
+    // en presente. «Gastó» o «acabó con» de un primer trimestre afirmaría un
+    // cierre que no ha llegado.
+    'presupuesto.eyebrow.enCurso': 'Hacienda pública · ejercicio {year} · en curso',
+    'presupuesto.lede.enCurso':
+      'El ayuntamiento abrió {year} con {inicial} de crédito y en lo que va de año lo ha ampliado en {mod} —un {pct} % más—. A {fecha} lleva ejecutados {ejecutado}: el año todavía no ha terminado.',
+    'presupuesto.lede.conprelAnterior':
+      ' El presupuesto aprobado que publica el Ministerio de Hacienda todavía es el de {year}: sus cifras van más abajo, con su año.',
+    'presupuesto.lede.dominante.enCurso':
+      ' Casi toda la ampliación, el {cuota} %, ha ido a {capitulo}.',
+    'presupuesto.lede.dominanteCero.enCurso':
+      ' Casi toda la ampliación, el {cuota} %, ha ido a {capitulo}, un capítulo que había empezado en cero.',
+    'presupuesto.lede.dominanteCeroDiscrepan.enCurso':
+      ' Casi toda la ampliación, el {cuota} %, ha ido a {capitulo}, que el estado de ejecución del propio Ayuntamiento abre en cero y el presupuesto remitido a CONPREL con {conprel}.',
+    'presupuesto.lede.dominanteCeroSinConprel.enCurso':
+      ' Casi toda la ampliación, el {cuota} %, ha ido a {capitulo}, que el estado de ejecución del propio Ayuntamiento abre en cero y del que el presupuesto remitido a CONPREL no trae cifra.',
+    'presupuesto.lede.dominanteCeroSinContraste.enCurso':
+      ' Casi toda la ampliación, el {cuota} %, ha ido a {capitulo}, que el estado de ejecución del propio Ayuntamiento abre en cero.',
+    'presupuesto.cascada.title.enCurso': 'El presupuesto ha crecido un {pct} % en lo que va de año',
+    'presupuesto.callout.denominador.enCurso':
+      '**El «{pctDef} % ejecutado» es un cociente sobre el presupuesto definitivo.** Sobre el crédito que se aprobó en enero, lo ejecutado es el {pctIni} %. Cada cifra responde a una pregunta distinta: cuánto se ha ejecutado de lo que se aprobó en enero, y cuánto de lo que se ha autorizado hasta ahora.',
+    'presupuesto.cap.pie.cero.enCurso':
+      '**{capitulo} abrió el ejercicio con 0 € y lleva {definitivo}** —el {cuota} % de toda la ampliación—, de los que se ha ejecutado el {pct} %. Un capítulo que empieza en cero y recibe su crédito durante el ejercicio no es una desviación de ejecución: ese crédito no estaba en ninguno de los dos presupuestos aprobados que publica esta página.',
+    'presupuesto.cap.pie.ceroDiscrepan.enCurso':
+      '**{capitulo} abrió el ejercicio con 0 € y lleva {definitivo}** —el {cuota} % de toda la ampliación—, de los que se ha ejecutado el {pct} %. Ese cero es el del estado de ejecución del propio Ayuntamiento: **el presupuesto que se remitió a CONPREL le da {conprel} de crédito inicial a ese mismo capítulo**. Las dos fuentes son oficiales y no se reconcilian, así que parte de lo que aquí figura como ampliación ya estaba aprobado en la otra.',
+    'presupuesto.cap.pie.ceroSinConprel.enCurso':
+      '**{capitulo} abrió el ejercicio con 0 € y lleva {definitivo}** —el {cuota} % de toda la ampliación—, de los que se ha ejecutado el {pct} %. Ese cero es el del estado de ejecución del propio Ayuntamiento; **el presupuesto que se remitió a CONPREL no trae dato de ese capítulo**, así que no se puede decir si ese crédito ya estaba aprobado en la otra fuente.',
+    'presupuesto.cap.pie.ceroSinContraste.enCurso':
+      '**{capitulo} abrió el ejercicio con 0 € y lleva {definitivo}** —el {cuota} % de toda la ampliación—, de los que se ha ejecutado el {pct} %. Ese cero es el del estado de ejecución del propio Ayuntamiento, y no hay presupuesto remitido a CONPREL del mismo ejercicio con el que cotejarlo.',
+    'presupuesto.cap.pie.dominante.enCurso':
+      '**{capitulo} se ha llevado el {cuota} % de toda la ampliación**: de {inicial} a {definitivo}, de los que se ha ejecutado el {pct} %.',
+    'presupuesto.enBreve.limite.pregunta.enCurso': '¿Cuánto dinero tiene para gastar en {year}?',
+    'presupuesto.enBreve.limite.frase.enCurso':
+      'Empezó el año con {inicial} y en lo que va de año se le han añadido {mod}. Es un [[creditoDefinitivo|tope del presupuesto]], no un gasto.',
+    'presupuesto.enBreve.gastado.frase.enCurso':
+      'De cada 100 € que puede gastar en {year}, lleva [[obligacionesReconocidas|gastados]] {n}.',
+    'presupuesto.enBreve.gastado.fecha.enCurso': 'Datos a {fecha}: el año todavía no ha terminado.',
+    'presupuesto.enBreve.gastado.figura.enCurso':
+      'Barra: gastado hasta ahora el {pct} % de lo que puede gastar; marca del año transcurrido al {avance} %.',
+    'presupuesto.enBreve.gastado.figuraSinAvance.enCurso':
+      'Barra: gastado hasta ahora el {pct} % de lo que puede gastar.',
+    'presupuesto.enBreve.enQue.mayoria.enCurso': 'La mayor parte ha ido a {a} y a {b}.',
+    'presupuesto.enBreve.enQue.primero.enCurso': 'Lo que más se ha llevado es {a}, seguido de {b}.',
+    'presupuesto.enBreve.enQue.uno.enCurso': 'Todo lo gastado ha ido a {a}.',
+    'presupuesto.enBreve.enQue.dominante.enCurso':
+      'En {capitulo} hay {definitivo} presupuestados y se llevan gastados {ejecutado}.',
     'presupuesto.cap.fuente':
       'Fuente: Ayuntamiento de Riba-roja · estados de ejecución presupuestaria{fecha}.',
     'presupuesto.cap.fecha': ' · listado a {fecha}',
@@ -2804,6 +2851,11 @@ export const CATALOGUE = {
     'landing.enBreve.dinero.cifraNota': 'gastados en {year}',
     'landing.enBreve.dinero.topeCifra':
       'Podía gastar {limite}: un [[creditoDefinitivo|tope del presupuesto]], no un gasto.',
+    'landing.enBreve.dinero.pregunta.enCurso':
+      '¿Cuánto dinero tiene en {year}, y cuánto lleva gastado?',
+    'landing.enBreve.dinero.cifraNota.enCurso': 'gastados en lo que va de {year}',
+    'landing.enBreve.dinero.topeCifra.enCurso':
+      'Puede gastar {limite}: un [[creditoDefinitivo|tope del presupuesto]], no un gasto.',
     'landing.enBreve.barrio.puente':
       'El mapa de esta página sitúa {mapa} de cada 100 €, y no {n}, porque cuenta otra cosa: los contratos que nombran un sitio concreto, como una calle o un colegio, estén o no en un barrio.',
     'landing.enBreve.barrio.menosDeUno': 'menos de 1',
@@ -4738,9 +4790,9 @@ export const CATALOGUE = {
       "Esta pàgina distingix en tot moment tres coses que solen confondre's: l'**aprovat**, el **definitiu** després de modificacions i l'**executat**.",
     'presupuesto.tres.link': 'Com es lligen els tres ↓',
     'presupuesto.meta':
-      '{gastos} de despeses aprovades segons CONPREL · {porHab} per habitant · {hab} habitants · actualitzat {fecha}',
+      '{gastos} de despeses aprovades per a {year} segons CONPREL · {porHab} per habitant · {hab} habitants · actualitzat {fecha}',
     'presupuesto.meta.sinTotal':
-      'CONPREL no porta el total de despeses aprovades · {hab} habitants · actualitzat {fecha}',
+      'CONPREL no porta el total de despeses aprovades per a {year} · {hab} habitants · actualitzat {fecha}',
     'metodologia.enBreve.titulo': 'En resum',
     'metodologia.enBreve.intro':
       'Com treballem, en cinc preguntes. Cada resposta enllaça amb la regla completa.',
@@ -4948,6 +5000,49 @@ export const CATALOGUE = {
       "**{capitulo} es va emportar el {cuota} % de tota l'ampliació**: de {inicial} a {definitivo}, dels quals es va executar el {pct} %.",
     'presupuesto.cap.pie.cociente':
       ' El percentatge de la dreta és executat ÷ definitiu: obligacions reconegudes netes.',
+    'presupuesto.eyebrow.enCurso': 'Hisenda pública · exercici {year} · en curs',
+    'presupuesto.lede.enCurso':
+      "L'ajuntament va obrir {year} amb {inicial} de crèdit i en el que va d'any l'ha ampliat en {mod} —un {pct} % més—. A {fecha} porta executats {ejecutado}: l'any encara no ha acabat.",
+    'presupuesto.lede.conprelAnterior':
+      " El pressupost aprovat que publica el Ministeri d'Hisenda encara és el de {year}: les seues xifres van més avall, amb el seu any.",
+    'presupuesto.lede.dominante.enCurso':
+      " Quasi tota l'ampliació, el {cuota} %, ha anat a {capitulo}.",
+    'presupuesto.lede.dominanteCero.enCurso':
+      " Quasi tota l'ampliació, el {cuota} %, ha anat a {capitulo}, un capítol que havia començat en zero.",
+    'presupuesto.lede.dominanteCeroDiscrepan.enCurso':
+      " Quasi tota l'ampliació, el {cuota} %, ha anat a {capitulo}, que l'estat d'execució del propi Ajuntament obri en zero i el pressupost que es va remetre a CONPREL amb {conprel}.",
+    'presupuesto.lede.dominanteCeroSinConprel.enCurso':
+      " Quasi tota l'ampliació, el {cuota} %, ha anat a {capitulo}, que l'estat d'execució del propi Ajuntament obri en zero i del qual el pressupost que es va remetre a CONPREL no porta xifra.",
+    'presupuesto.lede.dominanteCeroSinContraste.enCurso':
+      " Quasi tota l'ampliació, el {cuota} %, ha anat a {capitulo}, que l'estat d'execució del propi Ajuntament obri en zero.",
+    'presupuesto.cascada.title.enCurso': "El pressupost ha crescut un {pct} % en el que va d'any",
+    'presupuesto.callout.denominador.enCurso':
+      "**El «{pctDef} % executat» és un quocient sobre el pressupost definitiu.** Sobre el crèdit que es va aprovar al gener, l'executat és el {pctIni} %. Cada xifra respon a una pregunta distinta: quant s'ha executat del que es va aprovar al gener, i quant del que s'ha autoritzat fins ara.",
+    'presupuesto.cap.pie.cero.enCurso':
+      "**{capitulo} va obrir l'exercici amb 0 € i en porta {definitivo}** —el {cuota} % de tota l'ampliació—, dels quals s'ha executat el {pct} %. Un capítol que comença en zero i rep el seu crèdit durant l'exercici no és una desviació d'execució: eixe crèdit no estava en cap dels dos pressupostos aprovats que publica esta pàgina.",
+    'presupuesto.cap.pie.ceroDiscrepan.enCurso':
+      "**{capitulo} va obrir l'exercici amb 0 € i en porta {definitivo}** —el {cuota} % de tota l'ampliació—, dels quals s'ha executat el {pct} %. Eixe zero és el de l'estat d'execució del propi Ajuntament: **el pressupost que es va remetre a CONPREL li dóna {conprel} de crèdit inicial a eixe mateix capítol**. Les dos fonts són oficials i no es reconcilien, així que part del que ací figura com a ampliació ja estava aprovat en l'altra.",
+    'presupuesto.cap.pie.ceroSinConprel.enCurso':
+      "**{capitulo} va obrir l'exercici amb 0 € i en porta {definitivo}** —el {cuota} % de tota l'ampliació—, dels quals s'ha executat el {pct} %. Eixe zero és el de l'estat d'execució del propi Ajuntament; **el pressupost que es va remetre a CONPREL no porta dada d'eixe capítol**, així que no es pot dir si eixe crèdit ja estava aprovat en l'altra font.",
+    'presupuesto.cap.pie.ceroSinContraste.enCurso':
+      "**{capitulo} va obrir l'exercici amb 0 € i en porta {definitivo}** —el {cuota} % de tota l'ampliació—, dels quals s'ha executat el {pct} %. Eixe zero és el de l'estat d'execució del propi Ajuntament, i no hi ha pressupost remés a CONPREL del mateix exercici amb què acarar-lo.",
+    'presupuesto.cap.pie.dominante.enCurso':
+      "**{capitulo} s'ha emportat el {cuota} % de tota l'ampliació**: de {inicial} a {definitivo}, dels quals s'ha executat el {pct} %.",
+    'presupuesto.enBreve.limite.pregunta.enCurso': 'Quants diners té per a gastar en {year}?',
+    'presupuesto.enBreve.limite.frase.enCurso':
+      "Va començar l'any amb {inicial} i en el que va d'any se li han afegit {mod}. És un [[creditoDefinitivo|límit del pressupost]], no una despesa.",
+    'presupuesto.enBreve.gastado.frase.enCurso':
+      'De cada 100 € que pot gastar en {year}, en porta [[obligacionesReconocidas|gastats]] {n}.',
+    'presupuesto.enBreve.gastado.fecha.enCurso': "Dades a {fecha}: l'any encara no ha acabat.",
+    'presupuesto.enBreve.gastado.figura.enCurso':
+      "Barra: gastat fins ara el {pct} % del que pot gastar; marca de l'any transcorregut al {avance} %.",
+    'presupuesto.enBreve.gastado.figuraSinAvance.enCurso':
+      'Barra: gastat fins ara el {pct} % del que pot gastar.',
+    'presupuesto.enBreve.enQue.mayoria.enCurso': 'La major part ha anat a {a} i a {b}.',
+    'presupuesto.enBreve.enQue.primero.enCurso': "El que més se n'ha endut és {a}, seguit de {b}.",
+    'presupuesto.enBreve.enQue.uno.enCurso': "Tot el que s'ha gastat ha anat a {a}.",
+    'presupuesto.enBreve.enQue.dominante.enCurso':
+      "En {capitulo} hi ha {definitivo} pressupostats i se n'han gastat {ejecutado}.",
     'presupuesto.cap.fuente':
       "Font: Ajuntament de Riba-roja · estats d'execució pressupostària{fecha}.",
     'presupuesto.cap.fecha': ' · llistat a {fecha}',
@@ -5358,6 +5453,11 @@ export const CATALOGUE = {
     'landing.enBreve.dinero.cifraNota': 'gastats en {year}',
     'landing.enBreve.dinero.topeCifra':
       'Podia gastar {limite}: un [[creditoDefinitivo|límit del pressupost]], no una despesa.',
+    'landing.enBreve.dinero.pregunta.enCurso':
+      'Quants diners té en {year}, i quants en porta gastats?',
+    'landing.enBreve.dinero.cifraNota.enCurso': 'gastats en el que va de {year}',
+    'landing.enBreve.dinero.topeCifra.enCurso':
+      'Pot gastar {limite}: un [[creditoDefinitivo|límit del pressupost]], no una despesa.',
     'landing.enBreve.barrio.puente':
       "El mapa d'esta pàgina en situa {mapa} de cada 100 €, i no {n}, perquè compta una altra cosa: els contractes que nomenen un lloc concret, com un carrer o un col·legi, estiguen o no en un barri.",
     'landing.enBreve.barrio.menosDeUno': "menys d'1",

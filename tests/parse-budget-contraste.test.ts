@@ -22,7 +22,9 @@ const ejecucion = JSON.parse(
 const publicado = JSON.parse(readFileSync(join(ROOT, 'public/data/budget-execution.json'), 'utf8'))
 
 describe('budget-contraste con el cierre publicado', () => {
-  const c = contrastarPresupuesto(budget.snapshot, publicado.latest)!
+  // El cierre, no `latest`: desde que el snapshot lee los trimestres, `latest`
+  // es el más nuevo publicado, y el cierre del año va aparte.
+  const c = contrastarPresupuesto(budget.snapshot, publicado.ultimoCierre)!
 
   it('las dos fuentes coinciden en gastos iniciales, capítulo a capítulo', () => {
     expect(c.anio).toBe(budget.snapshot.year)

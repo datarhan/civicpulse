@@ -37,8 +37,17 @@ export function Leyenda({ izquierda, derecha }) {
 export function FiguraGastado({ gastado }) {
   const t = useT()
   const avance = gastado.avanceDelAnio
-  const etiqueta =
-    avance != null
+  // Un año sin cerrar, en presente: «lo que puede gastar», no «lo que podía».
+  const etiqueta = gastado.enCurso
+    ? avance != null
+      ? rellena(t('presupuesto.enBreve.gastado.figura.enCurso'), {
+          pct: pct0(gastado.pct),
+          avance: pct0(avance * 100),
+        })
+      : rellena(t('presupuesto.enBreve.gastado.figuraSinAvance.enCurso'), {
+          pct: pct0(gastado.pct),
+        })
+    : avance != null
       ? rellena(t('presupuesto.enBreve.gastado.figura'), {
           pct: pct0(gastado.pct),
           avance: pct0(avance * 100),

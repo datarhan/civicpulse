@@ -64,6 +64,10 @@ export const DEFAULT_EXPECTATIONS: DatasetExpectation[] = [
   ...[
     'officials.json',
     'budget.json',
+    // Se reescribe cada noche aunque no haya trimestre nuevo; si deja de
+    // moverse, el raspador falló —el guard anti-encogimiento sale sin escribir—
+    // o el índice del Ayuntamiento cambió de forma.
+    'budget-execution.json',
     'tenders.json',
     'tenders-ted.json',
     'bdns.json',

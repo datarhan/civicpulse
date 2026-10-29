@@ -179,6 +179,24 @@ overwrites it. Change the bot's SQLite instead.
   says 60 %) beside December income — which also manufactured a «chapter 6
   opened at zero» and a 4 M€ disagreement with CONPREL that the close sheet
   does not have. A period whose two sides have different cut-offs is dropped.
+- **Periods, not pages** — a period is a year and a quarter, read off each PDF
+  link («1T», «2T2025», «1T 2026», «2 y 3T2024», «30-06-23») and, failing that,
+  off the page (`periodosDelIndice`). Reading one sheet per page published only
+  2025's close and none of 2026. `latest` is the newest period published;
+  `ultimoCierre` is the newest one cut at 31 December, and what measures a
+  year — the `/gestion` indicators — reads that one, never a quarter in
+  progress. Pages describing a year in progress say so in the present tense
+  (`esCierre`).
+- **Two templates** — the SICALWIN listing («Estado de ejecución de Gastos»,
+  until 2T 2025) and, since 3T 2025, «1_2 ITEM 37 Ejecución trimestral»: a
+  «Resumen por capítulos» per side (initial, final, recognised) beside detail
+  sheets with no chapter totals. The summary carries no «Fecha de listado»,
+  so its cut-off is the print date.
+- **What is not read, and why** — the snapshot's `lectura` block lists every
+  period dropped with its reason and every sheet with no text layer (scanned
+  PDFs: 3T 2025 and the income side of 2024's close). Still unread on
+  2026-10-29: the 2023 split current/capital sheets and the chapter-less
+  2024 and 2025 1T expense sheets.
 
 ### Coste efectivo de los servicios (art. 116 ter LRSAL)
 

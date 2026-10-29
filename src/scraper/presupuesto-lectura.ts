@@ -365,6 +365,13 @@ export interface MagnitudDelEjercicio {
  * el de 2025 fabricaría una cifra, que es peor que publicar la menos
  * informativa de las verdaderas.
  *
+ * Un listado MÁS NUEVO que CONPREL sí gobierna, con su propio año: en octubre
+ * de 2026 el Ministerio aún da el aprobado de 2025 y el Ayuntamiento ya ha
+ * publicado el primer trimestre de 2026. Quedarse en el aprobado de 2025
+ * enseñaba el año viejo en su cifra menos informativa; el definitivo de 2026
+ * va con 2026 en la etiqueta y con la fecha de su listado al lado, así que no
+ * se hace pasar por otro año ni por un cierre.
+ *
  * Vive aquí y no en cada componente para que la tira de indicadores y la
  * columna editorial no puedan contar cosas distintas del mismo año — que es
  * exactamente lo que pasaba mientras cada una escribía su propia frase.
@@ -396,14 +403,15 @@ export function magnitudDelEjercicio(
 
   const total = ejecucion?.gastos?.total
   const definitivo = num(total?.actual)
-  if (ejecucion?.year === year && definitivo > 0) {
+  const anioListado = ejecucion?.year
+  if (anioListado && anioListado >= year && definitivo > 0) {
     const ejecutado = num(total?.ejecutado)
     const cap1 = (ejecucion?.gastos?.chapters ?? []).find((c) => c?.capitulo === 1)
     return {
       valor: definitivo,
       etapa: 'definitivo',
       fuente: 'municipal',
-      year,
+      year: anioListado,
       ejecutado,
       pctEjecutado: (ejecutado / definitivo) * 100,
       personal: cuota(num(cap1?.actual), definitivo),

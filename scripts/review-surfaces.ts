@@ -210,20 +210,33 @@ function mayorAdjudicacion(tenders: {
  * Viene del estado de ejecución municipal, no del ministerio: son dos fuentes
  * y por eso el crédito no coincide entre ellas.
  */
+type PeriodoDeHechos = {
+  year?: number
+  fechaListado?: string
+  gastos?: { total?: Record<string, number> }
+}
+
+/**
+ * Las cifras de ejecución que la página puede citar: las del periodo más nuevo
+ * y, si es otro, las del último cierre —/gestion mide el año sobre el cierre
+ * mientras /presupuesto va por el trimestre en curso—. Con sólo el más nuevo,
+ * las del cierre se leían como cifras sin respaldo.
+ */
 function ejecucionFacts(
-  ej: {
-    latest?: { year?: number; fechaListado?: string; gastos?: { total?: Record<string, number> } }
-  } | null,
+  ej: { latest?: PeriodoDeHechos | null; ultimoCierre?: PeriodoDeHechos | null } | null,
 ): Record<string, unknown> {
-  const g = ej?.latest?.gastos?.total
-  if (!g) return {}
-  const cuando = ej?.latest?.fechaListado ?? String(ej?.latest?.year ?? '')
-  return {
-    [`ejecución municipal a ${cuando}: crédito INICIAL de gasto`]: g.inicial,
-    [`ejecución municipal a ${cuando}: crédito ACTUAL de gasto (inicial + modificaciones)`]:
-      g.actual,
-    [`ejecución municipal a ${cuando}: gasto RECONOCIDO (lo efectivamente ejecutado)`]: g.ejecutado,
+  const out: Record<string, unknown> = {}
+  for (const p of [ej?.latest, ej?.ultimoCierre]) {
+    const g = p?.gastos?.total
+    if (!g) continue
+    const cuando = p?.fechaListado ?? String(p?.year ?? '')
+    out[`ejecución municipal a ${cuando}: crédito INICIAL de gasto`] = g.inicial
+    out[`ejecución municipal a ${cuando}: crédito ACTUAL de gasto (inicial + modificaciones)`] =
+      g.actual
+    out[`ejecución municipal a ${cuando}: gasto RECONOCIDO (lo efectivamente ejecutado)`] =
+      g.ejecutado
   }
+  return out
 }
 
 function factsFor(clave: string): Record<string, unknown> {

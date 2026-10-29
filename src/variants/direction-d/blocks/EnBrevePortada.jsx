@@ -120,8 +120,12 @@ export function EnBrevePortada() {
     const fecha = g?.fecha
       ? g.avanceDelAnio === 1
         ? rellena(t('presupuesto.enBreve.gastado.fin'), { fecha: g.fecha })
-        : rellena(t('presupuesto.enBreve.gastado.fecha'), { fecha: g.fecha })
+        : g.enCurso
+          ? rellena(t('presupuesto.enBreve.gastado.fecha.enCurso'), { fecha: g.fecha })
+          : rellena(t('presupuesto.enBreve.gastado.fecha'), { fecha: g.fecha })
       : ''
+    // Un año sin cerrar se pregunta y se cuenta en presente.
+    const enCurso = !!(g?.enCurso ?? l.enCurso)
     // Con lo gastado, la cifra grande es lo gastado, como en la tarjeta «¿Cuánto
     // ha gastado?» de /presupuesto, y el tope va en una frase que lo llama tope.
     // Con el tope arriba y la barra «Gastado» debajo, la revisión lectora leyó
@@ -131,11 +135,17 @@ export function EnBrevePortada() {
       <TarjetaEnBreve
         key="dinero"
         id="dinero"
-        pregunta={rellena(t('landing.enBreve.dinero.pregunta'), { year: l.year })}
+        pregunta={
+          enCurso
+            ? rellena(t('landing.enBreve.dinero.pregunta.enCurso'), { year: l.year })
+            : rellena(t('landing.enBreve.dinero.pregunta'), { year: l.year })
+        }
         cifra={eurosBreves(g ? g.ejecutado : l.definitivo)}
         cifraNota={
           g
-            ? rellena(t('landing.enBreve.dinero.cifraNota'), { year: g.year })
+            ? enCurso
+              ? rellena(t('landing.enBreve.dinero.cifraNota.enCurso'), { year: g.year })
+              : rellena(t('landing.enBreve.dinero.cifraNota'), { year: g.year })
             : l.porVecino != null
               ? rellena(t('presupuesto.enBreve.porVecino'), { x: euros(l.porVecino) })
               : undefined
@@ -144,10 +154,22 @@ export function EnBrevePortada() {
         frases={
           g
             ? [
-                rellena(t('presupuesto.enBreve.gastado.frase'), { year: g.year, n: g.deCada100 }),
-                rellena(t('landing.enBreve.dinero.topeCifra'), {
-                  limite: eurosBreves(l.definitivo),
-                }),
+                enCurso
+                  ? rellena(t('presupuesto.enBreve.gastado.frase.enCurso'), {
+                      year: g.year,
+                      n: g.deCada100,
+                    })
+                  : rellena(t('presupuesto.enBreve.gastado.frase'), {
+                      year: g.year,
+                      n: g.deCada100,
+                    }),
+                enCurso
+                  ? rellena(t('landing.enBreve.dinero.topeCifra.enCurso'), {
+                      limite: eurosBreves(l.definitivo),
+                    })
+                  : rellena(t('landing.enBreve.dinero.topeCifra'), {
+                      limite: eurosBreves(l.definitivo),
+                    }),
                 fecha,
               ]
             : [t('landing.enBreve.dinero.tope'), t('landing.enBreve.dinero.sinGastado')]

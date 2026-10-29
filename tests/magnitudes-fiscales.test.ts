@@ -22,11 +22,20 @@ const M = magnitudesDe(
   JSON.parse(readFileSync('public/data/budget-execution.json', 'utf8')),
 )
 
+const EJECUCION = JSON.parse(readFileSync('public/data/budget-execution.json', 'utf8'))
+const CIERRE_APARTE =
+  EJECUCION.ultimoCierre?.gastos?.total?.ejecutado !== EJECUCION.latest?.gastos?.total?.ejecutado
+
 describe('las magnitudes se derivan de los snapshots', () => {
-  it('separa lo autorizado de lo ejecutado, y sólo una es ejecución', () => {
+  it('separa lo autorizado de lo ejecutado, y sólo es ejecución lo reconocido', () => {
     const ejec = M.filter((m) => m.esEjecucion)
-    expect(ejec).toHaveLength(1)
-    expect(ejec[0].clave).toBe('reconocido')
+    // La del periodo más nuevo y, si es otro, la del último cierre que mide
+    // /gestion: las dos cifras se publican, así que las dos se reconocen.
+    expect(ejec.map((m) => m.clave)).toEqual(
+      CIERRE_APARTE ? ['reconocido', 'reconocido-cierre'] : ['reconocido'],
+    )
+    expect(ejec[0].valor).toBe(EJECUCION.latest.gastos.total.ejecutado)
+    if (CIERRE_APARTE) expect(ejec[1].valor).toBe(EJECUCION.ultimoCierre.gastos.total.ejecutado)
     // Y las que no lo son incluyen las cuatro que la prosa confunde.
     const claves = M.map((m) => m.clave)
     for (const c of ['credito-inicial', 'modificaciones', 'credito-actual', 'conprel'])

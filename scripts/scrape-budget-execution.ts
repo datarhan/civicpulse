@@ -3,6 +3,15 @@
  * public/data/budget-execution.json. Idempotent; polite (throttled). Best-effort
  * per period: a period whose PDFs 404, fail to fetch, or throw is skipped
  * (logged), never fatal — one bad PDF can't abort the whole run.
+ *
+ * Un periodo es un AÑO Y UN TRIMESTRE, no una página del índice: la página de
+ * cada año cuelga sus trimestres, y leer una hoja por página dejaba de 2025 sólo
+ * el cierre y del 1T de 2026 nada (budget-execution.ts, `periodosDelIndice`).
+ *
+ * La pasada cuenta lo que hizo (docs/DATA_INTEGRITY.md, regla 2): periodos
+ * encontrados, publicados y descartados con su motivo, y las hojas sin texto
+ * —PDF escaneados, que este parser no puede leer—. Lo escribe también en el
+ * snapshot, en `lectura`, para que no haga falta el log para saberlo.
  */
 import { mkdir, readFile, writeFile } from 'node:fs/promises'
 import { existsSync } from 'node:fs'
@@ -12,6 +21,11 @@ import {
   parseBudgetExecutionPdf,
   mergeExecutionPeriod,
   elegirDocumento,
+  enlacesPdf,
+  hojasDePagina,
+  periodosDelIndice,
+  motivoDeDescarte,
+  ultimoCierre,
   type BudgetExecutionPeriod,
   type ExecDoc,
   type ExecKind,
@@ -23,32 +37,11 @@ import {
 } from '../src/scraper/budget-execution-fetch'
 
 const OUT = join(dirname(fileURLToPath(import.meta.url)), '..', 'public/data/budget-execution.json')
+const UA = 'Mozilla/5.0 (compatible; CivicPulse/0.1; +https://github.com/datarhan/civicpulse)'
 const sleep = (ms: number) => new Promise((r) => setTimeout(r, ms))
 
-// From a period content-page, collect ALL candidate gastos + ingresos PDF URLs,
-// in page order. We no longer guess the right sheet from the filename/text
-// (resumen vs detalle): the caller parses every candidate and selects the one
-// with a valid grand total AND the most chapters, so a chapter-ful detalle
-// sheet wins over a chapter-less summary.
-async function pdfUrlsFor(pageUrl: string): Promise<{ gastos: string[]; ingresos: string[] }> {
-  const res = await fetch(pageUrl, {
-    headers: { 'User-Agent': 'Mozilla/5.0 (compatible; CivicPulse/0.1)' },
-  })
-  if (!res.ok) return { gastos: [], ingresos: [] }
-  const html = await res.text()
-  const links = [...html.matchAll(/href="([^"]+\.pdf[^"]*)"[^>]*>([^<]*)</gi)].map((m) => ({
-    href: m[1].startsWith('http') ? m[1] : `https://www.ribarroja.es${m[1]}`,
-    text: m[2],
-  }))
-  const candidates = (rx: RegExp) =>
-    links.filter((l) => rx.test(l.text) || rx.test(l.href)).map((l) => l.href)
-  return { gastos: candidates(/gasto/i), ingresos: candidates(/ingreso/i) }
-}
-
-function trimestreOf(label: string): number | null {
-  const m = label.match(/(\d)\s*[ºo]?\s*trimestre|trimestre\s*(\d)/i)
-  return m ? Number(m[1] || m[2]) : null
-}
+/** Menos que esto, una vez quitados los espacios, es un PDF sin capa de texto. */
+const SIN_TEXTO = 40
 
 const emptyDoc = (kind: ExecKind): ExecDoc => ({
   kind,
@@ -59,91 +52,85 @@ const emptyDoc = (kind: ExecKind): ExecDoc => ({
   total: { inicial: 0, modificaciones: 0, actual: 0, ejecutado: 0 },
 })
 
-// Fetch + parse every candidate PDF for one side and pick the best ExecDoc:
-// a valid grand total (total.actual > 0) AND the MOST chapters — so a
-// chapter-ful detalle sheet beats a chapter-less summary. Candidates are
-// fetched serially with the shared throttle; a throwing/empty candidate is
-// skipped, not fatal. Returns an empty doc when nothing usable was found (the
-// plausibility gate then drops the period).
-async function selectBestDoc(urls: string[], kind: ExecKind): Promise<ExecDoc> {
+interface Lectura {
+  /** Hojas descargadas y con texto. */
+  leidas: number
+  /** Hojas escaneadas: el PDF no trae texto que leer. */
+  sinTexto: string[]
+  /** Hojas que no se pudieron descargar. */
+  fallidas: string[]
+}
+
+// Fetch + parse every candidate PDF for one side and pick the best ExecDoc
+// (`elegirDocumento`: valid total, latest cut, most chapters). Candidates are
+// fetched serially with the shared throttle; a throwing candidate is skipped,
+// not fatal. Returns an empty doc when nothing usable was found (the gate then
+// drops the period, saying why).
+async function selectBestDoc(
+  urls: string[],
+  kind: ExecKind,
+  nombre: Map<string, string>,
+  lectura: Lectura,
+): Promise<ExecDoc> {
   const docs: ExecDoc[] = []
   for (const url of urls) {
     try {
       const text = await fetchPdfText(url)
-      if (text) docs.push(parseBudgetExecutionPdf(text))
+      if (!text || text.replace(/\s+/g, '').length < SIN_TEXTO) {
+        lectura.sinTexto.push(nombre.get(url) ?? url)
+        continue
+      }
+      lectura.leidas++
+      const doc = parseBudgetExecutionPdf(text)
+      if (doc.kind === kind) docs.push(doc)
     } catch (err) {
+      lectura.fallidas.push(nombre.get(url) ?? url)
       console.warn(`skip candidate (${kind}): ${url} · ${(err as Error).message}`)
     } finally {
       await sleep(400)
     }
   }
-  // El corte más tardío primero, y a igualdad el de más capítulos: la página de
-  // 2025 cuelga el 2T y el 4T juntos, los dos con 8 capítulos, y sólo contar
-  // capítulos publicó junio como cierre del ejercicio (elegirDocumento).
   return elegirDocumento(docs) ?? emptyDoc(kind)
-}
-
-// A period only ships if the figures are internally plausible: real year,
-// positive gastos+ingresos totals, both execution ratios in (0, 110], AND both
-// sides parsed a per-capítulo breakdown. The chapter-count guard drops periods
-// where one side's totals parsed but its breakdown didn't (the old 2023/2024/
-// 2026 layouts, where ingresos ships 0.1% with empty chapters) — honesty over
-// coverage; those layouts are a tracked Wave-1.1 follow-up. This keeps us from
-// publishing untrustworthy execution numbers on a public accountability page.
-function isPlausiblePeriod(p: BudgetExecutionPeriod): boolean {
-  return (
-    p.year > 0 &&
-    p.gastos.total.actual > 0 &&
-    p.ingresos.total.actual > 0 &&
-    p.ejecucionPct.gastos > 0 &&
-    p.ejecucionPct.gastos <= 110 &&
-    p.ejecucionPct.ingresos > 0 &&
-    p.ejecucionPct.ingresos <= 110 &&
-    p.gastos.chapters.length > 0 &&
-    p.ingresos.chapters.length > 0 &&
-    // Gastos e ingresos del mismo corte: el 2025 publicado juntaba los gastos
-    // de junio con los ingresos de diciembre (30 % frente a 85 %).
-    p.mismoCorte
-  )
 }
 
 async function main() {
   const index = await fetchExecutionIndex()
-  const periods: BudgetExecutionPeriod[] = []
+  const paginas: Array<{ label: string; enlaces: string[] }> = []
   for (const it of index) {
-    // Best-effort per period: any throw (network error, corrupt/blocked PDF,
-    // parser failure) skips THIS period and continues with the rest.
     try {
-      const { gastos: gUrls, ingresos: iUrls } = await pdfUrlsFor(it.href)
-      await sleep(400)
-      if (gUrls.length === 0 && iUrls.length === 0) {
-        console.warn(`skip (no PDFs): ${it.label}`)
-        continue
-      }
-      // Parse every candidate per side, select the one with a valid total and
-      // the most chapters (recovers per-capítulo detalle over a summary sheet).
-      const g = await selectBestDoc(gUrls, 'gastos')
-      const i = await selectBestDoc(iUrls, 'ingresos')
-      if (g.total.actual <= 0 && i.total.actual <= 0) {
-        console.warn(`skip (no usable PDF): ${it.label}`)
-        continue
-      }
-      periods.push(mergeExecutionPeriod(g, i, { trimestre: trimestreOf(it.label) }))
+      const res = await fetch(it.href, { headers: { 'User-Agent': UA } })
+      paginas.push({ label: it.label, enlaces: res.ok ? enlacesPdf(await res.text()) : [] })
     } catch (err) {
-      console.warn(`skip (error): ${it.label} · ${(err as Error).message}`)
-      continue
+      console.warn(`skip page (error): ${it.label} · ${(err as Error).message}`)
+    }
+    await sleep(400)
+  }
+  const nombre = new Map(
+    paginas.flatMap((p) => hojasDePagina(p)).map((h) => [h.href, `${h.texto} (${h.href})`]),
+  )
+  const grupos = periodosDelIndice(paginas)
+  const lectura: Lectura = { leidas: 0, sinTexto: [], fallidas: [] }
+  const survivors: BudgetExecutionPeriod[] = []
+  const descartados: Array<{ year: number; trimestre: number; motivo: string }> = []
+  for (const grupo of grupos) {
+    try {
+      const g = await selectBestDoc(grupo.gastos, 'gastos', nombre, lectura)
+      const i = await selectBestDoc(grupo.ingresos, 'ingresos', nombre, lectura)
+      const p = mergeExecutionPeriod(g, i, { trimestre: grupo.trimestre })
+      const motivo = motivoDeDescarte(p, grupo)
+      if (motivo) {
+        descartados.push({ year: grupo.year, trimestre: grupo.trimestre, motivo })
+        console.warn(`drop: ${grupo.year} T${grupo.trimestre} · ${motivo}`)
+      } else survivors.push(p)
+    } catch (err) {
+      const motivo = `error: ${(err as Error).message}`
+      descartados.push({ year: grupo.year, trimestre: grupo.trimestre, motivo })
+      console.warn(`drop: ${grupo.year} T${grupo.trimestre} · ${motivo}`)
     }
   }
-  // Validation gate: keep only plausible periods; log + drop the rest.
-  const survivors = periods.filter((p) => {
-    if (isPlausiblePeriod(p)) return true
-    console.warn(
-      `drop (implausible): year ${p.year} T${p.trimestre ?? '-'} · gastos ${p.ejecucionPct.gastos}% (actual ${p.gastos.total.actual}) · ingresos ${p.ejecucionPct.ingresos}% (actual ${p.ingresos.total.actual})`,
-    )
-    return false
-  })
   survivors.sort((a, b) => a.year - b.year || (a.trimestre ?? 0) - (b.trimestre ?? 0))
   const latest = survivors[survivors.length - 1] ?? null
+  const cierre = ultimoCierre(survivors)
   // Anti-shrink guard (same reasoning as scrape-paro): an unreachable or
   // reshuffled upstream page is NOT a data state. 2026-07-30 the nightly
   // overwrote a healthy snapshot with periods:[] and the /presupuesto
@@ -175,13 +162,25 @@ async function main() {
         source: EXEC_INDEX_URL,
         periods: survivors,
         latest,
+        ultimoCierre: cierre,
+        lectura: {
+          periodos: grupos.length,
+          publicados: survivors.length,
+          descartados,
+          hojasLeidas: lectura.leidas,
+          hojasSinTexto: lectura.sinTexto,
+          hojasFallidas: lectura.fallidas,
+        },
       },
       null,
       2,
     ),
   )
   console.log(
-    `wrote ${survivors.length}/${periods.length} periods · latest ${latest?.year} T${latest?.trimestre ?? '-'} · ejecución gastos ${latest?.ejecucionPct.gastos ?? '-'}%`,
+    `wrote ${survivors.length}/${grupos.length} periods · latest ${latest?.year} T${latest?.trimestre ?? '-'} ` +
+      `(gastos ${latest?.ejecucionPct.gastos ?? '-'} %) · último cierre ${cierre?.year ?? '—'} · ` +
+      `${descartados.length} descartado(s) · ${lectura.leidas} hoja(s) leída(s), ` +
+      `${lectura.sinTexto.length} sin texto, ${lectura.fallidas.length} fallida(s)`,
   )
 }
 

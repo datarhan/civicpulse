@@ -84,14 +84,17 @@ describe('«Tu ayuntamiento en 30 segundos»: cifras que no se leen mal', () => 
     expect(gastado?.year).toBe(limite.year)
 
     const t = await tarjetas()
-    const pregunta = `¿Cuánto dinero tuvo en ${limite.year}, y cuánto gastó?`
+    // En pasado del cierre, en presente de un año que no ha terminado.
+    const pregunta = gastado.enCurso
+      ? `¿Cuánto dinero tiene en ${limite.year}, y cuánto lleva gastado?`
+      : `¿Cuánto dinero tuvo en ${limite.year}, y cuánto gastó?`
     expect(t.dinero.startsWith(pregunta)).toBe(true)
     // Lo primero tras la pregunta es la cifra grande.
     expect(t.dinero.slice(pregunta.length).trim().startsWith(eurosBreves(gastado.ejecutado))).toBe(
       true,
     )
     const tope = eurosBreves(limite.definitivo)
-    expect(t.dinero).toContain(`Podía gastar ${tope}:`)
+    expect(t.dinero).toContain(`${gastado.enCurso ? 'Puede' : 'Podía'} gastar ${tope}:`)
     // Una sola vez, y es la de la frase del tope.
     expect(t.dinero.split(tope).length - 1).toBe(1)
   })

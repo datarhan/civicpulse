@@ -183,17 +183,36 @@ function periodoDe(contratos: ContratoLike[]): string {
   return `${fechas[0].slice(0, 4)}–${fechas[fechas.length - 1].slice(0, 4)}`
 }
 
+interface PeriodoDeEjecucion {
+  year?: number
+  fechaListado?: string | null
+  gastos?: {
+    total?: { inicial?: number; modificaciones?: number; actual?: number; ejecutado?: number }
+    chapters?: CapituloEjecucion[]
+  }
+}
+
+/**
+ * El periodo sobre el que se mide un año. Un snapshot que ya distingue el último
+ * cierre se lee por él —y si no tiene ninguno, no hay año que medir: null, no el
+ * trimestre en curso—; uno anterior, que sólo traía `latest`, por `latest`.
+ */
+function ejercicioMedible(be: FriccionInput['budgetExecution'] | undefined) {
+  if (!be) return undefined
+  return 'ultimoCierre' in be ? (be.ultimoCierre ?? undefined) : (be.latest ?? undefined)
+}
+
 export interface FriccionInput {
   tenders: { contracts?: ContratoLike[]; source?: { platform?: string; host?: string } }
   budgetExecution: {
-    latest?: {
-      year?: number
-      fechaListado?: string
-      gastos?: {
-        total?: { inicial?: number; modificaciones?: number; actual?: number; ejecutado?: number }
-        chapters?: CapituloEjecucion[]
-      }
-    }
+    latest?: PeriodoDeEjecucion | null
+    /**
+     * El último ejercicio cerrado (budget-execution.ts, `ultimoCierre`). Los
+     * indicadores que miden un año se calculan sobre él: con el 1T de 2026 como
+     * último periodo, «ejecución del presupuesto» habría dicho 11 % de un año
+     * que va por su primer trimestre.
+     */
+    ultimoCierre?: PeriodoDeEjecucion | null
     source?: string
   }
   /** public/data/budget.json — con su banda de municipios comparables. */
@@ -355,7 +374,7 @@ export function construirIndicadoresMunicipales(input: FriccionInput): Indicador
         // Derivada: con la hoja del 2T las dos cifras diferían en casi cuatro
         // millones; con la del cierre, el crédito inicial del listado es el de
         // CONPREL al céntimo, y decir «sigue sin explicación» era falso.
-        coincideConListado(gastoTotal, anio, input.budgetExecution?.latest)
+        coincideConListado(gastoTotal, anio, ejercicioMedible(input.budgetExecution))
           ? 'Es una cifra presupuestaria de la publicación del ministerio, no gasto ejecutado: el crédito inicial, el mismo que da el listado municipal. El porcentaje de ejecución que aparece más abajo se mide sobre el crédito DEFINITIVO, que le suma las modificaciones del año.'
           : 'Es una cifra presupuestaria de la publicación del ministerio, no gasto ejecutado. No es el punto de partida del porcentaje de ejecución que aparece más abajo: aquélla parte del crédito del listado municipal, las dos dicen ser el mismo ejercicio y la diferencia entre ambas sigue sin explicación.',
         'Sale de la publicación del ministerio, la misma fila cuyos ingresos y gastos no cuadran entre sí; /presupuesto lo explica.',
@@ -486,7 +505,7 @@ export function construirIndicadoresMunicipales(input: FriccionInput): Indicador
   })
 
   // ── 4 y 5. Salud fiscal: planificación y ejecución del presupuesto
-  const eje = input.budgetExecution?.latest
+  const eje = ejercicioMedible(input.budgetExecution)
   const total = eje?.gastos?.total
   const anio = eje?.year ? String(eje.year) : 'sin declarar'
   const citaEje = {
@@ -716,7 +735,7 @@ function euros(n: number): string {
  * verdad: la frase tiene que moverse con el dato.
  */
 function caveatsDeEjecucion(
-  eje: FriccionInput['budgetExecution']['latest'],
+  eje: PeriodoDeEjecucion | undefined,
   bud: FriccionInput['budget'],
   inicial: number,
 ): string[] {
@@ -758,7 +777,7 @@ function caveatsDeEjecucion(
 function coincideConListado(
   conprel: number,
   anio: number | string | undefined,
-  eje: FriccionInput['budgetExecution']['latest'],
+  eje: PeriodoDeEjecucion | undefined,
 ): boolean {
   const inicial = num(eje?.gastos?.total?.inicial)
   return (

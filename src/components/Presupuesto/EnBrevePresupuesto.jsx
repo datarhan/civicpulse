@@ -177,7 +177,11 @@ export default function EnBrevePresupuesto() {
       <TarjetaEnBreve
         key="limite"
         id="limite"
-        pregunta={rellena(t('presupuesto.enBreve.limite.pregunta'), { year: l.year })}
+        pregunta={
+          l.enCurso
+            ? rellena(t('presupuesto.enBreve.limite.pregunta.enCurso'), { year: l.year })
+            : rellena(t('presupuesto.enBreve.limite.pregunta'), { year: l.year })
+        }
         cifra={eurosBreves(l.definitivo)}
         cifraNota={
           l.porVecino != null
@@ -186,10 +190,15 @@ export default function EnBrevePresupuesto() {
         }
         figura={<FiguraLimite limite={l} />}
         frases={[
-          rellena(t('presupuesto.enBreve.limite.frase'), {
-            inicial: eurosBreves(l.inicial),
-            mod: eurosBreves(l.modificaciones),
-          }),
+          l.enCurso
+            ? rellena(t('presupuesto.enBreve.limite.frase.enCurso'), {
+                inicial: eurosBreves(l.inicial),
+                mod: eurosBreves(l.modificaciones),
+              })
+            : rellena(t('presupuesto.enBreve.limite.frase'), {
+                inicial: eurosBreves(l.inicial),
+                mod: eurosBreves(l.modificaciones),
+              }),
         ]}
         salvedad={
           l.conprelDiscrepa != null
@@ -222,7 +231,9 @@ export default function EnBrevePresupuesto() {
     const fecha = g.fecha
       ? g.avanceDelAnio === 1
         ? rellena(t('presupuesto.enBreve.gastado.fin'), { fecha: g.fecha })
-        : rellena(t('presupuesto.enBreve.gastado.fecha'), { fecha: g.fecha })
+        : g.enCurso
+          ? rellena(t('presupuesto.enBreve.gastado.fecha.enCurso'), { fecha: g.fecha })
+          : rellena(t('presupuesto.enBreve.gastado.fecha'), { fecha: g.fecha })
       : ''
     tarjetas.push(
       <TarjetaEnBreve
@@ -233,7 +244,12 @@ export default function EnBrevePresupuesto() {
         cifraNota={rellena(t('presupuesto.enBreve.gastado.cifraNota'), { n: g.deCada100 })}
         figura={<FiguraGastado gastado={g} />}
         frases={[
-          rellena(t('presupuesto.enBreve.gastado.frase'), { year: g.year, n: g.deCada100 }),
+          g.enCurso
+            ? rellena(t('presupuesto.enBreve.gastado.frase.enCurso'), {
+                year: g.year,
+                n: g.deCada100,
+              })
+            : rellena(t('presupuesto.enBreve.gastado.frase'), { year: g.year, n: g.deCada100 }),
           fecha,
         ]}
         nota={t('presupuesto.enBreve.gastado.nota')}
@@ -246,17 +262,31 @@ export default function EnBrevePresupuesto() {
   if (r.enQue) {
     const q = r.enQue
     const [a, b] = q.filas.filter((f) => f.capitulo != null)
+    // El tiempo verbal es el del gasto: «ha ido» mientras el año no ha cerrado.
+    const enCurso = !!r.gastado?.enCurso
     const general = !b
-      ? rellena(t('presupuesto.enBreve.enQue.uno'), { a: enFrase(nombre(a)) })
+      ? enCurso
+        ? rellena(t('presupuesto.enBreve.enQue.uno.enCurso'), { a: enFrase(nombre(a)) })
+        : rellena(t('presupuesto.enBreve.enQue.uno'), { a: enFrase(nombre(a)) })
       : q.dosLaMayoria
-        ? rellena(t('presupuesto.enBreve.enQue.mayoria'), {
-            a: enFrase(nombre(a)),
-            b: enFrase(nombre(b)),
-          })
-        : rellena(t('presupuesto.enBreve.enQue.primero'), {
-            a: enFrase(nombre(a)),
-            b: enFrase(nombre(b)),
-          })
+        ? enCurso
+          ? rellena(t('presupuesto.enBreve.enQue.mayoria.enCurso'), {
+              a: enFrase(nombre(a)),
+              b: enFrase(nombre(b)),
+            })
+          : rellena(t('presupuesto.enBreve.enQue.mayoria'), {
+              a: enFrase(nombre(a)),
+              b: enFrase(nombre(b)),
+            })
+        : enCurso
+          ? rellena(t('presupuesto.enBreve.enQue.primero.enCurso'), {
+              a: enFrase(nombre(a)),
+              b: enFrase(nombre(b)),
+            })
+          : rellena(t('presupuesto.enBreve.enQue.primero'), {
+              a: enFrase(nombre(a)),
+              b: enFrase(nombre(b)),
+            })
     const dom = q.dominante
     tarjetas.push(
       <TarjetaEnBreve
@@ -266,13 +296,19 @@ export default function EnBrevePresupuesto() {
         figura={<FiguraEnQue filas={q.filas} nombre={nombre} />}
         frases={[
           general,
-          dom
-            ? rellena(t('presupuesto.enBreve.enQue.dominante'), {
-                capitulo: enFrase(NOMBRES[dom.capitulo] ?? String(dom.capitulo)),
-                definitivo: eurosBreves(dom.definitivo),
-                ejecutado: eurosBreves(dom.ejecutado),
-              })
-            : '',
+          !dom
+            ? ''
+            : enCurso
+              ? rellena(t('presupuesto.enBreve.enQue.dominante.enCurso'), {
+                  capitulo: enFrase(NOMBRES[dom.capitulo] ?? String(dom.capitulo)),
+                  definitivo: eurosBreves(dom.definitivo),
+                  ejecutado: eurosBreves(dom.ejecutado),
+                })
+              : rellena(t('presupuesto.enBreve.enQue.dominante'), {
+                  capitulo: enFrase(NOMBRES[dom.capitulo] ?? String(dom.capitulo)),
+                  definitivo: eurosBreves(dom.definitivo),
+                  ejecutado: eurosBreves(dom.ejecutado),
+                }),
         ]}
         ancla="#capitulos"
         anclaTexto={ver}
