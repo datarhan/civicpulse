@@ -191,6 +191,18 @@ export const CATALOGUE = {
       'Procesos selectivos del propio Ayuntamiento de Riba-roja de Túria — oposiciones, bolsas de trabajo y estabilización. Distinto de las ofertas de la Agència de Col·locació (ver ',
     'empleoPublico.intro2': '). Fuente: portal municipal.',
     'empleoPublico.empty': 'No hay procesos selectivos publicados ahora mismo.',
+    'empleoPublico.comoSeEntra.titulo': '¿Cómo se entra a trabajar en el Ayuntamiento?',
+    'empleoPublico.comoSeEntra.intro':
+      'Con un proceso selectivo, que el Ayuntamiento convoca y publica con sus bases. Estas son las palabras de sus títulos:',
+    'empleoPublico.comoSeEntra.internos':
+      'Algunos no están abiertos a cualquiera: la promoción interna y la mejora de empleo son para quien ya tiene plaza en el Ayuntamiento, y la comisión de servicios, para funcionarios, de aquí o de otra administración, que pasan a ocupar un puesto por un tiempo.',
+    'empleoPublico.procesos.titulo': 'Los procesos que publica el Ayuntamiento',
+    'empleoPublico.procesos.sinEstado':
+      'Esta lista no dice cuáles siguen abiertos: la página del Ayuntamiento sólo da el título de cada uno. Para saberlo hay que abrirlo.',
+    'empleoPublico.tipo.oposicion': 'Plazas y puestos',
+    'empleoPublico.tipo.bolsa': 'Bolsas de trabajo',
+    'empleoPublico.tipo.estabilizacion': 'Estabilización',
+    'empleoPublico.tipo.otro': 'Otros procesos',
     // La plantilla municipal, traída de /cargos (auditoría de las dos lecturas,
     // §3 y §21). La frase de arriba dice qué cuenta cada cifra y por qué no se
     // restan; las cifras y los años los pone `puenteDePlantilla`. Que los
@@ -2250,6 +2262,18 @@ export const CATALOGUE = {
     'glosario.sindicaturaDeComptes.termino': 'Sindicatura de Comptes',
     'glosario.sindicaturaDeComptes.def':
       'El órgano de control externo de la Comunitat Valenciana: audita, después de gastado el dinero, si las cuentas del sector público valenciano, ayuntamientos incluidos, y su gestión se ajustan a la ley.',
+    'glosario.oposicion.termino': 'Oposición',
+    'glosario.oposicion.def':
+      'Uno o varios exámenes abiertos a quien cumpla los requisitos de la convocatoria. Las plazas son para quien saca mejor nota. Es la forma habitual de conseguir una plaza fija.',
+    'glosario.concurso.termino': 'Concurso',
+    'glosario.concurso.def':
+      'Se puntúan los méritos —años trabajados, títulos, cursos— con un baremo que fijan las bases, sin examen. En el concurso-oposición hay examen, y a quien lo aprueba se le suman los méritos.',
+    'glosario.bolsaDeTrabajo.termino': 'Bolsa de trabajo',
+    'glosario.bolsaDeTrabajo.def':
+      'Una lista ordenada de personas que han pasado una selección. El Ayuntamiento las llama por turno cuando necesita cubrir un puesto por un tiempo: una baja, una vacante mientras se convoca la plaza, un refuerzo. Estar en la bolsa no es tener plaza.',
+    'glosario.estabilizacion.termino': 'Estabilización',
+    'glosario.estabilizacion.def':
+      'Procesos extraordinarios de la Ley 20/2021 para convertir en fijas plazas que llevaban años cubiertas por personal temporal. Están abiertos a cualquiera que cumpla los requisitos, pero puntúa mucho la experiencia en ese tipo de plaza. La ley obligaba a convocarlos antes de que acabara 2022 y a terminarlos antes de que acabara 2024.',
     'presupuesto.fuentes.title': 'Dos fuentes, dos presupuestos aprobados',
     'presupuesto.fuentes.conprel': 'CONPREL · Ministerio de Hacienda',
     'presupuesto.fuentes.municipal': 'Estado de ejecución del propio Ayuntamiento',
@@ -3189,6 +3213,18 @@ export const CATALOGUE = {
       'Processos selectius del mateix Ajuntament de Riba-roja de Túria — oposicions, borses de treball i estabilització. Diferent de les ofertes de l’Agència de Col·locació (veure ',
     'empleoPublico.intro2': '). Font: portal municipal.',
     'empleoPublico.empty': 'No hi ha processos selectius publicats ara mateix.',
+    'empleoPublico.comoSeEntra.titulo': 'Com s’entra a treballar a l’Ajuntament?',
+    'empleoPublico.comoSeEntra.intro':
+      'Amb un procés selectiu, que l’Ajuntament convoca i publica amb les seues bases. Estes són les paraules dels seus títols:',
+    'empleoPublico.comoSeEntra.internos':
+      'Alguns no estan oberts a qualsevol: la promoció interna i la millora d’ocupació són per a qui ja té plaça a l’Ajuntament, i la comissió de serveis, per a funcionaris, d’ací o d’una altra administració, que passen a ocupar un lloc per un temps.',
+    'empleoPublico.procesos.titulo': 'Els processos que publica l’Ajuntament',
+    'empleoPublico.procesos.sinEstado':
+      'Esta llista no diu quins continuen oberts: la pàgina de l’Ajuntament només en dona el títol. Per a saber-ho cal obrir-lo.',
+    'empleoPublico.tipo.oposicion': 'Places i llocs',
+    'empleoPublico.tipo.bolsa': 'Borses de treball',
+    'empleoPublico.tipo.estabilizacion': 'Estabilització',
+    'empleoPublico.tipo.otro': 'Altres processos',
     'empleoPublico.plantilla.pregunta': 'Quanta gent treballa a l’Ajuntament?',
     'empleoPublico.plantilla.personasFrase':
       'L’any {anio} treballaven {n} persones a l’Ajuntament.',
@@ -4982,6 +5018,18 @@ export const CATALOGUE = {
     'glosario.sindicaturaDeComptes.termino': 'Sindicatura de Comptes',
     'glosario.sindicaturaDeComptes.def':
       "L'òrgan de control extern de la Comunitat Valenciana: audita, després de gastats els diners, si els comptes del sector públic valencià, ajuntaments inclosos, i la seua gestió s'ajusten a la llei.",
+    'glosario.oposicion.termino': 'Oposició',
+    'glosario.oposicion.def':
+      'Un o diversos exàmens oberts a qui complisca els requisits de la convocatòria. Les places són per a qui trau millor nota. És la manera habitual d’aconseguir una plaça fixa.',
+    'glosario.concurso.termino': 'Concurs',
+    'glosario.concurso.def':
+      'Es puntuen els mèrits —anys treballats, títols, cursos— amb un barem que fixen les bases, sense examen. En el concurs-oposició hi ha examen, i a qui l’aprova se li sumen els mèrits.',
+    'glosario.bolsaDeTrabajo.termino': 'Borsa de treball',
+    'glosario.bolsaDeTrabajo.def':
+      'Una llista ordenada de persones que han passat una selecció. L’Ajuntament les crida per torn quan necessita cobrir un lloc per un temps: una baixa, una vacant mentre es convoca la plaça, un reforç. Estar en la borsa no és tindre plaça.',
+    'glosario.estabilizacion.termino': 'Estabilització',
+    'glosario.estabilizacion.def':
+      'Processos extraordinaris de la Llei 20/2021 per a convertir en fixes places que feia anys que ocupava personal temporal. Estan oberts a qualsevol que complisca els requisits, però puntua molt l’experiència en eixe tipus de plaça. La llei obligava a convocar-los abans que acabara el 2022 i a acabar-los abans que acabara el 2024.',
     'presupuesto.fuentes.title': 'Dos fonts, dos pressupostos aprovats',
     'presupuesto.fuentes.conprel': "CONPREL · Ministeri d'Hisenda",
     'presupuesto.fuentes.municipal': "Estat d'execució del propi Ajuntament",
