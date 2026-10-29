@@ -106,7 +106,11 @@ The shell:
   means a glyph in `SectionGlyph.jsx`, a `group` and a one-line `descKey` in
   both locales — `tests/nav-grupos.test.js` reds on the last two.
 - `tweaks` (dark mode, density) persists to `localStorage['cp:tweaks']` and
-  applies `html.dark` + a root font size.
+  applies `html.dark` + a root font size. It also holds the reader's fold of
+  the two readings, `lecturas` («todo» unless the reader picks «esencial»):
+  `components/Lecturas.jsx`, whose header lists the terms it must keep. A page
+  with both readings wraps each detailed section in `SeccionExperta`, with a
+  title that carries no figure.
 - Cmd/Ctrl+K opens `components/CmdK.jsx`, indexing `NAV`, officials (current and
   former), promises, quejas and pleno findings.
 

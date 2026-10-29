@@ -146,9 +146,22 @@ language: «gastado» belongs only to obligaciones reconocidas. Its entries feed
 3. **No LLM-written summary.** Generated prose about published figures is
    unreviewed prose (data-integrity rule 4) and would drift from the detail.
    Templates + snapshot only.
-4. **No «modo fácil» toggle.** A mode splits the audience, doubles the surface
-   the reader-review must read, and hides the caveats from whoever picks the
-   easy mode. One page, layered.
+4. **No «modo fácil».** A separate easy mode splits the audience, doubles the
+   surface the reader-review must read, and hides the caveats from whoever
+   picks it. One page, layered. What the reader may choose instead is a
+   **fold**, «Ver: lo esencial · todo», under the divider between the two
+   readings (`src/components/Lecturas.jsx`). It reduces each section of the
+   detailed reading to its title, and it does not become a mode:
+   - «todo» is the default for every reader, and the choice is stored beside
+     dark mode, never in the URL, so a shared link opens the whole page;
+   - folded sections stay in the page: the fold changes what is visible,
+     never what is written;
+   - only whole sections fold, so a figure and its caveat fold together; a
+     folded section shows a title with no figures in it, and the summary
+     cards keep their caveats and never fold;
+   - every link into the detail, a `#fragment` and a Cmd+K result open the
+     section they point at;
+   - the reader-review reads with «todo», and printing unfolds everything.
 5. **Legally material pages last.** `/eficiencia`, `/gestion`, `/promesas`,
    `/hallazgos` can follow only after the pattern has run on non-legal pages,
    and their summaries inherit every rule of those surfaces (no person in a
@@ -165,6 +178,11 @@ language: «gastado» belongs only to obligaciones reconocidas. Its entries feed
   axe at desktop and 375px.
 - `review:surfaces` reads the page as before; `EnBreve` items carry
   `data-en-breve` so the report can quote them.
+- The fold (`tests/e2e/pliegue-lecturas.spec.ts`): nothing folded without a
+  stored choice; with «lo esencial», the summary layer whole and each section
+  down to its title; the page text identical in both states; every summary
+  link and a loaded `#fragment` landing on an open section; print unfolded;
+  axe in both states, at desktop and 375px.
 - A browser look at light, dark and 375px before it is called done.
 
 ## Rollout

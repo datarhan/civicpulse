@@ -1,4 +1,4 @@
-import { lazy, Suspense, useEffect, useState } from 'react'
+import { lazy, Suspense, useCallback, useEffect, useState } from 'react'
 import { Navigate, Route, Routes, useLocation } from 'react-router-dom'
 import { Sidebar } from './components/Sidebar'
 import { entradaNavActiva } from './nav'
@@ -6,6 +6,7 @@ import { Topbar } from './components/Topbar'
 import { CmdK } from './components/CmdK'
 import { AbrirBuscador } from './lib/buscador'
 import { TweaksPanel } from './components/TweaksPanel'
+import { ProveedorLecturas, normalizaLecturas } from './components/Lecturas'
 import { SkipLink } from './components/SkipLink'
 import ErrorBoundary from './components/ErrorBoundary'
 import { useHashScroll } from './hooks/useHashScroll'
@@ -76,12 +77,17 @@ export { PERIODISTAS_ENABLED } from './flags'
 const Agentes = PERIODISTAS_ENABLED ? lazy(() => import('./pages/Agentes')) : null
 const AgenteReporte = PERIODISTAS_ENABLED ? lazy(() => import('./pages/AgenteReporte')) : null
 
-const DEFAULT_TWEAKS = { dark: false, density: 'comfortable' }
+// `lecturas` es el pliegue de las dos lecturas (components/Lecturas.jsx):
+// «todo» para cualquiera que no haya elegido otra cosa.
+const DEFAULT_TWEAKS = { dark: false, density: 'comfortable', lecturas: 'todo' }
 
 function loadTweaks() {
   try {
     const raw = localStorage.getItem('cp:tweaks')
-    if (raw) return { ...DEFAULT_TWEAKS, ...JSON.parse(raw) }
+    if (raw) {
+      const guardado = { ...DEFAULT_TWEAKS, ...JSON.parse(raw) }
+      return { ...guardado, lecturas: normalizaLecturas(guardado.lecturas) }
+    }
   } catch {
     // ignore
   }
@@ -259,6 +265,10 @@ export default function App() {
   }, [tweaks])
 
   const updateTweaks = (patch) => setTweaks((prev) => ({ ...prev, ...patch }))
+  const cambiarLecturas = useCallback(
+    (lecturas) => setTweaks((prev) => ({ ...prev, lecturas })),
+    [],
+  )
 
   if (onLanding) {
     return (
@@ -284,11 +294,13 @@ export default function App() {
   return (
     <>
       <SkipLink />
-      <InnerShell
-        onOpenCmdK={() => setCmdK(true)}
-        tweaksOpen={tweaksOpen}
-        onToggleTweaks={() => setTweaksOpen((o) => !o)}
-      />
+      <ProveedorLecturas lecturas={tweaks.lecturas} onCambiar={cambiarLecturas}>
+        <InnerShell
+          onOpenCmdK={() => setCmdK(true)}
+          tweaksOpen={tweaksOpen}
+          onToggleTweaks={() => setTweaksOpen((o) => !o)}
+        />
+      </ProveedorLecturas>
       <TweaksPanel
         open={tweaksOpen}
         onClose={() => setTweaksOpen(false)}

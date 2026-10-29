@@ -199,6 +199,17 @@ overwrites it. Change the bot's SQLite instead.
   no «Fecha de listado», so its cut-off is the print date. And 2T 2023: the
   Ministry's F.1.1 quarterly forms, each side split into a current and a
   capital sheet (`unirPartes` joins them).
+- **Sheets with no text layer** — 3T 2025's six sheets and the income side of
+  2024's close are «Microsoft: Print To PDF» output with every glyph drawn as
+  a path: not scans, but pdf-parse gets nothing. They are read by OCR
+  (`budget-execution-ocr.ts`, pure; `budget-execution-ocr-fetch.ts`: mupdf +
+  tesseract.js, all WebAssembly, because the nightly runner has no poppler) and
+  published only if the reading adds up: every printed percentage matches
+  executed ÷ final to the rounding, the chapters sum to the printed total to
+  the cent, and — for the old SICALWIN income sheet — six identities per row
+  hold. A detail sheet is never published; its «Total» cross-checks the
+  summary chapters it covers. Amounts are read from their digits alone (every
+  figure has two decimals; separators are what OCR gets wrong).
 - **Income is NET recognised rights** — SICALWIN's income rows run over two
   lines; the gross «DR» is on the first, the «DR Netos» the sheet's own
   percentage uses on the second. Until 2026-10-29 the parser read the gross
@@ -206,6 +217,7 @@ overwrites it. Change the bot's SQLite instead.
   61,37 % and 84,29 %. Count the net column from the start of the second line:
   the close sheet's first copy of each «Total Capítulo» misprints the last
   column of the first line, and counted straight through, chapter 9 read 0.
+  The OCR reads the same net column for that layout.
 - **Every period reconciles or is dropped** (`motivoDeDescarte`) — chapters
   sum to the total; the total's percentage is the one the sheet prints (each
   period's `cotejo` carries it); the «definitivo» is the credit at the cut-off,
@@ -217,9 +229,9 @@ overwrites it. Change the bot's SQLite instead.
   payments go — below zero in NET rights, more refunded than recognised, so
   its 0,08 % says what had been entered, not what came in.
 - **What is not read, and why** — the snapshot's `lectura` block lists every
-  period dropped with its reason and every sheet with no text layer (scanned
-  PDFs: 3T 2025 and the income side of 2024's close; they wait for an OCR
-  tool to be chosen).
+  period dropped with its reason, every sheet with no text layer, and
+  (`hojasOcr`) what the OCR did with each: read, used to cross-check, dropped
+  with the figure that did not add up, or no reader.
 
 ### Coste efectivo de los servicios (art. 116 ter LRSAL)
 

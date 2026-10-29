@@ -867,6 +867,17 @@ export const CATALOGUE = {
     // El paso de la lectura vecinal a la experta (components/DivisorLecturas.jsx).
     'lecturas.divisor':
       'Hasta aquí, lo esencial. Debajo, todos los datos, para quien quiera comprobarlos.',
+    // El pliegue de la lectura experta (components/Lecturas.jsx). Los títulos de
+    // sección van con su página (`*.seccion.*`): son lo único que se ve de una
+    // sección plegada, y no llevan cifras, que quedarían a la vista sin su
+    // salvedad.
+    'lecturas.ver': 'Ver:',
+    'lecturas.esencial': 'lo esencial',
+    'lecturas.todo': 'todo',
+    'plenos.indice.seccion.votosYDeclaraciones': 'Votaciones y declaraciones',
+    'plenoDetail.seccion.cifras': 'La sesión en cifras',
+    'quejas.seccion.publicadas': 'Las quejas publicadas',
+    'quejas.seccion.bop': 'Anuncios del Ayuntamiento en el Boletín Oficial de la Provincia',
     // Las palabras de la sede que salen dentro de los títulos (moción, sin
     // dictaminar…): el título es literal y no admite marca, así que la tarjeta
     // del orden del día las nombra aparte, con su entrada del glosario.
@@ -2138,6 +2149,22 @@ export const CATALOGUE = {
     'presupuesto.enBreve.cap.7': 'Aportaciones para inversiones de otros',
     'presupuesto.enBreve.cap.8': 'Préstamos y depósitos',
     'presupuesto.enBreve.cap.9': 'Devolución de préstamos',
+    // «¿Hay algo raro?»: sólo con una anomalía que la fuente misma muestra.
+    'presupuesto.enBreve.rareza.pregunta': '¿Hay algo raro?',
+    'presupuesto.enBreve.rareza.cifraNota': 'de diferencia',
+    'presupuesto.enBreve.rareza.sobra':
+      'El presupuesto de {year} que el Ayuntamiento rindió al Ministerio de Hacienda no cuadra: los ingresos superan a los gastos en {dif}.',
+    'presupuesto.enBreve.rareza.falta':
+      'El presupuesto de {year} que el Ayuntamiento rindió al Ministerio de Hacienda no cuadra: los gastos superan a los ingresos en {dif}.',
+    'presupuesto.enBreve.rareza.nota':
+      'Un presupuesto se aprueba sin déficit inicial, y la regla vale en los dos sentidos: tampoco debería sobrar.',
+    // Los títulos con los que se pliega cada sección de la lectura experta
+    // (components/Lecturas.jsx). Sin cifras: son lo único que se ve plegado.
+    'presupuesto.seccion.aprobado': 'Lo aprobado: en qué se gasta y de dónde vienen los ingresos',
+    'presupuesto.seccion.deuda': 'Lo que debe el Ayuntamiento',
+    'presupuesto.seccion.menores': 'Contratos menores',
+    'presupuesto.seccion.obras': 'Obras de infraestructura',
+    'presupuesto.seccion.ted': 'Contratos sobre el umbral europeo',
     'presupuesto.enBreve.deuda.pregunta': '¿Debe dinero?',
     'presupuesto.enBreve.deuda.frase':
       'Es la [[deudaViva|deuda viva]] al cierre de {year}, según el Ministerio de Hacienda.',
@@ -3728,6 +3755,13 @@ export const CATALOGUE = {
     'plenos.enBreve.proximo.verAcuerdo': 'L’acord, en l’acta del {fecha} →',
     'lecturas.divisor':
       'Fins ací, l’essencial. A sota, totes les dades, per a qui les vulga comprovar.',
+    'lecturas.ver': 'Veure:',
+    'lecturas.esencial': 'l’essencial',
+    'lecturas.todo': 'tot',
+    'plenos.indice.seccion.votosYDeclaraciones': 'Votacions i declaracions',
+    'plenoDetail.seccion.cifras': 'La sessió en xifres',
+    'quejas.seccion.publicadas': 'Les queixes publicades',
+    'quejas.seccion.bop': 'Anuncis de l’Ajuntament en el Butlletí Oficial de la Província',
     'plenos.vocabulario': 'Paraules d’este ordre del dia: {lista}.',
     'plenos.anio.titulo': 'Els plens de l’últim any',
     'plenos.anio.intro':
@@ -4850,6 +4884,19 @@ export const CATALOGUE = {
     'presupuesto.enBreve.cap.7': "Aportacions per a inversions d'altres",
     'presupuesto.enBreve.cap.8': 'Préstecs i depòsits',
     'presupuesto.enBreve.cap.9': 'Devolució de préstecs',
+    'presupuesto.enBreve.rareza.pregunta': 'Hi ha alguna cosa estranya?',
+    'presupuesto.enBreve.rareza.cifraNota': 'de diferència',
+    'presupuesto.enBreve.rareza.sobra':
+      "El pressupost de {year} que l'Ajuntament va retre al Ministeri d'Hisenda no quadra: els ingressos superen les despeses en {dif}.",
+    'presupuesto.enBreve.rareza.falta':
+      "El pressupost de {year} que l'Ajuntament va retre al Ministeri d'Hisenda no quadra: les despeses superen els ingressos en {dif}.",
+    'presupuesto.enBreve.rareza.nota':
+      "Un pressupost s'aprova sense dèficit inicial, i la regla val en els dos sentits: tampoc hauria de sobrar.",
+    'presupuesto.seccion.aprobado': "L'aprovat: en què es gasta i d'on vénen els ingressos",
+    'presupuesto.seccion.deuda': "El que deu l'Ajuntament",
+    'presupuesto.seccion.menores': 'Contractes menors',
+    'presupuesto.seccion.obras': "Obres d'infraestructura",
+    'presupuesto.seccion.ted': 'Contractes sobre el llindar europeu',
     'presupuesto.enBreve.deuda.pregunta': 'Deu diners?',
     'presupuesto.enBreve.deuda.frase':
       "És el [[deudaViva|deute viu]] al tancament de {year}, segons el Ministeri d'Hisenda.",

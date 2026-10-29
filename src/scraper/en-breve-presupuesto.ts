@@ -21,7 +21,11 @@
  * 3. «Gastado» es sólo lo ejecutado (obligaciones reconocidas). El tope del
  *    presupuesto se dice tope.
  */
-import { contrastarPresupuesto, TOLERANCIA_EQUILIBRIO } from './budget-contraste'
+import {
+  contrastarPresupuesto,
+  desequilibrioDeConprel,
+  TOLERANCIA_EQUILIBRIO,
+} from './budget-contraste'
 import { esCierre } from './budget-execution'
 import {
   cascadaGastos,
@@ -39,7 +43,12 @@ export interface EjecucionEnBreve {
 
 export interface EntradaEnBreve {
   budget?: {
-    snapshot?: { year?: number; totalExpense?: number | null; population?: number }
+    snapshot?: {
+      year?: number
+      totalExpense?: number | null
+      totalRevenue?: number | null
+      population?: number
+    }
   } | null
   ejecucion?: { latest?: EjecucionEnBreve | null } | null
   deuda?: {
@@ -118,6 +127,20 @@ export interface BarrioEnBreve {
   menosDeUno: boolean
 }
 
+/**
+ * «¿Hay algo raro?»: una anomalía que se puede afirmar sin juicio. Hoy, una:
+ * el presupuesto que el Ayuntamiento rinde a CONPREL no cuadra —ingresos y
+ * gastos difieren—. Sin anomalía, null, y la tarjeta no sale: nunca un «todo
+ * correcto», que afirmaría algo que esta página no ha comprobado.
+ */
+export interface RarezaEnBreve {
+  year: number
+  ingresos: number
+  gastos: number
+  /** Ingresos menos gastos: positivo si sobra, negativo si falta. */
+  diferencia: number
+}
+
 export interface EnBrevePresupuesto {
   /** Sin listado municipal del ejercicio: el aprobado de CONPREL, si lo hay. */
   aprobado: { year: number; total: number } | null
@@ -126,6 +149,7 @@ export interface EnBrevePresupuesto {
   enQue: EnQueEnBreve | null
   deuda: DeudaEnBreve | null
   barrio: BarrioEnBreve | null
+  rareza: RarezaEnBreve | null
 }
 
 /** Cuántos capítulos se pintan por su nombre antes de agrupar el resto. */
@@ -258,5 +282,18 @@ export function enBrevePresupuesto(e: EntradaEnBreve): EnBrevePresupuesto {
     barrio = { deCada100: Math.round(pct), menosDeUno: pct < 0.5 }
   }
 
-  return { aprobado, limite, gastado, enQue, deuda, barrio }
+  // La anomalía de CONPREL, de sus dos totales y de nada más (budget-contraste,
+  // `desequilibrioDeConprel`): la misma cifra que el aviso de la sección.
+  const dif = desequilibrioDeConprel(s)
+  const rareza: RarezaEnBreve | null =
+    s && esNum(s.year) && dif !== null && Math.abs(dif) >= TOLERANCIA_EQUILIBRIO
+      ? {
+          year: s.year,
+          ingresos: s.totalRevenue as number,
+          gastos: s.totalExpense as number,
+          diferencia: dif,
+        }
+      : null
+
+  return { aprobado, limite, gastado, enQue, deuda, barrio, rareza }
 }

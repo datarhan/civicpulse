@@ -1325,6 +1325,117 @@ body.cp-kiosk .cp-live-container {
   text-wrap: balance;
 }
 
+/* El pliegue de las dos lecturas (components/Lecturas.jsx): «Ver: lo esencial ·
+   todo», bajo el divisor.
+
+   Lo que se ve en cada estado lo decide ESTA hoja, no el JSX: la pestaña y el
+   cuerpo de cada sección están siempre en el DOM, y `[data-plegada]` elige cuál
+   se ve. Así el pliegue cambia lo que se ve y nunca lo que hay, y la impresión
+   lo despliega con una regla, sin depender de que corra un script.
+
+   Una sección con el cuerpo vacío —un panel cuyos datos aún no han llegado, o
+   que no tiene— no enseña su pestaña: sería un título sobre nada. `:empty` se
+   entera solo de cuándo llega el contenido. */
+.cp-ver-lecturas {
+  display: flex;
+  justify-content: flex-end;
+  margin: -14px 0 18px;
+}
+.cp-ver-lecturas-boton {
+  appearance: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 3px;
+  border: 1px solid var(--border2);
+  border-radius: var(--r-pill);
+  background: var(--surf);
+  color: var(--ink70);
+  font: inherit;
+  font-size: var(--fs-aux);
+  line-height: 1.3;
+  cursor: pointer;
+}
+.cp-ver-lecturas-boton:focus-visible {
+  outline: 2px solid var(--civic);
+  outline-offset: 2px;
+}
+.cp-ver-lecturas-rotulo {
+  padding: 0 4px 0 8px;
+}
+.cp-ver-lecturas-opcion {
+  padding: 3px 10px;
+  border-radius: var(--r-pill);
+}
+.cp-ver-lecturas-opcion[data-activa] {
+  background: var(--ink);
+  color: var(--paper);
+  font-weight: 600;
+}
+.cp-ver-lecturas-boton:hover .cp-ver-lecturas-opcion:not([data-activa]) {
+  color: var(--ink);
+  text-decoration: underline;
+}
+
+.cp-experta-plegada {
+  display: none;
+  margin: 0;
+  font-size: var(--fs-body);
+  font-weight: 700;
+}
+[data-seccion-experta][data-plegada] {
+  margin-top: 0 !important;
+}
+[data-seccion-experta][data-plegada] > .cp-experta-plegada {
+  display: block;
+}
+[data-seccion-experta][data-plegada] > .cp-experta-cuerpo,
+[data-seccion-experta]:has(> .cp-experta-cuerpo:empty) > .cp-experta-plegada {
+  display: none;
+}
+.cp-experta-plegada > button {
+  appearance: none;
+  display: flex;
+  width: 100%;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 12px 2px;
+  border: 0;
+  border-bottom: 1px solid var(--border);
+  background: none;
+  color: var(--ink);
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+.cp-experta-plegada > button:hover .cp-experta-plegada-flecha,
+.cp-experta-plegada > button:focus-visible .cp-experta-plegada-flecha {
+  color: var(--civic);
+}
+.cp-experta-plegada > button:focus-visible {
+  outline: 2px solid var(--civic);
+  outline-offset: 2px;
+}
+.cp-experta-plegada-flecha {
+  flex: none;
+  color: var(--ink50);
+  font-weight: 400;
+}
+/* El foco llega aquí al abrir una sección desde su pestaña: es un destino, no
+   un control, y un recuadro alrededor de la sección entera no dice nada. */
+.cp-experta-cuerpo:focus {
+  outline: none;
+}
+@media print {
+  [data-seccion-experta][data-plegada] > .cp-experta-cuerpo {
+    display: block !important;
+  }
+  [data-seccion-experta] > .cp-experta-plegada {
+    display: none !important;
+  }
+}
+
 /* «En breve» — la primera capa de una página densa (components/EnBreve.jsx).
 
    La rejilla se reparte sola con `auto-fit`: cuatro tarjetas en escritorio,
