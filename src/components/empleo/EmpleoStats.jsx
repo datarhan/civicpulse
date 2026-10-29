@@ -164,28 +164,19 @@ export default function EmpleoStats({ stats, t, totalAll, offers }) {
           value={stats.closingSoon}
           tone={stats.closingSoon ? 'crit' : undefined}
         />
+        {/* Su propia casilla, rotulada. Iba suelta debajo de la fila, y su
+            «85 %» caía bajo «Cierran ≤14 días» como si fuera de ellas
+            (auditoría de las dos lecturas, §20). Y en número sobre las
+            mostradas, no en porcentaje: la ficha sólo dice «Sí» cuando lo
+            pide, nunca «No», así que las demás no lo indican. */}
+        {stats.vehicleRequired > 0 && (
+          <Kpi
+            label={t('empleo.kpi.vehicle')}
+            value={stats.vehicleRequired}
+            sub={t('empleo.kpi.ofShown').replace('{n}', stats.total)}
+          />
+        )}
       </div>
-
-      {stats.vehiclePct > 0 && (
-        <div
-          style={{
-            marginTop: 10,
-            fontSize: 'var(--fs-meta)',
-            color: 'var(--ink70)',
-            display: 'flex',
-            alignItems: 'baseline',
-            gap: 6,
-          }}
-        >
-          <span
-            className="mono"
-            style={{ fontSize: 'var(--fs-body)', fontWeight: 700, color: 'var(--civic)' }}
-          >
-            {stats.vehiclePct}%
-          </span>
-          {t('empleo.kpi.vehicle')}
-        </div>
-      )}
 
       {/* charts row */}
       <div

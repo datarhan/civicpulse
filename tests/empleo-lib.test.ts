@@ -9,6 +9,8 @@ import {
   distinctContracts,
   offersByMunicipioGeo,
   EMPTY_FILTERS,
+  enBreveEmpleo,
+  DIAS_CIERRE_PRONTO,
 } from '../src/lib/empleo'
 
 // A deterministic "now" so deadline windows don't drift with the clock.
@@ -132,9 +134,17 @@ describe('empleo/computeEmpleoStats', () => {
   it('counts offers closing within 14 days (excludes already-closed + null)', () => {
     expect(s.closingSoon).toBe(2) // fo1 (+5d) + fo4 (+2d); fo5 closed, fo2 +30d, fo3 null
   })
-  it('computes the vehicle-required share', () => {
+  it('la frase vecinal cuenta sólo las abiertas, y las mismas «cierran pronto» que el contador', () => {
+    const f = enBreveEmpleo(OFFERS, NOW)
+    // fo5 cerró ayer: no está; fo3 no tiene plazo y sigue abierta.
+    expect(f).toEqual({ abiertas: 4, enRiba: 3, cierranPronto: 2 })
+    expect(f.abiertas).toBe(s.open)
+    expect(f.cierranPronto).toBe(s.closingSoon)
+    expect(DIAS_CIERRE_PRONTO).toBe(14)
+  })
+  it('counts the offers that ask for a vehicle (a count, not a share: the ficha never says «No»)', () => {
     expect(s.vehicleRequired).toBe(3) // fo1, fo2, fo5
-    expect(s.vehiclePct).toBe(60)
+    expect(s).not.toHaveProperty('vehiclePct')
   })
   it('bins publications by month, ascending', () => {
     expect(s.byMonth).toEqual([

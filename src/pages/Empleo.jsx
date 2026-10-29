@@ -4,6 +4,8 @@ import { Card, Pill } from '../components/Primitives'
 import DataAsOf from '../components/DataAsOf'
 import EmpleoStats from '../components/empleo/EmpleoStats'
 import EmpleoFilters from '../components/empleo/EmpleoFilters'
+import DivisorLecturas from '../components/DivisorLecturas'
+import { SeccionExperta } from '../components/Lecturas'
 import { useEmpleo, deadlineInfo, effectiveStatus } from '../hooks/useEmpleo'
 import {
   EMPTY_FILTERS,
@@ -15,6 +17,8 @@ import {
   paginate,
   shortContract,
   normalizeJornada,
+  enBreveEmpleo,
+  DIAS_CIERRE_PRONTO,
 } from '../lib/empleo'
 import { fmtDateShort, rellena } from '../lib/formatters'
 import { useT } from '../i18n'
@@ -50,7 +54,10 @@ function OfferRow({ o, t }) {
   const extraOcc = occ ? d.ocupaciones.length - 1 : 0
   const funciones = d && d.funciones ? d.funciones : null
   const funcLong = !!funciones && funciones.length > 110
-  const hasChips = o.inRibaRoja || contrato || showJornada || puestos > 1 || salario
+  // La ficha sólo dice «Sí» cuando el puesto pide vehículo propio; sin el
+  // campo no se afirma nada.
+  const vehiculo = d && d.vehiculo === 'Sí'
+  const hasChips = o.inRibaRoja || contrato || showJornada || puestos > 1 || salario || vehiculo
 
   // The card body is one big Link; the "ver más" toggle is a SIBLING (not
   // nested inside the <a>, which would be a nested-interactive a11y violation).
@@ -154,6 +161,11 @@ function OfferRow({ o, t }) {
                 {salario}
               </Pill>
             )}
+            {vehiculo && (
+              <Pill tone="neutral" size="xs">
+                {t('empleo.card.vehiculo')}
+              </Pill>
+            )}
           </div>
         )}
 
@@ -215,6 +227,67 @@ function OfferRow({ o, t }) {
         </button>
       )}
     </div>
+  )
+}
+
+/**
+ * La lectura vecinal de /empleo (auditoría de las dos lecturas, §20): una frase
+ * y, debajo, la lista. Las cifras salen de `enBreveEmpleo`, de todas las
+ * ofertas y no de las filtradas, y la de «cierran pronto» con la misma ventana
+ * que el contador de abajo.
+ */
+function FraseEmpleo({ items, t }) {
+  const f = enBreveEmpleo(items)
+  const frases = []
+  if (f.abiertas === 0) frases.push(t('empleo.frase.ninguna'))
+  else {
+    frases.push(
+      f.abiertas === 1
+        ? t('empleo.frase.abiertas.una')
+        : rellena(t('empleo.frase.abiertas'), { n: f.abiertas }),
+    )
+    frases.push(
+      f.enRiba === 0
+        ? t('empleo.frase.enRiba.ninguna')
+        : f.enRiba === 1
+          ? t('empleo.frase.enRiba.una')
+          : rellena(t('empleo.frase.enRiba'), { n: f.enRiba }),
+    )
+    if (f.cierranPronto === 1)
+      frases.push(rellena(t('empleo.frase.cierran.una'), { dias: DIAS_CIERRE_PRONTO }))
+    else if (f.cierranPronto > 1)
+      frases.push(
+        rellena(t('empleo.frase.cierran'), { n: f.cierranPronto, dias: DIAS_CIERRE_PRONTO }),
+      )
+  }
+  return (
+    <section aria-labelledby="empleo-frase" data-empleo-frase="" style={{ margin: '4px 0 14px' }}>
+      <h2
+        id="empleo-frase"
+        className="mono"
+        style={{
+          fontSize: 'var(--fs-micro)',
+          color: 'var(--ink50)',
+          textTransform: 'uppercase',
+          letterSpacing: '.08em',
+          fontWeight: 700,
+          margin: 0,
+        }}
+      >
+        {t('empleo.frase.titulo')}
+      </h2>
+      <p
+        style={{
+          fontSize: 'var(--fs-body)',
+          lineHeight: 1.6,
+          color: 'var(--ink)',
+          margin: '6px 0 0',
+          maxWidth: '70ch',
+        }}
+      >
+        {frases.join(' ')}
+      </p>
+    </section>
   )
 }
 
@@ -366,6 +439,8 @@ export default function Empleo() {
         </div>
       </div>
 
+      {hasData && <FraseEmpleo items={items} t={t} />}
+
       {hasData && (
         <EmpleoFilters
           filters={filters}
@@ -380,15 +455,13 @@ export default function Empleo() {
         />
       )}
 
-      {hasData && <EmpleoStats stats={stats} totalAll={items.length} offers={filtered} t={t} />}
-
       <Card pad={false} style={{ padding: '4px 14px' }}>
         {loading && (
           <div style={{ padding: 12, fontSize: 'var(--fs-meta)', color: 'var(--ink50)' }}>…</div>
         )}
         {error && (
           <div style={{ padding: 12, fontSize: 'var(--fs-aux)', color: 'var(--warn-ink)' }}>
-            {t('empleo.error')} <code>npm run scrape:empleo</code>
+            {t('empleo.error')}
           </div>
         )}
         {!loading && !error && pageData.items.length === 0 && (
@@ -402,6 +475,19 @@ export default function Empleo() {
       </Card>
 
       <Pager page={pageData.page} totalPages={pageData.totalPages} onPage={setPage} t={t} />
+
+      {/* Las dos lecturas: arriba la frase y la lista, que es lo que viene a
+          buscar quien busca trabajo; debajo del divisor, las cifras de las
+          ofertas, que siguen al filtro. Iban antes que la lista y la empujaban
+          una pantalla abajo (auditoría de las dos lecturas, §20). */}
+      {hasData && (
+        <>
+          <DivisorLecturas />
+          <SeccionExperta id="empleo-cifras" titulo={t('empleo.seccion.cifras')}>
+            <EmpleoStats stats={stats} totalAll={items.length} offers={filtered} t={t} />
+          </SeccionExperta>
+        </>
+      )}
 
       <div
         style={{
