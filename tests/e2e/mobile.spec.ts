@@ -108,6 +108,10 @@ const ROUTES: Route[] = [
   // renders once tender-geo.json has arrived.
   { path: '/', ready: /sitúa (\d+|menos de 1) de cada 100 €/ }, // map coverage (tender-geo snapshot)
   { path: '/cargos', ready: /Robert Raga Gadea/ }, // officials snapshot
+  // La plantilla municipal, con su rejilla de dos columnas, vive aquí desde
+  // que salió de /cargos; la señal es su frase, que sólo se escribe con
+  // plantilla.json dentro.
+  { path: '/empleo-publico', ready: /No se pueden restar/ },
   { path: '/cargos/robert-raga-gadea', ready: /@ribarroja\.es/ }, // the official's own record
   // El peor correo del padrón en cada ficha: la señal es el propio correo.
   { path: `/cargos/${CORREO_EN_EL_CARGO.slug}`, ready: literal(CORREO_EN_EL_CARGO.email) },

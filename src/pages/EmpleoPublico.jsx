@@ -1,4 +1,5 @@
 import { Card, Pill } from '../components/Primitives'
+import Plantilla from '../components/EmpleoPublico/Plantilla'
 import { useProcesosSelectivos } from '../hooks/useProcesosSelectivos'
 import { useT } from '../i18n'
 
@@ -79,6 +80,10 @@ export default function EmpleoPublico() {
           )
         })}
       </div>
+
+      {/* Quién trabaja ya en el Ayuntamiento, con sus dos cifras y el puente
+          entre ellas. Vivía en /cargos, que ahora enlaza aquí. */}
+      <Plantilla />
     </div>
   )
 }

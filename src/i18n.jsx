@@ -191,6 +191,26 @@ export const CATALOGUE = {
       'Procesos selectivos del propio Ayuntamiento de Riba-roja de Túria — oposiciones, bolsas de trabajo y estabilización. Distinto de las ofertas de la Agència de Col·locació (ver ',
     'empleoPublico.intro2': '). Fuente: portal municipal.',
     'empleoPublico.empty': 'No hay procesos selectivos publicados ahora mismo.',
+    // La plantilla municipal, traída de /cargos (auditoría de las dos lecturas,
+    // §3 y §21). La frase de arriba dice qué cuenta cada cifra y por qué no se
+    // restan; las cifras y los años los pone `puenteDePlantilla`. Que los
+    // puestos no incluyen al personal eventual lo dice la nota de
+    // plantilla.json: si cambia la fuente, se revisa `noSeRestan` con ella.
+    'empleoPublico.plantilla.pregunta': '¿Cuánta gente trabaja en el Ayuntamiento?',
+    'empleoPublico.plantilla.personasFrase':
+      'En {anio} trabajaban {n} personas en el Ayuntamiento.',
+    'empleoPublico.plantilla.plazasFrase':
+      'La plantilla aprobada para {anio} suma {n} plazas de funcionario y de personal laboral, cubiertas o vacantes.',
+    'empleoPublico.plantilla.unas': 'unas {n}',
+    'empleoPublico.plantilla.noSeRestan':
+      'No se pueden restar: una cifra cuenta personas y la otra puestos, son de años distintos, y los puestos no incluyen al personal eventual.',
+    'empleoPublico.plantilla.title': 'Plantilla municipal',
+    'empleoPublico.plantilla.personas': 'personas empleadas',
+    'empleoPublico.plantilla.plazas': 'plazas autorizadas',
+    'empleoPublico.plantilla.mujeres': 'mujeres',
+    'empleoPublico.plantilla.hombres': 'hombres',
+    'empleoPublico.plantilla.fuenteSexo':
+      'El desglose por sexo es la última cifra publicada, y su fuente es un periódico comarcal, no el ayuntamiento:',
     'nav.laboratorio': 'Laboratorio',
     'nav.nosotros': 'Quiénes somos',
     'nav.despiece': 'Despiece (dev)',
@@ -2561,14 +2581,9 @@ export const CATALOGUE = {
     'cargos.lista.gobiernan': 'Gobiernan · {n}',
     'cargos.lista.noGobiernan': 'No gobiernan · {n} · sin áreas delegadas',
     'cargos.lista.lleva': 'Lleva: {areas}',
-    'cargos.plantilla.eyebrow': 'Otra cosa · no son los cargos electos',
-    'cargos.plantilla.title': 'Plantilla municipal',
-    'cargos.plantilla.personas': 'personas empleadas',
-    'cargos.plantilla.plazas': 'plazas autorizadas',
-    'cargos.plantilla.mujeres': 'mujeres',
-    'cargos.plantilla.hombres': 'hombres',
-    'cargos.plantilla.fuenteSexo':
-      'El desglose por sexo es la última cifra publicada, y su fuente es un periódico comarcal, no el ayuntamiento:',
+    // La plantilla vivía aquí; ahora está en /empleo-publico y queda esta línea.
+    'cargos.plantilla.puntero':
+      'La plantilla municipal —las personas que trabajan en el Ayuntamiento, que no son cargos electos— está en',
     // La fecha del acuerdo se DERIVA de dedicaciones.json, no se teclea: un
     // «07/07/2023» escrito aquí sobrevive al mandato que nombra.
     'cargos.fuentes':
@@ -3095,6 +3110,21 @@ export const CATALOGUE = {
       'Processos selectius del mateix Ajuntament de Riba-roja de Túria — oposicions, borses de treball i estabilització. Diferent de les ofertes de l’Agència de Col·locació (veure ',
     'empleoPublico.intro2': '). Font: portal municipal.',
     'empleoPublico.empty': 'No hi ha processos selectius publicats ara mateix.',
+    'empleoPublico.plantilla.pregunta': 'Quanta gent treballa a l’Ajuntament?',
+    'empleoPublico.plantilla.personasFrase':
+      'L’any {anio} treballaven {n} persones a l’Ajuntament.',
+    'empleoPublico.plantilla.plazasFrase':
+      'La plantilla aprovada per a {anio} suma {n} places de funcionari i de personal laboral, cobertes o vacants.',
+    'empleoPublico.plantilla.unas': 'unes {n}',
+    'empleoPublico.plantilla.noSeRestan':
+      'No es poden restar: una xifra compta persones i l’altra llocs, són d’anys diferents, i els llocs no inclouen el personal eventual.',
+    'empleoPublico.plantilla.title': 'Plantilla municipal',
+    'empleoPublico.plantilla.personas': 'persones empleades',
+    'empleoPublico.plantilla.plazas': 'places autoritzades',
+    'empleoPublico.plantilla.mujeres': 'dones',
+    'empleoPublico.plantilla.hombres': 'hòmens',
+    'empleoPublico.plantilla.fuenteSexo':
+      'El desglossament per sexe és l’última xifra publicada, i la seua font és un periòdic comarcal, no l’ajuntament:',
     'nav.laboratorio': 'Laboratori',
     'nav.nosotros': 'Qui som',
     'nav.despiece': 'Despiece (dev)',
@@ -5152,14 +5182,8 @@ export const CATALOGUE = {
     'cargos.lista.gobiernan': 'Governen · {n}',
     'cargos.lista.noGobiernan': 'No governen · {n} · sense àrees delegades',
     'cargos.lista.lleva': 'Porta: {areas}',
-    'cargos.plantilla.eyebrow': 'Una altra cosa · no són els càrrecs electes',
-    'cargos.plantilla.title': 'Plantilla municipal',
-    'cargos.plantilla.personas': 'persones empleades',
-    'cargos.plantilla.plazas': 'places autoritzades',
-    'cargos.plantilla.mujeres': 'dones',
-    'cargos.plantilla.hombres': 'hòmens',
-    'cargos.plantilla.fuenteSexo':
-      'El desglossament per sexe és l’última xifra publicada, i la seua font és un periòdic comarcal, no l’ajuntament:',
+    'cargos.plantilla.puntero':
+      'La plantilla municipal —les persones que treballen a l’Ajuntament, que no són càrrecs electes— és a',
     'cargos.fuentes':
       'Fonts: corporació i fotografies de ribarroja.es · retribucions fixades en l’acord de ple de {acuerdo} · imports percebuts de l’ISPA, Ministeri d’Hisenda i Funció Pública. Llista de càrrecs actualitzada el {fecha}.',
     'cargos.detalle.baja.banner':
