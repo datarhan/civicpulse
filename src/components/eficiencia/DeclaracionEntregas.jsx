@@ -192,12 +192,59 @@ function FraseCongelacion({ lectura, rotulo }) {
   )
 }
 
-const compacto = (v) =>
+const DECIMALES = { miles: 0, millones: 1 }
+
+const compacto = (v, decimales = DECIMALES) =>
   v >= 1e6
-    ? `${(v / 1e6).toLocaleString('es-ES', { maximumFractionDigits: 1 })} M`
+    ? `${(v / 1e6).toLocaleString('es-ES', { maximumFractionDigits: decimales.millones })} M`
     : v >= 1000
-      ? `${(v / 1000).toLocaleString('es-ES', { maximumFractionDigits: 0 })} k`
-      : v.toLocaleString('es-ES', { maximumFractionDigits: 0 })
+      ? `${(v / 1000).toLocaleString('es-ES', { maximumFractionDigits: decimales.miles })} k`
+      : v.toLocaleString('es-ES', { maximumFractionDigits: decimales.miles })
+
+/** ¿Pinta `formato` distintas todas las cifras que son distintas al céntimo? */
+function distingue(costes, formato) {
+  const vistas = new Map()
+  return !costes.some((v) => {
+    const casilla = formato(v)
+    const antes = vistas.get(casilla)
+    vistas.set(casilla, v.toFixed(2))
+    return antes !== undefined && antes !== v.toFixed(2)
+  })
+}
+
+/**
+ * Con cuántos decimales se abrevia la fila del coste: en cada escala, los menos
+ * que dejan distintas en la casilla las cifras que el dato da distintas.
+ *
+ * Abreviar sólo vale mientras se vea que el coste se mueve, que es lo único que
+ * la fila tiene que enseñar. En el cementerio (a164) 55.516,73 € en 2019 y
+ * 56.256,35 € en 2021 salían «56 k» las dos, justo debajo de la frase que dice
+ * que el coste «cambia en cada una»: la frase era cierta y la rejilla la
+ * desmentía (revisión lectora, 29-10-2026). La comparación es al céntimo, la
+ * misma con que la frase cuenta los costes distintos.
+ *
+ * Por escala y no por fila: en la basura (a1621) chocan 1.072.702 € y
+ * 1.076.527 € —«1,1 M»— y ninguno de los miles, así que subir la fila entera
+ * pintaría «865,07 k» para separar dos millones. Una cifra en miles y otra en
+ * millones no se pueden leer igual: llevan otra letra detrás.
+ *
+ * Sin tope de decimales, salvo el del céntimo: la policía local (b132) declara
+ * 2.638.298,82 € en 2018 y 2.637.926,60 € en 2019, que a tres decimales siguen
+ * siendo «2,638 M» los dos. Dos costes que se leen iguales dicen que el coste
+ * también se copió, que es justo lo que esta rejilla enseña del denominador.
+ */
+function decimalesQueDistinguen(costes) {
+  const minimo = (escala, enEscala) => {
+    const suyos = costes.filter(enEscala)
+    let d = DECIMALES[escala]
+    while (d < 8 && !distingue(suyos, (v) => compacto(v, { ...DECIMALES, [escala]: d }))) d++
+    return d
+  }
+  return {
+    miles: minimo('miles', (v) => v < 1e6),
+    millones: minimo('millones', (v) => v >= 1e6),
+  }
+}
 
 function Muestra({ estilo, children }) {
   return (
@@ -291,6 +338,12 @@ export function DeclaracionEntregas({ indicador, entregasPublicadas = [], noPres
     ['numerador', 'denominador'].some(
       (c) => desenlace(a, c) === 'no-declarado' && relleno(a, c) === null,
     ),
+  )
+
+  const decimalesDelCoste = decimalesQueDistinguen(
+    anios
+      .filter((a) => desenlace(a, 'numerador') === 'declarado')
+      .map((a) => porAnio.get(a).numerador),
   )
 
   const fila = (clave, rotulo, formato, tonoDe) => (
@@ -411,7 +464,7 @@ export function DeclaracionEntregas({ indicador, entregasPublicadas = [], noPres
           {fila(
             'numerador',
             'coste',
-            (v) => `${compacto(v)}`,
+            (v) => compacto(v, decimalesDelCoste),
             () => 'coste',
           )}
           {fila('denominador', i.divisor.singular, exacto, (a) =>
