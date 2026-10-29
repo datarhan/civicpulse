@@ -867,6 +867,17 @@ export const CATALOGUE = {
     // El paso de la lectura vecinal a la experta (components/DivisorLecturas.jsx).
     'lecturas.divisor':
       'Hasta aquí, lo esencial. Debajo, todos los datos, para quien quiera comprobarlos.',
+    // El pliegue de la lectura experta (components/Lecturas.jsx). Los títulos de
+    // sección van con su página (`*.seccion.*`): son lo único que se ve de una
+    // sección plegada, y no llevan cifras, que quedarían a la vista sin su
+    // salvedad.
+    'lecturas.ver': 'Ver:',
+    'lecturas.esencial': 'lo esencial',
+    'lecturas.todo': 'todo',
+    'plenos.indice.seccion.votosYDeclaraciones': 'Votaciones y declaraciones',
+    'plenoDetail.seccion.cifras': 'La sesión en cifras',
+    'quejas.seccion.publicadas': 'Las quejas publicadas',
+    'quejas.seccion.bop': 'Anuncios del Ayuntamiento en el Boletín Oficial de la Provincia',
     // Las palabras de la sede que salen dentro de los títulos (moción, sin
     // dictaminar…): el título es literal y no admite marca, así que la tarjeta
     // del orden del día las nombra aparte, con su entrada del glosario.
@@ -3676,6 +3687,13 @@ export const CATALOGUE = {
     'plenos.enBreve.proximo.verAcuerdo': 'L’acord, en l’acta del {fecha} →',
     'lecturas.divisor':
       'Fins ací, l’essencial. A sota, totes les dades, per a qui les vulga comprovar.',
+    'lecturas.ver': 'Veure:',
+    'lecturas.esencial': 'l’essencial',
+    'lecturas.todo': 'tot',
+    'plenos.indice.seccion.votosYDeclaraciones': 'Votacions i declaracions',
+    'plenoDetail.seccion.cifras': 'La sessió en xifres',
+    'quejas.seccion.publicadas': 'Les queixes publicades',
+    'quejas.seccion.bop': 'Anuncis de l’Ajuntament en el Butlletí Oficial de la Província',
     'plenos.vocabulario': 'Paraules d’este ordre del dia: {lista}.',
     'plenos.anio.titulo': 'Els plens de l’últim any',
     'plenos.anio.intro':

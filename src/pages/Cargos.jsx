@@ -33,6 +33,7 @@ import EnBreveCargos from '../components/Cargos/EnBreveCargos'
 import ListaDeCargos from '../components/Cargos/ListaDeCargos'
 import Retrato from '../components/Cargos/Retrato'
 import DivisorLecturas from '../components/DivisorLecturas'
+import { SeccionExperta } from '../components/Lecturas'
 import { conAreasDelegadas, sinAreasDelegadas } from '../scraper/en-breve-cargos'
 
 /**
@@ -1501,13 +1502,25 @@ function CorporacionMunicipal() {
         </div>
       )}
 
-      {/* El ancla de «¿Cuánto cobran?»: existe aunque el panel no se pinte. */}
-      <div id="retribuciones" style={{ scrollMarginTop: 16 }}>
+      {/* El ancla de «¿Cuánto cobran?»: existe aunque el panel no se pinte. Las
+          secciones de aquí abajo son las que pliega «Ver: lo esencial»
+          (components/Lecturas.jsx). Se quedan a la vista en los dos estados la
+          cabecera de la corporación, con su fecha y sus correcciones, el
+          enlace a la plantilla y el pie de fuentes. */}
+      <SeccionExperta
+        id="retribuciones"
+        titulo={t('cargos.retri.title')}
+        style={{ scrollMarginTop: 16 }}
+      >
         <RetribucionesPanel />
-      </div>
+      </SeccionExperta>
 
       {/* El ancla del buscador «¿A quién le pregunto por…?». */}
-      <div id="quien-dirige" style={{ marginTop: 26, scrollMarginTop: 16 }}>
+      <SeccionExperta
+        id="quien-dirige"
+        titulo={t('cargos.gobierno.title')}
+        style={{ marginTop: 26, scrollMarginTop: 16 }}
+      >
         <SectionHead
           as="h2"
           eyebrow={t('cargos.gobierno.eyebrow').replace('{n}', gobierno.length)}
@@ -1526,10 +1539,14 @@ function CorporacionMunicipal() {
             />
           ))}
         </div>
-      </div>
+      </SeccionExperta>
 
       {oposicion.length > 0 && (
-        <div id="quien-fiscaliza" style={{ marginTop: 26, scrollMarginTop: 16 }}>
+        <SeccionExperta
+          id="quien-fiscaliza"
+          titulo={t('cargos.oposicion.title')}
+          style={{ marginTop: 26, scrollMarginTop: 16 }}
+        >
           <SectionHead
             as="h2"
             eyebrow={t('cargos.oposicion.eyebrow').replace('{n}', oposicion.length)}
@@ -1562,7 +1579,7 @@ function CorporacionMunicipal() {
               />
             ))}
           </div>
-        </div>
+        </SeccionExperta>
       )}
 
       {/* La plantilla municipal vivía aquí, debajo de los electos; ahora está en
@@ -1585,7 +1602,11 @@ function CorporacionMunicipal() {
       </p>
 
       {former.length > 0 && (
-        <div style={{ marginTop: 26 }}>
+        <SeccionExperta
+          id="ya-no-forman-parte"
+          titulo={t('cargos.bajas.title')}
+          style={{ marginTop: 26 }}
+        >
           <div
             className="mono"
             style={{
@@ -1620,7 +1641,7 @@ function CorporacionMunicipal() {
               />
             ))}
           </div>
-        </div>
+        </SeccionExperta>
       )}
 
       <div

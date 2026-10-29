@@ -7,6 +7,7 @@ import { euros, rellena } from '../lib/formatters'
 import { useState } from 'react'
 import { FraseDeLaSemana } from '../components/Cambios/FraseDeLaSemana'
 import DivisorLecturas from '../components/DivisorLecturas'
+import { SeccionExperta } from '../components/Lecturas'
 
 const WINDOW_OPTIONS = [7, 14, 30]
 
@@ -321,15 +322,19 @@ export default function Cambios() {
                   </Pill>
                 ))}
               </div>
+              {/* Una sección por clase: lo que pliega «Ver: lo esencial»
+                  (components/Lecturas.jsx). Las píldoras de arriba y el total
+                  de abajo se quedan a la vista: son el índice de lo plegado. */}
               <div style={{ display: 'grid', gap: 14 }}>
-                {KINDS.map((k) => (
-                  <KindCard
-                    key={k}
-                    kind={k}
-                    items={byKind[k]}
-                    filas={k === 'prensa' ? prensaPorNoticia : undefined}
-                    formatDate={formatDate}
-                  />
+                {KINDS.filter((k) => byKind[k]?.length).map((k) => (
+                  <SeccionExperta key={k} id={`cambios-${k}`} titulo={rotuloDeClase(t, k)}>
+                    <KindCard
+                      kind={k}
+                      items={byKind[k]}
+                      filas={k === 'prensa' ? prensaPorNoticia : undefined}
+                      formatDate={formatDate}
+                    />
+                  </SeccionExperta>
                 ))}
               </div>
               <div
