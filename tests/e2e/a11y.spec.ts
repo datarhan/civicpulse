@@ -1,6 +1,6 @@
 import { test, expect } from '@playwright/test'
 import AxeBuilder from '@axe-core/playwright'
-import { STRICT_ROUTES, FIRST_PLENO_ID } from './_rutas'
+import { STRICT_ROUTES, FIRST_PLENO_ID, exigeQueResuelva } from './_rutas'
 
 // La lista vive en `_rutas.ts` desde que una segunda puerta —la de contraste
 // medido— necesitó exactamente la misma: copiarla habría dejado a una de las dos
@@ -58,6 +58,11 @@ test.describe('Accessibility (WCAG 2.1 AA)', () => {
   for (const path of STRICT_ROUTES) {
     test(`${path} has no critical or serious axe violations`, async ({ page }) => {
       const blocking = await scanForBlockingViolations(page, path)
+      await exigeQueResuelva(page, path)
+      // Un solo <main>. Las reglas de puntos de referencia de axe son «best
+      // practice», no WCAG, así que el filtro de arriba no las ve: la biografía
+      // anidaba el suyo dentro del de App.jsx y nada lo decía.
+      await expect(page.locator('main'), `${path}: más de un <main>`).toHaveCount(1)
       if (blocking.length) {
         const summary = blocking
           .map((v) => `[${v.impact}] ${v.id}: ${v.help} (${v.nodes.length} nodes)`)
