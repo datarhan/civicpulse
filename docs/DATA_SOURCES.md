@@ -167,7 +167,8 @@ overwrites it. Change the bot's SQLite instead.
 ### Budget execution (ejecutado vs presupuestado, quarterly)
 
 - **Pipeline** — `budget-execution.ts` → `budget-execution.json`
-- **Source** — Ayuntamiento estados de ejecución PDFs (SICALWIN)
+- **Source** — Ayuntamiento estados de ejecución PDFs (SICALWIN; 2T 2023, the
+  Ministry's F.1.1 forms)
 - **Surfaces** — `/presupuesto` "Ejecución presupuestaria", its «En breve», `/gestion`
 - **Gotchas** — a year's page carries every quarter's sheets side by side, and
   «Fecha de listado igual a: …» is the report's PARAMETER, not the data's
@@ -187,16 +188,38 @@ overwrites it. Change the bot's SQLite instead.
   year — the `/gestion` indicators — reads that one, never a quarter in
   progress. Pages describing a year in progress say so in the present tense
   (`esCierre`).
-- **Two templates** — the SICALWIN listing («Estado de ejecución de Gastos»,
-  until 2T 2025) and, since 3T 2025, «1_2 ITEM 37 Ejecución trimestral»: a
-  «Resumen por capítulos» per side (initial, final, recognised) beside detail
-  sheets with no chapter totals. The summary carries no «Fecha de listado»,
-  so its cut-off is the print date.
+- **Four templates** — the SICALWIN listing («Estado de ejecución de Gastos»,
+  until 2T 2025), by economic chapter or — 1T 2024 and 1T 2025 expenses —
+  by PROGRAMME, with no «Total Capítulo»: its chapters are the sum of its
+  line items by the first digit of the economic code, and the sum must give
+  the «Total Gastos» to the cent. The 1T 2024 income listing has no chapter
+  totals either and is summed from its «Total Concepto» rows. Since 3T 2025,
+  «1_2 ITEM 37 Ejecución trimestral»: a «Resumen por capítulos» per side
+  (initial, final, recognised) beside detail sheets with no chapter totals;
+  no «Fecha de listado», so its cut-off is the print date. And 2T 2023: the
+  Ministry's F.1.1 quarterly forms, each side split into a current and a
+  capital sheet (`unirPartes` joins them).
+- **Income is NET recognised rights** — SICALWIN's income rows run over two
+  lines; the gross «DR» is on the first, the «DR Netos» the sheet's own
+  percentage uses on the second. Until 2026-10-29 the parser read the gross
+  column: 2T 2025 said 61,8 % and the 2025 close 85,4 % where the sheets print
+  61,37 % and 84,29 %. Count the net column from the start of the second line:
+  the close sheet's first copy of each «Total Capítulo» misprints the last
+  column of the first line, and counted straight through, chapter 9 read 0.
+- **Every period reconciles or is dropped** (`motivoDeDescarte`) — chapters
+  sum to the total; the total's percentage is the one the sheet prints (each
+  period's `cotejo` carries it); the «definitivo» is the credit at the cut-off,
+  not an estimate; and income was posted. So 2T 2023 is dropped although it
+  reads and sums: the F.1.1 forms' «definitivo» is the «Estimación … al final
+  de ejercicio», modifications planned to year end included, and they print
+  no percentage. And 1T 2024 is dropped although it reconciles: printed on
+  9-4-2024, its income ledger had not a euro recognised in chapter 4 — where
+  the State's monthly payments go — only refunds, so its 0,08 % says what had
+  been entered, not what came in.
 - **What is not read, and why** — the snapshot's `lectura` block lists every
   period dropped with its reason and every sheet with no text layer (scanned
-  PDFs: 3T 2025 and the income side of 2024's close). Still unread on
-  2026-10-29: the 2023 split current/capital sheets and the chapter-less
-  2024 and 2025 1T expense sheets.
+  PDFs: 3T 2025 and the income side of 2024's close; they wait for an OCR
+  tool to be chosen).
 
 ### Coste efectivo de los servicios (art. 116 ter LRSAL)
 

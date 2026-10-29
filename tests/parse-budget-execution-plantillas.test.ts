@@ -355,3 +355,39 @@ describe('qué se publica: cada periodo cuadra, o se calla diciendo por qué', (
     expect(motivoDeDescarte(p, { year: 2025 })).toMatch(/^la hoja de gastos no imprime porcentaje/)
   })
 })
+
+describe('el snapshot publicado', () => {
+  const publicado = JSON.parse(
+    readFileSync(join(__dirname, '..', 'public/data/budget-execution.json'), 'utf8'),
+  ) as {
+    periods: Array<ReturnType<typeof mergeExecutionPeriod>>
+    lectura: { descartados: Array<{ year: number; trimestre: number; motivo: string }> }
+  }
+  const clave = (p: { year: number; trimestre: number | null }) => `${p.year}-T${p.trimestre}`
+
+  it('publica el 1T de 2025 y calla el 2T de 2023 y el 1T de 2024, cada uno con su motivo', () => {
+    expect(publicado.periods.map(clave)).toContain('2025-T1')
+    const motivo = (k: string) => publicado.lectura.descartados.find((d) => clave(d) === k)?.motivo
+    expect(motivo('2023-T2')).toMatch(/estimación a fin de ejercicio/)
+    expect(motivo('2024-T1')).toMatch(/^ingresos sin contabilizar/)
+  })
+
+  it('todo periodo publicado cuadra: capítulos con su total, y su total con lo que imprime la hoja', () => {
+    // Mide algo: hay periodos, y cada uno trae su porcentaje impreso.
+    expect(publicado.periods.length).toBeGreaterThan(3)
+    for (const p of publicado.periods) {
+      for (const lado of ['gastos', 'ingresos'] as const) {
+        const { total, chapters } = p[lado]
+        expect(sumaDe(chapters.map((c) => c.ejecutado)), `${clave(p)} ${lado}`).toBe(
+          total.ejecutado,
+        )
+        expect(sumaDe(chapters.map((c) => c.actual)), `${clave(p)} ${lado}`).toBe(total.actual)
+        const impreso = p.cotejo[lado].pctImpreso
+        expect(impreso, `${clave(p)} ${lado}`).not.toBeNull()
+        expect(Math.round((total.ejecutado / total.actual) * 10000) / 100).toBe(impreso)
+        expect(p.cotejo[lado].definitivo).toBe('a-la-fecha')
+      }
+      expect(motivoDeDescarte(p, { year: p.year }), clave(p)).toBeNull()
+    }
+  })
+})

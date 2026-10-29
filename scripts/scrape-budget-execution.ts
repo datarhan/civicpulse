@@ -26,6 +26,7 @@ import {
   periodosDelIndice,
   motivoDeDescarte,
   ultimoCierre,
+  unirPartes,
   type BudgetExecutionPeriod,
   type ExecDoc,
   type ExecKind,
@@ -63,8 +64,10 @@ interface Lectura {
   fallidas: string[]
 }
 
-// Fetch + parse every candidate PDF for one side and pick the best ExecDoc
-// (`elegirDocumento`: valid total, latest cut, most chapters). Candidates are
+// Fetch + parse every candidate PDF for one side, join the two halves of a
+// Ministry form (`unirPartes`: 2T 2023 publishes current and capital
+// operations as separate sheets) and pick the best ExecDoc (`elegirDocumento`:
+// valid total, latest cut, most chapters, never a lone half). Candidates are
 // fetched serially with the shared throttle; a throwing candidate is skipped,
 // not fatal. Returns an empty doc when nothing usable was found (the gate then
 // drops the period, saying why).
@@ -92,7 +95,7 @@ async function selectBestDoc(
       await sleep(400)
     }
   }
-  return elegirDocumento(docs) ?? emptyDoc(kind)
+  return elegirDocumento(unirPartes(docs)) ?? emptyDoc(kind)
 }
 
 async function main() {
