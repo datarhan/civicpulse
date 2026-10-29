@@ -63,7 +63,17 @@ export interface Divisor {
   singular: string
   /** Varias, tal como se leen tras la cifra: «52 efectivos», «4.514 puntos de luz». */
   plural: string
-  /** Qué cuenta exactamente, sin jerga. Va entre rayas dentro de la frase. */
+  /**
+   * Qué cuenta exactamente, sin jerga. Va entre rayas dentro de la frase.
+   *
+   * La de una cantidad que pasa en el año —basura generada, préstamos— dice lo
+   * que el ayuntamiento DECLARA, no lo que pasó. «Las toneladas de basura que el
+   * municipio generó en todo el año» iba junto a una tarjeta que dice que las
+   * 11.059,41 t son «la misma cifra desde 2019», y afirmaba como hecho de 2024 una
+   * declaración que esta misma página enseña copiada cinco entregas seguidas
+   * (revisión lectora, 29-10-2026). Una cantidad que se tiene —metros, puntos de
+   * luz, plantilla— puede no cambiar en años, y su glosa no lo necesita.
+   */
   glosa: string
 }
 
@@ -194,7 +204,7 @@ export const SERVICIOS: Record<string, ServicioDef> = {
     divisor: {
       singular: 'tonelada',
       plural: 'toneladas',
-      glosa: 'las toneladas de basura que el municipio generó en todo el año',
+      glosa: 'las toneladas de basura que declara generadas en el año',
     },
     unidad: '€/t',
     tier: 'carga',
@@ -289,7 +299,7 @@ export const SERVICIOS: Record<string, ServicioDef> = {
     divisor: {
       singular: 'préstamo',
       plural: 'préstamos',
-      glosa: 'los libros y documentos que los vecinos se llevaron prestados durante el año',
+      glosa: 'los libros y documentos que declara prestados a los vecinos en el año',
     },
     unidad: '€/préstamo',
     tier: 'output',

@@ -71,6 +71,18 @@ describe('cada servicio dice qué cuenta su divisor', () => {
     expect(distintos.length, 'ningún plural difiere de su singular').toBeGreaterThan(2)
   })
 
+  it('la glosa de una cantidad del año dice lo declarado, no lo que pasó', () => {
+    // «Las toneladas de basura que el municipio generó en todo el año» iba junto a
+    // «la misma cifra desde 2019»: afirmaba como hecho de 2024 una cifra que la
+    // tarjeta enseña copiada cinco entregas. Basura y préstamos son lo que pasa en
+    // un año, y las dos series están congeladas (revisión lectora, 29-10-2026).
+    for (const programa of ['a1621', 'a3321/330P']) {
+      const g = SERVICIOS[programa].divisor.glosa
+      expect(g, programa).toMatch(/\bdeclara\b/)
+      expect(g, programa).not.toMatch(/\b(gener[óo]|se llevaron)\b/)
+    }
+  })
+
   it('pluraliza la fórmula de la policía local', () => {
     // El caso que motivó esto, comprobado punta a punta contra el registro.
     const policia = SERVICIOS['b132/130P']
