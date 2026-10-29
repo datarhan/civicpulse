@@ -29,6 +29,28 @@
       }
     ]
   },
+  "claves": [
+    {
+      "texto": "El Ayuntamiento publicó el 30 de julio que sus cámaras urbanas sólo guardan «información numérica»; su pliego exige que puedan almacenar «los datos de las matrículas y la duración de la estancia de cada vehículo».",
+      "seccion": "05"
+    },
+    {
+      "texto": "El pliego destina las cámaras a gestionar el aparcamiento, pide que puedan enviar datos en tiempo real a la plataforma de los cuerpos de seguridad municipales e invoca la ley de datos con fines penales.",
+      "seccion": "03"
+    },
+    {
+      "texto": "Los pliegos no fijan cuánto tiempo pueden guardarse las matrículas ni los identificadores de los móviles mientras el sistema funciona; el pliego técnico pide un «histórico de datos» sin límite.",
+      "seccion": "06"
+    },
+    {
+      "texto": "Con los datos de los móviles, el pliego pide distinguir visitantes nuevos de recurrentes, y eso exige, por definición, reconocer al mismo visitante de la vez anterior.",
+      "seccion": "02"
+    },
+    {
+      "texto": "El pliego prevé instalar en Porxinos, de forma provisional por los daños de la DANA, los dispositivos que detectan móviles, y exige reubicarlos en las zonas planificadas del parque cuando se restaure, sin fijar fecha.",
+      "seccion": "04"
+    }
+  ],
   "kpis": [
     {
       "n": "61.050 €",

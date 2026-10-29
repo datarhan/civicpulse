@@ -28,6 +28,24 @@
       }
     ]
   },
+  "claves": [
+    {
+      "texto": "El precio era normal: Garbialdi, la ganadora, ofertó un 3,99 % por debajo del precio máximo del concurso, y los informes municipales encontraron falta de conductores, vehículos averiados y rutas sin ejecutar.",
+      "seccion": "02"
+    },
+    {
+      "texto": "Fallos como los de Riba-roja en diciembre —personal, vehículos, rutas— ya los había descrito Parla (Madrid) siete años antes, en el contrato de Garbialdi y otra empresa; ningún juzgado ha repartido las culpas.",
+      "seccion": "03"
+    },
+    {
+      "texto": "Durante el concurso, Garbialdi se estaba vendiendo a la empresa ISS, y el Ayuntamiento firmó el contrato tres semanas después de hacerse pública la compra; no está documentado que la venta causara el fallo.",
+      "seccion": "05"
+    },
+    {
+      "texto": "El pleno resolvió el contrato «por incumplimiento culpable del contratista», la nota municipal habló de «mutuo acuerdo», y en agosto de 2026 el registro público de contratos seguía dándolo por vigente hasta 2039.",
+      "seccion": "06"
+    }
+  ],
   "kpis": [
     {
       "n": "14 años y 9 meses",

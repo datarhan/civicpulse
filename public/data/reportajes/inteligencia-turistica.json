@@ -23,6 +23,28 @@
       }
     ]
   },
+  "claves": [
+    {
+      "texto": "El contrato del panel de datos turísticos terminó el 10 de junio de 2026, cuatro semanas antes de que una nota municipal del 8 de julio anunciara su implantación.",
+      "seccion": "01"
+    },
+    {
+      "texto": "El Ayuntamiento sólo tenía licencia para usar la plataforma de movilidad «durante la duración del contrato», que terminó el 15 de julio de 2026, y ningún contrato del plan prevé presupuesto de continuidad.",
+      "seccion": "05"
+    },
+    {
+      "texto": "Los dos expedientes documentan competencia real, pero en el concurso del panel 49 de 100 puntos dependían de un juicio de valor, el máximo posible sin que la ley exija un comité de expertos.",
+      "seccion": "03"
+    },
+    {
+      "texto": "Una misma consultora diseñó en 2021 la estrategia de destino inteligente; en 2024 ganó, sin ninguna otra oferta, la oficina técnica del plan, y en 2026, el estudio que lo evalúa.",
+      "seccion": "02"
+    },
+    {
+      "texto": "No hemos encontrado ningún vínculo documentado de las empresas que ganaron el panel y los informes de movilidad, ni de sus administradores, con los cargos municipales ni con las consultoras del plan.",
+      "seccion": "04"
+    }
+  ],
   "kpis": [
     {
       "n": "2,11 M€",

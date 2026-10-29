@@ -36,6 +36,28 @@
     ],
     "subtituloPublicadoOriginal": "Un análisis de la contratación municipal sitúa 72 contratos por 2,04 M€ tras la DANA; los de emergencia quedan fuera de la fiscalización de la Sindicatura."
   },
+  "claves": [
+    {
+      "texto": "El mapa solo sitúa los contratos que su título permite ubicar: 9 de los 75 con referencia a la DANA, por 367 k€ de 2,75 M€; su reparto no dice dónde golpeó más el agua.",
+      "seccion": "02"
+    },
+    {
+      "texto": "Ocho empresas concentran la mayor parte del dinero de los contratos con referencia a la DANA; las describimos por lo que consta en el registro público, sin atribuirles irregularidad.",
+      "seccion": "03"
+    },
+    {
+      "texto": "Al menos cinco administraciones financian la reconstrucción de Riba-roja, y conviene no confundir sus importes anunciados con lo ejecutado ni sumarlos, porque cofinancian obras que se solapan.",
+      "seccion": "05"
+    },
+    {
+      "texto": "La Sindicatura de Comptes prevé revisar la contratación municipal de 2023 y 2024, en general y por muestreo; ningún informe publicado hasta hoy dice cuánto se gastó aquí en reconstruirse y en qué.",
+      "seccion": "06"
+    },
+    {
+      "texto": "Adjudicar no es terminar: en julio de 2026 buena parte de la reconstrucción seguía en marcha o sin empezar, y quedaban pendientes colectores en calle dels Fusters y generadores en El Oliveral y Sector 13.",
+      "seccion": "07"
+    }
+  ],
   "totals": {
     "danaContracts": 75,
     "danaAmount": 2752946.2,
