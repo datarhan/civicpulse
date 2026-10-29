@@ -45,6 +45,23 @@ test.describe('Empleo público (/empleo-publico)', () => {
     await expect(lista.getByRole('heading', { level: 3 })).toHaveCount(tipos.size)
   })
 
+  // La lista del Ayuntamiento corta los títulos con «…»; el raspador los
+  // completa desde la página de cada proceso. Los que se ven cortados son
+  // exactamente los que el raspado no pudo completar, ni uno más.
+  test('los títulos se ven enteros, salvo los que el raspado dejó cortados', async ({ page }) => {
+    const { procesos, titulos } = JSON.parse(
+      readFileSync('public/data/procesos-selectivos.json', 'utf8'),
+    )
+    expect(titulos.cortados).toBe(
+      titulos.completados + titulos.reutilizados + titulos.sinCompletar.length,
+    )
+    await page.goto('/empleo-publico', { waitUntil: 'domcontentloaded' })
+    const enlaces = page.locator('#procesos a[href^="http"]')
+    await expect(enlaces).toHaveCount(procesos.length, { timeout: 8000 })
+    const textos = await enlaces.allInnerTexts()
+    expect(textos.filter((t) => /…\s*$/.test(t))).toHaveLength(titulos.sinCompletar.length)
+  })
+
   test('el destino del glosario existe y aterriza en la sección', async ({ page }) => {
     await page.goto('/empleo-publico#como-se-entra', { waitUntil: 'domcontentloaded' })
     await expect(page.locator('#como-se-entra')).toBeInViewport({ timeout: 8000 })

@@ -513,8 +513,15 @@ overwrites it. Change the bot's SQLite instead.
 ### Municipal hiring (procesos selectivos)
 
 - **Pipeline** — `procesos-selectivos.ts` → `procesos-selectivos.json`
-- **Source** — ribarroja.es procesos-selectivos list
+- **Source** — ribarroja.es procesos-selectivos list; for each link the list
+  cuts with «…», that process's own page (`og:title`)
 - **Surfaces** — `/empleo-publico`
+- **Gate** — an empty list is never written (`exigeProcesos`), so a markup
+  change keeps the prior snapshot instead of publishing «no hay procesos». Only
+  `https://www.ribarroja.es` pages are fetched (`esPaginaDelPortal`), and one
+  reached by a redirect is not used: the link's URL is the process's identity. A cut link keeps its text when its page has no whole
+  title or one about something else, and the snapshot's `titulos` block counts
+  whole, completed, reused-from-the-prior-run and still-cut titles separately
 
 ### Association register
 
