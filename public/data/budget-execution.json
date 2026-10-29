@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-29T09:48:55.885Z",
+  "generatedAt": "2026-10-29T10:38:50.871Z",
   "source": "https://www.ribarroja.es/es/1_gestion_presupuestaria/2_estados_ejecucion_presupuesto",
   "periods": [
     {
@@ -151,6 +151,185 @@
       "ejecucionPct": {
         "gastos": 75.7,
         "ingresos": 73.9
+      },
+      "cotejo": {
+        "gastos": {
+          "pctImpreso": 75.72,
+          "definitivo": "a-la-fecha"
+        },
+        "ingresos": {
+          "pctImpreso": 73.93,
+          "definitivo": "a-la-fecha"
+        }
+      }
+    },
+    {
+      "year": 2025,
+      "trimestre": 1,
+      "fechaListado": "31/03/2025",
+      "fechaListadoFuente": "31/03/2025",
+      "mismoCorte": true,
+      "gastos": {
+        "total": {
+          "inicial": 37599838.15,
+          "modificaciones": 4766800.79,
+          "actual": 42366638.94,
+          "ejecutado": 7334658.09
+        },
+        "chapters": [
+          {
+            "capitulo": 1,
+            "label": "Gastos de personal",
+            "inicial": 19516194.19,
+            "modificaciones": 202106.51,
+            "actual": 19718300.7,
+            "ejecutado": 4000738.86
+          },
+          {
+            "capitulo": 2,
+            "label": "Gastos en bienes corrientes y servicios",
+            "inicial": 14311925.08,
+            "modificaciones": 677502.81,
+            "actual": 14989427.89,
+            "ejecutado": 3091164.61
+          },
+          {
+            "capitulo": 3,
+            "label": "Gastos financieros",
+            "inicial": 362680.17,
+            "modificaciones": 0,
+            "actual": 362680.17,
+            "ejecutado": 2635.82
+          },
+          {
+            "capitulo": 4,
+            "label": "Transferencias corrientes",
+            "inicial": 2149520.62,
+            "modificaciones": 13258.44,
+            "actual": 2162779.06,
+            "ejecutado": 83939.48
+          },
+          {
+            "capitulo": 6,
+            "label": "Inversiones reales",
+            "inicial": 0,
+            "modificaciones": 3873933.03,
+            "actual": 3873933.03,
+            "ejecutado": 148979.32
+          },
+          {
+            "capitulo": 7,
+            "label": "Transferencias de capital",
+            "inicial": 338668.57,
+            "modificaciones": 0,
+            "actual": 338668.57,
+            "ejecutado": 0
+          },
+          {
+            "capitulo": 8,
+            "label": "Activos financieros",
+            "inicial": 25000,
+            "modificaciones": 0,
+            "actual": 25000,
+            "ejecutado": 7200
+          },
+          {
+            "capitulo": 9,
+            "label": "Pasivos financieros",
+            "inicial": 895849.52,
+            "modificaciones": 0,
+            "actual": 895849.52,
+            "ejecutado": 0
+          }
+        ]
+      },
+      "ingresos": {
+        "total": {
+          "inicial": 39034883.74,
+          "modificaciones": 5178813.91,
+          "actual": 44213697.65,
+          "ejecutado": 20752283.6
+        },
+        "chapters": [
+          {
+            "capitulo": 1,
+            "label": "Impuestos directos",
+            "inicial": 17963497.13,
+            "modificaciones": 0,
+            "actual": 17963497.13,
+            "ejecutado": 2045718.01
+          },
+          {
+            "capitulo": 2,
+            "label": "Impuestos indirectos",
+            "inicial": 2375000,
+            "modificaciones": 0,
+            "actual": 2375000,
+            "ejecutado": 354766.82
+          },
+          {
+            "capitulo": 3,
+            "label": "Tasas, precios públicos y otros ingresos",
+            "inicial": 4891567.76,
+            "modificaciones": 0,
+            "actual": 4891567.76,
+            "ejecutado": 637266.71
+          },
+          {
+            "capitulo": 4,
+            "label": "Transferencia corrientes",
+            "inicial": 12285692.1,
+            "modificaciones": 274764,
+            "actual": 12560456.1,
+            "ejecutado": 3074809.42
+          },
+          {
+            "capitulo": 5,
+            "label": "Ingresos patrimoniales",
+            "inicial": 1494126.75,
+            "modificaciones": 0,
+            "actual": 1494126.75,
+            "ejecutado": 7691.33
+          },
+          {
+            "capitulo": 7,
+            "label": "Transferencias de capital",
+            "inicial": 0,
+            "modificaciones": 0,
+            "actual": 0,
+            "ejecutado": 14624831.31
+          },
+          {
+            "capitulo": 8,
+            "label": "Activos financieros",
+            "inicial": 25000,
+            "modificaciones": 4904049.91,
+            "actual": 4929049.91,
+            "ejecutado": 7200
+          },
+          {
+            "capitulo": 9,
+            "label": "Pasivos financieros",
+            "inicial": 0,
+            "modificaciones": 0,
+            "actual": 0,
+            "ejecutado": 0
+          }
+        ]
+      },
+      "ejecucionPct": {
+        "gastos": 17.3,
+        "ingresos": 46.9
+      },
+      "cotejo": {
+        "gastos": {
+          "pctImpreso": 17.31,
+          "definitivo": "a-la-fecha"
+        },
+        "ingresos": {
+          "pctImpreso": 46.94,
+          "definitivo": "a-la-fecha"
+        }
       }
     },
     {
@@ -238,7 +417,7 @@
           "inicial": 39034883.74,
           "modificaciones": 20576867.45,
           "actual": 59611751.19,
-          "ejecutado": 36814321.64
+          "ejecutado": 36583883.8
         },
         "chapters": [
           {
@@ -247,7 +426,7 @@
             "inicial": 17963497.13,
             "modificaciones": 0,
             "actual": 17963497.13,
-            "ejecutado": 12730686.61
+            "ejecutado": 12567444.65
           },
           {
             "capitulo": 2,
@@ -255,7 +434,7 @@
             "inicial": 2375000,
             "modificaciones": 0,
             "actual": 2375000,
-            "ejecutado": 940764.27
+            "ejecutado": 927130.08
           },
           {
             "capitulo": 3,
@@ -263,7 +442,7 @@
             "inicial": 4891567.76,
             "modificaciones": 0,
             "actual": 4891567.76,
-            "ejecutado": 2130465.44
+            "ejecutado": 2124940.27
           },
           {
             "capitulo": 4,
@@ -271,7 +450,7 @@
             "inicial": 12285692.1,
             "modificaciones": 1419529.28,
             "actual": 13705221.38,
-            "ejecutado": 6240730.55
+            "ejecutado": 6199053.29
           },
           {
             "capitulo": 5,
@@ -279,7 +458,7 @@
             "inicial": 1494126.75,
             "modificaciones": 0,
             "actual": 1494126.75,
-            "ejecutado": 120093.46
+            "ejecutado": 114300.86
           },
           {
             "capitulo": 7,
@@ -287,7 +466,7 @@
             "inicial": 0,
             "modificaciones": 14140346.69,
             "actual": 14140346.69,
-            "ejecutado": 14639831.31
+            "ejecutado": 14639264.65
           },
           {
             "capitulo": 8,
@@ -309,7 +488,17 @@
       },
       "ejecucionPct": {
         "gastos": 30.4,
-        "ingresos": 61.8
+        "ingresos": 61.4
+      },
+      "cotejo": {
+        "gastos": {
+          "pctImpreso": 30.44,
+          "definitivo": "a-la-fecha"
+        },
+        "ingresos": {
+          "pctImpreso": 61.37,
+          "definitivo": "a-la-fecha"
+        }
       }
     },
     {
@@ -485,6 +674,16 @@
       "ejecucionPct": {
         "gastos": 42.1,
         "ingresos": 62.5
+      },
+      "cotejo": {
+        "gastos": {
+          "pctImpreso": 42.07,
+          "definitivo": "a-la-fecha"
+        },
+        "ingresos": {
+          "pctImpreso": 62.53,
+          "definitivo": "a-la-fecha"
+        }
       }
     },
     {
@@ -572,7 +771,7 @@
           "inicial": 43516817.13,
           "modificaciones": 25494616.63,
           "actual": 69011433.76,
-          "ejecutado": 58915029.57
+          "ejecutado": 58166697.85
         },
         "chapters": [
           {
@@ -581,7 +780,7 @@
             "inicial": 17907000,
             "modificaciones": 0,
             "actual": 17907000,
-            "ejecutado": 17747708.5
+            "ejecutado": 17205522.39
           },
           {
             "capitulo": 2,
@@ -589,7 +788,7 @@
             "inicial": 2000000,
             "modificaciones": 0,
             "actual": 2000000,
-            "ejecutado": 1434754.94
+            "ejecutado": 1408049.03
           },
           {
             "capitulo": 3,
@@ -597,7 +796,7 @@
             "inicial": 6877208.58,
             "modificaciones": 0,
             "actual": 6877208.58,
-            "ejecutado": 5530477.74
+            "ejecutado": 5514208.2
           },
           {
             "capitulo": 4,
@@ -605,7 +804,7 @@
             "inicial": 14038355.2,
             "modificaciones": 3029763.45,
             "actual": 17068118.65,
-            "ejecutado": 16369959.64
+            "ejecutado": 16275606.46
           },
           {
             "capitulo": 5,
@@ -613,7 +812,7 @@
             "inicial": 885688.62,
             "modificaciones": 0,
             "actual": 885688.62,
-            "ejecutado": 1038720.77
+            "ejecutado": 1032928.17
           },
           {
             "capitulo": 6,
@@ -629,7 +828,7 @@
             "inicial": 0,
             "modificaciones": 16121809.31,
             "actual": 16121809.31,
-            "ejecutado": 14989393.25
+            "ejecutado": 14926368.87
           },
           {
             "capitulo": 8,
@@ -651,7 +850,17 @@
       },
       "ejecucionPct": {
         "gastos": 60.2,
-        "ingresos": 85.4
+        "ingresos": 84.3
+      },
+      "cotejo": {
+        "gastos": {
+          "pctImpreso": 60.15,
+          "definitivo": "a-la-fecha"
+        },
+        "ingresos": {
+          "pctImpreso": 84.29,
+          "definitivo": "a-la-fecha"
+        }
       }
     },
     {
@@ -827,6 +1036,16 @@
       "ejecucionPct": {
         "gastos": 11.1,
         "ingresos": 5.7
+      },
+      "cotejo": {
+        "gastos": {
+          "pctImpreso": 11.07,
+          "definitivo": "a-la-fecha"
+        },
+        "ingresos": {
+          "pctImpreso": 5.74,
+          "definitivo": "a-la-fecha"
+        }
       }
     }
   ],
@@ -1003,6 +1222,16 @@
     "ejecucionPct": {
       "gastos": 11.1,
       "ingresos": 5.7
+    },
+    "cotejo": {
+      "gastos": {
+        "pctImpreso": 11.07,
+        "definitivo": "a-la-fecha"
+      },
+      "ingresos": {
+        "pctImpreso": 5.74,
+        "definitivo": "a-la-fecha"
+      }
     }
   },
   "ultimoCierre": {
@@ -1090,7 +1319,7 @@
         "inicial": 43516817.13,
         "modificaciones": 25494616.63,
         "actual": 69011433.76,
-        "ejecutado": 58915029.57
+        "ejecutado": 58166697.85
       },
       "chapters": [
         {
@@ -1099,7 +1328,7 @@
           "inicial": 17907000,
           "modificaciones": 0,
           "actual": 17907000,
-          "ejecutado": 17747708.5
+          "ejecutado": 17205522.39
         },
         {
           "capitulo": 2,
@@ -1107,7 +1336,7 @@
           "inicial": 2000000,
           "modificaciones": 0,
           "actual": 2000000,
-          "ejecutado": 1434754.94
+          "ejecutado": 1408049.03
         },
         {
           "capitulo": 3,
@@ -1115,7 +1344,7 @@
           "inicial": 6877208.58,
           "modificaciones": 0,
           "actual": 6877208.58,
-          "ejecutado": 5530477.74
+          "ejecutado": 5514208.2
         },
         {
           "capitulo": 4,
@@ -1123,7 +1352,7 @@
           "inicial": 14038355.2,
           "modificaciones": 3029763.45,
           "actual": 17068118.65,
-          "ejecutado": 16369959.64
+          "ejecutado": 16275606.46
         },
         {
           "capitulo": 5,
@@ -1131,7 +1360,7 @@
           "inicial": 885688.62,
           "modificaciones": 0,
           "actual": 885688.62,
-          "ejecutado": 1038720.77
+          "ejecutado": 1032928.17
         },
         {
           "capitulo": 6,
@@ -1147,7 +1376,7 @@
           "inicial": 0,
           "modificaciones": 16121809.31,
           "actual": 16121809.31,
-          "ejecutado": 14989393.25
+          "ejecutado": 14926368.87
         },
         {
           "capitulo": 8,
@@ -1169,27 +1398,32 @@
     },
     "ejecucionPct": {
       "gastos": 60.2,
-      "ingresos": 85.4
+      "ingresos": 84.3
+    },
+    "cotejo": {
+      "gastos": {
+        "pctImpreso": 60.15,
+        "definitivo": "a-la-fecha"
+      },
+      "ingresos": {
+        "pctImpreso": 84.29,
+        "definitivo": "a-la-fecha"
+      }
     }
   },
   "lectura": {
     "periodos": 8,
-    "publicados": 5,
+    "publicados": 6,
     "descartados": [
       {
         "year": 2023,
         "trimestre": 2,
-        "motivo": "ingresos sin total legible"
+        "motivo": "el «definitivo» de gastos y de ingresos es la estimación a fin de ejercicio del formulario F.1.1 del Ministerio, no el vigente a 30/06/2023"
       },
       {
         "year": 2024,
         "trimestre": 1,
-        "motivo": "gastos sin capítulos"
-      },
-      {
-        "year": 2025,
-        "trimestre": 1,
-        "motivo": "gastos sin capítulos"
+        "motivo": "ingresos sin contabilizar a 09/04/2024: las transferencias corrientes (cap. 4), donde entran las entregas mensuales del Estado, suman -11.102,82 € de derechos netos —más devoluciones que derechos— de 10.645.513,21 € previstos"
       }
     ],
     "hojasLeidas": 19,
