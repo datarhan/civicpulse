@@ -38,6 +38,7 @@ import {
   cotejarDesglose,
   fechaImpresaOcr,
   type LecturaValida,
+  type LecturaResumen,
   type DesgloseLeido,
 } from '../src/scraper/budget-execution-ocr'
 import { crearLectorOcr, AJUSTES, type LectorOcr } from '../src/scraper/budget-execution-ocr-fetch'
@@ -94,6 +95,11 @@ const valida = (texto: string) => {
   const l = leerHojaOcr(texto)
   expect(l.motivo).toBeNull()
   return l as LecturaValida
+}
+const resumen = (texto: string) => {
+  const l = valida(texto)
+  expect(l.plantilla).toBe('resumen')
+  return l as LecturaResumen
 }
 
 describe('budget-execution-ocr — una celda, sólo por sus cifras', () => {
@@ -232,14 +238,14 @@ describe('budget-execution-ocr — el desglose coteja el resumen', () => {
     const d = leerHojaOcr(DESGLOSE_CAPITAL_GASTOS(TOTAL_CAPITAL_GASTOS)) as DesgloseLeido
     expect(lecturaAceptable(d)).toBe(true)
     expect(d.capitulos).toEqual([6, 7, 8, 9])
-    expect(cotejarDesglose(valida(RESUMEN_GASTOS_3T2025), d)).toEqual({ estado: 'coincide' })
+    expect(cotejarDesglose(resumen(RESUMEN_GASTOS_3T2025), d)).toEqual({ estado: 'coincide' })
   })
 
   it('si no cuadran, contradice y dice en qué columna', () => {
     const d = leerHojaOcr(
       DESGLOSE_CAPITAL_GASTOS(TOTAL_CAPITAL_GASTOS.replace('2.164.817,97', '2.164.817,98')),
     ) as DesgloseLeido
-    const c = cotejarDesglose(valida(RESUMEN_GASTOS_3T2025), d)
+    const c = cotejarDesglose(resumen(RESUMEN_GASTOS_3T2025), d)
     expect(c.estado).toBe('contradice')
     expect('motivo' in c && c.motivo).toMatch(/capítulos 6–9 .* columna 3/)
   })
@@ -247,7 +253,7 @@ describe('budget-execution-ocr — el desglose coteja el resumen', () => {
   it('sin su fila «Total» no se ha cotejado nada, y no se dice que coincide', () => {
     const d = leerHojaOcr(DESGLOSE_CAPITAL_GASTOS('')) as DesgloseLeido
     expect(lecturaAceptable(d)).toBe(false)
-    expect(cotejarDesglose(valida(RESUMEN_GASTOS_3T2025), d)).toEqual({ estado: 'sin-total' })
+    expect(cotejarDesglose(resumen(RESUMEN_GASTOS_3T2025), d)).toEqual({ estado: 'sin-total' })
   })
 })
 
@@ -343,7 +349,8 @@ describe('budget-execution-ocr — el lector sobre los PDF reales', () => {
     expect((d as DesgloseLeido).total).toEqual([
       180856473, 2122961712, 1538307946, 1537510448, 1097499,
     ])
-    const r = (await leer('budget-execution-ingresos-resumen_3t2025.pdf')) as LecturaValida
+    const r = (await leer('budget-execution-ingresos-resumen_3t2025.pdf')) as LecturaResumen
+    expect(r.plantilla).toBe('resumen')
     expect(cotejarDesglose(r, d as DesgloseLeido)).toEqual({ estado: 'coincide' })
   }, 90_000)
 

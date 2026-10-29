@@ -179,13 +179,19 @@ function motivoDe(fallos: string[]): string {
 
 const euros = (c: number) => c / 100
 
-export interface LecturaValida {
-  plantilla: 'resumen' | 'estado'
+interface LecturaQueCuadra {
   doc: ExecDoc
-  /** Las cifras de cada capítulo en céntimos, tal como se cotejaron: para el desglose. */
+  /** Las cifras de cada capítulo en céntimos, tal como se cotejaron. */
   importes: Record<number, number[]>
   motivo: null
 }
+export interface LecturaResumen extends LecturaQueCuadra {
+  plantilla: 'resumen'
+}
+export interface LecturaEstado extends LecturaQueCuadra {
+  plantilla: 'estado'
+}
+export type LecturaValida = LecturaResumen | LecturaEstado
 export interface DesgloseLeido {
   plantilla: 'desglose'
   kind: ExecKind
@@ -470,11 +476,14 @@ export type Cotejo = { estado: 'coincide' | 'sin-total' } | { estado: 'contradic
  * ¿Suma el resumen, en los capítulos que cubre el desglose, lo que imprime la
  * fila «Total» del desglose? Las dos son hojas distintas del mismo listado.
  * `sin-total` si no se leyó esa fila: no se ha cotejado, y no se dice que sí.
+ * Sólo un resumen: trae los nueve capítulos con las cinco columnas del
+ * desglose, en el mismo orden. El estado antiguo tiene otras columnas y omite
+ * los capítulos sin conceptos.
  */
-export function cotejarDesglose(resumen: LecturaValida, desglose: DesgloseLeido): Cotejo {
+export function cotejarDesglose(resumen: LecturaResumen, desglose: DesgloseLeido): Cotejo {
   if (!desglose.total) return { estado: 'sin-total' }
   for (let k = 0; k < 5; k++) {
-    const suma = desglose.capitulos.reduce((s, c) => s + (resumen.importes[c]?.[k] ?? 0), 0)
+    const suma = desglose.capitulos.reduce((s, c) => s + resumen.importes[c][k], 0)
     if (suma !== desglose.total[k]) {
       const caps = `${desglose.capitulos[0]}–${desglose.capitulos[desglose.capitulos.length - 1]}`
       return {
