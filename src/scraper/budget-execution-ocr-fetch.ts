@@ -126,9 +126,12 @@ export async function crearLectorOcr(): Promise<LectorOcr> {
   })
   // PSM 6 = un bloque de texto uniforme: conserva las filas de la tabla, y
   // `preserve_interword_spaces` deja las columnas separadas por varios espacios.
+  // `debug_file`: sin él, cada filete de la tabla sale en el registro de la
+  // nocturna como «Image too small to scale!!».
   await worker.setParameters({
     tessedit_pageseg_mode: '6' as never,
     preserve_interword_spaces: '1',
+    debug_file: '/dev/null',
   })
   const motor =
     `tesseract.js ${versionDe(require, 'tesseract.js')} (spa 4.0.0_best_int) ` +

@@ -251,6 +251,36 @@ describe('budget-execution-ocr — el desglose coteja el resumen', () => {
   })
 })
 
+describe('budget-execution-ocr — lo que cuenta el snapshot publicado', () => {
+  const publicado = JSON.parse(
+    readFileSync(join(__dirname, '..', 'public/data/budget-execution.json'), 'utf8'),
+  ) as {
+    lectura: {
+      hojasSinTexto: string[]
+      motorOcr: string | null
+      hojasOcr: Array<{ hoja: string; resultado: string; motivo: string | null }>
+    }
+  }
+
+  it('cada hoja sin texto dice qué hizo con ella el OCR', () => {
+    const { hojasSinTexto, hojasOcr } = publicado.lectura
+    // Una hoja sin texto que no aparece aquí es una hoja que nadie intentó leer
+    // y que el snapshot callaría (docs/DATA_INTEGRITY.md, regla 2).
+    expect(hojasOcr.map((h) => h.hoja).sort()).toEqual([...hojasSinTexto].sort())
+    for (const h of hojasOcr) {
+      expect(['leida', 'cotejo', 'descartada', 'sin-lector']).toContain(h.resultado)
+      if (h.resultado === 'descartada' || h.resultado === 'sin-lector')
+        expect(h.motivo?.length).toBeGreaterThan(5)
+    }
+  })
+
+  it('y con qué lector, si leyó alguna', () => {
+    const { hojasOcr, motorOcr } = publicado.lectura
+    if (hojasOcr.some((h) => h.resultado === 'leida' || h.resultado === 'cotejo'))
+      expect(motorOcr).toMatch(/tesseract\.js .* sobre mupdf/)
+  })
+})
+
 describe('budget-execution-ocr — el lector sobre los PDF reales', () => {
   let lector: LectorOcr
   beforeAll(async () => {

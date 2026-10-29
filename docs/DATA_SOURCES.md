@@ -192,9 +192,25 @@ overwrites it. Change the bot's SQLite instead.
   «Resumen por capítulos» per side (initial, final, recognised) beside detail
   sheets with no chapter totals. The summary carries no «Fecha de listado»,
   so its cut-off is the print date.
+- **Sheets with no text layer** — 3T 2025's six sheets and the income side of
+  2024's close are «Microsoft: Print To PDF» output with every glyph drawn as
+  a path: not scans, but pdf-parse gets nothing. They are read by OCR
+  (`budget-execution-ocr.ts`, pure; `budget-execution-ocr-fetch.ts`: mupdf +
+  tesseract.js, all WebAssembly, because the nightly runner has no poppler) and
+  published only if the reading adds up: every printed percentage matches
+  executed ÷ final to the rounding, the chapters sum to the printed total to
+  the cent, and — for the old SICALWIN income sheet — six identities per row
+  hold. A detail sheet is never published; its «Total» cross-checks the
+  summary chapters it covers. Amounts are read from their digits alone (every
+  figure has two decimals; separators are what OCR gets wrong).
+- **Income executed = DR netos** — what the OCR publishes for the old income
+  sheet, what its own «%DR s/Prev» measures and what the new template prints.
+  The text parser still takes gross DR for that layout (`COLS.ingresos`), so a
+  text-read old income sheet and an OCR-read one differ by the cancellations.
 - **What is not read, and why** — the snapshot's `lectura` block lists every
-  period dropped with its reason and every sheet with no text layer (scanned
-  PDFs: 3T 2025 and the income side of 2024's close). Still unread on
+  period dropped with its reason, every sheet with no text layer, and
+  (`hojasOcr`) what the OCR did with each: read, used to cross-check, dropped
+  with the figure that did not add up, or no reader. Still unread on
   2026-10-29: the 2023 split current/capital sheets and the chapter-less
   2024 and 2025 1T expense sheets.
 
