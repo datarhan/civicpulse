@@ -211,6 +211,29 @@ export interface EnvioSolicitud {
     /** Hasta qué, con las palabras de la comunicación: «hasta que …». */
     hasta: string
   }
+  /**
+   * El órgano notificó que AMPLÍA otro mes el plazo para resolver (art. 20.1 de
+   * la Ley 19/2013: «por otro mes» cuando el volumen o la complejidad lo hagan
+   * necesario, «previa notificación al solicitante»; en la Comunitat, art. 34.2
+   * de la Ley 1/2022).
+   *
+   * Lo estrenó el Ayuntamiento de Riba-roja el 27-10-2026, víspera del último
+   * día de las dos solicitudes presentadas por su Registro de Entrada el 27-09:
+   * sin el campo, al día siguiente sus filas habrían dicho «sin respuesta» con un
+   * plazo que ya no había vencido. MUEVE EL RELOJ, así que va en un campo; lo que
+   * dijo el oficio —el motivo, el artículo, el día que él calcula— va además en
+   * una incidencia con esta misma fecha.
+   *
+   * Sólo amplía la que se notifica dentro del primer mes: después, el plazo ya
+   * había vencido. Lo guarda la prueba de las instantáneas publicadas.
+   */
+  ampliada?: {
+    /**
+     * La fecha de la notificación: la de su puesta a disposición, que es la que
+     * cuenta para el plazo (art. 40.4 de la Ley 39/2015), no la de abrirla.
+     */
+    fecha: string
+  }
 }
 
 const MESES = [
@@ -294,12 +317,12 @@ export function vencimientoAfirmable(e: EnvioSolicitud): boolean {
 }
 
 /**
- * El último día del mes de una fila: desde su arranque, con el calendario de
- * quien la resuelve.
+ * El último día del plazo de una fila: desde su arranque, con el calendario de
+ * quien la resuelve, y dos meses si se amplió.
  */
 function vencimientoDe(e: EnvioSolicitud): { v: Vencimiento; festivos: FestivosPorAnio } {
   const festivos = festivosDelCalendario(e.calendario)
-  return { v: venceEl(arranqueDelPlazo(e).desde, festivos), festivos }
+  return { v: venceEl(arranqueDelPlazo(e).desde, festivos, e.ampliada ? 2 : 1), festivos }
 }
 
 export function estadoDeEnvio(e: EnvioSolicitud, hoy: string): EstadoEnvio {
@@ -374,6 +397,16 @@ export function fraseDeEnvio(e: EnvioSolicitud, hoy: string): string {
       'pero lo que ha ocurrido es que no hubo resolución.'
     : 'y no han contestado. La ley da a ese silencio efecto desestimatorio, pero lo que ha ' +
       'ocurrido es que no hubo respuesta.'
+  // Ampliado otro mes, el último día que se da es el del segundo: la frase dice
+  // cuándo se notificó, o quien cuente un mes desde el arranque no podría
+  // reconciliar la fecha. Vencida, ya no terminó «el mes»: terminó el plazo.
+  const ampliacion = e.ampliada
+    ? `, y el ${enCastellano(e.ampliada.fecha)} se notificó que ese plazo se ampliaba un mes más`
+    : ''
+  const elPlazo = e.ampliada
+    ? `el plazo del artículo 20, ampliado un mes más el ${enCastellano(e.ampliada.fecha)},`
+    : 'el mes del artículo 20'
+  const ElPlazo = elPlazo[0].toUpperCase() + elPlazo.slice(1)
 
   if (estado === 'respondida' && e.respuesta) {
     return `${cabeza} El ${enCastellano(e.respuesta.fecha)} ${QUE_HICIERON[e.respuesta.sentido]}.`
@@ -415,14 +448,14 @@ export function fraseDeEnvio(e: EnvioSolicitud, hoy: string): string {
         : 'y no consta todavía cuándo la recibió.')
     if (estado === 'vencida-sin-respuesta') {
       const arranque = r.recibidaEl
-        ? `El mes del artículo 20 terminó el ${vence}`
-        : `Contado desde esa comunicación, el mes del artículo 20 terminó el ${vence}`
+        ? `${ElPlazo} terminó el ${vence}`
+        : `Contado desde esa comunicación, ${elPlazo} terminó el ${vence}`
       return `${cabeza} ${remision} ${arranque} ${cierre}`
     }
     return r.recibidaEl
-      ? `${cabeza} ${remision} El artículo 20 de la Ley 19/2013 da un mes desde esa recepción: vence el ${vence}.${falta}`
+      ? `${cabeza} ${remision} El artículo 20 de la Ley 19/2013 da un mes desde esa recepción${ampliacion}: vence el ${vence}.${falta}`
       : `${cabeza} ${remision} El artículo 20 de la Ley 19/2013 da un mes desde que la solicitud llega al ` +
-          `órgano competente para resolver: contado desde esa comunicación, el ${vence}.${falta}`
+          `órgano competente para resolver${ampliacion}: contado desde esa comunicación, el ${vence}.${falta}`
   }
 
   // Con asiento, el plazo se afirma; sin él, se dice desde dónde se cuenta. La
@@ -430,21 +463,21 @@ export function fraseDeEnvio(e: EnvioSolicitud, hoy: string): string {
   // por el órgano competente, que es donde el art. 20.1 arranca el mes.
   if (estado === 'vencida-sin-respuesta') {
     const arranque = e.registro
-      ? `El mes del artículo 20 terminó el ${vence}`
-      : `Contado desde el envío, el mes del artículo 20 terminó el ${vence}`
+      ? `${ElPlazo} terminó el ${vence}`
+      : `Contado desde el envío, ${elPlazo} terminó el ${vence}`
     return `${cabeza} ${arranque} ${cierre}`
   }
 
   if (e.registro) {
     return (
       `${cabeza} El artículo 20 de la Ley 19/2013 da un mes desde su entrada en el registro del ` +
-      `órgano competente para resolver: vence el ${vence}.${falta}`
+      `órgano competente para resolver${ampliacion}: vence el ${vence}.${falta}`
     )
   }
 
   return (
     `${cabeza} El artículo 20 de la Ley 19/2013 da un mes desde que la solicitud llega al ` +
-    `órgano competente para resolver: contado desde el envío, el ${vence}.${falta}`
+    `órgano competente para resolver${ampliacion}: contado desde el envío, el ${vence}.${falta}`
   )
 }
 

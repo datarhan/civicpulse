@@ -232,7 +232,16 @@
         "registro": "2026014913",
         "entradaEl": "2026-09-28",
         "pide": "Copia de nueve documentos de protección de datos —evaluación de impacto, base jurídica del tratamiento, asiento del Registro de Actividades de Tratamiento, contrato de encargado suscrito con cada adjudicataria, información del artículo 13 a las personas afectadas, categorías de datos y plazos de conservación, destino de los datos al terminar los contratos y constancia de la consulta al Delegado de Protección de Datos—, y ocho preguntas sobre los dos contratos: una es la del destino de los datos, la 8 de la lista de arriba; las otras siete, sobre los visitantes contados, la memoria justificativa, el dimensionamiento y el baremo del concurso, las decisiones tomadas con los datos, el hito 221 y la DANA.",
-        "respuesta": null
+        "respuesta": null,
+        "incidencias": [
+          {
+            "fecha": "2026-10-27",
+            "texto": "El 27 de octubre el Departamento de Transparencia y Participación Ciudadana del Ayuntamiento notificó que amplía un mes el plazo para resolverla (expediente 4847/2026/GEN), con el artículo 34.2 de la Ley 1/2022: las unidades que custodian los expedientes «no han remitido al Departamento de Transparencia la totalidad de la documentación necesaria», y falta comprobar si alguna información está afectada «por límites al derecho de acceso o por derechos o intereses de terceras personas». El oficio cuenta desde la entrada del 28 de septiembre y dice que el nuevo plazo «finalizará el 28 de noviembre de 2026», y que la ampliación «no supone una denegación ni una limitación del derecho de acceso». No resuelve nada de lo pedido."
+          }
+        ],
+        "ampliada": {
+          "fecha": "2026-10-27"
+        }
       },
       {
         "organismo": "Ayuntamiento de Riba-roja de Túria",

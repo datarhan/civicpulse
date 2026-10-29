@@ -167,14 +167,19 @@ export interface RegistroSolicitudes {
  * las quejas (`finDelPlazoEnMeses`), con el calendario de quien resuelve: el de
  * la sede para el registro curado, que es del Ayuntamiento, y el de cada fila en
  * los reportajes (`calendarios-inhabiles.ts`).
+ *
+ * `meses` es 2 cuando el órgano notificó que amplía el plazo «por otro mes»
+ * (art. 20.1): se cuentan los dos de fecha a fecha desde el arranque, y el
+ * art. 30.5 se aplica sólo al último día.
  */
 export type Vencimiento = Exclude<FinDelPlazo, { cuenta: 'sin-fecha' }>
 
 export function venceEl(
   presentadaEl: string,
   festivos: FestivosPorAnio = FESTIVOS_DE_LA_SEDE,
+  meses: 1 | 2 = 1,
 ): Vencimiento {
-  const fin = finDelPlazoEnMeses(presentadaEl, 1, festivos)
+  const fin = finDelPlazoEnMeses(presentadaEl, meses, festivos)
   // Las fechas de una solicitud las valida quien las escribe. Una ilegible aquí
   // es un fallo, y callarla como «sin plazo» lo escondería.
   if (fin.cuenta === 'sin-fecha') throw new TypeError(`venceEl: «${presentadaEl}» no es una fecha`)
