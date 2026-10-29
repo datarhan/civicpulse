@@ -378,6 +378,9 @@ export const CATALOGUE = {
     'reportajes.indice': 'En esta pieza',
     'reportajes.indice.apartados': '{n} apartados',
     'reportajes.mas': 'Más reportajes',
+    // «Lo que hemos encontrado» (ClavesPieza.jsx): las claves de cada pieza.
+    'reportajes.claves.titulo': 'Lo que hemos encontrado',
+    'reportajes.claves.irA': 'Ir al apartado {num}, que lo cuenta',
     'reportajes.todos': 'Todos los reportajes →',
     // «Pídelo tú» (components/reportajes/SolicitudLector.jsx): el escrito de
     // acceso con las preguntas de una pieza que el proyecto aún no ha
@@ -3377,6 +3380,8 @@ export const CATALOGUE = {
     'reportajes.indice': 'En aquesta peça',
     'reportajes.indice.apartados': '{n} apartats',
     'reportajes.mas': 'Més reportatges',
+    'reportajes.claves.titulo': 'El que hem trobat',
+    'reportajes.claves.irA': 'Anar a l’apartat {num}, que ho explica',
     'reportajes.todos': 'Tots els reportatges →',
     'reportajes.solicitud.titulo': 'Aquestes preguntes les pots fer tu',
     'reportajes.solicitud.explica':

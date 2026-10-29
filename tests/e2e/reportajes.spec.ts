@@ -146,3 +146,31 @@ test.describe('La columna de las piezas', () => {
     })
   }
 })
+
+// «Lo que hemos encontrado»: cada clave lleva a la sección que la prueba. Un
+// número de sección que la pieza no pinta sería un enlace a ninguna parte, y
+// eso sólo se ve con la pieza pintada: la numeración vive en su JSX.
+test.describe('Las claves de las piezas', () => {
+  for (const slug of publicadas) {
+    test(`${slug}: cada clave enlaza a una sección que existe, y el salto llega`, async ({
+      page,
+    }) => {
+      const { claves } = JSON.parse(readFileSync(`public/data/reportajes/${slug}.json`, 'utf8'))
+      await page.goto(`/reportajes/${slug}`, { waitUntil: 'domcontentloaded' })
+      const caja = page.locator('[data-claves]')
+      await expect(caja.getByRole('heading', { name: 'Lo que hemos encontrado' })).toBeVisible({
+        timeout: 8000,
+      })
+      await expect(caja.locator('li')).toHaveCount(claves.length)
+      for (const c of claves) {
+        await expect(
+          page.locator(`[data-seccion="${c.seccion}"]#seccion-${c.seccion}`),
+        ).toHaveCount(1)
+      }
+      // El salto, con la última: la más lejos de la caja.
+      const ultima = claves[claves.length - 1]
+      await caja.locator(`a[href="#seccion-${ultima.seccion}"]`).first().click()
+      await expect(page.locator(`#seccion-${ultima.seccion}`)).toBeInViewport()
+    })
+  }
+})

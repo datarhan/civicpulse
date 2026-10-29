@@ -54,6 +54,28 @@
       }
     ]
   },
+  "claves": [
+    {
+      "texto": "El Ayuntamiento no entregó al ministerio la declaración del coste de sus servicios de 2020, lo que Hacienda registra como incumplimiento; la pandemia no lo explica: ese año la entregaron 503 ayuntamientos valencianos.",
+      "seccion": "05"
+    },
+    {
+      "texto": "En 13 de sus 15 servicios, el Ayuntamiento actualiza lo que costó, pero repite idéntica, durante cuatro declaraciones o más, la cantidad entre la que se divide, como las 11.059,41 toneladas de residuos.",
+      "seccion": "06"
+    },
+    {
+      "texto": "Entre 2014 y 2024 los precios subieron un 22,8 %, y descontado eso, la subida del coste por unidad del cementerio y los servicios funerarios baja del 112 % al 73 %.",
+      "seccion": "07"
+    },
+    {
+      "texto": "En la última tarifa del agua publicada, de 2025 y anterior al nuevo contrato, cada cifra es un 9 % mayor que la de 2022 y un 19 % mayor que la de 2013.",
+      "seccion": "01"
+    },
+    {
+      "texto": "Las condiciones de la nueva concesión mandan recuperar en las tarifas lo que la empresa paga al Ayuntamiento por usar las instalaciones, y no dejan revisarlas más de un 1,5 % al año.",
+      "seccion": "01"
+    }
+  ],
   "infografia": {
     "titulo": "La mitad de abajo de la división",
     "url": "/infografias/eficiencia-2026-08.html",

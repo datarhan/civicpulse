@@ -35,6 +35,28 @@
       }
     ]
   },
+  "claves": [
+    {
+      "texto": "Para explicar por qué hacía falta cada compra, las dos memorias repiten palabra por palabra un párrafo que habla de la actuación de realidad aumentada, y ninguno de los dos contratos es esa actuación.",
+      "seccion": "03"
+    },
+    {
+      "texto": "El concurso de los sensores daba dieciséis de cada cien puntos por instalar más aparatos que el mínimo exigido, sin que su expediente trajera una sola cifra de visitantes que dijera cuántos hacían falta.",
+      "seccion": "05"
+    },
+    {
+      "texto": "Según el pliego, una parte del contrato de sensores es medir la calidad del aire, una función ambiental legítima que no depende de que haya turistas; la otra parte es contar gente.",
+      "seccion": "04"
+    },
+    {
+      "texto": "Sobre protección de datos, las dos memorias sólo dicen una misma frase, y este medio no ha localizado publicada ninguna evaluación de impacto ni el plazo de conservación de los datos.",
+      "seccion": "06"
+    },
+    {
+      "texto": "El dinero del plan no podía legalmente desviarse a la reconstrucción, y no consta en ningún registro público consultado que Riba-roja pidiera reprogramar su contenido tras la DANA; el plazo sí se le amplió.",
+      "seccion": "07"
+    }
+  ],
   "kpis": [
     {
       "n": "87.050 €",
