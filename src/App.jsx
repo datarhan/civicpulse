@@ -41,6 +41,7 @@ const Hallazgos = lazy(() => import('./pages/Hallazgos'))
 const HallazgoDetalle = lazy(() => import('./pages/HallazgoDetalle'))
 const Declaraciones = lazy(() => import('./pages/Declaraciones'))
 const Laboratorio = lazy(() => import('./pages/Laboratorio'))
+const LaboratorioPrensa = lazy(() => import('./pages/LaboratorioPrensa'))
 const Frontera = lazy(() => import('./pages/Frontera'))
 const CosteEsperado = lazy(() => import('./pages/CosteEsperado'))
 const Cobertura = lazy(() => import('./pages/Cobertura'))
@@ -175,6 +176,7 @@ function InnerShell({ onOpenCmdK, tweaksOpen, onToggleTweaks }) {
                 <Route path="/quejas/dashboard" element={<QuejasDashboard />} />
                 <Route path="/quejas/:id" element={<QuejaDetail />} />
                 <Route path="/laboratorio" element={<Laboratorio />} />
+                <Route path="/laboratorio/prensa" element={<LaboratorioPrensa />} />
                 <Route path="/laboratorio/frontera" element={<Frontera />} />
                 <Route path="/laboratorio/coste-esperado" element={<CosteEsperado />} />
                 <Route path="/laboratorio/cobertura" element={<Cobertura />} />

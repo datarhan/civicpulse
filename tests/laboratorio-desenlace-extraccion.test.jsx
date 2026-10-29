@@ -5,7 +5,7 @@ import { readFileSync } from 'node:fs'
 import { join } from 'node:path'
 
 import { esAnuncioClasificado } from '../src/scraper/press-clasificado'
-import Laboratorio from '../src/pages/Laboratorio'
+import Laboratorio from '../src/pages/LaboratorioPrensa'
 import { desenlaceVigente, textoLibroVacio } from '../src/lib/press-lab'
 import { DESENLACES_EXTRACCION } from '../src/scraper/press-extraccion'
 import { installFetchMock } from './setup/mockFetch'

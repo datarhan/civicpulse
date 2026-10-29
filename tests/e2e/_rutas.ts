@@ -131,6 +131,7 @@ export const STRICT_ROUTES = [
   '/eficiencia',
   '/gestion',
   '/laboratorio',
+  '/laboratorio/prensa',
   '/laboratorio/agentes',
   '/laboratorio/frontera',
   '/laboratorio/coste-esperado',

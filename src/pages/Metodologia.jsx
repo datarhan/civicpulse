@@ -2505,7 +2505,7 @@ export default function Metodologia() {
         />
         <p style={{ marginTop: 8 }}>
           El{' '}
-          <a href="/laboratorio" style={{ color: 'var(--civic)' }}>
+          <a href="/laboratorio/prensa" style={{ color: 'var(--civic)' }}>
             laboratorio
           </a>{' '}
           aplica el contraste editorial habitual de la verificación de hechos al flujo de prensa

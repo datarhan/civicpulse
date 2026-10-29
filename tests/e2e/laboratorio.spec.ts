@@ -3,7 +3,7 @@ import { readFileSync } from 'node:fs'
 import { collectErrors, appErrors } from './_console'
 import { fraseVeredictos, pressLabSummary } from '../../src/lib/press-lab'
 
-test.describe('Laboratorio (/laboratorio)', () => {
+test.describe('Laboratorio de prensa (/laboratorio/prensa)', () => {
   // La entradilla dice cuántas afirmaciones llegan a un veredicto con la frase que
   // sale del mismo recuento que las tasas, no con una cuantía escrita a mano: decía
   // «La mayoría vuelve sin nada…» encima de «0 de 64» (revisión lectora, 15-09-2026).
@@ -26,14 +26,14 @@ test.describe('Laboratorio (/laboratorio)', () => {
     // Mide algo: hay afirmaciones publicadas que contar.
     expect(resumen.totalClaims).toBeGreaterThan(0)
     await page.clock.setFixedTime(ahora)
-    await page.goto('/laboratorio', { waitUntil: 'domcontentloaded' })
+    await page.goto('/laboratorio/prensa', { waitUntil: 'domcontentloaded' })
     await expect(page.getByText(fraseVeredictos(resumen))).toBeVisible({ timeout: 8000 })
   })
 
   test('renders header, KPI strip, and dashboard rail', async ({ page }) => {
     const errors = collectErrors(page)
 
-    await page.goto('/laboratorio', { waitUntil: 'domcontentloaded' })
+    await page.goto('/laboratorio/prensa', { waitUntil: 'domcontentloaded' })
 
     await expect(
       page.getByText(/Observatorio de medios · Riba-roja de Túria/i).first(),
@@ -77,7 +77,7 @@ test.describe('Laboratorio (/laboratorio)', () => {
   test('shows the extraction-pending banner iff the discrepancy rate is unavailable', async ({
     page,
   }) => {
-    await page.goto('/laboratorio', { waitUntil: 'domcontentloaded' })
+    await page.goto('/laboratorio/prensa', { waitUntil: 'domcontentloaded' })
     await expect(
       page.getByRole('heading', { name: 'Laboratorio de verificación de prensa' }),
     ).toBeVisible({ timeout: 8000 })
@@ -130,7 +130,7 @@ test.describe('Laboratorio (/laboratorio)', () => {
   })
 
   test('methodology footer + right-of-reply CTA render', async ({ page }) => {
-    await page.goto('/laboratorio', { waitUntil: 'domcontentloaded' })
+    await page.goto('/laboratorio/prensa', { waitUntil: 'domcontentloaded' })
     await expect(page.getByText(/Política editorial/i).first()).toBeVisible({ timeout: 8000 })
     await expect(page.getByRole('link', { name: /Leer metodología/i }).first()).toBeVisible()
   })
@@ -149,7 +149,7 @@ test.describe('Laboratorio (/laboratorio)', () => {
     const items: { contradiction?: unknown[] }[] = (await snapshot.json()).items
     const expected = items.filter((f) => (f.contradiction ?? []).length > 0).length
 
-    await page.goto('/laboratorio', { waitUntil: 'domcontentloaded' })
+    await page.goto('/laboratorio/prensa', { waitUntil: 'domcontentloaded' })
     await expect(
       page.getByRole('heading', { name: 'Laboratorio de verificación de prensa' }),
     ).toBeVisible({ timeout: 8000 })

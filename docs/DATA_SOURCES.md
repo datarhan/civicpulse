@@ -593,7 +593,7 @@ overwrites it. Change the bot's SQLite instead.
 
 - **Pipeline** — `press.ts` → `press.json`
 - **Source** — Three feeds merged with FNV fingerprint dedup: (1) Google News RSS `news.google.com/rss/search?q="Riba-roja de Túria"` covering national + regional Spanish outlets (Levante-EMV, Las Provincias, Valencia Plaza, elDiario.es, Cadena SER, Comunica GVA, …); (2) `infoturia.com/riba-roja-de-turia/feed/` — direct WordPress feed of the local comarcal paper _Periòdic del Camp de Túria_, catches stories the Google News indexer misses; (3) `ribarroja.es/es/noticias/rss.xml` — the **Ayuntamiento's OWN** Drupal news feed (primary source), stamped `official:true` + a `Sección` taxonomy by `parseOfficialNewsRss`, merged FIRST so its attribution wins on a fingerprint collision (needs a Mozilla-leading UA for the ribarroja.es WAF). Each feed has its own parser (`parseGoogleNewsRss` for the " - Pub" suffix quirk; `parseStandardRss` for plain WordPress RSS; `parseOfficialNewsRss` for the official Drupal feed + section lift); one feed failing does not block the others.
-- **Surfaces** — `/laboratorio` + Direction D editorial column (`PressBlockD`, with an "Oficial" badge on town-hall rows)
+- **Surfaces** — `/laboratorio/prensa` + Direction D editorial column (`PressBlockD`, with an "Oficial" badge on town-hall rows)
 
 ### Geo (municipal boundary 484 pts + 21 neighborhoods)
 
@@ -693,19 +693,19 @@ overwrites it. Change the bot's SQLite instead.
 
 - **Pipeline** — `factcheck.ts` → `factcheck.json`
 - **Source** — Two sources merged via `mergeFactCheckRows`: (1) Google Fact Check Tools API `factchecktools.googleapis.com/v1alpha1/claims:search` queried with `"Riba-roja de Túria"` (`languageCode=es`) — requires `GOOGLE_FACT_CHECK_API_KEY` (free tier; skipped gracefully when absent); (2) Maldita.es + Newtral RSS feeds (`parseFactcheckRss`) filtered to items mentioning Riba-roja, category-mapped onto our `ClaimVerdict` enum. The press verifier cross-references every press claim against the merged index and emits `kind:'factcheck'` evidence rows when a published fact-check matches by token overlap; sin-datos verdicts are upgraded to the fact-checker consensus.
-- **Surfaces** — `/laboratorio` — "Verificaciones externas" widget in the dashboard rail · per-claim cross-check row when an external fact-check matches. It lands in a press finding's `crossChecked[]`, never `contradiction[]`, even when the fact-checker's rating is "Falso": the directional judgement is theirs, our match is token overlap, and `contradiction[]` gates `severity: critical` about a named outlet.
+- **Surfaces** — `/laboratorio/prensa` — "Verificaciones externas" widget in the dashboard rail · per-claim cross-check row when an external fact-check matches. It lands in a press finding's `crossChecked[]`, never `contradiction[]`, even when the fact-checker's rating is "Falso": the directional judgement is theirs, our match is token overlap, and `contradiction[]` gates `severity: critical` about a named outlet.
 
 ### EU TED tenders (Tenders Electronic Daily, 54+ notices for Riba-roja)
 
 - **Pipeline** — `tenders-ted.ts` → `tenders-ted.json`
 - **Source** — TED v3 API at `api.ted.europa.eu/v3/notices/search`. Free, no auth. Expert-query syntax: `buyer-name~"Riba-roja"`. Catches contracts above the EU threshold (~€143k for supplies/services in 2026), NextGenerationEU + DANA recovery spending that PLACSP publishes late or routes via national funding lines. `asTenderRow()` projects each row onto the same `TenderRow` shape the verifier uses, so `[...local.contracts, ...ted.items]` merges cleanly in the amount-based cross-ref.
-- **Surfaces** — `/laboratorio` — surfaces as `kind:'tender'` evidence rows on press findings whose amount + buyer-name match a TED notice. Auto-upgrades sin-datos → verificado when matched.
+- **Surfaces** — `/laboratorio/prensa` — surfaces as `kind:'tender'` evidence rows on press findings whose amount + buyer-name match a TED notice. Auto-upgrades sin-datos → verificado when matched.
 
 ### BOE (Boletín Oficial del Estado)
 
 - **Pipeline** — `boe.ts` → `boe.json`
 - **Source** — Walks the last 30 days of the open-data sumario JSON at `boe.es/datosabiertos/api/boe/sumario/{YYYYMMDD}`. Free, no auth. Filters each item's titulo to those mentioning Riba-roja / Ribarroja. Catches convenios, expropiaciones, subvenciones nominativas, sanciones — actos administrativos PLACSP misses. Defensive parser: `epigrafe` and `item` can each be single object OR array.
-- **Surfaces** — `/laboratorio` — press verifier's `applyBoeCrossRef` requires the press claim to contain an acto-administrativo trigger word (ordenanza / decreto / resolución / convenio / expropiación / sanción / plan general / subvención) AND token-overlap with a BOE titulo. Sin-datos → verificado on match. `kind:'boe'` evidence row.
+- **Surfaces** — `/laboratorio/prensa` — press verifier's `applyBoeCrossRef` requires the press claim to contain an acto-administrativo trigger word (ordenanza / decreto / resolución / convenio / expropiación / sanción / plan general / subvención) AND token-overlap with a BOE titulo. Sin-datos → verificado on match. `kind:'boe'` evidence row.
 
 ### Catastro (OVC cadastre)
 
@@ -717,13 +717,13 @@ overwrites it. Change the bot's SQLite instead.
 
 - **Pipeline** — **derived** · `audit-press-links.ts` → `press-link-rot.json`
 - **Source** — Daily job. HEAD-checks every unique `articleUrl` in `press-claims-suggestions.json`, calls Wayback's Availability API to find an existing snapshot, optionally Save Page Now for dead/forced URLs — only when the lookup ANSWERED that none exists, never when it was refused. **A Wayback copy does not vanish, and the snapshot used to say it did**: measured on 2026-09-20 over the last fourteen runs, most of the URLs that showed a copy in some run «lost» it in a later one and got it back afterwards — on `/promesas`, a citation's archived-copy link blinking from one day to the next, and a `stats.archived` that wandered over the same URL set. The API fails to report a copy in two ways, both seen that day: it refuses the lookup (429), or it answers a clean 200 with `archived_snapshots: {}` for a URL that has a capture. So the copy an earlier run found is kept until a lookup finds another (`archiveCarried: true`), no save is spent on a page that has one, each row says what Wayback answered today (`archiveLookup: found\|saved\|none\|failed` — `failed` is «could not look», never «no copy»), and `stats` counts `archivedCarried`, `lookupNone` and `lookupFailed` beside `archived`: a low `archived` with a high `lookupFailed` is «could not look today», not «few copies». The limit: a capture Wayback has since excluded keeps being linked, and nothing checks those links yet. Writes `{articleUrl, status: alive\|dead\|error, archivedUrl, archivedAt, archiveLookup, archiveCarried?, checkedAt, …}`. Chained nightly after `auto-curate-press`.
-- **Surfaces** — `/laboratorio` — each press card shows "🔗 Wayback ↗" when a snapshot exists; "Ver original" link flips to red ⚠︎ when status='dead' so curators cite the snapshot instead.
+- **Surfaces** — `/laboratorio/prensa` — each press card shows "🔗 Wayback ↗" when a snapshot exists; "Ver original" link flips to red ⚠︎ when status='dead' so curators cite the snapshot instead.
 
 ### Press finding corrections log
 
 - **Pipeline** — **human-curated** · `correct-press-finding.ts` CLI · embedded inside `press-findings.json`
 - **Source** — Per-correction record `{field: title\|summary\|severity, original, corrected, reason ≥20 chars, editor, correctedAt ISO}` appended to `PressFinding.corrections[]`. CLI re-validates the whole snapshot before writing — invariants like ≥10-char title / ≥40-char summary stay intact. IFCN signatory pillar #5 (open corrections policy).
-- **Surfaces** — `/laboratorio` — collapsible "Bitácora de correcciones" expander on each finding card with strike-through diff.
+- **Surfaces** — `/laboratorio/prensa` — collapsible "Bitácora de correcciones" expander on each finding card with strike-through diff.
 
 ### Pleno finding corrections log
 
@@ -748,7 +748,7 @@ overwrites it. Change the bot's SQLite instead.
 
 - **Pipeline** — **published** · `src/components/ClaimReviewJsonLd.jsx`
 - **Source** — Every press + pleno finding card embeds a `<script type="application/ld+json">` payload conforming to schema.org/ClaimReview. Two builders: `_buildPayload` (press — itemReviewed.appearance points at outlets) and `_buildPlenoPayload` (pleno — itemReviewed.appearance points at the council session). Severity maps to a 1-5 reviewRating.
-- **Surfaces** — `/laboratorio`, `/hallazgos` and `/hallazgos/:id` (the review's `url` is the finding's own page). Lets Google's Rich Results Test recognise us as a fact-check publisher — same standard the Fact Check Tools API indexes (we both consume + publish).
+- **Surfaces** — `/laboratorio/prensa`, `/hallazgos` and `/hallazgos/:id` (the review's `url` is the finding's own page). Lets Google's Rich Results Test recognise us as a fact-check publisher — same standard the Fact Check Tools API indexes (we both consume + publish).
 
 ### CTBG resoluciones (state-level, 10,551 rows, 12 yearly sheets)
 

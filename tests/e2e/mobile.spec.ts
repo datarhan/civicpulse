@@ -175,7 +175,8 @@ const ROUTES: Route[] = [
   // quejas snapshot has loaded and the id was absent from it.
   { path: '/quejas/q-no-existe', ready: /no aparece en el snapshot actual/ },
   { path: '/cambios', ready: /Total: \d+ cambios · ventana de \d+ días/ },
-  { path: '/laboratorio', ready: /TITULARES MONITORIZADOS \d+/ },
+  { path: '/laboratorio', ready: /Aquí probamos métodos/ },
+  { path: '/laboratorio/prensa', ready: /TITULARES MONITORIZADOS \d+/ },
   // No estaba en esta lista, así que ninguna guarda de ancho la miraba: sus
   // filas de cinco columnas se salían 69 px con la barra lateral. La señal es
   // un recuento de filas, que sólo existe cuando un snapshot se ha leído.

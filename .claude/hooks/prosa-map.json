@@ -127,7 +127,7 @@
     ],
     "factcheck.json": [
       "/lab-health",
-      "/laboratorio"
+      "/laboratorio/prensa"
     ],
     "finding-quote-provenance.json": [
       "/curator",
@@ -296,32 +296,32 @@
     ],
     "press-claims-verified.json": [
       "/lab-health",
-      "/laboratorio"
+      "/laboratorio/prensa"
     ],
     "press-coverage-gaps.json": [
       "/lab-health",
-      "/laboratorio"
+      "/laboratorio/prensa"
     ],
     "press-findings.json": [
       "/lab-health",
-      "/laboratorio"
+      "/laboratorio/prensa"
     ],
     "press-link-rot.json": [
       "/lab-health",
-      "/laboratorio",
+      "/laboratorio/prensa",
       "/promesas"
     ],
     "press-summaries.json": [
       "/lab-health",
-      "/laboratorio"
+      "/laboratorio/prensa"
     ],
     "press-triangulation.json": [
       "/lab-health",
-      "/laboratorio"
+      "/laboratorio/prensa"
     ],
     "press-trust.json": [
       "/lab-health",
-      "/laboratorio"
+      "/laboratorio/prensa"
     ],
     "press.json": [
       "/",
@@ -335,10 +335,10 @@
       "/hallazgos",
       "/hallazgos/:id",
       "/lab-health",
-      "/laboratorio",
       "/laboratorio/cobertura",
       "/laboratorio/coste-esperado",
       "/laboratorio/frontera",
+      "/laboratorio/prensa",
       "/plenos",
       "/presupuesto",
       "/promesas",
