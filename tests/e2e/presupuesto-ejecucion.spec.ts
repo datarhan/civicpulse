@@ -90,8 +90,9 @@ test.describe('Presupuesto · la cascada de ejecución', () => {
     expect(Math.abs(m.anchos.ejecutado - (eje / def) * m.carril)).toBeLessThanOrEqual(1.5)
 
     // 3. El titular dice el crecimiento, y es el de estas cifras — no uno
-    //    escrito a mano que sobreviva a la próxima entrega.
-    const pct = m.titulo.match(/creció un (\d+) %/)
+    //    escrito a mano que sobreviva a la próxima entrega. En pasado del
+    //    cierre («creció»), en presente de un año en curso («ha crecido»).
+    const pct = m.titulo.match(/(?:creció|ha crecido) un (\d+) %/)
     expect(pct, `el titular no declara el crecimiento: ${m.titulo}`).not.toBeNull()
     expect(Number(pct![1])).toBe(Math.round((mod / ini) * 100))
 
