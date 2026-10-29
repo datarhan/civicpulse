@@ -2530,10 +2530,13 @@ export const CATALOGUE = {
     'cargos.detalle.area.title': 'Dinero adjudicado en las concejalías que hoy dirige',
     'cargos.detalle.area.titleRango':
       'Dinero adjudicado entre {desde} y {hasta} en las concejalías que hoy dirige',
+    // Un solo año dice que TODOS sus contratos son de ese año, no que se miró sólo
+    // ese: «Dinero adjudicado en 2019» junto a «sumados a lo largo de todo el
+    // periodo» se leía como dos periodos distintos (revisión lectora, 29-10-2026).
     'cargos.detalle.area.titleAnio':
-      'Dinero adjudicado en {anio} en las concejalías que hoy dirige',
+      'Dinero adjudicado en las concejalías que hoy dirige: todos los contratos son de {anio}',
     'cargos.detalle.area.intro':
-      'Importes adjudicados en las áreas de las que hoy es responsable, sumados a lo largo de todo el periodo, las dirigiera quien las dirigiera: no es la contratación de su mandato. Es contratación de la concejalía, no de la persona: los contratos los adjudica el órgano de contratación del Ayuntamiento.',
+      'Importes adjudicados en las áreas de las que hoy es responsable, sumados a lo largo de todo el registro, las dirigiera quien las dirigiera: no es la contratación de su mandato. Es contratación de la concejalía, no de la persona: los contratos los adjudica el órgano de contratación del Ayuntamiento.',
     'cargos.detalle.area.note':
       'Solo contratos ya adjudicados y de categoría atribuible a un área; la cifra se queda corta antes que asignar un responsable equivocado.',
     'cargos.detalle.stat.areasDelegadas': 'Áreas delegadas',
@@ -5309,9 +5312,9 @@ export const CATALOGUE = {
     'cargos.detalle.area.titleRango':
       'Diners adjudicats entre {desde} i {hasta} a les regidories que hui dirigeix',
     'cargos.detalle.area.titleAnio':
-      'Diners adjudicats el {anio} a les regidories que hui dirigeix',
+      'Diners adjudicats a les regidories que hui dirigeix: tots els contractes són del {anio}',
     'cargos.detalle.area.intro':
-      "Imports adjudicats a les àrees de què hui és responsable, sumats al llarg de tot el període, les dirigira qui les dirigira: no és la contractació del seu mandat. És contractació de la regidoria, no de la persona: els contractes els adjudica l'òrgan de contractació de l'Ajuntament.",
+      "Imports adjudicats a les àrees de què hui és responsable, sumats al llarg de tot el registre, les dirigira qui les dirigira: no és la contractació del seu mandat. És contractació de la regidoria, no de la persona: els contractes els adjudica l'òrgan de contractació de l'Ajuntament.",
     'cargos.detalle.area.note':
       'Només contractes ja adjudicats i de categoria atribuïble a una àrea; la xifra es queda curta abans que assignar un responsable equivocat.',
     'cargos.detalle.stat.areasDelegadas': 'Àrees delegades',
