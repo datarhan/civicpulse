@@ -1,7 +1,7 @@
 import { describe, expect, it } from 'vitest'
 import { fireEvent, render, screen } from '@testing-library/react'
 
-import { OutletScoreboard, TrustIndicators } from '../../src/pages/Laboratorio'
+import { OutletScoreboard, TrustIndicators } from '../../src/pages/LaboratorioPrensa'
 
 /**
  * La tabla por medio de /laboratorio se rotulaba «Tabla de fiabilidad» y ponía,

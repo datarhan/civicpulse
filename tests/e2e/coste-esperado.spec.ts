@@ -133,7 +133,7 @@ test.describe('Coste esperado (/laboratorio/coste-esperado)', () => {
 
   test('se alcanza desde el laboratorio', async ({ page }) => {
     await page.goto('/laboratorio', { waitUntil: 'domcontentloaded' })
-    const enlace = page.getByRole('link', { name: /el coste esperado/i })
+    const enlace = page.locator('main a[href="/laboratorio/coste-esperado"]').first()
     await expect(enlace).toBeVisible({ timeout: 8000 })
     await enlace.click()
     await expect(page.getByRole('heading', { name: /El coste esperado/i })).toBeVisible()

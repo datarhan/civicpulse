@@ -132,7 +132,7 @@ test.describe('Frontera (/laboratorio/frontera)', () => {
 
   test('se alcanza desde el laboratorio', async ({ page }) => {
     await page.goto('/laboratorio', { waitUntil: 'domcontentloaded' })
-    const enlace = page.getByRole('link', { name: /la frontera del gasto/i })
+    const enlace = page.locator('main a[href="/laboratorio/frontera"]').first()
     await expect(enlace).toBeVisible({ timeout: 8000 })
     await enlace.click()
     await expect(page.getByRole('heading', { name: /La frontera del gasto/i })).toBeVisible()

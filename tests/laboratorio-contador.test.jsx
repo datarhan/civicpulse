@@ -4,7 +4,7 @@ import { MemoryRouter } from 'react-router-dom'
 import { readFileSync } from 'node:fs'
 import { join } from 'node:path'
 
-import Laboratorio from '../src/pages/Laboratorio'
+import Laboratorio from '../src/pages/LaboratorioPrensa'
 import { installFetchMock } from './setup/mockFetch'
 
 /**
