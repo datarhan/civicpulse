@@ -1,13 +1,13 @@
 {
-  "generatedAt": "2026-10-28T10:47:42.614Z",
+  "generatedAt": "2026-10-30T11:02:32.711Z",
   "source": {
     "url": "https://www.ribarroja.es/es/eventos/rss.xml",
     "platform": "Drupal RSS (oficial)"
   },
   "stats": {
     "total": 50,
-    "upcoming": 10,
-    "nextDate": "2026-10-30T21:00:00.000Z"
+    "upcoming": 16,
+    "nextDate": "2026-10-31T07:00:00.000Z"
   },
   "events": [
     {
@@ -41,16 +41,6 @@
       "image": "https://www.ribarroja.es/sites/www.ribarroja.es/files/styles/interior_contenido_/public/IMG-20260910-WA0016.jpg?itok=7XZVoaWU"
     },
     {
-      "id": "v923a3",
-      "title": "Actes festes Crist 2026 - dijous 10 de setembre",
-      "link": "https://www.ribarroja.es/es/evento/actes-festes-crist-2026-dijous-10-de-setembre",
-      "eventDate": "2026-09-10T18:00:00.000Z",
-      "eventDateText": "10 de septiembre de 2026 20:00",
-      "publishedDate": "2026-08-28T10:13:49.000Z",
-      "excerpt": "&nbsp;",
-      "image": "https://www.ribarroja.es/sites/www.ribarroja.es/files/styles/interior_contenido_/public/20260827%20FestesCrist2026_web_12.png?itok=53TWFTB4"
-    },
-    {
       "id": "3amk2c",
       "title": "Competiciones deportivas 11 de septiembre de 2026",
       "link": "https://www.ribarroja.es/es/evento/competiciones-deportivas-11-de-septiembre-de-2026",
@@ -59,16 +49,6 @@
       "publishedDate": "2026-09-11T07:42:38.000Z",
       "excerpt": "&nbsp;",
       "image": "https://www.ribarroja.es/sites/www.ribarroja.es/files/styles/interior_contenido_/public/Competiciones%20deportivas%20reducida_1_0.png?itok=9bVHsvJq"
-    },
-    {
-      "id": "316nrd",
-      "title": "Actes festes Crist 2026 - divendres 11 de setembre",
-      "link": "https://www.ribarroja.es/es/evento/actes-festes-crist-2026-divendres-11-de-setembre",
-      "eventDate": "2026-09-11T18:30:00.000Z",
-      "eventDateText": "11 de septiembre de 2026 20:30",
-      "publishedDate": "2026-08-28T10:15:11.000Z",
-      "excerpt": "&nbsp;",
-      "image": "https://www.ribarroja.es/sites/www.ribarroja.es/files/styles/interior_contenido_/public/20260827%20FestesCrist2026_web_13.png?itok=Nejj9Leq"
     },
     {
       "id": "3fijiw",
@@ -81,16 +61,6 @@
       "image": "https://www.ribarroja.es/sites/www.ribarroja.es/files/styles/interior_contenido_/public/Competiciones%20deportivas%20reducida_1_1.png?itok=hdRFb2eR"
     },
     {
-      "id": "erbkv8",
-      "title": "Actes festes Crist 2026 - dissabte 12 de setembre",
-      "link": "https://www.ribarroja.es/es/evento/actes-festes-crist-2026-dissabte-12-de-setembre",
-      "eventDate": "2026-09-12T20:00:00.000Z",
-      "eventDateText": "12 de septiembre de 2026 22:00",
-      "publishedDate": "2026-08-28T10:16:44.000Z",
-      "excerpt": "&nbsp;",
-      "image": "https://www.ribarroja.es/sites/www.ribarroja.es/files/styles/interior_contenido_/public/20260827%20FestesCrist2026_web_14.png?itok=6QSf04t8"
-    },
-    {
       "id": "1j0i6w2",
       "title": "Competiciones deportivas 13 de septiembre de 2026",
       "link": "https://www.ribarroja.es/es/evento/competiciones-deportivas-13-de-septiembre-de-2026",
@@ -99,36 +69,6 @@
       "publishedDate": "2026-09-11T07:54:14.000Z",
       "excerpt": null,
       "image": "https://www.ribarroja.es/sites/www.ribarroja.es/files/styles/interior_contenido_/public/Competiciones%20deportivas%20reducida_1_2.png?itok=xYsV38Yt"
-    },
-    {
-      "id": "1yr9oon",
-      "title": "Actes festes Crist 2026 - diumenge 13 de setembre",
-      "link": "https://www.ribarroja.es/va/evento/actes-festes-crist-2026-diumenge-13-de-setembre",
-      "eventDate": "2026-09-13T17:30:00.000Z",
-      "eventDateText": "13 de septiembre de 2026 19:30",
-      "publishedDate": "2026-08-28T10:18:17.000Z",
-      "excerpt": "&nbsp;",
-      "image": "https://www.ribarroja.es/sites/www.ribarroja.es/files/styles/interior_contenido_/public/20260827%20FestesCrist2026_web_15.png?itok=d2bWVlnV"
-    },
-    {
-      "id": "kqh9p5",
-      "title": "Actes festes Crist 2026 - dilluns 14 de setembre",
-      "link": "https://www.ribarroja.es/va/evento/actes-festes-crist-2026-dilluns-14-de-setembre",
-      "eventDate": "2026-09-14T06:00:00.000Z",
-      "eventDateText": "14 de septiembre de 2026 08:00",
-      "publishedDate": "2026-08-28T10:20:00.000Z",
-      "excerpt": "&nbsp;",
-      "image": "https://www.ribarroja.es/sites/www.ribarroja.es/files/styles/interior_contenido_/public/20260827%20FestesCrist2026_web_16.png?itok=5UfP7z8i"
-    },
-    {
-      "id": "vpt9ag",
-      "title": "Actes festes Crist 2026 - dimarts 15 de setembre",
-      "link": "https://www.ribarroja.es/va/evento/actes-festes-crist-2026-dimarts-15-de-setembre",
-      "eventDate": "2026-09-15T18:00:00.000Z",
-      "eventDateText": "15 de septiembre de 2026 20:00",
-      "publishedDate": "2026-08-28T10:21:30.000Z",
-      "excerpt": "&nbsp;",
-      "image": "https://www.ribarroja.es/sites/www.ribarroja.es/files/styles/interior_contenido_/public/20260827%20FestesCrist2026_web_17.png?itok=qKIW4SGS"
     },
     {
       "id": "1wt499i",
@@ -411,14 +351,74 @@
       "image": "https://www.ribarroja.es/sites/www.ribarroja.es/files/styles/interior_contenido_/public/20261019%20Foto%20riba-roja%20Pedaleja.jpg?itok=A-cg4Tbb"
     },
     {
+      "id": "18291s4",
+      "title": "Competiciones deportivas 31 de octubre de 2026",
+      "link": "https://www.ribarroja.es/es/evento/competiciones-deportivas-31-de-octubre-de-2026",
+      "eventDate": "2026-10-31T07:00:00.000Z",
+      "eventDateText": "31 de octubre de 2026 08:00",
+      "publishedDate": "2026-10-29T13:27:55.000Z",
+      "excerpt": "&nbsp;",
+      "image": "https://www.ribarroja.es/sites/www.ribarroja.es/files/styles/interior_contenido_/public/Competiciones%20deportivas%20reducida_12.png?itok=I10LVbPm"
+    },
+    {
+      "id": "1m560u0",
+      "title": "Competiciones deportivas 1 de noviembre de 2026",
+      "link": "https://www.ribarroja.es/es/evento/competiciones-deportivas-1-de-noviembre-de-2026",
+      "eventDate": "2026-11-01T08:00:00.000Z",
+      "eventDateText": "01 de noviembre de 2026 09:00",
+      "publishedDate": "2026-10-29T13:30:22.000Z",
+      "excerpt": "&nbsp;",
+      "image": "https://www.ribarroja.es/sites/www.ribarroja.es/files/styles/interior_contenido_/public/Competiciones%20deportivas%20reducida_13.png?itok=yFH3-S2K"
+    },
+    {
+      "id": "i3e6lm",
+      "title": "Ruta saludable: Centre de Salut - Plataner de Traver",
+      "link": "https://www.ribarroja.es/es/evento/ruta-saludable%3A-centre-de-salut-plataner-de-traver",
+      "eventDate": "2026-11-03T08:30:00.000Z",
+      "eventDateText": "03 de noviembre de 2026 09:30",
+      "publishedDate": "2026-10-29T16:57:29.000Z",
+      "excerpt": null,
+      "image": "https://www.ribarroja.es/sites/www.ribarroja.es/files/styles/interior_contenido_/public/20261029%20Ruta%20Saludable_1.jpeg?itok=40in56uN"
+    },
+    {
+      "id": "mmd10w",
+      "title": "Xarrada Els Pobles Castell impacte econòmic i social al Túria",
+      "link": "https://www.ribarroja.es/es/evento/xarrada-els-pobles-castell-impacte-econ%C3%B2mic-i-social-al-t%C3%BAria",
+      "eventDate": "2026-11-03T17:30:00.000Z",
+      "eventDateText": "03 de noviembre de 2026 18:30",
+      "publishedDate": "2026-10-29T16:47:01.000Z",
+      "excerpt": null,
+      "image": "https://www.ribarroja.es/sites/www.ribarroja.es/files/styles/interior_contenido_/public/20261029%20Charla%20Pobles%20Castell_1.png?itok=fiU_oJ6l"
+    },
+    {
+      "id": "19ande1",
+      "title": "2 anys de la DANA La reconstrucció",
+      "link": "https://www.ribarroja.es/es/evento/2-anys-de-la-dana-la-reconstrucci%C3%B3",
+      "eventDate": "2026-11-03T18:30:00.000Z",
+      "eventDateText": "03 de noviembre de 2026 19:30",
+      "publishedDate": "2026-10-29T16:53:54.000Z",
+      "excerpt": null,
+      "image": "https://www.ribarroja.es/sites/www.ribarroja.es/files/styles/interior_contenido_/public/20261029%20Charla%20reconstrucci%C3%B3n_1.png?itok=hY7Vlk92"
+    },
+    {
+      "id": "1167zl9",
+      "title": "Exposición fotográfica 'Túria: El Ciclo de la Gratitud'",
+      "link": "https://www.ribarroja.es/es/evento/exposici%C3%B3n-fotogr%C3%A1fica-%27t%C3%BAria%3A-el-ciclo-de-la-gratitud%27",
+      "eventDate": "2026-11-04T17:00:00.000Z",
+      "eventDateText": "04 de noviembre de 2026 18:00",
+      "publishedDate": "2026-10-29T16:41:59.000Z",
+      "excerpt": null,
+      "image": "https://www.ribarroja.es/sites/www.ribarroja.es/files/styles/interior_contenido_/public/20261029%20cartel%20VII%20OFRENA%20AL%20RIU%20TURIA26C_1.jpg?itok=wUPLnLJG"
+    },
+    {
       "id": "kly15o",
       "title": "Cine 'La bola negra'",
       "link": "https://www.ribarroja.es/es/evento/cine-%27la-bola-negra%27",
-      "eventDate": "2026-10-30T21:00:00.000Z",
-      "eventDateText": "30 de octubre de 2026 22:00",
+      "eventDate": "2026-11-06T21:00:00.000Z",
+      "eventDateText": "06 de noviembre de 2026 22:00",
       "publishedDate": "2026-10-15T10:45:18.000Z",
       "excerpt": "&nbsp;",
-      "image": "https://www.ribarroja.es/sites/www.ribarroja.es/files/styles/interior_contenido_/public/20261014%20bolanegra.jpg?itok=OV_V9vav"
+      "image": "https://www.ribarroja.es/sites/www.ribarroja.es/files/styles/interior_contenido_/public/20261029%20bola%20negra%20cabit%20de%20dies%20%281%29.jpg?itok=Ffibepgs"
     },
     {
       "id": "nfc8cc",

@@ -1,22 +1,22 @@
 {
-  "generatedAt": "2026-10-28T10:56:04.895Z",
+  "generatedAt": "2026-10-30T11:29:27.410Z",
   "source": {
-    "tenders": "2026-10-28T10:46:41.477Z",
-    "geo": "2026-10-28T10:49:42.508Z"
+    "tenders": "2026-10-30T11:01:14.434Z",
+    "geo": "2026-10-30T11:05:06.367Z"
   },
   "universe": {
     "totalContracts": 712,
     "totalAmount": 126064104.20999993,
     "locatedContracts": 41,
-    "locatedAmount": 3480498.68,
-    "situatedContracts": 118,
-    "situatedAmount": 8835846.44,
+    "locatedAmount": 3480498.6800000006,
+    "situatedContracts": 117,
+    "situatedAmount": 8820861.98,
     "danaContracts": 9,
     "danaAmount": 259915.39,
     "danaAwardedContracts": 82,
-    "danaAwardedAmount": 2840148.539999998,
+    "danaAwardedAmount": 2840148.5399999986,
     "dateMin": "2018-01-18",
-    "dateMax": "2026-10-20",
+    "dateMax": "2026-05-27",
     "totalDateMin": "2017-07-03",
     "totalDateMax": "2026-10-20"
   },
@@ -515,18 +515,6 @@
       "danaAmount": 0
     },
     {
-      "slug": "placa-de-la-torre",
-      "name": "Plaça de la Torre",
-      "kind": "street",
-      "point": [
-        39.5472019,
-        -0.568434
-      ],
-      "contractCount": 2,
-      "amount": 39241.69,
-      "danaAmount": 0
-    },
-    {
       "slug": "castell-de-riba-roja",
       "name": "Castillo de Riba-roja de Túria",
       "kind": "poi",
@@ -644,6 +632,18 @@
       ],
       "contractCount": 1,
       "amount": 25920,
+      "danaAmount": 0
+    },
+    {
+      "slug": "placa-de-la-torre",
+      "name": "Plaça de la Torre",
+      "kind": "street",
+      "point": [
+        39.5472019,
+        -0.568434
+      ],
+      "contractCount": 1,
+      "amount": 24257.23,
       "danaAmount": 0
     },
     {
@@ -1413,24 +1413,24 @@
       }
     },
     {
-      "id": "543940",
+      "id": "745132",
       "zones": [],
       "matchedAlias": {},
       "dana": false,
-      "amount": 13726.68,
+      "amount": 14400,
       "amountKind": "final",
-      "date": "2019-07-13",
-      "contractType": "construction",
+      "date": "2019-07-25",
+      "contractType": "services",
       "categoryTitle": "other",
       "point": [
-        39.4767673,
-        -0.585373
+        39.5473561,
+        -0.5639968
       ],
       "place": {
         "kind": "poi",
-        "name": "Cementerio de San Jaime",
-        "matchedText": "Cementerio de San Jaime",
-        "sourceId": "way-740051593"
+        "name": "Col·legi d'Educació Infantil i Primària Eres Altes",
+        "matchedText": "Col·legi d'Educació Infantil i Primària Eres Altes",
+        "sourceId": "way-1178031442"
       }
     },
     {
@@ -1585,27 +1585,6 @@
       }
     },
     {
-      "id": "4889055#7",
-      "zones": [],
-      "matchedAlias": {},
-      "dana": false,
-      "amount": 14984.46,
-      "amountKind": "final",
-      "date": "2026-10-20",
-      "contractType": "services",
-      "categoryTitle": "architecture",
-      "point": [
-        39.5472019,
-        -0.568434
-      ],
-      "place": {
-        "kind": "street",
-        "name": "Plaça de la Torre",
-        "matchedText": "Plaça de la Torre",
-        "sourceId": "placa-de-la-torre"
-      }
-    },
-    {
       "id": "4973577#3",
       "zones": [
         "el-molinet"
@@ -1628,6 +1607,27 @@
         "name": "el Molinet",
         "matchedText": "el Molinet",
         "sourceId": "el-molinet"
+      }
+    },
+    {
+      "id": "543940",
+      "zones": [],
+      "matchedAlias": {},
+      "dana": false,
+      "amount": 13726.68,
+      "amountKind": "final",
+      "date": "2019-07-13",
+      "contractType": "construction",
+      "categoryTitle": "other",
+      "point": [
+        39.4767673,
+        -0.585373
+      ],
+      "place": {
+        "kind": "poi",
+        "name": "Cementerio de San Jaime",
+        "matchedText": "Cementerio de San Jaime",
+        "sourceId": "way-740051593"
       }
     },
     {
@@ -1758,6 +1758,27 @@
         "name": "Carrer Pobla de Vallbona",
         "matchedText": "Carrer Pobla de Vallbona",
         "sourceId": "carrer-pobla-de-vallbona"
+      }
+    },
+    {
+      "id": "13417",
+      "zones": [],
+      "matchedAlias": {},
+      "dana": false,
+      "amount": 11894.21,
+      "amountKind": "final",
+      "date": "2019-06-05",
+      "contractType": "construction",
+      "categoryTitle": "construction",
+      "point": [
+        39.52513,
+        -0.5188
+      ],
+      "place": {
+        "kind": "urbanizacion",
+        "name": "Urbanización Lliri Groc",
+        "matchedText": "Urbanización Lliri Groc",
+        "sourceId": "urb-lliri-groc"
       }
     },
     {
@@ -1916,48 +1937,6 @@
       }
     },
     {
-      "id": "745132",
-      "zones": [],
-      "matchedAlias": {},
-      "dana": false,
-      "amount": 14400,
-      "amountKind": "final",
-      "date": "2019-07-25",
-      "contractType": "services",
-      "categoryTitle": "other",
-      "point": [
-        39.5473561,
-        -0.5639968
-      ],
-      "place": {
-        "kind": "poi",
-        "name": "Col·legi d'Educació Infantil i Primària Eres Altes",
-        "matchedText": "Col·legi d'Educació Infantil i Primària Eres Altes",
-        "sourceId": "way-1178031442"
-      }
-    },
-    {
-      "id": "13417",
-      "zones": [],
-      "matchedAlias": {},
-      "dana": false,
-      "amount": 11894.21,
-      "amountKind": "final",
-      "date": "2019-06-05",
-      "contractType": "construction",
-      "categoryTitle": "construction",
-      "point": [
-        39.52513,
-        -0.5188
-      ],
-      "place": {
-        "kind": "urbanizacion",
-        "name": "Urbanización Lliri Groc",
-        "matchedText": "Urbanización Lliri Groc",
-        "sourceId": "urb-lliri-groc"
-      }
-    },
-    {
       "id": "7482558",
       "zones": [
         "urbanitzacio-els-pous"
@@ -2022,6 +2001,31 @@
         "name": "Cementerio de San Jaime",
         "matchedText": "Cementerio de San Jaime",
         "sourceId": "way-740051593"
+      }
+    },
+    {
+      "id": "1891608",
+      "zones": [
+        "el-pou-d-escoto"
+      ],
+      "matchedAlias": {
+        "el-pou-d-escoto": "pou d escoto"
+      },
+      "dana": false,
+      "amount": 10471.95,
+      "amountKind": "final",
+      "date": "2023-04-26",
+      "contractType": "supplies",
+      "categoryTitle": "electrical",
+      "point": [
+        39.5484628,
+        -0.5909944
+      ],
+      "place": {
+        "kind": "urbanizacion",
+        "name": "el Pou d'Escoto",
+        "matchedText": "el Pou d'Escoto",
+        "sourceId": "el-pou-d-escoto"
       }
     },
     {
@@ -2289,6 +2293,27 @@
       }
     },
     {
+      "id": "86822",
+      "zones": [],
+      "matchedAlias": {},
+      "dana": false,
+      "amount": 82500,
+      "amountKind": "final",
+      "date": "2018-01-18",
+      "contractType": "construction",
+      "categoryTitle": "construction",
+      "point": [
+        39.5493045,
+        -0.5717854
+      ],
+      "place": {
+        "kind": "poi",
+        "name": "Col·legi d'Educació Infantil i Primària Camp de Túria",
+        "matchedText": "Col·legi d'Educació Infantil i Primària Camp de Túria",
+        "sourceId": "way-1242095512"
+      }
+    },
+    {
       "id": "94467",
       "zones": [
         "santa-rosa"
@@ -2311,27 +2336,6 @@
         "name": "Santa Rosa",
         "matchedText": "Santa Rosa",
         "sourceId": "santa-rosa"
-      }
-    },
-    {
-      "id": "86822",
-      "zones": [],
-      "matchedAlias": {},
-      "dana": false,
-      "amount": 82500,
-      "amountKind": "final",
-      "date": "2018-01-18",
-      "contractType": "construction",
-      "categoryTitle": "construction",
-      "point": [
-        39.5493045,
-        -0.5717854
-      ],
-      "place": {
-        "kind": "poi",
-        "name": "Col·legi d'Educació Infantil i Primària Camp de Túria",
-        "matchedText": "Col·legi d'Educació Infantil i Primària Camp de Túria",
-        "sourceId": "way-1242095512"
       }
     },
     {
@@ -2585,6 +2589,27 @@
       }
     },
     {
+      "id": "2870786",
+      "zones": [],
+      "matchedAlias": {},
+      "dana": false,
+      "amount": 6995,
+      "amountKind": "final",
+      "date": "2022-04-01",
+      "contractType": "supplies",
+      "categoryTitle": "energy",
+      "point": [
+        39.5469545,
+        -0.5666236
+      ],
+      "place": {
+        "kind": "poi",
+        "name": "Ajuntament de Riba-roja de Túria",
+        "matchedText": "Ajuntament de Riba-roja de Túria",
+        "sourceId": "node-5809597354"
+      }
+    },
+    {
       "id": "1881768",
       "zones": [],
       "matchedAlias": {},
@@ -2624,27 +2649,6 @@
         "name": "Mercado Municipal",
         "matchedText": "Mercado Municipal",
         "sourceId": "mercat-municipal"
-      }
-    },
-    {
-      "id": "2870786",
-      "zones": [],
-      "matchedAlias": {},
-      "dana": false,
-      "amount": 6995,
-      "amountKind": "final",
-      "date": "2022-04-01",
-      "contractType": "supplies",
-      "categoryTitle": "energy",
-      "point": [
-        39.5469545,
-        -0.5666236
-      ],
-      "place": {
-        "kind": "poi",
-        "name": "Ajuntament de Riba-roja de Túria",
-        "matchedText": "Ajuntament de Riba-roja de Túria",
-        "sourceId": "node-5809597354"
       }
     },
     {
@@ -2875,6 +2879,31 @@
         "name": "Urbanització Els Pous",
         "matchedText": "Urbanització Els Pous",
         "sourceId": "urbanitzacio-els-pous"
+      }
+    },
+    {
+      "id": "1999#1",
+      "zones": [
+        "el-molinet"
+      ],
+      "matchedAlias": {
+        "el-molinet": "molinet"
+      },
+      "dana": false,
+      "amount": 26285.35,
+      "amountKind": "final",
+      "date": "2019-06-05",
+      "contractType": "construction",
+      "categoryTitle": "construction",
+      "point": [
+        39.5557928,
+        -0.5531642
+      ],
+      "place": {
+        "kind": "street",
+        "name": "Passeig del Molinet",
+        "matchedText": "Passeig del Molinet",
+        "sourceId": "passeig-del-molinet"
       }
     },
     {
@@ -3229,7 +3258,7 @@
       }
     },
     {
-      "id": "1999",
+      "id": "1999#2",
       "zones": [],
       "matchedAlias": {},
       "dana": false,
@@ -3399,31 +3428,6 @@
       "place": null
     },
     {
-      "id": "1999#2",
-      "zones": [
-        "el-molinet"
-      ],
-      "matchedAlias": {
-        "el-molinet": "molinet"
-      },
-      "dana": false,
-      "amount": 26285.35,
-      "amountKind": "final",
-      "date": "2019-06-05",
-      "contractType": "construction",
-      "categoryTitle": "construction",
-      "point": [
-        39.5557928,
-        -0.5531642
-      ],
-      "place": {
-        "kind": "street",
-        "name": "Passeig del Molinet",
-        "matchedText": "Passeig del Molinet",
-        "sourceId": "passeig-del-molinet"
-      }
-    },
-    {
       "id": "29500#2",
       "zones": [],
       "matchedAlias": {},
@@ -3573,31 +3577,6 @@
       "place": null
     },
     {
-      "id": "1891608",
-      "zones": [
-        "el-pou-d-escoto"
-      ],
-      "matchedAlias": {
-        "el-pou-d-escoto": "pou d escoto"
-      },
-      "dana": false,
-      "amount": 10471.95,
-      "amountKind": "final",
-      "date": "2023-04-26",
-      "contractType": "supplies",
-      "categoryTitle": "electrical",
-      "point": [
-        39.5484628,
-        -0.5909944
-      ],
-      "place": {
-        "kind": "urbanizacion",
-        "name": "el Pou d'Escoto",
-        "matchedText": "el Pou d'Escoto",
-        "sourceId": "el-pou-d-escoto"
-      }
-    },
-    {
       "id": "1554203",
       "zones": [
         "urbanitzacio-valencia-la-vella",
@@ -3639,11 +3618,11 @@
     }
   ],
   "builtFrom": {
-    "civic-poi.json": "208f84739df9",
+    "civic-poi.json": "71518ec5bcc8",
     "gazetteer-supplement.json": "b3013a1e0efe",
-    "geo.json": "b59b90009e17",
+    "geo.json": "e4f0d1163e8a",
     "place-overrides.json": "5878849f1684",
-    "streets.json": "3cc283b53e44",
-    "tenders.json": "3f701a7e6a65"
+    "streets.json": "97b69cf1e7c5",
+    "tenders.json": "1586eab05d9c"
   }
 }

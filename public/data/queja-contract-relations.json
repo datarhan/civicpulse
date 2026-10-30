@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-30T10:40:35.934Z",
+  "generatedAt": "2026-10-30T11:29:30.008Z",
   "source": "queja-contract-relations engine v1 (deterministic)",
   "stats": {
     "frozen": false,
@@ -117,8 +117,29 @@
     },
     {
       "quejaId": "Q-KJY6XSVG",
-      "tenderPermalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=56xTbbVhVpxxseVhcqrkhw%3D%3D",
+      "tenderPermalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=KfeVpx2w0IPECtSnloz%2BZQ%3D%3D",
       "tenderId": "4889055#4",
+      "tenderTitle": "71241000-Estudio de viabilidad, servicios de asesoramiento, análisis.",
+      "tenderAwardDate": "2026-10-20",
+      "tenderAmount": 14984.46,
+      "via": "deterministic",
+      "signals": {
+        "department": {
+          "slug": "urbanismo"
+        },
+        "temporal": {
+          "monthsAfter": 3.6516604938271606
+        }
+      },
+      "tier": "B",
+      "score": 0.55,
+      "relationLabel": "misma materia y fechas próximas",
+      "requiresHumanApproval": true
+    },
+    {
+      "quejaId": "Q-KJY6XSVG",
+      "tenderPermalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=56xTbbVhVpxxseVhcqrkhw%3D%3D",
+      "tenderId": "4889055#5",
       "tenderTitle": "Contratación servicio dirección de obra y dirección de ejecución material, coordinación en seguridad \ny salud para proyecto de obras “Reconstrucción de vallados de parcelas en los polígonos industriales tras los daños sufridos tras la DANA en el T.M. de Riba-roja de Túria (Valencia)” - Ctto92/2026.",
       "tenderAwardDate": "2026-04-22",
       "tenderAmount": 4588,
@@ -139,7 +160,7 @@
     {
       "quejaId": "Q-KJY6XSVG",
       "tenderPermalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=bZhrUOv3%2FSEeC9GJQOEBkQ%3D%3D",
-      "tenderId": "4889055#6",
+      "tenderId": "4889055#7",
       "tenderTitle": "72224000-Servicios de consultoría en gestión de proyectos.",
       "tenderAwardDate": "2026-09-04",
       "tenderAmount": 9000,
@@ -181,27 +202,6 @@
       "score": 0.85,
       "relationLabel": "misma zona y materia",
       "requiresHumanApproval": false
-    },
-    {
-      "quejaId": "Q-KJY6XSVG",
-      "tenderPermalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=KfeVpx2w0IPECtSnloz%2BZQ%3D%3D",
-      "tenderId": "4889055#7",
-      "tenderTitle": "Contrato para el servicio de redacción de los estudios previos arqueológicos y proyecto de derribo de vivienda sita en plaza de la Torre nº 11 de Riba-roja de Turia, contrato derivado del SDA de servicios de arquitectura e ingeniería, consultoría y asistencia técnica a las diferentes áreas municipales.",
-      "tenderAwardDate": "2026-10-20",
-      "tenderAmount": 14984.46,
-      "via": "deterministic",
-      "signals": {
-        "department": {
-          "slug": "urbanismo"
-        },
-        "temporal": {
-          "monthsAfter": 3.6516604938271606
-        }
-      },
-      "tier": "B",
-      "score": 0.55,
-      "relationLabel": "misma materia y fechas próximas",
-      "requiresHumanApproval": true
     },
     {
       "quejaId": "Q-KJY6XSVG",
@@ -734,7 +734,7 @@
   "builtFrom": {
     "promises.json": "a4b8423e960f",
     "quejas.json": "db0270cabf58",
-    "tender-geo.json": "30481dd2922b",
-    "tenders.json": "3f701a7e6a65"
+    "tender-geo.json": "3caccf7cbe7b",
+    "tenders.json": "1586eab05d9c"
   }
 }
