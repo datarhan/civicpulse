@@ -282,6 +282,85 @@
       "reason": "El revisor cruzó la cita 3 con la 4. La frase es del sumario de f-2026-07-03-cit-df8455 tras la corrección --redact del 29-10-2026, y describe su cita 3 (quote.2), la retenida, que la propia ficha atribuye al PP: en la copia servida quote.2 lleva speakerGroup «PP» y literalRetenido. El PP tiene varios escaños, así que nombrarlo es de bloque y no señala a nadie. Las dos atribuciones retiradas a un grupo de un solo escaño son de las citas 2 y 4 (quote.1 y quote.3, «sin identificar» desde el 30-09-2026): la que el revisor cita es la de la cita 4. El sumario anterior ya atribuía esa intervención al PP. Ancla en «cita 4 de la ficha df8455» para que otra objeción a la misma frase siga viva. Comprobado el 29-10-2026 sobre dist/data/pleno-findings.json. Propuesto en la PR de la revisión del 29-10-2026, que el operador aprueba antes de fusionar.",
       "editor": "claude-opus-5.5",
       "at": "2026-10-29"
+    },
+    {
+      "route": "/hallazgos",
+      "quote": "TEXTO RETIRADO: El grupo PP señala la falta de acceso peatonal en la calle de la Beto, mientras que un grupo no identificado manifiesta",
+      "anchor": "«Otro» era un valor de relleno",
+      "reason": "El revisor cruzó dos filas de la bitácora de f-2026-05-11-cit-7f7619. El motivo sobre «Otro» es el de su fila [0] (01-08-2026), y el texto que esa fila retira es el que dice «el grupo Otro manifiesta…»: la página lo enseña así, con la versión «un grupo no identificado» como lo que puso esa corrección, vigente hasta el 09-08. El «Texto retirado» que cita el revisor es el de la fila [1] (09-08, cuyo motivo es la coincidencia con el contrato de los ascensores, que no existe) o el de la [4] (05-10, cuyo motivo es la propia fórmula «un grupo no identificado»), y ninguno de los dos motivos habla de «Otro». Ancla en lo que el revisor dice del motivo («Otro» era un valor de relleno) porque esa frase retirada sale dos veces en la ficha, y otra objeción a cualquiera de esas filas tiene que seguir viva. Comprobado sobre dist/data/pleno-findings.json y sobre la página servida. Comprobado el 30-10-2026. Propuesto en la PR de la revisión del 30-10-2026, que el operador aprueba antes de fusionar.",
+      "editor": "claude-opus-5.5",
+      "at": "2026-10-30"
+    },
+    {
+      "route": "/hallazgos",
+      "quote": "El sumario atribuía una intervención a un grupo municipal con un solo concejal, lo que identifica a esa persona por eliminación",
+      "anchor": "de quote.0.speakerGroup dice",
+      "reason": "El revisor toma por el grupo de un solo escaño el PSOE de otra fila. La frase es el motivo de la fila de sumario del 30-09-2026 que retiró esa atribución: en f-2026-04-20-cit-25e6ea, la fila [3], cuyo texto anterior la bitácora no reproduce porque nombraba a un grupo de un solo escaño, y lo que enseña es lo que puso («El grupo PSOE afirma…»); en f-2025-10-06-acu-b00839, la [6]. El «Texto retirado: PSOE» que el revisor lee debajo es de la fila quote.0.speakerGroup (25e6ea [4], b00839 [8]), una corrección distinta cuyo motivo dice lo contrario de lo que él infiere: la intervención no era del PSOE, y el grupo al que pertenece, con un solo concejal, es otro. El PSOE tiene 11 escaños en officials.json, así que nombrarlo no identifica a nadie; y el sumario con «PSOE» que la bitácora de 25e6ea reproduce es el que puso la fila [3] y retiró la [5], no el que retiró la [3]. Ancla en la fila que el revisor nombra («de quote.0.speakerGroup dice») porque la frase se repite en cuatro fichas (25e6ea, b00839, d6d194, 70a34f) y sólo las dos primeras tienen esa fila. Comprobado sobre dist/data/pleno-findings.json y sobre la página servida. Comprobado el 30-10-2026. Propuesto en la PR de la revisión del 30-10-2026, que el operador aprueba antes de fusionar.",
+      "editor": "claude-opus-5.5",
+      "at": "2026-10-30"
+    },
+    {
+      "route": "/laboratorio/agentes/a-jose-angel-hernandez-bio",
+      "quote": "en los 804 expedientes de contratación que constaban en el corpus municipal en julio de 2026 —adjudicados o no—",
+      "reason": "La frase fecha su recuento, y el recuento es exacto: public/data/tenders.json tenía 804 contratos en el snapshot del 30-07-2026 (3d1bc415) y en el del 01-08 (626c3bea), y la fuente src-075 del informe se tomó el 31-07-2026. Los 814 de hoy son esos 804 —siguen todos— más 10 expedientes que entraron después de julio, 6 de ellos adjudicados (711 + 6 = 717 adjudicados o formalizados; 804 + 10 = 814). El cruce no examinó esos 10 y la frase no dice que lo hiciera; ninguno menciona sus apellidos ni las cuatro sociedades de su CV (buscado en la fila entera). Es la redacción del descarte del 19-09-2026 en /laboratorio/agentes/a-robert-raga-bio-v4. Comprobado el 30-10-2026. Propuesto en la PR de la revisión del 30-10-2026, que el operador aprueba antes de fusionar.",
+      "editor": "claude-opus-5.5",
+      "at": "2026-10-30"
+    },
+    {
+      "route": "/cargos/robert-raga-gadea",
+      "quote": "Sin quejas asignadas actualmente.",
+      "reason": "La frase dice lo que dice la sección donde va —«Quejas asignadas por el router», del canal ciudadano— y es exacta: public/data/quejas.json (29-10-2026) tiene una queja en total, asignada a otro cargo, y stats.byConcejal no tiene fila para robert-raga-gadea. No es un cero que nunca pueda dejar de serlo: el router asigna al alcalde toda queja que no casa con ninguna concejalía (routeQueja, src/scraper/queja-router.ts, art. 21.1 LBRL). Con la instantánea ilegible la sección no dice esto, sino que no hay datos (contadoresDeCargo → sinDatos). La página no afirma que no haya quejas sobre el cargo, y el propio revisor no encontró nada que la contradiga. Comprobado el 30-10-2026. Propuesto en la PR de la revisión del 30-10-2026, que el operador aprueba antes de fusionar.",
+      "editor": "claude-opus-5.5",
+      "at": "2026-10-30"
+    },
+    {
+      "route": "/laboratorio/agentes/a-raquel-pamblanco-bio-v2",
+      "quote": "en los 804 expedientes de contratación que constaban en el corpus municipal en julio de 2026 —adjudicados o no—",
+      "reason": "La frase fecha su recuento, y el recuento es exacto: public/data/tenders.json tenía 804 contratos en el snapshot del 30-07-2026 (3d1bc415, 07:22 UTC) y en el del 01-08 (626c3bea), y la fuente src-074 del informe se tomó el 2026-07-31, entre los dos. Los 814 de hoy son esos 804 —siguen todos— más 10 expedientes que entraron después de julio (804 + 10 = 814; 711 + 6 = 717 adjudicados o formalizados). El cruce no examinó esos 10 y la frase no dice que lo hiciera; ninguno menciona «Pamblanco» ni sus empleadoras declaradas (buscado en la fila entera). Es la lectura del descarte del 19-09-2026 en /laboratorio/agentes/a-robert-raga-bio-v4 y del de hoy en a-jose-angel-hernandez-bio: la revisión lectora de la auditoría de esta PR la repitió en cada biografía cuya bitácora cambió. Comprobado el 30-10-2026. Propuesto en la PR de la revisión del 30-10-2026, que el operador aprueba antes de fusionar.",
+      "editor": "claude-opus-5.5",
+      "at": "2026-10-30"
+    },
+    {
+      "route": "/laboratorio/agentes/a-raquel-pamblanco-bio-v2",
+      "quote": "804 expedientes de contratación en julio de 2026, adjudicados o no",
+      "reason": "La frase fecha su recuento, y el recuento es exacto: public/data/tenders.json tenía 804 contratos en el snapshot del 30-07-2026 (3d1bc415, 07:22 UTC) y en el del 01-08 (626c3bea), y la fuente src-074 del informe se tomó el 2026-07-31, entre los dos. Los 814 de hoy son esos 804 —siguen todos— más 10 expedientes que entraron después de julio (804 + 10 = 814; 711 + 6 = 717 adjudicados o formalizados). El cruce no examinó esos 10 y la frase no dice que lo hiciera; ninguno menciona «Pamblanco» ni sus empleadoras declaradas (buscado en la fila entera). Es la lectura del descarte del 19-09-2026 en /laboratorio/agentes/a-robert-raga-bio-v4 y del de hoy en a-jose-angel-hernandez-bio: la revisión lectora de la auditoría de esta PR la repitió en cada biografía cuya bitácora cambió. Comprobado el 30-10-2026. Propuesto en la PR de la revisión del 30-10-2026, que el operador aprueba antes de fusionar.",
+      "editor": "claude-opus-5.5",
+      "at": "2026-10-30"
+    },
+    {
+      "route": "/laboratorio/agentes/a-jose-vila-bio",
+      "quote": "en los 804 expedientes de contratación que constaban en el corpus municipal en julio de 2026 —adjudicados o no—",
+      "reason": "La frase fecha su recuento, y el recuento es exacto: public/data/tenders.json tenía 804 contratos en el snapshot del 30-07-2026 (3d1bc415, 07:22 UTC) y en el del 01-08 (626c3bea), y la fuente src-077 del informe se tomó el 2026-07-31, entre los dos. Los 814 de hoy son esos 804 —siguen todos— más 10 expedientes que entraron después de julio (804 + 10 = 814; 711 + 6 = 717 adjudicados o formalizados). El cruce no examinó esos 10 y la frase no dice que lo hiciera; ninguno menciona «Vila Oltra» ni sus empleadoras declaradas (buscado en la fila entera). Es la lectura del descarte del 19-09-2026 en /laboratorio/agentes/a-robert-raga-bio-v4 y del de hoy en a-jose-angel-hernandez-bio: la revisión lectora de la auditoría de esta PR la repitió en cada biografía cuya bitácora cambió. Comprobado el 30-10-2026. Propuesto en la PR de la revisión del 30-10-2026, que el operador aprueba antes de fusionar.",
+      "editor": "claude-opus-5.5",
+      "at": "2026-10-30"
+    },
+    {
+      "route": "/laboratorio/agentes/a-esther-gomez-bio",
+      "quote": "en los 804 expedientes de contratación que constaban en el corpus municipal en julio de 2026 —adjudicados o no—",
+      "reason": "La frase fecha su recuento, y el recuento es exacto: public/data/tenders.json tenía 804 contratos en el snapshot del 30-07-2026 (3d1bc415, 07:22 UTC) y en el del 01-08 (626c3bea), y la fuente src-074 del informe se tomó el 2026-07-31, entre los dos. Los 814 de hoy son esos 804 —siguen todos— más 10 expedientes que entraron después de julio (804 + 10 = 814; 711 + 6 = 717 adjudicados o formalizados). El cruce no examinó esos 10 y la frase no dice que lo hiciera; ninguno menciona «Gómez Laredo» ni sus empleadoras declaradas (buscado en la fila entera). Es la lectura del descarte del 19-09-2026 en /laboratorio/agentes/a-robert-raga-bio-v4 y del de hoy en a-jose-angel-hernandez-bio: la revisión lectora de la auditoría de esta PR la repitió en cada biografía cuya bitácora cambió. Comprobado el 30-10-2026. Propuesto en la PR de la revisión del 30-10-2026, que el operador aprueba antes de fusionar.",
+      "editor": "claude-opus-5.5",
+      "at": "2026-10-30"
+    },
+    {
+      "route": "/laboratorio/agentes/a-esther-gomez-bio",
+      "quote": "804 expedientes de contratación en julio de 2026, adjudicados o no",
+      "reason": "La frase fecha su recuento, y el recuento es exacto: public/data/tenders.json tenía 804 contratos en el snapshot del 30-07-2026 (3d1bc415, 07:22 UTC) y en el del 01-08 (626c3bea), y la fuente src-074 del informe se tomó el 2026-07-31, entre los dos. Los 814 de hoy son esos 804 —siguen todos— más 10 expedientes que entraron después de julio (804 + 10 = 814; 711 + 6 = 717 adjudicados o formalizados). El cruce no examinó esos 10 y la frase no dice que lo hiciera; ninguno menciona «Gómez Laredo» ni sus empleadoras declaradas (buscado en la fila entera). Es la lectura del descarte del 19-09-2026 en /laboratorio/agentes/a-robert-raga-bio-v4 y del de hoy en a-jose-angel-hernandez-bio: la revisión lectora de la auditoría de esta PR la repitió en cada biografía cuya bitácora cambió. Comprobado el 30-10-2026. Propuesto en la PR de la revisión del 30-10-2026, que el operador aprueba antes de fusionar.",
+      "editor": "claude-opus-5.5",
+      "at": "2026-10-30"
+    },
+    {
+      "route": "/laboratorio/agentes/a-eva-lara-bio",
+      "quote": "en los 804 expedientes de contratación que constaban en el corpus municipal en julio de 2026 —adjudicados o no—",
+      "reason": "La frase fecha su recuento, y el recuento es exacto: public/data/tenders.json tenía 804 contratos en el snapshot del 30-07-2026 (3d1bc415, 07:22 UTC) y en el del 01-08 (626c3bea), y la fuente src-073 del informe se tomó el 2026-07-31, entre los dos. Los 814 de hoy son esos 804 —siguen todos— más 10 expedientes que entraron después de julio (804 + 10 = 814; 711 + 6 = 717 adjudicados o formalizados). El cruce no examinó esos 10 y la frase no dice que lo hiciera; ninguno menciona «Lara Catalá» (buscado en la fila entera). Es la lectura del descarte del 19-09-2026 en /laboratorio/agentes/a-robert-raga-bio-v4 y del de hoy en a-jose-angel-hernandez-bio: la revisión lectora de la auditoría de esta PR la repitió en cada biografía cuya bitácora cambió. Comprobado el 30-10-2026. Propuesto en la PR de la revisión del 30-10-2026, que el operador aprueba antes de fusionar.",
+      "editor": "claude-opus-5.5",
+      "at": "2026-10-30"
+    },
+    {
+      "route": "/laboratorio/agentes/a-teresa-pozuelo-bio",
+      "quote": "en los 804 expedientes de contratación que constaban en el corpus municipal en julio de 2026 —adjudicados o no—",
+      "reason": "La frase fecha su recuento, y el recuento es exacto: public/data/tenders.json tenía 804 contratos en el snapshot del 30-07-2026 (3d1bc415, 07:22 UTC) y en el del 01-08 (626c3bea), y la fuente src-073 del informe se tomó el 2026-07-30 (22:35 UTC), entre los dos. Los 814 de hoy son esos 804 —siguen todos— más 10 expedientes que entraron después de julio (804 + 10 = 814; 711 + 6 = 717 adjudicados o formalizados). El cruce no examinó esos 10 y la frase no dice que lo hiciera; ninguno menciona «Pozuelo» ni sus antiguos empleadores declarados (buscado en la fila entera). Es la lectura del descarte del 19-09-2026 en /laboratorio/agentes/a-robert-raga-bio-v4 y del de hoy en a-jose-angel-hernandez-bio: la revisión lectora de la auditoría de esta PR la repitió en cada biografía cuya bitácora cambió. Comprobado el 30-10-2026. Propuesto en la PR de la revisión del 30-10-2026, que el operador aprueba antes de fusionar.",
+      "editor": "claude-opus-5.5",
+      "at": "2026-10-30"
     }
   ]
 }
