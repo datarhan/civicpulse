@@ -98,11 +98,21 @@ function AreaSpend({ slugs }) {
   const conFecha = rows.map((b) => b.contratacion.anios).filter(Boolean)
   const desde = conFecha.length ? Math.min(...conFecha.map((a) => a.desde)) : null
   const hasta = conFecha.length ? Math.max(...conFecha.map((a) => a.hasta)) : null
+  // Un solo año dice «todos los contratos son de …» sólo si todos traen fecha: uno
+  // sin ella suma euros y no tiene año, y entonces el título dice de cuáles habla.
+  const todosConFecha = rows.reduce((n, b) => n + b.contratacion.conFecha, 0) === totalN
   const titulo =
     desde === null
       ? t('cargos.detalle.area.title')
       : desde === hasta
-        ? rellena(t('cargos.detalle.area.titleAnio'), { anio: desde })
+        ? rellena(
+            t(
+              todosConFecha
+                ? 'cargos.detalle.area.titleAnio'
+                : 'cargos.detalle.area.titleAnioConFecha',
+            ),
+            { anio: desde },
+          )
         : rellena(t('cargos.detalle.area.titleRango'), { desde, hasta })
   return (
     <section style={{ marginBottom: 28 }}>

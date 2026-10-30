@@ -40,6 +40,7 @@ import { lineaDeMedicion } from '../../src/scraper/eficiencia-finding'
 import { CorrectionLog, inicioVentana } from '../../src/pages/AgenteReporte'
 import { FindingDetailCard } from '../../src/pages/Hallazgos'
 import { MARCA_GRUPO_RETENIDO } from '../../src/lib/grupo-retenido'
+import { CATALOGUE } from '../../src/i18n'
 import { invalidateSnapshots } from '../../src/lib/snapshot-store'
 import { copiaServidaDeHallazgos } from '../../publication-denylist.js'
 
@@ -77,8 +78,11 @@ const norm = (s) => String(s).replace(/\s+/g, ' ').trim()
 const plano = (nodo) => norm(nodo.textContent)
 const dia = (iso) => String(iso).slice(0, 10)
 /** El rótulo de una versión sustituida, con el día de la fila que la sustituyó. */
-const sustituidoEl = (fecha) => `${ROTULO_TEXTO_SUSTITUIDO}, sustituido el ${fecha}:`
-const SUSTITUIDO_RE = new RegExp(`${ROTULO_TEXTO_SUSTITUIDO}, sustituido el \\d{4}-\\d{2}-\\d{2}:`)
+const sustituidoEl = (fecha) =>
+  `${ROTULO_TEXTO_SUSTITUIDO}, vigente hasta el ${fecha}, cuando otra corrección lo cambió:`
+const SUSTITUIDO_RE = new RegExp(
+  `${ROTULO_TEXTO_SUSTITUIDO}, vigente hasta el (\\d{4}-\\d{2}-\\d{2}), cuando otra corrección lo cambió:`,
+)
 
 /** ¿Enseña la bitácora lo que puso la fila? (un grupo de un escaño o un literal retenido, no) */
 const seVe = (c) => !c.literalRetenido && c.corrected !== MARCA_GRUPO_RETENIDO
@@ -115,10 +119,25 @@ describe('la regla, sobre filas escritas a mano', () => {
       ).container,
     )
     expect(plano(lis[0])).toContain(
-      'Texto que puso esta corrección, sustituido el 2026-09-30: Dos.',
+      'Texto que puso esta corrección, vigente hasta el 2026-09-30, cuando otra corrección lo cambió: Dos.',
     )
     expect(plano(lis[0])).not.toContain(ROTULO_TEXTO_VIGENTE)
     expect(plano(lis[1])).toContain(`${ROTULO_TEXTO_VIGENTE}: Tres.`)
+  })
+
+  // Hasta el 29-10-2026 decía «…, sustituido el {fecha}», y «sustituido» junto a
+  // «Texto retirado» se lee como lo viejo: la revisión lectora de /eficiencia tomó
+  // así la versión nueva por la anterior, en dos pasadas seguidas. Y «vigente hasta
+  // el {fecha}» a secas tampoco bastaba: la relectura del mismo día leyó como
+  // contradicción «Corregido el 2026-08-16 … vigente hasta el 2026-08-16» (otra
+  // corrección la cambió ese mismo día) y no sabía si volvía a valer lo retirado.
+  it('el rótulo de una versión superada dice hasta cuándo rigió y qué la cambió', () => {
+    for (const idioma of ['es', 'ca']) {
+      const rotulo = CATALOGUE[idioma]['bitacora.textoSustituido']
+      expect(rotulo, idioma).toMatch(/vigen(te|t) (hasta el|fins al) \{fecha\}/)
+      expect(rotulo, idioma).toMatch(/otra corrección|altra correcció/)
+      expect(rotulo, idioma).not.toMatch(/sustitu|substitu|retir/i)
+    }
   })
 
   it('un campo distinto no sustituye a otro', () => {
@@ -295,10 +314,10 @@ describe('/hallazgos: el título y el sumario, sobre la copia servida', () => {
     expect(f, 'la ficha ya no está publicada: elige otra').toBeTruthy()
     const lis = filas(render(<BitacoraCorrecciones correcciones={f.corrections} />).container)
     expect(plano(lis[0])).toContain(
-      'Texto que puso esta corrección, sustituido el 2026-08-09: sumario · sha256:91b93c33fb60',
+      'Texto que puso esta corrección, vigente hasta el 2026-08-09, cuando otra corrección lo cambió: sumario · sha256:91b93c33fb60',
     )
     expect(plano(lis[1])).toContain(
-      'Texto que puso esta corrección, sustituido el 2026-08-11: sumario · sha256:28b511117b82',
+      'Texto que puso esta corrección, vigente hasta el 2026-08-11, cuando otra corrección lo cambió: sumario · sha256:28b511117b82',
     )
     expect(plano(lis[9])).toContain(`Texto vigente: ${norm(f.summary)}`)
   })
@@ -375,7 +394,7 @@ describe('/eficiencia: el título, el cuerpo y la medición de la ficha', () => 
             .startsWith(comoSeLee(c.corrected)),
         ).toBe(true)
         // Sustituida después de ponerla, no antes.
-        expect(rotulo[0].slice(-11, -1) >= dia(c.correctedAt)).toBe(true)
+        expect(rotulo[1] >= dia(c.correctedAt)).toBe(true)
       })
       cleanup()
     }

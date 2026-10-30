@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-29T08:06:21.018Z",
+  "generatedAt": "2026-10-29T20:50:59.409Z",
   "conjunto": "cv-15k-40k",
   "anioBase": 2024,
   "source": {
@@ -113,7 +113,7 @@
       "divisor": {
         "singular": "tonelada",
         "plural": "toneladas",
-        "glosa": "las toneladas de basura que el municipio generó en todo el año"
+        "glosa": "las toneladas de basura que declara generadas en el año"
       },
       "modoGestion": "directa",
       "codGestionRaw": "Gestión directa por la entidad local",
@@ -3439,7 +3439,7 @@
       "divisor": {
         "singular": "préstamo",
         "plural": "préstamos",
-        "glosa": "los libros y documentos que los vecinos se llevaron prestados durante el año"
+        "glosa": "los libros y documentos que declara prestados a los vecinos en el año"
       },
       "modoGestion": "directa",
       "codGestionRaw": "Gestión directa por la entidad local",
