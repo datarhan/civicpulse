@@ -803,25 +803,49 @@
       "field": "narrative.Conexiones documentadas y comprobaciones de este medio.bodyMarkdown",
       "original": "Las conexiones de José Ángel Hernández Carrizosa que constan en documentos públicos son de naturaleza político-administrativa: número cuatro y portavoz suplente del grupo municipal socialista, Tercer Teniente de Alcalde, tercer miembro de la Junta de Gobierno Local y titular de las áreas que le delegó el decreto del alcalde Roberto Raga — entre ellas, la propia Compra Pública municipal.\n\nPrecisamente por esa responsabilidad, esta redacción ha cruzado sus apellidos y las cuatro sociedades donde trabajó según su CV con el corpus de contratación municipal: en 804 contratos adjudicados no consta ningún adjudicatario con sus apellidos, y ni Nexo Nivel SL —de la que fue administrador solidario hasta 2015—, ni Grupo Serratable SL, ni Artículos de Carpintería Moreno SL, ni Vilarsal SL constan como adjudicatarias ni licitadoras.\n\nEl registro municipal de asociaciones no publica directivos y la BDNS no publica beneficiarios nominales; el Registro Mercantil no se ha consultado de forma independiente, y las relaciones estrictamente personales no constan en fuentes públicas y no se publican sin constancia documental.",
       "corrected": "Las conexiones de José Ángel Hernández Carrizosa que constan en documentos públicos son de naturaleza político-administrativa: número cuatro y portavoz suplente del grupo municipal socialista, Tercer Teniente de Alcalde, tercer miembro de la Junta de Gobierno Local y titular de las áreas que le delegó el decreto del alcalde Roberto Raga — entre ellas, la propia Compra Pública municipal.\n\nPrecisamente por esa responsabilidad, esta redacción ha cruzado sus apellidos y las cuatro sociedades donde trabajó según su CV con el corpus de contratación municipal: en los 804 expedientes de contratación que constaban en el corpus municipal en julio de 2026 —adjudicados o no— no consta ningún adjudicatario con sus apellidos, y ni Nexo Nivel SL —de la que fue administrador solidario hasta 2015—, ni Grupo Serratable SL, ni Artículos de Carpintería Moreno SL, ni Vilarsal SL constan como adjudicatarias ni licitadoras.\n\nEl registro municipal de asociaciones no publica directivos y la BDNS no publica beneficiarios nominales; el Registro Mercantil no se ha consultado de forma independiente, y las relaciones estrictamente personales no constan en fuentes públicas y no se publican sin constancia documental.",
-      "reason": "Los 804 eran todos los expedientes de contratación del corpus municipal en julio de 2026, adjudicados o no —711 adjudicados o formalizados, según el estado que hoy les da la fuente—, y no 804 contratos adjudicados. La v2 de la biografía de Raquel Pamblanco ya lo corrigió con estas mismas palabras.",
+      "reason": "Los 804 eran todos los expedientes de contratación del corpus municipal en julio de 2026, adjudicados o no —711 de ellos adjudicados o formalizados según el estado que les daba la fuente el 28-10-2026—, y no 804 contratos adjudicados. La v2 de la biografía de Raquel Pamblanco ya lo corrigió con estas mismas palabras.",
       "editor": "Sergei Lutchenko",
-      "correctedAt": "2026-10-28"
+      "correctedAt": "2026-10-28",
+      "reasonAmendments": [
+        {
+          "previous": "motivo · sha256:e2489898129d",
+          "reason": "El motivo daba los 711 como el estado que la fuente les da hoy, sin decir qué día se contó, y ese estado puede cambiar sin que nadie toque la página: la revisión lectora del 29-10-2026 lo leyó como el recuento vigente de todo el corpus. Se fecha la medición —el 28-10-2026, sobre los 804 expedientes de julio— y se dice que los 711 son parte de ellos. La cifra no cambia.",
+          "editor": "Sergei Lutchenko",
+          "amendedAt": "2026-10-30"
+        }
+      ]
     },
     {
       "field": "sources.src-075.excerpt",
       "original": "804 contratos adjudicados examinados: ningún adjudicatario coincide con «Hernández Carrizosa». Las cuatro sociedades donde trabajó según su CV — Nexo Nivel SL (administrador solidario 2008-2015), Grupo Serratable SL, Artículos de Carpintería Moreno SL y Vilarsal SL — no constan como adjudicatarias ni licitadoras. Corpus completo desde julio de 2023 (su delegación incluye Compra Pública): 282 contratos, 55% con un solo licitador, 20% menores.",
       "corrected": "804 expedientes de contratación examinados, adjudicados o no: ningún adjudicatario coincide con «Hernández Carrizosa». Las cuatro sociedades donde trabajó según su CV — Nexo Nivel SL (administrador solidario 2008-2015), Grupo Serratable SL, Artículos de Carpintería Moreno SL y Vilarsal SL — no constan como adjudicatarias ni licitadoras. Corpus completo desde julio de 2023 (su delegación incluye Compra Pública): 282 contratos, 55% con un solo licitador, 20% menores.",
-      "reason": "Los 804 eran todos los expedientes de contratación del corpus municipal en julio de 2026, adjudicados o no —711 adjudicados o formalizados, según el estado que hoy les da la fuente—, y no 804 contratos adjudicados. La v2 de la biografía de Raquel Pamblanco ya lo corrigió con estas mismas palabras.",
+      "reason": "Los 804 eran todos los expedientes de contratación del corpus municipal en julio de 2026, adjudicados o no —711 de ellos adjudicados o formalizados según el estado que les daba la fuente el 28-10-2026—, y no 804 contratos adjudicados. La v2 de la biografía de Raquel Pamblanco ya lo corrigió con estas mismas palabras.",
       "editor": "Sergei Lutchenko",
-      "correctedAt": "2026-10-28"
+      "correctedAt": "2026-10-28",
+      "reasonAmendments": [
+        {
+          "previous": "motivo · sha256:e2489898129d",
+          "reason": "El motivo daba los 711 como el estado que la fuente les da hoy, sin decir qué día se contó, y ese estado puede cambiar sin que nadie toque la página: la revisión lectora del 29-10-2026 lo leyó como el recuento vigente de todo el corpus. Se fecha la medición —el 28-10-2026, sobre los 804 expedientes de julio— y se dice que los 711 son parte de ellos. La cifra no cambia.",
+          "editor": "Sergei Lutchenko",
+          "amendedAt": "2026-10-30"
+        }
+      ]
     },
     {
       "field": "gaps.Vínculos societarios y personales.reason",
       "original": "Su declaración de 2023 no recoge actividad empresarial vigente. Las comprobaciones nominales (804 contratos, incluidas las cuatro sociedades de su CV) no arrojaron coincidencia alguna; las relaciones personales no constan en fuentes públicas.",
       "corrected": "Su declaración de 2023 no recoge actividad empresarial vigente. Las comprobaciones nominales (804 expedientes de contratación en julio de 2026, adjudicados o no, incluidas las cuatro sociedades de su CV) no arrojaron coincidencia alguna; las relaciones personales no constan en fuentes públicas.",
-      "reason": "Los 804 eran todos los expedientes de contratación del corpus municipal en julio de 2026, adjudicados o no —711 adjudicados o formalizados, según el estado que hoy les da la fuente—, y no 804 contratos. La narrativa de esta biografía se corrigió el 28-10-2026 con las mismas palabras; esta laguna seguía con las de antes.",
+      "reason": "Los 804 eran todos los expedientes de contratación del corpus municipal en julio de 2026, adjudicados o no —711 de ellos adjudicados o formalizados según el estado que les daba la fuente el 28-10-2026—, y no 804 contratos. La narrativa de esta biografía se corrigió el 28-10-2026 con las mismas palabras; esta laguna seguía con las de antes.",
       "editor": "Sergei Lutchenko",
-      "correctedAt": "2026-10-28"
+      "correctedAt": "2026-10-28",
+      "reasonAmendments": [
+        {
+          "previous": "motivo · sha256:db57e3b10ee2",
+          "reason": "El motivo daba los 711 como el estado que la fuente les da hoy, sin decir qué día se contó, y ese estado puede cambiar sin que nadie toque la página: la revisión lectora del 29-10-2026 lo leyó como el recuento vigente de todo el corpus. Se fecha la medición —el 28-10-2026, sobre los 804 expedientes de julio— y se dice que los 711 son parte de ellos. La cifra no cambia.",
+          "editor": "Sergei Lutchenko",
+          "amendedAt": "2026-10-30"
+        }
+      ]
     }
   ],
   "response": null

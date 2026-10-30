@@ -1225,9 +1225,17 @@
       "field": "sources.src-074.excerpt",
       "original": "804 contratos examinados: ningún adjudicatario coincide con «Pamblanco», ni con sus empleadoras declaradas (Vorwerk, FVMP, Opt-Media Marketing Solutions). Candidata en 2015 (puesto 12, como independiente, BOP n.º 79) y 2019 (puesto 16, n.º 82) sin obtener acta; electa en 2023.",
       "corrected": "804 expedientes de contratación examinados, adjudicados o no: ningún adjudicatario coincide con «Pamblanco», ni con sus empleadoras declaradas (Vorwerk, FVMP, Opt-Media Marketing Solutions). Candidata en 2015 (puesto 12, como independiente, BOP n.º 79) y 2019 (puesto 16, n.º 82) sin obtener acta; electa en 2023.",
-      "reason": "Los 804 eran todos los expedientes de contratación del corpus municipal en julio de 2026, adjudicados o no —711 adjudicados o formalizados, según el estado que hoy les da la fuente—, y no 804 contratos. La v2 de esta biografía ya lo dice así en su narrativa y en su laguna; el extracto de su medición seguía con la palabra anterior.",
+      "reason": "Los 804 eran todos los expedientes de contratación del corpus municipal en julio de 2026, adjudicados o no —711 de ellos adjudicados o formalizados según el estado que les daba la fuente el 28-10-2026—, y no 804 contratos. La v2 de esta biografía ya lo dice así en su narrativa y en su laguna; el extracto de su medición seguía con la palabra anterior.",
       "editor": "Sergei Lutchenko",
-      "correctedAt": "2026-10-28"
+      "correctedAt": "2026-10-28",
+      "reasonAmendments": [
+        {
+          "previous": "motivo · sha256:1a16c8dee6ff",
+          "reason": "El motivo daba los 711 como el estado que la fuente les da hoy, sin decir qué día se contó, y ese estado puede cambiar sin que nadie toque la página: la revisión lectora del 29-10-2026 lo leyó como el recuento vigente de todo el corpus. Se fecha la medición —el 28-10-2026, sobre los 804 expedientes de julio— y se dice que los 711 son parte de ellos. La cifra no cambia.",
+          "editor": "Sergei Lutchenko",
+          "amendedAt": "2026-10-30"
+        }
+      ]
     }
   ],
   "response": null
