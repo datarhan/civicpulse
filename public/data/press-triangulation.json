@@ -1,14 +1,39 @@
 {
-  "generatedAt": "2026-10-31T10:06:08.152Z",
-  "clusters": [],
+  "generatedAt": "2026-10-31T11:03:14.239Z",
+  "clusters": [
+    {
+      "clusterId": "1hto5xc",
+      "articleIds": [
+        "1icj1ls",
+        "1jh9cu0",
+        "hkahd4"
+      ],
+      "outlets": [
+        "El Periódico de Aquí",
+        "elperiodic.com"
+      ],
+      "fuentesOficiales": [
+        "Ayuntamiento de Cheste"
+      ],
+      "earliestDate": "2026-10-16T06:58:16.000Z",
+      "latestDate": "2026-10-16T16:50:00.000Z",
+      "verdictMix": {
+        "verificado": 0,
+        "parcial": 0,
+        "contradicho": 0,
+        "sin-datos": 3,
+        "promesa-repetida": 0
+      }
+    }
+  ],
   "stats": {
-    "totalClusters": 0,
+    "totalClusters": 1,
     "triangulated3Plus": 0
   },
   "builtFrom": {
-    "plenos-agendas.json": "714c4ff4025a",
+    "plenos-agendas.json": "b4f2c3413f60",
     "press-claims-verified.json": "2dbfb96512c5",
-    "press.json": "8c3433ca1145",
+    "press.json": "d0756ec424b1",
     "promises.json": "a4b8423e960f"
   }
 }
