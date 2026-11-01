@@ -829,3 +829,42 @@ cron_git_commit_paths() {
   cron_git_stage_and_check "$@" || return 1
   cron_git_commit_pathspec "$message"
 }
+
+# ---------------------------------------------------------------------------
+# cron_git_push_con_reintento [opción de git push…]
+#
+# `git push origin <main>` y, si lo rechazan, un pull-rebase y UN reintento.
+#
+# Un push sin reintento no pierde sólo esa pasada. El 2026-10-27
+# scrape-ci-blocked pulló a las 07:27:26, la PR #444 se fusionó a las 07:28:13 y
+# la revisión pre-push tardó 187 s: push rechazado, commit en local. Eso se
+# arregla solo mientras nadie toque esos ficheros, pero la nocturna los reescribe
+# cada día, y desde entonces cada pull inicial chocó en nueve rutas hasta que se
+# resolvió a mano cinco días después. Al arreglarlo volvió a pasar: la PR #513
+# entró en la misma ventana. Si la nocturna llega antes que el reintento, ya no
+# hay nada que reintentar.
+#
+# Rederiva después del pull porque el rebase trae trabajo ajeno, y ese trabajo
+# puede haber movido la entrada de un nodo derivado (`94359907`, 2026-09-16).
+#
+#   rc 0 — publicado.   rc ≠ 0 — no se publicó y el commit sigue en local.
+# ---------------------------------------------------------------------------
+cron_git_push_con_reintento() {
+  local rama="${CRON_GIT_MAIN_BRANCH:-main}" rederivadas
+  if git push "$@" origin "$rama"; then
+    return 0
+  fi
+  cron_git_log "push rechazado — pull-rebase y un reintento"
+  cron_git_pull_rebase "pull-rebase de reintento tras push rechazado" || return $?
+  rederivadas="$(cron_rutas_rederivadas)"
+  if [ -n "$rederivadas" ]; then
+    # shellcheck disable=SC2086  # deliberado: es una lista de rutas
+    if cron_git_stage_and_check $rederivadas; then
+      cron_git_commit_pathspec "chore(datos): rederivado tras el rebase" || true
+    fi
+    cron_git_log "rederivado tras el rebase:$rederivadas"
+  else
+    cron_git_log "rederivado tras el rebase: nada que reconstruir"
+  fi
+  git push "$@" origin "$rama"
+}

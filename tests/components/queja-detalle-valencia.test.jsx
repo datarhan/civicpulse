@@ -46,7 +46,6 @@ const SIGLAS = masLargasPrimero([
   'CivicPulse',
   'Telegram',
   'WhatsApp',
-  'WA',
   'LPACAP',
   'Síndic de Greuges',
   'Síndic',
@@ -381,7 +380,9 @@ const leeFicha = (c) => [
 /** El texto que el botón de WhatsApp manda, sin la URL de la página que lo cierra. */
 function leeLoCompartido(container) {
   const abre = vi.spyOn(window, 'open').mockImplementation(() => null)
-  const boton = [...container.querySelectorAll('button')].find((b) => b.textContent.includes('WA'))
+  const boton = [...container.querySelectorAll('button')].find((b) =>
+    b.textContent.includes('WhatsApp'),
+  )
   expect(boton, 'la ficha no tiene botón de compartir').toBeTruthy()
   fireEvent.click(boton)
   expect(abre, 'compartir no abrió nada').toHaveBeenCalledTimes(1)

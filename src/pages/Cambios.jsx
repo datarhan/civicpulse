@@ -140,11 +140,10 @@ function KindCard({ kind, items, filas, formatDate }) {
             key={i}
             data-fila=""
             data-piezas={piezas.length}
+            // La rejilla vive en `index.css` (`.cp-cambio-fila`): se parte por
+            // debajo de 720 px, y un estilo en línea no admite media queries.
+            className="cp-cambio-fila"
             style={{
-              display: 'grid',
-              gridTemplateColumns: '90px 1fr min-content',
-              gap: 10,
-              alignItems: 'baseline',
               padding: '6px 0',
               borderTop: i === 0 ? 'none' : '1px dotted var(--border2)',
             }}
