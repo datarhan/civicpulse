@@ -443,7 +443,11 @@ overwrites it. Change the bot's SQLite instead.
   towns or no band) and a «no apta» tally that separates networks run by an
   operator other than the town's main one (`noAptaEnPares`). Weekly by itself
   (exits 0 inside 7 days; `--forzar`), soft-fails a town with its reason,
-  refuses to publish if > 20 % fail or ≥ 10 % of gradings are unreadable.
+  refuses to publish if > 20 % fail or ≥ 10 % of gradings are unreadable. Runs
+  only in `scrape-ci-blocked.sh`, cadence `ci-blocked` 15d: not because runners
+  are blocked but because SINAC is slow from anywhere and a pass, which writes
+  only when it ends, does not fit in the nightly (`SOLO_LOCAL` in
+  `scrape-all.sh`).
   Cadence `ci-blocked` 15d.
 - **Whole year** — `informe-agua.ts` → `scrape:agua-informe` →
   `agua-informe-anual.json`: Annex I of the ministry's annual report «Calidad

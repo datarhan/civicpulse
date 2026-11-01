@@ -21,6 +21,39 @@ set -uo pipefail
 # "keep scrapers polite" rule. It caches locally, but a CI runner starts cold
 # every time. Run it by hand when a new entrega lands: npm run scrape:coste-efectivo
 
+# SÓLO EN LOCAL: no se intentan aquí, y el parte lo dice cada noche. Su refresco
+# es `scrape-ci-blocked.sh` (lo fija tests/nightly-budget.test.js) y quien vigila
+# que no se quede sin él es check:cadence.
+#
+#   scrape:agua-pares — una pasada son unas 250 peticiones a SINAC y cuesta unos
+#   36 min DESDE CUALQUIER IP: no es que el runner esté bloqueado. Medido el
+#   01-11-2026 con los mismos 18 municipios: 494 s desde el portátil, 540 s desde
+#   el runner el 31-10, y Jávea agotando sus 30 s en los dos sitios. La ficha de
+#   una red tarda 7,5 s de mediana y llega a 30, así que esto nunca cupo en el
+#   paso: sólo parecía caber porque es semanal y seis noches de cada siete sale al
+#   instante. Y no se cura sola: si no acaba no escribe, y si no escribe la noche
+#   siguiente vuelve a tocar. Del 29 al 31-10 tumbó tres nocturnas. Dejarla con
+#   tope sería peor que quitarla: unas 60 peticiones cada noche a un ministerio
+#   para cortar siempre una pasada que sólo escribe al terminar.
+SOLO_LOCAL=(scrape:agua-pares)
+
+# El reloj de los adaptadores, en dos capas, porque ninguna basta sola.
+#
+# Sin tope, un adaptador lento lo pagan todos los de detrás: el hacha del paso
+# cae dentro de él y se lleva las derivaciones, las guardas y el `npm test` de la
+# noche, y un fallo «blando» tumba lo mismo que uno duro. El tope por adaptador
+# corta sólo a ése. Pero tres atascados la misma noche ya no caben en el paso, y el
+# hacha volvería a caer sobre la cola. El presupuesto común deja de arrancar
+# adaptadores a tiempo, y lo que no llegó a correr se dice NO intentado, que no es
+# lo mismo que fallido ni que hecho.
+#
+# Medido en 45 noches hasta el 31-10-2026: el peor adaptador que TERMINÓ tardó
+# 436 s (pleno-agendas, 21-09), la noche más larga de las 40 que acabaron 19,9 min
+# y la cola 1,7. Ninguna de las dos capas habría cortado nada sano: son respaldo.
+# La cuenta contra el `timeout-minutes` del paso la fija tests/nightly-budget.test.js.
+TOPE_ADAPTADOR_S=${SCRAPE_TOPE_ADAPTADOR_S:-480}
+PRESUPUESTO_ADAPTADORES_S=${SCRAPE_PRESUPUESTO_ADAPTADORES_S:-1500}
+
 SCRAPERS=(
   scrape:officials
   scrape:transparency
@@ -54,7 +87,6 @@ SCRAPERS=(
   scrape:sindic-expedientes
   scrape:consell-cv
   scrape:agua
-  scrape:agua-pares
   scrape:promise-suggestions
   extract:all-pleno-votes
   scrape:elections
@@ -114,8 +146,6 @@ SCRAPERS=(
 #     on any failure, so a soft failure only costs freshness — and the archive
 #     it keeps is why that matters: SINAC shows only the latest bulletins, so a
 #     long gap loses the ones that rotate off the page. check:cadence watches it.
-#     scrape:agua-pares is the same source for the comparable towns; it runs
-#     weekly by itself (exits 0 doing nothing inside 7 days) and is soft too.
 #   - scrape:consell-cv — two near-static yearly GVA tables. The adapter now
 #     refuses to write a partial snapshot when a year is unreachable (that
 #     would delete the missing year's resoluciones), so an upstream blip
@@ -151,7 +181,6 @@ BEST_EFFORT=(
   scrape:sindicatura
   scrape:sindic-expedientes
   scrape:agua
-  scrape:agua-pares
 )
 
 is_best_effort() {
@@ -168,6 +197,16 @@ soft_failures=()
 # apart from failures: "never attempted" and "tried and failed" are different
 # facts, and folding them together is how a run reports work it never did.
 skipped=()
+# `x` y no `s`: `app-graph.ts` deriva «qué programa este guion» del bucle cuya
+# variable acaba en `npm run`, y éste no programa nada.
+for x in "${SOLO_LOCAL[@]}"; do
+  skipped+=("$x — sólo en scrape-ci-blocked.sh; su frescura la vigila check:cadence")
+done
+# La regla 2 de docs/DATA_INTEGRITY.md: el parte del final tiene que cuadrar.
+intentados=0
+hechos=0
+fallidos=0
+agotados=0
 
 # Steps that need an LLM. CI has no backend by design — no API keys, and ollama
 # is out of every fallback chain — so these cannot do their work there. Running
@@ -196,19 +235,39 @@ for s in "${SCRAPERS[@]}"; do
     echo "[scrape-all] SKIPPED: $s — needs an LLM backend and none is available here."
     echo "[scrape-all]   It runs curator-side (hallazgos-pipeline.sh). Skipping so this"
     echo "[scrape-all]   run does not overwrite the snapshot with an empty result."
-    skipped+=("$s")
+    skipped+=("$s — necesita un backend LLM y aquí no hay")
     continue
   fi
-  if npm run "$s"; then
+  restante=$((PRESUPUESTO_ADAPTADORES_S - SECONDS))
+  if [ "$restante" -le 0 ]; then
+    echo "[scrape-all] NO INTENTADO: $s — presupuesto de ${PRESUPUESTO_ADAPTADORES_S} s agotado"
+    skipped+=("$s — presupuesto de adaptadores agotado")
+    # Un crítico que no corrió tampoco ha ido bien.
+    is_best_effort "$s" || failures+=("$s (no intentado)")
+    continue
+  fi
+  tope=$TOPE_ADAPTADOR_S
+  [ "$restante" -lt "$tope" ] && tope=$restante
+  intentados=$((intentados + 1))
+  if node "$(dirname "$0")/con-tope.mjs" "$tope" npm run "$s"; then
+    hechos=$((hechos + 1))
     echo "[scrape-all] ok: $s"
   else
     code=$?
+    nombre="$s"
+    if [ "$code" -eq 124 ]; then
+      agotados=$((agotados + 1))
+      nombre="$s, que AGOTÓ SU TOPE de ${tope} s"
+      echo "[scrape-all] AGOTÓ SU TOPE de ${tope} s: $s — cortado; lo de detrás sigue"
+    else
+      fallidos=$((fallidos + 1))
+    fi
     if is_best_effort "$s"; then
       echo "[scrape-all] SOFT-FAILED ($code): $s — best-effort, not counted"
-      soft_failures+=("$s")
+      soft_failures+=("$nombre")
     else
       echo "[scrape-all] FAILED ($code): $s"
-      failures+=("$s")
+      failures+=("$nombre")
     fi
   fi
 done
@@ -657,8 +716,15 @@ echo ""
 echo "================================================================"
 echo "[scrape-all] summary"
 echo "================================================================"
+parte="$((${#SCRAPERS[@]} + ${#SOLO_LOCAL[@]})) previstos · $intentados intentados · $hechos hechos · $fallidos fallidos · $agotados agotaron su tope · ${#skipped[@]} no intentados"
+echo "[scrape-all] adaptadores: $parte"
+# Va también a la página de la ejecución: un adaptador blando cortado no tiñe
+# nada, y una línea de un registro de mil no la lee nadie.
+if [ -n "${GITHUB_STEP_SUMMARY:-}" ]; then
+  echo "- Adaptadores: \`$parte\`" >> "$GITHUB_STEP_SUMMARY"
+fi
 if [ ${#skipped[@]} -gt 0 ]; then
-  echo "[scrape-all] ${#skipped[@]} paso(s) NO intentado(s) (sin backend disponible aquí):"
+  echo "[scrape-all] ${#skipped[@]} paso(s) NO intentado(s):"
   for f in "${skipped[@]}"; do
     echo "  - $f"
   done

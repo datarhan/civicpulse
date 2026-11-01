@@ -104,6 +104,11 @@ jobs:
         # deja sitio a que se degraden TRES adaptadores de Overpass a la vez,
         # no los cuatro (38). Que quepa en el trabajo lo suma
         # `tests/nightly-budget.test.js`.
+        #
+        # Desde el 01-11-2026 este tope ya no es quien corta a un adaptador
+        # atascado: `scrape-all.sh` reparte el reloj por dentro (tope por
+        # adaptador y presupuesto común) para que la cola y el `npm test` lleguen
+        # siempre, y dice qué no llegó a intentar. Éste queda de respaldo.
         timeout-minutes: 30
         # ADAPTERS passed via env (not inline ${{ }}) so a workflow_dispatch
         # input can never break out of the case "..." quoting into the shell.
@@ -339,7 +344,7 @@ jobs:
           echo "" >> "$GITHUB_STEP_SUMMARY"
           echo "- Pipelines: \`$ADAPTERS\`" >> "$GITHUB_STEP_SUMMARY"
           echo "- Changed: \`${CHANGED:-false}\`" >> "$GITHUB_STEP_SUMMARY"
-          echo "- Critical scrape rc: \`${SCRAPE_RC:-step-timeout}\` (0 = all critical adapters ok; best-effort metro-network/participa never set this; step-timeout = scrape step killed at 22 min)" >> "$GITHUB_STEP_SUMMARY"
+          echo "- Critical scrape rc: \`${SCRAPE_RC:-step-timeout}\` (0 = all critical adapters ok; best-effort metro-network/participa never set this; step-timeout = scrape step killed at its timeout-minutes)" >> "$GITHUB_STEP_SUMMARY"
           echo "- Tests: \`${TESTS_OUTCOME:-skipped}\`" >> "$GITHUB_STEP_SUMMARY"
           echo "" >> "$GITHUB_STEP_SUMMARY"
           # generatedAt per file: a frozen adapter is invisible in file
@@ -369,7 +374,7 @@ jobs:
           # critical failure, never as green (the fresh data from the
           # adapters that finished was still committed above).
           if [ -z "${SCRAPE_RC:-}" ]; then
-            echo "::error::Scrape step hit its 22-min timeout before reporting rc. Adapters that finished were committed; this red run blocks the deploy until the slow/hung source is fixed."
+            echo "::error::Scrape step hit its timeout-minutes before reporting rc. Adapters that finished were committed; this red run blocks the deploy until the slow/hung source is fixed."
             fail=1
           elif [ "$SCRAPE_RC" -ne 0 ]; then
             echo "::error::One or more CRITICAL scrapers failed (rc=${SCRAPE_RC}). Fresh data from the healthy adapters was committed; this red run intentionally blocks the deploy until the critical source is fixed."

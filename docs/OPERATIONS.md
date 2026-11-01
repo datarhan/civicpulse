@@ -61,6 +61,37 @@ Because best-effort failures go green, freshness needs its own check:
 `check:runs` catches a run that reported success having done no work. Both are
 report-only inside `scrape:all`.
 
+### The clock inside the scrape step
+
+Best-effort governs the exit code, not the time an adapter takes, and a step
+timeout falls wherever the clock happens to be. On 2026-10-29 to 31 a soft
+adapter that needs half an hour ate the rest of «Run scraper(s)» three nights
+running: everything after it was lost, derivations and `npm test` included.
+`scrape-all.sh` now spends the step's time in two layers:
+
+- **`TOPE_ADAPTADOR_S`**, per adapter, enforced by `scripts/con-tope.mjs`
+  (`timeout` does not exist on a Mac). It kills the whole process tree and exits 124. A soft adapter cut this way stays soft, and a critical one reds the run,
+  but the run carries on either way.
+- **`PRESUPUESTO_ADAPTADORES_S`**, shared, so that several slow adapters cannot
+  add up to the same failure. Once it is spent nothing else starts: what is left
+  is reported as not attempted, which reds the run if any of it was critical.
+
+Neither has ever cut healthy work: both defaults sit above the worst night
+measured, and the reasoning and figures are in the script's header.
+`tests/nightly-budget.test.js` fixes the sum against the step's `timeout-minutes`,
+which stays as the backstop. Everything after the adapters runs regardless.
+
+The run ends with one line, also written to the run's summary page: planned ·
+attempted · done · failed · cut by the limit · not attempted. **Read that line,
+not the colour**: a soft adapter cut every night is green, and its data ages
+until `check:cadence` says so.
+
+`SOLO_LOCAL` in the same script names what the nightly does not attempt because
+it cannot fit — today `scrape:agua-pares`, about half an hour against SINAC from
+any IP. A test requires each of them to be in `scrape-ci-blocked.sh`, so they
+have a refresh path, and `check:cadence` watches them. If that local job stops,
+nothing else refreshes them.
+
 `workflow_dispatch` takes an `adapters` input for on-demand re-runs; add new
 adapter names to the `case` switch.
 
@@ -204,14 +235,14 @@ and GitHub emails the failure.
 
 Anything needing an LLM backend or a residential IP runs here, not in CI.
 
-| When            | How     | Script                                                                                                                                                                                                                                                                                |
-| --------------- | ------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| 06:45 daily     | launchd | `scrape-ci-blocked.sh` — the adapters runners cannot reach (`paro`, `pleno-agendas`, `asociaciones`, `obras`, `procesos-selectivos`, `sindicatura`, `consell-cv`, `sindic-expedientes`, `pleno-actas`, `pleno-videos-regmeet`)                                                        |
-| 07:30 Mon + Thu | launchd | `review-sweep.sh` — reads every public route, plus one data-picked instance of each `:param` route, as a visitor; then `triage:senalamientos` leaves `editorial/senalamientos/<date>.md`, each live flag with its figures located and a second reading (report-only, commits nothing) |
-| 08:30 Mon       | launchd | `auto-curate-promises-daily.sh` — `/promesas` status-change miner                                                                                                                                                                                                                     |
-| 09:30 Mon + Thu | launchd | `hallazgos-pipeline.sh` — transcribe → extract → verify → auto-curate → push                                                                                                                                                                                                          |
-| 10:15 Mon       | launchd | `press-lab-pipeline.sh` — `/laboratorio/prensa` press fact-check pass                                                                                                                                                                                                                 |
-| 11:00 daily     | cron    | `monitor-health-cron.sh` — first `colas:rehacer` (rebuilds curator queues gone stale by a retraction, never one holding an unapplied choice), then the digest                                                                                                                         |
+| When            | How     | Script                                                                                                                                                                                                                                                                                                 |
+| --------------- | ------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| 06:45 daily     | launchd | `scrape-ci-blocked.sh` — the adapters runners cannot reach or that do not fit in the nightly (`paro`, `pleno-agendas`, `asociaciones`, `obras`, `procesos-selectivos`, `sindicatura`, `consell-cv`, `sindic-expedientes`, `transparency`, `pleno-actas`, `pleno-videos-regmeet`, `agua`, `agua-pares`) |
+| 07:30 Mon + Thu | launchd | `review-sweep.sh` — reads every public route, plus one data-picked instance of each `:param` route, as a visitor; then `triage:senalamientos` leaves `editorial/senalamientos/<date>.md`, each live flag with its figures located and a second reading (report-only, commits nothing)                  |
+| 08:30 Mon       | launchd | `auto-curate-promises-daily.sh` — `/promesas` status-change miner                                                                                                                                                                                                                                      |
+| 09:30 Mon + Thu | launchd | `hallazgos-pipeline.sh` — transcribe → extract → verify → auto-curate → push                                                                                                                                                                                                                           |
+| 10:15 Mon       | launchd | `press-lab-pipeline.sh` — `/laboratorio/prensa` press fact-check pass                                                                                                                                                                                                                                  |
+| 11:00 daily     | cron    | `monitor-health-cron.sh` — first `colas:rehacer` (rebuilds curator queues gone stale by a retraction, never one holding an unapplied choice), then the digest                                                                                                                                          |
 
 ### Cadence: why the LLM agents are not daily
 
