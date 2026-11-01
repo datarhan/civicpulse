@@ -356,6 +356,45 @@ are retired: they refuse to install (a crontab line would run the agent a
 second time, and daily), and only `uninstall` still works, to remove an old
 line.
 
+### When the push is rejected
+
+The reader review's minutes are also the window in which `main` moves. On
+2026-10-27 a single `git push` lost that race with `fetch first`, and the script
+exited saying «el próximo run reintenta». That was false: the nightly rewrote the
+same JSON that morning, so every opening pull collided with the unpublished
+commit, aborted and scraped nothing, until a person undid it on 2026-11-01.
+Since `scrape:agua-pares` runs only in this cron, a jam there leaves that data
+with no other path, and `check:cadence` takes 15 days to say so.
+
+`scrape-ci-blocked.sh` now recovers in three places:
+
+- **The same run** retries the push (`CRON_GIT_PUSH_INTENTOS`, default 5), and
+  each retry waits, rebases and re-derives, in that order. The wait comes before
+  the rebase, the reverse of the nightly's Commit step, because waiting after it
+  reopens the race. The review is not repeated: what the rebase brought was
+  reviewed by whoever pushed it, and three more minutes would be another window.
+- **The next run's opening pull** resolves the conflict when every conflicted
+  path is a derived node or is listed in the script's `SNAPSHOTS`: it takes
+  origin's side and scrapes on top. Those snapshots are not all idempotent
+  (`agua.json` and `paro.json` merge with their own previous output, and SINAC
+  shows only its latest bulletins), so the local commit is saved first, at
+  `refs/respaldo/cron/<sha>`, with the ref named in the log. To read the discarded
+  side: `git show refs/respaldo/cron/<sha>:public/data/agua.json`.
+- **A morning with nothing new** still publishes a pending commit. It used to
+  exit on «no changes» before reaching the push.
+
+Two cases still stop the run, and both leave the commit local. If `refresh` fails
+after a rebase that brought something in, the run does not publish, because a
+derived node nobody rebuilt is what `tests/data-graph-frescura.test.ts` reds on;
+the next run picks the commit up. If anything else is in conflict, a curated file
+above all, the whole rebase aborts and the run scrapes nothing. That one needs a
+person, and `check:cron` says so (`cron-sin-publicar`, `cron-pull-atascado`).
+
+Only this cron declares `CRON_GIT_RASPADOS_PROPIOS`, because only a snapshot's
+owner can promise to scrape it again. The other pipelines keep aborting on such a
+conflict, and their push handling is older: `hallazgos` and `press-lab` retry
+once, `auto-curate-promises-daily.sh` not at all.
+
 ### The speaker-map sweep: a job measured in weeks, not nights
 
 `hallazgos-pipeline.sh` carries one step that is not a nightly refresh but a
