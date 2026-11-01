@@ -1,7 +1,7 @@
 {
-  "generatedAt": "2026-10-31T11:03:12.437Z",
+  "generatedAt": "2026-11-01T08:11:23.944Z",
   "source": {
-    "tenders": "2026-10-31T10:35:12.757Z",
+    "tenders": "2026-11-01T08:10:48.277Z",
     "geo": "2026-10-31T10:37:51.302Z"
   },
   "universe": {
@@ -889,7 +889,7 @@
   ],
   "assignments": [
     {
-      "id": "29500",
+      "id": "29500#1487219",
       "zones": [
         "urbanitzacio-la-llobatera"
       ],
@@ -914,7 +914,7 @@
       }
     },
     {
-      "id": "1561143#1",
+      "id": "1561143#2858598",
       "zones": [],
       "matchedAlias": {},
       "dana": false,
@@ -1027,7 +1027,7 @@
       }
     },
     {
-      "id": "1561143#2",
+      "id": "1561143#2858588",
       "zones": [],
       "matchedAlias": {},
       "dana": false,
@@ -1048,7 +1048,7 @@
       }
     },
     {
-      "id": "4558191",
+      "id": "4558191#6852922",
       "zones": [],
       "matchedAlias": {},
       "dana": false,
@@ -1070,7 +1070,7 @@
       "parentTitle": "Obras Adecuación del Barranc dels Moros como itinerario turístico y peatonal (Fase I) de Riba-roja de Túria dividido en dos lotes, en el marco del Plan de Recuperación, Transformación y Resiliencia-  Financiado por la  Unión Europea, Next Generation”"
     },
     {
-      "id": "4558191#1",
+      "id": "4558191#6852924",
       "zones": [],
       "matchedAlias": {},
       "dana": false,
@@ -1346,7 +1346,7 @@
       }
     },
     {
-      "id": "1892105",
+      "id": "1892105#5071444",
       "zones": [],
       "matchedAlias": {},
       "dana": false,
@@ -1367,7 +1367,7 @@
       }
     },
     {
-      "id": "1889876",
+      "id": "1889876#4192555",
       "zones": [],
       "matchedAlias": {},
       "dana": false,
@@ -1522,7 +1522,7 @@
       }
     },
     {
-      "id": "1892105#1",
+      "id": "1892105#5343211",
       "zones": [],
       "matchedAlias": {},
       "dana": false,
@@ -1585,7 +1585,7 @@
       }
     },
     {
-      "id": "4973577#3",
+      "id": "4973577#9081640",
       "zones": [
         "el-molinet"
       ],
@@ -1761,7 +1761,7 @@
       }
     },
     {
-      "id": "13417",
+      "id": "13417#806294",
       "zones": [],
       "matchedAlias": {},
       "dana": false,
@@ -2004,7 +2004,7 @@
       }
     },
     {
-      "id": "1891608",
+      "id": "1891608#4538711",
       "zones": [
         "el-pou-d-escoto"
       ],
@@ -2243,7 +2243,7 @@
       }
     },
     {
-      "id": "1892105#7",
+      "id": "1892105#6858401",
       "zones": [
         "urbanitzacio-la-reva"
       ],
@@ -2882,7 +2882,7 @@
       }
     },
     {
-      "id": "1999#1",
+      "id": "1999#918474",
       "zones": [
         "el-molinet"
       ],
@@ -2957,7 +2957,7 @@
       }
     },
     {
-      "id": "13417#1",
+      "id": "13417#1501339",
       "zones": [],
       "matchedAlias": {},
       "dana": false,
@@ -3258,7 +3258,7 @@
       }
     },
     {
-      "id": "1999#2",
+      "id": "1999#544741",
       "zones": [],
       "matchedAlias": {},
       "dana": false,
@@ -3392,7 +3392,7 @@
       }
     },
     {
-      "id": "29500#1",
+      "id": "29500#257109",
       "zones": [
         "urbanitzacio-els-pous"
       ],
@@ -3409,7 +3409,7 @@
       "place": null
     },
     {
-      "id": "43208#1",
+      "id": "43208#545501",
       "zones": [
         "urbanitzacio-santa-monica",
         "el-molinet"
@@ -3428,7 +3428,7 @@
       "place": null
     },
     {
-      "id": "29500#2",
+      "id": "29500#1487220",
       "zones": [],
       "matchedAlias": {},
       "dana": false,
@@ -3623,6 +3623,6 @@
     "geo.json": "74892b4b3432",
     "place-overrides.json": "5878849f1684",
     "streets.json": "6dbdecd40da2",
-    "tenders.json": "dcad0e562760"
+    "tenders.json": "fb204493c8b0"
   }
 }

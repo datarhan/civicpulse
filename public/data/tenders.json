@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-31T10:35:12.757Z",
+  "generatedAt": "2026-11-01T08:10:48.277Z",
   "source": {
     "contracts": "https://ribalicita.ribarroja.es/api/v1/data/data.csv?sql=select%20*%20from%20contratos",
     "tenders": "https://ribalicita.ribarroja.es/api/v1/data/data.csv?sql=select%20*%20from%20licitaciones",
@@ -16,7 +16,7 @@
   "top": {
     "recentAwarded": [
       {
-        "id": "4889055#4",
+        "id": "4889055#10921271",
         "title": "71241000-Estudio de viabilidad, servicios de asesoramiento, análisis.",
         "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=KfeVpx2w0IPECtSnloz%2BZQ%3D%3D",
         "status": "awarded",
@@ -47,7 +47,7 @@
         "numberOfProposals": 3
       },
       {
-        "id": "5167845",
+        "id": "5167845#10246826",
         "title": "Lote 1 - Servicio Ayuda a Domicilio personas sin grado de dependencia",
         "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=g6EbCcr%2F73IeIBJRHQiPkQ%3D%3D",
         "status": "awarded",
@@ -80,7 +80,7 @@
         "numberOfProposals": 5
       },
       {
-        "id": "5167845#1",
+        "id": "5167845#10246827",
         "title": "Lote 2 - Servicio Ayuda a Domicilio personas con grado de dependencia",
         "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=g6EbCcr%2F73IeIBJRHQiPkQ%3D%3D",
         "status": "awarded",
@@ -113,7 +113,7 @@
         "numberOfProposals": 5
       },
       {
-        "id": "5190772#2",
+        "id": "5190772#10469515",
         "title": "Lote 3 - Servicio de laboratorio para el análisis de sustancias decomisadas",
         "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=eJtaf6IFJQyP66GS%2BONYvQ%3D%3D",
         "status": "awarded",
@@ -175,7 +175,7 @@
         "numberOfProposals": 1
       },
       {
-        "id": "1794430#20",
+        "id": "1794430#10751423",
         "title": "79900000-Servicios comerciales diversos y otros servicios conexos.",
         "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=%2BtxCxaMNXsG7JOCXkOhcDg%3D%3D",
         "status": "awarded",
@@ -206,7 +206,7 @@
         "numberOfProposals": 1
       },
       {
-        "id": "4889055#11",
+        "id": "4889055#10727335",
         "title": "71000000-Servicios de arquitectura, construcción, ingeniería e inspección.",
         "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=jfZGSii8nvVLAIVZdUs8KA%3D%3D",
         "status": "awarded",
@@ -237,7 +237,7 @@
         "numberOfProposals": 7
       },
       {
-        "id": "5106848",
+        "id": "5106848#9743660",
         "title": "UE vella 6",
         "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=SWowCY8dnwmcCF8sV%2BqtYA%3D%3D",
         "status": "awarded",
@@ -267,7 +267,7 @@
         "numberOfProposals": 2
       },
       {
-        "id": "5106848#1",
+        "id": "5106848#9743658",
         "title": "UE casco 5",
         "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=SWowCY8dnwmcCF8sV%2BqtYA%3D%3D",
         "status": "awarded",
@@ -328,7 +328,7 @@
         "numberOfProposals": 1
       },
       {
-        "id": "5106848#2",
+        "id": "5106848#9743661",
         "title": "UE pous 6",
         "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=SWowCY8dnwmcCF8sV%2BqtYA%3D%3D",
         "status": "awarded",
@@ -358,7 +358,7 @@
         "numberOfProposals": 1
       },
       {
-        "id": "5096992",
+        "id": "5096992#9673648",
         "title": "Accesorios",
         "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=DvfzF%2Fh0EmMXhk1FZxEyvw%3D%3D",
         "status": "formalized",
@@ -409,7 +409,7 @@
   },
   "contracts": [
     {
-      "id": "1794430",
+      "id": "1794430#9163290",
       "title": "Contrato de servicio alumbrado ornamental navideño año 2025-2026 a través del contrato derivado del SDA de servicios de diversa índole, con condición especial de ejecución de carácter social contribuyendo al cumplimiento del ODS 8 relativo al trabajo decente para todos. (Ctto. 166/2025 – ESDA 2/2022).",
       "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=%2B4nob%2F1X3tzIGlsa0Wad%2Bw%3D%3D",
       "status": "awarded",
@@ -471,7 +471,7 @@
       "numberOfProposals": 6
     },
     {
-      "id": "1794430#1",
+      "id": "1794430#9807364",
       "title": "servicio Clases de Inglés en el CFPA de Riba-roja de Túria, derivado del SDA de servicios de diversa índole, de uso recurrente por parte de las diferentes áreas municipales.",
       "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=r3klh8VqH0GTylGzYmBF9Q%3D%3D",
       "status": "awarded",
@@ -533,7 +533,7 @@
       "numberOfProposals": 1
     },
     {
-      "id": "1216657",
+      "id": "1216657#2800781",
       "title": "Accesorios",
       "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=TS56A31zHFOmq21uxhbaVQ%3D%3D",
       "status": "awarded",
@@ -623,7 +623,7 @@
       "numberOfProposals": 1
     },
     {
-      "id": "1216657#1",
+      "id": "1216657#2800782",
       "title": "Calzado",
       "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=TS56A31zHFOmq21uxhbaVQ%3D%3D",
       "status": "formalized",
@@ -655,7 +655,7 @@
       "numberOfProposals": 1
     },
     {
-      "id": "1216657#2",
+      "id": "1216657#2800780",
       "title": "Uniformidad",
       "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=TS56A31zHFOmq21uxhbaVQ%3D%3D",
       "status": "awarded",
@@ -777,7 +777,7 @@
       "numberOfProposals": 2
     },
     {
-      "id": "29500",
+      "id": "29500#1487219",
       "title": "Obras de reposición de asfaltado en los tramos más deteriorados del camino de la Llobatera.",
       "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=4QmhBpFpLekuf4aBO%2BvQlQ%3D%3D",
       "status": "awarded",
@@ -837,7 +837,7 @@
       "numberOfProposals": 6
     },
     {
-      "id": "1561143",
+      "id": "1561143#2858613",
       "title": "LOTE 3 : Enlace camino c/ Dolçaina – c/ Tabalet",
       "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=rZqNBbaS18qXQV0WE7lYPw%3D%3D",
       "status": "formalized",
@@ -899,7 +899,7 @@
       "numberOfProposals": 1
     },
     {
-      "id": "1561143#1",
+      "id": "1561143#2858598",
       "title": "LOTE 2 : C/ Dolçaina (Partida Gallipont)",
       "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=rZqNBbaS18qXQV0WE7lYPw%3D%3D",
       "status": "formalized",
@@ -991,7 +991,7 @@
       "numberOfProposals": 2
     },
     {
-      "id": "1932729",
+      "id": "1932729#4028802",
       "title": "Caminos Rurales (4 rurales)",
       "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=fmHzgB33HDSXQV0WE7lYPw%3D%3D",
       "status": "formalized",
@@ -1052,7 +1052,7 @@
       "numberOfProposals": 5
     },
     {
-      "id": "4331164",
+      "id": "4331164#5343810",
       "title": "Obras de mejora viaria, señalización y áreas de descanso en Sector 14.",
       "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=8c5VLmSbG%2BQ7%2B9FIQYNjeQ%3D%3D",
       "status": "awarded",
@@ -1085,7 +1085,7 @@
       "numberOfProposals": 3
     },
     {
-      "id": "4446501",
+      "id": "4446501#6162644",
       "title": "Asfaltado camino rural.",
       "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=Ig2hivipy%2FJ6nTs9LZ9RhQ%3D%3D",
       "status": "awarded",
@@ -1116,7 +1116,7 @@
       "numberOfProposals": 5
     },
     {
-      "id": "4446501#1",
+      "id": "4446501#6162643",
       "title": "Reasfaltado casco urbano.",
       "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=Ig2hivipy%2FJ6nTs9LZ9RhQ%3D%3D",
       "status": "awarded",
@@ -1240,7 +1240,7 @@
       "numberOfProposals": 2
     },
     {
-      "id": "4331164#1",
+      "id": "4331164#5343809",
       "title": "Obras de mejora viaria, señalización y áreas de descanso en PLV.",
       "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=8c5VLmSbG%2BQ7%2B9FIQYNjeQ%3D%3D",
       "status": "awarded",
@@ -1273,7 +1273,7 @@
       "numberOfProposals": 3
     },
     {
-      "id": "1561143#2",
+      "id": "1561143#2858588",
       "title": "LOTE 1: C/ del Tabalet (Partida Gallipont)",
       "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=rZqNBbaS18qXQV0WE7lYPw%3D%3D",
       "status": "formalized",
@@ -1425,7 +1425,7 @@
       "numberOfProposals": 1
     },
     {
-      "id": "4333684",
+      "id": "4333684#5626789",
       "title": "Servicio mantenimiento instalaciones térmicas deportes.",
       "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=HiIEfDk2s9mTylGzYmBF9Q%3D%3D",
       "status": "formalized",
@@ -1459,7 +1459,7 @@
       "numberOfProposals": 7
     },
     {
-      "id": "4333684#1",
+      "id": "4333684#5626790",
       "title": "Servicio mantenimiento instalaciones térmicas colegios.",
       "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=HiIEfDk2s9mTylGzYmBF9Q%3D%3D",
       "status": "formalized",
@@ -1493,7 +1493,7 @@
       "numberOfProposals": 7
     },
     {
-      "id": "5106848",
+      "id": "5106848#9743660",
       "title": "UE vella 6",
       "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=SWowCY8dnwmcCF8sV%2BqtYA%3D%3D",
       "status": "awarded",
@@ -1553,7 +1553,7 @@
       "numberOfProposals": 1
     },
     {
-      "id": "1561143#3",
+      "id": "1561143#2858649",
       "title": "LOTE 5 : Cami Pou del Mallorquí (Zona Carasols)",
       "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=rZqNBbaS18qXQV0WE7lYPw%3D%3D",
       "status": "formalized",
@@ -1585,7 +1585,7 @@
       "numberOfProposals": 3
     },
     {
-      "id": "4558191",
+      "id": "4558191#6852922",
       "title": "Obra completa",
       "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=POJYBO8NDn2cCF8sV%2BqtYA%3D%3D",
       "status": "awarded",
@@ -1615,7 +1615,7 @@
       "numberOfProposals": 2
     },
     {
-      "id": "4558191#1",
+      "id": "4558191#6852924",
       "title": "Obras de equipamiento",
       "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=POJYBO8NDn2cCF8sV%2BqtYA%3D%3D",
       "status": "awarded",
@@ -1675,7 +1675,7 @@
       "numberOfProposals": 1
     },
     {
-      "id": "4366489",
+      "id": "4366489#5460542",
       "title": "Contrato administrativo de obras para el proyecto de “Asfaltado y reasfaltado de viales urbanos y caminos rurales de Riba-roja de Túria” Plan RENOVE , dividido en 6 lotes.",
       "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=h4tiCELtfEdxseVhcqrkhw%3D%3D",
       "status": "formalized",
@@ -1767,7 +1767,7 @@
       "numberOfProposals": 1
     },
     {
-      "id": "4366489#1",
+      "id": "4366489#5460543",
       "title": "Contrato administrativo de obras para el proyecto de “Asfaltado y reasfaltado de viales urbanos y caminos rurales de Riba-roja de Túria” Plan RENOVE , dividido en 6 lotes.",
       "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=h4tiCELtfEdxseVhcqrkhw%3D%3D",
       "status": "formalized",
@@ -1797,7 +1797,7 @@
       "numberOfProposals": 5
     },
     {
-      "id": "4366489#2",
+      "id": "4366489#5460547",
       "title": "Contrato administrativo de obras para el proyecto de “Asfaltado y reasfaltado de viales urbanos y caminos rurales de Riba-roja de Túria” Plan RENOVE , dividido en 6 lotes.",
       "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=h4tiCELtfEdxseVhcqrkhw%3D%3D",
       "status": "formalized",
@@ -1857,7 +1857,7 @@
       "numberOfProposals": 3
     },
     {
-      "id": "1794430#2",
+      "id": "1794430#10132886",
       "title": "Contrato de servicio de puesta a disposición de personal para la ejecución de los trabajos de montaje y desmontaje de las carpas que se instalan con motivo de la celebración de la Feria del Comercio organizada por el Ayuntamiento de Riba-roja de Túria, mediante contrato derivado del SDA de servicios de diversa índole (Ctto. 96/2026 – ESDA 2/2022).",
       "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=Dqmv5hWokzt4zIRvjBVCSw%3D%3D",
       "status": "void",
@@ -2041,7 +2041,7 @@
       "numberOfProposals": 1
     },
     {
-      "id": "1794430#3",
+      "id": "1794430#10087781",
       "title": "Contrato de servicio de taller de pilates y suelo pélvico mediante contrato derivado del SDA de servicios de diversa índole, con condición especial de ejecución de carácter social contribuyendo al cumplimiento del ODS 8 relativo al trabajo decente para todos. (Ctto. 25/2026 – ESDA 2/2022).",
       "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=0RsapOP9EIiP66GS%2BONYvQ%3D%3D",
       "status": "awarded",
@@ -2225,7 +2225,7 @@
       "numberOfProposals": 2
     },
     {
-      "id": "4889055",
+      "id": "4889055#10629986",
       "title": "71241000-Estudio de viabilidad, servicios de asesoramiento, análisis.",
       "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=3ZKMIBIIcjnLIx6q1oPaMg%3D%3D",
       "status": "void",
@@ -2284,7 +2284,7 @@
       "numberOfProposals": 2
     },
     {
-      "id": "1794430#4",
+      "id": "1794430#6386179",
       "title": "Contrato administrativo en la prestación del servicio para la organización y desarrollo del Campamento Municipal de Verano Juvenil 2024.",
       "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=dKZUsZcM0XjzAq95uGTrDQ%3D%3D",
       "status": "awarded",
@@ -2315,7 +2315,7 @@
       "numberOfProposals": 1
     },
     {
-      "id": "1794430#5",
+      "id": "1794430#6392661",
       "title": "Contrato de servicio prestación del servicio para la organización y desarrollo del ESCUELA DE VERANO 2024, meses julio y agosto de 2024. Ctto. 43/2024.",
       "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=RKVUYa5%2F1yDCfVQHDepjGQ%3D%3D",
       "status": "awarded",
@@ -2378,7 +2378,7 @@
       "numberOfProposals": 3
     },
     {
-      "id": "4889055#1",
+      "id": "4889055#10149010",
       "title": "71000000-Servicios de arquitectura, construcción, ingeniería e inspección.",
       "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=8p%2Fwsq%2B3XH9eKgd8LfVV9g%3D%3D",
       "status": "awarded",
@@ -2409,7 +2409,7 @@
       "numberOfProposals": 8
     },
     {
-      "id": "1794430#6",
+      "id": "1794430#6392958",
       "title": "Contrato administrativo en la prestación del servicio para la organización y desarrollo de la ESCUELA DE VERANO INTEGRADORA, julio 2024. Ctto 59/2024",
       "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=amxlnukhQM1%2BF6L2uCfUWg%3D%3D",
       "status": "awarded",
@@ -2440,7 +2440,7 @@
       "numberOfProposals": 1
     },
     {
-      "id": "1794430#7",
+      "id": "1794430#10144293",
       "title": "Contrato servicio de puesta a disposición de personal para la ejecución de trabajos de montaje y desmontaje de las carpas que se instalan con motivo de la celebración de la Feria del Comercio organizada por el Ayuntamiento de Riba-roja de Túria, mediante contrato derivado del SDA de servicios de diversa índole (Ctto.96/2026BSDA bis)",
       "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=Pn1X7YmF1vwmMOlAXxDEjw%3D%3D",
       "status": "void",
@@ -2471,7 +2471,7 @@
       "numberOfProposals": 0
     },
     {
-      "id": "1794430#8",
+      "id": "1794430#10144304",
       "title": "Contrato servicio alquiler de vallas de seguridad, destinadas a la correcta organización, señalización y delimitación de espacios durante el desarrollo de la campaña de promoción y dinamización del comercio local, con motivo de la celebración de la Feria del Comercio de Riba-roja de Túria, mediante contrato derivado del SDA de servicios de diversa índole.",
       "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=2gB%2B3A9KcJqKeVWTb9Scog%3D%3D",
       "status": "void",
@@ -2563,7 +2563,7 @@
       "numberOfProposals": 1
     },
     {
-      "id": "4889055#2",
+      "id": "4889055#10201361",
       "title": "Servicio de apoyo técnico en el diagnóstico de igualdad y en la realización del Plan de Igualdad del Ayuntamiento de Riba-roja de Túria, contrato derivado del SDA de servicios de arquitectura e ingeniería, consultoría y asistencia técnica a las diferentes áreas municipales",
       "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=e18%2FPP3l84B%2FR5QFTlaM4A%3D%3D",
       "status": "awarded",
@@ -2594,7 +2594,7 @@
       "numberOfProposals": 1
     },
     {
-      "id": "5177416",
+      "id": "5177416#10355894",
       "title": "Lote 2 - Cuatro unidades de vehículos tipo SUV híbridos para uso policial",
       "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=j0PEgp21LM4UqXM96WStVA%3D%3D",
       "status": "unknown",
@@ -2657,7 +2657,7 @@
       "numberOfProposals": 1
     },
     {
-      "id": "26459",
+      "id": "26459#529981",
       "title": "Suministro de Moto eléctrica de 1,9 Kw a 2,5 Kw. Urbana",
       "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=F5cJBe2hB%2BxvYnTkQN0%2FZA%3D%3D",
       "status": "awarded",
@@ -2717,7 +2717,7 @@
       "numberOfProposals": 3
     },
     {
-      "id": "78553",
+      "id": "78553#52083",
       "title": "Servicio de transporte de diversa índole en el municipio de Riba-roja pro procedimiento abierto, mejor relación calidad-precio, varios criterios de adjudicación y con criterios ambientales en los vehículos, el personal conductor y la gestión cotidiana para minimizar los impactos negativos durante el transcurso del contrato y con condición especial de ejecución de carácter social.",
       "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=O83XFzEeamkBPRBxZ4nJ%2Fg%3D%3D",
       "status": "formalized",
@@ -2747,7 +2747,7 @@
       "numberOfProposals": 2
     },
     {
-      "id": "4889055#3",
+      "id": "4889055#10198807",
       "title": "71241000-Estudio de viabilidad, servicios de asesoramiento, análisis.",
       "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=e18%2FPP3l84B%2FR5QFTlaM4A%3D%3D",
       "status": "awarded",
@@ -2867,7 +2867,7 @@
       "numberOfProposals": 1
     },
     {
-      "id": "1689128",
+      "id": "1689128#3740976",
       "title": "Contrato de suministro para el MOBILIARIO en el CENTRO SOCIAL “LA BOTAIA” (DESPACHO DEL 9 AL 16) derivado del Sistema Dinámico de Adquisición de suministro de materiales y productos de utilización diaria del Ayuntamiento de Riba-Roja de Túria.",
       "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=eQSvV%2FmKsbQSugstABGr5A%3D%3D",
       "status": "awarded",
@@ -2898,7 +2898,7 @@
       "numberOfProposals": 3
     },
     {
-      "id": "1689128#1",
+      "id": "1689128#3740970",
       "title": "Contrato de suministro para el MOBILIARIO en el CENTRO SOCIAL “LA BOTAIA” (DESPACHO DEL 1 AL 8) derivado del Sistema Dinámico de Adquisición de suministro de materiales y productos de utilización diaria del Ayuntamiento de Riba-Roja de Túria.",
       "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=0c4tQT2eLzQBPRBxZ4nJ%2Fg%3D%3D",
       "status": "awarded",
@@ -2929,7 +2929,7 @@
       "numberOfProposals": 2
     },
     {
-      "id": "1794430#9",
+      "id": "1794430#9820405",
       "title": "Contrato de servicio RIBAJOVE 2025 a través del contrato derivado del SDA de servicios de diversa índole, con condición especial de ejecución de carácter social contribuyendo al cumplimiento del ODS 8 relativo al trabajo decente para todos. (Ctto. 134/2025 – ESDA 2/2022).",
       "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=Gm7RmfcIytq9Hd5zqvq9cg%3D%3D",
       "status": "formalized",
@@ -2990,7 +2990,7 @@
       "numberOfProposals": 3
     },
     {
-      "id": "4889055#4",
+      "id": "4889055#10921271",
       "title": "71241000-Estudio de viabilidad, servicios de asesoramiento, análisis.",
       "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=KfeVpx2w0IPECtSnloz%2BZQ%3D%3D",
       "status": "awarded",
@@ -3111,7 +3111,7 @@
       "numberOfProposals": 3
     },
     {
-      "id": "1794430#10",
+      "id": "1794430#9116384",
       "title": "79900000-Servicios comerciales diversos y otros servicios conexos.",
       "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=r3klh8VqH0GTylGzYmBF9Q%3D%3D",
       "status": "void",
@@ -3774,7 +3774,7 @@
       "numberOfProposals": 1
     },
     {
-      "id": "5190772",
+      "id": "5190772#10469514",
       "title": "Lote 2 - Servicio de laboratorio para el análisis de drogas en muestras de fluido oral",
       "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=eJtaf6IFJQyP66GS%2BONYvQ%3D%3D",
       "status": "unknown",
@@ -3806,7 +3806,7 @@
       "numberOfProposals": 2
     },
     {
-      "id": "1999",
+      "id": "1999#918473",
       "title": "Adecuación urbanización Masía de Traver",
       "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=uhl7Dr7kScguf4aBO%2BvQlQ%3D%3D",
       "status": "void",
@@ -3867,7 +3867,7 @@
       "numberOfProposals": 5
     },
     {
-      "id": "4889055#5",
+      "id": "4889055#9992797",
       "title": "Contratación servicio dirección de obra y dirección de ejecución material, coordinación en seguridad \ny salud para proyecto de obras “Reconstrucción de vallados de parcelas en los polígonos industriales tras los daños sufridos tras la DANA en el T.M. de Riba-roja de Túria (Valencia)” - Ctto92/2026.",
       "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=56xTbbVhVpxxseVhcqrkhw%3D%3D",
       "status": "awarded",
@@ -3898,7 +3898,7 @@
       "numberOfProposals": 14
     },
     {
-      "id": "1794430#11",
+      "id": "1794430#4001483",
       "title": "Contrato para la ejecución del contrato de servicios de actividades de ocio sociocultural y educativo (RIBAJOVE), derivado del sistema dinámico de adquisición (SDA) para la contratación de servicios de diversa índole de uso recurrente por parte de las diferentes áreas municipales. (Ctto 61/2022 – SDA 2/2022).",
       "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=MlfeSI2PCg2rz3GQd5r6SQ%3D%3D",
       "status": "awarded",
@@ -3929,7 +3929,7 @@
       "numberOfProposals": 1
     },
     {
-      "id": "1892105",
+      "id": "1892105#5071444",
       "title": "Contrato derivado del sistema dinámico de adquisición (SDA) de obras, para la instalación e cuatro elementos exentos de juegos infantiles en la Urbanización Gallipont de Riba-roja de Túria. (Ctto. 216/2023).",
       "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=G65cfHQLe%2FVJ8Trn0ZPzLw%3D%3D",
       "status": "awarded",
@@ -3960,7 +3960,7 @@
       "numberOfProposals": 2
     },
     {
-      "id": "1689128#2",
+      "id": "1689128#7685867",
       "title": "Contrato de suministro de material didáctico (libros y manuales) para el personal del Taller de Empleo Riba-roja Bonica VI, mediante contrato derivado del SDA de suministro de materiales y productos de utilización diaria - Ctto. 40/2025",
       "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=3OnWh4S1mFGFlFRHfEzEaw%3D%3D",
       "status": "awarded",
@@ -4021,7 +4021,7 @@
       "numberOfProposals": 0
     },
     {
-      "id": "4889055#6",
+      "id": "4889055#9504648",
       "title": "Contrato para la prestación del servicio de consultoría para solicitud ayudas FEDER para actuaciones de las entidades locales especialmente afectadas por la DANA través de contrato derivado del Sistema Dinámico de Adquisición de servicios de arquitectura e ingeniería, consultoría y asistencia técnica a las diferentes áreas municipales. (Ctto. 146/2025 – ESDA1/2025).",
       "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=zObCw4gxc5XgL1BHd3qjQA%3D%3D",
       "status": "formalized",
@@ -4052,7 +4052,7 @@
       "numberOfProposals": 8
     },
     {
-      "id": "4889055#7",
+      "id": "4889055#10717356",
       "title": "72224000-Servicios de consultoría en gestión de proyectos.",
       "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=bZhrUOv3%2FSEeC9GJQOEBkQ%3D%3D",
       "status": "awarded",
@@ -4113,7 +4113,7 @@
       "numberOfProposals": 1
     },
     {
-      "id": "1889876",
+      "id": "1889876#4192555",
       "title": "Contrato para el suministro, adquisición de jardineras para separar el carril para paso de vehículos en calle Vilamarxant, del carril peatonal, derivado del sistema dinámico de adquisición (SDA) de suministro de material de jardinería (Ctto 59/2022 – SDA 1/2020).",
       "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=M3B12MCygtyiEJrVRqloyA%3D%3D",
       "status": "formalized",
@@ -4144,7 +4144,7 @@
       "numberOfProposals": 2
     },
     {
-      "id": "62344",
+      "id": "62344#124025",
       "title": "contrato de obras de reurbanización y mejora de zonas verdes en los polígonos industriales de la zona sur de Riba-roja de Túria., por procedimiento abierto simplificado, mejor relación calidad-precio, varios criterios de adjudicación con cláusulas medioambientales como criterio de adjudicación y con condición especial de ejecución de carácter medioambiental.",
       "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=tefWSQ%2FAAQaiEJrVRqloyA%3D%3D",
       "status": "formalized",
@@ -4261,7 +4261,7 @@
       "numberOfProposals": 1
     },
     {
-      "id": "1701582",
+      "id": "1701582#3707287",
       "title": "Suscripciones Autodesk",
       "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=eO5j98RA9t9vYnTkQN0%2FZA%3D%3D",
       "status": "formalized",
@@ -4291,7 +4291,7 @@
       "numberOfProposals": 1
     },
     {
-      "id": "1701582#1",
+      "id": "1701582#3707297",
       "title": "Servicio meteorológico municipal personalizado.",
       "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=eO5j98RA9t9vYnTkQN0%2FZA%3D%3D",
       "status": "formalized",
@@ -4321,7 +4321,7 @@
       "numberOfProposals": 1
     },
     {
-      "id": "1701582#2",
+      "id": "1701582#3707289",
       "title": "Mantenimiento gestor de contenidos.",
       "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=eO5j98RA9t9vYnTkQN0%2FZA%3D%3D",
       "status": "void",
@@ -4351,7 +4351,7 @@
       "numberOfProposals": 1
     },
     {
-      "id": "1701582#3",
+      "id": "1701582#3707292",
       "title": "Sesiones plenarias videoactas.",
       "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=eO5j98RA9t9vYnTkQN0%2FZA%3D%3D",
       "status": "formalized",
@@ -4381,7 +4381,7 @@
       "numberOfProposals": 1
     },
     {
-      "id": "1701582#4",
+      "id": "1701582#3707293",
       "title": "Mantenimiento aplicación de RRHH.",
       "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=eO5j98RA9t9vYnTkQN0%2FZA%3D%3D",
       "status": "void",
@@ -4411,7 +4411,7 @@
       "numberOfProposals": 1
     },
     {
-      "id": "1701582#5",
+      "id": "1701582#3707298",
       "title": "Aplicativo área de policía local",
       "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=eO5j98RA9t9vYnTkQN0%2FZA%3D%3D",
       "status": "void",
@@ -4471,7 +4471,7 @@
       "numberOfProposals": 1
     },
     {
-      "id": "1701582#6",
+      "id": "1701582#3707295",
       "title": "Mantenimiento sistema bando WIFI",
       "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=eO5j98RA9t9vYnTkQN0%2FZA%3D%3D",
       "status": "formalized",
@@ -4501,7 +4501,7 @@
       "numberOfProposals": 1
     },
     {
-      "id": "1701582#7",
+      "id": "1701582#3707310",
       "title": "Mantenimiento aplicación de interoperabilidad Agente SC",
       "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=eO5j98RA9t9vYnTkQN0%2FZA%3D%3D",
       "status": "formalized",
@@ -4531,7 +4531,7 @@
       "numberOfProposals": 1
     },
     {
-      "id": "1701582#8",
+      "id": "1701582#3707301",
       "title": "Mantenimiento sistema inteligente de gestión de esperas y colas.",
       "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=eO5j98RA9t9vYnTkQN0%2FZA%3D%3D",
       "status": "formalized",
@@ -4561,7 +4561,7 @@
       "numberOfProposals": 1
     },
     {
-      "id": "1701582#9",
+      "id": "1701582#3707302",
       "title": "Suministro módulos elaboración de presupuestos y RPT.",
       "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=eO5j98RA9t9vYnTkQN0%2FZA%3D%3D",
       "status": "void",
@@ -4591,7 +4591,7 @@
       "numberOfProposals": 1
     },
     {
-      "id": "1701582#10",
+      "id": "1701582#3707303",
       "title": "Visor de transparencia de contratación y herramienta para el control y santificación de licitaciones.",
       "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=eO5j98RA9t9vYnTkQN0%2FZA%3D%3D",
       "status": "formalized",
@@ -4653,7 +4653,7 @@
       "numberOfProposals": 1
     },
     {
-      "id": "78553#1",
+      "id": "78553#136665",
       "title": "Servicio de transporte de diversa índole en el municipio de Riba-roja pro procedimiento abierto, mejor relación calidad-precio, varios criterios de adjudicación y con criterios ambientales en los vehículos, el personal conductor y la gestión cotidiana para minimizar los impactos negativos durante el transcurso del contrato y con condición especial de ejecución de carácter social.",
       "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=O83XFzEeamkBPRBxZ4nJ%2Fg%3D%3D",
       "status": "formalized",
@@ -4714,7 +4714,7 @@
       "numberOfProposals": 2
     },
     {
-      "id": "1701582#11",
+      "id": "1701582#3707294",
       "title": "Plan de adecuación al esquema nacional de seguridad. Consultoría integral en materia de protección de datos.",
       "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=eO5j98RA9t9vYnTkQN0%2FZA%3D%3D",
       "status": "formalized",
@@ -4845,7 +4845,7 @@
       "numberOfProposals": 7
     },
     {
-      "id": "1794430#12",
+      "id": "1794430#9758551",
       "title": "Contrato derivado del sistema dinámico de adquisición de servicios para TALLERES de INFORMÁTICA en la EPA.",
       "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=4roXkK9o42irz3GQd5r6SQ%3D%3D",
       "status": "awarded",
@@ -4878,7 +4878,7 @@
       "numberOfProposals": 2
     },
     {
-      "id": "1794430#13",
+      "id": "1794430#9758952",
       "title": "Contrato derivado del sistema dinámico de adquisición, para el servicio de Divulgación, Capacitación y Formación a los distintos actores implicados en los procedimientos de gestión y en el modelo de control de las iniciativas planteadas en el marco del PRTR sobre la base del Plan de Medidas Antifraude municipal derivado del SDA de servicios de diversa índole de utilización diaria.",
       "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=N5CjtrgWr3%2FI8aL3PRS10Q%3D%3D",
       "status": "awarded",
@@ -4910,7 +4910,7 @@
       "numberOfProposals": 1
     },
     {
-      "id": "1794430#14",
+      "id": "1794430#9760662",
       "title": "Contrato derivado del sistema dinámico de adquisición, para la prestación del el servicio de TALLER DE INGLÉS a impartir en la Escuela Pública de Adultos (EPA). Ctto. 145/2023",
       "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=QQ5A2FBqg%2B2FlFRHfEzEaw%3D%3D",
       "status": "revoked",
@@ -4942,7 +4942,7 @@
       "numberOfProposals": 0
     },
     {
-      "id": "5177429",
+      "id": "5177429#10355915",
       "title": "Lote 10 - Mantenimiento sistema bando WiFi",
       "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=%2F34pTr%2F3b9WLAncw3qdZkA%3D%3D",
       "status": "unknown",
@@ -4975,7 +4975,7 @@
       "numberOfProposals": 0
     },
     {
-      "id": "5177429#1",
+      "id": "5177429#10355917",
       "title": "Lote 11 - Mantenimiento aplicaciones de gestión corporativas área económica, población y registro",
       "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=%2F34pTr%2F3b9WLAncw3qdZkA%3D%3D",
       "status": "unknown",
@@ -5008,7 +5008,7 @@
       "numberOfProposals": 0
     },
     {
-      "id": "5177429#2",
+      "id": "5177429#10355920",
       "title": "Lote 13 - Suscripciones anuales software copias de seguridad",
       "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=%2F34pTr%2F3b9WLAncw3qdZkA%3D%3D",
       "status": "unknown",
@@ -5041,7 +5041,7 @@
       "numberOfProposals": 0
     },
     {
-      "id": "5177429#3",
+      "id": "5177429#10355926",
       "title": "Lote 17 - Nivel de servicio soporte técnico Tech Care Basic para dispositivo de copias de seguridad HPE StoreOnce 3620 SN CZ22280Z0H",
       "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=%2F34pTr%2F3b9WLAncw3qdZkA%3D%3D",
       "status": "unknown",
@@ -5074,7 +5074,7 @@
       "numberOfProposals": 0
     },
     {
-      "id": "5177429#4",
+      "id": "5177429#10355929",
       "title": "Lote 2 - Accesibilidad Web",
       "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=%2F34pTr%2F3b9WLAncw3qdZkA%3D%3D",
       "status": "unknown",
@@ -5107,7 +5107,7 @@
       "numberOfProposals": 0
     },
     {
-      "id": "5177429#5",
+      "id": "5177429#10355933",
       "title": "Lote 4 - Mantenimiento plataforma de administración electrónica",
       "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=%2F34pTr%2F3b9WLAncw3qdZkA%3D%3D",
       "status": "unknown",
@@ -5140,7 +5140,7 @@
       "numberOfProposals": 0
     },
     {
-      "id": "5177429#6",
+      "id": "5177429#10355934",
       "title": "Lote 5 - Mantenimiento control de acceso corporativo",
       "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=%2F34pTr%2F3b9WLAncw3qdZkA%3D%3D",
       "status": "unknown",
@@ -5173,7 +5173,7 @@
       "numberOfProposals": 0
     },
     {
-      "id": "5177429#7",
+      "id": "5177429#10355935",
       "title": "Lote 6 - Mantenimiento base de datos corporativa",
       "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=%2F34pTr%2F3b9WLAncw3qdZkA%3D%3D",
       "status": "unknown",
@@ -5420,7 +5420,7 @@
       "numberOfProposals": 2
     },
     {
-      "id": "1794430#15",
+      "id": "1794430#8603776",
       "title": "Contrato de servicio de campamentos de verano 2025 mediante contrato derivado del SDA de servicios de diversa índole, con condición especial de ejecución de carácter social contribuyendo al cumplimiento del ODS 8 relativo al trabajo decente para todos. (Ctto. 70/2025 y 135/2025 – ESDA 2/2022).",
       "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=2KpTZqjhWfBxseVhcqrkhw%3D%3D",
       "status": "awarded",
@@ -5630,7 +5630,7 @@
       "numberOfProposals": 1
     },
     {
-      "id": "840300",
+      "id": "840300#1021891",
       "title": "servicio de limpieza EEII Riu Túria y CEIP Camp de Túria, por procedimiento abierto, 2 lotes, mejor relación calidad-precio, varios criterios de adjudicación, con cláusulas medioambientales y sociales como criterio de adjudicación y con condición especial de ejecución de carácter social y medioambiental, y mejoras vinculadas al objeto del contrato sujeto a regulación armonizada.",
       "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=iybVWU7rf8%2Brz3GQd5r6SQ%3D%3D",
       "status": "formalized",
@@ -5786,7 +5786,7 @@
       "numberOfProposals": 3
     },
     {
-      "id": "1794430#16",
+      "id": "1794430#5071342",
       "title": "Contratación derivada del sistema dinámico de adquisición (SDA) de servicios de diversa índole, para la prestación del servicio de TALLER DE INGLÉS a impartir en la Escuela Pública de Adultos. Ctto. 145/2023b.",
       "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=%2FxOcSrQ966OcCF8sV%2BqtYA%3D%3D",
       "status": "awarded",
@@ -5817,7 +5817,7 @@
       "numberOfProposals": 2
     },
     {
-      "id": "1794430#17",
+      "id": "1794430#7734603",
       "title": "Servicio de transporte de autobús para traslado de alumnado y profesorado del Conserva-torio Profesional Municipal de Danza de Riba-roja de Túria a diferentes lugares",
       "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=ULs94gRNeWyFQ%2FlhRK79lA%3D%3D",
       "status": "awarded",
@@ -5848,7 +5848,7 @@
       "numberOfProposals": 1
     },
     {
-      "id": "1794430#18",
+      "id": "1794430#6858140",
       "title": "Servicio ornamentación alumbrado navideño 2024-2025",
       "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=KFJ4LSXR4ZGzz8fXU2i3eQ%3D%3D",
       "status": "awarded",
@@ -5879,7 +5879,7 @@
       "numberOfProposals": 2
     },
     {
-      "id": "1892105#1",
+      "id": "1892105#5343211",
       "title": "El objeto es la ejecución de las  obras, para el proyecto “APARCAMIENTO PROVISIONAL EN ZONA PACADAR” de Riba-roja de Túria. (Ctto. 254/2023).",
       "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=4w9Nqs7MG9AeC9GJQOEBkQ%3D%3D",
       "status": "awarded",
@@ -6119,7 +6119,7 @@
       "numberOfProposals": 4
     },
     {
-      "id": "1794430#19",
+      "id": "1794430#10144310",
       "title": "Contrato servicio de alquiler grupo electrógeno, durante el desarrollo de la campaña de promoción y dinamización del comercio local en la Feria del Comercio de Riba-roja de Túria, contrato derivado del SDA de servicios de diversa índole, con condición especial de ejecución de carácter social contribuyendo al cumplimiento del ODS 8 relativo al trabajo decente para todos.",
       "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=tSwMOlAy0wKLAncw3qdZkA%3D%3D",
       "status": "void",
@@ -6182,7 +6182,7 @@
       "numberOfProposals": 1
     },
     {
-      "id": "4973577",
+      "id": "4973577#9081636",
       "title": "Cambio de juegos y suelo de protección Parque La Pedrera",
       "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=0sQ%2BhGrxuvbjHF5qKI4aaw%3D%3D",
       "status": "formalized",
@@ -6222,7 +6222,7 @@
       "numberOfProposals": 5
     },
     {
-      "id": "4973577#1",
+      "id": "4973577#9081638",
       "title": "Renovación de los juegos y suelo de protección Plaza Juez Heliodoro Gimeno",
       "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=0sQ%2BhGrxuvbjHF5qKI4aaw%3D%3D",
       "status": "formalized",
@@ -6262,7 +6262,7 @@
       "numberOfProposals": 6
     },
     {
-      "id": "4973577#2",
+      "id": "4973577#9081639",
       "title": "Cambio de juegos y suelo de protección Parque Bellavista I",
       "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=0sQ%2BhGrxuvbjHF5qKI4aaw%3D%3D",
       "status": "formalized",
@@ -6302,7 +6302,7 @@
       "numberOfProposals": 6
     },
     {
-      "id": "4973577#3",
+      "id": "4973577#9081640",
       "title": "Cambio de juegos y suelo de protección Parque Molinet",
       "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=0sQ%2BhGrxuvbjHF5qKI4aaw%3D%3D",
       "status": "formalized",
@@ -6342,7 +6342,7 @@
       "numberOfProposals": 7
     },
     {
-      "id": "4973577#4",
+      "id": "4973577#9081641",
       "title": "Sustitución de los juegos y suelo de protección de la Plaza Lavadero",
       "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=0sQ%2BhGrxuvbjHF5qKI4aaw%3D%3D",
       "status": "formalized",
@@ -6441,7 +6441,7 @@
       "numberOfProposals": 2
     },
     {
-      "id": "1794430#20",
+      "id": "1794430#10751423",
       "title": "79900000-Servicios comerciales diversos y otros servicios conexos.",
       "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=%2BtxCxaMNXsG7JOCXkOhcDg%3D%3D",
       "status": "awarded",
@@ -6502,7 +6502,7 @@
       "numberOfProposals": 12
     },
     {
-      "id": "1794430#21",
+      "id": "1794430#8998505",
       "title": "Contrato de servicio fiesta del Dux 2025-2026 mediante contrato derivado del SDA de servicios de diversa índole, con condición especial de ejecución de carácter social contribuyendo al cumplimiento del ODS 8 relativo al trabajo decente para todos. (Ctto. 43/2025 – ESDA 2/2022).",
       "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=5GcwtZ%2BtcTLECtSnloz%2BZQ%3D%3D",
       "status": "awarded",
@@ -6561,7 +6561,7 @@
       "numberOfProposals": 1
     },
     {
-      "id": "1794430#22",
+      "id": "1794430#10201842",
       "title": "Servicio técnico en eventos de igualdad mediante contrato derivado del SDA de servicios de diversa índole, con condición especial de ejecución de carácter social contribuyendo al cumplimiento del ODS 8 relativo al trabajo decente para todos. (Ctto. 86/2025 – ESDA 2/2022).",
       "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=4p9f7N%2FQJB0tm4eBPtV6eQ%3D%3D",
       "status": "awarded",
@@ -7050,7 +7050,7 @@
       "numberOfProposals": 1
     },
     {
-      "id": "1794430#23",
+      "id": "1794430#10511696",
       "title": "92000000-Servicios de esparcimiento, culturales y deportivos.",
       "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=c%2Ffs089FDebua%2Fi14w%2FPLA%3D%3D",
       "status": "awarded",
@@ -7081,7 +7081,7 @@
       "numberOfProposals": 2
     },
     {
-      "id": "1689128#3",
+      "id": "1689128#6079609",
       "title": "Contrato para la adquisición de 40 casetas para utilizar dentro de la celebración de Ferias o eventos organizados por el Ayuntamiento de Riba-roja de Túria.",
       "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=PrLe96U5gIV4zIRvjBVCSw%3D%3D",
       "status": "awarded",
@@ -7264,7 +7264,7 @@
       "numberOfProposals": 1
     },
     {
-      "id": "4889055#8",
+      "id": "4889055#10184487",
       "title": "71241000-Estudio de viabilidad, servicios de asesoramiento, análisis.",
       "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=LnenigZlKbecCF8sV%2BqtYA%3D%3D",
       "status": "awarded",
@@ -7591,7 +7591,7 @@
       "numberOfProposals": 1
     },
     {
-      "id": "13417",
+      "id": "13417#806294",
       "title": "Instalación de conjunto de aparatos biosaludables en la Urbanización Lliri Groc",
       "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=QGtuMfiEcXB7h85%2Fpmmsfw%3D%3D",
       "status": "awarded",
@@ -7799,7 +7799,7 @@
       "numberOfProposals": 1
     },
     {
-      "id": "1467871",
+      "id": "1467871#2609525",
       "title": "Contrato de suministro de carburante para los vehículos y maquinaria del Ayuntamiento de Riba-roja de Túria -2 lotes-, por procedimiento abierto, mejor relación calidad-precio, sujeto a regulación armonizada, varios criterios de adjudicación con criterios medioambientales y sociales de adjudicación, con condición especial de ejecución de carácter socio-laboral y medioambiental.",
       "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=KkKXsJqvTWIBPRBxZ4nJ%2Fg%3D%3D",
       "status": "void",
@@ -7868,7 +7868,7 @@
       "numberOfProposals": 0
     },
     {
-      "id": "4889055#9",
+      "id": "4889055#10278551",
       "title": "71241000-Estudio de viabilidad, servicios de asesoramiento, análisis.",
       "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=Tjxv4MOw0JC8ebB%2FXTwy0A%3D%3D",
       "status": "awarded",
@@ -7929,7 +7929,7 @@
       "numberOfProposals": 0
     },
     {
-      "id": "4889055#10",
+      "id": "4889055#10259025",
       "title": "Contratación servicio técnico redacción del Proyecto de Licencia Ambiental y del Plan de Actuación ante Emergencias para las siguientes actividades de carácter temporal correspondientes al ejercicio 2026: Feria del Comercio; Campaña de dinamización del mercado municipal Tasta el Mercat, contrato derivado del SDA de servicios de arquitectura e ingeniería, consultoría y asistencia técnica.",
       "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=2iTqILStUoT%2Fa9DgO%2BoYKQ%3D%3D",
       "status": "awarded",
@@ -7960,7 +7960,7 @@
       "numberOfProposals": 2
     },
     {
-      "id": "1794430#24",
+      "id": "1794430#4398563",
       "title": "Contrato derivado del sistema dinámico de adquisición de servicios para la prestación del TALLER de FOTOGRAFÍA en la escuela pública de adultos del Ayuntamiento de Riba-roja de Turia.",
       "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=NhvbGm6OZ9xvYnTkQN0%2FZA%3D%3D",
       "status": "awarded",
@@ -7993,7 +7993,7 @@
       "numberOfProposals": 1
     },
     {
-      "id": "1794430#25",
+      "id": "1794430#10028410",
       "title": "Contrato de servicio de vigilancia y seguridad privada con motivo de la celebración de la Feria del Comercio de Riba-roja de Túria, mediante contrato derivado del SDA de servicios de diversa índole, con condición especial de ejecución de carácter social contribuyendo al cumplimiento del ODS 8 relativo al trabajo decente para todos.",
       "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=2VffqwkcucQkJPJS%2BPS9vg%3D%3D",
       "status": "void",
@@ -8112,7 +8112,7 @@
       "numberOfProposals": 2
     },
     {
-      "id": "4366489#3",
+      "id": "4366489#5460544",
       "title": "Contrato administrativo de obras para el proyecto de “Asfaltado y reasfaltado de viales urbanos y caminos rurales de Riba-roja de Túria” Plan RENOVE , dividido en 6 lotes.",
       "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=h4tiCELtfEdxseVhcqrkhw%3D%3D",
       "status": "formalized",
@@ -8142,7 +8142,7 @@
       "numberOfProposals": 5
     },
     {
-      "id": "4366489#4",
+      "id": "4366489#5460545",
       "title": "Contrato administrativo de obras para el proyecto de “Asfaltado y reasfaltado de viales urbanos y caminos rurales de Riba-roja de Túria” Plan RENOVE , dividido en 6 lotes.",
       "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=h4tiCELtfEdxseVhcqrkhw%3D%3D",
       "status": "formalized",
@@ -8513,7 +8513,7 @@
       "numberOfProposals": 0
     },
     {
-      "id": "1794430#26",
+      "id": "1794430#10198485",
       "title": "92000000-Servicios de esparcimiento, culturales y deportivos.",
       "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=4p9f7N%2FQJB0tm4eBPtV6eQ%3D%3D",
       "status": "awarded",
@@ -8544,7 +8544,7 @@
       "numberOfProposals": 2
     },
     {
-      "id": "62344#1",
+      "id": "62344#124026",
       "title": "contrato de obras de reurbanización y mejora de zonas verdes en los polígonos industriales de la zona sur de Riba-roja de Túria., por procedimiento abierto simplificado, mejor relación calidad-precio, varios criterios de adjudicación con cláusulas medioambientales como criterio de adjudicación y con condición especial de ejecución de carácter medioambiental.",
       "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=tefWSQ%2FAAQaiEJrVRqloyA%3D%3D",
       "status": "formalized",
@@ -8575,7 +8575,7 @@
       "numberOfProposals": 6
     },
     {
-      "id": "99310",
+      "id": "99310#131284",
       "title": "Contrato de suministro de carburante para los vehículos y maquinaria del Ayuntamiento de Riba-roja de Túria",
       "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=VGh7ihob0AMQK2TEfXGy%2BA%3D%3D",
       "status": "formalized",
@@ -8665,7 +8665,7 @@
       "numberOfProposals": 1
     },
     {
-      "id": "1945526",
+      "id": "1945526#4339013",
       "title": "Contrato administrativo suministro para la renovación de varios parques infantiles sitos en el municipio de Riba-roja de Turia, dividido en 6 lotes, a adjudicar por procedimiento abierto, mejor relación calidad-precio, varios criterios de adjudicación, con condición de ejecución de carácter social y medioambiental; contribuyendo a los ODS 8 “Trabajo decente y crecimiento económico”, ODS 10 \"Reducción de las desigualdades\" y ODS 11 \"Ciudades y Comunidades Sostenibles\", siendo su tramitación ordinaria (Ctto. 53/2022).",
       "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=9a3V6HPVZ5emq21uxhbaVQ%3D%3D",
       "status": "void",
@@ -9069,7 +9069,7 @@
       "numberOfProposals": 1
     },
     {
-      "id": "4889055#11",
+      "id": "4889055#10727335",
       "title": "71000000-Servicios de arquitectura, construcción, ingeniería e inspección.",
       "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=jfZGSii8nvVLAIVZdUs8KA%3D%3D",
       "status": "awarded",
@@ -9100,7 +9100,7 @@
       "numberOfProposals": 7
     },
     {
-      "id": "5106848#1",
+      "id": "5106848#9743658",
       "title": "UE casco 5",
       "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=SWowCY8dnwmcCF8sV%2BqtYA%3D%3D",
       "status": "awarded",
@@ -9130,7 +9130,7 @@
       "numberOfProposals": 1
     },
     {
-      "id": "1794430#27",
+      "id": "1794430#9116385",
       "title": "80510000-Servicios de formación especializada.",
       "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=r3klh8VqH0GTylGzYmBF9Q%3D%3D",
       "status": "void",
@@ -9197,7 +9197,7 @@
       "numberOfProposals": 0
     },
     {
-      "id": "1794430#28",
+      "id": "1794430#4990130",
       "title": "Contrato derivado del sistema dinámico de adquisición, para la prestación del el servicio de TALLER DE INGLÉS a impartir en la Escuela Pública de Adultos (EPA). Ctto. 145/2023",
       "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=QQ5A2FBqg%2B2FlFRHfEzEaw%3D%3D",
       "status": "revoked",
@@ -9319,7 +9319,7 @@
       "numberOfProposals": 1
     },
     {
-      "id": "1945526#1",
+      "id": "1945526#4339011",
       "title": "Contrato administrativo suministro para la renovación de varios parques infantiles sitos en el municipio de Riba-roja de Turia, dividido en 6 lotes, a adjudicar por procedimiento abierto, mejor relación calidad-precio, varios criterios de adjudicación, con condición de ejecución de carácter social y medioambiental; contribuyendo a los ODS 8 “Trabajo decente y crecimiento económico”, ODS 10 \"Reducción de las desigualdades\" y ODS 11 \"Ciudades y Comunidades Sostenibles\", siendo su tramitación ordinaria (Ctto. 53/2022).",
       "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=9a3V6HPVZ5emq21uxhbaVQ%3D%3D",
       "status": "awarded",
@@ -9355,7 +9355,7 @@
       "numberOfProposals": 4
     },
     {
-      "id": "1945526#2",
+      "id": "1945526#4339012",
       "title": "Contrato administrativo suministro para la renovación de varios parques infantiles sitos en el municipio de Riba-roja de Turia, dividido en 6 lotes, a adjudicar por procedimiento abierto, mejor relación calidad-precio, varios criterios de adjudicación, con condición de ejecución de carácter social y medioambiental; contribuyendo a los ODS 8 “Trabajo decente y crecimiento económico”, ODS 10 \"Reducción de las desigualdades\" y ODS 11 \"Ciudades y Comunidades Sostenibles\", siendo su tramitación ordinaria (Ctto. 53/2022).",
       "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=9a3V6HPVZ5emq21uxhbaVQ%3D%3D",
       "status": "awarded",
@@ -9391,7 +9391,7 @@
       "numberOfProposals": 4
     },
     {
-      "id": "1945526#3",
+      "id": "1945526#4339014",
       "title": "Contrato administrativo suministro para la renovación de varios parques infantiles sitos en el municipio de Riba-roja de Turia, dividido en 6 lotes, a adjudicar por procedimiento abierto, mejor relación calidad-precio, varios criterios de adjudicación, con condición de ejecución de carácter social y medioambiental; contribuyendo a los ODS 8 “Trabajo decente y crecimiento económico”, ODS 10 \"Reducción de las desigualdades\" y ODS 11 \"Ciudades y Comunidades Sostenibles\", siendo su tramitación ordinaria (Ctto. 53/2022).",
       "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=9a3V6HPVZ5emq21uxhbaVQ%3D%3D",
       "status": "awarded",
@@ -9427,7 +9427,7 @@
       "numberOfProposals": 4
     },
     {
-      "id": "5190772#1",
+      "id": "5190772#10469513",
       "title": "Lote 1 - Kits indiciarios para análisis indiciarios de drogas en saliva a conductores",
       "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=eJtaf6IFJQyP66GS%2BONYvQ%3D%3D",
       "status": "unknown",
@@ -9490,7 +9490,7 @@
       "numberOfProposals": 1
     },
     {
-      "id": "1892105#2",
+      "id": "1892105#5343046",
       "title": "Contrato de obras proyecto “Mejora de tramo de acera en urbanización Masia de Traver del término municipal de Riba-roja de Túria”  (Ctto. 250/2023)",
       "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=O7opRrZtddmqb7rCcv76BA%3D%3D",
       "status": "awarded",
@@ -9521,7 +9521,7 @@
       "numberOfProposals": 6
     },
     {
-      "id": "5167845",
+      "id": "5167845#10246826",
       "title": "Lote 1 - Servicio Ayuda a Domicilio personas sin grado de dependencia",
       "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=g6EbCcr%2F73IeIBJRHQiPkQ%3D%3D",
       "status": "awarded",
@@ -9554,7 +9554,7 @@
       "numberOfProposals": 5
     },
     {
-      "id": "5167845#1",
+      "id": "5167845#10246827",
       "title": "Lote 2 - Servicio Ayuda a Domicilio personas con grado de dependencia",
       "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=g6EbCcr%2F73IeIBJRHQiPkQ%3D%3D",
       "status": "awarded",
@@ -9860,7 +9860,7 @@
       "numberOfProposals": 1
     },
     {
-      "id": "2062532",
+      "id": "2062532#4830250",
       "title": "Contrato administrativo para la prestación de los servicios especializados de una agencia de comunicación para la inserción de publicidad institucional del ayuntamiento de Riba-roja de Túria en los medios de comunicación por procedimiento abierto, dividido en dos lotes, mejor relación calidad-precio y con condición de ejecución especial de carácter social, medioambiental y técnico contribuyendo al cumplimiento del ODS 16 “Crear instituciones eficaces, responsables e inclusivas”, siendo su tramitación ordinaria. (Ctto. 191/2023)",
       "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=rc7yJ5%2F%2F7ymmq21uxhbaVQ%3D%3D",
       "status": "formalized",
@@ -10041,7 +10041,7 @@
       "numberOfProposals": 1
     },
     {
-      "id": "4493453",
+      "id": "4493453#6460737",
       "title": "Vehículo tipo furgoneta de uso policial acondicionada para transportar unidades caninas.",
       "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=Doc3rS%2FtmoQaF6cS8TCh%2FA%3D%3D",
       "status": "formalized",
@@ -10076,7 +10076,7 @@
       "numberOfProposals": 3
     },
     {
-      "id": "4493453#1",
+      "id": "4493453#6460740",
       "title": "Un vehículo protección civil.",
       "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=Doc3rS%2FtmoQaF6cS8TCh%2FA%3D%3D",
       "status": "formalized",
@@ -10141,7 +10141,7 @@
       "numberOfProposals": 1
     },
     {
-      "id": "1891608",
+      "id": "1891608#4538711",
       "title": "Contrato para alumbrado público en acceso al Pou d’Escoto, derivado del sistema dinámico de adquisición (SDA) de suministro de material de electricidad. (Expte. 23/2022).",
       "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=HOevTJeejQESugstABGr5A%3D%3D",
       "status": "awarded",
@@ -10200,7 +10200,7 @@
       "numberOfProposals": 1
     },
     {
-      "id": "67336",
+      "id": "67336#125442",
       "title": "Suministro mediante renting de seis vehículos policiales por procedimiento abierto, mejor relación calidad-precio, varios criterios de adjudicación con cláusulas medioambientales como criterio de adjudicación y con condición especial de ejecución de carácter social y medioambiental y pago directo a subcontratistas.",
       "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=XIU8UqvIpdyiEJrVRqloyA%3D%3D",
       "status": "formalized",
@@ -10230,7 +10230,7 @@
       "numberOfProposals": 1
     },
     {
-      "id": "67336#1",
+      "id": "67336#125441",
       "title": "Suministro mediante renting de seis vehículos policiales por procedimiento abierto, mejor relación calidad-precio, varios criterios de adjudicación con cláusulas medioambientales como criterio de adjudicación y con condición especial de ejecución de carácter social y medioambiental y pago directo a subcontratistas.",
       "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=XIU8UqvIpdyiEJrVRqloyA%3D%3D",
       "status": "formalized",
@@ -10260,7 +10260,7 @@
       "numberOfProposals": 1
     },
     {
-      "id": "1577734",
+      "id": "1577734#2799489",
       "title": "Comprendido por UN vehículo todoterreno híbrido equipado.",
       "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=CvrtUkEK4CSiEJrVRqloyA%3D%3D",
       "status": "awarded",
@@ -10291,7 +10291,7 @@
       "numberOfProposals": 1
     },
     {
-      "id": "1577734#1",
+      "id": "1577734#2799492",
       "title": "Comprendido por UN furgon equipado.",
       "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=CvrtUkEK4CSiEJrVRqloyA%3D%3D",
       "status": "awarded",
@@ -10322,7 +10322,7 @@
       "numberOfProposals": 1
     },
     {
-      "id": "1577734#2",
+      "id": "1577734#2799490",
       "title": "Comprendido por UN vehículo todoterreno híbrido con características especiales.",
       "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=CvrtUkEK4CSiEJrVRqloyA%3D%3D",
       "status": "awarded",
@@ -10418,7 +10418,7 @@
       "numberOfProposals": 0
     },
     {
-      "id": "1577734#3",
+      "id": "1577734#2799491",
       "title": "Comprendido por CUATRO vehículos turismo híbridos.",
       "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=CvrtUkEK4CSiEJrVRqloyA%3D%3D",
       "status": "awarded",
@@ -10655,7 +10655,7 @@
       "numberOfProposals": 1
     },
     {
-      "id": "1467871#1",
+      "id": "1467871#2609526",
       "title": "Contrato de suministro de carburante para los vehículos y maquinaria del Ayuntamiento de Riba-roja de Túria -2 lotes-, por procedimiento abierto, mejor relación calidad-precio, sujeto a regulación armonizada, varios criterios de adjudicación con criterios medioambientales y sociales de adjudicación, con condición especial de ejecución de carácter socio-laboral y medioambiental.",
       "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=KkKXsJqvTWIBPRBxZ4nJ%2Fg%3D%3D",
       "status": "awarded",
@@ -10782,7 +10782,7 @@
       "numberOfProposals": 1
     },
     {
-      "id": "1892105#3",
+      "id": "1892105#4006730",
       "title": "Contrato de OBRAS DE ACONDICIONAMIENTO Parque Pinada Av. La Pau derivado del SDA 2 de Obras de sistema dinámico de adquisición para la ejecución de obras de adecuación y reurbanización de viales y parques y jardines del término municipal de Riba-roja de Túria (Ctto 56/2022 – SDA 2/2020).",
       "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=3iQ1KwQl0yguf4aBO%2BvQlQ%3D%3D",
       "status": "awarded",
@@ -11033,7 +11033,7 @@
       "numberOfProposals": 1
     },
     {
-      "id": "1701582#12",
+      "id": "1701582#3707288",
       "title": "Mantenimiento aplicación gestión parking municipal.",
       "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=eO5j98RA9t9vYnTkQN0%2FZA%3D%3D",
       "status": "formalized",
@@ -11063,7 +11063,7 @@
       "numberOfProposals": 1
     },
     {
-      "id": "1701582#13",
+      "id": "1701582#3707304",
       "title": "Accesibilidad Web",
       "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=eO5j98RA9t9vYnTkQN0%2FZA%3D%3D",
       "status": "formalized",
@@ -11093,7 +11093,7 @@
       "numberOfProposals": 1
     },
     {
-      "id": "1701582#14",
+      "id": "1701582#3707309",
       "title": "Mantenimiento SW Deepfreeze.",
       "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=eO5j98RA9t9vYnTkQN0%2FZA%3D%3D",
       "status": "void",
@@ -11155,7 +11155,7 @@
       "numberOfProposals": 1
     },
     {
-      "id": "5096992",
+      "id": "5096992#9673648",
       "title": "Accesorios",
       "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=DvfzF%2Fh0EmMXhk1FZxEyvw%3D%3D",
       "status": "formalized",
@@ -11188,7 +11188,7 @@
       "numberOfProposals": 1
     },
     {
-      "id": "5096992#1",
+      "id": "5096992#9673655",
       "title": "Calzado",
       "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=DvfzF%2Fh0EmMXhk1FZxEyvw%3D%3D",
       "status": "formalized",
@@ -11403,7 +11403,7 @@
       "numberOfProposals": 2
     },
     {
-      "id": "4331896",
+      "id": "4331896#5300603",
       "title": "Contrato suministro de 4 unidades RPAS (Remotely Piloted Aricraft system). Contrato dividio en tres lotes.",
       "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=JN8YQvqPne8IYE3ZiZ%2BxmQ%3D%3D",
       "status": "formalized",
@@ -11435,7 +11435,7 @@
       "numberOfProposals": 2
     },
     {
-      "id": "1794430#29",
+      "id": "1794430#10156778",
       "title": "Contrato de servicio de realización y retrasmisión en directo (streaming) y en diferido de sesiones plenarias del Ayuntamiento de Riba-roja de Túria, mediante contrato derivado del SDA de servicios de diversa índole, con condición especial de ejecución de carácter social contribuyendo al cumplimiento del ODS 8 relativo al trabajo decente para todos. (Ctto. 13/2026 – ESDA 2/2022).",
       "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=EssD%2B3QurSAUqXM96WStVA%3D%3D",
       "status": "awarded",
@@ -12056,7 +12056,7 @@
       "numberOfProposals": 1
     },
     {
-      "id": "95133",
+      "id": "95133#67675",
       "title": "Contrato para la prestación del servicio de la Escola d'Estiu Rialles 2018 destinado a niños y niñas de la escuela ordinaria de segundo ciclo de educación infantil y primaria",
       "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=yrxcliuypflvYnTkQN0%2FZA%3D%3D",
       "status": "formalized",
@@ -12086,7 +12086,7 @@
       "numberOfProposals": 2
     },
     {
-      "id": "95133#1",
+      "id": "95133#1509459",
       "title": "Contrato para la prestación del servicio de la Escola d'Estiu Rialles 2018 destinado a niños y niñas de segundo ciclo de educación infantil y primaria que se encuentran en situación de riesgo de exclusión social",
       "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=yrxcliuypflvYnTkQN0%2FZA%3D%3D",
       "status": "void",
@@ -12116,7 +12116,7 @@
       "numberOfProposals": 2
     },
     {
-      "id": "95133#2",
+      "id": "95133#1509460",
       "title": "Contrato para la prestación del servicio de la Escola d'Estiu Rialles 2018 destinado al colectivo de diversidad funcional",
       "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=yrxcliuypflvYnTkQN0%2FZA%3D%3D",
       "status": "void",
@@ -12299,7 +12299,7 @@
       "numberOfProposals": 11
     },
     {
-      "id": "99572",
+      "id": "99572#72627",
       "title": "Lote 1 - Talleres de Inglés",
       "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=Km8GNhaVu5IQK2TEfXGy%2BA%3D%3D",
       "status": "formalized",
@@ -12359,7 +12359,7 @@
       "numberOfProposals": 1
     },
     {
-      "id": "5177429#8",
+      "id": "5177429#10355937",
       "title": "Lote 8 - Sesiones plenarias videoactas",
       "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=%2F34pTr%2F3b9WLAncw3qdZkA%3D%3D",
       "status": "unknown",
@@ -12392,7 +12392,7 @@
       "numberOfProposals": 0
     },
     {
-      "id": "5177429#9",
+      "id": "5177429#10355927",
       "title": "Lote 18 - Gestión de cementerios",
       "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=%2F34pTr%2F3b9WLAncw3qdZkA%3D%3D",
       "status": "unknown",
@@ -12425,7 +12425,7 @@
       "numberOfProposals": 0
     },
     {
-      "id": "5177429#10",
+      "id": "5177429#10355923",
       "title": "Lote 14 - Mantenimiento sistema inteligente de gestión de esperas y colas",
       "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=%2F34pTr%2F3b9WLAncw3qdZkA%3D%3D",
       "status": "unknown",
@@ -12458,7 +12458,7 @@
       "numberOfProposals": 0
     },
     {
-      "id": "5177429#11",
+      "id": "5177429#10355930",
       "title": "Lote 20 - Atención inteligente municipal",
       "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=%2F34pTr%2F3b9WLAncw3qdZkA%3D%3D",
       "status": "unknown",
@@ -12491,7 +12491,7 @@
       "numberOfProposals": 0
     },
     {
-      "id": "4363449",
+      "id": "4363449#6038608",
       "title": "Bicicletas estáticas sala ciclo-indoor",
       "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=SafzgnHFCyq5HQrHoP3G5A%3D%3D",
       "status": "formalized",
@@ -12524,7 +12524,7 @@
       "numberOfProposals": 2
     },
     {
-      "id": "1794430#30",
+      "id": "1794430#5322619",
       "title": "contrato derivado del sistema dinámico de adquisición (SDA) de servicios varios, para la organización ornamental alumbrado navideño 2023/2024, dividido en 2 lotes (expdte. 79/2023). - Lote 1.",
       "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=TGW8w6gvp9KcCF8sV%2BqtYA%3D%3D",
       "status": "awarded",
@@ -12555,7 +12555,7 @@
       "numberOfProposals": 1
     },
     {
-      "id": "1794430#31",
+      "id": "1794430#5322429",
       "title": "contrato derivado del sistema dinámico de adquisición (SDA) de servicios varios, para la organización ornamental alumbrado navideño 2023/2024, dividido en 2 lotes (expdte. 79/2023). - Lote 1.",
       "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=lECxgUl5cje5HQrHoP3G5A%3D%3D",
       "status": "awarded",
@@ -12586,7 +12586,7 @@
       "numberOfProposals": 1
     },
     {
-      "id": "1892105#4",
+      "id": "1892105#5343208",
       "title": "Contrato basado en el SDA de obras para actuaciones planteadas es la pavimentación del paseo Pacadar uniendo así los dos edificios deportivos, el Complejo La Malla y el Pabellón deportivo, así como la Avenida Pacadar y C/ Arrosals.",
       "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=IjCJ31IoVeJWhbmkna2nXQ%3D%3D",
       "status": "awarded",
@@ -12617,7 +12617,7 @@
       "numberOfProposals": 8
     },
     {
-      "id": "1794430#32",
+      "id": "1794430#5439451",
       "title": "Contrato para la prestación del servicio de actividades de ocio sociocultural y educativo _RIBAJOVE 2023_ a desarrollar durante el mes de DICIEMBRE 2023, para el periodo previsto del 26 al 30 (5 días) del mismo mes, derivado del sistema dinámico de adquisición para la contratación de servicios de diversa índole de uso recurrente por parte de las diferentes áreas municipales. Ctto151/2023.",
       "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=q5NGr88hyeE7u6%2B%2FR7DUoA%3D%3D",
       "status": "formalized",
@@ -12648,7 +12648,7 @@
       "numberOfProposals": 1
     },
     {
-      "id": "1892105#5",
+      "id": "1892105#5439962",
       "title": "Contrato derivado del SDA de obras, para la realización de las obras necesarias para mejorar la accesibilidad al parque Montealcedo mediante la realización de vados de peatones en las C/ Mariano Benlliure, C/ Maestro Serrano, C/ José Iturbi y C/ Cáceres.",
       "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=XflAkMBxmpeFQ%2FlhRK79lA%3D%3D",
       "status": "awarded",
@@ -12679,7 +12679,7 @@
       "numberOfProposals": 5
     },
     {
-      "id": "1889876#1",
+      "id": "1889876#5444049",
       "title": "Contrato de suministro de",
       "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=VLUPO50qSvw%2Bk2oCbDosIw%3D%3D",
       "status": "awarded",
@@ -12710,7 +12710,7 @@
       "numberOfProposals": 1
     },
     {
-      "id": "1892105#6",
+      "id": "1892105#5500745",
       "title": "Contrato basado en el SDA de obras para actuaciones planteadas es la pavimentación del paseo Pacadar uniendo así los dos edificios deportivos, el Complejo La Malla y el Pabellón deportivo, así como la Avenida Pacadar y C/ Arrosals.",
       "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=CJvI6ravfUPpxJFXpLZ%2B2A%3D%3D",
       "status": "awarded",
@@ -12771,7 +12771,7 @@
       "numberOfProposals": 1
     },
     {
-      "id": "1892105#7",
+      "id": "1892105#6858401",
       "title": "Contrato de obras proyecto “Vallado linde urbanización REVA con CV-383 del término municipal de Riba-roja de Túria” derivado del sistema dinámico de adquisición para la ejecución de obras de adecuación y reurbanización de viales y parques y jardines del término municipal de Riba-roja de Túria. (Ctto 200/2023bis – SDA 2/2020).",
       "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=pxvriyOBf9tSYrkJkLlFdw%3D%3D",
       "status": "awarded",
@@ -12988,7 +12988,7 @@
       "numberOfProposals": 1
     },
     {
-      "id": "4667548",
+      "id": "4667548#7819417",
       "title": "Servicio limpieza piscina verano.",
       "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=b3AN%2BCmqliZQFSeKCRun4Q%3D%3D",
       "status": "formalized",
@@ -13054,7 +13054,7 @@
       "numberOfProposals": 1
     },
     {
-      "id": "5177429#12",
+      "id": "5177429#10355918",
       "title": "Lote 12 - Suscripciones anuales licencias Adobe",
       "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=%2F34pTr%2F3b9WLAncw3qdZkA%3D%3D",
       "status": "unknown",
@@ -13087,7 +13087,7 @@
       "numberOfProposals": 0
     },
     {
-      "id": "5177429#13",
+      "id": "5177429#10355924",
       "title": "Lote 15 - Herramienta de control y planificación de licitaciones",
       "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=%2F34pTr%2F3b9WLAncw3qdZkA%3D%3D",
       "status": "unknown",
@@ -13120,7 +13120,7 @@
       "numberOfProposals": 0
     },
     {
-      "id": "5177429#14",
+      "id": "5177429#10355928",
       "title": "Lote 19 - Chatbot corporativo",
       "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=%2F34pTr%2F3b9WLAncw3qdZkA%3D%3D",
       "status": "unknown",
@@ -13153,7 +13153,7 @@
       "numberOfProposals": 0
     },
     {
-      "id": "5177429#15",
+      "id": "5177429#10355932",
       "title": "Lote 3 - Mantenimiento firewall corporativo Fortigate",
       "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=%2F34pTr%2F3b9WLAncw3qdZkA%3D%3D",
       "status": "unknown",
@@ -13515,7 +13515,7 @@
       "numberOfProposals": 2
     },
     {
-      "id": "67336#2",
+      "id": "67336#43006",
       "title": "Suministro mediante renting de seis vehículos policiales por procedimiento abierto, mejor relación calidad-precio, varios criterios de adjudicación con cláusulas medioambientales como criterio de adjudicación y con condición especial de ejecución de carácter social y medioambiental y pago directo a subcontratistas.",
       "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=XIU8UqvIpdyiEJrVRqloyA%3D%3D",
       "status": "void",
@@ -13909,7 +13909,7 @@
       "numberOfProposals": 2
     },
     {
-      "id": "99310#1",
+      "id": "99310#72315",
       "title": "Contrato de suministro de carburante para los vehículos y maquinaria del Ayuntamiento de Riba-roja de Túria",
       "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=VGh7ihob0AMQK2TEfXGy%2BA%3D%3D",
       "status": "formalized",
@@ -14027,7 +14027,7 @@
       "numberOfProposals": 1
     },
     {
-      "id": "256923",
+      "id": "256923#254044",
       "title": "Servicio para la suscripción y mantenimiento de entornos telemáticos de consumo, comercio y portal de empleo (OMICWEB, INTRAFIC, BOLSAEMP y PORTALEMP)  por procedimiento abierto simplificado abreviado, criterio de adjudicación el precio, con condiciones especiales de ejecución de carácter social.",
       "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=yWJuGr1FwmUBPRBxZ4nJ%2Fg%3D%3D",
       "status": "formalized",
@@ -14686,7 +14686,7 @@
       "numberOfProposals": 2
     },
     {
-      "id": "43208",
+      "id": "43208#1487753",
       "title": "Ampliación zona de esparcimiento canino “La Malla”",
       "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=Vg7AGxmu7nKrz3GQd5r6SQ%3D%3D",
       "status": "formalized",
@@ -14716,7 +14716,7 @@
       "numberOfProposals": 1
     },
     {
-      "id": "256923#1",
+      "id": "256923#920865",
       "title": "Servicio para la suscripción y mantenimiento de entornos telemáticos de consumo, comercio y portal de empleo (OMICWEB, INTRAFIC, BOLSAEMP y PORTALEMP)  por procedimiento abierto simplificado abreviado, criterio de adjudicación el precio, con condiciones especiales de ejecución de carácter social.",
       "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=yWJuGr1FwmUBPRBxZ4nJ%2Fg%3D%3D",
       "status": "formalized",
@@ -14746,7 +14746,7 @@
       "numberOfProposals": 1
     },
     {
-      "id": "256923#2",
+      "id": "256923#920866",
       "title": "Servicio para la suscripción y mantenimiento de entornos telemáticos de consumo, comercio y portal de empleo (OMICWEB, INTRAFIC, BOLSAEMP y PORTALEMP)  por procedimiento abierto simplificado abreviado, criterio de adjudicación el precio, con condiciones especiales de ejecución de carácter social.",
       "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=yWJuGr1FwmUBPRBxZ4nJ%2Fg%3D%3D",
       "status": "formalized",
@@ -14776,7 +14776,7 @@
       "numberOfProposals": 1
     },
     {
-      "id": "840300#1",
+      "id": "840300#1012445",
       "title": "servicio de limpieza EEII Riu Túria y CEIP Camp de Túria, por procedimiento abierto, 2 lotes, mejor relación calidad-precio, varios criterios de adjudicación, con cláusulas medioambientales y sociales como criterio de adjudicación y con condición especial de ejecución de carácter social y medioambiental, y mejoras vinculadas al objeto del contrato sujeto a regulación armonizada.",
       "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=iybVWU7rf8%2Brz3GQd5r6SQ%3D%3D",
       "status": "formalized",
@@ -15707,7 +15707,7 @@
       "numberOfProposals": 1
     },
     {
-      "id": "1701582#15",
+      "id": "1701582#3707290",
       "title": "Mantenimiento base de datos corporativa.",
       "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=eO5j98RA9t9vYnTkQN0%2FZA%3D%3D",
       "status": "void",
@@ -15737,7 +15737,7 @@
       "numberOfProposals": 1
     },
     {
-      "id": "1701582#16",
+      "id": "1701582#3707299",
       "title": "Suscripciones anuales licencias Adobe.",
       "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=eO5j98RA9t9vYnTkQN0%2FZA%3D%3D",
       "status": "formalized",
@@ -15767,7 +15767,7 @@
       "numberOfProposals": 1
     },
     {
-      "id": "1701582#17",
+      "id": "1701582#3707305",
       "title": "Mantenimiento servidores HP corporativos CPD´S municipales.",
       "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=eO5j98RA9t9vYnTkQN0%2FZA%3D%3D",
       "status": "void",
@@ -15797,7 +15797,7 @@
       "numberOfProposals": 1
     },
     {
-      "id": "1701582#18",
+      "id": "1701582#3707308",
       "title": "Mantenimiento control de acceso corporativo.",
       "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=eO5j98RA9t9vYnTkQN0%2FZA%3D%3D",
       "status": "formalized",
@@ -16152,7 +16152,7 @@
       "numberOfProposals": 1
     },
     {
-      "id": "1945526#4",
+      "id": "1945526#4339010",
       "title": "Contrato administrativo suministro para la renovación de varios parques infantiles sitos en el municipio de Riba-roja de Turia, dividido en 6 lotes, a adjudicar por procedimiento abierto, mejor relación calidad-precio, varios criterios de adjudicación, con condición de ejecución de carácter social y medioambiental; contribuyendo a los ODS 8 “Trabajo decente y crecimiento económico”, ODS 10 \"Reducción de las desigualdades\" y ODS 11 \"Ciudades y Comunidades Sostenibles\", siendo su tramitación ordinaria (Ctto. 53/2022).",
       "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=9a3V6HPVZ5emq21uxhbaVQ%3D%3D",
       "status": "awarded",
@@ -16188,7 +16188,7 @@
       "numberOfProposals": 4
     },
     {
-      "id": "1942735",
+      "id": "1942735#4321850",
       "title": "El objeto del contrato es el cambio de juegos infantiles y suelos de protección de la Plaza Vicente Andrés Estellés, en el casco urbano de Riba-roja de Túria, mediante la sustitución total de las actuales estructuras por otras nuevas  más seguras y modernas, así como los suelos de protección de las zonas de juegos del propio parque, que comprende las siguientes actuaciones:\nVallado temporal perimetral de la zona de actuación\nRetirada de suelo existente\nInstalación de juegos y estructuras\nFabricación in situ de suelo de caucho continuo",
       "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=x10BPwYgF7OiEJrVRqloyA%3D%3D",
       "status": "formalized",
@@ -16224,7 +16224,7 @@
       "numberOfProposals": 3
     },
     {
-      "id": "1945526#5",
+      "id": "1945526#4339015",
       "title": "Contrato administrativo suministro para la renovación de varios parques infantiles sitos en el municipio de Riba-roja de Turia, dividido en 6 lotes, a adjudicar por procedimiento abierto, mejor relación calidad-precio, varios criterios de adjudicación, con condición de ejecución de carácter social y medioambiental; contribuyendo a los ODS 8 “Trabajo decente y crecimiento económico”, ODS 10 \"Reducción de las desigualdades\" y ODS 11 \"Ciudades y Comunidades Sostenibles\", siendo su tramitación ordinaria (Ctto. 53/2022).",
       "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=9a3V6HPVZ5emq21uxhbaVQ%3D%3D",
       "status": "void",
@@ -16483,7 +16483,7 @@
       "numberOfProposals": 1
     },
     {
-      "id": "4323025",
+      "id": "4323025#5155471",
       "title": "Contrato administrativo servicio de transporte de viajeros y viajeras: EEII, Interinstitutos, Arribabus y conectametro zona norte, dividido en dos lotes, por procedimiento abierto, mejor relación calidad-precio, varios criterios de adjudicación y con condición de ejecución de carácter social, medioambiental y técnico, contribuyendo al cumplimiento del ODS 13.",
       "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=2FtatMHiee%2FN3k3tjedSGw%3D%3D",
       "status": "abandoned",
@@ -16515,7 +16515,7 @@
       "numberOfProposals": 0
     },
     {
-      "id": "4331896#1",
+      "id": "4331896#5300601",
       "title": "Contrato suministro de 4 unidades RPAS (Remotely Piloted Aricraft system). Contrato dividio en tres lotes.",
       "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=JN8YQvqPne8IYE3ZiZ%2BxmQ%3D%3D",
       "status": "formalized",
@@ -16547,7 +16547,7 @@
       "numberOfProposals": 2
     },
     {
-      "id": "4331896#2",
+      "id": "4331896#5300602",
       "title": "Contrato suministro de 4 unidades RPAS (Remotely Piloted Aricraft system). Contrato dividio en tres lotes.",
       "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=JN8YQvqPne8IYE3ZiZ%2BxmQ%3D%3D",
       "status": "formalized",
@@ -16579,7 +16579,7 @@
       "numberOfProposals": 2
     },
     {
-      "id": "4366489#5",
+      "id": "4366489#5460546",
       "title": "Contrato administrativo de obras para el proyecto de “Asfaltado y reasfaltado de viales urbanos y caminos rurales de Riba-roja de Túria” Plan RENOVE , dividido en 6 lotes.",
       "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=h4tiCELtfEdxseVhcqrkhw%3D%3D",
       "status": "formalized",
@@ -16732,7 +16732,7 @@
       "numberOfProposals": 1
     },
     {
-      "id": "1561143#4",
+      "id": "1561143#2858686",
       "title": "LOTE 7 : Camí 9007-9012-9013 Polígono 68",
       "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=rZqNBbaS18qXQV0WE7lYPw%3D%3D",
       "status": "formalized",
@@ -16764,7 +16764,7 @@
       "numberOfProposals": 3
     },
     {
-      "id": "1561143#5",
+      "id": "1561143#2858671",
       "title": "LOTE 6 : Partida Carasols (Camí del Sequer)",
       "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=rZqNBbaS18qXQV0WE7lYPw%3D%3D",
       "status": "formalized",
@@ -16796,7 +16796,7 @@
       "numberOfProposals": 3
     },
     {
-      "id": "1561143#6",
+      "id": "1561143#2858634",
       "title": "LOTE 4 : Camí Polígono 58 parcela 9009 (PartidaRosella)",
       "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=rZqNBbaS18qXQV0WE7lYPw%3D%3D",
       "status": "formalized",
@@ -16858,7 +16858,7 @@
       "numberOfProposals": 1
     },
     {
-      "id": "1794430#33",
+      "id": "1794430#7940960",
       "title": "Contrato de servicio de producción, programación, redacción y realización de contenidos multimedia mediante contrato derivado del SDA de servicios de diversa índole (Ctto. 27/2025)",
       "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=LteuAvKVc7QeIBJRHQiPkQ%3D%3D",
       "status": "awarded",
@@ -16949,7 +16949,7 @@
       "numberOfProposals": 1
     },
     {
-      "id": "4493453#2",
+      "id": "4493453#6460736",
       "title": "1 vehículo híbrido todoterreno uso gabinete alcaldía",
       "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=Doc3rS%2FtmoQaF6cS8TCh%2FA%3D%3D",
       "status": "formalized",
@@ -17676,7 +17676,7 @@
       "numberOfProposals": 9
     },
     {
-      "id": "1689128#4",
+      "id": "1689128#4628583",
       "title": "Contrato de adquisición de mobiliario para el Centro de Información Juvenil del Ayuntamiento de Riba-Roja de Túria, contrato derivado del Sistema Dinámico de adquisición aprobado de suministros de diversa índole (SDA1/2022).",
       "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=xvIBbbr5nwuGCFcHcNGIlQ%3D%3D",
       "status": "awarded",
@@ -17798,7 +17798,7 @@
       "numberOfProposals": 1
     },
     {
-      "id": "1794430#34",
+      "id": "1794430#10554489",
       "title": "Contrato derivado del sistema dinámico de adquisición de servicios para la prestación del TALLER de FOTOGRAFÍA en la escuela pública de adultos del Ayuntamiento de Riba-roja de Turia.",
       "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=NhvbGm6OZ9xvYnTkQN0%2FZA%3D%3D",
       "status": "awarded",
@@ -17861,7 +17861,7 @@
       "numberOfProposals": 3
     },
     {
-      "id": "1794430#35",
+      "id": "1794430#10554680",
       "title": "Contrato derivado del sistema dinámico de adquisición, para la prestación del el servicio de TALLER DE INGLÉS a impartir en la Escuela Pública de Adultos (EPA). Ctto. 145/2023",
       "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=QQ5A2FBqg%2B2FlFRHfEzEaw%3D%3D",
       "status": "revoked",
@@ -18018,7 +18018,7 @@
       "numberOfProposals": 2
     },
     {
-      "id": "1794430#36",
+      "id": "1794430#10278501",
       "title": "79900000-Servicios comerciales diversos y otros servicios conexos.",
       "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=pRdXS4R%2FGo9%2FR5QFTlaM4A%3D%3D",
       "status": "awarded",
@@ -18206,7 +18206,7 @@
       "numberOfProposals": 5
     },
     {
-      "id": "85540",
+      "id": "85540#67498",
       "title": "Lote nº 1: Equipamiento de alumnos (Vestuario laboral, Epi’s y otros.",
       "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=RkaNtWp7zg3nSoTX3z%2F7wA%3D%3D",
       "status": "formalized",
@@ -18241,7 +18241,7 @@
       "numberOfProposals": 1
     },
     {
-      "id": "85540#1",
+      "id": "85540#158374",
       "title": "Lote nº 2: Medios didácticos, material escolar y de oficina.",
       "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=RkaNtWp7zg3nSoTX3z%2F7wA%3D%3D",
       "status": "void",
@@ -18276,7 +18276,7 @@
       "numberOfProposals": 1
     },
     {
-      "id": "85540#2",
+      "id": "85540#158375",
       "title": "Lote nº 3: Instalación, riego y drenaje",
       "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=RkaNtWp7zg3nSoTX3z%2F7wA%3D%3D",
       "status": "formalized",
@@ -18311,7 +18311,7 @@
       "numberOfProposals": 1
     },
     {
-      "id": "85540#3",
+      "id": "85540#158376",
       "title": "Lote nº 4: Preparación del terreno.",
       "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=RkaNtWp7zg3nSoTX3z%2F7wA%3D%3D",
       "status": "formalized",
@@ -18346,7 +18346,7 @@
       "numberOfProposals": 1
     },
     {
-      "id": "85540#4",
+      "id": "85540#158377",
       "title": "Lote nº 5: Elementos vegetales (Plantas, arbustos, árboles)",
       "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=RkaNtWp7zg3nSoTX3z%2F7wA%3D%3D",
       "status": "formalized",
@@ -18381,7 +18381,7 @@
       "numberOfProposals": 1
     },
     {
-      "id": "85540#5",
+      "id": "85540#158379",
       "title": "Lote nº 6: Útiles y herramientas y pequeño mobiliario",
       "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=RkaNtWp7zg3nSoTX3z%2F7wA%3D%3D",
       "status": "formalized",
@@ -18416,7 +18416,7 @@
       "numberOfProposals": 1
     },
     {
-      "id": "99572#1",
+      "id": "99572#159832",
       "title": "Lote 3 - Talleres de informática",
       "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=Km8GNhaVu5IQK2TEfXGy%2BA%3D%3D",
       "status": "formalized",
@@ -18446,7 +18446,7 @@
       "numberOfProposals": 4
     },
     {
-      "id": "1847171",
+      "id": "1847171#4023355",
       "title": "Servicio Ayuda a Domicilio personas sin grado de dependencia",
       "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=q5T2oVJPrWqiEJrVRqloyA%3D%3D",
       "status": "awarded",
@@ -18600,7 +18600,7 @@
       "numberOfProposals": 8
     },
     {
-      "id": "4889055#12",
+      "id": "4889055#10281213",
       "title": "Contrato para el servicio de detección automática de desperfectos de las calzadas asfaltadas en suelo urbano del término municipal, contrato derivado del SDA de servicios de arquitectura e ingeniería, consultoría y asistencia técnica a las diferentes áreas municipales (Ctto 95/2026 – ESDA1/2025).",
       "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=Tjxv4MOw0JC8ebB%2FXTwy0A%3D%3D",
       "status": "awarded",
@@ -18785,7 +18785,7 @@
       "numberOfProposals": 7
     },
     {
-      "id": "1999#1",
+      "id": "1999#918474",
       "title": "Adecuación Paseo Molinet",
       "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=uhl7Dr7kScguf4aBO%2BvQlQ%3D%3D",
       "status": "awarded",
@@ -18875,7 +18875,7 @@
       "numberOfProposals": 1
     },
     {
-      "id": "1794430#37",
+      "id": "1794430#10389866",
       "title": "Contrato de servicios para la organización festival “RIBAJAZZ” de Riba-roja de Túria, mediante contrato derivado del sistema dinámico de adquisición de servicios de diversa índole (Ctto 110-2026 - ESDA2/2022)",
       "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=qz8HsT%2BEW%2BmFlFRHfEzEaw%3D%3D",
       "status": "awarded",
@@ -18906,7 +18906,7 @@
       "numberOfProposals": 3
     },
     {
-      "id": "4493453#3",
+      "id": "4493453#6460738",
       "title": "Dos vehículos tipo moto.",
       "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=Doc3rS%2FtmoQaF6cS8TCh%2FA%3D%3D",
       "status": "formalized",
@@ -19004,7 +19004,7 @@
       "numberOfProposals": 2
     },
     {
-      "id": "4510222",
+      "id": "4510222#6570726",
       "title": "Premios RIV - Riba Innovación Viva.",
       "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=xX4MskNW8lRVkTabT%2FRM8A%3D%3D",
       "status": "void",
@@ -19155,7 +19155,7 @@
       "numberOfProposals": 1
     },
     {
-      "id": "4801854",
+      "id": "4801854#8046635",
       "title": "Servicio de mantenimiento césped artificial en campos de fútbol.",
       "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=R44fZo7q7XZt5r0ngvMetA%3D%3D",
       "status": "formalized",
@@ -19219,7 +19219,7 @@
       "numberOfProposals": 1
     },
     {
-      "id": "4414489",
+      "id": "4414489#6027504",
       "title": "Servicio de Monitoras/es",
       "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=aogIw1CQxnxQFSeKCRun4Q%3D%3D",
       "status": "abandoned",
@@ -19523,7 +19523,7 @@
       "numberOfProposals": 3
     },
     {
-      "id": "1719226",
+      "id": "1719226#3661194",
       "title": "Suministros hardware",
       "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=i2r6gJMFJ6lvYnTkQN0%2FZA%3D%3D",
       "status": "formalized",
@@ -19646,7 +19646,7 @@
       "numberOfProposals": 1
     },
     {
-      "id": "13417#1",
+      "id": "13417#1501339",
       "title": "Reforma, adecentación y mejora instalación de juego infantil sito en el Parque Municipal Maldonado",
       "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=QGtuMfiEcXB7h85%2Fpmmsfw%3D%3D",
       "status": "awarded",
@@ -19768,7 +19768,7 @@
       "numberOfProposals": 2
     },
     {
-      "id": "4889055#13",
+      "id": "4889055#10390635",
       "title": "71000000-Servicios de arquitectura, construcción, ingeniería e inspección.",
       "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=aP7J6457f7Nt5r0ngvMetA%3D%3D",
       "status": "awarded",
@@ -19922,7 +19922,7 @@
       "numberOfProposals": 1
     },
     {
-      "id": "2062532#1",
+      "id": "2062532#4830251",
       "title": "Contrato administrativo para la prestación de los servicios especializados de una agencia de comunicación para la inserción de publicidad institucional del ayuntamiento de Riba-roja de Túria en los medios de comunicación por procedimiento abierto, dividido en dos lotes, mejor relación calidad-precio y con condición de ejecución especial de carácter social, medioambiental y técnico contribuyendo al cumplimiento del ODS 16 “Crear instituciones eficaces, responsables e inclusivas”, siendo su tramitación ordinaria. (Ctto. 191/2023)",
       "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=rc7yJ5%2F%2F7ymmq21uxhbaVQ%3D%3D",
       "status": "formalized",
@@ -20013,7 +20013,7 @@
       "numberOfProposals": 5
     },
     {
-      "id": "1794430#38",
+      "id": "1794430#10560849",
       "title": "servicio Clases de Inglés en el CFPA de Riba-roja de Túria, derivado del SDA de servicios de diversa índole, de uso recurrente por parte de las diferentes áreas municipales.",
       "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=r3klh8VqH0GTylGzYmBF9Q%3D%3D",
       "status": "awarded",
@@ -20107,7 +20107,7 @@
       "numberOfProposals": 1
     },
     {
-      "id": "1892773",
+      "id": "1892773#4168920",
       "title": "Bar cd La Malla",
       "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=U84335CaunpvYnTkQN0%2FZA%3D%3D",
       "status": "void",
@@ -20412,7 +20412,7 @@
       "numberOfProposals": 1
     },
     {
-      "id": "4889055#14",
+      "id": "4889055#10175692",
       "title": "71000000-Servicios de arquitectura, construcción, ingeniería e inspección.",
       "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=IJNBnVI%2F%2F9sS7pcxhTeWOg%3D%3D",
       "status": "awarded",
@@ -20505,7 +20505,7 @@
       "numberOfProposals": 3
     },
     {
-      "id": "1701582#19",
+      "id": "1701582#3707296",
       "title": "Mantenimiento aplicaciones de gestión corporativas área económica, población y registro.",
       "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=eO5j98RA9t9vYnTkQN0%2FZA%3D%3D",
       "status": "formalized",
@@ -20535,7 +20535,7 @@
       "numberOfProposals": 1
     },
     {
-      "id": "1701582#20",
+      "id": "1701582#3707291",
       "title": "Suscripciones anuales plataforma de celebración de sesiones plenarias.",
       "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=eO5j98RA9t9vYnTkQN0%2FZA%3D%3D",
       "status": "formalized",
@@ -20805,7 +20805,7 @@
       "numberOfProposals": 1
     },
     {
-      "id": "4299590",
+      "id": "4299590#4973452",
       "title": "Servicio de limpieza de las instalaciones de los colegios públicos de Riba-roja de Túria: Escoletes Quint, Eres altes, Camp de Túria y Mas d’escoto dividido en dos lotes – uno de ellos reservado a CEE de iniciativa social y empresas de inserción.",
       "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=pmIqulnUc8E7%2B9FIQYNjeQ%3D%3D",
       "status": "revoked",
@@ -20993,7 +20993,7 @@
       "numberOfProposals": 1
     },
     {
-      "id": "4801854#1",
+      "id": "4801854#8046637",
       "title": "Servicio de mantenimiento césped artificial en pistas de pádel.",
       "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=R44fZo7q7XZt5r0ngvMetA%3D%3D",
       "status": "formalized",
@@ -21083,7 +21083,7 @@
       "numberOfProposals": 1
     },
     {
-      "id": "4561450",
+      "id": "4561450#6867528",
       "title": "Servicio de monitores/as cuidado de comedor.",
       "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=BovN8EEsl1H%2B3JAijKO%2Bkg%3D%3D",
       "status": "void",
@@ -21175,7 +21175,7 @@
       "numberOfProposals": 2
     },
     {
-      "id": "5177416#1",
+      "id": "5177416#10355895",
       "title": "Lote 3 - una unidad de vehículo policial tipo SUV con mampara",
       "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=j0PEgp21LM4UqXM96WStVA%3D%3D",
       "status": "unknown",
@@ -21302,7 +21302,7 @@
       "numberOfProposals": 1
     },
     {
-      "id": "26459#1",
+      "id": "26459#1520743",
       "title": "Suministro de Turismo Hibrido de 136 CV",
       "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=F5cJBe2hB%2BxvYnTkQN0%2FZA%3D%3D",
       "status": "unknown",
@@ -21332,7 +21332,7 @@
       "numberOfProposals": 1
     },
     {
-      "id": "873123",
+      "id": "873123#1892613",
       "title": "Mantenimiento césped artificial pistas de pádel",
       "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=hFrradR5sN8BPRBxZ4nJ%2Fg%3D%3D",
       "status": "awarded",
@@ -21544,7 +21544,7 @@
       "numberOfProposals": 12
     },
     {
-      "id": "1794430#39",
+      "id": "1794430#10390570",
       "title": "92000000-Servicios de esparcimiento, culturales y deportivos.",
       "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=bInMjIRksIeGCFcHcNGIlQ%3D%3D",
       "status": "awarded",
@@ -21575,7 +21575,7 @@
       "numberOfProposals": 1
     },
     {
-      "id": "5177429#16",
+      "id": "5177429#10355931",
       "title": "Lote 21 - Aplicación de edición",
       "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=%2F34pTr%2F3b9WLAncw3qdZkA%3D%3D",
       "status": "unknown",
@@ -21608,7 +21608,7 @@
       "numberOfProposals": 0
     },
     {
-      "id": "5177429#17",
+      "id": "5177429#10355936",
       "title": "Lote 7 - Suscripciones anuales plataforma de celebración de sesiones telemáticas",
       "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=%2F34pTr%2F3b9WLAncw3qdZkA%3D%3D",
       "status": "unknown",
@@ -21641,7 +21641,7 @@
       "numberOfProposals": 0
     },
     {
-      "id": "5177429#18",
+      "id": "5177429#10355938",
       "title": "Lote 9 - Plan de adecuación al esquema nacional de seguridad. Consultoría integral en materia de protección de datos",
       "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=%2F34pTr%2F3b9WLAncw3qdZkA%3D%3D",
       "status": "unknown",
@@ -21769,7 +21769,7 @@
       "numberOfProposals": 6
     },
     {
-      "id": "1794430#40",
+      "id": "1794430#4899803",
       "title": "Prestación del servicio para la organización y desarrollo del Campamento Municipal de Verano Juvenil 2023.",
       "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=hKbO0dQqojqAAM7L03kM8A%3D%3D",
       "status": "awarded",
@@ -21800,7 +21800,7 @@
       "numberOfProposals": 1
     },
     {
-      "id": "1794430#41",
+      "id": "1794430#6297807",
       "title": "Contrato servicios, referido a la formación, asistencia y apoyo en la gestión y seguimiento del plan de integridad y medidas antifraude (74/2024)",
       "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=F6rHfi0CpxbVGIpKDxgsAQ%3D%3D",
       "status": "awarded",
@@ -21891,7 +21891,7 @@
       "numberOfProposals": 5
     },
     {
-      "id": "4653394",
+      "id": "4653394#7729190",
       "title": "Contrato de servicio público de recogida de residuos sólidos urbanos del municipio.",
       "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=oE58TiRVCfAZDGvgaZEVxQ%3D%3D",
       "status": "formalized",
@@ -21922,7 +21922,7 @@
       "numberOfProposals": 4
     },
     {
-      "id": "1847171#1",
+      "id": "1847171#4023356",
       "title": "Servicio Ayuda a Domicilio personas con grado de dependencia",
       "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=q5T2oVJPrWqiEJrVRqloyA%3D%3D",
       "status": "awarded",
@@ -21955,7 +21955,7 @@
       "numberOfProposals": 6
     },
     {
-      "id": "99572#2",
+      "id": "99572#159831",
       "title": "Lote 2 - Talleres de fotografía",
       "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=Km8GNhaVu5IQK2TEfXGy%2BA%3D%3D",
       "status": "formalized",
@@ -21985,7 +21985,7 @@
       "numberOfProposals": 4
     },
     {
-      "id": "1942735#1",
+      "id": "1942735#4321851",
       "title": "El objeto del contrato son las actuaciones en que consistirá el cambio de los suelos de caucho existentes, formados por losetas de caucho en la actualidad, para sustituirlos por un suelo de caucho continuo fabricado in situ. Las zonas objeto de actuación son dos zonas de juego ya instaladas, ubicadas en el Parque Municipal Maldonado, en el casco urbano de Riba-roja de Túria.\nComprende las actuaciones correspondientes a:\nRetirada de suelo existente.\nSuministro y colocación de bordillo.\nInstalación de suelo de caucho continuo.",
       "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=x10BPwYgF7OiEJrVRqloyA%3D%3D",
       "status": "formalized",
@@ -22113,7 +22113,7 @@
       "numberOfProposals": 1
     },
     {
-      "id": "1999#2",
+      "id": "1999#544741",
       "title": "Mejora accesibilidad C/ Cronista Cerveró",
       "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=uhl7Dr7kScguf4aBO%2BvQlQ%3D%3D",
       "status": "awarded",
@@ -22143,7 +22143,7 @@
       "numberOfProposals": 1
     },
     {
-      "id": "1892773#1",
+      "id": "1892773#4168924",
       "title": "Bar Parque Maldonado",
       "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=U84335CaunpvYnTkQN0%2FZA%3D%3D",
       "status": "formalized",
@@ -22234,7 +22234,7 @@
       "numberOfProposals": 1
     },
     {
-      "id": "2765611",
+      "id": "2765611#4801486",
       "title": "Servicio limpieza",
       "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=Hl2l7TQ3Q61xseVhcqrkhw%3D%3D",
       "status": "awarded",
@@ -22270,7 +22270,7 @@
       "numberOfProposals": 5
     },
     {
-      "id": "2765611#1",
+      "id": "2765611#4801487",
       "title": "Servicio para el mantenimiento para la calidad del agua.",
       "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=Hl2l7TQ3Q61xseVhcqrkhw%3D%3D",
       "status": "awarded",
@@ -22306,7 +22306,7 @@
       "numberOfProposals": 5
     },
     {
-      "id": "26459#2",
+      "id": "26459#1520744",
       "title": "Suministro de Moto eléctrica de 2,5 Kw y 6 Kw. Interurbana",
       "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=F5cJBe2hB%2BxvYnTkQN0%2FZA%3D%3D",
       "status": "void",
@@ -22366,7 +22366,7 @@
       "numberOfProposals": 17
     },
     {
-      "id": "4667548#1",
+      "id": "4667548#7819413",
       "title": "Servicio control de accesos (piscina verano).",
       "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=b3AN%2BCmqliZQFSeKCRun4Q%3D%3D",
       "status": "formalized",
@@ -22402,7 +22402,7 @@
       "numberOfProposals": 9
     },
     {
-      "id": "4669086",
+      "id": "4669086#7832484",
       "title": "Escuela de verano personas con diversidad funcional intelectual.",
       "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=GKCMUcHeIyYUqXM96WStVA%3D%3D",
       "status": "formalized",
@@ -22434,7 +22434,7 @@
       "numberOfProposals": 2
     },
     {
-      "id": "4667548#2",
+      "id": "4667548#7819416",
       "title": "Servicio para el mantenimiento para la calidad del agua (piscina verano).",
       "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=b3AN%2BCmqliZQFSeKCRun4Q%3D%3D",
       "status": "formalized",
@@ -22470,7 +22470,7 @@
       "numberOfProposals": 9
     },
     {
-      "id": "4930658",
+      "id": "4930658#8843228",
       "title": "Dos vehículos, furgoneta tipo combi de 5 plazas y maletero.",
       "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=wUcyhisXvYlxseVhcqrkhw%3D%3D",
       "status": "formalized",
@@ -22502,7 +22502,7 @@
       "numberOfProposals": 1
     },
     {
-      "id": "4669086#1",
+      "id": "4669086#7832483",
       "title": "Programa municipal personas con diversidad funcional intelectual",
       "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=GKCMUcHeIyYUqXM96WStVA%3D%3D",
       "status": "awarded",
@@ -22564,7 +22564,7 @@
       "numberOfProposals": 0
     },
     {
-      "id": "4299590#1",
+      "id": "4299590#4973453",
       "title": "Servicio de limpieza de las instalaciones de los colegios públicos de Riba-roja de Túria: Escoletes Quint, Eres altes, Camp de Túria y Mas d’escoto dividido en dos lotes – uno de ellos reservado a CEE de iniciativa social y empresas de inserción.",
       "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=pmIqulnUc8E7%2B9FIQYNjeQ%3D%3D",
       "status": "revoked",
@@ -22745,7 +22745,7 @@
       "numberOfProposals": 1
     },
     {
-      "id": "4653394#1",
+      "id": "4653394#7729198",
       "title": "Servicio de asistencia técnica y apoyo para el control y supervisión sobre la prestación del contrato de recogida de RSU, poda y voluminosos en el municipio de Riba-roja de Túria.",
       "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=oE58TiRVCfAZDGvgaZEVxQ%3D%3D",
       "status": "formalized",
@@ -22776,7 +22776,7 @@
       "numberOfProposals": 4
     },
     {
-      "id": "4510222#1",
+      "id": "4510222#6570724",
       "title": "Asistencia técnica creación espacio RIV, RIBA INNOVACIÓ VIVA.",
       "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=xX4MskNW8lRVkTabT%2FRM8A%3D%3D",
       "status": "awarded",
@@ -22807,7 +22807,7 @@
       "numberOfProposals": 2
     },
     {
-      "id": "4889055#15",
+      "id": "4889055#10390730",
       "title": "71000000-Servicios de arquitectura, construcción, ingeniería e inspección.",
       "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=3RswW7uhhYbI8aL3PRS10Q%3D%3D",
       "status": "awarded",
@@ -22838,7 +22838,7 @@
       "numberOfProposals": 3
     },
     {
-      "id": "1794430#42",
+      "id": "1794430#9062945",
       "title": "Contrato de servicio fiesta del Dux 2025-2026 mediante contrato derivado del SDA de servicios de diversa índole, con condición especial de ejecución de carácter social contribuyendo al cumplimiento del ODS 8 relativo al trabajo decente para todos. (Ctto. 43/2025 – ESDA 2/2022).",
       "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=5GcwtZ%2BtcTLECtSnloz%2BZQ%3D%3D",
       "status": "awarded",
@@ -22928,7 +22928,7 @@
       "numberOfProposals": 2
     },
     {
-      "id": "29500#1",
+      "id": "29500#257109",
       "title": "Obras de pavimentación c/ Toledo y camí urbanización Els pous",
       "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=4QmhBpFpLekuf4aBO%2BvQlQ%3D%3D",
       "status": "awarded",
@@ -22958,7 +22958,7 @@
       "numberOfProposals": 6
     },
     {
-      "id": "43208#1",
+      "id": "43208#545501",
       "title": "Urbanización para zona esparcimiento canino en la urbanización Santa Mónica y suelo de caucho en zona juegos urbanización El Molinet",
       "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=Vg7AGxmu7nKrz3GQd5r6SQ%3D%3D",
       "status": "formalized",
@@ -22988,7 +22988,7 @@
       "numberOfProposals": 1
     },
     {
-      "id": "29500#2",
+      "id": "29500#1487220",
       "title": "Obras de pavimentación de caminos rurales: Cami de Borreguillo, Tramo cami  que enlaza Camí de Xest con Campo Tiro Olímpico. Goncelo y Pla de Nadal.",
       "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=4QmhBpFpLekuf4aBO%2BvQlQ%3D%3D",
       "status": "awarded",
@@ -23018,7 +23018,7 @@
       "numberOfProposals": 6
     },
     {
-      "id": "873123#1",
+      "id": "873123#1892612",
       "title": "Mantenimiento césped artificial campos de fútbol",
       "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=hFrradR5sN8BPRBxZ4nJ%2Fg%3D%3D",
       "status": "awarded",
@@ -23078,7 +23078,7 @@
       "numberOfProposals": 0
     },
     {
-      "id": "1932729#1",
+      "id": "1932729#4028801",
       "title": "Asfaltados urbanos (5 urbanos)",
       "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=fmHzgB33HDSXQV0WE7lYPw%3D%3D",
       "status": "awarded",
@@ -23109,7 +23109,7 @@
       "numberOfProposals": 5
     },
     {
-      "id": "1892773#2",
+      "id": "1892773#4168927",
       "title": "Bar Piscina Polideportivo",
       "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=U84335CaunpvYnTkQN0%2FZA%3D%3D",
       "status": "formalized",
@@ -23139,7 +23139,7 @@
       "numberOfProposals": 1
     },
     {
-      "id": "1942735#2",
+      "id": "1942735#4321849",
       "title": "LOTE 1: El objeto del contrato es la renovación de juegos infantiles y mobiliario de la Plaça del Rajolar de la calle Los Ángeles, en el casco urbano de Riba-roja de Túria, mediante la sustitución  de las actuales estructuras por otras nuevas  más seguras y modernas, así como parte del mobiliario urbano del propio parque, que comprende las siguientes actuaciones:\nRetirada de suelo existente.\nRetirada de estructuras existentes\nSuministro y montaje de las nuevas estructuras y elementos de juego.\nInstalación de papeleras.\nInstalación de una mesa picnic.\nInstalación de suelo de caucho continuo.\nInstalación de puertas nuevas.",
       "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=x10BPwYgF7OiEJrVRqloyA%3D%3D",
       "status": "formalized",
@@ -23205,7 +23205,7 @@
       "numberOfProposals": 1
     },
     {
-      "id": "4363449#1",
+      "id": "4363449#6038612",
       "title": "Equipamiento de cardio",
       "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=SafzgnHFCyq5HQrHoP3G5A%3D%3D",
       "status": "formalized",
@@ -23299,7 +23299,7 @@
       "numberOfProposals": 1
     },
     {
-      "id": "4323025#1",
+      "id": "4323025#5155472",
       "title": "Contrato administrativo servicio de transporte de viajeros y viajeras: EEII, Interinstitutos, Arribabus y conectametro zona norte, dividido en dos lotes, por procedimiento abierto, mejor relación calidad-precio, varios criterios de adjudicación y con condición de ejecución de carácter social, medioambiental y técnico, contribuyendo al cumplimiento del ODS 13.",
       "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=2FtatMHiee%2FN3k3tjedSGw%3D%3D",
       "status": "abandoned",
@@ -23361,7 +23361,7 @@
       "numberOfProposals": 1
     },
     {
-      "id": "1701582#21",
+      "id": "1701582#3707300",
       "title": "Suscripciones anuales software copias de seguridad.",
       "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=eO5j98RA9t9vYnTkQN0%2FZA%3D%3D",
       "status": "formalized",
@@ -23451,7 +23451,7 @@
       "numberOfProposals": 1
     },
     {
-      "id": "1794430#43",
+      "id": "1794430#9116387",
       "title": "80500000-Servicios de formación.",
       "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=r3klh8VqH0GTylGzYmBF9Q%3D%3D",
       "status": "void",
@@ -23515,7 +23515,7 @@
       "numberOfProposals": 1
     },
     {
-      "id": "4414489#1",
+      "id": "4414489#6027494",
       "title": "Servicio de Catering",
       "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=aogIw1CQxnxQFSeKCRun4Q%3D%3D",
       "status": "abandoned",
@@ -23607,7 +23607,7 @@
       "numberOfProposals": 0
     },
     {
-      "id": "5190772#2",
+      "id": "5190772#10469515",
       "title": "Lote 3 - Servicio de laboratorio para el análisis de sustancias decomisadas",
       "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=eJtaf6IFJQyP66GS%2BONYvQ%3D%3D",
       "status": "awarded",
@@ -23669,7 +23669,7 @@
       "numberOfProposals": 0
     },
     {
-      "id": "5177429#19",
+      "id": "5177429#10355925",
       "title": "Lote 16 - Software control remoto",
       "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=%2F34pTr%2F3b9WLAncw3qdZkA%3D%3D",
       "status": "unknown",
@@ -23702,7 +23702,7 @@
       "numberOfProposals": 0
     },
     {
-      "id": "4930658#1",
+      "id": "4930658#8843225",
       "title": "Dos vehículos, furgoneta tipo combi de 5 plazas y maletero.",
       "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=wUcyhisXvYlxseVhcqrkhw%3D%3D",
       "status": "formalized",
@@ -23734,7 +23734,7 @@
       "numberOfProposals": 1
     },
     {
-      "id": "4930658#2",
+      "id": "4930658#8843227",
       "title": "Dos vehículos, furgoneta tipo combi de 5 plazas y maletero.",
       "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=wUcyhisXvYlxseVhcqrkhw%3D%3D",
       "status": "formalized",
@@ -23766,7 +23766,7 @@
       "numberOfProposals": 1
     },
     {
-      "id": "4930658#3",
+      "id": "4930658#8843229",
       "title": "Dos vehículos, furgoneta tipo combi de 5 plazas y maletero.",
       "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=wUcyhisXvYlxseVhcqrkhw%3D%3D",
       "status": "formalized",
@@ -23798,7 +23798,7 @@
       "numberOfProposals": 1
     },
     {
-      "id": "4930658#4",
+      "id": "4930658#8843230",
       "title": "Dos vehículos, furgoneta de 9 plazas y maletero.",
       "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=wUcyhisXvYlxseVhcqrkhw%3D%3D",
       "status": "formalized",
@@ -23893,7 +23893,7 @@
       "numberOfProposals": 6
     },
     {
-      "id": "4889055#16",
+      "id": "4889055#10188881",
       "title": "Servicio de asistencia técnica para la realización de un diagnóstico de accesibilidad turística en el municipio de Riba-roja de Túria y la elaboración del correspondiente Plan de Mejora de la Accesibilidad Turística",
       "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=LnenigZlKbecCF8sV%2BqtYA%3D%3D",
       "status": "awarded",
@@ -23954,7 +23954,7 @@
       "numberOfProposals": 1
     },
     {
-      "id": "5177416#2",
+      "id": "5177416#10355891",
       "title": "Lote 1 - Dos unidades de vehículos tipo Pick-up equipados con material de emergencias.",
       "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=j0PEgp21LM4UqXM96WStVA%3D%3D",
       "status": "unknown",
@@ -24017,7 +24017,7 @@
       "numberOfProposals": 1
     },
     {
-      "id": "4667548#3",
+      "id": "4667548#7819407",
       "title": "Servicio de socorrismo, piscina verano.",
       "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=b3AN%2BCmqliZQFSeKCRun4Q%3D%3D",
       "status": "formalized",
@@ -24205,7 +24205,7 @@
       "numberOfProposals": 7
     },
     {
-      "id": "4889055#17",
+      "id": "4889055#10254997",
       "title": "72224000-Servicios de consultoría en gestión de proyectos.",
       "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=2iTqILStUoT%2Fa9DgO%2BoYKQ%3D%3D",
       "status": "awarded",
@@ -24294,7 +24294,7 @@
       "numberOfProposals": 1
     },
     {
-      "id": "62344#2",
+      "id": "62344#39324",
       "title": "contrato de obras de reurbanización y mejora de zonas verdes en los polígonos industriales de la zona sur de Riba-roja de Túria., por procedimiento abierto simplificado, mejor relación calidad-precio, varios criterios de adjudicación con cláusulas medioambientales como criterio de adjudicación y con condición especial de ejecución de carácter medioambiental.",
       "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=tefWSQ%2FAAQaiEJrVRqloyA%3D%3D",
       "status": "formalized",
@@ -24415,7 +24415,7 @@
       "numberOfProposals": 1
     },
     {
-      "id": "5106848#2",
+      "id": "5106848#9743661",
       "title": "UE pous 6",
       "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=SWowCY8dnwmcCF8sV%2BqtYA%3D%3D",
       "status": "awarded",
@@ -24445,7 +24445,7 @@
       "numberOfProposals": 1
     },
     {
-      "id": "5096992#2",
+      "id": "5096992#9673640",
       "title": "Uniformidad",
       "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=DvfzF%2Fh0EmMXhk1FZxEyvw%3D%3D",
       "status": "formalized",
@@ -24478,7 +24478,7 @@
       "numberOfProposals": 1
     },
     {
-      "id": "4561450#1",
+      "id": "4561450#6867527",
       "title": "Servicio de catering",
       "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=BovN8EEsl1H%2B3JAijKO%2Bkg%3D%3D",
       "status": "formalized",
@@ -24662,7 +24662,7 @@
       "numberOfProposals": 3
     },
     {
-      "id": "1794430#44",
+      "id": "1794430#10148923",
       "title": "92000000-Servicios de esparcimiento, culturales y deportivos.",
       "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=g9OwvtL6Pen10HRJw8TEnQ%3D%3D",
       "status": "awarded",
@@ -24726,7 +24726,7 @@
       "numberOfProposals": 3
     },
     {
-      "id": "2765611#2",
+      "id": "2765611#4801485",
       "title": "Servicio de socorrismo.",
       "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=Hl2l7TQ3Q61xseVhcqrkhw%3D%3D",
       "status": "awarded",
@@ -24883,7 +24883,7 @@
       "numberOfProposals": 1
     },
     {
-      "id": "1701582#22",
+      "id": "1701582#3707307",
       "title": "Mantenimiento plataforma de administración electrónica.",
       "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=eO5j98RA9t9vYnTkQN0%2FZA%3D%3D",
       "status": "formalized",
@@ -25005,7 +25005,7 @@
       "numberOfProposals": 1
     },
     {
-      "id": "1689128#5",
+      "id": "1689128#10028409",
       "title": "Contratación del suministro de agua potable envasada en la celebración de la Feria del Comercio, para 27 de abril de 2026 en \nel T.M. de Riba-roja de Túria (Valencia), contrato derivado del SDA de adquisición de suministro (Ctto93-2026)",
       "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=jjJnO0KthilPpzdqOdhuWg%3D%3D",
       "status": "void",
@@ -25036,7 +25036,7 @@
       "numberOfProposals": 0
     },
     {
-      "id": "1794430#45",
+      "id": "1794430#10028426",
       "title": "Contrato de servicio de asistencia sanitaria preventiva mediante ambulancia asistencial Feria del Comercio de Riba-roja de Túria (Ctto90/2026)",
       "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=5Sr9XdelmUPyoM4us5k4vw%3D%3D",
       "status": "void",
@@ -25098,7 +25098,7 @@
       "numberOfProposals": 1
     },
     {
-      "id": "1701582#23",
+      "id": "1701582#3707306",
       "title": "Mantenimiento Firewall corporativo Fortigate.",
       "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=eO5j98RA9t9vYnTkQN0%2FZA%3D%3D",
       "status": "formalized",
@@ -25218,7 +25218,7 @@
       "numberOfProposals": 1
     },
     {
-      "id": "1719226#1",
+      "id": "1719226#3661195",
       "title": "Suministros software",
       "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=i2r6gJMFJ6lvYnTkQN0%2FZA%3D%3D",
       "status": "formalized",
@@ -25309,7 +25309,7 @@
       "numberOfProposals": 1
     },
     {
-      "id": "1891608#1",
+      "id": "1891608#4538741",
       "title": "Contrato para suministro de material para alumbrado público en Avda. Castaño Fase I, mediante alimentación solar fotovoltaica con equipos LED, derivado del sistema dinámico de adquisición (SDA) de suministro de material de electricidad (Ctto 48/2022 – SDA 2/2021).",
       "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=Cl4mgfSz5dLnSoTX3z%2F7wA%3D%3D",
       "status": "awarded",
@@ -25370,7 +25370,7 @@
       "numberOfProposals": 7
     },
     {
-      "id": "4333684#2",
+      "id": "4333684#5626791",
       "title": "Servicio mantenimiento instalaciones en complejo deportivo La Malla.",
       "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=HiIEfDk2s9mTylGzYmBF9Q%3D%3D",
       "status": "formalized",

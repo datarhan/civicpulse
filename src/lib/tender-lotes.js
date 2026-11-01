@@ -5,7 +5,7 @@
  *
  * Gobierto sirve la tabla `contratos` con UNA FILA POR LOTE. Las filas de un
  * mismo expediente comparten `id` —el parser las desempata con un sufijo
- * `#n`— y, lo que aquí importa, comparten `permalink`: el enlace es el
+ * `#<contract_id>`— y, lo que aquí importa, comparten `permalink`: el enlace es el
  * deeplink de PLACSP del expediente ENTERO. Esa ficha titula el presupuesto
  * base de todos los lotes juntos y esconde las adjudicaciones detrás de «Ver
  * detalle de la adjudicación», así que el número que el lector ve al otro lado
