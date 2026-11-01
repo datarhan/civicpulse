@@ -25,16 +25,18 @@ set -uo pipefail
 # es `scrape-ci-blocked.sh` (lo fija tests/nightly-budget.test.js) y quien vigila
 # que no se quede sin él es check:cadence.
 #
-#   scrape:agua-pares — una pasada son unas 250 peticiones a SINAC y cuesta unos
-#   36 min DESDE CUALQUIER IP: no es que el runner esté bloqueado. Medido el
-#   01-11-2026 con los mismos 18 municipios: 494 s desde el portátil, 540 s desde
-#   el runner el 31-10, y Jávea agotando sus 30 s en los dos sitios. La ficha de
-#   una red tarda 7,5 s de mediana y llega a 30, así que esto nunca cupo en el
-#   paso: sólo parecía caber porque es semanal y seis noches de cada siete sale al
-#   instante. Y no se cura sola: si no acaba no escribe, y si no escribe la noche
-#   siguiente vuelve a tocar. Del 29 al 31-10 tumbó tres nocturnas. Dejarla con
-#   tope sería peor que quitarla: unas 60 peticiones cada noche a un ministerio
-#   para cortar siempre una pasada que sólo escribe al terminar.
+#   scrape:agua-pares — una pasada son unas 260 peticiones a SINAC y cuesta unos
+#   27 min: no es que el runner esté bloqueado. Pasada entera desde el portátil el
+#   01-11-2026: 26,9 min, 261 peticiones, 57 de 59 municipios. Con los mismos 18
+#   municipios, 494 s desde el portátil y 540 s desde el runner el 31-10, y Jávea
+#   agotando sus 30 s en los dos sitios. La ficha de una red tarda 7,5 s de mediana
+#   y llega a 30, así que esto nunca cupo en un paso de 30 min donde arrancaba entre
+#   los minutos 10 y 18: sólo parecía caber porque es semanal y seis noches de cada
+#   siete sale al instante. Y no se cura sola: si no acaba no escribe, y si no
+#   escribe la noche siguiente vuelve a tocar. Del 29 al 31-10 tumbó tres
+#   nocturnas. Dejarla con tope sería peor que quitarla: unas 60 peticiones cada
+#   noche a un ministerio para cortar siempre una pasada que sólo escribe al
+#   terminar.
 SOLO_LOCAL=(scrape:agua-pares)
 
 # El reloj de los adaptadores, en dos capas, porque ninguna basta sola.
