@@ -333,7 +333,9 @@ fetch|pdf|chrome`; `trust` is never accepted from the file — it comes from
   - `--amend-reason <i>` replaces the reason of a ledger row and leaves the
     amendment in it, through the same `enmendarMotivoDeFila` as
     `correct-pleno-finding`: previous reason only as a digest, signed by a person,
-    no new row. The bio's `CorrectionLog` renders it as /hallazgos does.
+    no new row. The bio's `CorrectionLog` renders it as /hallazgos does, and the
+    soul prints the same words: the row keeps its signer, so an amended reason
+    under the plain label would attribute it to them.
   - `gaps.<field>.reason` rewords why one «Laguna detectada» is a gap, addressed
     by the row's name (split on the LAST dot: some names carry one), never by
     index. Six bios corrected to «804 expedientes, adjudicados o no» still said

@@ -29,9 +29,9 @@ function pinta(abrir) {
   )
 }
 
-// Por el texto que se VE, que es también el nombre accesible (WCAG 2.5.3). Con
-// `topbar.search.aria` —un «Buscar» a secas— el nombre no contenía la etiqueta
-// visible, y quien dicta por voz lo que lee en pantalla no acertaba.
+// Por el texto que se VE, que es también el nombre accesible (WCAG 2.5.3). Con un
+// `aria-label` de «Buscar» a secas, el nombre no contenía la etiqueta visible, y
+// quien dicta por voz lo que lee en pantalla no acertaba.
 const boton = () => screen.getByRole('button', { name: CATALOGUE.es['topbar.search'] })
 
 describe('el buscador de la portada', () => {
@@ -52,8 +52,8 @@ describe('el buscador de la portada', () => {
     // no es el que escucha la cáscara cumplían igual la comprobación de antes.
     expect(b).toHaveAttribute('aria-keyshortcuts', 'Meta+K Control+K')
     expect(b.textContent).toContain(CATALOGUE.es['topbar.search'])
-    // Y el nombre accesible es ese mismo texto visible (WCAG 2.5.3).
-    expect(b).toHaveAttribute('aria-label', CATALOGUE.es['topbar.search'])
+    // Y el nombre accesible sale de ese mismo texto, sin etiqueta aparte (WCAG 2.5.3).
+    expect(b).not.toHaveAttribute('aria-label')
   })
 
   it('sin contexto no reventaría la portada', () => {

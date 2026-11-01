@@ -99,8 +99,8 @@ ADAPTERS=(
   scrape:agua
   # La banda de SINAC (los municipios parecidos). Semanal por su cuenta: dentro
   # de los 7 días sale 0 sin pedir nada. Éste es su ÚNICO refresco: una pasada
-  # son unos 36 min desde cualquier IP y en la nocturna no cabe (SOLO_LOCAL en
-  # scrape-all.sh). Va la última porque cuando le toca es, con mucho, la más larga.
+  # son unos 27 min y en la nocturna no cabe (SOLO_LOCAL en scrape-all.sh). Va la
+  # última porque cuando le toca es, con mucho, la más larga.
   scrape:agua-pares
 )
 
@@ -248,8 +248,12 @@ fi
 # push, este --no-verify hay que volver a mirarlo.
 PREPUSH_RANGE="origin/main...HEAD" sh .husky/pre-push || true
 
-if ! git push --no-verify origin main; then
-  echo "[ci-blocked] ERROR: git push falló — el commit existe en local pero NO está publicado; el próximo run reintenta"
+# La ventana entre el pull de arriba y este push la abre la propia revisión: unos
+# tres minutos en los que cualquier fusión a main rechaza el push. El reintento
+# no repite la revisión, que volvería a abrirla: las rutas ya están leídas, y lo
+# que trae el rebase es trabajo ajeno.
+if ! cron_git_push_con_reintento --no-verify; then
+  echo "[ci-blocked] ERROR: push rechazado y el reintento no salió — el commit existe en local pero NO está publicado. Si la nocturna reescribe esos ficheros antes, el próximo pull inicial chocará: check:cron lo dará en rojo"
   exit 1
 fi
 echo "[ci-blocked] pushed"

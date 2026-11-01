@@ -517,7 +517,6 @@ export const CATALOGUE = {
 
     // Topbar
     'topbar.search': 'Buscar quejas, cargos, plenos…',
-    'topbar.search.aria': 'Buscar',
     'topbar.menu.aria': 'Abrir menú',
 
     // Sidebar
@@ -3629,7 +3628,6 @@ export const CATALOGUE = {
     'empleoDetail.noDetail': 'Sense fitxa detallada disponible per a esta oferta.',
 
     'topbar.search': 'Cerca queixes, càrrecs, plens…',
-    'topbar.search.aria': 'Cerca',
     'topbar.menu.aria': 'Obrir menú',
 
     'sidebar.footer.tag': 'MVP públic · dades obertes',
