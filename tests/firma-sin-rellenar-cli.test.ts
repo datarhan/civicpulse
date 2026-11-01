@@ -91,9 +91,9 @@ import {
 } from '../src/scraper/pleno-votes'
 import { quoteAppearsIn, quoteCoverage } from '../src/scraper/quote-match'
 import { archivosDe } from '../src/scraper/superseded-archive'
+import { TSX_DIRECTO } from './setup/tsx-directo'
 
 const RAIZ = resolve(__dirname, '..')
-const TSX = join(RAIZ, 'node_modules/tsx/dist/cli.mjs')
 
 /** El hueco de la orden preparada, tal cual lo compone la cola. */
 const HUECO = MARCADORES.firma
@@ -108,7 +108,7 @@ const FIRMAS = ['civicpulse-curator', 'María de la Fuente Llorens']
 
 /** Lanza un script del repositorio con `cwd` como directorio de trabajo. */
 const lanzar = (script: string, cwd: string, argv: string[]) =>
-  spawnSync(process.execPath, [TSX, join(RAIZ, 'scripts', script), ...argv], {
+  spawnSync(process.execPath, [...TSX_DIRECTO, join(RAIZ, 'scripts', script), ...argv], {
     cwd,
     encoding: 'utf8',
   })
@@ -163,7 +163,7 @@ function conScript(dir: string, script: string): string {
 
 /** Lanza una copia del script desde la raíz temporal `dir` (ver `conScript`). */
 const lanzarCopia = (script: string, dir: string, argv: string[]) =>
-  spawnSync(process.execPath, [TSX, conScript(dir, script), ...argv], {
+  spawnSync(process.execPath, [...TSX_DIRECTO, conScript(dir, script), ...argv], {
     cwd: dir,
     encoding: 'utf8',
   })
@@ -276,7 +276,7 @@ describe('correct-pleno-finding · --field, --redact y --remove', () => {
     firma,
   ]
   const lanzarEn = (dir: string, argv: string[]) =>
-    spawnSync(process.execPath, [TSX, conScript(dir, SCRIPT), ...argv], {
+    spawnSync(process.execPath, [...TSX_DIRECTO, conScript(dir, SCRIPT), ...argv], {
       cwd: dir,
       encoding: 'utf8',
     })
@@ -1750,7 +1750,7 @@ describe('entity-alias', () => {
       `#!/bin/sh\nprintf '%s\\n' "$*" >> '${join(dir, 'npx-llamado')}'\n`,
       { mode: 0o755 },
     )
-    return spawnSync(process.execPath, [TSX, join(RAIZ, 'scripts', SCRIPT), ...argv], {
+    return spawnSync(process.execPath, [...TSX_DIRECTO, join(RAIZ, 'scripts', SCRIPT), ...argv], {
       cwd: dir,
       encoding: 'utf8',
       env: { ...process.env, PATH: `${bin}:${process.env.PATH}` },
@@ -2156,7 +2156,7 @@ process.stdout.write(JSON.stringify({ is_error: false, structured_output: { fuen
   const lanzarSinRed = (dir: string, argv: string[]) => {
     writeFileSync(join(dir, 'sin-red.mjs'), SIN_RED)
     writeFileSync(join(dir, 'claude-falso'), CLAUDE_FALSO, { mode: 0o755 })
-    return spawnSync(process.execPath, [TSX, join(RAIZ, 'scripts', SCRIPT), ...argv], {
+    return spawnSync(process.execPath, [...TSX_DIRECTO, join(RAIZ, 'scripts', SCRIPT), ...argv], {
       cwd: dir,
       encoding: 'utf8',
       env: {

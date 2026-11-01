@@ -17,16 +17,20 @@ import { tmpdir } from 'node:os'
 import { dirname, join, relative, resolve } from 'node:path'
 import { describe, expect, it } from 'vitest'
 import { mergeVerified, type VerifiedItem } from '../src/scraper/verified-merge'
+import { TSX_DIRECTO } from './setup/tsx-directo'
 
 const RAIZ = resolve(__dirname, '..')
-const TSX = join(RAIZ, 'node_modules/tsx/dist/cli.mjs')
 const PLAZO = 60_000
 
 const lanzar = (cwd: string, argv: string[]) =>
-  spawnSync(process.execPath, [TSX, join(RAIZ, 'scripts', 'subir-veredicto.ts'), ...argv], {
-    cwd,
-    encoding: 'utf8',
-  })
+  spawnSync(
+    process.execPath,
+    [...TSX_DIRECTO, join(RAIZ, 'scripts', 'subir-veredicto.ts'), ...argv],
+    {
+      cwd,
+      encoding: 'utf8',
+    },
+  )
 
 const SDA = JSON.parse(
   readFileSync(resolve(__dirname, 'fixtures/sda-licitaciones_2026-10-10.json'), 'utf8'),

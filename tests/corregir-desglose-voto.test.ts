@@ -29,6 +29,7 @@ import {
   buildSnapshotWithBreakdownRetracted,
   rx4hb4Item11,
 } from './helpers/pleno-votes-snapshot'
+import { TSX_DIRECTO } from './setup/tsx-directo'
 
 const ACTA_URL =
   'https://regmeet.com/files/uploads/aytoribarroja/09-02-2026.Pleno2026-02-10_20-43-39/documentos/2026-07-30_13-45-56_0.pdf'
@@ -245,7 +246,6 @@ describe('validateSnapshot — un desglose no cambia sin dejar rastro', () => {
 // ── Los CLIs, en un directorio temporal ─────────────────────────────────────
 
 const RAIZ = resolve(__dirname, '..')
-const TSX = join(RAIZ, 'node_modules/tsx/dist/cli.mjs')
 
 /** Un directorio de trabajo con su propio public/data/pleno-votes.json. */
 function montar(
@@ -265,7 +265,7 @@ function montar(
 }
 
 function lanzar(script: string, dir: string, argv: string[]) {
-  return spawnSync(process.execPath, [TSX, join(RAIZ, 'scripts', script), ...argv], {
+  return spawnSync(process.execPath, [...TSX_DIRECTO, join(RAIZ, 'scripts', script), ...argv], {
     cwd: dir,
     encoding: 'utf8',
     env: {

@@ -1,3 +1,4 @@
+// @vitest-environment happy-dom
 /**
  * Unit tests for the LLM client layer. We intercept global fetch so we can
  * exercise Ollama + OpenAI transports without a live server. Cache directory

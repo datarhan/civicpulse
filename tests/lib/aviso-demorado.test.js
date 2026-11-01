@@ -1,3 +1,4 @@
+// @vitest-environment happy-dom
 /**
  * El aviso de «cargando» sólo debe hablar si la espera se nota.
  *

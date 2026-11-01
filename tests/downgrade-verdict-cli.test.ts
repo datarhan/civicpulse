@@ -16,6 +16,7 @@ import { join, resolve } from 'node:path'
 
 import { rechazoDeMarcador } from '../src/scraper/firma-de-persona'
 import { mergeVerified } from '../src/scraper/verified-merge'
+import { TSX_DIRECTO } from './setup/tsx-directo'
 
 // Import dinámico: si la guarda de `main()` fallara, importar el script
 // ejecutaría la CLI dentro del proceso de pruebas, y es mejor que falle este
@@ -228,10 +229,9 @@ describe('downgrade-verdict · leerOrden · --literal-no-dicho', () => {
 })
 
 describe('downgrade-verdict · ejecutado · --literal-no-dicho', () => {
-  const TSX = resolve(__dirname, '../node_modules/tsx/dist/cli.mjs')
   const SCRIPT = resolve(__dirname, '../scripts/downgrade-verdict.ts')
   const lanzar = (cwd: string, argv: string[]) =>
-    spawnSync(process.execPath, [TSX, SCRIPT, ...argv], { cwd, encoding: 'utf8' })
+    spawnSync(process.execPath, [...TSX_DIRECTO, SCRIPT, ...argv], { cwd, encoding: 'utf8' })
   const ORDEN = [
     ID,
     'sin-datos',
@@ -367,10 +367,9 @@ describe('downgrade-verdict · ejecutado · --literal-no-dicho', () => {
 })
 
 describe('downgrade-verdict · ejecutado', () => {
-  const TSX = resolve(__dirname, '../node_modules/tsx/dist/cli.mjs')
   const SCRIPT = resolve(__dirname, '../scripts/downgrade-verdict.ts')
   const lanzar = (cwd: string, argv: string[]) =>
-    spawnSync(process.execPath, [TSX, SCRIPT, ...argv], { cwd, encoding: 'utf8' })
+    spawnSync(process.execPath, [...TSX_DIRECTO, SCRIPT, ...argv], { cwd, encoding: 'utf8' })
 
   it('con el marcador de la orden preparada se niega antes de leer nada', () => {
     // Un directorio sin datos: si la CLI llegara a leer, fallaría por otra cosa.

@@ -50,6 +50,11 @@ npm run scrape:all   # the nightly, locally: every autonomous adapter + its gate
 `npm run` lists all of them, including the curator CLIs. Do not re-catalogue
 them here — the hand-kept list drifted from reality every time it was tried.
 
+**The unit suite has two projects, split by extension** (`vitest.config.ts`):
+`.jsx`/`.tsx` get happy-dom, `.js`/`.ts` get Node. A `.js`/`.ts` test that needs
+a DOM declares it on its first line (`// @vitest-environment happy-dom`). Vitest
+finds that string anywhere in a file, so a comment that quotes it declares it.
+
 **Git hooks** (`.husky/`; each gate's reason is in its comments): pre-commit
 runs `lint`, `format:check`, `check:json`, `check:sparse` and the staged-only
 scans `check:secrets`, `check:privado`, `check:editorial`, `check:metadatos`,
