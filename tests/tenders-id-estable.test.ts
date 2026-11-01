@@ -168,3 +168,21 @@ describe('scraper/tenders — exigeClaveDeFuente', () => {
     expect(() => exigeClaveDeFuente(contratos)).toThrow(/contract_id/)
   })
 })
+
+describe('check:drift — sus anclas de contrato encuentran su fila', () => {
+  it('cada `importeContrato` del script resuelve en la copia publicada', () => {
+    // Un id que no resuelve da NaN: el comparador lo anota como «no comparada» y
+    // sale con 0, así que la guarda se apaga en verde. Pasó al re-teclear: el
+    // ancla del reportaje de basuras buscaba el `4653394` a secas.
+    const raiz = join(__dirname, '..')
+    const script = readFileSync(join(raiz, 'scripts', 'check-prose-drift.ts'), 'utf8')
+    const ids = [...script.matchAll(/importeContrato\('([^']+)'\)/g)].map((m) => m[1])
+    expect(ids.length).toBeGreaterThan(1)
+
+    const { contracts } = JSON.parse(
+      readFileSync(join(raiz, 'public', 'data', 'tenders.json'), 'utf8'),
+    ) as { contracts: { id: string; finalAmountNoTaxes: number }[] }
+    const importes = new Map(contracts.map((c) => [c.id, c.finalAmountNoTaxes]))
+    for (const id of ids) expect(importes.get(id), id).toBeGreaterThan(0)
+  })
+})

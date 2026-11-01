@@ -16,7 +16,7 @@ export interface ContractInput {
   /**
    * Objeto of the parent licitación, for multi-lot contracts whose own title
    * is just the LOT name ("Obra completa"). Joined by the caller on the base
-   * id (contratos "4558191#1" ↔ licitaciones "4558191"). Scanned alongside
+   * id (contratos "4558191#<contract_id>" ↔ licitaciones "4558191"). Scanned alongside
    * the title for zone/place/DANA signals — same procurement, same objeto.
    */
   parentTitle?: string | null
