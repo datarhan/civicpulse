@@ -21,7 +21,8 @@ import { classifyClaimVisibility } from './claim-public-gate'
 import { recordKnowableAt, type RecordDateGateReport, type RecordDateIndex } from './record-dates'
 import type { PlenoFinding, FindingQuote, FindingRef, FindingSeverity } from './pleno-finding'
 import { decideAutomation, type Decision, type Measurement } from './automation-policy'
-import { singleSeatAttributions, type AttributableLike } from './corporation-seats'
+import type { AttributableLike, OfficialsDoc } from './corporation-seats'
+import { motivosDeRetencion } from './cargos-nombrados'
 
 export interface VerifiedItem {
   claim: PlenoClaim
@@ -358,11 +359,12 @@ export function blocsForSynthesis(blocs: readonly string[], oneSeat: readonly st
 /**
  * May this one draft publish without a human? The class-level question —
  * is `finding.informational.bloc` measured over the bar — plus the one the CLI
- * never asked: does THIS draft attribute to, or name, a one-seat group.
+ * never asked: does THIS draft name a cargo, directly or through a one-seat
+ * group (cargos-nombrados.ts). An unknown roster counts as naming someone.
  */
 export function publicationDecision(
   draft: AttributableLike,
-  oneSeat: readonly string[],
+  officials: OfficialsDoc | null,
   measurements: readonly Measurement[],
   now: Date = new Date(),
 ): Decision {
@@ -373,7 +375,14 @@ export function publicationDecision(
       severity: 'informational',
       measurementKey: FINDING_MEASUREMENT_KEY,
       frozen: false,
-      namesIndividual: singleSeatAttributions(draft, oneSeat).length > 0,
+      namesIndividual:
+        motivosDeRetencion(
+          {
+            etiquetas: (draft.quotes ?? []).map((q) => q.speakerGroup),
+            textos: [draft.title, draft.summary, ...(draft.quotes ?? []).map((q) => q.text)],
+          },
+          officials,
+        ).length > 0,
     },
     measurements,
     now,

@@ -517,14 +517,15 @@ function ContratoEditorial() {
             <strong>Transparencia del algoritmo.</strong> Un proceso semanal (los lunes) escanea
             prensa y plenos con un modelo de lenguaje y emite <em>propuestas</em> con su cadena de
             razonamiento. Cada propuesta pasa una verificación determinista de anclaje; las que
-            superan el umbral de confianza (≥0,70) y quedan ancladas a su fuente se auto-publican
-            etiquetadas como «publicada automáticamente · revisión pendiente», y las demás esperan
-            en cola a que las revise una persona. La caja «propuesta automática · pendiente de
-            revisión humana» que puede llevar una ficha es otra cosa: la propuesta de un motor de
-            palabras clave que cruza a diario cada promesa con titulares de prensa y con el orden
-            del día de los plenos. Sólo aparece cuando adelantaría el estado publicado —nunca para
-            repetirlo ni para rebajarlo—, declara su confianza y no ocupa el lugar del estado. Todo
-            lo que no sea <EstadosPorEscalon tier="auto" /> pasa siempre por una persona (ver{' '}
+            superan el umbral de confianza (≥0,70), quedan ancladas a su fuente y no nombran a
+            ningún cargo se auto-publican etiquetadas como «publicada automáticamente · revisión
+            pendiente», y las demás esperan en cola a que las revise una persona. La caja «propuesta
+            automática · pendiente de revisión humana» que puede llevar una ficha es otra cosa: la
+            propuesta de un motor de palabras clave que cruza a diario cada promesa con titulares de
+            prensa y con el orden del día de los plenos. Sólo aparece cuando adelantaría el estado
+            publicado —nunca para repetirlo ni para rebajarlo—, declara su confianza y no ocupa el
+            lugar del estado. Todo lo que no sea <EstadosPorEscalon tier="auto" /> pasa siempre por
+            una persona (ver{' '}
             <a href="#auto-curacion-promesas" style={{ color: 'var(--civic)' }}>
               auto-curación
             </a>
@@ -591,7 +592,7 @@ function ContratoEditorial() {
             </li>
             <li>
               <strong>Automático sólo con medición.</strong> Publicar algo nuevo que no nombra a
-              ninguna persona concreta se hace sin curador únicamente si esa categoría tiene una
+              ningún cargo concreto se hace sin curador únicamente si esa categoría tiene una
               precisión medida y registrada (≥0,90 para hallazgos informativos, ≥0,95 para los
               notables), sobre al menos 50 casos y medida en los últimos 90 días. Una categoría{' '}
               <strong>sin medición se trata como no fiable</strong>: el camino para automatizar algo
@@ -608,18 +609,30 @@ function ContratoEditorial() {
               notable, porque una queja dice algo adverso de un servicio): mientras no esté medida,
               cada queja la publica una persona.
             </li>
+            {/* Decía «Nombrar a una persona concreta» y «no nombra a ninguna persona concreta».
+                Corregido el 01-11-2026: las puertas saben de cargos, no de personas
+                (src/scraper/cargos-nombrados.ts), y el registro de declaraciones publica
+                intervenciones que nombran a gente. Lo que la firma cubre son los hallazgos y las
+                promesas: los motivos de una retirada de /promesas mencionan al alcalde con la
+                firma de un modelo, y tres resúmenes del motor de /declaraciones sin ninguna. */}
             <li>
-              <strong>Siempre con firma humana.</strong> Nombrar a una persona concreta, cualquier
-              hallazgo de gravedad crítica (que es una acusación), los informes marcados como
-              jurídicamente sensibles, y todo lo irreversible o dirigido al exterior — registrar una
-              queja en sede. No porque una persona acierte más, sino porque la responsabilidad legal
-              necesita una firma. Nombrar a un grupo municipal con un solo concejal es nombrar a ese
-              concejal, así que cuenta igual: un hallazgo redactado por el proceso automático cuya
-              cita se atribuye a uno de esos grupos, o cuyo texto lo nombra, no se publica solo
-              aunque su categoría esté medida, sino que pasa a un curador; y el modelo que redacta
-              los resúmenes ni siquiera recibe esas etiquetas. En las quejas ciudadanas hay una
-              excepción: la foto de una queja publicada, que se anonimiza y se publica sin que nadie
-              la vea. Los hitos de cada queja —cuando alcanza los apoyos necesarios, cuando se
+              <strong>Siempre con firma humana.</strong> Afirmar algo de un cargo concreto en un
+              hallazgo o en una promesa, cualquier hallazgo de gravedad crítica (que es una
+              acusación), los informes marcados como jurídicamente sensibles, y todo lo irreversible
+              o dirigido al exterior — registrar una queja en sede. No porque una persona acierte
+              más, sino porque la responsabilidad legal necesita una firma. Nombrar a un grupo
+              municipal con un solo concejal es nombrar a ese concejal, así que cuenta igual: un
+              hallazgo redactado por el proceso automático cuya cita se atribuye a uno de esos
+              grupos, o cuyo texto lo nombra, no se publica solo aunque su categoría esté medida,
+              sino que pasa a un curador; y el modelo que redacta los resúmenes ni siquiera recibe
+              esas etiquetas. Ese proceso, la auto-curación de /promesas y la del laboratorio de
+              prensa comprueban fila a fila lo que van a publicar: si nombra a un cargo por su
+              apellido, por un oficio que sólo tiene una persona («el alcalde», «la concejala de
+              Cultura») o por uno de esos grupos, no sale solo y pasa a la cola de un curador. En
+              prensa, que no tiene orden para promover un lote, se queda sin publicar. Comprueban
+              los nombres de los cargos, no los de cualquier persona. En las quejas ciudadanas hay
+              una excepción: la foto de una queja publicada, que se anonimiza y se publica sin que
+              nadie la vea. Los hitos de cada queja —cuando alcanza los apoyos necesarios, cuando se
               registra, cuando vence su plazo sin respuesta— no se anuncian en ningún canal público:
               se avisan a quien modera.
             </li>
@@ -2693,6 +2706,11 @@ function ContratoEditorial() {
             revisión humana en cola.
           </li>
           <li>
+            No auto-publica ninguna propuesta que nombre a un cargo: ni una promesa nueva ni un
+            cambio de estado, ya sea en su cita, en su título o en la promesa a la que se aplica.
+            Espera en cola a una persona.
+          </li>
+          <li>
             No auto-publica ningún veredicto fuerte:{' '}
             <EstadosPorEscalon tier="fast-track" propuestos /> quedan como propuesta lista para
             publicar con un solo clic humano.
@@ -3978,11 +3996,11 @@ function ContratoEditorial() {
           <li>
             <strong>Los hallazgos automáticos se rotulan como automáticos.</strong> El laboratorio
             publica sin revisión humana los lotes que pasan sus filtros (ninguno con una afirmación
-            contradicha). La página los cuenta como lotes «automáticos, sin revisión humana», uno
-            por historia, y no como «curados». Hasta el 19 de octubre de 2026 el contador decía «17
-            · curados» de 17 filas automáticas que eran 5 lotes, porque el curador volvía a publicar
-            el mismo lote cada vez que corría; ya no publica un lote que ya está publicado con las
-            mismas afirmaciones.
+            contradicha ni que nombre a un cargo). La página los cuenta como lotes «automáticos, sin
+            revisión humana», uno por historia, y no como «curados». Hasta el 19 de octubre de 2026
+            el contador decía «17 · curados» de 17 filas automáticas que eran 5 lotes, porque el
+            curador volvía a publicar el mismo lote cada vez que corría; ya no publica un lote que
+            ya está publicado con las mismas afirmaciones.
           </li>
           <li>
             <strong>Los demás indicadores tampoco dicen «no» de lo que no se miró.</strong>{' '}

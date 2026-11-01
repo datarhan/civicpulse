@@ -19,7 +19,11 @@ import {
   type VerifiedItem,
   type VerifiedSnapshot,
 } from '../../src/scraper/auto-curate'
-import { seatsFromOfficials, singleSeatBlocs } from '../../src/scraper/corporation-seats'
+import {
+  seatsFromOfficials,
+  singleSeatBlocs,
+  type OfficialsDoc,
+} from '../../src/scraper/corporation-seats'
 import type { Measurement } from '../../src/scraper/automation-policy'
 import { classifyClaimVisibility } from '../../src/scraper/claim-public-gate'
 import { buildRecordDateIndex, emptyRecordDateGateReport } from '../../src/scraper/record-dates'
@@ -633,9 +637,11 @@ describe('single-seat groups · the synthesiser never sees them', () => {
 })
 
 describe('publicationDecision · per draft, not per run', () => {
-  const ONE = singleSeatBlocs(
-    seatsFromOfficials({ composition: { PSOE: 11, PP: 7, VOX: 1, 'EU-Podem': 1, Compromís: 1 } }),
-  )
+  /** Plantilla inventada: la forma de `officials.json`, sin nadie real. */
+  const ONE: OfficialsDoc = {
+    composition: { PSOE: 11, PP: 7, VOX: 1, 'EU-Podem': 1, Compromís: 1 },
+    officials: [{ slug: 'ana-perez', name: 'Ana Pérez Soler', party: 'PSOE', role: 'alcalde' }],
+  }
   const NOW = new Date('2026-09-29T12:00:00Z')
   /** A class measured well over the informational bar — the case the old run-level gate let through. */
   const MEASURED: Measurement[] = [
@@ -672,6 +678,21 @@ describe('publicationDecision · per draft, not per run', () => {
     )
     expect(d.allow).toBe(false)
     expect(d.tier).toBe('human')
+  })
+
+  it('sends a draft whose prose or quote names a cargo to a human, however well measured', () => {
+    for (const draft of [
+      { ...LARGE_GROUPS, summary: 'El alcalde defiende la adjudicación.' },
+      { ...LARGE_GROUPS, quotes: [{ speakerGroup: 'PSOE', text: 'Lo firmó Pérez' }] },
+    ]) {
+      const d = publicationDecision(draft, ONE, MEASURED, NOW)
+      expect(d.allow).toBe(false)
+      expect(d.tier).toBe('human')
+    }
+  })
+
+  it('refuses to publish alone when the roster is unknown', () => {
+    expect(publicationDecision(LARGE_GROUPS, null, MEASURED, NOW).allow).toBe(false)
   })
 
   it('still refuses an unmeasured class — the per-draft check adds a gate, it removes none', () => {

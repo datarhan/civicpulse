@@ -56,6 +56,8 @@ export interface DraftNewPromise {
   confidence: number
   grounding: Grounding
   decision: DraftDecision
+  /** Por qué salió de la publicación automática (`motivosDeRetencion`). Sólo en la cola. */
+  retenidaPor?: string[]
   proposed: {
     party: Party
     title: string
@@ -77,6 +79,8 @@ export interface DraftStatusChange {
   confidence: number
   grounding: Grounding
   decision: DraftDecision
+  /** Por qué salió de la publicación automática (`motivosDeRetencion`). Sólo en la cola. */
+  retenidaPor?: string[]
   promiseId: string
   currentStatus: Status
   proposedStatus: 'en-progreso' | 'parcial' | 'cumplida'

@@ -391,7 +391,9 @@ C: nothing is unlocked by assertion. New automation goes through it; the press
 and promise auto-curators, the declaraciones ledger and Tier A of the queja
 relations predate it and do not call it to publish yet (`docs/REVIEW_2026-09.md`
 §25; the ledger calls it only to withhold one-seat blocs), and
-`/metodologia#politica-automatizacion` lists them.
+`/metodologia#politica-automatizacion` lists them. The two curators and the
+finding curator do ask `cargos-nombrados.ts`, row by row, whether a draft names
+a cargo; it knows cargos, not people, so public copy must say «cargo».
 
 **A suggestion never substitutes for a published status.** Machine rows awaiting
 a human carry `requiresHumanApproval: true`, and the curated schemas reject that

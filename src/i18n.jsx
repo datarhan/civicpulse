@@ -2146,7 +2146,7 @@ export const CATALOGUE = {
     'metodologia.enBreve.fuentes.ver': 'Ver todas las fuentes →',
     'metodologia.enBreve.maquina.pregunta': '¿Lo publica una máquina?',
     'metodologia.enBreve.maquina.frase':
-      'A veces, y con reglas. Lo que nombra a una persona lleva siempre la firma de alguien del equipo. Por regla general, una máquina sólo publica sola lo que retira algo ya publicado, o lo nuevo que no nombra a nadie y tiene su acierto medido; los procesos que aún no la cumplen se dicen en la regla.',
+      'A veces, y con reglas. Un hallazgo o una promesa que afirme algo de un cargo concreto lleva siempre la firma de alguien del equipo. Por regla general, una máquina sólo publica sola lo que retira algo ya publicado, o lo nuevo que no nombra a ningún cargo y tiene su acierto medido; los procesos que aún no la cumplen se dicen en la regla.',
     'metodologia.enBreve.comprobar.pregunta': '¿Cómo compruebo lo que decís?',
     'metodologia.enBreve.comprobar.frase':
       'Cada afirmación enlaza el documento del que sale, para que lo compruebes tú. Una promesa se atribuye con las palabras literales del partido, nunca con el titular de una noticia.',
@@ -2203,7 +2203,7 @@ export const CATALOGUE = {
     'metodologia.frase.principios':
       'Somos neutrales entre partidos, cada promesa se atribuye con una cita literal y su fuente, y cualquiera puede pedir una corrección.',
     'metodologia.frase.politica-automatizacion':
-      'Como regla, una máquina puede retirar o suavizar lo publicado, pero no publicar algo nuevo sin una precisión medida ni nombrar a nadie sin firma humana; las excepciones se dicen abajo.',
+      'Como regla, una máquina puede retirar o suavizar lo publicado, pero no publicar algo nuevo sin una precisión medida ni nombrar a un cargo sin firma humana; las excepciones se dicen abajo.',
     'metodologia.frase.fuentes-auditadas':
       'Aquí están las fuentes públicas con las que se cotejan las afirmaciones, con lo que aporta cada una y sus límites.',
     'metodologia.frase.gasto-por-concejalia':
@@ -2233,9 +2233,9 @@ export const CATALOGUE = {
     'metodologia.frase.estados':
       'Cada estado exige algo distinto para publicarse, y ni documentada ni en verificación afirman un incumplimiento.',
     'metodologia.frase.limites-motor':
-      'El motor no auto-publica veredictos fuertes, no asigna incumplimientos, no inventa citas, no puntúa partidos y se detiene en periodo electoral.',
+      'El motor no auto-publica veredictos fuertes ni lo que nombra a un cargo, no asigna incumplimientos, no inventa citas, no puntúa partidos y se detiene en periodo electoral.',
     'metodologia.frase.auto-curacion-promesas':
-      'Sin revisión sólo se publica lo que supera un umbral de confianza y queda anclado a su fuente, rotulado como automático; «parcial», «cumplida» y los incumplimientos nunca se publican solos.',
+      'Sin revisión sólo se publica lo que supera un umbral de confianza, queda anclado a su fuente y no nombra a ningún cargo, rotulado como automático; «parcial», «cumplida» y los incumplimientos nunca se publican solos.',
     'metodologia.frase.camino-de-una-queja':
       'Publicar una queja no la lleva al ayuntamiento: llega cuando entra en su registro, y el plazo legal para responder cuenta desde esa fecha.',
     'metodologia.frase.relacion-quejas-contratos':
@@ -5118,7 +5118,7 @@ export const CATALOGUE = {
     'metodologia.enBreve.fuentes.ver': 'Vore totes les fonts →',
     'metodologia.enBreve.maquina.pregunta': 'Ho publica una màquina?',
     'metodologia.enBreve.maquina.frase':
-      "A vegades, i amb regles. El que nomena una persona porta sempre la firma d'algú de l'equip. Per regla general, una màquina només publica sola el que retira alguna cosa ja publicada, o el que és nou, no nomena ningú i té l'encert mesurat; els processos que encara no la complixen es diuen en la regla.",
+      "A vegades, i amb regles. Una troballa o una promesa que afirme alguna cosa d'un càrrec concret porta sempre la firma d'algú de l'equip. Per regla general, una màquina només publica sola el que retira alguna cosa ja publicada, o el que és nou, no nomena cap càrrec i té l'encert mesurat; els processos que encara no la complixen es diuen en la regla.",
     'metodologia.enBreve.comprobar.pregunta': 'Com comprove el que dieu?',
     'metodologia.enBreve.comprobar.frase':
       "Cada afirmació enllaça el document d'on ix, perquè ho comproves tu. Una promesa s'atribuïx amb les paraules literals del partit, mai amb el titular d'una notícia.",
@@ -5175,7 +5175,7 @@ export const CATALOGUE = {
     'metodologia.frase.principios':
       "Som neutrals entre partits, cada promesa s'atribuïx amb una cita literal i la seua font, i qualsevol pot demanar una correcció.",
     'metodologia.frase.politica-automatizacion':
-      "Com a regla, una màquina pot retirar o suavitzar el que s'ha publicat, però no publicar una cosa nova sense una precisió mesurada ni nomenar ningú sense firma humana; les excepcions es diuen davall.",
+      "Com a regla, una màquina pot retirar o suavitzar el que s'ha publicat, però no publicar una cosa nova sense una precisió mesurada ni nomenar un càrrec sense firma humana; les excepcions es diuen davall.",
     'metodologia.frase.fuentes-auditadas':
       "Ací estan les fonts públiques amb què s'acaren les afirmacions, amb el que aporta cadascuna i els seus límits.",
     'metodologia.frase.gasto-por-concejalia':
@@ -5205,9 +5205,9 @@ export const CATALOGUE = {
     'metodologia.frase.estados':
       'Cada estat exigix una cosa diferent per a publicar-se, i ni documentada ni en verificació afirmen un incompliment.',
     'metodologia.frase.limites-motor':
-      'El motor no autopublica veredictes forts, no assigna incompliments, no inventa cites, no puntua partits i es deté en període electoral.',
+      'El motor no autopublica veredictes forts ni el que nomena un càrrec, no assigna incompliments, no inventa cites, no puntua partits i es deté en període electoral.',
     'metodologia.frase.auto-curacion-promesas':
-      'Sense revisió només es publica el que supera un llindar de confiança i queda ancorat a la seua font, retolat com a automàtic; «parcial», «complida» i els incompliments mai no es publiquen sols.',
+      'Sense revisió només es publica el que supera un llindar de confiança, queda ancorat a la font i no nomena cap càrrec, retolat com a automàtic; «parcial», «complida» i els incompliments mai es publiquen sols.',
     'metodologia.frase.camino-de-una-queja':
       "Publicar una queixa no la porta a l'ajuntament: hi arriba quan entra en el seu registre, i el termini legal per a respondre compta des d'eixa data.",
     'metodologia.frase.relacion-quejas-contratos':

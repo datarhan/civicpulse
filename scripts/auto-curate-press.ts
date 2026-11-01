@@ -11,10 +11,13 @@
  *     no command publishes them afterwards.
  *   - LOREG freeze: when promises.json.frozenUntil > today, exit 0
  *     with no writes (same hard-stop as the promises tracker).
+ *   - a finding that names a cargo is never auto-published. With no roster
+ *     nothing is: «unknown» cannot read as «names nobody».
  *
  * Reads:
  *   public/data/press-claims-verified.json
  *   public/data/promises.json (for frozenUntil)
+ *   public/data/officials.json (for what names a cargo)
  *   public/data/press-findings.json (optional, merges with existing)
  *
  * Writes:
@@ -37,9 +40,11 @@ import {
   composeFinding,
   descartarLotesYaPublicados,
   renderQuarantineMarkdown,
+  retenerPorNombres,
   type VerifiedPressItem,
 } from '../src/scraper/press-auto-curate'
 import { validatePressFindingsSnapshot, type PressFinding } from '../src/scraper/press-finding'
+import type { OfficialsDoc } from '../src/scraper/corporation-seats'
 import { rechazarOpcionesDesconocidas } from '../src/scraper/opciones-cli'
 
 const __filename = fileURLToPath(import.meta.url)
@@ -50,6 +55,7 @@ const PATHS = {
   verified: join(PROJECT_ROOT, 'public/data/press-claims-verified.json'),
   press: join(PROJECT_ROOT, 'public/data/press.json'),
   promises: join(PROJECT_ROOT, 'public/data/promises.json'),
+  officials: join(PROJECT_ROOT, 'public/data/officials.json'),
   findings: join(PROJECT_ROOT, 'public/data/press-findings.json'),
   queue: join(PROJECT_ROOT, 'editorial/press-auto-curation-queue.md'),
 }
@@ -136,12 +142,19 @@ async function main() {
   const composed: PressFinding[] = result.eligible.map((b) =>
     composeFinding({ bundle: b, publishedAt: today }),
   )
+  const officials = (await readJson(PATHS.officials)) as OfficialsDoc | null
+  if (!officials) {
+    console.error(
+      `[auto-curate-press] ${PATHS.officials} missing or unreadable — nothing auto-publishes this run.`,
+    )
+  }
+  const { publicables, retenidos } = retenerPorNombres(composed, officials)
   // El mismo lote, con las mismas afirmaciones, ya está publicado con la fecha de
   // otro día: no se vuelve a añadir (ver `descartarLotesYaPublicados`).
-  const newFindings = descartarLotesYaPublicados(composed, existingItems)
+  const newFindings = descartarLotesYaPublicados(publicables, existingItems)
 
   console.log(
-    `[auto-curate-press] eligible=${result.eligible.length} already-published=${composed.length - newFindings.length} new=${newFindings.length} quarantine=${result.quarantine.length} skipped=${result.skipped.length}`,
+    `[auto-curate-press] eligible=${result.eligible.length} held-for-naming=${retenidos.length} already-published=${publicables.length - newFindings.length} new=${newFindings.length} quarantine=${result.quarantine.length} skipped=${result.skipped.length}`,
   )
   if (dryRun) {
     console.log('[auto-curate-press] --dry-run: no files written.')
@@ -166,11 +179,11 @@ async function main() {
   validatePressFindingsSnapshot(JSON.stringify(snap))
 
   await write(PATHS.findings, JSON.stringify(snap, null, 2) + '\n')
-  await write(PATHS.queue, renderQuarantineMarkdown(result.quarantine))
+  await write(PATHS.queue, renderQuarantineMarkdown(result.quarantine, retenidos))
 
   console.log(
     `[auto-curate-press] wrote ${newFindings.length} new findings to ${PATHS.findings};` +
-      ` ${result.quarantine.length} bundles in ${PATHS.queue}`,
+      ` ${result.quarantine.length + retenidos.length} bundles in ${PATHS.queue}`,
   )
 }
 

@@ -93,7 +93,7 @@ export function oneSeatBlocsOf(doc: OfficialsDoc | null | undefined): string[] |
 
 /** The parts of a finding, or a draft of one, that can attribute or name a group. */
 export interface AttributableLike {
-  quotes?: ReadonlyArray<{ speakerGroup?: string | null }>
+  quotes?: ReadonlyArray<{ speakerGroup?: string | null; text?: string }>
   title?: string
   summary?: string
 }

@@ -368,11 +368,13 @@ export default function AvisoLegal() {
           </a>
           . El proceso no redacta hallazgos notables ni críticos, no atribuye nada a una persona con
           nombre, no publica solo uno cuya cita se atribuya a un grupo municipal de un solo concejal
-          —que es nombrar a ese concejal— o cuyo texto lo nombre, y se detiene durante el periodo
-          electoral.
+          —que es nombrar a ese concejal—, ni uno cuyo texto o cuyas citas lo nombren o nombren a
+          otro cargo, y se detiene durante el periodo electoral.
         </p>
         {/* /metodologia#politica-automatizacion lista estos procesos; hasta el 01-11-2026
-            decía «Dos» y este documento no decía ninguno. */}
+            decía «Dos» y este documento no decía ninguno. Las dos últimas frases son de ese
+            mismo día: las dos curadoras publicaban sin comprobar a quién nombraban
+            (src/scraper/cargos-nombrados.ts). */}
         <p>
           <strong>Lo que todavía publica sin esa medición.</strong> La auto-curación de promesas no
           es el único proceso anterior a la política de automatización que publica sin pasar por
@@ -383,7 +385,10 @@ export default function AvisoLegal() {
           <a href="/metodologia#politica-automatizacion" style={{ color: 'var(--civic)' }}>
             /metodologia
           </a>
-          ).
+          ). La auto-curación de promesas y el laboratorio de prensa sí comprueban, antes de
+          publicar, que lo que sale solo no nombre a un cargo por su apellido, por un oficio que
+          sólo tiene una persona o por un grupo de un solo concejal. No comprueban los nombres de
+          otras personas.
         </p>
       </Card>
 
