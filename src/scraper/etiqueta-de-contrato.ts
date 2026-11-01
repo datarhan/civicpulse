@@ -28,9 +28,12 @@
 /** Caracteres de la etiqueta, sin contar la elipsis. */
 export const ETIQUETA_MAXIMA = 100
 
+/** Un código CPV delante del texto: «71241000-Estudio de viabilidad…». */
+const CODIGO_CPV = /^\d{8}(?:-\d)?\s*-\s*/
+
 /** La fórmula de delante, en el orden en que se prueba. */
 const FORMULAS: RegExp[] = [
-  /^\d{8}(?:-\d)?\s*-\s*/,
+  CODIGO_CPV,
   /^el\s+objeto\s+del\s+(?:presente\s+)?contrato\s+(?:es|son|consiste\s+en)\s+/i,
   /^objeto\s+(?:de\s+la\s+)?contrataci[oó]n\s+(?:es|son)\s+/i,
   /^(?:acuerdo\s+(?:de\s+)?)?inicio\s*,?\s+(?:aprobaci[oó]n\s+del\s+expediente\s+)?(?:(?:de|del)\s+)?(?:expediente\s+)?y\s+adjudicaci[oó]n\s+(?:directa\s+)?(?:(?:de|del)\s+)?(?:contrato\s+)?(?:para\s+)?/i,
@@ -77,8 +80,12 @@ const plano = (s: string) => s.replace(/\s+/g, ' ').trim()
 const sinPuntuacionFinal = (s: string) => s.replace(/[\s.,;:(]+$/, '')
 
 /** Para comparar: sin mayúsculas, sin código CPV, sin el punto final. */
-const comparable = (s: string) =>
-  sinPuntuacionFinal(plano(s).replace(/^\d{8}(?:-\d)?\s*-\s*/, '')).toLowerCase()
+const comparable = (s: string) => sinPuntuacionFinal(plano(s).replace(CODIGO_CPV, '')).toLowerCase()
+
+/** true si el título es una etiqueta CPV y no el objeto del contrato. */
+export function esTituloCpv(titulo: string | null | undefined): boolean {
+  return CODIGO_CPV.test(plano(titulo ?? ''))
+}
 
 export interface EtiquetaDeContrato {
   etiqueta: string

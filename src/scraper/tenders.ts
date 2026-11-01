@@ -1,6 +1,7 @@
 import { parse } from 'csv-parse/sync'
 import { isScoreArtifactAmount } from '../lib/tenders'
 import { CANCELLED_STATUSES, procurementStatusKind } from '../lib/contract-status.js'
+import { esTituloCpv } from './etiqueta-de-contrato'
 import { fnv32 } from './hash'
 
 // ---------------------------------------------------------------------------
@@ -491,6 +492,61 @@ export function sinEstadoImposible(contracts: Contract[]): Contract[] {
     if (c.permalink && firmados.has(c.permalink)) return c
     return { ...c, status: 'unknown', sourceStatus: c.status }
   })
+}
+
+/** Una fila retirada por repetir una adjudicación, y la que queda en su lugar. */
+export interface AdjudicacionRepetida {
+  id: string
+  queda: string
+}
+
+/**
+ * Una adjudicación que Gobierto publica en dos filas se cuenta una.
+ *
+ * Son dos filas con el mismo enlace, lote, fecha, importe sin IVA, adjudicataria
+ * y estado, y distinta `contract_id`. Cotejadas en la Plataforma el 2026-11-01 las
+ * siete que había: cada expediente tiene un solo anuncio de adjudicación y ningún
+ * lote, de modo que sumaban 122.969,58 € sin IVA que nadie adjudicó, también en el
+ * total de dos personas físicas. En cinco, una fila lleva el objeto oficial y la
+ * otra una etiqueta CPV, y queda la del objeto; entre iguales, el id menor, para
+ * que el resultado no dependa del orden de la fuente.
+ *
+ * La regla se queda corta antes que fundir: exige todos esos campos y un estado
+ * comprometido, porque un lote de igual precio no es una repetición (12/2018,
+ * 182/2025) y una fila desierta no adjudica nada. 153/2025 BSDA repite importe con
+ * el lote 3 y con el lote en blanco: es dudoso, y como el lote difiere, no se funde.
+ *
+ * El id de la que queda no cambia, porque se calcula antes con todas las filas, y
+ * la pasada publica lo retirado en `contractCorrections.adjudicacionesRepetidas`.
+ */
+export function sinAdjudicacionesRepetidas(contracts: Contract[]): {
+  contratos: Contract[]
+  repetidas: AdjudicacionRepetida[]
+} {
+  const grupos = new Map<string, Contract[]>()
+  for (const c of contracts) {
+    if (!c.permalink || !c.awardDate || !c.assignee || c.finalAmountNoTaxes <= 0) continue
+    if (procurementStatusKind(c.status) !== 'committed') continue
+    const clave = JSON.stringify([
+      c.permalink,
+      c.batchNumber,
+      c.awardDate,
+      c.finalAmountNoTaxes,
+      c.assignee,
+      c.status,
+    ])
+    grupos.set(clave, [...(grupos.get(clave) ?? []), c])
+  }
+  const repetidas: AdjudicacionRepetida[] = []
+  for (const grupo of grupos.values()) {
+    const [queda, ...sobran] = [...grupo].sort(
+      (a, b) =>
+        Number(esTituloCpv(a.title)) - Number(esTituloCpv(b.title)) || a.id.localeCompare(b.id),
+    )
+    for (const c of sobran) repetidas.push({ id: c.id, queda: queda.id })
+  }
+  const retiradas = new Set(repetidas.map((r) => r.id))
+  return { contratos: contracts.filter((c) => !retiradas.has(c.id)), repetidas }
 }
 
 // ---------------------------------------------------------------------------
