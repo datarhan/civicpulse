@@ -8,8 +8,9 @@
  * navegador: medido con una trampa en cada uno, sobre la suite entera. Eso eran
  * de 300 a 590 s de trabajador por pasada, más que todo el fichero más lento.
  *
- * Quien sí necesita DOM en un `.ts`/`.js` lo declara en su primera línea con
- * `// @vitest-environment happy-dom`, como `tests/entorno-declarado.test.ts`.
+ * Quien sí necesita DOM en un `.ts`/`.js` lo declara en su primera línea, como
+ * `tests/entorno-declarado.test.ts`. Esa línea no se copia aquí: vitest la busca
+ * en todo el fichero, también en los comentarios, y esta prueba correría con DOM.
  * El reparto vive en `vitest.config.ts`; esta prueba y sus dos hermanas fijan lo
  * que un lector de esa configuración no puede ver: que se aplica de verdad.
  */

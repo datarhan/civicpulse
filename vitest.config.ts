@@ -9,11 +9,30 @@ export default defineConfig({
   plugins: [react()],
   define: buildDefines(),
   test: {
-    environment: 'happy-dom',
-    include: ['tests/**/*.test.{js,ts,mjs,jsx,tsx}', 'src/**/*.test.{js,ts,jsx,tsx}'],
     globals: false,
     // no-network first: its hooks must register before anything else so the
     // guard is the baseline `fetch` every test starts from.
     setupFiles: ['./tests/setup/no-network.ts', './tests/setup/setup.ts'],
+    // Cada fichero paga sólo el entorno que usa: un `.ts` o un `.js` que necesite
+    // DOM lo declara con `// @vitest-environment happy-dom` en su primera línea.
+    // Por qué, y cuánto: tests/entorno-por-extension.test.ts.
+    projects: [
+      {
+        extends: true,
+        test: {
+          name: 'dom',
+          environment: 'happy-dom',
+          include: ['tests/**/*.test.{jsx,tsx}', 'src/**/*.test.{jsx,tsx}'],
+        },
+      },
+      {
+        extends: true,
+        test: {
+          name: 'node',
+          environment: 'node',
+          include: ['tests/**/*.test.{js,ts,mjs}', 'src/**/*.test.{js,ts}'],
+        },
+      },
+    ],
   },
 })

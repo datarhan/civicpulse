@@ -1,3 +1,4 @@
+// @vitest-environment happy-dom
 import { describe, it, expect } from 'vitest'
 import { renderHook, waitFor } from '@testing-library/react'
 import { installFetchMock } from './setup/mockFetch'
