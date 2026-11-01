@@ -1,0 +1,31 @@
+{
+  "id": "4889055#7",
+  "title": "Contrato para el servicio de redacción de los estudios previos arqueológicos y proyecto de derribo de vivienda sita en plaza de la Torre nº 11 de Riba-roja de Turia, contrato derivado del SDA de servicios de arquitectura e ingeniería, consultoría y asistencia técnica a las diferentes áreas municipales.",
+  "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=KfeVpx2w0IPECtSnloz%2BZQ%3D%3D",
+  "status": "awarded",
+  "contractType": "services",
+  "processType": "restricted",
+  "minorContract": false,
+  "startDate": null,
+  "endDate": "2026-12-19",
+  "awardDate": "2026-10-20",
+  "formalizedDate": null,
+  "duration": 60,
+  "batchNumber": 0,
+  "assignee": "TIRSO JOSÉ AVILA AGUILERA",
+  "contractor": "Ayuntamiento de Riba-roja de Túria",
+  "contractorId": "58096",
+  "contractorType": "Ayuntamiento",
+  "categoryId": "27",
+  "categoryTitle": "architecture",
+  "cpvs": [
+    "71200000",
+    "71241000"
+  ],
+  "initialAmount": 19690.93,
+  "initialAmountNoTaxes": 16273.5,
+  "finalAmount": 18131.19,
+  "finalAmountNoTaxes": 14984.46,
+  "estimatedValue": 0,
+  "numberOfProposals": 3
+}
