@@ -53,6 +53,17 @@ export const NAV = [
     group: 'dinero',
     descKey: 'nav.desc.presup',
   },
+  // Separada del presupuesto el 1-11-2026: el presupuesto es de un año y esto se
+  // acumula a lo largo de varios, y quien buscaba «contratos» no tenía qué pulsar.
+  {
+    to: '/contratos',
+    id: 'contratos',
+    labelKey: 'nav.contratos',
+    label: 'Contratos',
+    icon: Ic.list ?? Ic.coin,
+    group: 'dinero',
+    descKey: 'nav.desc.contratos',
+  },
   // Coste unitario por servicio frente a municipios comparables. Va detrás de
   // /presupuesto porque es la otra mitad de la misma pregunta: qué se gasta, y
   // qué se obtiene. Oculto en producción salvo VITE_ENABLE_EFICIENCIA=true.

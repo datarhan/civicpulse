@@ -258,7 +258,7 @@ export function EnBrevePortada() {
     <BarrioPicker
       cobertura={r.barrio}
       zonas={zonas}
-      ruta="/presupuesto"
+      ruta="/contratos"
       puente={puente}
       figura={!r.barrio.menosDeUno ? <FiguraBarrio n={r.barrio.deCada100} /> : null}
     />

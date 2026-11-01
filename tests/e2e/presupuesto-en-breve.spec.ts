@@ -69,7 +69,7 @@ test.describe('/presupuesto · En breve', () => {
     // A la lista del barrio, no al rótulo de la sección. `toBeInViewport()` sobre
     // la sección entera pasaba con sólo su rótulo en pantalla, y a 375 px la lista
     // quedaba fuera (landing.spec.ts lo mide a ese ancho).
-    await expect(page).toHaveURL(new RegExp(`\\?barrio=${slug}#mapa-gasto-barrio$`))
+    await expect(page).toHaveURL(new RegExp(`/contratos\\?barrio=${slug}#mapa-gasto-barrio$`))
     const lista = page.locator('#mapa-gasto-barrio')
     await expect(lista.getByText('← todas las zonas')).toBeInViewport()
     await expect

@@ -328,7 +328,7 @@ export function AlcaldeBox() {
             )}
             {tendersAwarded && (
               <a
-                href="/presupuesto"
+                href="/contratos"
                 style={{ color: PALETTE.ink80, textDecoration: 'none' }}
                 // NOT "durante el mandato": the figure is every award in the
                 // registry. It also sits beside an ANNUAL budget figure, so
@@ -383,7 +383,7 @@ export function AlcaldeBox() {
             )}
             {bdnsGranted && (
               <a
-                href="/presupuesto"
+                href="/contratos"
                 style={{ color: PALETTE.ink80, textDecoration: 'none' }}
                 title={t('landing.alcalde.subvenciones.title')}
               >

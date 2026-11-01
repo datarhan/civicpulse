@@ -310,8 +310,8 @@ export default function AvisoLegal() {
           </li>
           <li>
             El pleno principal del sitio, incluidas las páginas <code>/presupuesto</code>,{' '}
-            <code>/cargos</code> y <code>/datos</code>, sigue operativo con datos objetivos de
-            fuente pública.
+            <code>/contratos</code>, <code>/cargos</code> y <code>/datos</code>, sigue operativo con
+            datos objetivos de fuente pública.
           </li>
           <li>
             No se publica ninguna opinión del editor que nombre a una persona, y las ya publicadas

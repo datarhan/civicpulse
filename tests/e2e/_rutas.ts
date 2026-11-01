@@ -109,6 +109,7 @@ export const STRICT_ROUTES = [
   '/cargos/pedro-tortajada-raga',
   '/cargos/soraya-trejo-delgado',
   '/presupuesto',
+  '/contratos',
   '/plenos',
   `/plenos/${FIRST_PLENO_ID}`,
   '/promesas',

@@ -25,6 +25,7 @@ const QuejaDetail = lazy(() => import('./pages/QuejaDetail'))
 const Cargos = lazy(() => import('./pages/Cargos'))
 const CargoDetalle = lazy(() => import('./pages/CargoDetalle'))
 const Presupuesto = lazy(() => import('./pages/Presupuesto'))
+const Contratos = lazy(() => import('./pages/Contratos'))
 const Eficiencia = EFICIENCIA_ENABLED ? lazy(() => import('./pages/Eficiencia')) : null
 const Gestion = EFICIENCIA_ENABLED ? lazy(() => import('./pages/Gestion')) : null
 const ServicioDetalle = EFICIENCIA_ENABLED ? lazy(() => import('./pages/ServicioDetalle')) : null
@@ -157,6 +158,7 @@ function InnerShell({ onOpenCmdK, tweaksOpen, onToggleTweaks }) {
                 <Route path="/cargos" element={<Cargos />} />
                 <Route path="/cargos/:slug" element={<CargoDetalle />} />
                 <Route path="/presupuesto" element={<Presupuesto />} />
+                <Route path="/contratos" element={<Contratos />} />
                 {Eficiencia && <Route path="/eficiencia" element={<Eficiencia />} />}
                 {ServicioDetalle && <Route path="/eficiencia/:id" element={<ServicioDetalle />} />}
                 {Gestion && <Route path="/gestion" element={<Gestion />} />}

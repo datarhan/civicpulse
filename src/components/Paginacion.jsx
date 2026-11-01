@@ -6,7 +6,7 @@ import { useT } from '../i18n'
 /**
  * Los controles de página, y el estado que los acompaña.
  *
- * Dos listados de /presupuesto paginan —los contratos y las obras— y sin esto
+ * Dos listados de /contratos paginan —los contratos y las obras— y sin esto
  * cada uno se traería su propia copia del acotado, del reinicio al filtrar y de
  * los botones. La aritmética vive en `lib/paginacion`, probada aparte; aquí sólo
  * queda el estado y lo que se pinta.

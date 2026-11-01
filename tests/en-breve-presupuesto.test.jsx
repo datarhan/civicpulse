@@ -321,7 +321,7 @@ describe('el selector de barrio', () => {
     fireEvent.change(screen.getByLabelText('Elige tu barrio'), { target: { value: slug } })
     expect(ubicacion.textContent).toBe('/presupuesto')
     fireEvent.click(boton)
-    expect(ubicacion.textContent).toBe(`/presupuesto?barrio=${slug}#mapa-gasto-barrio`)
+    expect(ubicacion.textContent).toBe(`/contratos?barrio=${slug}#mapa-gasto-barrio`)
   })
 
   it('«Mi barrio no aparece» se contesta aquí, sin inventar un punto', async () => {

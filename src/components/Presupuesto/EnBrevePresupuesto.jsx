@@ -384,6 +384,7 @@ export default function EnBrevePresupuesto() {
     <BarrioPicker
       cobertura={r.barrio}
       zonas={zonas}
+      ruta="/contratos"
       figura={!r.barrio.menosDeUno ? <FiguraBarrio n={r.barrio.deCada100} /> : null}
     />
   )

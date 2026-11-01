@@ -20,6 +20,7 @@ const RUTAS = [
   `/plenos/${FIRST_PLENO_ID}`,
   '/quejas',
   '/presupuesto',
+  '/contratos',
   '/empleo',
 ]
 

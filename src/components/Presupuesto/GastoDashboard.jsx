@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useState } from 'react'
-import { useSearchParams } from 'react-router-dom'
+import { useLocation, useNavigate, useSearchParams } from 'react-router-dom'
 import { Card, SectionHead, Pill } from '../Primitives'
 import { contractTypeTotals, obrasSharePct } from '../../lib/tender-geo'
 import { isCommittedContract, isConcession, importeAdjudicado } from '../../lib/contract-status'
@@ -24,6 +24,12 @@ const TABS = [
   { id: 'contratistas', icono: '🏗️' },
   { id: 'tipos', icono: '📊' },
 ]
+
+/**
+ * El ancla de «¿Quién recibe el dinero?». La tarjeta «¿A quién?» de «En breve»
+ * tiene que aterrizar en la lista que la demuestra, y esa lista es una pestaña.
+ */
+const ANCLA_QUIEN_RECIBE = 'quien-recibe'
 
 export default function GastoDashboard() {
   const t = useT()
@@ -114,7 +120,19 @@ export default function GastoDashboard() {
     )
   const [sliderTime, setSliderTime] = useState(0)
   const [danaOnly, setDanaOnly] = useState(false)
-  const [tab, setTab] = useState('explorar')
+  const { hash } = useLocation()
+  const navigate = useNavigate()
+  const pideQuienRecibe = hash === `#${ANCLA_QUIEN_RECIBE}`
+  const [tab, setTab] = useState(pideQuienRecibe ? 'contratistas' : 'explorar')
+  useEffect(() => {
+    if (pideQuienRecibe) setTab('contratistas')
+  }, [pideQuienRecibe])
+  // Elegir otra pestaña suelta el ancla: si se quedara en la URL, volver a pulsar
+  // el mismo enlace no cambiaría nada y la lista no se abriría.
+  const eligePestana = (id) => {
+    setTab(id)
+    if (pideQuienRecibe) navigate({ hash: '' }, { replace: true, preventScrollReset: true })
+  }
 
   // Pin the slider to the latest date once the snapshot loads.
   useEffect(() => {
@@ -302,7 +320,7 @@ export default function GastoDashboard() {
         </div>
       </div>
 
-      <div style={{ marginTop: 16 }}>
+      <div id={ANCLA_QUIEN_RECIBE} style={{ marginTop: 16, scrollMarginTop: 24 }}>
         <div
           role="tablist"
           aria-label={t('presupuesto.gasto.pestanas.aria')}
@@ -319,7 +337,7 @@ export default function GastoDashboard() {
               id={`tab-${pestana.id}`}
               role="tab"
               aria-selected={tab === pestana.id}
-              onClick={() => setTab(pestana.id)}
+              onClick={() => eligePestana(pestana.id)}
               style={{
                 all: 'unset',
                 cursor: 'pointer',
@@ -339,7 +357,9 @@ export default function GastoDashboard() {
           {tab === 'explorar' && (
             <ContractsExplorer contracts={contracts} tenders={tenders?.tenders} snapshot={tg} />
           )}
-          {tab === 'contratistas' && <ContractorLeaderboard contracts={contracts} />}
+          {tab === 'contratistas' && (
+            <ContractorLeaderboard contracts={contracts} tenders={tenders?.tenders} />
+          )}
           {tab === 'tipos' && <SpendingTypeBreakdown contracts={contracts} snapshot={tg} />}
         </div>
       </div>

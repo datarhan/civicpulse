@@ -41,12 +41,11 @@ export function TedNotices() {
   if (items.length === 0) return null
   const valued = items.filter((i) => i.totalValueEur)
   const total = valued.reduce((s, i) => s + i.totalValueEur, 0)
-  // This block sits on a page titled «Presupuesto municipal <año>», directly
-  // above «Gastos <año> · clasificación económica». Without its own period the
-  // euro total reads as one year's worth of EU-threshold contracting against a
-  // one-year budget — several times larger. It is not: these notices span
-  // nine exercises. Nor does every notice carry a figure, so the count behind
-  // the euros is stated rather than left to be assumed as all of them.
+  // Without its own period the euro total reads as one year's worth of
+  // EU-threshold contracting against a one-year budget — several times larger.
+  // It is not: these notices span nine exercises. Nor does every notice carry a
+  // figure, so the count behind the euros is stated rather than left to be
+  // assumed as all of them.
   const span = yearSpan(items.map((i) => i.publicationDate))
   // La mayor adjudicación, y qué parte del total se lleva.
   //

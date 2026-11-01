@@ -7,9 +7,9 @@ import {
   importeAdjudicado,
   isCommittedContract,
 } from '../src/lib/contract-status'
-import { resolverDeEmpresas, topContractors } from '../src/lib/tender-geo'
+import { MAYORES, resolverDeEmpresas, topContractors } from '../src/lib/tender-geo'
 import { resumenMenores } from '../src/scraper/contratos-menores'
-import { enBreveContratos, MAYORES } from '../src/scraper/en-breve-contratos'
+import { enBreveContratos } from '../src/scraper/en-breve-contratos'
 import { enBrevePresupuesto } from '../src/scraper/en-breve-presupuesto'
 import { PROCESOS_SIN_PUBLICIDAD } from '../src/scraper/indicadores-friccion'
 
@@ -27,7 +27,7 @@ const R = enBreveContratos({ tenders: TENDERS, entities: ENTIDADES, tenderGeo: G
 
 const COMPROMETIDOS = TENDERS.contracts.filter(isCommittedContract)
 const indicador = (id) => {
-  const i = INDICADORES.indicadores.find((x) => x.id === id)
+  const i = INDICADORES.municipales.find((x) => x.id === id)
   expect(i, `no hay indicador ${id}`).toBeTruthy()
   return i
 }
@@ -74,6 +74,22 @@ describe('las cifras salen de las mismas funciones que el detalle', () => {
 
   it('los menores de la tarjeta son los de la sección a la que enlaza', () => {
     expect(R.sinConcurso.menores).toBe(resumenMenores(TENDERS.contracts).n)
+  })
+
+  it('las filas de la sección suman la cifra de la tarjeta', () => {
+    const s = R.sinConcurso
+    expect(s.importeMenores + s.importeNegociados).toBeCloseTo(s.importe, 2)
+    expect(s.importeMenores).toBeCloseTo(resumenMenores(TENDERS.contracts).importeSinIva, 0)
+    expect(s.importeTotal).toBeCloseTo(R.cuanto.importe, 2)
+    expect(s.negociadosDana).toBeGreaterThan(0)
+    expect(s.negociadosDana).toBeLessThanOrEqual(s.negociados)
+    expect(s.importeNegociadosDana).toBeLessThanOrEqual(s.importeNegociados)
+  })
+
+  it('cuenta las ventas de parcelas, y sólo ésas: en un bar no consta quién paga', () => {
+    const ventas = COMPROMETIDOS.filter((c) => /^enajenaci[oó]n /i.test(c.title ?? ''))
+    expect(ventas.length, 'ninguna venta en lo publicado: no mide nada').toBeGreaterThan(0)
+    expect(R.cuanto.ventas).toBe(ventas.length)
   })
 
   it('el barrio es la misma cobertura que dice /presupuesto', () => {

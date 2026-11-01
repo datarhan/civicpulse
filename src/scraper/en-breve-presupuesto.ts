@@ -175,6 +175,23 @@ export function avanceDelAnio(fecha: string | null | undefined, year: number): n
   return Math.min(1, (dia - inicio + 86_400_000) / (fin - inicio))
 }
 
+/**
+ * «¿Qué se ha contratado en mi barrio?»: de cada 100 € adjudicados, cuántos van a
+ * contratos que nombran un barrio. La misma cobertura en /presupuesto y en
+ * /contratos, que abren los dos el mismo mapa.
+ *
+ * ZONAS, no lugares: la pregunta es «mi barrio», y `locatedAmount` suma los
+ * contratos con zona —el medidor de ese mismo mapa—. `situatedAmount` cuenta
+ * también puntos sin barrio (un colegio, una calle) y respondería otra cosa.
+ */
+export function coberturaDeBarrio(
+  g: { totalAmount?: number; locatedAmount?: number } | null | undefined,
+): BarrioEnBreve | null {
+  if (!g || !esNum(g.totalAmount) || g.totalAmount <= 0 || !esNum(g.locatedAmount)) return null
+  const pct = (g.locatedAmount / g.totalAmount) * 100
+  return { deCada100: Math.round(pct), menosDeUno: pct < 0.5 }
+}
+
 export function enBrevePresupuesto(e: EntradaEnBreve): EnBrevePresupuesto {
   const s = e.budget?.snapshot
   const exec = e.ejecucion?.latest ?? null
@@ -272,15 +289,7 @@ export function enBrevePresupuesto(e: EntradaEnBreve): EnBrevePresupuesto {
     }
   }
 
-  // ZONAS, no lugares: la pregunta es «mi barrio», y `locatedAmount` suma los
-  // contratos con zona —el medidor de este mismo mapa—. `situatedAmount` cuenta
-  // también puntos sin barrio (un colegio, una calle) y respondería otra cosa.
-  let barrio: BarrioEnBreve | null = null
-  const g = e.tenderGeo?.universe
-  if (g && esNum(g.totalAmount) && g.totalAmount > 0 && esNum(g.locatedAmount)) {
-    const pct = (g.locatedAmount / g.totalAmount) * 100
-    barrio = { deCada100: Math.round(pct), menosDeUno: pct < 0.5 }
-  }
+  const barrio = coberturaDeBarrio(e.tenderGeo?.universe)
 
   // La anomalía de CONPREL, de sus dos totales y de nada más (budget-contraste,
   // `desequilibrioDeConprel`): la misma cifra que el aviso de la sección.

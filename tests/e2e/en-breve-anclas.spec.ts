@@ -31,7 +31,7 @@ async function anclas(page: import('@playwright/test').Page, ruta: string) {
 
 // Las páginas que hoy llevan «En breve»: si alguna lo pierde, esta prueba lo
 // dice en vez de que la de abajo pase sin mirar nada.
-const CON_EN_BREVE = ['/presupuesto', '/eficiencia', '/metodologia']
+const CON_EN_BREVE = ['/presupuesto', '/contratos', '/eficiencia', '/metodologia']
 
 test('mide algo: las páginas con «En breve» tienen anclas que mirar', async ({ page }) => {
   for (const ruta of CON_EN_BREVE) {
