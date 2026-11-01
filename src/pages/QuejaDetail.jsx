@@ -524,6 +524,7 @@ export default function QuejaDetail() {
 
       <Card>
         <div
+          className="cp-queja-cabecera"
           style={{
             display: 'flex',
             justifyContent: 'space-between',

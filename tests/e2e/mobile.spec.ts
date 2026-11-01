@@ -1,6 +1,6 @@
 import { test, expect, type Page } from '@playwright/test'
 import { readFileSync } from 'node:fs'
-import { PRIMER_HALLAZGO } from './_rutas'
+import { PRIMER_HALLAZGO, QUEJA_CON_CONTRATOS } from './_rutas'
 import { REPORTAJE_SLUGS } from '../../src/reportajes'
 
 // A real pleno id with claims, read from the committed manifest (for /plenos/:id).
@@ -174,6 +174,11 @@ const ROUTES: Route[] = [
   // Not a data row but a data ANSWER: this sentence only renders once the
   // quejas snapshot has loaded and the id was absent from it.
   { path: '/quejas/q-no-existe', ready: /no aparece en el snapshot actual/ },
+  // Una queja de verdad: la de arriba es sólo la tarjeta de «no aparece», así que
+  // ninguna guarda de ancho miraba la cabecera con sus dos pastillas.
+  ...(QUEJA_CON_CONTRATOS
+    ? [{ path: `/quejas/${QUEJA_CON_CONTRATOS}`, ready: literal(QUEJA_CON_CONTRATOS) }]
+    : []),
   { path: '/cambios', ready: /Total: \d+ cambios · ventana de \d+ días/ },
   { path: '/laboratorio', ready: /Aquí probamos métodos/ },
   { path: '/laboratorio/prensa', ready: /TITULARES MONITORIZADOS \d+/ },
@@ -655,6 +660,41 @@ for (const { width, height, entera } of [
 
 /** El ancho de WCAG 1.4.10. */
 const ANCHO_REFLOW = 320
+
+// La pastilla dice «WhatsApp» entero (WCAG 2.5.3) y mide el doble que el «WA» de
+// antes. Ninguna guarda de desbordamiento lo veía en /cambios: un titular de 39 px,
+// una sílaba por renglón, cabe perfectamente en su caja.
+test.describe('Junto a la pastilla de WhatsApp, el texto conserva su línea', () => {
+  for (const width of [375, ANCHO_REFLOW]) {
+    test(`/cambios a ${width}: el titular ocupa toda la fila`, async ({ page }) => {
+      await page.setViewportSize({ width, height: 812 })
+      await page.goto('/cambios', { waitUntil: 'domcontentloaded' })
+      const fila = page.locator('[data-fila]').first()
+      await expect(fila.getByRole('button', { name: 'Compartir en WhatsApp' })).toBeVisible({
+        timeout: 8000,
+      })
+      const caja = await fila.boundingBox()
+      const titular = await fila.locator('> :nth-child(2)').boundingBox()
+      expect(Math.round(titular!.width), 'el titular comparte línea').toBe(Math.round(caja!.width))
+    })
+  }
+
+  test(`/quejas/:id a ${ANCHO_REFLOW}: el título ocupa toda la fila`, async ({ page }) => {
+    test.skip(!QUEJA_CON_CONTRATOS, 'el snapshot no trae ninguna queja con contratos')
+    await page.setViewportSize({ width: ANCHO_REFLOW, height: 812 })
+    await page.goto(`/quejas/${QUEJA_CON_CONTRATOS}`, { waitUntil: 'domcontentloaded' })
+    const titulo = page.getByRole('heading', { level: 1 })
+    await expect(titulo).toBeVisible({ timeout: 8000 })
+    const medida = await titulo.evaluate((h1) => {
+      const cabecera = h1.closest('.cp-queja-cabecera') as Element
+      return {
+        titulo: (h1.parentElement as Element).getBoundingClientRect().width,
+        cabecera: cabecera.getBoundingClientRect().width,
+      }
+    })
+    expect(Math.round(medida.titulo), 'el título comparte línea').toBe(Math.round(medida.cabecera))
+  })
+})
 
 test.describe('El documento a 320 px (WCAG 1.4.10)', () => {
   for (const route of ROUTES) {

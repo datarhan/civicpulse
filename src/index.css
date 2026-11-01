@@ -711,7 +711,16 @@ body.cp-kiosk .cp-live-container {
     min-width: 0 !important;
     flex: 1 !important;
   }
-  .cp-topbar-search-hint,
+  /* Recortada y no `display: none`: esta pista es el nombre accesible del botón,
+     que sin ella se quedaría mudo justo en el móvil. */
+  .cp-topbar-search-hint {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+  }
   .cp-topbar-search-kbd,
   .cp-topbar-github {
     display: none !important;
@@ -2317,6 +2326,14 @@ body.cp-kiosk .cp-live-container {
    etiqueta va encima: al valor le quedaban 83 px a 375, menos que una palabra
    como «IMPRESCINDIBLE».
 
+   `.cp-cambio-fila` (/cambios): fecha, titular y compartir. Partida, el titular
+   baja a su línea: al lado de la pastilla de WhatsApp le quedaban 94 px a 375 y
+   39 a 320, una sílaba por renglón.
+
+   `.cp-queja-cabecera` (/quejas/:id): el título y sus dos pastillas. Pueden
+   partirse: en una sola línea, a 320 apretaban el título y sacaban el documento
+   2 px de la pantalla.
+
    Las pistas nuevas son `1fr` y no `minmax(0, 1fr)` a propósito: si un
    contenido no cabe, que la pista crezca y la prueba lo vea, en vez de que se
    salga de su celda sin que nada lo mida. */
@@ -2331,6 +2348,12 @@ body.cp-kiosk .cp-live-container {
   grid-template-columns: min-content 1fr min-content min-content min-content;
   align-items: center;
   gap: 12px;
+}
+.cp-cambio-fila {
+  display: grid;
+  grid-template-columns: 90px 1fr min-content;
+  align-items: baseline;
+  gap: 10px;
 }
 .cp-empleo-campo {
   display: grid;
@@ -2357,6 +2380,17 @@ body.cp-kiosk .cp-live-container {
     grid-column: 1 / -1;
     grid-row: 3;
     justify-self: start;
+  }
+  .cp-cambio-fila {
+    grid-template-columns: 1fr min-content;
+    gap: 4px 10px;
+  }
+  .cp-cambio-fila > :nth-child(2) {
+    grid-column: 1 / -1;
+    grid-row: 2;
+  }
+  .cp-queja-cabecera {
+    flex-wrap: wrap;
   }
   .cp-empleo-campo {
     grid-template-columns: 1fr;
