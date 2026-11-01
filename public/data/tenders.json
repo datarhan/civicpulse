@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-01T12:06:10.246Z",
+  "generatedAt": "2026-11-01T14:21:20.456Z",
   "source": {
     "contracts": "https://ribalicita.ribarroja.es/api/v1/data/data.csv?sql=select%20*%20from%20contratos",
     "tenders": "https://ribalicita.ribarroja.es/api/v1/data/data.csv?sql=select%20*%20from%20licitaciones",
@@ -7,11 +7,11 @@
     "host": "https://ribalicita.ribarroja.es"
   },
   "stats": {
-    "totalContracts": 814,
+    "totalContracts": 807,
     "totalTenders": 431,
-    "awardedContracts": 717,
+    "awardedContracts": 710,
     "openTenders": 0,
-    "awardedTotalEuros": 126064104.20999993
+    "awardedTotalEuros": 125941134.62999995
   },
   "top": {
     "recentAwarded": [
@@ -410,6 +410,43 @@
     "sinEstadoPorImposible": [
       "1943883"
     ],
+    "adjudicacionesRepetidas": [
+      {
+        "id": "4889055#10198807",
+        "sourceRowId": "10198807",
+        "queda": "4889055#10201361"
+      },
+      {
+        "id": "1794430#9062945",
+        "sourceRowId": "9062945",
+        "queda": "1794430#8998505"
+      },
+      {
+        "id": "1794430#10198485",
+        "sourceRowId": "10198485",
+        "queda": "1794430#10201842"
+      },
+      {
+        "id": "4889055#10184487",
+        "sourceRowId": "10184487",
+        "queda": "4889055#10188881"
+      },
+      {
+        "id": "4889055#10278551",
+        "sourceRowId": "10278551",
+        "queda": "4889055#10281213"
+      },
+      {
+        "id": "4889055#10254997",
+        "sourceRowId": "10254997",
+        "queda": "4889055#10259025"
+      },
+      {
+        "id": "9023884",
+        "sourceRowId": "9023884",
+        "queda": "9012998"
+      }
+    ],
     "aplicadas": [
       {
         "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=wdnrdmoJINqmq21uxhbaVQ%3D%3D",
@@ -422,19 +459,19 @@
   "identidadDeFilas": {
     "ultima": {
       "medida": true,
-      "comparadoCon": "2026-11-01T10:58:06.296Z",
-      "conClaveAntes": 814,
-      "conClaveAhora": 814,
+      "comparadoCon": "2026-11-01T12:06:10.246Z",
+      "conClaveAntes": 807,
+      "conClaveAhora": 807,
       "sinClaveAntes": 0,
       "sinClaveAhora": 0,
       "repetidasAntes": 0,
       "repetidasAhora": 0,
-      "comparables": 814,
-      "conservan": 814,
+      "comparables": 807,
+      "conservan": 807,
       "cambian": 0,
       "multifila": {
-        "comparables": 275,
-        "conservan": 275,
+        "comparables": 269,
+        "conservan": 269,
         "retocadas": 0
       },
       "retocadas": 0,
@@ -450,7 +487,7 @@
         "idMovidos": [],
         "bajas": []
       },
-      "medidoEn": "2026-11-01T12:06:10.246Z"
+      "medidoEn": "2026-11-01T14:21:20.456Z"
     },
     "movimientos": []
   },
@@ -2868,38 +2905,6 @@
       "finalAmountNoTaxes": 30369,
       "estimatedValue": 156181.58,
       "numberOfProposals": 2
-    },
-    {
-      "id": "4889055#10198807",
-      "sourceRowId": "10198807",
-      "title": "71241000-Estudio de viabilidad, servicios de asesoramiento, análisis.",
-      "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=e18%2FPP3l84B%2FR5QFTlaM4A%3D%3D",
-      "status": "awarded",
-      "contractType": "services",
-      "processType": "restricted",
-      "minorContract": false,
-      "startDate": null,
-      "endDate": "2026-07-26",
-      "awardDate": "2026-06-02",
-      "formalizedDate": null,
-      "duration": 60,
-      "batchNumber": 0,
-      "assignee": "EQUALITY MOMENTUM SL",
-      "contractor": "Ayuntamiento de Riba-roja de Túria",
-      "contractorId": "58096",
-      "contractorType": "Ayuntamiento",
-      "categoryId": "27",
-      "categoryTitle": "architecture",
-      "cpvs": [
-        "71200000",
-        "71241000"
-      ],
-      "initialAmount": 8167.5,
-      "initialAmountNoTaxes": 6750,
-      "finalAmount": 7865,
-      "finalAmountNoTaxes": 6500,
-      "estimatedValue": 0,
-      "numberOfProposals": 1
     },
     {
       "id": "555312",
@@ -7533,38 +7538,6 @@
       "numberOfProposals": 1
     },
     {
-      "id": "4889055#10184487",
-      "sourceRowId": "10184487",
-      "title": "71241000-Estudio de viabilidad, servicios de asesoramiento, análisis.",
-      "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=LnenigZlKbecCF8sV%2BqtYA%3D%3D",
-      "status": "awarded",
-      "contractType": "services",
-      "processType": "restricted",
-      "minorContract": false,
-      "startDate": "2026-05-30",
-      "endDate": "2026-06-30",
-      "awardDate": "2026-05-29",
-      "formalizedDate": null,
-      "duration": 31,
-      "batchNumber": 0,
-      "assignee": "Juan Antonio Mas Rico",
-      "contractor": "Ayuntamiento de Riba-roja de Túria",
-      "contractorId": "58096",
-      "contractorType": "Ayuntamiento",
-      "categoryId": "27",
-      "categoryTitle": "architecture",
-      "cpvs": [
-        "71200000",
-        "71241000"
-      ],
-      "initialAmount": 18147.58,
-      "initialAmountNoTaxes": 14998,
-      "finalAmount": 11443.83,
-      "finalAmountNoTaxes": 9457.71,
-      "estimatedValue": 0,
-      "numberOfProposals": 2
-    },
-    {
       "id": "4581623",
       "sourceRowId": "6994889",
       "title": "Contrato verbal de emergencia para trabajos de servicio de limpieza vial, tras daños por los efectos de la DANA del pasado 29 de octubre de 2024, para habilitación de acceso en calles y en polígonos de Riba-roja de Túria, adjudicado a favor la mercantil ARIDOS MIJARES, S.L., con CIF nº B12018008",
@@ -8155,38 +8128,6 @@
       "finalAmountNoTaxes": 0,
       "estimatedValue": 13394.7,
       "numberOfProposals": 0
-    },
-    {
-      "id": "4889055#10278551",
-      "sourceRowId": "10278551",
-      "title": "71241000-Estudio de viabilidad, servicios de asesoramiento, análisis.",
-      "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=Tjxv4MOw0JC8ebB%2FXTwy0A%3D%3D",
-      "status": "awarded",
-      "contractType": "services",
-      "processType": "restricted",
-      "minorContract": false,
-      "startDate": null,
-      "endDate": "2026-09-15",
-      "awardDate": "2026-06-18",
-      "formalizedDate": null,
-      "duration": 91,
-      "batchNumber": 0,
-      "assignee": "SOTAVIA RECHNOLOGIES SL",
-      "contractor": "Ayuntamiento de Riba-roja de Túria",
-      "contractorId": "58096",
-      "contractorType": "Ayuntamiento",
-      "categoryId": "27",
-      "categoryTitle": "architecture",
-      "cpvs": [
-        "71200000",
-        "71241000"
-      ],
-      "initialAmount": 40535,
-      "initialAmountNoTaxes": 33500,
-      "finalAmount": 35090,
-      "finalAmountNoTaxes": 29000,
-      "estimatedValue": 0,
-      "numberOfProposals": 2
     },
     {
       "id": "1709551",
@@ -8822,38 +8763,6 @@
       "finalAmountNoTaxes": 0,
       "estimatedValue": 275617.42,
       "numberOfProposals": 0
-    },
-    {
-      "id": "1794430#10198485",
-      "sourceRowId": "10198485",
-      "title": "92000000-Servicios de esparcimiento, culturales y deportivos.",
-      "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=4p9f7N%2FQJB0tm4eBPtV6eQ%3D%3D",
-      "status": "awarded",
-      "contractType": "services",
-      "processType": "restricted",
-      "minorContract": false,
-      "startDate": null,
-      "endDate": "2026-11-25",
-      "awardDate": "2026-06-02",
-      "formalizedDate": null,
-      "duration": 182,
-      "batchNumber": 0,
-      "assignee": "LACSEN MONTAJES ELECTRICOS S.L",
-      "contractor": "Ayuntamiento de Riba-roja de Túria",
-      "contractorId": "58096",
-      "contractorType": "Ayuntamiento",
-      "categoryId": "28",
-      "categoryTitle": "health",
-      "cpvs": [
-        "98300000",
-        "92000000"
-      ],
-      "initialAmount": 6655,
-      "initialAmountNoTaxes": 5500,
-      "finalAmount": 6149.99,
-      "finalAmountNoTaxes": 5082.64,
-      "estimatedValue": 0,
-      "numberOfProposals": 2
     },
     {
       "id": "62344#124026",
@@ -21048,37 +20957,6 @@
       "numberOfProposals": 3
     },
     {
-      "id": "9023884",
-      "sourceRowId": "9023884",
-      "title": "Contrato menor de suministro e instalación de barreras para el control de acceso en la Urbanización la Reva. (Ctto. 88M/2025).",
-      "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=s7lv1R0XugLua%2Fi14w%2FPLA%3D%3D",
-      "status": "awarded",
-      "contractType": "supplies",
-      "processType": "minor_contract",
-      "minorContract": true,
-      "startDate": null,
-      "endDate": "2025-11-28",
-      "awardDate": "2025-10-30",
-      "formalizedDate": null,
-      "duration": 30,
-      "batchNumber": 0,
-      "assignee": "Dicaba Instalaciones Automáticas S.L.",
-      "contractor": "Ayuntamiento de Riba-roja de Túria",
-      "contractorId": "58096",
-      "contractorType": "Ayuntamiento",
-      "categoryId": "33",
-      "categoryTitle": "transportation",
-      "cpvs": [
-        "34928300"
-      ],
-      "initialAmount": 15197.6,
-      "initialAmountNoTaxes": 12560,
-      "finalAmount": 13651.87,
-      "finalAmountNoTaxes": 11282.54,
-      "estimatedValue": 0,
-      "numberOfProposals": 1
-    },
-    {
       "id": "4581791",
       "sourceRowId": "6995144",
       "title": "Contrato verbal de emergencia para trabajos de servicio de limpieza vial, tras daños por los efectos de la DANA del pasado 29 de octubre de 2024, para habilitación de acceso en calles y en polígonos de Riba-roja de Túria, adjudicado a favor la mercantil TRANSPORTES CARLOS ARCE, S.L., con CIF nº B97910343",
@@ -23614,38 +23492,6 @@
       "numberOfProposals": 3
     },
     {
-      "id": "1794430#9062945",
-      "sourceRowId": "9062945",
-      "title": "Contrato de servicio fiesta del Dux 2025-2026 mediante contrato derivado del SDA de servicios de diversa índole, con condición especial de ejecución de carácter social contribuyendo al cumplimiento del ODS 8 relativo al trabajo decente para todos. (Ctto. 43/2025 – ESDA 2/2022).",
-      "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=5GcwtZ%2BtcTLECtSnloz%2BZQ%3D%3D",
-      "status": "awarded",
-      "contractType": "services",
-      "processType": "restricted",
-      "minorContract": false,
-      "startDate": null,
-      "endDate": "2025-12-29",
-      "awardDate": "2025-10-30",
-      "formalizedDate": null,
-      "duration": 60,
-      "batchNumber": 0,
-      "assignee": "BALCONET OPERADOR MERCADOS TEMÁTICOS S.L.U.",
-      "contractor": "Ayuntamiento de Riba-roja de Túria",
-      "contractorId": "58096",
-      "contractorType": "Ayuntamiento",
-      "categoryId": "28",
-      "categoryTitle": "health",
-      "cpvs": [
-        "98300000",
-        "92000000"
-      ],
-      "initialAmount": 72479,
-      "initialAmountNoTaxes": 59900,
-      "finalAmount": 72479,
-      "finalAmountNoTaxes": 59900,
-      "estimatedValue": 0,
-      "numberOfProposals": 1
-    },
-    {
       "id": "9049099",
       "sourceRowId": "9049099",
       "title": "Contrato menor de suministro de dos kits de pistola eléctrica y sus complementos para la Policía Local, a favor de Viatorplusultra S.L. con CIF B04709390 (Ctto. 85M/2025)",
@@ -25023,38 +24869,6 @@
       "finalAmountNoTaxes": 55685178.79,
       "estimatedValue": 55685178.79,
       "numberOfProposals": 7
-    },
-    {
-      "id": "4889055#10254997",
-      "sourceRowId": "10254997",
-      "title": "72224000-Servicios de consultoría en gestión de proyectos.",
-      "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=2iTqILStUoT%2Fa9DgO%2BoYKQ%3D%3D",
-      "status": "awarded",
-      "contractType": "services",
-      "processType": "restricted",
-      "minorContract": false,
-      "startDate": null,
-      "endDate": "2027-06-09",
-      "awardDate": "2026-06-11",
-      "formalizedDate": null,
-      "duration": 365,
-      "batchNumber": 0,
-      "assignee": "Angel Holguera Herrera",
-      "contractor": "Ayuntamiento de Riba-roja de Túria",
-      "contractorId": "58096",
-      "contractorType": "Ayuntamiento",
-      "categoryId": "27",
-      "categoryTitle": "architecture",
-      "cpvs": [
-        "71200000",
-        "72224000"
-      ],
-      "initialAmount": 3202.27,
-      "initialAmountNoTaxes": 2646.5,
-      "finalAmount": 2113.49,
-      "finalAmountNoTaxes": 1746.69,
-      "estimatedValue": 0,
-      "numberOfProposals": 2
     },
     {
       "id": "329628",

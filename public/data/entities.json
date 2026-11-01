@@ -1,11 +1,11 @@
 {
-  "generatedAt": "2026-11-01T12:06:11.413Z",
+  "generatedAt": "2026-11-01T14:21:21.719Z",
   "source": "derived: tenders.json assignees + officials.json · overrides: entity-overrides.json",
   "stats": {
     "companies": 380,
     "people": 21,
     "variantsMerged": 1,
-    "contractRefs": 717
+    "contractRefs": 710
   },
   "companies": [
     {
@@ -1419,22 +1419,6 @@
       "lastAwardDate": "2026-07-20"
     },
     {
-      "id": "co-1rzleso",
-      "nameKey": "balconet operador mercados tematicos sl",
-      "canonicalName": "BALCONET OPERADOR MERCADOS TEMÁTICOS S.L.U.",
-      "variants": [
-        "BALCONET OPERADOR MERCADOS TEMÁTICOS S.L.U."
-      ],
-      "contractIds": [
-        "1794430#8998505",
-        "1794430#9062945"
-      ],
-      "contractCount": 2,
-      "awardedTotalEur": 119800,
-      "firstAwardDate": "2025-10-30",
-      "lastAwardDate": "2025-10-30"
-    },
-    {
       "id": "co-815zb8",
       "nameKey": "sociedad iberica de construcciones electricas s a sice",
       "canonicalName": "Sociedad Ibérica de Construcciones Eléctricas, S.A. (SICE)",
@@ -2246,6 +2230,21 @@
       "lastAwardDate": "2019-07-13"
     },
     {
+      "id": "co-1rzleso",
+      "nameKey": "balconet operador mercados tematicos sl",
+      "canonicalName": "BALCONET OPERADOR MERCADOS TEMÁTICOS S.L.U.",
+      "variants": [
+        "BALCONET OPERADOR MERCADOS TEMÁTICOS S.L.U."
+      ],
+      "contractIds": [
+        "1794430#8998505"
+      ],
+      "contractCount": 1,
+      "awardedTotalEur": 59900,
+      "firstAwardDate": "2025-10-30",
+      "lastAwardDate": "2025-10-30"
+    },
+    {
       "id": "co-vq5yiw",
       "nameKey": "populate tools sl",
       "canonicalName": "POPULATE TOOLS SL",
@@ -2277,22 +2276,6 @@
       "awardedTotalEur": 58210.24,
       "firstAwardDate": "2024-11-22",
       "lastAwardDate": "2024-12-10"
-    },
-    {
-      "id": "co-95dhuk",
-      "nameKey": "sotavia rechnologies sl",
-      "canonicalName": "SOTAVIA RECHNOLOGIES SL",
-      "variants": [
-        "SOTAVIA RECHNOLOGIES SL"
-      ],
-      "contractIds": [
-        "4889055#10278551",
-        "4889055#10281213"
-      ],
-      "contractCount": 2,
-      "awardedTotalEur": 58000,
-      "firstAwardDate": "2026-06-18",
-      "lastAwardDate": "2026-06-18"
     },
     {
       "id": "co-1486m88",
@@ -2825,24 +2808,6 @@
       "lastAwardDate": "2022-07-20"
     },
     {
-      "id": "co-19e3pfw",
-      "nameKey": "lacsen montajes electricos sl",
-      "canonicalName": "LACSEN MONTAJES ELECTRICOS S.L",
-      "variants": [
-        "LACSEN MONTAJES ELECTRICOS S.L"
-      ],
-      "contractIds": [
-        "1794430#10201842",
-        "1794430#10198485",
-        "auto-mse4o8",
-        "1794430#10156778"
-      ],
-      "contractCount": 4,
-      "awardedTotalEur": 36405.28,
-      "firstAwardDate": "2026-05-25",
-      "lastAwardDate": "2026-06-02"
-    },
-    {
       "id": "co-1fqhhlw",
       "nameKey": "cm plastik recycling sl",
       "canonicalName": "CM PLASTIK RECYCLING, S.L.",
@@ -3014,6 +2979,23 @@
       "awardedTotalEur": 31895.46,
       "firstAwardDate": "2022-12-16",
       "lastAwardDate": "2022-12-16"
+    },
+    {
+      "id": "co-19e3pfw",
+      "nameKey": "lacsen montajes electricos sl",
+      "canonicalName": "LACSEN MONTAJES ELECTRICOS S.L",
+      "variants": [
+        "LACSEN MONTAJES ELECTRICOS S.L"
+      ],
+      "contractIds": [
+        "1794430#10201842",
+        "auto-mse4o8",
+        "1794430#10156778"
+      ],
+      "contractCount": 3,
+      "awardedTotalEur": 31322.64,
+      "firstAwardDate": "2026-05-25",
+      "lastAwardDate": "2026-06-02"
     },
     {
       "id": "co-1uz1kbw",
@@ -3244,6 +3226,21 @@
       "awardedTotalEur": 29071.92,
       "firstAwardDate": "2024-11-22",
       "lastAwardDate": "2024-12-09"
+    },
+    {
+      "id": "co-95dhuk",
+      "nameKey": "sotavia rechnologies sl",
+      "canonicalName": "SOTAVIA RECHNOLOGIES SL",
+      "variants": [
+        "SOTAVIA RECHNOLOGIES SL"
+      ],
+      "contractIds": [
+        "4889055#10281213"
+      ],
+      "contractCount": 1,
+      "awardedTotalEur": 29000,
+      "firstAwardDate": "2026-06-18",
+      "lastAwardDate": "2026-06-18"
     },
     {
       "id": "co-3qgps4",
@@ -3549,22 +3546,6 @@
       "lastAwardDate": "2018-08-07"
     },
     {
-      "id": "co-1kapqz4",
-      "nameKey": "dicaba instalaciones automaticas sl",
-      "canonicalName": "Dicaba Instalaciones Automáticas S.L.",
-      "variants": [
-        "Dicaba Instalaciones Automáticas S.L."
-      ],
-      "contractIds": [
-        "9023884",
-        "9012998"
-      ],
-      "contractCount": 2,
-      "awardedTotalEur": 22565.08,
-      "firstAwardDate": "2025-10-30",
-      "lastAwardDate": "2025-10-30"
-    },
-    {
       "id": "co-eyegt8",
       "nameKey": "enrique caurin domingo",
       "canonicalName": "ENRIQUE CAURIN DOMINGO",
@@ -3718,22 +3699,6 @@
       "awardedTotalEur": 19107.54,
       "firstAwardDate": "2025-01-13",
       "lastAwardDate": "2025-01-13"
-    },
-    {
-      "id": "co-g2uz0d",
-      "nameKey": "juan antonio mas rico",
-      "canonicalName": "Juan Antonio Mas Rico",
-      "variants": [
-        "Juan Antonio Mas Rico"
-      ],
-      "contractIds": [
-        "4889055#10184487",
-        "4889055#10188881"
-      ],
-      "contractCount": 2,
-      "awardedTotalEur": 18915.42,
-      "firstAwardDate": "2026-05-29",
-      "lastAwardDate": "2026-05-29"
     },
     {
       "id": "co-pxxkmv",
@@ -4458,22 +4423,6 @@
       "lastAwardDate": "2025-07-29"
     },
     {
-      "id": "co-17474pc",
-      "nameKey": "equality momentum sl",
-      "canonicalName": "EQUALITY MOMENTUM SL",
-      "variants": [
-        "EQUALITY MOMENTUM SL"
-      ],
-      "contractIds": [
-        "4889055#10201361",
-        "4889055#10198807"
-      ],
-      "contractCount": 2,
-      "awardedTotalEur": 13000,
-      "firstAwardDate": "2026-06-02",
-      "lastAwardDate": "2026-06-02"
-    },
-    {
       "id": "co-166hnk2",
       "nameKey": "francisco manuel caparros duran",
       "canonicalName": "Francisco Manuel Caparrós Durán",
@@ -4687,6 +4636,21 @@
       "awardedTotalEur": 11537.67,
       "firstAwardDate": "2023-02-07",
       "lastAwardDate": "2023-07-05"
+    },
+    {
+      "id": "co-1kapqz4",
+      "nameKey": "dicaba instalaciones automaticas sl",
+      "canonicalName": "Dicaba Instalaciones Automáticas S.L.",
+      "variants": [
+        "Dicaba Instalaciones Automáticas S.L."
+      ],
+      "contractIds": [
+        "9012998"
+      ],
+      "contractCount": 1,
+      "awardedTotalEur": 11282.54,
+      "firstAwardDate": "2025-10-30",
+      "lastAwardDate": "2025-10-30"
     },
     {
       "id": "co-1to08c1",
@@ -4945,6 +4909,21 @@
       "awardedTotalEur": 9500,
       "firstAwardDate": "2022-08-30",
       "lastAwardDate": "2022-08-30"
+    },
+    {
+      "id": "co-g2uz0d",
+      "nameKey": "juan antonio mas rico",
+      "canonicalName": "Juan Antonio Mas Rico",
+      "variants": [
+        "Juan Antonio Mas Rico"
+      ],
+      "contractIds": [
+        "4889055#10188881"
+      ],
+      "contractCount": 1,
+      "awardedTotalEur": 9457.71,
+      "firstAwardDate": "2026-05-29",
+      "lastAwardDate": "2026-05-29"
     },
     {
       "id": "co-19o6880",
@@ -5262,6 +5241,21 @@
       "awardedTotalEur": 6500,
       "firstAwardDate": "2018-04-11",
       "lastAwardDate": "2018-04-11"
+    },
+    {
+      "id": "co-17474pc",
+      "nameKey": "equality momentum sl",
+      "canonicalName": "EQUALITY MOMENTUM SL",
+      "variants": [
+        "EQUALITY MOMENTUM SL"
+      ],
+      "contractIds": [
+        "4889055#10201361"
+      ],
+      "contractCount": 1,
+      "awardedTotalEur": 6500,
+      "firstAwardDate": "2026-06-02",
+      "lastAwardDate": "2026-06-02"
     },
     {
       "id": "co-ra57so",
@@ -5671,22 +5665,6 @@
       "lastAwardDate": "2024-12-05"
     },
     {
-      "id": "co-1nvp89o",
-      "nameKey": "angel holguera herrera",
-      "canonicalName": "Angel Holguera Herrera",
-      "variants": [
-        "Angel Holguera Herrera"
-      ],
-      "contractIds": [
-        "4889055#10259025",
-        "4889055#10254997"
-      ],
-      "contractCount": 2,
-      "awardedTotalEur": 3493.38,
-      "firstAwardDate": "2026-06-11",
-      "lastAwardDate": "2026-06-11"
-    },
-    {
       "id": "co-1vxb3dk",
       "nameKey": "unikalis sl",
       "canonicalName": "UNIKALIS SL",
@@ -5820,6 +5798,21 @@
       "awardedTotalEur": 1872.5,
       "firstAwardDate": "2023-02-07",
       "lastAwardDate": "2023-02-07"
+    },
+    {
+      "id": "co-1nvp89o",
+      "nameKey": "angel holguera herrera",
+      "canonicalName": "Angel Holguera Herrera",
+      "variants": [
+        "Angel Holguera Herrera"
+      ],
+      "contractIds": [
+        "4889055#10259025"
+      ],
+      "contractCount": 1,
+      "awardedTotalEur": 1746.69,
+      "firstAwardDate": "2026-06-11",
+      "lastAwardDate": "2026-06-11"
     },
     {
       "id": "co-6susnk",
@@ -6178,6 +6171,6 @@
   "builtFrom": {
     "entity-overrides.json": "a41cc20172e9",
     "officials.json": "0fb6e5c5d0c2",
-    "tenders.json": "863186dc9e13"
+    "tenders.json": "67696250f215"
   }
 }
