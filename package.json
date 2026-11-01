@@ -310,7 +310,7 @@
     "tesseract.js": "^7.0.0",
     "tsx": "^4.23.15",
     "typescript-eslint": "^8.71.1",
-    "vite": "^6.4.4",
+    "vite": "^6.4.5",
     "vitest": "^4.1.11",
     "xlsx": "https://cdn.sheetjs.com/xlsx-0.20.3/xlsx-0.20.3.tgz",
     "zod": "^4.6.5"
