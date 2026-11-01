@@ -2381,11 +2381,20 @@ function ContratoEditorial() {
             obra—: la puerta la juzga por su cuenta y puede enseñarla;
           </li>
           <li>
+            {/* La última frase se añadió el 01-11-2026: dos `.bak` del corpus entraron con el
+                `git add` del cron y se sirvieron desde los despliegues de a97c3fc5 y b1296b71
+                hasta el de d32faf45. Sin ella, «dejó de servirlo» prometía de más. Las cifras
+                son de esos dos ficheros, que ya no cambian. Son dos versiones del mismo
+                registro: no se suman. */}
             el <strong>repositorio del proyecto</strong>, público desde el 8 de septiembre de 2026:
             su fichero de hallazgos conserva el literal, porque la CLI de correcciones y las
             comprobaciones lo necesitan y porque la puerta puede dejar de retenerlo, y su historia
             guarda las copias que el sitio sirvió hasta finales de septiembre de 2026, cuando dejó
-            de servirlo.
+            de servirlo. Esa historia guarda también dos copias de trabajo del registro, sin pasar
+            por la puerta, que el sitio sirvió por error, una desde el 12 de octubre de 2026 y otra
+            desde el 15, hasta el 1 de noviembre de 2026: ninguna página las enlazaba, pero se
+            descargaban por su dirección, con 2.604 y 2.709 declaraciones clasificadas como
+            acusación y sus literales.
           </li>
         </ul>
       </Card>

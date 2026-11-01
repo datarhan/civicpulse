@@ -93,6 +93,17 @@ describe('/metodologia#citas-contraste describe la puerta que rige hoy', () => {
     expect(texto).toMatch(/público desde el 8 de septiembre de 2026/i)
   })
 
+  it('dice que el sitio sirvió dos copias del registro sin puerta, y hasta cuándo', () => {
+    // Desde los despliegues de a97c3fc5 (12-10-2026) y b1296b71 (15-10-2026) hasta
+    // el de d32faf45 (01-11-2026), dos `.bak` del corpus respondían 200 por su
+    // dirección. Sin decirlo, «cuando dejó de servirlo» prometía de más. Las
+    // cifras son de esos dos ficheros, que ya no cambian: no caducan.
+    expect(texto).toMatch(/dos copias de trabajo del registro/)
+    expect(texto).toMatch(/desde el 12 de octubre de 2026 y otra desde el 15/)
+    expect(texto).toMatch(/hasta el 1 de noviembre de 2026/)
+    expect(texto).toMatch(/2\.604 y 2\.709 declaraciones clasificadas como acusación/)
+  })
+
   it('dice que ni la bitácora ni los datos que sirve el sitio llevan el literal', () => {
     expect(texto).toMatch(/bitácora/i)
     expect(texto).toMatch(/huella/i)
