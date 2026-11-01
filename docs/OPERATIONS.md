@@ -92,6 +92,32 @@ any IP. A test requires each of them to be in `scrape-ci-blocked.sh`, so they
 have a refresh path, and `check:cadence` watches them. If that local job stops,
 nothing else refreshes them.
 
+### What the run says when something is cut
+
+The step timeout stays as a backstop, and when it falls the script gets no last
+word. So the scrape step tees its output to `$RUNNER_TEMP/scrape-all.log`, and the
+health gate reads it to name the stage the axe fell in and the critical adapters
+that failed.
+
+The gate tells apart a scrape that was cut from one that never ran, because an
+earlier step failed. It also asks for `success` from `npm test`, not for the
+absence of `failure`: tests that did not run are not tests that passed.
+
+Everything from the Playwright cache to `npm test` runs under `!cancelled()`, so a
+red step before them does not skip them. Without that, four nights of October 2026
+had no tests: a slow `apt` on the 26th and the scrape timeout from the 29th to the
+31st. A test broken by the data went unseen for three days, and only an unrelated
+PR showed it. After a cut the test step re-derives first, or
+`data-graph-frescura` would report the cut instead of what is really wrong.
+`tests/nocturna-tras-un-corte.test.js` runs these scripts for real.
+
+Two limits remain. A job cancelled at its own timeout skips the tests on purpose,
+because it has to reach the commit. And the commit gives up on a rebase conflict:
+it names the files and loses that night's data, which the next run rebuilds. On
+2026-10-29 the file was `budget-execution.json`, a scraper output a PR had
+regenerated while the run was going, so "scraper outputs" and "commits to main" do
+overlap. Merging such a PR during the run costs that night.
+
 `workflow_dispatch` takes an `adapters` input for on-demand re-runs; add new
 adapter names to the `case` switch.
 

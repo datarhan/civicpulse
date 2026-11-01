@@ -215,3 +215,19 @@ export function mergePlenoSessions(
   const items = [...byId.values()].sort((a, b) => b.date.localeCompare(a.date))
   return { items, carriedForward: items.length - refreshed, refreshed }
 }
+
+/**
+ * El `generatedAt` de una pasada: cuándo se leyó la fuente por última vez, no
+ * cuándo corrió el guion.
+ *
+ * `check:cadence` mide este sello y nada más. Una pasada que no leyó ninguna
+ * sesión y sellara igual dejaría el fichero al día para siempre con la fuente
+ * caída, y como `scrape:plenos` es blando nadie más lo diría.
+ */
+export function selloDePasada(
+  previo: string | undefined,
+  refreshed: number,
+  ahora: Date = new Date(),
+): string {
+  return refreshed === 0 && previo ? previo : ahora.toISOString()
+}

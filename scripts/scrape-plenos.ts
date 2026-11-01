@@ -15,7 +15,12 @@ import { existsSync } from 'node:fs'
 import { mkdir, readFile, writeFile } from 'node:fs/promises'
 import { dirname, join } from 'node:path'
 import { fileURLToPath } from 'node:url'
-import { parseRegmeetSessions, mergePlenoSessions, type PlenoItem } from '../src/scraper/plenos'
+import {
+  parseRegmeetSessions,
+  mergePlenoSessions,
+  selloDePasada,
+  type PlenoItem,
+} from '../src/scraper/plenos'
 
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = dirname(__filename)
@@ -32,12 +37,19 @@ const REGMEET_ENTITY = '3b56be67439045acfbc7c1552d87a166'
 // doesn't trip the filter.
 const UA = 'Mozilla/5.0 (compatible; CivicPulse/0.1; +https://github.com/datarhan/civicpulse)'
 
-async function loadExisting(): Promise<{ items: PlenoItem[]; idByDate: Map<string, string> }> {
+async function loadExisting(): Promise<{
+  items: PlenoItem[]
+  idByDate: Map<string, string>
+  generatedAt?: string
+}> {
   const idByDate = await loadExistingIdByDate()
   if (!existsSync(OUT)) return { items: [], idByDate }
   try {
-    const snap = JSON.parse(await readFile(OUT, 'utf8')) as { items?: PlenoItem[] }
-    return { items: snap.items ?? [], idByDate }
+    const snap = JSON.parse(await readFile(OUT, 'utf8')) as {
+      items?: PlenoItem[]
+      generatedAt?: string
+    }
+    return { items: snap.items ?? [], idByDate, generatedAt: snap.generatedAt }
   } catch {
     // `loadExistingIdByDate` ya se ha caído antes por esto mismo.
     return { items: [], idByDate }
@@ -81,7 +93,12 @@ async function fetchYear(
       signal: AbortSignal.timeout(30_000),
     })
   } catch (err) {
-    return { rows: [], ok: false, motivo: `${year}: ${(err as Error).message}` }
+    // «fetch failed» a secas se lee igual con un certificado caducado que con el
+    // runner bloqueado, y una avería la arregla regmeet y la otra nadie. La
+    // diferencia viaja en `cause`.
+    const { message, cause } = err as Error & { cause?: { code?: string } }
+    const motivo = cause?.code ? `${message} (${cause.code})` : message
+    return { rows: [], ok: false, motivo: `${year}: ${motivo}` }
   }
   if (!res.ok) {
     return { rows: [], ok: false, motivo: `${year}: HTTP ${res.status} ${res.statusText}` }
@@ -97,7 +114,11 @@ async function fetchYear(
 }
 
 async function main() {
-  const { items: previas, idByDate: existingIdByDate } = await loadExisting()
+  const {
+    items: previas,
+    idByDate: existingIdByDate,
+    generatedAt: selloPrevio,
+  } = await loadExisting()
   const nowYear = new Date().getFullYear()
   const years = [nowYear, nowYear - 1, nowYear - 2, nowYear - 3]
   const all: PlenoItem[] = []
@@ -126,7 +147,7 @@ async function main() {
   }
 
   const payload = {
-    generatedAt: new Date().toISOString(),
+    generatedAt: selloDePasada(selloPrevio, refreshed),
     source: {
       baseUrl: REGMEET_BASE,
       platform: `Regmeet — aytoribarroja/sesiones_categorias/${REGMEET_ENTITY}/<year>`,
@@ -159,7 +180,9 @@ async function main() {
   // Se sale 1 DESPUÉS de escribir, y eso es deliberado: arrastrar lo ya visto
   // deja el fichero íntegro, así que fallar en alto no publica un hueco. Antes
   // de fundir, un año caído encogía la lista y salía 0; las dos mitades tienen
-  // que ir juntas o la ruidosa se vuelve destructiva.
+  // que ir juntas o la ruidosa se vuelve destructiva. Sin una sola sesión leída
+  // el sello no se mueve, y eso es lo que deja verlo a `check:cadence`, porque
+  // en la nocturna este adaptador es blando.
   if (fallidos.length > 0) {
     console.error(
       `[plenos] ${fallidos.length}/${years.length} año(s) sin leer: ${fallidos.join(' · ')}`,
