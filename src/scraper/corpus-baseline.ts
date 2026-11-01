@@ -93,6 +93,27 @@ export function runMeasuredNothing(run: {
 }
 
 /**
+ * ¿Hay citas que `/metodologia#citas-transcripcion` no permite?
+ *
+ * Va aparte del delta y sin línea base: la frase dice «las citas», no «las
+ * citas nuevas», así que restar lo aceptado la dejaría falsa en silencio, y
+ * `--baseline` no absuelve. Un campo ausente no es una pasada limpia: es no saber
+ * (`r?.findings ?? []`, otra vez), y el script que llama descarta el código de
+ * salida de `check:finding-quotes`, así que este es el único sitio donde la
+ * nocturna puede enterarse.
+ *
+ * Devuelve el fallo como frase, o null cuando ninguna cita se sale.
+ */
+export function citasFueraDeAudioFailure(run: { fueraDeAudio?: unknown }): string | null {
+  if (!Array.isArray(run?.fueraDeAudio)) {
+    return 'la pasada no dice de qué fichero sale cada cita: `fueraDeAudio` no viene en su JSON'
+  }
+  const n = run.fueraDeAudio.length
+  if (n === 0) return null
+  return `${n} cita(s) no salen de una transcripción de audio, y /metodologia#citas-transcripcion dice que sí`
+}
+
+/**
  * Can this baseline be subtracted from today's run?
  *
  * Returns the reason it cannot, or null. Anything other than null means the

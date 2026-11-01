@@ -96,6 +96,7 @@ import {
   type RegistroDeInyeccion,
 } from '../src/scraper/guard-audit'
 import { citaRetenida } from '../src/lib/cita-retenida.js'
+import { transcriptKind } from '../src/lib/transcript-kind.js'
 import { BASE } from './verified-rebuild'
 
 interface GuardRow {
@@ -243,6 +244,42 @@ function testFiles(): Map<string, string> {
     if (statSync(p).isFile()) out.set(f, readFileSync(p, 'utf8'))
   }
   return out
+}
+
+/**
+ * `pleno-findings.json` con una ficha más, cuya cita sale de un acta del corpus o
+ * apunta a una sesión que no tiene transcripción. El `sourceClaimId` es el de una
+ * cita real: sin él la pasada se declara no fiable y no llega a decir el origen.
+ */
+function conFichaInyectada(s: string, origen: 'acta' | 'unknown'): string {
+  const d = JSON.parse(s)
+  const f = d.items.find(
+    (x: { quotes?: Array<{ text?: string }> }) => x.quotes && x.quotes.length > 0,
+  )
+  if (!f) throw new Error('no finding with quotes to copy')
+  let plenoId = 'sesion-inyectada-sin-transcripcion'
+  let text = 'Esta frase no la pronunció nadie en ningún pleno de este municipio, jamás.'
+  if (origen === 'acta') {
+    const dir = resolve('public/data/pleno-transcripts')
+    const acta = readdirSync(dir).find(
+      (n) => n.endsWith('.txt') && transcriptKind(readFileSync(`${dir}/${n}`, 'utf8')) === 'acta',
+    )
+    if (!acta) throw new Error('no hay ningún acta en el corpus')
+    const linea = readFileSync(`${dir}/${acta}`, 'utf8')
+      .split('\n')
+      .map((l) => l.replace(/^\[[^\]]*\]\s*/, ''))
+      .find((l) => l.split(/\s+/).length >= 12)
+    if (!linea) throw new Error(`${acta} no trae una línea de 12 palabras`)
+    plenoId = acta.replace(/\.txt$/, '')
+    text = linea
+  }
+  d.items.push({
+    ...f,
+    id: `inyectada-${origen}`,
+    plenoId,
+    quotes: [{ ...f.quotes[0], text }],
+  })
+  return JSON.stringify(d, null, 2) + '\n'
 }
 
 /**
@@ -443,6 +480,24 @@ export const INJECTIONS: Array<{
         'Esta frase no la pronunció nadie en ningún pleno de este municipio, jamás.'
       return JSON.stringify(d, null, 2) + '\n'
     },
+  },
+  // Las dos siguientes añaden una ficha en vez de tocar una que exista: así el
+  // resto de sus citas sigue donde estaba y sólo cambia lo que se quiere probar.
+  // Roja lo estará de todos modos, porque el snapshot deja de cuadrar: la `espera`
+  // es lo que separa esta regla de aquélla.
+  {
+    guard: 'check:finding-quotes',
+    file: 'public/data/pleno-findings.json',
+    describe: 'una cita sacada de un acta, palabra por palabra',
+    espera: /origen: acta/,
+    corrupt: (s) => conFichaInyectada(s, 'acta'),
+  },
+  {
+    guard: 'check:finding-quotes',
+    file: 'public/data/pleno-findings.json',
+    describe: 'una cita de una sesión sin transcripción: no saber no es saber que es audio',
+    espera: /origen: unknown/,
+    corrupt: (s) => conFichaInyectada(s, 'unknown'),
   },
   {
     guard: 'check:cadence',

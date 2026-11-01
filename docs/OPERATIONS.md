@@ -539,6 +539,7 @@ All report-only inside `scrape:all`; run any of them directly.
 | `check:guards`                    | a guard in this table that nothing invokes                                   |
 | `check:drift`, `check:vocabulary` | upstream shape / vocabulary changes                                          |
 | `check:corpus`, `check:retrieval` | embedding corpus integrity, self-retrieval probe                             |
+| `check:finding-quotes`            | a `/hallazgos` quote untraceable, stale-marked, or not from audio            |
 | `check:transcripts`               | degenerate transcripts in the published corpus                               |
 | `check:json`                      | unparseable snapshot or merge-conflict marker (also in pre-commit)           |
 | `check:automation`                | which action classes are gated, and on what measurement                      |
