@@ -11,7 +11,8 @@
 import { existsSync, readdirSync, readFileSync, statSync } from 'node:fs'
 import { resolve } from 'node:path'
 
-import type { SessionTexts } from '../../src/scraper/quote-provenance'
+import { transcriptKind } from '../../src/lib/transcript-kind.js'
+import type { OrigenDeCita, SessionTexts } from '../../src/scraper/quote-provenance'
 import { archivosDe } from '../../src/scraper/superseded-archive'
 
 export const TRANSCRIPTS_DIR = 'public/data/pleno-transcripts'
@@ -68,4 +69,24 @@ export function loadSessionTexts(
     })
   }
   return out
+}
+
+/**
+ * Cuántos ficheros del corpus entero, vigentes y sustituidos, reconoce
+ * `transcriptKind` de cada clase. Es el control de `origenSanityFailure`: las
+ * sesiones con citas pueden ser todas de audio, y entonces sólo el resto dice si
+ * el detector todavía distingue un acta.
+ */
+export function contarTiposDelCorpus(
+  opts: { transcriptsDir?: string; supersededDir?: string } = {},
+): Record<OrigenDeCita, number> {
+  const cuenta: Record<OrigenDeCita, number> = { audio: 0, acta: 0, unknown: 0 }
+  for (const d of [opts.transcriptsDir ?? TRANSCRIPTS_DIR, opts.supersededDir ?? SUPERSEDED_DIR]) {
+    const dir = resolve(d)
+    if (!existsSync(dir)) continue
+    for (const n of readdirSync(dir)) {
+      if (n.endsWith('.txt')) cuenta[transcriptKind(readFileSync(`${dir}/${n}`, 'utf8'))] += 1
+    }
+  }
+  return cuenta
 }

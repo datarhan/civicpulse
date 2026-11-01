@@ -313,6 +313,12 @@ async function gather(rachasPrevias: Record<string, string>): Promise<Observatio
     // proteger de lo que venga después. En el parte se ve todas las noches y
     // no bloquea a nadie.
     'check:claim-provenance',
+    // Y las citas de los HALLAZGOS, que hasta el 01-11-2026 no estaban aquí: en
+    // la nocturna las mira `check:corpus`, pero su fallo es un SOFT-FAILED que
+    // sólo ve quien lea el registro. Esta línea es lo que hace rojo que una cita
+    // deje de salir de audio, que es lo que dice /metodologia#citas-transcripcion,
+    // o que una marca publicada deje de cuadrar con las transcripciones.
+    'check:finding-quotes',
     // La única de esta lista que abre el SITIO en vez del árbol, y ése es
     // justo el hueco. Todo lo demás que mide frescura aquí —`check:cadence`,
     // y el `newestItemAt` de `sources` unas líneas más abajo— lee

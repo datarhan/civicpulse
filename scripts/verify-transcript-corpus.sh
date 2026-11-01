@@ -12,7 +12,10 @@
 #   bash scripts/verify-transcript-corpus.sh --baseline # accept current state
 #
 # Called automatically at the end of scripts/transcribe-pleno.sh. Exits non-zero
-# when a quote became untraceable, so a caller notices.
+# when a quote became untraceable, or when any quote does not come from audio
+# (corpus-delta.ts reads that from the JSON: this script ignores check:finding-quotes'
+# own exit code, which is also 1 for a drift the baseline already accepted), so a
+# caller notices.
 set -uo pipefail
 cd "$(dirname "$0")/.."
 
