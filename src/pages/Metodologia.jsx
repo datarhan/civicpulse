@@ -3797,7 +3797,7 @@ export default function Metodologia() {
           La limpieza es la del panel, aplicada igual: gestión directa sólo (regla 4), un municipio
           con dos costes para el mismo servicio queda fuera (regla 1), y una declaración a más de
           veinte veces —o menos de una veinteava parte— de la mediana de euros por habitante del
-          servicio se excluye como inverosímil (regla 7): el libro real trae ayuntamientos
+          servicio se excluye como inverosímil (regla 9): el libro real trae ayuntamientos
           declarando 1 € de coste de escuelas. La escalera de impulsores está declarada: la v1 usa
           sólo log(población) y publica el R² de cada recta a la vista; superficie y renta esperan
           una fuente municipal utilizable, y cada peldaño se añadirá junto al anterior, no en su
