@@ -569,11 +569,24 @@ function ContratoEditorial() {
             <strong>medido o no medido</strong>, y <strong>reversible o no</strong>:
           </p>
           <ul style={{ paddingLeft: 18 }}>
+            {/* Decía «Todo lo que retira o suaviza una afirmación ya publicada», y más
+                abajo, de las votaciones, «Nunca se retracta de forma automática». La
+                regla dice lo que se permite, no lo que ocurre: ningún proceso llama a
+                `retractVoteRecord`, `validateRetraction` exige `editor`, y las 5 retiradas
+                de votaciones las firma una persona (01-11-2026). No dice «lo firma una
+                persona» para todas las retiradas porque no sería cierto: 17 de promesas
+                las firma una sesión de un modelo. */}
             <li>
-              <strong>Automático, sin puerta.</strong> Todo lo que <em>retira o suaviza</em> una
-              afirmación ya publicada: retractar un veredicto, bajar la gravedad, despublicar. Es
-              reversible y equivocarse significa decir <em>menos</em> de lo que podríamos, que es el
-              error seguro para un observatorio.
+              <strong>Automático, sin puerta.</strong> Lo que <em>retira o suaviza</em> una
+              afirmación ya publicada —retractar un veredicto, bajar la gravedad, despublicar— puede
+              correr sin curador y sin medición. Es reversible y equivocarse significa decir{' '}
+              <em>menos</em> de lo que podríamos, que es el error seguro para un observatorio.
+              Puede, no tiene por qué: lo que corre así hoy son las pasadas que bajan un veredicto y
+              la puerta editorial, que deja de enseñar lo que ya no se sostiene. Una{' '}
+              <a href="#plazos-vencidos" style={{ color: 'var(--civic)' }}>
+                votación de pleno
+              </a>
+              , en cambio, nunca se retracta de forma automática.
             </li>
             <li>
               <strong>Automático sólo con medición.</strong> Publicar algo nuevo que no nombra a
@@ -613,9 +626,14 @@ function ContratoEditorial() {
           {/* 15-10-2026. docs/REVIEW_2026-09.md §25: auto-curate-press.ts y el
               auto-curador de promesas no llaman a decideAutomation, y esta tarjeta
               lo callaba mientras el README decía que nada automático subía nada. */}
+          {/* Decía «Dos procesos». Medido el 01-11-2026: tampoco pasan por ella el registro
+              de declaraciones —5.148 filas servidas sin aprobar una a una, y la medición de su
+              comparador (`verdict.deterministic.*`, .automation-measurements.json) es 0,22 y
+              0,33— ni el Nivel A de quejas y contratos (`buildRelations`, en la nocturna). No
+              lleva el número: una cuenta aquí se queda vieja. */}
           <p>
             <strong>
-              Dos procesos son anteriores a esta política y todavía no pasan por ella.
+              Estos procesos son anteriores a esta política y todavía no pasan por ella.
             </strong>{' '}
             La{' '}
             <a href="#auto-curacion-promesas" style={{ color: 'var(--civic)' }}>
@@ -627,8 +645,25 @@ function ContratoEditorial() {
             <a href="#laboratorio-prensa" style={{ color: 'var(--civic)' }}>
               laboratorio de prensa
             </a>{' '}
-            publica hallazgos informativos con sus propias reglas. Ninguno de los dos publica un
-            incumplimiento ni un hallazgo crítico.
+            publica hallazgos informativos con sus propias reglas. El{' '}
+            <a href="#verificacion-declaraciones" style={{ color: 'var(--civic)' }}>
+              registro de declaraciones de pleno
+            </a>{' '}
+            publica lo que extrae un modelo sin que nadie lo apruebe fila a fila: lo filtra una{' '}
+            <a href="#citas-contraste" style={{ color: 'var(--civic)' }}>
+              puerta editorial
+            </a>
+            , y la medición de su comparador queda muy por debajo del listón. El{' '}
+            <a href="#relacion-quejas-contratos" style={{ color: 'var(--civic)' }}>
+              cruce de quejas y contratos
+            </a>{' '}
+            publica solo, sin medición, las coincidencias de misma zona y misma materia. Ninguno
+            publica un incumplimiento ni un hallazgo crítico. Las cifras, los gráficos y el{' '}
+            <a href="#mapa-del-gasto" style={{ color: 'var(--civic)' }}>
+              mapa del gasto
+            </a>{' '}
+            son otra cosa: datos de fuentes públicas y cálculos sobre ellos, con su regla en su
+            apartado; esta política no los gobierna.
           </p>
           <p style={{ marginBottom: 0 }}>
             La suspensión electoral (LOREG art. 50) prevalece sobre todo lo anterior: con{' '}
@@ -1188,14 +1223,21 @@ function ContratoEditorial() {
         </p>
         <ol style={{ margin: '10px 0 0', paddingLeft: 20 }}>
           <li>
-            <strong>Extracción automática</strong> (LLM, requiere aprobación humana). Sobre el texto
-            de la sesión, el modelo extrae <em>verbatim</em> las afirmaciones y las clasifica en
-            cinco tipos: <code>promesa</code> · <code>afirmacion_numerica</code> ·{' '}
-            <code>cita_obra</code> · <code>cita_convenio</code> · <code>acusacion_publica</code>.
-            (Existe un sexto, <code>valoracion_politica</code>, que el extractor no emite: sólo nace
-            de la reclasificación curada que se describe más abajo.) Cada registro se guarda en{' '}
-            <code>pleno-claims-suggestions.json</code>.{' '}
-            <strong>El modelo no dice de qué grupo es quien habla.</strong> No se le pregunta.
+            {/* Decía «(LLM, requiere aprobación humana)». Nadie aprueba estas filas una a
+                una: `requiresHumanApproval` es metadato de extracción, y lo que se enseña
+                lo decide claim-public-gate.ts (CLAUDE.md, What may publish). 01-11-2026. */}
+            <strong>Extracción automática</strong> (LLM). Sobre el texto de la sesión, el modelo
+            extrae <em>verbatim</em> las afirmaciones y las clasifica en cinco tipos:{' '}
+            <code>promesa</code> · <code>afirmacion_numerica</code> · <code>cita_obra</code> ·{' '}
+            <code>cita_convenio</code> · <code>acusacion_publica</code>. (Existe un sexto,{' '}
+            <code>valoracion_politica</code>, que el extractor no emite: sólo nace de la
+            reclasificación curada que se describe más abajo.) Cada registro se guarda en{' '}
+            <code>pleno-claims-suggestions.json</code>, y nadie los aprueba uno a uno: lo que se
+            enseña lo decide la{' '}
+            <a href="#citas-contraste" style={{ color: 'var(--civic)' }}>
+              puerta editorial
+            </a>
+            . <strong>El modelo no dice de qué grupo es quien habla.</strong> No se le pregunta.
             <p style={{ margin: '8px 0 0' }}>
               Hasta el 10 de agosto de 2026 sí se le preguntaba, y no podía saberlo. El modelo ve un
               fragmento de unos 1.200 caracteres, y medido sobre una sesión real, de sus 515
@@ -2140,23 +2182,33 @@ function ContratoEditorial() {
             el texto de lo retenido sigue en ficheros de datos del repositorio,
             que es público (tarea abierta el 28-09-2026; desde el 29-09 la copia
             servida ya no lo lleva, el repositorio sí). */}
+        {/* Decía «Cada afirmación que extraemos de un pleno se coteja automáticamente con
+            la base documental», y `verificacion-declaraciones` dice cuándo se lanza un
+            comparador. Medido el 01-11-2026: de 5.148 declaraciones servidas, 2.113 no
+            tuvieron ninguno. */}
         <p style={{ margin: '8px 0 0', color: 'var(--ink70)' }}>
-          Cada afirmación que extraemos de un pleno se coteja automáticamente con la base documental
-          del ayuntamiento: contratos, subvenciones y promesas publicadas. Una{' '}
-          <strong>puerta editorial</strong> decide después qué puede salir a la vista, y su regla es
-          fallar del lado prudente: si el cotejo no encontró datos, la afirmación no se presenta
-          como comprobada. La puerta da uno de tres resultados: la afirmación se enseña con sus
-          datos, se enseña como no contrastada, o <strong>se retiene</strong>. Retiene por dos
-          motivos, y no son de la misma clase. Uno es de <strong>contraste</strong>: las acusaciones
-          públicas que el cotejo no pudo respaldar o que son pura opinión, y los desmentidos que
-          asigna una máquina, que son pistas para un redactor y no veredictos. El otro es de{' '}
-          <strong>procedencia</strong>, y es más simple: si el literal de una declaración no aparece
-          en ninguna transcripción que tengamos —ni en la vigente, ni en las que sustituyó una
-          re-transcripción—, no podemos enseñar que se dijera. Hay un caso que ningún cálculo sobre
-          los textos ve: que una transcripción recoja el literal porque lo oyó mal —el motor que se
-          sustituyó llegó a escribir un año donde se dijo un importe—. Ése lo decide quien escucha
-          la sesión: una persona retira la declaración con su nombre y un motivo escrito, y se
-          retiene como si no constara. En{' '}
+          Cada afirmación que extraemos de un pleno pasa por un verificador automático, pero sólo se
+          coteja con la base documental del ayuntamiento —contratos, subvenciones y promesas
+          publicadas— cuando trae un importe en euros, cita una obra por su nombre o es una promesa.
+          A las demás no se les lanza{' '}
+          <a href="#verificacion-declaraciones" style={{ color: 'var(--civic)' }}>
+            ningún comparador
+          </a>{' '}
+          y se quedan en <em>sin-datos</em>. Una <strong>puerta editorial</strong> decide después
+          qué puede salir a la vista, y su regla es fallar del lado prudente: si el cotejo no
+          encontró datos, o no lo hubo, la afirmación no se presenta como comprobada. La puerta da
+          uno de tres resultados: la afirmación se enseña con sus datos, se enseña como no
+          contrastada, o <strong>se retiene</strong>. Retiene por dos motivos, y no son de la misma
+          clase. Uno es de <strong>contraste</strong>: las acusaciones públicas que el cotejo no
+          pudo respaldar o que son pura opinión, y los desmentidos que asigna una máquina, que son
+          pistas para un redactor y no veredictos. El otro es de <strong>procedencia</strong>, y es
+          más simple: si el literal de una declaración no aparece en ninguna transcripción que
+          tengamos —ni en la vigente, ni en las que sustituyó una re-transcripción—, no podemos
+          enseñar que se dijera. Hay un caso que ningún cálculo sobre los textos ve: que una
+          transcripción recoja el literal porque lo oyó mal —el motor que se sustituyó llegó a
+          escribir un año donde se dijo un importe—. Ése lo decide quien escucha la sesión: una
+          persona retira la declaración con su nombre y un motivo escrito, y se retiene como si no
+          constara. En{' '}
           <a href="/plenos" style={{ color: 'var(--civic)' }}>
             el registro de declaraciones del pleno
           </a>{' '}
@@ -2927,9 +2979,15 @@ function ContratoEditorial() {
             crea un vínculo.
           </li>
           <li>
+            {/* Decía sólo «se publica directamente con etiqueta neutra»: una publicación
+                automática sin medir que `politica-automatizacion` no listaba. 01-11-2026. */}
             <strong>Dos niveles.</strong> <em>Nivel A</em> (misma zona <u>y</u> materia) es un hecho
             de coocurrencia verificable y se publica directamente con etiqueta neutra («misma zona y
-            materia»). <em>Nivel B</em> (sólo zona, o sólo materia) queda como sugerencia{' '}
+            materia»), sin revisión y sin una precisión medida: es uno de los procesos que{' '}
+            <a href="#politica-automatizacion" style={{ color: 'var(--civic)' }}>
+              todavía no pasan por la política de automatización
+            </a>
+            . <em>Nivel B</em> (sólo zona, o sólo materia) queda como sugerencia{' '}
             <code>requiresHumanApproval</code> y <strong>no se muestra</strong> hasta que un curador
             la promueve.
           </li>

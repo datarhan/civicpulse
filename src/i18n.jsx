@@ -2139,7 +2139,7 @@ export const CATALOGUE = {
     'metodologia.enBreve.fuentes.ver': 'Ver todas las fuentes →',
     'metodologia.enBreve.maquina.pregunta': '¿Lo publica una máquina?',
     'metodologia.enBreve.maquina.frase':
-      'A veces, y con reglas. Lo que nombra a una persona lleva siempre la firma de alguien del equipo. Una máquina sólo publica sola lo que retira algo ya publicado, o lo nuevo que no nombra a nadie y tiene su acierto medido.',
+      'A veces, y con reglas. Lo que nombra a una persona lleva siempre la firma de alguien del equipo. Por regla general, una máquina sólo publica sola lo que retira algo ya publicado, o lo nuevo que no nombra a nadie y tiene su acierto medido; los procesos que aún no la cumplen se dicen en la regla.',
     'metodologia.enBreve.comprobar.pregunta': '¿Cómo compruebo lo que decís?',
     'metodologia.enBreve.comprobar.frase':
       'Cada afirmación enlaza el documento del que sale, para que lo compruebes tú. Una promesa se atribuye con las palabras literales del partido, nunca con el titular de una noticia.',
@@ -2214,7 +2214,7 @@ export const CATALOGUE = {
     'metodologia.frase.biografias':
       'Lo que un cargo publica sobre sí mismo es el punto de partida, no la fuente: se contrasta con documentos que no controla, y la vida privada sin relación con el cargo no entra.',
     'metodologia.frase.verificacion-declaraciones':
-      'Cotejamos automáticamente lo dicho en el pleno con contratos, subvenciones y promesas cuando hay con qué; luego una máquina sólo puede rebajar un veredicto, y subirlo lo firma una persona.',
+      'Cotejamos automáticamente lo dicho en el pleno con contratos, subvenciones y promesas cuando la declaración trae con qué; luego una máquina sólo puede rebajar un veredicto, y subirlo lo firma una persona.',
     'metodologia.frase.trinquete-veredictos':
       'Cada etapa mueve un veredicto en un solo sentido, ninguna automática lo refuerza, y un veredicto que afirma algo nombra contra qué se comprobó, salvo la retractación de un curador.',
     'metodologia.frase.citas-transcripcion':
@@ -2232,7 +2232,7 @@ export const CATALOGUE = {
     'metodologia.frase.camino-de-una-queja':
       'Publicar una queja no la lleva al ayuntamiento: llega cuando entra en su registro, y el plazo legal para responder cuenta desde esa fecha.',
     'metodologia.frase.relacion-quejas-contratos':
-      'Un contrato que coincide con una queja en zona y en materia se muestra; con una sola de las dos espera a un curador, y ninguna coincidencia afirma que el contrato la resuelva.',
+      'Un contrato que coincide con una queja en zona y en materia se muestra sin revisión; con una sola de las dos espera a un curador, y ninguna coincidencia afirma que el contrato la resuelva.',
     'metodologia.frase.eficiencia':
       'Cuando lo que declara el ayuntamiento lo permite, dividimos el coste de cada servicio entre sus unidades, lo comparamos con municipios parecidos del mismo modo de gestión y no publicamos ninguna nota.',
     'metodologia.frase.opinion-editor':
@@ -5042,7 +5042,7 @@ export const CATALOGUE = {
     'metodologia.enBreve.fuentes.ver': 'Vore totes les fonts →',
     'metodologia.enBreve.maquina.pregunta': 'Ho publica una màquina?',
     'metodologia.enBreve.maquina.frase':
-      "A vegades, i amb regles. El que nomena una persona porta sempre la firma d'algú de l'equip. Una màquina només publica sola el que retira alguna cosa ja publicada, o el que és nou, no nomena ningú i té l'encert mesurat.",
+      "A vegades, i amb regles. El que nomena una persona porta sempre la firma d'algú de l'equip. Per regla general, una màquina només publica sola el que retira alguna cosa ja publicada, o el que és nou, no nomena ningú i té l'encert mesurat; els processos que encara no la complixen es diuen en la regla.",
     'metodologia.enBreve.comprobar.pregunta': 'Com comprove el que dieu?',
     'metodologia.enBreve.comprobar.frase':
       "Cada afirmació enllaça el document d'on ix, perquè ho comproves tu. Una promesa s'atribuïx amb les paraules literals del partit, mai amb el titular d'una notícia.",
@@ -5117,7 +5117,7 @@ export const CATALOGUE = {
     'metodologia.frase.biografias':
       'El que un càrrec publica sobre si mateix és el punt de partida, no la font: es contrasta amb documents que no controla, i la vida privada sense relació amb el càrrec no hi entra.',
     'metodologia.frase.verificacion-declaraciones':
-      "Acarem automàticament el que s'ha dit en el ple amb contractes, subvencions i promeses quan hi ha amb què; després una màquina només pot rebaixar un veredicte, i pujar-lo ho signa una persona.",
+      "Acarem automàticament el que s'ha dit en el ple amb contractes, subvencions i promeses quan la declaració porta amb què; després una màquina només pot rebaixar un veredicte, i pujar-lo ho signa una persona.",
     'metodologia.frase.trinquete-veredictos':
       "Cada etapa mou un veredicte en un sol sentit, cap d'automàtica no el reforça, i un veredicte que afirma alguna cosa nomena amb què es va comprovar, excepte la retractació d'un curador.",
     'metodologia.frase.citas-transcripcion':
@@ -5135,7 +5135,7 @@ export const CATALOGUE = {
     'metodologia.frase.camino-de-una-queja':
       "Publicar una queixa no la porta a l'ajuntament: hi arriba quan entra en el seu registre, i el termini legal per a respondre compta des d'eixa data.",
     'metodologia.frase.relacion-quejas-contratos':
-      'Un contracte que coincidix amb una queixa en zona i en matèria es mostra; amb una sola de les dues espera un curador, i cap coincidència no afirma que el contracte la resolga.',
+      'Un contracte que coincidix amb una queixa en zona i en matèria es mostra sense revisió; amb una sola de les dues espera un curador, i cap coincidència no afirma que el contracte la resolga.',
     'metodologia.frase.eficiencia':
       "Quan el que declara l'ajuntament ho permet, dividim el cost de cada servei entre les seues unitats, ho comparem amb municipis semblants del mateix mode de gestió i no publiquem cap nota.",
     'metodologia.frase.opinion-editor':
