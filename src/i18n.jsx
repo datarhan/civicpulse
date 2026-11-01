@@ -5207,7 +5207,7 @@ export const CATALOGUE = {
     'metodologia.frase.limites-motor':
       'El motor no autopublica veredictes forts ni el que nomena un càrrec, no assigna incompliments, no inventa cites, no puntua partits i es deté en període electoral.',
     'metodologia.frase.auto-curacion-promesas':
-      'Sense revisió només es publica el que supera un llindar de confiança, queda ancorat a la seua font i no nomena cap càrrec, retolat com a automàtic; «parcial», «complida» i els incompliments mai no es publiquen sols.',
+      'Sense revisió només es publica el que supera un llindar de confiança, queda ancorat a la font i no nomena cap càrrec, retolat com a automàtic; «parcial», «complida» i els incompliments mai es publiquen sols.',
     'metodologia.frase.camino-de-una-queja':
       "Publicar una queixa no la porta a l'ajuntament: hi arriba quan entra en el seu registre, i el termini legal per a respondre compta des d'eixa data.",
     'metodologia.frase.relacion-quejas-contratos':
