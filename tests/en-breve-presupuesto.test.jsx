@@ -176,7 +176,7 @@ describe('el glosario', () => {
       expect(f.termino, f.clave).not.toMatch(/^glosario\./)
       expect(f.def, f.clave).not.toMatch(/^glosario\./)
       expect(f.to, f.clave).toMatch(
-        /^\/(presupuesto#(cascada|capitulos|deuda)|eficiencia#sec-(servicios|declaracion|entregas)|metodologia#rectificacion|plenos#ultimo-pleno|quejas#(sindic|consell-transparencia|ctbg|sindicatura)|empleo-publico#como-se-entra)$/,
+        /^\/(presupuesto#(cascada|capitulos|deuda)|contratos#(mapa-gasto|menores|sin-convocatoria)|reportajes\/matriculas-y-moviles|eficiencia#sec-(servicios|declaracion|entregas)|metodologia#(rectificacion|camino-de-una-queja)|plenos#ultimo-pleno|quejas#(sindic|consell-transparencia|ctbg|sindicatura)|empleo-publico#como-se-entra)$/,
       )
     }
   })
