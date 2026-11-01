@@ -207,6 +207,15 @@ describe('la guarda juzga cada hoja por lo que lleva, no por cómo se llama', ()
     }
   })
 
+  it('se cae si el artefacto no tiene `data/`: cero hojas no es un artefacto limpio', async () => {
+    const { raiz, juzgar } = await construir({})
+    try {
+      await expect(juzgar()).rejects.toThrow('no se han juzgado: data')
+    } finally {
+      rmSync(raiz, { recursive: true, force: true })
+    }
+  })
+
   // root abre lo que sea, así que ahí la prueba no probaría nada.
   it.skipIf(process.getuid?.() === 0)('se cae ante un directorio que no abre', async () => {
     const { raiz, ruta, juzgar } = await construir({ 'cerrado/corpus.txt': BORRADOR })

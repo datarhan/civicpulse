@@ -385,15 +385,15 @@ export function vitePublicationGuard() {
         const referencias = referenciasDelNavegador(textos)
 
         // Las hojas del artefacto, que es el único denominador honesto: todas,
-        // se llamen como se llamen. Un directorio que no abre es una hoja sin
-        // juzgar, no un directorio vacío.
+        // se llamen como se llamen. Un directorio que no abre, o un `data/` que
+        // no existe, es una hoja sin juzgar: cero hojas no es «no había nada».
         const hojas = []
         const andaDatos = async (d) => {
           let entradas
           try {
             entradas = await readdir(d, { withFileTypes: true })
-          } catch (err) {
-            if (err.code !== 'ENOENT') hojas.push({ rel: relative(salida, d), texto: null })
+          } catch {
+            hojas.push({ rel: relative(salida, d), texto: null })
             return
           }
           for (const e of entradas) {
