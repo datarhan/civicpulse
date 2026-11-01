@@ -115,10 +115,13 @@ work. `tests/frescura-de-las-tuberias.test.ts` derives the pipeline list from th
 graph and from the literal paths each script names, so a new pipeline is covered
 without anyone editing a list.
 
-One gap is left open on purpose, because it is a different defect with its own
-reproducer: when a push is rejected, these pipelines `pull --rebase` and push again
-**without** re-running `refresh`, so they can inherit staleness from whichever cron
-landed first. That is what happened to `94359907` on 2026-09-16.
+When a push is rejected, these pipelines `pull --rebase`, re-run `refresh` and push
+once more, so they cannot inherit staleness from whichever cron landed first, which
+is what happened to `94359907` on 2026-09-16. `scrape-ci-blocked` and
+`auto-curate-promises` do it through `cron_git_push_con_reintento`
+(`scripts/lib/cron-git.sh`). A rejection left unretried is worse than one lost run:
+once the nightly rewrites the same files, every agent's opening pull conflicts until
+someone resolves it by hand.
 
 ## The other GitHub workflows
 
