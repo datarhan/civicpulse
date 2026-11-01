@@ -150,7 +150,7 @@ jobs:
       # orden dentro del trabajo.
       #
       # Los diez minutos son una alarma y no un margen que subir. Un runner lento
-      # tarda hasta 1,7 veces lo que uno rápido (se ve en el paso `npm ci`, de 24 a
+      # tarda casi 1,8 veces lo que uno rápido (se ve en el paso `npm ci`, de 24 a
       # 42 s), así que este paso cae por tiempo, sin una prueba roja, antes en unas
       # pasadas que en otras. Si pasa, la suite ha crecido: lo que dio margen la
       # última vez está en `tests/entorno-por-extension.test.ts` y en
