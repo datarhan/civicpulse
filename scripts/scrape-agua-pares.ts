@@ -20,6 +20,10 @@
  * fichero tiene menos de 7 días la pasada no hace nada y lo dice; `--forzar`
  * la obliga.
  *
+ * Corre sólo en `scrape-ci-blocked.sh`, y no porque SINAC bloquee a los runners:
+ * una pasada cuesta unos 36 min desde cualquier IP (SOLO_LOCAL en `scrape-all.sh`
+ * tiene la medida) y sólo escribe al terminar, así que cortarla no deja nada.
+ *
  * Un municipio que falla se salta con su motivo (`fallidos`); si fallan más de
  * un 20 %, la pasada sale 1 y el fichero de la semana anterior sigue.
  *
