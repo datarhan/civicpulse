@@ -481,6 +481,30 @@ export function classifyAgendaRun(tally: AgendaRunTally): {
   }
 }
 
+/**
+ * El `generatedAt` de una pasada: cuándo sirvió el ORIGEN VIVO las sesiones
+ * recientes por última vez, no cuándo corrió el guion.
+ *
+ * El 01-11-2026, con el certificado de regmeet caducado, la nocturna sacó 0
+ * sesiones del origen y 1 del archivo y selló con la hora de ese día. Lo mide
+ * `check:cadence` y lo publica `/datos`, y así una caída no envejecía nunca este
+ * fichero. Es lo mismo que `selloDePasada` cierra en `plenos.json`.
+ *
+ * `nada-intentado` tampoco sella: sin objetivos no se leyó nada. Y un `ok` con
+ * alguna reciente sin leer tampoco, porque lo nuevo aparece ahí y las demás
+ * responden aunque ella no. Las sesiones viejas sin orden del día no cuentan:
+ * se reintentan cada noche, y una página desaparecida fijaría el sello para
+ * siempre. Lo fundido se queda, y sólo el sello espera.
+ */
+export function selloDeAgendas(
+  previo: string | undefined,
+  { outcome, recientesSinLeer }: { outcome: AgendaRunOutcome; recientesSinLeer: number },
+  ahora: Date = new Date(),
+): string {
+  const entera = outcome === 'ok' && recientesSinLeer === 0
+  return !entera && previo ? previo : ahora.toISOString()
+}
+
 /** Un departamento del recuento, con su cuenta de PUNTOS del orden del día. */
 export interface DepartmentTally {
   department: string
