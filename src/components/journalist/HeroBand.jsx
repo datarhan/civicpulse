@@ -1,14 +1,28 @@
 // Journalist UI — full-width hero band (portrait, party, quick facts, actions).
 import { ExtLink, Pill } from '../Primitives'
 import { ageFromDate, formatEventDate } from './Sections'
-import { latestOffice, officeSince } from '../../lib/journalist-facts.js'
-
-const fmtEur = (n) => `${Number(n).toLocaleString('es-ES', { maximumFractionDigits: 0 })} €`
+import { latestOffice, officeBefore, officeSince } from '../../lib/journalist-facts.js'
+import { euros } from '../../lib/formatters'
 
 // «Lo esencial» — at-a-glance facts computed strictly from the report's
 // structured payloads (no new claims); each chip deep-links to the section
 // that carries the citation.
-function KeyFactsStrip({ report, tone }) {
+//
+// Cada cifra lleva su año en el rótulo. «Retribución 43.067 €/año» sin año era
+// la del acuerdo de 2023, y la ficha de /cargos de la misma persona dice la de
+// 2026: dos sueldos ciertos que el lector no podía casar. Y «En el cargo desde
+// 2015» chocaba con el «desde 2023» del subtítulo, que es el puesto actual:
+// `officeSince` cuenta la cadena de cargos municipales sin hueco, así que el
+// rótulo dice eso, «En la corporación». No «En el Ayuntamiento»: el subtítulo
+// termina «en Ayuntamiento · desde 2023» (el `org` del informe), y las dos
+// fechas volvían a chocar sobre la misma palabra. Lo que la cadena deja fuera
+// —un acta de 2010, un mandato de 2015 a 2019— va detrás: «desde 2015 · antes,
+// en 2010». Sin ello la etiqueta contradecía la trayectoria de debajo.
+const tramo = ({ desde, hasta }) => (desde === hasta ? `en ${desde}` : `de ${desde} a ${hasta}`)
+const enumera = (partes) =>
+  partes.length < 2 ? partes.join('') : `${partes.slice(0, -1).join(', ')} y ${partes.at(-1)}`
+
+export function hechosClave(report) {
   const fin = report.sections.find((s) => s.kind === 'financial')?.payload?.items ?? []
   const salary = fin
     .filter((i) => i.metric === 'salary' && i.amountEuros != null)
@@ -19,22 +33,39 @@ function KeyFactsStrip({ report, tone }) {
   // «Desde» es la cadena de cargos sin hueco que desemboca en el actual — no
   // el año más bajo de la trayectoria, que incluía candidaturas sin escaño.
   const since = officeSince(career)
+  const antes = officeBefore(career)
   const identity = report.sections.find((s) => s.kind === 'identity')?.payload
   const age = identity?.dateOfBirth ? ageFromDate(identity.dateOfBirth) : null
 
+  const conAnio = (rotulo, item) => (item.year ? `${rotulo} ${item.year}` : rotulo)
+
   const facts = []
   if (age != null) facts.push({ k: 'Edad', v: `${age} años`, href: '#sec-identity' })
-  if (since) facts.push({ k: 'En el cargo', v: `desde ${since}`, href: '#sec-career-political' })
+  if (since)
+    facts.push({
+      k: 'En la corporación',
+      v: `desde ${since}${antes.length ? ` · antes, ${enumera(antes.map(tramo))}` : ''}`,
+      href: '#sec-career-political',
+    })
   if (salary)
-    facts.push({ k: 'Retribución', v: `${fmtEur(salary.amountEuros)}/año`, href: '#sec-financial' })
+    facts.push({
+      k: conAnio('Retribución', salary),
+      v: `${euros(salary.amountEuros)}/año`,
+      href: '#sec-financial',
+    })
   if (assets)
     facts.push({
-      k: 'Patrimonio declarado',
-      v: `${fmtEur(assets.amountEuros)} activo`,
+      k: conAnio('Patrimonio declarado', assets),
+      v: `${euros(assets.amountEuros)} activo`,
       href: '#sec-financial',
     })
   if (business)
     facts.push({ k: 'Actividad empresarial', v: 'ninguna declarada', href: '#sec-financial' })
+  return facts
+}
+
+function KeyFactsStrip({ report, tone }) {
+  const facts = hechosClave(report)
   if (facts.length === 0) return null
 
   return (

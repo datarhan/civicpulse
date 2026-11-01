@@ -1,6 +1,6 @@
 import { test, expect, type Page } from '@playwright/test'
 import { readFileSync } from 'node:fs'
-import { PRIMER_HALLAZGO } from './_rutas'
+import { PRIMER_HALLAZGO, QUEJA_CON_CONTRATOS } from './_rutas'
 import { REPORTAJE_SLUGS } from '../../src/reportajes'
 
 // A real pleno id with claims, read from the committed manifest (for /plenos/:id).
@@ -62,6 +62,18 @@ const correoMasLargo = (cargos: Cargo[]) =>
 const CORREO_EN_EL_CARGO = correoMasLargo(PADRON.officials)
 const CORREO_DE_QUIEN_LO_DEJO = correoMasLargo(PADRON.formerOfficials ?? [])
 
+// Una biografía del agente periodista, y la de Rafael Gómez porque junta las
+// dos cosas que ensanchaban estas fichas: una tabla de declaraciones de cinco
+// filas y una bitácora con URL de PLACSP sin un solo punto de corte. La señal es
+// el recuento de fuentes de la ficha rápida, que sale del informe publicado.
+const BIOGRAFIA = 'a-rafael-gomez-bio-v2'
+const FUENTES_DE_LA_BIOGRAFIA = (
+  JSON.parse(readFileSync('public/data/journalist-reports.json', 'utf8')).items as {
+    assignmentId: string
+    sources: unknown[]
+  }[]
+).find((r) => r.assignmentId === BIOGRAFIA)!.sources.length
+
 // ---------------------------------------------------------------------------
 // Why this spec measures the way it does.
 //
@@ -103,8 +115,15 @@ const ROUTES: Route[] = [
   // water concession landed on 2026-08-06 («… de 123,7 M€»), and `\d+ M€`
   // stopped matching. The guard then refused to measure — correctly, but for a
   // stale reason. A readiness signal must survive the copy it waits on.
-  { path: '/', ready: /M€ de [\d.,]+ M€/ }, // situated-spend ticker (tenders snapshot)
+  // Since 2026-10-26 the visible coverage line is a sentence and the euro ratio
+  // lives in its title, so the signal is the sentence's figure, which only
+  // renders once tender-geo.json has arrived.
+  { path: '/', ready: /sitúa (\d+|menos de 1) de cada 100 €/ }, // map coverage (tender-geo snapshot)
   { path: '/cargos', ready: /Robert Raga Gadea/ }, // officials snapshot
+  // La plantilla municipal, con su rejilla de dos columnas, vive aquí desde
+  // que salió de /cargos; la señal es su frase, que sólo se escribe con
+  // plantilla.json dentro.
+  { path: '/empleo-publico', ready: /No se pueden restar/ },
   { path: '/cargos/robert-raga-gadea', ready: /@ribarroja\.es/ }, // the official's own record
   // El peor correo del padrón en cada ficha: la señal es el propio correo.
   { path: `/cargos/${CORREO_EN_EL_CARGO.slug}`, ready: literal(CORREO_EN_EL_CARGO.email) },
@@ -129,7 +148,10 @@ const ROUTES: Route[] = [
   { path: '/plenos', ready: /celebrado \d+ sesiones/i },
   { path: `/plenos/${FIRST_PLENO_ID}`, ready: /\d{1,2} de [a-záéíóúñ]+ de \d{4}/i }, // session date
   { path: '/promesas', ready: /\d+ compromisos en seguimiento/ },
-  { path: '/departamentos', ready: /De \d+ concejalías con delegación/ },
+  // La señal era la frase que contaba el encaje de los cargos, retirada porque
+  // docs/DESCRIPCION.md no admite «un recuento de encaje». La nueva sale de las
+  // tarjetas: también depende de los datos (la contratación de cada área).
+  { path: '/departamentos', ready: /\d+ contratos/ },
   { path: '/departamentos/urbanismo', ready: /\d+% cotejadas · \d+ en total/ },
   { path: '/hallazgos', ready: /TOTAL HALLAZGOS \d+/ },
   // La página propia de una ficha: su titular sale del snapshot, no de una cadena.
@@ -152,8 +174,14 @@ const ROUTES: Route[] = [
   // Not a data row but a data ANSWER: this sentence only renders once the
   // quejas snapshot has loaded and the id was absent from it.
   { path: '/quejas/q-no-existe', ready: /no aparece en el snapshot actual/ },
+  // Una queja de verdad: la de arriba es sólo la tarjeta de «no aparece», así que
+  // ninguna guarda de ancho miraba la cabecera con sus dos pastillas.
+  ...(QUEJA_CON_CONTRATOS
+    ? [{ path: `/quejas/${QUEJA_CON_CONTRATOS}`, ready: literal(QUEJA_CON_CONTRATOS) }]
+    : []),
   { path: '/cambios', ready: /Total: \d+ cambios · ventana de \d+ días/ },
-  { path: '/laboratorio', ready: /TITULARES MONITORIZADOS \d+/ },
+  { path: '/laboratorio', ready: /Aquí probamos métodos/ },
+  { path: '/laboratorio/prensa', ready: /TITULARES MONITORIZADOS \d+/ },
   // No estaba en esta lista, así que ninguna guarda de ancho la miraba: sus
   // filas de cinco columnas se salían 69 px con la barra lateral. La señal es
   // un recuento de filas, que sólo existe cuando un snapshot se ha leído.
@@ -190,6 +218,20 @@ const ROUTES: Route[] = [
   {
     path: '/laboratorio/coste-esperado',
     ready: /veces\s+lo esperado|municipios en gestión directa/,
+  },
+  // Ninguna biografía estaba en esta lista, así que nadie medía
+  // /laboratorio/agentes/:id. Medido el 28-10-2026 sobre la build de producción
+  // con las dos banderas: a 320 px, veinte de las veintiuna medían de 337 a
+  // 360 px de ancho, y con la barra lateral, donde la columna del informe baja
+  // a 277 px (en esta, de 821 a 869 px de ventana), se salía 52 px de su caja.
+  // La causa era la tabla de declaraciones financieras, que pedía ~290 px en
+  // una tarjeta de 235 y, al estirar la pista `auto` de `.cp-main`, arrastraba
+  // a todas las tarjetas: la guarda de rejillas nombraba la primera, la de
+  // sensibilidad legal, que no tenía culpa.
+  {
+    path: `/laboratorio/agentes/${BIOGRAFIA}`,
+    ready: new RegExp(`${FUENTES_DE_LA_BIOGRAFIA} citadas`),
+    flag: 'VITE_ENABLE_PERIODISTAS',
   },
   { path: '/nosotros', ready: /es el primer municipio/ },
   { path: '/about', ready: /All funding is disclosed publicly/ },
@@ -523,18 +565,19 @@ test.describe('Mobile shell (iPhone 13 mini / 375px)', () => {
 })
 
 // ---------------------------------------------------------------------------
-// La tarjeta del dinero, desplegada, debajo de la cinta «DIRECTO».
+// La tarjeta del dinero, desplegada, dentro del mapa.
 //
-// La guarda de arriba mide la pila contra el borde del MAPA, y la cinta va dentro
-// del mapa, encima de todo (z-index 401 contra 400). Medido el 17-10-2026 en una
-// build de producción a 375×812: con «Detalle ▾» pulsado la pila crecía hacia
-// arriba hasta y=187 y la cinta llegaba a y=211, así que la primera línea de la
-// tarjeta quedaba debajo —con la guarda de arriba en verde—. El tope de la pila
-// contaba desde el borde del mapa, no desde el pie de la cinta.
+// Nació midiendo la tarjeta contra la cinta «DIRECTO», que iba dentro del mapa y
+// encima de todo (z-index 401 contra 400): el 17-10-2026, a 375×812 y con
+// «Detalle ▾» pulsado, la pila crecía hasta y=187 y la cinta llegaba a y=211, así
+// que la primera línea de la tarjeta quedaba debajo. La cinta se quitó de la
+// portada el 27-10-2026; el tope de la pila sigue dejando el mismo aire arriba
+// (`AIRE_ARRIBA`), y esto mide que la tarjeta empiece dentro del mapa y que su
+// principio no se lo coma el desplazamiento de la pila.
 //
 // A 812 de alto la tarjeta tiene que caber ENTERA; a 629 no cabe, y lo que se
 // pide es que su principio quede a la vista y lo demás se alcance desplazando la
-// pila, nunca debajo de la cinta.
+// pila.
 // ---------------------------------------------------------------------------
 
 for (const { width, height, entera } of [
@@ -545,13 +588,10 @@ for (const { width, height, entera } of [
   test.describe(`La tarjeta del dinero desplegada a ${width}×${height}`, () => {
     test.use({ viewport: { width, height } })
 
-    test('empieza debajo de la cinta «DIRECTO»', async ({ page }) => {
+    test('empieza dentro del mapa', async ({ page }) => {
       await page.goto('/', { waitUntil: 'domcontentloaded' })
       const pila = page.locator('.cp-mapa-pila')
-      const cinta = page.locator('[data-live-ticker]')
       await expect(pila.locator('.cp-cobertura')).toBeVisible({ timeout: 15_000 })
-      // La cinta sólo se monta cuando tiene titulares que pasar.
-      await expect(cinta).toBeVisible({ timeout: 15_000 })
 
       await pila.getByRole('button', { name: /detalle/i }).click()
       await expect(pila).toHaveAttribute('data-plegada', 'false')
@@ -564,27 +604,21 @@ for (const { width, height, entera } of [
           return { top: b.top, bottom: b.bottom, left: b.left, right: b.right }
         }
         return {
-          cinta: r(document.querySelector('[data-live-ticker]')),
+          mapa: r(document.querySelector('.d-mappane')),
           pila: r(document.querySelector('.cp-mapa-pila')),
           tarjeta: r(document.querySelector('.cp-mapa-pila .cp-dinero')),
         }
       })
 
-      // Que haya medido algo: los tres nodos, con alto, y la cinta y la tarjeta
-      // en la misma franja de x. Sin solaparse en horizontal, «arriba/abajo» no
-      // diría nada de que una tape a la otra.
-      expect(m.cinta, 'no está la cinta').not.toBeNull()
+      // Que haya medido algo: los tres nodos, con alto.
+      expect(m.mapa, 'no está el mapa').not.toBeNull()
       expect(m.pila, 'no está la pila').not.toBeNull()
       expect(m.tarjeta, 'no está la tarjeta del dinero').not.toBeNull()
-      const [c, p, t] = [m.cinta!, m.pila!, m.tarjeta!]
-      expect(c.bottom - c.top).toBeGreaterThan(20)
+      const [a, p, t] = [m.mapa!, m.pila!, m.tarjeta!]
+      expect(a.bottom - a.top).toBeGreaterThan(200)
       expect(t.bottom - t.top, 'la tarjeta no se desplegó').toBeGreaterThan(120)
-      expect(Math.min(c.right, t.right) - Math.max(c.left, t.left)).toBeGreaterThan(0)
 
-      expect(
-        t.top,
-        'la primera línea de la tarjeta queda debajo de la cinta',
-      ).toBeGreaterThanOrEqual(c.bottom)
+      expect(t.top, 'la tarjeta empieza por encima del mapa').toBeGreaterThanOrEqual(a.top)
       // Y que el principio no se lo haya comido el desplazamiento de la pila. Con
       // un píxel de holgura: desplazada al tope, el desplazamiento va en píxeles
       // enteros y el contenido no, y a 375×629 la tarjeta queda 0,97 px por encima
@@ -626,6 +660,41 @@ for (const { width, height, entera } of [
 
 /** El ancho de WCAG 1.4.10. */
 const ANCHO_REFLOW = 320
+
+// La pastilla dice «WhatsApp» entero (WCAG 2.5.3) y mide el doble que el «WA» de
+// antes. Ninguna guarda de desbordamiento lo veía en /cambios: un titular de 39 px,
+// una sílaba por renglón, cabe perfectamente en su caja.
+test.describe('Junto a la pastilla de WhatsApp, el texto conserva su línea', () => {
+  for (const width of [375, ANCHO_REFLOW]) {
+    test(`/cambios a ${width}: el titular ocupa toda la fila`, async ({ page }) => {
+      await page.setViewportSize({ width, height: 812 })
+      await page.goto('/cambios', { waitUntil: 'domcontentloaded' })
+      const fila = page.locator('[data-fila]').first()
+      await expect(fila.getByRole('button', { name: 'Compartir en WhatsApp' })).toBeVisible({
+        timeout: 8000,
+      })
+      const caja = await fila.boundingBox()
+      const titular = await fila.locator('> :nth-child(2)').boundingBox()
+      expect(Math.round(titular!.width), 'el titular comparte línea').toBe(Math.round(caja!.width))
+    })
+  }
+
+  test(`/quejas/:id a ${ANCHO_REFLOW}: el título ocupa toda la fila`, async ({ page }) => {
+    test.skip(!QUEJA_CON_CONTRATOS, 'el snapshot no trae ninguna queja con contratos')
+    await page.setViewportSize({ width: ANCHO_REFLOW, height: 812 })
+    await page.goto(`/quejas/${QUEJA_CON_CONTRATOS}`, { waitUntil: 'domcontentloaded' })
+    const titulo = page.getByRole('heading', { level: 1 })
+    await expect(titulo).toBeVisible({ timeout: 8000 })
+    const medida = await titulo.evaluate((h1) => {
+      const cabecera = h1.closest('.cp-queja-cabecera') as Element
+      return {
+        titulo: (h1.parentElement as Element).getBoundingClientRect().width,
+        cabecera: cabecera.getBoundingClientRect().width,
+      }
+    })
+    expect(Math.round(medida.titulo), 'el título comparte línea').toBe(Math.round(medida.cabecera))
+  })
+})
 
 test.describe('El documento a 320 px (WCAG 1.4.10)', () => {
   for (const route of ROUTES) {
@@ -726,7 +795,9 @@ const SIN_REJILLAS = new Set([
   '/laboratorio/coste-esperado',
   '/nosotros',
   '/about',
-  '/metodologia',
+  // `/metodologia` salió de aquí el 22-10-2026: su «En breve» trae dos
+  // rejillas (las preguntas y la tira del dato), y desde entonces el control
+  // de abajo mide que cada bloque quepa en su caja.
   '/aviso-legal',
   // La ficha de quien dejó el cargo: la baja con su fuente, la identidad y el
   // mandato, en bloques apilados. Ninguna rejilla.

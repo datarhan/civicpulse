@@ -37,6 +37,30 @@ test.describe('Reportajes index (/reportajes)', () => {
 
     expect(appErrors(errors)).toEqual([])
   })
+
+  // La ficha entera es un enlace (un `::after` del titular la cubre). El término
+  // del glosario en «Con N correcciones publicadas» tiene que quedar ENCIMA de
+  // esa capa: si no, el clic abre la pieza en vez de la definición. Playwright
+  // falla el clic si otro elemento recibe el puntero, así que esto lo mide.
+  for (const ancho of [1280, 375]) {
+    test(`«correcciones publicadas» abre su definición sin salir del índice (${ancho} px)`, async ({
+      page,
+    }) => {
+      await page.setViewportSize({ width: ancho, height: 900 })
+      await page.goto('/reportajes', { waitUntil: 'domcontentloaded' })
+      const termino = page
+        .getByRole('button', { name: /^correcci(ón publicada|ones publicadas)$/ })
+        .first()
+      await expect(termino).toBeVisible({ timeout: 8000 })
+      await termino.click()
+      await expect(termino).toHaveAttribute('aria-expanded', 'true')
+      const panel = page.locator(`[id="${await termino.getAttribute('aria-controls')}"]`)
+      await expect(panel).toContainText(
+        'Una nota fechada que añadimos al final de una pieza ya publicada',
+      )
+      await expect(page).toHaveURL(/\/reportajes$/)
+    })
+  }
 })
 
 test.describe('Landing editorial feed', () => {
@@ -47,6 +71,20 @@ test.describe('Landing editorial feed', () => {
     })
     await expect(page.getByRole('link', { name: /calle a calle/ }).first()).toBeVisible()
     await expect(page.getByRole('link', { name: /Quince años/ }).first()).toBeVisible()
+  })
+
+  test('las correcciones se dicen en una frase neutra que abre el glosario', async ({ page }) => {
+    await page.goto('/', { waitUntil: 'domcontentloaded' })
+    const chip = page.locator('[data-correcciones]').first()
+    await expect(chip).toBeVisible({ timeout: 10_000 })
+    await expect(chip).toHaveText(/^Con \d+ correcci(ón publicada|ones publicadas)$/)
+    await expect(chip).toHaveCSS('text-transform', 'none')
+    const termino = chip.getByRole('button')
+    await termino.click()
+    await expect(termino).toHaveAttribute('aria-expanded', 'true')
+    await expect(
+      page.locator(`[id="${await termino.getAttribute('aria-controls')}"]`),
+    ).toContainText('Una nota fechada que añadimos al final de una pieza ya publicada')
   })
 })
 
@@ -105,6 +143,34 @@ test.describe('La columna de las piezas', () => {
       expect(r.parrafos).toBeGreaterThan(0)
       expect(r.desvios, 'bloques que no arrancan en el borde de la columna').toEqual([])
       expect(r.parrafoMasAncho).toBeLessThanOrEqual(r.medida + 1)
+    })
+  }
+})
+
+// «Lo que hemos encontrado»: cada clave lleva a la sección que la prueba. Un
+// número de sección que la pieza no pinta sería un enlace a ninguna parte, y
+// eso sólo se ve con la pieza pintada: la numeración vive en su JSX.
+test.describe('Las claves de las piezas', () => {
+  for (const slug of publicadas) {
+    test(`${slug}: cada clave enlaza a una sección que existe, y el salto llega`, async ({
+      page,
+    }) => {
+      const { claves } = JSON.parse(readFileSync(`public/data/reportajes/${slug}.json`, 'utf8'))
+      await page.goto(`/reportajes/${slug}`, { waitUntil: 'domcontentloaded' })
+      const caja = page.locator('[data-claves]')
+      await expect(caja.getByRole('heading', { name: 'Lo que hemos encontrado' })).toBeVisible({
+        timeout: 8000,
+      })
+      await expect(caja.locator('li')).toHaveCount(claves.length)
+      for (const c of claves) {
+        await expect(
+          page.locator(`[data-seccion="${c.seccion}"]#seccion-${c.seccion}`),
+        ).toHaveCount(1)
+      }
+      // El salto, con la última: la más lejos de la caja.
+      const ultima = claves[claves.length - 1]
+      await caja.locator(`a[href="#seccion-${ultima.seccion}"]`).first().click()
+      await expect(page.locator(`#seccion-${ultima.seccion}`)).toBeInViewport()
     })
   }
 })

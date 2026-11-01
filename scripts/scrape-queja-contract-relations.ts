@@ -21,7 +21,7 @@ import { buildRelations, instanteUtc } from '../src/scraper/queja-contract-relat
 import type { RelQueja, RelContract } from '../src/scraper/queja-contract-relations'
 import { canonicalizeDepartment } from '../src/scraper/departments'
 import { validatePromisesSnapshot, isFrozen } from '../src/scraper/promises'
-import { isCommittedContract } from '../src/lib/contract-status.js'
+import { isCommittedContract, importeAdjudicado } from '../src/lib/contract-status.js'
 
 const QUEJAS = resolve('public/data/quejas.json')
 const TENDERS = resolve('public/data/tenders.json')
@@ -100,7 +100,9 @@ export function buildRelContracts(
         places: g.places,
         zones: g.zones,
         awardDate: s(c.awardDate) || null,
-        amount: typeof c.finalAmount === 'number' ? c.finalAmount : null,
+        // La regla del sitio, no `finalAmount` a secas: ése va con IVA y la fuente lo
+        // publica a 0 en cien contratos, que no es un importe sino su ausencia.
+        amount: importeAdjudicado(c),
         assignee: s(c.assignee) || null,
         expediente: expById.get(id) ?? null,
       }

@@ -2,15 +2,8 @@ import { useMemo, useState } from 'react'
 import { topContractors } from '../../lib/tender-geo'
 import { useEntities } from '../../hooks/useEntities'
 import { isCommittedContract, importeAdjudicado } from '../../lib/contract-status.js'
-import { rellena } from '../../lib/formatters'
+import { rellena, euros } from '../../lib/formatters'
 import { useT } from '../../i18n'
-
-const fmtEur = (n) =>
-  new Intl.NumberFormat('es-ES', {
-    style: 'currency',
-    currency: 'EUR',
-    maximumFractionDigits: 0,
-  }).format(n)
 
 export default function ContractorLeaderboard({ contracts }) {
   const t = useT()
@@ -81,7 +74,7 @@ export default function ContractorLeaderboard({ contracts }) {
               }}
             />
             <span className="mono" style={{ fontWeight: 700, fontSize: 'var(--fs-meta)' }}>
-              {fmtEur(fila.amount)}
+              {euros(fila.amount)}
             </span>
             <span
               style={{
@@ -109,7 +102,9 @@ export default function ContractorLeaderboard({ contracts }) {
                   style={{ fontSize: 'var(--fs-micro)', color: 'var(--ink50)', padding: '3px 0' }}
                 >
                   {c.title.length > 90 ? c.title.slice(0, 90) + '…' : c.title} —{' '}
-                  <span className="mono">{fmtEur(importeAdjudicado(c))}</span>
+                  <span className="mono">
+                    {euros(importeAdjudicado(c)) || t('importe.noPublicado')}
+                  </span>
                 </div>
               ))}
             </div>

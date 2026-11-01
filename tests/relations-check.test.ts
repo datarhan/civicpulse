@@ -380,6 +380,91 @@ describe('runRelationsChecks', () => {
       expect(rs['findings-crosschecked-video'].status).toBe('ok')
       expect(rs['findings-crosschecked-video'].checked).toBe(1)
     })
+
+    it('el vídeo que incrusta la página de la sesión en regmeet no sale de ninguna ventana', () => {
+      // Forma de la fila real de 1237hbp (03-07-2026), cuyo vídeo el canal ya no lista.
+      const rs = byName(
+        runRelationsChecks({
+          videos,
+          videosRegmeet: {
+            items: [
+              {
+                plenoId: '1237hbp',
+                fecha: '2026-07-03',
+                lectura: 'con-video',
+                ytId: 'L6Cy1hTrpIc',
+                url: 'https://www.youtube.com/watch?v=L6Cy1hTrpIc',
+              },
+            ],
+          },
+          findings: {
+            items: [
+              {
+                id: 'f1',
+                plenoDate: '2026-07-03',
+                crossChecked: [
+                  { kind: 'pleno-video', ref: 'https://www.youtube.com/watch?v=L6Cy1hTrpIc' },
+                ],
+              },
+            ],
+          },
+        }),
+      )
+      expect(rs['findings-crosschecked-video'].status).toBe('ok')
+      expect(rs['findings-crosschecked-video'].checked).toBe(1)
+    })
+  })
+
+  describe('video-fuentes', () => {
+    const plenos = { items: [{ id: 'zrbgic', date: '2026-10-05' }] }
+    const videos = {
+      items: [
+        {
+          ytId: 'C7SSTb7q0ys',
+          url: 'https://www.youtube.com/watch?v=C7SSTb7q0ys',
+          plenoDate: '2026-10-05',
+        },
+      ],
+    }
+    const regmeet = (ytId: string | null) => ({
+      items: [
+        {
+          plenoId: 'zrbgic',
+          fecha: '2026-10-05',
+          lectura: ytId ? 'con-video' : 'sin-video',
+          ytId,
+          url: ytId ? `https://www.youtube.com/watch?v=${ytId}` : null,
+        },
+      ],
+    })
+
+    it('se salta sin la instantánea de regmeet', () => {
+      expect(byName(runRelationsChecks({ plenos, videos }))['video-fuentes'].status).toBe('skipped')
+    })
+
+    it('coteja cada sesión con vídeo en regmeet y pasa cuando las dos dicen lo mismo', () => {
+      const r = byName(
+        runRelationsChecks({ plenos, videos, videosRegmeet: regmeet('C7SSTb7q0ys') }),
+      )['video-fuentes']
+      expect(r.status).toBe('ok')
+      expect(r.checked).toBe(1)
+    })
+
+    it('una discrepancia es un error, que llega a monitor:health', () => {
+      const r = byName(
+        runRelationsChecks({ plenos, videos, videosRegmeet: regmeet('L6Cy1hTrpIc') }),
+      )['video-fuentes']
+      expect(r.status).toBe('broken')
+      expect(r.level).toBe('error')
+      expect(r.broken[0]).toMatch(/zrbgic \(2026-10-05\) otro-video: .*C7SSTb7q0ys.*L6Cy1hTrpIc/)
+    })
+
+    it('sin ningún vídeo en regmeet no ha cotejado nada: vacía, no limpia', () => {
+      const r = byName(runRelationsChecks({ plenos, videos, videosRegmeet: regmeet(null) }))[
+        'video-fuentes'
+      ]
+      expect(r.status).toBe('empty')
+    })
   })
 
   it('flags manifest chunk itemCount mismatches and missing chunk files', () => {

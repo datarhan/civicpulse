@@ -21,6 +21,41 @@ set -uo pipefail
 # "keep scrapers polite" rule. It caches locally, but a CI runner starts cold
 # every time. Run it by hand when a new entrega lands: npm run scrape:coste-efectivo
 
+# SÓLO EN LOCAL: no se intentan aquí, y el parte lo dice cada noche. Su refresco
+# es `scrape-ci-blocked.sh` (lo fija tests/nightly-budget.test.js) y quien vigila
+# que no se quede sin él es check:cadence.
+#
+#   scrape:agua-pares — una pasada son unas 260 peticiones a SINAC y cuesta unos
+#   27 min: no es que el runner esté bloqueado. Pasada entera desde el portátil el
+#   01-11-2026: 26,9 min, 261 peticiones, 57 de 59 municipios. Con los mismos 18
+#   municipios, 494 s desde el portátil y 540 s desde el runner el 31-10, y Jávea
+#   agotando sus 30 s en los dos sitios. La ficha de una red tarda 7,5 s de mediana
+#   y llega a 30, así que esto nunca cupo en un paso de 30 min donde arrancaba entre
+#   los minutos 10 y 18: sólo parecía caber porque es semanal y seis noches de cada
+#   siete sale al instante. Y no se cura sola: si no acaba no escribe, y si no
+#   escribe la noche siguiente vuelve a tocar. Del 29 al 31-10 tumbó tres
+#   nocturnas. Dejarla con tope sería peor que quitarla: unas 60 peticiones cada
+#   noche a un ministerio para cortar siempre una pasada que sólo escribe al
+#   terminar.
+SOLO_LOCAL=(scrape:agua-pares)
+
+# El reloj de los adaptadores, en dos capas, porque ninguna basta sola.
+#
+# Sin tope, un adaptador lento lo pagan todos los de detrás: el hacha del paso
+# cae dentro de él y se lleva las derivaciones, las guardas y el `npm test` de la
+# noche, y un fallo «blando» tumba lo mismo que uno duro. El tope por adaptador
+# corta sólo a ése. Pero tres atascados la misma noche ya no caben en el paso, y el
+# hacha volvería a caer sobre la cola. El presupuesto común deja de arrancar
+# adaptadores a tiempo, y lo que no llegó a correr se dice NO intentado, que no es
+# lo mismo que fallido ni que hecho.
+#
+# Medido en 45 noches hasta el 31-10-2026: el peor adaptador que TERMINÓ tardó
+# 436 s (pleno-agendas, 21-09), la noche más larga de las 40 que acabaron 19,9 min
+# y la cola 1,7. Ninguna de las dos capas habría cortado nada sano: son respaldo.
+# La cuenta contra el `timeout-minutes` del paso la fija tests/nightly-budget.test.js.
+TOPE_ADAPTADOR_S=${SCRAPE_TOPE_ADAPTADOR_S:-480}
+PRESUPUESTO_ADAPTADORES_S=${SCRAPE_PRESUPUESTO_ADAPTADORES_S:-1500}
+
 SCRAPERS=(
   scrape:officials
   scrape:transparency
@@ -53,7 +88,7 @@ SCRAPERS=(
   scrape:sindicatura
   scrape:sindic-expedientes
   scrape:consell-cv
-  scrape:spain-ticker
+  scrape:agua
   scrape:promise-suggestions
   extract:all-pleno-votes
   scrape:elections
@@ -99,6 +134,13 @@ SCRAPERS=(
 #     nightly deploy path. The adapter's own circuit breaker already refuses
 #     to publish a truncated agenda set, so a soft failure costs nothing but
 #     freshness — the prior agendas snapshot stays valid meanwhile.
+#   - scrape:plenos — la misma plataforma. Era su último adaptador crítico, y
+#     el certificado de regmeet.com caducó el 31-10-2026: una caducidad ajena, que
+#     no se arregla desde aquí y que no se relaja, habría dejado la nocturna sin
+#     despliegue noche tras noche. El adaptador funde sobre lo publicado, así que
+#     una caída no encoge la lista, y con un año sin leer no mueve su
+#     `generatedAt`: un fallo blando sólo cuesta frescura, y pasados 3 días lo dice
+#     check:cadence.
 #   - scrape:sindic-expedientes — elsindic.com desde un runner de GitHub está
 #     SIN MEDIR, y el precio de equivocarse es asimétrico: si no llega, la
 #     nocturna se pone roja y con ella se cae el despliegue, que es lo que costó
@@ -106,6 +148,13 @@ SCRAPERS=(
 #     scrape-ci-blocked.sh; el día que se vea que CI sí llega, se saca de aquí.
 #     El adaptador ya se niega a publicar un recorte o un cero, así que un
 #     fallo blando sólo cuesta frescura — y esa la vigila check:cadence.
+#   - scrape:agua — SINAC (Ministerio de Sanidad), a session-based form. Whether
+#     a GitHub runner reaches sinac.sanidad.gob.es is UNMEASURED; it goes in
+#     soft for the same asymmetric reason as sindic-expedientes, with its
+#     guaranteed refresh in scrape-ci-blocked.sh. The adapter refuses to write
+#     on any failure, so a soft failure only costs freshness — and the archive
+#     it keeps is why that matters: SINAC shows only the latest bulletins, so a
+#     long gap loses the ones that rotate off the page. check:cadence watches it.
 #   - scrape:consell-cv — two near-static yearly GVA tables. The adapter now
 #     refuses to write a partial snapshot when a year is unreachable (that
 #     would delete the missing year's resoluciones), so an upstream blip
@@ -123,6 +172,7 @@ BEST_EFFORT=(
   # The real vote extraction runs curator-side in hallazgos-pipeline.sh.
   extract:all-pleno-votes
   scrape:pleno-agendas
+  scrape:plenos
   scrape:consell-cv
   scrape:elections
   scrape:metro-network
@@ -140,6 +190,7 @@ BEST_EFFORT=(
   scrape:ispa
   scrape:sindicatura
   scrape:sindic-expedientes
+  scrape:agua
 )
 
 is_best_effort() {
@@ -156,6 +207,16 @@ soft_failures=()
 # apart from failures: "never attempted" and "tried and failed" are different
 # facts, and folding them together is how a run reports work it never did.
 skipped=()
+# `x` y no `s`: `app-graph.ts` deriva «qué programa este guion» del bucle cuya
+# variable acaba en `npm run`, y éste no programa nada.
+for x in "${SOLO_LOCAL[@]}"; do
+  skipped+=("$x — sólo en scrape-ci-blocked.sh; su frescura la vigila check:cadence")
+done
+# La regla 2 de docs/DATA_INTEGRITY.md: el parte del final tiene que cuadrar.
+intentados=0
+hechos=0
+fallidos=0
+agotados=0
 
 # Steps that need an LLM. CI has no backend by design — no API keys, and ollama
 # is out of every fallback chain — so these cannot do their work there. Running
@@ -184,19 +245,39 @@ for s in "${SCRAPERS[@]}"; do
     echo "[scrape-all] SKIPPED: $s — needs an LLM backend and none is available here."
     echo "[scrape-all]   It runs curator-side (hallazgos-pipeline.sh). Skipping so this"
     echo "[scrape-all]   run does not overwrite the snapshot with an empty result."
-    skipped+=("$s")
+    skipped+=("$s — necesita un backend LLM y aquí no hay")
     continue
   fi
-  if npm run "$s"; then
+  restante=$((PRESUPUESTO_ADAPTADORES_S - SECONDS))
+  if [ "$restante" -le 0 ]; then
+    echo "[scrape-all] NO INTENTADO: $s — presupuesto de ${PRESUPUESTO_ADAPTADORES_S} s agotado"
+    skipped+=("$s — presupuesto de adaptadores agotado")
+    # Un crítico que no corrió tampoco ha ido bien.
+    is_best_effort "$s" || failures+=("$s (no intentado)")
+    continue
+  fi
+  tope=$TOPE_ADAPTADOR_S
+  [ "$restante" -lt "$tope" ] && tope=$restante
+  intentados=$((intentados + 1))
+  if node "$(dirname "$0")/con-tope.mjs" "$tope" npm run "$s"; then
+    hechos=$((hechos + 1))
     echo "[scrape-all] ok: $s"
   else
     code=$?
+    nombre="$s"
+    if [ "$code" -eq 124 ]; then
+      agotados=$((agotados + 1))
+      nombre="$s, que AGOTÓ SU TOPE de ${tope} s"
+      echo "[scrape-all] AGOTÓ SU TOPE de ${tope} s: $s — cortado; lo de detrás sigue"
+    else
+      fallidos=$((fallidos + 1))
+    fi
     if is_best_effort "$s"; then
       echo "[scrape-all] SOFT-FAILED ($code): $s — best-effort, not counted"
-      soft_failures+=("$s")
+      soft_failures+=("$nombre")
     else
       echo "[scrape-all] FAILED ($code): $s"
-      failures+=("$s")
+      failures+=("$nombre")
     fi
   fi
 done
@@ -459,6 +540,12 @@ if ! npm run check:eficiencia-findings; then
   echo "[scrape-all] FAILED: check:eficiencia-findings — ficha firmada que su fuente ya no sostiene"
   failures+=("check:eficiencia-findings")
 fi
+# La opinión del editor cita hechos del mismo panel: si una entrega nueva los
+# cambia, la opinión firmada pasa a afirmar algo que su fuente ya no dice.
+if ! npm run check:opiniones; then
+  echo "[scrape-all] FAILED: check:opiniones — opinión firmada cuyo hecho ya no se sostiene"
+  failures+=("check:opiniones")
+fi
 # Mira el desplegable del ministerio: el coste efectivo llega con año y pico de
 # desfase, así que la entrega nueva aparece sin previo aviso y sin que nada más
 # lo note. Con el ministerio caído dice «NO COMPROBADO» y sale 0 — no tiñe la
@@ -639,8 +726,15 @@ echo ""
 echo "================================================================"
 echo "[scrape-all] summary"
 echo "================================================================"
+parte="$((${#SCRAPERS[@]} + ${#SOLO_LOCAL[@]})) previstos · $intentados intentados · $hechos hechos · $fallidos fallidos · $agotados agotaron su tope · ${#skipped[@]} no intentados"
+echo "[scrape-all] adaptadores: $parte"
+# Va también a la página de la ejecución: un adaptador blando cortado no tiñe
+# nada, y una línea de un registro de mil no la lee nadie.
+if [ -n "${GITHUB_STEP_SUMMARY:-}" ]; then
+  echo "- Adaptadores: \`$parte\`" >> "$GITHUB_STEP_SUMMARY"
+fi
 if [ ${#skipped[@]} -gt 0 ]; then
-  echo "[scrape-all] ${#skipped[@]} paso(s) NO intentado(s) (sin backend disponible aquí):"
+  echo "[scrape-all] ${#skipped[@]} paso(s) NO intentado(s):"
   for f in "${skipped[@]}"; do
     echo "  - $f"
   done

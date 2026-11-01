@@ -101,9 +101,12 @@ export function TarjetaDeclaraciones({ embudo }) {
       <h2
         style={{ fontSize: 'var(--fs-head)', fontWeight: 700, margin: '7px 0 0', lineHeight: 1.3 }}
       >
+        {/* Las cotejadas, y no las verificadas: «10 verificadas» junto a 7.946 se
+            leía como que el resto era falso, cuando el resto no lo cotejó ningún
+            documento. Contradichas incluidas: también se cotejaron. */}
         {rellena(t('plenos.indice.decl.titulo'), {
           extraidas: n(embudo.extraidas),
-          verificado: n(embudo.verificado),
+          cotejadas: n(embudo.parcial + embudo.verificado + embudo.contradicho),
         })}
       </h2>
 

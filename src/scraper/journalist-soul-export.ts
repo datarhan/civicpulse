@@ -10,9 +10,20 @@
  * Pure function — no disk I/O. The CLI at
  * `scripts/journalist-export-soul.ts` does the read/write and decides
  * the output path (default `public/data/souls/<subject.slug>.md`).
+ *
+ * Un motivo enmendado lo dice delante, como en la página: la fila conserva la
+ * firma y la fecha de la corrección, y el soul es público. Sin el rótulo atribuiría
+ * a quien corrigió una explicación que escribió otra persona después (bloque
+ * ENMIENDA DEL MOTIVO, pleno-finding.ts). El motivo sustituido no se reproduce;
+ * su texto no está en el informe, sólo su huella.
  */
 
-import type { JournalistReport, ReportSection, SourceCitation } from './journalist'
+import type {
+  JournalistReport,
+  JournalistReportCorrection,
+  ReportSection,
+  SourceCitation,
+} from './journalist'
 import { quienReplica } from './journalist/replica'
 
 export interface SoulExportOptions {
@@ -112,7 +123,7 @@ export function exportSoulMarkdown(report: JournalistReport, opts: SoulExportOpt
       out.push(`- **${c.correctedAt}** · ${c.editor} · \`${c.field}\``)
       out.push(`  - antes: «${truncate(c.original, 240)}»`)
       out.push(`  - después: «${truncate(c.corrected, 240)}»`)
-      out.push(`  - motivo: ${c.reason}`)
+      out.push(...lineasDelMotivo(c))
     }
     out.push('')
   }
@@ -150,6 +161,24 @@ export function exportSoulMarkdown(report: JournalistReport, opts: SoulExportOpt
 }
 
 // ───────────────────────────────────────────────────────────────────────────
+
+/**
+ * El motivo vigente de una fila y, si se enmendó, cada enmienda con su fecha, su
+ * firma, su porqué y la huella de lo que sustituyó, sin la etiqueta `motivo ·`.
+ * Las mismas palabras que `bitacora.*` en i18n.jsx.
+ */
+function lineasDelMotivo(c: JournalistReportCorrection): string[] {
+  const enmiendas = c.reasonAmendments ?? []
+  const ultima = enmiendas.at(-1)
+  const rotulo = ultima ? `motivo (enmendado el ${ultima.amendedAt.slice(0, 10)})` : 'motivo'
+  return [
+    `  - ${rotulo}: ${c.reason}`,
+    ...enmiendas.map(
+      (a) =>
+        `  - motivo enmendado: ${a.amendedAt.slice(0, 10)} · ${a.editor}. ${a.reason} El motivo anterior no se reproduce; queda su huella, que cualquiera con una copia anterior puede rehacer: ${a.previous.split(' · ')[1] ?? a.previous}.`,
+    ),
+  ]
+}
 
 type CiteFn = (ids: ReadonlyArray<string> | undefined) => string
 

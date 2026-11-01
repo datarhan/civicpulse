@@ -1,4 +1,5 @@
 import { Card, SectionHead } from '../components/Primitives'
+import { useDocumentTitle } from '../hooks/useDocumentTitle'
 
 // English page for international funders/partners. Deliberately NOT in the
 // sidebar NAV and NOT in i18n — the citizen-facing chrome stays Spanish, and
@@ -34,6 +35,7 @@ const TIER_ROWS = [
 ]
 
 export default function About() {
+  useDocumentTitle('About')
   return (
     <div
       className="cp-page"

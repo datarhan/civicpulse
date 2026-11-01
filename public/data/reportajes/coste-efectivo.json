@@ -46,14 +46,48 @@
       },
       {
         "fecha": "2026-10-20",
+        "texto": "**Se ha corregido lo que decíamos de la tarifa vigente del agua.** La sección de la tarifa daba la de 2013 como la última modificación que habíamos localizado y dejaba abierto si había habido revisiones posteriores; la entradilla de esa sección decía que el precio estaba publicado y se podía enlazar. Ha habido dos revisiones: el 19 de octubre la Generalitat resolvió una solicitud de acceso de esta pieza y enumera dos informes de la Comisión de Precios sobre las tarifas de Riba-roja, de 2022 y de 2025, que según la concesionaria se publicaron en el DOGV y se aplican. Las cifras de 2013 siguen en la sección como lo que son, las de 2013, y la sección dice ahora que no son las que se cobran hoy. Lo que decía la corrección del 17 de septiembre —que la tarifa está en el DOGV de 23 de enero de 2013— era cierto de aquella tarifa, no de la vigente. Ninguna otra cifra cambia.\n\n**Y la tarifa vigente ya está en la sección.** Más tarde, ese mismo día, se localizaron en el DOGV los dos anuncios de la concesionaria: el de 25 de noviembre de 2022 y el de 22 de diciembre de 2025, que es la última publicada, con una cuota de servicio de 4,43 € al mes y bloques de 0,2155 a 0,9026 € por metro cúbico, más IVA. La sección decía que esos anuncios no se habían localizado; ahora los enlaza, con sus cifras."
+      },
+      {
+        "fecha": "2026-10-26",
+        "texto": "**Se ha completado lo que resolvieron los tribunales sobre el pliego: faltaban cuatro hitos y qué decía la cláusula anulada.** La pieza contaba que el TACRC inadmitió en 2019 los recursos de Acciona Agua y de Aqualia, y no que los dos siguieron. En 2022 el Tribunal Superior de Justicia anuló esa inadmisión —el plazo se había contado sin descontar dos festivos de Madrid—, juzgó él mismo el recurso de Aqualia y anuló la cláusula 12.1.3, y devolvió el de Acciona al TACRC, que anuló además la cláusula de revisión de tarifas y mandó volver a la fase anterior a la aprobación del pliego; en 2023 el Tribunal Superior devolvió esa cláusula al pliego y limitó la vuelta atrás a la valoración de las ofertas. La sentencia de noviembre de 2022, en el pleito de Global Omnium, se remite a la de marzo. La cronología trae ahora esos cuatro hitos.\n\nDecía también que se anuló la 12.1.3 sin decir qué era: daba hasta diez puntos por aumentar el dinero para colaboraciones culturales y educativas, y el tribunal consideró esa puntuación desproporcionada. La sección explica ahora qué criterios se discutieron y qué dijo de ellos cada tribunal. Las sentencias se añaden a las fuentes con su enlace al buscador del Consejo General del Poder Judicial, y la del Supremo enlaza ya la publicación de ese buscador, no la copia notificada que cuelga la ficha del expediente. Y decíamos que las sentencias se podían leer en la ficha: allí sólo está la del Supremo. Ninguna cifra cambia.\n\n**Y la sección de la tarifa trae ahora dos cláusulas del pliego, y la de la adjudicación, la firma del contrato.** La sección de la tarifa no contaba dos cosas que el pliego dice del precio del agua: que lo que el concesionario paga al Ayuntamiento por usar las instalaciones —2.300.000 € por adelantado y un cargo anual— se ha de recuperar en las tarifas, y que éstas no podrán revisarse más de un 1,5 % al año, sin una fórmula fijada de antemano. Las dos cláusulas siguen en vigor tras los pleitos, y el contrato hace constar que Hidraqua pagó el adelanto. La sección de la adjudicación decía que, a 17 de septiembre, la ficha del expediente no traía ninguna entrada de formalización: era cierto ese día, pero el contrato se firmó el 2 de octubre, y la cronología lo trae ahora. Ninguna cifra cambia."
+      },
+      {
+        "fecha": "2026-10-29",
+        "texto": "**Se ha precisado lo que sabemos de la ordenanza que regularía la tarifa del agua.** La sección de la tarifa decía de las ordenanzas del Ayuntamiento: «No hay ninguna que regule la tarifa del agua». Así escrito afirma que no existe, y lo que sabíamos era menos, lo que decía la frase siguiente: que no la habíamos encontrado publicada. Ahora dice «Ninguna de las que publica en su web regula la tarifa del agua». Lo hemos vuelto a mirar el 29 de octubre de 2026 en todas las listas de ordenanzas de la web municipal: las fiscales y no fiscales de 2024, de 2025, de 2026 y de ejercicios anteriores, y las de contenido general. No está en ninguna. Ninguna cifra cambia."
+      },
+      {
+        "fecha": "2026-11-01",
         "texto": "**La línea que acredita el CIF de Hidraqua dice ya de qué contrato sale.** Bajo la frase sobre la concesión de 55,7 millones, la ficha de la empresa citaba «Expediente 55V/2024», y podía leerse como el expediente de la concesión. Es el del contrato de emergencia de pluviales tras la DANA, de 82.140 euros, donde la Plataforma de Contratación publica ese CIF; la concesión es el expediente 27/2018. Desde el 19 de octubre la línea dice «Contrato de emergencia por la DANA, expediente 55V/2024». Ninguna cifra cambia."
       }
     ]
   },
+  "claves": [
+    {
+      "texto": "El Ayuntamiento no entregó al ministerio la declaración del coste de sus servicios de 2020, lo que Hacienda registra como incumplimiento; la pandemia no lo explica: ese año la entregaron 503 ayuntamientos valencianos.",
+      "seccion": "05"
+    },
+    {
+      "texto": "En 13 de sus 15 servicios, el Ayuntamiento actualiza lo que costó, pero repite idéntica, durante cuatro declaraciones o más, la cantidad entre la que se divide, como las 11.059,41 toneladas de residuos.",
+      "seccion": "06"
+    },
+    {
+      "texto": "Entre 2014 y 2024 los precios subieron un 22,8 %, y descontado eso, la subida del coste por unidad del cementerio y los servicios funerarios baja del 112 % al 73 %.",
+      "seccion": "07"
+    },
+    {
+      "texto": "En la última tarifa del agua publicada, de 2025 y anterior al nuevo contrato, cada cifra es un 9 % mayor que la de 2022 y un 19 % mayor que la de 2013.",
+      "seccion": "01"
+    },
+    {
+      "texto": "Las condiciones de la nueva concesión mandan recuperar en las tarifas lo que la empresa paga al Ayuntamiento por usar las instalaciones, y no dejan revisarlas más de un 1,5 % al año.",
+      "seccion": "01"
+    }
+  ],
   "infografia": {
     "titulo": "La mitad de abajo de la división",
     "url": "/infografias/eficiencia-2026-08.html",
-    "que": "Conserva el título con el que se publicó esta pieza el 16 de agosto."
+    "que": "Conserva el título con el que esta pieza se publicó el 16 de agosto, no sus cifras de entonces: lleva las de la pieza, con sus datos a 17 de septiembre, y las correcciones que les afectan van anotadas en ella."
   },
   "kpis": [
     {
@@ -83,11 +117,11 @@
     "anios": 17,
     "ofertas": 7,
     "procedimiento": "abierto, mejor relación calidad-precio",
-    "formalizacion": "A 17 de septiembre de 2026 la ficha del expediente no trae ninguna entrada de formalización del contrato. La última es del 3 de septiembre: la que hace constar que nadie interpuso recurso especial contra la adjudicación, que es lo que la ley manda esperar antes de firmar.",
+    "formalizacion": "El contrato se firmó el 2 de octubre de 2026, después de la fecha de las cifras de esta pieza, y la ficha del expediente lo publicó el 6 de octubre. Sus diecisiete años no corren desde esa firma sino desde el acta de inicio del servicio, y a 26 de octubre de 2026 la ficha no trae esa acta.",
     "url": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=pK1YW0Z3femXQV0WE7lYPw%3D%3D"
   },
   "cronologia": {
-    "nota": "Fechas tomadas de la ficha del expediente en la Plataforma de Contratación del Sector Público y de los documentos que publica. Donde el documento fecha el acto en otro día que su publicación, se da la fecha del acto y se dice cuándo lo publicó la ficha. Que la suspensión cautelar durara hasta la resolución definitiva, y que ésta fuera la sentencia del Supremo, lo recoge el acta del Pleno de 27 de julio de 2026, en los antecedentes del acuerdo de adjudicación.",
+    "nota": "Fechas tomadas de la ficha del expediente en la Plataforma de Contratación del Sector Público y de los documentos que publica. Donde el documento fecha el acto en otro día que su publicación, se da la fecha del acto y se dice cuándo lo publicó la ficha. Que la suspensión cautelar durara hasta la resolución definitiva, y que ésta fuera la sentencia del Supremo, lo recoge el acta del Pleno de 27 de julio de 2026, en los antecedentes del acuerdo de adjudicación. Las sentencias del Tribunal Superior de Justicia, que la ficha no publica, se leyeron en el buscador del Consejo General del Poder Judicial; la resolución del TACRC de 2022, en la sentencia de 2023, que reproduce su parte dispositiva.",
     "hitos": [
       {
         "f": "17 de abril de 2019",
@@ -134,8 +168,24 @@
         "ficha": "2021-02-11"
       },
       {
+        "f": "9 de febrero de 2022",
+        "t": "El Tribunal Superior de Justicia de la Comunitat Valenciana anula la inadmisión del recurso de Acciona Agua: el TACRC había contado el plazo sin descontar dos festivos de Madrid, donde tiene su sede, el 2 y el 15 de mayo, y el Ayuntamiento no se opuso. Ordena al TACRC que tramite el recurso (sentencia 111/2022)."
+      },
+      {
+        "f": "30 de marzo de 2022",
+        "t": "En el recurso de Aqualia contra la misma inadmisión, el Tribunal Superior la anula por la misma razón y, en lugar de devolverlo al TACRC, juzga él mismo el pliego: rechaza el resto de la impugnación y anula una cláusula, la 12.1.3 (sentencia 269/2022)."
+      },
+      {
+        "f": "21 de septiembre de 2022",
+        "t": "El TACRC resuelve el recurso de Acciona Agua: anula la cláusula 12.1.3 y la trigésima, la de revisión de tarifas, que dejaba al concesionario pedir revisiones de hasta el 1,5 % anual sin fijar en el pliego la fórmula para calcularlas, y ordena volver a la fase anterior a la aprobación del pliego (resolución 1087/2022)."
+      },
+      {
         "f": "22 de noviembre de 2022",
-        "t": "El Tribunal Superior de Justicia de la Comunitat Valenciana estima la apelación del Ayuntamiento y de Hidraqua, revoca la sentencia de 2020 y anula sólo una cláusula del pliego, la 12.1.3 (sentencia 904/2022)."
+        "t": "El Tribunal Superior de Justicia de la Comunitat Valenciana estima la apelación del Ayuntamiento y de Hidraqua, revoca la sentencia de 2020 y anula sólo una cláusula del pliego, la 12.1.3 (sentencia 904/2022). No vuelve a razonar el caso: se remite a lo que había resuelto en marzo en el recurso de Aqualia."
+      },
+      {
+        "f": "17 de octubre de 2023",
+        "t": "A recurso del Ayuntamiento y de Hidraqua, el Tribunal Superior anula la resolución del TACRC en lo que toca a la cláusula de revisión de tarifas, que queda en vigor: un contrato de agua como éste está fuera de la regulación armonizada, y en esos la ley admite revisar precios sin una fórmula predeterminada. Mantiene anulada la 12.1.3 y limita la vuelta atrás a la fase en que la mesa de contratación examina las ofertas (sentencia 635/2023)."
       },
       {
         "f": "23 de febrero de 2026",
@@ -159,9 +209,18 @@
         "f": "3 de septiembre de 2026",
         "t": "La ficha publica que no se interpuso recurso especial contra la adjudicación (resolución 2858/2026).",
         "ficha": "2026-09-03"
+      },
+      {
+        "f": "2 de octubre de 2026",
+        "t": "El Ayuntamiento y Hidraqua firman el contrato. La ficha lo publica el 6 de octubre.",
+        "ficha": "2026-10-06"
       }
     ],
-    "loQueNoConsta": "Los recursos y las sentencias se pueden leer en la propia ficha del expediente. Los dos recursos de 2019 impugnaban el pliego, y el TACRC no llegó a entrar en el fondo: los inadmitió. El pleito que paró el concurso cinco años fue otro, el de Global Omnium, y acabó con el pliego confirmado salvo una cláusula. Esta pieza resume lo que resolvieron los tribunales; no valora quién tenía razón."
+    "queSeJuzgo": [
+      "Los pleitos discutieron sobre todo cómo puntuaba el pliego las ofertas. De cien puntos, cuarenta y cinco dependían de un juicio de valor y cincuenta y cinco salían de fórmulas, en cuatro criterios: hasta 30 puntos por rebajar la «tarifa finalista» con la que se financian las obras del contrato, cuyo máximo era de 0,33 € por abonado y mes; hasta 10 por lo que el concesionario ofreciera pagar cada año al Ayuntamiento por el derecho de uso de las instalaciones, por encima de un mínimo de 100.200,32 €; hasta 10 por añadir dinero a los 17.000 € anuales que la concesión ya destinaba a colaboraciones con entidades culturales y educativas y a campañas de concienciación ambiental, a un punto por cada 1.000 € —ésa es la cláusula 12.1.3—, y 5 por comprometerse a asistir a las guardias municipales en instalaciones hidráulicas. Global Omnium sostenía que esas fórmulas tenían umbrales de saciedad —topes a partir de los cuales una oferta mejor ya no suma puntos—, que cualquier licitador sabía de antemano qué ofrecer para llevarse el máximo y que así el concurso lo acababa decidiendo el juicio de valor. El Ayuntamiento y Hidraqua respondían que los criterios estaban ligados al objeto del contrato, se habían publicado de antemano y estaban justificados.",
+      "El juzgado estimó en 2020 el recurso de Global Omnium: los topes no estaban justificados en el expediente, el estudio de las necesidades del servicio, puntuado por juicio de valor, ponía en ventaja al concesionario de entonces, y la cláusula de las colaboraciones permitía pagar con la tarifa del agua cualquier actividad cultural o educativa. El Tribunal Superior de Justicia, en sus dos sentencias de 2022 sobre el fondo, rechazó todo eso salvo lo de las colaboraciones, y por otro motivo: dijo que ese criterio sí guardaba relación con el servicio, pero que diez puntos de cincuenta y cinco era una puntuación desproporcionada. Al Supremo llegaron los criterios de la tarifa y del abono anual, y confirmó que eran conformes a la ley: que se pudiera prever cómo llevarse el máximo no basta por sí solo para anular una cláusula, y aquí no discriminó a ningún licitador ni impidió competir. Los umbrales de saciedad, dijo, no están prohibidos «siempre que estén justificados en el expediente en relación con las prestaciones que constituyan el objeto del contrato». El TACRC anuló además en 2022 la cláusula de revisión de tarifas, y el Tribunal Superior la devolvió al pliego en 2023. Sin la 12.1.3, el reparto quedó en cuarenta y cinco puntos por fórmulas y cuarenta y cinco por juicio de valor, y la mesa de contratación pidió que se volvieran a valorar las ofertas sin ella, según los antecedentes del acuerdo de adjudicación."
+    ],
+    "loQueNoConsta": "Los recursos de Acciona Agua y de Aqualia y la sentencia del Supremo se pueden leer en la propia ficha del expediente; las sentencias del Tribunal Superior de Justicia, en el buscador del Consejo General del Poder Judicial, y el acta del Pleno que adjudicó el contrato enumera las firmes. El TACRC inadmitió en 2019 esos dos recursos sin entrar en el fondo, pero los dos siguieron: en 2022 el Tribunal Superior anuló la inadmisión, juzgó él mismo el de Aqualia y devolvió el de Acciona al TACRC, cuya resolución revisó en 2023. El pleito que paró el concurso cinco años fue otro, el de Global Omnium. Al final de los tres, el pliego quedó confirmado salvo la cláusula 12.1.3; la de revisión de tarifas, que el TACRC había anulado en el de Acciona, volvió al pliego. Esta pieza resume lo que resolvieron los tribunales; no valora quién tenía razón."
   },
   "panelCiego": {
     "nota": "Los dos servicios del contrato son también las dos fichas que el panel de /eficiencia sólo puede calcular la mitad de los años. No es un hueco de esta página: es lo que el ayuntamiento declaró.",
@@ -358,7 +417,7 @@
       "url": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=pK1YW0Z3femXQV0WE7lYPw%3D%3D"
     },
     {
-      "label": "Acta del Pleno de 27 de julio de 2026 · acuerdo de adjudicación del agua, antecedentes quincuagésimo segundo a cuarto",
+      "label": "Acta del Pleno de 27 de julio de 2026 · acuerdo de adjudicación del agua, antecedentes quincuagésimo segundo a sexto, y requerimiento del importe anticipado, acuerdo cuarto",
       "url": "https://regmeet.com/files/uploads/aytoribarroja/27-07-2026.Pleno2026-07-29_23-32-33/documentos/2026-07-30_13-49-04_0.pdf"
     },
     {
@@ -382,6 +441,14 @@
       "url": "https://www.boe.es/buscar/act.php?id=BOE-A-2012-12423"
     },
     {
+      "label": "DOGV núm. 10266, de 22 de diciembre de 2025 · anuncio de Hidraqua de la tarifa de agua potable de Riba-roja de Túria",
+      "url": "https://dogv.gva.es/datos/2025/12/22/pdf/2025_48443_es.pdf"
+    },
+    {
+      "label": "DOGV núm. 9478, de 25 de noviembre de 2022 · anuncio de Hidraqua de las tarifas de agua potable de Riba-roja de Túria",
+      "url": "https://dogv.gva.es/datos/2022/11/25/pdf/2022_10776.pdf"
+    },
+    {
       "label": "DOGV núm. 6949, de 23 de enero de 2013 · tarifas de agua de Riba-roja de Túria, apartado 3.23",
       "url": "https://dogv.gva.es/datos/2013/01/23/pdf/2013_500.pdf"
     },
@@ -390,8 +457,32 @@
       "url": "https://contrataciondelestado.es/FileSystem/servlet/GetDocumentByIdServlet?cifrado=QUC1GjXXSiLkydRHJBmbpw%3D%3D&DocumentIdParam=zpUyMDGjYYbfY5wXh4UoAf%2BfAEdbU8g38S5q/2w7B5/b1WTnlvjUGZ/Q4pGVQHCmoiF%2Bx/ppi%2B21UlH8k6j2MkOupV96W3Kk%2BfF7afVlxu8%3D"
     },
     {
-      "label": "Sentencia del Tribunal Supremo 205/2026 · en la ficha del expediente",
-      "url": "https://contrataciondelestado.es/FileSystem/servlet/GetDocumentByIdServlet?cifrado=QUC1GjXXSiLkydRHJBmbpw%3D%3D&DocumentIdParam=jnqd81/mVQXhnGN3JO00ptv2TBYFRFMdUzHFE1gRhIYas3I3ZaRjWpwU7Is1/XEJ8GBEhNSSWhOvm8wLNhXywZUDqL7bIdlsVNUzM/%2BAp0j6CYyL7SIrUOBFfNf52ZqA"
+      "label": "Pliego de cláusulas administrativas particulares de la concesión, abril de 2019 · cláusula quinta (derecho de uso de las instalaciones), página 5, y trigésima (revisión de precios), páginas 37 y 38",
+      "url": "https://contrataciondelestado.es/wps/wcm/connect/PLACE_es/Site/area/docAccCmpnt?srv=cmpnt&cmpntname=GetDocumentsById&source=library&DocumentIdParam=bf1a13e3-2a67-4b22-9e0d-aa85bdfef1dc"
+    },
+    {
+      "label": "Contrato de la concesión, firmado el 2 de octubre de 2026, después de la fecha de las cifras de esta pieza · pago del importe anticipado y cargo anual ofertado, antecedente V y cláusula segunda, página 3",
+      "url": "https://contrataciondelestado.es/FileSystem/servlet/GetDocumentByIdServlet?cifrado=QUC1GjXXSiLkydRHJBmbpw%3D%3D&DocumentIdParam=MDK14KyBJ4YquWmD4RZMRVXBQGMeDVoS9GidEUcEmYe7UAiJrsnKmDwJXksrAeqxB5RN7I3lKUIvnYd5WWhziWqpPHSHcmSICmmaq0v17Ie1aXEvq3KHa/AEHgtDrQw0"
+    },
+    {
+      "label": "Sentencia del Tribunal Supremo 205/2026, de 23 de febrero, en el pleito de Global Omnium · CENDOJ, Roj STS 780/2026",
+      "url": "https://www.poderjudicial.es/search/AN/openDocument/3be1f5aca6773060a0a8778d75e36f0d/20260305"
+    },
+    {
+      "label": "Sentencia del Tribunal Superior de Justicia de la Comunitat Valenciana 111/2022, de 9 de febrero, en el recurso de Acciona Agua · CENDOJ, Roj STSJ CV 314/2022",
+      "url": "https://www.poderjudicial.es/search/AN/openDocument/496b3a230bd52ea6/20220330"
+    },
+    {
+      "label": "Sentencia del Tribunal Superior de Justicia de la Comunitat Valenciana 269/2022, de 30 de marzo, en el recurso de Aqualia · CENDOJ, Roj STSJ CV 1250/2022",
+      "url": "https://www.poderjudicial.es/search/AN/openDocument/d032c1148b0dade8/20220524"
+    },
+    {
+      "label": "Sentencia del Tribunal Superior de Justicia de la Comunitat Valenciana 904/2022, de 22 de noviembre, en el pleito de Global Omnium · CENDOJ, Roj STSJ CV 5692/2022",
+      "url": "https://www.poderjudicial.es/search/AN/openDocument/9be47d9dcc60f331a0a8778d75e36f0d/20221216"
+    },
+    {
+      "label": "Sentencia del Tribunal Superior de Justicia de la Comunitat Valenciana 635/2023, de 17 de octubre, sobre la resolución 1087/2022 del TACRC, cuya parte dispositiva reproduce · CENDOJ, Roj STSJ CV 5121/2023",
+      "url": "https://www.poderjudicial.es/search/AN/openDocument/05f64988329d38a2a0a8778d75e36f0d/20231108"
     },
     {
       "label": "Ley 9/2017 de Contratos del Sector Público",
@@ -407,7 +498,7 @@
     }
   ],
   "metodo": [
-    "Los datos de la concesión —adjudicataria, importe, fechas, número de licitadores y el historial de documentos— se leyeron uno a uno en la ficha del expediente en la Plataforma de Contratación del Sector Público y en los documentos que publica: pliego, estudio de viabilidad, actas, recursos, sentencias y adjudicación. No se tomaron del volcado intermedio del portal municipal: ese volcado publica el mismo expediente dos veces, como licitación y como contrato, con estados que se contradicen entre sí.",
+    "Los datos de la concesión —adjudicataria, importe, fechas, número de licitadores y el historial de documentos— se leyeron uno a uno en la ficha del expediente en la Plataforma de Contratación del Sector Público y en los documentos que publica: pliego, estudio de viabilidad, actas, recursos, la sentencia del Supremo y adjudicación. Las sentencias del Tribunal Superior de Justicia, que la ficha no publica, se leyeron en el buscador del Consejo General del Poder Judicial. No se tomaron del volcado intermedio del portal municipal: ese volcado publica el mismo expediente dos veces, como licitación y como contrato, con estados que se contradicen entre sí.",
     "Del importe se dice lo que es: el valor estimado del contrato por sus diecisiete años. No es gasto anual y no sale del presupuesto municipal.",
     "Las cifras de contratación (concentración, licitador único, adjudicación sin llamada abierta) son un recuento propio sobre los contratos adjudicados del portal municipal, y llevan al lado la cautela de que una sola concesión pesa el 45 % del importe del periodo.",
     "Las cifras del coste efectivo salen de los libros por comunidad autónoma de la aplicación de consulta del ministerio (once entregas, 2014-2024), leídos con las reglas de filtrado y comparabilidad publicadas en la metodología.",
@@ -445,11 +536,21 @@
   },
   "laTarifa": {
     "titulo": "La tarifa del agua está publicada: en el diario oficial de la Generalitat y en el expediente",
-    "cuerpo": "En una concesión el dinero sale del recibo, así que la cifra que de verdad afecta a una casa de Riba-roja no es la de 55,7 millones: es lo que cuesta el metro cúbico. Ese precio está publicado, y se puede enlazar.",
+    "cuerpo": "En una concesión el dinero sale del recibo, así que la cifra que de verdad afecta a una casa de Riba-roja no es la de 55,7 millones: es lo que cuesta el metro cúbico. Ese precio se publica en el diario oficial de la Generalitat, y se puede enlazar: el último publicado es de diciembre de 2025, y es la tercera tarifa desde 2013. El pliego de la nueva concesión dice además dos cosas de ese precio: que lo que el concesionario paga al Ayuntamiento por usar las instalaciones se ha de recuperar en las tarifas, y con qué límite se podrán revisar.",
     "buscadoEn": [
       {
+        "donde": "Diari Oficial de la Generalitat Valenciana · 22 de diciembre de 2025",
+        "resultado": "La última publicada. Es un anuncio de Hidraqua, Gestión Integral de Aguas de Levante, firmado por su gerente el 28 de noviembre de 2025: se titula de información pública, pero informa «de la aplicación de la tarifa de agua potable en el municipio de Riba-roja de Túria». Una cuota de servicio de 4,43 € al mes con contador de 13 mm y cuatro bloques de consumo, de 0,2155, 0,4960, 0,6283 y 0,9026 € por metro cúbico, más IVA. Cada cifra es un 9 % mayor que la de 2022 y un 19 % mayor que la de 2013.",
+        "url": "https://dogv.gva.es/datos/2025/12/22/pdf/2025_48443_es.pdf"
+      },
+      {
+        "donde": "Diari Oficial de la Generalitat Valenciana · 25 de noviembre de 2022",
+        "resultado": "Otro anuncio de Hidraqua: el 16 de septiembre de 2022 presentó ante la Dirección General de Comercio, Artesanía y Consumo un expediente de modificación de tarifas, y las resultantes son una cuota de servicio de 4,06 € al mes con contador de 13 mm y bloques de 0,1975, 0,4546, 0,5759 y 0,8273 € por metro cúbico, más IVA: un 9 % más que en 2013.",
+        "url": "https://dogv.gva.es/datos/2022/11/25/pdf/2022_10776.pdf"
+      },
+      {
         "donde": "Diari Oficial de la Generalitat Valenciana · 23 de enero de 2013",
-        "resultado": "En la Comunitat Valenciana la tarifa del agua pasa por la Comisión de Precios de la Generalitat, que la informa, y su autorización se publica en el DOGV. La última modificación de las tarifas de Riba-roja que hemos localizado es ésta (apartado 3.23, a solicitud de Aquagest Levante): una cuota de servicio de 3,71 € al mes con contador de 13 mm y cuatro bloques de consumo, de 0,1806, 0,4158, 0,5267 y 0,7566 € por metro cúbico, más IVA. No hemos podido establecer si ha habido revisiones posteriores.",
+        "resultado": "En la Comunitat Valenciana la tarifa del agua pasa por la Comisión de Precios de la Generalitat, que la informa, y se publica en el DOGV: en 2013, como resolución de la Dirección General de Comercio y Consumo; en 2022 y en 2025, como anuncio de la concesionaria. La de 2013 es ésta (apartado 3.23, a solicitud de Aquagest Levante): una cuota de servicio de 3,71 € al mes con contador de 13 mm y cuatro bloques de consumo, de 0,1806, 0,4158, 0,5267 y 0,7566 € por metro cúbico, más IVA. Ya no es la que se cobra: la revisaron los dos anuncios de arriba. Se sabe desde después de la fecha de las cifras de esta pieza, y por eso se añadió con la corrección del 20 de octubre: el 19 de octubre la Generalitat, al resolver una solicitud de acceso de esta pieza, enumeró dos informes de la Comisión de Precios sobre estas tarifas, de los expedientes 133/09 2022 y 103 07 2025, y dos únicos anuncios publicados desde 2012; en el buscador del DOGV salen estos dos, y ninguno más. Según las alegaciones de la propia concesionaria, que recoge la resolución, las dos actualizaciones se tramitaron con el Decreto 68/2013, de 7 de junio. Los informes de la Comisión no se entregan hasta que la resolución sea firme.",
         "url": "https://dogv.gva.es/datos/2013/01/23/pdf/2013_500.pdf"
       },
       {
@@ -458,12 +559,22 @@
         "url": "https://contrataciondelestado.es/FileSystem/servlet/GetDocumentByIdServlet?cifrado=QUC1GjXXSiLkydRHJBmbpw%3D%3D&DocumentIdParam=zpUyMDGjYYbfY5wXh4UoAf%2BfAEdbU8g38S5q/2w7B5/b1WTnlvjUGZ/Q4pGVQHCmoiF%2Bx/ppi%2B21UlH8k6j2MkOupV96W3Kk%2BfF7afVlxu8%3D"
       },
       {
+        "donde": "El pliego de cláusulas administrativas de la nueva concesión · abril de 2019",
+        "resultado": "Es el mismo fichero desde el 23 de abril de 2019: las rectificaciones de abril y de mayo lo siguen enlazando, y el contrato firmado en 2026 lo anexa con estas dos cláusulas palabra por palabra. La cláusula quinta (página 5) obliga al concesionario a pagar al Ayuntamiento por el derecho de uso de las instalaciones del servicio, «debiendo ser recuperado el mismo en las tarifas», en dos partes: 2.300.000 € por adelantado, entre la adjudicación y la firma del contrato, y un cargo anual por cada metro cúbico facturado. Aqualia impugnó el adelanto porque obliga a pagarlo antes de formalizar el contrato, y el Tribunal Superior de Justicia lo confirmó en 2022: no es una ejecución anticipada del contrato, como no lo es la garantía que la ley exige antes de firmar (sentencia 269/2022). La cláusula trigésima (páginas 37 y 38) deja revisar las tarifas a partir del segundo año desde la firma, a petición del concesionario, que ha de justificar cómo han variado sus costes, o a impulso del Ayuntamiento si cambia el servicio. No fija una fórmula de antemano, y pone un tope: «En todo caso, la revisión de tarifas no podrá superar el límite máximo del 1,5% anual sobre las tarifas aplicables en cada momento». Es la cláusula que el TACRC anuló en 2022 y el Tribunal Superior repuso en 2023, como cuenta la cronología. Las tarifas publicadas en el DOGV, la última de 2025, son anteriores a este contrato y no se rigen por él. Y la misma cláusula exige, antes de aplicar a los usuarios cualquier tarifa nueva, modificar «la Ordenanza reguladora de las PPPnt (tarifas)», las prestaciones patrimoniales de carácter no tributario, que es lo que es una tarifa: la ordenanza que, como se dice abajo, no hemos encontrado publicada.",
+        "url": "https://contrataciondelestado.es/wps/wcm/connect/PLACE_es/Site/area/docAccCmpnt?srv=cmpnt&cmpntname=GetDocumentsById&source=library&DocumentIdParam=bf1a13e3-2a67-4b22-9e0d-aa85bdfef1dc"
+      },
+      {
+        "donde": "El contrato de la nueva concesión · firmado el 2 de octubre de 2026",
+        "resultado": "La ficha del expediente lo publicó el 6 de octubre, con los dos pliegos anexos: después de la fecha de las cifras de esta pieza, y por eso se añadió con la corrección del 26 de octubre. El acuerdo de adjudicación del Pleno, de 27 de julio, requirió a Hidraqua que pagara el adelanto de 2.300.000 € entre la notificación de la adjudicación y la firma, y advirtió de que, si no lo hacía, perdería la adjudicación y la garantía. El contrato hace constar ese pago en sus antecedentes (página 3) y remite a un informe de la Tesorera municipal de 7 de septiembre de 2026, que la ficha no publica. Recoge también el cargo anual que ofertó Hidraqua: 400.801,28 € estimados para el primer año, 300.600,96 € más que el mínimo del pliego.",
+        "url": "https://contrataciondelestado.es/FileSystem/servlet/GetDocumentByIdServlet?cifrado=QUC1GjXXSiLkydRHJBmbpw%3D%3D&DocumentIdParam=MDK14KyBJ4YquWmD4RZMRVXBQGMeDVoS9GidEUcEmYe7UAiJrsnKmDwJXksrAeqxB5RN7I3lKUIvnYd5WWhziWqpPHSHcmSICmmaq0v17Ie1aXEvq3KHa/AEHgtDrQw0"
+      },
+      {
         "donde": "Las ordenanzas del ayuntamiento",
-        "resultado": "No hay ninguna que regule la tarifa del agua. Lo que paga el vecino no es una tasa sino una tarifa, pero desde 2018 la ley pide regularla también por ordenanza (artículo 20.6 del texto refundido de la Ley Reguladora de las Haciendas Locales), y no la hemos encontrado publicada.",
+        "resultado": "Ninguna de las que publica en su web regula la tarifa del agua. Lo que paga el vecino no es una tasa sino una tarifa, pero desde 2018 la ley pide regularla también por ordenanza (artículo 20.6 del texto refundido de la Ley Reguladora de las Haciendas Locales), y no la hemos encontrado publicada.",
         "url": "https://www.ribarroja.es/es/ordenanzas/ordenanzas_contenido_economico/ordenanzas_fiscales_2025_vigentes/contenidos/7281734/9852782"
       }
     ],
-    "cierre": "Hay agregadores privados que publican un precio del agua para Riba-roja. No se recoge aquí: un agregador no es la fuente, es alguien que la copió, y esta pieza sólo publica lo que puede enlazar. Lo que queda por comprobar es otra cosa: si la tarifa se ha revisado desde 2013, y con qué ordenanza se regula hoy."
+    "cierre": "Hay agregadores privados que publican un precio del agua para Riba-roja. No se recoge aquí: un agregador no es la fuente, es alguien que la copió, y esta pieza sólo publica lo que puede enlazar. Lo que queda por comprobar es otra cosa: qué dicen los informes de la Comisión de Precios sobre las revisiones de 2022 y de 2025, y con qué ordenanza se regula hoy."
   },
   "quienRemite": {
     "titulo": "Quién tiene que remitirlo",
@@ -474,7 +585,7 @@
   },
   "solicitudes": {
     "titulo": "Lo que se ha pedido, a quién y desde cuándo corre el plazo",
-    "nota": "El artículo 17.2 de la Ley 19/2013 admite «cualquier medio que permita tener constancia» de la identidad de quien pide, de la información solicitada y de una dirección de contacto: un correo que lleve las tres cosas es una vía válida. El artículo 20.1, en cambio, cuenta el mes «desde la recepción de la solicitud por el órgano competente para resolver», y de un correo consta el envío, no esa recepción. Por eso las dos que salieron por correo, la de Hacienda y la primera del Ayuntamiento, llevan la fecha contada desde el envío y no como vencimiento acreditado. La de la Comisión de Precios se presentó por el registro electrónico de la Generalitat y la propia Generalitat ha acusado su entrada, así que consta desde cuándo corría el mes; pero después se dio traslado de la solicitud a terceros afectados y el plazo para resolverla quedó suspendido, y mientras dure no tiene último día. La del Ayuntamiento que se volvió a presentar por su Registro de Entrada, a petición suya, tiene el asiento del mismo órgano que la resuelve: de ésa el vencimiento se puede afirmar. La última a Hacienda se presentó en el Registro de Entrada del Ayuntamiento, que la remitió por el registro electrónico de las entidades locales: hasta que conste cuándo la recibió la Subdirección, su plazo se cuenta desde la comunicación de esa remisión y no se presenta como vencimiento acreditado. Este apartado se actualiza cuando hay movimiento, aunque las cifras de la pieza estén congeladas a su fecha: cada fila lleva la fecha de lo que cuenta. Toda respuesta se publicará íntegra.",
+    "nota": "El artículo 17.2 de la Ley 19/2013 admite «cualquier medio que permita tener constancia» de la identidad de quien pide, de la información solicitada y de una dirección de contacto: un correo que lleve las tres cosas es una vía válida. El artículo 20.1, en cambio, cuenta el mes «desde la recepción de la solicitud por el órgano competente para resolver», y de un correo consta el envío, no esa recepción. Por eso las dos que salieron por correo, la de Hacienda y la primera del Ayuntamiento, llevan la fecha contada desde el envío y no como vencimiento acreditado. La de la Comisión de Precios se presentó por el registro electrónico de la Generalitat y la propia Generalitat ha acusado su entrada, así que consta desde cuándo corría el mes; después se dio traslado de la solicitud a terceros afectados, el plazo para resolverla quedó suspendido mientras alegaban, y se resolvió el 19 de octubre. La del Ayuntamiento que se volvió a presentar por su Registro de Entrada, a petición suya, tiene el asiento del mismo órgano que la resuelve: de ésa el vencimiento se puede afirmar. La última a Hacienda se presentó en el Registro de Entrada del Ayuntamiento, que la remitió por el registro electrónico de las entidades locales: hasta que conste cuándo la recibió la Subdirección, su plazo se cuenta desde la comunicación de esa remisión y no se presenta como vencimiento acreditado. Este apartado se actualiza cuando hay movimiento, aunque las cifras de la pieza estén congeladas a su fecha: cada fila lleva la fecha de lo que cuenta. Toda respuesta se publicará íntegra.",
     "items": [
       {
         "organismo": "Ministerio de Hacienda · Subdirección General de Estudios Financieros de Entidades Locales",
@@ -516,7 +627,16 @@
         "registro": "2026014914",
         "entradaEl": "2026-09-28",
         "pide": "La misma carta del 18 de septiembre, presentada por el Registro de Entrada del Ayuntamiento a indicación de su Área de Transparencia, sin retirar la del correo.",
-        "respuesta": null
+        "respuesta": null,
+        "incidencias": [
+          {
+            "fecha": "2026-10-27",
+            "texto": "El 27 de octubre el Departamento de Transparencia y Participación Ciudadana del Ayuntamiento notificó que amplía un mes el plazo para resolverla (expediente 4870/2026/GEN), con el artículo 34.2 de la Ley 1/2022: hay que «recabar y contrastar información» de varias unidades, «en particular Intervención, Tesorería» y los servicios que gestionan y contrataron el abastecimiento y el alcantarillado, y comprobar «la existencia y localización de determinados documentos contractuales y tarifarios». El oficio cuenta desde la entrada del 28 de septiembre y dice que el nuevo plazo «finalizará el 28 de noviembre de 2026», y que la ampliación «no supone una denegación ni una limitación del derecho de acceso». No resuelve nada de lo pedido."
+          }
+        ],
+        "ampliada": {
+          "fecha": "2026-10-27"
+        }
       },
       {
         "organismo": "Comisión de Precios de la Generalitat",
@@ -525,7 +645,11 @@
         "via": "el registro electrónico de la Generalitat",
         "registro": "GVRTE/2026/4267645",
         "pide": "La relación de resoluciones de autorización o modificación de tarifas de agua de Riba-roja de Túria dictadas desde 2013, con la referencia de su publicación en el DOGV; los informes de la Comisión de Precios sobre esas tarifas, con la fecha y el solicitante de cada expediente; y si consta alguna solicitud o informe sobre las tarifas del contrato adjudicado en 2026.",
-        "respuesta": null,
+        "respuesta": {
+          "fecha": "2026-10-19",
+          "sentido": "concedido-diferido",
+          "resumen": "Lo resolvió la directora general de Comercio, Artesanía y Consumo, y se notificó el 20 de octubre. La resolución estima la solicitud y enumera lo que se facilitará: la relación de los dos únicos anuncios de tarifas de abastecimiento de agua potable de Riba-roja publicados en el DOGV desde el 1 de enero de 2012 —la solicitud pedía desde 2013; en el buscador del DOGV son los de 25 de noviembre de 2022 y 22 de diciembre de 2025, que publicó la concesionaria y que esta pieza enlaza en la sección de la tarifa—, y los informes de la Comisión de Precios de dos expedientes, el 133/09 2022, tramitado por el procedimiento simplificado del Decreto 68/2013, y el 103 07 2025, por el ordinario. Añade que no consta ninguna solicitud ni informe sobre las tarifas del contrato de concesión adjudicado en 2026. Los documentos no se han entregado todavía: Hidraqua, Gestión Integral de Aguas de Levante, a la que se dio traslado como tercera afectada, se opuso el 13 de octubre alegando perjuicio para sus derechos económicos, para las funciones de control de la administración y para su secreto profesional y su propiedad intelectual, y la Dirección General consideró que esos perjuicios no habían quedado suficientemente justificados. Cuando un tercero se ha opuesto, el artículo 22.2 de la Ley 19/2013 sólo permite el acceso cuando la concesión es firme: si pasa sin recurrirse el plazo del recurso contencioso-administrativo, de dos meses, o si, recurrida o reclamada ante el Consejo Valenciano de Transparencia, se confirma. No consta cuándo se notificó a Hidraqua, que es desde donde corren sus plazos, así que no se puede dar el día en que será firme."
+        },
         "incidencias": [
           {
             "fecha": "2026-09-21",

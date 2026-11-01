@@ -67,10 +67,37 @@ test.describe('Reportaje · matrículas y móviles (/reportajes/matriculas-y-mov
     ).toBeVisible()
     await expect(page.getByText(/Nota municipal del 30-07-2026/)).toBeVisible()
 
+    // El seguimiento se AÑADE a la visita, no la reescribe: lo que se vio el
+    // 11-10 (los guiones) sigue en su columna, y lo del 29-10 va aparte, con su
+    // fecha y diciendo lo que este medio no sabe. Si alguien lo endurece a
+    // «cifras falsas», o mueve las cifras a la tabla, esto se pone rojo.
+    const seguimiento = snap.observado.seguimiento ?? []
+    if (seguimiento.length > 0) {
+      await expect(page.getByText(/los tres mostraban sólo guiones/)).toBeVisible()
+      const bloque = page.locator('[data-seguimiento="2026-10-29"]')
+      await expect(bloque).toContainText('29 de octubre de 2026')
+      await expect(bloque).toContainText(/123 \(Castell\/ADL\), 456 .* y 789/)
+      await expect(bloque).toContainText(/no sabe de dónde salen esas cifras/)
+      await expect(bloque).not.toContainText(/fals|ficticia|inventad/i)
+      // Y va en la medida de lectura, como la lista que le sigue: envuelto en
+      // un <div> se iba al ancho entero de la columna con la suite en verde.
+      const anchoP = (await bloque.boundingBox())?.width ?? 0
+      const lista = bloque.locator('xpath=following-sibling::ul[1]')
+      const anchoLista = (await lista.boundingBox())?.width ?? -1
+      expect(anchoP).toBeGreaterThan(0)
+      expect(Math.abs(anchoP - anchoLista)).toBeLessThan(2)
+      await expect(
+        page.locator('table', { hasText: 'Lo observado el 11-10-2026' }),
+      ).not.toContainText(/123/)
+    }
+
     // Las fotos cargan de verdad: un <img> roto también «está en la página».
     // Las de la hoja de contactos: las teselas del mapa de §03 también son <img>.
     const fotos = page.locator('.cp-fotos img')
-    expect(await fotos.count()).toBe(snap.observado.fotos.length)
+    expect(await fotos.count()).toBe(
+      snap.observado.fotos.length +
+        seguimiento.reduce((n: number, s: { fotos: unknown[] }) => n + s.fotos.length, 0),
+    )
     for (const img of await fotos.all()) {
       await img.scrollIntoViewIfNeeded()
       await expect

@@ -44,7 +44,6 @@ export const LAB_SOURCES = [
   { path: '/data/geo.json', label: 'Geo · OSM', group: 'core' },
   { path: '/data/metro-network.json', label: 'Metrovalencia · red', group: 'core' },
   { path: '/data/metro-schedule.json', label: 'Metrovalencia · horario', group: 'core' },
-  { path: '/data/spain-ticker.json', label: 'Live ticker (Spain)', group: 'core' },
   // — Curated / human-edited
   { path: '/data/promises.json', label: 'Promesas · curado', group: 'curated' },
   { path: '/data/promise-suggestions.json', label: 'Promesas · sugerencias', group: 'curated' },

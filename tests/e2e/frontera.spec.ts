@@ -132,7 +132,7 @@ test.describe('Frontera (/laboratorio/frontera)', () => {
 
   test('se alcanza desde el laboratorio', async ({ page }) => {
     await page.goto('/laboratorio', { waitUntil: 'domcontentloaded' })
-    const enlace = page.getByRole('link', { name: /la frontera del gasto/i })
+    const enlace = page.locator('main a[href="/laboratorio/frontera"]').first()
     await expect(enlace).toBeVisible({ timeout: 8000 })
     await enlace.click()
     await expect(page.getByRole('heading', { name: /La frontera del gasto/i })).toBeVisible()
@@ -158,5 +158,20 @@ test.describe('Frontera (/laboratorio/frontera)', () => {
       blocking.map((v) => `${v.id}: ${v.nodes[0]?.target.join(' ')}`),
       'violaciones bloqueantes de accesibilidad en /laboratorio/frontera',
     ).toEqual([])
+  })
+
+  // La pregunta del vecino y su respuesta van en el mismo aviso, antes de
+  // cualquier puntuación (auditoría de las dos lecturas, §24).
+  test('responde «¿Es eficiente Riba-roja?» sin dar una nota, antes de las puntuaciones', async ({
+    page,
+  }) => {
+    const pregunta = page.getByRole('heading', { name: '¿Es eficiente Riba-roja?' })
+    await expect(pregunta).toBeVisible()
+    await expect(page.getByText(/Con estos datos no se puede decir/)).toBeVisible()
+    await expect(page.getByText(/Distancia a la frontera/i).first()).toBeAttached({ timeout: 8000 })
+    const html = await page.content()
+    expect(html.search(/Con estos datos no se puede decir/)).toBeLessThan(
+      html.search(/Distancia a la frontera/i),
+    )
   })
 })

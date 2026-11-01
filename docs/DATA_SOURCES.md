@@ -59,8 +59,10 @@ Everything produced by the convention above. Safe to delete and rebuild.
 | `eficiencia-findings.json`                          | `src/scraper/eficiencia-finding.ts` · `npm run promote-indicador`, `correct-indicador`, `retract-indicador`                                                                                                                                                                                                                       |
 | `eficiencia-preguntas.json`                         | `src/scraper/eficiencia-preguntas.ts` · curated · hand-edit via PR                                                                                                                                                                                                                                                                |
 | `competencias.json`                                 | `src/scraper/competencias.ts` · curated · hand-edit via PR · `npm run competencia-reply` · `check:competencias`                                                                                                                                                                                                                   |
+| `opiniones-editor.json`                             | `src/scraper/opinion-editor.ts` · `npm run opinion -- publicar / replica / corregir / retirar` · `check:opiniones` · drafts in `editorial/opiniones/`                                                                                                                                                                             |
 | `officials-corrections.json`                        | `src/scraper/officials-corrections.ts` · `npm run roster-correction` (`--alta` / `--baja` / `--retirar` / `--reply` / `--apply`) · `check:officials-corrections`                                                                                                                                                                  |
 | `contract-corrections.json`                         | `src/scraper/contract-corrections.ts` · `npm run contract-correction` (`--add` / `--retirar`) · `check:contract-corrections`                                                                                                                                                                                                      |
+| `temas-cargos.json`                                 | `src/scraper/temas-cargos.ts` · `npm run tema-cargo` (`--add` / `--retirar` / `--list`) · word → delegated area, names nobody; drift (an area nobody holds today) reds `tests/temas-cargos.test.ts`                                                                                                                               |
 | `sociedades.json`                                   | `src/scraper/sociedades.ts` · curated · hand-edit via PR · material vía `npm run scrape:borme`                                                                                                                                                                                                                                    |
 | `pleno-claims-verified.json`                        | `src/scraper/verified-merge.ts` · never edited: `scripts/verified-rebuild.ts` recomposes it from the base and the four files below                                                                                                                                                                                                |
 | `pleno-claims-overlay.json`                         | `src/scraper/verified-merge.ts` · `npm run downgrade-verdict` (+`--amend-reason`: a curator's reason, or the explanation of an engine retraction), `subir-veredicto`, `apply-gold-downgrades`, `corregir-rotulo-motor` (only an engine entry's label, with `labelCorrections`), the engine; never NLI (proposes, in `editorial/`) |
@@ -165,8 +167,71 @@ overwrites it. Change the bot's SQLite instead.
 ### Budget execution (ejecutado vs presupuestado, quarterly)
 
 - **Pipeline** — `budget-execution.ts` → `budget-execution.json`
-- **Source** — Ayuntamiento estados de ejecución PDFs (SICALWIN)
-- **Surfaces** — `/presupuesto` "Ejecución presupuestaria"
+- **Source** — Ayuntamiento estados de ejecución PDFs (SICALWIN; 2T 2023, the
+  Ministry's F.1.1 forms)
+- **Surfaces** — `/presupuesto` "Ejecución presupuestaria", its «En breve», `/gestion`
+- **Gotchas** — a year's page carries every quarter's sheets side by side, and
+  «Fecha de listado igual a: …» is the report's PARAMETER, not the data's
+  cut-off: the 2025 2T sheet, printed 30-06-2025, says 31/12/2025. The cut-off
+  is the earlier of that and the print date in the header (`fechaDeCorte`);
+  `elegirDocumento` takes the latest cut-off, then the most chapters. Until
+  2026-10-22 only chapters counted, the 2T and 4T tied at 8, and the June
+  spending sheet was published as the year's close (30 % executed; the close
+  says 60 %) beside December income — which also manufactured a «chapter 6
+  opened at zero» and a 4 M€ disagreement with CONPREL that the close sheet
+  does not have. A period whose two sides have different cut-offs is dropped.
+- **Periods, not pages** — a period is a year and a quarter, read off each PDF
+  link («1T», «2T2025», «1T 2026», «2 y 3T2024», «30-06-23») and, failing that,
+  off the page (`periodosDelIndice`). Reading one sheet per page published only
+  2025's close and none of 2026. `latest` is the newest period published;
+  `ultimoCierre` is the newest one cut at 31 December, and what measures a
+  year — the `/gestion` indicators — reads that one, never a quarter in
+  progress. Pages describing a year in progress say so in the present tense
+  (`esCierre`).
+- **Four templates** — the SICALWIN listing («Estado de ejecución de Gastos»,
+  until 2T 2025), by economic chapter or — 1T 2024 and 1T 2025 expenses —
+  by PROGRAMME, with no «Total Capítulo»: its chapters are the sum of its
+  line items by the first digit of the economic code, and the sum must give
+  the «Total Gastos» to the cent. The 1T 2024 income listing has no chapter
+  totals either and is summed from its «Total Concepto» rows. Since 3T 2025,
+  «1_2 ITEM 37 Ejecución trimestral»: a «Resumen por capítulos» per side
+  (initial, final, recognised) beside detail sheets with no chapter totals;
+  no «Fecha de listado», so its cut-off is the print date. And 2T 2023: the
+  Ministry's F.1.1 quarterly forms, each side split into a current and a
+  capital sheet (`unirPartes` joins them).
+- **Sheets with no text layer** — 3T 2025's six sheets and the income side of
+  2024's close are «Microsoft: Print To PDF» output with every glyph drawn as
+  a path: not scans, but pdf-parse gets nothing. They are read by OCR
+  (`budget-execution-ocr.ts`, pure; `budget-execution-ocr-fetch.ts`: mupdf +
+  tesseract.js, all WebAssembly, because the nightly runner has no poppler) and
+  published only if the reading adds up: every printed percentage matches
+  executed ÷ final to the rounding, the chapters sum to the printed total to
+  the cent, and — for the old SICALWIN income sheet — six identities per row
+  hold. A detail sheet is never published; its «Total» cross-checks the
+  summary chapters it covers. Amounts are read from their digits alone (every
+  figure has two decimals; separators are what OCR gets wrong).
+- **Income is NET recognised rights** — SICALWIN's income rows run over two
+  lines; the gross «DR» is on the first, the «DR Netos» the sheet's own
+  percentage uses on the second. Until 2026-10-29 the parser read the gross
+  column: 2T 2025 said 61,8 % and the 2025 close 85,4 % where the sheets print
+  61,37 % and 84,29 %. Count the net column from the start of the second line:
+  the close sheet's first copy of each «Total Capítulo» misprints the last
+  column of the first line, and counted straight through, chapter 9 read 0.
+  The OCR reads the same net column for that layout.
+- **Every period reconciles or is dropped** (`motivoDeDescarte`) — chapters
+  sum to the total; the total's percentage is the one the sheet prints (each
+  period's `cotejo` carries it); the «definitivo» is the credit at the cut-off,
+  not an estimate; and income was posted. So 2T 2023 is dropped although it
+  reads and sums: the F.1.1 forms' «definitivo» is the «Estimación … al final
+  de ejercicio», modifications planned to year end included, and they print
+  no percentage. And 1T 2024 is dropped although it reconciles: printed on
+  9-4-2024, its income ledger had chapter 4 — where the State's monthly
+  payments go — below zero in NET rights, more refunded than recognised, so
+  its 0,08 % says what had been entered, not what came in.
+- **What is not read, and why** — the snapshot's `lectura` block lists every
+  period dropped with its reason, every sheet with no text layer, and
+  (`hojasOcr`) what the OCR did with each: read, used to cross-check, dropped
+  with the figure that did not add up, or no reader.
 
 ### Coste efectivo de los servicios (art. 116 ter LRSAL)
 
@@ -293,7 +358,7 @@ overwrites it. Change the bot's SQLite instead.
 - **Cleaning** — the panel's own rules applied unchanged: direct management
   only (regla 4), duplicated cost rows exclude the municipality (regla 1), and
   declarations beyond ±`ATIPICO_FACTOR` of the service's median €/inhabitant
-  are excluded as implausible (regla 7 — the real book carries councils
+  are excluded as implausible (regla 9 — the real book carries councils
   declaring 1 € of schools cost). The cost+units row pair some programs
   publish per municipality is NOT a duplicate; duplication is judged among
   cost-bearing rows only.
@@ -346,6 +411,90 @@ overwrites it. Change the bot's SQLite instead.
   dropped 2020–2022); T4 = full year; each file also carries the prior year.
   Cadence `manual` 420d.
 
+### Calidad del agua de consumo (outcome beside the water-supply card)
+
+- **Pipeline** — `sinac.ts` → `scrape:agua` → `agua.json`; `compute:indicadores`
+  embeds `resultadoAgua()` as the `resultados` item
+  `agua-nitrato-red-principal` (nitrate, annual mean of the main network's
+  complete analyses, closed years only).
+- **Source** — SINAC, Ministerio de Sanidad: the citizen query
+  (`sinac.sanidad.gob.es/CiudadanoWeb`), a session form answered by plain POSTs
+  (municipality → networks → network ficha → bulletin detail). No bulk
+  download. Reuse per the ministry's legal notice: cite the source and the date
+  of last update; both travel in the snapshot.
+- **Archive** — the page shows only the latest bulletins per section (10
+  control, 10 complete, 5 radioactivity), so `agua.json` is an ARCHIVE:
+  `fusionarBoletines` keeps what rotates off the page, newest read wins.
+  Complete-analysis details are fetched once per bulletin id (`.cache/sinac/`).
+- **Surfaces** — `/eficiencia` (water-supply card result block, «Cuesta ·
+  Consigue»), `/datos`
+- **Gotchas** — the header says iso-8859-1, the body is UTF-8; section legends
+  changed wording within one day («Análisis de completo» → «Análisis completo»),
+  so an unrecognised «Análisis …» section fails the run; a parameter with no
+  figure is `null`, never 0; the main network is chosen by population served,
+  not by id. The two «no apta» bulletins in the archive are in small networks
+  with their own private operator, and the caveat says so. CI reach unmeasured:
+  soft in the nightly, refreshed by `scrape-ci-blocked.sh`, cadence
+  `ci-blocked` 8d.
+- **Band** — `scrape:agua-pares` → `agua-pares.json`: the same SINAC flow over
+  the cost band (`coste-efectivo.json` → `pares.filas`, Riba-roja excluded).
+  Every network's ficha, plus the complete-analysis detail of each town's
+  MAIN network only, for a like-for-like nitrate band (`paresNitrato`, ≥ 15
+  towns or no band) and a «no apta» tally that separates networks run by an
+  operator other than the town's main one (`noAptaEnPares`). Weekly by itself
+  (exits 0 inside 7 days; `--forzar`), soft-fails a town with its reason,
+  refuses to publish if > 20 % fail or ≥ 10 % of gradings are unreadable. Runs
+  only in `scrape-ci-blocked.sh`, cadence `ci-blocked` 15d: not because runners
+  are blocked but because SINAC is slow from anywhere and a pass, which writes
+  only when it ends, does not fit in the nightly (`SOLO_LOCAL` in
+  `scrape-all.sh`).
+  Cadence `ci-blocked` 15d.
+- **Whole year** — `informe-agua.ts` → `scrape:agua-informe` →
+  `agua-informe-anual.json`: Annex I of the ministry's annual report «Calidad
+  del agua de consumo humano en España», one row per supply zone and year
+  (`pdftotext -layout`). SINAC's citizen query shows only the latest bulletins;
+  this counts the whole year (hundreds in the main zone), and it is what showed
+  55 «no apto» of 485 in 2021 where the SINAC window showed none. Two formats,
+  never converted into each other: counts up to 2022, «% Aptos» from 2023. The
+  definitions of «apto»/«no apto» change by year and travel verbatim. Columns
+  must sum to the total or the run fails; RIBA-ROJA D'EBRE (Tarragona) is a
+  decoy the matcher excludes. Years are an explicit list (URLs move between
+  `docs/` and `informesAnteriores/docs/`); 2019–2020 are listed as pending
+  (font-obfuscated text, needs OCR). Licence on the cover: reproducible citing
+  the source. Cadence `manual` 400d.
+
+### Biblioteca: prestatarios y visitas (outcome beside the library card)
+
+- **Pipeline** — `bibliotecas.ts` → `scrape:bibliotecas` → `bibliotecas.json`;
+  `compute:indicadores` embeds `resultadosBibliotecas()` as two `resultados`
+  items on `a3321-330p-coste-unitario`: `biblioteca-prestatarios-por-mil`
+  (headline, the one «Cuesta · Consigue» carries) and
+  `biblioteca-visitas-por-habitante`.
+- **Source** — Estadística de Bibliotecas Públicas, Ministerio de Cultura
+  (`mcu.es/alziraweb`), annex 28 «Visitas y usuarios inscritos»: one HTML table
+  per province and year, read with a plain GET; the years come from the page's
+  own drop-down. Data collected by the autonomous communities on a common
+  questionnaire (ISO 2789). Reuse under the general conditions of RD 1495/2011
+  (the ministry's legal notice): «Origen de los datos: Ministerio de Cultura»,
+  no implied endorsement; the page carries no update date to cite.
+- **Peers** — `coste-efectivo.json` → `pares.miembros` (cv-15k-40k) minus
+  Riba-roja, all three provinces. Latest-year percentile over every member with
+  data (own `n`); the year-by-year line (`paresSerie`) is the median of a FIXED
+  panel, the members with data every year. Population: INE padrón tables
+  2856/2865/2903 by INE code; Riba-roja's is cross-checked against
+  `padron.json` before writing.
+- **Surfaces** — `/eficiencia` («Cuesta · Consigue», with the peer line),
+  `/eficiencia/a3321-330p-coste-unitario` (both results), `/datos`
+- **Gotchas** — answers 429 to the cloud container every time; run it from the
+  curator's machine (cadence `manual` 430d). Pages are ISO-8859-1 with HTML
+  entities. «-» is no data (null), never 0; rows must sum to the TOTAL row or
+  the run fails. Names are the ministry's, not the INE's («L' Alfàs del Pi»,
+  «Xàbia/Jávea», «Montcada/Moncada»): resolved by per-language variants without
+  article, by equality — «Eliana» is inside «Meliana» — and a tie is a miss.
+  Registered users only ever rise, so they are not an outcome; loans are the
+  cost card's divisor, so they are not used either. Raw pages cached under
+  `.cache/bibliotecas/`.
+
 ### Recogida selectiva 2022 (single-edition outcome, waste card)
 
 - **Pipeline** — `reciclaje.ts` → `scrape:reciclaje` → `reciclaje.json`;
@@ -368,8 +517,15 @@ overwrites it. Change the bot's SQLite instead.
 ### Municipal hiring (procesos selectivos)
 
 - **Pipeline** — `procesos-selectivos.ts` → `procesos-selectivos.json`
-- **Source** — ribarroja.es procesos-selectivos list
+- **Source** — ribarroja.es procesos-selectivos list; for each link the list
+  cuts with «…», that process's own page (`og:title`)
 - **Surfaces** — `/empleo-publico`
+- **Gate** — an empty list is never written (`exigeProcesos`), so a markup
+  change keeps the prior snapshot instead of publishing «no hay procesos». Only
+  `https://www.ribarroja.es` pages are fetched (`esPaginaDelPortal`), and one
+  reached by a redirect is not used: the link's URL is the process's identity. A cut link keeps its text when its page has no whole
+  title or one about something else, and the snapshot's `titulos` block counts
+  whole, completed, reused-from-the-prior-run and still-cut titles separately
 
 ### Association register
 
@@ -421,15 +577,15 @@ overwrites it. Change the bot's SQLite instead.
 
 ### Registered unemployment (monthly series)
 
-- **Pipeline** — `paro.ts` → `paro.json`
-- **Source** — **SEPE** Muniacteco XLS feeds (3-sheet: AMBOS / HOMBRES / MUJERES); CLI walks back up to 24 months
+- **Pipeline** — `paro-fetch.ts` (the walk) → `paro.ts` (parser + `componerSerieParo`) → `paro.json`
+- **Source** — **SEPE** Muniacteco XLS feeds (3-sheet: AMBOS / HOMBRES / MUJERES); CLI walks back up to 24 months. A month the walk does not read keeps the row the published file already had — only a fresh reading adds, changes or drops one — and `stats` names every month kept or missing, with its state (`ausente` / `ilegible` / `sin-respuesta`)
 - **Surfaces** — Direction D KPI strip (Paro panel with MoM delta + 12-month sparkline)
 
 ### Plenos (council sessions)
 
-- **Pipeline** — `plenos.ts` → `plenos.json`
-- **Source** — Scraped HTML from `ribarroja.es/plenos/<year>`, Spanish-date → ISO, kind classifier (ordinario / extraordinario / urgente / otro)
-- **Surfaces** — `/plenos` "Plenos recientes" card with linked titles + kind pills
+- **Pipeline** — `scripts/scrape-plenos.ts` → `plenos.ts` → `plenos.json`. Best-effort in `scrape-all.sh`: a failed pass merges over what is published, and one that leaves a year unread keeps its `generatedAt`, so `check:cadence` sees it age
+- **Source** — regmeet's per-year session list (`regmeet.com/aytoribarroja/sesiones_categorias/<entity>/<year>`; `ribarroja.es/plenos/<year>` until 2026-05-25), Spanish-date → ISO, kind classifier (ordinario / extraordinario / urgente / otro). The year page lists sessions already held, not convened ones (checked 2026-10-27).
+- **Surfaces** — the `/plenos` session table, «El último pleno» and `/plenos/:id`. Sessions are linked by a readable alias, `/plenos/<date>-<kind>` (`src/scraper/ruta-de-sesion.ts`); the id stays canonical and is what the sitemap lists, and `prerender-meta` writes each alias page with the id's card and canonical. «¿Cuándo es el próximo?» shows a session from today on if the list has one; otherwise the session schedule the Pleno approved on 2023-07-07, quoted from that session's acta, and how many ordinary sessions fell on a Monday and on the first Monday (`src/scraper/proximo-pleno.ts`).
 
 ### Citizen participation
 
@@ -441,7 +597,7 @@ overwrites it. Change the bot's SQLite instead.
 
 - **Pipeline** — `press.ts` → `press.json`
 - **Source** — Three feeds merged with FNV fingerprint dedup: (1) Google News RSS `news.google.com/rss/search?q="Riba-roja de Túria"` covering national + regional Spanish outlets (Levante-EMV, Las Provincias, Valencia Plaza, elDiario.es, Cadena SER, Comunica GVA, …); (2) `infoturia.com/riba-roja-de-turia/feed/` — direct WordPress feed of the local comarcal paper _Periòdic del Camp de Túria_, catches stories the Google News indexer misses; (3) `ribarroja.es/es/noticias/rss.xml` — the **Ayuntamiento's OWN** Drupal news feed (primary source), stamped `official:true` + a `Sección` taxonomy by `parseOfficialNewsRss`, merged FIRST so its attribution wins on a fingerprint collision (needs a Mozilla-leading UA for the ribarroja.es WAF). Each feed has its own parser (`parseGoogleNewsRss` for the " - Pub" suffix quirk; `parseStandardRss` for plain WordPress RSS; `parseOfficialNewsRss` for the official Drupal feed + section lift); one feed failing does not block the others.
-- **Surfaces** — `/laboratorio` + Direction D editorial column (`PressBlockD`, with an "Oficial" badge on town-hall rows)
+- **Surfaces** — `/laboratorio/prensa` + Direction D editorial column (`PressBlockD`, with an "Oficial" badge on town-hall rows)
 
 ### Geo (municipal boundary 484 pts + 21 neighborhoods)
 
@@ -495,25 +651,28 @@ overwrites it. Change the bot's SQLite instead.
 - **Source** — Wikidata `Special:EntityData/Q23701.json`
 - **Surfaces** — `/datos` `WikidataCard` above the population chart
 
-### Spain-wide live ticker (Luz PVPC · Gasolina 95 · Diésel · Euribor 12m · BCE MRO · IPC interanual · AEMET avisos · DGT tráfico)
-
-- **Pipeline** — `spain-ticker.ts` → `spain-ticker.json`
-- **Source** — **REE apidatos** (`apidatos.ree.es/precios-mercados-tiempo-real`) · **Minetur Carburantes** REST (municipio `7177`) · **ECB SDMX** (`FM/M.U2.EUR.RT.MM.EURIBOR1YD_.HSTA` + `FM/D.U2.EUR.4F.KR.MRR_FR.LEV`) · **INE Tempus3** (serie `IPC251856`) · **AEMET** avisos HTML (`p=46`) · **DGT DATEX II v3.6** XML filtered to Valencia-area roads `A-3 / A-7 / CV-35 / V-30 / V-31 / V-11`
-- **Surfaces** — Direction D `LiveTicker` — Bloomberg-style auto-scrolling marquee overlaying the top-center of the map. Press headlines interleaved every 3 chips. Each chip opens a details popover with source + citation.
-
 ### Pleno agendas
 
 - **Pipeline** — `pleno-agenda.ts` → `plenos-agendas.json`
-- **Source** — Scrapes each individual session's convocatoria HTML on `ribarroja.es`, extracts the ORDEN DEL DÍA, splits into {resolutiva / informativa / ruegos}, resolves department + expediente tuples
-- **Surfaces** — `/plenos` — `TopDepartmentsCard` + inline "Ver orden del día" expander per session
+- **Source** — each session's page on `regmeet.com` (aytoribarroja), whose `#tableOrdenDia` is the ORDEN DEL DÍA; the old `ribarroja.es` convocatorias still parse, for Wayback captures. Resolves department + expediente tuples. regmeet does not mark the part of each item, so the split into {resolutiva / informativa / ruegos} is read from the item's title, in Castilian and Valencian (`seccionPorTitulo`), and re-derived for every stored session on each run (`reclasificaSecciones`): only the newest sessions are fetched again, and the ones convened in Valencian are older
+- **Surfaces** — `/plenos`: «El último pleno» on top, each item of the last session held as a plain label (`etiquetaDelPunto` in `src/scraper/etiqueta-llana.ts`, grouped by part in `src/scraper/en-breve-plenos.ts`), then «Los plenos del último año» (each earlier session of the last twelve months with its first two items to decide, the acta approval left out but counted, `sesionesDelUltimoAnio`), then the session table and the area breakdown. `/plenos/:id`: the «Resumen» tab opens with the same plain-label card for that session (`src/components/plenos/OrdenDelDiaEnBreve.jsx`) and names the source words its titles carry (`vocabularioDelOrdenDelDia`), each with its glossary entry; the «Orden del día» tab keeps the literal titles, with the part of each item as a pill. The department counts also feed `/departamentos`, `/cargos/:slug` and the landing
 - **Cited by** — `subir-veredicto --evidencia <session link> --punto <n>` (since 2026-10-10): a signed raise may cite one agenda item as evidence (kind `agenda`, corpus `plenos-agendas`). The row is written from the record — session, date, part and the item's whole title — and never says «aprobado»; a later session cannot support an earlier statement, and with a figure in the statement no agenda row reaches `verificado` (`comprobarRegistrosConLaDeclaracion` in `src/scraper/subida-firmada.ts`)
 
 ### Pleno actas (signed minutes, regmeet «Documentos» tab)
 
 - **Pipeline** — `scripts/scrape-pleno-actas.ts` → `regmeet-documentos.ts` (`parseRegmeetDocumentos`, `clasificarDocumento`) → `pleno-actas.json`; the text goes to the gitignored `.cache/pleno-actas/<plenoId>.txt` (`pdftotext`, no `-layout`) and is never published, because an acta names every councillor and private persons
-- **Source** — the «Documentos» tab of each session page on `regmeet.com` (aytoribarroja), where the council publishes the signed actas. A PDF counts as an acta by its text («ACTA SESIÓN …» with the session's date), never by its link label (an internal code). regmeet blocks GitHub runners, so the only refresh is `scrape-ci-blocked.sh`
-- **Outputs** — `pleno-actas.json`: per session the PDF URL, label, upload date, page count (`pdfinfo`; null if unknown, never 0) and the PDF's `sha256Short`. No text. `stats` reports attempted / con acta / sin documentos / sólo otros / fecha no coincide / fallidas / sin intentar separately
+- **Source** — the «Documentos» tab of each session page on `regmeet.com` (aytoribarroja), where the council publishes the signed actas. A PDF counts as an acta by its text («ACTA SESIÓN …» with the session's date), never by its link label (an internal code). regmeet blocks GitHub runners, so the only refresh is `scrape-ci-blocked.sh`. Each daily pass is incremental (`tocaPedir` in `src/scraper/pleno-actas-pasada.ts`): the 6 newest sessions, any whose acta text is missing from `.cache`, and a rotating window of 8 of the rest; the others are kept without a request, so the whole archive is re-read within 8 days, the age `check:cadence` allows the file. Fetching all ~63 sessions daily made regmeet refuse the connection (ECONNREFUSED) mid-pass from 2026-10-16. `-- --completo` forces a full pass
+- **Outputs** — `pleno-actas.json`: per session the PDF URL, label, upload date, page count (`pdfinfo`; null if unknown, never 0) and the PDF's `sha256Short`. No text. `stats` reports con acta / sin documentos / sólo otros / fecha no coincide / fallidas / sin intentar / conservadas (not due today) separately
 - **Surfaces** — ninguna todavía; la usa check:votos-acta (`scripts/check-votos-acta.ts` over `acta-votos.ts` + `cotejo-votos-acta.ts`), which compares every published per-bloc tally in `pleno-votes.json` against the acta's vote on the merits (fondo, never the urgency vote) and only reports
+
+### Pleno videos (two sources)
+
+- **Pipelines** — `scripts/scrape-pleno-videos.ts` → `pleno-videos.ts` → `pleno-videos.json` (the channel), and `scripts/scrape-pleno-videos-regmeet.ts` → `regmeet-video.ts` (`parseRegmeetVideo`) + `pleno-videos-regmeet-pasada.ts` → `pleno-videos-regmeet.json` (the session pages). They are joined at read time by `pleno-video-fuentes.ts` (`videoDeSesion`), never merged into one file
+- **Sources** — `canal`: the council's YouTube channel through `yt-dlp --flat-playlist`, a window over its latest uploads, matched to a session by the date its title writes (Valencian or Spanish, in the title's original language since PR #448; a title with no day or no year stays undated and tied to no session); a session's video drops out when the channel uploads other things. `regmeet`: the hidden `#videoId` that each session page on `regmeet.com` hands its own YouTube player, so it is tied to the session and does not age out. **It makes no request of its own**: it reads the session pages `scrape:pleno-actas` already downloads (the 6 newest and a rotating window, the whole archive within 8 days) and saves to the gitignored `.cache/regmeet-sesiones/` (`scripts/lib/regmeet-paginas.ts`), so it runs right after that pass in `scrape-ci-blocked.sh`. Measured on 2026-10-27: a pass of its own over the 63 pages read 20 before regmeet reset the connection and refused it for about an hour, and the actas and agenda passes already spend that budget every morning
+- **Outputs** — `pleno-videos-regmeet.json`: one row per session read, `lectura` `con-video` or `sin-video` with the day its page was downloaded (`comprobadoEl`, the cached file's date); `generatedAt` is the download time of the newest page read, not the run's, so the file ages if the actas pass stops fetching. A page without the marker (`sin-marcador`) or with one that is not a YouTube video (`ilegible`) writes no row and keeps the previous one: a session with no row has not been read, which is not «sin vídeo». A video that was there and is gone is kept and reported (`desaparecidos`); one that changed is written and reported (`cambiados`). `stats` reports each outcome, plus the sessions with no cached page yet — those that keep an earlier row and those never read — separately
+- **Disagreements** — when both sources speak of a session and differ (`otro-video`, `otra-fecha`, `otra-sesion`), neither wins: `/plenos/:id` shows no video, `resolve-pleno-video.ts` refuses to transcribe, and `check:relations` reports it as `video-fuentes` (error, so it reaches `monitor:health`; `--soft` in the nightly)
+- **Transcription** — the backlog (`hallazgos-pipeline.sh`, `transcribe-pleno-batch-list.mjs`, `resolve-pleno-video.ts`, the health counts) reads the channel only. A video only regmeet has is shown, not transcribed: transcribing another session publishes new statements, and that is the operator's decision
+- **Surfaces** — `/plenos/:id` «Ver vídeo» (`indexVideosByPleno`), the landing's in-session pulse (channel only), `findings-crosschecked-video`
 
 ### Open job vacancies
 
@@ -538,19 +697,19 @@ overwrites it. Change the bot's SQLite instead.
 
 - **Pipeline** — `factcheck.ts` → `factcheck.json`
 - **Source** — Two sources merged via `mergeFactCheckRows`: (1) Google Fact Check Tools API `factchecktools.googleapis.com/v1alpha1/claims:search` queried with `"Riba-roja de Túria"` (`languageCode=es`) — requires `GOOGLE_FACT_CHECK_API_KEY` (free tier; skipped gracefully when absent); (2) Maldita.es + Newtral RSS feeds (`parseFactcheckRss`) filtered to items mentioning Riba-roja, category-mapped onto our `ClaimVerdict` enum. The press verifier cross-references every press claim against the merged index and emits `kind:'factcheck'` evidence rows when a published fact-check matches by token overlap; sin-datos verdicts are upgraded to the fact-checker consensus.
-- **Surfaces** — `/laboratorio` — "Verificaciones externas" widget in the dashboard rail · per-claim cross-check row when an external fact-check matches. It lands in a press finding's `crossChecked[]`, never `contradiction[]`, even when the fact-checker's rating is "Falso": the directional judgement is theirs, our match is token overlap, and `contradiction[]` gates `severity: critical` about a named outlet.
+- **Surfaces** — `/laboratorio/prensa` — "Verificaciones externas" widget in the dashboard rail · per-claim cross-check row when an external fact-check matches. It lands in a press finding's `crossChecked[]`, never `contradiction[]`, even when the fact-checker's rating is "Falso": the directional judgement is theirs, our match is token overlap, and `contradiction[]` gates `severity: critical` about a named outlet.
 
 ### EU TED tenders (Tenders Electronic Daily, 54+ notices for Riba-roja)
 
 - **Pipeline** — `tenders-ted.ts` → `tenders-ted.json`
 - **Source** — TED v3 API at `api.ted.europa.eu/v3/notices/search`. Free, no auth. Expert-query syntax: `buyer-name~"Riba-roja"`. Catches contracts above the EU threshold (~€143k for supplies/services in 2026), NextGenerationEU + DANA recovery spending that PLACSP publishes late or routes via national funding lines. `asTenderRow()` projects each row onto the same `TenderRow` shape the verifier uses, so `[...local.contracts, ...ted.items]` merges cleanly in the amount-based cross-ref.
-- **Surfaces** — `/laboratorio` — surfaces as `kind:'tender'` evidence rows on press findings whose amount + buyer-name match a TED notice. Auto-upgrades sin-datos → verificado when matched.
+- **Surfaces** — `/laboratorio/prensa` — surfaces as `kind:'tender'` evidence rows on press findings whose amount + buyer-name match a TED notice. Auto-upgrades sin-datos → verificado when matched.
 
 ### BOE (Boletín Oficial del Estado)
 
 - **Pipeline** — `boe.ts` → `boe.json`
 - **Source** — Walks the last 30 days of the open-data sumario JSON at `boe.es/datosabiertos/api/boe/sumario/{YYYYMMDD}`. Free, no auth. Filters each item's titulo to those mentioning Riba-roja / Ribarroja. Catches convenios, expropiaciones, subvenciones nominativas, sanciones — actos administrativos PLACSP misses. Defensive parser: `epigrafe` and `item` can each be single object OR array.
-- **Surfaces** — `/laboratorio` — press verifier's `applyBoeCrossRef` requires the press claim to contain an acto-administrativo trigger word (ordenanza / decreto / resolución / convenio / expropiación / sanción / plan general / subvención) AND token-overlap with a BOE titulo. Sin-datos → verificado on match. `kind:'boe'` evidence row.
+- **Surfaces** — `/laboratorio/prensa` — press verifier's `applyBoeCrossRef` requires the press claim to contain an acto-administrativo trigger word (ordenanza / decreto / resolución / convenio / expropiación / sanción / plan general / subvención) AND token-overlap with a BOE titulo. Sin-datos → verificado on match. `kind:'boe'` evidence row.
 
 ### Catastro (OVC cadastre)
 
@@ -562,13 +721,13 @@ overwrites it. Change the bot's SQLite instead.
 
 - **Pipeline** — **derived** · `audit-press-links.ts` → `press-link-rot.json`
 - **Source** — Daily job. HEAD-checks every unique `articleUrl` in `press-claims-suggestions.json`, calls Wayback's Availability API to find an existing snapshot, optionally Save Page Now for dead/forced URLs — only when the lookup ANSWERED that none exists, never when it was refused. **A Wayback copy does not vanish, and the snapshot used to say it did**: measured on 2026-09-20 over the last fourteen runs, most of the URLs that showed a copy in some run «lost» it in a later one and got it back afterwards — on `/promesas`, a citation's archived-copy link blinking from one day to the next, and a `stats.archived` that wandered over the same URL set. The API fails to report a copy in two ways, both seen that day: it refuses the lookup (429), or it answers a clean 200 with `archived_snapshots: {}` for a URL that has a capture. So the copy an earlier run found is kept until a lookup finds another (`archiveCarried: true`), no save is spent on a page that has one, each row says what Wayback answered today (`archiveLookup: found\|saved\|none\|failed` — `failed` is «could not look», never «no copy»), and `stats` counts `archivedCarried`, `lookupNone` and `lookupFailed` beside `archived`: a low `archived` with a high `lookupFailed` is «could not look today», not «few copies». The limit: a capture Wayback has since excluded keeps being linked, and nothing checks those links yet. Writes `{articleUrl, status: alive\|dead\|error, archivedUrl, archivedAt, archiveLookup, archiveCarried?, checkedAt, …}`. Chained nightly after `auto-curate-press`.
-- **Surfaces** — `/laboratorio` — each press card shows "🔗 Wayback ↗" when a snapshot exists; "Ver original" link flips to red ⚠︎ when status='dead' so curators cite the snapshot instead.
+- **Surfaces** — `/laboratorio/prensa` — each press card shows "🔗 Wayback ↗" when a snapshot exists; "Ver original" link flips to red ⚠︎ when status='dead' so curators cite the snapshot instead.
 
 ### Press finding corrections log
 
 - **Pipeline** — **human-curated** · `correct-press-finding.ts` CLI · embedded inside `press-findings.json`
 - **Source** — Per-correction record `{field: title\|summary\|severity, original, corrected, reason ≥20 chars, editor, correctedAt ISO}` appended to `PressFinding.corrections[]`. CLI re-validates the whole snapshot before writing — invariants like ≥10-char title / ≥40-char summary stay intact. IFCN signatory pillar #5 (open corrections policy).
-- **Surfaces** — `/laboratorio` — collapsible "Bitácora de correcciones" expander on each finding card with strike-through diff.
+- **Surfaces** — `/laboratorio/prensa` — collapsible "Bitácora de correcciones" expander on each finding card with strike-through diff.
 
 ### Pleno finding corrections log
 
@@ -593,7 +752,7 @@ overwrites it. Change the bot's SQLite instead.
 
 - **Pipeline** — **published** · `src/components/ClaimReviewJsonLd.jsx`
 - **Source** — Every press + pleno finding card embeds a `<script type="application/ld+json">` payload conforming to schema.org/ClaimReview. Two builders: `_buildPayload` (press — itemReviewed.appearance points at outlets) and `_buildPlenoPayload` (pleno — itemReviewed.appearance points at the council session). Severity maps to a 1-5 reviewRating.
-- **Surfaces** — `/laboratorio`, `/hallazgos` and `/hallazgos/:id` (the review's `url` is the finding's own page). Lets Google's Rich Results Test recognise us as a fact-check publisher — same standard the Fact Check Tools API indexes (we both consume + publish).
+- **Surfaces** — `/laboratorio/prensa`, `/hallazgos` and `/hallazgos/:id` (the review's `url` is the finding's own page). Lets Google's Rich Results Test recognise us as a fact-check publisher — same standard the Fact Check Tools API indexes (we both consume + publish).
 
 ### CTBG resoluciones (state-level, 10,551 rows, 12 yearly sheets)
 
@@ -611,13 +770,13 @@ overwrites it. Change the bot's SQLite instead.
 
 - **Pipeline** — `scripts/scrape-sindic-expedientes.ts` → `src/scraper/sindic-expedientes.ts` → `sindic-expedientes.json`
 - **Source** — `POST https://www.elsindic.com/wp-admin/admin-ajax.php?action=buscador_expedientes_elastic_search`, el buscador Elasticsearch de `/actuaciones/`. Un solo campo `params` con JSON; devuelve HTML. El `robots.txt` del organismo lo permite explícitamente (`Allow: /wp-admin/admin-ajax.php`). **Dos ejes que NO se suman**: texto `"Riba-roja"` (todo lo que menciona el municipio) y facet `poblacion` (expedientes cuyo QUEJOSO vive aquí — **no** la administración reclamada: de sus 16 filas una va contra el Ayuntamiento de València). La puerta es el campo `Administración`, y reparte en «contra el Ayuntamiento» / «vecinos ante otras administraciones» / menciones descartadas. Materia, asunto y el título de cada resolución se transcriben **verbatim**: el vocabulario del Síndic (20 materias) no se recodifica al nuestro (15), porque «Servicios públicos y medio ambiente» es una suya y dos nuestras y el resto acabaría en `otros`. Se raspa en blando en la nocturna y en firme en `scrape-ci-blocked.sh` — la accesibilidad desde un runner de GitHub está sin medir
-- **Surfaces** — `/quejas` `SindicCard` (las dos listas, separadas y con su nota de cobertura) · `/datos` · `/lab-health`
+- **Surfaces** — `/quejas` `SindicCard` (las dos listas, separadas y con su nota de cobertura) and the «¿Y si no contestan?» card of the plain reading (`sindicEnBreve` in `src/scraper/en-breve-quejas.ts`: the count of expedientes and the first year) · `/datos` · `/lab-health`
 
 ### Síndic de Greuges CV resoluciones (curated)
 
 - **Pipeline** — **human-curated** · `sindic.ts` schema validator
 - **Source** — Added via `npm run sindic:add` after a curator READS the resolución PDF. La división con el índice de arriba es la que importa: aquél transcribe un registro público sin emitir juicio y puede ser automático; una ficha de aquí lleva el `resumen` **verbatim** y un `sentido` que alguien ha decidido, y eso no lo escribe un cron. El `id` se **deriva** del expediente + el documento del PDF (`idResolucion`) y el validador comprueba la derivación: `sindic-<expediente>` colisionaba entre las dos resoluciones de un mismo expediente
-- **Surfaces** — `/quejas` `SindicCard`, contadas aparte de los expedientes del índice para que un 0 firmado nunca se lea como «no hay nada»
+- **Surfaces** — `/quejas` `SindicCard`, contadas aparte de los expedientes del índice para que un 0 firmado nunca se lea como «no hay nada», and the «¿Y si no contestan?» card, where «se dirigió al Ayuntamiento» counts these fichas and never the index's resolutions (one of those goes to the Conselleria)
 - **El índice es un suelo, no un techo** — la cifra de resoluciones de consideraciones de `/quejas` es la UNIÓN por PDF de lo que el buscador lista y lo que una ficha firmada cita (`src/lib/sindic-consideraciones.js`), no el bloque `stats` del índice. El 18-09-2026 el Síndic reindexó tres expedientes: durante unas horas su buscador declaró menos resultados y la página publicó más fichas que resoluciones; después uno volvió listando sólo su cierre. Una ficha cotejada cada noche contra su PDF (`check:sindic-fichas`) es conocimiento que el índice no puede restar, y cuando el buscador deja de listar una, la tarjeta lo dice con el número de expediente.
 
 ### Quejas ciudadanas (Telegram-captured, SQLite-backed)

@@ -7,6 +7,8 @@ import { MOTIVOS_DE_RETENCION, MOTIVO_DE_RETENCION_ETIQUETA } from '../scraper/c
 import { diaDeLaSede } from '../scraper/queja-router'
 import { rotuloDe, useT } from '../i18n'
 import { entero } from '../lib/formatters'
+import { estadoLlano } from '../lib/estado-llano.js'
+import { fraseCobertura } from '../lib/lecturas-laboratorio'
 import { useSolicitudesAcceso } from '../hooks/useSolicitudesAcceso'
 import { CLASES_PEDIBLES, CLASE_ETIQUETA } from '../scraper/clase-documental'
 // La etiqueta y el tono de cada estado viven con el enum, tipados: aquí eran
@@ -218,6 +220,7 @@ export default function Cobertura() {
     return (
       <>
         <SectionHead
+          as="h1"
           eyebrow="Laboratorio · cobertura de comprobación"
           title="Qué podemos comprobar"
         />
@@ -241,6 +244,7 @@ export default function Cobertura() {
   return (
     <>
       <SectionHead
+        as="h1"
         eyebrow="Laboratorio · cobertura de comprobación"
         title="Qué podemos comprobar"
       />
@@ -253,6 +257,43 @@ export default function Cobertura() {
         no un reproche a quien habla: que no tengamos con qué comprobar una cifra no la hace ni
         falsa ni cierta.
       </p>
+
+      {/* La respuesta corta (auditoría de las dos lecturas, §25), después del
+          aviso de lo que esta página no es: contada del mismo resumen que la
+          barra de abajo. */}
+      {fraseCobertura(resumen) && (
+        <section
+          aria-labelledby="cobertura-en-breve"
+          data-cobertura-frase=""
+          style={{ margin: '4px 0 10px' }}
+        >
+          <h2
+            id="cobertura-en-breve"
+            className="mono"
+            style={{
+              fontSize: 'var(--fs-micro)',
+              color: 'var(--ink50)',
+              textTransform: 'uppercase',
+              letterSpacing: '.08em',
+              fontWeight: 700,
+              margin: 0,
+            }}
+          >
+            En breve
+          </h2>
+          <p
+            style={{
+              fontSize: 'var(--fs-body)',
+              color: 'var(--ink)',
+              lineHeight: 1.6,
+              margin: '4px 0 0',
+              maxWidth: '72ch',
+            }}
+          >
+            {fraseCobertura(resumen)}
+          </p>
+        </section>
+      )}
 
       <DataAsOf
         iso={manifest.data?.generatedAt}
@@ -400,8 +441,10 @@ export default function Cobertura() {
                 .filter(([nombre]) => esMarcaDePasada(nombre))
                 .sort((a, b) => b[1].filas - a[1].filas)
                 .map(([nombre, p]) => (
-                  <Pill key={nombre} tone="ghost" size="xs">
-                    {nombre} <span className="mono">{fmt(p.filas)}</span>
+                  // El nombre de la etapa, el de /metodologia; la marca tal como va en
+                  // los datos, al pasar el ratón. Decía «verdict-engine 826».
+                  <Pill key={nombre} tone="ghost" size="xs" title={nombre}>
+                    {estadoLlano(t, 'pasada', nombre)} <span className="mono">{fmt(p.filas)}</span>
                   </Pill>
                 ))}
             </div>

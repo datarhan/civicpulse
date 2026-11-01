@@ -3,8 +3,8 @@
  * Pure aggregator — reduces the five-source snapshot (officials, promises,
  * pleno-agendas, pleno-votes, quejas) to per-department stats keyed by
  * canonical DepartmentSlug. No fetch, no React — so both the hook and the
- * LiveTicker build-time scalar can share this logic, and it's trivially
- * unit-testable.
+ * build-time scalars (scripts/compute-dept-stats.ts) can share this logic, and
+ * it's trivially unit-testable.
  *
  * Libel-critical rule: an agenda item only counts as a "commitment" when a
  * matching pleno-vote exists (joined on plenoId + itemNumber). Agenda items
@@ -54,8 +54,9 @@ export function departamentoDeQueja(q) {
  *   de «nada tiene fecha» (lib/plazos-vencidos `celdaPlazosVencidos`).
  * @property {object} quejas  { total, abiertas, silencios, medible, motivo }: abiertas y
  *   silencios son null, con su motivo, mientras ninguna queja del área esté registrada
- * @property {object} contratacion  { contratos, importeEur, anios } — awarded spend owned by this
- *   concejalía; `anios` es { desde, hasta } de SUS contratos con fecha, o null si no tiene ninguno
+ * @property {object} contratacion  { contratos, importeEur, anios, conFecha } — awarded spend owned
+ *   by this concejalía; `anios` es { desde, hasta } de SUS contratos con fecha, o null si no tiene
+ *   ninguno, y `conFecha` cuántos de los `contratos` la traen
  * @property {object} declaraciones  { total, verificado, parcial, contradicho, promesaRepetida, sinDatos, conEvidencia }
  */
 
@@ -80,7 +81,7 @@ function emptyBucket(slug) {
     /** Awarded public spending owned by this concejalía. Only contracts whose
      *  Gobierto category maps unambiguously to a department are counted, so the
      *  figure UNDER-states rather than mis-attributes. */
-    contratacion: { contratos: 0, importeEur: 0, anios: null },
+    contratacion: { contratos: 0, importeEur: 0, anios: null, conFecha: 0 },
     /** Claims surfaced from the verifier (deterministic + LLM-second-pass).
      *  conEvidencia = verificado + parcial + contradicho — the editorially
      *  meaningful number. sinDatos is excluded; promesa-repetida tracked
@@ -347,9 +348,12 @@ export function computeDepartmentStats({
     // contratos atribuidos, pegado a cada tarjeta: «Vivienda» decía 2017–2026 con
     // sus contratos entre 2018 y 2025, y la ficha de un cargo no tenía de dónde
     // sacar el de sus áreas. Un contrato sin fecha suma dinero, pero no estira el
-    // periodo: no hay año que poner.
+    // periodo: no hay año que poner. Y por eso se cuentan: un periodo de un solo
+    // año dice «todos los contratos son de 2019» sólo si ninguno de los que suman
+    // llega sin fecha (/cargos/:slug, revisión lectora del 29-10-2026).
     const year = Number(String(c.awardDate ?? '').slice(0, 4))
     if (Number.isFinite(year) && year > 1990) {
+      buckets[slug].contratacion.conFecha += 1
       const anios = buckets[slug].contratacion.anios
       buckets[slug].contratacion.anios = anios
         ? { desde: Math.min(anios.desde, year), hasta: Math.max(anios.hasta, year) }

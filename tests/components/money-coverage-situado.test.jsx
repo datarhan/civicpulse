@@ -7,7 +7,10 @@
 import { describe, expect, it, afterEach } from 'vitest'
 import { render, cleanup } from '@testing-library/react'
 import { LocaleProvider } from '../../src/i18n'
-import { MoneyCoverage } from '../../src/components/LiveCity/controls/MoneyCoverage'
+import {
+  MoneyCoverage,
+  deCada100DelMapa,
+} from '../../src/components/LiveCity/controls/MoneyCoverage'
 import CoverageMeter from '../../src/components/Presupuesto/CoverageMeter'
 
 afterEach(cleanup)
@@ -30,11 +33,25 @@ const universe = {
 }
 
 describe('MoneyCoverage', () => {
+  // La razón exacta en euros vive desde el 26-10-2026 en el `title` de la frase:
+  // cada línea de más en la pila tapaba una estación del mapa.
+  const exacta = (c) => c.querySelector('[title]')?.getAttribute('title') ?? ''
   it('imprime lo situado, no lo zonificado', () => {
-    const t = pinta(<MoneyCoverage snapshot={{ universe }} />).textContent
+    const t = exacta(pinta(<MoneyCoverage snapshot={{ universe }} />))
     expect(t).toMatch(M('6,1'))
     expect(t).not.toMatch(M('2,2'))
     expect(t).toMatch(/6,1\s?%/)
+    expect(t).toMatch(/2017.2026/)
+  })
+  it('a la vista, en palabras de vecino y con el periodo: «sólo sitúa 6 de cada 100 €»', () => {
+    const t = pinta(<MoneyCoverage snapshot={{ universe }} />).textContent
+    expect(t).toContain('El mapa sólo sitúa 6 de cada 100 € de contratos (2017–2026).')
+  })
+  it('por debajo de medio euro dice «menos de 1», nunca «0»', () => {
+    const poco = { ...universe, situatedAmount: 0.4e6 }
+    const t = pinta(<MoneyCoverage snapshot={{ universe: poco }} />).textContent
+    expect(t).toContain('sólo sitúa menos de 1 de cada 100 €')
+    expect(deCada100DelMapa(poco)).toEqual({ deCada100: 0, menosDeUno: true })
   })
   it('el periodo es el del denominador', () => {
     const t = pinta(<MoneyCoverage snapshot={{ universe }} />).textContent

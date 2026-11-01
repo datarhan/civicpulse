@@ -25,6 +25,9 @@
 import type { Indicador, Tier } from './indicadores'
 import { cruzaMediana } from './indicador-areas'
 import { esGestionPorConcesion } from './modo-gestion'
+// `euros` ya es aquí la escala de las tarifas por unidad (2,02 € y 81.965 €); un
+// importe —el coste declarado, el indicador municipal en euros— va con el del sitio.
+import { euros as eurosLlanos } from '../lib/formatters'
 import type { IndicadorMunicipal } from './indicadores-friccion'
 
 export interface Lectura {
@@ -358,7 +361,7 @@ export function leerIndicador(i: Indicador): Lectura {
       'presupuesto municipal sino el recibo de cada casa.'
     : `: sale a ${euros(i.valor)} al año por cada ${i.divisor.singular}.`
   const que =
-    `El ayuntamiento declaró ${euros(i.numerador.valor!)} de coste para este servicio en ` +
+    `El ayuntamiento declaró ${eurosLlanos(i.numerador.valor!)} de coste para este servicio en ` +
     `${entrega} y ${i.denominador.valor!.toLocaleString('es-ES')} ${i.divisor.plural} ` +
     `—${i.divisor.glosa}—${cierre}`
 
@@ -470,7 +473,7 @@ export function leerIndicador(i: Indicador): Lectura {
           'mediana'
         if (typeof ra.numerador === 'number' && typeof ra.denominador === 'number') {
           frase +=
-            `: el coste declarado pasa de ${euros(ra.numerador)} a ${euros(rb.numerador!)} y la ` +
+            `: el coste declarado pasa de ${eurosLlanos(ra.numerador)} a ${eurosLlanos(rb.numerador!)} y la ` +
             `cantidad, de ${cantidad(ra.denominador)} a ${cantidad(rb.denominador!)}`
           // El divisor explica el salto cuando se mueve EN CONTRA del cociente
           // (sube la posición ⇐ baja el divisor) y pesa al menos la mitad.
@@ -560,11 +563,7 @@ export function leerIndicadorMunicipal(m: IndicadorMunicipal): Lectura {
       ? `${(m.valor * 100).toLocaleString('es-ES', { maximumFractionDigits: 1 })} %`
       : m.formato === 'dias'
         ? `${m.valor.toLocaleString('es-ES', { maximumFractionDigits: 1 })} días`
-        : m.valor.toLocaleString('es-ES', {
-            style: 'currency',
-            currency: 'EUR',
-            maximumFractionDigits: 0,
-          })
+        : eurosLlanos(m.valor)
   const que = `${cifra} en ${m.periodo}.`
 
   const donde = m.pares

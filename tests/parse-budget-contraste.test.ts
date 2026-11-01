@@ -1,13 +1,49 @@
 import { describe, it, expect } from 'vitest'
 import { readFileSync } from 'node:fs'
 import { join } from 'node:path'
-import { contrastarPresupuesto, TOLERANCIA_EQUILIBRIO } from '../src/scraper/budget-contraste'
+import {
+  contrastarPresupuesto,
+  desequilibrioDeConprel,
+  TOLERANCIA_EQUILIBRIO,
+} from '../src/scraper/budget-contraste'
+import { periodoDelAnio } from '../src/scraper/budget-execution'
 
 const ROOT = join(__dirname, '..')
 const budget = JSON.parse(readFileSync(join(ROOT, 'public/data/budget.json'), 'utf8'))
-const ejecucion = JSON.parse(readFileSync(join(ROOT, 'public/data/budget-execution.json'), 'utf8'))
+/**
+ * El desacuerdo que este módulo mide existió en lo PUBLICADO hasta el
+ * 2026-10-21, y era un artefacto: el snapshot tomaba la hoja de gastos del 2T
+ * (impresa el 30-06-2025, presupuesto aún no en vigor: 37,60 M€ iniciales) como
+ * cierre. Con la hoja del 4T los gastos iniciales son 41.578.252,26, los de
+ * CONPREL al céntimo. El camino de código sigue siendo el que vale si algún día
+ * vuelven a discrepar, así que se prueba sobre aquel snapshot real, congelado.
+ */
+const ejecucion = JSON.parse(
+  readFileSync(
+    join(ROOT, 'tests/fixtures/budget-execution_publicado-2026-10-21_hoja-2t2025.json'),
+    'utf8',
+  ),
+)
+const publicado = JSON.parse(readFileSync(join(ROOT, 'public/data/budget-execution.json'), 'utf8'))
 
-describe('scraper/budget-contraste', () => {
+describe('budget-contraste con el cierre publicado', () => {
+  // El cierre, no `latest`: desde que el snapshot lee los trimestres, `latest`
+  // es el más nuevo publicado, y el cierre del año va aparte.
+  const c = contrastarPresupuesto(budget.snapshot, publicado.ultimoCierre)!
+
+  it('las dos fuentes coinciden en gastos iniciales, capítulo a capítulo', () => {
+    expect(c.anio).toBe(budget.snapshot.year)
+    expect(Math.abs(c.diferenciaGastos)).toBeLessThan(TOLERANCIA_EQUILIBRIO)
+    expect(c.capitulos.every((x) => x.diferencia === null || Math.abs(x.diferencia) < 1)).toBe(true)
+  })
+
+  it('el superávit inicial sigue ahí, y no es de CONPREL: es del ejercicio', () => {
+    expect(Math.abs(c.desequilibrioConprel!)).toBeGreaterThan(TOLERANCIA_EQUILIBRIO)
+    expect(c.ingresosCoinciden).toBe(true)
+  })
+})
+
+describe('scraper/budget-contraste (snapshot real del 2026-10-21, hoja del 2T)', () => {
   const c = contrastarPresupuesto(budget.snapshot, ejecucion.latest)!
 
   it('mide el desacuerdo real entre las dos fuentes publicadas', () => {
@@ -94,5 +130,51 @@ describe('scraper/budget-contraste', () => {
     expect(
       contrastarPresupuesto({ ...budget.snapshot, totalExpense: null }, ejecucion.latest),
     ).toBeNull()
+  })
+})
+
+describe('el cotejo con CONPREL usa la ejecución del AÑO de CONPREL', () => {
+  // Con el 1T de 2026 como periodo más nuevo, cotejar CONPREL de 2025 contra
+  // `latest` devolvía null —años distintos— y el aviso «no cuadra en la fuente
+  // del ministerio» de /presupuesto dejó de pintarse sin que nada lo dijera.
+  const publicado = JSON.parse(
+    readFileSync(join(ROOT, 'public/data/budget-execution.json'), 'utf8'),
+  )
+
+  it('el periodo del año de CONPREL es su cierre, aunque haya uno más nuevo', () => {
+    const anio = budget.snapshot.year
+    const p = periodoDelAnio(publicado, anio)!
+    expect(p.year).toBe(anio)
+    expect(p.fechaListado).toBe(`31/12/${anio}`)
+    // Y hay de verdad uno más nuevo: si no, esta prueba no mediría nada.
+    expect(publicado.latest.year).toBeGreaterThan(anio)
+    expect(periodoDelAnio(publicado, publicado.latest.year)).toEqual(publicado.latest)
+    expect(periodoDelAnio(publicado, 2019)).toBeNull()
+    expect(periodoDelAnio(null, anio)).toBeNull()
+  })
+
+  it('con él, el desequilibrio de CONPREL vuelve a medirse', () => {
+    const c = contrastarPresupuesto(
+      budget.snapshot,
+      periodoDelAnio(publicado, budget.snapshot.year),
+    )!
+    expect(c).not.toBeNull()
+    expect(c.desequilibrioConprel).toBeCloseTo(
+      budget.snapshot.totalRevenue - budget.snapshot.totalExpense,
+      2,
+    )
+    expect(Math.abs(c.desequilibrioConprel!)).toBeGreaterThanOrEqual(TOLERANCIA_EQUILIBRIO)
+  })
+
+  it('el desequilibrio de CONPREL no depende de la ejecución: sale aunque no haya ninguna', () => {
+    const d = desequilibrioDeConprel(budget.snapshot)
+    expect(d).toBeCloseTo(budget.snapshot.totalRevenue - budget.snapshot.totalExpense, 2)
+    // Sin ejecución del año el cotejo calla, y el desequilibrio sigue ahí.
+    expect(contrastarPresupuesto(budget.snapshot, null)).toBeNull()
+    expect(Math.abs(d!)).toBeGreaterThanOrEqual(TOLERANCIA_EQUILIBRIO)
+    // Sin uno de los dos totales, null y no cero.
+    expect(desequilibrioDeConprel({ ...budget.snapshot, totalRevenue: null })).toBeNull()
+    expect(desequilibrioDeConprel({ ...budget.snapshot, totalExpense: null })).toBeNull()
+    expect(desequilibrioDeConprel(null)).toBeNull()
   })
 })

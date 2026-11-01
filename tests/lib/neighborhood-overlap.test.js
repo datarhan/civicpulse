@@ -1,5 +1,10 @@
 import { describe, it, expect } from 'vitest'
-import { computeOverlapRows } from '../../src/lib/neighborhood-aggregate'
+import { readFileSync } from 'node:fs'
+import {
+  BARRIOS_PARA_EL_CRUCE,
+  computeOverlapRows,
+  cruceDibujable,
+} from '../../src/lib/neighborhood-aggregate'
 
 const neighborhoods = [
   { slug: 'a', name: 'Barrio A', centroid: [0, 0] },
@@ -58,5 +63,57 @@ describe('computeOverlapRows', () => {
     })
     expect(rows.find((r) => r.slug === 'a').quejas).toBe(2)
     expect(rows.find((r) => r.slug === 'c').gap).toBe(true)
+  })
+})
+
+/**
+ * El cruce de /quejas se dibuja con quejas en al menos BARRIOS_PARA_EL_CRUCE
+ * barrios. Con una sola queja publicada, la tabla eran trece filas con «—» en
+ * doce, y su columna de quejas no repartía nada (auditoría de las dos lecturas,
+ * §18).
+ */
+describe('cruceDibujable', () => {
+  const filas = (...quejas) =>
+    quejas.map((q, i) => ({ slug: `b${i}`, quejas: q, amount: 1000, gap: false }))
+
+  it('el umbral es un número con nombre, y no es 1: una queja no es un reparto', () => {
+    expect(Number.isInteger(BARRIOS_PARA_EL_CRUCE)).toBe(true)
+    expect(BARRIOS_PARA_EL_CRUCE).toBeGreaterThan(1)
+  })
+
+  it('cuenta los barrios con quejas, no las filas: las de sólo contratos no cuentan', () => {
+    const r = cruceDibujable(filas(1, 0, 0, 0, 0))
+    expect(r).toEqual({ dibujable: false, conQuejas: 1, minimo: BARRIOS_PARA_EL_CRUCE })
+  })
+
+  it('se dibuja justo al llegar al umbral, y no un barrio antes', () => {
+    const justo = Array.from({ length: BARRIOS_PARA_EL_CRUCE }, () => 1)
+    expect(cruceDibujable(filas(...justo)).dibujable).toBe(true)
+    expect(cruceDibujable(filas(...justo.slice(1), 0)).dibujable).toBe(false)
+  })
+
+  it('sin ninguna queja situada en un barrio, conQuejas es 0 y no se dibuja', () => {
+    expect(cruceDibujable(filas(0, 0))).toEqual({
+      dibujable: false,
+      conQuejas: 0,
+      minimo: BARRIOS_PARA_EL_CRUCE,
+    })
+    expect(cruceDibujable([]).conQuejas).toBe(0)
+  })
+
+  it('lo publicado hoy: las filas del cruce salen de los ficheros servidos', () => {
+    const geo = JSON.parse(readFileSync('public/data/geo.json', 'utf8'))
+    const tenderGeo = JSON.parse(readFileSync('public/data/tender-geo.json', 'utf8'))
+    const quejas = JSON.parse(readFileSync('public/data/quejas.json', 'utf8'))
+    const rows = computeOverlapRows({
+      neighborhoods: geo.neighborhoods,
+      zones: tenderGeo.zones,
+      instantanea: quejas,
+    })
+    const r = cruceDibujable(rows)
+    // Mide algo: hay filas, y conQuejas es el recuento de las que traen quejas.
+    expect(rows.length).toBeGreaterThan(0)
+    expect(r.conQuejas).toBe(rows.filter((f) => f.quejas > 0).length)
+    expect(r.dibujable).toBe(r.conQuejas >= BARRIOS_PARA_EL_CRUCE)
   })
 })

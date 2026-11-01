@@ -414,6 +414,7 @@ export default function ReconstruccionDana() {
 
   const t = data.totals
   const m = data.meta
+  const ej = data.ejecucion2025
   const danaSituado = danaSituadoDe(data.danaPlaces)
   const ola = mesDeLaOla(data.timelineFull)
 
@@ -512,13 +513,21 @@ export default function ReconstruccionDana() {
               (99.000 euros, siete contratos)»: los contratos eran TODOS los del lugar, no los
               de la DANA, y el mapa era el de la versión del 06-07. Rehecho el 18-10-2026 sobre
               la misma lista que dibuja el mapa; el porqué, en la corrección de esa fecha. */}
-          Situados sobre el mapa del municipio, esos contratos se concentran donde más golpeó el
-          agua. El poblado de <b>l'Oliveral</b> absorbe el mayor gasto DANA geolocalizado (125.000
-          euros en dos contratos, el mayor de ellos en calles de los polígonos industriales El
-          Oliveral y Sector 14); le siguen el <b>polideportivo municipal</b> (114.000 euros, un
-          contrato: el cambio de pavimento de sus pistas) y la urbanización <b>La Reva</b> (101.000
-          euros, cuatro contratos). El alcalde, Robert Raga (PSPV), cifró en unas 1.400 empresas y
-          20.000 trabajadores el tejido del área industrial afectada por la DANA.
+          {/* Decía «Situados sobre el mapa del municipio, esos contratos se concentran donde más
+              golpeó el agua»: ningún dato de la pieza mide dónde golpeó más, y lo que decide si un
+              contrato sale en el mapa es que su título nombre un lugar, no el daño de ese lugar.
+              Las cifras salen de la misma lista que las barras de §04 (corrección del
+              28-10-2026). */}
+          De esos contratos, el mapa solo sitúa los que su título permite ubicar:{' '}
+          {danaSituado.contratos} de los {t.danaContracts}, por {eurC(danaSituado.importe)} de{' '}
+          {eurC(t.danaAmount)}. Su reparto dice qué lugares nombran esos títulos, no dónde golpeó
+          más el agua: eso no lo mide ningún dato de esta pieza. El poblado de <b>l'Oliveral</b>{' '}
+          absorbe el mayor gasto DANA geolocalizado (125.000 euros en dos contratos, el mayor de
+          ellos en calles de los polígonos industriales El Oliveral y Sector 14); le siguen el{' '}
+          <b>polideportivo municipal</b> (114.000 euros, un contrato: el cambio de pavimento de sus
+          pistas) y la urbanización <b>La Reva</b> (101.000 euros, cuatro contratos). El alcalde,
+          Robert Raga (PSPV), cifró en unas 1.400 empresas y 20.000 trabajadores el tejido del área
+          industrial afectada por la DANA.
         </p>
         <Card style={{ margin: '18px 0 8px' }}>
           <SectionHead eyebrow="Dónde" title="Contratos municipales geolocalizados" />
@@ -602,8 +611,23 @@ export default function ReconstruccionDana() {
           el dato: el Ayuntamiento lo atribuyó a los daños de la riada y presentó las cuentas como
           el presupuesto de la reconstrucción. No es una partida de 43,5 millones para reconstruir
           —es el presupuesto entero del municipio, cuyo crédito de gastos rendido al ministerio para
-          2025 era de 41,58 millones—, sino el año completo ordenado alrededor de ella. Lo
-          efectivamente reconocido a 31 de diciembre fue menos de la mitad: 18,91 millones.
+          2025 era de 41,58 millones—, sino el año completo ordenado alrededor de ella.
+          {/* Decía «Lo efectivamente reconocido a 31 de diciembre fue menos de la mitad: 18,91
+              millones», escrito a mano desde la hoja del segundo trimestre que el sitio leyó
+              como cierre hasta el 22-10-2026 (#417). El arreglo de los datos no llegó a la
+              frase, así que ahora sale de `ejecucion2025`, congelado en el JSON de la pieza y
+              vigilado por check:drift contra el cierre de budget-execution.json. */}
+          {ej && (
+            <>
+              {' '}
+              A 31 de diciembre se habían reconocido obligaciones por{' '}
+              {millones(ej.obligacionesReconocidas)} millones: el{' '}
+              {Math.round((ej.obligacionesReconocidas / ej.creditoInicial) * 100)} % del crédito
+              inicial y el {Math.round((ej.obligacionesReconocidas / ej.creditoDefinitivo) * 100)} %
+              del crédito definitivo, que las modificaciones del año llevaron a{' '}
+              {millones(ej.creditoDefinitivo)} millones.
+            </>
+          )}
         </p>
 
         <SecHead num="06" kicker="El vacío" title="Quién audita esto, y con qué lupa" />

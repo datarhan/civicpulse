@@ -1,7 +1,7 @@
 // @ts-check
 import { useT } from '../../../i18n'
 import { POI_CATEGORIES } from '../../../lib/civic-poi'
-import { prettyNeighborhood, rellena } from '../../../lib/formatters'
+import { prettyNeighborhood, rellena, eurosBreves } from '../../../lib/formatters'
 
 /**
  * Los rótulos que flotan al pasar por encima de un pin de dinero, un barrio, un
@@ -14,14 +14,6 @@ import { prettyNeighborhood, rellena } from '../../../lib/formatters'
  * dónde flotan.
  */
 
-const fmtEurCompacto = (n) =>
-  new Intl.NumberFormat('es-ES', {
-    style: 'currency',
-    currency: 'EUR',
-    maximumFractionDigits: 0,
-    notation: 'compact',
-  }).format(n)
-
 const cuerpo = { fontFamily: 'Outfit, sans-serif', fontSize: 'var(--fs-meta)' }
 
 /** El pin del dinero situado: el lugar, lo situado y cuántos contratos (no «obras»). */
@@ -31,7 +23,7 @@ export function PinDineroTooltip({ lugar }) {
     <div style={cuerpo}>
       <strong>{lugar.name}</strong>
       <br />
-      {fmtEurCompacto(lugar.amount)} · {lugar.count}{' '}
+      {eurosBreves(lugar.amount)} · {lugar.count}{' '}
       {t(lugar.count === 1 ? 'map.contratos.uno' : 'map.contratos.varios')}
     </div>
   )

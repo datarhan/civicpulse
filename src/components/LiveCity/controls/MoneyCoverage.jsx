@@ -1,6 +1,7 @@
 // @ts-check
 import { useT } from '../../../i18n'
 import { yearSpan } from '../../../lib/year-span'
+import { rellena, eurosBreves } from '../../../lib/formatters'
 
 /**
  * Qué parte de la contratación municipal puede enseñar este mapa.
@@ -32,17 +33,24 @@ import { yearSpan } from '../../../lib/year-span'
  * el style: plegada, la línea pierde el borde, y un style gana a cualquier clase.
  */
 
-const fmtM = (n) =>
-  new Intl.NumberFormat('es-ES', {
-    style: 'currency',
-    currency: 'EUR',
-    maximumFractionDigits: n >= 1e6 ? 1 : 0,
-    notation: 'compact',
-  }).format(n)
-
 // toFixed() would print "3.3%" — an English decimal point in a Spanish UI,
 // sitting directly beside euro figures that Intl correctly renders as "2,2 M€".
 const fmtPct = (n) => new Intl.NumberFormat('es-ES', { maximumFractionDigits: 1 }).format(n)
+
+/**
+ * Cuántos de cada 100 € contratados sitúa el mapa, con la regla de la tarjeta
+ * del barrio (`en-breve-presupuesto`): redondeado, y «menos de 1» por debajo de
+ * medio euro. null si la línea no se pinta. Exportado para que esa tarjeta, que
+ * mide otra cosa a unos píxeles, cite la misma cifra que el lector ve aquí.
+ *
+ * @param {{ situatedAmount?: number, totalAmount?: number } | null | undefined} u
+ * @returns {{ deCada100: number, menosDeUno: boolean } | null}
+ */
+export function deCada100DelMapa(u) {
+  if (!u || !u.totalAmount || !u.situatedAmount) return null
+  const pct = (100 * u.situatedAmount) / u.totalAmount
+  return { deCada100: Math.round(pct), menosDeUno: pct < 0.5 }
+}
 
 /**
  * @param {{ snapshot?: { universe?: { situatedAmount?: number, totalAmount?: number,
@@ -59,7 +67,8 @@ export function MoneyCoverage({ snapshot, accion = null }) {
   // (placeAmountsAt), y su total es `situatedAmount`. Hasta el 15-10-2026 esta
   // línea imprimía `locatedAmount` —las ZONAS de /presupuesto— y declaraba un
   // tercio de lo que el mapa pintaba al lado.
-  if (!u || !u.totalAmount || !u.situatedAmount) return null
+  const cobertura = deCada100DelMapa(u)
+  if (!cobertura || !u?.totalAmount || !u.situatedAmount) return null
   const pct = (100 * u.situatedAmount) / u.totalAmount
   // El periodo es el del DENOMINADOR: `totalDateMin`/`totalDateMax` abarcan todos
   // los contratos que suma `totalAmount`, y no sólo los que tienen sitio en el
@@ -70,7 +79,26 @@ export function MoneyCoverage({ snapshot, accion = null }) {
   // anual es justo la comparación que esta línea existe para impedir. Un
   // snapshot anterior a esos campos cae en `dateMin`/`dateMax`.
   const span = yearSpan([u.totalDateMin ?? u.dateMin, u.totalDateMax ?? u.dateMax])
+  const HUECO = '\u0000'
+  const [antes, despues = ''] = rellena(t('map.money.deCada100'), {
+    periodo: HUECO,
+    n: cobertura.menosDeUno ? t('map.money.menosDeUno') : cobertura.deCada100,
+  }).split(HUECO)
 
+  // La razón exacta, en euros, como la imprimía esta línea: va en el `title` de
+  // la frase y no en una línea propia, porque la pila crece hacia arriba sobre el
+  // mapa y cada línea de más tapaba una estación (landing.spec.ts).
+  const exacta = rellena(t('map.money.exacta'), {
+    situado: eurosBreves(u.situatedAmount),
+    total: eurosBreves(u.totalAmount),
+    periodo: span ? ` (${span})` : '',
+    pct: pct < 1 ? '<1' : fmtPct(pct),
+  })
+
+  // La frase en palabras de vecino es lo que queda a la vista con la pila
+  // plegada: la declaración de honestidad de la capa no se pliega nunca, y con
+  // ella va su periodo. En el detalle, la nota de por qué el resto no tiene sitio
+  // en un mapa.
   return (
     <div
       className="cp-cobertura"
@@ -81,12 +109,18 @@ export function MoneyCoverage({ snapshot, accion = null }) {
         color: 'rgba(11,15,25,.72)',
       }}
     >
-      <div
-        className="mono"
-        style={{ fontSize: 'var(--fs-micro)', color: 'rgba(11,15,25,.86)', fontWeight: 700 }}
-      >
-        {fmtM(u.situatedAmount)} {t('map.money.of')} {fmtM(u.totalAmount)}
-        {span ? ` (${span})` : ''} · {pct < 1 ? '<1' : fmtPct(pct)}%{accion}
+      <div title={exacta} style={{ color: 'rgba(11,15,25,.86)', fontWeight: 600 }}>
+        {antes}
+        {/* El periodo, de una pieza: partido por el guion, «(2017–» acababa una
+            línea y «2026)» empezaba la siguiente. */}
+        {span ? (
+          <>
+            {' '}
+            <span style={{ whiteSpace: 'nowrap' }}>({span})</span>
+          </>
+        ) : null}
+        {despues}
+        {accion}
       </div>
       <div id="cp-dinero-nota" className="cp-plegable" style={{ marginTop: 3 }}>
         {t('map.money.coverage')}

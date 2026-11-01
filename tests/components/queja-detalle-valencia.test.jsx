@@ -46,7 +46,6 @@ const SIGLAS = masLargasPrimero([
   'CivicPulse',
   'Telegram',
   'WhatsApp',
-  'WA',
   'LPACAP',
   'Síndic de Greuges',
   'Síndic',
@@ -137,7 +136,18 @@ const SIN_MAS = {
 const permalink = (n) =>
   `https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=guarda-${n}`
 const CONTRATOS = [
-  { ...SIN_MAS, id: 'G-1', permalink: permalink(1), department: 'urbanismo', places: [BARRIO] },
+  // Con título, fecha e importe, para que la tarjeta pinte las tres piezas que dicen
+  // qué contrato es. Los otros dos se quedan sin importe: «importe no publicado».
+  {
+    ...SIN_MAS,
+    id: 'G-1',
+    permalink: permalink(1),
+    department: 'urbanismo',
+    places: [BARRIO],
+    title: 'Contrato de obras de instalación de alumbrado público en el acceso al barrio',
+    awardDate: '2022-01-11',
+    amount: 54552.7,
+  },
   { ...SIN_MAS, id: 'G-2', permalink: permalink(2), department: 'cultura', zones: [BARRIO] },
   {
     ...SIN_MAS,
@@ -318,6 +328,38 @@ const ESCENARIOS = [
     listo: (c) =>
       pintaLa(c, QUEJA.description) && c.querySelectorAll('[data-section-head]').length >= 4,
   },
+  // El camino entero de la queja pinta, según el estado, lo que toca ahora: cada
+  // rama tiene su escenario para que la cobertura de abajo no quede sin leer.
+  {
+    nombre: 'con los apoyos: lista para el registro',
+    ruta: `/quejas/${ID}`,
+    pinta: laFicha,
+    fetch: sirve({ queja: { ...QUEJA, status: 'apoyada_verificada', apoyos: 10 } }),
+    listo: (c) => c.querySelector('[data-paso="registro"][data-estado="ahora"]') !== null,
+  },
+  {
+    nombre: 'cerrada sin registrar',
+    ruta: `/quejas/${ID}`,
+    pinta: laFicha,
+    fetch: sirve({ queja: { ...QUEJA, status: 'cerrada_no_registrada' } }),
+    listo: (c) => c.querySelector('[data-paso="cerrada"]') !== null,
+  },
+  {
+    nombre: 'transparencia en silencio: la reclamación al Consell',
+    ruta: `/quejas/${ID}`,
+    pinta: laFicha,
+    fetch: sirve({
+      queja: {
+        ...QUEJA,
+        status: 'silencio_negativo',
+        service_code: 'transparencia',
+        service_name: 'transparencia',
+        registro_entry_number: '2026-RE-0412',
+        registered_at: haceDias(60),
+      },
+    }),
+    listo: (c) => c.querySelector('[data-paso="escalado"][data-estado="ahora"]') !== null,
+  },
   {
     nombre: 'una queja que el fichero no publica',
     ruta: '/quejas/Q-NOESTA99',
@@ -338,7 +380,9 @@ const leeFicha = (c) => [
 /** El texto que el botón de WhatsApp manda, sin la URL de la página que lo cierra. */
 function leeLoCompartido(container) {
   const abre = vi.spyOn(window, 'open').mockImplementation(() => null)
-  const boton = [...container.querySelectorAll('button')].find((b) => b.textContent.includes('WA'))
+  const boton = [...container.querySelectorAll('button')].find((b) =>
+    b.textContent.includes('WhatsApp'),
+  )
   expect(boton, 'la ficha no tiene botón de compartir').toBeTruthy()
   fireEvent.click(boton)
   expect(abre, 'compartir no abrió nada').toHaveBeenCalledTimes(1)

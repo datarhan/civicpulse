@@ -61,6 +61,63 @@ Because best-effort failures go green, freshness needs its own check:
 `check:runs` catches a run that reported success having done no work. Both are
 report-only inside `scrape:all`.
 
+### The clock inside the scrape step
+
+Best-effort governs the exit code, not the time an adapter takes, and a step
+timeout falls wherever the clock happens to be. On 2026-10-29 to 31 a soft
+adapter that needs half an hour ate the rest of «Run scraper(s)» three nights
+running: everything after it was lost, derivations and `npm test` included.
+`scrape-all.sh` now spends the step's time in two layers:
+
+- **`TOPE_ADAPTADOR_S`**, per adapter, enforced by `scripts/con-tope.mjs`
+  (`timeout` does not exist on a Mac). It kills the whole process tree and exits 124. A soft adapter cut this way stays soft, and a critical one reds the run,
+  but the run carries on either way.
+- **`PRESUPUESTO_ADAPTADORES_S`**, shared, so that several slow adapters cannot
+  add up to the same failure. Once it is spent nothing else starts: what is left
+  is reported as not attempted, which reds the run if any of it was critical.
+
+Neither has ever cut healthy work: both defaults sit above the worst night
+measured, and the reasoning and figures are in the script's header.
+`tests/nightly-budget.test.js` fixes the sum against the step's `timeout-minutes`,
+which stays as the backstop. Everything after the adapters runs regardless.
+
+The run ends with one line, also written to the run's summary page: planned ·
+attempted · done · failed · cut by the limit · not attempted. **Read that line,
+not the colour**: a soft adapter cut every night is green, and its data ages
+until `check:cadence` says so.
+
+`SOLO_LOCAL` in the same script names what the nightly does not attempt because
+it cannot fit — today `scrape:agua-pares`, about half an hour against SINAC from
+any IP. A test requires each of them to be in `scrape-ci-blocked.sh`, so they
+have a refresh path, and `check:cadence` watches them. If that local job stops,
+nothing else refreshes them.
+
+### What the run says when something is cut
+
+The step timeout stays as a backstop, and when it falls the script gets no last
+word. So the scrape step tees its output to `$RUNNER_TEMP/scrape-all.log`, and the
+health gate reads it to name the stage the axe fell in and the critical adapters
+that failed.
+
+The gate tells apart a scrape that was cut from one that never ran, because an
+earlier step failed. It also asks for `success` from `npm test`, not for the
+absence of `failure`: tests that did not run are not tests that passed.
+
+Everything from the Playwright cache to `npm test` runs under `!cancelled()`, so a
+red step before them does not skip them. Without that, four nights of October 2026
+had no tests: a slow `apt` on the 26th and the scrape timeout from the 29th to the
+31st. A test broken by the data went unseen for three days, and only an unrelated
+PR showed it. After a cut the test step re-derives first, or
+`data-graph-frescura` would report the cut instead of what is really wrong.
+`tests/nocturna-tras-un-corte.test.js` runs these scripts for real.
+
+Two limits remain. A job cancelled at its own timeout skips the tests on purpose,
+because it has to reach the commit. And the commit gives up on a rebase conflict:
+it names the files and loses that night's data, which the next run rebuilds. On
+2026-10-29 the file was `budget-execution.json`, a scraper output a PR had
+regenerated while the run was going, so "scraper outputs" and "commits to main" do
+overlap. Merging such a PR during the run costs that night.
+
 `workflow_dispatch` takes an `adapters` input for on-demand re-runs; add new
 adapter names to the `case` switch.
 
@@ -84,16 +141,20 @@ work. `tests/frescura-de-las-tuberias.test.ts` derives the pipeline list from th
 graph and from the literal paths each script names, so a new pipeline is covered
 without anyone editing a list.
 
-One gap is left open on purpose, because it is a different defect with its own
-reproducer: when a push is rejected, these pipelines `pull --rebase` and push again
-**without** re-running `refresh`, so they can inherit staleness from whichever cron
-landed first. That is what happened to `94359907` on 2026-09-16.
+When a push is rejected, every local agent that publishes runs `pull --rebase`, re-runs
+`refresh` and pushes once more, so it cannot inherit staleness from whichever cron
+landed first, which is what happened to `94359907` on 2026-09-16. `scrape-ci-blocked`
+and `auto-curate-promises` do it through `cron_git_push_con_reintento`
+(`scripts/lib/cron-git.sh`); `hallazgos` and `press-lab` keep their own copy.
+`auto-curate-weekly.sh` does not retry, and its agent is disabled. A rejection left
+unretried is worse than one lost run: once the nightly rewrites the same files, every
+agent's opening pull conflicts until someone resolves it by hand.
 
 ## The other GitHub workflows
 
 | Workflow                          | Trigger                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       |
 | --------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `e2e.yml`                         | push / PR — the unit suite (`npm test`, after installing Chromium: one of its tests launches a real browser), then Playwright. Sets `VITE_ENABLE_PERIODISTAS=true` (absent locally, so `/cargos`'s Biografía spec always reds on a local run)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 |
+| `e2e.yml`                         | push / PR — three parallel jobs: `estatico` (lint, format, the four publication scans, typecheck), `unidad` (`npm test`, after installing the Chromium binary without system packages: its one browser test renders no text and the runner already has Chromium's libraries) and `playwright` (build, then Playwright). apt runs only in `playwright`, for the fonts the e2e renders: its .deb files come from the Actions cache (`scripts/ci-apt-debs.sh`) rather than the Ubuntu mirror, and the install runs under a 5-minute cap (`scripts/ci-apt-con-tope.sh`), so a slow mirror fails that job with a named annotation instead of eating the budget. Sets `VITE_ENABLE_PERIODISTAS=true` (absent locally, so `/cargos`'s Biografía spec always reds on a local run)                                                                                                                                                     |
 | `deploy-vercel.yml`               | push, plus `workflow_run` after **every** workflow that pushes to `main` (see below)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          |
 | `batch-reminder.yml`              | Mondays 08:00 UTC — nudges the queja batch registrar                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          |
 | `pull-quejas.yml`                 | daily 04:00 UTC (before the scrape), and dispatched by the bot on every confirmed `/olvidar` when `GITHUB_DISPATCH_TOKEN` is set on Fly; two runs never overlap (`concurrency`) — pulls the bot's `/export/quejas.json` from Fly.io into `public/data/`, then `scripts/fotos-quejas.mjs` prunes the photos of quejas no longer in it and fetches the anonymized photos it links from `/export/quejas-photos/`. Live since 2026-08-02. Needs `vars.BOT_EXPORT_URL`: without it the run fails (`exit 1`) and its step summary says how to set it. The bot anonymizes the photos hourly on its volume (`QUEJAS_PHOTOS_DIR`); without `GEMINI_API_KEY` on Fly it holds every one                                                                                                                                                                                                                                                  |
@@ -204,14 +265,14 @@ and GitHub emails the failure.
 
 Anything needing an LLM backend or a residential IP runs here, not in CI.
 
-| When            | How     | Script                                                                                                                                                                                                                                                                                |
-| --------------- | ------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| 06:45 daily     | launchd | `scrape-ci-blocked.sh` — the adapters runners cannot reach (`paro`, `pleno-agendas`, `asociaciones`, `obras`, `procesos-selectivos`, `sindicatura`, `consell-cv`, `sindic-expedientes`, `pleno-actas`)                                                                                |
-| 07:30 Mon + Thu | launchd | `review-sweep.sh` — reads every public route, plus one data-picked instance of each `:param` route, as a visitor; then `triage:senalamientos` leaves `editorial/senalamientos/<date>.md`, each live flag with its figures located and a second reading (report-only, commits nothing) |
-| 08:30 Mon       | launchd | `auto-curate-promises-daily.sh` — `/promesas` status-change miner                                                                                                                                                                                                                     |
-| 09:30 Mon + Thu | launchd | `hallazgos-pipeline.sh` — transcribe → extract → verify → auto-curate → push                                                                                                                                                                                                          |
-| 10:15 Mon       | launchd | `press-lab-pipeline.sh` — `/laboratorio` press fact-check pass                                                                                                                                                                                                                        |
-| 11:00 daily     | cron    | `monitor-health-cron.sh` — first `colas:rehacer` (rebuilds curator queues gone stale by a retraction, never one holding an unapplied choice), then the digest                                                                                                                         |
+| When            | How     | Script                                                                                                                                                                                                                                                                                                 |
+| --------------- | ------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| 06:45 daily     | launchd | `scrape-ci-blocked.sh` — the adapters runners cannot reach or that do not fit in the nightly (`paro`, `pleno-agendas`, `asociaciones`, `obras`, `procesos-selectivos`, `sindicatura`, `consell-cv`, `sindic-expedientes`, `transparency`, `pleno-actas`, `pleno-videos-regmeet`, `agua`, `agua-pares`) |
+| 07:30 Mon + Thu | launchd | `review-sweep.sh` — reads every public route, plus one data-picked instance of each `:param` route, as a visitor; then `triage:senalamientos` leaves `editorial/senalamientos/<date>.md`, each live flag with its figures located and a second reading (report-only, commits nothing)                  |
+| 08:30 Mon       | launchd | `auto-curate-promises-daily.sh` — `/promesas` status-change miner                                                                                                                                                                                                                                      |
+| 09:30 Mon + Thu | launchd | `hallazgos-pipeline.sh` — transcribe → extract → verify → auto-curate → push                                                                                                                                                                                                                           |
+| 10:15 Mon       | launchd | `press-lab-pipeline.sh` — `/laboratorio/prensa` press fact-check pass                                                                                                                                                                                                                                  |
+| 11:00 daily     | cron    | `monitor-health-cron.sh` — first `colas:rehacer` (rebuilds curator queues gone stale by a retraction, never one holding an unapplied choice), then the digest                                                                                                                                          |
 
 ### Cadence: why the LLM agents are not daily
 

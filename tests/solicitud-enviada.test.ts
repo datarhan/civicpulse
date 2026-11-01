@@ -4,6 +4,7 @@ import {
   CALENDARIOS,
   arranqueDelPlazo,
   enCastellano,
+  etiquetaDeEnvio,
   estadoDeEnvio,
   fraseDeCalendarios,
   fraseDeEnvio,
@@ -605,6 +606,17 @@ describe('una contestación que no resuelve deja el reloj corriendo', () => {
     const sinNada: EnvioSolicitud = { ...conIncidencia, incidencias: undefined }
     expect(fraseDeEnvio(sinNada, '2026-10-14')).toMatch(/y no han contestado/)
   })
+
+  // La pastilla, igual que la frase. Decía «sin respuesta» encima de la fila de
+  // Hacienda en el coste efectivo, cuyo pliegue cuenta lo que comunicaron el 23
+  // y el 30 de septiembre: la revisión lectora lo señaló el 20-10-2026.
+  it('la pastilla de una vencida con incidencia dice «sin resolver», no «sin respuesta»', () => {
+    expect(etiquetaDeEnvio(conIncidencia, '2026-10-14')).toBe('sin resolver')
+    const sinNada: EnvioSolicitud = { ...conIncidencia, incidencias: undefined }
+    expect(etiquetaDeEnvio(sinNada, '2026-10-14')).toBe('sin respuesta')
+    // Los demás estados no cambian de rótulo por tener incidencias.
+    expect(etiquetaDeEnvio(conIncidencia, '2026-09-30')).toBe('en plazo')
+  })
 })
 
 /**
@@ -681,6 +693,137 @@ describe('un plazo suspendido no vence ni se da por vencido', () => {
     expect(resumirEnvios([suspendida, base], '2026-10-06').porEstado.suspendida).toBe(1)
     expect(ESTADO_ENVIO_ETIQUETA.suspendida).toBe('plazo suspendido')
     expect(ESTADO_ENVIO_TONO.suspendida).toBe('neutral')
+  })
+})
+
+/**
+ * Ampliado otro mes, el último día se mueve un mes.
+ *
+ * El art. 20.1 de la Ley 19/2013 deja ampliar el mes «por otro mes» cuando el
+ * volumen o la complejidad lo hagan necesario, «previa notificación al
+ * solicitante» (en la Comunitat, art. 34.2 de la Ley 1/2022). Lo estrenó el
+ * Ayuntamiento el 27-10-2026, víspera del último día: tres oficios por la DEHÚ,
+ * uno por solicitud. Sin el campo, la fila del 27-09 (registro 2026014913,
+ * entrada el 28-09) habría pasado el 29 a «sin respuesta» con un plazo que ya no
+ * había vencido. El oficio dice que el nuevo plazo «finalizará el 28 de noviembre
+ * de 2026»; ese día es sábado, así que el último es el lunes 30 (art. 30.5 de la
+ * Ley 39/2015).
+ */
+describe('una ampliación del plazo mueve el último día un mes', () => {
+  const ampliada: EnvioSolicitud = {
+    organismo: 'Ayuntamiento de Riba-roja de Túria',
+    calendario: 'ayuntamiento-de-riba-roja',
+    enviadaEl: '2026-09-27',
+    via: 'la sede electrónica del Ayuntamiento',
+    registro: '2026014913',
+    entradaEl: '2026-09-28',
+    respuesta: null,
+    ampliada: { fecha: '2026-10-27' },
+  }
+
+  it('sigue en plazo pasado el primer mes, hasta el último día del segundo', () => {
+    expect(estadoDeEnvio(ampliada, '2026-10-29')).toBe('en-plazo')
+    expect(estadoDeEnvio(ampliada, '2026-11-30')).toBe('en-plazo')
+    expect(estadoDeEnvio(ampliada, '2026-12-01')).toBe('vencida-sin-respuesta')
+  })
+
+  it('el control: sin ampliación, la misma fila vence al mes', () => {
+    expect(estadoDeEnvio({ ...ampliada, ampliada: undefined }, '2026-10-29')).toBe(
+      'vencida-sin-respuesta',
+    )
+  })
+
+  it('dice cuándo se notificó, y el último día con su prórroga del art. 30.5', () => {
+    const f = fraseDeEnvio(ampliada, '2026-10-29')
+    expect(f).toContain(
+      'y el 27 de octubre de 2026 se notificó que ese plazo se ampliaba un mes más',
+    )
+    expect(f).toContain(
+      'vence el 30 de noviembre de 2026 (prorrogado: el 28 de noviembre, sábado, es inhábil',
+    )
+    expect(f).not.toContain('28 de octubre')
+  })
+
+  it('vencida, dice que terminó el plazo ampliado — no «el mes»', () => {
+    const f = fraseDeEnvio(ampliada, '2026-12-01')
+    expect(f).toContain(
+      'El plazo del artículo 20, ampliado un mes más el 27 de octubre de 2026, terminó el 30 de noviembre de 2026',
+    )
+    expect(f).not.toMatch(/el mes del artículo 20/i)
+  })
+
+  it('por correo, la ampliación no quita la salvedad del envío', () => {
+    // Enviada el 9-09: el segundo mes acaba el lunes 9 de noviembre.
+    const correo: EnvioSolicitud = { ...base, ampliada: { fecha: '2026-10-08' } }
+    expect(estadoDeEnvio(correo, '2026-10-20')).toBe('en-plazo')
+    const f = fraseDeEnvio(correo, '2026-10-20')
+    expect(f).toContain('se notificó que ese plazo se ampliaba un mes más')
+    expect(f).toContain('contado desde el envío, el 9 de noviembre de 2026')
+    expect(fraseDeEnvio(correo, '2026-11-10')).toContain(
+      'Contado desde el envío, el plazo del artículo 20, ampliado un mes más el 8 de octubre de 2026, terminó',
+    )
+  })
+
+  it('remitida, la ampliación entra en la frase de la remisión', () => {
+    const remitida: EnvioSolicitud = {
+      ...ampliada,
+      remitida: { fecha: '2026-10-15', a: 'Turisme Comunitat Valenciana' },
+      ampliada: { fecha: '2026-11-10' },
+    }
+    const f = fraseDeEnvio(remitida, '2026-11-20')
+    expect(f).toContain('se notificó que ese plazo se ampliaba un mes más')
+    expect(f).toContain('contado desde esa comunicación, el 15 de diciembre de 2026')
+    expect(fraseDeEnvio(remitida, '2026-12-16')).toContain(
+      'Contado desde esa comunicación, el plazo del artículo 20, ampliado un mes más el 10 de noviembre de 2026, terminó',
+    )
+  })
+
+  it('no toca el arranque: amplía el final, no acredita nada', () => {
+    expect(arranqueDelPlazo(ampliada)).toEqual({ desde: '2026-09-28', acreditado: true })
+    expect(vencimientoAfirmable(ampliada)).toBe(true)
+    expect(vencimientoAfirmable({ ...base, ampliada: { fecha: '2026-10-08' } })).toBe(false)
+  })
+})
+
+/**
+ * Concedido no es entregado.
+ *
+ * El 19-10-2026 la Dirección General de Comercio, Artesanía y Consumo estimó la
+ * solicitud a la Comisión de Precios (GVAGIP/2026/757), pero Hidraqua se había
+ * opuesto como tercera afectada, y entonces el art. 22.2 de la Ley 19/2013 sólo
+ * deja acceder cuando la concesión sea firme. Con `concedido`, la frase diría
+ * «lo concedieron» y el lector entendería que los documentos están en nuestras
+ * manos — es el `parcial` forzado de la Secretaría de Estado otra vez. El
+ * sentido propio lo dice; cuando lleguen, la fila pasa a `concedido`.
+ */
+describe('concedido con la entrega aplazada', () => {
+  const diferida: EnvioSolicitud = {
+    organismo: 'Comisión de Precios de la Generalitat',
+    calendario: 'generalitat-en-valencia',
+    enviadaEl: '2026-09-18',
+    via: 'el registro electrónico de la Generalitat',
+    registro: 'GVRTE/2026/4267645',
+    respuesta: { fecha: '2026-10-19', sentido: 'concedido-diferido' },
+  }
+
+  it('es un sentido del enum', () => {
+    expect(SENTIDOS_RESPUESTA).toContain('concedido-diferido')
+  })
+
+  it('respondida, y la frase dice que la entrega espera a la firmeza', () => {
+    expect(estadoDeEnvio(diferida, '2026-10-20')).toBe('respondida')
+    const f = fraseDeEnvio(diferida, '2026-10-20')
+    expect(f).toContain('El 19 de octubre de 2026 lo concedieron')
+    expect(f).toMatch(/entrega.*aplazada.*firme/)
+    expect(f).not.toMatch(/vence el|terminó/)
+  })
+
+  it('«lo concedieron» a secas queda para cuando se entrega', () => {
+    const entregada: EnvioSolicitud = {
+      ...diferida,
+      respuesta: { fecha: '2026-10-19', sentido: 'concedido' },
+    }
+    expect(fraseDeEnvio(entregada, '2026-10-20')).not.toMatch(/aplazada/)
   })
 })
 
@@ -858,6 +1001,38 @@ describe.each(PIEZAS)('instantánea publicada · %s', (slug) => {
     }
   })
 
+  // Una ampliación mueve el último día un mes, y sólo si se notificó a tiempo:
+  // notificada pasado el primer mes, el plazo ya había vencido y la página no
+  // puede alargarlo. Se mide con la misma fila sin ampliar, que tiene que seguir
+  // en plazo el día de la notificación. Y el oficio que la notificó consta en una
+  // incidencia de su misma fecha, con lo que dijo.
+  it('cada ampliación se notificó dentro del primer mes y consta dicha', () => {
+    for (const e of d.solicitudes.items.filter((x) => x.ampliada)) {
+      const a = e.ampliada!
+      expect(a.fecha >= e.enviadaEl, `${e.organismo}: ampliada antes de enviarse`).toBe(true)
+      expect(
+        estadoDeEnvio({ ...e, ampliada: undefined }, a.fecha),
+        `${e.organismo}: la ampliación del ${a.fecha} llegó con el primer mes vencido`,
+      ).toBe('en-plazo')
+      expect(
+        (e.incidencias ?? []).some((i) => i.fecha === a.fecha),
+        `${e.organismo}: la ampliación del ${a.fecha} no consta en ninguna incidencia`,
+      ).toBe(true)
+    }
+  })
+
+  // Una entrega aplazada tiene que decir por qué y hasta cuándo, con lo que
+  // resolvieron: la frase del sentido sólo dice que espera a la firmeza.
+  it('cada concesión con entrega aplazada lleva el resumen de lo resuelto', () => {
+    for (const e of d.solicitudes.items.filter(
+      (x) => x.respuesta?.sentido === 'concedido-diferido',
+    )) {
+      expect(e.respuesta!.resumen ?? '', `${e.organismo}: aplazada sin resumen`).toMatch(
+        /22\.2 de la Ley 19\/2013/,
+      )
+    }
+  })
+
   it('toda respuesta publicada usa un sentido del enum', () => {
     const malos = d.solicitudes.items
       .filter((e) => e.respuesta)
@@ -1011,6 +1186,7 @@ describe('un apartado de solicitudes que se movió tras publicarse lo dice', () 
       e.remitida?.fecha,
       e.remitida?.recibidaEl,
       e.suspendida?.fecha,
+      e.ampliada?.fecha,
       ...(e.incidencias ?? []).map((i) => i.fecha),
     ].filter((f): f is string => !!f)
 

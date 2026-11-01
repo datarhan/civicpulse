@@ -24,6 +24,7 @@
 import { PALETTE, SANS } from './tokens'
 import { useT } from '../../i18n'
 import { EditorialMasthead, QuejaCTA } from './blocks/Masthead'
+import { EnBrevePortada } from './blocks/EnBrevePortada'
 import { ReportajeBlockD } from './blocks/ReportajeBlockD'
 import { AlcaldeBox } from './blocks/AlcaldeBox'
 import { CoalitionRing, PromesasBlockD, DepartamentosBlockD } from './blocks/GovernmentBlocks'
@@ -57,6 +58,9 @@ function EditorialColumn({ now }) {
       }}
     >
       <EditorialMasthead now={now} />
+      {/* La lectura vecinal, primero: cuatro preguntas con su respuesta. La
+          quinta, «quiero quejarme», es la llamada al bot de justo debajo. */}
+      <EnBrevePortada />
       <QuejaCTA />
       <AlcaldeBox />
       <ReportajeBlockD />

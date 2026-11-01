@@ -106,7 +106,11 @@ The shell:
   means a glyph in `SectionGlyph.jsx`, a `group` and a one-line `descKey` in
   both locales — `tests/nav-grupos.test.js` reds on the last two.
 - `tweaks` (dark mode, density) persists to `localStorage['cp:tweaks']` and
-  applies `html.dark` + a root font size.
+  applies `html.dark` + a root font size. It also holds the reader's fold of
+  the two readings, `lecturas` («todo» unless the reader picks «esencial»):
+  `components/Lecturas.jsx`, whose header lists the terms it must keep. A page
+  with both readings wraps each detailed section in `SeccionExperta`, with a
+  title that carries no figure.
 - Cmd/Ctrl+K opens `components/CmdK.jsx`, indexing `NAV`, officials (current and
   former), promises, quejas and pleno findings.
 
@@ -141,6 +145,14 @@ Tokens are CSS variables in `src/index.css` with an `html.dark` override block.
 Tone names (`TONE_NAMES` in `components/Primitives.jsx`) flow through `Pill`,
 and `Delta` colours by sign; add semantic colours there, not inline. `.mono` is
 DM Mono with tabular numerals, for every numeric value.
+
+Money is written three ways and no others, all in `src/lib/formatters.js`:
+`euros` («14.984 €», the default), `eurosExactos` («14.984,46 €», only where the
+cent is the datum) and `eurosBreves` («19,3 M€», only where space is short; no
+«mil €» or «k€»). They return `''` for a missing amount, never «0 €»; the caller
+says «importe no publicado» and owns the «sin IVA». Published reportajes and unit
+rates («66,94 €/t») keep their own. `tests/formato-euros-unico.test.js` reds on a
+local `fmtEur`.
 
 Components use **inline styles driven by those variables**, not CSS modules or
 styled-components. Keep it that way unless asked — theming works through the
@@ -376,8 +388,10 @@ that names nobody runs unattended only once its class has a measured precision
 over the bar for its severity (tier B). Naming an individual, or anything
 outward-facing, always takes a human (tier C), and an unmeasured class falls to
 C: nothing is unlocked by assertion. New automation goes through it; the press
-and promise auto-curators predate it and do not call it yet
-(`docs/REVIEW_2026-09.md` §25).
+and promise auto-curators, the declaraciones ledger and Tier A of the queja
+relations predate it and do not call it to publish yet (`docs/REVIEW_2026-09.md`
+§25; the ledger calls it only to withhold one-seat blocs), and
+`/metodologia#politica-automatizacion` lists them.
 
 **A suggestion never substitutes for a published status.** Machine rows awaiting
 a human carry `requiresHumanApproval: true`, and the curated schemas reject that

@@ -9,7 +9,14 @@ import {
 } from '../hooks/useQuejaContractRelations'
 import { useOfficials, partyColor } from '../hooks/useOfficials'
 import { useDocumentTitle } from '../hooks/useDocumentTitle'
-import { fmtDateHuman, nombreDeBarrio, rellena } from '../lib/formatters'
+import {
+  euros,
+  fmtDateHuman,
+  fmtDateLong,
+  nombreDeBarrio,
+  rellena,
+  truncateAtWord,
+} from '../lib/formatters'
 import { conHuecos } from '../lib/huecos'
 import { rotuloDe, useLocale } from '../i18n'
 import { CLAVE_RELACION } from '../scraper/relation-labels'
@@ -21,6 +28,7 @@ import {
   ZONA_DE_LA_SEDE,
 } from '../scraper/queja-router'
 import { DEPARTMENT_LABEL } from '../scraper/departments'
+import { caminoDeLaQueja } from '../scraper/camino-de-la-queja'
 
 const SINDIC_PORTAL = 'https://www.elsindic.com/es/presenta-una-queja'
 
@@ -90,7 +98,16 @@ function plazoHumano(t, limite) {
     : rellena(t('quejas.detalle.reloj.meses'), { n: limite.amount })
 }
 
-function TimelineItem({ date, label, tone = 'neutral', detail, idioma }) {
+/**
+ * Un paso del camino de la queja (`caminoDeLaQueja`). Lo hecho lleva su fecha
+ * —«—» cuando no se sabe— y el punto lleno de su tono; lo que toca, «Ahora» y un
+ * anillo; lo que falta, «Pendiente», el punto hueco y el texto en gris. Las
+ * frases de lo que falta van en letra de texto: el detalle en mono es para los
+ * datos de lo ocurrido (un asiento, un artículo).
+ */
+function PasoItem({ paso, label, tone = 'neutral', detail, idioma, t }) {
+  const hecho = paso.estado === 'hecho'
+  const ahora = paso.estado === 'ahora'
   const color =
     tone === 'ok'
       ? 'var(--ok)'
@@ -103,24 +120,37 @@ function TimelineItem({ date, label, tone = 'neutral', detail, idioma }) {
             : 'var(--ink50)'
   return (
     <div
-      style={{
-        display: 'grid',
-        gridTemplateColumns: '120px 12px 1fr',
-        gap: 12,
-        alignItems: 'flex-start',
-        padding: '10px 0',
-      }}
+      data-paso={paso.clave}
+      data-estado={paso.estado}
+      // La rejilla vive en `index.css` (`.cp-camino-paso`): en el móvil estrecha
+      // la columna de la fecha, y una @media no cabe en el prop `style`.
+      className="cp-camino-paso"
+      style={{ padding: '10px 0' }}
     >
-      <div className="mono" style={{ fontSize: 'var(--fs-micro)', color: 'var(--ink50)' }}>
-        {fmtDate(date, idioma)}
+      <div
+        className="mono"
+        style={{
+          fontSize: 'var(--fs-micro)',
+          color: ahora ? 'var(--civic)' : 'var(--ink50)',
+          fontWeight: ahora ? 700 : 400,
+        }}
+      >
+        {hecho
+          ? fmtDate(paso.fecha, idioma)
+          : ahora
+            ? t('quejas.detalle.camino.ahora')
+            : t('quejas.detalle.camino.pendiente')}
       </div>
       <div style={{ position: 'relative', height: '100%' }}>
         <div
           style={{
+            boxSizing: 'border-box',
             width: 8,
             height: 8,
             borderRadius: '50%',
-            background: color,
+            background: hecho ? color : ahora ? 'var(--civic)' : 'transparent',
+            border: hecho || ahora ? 'none' : '1.5px solid var(--ink50)',
+            boxShadow: ahora ? '0 0 0 3px var(--civic-soft)' : 'none',
             position: 'absolute',
             top: 6,
             left: 0,
@@ -138,11 +168,24 @@ function TimelineItem({ date, label, tone = 'neutral', detail, idioma }) {
         />
       </div>
       <div>
-        <div style={{ fontSize: 'var(--fs-aux)', fontWeight: 500 }}>{label}</div>
+        <div
+          style={{
+            fontSize: 'var(--fs-aux)',
+            fontWeight: ahora ? 600 : 500,
+            color: hecho || ahora ? 'var(--ink)' : 'var(--ink50)',
+          }}
+        >
+          {label}
+        </div>
         {detail && (
           <div
-            className="mono"
-            style={{ fontSize: 'var(--fs-micro)', color: 'var(--ink50)', marginTop: 2 }}
+            className={hecho ? 'mono' : undefined}
+            style={{
+              fontSize: hecho ? 'var(--fs-micro)' : 'var(--fs-meta)',
+              color: 'var(--ink50)',
+              marginTop: 2,
+              lineHeight: 1.45,
+            }}
           >
             {detail}
           </div>
@@ -227,6 +270,44 @@ function CorrelationsCard({ quejaId }) {
                 )}
               </span>
             </div>
+            {/* Qué contrato es: su título, cuándo se adjudicó y por cuánto. Antes la
+                tarjeta sólo decía la clase de relación y «Ver contrato», y tres
+                tarjetas de la misma queja eran indistinguibles. Un enlace de un
+                fichero anterior, sin estos campos, se pinta como antes. */}
+            {l.tenderTitle && (
+              <div
+                title={l.tenderTitle}
+                style={{
+                  fontSize: 'var(--fs-aux)',
+                  fontWeight: 600,
+                  lineHeight: 1.4,
+                  marginBottom: 2,
+                }}
+              >
+                {truncateAtWord(l.tenderTitle, 140)}
+              </div>
+            )}
+            {(l.tenderAwardDate || 'tenderAmount' in l) && (
+              <div
+                className="mono"
+                style={{ fontSize: 'var(--fs-micro)', color: 'var(--ink50)', marginBottom: 4 }}
+              >
+                {l.tenderAwardDate &&
+                  rellena(t('quejas.detalle.relacion.adjudicado'), {
+                    fecha: fmtDateLong(l.tenderAwardDate, locale),
+                  })}
+                {l.tenderAwardDate && 'tenderAmount' in l && ' · '}
+                {/* La cifra no se separa de su «€»: a 375 px «89.980» quedaba al
+                    final de una línea y «€ sin IVA» al principio de la otra. */}
+                {'tenderAmount' in l && (
+                  <span style={{ whiteSpace: 'nowrap' }}>
+                    {typeof l.tenderAmount === 'number'
+                      ? rellena(t('importe.sinIva'), { importe: euros(l.tenderAmount) })
+                      : t('importe.noPublicado')}
+                  </span>
+                )}
+              </div>
+            )}
             <div
               style={{
                 fontSize: 'var(--fs-aux)',
@@ -306,6 +387,7 @@ export default function QuejaDetail() {
       >
         <Card>
           <SectionHead
+            as="h1"
             eyebrow={t('quejas.detalle.noEncontrada.eyebrow')}
             title={rellena(t('quejas.detalle.noEncontrada.titulo'), { id })}
           />
@@ -331,61 +413,105 @@ export default function QuejaDetail() {
   const diasRestantes = reloj.cuenta === 'calculada' ? reloj.quedan : null
   const hayReloj = reloj.cuenta === 'calculada' || reloj.cuenta === 'sin-calendario'
 
-  // Synthetic timeline derived from the row's timestamps + state.
-  const timeline = []
-  timeline.push({
-    date: queja.requested_datetime,
-    label: t('quejas.detalle.hito.capturada'),
-    tone: 'neutral',
-    detail: rellena(t('quejas.detalle.hito.capturada.detalle'), {
-      barrio: nombreDeBarrio(queja.address_string, barrios) || '—',
-    }),
-  })
-  if (queja.apoyos >= 10) {
-    timeline.push({
-      // `updated_datetime` es la última vez que la fila cambió por cualquier
-      // motivo, no cuándo llegó a los apoyos: en una queja ya registrada es la
-      // fecha del registro, puesta encima del hito anterior. Sólo coincide
-      // mientras ése siga siendo su estado, así que fuera de ahí no se fecha.
-      date: queja.status === 'apoyada_verificada' ? queja.updated_datetime : null,
-      label: t('quejas.detalle.hito.verificada'),
-      tone: 'civic',
-      detail: rellena(t('quejas.detalle.hito.verificada.detalle'), { n: queja.apoyos }),
-    })
+  // El camino entero (auditoría de las dos lecturas, §19): lo hecho, lo que toca
+  // y lo que falta, del estado que publica el bot. Las fechas sólo donde se saben
+  // (`caminoDeLaQueja` dice por qué). Con un estado que no conoce, sólo el envío:
+  // no se dibuja un camino que no se sabe dónde está.
+  const camino = caminoDeLaQueja(queja) ?? {
+    pasos: [{ clave: 'enviada', estado: 'hecho', fecha: queja.requested_datetime }],
   }
-  if (queja.registered_at) {
-    timeline.push({
-      date: queja.registered_at,
-      label: t('quejas.detalle.hito.registrada'),
-      tone: 'civic',
-      detail: rellena(t('quejas.detalle.hito.registrada.detalle'), {
-        asiento: queja.registro_entry_number || '—',
-        plazo: plazoHumano(t, plazo.limite),
-      }),
-    })
-  }
-  if (queja.status === 'silencio_negativo') {
-    timeline.push({
-      date: queja.updated_datetime,
-      label: t('quejas.detalle.hito.silencio'),
-      tone: 'warn',
-      detail: t('quejas.detalle.hito.silencio.detalle'),
-    })
-  }
-  if (queja.status === 'escalada_sindic') {
-    timeline.push({
-      date: queja.updated_datetime,
-      label: t('quejas.detalle.hito.sindic'),
-      tone: 'crit',
-      detail: t('quejas.detalle.hito.sindic.detalle'),
-    })
-  }
-  if (queja.status === 'resuelta') {
-    timeline.push({
-      date: queja.updated_datetime,
-      label: t('quejas.detalle.hito.resuelta'),
-      tone: 'ok',
-    })
+  const plazoEnLetra = plazoHumano(t, plazo.limite)
+  /** Qué dice cada paso, según en qué estado esté. */
+  const textoDelPaso = (paso) => {
+    const hecho = paso.estado === 'hecho'
+    const ahora = paso.estado === 'ahora'
+    switch (paso.clave) {
+      case 'enviada':
+        return {
+          label: t('quejas.detalle.hito.capturada'),
+          detail: rellena(t('quejas.detalle.hito.capturada.detalle'), {
+            barrio: nombreDeBarrio(queja.address_string, barrios) || '—',
+          }),
+        }
+      case 'apoyos':
+        return hecho
+          ? {
+              label: t('quejas.detalle.hito.verificada'),
+              tone: 'civic',
+              detail: rellena(t('quejas.detalle.hito.verificada.detalle'), { n: queja.apoyos }),
+            }
+          : {
+              // Sin la cifra, el rótulo del estado: no se pinta «lleva 0 de 10».
+              label:
+                camino.apoyos == null
+                  ? t('quejas.estado.capturada')
+                  : rellena(t('quejas.detalle.camino.apoyos.ahora'), {
+                      n: camino.apoyos,
+                      umbral: camino.umbral,
+                    }),
+              detail: rellena(t('quejas.detalle.camino.apoyos.detalle'), {
+                umbral: camino.umbral,
+              }),
+            }
+      case 'registro':
+        return hecho
+          ? {
+              label: t('quejas.detalle.hito.registrada'),
+              tone: 'civic',
+              detail: rellena(t('quejas.detalle.hito.registrada.detalle'), {
+                asiento: queja.registro_entry_number || '—',
+                plazo: plazoEnLetra,
+              }),
+            }
+          : {
+              label: ahora
+                ? t('quejas.detalle.camino.registro.ahora')
+                : t('quejas.detalle.camino.registro'),
+              detail: t('quejas.detalle.camino.registro.detalle'),
+            }
+      case 'respuesta':
+        return {
+          label: t('quejas.detalle.camino.respuesta'),
+          detail:
+            camino.acuseDias != null
+              ? rellena(t('quejas.detalle.camino.respuesta.detalle'), {
+                  acuse: camino.acuseDias,
+                  plazo: plazoEnLetra,
+                })
+              : rellena(t('quejas.detalle.camino.respuesta.detalle.transparencia'), {
+                  plazo: plazoEnLetra,
+                }),
+        }
+      case 'resuelta':
+        return { label: t('quejas.detalle.hito.resuelta'), tone: 'ok' }
+      case 'silencio':
+        return {
+          label: t('quejas.detalle.hito.silencio'),
+          tone: 'warn',
+          detail: t('quejas.detalle.hito.silencio.detalle'),
+        }
+      case 'escalado':
+        if (hecho)
+          return {
+            label: t('quejas.detalle.hito.sindic'),
+            tone: 'crit',
+            detail: t('quejas.detalle.hito.sindic.detalle'),
+          }
+        return camino.escalado === 'consell'
+          ? {
+              label: ahora
+                ? t('quejas.detalle.camino.consell.ahora')
+                : t('quejas.detalle.camino.consell'),
+            }
+          : {
+              label: ahora
+                ? t('quejas.detalle.camino.sindic.ahora')
+                : t('quejas.detalle.camino.sindic'),
+              detail: t('quejas.detalle.camino.sindic.detalle'),
+            }
+      case 'cerrada':
+        return { label: t('quejas.detalle.camino.cerrada') }
+    }
   }
 
   return (
@@ -398,6 +524,7 @@ export default function QuejaDetail() {
 
       <Card>
         <div
+          className="cp-queja-cabecera"
           style={{
             display: 'flex',
             justifyContent: 'space-between',
@@ -418,16 +545,16 @@ export default function QuejaDetail() {
             >
               {rellena(t('quejas.detalle.eyebrow'), { id: queja.service_request_id })}
             </div>
-            <div
+            <h1
               style={{
                 fontSize: 'var(--fs-card)',
                 fontWeight: 700,
                 letterSpacing: '-.01em',
-                marginTop: 4,
+                margin: '4px 0 0',
               }}
             >
               {queja.description.split('\n')[0].slice(0, 120)}
-            </div>
+            </h1>
           </div>
           <div style={{ display: 'flex', gap: 6, alignItems: 'center' }}>
             <ShareWA
@@ -566,7 +693,17 @@ export default function QuejaDetail() {
               {conHuecos(t('quejas.detalle.foto.pie'), {
                 '{olvidar}': <code>/olvidar {queja.service_request_id}</code>,
                 '{aviso}': (
-                  <Link to="/aviso-legal" style={{ color: 'var(--civic)' }}>
+                  // Subrayado como los enlaces de `p a[href]` en index.css, que no
+                  // alcanza a un <figcaption>: sólo el color lo distinguía del pie
+                  // (WCAG 1.4.1, `link-in-text-block`).
+                  <Link
+                    to="/aviso-legal"
+                    style={{
+                      color: 'var(--civic)',
+                      textDecoration: 'underline',
+                      textUnderlineOffset: 2,
+                    }}
+                  >
                     {t('quejas.detalle.foto.avisoLegal')}
                   </Link>
                 ),
@@ -576,7 +713,112 @@ export default function QuejaDetail() {
         </Card>
       )}
 
-      <CorrelationsCard quejaId={id} />
+      {/* «¿Qué puedes hacer?» era lo último de la página y es lo que un vecino
+          viene a buscar: va justo debajo de la queja (auditoría de las dos
+          lecturas, §19). */}
+      <Card style={{ marginTop: 14 }} data-acciones="">
+        <SectionHead
+          eyebrow={t('quejas.detalle.acciones.eyebrow')}
+          title={t('quejas.detalle.acciones.titulo')}
+        />
+        <ul
+          style={{
+            paddingLeft: 20,
+            marginTop: 8,
+            fontSize: 'var(--fs-aux)',
+            color: 'var(--ink70)',
+            lineHeight: 1.6,
+          }}
+        >
+          <li>
+            <strong>{t('quejas.detalle.acciones.apoyar')}</strong>{' '}
+            {conHuecos(t('quejas.detalle.acciones.apoyar.texto'), {
+              '{comando}': <code>/apoyar {queja.service_request_id}</code>,
+            })}
+          </li>
+          {(queja.status === 'silencio_negativo' || queja.status === 'escalada_sindic') && (
+            <li>
+              <strong>{t('quejas.detalle.acciones.sindic')}</strong>{' '}
+              <a
+                href={SINDIC_PORTAL}
+                target="_blank"
+                rel="noreferrer"
+                style={{ color: 'var(--civic)' }}
+              >
+                elsindic.com →
+              </a>
+            </li>
+          )}
+          <li>
+            <strong>{t('quejas.detalle.acciones.responder')}</strong>{' '}
+            {conHuecos(t('quejas.detalle.acciones.responder.texto'), {
+              '{aviso}': (
+                <a href="/aviso-legal" style={{ color: 'var(--civic)' }}>
+                  /aviso-legal
+                </a>
+              ),
+            })}
+          </li>
+        </ul>
+      </Card>
+
+      <Card style={{ marginTop: 14 }} data-camino="">
+        <SectionHead
+          eyebrow={t('quejas.detalle.historial.eyebrow')}
+          title={t('quejas.detalle.historial.titulo')}
+        />
+        <div style={{ marginTop: 10 }}>
+          {camino.pasos.map((paso) => (
+            <PasoItem key={paso.clave} paso={paso} {...textoDelPaso(paso)} idioma={locale} t={t} />
+          ))}
+        </div>
+      </Card>
+
+      {qResponses.length > 0 && (
+        <Card style={{ marginTop: 14, borderLeft: '3px solid var(--civic)' }}>
+          <SectionHead
+            eyebrow={t('quejas.detalle.replica.eyebrow')}
+            title={t('quejas.detalle.replica.titulo')}
+          />
+          <div style={{ marginTop: 10, display: 'flex', flexDirection: 'column', gap: 14 }}>
+            {qResponses.map((r) => (
+              <div
+                key={r.id}
+                style={{ paddingBottom: 10, borderBottom: '1px dotted var(--border2)' }}
+              >
+                <div
+                  className="mono"
+                  style={{
+                    fontSize: 'var(--fs-micro)',
+                    color: 'var(--ink50)',
+                    letterSpacing: '.08em',
+                    textTransform: 'uppercase',
+                  }}
+                >
+                  {r.role} · {r.firmante} · {fmt(r.appliedAt, locale)}
+                </div>
+                <div
+                  style={{
+                    fontSize: 'var(--fs-body)',
+                    marginTop: 6,
+                    lineHeight: 1.55,
+                    whiteSpace: 'pre-wrap',
+                  }}
+                >
+                  {r.text}
+                </div>
+                {r.source_url && (
+                  <div style={{ marginTop: 6, fontSize: 'var(--fs-meta)' }}>
+                    <ExtLink href={r.source_url} style={{ color: 'var(--civic)' }}>
+                      {t('quejas.detalle.replica.fuente')}
+                    </ExtLink>
+                  </div>
+                )}
+              </div>
+            ))}
+          </div>
+        </Card>
+      )}
 
       {hayReloj && queja.status !== 'resuelta' && (
         <Card style={{ marginTop: 14 }}>
@@ -718,109 +960,9 @@ export default function QuejaDetail() {
         </Card>
       )}
 
-      <Card style={{ marginTop: 14 }}>
-        <SectionHead
-          eyebrow={t('quejas.detalle.historial.eyebrow')}
-          title={t('quejas.detalle.historial.titulo')}
-        />
-        <div style={{ marginTop: 10 }}>
-          {timeline.map((hito, i) => (
-            <TimelineItem key={i} {...hito} idioma={locale} />
-          ))}
-        </div>
-      </Card>
-
-      {qResponses.length > 0 && (
-        <Card style={{ marginTop: 14, borderLeft: '3px solid var(--civic)' }}>
-          <SectionHead
-            eyebrow={t('quejas.detalle.replica.eyebrow')}
-            title={t('quejas.detalle.replica.titulo')}
-          />
-          <div style={{ marginTop: 10, display: 'flex', flexDirection: 'column', gap: 14 }}>
-            {qResponses.map((r) => (
-              <div
-                key={r.id}
-                style={{ paddingBottom: 10, borderBottom: '1px dotted var(--border2)' }}
-              >
-                <div
-                  className="mono"
-                  style={{
-                    fontSize: 'var(--fs-micro)',
-                    color: 'var(--ink50)',
-                    letterSpacing: '.08em',
-                    textTransform: 'uppercase',
-                  }}
-                >
-                  {r.role} · {r.firmante} · {fmt(r.appliedAt, locale)}
-                </div>
-                <div
-                  style={{
-                    fontSize: 'var(--fs-body)',
-                    marginTop: 6,
-                    lineHeight: 1.55,
-                    whiteSpace: 'pre-wrap',
-                  }}
-                >
-                  {r.text}
-                </div>
-                {r.source_url && (
-                  <div style={{ marginTop: 6, fontSize: 'var(--fs-meta)' }}>
-                    <ExtLink href={r.source_url} style={{ color: 'var(--civic)' }}>
-                      {t('quejas.detalle.replica.fuente')}
-                    </ExtLink>
-                  </div>
-                )}
-              </div>
-            ))}
-          </div>
-        </Card>
-      )}
-
-      <Card style={{ marginTop: 14 }}>
-        <SectionHead
-          eyebrow={t('quejas.detalle.acciones.eyebrow')}
-          title={t('quejas.detalle.acciones.titulo')}
-        />
-        <ul
-          style={{
-            paddingLeft: 20,
-            marginTop: 8,
-            fontSize: 'var(--fs-aux)',
-            color: 'var(--ink70)',
-            lineHeight: 1.6,
-          }}
-        >
-          <li>
-            <strong>{t('quejas.detalle.acciones.apoyar')}</strong>{' '}
-            {conHuecos(t('quejas.detalle.acciones.apoyar.texto'), {
-              '{comando}': <code>/apoyar {queja.service_request_id}</code>,
-            })}
-          </li>
-          {(queja.status === 'silencio_negativo' || queja.status === 'escalada_sindic') && (
-            <li>
-              <strong>{t('quejas.detalle.acciones.sindic')}</strong>{' '}
-              <a
-                href={SINDIC_PORTAL}
-                target="_blank"
-                rel="noreferrer"
-                style={{ color: 'var(--civic)' }}
-              >
-                elsindic.com →
-              </a>
-            </li>
-          )}
-          <li>
-            <strong>{t('quejas.detalle.acciones.responder')}</strong>{' '}
-            {conHuecos(t('quejas.detalle.acciones.responder.texto'), {
-              '{aviso}': (
-                <a href="/aviso-legal" style={{ color: 'var(--civic)' }}>
-                  /aviso-legal
-                </a>
-              ),
-            })}
-          </li>
-        </ul>
-      </Card>
+      {/* Las posibles actuaciones relacionadas, al final: son contexto, sin
+          causalidad, y el camino de la queja y lo que se puede hacer van antes. */}
+      <CorrelationsCard quejaId={id} />
     </div>
   )
 }

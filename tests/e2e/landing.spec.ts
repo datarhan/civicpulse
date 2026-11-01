@@ -5,6 +5,23 @@ import { afirmaPulsables, cargaYEncuadra, sondea } from './_estaciones'
 import { afirma, entraPorElPin, mide } from './_pines-y-barrios'
 import { contractTermYears, isConcession } from '../../src/lib/contract-status'
 
+/**
+ * Dónde queda un ancla tras saltar a ella: el borde de arriba de su elemento en
+ * la ventana. `useHashScroll` la deja bajo la barra pegajosa (unos 64 px); un
+ * ancla que el lector no ve, o que se pasó por arriba, cuenta como no
+ * aterrizada (`Infinity`), para que ni «fuera por abajo» ni «fuera por arriba»
+ * pasen por un número pequeño.
+ */
+const ATERRIZA_PX = 160
+function arribaDe(page: import('@playwright/test').Page, id: string) {
+  return page.evaluate((id) => {
+    const el = document.getElementById(id)
+    if (!el) return Infinity
+    const arriba = el.getBoundingClientRect().top
+    return arriba < -8 ? Infinity : arriba
+  }, id)
+}
+
 test.describe('Landing (/)', () => {
   test('renders editorial column + KPI strip with real data', async ({ page }) => {
     const errors = collectErrors(page)
@@ -17,7 +34,7 @@ test.describe('Landing (/)', () => {
     // Mayor name from officials.json (real data, not mock)
     await expect(page.getByText(/Robert Raga/i).first()).toBeVisible({ timeout: 8000 })
 
-    // KPI strip: the labels include the current year ("Población 2025", "Presup. 2025" etc.)
+    // KPI strip: the labels include the current year ("Población 2025", "Presupuesto 2025" etc.)
     //
     // Scoped to the strip's cells. The section bar's closed panels carry
     // «población» and «Presupuesto» in hidden text that comes first in the DOM,
@@ -77,10 +94,10 @@ test.describe('Landing (/)', () => {
     // `toContainText` compares against `textContent`, which is also why the
     // uppercase text-transform is not in the way.
 
-    // 1 · KPI strip cell — sits two cells away from «Presup. 2025 · €41,6M».
-    const kpi = page.locator('.d-kpi-cell', { hasText: /Contratos adj/i }).first()
-    await expect(kpi).toContainText(`Contratos adj. ${span}`, { timeout: 8000 })
-    await expect(kpi).toContainText(awarded)
+    // 1 · KPI strip cell — sits two cells away from the one-year budget. The
+    // count and the span share its second line: «717 en 2017–2026, sumados».
+    const kpi = page.locator('.d-kpi-cell', { hasText: /Contratos adjudicados/i }).first()
+    await expect(kpi).toContainText(`${awarded} en ${span}, sumados`, { timeout: 8000 })
 
     // 2 · editorial column band — the count sits directly above a list of
     // awards all dated this July, which is what invites "recent" over
@@ -152,6 +169,21 @@ test.describe('Landing (/)', () => {
     }
   })
 
+  // La cinta «DIRECTO» se quitó de la portada (auditoría «dos lecturas»,
+  // 25-10-2026, §1.5). Pasaba luz, Euríbor, BCE e IPC nacionales, avisos de la
+  // provincia y «N incidencias» de la DGT contadas a lo largo de la A-7 y la A-3
+  // en toda España —el dato no trae lugar, así que no se puede ceñir al
+  // municipio—; lo único del Ayuntamiento, los titulares y los plazos vencidos,
+  // ya está en la columna. Y un punto rojo latiendo con «DIRECTO» prometía datos
+  // del Ayuntamiento en vivo que no había.
+  test('no hay cinta «DIRECTO» sobre el mapa', async ({ page }) => {
+    await page.goto('/', { waitUntil: 'domcontentloaded' })
+    // Mide algo: la portada ha pintado el mapa y su pila de controles.
+    await expect(page.locator('.cp-mapa-pila .cp-cobertura')).toBeVisible({ timeout: 15_000 })
+    await expect(page.locator('[data-live-ticker]')).toHaveCount(0)
+    await expect(page.getByText('DIRECTO', { exact: true })).toHaveCount(0)
+  })
+
   test('has a heading outline a screen reader can navigate', async ({ page }) => {
     // Regression guard. The landing's ONLY heading used to be the LeadStory
     // press headline — so the homepage h1 was a third-party article title, and
@@ -179,6 +211,88 @@ test.describe('Landing (/)', () => {
     expect(Math.min(...levels.map((l) => l.level))).toBe(1)
   })
 
+  test('«Tu ayuntamiento en 30 segundos»: cada tarjeta lleva a una página que existe', async ({
+    page,
+  }) => {
+    // La lectura vecinal de la portada: cada respuesta enlaza a la página que la
+    // demuestra, y a otra ruta, así que en-breve-anclas.spec.ts (que sigue los
+    // `#…` de la misma página) no la mira. Un destino que no existe deja al vecino
+    // en la portada sin saberlo.
+    await page.goto('/', { waitUntil: 'domcontentloaded' })
+    const bloque = page.locator('[data-en-breve-bloque]')
+    await expect(bloque).toBeVisible({ timeout: 10_000 })
+    // Quién manda, el dinero, el último pleno y el barrio.
+    await expect
+      .poll(() => bloque.locator('[data-en-breve]').count(), { timeout: 10_000 })
+      .toBeGreaterThanOrEqual(4)
+    const destinos = await bloque
+      .locator('.cp-en-breve-ancla')
+      .evaluateAll((as) => as.map((a) => a.getAttribute('href') ?? ''))
+    expect(destinos.length).toBeGreaterThanOrEqual(3)
+    for (const href of destinos) {
+      expect(href, 'una tarjeta de la portada sin destino').toMatch(/^\/[a-z]/)
+      await page.goto(href, { waitUntil: 'domcontentloaded' })
+      await expect(page.locator('h1'), `${href} no pinta su <h1>`).toHaveCount(1, {
+        timeout: 10_000,
+      })
+      const fragmento = href.split('#')[1]
+      if (fragmento) {
+        await expect(page.locator(`[id="${fragmento}"]`), `${href}: el ancla no está`).toHaveCount(
+          1,
+          { timeout: 10_000 },
+        )
+        // Que exista no dice que el lector llegue: se mide dónde queda.
+        await expect
+          .poll(() => arribaDe(page, fragmento), { message: `${href}: no aterriza en su ancla` })
+          .toBeLessThan(ATERRIZA_PX)
+      }
+    }
+  })
+
+  test.describe('a 375 px', () => {
+    test.use({ viewport: { width: 375, height: 812 } })
+
+    test('«Ver sus contratos» deja la lista del barrio a la vista, no el rótulo de la sección', async ({
+      page,
+    }) => {
+      // Lo vio el operador el 26-10-2026: a 375 px el ancla de la sección
+      // (#mapa-gasto) dejaba a la vista su rótulo y su párrafo, con el mapa debajo y
+      // la lista del barrio fuera de la pantalla. En escritorio no se ve: la lista
+      // va al lado del mapa.
+      await page.goto('/', { waitUntil: 'domcontentloaded' })
+      const tarjeta = page.locator('[data-en-breve="barrio"]')
+      const selector = tarjeta.getByLabel('Elige tu barrio')
+      await expect(selector).toBeVisible({ timeout: 10_000 })
+      const slug = await selector
+        .locator('option')
+        .evaluateAll((os) =>
+          os.map((o) => (o as HTMLOptionElement).value).find((v) => v && !v.startsWith('__')),
+        )
+      await selector.selectOption(slug!)
+      await tarjeta.getByRole('button', { name: 'Ver sus contratos' }).click()
+      await expect(page).toHaveURL(new RegExp(`/presupuesto\\?barrio=${slug}#mapa-gasto-barrio$`))
+      await expect
+        .poll(() => arribaDe(page, 'mapa-gasto-barrio'), { timeout: 10_000 })
+        .toBeLessThan(ATERRIZA_PX)
+      await expect(
+        page.locator('#mapa-gasto-barrio').getByText('← todas las zonas'),
+      ).toBeInViewport()
+    })
+
+    test('«Saltar el resumen» baja al bloque de después, no sube al mapa', async ({ page }) => {
+      // Apuntaba a #contenido, el <main> que contiene el propio resumen: a 375 px,
+      // con el mapa encima, el enlace subía al principio de la página.
+      await page.goto('/', { waitUntil: 'domcontentloaded' })
+      const saltar = page.locator('[data-en-breve-bloque] .cp-en-breve-saltar')
+      await expect(saltar).toBeVisible({ timeout: 10_000 })
+      await saltar.scrollIntoViewIfNeeded()
+      const antes = await page.evaluate(() => window.scrollY)
+      await saltar.click()
+      await expect.poll(() => page.evaluate(() => window.scrollY)).toBeGreaterThan(antes)
+      await expect.poll(() => arribaDe(page, 'portada-tras-resumen')).toBeLessThan(ATERRIZA_PX)
+    })
+  })
+
   test('interactive map layers: money default, coverage disclosure, neighborhood popup', async ({
     page,
   }) => {
@@ -202,9 +316,17 @@ test.describe('Landing (/)', () => {
     // label implying completeness — so the coverage line is not decoration, it
     // is the difference between a map and a claim. The denominator is nine
     // exercises of awards sitting a few hundred pixels above a one-year
-    // «Presup. 2025 · €41,6M», so the span is part of the disclosure, not a
+    // «Presupuesto 2025», so the span is part of the disclosure, not a
     // decoration on it: the regex requires it rather than tolerating it.
-    const coverage = page.getByText(/M€ de [\d.,]+\s?M€ \(\d{4}(–\d{4})?\) · [\d,]+%/).first()
+    //
+    // Since 2026-10-26 the visible line is the resident's sentence, with the
+    // period inside it; the exact euro ratio is its title. The sentence never
+    // folds, at any map height.
+    const coverage = page
+      .getByText(
+        /El mapa sólo sitúa (\d+|menos de 1) de cada 100 € de contratos \(\d{4}(–\d{4})?\)/,
+      )
+      .first()
     await expect(coverage).toBeVisible({ timeout: 8000 })
     // Assert the check evaluated something: a regex that matched an empty or
     // absent node would pass `toBeVisible` on nothing at all.
@@ -288,7 +410,8 @@ test.describe('Landing (/)', () => {
     // (1 de 12 en local). Medido una sola vez fuera del reintento, el mismo
     // índice viejo se repetía en cada intento. El aspa se pulsa con un evento y
     // no con un clic en sus coordenadas: una ficha alta llega hasta arriba del
-    // mapa y deja el aspa debajo de la cinta «DIRECTO», que se llevaba el clic.
+    // mapa y dejaba el aspa debajo de la cinta «DIRECTO» (quitada el 27-10-2026),
+    // que se llevaba el clic.
     const pulsaElPrimeroLibre = (selector: string, enLaFicha: RegExp) =>
       expect(async () => {
         const aspa = page.locator('.leaflet-popup-close-button')

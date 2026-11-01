@@ -97,16 +97,41 @@ describe('scraper/indicadores-friccion', () => {
     expect(byId('licitador-unico').periodo).toMatch(/^\d{4}–\d{4}$/)
   })
 
-  it('reads the budget indicators off the published execution snapshot', () => {
+  it('reads the budget indicators off the last CLOSED year of the published snapshot', () => {
+    // El snapshot trae ya el trimestre en curso como `latest`; un indicador que
+    // mide un año se mide sobre el último cierre. Con el 1T de 2026 habría
+    // dicho «ejecución 11 %» de un año que va por su primer trimestre.
+    const cierre = budgetExecution.ultimoCierre
+    expect(cierre).toBeTruthy()
+    expect(cierre.fechaListado).toBe(`31/12/${cierre.year}`)
     const mod = byId('modificaciones-presupuestarias')
     const eje = byId('ejecucion-presupuestaria')
-    expect(mod.numerador.valor).toBe(budgetExecution.latest.gastos.total.modificaciones)
-    expect(mod.denominador.valor).toBe(budgetExecution.latest.gastos.total.inicial)
-    expect(eje.numerador.valor).toBe(budgetExecution.latest.gastos.total.ejecutado)
-    expect(eje.denominador.valor).toBe(budgetExecution.latest.gastos.total.actual)
+    expect(mod.numerador.valor).toBe(cierre.gastos.total.modificaciones)
+    expect(mod.denominador.valor).toBe(cierre.gastos.total.inicial)
+    expect(eje.numerador.valor).toBe(cierre.gastos.total.ejecutado)
+    expect(eje.denominador.valor).toBe(cierre.gastos.total.actual)
     expect(mod.dimension).toBe('fiscal')
     // The listing date matters: 30 % executed in June is not 30 % in December.
-    expect(eje.periodo).toContain(String(budgetExecution.latest.year))
+    expect(eje.periodo).toBe(`${cierre.year} (a 31/12/${cierre.year})`)
+  })
+
+  it('un trimestre en curso no se mide como un año; un snapshot viejo, sin cierre aparte, por su latest', () => {
+    const enCurso = budgetExecution.latest
+    expect(enCurso.fechaListado).not.toBe(`31/12/${enCurso.year}`)
+    // Con el campo y sin cierre: no hay año que medir.
+    const sinCierre = construirIndicadoresMunicipales({
+      tenders,
+      budgetExecution: { latest: enCurso, ultimoCierre: null },
+      budget,
+    }).find((i) => i.id === 'ejecucion-presupuestaria')!
+    expect(sinCierre.valor).toBeNull()
+    // Sin el campo, la forma anterior: se lee `latest`.
+    const viejo = construirIndicadoresMunicipales({
+      tenders,
+      budgetExecution: { latest: budgetExecution.ultimoCierre },
+      budget,
+    }).find((i) => i.id === 'ejecucion-presupuestaria')!
+    expect(viejo.numerador.valor).toBe(budgetExecution.ultimoCierre.gastos.total.ejecutado)
   })
 
   it('sitúa el gasto por habitante entre municipios del mismo tamaño', () => {
@@ -137,9 +162,17 @@ describe('scraper/indicadores-friccion', () => {
     const gasto = byId('gasto-por-habitante')
     const ejecucion = byId('ejecucion-presupuestaria')
     // Una página no puede sostener las dos frases, así que se comprueban juntas.
-    expect(ejecucion.caveats.some((c) => /inventarse la reconciliación/i.test(c))).toBe(true)
+    // Con el cierre de 2025 las dos cifras coinciden, y las dos tarjetas lo
+    // dicen igual; con cifras distintas, las dos se niegan a reconciliarlas.
+    const coinciden = ejecucion.caveats.some((c) => /^Coincide con la cifra/.test(c))
     expect(gasto.caveats.some((c) => /presupuesto aprobado/i.test(c))).toBe(false)
-    expect(gasto.caveats.some((c) => /sigue sin explicación/i.test(c))).toBe(true)
+    if (coinciden) {
+      expect(gasto.caveats.some((c) => /el mismo que da el listado municipal/.test(c))).toBe(true)
+      expect(gasto.caveats.some((c) => /sigue sin explicación/i.test(c))).toBe(false)
+    } else {
+      expect(ejecucion.caveats.some((c) => /inventarse la reconciliación/i.test(c))).toBe(true)
+      expect(gasto.caveats.some((c) => /sigue sin explicación/i.test(c))).toBe(true)
+    }
   })
 
   it('no compara el gasto por habitante sin banda que lo sostenga', () => {
@@ -283,5 +316,38 @@ describe('cada indicador municipal declara en qué página vive', () => {
         `${m.id} cita el coste efectivo y vive fuera de /eficiencia`,
       ).not.toMatch(/coste efectivo/)
     }
+  })
+})
+
+/**
+ * Las salvedades de la ejecución salen de las cifras. Escritas a mano, las del
+ * 2T de 2025 («partió de cero», «37,60 M€ frente a 41,58 M€») siguieron
+ * publicadas cuando el snapshot pasó a la hoja del cierre, donde ya no eran
+ * verdad.
+ */
+describe('salvedades de la ejecución, derivadas', () => {
+  const salvedades = (be: unknown) =>
+    construirIndicadoresMunicipales({ tenders, budgetExecution: be as never, budget }).find(
+      (i) => i.id === 'ejecucion-presupuestaria',
+    )!.caveats
+
+  it('con el cierre publicado: inversiones reales con su crédito inicial, y las dos fuentes coinciden', () => {
+    const t = salvedades(budgetExecution).join(' ')
+    expect(t).toContain('partió de 905.517,35 € de crédito inicial')
+    expect(t).toContain('Coincide con la cifra de /presupuesto')
+    expect(t).not.toContain('No cuadra')
+  })
+
+  it('con la hoja del 2T (real, publicada hasta el 21-10): cero inicial y casi cuatro millones de diferencia', () => {
+    const junio = JSON.parse(
+      readFileSync(
+        join(ROOT, 'tests/fixtures/budget-execution_publicado-2026-10-21_hoja-2t2025.json'),
+        'utf8',
+      ),
+    )
+    const t = salvedades(junio).join(' ')
+    expect(t).toContain('partió de cero crédito inicial')
+    expect(t).toContain('41,58 M€ de CRÉDITO')
+    expect(t).toContain('crédito inicial de 37,60 M€')
   })
 })

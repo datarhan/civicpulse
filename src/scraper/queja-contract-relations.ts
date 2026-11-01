@@ -50,6 +50,7 @@ export interface RelContract {
   places: string[]
   zones: string[]
   awardDate: string | null
+  /** El importe adjudicado según `importeAdjudicado`: sin IVA si lo hay; null, nunca 0. */
   amount: number | null
   assignee: string | null
   expediente: string | null
@@ -122,6 +123,15 @@ export interface RelationLink {
   score: number
   via: 'deterministic'
   relationLabel: RelationLabel
+  /**
+   * El contrato que el enlace nombra, para que la ficha de la queja diga cuál es
+   * sin descargar tenders.json entero (1,4 MB). `tenderAmount` es el importe con
+   * la regla del sitio (`importeAdjudicado`): sin IVA si la fuente lo trae, null
+   * —nunca 0— si no lo publica.
+   */
+  tenderTitle: string
+  tenderAwardDate: string | null
+  tenderAmount: number | null
   signals: {
     place?: PlaceSignal
     department?: { slug: string }
@@ -146,6 +156,9 @@ export function scoreRelation(q: RelQueja, c: RelContract): RelationLink | null 
     quejaId: q.id,
     tenderPermalink: c.permalink,
     tenderId: c.id,
+    tenderTitle: c.title,
+    tenderAwardDate: c.awardDate,
+    tenderAmount: c.amount,
     via: 'deterministic' as const,
     signals: {
       ...(place ? { place } : {}),

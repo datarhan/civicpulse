@@ -156,6 +156,18 @@ test.describe('Reportaje · conteo de visitantes (/reportajes/conteo-visitantes)
         /enviada el 27 de septiembre de 2026 por la sede electrónica del Ayuntamiento, con registro 2026014913, que da como fecha de registro el 28 de septiembre de 2026/,
       ),
     ).toBeVisible()
+    // Y SE AMPLIÓ (27-10-2026, víspera del último día): otro mes, art. 34.2 de la
+    // Ley 1/2022. La fila da el último día del segundo mes —el oficio dice el
+    // sábado 28 de noviembre; con el art. 30.5, el lunes 30— y el 28 de octubre
+    // no puede quedar en ninguna parte. Anclado en lo que la frase dice igual en
+    // plazo que vencida: «un mes más» y el día con su prórroga.
+    await expect(
+      page.getByText(
+        /con registro 2026014913, que da como fecha de registro el 28 de septiembre de 2026\..*un mes más.*30 de noviembre de 2026 \(prorrogado: el 28 de noviembre, sábado, es inhábil/,
+      ),
+    ).toBeVisible()
+    await expect(page.getByText(/expediente 4847\/2026\/GEN/)).toBeVisible()
+    expect(await page.getByText(/28 de octubre de 2026/).count()).toBe(0)
 
     // LA SALVEDAD JURÍDICA, y es la que no puede caerse. Salieron por correo:
     // consta el envío, no la recepción por el órgano competente, que es donde

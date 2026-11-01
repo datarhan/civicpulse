@@ -4,7 +4,7 @@ import { MarcaDeFirma } from './MarcaDeFirma'
 import { tramoDeFirma } from '../lib/atribucion-firmada'
 import { rotuloDe, useT } from '../i18n'
 import { conHuecos } from '../lib/huecos'
-import { rellena } from '../lib/formatters'
+import { eurosBreves, rellena } from '../lib/formatters'
 import { usePlenoClaims, VERDICT_TONE } from '../hooks/usePlenoClaims'
 import { rotuloDeTipo } from '../lib/claim-type-label.js'
 import { gateForDisplay, sortSignalFirst } from '../lib/claim-ledger'
@@ -12,21 +12,17 @@ import { cuentaCotejadas, entreParentesis } from '../lib/cotejo'
 import { blocLabel } from '../lib/party-label.js'
 import { snippetDeEvidencia } from '../lib/crosschecked-status.js'
 import {
+  CLAVE_RESUMEN_SIN_LISTA,
   etiquetaVerificador,
   evidenciaSegunFuentes,
+  explicacionSinLista,
   fuentesComprobadas,
   resumenSegunFuentes,
   rotuloDeParecido,
 } from '../lib/claim-provenance.js'
 import { CLAVE_RESUMEN_RETIRADO, resumenPublicable } from '../lib/resumenes-retirados.js'
 import { PuenteDeImporte } from './PuenteDeImporte'
-
-function formatEuros(n) {
-  if (typeof n !== 'number' || !Number.isFinite(n)) return ''
-  if (n >= 1_000_000) return (n / 1_000_000).toFixed(1).replace(/\.0$/, '') + ' M €'
-  if (n >= 1000) return (n / 1000).toFixed(0) + ' K €'
-  return n.toFixed(0) + ' €'
-}
+import { cifraCitada } from '../scraper/cifra-en-literal'
 
 /**
  * Una fila de evidencia, y debajo —fuera del enlace, que es de la fila— el
@@ -92,6 +88,10 @@ function EvidenceRow({ e, cifra }) {
 function ClaimCard({ item }) {
   const t = useT()
   const { claim, verification } = item
+  // Una retractación del motor sin firma cuenta qué había en una lista que la
+  // tarjeta no enseña y que no se guardó: en su lugar, la tarjeta dice por qué
+  // no la imprime (src/lib/claim-provenance.js, `explicacionSinLista`).
+  const sinLista = explicacionSinLista(verification)
   // `null` cuando el resumen guardado habla de la tarea del verificador y no de
   // esta declaración (src/lib/resumenes-retirados.js): la tarjeta dice que lo
   // retiró en vez de imprimirlo bajo la cita. El «no se encontró registro» se
@@ -99,8 +99,13 @@ function ClaimCard({ item }) {
   // guardado, nombraba fuentes que la línea no lista. Y con la misma regla se
   // deja de pintar el expediente «que se parece» de una verificación que no
   // cotejó contratos: salía encima de «Fuentes comprobadas: ninguna».
-  const resumen = resumenSegunFuentes(verification, resumenPublicable(verification))
+  const resumen = resumenSegunFuentes(verification, resumenPublicable(verification), claim.verbatim)
   const evidencia = evidenciaSegunFuentes(verification)
+  // La cifra que la tarjeta pinta como de la cita es la que la cita DICE
+  // (src/scraper/cifra-en-literal.ts). El extractor saca a veces la suya de la
+  // frase de al lado: k4olcs-019-cit-b9b013 llevaba «81 K €» en la cabecera
+  // encima de «sistema de debate, captura y grabación…», que no trae ninguna.
+  const cifra = cifraCitada(claim)
   return (
     <Card>
       <div
@@ -162,12 +167,12 @@ function ClaimCard({ item }) {
             >
               {claim.plenoDate}
             </span>
-            {claim.entities.amountEuros && (
+            {cifra != null && (
               <span
                 className="mono"
                 style={{ fontSize: 'var(--fs-micro)', fontWeight: 700, color: 'var(--ink)' }}
               >
-                {formatEuros(claim.entities.amountEuros)}
+                {eurosBreves(cifra)}
               </span>
             )}
             {claim.entities.count && claim.entities.countUnit && (
@@ -204,10 +209,14 @@ function ClaimCard({ item }) {
           color: 'var(--ink50)',
           marginTop: 8,
           lineHeight: 1.5,
-          fontStyle: resumen === null ? 'italic' : 'normal',
+          fontStyle: resumen === null || sinLista ? 'italic' : 'normal',
         }}
       >
-        {resumen ?? t(CLAVE_RESUMEN_RETIRADO)}
+        {resumen === null
+          ? t(CLAVE_RESUMEN_RETIRADO)
+          : sinLista
+            ? t(CLAVE_RESUMEN_SIN_LISTA)
+            : resumen}
       </div>
       {evidencia.length > 0 && (
         <div
@@ -218,7 +227,7 @@ function ClaimCard({ item }) {
           }}
         >
           {evidencia.map((e, i) => (
-            <EvidenceRow key={i} e={e} cifra={claim.entities.amountEuros} />
+            <EvidenceRow key={i} e={e} cifra={cifra} />
           ))}
         </div>
       )}

@@ -189,8 +189,11 @@ export function capituloDominante(
 /**
  * De quién es el cero del capítulo dominante. /presupuesto publica DOS
  * presupuestos aprobados del mismo ejercicio —el estado de ejecución del
- * propio Ayuntamiento y el remitido a CONPREL— y no se reconcilian: en 2025 el
- * primero abre Inversiones reales en 0 € y el segundo le da 905.517,35 €.
+ * propio Ayuntamiento y el remitido a CONPREL— y pueden no reconciliarse. Hasta
+ * el 2026-10-22 parecía que en 2025 el primero abría Inversiones reales en 0 €
+ * y el segundo le daba 905.517,35 €; era la hoja del 2T leída como cierre, y
+ * la del 4T da también 905.517,35 €. La lectura sigue aquí para el ejercicio
+ * que de verdad abra un capítulo en cero.
  * «Un capítulo que había empezado en cero», dicho en singular, elige una de
  * las dos sin nombrarla, justo donde más discrepan.
  *
@@ -362,6 +365,13 @@ export interface MagnitudDelEjercicio {
  * el de 2025 fabricaría una cifra, que es peor que publicar la menos
  * informativa de las verdaderas.
  *
+ * Un listado MÁS NUEVO que CONPREL sí gobierna, con su propio año: en octubre
+ * de 2026 el Ministerio aún da el aprobado de 2025 y el Ayuntamiento ya ha
+ * publicado el primer trimestre de 2026. Quedarse en el aprobado de 2025
+ * enseñaba el año viejo en su cifra menos informativa; el definitivo de 2026
+ * va con 2026 en la etiqueta y con la fecha de su listado al lado, así que no
+ * se hace pasar por otro año ni por un cierre.
+ *
  * Vive aquí y no en cada componente para que la tira de indicadores y la
  * columna editorial no puedan contar cosas distintas del mismo año — que es
  * exactamente lo que pasaba mientras cada una escribía su propia frase.
@@ -393,14 +403,15 @@ export function magnitudDelEjercicio(
 
   const total = ejecucion?.gastos?.total
   const definitivo = num(total?.actual)
-  if (ejecucion?.year === year && definitivo > 0) {
+  const anioListado = ejecucion?.year
+  if (anioListado && anioListado >= year && definitivo > 0) {
     const ejecutado = num(total?.ejecutado)
     const cap1 = (ejecucion?.gastos?.chapters ?? []).find((c) => c?.capitulo === 1)
     return {
       valor: definitivo,
       etapa: 'definitivo',
       fuente: 'municipal',
-      year,
+      year: anioListado,
       ejecutado,
       pctEjecutado: (ejecutado / definitivo) * 100,
       personal: cuota(num(cap1?.actual), definitivo),

@@ -1,7 +1,14 @@
 import { describe, it, expect, beforeAll } from 'vitest'
 import { readFileSync } from 'node:fs'
 import { join } from 'node:path'
-import { parsePlenoAgenda, tallyDepartments } from '../src/scraper/pleno-agenda'
+import {
+  parsePlenoAgenda,
+  reclasificaSecciones,
+  seccionPorTitulo,
+  tallyDepartments,
+  type EnrichedPleno,
+  type PlenoAgendaItem,
+} from '../src/scraper/pleno-agenda'
 
 const FIXTURE = join(__dirname, 'fixtures', 'rr_pleno_20_abril_2026.html')
 
@@ -133,6 +140,148 @@ describe('scraper/pleno-agenda — parsePlenoAgenda (regmeet format)', () => {
     expect(byNum[2].section).toBe('resolutiva')
     expect(byNum[10].section).toBe('informativa') // "Dación cuenta …"
     expect(byNum[11].section).toBe('ruegos') // "Ruegos y preguntas"
+  })
+})
+
+// ── La parte de un punto, en valenciano ────────────────────────────────────
+/**
+ * regmeet no marca la parte de cada punto, como hacía la sede vieja con «PARTE
+ * RESOLUTIVA»: se deduce del título, y la regla sólo sabía castellano. La sesión
+ * del 20-04-2026 se convocó en valenciano, y en la pestaña del orden del día sus
+ * tres informes («Dació compte…», «Donar compte…») y «Precs i preguntes» salían
+ * «Resolutiva»: un informe que no se vota, rotulado como un punto que se decide.
+ */
+describe('scraper/pleno-agenda — la parte de un punto en valenciano', () => {
+  const FIXTURE = join(__dirname, 'fixtures', 'regmeet_sesion_2026-04-20.html')
+  let porNumero: Record<number, PlenoAgendaItem>
+
+  beforeAll(() => {
+    const r = parsePlenoAgenda(readFileSync(FIXTURE))
+    porNumero = Object.fromEntries((r?.items ?? []).map((i) => [i.number, i]))
+  })
+
+  it('lee los doce puntos de la convocatoria', () => {
+    expect(Object.keys(porNumero).map(Number)).toEqual([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12])
+  })
+
+  it('«Dació compte» y «Donar compte» son informes, no puntos que se deciden', () => {
+    for (const n of [8, 9, 10, 11]) {
+      expect(porNumero[n].section, porNumero[n].title).toBe('informativa')
+    }
+  })
+
+  it('«Precs i preguntes» son los ruegos y preguntas', () => {
+    expect(porNumero[12].section).toBe('ruegos')
+  })
+
+  it('lo que se vota sigue en la parte resolutiva, la moción incluida', () => {
+    for (const n of [1, 2, 3, 4, 5, 6, 7]) {
+      expect(porNumero[n].section, porNumero[n].title).toBe('resolutiva')
+    }
+  })
+
+  // Títulos copiados tal cual de plenos-agendas.json: la misma convocatoria
+  // escribe el informe «Dació compte», «Dació de comptes» o «Dació compta».
+  it.each([
+    "Expedient: 396/2025/GEN, Dació compta dels informes de les diferents àrees del Departament de Tresoreria de l'Exercici 2024",
+    "INTERVENCIÓ, Expedient: 485/2024/GEN, Dació compta al Ple de l'informe anual d'avaluació del compliment de la normativa en matèria de morositat (exercici de referència: 2023). Control Financer Permanent Planificable derivat d'una obligació legal",
+    "Expedient 1029/2025/GEN, Dació compta al Ple de la correcció d'errors de l'informe núm. 220/2025 d'avaluació de l'objectiu d'estabilitat pressupostària, de la regla de gasto i del límit de deute emés amb motiu de la reformulació a la liquidació del pressupost municipal corresponent a l'exercici 2024",
+  ])('«Dació compta» también es un informe: %s', (titulo) => {
+    expect(seccionPorTitulo(titulo)).toBe('informativa')
+  })
+
+  // Y lo que se aprueba no se confunde con un informe por llevar «compte» o
+  // «informe» dentro.
+  it.each([
+    "Expedient: 2445/2025/GEN, Proposta d'acord d'aprovació del Compte General corresponent a l'exercici 2024",
+    'Aprobación de la Cuenta General correspondiente al ejercicio 2025',
+    "Expedient: 2903/2025/GEN, Plantejament de discrepàncies al ple de la corporació vist l'objecció emesa en l'informe FLP núm. 573/2025",
+    // Nombra una «dació compta» dentro de otro asunto: es la votación de la urgencia.
+    "Pronunciament del Ple sobre la urgència. Es justifica la urgència sobre la base del que es disposa en els informes del Regidor d'Hisenda de data 13/12/2023, per a l'aprovació definitiva de les Ordenances d'IBI, IAE i ICIO, així com de la dació compta de l'EJEC TRIMESTRAL 3T-2023 i Bases d'Execució del Pressupost",
+  ])('lo que se aprueba sigue resolutiva: %s', (titulo) => {
+    expect(seccionPorTitulo(titulo)).toBe('resolutiva')
+  })
+})
+
+/**
+ * Lo ya guardado no vuelve a pasar por el parser: de las sesiones del
+ * snapshot sólo las seis más recientes se vuelven a pedir cada noche, y las
+ * convocadas en valenciano son anteriores. Arreglar la regla del parser sólo
+ * habría corregido las sesiones que nadie iba a releer, así que la parte se
+ * re-deriva del título guardado, como ya se hace con el departamento.
+ */
+describe('reclasificaSecciones — lo que el snapshot ya guarda', () => {
+  const FIXTURE = join(__dirname, 'fixtures', 'plenos-agendas_2026-10-10.json')
+  const guardadas = (): EnrichedPleno[] => JSON.parse(readFileSync(FIXTURE, 'utf8')).plenos
+
+  it('saca de «resolutiva» los informes y los ruegos de una sesión en valenciano', () => {
+    const { plenos } = reclasificaSecciones(guardadas())
+    const sesion = plenos.find((p) => p.id === 'rx4hb4')!
+    const parte = Object.fromEntries(sesion.agenda.map((i) => [i.number, i.section]))
+    expect(parte[12]).toBe('informativa') // «Expedient 4959/2025/GEN, Donar compte de l'adhesió…»
+    expect(parte[13]).toBe('informativa') // «Donar compte de les Resolucions…»
+    expect(parte[14]).toBe('ruegos') // «Precs i preguntes»
+    expect(parte[6]).toBe('resolutiva') // una moció es vota
+    expect(sesion.hasRuegos).toBe(true)
+  })
+
+  it('dice cuántos puntos cambió, y una segunda pasada no cambia ninguno', () => {
+    const primera = reclasificaSecciones(guardadas())
+    expect(primera.reclasificados).toBe(3)
+    expect(reclasificaSecciones(primera.plenos).reclasificados).toBe(0)
+  })
+
+  it('lo que ya era informe o ruegos lo sigue siendo si la sesión se vuelve a pedir', () => {
+    // Las seis sesiones más recientes pasan por el parser cada noche: una regla
+    // que no reconociera lo que la vieja sí reconocía las devolvería a «resolutiva».
+    const noResolutivas = guardadas().flatMap((p) =>
+      p.agenda.filter((i) => i.section !== 'resolutiva'),
+    )
+    expect(noResolutivas.length).toBeGreaterThan(0)
+    for (const it of noResolutivas) {
+      expect(seccionPorTitulo(it.title), it.title).toBe(it.section)
+    }
+  })
+
+  it('no toca las sesiones en castellano, que ya salían bien', () => {
+    const antes = guardadas().find((p) => p.id === '1sqj7is')!
+    const despues = reclasificaSecciones(guardadas()).plenos.find((p) => p.id === '1sqj7is')!
+    expect(despues.agenda.map((i) => i.section)).toEqual(antes.agenda.map((i) => i.section))
+  })
+
+  it('nunca mete un punto en «resolutiva»: la parte que trajo la convocatoria manda', () => {
+    // La sede vieja marcaba la parte con su cabecera, y en ella una moción iba
+    // en la de información y control. Que el título no lo diga no la mueve.
+    const fila: EnrichedPleno = {
+      id: 'x',
+      date: '2026-01-01',
+      title: 'x',
+      kind: 'ordinario',
+      link: '',
+      agenda: [
+        {
+          number: 1,
+          title: 'Moción del Grupo Municipal X sobre Y',
+          section: 'informativa',
+          department: null,
+          departmentSlug: null,
+          expediente: null,
+        },
+      ],
+      agendaCount: 1,
+      departments: [],
+      hasRuegos: false,
+    }
+    const { plenos, reclasificados } = reclasificaSecciones([fila])
+    expect(plenos[0].agenda[0].section).toBe('informativa')
+    expect(reclasificados).toBe(0)
+  })
+
+  it('no muta lo que recibe', () => {
+    const entrada = guardadas()
+    const copia = JSON.parse(JSON.stringify(entrada))
+    reclasificaSecciones(entrada)
+    expect(entrada).toEqual(copia)
   })
 })
 

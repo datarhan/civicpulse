@@ -94,8 +94,13 @@ function sirveLoVivo({ validThrough = '2026-12-31' } = {}) {
 const panelDe = (boton) => document.getElementById(boton.getAttribute('aria-controls'))
 /** La tira que se desliza: la que recorta si algo cuelga de ella. */
 const tira = () => document.querySelector('[data-vivo-tira]')
+/** El nombre del chip es su texto, que cambia con los datos: lo fijo es cómo empieza. */
 const chipHoy = (idioma = 'es') =>
-  screen.findByRole('button', { name: CATALOGUE[idioma]['vivo.hoy.aria'] })
+  screen.findByRole('button', {
+    name: (nombre) => nombre.startsWith(CATALOGUE[idioma]['vivo.hoy.chip.solo']),
+  })
+/** El rótulo del chip, sin el emoji ni el disco de la L9, que son adorno. */
+const rotuloDelChip = (boton) => boton.querySelector('.mono').textContent
 
 /**
  * El chip, con la cabecera ya pintada después de que contesten sus TRES fuentes
@@ -251,6 +256,25 @@ describe('Vivo — el chip «Hoy» y su detalle', () => {
     expect(panel.querySelector('svg path'), 'la serie de PM₂.₅').not.toBeNull()
   })
 
+  it('se llama lo que se lee en él, con datos y sin ellos (WCAG 2.5.3)', async () => {
+    // Quien dicta por voz dice «Hoy», no «el tiempo, el aire y el metro». Y el
+    // texto cambia con los datos, así que el nombre no puede ser una cadena fija.
+    const { unmount } = render(<Vivo />)
+    const conDatos = await chipAsentado()
+    expect(rotuloDelChip(conDatos)).toContain('°')
+    expect(conDatos).toHaveAccessibleName(rotuloDelChip(conDatos))
+    expect(conDatos).not.toHaveAttribute('aria-label')
+    // Lo que contaba la etiqueta no se pierde: pasa a ser la descripción.
+    expect(conDatos).toHaveAccessibleDescription(CATALOGUE.es['vivo.hoy.aria'])
+    unmount()
+
+    globalThis.fetch = vi.fn(async () => new Response('nope', { status: 500 }))
+    render(<Vivo />)
+    const sinDatos = await chipAsentado()
+    expect(rotuloDelChip(sinDatos)).not.toContain('°')
+    expect(sinDatos).toHaveAccessibleName(rotuloDelChip(sinDatos))
+  })
+
   it('sin tiempo ni aire, el chip no dice «°» y esas secciones no se pintan', async () => {
     // Los hooks devuelven data: null ante cualquier fallo, y la cabecera no
     // publica un cero que parezca una medición. El metro sigue: es cálculo puro.
@@ -356,6 +380,8 @@ describe('Vivo — en valencià se lee en valencià', () => {
     pinta('ca')
     const b = await chipAsentado('ca')
     expect(b.textContent).toContain('Hui · 21°')
+    expect(b).toHaveAccessibleName(rotuloDelChip(b))
+    expect(b).toHaveAccessibleDescription(CATALOGUE.ca['vivo.hoy.aria'])
     fireEvent.click(b)
     const panel = panelDe(b)
     expect(panel.textContent).toContain(CATALOGUE.ca['vivo.wmo.2'])

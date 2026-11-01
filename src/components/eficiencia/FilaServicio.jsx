@@ -5,6 +5,8 @@ import { enTerminosReales, puntosEnEscala } from './SerieServicio'
 import { GESTION, unidadCorta } from './vocabulario'
 import { posicionServicio, razonMediana } from '../../scraper/indicador-areas'
 import { chipDeclaracion } from '../../scraper/indicador-lectura'
+import { rutaDeServicio } from '../../scraper/ruta-de-servicio'
+import { euros } from '../../lib/formatters'
 
 const DIRECCION = {
   arriba: 'por encima',
@@ -98,7 +100,7 @@ export function FilaServicio({ indicador, formatea, x0, x1, chipHoisted = false 
   return (
     <tr className="cp-fila">
       <td className="cp-c-servicio">
-        <a href={`/eficiencia/${i.id}`}>{i.etiqueta}</a>
+        <a href={rutaDeServicio(i.id)}>{i.etiqueta}</a>
         <span className="cp-fila-meta mono">
           {i.servicio ? `${i.divisor.plural} · ` : ''}
           {t(`eficiencia.tier.${i.tier}`)}
@@ -118,7 +120,7 @@ export function FilaServicio({ indicador, formatea, x0, x1, chipHoisted = false 
             viene vacía, o la fuente calla. */}
         <span className="cp-fila-coste mono">
           {i.numerador.valor !== null
-            ? `${num(i.numerador.valor, 0)} € de coste declarado`
+            ? `${euros(i.numerador.valor)} de coste declarado`
             : i.numerador.motivo === 'concesion'
               ? 'sin coste declarado (concesión)'
               : 'coste no declarado'}

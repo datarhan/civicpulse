@@ -25,7 +25,9 @@ for (const alto of [812, 629]) {
       await expect(pila).toHaveAttribute('data-plegada', 'true')
       const cobertura = pila.locator('.cp-cobertura')
       await expect(cobertura).toBeVisible()
-      await expect(cobertura).toHaveText(/M€\s*de\s*[\d.,]+\s*M€/)
+      // La frase de vecino, que es lo que la pila plegada deja a la vista desde el
+      // 26-10-2026 (la razón en euros va en su `title`).
+      await expect(cobertura).toHaveText(/sitúa\s*(\d+|menos de 1)\s*de cada 100\s*€/)
       await expect(
         page.getByRole('slider', { name: /línea de tiempo de los contratos situados/i }),
       ).toBeHidden()
@@ -68,6 +70,15 @@ test.describe('la sonda sabe fallar', () => {
  * de #39 cayó a zoom 12 en los tres intentos, y a 375×629 València la Vella quedó bajo
  * la pila plegada, cuando en el portátil salía a zoom 11 y libre. Retrasando cada
  * instantánea 60 ms, el orden cambia de forma reproducible, y con él el encuadre.
+ *
+ * Se compara dónde caen las estaciones DENTRO del mapa, contado desde su esquina, y
+ * no en la ventana. Desde el 26-10-2026 (#431) la cabecera de la portada, a 375 px,
+ * crece una fila cuando contesta Open-Meteo: el chip «Hoy» gana el tiempo, el reloj
+ * ya no cabe a su lado y el mapa entero baja 46 px. En la CI eso llegaba unas veces
+ * antes de medir y otras después, y la comparación en la ventana fallaba con las
+ * mismas x y todas las y 46 px más abajo: el mismo encuadre en un mapa desplazado.
+ * Un encuadre que de verdad dependa del orden —otro zoom, otro centro— mueve las
+ * estaciones dentro del mapa, y eso sigue fallando aquí.
  */
 test.describe('el encuadre inicial no depende del orden de llegada', () => {
   test.describe.configure({ mode: 'serial' })
@@ -85,8 +96,9 @@ test.describe('el encuadre inicial no depende del orden de llegada', () => {
       })
       await cargaYEncuadra(page)
       const sondas = await sondea(page)
+      // Exige que todas caigan dentro del mapa, así que aquí `enMapa` nunca es null.
       afirmaPulsables(sondas)
-      encuadres[tardia] = sondas.map((s) => `${s.nombre} ${s.x},${s.y}`).join(' | ')
+      encuadres[tardia] = sondas.map((s) => `${s.nombre} ${s.enMapa?.x},${s.enMapa?.y}`).join(' | ')
     })
   }
 

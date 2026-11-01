@@ -35,6 +35,28 @@
       }
     ]
   },
+  "claves": [
+    {
+      "texto": "Para explicar por qué hacía falta cada compra, las dos memorias repiten palabra por palabra un párrafo que habla de la actuación de realidad aumentada, y ninguno de los dos contratos es esa actuación.",
+      "seccion": "03"
+    },
+    {
+      "texto": "El concurso de los sensores daba dieciséis de cada cien puntos por instalar más aparatos que el mínimo exigido, sin que su expediente trajera una sola cifra de visitantes que dijera cuántos hacían falta.",
+      "seccion": "05"
+    },
+    {
+      "texto": "Según el pliego, una parte del contrato de sensores es medir la calidad del aire, una función ambiental legítima que no depende de que haya turistas; la otra parte es contar gente.",
+      "seccion": "04"
+    },
+    {
+      "texto": "Sobre protección de datos, las dos memorias sólo dicen una misma frase, y este medio no ha localizado publicada ninguna evaluación de impacto ni el plazo de conservación de los datos.",
+      "seccion": "06"
+    },
+    {
+      "texto": "El dinero del plan no podía legalmente desviarse a la reconstrucción, y no consta en ningún registro público consultado que Riba-roja pidiera reprogramar su contenido tras la DANA; el plazo sí se le amplió.",
+      "seccion": "07"
+    }
+  ],
   "kpis": [
     {
       "n": "87.050 €",
@@ -246,7 +268,16 @@
         "registro": "2026014913",
         "entradaEl": "2026-09-28",
         "pide": "La misma solicitud del 9 de septiembre —las ocho preguntas y los nueve documentos—, presentada por el Registro de Entrada del Ayuntamiento a indicación de su Área de Transparencia, sin retirar la del correo.",
-        "respuesta": null
+        "respuesta": null,
+        "incidencias": [
+          {
+            "fecha": "2026-10-27",
+            "texto": "El 27 de octubre el Departamento de Transparencia y Participación Ciudadana del Ayuntamiento notificó que amplía un mes el plazo para resolverla (expediente 4847/2026/GEN), con el artículo 34.2 de la Ley 1/2022: las unidades que custodian los expedientes «no han remitido al Departamento de Transparencia la totalidad de la documentación necesaria», y falta comprobar si alguna información está afectada «por límites al derecho de acceso o por derechos o intereses de terceras personas». El oficio cuenta desde la entrada del 28 de septiembre y dice que el nuevo plazo «finalizará el 28 de noviembre de 2026», y que la ampliación «no supone una denegación ni una limitación del derecho de acceso». No resuelve nada de lo pedido."
+          }
+        ],
+        "ampliada": {
+          "fecha": "2026-10-27"
+        }
       },
       {
         "organismo": "Secretaría de Estado de Turismo",

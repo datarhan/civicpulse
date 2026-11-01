@@ -14,6 +14,7 @@ import {
   FESTIVOS_DE_LA_SEDE,
   LEGAL_CATALOG,
   ESCALATION_PROFILES,
+  SINDIC_PRESENTAR_QUEJA,
   type FestivoDeLaSede,
   type FestivosPorAnio,
   type OfficialsSnapshot,
@@ -798,13 +799,13 @@ describe('queja-router — escalation path', () => {
     expect(contencioso?.basis.law).toMatch(/29\/1998|LJCA/)
   })
 
-  it('transparencia escalates to the CTBG (reclamación especial)', () => {
+  it('transparencia escalates to the Consell de Transparència CV (reclamación especial)', () => {
     const r = routeQueja(
       { title: 'Acceso a información pública', detail: 'pido contratos' },
       officials,
     )
-    const ctbg = r.escalation.find((e) => e.who.includes('CTBG') || e.who.includes('Consell'))
-    expect(ctbg).toBeDefined()
+    const consell = r.escalation.find((e) => e.who.includes('Consell'))
+    expect(consell).toBeDefined()
   })
 
   it('every escalation step cites a BOE or official institution URL', () => {
@@ -821,6 +822,183 @@ describe('queja-router — escalation path', () => {
     for (let i = 1; i < r.escalation.length; i++) {
       expect(r.escalation[i].whenDays).toBeGreaterThanOrEqual(r.escalation[i - 1].whenDays)
     }
+  })
+})
+
+/**
+ * La ley que se cita tiene que ser la vigente, y el órgano, el que resuelve.
+ *
+ * El Síndic se citaba por la Ley 11/1988, derogada por la Ley 2/2021, de 26 de
+ * marzo (disposición derogatoria única), en vigor desde el 30-04-2021. Y la
+ * reclamación de transparencia ofrecía el CTBG como alternativa al Consell: el
+ * art. 24.6 de la Ley 19/2013 deja al CTBG sólo lo que una comunidad no atribuye
+ * a un órgano propio (disposición adicional cuarta), y la Ley 1/2022 de la
+ * Comunitat Valenciana se la atribuye al suyo (arts. 3.1.d y 38). Para una
+ * solicitud al Ayuntamiento de Riba-roja no hay «o».
+ */
+describe('queja-router — la ley vigente y el órgano que resuelve', () => {
+  const transparencia = () =>
+    routeQueja({ title: 'Acceso a información pública', detail: 'pido contratos' }, officials)
+
+  it('el Síndic se cita por la Ley 2/2021, con el artículo que define la institución', () => {
+    const s = LEGAL_CATALOG.SINDIC_CV
+    expect(s.law).toMatch(/^Ley 2\/2021 /)
+    expect(s.article).toBe('art. 1.2')
+    expect(s.url).toBe('https://www.boe.es/buscar/act.php?id=BOE-A-2021-6051#a1')
+    expect(s.says).toMatch(/alto comisionado de las Corts Valencianes/)
+  })
+
+  it('ninguna entrada del catálogo ni de las escaleras cita la Ley 11/1988', () => {
+    expect(JSON.stringify(LEGAL_CATALOG)).not.toMatch(/11\/1988/)
+    expect(JSON.stringify(ESCALATION_PROFILES)).not.toMatch(/11\/1988/)
+  })
+
+  it('la reclamación de transparencia va al Consell, sin el CTBG como alternativa', () => {
+    const paso = transparencia().escalation.find((e) => /^Reclamación/.test(e.action))
+    expect(paso?.who).toBe('Consell de Transparència de la Comunitat Valenciana')
+    expect(paso?.action).not.toMatch(/CTBG|Consejo de Transparencia y Buen Gobierno/)
+    expect(paso?.template).toBe('https://conselltransparencia.gva.es/es/presentacion')
+    expect(paso?.basis).toBe(LEGAL_CATALOG.LTCV_38)
+  })
+
+  it('el art. 38 de la Ley 1/2022 de la Comunitat Valenciana es base legal de la reclamación', () => {
+    const a = LEGAL_CATALOG.LTCV_38
+    expect(a.law).toMatch(/^Ley 1\/2022 /)
+    expect(a.article).toBe('art. 38')
+    expect(a.url).toMatch(/^https:\/\/www\.boe\.es\/buscar\/act\.php\?id=BOE-A-2022-8187#/)
+    expect(a.says).toMatch(/Consejo Valenciano de Transparencia/)
+    expect(a.says).toMatch(/un mes/)
+    expect(transparencia().legalBasis).toContain(a)
+  })
+
+  it('el art. 24 de la Ley 19/2013 dice que el CTBG cede ante el órgano autonómico', () => {
+    const says = LEGAL_CATALOG.LTBG_24.says
+    expect(says).toMatch(/disposición adicional cuarta/)
+    expect(says).toMatch(/Consell de Transparència de la Comunitat Valenciana/)
+  })
+
+  it('la queja al Síndic enlaza su página para presentarla y avisa de que no para los plazos', () => {
+    // La de antes, /es/presenta-una-queja, ya no existe: el 28-10-2026 redirigía a
+    // una noticia sobre la inadmisión de un niño en un colegio. Y «no perjudica
+    // otros recursos» callaba lo que la ley y el propio Síndic avisan: la queja no
+    // interrumpe los plazos para recurrir (art. 32.3 Ley 2/2021).
+    const r = routeQueja({ title: 'Bache', detail: 'bache' }, officials)
+    const paso = r.escalation.find((e) => e.who.includes('Síndic'))
+    expect(SINDIC_PRESENTAR_QUEJA).toBe(
+      'https://www.elsindic.com/te-ayudamos/presentar-una-queja-consulta/',
+    )
+    expect(paso?.template).toBe(SINDIC_PRESENTAR_QUEJA)
+    expect(paso?.action).toMatch(/no interrumpe los plazos para recurrir/)
+    expect(paso?.action).not.toMatch(/perjudica/)
+    expect(r.explanationEs).toMatch(/no interrumpe los plazos para recurrir \(art\. 32\.3/)
+    expect(r.explanationEs).toContain(SINDIC_PRESENTAR_QUEJA)
+    expect(r.explanationEs).not.toMatch(/perjudica/)
+  })
+
+  it('la explicación no ofrece el CTBG para una solicitud al Ayuntamiento', () => {
+    const e = transparencia().explanationEs
+    expect(e).not.toMatch(/CTBG|Consejo de Transparencia y Buen Gobierno/)
+    expect(e).toMatch(/Consell de Transparència de la Comunitat Valenciana/)
+    expect(e).toMatch(/art\. 38 de la Ley 1\/2022/)
+  })
+})
+
+/**
+ * Contra el silencio a una solicitud de acceso no hay reposición.
+ *
+ * La explicación ofrecía a todas las categorías la misma lista: reposición,
+ * Síndic y, para transparencia, la reclamación al Consell. Pero la reclamación es
+ * «sustitutiva de los recursos administrativos» (art. 23.1 Ley 19/2013) y tiene
+ * «carácter sustitutivo de los recursos administrativos», por el art. 112.2
+ * LPACAP (art. 38.3 Ley 1/2022 CV). Lo que queda es reclamar, potestativamente,
+ * o ir directamente al contencioso (art. 20.5 Ley 19/2013; art. 34.6 Ley 1/2022).
+ * El Síndic sigue, porque no interrumpe ningún plazo (art. 32.3 Ley 2/2021).
+ * Texto leído en el BOE el 28-10-2026.
+ */
+describe('queja-router — transparencia: la reclamación sustituye a la reposición', () => {
+  const transparencia = () =>
+    routeQueja({ title: 'Acceso a información pública', detail: 'pido contratos' }, officials)
+  const vias = (explicacion: string) => explicacion.split('\n').filter((l) => /^\d+\. /.test(l))
+
+  it('la explicación no ofrece el recurso de reposición, y dice por qué', () => {
+    const e = transparencia().explanationEs
+    // Sin líneas numeradas, el bucle de abajo pasaría sin mirar nada.
+    expect(vias(e)).toHaveLength(3)
+    for (const via of vias(e)) expect(via).not.toMatch(/reposición/)
+    expect(e).not.toMatch(/art\. 123 LPACAP/)
+    expect(e).toMatch(/No cabe recurso de reposición/)
+    expect(e).toMatch(/art\. 23\.1 de la Ley 19\/2013/)
+    expect(e).toMatch(/art\. 38\.3 de la Ley 1\/2022/)
+    expect(e).toMatch(/art\. 112\.2 LPACAP/)
+  })
+
+  it('ofrece la reclamación al Consell como potestativa, en un mes', () => {
+    const reclamacion = vias(transparencia().explanationEs).find((l) => /Consell/.test(l))
+    expect(reclamacion).toMatch(/potestativa/)
+    expect(reclamacion).toMatch(/un mes/)
+  })
+
+  it('ofrece el contencioso directamente, sin reclamar antes', () => {
+    const contencioso = vias(transparencia().explanationEs).find((l) =>
+      /contencioso-administrativo directamente/.test(l),
+    )
+    expect(contencioso).toMatch(/sin reclamar/)
+    expect(contencioso).toMatch(/art\. 34\.6 de la Ley 1\/2022/)
+    expect(contencioso).toMatch(/art\. 20\.5 de la Ley 19\/2013/)
+  })
+
+  it('el Síndic sigue, y no interrumpe el plazo de la reclamación ni el del recurso', () => {
+    const sindic = vias(transparencia().explanationEs).find((l) => /Síndic/.test(l))
+    expect(sindic).toMatch(/no interrumpe los plazos para reclamar ni para recurrir \(art\. 32\.3/)
+    expect(sindic).toContain(SINDIC_PRESENTAR_QUEJA)
+  })
+
+  it('el resto de categorías conserva la reposición', () => {
+    const e = routeQueja({ title: 'Bache', detail: 'bache' }, officials).explanationEs
+    expect(vias(e)[0]).toMatch(/^1\. Recurso potestativo de reposición .*art\. 123 LPACAP/)
+  })
+
+  it('el art. 38 del catálogo recoge que la reclamación sustituye a los recursos', () => {
+    expect(LEGAL_CATALOG.LTCV_38.says).toMatch(
+      /carácter sustitutivo de los recursos administrativos \(art\. 112\.2 LPACAP\)/,
+    )
+  })
+
+  it('la escalera ofrece el contencioso desde el silencio, no sólo tras la reclamación', () => {
+    const escalera = transparencia().escalation
+    const silencio = escalera.find((e) => /^Silencio/.test(e.action))
+    const contencioso = escalera.find((e) => /contencioso/.test(e.action))
+    expect(contencioso?.whenDays).toBe(silencio?.whenDays)
+    expect(contencioso?.action).toMatch(/sin reclamar/)
+    expect(contencioso?.action).toMatch(/art\. 34\.6 Ley 1\/2022/)
+    // Los dos meses corren desde la notificación, no desde que se dicta (art. 46.1 LJCA).
+    expect(contencioso?.action).toMatch(
+      /2 meses desde la notificación de la resolución del Consell/,
+    )
+    expect(contencioso?.basis).toBe(LEGAL_CATALOG.LJCA_46)
+  })
+
+  it('la escalera incluye al Síndic y ningún paso de reposición', () => {
+    const escalera = transparencia().escalation
+    const sindic = escalera.find((e) => e.who.includes('Síndic'))
+    expect(sindic?.template).toBe(SINDIC_PRESENTAR_QUEJA)
+    expect(sindic?.action).toMatch(/no interrumpe los plazos para reclamar ni para recurrir/)
+    expect(escalera.some((e) => e.basis === LEGAL_CATALOG.LPACAP_123)).toBe(false)
+    expect(escalera.some((e) => /reposición/.test(e.action) && !/sustituye/.test(e.action))).toBe(
+      false,
+    )
+    const reclamacion = escalera.find((e) => /^Reclamación/.test(e.action))
+    expect(reclamacion?.action).toMatch(/potestativa/)
+    expect(reclamacion?.action).toMatch(/sustituye al recurso de reposición/)
+  })
+
+  it('la escalera va ordenada por días y numerada sin huecos', () => {
+    const escalera = transparencia().escalation
+    expect(escalera.length).toBeGreaterThan(1)
+    escalera.forEach((e, i) => {
+      expect(e.step).toBe(i + 1)
+      if (i > 0) expect(e.whenDays).toBeGreaterThanOrEqual(escalera[i - 1].whenDays)
+    })
   })
 })
 

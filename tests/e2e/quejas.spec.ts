@@ -25,7 +25,8 @@ test.describe('Quejas feed + dashboard', () => {
     await expect(page).toHaveURL(/\/quejas\/dashboard$/)
     await expect(page.getByText('Salud del canal de quejas').first()).toBeVisible()
 
-    await page.getByRole('link', { name: /Feed público/i }).click()
+    // La vuelta a la lectura llana (`dashboard.volver`).
+    await page.getByRole('link', { name: /Cómo quejarse y qué plazos/i }).click()
     await expect(page).toHaveURL(/\/quejas$/)
   })
 })

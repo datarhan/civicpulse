@@ -2,6 +2,8 @@ import { test, expect } from '@playwright/test'
 import AxeBuilder from '@axe-core/playwright'
 import { readFileSync } from 'node:fs'
 import { collectErrors, appErrors } from './_console'
+import { CATALOGUE } from '../../src/i18n'
+import { ESTADO_LLANO } from '../../src/lib/estado-llano'
 
 // Se lee el snapshot en vez de reescribir sus cifras: estos números se mueven
 // con cada entrega del ministerio, y una spec que los restituye se queda verde
@@ -90,7 +92,10 @@ test.describe('Coste esperado (/laboratorio/coste-esperado)', () => {
     await expect(page.getByRole('heading', { name: /publicadas como fallidas/i })).toBeVisible()
     for (const e of FALLIDAS) {
       await expect(page.getByText(e.label, { exact: true })).toBeVisible()
-      await expect(page.getByText(e.estado, { exact: true }).first()).toBeVisible()
+      // El rótulo del estado, no su código: la pastilla decía «muestra-insuficiente».
+      const rotulo = CATALOGUE.es[`${ESTADO_LLANO.especificacionEsperada}.${e.estado}`]
+      await expect(page.getByText(rotulo, { exact: true }).first()).toBeVisible()
+      await expect(page.getByText(e.estado, { exact: true })).toHaveCount(0)
     }
   })
 
@@ -128,7 +133,7 @@ test.describe('Coste esperado (/laboratorio/coste-esperado)', () => {
 
   test('se alcanza desde el laboratorio', async ({ page }) => {
     await page.goto('/laboratorio', { waitUntil: 'domcontentloaded' })
-    const enlace = page.getByRole('link', { name: /el coste esperado/i })
+    const enlace = page.locator('main a[href="/laboratorio/coste-esperado"]').first()
     await expect(enlace).toBeVisible({ timeout: 8000 })
     await enlace.click()
     await expect(page.getByRole('heading', { name: /El coste esperado/i })).toBeVisible()
@@ -151,5 +156,29 @@ test.describe('Coste esperado (/laboratorio/coste-esperado)', () => {
       blocking.map((v) => `${v.id}: ${v.nodes[0]?.target.join(' ')}`),
       'violaciones bloqueantes de accesibilidad en /laboratorio/coste-esperado',
     ).toEqual([])
+  })
+
+  // La respuesta corta, contada del snapshot y DESPUÉS de «no es un aprobado»
+  // (auditoría de las dos lecturas, §24): nunca en lugar del aviso.
+  test('responde la pregunta con los servicios del snapshot, después del aviso', async ({
+    page,
+  }) => {
+    await expect(
+      page.getByRole('heading', {
+        name: '¿Gasta Riba-roja más de lo normal para un municipio de su tamaño?',
+      }),
+    ).toBeVisible()
+    const respuesta = page.locator('[data-coste-esperado-respuesta]')
+    const fuera = PUBLICADAS.filter(
+      (e: { propia: { dentroDeLoEsperado: boolean } }) => !e.propia.dentroDeLoEsperado,
+    ).length
+    await expect(respuesta).toContainText(`${PUBLICADAS.length} servicios que se pueden comparar`)
+    if (fuera === 0) await expect(respuesta).toContainText('cae dentro de la banda')
+    if (FALLIDAS.length > 1)
+      await expect(respuesta).toContainText(`Otros ${FALLIDAS.length} no se pueden comparar`)
+    const texto = await respuesta.innerText()
+    expect(texto.indexOf('no es un aprobado')).toBeGreaterThan(-1)
+    expect(texto.indexOf('no es un aprobado')).toBeLessThan(texto.indexOf('servicios'))
+    expect(texto).not.toMatch(/×|veces lo esperado/)
   })
 })

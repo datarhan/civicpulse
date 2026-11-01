@@ -63,13 +63,30 @@ export interface Divisor {
   singular: string
   /** Varias, tal como se leen tras la cifra: «52 efectivos», «4.514 puntos de luz». */
   plural: string
-  /** Qué cuenta exactamente, sin jerga. Va entre rayas dentro de la frase. */
+  /**
+   * Qué cuenta exactamente, sin jerga. Va entre rayas dentro de la frase.
+   *
+   * La de una cantidad que pasa en el año —basura generada, préstamos— dice lo
+   * que el ayuntamiento DECLARA, no lo que pasó. «Las toneladas de basura que el
+   * municipio generó en todo el año» iba junto a una tarjeta que dice que las
+   * 11.059,41 t son «la misma cifra desde 2019», y afirmaba como hecho de 2024 una
+   * declaración que esta misma página enseña copiada cinco entregas seguidas
+   * (revisión lectora, 29-10-2026). Una cantidad que se tiene —metros, puntos de
+   * luz, plantilla— puede no cambiar en años, y su glosa no lo necesita.
+   */
   glosa: string
 }
 
 export interface ServicioDef {
   /** Nombre del servicio en la clasificación por programas. */
   label: string
+  /**
+   * La dirección legible de su ficha, `/eficiencia/<alias>`. Se cura y no se
+   * deriva del nombre: «Seguridad y orden público (policía local)» daría una
+   * dirección de cuarenta letras, y lo que un vecino escribe es «policía
+   * local». Ver `ruta-de-servicio.ts`.
+   */
+  alias: string
   /** Texto literal del atributo CE3 que hace de denominador. */
   denominador: string
   /** El mismo denominador, en palabras que un vecino entienda. Ver `Divisor`. */
@@ -187,14 +204,26 @@ const CONCESION_AGUA: ServicioDef['concesion'] = {
   nota: `El expediente se anunció en abril de 2019 y estuvo suspendido —con dos recursos ante el TACRC de por medio— hasta que en abril de 2026 recayó sentencia. La adjudicación llegó en ${mesYAnio(AGUA_ADJUDICADA_EL)}, siete años después del anuncio.`,
 }
 
+/**
+ * El id de la ficha de un servicio: `a171/170P` → `a171-170p-coste-unitario`.
+ *
+ * Una sola cuenta para el motor, que lo escribe en `indicadores.json`, y para
+ * los enlaces, que lo traducen a su alias. Los hallazgos, las competencias y las
+ * preguntas registradas se congelaron con este id: no se cambia.
+ */
+export function idDeServicio(programa: string): string {
+  return `${programa.replace(/[^a-z0-9]/gi, '-').toLowerCase()}-coste-unitario`
+}
+
 export const SERVICIOS: Record<string, ServicioDef> = {
   a1621: {
     label: 'Recogida de residuos',
+    alias: 'recogida-de-basura',
     denominador: 'Producción anual residuos urbanos: toneladas',
     divisor: {
       singular: 'tonelada',
       plural: 'toneladas',
-      glosa: 'las toneladas de basura que el municipio generó en todo el año',
+      glosa: 'las toneladas de basura que declara generadas en el año',
     },
     unidad: '€/t',
     tier: 'carga',
@@ -206,6 +235,7 @@ export const SERVICIOS: Record<string, ServicioDef> = {
   },
   a163: {
     label: 'Limpieza viaria',
+    alias: 'limpieza-de-calles',
     denominador: 'Superficie en metros cuadrados con servicio de limpieza',
     divisor: {
       singular: 'm²',
@@ -220,6 +250,7 @@ export const SERVICIOS: Record<string, ServicioDef> = {
   },
   'a171/170P': {
     label: 'Parques y jardines',
+    alias: 'parques-y-jardines',
     denominador:
       'Superficie: suma en metros cuadrados de la superficie total (tanto la cubierta como al aire libre)',
     divisor: {
@@ -237,6 +268,7 @@ export const SERVICIOS: Record<string, ServicioDef> = {
   },
   'a342/340P': {
     label: 'Instalaciones deportivas',
+    alias: 'instalaciones-deportivas',
     denominador: 'Superficie: suma de superficies de todas las instalaciones',
     divisor: {
       singular: 'm²',
@@ -253,6 +285,7 @@ export const SERVICIOS: Record<string, ServicioDef> = {
   },
   'b341/340P': {
     label: 'Promoción del deporte',
+    alias: 'promocion-del-deporte',
     denominador: 'Nº efectivos en plantilla asignados al servicio',
     divisor: {
       singular: 'efectivo',
@@ -268,6 +301,7 @@ export const SERVICIOS: Record<string, ServicioDef> = {
   },
   'a1532/150P': {
     label: 'Pavimentación de vías públicas',
+    alias: 'pavimentacion-de-calles',
     denominador: 'Superficie de los tramos pavimentados (metros cuadrados)',
     divisor: {
       singular: 'm²',
@@ -283,13 +317,14 @@ export const SERVICIOS: Record<string, ServicioDef> = {
   },
   'a3321/330P': {
     label: 'Biblioteca pública',
+    alias: 'biblioteca',
     // La errata «biblitotecario» está en la fuente. Corregirla aquí no
     // encontraría ninguna fila.
     denominador: 'Nº préstamos por fondo biblitotecario',
     divisor: {
       singular: 'préstamo',
       plural: 'préstamos',
-      glosa: 'los libros y documentos que los vecinos se llevaron prestados durante el año',
+      glosa: 'los libros y documentos que declara prestados a los vecinos en el año',
     },
     unidad: '€/préstamo',
     tier: 'output',
@@ -300,6 +335,7 @@ export const SERVICIOS: Record<string, ServicioDef> = {
   },
   a165: {
     label: 'Alumbrado público',
+    alias: 'alumbrado-publico',
     denominador: 'Nº puntos de luz',
     divisor: {
       singular: 'punto de luz',
@@ -316,6 +352,7 @@ export const SERVICIOS: Record<string, ServicioDef> = {
   },
   a164: {
     label: 'Cementerio y servicios funerarios',
+    alias: 'cementerio',
     denominador: 'Superficie total del cementerio: metros cuadrados',
     divisor: {
       singular: 'm²',
@@ -329,6 +366,7 @@ export const SERVICIOS: Record<string, ServicioDef> = {
   },
   'b151/150P': {
     label: 'Urbanismo: planeamiento y gestión',
+    alias: 'urbanismo',
     denominador: 'Superficie urbanizada (kilómetros cuadrados)',
     divisor: {
       singular: 'km²',
@@ -344,6 +382,7 @@ export const SERVICIOS: Record<string, ServicioDef> = {
   },
   'b323/324/320P': {
     label: 'Centros docentes de enseñanza infantil y primaria',
+    alias: 'colegios',
     denominador: 'Superficie en metros cuadrados de los edificios',
     divisor: {
       singular: 'm²',
@@ -360,6 +399,7 @@ export const SERVICIOS: Record<string, ServicioDef> = {
   },
   'b132/130P': {
     label: 'Seguridad y orden público (policía local)',
+    alias: 'policia-local',
     denominador: 'Nº efectivos asignados al servicio',
     divisor: {
       singular: 'efectivo',
@@ -375,6 +415,7 @@ export const SERVICIOS: Record<string, ServicioDef> = {
   },
   'a4411/440P': {
     label: 'Transporte colectivo urbano',
+    alias: 'autobus-urbano',
     // El divisor natural sería «Nº total de viajeros al año» —un producto de
     // verdad— pero el ayuntamiento lo declara a CERO con 737.000 € de gasto,
     // así que la tarjeta llevaba años bloqueada en null. La misma entrega
@@ -413,6 +454,7 @@ export const SERVICIOS: Record<string, ServicioDef> = {
   },
   a161: {
     label: 'Abastecimiento domiciliario de agua potable',
+    alias: 'agua-potable',
     denominador: 'Longitud de la red: metros lineales',
     divisor: {
       singular: 'm de red',
@@ -427,6 +469,7 @@ export const SERVICIOS: Record<string, ServicioDef> = {
   },
   a160: {
     label: 'Alcantarillado',
+    alias: 'alcantarillado',
     denominador: 'Longitud del tramo: metros lineales.',
     divisor: {
       singular: 'm de red',

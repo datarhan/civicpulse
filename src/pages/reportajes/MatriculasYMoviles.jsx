@@ -1,4 +1,4 @@
-import { lazy, Suspense } from 'react'
+import { Fragment, lazy, Suspense } from 'react'
 import { useReportaje } from '../../hooks/useReportaje'
 import CabeceraPieza from '../../components/reportajes/CabeceraPieza'
 import { Card } from '../../components/Primitives'
@@ -34,60 +34,91 @@ const numFoto = (/** @type {number} */ i) => `F${i + 1}`
  * fichero a su tamaño. Van con `width`/`height` del fichero, para que la página
  * no salte al cargarlas, y con `loading="lazy"` porque están a media pieza. La
  * rejilla vive en `.cp-fotos` (index.css): tres columnas, dos en el móvil.
+ * `desde` sigue la numeración de una hoja anterior: las del seguimiento son F6…,
+ * no otra F1 con el mismo ancla.
  */
-function Fotos({ fotos }) {
+function Fotos({ fotos, desde = 0 }) {
   return (
     <div className="cp-ancho cp-fotos">
-      {fotos.map((f, i) => (
-        <figure key={f.src} id={`foto-${numFoto(i).toLowerCase()}`} style={{ margin: 0 }}>
-          <a
-            href={f.src}
-            target="_blank"
-            rel="noopener noreferrer"
-            style={{
-              position: 'relative',
-              display: 'block',
-              aspectRatio: '3 / 4',
-              background: 'var(--soft)',
-              borderRadius: 'var(--r-card)',
-              overflow: 'hidden',
-            }}
-          >
-            {/* Clavada al marco: con `height: 100%` en flujo, una foto más
+      {fotos.map((f, j) => {
+        const i = desde + j
+        return (
+          <figure key={f.src} id={`foto-${numFoto(i).toLowerCase()}`} style={{ margin: 0 }}>
+            <a
+              href={f.src}
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{
+                position: 'relative',
+                display: 'block',
+                aspectRatio: '3 / 4',
+                background: 'var(--soft)',
+                borderRadius: 'var(--r-card)',
+                overflow: 'hidden',
+              }}
+            >
+              {/* Clavada al marco: con `height: 100%` en flujo, una foto más
                 estrecha que 3:4 tomaba el alto de sus atributos, desbordaba el
                 marco y el `overflow` la recortaba —justo lo que no debe pasar—. */}
-            <img
-              src={f.src}
-              alt={f.alt}
-              width={f.w}
-              height={f.h}
-              loading="lazy"
+              <img
+                src={f.src}
+                alt={f.alt}
+                width={f.w}
+                height={f.h}
+                loading="lazy"
+                style={{
+                  position: 'absolute',
+                  inset: 0,
+                  width: '100%',
+                  height: '100%',
+                  objectFit: 'contain',
+                }}
+              />
+            </a>
+            <figcaption
               style={{
-                position: 'absolute',
-                inset: 0,
-                width: '100%',
-                height: '100%',
-                objectFit: 'contain',
+                fontSize: 'var(--fs-meta)',
+                color: 'var(--ink50)',
+                marginTop: 6,
+                lineHeight: 1.4,
               }}
-            />
-          </a>
-          <figcaption
-            style={{
-              fontSize: 'var(--fs-meta)',
-              color: 'var(--ink50)',
-              marginTop: 6,
-              lineHeight: 1.4,
-            }}
-          >
-            <span className="mono" style={{ color: 'var(--ink)', fontWeight: 600 }}>
-              {numFoto(i)}
-            </span>{' '}
-            · {f.pie}
-          </figcaption>
-        </figure>
-      ))}
+            >
+              <span className="mono" style={{ color: 'var(--ink)', fontWeight: 600 }}>
+                {numFoto(i)}
+              </span>{' '}
+              · {f.pie}
+            </figcaption>
+          </figure>
+        )
+      })}
     </div>
   )
+}
+
+/**
+ * Lo que este medio volvió a ver después de la visita, cada cosa con su fecha.
+ * Va DEBAJO de la tabla y no dentro: la columna de la tabla dice «Lo observado
+ * el 11-10-2026», y lo que se vio ese día sigue siendo cierto de ese día. Una
+ * observación nueva no reescribe la vieja; se le pone al lado, fechada.
+ * Sin envoltorio: el párrafo tiene que ser hijo directo de `.cp-pieza` para
+ * coger la medida de lectura.
+ *
+ * @param {{ entradas: Array<{ fecha: string, texto: string, fotos: object[] }>, desde: number }} props
+ */
+function Seguimiento({ entradas, desde }) {
+  let n = desde
+  return entradas.map((s) => {
+    const primera = n
+    n += s.fotos.length
+    return (
+      <Fragment key={s.fecha}>
+        <P data-seguimiento={s.fecha}>
+          <strong style={{ color: 'var(--ink)' }}>{fmtDateHuman(s.fecha)}.</strong> {s.texto}
+        </P>
+        <Fotos fotos={s.fotos} desde={primera} />
+      </Fragment>
+    )
+  })
 }
 
 /**
@@ -297,6 +328,9 @@ export default function MatriculasYMoviles() {
         caption="Observación desde la vía pública. Lo que una fotografía sostiene es «se observó», no «no existe»."
       />
       <Fotos fotos={ob.fotos} />
+      {ob.seguimiento?.length > 0 && (
+        <Seguimiento entradas={ob.seguimiento} desde={ob.fotos.length} />
+      )}
       <Lista items={ob.limites} />
 
       {/* 5 · la versión pública. Se cita la nota del propio Ayuntamiento

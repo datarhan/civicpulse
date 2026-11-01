@@ -20,6 +20,7 @@ export function Resultado({ resultado, id }) {
   if (!resultado) return null
   const r = resultado
   const p = r.pares
+  const cifra = (v) => v.toLocaleString('es-ES', { maximumFractionDigits: r.decimales ?? 1 })
 
   return (
     <div
@@ -49,7 +50,7 @@ export function Resultado({ resultado, id }) {
 
       <div style={{ display: 'flex', alignItems: 'baseline', gap: 10, marginTop: 8 }}>
         <span className="mono" style={{ fontSize: 'var(--fs-card)', fontWeight: 600 }}>
-          {r.valor.toLocaleString('es-ES', { maximumFractionDigits: 1 })} {r.unidad}
+          {cifra(r.valor)} {r.unidad}
         </span>
         <span style={{ fontSize: 'var(--fs-meta)', color: 'var(--ink50)' }}>
           {r.etiqueta} · {r.periodo}
@@ -79,9 +80,8 @@ export function Resultado({ resultado, id }) {
           className="mono"
           style={{ margin: '8px 0 0', fontSize: 'var(--fs-aux)', color: 'var(--ink50)' }}
         >
-          Mediana de {p.n} municipios comparables ({p.conjunto}):{' '}
-          {p.mediana.toLocaleString('es-ES', { maximumFractionDigits: 1 })} {r.unidad} · aquí,
-          percentil {p.percentil}
+          Mediana de {p.n} municipios comparables ({p.conjunto}): {cifra(p.mediana)} {r.unidad} ·
+          aquí, percentil {p.percentil}
         </p>
       )}
 
@@ -112,6 +112,47 @@ export function Resultado({ resultado, id }) {
             </li>
           ))}
         </ul>
+      )}
+
+      {/* Lo que han publicado terceros. Cada una dice de dónde saca el dato y
+          qué dice nuestro archivo del boletín al que se refiere: el «coincide»
+          lo calcula `otras-lecturas-agua.ts`, no se escribe a mano. */}
+      {r.otrasLecturas?.length > 0 && (
+        <div data-otras-lecturas style={{ marginTop: 10 }}>
+          <div
+            className="mono"
+            style={{
+              fontSize: 'var(--fs-micro)',
+              textTransform: 'uppercase',
+              letterSpacing: '.07em',
+              color: 'var(--ink50)',
+            }}
+          >
+            Otras lecturas
+          </div>
+          <ul
+            style={{
+              margin: '4px 0 0',
+              paddingLeft: 18,
+              fontSize: 'var(--fs-meta)',
+              color: 'var(--ink70, var(--ink50))',
+            }}
+          >
+            {r.otrasLecturas.map((l) => (
+              <li key={l.url} style={{ marginBottom: 4 }}>
+                <a
+                  href={l.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  style={{ color: 'var(--civic)' }}
+                >
+                  {l.quien}, «{l.titulo}» ↗
+                </a>{' '}
+                ({l.fecha}): {l.cita}. {l.base} {l.cotejo}
+              </li>
+            ))}
+          </ul>
+        </div>
       )}
 
       <p

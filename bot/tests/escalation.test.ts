@@ -1,4 +1,6 @@
 import { afterEach, describe, expect, it, beforeEach, vi } from 'vitest'
+import { readdirSync, readFileSync } from 'node:fs'
+import { join } from 'node:path'
 import { openDb, type Db } from '../src/db/client'
 import {
   addApoyo,
@@ -15,6 +17,7 @@ import {
 } from '../src/services/sindic'
 import { checkSilencio, plazosSinCalendario } from '../src/services/cron'
 import { routeUsingLocalOfficials } from '../src/services/router'
+import { SINDIC_PRESENTAR_QUEJA } from '../../src/scraper/queja-router'
 import type { AvisosHitos } from '../src/services/avisos-hitos'
 import { creaPublicada } from './helpers/publicada'
 
@@ -92,7 +95,54 @@ describe('sindic — template renderer', () => {
     expect(md).toMatch(/ABC123/)
     expect(md).toMatch(/Bache de 40cm en Av. Primera/)
     expect(md).toMatch(/Síndic de Greuges/)
-    expect(md).toMatch(/Ley 11\/1988/)
+  })
+
+  /**
+   * El escrito pedía amparo en la Ley 11/1988 y en sus arts. 18 y 29: una ley
+   * derogada por la Ley 2/2021, de 26 de marzo, en vigor desde el 30-04-2021. Los
+   * artículos se han buscado en el texto del BOE, no por número: el informe que
+   * el Síndic pide a la administración (antes art. 18.1, quince días) es hoy el
+   * art. 31.2 (un mes); la resolución con recordatorios de deberes legales y
+   * recomendaciones (antes art. 29.1) es el art. 33.2; su publicación en la web
+   * de la institución, el art. 34.1.
+   */
+  it('cita la Ley 2/2021 del Síndic y sus artículos equivalentes, no la Ley 11/1988', () => {
+    const q = seed(db)
+    register(db, q.id)
+    const row = db.prepare('SELECT * FROM quejas WHERE id = ?').get(q.id) as typeof q
+    const routing = routeUsingLocalOfficials({
+      title: q.title,
+      detail: q.detail,
+      category: q.category as never,
+    })
+    const md = renderSindicMarkdown(
+      buildSindicTemplate(row, routing, new Date('2026-05-20T10:00:00Z')),
+    )
+    expect(md).not.toMatch(/11\/1988/)
+    expect(md).toMatch(
+      /\*\*Base legal:\*\* Ley 2\/2021, de 26 de marzo, del Síndic de Greuges de la Comunitat Valenciana/,
+    )
+    expect(md).toMatch(/informe detallado y razonado[^\n]*\(art\. 31\.2 de la Ley 2\/2021\)/)
+    expect(md).toMatch(/deberes legales incumplidos[^\n]*\(art\. 33\.2 de la Ley 2\/2021\)/)
+    expect(md).toMatch(/página web de la institución \(art\. 34\.1 de la Ley 2\/2021\)/)
+    expect(md).toContain('https://www.boe.es/buscar/act.php?id=BOE-A-2021-6051')
+  })
+
+  it('enlaza la página del Síndic para presentar la queja, la misma que da la escalera', () => {
+    const q = seed(db)
+    register(db, q.id)
+    const row = db.prepare('SELECT * FROM quejas WHERE id = ?').get(q.id) as typeof q
+    const routing = routeUsingLocalOfficials({
+      title: q.title,
+      detail: q.detail,
+      category: q.category as never,
+    })
+    const md = renderSindicMarkdown(buildSindicTemplate(row, routing))
+    expect(md).not.toMatch(/presenta-una-queja\b/)
+    expect(md).toContain(`**Portal:** ${SINDIC_PRESENTAR_QUEJA}`)
+    expect(routing.escalation.find((e) => e.who.includes('Síndic'))?.template).toBe(
+      SINDIC_PRESENTAR_QUEJA,
+    )
   })
 
   it('cites the LPACAP articles the router provided', () => {
@@ -580,5 +630,32 @@ describe('/escalar — sólo con el plazo vencido, con la misma cuenta', () => {
     expect(motivoParaNoEscalar(capturada, rutaDe(q), new Date('2099-05-01T10:00:00Z'))).toMatch(
       /capturada/,
     )
+  })
+})
+
+describe('el bot no enlaza la página retirada del Síndic ni cita la ley derogada', () => {
+  const SRC = join(__dirname, '..', 'src')
+  // Lo que se ejecuta y se escribe, no los comentarios: ésos cuentan su historia.
+  const sinComentarios = (texto: string) =>
+    texto
+      .split('\n')
+      .filter((l) => !/^\s*(\*|\/\/|\/\*)/.test(l))
+      .join('\n')
+  const fuentes = (d: string): Array<{ f: string; texto: string }> =>
+    readdirSync(d, { withFileTypes: true }).flatMap((e) =>
+      e.isDirectory()
+        ? fuentes(join(d, e.name))
+        : e.name.endsWith('.ts')
+          ? [{ f: join(d, e.name), texto: sinComentarios(readFileSync(join(d, e.name), 'utf8')) }]
+          : [],
+    )
+
+  it('nada en bot/src enlaza /es/presenta-una-queja ni cita la Ley 11/1988', () => {
+    const todas = fuentes(SRC)
+    expect(todas.length).toBeGreaterThan(20) // el control: el barrido mira algo
+    const malas = todas
+      .filter(({ texto }) => /elsindic\.com\/es\/presenta-una-queja|11\/1988/.test(texto))
+      .map(({ f }) => f.slice(SRC.length + 1))
+    expect(malas).toEqual([])
   })
 })

@@ -52,9 +52,15 @@ test.describe('Cargos (/cargos)', () => {
     await expect(card).toBeVisible({ timeout: 8000 })
     await expect(page.getByText('Sin delegación de área').first()).toBeVisible({ timeout: 8000 })
     await expect(page.getByText(/no hay área con la que comparar/i).first()).toBeVisible()
+    // The label on every opposition card, the reason once in the section head.
+    const seccion = page.locator('#quien-fiscaliza')
+    const tarjetas = await seccion.locator('.cp-card').count()
+    expect(tarjetas).toBeGreaterThan(0)
+    await expect(seccion.getByText('Sin delegación de área')).toHaveCount(tarjetas)
+    await expect(seccion.getByText(/no hay área con la que comparar/i)).toHaveCount(1)
   })
 
-  test('the encaje block states its backing once per card, never as a repeated badge', async ({
+  test('the encaje block states its backing once per section, with a mark on each card', async ({
     page,
   }) => {
     // Against the REAL snapshot, not a stub: the rule under test is about how
@@ -65,13 +71,21 @@ test.describe('Cargos (/cargos)', () => {
     const body = await page.locator('body').innerText()
     const count = (re: RegExp) => (body.match(re) ?? []).length
     const cards = count(/ENCAJE DECLARADO/g)
-    const sentences = count(/Lo que aquí se cita procede del CV/g)
+    const porTarjeta = count(/Lo que aquí se cita procede del CV/g)
+    const porSeccion = count(/lo que citan las tarjetas procede del CV/g)
+    const marcas = await page.locator('[data-respaldo-marca]').count()
 
     // It renders at all (an assertion that measures nothing is the failure mode
-    // this repo keeps hitting), and never more than once per card.
+    // this repo keeps hitting). Every citing government card agrees on its
+    // backing today, so «Quién dirige qué» says it once and each card keeps the
+    // four-word mark that links to it. The day one card disagrees this goes
+    // red, and every card says its own again — which is the designed fallback.
     expect(cards).toBeGreaterThan(0)
-    expect(sentences).toBeGreaterThan(0)
-    expect(sentences).toBeLessThanOrEqual(cards)
+    expect(porSeccion).toBe(1)
+    expect(porTarjeta).toBe(0)
+    expect(marcas).toBeGreaterThan(0)
+    expect(marcas).toBeLessThanOrEqual(cards)
+    await expect(page.locator('#quien-dirige #encaje-respaldo')).toHaveCount(1)
     // And NOT as a mark beside every chip. While all the assessments agree —
     // they all do today — the per-item mark must not appear anywhere at all.
     // Matched as a bare word rather than a whole line: the mark is a flex item
@@ -187,9 +201,13 @@ test.describe('Cargos (/cargos)', () => {
     // only asserts the sitting grid would stay green while the former member
     // quietly came back as a sitting one. Against the REAL snapshot.
     await page.goto('/cargos', { waitUntil: 'domcontentloaded' })
-    await expect(page.getByText('Ya no forman parte de la corporación').first()).toBeVisible({
-      timeout: 8000,
-    })
+    // Dentro del cuerpo de su sección: la pestaña del pliegue lleva el mismo
+    // título, siempre en el DOM y oculta con «todo» (components/Lecturas.jsx).
+    await expect(
+      page
+        .locator('#ya-no-forman-parte > .cp-experta-cuerpo')
+        .getByText('Ya no forman parte de la corporación'),
+    ).toBeVisible({ timeout: 8000 })
     const body = await page.locator('body').innerText()
     const i = body.indexOf('YA NO FORMAN PARTE DE LA CORPORACIÓN')
     expect(i).toBeGreaterThan(0)
@@ -212,8 +230,10 @@ test.describe('Cargos (/cargos)', () => {
     expect(sitting).toMatch(/fijada en el acuerdo|asistencias por sesión/)
     // The composition bar still counts 21 seats: a former member is not one.
     expect(body).toMatch(/Total 21 escaños/)
-    // The stamp says how many corrections it carries, derived from the data.
-    expect(body).toMatch(/\d+ corrección\(es\) documentada\(s\)/)
+    // The stamp says how many corrections it carries, derived from the data —
+    // in words, not «1 corrección(es) documentada(s)».
+    expect(body).toMatch(/Una corrección documentada|\d+ correcciones documentadas/)
+    expect(body).not.toMatch(/\((es|s)\)/)
     // And the person's own record resolves, leading with the departure.
     const link = page.locator('a[href="/cargos/soraya-trejo-delgado"]').first()
     await expect(link).toBeVisible({ timeout: 8000 })
@@ -274,8 +294,11 @@ test.describe('Cargos (/cargos)', () => {
     // ahí, no un fallo nuevo. La tarjeta de retribuciones devuelve `null`
     // hasta que están ISPA y dedicaciones, así que su titular es la única
     // señal que significa «los datos que esto afirma ya han llegado».
+    // Por su papel de encabezado y no por su texto: la pestaña del pliegue
+    // (components/Lecturas.jsx) lleva el mismo título, siempre en el DOM y
+    // oculta con «todo», y no espera a ningún dato.
     await expect(
-      page.getByText('Qué cobra la corporación, y de dónde sale cada cifra').first(),
+      page.getByRole('heading', { name: 'Qué cobra la corporación, y de dónde sale cada cifra' }),
     ).toBeVisible({ timeout: 10000 })
     const body = await page.locator('body').innerText()
     // The distribution renders with both ends named, so the reader can see the
@@ -293,13 +316,14 @@ test.describe('Cargos (/cargos)', () => {
     // ISPA row placed under a named face is a claim the source cannot support,
     // and it would be the `Otro` sentinel again: naming by elimination.
     await page.goto('/cargos', { waitUntil: 'domcontentloaded' })
-    await expect(page.getByText('Quién fiscaliza').first()).toBeVisible({ timeout: 8000 })
-    const body = await page.locator('body').innerText()
-    const i = body.indexOf('Quién fiscaliza')
-    expect(i, 'la rejilla de oposición tiene que estar en la página').toBeGreaterThan(0)
-    // Up to the plantilla band, which is a different subject with its own figures.
-    const j = body.indexOf('Plantilla municipal')
-    const oposicion = body.slice(i, j > i ? j : undefined)
+    // The section by its id, not by the first «Quién fiscaliza» in the body:
+    // the «En breve» card links to it with those words, and slicing from there
+    // swallowed the pay panel with its euros.
+    const seccion = page.locator('#quien-fiscaliza')
+    await expect(seccion, 'la rejilla de oposición tiene que estar en la página').toBeVisible({
+      timeout: 8000,
+    })
+    const oposicion = await seccion.innerText()
     // It really contains the cards (an empty slice would pass the next line).
     expect(oposicion).toMatch(/asistencias por sesión/i)
     expect(oposicion).not.toMatch(/\d[\d.]*,\d{2}\s*€/)
@@ -361,9 +385,10 @@ test.describe('Cargos (/cargos)', () => {
     const nota = page.locator('[data-nota-fijado]')
     await expect(nota).toContainText('5.460,49')
     expect(await nota.innerText()).not.toMatch(/fijado por cargo/)
-    // Y la tarjeta del alcalde lo dice junto a su cifra.
+    // Y la tarjeta del alcalde lo dice junto a su cifra. La de su sección: la
+    // lista de los 21, arriba, también enlaza su ficha y también es una .cp-card.
     const tarjeta = page
-      .locator('.cp-card')
+      .locator('#quien-dirige .cp-card')
       .filter({ has: page.locator('a[href="/cargos/robert-raga-gadea"]') })
       .first()
     await expect(tarjeta.locator('[data-retribucion="fijada"]')).toContainText('5.460,49')
@@ -462,7 +487,9 @@ test.describe('Cargos (/cargos)', () => {
     // es la página de la corporación —la que las publica todas—, no el
     // documento de nadie.
     await page.goto('/cargos', { waitUntil: 'domcontentloaded' })
-    await expect(page.getByText('Quién dirige qué').first()).toBeVisible({ timeout: 8000 })
+    await expect(page.getByRole('heading', { name: 'Quién dirige qué' })).toBeVisible({
+      timeout: 8000,
+    })
     const listadoMuerto =
       'https://www.ribarroja.es/es/portal_de_transparencia/informacion_sobre_la_corporacion_municipal/datos_biograficos_del_alcalde_sa_y_concejales/contenidos/864708/0835919'
     await expect(page.locator(`a[href="${listadoMuerto}"]`)).toHaveCount(0)
@@ -534,9 +561,10 @@ test.describe('Cargos (/cargos)', () => {
     await page.goto('/cargos', { waitUntil: 'domcontentloaded' })
     // Anclada al enlace de ESA ficha, no al nombre: `hasText` casa también con
     // cualquier tarjeta ancestra que lo contenga, y la aserción se mudaría de
-    // sitio sin avisar.
+    // sitio sin avisar. Y dentro de las secciones de tarjetas completas: la
+    // lista de los 21, arriba, también enlaza la ficha y también es una .cp-card.
     const tarjeta = page
-      .locator('.cp-card')
+      .locator('#quien-dirige .cp-card, #quien-fiscaliza .cp-card')
       .filter({ has: page.locator(`a[href="/cargos/${c!.slug}"]`) })
       .first()
     await expect(tarjeta).toBeVisible({ timeout: 8000 })
@@ -586,8 +614,33 @@ test.describe('Cargos (/cargos)', () => {
     expect(href).toMatch(/^\/cargos\/[a-z0-9-]+$/)
     await link.click()
     await expect(page).toHaveURL(new RegExp(`${href!.replace(/\//g, '\\/')}$`))
-    await expect(page.getByText(/nivel de grupo parlamentario|Atribución/i).first()).toBeVisible({
+    await expect(page.getByText(/se atribuyen al partido|Atribución/i).first()).toBeVisible({
       timeout: 8000,
     })
   })
+
+  // La lista de los 21 de la lectura vecinal: una cara por escaño, y cada una
+  // dentro de su caja —el nombre y lo que lleva enteros— a 375 y en escritorio.
+  for (const ancho of [375, 1280]) {
+    test(`la lista de los 21 cabe en su caja a ${ancho}px`, async ({ page }) => {
+      const lista = JSON.parse(readFileSync('public/data/officials.json', 'utf8'))
+      await page.setViewportSize({ width: ancho, height: 900 })
+      await page.goto('/cargos', { waitUntil: 'domcontentloaded' })
+      const caras = page.locator('[data-lista-cargos] [data-cargo]')
+      await expect(caras).toHaveCount(lista.count, { timeout: 8000 })
+      const medidas = await page.locator('[data-lista-cargos]').evaluate((s) => {
+        const caja = s.getBoundingClientRect()
+        return [...s.querySelectorAll('[data-cargo]')].map((li) => {
+          const r = li.getBoundingClientRect()
+          const texto = li.querySelector('.cp-cargos-lista-texto')!
+          return {
+            dentro: r.left >= caja.left - 0.5 && r.right <= caja.right + 0.5,
+            sinRecorte: texto.scrollWidth <= texto.clientWidth + 1,
+          }
+        })
+      })
+      expect(medidas).toHaveLength(lista.count)
+      for (const m of medidas) expect(m).toEqual({ dentro: true, sinRecorte: true })
+    })
+  }
 })

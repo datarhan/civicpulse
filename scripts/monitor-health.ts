@@ -33,7 +33,7 @@ import {
   type Observations,
 } from '../src/scraper/health-monitor'
 import { transcriptionPending, TRANSCRIBE_BLOCKLIST_IDS } from '../src/scraper/transcribe-blocklist'
-import { cotejarCompose } from '../src/scraper/verified-merge'
+import { cotejarEnDisco } from './lib/cotejo-compose'
 
 const STATE = resolve('.health-monitor-state.json')
 const DATA = resolve('public/data')
@@ -132,17 +132,6 @@ function nightlyFailStreak(): number {
     return contarNochesEnRojo(runs.map((r) => r.conclusion))
   } catch {
     return 0 // gh unavailable — do not invent a streak
-  }
-}
-
-/** El `generatedAt` de un volcado, o `null` si no está o no se deja leer. */
-function selloGenerado(path: string): string | null {
-  if (!existsSync(path)) return null
-  try {
-    const doc = JSON.parse(readFileSync(path, 'utf8')) as { generatedAt?: unknown }
-    return typeof doc.generatedAt === 'string' ? doc.generatedAt : null
-  } catch {
-    return null
   }
 }
 
@@ -252,6 +241,11 @@ async function gather(rachasPrevias: Record<string, string>): Promise<Observatio
     // run que muere en la guarda no escribe ninguno — su último manifiesto sólo
     // envejece. Además `assertExpectationsAreReal` prohíbe listar un script sin
     // instrumentar, y `press-lab` y `review-sweep` no instrumentan nada.
+    //
+    // Y desde el 2026-10-25, la otra mitad: la flota que corre y no PUBLICA.
+    // Del 22 al 25 cada pull inicial chocó con la nocturna sobre el mismo
+    // commit local y nada avisó; ahora `main` por delante de origin más de un
+    // día, o una racha de pulls fallidos en los logs, sale aquí en rojo.
     'check:cron',
     // La misma pregunta, para los ganchos de git: ¿corren? El 27-09-2026 nueve
     // de doce worktrees comiteaban y empujaban sin ninguno, porque husky deja
@@ -401,10 +395,9 @@ async function gather(rachasPrevias: Record<string, string>): Promise<Observatio
   // El mismo cotejo que hace `check:verified-compose`, en puro, para poder
   // pintar la cola SIN levantar un subproceso y sin depender de un código de
   // salida que a propósito es 0.
-  const composeCotejo = cotejarCompose({
-    baseGeneratedAt: selloGenerado(resolve(DATA, 'pleno-claims-verified-base.json')),
-    publicadoGeneratedAt: selloGenerado(resolve(DATA, 'pleno-claims-verified.json')),
-  })
+  // Con la huella del base, como el guion: sin ella, un base regenerado cada
+  // noche con el mismo contenido pintaba la cola como pendiente.
+  const composeCotejo = cotejarEnDisco()
 
   return {
     now,

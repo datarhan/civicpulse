@@ -1,6 +1,7 @@
 import { describe, it, expect } from 'vitest'
 import { readdirSync, readFileSync, existsSync } from 'node:fs'
 import { resolve, join } from 'node:path'
+import { INSTALA_CON_APT } from './setup/workflows.js'
 
 /**
  * Ningún `playwright install` de CI se ejecuta sin sanear antes las fuentes apt.
@@ -35,7 +36,8 @@ import { resolve, join } from 'node:path'
 
 const DIR = resolve('.github/workflows')
 const SANEADOR = 'scripts/ci-apt-fuentes-rotas.sh'
-const INSTALA = /npx\s+playwright\s+install/
+// Sólo las instalaciones que pasan por apt; el porqué, junto al patrón.
+const INSTALA = INSTALA_CON_APT
 
 /** Todo workflow del repositorio, leído del disco. */
 function workflows() {
@@ -67,6 +69,21 @@ describe('fuentes apt rotas · ningún playwright install queda desprotegido', (
     expect(ficheros).toContain('e2e.yml')
     expect(ficheros).toContain('nightly-scrape.yml')
     expect(ficheros).toContain('cesel-entrega.yml')
+  })
+
+  // El patrón se estrechó el 2026-10-26 para dejar fuera la instalación sin
+  // apt de `unidad`. Que siga viendo las dos formas con apt, y en cualquier
+  // orden de argumentos: si dejara de casar, las de abajo pasarían sin mirar.
+  it('el detector distingue lo que pasa por apt de lo que no', () => {
+    expect(INSTALA.test('npx playwright install-deps chromium')).toBe(true)
+    expect(INSTALA.test('npx playwright install --with-deps chromium')).toBe(true)
+    expect(INSTALA.test('npx playwright install chromium --with-deps')).toBe(true)
+    expect(
+      INSTALA.test('bash scripts/ci-apt-con-tope.sh npx playwright install --with-deps chromium'),
+    ).toBe(true)
+    expect(INSTALA.test('npx playwright install chromium'), 'sólo el navegador: no toca apt').toBe(
+      false,
+    )
   })
 
   it('el saneador existe y es ejecutable como script', () => {

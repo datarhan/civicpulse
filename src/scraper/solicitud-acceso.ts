@@ -87,9 +87,16 @@ export const ESTADO_SOLICITUD_TONO: Record<EstadoSolicitud, string> = {
  * publicado un acceso que no hubo. No se llama «remitida»: en la Ley 19/2013
  * remitir es reenviar la solicitud al competente (art. 19.1), y precisamente eso
  * es lo que un organismo puede no hacer al contestar así.
+ *
+ * `concedido-diferido` entró el 2026-10-20 por la misma razón: la Comisión de
+ * Precios estimó la solicitud, pero un tercero se había opuesto y el art. 22.2
+ * de la Ley 19/2013 aplaza el acceso hasta que la concesión sea firme. Con
+ * `concedido` la página diría «lo concedieron» sin un solo documento entregado.
+ * Cuando lleguen, la fila pasa a `concedido`.
  */
 export const SENTIDOS_RESPUESTA = [
   'concedido',
+  'concedido-diferido',
   'parcial',
   'denegado',
   'no-les-corresponde',
@@ -109,6 +116,8 @@ export type SentidoRespuesta = (typeof SENTIDOS_RESPUESTA)[number]
  */
 export const QUE_HICIERON: Record<SentidoRespuesta, string> = {
   concedido: 'lo concedieron',
+  'concedido-diferido':
+    'lo concedieron, con la entrega aplazada hasta que la concesión sea firme porque un tercero se opuso',
   parcial: 'lo concedieron en parte',
   denegado: 'lo denegaron',
   'no-les-corresponde': 'contestaron que no les corresponde',
@@ -158,14 +167,19 @@ export interface RegistroSolicitudes {
  * las quejas (`finDelPlazoEnMeses`), con el calendario de quien resuelve: el de
  * la sede para el registro curado, que es del Ayuntamiento, y el de cada fila en
  * los reportajes (`calendarios-inhabiles.ts`).
+ *
+ * `meses` es 2 cuando el órgano notificó que amplía el plazo «por otro mes»
+ * (art. 20.1): se cuentan los dos de fecha a fecha desde el arranque, y el
+ * art. 30.5 se aplica sólo al último día.
  */
 export type Vencimiento = Exclude<FinDelPlazo, { cuenta: 'sin-fecha' }>
 
 export function venceEl(
   presentadaEl: string,
   festivos: FestivosPorAnio = FESTIVOS_DE_LA_SEDE,
+  meses: 1 | 2 = 1,
 ): Vencimiento {
-  const fin = finDelPlazoEnMeses(presentadaEl, 1, festivos)
+  const fin = finDelPlazoEnMeses(presentadaEl, meses, festivos)
   // Las fechas de una solicitud las valida quien las escribe. Una ilegible aquí
   // es un fallo, y callarla como «sin plazo» lo escondería.
   if (fin.cuenta === 'sin-fecha') throw new TypeError(`venceEl: «${presentadaEl}» no es una fecha`)

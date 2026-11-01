@@ -466,11 +466,13 @@ describe('computeDepartmentStats — contratación por concejalía', () => {
       contratos: 2,
       importeEur: 100000,
       anios: null,
+      conFecha: 0,
     })
     expect(bySlug['medio-ambiente'].contratacion).toEqual({
       contratos: 1,
       importeEur: 25000,
       anios: null,
+      conFecha: 0,
     })
   })
 
@@ -518,6 +520,8 @@ describe('computeDepartmentStats — contratación por concejalía', () => {
       contratos: 3,
       importeEur: 60,
       anios: { desde: 2018, hasta: 2025 },
+      // u3 suma sus 30 € y no tiene año: tres contratos, dos con fecha.
+      conFecha: 2,
     })
     expect(bySlug.vivienda.contratacion.anios).toEqual({ desde: 2017, hasta: 2017 })
   })
@@ -541,6 +545,7 @@ describe('computeDepartmentStats — contratación por concejalía', () => {
       contratos: 0,
       importeEur: 0,
       anios: null,
+      conFecha: 0,
     })
   })
 })

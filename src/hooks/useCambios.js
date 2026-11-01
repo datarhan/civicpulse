@@ -2,7 +2,8 @@
 import { useMemo } from 'react'
 import { useQuejas, CATEGORY_LABEL, STATE_LABEL } from './useQuejas'
 import { useGeo } from './useGeo'
-import { nombreDeBarrio } from '../lib/formatters'
+import { euros, nombreDeBarrio } from '../lib/formatters'
+import { etiquetaDeContrato } from '../scraper/etiqueta-de-contrato'
 import { usePlenos } from './usePlenos'
 import { usePress } from './usePress'
 import { useTenders, formatDate } from './useTenders'
@@ -10,6 +11,8 @@ import { useBdns } from './useBdns'
 import { useParticipa, KIND_LABEL } from './useParticipa'
 import { isCommittedContract, importeAdjudicado } from '../lib/contract-status.js'
 import { diaDeLaSede } from '../scraper/queja-router'
+import { sinAnunciosClasificados } from '../scraper/press-clasificado'
+import { agruparPorNoticia } from '../scraper/prensa-por-noticia'
 
 /**
  * Hook that aggregates "what changed" across every real-data corpus into a
@@ -25,7 +28,11 @@ import { diaDeLaSede } from '../scraper/queja-router'
  *   { kind, date, title, subtitle, url, canonicalPath, shareText }
  *
  * Returns:
- *   { loading, changes, byKind, totalCount, windowDays }
+ *   { loading, changes, byKind, prensaPorNoticia, fuentes, totalCount, windowDays }
+ *
+ * `prensaPorNoticia` is the press card's rows, `{ principal, piezas }` events
+ * (`agruparPorNoticia`); `changes` and `byKind.prensa` hold one event per
+ * story, its row's headline.
  */
 
 const DEFAULT_WINDOW_DAYS = 7
@@ -41,18 +48,57 @@ function cutoff(days) {
   return d.toISOString().slice(0, 10)
 }
 
+/** Una pieza de press.json como evento de /cambios. */
+function eventoDePrensa(it) {
+  return {
+    kind: 'prensa',
+    id: it.id,
+    date: it.date.slice(0, 10),
+    title: it.title,
+    subtitle: it.source || it.sourceHost,
+    // El anfitrión, para que «En una frase» cuente aparte la web municipal.
+    origen: it.sourceHost ?? null,
+    url: it.link,
+    external: true,
+    shareText: `"${it.title}" — ${it.source || ''} (${it.date.slice(0, 10)})`,
+  }
+}
+
 export function useCambios(days = DEFAULT_WINDOW_DAYS) {
-  const { data: quejas, loading: qL } = useQuejas()
-  const { data: plenos, loading: pL } = usePlenos()
-  const { data: press, loading: prL } = usePress()
-  const { data: tenders, loading: tL } = useTenders()
-  const { data: bdns, loading: bL } = useBdns()
-  const { data: participa, loading: paL } = useParticipa()
+  const { data: quejas, loading: qL, error: qE } = useQuejas()
+  const { data: plenos, loading: pL, error: pE } = usePlenos()
+  const { data: press, loading: prL, error: prE } = usePress()
+  const { data: tenders, loading: tL, error: tE } = useTenders()
+  const { data: bdns, loading: bL, error: bE } = useBdns()
+  const { data: participa, loading: paL, error: paE } = useParticipa()
   // Sólo para escribir el barrio de una queja con su nombre de OSM. No entra en
   // `loading`: sin geo.json el barrio cae en el slug capitalizado, no se calla.
   const { data: geo } = useGeo()
 
   const loading = qL || pL || prL || tL || bL || paL
+
+  // La prensa de la ventana, sin los anuncios de un portal inmobiliario: un piso
+  // en venta de Fotocasa no es una noticia, y la frase lo contaba como una. Es el
+  // mismo filtro que aplica /laboratorio (`sinAnunciosClasificados`).
+  const prensaEnVentana = useMemo(() => {
+    const cut = cutoff(days)
+    const items = /** @type {any[]} */ (press?.items || [])
+    return sinAnunciosClasificados(items).filter((it) => inWindow(it.date?.slice(0, 10), cut))
+  }, [press, days])
+
+  // La prensa, una noticia por fila: la misma en dos medios, o en castellano y
+  // en valenciano, contaba y salía dos veces (`agruparPorNoticia`). La noticia es
+  // la unidad de toda la página —la frase, la cabecera de la tarjeta, «Y N más»
+  // y el total—, y la fila dice «En 2 sitios» cuando junta piezas. Contando
+  // piezas, la frase decía «Hay 13 noticias» junto a una tarjeta de once.
+  const prensaPorNoticia = useMemo(
+    () =>
+      agruparPorNoticia(prensaEnVentana).map((g) => ({
+        principal: eventoDePrensa(g.principal),
+        piezas: g.piezas.map(eventoDePrensa),
+      })),
+    [prensaEnVentana],
+  )
 
   const changes = useMemo(() => {
     const cut = cutoff(days)
@@ -96,19 +142,8 @@ export function useCambios(days = DEFAULT_WINDOW_DAYS) {
       })
     }
 
-    // Press — Google News aggregation.
-    for (const it of press?.items || []) {
-      if (!inWindow(it.date?.slice(0, 10), cut)) continue
-      out.push({
-        kind: 'prensa',
-        date: it.date.slice(0, 10),
-        title: it.title,
-        subtitle: it.source || it.sourceHost,
-        url: it.link,
-        external: true,
-        shareText: `"${it.title}" — ${it.source || ''} (${it.date.slice(0, 10)})`,
-      })
-    }
+    // Press — Google News aggregation: una noticia, con el titular de su fila.
+    for (const g of prensaPorNoticia) out.push(g.principal)
 
     // Tenders — new adjudications (awardDate fresh).
     for (const c of tenders?.contracts || []) {
@@ -118,16 +153,26 @@ export function useCambios(days = DEFAULT_WINDOW_DAYS) {
       // the feed would have announced one as if it stood. Same predicate the
       // money totals use, so "adjudicado" means one thing across the site.
       if (!isCommittedContract(c)) continue
-      const amt = importeAdjudicado(c) ?? 0 // sin IVA (PLACSP)
-      const amount = amt > 0 ? `€${amt.toLocaleString('es-ES')}` : ''
+      // Lo adjudicado sin IVA (PLACSP), o null si la fila no lo publica: nunca un
+      // cero (`importeAdjudicado`). La tarjeta lo escribe como el resto del
+      // sitio, «14.984 € sin IVA», y no «€14.984,46».
+      const importe = importeAdjudicado(c)
+      // Qué es, en una línea; el título oficial va debajo si la etiqueta dice
+      // menos (`etiquetaDeContrato`). El órgano no se pinta: en los 814
+      // contratos publicados es el propio Ayuntamiento.
+      const { etiqueta, recortada } = etiquetaDeContrato(c.title)
       out.push({
         kind: 'licitacion',
         date: c.awardDate,
-        title: c.title,
-        subtitle: [c.contractor, amount, c.assignee].filter(Boolean).join(' · '),
+        title: etiqueta || c.title,
+        tituloOficial: recortada ? c.title : null,
+        importe,
+        adjudicataria: c.assignee ?? null,
         url: c.permalink,
         external: true,
-        shareText: `Contrato adjudicado · ${c.title}${amount ? ' · ' + amount : ''}`,
+        shareText: `Contrato adjudicado · ${etiqueta || c.title}${
+          importe != null ? ` · ${euros(importe)} sin IVA` : ''
+        }`,
       })
     }
 
@@ -139,6 +184,8 @@ export function useCambios(days = DEFAULT_WINDOW_DAYS) {
         date: b.date.slice(0, 10),
         title: b.description,
         subtitle: b.organ,
+        // Quién convoca (`bdns.ts`): sólo las propias son un acto del Ayuntamiento.
+        direction: b.direction,
         url: b.sourceUrl,
         external: true,
         shareText: `Subvención · ${b.description}`,
@@ -161,7 +208,7 @@ export function useCambios(days = DEFAULT_WINDOW_DAYS) {
 
     out.sort((a, b) => (b.date || '').localeCompare(a.date || ''))
     return out
-  }, [quejas, plenos, press, tenders, bdns, participa, geo, days])
+  }, [quejas, plenos, prensaPorNoticia, tenders, bdns, participa, geo, days])
 
   const byKind = useMemo(() => {
     const m = {}
@@ -172,7 +219,34 @@ export function useCambios(days = DEFAULT_WINDOW_DAYS) {
     return m
   }, [changes])
 
-  return { loading, changes, byKind, totalCount: changes.length, windowDays: days, formatDate }
+  // De qué copia sale cada clase, y si se pudo leer: «En una frase» no dice
+  // «no consta» de una fuente atrasada o caída (`fraseDeLaSemana`).
+  const fuentes = useMemo(() => {
+    const f = (fichero, data, error) => ({
+      fichero,
+      generatedAt: data?.generatedAt ?? null,
+      leida: !error && data != null,
+    })
+    return {
+      queja: f('quejas.json', quejas, qE),
+      pleno: f('plenos.json', plenos, pE),
+      prensa: f('press.json', press, prE),
+      licitacion: f('tenders.json', tenders, tE),
+      subvencion: f('bdns.json', bdns, bE),
+      participa: f('participa.json', participa, paE),
+    }
+  }, [quejas, plenos, press, tenders, bdns, participa, qE, pE, prE, tE, bE, paE])
+
+  return {
+    loading,
+    changes,
+    byKind,
+    prensaPorNoticia,
+    fuentes,
+    totalCount: changes.length,
+    windowDays: days,
+    formatDate,
+  }
 }
 
 export const KIND_LABEL_ES = {

@@ -2,9 +2,121 @@ import { NavLink } from 'react-router-dom'
 import { SectionGlyph } from './SectionGlyph'
 import { useWikidata } from '../hooks/useWikidata'
 import { useT } from '../i18n'
-import { NAV, NAV_SECONDARY } from '../nav'
+import { NAV, NAV_SECONDARY, NAV_GROUPS, GRUPO_PROYECTO, entradasDeGrupo } from '../nav'
 
 export { NAV }
+
+/**
+ * La barra lateral, en los mismos grupos que la barra de secciones de la
+ * portada (auditoría de las dos lecturas, fase 5, punto 3). Era una lista
+ * plana de una veintena de entradas bajo «Navegación», y quien pasaba de la
+ * portada a una página interior perdía los cinco nombres que la hacían
+ * navegable.
+ *
+ * Los grupos y su orden son los de `NAV_GROUPS`, y dentro de cada uno el orden
+ * de NAV: nada de aquí es una lista escrita a mano que pueda discrepar de la
+ * portada. La portada va primero, sola; luego los cinco grupos y «Sobre
+ * CivicPulse». Una entrada sin grupo conocido no se pierde: va al final, bajo
+ * el rótulo de siempre (tests/nav-grupos.test.js ya exige que no haya ninguna).
+ *
+ * @param {typeof NAV} entradas
+ */
+export function gruposDeLaBarra(entradas = NAV) {
+  const portada = entradas.filter((n) => n.to === '/')
+  const grupos = [...NAV_GROUPS, GRUPO_PROYECTO]
+    .map((g) => ({ ...g, entradas: entradasDeGrupo(g.id, entradas) }))
+    .filter((g) => g.entradas.length > 0)
+  const vistas = new Set([...portada, ...grupos.flatMap((g) => g.entradas)])
+  const sueltas = entradas.filter((n) => !vistas.has(n))
+  return { portada, grupos, sueltas }
+}
+
+/** Un enlace de la barra: glifo, nombre y, si la entrada lo lleva, su marca. */
+function EnlaceBarra({ n, t }) {
+  return (
+    <NavLink
+      to={n.to}
+      end={n.to === '/'}
+      style={({ isActive }) => ({
+        display: 'flex',
+        alignItems: 'center',
+        gap: 10,
+        width: '100%',
+        padding: '8px 10px',
+        borderRadius: 'var(--r-input)',
+        background: isActive ? 'var(--civic-soft)' : 'transparent',
+        color: isActive ? 'var(--civic)' : 'var(--ink70)',
+        fontWeight: isActive ? 600 : 500,
+        marginBottom: 1,
+        textAlign: 'left',
+        fontSize: 'var(--fs-aux)',
+        transition: 'background .15s',
+      })}
+      onMouseEnter={(e) => {
+        if (!e.currentTarget.style.background.includes('var(--civic-soft)')) {
+          const active = e.currentTarget.getAttribute('aria-current') === 'page'
+          if (!active) e.currentTarget.style.background = 'var(--soft)'
+        }
+      }}
+      onMouseLeave={(e) => {
+        const active = e.currentTarget.getAttribute('aria-current') === 'page'
+        if (!active) e.currentTarget.style.background = 'transparent'
+      }}
+    >
+      <SectionGlyph to={n.to} size={18} style={{ opacity: 0.9 }} />
+      <span style={{ flex: 1 }}>{t(n.labelKey)}</span>
+      {n.liveBadge && (
+        <span
+          className="mono"
+          style={{
+            display: 'inline-flex',
+            alignItems: 'center',
+            gap: 4,
+            fontSize: 'var(--fs-micro)',
+            color: 'var(--crit-ink)',
+            fontWeight: 700,
+            letterSpacing: '.08em',
+          }}
+        >
+          <span
+            style={{
+              width: 6,
+              height: 6,
+              borderRadius: '50%',
+              background: 'var(--crit)',
+              animation: 'ribaPulse 1.5s infinite',
+            }}
+          />
+          LIVE
+        </span>
+      )}
+      {n.badge && !n.liveBadge && (
+        <span className="mono" style={{ fontSize: 'var(--fs-micro)', color: 'var(--ink50)' }}>
+          {n.badge}
+        </span>
+      )}
+    </NavLink>
+  )
+}
+
+/** El rótulo de un grupo: el mismo nombre que en la barra de la portada. */
+function RotuloGrupo({ id, children }) {
+  return (
+    <div
+      id={id}
+      className="mono"
+      style={{
+        fontSize: 'var(--fs-micro)',
+        color: 'var(--ink50)',
+        padding: '12px 8px 4px',
+        textTransform: 'uppercase',
+        letterSpacing: '.1em',
+      }}
+    >
+      {children}
+    </div>
+  )
+}
 
 function CityChip() {
   const { data } = useWikidata()
@@ -48,6 +160,7 @@ function CityChip() {
 
 export function Sidebar({ open = false, onClose }) {
   const t = useT()
+  const { portada, grupos, sueltas } = gruposDeLaBarra()
   return (
     <aside
       className={`cp-shell-sidebar${open ? ' cp-sidebar-open' : ''}`}
@@ -107,83 +220,30 @@ export function Sidebar({ open = false, onClose }) {
       <CityChip />
 
       <nav style={{ padding: '10px 10px', flex: 1, overflowY: 'auto' }}>
-        <div
-          className="mono"
-          style={{
-            fontSize: 'var(--fs-micro)',
-            color: 'var(--ink50)',
-            padding: '10px 8px 6px',
-            textTransform: 'uppercase',
-            letterSpacing: '.1em',
-          }}
-        >
-          {t('nav.section')}
-        </div>
-        {NAV.map((n) => (
-          <NavLink
-            key={n.id}
-            to={n.to}
-            end={n.to === '/'}
-            style={({ isActive }) => ({
-              display: 'flex',
-              alignItems: 'center',
-              gap: 10,
-              width: '100%',
-              padding: '8px 10px',
-              borderRadius: 'var(--r-input)',
-              background: isActive ? 'var(--civic-soft)' : 'transparent',
-              color: isActive ? 'var(--civic)' : 'var(--ink70)',
-              fontWeight: isActive ? 600 : 500,
-              marginBottom: 1,
-              textAlign: 'left',
-              fontSize: 'var(--fs-aux)',
-              transition: 'background .15s',
-            })}
-            onMouseEnter={(e) => {
-              if (!e.currentTarget.style.background.includes('var(--civic-soft)')) {
-                const active = e.currentTarget.getAttribute('aria-current') === 'page'
-                if (!active) e.currentTarget.style.background = 'var(--soft)'
-              }
-            }}
-            onMouseLeave={(e) => {
-              const active = e.currentTarget.getAttribute('aria-current') === 'page'
-              if (!active) e.currentTarget.style.background = 'transparent'
-            }}
-          >
-            <SectionGlyph to={n.to} size={18} style={{ opacity: 0.9 }} />
-            <span style={{ flex: 1 }}>{t(n.labelKey)}</span>
-            {n.liveBadge && (
-              <span
-                className="mono"
-                style={{
-                  display: 'inline-flex',
-                  alignItems: 'center',
-                  gap: 4,
-                  fontSize: 'var(--fs-micro)',
-                  color: 'var(--crit-ink)',
-                  fontWeight: 700,
-                  letterSpacing: '.08em',
-                }}
-              >
-                <span
-                  style={{
-                    width: 6,
-                    height: 6,
-                    borderRadius: '50%',
-                    background: 'var(--crit)',
-                    animation: 'ribaPulse 1.5s infinite',
-                  }}
-                />
-                LIVE
-              </span>
-            )}
-            {n.badge && !n.liveBadge && (
-              <span className="mono" style={{ fontSize: 'var(--fs-micro)', color: 'var(--ink50)' }}>
-                {n.badge}
-              </span>
-            )}
-          </NavLink>
+        {portada.map((n) => (
+          <EnlaceBarra key={n.id} n={n} t={t} />
         ))}
+        {grupos.map((g) => (
+          <div
+            key={g.id}
+            role="group"
+            aria-labelledby={`barra-grupo-${g.id}`}
+            data-grupo-barra={g.id}
+          >
+            <RotuloGrupo id={`barra-grupo-${g.id}`}>{t(g.labelKey)}</RotuloGrupo>
+            {g.entradas.map((n) => (
+              <EnlaceBarra key={n.id ?? n.to} n={n} t={t} />
+            ))}
+          </div>
+        ))}
+        {sueltas.length > 0 && (
+          <div role="group" aria-labelledby="barra-grupo-sueltas">
+            <RotuloGrupo id="barra-grupo-sueltas">{t('nav.section')}</RotuloGrupo>
+            {sueltas.map((n) => (
+              <EnlaceBarra key={n.id ?? n.to} n={n} t={t} />
+            ))}
+          </div>
+        )}
       </nav>
 
       <div

@@ -181,6 +181,29 @@ export function citesNothing(rows, fields = ['formacion', 'experiencia']) {
 }
 
 /**
+ * The backing every card of a section agrees on, so the section can say it once.
+ *
+ * `sharedRespaldo` already says it once per card; on /cargos that still printed
+ * the same sentence on eight cards in a row. This is the same rule one level
+ * up: the value every card that cites anything shares, or null the moment one
+ * card disagrees or carries per-item marks — and then every card says its own,
+ * as before. A card that cites nothing has no backing to agree or disagree with
+ * and is left out of the vote; it keeps its own «what was compared» line.
+ *
+ * @param {{ rows?: any[] } | null | undefined} data
+ * @param {string[]} slugs
+ * @returns {string | null}
+ */
+export function respaldoDeSeccion(data, slugs) {
+  const valores = slugs
+    .map((slug) => fitRowsForSlug(data, slug))
+    .filter((rows) => rows.length > 0 && !citesNothing(rows))
+    .map((rows) => sharedRespaldo(rows))
+  if (!valores.length) return null
+  return valores.every((v) => v !== null && v === valores[0]) ? valores[0] : null
+}
+
+/**
  * Signed warning mappings for one official, optionally on one axis.
  *
  * Reads only what a curator signed: drafts live in the gitignored queue and
@@ -189,25 +212,4 @@ export function citesNothing(rows, fields = ['formacion', 'experiencia']) {
  */
 export function avisosForSlug(data, slug, eje) {
   return (data?.avisos || []).filter((a) => a.officialSlug === slug && (!eje || a.eje === eje))
-}
-
-/** Corporation-wide counts for the /departamentos aggregate. Names nobody. */
-export function fitAggregate(data) {
-  const rows = data?.rows || []
-  if (!rows.length) return null
-  const bySlug = new Map()
-  for (const r of rows) {
-    if (!bySlug.has(r.officialSlug)) bySlug.set(r.officialSlug, [])
-    bySlug.get(r.officialSlug).push(r)
-  }
-  let conFormacion = 0
-  let sinRelacion = 0
-  let noConsta = 0
-  for (const [, group] of bySlug) {
-    const v = overallValue(group, 'formacion')
-    if (v === 'relacionada') conFormacion += 1
-    else if (v === 'no-consta') noConsta += 1
-    else if (v === 'sin-relacion-declarada') sinRelacion += 1
-  }
-  return { cargos: bySlug.size, conFormacion, sinRelacion, noConsta }
 }

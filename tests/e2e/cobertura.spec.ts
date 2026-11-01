@@ -225,4 +225,22 @@ test.describe('Solicitudes de acceso (/laboratorio/cobertura)', () => {
     expect(texto).toMatch(/no lo hace comprobable por s[íi] solo/i)
     expect(texto).not.toMatch(/quedar[íi]an desbloqueadas\s*\d/i)
   })
+
+  // La respuesta corta (auditoría de las dos lecturas, §25): del mismo
+  // resumen que la barra, y después del aviso de lo que la página no es.
+  test('la frase de arriba sale del manifiesto y va después del aviso', async ({ page }) => {
+    await page.goto('/laboratorio/cobertura', { waitUntil: 'domcontentloaded' })
+    const frase = page.locator('[data-cobertura-frase]')
+    await expect(frase).toContainText(
+      `unas ${Math.round((100 * SUMA.conCorpus) / SUMA.total)} se han cotejado con algún dato público`,
+      { timeout: 8000 },
+    )
+    const html = await page.content()
+    const aviso = html.search(/No juzga a nadie/i)
+    const respuesta = html.search(/se han cotejado con algún dato público/)
+    const cifra = html.search(/FILAS DE EXTRACCIÓN PUBLICADAS/i)
+    expect(aviso).toBeGreaterThan(-1)
+    expect(aviso).toBeLessThan(respuesta)
+    expect(respuesta).toBeLessThan(cifra)
+  })
 })

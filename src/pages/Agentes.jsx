@@ -15,8 +15,11 @@ import {
   LEGAL_SENSITIVITY_LABEL,
   LEGAL_SENSITIVITY_TONE,
 } from '../hooks/useJournalistReports'
+import { useT } from '../i18n'
+import { estadoLlano } from '../lib/estado-llano.js'
 
 export default function Agentes() {
+  const t = useT()
   const assignments = useJournalistAssignments()
   const reports = useJournalistReports()
   const loading = assignments.loading || reports.loading
@@ -79,12 +82,12 @@ export default function Agentes() {
                     <Pill tone={ASSIGNMENT_STATUS_TONE[a.status] || 'ghost'}>
                       {ASSIGNMENT_STATUS_LABEL[a.status] || a.status}
                     </Pill>
-                    <span
-                      className="mono"
-                      style={{ fontSize: 'var(--fs-micro)', color: 'var(--ink50)' }}
-                    >
-                      {a.kind}
-                    </span>
+                    {/* Decía `biography`, el código del encargo, en cada tarjeta. */}
+                    {estadoLlano(t, 'encargo', a.kind) && (
+                      <span style={{ fontSize: 'var(--fs-micro)', color: 'var(--ink50)' }}>
+                        {estadoLlano(t, 'encargo', a.kind)}
+                      </span>
+                    )}
                     {report && report.legalSensitivity !== 'low' && (
                       <Pill tone={LEGAL_SENSITIVITY_TONE[report.legalSensitivity] || 'ghost'}>
                         {LEGAL_SENSITIVITY_LABEL[report.legalSensitivity] ||

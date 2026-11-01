@@ -2,7 +2,15 @@
    CivicPulse — Design tokens (Direction A · Municipal Dashboard)
    ============================================================= */
 
-:root {
+/* La portada (`.d-shell`) no sigue el modo oscuro: lleva su paleta de papel fijo
+   (direction-d/tokens.jsx), y App.jsx no le pone `html.dark`. Sus bloques propios
+   pintan con esa paleta, pero «Tu ayuntamiento en 30 segundos» reutiliza las
+   tarjetas de «En breve», que pintan con estos tokens. Con `html.dark` puesto en
+   la portada —lo pone a mano la prueba de contraste medido— el fondo se iba a
+   oscuro y el texto, de la paleta fija, se quedaba oscuro: 1,08:1. La portada
+   vuelve a declarar los valores claros, y los hereda todo lo que cuelga de ella. */
+:root,
+html.dark .d-shell {
   --ink: #0b0f19;
   --surf: #f8fafc;
   --paper: #ffffff;
@@ -523,42 +531,6 @@ body.cp-kiosk .cp-live-container {
   }
 }
 
-/* Bloomberg-style live ticker at top of the Direction D map.
-   Two identical chip lists are rendered back-to-back and we translate -50%
-   for a seamless loop. Pause on hover so readers can select a chip. */
-@keyframes cp-ticker-scroll {
-  from {
-    transform: translateX(0);
-  }
-  to {
-    transform: translateX(-50%);
-  }
-}
-.cp-ticker-track {
-  animation: cp-ticker-scroll 90s linear infinite;
-}
-[data-live-ticker]:hover .cp-ticker-track {
-  animation-play-state: paused;
-}
-.cp-ticker-chip:hover {
-  background: rgba(96, 165, 250, 0.12) !important;
-  border-radius: var(--r-input);
-}
-.cp-ticker-chip:focus-visible {
-  /* Heredaba el anillo global; llevaba un azul propio, #60a5fa, que no está en
-     la paleta — era uno de los acentos que se retiraron de og.svg por eso
-     mismo. El offset mayor es lo único suyo: el chip va sobre la banda oscura
-     del ticker y necesita separarse un punto más. */
-  outline-offset: 2px;
-  border-radius: var(--r-input);
-}
-@media (prefers-reduced-motion: reduce) {
-  .cp-ticker-track {
-    animation: none !important;
-    overflow-x: auto;
-  }
-}
-
 /* Direction D — Clean Leaflet map */
 .cp-stylized-map {
   background: #efe9d9 !important;
@@ -739,7 +711,16 @@ body.cp-kiosk .cp-live-container {
     min-width: 0 !important;
     flex: 1 !important;
   }
-  .cp-topbar-search-hint,
+  /* Recortada y no `display: none`: esta pista es el nombre accesible del botón,
+     que sin ella se quedaría mudo justo en el móvil. */
+  .cp-topbar-search-hint {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+  }
   .cp-topbar-search-kbd,
   .cp-topbar-github {
     display: none !important;
@@ -858,6 +839,14 @@ body.cp-kiosk .cp-live-container {
   cursor: pointer;
 }
 
+/* Las dos columnas del mapa de contratación (mapa + deslizador | cobertura o
+   zona). Un hijo de rejilla nace con `min-width: auto`: no baja de lo que mide
+   su contenido, y a 375 px el mapa y su deslizador pedían ~410 px en una columna
+   de 285, así que la página entera se desplazaba de lado. Con `min-width: 0` la
+   columna manda y el contenido se ajusta a ella. */
+.cp-gasto-grid > * {
+  min-width: 0;
+}
 @media (max-width: 768px) {
   .cp-gasto-grid {
     grid-template-columns: 1fr !important;
@@ -1192,7 +1181,7 @@ body.cp-kiosk .cp-live-container {
   align-items: start;
 }
 .cp-cargos-retri,
-.cp-cargos-duo {
+.cp-plantilla-duo {
   display: grid;
   grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
   gap: 24px;
@@ -1212,7 +1201,7 @@ body.cp-kiosk .cp-live-container {
 }
 .cp-cargos-hero > *,
 .cp-cargos-retri > *,
-.cp-cargos-duo > *,
+.cp-plantilla-duo > *,
 .cp-cargos-gob > *,
 .cp-cargos-opo > * {
   min-width: 0;
@@ -1233,7 +1222,7 @@ body.cp-kiosk .cp-live-container {
 @media (max-width: 900px) {
   .cp-cargos-hero,
   .cp-cargos-retri,
-  .cp-cargos-duo {
+  .cp-plantilla-duo {
     grid-template-columns: minmax(0, 1fr);
     gap: 22px;
   }
@@ -1252,6 +1241,825 @@ body.cp-kiosk .cp-live-container {
   .cp-cargos-opo {
     grid-template-columns: minmax(0, 1fr);
   }
+}
+
+/* La lista de los 21 en la lectura vecinal (components/Cargos/ListaDeCargos.jsx):
+   cara, nombre, partido y lo que lleva. La rejilla se reparte sola con
+   `auto-fill`, como la de «En breve», y la oposición usa la MISMA rejilla para
+   que se lea como una sola lista con dos rótulos. El suelo de 250px deja el
+   nombre más largo, «Salvador Evaristo Ferrer Cortina», en dos líneas como
+   mucho al lado de una foto de 40. */
+.cp-cargos-lista {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 250px), 1fr));
+  gap: 10px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.cp-cargos-lista-rotulo {
+  margin: 0 0 8px;
+  font-size: var(--fs-micro);
+  font-weight: 600;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  color: var(--ink50);
+}
+.cp-cargos-lista-cara {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+  min-width: 0;
+  padding: 10px 12px;
+  border: 1px solid var(--border2);
+  border-radius: var(--r-card);
+}
+.cp-cargos-lista-texto {
+  flex: 1;
+  min-width: 0;
+}
+/* El subrayado lo pone `li a[href]`, como a todo enlace en una lista (WCAG
+   1.4.1): el nombre es el enlace a la ficha y se ve sin depender del color. */
+.cp-cargos-lista-nombre {
+  font-size: var(--fs-body);
+  font-weight: 600;
+  line-height: 1.25;
+  color: var(--ink);
+  overflow-wrap: anywhere;
+}
+.cp-cargos-lista-meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px;
+  margin-top: 4px;
+  font-size: var(--fs-micro);
+}
+.cp-cargos-lista-alcalde {
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--civic-ink);
+}
+.cp-cargos-lista-lleva {
+  margin: 6px 0 0;
+  font-size: var(--fs-aux);
+  line-height: 1.45;
+  color: var(--ink70);
+}
+
+/* El paso de la lectura vecinal a la experta (components/DivisorLecturas.jsx):
+   una raya a cada lado de la frase, y la frase entera en cualquier ancho —a
+   375 px las rayas encogen hasta desaparecer antes que partir una palabra. */
+.cp-divisor-lecturas {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 28px 0;
+  font-size: var(--fs-aux);
+  line-height: 1.45;
+  color: var(--ink70);
+}
+.cp-divisor-lecturas::before,
+.cp-divisor-lecturas::after {
+  content: '';
+  flex: 1 1 24px;
+  min-width: 0;
+  height: 1px;
+  background: var(--border);
+}
+.cp-divisor-lecturas > span {
+  flex: 0 1 auto;
+  text-align: center;
+  text-wrap: balance;
+}
+
+/* El pliegue de las dos lecturas (components/Lecturas.jsx): «Ver: lo esencial ·
+   todo», bajo el divisor.
+
+   Lo que se ve en cada estado lo decide ESTA hoja, no el JSX: la pestaña y el
+   cuerpo de cada sección están siempre en el DOM, y `[data-plegada]` elige cuál
+   se ve. Así el pliegue cambia lo que se ve y nunca lo que hay, y la impresión
+   lo despliega con una regla, sin depender de que corra un script.
+
+   Una sección con el cuerpo vacío —un panel cuyos datos aún no han llegado, o
+   que no tiene— no enseña su pestaña: sería un título sobre nada. `:empty` se
+   entera solo de cuándo llega el contenido. */
+.cp-ver-lecturas {
+  display: flex;
+  justify-content: flex-end;
+  margin: -14px 0 18px;
+}
+.cp-ver-lecturas-boton {
+  appearance: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 3px;
+  border: 1px solid var(--border2);
+  border-radius: var(--r-pill);
+  background: var(--surf);
+  color: var(--ink70);
+  font: inherit;
+  font-size: var(--fs-aux);
+  line-height: 1.3;
+  cursor: pointer;
+}
+.cp-ver-lecturas-boton:focus-visible {
+  outline: 2px solid var(--civic);
+  outline-offset: 2px;
+}
+.cp-ver-lecturas-rotulo {
+  padding: 0 4px 0 8px;
+}
+.cp-ver-lecturas-opcion {
+  padding: 3px 10px;
+  border-radius: var(--r-pill);
+}
+.cp-ver-lecturas-opcion[data-activa] {
+  background: var(--ink);
+  color: var(--paper);
+  font-weight: 600;
+}
+.cp-ver-lecturas-boton:hover .cp-ver-lecturas-opcion:not([data-activa]) {
+  color: var(--ink);
+  text-decoration: underline;
+}
+
+.cp-experta-plegada {
+  display: none;
+  margin: 0;
+  font-size: var(--fs-body);
+  font-weight: 700;
+}
+[data-seccion-experta][data-plegada] {
+  margin-top: 0 !important;
+}
+[data-seccion-experta][data-plegada] > .cp-experta-plegada {
+  display: block;
+}
+[data-seccion-experta][data-plegada] > .cp-experta-cuerpo,
+[data-seccion-experta]:has(> .cp-experta-cuerpo:empty) > .cp-experta-plegada {
+  display: none;
+}
+.cp-experta-plegada > button {
+  appearance: none;
+  display: flex;
+  width: 100%;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 12px 2px;
+  border: 0;
+  border-bottom: 1px solid var(--border);
+  background: none;
+  color: var(--ink);
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+.cp-experta-plegada > button:hover .cp-experta-plegada-flecha,
+.cp-experta-plegada > button:focus-visible .cp-experta-plegada-flecha {
+  color: var(--civic);
+}
+.cp-experta-plegada > button:focus-visible {
+  outline: 2px solid var(--civic);
+  outline-offset: 2px;
+}
+.cp-experta-plegada-flecha {
+  flex: none;
+  color: var(--ink50);
+  font-weight: 400;
+}
+/* El foco llega aquí al abrir una sección desde su pestaña: es un destino, no
+   un control, y un recuadro alrededor de la sección entera no dice nada. */
+.cp-experta-cuerpo:focus {
+  outline: none;
+}
+@media print {
+  [data-seccion-experta][data-plegada] > .cp-experta-cuerpo {
+    display: block !important;
+  }
+  [data-seccion-experta] > .cp-experta-plegada {
+    display: none !important;
+  }
+}
+
+/* «En breve» — la primera capa de una página densa (components/EnBreve.jsx).
+
+   La rejilla se reparte sola con `auto-fit`: cuatro tarjetas en escritorio,
+   dos en tableta, una en móvil, sin una @media que mantener. Va aquí y no en
+   el `style` del JSX por lo de siempre: un estilo inline no colapsa.
+
+   El término del glosario es un <button> con subrayado de puntos —se pulsa
+   con el teclado igual que con el dedo— y su definición se abre DENTRO de la
+   tarjeta, en el flujo, no en un globo flotante: a 375 px un globo se sale
+   del borde. La salvedad lleva el tono «warn» de la tarjeta «dos fuentes»,
+   que dice lo mismo en la capa de abajo. */
+.cp-en-breve {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+.cp-en-breve-cabeza {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 8px 16px;
+}
+.cp-en-breve-titulo {
+  margin: 0;
+  font-size: var(--fs-meta);
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--civic-ink);
+}
+.cp-en-breve-intro {
+  margin: 4px 0 0;
+  font-size: var(--fs-aux);
+  line-height: 1.5;
+  color: var(--ink70);
+}
+.cp-en-breve-saltar {
+  font-size: var(--fs-aux);
+  font-weight: 500;
+  color: var(--civic);
+}
+.cp-en-breve-rejilla {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 240px), 1fr));
+  gap: 14px;
+}
+.cp-en-breve-tarjeta {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  min-width: 0;
+  padding: 16px;
+  border: 1px solid var(--border2);
+  border-radius: var(--r-card);
+}
+.cp-en-breve-pregunta {
+  margin: 0;
+  font-size: var(--fs-head);
+  font-weight: 600;
+  line-height: 1.3;
+}
+.cp-en-breve-cifra {
+  font-size: var(--fs-card);
+  font-weight: 500;
+  letter-spacing: -0.01em;
+}
+.cp-en-breve-cifra-nota {
+  font-size: var(--fs-aux);
+  color: var(--ink50);
+}
+.cp-en-breve-frase {
+  margin: 0;
+  font-size: var(--fs-body);
+  line-height: 1.55;
+  text-wrap: pretty;
+}
+.cp-en-breve-nota {
+  margin: 0;
+  font-size: var(--fs-meta);
+  line-height: 1.5;
+  color: var(--ink50);
+}
+.cp-en-breve-salvedad {
+  margin: 0;
+  padding: 8px 10px;
+  border-radius: var(--r-input);
+  background: var(--warn-soft);
+  color: var(--warn-ink);
+  font-size: var(--fs-meta);
+  line-height: 1.5;
+}
+.cp-en-breve-ancla {
+  margin-top: auto;
+  font-size: var(--fs-aux);
+  color: var(--civic);
+}
+.cp-en-breve-figura {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.cp-en-breve-barra {
+  position: relative;
+  display: flex;
+  overflow: hidden;
+  background: var(--soft);
+}
+.cp-en-breve-marca {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: var(--ink);
+}
+.cp-en-breve-leyenda {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 2px 10px;
+  font-size: var(--fs-micro);
+  color: var(--ink50);
+}
+.cp-en-breve-fila {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  font-size: var(--fs-aux);
+}
+.cp-en-breve-fila > .mono {
+  flex: none;
+  white-space: nowrap;
+}
+.cp-termino {
+  all: unset;
+  cursor: pointer;
+  color: inherit;
+  border-bottom: 1.5px dotted var(--civic);
+}
+.cp-termino:hover,
+.cp-termino[aria-expanded='true'] {
+  background: var(--civic-soft);
+}
+.cp-termino:focus-visible {
+  outline: 2px solid var(--civic);
+  outline-offset: 2px;
+}
+.cp-en-breve-def {
+  display: flex;
+  gap: 8px;
+  align-items: flex-start;
+  padding: 10px 12px;
+  border-radius: var(--r-input);
+  background: var(--civic-soft);
+}
+.cp-en-breve-def-rotulo {
+  font-size: var(--fs-micro);
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--civic-ink);
+}
+.cp-en-breve-cerrar {
+  all: unset;
+  cursor: pointer;
+  flex: none;
+  width: 44px;
+  height: 44px;
+  margin: -10px -10px 0 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--r-input);
+  color: var(--civic-ink);
+}
+.cp-en-breve-cerrar:focus-visible {
+  outline: 2px solid var(--civic);
+  outline-offset: -2px;
+}
+.cp-en-breve-barrio {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  gap: 12px 18px;
+  padding: 14px 16px;
+  border: 1px solid var(--civic);
+  border-radius: var(--r-card);
+}
+.cp-en-breve-barrio-form {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px 10px;
+  margin-top: 10px;
+}
+.cp-en-breve-barrio-label {
+  font-size: var(--fs-aux);
+  font-weight: 500;
+}
+.cp-en-breve-barrio-form select {
+  min-height: 44px;
+  min-width: 0;
+  max-width: 100%;
+  flex: 1 1 220px;
+  padding: 0 10px;
+  border: 1px solid var(--border);
+  border-radius: var(--r-input);
+  background: var(--paper);
+  color: var(--ink);
+  font: inherit;
+  font-size: var(--fs-body);
+}
+.cp-en-breve-barrio-boton {
+  min-height: 44px;
+  padding: 0 16px;
+  border: 0;
+  border-radius: var(--r-input);
+  background: var(--civic);
+  color: var(--civic-on);
+  font: inherit;
+  font-size: var(--fs-aux);
+  font-weight: 600;
+  cursor: pointer;
+}
+.cp-en-breve-barrio-boton:disabled {
+  opacity: 0.55;
+  cursor: default;
+}
+.cp-en-breve-barrio-form :is(select, .cp-en-breve-barrio-boton):focus-visible {
+  outline: 2px solid var(--civic);
+  outline-offset: 2px;
+}
+.cp-en-breve-barrio-otro {
+  margin-top: 12px;
+  padding: 10px 12px;
+  border-radius: var(--r-input);
+  background: var(--warn-soft);
+  font-size: var(--fs-aux);
+  line-height: 1.5;
+}
+.cp-en-breve-barrio-otro a {
+  color: var(--civic);
+}
+.cp-en-breve-barrio-titulo {
+  margin: 0;
+  font-size: var(--fs-head);
+  font-weight: 600;
+}
+.cp-en-breve-barrio-frase {
+  margin: 2px 0 0;
+  font-size: var(--fs-aux);
+  line-height: 1.5;
+  color: var(--ink70);
+}
+
+.cp-en-breve-recorrido {
+  position: relative;
+}
+.cp-en-breve-recorrido ol {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 6px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.cp-en-breve-recorrido li {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  text-align: center;
+}
+/* La línea va de la mitad del primer paso a la mitad del último: un décimo del
+   ancho a cada lado, porque las cinco columnas son iguales. */
+.cp-en-breve-recorrido-linea {
+  position: absolute;
+  top: 13px;
+  left: 10%;
+  right: 10%;
+  height: 2px;
+  background: var(--civic-band);
+}
+.cp-en-breve-recorrido-punto {
+  position: relative;
+  width: 28px;
+  height: 28px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: var(--civic-soft);
+  border: 1.5px solid var(--civic);
+  color: var(--civic-ink);
+  font-size: var(--fs-meta);
+}
+.cp-en-breve-recorrido-rotulo {
+  font-size: var(--fs-micro);
+  line-height: 1.3;
+  color: var(--ink70);
+}
+
+/* «En breve» de /eficiencia: la cifra quieta (un recuadro por año con el
+   MISMO número dentro) y las entregas (la que falta, hueca). Rejillas que se
+   reparten solas para caber a 375 px. */
+.cp-efi-congelada,
+.cp-efi-entregas {
+  display: grid;
+  gap: 4px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.cp-efi-congelada {
+  grid-template-columns: repeat(auto-fill, minmax(64px, 1fr));
+}
+.cp-efi-congelada li {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 4px 2px;
+  border: 1px solid var(--border);
+  border-radius: var(--r-input);
+  background: var(--warn-soft);
+}
+.cp-efi-congelada-anio {
+  font-size: var(--fs-micro);
+  color: var(--ink50);
+}
+.cp-efi-congelada-valor {
+  font-size: var(--fs-meta);
+  color: var(--warn-ink);
+}
+.cp-efi-entregas {
+  grid-template-columns: repeat(auto-fill, minmax(38px, 1fr));
+}
+.cp-efi-entregas li {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 26px;
+  border-radius: var(--r-input);
+  background: var(--civic);
+  color: var(--civic-on);
+  font-size: var(--fs-micro);
+}
+.cp-efi-entregas li.cp-efi-entrega-falta {
+  background: transparent;
+  border: 1.5px dashed var(--warn-ink);
+  color: var(--warn-ink);
+}
+
+/* La opinión del editor (components/eficiencia/OpinionEditor.jsx). Un marco
+   propio, distinto de las tarjetas de dato: borde de tinta entero, el rótulo
+   «Opinión» antes que el titular y el titular en serif. Que se vea de un
+   vistazo que esto ya no es el dato del ministerio. */
+.cp-opiniones {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-top: 28px;
+  container: opiniones / inline-size;
+}
+/* Con sitio, los hechos y «lo que no sabemos» van AL LADO del cuerpo. El cuerpo
+   se queda en su medida de lectura (70ch) y la tarjeta ocupa toda la columna,
+   así que apilados dejaban media tarjeta en blanco a la derecha. Es una
+   consulta de contenedor y no de pantalla: la anchura que importa es la de la
+   tarjeta, que cambia con la barra lateral. Por debajo, todo apilado como
+   siempre. */
+@container opiniones (min-width: 880px) {
+  .cp-opinion {
+    display: grid;
+    grid-template-columns: minmax(0, 70ch) minmax(240px, 1fr);
+    column-gap: 40px;
+    align-items: start;
+  }
+  .cp-opinion > * {
+    grid-column: 1 / -1;
+  }
+  .cp-opinion > .cp-opinion-rotulo {
+    justify-self: start;
+  }
+  .cp-opinion > .cp-opinion-cuerpo {
+    grid-column: 1;
+    grid-row: 4;
+  }
+  .cp-opinion > .cp-opinion-anexos {
+    grid-column: 2;
+    grid-row: 4;
+    grid-template-columns: minmax(0, 1fr);
+    margin-top: 12px;
+    padding: 0 0 0 24px;
+    border-top: 0;
+    border-left: 1px solid var(--border2);
+  }
+}
+.cp-opinion {
+  padding: 20px 22px;
+  border: 1.5px solid var(--ink);
+  border-radius: var(--r-card);
+  background: var(--paper);
+}
+.cp-opinion-rotulo {
+  display: inline-block;
+  padding: 3px 10px;
+  border-radius: var(--r-pill);
+  background: var(--ink);
+  color: var(--paper);
+  font-family: var(--font-mono);
+  font-size: var(--fs-micro);
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+.cp-opinion-titulo {
+  margin: 12px 0 0;
+  font-family: Georgia, 'Times New Roman', serif;
+  font-size: var(--fs-card);
+  font-weight: 700;
+  line-height: 1.25;
+}
+.cp-opinion-firma {
+  margin: 6px 0 0;
+  font-size: var(--fs-meta);
+  color: var(--ink70);
+}
+.cp-opinion-cuerpo {
+  max-width: 70ch;
+  font-size: var(--fs-body);
+  line-height: 1.65;
+}
+.cp-opinion-cuerpo p {
+  margin: 12px 0 0;
+}
+.cp-opinion-anexos {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr));
+  gap: 12px 24px;
+  margin-top: 16px;
+  padding-top: 14px;
+  border-top: 1px solid var(--border2);
+}
+.cp-opinion-anexos h3,
+.cp-opinion-contacto h3 {
+  margin: 0;
+  font-size: var(--fs-micro);
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--ink70);
+}
+.cp-opinion-anexos ul,
+.cp-opinion-correcciones ul {
+  margin: 6px 0 0;
+  padding-left: 18px;
+  font-size: var(--fs-aux);
+  line-height: 1.55;
+}
+.cp-opinion a {
+  color: var(--civic);
+}
+.cp-opinion-contacto {
+  margin-top: 14px;
+  padding-top: 12px;
+  border-top: 1px solid var(--border2);
+  font-size: var(--fs-aux);
+  line-height: 1.55;
+}
+.cp-opinion-contacto p {
+  margin: 6px 0 0;
+}
+.cp-opinion-replica {
+  margin: 8px 0 0;
+  padding: 10px 12px;
+  border-radius: var(--r-input);
+  background: var(--soft);
+}
+.cp-opinion-replica p {
+  margin: 0;
+}
+.cp-opinion-replica footer,
+.cp-opinion-meta {
+  font-size: var(--fs-meta);
+  color: var(--ink50);
+}
+.cp-opinion > .cp-opinion-meta {
+  margin: 14px 0 0;
+}
+.cp-opinion-correcciones {
+  margin-top: 12px;
+  font-size: var(--fs-aux);
+}
+.cp-opinion-correcciones > summary {
+  cursor: pointer;
+  color: var(--civic);
+}
+
+/* «Cuesta · Consigue · Responde» en /eficiencia
+   (components/eficiencia/CuestaConsigueResponde.jsx). Tres columnas que se
+   reparten solas con auto-fit: tres en escritorio, una en móvil. La salvedad
+   lleva el tono «warn» de las salvedades de ficha; nada va en rojo, porque
+   aquí no se documenta ningún fallo. */
+.cp-ccr-intro {
+  margin: 6px 0 0;
+  max-width: 72ch;
+  font-size: var(--fs-aux);
+  line-height: 1.55;
+  color: var(--ink70);
+}
+.cp-ccr-fila {
+  padding-top: 14px;
+  border-top: 1px solid var(--border2);
+}
+.cp-ccr-servicio {
+  margin: 0;
+  font-size: var(--fs-head);
+  font-weight: 600;
+}
+.cp-ccr-servicio a {
+  color: inherit;
+}
+.cp-ccr-columnas {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr));
+  gap: 14px 22px;
+  margin-top: 10px;
+}
+.cp-ccr-columnas > section {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.cp-ccr-col {
+  font-family: var(--font-mono);
+  font-size: var(--fs-micro);
+  font-weight: 700;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  color: var(--civic-ink);
+}
+.cp-ccr-subrotulo {
+  font-size: var(--fs-micro);
+  font-weight: 600;
+  color: var(--ink70);
+}
+.cp-ccr-frase {
+  margin: 0;
+  font-size: var(--fs-body);
+  line-height: 1.5;
+}
+.cp-ccr-nota {
+  margin: 0;
+  font-size: var(--fs-meta);
+  line-height: 1.5;
+  color: var(--ink50);
+}
+.cp-ccr-salvedad {
+  margin: 0;
+  padding: 8px 10px;
+  border-radius: var(--r-input);
+  background: var(--warn-soft);
+  color: var(--warn-ink);
+  font-size: var(--fs-meta);
+  line-height: 1.5;
+}
+.cp-ccr-cifra {
+  font-size: var(--fs-card);
+  font-weight: 500;
+}
+.cp-ccr-leyenda {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 14px;
+  font-size: var(--fs-micro);
+  color: var(--ink50);
+}
+.cp-ccr-muestra {
+  display: inline-block;
+  width: 16px;
+  height: 3px;
+  margin-right: 6px;
+  vertical-align: middle;
+}
+.cp-ccr-muestra-banda {
+  height: 10px;
+  background: var(--soft);
+  border: 1px solid var(--border);
+}
+.cp-ccr-muestra-discontinua {
+  background: repeating-linear-gradient(90deg, var(--ink50) 0 4px, transparent 4px 7px);
+}
+.cp-ccr-resto {
+  margin-top: 18px;
+  padding-top: 14px;
+  border-top: 1px solid var(--border2);
+}
+.cp-ccr-resto > summary {
+  cursor: pointer;
+  min-height: 44px;
+  display: flex;
+  align-items: center;
+  font-size: var(--fs-aux);
+  font-weight: 600;
+  color: var(--civic);
+}
+.cp-ccr-promesas {
+  margin: 0;
+  padding-left: 16px;
+  font-size: var(--fs-aux);
+  line-height: 1.5;
+}
+.cp-ccr-promesas a {
+  color: var(--civic);
 }
 
 /* /presupuesto — lámina 5b: del crédito inicial a lo ejecutado.
@@ -1518,6 +2326,14 @@ body.cp-kiosk .cp-live-container {
    etiqueta va encima: al valor le quedaban 83 px a 375, menos que una palabra
    como «IMPRESCINDIBLE».
 
+   `.cp-cambio-fila` (/cambios): fecha, titular y compartir. Partida, el titular
+   baja a su línea: al lado de la pastilla de WhatsApp le quedaban 94 px a 375 y
+   39 a 320, una sílaba por renglón.
+
+   `.cp-queja-cabecera` (/quejas/:id): el título y sus dos pastillas. Pueden
+   partirse: en una sola línea, a 320 apretaban el título y sacaban el documento
+   2 px de la pantalla.
+
    Las pistas nuevas son `1fr` y no `minmax(0, 1fr)` a propósito: si un
    contenido no cabe, que la pista crezca y la prueba lo vea, en vez de que se
    salga de su celda sin que nada lo mida. */
@@ -1532,6 +2348,12 @@ body.cp-kiosk .cp-live-container {
   grid-template-columns: min-content 1fr min-content min-content min-content;
   align-items: center;
   gap: 12px;
+}
+.cp-cambio-fila {
+  display: grid;
+  grid-template-columns: 90px 1fr min-content;
+  align-items: baseline;
+  gap: 10px;
 }
 .cp-empleo-campo {
   display: grid;
@@ -1559,9 +2381,39 @@ body.cp-kiosk .cp-live-container {
     grid-row: 3;
     justify-self: start;
   }
+  .cp-cambio-fila {
+    grid-template-columns: 1fr min-content;
+    gap: 4px 10px;
+  }
+  .cp-cambio-fila > :nth-child(2) {
+    grid-column: 1 / -1;
+    grid-row: 2;
+  }
+  .cp-queja-cabecera {
+    flex-wrap: wrap;
+  }
   .cp-empleo-campo {
     grid-template-columns: 1fr;
     gap: 2px;
+  }
+}
+
+/* /quejas/:id — el camino de la queja: fecha (o «Ahora», «Pendiente»), el
+   punto y el paso. La columna de la fecha medía 120 px en cualquier pantalla,
+   lo que pedía «2 de julio de 2026» en una línea; desde que los pasos que faltan
+   llevan una frase, a 375 px el texto se quedaba en una columna de 150 px y
+   cada frase en cinco líneas. Por debajo de 720 la fecha se parte en dos y la
+   columna baja a 84 px, donde caben «Pendiente» y «2 de julio» en mono. */
+.cp-camino-paso {
+  display: grid;
+  grid-template-columns: 120px 12px 1fr;
+  gap: 12px;
+  align-items: flex-start;
+}
+@media (max-width: 720px) {
+  .cp-camino-paso {
+    grid-template-columns: 84px 12px 1fr;
+    gap: 10px;
   }
 }
 
@@ -1692,6 +2544,30 @@ main:focus:not(:focus-visible) {
   align-items: center;
   flex-wrap: wrap;
   gap: 8px 14px;
+}
+/* Las correcciones de una pieza (`ChipCorrecciones`), en su ficha de /reportajes
+   y en la de la portada. Tono neutro: en rojo se leían como fallos. Etiqueta y
+   definición van ENCIMA del `::after` de `.cp-rj-enlace`, que hace de la ficha
+   un solo enlace; debajo, el clic en «correcciones» abría la pieza. */
+.cp-correcciones {
+  position: relative;
+  z-index: 1;
+  display: inline-block;
+  padding: 2px 7px;
+  border-radius: var(--r-input);
+  background: var(--soft);
+  color: var(--ink70);
+  font-size: var(--fs-micro);
+  line-height: 1.5;
+}
+.cp-correcciones-def {
+  position: relative;
+  z-index: 1;
+  flex-basis: 100%;
+  margin-top: 8px;
+}
+.cp-rj-pie .cp-correcciones-def {
+  margin-top: 0;
 }
 .cp-rj-leer {
   display: inline-block;
@@ -2052,6 +2928,130 @@ main:focus:not(:focus-visible) {
   text-underline-offset: 2px;
 }
 
+/* /metodologia: el contrato y su índice (IndiceMetodologia.jsx). Sin sitio al lado
+   del texto el índice va plegado arriba y cada grupo trae su «Índice ↑»; con
+   sitio, va en una columna pegada y sobran los dos. La columna de texto sigue
+   siendo la de siempre: su ancho máximo va en el `style` de la página. */
+.cp-met-lateral {
+  display: none;
+}
+.cp-met-plegado .cp-indice {
+  margin: 22px 0 0;
+}
+.cp-met-plegado-grupos > li {
+  padding-bottom: 8px;
+}
+.cp-indice .cp-met-plegado-grupos ol {
+  columns: auto;
+  padding: 0 0 0 12px;
+}
+.cp-indice .cp-met-plegado-grupos a[href] {
+  display: block;
+  padding: 3px 0;
+}
+.cp-indice .cp-met-plegado-grupos a[href]:hover {
+  color: var(--ink);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+.cp-indice .cp-met-plegado-grupos a.cp-met-plegado-grupo {
+  color: var(--ink);
+  font-weight: 600;
+}
+.cp-met-aviso {
+  margin: 14px 0 0;
+  font-size: var(--fs-aux);
+  color: var(--ink50);
+}
+.cp-met-grupo {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+  margin-top: 34px;
+  padding-bottom: 6px;
+  border-bottom: 1px solid var(--border2);
+}
+.cp-met-grupo h2 {
+  margin: 0;
+  font-size: var(--fs-card);
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  color: var(--ink);
+}
+.cp-met-volver {
+  flex: none;
+  font-size: var(--fs-aux);
+  color: var(--civic);
+}
+.cp-en-una-frase {
+  margin: 8px 0 12px;
+  color: var(--ink);
+}
+.cp-en-una-frase .mono {
+  display: block;
+  margin-bottom: 2px;
+  font-size: var(--fs-micro);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink50);
+}
+@media screen and (min-width: 1200px) {
+  .cp-met {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 216px;
+    max-width: 1120px;
+    margin: 0 auto;
+  }
+  .cp-met-plegado,
+  .cp-met-volver {
+    display: none;
+  }
+  .cp-met-lateral {
+    display: block;
+    position: sticky;
+    top: 56px;
+    align-self: start;
+    max-height: calc(100vh - 56px);
+    overflow-y: auto;
+    padding: 24px 12px 24px 0;
+    font-size: var(--fs-aux);
+    line-height: 1.35;
+  }
+  .cp-met-lateral-titulo {
+    margin-bottom: 8px;
+    font-size: var(--fs-micro);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--ink50);
+  }
+  .cp-met-lateral ol {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  .cp-met-lateral ol ol {
+    margin: 2px 0 6px;
+    padding-left: 10px;
+    border-left: 1px solid var(--border2);
+  }
+  .cp-met-lateral a {
+    display: block;
+    padding: 4px 0;
+    color: var(--ink70);
+    text-decoration: none;
+  }
+  .cp-met-lateral a:hover {
+    color: var(--ink);
+    text-decoration: underline;
+    text-underline-offset: 2px;
+  }
+  .cp-met-lateral a[aria-current] {
+    color: var(--civic);
+    font-weight: 600;
+  }
+}
+
 /* La tira de la cronología (coste-efectivo): los hitos en su fecha y el mayor
    hueco entre dos entradas de la ficha. En HTML y no en SVG para que sus
    rótulos no bajen del suelo de 11px en un móvil; las posiciones van en %. */
@@ -2381,7 +3381,6 @@ main:focus:not(:focus-visible) {
   .cp-hamburger,
   .cp-skip-link,
   .cp-topbar-search,
-  .cp-ticker-track,
   [data-print-hide] {
     display: none !important;
   }

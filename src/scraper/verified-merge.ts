@@ -1929,12 +1929,22 @@ function selloMs(iso: string | null): number | null {
  * tiene—. Ese caso sale como `sin-base`, que es SALTADO y jamás un visto
  * bueno: una guarda que no pudo comprobar nada tiene que decirlo en vez de
  * imprimir su propio todo-en-orden.
+ *
+ * Con huellas (`huellaBase` del contenido del base en disco, `huellaPublicada`
+ * la que el rebuild copió del base del que compuso), el linaje se juzga por
+ * CONTENIDO y los sellos sólo ordenan el desacuerdo. El base está gitignorado:
+ * cada copia del repositorio tiene el suyo, y una rederivación hecha en un
+ * worktree se fusiona con el sello de aquel base. Por sellos, el checkout
+ * principal leía eso como `contradice` (20-10-2026) con el contenido idéntico.
+ * Un publicado anterior a la huella se sigue juzgando por los sellos.
  */
 export function cotejarCompose(input: {
   baseGeneratedAt: string | null
   publicadoGeneratedAt: string | null
+  huellaBase?: string | null
+  huellaPublicada?: string | null
 }): CotejoCompose {
-  const { baseGeneratedAt, publicadoGeneratedAt } = input
+  const { baseGeneratedAt, publicadoGeneratedAt, huellaBase, huellaPublicada } = input
   const con = (estado: EstadoCompose, motivo: string | null): CotejoCompose => ({
     estado,
     baseGeneratedAt,
@@ -1965,7 +1975,9 @@ export function cotejarCompose(input: {
     )
   }
 
-  if (base === publicado) return con('coincide', null)
+  const conHuellas = Boolean(huellaBase) && Boolean(huellaPublicada)
+  if (conHuellas && huellaBase === huellaPublicada) return con('coincide', null)
+  if (!conHuellas && base === publicado) return con('coincide', null)
 
   if (base > publicado) {
     return con(
@@ -1974,6 +1986,19 @@ export function cotejarCompose(input: {
         '`--base-only` a propósito— y republicar es un acto humano: corre ' +
         '`npm run verify:pleno-claims` (sin --base-only), REVISA la dirección de ' +
         'los cambios y comitea.',
+    )
+  }
+
+  // Con huellas, un base más viejo y de otro contenido es casi siempre un base
+  // LOCAL atrasado: lo publicado se compuso en otra copia. Regenerarlo
+  // (`--base-only`, lo mismo que corre la nocturna) lo resuelve o deja ver la
+  // contradicción de verdad; `check:verified-compose` lo hace solo.
+  if (conHuellas) {
+    return con(
+      'contradice',
+      'lo publicado se compuso de un base con otro contenido que el que hay en disco, ' +
+        'y el de disco es más viejo: regenéralo con `npm run verify:pleno-claims -- --base-only` ' +
+        'y vuelve a cotejar. Si aun así no casa, lo publicado no sale de los datos de hoy.',
     )
   }
 

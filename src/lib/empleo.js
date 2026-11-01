@@ -58,6 +58,62 @@ function daysUntil(deadline, now) {
   return (t - now) / 86_400_000
 }
 
+/** «Cierran pronto»: las próximas dos semanas. Lo usan el contador y la frase. */
+export const DIAS_CIERRE_PRONTO = 14
+
+const cierraPronto = (o, now) => {
+  const d = daysUntil(o.deadline, now)
+  return d !== null && d >= 0 && d <= DIAS_CIERRE_PRONTO
+}
+
+/**
+ * La frase de la lectura vecinal de /empleo: cuántas ofertas hay abiertas,
+ * cuántas son para trabajar en Riba-roja y cuántas cierran pronto.
+ *
+ * Sobre TODAS las ofertas y no sobre las filtradas: dice cómo está la bolsa
+ * hoy, no lo que enseña el filtro de cada lector. Y sólo de las abiertas, con
+ * el mismo predicado que la píldora de cada tarjeta (`isOfferClosed`): una
+ * oferta cerrada no «es en Riba-roja» para quien busca trabajo.
+ * @param {any[]} offers
+ * @param {number} [now]  epoch ms (injectable for tests)
+ */
+export function enBreveEmpleo(offers, now = Date.now()) {
+  const todas = offers || []
+  const abiertas = todas.filter((o) => !isOfferClosed(o, now))
+  return {
+    // La agencia sigue listando ofertas con el plazo vencido, y el contador de
+    // la lista las cuenta: la frase da las dos cifras para que cuadren.
+    publicadas: todas.length,
+    abiertas: abiertas.length,
+    enRiba: abiertas.filter((o) => o.inRibaRoja).length,
+    cierranPronto: abiertas.filter((o) => cierraPronto(o, now)).length,
+  }
+}
+
+/**
+ * El orden de la lista. Por cierre, las abiertas primero y la que cierra antes
+ * arriba; las que no tienen plazo, detrás; las cerradas, al final. Ordenar sólo
+ * por fecha ponía la de plazo vencido la primera, porque es la más antigua.
+ * Por publicación, la más reciente arriba, abierta o cerrada.
+ * @param {any[]} offers
+ * @param {'deadline'|'published'} sortBy
+ * @param {number} [now]  epoch ms (injectable for tests)
+ */
+export function ordenarOfertas(offers, sortBy, now = Date.now()) {
+  const reciente = (a, b) => String(b.publishedAt).localeCompare(String(a.publishedAt))
+  return [...(offers || [])].sort((a, b) => {
+    if (sortBy === 'published') return reciente(a, b)
+    const ca = isOfferClosed(a, now)
+    const cb = isOfferClosed(b, now)
+    if (ca !== cb) return ca ? 1 : -1
+    if (ca) return reciente(a, b)
+    if (!a.deadline && !b.deadline) return reciente(a, b)
+    if (!a.deadline) return 1
+    if (!b.deadline) return -1
+    return a.deadline.localeCompare(b.deadline)
+  })
+}
+
 /**
  * Aggregate stats over an offer list (already filtered by the caller, so the
  * numbers track the active filter set).
@@ -113,8 +169,7 @@ export function computeEmpleoStats(offers, now = Date.now()) {
     // puente: lo que el gráfico no puede colocar es todo lo que no tiene
     // `detail.municipio`, haya ficha o no.
     if (!d && o.inRibaRoja) sinMunicipioEnRiba++
-    const du = daysUntil(o.deadline, now)
-    if (du !== null && du >= 0 && du <= 14) closingSoon++
+    if (cierraPronto(o, now)) closingSoon++
     const ym = (o.publishedAt || '').slice(0, 7)
     if (/^\d{4}-\d{2}$/.test(ym)) monthMap.set(ym, (monthMap.get(ym) || 0) + 1)
   }
@@ -139,7 +194,6 @@ export function computeEmpleoStats(offers, now = Date.now()) {
     inRibaRojaPct: total ? Math.round((inRibaRoja / total) * 100) : 0,
     closingSoon,
     vehicleRequired,
-    vehiclePct: total ? Math.round((vehicleRequired / total) * 100) : 0,
     byMonth,
     byContract,
     byMunicipio,
@@ -170,6 +224,51 @@ export function matchesFilters(offer, filters = EMPTY_FILTERS, now = Date.now())
     if (du === null || du < 0 || du > cap) return false
   }
   return true
+}
+
+/**
+ * Las ofertas que enseña la portada: abiertas, la que cierra antes primero, y
+ * después las que no traen plazo.
+ *
+ * La portada ordenaba por plazo sin mirar si ya había pasado, así que la
+ * primera oferta que veía un vecino era la más vieja: el 25-10-2026, un
+ * «Auxiliar Administrativo» cerrado el 15-01-2026, pintado «cierra 15 ene». El
+ * portal sigue llamando «Abierta» a ofertas vencidas; el corte es el mismo
+ * `isOfferClosed` que usan el listado, la ficha y el recuento de `stats`.
+ *
+ * @param {any[]} offers
+ * @param {number} [n]
+ * @param {number} [now]
+ */
+export function ofertasDePortada(offers, n = 3, now = Date.now()) {
+  const abiertas = (offers || []).filter((o) => !isOfferClosed(o, now))
+  const conPlazo = abiertas
+    .filter((o) => o.deadline)
+    .sort((a, b) => String(a.deadline).localeCompare(String(b.deadline)))
+  const sinPlazo = abiertas.filter((o) => !o.deadline)
+  return [...conPlazo, ...sinPlazo].slice(0, n)
+}
+
+/**
+ * «27 oct», o «15 ene 2027» cuando el cierre no es de este año: sin el año, un
+ * «15 ene» se lee como el próximo enero.
+ *
+ * El plazo llega como «AAAA-MM-DD», que es un DÍA de calendario y no un
+ * instante: `new Date('2026-10-27')` es la medianoche UTC, y al oeste de
+ * Greenwich eso ya es el 26. Así que un plazo de sólo fecha se pinta en UTC, y
+ * el año se compara en la cadena, no en un `Date`.
+ *
+ * @param {string} iso
+ * @param {string} locale
+ * @param {number} [now]
+ */
+export function fechaDeCierre(iso, locale, now = Date.now()) {
+  const s = String(iso)
+  const anio = Number(s.slice(0, 4))
+  const opts = /** @type {Intl.DateTimeFormatOptions} */ ({ day: 'numeric', month: 'short' })
+  if (/^\d{4}-\d{2}-\d{2}$/.test(s)) opts.timeZone = 'UTC'
+  if (anio !== new Date(now).getFullYear()) opts.year = 'numeric'
+  return new Date(s).toLocaleDateString(locale === 'ca' ? 'ca-ES' : 'es-ES', opts)
 }
 
 /**

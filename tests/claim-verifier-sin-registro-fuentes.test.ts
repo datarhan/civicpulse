@@ -73,10 +73,12 @@ const AJENOS = {
   bdns: {
     items: [{ titulo: 'Ayudas a la natalidad', importe: 5_000, bdnsCode: '111' }],
   },
+  // Con la forma de budget.json (`label`, src/scraper/budget.ts). La de antes
+  // decía `name`, la que leía el verificador y el fichero no trae.
   budget: {
     snapshot: {
       totalExpense: 40_000_000,
-      expenseByProgram: [{ name: 'Cultura', amount: 1_000_000 }],
+      expenseByProgram: [{ label: 'Cultura', amount: 1_000_000 }],
       expenseByEconomicChapter: [],
     },
   },
@@ -107,13 +109,17 @@ describe('verifyClaim · el sin-datos que no encontró nada', () => {
     expect(v.summary).not.toMatch(/tenders|bdns|presupuesto/i)
   })
 
-  it('con los cuatro corpus mirados, nombra los cuatro y en el orden de la lista', () => {
+  it('con los tres corpus mirados, nombra los tres y en el orden de la lista', () => {
     const v = verifyClaim({ claim: claim(), ...AJENOS })
     expect(v.verdict).toBe('sin-datos')
     expect(v.evidence).toEqual([])
-    // Lo positivo primero: corrieron los cuatro comparadores.
-    expect(corpusReales(v.checkedAgainst)).toEqual(['tenders', 'tenders-ted', 'bdns', 'budget'])
+    // Lo positivo primero: corrieron los tres comparadores.
+    expect(corpusReales(v.checkedAgainst)).toEqual(['tenders', 'tenders-ted', 'bdns'])
     expect(corpusNombrados(v.summary)).toEqual(corpusReales(v.checkedAgainst))
+    // El presupuesto llega y no se coteja: ni en la lista ni en la frase. Esta
+    // prueba lo daba por mirado con un tema, `other`, que no tenía ninguna
+    // pista de capítulo (tests/claim-verifier-presupuesto-sin-cotejo.test.ts).
+    expect(v.summary).not.toMatch(/budget|presupuesto/i)
   })
 
   it('con sólo contratos locales, no nombra los europeos', () => {

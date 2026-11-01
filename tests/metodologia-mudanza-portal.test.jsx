@@ -123,26 +123,29 @@ describe('/metodologia#mudanza-portal fecha cada lectura con su página', () => 
     expect(frases.some((f) => /correo/.test(f))).toBe(true)
   })
 
-  it('las 67 lecturas nombran su página, que no es la del padrón', () => {
+  // La página de la corporación se llamaba «del padrón»; desde la auditoría de
+  // las dos lecturas (§3) es «la lista de cargos», porque para un vecino el
+  // padrón es el censo. Lo que se comprueba es lo mismo: que nombra la página.
+  it('las 67 lecturas nombran su página, que no es la de la lista de cargos', () => {
     const f = frases.find((x) => x.includes(`${LECTURAS.curriculos.buenas} veces`))
     expect(f).toMatch(/Datos biográficos/)
     expect(f).toMatch(/portal de transparencia/)
-    expect(f).toMatch(/no vivían en la página del padrón/i)
+    expect(f).toMatch(/no vivían en la página de la lista de cargos/i)
     expect(menciona(f, LECTURAS.curriculos.primera)).toBe(true)
     expect(menciona(f, LECTURAS.curriculos.ultima)).toBe(true)
   })
 
-  it('dice por qué las 67 acaban un día antes que la última lectura del padrón', () => {
+  it('dice por qué las 67 acaban un día antes que la última lectura de la lista de cargos', () => {
     const parrafo = parrafos.find((p) => p.includes(`${LECTURAS.curriculos.buenas} veces`))
     const puente = enFrases(parrafo).find((x) => menciona(x, LECTURAS.curriculos.fallida))
     expect(puente).toMatch(/falló/)
-    expect(puente).toMatch(/padrón/)
+    expect(puente).toMatch(/lista de cargos/)
   })
 
-  it('la última lectura que cuenta el correo es la de la página del padrón, y lo dice', () => {
+  it('la última lectura que cuenta el correo es la de la página de la lista de cargos, y lo dice', () => {
     const f = frases.find((x) => /correo/.test(x) && menciona(x, LECTURAS.padron.ultima))
     expect(f).toBeDefined()
-    expect(f).toMatch(/padrón/)
+    expect(f).toMatch(/lista de cargos/)
     expect(f).not.toMatch(/página anterior/)
   })
 

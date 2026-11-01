@@ -107,6 +107,15 @@ export const HOSTS = [
   'interior.gob.es',
   'mir.es',
 
+  // Resultados de servicio junto al coste (/eficiencia): SINAC, calidad del
+  // agua de consumo por red de distribución. Su consulta ciudadana es un
+  // formulario POST con sesión.
+  'sinac.sanidad.gob.es',
+  // La Estadística de Bibliotecas Públicas del Ministerio de Cultura (alziraweb):
+  // visitas y prestatarios activos por municipio, junto al coste de biblioteca.
+  // Navega con sesión, así que la petición lleva su cookie.
+  'mcu.es',
+
   // Cartografía y datos abiertos que alimentan los mapas.
   'openstreetmap.org',
   'overpass-api.de',

@@ -36,13 +36,6 @@ export function curvaBanda(modelo, pobMin, pobMax, pasos = 40) {
   return out
 }
 
-/** Formato corto de euros para ejes: 1 k€, 1 M€. */
-export function etiquetaEuros(v) {
-  if (v >= 1e6) return `${v / 1e6} M€`
-  if (v >= 1e3) return `${v / 1e3} k€`
-  return `${v} €`
-}
-
 /** Formato corto de habitantes para ejes. */
 export function etiquetaHabitantes(v) {
   if (v >= 1e6) return `${v / 1e6} M hab`

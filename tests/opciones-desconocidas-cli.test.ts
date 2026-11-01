@@ -356,6 +356,12 @@ const ABIERTOS: Caso[] = [
     datos: ['contract-corrections.json'],
   },
   {
+    orden: 'tema-cargo',
+    script: 'tema-cargo.ts',
+    argv: ['--retirar', 'basura'],
+    datos: ['temas-cargos.json', 'officials.json'],
+  },
+  {
     orden: 'solicitud',
     script: 'solicitud-acceso.ts',
     argv: ['responder', 'una-solicitud', '--fecha', '2026-10-05', '--sentido', 'parcial'],
@@ -477,6 +483,19 @@ const ABIERTOS: Caso[] = [
  * aquí para que no se pierda: no se tocan.
  */
 const CERRADOS: Caso[] = [
+  {
+    orden: 'opinion',
+    script: 'opinion.ts',
+    argv: [
+      'publicar',
+      '--de',
+      'editorial/opiniones/una.json',
+      '--confirmo-firma',
+      'Nombre Apellido',
+    ],
+    datos: ['opiniones-editor.json', 'competencias.json', 'promises.json'],
+    fuera: ['editorial/opiniones/una.json'],
+  },
   {
     orden: 'promote-claim',
     script: 'promote-claim.ts',

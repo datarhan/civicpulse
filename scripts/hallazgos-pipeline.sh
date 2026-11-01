@@ -43,11 +43,13 @@ MAX_PLENOS="${MAX_PLENOS:-2}"
 # Plenos that repeatedly abort transcription are blocklisted so they stop
 # burning a MAX_PLENOS slot on every run without ever succeeding.
 # Space/comma-separated; override via env.
-#   1l7hhu7 · 2023-02-13 — the only channel upload is "Part I", a 22:36 clip
-#             whose audio carries no intelligible speech (whisper returns
-#             all-dots; volumedetect near-silence). Even a clean transcript
-#             of a Part-I-only video would misrepresent the session, so this
-#             pleno stays honest-empty until a full recording appears.
+#   1l7hhu7 · 2023-02-13 — "Part I", a 22:36 clip whose audio carries no
+#             intelligible speech (whisper returns all-dots; volumedetect
+#             near-silence); a Part-I-only transcript would misrepresent the
+#             session. The channel also has "Part II" (QF3xwnV4ycQ, 2h50m),
+#             unread by the index until 2026-10-27. A two-part session is not
+#             something this queue (one video per session) can transcribe
+#             whole: it stays blocked until the operator decides.
 TRANSCRIBE_BLOCKLIST="${TRANSCRIBE_BLOCKLIST:-1l7hhu7}"
 
 cd "$(dirname "$0")/.."

@@ -3,7 +3,6 @@ import {
   SIN_DEDICACION,
   retribucionesSplit,
   alcaldeSerie,
-  formatEurosCents,
   ningunoACero,
   perceptoresIspa,
 } from '../src/hooks/useIspa'
@@ -16,6 +15,7 @@ import {
   EMPTY_DEDIC,
 } from '../src/hooks/useDedicaciones'
 import { mailboxKinds } from '../src/lib/mailboxes'
+import { eurosExactos } from '../src/lib/formatters'
 import ispaPublicado from '../public/data/ispa.json'
 import dedicacionesPublicadas from '../public/data/dedicaciones.json'
 import officialsPublicados from '../public/data/officials.json'
@@ -241,14 +241,14 @@ describe('useDedicaciones — estadoRetribucion', () => {
   })
 })
 
-describe('useIspa — formatEurosCents', () => {
+describe('/cargos escribe las retribuciones con eurosExactos', () => {
   // Los céntimos son el asunto: la página enfrenta 48.234,08 € con 48.647,50 €
   // para decir que NO se contradicen. Redondeadas a euros las dos cifras se
   // parecen lo bastante como para que el lector las lea como una sola mal
   // copiada, que es justo el defecto que este panel viene a arreglar.
   it('conserva los céntimos, que es donde se ve que son dos series', () => {
-    expect(formatEurosCents(48234.08)).toMatch(/48\.234,08/)
-    expect(formatEurosCents(48647.5)).toMatch(/48\.647,50/)
+    expect(eurosExactos(48234.08)).toMatch(/48\.234,08/)
+    expect(eurosExactos(48647.5)).toMatch(/48\.647,50/)
   })
 
   // Los dos extremos del reparto de asistencias se rotulan uno frente al otro.
@@ -256,13 +256,13 @@ describe('useIspa — formatEurosCents', () => {
   // millar, así que salía «4582,49 €» a la izquierda y «16.858,04 €» a la
   // derecha: la misma escala escrita de dos maneras.
   it('agrupa los millares también con cuatro cifras, para que la escala case', () => {
-    expect(formatEurosCents(4582.49)).toMatch(/4\.582,49/)
+    expect(eurosExactos(4582.49)).toMatch(/4\.582,49/)
   })
 
   it('devuelve cadena vacía ante lo que no es una cifra', () => {
-    expect(formatEurosCents(null)).toBe('')
-    expect(formatEurosCents(undefined)).toBe('')
-    expect(formatEurosCents(Number.NaN)).toBe('')
+    expect(eurosExactos(null)).toBe('')
+    expect(eurosExactos(undefined)).toBe('')
+    expect(eurosExactos(Number.NaN)).toBe('')
   })
 })
 

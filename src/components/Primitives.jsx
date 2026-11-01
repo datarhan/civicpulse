@@ -21,11 +21,12 @@ const TONES = {
  */
 export const TONE_NAMES = Object.keys(TONES)
 
-export function Pill({ tone = 'neutral', children, size = 'sm', style = {} }) {
+export function Pill({ tone = 'neutral', children, size = 'sm', style = {}, title = undefined }) {
   const t = TONES[tone] || TONES.neutral
   return (
     <span
       className="mono"
+      title={title}
       style={{
         display: 'inline-flex',
         alignItems: 'center',
@@ -104,11 +105,15 @@ export function Delta({ v, size = 11 }) {
  *
  * `style` sigue ganando a la clase —es un atributo inline— así que las llamadas
  * que ya pasan su propio `padding` o `background` no cambian de aspecto.
+ *
+ * `data-tarjeta` no pinta nada: le dice a la revisión lectora dónde empieza y
+ * acaba el recuadro, que `innerText` no ve (`textoConTarjetas` en
+ * src/scraper/reader-review.ts). Va detrás de `rest` para que nadie lo quite.
  */
 export function Card({ children, style = {}, pad = true, hover = false, className = '', ...rest }) {
   const clases = ['cp-card', pad ? '' : 'cp-card-flush', hover ? 'cp-card-hover' : '', className]
   return (
-    <div {...rest} className={clases.filter(Boolean).join(' ')} style={style}>
+    <div {...rest} data-tarjeta="" className={clases.filter(Boolean).join(' ')} style={style}>
       {children}
     </div>
   )
@@ -648,8 +653,9 @@ export function LegendDot({ color, label }) {
 /**
  * WhatsApp share deeplink. Spain-native distribution channel — most
  * Riba-roja civic conversation happens in vecinos WhatsApp groups, not
- * Telegram or email. Renders a tiny "wa" pill that opens wa.me with a
- * pre-filled message + canonical link.
+ * Telegram or email. Renders a tiny pill that opens wa.me with a
+ * pre-filled message + canonical link. It says «WhatsApp» in full: the visible
+ * text has to be a word of the accessible name (WCAG 2.5.3), and «WA» is not.
  *
  * `text` is the human message ("Queja pendiente · bache en calle Major").
  * `url`  is the canonical page to share; if omitted, defaults to the
@@ -687,7 +693,7 @@ export function ShareWA({ text, url, size = 10.5 }) {
       }}
     >
       <span aria-hidden="true">↗</span>
-      WA
+      WhatsApp
     </button>
   )
 }

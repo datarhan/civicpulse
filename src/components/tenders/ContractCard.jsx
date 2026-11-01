@@ -1,19 +1,13 @@
 // @ts-check
 import { ExtLink, Pill } from '../Primitives'
 import { STATUS_TONE } from '../../hooks/useTenders'
-import { fmtDateShort, rellena } from '../../lib/formatters'
+import { euros, fmtDateShort, rellena } from '../../lib/formatters'
 import { bajaPct } from '../../lib/tenders'
+import { importeAdjudicado } from '../../lib/contract-status'
 import { uniqueCpvLabels } from '../../lib/cpv'
 import { rotuloDe, useLocale } from '../../i18n'
 import { CLAVE_RELACION } from '../../scraper/relation-labels'
 import NotaDeLote from './NotaDeLote'
-
-const fmtEur = (n) =>
-  new Intl.NumberFormat('es-ES', {
-    style: 'currency',
-    currency: 'EUR',
-    maximumFractionDigits: 0,
-  }).format(n || 0)
 
 // Fixed light-theme palette: this card renders both inside always-white Leaflet
 // popups AND on the theme-aware /presupuesto panel, so it carries its own light
@@ -63,7 +57,9 @@ export function ContractCard(props) {
   } = props
   const { t, locale } = useLocale()
   if (!c) return null
-  const shown = typeof amount === 'number' ? amount : c.finalAmountNoTaxes || c.finalAmount || 0
+  // Sin importe publicado, null y no 0: la tarjeta decía «0 €» de un contrato
+  // cuya fila no trae la cifra (`importeAdjudicado`).
+  const shown = typeof amount === 'number' ? amount : importeAdjudicado(c)
   const baja = bajaPct(c)
   const cpvLabels = uniqueCpvLabels(c.cpvs, cpvDict, 3)
   // Tipo y procedimiento con reserva `null`: un valor sin clave no se pinta,
@@ -111,7 +107,7 @@ export function ContractCard(props) {
           className="mono"
           style={{ fontSize: 'var(--fs-meta)', fontWeight: 700, whiteSpace: 'nowrap' }}
         >
-          {fmtEur(shown)}
+          {euros(shown) || t('importe.noPublicado')}
         </span>
       </div>
 

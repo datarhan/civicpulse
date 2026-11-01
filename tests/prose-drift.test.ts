@@ -28,6 +28,31 @@ describe('prose-drift — the case it was built for', () => {
     expect(rows[0].live).toBe(67_996_704)
   })
 
+  // El de 2026-10-25: la pieza decía «reconocido a 31 de diciembre… 18,91
+  // millones», tomado de la hoja del 2T que el sitio leyó como cierre; el
+  // cierre de budget-execution.json da 40.344.388,83 €. Nada lo vigilaba
+  // porque la cifra estaba escrita en el JSX; ahora vive en `ejecucion2025`.
+  it('flags the June figure for what was recognised against the 2025 close', () => {
+    const cierre = {
+      ejecucion2025Reconocido: {
+        label: 'budget-execution · 2025 a 31/12 · gastos.total.ejecutado',
+        value: 40_344_388.83,
+      },
+    }
+    const { rows } = detectDrift(
+      [
+        {
+          where: 'reconstruccion-dana.ejecucion2025.obligacionesReconocidas',
+          value: 18_909_465.12,
+          anchor: 'ejecucion2025Reconocido',
+        },
+      ],
+      cierre,
+    )
+    expect(rows[0].severity).toBe('drifted')
+    expect(rows[0].ratio).toBeCloseTo(0.469, 3)
+  })
+
   it('stays quiet when the figure still tracks its anchor', () => {
     const { rows } = detectDrift([figure(67_990_000)], anchors)
     expect(rows[0].severity).toBe('ok')

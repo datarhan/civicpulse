@@ -192,11 +192,12 @@ export default function InteligenciaTuristica() {
           {data.clusterNota}
         </p>
         <p>
-          Tres nombres se repiten. <b>Sien Planificación Inteligente S.L.</b> dirigió el Plan
-          Director de Destino Turístico Inteligente en 2021 (contrato menor, 14.650 €), ganó en 2024
-          — como única licitadora — la «Smart Office» del PSTD (64.960 €) y en 2026 el Estudio de
-          Repercusiones que evalúa el plan (14.100 €): la misma consultora diseña la estrategia,
-          opera su oficina técnica y evalúa sus resultados. <b>Auren</b> ejerce la gerencia del plan
+          Sólo un nombre se repite en la tabla, y ya estaba antes del plan.{' '}
+          <b>Sien Planificación Inteligente S.L.</b> dirigió el Plan Director de Destino Turístico
+          Inteligente en 2021 (contrato menor, 14.650 €), ganó en 2024 — como única licitadora — la
+          «Smart Office» del PSTD (64.960 €) y en 2026 el Estudio de Repercusiones que evalúa el
+          plan (14.100 €): la misma consultora diseña la estrategia, opera su oficina técnica y
+          evalúa sus resultados. La gerencia del plan la ejerce otra consultora, <b>Auren</b>{' '}
           (45.250 €). Y la concurrencia fue desigual:{' '}
           <b>cuatro de los once procedimientos abiertos del plan recibieron una única oferta</b> —
           la Smart Office, las campañas de promoción, el suministro de accesibilidad y las pérgolas

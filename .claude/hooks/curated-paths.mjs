@@ -72,6 +72,11 @@ export const CURATED = {
   // aparece en una página publicada. La deriva la caza check:competencias; la
   // única escritura programática permitida es la del CLI de réplica.
   'competencias.json': 'curated + cited — hand-edit via PR · npm run competencia-reply',
+  // La opinión del editor: el único sitio de /eficiencia donde un juicio y un
+  // nombre van juntos. La escribe y la firma una persona; ninguna máquina la
+  // toca, ni siquiera para «arreglar» una errata (eso es `corregir`, y deja
+  // registro). Esquema y reglas: src/scraper/opinion-editor.ts.
+  'opiniones-editor.json': 'npm run opinion -- publicar | replica | corregir | retirar',
   // El padrón se raspa cada noche y la web del ayuntamiento va con retraso:
   // una renuncia de mayo de 2025 seguía sin reflejarse en septiembre de 2026.
   // Este es el único sitio donde una corrección sobrevive a la nocturna, y
@@ -81,6 +86,11 @@ export const CURATED = {
   // por encima de lo que publica el registro municipal: lo firma una persona
   // con el anuncio de la Plataforma delante, y sólo escribe el CLI.
   'contract-corrections.json': 'npm run contract-correction -- --add|--retirar',
+  // El vocabulario del buscador «¿A quién le pregunto por…?» de /cargos (decisión
+  // D3): lleva de una palabra a un área delegada, y de ahí la página saca a la
+  // persona. No nombra a nadie, pero un salto «editorial» mal puesto mandaría a
+  // un vecino a la persona equivocada: sólo escribe el CLI, que lo re-valida.
+  'temas-cargos.json': 'npm run tema-cargo -- --add|--retirar',
   // El registro de solicitudes de acceso. Lo escribe una persona porque una
   // persona presentó el escrito y una persona leyó la respuesta: que lo
   // rellenara una máquina sería inventar un hecho sobre una administración.

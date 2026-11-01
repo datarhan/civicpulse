@@ -1,6 +1,6 @@
 {
   "version": "1.0",
-  "generatedAt": "2026-10-18T20:37:16.686Z",
+  "generatedAt": "2026-10-29T20:28:22.922Z",
   "legalNotice": "Este registro recoge hallazgos editoriales sobre las intervenciones de los plenos. Los redacta un proceso automático a partir de declaraciones extraídas de la transcripción, salvo los que llevan la firma de una persona, y cada ficha indica quién la editó: un nombre como «auto-curation-v1» significa que el título y el resumen los escribió una máquina, no una persona. Cada hallazgo cita una o más afirmaciones literales (verbatim) del pleno y los documentos municipales que confirman o contradicen cada afirmación. Las réplicas de los grupos políticos se publican íntegras y sin editar.",
   "contactUrl": "https://github.com/datarhan/civicpulse/issues/new/choose",
   "methodologyUrl": "/metodologia",
@@ -134,7 +134,7 @@
       "plenoId": "1237hbp",
       "plenoDate": "2026-07-03",
       "title": "Pleno 2026-07-03: debate sobre contenedores y contrato de recogida de RSU",
-      "summary": "En el debate se afirma que el Ayuntamiento dispone de herramientas para rescindir el contrato con la empresa licitadora que, según se señala, no cumplía, y que la compra de contenedores se hará con recursos propios. Una intervención sin atribuir recuerda su satisfacción con la adjudicación, y el PP señala que ya en diciembre se advertía del deterioro. El registro municipal incluye el «Contrato administrativo para la contratación de la plataforma para la gestión de la sensorización de contenedores e información del servicio de recogida de RSU».",
+      "summary": "En el debate se afirma que el Ayuntamiento dispone de herramientas para rescindir el contrato con la empresa licitadora que, según se señala, no cumplía, y que la compra de contenedores se hará con recursos propios. Una intervención sin atribuir recuerda su satisfacción con la adjudicación. El PP formula además una acusación que el verificador no pudo contrastar con ningún dato municipal y que no se reproduce aquí. El registro municipal incluye el «Contrato administrativo para la contratación de la plataforma para la gestión de la sensorización de contenedores e información del servicio de recogida de RSU».",
       "severity": "informational",
       "sourceClaimIds": [
         "1237hbp-004-cit-df8455",
@@ -194,8 +194,8 @@
       "corrections": [
         {
           "field": "summary",
-          "original": "Compromís afirma que el Ayuntamiento dispone de herramientas para rescindir el contrato con la empresa licitadora que, según señala, no cumplía, y manifiesta que la compra de contenedores se hará con recursos propios. El grupo Otro expresa su satisfacción con la adjudicación y el PP señala que ya en diciembre se advertía del deterioro. El registro municipal incluye el «Contrato administrativo para la contratación de la plataforma para la gestión de la sensorización de contenedores e información del servicio de recogida de RSU».",
-          "corrected": "Compromís afirma que el Ayuntamiento dispone de herramientas para rescindir el contrato con la empresa licitadora que, según señala, no cumplía, y manifiesta que la compra de contenedores se hará con recursos propios. Un grupo no identificado expresa su satisfacción con la adjudicación y el PP señala que ya en diciembre se advertía del deterioro. El registro municipal incluye el «Contrato administrativo para la contratación de la plataforma para la gestión de la sensorización de contenedores e información del servicio de recogida de RSU».",
+          "original": "sumario · sha256:6a9e742ffb24",
+          "corrected": "sumario · sha256:f20ad2106337",
           "reason": "\"Otro\" no era el nombre de ningún grupo municipal: era el valor de relleno que el extractor usaba cuando no podía determinar quién hablaba. Publicado como si fuera un grupo, atribuía declaraciones a una formación inexistente. Se sustituye por una descripción neutra; la atribución real sigue sin determinarse.",
           "editor": "civicpulse-curator",
           "correctedAt": "2026-08-01T18:55:09.196Z"
@@ -218,19 +218,27 @@
         },
         {
           "field": "summary",
-          "original": "Compromís afirma que el Ayuntamiento dispone de herramientas para rescindir el contrato con la empresa licitadora que, según señala, no cumplía, y manifiesta que la compra de contenedores se hará con recursos propios. Un grupo no identificado expresa su satisfacción con la adjudicación y el PP señala que ya en diciembre se advertía del deterioro. El registro municipal incluye el «Contrato administrativo para la contratación de la plataforma para la gestión de la sensorización de contenedores e información del servicio de recogida de RSU».",
-          "corrected": "En el debate se afirma que el Ayuntamiento dispone de herramientas para rescindir el contrato con la empresa licitadora que, según se señala, no cumplía, y que la compra de contenedores se hará con recursos propios. Un grupo no identificado expresa su satisfacción con la adjudicación y el PP señala que ya en diciembre se advertía del deterioro. El registro municipal incluye el «Contrato administrativo para la contratación de la plataforma para la gestión de la sensorización de contenedores e información del servicio de recogida de RSU».",
+          "original": "sumario · sha256:f20ad2106337",
+          "corrected": "sumario · sha256:173a0a05c1b4",
           "reason": "El sumario atribuía dos intervenciones a un grupo municipal con un solo concejal, lo que identifica a esa persona por eliminación; la atribución la puso la curación automática sin firma de curador. Se retira del sumario igual que de las citas; lo que se dijo no cambia.",
           "editor": "civicpulse-curator",
           "correctedAt": "2026-09-30T05:48:06.461Z"
         },
         {
           "field": "summary",
-          "original": "En el debate se afirma que el Ayuntamiento dispone de herramientas para rescindir el contrato con la empresa licitadora que, según se señala, no cumplía, y que la compra de contenedores se hará con recursos propios. Un grupo no identificado expresa su satisfacción con la adjudicación y el PP señala que ya en diciembre se advertía del deterioro. El registro municipal incluye el «Contrato administrativo para la contratación de la plataforma para la gestión de la sensorización de contenedores e información del servicio de recogida de RSU».",
-          "corrected": "En el debate se afirma que el Ayuntamiento dispone de herramientas para rescindir el contrato con la empresa licitadora que, según se señala, no cumplía, y que la compra de contenedores se hará con recursos propios. Una intervención sin atribuir recuerda su satisfacción con la adjudicación, y el PP señala que ya en diciembre se advertía del deterioro. El registro municipal incluye el «Contrato administrativo para la contratación de la plataforma para la gestión de la sensorización de contenedores e información del servicio de recogida de RSU».",
+          "original": "sumario · sha256:173a0a05c1b4",
+          "corrected": "sumario · sha256:69f07ca7a392",
           "reason": "El sumario llamaba «un grupo no identificado» a quien pronuncia una cita que la ficha no atribuye a ningún grupo. Esa fórmula sustituyó el 1-08 al valor de relleno del extractor y, como ya dice el motivo firmado el 30-09-2026 en f-2026-01-19-afi-5238db, afirma que no se sabe quién habla; junto a un grupo nombrado, además, se lee como otro grupo distinto. La ficha no dice ninguna de las dos cosas: rotula la cita «sin atribuir», y así lo dice ahora el sumario, sin atribuirla a nadie ni contar quién habla. El verbo pasa al pasado: la cita habla de la satisfacción de entonces con la adjudicación, no de una actual.",
           "editor": "civicpulse-curator",
           "correctedAt": "2026-10-05T22:48:08.773Z"
+        },
+        {
+          "field": "summary",
+          "original": "sumario · sha256:69f07ca7a392",
+          "corrected": "En el debate se afirma que el Ayuntamiento dispone de herramientas para rescindir el contrato con la empresa licitadora que, según se señala, no cumplía, y que la compra de contenedores se hará con recursos propios. Una intervención sin atribuir recuerda su satisfacción con la adjudicación. El PP formula además una acusación que el verificador no pudo contrastar con ningún dato municipal y que no se reproduce aquí. El registro municipal incluye el «Contrato administrativo para la contratación de la plataforma para la gestión de la sensorización de contenedores e información del servicio de recogida de RSU».",
+          "reason": "El sumario daba con otras palabras el contenido de la cita 3 de la ficha df8455, que la puerta editorial retiene por ser una acusación que el verificador no pudo contrastar con ningún dato municipal; se describe sin su contenido. Revisión de superficies del 29-10-2026.",
+          "editor": "civicpulse-curator",
+          "correctedAt": "2026-10-29T20:28:22.638Z"
         }
       ]
     },
@@ -345,7 +353,7 @@
       "plenoId": "10yl550",
       "plenoDate": "2026-05-11",
       "title": "Pleno del Ayuntamiento de Riba-roja de Túria del 2026-05-11 sobre vivienda",
-      "summary": "En la sesión del pleno del 11 de mayo de 2026, el grupo PSOE sostuvo que Riba-roja es técnicamente un mercado de vivienda tensionado y defendió la constitucionalidad de la ley estatal de vivienda. El debate incluyó además reproches sobre subvenciones europeas que no se detallan aquí: la transcripción de esas intervenciones está degradada y ninguna cita mostrable las sostiene.",
+      "summary": "En la sesión del pleno del 11 de mayo de 2026, el grupo PSOE sostuvo que Riba-roja es técnicamente un mercado de vivienda tensionado y defendió la constitucionalidad de la ley estatal de vivienda. El debate incluyó además reproches sobre subvenciones europeas que no se reproducen aquí, porque ningún registro municipal los respalda ni los desmiente.",
       "severity": "informational",
       "sourceClaimIds": [
         "10yl550-062-acu-1adbf3",
@@ -434,9 +442,17 @@
           "field": "summary",
           "original": "En la sesión del pleno del 11 de mayo de 2026, el grupo PSOE afirmó que se han perdido subvenciones importantes debido a la falta de compromiso con la agenda europea. Además, el PSOE señaló que Riba Roja es un mercado de vivienda tensionado y defendió la constitucionalidad de la ley estatal de vivienda.",
           "corrected": "En la sesión del pleno del 11 de mayo de 2026, el grupo PSOE sostuvo que Riba-roja es técnicamente un mercado de vivienda tensionado y defendió la constitucionalidad de la ley estatal de vivienda. El debate incluyó además reproches sobre subvenciones europeas que no se detallan aquí: la transcripción de esas intervenciones está degradada y ninguna cita mostrable las sostiene.",
-          "reason": "La primera frase se apoyaba sólo en intervenciones que la puerta editorial retiene y cuya transcripción está degradada; la única cita mostrable de la ficha sostiene la segunda, no aquella.",
+          "reason": "La primera frase se apoyaba sólo en intervenciones que la puerta editorial retiene; la única cita mostrable de la ficha sostiene la segunda, no aquella.",
           "editor": "Sergei Lutchenko",
-          "correctedAt": "2026-08-11T09:06:43.855Z"
+          "correctedAt": "2026-08-11T09:06:43.855Z",
+          "reasonAmendments": [
+            {
+              "previous": "motivo · sha256:7864f86726b2",
+              "reason": "El motivo decía además que la transcripción de esas intervenciones está degradada. No lo estaba: la transcripción vigente de la sesión, del 1-08-2026, ya las recogía enteras cuando se escribió. Se quita esa parte; el resto del motivo no cambia. Revisión de superficies del 25-10-2026.",
+              "editor": "Sergei Lutchenko",
+              "amendedAt": "2026-10-25T20:05:44.566Z"
+            }
+          ]
         },
         {
           "field": "quote.1.speakerGroup",
@@ -445,6 +461,14 @@
           "reason": "La cita no es del PP: tras el turno del portavoz popular, la presidencia da la palabra a otro grupo, y quien habla se refiere al regidor del Partido Popular en tercera persona y recibe al acabar el agradecimiento por su nombre (transcripción y vídeo, 7.036–7.237 s). Ese grupo tiene un solo concejal, así que se retira la atribución en lugar de sustituirla.",
           "editor": "civicpulse-curator",
           "correctedAt": "2026-10-18T20:37:16.686Z"
+        },
+        {
+          "field": "summary",
+          "original": "En la sesión del pleno del 11 de mayo de 2026, el grupo PSOE sostuvo que Riba-roja es técnicamente un mercado de vivienda tensionado y defendió la constitucionalidad de la ley estatal de vivienda. El debate incluyó además reproches sobre subvenciones europeas que no se detallan aquí: la transcripción de esas intervenciones está degradada y ninguna cita mostrable las sostiene.",
+          "corrected": "En la sesión del pleno del 11 de mayo de 2026, el grupo PSOE sostuvo que Riba-roja es técnicamente un mercado de vivienda tensionado y defendió la constitucionalidad de la ley estatal de vivienda. El debate incluyó además reproches sobre subvenciones europeas que no se reproducen aquí, porque ningún registro municipal los respalda ni los desmiente.",
+          "reason": "El sumario decía que esos reproches no se detallaban porque «la transcripción de esas intervenciones está degradada». No lo está: la transcripción vigente de la sesión los recoge enteros (2.832–2.858 s), y la cita 1 de la ficha 1adbf3 consta en ella. Lo que los deja fuera es la puerta editorial, que retiene como acusación no contrastada lo que ningún registro municipal respalda ni desmiente. Se dice el motivo que es; lo que se dijo no cambia.",
+          "editor": "Sergei Lutchenko",
+          "correctedAt": "2026-10-25T20:05:44.290Z"
         }
       ]
     },
@@ -1468,15 +1492,23 @@
           "field": "crossChecked.2",
           "original": "documento cotejado · sha256:0b21b0dc940b",
           "corrected": "retirado del hallazgo",
-          "reason": "Se retira del cotejo una fila que no es un expediente sino un código de clasificación, sin objeto ni adjudicación propios: publicarla bajo el epígrafe de documentos cotejados presenta como registro del caso lo que sólo es una etiqueta. El sumario no la nombraba y no se toca; los otros dos documentos lo siguen sosteniendo.",
+          "reason": "Se retira del cotejo una fila que no es un expediente sino un código de clasificación, sin objeto ni adjudicación propios: publicarla bajo el epígrafe de documentos cotejados presenta como registro del caso lo que sólo es una etiqueta. El sumario no la nombraba y no se toca. Los otros dos documentos siguen en la lista: son los contratos a los que se refiere su última frase, y ninguno de los dos confirma ni desmiente las citas.",
           "editor": "civicpulse-curator",
-          "correctedAt": "2026-08-09T16:58:25.746Z"
+          "correctedAt": "2026-08-09T16:58:25.746Z",
+          "reasonAmendments": [
+            {
+              "previous": "motivo · sha256:0a1f9dcf1396",
+              "reason": "El motivo decía que los otros dos documentos «lo siguen sosteniendo», y se leía como respaldo del hallazgo; la misma ficha advierte que estar en la lista de documentos cotejados no dice que confirmen las citas. Sólo sostienen la última frase del sumario, la que los nombra. Revisión de superficies del 29-10-2026.",
+              "editor": "Sergei Lutchenko",
+              "amendedAt": "2026-10-29T20:28:22.920Z"
+            }
+          ]
         },
         {
           "field": "summary",
           "original": "El grupo PSOE afirma que el plan edificante ha movilizado hasta 1.700 millones de euros para la construcción y mejora de infraestructuras educativas, mientras que VOX se compromete a garantizar una enseñanza de calidad con libertad. El registro municipal incluye contratos relacionados con mejoras en centros educativos y servicios de formación.",
           "corrected": "El grupo PSOE afirma que el pla Edificant —el programa autonómico de la Generalitat para infraestructuras educativas, cuya cifra corresponde al conjunto de la Comunitat y no al presupuesto de este ayuntamiento— ha movilizado hasta 1.700 millones de euros para la construcción y mejora de infraestructuras educativas, mientras que VOX se compromete a garantizar una enseñanza de calidad con libertad. El registro municipal incluye contratos relacionados con mejoras en centros educativos y servicios de formación.",
-          "reason": "Junto a los datos de contratación y presupuesto municipales, la cifra de 1.700 millones se leía como imputable a Riba-roja, cuyo presupuesto inicial de gastos de 2025 es de 41,6 millones según CONPREL, unas cuarenta veces menos; es un programa autonómico. Señalamiento de la revisión de superficies del 18-08-2026.",
+          "reason": "Junto a los datos de contratación y presupuesto municipales, la cifra de 1.700 millones se leía como imputable a Riba-roja, cuyo presupuesto inicial de gastos de 2025 es de 41,6 millones según CONPREL, unas cuarenta veces menos, y cuyo crédito definitivo al cierre de ese año fue de 67,1 millones, unas veinticinco veces menos; es un programa autonómico. Señalamiento de la revisión de superficies del 18-08-2026.",
           "editor": "Sergei Lutchenko",
           "correctedAt": "2026-08-18T16:28:02.199Z",
           "reasonAmendments": [
@@ -1485,6 +1517,12 @@
               "reason": "El motivo decía que el presupuesto municipal es «dos órdenes de magnitud» menor, unas cien veces. Con el presupuesto inicial de gastos de 2025 en CONPREL (41,6 millones) la proporción es de unas cuarenta veces, y con el crédito definitivo del año, de unas veintisiete. Revisión de superficies del 14-10-2026.",
               "editor": "Sergei Lutchenko",
               "amendedAt": "2026-10-14T13:53:52.282Z"
+            },
+            {
+              "previous": "motivo · sha256:b02f7914d73a",
+              "reason": "La enmienda del 14-10-2026 decía que, con el crédito definitivo del año, la proporción era de unas veintisiete. Aquel crédito, 62,12 millones, era el de la hoja del segundo trimestre, que el sitio leía entonces como cierre del ejercicio; el cierre de 2025 da 67,07 millones, y la proporción es de unas veinticinco. El motivo da ahora las dos proporciones con las cifras del cierre. Revisión de superficies del 25-10-2026.",
+              "editor": "Sergei Lutchenko",
+              "amendedAt": "2026-10-25T20:05:44.839Z"
             }
           ]
         },

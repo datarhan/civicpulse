@@ -22,9 +22,9 @@
  * el 26 —con la fecha vieja, «5 de agosto»—.
  */
 import { enCastellano } from '../../scraper/solicitud-enviada'
+import { euros } from '../../lib/formatters'
 
-const eur = (v) =>
-  v.toLocaleString('es-ES', { style: 'currency', currency: 'EUR', maximumFractionDigits: 0 })
+const eur = euros
 
 const anio = (iso) => iso.slice(0, 4)
 

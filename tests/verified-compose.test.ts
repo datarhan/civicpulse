@@ -6,6 +6,7 @@ import {
   applyOverlayEntries,
   type EstadoCompose,
 } from '../src/scraper/verified-merge'
+import { huellaDelBase } from '../scripts/lib/cotejo-compose'
 
 /**
  * El invariante que `verified-rebuild.ts` ya documenta en su cabecera:
@@ -98,6 +99,97 @@ describe('cotejarCompose · el sello de lo publicado contra el de su base', () =
     const c = cotejarCompose({ baseGeneratedAt: T2, publicadoGeneratedAt: T1 })
     expect(c.baseGeneratedAt).toBe(T2)
     expect(c.publicadoGeneratedAt).toBe(T1)
+  })
+})
+
+/**
+ * El linaje por CONTENIDO. El base está gitignorado, así que cada copia del
+ * repositorio tiene el suyo: una sesión que rederiva en su worktree publica con
+ * el sello de SU base, y el checkout principal —con un base de otro día— leía
+ * «lo publicado es más nuevo que su base» y salía `contradice` (20-10-2026,
+ * merge 9d574475) sin que una sola cifra estuviera mal. La huella dice si lo
+ * publicado sale de ESTE contenido, sin importar en qué copia ni a qué hora se
+ * generó.
+ */
+describe('cotejarCompose · la huella del base manda sobre los sellos', () => {
+  const T1 = '2026-10-19T07:43:22.017Z'
+  const T2 = '2026-10-20T06:45:10.098Z' // posterior a T1
+  const T3 = '2026-10-21T10:44:40.789Z' // posterior a T2
+
+  it('misma huella → coincide aunque los sellos difieran (base regenerado en otra copia)', () => {
+    for (const [b, p] of [
+      [T3, T2],
+      [T1, T2],
+    ]) {
+      const c = cotejarCompose({
+        baseGeneratedAt: b,
+        publicadoGeneratedAt: p,
+        huellaBase: 'abc123',
+        huellaPublicada: 'abc123',
+      })
+      expect(c.estado).toBe<EstadoCompose>('coincide')
+    }
+  })
+
+  it('huella distinta con el base más nuevo → pendiente-de-republicar', () => {
+    const c = cotejarCompose({
+      baseGeneratedAt: T3,
+      publicadoGeneratedAt: T2,
+      huellaBase: 'nuevo',
+      huellaPublicada: 'viejo',
+    })
+    expect(c.estado).toBe<EstadoCompose>('pendiente-de-republicar')
+  })
+
+  it('huella distinta con el base más viejo → contradice, y el motivo dice cómo sanarlo', () => {
+    const c = cotejarCompose({
+      baseGeneratedAt: T1,
+      publicadoGeneratedAt: T2,
+      huellaBase: 'viejo',
+      huellaPublicada: 'nuevo',
+    })
+    expect(c.estado).toBe<EstadoCompose>('contradice')
+    expect(c.motivo).toMatch(/base-only/)
+  })
+
+  it('un publicado sin huella (anterior a ella) se juzga por los sellos, como antes', () => {
+    const c = cotejarCompose({
+      baseGeneratedAt: T1,
+      publicadoGeneratedAt: T2,
+      huellaBase: 'abc',
+      huellaPublicada: null,
+    })
+    expect(c.estado).toBe<EstadoCompose>('contradice')
+  })
+
+  it('la huella no rescata un base ausente: sin-base sigue siendo SALTADO', () => {
+    const c = cotejarCompose({
+      baseGeneratedAt: null,
+      publicadoGeneratedAt: T2,
+      huellaBase: null,
+      huellaPublicada: 'abc',
+    })
+    expect(c.estado).toBe<EstadoCompose>('sin-base')
+  })
+})
+
+describe('huellaDelBase · depende del contenido, no del sello', () => {
+  const items = [{ claim: { id: 'a' }, verification: { verdict: 'sin-datos' } }]
+
+  it('dos bases con el mismo contenido y distinto generatedAt tienen la misma huella', () => {
+    expect(huellaDelBase({ generatedAt: 'x', items })).toBe(
+      huellaDelBase({ generatedAt: 'y', items }),
+    )
+  })
+
+  it('un cambio en un veredicto cambia la huella', () => {
+    const otra = [{ claim: { id: 'a' }, verification: { verdict: 'parcial' } }]
+    expect(huellaDelBase({ items })).not.toBe(huellaDelBase({ items: otra }))
+  })
+
+  it('el orden de las claves no la mueve (lo escrito y lo releído de disco casan)', () => {
+    const reordenado = [{ verification: { verdict: 'sin-datos' }, claim: { id: 'a' } }]
+    expect(huellaDelBase({ items })).toBe(huellaDelBase({ items: reordenado }))
   })
 })
 

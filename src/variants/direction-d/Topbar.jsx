@@ -7,15 +7,16 @@ function Header({ now }) {
   const { t, locale } = useLocale()
   const abrirBuscador = useAbrirBuscador()
   return (
-    // Fixed 54px row on desktop; below the breakpoint it wraps and grows
-    // instead (see `.d-topbar` in DirectionD). Squeezed at 375 it used to force
-    // the brand block into a three-line column AND push 476px of live chips
-    // past the viewport — invisible while the shell was position:fixed and
-    // clipping them, a document-wide horizontal scroll once it wasn't.
+    // Fixed 54px row on desktop; below the breakpoint it becomes a grid of
+    // fixed rows instead (see `.d-topbar` in DirectionD), so `display` lives in
+    // that stylesheet and not here, where it would outrank the media query.
+    // Squeezed at 375 it used to force the brand block into a three-line column
+    // AND push 476px of live chips past the viewport — invisible while the shell
+    // was position:fixed and clipping them, a document-wide horizontal scroll
+    // once it wasn't.
     <header
       className="d-topbar"
       style={{
-        display: 'flex',
         alignItems: 'center',
         gap: 16,
         padding: '0 20px',
@@ -59,25 +60,14 @@ function Header({ now }) {
           ›
         </span>
         <span style={{ fontSize: 'var(--fs-aux)', fontWeight: 600 }}>Riba-roja de Túria</span>
-        <span
-          style={{
-            fontFamily: MONO,
-            fontSize: 'var(--fs-micro)',
-            color: 'white',
-            background: PALETTE.accent,
-            padding: '2px 6px',
-            borderRadius: 'var(--r-input)',
-            fontWeight: 700,
-            letterSpacing: '.08em',
-            marginLeft: 4,
-          }}
-        >
-          MVP
-        </span>
+        {/* Aquí iba una pastilla «MVP», jerga de empresa emergente en el rojo de
+            acento junto al nombre del pueblo, y al final de la barra un círculo
+            «MP» que parecía el menú de una cuenta que no existe (auditoría de las
+            dos lecturas, 25-10-2026). */}
       </div>
 
       <Vivo />
-      <div style={{ flex: 1 }} />
+      <div className="d-hueco" style={{ flex: 1 }} />
 
       {/* El buscador de la portada estaba pintado y muerto: sin `onClick`, y con
           `CmdK` sin montar en la rama de `/`, ni el botón ni el atajo abrían
@@ -89,12 +79,13 @@ function Header({ now }) {
         type="button"
         className="cp-topbar-search"
         onClick={abrirBuscador}
-        // El nombre accesible es el MISMO texto que se ve (WCAG 2.5.3): con un
-        // «Buscar» a secas, quien dicta por voz lo que lee en pantalla no
-        // acierta. Y hace falta la etiqueta, no basta el contenido: por debajo
-        // de 720px `index.css` esconde la pista y el «⌘K», así que sin ella el
+        // El nombre accesible sale del texto que se ve (WCAG 2.5.3), sin
+        // `aria-label`: quien dicta por voz dice lo que lee en pantalla, y axe
+        // cuenta el «⌘K» pintado como parte de eso aunque vaya `aria-hidden`.
+        // Una etiqueta escrita aparte tendría que repetirlo, y un lector de
+        // pantalla le leería el atajo a quien no tiene esa tecla. Por eso la
+        // pista no se quita por debajo de 720px: `index.css` la recorta, o el
         // botón se quedaría sin nombre en el móvil.
-        aria-label={t('topbar.search')}
         aria-keyshortcuts="Meta+K Control+K"
         style={{
           display: 'flex',
@@ -116,6 +107,7 @@ function Header({ now }) {
           {t('topbar.search')}
         </span>
         <span
+          aria-hidden="true"
           className="mono cp-topbar-search-kbd"
           style={{
             fontFamily: MONO,
@@ -131,6 +123,7 @@ function Header({ now }) {
       </button>
 
       <div
+        className="d-reloj"
         style={{
           display: 'flex',
           flexDirection: 'column',
@@ -159,22 +152,6 @@ function Header({ now }) {
         >
           {t('landing.topbar.edicion')}
         </span>
-      </div>
-
-      <div
-        style={{
-          width: 30,
-          height: 30,
-          borderRadius: '50%',
-          background: 'linear-gradient(135deg,' + PALETTE.civic + ',' + PALETTE.accent2 + ')',
-          color: 'white',
-          display: 'grid',
-          placeItems: 'center',
-          fontSize: 'var(--fs-micro)',
-          fontWeight: 700,
-        }}
-      >
-        MP
       </div>
     </header>
   )

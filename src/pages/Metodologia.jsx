@@ -1,5 +1,13 @@
 import { Card, Pill, SectionHead } from '../components/Primitives'
+import EnBreveMetodologia from '../components/metodologia/EnBreveMetodologia'
+import {
+  CabeceraGrupo,
+  EnUnaFrase,
+  IndiceLateral,
+  IndicePlegado,
+} from '../components/metodologia/IndiceMetodologia'
 import { fmtDateLong } from '../lib/formatters'
+import { useT } from '../i18n'
 import { usePlenoFindings } from '../hooks/usePlenoFindings'
 import { useFindingQuoteProvenance } from '../hooks/useFindingQuoteProvenance'
 import { useIndicadores } from '../hooks/useIndicadores'
@@ -271,16 +279,19 @@ function MudanzaDelPortal() {
   return (
     <Card style={{ marginTop: 14 }} id="mudanza-portal">
       <SectionHead
+        as="h3"
+        size="head"
         eyebrow="Cargos · la fuente se mudó"
         title="Qué se perdió cuando el portal cambió de dirección"
       />
+      <EnUnaFrase id="mudanza-portal" />
       <p style={{ margin: '8px 0 0', color: 'var(--ink70)' }}>
         A principios de <strong>septiembre de 2026</strong> el ayuntamiento mudó su portal. La
-        página «Corporación Municipal» de la que sale este padrón cambió de dirección, y la anterior{' '}
-        <strong>no redirige: contesta 403</strong> —«prohibido»—, que de las tres respuestas
-        posibles es la única que no dice lo que ha pasado. Un 301 habría llevado al lector a la
-        página nueva; un 404 habría dicho que ya no está. El 403 dice que no tienes permiso, y eso
-        es falso: la página está publicada y enlazada desde el menú del propio sitio.
+        página «Corporación Municipal» de la que sale la lista de cargos cambió de dirección, y la
+        anterior <strong>no redirige: contesta 403</strong> —«prohibido»—, que de las tres
+        respuestas posibles es la única que no dice lo que ha pasado. Un 301 habría llevado al
+        lector a la página nueva; un 404 habría dicho que ya no está. El 403 dice que no tienes
+        permiso, y eso es falso: la página está publicada y enlazada desde el menú del propio sitio.
       </p>
       <p style={{ margin: '10px 0 0', color: 'var(--ink70)' }}>
         {/* Decía «El raspado nocturno falló desde el 2 de septiembre», y esa
@@ -290,10 +301,10 @@ function MudanzaDelPortal() {
             en ese verde: sus cinco rojas son de después, y officials.json no
             cambió de `generatedAt` hasta #114 (8-09). Revisión lectora del
             30-09-2026. */}
-        <strong>Aquí costó seis días de padrón congelado.</strong> El raspado nocturno leyó la
-        página vieja por última vez el 2 de septiembre, falló desde la noche siguiente, y hasta el 8
-        esta web publicó la corporación tal como estaba antes de la mudanza. No se inventó nada en
-        ese hueco —el fichero conserva la fecha en que se generó y ésa es la que se enseña—, pero
+        <strong>Aquí costó seis días de lista de cargos congelada.</strong> El raspado nocturno leyó
+        la página vieja por última vez el 2 de septiembre, falló desde la noche siguiente, y hasta
+        el 8 esta web publicó la corporación tal como estaba antes de la mudanza. No se inventó nada
+        en ese hueco —el fichero conserva la fecha en que se generó y ésa es la que se enseña—, pero
         durante seis días lo publicado no era lo vigente.
       </p>
       <p style={{ margin: '10px 0 0', color: 'var(--ink70)' }}>
@@ -314,12 +325,12 @@ function MudanzaDelPortal() {
             de ésta falló (`ok: false` en b38676c0) en la misma pasada en que la
             del padrón contestó. Revisión lectora del 30-09-2026. */}
         <strong>Lo que NO ocurrió, y conviene decirlo:</strong> la mudanza no se llevó ningún
-        currículo. No vivían en la página del padrón sino en otra del portal de transparencia,
-        «Datos biográficos del alcalde/sa y concejales», que este sitio leyó 67 veces entre el 19 de
-        junio y el 1 de septiembre de 2026 y que listó siempre los mismos 17. Esa página ya falló en
-        la lectura del 2 de septiembre, la misma pasada en la que la del padrón todavía contestó;
-        por eso las 67 acaban el día 1. Con la mudanza, esos 17 pasaron a un PDF junto a cada
-        concejal, que es una forma mejor de publicarlos. Hoy hay{' '}
+        currículo. No vivían en la página de la lista de cargos sino en otra del portal de
+        transparencia, «Datos biográficos del alcalde/sa y concejales», que este sitio leyó 67 veces
+        entre el 19 de junio y el 1 de septiembre de 2026 y que listó siempre los mismos 17. Esa
+        página ya falló en la lectura del 2 de septiembre, la misma pasada en la que la de la lista
+        de cargos todavía contestó; por eso las 67 acaban el día 1. Con la mudanza, esos 17 pasaron
+        a un PDF junto a cada concejal, que es una forma mejor de publicarlos. Hoy hay{' '}
         <strong style={{ color: 'var(--ink)' }}>
           {conFicha} de {total}
         </strong>{' '}
@@ -338,8 +349,8 @@ function MudanzaDelPortal() {
             currículos recién nombrada, «anterior» podía ser cualquiera de las
             dos. Revisión lectora del 30-09-2026. */}
         <strong>Lo que sí se estrechó son las formas de contactar.</strong> El 2 de septiembre de
-        2026, en la última lectura de la página vieja del padrón, tres concejales publicaban una
-        dirección de correo propia del ayuntamiento. En la página nueva{' '}
+        2026, en la última lectura de la página vieja de la lista de cargos, tres concejales
+        publicaban una dirección de correo propia del ayuntamiento. En la página nueva{' '}
         {propias === 0 ? (
           <strong style={{ color: 'var(--ink)' }}>no hay ninguna</strong>
         ) : (
@@ -390,7 +401,8 @@ function useObservacionesFrontera() {
   return tamanos.length === 1 ? String(tamanos[0]) : `entre ${tamanos[0]} y ${tamanos.at(-1)}`
 }
 
-export default function Metodologia() {
+function ContratoEditorial() {
+  const t = useT()
   const observacionesFrontera = useObservacionesFrontera()
   const authorship = useAuthorshipDisclosure()
   const adjudication = useAdjudicationDisclosure()
@@ -427,17 +439,37 @@ export default function Metodologia() {
           marginTop: 2,
         }}
       >
-        Metodología del tracker de promesas
+        Metodología de CivicPulse
       </h1>
+      {/* Decía «del tracker de promesas», de cuando la página sólo explicaba
+          las promesas; hoy es el contrato editorial de todo el sitio. */}
       <p style={{ color: 'var(--ink70)' }}>
-        Este documento explica exactamente cómo se recopilan, clasifican y muestran los compromisos
-        políticos en CivicPulse. Está pensado para ser diseccionable por cualquier vecino,
-        periodista o cargo público. Si algún punto te parece ambiguo, abre una issue en nuestro
-        repositorio público.
+        Este documento explica exactamente de dónde salen los datos de CivicPulse, cómo se
+        comprueban, cómo se publican y cómo se corrigen: las promesas, los plenos, las quejas, los
+        cargos y los costes de los servicios. Está pensado para ser diseccionable por cualquier
+        vecino, periodista o cargo público. Si algún punto te parece ambiguo, escríbenos o abre una
+        incidencia en nuestro repositorio público.
       </p>
 
-      <Card style={{ marginTop: 22 }}>
-        <SectionHead eyebrow="Principios rectores" title="Qué hacemos y qué no hacemos" />
+      {/* La primera capa: cinco reglas de esta página, dichas en corto y
+          enlazadas a la regla entera. No añade ninguna. */}
+      <div style={{ marginTop: 22 }}>
+        <EnBreveMetodologia />
+      </div>
+
+      <IndicePlegado />
+      <p className="cp-met-aviso">{t('metodologia.indice.aviso')}</p>
+
+      <CabeceraGrupo id="reglas" />
+
+      <Card id="principios" style={{ marginTop: 22, scrollMarginTop: 24 }}>
+        <SectionHead
+          as="h3"
+          size="head"
+          eyebrow="Principios rectores"
+          title="Qué hacemos y qué no hacemos"
+        />
+        <EnUnaFrase id="principios" />
         <ol style={{ margin: '8px 0 0', paddingLeft: 20 }}>
           <li>
             <strong>Neutralidad entre partidos.</strong> Todos los grupos con representación en el
@@ -514,179 +546,1851 @@ export default function Metodologia() {
         </ol>
       </Card>
 
-      <Card style={{ marginTop: 14 }}>
-        <SectionHead eyebrow="Taxonomía de estados" title="Qué significa cada estado" />
-        <table
-          style={{
-            width: '100%',
-            fontSize: 'var(--fs-aux)',
-            borderCollapse: 'collapse',
-            marginTop: 6,
-          }}
-        >
-          <thead>
-            <tr style={{ borderBottom: '1px solid var(--border2)', textAlign: 'left' }}>
-              <th style={{ padding: '6px 0' }}>Estado</th>
-              <th style={{ padding: '6px 0' }}>Qué exige publicarlo</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr style={{ borderBottom: '1px solid var(--border2)' }}>
-              <td style={{ padding: '6px 0' }}>
-                <strong>documentada</strong>
-              </td>
-              <td style={{ padding: '6px 0' }}>
-                Tenemos la promesa y su fuente. Sin juicio sobre cumplimiento.
-              </td>
-            </tr>
-            <tr style={{ borderBottom: '1px solid var(--border2)' }}>
-              <td style={{ padding: '6px 0' }}>
-                <strong>en-verificacion</strong>
-              </td>
-              <td style={{ padding: '6px 0' }}>
-                Hay señales mixtas; estamos recabando evidencia. No se afirma incumplimiento.
-              </td>
-            </tr>
-            <tr style={{ borderBottom: '1px solid var(--border2)' }}>
-              <td style={{ padding: '6px 0' }}>
-                <strong>en-progreso</strong>
-              </td>
-              <td style={{ padding: '6px 0' }}>
-                ≥1 evidencia de avance (licitación publicada, obra iniciada, partida presupuestaria
-                comprometida).
-              </td>
-            </tr>
-            <tr style={{ borderBottom: '1px solid var(--border2)' }}>
-              <td style={{ padding: '6px 0' }}>
-                <strong>cumplida</strong>
-              </td>
-              <td style={{ padding: '6px 0' }}>
-                Acto formal de finalización o resolución administrativa que acredita el
-                cumplimiento.
-              </td>
-            </tr>
-            <tr style={{ borderBottom: '1px solid var(--border2)' }}>
-              <td style={{ padding: '6px 0' }}>
-                <strong>parcial</strong>
-              </td>
-              <td style={{ padding: '6px 0' }}>
-                Cumplida en parte; el resto no ejecutado o pendiente.
-              </td>
-            </tr>
-            <tr style={{ borderBottom: '1px solid var(--border2)' }}>
-              <td style={{ padding: '6px 0' }}>
-                <strong>no-ejecutada</strong>
-              </td>
-              <td style={{ padding: '6px 0' }}>
-                Requiere (a) voto en pleno rechazando la medida, (b) desfinanciación del
-                presupuesto, o (c) finalización del mandato sin inicio. El algoritmo automático{' '}
-                <strong>NO</strong> puede asignar este estado.
-              </td>
-            </tr>
-            <tr>
-              <td style={{ padding: '6px 0' }}>
-                <strong>inviable</strong>
-              </td>
-              <td style={{ padding: '6px 0' }}>
-                Causa externa que impide el cumplimiento. Sólo curador humano, con justificación
-                documental.
-              </td>
-            </tr>
-          </tbody>
-        </table>
+      <Card style={{ marginTop: 14 }} id="politica-automatizacion">
+        <SectionHead
+          as="h3"
+          size="head"
+          eyebrow="Qué se publica sin revisión humana"
+          title="Política de automatización"
+        />
+        <div style={{ padding: '0 14px 14px', fontSize: 'var(--fs-aux)', lineHeight: 1.6 }}>
+          <EnUnaFrase id="politica-automatizacion" />
+          <p style={{ marginTop: 0 }}>
+            Hasta agosto de 2026 casi todo lo que escribía una máquina esperaba aprobación humana.
+            Esa regla parecía prudente y funcionaba como una cola: los borradores se acumulaban sin
+            que nadie tuviera capacidad de revisarlos, mientras el mayor origen de veredictos
+            equivocados publicados aquí no era ningún modelo de lenguaje, sino el{' '}
+            <strong>verificador determinista</strong> — código escrito a mano que llegó a publicar
+            744 veredictos que nadie había revisado, 176 de ellos como «verificado», incluidos
+            juicios de valor y fragmentos de conversación sin ningún dato comprobable.
+          </p>
+          <p>
+            El eje, por tanto, no es «humano contra máquina» ni «determinista contra IA». Es{' '}
+            <strong>medido o no medido</strong>, y <strong>reversible o no</strong>:
+          </p>
+          <ul style={{ paddingLeft: 18 }}>
+            {/* Decía «Todo lo que retira o suaviza una afirmación ya publicada», y más
+                abajo, de las votaciones, «Nunca se retracta de forma automática». La
+                regla dice lo que se permite, no lo que ocurre: ningún proceso llama a
+                `retractVoteRecord`, `validateRetraction` exige `editor`, y las 5 retiradas
+                de votaciones las firma una persona (01-11-2026). No dice «lo firma una
+                persona» para todas las retiradas porque no sería cierto: 17 de promesas
+                las firma una sesión de un modelo. */}
+            <li>
+              <strong>Automático, sin puerta.</strong> Lo que <em>retira o suaviza</em> una
+              afirmación ya publicada —retractar un veredicto, bajar la gravedad, despublicar— puede
+              correr sin curador y sin medición. Es reversible y equivocarse significa decir{' '}
+              <em>menos</em> de lo que podríamos, que es el error seguro para un observatorio.
+              Puede, no tiene por qué: hoy corren así las pasadas que bajan un veredicto y la puerta
+              editorial, que deja de enseñar lo que ya no se sostiene. Una{' '}
+              <a href="#plazos-vencidos" style={{ color: 'var(--civic)' }}>
+                votación de pleno
+              </a>
+              , en cambio, nunca se retracta de forma automática.
+            </li>
+            <li>
+              <strong>Automático sólo con medición.</strong> Publicar algo nuevo que no nombra a
+              ninguna persona concreta se hace sin curador únicamente si esa categoría tiene una
+              precisión medida y registrada (≥0,90 para hallazgos informativos, ≥0,95 para los
+              notables), sobre al menos 50 casos y medida en los últimos 90 días. Una categoría{' '}
+              <strong>sin medición se trata como no fiable</strong>: el camino para automatizar algo
+              es medirlo, no afirmar que funciona. Lo que se compara con el umbral no es la cifra
+              medida sino el <strong>límite inferior de su intervalo de confianza al 95 %</strong>,
+              porque una muestra pequeña no permite saber de qué lado del umbral está. La auditoría
+              de agosto de 2026 revisó los 52 hallazgos publicados <em>entonces</em> y encontró 4
+              defectos —un 92,3 % de acierto, por encima del 0,90—, pero con 52 casos ese 92,3 % es
+              compatible con un 81 % real, así que la publicación automática sigue cerrada hasta que
+              haya más casos revisados. Esa cifra está congelada a propósito: es lo que se midió en
+              esa fecha, no una afirmación sobre hoy, y sólo cambia cuando se registra una medición
+              nueva. Así se trata también publicar una queja ciudadana que la revisión automática no
+              retiene (la clase <code>queja.publicacion-automatica</code>, con el listón de lo
+              notable, porque una queja dice algo adverso de un servicio): mientras no esté medida,
+              cada queja la publica una persona.
+            </li>
+            <li>
+              <strong>Siempre con firma humana.</strong> Nombrar a una persona concreta, cualquier
+              hallazgo de gravedad crítica (que es una acusación), los informes marcados como
+              jurídicamente sensibles, y todo lo irreversible o dirigido al exterior — registrar una
+              queja en sede. No porque una persona acierte más, sino porque la responsabilidad legal
+              necesita una firma. Nombrar a un grupo municipal con un solo concejal es nombrar a ese
+              concejal, así que cuenta igual: un hallazgo redactado por el proceso automático cuya
+              cita se atribuye a uno de esos grupos, o cuyo texto lo nombra, no se publica solo
+              aunque su categoría esté medida, sino que pasa a un curador; y el modelo que redacta
+              los resúmenes ni siquiera recibe esas etiquetas. En las quejas ciudadanas hay una
+              excepción: la foto de una queja publicada, que se anonimiza y se publica sin que nadie
+              la vea. Los hitos de cada queja —cuando alcanza los apoyos necesarios, cuando se
+              registra, cuando vence su plazo sin respuesta— no se anuncian en ningún canal público:
+              se avisan a quien modera.
+            </li>
+          </ul>
+          {/* 15-10-2026. docs/REVIEW_2026-09.md §25: auto-curate-press.ts y el
+              auto-curador de promesas no llaman a decideAutomation, y esta tarjeta
+              lo callaba mientras el README decía que nada automático subía nada. */}
+          {/* Decía «Dos procesos». Medido el 01-11-2026: tampoco pasan por ella para publicar
+              el registro de declaraciones —5.148 filas servidas sin aprobar una a una— ni el
+              Nivel A de quejas y contratos (`buildRelations`, en la nocturna). El registro sí la
+              consulta para no escribir un grupo de un escaño (pleno-claim-llm.ts), por eso
+              «para publicar». Su comparador se midió el 24-06-2026 (0,22 y 0,33,
+              `verdict.deterministic.*`): caducada, por eso «última» y «quedó». No lleva el
+              número: una cuenta aquí se queda vieja. */}
+          <p>
+            <strong>
+              Estos procesos son anteriores a esta política y todavía no pasan por ella para
+              publicar.
+            </strong>{' '}
+            La{' '}
+            <a href="#auto-curacion-promesas" style={{ color: 'var(--civic)' }}>
+              auto-curación de /promesas
+            </a>{' '}
+            publica con su propio umbral de confianza (≥0,70) y su anclaje a la fuente, sin una
+            precisión medida, y lo que publica lleva el rótulo «publicada automáticamente · revisión
+            pendiente». La del{' '}
+            <a href="#laboratorio-prensa" style={{ color: 'var(--civic)' }}>
+              laboratorio de prensa
+            </a>{' '}
+            publica hallazgos informativos con sus propias reglas. El{' '}
+            <a href="#verificacion-declaraciones" style={{ color: 'var(--civic)' }}>
+              registro de declaraciones de pleno
+            </a>{' '}
+            publica lo que extrae un modelo sin que nadie lo apruebe fila a fila: lo filtra una{' '}
+            <a href="#citas-contraste" style={{ color: 'var(--civic)' }}>
+              puerta editorial
+            </a>
+            , y la política sólo se consulta para no escribir un grupo de un solo concejal. La
+            última medición de su comparador, ya caducada, quedó muy por debajo del listón. El{' '}
+            <a href="#relacion-quejas-contratos" style={{ color: 'var(--civic)' }}>
+              cruce de quejas y contratos
+            </a>{' '}
+            publica solo, sin medición, las coincidencias de misma zona y misma materia. Ninguno
+            publica un incumplimiento ni un hallazgo crítico. Las cifras, los gráficos y el{' '}
+            <a href="#mapa-del-gasto" style={{ color: 'var(--civic)' }}>
+              mapa del gasto
+            </a>{' '}
+            son otra cosa: datos de fuentes públicas y cálculos sobre ellos, con su regla en su
+            apartado; esta política no los gobierna.
+          </p>
+          <p style={{ marginBottom: 0 }}>
+            La suspensión electoral (LOREG art. 50) prevalece sobre todo lo anterior: con{' '}
+            <code>frozenUntil</code> activo no se publica ni se retracta nada de forma automática.
+            Las mediciones vigentes son públicas en el repositorio (
+            <code>.automation-measurements.json</code>) y caducan a los 90 días, porque una
+            precisión medida contra un modelo que ya no se usa es un dato histórico, no una
+            garantía.
+          </p>
+        </div>
       </Card>
 
-      <Card style={{ marginTop: 14 }}>
+      <CabeceraGrupo id="datos" />
+
+      <Card id="fuentes-auditadas" style={{ marginTop: 14, scrollMarginTop: 24 }}>
         <SectionHead
-          eyebrow="Qué NO hace el motor automático"
-          title="Límites del inferido algorítmico"
+          as="h3"
+          size="head"
+          eyebrow="Laboratorio de prensa · fuentes"
+          title="Fuentes auditadas"
         />
+        <EnUnaFrase id="fuentes-auditadas" />
+        <ul style={{ margin: '6px 0 0', paddingLeft: 20, fontSize: 'var(--fs-aux)' }}>
+          <li>
+            <strong>PLACSP / Gobierto</strong> — contratos municipales adjudicados y en licitación.{' '}
+            {/* 19-10-2026: 51/2022, el alumbrado LED del casco urbano, formalizado y publicado
+                como «Renuncia» porque se anuló su anuncio de formalización
+                (src/scraper/contract-corrections.ts). */}
+            Cuando el registro municipal da a un contrato un estado imposible —una renuncia o un
+            desistimiento con fecha de formalización, que la ley sólo admite antes de formalizar—,
+            el contrato se publica sin estado. Y cuando la Plataforma de Contratación dice otra
+            cosa, una persona puede corregirlo citando literalmente el anuncio que lo dice y el que
+            explica la discrepancia; cada corrección va firmada, en{' '}
+            <code>/data/contract-corrections.json</code>, y la fila corregida lo indica.
+          </li>
+          <li>
+            <strong>TED (Tenders Electronic Daily)</strong> — contratos europeos sobre el umbral UE,
+            incluido NextGenerationEU / DANA.
+          </li>
+          <li>
+            <strong>BOE</strong> — gaceta oficial estatal (convenios, expropiaciones, subvenciones
+            nominativas).
+          </li>
+          <li>
+            <strong>BDNS</strong> — base nacional de subvenciones: las convocatorias que nombran
+            Riba-roja. La búsqueda trae también Riba-roja d&apos;Ebre (Tarragona), así que una
+            convocatoria de otro organismo sólo se publica si la sitúa aquí la propia BDNS: una
+            concesión al NIF del Ayuntamiento o la región de su ficha (Comunitat Valenciana o
+            provincia de Valencia). La que no se puede situar se aparta, con su motivo, en{' '}
+            <code>bdns.json</code>. Lo concedido al Ayuntamiento se lee además por su NIF
+            (P4621600H): una convocatoria abierta a todos los municipios no nombra a ninguno. Cada
+            concesión es una fila, con su importe; los euros son lo concedido (los pagos son otro
+            registro de la BDNS) y se suman sólo ahí, porque una convocatoria puede dar varias
+            concesiones. La consulta por el NIF no devuelve las concesiones más antiguas
+            (/presupuesto dice desde qué año); las recibidas anteriores siguen llegando sólo por el
+            nombre. Las convocatorias que sólo aparecen por el NIF no entran todavía en el contraste
+            del verificador: añadirlas movía veredictos hacia arriba por parecido de palabras, y eso
+            se mide antes de hacerlo.
+          </li>
+          <li>
+            <strong>Presupuesto CONPREL (MinHac)</strong> — capítulos de gasto e ingreso anuales.
+            Una celda que la fuente deja vacía o que no se lee como importe se publica como «sin
+            dato», nunca como 0 €: un capítulo de verdad a cero viene escrito como 0 en el fichero.
+            Un total que falta tampoco se rehace sumando capítulos, porque sería una suma nuestra
+            presentada como cifra del ministerio.
+          </li>
+          <li>
+            <strong>Plenos de Riba-roja</strong> — actas + votos transcritos.
+          </li>
+          <li>
+            <strong>INE / SEPE</strong> — padrón y paro registrado mensual.
+          </li>
+          <li>
+            <strong>Google Fact Check Tools + Maldita + Newtral RSS</strong> — fact-checks de
+            terceros (cruzamos para "promesa repetida" y consenso externo).
+          </li>
+          <li>
+            <strong>Catastro (OVC)</strong> — referencia catastral y dirección, sólo en revisión
+            curatorial; no llega al verificador automático.
+          </li>
+        </ul>
+        <p style={{ marginTop: 8, fontSize: 'var(--fs-aux)' }}>
+          La página{' '}
+          <a href="/lab-health" style={{ color: 'var(--civic)' }}>
+            Diagnóstico de fuentes →
+          </a>{' '}
+          publica en directo cuándo se generó cada snapshot, cuántas filas trae y si el scraper
+          nocturno está funcionando. Permite auditar la frescura del corpus sin tener que ejecutar
+          ningún script.
+        </p>
+      </Card>
+
+      <Card style={{ marginTop: 14 }} id="gasto-por-concejalia">
+        <SectionHead
+          as="h3"
+          size="head"
+          eyebrow="Transparencia · gasto por concejalía"
+          title="Cómo se asigna un contrato a un área"
+        />
+        <EnUnaFrase id="gasto-por-concejalia" />
+        <p
+          style={{
+            fontSize: 'var(--fs-aux)',
+            lineHeight: 1.55,
+            color: 'var(--ink70)',
+            marginTop: 8,
+          }}
+        >
+          La cifra de contratación que aparece en cada ficha de{' '}
+          <a href="/departamentos" style={{ color: 'var(--civic)' }}>
+            /departamentos
+          </a>{' '}
+          se asigna por el <strong>código CPV</strong> —el vocabulario común europeo de
+          contratación, que declara el propio órgano contratante junto al expediente—, no por la
+          etiqueta de categoría del portal de datos. Se lee el código <strong>principal</strong>, el
+          primero: el CPV se declara con el objeto del contrato delante y los accesorios detrás. Los
+          códigos genéricos (98 «servicios diversos», 79 «servicios empresariales») no asignan área:
+          dicen que el expediente no precisa de qué se trata, y eso no es una respuesta.
+        </p>
+        <p
+          style={{
+            fontSize: 'var(--fs-aux)',
+            lineHeight: 1.55,
+            color: 'var(--ink70)',
+            marginTop: 8,
+          }}
+        >
+          Antes se asignaba por la categoría del portal, que es una etiqueta gruesa. El{' '}
+          <strong>4 de agosto de 2026</strong> se corrigió: 40 contratos figuraban bajo{' '}
+          <em>Salud</em> sin ser gasto sanitario —alumbrado ornamental de Navidad, clases de inglés,
+          vallado— por valor de unos 355.000 €, y se mostraban bajo el nombre de la concejala que
+          responde por esa área. La cifra <strong>infra-estima a propósito</strong>: cuando los
+          códigos declarados no nombran ningún área, el contrato queda sin asignar. Un cero
+          significa «no atribuible», nunca «no se gastó».
+        </p>
+      </Card>
+
+      <Card style={{ marginTop: 14 }} id="mapa-del-gasto">
+        <SectionHead
+          as="h3"
+          size="head"
+          eyebrow="Transparencia · mapa del gasto"
+          title="Mapa del gasto: qué situamos y qué no"
+        />
+        <EnUnaFrase id="mapa-del-gasto" />
+        <p
+          style={{
+            fontSize: 'var(--fs-aux)',
+            lineHeight: 1.55,
+            color: 'var(--ink70)',
+            marginTop: 8,
+          }}
+        >
+          No existe un campo de «lugar de ejecución» en la fuente (Gobierto/PLACSP): el título del
+          contrato es la única señal de ubicación. Por eso situamos un contrato en el mapa solo
+          cuando su título <strong>nombra</strong> un lugar concreto —una calle o camino, un
+          equipamiento público (colegio, polideportivo, parque), una urbanización o un barrio— y lo
+          cotejamos contra un callejero de OpenStreetMap y el índice de equipamientos. Cada punto
+          declara su procedencia («situado por «…»»). En los contratos por <strong>lotes</strong>,
+          cuyo título es solo el nombre del lote («Obra completa»), consultamos además el objeto de
+          la licitación madre, y el pin lo declara («Lote de: …»).
+        </p>
+        <p
+          style={{
+            fontSize: 'var(--fs-aux)',
+            lineHeight: 1.55,
+            color: 'var(--ink70)',
+            marginTop: 8,
+          }}
+        >
+          Un título —o un objeto de licitación— que nombra <strong>varios</strong> sitios no se
+          sitúa: un carril bici «en la zona Molinet, Montealcedo, entrenaranjos, Santa Rosa y El
+          Clot», unas aceras en tres calles o una licitación que enumera los sitios de sus lotes no
+          caben en un punto, y un punto en cualquiera de esos sitios diría que todo está allí. La
+          excepción son los lugares <strong>uno dentro de otro</strong> —«C/ Dolçaina (Partida
+          Gallipont)», «C/Mas de Montes en P.I. Mas de Balo»—, que se sitúan en el más preciso. Y
+          «dentro» se mide, no se supone: la calle tiene que quedar a menos de{' '}
+          {CONTAINMENT_KM.toLocaleString('es-ES', { maximumFractionDigits: 1 })} km del centro de la
+          zona que el título también nombra. «c/ Toledo y camí urbanización Els pous» son dos obras
+          a casi cinco kilómetros una de otra, y no se sitúa.
+        </p>
+        <p
+          style={{
+            fontSize: 'var(--fs-aux)',
+            lineHeight: 1.55,
+            color: 'var(--ink70)',
+            marginTop: 8,
+          }}
+        >
+          El emparejamiento es deliberadamente <strong>conservador</strong> —preferimos no situar un
+          contrato antes que situarlo mal—: descartamos el nombre del municipio y de la provincia
+          («Riba-roja de Túria», «València», que aparecen en casi todas las direcciones), las
+          palabras genéricas de expediente («social», «municipal», «pública», «mayor») y el nombre
+          de un ODS que citan los pliegos («Industria, innovación e infraestructura»), y solo fiamos
+          una calle cuando el título lleva un indicador de vía (C/, Camino, Ctra.) — una sigla como
+          «C.D.» o «C.E.I.P.» no lo es. Un equipamiento solo se sitúa para contratos de{' '}
+          <strong>obra</strong>: un «suministro para la Policía Local» es <em>para</em> el servicio,
+          no una obra <em>en</em> el edificio. El gasto sin lugar citado (servicios, suministros y
+          obras sin ubicación) nunca se reparte por el mapa.
+        </p>
+        <p
+          style={{
+            fontSize: 'var(--fs-aux)',
+            lineHeight: 1.55,
+            color: 'var(--ink70)',
+            marginTop: 8,
+          }}
+        >
+          La capa de <strong>incendios forestales</strong> no sitúa nada: dibuja los perímetros tal
+          y como los cartografía el Institut Cartogràfic Valencià, sin un vértice nuestro. Se
+          consulta por <strong>geometría</strong>, no por nombre de municipio —la misma fuente
+          archiva este pueblo con dos grafías distintas, y filtrar por el nombre borra un año entero
+          de la serie—, así que aparece todo lo que cruza el término, incluido lo que la Generalitat
+          atribuye a un municipio vecino; cuando eso pasa, la ficha lo dice. La superficie es la del
+          incendio completo, nunca recortada por la frontera: recortarla daría una cifra nuestra con
+          firma ajena. Al revés también ocurre —hay un incendio atribuido a Riba-roja que la propia
+          Generalitat dibuja fuera del término—: ése se cuenta en la cobertura y no se pinta, porque
+          dibujarlo pondría una cicatriz donde no ardió. Las causas son las del parte oficial, y los
+          partes que no la determinan quedan fuera del porcentaje en vez de convertirse en una causa
+          llamada «otras».
+        </p>
+        <p
+          style={{
+            fontSize: 'var(--fs-aux)',
+            lineHeight: 1.55,
+            color: 'var(--ink70)',
+            marginTop: 8,
+          }}
+        >
+          Cada punto abre la ficha del contrato con el dato que ya publica el expediente:
+          adjudicatario, importe de licitación → adjudicación (la baja), objeto (código CPV
+          traducido), procedimiento, número de licitadores y plazo. La etiqueta CPV usa el
+          vocabulario oficial CPV-2008 de la UE.
+        </p>
+        <p
+          style={{
+            fontSize: 'var(--fs-aux)',
+            lineHeight: 1.55,
+            color: 'var(--ink70)',
+            marginTop: 8,
+          }}
+        >
+          Para los títulos que el emparejamiento automático no consigue situar (abreviaturas,
+          castellano/valenciano), un modelo de lenguaje propone el nombre del lugar citado. Ese
+          nombre se resuelve <strong>siempre</strong> contra el mismo callejero —el modelo nunca
+          inventa coordenadas— y la propuesta <strong>no aparece en el mapa</strong> hasta que una
+          persona la revisa y la aprueba. Es una ayuda de cobertura, no una fuente: el listado
+          automático nunca sustituye a la revisión humana.
+        </p>
+        <p
+          style={{
+            fontSize: 'var(--fs-aux)',
+            lineHeight: 1.55,
+            color: 'var(--ink70)',
+            marginTop: 8,
+          }}
+        >
+          El callejero se completa con un <strong>suplemento curado</strong> de lugares que
+          OpenStreetMap aún no recoge o solo recoge en valenciano (el Mercat Municipal, el Castell,
+          el Pavelló, polígonos y urbanizaciones): cada entrada es editada a mano, cita su
+          procedencia (el objeto OSM o la página oficial de la que sale la coordenada) y pasa por
+          las mismas vallas conservadoras del emparejador. Sin procedencia verificable, el lugar no
+          entra.
+        </p>
+      </Card>
+
+      <CabeceraGrupo id="cargos" />
+
+      <Card style={{ marginTop: 14 }} id="corporacion">
+        <SectionHead
+          as="h3"
+          size="head"
+          eyebrow="Cargos · la lista de la corporación"
+          title="Qué pasa cuando la web del ayuntamiento va por detrás del Pleno"
+        />
+        <EnUnaFrase id="corporacion" />
+        <p style={{ margin: '8px 0 0', color: 'var(--ink70)' }}>
+          La lista de concejales de{' '}
+          <a href="/cargos" style={{ color: 'var(--civic)' }}>
+            /cargos
+          </a>{' '}
+          se raspa cada noche de la página «Corporación Municipal» de ribarroja.es, y esa página
+          puede tardar en recoger lo que el propio Pleno ya acordó. Una renuncia presentada en mayo
+          de 2025, de la que el Pleno tomó razón el 2 de junio, seguía sin reflejarse en septiembre
+          de 2026, y quien tomó posesión del escaño el 7 de julio de 2025 no aparecía. Durante ese
+          tiempo el sitio republicaba la mora del ayuntamiento firmándola como datos reales.
+        </p>
+        <p style={{ margin: '10px 0 0', color: 'var(--ink70)' }}>
+          <strong>
+            La corrección es curada, citada y firmada, y nunca la escribe un proceso automático.
+          </strong>{' '}
+          Vive en un fichero aparte del raspado; cada entrada cita el acta literal y lleva quién la
+          firmó y cuándo. Se aplica al componer la lista, de modo que el fichero publicado lleva las
+          dos cosas —lo que raspó y lo que el acta corrige— y el sello de la página dice cuántas
+          correcciones hay. Una corrección no añade ninguna afirmación sobre nadie: republica que
+          alguien dejó el cargo y por cuál de los motivos que la ley contempla, y que alguien tomó
+          posesión con credencial de la Junta Electoral Central. Su esquema no tiene ningún campo
+          donde quepa un juicio, igual que la lista firmada de competencias.
+        </p>
+        <p style={{ margin: '10px 0 0', color: 'var(--ink70)' }}>
+          <strong>
+            Quien deja la corporación no desaparece: pasa a una sección aparte con su fecha de cese.
+          </strong>{' '}
+          Su biografía y su retrato son historia y se conservan; lo que no se pinta sobre esa
+          persona es nada en presente —retribución, áreas, quejas, encaje—. Quien entra sin que la
+          web lo liste aún aparece con los huecos honestos: sin retrato, porque la fuente no lo
+          publica, y «sin correo publicado», nunca el buzón de otra persona. Ambos tienen el mismo
+          derecho de réplica que el resto de cargos.
+        </p>
+        <p style={{ margin: '10px 0 0', color: 'var(--ink70)' }}>
+          <strong>Una guarda mira cada noche si la corrección sigue haciendo falta.</strong>{' '}
+          Comprueba dos cosas por separado: que el fichero publicado la aplica —si una pasada
+          corriera sin ella, la persona cesada volvería a la lista y el despliegue se detiene— y que
+          la página del ayuntamiento sigue necesitándola: si la web se pone al día, la corrección
+          sobra y se retira, dejando rastro. Cuando la página no contesta, la guarda dice «no
+          comprobado» en lugar de firmar un visto bueno.
+        </p>
+      </Card>
+
+      <MudanzaDelPortal />
+
+      {/* El buscador de /cargos (decisión D3 de la auditoría de las dos lecturas):
+          lo que publica y lo que no, en el contrato. Reglas en código:
+          src/scraper/temas-cargos.ts. */}
+      <Card style={{ marginTop: 14 }} id="a-quien-se-pregunta">
+        <SectionHead
+          as="h3"
+          size="head"
+          eyebrow="Cargos · a quién se pregunta"
+          title="Qué dice el buscador «¿A quién le pregunto por…?»"
+        />
+        <EnUnaFrase id="a-quien-se-pregunta" />
+        <p style={{ margin: '8px 0 0', color: 'var(--ink70)' }}>
+          En{' '}
+          <a href="/cargos" style={{ color: 'var(--civic)' }}>
+            /cargos
+          </a>{' '}
+          se escribe un asunto —«basura», «colegio»— y la página dice qué área delegada lo lleva y
+          quién la tiene hoy.{' '}
+          <strong>
+            El paso del asunto al área está en un vocabulario curado que no nombra a nadie
+          </strong>
+          : lo escribe una persona, con una herramienta que lo comprueba entero antes de guardarlo.
+          Quién tiene cada área sale de la lista de cargos, la misma de las tarjetas.
+        </p>
+        <p style={{ margin: '10px 0 0', color: 'var(--ink70)' }}>
+          <strong>
+            Cuando el área no nombra el asunto, el salto lo damos nosotros, y lo decimos
+          </strong>
+          , con la razón al lado: «la recogida de basura» no figura en ninguna delegación, y se
+          atribuye al área de servicios públicos municipales porque es la que agrupa los servicios
+          urbanos. Nombrar a quien tiene el área es decir a quién se pregunta, no quién responde de
+          cada caso, y la respuesta lo dice junto al nombre.
+        </p>
+        <p style={{ margin: '10px 0 0', color: 'var(--ink70)' }}>
+          <strong>Nunca adivina.</strong> Un asunto que ninguna área nombra remite al registro
+          general; uno que no está en el vocabulario lo dice; y si el área de un asunto ya no figura
+          en la lista de cargos —un cambio de reparto, un área con otro nombre—, la página dice que
+          hoy no lo sabe en vez de decir que no la tiene nadie, y una comprobación se pone en rojo
+          hasta que se cure. En periodo electoral dice el área sin el nombre de quien la tiene.
+        </p>
+      </Card>
+
+      <Card style={{ marginTop: 14 }} id="encaje">
+        <SectionHead
+          as="h3"
+          size="head"
+          eyebrow="Qué trae al puesto quien dirige cada área"
+          title="Encaje declarado · y qué NO significa"
+        />
+        <div style={{ padding: '0 14px 14px', fontSize: 'var(--fs-aux)', lineHeight: 1.6 }}>
+          <EnUnaFrase id="encaje" />
+          <p style={{ marginTop: 0 }}>
+            En la ficha de cada concejal con delegación aparece, área por área, si lo que declara en
+            su CV publicado guarda relación con la materia de esa área. Es un cruce entre dos cosas
+            que ya publicábamos por separado: las <strong>concejalías delegadas</strong> por decreto
+            de alcaldía y la <strong>formación y trayectoria</strong> que consta en su biografía,
+            con su cita.
+          </p>
+          <p>
+            <strong>No es una calificación, y conviene decir por qué.</strong> La primera versión de
+            esta idea era un «perfil ideal» por cargo y un porcentaje de encaje. Se descartó: un
+            concejal no es una contratación. La ley electoral no exige título académico ni
+            experiencia profesional para ser elegible —basta ser mayor de edad, estar en el censo y
+            no incurrir en causa de inelegibilidad—, así que puntuar a un cargo electo contra un
+            perfil que ninguna norma contiene sería una opinión con apariencia de métrica. El
+            contraste que sí es un hecho comprobable está en la ficha: quienes fiscalizan la
+            legalidad y los pagos del ayuntamiento —secretaría, intervención, tesorería— acceden por
+            oposición estatal y con titulación universitaria; quienes deciden en qué se gasta, no.
+          </p>
+          <p>Por tanto, esta sección:</p>
+          <ul style={{ paddingLeft: 18 }}>
+            <li>
+              <strong>No puntúa, no suma y no ordena.</strong> No hay porcentaje, ni ranking, ni
+              agregado por persona. En la ficha, cada eje nombra <strong>lo declarado</strong>: el
+              título en «Formación», el puesto en «Experiencia» —sin el centro ni la empresa, que
+              van en la vista por áreas junto a su cita—. Los nombres de las áreas se añaden detrás,
+              precedidos de «solo en»,{' '}
+              <strong>únicamente cuando la relación no alcanza a todas</strong> las que dirige:
+              donde las alcanza todas no hay nada que acotar. Ni las áreas ni los títulos se cuentan
+              nunca. «3 de 4» sería una nota con pasos intermedios.
+            </li>
+            <li>
+              <strong>«No consta» no significa «no tiene».</strong> Significa que la fuente
+              publicada no lo recoge, y enlaza al apartado de huecos de su propia biografía. Es
+              distinto de «sin relación declarada», que sí afirma algo: que consta formación y que
+              corresponde a otra materia. Son hechos diferentes sobre una persona y llevan palabras
+              diferentes.
+            </li>
+            <li>
+              <strong>Se dice de qué se sostiene lo citado.</strong> Cada cita que respalda una
+              relación se clasifica por quién la publicó: si sale del CV que la propia persona
+              declara, o si además la respalda una fuente independiente de ella. La frase habla{' '}
+              <strong>sólo de lo citado</strong>: donde no se cita nada no se dice nada, porque
+              sobre lo que no se citó no se comprobó ninguna corroboración y negarla sería publicar
+              como hallazgo lo que nadie llegó a medir. Mientras todas las evaluaciones de una ficha
+              coinciden se dice <strong>una sola vez</strong>, no como un distintivo repetido junto
+              a cada elemento — una marca idéntica en todos no distingue nada. Cuando divergen, la
+              ficha lo indica en el eje —formación o trayectoria— en el que pueda decirse entero, y
+              donde ni siquiera ahí coincide, calla en lugar de aproximar; la vista por áreas sí lo
+              marca evaluación por evaluación, que es donde están las citas. «Autodeclarada»
+              describe la fuente, no a la persona, y no es un reproche: declarar el propio currículo
+              es lo que la ley pide. Queda reservado un tercer valor, «discrepancia documentada»,
+              que ningún automatismo deriva: sólo puede ponerlo un curador leyendo dos fuentes que
+              se contradicen. Cuando una advertencia de la biografía recae sobre uno de estos ejes,
+              el proceso la propone clasificada y ahí se detiene: la firma un curador una por una, y
+              puede no firmarla. Que sea cierta y esté bien clasificada no basta para publicarla. La
+              que se firma sale con su texto literal; la que no, no sale, y la ficha no dice nada de
+              ella.
+            </li>
+            <li>
+              <strong>No mide gestión.</strong> Que la formación de alguien coincida con su área no
+              dice nada sobre cómo la dirige, y que no coincida tampoco. Lo que sí se puede medir de
+              su gestión —votaciones, promesas con plazo, contratación, quejas— está en{' '}
+              <code>/departamentos</code>, y se cuenta por área, no por persona.
+            </li>
+            <li>
+              <strong>Nada de esto se publica solo.</strong> Un modelo propone la relación citando
+              por índice sobre la propia lista del CV —de modo que no puede inventarse una fuente— y
+              un curador revisa y <strong>firma cada fila</strong> antes de que se publique. Nombrar
+              a una persona concreta es Nivel C de la política de automatización: ninguna precisión
+              medida lo desbloquea. La cola de revisión no es pública.
+            </li>
+            <li>
+              <strong>Los 10 concejales sin delegación no aparecen en blanco.</strong> Se dice
+              expresamente que no dirigen ninguna concejalía, porque un hueco sin explicar
+              convertiría la página en «el partido de gobierno tiene credenciales y el resto no» —
+              un reflejo de quién gobierna, no de quién está formado.
+            </li>
+            <li>
+              <strong>Se suspende en periodo electoral.</strong> Con <code>frozenUntil</code> activo
+              el bloque desaparece por completo. Los hechos no cambian; publicarlos en campaña, sí.
+            </li>
+          </ul>
+          <p>
+            <strong>De qué está hecha esa clasificación.</strong> Hoy, todas las referencias que
+            sostienen este bloque proceden de un documento que la propia persona redactó sobre sí
+            misma: el CV que el ayuntamiento publica en su portal. Una declaración de bienes y
+            actividades contaría igual —la custodia un registro oficial, pero lo que dice sigue
+            siendo el relato del interesado—. Por eso de cada fuente se anotan{' '}
+            <strong>dos cosas distintas</strong>: quién la publica y de quién es el relato. Un CV
+            colgado en el portal municipal tiene un publicador fiable y una afirmación sin
+            verificar; tomar el sello del ayuntamiento por una comprobación sería dar por hecha una
+            que nadie hizo. Que ninguna evaluación diga hoy «corroborada» es el resultado de esa
+            clasificación, hecha fuente a fuente: no es un valor decorativo ni inalcanzable —se
+            deriva en cuanto una de las citas la publica un tercero ajeno a la persona—, sino una
+            medición. Y se comprueba: una evaluación que cita algo sin decir de qué se sostiene, o
+            que lo deja en «sin clasificar», rompe la auditoría de integridad que se pasa sobre los
+            datos publicados. Y cuando la biografía deja constancia de una discrepancia sin resolver
+            sobre la formación o la trayectoria, el proceso la propone como advertencia clasificada;
+            que llegue al bloque —con el texto literal de la advertencia— depende de que un curador
+            la firme, y puede no firmarla aunque la clasificación sea correcta. Sin esa firma la
+            ficha no la menciona, así que la ausencia de advertencias en una ficha no significa que
+            la biografía no recoja ninguna.
+          </p>
+          <p style={{ marginBottom: 0 }}>
+            Los requisitos legales citados proceden del texto consolidado del BOE: la{' '}
+            <strong>Ley Orgánica 5/1985 del Régimen Electoral General</strong>, artículo 6.1, para
+            los cargos electos, y el <strong>Real Decreto 128/2018</strong>, artículos 17, 18 y 19,
+            para los funcionarios de Administración Local con habilitación de carácter nacional.
+            Sólo se recogen artículos verificados literalmente; donde no se pudo verificar el texto,
+            no se afirma nada.
+          </p>
+        </div>
+      </Card>
+
+      <Card style={{ marginTop: 14 }} id="biografias">
+        <SectionHead
+          as="h3"
+          size="head"
+          eyebrow="Cargos · biografías del agente periodista"
+          title="Qué se busca sobre un cargo, dónde, y qué no entra nunca"
+        />
+        <EnUnaFrase id="biografias" />
+        <p style={{ margin: '8px 0 0', color: 'var(--ink70)' }}>
+          Las biografías de{' '}
+          <a href="/laboratorio/agentes" style={{ color: 'var(--civic)' }}>
+            /laboratorio/agentes
+          </a>{' '}
+          nacen de una asignación que un agente investiga y redacta, y que una persona revisa
+          afirmación por afirmación antes de publicar. Desde septiembre de 2026 llevan además una
+          investigación previa hecha a mano: lo que un cargo publica sobre sí mismo —su currículum
+          en el portal de transparencia— es el punto de partida, no la fuente. Se contrasta contra
+          documentos que el cargo no controla: actas de pleno, boletines oficiales (BOP, BOE, DOGV),
+          el Registro Mercantil a través del BORME, las candidaturas electorales de todas las
+          convocatorias desde 2007, la contratación y las subvenciones municipales, la prensa y las
+          cuentas públicas del propio cargo. Todo son documentos y páginas públicas: nada de
+          registros de pago, nada tras un inicio de sesión.
+        </p>
+        <p style={{ margin: '10px 0 0', color: 'var(--ink70)' }}>
+          <strong>Familia y patrimonio: sólo con documento y con nexo con el cargo.</strong> Un
+          vínculo familiar o un bien se publica cuando un documento público lo dice de forma
+          explícita y, además, guarda relación con el cargo —un contrato, una subvención, un
+          nombramiento, una decisión municipal, una incompatibilidad—. Con una sola de las dos
+          condiciones no se publica: dos apellidos iguales en un boletín no son un parentesco, y la
+          vida familiar sin relación con el cargo es vida privada por muy documentada que esté. Por
+          eso el entorno de un cargo se mira del expediente a la persona y no al revés: se parte de
+          quien ya consta en un expediente municipal —adjudicatarios, beneficiarios de subvención,
+          personas nombradas en un edicto—, se lee en el BORME quién administra esas sociedades y
+          sólo entonces se comprueba si alguien de ahí es el propio cargo o un familiar cuyo
+          parentesco conste en un documento; los parientes que no aparecen en ningún expediente no
+          se buscan. No entran nunca menores, salud, ideología más allá del partido, orientación
+          sexual, religión, domicilio ni documento de identidad. Una acusación publicada por un
+          medio se recoge como lo que es —«según tal medio, en tal fecha»—, con su copia, y eleva la
+          sensibilidad legal del informe, que entonces sólo se publica tras la revisión de una
+          persona.
+        </p>
+        <p style={{ margin: '10px 0 0', color: 'var(--ink70)' }}>
+          <strong>Cada afirmación ya publicada se coteja y recibe uno de seis desenlaces</strong>{' '}
+          —sostiene, se parece, contradice, desactualizado, sin fuente, no comprobable— y sólo dos
+          caminos cambian la página: una corrección, que deja rastro en la bitácora del informe, o
+          una nueva versión que sustituye a la anterior, la retira del índice y lo anota con fecha.
+          Lo que no se pudo comprobar se publica como laguna, no como hecho ni como sospecha. Una
+          coincidencia de nombre no es una identidad: antes de atribuir nada hace falta un segundo
+          identificador, y una búsqueda sin resultado se anota como lo que es, un dato.
+        </p>
+      </Card>
+
+      <CabeceraGrupo id="plenos" />
+
+      <Card style={{ marginTop: 14 }} id="verificacion-declaraciones">
+        <SectionHead
+          as="h3"
+          size="head"
+          eyebrow="Verificación de declaraciones de pleno"
+          title="Del discurso al contraste documental"
+        />
+        <EnUnaFrase id="verificacion-declaraciones" />
+        <p style={{ margin: '8px 0 0', color: 'var(--ink70)' }}>
+          Los concejales hacen afirmaciones en las intervenciones del pleno: cifras presupuestarias,
+          obras en marcha, convenios cerrados, promesas futuras. Algunas son verificables contra
+          documentos públicos; otras son opinión política. Este sistema, visible en el apartado{' '}
+          <a href="/plenos" style={{ color: 'var(--civic)' }}>
+            /plenos
+          </a>
+          , procesa cada declaración en tres pasos:
+        </p>
+        <ol style={{ margin: '10px 0 0', paddingLeft: 20 }}>
+          <li>
+            {/* Decía «(LLM, requiere aprobación humana)». Nadie aprueba estas filas una a
+                una: `requiresHumanApproval` es metadato de extracción, y lo que se enseña
+                lo decide claim-public-gate.ts (CLAUDE.md, What may publish). 01-11-2026. */}
+            <strong>Extracción automática</strong> (LLM). Sobre el texto de la sesión, el modelo
+            extrae <em>verbatim</em> las afirmaciones y las clasifica en cinco tipos:{' '}
+            <code>promesa</code> · <code>afirmacion_numerica</code> · <code>cita_obra</code> ·{' '}
+            <code>cita_convenio</code> · <code>acusacion_publica</code>. (Existe un sexto,{' '}
+            <code>valoracion_politica</code>, que el extractor no emite: sólo nace de la
+            reclasificación curada que se describe más abajo.) Cada registro se guarda en{' '}
+            <code>pleno-claims-suggestions.json</code>, y nadie los aprueba uno a uno: lo que se
+            enseña lo decide la{' '}
+            <a href="#citas-contraste" style={{ color: 'var(--civic)' }}>
+              puerta editorial
+            </a>
+            . <strong>El modelo no dice de qué grupo es quien habla.</strong> No se le pregunta.
+            <p style={{ margin: '8px 0 0' }}>
+              Hasta el 10 de agosto de 2026 sí se le preguntaba, y no podía saberlo. El modelo ve un
+              fragmento de unos 1.200 caracteres, y medido sobre una sesión real, de sus 515
+              fragmentos <strong>6 (el 1%)</strong> contienen el momento en que la presidencia
+              concede la palabra —la única prueba de quién la tiene— mientras que 211 (el 41%) se
+              limitan a <em>nombrar</em> un partido, que en un debate suele ser aquel al que se
+              ataca. Preguntado igualmente, el modelo tiraba del nombre que aparecía en el texto. El
+              resultado eran citas archivadas bajo el grupo al que critican. Las 1.415 atribuciones
+              que ese método había producido se retiraron a «sin identificar» el 10 de agosto. Una
+              recuperación del 15 de agosto las devolvió al registro de declaraciones, copiándolas
+              de un fichero publicado que aquella retirada no había limpiado, y en octubre de 2026
+              se volvieron a retirar: sólo conservan su grupo las pocas que el mapa de hablantes,
+              construido después, acredita igual.
+            </p>
+            <p style={{ margin: '8px 0 0' }}>
+              La atribución se une ahora <strong>después</strong> de extraer, desde un mapa de
+              hablantes construido a partir del audio, en el que cada grupo se sostiene sobre la
+              frase concreta en que la presidencia lo nombró al dar la palabra —«Compromís, Rafa»—
+              con el segundo exacto de la grabación en que se dijo. El nombre y el partido tienen
+              que aparecer en esa frase: si el mapa no acredita quién hablaba, la cita se publica{' '}
+              <strong>sin grupo</strong>, y eso es una respuesta, no un fallo.
+            </p>
+            <p id="atribucion-firmada" style={{ margin: '8px 0 0', scrollMarginTop: 24 }}>
+              <strong>Hay una segunda vía, y sólo esa</strong>: una persona firma con su nombre el
+              grupo de quien habla, con el tramo de la grabación en segundos y cómo se sabe —la
+              frase con que la presidencia le dio la palabra, o que quien habla es la propia
+              presidencia—. Lo firma tras escuchar ese tramo o, si no lo ha escuchado, desde la
+              transcripción y su propia identificación del grupo, y entonces lo dice el motivo de la
+              firma, que se publica con ella (<code>pleno-claim-relabels.json</code>). Antes de
+              aceptarla se comprueba que las palabras de la declaración constan en ese tramo de una
+              transcripción de la sesión. La firma no reescribe el registro: se guarda aparte, con
+              lo que la declaración decía al firmarse, y la compilación la aplica encima; si el
+              registro cambia por su cuenta, la firma deja de aplicarse y la declaración no publica
+              un grupo que la contradiga. Sólo escribe grupos con varios concejales. Esas
+              declaraciones llevan la marca «firmado».
+            </p>
+            <p style={{ margin: '8px 0 0' }}>
+              La identificación individual (concejal concreto) sigue siendo una señal secundaria (
+              <code>speakerSlug</code>), y sólo cuando la identificación por voz —entrenada con
+              muestras públicas— ha asignado esa línea con alta confianza (cosine ≥ 0,6 y margen ≥
+              0,15 frente al segundo candidato). Ninguna superficie pública (
+              <code>/declaraciones</code>, <code>/hallazgos</code>) nombra al individuo hasta que un
+              curador lo promueve manualmente. Conviene decir además algo que la etiqueta de grupo
+              oculta: <strong>VOX, EU-Podem y Compromís tienen un escaño cada uno</strong>, así que
+              en esos tres casos etiquetar el grupo señala necesariamente a esa persona.{' '}
+              <strong>Por eso esas tres etiquetas no se publican</strong>: aunque el mapa acredite
+              quién hablaba, la declaración sale sin grupo, porque nombrar a una persona lo firma un
+              curador por hallazgo, y la firma del registro de declaraciones nunca escribe uno de
+              esos tres grupos. Y cuando un hallazgo corrige el grupo de una de sus citas, la
+              declaración de la que sale esa cita deja de decir lo que el hallazgo retiró; si el
+              hallazgo la re-etiquetó con prueba, la declaración dice el grupo nuevo sólo cuando una
+              persona lo firma por esa vía.
+            </p>
+            <p style={{ margin: '8px 0 0' }}>
+              <strong>Ese texto no siempre es la transcripción del vídeo.</strong> Cuando no hay
+              audio de la sesión, lo que se procesa es el <strong>acta municipal</strong>, que es un
+              resumen ya redactado por secretaría. La diferencia importa a quien lee: una cita
+              «literal» sacada de un acta cita al acta, no a la intervención. Cada sesión en{' '}
+              <a href="/plenos" style={{ color: 'var(--civic)' }}>
+                /plenos
+              </a>{' '}
+              indica cuál de las dos está mostrando, y el clasificador nunca adivina — si un
+              documento no lleva marcas de tiempo que avancen, no se da por transcripción de audio.
+            </p>
+          </li>
+          <li>
+            {/* Decía «subvenciones (bdns.json), presupuesto (budget.json) y
+                promesas». El bloque del presupuesto no comparó nunca nada —leía
+                `name` y budget.json rotula en `label`— y anotaba `budget` igual,
+                así que las tarjetas lo daban por consultado (revisión lectora,
+                /plenos/1sqj7is). Se quitó en vez de repararlo: elegía un capítulo
+                por el tema y nunca miraba el total. 26-10-2026. */}
+            <strong>Contraste determinista</strong> (sin LLM) contra la base de datos municipal:
+            contratos (<code>tenders.json</code>), subvenciones (<code>bdns.json</code>) y promesas
+            documentadas (<code>promises.json</code>). El presupuesto no entra en este cotejo: hasta
+            octubre de 2026 las tarjetas lo nombraban entre las fuentes comprobadas sin que se
+            hubiera comparado con él ninguna cifra. El verificador emite uno de cinco veredictos:
+            <ul style={{ marginTop: 6 }}>
+              <li>
+                <strong>verificado</strong> — coincidencia fuerte (importe + entidad) en alguna base
+                documental.{' '}
+                {/* 19-10-2026: k4olcs-019-cit-b9b013 salía «Verificado» por 80.666 € con
+                    la licitación de su expediente, que imprime 70.158 €. */}
+                La fila que se cita imprime la cifra dicha, con un 1 % de margen: si el expediente
+                la trae en otra de sus filas —la adjudicación con IVA, por ejemplo—, se cita ésa; si
+                ninguna la imprime, el veredicto no pasa de <em>parcial</em>.{' '}
+                {/* 27-10-2026: rmtyr-033-afi-219148, «una partida de 25.000 euros» para
+                    las actividades del ECA, salía «verificado» en la base con un contrato
+                    de RIBAJOVE de 24.975 € por la palabra «actividades». */}
+                Si de la entidad sólo queda una palabra —las de menos de cuatro letras no cuentan—,
+                es la cifra la que tiene que señalar el expediente, y sólo lo hace con cuatro cifras
+                significativas o más: 940.520 € sí; 25.000 €, que cabe a menos de un 1 % de
+                cualquier contrato menor redondeado, no. La tarjeta dice lo que se cotejó —que un
+                contrato o una subvención imprime la cifra citada y nombra el mismo objeto— y nada
+                más: de lo demás que diga la frase, el registro no sabe.{' '}
+                {/* 27-10-2026: k4olcs-019-cit-b9b013, «sistema de debate, captura y
+                    grabación de vídeo…», salía «verificado» con los 80.666 € que se
+                    dijeron en la frase siguiente. */}
+                Y la cifra tiene que estar en las palabras de la cita: escrita en dígitos, tiene que
+                ser ésa; en letra, basta con que la cita diga un número. El extractor anota a veces
+                la que oyó en la frase de al lado, y en una cita que no dice ninguna esa cifra no se
+                coteja, ni la tarjeta la pinta como de la cita.
+              </li>
+              <li>
+                <strong>parcial</strong> — coincidencia moderada; entidad o importe difieren algo.{' '}
+                {/* 19-10-2026: zrbgic-086-cit-ec50ea, una valoración en valenciano
+                    sobre un mantenimiento, salía «parcial» sobre el contrato del
+                    césped artificial que sólo nombraba la paráfrasis del extractor. */}
+                Cuando la cita no trae cifra y sólo nombra una obra, el expediente se busca con las
+                palabras que dijo quien habla, no con la descripción que anotó el extractor: un
+                contrato que sólo casa con esa descripción no sostiene ningún veredicto, y la
+                declaración queda en <em>sin-datos</em>.
+              </li>
+              <li>
+                <strong>contradicho</strong> — la base documental registra un importe distinto, o el
+                discurso afirma «obra terminada» cuando la contratación no llegó a término (anulada,
+                desierta, desistida, todavía en evaluación o sin adjudicación definitiva).{' '}
+                {/* 19-10-2026: Gobierto rotula el estado de las licitaciones con palabras que no
+                    son las de la Plataforma —«revoked» en 114 adjudicadas, «formalized» en dos
+                    anuladas—, medido sobre 51 fichas (src/scraper/tenders.ts,
+                    `estadoDeLicitacion`). Y cuando las dos tablas no casan, manda el contrato
+                    (src/scraper/gemelos-de-licitacion.ts). */}
+                El estado de una licitación se lee como lo muestra la Plataforma de Contratación: la
+                copia que publica el portal municipal lo rotula con otras palabras —«revocada» para
+                una licitación adjudicada, «formalizada» para una anulada—, y se traducen con una
+                correspondencia cotejada ficha a ficha contra la Plataforma. Cuando un mismo
+                expediente figura en la tabla de contratos y en la de licitaciones con estados
+                distintos, manda el del contrato.{' '}
+                <strong>Desde el 2 de agosto de 2026 no se publica de forma automática.</strong> El
+                comparador determinista llegó a emitir 49 y los 49 estaban mal: comparaban dinero
+                autonómico o estatal con un contrato municipal que compartía una palabra suelta. Una
+                concejala citando el precio del alquiler de vivienda quedaba «desmentida» por el
+                alquiler de un camión de basura; los 63.000 millones de deuda de la Generalitat, por
+                una ampliación de 32.591 € del <em>parque Generalitat</em>.{' '}
+                {/* Decía «Hoy un contradicho de máquina se retiene y sólo aparece si
+                    una persona lo promueve». Ninguna herramienta de curación puede
+                    escribir un contradicho —sólo bajan—, y desde el 27-08-2026 promover
+                    a hallazgo tampoco saca una cita de la puerta. 28-09-2026. */}
+                {/* Decía «ninguna herramienta de curación puede escribir uno —sólo
+                    bajan—». Desde el 05-10-2026 hay una que sube, la subida firmada,
+                    y tampoco lo emite. */}
+                Hoy un <em>contradicho</em> se retiene siempre: el de máquina es una pista para
+                quien redacta, no un veredicto, y ninguna herramienta de curación puede escribir
+                uno: las que bajan no llegan a él, y la que sube —la subida firmada, más abajo— no
+                lo emite.
+              </li>
+              {/* Decía «no hay registro en las bases abiertas», y la tarjeta lo
+                  repetía en cada sin-datos con una frase fija que nombraba
+                  contratos, BDNS y presupuesto aunque no se hubiera consultado
+                  ninguno. 29-09-2026. La frase del expediente parecido salía
+                  también en citas sin cifra, con un contrato encima de
+                  «Fuentes comprobadas: ninguna» y un «el que hay no dice eso»
+                  que se leía como desmentido. 30-09-2026. */}
+              {/* Los recuentos contaban «sin corpus que consultar» las filas
+                  cuya lista había sustituido una pasada, debajo de tarjetas que
+                  decían «no constan». 30-09-2026. Y el rótulo decía de más: esas
+                  filas no carecen de corpus, es que no se les lanzó ningún
+                  comparador; el padrón, el paro y las votaciones y actas de
+                  pleno están publicados. 19-10-2026. */}
+              <li>
+                <strong>sin-datos</strong> — ningún registro de las bases consultadas sostiene la
+                afirmación, o no se lanzó ningún comparador con el que cotejarla. Puede ser cierta,
+                pero no está atestiguada (muy frecuente: reconocimientos extrajudiciales,
+                operaciones internas). La explicación de su tarjeta nombra sólo las bases que
+                constan como consultadas —las mismas que su línea «Fuentes comprobadas»— y, cuando
+                no consta ninguna, no dice que se buscara.{' '}
+                {/* 27-10-2026: «en un presupuesto de cuarenta y pico millones»
+                    (/plenos/1sqj7is) llevaba sólo «No se encontró registro en
+                    contratos, … que la sostenga». */}
+                Si la cita habla del presupuesto municipal y lo que se consultó son contratos o
+                subvenciones, dice también que en el presupuesto no se buscó: «no se encontró
+                registro» no puede leerse como que nada la sostiene cuando la fuente que podría
+                sostenerla no se miró. Cuando la cifra citada se cotejó con los contratos y el
+                título de uno coincide en parte con lo citado, la tarjeta enseña ese expediente y
+                dice que su importe no es la cifra: se miró, y ni la sostiene ni la desmiente. A una
+                cita sin cifra no se le enseña ninguno, porque no hubo importe que cotejar. Los
+                recuentos de <code>/declaraciones</code>, <code>/plenos</code> y{' '}
+                <code>/laboratorio/cobertura</code> las reparten en tres, con la misma regla que esa
+                línea: <strong>comprobadas sin hallar nada</strong>, porque consta alguna base
+                consultada; <strong>ningún comparador lanzado</strong>, porque no hay nada anotado
+                («ninguna»): el verificador sólo lanza uno cuando la declaración trae un importe en
+                euros, cuando cita una obra por su nombre o cuando es una promesa, y eso no quiere
+                decir que no haya datos con que contrastarla —el padrón, el paro y las votaciones y
+                actas de pleno se publican en este sitio y todavía no tienen comparador—; y aquellas
+                de las que <strong>no consta qué se consultó</strong> («no constan»), porque una
+                revisión posterior —del motor de veredictos o de un curador— rehízo el veredicto y
+                dejó su marca en lugar de la lista. Éstas no se cuentan entre las de «ningún
+                comparador»: el motor juzgó las suyas sobre contratos o subvenciones candidatos, y
+                el curador, sobre la evidencia que corregía; que no conste cuáles no quiere decir
+                que no hubiera con qué.{' '}
+                {/* «DECLARACIONES PUBLICADAS 5112» eran filas: 291 repetían el
+                    literal de otra de su sesión. 19-10-2026. */}
+                Esos recuentos cuentan filas de extracción, no frases: las ventanas del extractor se
+                solapan, y una misma frase clasificada de dos maneras deja dos filas. No se borra
+                ninguna ni se le cambia el identificador; <code>/laboratorio/cobertura</code> dice
+                además cuántos literales distintos son.{' '}
+                {/* La columna «Declaraciones que dependen» contaba por la palabra:
+                    de 14 «actas», sólo 2 o 3 remitían a un acta que no tengamos.
+                    19-10-2026. */}
+                Y su tabla de documentos que se pueden pedir cuenta las declaraciones que{' '}
+                <em>nombran</em> ese tipo de documento, por su léxico, no las que dependen de él; no
+                cuenta el acta de un pleno que ya publicamos ni la de una reunión, ni el informe, el
+                plan o el expediente de otro órgano cuando la frase lo nombra, ni el del periodo
+                medio de pago, que publica Hacienda.
+              </li>
+              <li>
+                <strong>promesa-repetida</strong> — la promesa coincide con una ya documentada en el
+                tracker de años anteriores.
+              </li>
+            </ul>
+            {/* La fila de contrato imprimía el presupuesto base sin IVA de la
+                licitación bajo una cita que daba la adjudicación con IVA, y el
+                lector no podía cuadrar «81 K €» con «70.158 €». 30-09-2026. */}
+            <p style={{ margin: '8px 0 0' }}>
+              Cada fila de contrato imprime un importe, uno por fila, y un mismo expediente trae
+              varios: de licitación y de adjudicación, con IVA y sin él. Bajo un <em>verificado</em>{' '}
+              automático es la cifra citada, redondeada a euros. En las demás, es el importe que el
+              verificador comparó; si no es la cifra citada y otro importe del mismo expediente sí
+              lo es, la tarjeta dice debajo qué es cada uno.
+            </p>
+            {/* Hasta el 12-10-2026 la fila imprimía «sim 1.00» suelto, y junto a
+                «Parcial» se leía como coincidencia perfecta. */}
+            <p style={{ margin: '8px 0 0' }}>
+              Cuando el verificador puntuó el parecido de una fila con lo citado —las palabras del
+              objeto frente al título del expediente y, si las hay, las cifras—, la fila lo imprime
+              como «parecido con lo citado», de 0 a 1. Ese número dice cuánto trata la fila de lo
+              mismo que la cita, no si la confirma: una cita «Parcial» puede llevar un 1,00, porque
+              el expediente es el que se nombró pero no acredita lo que se dijo de él. Lo que la
+              fila acredita lo dice el veredicto.{' '}
+              {/* 27-10-2026: k4olcs-019-cit-b9b013 enseñaba la adjudicación de 80.666,66 €
+                  con el 0,85 de la licitación, puntuada con sus 70.157,72 € sin IVA. */}
+              El número es el de la fila que se enseña, puntuada con el importe que imprime, y no el
+              de otra fila del mismo expediente; si se parece más que aquella con la que el
+              verificador eligió el expediente, el veredicto no sube por eso.
+            </p>
+          </li>
+          <li>
+            <strong>
+              Segunda pasada de fundamentación con un modelo NLI local sobre los{' '}
+              <code>sin-datos</code>
+            </strong>{' '}
+            (opcional, sólo cuando el contraste determinista no encontró nada). Tomamos hasta 8
+            candidatos del corpus municipal (contratos, subvenciones, promesas previas) por
+            coincidencia léxica y semántica, y un modelo de inferencia de lenguaje natural (NLI,
+            mDeBERTa multilingüe) ejecutado <strong>localmente</strong> —coste cero, sin cuota—
+            decide si algún extracto <em>implica</em> (entailment) la afirmación. El modelo no
+            genera texto: puntúa el par (extracto, afirmación), de modo que{' '}
+            <strong>no puede inventar evidencia</strong> — la cita es siempre una fila real del
+            corpus.{' '}
+            {/* 06-10-2026: el corpus cortaba `título · €importe · estado` a 230 caracteres, y
+                el motor no vio los 35.252,87 € de k4olcs-018-afi-1077bc, que coincidían al
+                céntimo (src/scraper/snippet-de-contrato.ts). */}
+            Desde octubre de 2026, el extracto de un contrato —el que lee esta pasada, y el que lee
+            el motor de más abajo— lleva enteros su estado, sus importes de adjudicación y de
+            licitación, con y sin IVA, su adjudicataria y sus fechas, y lo único que se recorta es
+            el título: hasta entonces se cortaba todo a 230 caracteres, y en un contrato de título
+            largo el corte se comía el importe y el estado, de modo que el modelo juzgaba sin
+            verlos.{' '}
+            {/* 06-10-2026: la búsqueda semántica tiraba las licitaciones cuyo id repetía el de un
+                contrato, no embebía la adjudicataria, y la lista corta fundía los lotes de un
+                expediente, que comparten enlace (scripts/embed-verifier-corpus.ts,
+                mergeShortlists en src/scraper/semantic-shortlist.ts). */}
+            Desde esa misma fecha la búsqueda semántica también recorre las licitaciones que dicen
+            algo que su contrato no dice —otro objeto, o el importe del expediente entero—,
+            encuentra un contrato por el nombre de su adjudicataria, y cada lote de un expediente
+            cuenta como un candidato aparte, aunque todos enlacen a la misma ficha de la Plataforma
+            de Contratación. Lo que el modelo ve respaldado <strong>no se publica solo</strong>:
+            queda como propuesta de subir el veredicto a verificado/parcial, en una cola de revisión
+            que no se publica. Esa propuesta tampoco se firma tal cual: quien esté de acuerdo con
+            ella la sube por la{' '}
+            <a href="#subida-firmada" style={{ color: 'var(--civic)' }}>
+              subida firmada
+            </a>
+            , con el registro que elija y una explicación que escriba. Una pasada automática puede
+            retractar un veredicto, nunca reforzarlo. Tampoco marca <em>contradicho</em> (una
+            contradicción fuerte sólo se <em>señala</em> para revisión humana).
+          </li>
+          <li>
+            <strong>Re-fundamentación de veredictos publicados (sólo señalización).</strong> El
+            mismo modelo NLI revisa los veredictos ya publicados (verificado / parcial /
+            contradicho): si la evidencia citada no implica la afirmación —o, para un{' '}
+            <em>contradicho</em>, no la contradice— el veredicto se{' '}
+            <strong>marca para revisión de un curador</strong>. Esa revisión{' '}
+            <strong>no cambia ningún veredicto</strong>: lo rebaja (nunca lo sube) una herramienta
+            dedicada, que deja el motivo verbatim y la firma de quien la usa.{' '}
+            {/* Decía «sólo una persona puede rebajarlo» y, de lo que queda en parcial,
+                «esa firma es suya, no de la máquina». Medido el 30-09-2026: de las 69
+                bajadas del overlay, 47 no las firma una persona —40 de la revisión de
+                junio (`ai-gold-review`), 3 de sesiones de Claude, 4 con una firma que no
+                dice quién—, y la tarjeta las rotulaba todas «corregido por un curador». */}
+            <strong>No siempre la usa una persona:</strong> en junio de 2026 la usó una revisión
+            automática hecha con un modelo, y en agosto y septiembre, sesiones de un modelo que
+            corregían lo que había dejado pasar el comparador. La tarjeta de cada declaración dice
+            quién decidió la rebaja: «corregido por un curador» sólo cuando la firma nombra a una
+            persona; «rebajado en una revisión automática» cuando nombra un proceso o un modelo; y
+            «no consta quién lo decidió» cuando no dice ni lo uno ni lo otro. Lo que una rebaja deja
+            en <em>parcial</em> se enseña entre las cotejadas, con la evidencia que tenía el
+            veredicto que rebajó y su motivo por resumen: se enseña porque la herramienta sólo baja,
+            no porque la firme una persona. Ese motivo es también la explicación que la tarjeta
+            enseña bajo la cita, y puede enmendarse después —para decir lo mismo en castellano
+            llano, o decirlo mejor— <strong>sin mover el veredicto</strong>: la enmienda la firma
+            siempre una persona con su nombre, que la tarjeta da («motivo firmado por…»), y queda en
+            la propia entrada, con la fecha, el porqué y una huella del motivo anterior que permite
+            cotejarlo con el historial público del repositorio. No se enmienda ninguno durante el
+            periodo electoral, ni cuando lo publicado no es la composición de lo que hay en disco.
+            Enmendar el motivo reescribe la explicación, no la decisión: una rebaja automática con
+            el motivo firmado por una persona sigue siendo una rebaja automática. Las decisiones de
+            segunda pasada y de curación viven en una capa («overlay») separada del veredicto
+            determinista base, de modo que recalcular la base nunca borra esas decisiones. Desde
+            agosto de 2026 el <em>tipo</em> de una declaración se corrige por la misma vía: cuando
+            el extractor archiva como <code>acusacion_publica</code> algo que no acusa a nadie —el
+            caso que estrenó la herramienta fue una defensa de la constitucionalidad de una ley
+            estatal—, un curador lo reclasifica con motivo verbatim en un registro propio (
+            <code>pleno-claim-reclassifications.json</code>), y la herramienta sólo acepta
+            movimientos que <strong>alejan</strong> de la acusación, nunca hacia ella: convertir una
+            declaración en acusación agravaría lo que se afirma de quien habló, que es exactamente
+            lo que «sólo a la baja» prohíbe para los veredictos.
+            <p style={{ margin: '8px 0 0' }}>
+              El rótulo de tipo que se ve en cada tarjeta, además, se deriva de lo que la cita dice,
+              y sólo puede bajar. El extractor usa «afirmación numérica» y «convenio citado» también
+              para frases que no traen ninguna cifra o que no nombran convenio, ayuda ni fondo: una
+              lista de departamentos, un recuento de votos, una valoración sobre una carta de
+              servicios. Cuando el literal no trae lo que el tipo promete, la tarjeta dice{' '}
+              <strong>«Afirmación»</strong>, sin más. Una cifra que la comprobación no reconozca
+              deja también «Afirmación», que no afirma nada de más; nunca se rotula una frase con un
+              tipo más fuerte que el del extractor. El tipo archivado no cambia, y los recuentos por
+              tipo de{' '}
+              <a href="/laboratorio/cobertura" style={{ color: 'var(--civic)' }}>
+                /laboratorio/cobertura
+              </a>{' '}
+              siguen contando lo que el extractor clasificó.
+            </p>
+          </li>
+          <li>
+            <strong>Motor de veredictos (re-derivación, sólo a la baja).</strong> Una segunda pasada
+            de fundamentación —«razonar y luego formatear» sobre los mismos candidatos del corpus,
+            con la regla de <em>no-evidencia por defecto</em> y la misma comprobación de que el
+            valor citado aparezca literalmente en el extracto, en un dato del registro (importe,
+            estado, adjudicataria, órgano o fecha) y no sólo en su título— vuelve a juzgar los
+            veredictos marcados verificado/parcial, tanto los de la pasada LLM como —desde el 2 de
+            agosto de 2026— los que había afirmado el comparador determinista.{' '}
+            {/* Decía «Esa primera pasada sobre la base retractó 229 de 264 veredictos
+                juzgados, coherente con el conjunto de control: el determinista acierta un
+                33 % en verificado y un 22 % en parcial», y más abajo «En una muestra de
+                control etiquetada a mano, su veredicto sin-datos acierta ~92 %, así que…».
+                La muestra (tests/fixtures/verifier-gold.json) la etiquetó Claude Opus 4.8 el
+                23 y 24-06-2026, su cabecera pedía revisarla antes de tratarla como patrón, y
+                no consta que ninguna persona lo hiciera. Las tres cifras eran coincidencia
+                con esas etiquetas —36 de 39, 1 de 3 y 4 de 18—, medida con gpt-5.4-mini, y
+                la pasada de agosto se configuró con Claude Code (y en parte la contestó
+                gpt-4o-mini: ver la nota del 05-10-2026, abajo). El recuento de la pasada sobre la
+                base iba escrito en la prosa y no lo sostenía ningún dato servido. 04-10-2026. */}
+            Esa primera pasada sobre la base{' '}
+            <strong>retractó la gran mayoría de los veredictos que juzgó</strong>, en la misma
+            dirección que la muestra de control con la que se midió el motor en junio de 2026: en
+            ella, lo que el comparador determinista daba por <em>verificado</em> o <em>parcial</em>{' '}
+            no coincidía, en su mayoría, con la etiqueta de la muestra, aunque son pocos casos. Una
+            parte de las declaraciones el modelo no llega a verlas, porque sin cifra en euros la
+            recuperación léxica no encuentra candidatos; conservan su veredicto determinista hasta
+            que la vía semántica las alcance. (Aquí no damos el número exacto a propósito: cambia
+            con cada pleno transcrito, y una cifra escrita en esta página se quedaría falsa sin que
+            nadie lo notara. El recuento vigente está en el bloque <code>totals</code> del
+            manifiesto publicado <code>/data/pleno-claims/index.json</code>
+            .) <strong>Esa muestra de control la etiquetó un modelo</strong> (Claude Opus 4.8), y no
+            consta que ninguna persona haya revisado sus etiquetas: lo que se midió contra ella es
+            cuánto coincide el motor con otro modelo, no cuánto acierta. Se midió una vez, en junio
+            de 2026, con el modelo que el motor usaba entonces (gpt-5.4-mini).{' '}
+            {/* 05-10-2026. Decía «las pasadas de agosto corrieron con otro —a través de
+                Claude Code—». Medido contra una copia de .llm-cache, sin llamadas: de las 920
+                retractaciones de la pasada del 02-08-2026 que siguen en el overlay con su
+                explicación, 457 las contestó openai/gpt-4o-mini —456 entera, 1 sólo el
+                veredicto—, el respaldo de pago que la cadena ponía detrás de claude-code con la
+                clave de OpenAI cargada; de las 533 que se sirven, 321. Todas rotuladas
+                `verdict-engine:claude-code` (tests/llm/procedencia-del-respaldo.test.ts).
+                06-10-2026: corregidas con `corregir-rotulo-motor` —456 a
+                `verdict-engine:gpt-4o-mini`, la mixta a `verdict-engine:claude-code+gpt-4o-mini`—,
+                con su `labelCorrections` en cada entrada; decía «todavía las atribuye… se
+                corregirá». */}
+            La pasada de agosto se configuró con otro, a través de Claude Code, pero cuando Claude
+            Code fallaba la herramienta recurría sin decirlo a un modelo de pago de OpenAI
+            (gpt-4o-mini) y guardaba su respuesta como si fuera de Claude:{' '}
+            <strong>
+              más de la mitad de las retractaciones de esa pasada que hoy se publican con su
+              explicación las escribió gpt-4o-mini
+            </strong>
+            , y el registro de decisiones (el overlay) las atribuía a Claude Code. Ninguno de los
+            dos modelos se ha medido contra la muestra. Desde octubre de 2026 el motor corre sin
+            respaldo de pago y sólo escribe a nombre del modelo que contestó, y el 6 de octubre de
+            2026 se corrigió la atribución de esas retractaciones con una corrección registrada en
+            cada una, que guarda el rótulo anterior, qué paso hizo cada modelo y el porqué, sin
+            tocar el veredicto ni la explicación. Si el motor vuelve a escribir después una de esas
+            explicaciones, la entrada nueva conserva esa corrección junto a quién escribió la
+            anterior y cuándo, nunca lo que decía. Las cifras, con su método y su muestra, están en
+            el registro público de mediciones (<code>.automation-measurements.json</code>); aquí no
+            las damos como acierto. La regla se tomó en junio a la vista de esa medición, y hoy la
+            sostiene una razón que no depende de ninguna: un <code>sin-datos</code> no afirma nada,
+            así que retractar a <code>sin-datos</code> sólo puede quitar una afirmación, nunca
+            añadirla. Por eso{' '}
+            <strong>
+              sólo aplicamos sus retractaciones a <code>sin-datos</code>
+            </strong>{' '}
+            (nunca sube ni introduce un veredicto nuevo). El resultado es más conservador: retira
+            afirmaciones que el trazado de datos abiertos no atestigua, dejando el motivo verbatim
+            en el overlay. Nunca marca <em>contradicho</em>. Su razonamiento, recortado, es la
+            explicación que se guarda con la retractación; la tarjeta de la declaración no la
+            imprime si no la firma una persona (lo explica el final de este apartado).{' '}
+            {/* 05-10-2026: en 36 de las 52 retractaciones que la re-derivación de #233
+                dejó como «ya no la retractaría», el razonamiento concluía que nada las
+                respaldaba y el paso de formatear devolvía «parcial»; y casi todas sus citas
+                eran el título del registro (src/scraper/conclusion-sin-respaldo.ts). */}
+            Desde el 5 de octubre de 2026, cuando ese razonamiento concluye que ningún candidato
+            respalda la declaración, ése es el veredicto: antes, el paso que lo formatea podía
+            convertir «sólo hay una coincidencia de tema» en <em>parcial</em>.{' '}
+            {/* 10-10-2026: el recorte por el principio publicaba bajo la cita la repetición
+                de la declaración, sin el porqué, en 51 de 56 razonamientos medidos
+                (tests/fixtures/motor-corte-conclusion_2026-10-10.json). */}
+            La explicación lleva entonces la frase en que lo concluye, y no sólo el arranque del
+            razonamiento: ése repite la declaración y, solo bajo la cita, se leía como si el motor
+            la afirmara.{' '}
+            {/* 11-10-2026: en 10 de esas 56 frases el modelo nombraba un candidato por su
+                número en la lista que leyó («a lo sumo [0] aporta contexto»), y la tarjeta
+                de una retractación no enseña esa lista (src/scraper/claim-verifier-engine.ts). */}
+            Si esa frase nombra un candidato por el número que tenía en la lista que leyó el modelo
+            —«[0]», «el candidato 5»—, que la tarjeta no enseña, se guarda sin la parte que lo
+            nombra: se corta en un punto y coma o en unos dos puntos, y el corte se marca con «…».
+            Cuando el número va en la parte misma de la conclusión, la frase sale entera. Y cuando
+            lo único que el modelo cita es el título de un registro, el motor no lo da por respaldo,
+            pero tampoco retracta ni reescribe la explicación con un razonamiento que defiende lo
+            contrario: la declaración queda apartada para que la mire una persona. En la corrida del
+            2 de agosto de 2026 una parte de esas explicaciones no hablaba de la declaración sino
+            del encargo del propio modelo («Task completed: reasoned in Spanish…»): la tarjeta no
+            las imprime y dice «Explicación retirada» mientras una persona no escriba la suya (
+            <a href="#explicacion-firmada" style={{ color: 'var(--civic)' }}>
+              explicación firmada
+            </a>
+            ). Desde finales de septiembre de 2026 el motor no juzga sobre un razonamiento así, ni
+            sobre uno vacío —la declaración conserva su veredicto y se vuelve a intentar—, y el
+            overlay no deja escribirlo. Las pasadas de junio y agosto de 2026 anotaban además mal
+            dos cosas. Una declaración sin candidatos que enseñar al modelo volvía con el veredicto
+            del comparador determinista y quedaba registrada como retractación del motor, aunque el
+            modelo no la hubiera visto; y cuando el modelo sí la juzgaba sin respaldo, la
+            explicación que se guardaba era la frase estándar del comparador («No se encontró
+            registro…»), no su razonamiento. Desde finales de septiembre de 2026 lo que el modelo no
+            ve no se escribe como suyo ni cuenta como juzgado, y la retractación guarda lo que el
+            modelo razonó. Las que se anotaron sin que el modelo las viera se devuelven al veredicto
+            del comparador determinista —«sin datos» en todas, así que ninguna cambia de veredicto,
+            sólo de firma—, y las demás se vuelven a derivar para que la explicación sea la del
+            modelo.{' '}
+            {/* 27-10-2026: de las 465 explicaciones del motor en pleno-claims-verified.json que nombraban «candidatos» o
+                «listados», 452 eran de la pasada del 02-08-2026, cuya caché sólo guarda el
+                razonamiento bajo el id de la declaración; tres contradecían el registro que el
+                comparador determinista emparejaba con la misma declaración. La medición, en
+                editorial/ (src/lib/claim-provenance.js, `explicacionSinLista`). El 28-10-2026,
+                25 retractaciones del motor servidas guardaban todavía la frase estándar del
+                comparador; la regla las deja fuera. */}
+            Desde el 27 de octubre de 2026 la tarjeta no imprime la explicación de una retractación
+            del motor que no haya firmado una persona. El modelo juzga contra una lista de
+            candidatos que la tarjeta no enseña y que el motor no guarda, y su explicación se apoya
+            en ella; muchas cuentan qué había en esa lista —«los contratos listados», «ninguno de
+            los candidatos»—. Nadie puede comprobar lo que dicen de ella, y donde se pudo cotejar
+            con el registro que el comparador determinista emparejaba con la misma declaración,
+            alguna lo contradecía. En su lugar la tarjeta dice «Explicación retirada» y por qué. Las
+            pocas que todavía guardan la frase estándar del comparador —«No se encontró registro…»—
+            no son del modelo ni hablan de ninguna lista, y la tarjeta las trata como las del
+            comparador. El veredicto, «Fuentes comprobadas» y el rótulo del verificador no cambian,
+            y el texto del motor sigue en el overlay publicado.
+          </li>
+          {/* La vía nació el 10-10-2026: cuatro retractaciones del motor publicaban
+              «Explicación retirada», y la explicación que una lectura del 06-10
+              había escrito desde los registros no tenía por dónde publicarse
+              (`enmendarMotivoDeBajada`, src/scraper/verified-merge.ts). */}
+          <li id="explicacion-firmada" style={{ scrollMarginTop: 24 }}>
+            <strong>Explicación firmada (sin mover el veredicto).</strong> Cuando la explicación de
+            una retractación del motor no sirve —un parte del modelo sobre su encargo, o un
+            razonamiento que no dice lo que muestran los registros—, una persona puede escribir
+            otra, con su nombre, desde los registros que leyó. Es la única explicación de una
+            retractación del motor que la tarjeta imprime. El veredicto sigue siendo el del motor,{' '}
+            <em>sin datos</em>, y la tarjeta lo dice: «verificador LLM · explicación firmada por…».
+            Es la misma enmienda que la del motivo de una rebaja: queda en la entrada del motor, con
+            la fecha, el porqué y una huella de la explicación anterior, y lo que decidió el motor
+            —su registro, su rótulo y su fecha— no se toca. La herramienta rechaza una explicación
+            que sea la de una máquina tal cual, no la acepta durante el periodo electoral ni sobre
+            una acusación pública, y ninguna pasada automática la reescribe después: el motor se
+            salta las que firmó una persona. «Fuentes comprobadas» sigue diciendo lo que apuntó el
+            motor; lo que la persona leyó lo dice su explicación.
+          </li>
+          {/* La vía nació el 05-10-2026, de una lectura del día anterior: ocho
+              declaraciones que el motor había retractado tenían un registro que
+              sí las sostenía, y ninguna vía podía volver a subirlas
+              (src/scraper/subida-firmada.ts). */}
+          <li id="subida-firmada" style={{ scrollMarginTop: 24 }}>
+            <strong>Subida firmada (sólo una persona, con su nombre).</strong> Lo automático sólo
+            baja, y hasta octubre de 2026 eso valía para todo: un veredicto que una revisión había
+            bajado no lo podía volver a subir nadie. Ahora hay una vía, y sólo una, por la que una
+            persona sube el veredicto de una declaración —de <em>sin datos</em> a <em>parcial</em> o{' '}
+            <em>verificado</em>, o de <em>parcial</em> a <em>verificado</em>— cuando ha leído el
+            registro público que la sostiene.
+            <ul style={{ marginTop: 6 }}>
+              <li>
+                <strong>La evidencia la elige ella</strong>: nombra el registro por su enlace —un
+                contrato adjudicado o formalizado de la Plataforma de Contratación del Sector
+                Público, una convocatoria de la Base de Datos Nacional de Subvenciones o, desde
+                octubre de 2026, un punto del orden del día de un pleno, tal como lo publica el
+                Ayuntamiento, o la licitación de un sistema dinámico de adquisición, que no tiene
+                contrato propio: sus contratos son los derivados— y la herramienta comprueba que
+                está en los datos que publicamos; si el enlace lleva a un expediente de varios
+                lotes, tiene que decir cuál, y si lleva a una sesión, qué punto. La fila de
+                evidencia la escribe la herramienta desde el propio registro —título, adjudicataria,
+                importe y fecha; la sesión, su fecha, su parte y el título entero del punto; o el
+                título entero de la licitación, su expediente y la fecha en que se abrió—, no quien
+                firma.
+              </li>
+              {/* 19-10-2026: la fila de la concesión del agua decía «adjudicado … por
+                  55.685.178,79 € con IVA el 06-08-2026» — valor estimado de 17 años
+                  como precio, un IVA que el registro no distingue y la fecha del
+                  anuncio como la del acuerdo (src/scraper/subida-firmada.ts,
+                  `filaDeContrato`). */}
+              <li>
+                <strong>La fila de un contrato dice qué es cada cifra y cada fecha.</strong> El
+                importe lleva «con IVA» sólo cuando el registro da dos importes distintos, con y sin
+                impuestos; si da el mismo, o uno solo, la fila no dice ninguna de las dos cosas. De
+                una concesión no imprime un precio de adjudicación sino su valor estimado por todo
+                su plazo, con los años que dura: se adjudica de una vez para muchos años, y no es un
+                gasto anual. Y la fecha es el día en que se publicó el anuncio de adjudicación en la
+                Plataforma, que la fila rotula así: el acuerdo de adjudicar es anterior —el de la
+                concesión del agua, del Pleno de 27 de julio de 2026, se publicó el 6 de agosto—, y
+                su fecha no está en el registro.
+              </li>
+              {/* 19-10-2026: una enajenación o el bar de un polideportivo se habrían
+                  escrito «adjudicado a … por», como si pagara el Ayuntamiento, y
+                  once contratos citables tenían por título un código CPV
+                  (src/scraper/subida-firmada.ts, `ingresoMunicipal` en
+                  src/lib/contract-status.js). */}
+              <li>
+                <strong>Y dice en qué sentido va el dinero.</strong> De la venta de un bien
+                municipal, la fila dice que la adjudicataria paga el precio al Ayuntamiento. La
+                explotación de un bar o un quiosco municipal no se cita por esta vía: la paga quien
+                la explota, y el registro no dice si su importe es el canon de un año, el de todo el
+                plazo u otra cosa. Cuando el registro da por título un código de la clasificación de
+                contratos (CPV), la fila toma el de su licitación o, en un contrato derivado de un
+                sistema dinámico de adquisición, dice de cuál deriva y que su objeto es el que dice
+                ese código; sin ninguna de las dos, no se cita.
+              </li>
+              {/* 10-10-2026: una declaración sobre lo que se llevó a un pleno sólo la
+                  sostiene un orden del día o un acta, y de actas no hay corpus
+                  (src/scraper/subida-firmada.ts, `comprobarRegistrosConLaDeclaracion`). */}
+              <li>
+                <strong>Un orden del día sostiene que algo se llevó a una sesión</strong>, con ese
+                título y en esa parte; no que se aprobara, ni una cifra, ni lo que se dijo en el
+                debate. Por eso su fila nunca dice «aprobado».
+              </li>
+              {/* 19-10-2026: la fecha no acotaba un contrato ni una convocatoria, y 10
+                  de las 13 subidas que citaban un contrato citaban una adjudicación
+                  publicada después de lo dicho; cualquier importe dejaba llegar a
+                  verificado. Decisión del curador ese día: un registro posterior se
+                  acepta con un motivo firmado y publicado (`registroPosterior`), nunca
+                  para una promesa (src/scraper/subida-firmada.ts,
+                  `comprobarRegistrosConLaDeclaracion`). */}
+              <li>
+                <strong>Un registro posterior a lo dicho sólo lo sostiene con un motivo.</strong> Un
+                orden del día de una sesión posterior, una convocatoria publicada después o un
+                contrato cuya adjudicación se publicó después no prueban que algo ya estuviera hecho
+                cuando se dijo. Sí pueden corroborar lo que se describió de un contrato que se
+                estaba tramitando —su objeto, sus lotes—: en el pleno de 8 de septiembre de 2025 se
+                describieron, uno a uno, los cinco parques de un contrato cuya licitación de
+                noviembre trae esos cinco lotes con esos nombres. Por eso la herramienta rechaza un
+                registro posterior salvo que quien firma escriba por qué lo sostiene, y ese motivo
+                se publica con la subida. Una promesa no la sostiene ningún contrato, con motivo o
+                sin él: que se contratara o se cumpliera es otra afirmación, y se sigue en{' '}
+                <a href="/promesas" style={{ color: 'var(--civic)' }}>
+                  promesas
+                </a>
+                . Y si la declaración trae una cifra, sólo llega a <em>verificado</em> si una fila
+                citada dice esa misma cifra, con un margen del 1&nbsp;% para el redondeo de lo dicho
+                de viva voz; el valor estimado de una concesión por todos sus años no cuenta como
+                precio ni como canon anual. Si no, la subida no pasa de <em>parcial</em>.
+              </li>
+              <li>
+                <strong>Lo ya firmado se vuelve a mirar.</strong> Cada noche, cada fila de contrato
+                de una subida firmada se vuelve a escribir desde los datos de contratación de ese
+                día: si el importe, el estado, la fecha o el contrato ya no son los que dice, o el
+                contrato ha desaparecido, o un contrato sostiene una promesa, o una cifra no es la
+                de su fila, la comprobación lo señala como fallo. Las subidas firmadas antes del 19
+                de octubre de 2026 no podían guardar el motivo: si citan un registro posterior, se
+                señalan como aviso, y las decide quien cura el registro al volver a firmarlas. Nada
+                la reescribe: la retira o la vuelve a firmar una persona.
+              </li>
+              {/* 10-10-2026: un SDA no se adjudica como un contrato; para lo que se dice
+                  de él, la licitación es el registro (src/scraper/subida-firmada.ts). */}
+              <li>
+                <strong>
+                  La licitación de un sistema dinámico de adquisición sostiene que el Ayuntamiento
+                  lo abrió
+                </strong>
+                , con ese objeto y ese alcance —por ejemplo, abierto a otras entidades públicas—,
+                desde esa fecha; no que lo aprobara un pleno, ni que se esté usando, ni ninguna
+                cifra. Su fila no dice el estado de la licitación, que en un sistema así no dice
+                nada, ni su importe, que es un techo estimado para años y no dinero gastado. Le
+                valen las mismas reglas de fecha y de cifra que a un orden del día.
+              </li>
+              <li>
+                <strong>La explicación también la escribe ella</strong>, desde ese registro, y dice
+                lo que el registro no establece. La herramienta rechaza la de una máquina tal cual:
+                en la lectura que trajo esta vía, las notas del motor contradecían al registro en
+                dos de los ocho casos.
+              </li>
+              <li>
+                <strong>La firma con su nombre y apellidos</strong>, que la tarjeta da: «subido por
+                una persona · firmado por…». No la acepta con una cuenta del proyecto, el nombre de
+                un modelo o una orden preparada sin rellenar.
+              </li>
+              <li>
+                <strong>Nunca sube una acusación pública</strong>: subirla haría pública una
+                acusación que el filtro retiene, y eso sigue las reglas de los hallazgos. Tampoco
+                escribe un <em>contradicho</em>.
+              </li>
+              <li>
+                No sube nada durante el periodo electoral. Una subida se puede retirar —con firma y
+                motivo, también durante ese periodo—, y retirarla devuelve el veredicto que había
+                antes de subirla. Lo que firmó una persona no lo deshace después una pasada
+                automática.
+              </li>
+            </ul>
+            Lo que afirma un veredicto subido es que el registro citado sostiene lo que dice su
+            explicación, y nada más. El contraste determinista sigue sin encontrarlo —por eso hizo
+            falta una persona—, así que la comprobación de veredictos cuenta esas subidas aparte,
+            como decididas por quien las firmó, y no como un fallo.
+          </li>
+          <li>
+            {/* Sin cuantificador de entrada: la cifra exacta viene justo
+                detrás, derivada, y «la mayoría» delante de «40 de 41» sólo
+                podía rebajarla. Cuando no hay dato, la frase dice la excepción
+                en vez de callarla. */}
+            <strong>Hallazgos editoriales.</strong> Los redacta un proceso automático bajo reglas
+            fijas, no una persona
+            {authorship ? (
+              <>
+                : de los {authorship.total} publicados,{' '}
+                <strong>{authorship.machine} los firma una máquina</strong> (
+                {authorship.byMachineName.map(([name, n], i) => (
+                  <span key={name}>
+                    {i > 0 && ', '}
+                    {n} <code>{name}</code>
+                  </span>
+                ))}
+                )
+              </>
+            ) : (
+              <> salvo los que llevan la firma de una persona</>
+            )}
+            . El pie de cada ficha dice quién la editó, y un nombre así significa que el título y el
+            resumen los escribió una máquina. Cuando un veredicto merece contexto se escribe un
+            hallazgo en <code>pleno-findings.json</code> con título, resumen (≥40 caracteres), citas
+            verbatim y los documentos con los que se ha cotejado. Esa lista es lo que se cotejó, no
+            lo que da la razón: el campo se llama <code>crossChecked</code> y recoge toda la
+            evidencia que el verificador encontró para las citas del hallazgo, así que la ficha la
+            publica bajo el rótulo neutro «documentos cotejados», y debajo lo dice: estar en la
+            lista no dice que confirmen las citas. Hasta el 5 de agosto de 2026 ese mismo campo se
+            llamaba <code>corroboration</code> con exactamente el mismo contenido:{' '}
+            <strong>ningún</strong> paso de este proceso comprueba que un documento respalde una
+            frase —los cruces son coincidencias de importe o de palabras en un título— y el nombre
+            afirmaba lo que la lista no había medido. Se renombró sin tocar una sola referencia,
+            pero hasta el 9 de agosto de 2026 la instrucción que recibía el redactor automático
+            seguía obligándole a citar al menos un registro «que corrobore», así que el resumen
+            afirmaba en prosa el vínculo que el campo ya había dejado de afirmar. Hoy el resumen no
+            puede decir que un expediente confirme, corrobore, respalde o desmienta una frase, y
+            cuando ninguno de los cotejados viene a cuento —que es el caso normal— lo dice y se
+            acaba ahí. El campo <code>contradiction</code> sólo admite documentos que el verificador
+            marcó como incompatibles con la cita. Los hallazgos se publican con derecho de réplica
+            literal para el grupo afectado.
+          </li>
+        </ol>
+        <p style={{ margin: '12px 0 0', color: 'var(--ink70)' }}>
+          <strong>Dos límites deterministas del redactor automático.</strong> El primero es la
+          fecha: <strong>un expediente posterior a la sesión no se cruza con ella</strong>, porque
+          no pudo estar sobre la mesa. Lo que se compara es la fecha <em>más temprana</em> que
+          consta del expediente —la apertura de la licitación, no la adjudicación—, ya que un
+          contrato se debate mientras se licita, a veces meses antes de adjudicarse; descartar por
+          la fecha de adjudicación tiraría cruces buenos. Un expediente que no podemos fechar se
+          conserva y se cuenta aparte: la lista es el registro de lo que se cotejó, no una selección
+          de lo que encaja. El segundo es el filtro del registro público de declaraciones: el
+          redactor <strong>sólo cita frases que ese filtro ya muestra</strong> en{' '}
+          <a href="/plenos" style={{ color: 'var(--civic)' }}>
+            /plenos
+          </a>
+          . El filtro retiene las acusaciones opinativas y las que no sostiene ningún dato; la vía
+          prevista para publicarlas es que una persona las promueva a hallazgo, y una máquina no es
+          esa persona.
+        </p>
+        <p style={{ margin: '12px 0 0', color: 'var(--ink70)' }}>
+          <strong>Frontera legal para las acusaciones.</strong> El LLM clasifica cada acusación
+          pública en tres subtipos:
+        </p>
         <ul style={{ margin: '8px 0 0', paddingLeft: 20 }}>
           <li>
-            No auto-publica ninguna propuesta que no supere el umbral de confianza (≥0,70){' '}
-            <em>y</em> la verificación determinista de anclaje (URL que resuelve + cita literal
-            presente, y entre comillas si la fuente es una noticia); lo que no lo supera espera
-            revisión humana en cola.
+            <strong>factual</strong> — cita cifras, contratos o entidades concretas. Se contrasta
+            con la base documental igual que una afirmación numérica.
           </li>
           <li>
-            No auto-publica ningún veredicto fuerte:{' '}
-            <EstadosPorEscalon tier="fast-track" propuestos /> quedan como propuesta lista para
-            publicar con un solo clic humano.
+            <strong>contra-datos</strong> — afirma algo directamente contradictorio con los datos
+            publicados (p. ej. «X votó en contra de Y» cuando el registro de votos dice lo
+            contrario). El verificador lo marca como <em>contradicho</em>.
           </li>
           <li>
-            No propone nunca{' '}
-            <EstadosPorEscalon tier={['fast-track', 'human-only']} propuestos={false} ni />: los
-            asigna siempre una persona.
-          </li>
-          <li>
-            No inventa ni resume citas, y ya no cita titulares: sólo palabras que la noticia pone
-            entre comillas en boca del partido, o el texto de una nota del propio Ayuntamiento.
-            Hasta el 28 de septiembre de 2026 citaba la cabecera de las noticias; las fichas que no
-            cumplían esta regla se recitaron o se retiraron.
-          </li>
-          <li>No puntúa ni rankea partidos por tasa de cumplimiento.</li>
-          <li>
-            Durante el periodo electoral oficial (LOREG art. 50) el proceso se detiene por completo:
-            no propone ni auto-publica nada.
+            <strong>opinativa</strong> — valoración de carácter, intención o estilo («nunca
+            escuchan», «siempre improvisan»). <strong>Nunca</strong> se verifica automáticamente.
+            Sólo revisión editorial.
           </li>
         </ul>
       </Card>
 
-      <Card style={{ marginTop: 14 }} id="auto-curacion-promesas">
+      {/*
+        El trinquete, PINTADO DESDE `trinquete.ts`.
+
+        Esta política vivía sólo en el orden de ejecución y en una cadena de
+        `if (source === …)`: un lector no podía verla por ningún lado, y el
+        contrato de esta casa es enseñar el método. Se pinta derivada de la
+        declaración —no re-escrita a mano— porque una tabla copiada aquí se
+        separaría de la que el código aplica al primer cambio, que es la avería
+        que este sitio ya ha pagado tres veces.
+      */}
+      <Card id="trinquete-veredictos" style={{ marginTop: 14, scrollMarginTop: 24 }}>
         <SectionHead
-          eyebrow="Auto-curación · /promesas"
-          title="Cómo se auto-publican promesas (y qué nunca se auto-publica)"
+          as="h3"
+          size="head"
+          eyebrow="Cómo se mueve un veredicto"
+          title="El trinquete: cada etapa empuja en un solo sentido"
         />
+        <EnUnaFrase id="trinquete-veredictos" />
         <p style={{ margin: '8px 0 0', color: 'var(--ink70)' }}>
-          Un proceso semanal, los lunes, propone promesas nuevas y cambios de estado a partir de
-          fuentes públicas (prensa, plenos) usando un modelo de lenguaje. Cada propuesta pasa por
-          una verificación determinista de anclaje: la URL de la fuente debe resolver y la cita
-          textual debe aparecer literalmente en ella y ser palabras del partido —en una noticia,
-          dentro de las comillas con que el medio las recoge; en la web del Ayuntamiento vale su
-          propio texto, que se atribuye al partido de la alcaldía—. Un titular o la narración del
-          periodista no se anclan aunque estén en la página. Sólo se publica automáticamente lo que
-          supera un umbral de confianza (≥0,70) <em>y</em> queda anclado; el resto espera revisión
-          humana en cola.
+          Un veredicto no lo fija una sola pasada. Lo establece el contraste determinista, y a
+          partir de ahí sólo puede moverse en el sentido que cada etapa tiene permitido:{' '}
+          <strong style={{ color: 'var(--ink)' }}>
+            una etapa que sólo puede retractar nunca reforzará una acusación
+          </strong>
+          , por bien que le parezca el caso. Y ninguna etapa automática refuerza nada: el anclaje
+          NLI, la única automática que empuja hacia arriba, sólo propone, y ni siquiera puede
+          proponer sin nombrar el corpus contra el que ancló la afirmación, ni proponer que vuelva a
+          subir lo que retractaron el motor o un curador. Lo que sí sube un veredicto es una
+          persona: la{' '}
+          <a href="#subida-firmada" style={{ color: 'var(--civic)' }}>
+            subida firmada
+          </a>
+          , con su nombre, el registro que la sostiene y la explicación que escribe ella.
         </p>
         <p style={{ margin: '8px 0 0', color: 'var(--ink70)' }}>
-          Los <em>cambios de estado</em> sobre promesas ya publicadas se infieren de licitaciones y
-          adjudicaciones (PLACSP), subvenciones (BDNS), el presupuesto municipal y la prensa. Un
-          avance a «en progreso» se auto-publica cuando supera el umbral (≥0,70) y queda anclado a
-          una fila real de esas fuentes; «parcial» y «cumplida» nunca se auto-publican — quedan a un
-          solo clic humano. Cada cambio sólo puede <em>avanzar</em> una promesa, nunca revertirla, y
-          adjunta la evidencia citada en la propia ficha.
+          La tabla se dibuja desde la misma declaración que el código aplica, y una prueba comprueba
+          que describan lo mismo: si alguien cambiara la política sin cambiar esta página, o al
+          revés, la suite se pone roja.
         </p>
-        <ul style={{ margin: '10px 0 0', paddingLeft: 20, color: 'var(--ink70)' }}>
+        <div style={{ overflowX: 'auto' }} className="cp-scroll-x">
+          <table
+            style={{
+              width: '100%',
+              borderCollapse: 'collapse',
+              fontSize: 'var(--fs-meta)',
+              marginTop: 12,
+            }}
+          >
+            <thead>
+              <tr style={{ textAlign: 'left', color: 'var(--ink70)' }}>
+                <th style={{ padding: '6px 8px 6px 0', fontWeight: 500 }}>Etapa</th>
+                <th style={{ padding: '6px 8px', fontWeight: 500 }}>Sentido</th>
+                <th style={{ padding: '6px 8px', fontWeight: 500 }}>Puede emitir</th>
+                <th style={{ padding: '6px 8px', fontWeight: 500 }}>Exige</th>
+                <th style={{ padding: '6px 0 6px 8px', fontWeight: 500 }}>Estado</th>
+              </tr>
+            </thead>
+            <tbody>
+              {Object.entries(TRINQUETE).map(([id, e]) => (
+                <tr key={id} style={{ borderTop: '1px solid var(--border)' }}>
+                  <td style={{ padding: '8px 8px 8px 0' }}>
+                    {e.nombre}
+                    <div style={{ color: 'var(--ink50)', fontSize: 'var(--fs-micro)' }}>
+                      <code>{id}</code>
+                    </div>
+                  </td>
+                  <td style={{ padding: '8px' }}>
+                    {e.direccion === 'sube' ? 'sólo puede reforzar' : 'sólo puede retractar'}
+                  </td>
+                  <td style={{ padding: '8px' }}>
+                    {e.puedeEmitir.map((v) => (
+                      <code key={v} style={{ marginRight: 6 }}>
+                        {v}
+                      </code>
+                    ))}
+                  </td>
+                  <td style={{ padding: '8px', color: 'var(--ink70)' }}>
+                    {[
+                      e.exigeCorpus ? 'nombrar un corpus' : null,
+                      e.exigeRazon ? 'un motivo escrito' : null,
+                      e.exigeFirma ? 'la firma de una persona' : null,
+                    ]
+                      .filter(Boolean)
+                      .join(' · ') || '—'}
+                  </td>
+                  <td style={{ padding: '8px 0 8px 8px' }}>
+                    {e.retirada ? (
+                      <Pill tone="warn" size="xs">
+                        retirada
+                      </Pill>
+                    ) : (
+                      <Pill tone="ok" size="xs">
+                        en uso
+                      </Pill>
+                    )}
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+        <p style={{ margin: '12px 0 0', color: 'var(--ink70)' }}>
+          <strong style={{ color: 'var(--ink)' }}>
+            Una etapa retirada no se borra: se declara.
+          </strong>{' '}
+          Sus veredictos dejan de aplicarse y aflora el del contraste determinista — no se inventa
+          ninguno nuevo. La diferencia importa: retractar es afirmar algo distinto, y dejar de
+          aplicar es retirar una afirmación que no se sostenía.
+        </p>
+        <p style={{ margin: '8px 0 0', color: 'var(--ink70)' }}>
+          Y por debajo de todo esto hay un suelo:{' '}
+          <strong style={{ color: 'var(--ink)' }}>
+            un veredicto que afirme algo tiene que nombrar contra qué se comprobó
+          </strong>
+          . Si no lo nombra, no se escribe. La única excepción es la retractación de un curador,
+          porque bajar un veredicto nunca refuerza lo que se dice de nadie. Y lo que una
+          retractación ya bajó no lo vuelve a subir ninguna escritura automática: la capa de
+          decisiones («overlay») rechaza cualquier entrada que diga más que la que sustituye, salvo
+          la subida firmada, y ésa la sube sólo una persona, con su nombre. Lo que ella firma no lo
+          pisa después ninguna pasada: lo deshace otra persona, bajándolo con su firma.
+        </p>
+      </Card>
+
+      <Card id="citas-transcripcion" style={{ marginTop: 14, scrollMarginTop: 24 }}>
+        <SectionHead
+          as="h3"
+          size="head"
+          eyebrow="Citas literales y transcripciones"
+          title="Qué significa que una cita esté marcada"
+        />
+        <EnUnaFrase id="citas-transcripcion" />
+        <p style={{ margin: '8px 0 0', color: 'var(--ink70)' }}>
+          Las citas entrecomilladas de{' '}
+          <a href="/hallazgos" style={{ color: 'var(--civic)' }}>
+            /hallazgos
+          </a>{' '}
+          se toman de la transcripción automática de la sesión, no de un acta ni de un taquígrafo.{' '}
+          <strong>Varias sesiones se han transcrito una segunda vez</strong> con un motor mejor, y
+          la transcripción antigua se conserva. Eso permite hacer una pregunta que antes no se podía
+          hacer: ¿las palabras que publicamos siguen apareciendo en el mejor texto que tenemos de
+          esa sesión?
+        </p>
+        <p style={{ margin: '10px 0 0', color: 'var(--ink70)' }}>
+          Para muchas, la respuesta es <strong>no</strong>. En la mayoría de esas sesiones la
+          transcripción nueva es bastante más extensa que la que sustituyó, así que la ausencia no
+          es falta de cobertura: es que el primer motor oía mal. Transcribía <em>Riba-roja</em> como
+          «Rivarroch» e inventaba palabras que no existen. El asunto se debatió —los temas aparecen
+          en las dos pasadas—, pero{' '}
+          <strong>
+            la literalidad que hay entre comillas puede ser la del transcriptor y no la del concejal
+          </strong>
+          .
+        </p>
+        <p style={{ margin: '10px 0 0', color: 'var(--ink70)' }}>
+          Cada cita afectada lleva su marca al lado, y hay dos porque son dos cosas distintas:
+        </p>
+        <ul style={{ margin: '8px 0 0', paddingLeft: 20, color: 'var(--ink70)' }}>
           <li>
-            Lo auto-publicado se marca en su ficha con «publicada automáticamente · revisión
-            pendiente» hasta que un curador lo revisa.
+            <strong>«no consta en la transcripción revisada»</strong> — la cita aparece palabra por
+            palabra en la transcripción anterior y no en la vigente, y la vigente <em>no</em> es más
+            corta. Lo que el lector debe concluir: el intercambio ocurrió, la atribución al grupo se
+            queda como está —la marca habla del texto, no de quién habló—, y el{' '}
+            <em>tenor exacto</em> de las palabras no está confirmado contra el mejor texto
+            disponible.
           </li>
           <li>
-            El proceso no propone nunca un veredicto de «no ejecutada» (incumplimiento): lo asigna
-            siempre una persona.
+            <strong>«no hemos podido comprobarlo»</strong> — en esa sesión la transcripción vigente
+            es <em>más corta</em> que la que sustituyó, así que la ausencia puede deberse al cambio
+            de motor o a un tramo que la nueva pasada no cubre. No afirmamos ninguna de las dos
+            cosas. Es un estado propio precisamente para no dejarlo caer en el anterior.
+          </li>
+        </ul>
+        {quoteProvenance && (
+          <p style={{ margin: '10px 0 0', color: 'var(--ink70)' }}>
+            Hoy, de {quoteProvenance.quotes} literales publicados,{' '}
+            <strong>{quoteProvenance.enVigente}</strong> aparecen en la transcripción vigente de su
+            sesión, <strong>{quoteProvenance.soloEnSustituida}</strong> sólo en la que se sustituyó
+            y <strong>{quoteProvenance.sinDeterminar}</strong> no se pueden situar. La cifra se lee
+            del fichero derivado <code>finding-quote-provenance.json</code> en el momento de mostrar
+            esta página, no está escrita aquí: cambia cada vez que se vuelve a transcribir una
+            sesión.
+          </p>
+        )}
+        <p style={{ margin: '10px 0 0', color: 'var(--ink70)' }}>
+          <strong>No reescribimos ninguna cita por nuestra cuenta.</strong> El estado es un cálculo
+          sobre dos ficheros —lo comprueba <code>npm run check:finding-quotes</code>, que se niega a
+          pasar si la marca publicada deja de coincidir con las transcripciones—, pero elegir el
+          pasaje equivalente en el texto nuevo es una decisión editorial sobre lo que dijo una
+          persona. Esas citas están en una cola de reanclaje para revisión humana, y el cambio, si
+          se hace, entra por la vía de corrección de siempre: queda en la bitácora pública de la
+          ficha, con el texto anterior tachado y el motivo. Una cita que no aparece en{' '}
+          <strong>ninguna</strong> de las dos transcripciones es un problema distinto —posible
+          invención, no desgaste— y no se publica con marca: se bloquea.
+        </p>
+        <p style={{ margin: '10px 0 0', color: 'var(--ink70)' }}>
+          <strong>Un reanclaje puede cambiar el idioma de la cita en pantalla</strong>, y conviene
+          saber por qué. El motor que se sustituyó traducía al castellano intervenciones
+          pronunciadas en valencià, así que lo que esta página publicaba entre comillas como literal
+          era, en muchos casos, una traducción automática. Al reanclar contra la transcripción
+          vigente se recupera la lengua en que se habló. No es una decisión de estilo ni un cambio
+          de criterio lingüístico: el contenido citado se queda siempre en su idioma de origen, y la
+          cita que ahora se lee en valencià es la que se ajusta a lo que se dijo. Las dos versiones
+          quedan a la vista en la bitácora de la ficha.
+        </p>
+        <p style={{ margin: '10px 0 0', color: 'var(--ink70)' }}>
+          Dos cosas que un reanclaje <em>no</em> hace. No toca la atribución: cuando el pasaje se
+          localiza sin dudas pero quien habla no es del grupo al que la ficha atribuye la cita, no
+          se reancla —se deja la marca puesta—, porque afinar el texto de una cita mal atribuida
+          deja mejor documentado un error más grave. Y no reescribe el resumen: si el resumen de la
+          ficha entrecomilla un tramo de la cita, reanclarla dejaría ese entrecomillado sin
+          respaldo, así que tampoco se reancla hasta que una persona revise las dos cosas juntas.
+        </p>
+      </Card>
+
+      <Card id="citas-contraste" style={{ marginTop: 14, scrollMarginTop: 24 }}>
+        {/* Decía «Por qué una acusación puede estar publicada sin contrastar»:
+            la política anterior al 27-08-2026, cuando /hallazgos marcaba el
+            literal de una acusación retenida y lo imprimía igual. Desde entonces
+            las dos páginas obedecen la misma puerta y ese literal no se imprime
+            en ninguna. Sección reescrita el 28-09-2026. */}
+        <SectionHead
+          as="h3"
+          size="head"
+          eyebrow="Citas y datos municipales"
+          title="Qué enseñamos de una cita que el cotejo no pudo respaldar"
+        />
+        <EnUnaFrase id="citas-contraste" />
+        {/* Decía que la puerta «publica la afirmación con sus datos, la publica
+            etiquetada como sin contraste, o no la publica». Lo retenido no se
+            enseña, pero «no la publica» prometía más de lo que el sitio cumple:
+            el texto de lo retenido sigue en ficheros de datos del repositorio,
+            que es público (tarea abierta el 28-09-2026; desde el 29-09 la copia
+            servida ya no lo lleva, el repositorio sí). */}
+        {/* Decía «Cada afirmación que extraemos de un pleno se coteja automáticamente con
+            la base documental», y `verificacion-declaraciones` dice cuándo se lanza un
+            comparador. Medido el 01-11-2026: de 5.148 declaraciones servidas, 2.113 no
+            tuvieron ninguno. */}
+        <p style={{ margin: '8px 0 0', color: 'var(--ink70)' }}>
+          Cada afirmación que extraemos de un pleno pasa por un verificador automático, pero sólo se
+          coteja con la base documental del ayuntamiento —contratos, subvenciones y promesas
+          publicadas— cuando trae un importe en euros, cita una obra por su nombre o es una promesa.
+          A las demás no se les lanza{' '}
+          <a href="#verificacion-declaraciones" style={{ color: 'var(--civic)' }}>
+            ningún comparador
+          </a>{' '}
+          y se quedan en <em>sin-datos</em>. Una <strong>puerta editorial</strong> decide después
+          qué puede salir a la vista, y su regla es fallar del lado prudente: si el cotejo no
+          encontró datos, o no lo hubo, la afirmación no se presenta como comprobada. La puerta da
+          uno de tres resultados: la afirmación se enseña con sus datos, se enseña como no
+          contrastada, o <strong>se retiene</strong>. Retiene por dos motivos, y no son de la misma
+          clase. Uno es de <strong>contraste</strong>: las acusaciones públicas que el cotejo no
+          pudo respaldar o que son pura opinión, y los desmentidos que asigna una máquina, que son
+          pistas para un redactor y no veredictos. El otro es de <strong>procedencia</strong>, y es
+          más simple: si el literal de una declaración no aparece en ninguna transcripción que
+          tengamos —ni en la vigente, ni en las que sustituyó una re-transcripción—, no podemos
+          enseñar que se dijera. Hay un caso que ningún cálculo sobre los textos ve: que una
+          transcripción recoja el literal porque lo oyó mal —el motor que se sustituyó llegó a
+          escribir un año donde se dijo un importe—. Ése lo decide quien escucha la sesión: una
+          persona retira la declaración con su nombre y un motivo escrito, y se retiene como si no
+          constara. En{' '}
+          <a href="/plenos" style={{ color: 'var(--civic)' }}>
+            el registro de declaraciones del pleno
+          </a>{' '}
+          lo retenido no llega a la página, y cuántas son se dice en{' '}
+          <a href="/plenos" style={{ color: 'var(--civic)' }}>
+            el recuento de declaraciones
+          </a>
+          , porque una retirada que no se cuenta es indistinguible de una extracción que nunca
+          ocurrió.
+        </p>
+        {/* Decía «Un hallazgo es la excepción que esa puerta concede, y la
+            concede porque delante hay una persona. […] Por eso una cita puede
+            aparecer en /hallazgos aunque la puerta la retenga en el registro», y
+            después «En estas fichas la excepción la tomó una máquina. […] Lo
+            declaramos en vez de borrar nada […] y hasta que una persona la
+            responda, cada cita afectada lleva su marca». Dejó de ser cierto el
+            27-08-2026, por decisión del operador: una sola política para el mismo
+            literal en las dos páginas (`citaRetenida`, en PlenoFindings.jsx). */}
+        <p style={{ margin: '10px 0 0', color: 'var(--ink70)' }}>
+          <strong>Promover una declaración a hallazgo no la saca de la puerta.</strong> Hasta el 27
+          de agosto de 2026 sí la sacaba: en{' '}
+          <a href="/hallazgos" style={{ color: 'var(--civic)' }}>
+            /hallazgos
+          </a>{' '}
+          una acusación que el registro retenía se imprimía igual —desde el 10 de agosto, con una
+          marca al lado—, como si cada ficha fuera una excepción concedida por una persona, cuando
+          la mayoría las había promovido un proceso automático. Desde el 27 de agosto la ficha
+          pregunta a la misma puerta por la afirmación que sostiene cada cita, y el mismo literal
+          sigue una sola política en las dos páginas.
+        </p>
+        <p style={{ margin: '10px 0 0', color: 'var(--ink70)' }}>
+          <strong>Decide la puerta, no quien promueve.</strong> Es un cálculo sobre lo que consta de
+          cada afirmación —de qué tipo es y qué dice el veredicto vigente del verificador—, y nadie
+          lo ajusta ficha a ficha: ni el proceso automático que redacta la mayoría de los hallazgos,
+          ni una persona al firmar uno. Lo que una persona sí puede hacer es corregir una de esas
+          dos cosas, con un motivo escrito que queda registrado: rebajar un veredicto o, si no es
+          una acusación, subirlo con su nombre y el registro que lo sostiene (
+          <a href="#subida-firmada" style={{ color: 'var(--civic)' }}>
+            la subida firmada
+          </a>
+          ); y quitar la etiqueta de acusación —cuando el extractor la puso donde no había ninguna—,
+          nunca ponerla. El veredicto de una acusación sólo se rebaja. Una afirmación a la que se le
+          quita pasa a tratarse como cualquier otra. Y puede contestar la pregunta que el cálculo no
+          alcanza, si se dijo: una declaración cuyo literal, escuchada la sesión, no es lo que se
+          dijo se retira, también en un solo sentido —ninguna vía la vuelve a publicar— y con su
+          veredicto rebajado a «sin datos», porque el que tenía se contrastó sobre una frase que
+          nadie pronunció. Si un hallazgo la cita, antes se retira esa cita de la ficha, con su
+          motivo en la bitácora.
+        </p>
+        <p style={{ margin: '10px 0 0', color: 'var(--ink70)' }}>
+          En la ficha de un hallazgo, una cita con datos sale sin marca, y los otros dos resultados
+          se ven así:
+        </p>
+        <ul style={{ margin: '8px 0 0', paddingLeft: 20, color: 'var(--ink70)' }}>
+          <li>
+            {/* Decía «acusación no contrastada — lo que se afirma es una acusación
+                pública sobre la gestión municipal y el cotejo no encontró ningún
+                dato que la respalde ni que la desmienta. Lo que el lector debe
+                concluir: se dijo, lo publicamos, y no sabemos si es cierto. No
+                estamos diciendo que sea falsa». La revisión lectora del
+                28-09-2026 (#148) quitó «sobre la gestión municipal»: la puerta no
+                registra a quién se acusa, y la mayoría de las retenidas hablan de
+                otra administración o de otro grupo. Y desde el 27-08-2026 ese
+                literal no se imprime: el rótulo pasó a la nota bajo las citas.
+                Decía también «enseña el hueco, su motivo y, si la ficha la
+                atribuye, el grupo; la nota bajo las citas lo rotula “acusación no
+                contrastada”». Desde el 29-09-2026 las citas van numeradas y el
+                hueco y la nota dicen de cuál hablan: aplanada la página, su pie
+                se leía sobre la cita impresa de al lado (CitaRetenida, en
+                PlenoFindings.jsx).
+                Decía «…dicen de qué número hablan, para que ninguna explicación
+                se lea sobre la cita de al lado». Desde el 30-09-2026 dicen
+                también de qué ficha: los números son por ficha, y aplanada la
+                página la nota de una se leyó sobre la cita del mismo número de
+                la siguiente (codigoDeFicha, en PlenoFindings.jsx). */}
+            <strong>«Literal retenido»</strong> — ocupa el sitio de una cita que la puerta retiene.
+            La página no imprime el literal: enseña el hueco con el número de la cita, su motivo y a
+            qué grupo la atribuye la ficha, o que no la atribuye a ninguno; la nota bajo las citas
+            la rotula <strong>«acusación no contrastada»</strong> con ese mismo número. Las citas de
+            cada ficha van numeradas, las impresas y los huecos, y el pie de cada hueco y cada línea
+            de la nota dicen de qué número hablan y de qué ficha —con el nombre que imprime su
+            cabecera: «ficha» y el código con que acaba su enlace permanente—, para que ninguna
+            explicación se lea sobre la cita de al lado ni sobre la del mismo número en la ficha
+            contigua. El literal tampoco lo llevan la bitácora de correcciones de la ficha, que en
+            esas filas enseña su huella en lugar del texto, ni la copia de los datos de hallazgos
+            que sirve el sitio. Se retiene el literal, no la ficha: el hallazgo, su resumen, su
+            atribución, los documentos cotejados y el derecho de réplica siguen a la vista. Lo que
+            el lector debe concluir: ahí se citaba una acusación que el verificador no ha podido
+            contrastar con ningún registro municipal. No decimos que sea falsa; decimos que no
+            consta.
           </li>
           <li>
-            El anclaje de un cambio de estado demuestra que la licitación o la noticia existe, no
-            que corresponda exactamente a la promesa; por eso un avance a «cumplida» siempre lo
-            confirma una persona.
+            <strong>«sin contraste en los datos»</strong> — la cita se imprime, con esa pastilla al
+            lado. No es una acusación, y se distingue a propósito: que no haya datos sobre una cifra
+            de presupuesto y que no los haya sobre una adjudicación a dedo no significan lo mismo, y
+            la puerta las separa por eso.
           </li>
-          <li>El estado «inviable» es siempre exclusivamente humano.</li>
+        </ul>
+        {quoteContrast && (
+          <p style={{ margin: '10px 0 0', color: 'var(--ink70)' }}>
+            {/* Decía «de N literales publicados en /hallazgos […] N se publican
+                sin contraste y N son acusaciones que la puerta retiene en el
+                registro de declaraciones. N fichas no tienen ni una sola cita que
+                la puerta publicaría». La puerta retiene también en la ficha, y el
+                recuento de fichas es el de las que no tienen ninguna cita con
+                datos (`shown === 0` en quote-contrast.ts): las citas «sin
+                contraste» también se imprimen. */}
+            Hoy, de las {quoteContrast.citasConClaim} citas de las fichas de /hallazgos, el cotejo
+            encontró datos sobre <strong>{quoteContrast.porContraste.shown}</strong>;{' '}
+            <strong>{quoteContrast.porContraste.toggle}</strong> se imprimen con la pastilla «sin
+            contraste en los datos», y la puerta retiene{' '}
+            <strong>{quoteContrast.porContraste.hidden}</strong>: en su lugar, la ficha enseña el
+            hueco. <strong>{quoteContrast.hallazgosSinCitaMostrable}</strong> fichas no tienen ni
+            una sola cita sobre la que el cotejo encontrara datos, y{' '}
+            {quoteContrast.hallazgosSoloConCitasOcultas} están hechas por entero de citas retenidas.
+            Las cifras se leen del fichero derivado <code>finding-quote-provenance.json</code> al
+            mostrar esta página, no están escritas aquí: cambian cada vez que el verificador vuelve
+            a juzgar una declaración.
+          </p>
+        )}
+        <p style={{ margin: '10px 0 0', color: 'var(--ink70)' }}>
+          {/* Decía «…y se pone en rojo si la marca publicada deja de coincidir».
+              En la pasada nocturna corre con --soft: informa y no falla. */}
+          La marca es un cálculo, no una opinión: se obtiene preguntando a la misma puerta que
+          gobierna el registro, sobre el mismo veredicto vigente del verificador —el determinista
+          más las revisiones posteriores, que es lo que se publica—.{' '}
+          <code>npm run check:relations</code> vuelve a preguntárselo en cada pasada nocturna y
+          avisa si la marca publicada deja de coincidir, para que no pueda quedarse vieja en
+          silencio.{' '}
+          {/* Decía «Marcar no retira: esta pasada no quitó ni reescribió ninguna
+              cita». Dejó de ser cierto el 27-08-2026, cuando la misma marca pasó
+              a retener el literal en la ficha. */}
+          <strong>Retener no reescribe</strong>: la puerta no cambia el texto de ninguna cita ni
+          borra ninguna ficha; sólo decide qué se enseña. Las retiradas que sí ha habido las firma
+          una persona por la CLI de correcciones —el único escritor del fichero de hallazgos— y cada
+          una deja su fila en la bitácora pública de la ficha.
+        </p>
+        {/* Añadido el 29-09-2026. Hasta entonces el sitio servía el literal de
+            cada retenida en /data/pleno-findings.json y la bitácora de la ficha
+            lo imprimía; la copia servida ya no lo lleva
+            (src/scraper/literales-retenidos.ts). Esto es lo que esa retención
+            NO alcanza, medido el 28-09, dicho para no prometer más de lo que se
+            cumple: la transcripción lleva las palabras de casi todas las 37
+            retenidas; 7 comparten tramo con otra declaración del registro, y 3
+            de ésas se enseñan. */}
+        <p style={{ margin: '10px 0 0', color: 'var(--ink70)' }}>
+          <strong>Se retiene la cita, no lo que se dijo.</strong> La puerta decide qué declaraciones
+          se enseñan como declaraciones, no qué palabras de una sesión se publican. Las de una cita
+          retenida siguen en tres sitios, y preferimos decirlo a prometer que no están:
+        </p>
+        <ul style={{ margin: '6px 0 0', paddingLeft: 20, color: 'var(--ink70)' }}>
           <li>
-            Durante el periodo electoral (LOREG art. 50) el proceso se detiene por completo: no
-            propone ni publica nada.
+            la <strong>transcripción completa</strong> de la sesión, que publicamos en la página de
+            cada pleno como registro de lo que se dijo;
           </li>
           <li>
-            El anclaje demuestra que la <em>fuente</em> existe, no que una inferencia acusatoria sea
-            correcta; por eso los veredictos de incumplimiento mantienen a una persona en el bucle.
+            <strong>otra declaración</strong> del registro, cuando el extractor clasificó un tramo
+            que se solapa con la cita como una afirmación de otro tipo —una cifra, la mención de una
+            obra—: la puerta la juzga por su cuenta y puede enseñarla;
+          </li>
+          <li>
+            el <strong>repositorio del proyecto</strong>, público desde el 8 de septiembre de 2026:
+            su fichero de hallazgos conserva el literal, porque la CLI de correcciones y las
+            comprobaciones lo necesitan y porque la puerta puede dejar de retenerlo, y su historia
+            guarda las copias que el sitio sirvió hasta finales de septiembre de 2026, cuando dejó
+            de servirlo.
           </li>
         </ul>
       </Card>
 
       <Card style={{ marginTop: 14 }} id="plazos-vencidos">
         <SectionHead
+          as="h3"
+          size="head"
           eyebrow="Verificación de compromisos públicos"
           title="Plazos vencidos · señalización editorial"
         />
+        <EnUnaFrase id="plazos-vencidos" />
         <p style={{ margin: '8px 0 0', color: 'var(--ink70)' }}>
           El dashboard{' '}
           <a href="/departamentos" style={{ color: 'var(--civic)' }}>
@@ -866,8 +2570,198 @@ export default function Metodologia() {
         </ul>
       </Card>
 
+      <CabeceraGrupo id="promesas" />
+
+      <Card style={{ marginTop: 14 }} id="estados">
+        <SectionHead
+          as="h3"
+          size="head"
+          eyebrow="Taxonomía de estados"
+          title="Qué significa cada estado"
+        />
+        <EnUnaFrase id="estados" />
+        <table
+          style={{
+            width: '100%',
+            fontSize: 'var(--fs-aux)',
+            borderCollapse: 'collapse',
+            marginTop: 6,
+          }}
+        >
+          <thead>
+            <tr style={{ borderBottom: '1px solid var(--border2)', textAlign: 'left' }}>
+              <th style={{ padding: '6px 0' }}>Estado</th>
+              <th style={{ padding: '6px 0' }}>Qué exige publicarlo</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr style={{ borderBottom: '1px solid var(--border2)' }}>
+              <td style={{ padding: '6px 0' }}>
+                <strong>documentada</strong>
+              </td>
+              <td style={{ padding: '6px 0' }}>
+                Tenemos la promesa y su fuente. Sin juicio sobre cumplimiento.
+              </td>
+            </tr>
+            <tr style={{ borderBottom: '1px solid var(--border2)' }}>
+              <td style={{ padding: '6px 0' }}>
+                <strong>en-verificacion</strong>
+              </td>
+              <td style={{ padding: '6px 0' }}>
+                Hay señales mixtas; estamos recabando evidencia. No se afirma incumplimiento.
+              </td>
+            </tr>
+            <tr style={{ borderBottom: '1px solid var(--border2)' }}>
+              <td style={{ padding: '6px 0' }}>
+                <strong>en-progreso</strong>
+              </td>
+              <td style={{ padding: '6px 0' }}>
+                ≥1 evidencia de avance (licitación publicada, obra iniciada, partida presupuestaria
+                comprometida).
+              </td>
+            </tr>
+            <tr style={{ borderBottom: '1px solid var(--border2)' }}>
+              <td style={{ padding: '6px 0' }}>
+                <strong>cumplida</strong>
+              </td>
+              <td style={{ padding: '6px 0' }}>
+                Acto formal de finalización o resolución administrativa que acredita el
+                cumplimiento.
+              </td>
+            </tr>
+            <tr style={{ borderBottom: '1px solid var(--border2)' }}>
+              <td style={{ padding: '6px 0' }}>
+                <strong>parcial</strong>
+              </td>
+              <td style={{ padding: '6px 0' }}>
+                Cumplida en parte; el resto no ejecutado o pendiente.
+              </td>
+            </tr>
+            <tr style={{ borderBottom: '1px solid var(--border2)' }}>
+              <td style={{ padding: '6px 0' }}>
+                <strong>no-ejecutada</strong>
+              </td>
+              <td style={{ padding: '6px 0' }}>
+                Requiere (a) voto en pleno rechazando la medida, (b) desfinanciación del
+                presupuesto, o (c) finalización del mandato sin inicio. El algoritmo automático{' '}
+                <strong>NO</strong> puede asignar este estado.
+              </td>
+            </tr>
+            <tr>
+              <td style={{ padding: '6px 0' }}>
+                <strong>inviable</strong>
+              </td>
+              <td style={{ padding: '6px 0' }}>
+                Causa externa que impide el cumplimiento. Sólo curador humano, con justificación
+                documental.
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </Card>
+
+      <Card style={{ marginTop: 14 }} id="limites-motor">
+        <SectionHead
+          as="h3"
+          size="head"
+          eyebrow="Qué NO hace el motor automático"
+          title="Límites del inferido algorítmico"
+        />
+        <EnUnaFrase id="limites-motor" />
+        <ul style={{ margin: '8px 0 0', paddingLeft: 20 }}>
+          <li>
+            No auto-publica ninguna propuesta que no supere el umbral de confianza (≥0,70){' '}
+            <em>y</em> la verificación determinista de anclaje (URL que resuelve + cita literal
+            presente, y entre comillas si la fuente es una noticia); lo que no lo supera espera
+            revisión humana en cola.
+          </li>
+          <li>
+            No auto-publica ningún veredicto fuerte:{' '}
+            <EstadosPorEscalon tier="fast-track" propuestos /> quedan como propuesta lista para
+            publicar con un solo clic humano.
+          </li>
+          <li>
+            No propone nunca{' '}
+            <EstadosPorEscalon tier={['fast-track', 'human-only']} propuestos={false} ni />: los
+            asigna siempre una persona.
+          </li>
+          <li>
+            No inventa ni resume citas, y ya no cita titulares: sólo palabras que la noticia pone
+            entre comillas en boca del partido, o el texto de una nota del propio Ayuntamiento.
+            Hasta el 28 de septiembre de 2026 citaba la cabecera de las noticias; las fichas que no
+            cumplían esta regla se recitaron o se retiraron.
+          </li>
+          <li>No puntúa ni rankea partidos por tasa de cumplimiento.</li>
+          <li>
+            Durante el periodo electoral oficial (LOREG art. 50) el proceso se detiene por completo:
+            no propone ni auto-publica nada.
+          </li>
+        </ul>
+      </Card>
+
+      <Card style={{ marginTop: 14 }} id="auto-curacion-promesas">
+        <SectionHead
+          as="h3"
+          size="head"
+          eyebrow="Auto-curación · /promesas"
+          title="Cómo se auto-publican promesas (y qué nunca se auto-publica)"
+        />
+        <EnUnaFrase id="auto-curacion-promesas" />
+        <p style={{ margin: '8px 0 0', color: 'var(--ink70)' }}>
+          Un proceso semanal, los lunes, propone promesas nuevas y cambios de estado a partir de
+          fuentes públicas (prensa, plenos) usando un modelo de lenguaje. Cada propuesta pasa por
+          una verificación determinista de anclaje: la URL de la fuente debe resolver y la cita
+          textual debe aparecer literalmente en ella y ser palabras del partido —en una noticia,
+          dentro de las comillas con que el medio las recoge; en la web del Ayuntamiento vale su
+          propio texto, que se atribuye al partido de la alcaldía—. Un titular o la narración del
+          periodista no se anclan aunque estén en la página. Sólo se publica automáticamente lo que
+          supera un umbral de confianza (≥0,70) <em>y</em> queda anclado; el resto espera revisión
+          humana en cola.
+        </p>
+        <p style={{ margin: '8px 0 0', color: 'var(--ink70)' }}>
+          Los <em>cambios de estado</em> sobre promesas ya publicadas se infieren de licitaciones y
+          adjudicaciones (PLACSP), subvenciones (BDNS), el presupuesto municipal y la prensa. Un
+          avance a «en progreso» se auto-publica cuando supera el umbral (≥0,70) y queda anclado a
+          una fila real de esas fuentes; «parcial» y «cumplida» nunca se auto-publican — quedan a un
+          solo clic humano. Cada cambio sólo puede <em>avanzar</em> una promesa, nunca revertirla, y
+          adjunta la evidencia citada en la propia ficha.
+        </p>
+        <ul style={{ margin: '10px 0 0', paddingLeft: 20, color: 'var(--ink70)' }}>
+          <li>
+            Lo auto-publicado se marca en su ficha con «publicada automáticamente · revisión
+            pendiente» hasta que un curador lo revisa.
+          </li>
+          <li>
+            El proceso no propone nunca un veredicto de «no ejecutada» (incumplimiento): lo asigna
+            siempre una persona.
+          </li>
+          <li>
+            El anclaje de un cambio de estado demuestra que la licitación o la noticia existe, no
+            que corresponda exactamente a la promesa; por eso un avance a «cumplida» siempre lo
+            confirma una persona.
+          </li>
+          <li>El estado «inviable» es siempre exclusivamente humano.</li>
+          <li>
+            Durante el periodo electoral (LOREG art. 50) el proceso se detiene por completo: no
+            propone ni publica nada.
+          </li>
+          <li>
+            El anclaje demuestra que la <em>fuente</em> existe, no que una inferencia acusatoria sea
+            correcta; por eso los veredictos de incumplimiento mantienen a una persona en el bucle.
+          </li>
+        </ul>
+      </Card>
+
+      <CabeceraGrupo id="quejas" />
+
       <Card style={{ marginTop: 14, scrollMarginTop: 24 }} id="camino-de-una-queja">
-        <SectionHead eyebrow="Quejas ciudadanas" title="Cómo llega una queja al ayuntamiento" />
+        <SectionHead
+          as="h3"
+          size="head"
+          eyebrow="Quejas ciudadanas"
+          title="Cómo llega una queja al ayuntamiento"
+        />
+        <EnUnaFrase id="camino-de-una-queja" />
         <p style={{ margin: '8px 0 0', color: 'var(--ink70)' }}>
           Una queja publicada en{' '}
           <a href="/quejas" style={{ color: 'var(--civic)' }}>
@@ -932,14 +2826,18 @@ export default function Metodologia() {
             que no existe, un campo que falta— no se arregla: la revisión se repite más tarde, y si
             sigue fallando se avisa a quien modera. Una queja que la revisión no retiene sólo se
             publica sin una persona cuando la precisión de esa revisión está medida y registrada,
-            como cuenta la política de automatización más abajo; sin esa medición, las decide todas
-            quien modera, que publica cada una tal cual o la descarta: no reescribe su texto. Hasta
-            entonces no es pública en ninguna parte —ni en la web ni en el bot para quien no la
-            escribió—. La decisión tiene vuelta atrás: una descartada puede publicarse después, y
-            una publicada, retirarse de la publicación. La foto no pasa por esta revisión: quien
-            modera sabe si la queja trae una, pero no la ve, y la foto se anonimiza y se publica,
-            como en el paso anterior, sólo cuando la queja ya es pública. Quien la escribió recibe
-            aviso del resultado y puede impugnarlo en la dirección de contacto del{' '}
+            como cuenta la{' '}
+            <a href="#politica-automatizacion" style={{ color: 'var(--civic)' }}>
+              política de automatización
+            </a>
+            ; sin esa medición, las decide todas quien modera, que publica cada una tal cual o la
+            descarta: no reescribe su texto. Hasta entonces no es pública en ninguna parte —ni en la
+            web ni en el bot para quien no la escribió—. La decisión tiene vuelta atrás: una
+            descartada puede publicarse después, y una publicada, retirarse de la publicación. La
+            foto no pasa por esta revisión: quien modera sabe si la queja trae una, pero no la ve, y
+            la foto se anonimiza y se publica, como en el paso anterior, sólo cuando la queja ya es
+            pública. Quien la escribió recibe aviso del resultado y puede impugnarlo en la dirección
+            de contacto del{' '}
             <a href="/aviso-legal" style={{ color: 'var(--civic)' }}>
               aviso legal
             </a>
@@ -1053,9 +2951,12 @@ export default function Metodologia() {
 
       <Card style={{ marginTop: 14 }} id="relacion-quejas-contratos">
         <SectionHead
+          as="h3"
+          size="head"
           eyebrow="Cruce de datos"
           title="Relación entre quejas ciudadanas y contratos"
         />
+        <EnUnaFrase id="relacion-quejas-contratos" />
         <p style={{ margin: '8px 0 0', color: 'var(--ink70)' }}>
           En la ficha de cada queja (
           <a href="/quejas" style={{ color: 'var(--civic)' }}>
@@ -1082,9 +2983,15 @@ export default function Metodologia() {
             crea un vínculo.
           </li>
           <li>
+            {/* Decía sólo «se publica directamente con etiqueta neutra»: una publicación
+                automática sin medir que `politica-automatizacion` no listaba. 01-11-2026. */}
             <strong>Dos niveles.</strong> <em>Nivel A</em> (misma zona <u>y</u> materia) es un hecho
             de coocurrencia verificable y se publica directamente con etiqueta neutra («misma zona y
-            materia»). <em>Nivel B</em> (sólo zona, o sólo materia) queda como sugerencia{' '}
+            materia»), sin revisión y sin una precisión medida: es uno de los procesos que{' '}
+            <a href="#politica-automatizacion" style={{ color: 'var(--civic)' }}>
+              todavía no pasan por la política de automatización para publicar
+            </a>
+            . <em>Nivel B</em> (sólo zona, o sólo materia) queda como sugerencia{' '}
             <code>requiresHumanApproval</code> y <strong>no se muestra</strong> hasta que un curador
             la promueve.
           </li>
@@ -1108,1782 +3015,16 @@ export default function Metodologia() {
         </ul>
       </Card>
 
-      <Card style={{ marginTop: 14 }} id="politica-automatizacion">
-        <SectionHead
-          eyebrow="Qué se publica sin revisión humana"
-          title="Política de automatización"
-        />
-        <div style={{ padding: '0 14px 14px', fontSize: 'var(--fs-aux)', lineHeight: 1.6 }}>
-          <p style={{ marginTop: 0 }}>
-            Hasta agosto de 2026 casi todo lo que escribía una máquina esperaba aprobación humana.
-            Esa regla parecía prudente y funcionaba como una cola: los borradores se acumulaban sin
-            que nadie tuviera capacidad de revisarlos, mientras el mayor origen de veredictos
-            equivocados publicados aquí no era ningún modelo de lenguaje, sino el{' '}
-            <strong>verificador determinista</strong> — código escrito a mano que llegó a publicar
-            744 veredictos que nadie había revisado, 176 de ellos como «verificado», incluidos
-            juicios de valor y fragmentos de conversación sin ningún dato comprobable.
-          </p>
-          <p>
-            El eje, por tanto, no es «humano contra máquina» ni «determinista contra IA». Es{' '}
-            <strong>medido o no medido</strong>, y <strong>reversible o no</strong>:
-          </p>
-          <ul style={{ paddingLeft: 18 }}>
-            <li>
-              <strong>Automático, sin puerta.</strong> Todo lo que <em>retira o suaviza</em> una
-              afirmación ya publicada: retractar un veredicto, bajar la gravedad, despublicar. Es
-              reversible y equivocarse significa decir <em>menos</em> de lo que podríamos, que es el
-              error seguro para un observatorio.
-            </li>
-            <li>
-              <strong>Automático sólo con medición.</strong> Publicar algo nuevo que no nombra a
-              ninguna persona concreta se hace sin curador únicamente si esa categoría tiene una
-              precisión medida y registrada (≥0,90 para hallazgos informativos, ≥0,95 para los
-              notables), sobre al menos 50 casos y medida en los últimos 90 días. Una categoría{' '}
-              <strong>sin medición se trata como no fiable</strong>: el camino para automatizar algo
-              es medirlo, no afirmar que funciona. Lo que se compara con el umbral no es la cifra
-              medida sino el <strong>límite inferior de su intervalo de confianza al 95 %</strong>,
-              porque una muestra pequeña no permite saber de qué lado del umbral está. La auditoría
-              de agosto de 2026 revisó los 52 hallazgos publicados <em>entonces</em> y encontró 4
-              defectos —un 92,3 % de acierto, por encima del 0,90—, pero con 52 casos ese 92,3 % es
-              compatible con un 81 % real, así que la publicación automática sigue cerrada hasta que
-              haya más casos revisados. Esa cifra está congelada a propósito: es lo que se midió en
-              esa fecha, no una afirmación sobre hoy, y sólo cambia cuando se registra una medición
-              nueva. Así se trata también publicar una queja ciudadana que la revisión automática no
-              retiene (la clase <code>queja.publicacion-automatica</code>, con el listón de lo
-              notable, porque una queja dice algo adverso de un servicio): mientras no esté medida,
-              cada queja la publica una persona.
-            </li>
-            <li>
-              <strong>Siempre con firma humana.</strong> Nombrar a una persona concreta, cualquier
-              hallazgo de gravedad crítica (que es una acusación), los informes marcados como
-              jurídicamente sensibles, y todo lo irreversible o dirigido al exterior — registrar una
-              queja en sede. No porque una persona acierte más, sino porque la responsabilidad legal
-              necesita una firma. Nombrar a un grupo municipal con un solo concejal es nombrar a ese
-              concejal, así que cuenta igual: un hallazgo redactado por el proceso automático cuya
-              cita se atribuye a uno de esos grupos, o cuyo texto lo nombra, no se publica solo
-              aunque su categoría esté medida, sino que pasa a un curador; y el modelo que redacta
-              los resúmenes ni siquiera recibe esas etiquetas. En las quejas ciudadanas hay una
-              excepción: la foto de una queja publicada, que se anonimiza y se publica sin que nadie
-              la vea. Los hitos de cada queja —cuando alcanza los apoyos necesarios, cuando se
-              registra, cuando vence su plazo sin respuesta— no se anuncian en ningún canal público:
-              se avisan a quien modera.
-            </li>
-          </ul>
-          {/* 15-10-2026. docs/REVIEW_2026-09.md §25: auto-curate-press.ts y el
-              auto-curador de promesas no llaman a decideAutomation, y esta tarjeta
-              lo callaba mientras el README decía que nada automático subía nada. */}
-          <p>
-            <strong>
-              Dos procesos son anteriores a esta política y todavía no pasan por ella.
-            </strong>{' '}
-            La{' '}
-            <a href="#auto-curacion-promesas" style={{ color: 'var(--civic)' }}>
-              auto-curación de /promesas
-            </a>{' '}
-            publica con su propio umbral de confianza (≥0,70) y su anclaje a la fuente, sin una
-            precisión medida, y lo que publica lleva el rótulo «publicada automáticamente · revisión
-            pendiente». La del{' '}
-            <a href="#laboratorio-prensa" style={{ color: 'var(--civic)' }}>
-              laboratorio de prensa
-            </a>{' '}
-            publica hallazgos informativos con sus propias reglas. Ninguno de los dos publica un
-            incumplimiento ni un hallazgo crítico.
-          </p>
-          <p style={{ marginBottom: 0 }}>
-            La suspensión electoral (LOREG art. 50) prevalece sobre todo lo anterior: con{' '}
-            <code>frozenUntil</code> activo no se publica ni se retracta nada de forma automática.
-            Las mediciones vigentes son públicas en el repositorio (
-            <code>.automation-measurements.json</code>) y caducan a los 90 días, porque una
-            precisión medida contra un modelo que ya no se usa es un dato histórico, no una
-            garantía.
-          </p>
-        </div>
-      </Card>
-
-      <Card style={{ marginTop: 14 }} id="encaje">
-        <SectionHead
-          eyebrow="Qué trae al puesto quien dirige cada área"
-          title="Encaje declarado · y qué NO significa"
-        />
-        <div style={{ padding: '0 14px 14px', fontSize: 'var(--fs-aux)', lineHeight: 1.6 }}>
-          <p style={{ marginTop: 0 }}>
-            En la ficha de cada concejal con delegación aparece, área por área, si lo que declara en
-            su CV publicado guarda relación con la materia de esa área. Es un cruce entre dos cosas
-            que ya publicábamos por separado: las <strong>concejalías delegadas</strong> por decreto
-            de alcaldía y la <strong>formación y trayectoria</strong> que consta en su biografía,
-            con su cita.
-          </p>
-          <p>
-            <strong>No es una calificación, y conviene decir por qué.</strong> La primera versión de
-            esta idea era un «perfil ideal» por cargo y un porcentaje de encaje. Se descartó: un
-            concejal no es una contratación. La ley electoral no exige título académico ni
-            experiencia profesional para ser elegible —basta ser mayor de edad, estar en el censo y
-            no incurrir en causa de inelegibilidad—, así que puntuar a un cargo electo contra un
-            perfil que ninguna norma contiene sería una opinión con apariencia de métrica. El
-            contraste que sí es un hecho comprobable está en la ficha: quienes fiscalizan la
-            legalidad y los pagos del ayuntamiento —secretaría, intervención, tesorería— acceden por
-            oposición estatal y con titulación universitaria; quienes deciden en qué se gasta, no.
-          </p>
-          <p>Por tanto, esta sección:</p>
-          <ul style={{ paddingLeft: 18 }}>
-            <li>
-              <strong>No puntúa, no suma y no ordena.</strong> No hay porcentaje, ni ranking, ni
-              agregado por persona. En la ficha, cada eje nombra <strong>lo declarado</strong>: el
-              título en «Formación», el puesto en «Experiencia» —sin el centro ni la empresa, que
-              van en la vista por áreas junto a su cita—. Los nombres de las áreas se añaden detrás,
-              precedidos de «solo en»,{' '}
-              <strong>únicamente cuando la relación no alcanza a todas</strong> las que dirige:
-              donde las alcanza todas no hay nada que acotar. Ni las áreas ni los títulos se cuentan
-              nunca. «3 de 4» sería una nota con pasos intermedios.
-            </li>
-            <li>
-              <strong>«No consta» no significa «no tiene».</strong> Significa que la fuente
-              publicada no lo recoge, y enlaza al apartado de huecos de su propia biografía. Es
-              distinto de «sin relación declarada», que sí afirma algo: que consta formación y que
-              corresponde a otra materia. Son hechos diferentes sobre una persona y llevan palabras
-              diferentes.
-            </li>
-            <li>
-              <strong>Se dice de qué se sostiene lo citado.</strong> Cada cita que respalda una
-              relación se clasifica por quién la publicó: si sale del CV que la propia persona
-              declara, o si además la respalda una fuente independiente de ella. La frase habla{' '}
-              <strong>sólo de lo citado</strong>: donde no se cita nada no se dice nada, porque
-              sobre lo que no se citó no se comprobó ninguna corroboración y negarla sería publicar
-              como hallazgo lo que nadie llegó a medir. Mientras todas las evaluaciones de una ficha
-              coinciden se dice <strong>una sola vez</strong>, no como un distintivo repetido junto
-              a cada elemento — una marca idéntica en todos no distingue nada. Cuando divergen, la
-              ficha lo indica en el eje —formación o trayectoria— en el que pueda decirse entero, y
-              donde ni siquiera ahí coincide, calla en lugar de aproximar; la vista por áreas sí lo
-              marca evaluación por evaluación, que es donde están las citas. «Autodeclarada»
-              describe la fuente, no a la persona, y no es un reproche: declarar el propio currículo
-              es lo que la ley pide. Queda reservado un tercer valor, «discrepancia documentada»,
-              que ningún automatismo deriva: sólo puede ponerlo un curador leyendo dos fuentes que
-              se contradicen. Cuando una advertencia de la biografía recae sobre uno de estos ejes,
-              el proceso la propone clasificada y ahí se detiene: la firma un curador una por una, y
-              puede no firmarla. Que sea cierta y esté bien clasificada no basta para publicarla. La
-              que se firma sale con su texto literal; la que no, no sale, y la ficha no dice nada de
-              ella.
-            </li>
-            <li>
-              <strong>No mide gestión.</strong> Que la formación de alguien coincida con su área no
-              dice nada sobre cómo la dirige, y que no coincida tampoco. Lo que sí se puede medir de
-              su gestión —votaciones, promesas con plazo, contratación, quejas— está en{' '}
-              <code>/departamentos</code>, y se cuenta por área, no por persona.
-            </li>
-            <li>
-              <strong>Nada de esto se publica solo.</strong> Un modelo propone la relación citando
-              por índice sobre la propia lista del CV —de modo que no puede inventarse una fuente— y
-              un curador revisa y <strong>firma cada fila</strong> antes de que se publique. Nombrar
-              a una persona concreta es Nivel C de la política de automatización: ninguna precisión
-              medida lo desbloquea. La cola de revisión no es pública.
-            </li>
-            <li>
-              <strong>Los 10 concejales sin delegación no aparecen en blanco.</strong> Se dice
-              expresamente que no dirigen ninguna concejalía, porque un hueco sin explicar
-              convertiría la página en «el partido de gobierno tiene credenciales y el resto no» —
-              un reflejo de quién gobierna, no de quién está formado.
-            </li>
-            <li>
-              <strong>Se suspende en periodo electoral.</strong> Con <code>frozenUntil</code> activo
-              el bloque desaparece por completo. Los hechos no cambian; publicarlos en campaña, sí.
-            </li>
-          </ul>
-          <p>
-            <strong>De qué está hecha esa clasificación.</strong> Hoy, todas las referencias que
-            sostienen este bloque proceden de un documento que la propia persona redactó sobre sí
-            misma: el CV que el ayuntamiento publica en su portal. Una declaración de bienes y
-            actividades contaría igual —la custodia un registro oficial, pero lo que dice sigue
-            siendo el relato del interesado—. Por eso de cada fuente se anotan{' '}
-            <strong>dos cosas distintas</strong>: quién la publica y de quién es el relato. Un CV
-            colgado en el portal municipal tiene un publicador fiable y una afirmación sin
-            verificar; tomar el sello del ayuntamiento por una comprobación sería dar por hecha una
-            que nadie hizo. Que ninguna evaluación diga hoy «corroborada» es el resultado de esa
-            clasificación, hecha fuente a fuente: no es un valor decorativo ni inalcanzable —se
-            deriva en cuanto una de las citas la publica un tercero ajeno a la persona—, sino una
-            medición. Y se comprueba: una evaluación que cita algo sin decir de qué se sostiene, o
-            que lo deja en «sin clasificar», rompe la auditoría de integridad que se pasa sobre los
-            datos publicados. Y cuando la biografía deja constancia de una discrepancia sin resolver
-            sobre la formación o la trayectoria, el proceso la propone como advertencia clasificada;
-            que llegue al bloque —con el texto literal de la advertencia— depende de que un curador
-            la firme, y puede no firmarla aunque la clasificación sea correcta. Sin esa firma la
-            ficha no la menciona, así que la ausencia de advertencias en una ficha no significa que
-            la biografía no recoja ninguna.
-          </p>
-          <p style={{ marginBottom: 0 }}>
-            Los requisitos legales citados proceden del texto consolidado del BOE: la{' '}
-            <strong>Ley Orgánica 5/1985 del Régimen Electoral General</strong>, artículo 6.1, para
-            los cargos electos, y el <strong>Real Decreto 128/2018</strong>, artículos 17, 18 y 19,
-            para los funcionarios de Administración Local con habilitación de carácter nacional.
-            Sólo se recogen artículos verificados literalmente; donde no se pudo verificar el texto,
-            no se afirma nada.
-          </p>
-        </div>
-      </Card>
-
-      <Card style={{ marginTop: 14 }} id="verificacion-declaraciones">
-        <SectionHead
-          eyebrow="Verificación de declaraciones de pleno"
-          title="Del discurso al contraste documental"
-        />
-        <p style={{ margin: '8px 0 0', color: 'var(--ink70)' }}>
-          Los concejales hacen afirmaciones en las intervenciones del pleno: cifras presupuestarias,
-          obras en marcha, convenios cerrados, promesas futuras. Algunas son verificables contra
-          documentos públicos; otras son opinión política. Este sistema, visible en el apartado{' '}
-          <a href="/plenos" style={{ color: 'var(--civic)' }}>
-            /plenos
-          </a>
-          , procesa cada declaración en tres pasos:
-        </p>
-        <ol style={{ margin: '10px 0 0', paddingLeft: 20 }}>
-          <li>
-            <strong>Extracción automática</strong> (LLM, requiere aprobación humana). Sobre el texto
-            de la sesión, el modelo extrae <em>verbatim</em> las afirmaciones y las clasifica en
-            cinco tipos: <code>promesa</code> · <code>afirmacion_numerica</code> ·{' '}
-            <code>cita_obra</code> · <code>cita_convenio</code> · <code>acusacion_publica</code>.
-            (Existe un sexto, <code>valoracion_politica</code>, que el extractor no emite: sólo nace
-            de la reclasificación curada que se describe más abajo.) Cada registro se guarda en{' '}
-            <code>pleno-claims-suggestions.json</code>.{' '}
-            <strong>El modelo no dice de qué grupo es quien habla.</strong> No se le pregunta.
-            <p style={{ margin: '8px 0 0' }}>
-              Hasta el 10 de agosto de 2026 sí se le preguntaba, y no podía saberlo. El modelo ve un
-              fragmento de unos 1.200 caracteres, y medido sobre una sesión real, de sus 515
-              fragmentos <strong>6 (el 1%)</strong> contienen el momento en que la presidencia
-              concede la palabra —la única prueba de quién la tiene— mientras que 211 (el 41%) se
-              limitan a <em>nombrar</em> un partido, que en un debate suele ser aquel al que se
-              ataca. Preguntado igualmente, el modelo tiraba del nombre que aparecía en el texto. El
-              resultado eran citas archivadas bajo el grupo al que critican. Las 1.415 atribuciones
-              que ese método había producido se retiraron a «sin identificar» el 10 de agosto. Una
-              recuperación del 15 de agosto las devolvió al registro de declaraciones, copiándolas
-              de un fichero publicado que aquella retirada no había limpiado, y en octubre de 2026
-              se volvieron a retirar: sólo conservan su grupo las pocas que el mapa de hablantes,
-              construido después, acredita igual.
-            </p>
-            <p style={{ margin: '8px 0 0' }}>
-              La atribución se une ahora <strong>después</strong> de extraer, desde un mapa de
-              hablantes construido a partir del audio, en el que cada grupo se sostiene sobre la
-              frase concreta en que la presidencia lo nombró al dar la palabra —«Compromís, Rafa»—
-              con el segundo exacto de la grabación en que se dijo. El nombre y el partido tienen
-              que aparecer en esa frase: si el mapa no acredita quién hablaba, la cita se publica{' '}
-              <strong>sin grupo</strong>, y eso es una respuesta, no un fallo.
-            </p>
-            <p id="atribucion-firmada" style={{ margin: '8px 0 0', scrollMarginTop: 24 }}>
-              <strong>Hay una segunda vía, y sólo esa</strong>: una persona firma con su nombre el
-              grupo de quien habla, con el tramo de la grabación en segundos y cómo se sabe —la
-              frase con que la presidencia le dio la palabra, o que quien habla es la propia
-              presidencia—. Lo firma tras escuchar ese tramo o, si no lo ha escuchado, desde la
-              transcripción y su propia identificación del grupo, y entonces lo dice el motivo de la
-              firma, que se publica con ella (<code>pleno-claim-relabels.json</code>). Antes de
-              aceptarla se comprueba que las palabras de la declaración constan en ese tramo de una
-              transcripción de la sesión. La firma no reescribe el registro: se guarda aparte, con
-              lo que la declaración decía al firmarse, y la compilación la aplica encima; si el
-              registro cambia por su cuenta, la firma deja de aplicarse y la declaración no publica
-              un grupo que la contradiga. Sólo escribe grupos con varios concejales. Esas
-              declaraciones llevan la marca «firmado».
-            </p>
-            <p style={{ margin: '8px 0 0' }}>
-              La identificación individual (concejal concreto) sigue siendo una señal secundaria (
-              <code>speakerSlug</code>), y sólo cuando la identificación por voz —entrenada con
-              muestras públicas— ha asignado esa línea con alta confianza (cosine ≥ 0,6 y margen ≥
-              0,15 frente al segundo candidato). Ninguna superficie pública (
-              <code>/declaraciones</code>, <code>/hallazgos</code>) nombra al individuo hasta que un
-              curador lo promueve manualmente. Conviene decir además algo que la etiqueta de grupo
-              oculta: <strong>VOX, EU-Podem y Compromís tienen un escaño cada uno</strong>, así que
-              en esos tres casos etiquetar el grupo señala necesariamente a esa persona.{' '}
-              <strong>Por eso esas tres etiquetas no se publican</strong>: aunque el mapa acredite
-              quién hablaba, la declaración sale sin grupo, porque nombrar a una persona lo firma un
-              curador por hallazgo, y la firma del registro de declaraciones nunca escribe uno de
-              esos tres grupos. Y cuando un hallazgo corrige el grupo de una de sus citas, la
-              declaración de la que sale esa cita deja de decir lo que el hallazgo retiró; si el
-              hallazgo la re-etiquetó con prueba, la declaración dice el grupo nuevo sólo cuando una
-              persona lo firma por esa vía.
-            </p>
-            <p style={{ margin: '8px 0 0' }}>
-              <strong>Ese texto no siempre es la transcripción del vídeo.</strong> Cuando no hay
-              audio de la sesión, lo que se procesa es el <strong>acta municipal</strong>, que es un
-              resumen ya redactado por secretaría. La diferencia importa a quien lee: una cita
-              «literal» sacada de un acta cita al acta, no a la intervención. Cada sesión en{' '}
-              <a href="/plenos" style={{ color: 'var(--civic)' }}>
-                /plenos
-              </a>{' '}
-              indica cuál de las dos está mostrando, y el clasificador nunca adivina — si un
-              documento no lleva marcas de tiempo que avancen, no se da por transcripción de audio.
-            </p>
-          </li>
-          <li>
-            <strong>Contraste determinista</strong> (sin LLM) contra la base de datos municipal:
-            contratos (<code>tenders.json</code>), subvenciones (<code>bdns.json</code>),
-            presupuesto (<code>budget.json</code>) y promesas documentadas (
-            <code>promises.json</code>). El verificador emite uno de cinco veredictos:
-            <ul style={{ marginTop: 6 }}>
-              <li>
-                <strong>verificado</strong> — coincidencia fuerte (importe + entidad) en alguna base
-                documental.{' '}
-                {/* 19-10-2026: k4olcs-019-cit-b9b013 salía «Verificado» por 80.666 € con
-                    la licitación de su expediente, que imprime 70.158 €. */}
-                La fila que se cita imprime la cifra dicha, con un 1 % de margen: si el expediente
-                la trae en otra de sus filas —la adjudicación con IVA, por ejemplo—, se cita ésa; si
-                ninguna la imprime, el veredicto no pasa de <em>parcial</em>.
-              </li>
-              <li>
-                <strong>parcial</strong> — coincidencia moderada; entidad o importe difieren algo.{' '}
-                {/* 19-10-2026: zrbgic-086-cit-ec50ea, una valoración en valenciano
-                    sobre un mantenimiento, salía «parcial» sobre el contrato del
-                    césped artificial que sólo nombraba la paráfrasis del extractor. */}
-                Cuando la cita no trae cifra y sólo nombra una obra, el expediente se busca con las
-                palabras que dijo quien habla, no con la descripción que anotó el extractor: un
-                contrato que sólo casa con esa descripción no sostiene ningún veredicto, y la
-                declaración queda en <em>sin-datos</em>.
-              </li>
-              <li>
-                <strong>contradicho</strong> — la base documental registra un importe distinto, o el
-                discurso afirma «obra terminada» cuando la contratación no llegó a término (anulada,
-                desierta, desistida, todavía en evaluación o sin adjudicación definitiva).{' '}
-                {/* 19-10-2026: Gobierto rotula el estado de las licitaciones con palabras que no
-                    son las de la Plataforma —«revoked» en 114 adjudicadas, «formalized» en dos
-                    anuladas—, medido sobre 51 fichas (src/scraper/tenders.ts,
-                    `estadoDeLicitacion`). Y cuando las dos tablas no casan, manda el contrato
-                    (src/scraper/gemelos-de-licitacion.ts). */}
-                El estado de una licitación se lee como lo muestra la Plataforma de Contratación: la
-                copia que publica el portal municipal lo rotula con otras palabras —«revocada» para
-                una licitación adjudicada, «formalizada» para una anulada—, y se traducen con una
-                correspondencia cotejada ficha a ficha contra la Plataforma. Cuando un mismo
-                expediente figura en la tabla de contratos y en la de licitaciones con estados
-                distintos, manda el del contrato.{' '}
-                <strong>Desde el 2 de agosto de 2026 no se publica de forma automática.</strong> El
-                comparador determinista llegó a emitir 49 y los 49 estaban mal: comparaban dinero
-                autonómico o estatal con un contrato municipal que compartía una palabra suelta. Una
-                concejala citando el precio del alquiler de vivienda quedaba «desmentida» por el
-                alquiler de un camión de basura; los 63.000 millones de deuda de la Generalitat, por
-                una ampliación de 32.591 € del <em>parque Generalitat</em>.{' '}
-                {/* Decía «Hoy un contradicho de máquina se retiene y sólo aparece si
-                    una persona lo promueve». Ninguna herramienta de curación puede
-                    escribir un contradicho —sólo bajan—, y desde el 27-08-2026 promover
-                    a hallazgo tampoco saca una cita de la puerta. 28-09-2026. */}
-                {/* Decía «ninguna herramienta de curación puede escribir uno —sólo
-                    bajan—». Desde el 05-10-2026 hay una que sube, la subida firmada,
-                    y tampoco lo emite. */}
-                Hoy un <em>contradicho</em> se retiene siempre: el de máquina es una pista para
-                quien redacta, no un veredicto, y ninguna herramienta de curación puede escribir
-                uno: las que bajan no llegan a él, y la que sube —la subida firmada, más abajo— no
-                lo emite.
-              </li>
-              {/* Decía «no hay registro en las bases abiertas», y la tarjeta lo
-                  repetía en cada sin-datos con una frase fija que nombraba
-                  contratos, BDNS y presupuesto aunque no se hubiera consultado
-                  ninguno. 29-09-2026. La frase del expediente parecido salía
-                  también en citas sin cifra, con un contrato encima de
-                  «Fuentes comprobadas: ninguna» y un «el que hay no dice eso»
-                  que se leía como desmentido. 30-09-2026. */}
-              {/* Los recuentos contaban «sin corpus que consultar» las filas
-                  cuya lista había sustituido una pasada, debajo de tarjetas que
-                  decían «no constan». 30-09-2026. Y el rótulo decía de más: esas
-                  filas no carecen de corpus, es que no se les lanzó ningún
-                  comparador; el padrón, el paro y las votaciones y actas de
-                  pleno están publicados. 19-10-2026. */}
-              <li>
-                <strong>sin-datos</strong> — ningún registro de las bases consultadas sostiene la
-                afirmación, o no se lanzó ningún comparador con el que cotejarla. Puede ser cierta,
-                pero no está atestiguada (muy frecuente: reconocimientos extrajudiciales,
-                operaciones internas). La explicación de su tarjeta nombra sólo las bases que
-                constan como consultadas —las mismas que su línea «Fuentes comprobadas»— y, cuando
-                no consta ninguna, no dice que se buscara. Cuando la cifra citada se cotejó con los
-                contratos y el título de uno coincide en parte con lo citado, la tarjeta enseña ese
-                expediente y dice que su importe no es la cifra: se miró, y ni la sostiene ni la
-                desmiente. A una cita sin cifra no se le enseña ninguno, porque no hubo importe que
-                cotejar. Los recuentos de <code>/declaraciones</code>, <code>/plenos</code> y{' '}
-                <code>/laboratorio/cobertura</code> las reparten en tres, con la misma regla que esa
-                línea: <strong>comprobadas sin hallar nada</strong>, porque consta alguna base
-                consultada; <strong>ningún comparador lanzado</strong>, porque no hay nada anotado
-                («ninguna»): el verificador sólo lanza uno cuando la declaración trae un importe en
-                euros, cuando cita una obra por su nombre o cuando es una promesa, y eso no quiere
-                decir que no haya datos con que contrastarla —el padrón, el paro y las votaciones y
-                actas de pleno se publican en este sitio y todavía no tienen comparador—; y aquellas
-                de las que <strong>no consta qué se consultó</strong> («no constan»), porque una
-                revisión posterior —del motor de veredictos o de un curador— rehízo el veredicto y
-                dejó su marca en lugar de la lista. Éstas no se cuentan entre las de «ningún
-                comparador»: el motor juzgó las suyas sobre contratos o subvenciones candidatos, y
-                el curador, sobre la evidencia que corregía; que no conste cuáles no quiere decir
-                que no hubiera con qué.{' '}
-                {/* «DECLARACIONES PUBLICADAS 5112» eran filas: 291 repetían el
-                    literal de otra de su sesión. 19-10-2026. */}
-                Esos recuentos cuentan filas de extracción, no frases: las ventanas del extractor se
-                solapan, y una misma frase clasificada de dos maneras deja dos filas. No se borra
-                ninguna ni se le cambia el identificador; <code>/laboratorio/cobertura</code> dice
-                además cuántos literales distintos son.{' '}
-                {/* La columna «Declaraciones que dependen» contaba por la palabra:
-                    de 14 «actas», sólo 2 o 3 remitían a un acta que no tengamos.
-                    19-10-2026. */}
-                Y su tabla de documentos que se pueden pedir cuenta las declaraciones que{' '}
-                <em>nombran</em> ese tipo de documento, por su léxico, no las que dependen de él; no
-                cuenta el acta de un pleno que ya publicamos ni la de una reunión, ni el informe, el
-                plan o el expediente de otro órgano cuando la frase lo nombra, ni el del periodo
-                medio de pago, que publica Hacienda.
-              </li>
-              <li>
-                <strong>promesa-repetida</strong> — la promesa coincide con una ya documentada en el
-                tracker de años anteriores.
-              </li>
-            </ul>
-            {/* La fila de contrato imprimía el presupuesto base sin IVA de la
-                licitación bajo una cita que daba la adjudicación con IVA, y el
-                lector no podía cuadrar «81 K €» con «70.158 €». 30-09-2026. */}
-            <p style={{ margin: '8px 0 0' }}>
-              Cada fila de contrato imprime un importe, uno por fila, y un mismo expediente trae
-              varios: de licitación y de adjudicación, con IVA y sin él. Bajo un <em>verificado</em>{' '}
-              automático es la cifra citada, redondeada a euros. En las demás, es el importe que el
-              verificador comparó; si no es la cifra citada y otro importe del mismo expediente sí
-              lo es, la tarjeta dice debajo qué es cada uno.
-            </p>
-            {/* Hasta el 12-10-2026 la fila imprimía «sim 1.00» suelto, y junto a
-                «Parcial» se leía como coincidencia perfecta. */}
-            <p style={{ margin: '8px 0 0' }}>
-              Cuando el verificador puntuó el parecido de una fila con lo citado —las palabras del
-              objeto frente al título del expediente y, si las hay, las cifras—, la fila lo imprime
-              como «parecido con lo citado», de 0 a 1. Ese número dice cuánto trata la fila de lo
-              mismo que la cita, no si la confirma: una cita «Parcial» puede llevar un 1,00, porque
-              el expediente es el que se nombró pero no acredita lo que se dijo de él. Lo que la
-              fila acredita lo dice el veredicto.
-            </p>
-          </li>
-          <li>
-            <strong>
-              Segunda pasada de fundamentación con un modelo NLI local sobre los{' '}
-              <code>sin-datos</code>
-            </strong>{' '}
-            (opcional, sólo cuando el contraste determinista no encontró nada). Tomamos hasta 8
-            candidatos del corpus municipal (contratos, subvenciones, promesas previas) por
-            coincidencia léxica y semántica, y un modelo de inferencia de lenguaje natural (NLI,
-            mDeBERTa multilingüe) ejecutado <strong>localmente</strong> —coste cero, sin cuota—
-            decide si algún extracto <em>implica</em> (entailment) la afirmación. El modelo no
-            genera texto: puntúa el par (extracto, afirmación), de modo que{' '}
-            <strong>no puede inventar evidencia</strong> — la cita es siempre una fila real del
-            corpus.{' '}
-            {/* 06-10-2026: el corpus cortaba `título · €importe · estado` a 230 caracteres, y
-                el motor no vio los 35.252,87 € de k4olcs-018-afi-1077bc, que coincidían al
-                céntimo (src/scraper/snippet-de-contrato.ts). */}
-            Desde octubre de 2026, el extracto de un contrato —el que lee esta pasada, y el que lee
-            el motor de más abajo— lleva enteros su estado, sus importes de adjudicación y de
-            licitación, con y sin IVA, su adjudicataria y sus fechas, y lo único que se recorta es
-            el título: hasta entonces se cortaba todo a 230 caracteres, y en un contrato de título
-            largo el corte se comía el importe y el estado, de modo que el modelo juzgaba sin
-            verlos.{' '}
-            {/* 06-10-2026: la búsqueda semántica tiraba las licitaciones cuyo id repetía el de un
-                contrato, no embebía la adjudicataria, y la lista corta fundía los lotes de un
-                expediente, que comparten enlace (scripts/embed-verifier-corpus.ts,
-                mergeShortlists en src/scraper/semantic-shortlist.ts). */}
-            Desde esa misma fecha la búsqueda semántica también recorre las licitaciones que dicen
-            algo que su contrato no dice —otro objeto, o el importe del expediente entero—,
-            encuentra un contrato por el nombre de su adjudicataria, y cada lote de un expediente
-            cuenta como un candidato aparte, aunque todos enlacen a la misma ficha de la Plataforma
-            de Contratación. Lo que el modelo ve respaldado <strong>no se publica solo</strong>:
-            queda como propuesta de subir el veredicto a verificado/parcial, en una cola de revisión
-            que no se publica. Esa propuesta tampoco se firma tal cual: quien esté de acuerdo con
-            ella la sube por la{' '}
-            <a href="#subida-firmada" style={{ color: 'var(--civic)' }}>
-              subida firmada
-            </a>
-            , con el registro que elija y una explicación que escriba. Una pasada automática puede
-            retractar un veredicto, nunca reforzarlo. Tampoco marca <em>contradicho</em> (una
-            contradicción fuerte sólo se <em>señala</em> para revisión humana).
-          </li>
-          <li>
-            <strong>Re-fundamentación de veredictos publicados (sólo señalización).</strong> El
-            mismo modelo NLI revisa los veredictos ya publicados (verificado / parcial /
-            contradicho): si la evidencia citada no implica la afirmación —o, para un{' '}
-            <em>contradicho</em>, no la contradice— el veredicto se{' '}
-            <strong>marca para revisión de un curador</strong>. Esa revisión{' '}
-            <strong>no cambia ningún veredicto</strong>: lo rebaja (nunca lo sube) una herramienta
-            dedicada, que deja el motivo verbatim y la firma de quien la usa.{' '}
-            {/* Decía «sólo una persona puede rebajarlo» y, de lo que queda en parcial,
-                «esa firma es suya, no de la máquina». Medido el 30-09-2026: de las 69
-                bajadas del overlay, 47 no las firma una persona —40 de la revisión de
-                junio (`ai-gold-review`), 3 de sesiones de Claude, 4 con una firma que no
-                dice quién—, y la tarjeta las rotulaba todas «corregido por un curador». */}
-            <strong>No siempre la usa una persona:</strong> en junio de 2026 la usó una revisión
-            automática hecha con un modelo, y en agosto y septiembre, sesiones de un modelo que
-            corregían lo que había dejado pasar el comparador. La tarjeta de cada declaración dice
-            quién decidió la rebaja: «corregido por un curador» sólo cuando la firma nombra a una
-            persona; «rebajado en una revisión automática» cuando nombra un proceso o un modelo; y
-            «no consta quién lo decidió» cuando no dice ni lo uno ni lo otro. Lo que una rebaja deja
-            en <em>parcial</em> se enseña entre las cotejadas, con la evidencia que tenía el
-            veredicto que rebajó y su motivo por resumen: se enseña porque la herramienta sólo baja,
-            no porque la firme una persona. Ese motivo es también la explicación que la tarjeta
-            enseña bajo la cita, y puede enmendarse después —para decir lo mismo en castellano
-            llano, o decirlo mejor— <strong>sin mover el veredicto</strong>: la enmienda la firma
-            siempre una persona con su nombre, que la tarjeta da («motivo firmado por…»), y queda en
-            la propia entrada, con la fecha, el porqué y una huella del motivo anterior que permite
-            cotejarlo con el historial público del repositorio. No se enmienda ninguno durante el
-            periodo electoral, ni cuando lo publicado no es la composición de lo que hay en disco.
-            Enmendar el motivo reescribe la explicación, no la decisión: una rebaja automática con
-            el motivo firmado por una persona sigue siendo una rebaja automática. Las decisiones de
-            segunda pasada y de curación viven en una capa («overlay») separada del veredicto
-            determinista base, de modo que recalcular la base nunca borra esas decisiones. Desde
-            agosto de 2026 el <em>tipo</em> de una declaración se corrige por la misma vía: cuando
-            el extractor archiva como <code>acusacion_publica</code> algo que no acusa a nadie —el
-            caso que estrenó la herramienta fue una defensa de la constitucionalidad de una ley
-            estatal—, un curador lo reclasifica con motivo verbatim en un registro propio (
-            <code>pleno-claim-reclassifications.json</code>), y la herramienta sólo acepta
-            movimientos que <strong>alejan</strong> de la acusación, nunca hacia ella: convertir una
-            declaración en acusación agravaría lo que se afirma de quien habló, que es exactamente
-            lo que «sólo a la baja» prohíbe para los veredictos.
-            <p style={{ margin: '8px 0 0' }}>
-              El rótulo de tipo que se ve en cada tarjeta, además, se deriva de lo que la cita dice,
-              y sólo puede bajar. El extractor usa «afirmación numérica» y «convenio citado» también
-              para frases que no traen ninguna cifra o que no nombran convenio, ayuda ni fondo: una
-              lista de departamentos, un recuento de votos, una valoración sobre una carta de
-              servicios. Cuando el literal no trae lo que el tipo promete, la tarjeta dice{' '}
-              <strong>«Afirmación»</strong>, sin más. Una cifra que la comprobación no reconozca
-              deja también «Afirmación», que no afirma nada de más; nunca se rotula una frase con un
-              tipo más fuerte que el del extractor. El tipo archivado no cambia, y los recuentos por
-              tipo de{' '}
-              <a href="/laboratorio/cobertura" style={{ color: 'var(--civic)' }}>
-                /laboratorio/cobertura
-              </a>{' '}
-              siguen contando lo que el extractor clasificó.
-            </p>
-          </li>
-          <li>
-            <strong>Motor de veredictos (re-derivación, sólo a la baja).</strong> Una segunda pasada
-            de fundamentación —«razonar y luego formatear» sobre los mismos candidatos del corpus,
-            con la regla de <em>no-evidencia por defecto</em> y la misma comprobación de que el
-            valor citado aparezca literalmente en el extracto, en un dato del registro (importe,
-            estado, adjudicataria, órgano o fecha) y no sólo en su título— vuelve a juzgar los
-            veredictos marcados verificado/parcial, tanto los de la pasada LLM como —desde el 2 de
-            agosto de 2026— los que había afirmado el comparador determinista.{' '}
-            {/* Decía «Esa primera pasada sobre la base retractó 229 de 264 veredictos
-                juzgados, coherente con el conjunto de control: el determinista acierta un
-                33 % en verificado y un 22 % en parcial», y más abajo «En una muestra de
-                control etiquetada a mano, su veredicto sin-datos acierta ~92 %, así que…».
-                La muestra (tests/fixtures/verifier-gold.json) la etiquetó Claude Opus 4.8 el
-                23 y 24-06-2026, su cabecera pedía revisarla antes de tratarla como patrón, y
-                no consta que ninguna persona lo hiciera. Las tres cifras eran coincidencia
-                con esas etiquetas —36 de 39, 1 de 3 y 4 de 18—, medida con gpt-5.4-mini, y
-                la pasada de agosto se configuró con Claude Code (y en parte la contestó
-                gpt-4o-mini: ver la nota del 05-10-2026, abajo). El recuento de la pasada sobre la
-                base iba escrito en la prosa y no lo sostenía ningún dato servido. 04-10-2026. */}
-            Esa primera pasada sobre la base{' '}
-            <strong>retractó la gran mayoría de los veredictos que juzgó</strong>, en la misma
-            dirección que la muestra de control con la que se midió el motor en junio de 2026: en
-            ella, lo que el comparador determinista daba por <em>verificado</em> o <em>parcial</em>{' '}
-            no coincidía, en su mayoría, con la etiqueta de la muestra, aunque son pocos casos. Una
-            parte de las declaraciones el modelo no llega a verlas, porque sin cifra en euros la
-            recuperación léxica no encuentra candidatos; conservan su veredicto determinista hasta
-            que la vía semántica las alcance. (Aquí no damos el número exacto a propósito: cambia
-            con cada pleno transcrito, y una cifra escrita en esta página se quedaría falsa sin que
-            nadie lo notara. El recuento vigente está en el bloque <code>totals</code> del
-            manifiesto publicado <code>/data/pleno-claims/index.json</code>
-            .) <strong>Esa muestra de control la etiquetó un modelo</strong> (Claude Opus 4.8), y no
-            consta que ninguna persona haya revisado sus etiquetas: lo que se midió contra ella es
-            cuánto coincide el motor con otro modelo, no cuánto acierta. Se midió una vez, en junio
-            de 2026, con el modelo que el motor usaba entonces (gpt-5.4-mini).{' '}
-            {/* 05-10-2026. Decía «las pasadas de agosto corrieron con otro —a través de
-                Claude Code—». Medido contra una copia de .llm-cache, sin llamadas: de las 920
-                retractaciones de la pasada del 02-08-2026 que siguen en el overlay con su
-                explicación, 457 las contestó openai/gpt-4o-mini —456 entera, 1 sólo el
-                veredicto—, el respaldo de pago que la cadena ponía detrás de claude-code con la
-                clave de OpenAI cargada; de las 533 que se sirven, 321. Todas rotuladas
-                `verdict-engine:claude-code` (tests/llm/procedencia-del-respaldo.test.ts).
-                06-10-2026: corregidas con `corregir-rotulo-motor` —456 a
-                `verdict-engine:gpt-4o-mini`, la mixta a `verdict-engine:claude-code+gpt-4o-mini`—,
-                con su `labelCorrections` en cada entrada; decía «todavía las atribuye… se
-                corregirá». */}
-            La pasada de agosto se configuró con otro, a través de Claude Code, pero cuando Claude
-            Code fallaba la herramienta recurría sin decirlo a un modelo de pago de OpenAI
-            (gpt-4o-mini) y guardaba su respuesta como si fuera de Claude:{' '}
-            <strong>
-              más de la mitad de las retractaciones de esa pasada que hoy se publican con su
-              explicación las escribió gpt-4o-mini
-            </strong>
-            , y el registro de decisiones (el overlay) las atribuía a Claude Code. Ninguno de los
-            dos modelos se ha medido contra la muestra. Desde octubre de 2026 el motor corre sin
-            respaldo de pago y sólo escribe a nombre del modelo que contestó, y el 6 de octubre de
-            2026 se corrigió la atribución de esas retractaciones con una corrección registrada en
-            cada una, que guarda el rótulo anterior, qué paso hizo cada modelo y el porqué, sin
-            tocar el veredicto ni la explicación. Si el motor vuelve a escribir después una de esas
-            explicaciones, la entrada nueva conserva esa corrección junto a quién escribió la
-            anterior y cuándo, nunca lo que decía. Las cifras, con su método y su muestra, están en
-            el registro público de mediciones (<code>.automation-measurements.json</code>); aquí no
-            las damos como acierto. La regla se tomó en junio a la vista de esa medición, y hoy la
-            sostiene una razón que no depende de ninguna: un <code>sin-datos</code> no afirma nada,
-            así que retractar a <code>sin-datos</code> sólo puede quitar una afirmación, nunca
-            añadirla. Por eso{' '}
-            <strong>
-              sólo aplicamos sus retractaciones a <code>sin-datos</code>
-            </strong>{' '}
-            (nunca sube ni introduce un veredicto nuevo). El resultado es más conservador: retira
-            afirmaciones que el trazado de datos abiertos no atestigua, dejando el motivo verbatim
-            en el overlay. Nunca marca <em>contradicho</em>. Su razonamiento, recortado, es la
-            explicación que la tarjeta de la declaración enseña bajo la cita.{' '}
-            {/* 05-10-2026: en 36 de las 52 retractaciones que la re-derivación de #233
-                dejó como «ya no la retractaría», el razonamiento concluía que nada las
-                respaldaba y el paso de formatear devolvía «parcial»; y casi todas sus citas
-                eran el título del registro (src/scraper/conclusion-sin-respaldo.ts). */}
-            Desde el 5 de octubre de 2026, cuando ese razonamiento concluye que ningún candidato
-            respalda la declaración, ése es el veredicto: antes, el paso que lo formatea podía
-            convertir «sólo hay una coincidencia de tema» en <em>parcial</em>.{' '}
-            {/* 10-10-2026: el recorte por el principio publicaba bajo la cita la repetición
-                de la declaración, sin el porqué, en 51 de 56 razonamientos medidos
-                (tests/fixtures/motor-corte-conclusion_2026-10-10.json). */}
-            La explicación lleva entonces la frase en que lo concluye, y no sólo el arranque del
-            razonamiento: ése repite la declaración y, solo bajo la cita, se leía como si el motor
-            la afirmara.{' '}
-            {/* 11-10-2026: en 10 de esas 56 frases el modelo nombraba un candidato por su
-                número en la lista que leyó («a lo sumo [0] aporta contexto»), y la tarjeta
-                de una retractación no enseña esa lista (src/scraper/claim-verifier-engine.ts). */}
-            Si esa frase nombra un candidato por el número que tenía en la lista que leyó el modelo
-            —«[0]», «el candidato 5»—, que la tarjeta no enseña, se publica sin la parte que lo
-            nombra: se corta en un punto y coma o en unos dos puntos, y el corte se marca con «…».
-            Cuando el número va en la parte misma de la conclusión, la frase sale entera. Y cuando
-            lo único que el modelo cita es el título de un registro, el motor no lo da por respaldo,
-            pero tampoco retracta ni reescribe la explicación con un razonamiento que defiende lo
-            contrario: la declaración queda apartada para que la mire una persona. En la corrida del
-            2 de agosto de 2026 una parte de esas explicaciones no hablaba de la declaración sino
-            del encargo del propio modelo («Task completed: reasoned in Spanish…»): la tarjeta no
-            las imprime y dice «Explicación retirada» mientras una persona no escriba la suya (
-            <a href="#explicacion-firmada" style={{ color: 'var(--civic)' }}>
-              explicación firmada
-            </a>
-            ). Desde finales de septiembre de 2026 el motor no juzga sobre un razonamiento así, ni
-            sobre uno vacío —la declaración conserva su veredicto y se vuelve a intentar—, y el
-            overlay no deja escribirlo. Las pasadas de junio y agosto de 2026 anotaban además mal
-            dos cosas. Una declaración sin candidatos que enseñar al modelo volvía con el veredicto
-            del comparador determinista y quedaba registrada como retractación del motor, aunque el
-            modelo no la hubiera visto; y cuando el modelo sí la juzgaba sin respaldo, la
-            explicación que se guardaba era la frase estándar del comparador («No se encontró
-            registro…»), no su razonamiento. Desde finales de septiembre de 2026 lo que el modelo no
-            ve no se escribe como suyo ni cuenta como juzgado, y la retractación guarda lo que el
-            modelo razonó. Las que se anotaron sin que el modelo las viera se devuelven al veredicto
-            del comparador determinista —«sin datos» en todas, así que ninguna cambia de veredicto,
-            sólo de firma—, y las demás se vuelven a derivar para que la explicación sea la del
-            modelo.
-          </li>
-          {/* La vía nació el 10-10-2026: cuatro retractaciones del motor publicaban
-              «Explicación retirada», y la explicación que una lectura del 06-10
-              había escrito desde los registros no tenía por dónde publicarse
-              (`enmendarMotivoDeBajada`, src/scraper/verified-merge.ts). */}
-          <li id="explicacion-firmada" style={{ scrollMarginTop: 24 }}>
-            <strong>Explicación firmada (sin mover el veredicto).</strong> Cuando la explicación de
-            una retractación del motor no sirve —un parte del modelo sobre su encargo, o un
-            razonamiento que no dice lo que muestran los registros—, una persona puede escribir
-            otra, con su nombre, desde los registros que leyó. El veredicto sigue siendo el del
-            motor, <em>sin datos</em>, y la tarjeta lo dice: «verificador LLM · explicación firmada
-            por…». Es la misma enmienda que la del motivo de una rebaja: queda en la entrada del
-            motor, con la fecha, el porqué y una huella de la explicación anterior, y lo que decidió
-            el motor —su registro, su rótulo y su fecha— no se toca. La herramienta rechaza una
-            explicación que sea la de una máquina tal cual, no la acepta durante el periodo
-            electoral ni sobre una acusación pública, y ninguna pasada automática la reescribe
-            después: el motor se salta las que firmó una persona. «Fuentes comprobadas» sigue
-            diciendo lo que apuntó el motor; lo que la persona leyó lo dice su explicación.
-          </li>
-          {/* La vía nació el 05-10-2026, de una lectura del día anterior: ocho
-              declaraciones que el motor había retractado tenían un registro que
-              sí las sostenía, y ninguna vía podía volver a subirlas
-              (src/scraper/subida-firmada.ts). */}
-          <li id="subida-firmada" style={{ scrollMarginTop: 24 }}>
-            <strong>Subida firmada (sólo una persona, con su nombre).</strong> Lo automático sólo
-            baja, y hasta octubre de 2026 eso valía para todo: un veredicto que una revisión había
-            bajado no lo podía volver a subir nadie. Ahora hay una vía, y sólo una, por la que una
-            persona sube el veredicto de una declaración —de <em>sin datos</em> a <em>parcial</em> o{' '}
-            <em>verificado</em>, o de <em>parcial</em> a <em>verificado</em>— cuando ha leído el
-            registro público que la sostiene.
-            <ul style={{ marginTop: 6 }}>
-              <li>
-                <strong>La evidencia la elige ella</strong>: nombra el registro por su enlace —un
-                contrato adjudicado o formalizado de la Plataforma de Contratación del Sector
-                Público, una convocatoria de la Base de Datos Nacional de Subvenciones o, desde
-                octubre de 2026, un punto del orden del día de un pleno, tal como lo publica el
-                Ayuntamiento, o la licitación de un sistema dinámico de adquisición, que no tiene
-                contrato propio: sus contratos son los derivados— y la herramienta comprueba que
-                está en los datos que publicamos; si el enlace lleva a un expediente de varios
-                lotes, tiene que decir cuál, y si lleva a una sesión, qué punto. La fila de
-                evidencia la escribe la herramienta desde el propio registro —título, adjudicataria,
-                importe y fecha; la sesión, su fecha, su parte y el título entero del punto; o el
-                título entero de la licitación, su expediente y la fecha en que se abrió—, no quien
-                firma.
-              </li>
-              {/* 19-10-2026: la fila de la concesión del agua decía «adjudicado … por
-                  55.685.178,79 € con IVA el 06-08-2026» — valor estimado de 17 años
-                  como precio, un IVA que el registro no distingue y la fecha del
-                  anuncio como la del acuerdo (src/scraper/subida-firmada.ts,
-                  `filaDeContrato`). */}
-              <li>
-                <strong>La fila de un contrato dice qué es cada cifra y cada fecha.</strong> El
-                importe lleva «con IVA» sólo cuando el registro da dos importes distintos, con y sin
-                impuestos; si da el mismo, o uno solo, la fila no dice ninguna de las dos cosas. De
-                una concesión no imprime un precio de adjudicación sino su valor estimado por todo
-                su plazo, con los años que dura: se adjudica de una vez para muchos años, y no es un
-                gasto anual. Y la fecha es el día en que se publicó el anuncio de adjudicación en la
-                Plataforma, que la fila rotula así: el acuerdo de adjudicar es anterior —el de la
-                concesión del agua, del Pleno de 27 de julio de 2026, se publicó el 6 de agosto—, y
-                su fecha no está en el registro.
-              </li>
-              {/* 19-10-2026: una enajenación o el bar de un polideportivo se habrían
-                  escrito «adjudicado a … por», como si pagara el Ayuntamiento, y
-                  once contratos citables tenían por título un código CPV
-                  (src/scraper/subida-firmada.ts, `ingresoMunicipal` en
-                  src/lib/contract-status.js). */}
-              <li>
-                <strong>Y dice en qué sentido va el dinero.</strong> De la venta de un bien
-                municipal, la fila dice que la adjudicataria paga el precio al Ayuntamiento. La
-                explotación de un bar o un quiosco municipal no se cita por esta vía: la paga quien
-                la explota, y el registro no dice si su importe es el canon de un año, el de todo el
-                plazo u otra cosa. Cuando el registro da por título un código de la clasificación de
-                contratos (CPV), la fila toma el de su licitación o, en un contrato derivado de un
-                sistema dinámico de adquisición, dice de cuál deriva y que su objeto es el que dice
-                ese código; sin ninguna de las dos, no se cita.
-              </li>
-              {/* 10-10-2026: una declaración sobre lo que se llevó a un pleno sólo la
-                  sostiene un orden del día o un acta, y de actas no hay corpus
-                  (src/scraper/subida-firmada.ts, `comprobarRegistrosConLaDeclaracion`). */}
-              <li>
-                <strong>Un orden del día sostiene que algo se llevó a una sesión</strong>, con ese
-                título y en esa parte; no que se aprobara, ni una cifra, ni lo que se dijo en el
-                debate. Por eso su fila nunca dice «aprobado».
-              </li>
-              {/* 19-10-2026: la fecha no acotaba un contrato ni una convocatoria, y 10
-                  de las 13 subidas que citaban un contrato citaban una adjudicación
-                  publicada después de lo dicho; cualquier importe dejaba llegar a
-                  verificado. Decisión del curador ese día: un registro posterior se
-                  acepta con un motivo firmado y publicado (`registroPosterior`), nunca
-                  para una promesa (src/scraper/subida-firmada.ts,
-                  `comprobarRegistrosConLaDeclaracion`). */}
-              <li>
-                <strong>Un registro posterior a lo dicho sólo lo sostiene con un motivo.</strong> Un
-                orden del día de una sesión posterior, una convocatoria publicada después o un
-                contrato cuya adjudicación se publicó después no prueban que algo ya estuviera hecho
-                cuando se dijo. Sí pueden corroborar lo que se describió de un contrato que se
-                estaba tramitando —su objeto, sus lotes—: en el pleno de 8 de septiembre de 2025 se
-                describieron, uno a uno, los cinco parques de un contrato cuya licitación de
-                noviembre trae esos cinco lotes con esos nombres. Por eso la herramienta rechaza un
-                registro posterior salvo que quien firma escriba por qué lo sostiene, y ese motivo
-                se publica con la subida. Una promesa no la sostiene ningún contrato, con motivo o
-                sin él: que se contratara o se cumpliera es otra afirmación, y se sigue en{' '}
-                <a href="/promesas" style={{ color: 'var(--civic)' }}>
-                  promesas
-                </a>
-                . Y si la declaración trae una cifra, sólo llega a <em>verificado</em> si una fila
-                citada dice esa misma cifra, con un margen del 1&nbsp;% para el redondeo de lo dicho
-                de viva voz; el valor estimado de una concesión por todos sus años no cuenta como
-                precio ni como canon anual. Si no, la subida no pasa de <em>parcial</em>.
-              </li>
-              <li>
-                <strong>Lo ya firmado se vuelve a mirar.</strong> Cada noche, cada fila de contrato
-                de una subida firmada se vuelve a escribir desde los datos de contratación de ese
-                día: si el importe, el estado, la fecha o el contrato ya no son los que dice, o el
-                contrato ha desaparecido, o un contrato sostiene una promesa, o una cifra no es la
-                de su fila, la comprobación lo señala como fallo. Las subidas firmadas antes del 19
-                de octubre de 2026 no podían guardar el motivo: si citan un registro posterior, se
-                señalan como aviso, y las decide quien cura el registro al volver a firmarlas. Nada
-                la reescribe: la retira o la vuelve a firmar una persona.
-              </li>
-              {/* 10-10-2026: un SDA no se adjudica como un contrato; para lo que se dice
-                  de él, la licitación es el registro (src/scraper/subida-firmada.ts). */}
-              <li>
-                <strong>
-                  La licitación de un sistema dinámico de adquisición sostiene que el Ayuntamiento
-                  lo abrió
-                </strong>
-                , con ese objeto y ese alcance —por ejemplo, abierto a otras entidades públicas—,
-                desde esa fecha; no que lo aprobara un pleno, ni que se esté usando, ni ninguna
-                cifra. Su fila no dice el estado de la licitación, que en un sistema así no dice
-                nada, ni su importe, que es un techo estimado para años y no dinero gastado. Le
-                valen las mismas reglas de fecha y de cifra que a un orden del día.
-              </li>
-              <li>
-                <strong>La explicación también la escribe ella</strong>, desde ese registro, y dice
-                lo que el registro no establece. La herramienta rechaza la de una máquina tal cual:
-                en la lectura que trajo esta vía, las notas del motor contradecían al registro en
-                dos de los ocho casos.
-              </li>
-              <li>
-                <strong>La firma con su nombre y apellidos</strong>, que la tarjeta da: «subido por
-                una persona · firmado por…». No la acepta con una cuenta del proyecto, el nombre de
-                un modelo o una orden preparada sin rellenar.
-              </li>
-              <li>
-                <strong>Nunca sube una acusación pública</strong>: subirla haría pública una
-                acusación que el filtro retiene, y eso sigue las reglas de los hallazgos. Tampoco
-                escribe un <em>contradicho</em>.
-              </li>
-              <li>
-                No sube nada durante el periodo electoral. Una subida se puede retirar —con firma y
-                motivo, también durante ese periodo—, y retirarla devuelve el veredicto que había
-                antes de subirla. Lo que firmó una persona no lo deshace después una pasada
-                automática.
-              </li>
-            </ul>
-            Lo que afirma un veredicto subido es que el registro citado sostiene lo que dice su
-            explicación, y nada más. El contraste determinista sigue sin encontrarlo —por eso hizo
-            falta una persona—, así que la comprobación de veredictos cuenta esas subidas aparte,
-            como decididas por quien las firmó, y no como un fallo.
-          </li>
-          <li>
-            {/* Sin cuantificador de entrada: la cifra exacta viene justo
-                detrás, derivada, y «la mayoría» delante de «40 de 41» sólo
-                podía rebajarla. Cuando no hay dato, la frase dice la excepción
-                en vez de callarla. */}
-            <strong>Hallazgos editoriales.</strong> Los redacta un proceso automático bajo reglas
-            fijas, no una persona
-            {authorship ? (
-              <>
-                : de los {authorship.total} publicados,{' '}
-                <strong>{authorship.machine} los firma una máquina</strong> (
-                {authorship.byMachineName.map(([name, n], i) => (
-                  <span key={name}>
-                    {i > 0 && ', '}
-                    {n} <code>{name}</code>
-                  </span>
-                ))}
-                )
-              </>
-            ) : (
-              <> salvo los que llevan la firma de una persona</>
-            )}
-            . El pie de cada ficha dice quién la editó, y un nombre así significa que el título y el
-            resumen los escribió una máquina. Cuando un veredicto merece contexto se escribe un
-            hallazgo en <code>pleno-findings.json</code> con título, resumen (≥40 caracteres), citas
-            verbatim y los documentos con los que se ha cotejado. Esa lista es lo que se cotejó, no
-            lo que da la razón: el campo se llama <code>crossChecked</code> y recoge toda la
-            evidencia que el verificador encontró para las citas del hallazgo, así que la ficha la
-            publica bajo el rótulo neutro «documentos cotejados». Hasta el 5 de agosto de 2026 ese
-            mismo campo se llamaba <code>corroboration</code> con exactamente el mismo contenido:{' '}
-            <strong>ningún</strong> paso de este proceso comprueba que un documento respalde una
-            frase —los cruces son coincidencias de importe o de palabras en un título— y el nombre
-            afirmaba lo que la lista no había medido. Se renombró sin tocar una sola referencia,
-            pero hasta el 9 de agosto de 2026 la instrucción que recibía el redactor automático
-            seguía obligándole a citar al menos un registro «que corrobore», así que el resumen
-            afirmaba en prosa el vínculo que el campo ya había dejado de afirmar. Hoy el resumen no
-            puede decir que un expediente confirme, corrobore, respalde o desmienta una frase, y
-            cuando ninguno de los cotejados viene a cuento —que es el caso normal— lo dice y se
-            acaba ahí. El campo <code>contradiction</code> sólo admite documentos que el verificador
-            marcó como incompatibles con la cita. Los hallazgos se publican con derecho de réplica
-            literal para el grupo afectado.
-          </li>
-        </ol>
-        <p style={{ margin: '12px 0 0', color: 'var(--ink70)' }}>
-          <strong>Dos límites deterministas del redactor automático.</strong> El primero es la
-          fecha: <strong>un expediente posterior a la sesión no se cruza con ella</strong>, porque
-          no pudo estar sobre la mesa. Lo que se compara es la fecha <em>más temprana</em> que
-          consta del expediente —la apertura de la licitación, no la adjudicación—, ya que un
-          contrato se debate mientras se licita, a veces meses antes de adjudicarse; descartar por
-          la fecha de adjudicación tiraría cruces buenos. Un expediente que no podemos fechar se
-          conserva y se cuenta aparte: la lista es el registro de lo que se cotejó, no una selección
-          de lo que encaja. El segundo es el filtro del registro público de declaraciones: el
-          redactor <strong>sólo cita frases que ese filtro ya muestra</strong> en{' '}
-          <a href="/plenos" style={{ color: 'var(--civic)' }}>
-            /plenos
-          </a>
-          . El filtro retiene las acusaciones opinativas y las que no sostiene ningún dato; la vía
-          prevista para publicarlas es que una persona las promueva a hallazgo, y una máquina no es
-          esa persona.
-        </p>
-        <p style={{ margin: '12px 0 0', color: 'var(--ink70)' }}>
-          <strong>Frontera legal para las acusaciones.</strong> El LLM clasifica cada acusación
-          pública en tres subtipos:
-        </p>
-        <ul style={{ margin: '8px 0 0', paddingLeft: 20 }}>
-          <li>
-            <strong>factual</strong> — cita cifras, contratos o entidades concretas. Se contrasta
-            con la base documental igual que una afirmación numérica.
-          </li>
-          <li>
-            <strong>contra-datos</strong> — afirma algo directamente contradictorio con los datos
-            publicados (p. ej. «X votó en contra de Y» cuando el registro de votos dice lo
-            contrario). El verificador lo marca como <em>contradicho</em>.
-          </li>
-          <li>
-            <strong>opinativa</strong> — valoración de carácter, intención o estilo («nunca
-            escuchan», «siempre improvisan»). <strong>Nunca</strong> se verifica automáticamente.
-            Sólo revisión editorial.
-          </li>
-        </ul>
-      </Card>
-
-      {/*
-        El trinquete, PINTADO DESDE `trinquete.ts`.
-
-        Esta política vivía sólo en el orden de ejecución y en una cadena de
-        `if (source === …)`: un lector no podía verla por ningún lado, y el
-        contrato de esta casa es enseñar el método. Se pinta derivada de la
-        declaración —no re-escrita a mano— porque una tabla copiada aquí se
-        separaría de la que el código aplica al primer cambio, que es la avería
-        que este sitio ya ha pagado tres veces.
-      */}
-      <Card id="trinquete-veredictos" style={{ marginTop: 14, scrollMarginTop: 24 }}>
-        <SectionHead
-          eyebrow="Cómo se mueve un veredicto"
-          title="El trinquete: cada etapa empuja en un solo sentido"
-        />
-        <p style={{ margin: '8px 0 0', color: 'var(--ink70)' }}>
-          Un veredicto no lo fija una sola pasada. Lo establece el contraste determinista, y a
-          partir de ahí sólo puede moverse en el sentido que cada etapa tiene permitido:{' '}
-          <strong style={{ color: 'var(--ink)' }}>
-            una etapa que sólo puede retractar nunca reforzará una acusación
-          </strong>
-          , por bien que le parezca el caso. Y ninguna etapa automática refuerza nada: el anclaje
-          NLI, la única automática que empuja hacia arriba, sólo propone, y ni siquiera puede
-          proponer sin nombrar el corpus contra el que ancló la afirmación, ni proponer que vuelva a
-          subir lo que retractaron el motor o un curador. Lo que sí sube un veredicto es una
-          persona: la{' '}
-          <a href="#subida-firmada" style={{ color: 'var(--civic)' }}>
-            subida firmada
-          </a>
-          , con su nombre, el registro que la sostiene y la explicación que escribe ella.
-        </p>
-        <p style={{ margin: '8px 0 0', color: 'var(--ink70)' }}>
-          La tabla se dibuja desde la misma declaración que el código aplica, y una prueba comprueba
-          que describan lo mismo: si alguien cambiara la política sin cambiar esta página, o al
-          revés, la suite se pone roja.
-        </p>
-        <div style={{ overflowX: 'auto' }} className="cp-scroll-x">
-          <table
-            style={{
-              width: '100%',
-              borderCollapse: 'collapse',
-              fontSize: 'var(--fs-meta)',
-              marginTop: 12,
-            }}
-          >
-            <thead>
-              <tr style={{ textAlign: 'left', color: 'var(--ink70)' }}>
-                <th style={{ padding: '6px 8px 6px 0', fontWeight: 500 }}>Etapa</th>
-                <th style={{ padding: '6px 8px', fontWeight: 500 }}>Sentido</th>
-                <th style={{ padding: '6px 8px', fontWeight: 500 }}>Puede emitir</th>
-                <th style={{ padding: '6px 8px', fontWeight: 500 }}>Exige</th>
-                <th style={{ padding: '6px 0 6px 8px', fontWeight: 500 }}>Estado</th>
-              </tr>
-            </thead>
-            <tbody>
-              {Object.entries(TRINQUETE).map(([id, e]) => (
-                <tr key={id} style={{ borderTop: '1px solid var(--border)' }}>
-                  <td style={{ padding: '8px 8px 8px 0' }}>
-                    {e.nombre}
-                    <div style={{ color: 'var(--ink50)', fontSize: 'var(--fs-micro)' }}>
-                      <code>{id}</code>
-                    </div>
-                  </td>
-                  <td style={{ padding: '8px' }}>
-                    {e.direccion === 'sube' ? 'sólo puede reforzar' : 'sólo puede retractar'}
-                  </td>
-                  <td style={{ padding: '8px' }}>
-                    {e.puedeEmitir.map((v) => (
-                      <code key={v} style={{ marginRight: 6 }}>
-                        {v}
-                      </code>
-                    ))}
-                  </td>
-                  <td style={{ padding: '8px', color: 'var(--ink70)' }}>
-                    {[
-                      e.exigeCorpus ? 'nombrar un corpus' : null,
-                      e.exigeRazon ? 'un motivo escrito' : null,
-                      e.exigeFirma ? 'la firma de una persona' : null,
-                    ]
-                      .filter(Boolean)
-                      .join(' · ') || '—'}
-                  </td>
-                  <td style={{ padding: '8px 0 8px 8px' }}>
-                    {e.retirada ? (
-                      <Pill tone="warn" size="xs">
-                        retirada
-                      </Pill>
-                    ) : (
-                      <Pill tone="ok" size="xs">
-                        en uso
-                      </Pill>
-                    )}
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
-        <p style={{ margin: '12px 0 0', color: 'var(--ink70)' }}>
-          <strong style={{ color: 'var(--ink)' }}>
-            Una etapa retirada no se borra: se declara.
-          </strong>{' '}
-          Sus veredictos dejan de aplicarse y aflora el del contraste determinista — no se inventa
-          ninguno nuevo. La diferencia importa: retractar es afirmar algo distinto, y dejar de
-          aplicar es retirar una afirmación que no se sostenía.
-        </p>
-        <p style={{ margin: '8px 0 0', color: 'var(--ink70)' }}>
-          Y por debajo de todo esto hay un suelo:{' '}
-          <strong style={{ color: 'var(--ink)' }}>
-            un veredicto que afirme algo tiene que nombrar contra qué se comprobó
-          </strong>
-          . Si no lo nombra, no se escribe. La única excepción es la retractación de un curador,
-          porque bajar un veredicto nunca refuerza lo que se dice de nadie. Y lo que una
-          retractación ya bajó no lo vuelve a subir ninguna escritura automática: la capa de
-          decisiones («overlay») rechaza cualquier entrada que diga más que la que sustituye, salvo
-          la subida firmada, y ésa la sube sólo una persona, con su nombre. Lo que ella firma no lo
-          pisa después ninguna pasada: lo deshace otra persona, bajándolo con su firma.
-        </p>
-      </Card>
-
-      <Card id="citas-transcripcion" style={{ marginTop: 14, scrollMarginTop: 24 }}>
-        <SectionHead
-          eyebrow="Citas literales y transcripciones"
-          title="Qué significa que una cita esté marcada"
-        />
-        <p style={{ margin: '8px 0 0', color: 'var(--ink70)' }}>
-          Las citas entrecomilladas de{' '}
-          <a href="/hallazgos" style={{ color: 'var(--civic)' }}>
-            /hallazgos
-          </a>{' '}
-          se toman de la transcripción automática de la sesión, no de un acta ni de un taquígrafo.{' '}
-          <strong>Varias sesiones se han transcrito una segunda vez</strong> con un motor mejor, y
-          la transcripción antigua se conserva. Eso permite hacer una pregunta que antes no se podía
-          hacer: ¿las palabras que publicamos siguen apareciendo en el mejor texto que tenemos de
-          esa sesión?
-        </p>
-        <p style={{ margin: '10px 0 0', color: 'var(--ink70)' }}>
-          Para muchas, la respuesta es <strong>no</strong>. En la mayoría de esas sesiones la
-          transcripción nueva es bastante más extensa que la que sustituyó, así que la ausencia no
-          es falta de cobertura: es que el primer motor oía mal. Transcribía <em>Riba-roja</em> como
-          «Rivarroch» e inventaba palabras que no existen. El asunto se debatió —los temas aparecen
-          en las dos pasadas—, pero{' '}
-          <strong>
-            la literalidad que hay entre comillas puede ser la del transcriptor y no la del concejal
-          </strong>
-          .
-        </p>
-        <p style={{ margin: '10px 0 0', color: 'var(--ink70)' }}>
-          Cada cita afectada lleva su marca al lado, y hay dos porque son dos cosas distintas:
-        </p>
-        <ul style={{ margin: '8px 0 0', paddingLeft: 20, color: 'var(--ink70)' }}>
-          <li>
-            <strong>«no consta en la transcripción revisada»</strong> — la cita aparece palabra por
-            palabra en la transcripción anterior y no en la vigente, y la vigente <em>no</em> es más
-            corta. Lo que el lector debe concluir: el intercambio ocurrió, la atribución al grupo se
-            queda como está —la marca habla del texto, no de quién habló—, y el{' '}
-            <em>tenor exacto</em> de las palabras no está confirmado contra el mejor texto
-            disponible.
-          </li>
-          <li>
-            <strong>«no hemos podido comprobarlo»</strong> — en esa sesión la transcripción vigente
-            es <em>más corta</em> que la que sustituyó, así que la ausencia puede deberse al cambio
-            de motor o a un tramo que la nueva pasada no cubre. No afirmamos ninguna de las dos
-            cosas. Es un estado propio precisamente para no dejarlo caer en el anterior.
-          </li>
-        </ul>
-        {quoteProvenance && (
-          <p style={{ margin: '10px 0 0', color: 'var(--ink70)' }}>
-            Hoy, de {quoteProvenance.quotes} literales publicados,{' '}
-            <strong>{quoteProvenance.enVigente}</strong> aparecen en la transcripción vigente de su
-            sesión, <strong>{quoteProvenance.soloEnSustituida}</strong> sólo en la que se sustituyó
-            y <strong>{quoteProvenance.sinDeterminar}</strong> no se pueden situar. La cifra se lee
-            del fichero derivado <code>finding-quote-provenance.json</code> en el momento de mostrar
-            esta página, no está escrita aquí: cambia cada vez que se vuelve a transcribir una
-            sesión.
-          </p>
-        )}
-        <p style={{ margin: '10px 0 0', color: 'var(--ink70)' }}>
-          <strong>No reescribimos ninguna cita por nuestra cuenta.</strong> El estado es un cálculo
-          sobre dos ficheros —lo comprueba <code>npm run check:finding-quotes</code>, que se niega a
-          pasar si la marca publicada deja de coincidir con las transcripciones—, pero elegir el
-          pasaje equivalente en el texto nuevo es una decisión editorial sobre lo que dijo una
-          persona. Esas citas están en una cola de reanclaje para revisión humana, y el cambio, si
-          se hace, entra por la vía de corrección de siempre: queda en la bitácora pública de la
-          ficha, con el texto anterior tachado y el motivo. Una cita que no aparece en{' '}
-          <strong>ninguna</strong> de las dos transcripciones es un problema distinto —posible
-          invención, no desgaste— y no se publica con marca: se bloquea.
-        </p>
-        <p style={{ margin: '10px 0 0', color: 'var(--ink70)' }}>
-          <strong>Un reanclaje puede cambiar el idioma de la cita en pantalla</strong>, y conviene
-          saber por qué. El motor que se sustituyó traducía al castellano intervenciones
-          pronunciadas en valencià, así que lo que esta página publicaba entre comillas como literal
-          era, en muchos casos, una traducción automática. Al reanclar contra la transcripción
-          vigente se recupera la lengua en que se habló. No es una decisión de estilo ni un cambio
-          de criterio lingüístico: el contenido citado se queda siempre en su idioma de origen, y la
-          cita que ahora se lee en valencià es la que se ajusta a lo que se dijo. Las dos versiones
-          quedan a la vista en la bitácora de la ficha.
-        </p>
-        <p style={{ margin: '10px 0 0', color: 'var(--ink70)' }}>
-          Dos cosas que un reanclaje <em>no</em> hace. No toca la atribución: cuando el pasaje se
-          localiza sin dudas pero quien habla no es del grupo al que la ficha atribuye la cita, no
-          se reancla —se deja la marca puesta—, porque afinar el texto de una cita mal atribuida
-          deja mejor documentado un error más grave. Y no reescribe el resumen: si el resumen de la
-          ficha entrecomilla un tramo de la cita, reanclarla dejaría ese entrecomillado sin
-          respaldo, así que tampoco se reancla hasta que una persona revise las dos cosas juntas.
-        </p>
-      </Card>
-
-      <Card id="citas-contraste" style={{ marginTop: 14, scrollMarginTop: 24 }}>
-        {/* Decía «Por qué una acusación puede estar publicada sin contrastar»:
-            la política anterior al 27-08-2026, cuando /hallazgos marcaba el
-            literal de una acusación retenida y lo imprimía igual. Desde entonces
-            las dos páginas obedecen la misma puerta y ese literal no se imprime
-            en ninguna. Sección reescrita el 28-09-2026. */}
-        <SectionHead
-          eyebrow="Citas y datos municipales"
-          title="Qué enseñamos de una cita que el cotejo no pudo respaldar"
-        />
-        {/* Decía que la puerta «publica la afirmación con sus datos, la publica
-            etiquetada como sin contraste, o no la publica». Lo retenido no se
-            enseña, pero «no la publica» prometía más de lo que el sitio cumple:
-            el texto de lo retenido sigue en ficheros de datos del repositorio,
-            que es público (tarea abierta el 28-09-2026; desde el 29-09 la copia
-            servida ya no lo lleva, el repositorio sí). */}
-        <p style={{ margin: '8px 0 0', color: 'var(--ink70)' }}>
-          Cada afirmación que extraemos de un pleno se coteja automáticamente con la base documental
-          del ayuntamiento: contratos, subvenciones, presupuesto y promesas publicadas. Una{' '}
-          <strong>puerta editorial</strong> decide después qué puede salir a la vista, y su regla es
-          fallar del lado prudente: si el cotejo no encontró datos, la afirmación no se presenta
-          como comprobada. La puerta da uno de tres resultados: la afirmación se enseña con sus
-          datos, se enseña como no contrastada, o <strong>se retiene</strong>. Retiene por dos
-          motivos, y no son de la misma clase. Uno es de <strong>contraste</strong>: las acusaciones
-          públicas que el cotejo no pudo respaldar o que son pura opinión, y los desmentidos que
-          asigna una máquina, que son pistas para un redactor y no veredictos. El otro es de{' '}
-          <strong>procedencia</strong>, y es más simple: si el literal de una declaración no aparece
-          en ninguna transcripción que tengamos —ni en la vigente, ni en las que sustituyó una
-          re-transcripción—, no podemos enseñar que se dijera. Hay un caso que ningún cálculo sobre
-          los textos ve: que una transcripción recoja el literal porque lo oyó mal —el motor que se
-          sustituyó llegó a escribir un año donde se dijo un importe—. Ése lo decide quien escucha
-          la sesión: una persona retira la declaración con su nombre y un motivo escrito, y se
-          retiene como si no constara. En{' '}
-          <a href="/plenos" style={{ color: 'var(--civic)' }}>
-            el registro de declaraciones del pleno
-          </a>{' '}
-          lo retenido no llega a la página, y cuántas son se dice en{' '}
-          <a href="/plenos" style={{ color: 'var(--civic)' }}>
-            el recuento de declaraciones
-          </a>
-          , porque una retirada que no se cuenta es indistinguible de una extracción que nunca
-          ocurrió.
-        </p>
-        {/* Decía «Un hallazgo es la excepción que esa puerta concede, y la
-            concede porque delante hay una persona. […] Por eso una cita puede
-            aparecer en /hallazgos aunque la puerta la retenga en el registro», y
-            después «En estas fichas la excepción la tomó una máquina. […] Lo
-            declaramos en vez de borrar nada […] y hasta que una persona la
-            responda, cada cita afectada lleva su marca». Dejó de ser cierto el
-            27-08-2026, por decisión del operador: una sola política para el mismo
-            literal en las dos páginas (`citaRetenida`, en PlenoFindings.jsx). */}
-        <p style={{ margin: '10px 0 0', color: 'var(--ink70)' }}>
-          <strong>Promover una declaración a hallazgo no la saca de la puerta.</strong> Hasta el 27
-          de agosto de 2026 sí la sacaba: en{' '}
-          <a href="/hallazgos" style={{ color: 'var(--civic)' }}>
-            /hallazgos
-          </a>{' '}
-          una acusación que el registro retenía se imprimía igual —desde el 10 de agosto, con una
-          marca al lado—, como si cada ficha fuera una excepción concedida por una persona, cuando
-          la mayoría las había promovido un proceso automático. Desde el 27 de agosto la ficha
-          pregunta a la misma puerta por la afirmación que sostiene cada cita, y el mismo literal
-          sigue una sola política en las dos páginas.
-        </p>
-        <p style={{ margin: '10px 0 0', color: 'var(--ink70)' }}>
-          <strong>Decide la puerta, no quien promueve.</strong> Es un cálculo sobre lo que consta de
-          cada afirmación —de qué tipo es y qué dice el veredicto vigente del verificador—, y nadie
-          lo ajusta ficha a ficha: ni el proceso automático que redacta la mayoría de los hallazgos,
-          ni una persona al firmar uno. Lo que una persona sí puede hacer es corregir una de esas
-          dos cosas, con un motivo escrito que queda registrado: rebajar un veredicto o, si no es
-          una acusación, subirlo con su nombre y el registro que lo sostiene (
-          <a href="#subida-firmada" style={{ color: 'var(--civic)' }}>
-            la subida firmada
-          </a>
-          ); y quitar la etiqueta de acusación —cuando el extractor la puso donde no había ninguna—,
-          nunca ponerla. El veredicto de una acusación sólo se rebaja. Una afirmación a la que se le
-          quita pasa a tratarse como cualquier otra. Y puede contestar la pregunta que el cálculo no
-          alcanza, si se dijo: una declaración cuyo literal, escuchada la sesión, no es lo que se
-          dijo se retira, también en un solo sentido —ninguna vía la vuelve a publicar— y con su
-          veredicto rebajado a «sin datos», porque el que tenía se contrastó sobre una frase que
-          nadie pronunció. Si un hallazgo la cita, antes se retira esa cita de la ficha, con su
-          motivo en la bitácora.
-        </p>
-        <p style={{ margin: '10px 0 0', color: 'var(--ink70)' }}>
-          En la ficha de un hallazgo, una cita con datos sale sin marca, y los otros dos resultados
-          se ven así:
-        </p>
-        <ul style={{ margin: '8px 0 0', paddingLeft: 20, color: 'var(--ink70)' }}>
-          <li>
-            {/* Decía «acusación no contrastada — lo que se afirma es una acusación
-                pública sobre la gestión municipal y el cotejo no encontró ningún
-                dato que la respalde ni que la desmienta. Lo que el lector debe
-                concluir: se dijo, lo publicamos, y no sabemos si es cierto. No
-                estamos diciendo que sea falsa». La revisión lectora del
-                28-09-2026 (#148) quitó «sobre la gestión municipal»: la puerta no
-                registra a quién se acusa, y la mayoría de las retenidas hablan de
-                otra administración o de otro grupo. Y desde el 27-08-2026 ese
-                literal no se imprime: el rótulo pasó a la nota bajo las citas.
-                Decía también «enseña el hueco, su motivo y, si la ficha la
-                atribuye, el grupo; la nota bajo las citas lo rotula “acusación no
-                contrastada”». Desde el 29-09-2026 las citas van numeradas y el
-                hueco y la nota dicen de cuál hablan: aplanada la página, su pie
-                se leía sobre la cita impresa de al lado (CitaRetenida, en
-                PlenoFindings.jsx).
-                Decía «…dicen de qué número hablan, para que ninguna explicación
-                se lea sobre la cita de al lado». Desde el 30-09-2026 dicen
-                también de qué ficha: los números son por ficha, y aplanada la
-                página la nota de una se leyó sobre la cita del mismo número de
-                la siguiente (codigoDeFicha, en PlenoFindings.jsx). */}
-            <strong>«Literal retenido»</strong> — ocupa el sitio de una cita que la puerta retiene.
-            La página no imprime el literal: enseña el hueco con el número de la cita, su motivo y a
-            qué grupo la atribuye la ficha, o que no la atribuye a ninguno; la nota bajo las citas
-            la rotula <strong>«acusación no contrastada»</strong> con ese mismo número. Las citas de
-            cada ficha van numeradas, las impresas y los huecos, y el pie de cada hueco y cada línea
-            de la nota dicen de qué número hablan y de qué ficha —con el nombre que imprime su
-            cabecera: «ficha» y el código con que acaba su enlace permanente—, para que ninguna
-            explicación se lea sobre la cita de al lado ni sobre la del mismo número en la ficha
-            contigua. El literal tampoco lo llevan la bitácora de correcciones de la ficha, que en
-            esas filas enseña su huella en lugar del texto, ni la copia de los datos de hallazgos
-            que sirve el sitio. Se retiene el literal, no la ficha: el hallazgo, su resumen, su
-            atribución, los documentos cotejados y el derecho de réplica siguen a la vista. Lo que
-            el lector debe concluir: ahí se citaba una acusación que el verificador no ha podido
-            contrastar con ningún registro municipal. No decimos que sea falsa; decimos que no
-            consta.
-          </li>
-          <li>
-            <strong>«sin contraste en los datos»</strong> — la cita se imprime, con esa pastilla al
-            lado. No es una acusación, y se distingue a propósito: que no haya datos sobre una cifra
-            de presupuesto y que no los haya sobre una adjudicación a dedo no significan lo mismo, y
-            la puerta las separa por eso.
-          </li>
-        </ul>
-        {quoteContrast && (
-          <p style={{ margin: '10px 0 0', color: 'var(--ink70)' }}>
-            {/* Decía «de N literales publicados en /hallazgos […] N se publican
-                sin contraste y N son acusaciones que la puerta retiene en el
-                registro de declaraciones. N fichas no tienen ni una sola cita que
-                la puerta publicaría». La puerta retiene también en la ficha, y el
-                recuento de fichas es el de las que no tienen ninguna cita con
-                datos (`shown === 0` en quote-contrast.ts): las citas «sin
-                contraste» también se imprimen. */}
-            Hoy, de las {quoteContrast.citasConClaim} citas de las fichas de /hallazgos, el cotejo
-            encontró datos sobre <strong>{quoteContrast.porContraste.shown}</strong>;{' '}
-            <strong>{quoteContrast.porContraste.toggle}</strong> se imprimen con la pastilla «sin
-            contraste en los datos», y la puerta retiene{' '}
-            <strong>{quoteContrast.porContraste.hidden}</strong>: en su lugar, la ficha enseña el
-            hueco. <strong>{quoteContrast.hallazgosSinCitaMostrable}</strong> fichas no tienen ni
-            una sola cita sobre la que el cotejo encontrara datos, y{' '}
-            {quoteContrast.hallazgosSoloConCitasOcultas} están hechas por entero de citas retenidas.
-            Las cifras se leen del fichero derivado <code>finding-quote-provenance.json</code> al
-            mostrar esta página, no están escritas aquí: cambian cada vez que el verificador vuelve
-            a juzgar una declaración.
-          </p>
-        )}
-        <p style={{ margin: '10px 0 0', color: 'var(--ink70)' }}>
-          {/* Decía «…y se pone en rojo si la marca publicada deja de coincidir».
-              En la pasada nocturna corre con --soft: informa y no falla. */}
-          La marca es un cálculo, no una opinión: se obtiene preguntando a la misma puerta que
-          gobierna el registro, sobre el mismo veredicto vigente del verificador —el determinista
-          más las revisiones posteriores, que es lo que se publica—.{' '}
-          <code>npm run check:relations</code> vuelve a preguntárselo en cada pasada nocturna y
-          avisa si la marca publicada deja de coincidir, para que no pueda quedarse vieja en
-          silencio.{' '}
-          {/* Decía «Marcar no retira: esta pasada no quitó ni reescribió ninguna
-              cita». Dejó de ser cierto el 27-08-2026, cuando la misma marca pasó
-              a retener el literal en la ficha. */}
-          <strong>Retener no reescribe</strong>: la puerta no cambia el texto de ninguna cita ni
-          borra ninguna ficha; sólo decide qué se enseña. Las retiradas que sí ha habido las firma
-          una persona por la CLI de correcciones —el único escritor del fichero de hallazgos— y cada
-          una deja su fila en la bitácora pública de la ficha.
-        </p>
-        {/* Añadido el 29-09-2026. Hasta entonces el sitio servía el literal de
-            cada retenida en /data/pleno-findings.json y la bitácora de la ficha
-            lo imprimía; la copia servida ya no lo lleva
-            (src/scraper/literales-retenidos.ts). Esto es lo que esa retención
-            NO alcanza, medido el 28-09, dicho para no prometer más de lo que se
-            cumple: la transcripción lleva las palabras de casi todas las 37
-            retenidas; 7 comparten tramo con otra declaración del registro, y 3
-            de ésas se enseñan. */}
-        <p style={{ margin: '10px 0 0', color: 'var(--ink70)' }}>
-          <strong>Se retiene la cita, no lo que se dijo.</strong> La puerta decide qué declaraciones
-          se enseñan como declaraciones, no qué palabras de una sesión se publican. Las de una cita
-          retenida siguen en tres sitios, y preferimos decirlo a prometer que no están:
-        </p>
-        <ul style={{ margin: '6px 0 0', paddingLeft: 20, color: 'var(--ink70)' }}>
-          <li>
-            la <strong>transcripción completa</strong> de la sesión, que publicamos en la página de
-            cada pleno como registro de lo que se dijo;
-          </li>
-          <li>
-            <strong>otra declaración</strong> del registro, cuando el extractor clasificó un tramo
-            que se solapa con la cita como una afirmación de otro tipo —una cifra, la mención de una
-            obra—: la puerta la juzga por su cuenta y puede enseñarla;
-          </li>
-          <li>
-            el <strong>repositorio del proyecto</strong>, público desde el 8 de septiembre de 2026:
-            su fichero de hallazgos conserva el literal, porque la CLI de correcciones y las
-            comprobaciones lo necesitan y porque la puerta puede dejar de retenerlo, y su historia
-            guarda las copias que el sitio sirvió hasta finales de septiembre de 2026, cuando dejó
-            de servirlo.
-          </li>
-        </ul>
-      </Card>
-
-      <Card style={{ marginTop: 14 }}>
-        <SectionHead eyebrow="Proceso de corrección" title="Cómo pedir una rectificación" />
-        <ol style={{ margin: '8px 0 0', paddingLeft: 20 }}>
-          <li>
-            Contacta con la redacción a través del canal indicado en{' '}
-            <a href="/aviso-legal" style={{ color: 'var(--civic)' }}>
-              /aviso-legal
-            </a>
-            .
-          </li>
-          <li>
-            Incluye el <code>id</code> de la promesa o del hallazgo afectado y el enlace a la fuente
-            que propones (programa electoral, acta de pleno, nota de prensa, BOE/BOPV).
-          </li>
-          <li>
-            Te responderemos en 24 h hábiles con una de tres opciones: acepto la corrección,
-            necesito más evidencia, o la rechazo con motivo público.
-          </li>
-          <li>Los cambios aplicados se registran en la bitácora interna del proyecto.</li>
-        </ol>
-      </Card>
-
-      <Card id="laboratorio-prensa" style={{ marginTop: 22, scrollMarginTop: 24 }}>
-        <SectionHead
-          eyebrow="Laboratorio de prensa"
-          title="Cómo auditamos noticias publicadas sobre Riba-roja"
-        />
-        <p style={{ marginTop: 8 }}>
-          El{' '}
-          <a href="/laboratorio" style={{ color: 'var(--civic)' }}>
-            laboratorio
-          </a>{' '}
-          aplica el contraste editorial habitual de la verificación de hechos al flujo de prensa
-          local. Cada afirmación citada se extrae de forma textual y se cruza, de forma
-          determinista, contra el rastro de datos municipales públicos (PLACSP, TED, BDNS, BOE,
-          presupuesto CONPREL, plenos, padrón INE, paro SEPE). La fuente primaria siempre gana.
-        </p>
-
-        <h3 style={{ marginTop: 16, fontSize: 'var(--fs-head)' }}>Escala de veredictos</h3>
-        <ul style={{ margin: '6px 0 0', paddingLeft: 20 }}>
-          <li>
-            <strong>Verificado.</strong> El número, fecha o hecho citado coincide con el documento
-            municipal autoritativo (contrato adjudicado, convocatoria BDNS, gaceta BOE, asiento
-            presupuestario).
-          </li>
-          <li>
-            <strong>Parcial.</strong> Existe la entidad pero el detalle no coincide en su totalidad
-            (importe distinto, fecha distinta, condicionantes no mencionados).
-          </li>
-          <li>
-            <strong>Contradicho.</strong> El documento municipal contradice la afirmación. Estos
-            veredictos requieren ≥1 enlace público a la pieza que contradice antes de poder
-            promoverse a hallazgo crítico.
-          </li>
-          <li>
-            <strong>Sin datos.</strong> El verificador no ha encontrado señal municipal. La ausencia
-            de evidencia no es evidencia de falsedad: el hallazgo no se publica como crítico.
-          </li>
-          <li>
-            <strong>Promesa repetida.</strong> La afirmación corresponde a un compromiso ya
-            registrado en{' '}
-            <a href="/promesas" style={{ color: 'var(--civic)' }}>
-              /promesas
-            </a>
-            .
-          </li>
-        </ul>
-        <p style={{ marginTop: 8 }}>
-          {/* Decía «Contrastadas»: en castellano una información contrastada es una
-              comprobada, y la revisión lectora del 06-10-2026 leyó «8 contrastadas» en
-              /departamentos/medio-ambiente sobre ocho parciales. Antes fue «con evidencia». */}
-          <strong>Cotejadas</strong> es la suma de las verificadas, las parciales y las
-          contradichas: las declaraciones que se pudieron comparar con un documento municipal,
-          saliera a favor o en contra. Cotejar no es comprobar: una parcial coincide sólo en parte
-          con el documento, y que una declaración esté entre las cotejadas no quiere decir que esté
-          respaldada. Junto a la cifra va cuántas son de cada veredicto, y el de cada una, en su
-          tarjeta. En la ficha de cada concejalía se agrupan por tema, no por quien habló: una
-          declaración sobre urbanismo cuenta en esa área la pronunciara quien la pronunciara, y su
-          atribución sigue siendo de bloque.
-        </p>
-
-        <h3 style={{ marginTop: 16, fontSize: 'var(--fs-head)' }}>Disciplina antilibellos</h3>
-        <ul style={{ margin: '6px 0 0', paddingLeft: 20 }}>
-          <li>
-            <strong>Acusaciones opinativas.</strong> Cuando el LLM extrae una "acusación pública"
-            cuyo subtipo es <em>opinativa</em>, el verificador la marca <em>sin datos</em>
-            automáticamente y nunca se publica como verificada o contradicha. Es política, no
-            heurística.
-          </li>
-          <li>
-            <strong>Qué se publica en el registro público.</strong> La página <code>/plenos</code>{' '}
-            solo muestra declaraciones <em>contrastables con datos</em>: verificadas, parciales,
-            contradichas o promesas ya documentadas. Las acusaciones de subtipo <em>opinativa</em>,
-            y cualquier acusación que el verificador deja <em>sin datos</em>, no se publican en
-            bruto: solo llegan al público si una persona curadora las convierte en un{' '}
-            <a href="/hallazgos" style={{ color: 'var(--civic)' }}>
-              hallazgo
-            </a>{' '}
-            editorial con contexto y derecho de réplica. Las declaraciones numéricas{' '}
-            <em>sin datos</em> (no acusatorias) quedan ocultas tras el conmutador «mostrar sin
-            datos». Este filtro se aplica al generar los datos, no solo en pantalla: el material no
-            publicable no se incluye en los ficheros descargables.
-          </li>
-          <li>
-            <strong>Atribución por medio, no por periodista.</strong> Los hallazgos editoriales
-            citan únicamente al medio que publicó la pieza. Nunca al/a la firmante.
-          </li>
-          <li>
-            <strong>La lista de documentos dice «cotejado», no «corrobora».</strong> Un hallazgo de
-            prensa publica en <code>crossChecked</code> todos los documentos municipales contra los
-            que se cruzaron sus citas, los respalden o no: <strong>ningún</strong> paso de este
-            verificador comprueba que un expediente sostenga una frase. Los cruces son coincidencias
-            de importe, de cifra contra la última serie publicada o de palabras en un título — el 5
-            de agosto de 2026, la única fila de evidencia del verificador de prensa (
-            <code>press-claims-verified.json</code>, la que lee el laboratorio) emparejaba un
-            contrato del Plan de Movilidad Urbana Sostenible con una noticia sobre 61.000 € en artes
-            escénicas. Hasta ese mismo día el campo se llamaba <code>corroboration</code> con
-            exactamente el mismo contenido, igual que en los hallazgos de pleno. Vive en el fichero
-            de hallazgos de prensa (<code>press-findings.json</code>), y se renombró cuando aún no
-            había ningún hallazgo publicado: aquella fila era del verificador, no de un hallazgo,
-            así que aquí no cambió ninguna afirmación; el cambio es incompatible para quien leyera
-            el fichero. El campo <code>contradiction</code> sólo admite documentos que el
-            verificador marcó como incompatibles con la cita.
-          </li>
-          <li>
-            <strong>
-              «Coincide con datos municipales» lo enciende un veredicto, no un documento.
-            </strong>{' '}
-            En las tarjetas del laboratorio, ese indicador sólo se enciende (●) cuando alguna
-            afirmación del titular, cotejada contra los datos, ha salido «Verificado». El círculo
-            vacío (○) quiere decir que se cotejó alguna y ninguna salió «Verificado»; «sin
-            comprobar» (–), que no se cotejó ninguna, porque del titular no se extrajo ninguna
-            afirmación o porque para las extraídas no hay datos contra los que cotejarlas. Antes
-            bastaba cualquier documento cotejado, y el 28 de septiembre de 2026 una nota municipal
-            sobre la sensorización de contenedores salía en verde por un contrato de pérgolas de
-            131.336 € que el verificador sólo había marcado «Parcial». Y sólo cuentan los datos
-            municipales: una afirmación cotejada únicamente contra el catálogo de promesas de los
-            partidos, contra lo que ya publicó otro medio o contra los verificadores externos no
-            enciende ni apaga el indicador. Hasta el 19 de octubre de 2026 sí lo hacía, y las dos
-            notas sobre la restauración de las canteras salían con el círculo vacío por una
-            afirmación que sólo se había buscado entre las promesas.
-          </li>
-          <li>
-            <strong>«No cotejada» no es «Sin registro».</strong> La pastilla de una afirmación dice
-            «Sin registro» cuando se buscó en algún dato y no se encontró nada, y «No cotejada»
-            cuando no se buscó en ninguno —porque no hay corpus para ese tipo de afirmación—. El
-            aviso de arriba dice cuántas de las extraídas se cotejaron, y contra qué. Hasta el 19 de
-            octubre de 2026 las dos salían como «Sin registro», y el aviso decía que todas «se han
-            buscado en los datos» cuando 49 de 58 no se habían buscado en ninguno.
-          </li>
-          <li>
-            <strong>Los anuncios no son prensa.</strong> El agregador de noticias trae, mezclados
-            con la prensa, los listados de portales inmobiliarios («Casas y pisos en Calle…»). Lo
-            que llega desde el dominio de uno de los portales de anuncios de su lista (Fotocasa,
-            Idealista, Habitaclia, pisos.com, Milanuncios, yaencontre) queda fuera del laboratorio:
-            de los titulares monitorizados, de la tabla por medio, de la triangulación y de las
-            lagunas de cobertura. La regla mira el dominio, no el título ni el nombre que pone el
-            agregador. Hasta el 19 de octubre de 2026 eran 12 de los 68 titulares monitorizados.
-          </li>
-          <li>
-            <strong>Lagunas de cobertura: dos palabras en un mismo titular.</strong> Un punto del
-            pleno o una promesa de los últimos 14 días cuenta como seguido por la prensa si un
-            titular de un medio independiente comparte con su título al menos dos palabras
-            significativas. No cuentan el nombre del municipio, las palabras vacías ni las fórmulas
-            de trámite («proyecto», «suministro», «nuevo», «acuerdo»…), y tampoco las notas de
-            prensa de una administración —son la fuente contándose a sí misma— ni los anuncios. Los
-            trámites fijos del orden del día —aprobar el acta anterior, dar cuenta de la relación de
-            resoluciones, ruegos y preguntas— no se examinan; una dación de cuenta con sustancia,
-            como una sentencia o una auditoría, sí. Hasta el 19 de octubre de 2026 bastaba una
-            palabra suelta en cualquier titular, y en el pleno del 5 de octubre cuatro de los cinco
-            puntos «seguidos» lo eran por casualidad —el servicio de transportes por «proyecto», una
-            moción por «Túria», el césped del estadio por «suministro» y la relación de resoluciones
-            por «cuenta»—, y también la única promesa de esos días, por «nuevo». El error contrario
-            también existe: una noticia contada con otras palabras, o en valenciano, puede salir
-            como laguna.
-          </li>
-          <li>
-            <strong>Los hallazgos automáticos se rotulan como automáticos.</strong> El laboratorio
-            publica sin revisión humana los lotes que pasan sus filtros (ninguno con una afirmación
-            contradicha). La página los cuenta como lotes «automáticos, sin revisión humana», uno
-            por historia, y no como «curados». Hasta el 19 de octubre de 2026 el contador decía «17
-            · curados» de 17 filas automáticas que eran 5 lotes, porque el curador volvía a publicar
-            el mismo lote cada vez que corría; ya no publica un lote que ya está publicado con las
-            mismas afirmaciones.
-          </li>
-          <li>
-            <strong>Los demás indicadores tampoco dicen «no» de lo que no se miró.</strong>{' '}
-            «Afirmaciones contrastables» sale «sin comprobar» (–) en los titulares que el extractor
-            todavía no ha procesado; el círculo vacío (○) queda para los que procesó sin sacar
-            ninguna. «Cobertura cruzada» se enciende cuando al menos dos medios independientes
-            cuentan la misma historia, y si no se encuentra un segundo medio dice «sin comprobar»,
-            nunca ○: el agrupado compara titulares y no reconoce la misma noticia contada con otras
-            palabras o en la otra lengua. La nota de prensa de una administración —el Ayuntamiento,
-            otro ayuntamiento, la Generalitat o la Diputació— no cuenta como un medio que corrobore:
-            es la fuente, y el periódico que la reproduce no es un segundo testigo. «Cobertura
-            local» son los medios del Camp de Túria, no los regionales ni el propio Ayuntamiento. Y
-            un medio es su dominio, no el nombre con que lo firma el agregador. En la tabla por
-            medio, el porcentaje de «Verificado» se calcula sobre las afirmaciones cotejadas con
-            algún dato, y las que no se cotejaron se cuentan aparte. Así se corrigió el 19 de
-            octubre de 2026: hasta entonces la fila del Ayuntamiento decía «0 de 26» cuando sólo se
-            habían cotejado 5, y siete de los ocho grupos de cobertura comparada eran una nota
-            municipal y el periódico que la publicaba.
-          </li>
-          <li>
-            <strong>Severity crítico exige una contradicción.</strong> El validador rechaza un
-            hallazgo etiquetado como <code>critical</code> sin al menos una referencia de
-            contradicción dateada y enlazada. Hasta el 5 de agosto de 2026 aceptaba en su lugar
-            cualquier documento cotejado, de modo que esta regla —publicada desde el principio—
-            nunca había llegado a exigirse: «hemos mirado estos expedientes» valía por «un
-            expediente lo desmiente». Se apretó primero el validador de los hallazgos de pleno y,
-            ese mismo día, el de los de prensa: entre ambos cambios esta página afirmó de los
-            segundos algo que su código todavía no hacía. Hoy los dos dicen lo que dice esta página.
-            No hay ningún hallazgo <code>critical</code> publicado.
-          </li>
-        </ul>
-
-        <h3 style={{ marginTop: 16, fontSize: 'var(--fs-head)' }}>
-          Preservación de fuentes (Wayback)
-        </h3>
-        <p style={{ marginTop: 6 }}>
-          Una tarea semanal, los lunes, recorre cada URL citada en los reportajes y en los hallazgos
-          y la archiva en Internet Archive (<code>web.archive.org</code>). El snapshot resultante se
-          publica junto al enlace original en cada tarjeta del laboratorio, siguiendo la regla GIJN{' '}
-          <em>"archivar antes de citar"</em>. Si el medio retira la pieza después, el lector aún
-          puede acceder a la copia congelada. En las biografías del agente periodista la copia se
-          toma informe a informe al publicarlo; las publicadas antes de septiembre de 2026 se están
-          archivando de la misma forma, y su tabla de fuentes enseña el enlace a la copia sólo
-          cuando existe.
-        </p>
-
-        <h3 style={{ marginTop: 16, fontSize: 'var(--fs-head)' }}>ClaimReview (schema.org)</h3>
-        <p style={{ marginTop: 6 }}>
-          Un hallazgo que lleva una <strong>referencia de contradicción</strong> se publica además
-          como datos estructurados{' '}
-          <a
-            href="https://schema.org/ClaimReview"
-            style={{ color: 'var(--civic)' }}
-            rel="noopener noreferrer"
-            target="_blank"
-          >
-            schema.org/ClaimReview
-          </a>{' '}
-          embebidos en la página. Es el mismo estándar W3C que la API de Google Fact Check Tools
-          indexa — y del que <em>leemos</em> a Newtral, Maldita, EFE Verifica y AFP Factual. Al
-          publicarlo, terceros pueden cosecharnos en igualdad de condiciones.
-        </p>
-        <p style={{ marginTop: 8 }}>
-          <strong>Y sólo ése.</strong> El bloque incluye un <code>reviewRating</code>: nuestro
-          veredicto sobre la frase citada, que en estas fichas son las palabras textuales de quien
-          habló en el pleno. El único veredicto que este sitio puede sostener es el negativo —{' '}
-          <code>contradiction</code> es el único campo del esquema que recoge una conclusión
-          direccional sobre una cita, y, como se explica más arriba, ningún paso del verificador
-          establece que un documento <em>respalde</em> una frase. Un hallazgo sin contradicción no
-          emite marcado ninguno: preferimos no figurar en un índice de verificaciones a figurar con
-          una verificación que no hemos hecho.
-          {adjudication ? (
-            <>
-              {' '}
-              De los {adjudication.total} hallazgos de pleno publicados,{' '}
-              <strong>{adjudication.adjudicated} cumplen hoy ese requisito</strong>.
-            </>
-          ) : null}
-        </p>
-        <p style={{ marginTop: 8 }}>
-          <strong>Corrección del 9 de agosto de 2026.</strong> Hasta esa fecha el{' '}
-          <code>reviewRating</code> se derivaba de la <code>severity</code> del hallazgo:{' '}
-          <code>informational</code> se publicaba como 5/5 «Verificado», <code>notable</code> como
-          3/5 «Parcialmente verificado» y <code>critical</code> como 1/5. Son dos ejes distintos: la
-          gravedad de <em>nuestro</em> hallazgo no dice nada sobre si la frase citada es cierta. Y
-          como <code>informational</code> es lo que escriben los curadores automáticos, casi todos
-          los hallazgos publicados llevaban sindicado, en formato legible por máquina, que
-          CivicPulse había verificado las palabras del cargo citado — incluidas descalificaciones
-          políticas, fragmentos mal segmentados de la transcripción y frases sobre personas con
-          nombre y apellidos. No se había comprobado ninguna. El marcado se retiró de toda ficha sin
-          contradicción el mismo día.
-        </p>
-
-        <h3 style={{ marginTop: 16, fontSize: 'var(--fs-head)' }}>Política de correcciones</h3>
-        <ul style={{ margin: '6px 0 0', paddingLeft: 20 }}>
-          <li>
-            Cada modificación posterior al primer publicado a <code>title</code>,{' '}
-            <code>summary</code> o <code>severity</code> se aplica vía las herramientas{' '}
-            <code>npm run correct-press-finding</code> / <code>correct-pleno-finding</code>, que
-            añaden al hallazgo una fila permanente con texto original, texto corregido, motivo (≥20
-            caracteres), editor/a y fecha ISO.
-          </li>
-          <li>
-            En hallazgos de pleno, los campos de cita (<code>sourceClaimIds</code>, texto e id de
-            cada cita) solo son corregibles cuando una <strong>re-transcripción</strong> sustituye
-            el transcript de registro y re-genera los ids/verbatim de los claims citados
-            («record-supersession»). Cada re-anclaje deja su fila pública en la bitácora. Editar una
-            cita por cualquier otro motivo sigue prohibido: se retira y re-publica el hallazgo.
-          </li>
-          <li>
-            La bitácora de correcciones se renderiza pública dentro de la tarjeta del hallazgo. El
-            historial es <em>append-only</em>: ninguna fila se borra ni se reordena, y lo que cambia
-            dentro de una fila ya publicada —un texto que deja de reproducirse, o un motivo
-            enmendado— deja su huella en la propia fila. Cada fila dice con palabras, no sólo con el
-            tachado, qué texto retiró y cuál puso, y sólo la última fila de un campo llama{' '}
-            <em>vigente</em> al suyo: el que puso una corrección que otra posterior volvió a cambiar
-            se rotula «sustituido», con la fecha de la que lo sustituyó.
-          </li>
-          <li>
-            Cuando lo que sale es material que no debe seguir publicándose —una cita retirada, o un
-            sumario que reproducía el nombre de un particular ajeno a la corporación junto a una
-            imputación que no consta comprobada— la fila{' '}
-            <strong>no guarda el texto anterior sino su huella</strong> (
-            <code>cita · sha256:…</code>, <code>sumario · sha256:…</code>). La razón es que la
-            bitácora se imprime entera en la ficha, tachada: escribir ahí lo retirado lo devolvería
-            al lector en la misma página, y un tachado es un estilo, no una redacción. La huella se
-            calcula sobre la fila tal y como la reconstruye el validador y el historial del
-            repositorio es público, así que cualquiera puede tomar la versión anterior, rehacerla y
-            comprobar exactamente qué se fue y que no se fue nada más. Al reescribir así un sumario,
-            las filas anteriores de la bitácora sobre ese mismo campo pasan también a huella: son
-            copias de la misma prosa, y dejarlas deshace la retirada.
-          </li>
-          <li>
-            El <strong>motivo</strong> de una corrección también puede resultar equivocado, o
-            reproducir algo que no debe seguir publicándose. Entonces se enmienda (
-            <code>correct-pleno-finding --amend-reason</code>): la fila conserva su campo, sus
-            textos, su editor/a y su fecha; el motivo nuevo sustituye al anterior, que{' '}
-            <strong>no se reproduce sino que queda en huella</strong> (
-            <code>motivo · sha256:…</code>
-            ), y la enmienda lleva su propia fecha, su porqué y la firma de una persona con su
-            nombre —no la de una cuenta de rol ni la de un proceso—. En la bitácora, el motivo
-            enmendado lo dice delante, y cada enmienda enseña quién la hizo, cuándo, por qué y la
-            huella del motivo que sustituyó. No es una corrección nueva del hallazgo: no cambia nada
-            de lo que la ficha afirma, sino la explicación de un cambio anterior.
-          </li>
-          <li id="bitacora-escano-unico" style={{ scrollMarginTop: 24 }}>
-            En los hallazgos de pleno, la versión de un titular, de un sumario o del grupo de una
-            cita que <strong>nombraba a un grupo de un solo escaño</strong> no se reproduce en la
-            bitácora. Un grupo con un solo concejal señala a esa persona (lo explica{' '}
-            <a href="#verificacion-declaraciones" style={{ color: 'var(--civic)' }}>
-              cómo se atribuye una cita
-            </a>
-            ), y el 29 y el 30 de septiembre de 2026 se retiraron con firma las atribuciones a uno
-            de esos grupos que nadie había firmado, porque no consta quién habló: imprimir el grupo
-            tachado al lado de «sin identificar» seguiría diciéndolo, y lo mismo vale para la
-            versión de un sumario que lo nombraba. Lo hace la compilación sobre la copia de los
-            hallazgos que sirve el sitio, con la composición de la corporación que publica el
-            ayuntamiento: el lado afectado lleva{' '}
-            <code>grupo de un solo escaño · no se reproduce</code>, la fila conserva su campo, su
-            motivo, su editor/a y su fecha, y la ficha dice qué versión falta y por qué. Es una
-            marca y no una huella porque la huella de un nombre entre cinco se deshace probando los
-            cinco. Si una cita a la que se le retiró la etiqueta de uno de esos grupos nombraba
-            además al grupo en sus propias palabras —«des del grup municipal de…»—, la cita se
-            acorta con una corrección firmada al tramo que no lo nombra, y la bitácora tampoco
-            reproduce las versiones de su texto que lo nombraban: dirían lo mismo que la etiqueta
-            retirada. Una cita cualquiera no se juzga así, porque «podem» o «compromís» son también
-            palabras corrientes en valencià. La atribución retirada a un grupo con varios escaños se
-            sigue enseñando: es de bloque, y no señala a nadie. Y no es una retirada: el repositorio
-            del proyecto es público, y su fichero de hallazgos y su historial conservan la fila
-            entera. El motivo de una fila no lo reescribe ninguna máquina: si nombra a uno de esos
-            grupos, lo enmienda una persona por la vía del punto anterior.
-          </li>
-          <li>
-            <strong>Retirar el hallazgo entero</strong> es una operación distinta de corregirlo, y
-            existe desde el 11 de agosto de 2026 (<code>npm run retract-finding</code>). Se usa
-            cuando la ficha no se puede enunciar: cuando el filtro editorial retiene <em>todas</em>{' '}
-            sus citas, lo que quede en el sumario habla de grupos con nombre sin una sola
-            intervención que la página pueda enseñar, y reescribir la prosa no arregla eso. El
-            hallazgo sale de la lista y deja de contar en cualquier cifra; en su lugar queda una
-            entrada firmada con la fecha, el motivo, de qué pleno era y cuántas citas y documentos
-            tenía. <strong>No queda el texto</strong>, sino su huella{' '}
-            <code>hallazgo · sha256:…</code>: la retirada existe precisamente porque ese texto no
-            debe seguir publicado, y una lápida que lo reprodujera lo dejaría accesible en la misma
-            página. Quien conserve una copia puede recalcular la huella y comprobar que coincide.
-            Por lo mismo <strong>no hay vuelta atrás</strong>: no se guarda nada que restaurar, y
-            volver a publicar significa un hallazgo nuevo, con id nuevo y sus propias pruebas.
-          </li>
-          <li>
-            <strong>Qué se retiró el 11 de agosto de 2026.</strong> Una comprobación nueva —
-            <code>check:summary-gate</code>— buscó lo contrario de lo que acabó encontrando: si
-            algún sumario reproducía literalmente una cita que el filtro oculta. Encontró nueve, en
-            siete fichas. Al repararlas apareció la clase de verdad: un sumario puede transmitir
-            perfectamente la acusación retenida sin repetir sus palabras, y había once hallazgos
-            —todos informativos, nueve firmados por el redactor automático y dos por una persona—
-            cuyas citas estaban retenidas <em>al completo</em>. Se retiraron los once y se
-            reescribieron cuatro sumarios más. La comprobación ahora bloquea las dos formas, así que
-            el redactor automático no puede volver a publicarlas.
-          </li>
-          <li>
-            Las refutaciones del medio citado pasan por el formulario público{' '}
-            <code>finding-response</code> y se publican verbatim.
-          </li>
-        </ul>
-
-        <h3 style={{ marginTop: 16, fontSize: 'var(--fs-head)' }}>Fuentes auditadas</h3>
-        <ul style={{ margin: '6px 0 0', paddingLeft: 20, fontSize: 'var(--fs-aux)' }}>
-          <li>
-            <strong>PLACSP / Gobierto</strong> — contratos municipales adjudicados y en licitación.{' '}
-            {/* 19-10-2026: 51/2022, el alumbrado LED del casco urbano, formalizado y publicado
-                como «Renuncia» porque se anuló su anuncio de formalización
-                (src/scraper/contract-corrections.ts). */}
-            Cuando el registro municipal da a un contrato un estado imposible —una renuncia o un
-            desistimiento con fecha de formalización, que la ley sólo admite antes de formalizar—,
-            el contrato se publica sin estado. Y cuando la Plataforma de Contratación dice otra
-            cosa, una persona puede corregirlo citando literalmente el anuncio que lo dice y el que
-            explica la discrepancia; cada corrección va firmada, en{' '}
-            <code>/data/contract-corrections.json</code>, y la fila corregida lo indica.
-          </li>
-          <li>
-            <strong>TED (Tenders Electronic Daily)</strong> — contratos europeos sobre el umbral UE,
-            incluido NextGenerationEU / DANA.
-          </li>
-          <li>
-            <strong>BOE</strong> — gaceta oficial estatal (convenios, expropiaciones, subvenciones
-            nominativas).
-          </li>
-          <li>
-            <strong>BDNS</strong> — base nacional de subvenciones: las convocatorias que nombran
-            Riba-roja. La búsqueda trae también Riba-roja d&apos;Ebre (Tarragona), así que una
-            convocatoria de otro organismo sólo se publica si la sitúa aquí la propia BDNS: una
-            concesión al NIF del Ayuntamiento o la región de su ficha (Comunitat Valenciana o
-            provincia de Valencia). La que no se puede situar se aparta, con su motivo, en{' '}
-            <code>bdns.json</code>. Lo concedido al Ayuntamiento se lee además por su NIF
-            (P4621600H): una convocatoria abierta a todos los municipios no nombra a ninguno. Cada
-            concesión es una fila, con su importe; los euros son lo concedido (los pagos son otro
-            registro de la BDNS) y se suman sólo ahí, porque una convocatoria puede dar varias
-            concesiones. La consulta por el NIF no devuelve las concesiones más antiguas
-            (/presupuesto dice desde qué año); las recibidas anteriores siguen llegando sólo por el
-            nombre. Las convocatorias que sólo aparecen por el NIF no entran todavía en el contraste
-            del verificador: añadirlas movía veredictos hacia arriba por parecido de palabras, y eso
-            se mide antes de hacerlo.
-          </li>
-          <li>
-            <strong>Presupuesto CONPREL (MinHac)</strong> — capítulos de gasto e ingreso anuales.
-            Una celda que la fuente deja vacía o que no se lee como importe se publica como «sin
-            dato», nunca como 0 €: un capítulo de verdad a cero viene escrito como 0 en el fichero.
-            Un total que falta tampoco se rehace sumando capítulos, porque sería una suma nuestra
-            presentada como cifra del ministerio.
-          </li>
-          <li>
-            <strong>Plenos de Riba-roja</strong> — actas + votos transcritos.
-          </li>
-          <li>
-            <strong>INE / SEPE</strong> — padrón y paro registrado mensual.
-          </li>
-          <li>
-            <strong>Google Fact Check Tools + Maldita + Newtral RSS</strong> — fact-checks de
-            terceros (cruzamos para "promesa repetida" y consenso externo).
-          </li>
-          <li>
-            <strong>Catastro (OVC)</strong> — referencia catastral y dirección, sólo en revisión
-            curatorial; no llega al verificador automático.
-          </li>
-        </ul>
-        <p style={{ marginTop: 8, fontSize: 'var(--fs-aux)' }}>
-          La página{' '}
-          <a href="/lab-health" style={{ color: 'var(--civic)' }}>
-            Diagnóstico de fuentes →
-          </a>{' '}
-          publica en directo cuándo se generó cada snapshot, cuántas filas trae y si el scraper
-          nocturno está funcionando. Permite auditar la frescura del corpus sin tener que ejecutar
-          ningún script.
-        </p>
-
-        <h3 style={{ marginTop: 16, fontSize: 'var(--fs-head)' }}>Alineación con IFCN</h3>
-        <p style={{ marginTop: 6, fontSize: 'var(--fs-aux)' }}>
-          Este apartado cubre los cinco pilares del Código de Principios de IFCN: (1) compromiso con
-          la <em>no partisanía</em> y la equidad — el mismo criterio se aplica a cada bloc; (2)
-          transparencia de fuentes — cada hallazgo cita documento + fecha + URL primaria; (3)
-          transparencia de financiación — el proyecto no recibe financiación pública ni privada y su
-          código es íntegramente público; (4) transparencia de metodología — esta sección; (5)
-          política abierta y honesta de correcciones — la bitácora pública sobre el propio hallazgo.
-        </p>
-      </Card>
+      <CabeceraGrupo id="eficiencia" />
 
       <Card style={{ marginTop: 14 }} id="eficiencia">
         <SectionHead
+          as="h3"
+          size="head"
           eyebrow="Coste unitario de los servicios"
           title="Cuánto cuesta y qué se obtiene"
         />
+        <EnUnaFrase id="eficiencia" />
         <p style={{ margin: '8px 0 0', color: 'var(--ink70)' }}>
           Toda entidad local está obligada a calcular cada año el{' '}
           <strong>coste efectivo de sus servicios</strong> (art. 116 ter LRSAL, criterios en la{' '}
@@ -2935,9 +3076,13 @@ export default function Metodologia() {
         </p>
         <p style={{ margin: '10px 0 0', color: 'var(--ink70)' }}>
           <strong>No se publica ninguna nota global</strong>, ni por dimensión ni de conjunto, ni un
-          puesto del municipio en una tabla. Un índice 0–100 convierte la ponderación elegida en la
-          noticia, y la ponderación la habríamos elegido nosotros. Se publican los componentes y se
-          rechaza la suma, igual que en{' '}
+          puesto del municipio en una tabla. (Lo que sí puede haber es una{' '}
+          <a href="#opinion-editor" style={{ color: 'var(--civic)' }}>
+            opinión firmada
+          </a>
+          , aparte de los datos y en palabras, nunca en cifra.) Un índice 0–100 convierte la
+          ponderación elegida en la noticia, y la ponderación la habríamos elegido nosotros. Se
+          publican los componentes y se rechaza la suma, igual que en{' '}
           <a href="/metodologia#encaje" style={{ color: 'var(--civic)' }}>
             encaje declarado
           </a>
@@ -3256,6 +3401,39 @@ export default function Metodologia() {
           un panel sin descarga reconstruible.
         </p>
         <p style={{ margin: '10px 0 0', color: 'var(--ink70)' }}>
+          <strong>El agua se archiva porque la fuente olvida.</strong> El resultado del
+          abastecimiento sale de SINAC, el sistema del Ministerio de Sanidad al que el gestor
+          notifica cada análisis del agua de consumo. Su consulta pública sólo enseña los últimos
+          boletines de cada red, así que guardamos cada uno la primera vez que aparece: el archivo
+          crece y lo que la página deja de mostrar no desaparece. Publicamos el nitrato de la red
+          que abastece a casi todo el término —un parámetro con límite legal, 50 mg/L, que no
+          ponemos nosotros—, como media de sus análisis completos y sólo de años cerrados. Las
+          calificaciones «no apta» de cualquier red del término se dicen junto a la cifra, con el
+          gestor de esa red: no todas las redes son del mismo gestor, y atribuir a uno la
+          calificación de otro sería falso. Como la consulta sólo enseña los últimos boletines de
+          cada red, el año entero sale del informe anual del ministerio, zona por zona, en el
+          formato en que lo publica cada año —recuentos hasta 2022, porcentaje de aptos desde 2023—,
+          sin convertir uno en otro. Bajo «Otras lecturas» enlazamos lo que han publicado terceros
+          sobre esta agua y decimos de dónde sacan su dato —hasta hoy, de los mismos boletines de
+          SINAC, no de muestras propias—; que su dato coincide con el nuestro no lo escribimos a
+          mano: lo comprueba el código contra el archivo, y si el boletín no está, lo dice. Para
+          saber si la cifra es alta y si un «no apta» es raro, leemos lo mismo en los municipios de
+          la banda del coste: la media anual del nitrato en su red principal, comparada sólo con el
+          mismo año, y cuántas de sus redes tuvieron algún «no apta» y con qué gestor.
+        </p>
+        <p style={{ margin: '10px 0 0', color: 'var(--ink70)' }}>
+          <strong>La biblioteca se mide en personas y visitas, no en préstamos.</strong> El
+          resultado sale de la Estadística de Bibliotecas Públicas del Ministerio de Cultura, que
+          publica cada año, municipio a municipio, lo que las comunidades autónomas recogen con un
+          cuestionario común. Publicamos los prestatarios activos por cada 1.000 habitantes y las
+          visitas por habitante, con el padrón del INE de cada año. Los préstamos no, porque ya son
+          la unidad de la tarjeta de coste; los usuarios inscritos tampoco, porque en la serie sólo
+          suben y se comportan como un acumulado de carnés, no como uso. La comparación es con los
+          municipios de la banda de coste que tienen dato, sin contar el nuestro, y su línea año a
+          año es la de un grupo fijo: los que tienen dato todos los años, para que la mediana no se
+          mueva por quién entra y quién sale.
+        </p>
+        <p style={{ margin: '10px 0 0', color: 'var(--ink70)' }}>
           <strong>El plazo de pago es la única cifra del panel con umbral legal.</strong> El periodo
           medio de pago a proveedores lo calcula el Ministerio de Hacienda con la metodología del RD
           1040/2017 para miles de ayuntamientos a la vez, y la Ley 3/2004 fija los 30 días como
@@ -3384,110 +3562,75 @@ export default function Metodologia() {
         </p>
       </Card>
 
-      <Card style={{ marginTop: 14 }} id="corporacion">
+      {/* La opinión del editor (src/scraper/opinion-editor.ts). Cada regla de
+          esta tarjeta la impone el esquema o el CLI, no sólo este texto: si una
+          cambia, cambian los dos en el mismo PR. */}
+      <Card style={{ marginTop: 14, scrollMarginTop: 24 }} id="opinion-editor">
         <SectionHead
-          eyebrow="Cargos · padrón de la corporación"
-          title="Qué pasa cuando la web del ayuntamiento va por detrás del Pleno"
+          as="h3"
+          size="head"
+          eyebrow="Opinión del editor · /eficiencia"
+          title="Cuándo juzgamos, quién firma y qué tiene que llevar"
         />
+        <EnUnaFrase id="opinion-editor" />
         <p style={{ margin: '8px 0 0', color: 'var(--ink70)' }}>
-          La lista de concejales de{' '}
-          <a href="/cargos" style={{ color: 'var(--civic)' }}>
-            /cargos
-          </a>{' '}
-          se raspa cada noche de la página «Corporación Municipal» de ribarroja.es, y esa página
-          puede tardar en recoger lo que el propio Pleno ya acordó. Una renuncia presentada en mayo
-          de 2025, de la que el Pleno tomó razón el 2 de junio, seguía sin reflejarse en septiembre
-          de 2026, y quien tomó posesión del escaño el 7 de julio de 2025 no aparecía. Durante ese
-          tiempo el sitio republicaba la mora del ayuntamiento firmándola como datos reales.
+          Los datos de este sitio no ponen nota, y eso no cambia. Pero un vecino llega preguntando
+          si el ayuntamiento lo hace bien, y una página que nunca contesta se queda en archivo. Así
+          que hay una pieza que sí juzga: <strong>la opinión del editor</strong>, arriba en{' '}
+          <a href="/eficiencia" style={{ color: 'var(--civic)' }}>
+            /eficiencia
+          </a>
+          , en su propio marco y rotulada como opinión antes que el titular. No es una nota: no hay
+          cifra, escala ni ranking. Es lo que un periódico separa como editorial.
         </p>
-        <p style={{ margin: '10px 0 0', color: 'var(--ink70)' }}>
-          <strong>
-            La corrección es curada, citada y firmada, y nunca la escribe un proceso automático.
-          </strong>{' '}
-          Vive en un fichero aparte del raspado; cada entrada cita el acta literal y lleva quién la
-          firmó y cuándo. Se aplica al componer el padrón, de modo que el fichero publicado lleva
-          las dos cosas —lo que raspó y lo que el acta corrige— y el sello de la página dice cuántas
-          correcciones hay. Una corrección no añade ninguna afirmación sobre nadie: republica que
-          alguien dejó el cargo y por cuál de los motivos que la ley contempla, y que alguien tomó
-          posesión con credencial de la Junta Electoral Central. Su esquema no tiene ningún campo
-          donde quepa un juicio, igual que la lista firmada de competencias.
-        </p>
-        <p style={{ margin: '10px 0 0', color: 'var(--ink70)' }}>
-          <strong>
-            Quien deja la corporación no desaparece: pasa a una sección aparte con su fecha de cese.
-          </strong>{' '}
-          Su biografía y su retrato son historia y se conservan; lo que no se pinta sobre esa
-          persona es nada en presente —retribución, áreas, quejas, encaje—. Quien entra sin que la
-          web lo liste aún aparece con los huecos honestos: sin retrato, porque la fuente no lo
-          publica, y «sin correo publicado», nunca el buzón de otra persona. Ambos tienen el mismo
-          derecho de réplica que el resto de cargos.
-        </p>
-        <p style={{ margin: '10px 0 0', color: 'var(--ink70)' }}>
-          <strong>Una guarda mira cada noche si la corrección sigue haciendo falta.</strong>{' '}
-          Comprueba dos cosas por separado: que el fichero publicado la aplica —si una pasada
-          corriera sin ella, la persona cesada volvería a la lista y el despliegue se detiene— y que
-          la página del ayuntamiento sigue necesitándola: si la web se pone al día, la corrección
-          sobra y se retira, dejando rastro. Cuando la página no contesta, la guarda dice «no
-          comprobado» en lugar de firmar un visto bueno.
-        </p>
-      </Card>
-
-      <MudanzaDelPortal />
-
-      <Card style={{ marginTop: 14 }} id="biografias">
-        <SectionHead
-          eyebrow="Cargos · biografías del agente periodista"
-          title="Qué se busca sobre un cargo, dónde, y qué no entra nunca"
-        />
-        <p style={{ margin: '8px 0 0', color: 'var(--ink70)' }}>
-          Las biografías de{' '}
-          <a href="/laboratorio/agentes" style={{ color: 'var(--civic)' }}>
-            /laboratorio/agentes
-          </a>{' '}
-          nacen de una asignación que un agente investiga y redacta, y que una persona revisa
-          afirmación por afirmación antes de publicar. Desde septiembre de 2026 llevan además una
-          investigación previa hecha a mano: lo que un cargo publica sobre sí mismo —su currículum
-          en el portal de transparencia— es el punto de partida, no la fuente. Se contrasta contra
-          documentos que el cargo no controla: actas de pleno, boletines oficiales (BOP, BOE, DOGV),
-          el Registro Mercantil a través del BORME, las candidaturas electorales de todas las
-          convocatorias desde 2007, la contratación y las subvenciones municipales, la prensa y las
-          cuentas públicas del propio cargo. Todo son documentos y páginas públicas: nada de
-          registros de pago, nada tras un inicio de sesión.
-        </p>
-        <p style={{ margin: '10px 0 0', color: 'var(--ink70)' }}>
-          <strong>Familia y patrimonio: sólo con documento y con nexo con el cargo.</strong> Un
-          vínculo familiar o un bien se publica cuando un documento público lo dice de forma
-          explícita y, además, guarda relación con el cargo —un contrato, una subvención, un
-          nombramiento, una decisión municipal, una incompatibilidad—. Con una sola de las dos
-          condiciones no se publica: dos apellidos iguales en un boletín no son un parentesco, y la
-          vida familiar sin relación con el cargo es vida privada por muy documentada que esté. Por
-          eso el entorno de un cargo se mira del expediente a la persona y no al revés: se parte de
-          quien ya consta en un expediente municipal —adjudicatarios, beneficiarios de subvención,
-          personas nombradas en un edicto—, se lee en el BORME quién administra esas sociedades y
-          sólo entonces se comprueba si alguien de ahí es el propio cargo o un familiar cuyo
-          parentesco conste en un documento; los parientes que no aparecen en ningún expediente no
-          se buscan. No entran nunca menores, salud, ideología más allá del partido, orientación
-          sexual, religión, domicilio ni documento de identidad. Una acusación publicada por un
-          medio se recoge como lo que es —«según tal medio, en tal fecha»—, con su copia, y eleva la
-          sensibilidad legal del informe, que entonces sólo se publica tras la revisión de una
-          persona.
-        </p>
-        <p style={{ margin: '10px 0 0', color: 'var(--ink70)' }}>
-          <strong>Cada afirmación ya publicada se coteja y recibe uno de seis desenlaces</strong>{' '}
-          —sostiene, se parece, contradice, desactualizado, sin fuente, no comprobable— y sólo dos
-          caminos cambian la página: una corrección, que deja rastro en la bitácora del informe, o
-          una nueva versión que sustituye a la anterior, la retira del índice y lo anota con fecha.
-          Lo que no se pudo comprobar se publica como laguna, no como hecho ni como sospecha. Una
-          coincidencia de nombre no es una identidad: antes de atribuir nada hace falta un segundo
-          identificador, y una búsqueda sin resultado se anota como lo que es, un dato.
-        </p>
+        <ol style={{ margin: '10px 0 0', paddingLeft: 20, color: 'var(--ink70)' }}>
+          <li>
+            <strong>La escribe y la firma una persona</strong> con nombre y apellido. Ninguna
+            máquina la redacta ni la edita: el fichero rechaza cualquier marca de procedencia
+            automática, y sólo la publica quien la firma.
+          </li>
+          <li>
+            <strong>Cada hecho que afirma va enlazado</strong> a un indicador, un resultado o un
+            hallazgo firmado del panel, y se vuelve a comprobar contra la fuente: si deja de
+            sostenerse, la comprobación se pone en rojo hasta que el editor la revise.
+          </li>
+          <li>
+            <strong>Siempre dice lo que no sabemos.</strong> Una opinión que no marca dónde se acaba
+            lo que sabe se lee como certeza.
+          </li>
+          <li>
+            <strong>Sólo nombra a una persona como titular de la competencia delegada</strong>, sólo
+            para el periodo de su delegación y nunca como causa de un resultado. Lo que pasó antes
+            del mandato actual no se atribuye a quien tiene hoy la delegación.
+          </li>
+          <li>
+            <strong>Antes de publicarla, el texto se envía a quien nombra</strong>, con al menos
+            siete días para responder. La respuesta se publica íntegra a su lado; el silencio se
+            publica como silencio.
+          </li>
+          <li>
+            <strong>Nada se reescribe en silencio:</strong> una corrección guarda el texto anterior
+            y una retirada deja su motivo.
+          </li>
+          <li>
+            <strong>En periodo electoral</strong> no se publica ninguna opinión que nombre a una
+            persona, y las publicadas que nombran a alguien dejan de mostrarse (
+            <a href="/aviso-legal#opinion" style={{ color: 'var(--civic)' }}>
+              aviso legal
+            </a>
+            ).
+          </li>
+        </ol>
       </Card>
 
       <Card style={{ marginTop: 14 }} id="frontera">
         <SectionHead
+          as="h3"
+          size="head"
           eyebrow="Laboratorio · análisis envolvente de datos"
           title="Las cifras de este sitio que no salen de una fuente"
         />
+        <EnUnaFrase id="frontera" />
         {/* Decía «La única cifra». Dejó de ser cierto cuando se publicó
             /laboratorio/coste-esperado, cuya ficha está en la TARJETA
             SIGUIENTE de esta misma página y empieza reconociéndolo: «Es un
@@ -3561,9 +3704,12 @@ export default function Metodologia() {
 
       <Card style={{ marginTop: 14 }} id="coste-esperado">
         <SectionHead
+          as="h3"
+          size="head"
           eyebrow="Laboratorio · coste esperado"
           title="Qué gasto cabría esperar para un municipio así"
         />
+        <EnUnaFrase id="coste-esperado" />
         <p style={{ margin: '8px 0 0', color: 'var(--ink70)' }}>
           {/* «La segunda»: la tarjeta de arriba anuncia dos excepciones y ésta
               es la otra. Dicho aquí y no sólo allí, para que la cuenta no
@@ -3589,7 +3735,7 @@ export default function Metodologia() {
           La limpieza es la del panel, aplicada igual: gestión directa sólo (regla 4), un municipio
           con dos costes para el mismo servicio queda fuera (regla 1), y una declaración a más de
           veinte veces —o menos de una veinteava parte— de la mediana de euros por habitante del
-          servicio se excluye como inverosímil (regla 7): el libro real trae ayuntamientos
+          servicio se excluye como inverosímil (regla 9): el libro real trae ayuntamientos
           declarando 1 € de coste de escuelas. La escalera de impulsores está declarada: la v1 usa
           sólo log(población) y publica el R² de cada recta a la vista; superficie y renta esperan
           una fuente municipal utilizable, y cada peldaño se añadirá junto al anterior, no en su
@@ -3598,172 +3744,435 @@ export default function Metodologia() {
         </p>
       </Card>
 
-      <Card style={{ marginTop: 14 }} id="gasto-por-concejalia">
+      <Card id="laboratorio-prensa" style={{ marginTop: 14, scrollMarginTop: 24 }}>
         <SectionHead
-          eyebrow="Transparencia · gasto por concejalía"
-          title="Cómo se asigna un contrato a un área"
+          as="h3"
+          size="head"
+          eyebrow="Laboratorio de prensa"
+          title="Cómo auditamos noticias publicadas sobre Riba-roja"
         />
-        <p
-          style={{
-            fontSize: 'var(--fs-aux)',
-            lineHeight: 1.55,
-            color: 'var(--ink70)',
-            marginTop: 8,
-          }}
-        >
-          La cifra de contratación que aparece en cada ficha de{' '}
-          <a href="/departamentos" style={{ color: 'var(--civic)' }}>
-            /departamentos
+        <EnUnaFrase id="laboratorio-prensa" />
+        <p style={{ marginTop: 8 }}>
+          El{' '}
+          <a href="/laboratorio/prensa" style={{ color: 'var(--civic)' }}>
+            laboratorio
           </a>{' '}
-          se asigna por el <strong>código CPV</strong> —el vocabulario común europeo de
-          contratación, que declara el propio órgano contratante junto al expediente—, no por la
-          etiqueta de categoría del portal de datos. Se lee el código <strong>principal</strong>, el
-          primero: el CPV se declara con el objeto del contrato delante y los accesorios detrás. Los
-          códigos genéricos (98 «servicios diversos», 79 «servicios empresariales») no asignan área:
-          dicen que el expediente no precisa de qué se trata, y eso no es una respuesta.
+          aplica el contraste editorial habitual de la verificación de hechos al flujo de prensa
+          local. Cada afirmación citada se extrae de forma textual y se cruza, de forma
+          determinista, contra el rastro de datos municipales públicos (PLACSP, TED, BDNS, BOE,
+          plenos, padrón INE, paro SEPE). La fuente primaria siempre gana.
         </p>
-        <p
-          style={{
-            fontSize: 'var(--fs-aux)',
-            lineHeight: 1.55,
-            color: 'var(--ink70)',
-            marginTop: 8,
-          }}
-        >
-          Antes se asignaba por la categoría del portal, que es una etiqueta gruesa. El{' '}
-          <strong>4 de agosto de 2026</strong> se corrigió: 40 contratos figuraban bajo{' '}
-          <em>Salud</em> sin ser gasto sanitario —alumbrado ornamental de Navidad, clases de inglés,
-          vallado— por valor de unos 355.000 €, y se mostraban bajo el nombre de la concejala que
-          responde por esa área. La cifra <strong>infra-estima a propósito</strong>: cuando los
-          códigos declarados no nombran ningún área, el contrato queda sin asignar. Un cero
-          significa «no atribuible», nunca «no se gastó».
+
+        <h4 style={{ marginTop: 16, fontSize: 'var(--fs-head)' }}>Escala de veredictos</h4>
+        <ul style={{ margin: '6px 0 0', paddingLeft: 20 }}>
+          <li>
+            <strong>Verificado.</strong> El número, fecha o hecho citado coincide con el documento
+            municipal autoritativo (contrato adjudicado, convocatoria BDNS, gaceta BOE).
+          </li>
+          <li>
+            <strong>Parcial.</strong> Existe la entidad pero el detalle no coincide en su totalidad
+            (importe distinto, fecha distinta, condicionantes no mencionados).
+          </li>
+          <li>
+            <strong>Contradicho.</strong> El documento municipal contradice la afirmación. Estos
+            veredictos requieren ≥1 enlace público a la pieza que contradice antes de poder
+            promoverse a hallazgo crítico.
+          </li>
+          <li>
+            <strong>Sin datos.</strong> El verificador no ha encontrado señal municipal. La ausencia
+            de evidencia no es evidencia de falsedad: el hallazgo no se publica como crítico.
+          </li>
+          <li>
+            <strong>Promesa repetida.</strong> La afirmación corresponde a un compromiso ya
+            registrado en{' '}
+            <a href="/promesas" style={{ color: 'var(--civic)' }}>
+              /promesas
+            </a>
+            .
+          </li>
+        </ul>
+        <p style={{ marginTop: 8 }}>
+          {/* Decía «Contrastadas»: en castellano una información contrastada es una
+              comprobada, y la revisión lectora del 06-10-2026 leyó «8 contrastadas» en
+              /departamentos/medio-ambiente sobre ocho parciales. Antes fue «con evidencia». */}
+          <strong>Cotejadas</strong> es la suma de las verificadas, las parciales y las
+          contradichas: las declaraciones que se pudieron comparar con un documento municipal,
+          saliera a favor o en contra. Cotejar no es comprobar: una parcial coincide sólo en parte
+          con el documento, y que una declaración esté entre las cotejadas no quiere decir que esté
+          respaldada. Junto a la cifra va cuántas son de cada veredicto, y el de cada una, en su
+          tarjeta. En la ficha de cada concejalía se agrupan por tema, no por quien habló: una
+          declaración sobre urbanismo cuenta en esa área la pronunciara quien la pronunciara, y su
+          atribución sigue siendo de bloque.
+        </p>
+
+        <h4 id="disciplina-antilibellos" style={{ marginTop: 16, fontSize: 'var(--fs-head)' }}>
+          Disciplina antilibellos
+        </h4>
+        <ul style={{ margin: '6px 0 0', paddingLeft: 20 }}>
+          <li>
+            <strong>Acusaciones opinativas.</strong> Cuando el LLM extrae una "acusación pública"
+            cuyo subtipo es <em>opinativa</em>, el verificador la marca <em>sin datos</em>
+            automáticamente y nunca se publica como verificada o contradicha. Es política, no
+            heurística.
+          </li>
+          <li>
+            <strong>Qué se publica en el registro público.</strong> La página <code>/plenos</code>{' '}
+            solo muestra declaraciones <em>contrastables con datos</em>: verificadas, parciales,
+            contradichas o promesas ya documentadas. Las acusaciones de subtipo <em>opinativa</em>,
+            y cualquier acusación que el verificador deja <em>sin datos</em>, no se publican en
+            bruto: solo llegan al público si una persona curadora las convierte en un{' '}
+            <a href="/hallazgos" style={{ color: 'var(--civic)' }}>
+              hallazgo
+            </a>{' '}
+            editorial con contexto y derecho de réplica. Las declaraciones numéricas{' '}
+            <em>sin datos</em> (no acusatorias) quedan ocultas tras el conmutador «mostrar sin
+            datos». Este filtro se aplica al generar los datos, no solo en pantalla: el material no
+            publicable no se incluye en los ficheros descargables.
+          </li>
+          <li>
+            <strong>Atribución por medio, no por periodista.</strong> Los hallazgos editoriales
+            citan únicamente al medio que publicó la pieza. Nunca al/a la firmante.
+          </li>
+          <li>
+            <strong>La lista de documentos dice «cotejado», no «corrobora».</strong> Un hallazgo de
+            prensa publica en <code>crossChecked</code> todos los documentos municipales contra los
+            que se cruzaron sus citas, los respalden o no: <strong>ningún</strong> paso de este
+            verificador comprueba que un expediente sostenga una frase. Los cruces son coincidencias
+            de importe, de cifra contra la última serie publicada o de palabras en un título — el 5
+            de agosto de 2026, la única fila de evidencia del verificador de prensa (
+            <code>press-claims-verified.json</code>, la que lee el laboratorio) emparejaba un
+            contrato del Plan de Movilidad Urbana Sostenible con una noticia sobre 61.000 € en artes
+            escénicas. Hasta ese mismo día el campo se llamaba <code>corroboration</code> con
+            exactamente el mismo contenido, igual que en los hallazgos de pleno. Vive en el fichero
+            de hallazgos de prensa (<code>press-findings.json</code>), y se renombró cuando aún no
+            había ningún hallazgo publicado: aquella fila era del verificador, no de un hallazgo,
+            así que aquí no cambió ninguna afirmación; el cambio es incompatible para quien leyera
+            el fichero. El campo <code>contradiction</code> sólo admite documentos que el
+            verificador marcó como incompatibles con la cita.
+          </li>
+          <li>
+            <strong>
+              «Coincide con datos municipales» lo enciende un veredicto, no un documento.
+            </strong>{' '}
+            En las tarjetas del laboratorio, ese indicador sólo se enciende (●) cuando alguna
+            afirmación del titular, cotejada contra los datos, ha salido «Verificado». El círculo
+            vacío (○) quiere decir que se cotejó alguna y ninguna salió «Verificado»; «sin
+            comprobar» (–), que no se cotejó ninguna, porque del titular no se extrajo ninguna
+            afirmación o porque para las extraídas no hay datos contra los que cotejarlas. Antes
+            bastaba cualquier documento cotejado, y el 28 de septiembre de 2026 una nota municipal
+            sobre la sensorización de contenedores salía en verde por un contrato de pérgolas de
+            131.336 € que el verificador sólo había marcado «Parcial». Y sólo cuentan los datos
+            municipales: una afirmación cotejada únicamente contra el catálogo de promesas de los
+            partidos, contra lo que ya publicó otro medio o contra los verificadores externos no
+            enciende ni apaga el indicador. Hasta el 19 de octubre de 2026 sí lo hacía, y las dos
+            notas sobre la restauración de las canteras salían con el círculo vacío por una
+            afirmación que sólo se había buscado entre las promesas.
+          </li>
+          <li>
+            <strong>«No cotejada» no es «Sin registro».</strong> La pastilla de una afirmación dice
+            «Sin registro» cuando se buscó en algún dato y no se encontró nada, y «No cotejada»
+            cuando no se buscó en ninguno —porque no hay corpus para ese tipo de afirmación—. El
+            aviso de arriba dice cuántas de las extraídas se cotejaron, y contra qué. Hasta el 19 de
+            octubre de 2026 las dos salían como «Sin registro», y el aviso decía que todas «se han
+            buscado en los datos» cuando 49 de 58 no se habían buscado en ninguno.
+          </li>
+          <li>
+            <strong>Los anuncios no son prensa.</strong> El agregador de noticias trae, mezclados
+            con la prensa, los listados de portales inmobiliarios («Casas y pisos en Calle…»). Lo
+            que llega desde el dominio de uno de los portales de anuncios de su lista (Fotocasa,
+            Idealista, Habitaclia, pisos.com, Milanuncios, yaencontre) queda fuera del laboratorio:
+            de los titulares monitorizados, de la tabla por medio, de la triangulación y de las
+            lagunas de cobertura. La regla mira el dominio, no el título ni el nombre que pone el
+            agregador. Hasta el 19 de octubre de 2026 eran 12 de los 68 titulares monitorizados.
+          </li>
+          <li>
+            <strong>Lagunas de cobertura: dos palabras en un mismo titular.</strong> Un punto del
+            pleno o una promesa de los últimos 14 días cuenta como seguido por la prensa si un
+            titular de un medio independiente comparte con su título al menos dos palabras
+            significativas. No cuentan el nombre del municipio, las palabras vacías ni las fórmulas
+            de trámite («proyecto», «suministro», «nuevo», «acuerdo»…), y tampoco las notas de
+            prensa de una administración —son la fuente contándose a sí misma— ni los anuncios. Los
+            trámites fijos del orden del día —aprobar el acta anterior, dar cuenta de la relación de
+            resoluciones, ruegos y preguntas— no se examinan; una dación de cuenta con sustancia,
+            como una sentencia o una auditoría, sí. Hasta el 19 de octubre de 2026 bastaba una
+            palabra suelta en cualquier titular, y en el pleno del 5 de octubre cuatro de los cinco
+            puntos «seguidos» lo eran por casualidad —el servicio de transportes por «proyecto», una
+            moción por «Túria», el césped del estadio por «suministro» y la relación de resoluciones
+            por «cuenta»—, y también la única promesa de esos días, por «nuevo». El error contrario
+            también existe: una noticia contada con otras palabras, o en valenciano, puede salir
+            como laguna.
+          </li>
+          <li>
+            <strong>Los hallazgos automáticos se rotulan como automáticos.</strong> El laboratorio
+            publica sin revisión humana los lotes que pasan sus filtros (ninguno con una afirmación
+            contradicha). La página los cuenta como lotes «automáticos, sin revisión humana», uno
+            por historia, y no como «curados». Hasta el 19 de octubre de 2026 el contador decía «17
+            · curados» de 17 filas automáticas que eran 5 lotes, porque el curador volvía a publicar
+            el mismo lote cada vez que corría; ya no publica un lote que ya está publicado con las
+            mismas afirmaciones.
+          </li>
+          <li>
+            <strong>Los demás indicadores tampoco dicen «no» de lo que no se miró.</strong>{' '}
+            «Afirmaciones contrastables» sale «sin comprobar» (–) en los titulares que el extractor
+            todavía no ha procesado; el círculo vacío (○) queda para los que procesó sin sacar
+            ninguna. «Cobertura cruzada» se enciende cuando al menos dos medios independientes
+            cuentan la misma historia, y si no se encuentra un segundo medio dice «sin comprobar»,
+            nunca ○: el agrupado compara titulares y no reconoce la misma noticia contada con otras
+            palabras o en la otra lengua. La nota de prensa de una administración —el Ayuntamiento,
+            otro ayuntamiento, la Generalitat o la Diputació— no cuenta como un medio que corrobore:
+            es la fuente, y el periódico que la reproduce no es un segundo testigo. «Cobertura
+            local» son los medios del Camp de Túria, no los regionales ni el propio Ayuntamiento. Y
+            un medio es su dominio, no el nombre con que lo firma el agregador. En la tabla por
+            medio, el porcentaje de «Verificado» se calcula sobre las afirmaciones cotejadas con
+            algún dato, y las que no se cotejaron se cuentan aparte. Así se corrigió el 19 de
+            octubre de 2026: hasta entonces la fila del Ayuntamiento decía «0 de 26» cuando sólo se
+            habían cotejado 5, y siete de los ocho grupos de cobertura comparada eran una nota
+            municipal y el periódico que la publicaba.
+          </li>
+          <li>
+            <strong>Severity crítico exige una contradicción.</strong> El validador rechaza un
+            hallazgo etiquetado como <code>critical</code> sin al menos una referencia de
+            contradicción dateada y enlazada. Hasta el 5 de agosto de 2026 aceptaba en su lugar
+            cualquier documento cotejado, de modo que esta regla —publicada desde el principio—
+            nunca había llegado a exigirse: «hemos mirado estos expedientes» valía por «un
+            expediente lo desmiente». Se apretó primero el validador de los hallazgos de pleno y,
+            ese mismo día, el de los de prensa: entre ambos cambios esta página afirmó de los
+            segundos algo que su código todavía no hacía. Hoy los dos dicen lo que dice esta página.
+            No hay ningún hallazgo <code>critical</code> publicado.
+          </li>
+        </ul>
+
+        <h4 style={{ marginTop: 16, fontSize: 'var(--fs-head)' }}>
+          Preservación de fuentes (Wayback)
+        </h4>
+        <p style={{ marginTop: 6 }}>
+          Una tarea semanal, los lunes, recorre cada URL citada en los reportajes y en los hallazgos
+          y la archiva en Internet Archive (<code>web.archive.org</code>). El snapshot resultante se
+          publica junto al enlace original en cada tarjeta del laboratorio, siguiendo la regla GIJN{' '}
+          <em>"archivar antes de citar"</em>. Si el medio retira la pieza después, el lector aún
+          puede acceder a la copia congelada. En las biografías del agente periodista la copia se
+          toma informe a informe al publicarlo; las publicadas antes de septiembre de 2026 se están
+          archivando de la misma forma, y su tabla de fuentes enseña el enlace a la copia sólo
+          cuando existe.
+        </p>
+
+        <h4 style={{ marginTop: 16, fontSize: 'var(--fs-head)' }}>ClaimReview (schema.org)</h4>
+        <p style={{ marginTop: 6 }}>
+          Un hallazgo que lleva una <strong>referencia de contradicción</strong> se publica además
+          como datos estructurados{' '}
+          <a
+            href="https://schema.org/ClaimReview"
+            style={{ color: 'var(--civic)' }}
+            rel="noopener noreferrer"
+            target="_blank"
+          >
+            schema.org/ClaimReview
+          </a>{' '}
+          embebidos en la página. Es el mismo estándar W3C que la API de Google Fact Check Tools
+          indexa — y del que <em>leemos</em> a Newtral, Maldita, EFE Verifica y AFP Factual. Al
+          publicarlo, terceros pueden cosecharnos en igualdad de condiciones.
+        </p>
+        <p style={{ marginTop: 8 }}>
+          <strong>Y sólo ése.</strong> El bloque incluye un <code>reviewRating</code>: nuestro
+          veredicto sobre la frase citada, que en estas fichas son las palabras textuales de quien
+          habló en el pleno. El único veredicto que este sitio puede sostener es el negativo —{' '}
+          <code>contradiction</code> es el único campo del esquema que recoge una conclusión
+          direccional sobre una cita, y, como se explica más arriba, ningún paso del verificador
+          establece que un documento <em>respalde</em> una frase. Un hallazgo sin contradicción no
+          emite marcado ninguno: preferimos no figurar en un índice de verificaciones a figurar con
+          una verificación que no hemos hecho.
+          {adjudication ? (
+            <>
+              {' '}
+              De los {adjudication.total} hallazgos de pleno publicados,{' '}
+              <strong>{adjudication.adjudicated} cumplen hoy ese requisito</strong>.
+            </>
+          ) : null}
+        </p>
+        <p style={{ marginTop: 8 }}>
+          <strong>Corrección del 9 de agosto de 2026.</strong> Hasta esa fecha el{' '}
+          <code>reviewRating</code> se derivaba de la <code>severity</code> del hallazgo:{' '}
+          <code>informational</code> se publicaba como 5/5 «Verificado», <code>notable</code> como
+          3/5 «Parcialmente verificado» y <code>critical</code> como 1/5. Son dos ejes distintos: la
+          gravedad de <em>nuestro</em> hallazgo no dice nada sobre si la frase citada es cierta. Y
+          como <code>informational</code> es lo que escriben los curadores automáticos, casi todos
+          los hallazgos publicados llevaban sindicado, en formato legible por máquina, que
+          CivicPulse había verificado las palabras del cargo citado — incluidas descalificaciones
+          políticas, fragmentos mal segmentados de la transcripción y frases sobre personas con
+          nombre y apellidos. No se había comprobado ninguna. El marcado se retiró de toda ficha sin
+          contradicción el mismo día.
+        </p>
+
+        <h4 style={{ marginTop: 16, fontSize: 'var(--fs-head)' }}>Alineación con IFCN</h4>
+        <p style={{ marginTop: 6, fontSize: 'var(--fs-aux)' }}>
+          Este apartado cubre los cinco pilares del Código de Principios de IFCN: (1) compromiso con
+          la <em>no partisanía</em> y la equidad — el mismo criterio se aplica a cada bloc; (2)
+          transparencia de fuentes — cada hallazgo cita documento + fecha + URL primaria; (3)
+          transparencia de financiación — el proyecto no recibe financiación pública ni privada y su
+          código es íntegramente público; (4) transparencia de metodología — esta sección; (5)
+          política abierta y honesta de correcciones — la bitácora pública sobre el propio hallazgo.
         </p>
       </Card>
 
-      <Card style={{ marginTop: 14 }}>
+      <CabeceraGrupo id="correcciones" />
+
+      <Card id="rectificacion" style={{ marginTop: 14, scrollMarginTop: 24 }}>
         <SectionHead
-          eyebrow="Transparencia · mapa del gasto"
-          title="Mapa del gasto: qué situamos y qué no"
+          as="h3"
+          size="head"
+          eyebrow="Proceso de corrección"
+          title="Cómo pedir una rectificación"
         />
-        <p
-          style={{
-            fontSize: 'var(--fs-aux)',
-            lineHeight: 1.55,
-            color: 'var(--ink70)',
-            marginTop: 8,
-          }}
-        >
-          No existe un campo de «lugar de ejecución» en la fuente (Gobierto/PLACSP): el título del
-          contrato es la única señal de ubicación. Por eso situamos un contrato en el mapa solo
-          cuando su título <strong>nombra</strong> un lugar concreto —una calle o camino, un
-          equipamiento público (colegio, polideportivo, parque), una urbanización o un barrio— y lo
-          cotejamos contra un callejero de OpenStreetMap y el índice de equipamientos. Cada punto
-          declara su procedencia («situado por «…»»). En los contratos por <strong>lotes</strong>,
-          cuyo título es solo el nombre del lote («Obra completa»), consultamos además el objeto de
-          la licitación madre, y el pin lo declara («Lote de: …»).
-        </p>
-        <p
-          style={{
-            fontSize: 'var(--fs-aux)',
-            lineHeight: 1.55,
-            color: 'var(--ink70)',
-            marginTop: 8,
-          }}
-        >
-          Un título —o un objeto de licitación— que nombra <strong>varios</strong> sitios no se
-          sitúa: un carril bici «en la zona Molinet, Montealcedo, entrenaranjos, Santa Rosa y El
-          Clot», unas aceras en tres calles o una licitación que enumera los sitios de sus lotes no
-          caben en un punto, y un punto en cualquiera de esos sitios diría que todo está allí. La
-          excepción son los lugares <strong>uno dentro de otro</strong> —«C/ Dolçaina (Partida
-          Gallipont)», «C/Mas de Montes en P.I. Mas de Balo»—, que se sitúan en el más preciso. Y
-          «dentro» se mide, no se supone: la calle tiene que quedar a menos de{' '}
-          {CONTAINMENT_KM.toLocaleString('es-ES', { maximumFractionDigits: 1 })} km del centro de la
-          zona que el título también nombra. «c/ Toledo y camí urbanización Els pous» son dos obras
-          a casi cinco kilómetros una de otra, y no se sitúa.
-        </p>
-        <p
-          style={{
-            fontSize: 'var(--fs-aux)',
-            lineHeight: 1.55,
-            color: 'var(--ink70)',
-            marginTop: 8,
-          }}
-        >
-          El emparejamiento es deliberadamente <strong>conservador</strong> —preferimos no situar un
-          contrato antes que situarlo mal—: descartamos el nombre del municipio y de la provincia
-          («Riba-roja de Túria», «València», que aparecen en casi todas las direcciones), las
-          palabras genéricas de expediente («social», «municipal», «pública», «mayor») y el nombre
-          de un ODS que citan los pliegos («Industria, innovación e infraestructura»), y solo fiamos
-          una calle cuando el título lleva un indicador de vía (C/, Camino, Ctra.) — una sigla como
-          «C.D.» o «C.E.I.P.» no lo es. Un equipamiento solo se sitúa para contratos de{' '}
-          <strong>obra</strong>: un «suministro para la Policía Local» es <em>para</em> el servicio,
-          no una obra <em>en</em> el edificio. El gasto sin lugar citado (servicios, suministros y
-          obras sin ubicación) nunca se reparte por el mapa.
-        </p>
-        <p
-          style={{
-            fontSize: 'var(--fs-aux)',
-            lineHeight: 1.55,
-            color: 'var(--ink70)',
-            marginTop: 8,
-          }}
-        >
-          La capa de <strong>incendios forestales</strong> no sitúa nada: dibuja los perímetros tal
-          y como los cartografía el Institut Cartogràfic Valencià, sin un vértice nuestro. Se
-          consulta por <strong>geometría</strong>, no por nombre de municipio —la misma fuente
-          archiva este pueblo con dos grafías distintas, y filtrar por el nombre borra un año entero
-          de la serie—, así que aparece todo lo que cruza el término, incluido lo que la Generalitat
-          atribuye a un municipio vecino; cuando eso pasa, la ficha lo dice. La superficie es la del
-          incendio completo, nunca recortada por la frontera: recortarla daría una cifra nuestra con
-          firma ajena. Al revés también ocurre —hay un incendio atribuido a Riba-roja que la propia
-          Generalitat dibuja fuera del término—: ése se cuenta en la cobertura y no se pinta, porque
-          dibujarlo pondría una cicatriz donde no ardió. Las causas son las del parte oficial, y los
-          partes que no la determinan quedan fuera del porcentaje en vez de convertirse en una causa
-          llamada «otras».
-        </p>
-        <p
-          style={{
-            fontSize: 'var(--fs-aux)',
-            lineHeight: 1.55,
-            color: 'var(--ink70)',
-            marginTop: 8,
-          }}
-        >
-          Cada punto abre la ficha del contrato con el dato que ya publica el expediente:
-          adjudicatario, importe de licitación → adjudicación (la baja), objeto (código CPV
-          traducido), procedimiento, número de licitadores y plazo. La etiqueta CPV usa el
-          vocabulario oficial CPV-2008 de la UE.
-        </p>
-        <p
-          style={{
-            fontSize: 'var(--fs-aux)',
-            lineHeight: 1.55,
-            color: 'var(--ink70)',
-            marginTop: 8,
-          }}
-        >
-          Para los títulos que el emparejamiento automático no consigue situar (abreviaturas,
-          castellano/valenciano), un modelo de lenguaje propone el nombre del lugar citado. Ese
-          nombre se resuelve <strong>siempre</strong> contra el mismo callejero —el modelo nunca
-          inventa coordenadas— y la propuesta <strong>no aparece en el mapa</strong> hasta que una
-          persona la revisa y la aprueba. Es una ayuda de cobertura, no una fuente: el listado
-          automático nunca sustituye a la revisión humana.
-        </p>
-        <p
-          style={{
-            fontSize: 'var(--fs-aux)',
-            lineHeight: 1.55,
-            color: 'var(--ink70)',
-            marginTop: 8,
-          }}
-        >
-          El callejero se completa con un <strong>suplemento curado</strong> de lugares que
-          OpenStreetMap aún no recoge o solo recoge en valenciano (el Mercat Municipal, el Castell,
-          el Pavelló, polígonos y urbanizaciones): cada entrada es editada a mano, cita su
-          procedencia (el objeto OSM o la página oficial de la que sale la coordenada) y pasa por
-          las mismas vallas conservadoras del emparejador. Sin procedencia verificable, el lugar no
-          entra.
-        </p>
+        <EnUnaFrase id="rectificacion" />
+        <ol style={{ margin: '8px 0 0', paddingLeft: 20 }}>
+          <li>
+            Contacta con la redacción a través del canal indicado en{' '}
+            <a href="/aviso-legal" style={{ color: 'var(--civic)' }}>
+              /aviso-legal
+            </a>
+            .
+          </li>
+          <li>
+            Incluye el <code>id</code> de la promesa o del hallazgo afectado y el enlace a la fuente
+            que propones (programa electoral, acta de pleno, nota de prensa, BOE/BOPV).
+          </li>
+          <li>
+            Te responderemos en 24 h hábiles con una de tres opciones: acepto la corrección,
+            necesito más evidencia, o la rechazo con motivo público.
+          </li>
+          <li>
+            Los cambios aplicados quedan en el historial público del repositorio y, en hallazgos,
+            promesas y biografías, en la bitácora de su ficha.
+          </li>
+        </ol>
+      </Card>
+
+      <Card id="politica-correcciones" style={{ marginTop: 14, scrollMarginTop: 24 }}>
+        <SectionHead
+          as="h3"
+          size="head"
+          eyebrow="Bitácora de correcciones"
+          title="Política de correcciones"
+        />
+        <EnUnaFrase id="politica-correcciones" />
+        <ul style={{ margin: '6px 0 0', paddingLeft: 20 }}>
+          <li>
+            Cada modificación posterior al primer publicado a <code>title</code>,{' '}
+            <code>summary</code> o <code>severity</code> se aplica vía las herramientas{' '}
+            <code>npm run correct-press-finding</code> / <code>correct-pleno-finding</code>, que
+            añaden al hallazgo una fila permanente con texto original, texto corregido, motivo (≥20
+            caracteres), editor/a y fecha ISO.
+          </li>
+          <li>
+            En hallazgos de pleno, los campos de cita (<code>sourceClaimIds</code>, texto e id de
+            cada cita) solo son corregibles cuando una <strong>re-transcripción</strong> sustituye
+            el transcript de registro y re-genera los ids/verbatim de los claims citados
+            («record-supersession»). Cada re-anclaje deja su fila pública en la bitácora. Editar una
+            cita por cualquier otro motivo sigue prohibido: se retira y re-publica el hallazgo.
+          </li>
+          <li>
+            La bitácora de correcciones se renderiza pública dentro de la tarjeta del hallazgo. El
+            historial es <em>append-only</em>: ninguna fila se borra ni se reordena, y lo que cambia
+            dentro de una fila ya publicada —un texto que deja de reproducirse, o un motivo
+            enmendado— deja su huella en la propia fila. Cada fila dice con palabras, no sólo con el
+            tachado, qué texto retiró y cuál puso, y sólo la última fila de un campo llama{' '}
+            <em>vigente</em> al suyo: el que puso una corrección que otra posterior volvió a cambiar
+            se rotula «sustituido», con la fecha de la que lo sustituyó.
+          </li>
+          <li>
+            Cuando lo que sale es material que no debe seguir publicándose —una cita retirada, o un
+            sumario que reproducía el nombre de un particular ajeno a la corporación junto a una
+            imputación que no consta comprobada— la fila{' '}
+            <strong>no guarda el texto anterior sino su huella</strong> (
+            <code>cita · sha256:…</code>, <code>sumario · sha256:…</code>). La razón es que la
+            bitácora se imprime entera en la ficha, tachada: escribir ahí lo retirado lo devolvería
+            al lector en la misma página, y un tachado es un estilo, no una redacción. La huella se
+            calcula sobre la fila tal y como la reconstruye el validador y el historial del
+            repositorio es público, así que cualquiera puede tomar la versión anterior, rehacerla y
+            comprobar exactamente qué se fue y que no se fue nada más. Al reescribir así un sumario,
+            las filas anteriores de la bitácora sobre ese mismo campo pasan también a huella: son
+            copias de la misma prosa, y dejarlas deshace la retirada.
+          </li>
+          <li>
+            El <strong>motivo</strong> de una corrección también puede resultar equivocado, o
+            reproducir algo que no debe seguir publicándose. Entonces se enmienda (
+            <code>correct-pleno-finding --amend-reason</code>, y en las biografías del agente
+            periodista <code>correct-journalist-report --amend-reason</code>): la fila conserva su
+            campo, sus textos, su editor/a y su fecha; el motivo nuevo sustituye al anterior, que{' '}
+            <strong>no se reproduce sino que queda en huella</strong> (
+            <code>motivo · sha256:…</code>
+            ), y la enmienda lleva su propia fecha, su porqué y la firma de una persona con su
+            nombre —no la de una cuenta de rol ni la de un proceso—. En la bitácora, el motivo
+            enmendado lo dice delante, y cada enmienda enseña quién la hizo, cuándo, por qué y la
+            huella del motivo que sustituyó. No es una corrección nueva del hallazgo: no cambia nada
+            de lo que la ficha afirma, sino la explicación de un cambio anterior.
+          </li>
+          <li>
+            Cuando una corrección pone en una biografía una cifra que ninguna de sus citas llevaba,
+            la corrección <strong>añade la fuente que la sostiene</strong> —con su extracto, la
+            fecha en que se consultó y el enlace al documento— a la sección corregida, y esa
+            incorporación deja su propia fila en la bitácora. El extracto de una fuente externa es
+            el del documento y no se reescribe; sólo se puede corregir el de una medición propia
+            sobre los datos publicados del sitio.
+          </li>
+          <li id="bitacora-escano-unico" style={{ scrollMarginTop: 24 }}>
+            En los hallazgos de pleno, la versión de un titular, de un sumario o del grupo de una
+            cita que <strong>nombraba a un grupo de un solo escaño</strong> no se reproduce en la
+            bitácora. Un grupo con un solo concejal señala a esa persona (lo explica{' '}
+            <a href="#verificacion-declaraciones" style={{ color: 'var(--civic)' }}>
+              cómo se atribuye una cita
+            </a>
+            ), y el 29 y el 30 de septiembre de 2026 se retiraron con firma las atribuciones a uno
+            de esos grupos que nadie había firmado, porque no consta quién habló: imprimir el grupo
+            tachado al lado de «sin identificar» seguiría diciéndolo, y lo mismo vale para la
+            versión de un sumario que lo nombraba. Lo hace la compilación sobre la copia de los
+            hallazgos que sirve el sitio, con la composición de la corporación que publica el
+            ayuntamiento: el lado afectado lleva{' '}
+            <code>grupo de un solo escaño · no se reproduce</code>, la fila conserva su campo, su
+            motivo, su editor/a y su fecha, y la ficha dice qué versión falta y por qué. Es una
+            marca y no una huella porque la huella de un nombre entre cinco se deshace probando los
+            cinco. Si una cita a la que se le retiró la etiqueta de uno de esos grupos nombraba
+            además al grupo en sus propias palabras —«des del grup municipal de…»—, la cita se
+            acorta con una corrección firmada al tramo que no lo nombra, y la bitácora tampoco
+            reproduce las versiones de su texto que lo nombraban: dirían lo mismo que la etiqueta
+            retirada. Una cita cualquiera no se juzga así, porque «podem» o «compromís» son también
+            palabras corrientes en valencià. La atribución retirada a un grupo con varios escaños se
+            sigue enseñando: es de bloque, y no señala a nadie. Y no es una retirada: el repositorio
+            del proyecto es público, y su fichero de hallazgos y su historial conservan la fila
+            entera. El motivo de una fila no lo reescribe ninguna máquina: si nombra a uno de esos
+            grupos, lo enmienda una persona por la vía del punto anterior.
+          </li>
+          <li>
+            <strong>Retirar el hallazgo entero</strong> es una operación distinta de corregirlo, y
+            existe desde el 11 de agosto de 2026 (<code>npm run retract-finding</code>). Se usa
+            cuando la ficha no se puede enunciar: cuando el filtro editorial retiene <em>todas</em>{' '}
+            sus citas, lo que quede en el sumario habla de grupos con nombre sin una sola
+            intervención que la página pueda enseñar, y reescribir la prosa no arregla eso. El
+            hallazgo sale de la lista y deja de contar en cualquier cifra; en su lugar queda una
+            entrada firmada con la fecha, el motivo, de qué pleno era y cuántas citas y documentos
+            tenía. <strong>No queda el texto</strong>, sino su huella{' '}
+            <code>hallazgo · sha256:…</code>: la retirada existe precisamente porque ese texto no
+            debe seguir publicado, y una lápida que lo reprodujera lo dejaría accesible en la misma
+            página. Quien conserve una copia puede recalcular la huella y comprobar que coincide.
+            Por lo mismo <strong>no hay vuelta atrás</strong>: no se guarda nada que restaurar, y
+            volver a publicar significa un hallazgo nuevo, con id nuevo y sus propias pruebas.
+          </li>
+          <li>
+            <strong>Qué se retiró el 11 de agosto de 2026.</strong> Una comprobación nueva —
+            <code>check:summary-gate</code>— buscó lo contrario de lo que acabó encontrando: si
+            algún sumario reproducía literalmente una cita que el filtro oculta. Encontró nueve, en
+            siete fichas. Al repararlas apareció la clase de verdad: un sumario puede transmitir
+            perfectamente la acusación retenida sin repetir sus palabras, y había once hallazgos
+            —todos informativos, nueve firmados por el redactor automático y dos por una persona—
+            cuyas citas estaban retenidas <em>al completo</em>. Se retiraron los once y se
+            reescribieron cuatro sumarios más. La comprobación ahora bloquea las dos formas, así que
+            el redactor automático no puede volver a publicarlas.
+          </li>
+          <li>
+            Las refutaciones del medio citado pasan por el formulario público{' '}
+            <code>finding-response</code> y se publican verbatim.
+          </li>
+        </ul>
       </Card>
 
       {/* La fecha sale de git en el build, no escrita a mano. La anterior decía
@@ -3778,6 +4187,20 @@ export default function Metodologia() {
         ) : null}
         Cambios futuros sólo mediante PR público.
       </p>
+    </div>
+  )
+}
+
+/**
+ * El contrato editorial y su índice. El índice va fuera de la columna para poder
+ * quedarse pegado mientras se lee, y sólo se ve si hay sitio al lado del texto
+ * (`.cp-met`, en index.css).
+ */
+export default function Metodologia() {
+  return (
+    <div className="cp-met">
+      <ContratoEditorial />
+      <IndiceLateral />
     </div>
   )
 }

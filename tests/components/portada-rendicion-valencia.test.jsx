@@ -38,16 +38,16 @@ function pinta(idioma) {
 afterEach(() => localStorage.clear())
 
 describe('portada · el bloque de rendición de cuentas en valencià', () => {
-  it('los tres rótulos salen del catálogo', async () => {
+  // Los tres rótulos («Regidories», «Amb responsable», «Regidors») son ya una
+  // frase del catálogo (auditoría «dos lecturas», 25-10-2026).
+  it('la frase sale del catálogo', async () => {
     pinta('ca')
-    expect(await screen.findByText('Regidories')).toBeInTheDocument()
-    expect(screen.getByText('Amb responsable')).toBeInTheDocument()
-    expect(screen.getByText('Regidors')).toBeInTheDocument()
+    expect(await screen.findByText('28 regidories; en 19 consta qui la porta.')).toBeInTheDocument()
   })
 
   it('y en el bloque no queda nada en castellano', async () => {
     const { container } = pinta('ca')
-    await screen.findByText('19/28') // mide algo: el bloque ha leído sus datos
+    await screen.findByText(/en 19 consta/) // mide algo: el bloque ha leído sus datos
     const texto = loQueSeLee(container).join(' · ')
     expect(texto.length, 'hay poco texto que leer').toBeGreaterThan(60)
     expect(castellanoEn(texto)).toEqual([])
@@ -55,6 +55,8 @@ describe('portada · el bloque de rendición de cuentas en valencià', () => {
 
   it('y en castellano, en castellano (el control)', async () => {
     pinta('es')
-    expect(await screen.findByText('Concejalías')).toBeInTheDocument()
+    expect(
+      await screen.findByText('28 concejalías; en 19 consta quién la lleva.'),
+    ).toBeInTheDocument()
   })
 })

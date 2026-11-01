@@ -1,13 +1,13 @@
 {
-  "generatedAt": "2026-10-20T09:37:15.646Z",
+  "generatedAt": "2026-10-31T10:36:33.753Z",
   "source": {
     "url": "https://www.ribarroja.es/es/eventos/rss.xml",
     "platform": "Drupal RSS (oficial)"
   },
   "stats": {
     "total": 50,
-    "upcoming": 11,
-    "nextDate": "2026-10-25T10:30:00.000Z"
+    "upcoming": 15,
+    "nextDate": "2026-11-01T08:00:00.000Z"
   },
   "events": [
     {
@@ -18,7 +18,7 @@
       "eventDateText": "05 de septiembre de 2026 09:00",
       "publishedDate": "2026-09-03T07:44:09.000Z",
       "excerpt": "&nbsp;",
-      "image": "https://www.ribarroja.es/sites/www.ribarroja.es/files/styles/interior_contenido_/public/Competiciones%20deportivas%20reducida_1.png?itok=BWllDvWU"
+      "image": "https://www.ribarroja.es/sites/www.ribarroja.es/files/styles/interior_contenido_/public/Competiciones%20deportivas%20reducida_1.png?itok=tuj2ipw-"
     },
     {
       "id": "cgn52w",
@@ -28,27 +28,7 @@
       "eventDateText": "06 de septiembre de 2026 09:00",
       "publishedDate": "2026-09-03T07:46:23.000Z",
       "excerpt": "&nbsp;",
-      "image": "https://www.ribarroja.es/sites/www.ribarroja.es/files/styles/interior_contenido_/public/Competiciones%20deportivas%20reducida_2.png?itok=7ArlWmzv"
-    },
-    {
-      "id": "9gwbqs",
-      "title": "Actes festes Crist 2026 - dimarts 8 de setembre",
-      "link": "https://www.ribarroja.es/es/evento/actes-festes-crist-2026-dimarts-8-de-setembre",
-      "eventDate": "2026-09-08T16:00:00.000Z",
-      "eventDateText": "08 de septiembre de 2026 18:00",
-      "publishedDate": "2026-08-28T10:11:02.000Z",
-      "excerpt": "&nbsp;",
-      "image": "https://www.ribarroja.es/sites/www.ribarroja.es/files/styles/interior_contenido_/public/20260827%20FestesCrist2026_web_10.png?itok=MBEDpSkQ"
-    },
-    {
-      "id": "1cpd5o0",
-      "title": "Actes festes Crist 2026 - dimecres 9 de setembre",
-      "link": "https://www.ribarroja.es/es/evento/actes-festes-crist-2026-dimecres-9-de-setembre",
-      "eventDate": "2026-09-09T16:30:00.000Z",
-      "eventDateText": "09 de septiembre de 2026 18:30",
-      "publishedDate": "2026-08-28T10:12:34.000Z",
-      "excerpt": "&nbsp;",
-      "image": "https://www.ribarroja.es/sites/www.ribarroja.es/files/styles/interior_contenido_/public/20260827%20FestesCrist2026_web_11.png?itok=goWFDA70"
+      "image": "https://www.ribarroja.es/sites/www.ribarroja.es/files/styles/interior_contenido_/public/Competiciones%20deportivas%20reducida_2.png?itok=zg9v4tqg"
     },
     {
       "id": "1yef69d",
@@ -58,17 +38,7 @@
       "eventDateText": "10 de septiembre de 2026 19:00",
       "publishedDate": "2026-09-10T14:06:27.000Z",
       "excerpt": null,
-      "image": "https://www.ribarroja.es/sites/www.ribarroja.es/files/styles/interior_contenido_/public/IMG-20260910-WA0016.jpg?itok=jCNSFgUr"
-    },
-    {
-      "id": "v923a3",
-      "title": "Actes festes Crist 2026 - dijous 10 de setembre",
-      "link": "https://www.ribarroja.es/es/evento/actes-festes-crist-2026-dijous-10-de-setembre",
-      "eventDate": "2026-09-10T18:00:00.000Z",
-      "eventDateText": "10 de septiembre de 2026 20:00",
-      "publishedDate": "2026-08-28T10:13:49.000Z",
-      "excerpt": "&nbsp;",
-      "image": "https://www.ribarroja.es/sites/www.ribarroja.es/files/styles/interior_contenido_/public/20260827%20FestesCrist2026_web_12.png?itok=9TRMkYZ8"
+      "image": "https://www.ribarroja.es/sites/www.ribarroja.es/files/styles/interior_contenido_/public/IMG-20260910-WA0016.jpg?itok=7XZVoaWU"
     },
     {
       "id": "3amk2c",
@@ -78,17 +48,7 @@
       "eventDateText": "11 de septiembre de 2026 18:00",
       "publishedDate": "2026-09-11T07:42:38.000Z",
       "excerpt": "&nbsp;",
-      "image": "https://www.ribarroja.es/sites/www.ribarroja.es/files/styles/interior_contenido_/public/Competiciones%20deportivas%20reducida_1_0.png?itok=rz_wlhus"
-    },
-    {
-      "id": "316nrd",
-      "title": "Actes festes Crist 2026 - divendres 11 de setembre",
-      "link": "https://www.ribarroja.es/es/evento/actes-festes-crist-2026-divendres-11-de-setembre",
-      "eventDate": "2026-09-11T18:30:00.000Z",
-      "eventDateText": "11 de septiembre de 2026 20:30",
-      "publishedDate": "2026-08-28T10:15:11.000Z",
-      "excerpt": "&nbsp;",
-      "image": "https://www.ribarroja.es/sites/www.ribarroja.es/files/styles/interior_contenido_/public/20260827%20FestesCrist2026_web_13.png?itok=BDm_UH0r"
+      "image": "https://www.ribarroja.es/sites/www.ribarroja.es/files/styles/interior_contenido_/public/Competiciones%20deportivas%20reducida_1_0.png?itok=9bVHsvJq"
     },
     {
       "id": "3fijiw",
@@ -98,17 +58,7 @@
       "eventDateText": "12 de septiembre de 2026 09:00",
       "publishedDate": "2026-09-11T07:50:27.000Z",
       "excerpt": null,
-      "image": "https://www.ribarroja.es/sites/www.ribarroja.es/files/styles/interior_contenido_/public/Competiciones%20deportivas%20reducida_1_1.png?itok=J5v7jOxo"
-    },
-    {
-      "id": "erbkv8",
-      "title": "Actes festes Crist 2026 - dissabte 12 de setembre",
-      "link": "https://www.ribarroja.es/es/evento/actes-festes-crist-2026-dissabte-12-de-setembre",
-      "eventDate": "2026-09-12T20:00:00.000Z",
-      "eventDateText": "12 de septiembre de 2026 22:00",
-      "publishedDate": "2026-08-28T10:16:44.000Z",
-      "excerpt": "&nbsp;",
-      "image": "https://www.ribarroja.es/sites/www.ribarroja.es/files/styles/interior_contenido_/public/20260827%20FestesCrist2026_web_14.png?itok=9yUtmqmL"
+      "image": "https://www.ribarroja.es/sites/www.ribarroja.es/files/styles/interior_contenido_/public/Competiciones%20deportivas%20reducida_1_1.png?itok=hdRFb2eR"
     },
     {
       "id": "1j0i6w2",
@@ -118,37 +68,7 @@
       "eventDateText": "13 de septiembre de 2026 09:00",
       "publishedDate": "2026-09-11T07:54:14.000Z",
       "excerpt": null,
-      "image": "https://www.ribarroja.es/sites/www.ribarroja.es/files/styles/interior_contenido_/public/Competiciones%20deportivas%20reducida_1_2.png?itok=IHY_nivA"
-    },
-    {
-      "id": "1yr9oon",
-      "title": "Actes festes Crist 2026 - diumenge 13 de setembre",
-      "link": "https://www.ribarroja.es/va/evento/actes-festes-crist-2026-diumenge-13-de-setembre",
-      "eventDate": "2026-09-13T17:30:00.000Z",
-      "eventDateText": "13 de septiembre de 2026 19:30",
-      "publishedDate": "2026-08-28T10:18:17.000Z",
-      "excerpt": "&nbsp;",
-      "image": "https://www.ribarroja.es/sites/www.ribarroja.es/files/styles/interior_contenido_/public/20260827%20FestesCrist2026_web_15.png?itok=_yZg5me5"
-    },
-    {
-      "id": "kqh9p5",
-      "title": "Actes festes Crist 2026 - dilluns 14 de setembre",
-      "link": "https://www.ribarroja.es/va/evento/actes-festes-crist-2026-dilluns-14-de-setembre",
-      "eventDate": "2026-09-14T06:00:00.000Z",
-      "eventDateText": "14 de septiembre de 2026 08:00",
-      "publishedDate": "2026-08-28T10:20:00.000Z",
-      "excerpt": "&nbsp;",
-      "image": "https://www.ribarroja.es/sites/www.ribarroja.es/files/styles/interior_contenido_/public/20260827%20FestesCrist2026_web_16.png?itok=uNz7fHNM"
-    },
-    {
-      "id": "vpt9ag",
-      "title": "Actes festes Crist 2026 - dimarts 15 de setembre",
-      "link": "https://www.ribarroja.es/va/evento/actes-festes-crist-2026-dimarts-15-de-setembre",
-      "eventDate": "2026-09-15T18:00:00.000Z",
-      "eventDateText": "15 de septiembre de 2026 20:00",
-      "publishedDate": "2026-08-28T10:21:30.000Z",
-      "excerpt": "&nbsp;",
-      "image": "https://www.ribarroja.es/sites/www.ribarroja.es/files/styles/interior_contenido_/public/20260827%20FestesCrist2026_web_17.png?itok=PkIlsi31"
+      "image": "https://www.ribarroja.es/sites/www.ribarroja.es/files/styles/interior_contenido_/public/Competiciones%20deportivas%20reducida_1_2.png?itok=xYsV38Yt"
     },
     {
       "id": "1wt499i",
@@ -158,7 +78,7 @@
       "eventDateText": "17 de septiembre de 2026 17:00",
       "publishedDate": "2026-09-18T10:44:37.000Z",
       "excerpt": null,
-      "image": "https://www.ribarroja.es/sites/www.ribarroja.es/files/styles/interior_contenido_/public/20260915%20IMG_0853.jpg?itok=g9Bw5BfZ"
+      "image": "https://www.ribarroja.es/sites/www.ribarroja.es/files/styles/interior_contenido_/public/20260915%20IMG_0853.jpg?itok=XqSx2H2E"
     },
     {
       "id": "al8y3b",
@@ -168,7 +88,7 @@
       "eventDateText": "17 de septiembre de 2026 19:00",
       "publishedDate": "2026-09-18T10:05:56.000Z",
       "excerpt": "&nbsp;",
-      "image": "https://www.ribarroja.es/sites/www.ribarroja.es/files/styles/interior_contenido_/public/20260915%202026%20SEPTIEMBRE%20VOCES%20DE%20LA%20MEMORIA%20copia%20%281%29.jpg?itok=_6fppg9O"
+      "image": "https://www.ribarroja.es/sites/www.ribarroja.es/files/styles/interior_contenido_/public/20260915%202026%20SEPTIEMBRE%20VOCES%20DE%20LA%20MEMORIA%20copia%20%281%29.jpg?itok=0r2CM5Iy"
     },
     {
       "id": "1u45itn",
@@ -178,7 +98,7 @@
       "eventDateText": "17 de septiembre de 2026 19:00",
       "publishedDate": "2026-09-18T09:52:41.000Z",
       "excerpt": "&nbsp;",
-      "image": "https://www.ribarroja.es/sites/www.ribarroja.es/files/styles/interior_contenido_/public/20260915%20IMG_0855%20Grupo%20Besarabia.jpg?itok=ul3bAsR3"
+      "image": "https://www.ribarroja.es/sites/www.ribarroja.es/files/styles/interior_contenido_/public/20260915%20IMG_0855%20Grupo%20Besarabia.jpg?itok=LmOsXLY-"
     },
     {
       "id": "b8u8us",
@@ -188,7 +108,7 @@
       "eventDateText": "18 de septiembre de 2026 17:00",
       "publishedDate": "2026-09-11T07:29:03.000Z",
       "excerpt": "Una jornada de reflexión y sensibilización en torno a la prostitución, la explotación sexual y la defensa de los derechos humanos, que contará con la participación de destacadas voces del ámbito académico, profesional y…",
-      "image": "https://www.ribarroja.es/sites/www.ribarroja.es/files/styles/interior_contenido_/public/II%20Jornadas%20abolicionistas.png?itok=H7vrXbUp"
+      "image": "https://www.ribarroja.es/sites/www.ribarroja.es/files/styles/interior_contenido_/public/II%20Jornadas%20abolicionistas.png?itok=2HC3s0Ra"
     },
     {
       "id": "1pkh0hc",
@@ -198,7 +118,7 @@
       "eventDateText": "18 de septiembre de 2026 17:30",
       "publishedDate": "2026-09-18T10:15:01.000Z",
       "excerpt": "&nbsp;",
-      "image": "https://www.ribarroja.es/sites/www.ribarroja.es/files/styles/interior_contenido_/public/20260915%20Riba_roc%20_2874543723519142061_n.jpeg?itok=Zj1MyBG-"
+      "image": "https://www.ribarroja.es/sites/www.ribarroja.es/files/styles/interior_contenido_/public/20260915%20Riba_roc%20_2874543723519142061_n.jpeg?itok=GI6XBD1-"
     },
     {
       "id": "12gjcdw",
@@ -208,7 +128,7 @@
       "eventDateText": "18 de septiembre de 2026 18:30",
       "publishedDate": "2026-09-18T10:10:21.000Z",
       "excerpt": "&nbsp;",
-      "image": "https://www.ribarroja.es/sites/www.ribarroja.es/files/styles/interior_contenido_/public/20260915%20IMG_0854%20Semana%20fotografica.jpg?itok=aNn0cWAn"
+      "image": "https://www.ribarroja.es/sites/www.ribarroja.es/files/styles/interior_contenido_/public/20260915%20IMG_0854%20Semana%20fotografica.jpg?itok=2b8zYTPb"
     },
     {
       "id": "1ti535k",
@@ -218,7 +138,7 @@
       "eventDateText": "19 de septiembre de 2026 09:00",
       "publishedDate": "2026-09-18T08:54:07.000Z",
       "excerpt": "&nbsp;",
-      "image": "https://www.ribarroja.es/sites/www.ribarroja.es/files/styles/interior_contenido_/public/Competiciones%20deportivas%20reducida_3.png?itok=ibBcvDlY"
+      "image": "https://www.ribarroja.es/sites/www.ribarroja.es/files/styles/interior_contenido_/public/Competiciones%20deportivas%20reducida_3.png?itok=hL64B-lS"
     },
     {
       "id": "3zyqj6",
@@ -228,7 +148,7 @@
       "eventDateText": "19 de septiembre de 2026 18:00",
       "publishedDate": "2026-08-28T10:23:32.000Z",
       "excerpt": "&nbsp;",
-      "image": "https://www.ribarroja.es/sites/www.ribarroja.es/files/styles/interior_contenido_/public/20260915%20Run%20cancer%20_6258990035176528132_n.jpeg?itok=9mOOTORc"
+      "image": "https://www.ribarroja.es/sites/www.ribarroja.es/files/styles/interior_contenido_/public/20260915%20Run%20cancer%20_6258990035176528132_n.jpeg?itok=a8fDIBnl"
     },
     {
       "id": "18xsxmi",
@@ -238,7 +158,7 @@
       "eventDateText": "20 de septiembre de 2026 09:00",
       "publishedDate": "2026-09-18T08:58:36.000Z",
       "excerpt": "&nbsp;",
-      "image": "https://www.ribarroja.es/sites/www.ribarroja.es/files/styles/interior_contenido_/public/Competiciones%20deportivas%20reducida_4.png?itok=SYXJB4Jk"
+      "image": "https://www.ribarroja.es/sites/www.ribarroja.es/files/styles/interior_contenido_/public/Competiciones%20deportivas%20reducida_4.png?itok=KF0Qr3Yz"
     },
     {
       "id": "6vv8sw",
@@ -258,7 +178,7 @@
       "eventDateText": "24 de septiembre de 2026 19:00",
       "publishedDate": "2026-09-22T12:54:50.000Z",
       "excerpt": null,
-      "image": "https://www.ribarroja.es/sites/www.ribarroja.es/files/styles/interior_contenido_/public/PHOTO-2026-09-21-09-39-21.jpg?itok=t01_0I8D"
+      "image": "https://www.ribarroja.es/sites/www.ribarroja.es/files/styles/interior_contenido_/public/PHOTO-2026-09-21-09-39-21.jpg?itok=EF5-Tad4"
     },
     {
       "id": "rjddq2",
@@ -268,7 +188,7 @@
       "eventDateText": "25 de septiembre de 2026 19:00",
       "publishedDate": "2026-09-24T11:50:46.000Z",
       "excerpt": "&nbsp;",
-      "image": "https://www.ribarroja.es/sites/www.ribarroja.es/files/styles/interior_contenido_/public/Competiciones%20deportivas%20reducida_3_0.png?itok=CaO12-97"
+      "image": "https://www.ribarroja.es/sites/www.ribarroja.es/files/styles/interior_contenido_/public/Competiciones%20deportivas%20reducida_3_0.png?itok=bA6d-RU2"
     },
     {
       "id": "1xbd8y0",
@@ -278,7 +198,7 @@
       "eventDateText": "25 de septiembre de 2026 19:00",
       "publishedDate": "2026-09-22T12:57:13.000Z",
       "excerpt": null,
-      "image": "https://www.ribarroja.es/sites/www.ribarroja.es/files/styles/interior_contenido_/public/PHOTO-2026-09-21-10-05-13.jpg?itok=CxBzoMt_"
+      "image": "https://www.ribarroja.es/sites/www.ribarroja.es/files/styles/interior_contenido_/public/PHOTO-2026-09-21-10-05-13.jpg?itok=Ie0PpO51"
     },
     {
       "id": "ovjsf8",
@@ -288,7 +208,7 @@
       "eventDateText": "26 de septiembre de 2026 09:00",
       "publishedDate": "2026-09-24T12:03:44.000Z",
       "excerpt": null,
-      "image": "https://www.ribarroja.es/sites/www.ribarroja.es/files/styles/interior_contenido_/public/Competiciones%20deportivas%20reducida_3_1.png?itok=_3HnO746"
+      "image": "https://www.ribarroja.es/sites/www.ribarroja.es/files/styles/interior_contenido_/public/Competiciones%20deportivas%20reducida_3_1.png?itok=7rYpAFXL"
     },
     {
       "id": "1n43icq",
@@ -298,7 +218,7 @@
       "eventDateText": "27 de septiembre de 2026 09:00",
       "publishedDate": "2026-09-24T12:08:26.000Z",
       "excerpt": "&nbsp;",
-      "image": "https://www.ribarroja.es/sites/www.ribarroja.es/files/styles/interior_contenido_/public/Competiciones%20deportivas%20reducida_3_2.png?itok=JG3jxBLI"
+      "image": "https://www.ribarroja.es/sites/www.ribarroja.es/files/styles/interior_contenido_/public/Competiciones%20deportivas%20reducida_3_2.png?itok=t6KtMMaV"
     },
     {
       "id": "2tg6p2",
@@ -308,7 +228,7 @@
       "eventDateText": "27 de septiembre de 2026 18:30",
       "publishedDate": "2026-09-22T12:58:45.000Z",
       "excerpt": null,
-      "image": "https://www.ribarroja.es/sites/www.ribarroja.es/files/styles/interior_contenido_/public/eNCONTRES%202026.jpeg?itok=4_d6b7U-"
+      "image": "https://www.ribarroja.es/sites/www.ribarroja.es/files/styles/interior_contenido_/public/eNCONTRES%202026.jpeg?itok=lHCAPqP2"
     },
     {
       "id": "5kh4co",
@@ -318,7 +238,7 @@
       "eventDateText": "03 de octubre de 2026 09:00",
       "publishedDate": "2026-10-01T09:54:48.000Z",
       "excerpt": "&nbsp;",
-      "image": "https://www.ribarroja.es/sites/www.ribarroja.es/files/styles/interior_contenido_/public/Competiciones%20deportivas%20reducida_5.png?itok=yQCoSxX2"
+      "image": "https://www.ribarroja.es/sites/www.ribarroja.es/files/styles/interior_contenido_/public/Competiciones%20deportivas%20reducida_5.png?itok=TBlsdQJt"
     },
     {
       "id": "1mzjkag",
@@ -328,7 +248,7 @@
       "eventDateText": "04 de octubre de 2026 11:30",
       "publishedDate": "2026-10-01T10:01:49.000Z",
       "excerpt": "&nbsp;",
-      "image": "https://www.ribarroja.es/sites/www.ribarroja.es/files/styles/interior_contenido_/public/Competiciones%20deportivas%20reducida_6.png?itok=CqVUSUFQ"
+      "image": "https://www.ribarroja.es/sites/www.ribarroja.es/files/styles/interior_contenido_/public/Competiciones%20deportivas%20reducida_6.png?itok=uUcye1BO"
     },
     {
       "id": "i0qq4o",
@@ -338,7 +258,7 @@
       "eventDateText": "05 de octubre de 2026 17:00",
       "publishedDate": "2026-09-30T11:43:22.000Z",
       "excerpt": null,
-      "image": "https://www.ribarroja.es/sites/www.ribarroja.es/files/styles/interior_contenido_/public/20260930%2010_Cartel%20Donaci%C3%B3n%205-OCTUBRE%20.jpg?itok=wwR7lqoW"
+      "image": "https://www.ribarroja.es/sites/www.ribarroja.es/files/styles/interior_contenido_/public/20260930%2010_Cartel%20Donaci%C3%B3n%205-OCTUBRE%20.jpg?itok=Dfa917L9"
     },
     {
       "id": "wwknro",
@@ -348,7 +268,7 @@
       "eventDateText": "10 de octubre de 2026 17:00",
       "publishedDate": "2026-08-31T06:42:14.000Z",
       "excerpt": "&nbsp;",
-      "image": "https://www.ribarroja.es/sites/www.ribarroja.es/files/styles/interior_contenido_/public/20260831%20la%20isla%20olvidada.jpg?itok=uO6t6yrw"
+      "image": "https://www.ribarroja.es/sites/www.ribarroja.es/files/styles/interior_contenido_/public/20260831%20la%20isla%20olvidada.jpg?itok=11MpalG1"
     },
     {
       "id": "1x23hfw",
@@ -358,7 +278,7 @@
       "eventDateText": "10 de octubre de 2026 19:00",
       "publishedDate": "2026-08-31T06:45:34.000Z",
       "excerpt": "&nbsp;",
-      "image": "https://www.ribarroja.es/sites/www.ribarroja.es/files/styles/interior_contenido_/public/20260831%20tadeojones%20y%20la%20lampara.jpg?itok=wQeX3DNQ"
+      "image": "https://www.ribarroja.es/sites/www.ribarroja.es/files/styles/interior_contenido_/public/20260831%20tadeojones%20y%20la%20lampara.jpg?itok=66UHoeDn"
     },
     {
       "id": "ltq6m1",
@@ -368,7 +288,7 @@
       "eventDateText": "11 de octubre de 2026 17:00",
       "publishedDate": "2026-08-31T06:49:22.000Z",
       "excerpt": "&nbsp;",
-      "image": "https://www.ribarroja.es/sites/www.ribarroja.es/files/styles/interior_contenido_/public/20260831%20tadeojones%20y%20la%20lampara_0.jpg?itok=i61rCYbW"
+      "image": "https://www.ribarroja.es/sites/www.ribarroja.es/files/styles/interior_contenido_/public/20260831%20tadeojones%20y%20la%20lampara_0.jpg?itok=ilCuvuGz"
     },
     {
       "id": "w2y5z8",
@@ -378,7 +298,7 @@
       "eventDateText": "11 de octubre de 2026 19:00",
       "publishedDate": "2026-09-21T11:06:36.000Z",
       "excerpt": "&nbsp;",
-      "image": "https://www.ribarroja.es/sites/www.ribarroja.es/files/styles/interior_contenido_/public/ec0fec9f-34af-46c4-b656-82b8d9a4e5d9.jpg?itok=2zwPxNIW"
+      "image": "https://www.ribarroja.es/sites/www.ribarroja.es/files/styles/interior_contenido_/public/ec0fec9f-34af-46c4-b656-82b8d9a4e5d9.jpg?itok=y92sy_X0"
     },
     {
       "id": "wvvkve",
@@ -388,7 +308,7 @@
       "eventDateText": "17 de octubre de 2026 09:00",
       "publishedDate": "2026-10-15T10:06:47.000Z",
       "excerpt": "&nbsp;",
-      "image": "https://www.ribarroja.es/sites/www.ribarroja.es/files/styles/interior_contenido_/public/Competiciones%20deportivas%20reducida_8.png?itok=ekOl7gD2"
+      "image": "https://www.ribarroja.es/sites/www.ribarroja.es/files/styles/interior_contenido_/public/Competiciones%20deportivas%20reducida_8.png?itok=d-ZttZHD"
     },
     {
       "id": "u5y8w0",
@@ -398,7 +318,27 @@
       "eventDateText": "18 de octubre de 2026 09:00",
       "publishedDate": "2026-10-15T10:10:39.000Z",
       "excerpt": "&nbsp;",
-      "image": "https://www.ribarroja.es/sites/www.ribarroja.es/files/styles/interior_contenido_/public/Competiciones%20deportivas%20reducida_9.png?itok=4a4ygyCm"
+      "image": "https://www.ribarroja.es/sites/www.ribarroja.es/files/styles/interior_contenido_/public/Competiciones%20deportivas%20reducida_9.png?itok=ROS0vfSe"
+    },
+    {
+      "id": "1an67si",
+      "title": "Competiciones deportivas 24 de octubre de 2026",
+      "link": "https://www.ribarroja.es/es/evento/competiciones-deportivas-24-de-octubre-de-2026",
+      "eventDate": "2026-10-24T07:00:00.000Z",
+      "eventDateText": "24 de octubre de 2026 09:00",
+      "publishedDate": "2026-10-21T16:09:38.000Z",
+      "excerpt": "&nbsp;",
+      "image": "https://www.ribarroja.es/sites/www.ribarroja.es/files/styles/interior_contenido_/public/Competiciones%20deportivas%20reducida_10.png?itok=RCA6Toh_"
+    },
+    {
+      "id": "o3e0pe",
+      "title": "Competiciones deportivas 25 de octubre de 2026",
+      "link": "https://www.ribarroja.es/es/evento/competiciones-deportivas-25-de-octubre-de-2026",
+      "eventDate": "2026-10-25T10:00:00.000Z",
+      "eventDateText": "25 de octubre de 2026 11:00",
+      "publishedDate": "2026-10-21T16:12:07.000Z",
+      "excerpt": "&nbsp;",
+      "image": "https://www.ribarroja.es/sites/www.ribarroja.es/files/styles/interior_contenido_/public/Competiciones%20deportivas%20reducida_11.png?itok=1J9a0r0J"
     },
     {
       "id": "3r3ub6",
@@ -408,17 +348,77 @@
       "eventDateText": "25 de octubre de 2026 11:30",
       "publishedDate": "2026-10-19T15:57:09.000Z",
       "excerpt": "&nbsp;",
-      "image": "https://www.ribarroja.es/sites/www.ribarroja.es/files/styles/interior_contenido_/public/20261019%20Foto%20riba-roja%20Pedaleja.jpg?itok=0GAaUVnb"
+      "image": "https://www.ribarroja.es/sites/www.ribarroja.es/files/styles/interior_contenido_/public/20261019%20Foto%20riba-roja%20Pedaleja.jpg?itok=A-cg4Tbb"
+    },
+    {
+      "id": "18291s4",
+      "title": "Competiciones deportivas 31 de octubre de 2026",
+      "link": "https://www.ribarroja.es/es/evento/competiciones-deportivas-31-de-octubre-de-2026",
+      "eventDate": "2026-10-31T07:00:00.000Z",
+      "eventDateText": "31 de octubre de 2026 08:00",
+      "publishedDate": "2026-10-29T13:27:55.000Z",
+      "excerpt": "&nbsp;",
+      "image": "https://www.ribarroja.es/sites/www.ribarroja.es/files/styles/interior_contenido_/public/Competiciones%20deportivas%20reducida_12.png?itok=I10LVbPm"
+    },
+    {
+      "id": "1m560u0",
+      "title": "Competiciones deportivas 1 de noviembre de 2026",
+      "link": "https://www.ribarroja.es/es/evento/competiciones-deportivas-1-de-noviembre-de-2026",
+      "eventDate": "2026-11-01T08:00:00.000Z",
+      "eventDateText": "01 de noviembre de 2026 09:00",
+      "publishedDate": "2026-10-29T13:30:22.000Z",
+      "excerpt": "&nbsp;",
+      "image": "https://www.ribarroja.es/sites/www.ribarroja.es/files/styles/interior_contenido_/public/Competiciones%20deportivas%20reducida_13.png?itok=yFH3-S2K"
+    },
+    {
+      "id": "i3e6lm",
+      "title": "Ruta saludable: Centre de Salut - Plataner de Traver",
+      "link": "https://www.ribarroja.es/es/evento/ruta-saludable%3A-centre-de-salut-plataner-de-traver",
+      "eventDate": "2026-11-03T08:30:00.000Z",
+      "eventDateText": "03 de noviembre de 2026 09:30",
+      "publishedDate": "2026-10-29T16:57:29.000Z",
+      "excerpt": null,
+      "image": "https://www.ribarroja.es/sites/www.ribarroja.es/files/styles/interior_contenido_/public/20261029%20Ruta%20Saludable_1.jpeg?itok=40in56uN"
+    },
+    {
+      "id": "mmd10w",
+      "title": "Xarrada Els Pobles Castell impacte econòmic i social al Túria",
+      "link": "https://www.ribarroja.es/es/evento/xarrada-els-pobles-castell-impacte-econ%C3%B2mic-i-social-al-t%C3%BAria",
+      "eventDate": "2026-11-03T17:30:00.000Z",
+      "eventDateText": "03 de noviembre de 2026 18:30",
+      "publishedDate": "2026-10-29T16:47:01.000Z",
+      "excerpt": null,
+      "image": "https://www.ribarroja.es/sites/www.ribarroja.es/files/styles/interior_contenido_/public/20261029%20Charla%20Pobles%20Castell_1.png?itok=fiU_oJ6l"
+    },
+    {
+      "id": "19ande1",
+      "title": "2 anys de la DANA La reconstrucció",
+      "link": "https://www.ribarroja.es/es/evento/2-anys-de-la-dana-la-reconstrucci%C3%B3",
+      "eventDate": "2026-11-03T18:30:00.000Z",
+      "eventDateText": "03 de noviembre de 2026 19:30",
+      "publishedDate": "2026-10-29T16:53:54.000Z",
+      "excerpt": null,
+      "image": "https://www.ribarroja.es/sites/www.ribarroja.es/files/styles/interior_contenido_/public/20261029%20Charla%20reconstrucci%C3%B3n_1.png?itok=hY7Vlk92"
+    },
+    {
+      "id": "1167zl9",
+      "title": "Exposición fotográfica 'Túria: El Ciclo de la Gratitud'",
+      "link": "https://www.ribarroja.es/es/evento/exposici%C3%B3n-fotogr%C3%A1fica-%27t%C3%BAria%3A-el-ciclo-de-la-gratitud%27",
+      "eventDate": "2026-11-04T17:00:00.000Z",
+      "eventDateText": "04 de noviembre de 2026 18:00",
+      "publishedDate": "2026-10-29T16:41:59.000Z",
+      "excerpt": null,
+      "image": "https://www.ribarroja.es/sites/www.ribarroja.es/files/styles/interior_contenido_/public/20261029%20cartel%20VII%20OFRENA%20AL%20RIU%20TURIA26C_1.jpg?itok=wUPLnLJG"
     },
     {
       "id": "kly15o",
       "title": "Cine 'La bola negra'",
       "link": "https://www.ribarroja.es/es/evento/cine-%27la-bola-negra%27",
-      "eventDate": "2026-10-30T21:00:00.000Z",
-      "eventDateText": "30 de octubre de 2026 22:00",
+      "eventDate": "2026-11-06T21:00:00.000Z",
+      "eventDateText": "06 de noviembre de 2026 22:00",
       "publishedDate": "2026-10-15T10:45:18.000Z",
       "excerpt": "&nbsp;",
-      "image": "https://www.ribarroja.es/sites/www.ribarroja.es/files/styles/interior_contenido_/public/20261014%20bolanegra.jpg?itok=lJw4Fqx4"
+      "image": "https://www.ribarroja.es/sites/www.ribarroja.es/files/styles/interior_contenido_/public/20261029%20bola%20negra%20cabit%20de%20dies%20%281%29.jpg?itok=Ffibepgs"
     },
     {
       "id": "nfc8cc",
@@ -428,7 +428,7 @@
       "eventDateText": "20 de noviembre de 2026 22:00",
       "publishedDate": "2026-08-31T06:54:17.000Z",
       "excerpt": "&nbsp;",
-      "image": "https://www.ribarroja.es/sites/www.ribarroja.es/files/styles/interior_contenido_/public/20260831%20ruega%20por%20nosotras.jpg?itok=DVbJlZWg"
+      "image": "https://www.ribarroja.es/sites/www.ribarroja.es/files/styles/interior_contenido_/public/20260831%20ruega%20por%20nosotras.jpg?itok=wVUNT9GN"
     },
     {
       "id": "jcce5",
@@ -438,7 +438,7 @@
       "eventDateText": "22 de noviembre de 2026 17:00",
       "publishedDate": "2026-08-31T06:57:50.000Z",
       "excerpt": "&nbsp;",
-      "image": "https://www.ribarroja.es/sites/www.ribarroja.es/files/styles/interior_contenido_/public/20260831%20el%20gato%20con%20sombrero.jpg?itok=I5vxB-yi"
+      "image": "https://www.ribarroja.es/sites/www.ribarroja.es/files/styles/interior_contenido_/public/20260831%20el%20gato%20con%20sombrero.jpg?itok=OSFnRHeT"
     },
     {
       "id": "wghwd8",
@@ -448,7 +448,7 @@
       "eventDateText": "22 de noviembre de 2026 19:00",
       "publishedDate": "2026-08-31T06:56:22.000Z",
       "excerpt": "&nbsp;",
-      "image": "https://www.ribarroja.es/sites/www.ribarroja.es/files/styles/interior_contenido_/public/20260831%20ruega%20por%20nosotras_0.jpg?itok=RxIqXymc"
+      "image": "https://www.ribarroja.es/sites/www.ribarroja.es/files/styles/interior_contenido_/public/20260831%20ruega%20por%20nosotras_0.jpg?itok=33gMGdJu"
     },
     {
       "id": "1b50gro",
@@ -458,7 +458,7 @@
       "eventDateText": "04 de diciembre de 2026 19:00",
       "publishedDate": "2026-08-31T07:02:51.000Z",
       "excerpt": "&nbsp;",
-      "image": "https://www.ribarroja.es/sites/www.ribarroja.es/files/styles/interior_contenido_/public/20260831%20la%20patrulla%20canina.jpg?itok=WsYVKN2v"
+      "image": "https://www.ribarroja.es/sites/www.ribarroja.es/files/styles/interior_contenido_/public/20260831%20la%20patrulla%20canina.jpg?itok=52Oj01r_"
     },
     {
       "id": "b0floj",
@@ -468,7 +468,7 @@
       "eventDateText": "04 de diciembre de 2026 22:00",
       "publishedDate": "2026-08-31T06:59:21.000Z",
       "excerpt": "&nbsp;",
-      "image": "https://www.ribarroja.es/sites/www.ribarroja.es/files/styles/interior_contenido_/public/20260831%20street%20figher.jpg?itok=6L6IBGPm"
+      "image": "https://www.ribarroja.es/sites/www.ribarroja.es/files/styles/interior_contenido_/public/20260831%20street%20figher.jpg?itok=2dOUdI_R"
     },
     {
       "id": "wwhu0k",
@@ -478,7 +478,7 @@
       "eventDateText": "06 de diciembre de 2026 16:30",
       "publishedDate": "2026-08-31T07:09:00.000Z",
       "excerpt": "&nbsp;",
-      "image": "https://www.ribarroja.es/sites/www.ribarroja.es/files/styles/interior_contenido_/public/20260831%20wildwood-2.jpg?itok=7EuWyVL6"
+      "image": "https://www.ribarroja.es/sites/www.ribarroja.es/files/styles/interior_contenido_/public/20260831%20wildwood-2.jpg?itok=v70OOG94"
     },
     {
       "id": "lj10u0",
@@ -488,7 +488,7 @@
       "eventDateText": "06 de diciembre de 2026 19:00",
       "publishedDate": "2026-08-31T07:12:24.000Z",
       "excerpt": "&nbsp;",
-      "image": "https://www.ribarroja.es/sites/www.ribarroja.es/files/styles/interior_contenido_/public/20260831%20los%20juegos%20del%20hambre_0.jpg?itok=C-JZ4cvj"
+      "image": "https://www.ribarroja.es/sites/www.ribarroja.es/files/styles/interior_contenido_/public/20260831%20los%20juegos%20del%20hambre_0.jpg?itok=hsVEx_5i"
     },
     {
       "id": "d9hcm0",
@@ -498,7 +498,7 @@
       "eventDateText": "05 de febrero de 2027 22:00",
       "publishedDate": "2026-08-31T06:52:12.000Z",
       "excerpt": "&nbsp;",
-      "image": "https://www.ribarroja.es/sites/www.ribarroja.es/files/styles/interior_contenido_/public/20260831%20burundanga.jpg?itok=35yx-aCt"
+      "image": "https://www.ribarroja.es/sites/www.ribarroja.es/files/styles/interior_contenido_/public/20260831%20burundanga.jpg?itok=PdSGzVwS"
     },
     {
       "id": "6x69fs",
@@ -508,7 +508,7 @@
       "eventDateText": "20 de febrero de 2027 19:00",
       "publishedDate": "2026-09-30T12:09:44.000Z",
       "excerpt": "&nbsp;",
-      "image": "https://www.ribarroja.es/sites/www.ribarroja.es/files/styles/interior_contenido_/public/20260924%20Cartel%20A-4%20Mecano%20Riba-roja%20%28val%29.jpg?itok=tn4mteCg"
+      "image": "https://www.ribarroja.es/sites/www.ribarroja.es/files/styles/interior_contenido_/public/20260924%20Cartel%20A-4%20Mecano%20Riba-roja%20%28val%29.jpg?itok=9EXuPaAZ"
     }
   ]
 }

@@ -3,6 +3,10 @@ import { Pill } from '../components/Primitives'
 import { Embudo } from '../components/coste-esperado/Embudo'
 import DataAsOf from '../components/DataAsOf'
 import { useCosteEsperado } from '../hooks/useCosteEsperado'
+import { useT } from '../i18n'
+import { eurosBreves } from '../lib/formatters'
+import { estadoLlano } from '../lib/estado-llano.js'
+import { respuestaCosteEsperado } from '../lib/lecturas-laboratorio'
 
 /**
  * /laboratorio/coste-esperado — el gasto observado contra el esperado dada la
@@ -21,10 +25,7 @@ import { useCosteEsperado } from '../hooks/useCosteEsperado'
  * tubería de fichas firmadas.
  */
 
-const formateaEuros = (v) =>
-  v >= 1e6
-    ? `${(v / 1e6).toLocaleString('es-ES', { maximumFractionDigits: 2 })} M€`
-    : `${Math.round(v).toLocaleString('es-ES')} €`
+const formateaEuros = eurosBreves
 
 // Los motivos de exclusión son slugs del esquema; aquí llevan su tilde. Un
 // motivo sin entrada se enseña con el slug tal cual — visible antes que mudo.
@@ -108,6 +109,7 @@ function ServicioEsperado({ e }) {
 }
 
 export default function CosteEsperado() {
+  const t = useT()
   const { loading, error, data } = useCosteEsperado()
   const especificaciones = data?.especificaciones ?? []
   const publicadas = [...especificaciones.filter((e) => e.estado === 'publicada')].sort(
@@ -118,6 +120,9 @@ export default function CosteEsperado() {
   const r2Min = r2s.length ? Math.min(...r2s) : null
   const r2Max = r2s.length ? Math.max(...r2s) : null
   const fmtR2 = (v) => Math.round(v * 100)
+  // La respuesta corta (auditoría de las dos lecturas, §24), contada del mismo
+  // snapshot que las tarjetas. Va DESPUÉS de «no es un aprobado», nunca antes.
+  const respuesta = respuestaCosteEsperado(especificaciones)
 
   return (
     <div className="cp-page" style={{ padding: 24, maxWidth: 900, margin: '0 auto' }}>
@@ -151,11 +156,34 @@ export default function CosteEsperado() {
       </p>
 
       <Card style={{ marginTop: 14, borderLeft: '3px solid var(--intel)' }}>
-        <p
-          style={{ margin: 0, fontSize: 'var(--fs-aux)', color: 'var(--ink70)', maxWidth: '66ch' }}
+        <h2
+          style={{
+            fontSize: 'var(--fs-card)',
+            fontWeight: 650,
+            margin: '0 0 6px',
+            lineHeight: 1.3,
+          }}
         >
-          <strong>Esto no es una nota, y «dentro de la banda» no es un aprobado.</strong> La recta
-          usa un solo impulsor —la población— y explica
+          {/* Sin «de lo esperado»: es la marca de un veredicto («×N de lo
+              esperado»), y la prueba del aviso exige que ninguno vaya antes. */}
+          ¿Gasta Riba-roja más de lo normal para un municipio de su tamaño?
+        </h2>
+        <p
+          data-coste-esperado-respuesta=""
+          style={{ margin: 0, fontSize: 'var(--fs-aux)', color: 'var(--ink)', maxWidth: '66ch' }}
+        >
+          <strong>Esto no es una nota, y «dentro de la banda» no es un aprobado.</strong>
+          {respuesta && ` ${respuesta}`}
+        </p>
+        <p
+          style={{
+            margin: '8px 0 0',
+            fontSize: 'var(--fs-aux)',
+            color: 'var(--ink70)',
+            maxWidth: '66ch',
+          }}
+        >
+          La recta usa un solo impulsor —la población— y explica
           {r2Min !== null ? (
             <>
               {' '}
@@ -235,7 +263,8 @@ export default function CosteEsperado() {
                 key={e.programa}
                 style={{ display: 'flex', gap: 10, alignItems: 'baseline', padding: '6px 0' }}
               >
-                <Pill tone="neutral">{e.estado}</Pill>
+                {/* Decía el código, «muestra-insuficiente» o «sin-declaracion-propia». */}
+                <Pill tone="neutral">{estadoLlano(t, 'especificacionEsperada', e.estado)}</Pill>
                 <div>
                   <strong style={{ fontSize: 'var(--fs-meta)' }}>{e.label}</strong>
                   <p

@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom'
 import { useReportaje } from '../hooks/useReportaje'
 import { REPORTAJE_SLUGS } from '../reportajes'
 import Emblema from '../components/reportajes/Emblema'
-import { Pill } from '../components/Primitives'
+import ChipCorrecciones from '../components/reportajes/ChipCorrecciones'
 import { fmtDateHuman } from '../lib/formatters'
 import { useT, useLocale } from '../i18n'
 
@@ -18,14 +18,15 @@ const SERIF = "'Fraunces', Georgia, serif"
 function ReportajeCard({ slug, readLabel }) {
   const { loading, error, data } = useReportaje(slug)
   // Antes de cualquier return: los hooks no se saltan.
-  const { t, locale } = useLocale()
+  const { locale } = useLocale()
   if (loading || error || !data) return null
   const m = data.meta || {}
   if (m.estado !== 'publicado') return null
   const href = `/reportajes/${m.slug || slug}`
   // Las correcciones se dicen también aquí, no sólo dentro de la pieza: quien
   // no la abre tiene que saber que el registro se enmendó. La portada ya lo
-  // hacía (ReportajeBlockD) con las mismas cadenas; el índice no.
+  // hacía (ReportajeBlockD); el índice no. Las dos usan ya la misma etiqueta,
+  // `ChipCorrecciones`.
   const correcciones = m.correcciones?.length ?? 0
   return (
     <article className="cp-rj-card">
@@ -80,16 +81,7 @@ function ReportajeCard({ slug, readLabel }) {
           <span className="mono cp-rj-leer" aria-hidden="true">
             {readLabel}
           </span>
-          {correcciones > 0 && (
-            <Pill tone="crit" size="xs" style={{ fontSize: 'var(--fs-micro)' }}>
-              {correcciones}{' '}
-              {t(
-                correcciones === 1
-                  ? 'landing.reportajes.correction'
-                  : 'landing.reportajes.corrections',
-              )}
-            </Pill>
-          )}
+          <ChipCorrecciones n={correcciones} />
         </div>
       </div>
     </article>

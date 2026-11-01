@@ -131,7 +131,10 @@ export function TarjetaVotaciones({ votos, total }) {
       )}
 
       <div style={{ marginTop: 11 }}>
-        <Link to="/metodologia" style={{ fontSize: 'var(--fs-aux)', color: 'var(--civic)' }}>
+        <Link
+          to="/metodologia#grupo-plenos"
+          style={{ fontSize: 'var(--fs-aux)', color: 'var(--civic)' }}
+        >
           {t('plenos.indice.comoSeProcesa')}
         </Link>
       </div>

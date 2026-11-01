@@ -299,11 +299,15 @@ async function main() {
       // Valenciana de 2020 está descargado, lo presentaron 503 ayuntamientos
       // valencianos —más que en 2018, 2019, 2021 o 2022— y Riba-roja no figura
       // en ninguna de sus tablas de coste, gestión ni unidades físicas.
+      //
+      // Y se publica: /eficiencia la pinta tal cual. Decía cómo se pide el
+      // fichero aquí —`npm run fetch:cesel-ccaa`, `.cache/cesel/ccaa`—, que es
+      // una instrucción para quien mantiene el sitio y no le dice nada al
+      // lector. El cómo está en la cabecera de scripts/fetch-cesel-ccaa.ts.
       motivoFaltantes:
-        'El ministerio sólo publica volcado masivo de 2021; el resto de entregas ' +
-        'se obtienen del informe por comunidad autónoma de la aplicación de ' +
-        'consulta, que se pide con `npm run fetch:cesel-ccaa` y se guarda en ' +
-        '.cache/cesel/ccaa.',
+        'El ministerio sólo publica de una vez el volcado de 2021; el resto de ' +
+        'entregas se obtienen una a una del informe por comunidad autónoma de su ' +
+        'aplicación de consulta.',
     },
     supramunicipal: {
       // Filas de CE4 en las que un ente supramunicipal declara servir a ESTE

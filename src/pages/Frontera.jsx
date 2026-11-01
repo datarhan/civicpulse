@@ -92,14 +92,27 @@ export default function Frontera() {
         dinero? Es lo único que mide el análisis envolvente de datos, y es menos de lo que suena.
       </p>
 
+      {/* La pregunta que trae a un vecino aquí, y su respuesta, en el mismo aviso
+          que dice lo que esto NO es (auditoría de las dos lecturas, §24): una
+          caja aparte habría repetido el aviso con otras palabras. */}
       <Card style={{ marginTop: 14, borderLeft: '3px solid var(--intel)' }}>
+        <h2
+          style={{
+            fontSize: 'var(--fs-card)',
+            fontWeight: 650,
+            margin: '0 0 6px',
+            lineHeight: 1.3,
+          }}
+        >
+          ¿Es eficiente Riba-roja?
+        </h2>
         <p
           style={{ margin: 0, fontSize: 'var(--fs-aux)', color: 'var(--ink70)', maxWidth: '66ch' }}
         >
-          <strong>Esto no es una nota ni un ranking.</strong> El resto del sitio publica cifras que
-          se pueden rehacer desde su fuente. Esta página publica el resultado de un modelo con
-          decisiones nuestras dentro: con la misma fuente, la puntuación de Riba-roja depende de qué
-          cesta de servicios igual de defendible se elija
+          <strong>Con estos datos no se puede decir, y esto no es una nota ni un ranking.</strong>{' '}
+          El resto del sitio publica cifras que se pueden rehacer desde su fuente. Esta página
+          publica el resultado de un modelo con decisiones nuestras dentro: con la misma fuente, la
+          puntuación de Riba-roja depende de qué cesta de servicios igual de defendible se elija
           {sinPuntuacion > 0 &&
             `, y con ${palabra(sinPuntuacion)} de las ${palabra(especificaciones.length)} ni siquiera se puede calcular`}
           . Está en el laboratorio por eso, y no en{' '}

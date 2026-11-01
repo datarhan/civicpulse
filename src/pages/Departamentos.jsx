@@ -3,19 +3,11 @@ import { Card, Pill, SectionHead, PartyTag } from '../components/Primitives'
 import DataAsOf from '../components/DataAsOf'
 import { useDepartmentStats } from '../hooks/useDepartmentStats'
 import { usePromises, isPromiseFrozen, PARTY_TONE } from '../hooks/usePromises'
-import { useAreaFit, fitAggregate } from '../hooks/useAreaFit'
 import { useT, useLocale } from '../i18n'
 import { celdaPlazosVencidos, rotuloPlazosVencidos } from '../lib/plazos-vencidos'
 import { yearSpan } from '../lib/year-span'
 import { desgloseCotejadas } from '../lib/cotejo'
-
-/** Compact euros for a card stat: 61.262.695 € reads as "61,3 M€". */
-function formatEurosCompact(eur) {
-  if (!eur) return '—'
-  if (eur >= 1e6) return `${(eur / 1e6).toFixed(1).replace('.', ',')} M€`
-  if (eur >= 1e3) return `${Math.round(eur / 1e3)} k€`
-  return `${Math.round(eur)} €`
-}
+import { eurosBreves, rellena } from '../lib/formatters'
 
 function DepartmentCard({ bucket, frozen }) {
   const t = useT()
@@ -136,8 +128,10 @@ function DepartmentCard({ bucket, frozen }) {
                   : t('departamentos.card.contratacion')
               }
               value={
-                bucket.contratacion.contratos > 0
-                  ? formatEurosCompact(bucket.contratacion.importeEur)
+                // Contratos sin ningún importe publicado suman 0 € (`importeAdjudicado`
+                // da null y no suma): eso es «—», no un cero que nadie midió.
+                bucket.contratacion.contratos > 0 && bucket.contratacion.importeEur > 0
+                  ? eurosBreves(bucket.contratacion.importeEur)
                   : '—'
               }
               muted={bucket.contratacion.contratos === 0}
@@ -245,43 +239,6 @@ function Stat({ label, value, tone, muted, sub }) {
 }
 
 /**
- * One line, no names.
- *
- * The house pattern from press-analytics: the aggregate carries the story
- * without any individual carrying a grade. Deliberately states counts and not a
- * rate — "4 de 11" invites a percentage, and a percentage about who governs a
- * town is a scoreboard. Anchored in check:drift so it cannot go stale.
- */
-function EncajeAggregate() {
-  const t = useT()
-  const { data, frozen } = useAreaFit()
-  const agg = fitAggregate(data)
-  if (frozen || !agg) return null
-  return (
-    <p
-      style={{
-        fontSize: 'var(--fs-aux)',
-        color: 'var(--ink50)',
-        lineHeight: 1.55,
-        maxWidth: 780,
-        margin: '-12px 0 22px',
-        paddingLeft: 10,
-        borderLeft: '2px solid var(--border2)',
-      }}
-    >
-      {t('departamentos.encaje')
-        .replace('{cargos}', String(agg.cargos))
-        .replace('{conFormacion}', String(agg.conFormacion))
-        .replace('{sinRelacion}', String(agg.sinRelacion))}{' '}
-      {/* Inside the sentence, so underlined — see EncajeDeclarado.jsx. */}
-      <Link to="/metodologia#encaje" style={{ color: 'var(--civic)', textDecoration: 'underline' }}>
-        {t('encaje.card.law')} →
-      </Link>
-    </p>
-  )
-}
-
-/**
  * Desglose de las cinco fuentes para el tooltip de la píldora.
  *
  * El tono agregado dice que algo va mal; esto dice QUÉ, que es lo único
@@ -327,6 +284,7 @@ export default function Departamentos() {
   return (
     <div style={{ padding: '28px 28px 48px', maxWidth: 1180, margin: '0 auto' }}>
       <SectionHead
+        as="h1"
         eyebrow={t('departamentos.eyebrow')}
         title={t('departamentos.title')}
         right={
@@ -383,9 +341,11 @@ export default function Departamentos() {
           marginBottom: 24,
         }}
       >
-        {t('departamentos.subtitle')}
+        {t('departamentos.subtitle')}{' '}
+        {/* Las reglas viven aquí, donde se aplican; la portada las decía de
+            pasada en su bloque de rendición de cuentas. */}
+        {rellena(t('departamentos.reglas'), { casilla: t('departamentos.card.quejas') })}
       </p>
-      <EncajeAggregate />
       <div
         style={{
           display: 'grid',

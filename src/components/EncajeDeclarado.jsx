@@ -46,14 +46,17 @@ import {
  *  · THE OPPOSITION BLANK IS EXPLAINED. 10 of 21 councillors hold no delegated
  *    área, so no row can exist for them. Rendering nothing would turn /cargos
  *    into "the governing party has credentials, everyone else is blank" — an
- *    artifact of who governs, not of who is qualified. SinDelegacion says so.
+ *    artifact of who governs, not of who is qualified. SinDelegacion says so —
+ *    on /cargos once in the section head, with the label left on every card.
  *
  *  · THE BACKING IS STATED ONCE, NOT ONCE PER CHIP. While every assessment on a
  *    card rests on the same kind of source — today they all do — one sentence
  *    says so. A badge repeated identically beside every chip distinguishes
  *    nothing; that is how the cargoPublicoPrevio chip died. `sharedRespaldo`
  *    returns null the moment they diverge, and only then do per-item marks
- *    appear, where they would actually tell two items apart.
+ *    appear, where they would actually tell two items apart. One level up, the
+ *    same: while every citing card of a section agrees (`respaldoDeSeccion`),
+ *    the section head says it and each card keeps a four-word mark.
  *
  *  · BUT EVERY CARD SAYS WHAT IT COMPARED. The card whose every assessment is
  *    negative is the one a reader will judge hardest, and it was the one that
@@ -78,6 +81,20 @@ const TONE = {
  * rendering nothing. The gate is here, not in the translation table.
  */
 const RESPALDO_CON_COPIA = ['autodeclarada', 'corroborada', 'discrepancia-documentada']
+
+/**
+ * Backing values a whole SECTION may state once (`NotaRespaldoSeccion`), with a
+ * short mark left on each card (`MarcaDeSeccion`).
+ *
+ * Only `autodeclarada`: it is the one value whose sentence repeated card after
+ * card, and the mark «CV declarado por la persona» names it exactly. Any other
+ * shared value keeps its own sentence on each card, because a mark written for
+ * one backing would misname another.
+ */
+const RESPALDO_DE_SECCION = ['autodeclarada']
+
+/** Where a card's mark points: the sentence in its section head. */
+export const ID_NOTA_RESPALDO = 'encaje-respaldo'
 
 function valueLabel(t, value) {
   return t(`encaje.value.${value}`)
@@ -180,6 +197,57 @@ function ComparadoLine({ style = {} }) {
   )
 }
 
+/**
+ * The backing sentence, said once for a whole section of cards.
+ *
+ * Renders only for a value in `RESPALDO_DE_SECCION`, so it and `MarcaDeSeccion`
+ * can never disagree about whether the section carries it: the page hands both
+ * the same `respaldoDeSeccion` value and each gate reads the same list.
+ */
+export function NotaRespaldoSeccion({ value }) {
+  const t = useT()
+  if (!RESPALDO_DE_SECCION.includes(value)) return null
+  return (
+    <p
+      id={ID_NOTA_RESPALDO}
+      data-respaldo-seccion={value}
+      style={{
+        margin: '0 0 14px',
+        fontSize: 'var(--fs-aux)',
+        lineHeight: 1.55,
+        color: 'var(--ink70)',
+        maxWidth: '88ch',
+        scrollMarginTop: 16,
+      }}
+    >
+      {t(`encaje.seccion.${value}`)}
+    </p>
+  )
+}
+
+/**
+ * What stays on the card when its section states the backing: still in the
+ * same card as the chips — a reader who lands on one card mid-page must not
+ * lose where its citations come from — but four words, linked to the sentence.
+ */
+function MarcaDeSeccion({ value, style = {} }) {
+  const t = useT()
+  return (
+    <div
+      data-respaldo-marca={value}
+      style={{ fontSize: 'var(--fs-micro)', color: 'var(--ink50)', lineHeight: 1.45, ...style }}
+    >
+      <a
+        href={`#${ID_NOTA_RESPALDO}`}
+        style={{ color: 'inherit', textDecoration: 'underline', textDecorationStyle: 'dotted' }}
+      >
+        {t(`encaje.card.marca.${value}`)}
+        <span aria-hidden="true"> ⓘ</span>
+      </a>
+    </div>
+  )
+}
+
 /** The per-item mark, used ONLY where the items disagree. */
 function RespaldoMark({ value }) {
   const t = useT()
@@ -224,14 +292,32 @@ function TruncatedList({ items }) {
  * `bioRoute` is passed in rather than resolved here: /laboratorio/agentes/:id
  * is gated by PERIODISTAS_ENABLED and simply does not exist in production
  * without the flag, so linking unconditionally would ship a dead link.
+ *
+ * The two section props move what every card of a section would repeat into
+ * the section head, and leave the card a short mark (auditoría de las dos
+ * lecturas, §3, punto 2). Without them the card says everything itself, as it
+ * did before:
+ *
+ *  · `respaldoEnSeccion` — the backing the section head states
+ *    (`NotaRespaldoSeccion`, fed by `respaldoDeSeccion`). A card whose own
+ *    shared backing is that value shows `MarcaDeSeccion` instead of the
+ *    sentence; any other card keeps its own line.
+ *  · `notaEnSeccion` — the section head explains why a councillor with no
+ *    delegated área has a blank block, so `SinDelegacion` keeps its label and
+ *    drops the sentence.
  */
-export function EncajeCard({ official, bioRoute }) {
+export function EncajeCard({
+  official,
+  bioRoute,
+  respaldoEnSeccion = null,
+  notaEnSeccion = false,
+}) {
   const t = useT()
   const { data, frozen } = useAreaFit()
   const rows = fitRowsForSlug(data, official.slug)
 
   if (frozen) return null
-  if (!official.portfolios?.length) return <SinDelegacion />
+  if (!official.portfolios?.length) return <SinDelegacion nota={!notaEnSeccion} />
   // Holds an área, nobody has signed it yet. Says so, out loud: a `null` here
   // made the unreviewed look cleaner than the reviewed. See SinRevisar.
   if (!rows.length) return <SinRevisar />
@@ -341,7 +427,9 @@ export function EncajeCard({ official, bioRoute }) {
           compared against, and a card that stated neither read as a verdict.
           «no consta» is still not «autodeclarada»: the second line claims no
           citation and no corroboration check. */}
-      {shared ? (
+      {shared && shared === respaldoEnSeccion && RESPALDO_DE_SECCION.includes(shared) ? (
+        <MarcaDeSeccion value={shared} style={{ marginTop: 7 }} />
+      ) : shared ? (
         <RespaldoLine value={shared} style={{ marginTop: 7 }} />
       ) : (
         citesNothing(rows) && <ComparadoLine style={{ marginTop: 7 }} />
@@ -420,8 +508,14 @@ export function SinRevisar() {
   )
 }
 
-/** The explicit empty state for the 10 councillors with no delegated área. */
-export function SinDelegacion() {
+/**
+ * The explicit empty state for the councillors with no delegated área.
+ *
+ * `nota={false}` when the section head already says why the block is blank
+ * (`encaje.sinDelegacion.seccion`): the label stays on every card, so the blank
+ * is still named where it is, and the sentence is said once.
+ */
+export function SinDelegacion({ nota = true }) {
   const t = useT()
   return (
     <div
@@ -437,7 +531,7 @@ export function SinDelegacion() {
       <span className="mono" style={{ letterSpacing: '.06em', textTransform: 'uppercase' }}>
         {t('encaje.sinDelegacion.label')}
       </span>
-      <div style={{ marginTop: 3 }}>{t('encaje.sinDelegacion.note')}</div>
+      {nota && <div style={{ marginTop: 3 }}>{t('encaje.sinDelegacion.note')}</div>}
     </div>
   )
 }

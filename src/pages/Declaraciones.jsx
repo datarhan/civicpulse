@@ -14,7 +14,10 @@ import { oneSeatBlocsOf } from '../scraper/corporation-seats'
 import { blocLabel } from '../lib/party-label.js'
 import { etiquetaVerificador, evidenciaSegunFuentes } from '../lib/claim-provenance.js'
 import { snippetDeEvidencia } from '../lib/crosschecked-status.js'
+import { estadoLlano } from '../lib/estado-llano.js'
+import { eurosBreves } from '../lib/formatters'
 import { PuenteDeImporte } from '../components/PuenteDeImporte'
+import { cifraCitada } from '../scraper/cifra-en-literal'
 
 const PAGE_SIZE = 50
 
@@ -109,7 +112,10 @@ function ClaimRow({ item, plenoTitle }) {
   // gris sobre una formación que no reconocemos.
   const speakerColor = c.speakerGroup ? PARTY_TONE[c.speakerGroup] : undefined
   const ent = []
-  if (c.entities?.amountEuros) ent.push('€' + c.entities.amountEuros.toLocaleString('es-ES'))
+  // Sólo la cifra que la cita dice (src/scraper/cifra-en-literal.ts): la del
+  // extractor puede venir de la frase de al lado, y aquí se lee como de ésta.
+  const cifra = cifraCitada(c)
+  if (cifra != null) ent.push(eurosBreves(cifra))
   if (c.entities?.count)
     ent.push(c.entities.count + (c.entities.countUnit ? ' ' + c.entities.countUnit : ''))
   if (c.entities?.date) ent.push(c.entities.date)
@@ -218,7 +224,7 @@ function ClaimRow({ item, plenoTitle }) {
                   Gobierto por su rótulo («· construction ·» → «Construcción»).
                   Sólo en pantalla; el dato no se toca. */}
               {snippetDeEvidencia(e, t)}
-              <PuenteDeImporte cifra={c.entities?.amountEuros} evidencia={e} />
+              <PuenteDeImporte cifra={cifra} evidencia={e} />
             </div>
           ))}
         </div>
@@ -362,7 +368,7 @@ export default function Declaraciones() {
 
   return (
     <div style={{ padding: '28px 28px 48px', maxWidth: 1100, margin: '0 auto' }}>
-      <SectionHead eyebrow={t('declaraciones.eyebrow')} title={t('declaraciones.title')} />
+      <SectionHead eyebrow={t('declaraciones.eyebrow')} title={t('declaraciones.title')} as="h1" />
       <p
         style={{
           fontSize: 'var(--fs-aux)',
@@ -392,10 +398,27 @@ export default function Declaraciones() {
         {/* Sin verde: el agregado incluye las contradichas, y en verde se leía como respaldo.
             Las cifras de cada veredicto, al lado, conservan su tono. */}
         <MiniStat label={t('declaraciones.stat.conEvidencia')} value={stats.withEvidence} />
-        <MiniStat label="verificado" value={stats.byVerdict.verificado} tone="ok" />
-        <MiniStat label="parcial" value={stats.byVerdict.parcial} tone="warn" />
-        <MiniStat label="contradicho" value={stats.byVerdict.contradicho} tone="crit" />
-        <MiniStat label="sin-datos" value={stats.byVerdict['sin-datos']} />
+        {/* Los rótulos del veredicto, no sus códigos: «sin-datos» salía «SIN-DATOS»
+            en mayúsculas, y en valencià los cuatro seguían en castellano. */}
+        <MiniStat
+          label={estadoLlano(t, 'veredicto', 'verificado')}
+          value={stats.byVerdict.verificado}
+          tone="ok"
+        />
+        <MiniStat
+          label={estadoLlano(t, 'veredicto', 'parcial')}
+          value={stats.byVerdict.parcial}
+          tone="warn"
+        />
+        <MiniStat
+          label={estadoLlano(t, 'veredicto', 'contradicho')}
+          value={stats.byVerdict.contradicho}
+          tone="crit"
+        />
+        <MiniStat
+          label={estadoLlano(t, 'veredicto', 'sin-datos')}
+          value={stats.byVerdict['sin-datos']}
+        />
       </div>
 
       {/*

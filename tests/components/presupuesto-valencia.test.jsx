@@ -23,7 +23,8 @@ import { resolve } from 'node:path'
 
 import { CATALOGUE } from '../../src/i18n'
 import { peekSnapshot } from '../../src/lib/snapshot-store'
-import Presupuesto, { formatEuros } from '../../src/pages/Presupuesto'
+import Presupuesto from '../../src/pages/Presupuesto'
+import { euros, eurosBreves } from '../../src/lib/formatters'
 import { lecturaCapitulos } from '../../src/scraper/presupuesto-lectura'
 import { isCommittedContract } from '../../src/lib/contract-status'
 import { topContractors } from '../../src/lib/tender-geo'
@@ -70,9 +71,10 @@ const SIGLAS = [
  * Lo que el valencià escribe igual que el castellano sin ser un valor entero del
  * catálogo: «Cap.» abrevia «capítulo» y «capítol»; «adj.», «adjudicado» y
  * «adjudicat»; y «Patrimonial» es el mismo tipo de contrato en los dos idiomas
- * cuando va pegado a su importe en el `title` de la barra.
+ * cuando va pegado a su importe en el `title` de la barra. «de cada 100» es la
+ * cifra de «En breve» («30 de cada 100 €»), que se escribe igual en los dos.
  */
-const IGUALES_EN_LOS_DOS = ['Cap.', 'adj.', 'Patrimonial']
+const IGUALES_EN_LOS_DOS = ['Cap.', 'adj.', 'Patrimonial', 'de cada 100']
 
 /** Las unidades de las cifras, leídas de los formateadores y no escritas. */
 const DINERO_COMPACTO = new Intl.NumberFormat('es-ES', {
@@ -90,8 +92,8 @@ const sinCifras = (s) =>
 const UNIDADES = masLargasPrimero([
   ...sinCifras(DINERO_COMPACTO.format(55_000_000)),
   ...sinCifras(DINERO_COMPACTO.format(418_000)),
-  ...sinCifras(formatEuros(41_578_252, { compact: true })),
-  ...sinCifras(formatEuros(41_578_252)),
+  ...sinCifras(eurosBreves(41_578_252)),
+  ...sinCifras(euros(41_578_252)),
   'M€',
   'k€',
 ])
@@ -312,6 +314,13 @@ function sinImportes() {
   return mapa
 }
 
+/** Lo publicado, sin lo que sólo se pide al pulsar: este escenario no pulsa. */
+function sinPulsar() {
+  const mapa = structuredClone(sirve())
+  for (const r of AL_PULSAR) delete mapa[r]
+  return mapa
+}
+
 const pintada = (c) =>
   !!c.querySelector('h1') &&
   /\d{4}/.test(c.querySelector('h1').textContent) &&
@@ -335,6 +344,15 @@ const ESCENARIOS = [
     listo: pintada,
     interactua: recorre,
     alPulsar: AL_PULSAR,
+  },
+  {
+    // Un enlace compartido con un barrio que el mapa no conoce: la página lo
+    // dice (`presupuesto.gasto.zona.desconocida`) en vez de abrir el mapa sin más.
+    nombre: 'un enlace con un barrio que el mapa no conoce',
+    fetch: sinPulsar(),
+    ruta: '/presupuesto?barrio=sector-14',
+    pinta: () => <Presupuesto />,
+    listo: (c) => pintada(c) && !!c.querySelector('[data-barrio-desconocido]'),
   },
   {
     nombre: 'sin importes en los contratos',

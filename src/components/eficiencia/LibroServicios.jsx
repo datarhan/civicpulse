@@ -12,6 +12,7 @@ import {
 } from '../../scraper/indicador-areas'
 import { SectionHead } from '../Primitives'
 import { MARGEN_ANCLA } from './anclas'
+import { euros } from '../../lib/formatters'
 import { chipDeclaracion } from '../../scraper/indicador-lectura'
 
 /**
@@ -215,11 +216,7 @@ export function LibroServicios({ indicadores = [], formateaCon, entrega }) {
               className="mono"
               style={{ fontSize: 'var(--fs-card)', fontWeight: 500, letterSpacing: '-.02em' }}
             >
-              {totalCoste.toLocaleString('es-ES', {
-                style: 'currency',
-                currency: 'EUR',
-                maximumFractionDigits: 0,
-              })}
+              {euros(totalCoste)}
             </div>
             <div style={{ fontSize: 'var(--fs-micro)', color: 'var(--ink50)', marginTop: 2 }}>
               coste efectivo de los {conCoc} con cociente · no es el gasto municipal

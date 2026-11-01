@@ -35,6 +35,7 @@ import { render, waitFor } from '@testing-library/react'
 import { MemoryRouter } from 'react-router-dom'
 
 import { LocaleProvider } from '../../src/i18n'
+import { ProveedorLecturas } from '../../src/components/Lecturas'
 import { invalidateSnapshots, peekSnapshot } from '../../src/lib/snapshot-store'
 import { installFetchMock } from './mockFetch'
 import { lectura } from './castellano'
@@ -52,6 +53,8 @@ export interface Escenario {
   interactua?: (container: HTMLElement) => Promise<string[]> | string[]
   alPulsar?: string[]
 }
+
+const NO_CAMBIA = () => {}
 
 export async function pintaYLee(
   escenario: Escenario,
@@ -78,7 +81,15 @@ export async function pintaYLee(
   const fetchFn = installFetchMock(mapa)
   const { container, unmount } = render(
     <MemoryRouter initialEntries={escenario.ruta ? [escenario.ruta] : undefined}>
-      <LocaleProvider>{escenario.pinta()}</LocaleProvider>
+      <LocaleProvider>
+        {/* Como en la web: toda página interior va dentro del proveedor del
+            pliegue, así que el control «Ver: lo esencial · todo» y la pestaña
+            de cada sección también se leen en los dos idiomas. Con «todo»,
+            que es lo que ve quien no ha elegido nada. */}
+        <ProveedorLecturas lecturas="todo" onCambiar={NO_CAMBIA}>
+          {escenario.pinta()}
+        </ProveedorLecturas>
+      </LocaleProvider>
     </MemoryRouter>,
   )
   const alPulsar = escenario.alPulsar ?? []

@@ -15,10 +15,15 @@ import { useMemo, useState } from 'react'
 import { useParams, Link } from 'react-router-dom'
 import { Card, ExtLink, SectionHead } from '../components/Primitives'
 import {
+  ROTULO_ENMIENDA_ANTERIOR,
+  ROTULO_MOTIVO_ENMENDADO,
+  ROTULO_MOTIVO_ENMENDADO_EL,
   ROTULO_TEXTO_RETIRADO,
+  huellaSinEtiqueta,
   rotuloTextoPuesto,
   sustitutas,
 } from '../components/BitacoraCorrecciones'
+import { rellena } from '../lib/formatters'
 import { trozos } from '../lib/texto-negrita.js'
 import { heroCvUrl } from '../lib/journalist-facts.js'
 import { useOfficials } from '../hooks/useOfficials'
@@ -34,6 +39,7 @@ import {
 import { useJournalistAssignments } from '../hooks/useJournalistAssignments'
 import { useJournalistReportById } from '../hooks/useJournalistReports'
 import { quienReplica } from '../scraper/journalist/replica'
+import { useDocumentTitle } from '../hooks/useDocumentTitle'
 
 const SECTION_LABEL = {
   identity: 'Identidad',
@@ -160,10 +166,21 @@ export function CorrectionLog({ corrections }) {
   // Un cuerpo que otra fila volvió a corregir ya no es el del informe: la regla
   // y el rótulo son los de BitacoraCorrecciones.jsx.
   const despues = sustitutas(corrections)
+  // `overflowWrap: 'anywhere'`, como en BitacoraCorrecciones.jsx: la fila de una
+  // fuente añadida lleva «título · URL», y una URL no tiene dónde partirse. Sin
+  // él, la biografía de Rafael Gómez medía 480 px de ancho en un teléfono.
   return (
     <Card>
       <SectionHead title="Bitácora de correcciones" />
-      <ol style={{ margin: 0, padding: 0, listStyle: 'none', fontSize: 'var(--fs-meta)' }}>
+      <ol
+        style={{
+          margin: 0,
+          padding: 0,
+          listStyle: 'none',
+          fontSize: 'var(--fs-meta)',
+          overflowWrap: 'anywhere',
+        }}
+      >
         {corrections.map((c, i) => {
           const desde = inicioVentana(c.original, c.corrected)
           return (
@@ -179,13 +196,19 @@ export function CorrectionLog({ corrections }) {
               </div>
               <div style={{ marginTop: 4, color: 'var(--ink50)' }}>
                 {/* Rotulado, no sólo tachado: un estilo no viaja en `textContent`
-                  y esta ficha nombra a personas. Ver BitacoraCorrecciones.jsx. */}
-                <span className="mono" style={{ fontSize: 'var(--fs-micro)' }}>
-                  {ROTULO_TEXTO_RETIRADO}:{' '}
-                </span>
-                <del>
-                  <Recorte texto={c.original} desde={desde} />
-                </del>{' '}
+                  y esta ficha nombra a personas. Ver BitacoraCorrecciones.jsx.
+                  Una fuente añadida no retiró nada: sin texto que tachar, no hay
+                  rótulo de texto retirado. */}
+                {c.original ? (
+                  <>
+                    <span className="mono" style={{ fontSize: 'var(--fs-micro)' }}>
+                      {ROTULO_TEXTO_RETIRADO}:{' '}
+                    </span>
+                    <del>
+                      <Recorte texto={c.original} desde={desde} />
+                    </del>{' '}
+                  </>
+                ) : null}
                 <span className="mono" style={{ fontSize: 'var(--fs-micro)' }}>
                   {rotuloTextoPuesto(despues[i])}:{' '}
                 </span>
@@ -193,7 +216,26 @@ export function CorrectionLog({ corrections }) {
                   <Recorte texto={c.corrected} desde={desde} />
                 </span>
               </div>
-              <div style={{ marginTop: 4, color: 'var(--ink50)' }}>{c.reason}</div>
+              {/* Un motivo enmendado lo dice delante, y cada enmienda lleva su
+                  fecha, su firma, su porqué y la huella del motivo que sustituyó,
+                  como en /hallazgos (bloque ENMIENDA DEL MOTIVO, pleno-finding.ts). */}
+              <div style={{ marginTop: 4, color: 'var(--ink50)' }}>
+                {c.reasonAmendments?.length > 0
+                  ? `${rellena(ROTULO_MOTIVO_ENMENDADO_EL, {
+                      fecha: String(c.reasonAmendments.at(-1).amendedAt).slice(0, 10),
+                    })} `
+                  : ''}
+                {c.reason}
+              </div>
+              {(c.reasonAmendments ?? []).map((a, j) => (
+                <div key={j} style={{ marginTop: 2, color: 'var(--ink50)' }}>
+                  <span className="mono" style={{ fontSize: 'var(--fs-micro)' }}>
+                    {ROTULO_MOTIVO_ENMENDADO}: {String(a.amendedAt).slice(0, 10)} · {a.editor}
+                  </span>
+                  . {a.reason} {ROTULO_ENMIENDA_ANTERIOR}{' '}
+                  <span className="mono">{huellaSinEtiqueta(a.previous)}</span>.
+                </div>
+              ))}
             </li>
           )
         })}
@@ -342,6 +384,18 @@ export default function AgenteReporte() {
   const sourceMap = useMemo(() => (report ? SOURCE_INDEX(report.sources) : new Map()), [report])
   const tocItems = useMemo(() => (report ? sectionsToToc(report.sections) : []), [report])
   const subjectName = assignment?.subject.name ?? report?.assignmentId ?? ''
+  // No el nombre a secas: ése ya es el título de su ficha en /cargos.
+  // Sólo con el nombre de la asignación: `subjectName` cae al `assignmentId`
+  // («a-teresa-pozuelo-bio») mientras las asignaciones cargan, y un código
+  // interno no va en la pestaña.
+  const nombreAsignado = assignment?.subject?.name
+  useDocumentTitle(
+    report && nombreAsignado
+      ? assignment.kind === 'biography'
+        ? `Biografía de ${nombreAsignado}`
+        : nombreAsignado
+      : null,
+  )
   const portraitPayload = report?.sections.find((s) => s.kind === 'portrait')?.payload
   const officialsState = useOfficials()
   const party = officialsState.data?.officials?.find(
@@ -420,6 +474,16 @@ export default function AgenteReporte() {
         .cp-toc { position: sticky; top: 80px; align-self: start; }
         .cp-facts { position: sticky; top: 80px; align-self: start; padding: 18px; border: 1px solid var(--border); border-radius: var(--r-card); background: var(--paper); }
         .cp-main { display: grid; gap: var(--gap-block); min-width: 0; max-width: var(--reading-w); margin: 0 auto; width: 100%; }
+        /* La columna de arriba es una sola pista auto implícita: crece hasta el
+           min-content más ancho de sus tarjetas y las arrastra a todas. La tabla
+           de declaraciones financieras pide ~290 px, y a 320 px —y con la barra
+           lateral, donde esta columna baja a 277— todas las tarjetas se salían
+           de la columna, hasta 67 px (28-10-2026). Su Deslizable la desplaza
+           dentro de la tarjeta, y la contención de ancho deja el de la tabla
+           fuera de la pista: la tarjeta da el ancho al deslizador, nunca al
+           revés. Sólo se excluye el deslizador; cualquier otra tarjeta que
+           crezca sigue ensanchando la pista, que es donde la ve mobile.spec.ts. */
+        .cp-main .cp-desliza { contain: inline-size; }
         /* width:100% + border-box: with only margin:0 auto, a grid item does not
            stretch — it sizes to its content, and the ledger table's 720px
            min-width pushed the whole page to 810px on a phone (06-09-2026). */
@@ -447,7 +511,10 @@ export default function AgenteReporte() {
       <div className="cp-agente-shell">
         <StickyToc items={tocItems} />
 
-        <main className="cp-main">
+        {/* <article> y no <main>: el <main> de la página ya lo pone App.jsx, y
+            uno dentro de otro daba al lector de pantalla dos regiones
+            «principal» (axe: landmark-no-duplicate-main). */}
+        <article className="cp-main">
           <LegalSensitivityBadge level={report.legalSensitivity} warnings={report.warnings} />
 
           {renderedSections.map(({ section, anchorId }, i) => (
@@ -479,7 +546,7 @@ export default function AgenteReporte() {
               publicado {report.promotedAt.slice(0, 10)}
             </span>
           </div>
-        </main>
+        </article>
 
         <FactsSidebar report={report} subjectName={subjectName} assignment={assignment} />
       </div>

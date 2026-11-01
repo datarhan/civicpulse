@@ -40,6 +40,7 @@ import { tipoAMostrar } from '../../src/lib/claim-type-label.js'
 import {
   etiquetaVerificador,
   evidenciaSegunFuentes,
+  explicacionSinLista,
   resumenSegunFuentes,
 } from '../../src/lib/claim-provenance.js'
 import { resumenPublicable } from '../../src/lib/resumenes-retirados.js'
@@ -47,6 +48,7 @@ import { snippetDeEvidencia } from '../../src/lib/crosschecked-status.js'
 import { CATALOGUE } from '../../src/i18n'
 import { desenlaceDeCotejo } from '../../src/scraper/claim-verdicts'
 import { puenteDeImporte } from '../../src/scraper/importe-de-contrato'
+import { cifraCitada } from '../../src/scraper/cifra-en-literal'
 import {
   cadenasDe,
   datosPintados,
@@ -56,6 +58,7 @@ import {
   masLargasPrimero,
 } from '../setup/castellano'
 import { pintaYLee } from '../setup/pinta-y-lee'
+import { eurosBreves } from '../../src/lib/formatters'
 
 const lee = (f) => JSON.parse(readFileSync(`public/data/${f}`, 'utf8'))
 const MANIFIESTO = lee('pleno-claims/index.json')
@@ -63,6 +66,7 @@ const PLENOS = lee('plenos.json')
 const VOTOS = lee('pleno-votes.json')
 const HALLAZGOS = lee('pleno-findings.json')
 const VIDEOS = lee('pleno-videos.json')
+const VIDEOS_REGMEET = lee('pleno-videos-regmeet.json')
 const AGENDAS = lee('plenos-agendas.json')
 const TENDERS = lee('tenders.json')
 
@@ -73,10 +77,21 @@ const FRAGMENTO = lee(MANIFIESTO.plenos[0].chunkPath)
  * (`filaQueDiceLaCifra`, claim-verifier.ts): lo servido ya no lo necesita. Para que
  * el rótulo del puente se siga leyendo en los dos idiomas, entra su fila de antes,
  * congelada, en lugar de la servida.
+ *
+ * Y con la cifra dicha en su literal: la cita publicada no trae los 80.666 € —se
+ * dijeron en la frase siguiente—, y desde el 27-10-2026 la tarjeta sólo llama «la
+ * cifra citada» a la que la cita dice (src/scraper/cifra-en-literal.ts).
  */
-const CONGELADA = JSON.parse(
+const FILA_CONGELADA = JSON.parse(
   readFileSync('tests/fixtures/puente-importe-k4olcs-019_2026-10-19.json', 'utf8'),
 ).item
+const CONGELADA = {
+  ...FILA_CONGELADA,
+  claim: {
+    ...FILA_CONGELADA.claim,
+    verbatim: `${FILA_CONGELADA.claim.verbatim} por importe de 80.666 euros.`,
+  },
+}
 const VISIBLES = gateForDisplay(
   MANIFIESTO.plenos
     .flatMap((p) => lee(p.chunkPath).items)
@@ -99,10 +114,9 @@ function rasgosDe(it) {
     `fuentes:${desenlaceDeCotejo(v)}`,
     ...filas.map((e) => `fila:${e.kind}`),
     ...(filas.some((e) => typeof e.similarity === 'number') ? ['parecido'] : []),
+    ...(resumenPublicable(v) !== null && explicacionSinLista(v) ? ['sinLista'] : []),
     ...(resumenPublicable(v) === null ? ['retirada'] : []),
-    ...(filas.some((e) => puenteDeImporte(it.claim.entities?.amountEuros, e, TENDERS))
-      ? ['puente']
-      : []),
+    ...(filas.some((e) => puenteDeImporte(cifraCitada(it.claim), e, TENDERS)) ? ['puente'] : []),
   ]
 }
 
@@ -146,7 +160,7 @@ const DERIVADOS = ELEGIDAS.flatMap((it) => {
       const fila = snippetDeEvidencia(f, (k) => CATALOGUE.es[k] ?? k)
       return [fila, ...fila.split(' · ')]
     }),
-    resumenSegunFuentes(v, resumenPublicable(v)),
+    resumenSegunFuentes(v, resumenPublicable(v), it.claim.verbatim),
     e.count && e.countUnit ? `${e.count} ${e.countUnit}` : null,
   ].filter((s) => typeof s === 'string' && s !== '')
 })
@@ -158,8 +172,10 @@ const DERIVADOS = ELEGIDAS.flatMap((it) => {
  */
 const IDENTIFICADORES = [
   ...ELEGIDAS.map((it) => it.claim.entities?.countUnit).filter((u) => typeof u === 'string'),
-  'K €',
-  'M €',
+  // `eurosBreves` escribe los millones «55,7 M€»; los miles, enteros.
+  eurosBreves(2_000_000)
+    .replace(/^[\d.,\s]+/u, '')
+    .trim(),
 ]
 
 /**
@@ -186,6 +202,7 @@ const enElPleno = {
   '/data/pleno-votes.json': { ...VOTOS, items: [] },
   '/data/pleno-findings.json': { ...HALLAZGOS, items: [] },
   '/data/pleno-videos.json': { ...VIDEOS, items: [] },
+  '/data/pleno-videos-regmeet.json': { ...VIDEOS_REGMEET, items: [] },
   '/data/plenos-agendas.json': { ...AGENDAS, plenos: [] },
   [`/data/pleno-claims/${ID}.json`]: { ...FRAGMENTO, plenoId: ID, items: ELEGIDAS },
   '/data/tenders.json': TENDERS,

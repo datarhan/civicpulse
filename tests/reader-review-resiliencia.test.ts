@@ -214,12 +214,23 @@ describe('inyección de fallo: el lector contra un servidor que no existe', () =
     // el log y leerlo entero para verlo. Un test que levanta un navegador de
     // verdad tiene que distinguir «el lector se portó mal» de «aquí no hay
     // navegador que levantar».
+    //
+    // Desde el 2026-10-26 el trabajo `unidad` de e2e.yml instala el navegador
+    // SIN paquetes del sistema, porque la imagen del runner ya trae sus
+    // bibliotecas. Si un día deja de traer alguna, Playwright no arranca y lo
+    // dice con «Host system is missing dependencies… playwright install-deps»,
+    // que también casa aquí. Por eso el fallo cita la línea que casó: dice
+    // cuál de las dos causas fue (el resto de la salida, vitest lo recorta).
+    const sinArrancar = salida.match(
+      /^.*(?:Executable doesn't exist|playwright install|missing dependencies).*$/im,
+    )?.[0]
     expect(
-      /Executable doesn't exist|playwright install/i.test(salida),
-      'chromium no está instalado aquí, así que este test no ha probado nada: levanta un ' +
-        'navegador de verdad. Instálalo con `npx playwright install chromium` (en CI lo hacen ' +
-        'e2e.yml y nightly-scrape.yml).',
-    ).toBe(false)
+      sinArrancar,
+      'chromium no arrancó aquí, así que este test no ha probado nada: levanta un navegador ' +
+        'de verdad. O falta el navegador (`npx playwright install chromium`) o faltan ' +
+        'bibliotecas del sistema (`npx playwright install-deps chromium`; en CI, el trabajo ' +
+        `\`unidad\` de e2e.yml no las instala). Dijo: «${sinArrancar?.trim()}»`,
+    ).toBeUndefined()
     // Insistió antes de rendirse. Sin esto el vigilante que relanza el preview
     // del barrido no sirve de nada: la ruta que pilla el hueco de diez segundos
     // se declara inalcanzable y la pasada para con el servidor ya de vuelta.

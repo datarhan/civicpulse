@@ -98,9 +98,12 @@ test.describe('Reportaje · coste efectivo (/reportajes/coste-efectivo)', () => 
     await expect(tarifa.locator('summary')).toBeVisible()
     expect(await tarifa.getAttribute('open')).toBeNull()
     await tarifa.locator('summary').click()
-    await expect(
-      page.getByRole('link', { name: /Diari Oficial de la Generalitat Valenciana/ }),
-    ).toBeVisible()
+    // Desde el 20-10-2026 son tres anuncios del DOGV (2025, 2022 y 2013): la
+    // vigente se ancla por su fecha, y los tres tienen que estar.
+    const dogv = tarifa.getByRole('link', { name: /Diari Oficial de la Generalitat Valenciana/ })
+    await expect(dogv).toHaveCount(3)
+    await expect(dogv.first()).toHaveAttribute('href', /2025_48443/)
+    await expect(dogv.first()).toBeVisible()
     // 3. Quién remite, según la norma — y ningún nombre donde la norma pone un órgano.
     await expect(page.getByText(snap.quienRemite.cuerpo.slice(0, 80))).toBeVisible()
     expect(await page.getByText(/Carrizosa/).count()).toBe(0)
@@ -146,6 +149,17 @@ test.describe('Reportaje · coste efectivo (/reportajes/coste-efectivo)', () => 
         /enviada el 27 de septiembre de 2026 por la sede electrónica del Ayuntamiento, con registro 2026014914, que da como fecha de registro el 28 de septiembre de 2026/,
       ),
     ).toBeVisible()
+    // SE AMPLIÓ (27-10-2026, víspera del último día): otro mes, art. 34.2 de la
+    // Ley 1/2022. El oficio dice el sábado 28 de noviembre; con el art. 30.5 el
+    // último día es el lunes 30, y la fila lo dice con su porqué. Anclado en lo
+    // que no cambia cuando el estado pase a «sin respuesta».
+    await expect(
+      page.getByText(
+        /con registro 2026014914, que da como fecha de registro el 28 de septiembre de 2026\..*un mes más.*30 de noviembre de 2026 \(prorrogado: el 28 de noviembre, sábado, es inhábil/,
+      ),
+    ).toBeVisible()
+    await expect(page.getByText(/expediente 4870\/2026\/GEN/)).toBeVisible()
+    expect(await page.getByText(/28 de octubre de 2026/).count()).toBe(0)
     await expect(page.getByText(/Comisión de Precios de la Generalitat · enviada el/)).toBeVisible()
     // La salvedad del art. 20.1, que es la que no puede caerse: de un correo
     // consta el envío, no la recepción por el órgano competente.
@@ -161,23 +175,22 @@ test.describe('Reportaje · coste efectivo (/reportajes/coste-efectivo)', () => 
         /enviada el 18 de septiembre de 2026 por el registro electrónico de la Generalitat, con registro GVRTE\/2026\/4267645/,
       ),
     ).toBeVisible()
-    // Y SE SUSPENDIÓ (29-09-2026). La Generalitat dio traslado de la solicitud
-    // a terceros afectados y el plazo para resolver quedó parado hasta que
-    // alegan o pasan sus quince días hábiles (art. 33.6 de la Ley 1/2022). El
-    // «19 de octubre» que la fila afirmaba —el 18, domingo, prorrogado— ya no es
-    // el último día, y no hay otro que contar: ninguno de los dos puede quedar en
-    // la página. La fila dice desde cuándo corría, que se suspendió y que no
-    // consta la reanudación, anclado en frases que no caducan solas.
+    // SE SUSPENDIÓ (29-09-2026) Y SE RESOLVIÓ (19-10-2026). La Generalitat dio
+    // traslado a terceros afectados (art. 33.6 de la Ley 1/2022), Hidraqua se
+    // opuso y la Dirección General estimó la solicitud; con oposición de un
+    // tercero el art. 22.2 de la Ley 19/2013 aplaza la entrega hasta la firmeza.
+    // La fila no puede decir «lo concedieron» a secas —no hay un documento
+    // entregado— ni conservar el último día de la suspensión.
     const filaComision = page.getByText(
-      /con registro GVRTE\/2026\/4267645\. El mes del artículo 20 corría desde su entrada, el 18 de septiembre de 2026\. El 29 de septiembre de 2026 se comunicó que el plazo para resolver quedaba suspendido/,
+      /con registro GVRTE\/2026\/4267645\. El 19 de octubre de 2026 lo concedieron, con la entrega aplazada hasta que la concesión sea firme/,
     )
     await expect(filaComision).toBeVisible()
-    await expect(page.getByText(/no consta todavía cuándo se reanuda/)).toBeVisible()
+    await expect(
+      page.getByText(/el artículo 22\.2 de la Ley 19\/2013 sólo permite el acceso/),
+    ).toBeVisible()
     await expect(page.getByText(/a los posibles terceros afectados/)).toBeVisible()
     expect(await page.getByText(/18 de octubre de 2026/).count()).toBe(0)
-    // El 19 se queda en la página —los dos correos del 18-09 vencen ese lunes—,
-    // así que se comprueba en la fila suspendida y no en la página entera.
-    expect(await filaComision.textContent()).not.toMatch(/19 de octubre|vence el|terminó/)
+    expect(await filaComision.textContent()).not.toMatch(/vence el|terminó|se reanuda/)
     // Con qué calendario se cuenta cada una lo dice una frase bajo la nota,
     // sacada de las filas: aquí escriben al Ayuntamiento, a la Generalitat y a un
     // ministerio, y los tres calendarios tienen que estar nombrados.
@@ -188,7 +201,11 @@ test.describe('Reportaje · coste efectivo (/reportajes/coste-efectivo)', () => 
     ).toBeVisible()
     // Quién acusó y qué dijo: el acuse no resuelve nada de lo pedido, así que la
     // fila sigue «en plazo» y lo que hace es CONFIRMAR el reloj, no agotarlo.
-    await expect(page.getByText(/Dirección General de Comercio, Artesanía y Consumo/)).toBeVisible()
+    // Anclado en la fecha: desde el 20-10-2026 el anuncio de 2022 de la sección
+    // de la tarifa nombra también a esa Dirección General.
+    await expect(
+      page.getByText(/El 21 de septiembre la Dirección General de Comercio, Artesanía y Consumo/),
+    ).toBeVisible()
     // Y la cautela que sobraba desde ese momento no puede seguir en la página:
     // decir que no consta algo que ya consta miente igual que afirmar de más.
     expect(await page.getByText(/no consta todavía aquí/).count()).toBe(0)

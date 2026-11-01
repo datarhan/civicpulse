@@ -1,15 +1,8 @@
 // @ts-check
 import { rotuloDe, useT } from '../../../i18n'
-import { rellena } from '../../../lib/formatters'
+import { rellena, euros } from '../../../lib/formatters'
 import { ContractCard } from '../../tenders/ContractCard'
 import { EnlacesABarrio } from './EnlacesABarrio'
-
-const fmtEur = (n) =>
-  new Intl.NumberFormat('es-ES', {
-    style: 'currency',
-    currency: 'EUR',
-    maximumFractionDigits: 0,
-  }).format(n)
 
 /**
  * Map popup for a precise "contrato situado" pin. Lists every located contract that
@@ -70,7 +63,7 @@ export function PlacePopup({
           className="mono"
           style={{ fontSize: 'var(--fs-meta)', fontWeight: 700, color: 'var(--civic)' }}
         >
-          {fmtEur(total)} · {works.length}{' '}
+          {euros(total)} · {works.length}{' '}
           {t(works.length === 1 ? 'map.contratos.uno' : 'map.contratos.varios')}
         </span>
         <span

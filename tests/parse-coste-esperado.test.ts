@@ -181,10 +181,10 @@ describe('analizarServicio: la escalera declarada', () => {
     expect(a.cobertura.excluidas['filas-duplicadas']).toBe(1)
   })
 
-  it('una declaración inverosímil queda fuera de la recta (regla 7)', () => {
+  it('una declaración inverosímil queda fuera de la recta (regla 9)', () => {
     // El libro real trae ayuntamientos declarando 1 € de coste de escuelas: no
     // es un coste, es un artefacto, y dentro del ajuste arrastra la recta y
-    // estira el eje diez décadas. La cordura es la MISMA regla 7 del panel
+    // estira el eje diez décadas. La cordura es la MISMA regla 9 del panel
     // (×ATIPICO_FACTOR sobre la mediana), normalizada por habitante.
     const { filas, poblaciones } = muestraRuidosa(50)
     poblaciones.set('77777', 20000)

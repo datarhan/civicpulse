@@ -64,6 +64,23 @@ export interface PaginaConParametro {
  */
 const RUTA_SERVIBLE = /^\/[a-z-]+\/(?!\.{1,2}$)[A-Za-z0-9._-]+$/
 
+/**
+ * El título de una sesión en su HTML: «Pleno del 11 de mayo de 2026», el mismo
+ * que la página pone en la pestaña (`plenoDetail.tituloPestana`, en castellano,
+ * con `fmtDateLong`). Se escribe aquí y no se importa porque este módulo no
+ * depende de nada; `tests/titulo-de-sesion.test.js` comprueba que los dos dicen
+ * lo mismo en cada sesión publicada.
+ */
+export function tituloDeSesionEs(fecha: string): string {
+  const dia = new Date(fecha).toLocaleDateString('es-ES', {
+    day: 'numeric',
+    month: 'long',
+    year: 'numeric',
+    ...(/^\d{4}-\d{2}-\d{2}$/.test(fecha) ? { timeZone: 'UTC' } : {}),
+  })
+  return `Pleno del ${dia}`
+}
+
 export function construirMetasConParametro(
   paginas: PaginaConParametro[],
   o: Pick<OpcionesMetas, 'base' | 'tituloSitio' | 'descripcionSitio'>,

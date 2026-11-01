@@ -2,10 +2,18 @@
   "_comentario": "Generado por scripts/build-prose-map.ts — no editar a mano. tests/stale-copy-paths.test.js falla si el código cambia y esto no.",
   "generadoDe": "src",
   "snapshots": {
+    "agua-informe-anual.json": [
+      "/datos"
+    ],
+    "agua-pares.json": [
+      "/datos"
+    ],
+    "agua.json": [
+      "/datos"
+    ],
     "area-fit.json": [
       "/cargos",
-      "/cargos/:slug",
-      "/departamentos"
+      "/cargos/:slug"
     ],
     "asociaciones.json": [
       "/datos"
@@ -19,6 +27,9 @@
       "/datos",
       "/lab-health",
       "/presupuesto"
+    ],
+    "bibliotecas.json": [
+      "/datos"
     ],
     "boe.json": [
       "/datos",
@@ -45,6 +56,7 @@
       "/datos"
     ],
     "competencias.json": [
+      "/cargos",
       "/eficiencia",
       "/eficiencia/:id",
       "/gestion"
@@ -115,7 +127,7 @@
     ],
     "factcheck.json": [
       "/lab-health",
-      "/laboratorio"
+      "/laboratorio/prensa"
     ],
     "finding-quote-provenance.json": [
       "/curator",
@@ -157,8 +169,7 @@
       "/datos"
     ],
     "ispa.json": [
-      "/cargos",
-      "/cargos/:slug"
+      "/cargos"
     ],
     "journalist-assignments.json": [
       "/cargos",
@@ -196,6 +207,7 @@
       "/declaraciones",
       "/departamentos",
       "/departamentos/:slug",
+      "/eficiencia",
       "/eficiencia/:id",
       "/lab-health",
       "/laboratorio/agentes/:assignmentId",
@@ -203,6 +215,9 @@
       "/promesas",
       "/quejas/:id",
       "/quejas/dashboard"
+    ],
+    "opiniones-editor.json": [
+      "/eficiencia"
     ],
     "padron.json": [
       "/",
@@ -221,7 +236,7 @@
       "/lab-health"
     ],
     "plantilla.json": [
-      "/cargos"
+      "/empleo-publico"
     ],
     "pleno-findings.json": [
       "/curator",
@@ -234,11 +249,17 @@
       "/plenos",
       "/plenos/:id"
     ],
+    "pleno-videos-regmeet.json": [
+      "/plenos",
+      "/plenos/:id"
+    ],
     "pleno-videos.json": [
       "/lab-health",
+      "/plenos",
       "/plenos/:id"
     ],
     "pleno-votes.json": [
+      "/",
       "/cargos/:slug",
       "/datos",
       "/departamentos",
@@ -275,32 +296,32 @@
     ],
     "press-claims-verified.json": [
       "/lab-health",
-      "/laboratorio"
+      "/laboratorio/prensa"
     ],
     "press-coverage-gaps.json": [
       "/lab-health",
-      "/laboratorio"
+      "/laboratorio/prensa"
     ],
     "press-findings.json": [
       "/lab-health",
-      "/laboratorio"
+      "/laboratorio/prensa"
     ],
     "press-link-rot.json": [
       "/lab-health",
-      "/laboratorio",
+      "/laboratorio/prensa",
       "/promesas"
     ],
     "press-summaries.json": [
       "/lab-health",
-      "/laboratorio"
+      "/laboratorio/prensa"
     ],
     "press-triangulation.json": [
       "/lab-health",
-      "/laboratorio"
+      "/laboratorio/prensa"
     ],
     "press-trust.json": [
       "/lab-health",
-      "/laboratorio"
+      "/laboratorio/prensa"
     ],
     "press.json": [
       "/",
@@ -314,10 +335,10 @@
       "/hallazgos",
       "/hallazgos/:id",
       "/lab-health",
-      "/laboratorio",
       "/laboratorio/cobertura",
       "/laboratorio/coste-esperado",
       "/laboratorio/frontera",
+      "/laboratorio/prensa",
       "/plenos",
       "/presupuesto",
       "/promesas",
@@ -438,8 +459,7 @@
     ],
     "requisitos-cargo.json": [
       "/cargos",
-      "/cargos/:slug",
-      "/departamentos"
+      "/cargos/:slug"
     ],
     "sindic-expedientes.json": [
       "/datos",
@@ -461,12 +481,11 @@
     "solicitudes-acceso.json": [
       "/laboratorio/cobertura"
     ],
-    "spain-ticker.json": [
-      "/",
-      "/lab-health"
-    ],
     "streets.json": [
       "/datos"
+    ],
+    "temas-cargos.json": [
+      "/cargos"
     ],
     "tender-geo.json": [
       "/",

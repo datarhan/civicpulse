@@ -7,11 +7,11 @@ import { CorrectionNote } from '../../components/reportajes/CorrectionNote'
 import { SecHead } from '../../components/reportajes/Pieza'
 import {
   estadoDeEnvio,
+  etiquetaDeEnvio,
   fraseDeCalendarios,
   fraseDeEnvio,
   resumirEnvios,
   rotuloDelDetalle,
-  ESTADO_ENVIO_ETIQUETA,
   ESTADO_ENVIO_TONO,
 } from '../../scraper/solicitud-enviada'
 
@@ -187,8 +187,13 @@ export function enlazar(texto, enlaces) {
   )
 }
 
-export const P = ({ children }) => (
-  <p style={{ color: 'var(--ink70)', margin: '0 0 14px' }}>{children}</p>
+/* Los demás atributos pasan al <p> (un `data-*` que la spec busca): envolverlo
+   en un <div> para marcarlo lo sacaba de la medida de lectura, que sólo coge
+   los hijos directos de `.cp-pieza`. */
+export const P = ({ children, ...rest }) => (
+  <p {...rest} style={{ color: 'var(--ink70)', margin: '0 0 14px' }}>
+    {children}
+  </p>
 )
 
 /* Las viñetas van al cuerpo del párrafo, no a --fs-aux: en estas piezas una
@@ -394,7 +399,7 @@ export function SolicitudesEnviadas({ bloque }) {
           >
             <div style={{ marginBottom: 6 }}>
               <Pill tone={ESTADO_ENVIO_TONO[estado]} size="xs">
-                {ESTADO_ENVIO_ETIQUETA[estado]}
+                {etiquetaDeEnvio(e, hoy)}
               </Pill>
             </div>
             <div style={frase}>{fraseDeEnvio(e, hoy)}</div>

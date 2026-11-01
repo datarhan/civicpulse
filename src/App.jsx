@@ -1,4 +1,4 @@
-import { lazy, Suspense, useEffect, useState } from 'react'
+import { lazy, Suspense, useCallback, useEffect, useState } from 'react'
 import { Navigate, Route, Routes, useLocation } from 'react-router-dom'
 import { Sidebar } from './components/Sidebar'
 import { entradaNavActiva } from './nav'
@@ -6,9 +6,11 @@ import { Topbar } from './components/Topbar'
 import { CmdK } from './components/CmdK'
 import { AbrirBuscador } from './lib/buscador'
 import { TweaksPanel } from './components/TweaksPanel'
+import { ProveedorLecturas, normalizaLecturas } from './components/Lecturas'
 import { SkipLink } from './components/SkipLink'
 import ErrorBoundary from './components/ErrorBoundary'
 import { useHashScroll } from './hooks/useHashScroll'
+import { useTituloDeRuta } from './hooks/useDocumentTitle'
 import { useScrollAlNavegar } from './hooks/useScrollAlNavegar'
 import { useT } from './i18n'
 import { PERIODISTAS_ENABLED, EFICIENCIA_ENABLED } from './flags'
@@ -39,6 +41,7 @@ const Hallazgos = lazy(() => import('./pages/Hallazgos'))
 const HallazgoDetalle = lazy(() => import('./pages/HallazgoDetalle'))
 const Declaraciones = lazy(() => import('./pages/Declaraciones'))
 const Laboratorio = lazy(() => import('./pages/Laboratorio'))
+const LaboratorioPrensa = lazy(() => import('./pages/LaboratorioPrensa'))
 const Frontera = lazy(() => import('./pages/Frontera'))
 const CosteEsperado = lazy(() => import('./pages/CosteEsperado'))
 const Cobertura = lazy(() => import('./pages/Cobertura'))
@@ -75,12 +78,17 @@ export { PERIODISTAS_ENABLED } from './flags'
 const Agentes = PERIODISTAS_ENABLED ? lazy(() => import('./pages/Agentes')) : null
 const AgenteReporte = PERIODISTAS_ENABLED ? lazy(() => import('./pages/AgenteReporte')) : null
 
-const DEFAULT_TWEAKS = { dark: false, density: 'comfortable' }
+// `lecturas` es el pliegue de las dos lecturas (components/Lecturas.jsx):
+// «todo» para cualquiera que no haya elegido otra cosa.
+const DEFAULT_TWEAKS = { dark: false, density: 'comfortable', lecturas: 'todo' }
 
 function loadTweaks() {
   try {
     const raw = localStorage.getItem('cp:tweaks')
-    if (raw) return { ...DEFAULT_TWEAKS, ...JSON.parse(raw) }
+    if (raw) {
+      const guardado = { ...DEFAULT_TWEAKS, ...JSON.parse(raw) }
+      return { ...guardado, lecturas: normalizaLecturas(guardado.lecturas) }
+    }
   } catch {
     // ignore
   }
@@ -168,6 +176,7 @@ function InnerShell({ onOpenCmdK, tweaksOpen, onToggleTweaks }) {
                 <Route path="/quejas/dashboard" element={<QuejasDashboard />} />
                 <Route path="/quejas/:id" element={<QuejaDetail />} />
                 <Route path="/laboratorio" element={<Laboratorio />} />
+                <Route path="/laboratorio/prensa" element={<LaboratorioPrensa />} />
                 <Route path="/laboratorio/frontera" element={<Frontera />} />
                 <Route path="/laboratorio/coste-esperado" element={<CosteEsperado />} />
                 <Route path="/laboratorio/cobertura" element={<Cobertura />} />
@@ -225,6 +234,13 @@ export default function App() {
 
   const onLanding = location.pathname === '/'
 
+  // El título de la pestaña por defecto: la etiqueta de navegación de la ruta,
+  // la misma que usa `prerender-meta` para el HTML de esa ruta. Una ficha lo
+  // afina con su dato (`useDocumentTitle`); la portada lleva el del sitio.
+  const t = useT()
+  const entrada = entradaNavActiva(location.pathname)
+  useTituloDeRuta(onLanding || !entrada ? null : t(entrada.labelKey))
+
   useEffect(() => {
     const darkActive = tweaks.dark && !onLanding
     document.documentElement.classList.toggle('dark', darkActive)
@@ -251,6 +267,10 @@ export default function App() {
   }, [tweaks])
 
   const updateTweaks = (patch) => setTweaks((prev) => ({ ...prev, ...patch }))
+  const cambiarLecturas = useCallback(
+    (lecturas) => setTweaks((prev) => ({ ...prev, lecturas })),
+    [],
+  )
 
   if (onLanding) {
     return (
@@ -276,11 +296,13 @@ export default function App() {
   return (
     <>
       <SkipLink />
-      <InnerShell
-        onOpenCmdK={() => setCmdK(true)}
-        tweaksOpen={tweaksOpen}
-        onToggleTweaks={() => setTweaksOpen((o) => !o)}
-      />
+      <ProveedorLecturas lecturas={tweaks.lecturas} onCambiar={cambiarLecturas}>
+        <InnerShell
+          onOpenCmdK={() => setCmdK(true)}
+          tweaksOpen={tweaksOpen}
+          onToggleTweaks={() => setTweaksOpen((o) => !o)}
+        />
+      </ProveedorLecturas>
       <TweaksPanel
         open={tweaksOpen}
         onClose={() => setTweaksOpen(false)}

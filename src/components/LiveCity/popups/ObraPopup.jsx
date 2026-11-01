@@ -1,7 +1,7 @@
 // @ts-check
 import { Fragment } from 'react'
 import { useT } from '../../../i18n'
-import { rellena } from '../../../lib/formatters'
+import { euros, rellena } from '../../../lib/formatters'
 import { EnlacesABarrio } from './EnlacesABarrio'
 
 /**
@@ -14,15 +14,6 @@ import { EnlacesABarrio } from './EnlacesABarrio'
  * y «Ver ficha» en castellano. Sale aquí por el mismo camino que siguió el globo
  * de la red completa hacia `NetworkStationPopup`, y su cromo pasa por el catálogo.
  */
-
-const fmtEur = (n) =>
-  typeof n === 'number'
-    ? new Intl.NumberFormat('es-ES', {
-        style: 'currency',
-        currency: 'EUR',
-        maximumFractionDigits: 0,
-      }).format(n)
-    : '—'
 
 /** Nombres propios de los dos programas: no se traducen. */
 export const PROGRAMA_LABEL = {
@@ -53,7 +44,7 @@ function FichaDeObra({ obra: o }) {
             distinguirlo de un rótulo sin traducir. */}
         {importe != null && (
           <>
-            {` · ${fmtEur(importe)} `}
+            {` · ${euros(importe) || '—'} `}
             {t(o.importeAdjudicacion != null ? 'map.obra.adjudicado' : 'map.obra.previsto')}
           </>
         )}

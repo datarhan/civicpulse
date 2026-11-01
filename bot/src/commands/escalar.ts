@@ -22,6 +22,7 @@ import {
   renderSindicMarkdown,
 } from '../services/sindic.ts'
 import { idDeQueja } from '../services/queja-id.ts'
+import { SINDIC_PRESENTAR_QUEJA } from '../../../src/scraper/queja-router.ts'
 
 function parseAdmins(): Set<number> {
   const raw = process.env.ADMIN_USER_IDS ?? ''
@@ -85,7 +86,7 @@ export function registerEscalar(bot: Bot<MyContext>, db: Db, hitos: AvisosHitos)
       : '\n\n_Para URLs del documento, despliega el bot con WEBHOOK_URL._'
 
     await ctx.reply(
-      `⚖️ *Escalado \`${q.id}\`* al Síndic de Greuges CV.\n\n${preview}\n…${links}\n\nPresenta en https://www.elsindic.com/es/presenta-una-queja`,
+      `⚖️ *Escalado \`${q.id}\`* al Síndic de Greuges CV.\n\n${preview}\n…${links}\n\nPresenta en ${SINDIC_PRESENTAR_QUEJA}`,
       { parse_mode: 'Markdown', link_preview_options: { is_disabled: true } },
     )
   })

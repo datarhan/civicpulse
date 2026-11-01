@@ -3,7 +3,7 @@ import { ExtLink, Pill } from '../Primitives'
 import Paginacion from '../Paginacion'
 import NotaDeLote from '../tenders/NotaDeLote'
 import { STATUS_TONE } from '../../hooks/useTenders'
-import { fmtDateCompacta, rellena } from '../../lib/formatters'
+import { fmtDateCompacta, rellena, euros } from '../../lib/formatters'
 import { rotuloDe, useLocale } from '../../i18n'
 import { filterContracts, contractsListSummary } from '../../lib/tender-geo'
 import {
@@ -12,13 +12,6 @@ import {
   isCommittedContract,
 } from '../../lib/contract-status'
 import { agrupaPorExpediente } from '../../lib/tender-lotes'
-
-const fmtEur = (n) =>
-  new Intl.NumberFormat('es-ES', {
-    style: 'currency',
-    currency: 'EUR',
-    maximumFractionDigits: 0,
-  }).format(n)
 
 /**
  * Cuántas filas se pintan por página. El recuento de arriba habla del conjunto
@@ -62,7 +55,7 @@ function Importe({ c, t }) {
   return (
     <div style={{ textAlign: 'right' }}>
       <div className="mono" style={{ fontWeight: 700 }}>
-        {importe === null ? '—' : fmtEur(importe)}
+        {importe === null ? '—' : euros(importe)}
       </div>
       {licitacion !== null && isCommittedContract(c) && (
         <div style={{ fontSize: 'var(--fs-micro)', color: 'var(--warn-ink)', lineHeight: 1.3 }}>

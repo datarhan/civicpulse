@@ -1,20 +1,11 @@
 import { Link } from 'react-router-dom'
-import {
-  Card,
-  CorreoPartible,
-  ExtLink,
-  LegendDot,
-  PartyTag,
-  SectionHead,
-} from '../components/Primitives'
+import { Card, CorreoPartible, ExtLink, PartyTag, SectionHead } from '../components/Primitives'
 import DataAsOf from '../components/DataAsOf'
 import { useOfficials, partyColor } from '../hooks/useOfficials'
 import { barItems } from '../lib/party-order'
 import {
   useIspa,
   ispaLatest,
-  formatEuros,
-  formatEurosCents,
   retribucionesSplit,
   alcaldeSerie,
   ningunoACero,
@@ -27,16 +18,23 @@ import {
   desgloseAntiguedad,
   filaDelAlcalde,
 } from '../hooks/useDedicaciones'
-import { useJsonFetch } from '../hooks/useJsonFetch'
 import { useBioReportRoutes } from '../hooks/useBioReportRoutes'
 import { useQuejas } from '../hooks/useQuejas'
 import { contadoresDeCargo } from '../lib/reloj-lpacap'
 import { useSocialFor, SOCIAL_PLATFORM_META } from '../hooks/useOfficialsSocial'
 import { canonicalizeDepartments, DEPARTMENT_LABEL } from '../scraper/departments'
-import { EncajeCard } from '../components/EncajeDeclarado'
+import { EncajeCard, NotaRespaldoSeccion } from '../components/EncajeDeclarado'
+import { useAreaFit, respaldoDeSeccion } from '../hooks/useAreaFit'
 import { mailboxKinds } from '../lib/mailboxes'
-import { fmtDateLong, rellena } from '../lib/formatters'
+import { euros, eurosExactos, fmtDateLong, rellena } from '../lib/formatters'
 import { useT, useLocale } from '../i18n'
+import { useDocumentTitle } from '../hooks/useDocumentTitle'
+import EnBreveCargos from '../components/Cargos/EnBreveCargos'
+import ListaDeCargos from '../components/Cargos/ListaDeCargos'
+import Retrato from '../components/Cargos/Retrato'
+import DivisorLecturas from '../components/DivisorLecturas'
+import { SeccionExperta } from '../components/Lecturas'
+import { conAreasDelegadas, sinAreasDelegadas } from '../scraper/en-breve-cargos'
 
 /**
  * Verified public accounts for this official.
@@ -302,7 +300,7 @@ export function RetribucionBadge({ official }) {
   return (
     <div style={linea} data-retribucion="fijada">
       <span className="mono" style={{ fontWeight: 700, color: 'var(--ink)' }}>
-        {formatEurosCents(d.amountEuros)}
+        {eurosExactos(d.amountEuros)}
       </span>
       <span style={{ color: 'var(--ink50)' }}>
         {t('cargos.retri.fijadoPor').replace('{dedicacion}', d.dedicacion)}
@@ -312,7 +310,7 @@ export function RetribucionBadge({ official }) {
       {desglose && (
         <span style={{ color: 'var(--ink70)' }}>
           {rellena(t('cargos.retri.antiguedadBadge'), {
-            antiguedad: formatEurosCents(desglose.antiguedad),
+            antiguedad: eurosExactos(desglose.antiguedad),
           })}
         </span>
       )}
@@ -418,7 +416,7 @@ function AlcaldeSerie({ data }) {
               fill="var(--civic)"
               data-barra={s.year}
             >
-              <title>{`${s.year}: ${formatEurosCents(s.amountEuros)}`}</title>
+              <title>{`${s.year}: ${eurosExactos(s.amountEuros)}`}</title>
             </rect>
           ) : null,
         )}
@@ -442,7 +440,7 @@ function AlcaldeSerie({ data }) {
                   className="mono"
                   style={{ fontSize: 'var(--fs-micro)', color: 'var(--ink70)', fontWeight: 700 }}
                 >
-                  {formatEuros(s.amountEuros)}
+                  {euros(s.amountEuros)}
                 </div>
               </>
             ) : (
@@ -512,6 +510,7 @@ function AlcaldeSerie({ data }) {
  */
 function RetribucionesPanel() {
   const t = useT()
+  const { locale } = useLocale()
   const { data } = useIspa()
   const { data: dedic } = useDedicaciones()
   const { data: padron } = useOfficials()
@@ -566,7 +565,7 @@ function RetribucionesPanel() {
             className="mono"
             style={{ fontSize: 'var(--fs-card)', fontWeight: 700, letterSpacing: '-.02em' }}
           >
-            {formatEurosCents(split.total)}
+            {eurosExactos(split.total)}
           </div>
           {/* «Retribuciones y asistencias», nunca «coste de la corporación»: el
               ISPA suma lo percibido por los electos y deja fuera las cuotas
@@ -610,7 +609,7 @@ function RetribucionesPanel() {
             }}
           >
             {split.con.count} con dedicación exclusiva
-            {split.cuadra && ` · ${formatEuros(split.con.sum)} percibidos`}
+            {split.cuadra && ` · ${euros(split.con.sum)} percibidos`}
           </div>
           {fijado && (
             <div style={{ marginTop: 10 }}>
@@ -675,7 +674,7 @@ function RetribucionesPanel() {
                         flexShrink: 0,
                       }}
                     >
-                      {formatEurosCents(tr.amountEuros)}
+                      {eurosExactos(tr.amountEuros)}
                     </span>
                   </div>
                   {/* The puesto as dedicaciones.json words it — meant to be
@@ -707,11 +706,11 @@ function RetribucionesPanel() {
                     >
                       {tr.count === 1
                         ? rellena(t('cargos.retri.tramoAntiguedad'), {
-                            antiguedad: formatEurosCents(tr.antiguedadEuros),
-                            base: formatEurosCents(tr.amountEuros - tr.antiguedadEuros),
+                            antiguedad: eurosExactos(tr.antiguedadEuros),
+                            base: eurosExactos(tr.amountEuros - tr.antiguedadEuros),
                           })
                         : rellena(t('cargos.retri.tramoAntiguedadVarios'), {
-                            antiguedad: formatEurosCents(tr.antiguedadEuros),
+                            antiguedad: eurosExactos(tr.antiguedadEuros),
                           })}
                     </div>
                   )}
@@ -734,16 +733,16 @@ function RetribucionesPanel() {
                 Los importes de arriba son los totales que <strong>fija</strong> el cuadro del{' '}
                 {dedic?.source?.url ? (
                   <ExtLink href={dedic.source.url} style={{ color: 'var(--civic)' }}>
-                    acuerdo de pleno de {fmtDateLong(dedic.source.date)} ↗
+                    acuerdo de pleno de {fmtDateLong(dedic.source.date, locale)} ↗
                   </ExtLink>
                 ) : (
                   'acuerdo de pleno'
                 )}
                 {dedic?.source?.expediente ? ` (exp. ${dedic.source.expediente})` : ''} y suman{' '}
-                <span className="mono">{formatEurosCents(fijado.sum)}</span>
+                <span className="mono">{eurosExactos(fijado.sum)}</span>
                 {fijado.antiguedadEuros > 0 &&
                   rellena(t('cargos.retri.notaAntiguedad'), {
-                    antiguedad: formatEurosCents(fijado.antiguedadEuros),
+                    antiguedad: eurosExactos(fijado.antiguedadEuros),
                   })}
                 . El total de la cabecera es otra serie: lo <strong>percibido</strong> en{' '}
                 {latest.year} según el ISPA.
@@ -763,7 +762,7 @@ function RetribucionesPanel() {
             }}
           >
             {split.sin.count} sin dedicación
-            {split.cuadra && ` · ${formatEuros(split.sin.sum)} en asistencias`}
+            {split.cuadra && ` · ${euros(split.sin.sum)} en asistencias`}
           </div>
           <div
             style={{
@@ -777,7 +776,7 @@ function RetribucionesPanel() {
             {split.sin.amounts.map((v, i) => (
               <span
                 key={i}
-                title={`${formatEurosCents(v)} · concejal sin identificar (las filas del ISPA son anónimas)`}
+                title={`${eurosExactos(v)} · concejal sin identificar (las filas del ISPA son anónimas)`}
                 style={{
                   flex: 1,
                   minWidth: 0,
@@ -798,11 +797,11 @@ function RetribucionesPanel() {
               color: 'var(--ink50)',
             }}
           >
-            <span>{formatEurosCents(split.sin.min)}</span>
+            <span>{eurosExactos(split.sin.min)}</span>
             <span style={{ textAlign: 'center' }}>
               {split.sin.count} concejales, de menor a mayor
             </span>
-            <span>{formatEurosCents(split.sin.max)}</span>
+            <span>{eurosExactos(split.sin.max)}</span>
           </div>
           <p
             style={{
@@ -850,20 +849,19 @@ function RetribucionesPanel() {
                 ISPA year that is older, and without both years on the line
                 the gap between them reads as one of the two being wrong. */}
             El acuerdo de pleno le <em>fija</em>{' '}
-            <span className="mono">{formatEurosCents(alcaldeAcuerdo.amountEuros)}</span> brutos
-            anuales
+            <span className="mono">{eurosExactos(alcaldeAcuerdo.amountEuros)}</span> brutos anuales
             {anioAcuerdo ? ` para ${anioAcuerdo}` : ''}
             {desgloseAlcalde && (
               <>
                 {': '}
-                <span className="mono">{formatEurosCents(desgloseAlcalde.base)}</span> de sueldo del
-                cargo y <span className="mono">{formatEurosCents(desgloseAlcalde.antiguedad)}</span>{' '}
-                de antigüedad personal, que va con quien lo ocupa y no con el cargo
+                <span className="mono">{eurosExactos(desgloseAlcalde.base)}</span> de sueldo del
+                cargo y <span className="mono">{eurosExactos(desgloseAlcalde.antiguedad)}</span> de
+                antigüedad personal, que va con quien lo ocupa y no con el cargo
               </>
             )}
             . El ISPA publica lo que <em>percibió</em> en {latest.year}:{' '}
-            <span className="mono">{formatEurosCents(alcaldeIspa)}</span>. No se contradicen —una es
-            la asignación, la otra la nómina
+            <span className="mono">{eurosExactos(alcaldeIspa)}</span>. No se contradicen —una es la
+            asignación, la otra la nómina
             {anioAcuerdo && anioAcuerdo !== String(latest.year) ? ', y son de años distintos' : ''}—
             y sumar o comparar las dos series es el error que esta página facilitaba.{' '}
             {/* Derived, never restated: the seniority clause renders only from
@@ -874,9 +872,9 @@ function RetribucionesPanel() {
                 it qualified went up by the antigüedad. */}
             {desgloseAlcalde &&
               rellena(t('cargos.ispa.trienios'), {
-                ispa: formatEurosCents(alcaldeIspa),
-                total: formatEurosCents(desgloseAlcalde.total),
-                base: formatEurosCents(desgloseAlcalde.base),
+                ispa: eurosExactos(alcaldeIspa),
+                total: eurosExactos(desgloseAlcalde.total),
+                base: eurosExactos(desgloseAlcalde.base),
               })}
           </p>
         </div>
@@ -901,184 +899,6 @@ function RetribucionesPanel() {
         )}
       </div>
     </Card>
-  )
-}
-
-/**
- * The municipal workforce — deliberately below the elected members, and framed
- * as a different subject.
- *
- * It used to sit in the same column as the 21 electos, which put a 2021 press
- * figure for EMPLOYEES beside a 2024 count of authorised POSTS and invited a
- * reader to subtract one from the other. The two magnitudes never met a
- * sentence saying they are not comparable.
- */
-function PlantillaBanda() {
-  const t = useT()
-  const { data } = useJsonFetch('/data/plantilla.json', null)
-  if (!data || !data.total) return null
-  const pct = (n) => Math.round((n / data.total) * 100)
-  const anio = data.asOf ? String(data.asOf).slice(0, 4) : null
-  return (
-    <div
-      style={{
-        marginTop: 26,
-        background: 'var(--soft)',
-        border: '1px solid var(--border)',
-        borderRadius: 'var(--r-card)',
-        padding: 20,
-      }}
-    >
-      <div
-        className="mono"
-        style={{
-          fontSize: 'var(--fs-micro)',
-          textTransform: 'uppercase',
-          letterSpacing: '.07em',
-          color: 'var(--ink50)',
-        }}
-      >
-        {t('cargos.plantilla.eyebrow')}
-      </div>
-      <div className="cp-cargos-duo" style={{ marginTop: 12 }}>
-        <div>
-          <h3 style={{ fontSize: 'var(--fs-head)', fontWeight: 700, margin: 0 }}>
-            {t('cargos.plantilla.title')}
-          </h3>
-          <div
-            style={{
-              display: 'flex',
-              gap: 26,
-              marginTop: 10,
-              alignItems: 'baseline',
-              flexWrap: 'wrap',
-            }}
-          >
-            <div>
-              <div className="mono" style={{ fontSize: 'var(--fs-card)', fontWeight: 700 }}>
-                {data.total}
-              </div>
-              <div
-                style={{ fontSize: 'var(--fs-micro)', color: 'var(--ink50)', marginTop: 2 }}
-              >{`${t('cargos.plantilla.personas')}${anio ? ` · ${anio}` : ''}`}</div>
-            </div>
-            {data.authorized && typeof data.authorized.plazas === 'number' && (
-              <div>
-                <div
-                  className="mono"
-                  style={{ fontSize: 'var(--fs-card)', fontWeight: 700, color: 'var(--ink50)' }}
-                >
-                  {data.authorized.approx ? '≈' : ''}
-                  {data.authorized.plazas}
-                </div>
-                <div style={{ fontSize: 'var(--fs-micro)', color: 'var(--ink50)', marginTop: 2 }}>
-                  {t('cargos.plantilla.plazas')}
-                  {data.authorized.asOf ? ` · ${data.authorized.asOf}` : ''}
-                </div>
-              </div>
-            )}
-          </div>
-          {typeof data.women === 'number' && typeof data.men === 'number' && (
-            <>
-              {/* Two tones a reader can actually tell apart. The second
-                  segment was --intel-soft, which is a #f5f0ff wash: against the
-                  band's own light ground it vanished, so a 52/48 split read as
-                  a bar filled to 52 % and nothing else. Each figure carries its
-                  own swatch, so the mapping never depends on reading order. */}
-              <div
-                style={{
-                  display: 'flex',
-                  height: 10,
-                  borderRadius: 'var(--r-pill)',
-                  overflow: 'hidden',
-                  marginTop: 14,
-                }}
-              >
-                <span style={{ flex: data.women, background: 'var(--intel)' }} />
-                <span style={{ flex: data.men, background: 'var(--ink30)' }} />
-              </div>
-              <div
-                style={{
-                  display: 'flex',
-                  gap: 16,
-                  marginTop: 7,
-                  fontSize: 'var(--fs-micro)',
-                  color: 'var(--ink70)',
-                  flexWrap: 'wrap',
-                }}
-              >
-                <LegendDot
-                  color="var(--intel)"
-                  label={
-                    <span>
-                      <span className="mono" style={{ fontWeight: 700 }}>
-                        {data.women}
-                      </span>{' '}
-                      {t('cargos.plantilla.mujeres')} · {pct(data.women)} %
-                    </span>
-                  }
-                />
-                <LegendDot
-                  color="var(--ink30)"
-                  label={
-                    <span>
-                      <span className="mono" style={{ fontWeight: 700 }}>
-                        {data.men}
-                      </span>{' '}
-                      {t('cargos.plantilla.hombres')} · {pct(data.men)} %
-                    </span>
-                  }
-                />
-              </div>
-            </>
-          )}
-        </div>
-        <div>
-          <p
-            style={{
-              margin: 0,
-              fontSize: 'var(--fs-meta)',
-              lineHeight: 1.6,
-              color: 'var(--ink70)',
-            }}
-          >
-            {data.note}
-          </p>
-          {data.authorized?.note && (
-            <p
-              style={{
-                margin: '9px 0 0',
-                fontSize: 'var(--fs-micro)',
-                lineHeight: 1.55,
-                color: 'var(--ink50)',
-              }}
-            >
-              {data.authorized.note}{' '}
-              {data.authorized.source?.url && (
-                <ExtLink href={data.authorized.source.url} style={{ color: 'var(--civic)' }}>
-                  Fuente: {data.authorized.source.publisher} ↗
-                </ExtLink>
-              )}
-            </p>
-          )}
-          {data.source?.url && (
-            <p
-              style={{
-                margin: '9px 0 0',
-                fontSize: 'var(--fs-micro)',
-                lineHeight: 1.55,
-                color: 'var(--ink50)',
-              }}
-            >
-              {t('cargos.plantilla.fuenteSexo')}{' '}
-              <ExtLink href={data.source.url} style={{ color: 'var(--civic)' }}>
-                {data.source.publisher}, {fmtDateLong(data.source.date)} ↗
-              </ExtLink>
-            </p>
-          )}
-        </div>
-      </div>
-    </div>
   )
 }
 
@@ -1137,50 +957,6 @@ function Correo({ o, kinds }) {
   )
 }
 
-function Retrato({ o, size, radius = 'var(--r-card)' }) {
-  const color = partyColor(o.party)
-  if (o.photoUrl) {
-    return (
-      <img
-        src={o.photoUrl}
-        alt={o.name}
-        width={size}
-        height={size}
-        style={{
-          width: size,
-          height: size,
-          borderRadius: radius,
-          objectFit: 'cover',
-          flexShrink: 0,
-          border: `2px solid ${color}22`,
-        }}
-      />
-    )
-  }
-  return (
-    <div
-      title={o.photoNote || undefined}
-      style={{
-        width: size,
-        height: size,
-        borderRadius: radius,
-        flexShrink: 0,
-        display: 'grid',
-        placeItems: 'center',
-        background: 'var(--soft)',
-        color: 'var(--ink50)',
-        fontWeight: 700,
-      }}
-    >
-      {o.name
-        .split(' ')
-        .slice(0, 2)
-        .map((x) => x[0])
-        .join('')}
-    </div>
-  )
-}
-
 /**
  * One card per person, in the register the page is reading them in.
  *
@@ -1198,8 +974,9 @@ function Retrato({ o, size, radius = 'var(--r-card)' }) {
  * and the compact card exists so that absence reads as the institutional fact
  * it is rather than as a card somebody forgot to fill in.
  */
-function OfficialCard({ o, bioRoute, kinds, variant = 'gobierno' }) {
+function OfficialCard({ o, bioRoute, kinds, variant = 'gobierno', respaldoEnSeccion = null }) {
   const t = useT()
+  const { locale } = useLocale()
   const former = variant === 'former'
   const oposicion = variant === 'oposicion'
   const sourceUrl = former ? o.source?.url : o.correccion?.source?.url
@@ -1222,7 +999,7 @@ function OfficialCard({ o, bioRoute, kinds, variant = 'gobierno' }) {
                   color: 'var(--civic-ink)',
                 }}
               >
-                Alcalde
+                {t(o.honorific === 'Sra.' ? 'cargos.card.alcaldesa' : 'cargos.card.alcalde')}
               </span>
             )}
           </div>
@@ -1238,7 +1015,7 @@ function OfficialCard({ o, bioRoute, kinds, variant = 'gobierno' }) {
             >
               {t(o.honorific === 'Sra.' ? 'cargos.card.hastaF' : 'cargos.card.hastaM').replace(
                 '{fecha}',
-                fmtDateLong(o.until),
+                fmtDateLong(o.until, locale),
               )}
               {' · '}
               {t(`cargos.baja.${o.reason}`)}
@@ -1249,7 +1026,10 @@ function OfficialCard({ o, bioRoute, kinds, variant = 'gobierno' }) {
               className="mono"
               style={{ fontSize: 'var(--fs-micro)', color: 'var(--ink50)', marginTop: 4 }}
             >
-              {t('cargos.card.altaDesde').replace('{fecha}', fmtDateLong(o.correccion.since))}
+              {t('cargos.card.altaDesde').replace(
+                '{fecha}',
+                fmtDateLong(o.correccion.since, locale),
+              )}
             </div>
           )}
           {o.photoNote && (
@@ -1296,15 +1076,16 @@ function OfficialCard({ o, bioRoute, kinds, variant = 'gobierno' }) {
         <>
           <RetribucionBadge official={o} />
           <DepartmentLinks portfolios={o.portfolios} />
-          <EncajeCard official={o} bioRoute={bioRoute} />
+          <EncajeCard official={o} bioRoute={bioRoute} respaldoEnSeccion={respaldoEnSeccion} />
           <QuejaBadge slug={o.slug} />
           <SocialLinks slug={o.slug} />
         </>
       )}
 
+      {/* «Quién fiscaliza» explains the blank encaje block once, in its head. */}
       {oposicion && (
         <>
-          <EncajeCard official={o} bioRoute={bioRoute} />
+          <EncajeCard official={o} bioRoute={bioRoute} notaEnSeccion />
           <RetribucionBadge official={o} />
           <QuejaBadge slug={o.slug} />
         </>
@@ -1345,10 +1126,10 @@ function OfficialCard({ o, bioRoute, kinds, variant = 'gobierno' }) {
           {bioRoute && (
             <Link
               to={bioRoute}
-              title="Informe biográfico del agente periodista de CivicPulse"
+              title={t('cargos.card.biografia.title')}
               style={{ color: 'var(--civic)', textDecoration: 'none', fontWeight: 500 }}
             >
-              Biografía →
+              {t('cargos.card.biografia')}
             </Link>
           )}
         </span>
@@ -1426,10 +1207,14 @@ function CompositionBar({ composition, total }) {
 
 function CorporacionMunicipal() {
   const t = useT()
+  const { locale } = useLocale()
   const { loading, error, data } = useOfficials()
   const bioRoutes = useBioReportRoutes()
   const ispa = useIspa()
   const split = retribucionesSplit(ispa.data)
+  // The encaje block's section heads read the same data the cards do; under
+  // the LOREG freeze `data` comes back empty and both stay silent.
+  const { data: areaFit, frozen: encajeCongelado } = useAreaFit()
   // The mandate is the ACUERDO's own declaration, not a constant typed here:
   // officials.json does not carry one, and a hand-written «2023-2027» would
   // outlive the mandate it names.
@@ -1438,7 +1223,7 @@ function CorporacionMunicipal() {
   if (loading) {
     return (
       <div style={{ marginBottom: 28, color: 'var(--ink50)', fontSize: 'var(--fs-aux)' }}>
-        Cargando Corporación Municipal…
+        {t('cargos.cargando')}
       </div>
     )
   }
@@ -1454,22 +1239,27 @@ function CorporacionMunicipal() {
           fontSize: 'var(--fs-aux)',
         }}
       >
-        No se pudo cargar la Corporación Municipal. Ejecuta <code>npm run scrape:officials</code>{' '}
-        para regenerar los datos.
+        {/* Decía «Ejecuta npm run scrape:officials para regenerar los datos»:
+            una orden de quien mantiene el sitio, dicha a quien lo lee. */}
+        {t('cargos.error')}
       </div>
     )
   }
 
-  const mayor = data.officials.find((o) => o.role === 'alcalde')
   // Who governs and who scrutinises, DERIVED from the delegated áreas rather
   // than from a party name: the sentence has to survive a coalition, a
-  // reshuffle, and a councillor who leaves the governing group.
-  const conAreas = data.officials.filter((o) => (o.portfolios ?? []).length > 0)
-  const gobierno = [
-    ...(mayor && conAreas.includes(mayor) ? [mayor] : []),
-    ...conAreas.filter((o) => o !== mayor),
-  ]
-  const oposicion = data.officials.filter((o) => (o.portfolios ?? []).length === 0)
+  // reshuffle, and a councillor who leaves the governing group. The same two
+  // calls split the list of the 21 above the divider and «¿Quién vigila al
+  // gobierno?», so no two parts of the page can count a different government.
+  const gobierno = conAreasDelegadas(data.officials)
+  const oposicion = sinAreasDelegadas(data.officials)
+  // The backing every government card agrees on, said once in «Quién dirige
+  // qué» and marked on each card; null the moment one card disagrees, and then
+  // every card says its own (auditoría de las dos lecturas, §3, punto 2).
+  const respaldoEnSeccion = respaldoDeSeccion(
+    areaFit,
+    gobierno.map((o) => o.slug),
+  )
   const partidosGobierno = [...new Set(gobierno.map((o) => o.party))]
   const partidoUnico = partidosGobierno.length === 1 ? partidosGobierno[0] : null
   const former = data.formerOfficials ?? []
@@ -1478,7 +1268,27 @@ function CorporacionMunicipal() {
   // Derived from the snapshot's own block, never typed: the second line of
   // the stamp exists exactly when a correction does, and counts what it counts.
   const nCorr = corr ? (corr.bajas ?? 0) + (corr.altas ?? 0) : 0
-  const generatedDate = fmtDateLong(data.generatedAt)
+  // Cada cambio con su palabra y su número —«una baja», «2 altas»—, y el que es
+  // cero no se nombra: decía «1 baja(s) y 0 alta(s)».
+  const bajas = corr?.bajas ?? 0
+  const altas = corr?.altas ?? 0
+  const cambios = new Intl.ListFormat(locale === 'ca' ? 'ca' : 'es', {
+    type: 'conjunction',
+  }).format(
+    [
+      bajas === 1
+        ? t('cargos.corporacion.baja.una')
+        : bajas > 1
+          ? rellena(t('cargos.corporacion.bajas'), { n: bajas })
+          : null,
+      altas === 1
+        ? t('cargos.corporacion.alta.una')
+        : altas > 1
+          ? rellena(t('cargos.corporacion.altas'), { n: altas })
+          : null,
+    ].filter(Boolean),
+  )
+  const generatedDate = fmtDateLong(data.generatedAt, locale)
   // La página que las publica TODAS, que es el propio origen del padrón.
   //
   // Esto salía de `officials.find(o => o.cvUrl).cvUrl`, y funcionaba mientras
@@ -1540,7 +1350,7 @@ function CorporacionMunicipal() {
             {ningunoACero(split) && (
               <>
                 {t('cargos.hero.coste')
-                  .replace('{importe}', formatEuros(split.total))
+                  .replace('{importe}', euros(split.total))
                   .replace('{n}', perceptoresIspa(split))
                   .replace('{year}', split.year)}
               </>
@@ -1629,13 +1439,27 @@ function CorporacionMunicipal() {
         </Card>
       </div>
 
+      {/* Las dos lecturas (auditoría de las dos lecturas, §3): arriba, a quién
+          se pregunta, cuánto cobran, quién vigila y los 21 con lo que lleva
+          cada uno, en palabras llanas; debajo, todo lo de siempre, que es lo
+          que lo demuestra. */}
+      <div style={{ marginTop: 22 }}>
+        <EnBreveCargos lista={data} />
+      </div>
+      <div style={{ marginTop: 14 }}>
+        <ListaDeCargos total={data.count} gobierno={gobierno} oposicion={oposicion} />
+      </div>
+      <DivisorLecturas />
+
       <div
+        id="todos-los-datos"
         style={{
           display: 'flex',
           alignItems: 'baseline',
           gap: 10,
           marginTop: 18,
           flexWrap: 'wrap',
+          scrollMarginTop: 16,
         }}
       >
         <div
@@ -1647,12 +1471,13 @@ function CorporacionMunicipal() {
             letterSpacing: '.08em',
           }}
         >
-          Corporación Municipal
+          {t('cargos.corporacion.eyebrow')}
         </div>
         <div className="mono" style={{ fontSize: 'var(--fs-micro)', color: 'var(--ink50)' }}>
-          · {t('cargos.corporacion.raspado').replace('{fecha}', generatedDate)}
+          · {rellena(t('cargos.corporacion.raspado'), { fecha: generatedDate })}
         </div>
-        <DataAsOf iso={data.generatedAt} label="Officials" />
+        {/* Decía «Officials · hace 3 h», el nombre interno del fichero. */}
+        <DataAsOf iso={data.generatedAt} file="officials.json" />
       </div>
       {nCorr > 0 && (
         <div
@@ -1665,10 +1490,9 @@ function CorporacionMunicipal() {
             marginTop: 8,
           }}
         >
-          {t('cargos.corporacion.correcciones')
-            .replace('{n}', nCorr)
-            .replace('{bajas}', corr.bajas ?? 0)
-            .replace('{altas}', corr.altas ?? 0)}{' '}
+          {nCorr === 1
+            ? rellena(t('cargos.corporacion.correcciones.una'), { cambios })
+            : rellena(t('cargos.corporacion.correcciones'), { n: nCorr, cambios })}{' '}
           <Link
             to="/metodologia#corporacion"
             style={{ color: 'var(--civic)', textDecoration: 'underline' }}
@@ -1678,14 +1502,31 @@ function CorporacionMunicipal() {
         </div>
       )}
 
-      <RetribucionesPanel />
+      {/* El ancla de «¿Cuánto cobran?»: existe aunque el panel no se pinte. Las
+          secciones de aquí abajo son las que pliega «Ver: lo esencial»
+          (components/Lecturas.jsx). Se quedan a la vista en los dos estados la
+          cabecera de la corporación, con su fecha y sus correcciones, el
+          enlace a la plantilla y el pie de fuentes. */}
+      <SeccionExperta
+        id="retribuciones"
+        titulo={t('cargos.retri.title')}
+        style={{ scrollMarginTop: 16 }}
+      >
+        <RetribucionesPanel />
+      </SeccionExperta>
 
-      <div style={{ marginTop: 26 }}>
+      {/* El ancla del buscador «¿A quién le pregunto por…?». */}
+      <SeccionExperta
+        id="quien-dirige"
+        titulo={t('cargos.gobierno.title')}
+        style={{ marginTop: 26, scrollMarginTop: 16 }}
+      >
         <SectionHead
           as="h2"
           eyebrow={t('cargos.gobierno.eyebrow').replace('{n}', gobierno.length)}
           title={t('cargos.gobierno.title')}
         />
+        <NotaRespaldoSeccion value={respaldoEnSeccion} />
         <div className="cp-cargos-gob">
           {gobierno.map((o) => (
             <OfficialCard
@@ -1694,13 +1535,18 @@ function CorporacionMunicipal() {
               variant="gobierno"
               kinds={kinds}
               bioRoute={bioRoutes.get(o.slug)}
+              respaldoEnSeccion={respaldoEnSeccion}
             />
           ))}
         </div>
-      </div>
+      </SeccionExperta>
 
       {oposicion.length > 0 && (
-        <div style={{ marginTop: 26 }}>
+        <SeccionExperta
+          id="quien-fiscaliza"
+          titulo={t('cargos.oposicion.title')}
+          style={{ marginTop: 26, scrollMarginTop: 16 }}
+        >
           <SectionHead
             as="h2"
             eyebrow={t('cargos.oposicion.eyebrow').replace('{n}', oposicion.length)}
@@ -1716,6 +1562,11 @@ function CorporacionMunicipal() {
             }}
           >
             {t('cargos.oposicion.nota')}
+            {/* Said here once, not in each card's blank encaje block; the
+                cards keep the label. Not while the freeze hides the block. */}
+            {!encajeCongelado && (
+              <span data-sin-delegacion-seccion=""> {t('encaje.sinDelegacion.seccion')}</span>
+            )}
           </p>
           <div className="cp-cargos-opo">
             {oposicion.map((o) => (
@@ -1728,13 +1579,34 @@ function CorporacionMunicipal() {
               />
             ))}
           </div>
-        </div>
+        </SeccionExperta>
       )}
 
-      <PlantillaBanda />
+      {/* La plantilla municipal vivía aquí, debajo de los electos; ahora está en
+          /empleo-publico, que es donde la busca quien pregunta por el trabajo
+          en el Ayuntamiento (auditoría de las dos lecturas, §3, punto 5). */}
+      <p
+        data-puntero-plantilla=""
+        style={{
+          marginTop: 26,
+          fontSize: 'var(--fs-aux)',
+          lineHeight: 1.55,
+          color: 'var(--ink70)',
+          maxWidth: '88ch',
+        }}
+      >
+        {t('cargos.plantilla.puntero')}{' '}
+        <Link to="/empleo-publico#plantilla" style={{ color: 'var(--civic)' }}>
+          {t('nav.empleoPublico')} →
+        </Link>
+      </p>
 
       {former.length > 0 && (
-        <div style={{ marginTop: 26 }}>
+        <SeccionExperta
+          id="ya-no-forman-parte"
+          titulo={t('cargos.bajas.title')}
+          style={{ marginTop: 26 }}
+        >
           <div
             className="mono"
             style={{
@@ -1769,7 +1641,7 @@ function CorporacionMunicipal() {
               />
             ))}
           </div>
-        </div>
+        </SeccionExperta>
       )}
 
       <div
@@ -1794,7 +1666,7 @@ function CorporacionMunicipal() {
         >
           {t('cargos.fuentes')
             .replace('{fecha}', generatedDate)
-            .replace('{acuerdo}', fmtDateLong(dedic?.source?.date) || '—')}
+            .replace('{acuerdo}', fmtDateLong(dedic?.source?.date, locale) || '—')}
         </p>
         <span style={{ flex: 1 }} />
         <div
@@ -1807,13 +1679,13 @@ function CorporacionMunicipal() {
           }}
         >
           <Link to="/departamentos" style={{ color: 'var(--civic)' }}>
-            Departamentos →
+            {t('nav.departamentos')} →
           </Link>
           <Link to="/promesas" style={{ color: 'var(--civic)' }}>
-            Promesas →
+            {t('nav.promesas')} →
           </Link>
           <Link to="/quejas" style={{ color: 'var(--civic)' }}>
-            Quejas →
+            {t('nav.quejas')} →
           </Link>
         </div>
       </div>
@@ -1822,6 +1694,10 @@ function CorporacionMunicipal() {
 }
 
 export default function Cargos() {
+  const t = useT()
+  // El de la pestaña, el mismo que el <h1>: el armazón ponía «Cargos», la
+  // etiqueta de la navegación.
+  useDocumentTitle(t('cargos.title'))
   return (
     <div
       className="cp-page"

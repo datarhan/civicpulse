@@ -54,6 +54,18 @@ export function EditorialMasthead({ now }) {
       >
         {t('landing.masthead.tagline')}
       </div>
+      {/* Qué es esto, en una frase: la canónica de docs/DESCRIPCION.md. Hasta el
+          26-10-2026 la portada no lo decía en ninguna parte. */}
+      <p
+        style={{
+          margin: '10px 0 0',
+          fontSize: 'var(--fs-meta)',
+          lineHeight: 1.45,
+          color: PALETTE.ink,
+        }}
+      >
+        {t('landing.masthead.proposito')}
+      </p>
     </div>
   )
 }
@@ -62,8 +74,14 @@ export function QuejaCTA() {
   const t = useT()
   // TODO operator: paste a Loom share URL here to enable the embed.
   return (
+    // `id`: el «Saltar el resumen ↓» de «Tu ayuntamiento en 30 segundos» viene
+    // aquí, al primer bloque de después. Apuntaba a `#contenido`, el <main> que
+    // contiene el propio resumen: en escritorio no se movía nada y a 375 px,
+    // con el mapa encima, subía al principio de la página, contra su flecha.
     <div
+      id="portada-tras-resumen"
       style={{
+        scrollMarginTop: 12,
         padding: '14px 16px',
         background: '#EEF4FF',
         border: '1px solid #C7D7F8',

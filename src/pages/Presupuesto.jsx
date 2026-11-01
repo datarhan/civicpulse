@@ -1,8 +1,13 @@
 import { Link } from 'react-router-dom'
 import { Card, ExtLink, Marcado, Pill, SectionHead } from '../components/Primitives'
 import DataAsOf from '../components/DataAsOf'
-import { useBudget, formatEuros } from '../hooks/useBudget'
-import { contrastarPresupuesto, TOLERANCIA_EQUILIBRIO } from '../scraper/budget-contraste'
+import { useBudget } from '../hooks/useBudget'
+import {
+  contrastarPresupuesto,
+  desequilibrioDeConprel,
+  TOLERANCIA_EQUILIBRIO,
+} from '../scraper/budget-contraste'
+import { esCierre, periodoDelAnio } from '../scraper/budget-execution'
 import { useBudgetExecution } from '../hooks/useBudgetExecution'
 import { useObras } from '../hooks/useObras'
 import { useBdns } from '../hooks/useBdns'
@@ -29,7 +34,15 @@ import {
   committedAwardYearSpan,
   importeAdjudicado,
 } from '../lib/contract-status'
-import { decimal, fmtDateCompacta, fmtDateLong, rellena } from '../lib/formatters'
+import {
+  decimal,
+  entero,
+  euros,
+  eurosBreves,
+  fmtDateCompacta,
+  fmtDateLong,
+  rellena,
+} from '../lib/formatters'
 import { conHuecos } from '../lib/huecos'
 import { titularDeuda } from '../lib/deuda-titular'
 import { yearSpan } from '../lib/year-span'
@@ -37,6 +50,9 @@ import { EFICIENCIA_ENABLED } from '../flags'
 import { useLocale, useT } from '../i18n'
 import Paginacion from '../components/Paginacion'
 import GastoDashboard from '../components/Presupuesto/GastoDashboard'
+import EnBrevePresupuesto from '../components/Presupuesto/EnBrevePresupuesto'
+import DivisorLecturas from '../components/DivisorLecturas'
+import { SeccionExperta } from '../components/Lecturas'
 import { TedNotices } from '../components/Presupuesto/TedNotices'
 
 /*
@@ -66,14 +82,6 @@ import { TedNotices } from '../components/Presupuesto/TedNotices'
 /** Las obras van de diez en diez, igual que el listado de contratos. */
 const POR_PAGINA_OBRAS = 10
 
-const eur0 = (n) =>
-  new Intl.NumberFormat('es-ES', {
-    style: 'currency',
-    currency: 'EUR',
-    maximumFractionDigits: 0,
-  }).format(n)
-const eurM = (n, d = 1) =>
-  `${(n / 1e6).toLocaleString('es-ES', { minimumFractionDigits: d, maximumFractionDigits: d })} M€`
 const pct1 = (n) =>
   n.toLocaleString('es-ES', { minimumFractionDigits: 1, maximumFractionDigits: 1 })
 const pct0 = (n) => Math.round(n).toLocaleString('es-ES')
@@ -154,7 +162,7 @@ function ChapterRow({ label, amount, total, escala, nota }) {
           )}
         </span>
         <span className="mono" style={{ fontSize: 'var(--fs-aux)', fontWeight: 700 }}>
-          {eur0(amount)}
+          {euros(amount)}
         </span>
         <span
           className="mono"
@@ -271,25 +279,43 @@ function Cabecera() {
   // worse defect than the ambiguity. `contrastarPresupuesto` gates on the
   // years matching: comparing a CONPREL year against an execution statement
   // from a different exercise would manufacture a discrepancy that does not
-  // exist.
-  const contraste = contrastarPresupuesto(s, exec)
+  // exist. So it is fed the execution of CONPREL's OWN year (`periodoDelAnio`),
+  // not `latest`, which can be a newer year's quarter.
+  const contraste = contrastarPresupuesto(s, periodoDelAnio(execData, s.year))
   const dosFuentes =
     contraste && Math.abs(contraste.diferenciaGastos) >= TOLERANCIA_EQUILIBRIO ? contraste : null
-  // El lede sólo habla de la ejecución cuando es la del MISMO ejercicio que
-  // el titular; si no, describe lo aprobado y deja la cascada, más abajo, con
-  // su propio año en el rótulo.
+  // El lede habla de la ejecución cuando es la del MISMO ejercicio que CONPREL
+  // o una MÁS NUEVA: en octubre de 2026 el Ministerio aún da el aprobado de
+  // 2025 y el Ayuntamiento ya ha publicado el primer trimestre de 2026, y la
+  // página va por el año más nuevo, con su año en el titular. Una ejecución más
+  // VIEJA que CONPREL no gobierna: el lede describe lo aprobado y la cascada,
+  // más abajo, lleva su propio año en el rótulo.
   const mismoAnio = exec && exec.year === s.year
-  const cascada = mismoAnio ? cascadaGastos(exec.gastos?.total) : null
-  const dominante = mismoAnio ? capituloDominante(exec.gastos?.chapters, exec.gastos?.total) : null
+  const masNuevo = exec && exec.year > s.year
+  const cascada = mismoAnio || masNuevo ? cascadaGastos(exec.gastos?.total) : null
+  const dominante =
+    mismoAnio || masNuevo ? capituloDominante(exec.gastos?.chapters, exec.gastos?.total) : null
+  // Un año sin cerrar se cuenta en presente: «lleva ejecutados», no «ejecutó».
+  const enCurso = !!exec?.fechaListado && !esCierre(exec)
+  const anio = masNuevo ? exec.year : s.year
 
   let lede
   if (cascada && cascada.cuadra) {
-    lede = rellena(t('presupuesto.lede'), {
-      inicial: eurM(cascada.inicial),
-      mod: eurM(cascada.modificaciones),
-      pct: pct0(cascada.ampliacionPct),
-      ejecutado: eurM(cascada.ejecutado),
-    })
+    lede = enCurso
+      ? rellena(t('presupuesto.lede.enCurso'), {
+          year: exec.year,
+          inicial: eurosBreves(cascada.inicial),
+          mod: eurosBreves(cascada.modificaciones),
+          pct: pct0(cascada.ampliacionPct),
+          ejecutado: eurosBreves(cascada.ejecutado),
+          fecha: exec.fechaListado,
+        })
+      : rellena(t('presupuesto.lede'), {
+          inicial: eurosBreves(cascada.inicial),
+          mod: eurosBreves(cascada.modificaciones),
+          pct: pct0(cascada.ampliacionPct),
+          ejecutado: eurosBreves(cascada.ejecutado),
+        })
     if (dominante) {
       // El cero del capítulo es de UNA de las dos fuentes que publica la
       // página, y el lede lo decía plano: «un capítulo que había empezado en
@@ -301,25 +327,38 @@ function Cabecera() {
       const cero = ceroDelDominante(dominante, s, exec.year)
       lede += rellena(
         t(
-          !cero
-            ? 'presupuesto.lede.dominante'
-            : cero.estado === 'discrepan'
-              ? 'presupuesto.lede.dominanteCeroDiscrepan'
-              : cero.estado === 'sinConprel'
-                ? 'presupuesto.lede.dominanteCeroSinConprel'
-                : cero.estado === 'sinContraste'
-                  ? 'presupuesto.lede.dominanteCeroSinContraste'
-                  : 'presupuesto.lede.dominanteCero',
+          enCurso
+            ? !cero
+              ? 'presupuesto.lede.dominante.enCurso'
+              : cero.estado === 'discrepan'
+                ? 'presupuesto.lede.dominanteCeroDiscrepan.enCurso'
+                : cero.estado === 'sinConprel'
+                  ? 'presupuesto.lede.dominanteCeroSinConprel.enCurso'
+                  : cero.estado === 'sinContraste'
+                    ? 'presupuesto.lede.dominanteCeroSinContraste.enCurso'
+                    : 'presupuesto.lede.dominanteCero.enCurso'
+            : !cero
+              ? 'presupuesto.lede.dominante'
+              : cero.estado === 'discrepan'
+                ? 'presupuesto.lede.dominanteCeroDiscrepan'
+                : cero.estado === 'sinConprel'
+                  ? 'presupuesto.lede.dominanteCeroSinConprel'
+                  : cero.estado === 'sinContraste'
+                    ? 'presupuesto.lede.dominanteCeroSinContraste'
+                    : 'presupuesto.lede.dominanteCero',
         ),
         {
           cuota: pct0(dominante.cuotaAmpliacion * 100),
           capitulo: dominante.rotulo.toLowerCase(),
           // Al euro, como en el pie: remite a la tarjeta de CONPREL de más
           // abajo, que lo publica así.
-          conprel: eur0(cero?.conprel ?? 0),
+          conprel: euros(cero?.conprel ?? 0),
         },
       )
     }
+    // Con la ejecución por delante de CONPREL, lo que sigue en la página del
+    // Ministerio es de otro año: se dice aquí, y cada tarjeta lleva el suyo.
+    if (masNuevo) lede += rellena(t('presupuesto.lede.conprelAnterior'), { year: s.year })
   } else {
     // Dos ausencias distintas, dos frases distintas: que el listado municipal
     // no esté publicado para este ejercicio, y que esté publicado pero no
@@ -336,7 +375,7 @@ function Cabecera() {
             ? 'presupuesto.lede.soloAprobado'
             : 'presupuesto.lede.soloAprobado.sinTotal',
       ),
-      { year: s.year, gastos: hayTotal ? eurM(s.totalExpense, 2) : '' },
+      { year: s.year, gastos: hayTotal ? eurosBreves(s.totalExpense) : '' },
     )
   }
 
@@ -344,9 +383,16 @@ function Cabecera() {
     <div className={dosFuentes ? 'cp-presu-hero' : undefined}>
       <div>
         <Eyebrow>
-          {rellena(t(cascada ? 'presupuesto.eyebrow' : 'presupuesto.eyebrow.aprobado'), {
-            year: s.year,
-          })}
+          {rellena(
+            t(
+              !cascada
+                ? 'presupuesto.eyebrow.aprobado'
+                : enCurso
+                  ? 'presupuesto.eyebrow.enCurso'
+                  : 'presupuesto.eyebrow',
+            ),
+            { year: anio },
+          )}
         </Eyebrow>
         <h1
           style={{
@@ -357,7 +403,7 @@ function Cabecera() {
             lineHeight: 1.15,
           }}
         >
-          {rellena(t('presupuesto.title'), { year: s.year })}
+          {rellena(t('presupuesto.title'), { year: anio })}
         </h1>
         <p
           style={{
@@ -401,8 +447,9 @@ function Cabecera() {
         >
           <span>
             {rellena(t(perCapita !== null ? 'presupuesto.meta' : 'presupuesto.meta.sinTotal'), {
-              gastos: hayTotal ? eurM(s.totalExpense, 2) : '',
-              porHab: perCapita !== null ? eur0(perCapita) : '',
+              year: s.year,
+              gastos: hayTotal ? eurosBreves(s.totalExpense) : '',
+              porHab: perCapita !== null ? euros(perCapita) : '',
               hab: s.population > 0 ? num(s.population) : '—',
               fecha: fmtDateLong(data.generatedAt, locale),
             })}
@@ -461,7 +508,7 @@ function Cabecera() {
                     color: resalta ? 'var(--warn-ink)' : 'var(--ink)',
                   }}
                 >
-                  {eur0(v)}
+                  {euros(v)}
                 </span>
               </div>
             ))}
@@ -494,6 +541,7 @@ function CascadaCard() {
   const p = data?.latest
   const c = cascadaGastos(p?.gastos?.total)
   if (!p || !c) return null
+  const enCurso = !!p.fechaListado && !esCierre(p)
 
   const ingresos = p.ingresos?.total
   const pctIng =
@@ -542,9 +590,11 @@ function CascadaCard() {
       <SectionHead
         eyebrow={rellena(t('presupuesto.cascada.eyebrow'), { year: p.year, periodo })}
         title={
-          c.cuadra
-            ? rellena(t('presupuesto.cascada.title'), { pct: pct0(c.ampliacionPct) })
-            : t('presupuesto.cascada.title.sinCuadre')
+          !c.cuadra
+            ? t('presupuesto.cascada.title.sinCuadre')
+            : enCurso
+              ? rellena(t('presupuesto.cascada.title.enCurso'), { pct: pct0(c.ampliacionPct) })
+              : rellena(t('presupuesto.cascada.title'), { pct: pct0(c.ampliacionPct) })
         }
       />
       <div
@@ -595,7 +645,7 @@ function CascadaCard() {
                 whiteSpace: 'nowrap',
               }}
             >
-              {eur0(f.v)}
+              {euros(f.v)}
             </div>
           </div>
         ))}
@@ -604,7 +654,7 @@ function CascadaCard() {
       {!c.cuadra && (
         <p style={{ margin: '12px 0 0', fontSize: 'var(--fs-meta)', color: 'var(--warn-ink)' }}>
           {rellena(t('presupuesto.cascada.noCuadra'), {
-            suma: eur0(c.inicial + c.modificaciones),
+            suma: euros(c.inicial + c.modificaciones),
           })}
         </p>
       )}
@@ -614,14 +664,25 @@ function CascadaCard() {
           {c.modificaciones > 0 && (
             <Aviso tone="warn">
               <Marcado
-                texto={rellena(t('presupuesto.callout.denominador'), {
-                  pctDef: pct1(c.ejecutadoSobreDefinitivoPct),
-                  pctIni: pct1(c.ejecutadoSobreInicialPct),
-                })}
+                texto={
+                  enCurso
+                    ? rellena(t('presupuesto.callout.denominador.enCurso'), {
+                        pctDef: pct1(c.ejecutadoSobreDefinitivoPct),
+                        pctIni: pct1(c.ejecutadoSobreInicialPct),
+                      })
+                    : rellena(t('presupuesto.callout.denominador'), {
+                        pctDef: pct1(c.ejecutadoSobreDefinitivoPct),
+                        pctIni: pct1(c.ejecutadoSobreInicialPct),
+                      })
+                }
               />
             </Aviso>
           )}
-          {pctIng != null && ingresos.ejecutado !== c.ejecutado && (
+          {/* La asimetría es el dato de un año CERRADO. A mitad de año, gastos e
+              ingresos no se reconocen al mismo ritmo, y decir que su diferencia
+              «es el dato» sería sacar una conclusión que el corte no sostiene:
+              las dos cifras siguen en la cascada, sin el comentario. */}
+          {!enCurso && pctIng != null && ingresos.ejecutado !== c.ejecutado && (
             <Aviso tone="civic">
               <Marcado
                 texto={rellena(
@@ -634,9 +695,9 @@ function CascadaCard() {
                     mucho:
                       ingresos.ejecutado / c.ejecutado >= 2 ? t('presupuesto.callout.mucho') : '',
                     pctIng: pct1(pctIng),
-                    ingEj: eurM(ingresos.ejecutado),
+                    ingEj: eurosBreves(ingresos.ejecutado),
                     pctGas: pct1(c.ejecutadoSobreDefinitivoPct),
-                    gasEj: eurM(c.ejecutado),
+                    gasEj: eurosBreves(c.ejecutado),
                   },
                 )}
               />
@@ -702,6 +763,7 @@ function CapitulosCard() {
   const total = p?.gastos?.total
   const filas = lecturaCapitulos(p?.gastos?.chapters, total)
   if (!p || filas.length === 0 || !(total?.actual > 0)) return null
+  const enCurso = !!p.fechaListado && !esCierre(p)
   const dominante = capituloDominante(p.gastos.chapters, total)
   const capMax = Math.max(...filas.map((f) => f.definitivo), 1)
   // Qué dice de ese mismo capítulo la OTRA fuente: `ceroDelDominante`, la
@@ -725,7 +787,7 @@ function CapitulosCard() {
   }
 
   return (
-    <Card>
+    <Card id="capitulos" style={{ scrollMarginTop: 24 }}>
       <SectionHead
         eyebrow={rellena(t('presupuesto.cap.eyebrow'), { year: p.year })}
         title={t('presupuesto.cap.title')}
@@ -874,7 +936,7 @@ function CapitulosCard() {
                   whiteSpace: 'nowrap',
                 }}
               >
-                {eur0(f.ejecutado)}
+                {euros(f.ejecutado)}
               </div>
               <div
                 className="mono"
@@ -925,20 +987,30 @@ function CapitulosCard() {
               // al literal, y con la clave escondida en un ayudante se pone
               // rojo, que es lo que tiene que hacer un guard que no puede mirar.
               t(
-                !dominante.abrioEnCero
-                  ? 'presupuesto.cap.pie.dominante'
-                  : cero.estado === 'discrepan'
-                    ? 'presupuesto.cap.pie.ceroDiscrepan'
-                    : cero.estado === 'sinConprel'
-                      ? 'presupuesto.cap.pie.ceroSinConprel'
-                      : cero.estado === 'sinContraste'
-                        ? 'presupuesto.cap.pie.ceroSinContraste'
-                        : 'presupuesto.cap.pie.cero',
+                enCurso
+                  ? !dominante.abrioEnCero
+                    ? 'presupuesto.cap.pie.dominante.enCurso'
+                    : cero.estado === 'discrepan'
+                      ? 'presupuesto.cap.pie.ceroDiscrepan.enCurso'
+                      : cero.estado === 'sinConprel'
+                        ? 'presupuesto.cap.pie.ceroSinConprel.enCurso'
+                        : cero.estado === 'sinContraste'
+                          ? 'presupuesto.cap.pie.ceroSinContraste.enCurso'
+                          : 'presupuesto.cap.pie.cero.enCurso'
+                  : !dominante.abrioEnCero
+                    ? 'presupuesto.cap.pie.dominante'
+                    : cero.estado === 'discrepan'
+                      ? 'presupuesto.cap.pie.ceroDiscrepan'
+                      : cero.estado === 'sinConprel'
+                        ? 'presupuesto.cap.pie.ceroSinConprel'
+                        : cero.estado === 'sinContraste'
+                          ? 'presupuesto.cap.pie.ceroSinContraste'
+                          : 'presupuesto.cap.pie.cero',
               ),
               {
                 capitulo: dominante.rotulo,
-                definitivo: eurM(dominante.definitivo, 2),
-                inicial: eurM(dominante.definitivo - dominante.modificaciones, 2),
+                definitivo: eurosBreves(dominante.definitivo),
+                inicial: eurosBreves(dominante.definitivo - dominante.modificaciones),
                 cuota: pct0(dominante.cuotaAmpliacion * 100),
                 pct: pct1(dominante.pctEjecutado),
                 // Al euro, no en millones como el resto de la frase: esta cifra
@@ -946,7 +1018,7 @@ function CapitulosCard() {
                 // más abajo, donde ese capítulo aparece como «905.517 €». La
                 // frase existe para que el lector lo compruebe allí, y un
                 // «0,91 M€» le pone una conversión por delante.
-                conprel: eur0(cero?.conprel ?? 0),
+                conprel: euros(cero?.conprel ?? 0),
               },
             )}
           />
@@ -964,16 +1036,14 @@ function CapitulosCard() {
 function AprobadoPar() {
   const t = useT()
   const { loading, error, data } = useBudget()
-  const { data: execData } = useBudgetExecution()
   if (loading || error || !data) return null
   const s = data.snapshot
-  const contraste = contrastarPresupuesto(s, execData?.latest)
-  const desequilibrio =
-    contraste &&
-    contraste.desequilibrioConprel !== null &&
-    Math.abs(contraste.desequilibrioConprel) >= TOLERANCIA_EQUILIBRIO
-      ? contraste.desequilibrioConprel
-      : null
+  // De CONPREL solo, sin la ejecución: este aviso habla de sus ingresos frente
+  // a sus gastos. Se sacaba del cotejo con el listado municipal, y cuando el
+  // periodo más nuevo fue de otro año el cotejo dio null y el aviso dejó de
+  // salir (`desequilibrioDeConprel`).
+  const d = desequilibrioDeConprel(s)
+  const desequilibrio = d !== null && Math.abs(d) >= TOLERANCIA_EQUILIBRIO ? d : null
   const aCero = capitulosACero(s.expenseByEconomicChapter)
   // Lo que CONPREL no trae (null en el snapshot) no es un capítulo a cero: se
   // dice aparte, con su propia frase, y nunca entra en la lista de «a 0 €».
@@ -987,7 +1057,7 @@ function AprobadoPar() {
   const aCeroIng = capitulosACero(s.revenueByEconomicChapter)
 
   return (
-    <div className="cp-presu-duo">
+    <div id="aprobado" className="cp-presu-duo" style={{ scrollMarginTop: 24 }}>
       <Card>
         <SectionHead
           eyebrow={rellena(t('presupuesto.econ.eyebrow'), { year: s.year })}
@@ -1087,9 +1157,9 @@ function AprobadoPar() {
             <Aviso tone="warn" id="descuadre">
               <Marcado
                 texto={rellena(t('presupuesto.descuadre'), {
-                  ingresos: eur0(s.totalRevenue),
-                  gastos: eur0(s.totalExpense),
-                  dif: eur0(Math.abs(desequilibrio)),
+                  ingresos: euros(s.totalRevenue),
+                  gastos: euros(s.totalExpense),
+                  dif: euros(Math.abs(desequilibrio)),
                 })}
               />
             </Aviso>
@@ -1134,7 +1204,7 @@ function ProgramasCard() {
         eyebrow={rellena(t('presupuesto.prog.eyebrow'), { year: s.year })}
         title={
           hayTotal
-            ? rellena(t('presupuesto.prog.title'), { total: eurM(s.totalExpense, 2) })
+            ? rellena(t('presupuesto.prog.title'), { total: eurosBreves(s.totalExpense) })
             : t('presupuesto.prog.title.sinTotal')
         }
         right={
@@ -1198,7 +1268,7 @@ function ProgramasCard() {
                   whiteSpace: 'nowrap',
                 }}
               >
-                {eur0(g.amount)}
+                {euros(g.amount)}
               </div>
               <div
                 className="mono"
@@ -1245,8 +1315,8 @@ function ProgramasCard() {
           }}
         >
           {rellena(t('presupuesto.prog.deuda'), {
-            importe: eurM(deudaPrograma.amount, 2),
-            deuda: eurM(ultimoDeuda.deudaEuros, 2),
+            importe: eurosBreves(deudaPrograma.amount),
+            deuda: eurosBreves(ultimoDeuda.deudaEuros),
           })}
         </p>
       )}
@@ -1286,7 +1356,7 @@ function DeudaVivaSection() {
   const percentil = data?.ultimo?.percentil
 
   return (
-    <Card className="cp-presu-deuda-marco">
+    <Card id="deuda" className="cp-presu-deuda-marco" style={{ scrollMarginTop: 24 }}>
       <SectionHead
         eyebrow={t('presupuesto.deuda.eyebrow')}
         title={titularDeuda(tendencia, t)}
@@ -1296,7 +1366,7 @@ function DeudaVivaSection() {
               className="mono"
               style={{ fontSize: 'var(--fs-card)', fontWeight: 500, letterSpacing: '-.02em' }}
             >
-              {eur0(ultimo.deudaEuros)}
+              {euros(ultimo.deudaEuros)}
             </div>
             <div style={{ fontSize: 'var(--fs-micro)', color: 'var(--ink50)', marginTop: 2 }}>
               {rellena(t('presupuesto.deuda.saldo'), { year: ultimo.ejercicio })}
@@ -1339,7 +1409,7 @@ function DeudaVivaSection() {
                   className="mono"
                   style={{ fontSize: 'var(--fs-meta)', textAlign: 'right', whiteSpace: 'nowrap' }}
                 >
-                  {eur0(p.deudaEuros)}
+                  {euros(p.deudaEuros)}
                 </span>
                 <span
                   className="mono"
@@ -1359,7 +1429,7 @@ function DeudaVivaSection() {
                 >
                   {p.delta === null
                     ? '—'
-                    : `${p.delta > 0 ? '+' : p.delta < 0 ? '−' : ''}${eur0(Math.abs(p.delta)).replace(/\s?€$/, '')}`}
+                    : `${p.delta > 0 ? '+' : p.delta < 0 ? '−' : ''}${entero(Math.round(Math.abs(p.delta)))}`}
                 </span>
               </div>
             ))}
@@ -1370,7 +1440,7 @@ function DeudaVivaSection() {
           >
             {rellena(t('presupuesto.deuda.desde'), {
               anio: primero.ejercicio,
-              delta: `${delta > 0 ? '+' : ''}${eur0(delta)}`,
+              delta: `${delta > 0 ? '+' : ''}${euros(delta)}`,
             })}
           </div>
         </div>
@@ -1388,7 +1458,7 @@ function DeudaVivaSection() {
                 importe:
                   programaDeuda && budget?.snapshot?.year
                     ? rellena(t('presupuesto.deuda.nota1.importe'), {
-                        x: eurM(programaDeuda.amount, 2),
+                        x: eurosBreves(programaDeuda.amount),
                         year: budget.snapshot.year,
                       })
                     : '',
@@ -1409,8 +1479,8 @@ function DeudaVivaSection() {
                   percentil,
                   n: num(reparto.n),
                   aCero: num(reparto.aCero),
-                  mediana: eur0(reparto.mediana ?? 0),
-                  p90: eurM(reparto.p90, 2),
+                  mediana: euros(reparto.mediana ?? 0),
+                  p90: eurosBreves(reparto.p90),
                 })}
               />
             </p>
@@ -1449,6 +1519,7 @@ function TarjetaContratacion({ href, eyebrow, cifra, nota, enlace }) {
     <a
       href={href}
       className="cp-card"
+      data-tarjeta=""
       style={{
         display: 'flex',
         flexDirection: 'column',
@@ -1547,7 +1618,7 @@ function ContratacionBanda() {
       nota: rellena(t('presupuesto.contra.menores.nota'), {
         span: spanMenores ? ` ${spanMenores}` : '',
         adj: num(adjudicados.length),
-        importe: eurM(r.importeSinIva, 2),
+        importe: eurosBreves(r.importeSinIva),
         pctN: pct0((r.n / adjudicados.length) * 100),
         pctImporte: totalNeto > 0 ? pct1((r.importeSinIva / totalNeto) * 100) : '—',
       }),
@@ -1575,7 +1646,7 @@ function ContratacionBanda() {
         rellena(t('presupuesto.contra.ted.nota'), {
           span: spanTed ? ` ${spanTed}` : '',
           valued: num(valorados.length),
-          total: eurM(totalTed, 2),
+          total: eurosBreves(totalTed),
         }) +
         (cuotaMayor >= 0.25
           ? rellena(t('presupuesto.contra.ted.mayor'), { pct: pct0(cuotaMayor * 100) })
@@ -1594,7 +1665,7 @@ function ContratacionBanda() {
           ? rellena(t('presupuesto.contra.bdns.recibidas'), {
               n: num(concBdns.total),
               span: spanConc ? ` ${spanConc}` : '',
-              importe: eurM(concBdns.importe, 1),
+              importe: eurosBreves(concBdns.importe),
             })
           : ''),
       enlace: t('presupuesto.contra.bdns.link'),
@@ -1698,7 +1769,7 @@ function RealSubsidies() {
               n: num(conc.total),
               span: spanConc ? ` ${spanConc}` : '',
               conv: num(conc.convocatorias),
-              importe: eurM(conc.importe, 1),
+              importe: eurosBreves(conc.importe),
               desde: conc.desde ? conc.desde.slice(0, 4) : '—',
             })}
           </p>
@@ -1720,7 +1791,7 @@ function RealSubsidies() {
                 }}
               >
                 <span className="mono" style={{ fontSize: 'var(--fs-aux)', fontWeight: 600 }}>
-                  {typeof c.importe === 'number' ? eur0(c.importe) : '—'}
+                  {typeof c.importe === 'number' ? euros(c.importe) : '—'}
                 </span>
                 <span
                   className="mono"
@@ -1752,7 +1823,7 @@ function ObrasEnCursoSection() {
   const { data } = useObras()
   const obras = data?.obras ?? []
   if (obras.length === 0) return null
-  const eur = (n) => (typeof n === 'number' ? eur0(n) : '—')
+  const eur = (n) => (typeof n === 'number' ? euros(n) : '—')
   const renove = obras.filter((o) => o.programa === 'renove')
   const feder = obras.filter((o) => o.programa !== 'renove')
   return (
@@ -1902,7 +1973,7 @@ function ContratacionMenorSection() {
   const r = resumenMenores(contratos)
   if (r.n === 0) return null
 
-  const eur = eur0
+  const eur = euros
   // El denominador son los ADJUDICADOS, no las filas del snapshot: de las 809
   // hay 108 anuladas, revocadas, desistidas o sin clasificar. Compararse con
   // ellas diluye el peso de la vía directa —23 % en vez del 26 % real— y lo
@@ -2118,7 +2189,7 @@ function PiePresupuesto() {
         <Link to="/datos" style={{ color: 'var(--civic)' }}>
           {t('presupuesto.pie.datos')}
         </Link>
-        <Link to="/metodologia" style={{ color: 'var(--civic)' }}>
+        <Link to="/metodologia#grupo-datos" style={{ color: 'var(--civic)' }}>
           {t('presupuesto.pie.metodologia')}
         </Link>
       </div>
@@ -2127,6 +2198,7 @@ function PiePresupuesto() {
 }
 
 export default function Presupuesto() {
+  const t = useT()
   return (
     <div
       className="cp-page"
@@ -2140,30 +2212,64 @@ export default function Presupuesto() {
       }}
     >
       <Cabecera />
-      <CascadaCard />
-      <CapitulosCard />
-      <AprobadoPar />
-      <ProgramasCard />
-      <DeudaVivaSection />
-      <ContratacionBanda />
-      <ContratacionMenorSection />
-      <ObrasEnCursoSection />
-      <div id="ted" style={{ scrollMarginTop: 24 }}>
-        <TedNotices />
+      {/* La primera capa, para quien llega con una pregunta y no con el
+          vocabulario de la Intervención. Resume y enlaza; no sustituye a nada
+          de lo que va debajo. */}
+      <EnBrevePresupuesto />
+      {/* Las dos lecturas (auditoría de las dos lecturas, §5): arriba, «En
+          breve»; debajo del divisor, todo lo de siempre, partido en secciones
+          que «Ver: lo esencial» pliega hasta su título (components/Lecturas.jsx).
+          «Saltar a todos los datos» aterriza en el divisor, que es donde
+          empiezan. El pie, con las fuentes, se queda a la vista. */}
+      <div id="todos-los-datos" style={{ scrollMarginTop: 24 }}>
+        <DivisorLecturas />
       </div>
-      <RealSubsidies />
+      <SeccionExperta id="presupuesto-cascada" titulo={t('presupuesto.cascada.title.sinCuadre')}>
+        <CascadaCard />
+      </SeccionExperta>
+      <SeccionExperta id="presupuesto-capitulos" titulo={t('presupuesto.cap.title')}>
+        <CapitulosCard />
+      </SeccionExperta>
+      <SeccionExperta id="presupuesto-aprobado" titulo={t('presupuesto.seccion.aprobado')}>
+        <AprobadoPar />
+      </SeccionExperta>
+      <SeccionExperta id="presupuesto-programas" titulo={t('presupuesto.prog.title.sinTotal')}>
+        <ProgramasCard />
+      </SeccionExperta>
+      <SeccionExperta id="presupuesto-deuda" titulo={t('presupuesto.seccion.deuda')}>
+        <DeudaVivaSection />
+      </SeccionExperta>
+      <SeccionExperta id="presupuesto-contratacion" titulo={t('presupuesto.contra.title')}>
+        <ContratacionBanda />
+      </SeccionExperta>
+      <SeccionExperta id="presupuesto-menores" titulo={t('presupuesto.seccion.menores')}>
+        <ContratacionMenorSection />
+      </SeccionExperta>
+      <SeccionExperta id="presupuesto-obras" titulo={t('presupuesto.seccion.obras')}>
+        <ObrasEnCursoSection />
+      </SeccionExperta>
+      {/* El ancla `#ted` es la propia sección: sin anuncios, su cuerpo queda
+          vacío y la pestaña plegada no sale. */}
+      <SeccionExperta
+        id="ted"
+        titulo={t('presupuesto.seccion.ted')}
+        style={{ scrollMarginTop: 24 }}
+      >
+        <TedNotices />
+      </SeccionExperta>
+      <SeccionExperta id="presupuesto-subvenciones" titulo={t('presupuesto.subvenciones.titulo')}>
+        <RealSubsidies />
+      </SeccionExperta>
       {/* El mapa va el ÚLTIMO de los bloques. Es la vista geográfica de la
           contratación, y sólo puede situar el 1,8 % del dinero, así que cierra
           el recorrido en vez de partirlo: antes se metía entre el presupuesto y
           la deuda, y su tarjeta —la más alta de la página— dejaba todo lo demás
           fuera de la pantalla. El pie se queda debajo, que es donde van las
           fuentes. */}
-      <GastoDashboard />
+      <SeccionExperta id="presupuesto-mapa" titulo={t('presupuesto.gasto.titulo')}>
+        <GastoDashboard />
+      </SeccionExperta>
       <PiePresupuesto />
     </div>
   )
 }
-
-// Se exporta para que una prueba pueda comprobar que el ejecutado se pinta con
-// el nombre de la magnitud y no con una palabra prestada.
-export { formatEuros }

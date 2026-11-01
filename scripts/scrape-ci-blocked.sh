@@ -85,6 +85,23 @@ ADAPTERS=(
   # refresco de `pleno-actas.json`. Sin él, un acta nueva no entraría nunca en
   # el cotejo de `check:votos-acta` de más abajo.
   scrape:pleno-actas
+  # El vídeo que incrusta cada página de sesión de regmeet, la segunda fuente de
+  # vídeo de /plenos/:id. No pide nada: lee las páginas que la pasada de actas
+  # acaba de guardar en .cache/regmeet-sesiones/, así que va DETRÁS de ella. Una
+  # pasada propia por las mismas páginas encontraba la conexión cerrada
+  # (cabecera de src/scraper/pleno-videos-regmeet-pasada.ts).
+  scrape:pleno-videos-regmeet
+  # SINAC, la calidad del agua red a red. Que un runner de GitHub llegue a
+  # sinac.sanidad.gob.es está sin medir, así que en la nocturna entra en blando
+  # y éste es su refresco garantizado. Importa más que en otros: la página sólo
+  # enseña los últimos boletines y `agua.json` es el archivo de los que rotan
+  # fuera; una pasada perdida no se recupera mañana.
+  scrape:agua
+  # La banda de SINAC (los municipios parecidos). Semanal por su cuenta: dentro
+  # de los 7 días sale 0 sin pedir nada. Éste es su ÚNICO refresco: una pasada
+  # son unos 27 min y en la nocturna no cabe (SOLO_LOCAL en scrape-all.sh). Va la
+  # última porque cuando le toca es, con mucho, la más larga.
+  scrape:agua-pares
 )
 
 failed=()
@@ -159,7 +176,8 @@ if ! cron_git_stage_and_check \
        public/data/procesos-selectivos.json public/data/asociaciones.json \
        public/data/obras.json public/data/sindicatura.json \
        public/data/sindic-expedientes.json public/data/transparency-docs.json \
-       public/data/pleno-actas.json \
+       public/data/pleno-actas.json public/data/agua.json public/data/agua-pares.json \
+       public/data/pleno-videos-regmeet.json \
        $REDERIVADOS; then
   echo "[ci-blocked] no changes"
   exit ${#failed[@]}
@@ -230,8 +248,12 @@ fi
 # push, este --no-verify hay que volver a mirarlo.
 PREPUSH_RANGE="origin/main...HEAD" sh .husky/pre-push || true
 
-if ! git push --no-verify origin main; then
-  echo "[ci-blocked] ERROR: git push falló — el commit existe en local pero NO está publicado; el próximo run reintenta"
+# La ventana entre el pull de arriba y este push la abre la propia revisión: unos
+# tres minutos en los que cualquier fusión a main rechaza el push. El reintento
+# no repite la revisión, que volvería a abrirla: las rutas ya están leídas, y lo
+# que trae el rebase es trabajo ajeno.
+if ! cron_git_push_con_reintento --no-verify; then
+  echo "[ci-blocked] ERROR: push rechazado y el reintento no salió — el commit existe en local pero NO está publicado. Si la nocturna reescribe esos ficheros antes, el próximo pull inicial chocará: check:cron lo dará en rojo"
   exit 1
 fi
 echo "[ci-blocked] pushed"

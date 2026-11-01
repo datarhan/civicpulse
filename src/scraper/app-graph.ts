@@ -1147,6 +1147,12 @@ export function construirGrafoApp(entradas: EntradasGrafo): GrafoApp {
     aristas.push({ de: vista, a: destino, tipo: 'monta', origen: 'derivada' })
   }
   for (const [nombre, suyas] of Object.entries(entradas.rutas.rutasPorSnapshot)) {
+    // Una ruta puede leer un snapshot que aún no existe (el hook se escribe
+    // antes de la primera pasada del adaptador). `dato()` lo deja en
+    // `sinFichero`, que la página dice; la arista con `de: null` tumbaba el
+    // manual entero.
+    const origen = datoOpcional(nombre, 'ruta')
+    if (!origen) continue
     for (const r of suyas) {
       const destino = anota({
         id: `ruta:${r}`,
@@ -1155,7 +1161,7 @@ export function construirGrafoApp(entradas: EntradasGrafo): GrafoApp {
         dominio: null,
         analizado: true,
       })
-      aristas.push({ de: snapshot(nombre), a: destino, tipo: 'alimenta', origen: 'derivada' })
+      aristas.push({ de: origen, a: destino, tipo: 'alimenta', origen: 'derivada' })
     }
   }
 

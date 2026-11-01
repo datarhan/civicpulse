@@ -1,5 +1,7 @@
 import { useEffect } from 'react'
+import { flushSync } from 'react-dom'
 import { useLocation } from 'react-router-dom'
+import { seccionesPlegadasHacia, useAbrirSecciones } from '../components/Lecturas'
 
 /**
  * Scroll a `#fragment` into view once the element it names actually exists.
@@ -49,6 +51,7 @@ function headerOffset() {
 
 export function useHashScroll() {
   const { hash, key } = useLocation()
+  const abrirSecciones = useAbrirSecciones()
 
   useEffect(() => {
     if (!hash || hash.length < 2) return undefined
@@ -62,6 +65,7 @@ export function useHashScroll() {
     }
 
     let done = false
+    let yaAbrio = false
     let observer
     let timer
     let fuentes
@@ -166,6 +170,21 @@ export function useHashScroll() {
 
     const attempt = () => {
       if (done) return true
+      // Con el pliegue en «lo esencial», el destino puede estar dentro de una
+      // sección plegada, y a un elemento oculto no se aterriza: se abre antes
+      // (components/Lecturas.jsx). `flushSync` para colocar con la sección ya
+      // abierta en esta misma pasada. Se abre UNA vez: si después vuelve a
+      // estar plegada es que el lector ha vuelto a plegar, y eso es tomar el
+      // mando, como la rueda o el teclado.
+      const plegadas = seccionesPlegadasHacia(document.getElementById(id))
+      if (plegadas.length > 0 && abrirSecciones) {
+        if (yaAbrio) {
+          stop()
+          return true
+        }
+        yaAbrio = true
+        flushSync(() => abrirSecciones(plegadas))
+      }
       if (yaColocado()) return true
       // NO se suelta el observador: mientras siga llegando contenido por encima
       // hay que recolocar. Lo suelta `stop`, por límite de tiempo o porque el
@@ -176,14 +195,25 @@ export function useHashScroll() {
     // Se registra SIEMPRE el vigilante, aunque el destino ya exista: colocar
     // bien la primera vez no garantiza que siga colocado cuando entren los
     // datos o las fuentes de más arriba.
-    attempt()
+    //
+    // El primer intento va en una microtarea y no aquí mismo: abrir una
+    // sección plegada usa `flushSync`, y React no lo admite dentro de un
+    // efecto.
+    queueMicrotask(attempt)
 
     window.addEventListener('wheel', takeOver, { passive: true })
     window.addEventListener('touchmove', takeOver, { passive: true })
     window.addEventListener('keydown', takeOver)
 
     observer = new MutationObserver(() => attempt())
-    observer.observe(document.body, { childList: true, subtree: true })
+    // `data-plegada` también: plegar y desplegar no añade ni quita nodos, sólo
+    // cambia ese atributo, y es lo que dice que el lector ha vuelto a plegar.
+    observer.observe(document.body, {
+      childList: true,
+      subtree: true,
+      attributes: true,
+      attributeFilter: ['data-plegada'],
+    })
     fuentes = document.fonts
     fuentes?.addEventListener('loadingdone', fuentesCargadas)
     timer = setTimeout(stop, GIVE_UP_MS)
@@ -191,7 +221,7 @@ export function useHashScroll() {
     return stop
     // `key` is in the deps so re-navigating to the SAME hash (a second click on
     // the same permalink) scrolls again instead of being a no-op.
-  }, [hash, key])
+  }, [hash, key, abrirSecciones])
 }
 
 export default useHashScroll

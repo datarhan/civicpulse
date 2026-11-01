@@ -15,11 +15,12 @@ import { useParticipa, KIND_ICON } from '../../../hooks/useParticipa'
 import { usePress, timeAgo as pressTimeAgo } from '../../../hooks/usePress'
 import { useEvents, upcomingEvents, formatEventWhen } from '../../../hooks/useEvents'
 import { useEmpleo } from '../../../hooks/useEmpleo'
+import { ofertasDePortada, fechaDeCierre } from '../../../lib/empleo'
 import { PALETTE } from '../tokens'
 import { SectionHeader } from '../SectionHeader'
 import { ExtLink } from '../../../components/Primitives'
 import { RetiredSourceNote } from '../../../components/RetiredSourceNote'
-import { rellena } from '../../../lib/formatters'
+import { eurosBreves, rellena } from '../../../lib/formatters'
 import { rotuloDe, useLocale } from '../../../i18n'
 
 /** Día y mes corto, en el idioma de la interfaz: «15 sept» salía igual en valencià. */
@@ -33,14 +34,9 @@ export function EmpleoBlockD() {
   const { t, locale } = useLocale()
   const { loading, error, data } = useEmpleo()
   if (loading || error || !data) return null
-  const items = data.items || []
-  if (items.length === 0) return null
-  // Closing-soon first (offers with a deadline), else newest.
-  const withDeadline = items.filter((o) => o.deadline)
-  const picks = (withDeadline.length ? withDeadline : items)
-    .slice()
-    .sort((a, b) => (a.deadline && b.deadline ? a.deadline.localeCompare(b.deadline) : 0))
-    .slice(0, 3)
+  // Abiertas, la que cierra antes primero; una vencida nunca (src/lib/empleo.js).
+  const picks = ofertasDePortada(data.items || [], 3)
+  if (picks.length === 0) return null
   return (
     <div>
       <SectionHeader
@@ -70,7 +66,7 @@ export function EmpleoBlockD() {
             <div className="mono" style={{ fontSize: 'var(--fs-micro)', color: PALETTE.ink60 }}>
               {muni.length > 30 ? muni.slice(0, 30) + '…' : muni}
               {o.deadline
-                ? ` · ${rellena(t('landing.empleo.cierra'), { fecha: diaYMes(o.deadline, locale) })}`
+                ? ` · ${rellena(t('landing.empleo.cierra'), { fecha: fechaDeCierre(o.deadline, locale) })}`
                 : ''}
             </div>
           </div>
@@ -105,14 +101,6 @@ export function LiveContracts() {
   // expediente entero. Ver `src/lib/tender-lotes.js`.
   const grupos = agrupaPorExpediente(data.contracts ?? [])
 
-  const fmtEur = (n) =>
-    new Intl.NumberFormat('es-ES', {
-      style: 'currency',
-      currency: 'EUR',
-      maximumFractionDigits: 0,
-      notation: n >= 100_000 ? 'compact' : 'standard',
-    }).format(n)
-
   // The period, derived from the same rows the counter counts. The four
   // contracts listed below are the MOST RECENT awards — all of them July 2026 —
   // so an undated «698 · 68 M€» beside them reads as this summer's spending
@@ -145,7 +133,7 @@ export function LiveContracts() {
         // surface reviewer's `innerText`, so a period hidden there is a fix
         // that cannot be observed — the front-end twin of a green test that
         // measured nothing.
-        meta={`${data.stats.awardedContracts} · ${fmtEur(data.stats.awardedTotalEuros)}`}
+        meta={`${data.stats.awardedContracts} · ${eurosBreves(data.stats.awardedTotalEuros)}`}
       />
       {awardedYears && (
         <div
@@ -237,7 +225,7 @@ export function LiveContracts() {
                   publica importe. Aquí no cabe explicarlo —la portada da una
                   línea por contrato— y de las dos formas de callarlo, el guión
                   es la que no afirma nada. */}
-                {importe === null ? '—' : fmtEur(importe)}
+                {importe === null ? '—' : eurosBreves(importe)}
               </span>
             </div>
             {/* El enlace de esta fila NO lleva a esta fila: ver `NotaDeLote`. */}

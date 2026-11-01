@@ -361,3 +361,45 @@ describe('doc-fetch: a HEAD is only believed when it says yes', () => {
     })
   })
 })
+
+describe('doc-fetch: classifyUrl suelta cada respuesta que no lee', () => {
+  // 25-10-2026: check:citations imprimió su informe y el proceso siguió vivo
+  // más de media hora con ~9 sockets abiertos a contrataciondelestado.es. PLACSP
+  // contesta HEAD 404 y la verificación pasa a GET, cuyo cuerpo nadie leía ni
+  // cancelaba; con el temporizador ya limpio, un cuerpo que se atasca sujeta el
+  // socket y el bucle de eventos. scrape-ci-blocked.sh espera detrás de él, y
+  // con él el commit y el push de todos los datos de la mañana.
+  afterEach(() => vi.unstubAllGlobals())
+
+  const cuerpoAtascado = () => {
+    const cancelado = { valor: false }
+    const body = new ReadableStream<Uint8Array>({
+      start(c) {
+        c.enqueue(new Uint8Array([60, 104, 116, 109, 108, 62])) // «<html>» y nada más
+      },
+      cancel() {
+        cancelado.valor = true
+      },
+    })
+    return { body, cancelado }
+  }
+
+  it('cancela el cuerpo del GET y el del HEAD descartado (la forma PLACSP)', async () => {
+    const head = cuerpoAtascado()
+    const get = cuerpoAtascado()
+    vi.stubGlobal(
+      'fetch',
+      vi.fn(async (_url: string, init?: { method?: string }) =>
+        init?.method === 'HEAD'
+          ? new Response(head.body, { status: 404 })
+          : new Response(get.body, { status: 200 }),
+      ),
+    )
+    expect(await classifyUrl('https://contrataciondelestado.es/wps/poc?uri=x')).toMatchObject({
+      state: 'alive',
+      status: 200,
+    })
+    expect(head.cancelado.valor, 'el HEAD 404 dejó su cuerpo abierto').toBe(true)
+    expect(get.cancelado.valor, 'el GET dejó su cuerpo abierto: el socket sigue vivo').toBe(true)
+  })
+})

@@ -116,5 +116,8 @@ if ! cron_git_stage_and_check public/data/promises.json $REDERIVADOS; then
   exit 0
 fi
 cron_git_commit_pathspec "data: weekly promise auto-curate (auto-published · pending review)"
-git push origin main
+if ! cron_git_push_con_reintento; then
+  echo "[$(date '+%F %T')] ERROR: push rechazado y el reintento no salió — el commit existe en local pero NO está publicado; check:cron lo dará en rojo"
+  exit 1
+fi
 echo "[$(date '+%F %T')] pushed auto-published promises"

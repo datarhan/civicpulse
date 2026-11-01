@@ -1,5 +1,5 @@
 import { test, expect } from '@playwright/test'
-import { STRICT_ROUTES } from './_rutas'
+import { STRICT_ROUTES, exigeQueResuelva } from './_rutas'
 
 /**
  * Contraste AA medido, en las dos temperaturas, componiendo alfa contra el fondo
@@ -132,6 +132,10 @@ test.describe('Contraste AA medido', () => {
         },
         { umbrales: [suelo(11, false), suelo(24, false)] },
       )
+
+      // Diez nodos medidos no prueban que se midiera la PÁGINA: la barra
+      // lateral y la cabecera ya pasan de diez sobre una tarjeta de «no existe».
+      await exigeQueResuelva(page, ruta)
 
       for (const tema of ['claro', 'oscuro'] as const) {
         // Prueba de trabajo: si el selector dejara de encontrar nodos, «cero

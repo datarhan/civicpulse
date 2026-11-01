@@ -1,6 +1,6 @@
 {
   "plenoId": "1pe3qs8",
-  "generatedAt": "2026-10-08T07:32:15.376Z",
+  "generatedAt": "2026-10-22T07:37:42.854Z",
   "model": "gemini-3.5-flash",
   "promptVersion": "speaker-map-v2",
   "chunkSeconds": 600,
@@ -3730,6 +3730,744 @@
       "end": 4004,
       "speaker": "c06/SPEAKER_00",
       "text": "Gracias, pues se alza el pleno. Gracias a todos y a todas."
+    },
+    {
+      "start": 1200,
+      "end": 1202.1,
+      "speaker": "c02/SPEAKER_00",
+      "text": "Valorar el que és la part del plec de condicions, etcètera. Pero"
+    },
+    {
+      "start": 1202.1,
+      "end": 1205.7,
+      "speaker": "c02/SPEAKER_00",
+      "text": "és veritat que podem volem posar el foco en que la mala praxi ve"
+    },
+    {
+      "start": 1205.7,
+      "end": 1210,
+      "speaker": "c02/SPEAKER_00",
+      "text": "de la empresa. Nosaltres eh valorem també la reunió que van tindre el dilluns perquè"
+    },
+    {
+      "start": 1210,
+      "end": 1213.5,
+      "speaker": "c02/SPEAKER_00",
+      "text": "el que fa referència a l'expedient se van"
+    },
+    {
+      "start": 1213.5,
+      "end": 1216.9,
+      "speaker": "c02/SPEAKER_00",
+      "text": "van a meitat moltes qüestions"
+    },
+    {
+      "start": 1216.9,
+      "end": 1221,
+      "speaker": "c02/SPEAKER_00",
+      "text": "i sí que m'agradaria puntualitzar dues qüestions. Una, eh lo que ha comentat el regidor"
+    },
+    {
+      "start": 1221,
+      "end": 1225.9,
+      "speaker": "c02/SPEAKER_00",
+      "text": "José Ángel de el el començament dels informes per quantificar els danys perquè creu que és essencial"
+    },
+    {
+      "start": 1225.9,
+      "end": 1230.7,
+      "speaker": "c02/SPEAKER_00",
+      "text": "quantificar els danys a nivell tècnic i eh en segon lloc poder"
+    },
+    {
+      "start": 1230.7,
+      "end": 1236.1,
+      "speaker": "c02/SPEAKER_00",
+      "text": "eh això avaluar i una vegada avaluat poder també eh a la empresa, no?, demanar-li els danys i perjudicis"
+    },
+    {
+      "start": 1236.1,
+      "end": 1239.7,
+      "speaker": "c02/SPEAKER_00",
+      "text": "i a més una segona qüestió que parlava dels costos, que ja se va plantejar"
+    },
+    {
+      "start": 1239.7,
+      "end": 1244.2,
+      "speaker": "c02/SPEAKER_00",
+      "text": "en la reunió, que el que van parlar és que no anaven a tindre sobrecostos perquè se van a fer"
+    },
+    {
+      "start": 1244.2,
+      "end": 1249.3,
+      "speaker": "c02/SPEAKER_00",
+      "text": "amb els contractes d'emergència i lo que no feia la empresa"
+    },
+    {
+      "start": 1249.3,
+      "end": 1254.1,
+      "speaker": "c02/SPEAKER_00",
+      "text": "Garbialdi ho anaven a fer la segona empresa, en este cas la que queda segona,"
+    },
+    {
+      "start": 1254.1,
+      "end": 1257.6,
+      "speaker": "c02/SPEAKER_00",
+      "text": "que també me pareix una eh bona decisió."
+    },
+    {
+      "start": 1257.6,
+      "end": 1261.9,
+      "speaker": "c02/SPEAKER_00",
+      "text": "Sí que és veritat que jo eh en referència a esta qüestió sí que volia fer una altra pregunta i és"
+    },
+    {
+      "start": 1261.9,
+      "end": 1266.8,
+      "speaker": "c02/SPEAKER_00",
+      "text": "si la primera empresa fa x accions o x funcions"
+    },
+    {
+      "start": 1266.8,
+      "end": 1270.2,
+      "speaker": "c02/SPEAKER_00",
+      "text": "se li va a pagar la resta a la segona."
+    },
+    {
+      "start": 1270.2,
+      "end": 1275.1,
+      "speaker": "c02/SPEAKER_00",
+      "text": "Eixe càlcul com se va a fer? És a dir,"
+    },
+    {
+      "start": 1275.1,
+      "end": 1280.1,
+      "speaker": "c02/SPEAKER_00",
+      "text": "si la primera empresa que no és la que està complint les funcions que li toca va a fer per exemple un vint per cent de lo que li toca,"
+    },
+    {
+      "start": 1280.1,
+      "end": 1284.4,
+      "speaker": "c02/SPEAKER_00",
+      "text": "el huitanta anirà per a la altra empresa. Però eixe càlcul o eixe percentatge"
+    },
+    {
+      "start": 1284.4,
+      "end": 1287.2,
+      "speaker": "c02/SPEAKER_00",
+      "text": "com se va a calcular? Gràcies."
+    },
+    {
+      "start": 1287.2,
+      "end": 1292.1,
+      "speaker": "c02/SPEAKER_01",
+      "text": "Més paraules? Compromís, Rafa."
+    },
+    {
+      "start": 1292.1,
+      "end": 1297.4,
+      "speaker": "c02/SPEAKER_02",
+      "text": "Gràcies, senyor alcalde. Bon dia a totes i a tots i bon any."
+    },
+    {
+      "start": 1297.4,
+      "end": 1300.9,
+      "speaker": "c02/SPEAKER_02",
+      "text": "Anem a veure. Des del grup municipal de Compromís anem a mantindre"
+    },
+    {
+      "start": 1300.9,
+      "end": 1304.7,
+      "speaker": "c02/SPEAKER_02",
+      "text": "la nostra postura eh en este tema"
+    },
+    {
+      "start": 1304.7,
+      "end": 1308.9,
+      "speaker": "c02/SPEAKER_02",
+      "text": "des del principi anem a mantindre-la perquè creiem que és un problema, i aixina ho hem"
+    },
+    {
+      "start": 1308.9,
+      "end": 1312.5,
+      "speaker": "c02/SPEAKER_02",
+      "text": "dit en les diverses reunions que hem tingut"
+    },
+    {
+      "start": 1312.5,
+      "end": 1315.8,
+      "speaker": "c02/SPEAKER_02",
+      "text": "en la Junta de Portaveus, és un problema que afecta a tots els nostres veïns i veïnes"
+    },
+    {
+      "start": 1315.8,
+      "end": 1318.8,
+      "speaker": "c02/SPEAKER_02",
+      "text": "i és un problema molt greu."
+    },
+    {
+      "start": 1318.8,
+      "end": 1323.6,
+      "speaker": "c02/SPEAKER_02",
+      "text": "I des del primer moment nosaltres com a grup municipal s'hem posat a"
+    },
+    {
+      "start": 1323.6,
+      "end": 1328.2,
+      "speaker": "c02/SPEAKER_02",
+      "text": "a la disposició, en este cas del del Partit Socialista, del grup municipal,"
+    },
+    {
+      "start": 1328.2,
+      "end": 1332.8,
+      "speaker": "c02/SPEAKER_02",
+      "text": "per a solventar el problema, perquè creiem que als nostres veïns i veïnes no"
+    },
+    {
+      "start": 1332.8,
+      "end": 1337.6,
+      "speaker": "c02/SPEAKER_02",
+      "text": "els importen molt les disputes que puguen tindre els distints espais polítics. Els importa"
+    },
+    {
+      "start": 1337.6,
+      "end": 1341.7,
+      "speaker": "c02/SPEAKER_02",
+      "text": "que la basura se replegue, que els carrers estiguen nets, que els contenidors no estiguen desbordats."
+    },
+    {
+      "start": 1341.7,
+      "end": 1345.4,
+      "speaker": "c02/SPEAKER_02",
+      "text": "I això per a nosaltres és la principal"
+    },
+    {
+      "start": 1345.4,
+      "end": 1350,
+      "speaker": "c02/SPEAKER_02",
+      "text": "el principal problema i per això des del primer moment ens vàrem posar"
+    },
+    {
+      "start": 1350,
+      "end": 1354.5,
+      "speaker": "c02/SPEAKER_02",
+      "text": "a disposició del del grup municipal per a ajudar a solventar este problema"
+    },
+    {
+      "start": 1354.5,
+      "end": 1357.9,
+      "speaker": "c02/SPEAKER_02",
+      "text": "i anem a mantindre eixa línia. Eh nosaltres"
+    },
+    {
+      "start": 1357.9,
+      "end": 1362.7,
+      "speaker": "c02/SPEAKER_02",
+      "text": "creiem que mm i aixina ho vàrem dir en la última Junta de Portaveus que"
+    },
+    {
+      "start": 1362.7,
+      "end": 1367.3,
+      "speaker": "c02/SPEAKER_02",
+      "text": "fer llenya del arbre tombat, pues"
+    },
+    {
+      "start": 1367.3,
+      "end": 1371.9,
+      "speaker": "c02/SPEAKER_02",
+      "text": "no és la nostra la nostra idea ni és la nostra manera d'actuar."
+    },
+    {
+      "start": 1371.9,
+      "end": 1376.6,
+      "speaker": "c02/SPEAKER_02",
+      "text": "Fer demagògia política de un problema tan important com este que afecta a tants veïns, bueno,"
+    },
+    {
+      "start": 1376.6,
+      "end": 1380.9,
+      "speaker": "c02/SPEAKER_02",
+      "text": "a tots els veïns i veïnes de Riba-roja tampoc crec que siga molt"
+    },
+    {
+      "start": 1380.9,
+      "end": 1383.1,
+      "speaker": "c02/SPEAKER_02",
+      "text": "efectiu. De totes formes,"
+    },
+    {
+      "start": 1383.1,
+      "end": 1387.3,
+      "speaker": "c02/SPEAKER_02",
+      "text": "les responsabilitats ja cadascú arreplegarà les que tinga que arreplegar."
+    },
+    {
+      "start": 1387.3,
+      "end": 1391.7,
+      "speaker": "c02/SPEAKER_02",
+      "text": "A mi sí que m'agradaria contar a tots els veïns i veïnes"
+    },
+    {
+      "start": 1391.7,
+      "end": 1395.8,
+      "speaker": "c02/SPEAKER_02",
+      "text": "que en este Ajuntament des de fa ja"
+    },
+    {
+      "start": 1395.8,
+      "end": 1400.7,
+      "speaker": "c02/SPEAKER_02",
+      "text": "vora set o huit anys es va crear una Comissió de Contractació en la qual"
+    },
+    {
+      "start": 1400.7,
+      "end": 1404.6,
+      "speaker": "c02/SPEAKER_02",
+      "text": "estem representats tots els espais polítics,"
+    },
+    {
+      "start": 1404.6,
+      "end": 1408.5,
+      "speaker": "c02/SPEAKER_02",
+      "text": "en eixa comissió estem els portaveus de tots els partits que conformem este plenari."
+    },
+    {
+      "start": 1408.5,
+      "end": 1411.7,
+      "speaker": "c02/SPEAKER_02",
+      "text": "I dit això,"
+    },
+    {
+      "start": 1411.7,
+      "end": 1416,
+      "speaker": "c02/SPEAKER_02",
+      "text": "m'agradaria també dir a tots els nostres veïns i veïnes que en esta legislatura, des de que va començar"
+    },
+    {
+      "start": 1416,
+      "end": 1420.2,
+      "speaker": "c02/SPEAKER_02",
+      "text": "en el dos mil vint-i-tres, en juny del dos mil vint-i-tres i fins a la data,"
+    },
+    {
+      "start": 1420.2,
+      "end": 1424.2,
+      "speaker": "c02/SPEAKER_02",
+      "text": "eixa comissió se ha reunit al voltant d'una vegada al mes."
+    },
+    {
+      "start": 1424.2,
+      "end": 1428.6,
+      "speaker": "c02/SPEAKER_02",
+      "text": "En nou d'eixes reunions, en nou d'eixes reunions s'ha tractat"
+    },
+    {
+      "start": 1428.6,
+      "end": 1432.8,
+      "speaker": "c02/SPEAKER_02",
+      "text": "este contracte, se'ns ha donat informació de"
+    },
+    {
+      "start": 1432.8,
+      "end": 1436.9,
+      "speaker": "c02/SPEAKER_02",
+      "text": "els plecs de condicions tècniques i condicions administratives,"
+    },
+    {
+      "start": 1436.9,
+      "end": 1441.1,
+      "speaker": "c02/SPEAKER_02",
+      "text": "se'ns ha demanat opinió, l'hem donat, hem fet preguntes"
+    },
+    {
+      "start": 1441.1,
+      "end": 1444.3,
+      "speaker": "c02/SPEAKER_02",
+      "text": "sense resposta."
+    },
+    {
+      "start": 1444.3,
+      "end": 1447.9,
+      "speaker": "c02/SPEAKER_02",
+      "text": "Hem parlat de la duració del contracte"
+    },
+    {
+      "start": 1447.9,
+      "end": 1452.1,
+      "speaker": "c02/SPEAKER_02",
+      "text": "sense explicar per què eren catorze anys,"
+    },
+    {
+      "start": 1452.1,
+      "end": 1456.7,
+      "speaker": "c02/SPEAKER_02",
+      "text": "perquè la llei ho exigia per l'amortització de tota de tot el que comporta"
+    },
+    {
+      "start": 1456.7,
+      "end": 1458.8,
+      "speaker": "c02/SPEAKER_02",
+      "text": "este contracte."
+    },
+    {
+      "start": 1458.8,
+      "end": 1463.3,
+      "speaker": "c02/SPEAKER_02",
+      "text": "No vaig a detallar-les les nou reunions en les que s'ha tractat este"
+    },
+    {
+      "start": 1463.3,
+      "end": 1467.1,
+      "speaker": "c02/SPEAKER_02",
+      "text": "este problema, però"
+    },
+    {
+      "start": 1467.1,
+      "end": 1471.7,
+      "speaker": "c02/SPEAKER_02",
+      "text": "en eixes en eixes reunions de la Comissió de Contractació també han estat els tècnics,"
+    },
+    {
+      "start": 1471.7,
+      "end": 1475.9,
+      "speaker": "c02/SPEAKER_02",
+      "text": "ha estat el tècnic responsable d'este contracte, Felipe García,"
+    },
+    {
+      "start": 1475.9,
+      "end": 1479.7,
+      "speaker": "c02/SPEAKER_02",
+      "text": "evidentment ha estat la secretària en la part jurídica."
+    },
+    {
+      "start": 1479.7,
+      "end": 1482.8,
+      "speaker": "c02/SPEAKER_02",
+      "text": "I sí que m'agradaria"
+    },
+    {
+      "start": 1482.8,
+      "end": 1487,
+      "speaker": "c02/SPEAKER_02",
+      "text": "dir que en la última reunió d'esta"
+    },
+    {
+      "start": 1487,
+      "end": 1491.1,
+      "speaker": "c02/SPEAKER_02",
+      "text": "Comissió de Contractació se'ns va informar que"
+    },
+    {
+      "start": 1491.1,
+      "end": 1495.4,
+      "speaker": "c02/SPEAKER_02",
+      "text": "la empresa que s'havia adjudicat este contracte,"
+    },
+    {
+      "start": 1495.4,
+      "end": 1499.7,
+      "speaker": "c02/SPEAKER_02",
+      "text": "Garbialdi, se havia posat en contacte en el equip de govern. En este cas,"
+    },
+    {
+      "start": 1499.7,
+      "end": 1503.8,
+      "speaker": "c02/SPEAKER_02",
+      "text": "havia hagut una reunió en el despatx del senyor alcalde en el qual estaven"
+    },
+    {
+      "start": 1503.8,
+      "end": 1508.1,
+      "speaker": "c02/SPEAKER_02",
+      "text": "representants de la empresa, estava la secretària, estava el tècnic"
+    },
+    {
+      "start": 1508.1,
+      "end": 1512.4,
+      "speaker": "c02/SPEAKER_02",
+      "text": "i estaven els regidors responsables de les distintes àrees afectades"
+    },
+    {
+      "start": 1512.4,
+      "end": 1516.5,
+      "speaker": "c02/SPEAKER_02",
+      "text": "en la qual esta empresa se va es compromet a"
+    },
+    {
+      "start": 1516.5,
+      "end": 1520.7,
+      "speaker": "c02/SPEAKER_02",
+      "text": "formalitzar el contracte en totes les clàusules i totes les mesures que n'hi havia."
+    },
+    {
+      "start": 1520.7,
+      "end": 1524.7,
+      "speaker": "c02/SPEAKER_02",
+      "text": "Jo ara faria una pregunta: si jo contracte a un pintor per a que em pinte la casa"
+    },
+    {
+      "start": 1524.7,
+      "end": 1528.7,
+      "speaker": "c02/SPEAKER_02",
+      "text": "i el pintor o no em pinta o em pinta en una pintura que no és la que jo he contractat,"
+    },
+    {
+      "start": 1528.7,
+      "end": 1532.9,
+      "speaker": "c02/SPEAKER_02",
+      "text": "la culpa és meua o és del pintor? Ahí ho deixe, que cadascú que responja"
+    },
+    {
+      "start": 1532.9,
+      "end": 1535.8,
+      "speaker": "c02/SPEAKER_02",
+      "text": "a eixa pregunta. En definitiva, nosaltres"
+    },
+    {
+      "start": 1535.8,
+      "end": 1540.2,
+      "speaker": "c02/SPEAKER_02",
+      "text": "que en moltes qüestions pues hem criticat a este equip de govern"
+    },
+    {
+      "start": 1540.2,
+      "end": 1544.2,
+      "speaker": "c02/SPEAKER_02",
+      "text": "i anem a seguir criticant perquè la nostra missió és fiscalitzar a l'equip"
+    },
+    {
+      "start": 1544.2,
+      "end": 1548.6,
+      "speaker": "c02/SPEAKER_02",
+      "text": "de govern per a tranquil·litat de tots els veïns i veïnes, entenem que este problema"
+    },
+    {
+      "start": 1548.6,
+      "end": 1553,
+      "speaker": "c02/SPEAKER_02",
+      "text": "és molt greu i hem de posar de la nostra part i aixina ho anem a fer,"
+    },
+    {
+      "start": 1553,
+      "end": 1555.7,
+      "speaker": "c02/SPEAKER_02",
+      "text": "recolzant este punt. Gràcies."
+    },
+    {
+      "start": 1555.7,
+      "end": 1559,
+      "speaker": "c02/SPEAKER_01",
+      "text": "Gràcies. Més paraules? José Ángel."
+    },
+    {
+      "start": 1559,
+      "end": 1563.3,
+      "speaker": "c02/SPEAKER_03",
+      "text": "Bueno, en primer en primer lugar, la empresa esto este contrato lleva desde"
+    },
+    {
+      "start": 1563.3,
+      "end": 1567.6,
+      "speaker": "c02/SPEAKER_03",
+      "text": "el dos mil veintitrés, desde mediados del dos mil veintitrés, trabajándose, como estaba comentando"
+    },
+    {
+      "start": 1567.6,
+      "end": 1571.7,
+      "speaker": "c02/SPEAKER_03",
+      "text": "Rafa, lo hemos llevado a la mesa de contratación donde estamos todos los"
+    },
+    {
+      "start": 1571.7,
+      "end": 1574.9,
+      "speaker": "c02/SPEAKER_03",
+      "text": "todos los grupos políticos."
+    },
+    {
+      "start": 1574.9,
+      "end": 1578.9,
+      "speaker": "c02/SPEAKER_03",
+      "text": "Recordar que hemos peleado incluso la fórmula, la fórmula económica"
+    },
+    {
+      "start": 1578.9,
+      "end": 1583.1,
+      "speaker": "c02/SPEAKER_03",
+      "text": "para que en principio no hubiera ningún kamikaze viniera y entrara en esta"
+    },
+    {
+      "start": 1583.1,
+      "end": 1585.9,
+      "speaker": "c02/SPEAKER_03",
+      "text": "en esta adjudicación."
+    },
+    {
+      "start": 1585.9,
+      "end": 1589.9,
+      "speaker": "c02/SPEAKER_03",
+      "text": "Se realizaron todo aquello que mejorara este contrato,"
+    },
+    {
+      "start": 1589.9,
+      "end": 1593.9,
+      "speaker": "c02/SPEAKER_03",
+      "text": "pero desafortunadamente uno no es responsable de de la grave mala"
+    },
+    {
+      "start": 1593.9,
+      "end": 1597.6,
+      "speaker": "c02/SPEAKER_03",
+      "text": "ejecución que hace una empresa, como ha dicho, si contratas a alguien"
+    },
+    {
+      "start": 1597.6,
+      "end": 1601.3,
+      "speaker": "c02/SPEAKER_03",
+      "text": "y no hace adecuadamente su su trabajo, pues"
+    },
+    {
+      "start": 1601.3,
+      "end": 1604.9,
+      "speaker": "c02/SPEAKER_03",
+      "text": "tienes que lo tu responsabilidad es que salga el trabajo"
+    },
+    {
+      "start": 1604.9,
+      "end": 1608.8,
+      "speaker": "c02/SPEAKER_03",
+      "text": "y tu responsabilidad es automáticamente tomar las medidas adecuadas y eso es lo que hemos"
+    },
+    {
+      "start": 1608.8,
+      "end": 1612.5,
+      "speaker": "c02/SPEAKER_03",
+      "text": "hecho dentro de aquellos parámetros establecidos dentro de la ley."
+    },
+    {
+      "start": 1612.5,
+      "end": 1616.7,
+      "speaker": "c02/SPEAKER_03",
+      "text": "Porque, como habéis dicho, esto seguramente es posible que se judicialice,"
+    },
+    {
+      "start": 1616.7,
+      "end": 1620.9,
+      "speaker": "c02/SPEAKER_03",
+      "text": "aunque yo no lo tengo muy claro, eh, porque claro, está en flagrante la el incumplimiento"
+    },
+    {
+      "start": 1620.9,
+      "end": 1625.2,
+      "speaker": "c02/SPEAKER_03",
+      "text": "de la empresa, eh, está tan bien documentado"
+    },
+    {
+      "start": 1625.2,
+      "end": 1629.3,
+      "speaker": "c02/SPEAKER_03",
+      "text": "por los servicios técnicos y jurídicos del Ayuntamiento, además de acompañado de de los"
+    },
+    {
+      "start": 1629.3,
+      "end": 1633,
+      "speaker": "c02/SPEAKER_03",
+      "text": "informes del propio Consorcio, por los informes de la propia"
+    },
+    {
+      "start": 1633,
+      "end": 1637,
+      "speaker": "c02/SPEAKER_03",
+      "text": "empresa auditora, que fue una mejora puesta en este"
+    },
+    {
+      "start": 1637,
+      "end": 1641.1,
+      "speaker": "c02/SPEAKER_03",
+      "text": "contrato que no existe eh pues prácticamente en ningún sitio y que mejora"
+    },
+    {
+      "start": 1641.1,
+      "end": 1645,
+      "speaker": "c02/SPEAKER_03",
+      "text": "en el sentido de que audita que el servicio se esté realizando adecuadamente."
+    },
+    {
+      "start": 1645,
+      "end": 1648.3,
+      "speaker": "c02/SPEAKER_03",
+      "text": "Y esta empresa pues presentó la mejor oferta"
+    },
+    {
+      "start": 1648.3,
+      "end": 1652.2,
+      "speaker": "c02/SPEAKER_03",
+      "text": "y al presentar la mejor oferta quedó la adjudicataria."
+    },
+    {
+      "start": 1652.2,
+      "end": 1656.2,
+      "speaker": "c02/SPEAKER_03",
+      "text": "Y presentó y presentó toda la documentación que acreditaba su solvencia técnica y económica"
+    },
+    {
+      "start": 1656.2,
+      "end": 1659.7,
+      "speaker": "c02/SPEAKER_03",
+      "text": "como no puede ser de otra manera, si no, no se hubiera adjudicado."
+    },
+    {
+      "start": 1659.7,
+      "end": 1663.3,
+      "speaker": "c02/SPEAKER_03",
+      "text": "Es más, presentó, pues como no tenía que ser de otra manera, su aval de"
+    },
+    {
+      "start": 1663.3,
+      "end": 1665.7,
+      "speaker": "c02/SPEAKER_03",
+      "text": "ochocientos mil euros,"
+    },
+    {
+      "start": 1665.7,
+      "end": 1669.7,
+      "speaker": "c02/SPEAKER_03",
+      "text": "aval del cual el Ayuntamiento tirará mano"
+    },
+    {
+      "start": 1669.7,
+      "end": 1674,
+      "speaker": "c02/SPEAKER_03",
+      "text": "de esa penalidad de ciento cuarenta y tres mil euros que hoy se propone al pleno y que"
+    },
+    {
+      "start": 1674,
+      "end": 1677.8,
+      "speaker": "c02/SPEAKER_03",
+      "text": "algunos van a aprobar y otros pues en fin parece ser que se van a abstener."
+    },
+    {
+      "start": 1677.8,
+      "end": 1681.5,
+      "speaker": "c02/SPEAKER_03",
+      "text": "Pero además, como reiteró la en en la junta"
+    },
+    {
+      "start": 1681.5,
+      "end": 1685.4,
+      "speaker": "c02/SPEAKER_03",
+      "text": "de portavoces, todo aquel aquel servicio que no se va a prestar por esta"
+    },
+    {
+      "start": 1685.4,
+      "end": 1689.1,
+      "speaker": "c02/SPEAKER_03",
+      "text": "empresa, que sigue teniendo el servicio y es responsable de dicho servicio,"
+    },
+    {
+      "start": 1689.1,
+      "end": 1691.5,
+      "speaker": "c02/SPEAKER_03",
+      "text": "y aquí va recogido en estas"
     }
   ],
   "rows": [
@@ -3828,6 +4566,22 @@
       ],
       "namesIndividual": true,
       "weak": false
+    },
+    {
+      "label": "c02/SPEAKER_02",
+      "bloc": "Compromís",
+      "slug": "rafael-folgado-navarro",
+      "heardAs": "Rafa",
+      "evidence": [
+        {
+          "spokenBy": "c02/SPEAKER_01",
+          "at": 1288.8,
+          "quote": "Compromís, Rafa",
+          "relation": "turn-grant"
+        }
+      ],
+      "namesIndividual": true,
+      "weak": false
     }
   ],
   "rejected": [
@@ -3890,33 +4644,32 @@
       "label": "c06/SPEAKER_05",
       "reason": "unresolvable",
       "detail": "no name in the cited quote and the party is not single-seat"
+    },
+    {
+      "label": "c02/SPEAKER_00",
+      "reason": "unresolvable",
+      "detail": "no name in the cited quote and the party is not single-seat"
+    },
+    {
+      "label": "c02/SPEAKER_01",
+      "reason": "unresolvable",
+      "detail": "heard \"senyor alcalde\" matches nobody"
     }
   ],
   "stats": {
     "chunksExpected": 7,
-    "chunksTranscribed": 6,
-    "failedChunks": [
-      {
-        "chunk": 2,
-        "why": "covered 78% (floor 85%)",
-        "attempts": 2,
-        "givenUpUnder": {
-          "prompt": "speaker-map-v2",
-          "floor": 0.85,
-          "thinking": "low"
-        }
-      }
-    ],
-    "labelsSeen": 0,
-    "rowsAccepted": 6,
-    "rowsRejected": 12,
+    "chunksTranscribed": 7,
+    "failedChunks": [],
+    "labelsSeen": 4,
+    "rowsAccepted": 7,
+    "rowsRejected": 14,
     "rejectedBy": {
       "relation-contradicted": 2,
-      "unresolvable": 9,
+      "unresolvable": 11,
       "evidence-outside-transcript": 1
     },
     "attemptedThisRun": 1,
-    "apiCalls": 3,
-    "coverage": 0.8198813640324989
+    "apiCalls": 1,
+    "coverage": 0.9580557195468223
   }
 }

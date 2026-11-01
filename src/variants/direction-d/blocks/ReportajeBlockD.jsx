@@ -6,6 +6,7 @@ import { truncateAtWord, fmtDateHuman } from '../../../lib/formatters'
 import { PALETTE, SERIF, MONO } from '../tokens'
 import { SectionHeader } from '../SectionHeader'
 import { useLocale } from '../../../i18n'
+import ChipCorrecciones from '../../../components/reportajes/ChipCorrecciones'
 
 /**
  * The landing column's lead block: CivicPulse's own long-form investigations.
@@ -134,31 +135,11 @@ export function ReportajeBlockD() {
               // Published corrections are disclosed here, not only inside the
               // pieza. A reader who never opens it should still know the record
               // was amended — the same commitment /hallazgos and /laboratorio
-              // make with their "Bitácora de correcciones".
+              // make with their "Bitácora de correcciones". Neutral and in
+              // sentence case (`ChipCorrecciones`): in amber capitals it read
+              // as an error count.
               <div style={{ marginTop: 7 }}>
-                <span
-                  className="mono"
-                  style={{
-                    // The column's established metadata-chip idiom (same shape
-                    // as the LOREG and plazos-vencidos badges). As plain text it
-                    // read as a second kicker competing with the topic line.
-                    fontSize: 'var(--fs-micro)',
-                    color: PALETTE.amber,
-                    background: 'rgba(180,83,9,.10)',
-                    padding: '2px 6px',
-                    borderRadius: 'var(--r-input)',
-                    letterSpacing: '.08em',
-                    textTransform: 'uppercase',
-                    fontWeight: 700,
-                  }}
-                >
-                  {correcciones}{' '}
-                  {t(
-                    correcciones === 1
-                      ? 'landing.reportajes.correction'
-                      : 'landing.reportajes.corrections',
-                  )}
-                </span>
+                <ChipCorrecciones n={correcciones} />
               </div>
             )}
           </div>

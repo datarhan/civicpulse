@@ -1,6 +1,14 @@
 /**
  * Contraste entre las dos cifras de presupuesto que publica este sitio.
  *
+ * CORRECCIÓN 2026-10-22: el desacuerdo de gastos descrito abajo era un
+ * artefacto. El snapshot del listado municipal tomaba la hoja de gastos del 2T
+ * (impresa el 30-06-2025, 37,60 M€ iniciales) como cierre; la del 4T da
+ * 41.578.252,26 €, los de CONPREL al céntimo y capítulo a capítulo. Queda el
+ * segundo hecho, el de los ingresos: 1,94 M€ por encima de los gastos, que
+ * también trae la hoja del propio ayuntamiento. El módulo sigue midiendo, y la
+ * página sólo pinta el desacuerdo de gastos si existe.
+ *
  * `/presupuesto` enseña el presupuesto de gastos de 2025 según CONPREL —lo que
  * el ministerio publica— y `/eficiencia` la ejecución según el listado que
  * cuelga el propio ayuntamiento. Las dos dicen ser el mismo ejercicio y no
@@ -80,6 +88,21 @@ const num = (v: unknown): number => (typeof v === 'number' && Number.isFinite(v)
 const cifra = (v: unknown): number | null =>
   typeof v === 'number' && Number.isFinite(v) ? v : null
 
+/**
+ * Ingresos menos gastos del presupuesto que el Ayuntamiento rinde a CONPREL; null
+ * sin uno de los dos totales. Es un hecho de CONPREL solo y no necesita la
+ * ejecución: el aviso «no cuadra en la fuente del ministerio» se calculaba
+ * dentro del cotejo con el listado municipal, y el día que el periodo más nuevo
+ * fue de otro año el cotejo dio null y el aviso desapareció.
+ */
+export function desequilibrioDeConprel(
+  conprel: Pick<BudgetSnapshotLike, 'totalRevenue' | 'totalExpense'> | null | undefined,
+): number | null {
+  const gastos = cifra(conprel?.totalExpense)
+  const ingresos = cifra(conprel?.totalRevenue)
+  return gastos === null || gastos <= 0 || ingresos === null ? null : ingresos - gastos
+}
+
 export function contrastarPresupuesto(
   conprel: BudgetSnapshotLike | null | undefined,
   ejecucion: EjecucionLike | null | undefined,
@@ -107,7 +130,7 @@ export function contrastarPresupuesto(
   })
 
   const ingresosConprel = cifra(conprel.totalRevenue)
-  const desequilibrioConprel = ingresosConprel === null ? null : ingresosConprel - gastosConprel
+  const desequilibrioConprel = desequilibrioDeConprel(conprel)
   const diferenciaGastos = gastosConprel - gastosMunicipal
 
   return {

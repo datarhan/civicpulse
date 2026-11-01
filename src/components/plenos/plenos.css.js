@@ -212,3 +212,144 @@ export const estiloPlenos = `
   .cp-plenos-flecha { display: none; }
 }
 `
+
+/**
+ * La lectura vecinal de una sesión: «El último pleno» en /plenos y el
+ * «Resumen» de /plenos/:id. Va aparte de la hoja del índice porque la pintan
+ * dos páginas: cada bloque lleva la suya (`EnBrevePlenos`, `ResumenSesion`).
+ * La misma regla de los acentos invertidos que arriba.
+ */
+export const estiloEnBrevePlenos = `
+/* Dos tarjetas: el orden del día, que es lista, al doble que las votaciones.
+   Lo decide el ancho del bloque y no el de la ventana, por lo mismo que la
+   tabla: con la barra lateral, la columna no es la ventana. Por debajo de
+   640 px de bloque, una columna. */
+.cp-plenos-en-breve { container: plenos-en-breve / inline-size; }
+@container plenos-en-breve (min-width: 640px) {
+  .cp-plenos-en-breve .cp-en-breve-rejilla {
+    grid-template-columns: minmax(0, 2fr) minmax(0, 1fr);
+  }
+  /* Con la tarjeta del próximo pleno (/plenos), el orden del día ocupa las dos
+     filas de la izquierda y las otras dos se apilan a su derecha. */
+  .cp-plenos-en-breve .cp-en-breve-rejilla:has(> [data-en-breve='proximo'])
+    > [data-en-breve='orden-del-dia'] {
+    grid-row: span 2;
+  }
+}
+
+.cp-plenos-puntos-rotulo {
+  margin: 4px 0 6px;
+  font-size: var(--fs-meta);
+  font-weight: 600;
+  color: var(--ink70);
+}
+.cp-plenos-puntos ol {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.cp-plenos-puntos li {
+  display: grid;
+  grid-template-columns: 2.2em minmax(0, 1fr);
+  gap: 6px;
+  font-size: var(--fs-aux);
+  line-height: 1.45;
+}
+.cp-plenos-puntos-numero { color: var(--ink50); text-align: right; }
+/* Tres líneas como mucho: hay títulos de cuatrocientos caracteres. El texto
+   entero sigue en el DOM y en el title, y el título literal, en la sesión. */
+.cp-plenos-puntos-texto {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+  line-clamp: 3;
+  overflow: hidden;
+  overflow-wrap: anywhere;
+}
+.cp-plenos-puntos-urgente {
+  display: inline-block;
+  margin-top: 2px;
+  padding: 0 6px;
+  border-radius: var(--r-pill);
+  background: var(--soft);
+  color: var(--ink70);
+  font-size: var(--fs-micro);
+  white-space: nowrap;
+}
+.cp-plenos-votos {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.cp-plenos-votos li {
+  display: grid;
+  grid-template-columns: 2.2em minmax(0, 1fr);
+  gap: 6px;
+  font-size: var(--fs-aux);
+  line-height: 1.45;
+}
+.cp-plenos-votos-desenlace {
+  display: block;
+  margin-top: 2px;
+  font-size: var(--fs-micro);
+  font-weight: 600;
+  color: var(--ink70);
+}
+/* «Los plenos del último año»: una fila por sesión, la fecha a la izquierda y lo
+   que se llevó a votar a la derecha cuando el bloque es ancho; apilado si no. */
+.cp-plenos-anio { margin-top: 18px; container: plenos-anio / inline-size; }
+.cp-plenos-anio-lista {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+}
+.cp-plenos-anio-lista > li {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 4px 16px;
+  padding: 12px 0;
+  border-top: 1px solid var(--border2);
+}
+.cp-plenos-anio-lista > li:first-child { border-top: none; padding-top: 0; }
+@container plenos-anio (min-width: 560px) {
+  .cp-plenos-anio-lista > li { grid-template-columns: 11em minmax(0, 1fr); }
+}
+.cp-plenos-anio-sesion {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  font-size: var(--fs-aux);
+}
+.cp-plenos-anio-sesion a { color: var(--civic); font-weight: 600; }
+.cp-plenos-anio-tipo { font-size: var(--fs-micro); color: var(--ink50); }
+.cp-plenos-anio-puntos { min-width: 0; font-size: var(--fs-aux); line-height: 1.45; }
+.cp-plenos-anio-puntos p { margin: 0; color: var(--ink70); }
+.cp-plenos-anio-rotulo {
+  display: block;
+  margin-bottom: 2px;
+  font-size: var(--fs-micro);
+  font-weight: 600;
+  color: var(--ink70);
+}
+.cp-plenos-anio-puntos ul { margin: 0; padding-left: 1.1em; }
+.cp-plenos-anio-puntos ul li { margin: 2px 0; }
+.cp-plenos-anio-puntos .cp-plenos-puntos-texto { -webkit-line-clamp: 2; line-clamp: 2; }
+.cp-plenos-anio-mas {
+  display: block;
+  margin-top: 2px;
+  font-size: var(--fs-micro);
+  color: var(--ink50);
+}
+.cp-plenos-en-breve-video {
+  font-size: var(--fs-aux);
+  color: var(--civic);
+}
+`

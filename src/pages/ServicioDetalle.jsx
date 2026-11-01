@@ -9,17 +9,23 @@ import { SerieServicio, enTerminosReales } from '../components/eficiencia/SerieS
 import { Lectura } from '../components/eficiencia/Lectura'
 import { Resultado } from '../components/eficiencia/Resultado'
 import { Concesion } from '../components/eficiencia/Concesion'
-import { CompetenciaDelegada } from '../components/eficiencia/CompetenciaDelegada'
+import {
+  CompetenciaDelegada,
+  fotoDeCompetencia,
+} from '../components/eficiencia/CompetenciaDelegada'
 import { GESTION, MOTIVO } from '../components/eficiencia/vocabulario'
 import { leerIndicador, lecturaVisible, chipDeclaracion } from '../scraper/indicador-lectura'
 import {
   SALVEDAD_DENOMINADOR_CONGELADO,
   paresDeclaracionCongelada,
 } from '../scraper/indicador-lectura'
+import { idDeParametro } from '../scraper/ruta-de-servicio'
 import { useIndicadores } from '../hooks/useIndicadores'
 import { useCompetencias, indexarCompetencias, useNombresVisibles } from '../hooks/useCompetencias'
 import { useOfficials } from '../hooks/useOfficials'
 import { useT } from '../i18n'
+import { useDocumentTitle } from '../hooks/useDocumentTitle'
+import { euros } from '../lib/formatters'
 
 /**
  * /eficiencia/:id — la ficha de un servicio.
@@ -109,7 +115,10 @@ function CitaCelda({ cita, titulo }) {
 }
 
 export default function ServicioDetalle() {
-  const { id } = useParams()
+  // El parámetro es el id o el alias legible («policia-local»); de aquí abajo
+  // todo se cruza por id (`scraper/ruta-de-servicio`).
+  const { id: parametro = '' } = useParams()
+  const id = idDeParametro(parametro)
   const t = useT()
   const { loading, error, data } = useIndicadores()
   const { data: competencias } = useCompetencias()
@@ -117,6 +126,7 @@ export default function ServicioDetalle() {
   const nombresOn = useNombresVisibles()
 
   const i = (data?.indicadores ?? []).find((x) => x.id === id)
+  useDocumentTitle(i?.etiqueta)
 
   const formatea = (v) => {
     if (typeof v !== 'number') return '—'
@@ -184,11 +194,10 @@ export default function ServicioDetalle() {
    * es quien distingue esos dos casos y avisa, porque un hueco silencioso en la
    * página no puede.
    */
-  const foto =
-    competencia && !competencia.fotoRetirada
-      ? ((padron?.officials ?? []).find((o) => o.slug === competencia.oficial)?.photoUrl ?? null)
-      : null
-  const resultado = (data?.resultados?.items ?? []).find((r) => r.servicioRelacionado === i.id)
+  const foto = fotoDeCompetencia(competencia, padron?.officials)
+  // TODOS los resultados de la tarjeta, no el primero: la biblioteca tiene dos
+  // (prestatarios y visitas) y el segundo no se veía en ninguna parte.
+  const resultados = (data?.resultados?.items ?? []).filter((r) => r.servicioRelacionado === i.id)
   // Todo o nada: si a una entrega declarada le falta su índice, la serie
   // entera vuelve a euros corrientes y el rótulo lo dice. Mezclar las dos
   // haría que la distancia entre la línea y la mediana dejara de significar.
@@ -272,7 +281,7 @@ export default function ServicioDetalle() {
                 alcanza — pero sólo mientras el motor no vuelva a inventarse un
                 cuarto motivo para no dividir. */}
             {i.numerador.valor !== null
-              ? `Coste declarado: ${i.numerador.valor.toLocaleString('es-ES')} €`
+              ? `Coste declarado: ${euros(i.numerador.valor)}`
               : 'El ayuntamiento no declara coste para este servicio: la casilla viene vacía, no a cero.'}
           </p>
           {/* Sin el `que`: para una ficha bloqueada, `MOTIVO` dice lo mismo y
@@ -319,7 +328,11 @@ export default function ServicioDetalle() {
                 explica su casilla de viajeros a cero. Una ficha menos hablada
                 sin que nadie lo pidiera. */}
             {(chip || i.avisoDeclaracion) && (
-              <div className="cp-card" style={{ borderLeft: '3px solid var(--warn)' }}>
+              <div
+                className="cp-card"
+                data-tarjeta=""
+                style={{ borderLeft: '3px solid var(--warn)' }}
+              >
                 <div className="mono" style={{ ...rotulo, color: 'var(--warn-ink)' }}>
                   Sobre la declaración
                 </div>
@@ -375,7 +388,7 @@ export default function ServicioDetalle() {
               </div>
             )}
 
-            <div className="cp-card">
+            <div className="cp-card" data-tarjeta="">
               <div className="mono" style={rotulo}>
                 Fuente y réplica
               </div>
@@ -418,7 +431,7 @@ export default function ServicioDetalle() {
               </p>
             </div>
 
-            <div className="cp-card">
+            <div className="cp-card" data-tarjeta="">
               <div className="mono" style={rotulo}>
                 Salvedades · {salvedades.length}
               </div>
@@ -486,7 +499,7 @@ export default function ServicioDetalle() {
                 de CompetenciaDelegada defiende sigue siendo el orden en que se
                 lee, también en dos columnas. */}
             {competencia && (
-              <div className="cp-card">
+              <div className="cp-card" data-tarjeta="">
                 <div className="mono" style={rotulo}>
                   Quién responde de esta área
                 </div>
@@ -516,7 +529,9 @@ export default function ServicioDetalle() {
           de la misma columna, justo detrás de la serie de coste, invitaba
           exactamente a esa lectura. Necesitaba otra superficie, no otro
           titular. */}
-      {resultado && <Resultado resultado={resultado} id={`r-${i.id}`} />}
+      {resultados.map((r, k) => (
+        <Resultado key={r.id} resultado={r} id={k === 0 ? `r-${i.id}` : `r-${r.id}`} />
+      ))}
     </div>
   )
 }

@@ -41,6 +41,115 @@ export const CATALOGUE = {
     'nav.gestion': 'Gestión',
     'eficiencia.eyebrow': 'Ayuntamiento · coste efectivo de los servicios',
     'eficiencia.title': '¿Cuánto cuesta y qué se obtiene?',
+    // «En breve» de /eficiencia (components/eficiencia/EnBreveEficiencia.jsx).
+    'eficiencia.enBreve.titulo': 'En breve',
+    'eficiencia.enBreve.intro':
+      'Lo esencial del panel, en pocas preguntas. Cada respuesta enlaza a la sección que la demuestra.',
+    'eficiencia.enBreve.saltar': 'Ir al libro de los servicios ↓',
+    'eficiencia.enBreve.ver': 'Ver el detalle ↓',
+    'eficiencia.enBreve.coste.pregunta': '¿Cuánto cuestan los servicios?',
+    'eficiencia.enBreve.coste.nota': '{n} servicios · {anio}',
+    'eficiencia.enBreve.coste.frase':
+      'Es el [[costeEfectivo|coste]] que el Ayuntamiento declara al Ministerio por {n} servicios en {anio}. No es todo lo que gasta: es lo que dice que le costó prestar cada uno.',
+    'eficiencia.enBreve.coste.resto': 'Resto de servicios',
+    'eficiencia.enBreve.bien.pregunta': '¿Lo hacen bien?',
+    'eficiencia.enBreve.bien.cifra': '{n} de {de}',
+    'eficiencia.enBreve.bien.cifraNota': 'cantidades repetidas',
+    'eficiencia.enBreve.bien.frase':
+      'Con estos datos no se puede saber: el Ministerio no pide ningún dato de calidad del servicio.',
+    'eficiencia.enBreve.bien.razon':
+      'Y hay otra razón: {n} de las {de} cantidades que el Ayuntamiento declara [[cantidadSinRemedir|se repiten iguales]] año tras año, así que el coste por unidad sólo sigue al gasto.',
+    'eficiencia.enBreve.bien.ejemplo':
+      'Por ejemplo, {valor} {unidad} de {servicio}, idénticas desde {desde}.',
+    'eficiencia.enBreve.bien.figura':
+      'Las {unidad} declaradas para {servicio}: {valor} cada año, de {desde} a {hasta}.',
+    'eficiencia.enBreve.entregas.pregunta': '¿Rinde cuentas a tiempo?',
+    'eficiencia.enBreve.entregas.cifra': '{presentadas} de {obligatorias}',
+    'eficiencia.enBreve.entregas.frase':
+      'Presentó {presentadas} de las {obligatorias} [[entrega|entregas]] obligatorias al Ministerio. La de {faltan}, no.',
+    'eficiencia.enBreve.entregas.todas':
+      'Presentó las {obligatorias} [[entrega|entregas]] obligatorias al Ministerio.',
+    'eficiencia.enBreve.entregas.figura':
+      '{presentadas} de {obligatorias} entregas presentadas; la que falta va hueca.',
+    'eficiencia.enBreve.preguntas.pregunta': '¿A quién se lo pregunto?',
+    'eficiencia.enBreve.preguntas.cifraNota': 'preguntas registradas',
+    'eficiencia.enBreve.preguntas.frase':
+      'Hemos dejado {n} preguntas registradas, dirigidas a instituciones y nunca a personas. Cualquier respuesta se publicará íntegra.',
+    'eficiencia.enBreve.preguntas.nota':
+      'Quién tiene delegada cada competencia está en «Cuesta · consigue · responde», servicio a servicio.',
+    // La opinión del editor (components/eficiencia/OpinionEditor.jsx). El
+    // rótulo va antes que el titular: el lector tiene que saber que esto ya
+    // no es el dato del ministerio.
+    'opinion.rotulo': 'Opinión del editor · firmada',
+    'opinion.firma': 'Firma {nombre}, {rol} · {fecha}',
+    'opinion.hechos': 'Los hechos en que se basa',
+    'opinion.noSabemos': 'Lo que no sabemos',
+    'opinion.contacto': 'Antes de publicarla',
+    'opinion.contacto.enviado':
+      'Enviamos este texto a {nombres} el {fecha} ({canal}) y esperamos {dias} días su respuesta antes de publicarlo.',
+    'opinion.contacto.sinRespuesta':
+      'Sin respuesta en el plazo. Si llega, se publicará aquí íntegra.',
+    'opinion.replicas': 'Réplicas',
+    'opinion.fuente': 'fuente',
+    'opinion.correcciones': 'Corregida {n} veces · ver qué cambió',
+    'opinion.correcciones.una': 'Corregida una vez · ver qué cambió',
+    'opinion.antes': 'Antes decía:',
+    'opinion.replicaVia': 'Derecho de réplica:',
+    'opinion.avisoLegal': 'aviso legal',
+    'opinion.comoSeHace': 'cómo se escribe una opinión aquí',
+    // «Cuesta · Consigue · Responde» (components/eficiencia/CuestaConsigueResponde.jsx):
+    // palabras de DIRECCIÓN, nunca de valor. «Sube» no es «peor».
+    'eficiencia.ccr.eyebrow': 'Cuesta · consigue · responde',
+    'eficiencia.ccr.titulo': 'Lo que cuesta, lo que se consigue y quién responde',
+    'eficiencia.ccr.intro':
+      'Primero los servicios con un resultado publicado; los demás, debajo. Cada frase dice de qué año a qué año mide, y cada comparación usa el grupo de su propia fuente; las columnas no se dividen entre sí: que una suba no explica que la otra baje. El juicio es tuyo.',
+    'eficiencia.ccr.col.cuesta': 'Cuesta',
+    'eficiencia.ccr.resto':
+      'Los otros {n} servicios: coste y quién responde, sin resultado publicado',
+    'eficiencia.ccr.col.consigue': 'Consigue',
+    'eficiencia.ccr.col.responde': 'Responde',
+    'eficiencia.ccr.rotulo.nuestro': 'Riba-roja',
+    'eficiencia.ccr.rotulo.grupo': 'Mediana de municipios parecidos',
+    'eficiencia.ccr.rotulo.mandato': 'Mandato actual',
+    'eficiencia.ccr.rotulo.base': 'Índice: {base} = 100',
+    'eficiencia.ccr.coste.sube':
+      'De {base} a {fin}, el coste por unidad sube un {pct} % en euros constantes.',
+    'eficiencia.ccr.coste.baja':
+      'De {base} a {fin}, el coste por unidad baja un {pct} % en euros constantes.',
+    'eficiencia.ccr.coste.igual':
+      'De {base} a {fin}, el coste por unidad se mantiene en euros constantes.',
+    'eficiencia.ccr.grupo.sube': 'En los municipios parecidos, de {base} a {fin}, sube un {pct} %.',
+    'eficiencia.ccr.grupo.baja': 'En los municipios parecidos, de {base} a {fin}, baja un {pct} %.',
+    'eficiencia.ccr.grupo.igual': 'En los municipios parecidos, de {base} a {fin}, se mantiene.',
+    'eficiencia.ccr.coste.sinSerie': 'No hay serie de coste suficiente desde 2021.',
+    'eficiencia.ccr.coste.precio':
+      'Es un precio, no un rendimiento: que suba no dice si el servicio es mejor o peor.',
+    'eficiencia.ccr.coste.congelado':
+      'Ojo: el Ayuntamiento declara la misma cantidad de servicio desde {desde}, así que el coste por unidad sigue al coste total. No se sabe si hay más servicio o sólo más gasto.',
+    'eficiencia.ccr.coste.congeladoSinAnio':
+      'Ojo: el Ayuntamiento repite la misma cantidad de servicio en cada entrega, así que el coste por unidad sigue al coste total.',
+    'eficiencia.ccr.resultado.sin':
+      'El Ministerio no pide ningún resultado de este servicio, y no hemos encontrado otra fuente.',
+    'eficiencia.ccr.resultado.sube': 'De {base} a {fin}, la cifra sube un {pct} %.',
+    'eficiencia.ccr.resultado.baja': 'De {base} a {fin}, la cifra baja un {pct} %.',
+    'eficiencia.ccr.resultado.igual': 'De {base} a {fin}, la cifra se mantiene.',
+    'eficiencia.ccr.resultado.unAnio':
+      'Sólo hay un año publicado ({periodo}): sin serie no hay dirección.',
+    'eficiencia.ccr.resultado.pares':
+      'El valor es mayor que el de {p} de cada 100 municipios parecidos ({n} con dato).',
+    'eficiencia.ccr.resultado.sinSerieGrupo':
+      'De los municipios parecidos sólo tenemos el último año, no su evolución.',
+    'eficiencia.ccr.resultado.sinPares': 'Esta cifra no se compara con otros municipios.',
+    'eficiencia.ccr.resultado.serieGrupo':
+      'La línea gris es la mediana de los mismos {n} municipios parecidos todos los años: los que tienen dato en cada uno.',
+    'eficiencia.ccr.responde.competencia': 'Competencia delegada',
+    'eficiencia.ccr.responde.loreg': 'Los nombres no se publican durante el periodo electoral.',
+    'eficiencia.ccr.responde.sinAsignar': 'Ninguna delegación nombra este servicio.',
+    'eficiencia.ccr.responde.antes':
+      'Antes del {desde}, cuando empezó este mandato, no nombramos a nadie: aún no hemos incorporado el decreto de delegación del mandato anterior.',
+    'eficiencia.ccr.responde.promesas': 'Lo que prometió el gobierno municipal',
+    'eficiencia.ccr.responde.sinPromesa':
+      'No consta ninguna promesa sobre este servicio en /promesas.',
     'eficiencia.intro':
       'Lo que cada servicio municipal costó, dividido entre lo que produjo, y dónde queda eso entre municipios valencianos de tamaño parecido. No hay nota global ni ranking: cada indicador va con su fuente, su modo de gestión y sus salvedades.',
     'eficiencia.cobertura.titulo': 'Qué cubre esta página',
@@ -82,7 +191,40 @@ export const CATALOGUE = {
       'Procesos selectivos del propio Ayuntamiento de Riba-roja de Túria — oposiciones, bolsas de trabajo y estabilización. Distinto de las ofertas de la Agència de Col·locació (ver ',
     'empleoPublico.intro2': '). Fuente: portal municipal.',
     'empleoPublico.empty': 'No hay procesos selectivos publicados ahora mismo.',
+    'empleoPublico.comoSeEntra.titulo': '¿Cómo se entra a trabajar en el Ayuntamiento?',
+    'empleoPublico.comoSeEntra.intro':
+      'Con un proceso selectivo, que el Ayuntamiento convoca y publica con sus bases. Estas son las palabras de sus títulos:',
+    'empleoPublico.comoSeEntra.internos':
+      'Algunos no están abiertos a cualquiera: la promoción interna y la mejora de empleo son para quien ya tiene plaza en el Ayuntamiento, y la comisión de servicios, para funcionarios, de aquí o de otra administración, que pasan a ocupar un puesto por un tiempo.',
+    'empleoPublico.procesos.titulo': 'Los procesos que publica el Ayuntamiento',
+    'empleoPublico.procesos.sinEstado':
+      'Esta lista no dice cuáles siguen abiertos: la página del Ayuntamiento sólo da el título de cada uno. Para saberlo hay que abrirlo.',
+    'empleoPublico.tipo.oposicion': 'Plazas y puestos',
+    'empleoPublico.tipo.bolsa': 'Bolsas de trabajo',
+    'empleoPublico.tipo.estabilizacion': 'Estabilización',
+    'empleoPublico.tipo.otro': 'Otros procesos',
+    // La plantilla municipal, traída de /cargos (auditoría de las dos lecturas,
+    // §3 y §21). La frase de arriba dice qué cuenta cada cifra y por qué no se
+    // restan; las cifras y los años los pone `puenteDePlantilla`. Que los
+    // puestos no incluyen al personal eventual lo dice la nota de
+    // plantilla.json: si cambia la fuente, se revisa `noSeRestan` con ella.
+    'empleoPublico.plantilla.pregunta': '¿Cuánta gente trabaja en el Ayuntamiento?',
+    'empleoPublico.plantilla.personasFrase':
+      'En {anio} trabajaban {n} personas en el Ayuntamiento.',
+    'empleoPublico.plantilla.plazasFrase':
+      'La plantilla aprobada para {anio} suma {n} plazas de funcionario y de personal laboral, cubiertas o vacantes.',
+    'empleoPublico.plantilla.unas': 'unas {n}',
+    'empleoPublico.plantilla.noSeRestan':
+      'No se pueden restar: una cifra cuenta personas y la otra puestos, son de años distintos, y los puestos no incluyen al personal eventual.',
+    'empleoPublico.plantilla.title': 'Plantilla municipal',
+    'empleoPublico.plantilla.personas': 'personas empleadas',
+    'empleoPublico.plantilla.plazas': 'plazas autorizadas',
+    'empleoPublico.plantilla.mujeres': 'mujeres',
+    'empleoPublico.plantilla.hombres': 'hombres',
+    'empleoPublico.plantilla.fuenteSexo':
+      'El desglose por sexo es la última cifra publicada, y su fuente es un periódico comarcal, no el ayuntamiento:',
     'nav.laboratorio': 'Laboratorio',
+    'nav.prensa': 'Prensa',
     'nav.nosotros': 'Quiénes somos',
     'nav.despiece': 'Despiece (dev)',
     'nav.agentes': 'Periodistas',
@@ -214,11 +356,24 @@ export const CATALOGUE = {
     'nav.desc.quejas': 'Las quejas vecinales, agregadas y anónimas',
     'nav.desc.empleo': 'Ofertas de la Agència de Col·locació',
     'nav.desc.empleoPublico': 'Oposiciones y bolsas del Ayuntamiento',
-    'nav.desc.laboratorio': 'Afirmaciones de prensa frente a los datos públicos',
+    'nav.desc.laboratorio': 'Los experimentos, y qué mide cada uno',
+    'nav.desc.prensa': 'Afirmaciones de prensa frente a los datos públicos',
     'nav.desc.frontera': 'Análisis envolvente de datos, y lo que no mide',
     'nav.desc.costeEsperado': 'Qué coste cabría esperar según la población',
     'nav.desc.cobertura': 'Qué podemos comprobar y qué no',
     'nav.desc.agentes': 'Informes de un agente de IA, revisados antes de publicar',
+    // El índice del laboratorio (pages/Laboratorio.jsx): la pregunta de cada experimento.
+    'laboratorio.indice.lede':
+      'Aquí probamos métodos. Nada de esto es una nota sobre nadie: cada experimento dice qué mide y qué no puede medir.',
+    'laboratorio.pregunta.prensa': '¿Lo que publica la prensa local coincide con los datos?',
+    'laboratorio.pregunta.frontera': '¿Se puede decir si Riba-roja es eficiente?',
+    'laboratorio.pregunta.costeEsperado': '¿Gasta Riba-roja más de lo normal para su tamaño?',
+    'laboratorio.pregunta.cobertura': '¿Qué parte de lo dicho en pleno podemos comprobar?',
+    'laboratorio.pregunta.agentes': 'Biografías de los cargos',
+    'laboratorio.pregunta.datos': '¿Con qué datos trabaja el sitio?',
+    'laboratorio.pregunta.salud': '¿Están al día los datos?',
+    'laboratorio.salud.nombre': 'Salud del laboratorio',
+    'laboratorio.salud.desc': 'Cuándo se actualizó cada fichero de datos, contra su propio plazo',
     'nav.desc.curator': 'Mesa de curación (sólo en desarrollo)',
     'nav.desc.despiece': 'De dónde sale cada dato (sólo en desarrollo)',
     'secciones.indice': 'Índice',
@@ -237,6 +392,9 @@ export const CATALOGUE = {
     'reportajes.indice': 'En esta pieza',
     'reportajes.indice.apartados': '{n} apartados',
     'reportajes.mas': 'Más reportajes',
+    // «Lo que hemos encontrado» (ClavesPieza.jsx): las claves de cada pieza.
+    'reportajes.claves.titulo': 'Lo que hemos encontrado',
+    'reportajes.claves.irA': 'Ir al apartado {num}, que lo cuenta',
     'reportajes.todos': 'Todos los reportajes →',
     // «Pídelo tú» (components/reportajes/SolicitudLector.jsx): el escrito de
     // acceso con las preguntas de una pieza que el proyecto aún no ha
@@ -269,7 +427,7 @@ export const CATALOGUE = {
     'empleo.sortBy': 'Ordenar por',
     'empleo.sortDeadline': 'Cierre de inscripción',
     'empleo.sortPublished': 'Fecha de publicación',
-    'empleo.error': 'No se pudieron cargar las ofertas. Ejecuta',
+    'empleo.error': 'No se pudieron cargar las ofertas.',
     'empleo.empty': 'No hay ofertas que coincidan con el filtro.',
     'empleo.sourceNote':
       'Fuente: ribaocupacio.portalemp.com (Agència de Col·locació · Ajuntament de Riba-roja de Túria). La inscripción se realiza en el portal oficial.',
@@ -289,7 +447,21 @@ export const CATALOGUE = {
     'empleo.kpi.closing': 'Cierran ≤14 días',
     'empleo.kpi.of': 'de',
     'empleo.kpi.ofShown': 'de {n} mostradas',
-    'empleo.kpi.vehicle': 'requieren vehículo propio',
+    'empleo.kpi.vehicle': 'Piden vehículo propio',
+    'empleo.card.vehiculo': 'Pide vehículo propio',
+    // La lectura vecinal de /empleo: una frase y la lista (Empleo.jsx, FraseEmpleo).
+    'empleo.frase.titulo': 'En breve',
+    'empleo.frase.ninguna': 'Ahora mismo no hay ofertas abiertas.',
+    'empleo.frase.abiertas': 'Hay {n} ofertas abiertas.',
+    'empleo.frase.abiertas.una': 'Hay una oferta abierta.',
+    'empleo.frase.abiertasDe': 'Hay {n} ofertas abiertas de las {total} que publica la agencia.',
+    'empleo.frase.abiertasDe.una': 'Hay una oferta abierta de las {total} que publica la agencia.',
+    'empleo.frase.enRiba': '{n} son para trabajar en Riba-roja.',
+    'empleo.frase.enRiba.una': 'Una es para trabajar en Riba-roja.',
+    'empleo.frase.enRiba.ninguna': 'Ninguna es para trabajar en Riba-roja.',
+    'empleo.frase.cierran': '{n} cierran en los próximos {dias} días.',
+    'empleo.frase.cierran.una': 'Una cierra en los próximos {dias} días.',
+    'empleo.seccion.cifras': 'Las ofertas en cifras',
     'empleo.chart.byMonth': 'Ofertas por mes',
     'empleo.chart.byContract': 'Tipo de contrato',
     'empleo.chart.byMunicipio': 'Dónde',
@@ -345,7 +517,6 @@ export const CATALOGUE = {
 
     // Topbar
     'topbar.search': 'Buscar quejas, cargos, plenos…',
-    'topbar.search.aria': 'Buscar',
     'topbar.menu.aria': 'Abrir menú',
 
     // Sidebar
@@ -415,7 +586,12 @@ export const CATALOGUE = {
     // filtro puesto que sin él.
     'map.money.accum': 'adjudicado acumulado',
     'map.money.detalle': 'Detalle',
-    'map.money.of': 'de',
+    // `{periodo}` lleva el paréntesis con los años del total, o nada: el periodo
+    // del denominador va en la misma frase que la cifra (MoneyCoverage.jsx).
+    'map.money.deCada100': 'El mapa sólo sitúa {n} de cada 100 € de contratos{periodo}.',
+    // La misma cobertura, exacta, en el `title` de la frase de arriba.
+    'map.money.exacta': '{situado} situados de {total} adjudicados{periodo} · {pct} %',
+    'map.money.menosDeUno': 'menos de 1',
     // «Un único lugar, o lugares uno dentro de otro»: la regla de
     // `resolveUnambiguousPlace`. Y no más largo que la versión anterior: a 375 px
     // el panel crece hacia arriba y ya roza la franja «Directo».
@@ -464,41 +640,6 @@ export const CATALOGUE = {
     'participa.tipo.survey': 'Encuesta',
     'participa.tipo.other': 'Aviso',
     'participa.tipo.desconocido': 'Participación',
-    'liveTicker.aria': 'Datos nacionales en directo',
-    // La cinta de datos nacionales, entera (#38). Hasta entonces sólo su nombre
-    // pasaba por aquí: «DIRECTO», cada serie, sus `aria-label`, los paneles y
-    // «hace 3 h» seguían escritos a mano en castellano sobre la portada valenciana.
-    'liveTicker.directo': 'DIRECTO',
-    'liveTicker.luz': 'Luz PVPC',
-    'liveTicker.luz.aria': 'Precio de la luz {valor} euros por kilovatio hora',
-    'liveTicker.luz.curva': 'Curva 24h · €/kWh',
-    'liveTicker.gasolina95': 'Gasolina 95',
-    'liveTicker.gasolina95.aria': 'Gasolina 95 promedio {valor} euros por litro',
-    'liveTicker.gasolina.estaciones': 'est.',
-    'liveTicker.diesel': 'Diésel A',
-    'liveTicker.diesel.aria': 'Diésel A promedio {valor} euros por litro',
-    'liveTicker.euribor': 'Euribor 12m',
-    'liveTicker.euribor.aria': 'Euribor 12 meses {valor} por ciento',
-    'liveTicker.ipc': 'IPC España',
-    'liveTicker.ipc.aria': 'IPC interanual España {valor} por ciento',
-    'liveTicker.ipc.historia': 'IPC últimos 12 meses · %',
-    'liveTicker.bce': 'BCE MRO',
-    'liveTicker.bce.aria': 'Tipo principal del BCE {valor} por ciento',
-    'liveTicker.aemet': 'AEMET Valencia',
-    'liveTicker.aemet.aria': 'Alerta meteorológica AEMET nivel {nivel}',
-    'liveTicker.aemet.nivel.amarillo': 'amarillo',
-    'liveTicker.aemet.nivel.naranja': 'naranja',
-    'liveTicker.aemet.nivel.rojo': 'rojo',
-    'liveTicker.dgt': 'DGT tráfico',
-    'liveTicker.dgt.incidencias': 'incid.',
-    'liveTicker.dgt.aria': '{n} incidencias de tráfico en la zona',
-    'liveTicker.dgt.aria.una': 'una incidencia de tráfico en la zona',
-    'liveTicker.dgt.mas': '+{n} más',
-    'liveTicker.noticia.aria': 'Noticia de {fuente}: {titulo}',
-    'liveTicker.panel.cerrar': 'Cerrar',
-    'liveTicker.panel.min': 'min',
-    'liveTicker.panel.max': 'max',
-    'liveTicker.panel.fuente': 'Fuente oficial →',
     'tiempo.ahora': 'ahora',
     'tiempo.haceMin': 'hace {n} min',
     'tiempo.haceHoras': 'hace {n} h',
@@ -678,7 +819,7 @@ export const CATALOGUE = {
     'declaraciones.eyebrow': 'Verificación de declaraciones',
     'declaraciones.title': 'Declaraciones en pleno',
     'declaraciones.subtitle':
-      'Cada afirmación, promesa o acusación detectada en los plenos municipales, cruzada contra los datos abiertos publicados (PLACSP, BDNS, presupuesto, promesas electorales). Atribución a nivel de grupo. El veredicto de cada fila lo pone un cotejo automático, salvo en las que llevan la marca «corregido por un curador», donde una persona lo ha rectificado a la baja: las declaraciones sin atribuir o sin evidencia se mantienen visibles porque se han hecho, y ninguna de ellas se convierte en un hallazgo editorial sin que una persona lo firme.',
+      'Cada afirmación, promesa o acusación detectada en los plenos municipales, cruzada contra los datos abiertos publicados (PLACSP, BDNS, promesas electorales). Atribución a nivel de grupo. El veredicto de cada fila lo pone un cotejo automático, salvo en las que llevan la marca «corregido por un curador», donde una persona lo ha rectificado a la baja: las declaraciones sin atribuir o sin evidencia se mantienen visibles porque se han hecho, y ninguna de ellas se convierte en un hallazgo editorial sin que una persona lo firme.',
     'declaraciones.stat.total': 'Total',
     'declaraciones.stat.conEvidencia': 'Cotejadas',
     'declaraciones.filter.verdict': 'Verdicto',
@@ -712,6 +853,104 @@ export const CATALOGUE = {
     'cargos.title': 'Cargos y departamentos',
     'plenos.eyebrow': 'Órganos de gobierno',
     'plenos.title': 'Plenos municipales',
+    // «El último pleno», la lectura vecinal de /plenos (components/plenos/
+    // EnBrevePlenos.jsx). «Para decidir» es lo que se llevó a votar, no lo que
+    // se aprobó: el resultado sólo consta en las votaciones transcritas.
+    'plenos.enBreve.titulo': 'El último pleno',
+    'plenos.enBreve.intro':
+      'De qué trató la última sesión, qué sabemos de sus votaciones y cuándo toca la próxima, en palabras llanas. El título literal de cada punto está en la página de la sesión.',
+    'plenos.enBreve.saltar': 'Todas las sesiones ↓',
+    'plenos.enBreve.tipo': 'pleno {tipo}',
+    'plenos.enBreve.orden.pregunta': '¿Qué se llevó al último pleno?',
+    'plenos.enBreve.orden.total': 'El orden del día tenía {n} puntos: {partes}.',
+    'plenos.enBreve.orden.total.uno': 'El orden del día tenía un punto: {partes}.',
+    // Las dos partes y el turno de ruegos llevan su entrada del glosario.
+    'plenos.enBreve.parte.decidir': '{n} [[parteResolutiva|para decidir]]',
+    'plenos.enBreve.parte.informes': '{n} [[dacionDeCuenta|informes (no se votan)]]',
+    'plenos.enBreve.parte.informes.uno': '1 [[dacionDeCuenta|informe (no se vota)]]',
+    'plenos.enBreve.parte.otros': '{n} sin parte en la convocatoria',
+    'plenos.enBreve.parte.ruegos': 'el turno de [[ruegosYPreguntas|ruegos y preguntas]]',
+    'plenos.enBreve.orden.decidir': 'Para decidir',
+    'plenos.enBreve.orden.informes': 'Informes, que no se votan',
+    'plenos.enBreve.orden.otros': 'Sin parte en la convocatoria',
+    'plenos.enBreve.urgente': 'de urgencia',
+    'plenos.enBreve.orden.ver': 'El orden del día literal, en la página de la sesión →',
+    'plenos.enBreve.votos.pregunta': '¿Qué se votó?',
+    'plenos.enBreve.votos.transcrita': 'votación transcrita',
+    'plenos.enBreve.votos.transcritas': 'votaciones transcritas',
+    'plenos.enBreve.votos.desenlace': 'Resultado: {lista}.',
+    'plenos.enBreve.votos.aprobada': '1 aprobada',
+    'plenos.enBreve.votos.aprobadas': '{n} aprobadas',
+    'plenos.enBreve.votos.rechazada': '1 rechazada',
+    'plenos.enBreve.votos.rechazadas': '{n} rechazadas',
+    'plenos.enBreve.votos.otra': '1 retirada o aplazada',
+    'plenos.enBreve.votos.otras': '{n} retiradas o aplazadas',
+    'plenos.enBreve.votos.cobertura':
+      'Tenemos votaciones transcritas de {n} de las {total} sesiones.',
+    'plenos.enBreve.votos.reparto':
+      'En {n} de ellas, quién votó qué sale de la transcripción automática del vídeo, sin cotejar con el acta.',
+    'plenos.enBreve.votos.reparto.todas':
+      'Quién votó qué sale de la transcripción automática del vídeo, sin cotejar con el acta.',
+    'plenos.enBreve.video': 'Ver el vídeo de la sesión',
+    'plenos.enBreve.votos.ver': 'Las votaciones, en la página de la sesión →',
+    // «¿Cuándo es el próximo?» (scraper/proximo-pleno.ts): la regla es la del acta del
+    // 7-07-2023, punto 8; la cuenta sale de las fechas; una fecha deducida, nunca.
+    'plenos.enBreve.proximo.pregunta': '¿Cuándo es el próximo?',
+    'plenos.enBreve.proximo.convocado': 'Ya está en el portal de sesiones del Ayuntamiento.',
+    'plenos.enBreve.proximo.verSesion': 'La sesión, con su orden del día →',
+    'plenos.enBreve.proximo.sinFecha': 'Todavía no tenemos su fecha.',
+    'plenos.enBreve.proximo.regla':
+      'Para este mandato, el Pleno acordó celebrar el ordinario el primer lunes de cada mes a las 17:30, salvo en agosto, y el lunes siguiente si es festivo. Las fechas de cada año las fijan los portavoces de los grupos.',
+    'plenos.enBreve.proximo.cuenta':
+      'De los {n} plenos ordinarios desde ese acuerdo, {lunes} fueron en lunes y {primer}, el primer lunes del mes.',
+    'plenos.enBreve.proximo.cuenta.todos':
+      'De los {n} plenos ordinarios desde ese acuerdo, todos fueron en lunes y {primer}, el primer lunes del mes.',
+    'plenos.enBreve.proximo.verAcuerdo': 'El acuerdo, en el acta del {fecha} →',
+    // El paso de la lectura vecinal a la experta (components/DivisorLecturas.jsx).
+    'lecturas.divisor':
+      'Hasta aquí, lo esencial. Debajo, todos los datos, para quien quiera comprobarlos.',
+    // El pliegue de la lectura experta (components/Lecturas.jsx). Los títulos de
+    // sección van con su página (`*.seccion.*`): son lo único que se ve de una
+    // sección plegada, y no llevan cifras, que quedarían a la vista sin su
+    // salvedad.
+    'lecturas.ver': 'Ver:',
+    'lecturas.esencial': 'lo esencial',
+    'lecturas.todo': 'todo',
+    'plenos.indice.seccion.votosYDeclaraciones': 'Votaciones y declaraciones',
+    'plenoDetail.seccion.cifras': 'La sesión en cifras',
+    'quejas.seccion.publicadas': 'Las quejas publicadas',
+    'quejas.seccion.bop': 'Anuncios del Ayuntamiento en el Boletín Oficial de la Provincia',
+    // Las palabras de la sede que salen dentro de los títulos (moción, sin
+    // dictaminar…): el título es literal y no admite marca, así que la tarjeta
+    // del orden del día las nombra aparte, con su entrada del glosario.
+    'plenos.vocabulario': 'Palabras de este orden del día: {lista}.',
+    // «Los plenos del último año» (components/plenos/SesionesDelAnio.jsx): de qué trató
+    // cada sesión, en vez de cuánto hemos procesado de ella.
+    'plenos.anio.titulo': 'Los plenos del último año',
+    'plenos.anio.intro':
+      'Las sesiones anteriores de los últimos doce meses y lo primero que se llevó a votar en cada una.',
+    'plenos.anio.saltar': 'Todas las sesiones, con sus cifras ↓',
+    'plenos.anio.decidir': 'Para decidir',
+    'plenos.anio.mas': 'y {n} más',
+    'plenos.anio.sinOrden': 'Todavía no hemos recogido su orden del día.',
+    'plenos.anio.soloActa': 'Para decidir, sólo la aprobación del acta anterior.',
+    'plenos.anio.soloInformes': 'Sólo informes, que no se votan.',
+    'plenos.anio.nadaQueDecidir': 'Ningún punto para decidir en su orden del día.',
+    'plenos.palabra.mocion': 'moción',
+    'plenos.palabra.reconocimientoExtrajudicial': 'reconocimiento extrajudicial',
+    'plenos.palabra.sinDictaminar': 'sin dictaminar',
+    'plenos.palabra.urgencia': 'de urgencia',
+    // El «Resumen» de /plenos/:id: la sesión en palabras llanas, encima de sus cifras.
+    'plenoDetail.resumen.titulo': 'La sesión, en breve',
+    'plenoDetail.resumen.intro':
+      'Lo que se llevó al pleno y lo que hemos transcrito de sus votaciones, en palabras llanas. Los títulos oficiales, con su expediente, están en la pestaña «Orden del día».',
+    'plenoDetail.resumen.saltar': 'Las cifras de la sesión ↓',
+    'plenoDetail.resumen.orden.pregunta': '¿Qué se llevó a este pleno?',
+    'plenoDetail.resumen.orden.ver': 'Los títulos oficiales, con su expediente ↓',
+    'plenoDetail.resumen.votos': 'Hemos transcrito {n} votaciones de esta sesión.',
+    'plenoDetail.resumen.votos.una': 'Hemos transcrito una votación de esta sesión.',
+    'plenoDetail.resumen.votos.retirado': 'reparto por grupos retirado',
+    'plenoDetail.resumen.votos.ver': 'Quién votó qué, con sus fuentes ↓',
     // El índice de sesiones (/plenos): la entradilla, la escalera de cobertura, la
     // tabla con sus filtros, las tarjetas de votaciones y declaraciones y el reparto
     // por área. Las retiradas de votaciones, por alcance, en singular y en plural.
@@ -723,8 +962,11 @@ export const CATALOGUE = {
     'plenos.indice.lede.votos': 'votaciones transcritas de {n}',
     'plenos.indice.lede.aviso':
       'Lo que esta página no cuenta no es que no ocurriera: es que aún no lo hemos leído.',
-    'plenos.indice.actaEnRegmeet':
-      'Cada sesión enlaza a su acta en regmeet.com, el gestor del propio ayuntamiento.',
+    // De dónde salen el orden del día y el resultado, no un enlace: la página no
+    // enlaza a regmeet desde 16dc0b4d, y el `link` de cada sesión lleva a su página
+    // en regmeet, no al acta.
+    'plenos.indice.fuenteRegmeet':
+      'El orden del día y el resultado de cada votación proceden de la página de la sesión en regmeet.com, el gestor del propio ayuntamiento.',
     'plenos.indice.comoSeProcesa': 'Cómo se procesa una sesión →',
     'plenos.indice.fuente':
       'Fuente: actas y vídeos publicados por el Ayuntamiento de Riba-roja de Túria en regmeet.com.',
@@ -803,7 +1045,11 @@ export const CATALOGUE = {
     'plenos.indice.decl.cotejadas': 'Parciales o verificadas',
     'plenos.indice.decl.cotejadas.nota': 'lo único que cotejó un documento municipal',
     'plenos.indice.decl.eyebrow': 'Declaraciones extraídas · {n} sesiones',
-    'plenos.indice.decl.titulo': '{extraidas} declaraciones, {verificado} verificadas',
+    // «7946 declaraciones, 10 verificadas» se leía como «sólo 10 eran ciertas»: las demás
+    // no se pudieron cotejar con ningún documento municipal, que es otra cosa (auditoría de
+    // las dos lecturas, §9). Cotejadas = parciales + verificadas + contradichas.
+    'plenos.indice.decl.titulo':
+      '{extraidas} declaraciones extraídas; {cotejadas} cotejadas con un documento municipal',
     'plenos.indice.decl.sinDatosNota':
       'Un «sin datos» no desmiente nada: dice que no encontramos ningún documento municipal que hable de eso. De los {sinDatos}, {sinCorpus}, {comprobado} se comprobaron sin hallar nada y de {noConsta} no consta qué se consultó.',
     'plenos.indice.decl.sinCorpus': '{n} no pasaron por ningún comparador',
@@ -832,10 +1078,57 @@ export const CATALOGUE = {
     'promesas.title': 'Promesas por partido',
     'datos.eyebrow': 'Base estadística',
     'datos.title': 'Datos abiertos',
+    // La lectura vecinal de /datos (Datos.jsx): qué es y dónde se lee mejor una cifra.
+    'datos.frase.descargar':
+      'Aquí se pueden descargar los principales conjuntos de datos que usa CivicPulse.',
+    'datos.frase.atajo': 'Si buscas una cifra concreta, se lee mejor en su página:',
+    'datos.frase.o': 'o',
+    'datos.catalogo.titulo': 'Catálogo de datos',
+    'datos.catalogo.intro':
+      'Cada ficha es un fichero JSON: qué cuenta, de dónde sale y cuándo se actualizó.',
     'presup.eyebrow': 'Hacienda pública',
     'presup.title': 'Presupuesto municipal',
     'quejas.eyebrow': 'Voz ciudadana',
     'quejas.title': 'Quejas ciudadanas',
+    // La lectura vecinal de /quejas (components/Quejas/EnBreveQuejas.jsx): el camino de
+    // una queja. Las cifras salen de scraper/en-breve-quejas.ts; ninguna se escribe aquí.
+    'quejas.enBreve.titulo': 'Cómo quejarse y qué pasa después',
+    'quejas.enBreve.intro':
+      'Lo que hay que saber antes de quejarse, en palabras llanas. Las quejas publicadas y los registros de quien vigila al Ayuntamiento están debajo.',
+    'quejas.enBreve.saltar': 'Las quejas publicadas ↓',
+    'quejas.enBreve.como.pregunta': '¿Cómo me quejo?',
+    'quejas.enBreve.como.frase':
+      'Escribe al bot de Telegram con tu queja, una foto y dónde está. Una persona la revisa antes de publicarla aquí. Si {apoyos} vecinos la apoyan, una persona voluntaria la presenta en el registro electrónico del Ayuntamiento.',
+    'quejas.enBreve.como.bot': 'Abrir el bot en Telegram',
+    'quejas.enBreve.como.ver': 'El camino completo, en la metodología →',
+    'quejas.enBreve.plazo.pregunta': '¿Me tienen que contestar?',
+    'quejas.enBreve.plazo.figura': 'El plazo de una queja, desde que entra en el registro',
+    'quejas.enBreve.plazo.paso.registro': 'Entra en el registro',
+    'quejas.enBreve.plazo.paso.registro.cuando': 'Desde ese día corre el plazo.',
+    'quejas.enBreve.plazo.paso.acuse': 'Acuse de recibo',
+    'quejas.enBreve.plazo.paso.acuse.cuando': 'En {n} días como mucho.',
+    'quejas.enBreve.plazo.paso.respuesta': 'Respuesta',
+    'quejas.enBreve.plazo.paso.respuesta.cuando': 'En {n} meses como mucho.',
+    'quejas.enBreve.plazo.paso.sindic': 'Si no contesta',
+    'quejas.enBreve.plazo.paso.sindic.cuando': 'Puedes acudir al Síndic de Greuges.',
+    'quejas.enBreve.plazo.frase':
+      'Sí. Desde que la queja entra en el registro, el Ayuntamiento tiene {dias} días para acusar recibo y {meses} meses para contestar, con carácter general.',
+    'quejas.enBreve.plazo.transparencia':
+      'Si es una petición de transparencia, el plazo para contestar es de {n} meses.',
+    'quejas.enBreve.plazo.transparencia.uno':
+      'Si es una petición de transparencia, el plazo para contestar es de un mes.',
+    'quejas.enBreve.plazo.ver': 'Los plazos y su base legal →',
+    'quejas.enBreve.sindic.pregunta': '¿Y si no contestan?',
+    'quejas.enBreve.sindic.cifraNota': 'expedientes sobre el Ayuntamiento desde {desde}',
+    'quejas.enBreve.sindic.cifraNota.sinFecha': 'expedientes sobre el Ayuntamiento',
+    'quejas.enBreve.sindic.frase':
+      'Puedes acudir al Síndic de Greuges, el defensor del pueblo de la Comunitat Valenciana. Es gratis y no te quita otros recursos.',
+    'quejas.enBreve.sindic.recomendaciones':
+      'En {n} de esos expedientes, que hemos leído uno a uno, el Síndic se dirigió al Ayuntamiento para recomendarle algo o recordarle sus deberes legales; {falta} de ellos los titula el propio Síndic «falta de respuesta».',
+    'quejas.enBreve.sindic.recomendaciones.sinFalta':
+      'En {n} de esos expedientes, que hemos leído uno a uno, el Síndic se dirigió al Ayuntamiento para recomendarle algo o recordarle sus deberes legales.',
+    'quejas.enBreve.sindic.ultima': 'El más reciente que hemos leído es del {fecha}: «{titulo}»',
+    'quejas.enBreve.sindic.ver': 'Todos los expedientes ↓',
     // El cruce por barrio. La columna de euros son las zonas de
     // `tender-geo.json`: importe de ADJUDICACIÓN sin IVA, los mismos euros que
     // la portada rotula «adjudicado acumulado» y /presupuesto «adjudicado sin
@@ -856,8 +1149,37 @@ export const CATALOGUE = {
     'quejas.cruce.col.quejas': 'Quejas',
     'quejas.cruce.col.adjudicado': 'Adjudicado situado',
     'quejas.cruce.sinSituado': 'sin contratos situados',
+    'quejas.cruce.pendiente':
+      'Esta tabla pone, barrio a barrio, las quejas al lado de lo adjudicado en contratos situados allí, y se dibuja cuando haya quejas en al menos {minimo} barrios.',
+    'quejas.cruce.pendiente.n': ' De momento, las hay en {n}.',
+    'quejas.cruce.pendiente.ninguno': ' De momento, no hay ninguna situada en un barrio del mapa.',
+    'quejas.vigilan.titulo': 'Si el Ayuntamiento no responde: quién más vigila',
+    'quejas.vigilan.intro':
+      'Instituciones públicas que no dependen del Ayuntamiento. Cada tarjeta dice qué hace la institución y qué consta sobre Riba-roja en lo que publica.',
+    'quejas.datosTecnicos.rotulo': 'Datos técnicos',
+    'quejas.datosTecnicos.copia': 'Copia de los datos: {fecha}',
+    'quejas.datosTecnicos.fuente': 'Fuente: {fuente}',
+    'quejas.datosTecnicos.formato': 'Formato: {formato}',
+    'quejas.datosTecnicos.fichero': 'Fichero completo:',
     'dashboard.eyebrow': 'Voz ciudadana · Dashboard',
     'dashboard.title': 'Salud del canal de quejas',
+    'dashboard.intro':
+      'Vista detallada del canal de quejas: en qué punto está cada una, por área municipal y por barrio, y las que más apoyos tienen.',
+    'dashboard.volver': '← Cómo quejarse y qué plazos tiene el Ayuntamiento, en Quejas ciudadanas',
+    'dashboard.estados.eyebrow': 'Estado',
+    'dashboard.estados.titulo': 'En qué punto está cada queja',
+    'dashboard.areas.eyebrow': 'Por área municipal',
+    'dashboard.areas.titulo': 'Quejas por área',
+    'dashboard.areas.intro':
+      'Cada queja se asigna automáticamente al área municipal de su categoría. Junto al área figura quien la tiene a su cargo, como en Departamentos.',
+    'dashboard.areas.col.area': 'Área',
+    'dashboard.areas.col.quejas': 'Quejas',
+    'dashboard.areas.col.abiertas': 'Abiertas',
+    'dashboard.areas.col.silencios': 'Silencios',
+    'dashboard.areas.leyenda':
+      'Abiertas: las que no están resueltas ni cerradas sin registrar. Silencios: las que pasaron el plazo legal sin respuesta.',
+    'dashboard.areas.sinArea.una': 'Una queja no corresponde a ningún área de la lista.',
+    'dashboard.areas.sinArea': '{n} quejas no corresponden a ningún área de la lista.',
 
     // Plenos vote block
     'plenos.votes.heading': 'Votaciones registradas',
@@ -903,6 +1225,22 @@ export const CATALOGUE = {
     'declaraciones.veredicto.contradicho': 'Contradicho',
     'declaraciones.veredicto.sin-datos': 'Sin datos',
     'declaraciones.veredicto.promesa-repetida': 'Promesa repetida',
+    // EstadoLlano (src/lib/estado-llano.js): el rótulo en lugar del código. Los
+    // nombres de pasada son los de `TRINQUETE` en /metodologia.
+    'estado.encargo.biography': 'Biografía',
+    'estado.encargo.investigation': 'Investigación',
+    'estado.encargo.profile': 'Perfil',
+    'estado.encargo.topic-deep-dive': 'Tema a fondo',
+    'estado.pasada.verdict-engine': 'Re-derivación del motor',
+    'estado.pasada.llm-second-pass': 'Segunda pasada LLM',
+    'estado.pasada.nli-grounding': 'Anclaje NLI',
+    'estado.pasada.nli': 'Anclaje NLI',
+    'estado.pasada.llm': 'Segunda pasada LLM',
+    'estado.pasada.curator-downgrade': 'Retractación de curador',
+    'estado.pasada.curator-upgrade': 'Subida firmada',
+    'estado.especificacionEsperada.publicada': 'Publicada',
+    'estado.especificacionEsperada.muestra-insuficiente': 'Muestra insuficiente',
+    'estado.especificacionEsperada.sin-declaracion-propia': 'Sin coste propio',
     'declaraciones.tipo.promesa': 'Promesa',
     'declaraciones.tipo.afirmacion_numerica': 'Afirmación numérica',
     'declaraciones.tipo.cita_obra': 'Obra citada',
@@ -976,6 +1314,10 @@ export const CATALOGUE = {
     // (resumenes-retirados.js).
     'ledger.resumenRetirado':
       'Explicación retirada: el verificador LLM guardó aquí una nota sobre su propia tarea.',
+    // Donde iba la explicación de una retractación del motor sin firma: habla de una lista
+    // de candidatos que no se guardó (claim-provenance.js, `explicacionSinLista`).
+    'ledger.resumenSinLista':
+      'Explicación retirada: el verificador LLM la escribió sobre una lista de registros que no se guardó, y sin esa lista no se puede comprobar. Un «sin datos» no es un desmentido: la afirmación puede ser cierta.',
     'ledger.cargando': 'Cargando verificaciones…',
     // El puente de importe bajo una fila CONTRATO (importe-de-contrato.ts): qué es la
     // cifra que imprime la fila y qué importe del mismo expediente es la citada.
@@ -1002,6 +1344,10 @@ export const CATALOGUE = {
     'plenoDetail.notFound': 'Sesión no encontrada',
     'plenoDetail.back': '← Todos los plenos',
     'plenoDetail.summary': 'Resumen',
+    // El título de la pestaña del navegador y del enlace que se comparte. El 1 y el 11
+    // piden «de l’» en valenciano; en castellano las dos claves dicen lo mismo.
+    'plenoDetail.tituloPestana': 'Pleno del {fecha}',
+    'plenoDetail.tituloPestana.vocal': 'Pleno del {fecha}',
     'plenoDetail.agenda': 'Orden del día',
     'plenoDetail.votes': 'Votaciones',
     'plenoDetail.declarations': 'Declaraciones cotejadas',
@@ -1011,8 +1357,11 @@ export const CATALOGUE = {
     'plenoDetail.transcriptMissing': 'Transcripción no disponible para esta sesión.',
     'plenoDetail.video': '▸ Ver vídeo',
     'plenoDetail.empty.agenda': 'Sin orden del día publicado para esta sesión.',
+    // Sin «del acta»: el resultado sale de la sesión en regmeet y el desglose de la
+    // transcripción del audio, y de las sesiones más recientes aún no hay acta
+    // publicada. Desde el 26-10-2026 la frase sale también en el resumen.
     'plenoDetail.empty.votes':
-      'Todavía no hemos transcrito las votaciones del acta de esta sesión. No significa que no las hubiera.',
+      'Todavía no hemos transcrito las votaciones de esta sesión. No significa que no las hubiera.',
     'plenoDetail.votesPending': 'sin transcribir',
     // La nota de la ficha de votaciones cuando hay alguna: el número a secas se leía
     // como las votaciones de la sesión, y son las que hemos transcrito.
@@ -1026,10 +1375,6 @@ export const CATALOGUE = {
     'plenoDetail.agendaPendingLong': 'Orden del día aún no recogido para esta sesión',
     'plenoDetail.empty.agendaPending':
       'Todavía no hemos podido recoger el orden del día de esta sesión desde la sede de plenos. La sesión se celebró; el dato falta por nuestra parte, no por la del Ayuntamiento.',
-    'plenoDetail.empty.summary':
-      'Sesión registrada. Aún no hay votaciones transcritas, declaraciones contrastables ni hallazgos para esta sesión.',
-    'plenoDetail.empty.summaryNoAgenda':
-      'Sesión registrada. Todavía no hemos recogido su orden del día, y aún no hay votaciones transcritas, declaraciones contrastables ni hallazgos.',
     // La línea del resumen, pieza a pieza, en singular y en plural. «Transcritas»,
     // como el índice de /plenos: son las votaciones que hemos transcrito, no las
     // que hubo, y detrás va el aviso del índice (`plenos.indice.lede.aviso`).
@@ -1060,6 +1405,21 @@ export const CATALOGUE = {
     'plenoDetail.voto.resultado': 'Resultado',
     'plenoDetail.voto.desglose': 'Desglose',
     'plenoDetail.voto.cotejadoContra': 'cotejado contra {fuente}',
+    // Encima de la barra de una votación cuyo reparto necesita salvedad: va con
+    // la cifra, no en la fila de la fuente de debajo.
+    'plenoDetail.voto.salvedadReparto': 'Quién votó qué: {nota}.',
+    // Los hallazgos de la sesión por tema (scraper/hallazgos-por-tema.ts): el tema es el de
+    // las declaraciones que citan, y la gravedad se cuenta una vez en vez de ir delante de
+    // cada título.
+    'plenoDetail.hallazgos.porTema': 'Agrupados por el tema de las declaraciones que citan.',
+    'plenoDetail.hallazgos.sinTema': 'Sin declaraciones publicadas que den su tema',
+    'plenoDetail.hallazgos.gravedad': 'Por su gravedad: {lista}.',
+    'plenoDetail.hallazgos.critical.uno': '{n} crítico',
+    'plenoDetail.hallazgos.critical': '{n} críticos',
+    'plenoDetail.hallazgos.notable.uno': '{n} relevante',
+    'plenoDetail.hallazgos.notable': '{n} relevantes',
+    'plenoDetail.hallazgos.informational.uno': '{n} informativo',
+    'plenoDetail.hallazgos.informational': '{n} informativos',
     'plenoDetail.voto.desgloseRetirado': 'DESGLOSE POR GRUPOS RETIRADO',
     'plenoDetail.voto.desgloseCorregido': 'DESGLOSE POR GRUPOS CORREGIDO',
     'pleno.desenlace.aprobado': 'Aprobado',
@@ -1117,7 +1477,8 @@ export const CATALOGUE = {
     'bitacora.enmendados.varios': '{n} motivos enmendados',
     'bitacora.textoRetirado': 'Texto retirado',
     'bitacora.textoVigente': 'Texto vigente',
-    'bitacora.textoSustituido': 'Texto que puso esta corrección, sustituido el {fecha}',
+    'bitacora.textoSustituido':
+      'Texto que puso esta corrección, vigente hasta el {fecha}, cuando otra corrección lo cambió',
     'bitacora.textoRetiradoDespues': 'Texto que puso esta corrección; la cita se retiró el {fecha}',
     // Qué cita de la ficha es la de una fila `quote.<i>…`: el campo cuenta desde 0
     // y la ficha desde 1 (src/lib/posicion-en-bitacora.js).
@@ -1176,7 +1537,7 @@ export const CATALOGUE = {
     // La ficha de una queja (/quejas/:id). El estado y la categoría son enums del
     // bot: las tablas STATE_LABEL y CATEGORY_LABEL de useQuejas leen su castellano
     // de aquí, para que las páginas que aún no se traducen no puedan discrepar.
-    'quejas.estado.capturada': 'Capturada',
+    'quejas.estado.capturada': 'Reuniendo apoyos',
     'quejas.estado.apoyada_verificada': 'Verificada',
     'quejas.estado.registrada': 'Registrada en sede',
     'quejas.estado.notificada_10d': 'Acuse recibido',
@@ -1238,6 +1599,7 @@ export const CATALOGUE = {
     'quejas.detalle.relacion.pastilla':
       'Relación determinista y verificable — coincidencia de zona y/o materia',
     'quejas.detalle.relacion.verContrato': 'Ver contrato en contrataciondelestado.es →',
+    'quejas.detalle.relacion.adjudicado': 'Adjudicado el {fecha}',
     'quejas.detalle.reloj.eyebrow': 'Reloj legal',
     'quejas.detalle.reloj.titulo': 'Plazo LPACAP en curso',
     'quejas.detalle.reloj.registrada': 'Registrada',
@@ -1252,10 +1614,31 @@ export const CATALOGUE = {
     'quejas.detalle.reloj.sinCalendario':
       'Falta el calendario de días inhábiles de {anio}, y sin él no se sabe si el último día se prorroga (art. 30.5 LPACAP). Hasta que se añada, este reloj no cuenta los días ni da el plazo por vencido.',
     'quejas.detalle.reloj.asiento': 'Asiento sede',
-    'quejas.detalle.historial.eyebrow': 'Historial',
-    'quejas.detalle.historial.titulo': 'Línea temporal',
-    'quejas.detalle.hito.capturada': 'Capturada en CivicPulse',
-    'quejas.detalle.hito.capturada.detalle': 'Vía Telegram bot · barrio {barrio}',
+    'quejas.detalle.historial.eyebrow': 'Hecho y por hacer',
+    'quejas.detalle.historial.titulo': 'El camino de esta queja',
+    'quejas.detalle.camino.ahora': 'Ahora',
+    'quejas.detalle.camino.pendiente': 'Pendiente',
+    'quejas.detalle.camino.apoyos.ahora': 'Reuniendo apoyos: lleva {n} de {umbral}',
+    'quejas.detalle.camino.apoyos.detalle':
+      'Con {umbral} apoyos pasa a la lista que una persona voluntaria presenta en el registro del Ayuntamiento, en lotes semanales.',
+    'quejas.detalle.camino.registro': 'Entrada en el registro del Ayuntamiento',
+    'quejas.detalle.camino.registro.ahora': 'Lista para presentar en el registro del Ayuntamiento',
+    'quejas.detalle.camino.registro.detalle':
+      'Desde que entra en el registro corre el plazo para contestar.',
+    'quejas.detalle.camino.respuesta': 'Contestación del Ayuntamiento',
+    'quejas.detalle.camino.respuesta.detalle':
+      'Tiene {acuse} días para acusar recibo y {plazo} para contestar, desde el registro.',
+    'quejas.detalle.camino.respuesta.detalle.transparencia':
+      'Tiene {plazo} para contestar, desde el registro.',
+    'quejas.detalle.camino.sindic': 'Si no contesta a tiempo: el Síndic de Greuges',
+    'quejas.detalle.camino.sindic.ahora': 'Se puede acudir al Síndic de Greuges',
+    'quejas.detalle.camino.sindic.detalle': 'Es gratis y no quita otros recursos.',
+    'quejas.detalle.camino.consell':
+      'Si no contesta a tiempo: una reclamación al Consell de Transparència',
+    'quejas.detalle.camino.consell.ahora': 'Se puede reclamar al Consell de Transparència',
+    'quejas.detalle.camino.cerrada': 'Cerrada sin presentar en el registro',
+    'quejas.detalle.hito.capturada': 'Enviada al bot de CivicPulse',
+    'quejas.detalle.hito.capturada.detalle': 'Por Telegram · barrio {barrio}',
     'quejas.detalle.hito.verificada': 'Verificada por la comunidad',
     'quejas.detalle.hito.verificada.detalle':
       '{n} apoyos vecinales · umbral del lote semanal alcanzado',
@@ -1265,7 +1648,7 @@ export const CATALOGUE = {
     'quejas.detalle.hito.silencio': 'Silencio administrativo negativo',
     'quejas.detalle.hito.silencio.detalle': 'Plazo legal vencido · art. 24 LPACAP',
     'quejas.detalle.hito.sindic': 'Escalada al Síndic de Greuges CV',
-    'quejas.detalle.hito.sindic.detalle': 'Ley 11/1988 · resoluciones públicas',
+    'quejas.detalle.hito.sindic.detalle': 'Ley 2/2021 · resoluciones públicas',
     'quejas.detalle.hito.resuelta': 'Resuelta',
     'quejas.detalle.replica.eyebrow': 'Derecho de réplica oficial',
     'quejas.detalle.replica.titulo': 'Respuesta del Ayuntamiento',
@@ -1288,6 +1671,63 @@ export const CATALOGUE = {
     // Cambios · delta-digest page
     'cambios.eyebrow': 'Esta semana en Riba-roja',
     'cambios.title': 'Novedades',
+    'cambios.intro':
+      'Lo que ha cambiado en los últimos {dias} días en las fuentes que leemos: plenos, contratos adjudicados, subvenciones, el portal de participación, el canal de quejas y la prensa.',
+    'cambios.ventana': '{n} días',
+    'cambios.kind.pleno': 'Pleno municipal',
+    'cambios.kind.licitacion': 'Contrato adjudicado',
+    'cambios.kind.subvencion': 'Subvención',
+    'cambios.kind.participa': 'Participación ciudadana',
+    'cambios.kind.queja': 'Queja ciudadana',
+    'cambios.kind.prensa': 'Prensa',
+    'cambios.n.uno': '1 cambio',
+    'cambios.n': '{n} cambios',
+    'cambios.mas': 'Y {n} más en esta ventana.',
+    'cambios.total.uno': 'Total: 1 cambio · ventana de {dias} días',
+    'cambios.total': 'Total: {n} cambios · ventana de {dias} días',
+    'cambios.vacio':
+      'No hay ninguna tarjeta que enseñar en esta ventana. Prueba a ampliarla a 14 o 30 días.',
+    'cambios.contrato.adjudicataria': 'Adjudicado a {nombre}',
+    // Un importe con su IVA dicho, y la falta de importe dicha: las comparten /cambios,
+    // la ficha de queja y las tarjetas de contrato. La cifra llega ya con su «€»
+    // (`euros`, lib/formatters).
+    'importe.sinIva': '{importe} sin IVA',
+    'importe.noPublicado': 'importe no publicado',
+    'cambios.contrato.tituloOficial': 'Título oficial: {titulo}',
+    'cambios.prensa.enSitios': 'En {n} sitios:',
+    'cambios.frase.titulo': 'En una frase',
+    'cambios.frase.hechos': 'En los últimos {dias} días, el Ayuntamiento {lista}.',
+    'cambios.frase.hecho.pleno.uno': 'celebró 1 pleno',
+    'cambios.frase.hecho.pleno': 'celebró {n} plenos',
+    'cambios.frase.hecho.licitacion.uno': 'adjudicó 1 contrato',
+    'cambios.frase.hecho.licitacion': 'adjudicó {n} contratos',
+    'cambios.frase.hecho.subvencion.uno': 'abrió 1 convocatoria de subvenciones',
+    'cambios.frase.hecho.subvencion': 'abrió {n} convocatorias de subvenciones',
+    'cambios.frase.hecho.participa.uno': 'publicó 1 entrada en su portal de participación',
+    'cambios.frase.hecho.participa': 'publicó {n} entradas en su portal de participación',
+    'cambios.frase.noConsta': 'No consta {lista} en los últimos {dias} días.',
+    'cambios.frase.ni': ' ni ',
+    'cambios.frase.ninguno.pleno': 'ningún pleno',
+    'cambios.frase.ninguno.licitacion': 'ningún contrato adjudicado',
+    'cambios.frase.ninguno.subvencion': 'ninguna convocatoria municipal de subvenciones',
+    'cambios.frase.ninguno.participa': 'ninguna entrada en el portal de participación',
+    'cambios.frase.sinDatos': 'Sin datos de {fuente} desde el {fecha}.',
+    'cambios.frase.sinDatos.nunca': 'No se han podido leer los datos de {fuente}.',
+    'cambios.frase.fuente.pleno': 'plenos',
+    'cambios.frase.fuente.licitacion': 'contratos',
+    'cambios.frase.fuente.subvencion': 'subvenciones',
+    'cambios.frase.fuente.participa': 'participación',
+    'cambios.frase.fuente.queja': 'quejas',
+    'cambios.frase.fuente.prensa': 'prensa',
+    'cambios.frase.quejas.ninguna':
+      'En el canal de quejas de CivicPulse no hay ninguna enviada en estos días.',
+    'cambios.frase.quejas.una': 'En el canal de quejas de CivicPulse hay 1 enviada en estos días.',
+    'cambios.frase.quejas': 'En el canal de quejas de CivicPulse hay {n} enviadas en estos días.',
+    'cambios.frase.prensa.ninguna': 'Ninguna noticia que mencione Riba-roja en estos días.',
+    'cambios.frase.prensa.una': 'Hay 1 noticia que menciona Riba-roja.',
+    'cambios.frase.prensa': 'Hay {n} noticias que mencionan Riba-roja.',
+    'cambios.frase.prensa.municipal.una': ' Una es de la web del Ayuntamiento.',
+    'cambios.frase.prensa.municipal': ' {n} son de la web del Ayuntamiento.',
 
     // Departamentos — per-concejalía accountability dashboard
     // Cargo (per-concejal) detail
@@ -1352,6 +1792,11 @@ export const CATALOGUE = {
     // WHICH date is being shown, so «7 feb 2023» beneath a 2026 debate cannot
     // be read as the debate's own date.
     'findings.refs.crossChecked': 'Documentos cotejados',
+    // Bajo el rótulo, lo que la lista no dice. Se leía como «lo que respalda la
+    // ficha» encima de contratos que sólo compartían palabras con las citas
+    // (PlenoFindings.jsx, `RefList`).
+    'findings.refs.crossChecked.nota':
+      'Estos documentos se cotejaron con las citas: estar en la lista no dice que las confirmen.',
     // La grabación de la sesión NO es un documento cotejado: es de donde salen
     // las citas. Iban en la misma lista, así que una ficha cuyo único cotejo
     // era el vídeo del propio pleno enseñaba «DOCUMENTOS COTEJADOS ·
@@ -1432,9 +1877,9 @@ export const CATALOGUE = {
     // Si algún dato municipal respalda lo que dicen (`CONTRAST_MARK`, por la puerta
     // de claim-public-gate.ts).
     'findings.citas.contraste.lead.una':
-      '{citas} se cotejó automáticamente con la base documental municipal —la contratación desde 2017, las subvenciones, el presupuesto vigente y las promesas publicadas— y no apareció ningún dato que la confirme ni que la desmienta. Eso no la convierte en falsa: quiere decir que no lo sabemos — y sobre hechos anteriores a esa cobertura, que no podíamos saberlo.',
+      '{citas} se cotejó automáticamente con la base documental municipal —la contratación desde 2017, las subvenciones y las promesas publicadas— y no apareció ningún dato que la confirme ni que la desmienta. Eso no la convierte en falsa: quiere decir que no lo sabemos — y sobre hechos anteriores a esa cobertura, que no podíamos saberlo.',
     'findings.citas.contraste.lead.varias':
-      '{citas} se cotejaron automáticamente con la base documental municipal —la contratación desde 2017, las subvenciones, el presupuesto vigente y las promesas publicadas— y no apareció ningún dato que las confirme ni que las desmienta. Eso no las convierte en falsas: quiere decir que no lo sabemos — y sobre hechos anteriores a esa cobertura, que no podíamos saberlo.',
+      '{citas} se cotejaron automáticamente con la base documental municipal —la contratación desde 2017, las subvenciones y las promesas publicadas— y no apareció ningún dato que las confirme ni que las desmienta. Eso no las convierte en falsas: quiere decir que no lo sabemos — y sobre hechos anteriores a esa cobertura, que no podíamos saberlo.',
     'findings.citas.contraste.toggle.chip': 'sin contraste en los datos',
     'findings.citas.contraste.toggle.title':
       'El verificador no halló ningún dato municipal que confirme ni desmienta lo que se afirma aquí.',
@@ -1519,9 +1964,9 @@ export const CATALOGUE = {
       'Y es de {periodo}, no de un solo ejercicio: puesto sin periodo al lado de un presupuesto anual se lee mucho mayor de lo que es.',
     'presupuesto.gasto.intro.noRepartido': 'No es un volumen repartido:',
     'presupuesto.gasto.intro.mayorConcesion':
-      'el mayor contrato —una concesión de {importe} M€— se lleva él solo el {pct} % del total, porque una concesión se adjudica por todo su plazo de una vez.',
+      'el mayor contrato —una concesión de {importe}— se lleva él solo el {pct} % del total, porque una concesión se adjudica por todo su plazo de una vez.',
     'presupuesto.gasto.intro.mayor':
-      'el mayor contrato —{importe} M€— se lleva él solo el {pct} % del total.',
+      'el mayor contrato —{importe}— se lleva él solo el {pct} % del total.',
     'presupuesto.gasto.intro.situados':
       'Solo se sitúan los contratos cuyo título nombra una zona, y ahí sí predominan las obras ({pct} %). Tamaño del círculo = € adjudicado en la zona · ámbar cuando la mitad o más es recuperación DANA.',
     'presupuesto.gasto.intro.situadosSinPct':
@@ -1671,9 +2116,301 @@ export const CATALOGUE = {
       'Esta página distingue en todo momento tres cosas que suelen confundirse: lo **aprobado**, lo **definitivo** tras modificaciones y lo **ejecutado**.',
     'presupuesto.tres.link': 'Cómo se leen los tres ↓',
     'presupuesto.meta':
-      '{gastos} de gastos aprobados según CONPREL · {porHab} por habitante · {hab} habitantes · actualizado {fecha}',
+      '{gastos} de gastos aprobados para {year} según CONPREL · {porHab} por habitante · {hab} habitantes · actualizado {fecha}',
     'presupuesto.meta.sinTotal':
-      'CONPREL no trae el total de gastos aprobados · {hab} habitantes · actualizado {fecha}',
+      'CONPREL no trae el total de gastos aprobados para {year} · {hab} habitantes · actualizado {fecha}',
+    // «En breve» de /metodologia: cada respuesta es una regla ya escrita en la
+    // página, dicha en corto. Sin plazos ni cifras: viven en la regla.
+    'metodologia.enBreve.titulo': 'En breve',
+    'metodologia.enBreve.intro':
+      'Cómo trabajamos, en cinco preguntas. Cada respuesta enlaza a la regla completa.',
+    'metodologia.enBreve.saltar': 'Ir a las reglas completas ↓',
+    'metodologia.enBreve.ver': 'Leer la regla ↓',
+    'metodologia.enBreve.recorrido': 'El recorrido de un dato',
+    'metodologia.enBreve.paso.1': 'Fuente pública',
+    'metodologia.enBreve.paso.2': 'Con su fecha',
+    'metodologia.enBreve.paso.3': 'Revisión',
+    'metodologia.enBreve.paso.4': 'Publicado con enlace',
+    'metodologia.enBreve.paso.5': 'Rectificable',
+    'metodologia.enBreve.fuentes.pregunta': '¿De dónde salen los datos?',
+    'metodologia.enBreve.fuentes.frase':
+      'De fuentes oficiales —el propio Ayuntamiento, los ministerios, la Plataforma de Contratación, el BOE— y de la prensa, citada como prensa. La página de datos lista cada fuente con la fecha de su última lectura.',
+    'metodologia.enBreve.fuentes.ver': 'Ver todas las fuentes →',
+    'metodologia.enBreve.maquina.pregunta': '¿Lo publica una máquina?',
+    'metodologia.enBreve.maquina.frase':
+      'A veces, y con reglas. Lo que nombra a una persona lleva siempre la firma de alguien del equipo. Por regla general, una máquina sólo publica sola lo que retira algo ya publicado, o lo nuevo que no nombra a nadie y tiene su acierto medido; los procesos que aún no la cumplen se dicen en la regla.',
+    'metodologia.enBreve.comprobar.pregunta': '¿Cómo compruebo lo que decís?',
+    'metodologia.enBreve.comprobar.frase':
+      'Cada afirmación enlaza el documento del que sale, para que lo compruebes tú. Una promesa se atribuye con las palabras literales del partido, nunca con el titular de una noticia.',
+    'metodologia.enBreve.nota.pregunta': '¿Ponéis nota al Ayuntamiento?',
+    'metodologia.enBreve.nota.frase':
+      'No. No clasificamos partidos ni puntuamos al Ayuntamiento ni a ningún concejal: los datos van sin juicio. Cuando concluimos algo, lo firma un editor con su nombre, aparte y con derecho de réplica.',
+    'metodologia.enBreve.error.pregunta': '¿Y si os equivocáis?',
+    'metodologia.enBreve.error.frase':
+      'Cualquier persona, colectivo o partido puede pedir una rectificación, por GitHub o por correo. Tiene plazos fijos, los mismos del aviso legal.',
+    // El índice de /metodologia y la frase con que abre cada apartado. Las frases se
+    // escriben a mano y las revisa una persona, como el resto del contrato: no llevan
+    // plazos ni cifras (tests/metodologia-indice.test.jsx).
+    'metodologia.indice': 'En esta página',
+    'metodologia.indice.apartados': '{n} apartados',
+    'metodologia.indice.volver': 'Índice ↑',
+    'metodologia.indice.aviso':
+      'Cada apartado abre con lo esencial en una frase. Lo que vale es el texto entero, que va debajo.',
+    'metodologia.enUnaFrase': 'En una frase',
+    'metodologia.grupo.reglas': 'Reglas generales',
+    'metodologia.grupo.datos': 'Datos y fuentes',
+    'metodologia.grupo.cargos': 'Personas y cargos',
+    'metodologia.grupo.plenos': 'Plenos y declaraciones',
+    'metodologia.grupo.promesas': 'Promesas',
+    'metodologia.grupo.quejas': 'Quejas',
+    'metodologia.grupo.eficiencia': 'Eficiencia y laboratorio',
+    'metodologia.grupo.correcciones': 'Correcciones y réplica',
+    'metodologia.seccion.principios': 'Qué hacemos y qué no',
+    'metodologia.seccion.politica-automatizacion': 'Qué se publica sin revisión',
+    'metodologia.seccion.fuentes-auditadas': 'Fuentes auditadas',
+    'metodologia.seccion.gasto-por-concejalia': 'Cómo se asigna un contrato',
+    'metodologia.seccion.mapa-del-gasto': 'Mapa del gasto',
+    'metodologia.seccion.corporacion': 'La lista de la corporación',
+    'metodologia.seccion.mudanza-portal': 'La mudanza del portal',
+    'metodologia.seccion.a-quien-se-pregunta': 'A quién se pregunta',
+    'metodologia.seccion.encaje': 'Encaje declarado',
+    'metodologia.seccion.biografias': 'Biografías',
+    'metodologia.seccion.verificacion-declaraciones': 'Del discurso al contraste',
+    'metodologia.seccion.trinquete-veredictos': 'El trinquete',
+    'metodologia.seccion.citas-transcripcion': 'Citas marcadas',
+    'metodologia.seccion.citas-contraste': 'Citas sin respaldo',
+    'metodologia.seccion.plazos-vencidos': 'Votos y plazos vencidos',
+    'metodologia.seccion.estados': 'Qué significa cada estado',
+    'metodologia.seccion.limites-motor': 'Límites del motor',
+    'metodologia.seccion.auto-curacion-promesas': 'Qué se auto-publica',
+    'metodologia.seccion.camino-de-una-queja': 'Cómo llega una queja',
+    'metodologia.seccion.relacion-quejas-contratos': 'Quejas y contratos',
+    'metodologia.seccion.eficiencia': 'Cuánto cuesta cada servicio',
+    'metodologia.seccion.opinion-editor': 'La opinión del editor',
+    'metodologia.seccion.frontera': 'La frontera',
+    'metodologia.seccion.coste-esperado': 'El coste esperado',
+    'metodologia.seccion.laboratorio-prensa': 'Laboratorio de prensa',
+    'metodologia.seccion.rectificacion': 'Cómo pedir una rectificación',
+    'metodologia.seccion.politica-correcciones': 'Política de correcciones',
+    'metodologia.frase.principios':
+      'Somos neutrales entre partidos, cada promesa se atribuye con una cita literal y su fuente, y cualquiera puede pedir una corrección.',
+    'metodologia.frase.politica-automatizacion':
+      'Como regla, una máquina puede retirar o suavizar lo publicado, pero no publicar algo nuevo sin una precisión medida ni nombrar a nadie sin firma humana; las excepciones se dicen abajo.',
+    'metodologia.frase.fuentes-auditadas':
+      'Aquí están las fuentes públicas con las que se cotejan las afirmaciones, con lo que aporta cada una y sus límites.',
+    'metodologia.frase.gasto-por-concejalia':
+      'Cada contrato se asigna a un área por el código CPV principal que declara el expediente, y si los códigos declarados no nombran ninguna, queda sin asignar.',
+    'metodologia.frase.mapa-del-gasto':
+      'Un contrato sólo va al mapa cuando su título, o el objeto de su licitación, nombra un lugar concreto que sabemos localizar; el gasto sin lugar citado no se reparte.',
+    'metodologia.frase.corporacion':
+      'Cuando la web municipal va por detrás de lo que acordó el Pleno, corregimos la lista de cargos con una entrada firmada que cita el acta, nunca de forma automática.',
+    'metodologia.frase.mudanza-portal':
+      'Cuando el ayuntamiento mudó su portal, nuestra lista de cargos se quedó unos días sin actualizar y se estrecharon las formas de contactar, y lo contamos sin acusar a nadie.',
+    'metodologia.frase.a-quien-se-pregunta':
+      'El buscador de cargos dice qué área lleva un asunto según un vocabulario curado, a quién preguntar y no quién responde de cada caso, y nunca adivina.',
+    'metodologia.frase.encaje':
+      'Cruzamos lo que cada concejal con delegación declara en su CV con la materia de sus áreas, sin puntuar, sin ordenar y sin decir nada de cómo gestiona.',
+    'metodologia.frase.biografias':
+      'Lo que un cargo publica sobre sí mismo es el punto de partida, no la fuente: se contrasta con documentos que no controla, y la vida privada sin relación con el cargo no entra.',
+    'metodologia.frase.verificacion-declaraciones':
+      'Cotejamos automáticamente lo dicho en el pleno con contratos, subvenciones y promesas cuando la declaración trae con qué; luego una máquina sólo puede rebajar un veredicto, y subirlo lo firma una persona.',
+    'metodologia.frase.trinquete-veredictos':
+      'Cada etapa mueve un veredicto en un solo sentido, ninguna automática lo refuerza, y un veredicto que afirma algo nombra contra qué se comprobó, salvo la retractación de un curador.',
+    'metodologia.frase.citas-transcripcion':
+      'Las citas de los hallazgos salen de una transcripción automática; si no constan en el mejor texto lo marcamos, si no constan en ninguno no se publican, y no las reescribimos por nuestra cuenta.',
+    'metodologia.frase.citas-contraste':
+      'Una puerta editorial decide si una afirmación se enseña con sus datos, como no contrastada o se retiene, y lo que se retiene es la cita, no lo que se dijo.',
+    'metodologia.frase.plazos-vencidos':
+      'Cada voto dice de qué fuente salen su resultado y su desglose, y un compromiso con fecha que vence sin evidencia de ejecución lleva un aviso que no cambia ningún estado.',
+    'metodologia.frase.estados':
+      'Cada estado exige algo distinto para publicarse, y ni documentada ni en verificación afirman un incumplimiento.',
+    'metodologia.frase.limites-motor':
+      'El motor no auto-publica veredictos fuertes, no asigna incumplimientos, no inventa citas, no puntúa partidos y se detiene en periodo electoral.',
+    'metodologia.frase.auto-curacion-promesas':
+      'Sin revisión sólo se publica lo que supera un umbral de confianza y queda anclado a su fuente, rotulado como automático; «parcial», «cumplida» y los incumplimientos nunca se publican solos.',
+    'metodologia.frase.camino-de-una-queja':
+      'Publicar una queja no la lleva al ayuntamiento: llega cuando entra en su registro, y el plazo legal para responder cuenta desde esa fecha.',
+    'metodologia.frase.relacion-quejas-contratos':
+      'Un contrato que coincide con una queja en zona y en materia se muestra sin revisión; con una sola de las dos espera a un curador, y ninguna coincidencia afirma que el contrato la resuelva.',
+    'metodologia.frase.eficiencia':
+      'Cuando lo que declara el ayuntamiento lo permite, dividimos el coste de cada servicio entre sus unidades, lo comparamos con municipios parecidos del mismo modo de gestión y no publicamos ninguna nota.',
+    'metodologia.frase.opinion-editor':
+      'Los datos no ponen nota; la opinión del editor sí juzga, rotulada como opinión, firmada por una persona, con cada hecho enlazado y sin cifra, escala ni ranking.',
+    'metodologia.frase.frontera':
+      'La puntuación de la frontera sale de un modelo con decisiones nuestras dentro, así que publicamos el método entero y no nombramos a ningún otro municipio.',
+    'metodologia.frase.coste-esperado':
+      'Compara los servicios en gestión directa con lo esperable para la población del municipio; es un modelo, no una fuente citable, y sigue las mismas reglas que la frontera.',
+    'metodologia.frase.laboratorio-prensa':
+      'Cotejamos con datos municipales públicos lo que afirma la prensa cuando hay con qué, la fuente primaria siempre gana y que no haya datos no significa que sea falso.',
+    'metodologia.frase.rectificacion':
+      'Escríbenos con el identificador afectado y la fuente que propones, y te contestamos si aceptamos, si necesitamos más evidencia o si lo rechazamos con motivo público.',
+    'metodologia.frase.politica-correcciones':
+      'Cada corrección de un hallazgo deja una fila pública que no se borra, y lo que no debe seguir publicado no se reproduce en ella.',
+    // «En breve»: la primera capa de /presupuesto, en el registro de quien no
+    // sabe qué es una obligación reconocida. `[[clave|texto]]` es un término
+    // del glosario (src/glosario.js) y se pinta como botón con su definición.
+    'presupuesto.enBreve.titulo': 'En breve',
+    'presupuesto.enBreve.intro':
+      'Lo esencial, en pocas preguntas. Cada respuesta enlaza a la sección que la demuestra.',
+    'presupuesto.enBreve.saltar': 'Saltar a todos los datos ↓',
+    'presupuesto.enBreve.ver': 'Ver el detalle ↓',
+    'presupuesto.enBreve.limite.pregunta': '¿Cuánto dinero tenía para gastar en {year}?',
+    'presupuesto.enBreve.porVecino': '{x} por vecino',
+    'presupuesto.enBreve.limite.frase':
+      'Empezó el año con {inicial} y durante el año se le añadieron {mod}. Es un [[creditoDefinitivo|tope del presupuesto]], no un gasto.',
+    'presupuesto.enBreve.limite.inicial': 'Al empezar · {x}',
+    'presupuesto.enBreve.limite.mod': 'Añadido · {x}',
+    'presupuesto.enBreve.limite.figura':
+      'Barra: {inicial} al empezar el año más {mod} añadidos, en total {definitivo}.',
+    'presupuesto.enBreve.limite.dosFuentes':
+      'El Ministerio de Hacienda (CONPREL) da otra cifra de partida para {year}: {conprel}. Las dos fuentes no cuadran y no elegimos una.',
+    'presupuesto.enBreve.aprobado.pregunta': '¿Cuánto dinero tiene para gastar en {year}?',
+    'presupuesto.enBreve.aprobado.frase':
+      'Es el presupuesto aprobado según el Ministerio de Hacienda: un [[creditoDefinitivo|tope]], no un gasto. Cuánto se ha gastado aparecerá cuando el Ayuntamiento publique su estado de ejecución.',
+    'presupuesto.enBreve.gastado.pregunta': '¿Cuánto ha gastado?',
+    'presupuesto.enBreve.gastado.cifraNota': '{n} de cada 100 €',
+    'presupuesto.enBreve.gastado.frase':
+      'De cada 100 € que podía gastar en {year}, [[obligacionesReconocidas|gastó]] {n}.',
+    'presupuesto.enBreve.gastado.fin': 'Datos a {fecha}, cierre del ejercicio.',
+    'presupuesto.enBreve.gastado.fecha': 'Datos a {fecha}.',
+    'presupuesto.enBreve.gastado.nota':
+      '«Gastado» son las facturas y gastos que el Ayuntamiento ya ha dado por buenos. Lo pagado puede ser menos.',
+    'presupuesto.enBreve.gastado.barra': 'Gastado · {pct} %',
+    'presupuesto.enBreve.gastado.avance': 'Año transcurrido',
+    'presupuesto.enBreve.gastado.figura':
+      'Barra: gastado el {pct} % de lo que podía gastar; marca del año transcurrido al {avance} %.',
+    'presupuesto.enBreve.gastado.figuraSinAvance':
+      'Barra: gastado el {pct} % de lo que podía gastar.',
+    'presupuesto.enBreve.enQue.pregunta': '¿En qué se ha ido?',
+    'presupuesto.enBreve.enQue.mayoria': 'La mayor parte fue a {a} y a {b}.',
+    'presupuesto.enBreve.enQue.primero': 'Lo que más se llevó fue {a}, seguido de {b}.',
+    'presupuesto.enBreve.enQue.uno': 'Todo lo gastado fue a {a}.',
+    'presupuesto.enBreve.enQue.dominante':
+      'En {capitulo} había {definitivo} presupuestados y se gastó {ejecutado}.',
+    'presupuesto.enBreve.enQue.resto': 'Resto',
+    'presupuesto.enBreve.enQue.figura': 'Reparto de lo gastado: {lista}.',
+    'presupuesto.enBreve.cap.1': 'Sueldos del personal',
+    'presupuesto.enBreve.cap.2': 'Compras y servicios del día a día',
+    'presupuesto.enBreve.cap.3': 'Intereses de la deuda',
+    'presupuesto.enBreve.cap.4': 'Ayudas y aportaciones a otras entidades',
+    'presupuesto.enBreve.cap.5': 'Fondo de contingencia',
+    'presupuesto.enBreve.cap.6': 'Obras e inversiones',
+    'presupuesto.enBreve.cap.7': 'Aportaciones para inversiones de otros',
+    'presupuesto.enBreve.cap.8': 'Préstamos y depósitos',
+    'presupuesto.enBreve.cap.9': 'Devolución de préstamos',
+    // «¿Hay algo raro?»: sólo con una anomalía que la fuente misma muestra.
+    'presupuesto.enBreve.rareza.pregunta': '¿Hay algo raro?',
+    'presupuesto.enBreve.rareza.cifraNota': 'de diferencia',
+    'presupuesto.enBreve.rareza.sobra':
+      'El presupuesto de {year} que el Ayuntamiento rindió al Ministerio de Hacienda no cuadra: los ingresos superan a los gastos en {dif}.',
+    'presupuesto.enBreve.rareza.falta':
+      'El presupuesto de {year} que el Ayuntamiento rindió al Ministerio de Hacienda no cuadra: los gastos superan a los ingresos en {dif}.',
+    'presupuesto.enBreve.rareza.nota':
+      'Un presupuesto se aprueba sin déficit inicial, y la regla vale en los dos sentidos: tampoco debería sobrar.',
+    // Los títulos con los que se pliega cada sección de la lectura experta
+    // (components/Lecturas.jsx). Sin cifras: son lo único que se ve plegado.
+    'presupuesto.seccion.aprobado': 'Lo aprobado: en qué se gasta y de dónde vienen los ingresos',
+    'presupuesto.seccion.deuda': 'Lo que debe el Ayuntamiento',
+    'presupuesto.seccion.menores': 'Contratos menores',
+    'presupuesto.seccion.obras': 'Obras de infraestructura',
+    'presupuesto.seccion.ted': 'Contratos sobre el umbral europeo',
+    'presupuesto.enBreve.deuda.pregunta': '¿Debe dinero?',
+    'presupuesto.enBreve.deuda.frase':
+      'Es la [[deudaViva|deuda viva]] al cierre de {year}, según el Ministerio de Hacienda.',
+    'presupuesto.enBreve.deuda.comparacion':
+      'Debe más que {p} de cada 100 ayuntamientos de la lista del Ministerio. Pero {cero} de cada 100 no deben nada, así que la comparación dice poco por sí sola.',
+    'presupuesto.enBreve.deuda.sinDeuda': 'Sin deuda · {n} de 100',
+    'presupuesto.enBreve.deuda.nosotros': 'Riba-roja',
+    'presupuesto.enBreve.deuda.figura':
+      '100 ayuntamientos: {cero} no deben nada; Riba-roja debe más que {p}.',
+    'presupuesto.enBreve.barrio.titulo': '¿Qué se ha contratado en mi barrio?',
+    'presupuesto.enBreve.barrio.frase':
+      'Ojo: de cada 100 € contratados, sólo {n} van a contratos que nombran un barrio. Que tu barrio no salga en el mapa no quiere decir que allí no se haya contratado nada.',
+    'presupuesto.enBreve.barrio.menosDeUno':
+      'Ojo: de cada 100 € contratados, menos de 1 va a contratos que nombran un barrio. Que tu barrio no salga en el mapa no quiere decir que allí no se haya contratado nada.',
+    'presupuesto.enBreve.barrio.elige': 'Elige tu barrio',
+    'presupuesto.enBreve.barrio.placeholder': 'Elige…',
+    'presupuesto.enBreve.barrio.opcion': '{nombre} · {n} contratos',
+    'presupuesto.enBreve.barrio.opcion.uno': '{nombre} · 1 contrato',
+    'presupuesto.enBreve.barrio.otro': 'Mi barrio no aparece',
+    'presupuesto.enBreve.barrio.ver': 'Ver sus contratos',
+    'presupuesto.enBreve.barrio.otro.titulo': 'No podemos situar contratos en tu barrio',
+    'presupuesto.enBreve.barrio.otro.frase':
+      'Ningún contrato publicado nombra en su título un lugar que podamos situar con seguridad en tu barrio. Preferimos no poner un punto en el mapa a ponerlo mal.',
+    'presupuesto.enBreve.barrio.otro.queja': 'Avisar de un problema en tu calle',
+    'presupuesto.enBreve.barrio.otro.todos': 'Ver todos los contratos del municipio ↓',
+    'presupuesto.gasto.zona.desconocida':
+      'El enlace pide el barrio «{barrio}», que no está entre los que nombran los contratos. Elige uno en la lista o en el mapa.',
+    'presupuesto.enBreve.barrio.figura': 'De cada 100 € contratados, {n} nombran un barrio.',
+    'glosario.rotulo': 'Glosario',
+    'glosario.oficial': 'Nombre oficial: {nombre}',
+    'glosario.cerrar': 'Cerrar la definición',
+    'glosario.creditoDefinitivo.termino': 'Crédito definitivo',
+    'glosario.creditoDefinitivo.def':
+      'Lo máximo que el Ayuntamiento puede gastar en el año: lo aprobado al principio más lo añadido después. Es un tope, no un gasto.',
+    'glosario.obligacionesReconocidas.termino': 'Obligaciones reconocidas',
+    'glosario.obligacionesReconocidas.def':
+      'Facturas y gastos que el Ayuntamiento ya ha dado por buenos y tiene que pagar. Es la única cifra del presupuesto que es gasto. No es lo mismo que lo pagado.',
+    'glosario.costeEfectivo.termino': 'Coste efectivo',
+    'glosario.costeEfectivo.def':
+      'Lo que el Ayuntamiento declara al Ministerio de Hacienda que le costó prestar un servicio en un año. No es todo su gasto ni un dato de calidad.',
+    'glosario.cantidadSinRemedir.termino': 'Cantidad sin remedir',
+    'glosario.cantidadSinRemedir.def':
+      'Una cantidad de servicio (toneladas, metros, puntos de luz) que el Ayuntamiento declara igual, decimal a decimal, año tras año. Si no se vuelve a medir, el coste por unidad sólo sigue al gasto.',
+    'glosario.entrega.termino': 'Entrega',
+    'glosario.entrega.def':
+      'El envío anual obligatorio de estos datos al Ministerio, antes del 1 de noviembre (artículo 116 ter de la Ley de Bases de Régimen Local).',
+    'glosario.deudaViva.termino': 'Deuda viva',
+    'glosario.deudaViva.def':
+      'Lo que el Ayuntamiento debe a bancos y otras entidades al cerrar el año. No es el capítulo «Deuda pública» del presupuesto, que es lo que se aparta cada año para pagarla.',
+    'glosario.correccion.termino': 'Corrección',
+    'glosario.correccion.def':
+      'Una nota fechada que añadimos al final de una pieza ya publicada cuando la cambiamos, y que explica qué cambió. Unas arreglan un error; otras precisan una frase o añaden un dato que faltaba. Una misma nota puede recoger varios cambios hechos a la vez.',
+    'glosario.parteResolutiva.termino': 'Parte resolutiva',
+    'glosario.parteResolutiva.def':
+      'La parte del orden del día que el pleno vota: propuestas de acuerdo, mociones, ordenanzas. Que un punto esté en ella no dice cómo acabó: se puede aprobar, rechazar, retirar o dejar para otra sesión.',
+    'glosario.dacionDeCuenta.termino': 'Dación de cuenta',
+    'glosario.dacionDeCuenta.def':
+      'Un punto en el que el gobierno municipal informa al pleno: de sus decretos, de un informe, de datos que la ley le obliga a comunicar. No se vota.',
+    'glosario.ruegosYPreguntas.termino': 'Ruegos y preguntas',
+    'glosario.ruegosYPreguntas.def':
+      'El último turno del pleno ordinario: los grupos y sus concejales piden algo al gobierno municipal (ruegos) o le preguntan (preguntas). No se vota.',
+    'glosario.mocion.termino': 'Moción',
+    'glosario.mocion.def':
+      'Una propuesta que se lleva directamente al pleno, casi siempre de un grupo municipal: suele pedir al gobierno municipal que haga algo, o fijar una postura del Ayuntamiento. Se vota.',
+    'glosario.reconocimientoExtrajudicial.termino': 'Reconocimiento extrajudicial de crédito',
+    'glosario.reconocimientoExtrajudicial.def':
+      'El pleno aprueba pagar facturas de gastos que se hicieron sin seguir antes el trámite del gasto, o sin crédito en el presupuesto del año en que se hicieron. Sin esa aprobación no se pueden pagar.',
+    'glosario.sinDictaminar.termino': 'Sin dictaminar',
+    'glosario.sinDictaminar.def':
+      'El punto llega al pleno sin pasar antes por la comisión informativa, donde los grupos estudian los asuntos antes de cada pleno. Para tomar un acuerdo sobre él, el pleno tiene que ratificar antes que entre en el orden del día.',
+    'glosario.urgencia.termino': 'Asunto de urgencia',
+    'glosario.urgencia.def':
+      'Un asunto que no estaba en el orden del día con que se convocó el pleno y que se presenta por razones de urgencia. El pleno vota primero si lo debate; sólo si lo acepta se trata.',
+    'glosario.sindicDeGreuges.termino': 'Síndic de Greuges',
+    'glosario.sindicDeGreuges.def':
+      'El defensor del pueblo de la Comunitat Valenciana. Atiende gratis las quejas de cualquier persona contra una administración valenciana, ayuntamientos incluidos, por ejemplo cuando no contesta. Sus resoluciones recomiendan o recuerdan deberes legales; no obligan.',
+    'glosario.consellDeTransparencia.termino': 'Consell de Transparència',
+    'glosario.consellDeTransparencia.def':
+      'El órgano valenciano que resuelve las reclamaciones de transparencia: las de quien pide información pública a una administración valenciana, ayuntamientos incluidos, y no la obtiene.',
+    'glosario.ctbg.termino': 'Consejo de Transparencia y Buen Gobierno',
+    'glosario.ctbg.def':
+      'El órgano estatal de transparencia. Una reclamación de transparencia contra un ayuntamiento valenciano no va a él, sino al Consell de Transparència.',
+    'glosario.sindicaturaDeComptes.termino': 'Sindicatura de Comptes',
+    'glosario.sindicaturaDeComptes.def':
+      'El órgano de control externo de la Comunitat Valenciana: audita, después de gastado el dinero, si las cuentas del sector público valenciano, ayuntamientos incluidos, y su gestión se ajustan a la ley.',
+    'glosario.oposicion.termino': 'Oposición',
+    'glosario.oposicion.def':
+      'Uno o varios exámenes abiertos a quien cumpla los requisitos de la convocatoria. Las plazas son para quien saca mejor nota. Es la forma habitual de conseguir una plaza fija.',
+    'glosario.concurso.termino': 'Concurso',
+    'glosario.concurso.def':
+      'Se puntúan los méritos —años trabajados, títulos, cursos— con un baremo que fijan las bases, sin examen. En el concurso-oposición hay examen, y a quien lo aprueba se le suman los méritos.',
+    'glosario.bolsaDeTrabajo.termino': 'Bolsa de trabajo',
+    'glosario.bolsaDeTrabajo.def':
+      'Una lista ordenada de personas que han pasado una selección. El Ayuntamiento las llama por turno cuando necesita cubrir un puesto por un tiempo: una baja, una vacante mientras se convoca la plaza, un refuerzo. Estar en la bolsa no es tener plaza.',
+    'glosario.estabilizacion.termino': 'Estabilización',
+    'glosario.estabilizacion.def':
+      'Procesos extraordinarios de la Ley 20/2021 para convertir en fijas plazas que llevaban años cubiertas por personal temporal. Están abiertos a cualquiera que cumpla los requisitos, pero puntúa mucho la experiencia en ese tipo de plaza. La ley obligaba a convocarlos antes de que acabara 2022 y a terminarlos antes de que acabara 2024.',
     'presupuesto.fuentes.title': 'Dos fuentes, dos presupuestos aprobados',
     'presupuesto.fuentes.conprel': 'CONPREL · Ministerio de Hacienda',
     'presupuesto.fuentes.municipal': 'Estado de ejecución del propio Ayuntamiento',
@@ -1728,6 +2465,53 @@ export const CATALOGUE = {
       '**{capitulo} se llevó el {cuota} % de toda la ampliación**: de {inicial} a {definitivo}, de los que se ejecutó el {pct} %.',
     'presupuesto.cap.pie.cociente':
       ' El porcentaje de la derecha es ejecutado ÷ definitivo: obligaciones reconocidas netas.',
+    // El año en curso (`esCierre`, scraper/budget-execution.ts): mientras el
+    // estado de ejecución no es el del 31 de diciembre, la página dice lo mismo
+    // en presente. «Gastó» o «acabó con» de un primer trimestre afirmaría un
+    // cierre que no ha llegado.
+    'presupuesto.eyebrow.enCurso': 'Hacienda pública · ejercicio {year} · en curso',
+    'presupuesto.lede.enCurso':
+      'El ayuntamiento abrió {year} con {inicial} de crédito y en lo que va de año lo ha ampliado en {mod} —un {pct} % más—. A {fecha} lleva ejecutados {ejecutado}: el año todavía no ha terminado.',
+    'presupuesto.lede.conprelAnterior':
+      ' El presupuesto aprobado que publica el Ministerio de Hacienda todavía es el de {year}: sus cifras van más abajo, con su año.',
+    'presupuesto.lede.dominante.enCurso':
+      ' Casi toda la ampliación, el {cuota} %, ha ido a {capitulo}.',
+    'presupuesto.lede.dominanteCero.enCurso':
+      ' Casi toda la ampliación, el {cuota} %, ha ido a {capitulo}, un capítulo que había empezado en cero.',
+    'presupuesto.lede.dominanteCeroDiscrepan.enCurso':
+      ' Casi toda la ampliación, el {cuota} %, ha ido a {capitulo}, que el estado de ejecución del propio Ayuntamiento abre en cero y el presupuesto remitido a CONPREL con {conprel}.',
+    'presupuesto.lede.dominanteCeroSinConprel.enCurso':
+      ' Casi toda la ampliación, el {cuota} %, ha ido a {capitulo}, que el estado de ejecución del propio Ayuntamiento abre en cero y del que el presupuesto remitido a CONPREL no trae cifra.',
+    'presupuesto.lede.dominanteCeroSinContraste.enCurso':
+      ' Casi toda la ampliación, el {cuota} %, ha ido a {capitulo}, que el estado de ejecución del propio Ayuntamiento abre en cero.',
+    'presupuesto.cascada.title.enCurso': 'El presupuesto ha crecido un {pct} % en lo que va de año',
+    'presupuesto.callout.denominador.enCurso':
+      '**El «{pctDef} % ejecutado» es un cociente sobre el presupuesto definitivo.** Sobre el crédito que se aprobó en enero, lo ejecutado es el {pctIni} %. Cada cifra responde a una pregunta distinta: cuánto se ha ejecutado de lo que se aprobó en enero, y cuánto de lo que se ha autorizado hasta ahora.',
+    'presupuesto.cap.pie.cero.enCurso':
+      '**{capitulo} abrió el ejercicio con 0 € y lleva {definitivo}** —el {cuota} % de toda la ampliación—, de los que se ha ejecutado el {pct} %. Un capítulo que empieza en cero y recibe su crédito durante el ejercicio no es una desviación de ejecución: ese crédito no estaba en ninguno de los dos presupuestos aprobados que publica esta página.',
+    'presupuesto.cap.pie.ceroDiscrepan.enCurso':
+      '**{capitulo} abrió el ejercicio con 0 € y lleva {definitivo}** —el {cuota} % de toda la ampliación—, de los que se ha ejecutado el {pct} %. Ese cero es el del estado de ejecución del propio Ayuntamiento: **el presupuesto que se remitió a CONPREL le da {conprel} de crédito inicial a ese mismo capítulo**. Las dos fuentes son oficiales y no se reconcilian, así que parte de lo que aquí figura como ampliación ya estaba aprobado en la otra.',
+    'presupuesto.cap.pie.ceroSinConprel.enCurso':
+      '**{capitulo} abrió el ejercicio con 0 € y lleva {definitivo}** —el {cuota} % de toda la ampliación—, de los que se ha ejecutado el {pct} %. Ese cero es el del estado de ejecución del propio Ayuntamiento; **el presupuesto que se remitió a CONPREL no trae dato de ese capítulo**, así que no se puede decir si ese crédito ya estaba aprobado en la otra fuente.',
+    'presupuesto.cap.pie.ceroSinContraste.enCurso':
+      '**{capitulo} abrió el ejercicio con 0 € y lleva {definitivo}** —el {cuota} % de toda la ampliación—, de los que se ha ejecutado el {pct} %. Ese cero es el del estado de ejecución del propio Ayuntamiento, y no hay presupuesto remitido a CONPREL del mismo ejercicio con el que cotejarlo.',
+    'presupuesto.cap.pie.dominante.enCurso':
+      '**{capitulo} se ha llevado el {cuota} % de toda la ampliación**: de {inicial} a {definitivo}, de los que se ha ejecutado el {pct} %.',
+    'presupuesto.enBreve.limite.pregunta.enCurso': '¿Cuánto dinero tiene para gastar en {year}?',
+    'presupuesto.enBreve.limite.frase.enCurso':
+      'Empezó el año con {inicial} y en lo que va de año se le han añadido {mod}. Es un [[creditoDefinitivo|tope del presupuesto]], no un gasto.',
+    'presupuesto.enBreve.gastado.frase.enCurso':
+      'De cada 100 € que puede gastar en {year}, lleva [[obligacionesReconocidas|gastados]] {n}.',
+    'presupuesto.enBreve.gastado.fecha.enCurso': 'Datos a {fecha}: el año todavía no ha terminado.',
+    'presupuesto.enBreve.gastado.figura.enCurso':
+      'Barra: gastado hasta ahora el {pct} % de lo que puede gastar; marca del año transcurrido al {avance} %.',
+    'presupuesto.enBreve.gastado.figuraSinAvance.enCurso':
+      'Barra: gastado hasta ahora el {pct} % de lo que puede gastar.',
+    'presupuesto.enBreve.enQue.mayoria.enCurso': 'La mayor parte ha ido a {a} y a {b}.',
+    'presupuesto.enBreve.enQue.primero.enCurso': 'Lo que más se ha llevado es {a}, seguido de {b}.',
+    'presupuesto.enBreve.enQue.uno.enCurso': 'Todo lo gastado ha ido a {a}.',
+    'presupuesto.enBreve.enQue.dominante.enCurso':
+      'En {capitulo} hay {definitivo} presupuestados y se llevan gastados {ejecutado}.',
     'presupuesto.cap.fuente':
       'Fuente: Ayuntamiento de Riba-roja · estados de ejecución presupuestaria{fecha}.',
     'presupuesto.cap.fecha': ' · listado a {fecha}',
@@ -1844,14 +2628,19 @@ export const CATALOGUE = {
     'cargos.detalle.area.title': 'Dinero adjudicado en las concejalías que hoy dirige',
     'cargos.detalle.area.titleRango':
       'Dinero adjudicado entre {desde} y {hasta} en las concejalías que hoy dirige',
+    // Un solo año dice que TODOS sus contratos son de ese año, no que se miró sólo
+    // ese: «Dinero adjudicado en 2019» junto a «sumados a lo largo de todo el
+    // periodo» se leía como dos periodos distintos (revisión lectora, 29-10-2026).
     'cargos.detalle.area.titleAnio':
-      'Dinero adjudicado en {anio} en las concejalías que hoy dirige',
+      'Dinero adjudicado en las concejalías que hoy dirige: todos los contratos son de {anio}',
+    'cargos.detalle.area.titleAnioConFecha':
+      'Dinero adjudicado en las concejalías que hoy dirige: los contratos con fecha son de {anio}',
     'cargos.detalle.area.intro':
-      'Importes adjudicados en las áreas de las que hoy es responsable, sumados a lo largo de todo el periodo, las dirigiera quien las dirigiera: no es la contratación de su mandato. Es contratación de la concejalía, no de la persona: los contratos los adjudica el órgano de contratación del Ayuntamiento.',
+      'Importes adjudicados en las áreas de las que hoy es responsable, sumados a lo largo de todo el registro, las dirigiera quien las dirigiera: no es la contratación de su mandato. Es contratación de la concejalía, no de la persona: los contratos los adjudica el órgano de contratación del Ayuntamiento.',
     'cargos.detalle.area.note':
       'Solo contratos ya adjudicados y de categoría atribuible a un área; la cifra se queda corta antes que asignar un responsable equivocado.',
     'cargos.detalle.stat.areasDelegadas': 'Áreas delegadas',
-    'cargos.detalle.stat.partyPromises': 'Promesas · grupo',
+    'cargos.detalle.stat.partyPromises': 'Promesas · partido',
     'cargos.detalle.stat.agendaItems': 'Puntos en pleno',
     'cargos.detalle.stat.noDisponible': 'No se ha podido cargar; no es un cero.',
     'cargos.detalle.stat.quejas': 'Quejas pendientes',
@@ -1869,7 +2658,11 @@ export const CATALOGUE = {
     'cargos.card.hastaF': 'Concejala hasta el {fecha}',
     'cargos.card.hastaM': 'Concejal hasta el {fecha}',
     'cargos.card.acta': 'acta ↗',
-    // El buzón compartido se CUENTA en el padrón, no se lista a mano: once
+    'cargos.card.alcalde': 'Alcalde',
+    'cargos.card.alcaldesa': 'Alcaldesa',
+    'cargos.card.biografia': 'Biografía →',
+    'cargos.card.biografia.title': 'Informe biográfico del agente periodista de CivicPulse',
+    // El buzón compartido se CUENTA en la lista de cargos, no se teclea: once
     // cargos comparten el de alcaldía y seis el del grupo del PP, y bajo una
     // cara un mostrador compartido se lee como la línea directa de esa persona.
     'cargos.card.buzonCompartido': '· buzón compartido por {n} cargos',
@@ -1878,10 +2671,73 @@ export const CATALOGUE = {
     'cargos.baja.perdida-condicion': 'pérdida de la condición de concejal',
     // La segunda línea del sello sólo existe cuando hay correcciones: se deriva
     // del fichero, no se escribe, para que no pueda quedarse vieja.
-    'cargos.corporacion.raspado': 'padrón raspado de ribarroja.es · actualizado {fecha}',
+    // «Lista de cargos», nunca «padrón»: para cualquier vecino el padrón es el
+    // censo de habitantes (auditoría de las dos lecturas, §3).
+    'cargos.corporacion.eyebrow': 'Corporación Municipal',
+    'cargos.corporacion.raspado': 'lista de cargos de ribarroja.es · actualizada el {fecha}',
+    // Una frase por número, y los cambios contados con su propia palabra: decía
+    // «1 corrección(es) documentada(s)… 1 baja(s) y 0 alta(s)».
+    'cargos.corporacion.correcciones.una':
+      'Una corrección documentada: la página del ayuntamiento todavía no recoge {cambios} que el Pleno ya acordó; se aplica con el acta al lado.',
     'cargos.corporacion.correcciones':
-      '{n} corrección(es) documentada(s): la página del ayuntamiento no recoge aún {bajas} baja(s) y {altas} alta(s) que el Pleno ya acordó; se aplican con el acta al lado.',
-    'cargos.corporacion.correccionesLink': 'cómo se corrige el padrón',
+      '{n} correcciones documentadas: la página del ayuntamiento todavía no recoge {cambios} que el Pleno ya acordó; se aplican con el acta al lado.',
+    'cargos.corporacion.baja.una': 'una baja',
+    'cargos.corporacion.bajas': '{n} bajas',
+    'cargos.corporacion.alta.una': 'un alta',
+    'cargos.corporacion.altas': '{n} altas',
+    'cargos.corporacion.correccionesLink': 'cómo se corrige la lista',
+    'cargos.cargando': 'Cargando la lista de cargos…',
+    'cargos.error': 'No se pudo cargar la lista de cargos.',
+    // La lectura vecinal (auditoría de las dos lecturas, §3). Las cifras salen de
+    // `scraper/en-breve-cargos`; aquí sólo se eligen las palabras.
+    'cargos.enBreve.titulo': 'En breve',
+    'cargos.enBreve.intro':
+      'Lo esencial, en pocas preguntas. Cada respuesta enlaza a la sección que la demuestra.',
+    'cargos.enBreve.saltar': 'Saltar a todos los datos ↓',
+    'cargos.enBreve.sueldos.pregunta': '¿Cuánto cobran?',
+    'cargos.enBreve.sueldos.cifra': '{n} de {total}',
+    'cargos.enBreve.sueldos.cifraNota': 'con sueldo fijado por el pleno',
+    'cargos.enBreve.sueldos.frase':
+      'Cobran entre {minimo} y {maximo} € brutos al año, según el puesto. Los otros {sin} cobran por cada sesión a la que asisten.',
+    'cargos.enBreve.sueldos.nota': 'Importes de {anio}, fijados por el pleno el {fecha}.',
+    // El cuadro de retribuciones separa la antigüedad personal del sueldo del
+    // cargo; sin esta frase, el importe mayor se leería como el del cargo.
+    'cargos.enBreve.sueldos.antiguedad':
+      'El más alto incluye {antiguedad} € de antigüedad personal.',
+    'cargos.enBreve.sueldos.ancla': 'Las retribuciones, cifra a cifra ↓',
+    'cargos.enBreve.fiscalizan.pregunta': '¿Quién vigila al gobierno?',
+    'cargos.enBreve.fiscalizan.cifra': '{n} de {total}',
+    'cargos.enBreve.fiscalizan.cifraNota': 'sin áreas delegadas',
+    'cargos.enBreve.fiscalizan.frase':
+      'No dirigen ningún área: votan en el pleno y tienen derecho a preguntar al gobierno.',
+    'cargos.enBreve.fiscalizan.partidos': 'Son de {n} partidos: {lista}.',
+    'cargos.enBreve.fiscalizan.partido': 'Todos son de {partido}.',
+    'cargos.enBreve.fiscalizan.ancla': 'Quién fiscaliza ↓',
+    // El buscador (decisión D3). Nombra a quien tiene el área, que es a quien se
+    // pregunta, con la salvedad en la misma respuesta; sin área, el registro
+    // general, nunca una conjetura.
+    'cargos.enBreve.buscador.pregunta': '¿A quién le pregunto por…?',
+    'cargos.enBreve.buscador.asunto': 'Sobre «{tema}»:',
+    'cargos.enBreve.buscador.frase':
+      'Escribe un asunto y te decimos qué área lo lleva y quién la tiene hoy.',
+    'cargos.enBreve.buscador.etiqueta': 'Asunto',
+    'cargos.enBreve.buscador.ejemplos': 'Por ejemplo: {ejemplos}',
+    'cargos.enBreve.buscador.lleva': 'Lo lleva {quien}, en el área «{cargo}».',
+    'cargos.enBreve.buscador.llevan': 'Lo llevan {quien}, en el área «{cargo}».',
+    'cargos.enBreve.buscador.razon': 'La atribución la hacemos nosotros. {razon}',
+    'cargos.enBreve.buscador.competencia':
+      'Es a quien se pregunta: tener un área delegada no es responder de cada caso.',
+    'cargos.enBreve.buscador.escribele': 'Escríbele:',
+    'cargos.enBreve.buscador.congelado':
+      'Es del área «{cargo}». Durante el periodo electoral no ponemos aquí el nombre de quien la lleva: está en «Quién dirige qué».',
+    'cargos.enBreve.buscador.sinTitular':
+      'Hoy no podemos decir quién lo lleva: el área «{cargo}» ya no figura en la lista de cargos.',
+    'cargos.enBreve.buscador.sinAsignar':
+      'Ningún concejal tiene delegada esta área: pregunta en el registro general.',
+    'cargos.enBreve.buscador.varios': '¿Cuál de estos?',
+    'cargos.enBreve.buscador.ninguno':
+      'No lo tenemos en la lista. Las áreas de cada concejal están en «Quién dirige qué».',
+    'cargos.enBreve.buscador.ancla': 'Las áreas de cada concejal ↓',
     'cargos.bajas.title': 'Ya no forman parte de la corporación',
     'cargos.bajas.note':
       'Se conservan con su fecha de cese y el acta que la recoge. Nada en presente —retribución, áreas, quejas, encaje— se pinta sobre quien ya no ocupa el escaño.',
@@ -1956,29 +2812,33 @@ export const CATALOGUE = {
     'cargos.oposicion.title': 'Quién fiscaliza',
     'cargos.oposicion.nota':
       'Su tarjeta está vacía de gestión por institución, no por falta de datos. Lo que sí tienen es voto en el pleno y derecho a preguntar.',
-    'cargos.plantilla.eyebrow': 'Otra cosa · no son los cargos electos',
-    'cargos.plantilla.title': 'Plantilla municipal',
-    'cargos.plantilla.personas': 'personas empleadas',
-    'cargos.plantilla.plazas': 'plazas autorizadas',
-    'cargos.plantilla.mujeres': 'mujeres',
-    'cargos.plantilla.hombres': 'hombres',
-    'cargos.plantilla.fuenteSexo':
-      'El desglose por sexo es la última cifra publicada, y su fuente es un periódico comarcal, no el ayuntamiento:',
+    // La lista de los 21 en la lectura vecinal: cara, nombre, partido y lo que
+    // lleva cada uno; la oposición, rotulada una vez.
+    'cargos.lista.titulo': 'Los {n} concejales',
+    'cargos.lista.intro':
+      'Quién gobierna y qué áreas lleva cada uno, y quién no gobierna. Cada nombre abre su ficha.',
+    'cargos.lista.saltar': 'Las tarjetas completas ↓',
+    'cargos.lista.gobiernan': 'Gobiernan · {n}',
+    'cargos.lista.noGobiernan': 'No gobiernan · {n} · sin áreas delegadas',
+    'cargos.lista.lleva': 'Lleva: {areas}',
+    // La plantilla vivía aquí; ahora está en /empleo-publico y queda esta línea.
+    'cargos.plantilla.puntero':
+      'La plantilla municipal —las personas que trabajan en el Ayuntamiento, que no son cargos electos— está en',
     // La fecha del acuerdo se DERIVA de dedicaciones.json, no se teclea: un
     // «07/07/2023» escrito aquí sobrevive al mandato que nombra.
     'cargos.fuentes':
-      'Fuentes: corporación y fotografías de ribarroja.es · retribuciones fijadas en el acuerdo de pleno de {acuerdo} · importes percibidos del ISPA, Ministerio de Hacienda y Función Pública. Padrón actualizado el {fecha}.',
+      'Fuentes: corporación y fotografías de ribarroja.es · retribuciones fijadas en el acuerdo de pleno de {acuerdo} · importes percibidos del ISPA, Ministerio de Hacienda y Función Pública. Lista de cargos actualizada el {fecha}.',
     'cargos.detalle.baja.banner':
       'Ya no forma parte de la corporación: {motivo}. El Pleno tomó razón el {fecha}.',
     'cargos.detalle.baja.fuente': 'Fuente',
     'cargos.detalle.portfolios.title': 'Concejalías que gestiona',
-    'cargos.detalle.promesas.eyebrow': 'Atribución de grupo',
-    'cargos.detalle.promesas.title': 'Promesas del grupo parlamentario',
+    'cargos.detalle.promesas.eyebrow': 'Atribución al partido',
+    'cargos.detalle.promesas.title': 'Promesas del partido',
     'cargos.detalle.promesas.viewAll': 'Ver tracker completo →',
-    'cargos.detalle.promesas.empty': 'Sin promesas documentadas para este grupo.',
+    'cargos.detalle.promesas.empty': 'Sin promesas documentadas de este partido.',
     // Ni «0» ni «sin promesas» cuando el fichero no llegó: eso no se sabe.
     'cargos.detalle.promesas.noDisponible':
-      'No se ha podido cargar el registro de promesas; no significa que el grupo no tenga ninguna.',
+      'No se ha podido cargar el registro de promesas; no significa que el partido no tenga ninguna.',
     'cargos.detalle.promesas.more': 'Ver {n} promesas más →',
     'cargos.detalle.agenda.eyebrow': 'Puntos de orden del día',
     'cargos.detalle.agenda.title': 'Asuntos llevados al pleno por sus concejalías',
@@ -1991,7 +2851,7 @@ export const CATALOGUE = {
     'cargos.detalle.quejas.viewAll': 'Ver canal completo →',
     'cargos.detalle.quejas.empty': 'Sin quejas asignadas actualmente.',
     'cargos.detalle.methodology':
-      'Las promesas se atribuyen a nivel de grupo parlamentario, no a personas. Los puntos de orden del día se cuentan cuando la concejalía proponente coincide con un área asignada.',
+      'Las promesas se atribuyen al partido, no a personas. Los puntos de orden del día se cuentan cuando la concejalía proponente coincide con un área asignada.',
     'cargos.detalle.methodology.link': 'Leer metodología →',
 
     'encaje.eyebrow': 'Encaje declarado',
@@ -2060,6 +2920,16 @@ export const CATALOGUE = {
     'encaje.sinDelegacion.label': 'Sin delegación de área',
     'encaje.sinDelegacion.note':
       'No dirige ninguna concejalía, así que no hay área con la que comparar. El bloque en blanco refleja quién gobierna, no quién está formado.',
+    // Las dos frases que /cargos repetía en cada tarjeta, dichas una vez en la
+    // cabeza de su sección; la tarjeta se queda con la etiqueta o con la marca
+    // (auditoría de las dos lecturas, §3, punto 2). «Lo que citan las tarjetas»
+    // y no «las tarjetas»: una tarjeta que no cita nada no se comprobó contra
+    // nada, y conserva su propia frase de qué se comparó.
+    'encaje.sinDelegacion.seccion':
+      'No dirigen ninguna concejalía, así que en «Encaje declarado» no hay área con la que comparar. El bloque en blanco refleja quién gobierna, no quién está formado.',
+    'encaje.seccion.autodeclarada':
+      'En «Encaje declarado», lo que citan las tarjetas procede del CV que publica la propia persona; ninguna fuente independiente lo corrobora.',
+    'encaje.card.marca.autodeclarada': 'CV declarado por la persona',
     'encaje.sinRevisar.label': 'Todavía sin revisar',
     'encaje.sinRevisar.note':
       'Dirige un área y aún no hemos revisado qué formación y experiencia declara. El hueco es nuestro, no suyo: no dice nada de esta persona, sólo que todavía no hemos hecho el trabajo.',
@@ -2072,13 +2942,16 @@ export const CATALOGUE = {
     'encaje.ley.title': 'Qué exige la ley para cada puesto',
     'encaje.ley.titulacion': 'Titulación exigida',
     'encaje.ley.ninguna': 'ninguna',
-    'departamentos.encaje':
-      'De {cargos} concejalías con delegación, en {conFormacion} el responsable declara formación del campo del área y en {sinRelacion} lo declarado corresponde a otra materia.',
 
     'departamentos.eyebrow': 'Rendición de cuentas',
     'departamentos.title': 'Departamentos · compromisos y plazos',
     'departamentos.subtitle':
       'Seguimiento por concejalía de los acuerdos aprobados en pleno y las promesas con plazo. Las votaciones transcritas son el hecho primario; las promesas son secundarias.',
+    // Las dos reglas que la portada decía de pasada. La de las quejas es por
+    // concejalía, como la aplica lib/department-stats: una vez registrada una,
+    // cuentan todas las no cerradas; no «cada queja desde que se registra».
+    'departamentos.reglas':
+      'La casilla «{casilla}» de una concejalía sale con «—» hasta que al menos una de sus quejas ha llegado al registro del Ayuntamiento: hasta entonces no le debe ninguna respuesta. Un plazo vencido se señala como aviso; nunca cambia el estado de un acuerdo ni de una promesa.',
     'departamentos.card.responsable': 'Responsable',
     'departamentos.card.sinResponsable': 'Sin concejal asignado',
     'departamentos.card.votes': 'Votos',
@@ -2113,17 +2986,15 @@ export const CATALOGUE = {
     // La leyenda de la barra: los veredictos son `declaraciones.veredicto.*`.
     'departamentos.detalle.barra.sinContraste': 'Sin contraste',
     'departamentos.detalle.empty.votes':
-      '0 votos transcritos para esta concejalía — contribuye vía `npm run pleno-vote` o la plantilla de issue.',
+      'Todavía no hemos transcrito ninguna votación de esta concejalía. Cuando se transcriba alguna, aparecerá aquí.',
+    'departamentos.detalle.error.votes':
+      'No se han podido cargar las votaciones; no significa que no haya ninguna transcrita.',
     'departamentos.detalle.empty.promesas': 'Sin promesas registradas para esta concejalía.',
     'departamentos.detalle.empty.quejas': 'Sin quejas ciudadanas activas para esta concejalía.',
     'plazo.vencido': 'plazo vencido · sin evidencia de ejecución',
     'plazo.hint':
       'Fecha de compromiso superada sin que se haya registrado evidencia de ejecución. El estado editorial NO cambia automáticamente.',
-    'liveTicker.plazosVencidos': 'plazos vencidos',
-    'liveTicker.plazosVencidos.aria':
-      '{n} compromisos municipales con plazo vencido sin evidencia de ejecución — abrir el panel de departamentos',
-    'liveTicker.plazosVencidos.aria.uno':
-      'un compromiso municipal con plazo vencido sin evidencia de ejecución — abrir el panel de departamentos',
+    'departamentos.plazosVencidos': 'plazos vencidos',
 
     // Accessibility chrome
     'a11y.skipToContent': 'Saltar al contenido',
@@ -2140,6 +3011,44 @@ export const CATALOGUE = {
     'landing.masthead.kicker': 'CivicPulse · Boletín',
     'landing.masthead.title': 'El Mirador',
     'landing.masthead.tagline': 'Diario cívico · Riba-roja de Túria',
+    // La frase canónica de docs/DESCRIPCION.md («One-liner ES»), tal cual.
+    'landing.masthead.proposito':
+      'CivicPulse enseña quién dirige tu ayuntamiento, qué hace y cuánto cuesta — con una fuente para cada cifra.',
+    // «Tu ayuntamiento en 30 segundos» (src/scraper/en-breve-portada.ts): plantillas
+    // que se rellenan con el dato, nunca una cifra escrita.
+    'landing.enBreve.titulo': 'Tu ayuntamiento en 30 segundos',
+    'landing.enBreve.intro':
+      'Lo esencial, en cuatro preguntas. Cada respuesta enlaza a la página que la demuestra.',
+    'landing.enBreve.saltar': 'Saltar el resumen ↓',
+    'landing.enBreve.ver': 'Ver el detalle →',
+    'landing.enBreve.manda.pregunta': '¿Quién manda en el Ayuntamiento?',
+    'landing.enBreve.manda.cifra': '{escanos} de {total}',
+    'landing.enBreve.manda.cifraNota': 'concejales en el grupo del alcalde',
+    'landing.enBreve.manda.frase': 'El alcalde es {alcalde} ({partido}).',
+    'landing.enBreve.manda.figura': '{escanos} de {total} concejales',
+    'landing.enBreve.dinero.pregunta': '¿Cuánto dinero tuvo en {year}, y cuánto gastó?',
+    'landing.enBreve.dinero.tope':
+      'Es lo que podía gastar: un [[creditoDefinitivo|tope del presupuesto]], no un gasto.',
+    'landing.enBreve.dinero.sinGastado': 'Todavía no tenemos lo que gastó ese año.',
+    'landing.enBreve.dinero.cifraNota': 'gastados en {year}',
+    'landing.enBreve.dinero.topeCifra':
+      'Podía gastar {limite}: un [[creditoDefinitivo|tope del presupuesto]], no un gasto.',
+    'landing.enBreve.dinero.pregunta.enCurso':
+      '¿Cuánto dinero tiene en {year}, y cuánto lleva gastado?',
+    'landing.enBreve.dinero.cifraNota.enCurso': 'gastados en lo que va de {year}',
+    'landing.enBreve.dinero.topeCifra.enCurso':
+      'Puede gastar {limite}: un [[creditoDefinitivo|tope del presupuesto]], no un gasto.',
+    'landing.enBreve.barrio.puente':
+      'El mapa de esta página sitúa {mapa} de cada 100 €, y no {n}, porque cuenta otra cosa: los contratos que nombran un sitio concreto, como una calle o un colegio, estén o no en un barrio.',
+    'landing.enBreve.barrio.menosDeUno': 'menos de 1',
+    'landing.enBreve.pleno.pregunta': '¿Qué se decidió en el último pleno?',
+    'landing.enBreve.pleno.puntos': 'Trató {n} puntos del orden del día.',
+    'landing.enBreve.pleno.puntos.uno': 'Trató un punto del orden del día.',
+    'landing.enBreve.pleno.sinPuntos': 'Todavía no hemos recogido su orden del día.',
+    'landing.enBreve.pleno.votos': 'Hemos transcrito {n} votaciones de esa sesión.',
+    'landing.enBreve.pleno.votos.una': 'Hemos transcrito una votación de esa sesión.',
+    'landing.enBreve.pleno.sinVotos': 'Todavía no hemos transcrito ninguna de sus votaciones.',
+    'landing.enBreve.pleno.aviso': 'Puede haber más: sólo contamos las que hemos transcrito.',
     'landing.queja.kicker': 'Voz ciudadana · canal directo',
     'landing.queja.title': 'Denuncia un bache en 10 segundos.',
     'landing.queja.body1': 'Abre el bot de Telegram, envía',
@@ -2181,19 +3090,26 @@ export const CATALOGUE = {
     'landing.reportajes.all': 'Todos los reportajes →',
     'landing.reportajes.piece': 'pieza',
     'landing.reportajes.pieces': 'piezas',
-    'landing.reportajes.correction': 'corrección publicada',
-    'landing.reportajes.corrections': 'correcciones publicadas',
+    // Una frase, no un rótulo en mayúsculas: «9 CORRECCIONES PUBLICADAS» en rojo
+    // se leía como «se equivocó nueve veces». El término abre el glosario y
+    // abarca «publicada»: suelta tras el botón, se leía igual en valencià.
+    'reportajes.correcciones.una': 'Con 1 [[correccion|corrección publicada]]',
+    'reportajes.correcciones': 'Con {n} [[correccion|correcciones publicadas]]',
     'landing.alcalde.role': 'Alcalde',
     'landing.empleo.all': 'Ver todas las ofertas →',
     'landing.promesas.blurb':
-      'Compromisos públicos documentados, cada uno con su cita y la fuente que la recoge: el documento oficial o la noticia. Sin juicios automáticos de cumplimiento.',
+      'Compromisos públicos documentados, cada uno con su cita y la fuente que la recoge: el documento oficial o la noticia.',
+    // «del partido de la alcaldía», no «del que gobierna»: el padrón no
+    // registra pactos de gobierno (`quienManda`, src/scraper/en-breve-portada.ts).
+    'landing.promesas.delAlcaldia': '{n} promesas del partido de la alcaldía ({partido})',
+    'landing.promesas.delAlcaldia.una': '1 promesa del partido de la alcaldía ({partido})',
+    'landing.promesas.porPartido': '{n} promesas, por partido:',
     'landing.promesas.cta': 'Ver tracker completo →',
     'landing.rendicion.blurb':
-      'Reúne por concejalía los votos de pleno, las promesas electorales y las quejas del canal, que sólo se cuentan como pendientes de respuesta cuando han llegado al registro del ayuntamiento. Un plazo vencido se marca como aviso editorial — el estado nunca se modifica de forma automática.',
+      'Reúne por concejalía los votos de pleno, las promesas electorales y las quejas del canal.',
     'landing.rendicion.cta': 'Ver dashboard por departamento →',
-    'landing.rendicion.concejalias': 'Concejalías',
-    'landing.rendicion.conResponsable': 'Con responsable',
-    'landing.rendicion.concejales': 'Concejales',
+    'landing.rendicion.cobertura': '{total} concejalías; en {n} consta quién la lleva.',
+    'landing.rendicion.total': '{total} concejalías.',
     'landing.escanos': 'escaños',
     'landing.titulares': 'titulares',
     'landing.medios': 'medios',
@@ -2203,41 +3119,64 @@ export const CATALOGUE = {
     // Las cifras siguen en es-ES en los dos idiomas.
     'landing.kpi.poblacion': 'Población',
     'landing.kpi.poblacionAnio': 'Población {anio}',
-    'landing.kpi.poblacion.sub': '10 años · INE',
+    'landing.kpi.poblacion.sub': 'en 10 años · INE',
     'landing.kpi.poblacion.subSinDato': 'INE Padrón',
     'landing.kpi.presupuesto': 'Presupuesto',
-    'landing.kpi.presupuestoAnio': 'Presup. {anio}',
-    'landing.kpi.presupuesto.definitivo': 'Ayto. · definitivo',
-    'landing.kpi.presupuesto.ejec': '{pct} % ejec.',
-    'landing.kpi.presupuesto.aprobado': 'CONPREL · aprobado',
+    'landing.kpi.presupuestoAnio': 'Presupuesto {anio}',
+    // La tira habla en palabras de vecino; lo exacto y la fuente, en el `title`
+    // de cada celda (`*.titulo`).
+    'landing.kpi.presupuesto.definitivo': 'tope de gasto',
+    'landing.kpi.presupuesto.ejec': 'gastado el {pct} %',
+    'landing.kpi.presupuesto.ejecFecha': 'gastado el {pct} % a {fecha}',
+    'landing.kpi.presupuesto.aprobado': 'aprobado · Ministerio de Hacienda',
+    'landing.kpi.presupuesto.titulo':
+      '{valor} de crédito definitivo en {anio}, de los que se han gastado {ejecutado}. Estado de ejecución del Ayuntamiento.',
+    'landing.kpi.presupuesto.tituloAprobado':
+      '{valor} aprobados para {anio}, según la base CONPREL del Ministerio de Hacienda.',
     'landing.kpi.sinDato': 'sin dato',
-    'landing.kpi.personal': 'Presup. personal',
-    'landing.kpi.personal.sub': 'Cap.1 económico',
-    'landing.kpi.contratos': 'Contratos adj.',
-    'landing.kpi.contratosAnios': 'Contratos adj. {anios}',
-    'landing.kpi.contratos.sub': 'acumulado · Gobierto/PLACSP',
+    'landing.kpi.personal': 'Para el personal',
+    'landing.kpi.personal.sub': 'del presupuesto {anio}',
+    'landing.kpi.personal.titulo':
+      '{valor} del capítulo 1, gastos de personal, de los {total} del presupuesto {anio}.',
+    'landing.kpi.contratos': 'Contratos adjudicados',
+    'landing.kpi.contratos.sub': '{n} en {anios}, sumados',
+    'landing.kpi.contratos.subSinAnios': '{n}, sumados',
+    'landing.kpi.contratos.titulo':
+      '{total}: la suma de los contratos adjudicados en {anios} que publican su importe. Gobierto y Plataforma de Contratación del Sector Público.',
     'landing.kpi.paro': 'Paro',
-    'landing.kpi.paroPeriodo': 'Paro {periodo}',
-    'landing.kpi.paro.sub': 'SEPE · paro registrado',
+    'landing.kpi.paroPeriodo': 'Paro · {periodo}',
+    'landing.kpi.paro.sub': 'respecto al mes anterior · SEPE',
+    'landing.kpi.paro.subDesde': 'respecto a {periodo} · SEPE',
+    'landing.kpi.paro.subSinPrevio': 'paro registrado · SEPE',
     'landing.kpi.pleno': 'Último pleno',
     'landing.kpi.pleno.sesiones': '{n} sesiones',
     'landing.alcalde.promesas': 'promesas',
-    'landing.alcalde.promesas.title': 'Promesas documentadas del grupo {grupo}',
+    'landing.alcalde.promesas.title': 'Promesas documentadas del partido {grupo}',
     'landing.alcalde.puntos': 'puntos en pleno',
     'landing.alcalde.puntos.title':
       'Puntos de orden del día gestionados por concejalías del Alcalde',
     'landing.alcalde.gobierno': 'Gobierno municipal',
-    'landing.alcalde.definitivo': 'crédito definitivo',
+    // «tope del presupuesto», como «Tu ayuntamiento en 30 segundos», y la cifra
+    // exacta en el title. «tope de gasto» ponía «gasto» pegado al crédito
+    // definitivo sin una palabra de previsión al lado, y la comprobación de
+    // magnitudes (src/scraper/magnitudes-fiscales.ts) lo señaló.
+    'landing.alcalde.tope': 'tope del presupuesto {anio}',
     'landing.alcalde.definitivo.title':
-      'Crédito definitivo del ejercicio: lo aprobado más las modificaciones de crédito, según el estado de ejecución del Ayuntamiento. Al lado, las obligaciones reconocidas.',
-    'landing.alcalde.aprobado': 'presupuesto aprobado',
+      '{valor} de crédito definitivo en {anio} —lo aprobado más las modificaciones de crédito—, de los que se han gastado {ejecutado} (obligaciones reconocidas). Estado de ejecución del Ayuntamiento.',
+    'landing.alcalde.gastados': 'gastados',
+    'landing.alcalde.gastadosA': 'gastados a {fecha}',
+    'landing.alcalde.aprobado': 'presupuesto aprobado {anio}',
     'landing.alcalde.aprobado.title':
-      'Presupuesto de gastos aprobado del ejercicio, según CONPREL (Ministerio de Hacienda). No es lo ejecutado.',
-    'landing.alcalde.ejecutado': 'ejecutado',
-    'landing.alcalde.contratos': 'contratos acumulados',
+      '{valor} de presupuesto de gastos aprobado para {anio}, según CONPREL (Ministerio de Hacienda). No es lo gastado.',
+    'landing.alcalde.contratos': 'contratos adjudicados',
+    'landing.alcalde.contratosEn': 'contratos adjudicados en {anios}',
+    'landing.alcalde.sumados': 'sumados',
     'landing.alcalde.contratos.title':
-      'Contratos adjudicados registrados en el portal de contratación, no solo los de este mandato',
-    'landing.alcalde.subvenciones': 'subvenciones',
+      '{total}: la suma de los contratos adjudicados en {anios} que publican su importe, no sólo los de este mandato. Gobierto y Plataforma de Contratación del Sector Público.',
+    'landing.alcalde.contratos.titleSinAnios':
+      '{total}: la suma de los contratos adjudicados que publican su importe, no sólo los de este mandato. Gobierto y Plataforma de Contratación del Sector Público.',
+    'landing.alcalde.subvenciones': 'subvenciones concedidas',
+    'landing.alcalde.subvencionesEn': 'subvenciones concedidas en {anios}',
     'landing.alcalde.subvenciones.title':
       'Subvenciones concedidas por el Ayuntamiento (registro BDNS)',
     'landing.promesas.congelado': 'LOREG · congelado',
@@ -2274,6 +3213,107 @@ export const CATALOGUE = {
     'nav.gestion': 'Gestió',
     'eficiencia.eyebrow': 'Ajuntament · cost efectiu dels serveis',
     'eficiencia.title': 'Quant costa i què se n\u2019obté?',
+    'eficiencia.enBreve.titulo': 'En resum',
+    'eficiencia.enBreve.intro':
+      "L'essencial del panell, en poques preguntes. Cada resposta enllaça amb la secció que la demostra.",
+    'eficiencia.enBreve.saltar': 'Anar al llibre dels serveis ↓',
+    'eficiencia.enBreve.ver': 'Vore el detall ↓',
+    'eficiencia.enBreve.coste.pregunta': 'Quant costen els serveis?',
+    'eficiencia.enBreve.coste.nota': '{n} serveis · {anio}',
+    'eficiencia.enBreve.coste.frase':
+      "És el [[costeEfectivo|cost]] que l'Ajuntament declara al Ministeri per {n} serveis en {anio}. No és tot el que gasta: és el que diu que li va costar prestar cadascun.",
+    'eficiencia.enBreve.coste.resto': 'Resta de serveis',
+    'eficiencia.enBreve.bien.pregunta': 'Ho fan bé?',
+    'eficiencia.enBreve.bien.cifra': '{n} de {de}',
+    'eficiencia.enBreve.bien.cifraNota': 'quantitats repetides',
+    'eficiencia.enBreve.bien.frase':
+      'Amb estes dades no es pot saber: el Ministeri no demana cap dada de qualitat del servei.',
+    'eficiencia.enBreve.bien.razon':
+      "I hi ha una altra raó: {n} de les {de} quantitats que l'Ajuntament declara [[cantidadSinRemedir|es repetixen iguals]] any rere any, així que el cost per unitat només seguix la despesa.",
+    'eficiencia.enBreve.bien.ejemplo':
+      'Per exemple, {valor} {unidad} de {servicio}, idèntiques des de {desde}.',
+    'eficiencia.enBreve.bien.figura':
+      'Les {unidad} declarades per a {servicio}: {valor} cada any, de {desde} a {hasta}.',
+    'eficiencia.enBreve.entregas.pregunta': 'Rendix comptes a temps?',
+    'eficiencia.enBreve.entregas.cifra': '{presentadas} de {obligatorias}',
+    'eficiencia.enBreve.entregas.frase':
+      'Va presentar {presentadas} de les {obligatorias} [[entrega|entregues]] obligatòries al Ministeri. La de {faltan}, no.',
+    'eficiencia.enBreve.entregas.todas':
+      'Va presentar les {obligatorias} [[entrega|entregues]] obligatòries al Ministeri.',
+    'eficiencia.enBreve.entregas.figura':
+      '{presentadas} de {obligatorias} entregues presentades; la que falta va buida.',
+    'eficiencia.enBreve.preguntas.pregunta': 'A qui li ho pregunte?',
+    'eficiencia.enBreve.preguntas.cifraNota': 'preguntes registrades',
+    'eficiencia.enBreve.preguntas.frase':
+      'Hem deixat {n} preguntes registrades, dirigides a institucions i mai a persones. Qualsevol resposta es publicarà íntegra.',
+    'eficiencia.enBreve.preguntas.nota':
+      'Qui té delegada cada competència és a «Costa · aconseguix · respon», servei a servei.',
+    'opinion.rotulo': "Opinió de l'editor · signada",
+    'opinion.firma': 'Signa {nombre}, {rol} · {fecha}',
+    'opinion.hechos': 'Els fets en què es basa',
+    'opinion.noSabemos': 'El que no sabem',
+    'opinion.contacto': 'Abans de publicar-la',
+    'opinion.contacto.enviado':
+      'Vam enviar este text a {nombres} el {fecha} ({canal}) i vam esperar {dias} dies la seua resposta abans de publicar-lo.',
+    'opinion.contacto.sinRespuesta':
+      'Sense resposta en el termini. Si arriba, es publicarà ací íntegra.',
+    'opinion.replicas': 'Rèpliques',
+    'opinion.fuente': 'font',
+    'opinion.correcciones': 'Corregida {n} vegades · vore què va canviar',
+    'opinion.correcciones.una': 'Corregida una vegada · vore què va canviar',
+    'opinion.antes': 'Abans deia:',
+    'opinion.replicaVia': 'Dret de rèplica:',
+    'opinion.avisoLegal': 'avís legal',
+    'opinion.comoSeHace': 'com s’escriu una opinió ací',
+    'eficiencia.ccr.eyebrow': 'Costa · aconseguix · respon',
+    'eficiencia.ccr.titulo': "El que costa, el que s'aconseguix i qui respon",
+    'eficiencia.ccr.intro':
+      "Primer els serveis amb un resultat publicat; la resta, davall. Cada frase diu de quin any a quin any mesura, i cada comparació usa el grup de la seua pròpia font; les columnes no es dividixen entre si: que una puge no explica que l'altra baixe. El judici és teu.",
+    'eficiencia.ccr.col.cuesta': 'Costa',
+    'eficiencia.ccr.resto': 'Els altres {n} serveis: cost i qui respon, sense resultat publicat',
+    'eficiencia.ccr.col.consigue': 'Aconseguix',
+    'eficiencia.ccr.col.responde': 'Respon',
+    'eficiencia.ccr.rotulo.nuestro': 'Riba-roja',
+    'eficiencia.ccr.rotulo.grupo': 'Mediana de municipis semblants',
+    'eficiencia.ccr.rotulo.mandato': 'Mandat actual',
+    'eficiencia.ccr.rotulo.base': 'Índex: {base} = 100',
+    'eficiencia.ccr.coste.sube':
+      'De {base} a {fin}, el cost per unitat puja un {pct} % en euros constants.',
+    'eficiencia.ccr.coste.baja':
+      'De {base} a {fin}, el cost per unitat baixa un {pct} % en euros constants.',
+    'eficiencia.ccr.coste.igual':
+      'De {base} a {fin}, el cost per unitat es manté en euros constants.',
+    'eficiencia.ccr.grupo.sube': 'En els municipis semblants, de {base} a {fin}, puja un {pct} %.',
+    'eficiencia.ccr.grupo.baja': 'En els municipis semblants, de {base} a {fin}, baixa un {pct} %.',
+    'eficiencia.ccr.grupo.igual': 'En els municipis semblants, de {base} a {fin}, es manté.',
+    'eficiencia.ccr.coste.sinSerie': 'No hi ha prou sèrie de cost des de 2021.',
+    'eficiencia.ccr.coste.precio':
+      'És un preu, no un rendiment: que puge no diu si el servei és millor o pitjor.',
+    'eficiencia.ccr.coste.congelado':
+      "Compte: l'Ajuntament declara la mateixa quantitat de servei des de {desde}, així que el cost per unitat seguix el cost total. No se sap si hi ha més servei o només més despesa.",
+    'eficiencia.ccr.coste.congeladoSinAnio':
+      "Compte: l'Ajuntament repetix la mateixa quantitat de servei en cada entrega, així que el cost per unitat seguix el cost total.",
+    'eficiencia.ccr.resultado.sin':
+      "El Ministeri no demana cap resultat d'este servei, i no hem trobat cap altra font.",
+    'eficiencia.ccr.resultado.sube': 'De {base} a {fin}, la xifra puja un {pct} %.',
+    'eficiencia.ccr.resultado.baja': 'De {base} a {fin}, la xifra baixa un {pct} %.',
+    'eficiencia.ccr.resultado.igual': 'De {base} a {fin}, la xifra es manté.',
+    'eficiencia.ccr.resultado.unAnio':
+      'Només hi ha un any publicat ({periodo}): sense sèrie no hi ha direcció.',
+    'eficiencia.ccr.resultado.pares':
+      'El valor és major que el de {p} de cada 100 municipis semblants ({n} amb dada).',
+    'eficiencia.ccr.resultado.sinSerieGrupo':
+      "Dels municipis semblants només tenim l'últim any, no la seua evolució.",
+    'eficiencia.ccr.resultado.sinPares': 'Aquesta xifra no es compara amb altres municipis.',
+    'eficiencia.ccr.resultado.serieGrupo':
+      'La línia grisa és la mediana dels mateixos {n} municipis semblants tots els anys: els que tenen dada en cada un.',
+    'eficiencia.ccr.responde.competencia': 'Competència delegada',
+    'eficiencia.ccr.responde.loreg': 'Els noms no es publiquen durant el període electoral.',
+    'eficiencia.ccr.responde.sinAsignar': 'Cap delegació nomena este servei.',
+    'eficiencia.ccr.responde.antes':
+      'Abans del {desde}, quan va començar este mandat, no nomenem ningú: encara no hem incorporat el decret de delegació del mandat anterior.',
+    'eficiencia.ccr.responde.promesas': 'El que va prometre el govern municipal',
+    'eficiencia.ccr.responde.sinPromesa': 'No consta cap promesa sobre este servei a /promesas.',
     'eficiencia.intro':
       'El que cada servei municipal va costar, dividit pel que va produir, i on queda això entre municipis valencians de mida semblant. No hi ha nota global ni rànquing: cada indicador va amb la seua font, la seua manera de gestió i els seus advertiments.',
     'eficiencia.cobertura.titulo': 'Què cobreix aquesta pàgina',
@@ -2315,7 +3355,35 @@ export const CATALOGUE = {
       'Processos selectius del mateix Ajuntament de Riba-roja de Túria — oposicions, borses de treball i estabilització. Diferent de les ofertes de l’Agència de Col·locació (veure ',
     'empleoPublico.intro2': '). Font: portal municipal.',
     'empleoPublico.empty': 'No hi ha processos selectius publicats ara mateix.',
+    'empleoPublico.comoSeEntra.titulo': 'Com s’entra a treballar a l’Ajuntament?',
+    'empleoPublico.comoSeEntra.intro':
+      'Amb un procés selectiu, que l’Ajuntament convoca i publica amb les seues bases. Estes són les paraules dels seus títols:',
+    'empleoPublico.comoSeEntra.internos':
+      'Alguns no estan oberts a qualsevol: la promoció interna i la millora d’ocupació són per a qui ja té plaça a l’Ajuntament, i la comissió de serveis, per a funcionaris, d’ací o d’una altra administració, que passen a ocupar un lloc per un temps.',
+    'empleoPublico.procesos.titulo': 'Els processos que publica l’Ajuntament',
+    'empleoPublico.procesos.sinEstado':
+      'Esta llista no diu quins continuen oberts: la pàgina de l’Ajuntament només en dona el títol. Per a saber-ho cal obrir-lo.',
+    'empleoPublico.tipo.oposicion': 'Places i llocs',
+    'empleoPublico.tipo.bolsa': 'Borses de treball',
+    'empleoPublico.tipo.estabilizacion': 'Estabilització',
+    'empleoPublico.tipo.otro': 'Altres processos',
+    'empleoPublico.plantilla.pregunta': 'Quanta gent treballa a l’Ajuntament?',
+    'empleoPublico.plantilla.personasFrase':
+      'L’any {anio} treballaven {n} persones a l’Ajuntament.',
+    'empleoPublico.plantilla.plazasFrase':
+      'La plantilla aprovada per a {anio} suma {n} places de funcionari i de personal laboral, cobertes o vacants.',
+    'empleoPublico.plantilla.unas': 'unes {n}',
+    'empleoPublico.plantilla.noSeRestan':
+      'No es poden restar: una xifra compta persones i l’altra llocs, són d’anys diferents, i els llocs no inclouen el personal eventual.',
+    'empleoPublico.plantilla.title': 'Plantilla municipal',
+    'empleoPublico.plantilla.personas': 'persones empleades',
+    'empleoPublico.plantilla.plazas': 'places autoritzades',
+    'empleoPublico.plantilla.mujeres': 'dones',
+    'empleoPublico.plantilla.hombres': 'hòmens',
+    'empleoPublico.plantilla.fuenteSexo':
+      'El desglossament per sexe és l’última xifra publicada, i la seua font és un periòdic comarcal, no l’ajuntament:',
     'nav.laboratorio': 'Laboratori',
+    'nav.prensa': 'Premsa',
     'nav.nosotros': 'Qui som',
     'nav.despiece': 'Despiece (dev)',
     'nav.agentes': 'Periodistes',
@@ -2417,11 +3485,24 @@ export const CATALOGUE = {
     'nav.desc.quejas': 'Les queixes veïnals, agregades i anònimes',
     'nav.desc.empleo': 'Ofertes de l’Agència de Col·locació',
     'nav.desc.empleoPublico': 'Oposicions i borses de l’Ajuntament',
-    'nav.desc.laboratorio': 'Afirmacions de premsa enfront de les dades públiques',
+    'nav.desc.laboratorio': 'Els experiments, i què mesura cadascun',
+    'nav.desc.prensa': 'Afirmacions de premsa enfront de les dades públiques',
     'nav.desc.frontera': 'Anàlisi envolupant de dades, i el que no mesura',
     'nav.desc.costeEsperado': 'Quin cost caldria esperar segons la població',
     'nav.desc.cobertura': 'Què podem comprovar i què no',
     'nav.desc.agentes': 'Informes d’un agent d’IA, revisats abans de publicar',
+    'laboratorio.indice.lede':
+      'Ací provem mètodes. Res d’això és una nota sobre ningú: cada experiment diu què mesura i què no pot mesurar.',
+    'laboratorio.pregunta.prensa': 'El que publica la premsa local coincideix amb les dades?',
+    'laboratorio.pregunta.frontera': 'Es pot dir si Riba-roja és eficient?',
+    'laboratorio.pregunta.costeEsperado': 'Gasta Riba-roja més del normal per a la seua grandària?',
+    'laboratorio.pregunta.cobertura': 'Quina part del que es diu al ple podem comprovar?',
+    'laboratorio.pregunta.agentes': 'Biografies dels càrrecs',
+    'laboratorio.pregunta.datos': 'Amb quines dades treballa el web?',
+    'laboratorio.pregunta.salud': 'Estan al dia les dades?',
+    'laboratorio.salud.nombre': 'Salut del laboratori',
+    'laboratorio.salud.desc':
+      'Quan es va actualitzar cada fitxer de dades, segons el seu propi termini',
     'nav.desc.curator': 'Taula de curació (només en desenvolupament)',
     'nav.desc.despiece': 'D’on ix cada dada (només en desenvolupament)',
     'secciones.indice': 'Índex',
@@ -2438,6 +3519,8 @@ export const CATALOGUE = {
     'reportajes.indice': 'En aquesta peça',
     'reportajes.indice.apartados': '{n} apartats',
     'reportajes.mas': 'Més reportatges',
+    'reportajes.claves.titulo': 'El que hem trobat',
+    'reportajes.claves.irA': 'Anar a l’apartat {num}, que ho explica',
     'reportajes.todos': 'Tots els reportatges →',
     'reportajes.solicitud.titulo': 'Aquestes preguntes les pots fer tu',
     'reportajes.solicitud.explica':
@@ -2465,7 +3548,7 @@ export const CATALOGUE = {
     'empleo.sortBy': 'Ordenar per',
     'empleo.sortDeadline': 'Tancament d’inscripció',
     'empleo.sortPublished': 'Data de publicació',
-    'empleo.error': 'No s’han pogut carregar les ofertes. Executa',
+    'empleo.error': 'No s’han pogut carregar les ofertes.',
     'empleo.empty': 'No hi ha ofertes que coincidisquen amb el filtre.',
     'empleo.sourceNote':
       'Font: ribaocupacio.portalemp.com (Agència de Col·locació · Ajuntament de Riba-roja de Túria). La inscripció es fa al portal oficial.',
@@ -2481,7 +3564,20 @@ export const CATALOGUE = {
     'empleo.kpi.closing': 'Tanquen ≤14 dies',
     'empleo.kpi.of': 'de',
     'empleo.kpi.ofShown': 'de {n} mostrades',
-    'empleo.kpi.vehicle': 'requereixen vehicle propi',
+    'empleo.kpi.vehicle': 'Demanen vehicle propi',
+    'empleo.card.vehiculo': 'Demana vehicle propi',
+    'empleo.frase.titulo': 'En resum',
+    'empleo.frase.ninguna': 'Ara mateix no hi ha ofertes obertes.',
+    'empleo.frase.abiertas': 'Hi ha {n} ofertes obertes.',
+    'empleo.frase.abiertas.una': 'Hi ha una oferta oberta.',
+    'empleo.frase.abiertasDe': 'Hi ha {n} ofertes obertes de les {total} que publica l’agència.',
+    'empleo.frase.abiertasDe.una': 'Hi ha una oferta oberta de les {total} que publica l’agència.',
+    'empleo.frase.enRiba': '{n} són per a treballar a Riba-roja.',
+    'empleo.frase.enRiba.una': 'Una és per a treballar a Riba-roja.',
+    'empleo.frase.enRiba.ninguna': 'Cap no és per a treballar a Riba-roja.',
+    'empleo.frase.cierran': '{n} tanquen en els pròxims {dias} dies.',
+    'empleo.frase.cierran.una': 'Una tanca en els pròxims {dias} dies.',
+    'empleo.seccion.cifras': 'Les ofertes en xifres',
     'empleo.chart.byMonth': 'Ofertes per mes',
     'empleo.chart.byContract': 'Tipus de contracte',
     'empleo.chart.byMunicipio': 'On',
@@ -2532,7 +3628,6 @@ export const CATALOGUE = {
     'empleoDetail.noDetail': 'Sense fitxa detallada disponible per a esta oferta.',
 
     'topbar.search': 'Cerca queixes, càrrecs, plens…',
-    'topbar.search.aria': 'Cerca',
     'topbar.menu.aria': 'Obrir menú',
 
     'sidebar.footer.tag': 'MVP públic · dades obertes',
@@ -2590,7 +3685,9 @@ export const CATALOGUE = {
     // que pinta todo el gasto situado. Aquí además estaba sin traducir.
     'map.money.accum': 'adjudicat acumulat',
     'map.money.detalle': 'Detall',
-    'map.money.of': 'de',
+    'map.money.deCada100': 'El mapa només situa {n} de cada 100 € de contractes{periodo}.',
+    'map.money.exacta': '{situado} situats de {total} adjudicats{periodo} · {pct} %',
+    'map.money.menosDeUno': "menys d'1",
     'map.money.coverage':
       "Només els contractes el títol dels quals nomena un únic lloc, o llocs l'un dins de l'altre. La resta és sobretot serveis d'àmbit municipal —la concessió de l'aigua, la recollida de residus, la neteja viària— adjudicats per tot el seu termini.",
     'map.poi.title': 'Serveis públics',
@@ -2634,39 +3731,6 @@ export const CATALOGUE = {
     'participa.tipo.survey': 'Enquesta',
     'participa.tipo.other': 'Avís',
     'participa.tipo.desconocido': 'Participació',
-    'liveTicker.aria': 'Dades nacionals en directe',
-    // La cinta de datos nacionales: ver la nota del bloque castellano.
-    'liveTicker.directo': 'EN DIRECTE',
-    'liveTicker.luz': 'Llum PVPC',
-    'liveTicker.luz.aria': 'Preu de la llum {valor} euros per quilowatt hora',
-    'liveTicker.luz.curva': 'Corba 24h · €/kWh',
-    'liveTicker.gasolina95': 'Gasolina 95',
-    'liveTicker.gasolina95.aria': 'Gasolina 95, mitjana de {valor} euros per litre',
-    'liveTicker.gasolina.estaciones': 'est.',
-    'liveTicker.diesel': 'Dièsel A',
-    'liveTicker.diesel.aria': 'Dièsel A, mitjana de {valor} euros per litre',
-    'liveTicker.euribor': 'Euríbor 12m',
-    'liveTicker.euribor.aria': 'Euríbor 12 mesos {valor} per cent',
-    'liveTicker.ipc': 'IPC Espanya',
-    'liveTicker.ipc.aria': 'IPC interanual Espanya {valor} per cent',
-    'liveTicker.ipc.historia': 'IPC últims 12 mesos · %',
-    'liveTicker.bce': 'BCE MRO',
-    'liveTicker.bce.aria': 'Tipus principal del BCE {valor} per cent',
-    'liveTicker.aemet': 'AEMET València',
-    'liveTicker.aemet.aria': 'Alerta meteorològica AEMET nivell {nivel}',
-    'liveTicker.aemet.nivel.amarillo': 'groc',
-    'liveTicker.aemet.nivel.naranja': 'taronja',
-    'liveTicker.aemet.nivel.rojo': 'roig',
-    'liveTicker.dgt': 'DGT trànsit',
-    'liveTicker.dgt.incidencias': 'incid.',
-    'liveTicker.dgt.aria': '{n} incidències de trànsit a la zona',
-    'liveTicker.dgt.aria.una': 'una incidència de trànsit a la zona',
-    'liveTicker.dgt.mas': '+{n} més',
-    'liveTicker.noticia.aria': 'Notícia de {fuente}: {titulo}',
-    'liveTicker.panel.cerrar': 'Tancar',
-    'liveTicker.panel.min': 'mín.',
-    'liveTicker.panel.max': 'màx.',
-    'liveTicker.panel.fuente': 'Font oficial →',
     'tiempo.ahora': 'ara',
     'tiempo.haceMin': 'fa {n} min',
     'tiempo.haceHoras': 'fa {n} h',
@@ -2816,7 +3880,7 @@ export const CATALOGUE = {
     'declaraciones.eyebrow': 'Verificació de declaracions',
     'declaraciones.title': 'Declaracions en plenari',
     'declaraciones.subtitle':
-      "Cada afirmació, promesa o acusació detectada als plens municipals, creuada contra les dades obertes publicades (PLACSP, BDNS, pressupost, promeses electorals). Atribució a nivell de grup. El veredicte de cada fila el posa un acarament automàtic: les declaracions sense atribuir o sense evidència es mantenen visibles perquè es van fer, i cap d'elles es converteix en una troballa editorial sense que una persona la signe.",
+      "Cada afirmació, promesa o acusació detectada als plens municipals, creuada contra les dades obertes publicades (PLACSP, BDNS, promeses electorals). Atribució a nivell de grup. El veredicte de cada fila el posa un acarament automàtic: les declaracions sense atribuir o sense evidència es mantenen visibles perquè es van fer, i cap d'elles es converteix en una troballa editorial sense que una persona la signe.",
     'declaraciones.stat.total': 'Total',
     'declaraciones.stat.conEvidencia': 'Acarades',
     'declaraciones.filter.verdict': 'Veredicte',
@@ -2849,6 +3913,86 @@ export const CATALOGUE = {
     'cargos.title': 'Càrrecs i departaments',
     'plenos.eyebrow': 'Òrgans de govern',
     'plenos.title': 'Plens municipals',
+    'plenos.enBreve.titulo': 'L’últim ple',
+    'plenos.enBreve.intro':
+      'De què va tractar l’última sessió, què en sabem de les votacions i quan toca la pròxima, en paraules planes. El títol literal de cada punt és a la pàgina de la sessió.',
+    'plenos.enBreve.saltar': 'Totes les sessions ↓',
+    'plenos.enBreve.tipo': 'ple {tipo}',
+    'plenos.enBreve.orden.pregunta': 'Què es va portar a l’últim ple?',
+    'plenos.enBreve.orden.total': 'L’ordre del dia tenia {n} punts: {partes}.',
+    'plenos.enBreve.orden.total.uno': 'L’ordre del dia tenia un punt: {partes}.',
+    'plenos.enBreve.parte.decidir': '{n} [[parteResolutiva|per a decidir]]',
+    'plenos.enBreve.parte.informes': '{n} [[dacionDeCuenta|informes (no es voten)]]',
+    'plenos.enBreve.parte.informes.uno': '1 [[dacionDeCuenta|informe (no es vota)]]',
+    'plenos.enBreve.parte.otros': '{n} sense part en la convocatòria',
+    'plenos.enBreve.parte.ruegos': 'el torn de [[ruegosYPreguntas|precs i preguntes]]',
+    'plenos.enBreve.orden.decidir': 'Per a decidir',
+    'plenos.enBreve.orden.informes': 'Informes, que no es voten',
+    'plenos.enBreve.orden.otros': 'Sense part en la convocatòria',
+    'plenos.enBreve.urgente': 'd’urgència',
+    'plenos.enBreve.orden.ver': 'L’ordre del dia literal, a la pàgina de la sessió →',
+    'plenos.enBreve.votos.pregunta': 'Què es va votar?',
+    'plenos.enBreve.votos.transcrita': 'votació transcrita',
+    'plenos.enBreve.votos.transcritas': 'votacions transcrites',
+    'plenos.enBreve.votos.desenlace': 'Resultat: {lista}.',
+    'plenos.enBreve.votos.aprobada': '1 aprovada',
+    'plenos.enBreve.votos.aprobadas': '{n} aprovades',
+    'plenos.enBreve.votos.rechazada': '1 rebutjada',
+    'plenos.enBreve.votos.rechazadas': '{n} rebutjades',
+    'plenos.enBreve.votos.otra': '1 retirada o ajornada',
+    'plenos.enBreve.votos.otras': '{n} retirades o ajornades',
+    'plenos.enBreve.votos.cobertura': 'Tenim votacions transcrites de {n} de les {total} sessions.',
+    'plenos.enBreve.votos.reparto':
+      'En {n} d’elles, qui va votar què ix de la transcripció automàtica del vídeo, sense acarar amb l’acta.',
+    'plenos.enBreve.votos.reparto.todas':
+      'Qui va votar què ix de la transcripció automàtica del vídeo, sense acarar amb l’acta.',
+    'plenos.enBreve.video': 'Veure el vídeo de la sessió',
+    'plenos.enBreve.votos.ver': 'Les votacions, a la pàgina de la sessió →',
+    'plenos.enBreve.proximo.pregunta': 'Quan és el pròxim?',
+    'plenos.enBreve.proximo.convocado': 'Ja és al portal de sessions de l’Ajuntament.',
+    'plenos.enBreve.proximo.verSesion': 'La sessió, amb el seu ordre del dia →',
+    'plenos.enBreve.proximo.sinFecha': 'Encara no en tenim la data.',
+    'plenos.enBreve.proximo.regla':
+      'Per a este mandat, el Ple va acordar celebrar l’ordinari el primer dilluns de cada mes a les 17.30, excepte a l’agost, i el dilluns següent si és festiu. Les dates de cada any les fixen els portaveus dels grups.',
+    'plenos.enBreve.proximo.cuenta':
+      'Dels {n} plens ordinaris des d’eixe acord, {lunes} van ser en dilluns i {primer}, el primer dilluns del mes.',
+    'plenos.enBreve.proximo.cuenta.todos':
+      'Dels {n} plens ordinaris des d’eixe acord, tots van ser en dilluns i {primer}, el primer dilluns del mes.',
+    'plenos.enBreve.proximo.verAcuerdo': 'L’acord, en l’acta del {fecha} →',
+    'lecturas.divisor':
+      'Fins ací, l’essencial. A sota, totes les dades, per a qui les vulga comprovar.',
+    'lecturas.ver': 'Veure:',
+    'lecturas.esencial': 'l’essencial',
+    'lecturas.todo': 'tot',
+    'plenos.indice.seccion.votosYDeclaraciones': 'Votacions i declaracions',
+    'plenoDetail.seccion.cifras': 'La sessió en xifres',
+    'quejas.seccion.publicadas': 'Les queixes publicades',
+    'quejas.seccion.bop': 'Anuncis de l’Ajuntament en el Butlletí Oficial de la Província',
+    'plenos.vocabulario': 'Paraules d’este ordre del dia: {lista}.',
+    'plenos.anio.titulo': 'Els plens de l’últim any',
+    'plenos.anio.intro':
+      'Les sessions anteriors dels últims dotze mesos i el primer que es va portar a votació en cadascuna.',
+    'plenos.anio.saltar': 'Totes les sessions, amb les seues xifres ↓',
+    'plenos.anio.decidir': 'Per a decidir',
+    'plenos.anio.mas': 'i {n} més',
+    'plenos.anio.sinOrden': 'Encara no n’hem recollit l’ordre del dia.',
+    'plenos.anio.soloActa': 'Per a decidir, només l’aprovació de l’acta anterior.',
+    'plenos.anio.soloInformes': 'Només informes, que no es voten.',
+    'plenos.anio.nadaQueDecidir': 'Cap punt per a decidir en el seu ordre del dia.',
+    'plenos.palabra.mocion': 'moció',
+    'plenos.palabra.reconocimientoExtrajudicial': 'reconeixement extrajudicial',
+    'plenos.palabra.sinDictaminar': 'sense dictaminar',
+    'plenos.palabra.urgencia': 'd’urgència',
+    'plenoDetail.resumen.titulo': 'La sessió, en breu',
+    'plenoDetail.resumen.intro':
+      'El que es va portar al ple i el que hem transcrit de les seues votacions, en paraules planes. Els títols oficials, amb el seu expedient, són a la pestanya «Ordre del dia».',
+    'plenoDetail.resumen.saltar': 'Les xifres de la sessió ↓',
+    'plenoDetail.resumen.orden.pregunta': 'Què es va portar a este ple?',
+    'plenoDetail.resumen.orden.ver': 'Els títols oficials, amb el seu expedient ↓',
+    'plenoDetail.resumen.votos': 'Hem transcrit {n} votacions d’esta sessió.',
+    'plenoDetail.resumen.votos.una': 'Hem transcrit una votació d’esta sessió.',
+    'plenoDetail.resumen.votos.retirado': 'desglossament per grups retirat',
+    'plenoDetail.resumen.votos.ver': 'Qui va votar què, amb les seues fonts ↓',
     'plenos.indice.lede.celebradas': 'L’ajuntament ha celebrat {sesiones} des del {fecha}.',
     'plenos.indice.lede.celebradasSinFecha': 'L’ajuntament ha celebrat {sesiones}.',
     'plenos.indice.nSesiones': '{n} sessions',
@@ -2857,8 +4001,8 @@ export const CATALOGUE = {
     'plenos.indice.lede.votos': 'votacions transcrites de {n}',
     'plenos.indice.lede.aviso':
       'El que esta pàgina no compta no vol dir que no passara: vol dir que encara no ho hem llegit.',
-    'plenos.indice.actaEnRegmeet':
-      'Cada sessió enllaça amb la seua acta a regmeet.com, el gestor del mateix ajuntament.',
+    'plenos.indice.fuenteRegmeet':
+      'L’ordre del dia i el resultat de cada votació procedeixen de la pàgina de la sessió a regmeet.com, el gestor del mateix ajuntament.',
     'plenos.indice.comoSeProcesa': 'Com es processa una sessió →',
     'plenos.indice.fuente':
       'Font: actes i vídeos publicats per l’Ajuntament de Riba-roja de Túria a regmeet.com.',
@@ -2940,7 +4084,8 @@ export const CATALOGUE = {
     'plenos.indice.decl.cotejadas': 'Parcials o verificades',
     'plenos.indice.decl.cotejadas.nota': 'l’única cosa que va acarar un document municipal',
     'plenos.indice.decl.eyebrow': 'Declaracions extretes · {n} sessions',
-    'plenos.indice.decl.titulo': '{extraidas} declaracions, {verificado} verificades',
+    'plenos.indice.decl.titulo':
+      '{extraidas} declaracions extretes; {cotejadas} acarades amb un document municipal',
     'plenos.indice.decl.sinDatosNota':
       'Un «sense dades» no desmentix res: diu que no hem trobat cap document municipal que en parle. Dels {sinDatos}, {sinCorpus}, {comprobado} es van comprovar sense trobar res i de {noConsta} no consta què es va consultar.',
     'plenos.indice.decl.sinCorpus': '{n} no van passar per cap comparador',
@@ -2969,10 +4114,54 @@ export const CATALOGUE = {
     'promesas.title': 'Promeses per partit',
     'datos.eyebrow': 'Base estadística',
     'datos.title': 'Dades obertes',
+    'datos.frase.descargar':
+      'Ací es poden descarregar els principals conjunts de dades que fa servir CivicPulse.',
+    'datos.frase.atajo': 'Si busques una xifra concreta, es llig millor en la seua pàgina:',
+    'datos.frase.o': 'o',
+    'datos.catalogo.titulo': 'Catàleg de dades',
+    'datos.catalogo.intro':
+      'Cada fitxa és un fitxer JSON: què compta, d’on ix i quan es va actualitzar.',
     'presup.eyebrow': 'Hisenda pública',
     'presup.title': 'Pressupost municipal',
     'quejas.eyebrow': 'Veu ciutadana',
     'quejas.title': 'Queixes ciutadanes',
+    'quejas.enBreve.titulo': 'Com queixar-se i què passa després',
+    'quejas.enBreve.intro':
+      'El que cal saber abans de queixar-se, en paraules planes. Les queixes publicades i els registres de qui vigila l’Ajuntament són a sota.',
+    'quejas.enBreve.saltar': 'Les queixes publicades ↓',
+    'quejas.enBreve.como.pregunta': 'Com em queixe?',
+    'quejas.enBreve.como.frase':
+      'Escriu al bot de Telegram amb la teua queixa, una foto i on és. Una persona la revisa abans de publicar-la ací. Si {apoyos} veïns la recolzen, una persona voluntària la presenta en el registre electrònic de l’Ajuntament.',
+    'quejas.enBreve.como.bot': 'Obrir el bot en Telegram',
+    'quejas.enBreve.como.ver': 'El camí complet, en la metodologia →',
+    'quejas.enBreve.plazo.pregunta': 'M’han de contestar?',
+    'quejas.enBreve.plazo.figura': 'El termini d’una queixa, des que entra en el registre',
+    'quejas.enBreve.plazo.paso.registro': 'Entra en el registre',
+    'quejas.enBreve.plazo.paso.registro.cuando': 'Des d’eixe dia corre el termini.',
+    'quejas.enBreve.plazo.paso.acuse': 'Justificant de recepció',
+    'quejas.enBreve.plazo.paso.acuse.cuando': 'En {n} dies com a molt.',
+    'quejas.enBreve.plazo.paso.respuesta': 'Resposta',
+    'quejas.enBreve.plazo.paso.respuesta.cuando': 'En {n} mesos com a molt.',
+    'quejas.enBreve.plazo.paso.sindic': 'Si no contesta',
+    'quejas.enBreve.plazo.paso.sindic.cuando': 'Pots acudir al Síndic de Greuges.',
+    'quejas.enBreve.plazo.frase':
+      'Sí. Des que la queixa entra en el registre, l’Ajuntament té {dias} dies per a enviar el justificant de recepció i {meses} mesos per a contestar, amb caràcter general.',
+    'quejas.enBreve.plazo.transparencia':
+      'Si és una petició de transparència, el termini per a contestar és de {n} mesos.',
+    'quejas.enBreve.plazo.transparencia.uno':
+      'Si és una petició de transparència, el termini per a contestar és d’un mes.',
+    'quejas.enBreve.plazo.ver': 'Els terminis i la seua base legal →',
+    'quejas.enBreve.sindic.pregunta': 'I si no contesten?',
+    'quejas.enBreve.sindic.cifraNota': 'expedients sobre l’Ajuntament des de {desde}',
+    'quejas.enBreve.sindic.cifraNota.sinFecha': 'expedients sobre l’Ajuntament',
+    'quejas.enBreve.sindic.frase':
+      'Pots acudir al Síndic de Greuges, el defensor del poble de la Comunitat Valenciana. És gratuït i no et lleva altres recursos.',
+    'quejas.enBreve.sindic.recomendaciones':
+      'En {n} d’eixos expedients, que hem llegit un a un, el Síndic es va adreçar a l’Ajuntament per a recomanar-li alguna cosa o recordar-li els seus deures legals; {falta} d’ells, segons el títol que els posa el mateix Síndic, per falta de resposta.',
+    'quejas.enBreve.sindic.recomendaciones.sinFalta':
+      'En {n} d’eixos expedients, que hem llegit un a un, el Síndic es va adreçar a l’Ajuntament per a recomanar-li alguna cosa o recordar-li els seus deures legals.',
+    'quejas.enBreve.sindic.ultima': 'El més recent que hem llegit és del {fecha}: «{titulo}»',
+    'quejas.enBreve.sindic.ver': 'Tots els expedients ↓',
     'quejas.cruce.eyebrow': 'Creuament de dades · sense causalitat',
     'quejas.cruce.titulo': 'Queixes i contractes situats per barri',
     'quejas.cruce.intro':
@@ -2988,8 +4177,37 @@ export const CATALOGUE = {
     'quejas.cruce.col.quejas': 'Queixes',
     'quejas.cruce.col.adjudicado': 'Adjudicat situat',
     'quejas.cruce.sinSituado': 'sense contractes situats',
+    'quejas.cruce.pendiente':
+      'Aquesta taula posa, barri a barri, les queixes al costat del que s’ha adjudicat en contractes situats allí, i es dibuixa quan hi haja queixes en almenys {minimo} barris.',
+    'quejas.cruce.pendiente.n': ' De moment, n’hi ha en {n}.',
+    'quejas.cruce.pendiente.ninguno': ' De moment, no n’hi ha cap situada en un barri del mapa.',
+    'quejas.vigilan.titulo': 'Si l’Ajuntament no respon: qui més vigila',
+    'quejas.vigilan.intro':
+      'Institucions públiques que no depenen de l’Ajuntament. Cada targeta diu què fa la institució i què hi consta sobre Riba-roja en el que publica.',
+    'quejas.datosTecnicos.rotulo': 'Dades tècniques',
+    'quejas.datosTecnicos.copia': 'Còpia de les dades: {fecha}',
+    'quejas.datosTecnicos.fuente': 'Font: {fuente}',
+    'quejas.datosTecnicos.formato': 'Format: {formato}',
+    'quejas.datosTecnicos.fichero': 'Fitxer complet:',
     'dashboard.eyebrow': 'Veu ciutadana · Tauler',
     'dashboard.title': 'Salut del canal de queixes',
+    'dashboard.intro':
+      'Vista detallada del canal de queixes: en quin punt està cadascuna, per àrea municipal i per barri, i les que tenen més suports.',
+    'dashboard.volver': '← Com queixar-se i quins terminis té l’Ajuntament, en Queixes ciutadanes',
+    'dashboard.estados.eyebrow': 'Estat',
+    'dashboard.estados.titulo': 'En quin punt està cada queixa',
+    'dashboard.areas.eyebrow': 'Per àrea municipal',
+    'dashboard.areas.titulo': 'Queixes per àrea',
+    'dashboard.areas.intro':
+      'Cada queixa s’assigna automàticament a l’àrea municipal de la seua categoria. Al costat de l’àrea figura qui la té al seu càrrec, com en Departaments.',
+    'dashboard.areas.col.area': 'Àrea',
+    'dashboard.areas.col.quejas': 'Queixes',
+    'dashboard.areas.col.abiertas': 'Obertes',
+    'dashboard.areas.col.silencios': 'Silencis',
+    'dashboard.areas.leyenda':
+      'Obertes: les que no estan resoltes ni tancades sense registrar. Silencis: les que han passat el termini legal sense resposta.',
+    'dashboard.areas.sinArea.una': 'Una queixa no correspon a cap àrea de la llista.',
+    'dashboard.areas.sinArea': '{n} queixes no corresponen a cap àrea de la llista.',
 
     'plenos.votes.heading': 'Votacions registrades',
     'plenos.votes.empty.eyebrow': 'Sense dades',
@@ -3021,6 +4239,20 @@ export const CATALOGUE = {
     'declaraciones.veredicto.contradicho': 'Contradit',
     'declaraciones.veredicto.sin-datos': 'Sense dades',
     'declaraciones.veredicto.promesa-repetida': 'Promesa repetida',
+    'estado.encargo.biography': 'Biografia',
+    'estado.encargo.investigation': 'Investigació',
+    'estado.encargo.profile': 'Perfil',
+    'estado.encargo.topic-deep-dive': 'Tema a fons',
+    'estado.pasada.verdict-engine': 'Re-derivació del motor',
+    'estado.pasada.llm-second-pass': 'Segona passada LLM',
+    'estado.pasada.nli-grounding': 'Ancoratge NLI',
+    'estado.pasada.nli': 'Ancoratge NLI',
+    'estado.pasada.llm': 'Segona passada LLM',
+    'estado.pasada.curator-downgrade': 'Retractació de curador',
+    'estado.pasada.curator-upgrade': 'Pujada signada',
+    'estado.especificacionEsperada.publicada': 'Publicada',
+    'estado.especificacionEsperada.muestra-insuficiente': 'Mostra insuficient',
+    'estado.especificacionEsperada.sin-declaracion-propia': 'Sense cost propi',
     'declaraciones.tipo.promesa': 'Promesa',
     'declaraciones.tipo.afirmacion_numerica': 'Afirmació numèrica',
     'declaraciones.tipo.cita_obra': 'Obra citada',
@@ -3082,6 +4314,8 @@ export const CATALOGUE = {
     'verificador.explicacionFirmada': '{rotulo} · explicació signada per {firma}',
     'ledger.resumenRetirado':
       'Explicació retirada: el verificador LLM va guardar ací una nota sobre la seua pròpia tasca.',
+    'ledger.resumenSinLista':
+      'Explicació retirada: el verificador LLM la va escriure sobre una llista de registres que no es va guardar, i sense eixa llista no es pot comprovar. Un «sense dades» no és un desmentiment: l’afirmació pot ser certa.',
     'ledger.cargando': 'Carregant verificacions…',
     'puente.frase': '{impreso} és {queEs}. {sujeto} {magnitud}: la xifra citada ({cifra}).',
     'puente.sujeto.expediente': 'El mateix expedient',
@@ -3105,6 +4339,8 @@ export const CATALOGUE = {
     // Pleno detail (/plenos/:id)
     'plenoDetail.notFound': 'Sessió no trobada',
     'plenoDetail.back': '← Tots els plens',
+    'plenoDetail.tituloPestana': 'Ple del {fecha}',
+    'plenoDetail.tituloPestana.vocal': 'Ple de l’{fecha}',
     'plenoDetail.summary': 'Resum',
     'plenoDetail.agenda': 'Ordre del dia',
     'plenoDetail.votes': 'Votacions',
@@ -3116,7 +4352,7 @@ export const CATALOGUE = {
     'plenoDetail.video': '▸ Veure vídeo',
     'plenoDetail.empty.agenda': 'Sense ordre del dia publicat per a aquesta sessió.',
     'plenoDetail.empty.votes':
-      "Encara no hem transcrit les votacions de l'acta d'aquesta sessió. No vol dir que no n'hi haguera.",
+      "Encara no hem transcrit les votacions d'aquesta sessió. No vol dir que no n'hi haguera.",
     'plenoDetail.votesPending': 'sense transcriure',
     'plenoDetail.votesTranscribed.uno': 'transcrita',
     'plenoDetail.votesTranscribed.varios': 'transcrites',
@@ -3126,10 +4362,6 @@ export const CATALOGUE = {
     'plenoDetail.agendaPendingLong': 'Ordre del dia encara no recollit per a aquesta sessió',
     'plenoDetail.empty.agendaPending':
       "Encara no hem pogut recollir l'ordre del dia d'aquesta sessió des de la seu de plens. La sessió es va celebrar; la dada falta per la nostra banda, no per la de l'Ajuntament.",
-    'plenoDetail.empty.summary':
-      'Sessió registrada. Encara no hi ha votacions transcrites, declaracions contrastables ni troballes per a aquesta sessió.',
-    'plenoDetail.empty.summaryNoAgenda':
-      'Sessió registrada. Encara no hem recollit el seu ordre del dia, i encara no hi ha votacions transcrites, declaracions contrastables ni troballes.',
     'plenoDetail.line.agenda.uno': '{n} punt en l’ordre del dia',
     'plenoDetail.line.agenda.varios': '{n} punts en l’ordre del dia',
     'plenoDetail.line.votes.uno': '{n} votació transcrita ({aprobadas})',
@@ -3152,6 +4384,16 @@ export const CATALOGUE = {
     'plenoDetail.voto.resultado': 'Resultat',
     'plenoDetail.voto.desglose': 'Desglossament',
     'plenoDetail.voto.cotejadoContra': 'acarat amb {fuente}',
+    'plenoDetail.voto.salvedadReparto': 'Qui va votar què: {nota}.',
+    'plenoDetail.hallazgos.porTema': 'Agrupades pel tema de les declaracions que citen.',
+    'plenoDetail.hallazgos.sinTema': 'Sense declaracions publicades que en donen el tema',
+    'plenoDetail.hallazgos.gravedad': 'Per la seua gravetat: {lista}.',
+    'plenoDetail.hallazgos.critical.uno': '{n} crítica',
+    'plenoDetail.hallazgos.critical': '{n} crítiques',
+    'plenoDetail.hallazgos.notable.uno': '{n} rellevant',
+    'plenoDetail.hallazgos.notable': '{n} rellevants',
+    'plenoDetail.hallazgos.informational.uno': '{n} informativa',
+    'plenoDetail.hallazgos.informational': '{n} informatives',
     'plenoDetail.voto.desgloseRetirado': 'DESGLOSSAMENT PER GRUPS RETIRAT',
     'plenoDetail.voto.desgloseCorregido': 'DESGLOSSAMENT PER GRUPS CORREGIT',
     'pleno.desenlace.aprobado': 'Aprovat',
@@ -3202,7 +4444,8 @@ export const CATALOGUE = {
     'bitacora.enmendados.varios': '{n} motius esmenats',
     'bitacora.textoRetirado': 'Text retirat',
     'bitacora.textoVigente': 'Text vigent',
-    'bitacora.textoSustituido': 'Text que va posar esta correcció, substituït el {fecha}',
+    'bitacora.textoSustituido':
+      'Text que va posar esta correcció, vigent fins al {fecha}, quan una altra correcció el va canviar',
     'bitacora.textoRetiradoDespues':
       'Text que va posar esta correcció; la cita es va retirar el {fecha}',
     'bitacora.campo.cita': 'cita {n}',
@@ -3251,7 +4494,7 @@ export const CATALOGUE = {
       'El mapa situa {nPintadas} de les {nPublicadas} queixes publicades. El llistat publicat no coincideix amb el recompte del bot, així que no es pot saber quantes de les altres tenen barri.',
     'quejas.mapa.coberturaDesglose':
       'El mapa situa {nPintadas} de les {nPublicadas} queixes publicades. De les altres, sense barri: {nSinBarrio}; amb un barri que el mapa no té: {nDesconocidas}.',
-    'quejas.estado.capturada': 'Capturada',
+    'quejas.estado.capturada': 'Arreplegant suports',
     'quejas.estado.apoyada_verificada': 'Verificada',
     'quejas.estado.registrada': 'Registrada en seu',
     'quejas.estado.notificada_10d': 'Justificant rebut',
@@ -3314,6 +4557,7 @@ export const CATALOGUE = {
     'quejas.detalle.relacion.pastilla':
       'Relació determinista i verificable — coincidència de zona i/o matèria',
     'quejas.detalle.relacion.verContrato': 'Veure el contracte a contrataciondelestado.es →',
+    'quejas.detalle.relacion.adjudicado': 'Adjudicat el {fecha}',
     'quejas.detalle.reloj.eyebrow': 'Rellotge legal',
     'quejas.detalle.reloj.titulo': 'Termini LPACAP en curs',
     'quejas.detalle.reloj.registrada': 'Registrada',
@@ -3328,10 +4572,31 @@ export const CATALOGUE = {
     'quejas.detalle.reloj.sinCalendario':
       "Falta el calendari de dies inhàbils de {anio}, i sense ell no se sap si l'últim dia es prorroga (art. 30.5 LPACAP). Fins que s'afegisca, este rellotge no compta els dies ni dona el termini per vençut.",
     'quejas.detalle.reloj.asiento': 'Assentament en seu',
-    'quejas.detalle.historial.eyebrow': 'Historial',
-    'quejas.detalle.historial.titulo': 'Línia temporal',
-    'quejas.detalle.hito.capturada': 'Capturada a CivicPulse',
-    'quejas.detalle.hito.capturada.detalle': 'Via bot de Telegram · barri {barrio}',
+    'quejas.detalle.historial.eyebrow': 'Fet i per fer',
+    'quejas.detalle.historial.titulo': 'El camí d’aquesta queixa',
+    'quejas.detalle.camino.ahora': 'Ara',
+    'quejas.detalle.camino.pendiente': 'Pendent',
+    'quejas.detalle.camino.apoyos.ahora': 'Arreplegant suports: en té {n} de {umbral}',
+    'quejas.detalle.camino.apoyos.detalle':
+      'Amb {umbral} suports passa a la llista que una persona voluntària presenta en el registre de l’Ajuntament, en lots setmanals.',
+    'quejas.detalle.camino.registro': 'Entrada en el registre de l’Ajuntament',
+    'quejas.detalle.camino.registro.ahora': 'Llesta per a presentar en el registre de l’Ajuntament',
+    'quejas.detalle.camino.registro.detalle':
+      'Des que entra en el registre corre el termini per a contestar.',
+    'quejas.detalle.camino.respuesta': 'Contestació de l’Ajuntament',
+    'quejas.detalle.camino.respuesta.detalle':
+      'Té {acuse} dies per a justificar la recepció i {plazo} per a contestar, des del registre.',
+    'quejas.detalle.camino.respuesta.detalle.transparencia':
+      'Té {plazo} per a contestar, des del registre.',
+    'quejas.detalle.camino.sindic': 'Si no contesta a temps: el Síndic de Greuges',
+    'quejas.detalle.camino.sindic.ahora': 'Es pot acudir al Síndic de Greuges',
+    'quejas.detalle.camino.sindic.detalle': 'És gratuït i no lleva altres recursos.',
+    'quejas.detalle.camino.consell':
+      'Si no contesta a temps: una reclamació al Consell de Transparència',
+    'quejas.detalle.camino.consell.ahora': 'Es pot reclamar al Consell de Transparència',
+    'quejas.detalle.camino.cerrada': 'Tancada sense presentar en el registre',
+    'quejas.detalle.hito.capturada': 'Enviada al bot de CivicPulse',
+    'quejas.detalle.hito.capturada.detalle': 'Per Telegram · barri {barrio}',
     'quejas.detalle.hito.verificada': 'Verificada per la comunitat',
     'quejas.detalle.hito.verificada.detalle':
       '{n} suports veïnals · llindar del lot setmanal assolit',
@@ -3341,7 +4606,7 @@ export const CATALOGUE = {
     'quejas.detalle.hito.silencio': 'Silenci administratiu negatiu',
     'quejas.detalle.hito.silencio.detalle': 'Termini legal vençut · art. 24 LPACAP',
     'quejas.detalle.hito.sindic': 'Elevada al Síndic de Greuges CV',
-    'quejas.detalle.hito.sindic.detalle': 'Llei 11/1988 · resolucions públiques',
+    'quejas.detalle.hito.sindic.detalle': 'Llei 2/2021 · resolucions públiques',
     'quejas.detalle.hito.resuelta': 'Resolta',
     'quejas.detalle.replica.eyebrow': 'Dret de rèplica oficial',
     'quejas.detalle.replica.titulo': 'Resposta de l’Ajuntament',
@@ -3363,6 +4628,62 @@ export const CATALOGUE = {
 
     'cambios.eyebrow': 'Esta setmana a Riba-roja',
     'cambios.title': 'Novetats',
+    'cambios.intro':
+      'El que ha canviat en els últims {dias} dies en les fonts que llegim: plens, contractes adjudicats, subvencions, el portal de participació, el canal de queixes i la premsa.',
+    'cambios.ventana': '{n} dies',
+    'cambios.kind.pleno': 'Ple municipal',
+    'cambios.kind.licitacion': 'Contracte adjudicat',
+    'cambios.kind.subvencion': 'Subvenció',
+    'cambios.kind.participa': 'Participació ciutadana',
+    'cambios.kind.queja': 'Queixa ciutadana',
+    'cambios.kind.prensa': 'Premsa',
+    'cambios.n.uno': '1 canvi',
+    'cambios.n': '{n} canvis',
+    'cambios.mas': 'I {n} més en esta finestra.',
+    'cambios.total.uno': 'Total: 1 canvi · finestra de {dias} dies',
+    'cambios.total': 'Total: {n} canvis · finestra de {dias} dies',
+    'cambios.vacio':
+      'No hi ha cap targeta per a mostrar en esta finestra. Prova d’ampliar-la a 14 o 30 dies.',
+    'cambios.contrato.adjudicataria': 'Adjudicat a {nombre}',
+    'importe.sinIva': '{importe} sense IVA',
+    'importe.noPublicado': 'import no publicat',
+    'cambios.contrato.tituloOficial': 'Títol oficial: {titulo}',
+    'cambios.prensa.enSitios': 'En {n} llocs:',
+    'cambios.frase.titulo': 'En una frase',
+    'cambios.frase.hechos': 'En els últims {dias} dies, l’Ajuntament {lista}.',
+    'cambios.frase.hecho.pleno.uno': 'va celebrar 1 ple',
+    'cambios.frase.hecho.pleno': 'va celebrar {n} plens',
+    'cambios.frase.hecho.licitacion.uno': 'va adjudicar 1 contracte',
+    'cambios.frase.hecho.licitacion': 'va adjudicar {n} contractes',
+    'cambios.frase.hecho.subvencion.uno': 'va obrir 1 convocatòria de subvencions',
+    'cambios.frase.hecho.subvencion': 'va obrir {n} convocatòries de subvencions',
+    'cambios.frase.hecho.participa.uno': 'va publicar 1 entrada en el seu portal de participació',
+    'cambios.frase.hecho.participa': 'va publicar {n} entrades en el seu portal de participació',
+    'cambios.frase.noConsta': 'No hi consta {lista} en els últims {dias} dies.',
+    'cambios.frase.ni': ' ni ',
+    'cambios.frase.ninguno.pleno': 'cap ple',
+    'cambios.frase.ninguno.licitacion': 'cap contracte adjudicat',
+    'cambios.frase.ninguno.subvencion': 'cap convocatòria municipal de subvencions',
+    'cambios.frase.ninguno.participa': 'cap entrada en el portal de participació',
+    'cambios.frase.sinDatos': 'Sense dades de {fuente} des del {fecha}.',
+    'cambios.frase.sinDatos.nunca': 'No s’han pogut llegir les dades de {fuente}.',
+    'cambios.frase.fuente.pleno': 'plens',
+    'cambios.frase.fuente.licitacion': 'contractes',
+    'cambios.frase.fuente.subvencion': 'subvencions',
+    'cambios.frase.fuente.participa': 'participació',
+    'cambios.frase.fuente.queja': 'queixes',
+    'cambios.frase.fuente.prensa': 'premsa',
+    'cambios.frase.quejas.ninguna':
+      'En el canal de queixes de CivicPulse no n’hi ha cap d’enviada en estos dies.',
+    'cambios.frase.quejas.una':
+      'En el canal de queixes de CivicPulse n’hi ha 1 d’enviada en estos dies.',
+    'cambios.frase.quejas':
+      'En el canal de queixes de CivicPulse n’hi ha {n} d’enviades en estos dies.',
+    'cambios.frase.prensa.ninguna': 'Cap notícia que mencione Riba-roja en estos dies.',
+    'cambios.frase.prensa.una': 'Hi ha 1 notícia que menciona Riba-roja.',
+    'cambios.frase.prensa': 'Hi ha {n} notícies que mencionen Riba-roja.',
+    'cambios.frase.prensa.municipal.una': ' Una és del web de l’Ajuntament.',
+    'cambios.frase.prensa.municipal': ' {n} són del web de l’Ajuntament.',
 
     'cargos.detalle.notFound': 'Regidor/a no trobat/da.',
     'hallazgo.volver': '← Totes les troballes',
@@ -3420,6 +4741,8 @@ export const CATALOGUE = {
       'El que sí que s’ha retirat és a dalt, en les **{n}** fitxes que es van quedar sense cap cita publicable.',
     'hallazgos.lista.contraste.enlace': 'Per què es publiquen ací →',
     'findings.refs.crossChecked': 'Documents acarats',
+    'findings.refs.crossChecked.nota':
+      'Aquests documents es van acarar amb les cites: ser a la llista no diu que les confirmen.',
     'findings.refs.provenance': 'Procedència de les cites',
     'findings.refs.contradiction': 'Documents que contradiuen',
     'findings.refs.ficha': 'fitxa {ficha}',
@@ -3474,9 +4797,9 @@ export const CATALOGUE = {
       'La transcripció vigent d’esta sessió és més curta que la que va substituir, així que l’absència de les paraules de {sujeto} pot deure’s al canvi de motor o a un tram que la nova passada no cobreix. No afirmem cap de les dues coses.',
     'findings.citas.procedencia.enlace': 'Com es comprova una cita →',
     'findings.citas.contraste.lead.una':
-      '{citas} es va acarar automàticament amb la base documental municipal —la contractació des de 2017, les subvencions, el pressupost vigent i les promeses publicades— i no va aparéixer cap dada que la confirme ni que la desmentisca. Això no la fa falsa: vol dir que no ho sabem — i sobre fets anteriors a eixa cobertura, que no podíem saber-ho.',
+      '{citas} es va acarar automàticament amb la base documental municipal —la contractació des de 2017, les subvencions i les promeses publicades— i no va aparéixer cap dada que la confirme ni que la desmentisca. Això no la fa falsa: vol dir que no ho sabem — i sobre fets anteriors a eixa cobertura, que no podíem saber-ho.',
     'findings.citas.contraste.lead.varias':
-      '{citas} es van acarar automàticament amb la base documental municipal —la contractació des de 2017, les subvencions, el pressupost vigent i les promeses publicades— i no va aparéixer cap dada que les confirme ni que les desmentisca. Això no les fa falses: vol dir que no ho sabem — i sobre fets anteriors a eixa cobertura, que no podíem saber-ho.',
+      '{citas} es van acarar automàticament amb la base documental municipal —la contractació des de 2017, les subvencions i les promeses publicades— i no va aparéixer cap dada que les confirme ni que les desmentisca. Això no les fa falses: vol dir que no ho sabem — i sobre fets anteriors a eixa cobertura, que no podíem saber-ho.',
     'findings.citas.contraste.toggle.chip': 'sense contrast en les dades',
     'findings.citas.contraste.toggle.title':
       'El verificador no va trobar cap dada municipal que confirme ni desmentisca el que s’afirma ací.',
@@ -3553,9 +4876,9 @@ export const CATALOGUE = {
       'I és de {periodo}, no d’un sol exercici: posat sense període al costat d’un pressupost anual es llig molt més gran del que és.',
     'presupuesto.gasto.intro.noRepartido': 'No és un volum repartit:',
     'presupuesto.gasto.intro.mayorConcesion':
-      'el contracte més gran —una concessió de {importe} M€— s’emporta ell sol el {pct} % del total, perquè una concessió s’adjudica per tot el seu termini d’una vegada.',
+      'el contracte més gran —una concessió de {importe}— s’emporta ell sol el {pct} % del total, perquè una concessió s’adjudica per tot el seu termini d’una vegada.',
     'presupuesto.gasto.intro.mayor':
-      'el contracte més gran —{importe} M€— s’emporta ell sol el {pct} % del total.',
+      'el contracte més gran —{importe}— s’emporta ell sol el {pct} % del total.',
     'presupuesto.gasto.intro.situados':
       'Només se situen els contractes el títol dels quals anomena una zona, i ací sí que predominen les obres ({pct} %). Mida del cercle = € adjudicat a la zona · ambre quan la meitat o més és recuperació DANA.',
     'presupuesto.gasto.intro.situadosSinPct':
@@ -3697,9 +5020,292 @@ export const CATALOGUE = {
       "Esta pàgina distingix en tot moment tres coses que solen confondre's: l'**aprovat**, el **definitiu** després de modificacions i l'**executat**.",
     'presupuesto.tres.link': 'Com es lligen els tres ↓',
     'presupuesto.meta':
-      '{gastos} de despeses aprovades segons CONPREL · {porHab} per habitant · {hab} habitants · actualitzat {fecha}',
+      '{gastos} de despeses aprovades per a {year} segons CONPREL · {porHab} per habitant · {hab} habitants · actualitzat {fecha}',
     'presupuesto.meta.sinTotal':
-      'CONPREL no porta el total de despeses aprovades · {hab} habitants · actualitzat {fecha}',
+      'CONPREL no porta el total de despeses aprovades per a {year} · {hab} habitants · actualitzat {fecha}',
+    'metodologia.enBreve.titulo': 'En resum',
+    'metodologia.enBreve.intro':
+      'Com treballem, en cinc preguntes. Cada resposta enllaça amb la regla completa.',
+    'metodologia.enBreve.saltar': 'Anar a les regles completes ↓',
+    'metodologia.enBreve.ver': 'Llegir la regla ↓',
+    'metodologia.enBreve.recorrido': "El recorregut d'una dada",
+    'metodologia.enBreve.paso.1': 'Font pública',
+    'metodologia.enBreve.paso.2': 'Amb la seua data',
+    'metodologia.enBreve.paso.3': 'Revisió',
+    'metodologia.enBreve.paso.4': 'Publicat amb enllaç',
+    'metodologia.enBreve.paso.5': 'Rectificable',
+    'metodologia.enBreve.fuentes.pregunta': "D'on ixen les dades?",
+    'metodologia.enBreve.fuentes.frase':
+      'De fonts oficials —el mateix Ajuntament, els ministeris, la Plataforma de Contractació, el BOE— i de la premsa, citada com a premsa. La pàgina de dades llista cada font amb la data de la seua última lectura.',
+    'metodologia.enBreve.fuentes.ver': 'Vore totes les fonts →',
+    'metodologia.enBreve.maquina.pregunta': 'Ho publica una màquina?',
+    'metodologia.enBreve.maquina.frase':
+      "A vegades, i amb regles. El que nomena una persona porta sempre la firma d'algú de l'equip. Per regla general, una màquina només publica sola el que retira alguna cosa ja publicada, o el que és nou, no nomena ningú i té l'encert mesurat; els processos que encara no la complixen es diuen en la regla.",
+    'metodologia.enBreve.comprobar.pregunta': 'Com comprove el que dieu?',
+    'metodologia.enBreve.comprobar.frase':
+      "Cada afirmació enllaça el document d'on ix, perquè ho comproves tu. Una promesa s'atribuïx amb les paraules literals del partit, mai amb el titular d'una notícia.",
+    'metodologia.enBreve.nota.pregunta': "Poseu nota a l'Ajuntament?",
+    'metodologia.enBreve.nota.frase':
+      "No. No classifiquem partits ni puntuem l'Ajuntament ni cap regidor: les dades van sense judici. Quan concloem alguna cosa, la signa un editor amb el seu nom, a banda i amb dret de rèplica.",
+    'metodologia.enBreve.error.pregunta': 'I si vos equivoqueu?',
+    'metodologia.enBreve.error.frase':
+      "Qualsevol persona, col·lectiu o partit pot demanar una rectificació, per GitHub o per correu. Té terminis fixos, els mateixos de l'avís legal.",
+    // El índice de /metodologia y la frase con que abre cada apartado. Las frases se
+    // escriben a mano y las revisa una persona, como el resto del contrato: no llevan
+    // plazos ni cifras (tests/metodologia-indice.test.jsx).
+    'metodologia.indice': 'En esta pàgina',
+    'metodologia.indice.apartados': '{n} apartats',
+    'metodologia.indice.volver': 'Índex ↑',
+    'metodologia.indice.aviso':
+      "Cada apartat obri amb l'essencial en una frase. El que val és el text sencer, que va davall.",
+    'metodologia.enUnaFrase': 'En una frase',
+    'metodologia.grupo.reglas': 'Regles generals',
+    'metodologia.grupo.datos': 'Dades i fonts',
+    'metodologia.grupo.cargos': 'Persones i càrrecs',
+    'metodologia.grupo.plenos': 'Plens i declaracions',
+    'metodologia.grupo.promesas': 'Promeses',
+    'metodologia.grupo.quejas': 'Queixes',
+    'metodologia.grupo.eficiencia': 'Eficiència i laboratori',
+    'metodologia.grupo.correcciones': 'Correccions i rèplica',
+    'metodologia.seccion.principios': 'Què fem i què no',
+    'metodologia.seccion.politica-automatizacion': 'Què es publica sense revisió',
+    'metodologia.seccion.fuentes-auditadas': 'Fonts auditades',
+    'metodologia.seccion.gasto-por-concejalia': "Com s'assigna un contracte",
+    'metodologia.seccion.mapa-del-gasto': 'Mapa de la despesa',
+    'metodologia.seccion.corporacion': 'La llista de la corporació',
+    'metodologia.seccion.mudanza-portal': 'La mudança del portal',
+    'metodologia.seccion.a-quien-se-pregunta': 'A qui es pregunta',
+    'metodologia.seccion.encaje': 'Encaix declarat',
+    'metodologia.seccion.biografias': 'Biografies',
+    'metodologia.seccion.verificacion-declaraciones': 'Del discurs al contrast',
+    'metodologia.seccion.trinquete-veredictos': 'El trinquet',
+    'metodologia.seccion.citas-transcripcion': 'Cites marcades',
+    'metodologia.seccion.citas-contraste': 'Cites sense suport',
+    'metodologia.seccion.plazos-vencidos': 'Vots i terminis vençuts',
+    'metodologia.seccion.estados': 'Què significa cada estat',
+    'metodologia.seccion.limites-motor': 'Límits del motor',
+    'metodologia.seccion.auto-curacion-promesas': "Què s'autopublica",
+    'metodologia.seccion.camino-de-una-queja': 'Com arriba una queixa',
+    'metodologia.seccion.relacion-quejas-contratos': 'Queixes i contractes',
+    'metodologia.seccion.eficiencia': 'Quant costa cada servei',
+    'metodologia.seccion.opinion-editor': "L'opinió de l'editor",
+    'metodologia.seccion.frontera': 'La frontera',
+    'metodologia.seccion.coste-esperado': 'El cost esperat',
+    'metodologia.seccion.laboratorio-prensa': 'Laboratori de premsa',
+    'metodologia.seccion.rectificacion': 'Com demanar una rectificació',
+    'metodologia.seccion.politica-correcciones': 'Política de correccions',
+    'metodologia.frase.principios':
+      "Som neutrals entre partits, cada promesa s'atribuïx amb una cita literal i la seua font, i qualsevol pot demanar una correcció.",
+    'metodologia.frase.politica-automatizacion':
+      "Com a regla, una màquina pot retirar o suavitzar el que s'ha publicat, però no publicar una cosa nova sense una precisió mesurada ni nomenar ningú sense firma humana; les excepcions es diuen davall.",
+    'metodologia.frase.fuentes-auditadas':
+      "Ací estan les fonts públiques amb què s'acaren les afirmacions, amb el que aporta cadascuna i els seus límits.",
+    'metodologia.frase.gasto-por-concejalia':
+      "Cada contracte s'assigna a una àrea pel codi CPV principal que declara l'expedient, i si els codis declarats no en nomenen cap, queda sense assignar.",
+    'metodologia.frase.mapa-del-gasto':
+      "Un contracte només va al mapa quan el seu títol, o l'objecte de la seua licitació, nomena un lloc concret que sabem localitzar; la despesa sense lloc citat no es repartix.",
+    'metodologia.frase.corporacion':
+      "Quan el web municipal va per darrere del que va acordar el Ple, corregim la llista de càrrecs amb una entrada signada que cita l'acta, mai de manera automàtica.",
+    'metodologia.frase.mudanza-portal':
+      "Quan l'ajuntament va mudar el seu portal, la nostra llista de càrrecs es va quedar uns dies sense actualitzar i es van estrényer les formes de contactar, i ho contem sense acusar ningú.",
+    'metodologia.frase.a-quien-se-pregunta':
+      'El cercador de càrrecs diu quina àrea porta un assumpte segons un vocabulari curat, a qui preguntar i no qui respon de cada cas, i mai no endevina.',
+    'metodologia.frase.encaje':
+      'Creuem el que cada regidor amb delegació declara en el seu CV amb la matèria de les seues àrees, sense puntuar, sense ordenar i sense dir res de com gestiona.',
+    'metodologia.frase.biografias':
+      'El que un càrrec publica sobre si mateix és el punt de partida, no la font: es contrasta amb documents que no controla, i la vida privada sense relació amb el càrrec no hi entra.',
+    'metodologia.frase.verificacion-declaraciones':
+      "Acarem automàticament el que s'ha dit en el ple amb contractes, subvencions i promeses quan la declaració porta amb què; després una màquina només pot rebaixar un veredicte, i pujar-lo ho signa una persona.",
+    'metodologia.frase.trinquete-veredictos':
+      "Cada etapa mou un veredicte en un sol sentit, cap d'automàtica no el reforça, i un veredicte que afirma alguna cosa nomena amb què es va comprovar, excepte la retractació d'un curador.",
+    'metodologia.frase.citas-transcripcion':
+      "Les cites de les troballes ixen d'una transcripció automàtica; si no consten en el millor text ho marquem, si no consten en cap no es publiquen, i no les reescrivim pel nostre compte.",
+    'metodologia.frase.citas-contraste':
+      'Una porta editorial decidix si una afirmació es mostra amb les seues dades, com a no contrastada o es reté, i el que es reté és la cita, no el que es va dir.',
+    'metodologia.frase.plazos-vencidos':
+      "Cada vot diu de quina font ixen el seu resultat i el seu desglossament, i un compromís amb data que venç sense evidència d'execució porta un avís que no canvia cap estat.",
+    'metodologia.frase.estados':
+      'Cada estat exigix una cosa diferent per a publicar-se, i ni documentada ni en verificació afirmen un incompliment.',
+    'metodologia.frase.limites-motor':
+      'El motor no autopublica veredictes forts, no assigna incompliments, no inventa cites, no puntua partits i es deté en període electoral.',
+    'metodologia.frase.auto-curacion-promesas':
+      'Sense revisió només es publica el que supera un llindar de confiança i queda ancorat a la seua font, retolat com a automàtic; «parcial», «complida» i els incompliments mai no es publiquen sols.',
+    'metodologia.frase.camino-de-una-queja':
+      "Publicar una queixa no la porta a l'ajuntament: hi arriba quan entra en el seu registre, i el termini legal per a respondre compta des d'eixa data.",
+    'metodologia.frase.relacion-quejas-contratos':
+      'Un contracte que coincidix amb una queixa en zona i en matèria es mostra sense revisió; amb una sola de les dues espera un curador, i cap coincidència no afirma que el contracte la resolga.',
+    'metodologia.frase.eficiencia':
+      "Quan el que declara l'ajuntament ho permet, dividim el cost de cada servei entre les seues unitats, ho comparem amb municipis semblants del mateix mode de gestió i no publiquem cap nota.",
+    'metodologia.frase.opinion-editor':
+      "Les dades no posen nota; l'opinió de l'editor sí que jutja, retolada com a opinió, signada per una persona, amb cada fet enllaçat i sense xifra, escala ni rànquing.",
+    'metodologia.frase.frontera':
+      "La puntuació de la frontera ix d'un model amb decisions nostres a dins, així que publiquem el mètode sencer i no nomenem cap altre municipi.",
+    'metodologia.frase.coste-esperado':
+      'Compara els serveis en gestió directa amb el que és esperable per a la població del municipi; és un model, no una font citable, i seguix les mateixes regles que la frontera.',
+    'metodologia.frase.laboratorio-prensa':
+      'Acarem amb dades municipals públiques el que afirma la premsa quan hi ha amb què, la font primària sempre guanya i que no hi haja dades no significa que siga fals.',
+    'metodologia.frase.rectificacion':
+      "Escriu-nos amb l'identificador afectat i la font que proposes, i et contestem si acceptem, si necessitem més evidència o si ho rebutgem amb motiu públic.",
+    'metodologia.frase.politica-correcciones':
+      "Cada correcció d'una troballa deixa una fila pública que no s'esborra, i el que no ha de continuar publicat no s'hi reprodueix.",
+    'presupuesto.enBreve.titulo': 'En resum',
+    'presupuesto.enBreve.intro':
+      "L'essencial, en poques preguntes. Cada resposta enllaça amb la secció que la demostra.",
+    'presupuesto.enBreve.saltar': 'Botar a totes les dades ↓',
+    'presupuesto.enBreve.ver': 'Vore el detall ↓',
+    'presupuesto.enBreve.limite.pregunta': 'Quants diners tenia per a gastar en {year}?',
+    'presupuesto.enBreve.porVecino': '{x} per veí',
+    'presupuesto.enBreve.limite.frase':
+      "Va començar l'any amb {inicial} i durant l'any se li van afegir {mod}. És un [[creditoDefinitivo|límit del pressupost]], no una despesa.",
+    'presupuesto.enBreve.limite.inicial': 'En començar · {x}',
+    'presupuesto.enBreve.limite.mod': 'Afegit · {x}',
+    'presupuesto.enBreve.limite.figura':
+      "Barra: {inicial} en començar l'any més {mod} afegits, en total {definitivo}.",
+    'presupuesto.enBreve.limite.dosFuentes':
+      "El Ministeri d'Hisenda (CONPREL) dona una altra xifra de partida per a {year}: {conprel}. Les dues fonts no quadren i no en triem cap.",
+    'presupuesto.enBreve.aprobado.pregunta': 'Quants diners té per a gastar en {year}?',
+    'presupuesto.enBreve.aprobado.frase':
+      "És el pressupost aprovat segons el Ministeri d'Hisenda: un [[creditoDefinitivo|límit]], no una despesa. Quant s'ha gastat apareixerà quan l'Ajuntament publique el seu estat d'execució.",
+    'presupuesto.enBreve.gastado.pregunta': 'Quant ha gastat?',
+    'presupuesto.enBreve.gastado.cifraNota': '{n} de cada 100 €',
+    'presupuesto.enBreve.gastado.frase':
+      'De cada 100 € que podia gastar en {year}, en va [[obligacionesReconocidas|gastar]] {n}.',
+    'presupuesto.enBreve.gastado.fin': "Dades a {fecha}, tancament de l'exercici.",
+    'presupuesto.enBreve.gastado.fecha': 'Dades a {fecha}.',
+    'presupuesto.enBreve.gastado.nota':
+      "«Gastat» són les factures i despeses que l'Ajuntament ja ha donat per bones. El que s'ha pagat pot ser menys.",
+    'presupuesto.enBreve.gastado.barra': 'Gastat · {pct} %',
+    'presupuesto.enBreve.gastado.avance': 'Any transcorregut',
+    'presupuesto.enBreve.gastado.figura':
+      "Barra: gastat el {pct} % del que podia gastar; marca de l'any transcorregut al {avance} %.",
+    'presupuesto.enBreve.gastado.figuraSinAvance': 'Barra: gastat el {pct} % del que podia gastar.',
+    'presupuesto.enBreve.enQue.pregunta': "En què se n'ha anat?",
+    'presupuesto.enBreve.enQue.mayoria': 'La major part va anar a {a} i a {b}.',
+    'presupuesto.enBreve.enQue.primero': "El que més se'n va endur va ser {a}, seguit de {b}.",
+    'presupuesto.enBreve.enQue.uno': 'Tot el que es va gastar va anar a {a}.',
+    'presupuesto.enBreve.enQue.dominante':
+      "En {capitulo} hi havia {definitivo} pressupostats i se'n van gastar {ejecutado}.",
+    'presupuesto.enBreve.enQue.resto': 'Resta',
+    'presupuesto.enBreve.enQue.figura': 'Repartiment del que es va gastar: {lista}.',
+    'presupuesto.enBreve.cap.1': 'Sous del personal',
+    'presupuesto.enBreve.cap.2': 'Compres i serveis del dia a dia',
+    'presupuesto.enBreve.cap.3': 'Interessos del deute',
+    'presupuesto.enBreve.cap.4': 'Ajudes i aportacions a altres entitats',
+    'presupuesto.enBreve.cap.5': 'Fons de contingència',
+    'presupuesto.enBreve.cap.6': 'Obres i inversions',
+    'presupuesto.enBreve.cap.7': "Aportacions per a inversions d'altres",
+    'presupuesto.enBreve.cap.8': 'Préstecs i depòsits',
+    'presupuesto.enBreve.cap.9': 'Devolució de préstecs',
+    'presupuesto.enBreve.rareza.pregunta': 'Hi ha alguna cosa estranya?',
+    'presupuesto.enBreve.rareza.cifraNota': 'de diferència',
+    'presupuesto.enBreve.rareza.sobra':
+      "El pressupost de {year} que l'Ajuntament va retre al Ministeri d'Hisenda no quadra: els ingressos superen les despeses en {dif}.",
+    'presupuesto.enBreve.rareza.falta':
+      "El pressupost de {year} que l'Ajuntament va retre al Ministeri d'Hisenda no quadra: les despeses superen els ingressos en {dif}.",
+    'presupuesto.enBreve.rareza.nota':
+      "Un pressupost s'aprova sense dèficit inicial, i la regla val en els dos sentits: tampoc hauria de sobrar.",
+    'presupuesto.seccion.aprobado': "L'aprovat: en què es gasta i d'on vénen els ingressos",
+    'presupuesto.seccion.deuda': "El que deu l'Ajuntament",
+    'presupuesto.seccion.menores': 'Contractes menors',
+    'presupuesto.seccion.obras': "Obres d'infraestructura",
+    'presupuesto.seccion.ted': 'Contractes sobre el llindar europeu',
+    'presupuesto.enBreve.deuda.pregunta': 'Deu diners?',
+    'presupuesto.enBreve.deuda.frase':
+      "És el [[deudaViva|deute viu]] al tancament de {year}, segons el Ministeri d'Hisenda.",
+    'presupuesto.enBreve.deuda.comparacion':
+      'Deu més que {p} de cada 100 ajuntaments de la llista del Ministeri. Però {cero} de cada 100 no deuen res, així que la comparació diu poc per si sola.',
+    'presupuesto.enBreve.deuda.sinDeuda': 'Sense deute · {n} de 100',
+    'presupuesto.enBreve.deuda.nosotros': 'Riba-roja',
+    'presupuesto.enBreve.deuda.figura':
+      '100 ajuntaments: {cero} no deuen res; Riba-roja deu més que {p}.',
+    'presupuesto.enBreve.barrio.titulo': "Què s'ha contractat al meu barri?",
+    'presupuesto.enBreve.barrio.frase':
+      "Compte: de cada 100 € contractats, només {n} van a contractes que nomenen un barri. Que el teu barri no isca al mapa no vol dir que allí no s'haja contractat res.",
+    'presupuesto.enBreve.barrio.menosDeUno':
+      "Compte: de cada 100 € contractats, menys d'1 va a contractes que nomenen un barri. Que el teu barri no isca al mapa no vol dir que allí no s'haja contractat res.",
+    'presupuesto.enBreve.barrio.elige': 'Tria el teu barri',
+    'presupuesto.enBreve.barrio.placeholder': 'Tria…',
+    'presupuesto.enBreve.barrio.opcion': '{nombre} · {n} contractes',
+    'presupuesto.enBreve.barrio.opcion.uno': '{nombre} · 1 contracte',
+    'presupuesto.enBreve.barrio.otro': 'El meu barri no apareix',
+    'presupuesto.enBreve.barrio.ver': 'Vore els seus contractes',
+    'presupuesto.enBreve.barrio.otro.titulo': 'No podem situar contractes al teu barri',
+    'presupuesto.enBreve.barrio.otro.frase':
+      'Cap contracte publicat nomena en el seu títol un lloc que puguem situar amb seguretat al teu barri. Preferim no posar un punt al mapa a posar-lo malament.',
+    'presupuesto.enBreve.barrio.otro.queja': "Avisar d'un problema al teu carrer",
+    'presupuesto.enBreve.barrio.otro.todos': 'Vore tots els contractes del municipi ↓',
+    'presupuesto.gasto.zona.desconocida':
+      "L'enllaç demana el barri «{barrio}», que no és entre els que nomenen els contractes. Tria'n un a la llista o al mapa.",
+    'presupuesto.enBreve.barrio.figura': 'De cada 100 € contractats, {n} nomenen un barri.',
+    'glosario.rotulo': 'Glossari',
+    'glosario.oficial': 'Nom oficial: {nombre}',
+    'glosario.cerrar': 'Tancar la definició',
+    'glosario.creditoDefinitivo.termino': 'Crèdit definitiu',
+    'glosario.creditoDefinitivo.def':
+      "El màxim que l'Ajuntament pot gastar en l'any: el que es va aprovar al principi més el que s'hi ha afegit després. És un límit, no una despesa.",
+    'glosario.obligacionesReconocidas.termino': 'Obligacions reconegudes',
+    'glosario.obligacionesReconocidas.def':
+      "Factures i despeses que l'Ajuntament ja ha donat per bones i ha de pagar. És l'única xifra del pressupost que és despesa. No és el mateix que el que s'ha pagat.",
+    'glosario.costeEfectivo.termino': 'Cost efectiu',
+    'glosario.costeEfectivo.def':
+      "El que l'Ajuntament declara al Ministeri d'Hisenda que li va costar prestar un servei en un any. No és tota la seua despesa ni una dada de qualitat.",
+    'glosario.cantidadSinRemedir.termino': 'Quantitat sense tornar a mesurar',
+    'glosario.cantidadSinRemedir.def':
+      "Una quantitat de servei (tones, metres, punts de llum) que l'Ajuntament declara igual, decimal a decimal, any rere any. Si no es torna a mesurar, el cost per unitat només seguix la despesa.",
+    'glosario.entrega.termino': 'Entrega',
+    'glosario.entrega.def':
+      "L'enviament anual obligatori d'estes dades al Ministeri, abans de l'1 de novembre (article 116 ter de la Llei de Bases de Règim Local).",
+    'glosario.deudaViva.termino': 'Deute viu',
+    'glosario.deudaViva.def':
+      "El que l'Ajuntament deu a bancs i altres entitats en tancar l'any. No és el capítol «Deute públic» del pressupost, que és el que s'aparta cada any per a pagar-lo.",
+    'glosario.correccion.termino': 'Correcció',
+    'glosario.correccion.def':
+      "Una nota datada que afegim al final d'una peça ja publicada quan la canviem, i que explica què va canviar. Unes arreglen un error; altres precisen una frase o afegixen una dada que faltava. Una mateixa nota pot recollir diversos canvis fets alhora.",
+    'glosario.parteResolutiva.termino': 'Part resolutiva',
+    'glosario.parteResolutiva.def':
+      "La part de l'ordre del dia que el ple vota: propostes d'acord, mocions, ordenances. Que un punt hi estiga no diu com va acabar: es pot aprovar, rebutjar, retirar o deixar per a una altra sessió.",
+    'glosario.dacionDeCuenta.termino': 'Dació de compte',
+    'glosario.dacionDeCuenta.def':
+      "Un punt en què el govern municipal informa el ple: dels seus decrets, d'un informe, de dades que la llei l'obliga a comunicar. No es vota.",
+    'glosario.ruegosYPreguntas.termino': 'Precs i preguntes',
+    'glosario.ruegosYPreguntas.def':
+      "L'últim torn del ple ordinari: els grups i els seus regidors demanen alguna cosa al govern municipal (precs) o li pregunten (preguntes). No es vota.",
+    'glosario.mocion.termino': 'Moció',
+    'glosario.mocion.def':
+      "Una proposta que es porta directament al ple, quasi sempre d'un grup municipal: sol demanar al govern municipal que faça alguna cosa, o fixar una postura de l'Ajuntament. Es vota.",
+    'glosario.reconocimientoExtrajudicial.termino': 'Reconeixement extrajudicial de crèdit',
+    'glosario.reconocimientoExtrajudicial.def':
+      "El ple aprova pagar factures de despeses que es van fer sense seguir abans el tràmit de la despesa, o sense crèdit en el pressupost de l'any en què es van fer. Sense eixa aprovació no es poden pagar.",
+    'glosario.sinDictaminar.termino': 'Sense dictaminar',
+    'glosario.sinDictaminar.def':
+      "El punt arriba al ple sense passar abans per la comissió informativa, on els grups estudien els assumptes abans de cada ple. Per a prendre un acord sobre ell, el ple ha de ratificar abans que entre en l'ordre del dia.",
+    'glosario.urgencia.termino': "Assumpte d'urgència",
+    'glosario.urgencia.def':
+      "Un assumpte que no estava en l'ordre del dia amb què es va convocar el ple i que es presenta per raons d'urgència. El ple vota primer si el debat; només si ho accepta es tracta.",
+    'glosario.sindicDeGreuges.termino': 'Síndic de Greuges',
+    'glosario.sindicDeGreuges.def':
+      'El defensor del poble de la Comunitat Valenciana. Atén de franc les queixes de qualsevol persona contra una administració valenciana, ajuntaments inclosos, per exemple quan no contesta. Les seues resolucions recomanen o recorden deures legals; no obliguen.',
+    'glosario.consellDeTransparencia.termino': 'Consell de Transparència',
+    'glosario.consellDeTransparencia.def':
+      "L'òrgan valencià que resol les reclamacions de transparència: les de qui demana informació pública a una administració valenciana, ajuntaments inclosos, i no l'obté.",
+    'glosario.ctbg.termino': 'Consejo de Transparencia y Buen Gobierno',
+    'glosario.ctbg.def':
+      "L'òrgan estatal de transparència. Una reclamació de transparència contra un ajuntament valencià no va a ell, sinó al Consell de Transparència.",
+    'glosario.sindicaturaDeComptes.termino': 'Sindicatura de Comptes',
+    'glosario.sindicaturaDeComptes.def':
+      "L'òrgan de control extern de la Comunitat Valenciana: audita, després de gastats els diners, si els comptes del sector públic valencià, ajuntaments inclosos, i la seua gestió s'ajusten a la llei.",
+    'glosario.oposicion.termino': 'Oposició',
+    'glosario.oposicion.def':
+      'Un o diversos exàmens oberts a qui complisca els requisits de la convocatòria. Les places són per a qui trau millor nota. És la manera habitual d’aconseguir una plaça fixa.',
+    'glosario.concurso.termino': 'Concurs',
+    'glosario.concurso.def':
+      'Es puntuen els mèrits —anys treballats, títols, cursos— amb un barem que fixen les bases, sense examen. En el concurs-oposició hi ha examen, i a qui l’aprova se li sumen els mèrits.',
+    'glosario.bolsaDeTrabajo.termino': 'Borsa de treball',
+    'glosario.bolsaDeTrabajo.def':
+      'Una llista ordenada de persones que han passat una selecció. L’Ajuntament les crida per torn quan necessita cobrir un lloc per un temps: una baixa, una vacant mentre es convoca la plaça, un reforç. Estar en la borsa no és tindre plaça.',
+    'glosario.estabilizacion.termino': 'Estabilització',
+    'glosario.estabilizacion.def':
+      'Processos extraordinaris de la Llei 20/2021 per a convertir en fixes places que feia anys que ocupava personal temporal. Estan oberts a qualsevol que complisca els requisits, però puntua molt l’experiència en eixe tipus de plaça. La llei obligava a convocar-los abans que acabara el 2022 i a acabar-los abans que acabara el 2024.',
     'presupuesto.fuentes.title': 'Dos fonts, dos pressupostos aprovats',
     'presupuesto.fuentes.conprel': "CONPREL · Ministeri d'Hisenda",
     'presupuesto.fuentes.municipal': "Estat d'execució del propi Ajuntament",
@@ -3747,6 +5353,49 @@ export const CATALOGUE = {
       "**{capitulo} es va emportar el {cuota} % de tota l'ampliació**: de {inicial} a {definitivo}, dels quals es va executar el {pct} %.",
     'presupuesto.cap.pie.cociente':
       ' El percentatge de la dreta és executat ÷ definitiu: obligacions reconegudes netes.',
+    'presupuesto.eyebrow.enCurso': 'Hisenda pública · exercici {year} · en curs',
+    'presupuesto.lede.enCurso':
+      "L'ajuntament va obrir {year} amb {inicial} de crèdit i en el que va d'any l'ha ampliat en {mod} —un {pct} % més—. A {fecha} porta executats {ejecutado}: l'any encara no ha acabat.",
+    'presupuesto.lede.conprelAnterior':
+      " El pressupost aprovat que publica el Ministeri d'Hisenda encara és el de {year}: les seues xifres van més avall, amb el seu any.",
+    'presupuesto.lede.dominante.enCurso':
+      " Quasi tota l'ampliació, el {cuota} %, ha anat a {capitulo}.",
+    'presupuesto.lede.dominanteCero.enCurso':
+      " Quasi tota l'ampliació, el {cuota} %, ha anat a {capitulo}, un capítol que havia començat en zero.",
+    'presupuesto.lede.dominanteCeroDiscrepan.enCurso':
+      " Quasi tota l'ampliació, el {cuota} %, ha anat a {capitulo}, que l'estat d'execució del propi Ajuntament obri en zero i el pressupost que es va remetre a CONPREL amb {conprel}.",
+    'presupuesto.lede.dominanteCeroSinConprel.enCurso':
+      " Quasi tota l'ampliació, el {cuota} %, ha anat a {capitulo}, que l'estat d'execució del propi Ajuntament obri en zero i del qual el pressupost que es va remetre a CONPREL no porta xifra.",
+    'presupuesto.lede.dominanteCeroSinContraste.enCurso':
+      " Quasi tota l'ampliació, el {cuota} %, ha anat a {capitulo}, que l'estat d'execució del propi Ajuntament obri en zero.",
+    'presupuesto.cascada.title.enCurso': "El pressupost ha crescut un {pct} % en el que va d'any",
+    'presupuesto.callout.denominador.enCurso':
+      "**El «{pctDef} % executat» és un quocient sobre el pressupost definitiu.** Sobre el crèdit que es va aprovar al gener, l'executat és el {pctIni} %. Cada xifra respon a una pregunta distinta: quant s'ha executat del que es va aprovar al gener, i quant del que s'ha autoritzat fins ara.",
+    'presupuesto.cap.pie.cero.enCurso':
+      "**{capitulo} va obrir l'exercici amb 0 € i en porta {definitivo}** —el {cuota} % de tota l'ampliació—, dels quals s'ha executat el {pct} %. Un capítol que comença en zero i rep el seu crèdit durant l'exercici no és una desviació d'execució: eixe crèdit no estava en cap dels dos pressupostos aprovats que publica esta pàgina.",
+    'presupuesto.cap.pie.ceroDiscrepan.enCurso':
+      "**{capitulo} va obrir l'exercici amb 0 € i en porta {definitivo}** —el {cuota} % de tota l'ampliació—, dels quals s'ha executat el {pct} %. Eixe zero és el de l'estat d'execució del propi Ajuntament: **el pressupost que es va remetre a CONPREL li dóna {conprel} de crèdit inicial a eixe mateix capítol**. Les dos fonts són oficials i no es reconcilien, així que part del que ací figura com a ampliació ja estava aprovat en l'altra.",
+    'presupuesto.cap.pie.ceroSinConprel.enCurso':
+      "**{capitulo} va obrir l'exercici amb 0 € i en porta {definitivo}** —el {cuota} % de tota l'ampliació—, dels quals s'ha executat el {pct} %. Eixe zero és el de l'estat d'execució del propi Ajuntament; **el pressupost que es va remetre a CONPREL no porta dada d'eixe capítol**, així que no es pot dir si eixe crèdit ja estava aprovat en l'altra font.",
+    'presupuesto.cap.pie.ceroSinContraste.enCurso':
+      "**{capitulo} va obrir l'exercici amb 0 € i en porta {definitivo}** —el {cuota} % de tota l'ampliació—, dels quals s'ha executat el {pct} %. Eixe zero és el de l'estat d'execució del propi Ajuntament, i no hi ha pressupost remés a CONPREL del mateix exercici amb què acarar-lo.",
+    'presupuesto.cap.pie.dominante.enCurso':
+      "**{capitulo} s'ha emportat el {cuota} % de tota l'ampliació**: de {inicial} a {definitivo}, dels quals s'ha executat el {pct} %.",
+    'presupuesto.enBreve.limite.pregunta.enCurso': 'Quants diners té per a gastar en {year}?',
+    'presupuesto.enBreve.limite.frase.enCurso':
+      "Va començar l'any amb {inicial} i en el que va d'any se li han afegit {mod}. És un [[creditoDefinitivo|límit del pressupost]], no una despesa.",
+    'presupuesto.enBreve.gastado.frase.enCurso':
+      'De cada 100 € que pot gastar en {year}, en porta [[obligacionesReconocidas|gastats]] {n}.',
+    'presupuesto.enBreve.gastado.fecha.enCurso': "Dades a {fecha}: l'any encara no ha acabat.",
+    'presupuesto.enBreve.gastado.figura.enCurso':
+      "Barra: gastat fins ara el {pct} % del que pot gastar; marca de l'any transcorregut al {avance} %.",
+    'presupuesto.enBreve.gastado.figuraSinAvance.enCurso':
+      'Barra: gastat fins ara el {pct} % del que pot gastar.',
+    'presupuesto.enBreve.enQue.mayoria.enCurso': 'La major part ha anat a {a} i a {b}.',
+    'presupuesto.enBreve.enQue.primero.enCurso': "El que més se n'ha endut és {a}, seguit de {b}.",
+    'presupuesto.enBreve.enQue.uno.enCurso': "Tot el que s'ha gastat ha anat a {a}.",
+    'presupuesto.enBreve.enQue.dominante.enCurso':
+      "En {capitulo} hi ha {definitivo} pressupostats i se n'han gastat {ejecutado}.",
     'presupuesto.cap.fuente':
       "Font: Ajuntament de Riba-roja · estats d'execució pressupostària{fecha}.",
     'presupuesto.cap.fecha': ' · llistat a {fecha}',
@@ -3861,13 +5510,15 @@ export const CATALOGUE = {
     'cargos.detalle.area.titleRango':
       'Diners adjudicats entre {desde} i {hasta} a les regidories que hui dirigeix',
     'cargos.detalle.area.titleAnio':
-      'Diners adjudicats el {anio} a les regidories que hui dirigeix',
+      'Diners adjudicats a les regidories que hui dirigeix: tots els contractes són del {anio}',
+    'cargos.detalle.area.titleAnioConFecha':
+      'Diners adjudicats a les regidories que hui dirigeix: els contractes amb data són del {anio}',
     'cargos.detalle.area.intro':
-      "Imports adjudicats a les àrees de què hui és responsable, sumats al llarg de tot el període, les dirigira qui les dirigira: no és la contractació del seu mandat. És contractació de la regidoria, no de la persona: els contractes els adjudica l'òrgan de contractació de l'Ajuntament.",
+      "Imports adjudicats a les àrees de què hui és responsable, sumats al llarg de tot el registre, les dirigira qui les dirigira: no és la contractació del seu mandat. És contractació de la regidoria, no de la persona: els contractes els adjudica l'òrgan de contractació de l'Ajuntament.",
     'cargos.detalle.area.note':
       'Només contractes ja adjudicats i de categoria atribuïble a una àrea; la xifra es queda curta abans que assignar un responsable equivocat.',
     'cargos.detalle.stat.areasDelegadas': 'Àrees delegades',
-    'cargos.detalle.stat.partyPromises': 'Promeses · grup',
+    'cargos.detalle.stat.partyPromises': 'Promeses · partit',
     'cargos.detalle.stat.agendaItems': 'Punts al ple',
     'cargos.detalle.stat.noDisponible': 'No s’ha pogut carregar; no és un zero.',
     'cargos.detalle.stat.quejas': 'Queixes pendents',
@@ -3883,14 +5534,69 @@ export const CATALOGUE = {
     'cargos.card.hastaF': 'Regidora fins al {fecha}',
     'cargos.card.hastaM': 'Regidor fins al {fecha}',
     'cargos.card.acta': 'acta ↗',
+    'cargos.card.alcalde': 'Alcalde',
+    'cargos.card.alcaldesa': 'Alcaldessa',
+    'cargos.card.biografia': 'Biografia →',
+    'cargos.card.biografia.title': 'Informe biogràfic de l’agent periodista de CivicPulse',
     'cargos.card.buzonCompartido': '· bústia compartida per {n} càrrecs',
     'cargos.baja.renuncia': 'renúncia a l’acta',
     'cargos.baja.fallecimiento': 'defunció',
     'cargos.baja.perdida-condicion': 'pèrdua de la condició de regidor',
-    'cargos.corporacion.raspado': 'padró raspat de ribarroja.es · actualitzat {fecha}',
+    'cargos.corporacion.eyebrow': 'Corporació Municipal',
+    'cargos.corporacion.raspado': 'llista de càrrecs de ribarroja.es · actualitzada el {fecha}',
+    'cargos.corporacion.correcciones.una':
+      'Una correcció documentada: la pàgina de l’ajuntament encara no recull {cambios} que el Ple ja va acordar; s’aplica amb l’acta al costat.',
     'cargos.corporacion.correcciones':
-      '{n} correcció(ns) documentada(es): la pàgina de l’ajuntament encara no recull {bajas} baixa(es) i {altas} alta(es) que el Ple ja va acordar; s’apliquen amb l’acta al costat.',
-    'cargos.corporacion.correccionesLink': 'com es corregeix el padró',
+      '{n} correccions documentades: la pàgina de l’ajuntament encara no recull {cambios} que el Ple ja va acordar; s’apliquen amb l’acta al costat.',
+    'cargos.corporacion.baja.una': 'una baixa',
+    'cargos.corporacion.bajas': '{n} baixes',
+    'cargos.corporacion.alta.una': 'una alta',
+    'cargos.corporacion.altas': '{n} altes',
+    'cargos.corporacion.correccionesLink': 'com es corregeix la llista',
+    'cargos.cargando': 'Carregant la llista de càrrecs…',
+    'cargos.error': 'No s’ha pogut carregar la llista de càrrecs.',
+    'cargos.enBreve.titulo': 'En resum',
+    'cargos.enBreve.intro':
+      "L'essencial, en poques preguntes. Cada resposta enllaça amb la secció que la demostra.",
+    'cargos.enBreve.saltar': 'Botar a totes les dades ↓',
+    'cargos.enBreve.sueldos.pregunta': 'Quant cobren?',
+    'cargos.enBreve.sueldos.cifra': '{n} de {total}',
+    'cargos.enBreve.sueldos.cifraNota': 'amb sou fixat pel ple',
+    'cargos.enBreve.sueldos.frase':
+      'Cobren entre {minimo} i {maximo} € bruts a l’any, segons el lloc. Els altres {sin} cobren per cada sessió a què assistixen.',
+    'cargos.enBreve.sueldos.nota': 'Imports de {anio}, fixats pel ple el {fecha}.',
+    'cargos.enBreve.sueldos.antiguedad': 'El més alt inclou {antiguedad} € d’antiguitat personal.',
+    'cargos.enBreve.sueldos.ancla': 'Les retribucions, xifra a xifra ↓',
+    'cargos.enBreve.fiscalizan.pregunta': 'Qui vigila el govern?',
+    'cargos.enBreve.fiscalizan.cifra': '{n} de {total}',
+    'cargos.enBreve.fiscalizan.cifraNota': 'sense àrees delegades',
+    'cargos.enBreve.fiscalizan.frase':
+      'No dirigixen cap àrea: voten en el ple i tenen dret a preguntar al govern.',
+    'cargos.enBreve.fiscalizan.partidos': 'Són de {n} partits: {lista}.',
+    'cargos.enBreve.fiscalizan.partido': 'Tots són de {partido}.',
+    'cargos.enBreve.fiscalizan.ancla': 'Qui fiscalitza ↓',
+    'cargos.enBreve.buscador.pregunta': 'A qui li pregunte per…?',
+    'cargos.enBreve.buscador.asunto': 'Sobre «{tema}»:',
+    'cargos.enBreve.buscador.frase':
+      'Escriu un assumpte i et diem quina àrea el porta i qui la té hui.',
+    'cargos.enBreve.buscador.etiqueta': 'Assumpte',
+    'cargos.enBreve.buscador.ejemplos': 'Per exemple: {ejemplos}',
+    'cargos.enBreve.buscador.lleva': 'El porta {quien}, en l’àrea «{cargo}».',
+    'cargos.enBreve.buscador.llevan': 'El porten {quien}, en l’àrea «{cargo}».',
+    'cargos.enBreve.buscador.razon': 'L’atribució la fem nosaltres. {razon}',
+    'cargos.enBreve.buscador.competencia':
+      'És a qui es pregunta: tindre una àrea delegada no és respondre de cada cas.',
+    'cargos.enBreve.buscador.escribele': 'Escriu-li:',
+    'cargos.enBreve.buscador.congelado':
+      'És de l’àrea «{cargo}». Durant el període electoral no posem ací el nom de qui la porta: és en «Qui dirigix què».',
+    'cargos.enBreve.buscador.sinTitular':
+      'Hui no podem dir qui el porta: l’àrea «{cargo}» ja no figura en la llista de càrrecs.',
+    'cargos.enBreve.buscador.sinAsignar':
+      'Cap regidor té delegada esta àrea: pregunta en el registre general.',
+    'cargos.enBreve.buscador.varios': 'Quin d’estos?',
+    'cargos.enBreve.buscador.ninguno':
+      'No el tenim en la llista. Les àrees de cada regidor són en «Qui dirigix què».',
+    'cargos.enBreve.buscador.ancla': 'Les àrees de cada regidor ↓',
     'cargos.bajas.title': 'Ja no formen part de la corporació',
     'cargos.bajas.note':
       'Es conserven amb la data de cessament i l’acta que la recull. Res en present —retribució, àrees, queixes, encaix— es pinta sobre qui ja no ocupa l’escó.',
@@ -3937,26 +5643,27 @@ export const CATALOGUE = {
     'cargos.oposicion.title': 'Qui fiscalitza',
     'cargos.oposicion.nota':
       'La seua fitxa està buida de gestió per institució, no per falta de dades. El que sí que tenen és vot en el ple i dret a preguntar.',
-    'cargos.plantilla.eyebrow': 'Una altra cosa · no són els càrrecs electes',
-    'cargos.plantilla.title': 'Plantilla municipal',
-    'cargos.plantilla.personas': 'persones empleades',
-    'cargos.plantilla.plazas': 'places autoritzades',
-    'cargos.plantilla.mujeres': 'dones',
-    'cargos.plantilla.hombres': 'hòmens',
-    'cargos.plantilla.fuenteSexo':
-      'El desglossament per sexe és l’última xifra publicada, i la seua font és un periòdic comarcal, no l’ajuntament:',
+    'cargos.lista.titulo': 'Els {n} regidors',
+    'cargos.lista.intro':
+      'Qui governa i quines àrees porta cadascú, i qui no governa. Cada nom obri la seua fitxa.',
+    'cargos.lista.saltar': 'Les targetes completes ↓',
+    'cargos.lista.gobiernan': 'Governen · {n}',
+    'cargos.lista.noGobiernan': 'No governen · {n} · sense àrees delegades',
+    'cargos.lista.lleva': 'Porta: {areas}',
+    'cargos.plantilla.puntero':
+      'La plantilla municipal —les persones que treballen a l’Ajuntament, que no són càrrecs electes— és a',
     'cargos.fuentes':
-      'Fonts: corporació i fotografies de ribarroja.es · retribucions fixades en l’acord de ple de {acuerdo} · imports percebuts de l’ISPA, Ministeri d’Hisenda i Funció Pública. Padró actualitzat el {fecha}.',
+      'Fonts: corporació i fotografies de ribarroja.es · retribucions fixades en l’acord de ple de {acuerdo} · imports percebuts de l’ISPA, Ministeri d’Hisenda i Funció Pública. Llista de càrrecs actualitzada el {fecha}.',
     'cargos.detalle.baja.banner':
       'Ja no forma part de la corporació: {motivo}. El Ple en va prendre raó el {fecha}.',
     'cargos.detalle.baja.fuente': 'Font',
     'cargos.detalle.portfolios.title': 'Regidories que gestiona',
-    'cargos.detalle.promesas.eyebrow': 'Atribució de grup',
-    'cargos.detalle.promesas.title': 'Promeses del grup parlamentari',
+    'cargos.detalle.promesas.eyebrow': 'Atribució al partit',
+    'cargos.detalle.promesas.title': 'Promeses del partit',
     'cargos.detalle.promesas.viewAll': 'Veure tracker complet →',
-    'cargos.detalle.promesas.empty': 'Sense promeses documentades per a este grup.',
+    'cargos.detalle.promesas.empty': "Sense promeses documentades d'este partit.",
     'cargos.detalle.promesas.noDisponible':
-      'No s’ha pogut carregar el registre de promeses; no significa que el grup no en tinga cap.',
+      'No s’ha pogut carregar el registre de promeses; no significa que el partit no en tinga cap.',
     'cargos.detalle.promesas.more': 'Veure {n} promeses més →',
     'cargos.detalle.agenda.eyebrow': "Punts de l'ordre del dia",
     'cargos.detalle.agenda.title': 'Assumptes portats al ple per les seues regidories',
@@ -3969,7 +5676,7 @@ export const CATALOGUE = {
     'cargos.detalle.quejas.viewAll': 'Veure canal complet →',
     'cargos.detalle.quejas.empty': 'Sense queixes assignades actualment.',
     'cargos.detalle.methodology':
-      "Les promeses s'atribueixen a nivell de grup parlamentari, no a persones. Els punts de l'ordre del dia es compten quan la regidoria proposant coincideix amb una àrea assignada.",
+      "Les promeses s'atribueixen al partit, no a persones. Els punts de l'ordre del dia es compten quan la regidoria proposant coincideix amb una àrea assignada.",
     'cargos.detalle.methodology.link': 'Llegir metodologia →',
 
     'encaje.eyebrow': 'Encaix declarat',
@@ -4003,6 +5710,11 @@ export const CATALOGUE = {
     'encaje.sinDelegacion.label': 'Sense delegació d’àrea',
     'encaje.sinDelegacion.note':
       'No dirigeix cap regidoria, així que no hi ha àrea amb què comparar. El bloc en blanc reflecteix qui governa, no qui està format.',
+    'encaje.sinDelegacion.seccion':
+      'No dirigeixen cap regidoria, així que en «Encaix declarat» no hi ha àrea amb què comparar. El bloc en blanc reflecteix qui governa, no qui està format.',
+    'encaje.seccion.autodeclarada':
+      'En «Encaix declarat», el que citen les targetes procedeix del CV que publica la mateixa persona; cap font independent no ho corrobora.',
+    'encaje.card.marca.autodeclarada': 'CV declarat per la persona',
     'encaje.sinRevisar.label': 'Encara sense revisar',
     'encaje.sinRevisar.note':
       'Dirigeix una àrea i encara no hem revisat quina formació i experiència declara. El buit és nostre, no seu: no diu res d’aquesta persona, només que encara no hem fet la feina.',
@@ -4015,13 +5727,13 @@ export const CATALOGUE = {
     'encaje.ley.title': 'Què exigeix la llei per a cada lloc',
     'encaje.ley.titulacion': 'Titulació exigida',
     'encaje.ley.ninguna': 'cap',
-    'departamentos.encaje':
-      'De {cargos} regidories amb delegació, en {conFormacion} el responsable declara formació del camp de l’àrea i en {sinRelacion} el que declara correspon a una altra matèria.',
 
     'departamentos.eyebrow': 'Rendició de comptes',
     'departamentos.title': 'Departaments · compromisos i terminis',
     'departamentos.subtitle':
       'Seguiment per regidoria dels acords aprovats en ple i de les promeses amb termini. Les votacions transcrites són el fet primari; les promeses són secundàries.',
+    'departamentos.reglas':
+      "La casella «{casilla}» d'una regidoria ix amb «—» fins que almenys una de les seues queixes ha arribat al registre de l'Ajuntament: fins aleshores no li deu cap resposta. Un termini vençut s'assenyala com a avís; mai canvia l'estat d'un acord ni d'una promesa.",
     'departamentos.card.responsable': 'Responsable',
     'departamentos.card.sinResponsable': 'Sense regidor/a assignat',
     'departamentos.card.votes': 'Vots',
@@ -4055,18 +5767,16 @@ export const CATALOGUE = {
     'departamentos.detalle.barra.resto': 'acarades · {total} en total',
     'departamentos.detalle.barra.sinContraste': 'Sense contrast',
     'departamentos.detalle.empty.votes':
-      "0 vots transcrits per a aquesta regidoria — contribueix via `npm run pleno-vote` o la plantilla d'issue.",
+      "Encara no hem transcrit cap votació d'aquesta regidoria. Quan se'n transcriga alguna, apareixerà ací.",
+    'departamentos.detalle.error.votes':
+      "No s'han pogut carregar les votacions; no vol dir que no n'hi haja cap de transcrita.",
     'departamentos.detalle.empty.promesas': 'Sense promeses registrades per a aquesta regidoria.',
     'departamentos.detalle.empty.quejas':
       'Sense queixes ciutadanes actives per a aquesta regidoria.',
     'plazo.vencido': "termini vençut · sense evidència d'execució",
     'plazo.hint':
       "Data de compromís superada sense que s'haja registrat evidència d'execució. L'estat editorial NO canvia automàticament.",
-    'liveTicker.plazosVencidos': 'terminis vençuts',
-    'liveTicker.plazosVencidos.aria':
-      '{n} compromisos municipals amb termini vençut sense evidència d’execució — obrir el tauler de departaments',
-    'liveTicker.plazosVencidos.aria.uno':
-      'un compromís municipal amb termini vençut sense evidència d’execució — obrir el tauler de departaments',
+    'departamentos.plazosVencidos': 'terminis vençuts',
 
     // Accessibilitat
     'a11y.skipToContent': 'Saltar al contingut',
@@ -4079,6 +5789,41 @@ export const CATALOGUE = {
     'landing.masthead.kicker': 'CivicPulse · Butlletí',
     'landing.masthead.title': 'El Mirador',
     'landing.masthead.tagline': 'Diari cívic · Riba-roja de Túria',
+    'landing.masthead.proposito':
+      'CivicPulse mostra qui dirigeix el teu ajuntament, què fa i quant costa — amb una font per a cada xifra.',
+    'landing.enBreve.titulo': 'El teu ajuntament en 30 segons',
+    'landing.enBreve.intro':
+      "L'essencial, en quatre preguntes. Cada resposta enllaça amb la pàgina que la demostra.",
+    'landing.enBreve.saltar': 'Ometre el resum ↓',
+    'landing.enBreve.ver': 'Vore el detall →',
+    'landing.enBreve.manda.pregunta': "Qui mana a l'Ajuntament?",
+    'landing.enBreve.manda.cifra': '{escanos} dels {total}',
+    'landing.enBreve.manda.cifraNota': "regidors en el grup de l'alcalde",
+    'landing.enBreve.manda.frase': "L'alcalde és {alcalde} ({partido}).",
+    'landing.enBreve.manda.figura': '{escanos} de {total} regidors',
+    'landing.enBreve.dinero.pregunta': 'Quants diners va tindre en {year}, i quants en va gastar?',
+    'landing.enBreve.dinero.tope':
+      'És el que podia gastar: un [[creditoDefinitivo|límit del pressupost]], no una despesa.',
+    'landing.enBreve.dinero.sinGastado': 'Encara no tenim el que va gastar eixe any.',
+    'landing.enBreve.dinero.cifraNota': 'gastats en {year}',
+    'landing.enBreve.dinero.topeCifra':
+      'Podia gastar {limite}: un [[creditoDefinitivo|límit del pressupost]], no una despesa.',
+    'landing.enBreve.dinero.pregunta.enCurso':
+      'Quants diners té en {year}, i quants en porta gastats?',
+    'landing.enBreve.dinero.cifraNota.enCurso': 'gastats en el que va de {year}',
+    'landing.enBreve.dinero.topeCifra.enCurso':
+      'Pot gastar {limite}: un [[creditoDefinitivo|límit del pressupost]], no una despesa.',
+    'landing.enBreve.barrio.puente':
+      "El mapa d'esta pàgina en situa {mapa} de cada 100 €, i no {n}, perquè compta una altra cosa: els contractes que nomenen un lloc concret, com un carrer o un col·legi, estiguen o no en un barri.",
+    'landing.enBreve.barrio.menosDeUno': "menys d'1",
+    'landing.enBreve.pleno.pregunta': "Què es va decidir en l'últim ple?",
+    'landing.enBreve.pleno.puntos': "Va tractar {n} punts de l'ordre del dia.",
+    'landing.enBreve.pleno.puntos.uno': "Va tractar un punt de l'ordre del dia.",
+    'landing.enBreve.pleno.sinPuntos': 'Encara no hem recollit el seu ordre del dia.',
+    'landing.enBreve.pleno.votos': "Hem transcrit {n} votacions d'eixa sessió.",
+    'landing.enBreve.pleno.votos.una': "Hem transcrit una votació d'eixa sessió.",
+    'landing.enBreve.pleno.sinVotos': 'Encara no hem transcrit cap de les seues votacions.',
+    'landing.enBreve.pleno.aviso': "Pot haver-n'hi més: només comptem les que hem transcrit.",
     'landing.queja.kicker': 'Veu ciutadana · canal directe',
     'landing.queja.title': 'Denuncia un clot en 10 segons.',
     'landing.queja.body1': 'Obri el bot de Telegram, envia',
@@ -4110,19 +5855,21 @@ export const CATALOGUE = {
     'landing.reportajes.all': 'Tots els reportatges →',
     'landing.reportajes.piece': 'peça',
     'landing.reportajes.pieces': 'peces',
-    'landing.reportajes.correction': 'correcció publicada',
-    'landing.reportajes.corrections': 'correccions publicades',
+    'reportajes.correcciones.una': 'Amb 1 [[correccion|correcció publicada]]',
+    'reportajes.correcciones': 'Amb {n} [[correccion|correccions publicades]]',
     'landing.alcalde.role': 'Alcalde',
     'landing.empleo.all': 'Veure totes les ofertes →',
     'landing.promesas.blurb':
-      'Compromisos públics documentats, cadascun amb la seua cita i la font que la recull: el document oficial o la notícia. Sense judicis automàtics de compliment.',
+      'Compromisos públics documentats, cadascun amb la seua cita i la font que la recull: el document oficial o la notícia.',
+    'landing.promesas.delAlcaldia': "{n} promeses del partit de l'alcaldia ({partido})",
+    'landing.promesas.delAlcaldia.una': "1 promesa del partit de l'alcaldia ({partido})",
+    'landing.promesas.porPartido': '{n} promeses, per partit:',
     'landing.promesas.cta': 'Veure el tracker complet →',
     'landing.rendicion.blurb':
-      "Reunix per regidoria els vots de ple, les promeses electorals i les queixes del canal, que només es compten com a pendents de resposta quan han arribat al registre de l'ajuntament. Un termini vençut es marca com a avís editorial — l'estat mai es modifica de manera automàtica.",
+      'Reunix per regidoria els vots de ple, les promeses electorals i les queixes del canal.',
     'landing.rendicion.cta': 'Veure el tauler per departament →',
-    'landing.rendicion.concejalias': 'Regidories',
-    'landing.rendicion.conResponsable': 'Amb responsable',
-    'landing.rendicion.concejales': 'Regidors',
+    'landing.rendicion.cobertura': '{total} regidories; en {n} consta qui la porta.',
+    'landing.rendicion.total': '{total} regidories.',
     'landing.escanos': 'escons',
     'landing.titulares': 'titulars',
     'landing.medios': 'mitjans',
@@ -4130,41 +5877,58 @@ export const CATALOGUE = {
     // Lo que la portada escribía a mano fuera del catálogo: ver la nota castellana.
     'landing.kpi.poblacion': 'Població',
     'landing.kpi.poblacionAnio': 'Població {anio}',
-    'landing.kpi.poblacion.sub': '10 anys · INE',
+    'landing.kpi.poblacion.sub': 'en 10 anys · INE',
     'landing.kpi.poblacion.subSinDato': 'INE Padró',
     'landing.kpi.presupuesto': 'Pressupost',
-    'landing.kpi.presupuestoAnio': 'Pressup. {anio}',
-    'landing.kpi.presupuesto.definitivo': 'Ajunt. · definitiu',
-    'landing.kpi.presupuesto.ejec': '{pct} % exec.',
-    'landing.kpi.presupuesto.aprobado': 'CONPREL · aprovat',
+    'landing.kpi.presupuestoAnio': 'Pressupost {anio}',
+    'landing.kpi.presupuesto.definitivo': 'límit de despesa',
+    'landing.kpi.presupuesto.ejec': 'gastat el {pct} %',
+    'landing.kpi.presupuesto.ejecFecha': 'gastat el {pct} % a {fecha}',
+    'landing.kpi.presupuesto.aprobado': "aprovat · Ministeri d'Hisenda",
+    'landing.kpi.presupuesto.titulo':
+      "{valor} de crèdit definitiu en {anio}, dels quals s'han gastat {ejecutado}. Estat d'execució de l'Ajuntament.",
+    'landing.kpi.presupuesto.tituloAprobado':
+      "{valor} aprovats per a {anio}, segons la base CONPREL del Ministeri d'Hisenda.",
     'landing.kpi.sinDato': 'sense dada',
-    'landing.kpi.personal': 'Pressup. personal',
-    'landing.kpi.personal.sub': 'Cap. 1 econòmic',
-    'landing.kpi.contratos': 'Contractes adj.',
-    'landing.kpi.contratosAnios': 'Contractes adj. {anios}',
-    'landing.kpi.contratos.sub': 'acumulat · Gobierto/PLACSP',
+    'landing.kpi.personal': 'Per al personal',
+    'landing.kpi.personal.sub': 'del pressupost {anio}',
+    'landing.kpi.personal.titulo':
+      '{valor} del capítol 1, despeses de personal, dels {total} del pressupost {anio}.',
+    'landing.kpi.contratos': 'Contractes adjudicats',
+    'landing.kpi.contratos.sub': '{n} en {anios}, sumats',
+    'landing.kpi.contratos.subSinAnios': '{n}, sumats',
+    'landing.kpi.contratos.titulo':
+      '{total}: la suma dels contractes adjudicats en {anios} que publiquen el seu import. Gobierto i Plataforma de Contractació del Sector Públic.',
     'landing.kpi.paro': 'Atur',
-    'landing.kpi.paroPeriodo': 'Atur {periodo}',
-    'landing.kpi.paro.sub': 'SEPE · atur registrat',
+    'landing.kpi.paroPeriodo': 'Atur · {periodo}',
+    'landing.kpi.paro.sub': 'respecte al mes anterior · SEPE',
+    'landing.kpi.paro.subDesde': 'respecte a {periodo} · SEPE',
+    'landing.kpi.paro.subSinPrevio': 'atur registrat · SEPE',
     'landing.kpi.pleno': 'Últim ple',
     'landing.kpi.pleno.sesiones': '{n} sessions',
     'landing.alcalde.promesas': 'promeses',
-    'landing.alcalde.promesas.title': 'Promeses documentades del grup {grupo}',
+    'landing.alcalde.promesas.title': 'Promeses documentades del partit {grupo}',
     'landing.alcalde.puntos': 'punts en ple',
     'landing.alcalde.puntos.title':
       'Punts de l’orde del dia gestionats per regidories de l’Alcalde',
     'landing.alcalde.gobierno': 'Govern municipal',
-    'landing.alcalde.definitivo': 'crèdit definitiu',
+    'landing.alcalde.tope': 'límit del pressupost {anio}',
     'landing.alcalde.definitivo.title':
-      'Crèdit definitiu de l’exercici: allò aprovat més les modificacions de crèdit, segons l’estat d’execució de l’Ajuntament. Al costat, les obligacions reconegudes.',
-    'landing.alcalde.aprobado': 'pressupost aprovat',
+      '{valor} de crèdit definitiu en {anio} —allò aprovat més les modificacions de crèdit—, dels quals s’han gastat {ejecutado} (obligacions reconegudes). Estat d’execució de l’Ajuntament.',
+    'landing.alcalde.gastados': 'gastats',
+    'landing.alcalde.gastadosA': 'gastats a {fecha}',
+    'landing.alcalde.aprobado': 'pressupost aprovat {anio}',
     'landing.alcalde.aprobado.title':
-      'Pressupost de despeses aprovat de l’exercici, segons CONPREL (Ministeri d’Hisenda). No és allò executat.',
-    'landing.alcalde.ejecutado': 'executat',
-    'landing.alcalde.contratos': 'contractes acumulats',
+      '{valor} de pressupost de despeses aprovat per a {anio}, segons CONPREL (Ministeri d’Hisenda). No és allò gastat.',
+    'landing.alcalde.contratos': 'contractes adjudicats',
+    'landing.alcalde.contratosEn': 'contractes adjudicats en {anios}',
+    'landing.alcalde.sumados': 'sumats',
     'landing.alcalde.contratos.title':
-      'Contractes adjudicats registrats al portal de contractació, no sols els d’este mandat',
-    'landing.alcalde.subvenciones': 'subvencions',
+      '{total}: la suma dels contractes adjudicats en {anios} que publiquen el seu import, no sols els d’este mandat. Gobierto i Plataforma de Contractació del Sector Públic.',
+    'landing.alcalde.contratos.titleSinAnios':
+      '{total}: la suma dels contractes adjudicats que publiquen el seu import, no sols els d’este mandat. Gobierto i Plataforma de Contractació del Sector Públic.',
+    'landing.alcalde.subvenciones': 'subvencions concedides',
+    'landing.alcalde.subvencionesEn': 'subvencions concedides en {anios}',
     'landing.alcalde.subvenciones.title': 'Subvencions concedides per l’Ajuntament (registre BDNS)',
     'landing.promesas.congelado': 'LOREG · congelat',
     'landing.topbar.edicion': 'ed. matí',

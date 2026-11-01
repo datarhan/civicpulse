@@ -80,14 +80,37 @@ describe('/cargos/:slug · el dinero de sus áreas dice de qué años es', () =>
     expect(entradilla.textContent).toContain('no es la contratación de su mandato')
   })
 
-  it('con contratos de un solo año, un solo año (el control)', async () => {
+  // «Dinero adjudicado en 2024» junto a «sumados a lo largo de todo el periodo» se
+  // leía como dos periodos: o que sólo se miró 2024, o que la cifra no era de 2024.
+  // Las dos son ciertas —se suma todo el registro, y todo cae en 2024— y el título
+  // tiene que decir la segunda (revisión lectora de /cargos, 29-10-2026).
+  it('con contratos de un solo año, dice que todos son de ese año (el control)', async () => {
     monta([
       contrato('u1', 'architecture', '2024-01-10'),
       contrato('v1', 'real_estate', '2024-11-30'),
     ])
     expect(
-      await screen.findByText('Dinero adjudicado en 2024 en las concejalías que hoy dirige'),
+      await screen.findByText(
+        'Dinero adjudicado en las concejalías que hoy dirige: todos los contratos son de 2024',
+      ),
     ).toBeInTheDocument()
+    const entradilla = await screen.findByText(/^Importes adjudicados/)
+    expect(entradilla.textContent).toContain('a lo largo de todo el registro')
+    expect(entradilla.textContent).not.toMatch(/periodo/)
+  })
+
+  // Un contrato sin fecha suma euros y no tiene año (department-stats.js): con él
+  // dentro, «todos los contratos son de 2024» sería falso. Hoy no hay ningún cargo
+  // así —el único área de un solo año, Bienestar animal, tiene su contrato fechado—,
+  // y por eso lo prueba una fila escrita a mano.
+  it('con un año y un contrato sin fecha, no dice «todos»: dice de cuáles habla', async () => {
+    monta([contrato('u1', 'architecture', '2024-01-10'), contrato('v1', 'real_estate', null)])
+    expect(
+      await screen.findByText(
+        'Dinero adjudicado en las concejalías que hoy dirige: los contratos con fecha son de 2024',
+      ),
+    ).toBeInTheDocument()
+    expect(screen.queryByText(/todos los contratos son de/)).toBeNull()
   })
 
   it('en valencià, el periodo en valencià', async () => {

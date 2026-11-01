@@ -1,4 +1,5 @@
-import { curvaBanda, ticksLog, etiquetaEuros, etiquetaHabitantes } from './embudo-geometria'
+import { curvaBanda, ticksLog, etiquetaHabitantes } from './embudo-geometria'
+import { eurosBreves } from '../../lib/formatters'
 
 /**
  * El embudo: cada municipio de la muestra como punto sin nombre, la banda de
@@ -18,7 +19,8 @@ import { curvaBanda, ticksLog, etiquetaEuros, etiquetaHabitantes } from './embud
  *   modelo, reproduce también el dibujo.
  */
 const ALTO = 220
-const MARGEN = { arriba: 8, abajo: 22, izq: 46, der: 10 }
+// `izq` cabe «100.000 €», el rótulo más ancho del eje en euros (antes «100 k€»).
+const MARGEN = { arriba: 8, abajo: 22, izq: 70, der: 10 }
 
 export function Embudo({ modelo, muestra, propia, formateaEuros }) {
   if (!modelo || !muestra?.length) return null
@@ -122,7 +124,7 @@ export function Embudo({ modelo, muestra, propia, formateaEuros }) {
             className="mono"
             style={{ fontSize: 11, fill: 'var(--ink50)' }}
           >
-            {etiquetaEuros(t)}
+            {eurosBreves(t)}
           </text>
         </g>
       ))}

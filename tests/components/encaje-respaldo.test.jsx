@@ -1,7 +1,12 @@
 import { describe, expect, it } from 'vitest'
 import { render, screen, waitFor } from '@testing-library/react'
 import { MemoryRouter } from 'react-router-dom'
-import { EncajeCard, EncajeMatrix } from '../../src/components/EncajeDeclarado'
+import {
+  EncajeCard,
+  EncajeMatrix,
+  ID_NOTA_RESPALDO,
+  NotaRespaldoSeccion,
+} from '../../src/components/EncajeDeclarado'
 import { installFetchMock } from '../setup/mockFetch'
 
 /**
@@ -143,6 +148,85 @@ describe('encaje — the backing is stated once, not once per chip', () => {
     })
     await waitFor(() => expect(screen.getAllByText(RESPALDO_SENTENCE)).toHaveLength(1))
     expect(screen.queryAllByText('autodeclarada')).toHaveLength(0)
+  })
+})
+
+// One level up (auditoría de las dos lecturas, §3, punto 2): what every card of
+// a /cargos section would repeat is said once in the section head, and the card
+// keeps a short mark that links to it. Without the props, everything above holds.
+describe('encaje — said once per section, with a mark on the card', () => {
+  const MARCA = 'CV declarado por la persona'
+  const SECCION_SENTENCE = /lo que citan las tarjetas procede del CV/i
+  const SIN_DELEGACION_NOTE = /no hay área con la que comparar/i
+
+  it('a card whose backing the section states shows the mark, not the sentence', async () => {
+    mount(<EncajeCard official={OFFICIAL} respaldoEnSeccion="autodeclarada" />, {
+      rows: [row('Urbanismo', 'autodeclarada', 'autodeclarada')],
+    })
+    await waitFor(() => expect(screen.getByText(MARCA)).toBeInTheDocument())
+    expect(screen.queryByText(RESPALDO_SENTENCE)).toBeNull()
+    expect(screen.getByText(MARCA).closest('a').getAttribute('href')).toBe(`#${ID_NOTA_RESPALDO}`)
+  })
+
+  it('a card that disagrees with its section keeps its own sentence', async () => {
+    mount(<EncajeCard official={OFFICIAL} respaldoEnSeccion="autodeclarada" />, {
+      rows: [row('Urbanismo', 'corroborada', 'corroborada')],
+    })
+    await waitFor(() =>
+      expect(
+        screen.getByText(/lo respalda además alguna fuente independiente/i),
+      ).toBeInTheDocument(),
+    )
+    expect(screen.queryByText(MARCA)).toBeNull()
+  })
+
+  it('a card that cites nothing keeps what it compared, and gets no mark', async () => {
+    // The section sentence speaks of «lo que citan las tarjetas»; a card that
+    // cites nothing is not covered by it, so it keeps its own line.
+    mount(<EncajeCard official={OFFICIAL} respaldoEnSeccion="autodeclarada" />, {
+      rows: [row('Urbanismo', null, null)],
+    })
+    await waitFor(() => expect(screen.getByText(COMPARADO_SENTENCE)).toBeInTheDocument())
+    expect(screen.queryByText(MARCA)).toBeNull()
+  })
+
+  it('a backing with no section copy is never moved off the card', async () => {
+    mount(
+      <>
+        <NotaRespaldoSeccion value="corroborada" />
+        <EncajeCard official={OFFICIAL} respaldoEnSeccion="corroborada" />
+      </>,
+      { rows: [row('Urbanismo', 'corroborada', 'corroborada')] },
+    )
+    await waitFor(() =>
+      expect(
+        screen.getByText(/lo respalda además alguna fuente independiente/i),
+      ).toBeInTheDocument(),
+    )
+    expect(screen.queryByText(MARCA)).toBeNull()
+    expect(document.getElementById(ID_NOTA_RESPALDO)).toBeNull()
+  })
+
+  it('the section note says it once, under the anchor the marks point to', async () => {
+    mount(<NotaRespaldoSeccion value="autodeclarada" />)
+    const nota = screen.getByText(SECCION_SENTENCE)
+    expect(nota.id).toBe(ID_NOTA_RESPALDO)
+    expect(screen.getAllByText(SECCION_SENTENCE)).toHaveLength(1)
+    // With no shared backing, the section says nothing and every card its own.
+    mount(<NotaRespaldoSeccion value={null} />)
+    expect(screen.getAllByText(SECCION_SENTENCE)).toHaveLength(1)
+  })
+
+  it('an opposition card keeps its label and drops the reason the section gives', async () => {
+    const sinAreas = { ...OFFICIAL, portfolios: [] }
+    mount(<EncajeCard official={sinAreas} notaEnSeccion />)
+    await waitFor(() => expect(screen.getByText('Sin delegación de área')).toBeInTheDocument())
+    expect(screen.queryByText(SIN_DELEGACION_NOTE)).toBeNull()
+  })
+
+  it('without the section, the opposition card still explains its blank', async () => {
+    mount(<EncajeCard official={{ ...OFFICIAL, portfolios: [] }} />)
+    await waitFor(() => expect(screen.getByText(SIN_DELEGACION_NOTE)).toBeInTheDocument())
   })
 })
 

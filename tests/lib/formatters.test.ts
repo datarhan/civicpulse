@@ -10,6 +10,9 @@ import {
   rellena,
   porcentajeLegible,
   decimal,
+  euros,
+  eurosExactos,
+  eurosBreves,
 } from '../../src/lib/formatters'
 import { CATALOGUE } from '../../src/i18n'
 
@@ -275,6 +278,100 @@ describe('decimal', () => {
     expect(decimal(null)).toBe('')
     expect(decimal(undefined)).toBe('')
     expect(decimal(Number.NaN)).toBe('')
+  })
+})
+
+/**
+ * Los euros, escritos de una sola manera (28-10-2026).
+ *
+ * La auditoría del 25-10 contó cinco formas de escribir dinero en el sitio, y el
+ * inventario de esta PR, doce: «€14.984,46», «126.1 M €» con punto inglés,
+ * «879 mil €», «19,30 M€», «€5112»… El operador fijó la convención: el símbolo
+ * detrás, los miles agrupados también con cuatro cifras, un espacio duro antes
+ * del «€» y, en los millones, un decimal y «M€» junto. Sin «mil €» ni «k€».
+ *
+ * NBSP es U+00A0: se comprueba el carácter, no un espacio cualquiera, porque el
+ * espacio normal es justo lo que dejaba el «€» solo al principio de una línea.
+ */
+const NBSP = ' '
+
+describe('euros, la lectura llana', () => {
+  it('redondea al euro y pone el símbolo detrás, con espacio duro', () => {
+    expect(euros(14984.46)).toBe(`14.984${NBSP}€`)
+    expect(euros(950)).toBe(`950${NBSP}€`)
+  })
+
+  it('agrupa también los números de cuatro cifras', () => {
+    expect(euros(5112)).toBe(`5.112${NBSP}€`)
+    expect(euros(67072869.4)).toBe(`67.072.869${NBSP}€`)
+  })
+
+  it('un cero de verdad es «0 €»; sin número, nada', () => {
+    expect(euros(0)).toBe(`0${NBSP}€`)
+    expect(euros(null)).toBe('')
+    expect(euros(undefined)).toBe('')
+    expect(euros(Number.NaN)).toBe('')
+    expect(euros(Number.POSITIVE_INFINITY)).toBe('')
+  })
+
+  it('una cadena no es un importe: «» no se convierte en «0 €»', () => {
+    // @ts-expect-error — lo que llega de un JSON sin validar
+    expect(euros('')).toBe('')
+    // @ts-expect-error — un número escrito como texto tampoco
+    expect(euros('14984')).toBe('')
+  })
+
+  it('un negativo lleva su signo, y −0,4 no se escribe «-0 €»', () => {
+    expect(euros(-1234)).toBe(`-1.234${NBSP}€`)
+    expect(euros(-0.4)).toBe(`0${NBSP}€`)
+  })
+})
+
+describe('eurosExactos, cuando el céntimo es el dato', () => {
+  it('siempre dos decimales, con coma, y miles agrupados', () => {
+    expect(eurosExactos(14984.46)).toBe(`14.984,46${NBSP}€`)
+    expect(eurosExactos(5112)).toBe(`5.112,00${NBSP}€`)
+    expect(eurosExactos(0.01)).toBe(`0,01${NBSP}€`)
+  })
+
+  it('sin número, nada', () => {
+    expect(eurosExactos(null)).toBe('')
+    expect(eurosExactos(undefined)).toBe('')
+    expect(eurosExactos(Number.NaN)).toBe('')
+  })
+})
+
+describe('eurosBreves, donde falta sitio', () => {
+  it('desde el millón, un decimal siempre y «M€» junto', () => {
+    expect(eurosBreves(19304000)).toBe(`19,3${NBSP}M€`)
+    expect(eurosBreves(126100000)).toBe(`126,1${NBSP}M€`)
+    expect(eurosBreves(41000000)).toBe(`41,0${NBSP}M€`)
+    expect(eurosBreves(1000000)).toBe(`1,0${NBSP}M€`)
+  })
+
+  it('los miles se escriben enteros: ni «mil €» ni «k€»', () => {
+    expect(eurosBreves(879000)).toBe(`879.000${NBSP}€`)
+    expect(eurosBreves(5112)).toBe(`5.112${NBSP}€`)
+    expect(eurosBreves(999999.4)).toBe(`999.999${NBSP}€`)
+  })
+
+  it('lo que redondea al millón ya es un millón', () => {
+    // Si no, «1.000.000 €» y «1,0 M€» serían la misma cifra escrita de dos maneras.
+    expect(eurosBreves(999999.6)).toBe(`1,0${NBSP}M€`)
+  })
+
+  it('agrupa los millares de millones', () => {
+    expect(eurosBreves(1234567890)).toBe(`1.234,6${NBSP}M€`)
+  })
+
+  it('un negativo grande también va en millones', () => {
+    expect(eurosBreves(-2500000)).toBe(`-2,5${NBSP}M€`)
+  })
+
+  it('sin número, nada', () => {
+    expect(eurosBreves(null)).toBe('')
+    expect(eurosBreves(undefined)).toBe('')
+    expect(eurosBreves(Number.NaN)).toBe('')
   })
 })
 

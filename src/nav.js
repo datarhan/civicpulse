@@ -176,6 +176,9 @@ export const NAV = [
     group: 'ciudadania',
     descKey: 'nav.desc.empleoPublico',
   },
+  // El índice de los experimentos (auditoría de las dos lecturas, §23). Hasta el
+  // 29-10-2026 esta ruta ERA el laboratorio de prensa, y quien entraba no veía
+  // qué más había dentro.
   {
     to: '/laboratorio',
     id: 'laboratorio',
@@ -184,6 +187,15 @@ export const NAV = [
     icon: Ic.lab,
     group: 'laboratorio',
     descKey: 'nav.desc.laboratorio',
+  },
+  {
+    to: '/laboratorio/prensa',
+    id: 'prensa',
+    labelKey: 'nav.prensa',
+    label: 'Prensa',
+    icon: Ic.lab,
+    group: 'laboratorio',
+    descKey: 'nav.desc.prensa',
   },
   // La frontera NO va tras bandera. Es el experimento más sujeto a
   // malinterpretación de todo el sitio y por eso la página entera está
@@ -254,6 +266,9 @@ export const NAV = [
           icon: Ic.settings ?? Ic.warn,
           group: 'laboratorio',
           descKey: 'nav.desc.curator',
+          // Herramientas del curador, no experimentos: el índice del laboratorio
+          // (pages/Laboratorio.jsx) no las enseña.
+          soloDesarrollo: true,
         },
         {
           to: '/despiece',
@@ -263,6 +278,7 @@ export const NAV = [
           icon: Ic.lab ?? Ic.settings,
           group: 'laboratorio',
           descKey: 'nav.desc.despiece',
+          soloDesarrollo: true,
         },
       ]
     : []),

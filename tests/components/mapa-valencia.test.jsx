@@ -58,22 +58,17 @@ import {
   lectura,
   masLargasPrimero,
 } from '../setup/castellano'
+import { eurosBreves } from '../../src/lib/formatters'
 
 /**
- * La unidad del dinero compacto, leída del ICU de ESTE runtime y no escrita a mano.
- * El Node 20.12 del portátil (CLDR 44) escribe «2 M€», y el Node 20.20 de la CI
- * (CLDR 48), «2 M €», con un espacio duro antes del euro. Escrita «M€», la guarda
- * pasaba en el portátil y en la CI leía cada cifra en millones como castellano. Las
- * opciones son las de los tres formateadores del mapa, que escriben las cifras en
- * es-ES en los dos idiomas.
+ * La unidad de los millones, leída de `eurosBreves` —el formato con el que el mapa
+ * escribe el dinero en los dos idiomas— y no escrita a mano.
+ *
+ * Hasta el 28-10-2026 salía del compacto de Intl, y por eso se leía del ICU del
+ * runtime: el Node 20.12 del portátil (CLDR 44) escribía «2 M€» y el Node 20.20 de
+ * la CI (CLDR 48), «2 M €». `eurosBreves` se monta a mano y no deriva así.
  */
-const DINERO_COMPACTO = new Intl.NumberFormat('es-ES', {
-  style: 'currency',
-  currency: 'EUR',
-  maximumFractionDigits: 1,
-  notation: 'compact',
-})
-const UNIDAD_MILLONES = DINERO_COMPACTO.format(2_000_000)
+const UNIDAD_MILLONES = eurosBreves(2_000_000)
   .replace(/^[\d.,\s]+/u, '')
   .trim()
 
@@ -506,7 +501,13 @@ const LEYENDAS = [
         onPlegar={noHaceNada}
       />
     ),
-    listo: (c) => !!c.querySelector('input[type=range]') && c.textContent.includes(UNIDAD_MILLONES),
+    // La razón en euros va desde el 26-10-2026 en el `title` de la frase de
+    // cobertura, que la lectura también lee.
+    listo: (c) =>
+      !!c.querySelector('input[type=range]') &&
+      [...c.querySelectorAll('.cp-cobertura [title]')].some((el) =>
+        el.getAttribute('title').includes(UNIDAD_MILLONES),
+      ),
   },
   {
     nombre: 'la leyenda de inundación, cargando y cuando el servicio falla',
@@ -799,7 +800,7 @@ describe('la comparación, probada', () => {
       sinTraducir([
         ['Inversión situada', 'Inversión situada'],
         [dato, dato],
-        [DINERO_COMPACTO.format(2_400_000), DINERO_COMPACTO.format(2_400_000)],
+        [eurosBreves(2_400_000), eurosBreves(2_400_000)],
         ['1.200 hab.', '1.200 hab.'],
         ['ha', 'ha'],
         [igual, igual],

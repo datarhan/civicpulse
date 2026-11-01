@@ -56,6 +56,7 @@ import {
   type Capas,
 } from './verified-rebuild'
 import { rechazarOpcionesDesconocidas } from '../src/scraper/opciones-cli'
+import { huellaDelBase } from './lib/huella-base'
 
 const PROMISES = resolve('public/data/promises.json')
 
@@ -185,6 +186,8 @@ async function main() {
   const cotejo = cotejarCompose({
     baseGeneratedAt: base.generatedAt ?? null,
     publicadoGeneratedAt: publicado.generatedAt ?? null,
+    huellaBase: huellaDelBase(base),
+    huellaPublicada: (publicado as { baseHuella?: string }).baseHuella ?? null,
   })
   if (cotejo.estado !== 'coincide') {
     salir(

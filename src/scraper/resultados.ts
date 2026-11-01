@@ -70,6 +70,14 @@ export interface IndicadorResultado {
   serie: PuntoResultado[]
   pares: ParesResultado | null
   /**
+   * La mediana del grupo AÑO A AÑO, sobre un panel fijo (los mismos municipios
+   * todos los años) y con su n. Opcional: casi ninguna fuente la da, y sin ella
+   * la página dice que del grupo sólo hay el último año. Exige `pares`.
+   */
+  paresSerie?: { anio: number; mediana: number; n: number }[] | null
+  /** Decimales con que se pinta la cifra (por defecto 1): «0,87 visitas» no es «0,9». */
+  decimales?: number
+  /**
    * La frase no-causal, obligatoria y visible: qué agrega la fuente y por qué
    * el resultado no es producto del servicio municipal.
    */
@@ -128,6 +136,27 @@ export function validarResultados(bloque: unknown): ResultadosBloque {
       if (!esNumeroFinito(p.valor) || !esNumeroFinito(p.anio)) {
         throw new Error(`[resultados] «${i.id}» con punto de serie no numérico`)
       }
+    }
+    if (i.paresSerie) {
+      if (!i.pares) throw new Error(`[resultados] «${i.id}» con serie del grupo y sin pares`)
+      for (const p of i.paresSerie) {
+        if (
+          !esNumeroFinito(p.anio) ||
+          !esNumeroFinito(p.mediana) ||
+          !esNumeroFinito(p.n) ||
+          p.n < 1
+        ) {
+          throw new Error(
+            `[resultados] «${i.id}» con un punto de la serie del grupo sin cifra o sin n`,
+          )
+        }
+      }
+    }
+    if (
+      i.decimales !== undefined &&
+      !(Number.isInteger(i.decimales) && i.decimales >= 0 && i.decimales <= 3)
+    ) {
+      throw new Error(`[resultados] «${i.id}» con decimales fuera de 0–3`)
     }
     if (i.pares) {
       if (!esNumeroFinito(i.pares.n) || i.pares.n < 1) {

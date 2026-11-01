@@ -4,6 +4,7 @@ import { Sparkline } from '../Charts'
 import { leerIndicadorMunicipal, lecturaVisible } from '../../scraper/indicador-lectura'
 import { Lectura } from './Lectura'
 import { CompetenciaDelegada } from './CompetenciaDelegada'
+import { euros } from '../../lib/formatters'
 
 const DIMENSION = {
   friccion: { label: 'fricción institucional', tone: 'warn' },
@@ -15,12 +16,7 @@ const fmt = (v, formato) => {
   if (v === null || v === undefined) return '—'
   if (formato === 'porcentaje')
     return `${(v * 100).toLocaleString('es-ES', { minimumFractionDigits: 1, maximumFractionDigits: 1 })} %`
-  if (formato === 'euros')
-    return v.toLocaleString('es-ES', {
-      style: 'currency',
-      currency: 'EUR',
-      maximumFractionDigits: 0,
-    })
+  if (formato === 'euros') return euros(v)
   if (formato === 'dias') return `${v.toLocaleString('es-ES', { maximumFractionDigits: 1 })} días`
   return v.toLocaleString('es-ES')
 }
@@ -28,7 +24,7 @@ const fmt = (v, formato) => {
 const crudo = (v, formato) =>
   formato === 'porcentaje' || formato === 'numero'
     ? v.toLocaleString('es-ES', { maximumFractionDigits: 0 })
-    : v.toLocaleString('es-ES', { style: 'currency', currency: 'EUR', maximumFractionDigits: 0 })
+    : euros(v)
 
 /**
  * Plazo de pago, fricción institucional (la X-ineficiencia de Leibenstein) y

@@ -12,6 +12,7 @@
  *
  * Puro: sin fs, sin red, sin Date. No añadir aquí nada que no lo sea.
  */
+import { plano } from './cifra-en-literal'
 
 /** Los veredictos, como VALOR y no sólo como tipo. */
 export const CLAIM_VERDICTS = [
@@ -416,16 +417,65 @@ const DESCARGO = 'Un «sin datos» no es un desmentido: la afirmación puede ser
 const PREFIJO = 'No se encontró registro en '
 const INFIJO = ' que la sostenga. '
 
+// ─── …y lo que no se miró, cuando la cita habla del presupuesto ─────────────
+//
+// El 27-10-2026 la revisión lectora leyó en /plenos/1sqj7is, bajo «en un
+// presupuesto de cuarenta y pico millones», «No se encontró registro en
+// contratos, contratos anunciados en TED y subvenciones (BDNS) que la
+// sostenga». Cada palabra es cierta, y el lector entiende que nada la sostiene:
+// el presupuesto de 2025 abre con un crédito inicial de gasto de 41.578.252 €,
+// y el presupuesto no se coteja —el bloque que decía hacerlo no comparó nunca
+// nada y se quitó (`VerifierInputs.budget`)—. Nombrar sólo lo que se miró
+// calla que la fuente que la sostendría no se miró.
+//
+// La frase lo dice cuando la cita nombra el presupuesto y lo que se miró son
+// los registros del dinero —contratos, subvenciones—: es entonces cuando «no se
+// encontró» se lee como «no existe». Sin ellos (una promesa, cotejada con las
+// promesas) la frase no habla de dinero y no hace falta. Y no cuando la cita
+// habla del presupuesto de una LICITACIÓN, que está en los contratos que sí se
+// miraron. Medido el 27-10-2026 sobre los trozos servidos: 55 tarjetas, casi
+// todas del debate de presupuestos y de la liquidación.
+
+const SIN_PRESUPUESTO = 'En el presupuesto municipal no se buscó. '
+
+/** Las palabras del presupuesto municipal, en castellano y en valenciano, sin tildes. */
+const NOMBRA_EL_PRESUPUESTO =
+  /\b(presupuest\w*|pressupost\w*|partidas?|remanentes?|romanents?|superavits?)\b/
+
+/** Los corpus del dinero: los que el camino del importe consulta. */
+const CORPUS_DEL_DINERO: readonly CorpusId[] = ['tenders', 'tenders-ted', 'bdns']
+
+/**
+ * ¿Tiene que decir la explicación que el presupuesto no se buscó? Si la cita lo
+ * nombra, si lo que se miró son registros del dinero y si el presupuesto no
+ * está entre ellos.
+ */
+export function callaElPresupuesto(
+  corpus: readonly CorpusId[],
+  literal: string | null | undefined,
+): boolean {
+  if (corpus.includes('budget') || !corpus.some((c) => CORPUS_DEL_DINERO.includes(c))) return false
+  const texto = plano(literal ?? '')
+  return NOMBRA_EL_PRESUPUESTO.test(texto) && !/\blicitaci/.test(texto)
+}
+
 /** `a`, `a y b`, `a, b y c`: los nombres como vengan. */
 function enumerar(nombres: readonly string[]): string {
   if (nombres.length === 1) return nombres[0]
   return `${nombres.slice(0, -1).join(', ')} y ${nombres[nombres.length - 1]}`
 }
 
+function armarSinRegistro(nombres: readonly string[], sinPresupuesto: boolean): string {
+  return `${PREFIJO}${enumerar(nombres)}${INFIJO}${sinPresupuesto ? SIN_PRESUPUESTO : ''}${DESCARGO}`
+}
+
 /**
  * La explicación de un `sin-datos` que no encontró nada, dicha desde lo que
  * consta como consultado. Recibe el `checkedAgainst` entero: las marcas de
  * pasada no son corpus y no se nombran.
+ *
+ * Con el `literal` de la cita, dice además que el presupuesto no se buscó
+ * cuando la cita habla de él (`callaElPresupuesto`).
  *
  * El verificador la guarda con los identificadores (`nombrar` por defecto), y
  * `esResumenSinRegistro` la reconoce así. La tarjeta la re-deriva con el rótulo
@@ -434,17 +484,18 @@ function enumerar(nombres: readonly string[]): string {
 export function resumenSinRegistro(
   checkedAgainst?: readonly unknown[] | null,
   nombrar: (id: CorpusId) => string = (id) => id,
+  literal?: string | null,
 ): string {
   const corpus = corpusReales(checkedAgainst)
   if (corpus.length === 0) return DESCARGO
-  return `${PREFIJO}${enumerar(corpus.map(nombrar))}${INFIJO}${DESCARGO}`
+  return armarSinRegistro(corpus.map(nombrar), callaElPresupuesto(corpus, literal))
 }
 
 /**
  * ¿Es un texto de esta familia —la frase fija de antes o una de
- * `resumenSinRegistro`—? Se reconoce rehaciéndolo con los nombres que lleva, no
- * por parecido: una explicación del motor que empezara igual no es nuestra y no
- * se toca.
+ * `resumenSinRegistro`, con el aviso del presupuesto o sin él—? Se reconoce
+ * rehaciéndolo con los nombres que lleva, no por parecido: una explicación del
+ * motor que empezara igual no es nuestra y no se toca.
  */
 export function esResumenSinRegistro(texto: unknown): boolean {
   if (typeof texto !== 'string') return false
@@ -452,7 +503,9 @@ export function esResumenSinRegistro(texto: unknown): boolean {
   const fin = texto.indexOf(INFIJO)
   if (!texto.startsWith(PREFIJO) || fin < 0) return false
   const nombres = texto.slice(PREFIJO.length, fin).split(/, | y /)
-  return resumenSinRegistro(nombres) === texto
+  const corpus = corpusReales(nombres)
+  if (corpus.length === 0) return false
+  return armarSinRegistro(corpus, false) === texto || armarSinRegistro(corpus, true) === texto
 }
 
 // ─── El expediente que se parece y no trae la cifra ─────────────────────────
@@ -524,6 +577,43 @@ export function esResumenCasi(texto: unknown): boolean {
  */
 export function leyoContratos(checkedAgainst?: readonly unknown[] | null): boolean {
   return corpusReales(checkedAgainst).some((c) => c === 'tenders' || c === 'tenders-ted')
+}
+
+// ─── Lo que funda un `verificado` ───────────────────────────────────────────
+//
+// Todo `verificado` automático salía con la misma frase: «Cita encontrada con
+// coincidencia fuerte en los datos municipales.». No decía qué se encontró, y
+// lo que se encuentra no es la cita: es un registro que imprime la cifra dicha
+// —con el 1 % de `IMPORTE_PRACTICAMENTE_EXACTO`— y cuyo título nombra el mismo
+// objeto. El 27-10-2026 la revisión lectora la leyó en /plenos/k4olcs encima de
+// la única fila de evidencia, rotulada «parecido con lo citado 0,85 · no mide
+// si lo confirma»: la tarjeta decía que el único número que enseñaba no medía
+// la confirmación, y no decía qué la medía. La frase dice ahora lo que se
+// cotejó, y con eso el número queda en lo que es, un parecido.
+
+/** Los registros que pueden fundar un `verificado` automático, dichos para la frase. */
+const REGISTRO_QUE_FUNDA = {
+  tender: 'un contrato publicado',
+  bdns: 'una subvención publicada',
+} as const
+
+export type KindQueFunda = keyof typeof REGISTRO_QUE_FUNDA
+
+export function esKindQueFunda(kind: unknown): kind is KindQueFunda {
+  return typeof kind === 'string' && Object.hasOwn(REGISTRO_QUE_FUNDA, kind)
+}
+
+/**
+ * La explicación de un `verificado` automático, según el registro que lo funda.
+ *
+ * Dice lo que se cotejó y nada más: la cifra y el objeto. De lo demás que diga
+ * la frase citada —«y se ha reducido», «la primera vez»— el registro no sabe.
+ */
+export function resumenVerificado(kind: KindQueFunda): string {
+  return (
+    `Lo que se cotejó: ${REGISTRO_QUE_FUNDA[kind]} imprime la cifra citada, con un 1 % de ` +
+    'margen, y nombra el mismo objeto.'
+  )
 }
 
 // ─── El texto de una máquina ────────────────────────────────────────────────

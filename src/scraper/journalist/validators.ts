@@ -43,6 +43,7 @@ import {
   validateSnapshotMeta,
 } from './core'
 import { validateSection } from './sections'
+import { validateReasonAmendments } from '../pleno-finding'
 
 function validateAssignment(a: unknown, idx: number): JournalistAssignment {
   must(typeof a === 'object' && a !== null, `assignments[${idx}] must be object`)
@@ -445,6 +446,18 @@ function validateCorrection(c: unknown, idx: number, ci: number): JournalistRepo
     typeof o.correctedAt === 'string' && ISO_DATE.test(o.correctedAt),
     `items[${idx}].corrections[${ci}].correctedAt must be ISO date`,
   )
+  // Se conservan al reconstruir la fila: cada CLI reescribe el fichero con lo que
+  // devuelve este validador, y perderlas aquí las borraría en la siguiente
+  // corrección de cualquier campo (bloque ENMIENDA DEL MOTIVO, pleno-finding.ts).
+  const reasonAmendments =
+    o.reasonAmendments === undefined
+      ? undefined
+      : validateReasonAmendments(
+          o.reasonAmendments,
+          `items[${idx}].corrections[${ci}]`,
+          o.correctedAt as string,
+          o.reason as string,
+        )
   return {
     field: o.field as string,
     original: o.original as string,
@@ -452,6 +465,7 @@ function validateCorrection(c: unknown, idx: number, ci: number): JournalistRepo
     reason: (o.reason as string).trim(),
     editor: o.editor as string,
     correctedAt: o.correctedAt as string,
+    ...(reasonAmendments ? { reasonAmendments } : {}),
   }
 }
 

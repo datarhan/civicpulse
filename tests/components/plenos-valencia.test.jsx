@@ -25,6 +25,10 @@ import { CATALOGUE } from '../../src/i18n'
 import Plenos from '../../src/pages/Plenos'
 import { DEPARTMENT_LABEL } from '../../src/scraper/departments'
 import { RETRACTION_SCOPES } from '../../src/scraper/pleno-votes'
+import { etiquetaDelPunto } from '../../src/scraper/etiqueta-llana'
+import { hoyEnRibarroja } from '../../src/scraper/en-breve-portada'
+import { REGIMEN_DE_SESIONES, proximoPleno } from '../../src/scraper/proximo-pleno'
+import { esAprobacionDeActa, sesionesDelUltimoAnio } from '../../src/scraper/en-breve-plenos'
 import {
   cadenasDe,
   datosPintados,
@@ -62,8 +66,64 @@ const RUTAS = {
   manifiesto: '/data/pleno-claims/index.json',
   votos: '/data/pleno-votes.json',
   hallazgos: '/data/pleno-findings.json',
+  // «El último pleno» enlaza el vídeo de la sesión, como su página.
+  videos: '/data/pleno-videos.json',
+  videosRegmeet: '/data/pleno-videos-regmeet.json',
 }
 const sirve = () => Object.fromEntries(Object.values(RUTAS).map((r) => [r, publicado(r)]))
+
+/**
+ * Las etiquetas llanas de los puntos: son el título del punto en la lengua en
+ * que se convocó, recortado, y no se traducen. No salen tal cual en el JSON, así
+ * que `datosPintados` no las reconoce: se derivan con la misma función.
+ */
+const etiquetasDe = (mapa) =>
+  (mapa[RUTAS.agendas].plenos ?? []).flatMap((p) =>
+    p.agenda.map((a) => etiquetaDelPunto(a.title).texto),
+  )
+
+/** La última sesión celebrada antes de hoy en Riba-roja: la de «El último pleno». */
+const ultimaDe = (mapa) => {
+  const hoy = hoyEnRibarroja()
+  return mapa[RUTAS.plenos].items
+    .filter((s) => s.date && s.date.slice(0, 10) < hoy)
+    .reduce((a, b) => (b.date > a.date ? b : a)).id
+}
+
+/**
+ * «El último pleno» con votaciones transcritas de los desenlaces dados y, si se
+ * pide, más informes, puntos sin parte o un solo punto. El dato de hoy no trae
+ * votaciones de esa sesión, así que cada rama de la tarjeta de votaciones nacería
+ * sin leer en valencià. Cada votación es una copia de una fila publicada.
+ */
+function ultimoPlenoCon(
+  desenlaces,
+  { reparto = 0, informes = 0, otros = 0, unPunto = false } = {},
+) {
+  const mapa = structuredClone(sirve())
+  const id = ultimaDe(mapa)
+  const votos = mapa[RUTAS.votos]
+  const modelo = votos.items.find((v) => v.provenance?.breakdown)
+  desenlaces.forEach((outcome, i) => {
+    const fila = structuredClone(modelo)
+    fila.id = `${id}-9${i}`
+    fila.plenoId = id
+    fila.itemNumber = 90 + i
+    fila.outcome = outcome
+    fila.provenance.breakdown.kind = i < reparto ? 'transcripcion' : 'acta'
+    votos.items.push(fila)
+  })
+  votos.stats.byPleno[id] = desenlaces.length
+  const sesion = mapa[RUTAS.agendas].plenos.find((p) => p.id === id)
+  const resolutivas = sesion.agenda.filter((a) => a.section === 'resolutiva')
+  for (const a of resolutivas.slice(0, informes)) a.section = 'informativa'
+  for (const a of resolutivas.slice(informes, informes + otros)) a.section = 'apertura'
+  if (unPunto) {
+    sesion.agenda = sesion.agenda.slice(0, 1)
+    sesion.agendaCount = 1
+  }
+  return mapa
+}
 
 const idsCon = (mapa) => ({
   orden: new Set((mapa[RUTAS.agendas].plenos ?? []).map((p) => p.id)),
@@ -179,16 +239,85 @@ function sinFechas() {
   return mapa
 }
 
+/** Un día de calendario «AAAA-MM-DD» movido `n` días. */
+const masDias = (fecha, n) => {
+  const d = new Date(`${fecha.slice(0, 10)}T00:00:00Z`)
+  d.setUTCDate(d.getUTCDate() + n)
+  return d.toISOString().slice(0, 10)
+}
+
+/**
+ * El próximo pleno ya en el índice: una copia de la última sesión, una semana
+ * después de hoy. El dato de hoy no trae ninguna sesión futura, así que la
+ * tarjeta con fecha nacería sin leer en valencià.
+ */
+function conElProximo() {
+  const mapa = structuredClone(sirve())
+  const items = mapa[RUTAS.plenos].items
+  const ultima = items.find((s) => s.id === ultimaDe(mapa))
+  items.unshift({ ...ultima, id: 'proxima-forma', date: masDias(hoyEnRibarroja(), 7) })
+  return mapa
+}
+
+/**
+ * Un ordinario que no fue en lunes: el más antiguo desde el acuerdo de 2023, un
+ * día después. Con el dato de hoy todos fueron en lunes y sólo se pintaba esa
+ * frase; uno de antes del acuerdo no cuenta.
+ */
+function unOrdinarioEnMartes() {
+  const mapa = structuredClone(sirve())
+  const viejo = mapa[RUTAS.plenos].items
+    .filter((s) => s.kind === 'ordinario' && s.date >= REGIMEN_DE_SESIONES.fecha)
+    .at(-1)
+  viejo.date = masDias(viejo.date, 1)
+  return mapa
+}
+
+/**
+ * «Los plenos del último año» con cada forma que el dato de hoy no trae: una
+ * sesión sin orden del día, una con sólo informes, una con sólo el acta para
+ * decidir y una sin nada que decidir ni informar. Son cuatro sesiones reales de
+ * la ventana, con su orden del día repartido de otra manera.
+ */
+function anioConCadaForma() {
+  const mapa = structuredClone(sirve())
+  const agendas = mapa[RUTAS.agendas]
+  const filas = sesionesDelUltimoAnio({
+    sesiones: mapa[RUTAS.plenos].items,
+    agendas: agendas.plenos,
+    hoy: hoyEnRibarroja(),
+  })
+  const deId = (id) => agendas.plenos.find((p) => p.id === id)
+  const conActa = filas.find((f) => deId(f.id)?.agenda.some((a) => esAprobacionDeActa(a.title)))
+  const otras = filas.filter((f) => f !== conActa && deId(f.id)).map((f) => f.id)
+  const [sinOrden, informes, nada] = otras
+  deId(conActa.id).agenda = deId(conActa.id).agenda.map((a) => ({
+    ...a,
+    section: esAprobacionDeActa(a.title) ? 'resolutiva' : 'informativa',
+  }))
+  deId(informes).agenda = deId(informes).agenda.map((a) => ({ ...a, section: 'informativa' }))
+  deId(nada).agenda = deId(nada).agenda.map((a) => ({ ...a, section: 'ruegos' }))
+  agendas.plenos = agendas.plenos.filter((p) => p.id !== sinOrden)
+  return mapa
+}
+
 // ─── Escenarios ────────────────────────────────────────────────────────────────
 
 const filasDe = (mapa) => mapa[RUTAS.plenos].items.length
 
 /** La tabla, las tarjetas y el reparto ya pintados. */
+/** ¿Hay un último pleno que contar? Sin ninguna sesión con fecha, no hay tarjeta. */
+const hayUltimo = (mapa) => {
+  const hoy = hoyEnRibarroja()
+  return mapa[RUTAS.plenos].items.some((s) => s.date && s.date.slice(0, 10) < hoy)
+}
+
 const pintada = (mapa) => (c) =>
   c.querySelectorAll('.cp-plenos-fila').length === filasDe(mapa) &&
   c.querySelectorAll('[role="group"] button').length > 1 &&
   c.querySelectorAll('h2').length >= 4 &&
-  c.querySelectorAll('.cp-plenos-area').length > 0
+  c.querySelectorAll('.cp-plenos-area').length > 0 &&
+  (!hayUltimo(mapa) || c.querySelector('[data-en-breve="votaciones"]') !== null)
 
 /** Pulsa cada filtro y lee la página cada vez: la cabecera y las notas de año cambian. */
 async function pulsaCadaFiltro(container) {
@@ -228,6 +357,25 @@ const ESCENARIOS = [
     variasSinOrdenUnaSinDecl(),
   ),
   escenario('sin fechas: la entradilla y el pie sin ventana', sinFechas()),
+  escenario(
+    'el último pleno con votaciones de cada desenlace, dos informes y un punto sin parte',
+    ultimoPlenoCon(['aprobado', 'aprobado', 'rechazado', 'rechazado', 'retirado'], {
+      reparto: 2,
+      informes: 1,
+      otros: 1,
+    }),
+  ),
+  escenario(
+    'el último pleno con una de cada desenlace, todas repartidas por la transcripción',
+    ultimoPlenoCon(['aprobado', 'rechazado', 'aplazado', 'retirado'], { reparto: 4 }),
+  ),
+  escenario(
+    'el último pleno con un solo punto y una votación',
+    ultimoPlenoCon(['aprobado'], { unPunto: true }),
+  ),
+  escenario('el próximo pleno ya en el índice', conElProximo()),
+  escenario('un pleno ordinario que no fue en lunes', unOrdinarioEnMartes()),
+  escenario('los plenos del último año, cada uno de una forma', anioConCadaForma()),
 ]
 
 afterEach(() => localStorage.clear())
@@ -235,6 +383,35 @@ afterEach(() => localStorage.clear())
 // ─── Lo que se compara ─────────────────────────────────────────────────────────
 
 describe('las mutaciones abren las ramas que dicen', () => {
+  it('«Los plenos del último año» sale con cada forma en algún escenario', () => {
+    const hoy = hoyEnRibarroja()
+    const formas = new Set(
+      ESCENARIOS.flatMap((e) =>
+        sesionesDelUltimoAnio({
+          sesiones: e.fetch[RUTAS.plenos].items,
+          agendas: e.fetch[RUTAS.agendas].plenos ?? [],
+          hoy,
+        }).map((f) => {
+          const o = f.ordenDelDia
+          if (!o) return 'sinOrden'
+          if (o.destacados.length > 0) return o.masDecidir > 0 ? 'conMas' : 'destacados'
+          return o.masDecidir > 0 ? 'soloActa' : o.informes > 0 ? 'soloInformes' : 'nada'
+        }),
+      ),
+    )
+    for (const forma of ['conMas', 'sinOrden', 'soloActa', 'soloInformes', 'nada']) {
+      expect(formas.has(forma), forma).toBe(true)
+    }
+  })
+
+  it('el próximo pleno sale con fecha en un escenario, y en otro la cuenta sin «todos»', () => {
+    const hoy = hoyEnRibarroja()
+    const prox = ESCENARIOS.map((e) => proximoPleno({ sesiones: e.fetch[RUTAS.plenos].items, hoy }))
+    expect(prox.some((p) => p.convocado?.id === 'proxima-forma')).toBe(true)
+    expect(prox.some((p) => !p.convocado && p.enLunes < p.ordinarios)).toBe(true)
+    expect(prox.some((p) => !p.convocado && p.enLunes === p.ordinarios)).toBe(true)
+  })
+
   it('cada alcance de retirada sale en singular y en plural en algún escenario', () => {
     const vistos = new Set()
     for (const e of ESCENARIOS) {
@@ -294,7 +471,12 @@ describe('el índice de plenos en valencià: nada se lee igual que en castellano
       expect.soft(es.pedidasSinServir, 'la página pide datos que la prueba no sirve').toEqual([])
 
       const datos = datosPintados(es.piezas, cadenasDe(esc.fetch))
-      const noSeTraduce = masLargasPrimero([...datos, ...SIGLAS, ...AREAS_IGUALES])
+      const noSeTraduce = masLargasPrimero([
+        ...datos,
+        ...etiquetasDe(esc.fetch),
+        ...SIGLAS,
+        ...AREAS_IGUALES,
+      ])
       const { sinTraducir } = detectorDeCastellano(
         masLargasPrimero([...noSeTraduce, ...ENTRE_CIFRAS]),
       )
@@ -328,18 +510,26 @@ describe('el índice de plenos en valencià: nada se lee igual que en castellano
  * rótulo nuevo sin escenario nace sin leer en valencià y nadie lo notaría.
  */
 describe('cobertura de la guarda del índice de plenos', () => {
-  it('toda cadena plenos.indice.* y plenos.retirada.* se pinta en algún escenario', async () => {
+  it('toda cadena plenos.indice.*, plenos.retirada.*, plenos.enBreve.* y lecturas.* se pinta en algún escenario', async () => {
     const claves = Object.keys(CATALOGUE.es).filter(
-      (k) => k.startsWith('plenos.indice.') || k.startsWith('plenos.retirada.'),
+      (k) =>
+        k.startsWith('plenos.indice.') ||
+        k.startsWith('plenos.retirada.') ||
+        k.startsWith('plenos.enBreve.') ||
+        k.startsWith('plenos.anio.') ||
+        k.startsWith('lecturas.'),
     )
     // Mide algo: sin claves no hay nada que cubrir.
     expect(claves.length, 'el catálogo no tiene cadenas del índice').toBeGreaterThan(30)
     const leido = []
     for (const esc of ESCENARIOS) leido.push(...(await pintaYLee(esc, 'es')).piezas)
     const texto = leido.join('\n')
+    // Un término del glosario, `[[clave|texto]]`, se pinta como un botón con su
+    // «texto»: la lectura lo da como una pieza aparte de lo que lo rodea, así que
+    // se corta por él igual que por un hueco.
     const sinPintar = claves.filter((clave) =>
       CATALOGUE.es[clave]
-        .split(/\{\w+\}/)
+        .split(/\{\w+\}|\[\[\w+\||\]\]/)
         .map((trozo) => trozo.trim())
         .filter((trozo) => /\p{L}/u.test(trozo))
         .some((trozo) => !texto.includes(trozo)),

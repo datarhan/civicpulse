@@ -18,6 +18,7 @@ import { Link } from 'react-router-dom'
 import { useReportaje } from '../../hooks/useReportaje'
 import { REPORTAJE_SLUGS } from '../../reportajes'
 import { fmtDateHuman } from '../../lib/formatters'
+import { useRevelado } from '../../hooks/useRevelado'
 import { useT, useLocale } from '../../i18n'
 
 const SERIF = "'Fraunces', Georgia, serif"
@@ -180,57 +181,9 @@ export function ProgresoLectura() {
   return null
 }
 
-/** ¿Se puede animar? Sin IntersectionObserver, o con movimiento reducido, no. */
-function puedeAnimar() {
-  return (
-    typeof window !== 'undefined' &&
-    'IntersectionObserver' in window &&
-    !window.matchMedia?.('(prefers-reduced-motion: reduce)').matches
-  )
-}
-
-/**
- * Revela una figura la primera vez que entra en pantalla.
- *
- * Devuelve la ref y las dos marcas que lee la hoja: `data-armado` esconde las
- * marcas animables (barras, puntos, trazos) y `data-visto` las lanza. El
- * estado de reposo —sin ninguna de las dos— es la figura completa, y es lo que
- * recibe quien no tiene IntersectionObserver, quien pidió movimiento reducido y
- * quien imprime (la hoja de impresión anula el armado). Sólo se animan marcas,
- * nunca texto: ninguna cifra cuenta hacia arriba ni pasa por valores que no son
- * el suyo.
- *
- * @param {{ umbral?: number }} [opts]
- */
-export function useRevelado({ umbral = 0.3 } = {}) {
-  const ref = useRef(/** @type {Element|null} */ (null))
-  const [armado] = useState(puedeAnimar)
-  const [visto, setVisto] = useState(false)
-
-  useEffect(() => {
-    const el = ref.current
-    if (!armado || !el) return
-    const io = new IntersectionObserver(
-      (entradas) => {
-        if (entradas.some((e) => e.isIntersecting)) {
-          setVisto(true)
-          io.disconnect()
-        }
-      },
-      { threshold: umbral },
-    )
-    io.observe(el)
-    return () => io.disconnect()
-  }, [armado, umbral])
-
-  return {
-    ref,
-    marcas: {
-      'data-armado': armado && !visto ? '' : undefined,
-      'data-visto': armado && visto ? '' : undefined,
-    },
-  }
-}
+// El revelado de las figuras vive en `hooks/useRevelado`: lo usa también «En
+// breve», y fuera de los reportajes no hay por qué cargar este módulo.
+export { useRevelado }
 
 /**
  * Un bloque cuyas barras (`.cp-crece-x`, `.cp-crece-y`) crecen al verlo.

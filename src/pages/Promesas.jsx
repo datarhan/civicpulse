@@ -112,7 +112,7 @@ function LegalFooter({ snap }) {
     >
       <strong style={{ color: 'var(--ink)' }}>Aviso editorial.</strong> {snap.legalNotice}
       <div style={{ marginTop: 10, display: 'flex', gap: 14, flexWrap: 'wrap' }}>
-        <a href="/metodologia" style={{ color: 'var(--civic)' }}>
+        <a href="/metodologia#grupo-promesas" style={{ color: 'var(--civic)' }}>
           Metodología →
         </a>
         <a href="/aviso-legal" style={{ color: 'var(--civic)' }}>
@@ -668,16 +668,16 @@ export default function Promesas() {
         >
           {t('promesas.eyebrow')}
         </div>
-        <div
+        <h1
           style={{
             fontSize: 'var(--fs-page)',
             fontWeight: 700,
             letterSpacing: '-.015em',
-            marginTop: 2,
+            margin: '2px 0 0',
           }}
         >
           {t('promesas.title')}
-        </div>
+        </h1>
         <div
           style={{ fontSize: 'var(--fs-aux)', color: 'var(--ink50)', marginTop: 4, maxWidth: 780 }}
         >

@@ -37,6 +37,7 @@ export const SECTION_GLYPHS = {
   '/aviso-legal': { glyph: '¶', tone: 'civic' }, // el marginal legal (pareja de §)
   '/nosotros': { glyph: '❦', tone: 'civic' }, // el colofón: quién firma
   '/laboratorio/agentes': { glyph: '✎', tone: 'intel' }, // el periodista (familia IA)
+  '/laboratorio/prensa': { glyph: '⎙', tone: 'intel' }, // la prensa: lo impreso, a contraste
   '/laboratorio/frontera': { glyph: '◺', tone: 'intel' }, // la envolvente: el borde de la nube
   '/laboratorio/coste-esperado': { glyph: '⟋', tone: 'intel' }, // la recta a través de la nube
   '/laboratorio/cobertura': { glyph: '◫', tone: 'intel' }, // lo cubierto y lo que no

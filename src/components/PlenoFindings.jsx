@@ -192,6 +192,26 @@ export function RefList({ refs, kind, plenoDate, ficha }) {
       >
         {label}
       </div>
+      {/* Lo que la lista NO dice, bajo su rótulo. «Documentos cotejados» es el
+          rótulo neutro desde que dejó de llamarse «Corrobora», y aun así se
+          leía como «lo que respalda la ficha»: el 27-10-2026 la revisión
+          lectora lo leyó en /plenos/c8kr44 encima de un patrocinio de
+          baloncesto, colgado de una cita sobre colegios por las palabras «Camp
+          de Túria», en una ficha cuya nota dice que nada confirma ni desmiente
+          sus citas. La lista recoge todo lo cotejado, confirme o no
+          (`auto-curate.ts`); la frase lo dice donde se lee la lista. */}
+      {kind === 'crossChecked' && (
+        <div
+          style={{
+            fontSize: 'var(--fs-meta)',
+            color: 'var(--ink70)',
+            lineHeight: 1.5,
+            marginBottom: 4,
+          }}
+        >
+          {t('findings.refs.crossChecked.nota')}
+        </div>
+      )}
       {refs.map((r, i) => {
         const isUrl = /^https?:\/\//.test(r.ref)
         const body = (

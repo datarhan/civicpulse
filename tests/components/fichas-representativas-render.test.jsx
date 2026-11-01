@@ -8,7 +8,12 @@ import { LocaleProvider } from '../../src/i18n'
 import { peekSnapshot } from '../../src/lib/snapshot-store'
 import { construirGrafoRutas } from '../../scripts/lib/route-graph'
 import { fichaDe, leerDeDisco } from '../../scripts/lib/fichas-representativas'
-import { leerPestanas, rutaBase, textoTrasLaBarra } from '../../src/scraper/reader-review'
+import {
+  leerPestanas,
+  rutaBase,
+  textoConTarjetas,
+  MARCAS_DE_TARJETA,
+} from '../../src/scraper/reader-review'
 
 /**
  * Lo que el lector va a pedir tiene que ser una página, y lo que no lo es tiene
@@ -124,13 +129,22 @@ describe('/plenos/:id: el lector abre las pestañas que la carga no abre', () =>
         })
         await quieta(container, pedidas)
       },
-      region: async () => textoTrasLaBarra(),
+      region: async () => textoConTarjetas({ ambito: 'tras-la-barra', marcas: MARCAS_DE_TARJETA }),
     })
 
     expect(r.leidas).toContain('declaraciones')
     expect(r.leidas).toContain('votos')
     // Literal de ClaimLedger con `showSummary`: sólo existe con la tabla pintada.
     expect(r.textos.join('\n')).toMatch(/sin contraste en los datos/)
+    // Y cada declaración llega en su tarjeta: tantas marcas que abren como que
+    // cierran, y más de una, o no habría frontera que leer entre dos.
+    const lineas = r.textos
+      .join('\n')
+      .split('\n')
+      .map((l) => l.trim())
+    const abren = lineas.filter((l) => l === MARCAS_DE_TARJETA.inicio).length
+    expect(abren).toBeGreaterThan(1)
+    expect(lineas.filter((l) => l === MARCAS_DE_TARJETA.fin).length).toBe(abren)
     // La transcripción es el acta hablada, no prosa nuestra, y pesa lo que la
     // sesión entera: ni se pulsa ni se pide.
     expect(r.leidas).not.toContain('transcripcion')

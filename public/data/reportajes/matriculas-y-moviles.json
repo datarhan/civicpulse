@@ -12,6 +12,10 @@
       {
         "fecha": "2026-10-19",
         "texto": "**Se ha corregido el cierre del apartado sobre la sección de descargas, que contradecía su propio título.** El apartado se titula «Una promesa que se puede comprobar sin pedir nada» y terminaba diciendo que era «una promesa sin fecha que hoy no se puede comprobar». Comprobarla no exige ninguna solicitud: el 14 de octubre la buscamos y no encontramos la sección. Dice ahora que es una promesa sin fecha y que comprobar si se cumple no exige pedir nada.\n\nNo cambia ningún hecho: la búsqueda del 14 de octubre, lo que no se encontró y que su ausencia no es un incumplimiento, porque el pliego no fija plazo."
+      },
+      {
+        "fecha": "2026-10-29",
+        "texto": "**Se ha añadido al apartado 04 lo que mostraba la señal de plazas el 29 de octubre, y se ha corregido en el método cuántas fotografías se publican recortadas.** El 11 de octubre sus tres contadores mostraban sólo guiones, y la tabla del apartado lo sigue diciendo, porque es lo que se observó ese día. El 29 de octubre marcaban 123, 456 y 789. Esa observación va debajo de las fotografías de la visita, fechada y con dos imágenes nuevas.\n\nEl método decía que una de las fotografías se publicaba recortada. Desde la publicación eran dos —la de la señal y su detalle—, y con el detalle nuevo son tres. Ningún otro hecho publicado cambia."
       }
     ],
     "kpisEnTexto": [
@@ -25,6 +29,28 @@
       }
     ]
   },
+  "claves": [
+    {
+      "texto": "El Ayuntamiento publicó el 30 de julio que sus cámaras urbanas sólo guardan «información numérica»; su pliego exige que puedan almacenar «los datos de las matrículas y la duración de la estancia de cada vehículo».",
+      "seccion": "05"
+    },
+    {
+      "texto": "El pliego destina las cámaras a gestionar el aparcamiento, pide que puedan enviar datos en tiempo real a la plataforma de los cuerpos de seguridad municipales e invoca la ley de datos con fines penales.",
+      "seccion": "03"
+    },
+    {
+      "texto": "Los pliegos no fijan cuánto tiempo pueden guardarse las matrículas ni los identificadores de los móviles mientras el sistema funciona; el pliego técnico pide un «histórico de datos» sin límite.",
+      "seccion": "06"
+    },
+    {
+      "texto": "Con los datos de los móviles, el pliego pide distinguir visitantes nuevos de recurrentes, y eso exige, por definición, reconocer al mismo visitante de la vez anterior.",
+      "seccion": "02"
+    },
+    {
+      "texto": "El pliego prevé instalar en Porxinos, de forma provisional por los daños de la DANA, los dispositivos que detectan móviles, y exige reubicarlos en las zonas planificadas del parque cuando se restaure, sin fijar fecha.",
+      "seccion": "04"
+    }
+  ],
   "kpis": [
     {
       "n": "61.050 €",
@@ -150,6 +176,28 @@
         "h": 1100
       }
     ],
+    "seguimiento": [
+      {
+        "fecha": "2026-10-29",
+        "texto": "La señal de plazas de la Carretera de València ya no mostraba guiones. Sus tres contadores marcaban 123 (Castell/ADL), 456 (Vlqz./Asunción) y 789 (A. Suárez/CIJ), este último en rojo: los nueve dígitos, del 1 al 9, en orden. Este medio no sabe de dónde salen esas cifras ni si en alguno de los tres aparcamientos funciona ya un sistema que cuente plazas.",
+        "fotos": [
+          {
+            "src": "/reportajes/matriculas-y-moviles/panel-led-2026-10-29.jpg",
+            "alt": "La señal de aparcamientos vista desde abajo, con una farola en lo alto del poste y una palmera detrás: los contadores de Castell/ADL y de Vlqz./Asunción encendidos en verde y el de A. Suárez/CIJ en rojo, cada uno con una flecha.",
+            "pie": "La misma señal, el 29 de octubre de 2026: los tres contadores encendidos, con cifras.",
+            "w": 825,
+            "h": 1100
+          },
+          {
+            "src": "/reportajes/matriculas-y-moviles/panel-led-2026-10-29-detalle.jpg",
+            "alt": "Detalle de los tres contadores LED: arriba 123 en verde, en medio 456 en verde y abajo 789 en rojo, con parte de los puntos de cada cifra apagados en la foto.",
+            "pie": "Detalle: 123, 456 y 789. La cámara capta sólo parte de los puntos de cada cifra, como suele pasar al fotografiar una pantalla de LED; las cifras se leyeron en el sitio.",
+            "w": 470,
+            "h": 680
+          }
+        ]
+      }
+    ],
     "limites": [
       "Una fotografía no prueba que una cámara lea matrículas ni de qué contrato es: lo que se observó son cámaras orientadas a los aparcamientos que nombra el pliego; que deban leer matrículas lo dice el pliego. El Ayuntamiento tiene desde 2010 cámaras de seguridad en sus edificios integradas con la Policía Local, y el Castell alberga museos municipales.",
       "Cinco postes no son cinco dispositivos: un poste puede llevar más de una caja —alguno lleva dos— y desde el suelo no se sabe qué hay dentro. Este reportaje no afirma que falten aparatos.",
@@ -232,7 +280,16 @@
         "registro": "2026014913",
         "entradaEl": "2026-09-28",
         "pide": "Copia de nueve documentos de protección de datos —evaluación de impacto, base jurídica del tratamiento, asiento del Registro de Actividades de Tratamiento, contrato de encargado suscrito con cada adjudicataria, información del artículo 13 a las personas afectadas, categorías de datos y plazos de conservación, destino de los datos al terminar los contratos y constancia de la consulta al Delegado de Protección de Datos—, y ocho preguntas sobre los dos contratos: una es la del destino de los datos, la 8 de la lista de arriba; las otras siete, sobre los visitantes contados, la memoria justificativa, el dimensionamiento y el baremo del concurso, las decisiones tomadas con los datos, el hito 221 y la DANA.",
-        "respuesta": null
+        "respuesta": null,
+        "incidencias": [
+          {
+            "fecha": "2026-10-27",
+            "texto": "El 27 de octubre el Departamento de Transparencia y Participación Ciudadana del Ayuntamiento notificó que amplía un mes el plazo para resolverla (expediente 4847/2026/GEN), con el artículo 34.2 de la Ley 1/2022: las unidades que custodian los expedientes «no han remitido al Departamento de Transparencia la totalidad de la documentación necesaria», y falta comprobar si alguna información está afectada «por límites al derecho de acceso o por derechos o intereses de terceras personas». El oficio cuenta desde la entrada del 28 de septiembre y dice que el nuevo plazo «finalizará el 28 de noviembre de 2026», y que la ampliación «no supone una denegación ni una limitación del derecho de acceso». No resuelve nada de lo pedido."
+          }
+        ],
+        "ampliada": {
+          "fecha": "2026-10-27"
+        }
       },
       {
         "organismo": "Ayuntamiento de Riba-roja de Túria",
@@ -318,7 +375,7 @@
   "metodo": [
     "Los pliegos técnico y administrativo de los expedientes 98/2025 y 100/2025 se descargaron de la Plataforma de Contratación del Sector Público en septiembre de 2026. Cada cita de los pliegos se ha cotejado palabra por palabra contra esos documentos; las de la nota municipal, contra su texto, copiado por este medio el 14 de octubre.",
     "Que los pliegos no exigen una evaluación de impacto ni fijan un plazo de conservación se afirma tras leer los cuatro documentos completos, buscando cada término en todas sus formas. La única mención a las evaluaciones de impacto, la del clausulado de encargado, se cita en el apartado 06.",
-    "La visita se hizo el domingo 11 de octubre de 2026, a pie y desde la vía pública, sin entrar en ninguna propiedad. Las fotografías se publican reducidas —una, además, recortada— y sin metadatos de localización; ninguna muestra una matrícula ni un rostro.",
+    "La visita se hizo el domingo 11 de octubre de 2026, a pie y desde la vía pública, sin entrar en ninguna propiedad. La señal de plazas se volvió a fotografiar el 29 de octubre, también desde la vía pública. Las fotografías se publican reducidas —tres, además, recortadas— y sin metadatos de localización; ninguna muestra una matrícula ni un rostro.",
     "La versión municipal se cita de la nota que el Ayuntamiento publicó en su web el 30 de julio de 2026, de la que este medio guarda copia.",
     "El importe y las fechas del contrato proceden del registro de contratación que publica este sitio, cotejados contra la ficha de la Plataforma; el importe se da sin IVA y con IVA.",
     "Las cifras están congeladas a la fecha de publicación: si algo cambia, se anota como corrección y se dice qué cambió."

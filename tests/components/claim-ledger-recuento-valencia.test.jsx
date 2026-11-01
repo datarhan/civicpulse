@@ -46,6 +46,7 @@ const PLENOS = lee('plenos.json')
 const VOTOS = lee('pleno-votes.json')
 const HALLAZGOS = lee('pleno-findings.json')
 const VIDEOS = lee('pleno-videos.json')
+const VIDEOS_REGMEET = lee('pleno-videos-regmeet.json')
 const AGENDAS = lee('plenos-agendas.json')
 
 /** Un fragmento publicado, para la forma del fichero que se sirve. */
@@ -67,6 +68,7 @@ const enElPleno = (declaraciones) => ({
   '/data/pleno-votes.json': { ...VOTOS, items: [] },
   '/data/pleno-findings.json': { ...HALLAZGOS, items: [] },
   '/data/pleno-videos.json': { ...VIDEOS, items: [] },
+  '/data/pleno-videos-regmeet.json': { ...VIDEOS_REGMEET, items: [] },
   '/data/plenos-agendas.json': { ...AGENDAS, plenos: [] },
   [`/data/pleno-claims/${ID}.json`]: { ...FRAGMENTO, plenoId: ID, items: declaraciones },
 })

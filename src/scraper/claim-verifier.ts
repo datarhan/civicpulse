@@ -4,8 +4,8 @@
  * Given a PlenoClaim + all dataset snapshots, emit a verdict + citations.
  * Pure function, no fetch, no LLM — this is the deterministic "fact check"
  * layer that takes whatever the LLM extracted and checks it against the
- * paper trail (tenders, BDNS grants, budget chapters, existing promises,
- * prior-year plenos).
+ * paper trail (tenders, BDNS grants, existing promises, prior-year plenos).
+ * The budget is not one of them: see `VerifierInputs.budget`.
  *
  * Verdict discipline — no fabrication, no "probably":
  *
@@ -31,7 +31,7 @@
 
 import { stripSimilarityAnnotation } from '../llm/candidate-annotation'
 import { stripDiacritics } from './normalize'
-import type { PlenoClaim, ClaimTopic } from './pleno-claim'
+import type { PlenoClaim } from './pleno-claim'
 
 // ─── Completion signal keywords ─────────────────────────────────────────────
 // A cita_obra whose verbatim asserts the work is finished/done/completed,
@@ -143,7 +143,15 @@ export {
   type ResumenSinDatos,
 } from './claim-verdicts'
 import type { ClaimVerdict } from './claim-verdicts'
-import { COLA_SIN_IMPORTE, leyoContratos, resumenCasi, resumenSinRegistro } from './claim-verdicts'
+import {
+  COLA_SIN_IMPORTE,
+  esKindQueFunda,
+  leyoContratos,
+  resumenCasi,
+  resumenSinRegistro,
+  resumenVerificado,
+} from './claim-verdicts'
+import { IMPORTE_PRACTICAMENTE_EXACTO, cifraEnElLiteral, similarAmount } from './cifra-en-literal'
 import { CAMPOS_DEL_EMPAREJADOR, importeDelEmparejador } from './importe-de-contrato'
 import { snippetDeContrato } from './snippet-de-contrato'
 import { sinEstadoSiLoDaSuContrato } from './gemelos-de-licitacion'
@@ -319,6 +327,21 @@ export interface VerifierInputs {
    */
   tendersTed?: unknown
   bdns?: unknown
+  /**
+   * Se acepta y NO se lee: el presupuesto no se coteja.
+   *
+   * Hubo un bloque que buscaba, por pistas del tema, un capítulo cuyo total se
+   * pareciera a la cifra citada. Leía `c.name` y budget.json rotula en `label`
+   * (src/scraper/budget.ts), así que no casó nunca; y anotaba `budget` antes de
+   * buscar, con lo que 541 filas de pleno y 10 de prensa decían en su tarjeta
+   * haber buscado en el presupuesto (26-10-2026, /plenos/1sqj7is). Leyendo
+   * `label` habría sido peor: una afirmación fiscal se compara con «Deuda
+   * pública» (1,1 M€) y nunca con el total, y 21 `sin-datos` subían a `parcial`
+   * por decir «un millón». Un cotejo con el presupuesto tendría que decir qué
+   * magnitud compara —crédito inicial, definitivo u obligaciones reconocidas—
+   * y de qué ejercicio, y se decide aparte
+   * (tests/claim-verifier-presupuesto-sin-cotejo.test.ts).
+   */
   budget?: unknown
   promises?: unknown
   /** Other claims from prior plenos — for promesa-repetida detection. */
@@ -336,22 +359,6 @@ interface TenderRow {
   amount?: number
   status?: string
   date?: string
-}
-
-interface BudgetChapter {
-  code?: string
-  name?: string
-  amount?: number
-}
-
-interface BudgetSnapshot {
-  snapshot?: {
-    year?: number
-    totalExpense?: number
-    totalRevenue?: number
-    expenseByEconomicChapter?: BudgetChapter[]
-    expenseByProgram?: BudgetChapter[]
-  }
 }
 
 interface PromiseRow {
@@ -633,24 +640,61 @@ function mejorCasiPorObjeto(
   return mejor
 }
 
-/**
- * Un importe «prácticamente exacto»: un parecido de al menos 0,98, que es un
- * cociente de al menos 0,99 — un 1 % de diferencia, el redondeo de una cifra
- * dicha de viva voz («80.666» por 80.666,66 €).
- */
-export const IMPORTE_PRACTICAMENTE_EXACTO = 0.98
+// El parecido de dos importes y su umbral de «prácticamente exacto» viven con
+// `cifraEnElLiteral` (cifra-en-literal.ts), que los necesita para leer el
+// literal y que la tarjeta importa sin cargar el verificador. Se siguen
+// exportando desde aquí para quien ya los pedía a este módulo.
+export { IMPORTE_PRACTICAMENTE_EXACTO, similarAmount }
+
+/** La mezcla del camino del importe, en contratos y en subvenciones: cifra 0,6, objeto 0,4. */
+const mezcla = (amountSim: number, textSim: number) => amountSim * 0.6 + textSim * 0.4
 
 /**
- * El parecido de dos importes: el cociente del menor entre el mayor, al
- * cuadrado. Exportado con su umbral de «prácticamente exacto» porque la subida
- * firmada (subida-firmada.ts) lo usa para decidir si la fila de un registro
- * dice la cifra de una declaración: dos umbrales copiados acabarían diciendo
- * cosas distintas.
+ * ¿Señala una cifra un expediente por sí sola? Con cuatro cifras significativas
+ * o más: un importe leído de un papel —940.520 €, 80.666 €—, no uno redondeado
+ * de viva voz —25.000 €, 1,5 millones—.
+ *
+ * Lo pide la excepción de la palabra suelta (`parecidoDelObjeto`), que existe
+ * porque con el importe prácticamente exacto es la cifra la que señala el
+ * expediente. Una cifra redonda no señala ninguno: a menos de un 1 % de
+ * 25.000 € cabe cualquier contrato menor presupuestado a ojo. Medido el
+ * 27-10-2026 sobre la base entera (7.946 citas), la excepción la usaba UNA, y
+ * mal: rmtyr-033-afi-219148, «una partida de 25.000 euros» para las
+ * actividades del ECA, salía `verificado` con un contrato de RIBAJOVE de
+ * 24.975 € por la palabra «actividades» —«eca» no llega a las cuatro letras de
+ * `distintivos`—. Sólo no se publicó porque el motor la retractó.
  */
-export function similarAmount(claimed: number, found: number): number {
-  if (claimed <= 0 || found <= 0) return 0
-  const ratio = Math.min(claimed, found) / Math.max(claimed, found)
-  return Math.max(0, ratio * ratio) // quadratic so 0.9 → 0.81 (meaningful gap)
+function cifraQueIdentifica(cifra: number): boolean {
+  return String(Math.round(cifra)).replace(/0+$/, '').length >= 4
+}
+
+/**
+ * Cuánto se parece el objeto citado al de una fila en el camino del importe: la
+ * regla mutua (`puntuacionObjeto`), con una salida para la entidad que cabe
+ * ENTERA en el texto de la fila.
+ *
+ * Con ≥2 tokens distintivos, la entidad entera es el objeto. Con UNO solo (los
+ * nombres del municipio son stopwords aquí), sólo corrobora con el importe
+ * prácticamente EXACTO y una cifra que identifica (`cifraQueIdentifica`): así
+ * «Alcaldía…» + 940.520 € contra el anuncio TED sigue verificándose, y
+ * «compra» suelto + un 0,85 de importe, o «actividades» + 25.000 €, no.
+ *
+ * Sin entidad, cero: el `: 1` de antes convertía cualquier importe parecido en
+ * corroboración, y con el objeto a cero la mezcla sólo la salva un importe
+ * EXACTO, que el llamador también descarta.
+ */
+function parecidoDelObjeto(
+  entity: string | undefined,
+  texto: string,
+  cifra: number,
+  amountSim: number,
+): number {
+  if (!entity) return 0
+  const m = solapamientoMutuo(entity, texto)
+  const entera = m.tokensEntidad >= 1 && m.compartidas === m.tokensEntidad
+  const basta =
+    m.tokensEntidad >= 2 || (amountSim >= IMPORTE_PRACTICAMENTE_EXACTO && cifraQueIdentifica(cifra))
+  return entera && basta ? 1 : puntuacionObjeto(m)
 }
 
 /**
@@ -764,27 +808,6 @@ function readPromises(data: unknown): PromiseRow[] {
   return ((data as { items?: PromiseRow[] }).items ?? []) as PromiseRow[]
 }
 
-// ─── Topic → budget chapter hint map ───────────────────────────────────────
-// Used when the claim cites a large amount against a specific topic; we check
-// the budget chapter totals for semantic alignment. Cheap heuristic — not a
-// hard denial surface, just "does the magnitude make sense?"
-
-const TOPIC_TO_BUDGET_HINTS: Record<ClaimTopic, string[]> = {
-  fiscal: ['hacienda', 'deuda', 'finan'],
-  vivienda: ['vivienda', 'habitat'],
-  movilidad: ['transport', 'movilidad', 'vias', 'infraestr'],
-  'medio-ambiente': ['medio ambien', 'sostenib', 'residuos'],
-  social: ['servicios sociales', 'bienestar', 'social'],
-  cultura: ['cultura', 'patrimonio'],
-  seguridad: ['seguridad', 'policia'],
-  empleo: ['empleo', 'fomento', 'promocion'],
-  urbanismo: ['urbanism', 'ordenacion', 'obras'],
-  salud: ['salud', 'sanitar'],
-  transparencia: ['administrac', 'gobierno'],
-  educacion: ['educacion', 'ensenanza', 'ensenanz'],
-  other: [],
-}
-
 // ─── The verifier ──────────────────────────────────────────────────────────
 
 export function verifyClaim(inputs: VerifierInputs): ClaimVerification {
@@ -810,6 +833,14 @@ export function verifyClaim(inputs: VerifierInputs): ClaimVerification {
    */
   const noFundante = new Set<ClaimEvidence>()
   const marcarNoFundante = () => noFundante.add(evidence[evidence.length - 1])
+  /**
+   * El parecido con el que el veredicto decide, cuando no es el que la fila
+   * imprime: la fila que IMPRIME la cifra citada lleva su propio parecido, que
+   * puede ser mayor que el de la fila con la que el emparejador la eligió, y
+   * un veredicto automático no sube por eso (bloque 2). Como `noFundante`, no
+   * sale del módulo.
+   */
+  const parecidoQueDecide = new Map<ClaimEvidence, number>()
 
   // `checkedAgainst` is a claim about our own work — it appears in the
   // published snapshot and feeds the "artículos auditados" counters. It used to
@@ -880,8 +911,20 @@ export function verifyClaim(inputs: VerifierInputs): ClaimVerification {
   const isVerifiableAccusation =
     claim.type === 'acusacion_publica' &&
     (claim.accusationSubtype === 'factual' || claim.accusationSubtype === 'contra-datos')
+  // Y sólo con la cifra que la cita DICE (cifra-en-literal.ts). El extractor la
+  // saca a veces de la frase de al lado: k4olcs-019-cit-b9b013 —«sistema de
+  // debate, captura y grabación de vídeo…», sin cifra— salía `verificado` con
+  // los 80.666 € que se dijeron en la frase siguiente, bajo «un contrato
+  // publicado imprime la cifra citada». Sin cifra en el literal este camino no
+  // corre, y tampoco anota los corpus: un comparador que no compara nada no
+  // figura como consultado (la regla por la que se quitó el presupuesto,
+  // `VerifierInputs.budget`). La cita cae a lo que el resto de la verificación
+  // sostenga —una obra citada, al bloque 3, que la busca por sus palabras—.
+  // Sólo baja: una cifra que no se dijo no funda `verificado`, ni
+  // `contradicho`, ni el expediente «que se parece».
   if (
     claim.entities.amountEuros != null &&
+    cifraEnElLiteral(claim.verbatim, claim.entities.amountEuros) &&
     (claim.type === 'afirmacion_numerica' ||
       claim.type === 'cita_obra' ||
       claim.type === 'cita_convenio' ||
@@ -908,27 +951,11 @@ export function verifyClaim(inputs: VerifierInputs): ClaimVerification {
       for (const t of tenderList) {
         const tAmount = tenderAmount(t)
         if (tAmount == null) continue
-        // Corroborar exige el mismo objeto: el solapamiento cuenta sólo si es
-        // mutuo y con ≥2 tokens distintivos compartidos. Sin entidad, cero —
-        // el `: 1` de antes convertía cualquier importe parecido en
-        // corroboración, y un 0,85 de similitud de importe NO es el objeto
-        // (505 mil de contenedores contra el renting de 466.200 €). Con
-        // textSim 0, el umbral combinado sólo lo salva un importe EXACTO.
-        const m = entity ? solapamientoMutuo(entity, tenderTitle(t)) : null
+        // Corroborar exige el mismo objeto (`parecidoDelObjeto`): un 0,85 de
+        // similitud de importe NO es el objeto (505 mil de contenedores contra
+        // el renting de 466.200 €).
         const amountSim = similarAmount(amount, tAmount)
-        // Una entidad de UN solo token distintivo (los nombres del municipio
-        // son stopwords aquí) contenida entera sólo corrobora con el importe
-        // prácticamente EXACTO: así «Alcaldía…» + 940.520 € contra el anuncio
-        // TED sigue verificándose, y «compra» suelto + un 0,85 de importe no.
-        const entidadContenida =
-          m !== null && m.tokensEntidad >= 1 && m.compartidas === m.tokensEntidad
-        const textSim =
-          m === null
-            ? 0
-            : entidadContenida &&
-                (m.tokensEntidad >= 2 || amountSim >= IMPORTE_PRACTICAMENTE_EXACTO)
-              ? 1
-              : puntuacionObjeto(m)
+        const textSim = parecidoDelObjeto(entity, tenderTitle(t), amount, amountSim)
         // contradicho-candidate: the entity names this contract AND the amount
         // cited is materially different (<0.3 sim ≈ 2× disparity)
         if (
@@ -961,7 +988,7 @@ export function verifyClaim(inputs: VerifierInputs): ClaimVerification {
         // ese camino: con objeto compartido, el importe exacto sigue
         // verificando.
         if (textSim <= 0) continue
-        const combined = amountSim * 0.6 + textSim * 0.4
+        const combined = mezcla(amountSim, textSim)
         if (combined >= 0.6 && (best === null || combined > best.sim)) {
           best = { row: t, sim: combined }
         }
@@ -973,17 +1000,35 @@ export function verifyClaim(inputs: VerifierInputs): ClaimVerification {
         const dice = filaQueDiceLaCifra(best.row, amount, tenderList)
         const fila = dice?.row ?? best.row
         const impreso = dice?.valor ?? tenderAmount(best.row)!
-        evidence.push({
+        const elegida = Math.round(best.sim * 100) / 100
+        // …y lleva SU parecido, puntuado con la cifra que imprime: la tarjeta
+        // lo rotula «parecido con lo citado» junto al importe de esa fila. Era
+        // el de la elegida, y k4olcs-019-cit-b9b013 enseñaba la adjudicación de
+        // 80.666,66 € —la cifra dicha— con el 0,85 de la licitación, puntuada
+        // con sus 70.157,72 € de presupuesto base sin IVA.
+        const simDice = dice ? similarAmount(amount, dice.valor) : 0
+        const parecido = dice
+          ? Math.round(
+              mezcla(simDice, parecidoDelObjeto(entity, tenderTitle(fila), amount, simDice)) * 100,
+            ) / 100
+          : elegida
+        const filaCitada: ClaimEvidence = {
           kind: 'tender',
           ref: fila.permalink ?? '',
           snippet: `${tenderTitle(fila)} · ${Math.round(impreso).toLocaleString('es-ES')} €`,
-          similarity: Math.round(best.sim * 100) / 100,
+          similarity: parecido,
           // `combined` blends amount and title overlap, so a 0.6 pass can come
           // from either side alone. A contract whose title happens to share
           // words with the claim has not corroborated it.
           stance: 'checked',
-        })
+        }
+        evidence.push(filaCitada)
         if (!dice) marcarNoFundante()
+        // Pero el veredicto no sube por ello: se decide con el MENOR de los dos.
+        // Si la fila citada se parece menos que la elegida, el veredicto baja
+        // a lo que acredita lo que se enseña; si se parece más, se queda donde
+        // lo dejó la elegida. Subir es de una persona (`subir-veredicto`).
+        if (parecido > elegida) parecidoQueDecide.set(filaCitada, elegida)
       } else if (entityMatchMismatchedAmount) {
         // No strong (amount + entity) match, but an entity match with a
         // mismatched amount — that's a candidate contradiction.
@@ -1028,15 +1073,10 @@ export function verifyClaim(inputs: VerifierInputs): ClaimVerification {
         // el remedio que el tramo de contratos ya aplicaba y éste no.
         //
         // Una entidad de UN solo token distintivo contenida entera sólo cuenta
-        // con el importe prácticamente exacto; sin importe en la fila, nunca.
-        const m = entity ? solapamientoMutuo(entity, bdnsText(b)) : null
-        if (m === null) continue
+        // con el importe prácticamente exacto y una cifra que identifica; sin
+        // importe en la fila, nunca (`parecidoDelObjeto`).
         const amountSim = bAmount == null ? 0 : similarAmount(amount, bAmount)
-        const entidadContenida = m.tokensEntidad >= 1 && m.compartidas === m.tokensEntidad
-        const textSim =
-          entidadContenida && (m.tokensEntidad >= 2 || amountSim >= IMPORTE_PRACTICAMENTE_EXACTO)
-            ? 1
-            : puntuacionObjeto(m)
+        const textSim = parecidoDelObjeto(entity, bdnsText(b), amount, amountSim)
         // La misma regla que el camino de los contratos, en el de las
         // subvenciones: la mezcla de abajo es el mismo `sim*0,6 + texto*0,4`
         // con suelo 0,6, así que un importe exacto contra una convocatoria de
@@ -1046,7 +1086,7 @@ export function verifyClaim(inputs: VerifierInputs): ClaimVerification {
         if (textSim <= 0) continue
         // With no amount on the row, the name has to carry the whole match, so
         // the bar is higher than the blended amount+text score.
-        const combined = bAmount == null ? textSim : amountSim * 0.6 + textSim * 0.4
+        const combined = bAmount == null ? textSim : mezcla(amountSim, textSim)
         const floor = bAmount == null ? 0.75 : 0.6
         if (combined >= floor && (best === null || combined > best.sim)) {
           best = { row: b, sim: combined }
@@ -1086,36 +1126,9 @@ export function verifyClaim(inputs: VerifierInputs): ClaimVerification {
       }
     }
 
-    // Budget magnitude check (loose — just "is the amount plausible given
-    // chapter totals?")
-    const budget = (inputs.budget as BudgetSnapshot | undefined)?.snapshot
-    if (budget && (budget.totalExpense ?? 0) > 0) {
-      note('budget')
-      const hints = TOPIC_TO_BUDGET_HINTS[claim.topic] ?? []
-      const chapters = [
-        ...(budget.expenseByProgram ?? []),
-        ...(budget.expenseByEconomicChapter ?? []),
-      ]
-      const candidate = chapters.find((c) => hints.some((h) => norm(c.name).includes(h)))
-      if (candidate && candidate.amount) {
-        const sim = similarAmount(amount, candidate.amount)
-        if (sim >= 0.5) {
-          evidence.push({
-            kind: 'budget',
-            ref: `budget:${budget.year}:${candidate.code ?? candidate.name}`,
-            snippet: `${candidate.name ?? candidate.code} · ${Math.round(
-              candidate.amount,
-            ).toLocaleString('es-ES')} €`,
-            similarity: Math.round(sim * 100) / 100,
-            // Explicitly a plausibility check ("is this figure the right order
-            // of magnitude for the chapter?"). Plausible is not corroborated.
-            stance: 'checked',
-          })
-          // …y por eso no funda: se enseña, no verifica.
-          marcarNoFundante()
-        }
-      }
-    }
+    // Aquí iba la comprobación de «plausibilidad» contra el presupuesto, y no
+    // comparó nunca nada mientras anotaba `budget`: `VerifierInputs.budget`
+    // cuenta por qué se quitó en vez de repararla.
   }
 
   // 3. Entity-only match (cita_obra): look for any tender whose title
@@ -1312,16 +1325,22 @@ export function verifyClaim(inputs: VerifierInputs): ClaimVerification {
   // Un parecido de título sostiene `parcial` —es una pista publicable— pero
   // nunca `verificado`: esa vía no comprueba el importe ni el sentido, así que
   // no puede sostener la palabra más fuerte que este verificador sabe decir.
-  const strong = evidence.some(
-    (e) => !noFundante.has(e) && !niParcial.has(e) && (e.similarity ?? 0) >= 0.8,
+  //
+  // Y lo que funda es un contrato o una subvención que imprime la cifra: las
+  // otras filas que no están en `noFundante` —las de promesas— no llegan a 0,8
+  // sin haber devuelto antes `promesa-repetida`, y la frase de abajo nombra el
+  // registro que funda.
+  const decide = (e: ClaimEvidence) => parecidoQueDecide.get(e) ?? e.similarity ?? 0
+  const funda = evidence.find(
+    (e) => esKindQueFunda(e.kind) && !noFundante.has(e) && !niParcial.has(e) && decide(e) >= 0.8,
   )
-  const weak = evidence.some((e) => !niParcial.has(e) && (e.similarity ?? 0) >= 0.5)
+  const weak = evidence.some((e) => !niParcial.has(e) && decide(e) >= 0.5)
 
-  if (strong) {
+  if (funda && esKindQueFunda(funda.kind)) {
     return {
       claimId: claim.id,
       verdict: 'verificado',
-      summary: 'Cita encontrada con coincidencia fuerte en los datos municipales.',
+      summary: resumenVerificado(funda.kind),
       evidence,
       checkedAgainst: checked,
     }
@@ -1380,10 +1399,12 @@ export function verifyClaim(inputs: VerifierInputs): ClaimVerification {
   // que se hubiera mirado: una promesa cotejada sólo con el tracker, o una
   // afirmación con la que no corrió ningún comparador, decían haber buscado en
   // tres corpus que su propia lista no nombra, y la tarjeta imprime las dos.
+  // Con el literal, dice además que el presupuesto no se buscó cuando la cita
+  // habla de él (`callaElPresupuesto`).
   return {
     claimId: claim.id,
     verdict: 'sin-datos',
-    summary: resumenSinRegistro(checked),
+    summary: resumenSinRegistro(checked, undefined, claim.verbatim),
     evidence,
     checkedAgainst: checked,
   }

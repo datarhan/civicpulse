@@ -1,5 +1,7 @@
 import { test, expect } from '@playwright/test'
+import { readFileSync } from 'node:fs'
 import { collectErrors, appErrors } from './_console'
+import { euros } from '../../src/lib/formatters'
 
 /**
  * Espera a que el listado tenga FILAS, no a que tenga texto.
@@ -31,7 +33,11 @@ test.describe('Presupuesto (/presupuesto)', () => {
     await page.goto('/presupuesto', { waitUntil: 'domcontentloaded' })
 
     // New money-map dashboard (src/components/Presupuesto/GastoDashboard.jsx)
-    await expect(page.getByText('¿A dónde va el dinero en contratos?').first()).toBeVisible({
+    // Por su papel de encabezado: la pestaña del pliegue (components/Lecturas.jsx)
+    // lleva el mismo título, siempre en el DOM y oculta con «todo».
+    await expect(
+      page.getByRole('heading', { name: '¿A dónde va el dinero en contratos?' }),
+    ).toBeVisible({
       timeout: 8000,
     })
     await expect(page.getByRole('tab', { name: /Explorar contratos/ })).toBeVisible()
@@ -41,7 +47,7 @@ test.describe('Presupuesto (/presupuesto)', () => {
     // presupuestados (41,58 M€), no obligaciones reconocidas (18,91 M€).
     await expect(page.getByText('En qué prevé gastarse el dinero público').first()).toBeVisible()
     await expect(page.getByText('De dónde vienen los ingresos municipales').first()).toBeVisible()
-    await expect(page.getByText('Subvenciones · Base Nacional').first()).toBeVisible()
+    await expect(page.getByRole('heading', { name: 'Subvenciones · Base Nacional' })).toBeVisible()
     await expect(page.getByText(/€/).first()).toBeVisible()
 
     expect(appErrors(errors)).toEqual([])
@@ -145,7 +151,11 @@ test.describe('Presupuesto (/presupuesto)', () => {
     // medio, su tarjeta —la más alta de la página— dejaba el endeudamiento y la
     // contratación a más de 6.000 px del principio.
     await page.goto('/presupuesto', { waitUntil: 'domcontentloaded' })
-    await expect(page.getByText('¿A dónde va el dinero en contratos?').first()).toBeVisible({
+    // Por su papel de encabezado: la pestaña del pliegue (components/Lecturas.jsx)
+    // lleva el mismo título, siempre en el DOM y oculta con «todo».
+    await expect(
+      page.getByRole('heading', { name: '¿A dónde va el dinero en contratos?' }),
+    ).toBeVisible({
       timeout: 8000,
     })
 
@@ -319,5 +329,22 @@ test.describe('Presupuesto (/presupuesto)', () => {
     await page.getByRole('tab', { name: /Quién recibe el dinero/ }).click()
     // Leaderboard rows render contractor names; the explorer search box is gone.
     await expect(page.getByPlaceholder('Buscar contrato o empresa…')).toHaveCount(0)
+  })
+
+  // El aviso habla sólo de CONPREL —sus ingresos frente a sus gastos—, pero se
+  // calculaba cotejando con `latest`, y con el 1T de 2026 como periodo más
+  // nuevo dejó de pintarse sin que ninguna prueba lo notara. Se decide con el
+  // propio budget.json: si el Ministerio da ingresos y gastos distintos, el
+  // aviso tiene que estar, con la diferencia.
+  test('el aviso de que CONPREL no cuadra sale cuando sus dos totales difieren', async ({
+    page,
+  }) => {
+    const s = JSON.parse(readFileSync('public/data/budget.json', 'utf8')).snapshot
+    const dif = Math.abs(s.totalRevenue - s.totalExpense)
+    test.skip(dif < 1000, 'CONPREL cuadra este ejercicio: no hay aviso que buscar')
+    await page.goto('/presupuesto', { waitUntil: 'domcontentloaded' })
+    const aviso = page.locator('#descuadre')
+    await expect(aviso).toBeVisible({ timeout: 10_000 })
+    await expect(aviso).toContainText(euros(dif))
   })
 })

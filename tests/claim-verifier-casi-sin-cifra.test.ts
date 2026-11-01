@@ -3,6 +3,7 @@ import { readdirSync, readFileSync } from 'node:fs'
 import { join } from 'node:path'
 
 import { verifyClaim } from '../src/scraper/claim-verifier'
+import { cifraEnElLiteral } from '../src/scraper/cifra-en-literal'
 import {
   RESUMEN_CASI_FIJO,
   corpusReales,
@@ -104,13 +105,19 @@ const sinCotejo = servidos.filter(
 /**
  * Las que sí tenían cifra y un camino del importe que leyó los contratos,
  * reconocidas por la frase que les escribe el verificador de hoy.
+ *
+ * Y con la cifra en el literal: desde el 27-10-2026 el camino del importe no
+ * coteja la que la cita no dice (src/scraper/cifra-en-literal.ts), y la frase
+ * de su expediente parecido habla de «la cifra citada». qz6weg-023-cit-aae985
+ * —«…asumían el personal del Conservatorio de Danza», 1,5 M€ del extractor— la
+ * llevaba; tests/claim-verifier-cifra-en-literal.test.ts prueba que ya no.
  */
 const conCifra = servidos.filter(
   (it) =>
     it.verification.verdict === 'sin-datos' &&
     conContrato(it.verification) &&
     leyoContratos(it.verification) &&
-    it.claim.entities.amountEuros != null &&
+    cifraEnElLiteral(it.claim.verbatim, it.claim.entities.amountEuros) &&
     it.verification.summary === resumenCasi(true),
 )
 
@@ -172,7 +179,9 @@ describe('sin cifra: el verificador no enseña el expediente que se parece', () 
     const malas = ANTES.sinCotejo
       .map((it) => ({ it, r: verifyClaim({ claim: it.claim, ...DATOS }) }))
       .filter(
-        ({ r }) => r.verdict !== 'sin-datos' || r.summary !== resumenSinRegistro(r.checkedAgainst),
+        ({ it, r }) =>
+          r.verdict !== 'sin-datos' ||
+          r.summary !== resumenSinRegistro(r.checkedAgainst, undefined, it.claim.verbatim),
       )
       .map(({ it, r }) => `${it.claim.id} ${r.verdict}: ${r.summary}`)
     expect(malas.slice(0, 5), `${malas.length} filas`).toEqual([])

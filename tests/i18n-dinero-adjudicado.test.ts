@@ -49,6 +49,10 @@ import { contractTypeTotals } from '../src/lib/tender-geo'
 const ROTULOS_DE_CIFRA = [
   'map.money.accum',
   'map.money.coverage',
+  // La frase de vecino que encabeza la cobertura desde el 26-10-2026, y su
+  // versión exacta, en el `title`.
+  'map.money.deCada100',
+  'map.money.exacta',
   'map.layer.money',
   'map.money.title',
   // La ficha del barrio: decía «Inversión situada» sobre los mismos euros

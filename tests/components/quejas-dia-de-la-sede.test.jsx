@@ -28,6 +28,7 @@ import { MemoryRouter, Route, Routes } from 'react-router-dom'
 import QuejaDetail from '../../src/pages/QuejaDetail'
 import DepartamentoDetalle from '../../src/pages/DepartamentoDetalle'
 import QuejasSpendOverlap from '../../src/components/Quejas/QuejasSpendOverlap'
+import { BARRIOS_PARA_EL_CRUCE } from '../../src/lib/neighborhood-aggregate'
 import { useCambios } from '../../src/hooks/useCambios'
 import { CATALOGUE } from '../../src/i18n'
 import { installFetchMock } from '../setup/mockFetch'
@@ -185,11 +186,22 @@ describe.each(ZONAS)('leído con el reloj en %s', (zona, desfaseEnJulio) => {
     })
 
     it('/quejas: el periodo de las quejas es el año de Riba-roja', async () => {
+      // El cruce se dibuja con quejas en BARRIOS_PARA_EL_CRUCE barrios: la misma
+      // queja de Nochevieja, en tantos barrios como hacen falta.
+      const barrios = Array.from({ length: BARRIOS_PARA_EL_CRUCE }, (_, i) => ({
+        slug: i === 0 ? 'santa-rosa' : `barrio-${i}`,
+        name: i === 0 ? 'Santa Rosa' : `Barrio ${i}`,
+        centroid: [39.54, -0.57],
+      }))
       installFetchMock({
-        '/data/geo.json': {
-          neighborhoods: [{ slug: 'santa-rosa', name: 'Santa Rosa', centroid: [39.54, -0.57] }],
-        },
-        '/data/quejas.json': instantanea([queja(marcas)]),
+        '/data/geo.json': { neighborhoods: barrios },
+        '/data/quejas.json': instantanea(
+          barrios.map((b, i) => ({
+            ...queja(marcas),
+            service_request_id: `Q-01KNOCHEVIEJA${i}`,
+            address_string: b.slug,
+          })),
+        ),
       })
       render(
         <MemoryRouter>

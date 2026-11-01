@@ -1,15 +1,7 @@
 import { useMemo } from 'react'
 import { contractTypeTotals } from '../../lib/tender-geo'
-import { rellena } from '../../lib/formatters'
+import { rellena, eurosBreves } from '../../lib/formatters'
 import { rotuloDe, useT } from '../../i18n'
-
-const fmtEur = (n) =>
-  new Intl.NumberFormat('es-ES', {
-    style: 'currency',
-    currency: 'EUR',
-    maximumFractionDigits: 0,
-    notation: 'compact',
-  }).format(n)
 
 // Esta barra SÍ es una composición apilada con leyenda, así que el color aquí
 // distingue de verdad y no puede reducirse a uno. Lo que no puede es ser un
@@ -60,7 +52,7 @@ export default function SpendingTypeBreakdown({ contracts, snapshot }) {
         {rows.map((r) => (
           <div
             key={r.type}
-            title={`${tipo(r.type)}: ${fmtEur(r.amount)}`}
+            title={`${tipo(r.type)}: ${eurosBreves(r.amount)}`}
             style={{
               width: (r.amount / total) * 100 + '%',
               background: TYPE_COLOR[r.type] || '#94A3B8',
@@ -89,7 +81,7 @@ export default function SpendingTypeBreakdown({ contracts, snapshot }) {
           />
           <span style={{ flex: 1 }}>{tipo(r.type)}</span>
           <span className="mono" style={{ fontWeight: 700 }}>
-            {fmtEur(r.amount)}
+            {eurosBreves(r.amount)}
           </span>
           <span
             className="mono"

@@ -70,12 +70,17 @@ export default function AvisoLegal() {
           OpenStreetMap, CC0 Wikidata, reutilización abierta PLACSP/BDNS/CONPREL, REST pública de
           prensa, la API JSON del INE —índice de precios con el que se deflactan las series de
           coste, y padrón municipal—, el Portal Estadístico de Criminalidad del Ministerio del
-          Interior (Ley 37/2007; «Origen de los datos: Portal Estadístico de Criminalidad»), y la
-          capa 0503_Residuos y la cartografía de incendios forestales del Institut Cartogràfic
-          Valencià / Generalitat Valenciana (CC BY 4.0) bajo sus condiciones de reutilización, con
-          la atribución que exigen). Cada dato individual enlaza a la fuente de la que sale: un
-          registro o documento oficial o, cuando sale de la prensa —en el tracker de promesas y en
-          el laboratorio de prensa—, la noticia que lo recoge. El listado completo de feeds está en{' '}
+          Interior (Ley 37/2007; «Origen de los datos: Portal Estadístico de Criminalidad»), el
+          Sistema de Información Nacional de Aguas de Consumo (SINAC) del Ministerio de Sanidad
+          —citado con la fecha de cada boletín, como pide su aviso legal— y su informe anual de
+          calidad del agua de consumo («puede reproducirse… siempre que se mencione la fuente»), la
+          Estadística de Bibliotecas Públicas del Ministerio de Cultura (condiciones generales del
+          RD 1495/2011; «Origen de los datos: Ministerio de Cultura»), y la capa 0503_Residuos y la
+          cartografía de incendios forestales del Institut Cartogràfic Valencià / Generalitat
+          Valenciana (CC BY 4.0) bajo sus condiciones de reutilización, con la atribución que
+          exigen). Cada dato individual enlaza a la fuente de la que sale: un registro o documento
+          oficial o, cuando sale de la prensa —en el tracker de promesas y en el laboratorio de
+          prensa—, la noticia que lo recoge. El listado completo de feeds está en{' '}
           <a href="/datos" style={{ color: 'var(--civic)' }}>
             /datos
           </a>
@@ -125,8 +130,9 @@ export default function AvisoLegal() {
             más evidencia.
           </li>
           <li>
-            Las ediciones del contenido publicado se registran en la bitácora interna del proyecto.
-            Nada se borra en silencio.
+            Las ediciones del contenido publicado quedan en el historial público del repositorio y,
+            en hallazgos, promesas y biografías, en la bitácora de su ficha. Nada se borra en
+            silencio.
           </li>
           <li>
             En la bitácora pública de cada hallazgo de pleno no se reproduce la versión que nombraba
@@ -139,6 +145,14 @@ export default function AvisoLegal() {
             .
           </li>
         </ul>
+        <p id="opinion" style={{ scrollMarginTop: 24 }}>
+          <strong>Opinión e información.</strong> Los datos de este sitio no llevan juicio. La única
+          pieza que juzga es la opinión del editor en <code>/eficiencia</code>: va firmada por una
+          persona, rotulada como opinión y separada de los datos. Quien aparezca nombrado en una
+          opinión recibe el texto antes de que se publique, con al menos siete días para responder,
+          y su respuesta se publica íntegra a su lado; si no responde, se dice. Cualquier réplica
+          posterior se tramita por esta misma vía y se añade, también íntegra.
+        </p>
       </Card>
 
       <Card style={{ marginTop: 14 }}>
@@ -223,13 +237,18 @@ export default function AvisoLegal() {
           eyebrow="Declaraciones de pleno"
           title="Qué afirmamos cuando una persona sube un veredicto"
         />
+        {/* Decía «cada declaración lleva el veredicto que resulta de cotejarla con datos
+            públicos». Medido el 01-11-2026: 2.113 de 5.148 no se cotejaron con nada
+            (/metodologia#citas-contraste dice lo mismo, en el mismo cambio). */}
         <p>
-          En <code>/plenos</code> y <code>/declaraciones</code> cada declaración lleva el veredicto
-          que resulta de cotejarla con datos públicos. Lo pone un comparador automático, y las
-          revisiones automáticas posteriores sólo pueden bajarlo —retirar lo que no se sostiene—,
-          nunca subirlo. <strong>Subir un veredicto lo hace sólo una persona</strong>, con su nombre
-          y apellidos, que la tarjeta de la declaración da («subido por una persona · firmado
-          por…»), y responde de ello.
+          En <code>/plenos</code> y <code>/declaraciones</code> cada declaración lleva un veredicto.
+          Lo pone un verificador automático, que sólo la coteja con datos públicos cuando trae un
+          importe en euros, cita una obra por su nombre o es una promesa; si no, se queda en «sin
+          datos», que no afirma nada. Las revisiones automáticas posteriores sólo pueden bajar un
+          veredicto —retirar lo que no se sostiene—, nunca subirlo.{' '}
+          <strong>Subir un veredicto lo hace sólo una persona</strong>, con su nombre y apellidos,
+          que la tarjeta de la declaración da («subido por una persona · firmado por…»), y responde
+          de ello.
         </p>
         <p>
           <strong>Con qué evidencia.</strong> Quien sube cita el registro público que lo sostiene
@@ -295,6 +314,10 @@ export default function AvisoLegal() {
             fuente pública.
           </li>
           <li>
+            No se publica ninguna opinión del editor que nombre a una persona, y las ya publicadas
+            que nombran a alguien dejan de mostrarse hasta que termina el periodo.
+          </li>
+          <li>
             Las solicitudes de rectificación siguen atendiéndose en el mismo plazo de 24/72 h.
           </li>
         </ul>
@@ -342,6 +365,20 @@ export default function AvisoLegal() {
           nombre, no publica solo uno cuya cita se atribuya a un grupo municipal de un solo concejal
           —que es nombrar a ese concejal— o cuyo texto lo nombre, y se detiene durante el periodo
           electoral.
+        </p>
+        {/* /metodologia#politica-automatizacion lista estos procesos; hasta el 01-11-2026
+            decía «Dos» y este documento no decía ninguno. */}
+        <p>
+          <strong>Lo que todavía publica sin esa medición.</strong> La auto-curación de promesas no
+          es el único proceso anterior a la política de automatización que publica sin pasar por
+          ella: también lo hacen el laboratorio de prensa, el registro de declaraciones de pleno —lo
+          que extrae un modelo, sin aprobarlo fila a fila, filtrado por una puerta editorial— y las
+          coincidencias de misma zona y misma materia entre quejas y contratos. Ninguno publica un
+          incumplimiento ni un hallazgo crítico (ver{' '}
+          <a href="/metodologia#politica-automatizacion" style={{ color: 'var(--civic)' }}>
+            /metodologia
+          </a>
+          ).
         </p>
       </Card>
 

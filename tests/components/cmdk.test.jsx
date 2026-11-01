@@ -72,6 +72,21 @@ describe('CmdK cerrado no se trae su índice', () => {
     fireEvent.change(input, { target: { value: 'Hallazgo de prueba' } })
     expect(await screen.findByText(/Hallazgo de prueba/)).toBeInTheDocument()
   })
+
+  it('encuentra un término del glosario con su definición llana', async () => {
+    // Quien teclea «deuda viva» busca qué quiere decir, no una página.
+    installFetchMock(DATOS)
+    render(
+      <MemoryRouter>
+        <CmdK open onOpen={() => {}} onClose={() => {}} />
+      </MemoryRouter>,
+    )
+    const input = await screen.findByPlaceholderText('Saltar a…')
+    fireEvent.change(input, { target: { value: 'deuda viva' } })
+    expect(await screen.findByText('Deuda viva')).toBeInTheDocument()
+    expect(screen.getByText(/Lo que el Ayuntamiento debe a bancos/)).toBeInTheDocument()
+    expect(screen.getByText('Glosario')).toBeInTheDocument()
+  })
 })
 
 /** Un arnés mínimo con el botón que abre, para poder comprobar a dónde vuelve
