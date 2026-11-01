@@ -130,8 +130,9 @@ export default function AvisoLegal() {
             más evidencia.
           </li>
           <li>
-            Las ediciones del contenido publicado se registran en la bitácora interna del proyecto.
-            Nada se borra en silencio.
+            Las ediciones del contenido publicado quedan en el historial público del repositorio y,
+            en hallazgos, promesas y biografías, en la bitácora de su ficha. Nada se borra en
+            silencio.
           </li>
           <li>
             En la bitácora pública de cada hallazgo de pleno no se reproduce la versión que nombraba

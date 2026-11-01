@@ -3978,7 +3978,10 @@ function ContratoEditorial() {
             Te responderemos en 24 h hábiles con una de tres opciones: acepto la corrección,
             necesito más evidencia, o la rechazo con motivo público.
           </li>
-          <li>Los cambios aplicados se registran en la bitácora interna del proyecto.</li>
+          <li>
+            Los cambios aplicados quedan en el historial público del repositorio y, en hallazgos,
+            promesas y biografías, en la bitácora de su ficha.
+          </li>
         </ol>
       </Card>
 
