@@ -1,16 +1,16 @@
 {
-  "generatedAt": "2026-11-01T13:59:08.143Z",
+  "generatedAt": "2026-11-01T12:06:11.053Z",
   "source": {
-    "tenders": "2026-11-01T13:59:06.797Z",
+    "tenders": "2026-11-01T12:06:10.246Z",
     "geo": "2026-11-01T11:35:17.857Z"
   },
   "universe": {
-    "totalContracts": 705,
-    "totalAmount": 125941134.62999995,
-    "locatedContracts": 40,
-    "locatedAmount": 3469216.1400000006,
-    "situatedContracts": 116,
-    "situatedAmount": 8809579.44,
+    "totalContracts": 712,
+    "totalAmount": 126064104.20999993,
+    "locatedContracts": 41,
+    "locatedAmount": 3480498.6800000006,
+    "situatedContracts": 117,
+    "situatedAmount": 8820861.98,
     "danaContracts": 9,
     "danaAmount": 259915.39,
     "danaAwardedContracts": 82,
@@ -83,8 +83,8 @@
         39.4840972,
         -0.572073
       ],
-      "contractCount": 8,
-      "amount": 259006.25000000003,
+      "contractCount": 9,
+      "amount": 270288.79000000004,
       "danaAmount": 100681.64
     },
     {
@@ -294,8 +294,8 @@
         39.4840972,
         -0.572073
       ],
-      "contractCount": 8,
-      "amount": 259006.25000000003,
+      "contractCount": 9,
+      "amount": 270288.79000000004,
       "danaAmount": 100681.64
     },
     {
@@ -3028,6 +3028,31 @@
       }
     },
     {
+      "id": "9023884",
+      "zones": [
+        "urbanitzacio-la-reva"
+      ],
+      "matchedAlias": {
+        "urbanitzacio-la-reva": "la reva"
+      },
+      "dana": false,
+      "amount": 11282.54,
+      "amountKind": "final",
+      "date": "2025-10-30",
+      "contractType": "supplies",
+      "categoryTitle": "transportation",
+      "point": [
+        39.4840972,
+        -0.572073
+      ],
+      "place": {
+        "kind": "urbanizacion",
+        "name": "Urbanització La Reva",
+        "matchedText": "Urbanització La Reva",
+        "sourceId": "urbanitzacio-la-reva"
+      }
+    },
+    {
       "id": "74419",
       "zones": [
         "santa-rosa",
@@ -3598,6 +3623,6 @@
     "geo.json": "ad861a91ee54",
     "place-overrides.json": "5878849f1684",
     "streets.json": "ef84f93a9be0",
-    "tenders.json": "d406ddad0e8a"
+    "tenders.json": "863186dc9e13"
   }
 }

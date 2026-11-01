@@ -1,12 +1,12 @@
 {
-  "generatedAt": "2026-11-01T13:59:09.746Z",
+  "generatedAt": "2026-11-01T12:06:11.790Z",
   "source": "queja-contract-relations engine v1 (deterministic)",
   "stats": {
     "frozen": false,
     "quejasScanned": 1,
-    "contractsScanned": 710,
+    "contractsScanned": 717,
     "tierA": 3,
-    "tierB": 27,
+    "tierB": 31,
     "reason": null
   },
   "links": [
@@ -57,6 +57,27 @@
       "tenderPermalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=e18%2FPP3l84B%2FR5QFTlaM4A%3D%3D",
       "tenderId": "4889055#10201361",
       "tenderTitle": "Servicio de apoyo técnico en el diagnóstico de igualdad y en la realización del Plan de Igualdad del Ayuntamiento de Riba-roja de Túria, contrato derivado del SDA de servicios de arquitectura e ingeniería, consultoría y asistencia técnica a las diferentes áreas municipales",
+      "tenderAwardDate": "2026-06-02",
+      "tenderAmount": 6500,
+      "via": "deterministic",
+      "signals": {
+        "department": {
+          "slug": "urbanismo"
+        },
+        "temporal": {
+          "monthsAfter": -1.0150061728395061
+        }
+      },
+      "tier": "B",
+      "score": 0.55,
+      "relationLabel": "misma materia y fechas próximas",
+      "requiresHumanApproval": true
+    },
+    {
+      "quejaId": "Q-KJY6XSVG",
+      "tenderPermalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=e18%2FPP3l84B%2FR5QFTlaM4A%3D%3D",
+      "tenderId": "4889055#10198807",
+      "tenderTitle": "71241000-Estudio de viabilidad, servicios de asesoramiento, análisis.",
       "tenderAwardDate": "2026-06-02",
       "tenderAmount": 6500,
       "via": "deterministic",
@@ -205,6 +226,27 @@
     },
     {
       "quejaId": "Q-KJY6XSVG",
+      "tenderPermalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=LnenigZlKbecCF8sV%2BqtYA%3D%3D",
+      "tenderId": "4889055#10184487",
+      "tenderTitle": "71241000-Estudio de viabilidad, servicios de asesoramiento, análisis.",
+      "tenderAwardDate": "2026-05-29",
+      "tenderAmount": 9457.71,
+      "via": "deterministic",
+      "signals": {
+        "department": {
+          "slug": "urbanismo"
+        },
+        "temporal": {
+          "monthsAfter": -1.1483395061728394
+        }
+      },
+      "tier": "B",
+      "score": 0.55,
+      "relationLabel": "misma materia y fechas próximas",
+      "requiresHumanApproval": true
+    },
+    {
+      "quejaId": "Q-KJY6XSVG",
       "tenderPermalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=lWTuvLzS6jH10HRJw8TEnQ%3D%3D",
       "tenderId": "9895895",
       "tenderTitle": "Contrato de carácter menor de obras para la ejecución del proyecto de modificación de instalación de ACS con mezcladores para duchas en pabellón deportivo municipal (Ctto99-2026)",
@@ -217,6 +259,27 @@
         },
         "temporal": {
           "monthsAfter": -2.8483395061728394
+        }
+      },
+      "tier": "B",
+      "score": 0.55,
+      "relationLabel": "misma materia y fechas próximas",
+      "requiresHumanApproval": true
+    },
+    {
+      "quejaId": "Q-KJY6XSVG",
+      "tenderPermalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=Tjxv4MOw0JC8ebB%2FXTwy0A%3D%3D",
+      "tenderId": "4889055#10278551",
+      "tenderTitle": "71241000-Estudio de viabilidad, servicios de asesoramiento, análisis.",
+      "tenderAwardDate": "2026-06-18",
+      "tenderAmount": 29000,
+      "via": "deterministic",
+      "signals": {
+        "department": {
+          "slug": "urbanismo"
+        },
+        "temporal": {
+          "monthsAfter": -0.48167283950617285
         }
       },
       "tier": "B",
@@ -563,6 +626,27 @@
     },
     {
       "quejaId": "Q-KJY6XSVG",
+      "tenderPermalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=2iTqILStUoT%2Fa9DgO%2BoYKQ%3D%3D",
+      "tenderId": "4889055#10254997",
+      "tenderTitle": "72224000-Servicios de consultoría en gestión de proyectos.",
+      "tenderAwardDate": "2026-06-11",
+      "tenderAmount": 1746.69,
+      "via": "deterministic",
+      "signals": {
+        "department": {
+          "slug": "urbanismo"
+        },
+        "temporal": {
+          "monthsAfter": -0.7150061728395062
+        }
+      },
+      "tier": "B",
+      "score": 0.55,
+      "relationLabel": "misma materia y fechas próximas",
+      "requiresHumanApproval": true
+    },
+    {
+      "quejaId": "Q-KJY6XSVG",
       "tenderPermalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=E%2BOr0JaUVkecCF8sV%2BqtYA%3D%3D",
       "tenderId": "5054473",
       "tenderTitle": "Obras  ejecución del proyecto: “Mejora del carril bici y la ejecución o mejora de refugios climáticos”, por procedimiento abierto simplificado, varios criterios de adjudicación, con condición de ejecución de carácter social y medioambiental, contribuyendo al cumplimiento del ODS 11 de la agenda 2030, en el marco del Plan de Recuperación, Transformación y Resilencia financiado por la U.E.",
@@ -650,7 +734,7 @@
   "builtFrom": {
     "promises.json": "a4b8423e960f",
     "quejas.json": "d6fdc33fc4bc",
-    "tender-geo.json": "1fa72fc5d2f6",
-    "tenders.json": "d406ddad0e8a"
+    "tender-geo.json": "864cd5db09cc",
+    "tenders.json": "863186dc9e13"
   }
 }

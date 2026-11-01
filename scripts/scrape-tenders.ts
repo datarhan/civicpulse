@@ -5,7 +5,7 @@
  *
  * Usage: npm run scrape:tenders
  */
-import { mkdir, writeFile } from 'node:fs/promises'
+import { mkdir, readFile, writeFile } from 'node:fs/promises'
 import { dirname, join } from 'node:path'
 import { fileURLToPath } from 'node:url'
 import { isCommittedContract, importeAdjudicado } from '../src/lib/contract-status.js'
@@ -18,6 +18,11 @@ import {
   type Tender,
 } from '../src/scraper/tenders'
 import { applyContractCorrections } from '../src/scraper/contract-corrections'
+import {
+  registrarIdentidad,
+  renglonesDeIdentidad,
+  type SnapshotAnterior,
+} from '../src/scraper/identidad-de-filas'
 import { loadContractCorrections } from './contract-correction'
 
 const __filename = fileURLToPath(import.meta.url)
@@ -43,6 +48,15 @@ async function fetchCsv(url: string): Promise<string> {
   })
   if (!res.ok) throw new Error(`${url} -> HTTP ${res.status}`)
   return res.text()
+}
+
+/** El snapshot que esta pasada va a pisar. Sin él, la identidad sale sin medir. */
+async function snapshotAnterior(): Promise<SnapshotAnterior | null> {
+  try {
+    return JSON.parse(await readFile(OUT, 'utf8')) as SnapshotAnterior
+  } catch {
+    return null
+  }
 }
 
 function topOpenTenders(list: Tender[], n: number): Tender[] {
@@ -85,8 +99,9 @@ async function main() {
     .filter((c) => isCommittedContract(c))
     .reduce((s, c) => s + (importeAdjudicado(c) ?? 0), 0)
 
+  const generatedAt = new Date().toISOString()
   const payload = {
-    generatedAt: new Date().toISOString(),
+    generatedAt,
     source: {
       contracts: CONTRACTS_URL,
       tenders: TENDERS_URL,
@@ -115,6 +130,10 @@ async function main() {
       aplicadas: correcciones.aplicadas,
       sobran: correcciones.sobran,
     },
+    // Si cada contrato sigue bajo su clave de fila desde la pasada anterior. Una
+    // medida para decidir sobre el `id`, no un gate: lo imprime
+    // check:contract-corrections y no cambia ningún dato.
+    identidadDeFilas: registrarIdentidad(await snapshotAnterior(), generatedAt, contracts),
     contracts,
     tenders,
   }
@@ -129,6 +148,7 @@ async function main() {
   )
   for (const s of correcciones.sobran)
     console.log(`[tenders]   ✗ la corrección de ${s.id} (lote ${s.lote}) sobra: ${s.porque}`)
+  for (const renglon of renglonesDeIdentidad(payload)) console.log(renglon)
   console.log(
     `[tenders] ${contracts.length} contracts (${payload.stats.awardedContracts} awarded, € ${awardedTotal
       .toFixed(0)
