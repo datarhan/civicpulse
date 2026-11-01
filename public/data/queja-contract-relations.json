@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-01T08:22:45.505Z",
+  "generatedAt": "2026-11-01T08:11:25.259Z",
   "source": "queja-contract-relations engine v1 (deterministic)",
   "stats": {
     "frozen": false,
@@ -13,7 +13,7 @@
     {
       "quejaId": "Q-KJY6XSVG",
       "tenderPermalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=SWowCY8dnwmcCF8sV%2BqtYA%3D%3D",
-      "tenderId": "5106848",
+      "tenderId": "5106848#9743660",
       "tenderTitle": "UE vella 6",
       "tenderAwardDate": "2026-09-08",
       "tenderAmount": 20250.89,
@@ -34,7 +34,7 @@
     {
       "quejaId": "Q-KJY6XSVG",
       "tenderPermalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=8p%2Fwsq%2B3XH9eKgd8LfVV9g%3D%3D",
-      "tenderId": "4889055#1",
+      "tenderId": "4889055#10149010",
       "tenderTitle": "71000000-Servicios de arquitectura, construcción, ingeniería e inspección.",
       "tenderAwardDate": "2026-05-08",
       "tenderAmount": 1600,
@@ -55,7 +55,7 @@
     {
       "quejaId": "Q-KJY6XSVG",
       "tenderPermalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=e18%2FPP3l84B%2FR5QFTlaM4A%3D%3D",
-      "tenderId": "4889055#2",
+      "tenderId": "4889055#10201361",
       "tenderTitle": "Servicio de apoyo técnico en el diagnóstico de igualdad y en la realización del Plan de Igualdad del Ayuntamiento de Riba-roja de Túria, contrato derivado del SDA de servicios de arquitectura e ingeniería, consultoría y asistencia técnica a las diferentes áreas municipales",
       "tenderAwardDate": "2026-06-02",
       "tenderAmount": 6500,
@@ -76,7 +76,7 @@
     {
       "quejaId": "Q-KJY6XSVG",
       "tenderPermalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=e18%2FPP3l84B%2FR5QFTlaM4A%3D%3D",
-      "tenderId": "4889055#3",
+      "tenderId": "4889055#10198807",
       "tenderTitle": "71241000-Estudio de viabilidad, servicios de asesoramiento, análisis.",
       "tenderAwardDate": "2026-06-02",
       "tenderAmount": 6500,
@@ -118,7 +118,7 @@
     {
       "quejaId": "Q-KJY6XSVG",
       "tenderPermalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=KfeVpx2w0IPECtSnloz%2BZQ%3D%3D",
-      "tenderId": "4889055#4",
+      "tenderId": "4889055#10921271",
       "tenderTitle": "71241000-Estudio de viabilidad, servicios de asesoramiento, análisis.",
       "tenderAwardDate": "2026-10-20",
       "tenderAmount": 14984.46,
@@ -139,7 +139,7 @@
     {
       "quejaId": "Q-KJY6XSVG",
       "tenderPermalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=56xTbbVhVpxxseVhcqrkhw%3D%3D",
-      "tenderId": "4889055#5",
+      "tenderId": "4889055#9992797",
       "tenderTitle": "Contratación servicio dirección de obra y dirección de ejecución material, coordinación en seguridad \ny salud para proyecto de obras “Reconstrucción de vallados de parcelas en los polígonos industriales tras los daños sufridos tras la DANA en el T.M. de Riba-roja de Túria (Valencia)” - Ctto92/2026.",
       "tenderAwardDate": "2026-04-22",
       "tenderAmount": 4588,
@@ -160,7 +160,7 @@
     {
       "quejaId": "Q-KJY6XSVG",
       "tenderPermalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=bZhrUOv3%2FSEeC9GJQOEBkQ%3D%3D",
-      "tenderId": "4889055#7",
+      "tenderId": "4889055#10717356",
       "tenderTitle": "72224000-Servicios de consultoría en gestión de proyectos.",
       "tenderAwardDate": "2026-09-04",
       "tenderAmount": 9000,
@@ -206,7 +206,7 @@
     {
       "quejaId": "Q-KJY6XSVG",
       "tenderPermalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=%2BtxCxaMNXsG7JOCXkOhcDg%3D%3D",
-      "tenderId": "1794430#20",
+      "tenderId": "1794430#10751423",
       "tenderTitle": "79900000-Servicios comerciales diversos y otros servicios conexos.",
       "tenderAwardDate": "2026-09-17",
       "tenderAmount": 6000,
@@ -227,7 +227,7 @@
     {
       "quejaId": "Q-KJY6XSVG",
       "tenderPermalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=LnenigZlKbecCF8sV%2BqtYA%3D%3D",
-      "tenderId": "4889055#8",
+      "tenderId": "4889055#10184487",
       "tenderTitle": "71241000-Estudio de viabilidad, servicios de asesoramiento, análisis.",
       "tenderAwardDate": "2026-05-29",
       "tenderAmount": 9457.71,
@@ -269,7 +269,7 @@
     {
       "quejaId": "Q-KJY6XSVG",
       "tenderPermalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=Tjxv4MOw0JC8ebB%2FXTwy0A%3D%3D",
-      "tenderId": "4889055#9",
+      "tenderId": "4889055#10278551",
       "tenderTitle": "71241000-Estudio de viabilidad, servicios de asesoramiento, análisis.",
       "tenderAwardDate": "2026-06-18",
       "tenderAmount": 29000,
@@ -290,7 +290,7 @@
     {
       "quejaId": "Q-KJY6XSVG",
       "tenderPermalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=2iTqILStUoT%2Fa9DgO%2BoYKQ%3D%3D",
-      "tenderId": "4889055#10",
+      "tenderId": "4889055#10259025",
       "tenderTitle": "Contratación servicio técnico redacción del Proyecto de Licencia Ambiental y del Plan de Actuación ante Emergencias para las siguientes actividades de carácter temporal correspondientes al ejercicio 2026: Feria del Comercio; Campaña de dinamización del mercado municipal Tasta el Mercat, contrato derivado del SDA de servicios de arquitectura e ingeniería, consultoría y asistencia técnica.",
       "tenderAwardDate": "2026-06-11",
       "tenderAmount": 1746.69,
@@ -395,7 +395,7 @@
     {
       "quejaId": "Q-KJY6XSVG",
       "tenderPermalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=jfZGSii8nvVLAIVZdUs8KA%3D%3D",
-      "tenderId": "4889055#11",
+      "tenderId": "4889055#10727335",
       "tenderTitle": "71000000-Servicios de arquitectura, construcción, ingeniería e inspección.",
       "tenderAwardDate": "2026-09-09",
       "tenderAmount": 9367.1,
@@ -416,7 +416,7 @@
     {
       "quejaId": "Q-KJY6XSVG",
       "tenderPermalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=SWowCY8dnwmcCF8sV%2BqtYA%3D%3D",
-      "tenderId": "5106848#1",
+      "tenderId": "5106848#9743658",
       "tenderTitle": "UE casco 5",
       "tenderAwardDate": "2026-09-08",
       "tenderAmount": 6900,
@@ -480,7 +480,7 @@
     {
       "quejaId": "Q-KJY6XSVG",
       "tenderPermalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=pRdXS4R%2FGo9%2FR5QFTlaM4A%3D%3D",
-      "tenderId": "1794430#36",
+      "tenderId": "1794430#10278501",
       "tenderTitle": "79900000-Servicios comerciales diversos y otros servicios conexos.",
       "tenderAwardDate": "2026-06-18",
       "tenderAmount": 8423.19,
@@ -501,7 +501,7 @@
     {
       "quejaId": "Q-KJY6XSVG",
       "tenderPermalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=Tjxv4MOw0JC8ebB%2FXTwy0A%3D%3D",
-      "tenderId": "4889055#12",
+      "tenderId": "4889055#10281213",
       "tenderTitle": "Contrato para el servicio de detección automática de desperfectos de las calzadas asfaltadas en suelo urbano del término municipal, contrato derivado del SDA de servicios de arquitectura e ingeniería, consultoría y asistencia técnica a las diferentes áreas municipales (Ctto 95/2026 – ESDA1/2025).",
       "tenderAwardDate": "2026-06-18",
       "tenderAmount": 29000,
@@ -522,7 +522,7 @@
     {
       "quejaId": "Q-KJY6XSVG",
       "tenderPermalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=aP7J6457f7Nt5r0ngvMetA%3D%3D",
-      "tenderId": "4889055#13",
+      "tenderId": "4889055#10390635",
       "tenderTitle": "71000000-Servicios de arquitectura, construcción, ingeniería e inspección.",
       "tenderAwardDate": "2026-07-02",
       "tenderAmount": 4015,
@@ -543,7 +543,7 @@
     {
       "quejaId": "Q-KJY6XSVG",
       "tenderPermalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=IJNBnVI%2F%2F9sS7pcxhTeWOg%3D%3D",
-      "tenderId": "4889055#14",
+      "tenderId": "4889055#10175692",
       "tenderTitle": "71000000-Servicios de arquitectura, construcción, ingeniería e inspección.",
       "tenderAwardDate": "2026-05-28",
       "tenderAmount": 2850,
@@ -564,7 +564,7 @@
     {
       "quejaId": "Q-KJY6XSVG",
       "tenderPermalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=3RswW7uhhYbI8aL3PRS10Q%3D%3D",
-      "tenderId": "4889055#15",
+      "tenderId": "4889055#10390730",
       "tenderTitle": "71000000-Servicios de arquitectura, construcción, ingeniería e inspección.",
       "tenderAwardDate": "2026-07-02",
       "tenderAmount": 21500,
@@ -585,7 +585,7 @@
     {
       "quejaId": "Q-KJY6XSVG",
       "tenderPermalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=eJtaf6IFJQyP66GS%2BONYvQ%3D%3D",
-      "tenderId": "5190772#2",
+      "tenderId": "5190772#10469515",
       "tenderTitle": "Lote 3 - Servicio de laboratorio para el análisis de sustancias decomisadas",
       "tenderAwardDate": "2026-10-07",
       "tenderAmount": 7000,
@@ -606,7 +606,7 @@
     {
       "quejaId": "Q-KJY6XSVG",
       "tenderPermalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=LnenigZlKbecCF8sV%2BqtYA%3D%3D",
-      "tenderId": "4889055#16",
+      "tenderId": "4889055#10188881",
       "tenderTitle": "Servicio de asistencia técnica para la realización de un diagnóstico de accesibilidad turística en el municipio de Riba-roja de Túria y la elaboración del correspondiente Plan de Mejora de la Accesibilidad Turística",
       "tenderAwardDate": "2026-05-29",
       "tenderAmount": 9457.71,
@@ -627,7 +627,7 @@
     {
       "quejaId": "Q-KJY6XSVG",
       "tenderPermalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=2iTqILStUoT%2Fa9DgO%2BoYKQ%3D%3D",
-      "tenderId": "4889055#17",
+      "tenderId": "4889055#10254997",
       "tenderTitle": "72224000-Servicios de consultoría en gestión de proyectos.",
       "tenderAwardDate": "2026-06-11",
       "tenderAmount": 1746.69,
@@ -669,7 +669,7 @@
     {
       "quejaId": "Q-KJY6XSVG",
       "tenderPermalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=SWowCY8dnwmcCF8sV%2BqtYA%3D%3D",
-      "tenderId": "5106848#2",
+      "tenderId": "5106848#9743661",
       "tenderTitle": "UE pous 6",
       "tenderAwardDate": "2026-09-08",
       "tenderAmount": 8768,
@@ -734,7 +734,7 @@
   "builtFrom": {
     "promises.json": "a4b8423e960f",
     "quejas.json": "710fc77f17e4",
-    "tender-geo.json": "c9be70429542",
-    "tenders.json": "44cb13e76150"
+    "tender-geo.json": "44f0b2171958",
+    "tenders.json": "fb204493c8b0"
   }
 }

@@ -83,7 +83,7 @@ export function Topbar({ crumb, onOpenCmdK, onOpenSidebar, tweaksOpen, onToggleT
       <button
         onClick={onOpenCmdK}
         className="cp-topbar-search"
-        aria-label={t('topbar.search.aria')}
+        aria-keyshortcuts="Meta+K Control+K"
         style={{
           display: 'flex',
           alignItems: 'center',
@@ -101,6 +101,7 @@ export function Topbar({ crumb, onOpenCmdK, onOpenSidebar, tweaksOpen, onToggleT
           {t('topbar.search')}
         </span>
         <span
+          aria-hidden="true"
           className="mono cp-topbar-search-kbd"
           style={{
             fontSize: 'var(--fs-micro)',

@@ -889,9 +889,15 @@ describe('cron pipelines · tras el rebase se vuelve a derivar', () => {
       .filter((f) => f.endsWith('.sh'))
       .map((f) => ({ f, cuerpo: sinComentarios(readFileSync(join(dir, f), 'utf8')) }))
       .filter(
-        ({ cuerpo }) => cuerpo.includes('cron_git_pull_rebase') && cuerpo.includes('git push'),
+        ({ cuerpo }) =>
+          cuerpo.includes('cron_git_pull_rebase') &&
+          /git push|cron_git_push_con_reintento/.test(cuerpo),
       )
     expect(tuberias.length, 'no ha leído ninguna tubería que rebase y publique').toBeGreaterThan(1)
+    expect(
+      tuberias.map(({ f }) => f),
+      'una tubería que publica por la función común se ha caído de esta guarda',
+    ).toEqual(expect.arrayContaining(['scrape-ci-blocked.sh', 'auto-curate-promises-daily.sh']))
     for (const { f, cuerpo } of tuberias) {
       const iPull = cuerpo.lastIndexOf('cron_git_pull_rebase')
       const iRederiva = cuerpo.lastIndexOf('cron_rutas_rederivadas')
@@ -1160,6 +1166,109 @@ describe('scrape-ci-blocked.sh · a failed publish is no longer silent', () => {
     expect(r.log).toContain('[ci-blocked] pushed')
     expect(r.status).toBe(1) // exit = number of failed adapters, as before
   }, 60_000)
+})
+
+// ---------------------------------------------------------------------------
+// El 2026-10-27 `scrape-ci-blocked` pulló a las 07:27:26, la PR #444 se fusionó a
+// las 07:28:13 y la revisión pre-push tardó 187 s: el push salió rechazado y, sin
+// reintento, el commit se quedó en local. La nocturna reescribió esos ficheros,
+// cada rebase posterior chocó en nueve, y los agentes pasaron cinco días parados
+// con `main` 285 commits por detrás. Al arreglarlo volvió a pasar: la PR #513
+// entró en la misma ventana el 2026-11-01.
+describe('cron pipelines · un push rechazado se reintenta una vez', () => {
+  const FUSION = '[stub] otra sesión fusionó durante el pre-push'
+
+  /**
+   * Una fusión entra en origin durante la revisión pre-push, que es donde
+   * ocurrió de verdad. `STUB_ADVANCE_ORIGIN_ON: 'refresh'` no serviría: se
+   * dispara en cada refresh, también en el del reintento, y lo rechazaría por un
+   * motivo que no es el incidente. El guion invoca este fichero con `sh`, una
+   * vez y sólo antes del primer push.
+   */
+  function fusionDuranteElPrePush(dir: string, ruta = 'public/data/press.json'): void {
+    mkdirSync(join(dir, '.husky'), { recursive: true })
+    writeFileSync(
+      join(dir, '.husky/pre-push'),
+      `#!/bin/sh
+_tmp="$(mktemp -d)"
+git clone -q "$(git remote get-url origin)" "$_tmp" 2>/dev/null
+( cd "$_tmp" && printf '{"items":[{"id":"fusionado"}]}\\n' > ${ruta} && git add -- ${ruta} && git -c user.email=otra@sesion -c user.name=otra commit -qm 'otra sesión: fusiona' && git push -q origin HEAD:main ) >/dev/null 2>&1
+rm -rf "$_tmp"
+echo "${FUSION}"
+`,
+    )
+  }
+
+  const enOrigen = (dir: string, ...args: string[]) =>
+    execFileSync('git', args, { cwd: `${dir}.origin.git`, encoding: 'utf8' })
+
+  it('scrape-ci-blocked.sh publica aunque una fusión entre durante su revisión pre-push', () => {
+    const dir = makeSandbox()
+    fusionDuranteElPrePush(dir)
+
+    const r = runScript(dir, 'scripts/scrape-ci-blocked.sh')
+
+    // Las condiciones estaban de verdad: entró la fusión y rechazaron el push.
+    expect(r.log, 'la fusión no entró: no hay rechazo que medir').toContain(FUSION)
+    expect(r.log, 'no dice que le rechazaron el push').toContain('push rechazado')
+
+    expect(r.status, r.log).toBe(0)
+    expect(r.log).toContain('[ci-blocked] pushed')
+    expect(r.branchAfter, 'quedó un rebase a medias').toBe('main')
+    expect(r.originHead, 'main local y origin no coinciden: el push no salió').toBe(r.head)
+    // Publicó SU trabajo, encima de la fusión y sin pisarla.
+    expect(enOrigen(dir, 'show', 'main:public/data/paro.json')).toContain('run-scrape:paro')
+    expect(enOrigen(dir, 'show', 'main:public/data/press.json')).toContain('fusionado')
+    // Lo que trae el rebase puede mover la entrada de un derivado.
+    expect(
+      r.log.lastIndexOf('rederivado tras el rebase'),
+      'publica lo que traiga el rebase sin rederivar',
+    ).toBeGreaterThan(r.log.lastIndexOf('push rechazado'))
+  }, 120_000)
+
+  it('auto-curate-promises-daily.sh publica aunque otro le gane el push', () => {
+    const dir = makeSandbox()
+
+    const r = runScript(dir, 'scripts/auto-curate-promises-daily.sh', {
+      STUB_ADVANCE_ORIGIN_ON: 'auto-curate-promises',
+    })
+
+    expect(r.log, 'no publicó nadie: no hay rechazo que medir').toContain(
+      '[stub] otro cron publicó en origin durante auto-curate-promises',
+    )
+    expect(r.log, 'no dice que le rechazaron el push').toContain('push rechazado')
+
+    expect(r.status, r.log).toBe(0)
+    expect(r.log).toContain('pushed auto-published promises')
+    expect(r.originHead, 'main local y origin no coinciden: el push no salió').toBe(r.head)
+    expect(enOrigen(dir, 'show', 'main:public/data/promises.json')).toContain(
+      'run-auto-curate-promises',
+    )
+  }, 120_000)
+
+  it('si el reintento choca, aborta limpio, no dice que publicó y deja la marca para check:cron', () => {
+    const dir = makeSandbox()
+    // La fusión toca un fichero que esta pasada también escribe y que no es un
+    // derivado: es el choque que el reintento no puede resolver a ciegas.
+    fusionDuranteElPrePush(dir, 'public/data/paro.json')
+
+    const r = runScript(dir, 'scripts/scrape-ci-blocked.sh')
+
+    expect(r.log, 'la fusión no entró: no hay rechazo que medir').toContain(FUSION)
+    expect(r.status, 'dio por buena una publicación que no salió').toBe(1)
+    expect(r.log).not.toContain('[ci-blocked] pushed')
+    expect(r.log).toContain('[ci-blocked] ERROR')
+    // El árbol queda utilizable y el trabajo sigue en local, sin perderse.
+    expect(r.branchAfter, 'quedó un rebase a medias').toBe('main')
+    expect(existsSync(join(dir, '.git/rebase-merge')), 'quedó un rebase abierto').toBe(false)
+    expect(git(dir, 'show', 'HEAD:public/data/paro.json')).toContain('run-scrape:paro')
+    expect(r.originHead).not.toBe(r.head)
+    // Pull inicial, pull previo al push y el del reintento, que es el que falla.
+    expect(
+      pullsDelLog(r.log, 'ci').map((e) => e.ok),
+      'el reintento no se intentó, o no dejó su marca',
+    ).toEqual([true, true, false])
+  }, 120_000)
 })
 
 // ---------------------------------------------------------------------------

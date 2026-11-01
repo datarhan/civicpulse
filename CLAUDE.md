@@ -388,8 +388,10 @@ that names nobody runs unattended only once its class has a measured precision
 over the bar for its severity (tier B). Naming an individual, or anything
 outward-facing, always takes a human (tier C), and an unmeasured class falls to
 C: nothing is unlocked by assertion. New automation goes through it; the press
-and promise auto-curators predate it and do not call it yet
-(`docs/REVIEW_2026-09.md` §25).
+and promise auto-curators, the declaraciones ledger and Tier A of the queja
+relations predate it and do not call it to publish yet (`docs/REVIEW_2026-09.md`
+§25; the ledger calls it only to withhold one-seat blocs), and
+`/metodologia#politica-automatizacion` lists them.
 
 **A suggestion never substitutes for a published status.** Machine rows awaiting
 a human carry `requiresHumanApproval: true`, and the curated schemas reject that

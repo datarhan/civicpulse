@@ -112,20 +112,29 @@ export function Vivo() {
   const alterna = (id) => setAbierto((previo) => (previo === id ? null : id))
 
   const idPanel = (id) => `vivo-panel-${id}`
-  const chip = (id, aria, contenido) => (
-    <button
-      type="button"
-      ref={(el) => {
-        chips.current[id] = el
-      }}
-      className="cp-vivo-chip"
-      aria-expanded={abierto === id}
-      aria-controls={idPanel(id)}
-      aria-label={t(aria)}
-      onClick={() => alterna(id)}
-    >
-      {contenido}
-    </button>
+  // El nombre del chip es lo que se lee en él, sin `aria-label` (WCAG 2.5.3): ese
+  // texto cambia con los datos, y una etiqueta escrita aparte no lo contiene. Lo
+  // que la etiqueta contaba —qué hay dentro y que se abre— pasa a ser descripción,
+  // que el lector de pantalla anuncia después del nombre.
+  const chip = (id, ayuda, contenido) => (
+    <>
+      <button
+        type="button"
+        ref={(el) => {
+          chips.current[id] = el
+        }}
+        className="cp-vivo-chip"
+        aria-expanded={abierto === id}
+        aria-controls={idPanel(id)}
+        aria-describedby={`${idPanel(id)}-ayuda`}
+        onClick={() => alterna(id)}
+      >
+        {contenido}
+      </button>
+      <span id={`${idPanel(id)}-ayuda`} hidden>
+        {t(ayuda)}
+      </span>
+    </>
   )
 
   // El panel EN SÍ no lleva `role="group"`, igual que los de la barra de

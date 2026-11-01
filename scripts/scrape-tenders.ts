@@ -10,6 +10,7 @@ import { dirname, join } from 'node:path'
 import { fileURLToPath } from 'node:url'
 import { isCommittedContract, importeAdjudicado } from '../src/lib/contract-status.js'
 import {
+  exigeClaveDeFuente,
   parseRibalicitaContracts,
   parseRibalicitaTenders,
   type Contract,
@@ -82,6 +83,7 @@ async function main() {
   // una persona restituyó con el anuncio delante se aplica aquí, y lo que ya no
   // corrige nada se anota en vez de tumbar la pasada (contract-corrections.ts).
   const parsed = parseRibalicitaContracts(contractsCsv)
+  exigeClaveDeFuente(parsed)
   const correcciones = applyContractCorrections(parsed, loadContractCorrections())
   const contracts = correcciones.contracts
   const tenders = parseRibalicitaTenders(tendersCsv)
