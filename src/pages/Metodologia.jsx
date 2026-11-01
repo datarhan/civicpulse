@@ -702,7 +702,13 @@ function ContratoEditorial() {
             el contrato se publica sin estado. Y cuando la Plataforma de Contratación dice otra
             cosa, una persona puede corregirlo citando literalmente el anuncio que lo dice y el que
             explica la discrepancia; cada corrección va firmada, en{' '}
-            <code>/data/contract-corrections.json</code>, y la fila corregida lo indica.
+            <code>/data/contract-corrections.json</code>, y la fila corregida lo indica.{' '}
+            {/* 01-11-2026: siete adjudicaciones salían en dos filas, cotejadas una a una en la
+                Plataforma (src/scraper/tenders.ts, `sinAdjudicacionesRepetidas`). */}
+            Si el registro publica una misma adjudicación en dos filas —igual enlace, lote, fecha,
+            importe, adjudicataria y estado—, se cuenta una vez: queda la fila con el objeto oficial
+            y las retiradas se listan en <code>/data/tenders.json</code>. Dos lotes de igual precio
+            no son una repetición.
           </li>
           <li>
             <strong>TED (Tenders Electronic Daily)</strong> — contratos europeos sobre el umbral UE,
