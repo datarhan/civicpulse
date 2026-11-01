@@ -134,6 +134,13 @@ SCRAPERS=(
 #     nightly deploy path. The adapter's own circuit breaker already refuses
 #     to publish a truncated agenda set, so a soft failure costs nothing but
 #     freshness — the prior agendas snapshot stays valid meanwhile.
+#   - scrape:plenos — la misma plataforma. Era su último adaptador crítico, y
+#     el certificado de regmeet.com caducó el 31-10-2026: una caducidad ajena, que
+#     no se arregla desde aquí y que no se relaja, habría dejado la nocturna sin
+#     despliegue noche tras noche. El adaptador funde sobre lo publicado, así que
+#     una caída no encoge la lista, y con un año sin leer no mueve su
+#     `generatedAt`: un fallo blando sólo cuesta frescura, y pasados 3 días lo dice
+#     check:cadence.
 #   - scrape:sindic-expedientes — elsindic.com desde un runner de GitHub está
 #     SIN MEDIR, y el precio de equivocarse es asimétrico: si no llega, la
 #     nocturna se pone roja y con ella se cae el despliegue, que es lo que costó
@@ -165,6 +172,7 @@ BEST_EFFORT=(
   # The real vote extraction runs curator-side in hallazgos-pipeline.sh.
   extract:all-pleno-votes
   scrape:pleno-agendas
+  scrape:plenos
   scrape:consell-cv
   scrape:elections
   scrape:metro-network
