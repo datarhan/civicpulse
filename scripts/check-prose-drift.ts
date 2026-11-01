@@ -83,10 +83,10 @@ function main() {
     // reportaje de basuras sostiene que el registro público SIGUE dándolo por
     // vivo pese a la resolución de 09-03-2026: si algún día se corrige, esta
     // ancla lo delata en vez de dejar la prosa afirmando algo que dejó de ser
-    // cierto.
+    // cierto. El id lleva `contract_id` porque 4653394 son dos filas, una por lote.
     rsuContrato: {
       label: 'tenders · contrato 4653394 (RSU) finalAmountNoTaxes',
-      value: importeContrato('4653394'),
+      value: importeContrato('4653394#7729190'),
     },
     // La concesión del agua: 55,69 M€ de diecisiete años adjudicados de una vez
     // (expte. 46717). El ganador y el importe se leen SIEMPRE de `contracts`,

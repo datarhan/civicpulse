@@ -98,3 +98,11 @@ export function enElBot(doc, trabajo, paso) {
  * acabarían contestando cosas distintas.
  */
 export const INSTALA_CON_APT = /npx\s+playwright\s+install(?:-deps\b|\b.*\s--with-deps\b)/
+
+/**
+ * ¿Instala este paso un navegador, con apt o sin él?
+ *
+ * Más ancha que `INSTALA_CON_APT`: la del trabajo `unidad`, que baja sólo el
+ * navegador, también necesita un sistema para el que Playwright tenga build.
+ */
+export const INSTALA_CHROMIUM = /npx\s+playwright\s+install\b/

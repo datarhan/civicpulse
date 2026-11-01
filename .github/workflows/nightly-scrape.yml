@@ -16,7 +16,8 @@ concurrency:
 
 jobs:
   scrape:
-    runs-on: ubuntu-latest
+    # Fijo, no `ubuntu-latest`: instala Chromium, y el porqué está en `e2e.yml`.
+    runs-on: ubuntu-24.04
     # Este tope es la SUMA de los topes de los pasos, no una estimación de lo
     # que tarda la nocturna (23,4 min medidos el 8-09-2026). Ningún paso puede
     # pasarse del suyo, así que el trabajo no puede pasarse de la suma: el tope
@@ -109,6 +110,12 @@ jobs:
         # atascado: `scrape-all.sh` reparte el reloj por dentro (tope por
         # adaptador y presupuesto común) para que la cola y el `npm test` lleguen
         # siempre, y dice qué no llegó a intentar. Éste queda de respaldo.
+        #
+        # La salida va también a una bitácora porque el hacha no avisa: cae sin
+        # que el guion pueda decir nada, y las tres noches de octubre el error
+        # final de la ejecución hablaba de «la fuente lenta» sin nombrarla. La
+        # puerta de salud la lee para decir en qué etapa cayó y qué críticos
+        # fallaron.
         timeout-minutes: 30
         # ADAPTERS passed via env (not inline ${{ }}) so a workflow_dispatch
         # input can never break out of the case "..." quoting into the shell.
@@ -123,7 +130,9 @@ jobs:
           rc=0
           case "$ADAPTERS" in
             all)
-              npm run scrape:all || rc=$?
+              # `pipefail` (arriba) es lo que hace que `rc` sea el de scrape:all y
+              # no el de `tee`, que siempre sale 0.
+              npm run scrape:all 2>&1 | tee "$RUNNER_TEMP/scrape-all.log" || rc=$?
               # NOTE: the press fact-check laboratory chain (extract →
               # verify → summarize → analytics → auto-curate-press →
               # audit-press-links + scrape:factcheck) used to run HERE, but
@@ -179,8 +188,18 @@ jobs:
       # no poder ejecutarse, que es el reverso del verde por no ejecutarse que
       # este repositorio persigue. Mismo par cacheado que e2e.yml, sin inventar
       # una variante.
+      #
+      # `!cancelled()` en estos tres pasos y en `Run tests`: un paso sin estado
+      # explícito lleva un `success()` implícito, y se salta en cuanto algo falla
+      # antes. El 26-10-2026 un `apt` lento y del 29 al 31-10 el hacha del raspado
+      # dejaron cuatro noches sin pruebas, y una prueba rota por datos pasó tres
+      # días sin aviso hasta que la enseñó una PR ajena. Una noche cortada es la
+      # que más necesita saber si `main` sigue sano, porque sus datos se comitean
+      # igual. No `always()`: un trabajo cancelado por su tope tiene que llegar al
+      # commit, no gastarse lo que le queda en las pruebas.
       - name: Cache Playwright browsers
         id: cache-pw
+        if: ${{ !cancelled() }}
         uses: actions/cache@v4
         with:
           path: ~/.cache/ms-playwright
@@ -190,7 +209,7 @@ jobs:
       # sin ella—, pero el presupuesto los suma a los dos. Sobrestimar sólo
       # pide un tope de trabajo más alto, que aquí es gratis.
       - name: Install Playwright Chromium
-        if: steps.cache-pw.outputs.cache-hit != 'true'
+        if: ${{ !cancelled() && steps.cache-pw.outputs.cache-hit != 'true' }}
         timeout-minutes: 8
         run: |
           # apt sale en error EN BLOQUE por una sola fuente rota, y la del
@@ -201,7 +220,7 @@ jobs:
           npx playwright install --with-deps chromium
 
       - name: Install Playwright system deps (cache hit)
-        if: steps.cache-pw.outputs.cache-hit == 'true'
+        if: ${{ !cancelled() && steps.cache-pw.outputs.cache-hit == 'true' }}
         timeout-minutes: 3
         run: |
           # apt sale en error EN BLOQUE por una sola fuente rota, y la del
@@ -211,17 +230,29 @@ jobs:
           bash scripts/ci-apt-fuentes-rotas.sh
           npx playwright install-deps chromium
 
-      # Tests validate the parser CODE against fixtures (independent of today's
-      # live data). continue-on-error so a failure here can't skip the commit
-      # of fresh data — it is folded into the health gate instead.
+      # Tests validate the parser CODE against fixtures, but not only: some read
+      # the data this run has just left on disk, which is how a nightly can break
+      # one. continue-on-error so a failure here can't skip the commit of fresh
+      # data — it is folded into the health gate instead.
       - name: Run tests
         id: tests
+        if: ${{ !cancelled() }}
         continue-on-error: true
         # 3,8 min medidos el 8-09-2026 sobre 5.909 pruebas. Corría SIN tope, que
         # es lo que hacía imposible cuadrar el presupuesto del trabajo: un paso
         # que no declara lo suyo no se puede sumar.
         timeout-minutes: 15
-        run: npm test
+        env:
+          SCRAPE_RC: ${{ steps.scrape.outputs.rc }}
+        run: |
+          # Sin rc, el hacha cayó antes del `refresh` del final de scrape-all.sh:
+          # las pruebas verían los derivados rancios y `data-graph-frescura`
+          # rojearía por el corte, tapando lo que de verdad esté roto. El commit
+          # rederiva después de todos modos; esto sólo adelanta lo que va a pasar.
+          if [ -z "${SCRAPE_RC:-}" ]; then
+            npm run refresh || echo "::warning::refresh falló tras el corte — las pruebas corren igual y data-graph-frescura dirá qué quedó sin reconstruir"
+          fi
+          npm test
 
       # Corre pase lo que pase, CANCELACIÓN INCLUIDA, y ésa es la diferencia
       # que costó una noche. Comitea lo que los adaptadores hayan refrescado,
@@ -303,9 +334,14 @@ jobs:
             # Rebase is safe here: this job only ever stages scraper-owned
             # files under public/data, and the curated snapshots the local
             # crons touch (journalist-reports, pleno-findings, promises…)
-            # are never written by scrapers, so the two sets don't overlap.
-            # A genuine conflict therefore means an assumption broke — abort
-            # and fail loudly rather than clobber curated editorial work.
+            # are never written by scrapers, so those two sets don't overlap.
+            #
+            # Lo que SÍ puede chocar es una PR que regenera la salida de un
+            # raspador con la nocturna en marcha, que es lo normal al cablear un
+            # adaptador: el 29-10-2026 #493 fusionó `budget-execution.json` a
+            # mitad del raspado y esa noche no se comiteó nada. El mensaje decía
+            # entonces que había chocado un fichero curado, y no era cierto: aquí
+            # se aborta sin forzar nada y se nombra lo que chocó.
             pushed=false
             for attempt in 1 2 3 4 5; do
               if git push origin HEAD; then
@@ -315,8 +351,9 @@ jobs:
               echo "::warning::push attempt $attempt rejected — rebasing onto origin/${GITHUB_REF_NAME} and retrying"
               git fetch origin "$GITHUB_REF_NAME"
               if ! git rebase "origin/${GITHUB_REF_NAME}"; then
+                chocan=$(git diff --name-only --diff-filter=U | tr '\n' ' ')
                 git rebase --abort || true
-                echo "::error::Rebase conflict against origin/${GITHUB_REF_NAME} — a curated file collided with a scraper output. Refusing to force-push over editorial work; this night's data was NOT committed."
+                echo "::error::Conflicto al rebasar sobre origin/${GITHUB_REF_NAME} en: ${chocan:-sin nombre }— otro commit tocó lo mismo con la nocturna en marcha. No se fuerza nada: los datos de esta noche NO se comitearon, y la siguiente pasada los rehace."
                 echo "changed=false" >> "$GITHUB_OUTPUT"
                 exit 1
               fi
@@ -365,26 +402,37 @@ jobs:
         if: ${{ !cancelled() }}
         timeout-minutes: 2
         env:
+          SCRAPE_OUTCOME: ${{ steps.scrape.outcome }}
           SCRAPE_RC: ${{ steps.scrape.outputs.rc }}
           TESTS_OUTCOME: ${{ steps.tests.outcome }}
         run: |
           fail=0
-          # An UNSET rc means the scrape step was killed by its
-          # timeout-minutes before it could report — treat that as a
-          # critical failure, never as green (the fresh data from the
-          # adapters that finished was still committed above).
+          bitacora="$RUNNER_TEMP/scrape-all.log"
+          # Sin rc hay dos historias, y no son la misma: el paso se saltó porque
+          # algo falló antes, o el hacha lo cortó a medias. Ninguna es un verde,
+          # aunque los adaptadores que terminaron ya estén comiteados arriba.
           if [ -z "${SCRAPE_RC:-}" ]; then
-            echo "::error::Scrape step hit its timeout-minutes before reporting rc. Adapters that finished were committed; this red run blocks the deploy until the slow/hung source is fixed."
+            if [ "${SCRAPE_OUTCOME:-}" = "skipped" ]; then
+              echo "::error::El raspado no llegó a correr: falló un paso anterior. Ningún adaptador refrescó esta noche."
+            else
+              etapa=$(sed -n 's/.*\[scrape-all\] running: //p' "$bitacora" 2>/dev/null | tail -1)
+              donde="dentro de «$etapa»"
+              [ -n "$etapa" ] || donde="y no se sabe en qué etapa"
+              echo "::error::El raspado se cortó antes de dar su rc, $donde. Lo terminado se comiteó; esta ejecución en rojo no despliega."
+            fi
             fail=1
           elif [ "$SCRAPE_RC" -ne 0 ]; then
-            echo "::error::One or more CRITICAL scrapers failed (rc=${SCRAPE_RC}). Fresh data from the healthy adapters was committed; this red run intentionally blocks the deploy until the critical source is fixed."
+            criticos=$(sed -n '/critical failure(s):/,$ s/^  - //p' "$bitacora" 2>/dev/null | tr '\n' ' ')
+            echo "::error::Fallaron adaptadores CRÍTICOS (rc=${SCRAPE_RC}): ${criticos:-mira el registro }— lo sano se comiteó; esta ejecución en rojo no despliega."
             fail=1
           fi
-          if [ "${TESTS_OUTCOME}" = "failure" ]; then
-            echo "::error::npm test failed on main — blocking deploy."
+          # `!= success` y no `= failure`: unas pruebas que no corrieron no son
+          # unas pruebas que pasaron.
+          if [ "${TESTS_OUTCOME:-}" != "success" ]; then
+            echo "::error::npm test no pasó (${TESTS_OUTCOME:-sin resultado}) — esta ejecución no despliega."
             fail=1
           fi
           if [ "$fail" -eq 0 ]; then
-            echo "All critical adapters + tests green (best-effort metro-network/participa failures, if any, are non-blocking)."
+            echo "Críticos y pruebas en verde. Lo blando que fallara no bloquea: míralo en el parte de scrape-all."
           fi
           exit "$fail"
