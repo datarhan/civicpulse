@@ -21,6 +21,7 @@ import { applyContractCorrections } from '../src/scraper/contract-corrections'
 import {
   registrarIdentidad,
   renglonesDeIdentidad,
+  sinFilasRetiradas,
   type SnapshotAnterior,
 } from '../src/scraper/identidad-de-filas'
 import { loadContractCorrections } from './contract-correction'
@@ -133,7 +134,11 @@ async function main() {
     // Si cada contrato sigue bajo su clave de fila desde la pasada anterior. Una
     // medida para decidir sobre el `id`, no un gate: lo imprime
     // check:contract-corrections y no cambia ningún dato.
-    identidadDeFilas: registrarIdentidad(await snapshotAnterior(), generatedAt, contracts),
+    identidadDeFilas: registrarIdentidad(
+      sinFilasRetiradas(await snapshotAnterior(), repetidas),
+      generatedAt,
+      contracts,
+    ),
     contracts,
     tenders,
   }

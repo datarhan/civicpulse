@@ -507,6 +507,8 @@ export function sinEstadoImposible(contracts: Contract[]): Contract[] {
 /** Una fila retirada por repetir una adjudicación, y la que queda en su lugar. */
 export interface AdjudicacionRepetida {
   id: string
+  /** Fuera del snapshot sólo queda aquí: con esto se encuentra la fila en la fuente. */
+  sourceRowId: string | null
   queda: string
 }
 
@@ -553,7 +555,9 @@ export function sinAdjudicacionesRepetidas(contracts: Contract[]): {
       (a, b) =>
         Number(esTituloCpv(a.title)) - Number(esTituloCpv(b.title)) || a.id.localeCompare(b.id),
     )
-    for (const c of sobran) repetidas.push({ id: c.id, queda: queda.id })
+    for (const c of sobran) {
+      repetidas.push({ id: c.id, sourceRowId: c.sourceRowId, queda: queda.id })
+    }
   }
   const retiradas = new Set(repetidas.map((r) => r.id))
   return { contratos: contracts.filter((c) => !retiradas.has(c.id)), repetidas }

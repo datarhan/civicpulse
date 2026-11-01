@@ -238,6 +238,27 @@ export function medirIdentidad(
   }
 }
 
+/**
+ * El snapshot anterior sin las filas que esta pasada retira.
+ *
+ * Una adjudicación repetida (`sinAdjudicacionesRepetidas`) sale del snapshot sin
+ * haber salido de la fuente, y esto pregunta por la fuente. Comparada tal cual, la
+ * retirada se leería como una baja, y como un cambio de clave si pasa a quedar su
+ * gemela, que es justo lo que desmentiría el `id`; y lo anotado en `movimientos` ya
+ * no se va. Sin ella en los dos lados se compara lo que publican ambas pasadas.
+ */
+export function sinFilasRetiradas(
+  anterior: SnapshotAnterior | null,
+  retiradas: readonly { sourceRowId: string | null }[],
+): SnapshotAnterior | null {
+  if (!anterior?.contracts) return anterior
+  const claves = new Set(retiradas.map((r) => r.sourceRowId))
+  return {
+    ...anterior,
+    contracts: anterior.contracts.filter((c) => !c.sourceRowId || !claves.has(c.sourceRowId)),
+  }
+}
+
 /** Un alta suelta no dice nada de la clave: casi todas las semanas entra un contrato. */
 function hayMovimiento(m: MedidaDeIdentidad): boolean {
   return m.cambian + m.retocadas + m.editadas + m.reutilizadas + m.idMovidos + m.bajas > 0
