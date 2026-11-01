@@ -3,8 +3,8 @@
  * llana arriba, el título oficial debajo si dice más, y «Adjudicado a … · 14.984 €
  * sin IVA» en vez de «Ayuntamiento de Riba-roja de Túria · €14.984,46 · …».
  *
- * La fila es la del contrato publicado el 20-10-2026, tal cual, y una copia sin
- * importe para la rama de «importe no publicado».
+ * La fila es un contrato publicado, tal cual, y una copia sin importe para la rama
+ * de «importe no publicado».
  */
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 import { readFileSync } from 'node:fs'
@@ -20,14 +20,16 @@ import { installFetchMock } from '../setup/mockFetch'
 
 const lee = (f) => JSON.parse(readFileSync(`public/data/${f}`, 'utf8'))
 const TENDERS = lee('tenders.json')
-/** El contrato publicado con fecha de adjudicación del 20-10-2026 y su importe. */
-const CONTRATO = TENDERS.contracts.find(
-  (c) => c.awardDate === '2026-10-20' && importeAdjudicado(c) != null && c.assignee,
-)
 /**
- * La misma fila, con la adjudicación dentro de la ventana de 7 días que acaba el
- * 28-10: la de verdad, del 20, cae un día antes del primero.
+ * Un contrato publicado con adjudicataria, importe y un título largo, que es lo que
+ * esta prueba necesita. Se elegía por su fecha, el 20-10-2026: la nocturna del
+ * 30-10 trajo esa fila con un código CPV por título y la prueba cayó sin que
+ * /cambios hubiera cambiado.
  */
+const CONTRATO = TENDERS.contracts.find(
+  (c) => importeAdjudicado(c) != null && c.assignee && c.title?.length > 200,
+)
+/** La misma fila, con la adjudicación dentro de la ventana de 7 días que acaba el 28-10. */
 const EN_LA_VENTANA = { ...CONTRATO, awardDate: '2026-10-24' }
 const SIN_IMPORTE = {
   ...CONTRATO,
@@ -73,7 +75,7 @@ async function pinta(idioma) {
 
 describe('/cambios · los contratos', () => {
   it('mide algo: la fila publicada existe y su título es largo', () => {
-    expect(CONTRATO, 'no está el contrato del 20-10-2026').toBeDefined()
+    expect(CONTRATO, 'ningún contrato publicado tiene un título largo').toBeDefined()
     expect(CONTRATO.title.length).toBeGreaterThan(200)
   })
 
