@@ -21,8 +21,10 @@ import { STACK_BREAKPOINT } from '../../src/variants/direction-d/tokens'
  * desde el runner, porque el metro no depende de la red: su horario es cálculo
  * puro, y sin temperatura el chip se compone con su propia cadena en vez de
  * dejar el hueco escrito.
+ *
+ * El nombre del chip es su texto, que cambia con los datos: lo fijo es cómo empieza.
  */
-const CHIP_HOY = CATALOGUE.es['vivo.hoy.aria']
+const CHIP_HOY = new RegExp(`^${CATALOGUE.es['vivo.hoy.chip.solo']}( · |$)`)
 
 /**
  * Open-Meteo servido DESDE la prueba.
@@ -254,10 +256,7 @@ test.describe('Cabecera de la portada', () => {
     const idPanel = String(await chip.getAttribute('aria-controls'))
     await page.locator(`#${idPanel}`).press('Escape')
     await expect(page.locator(`#${idPanel}`)).toBeHidden()
-    const enfocado = await page.evaluate(
-      () => document.activeElement?.getAttribute('aria-label') ?? null,
-    )
-    expect(enfocado).toBe(CHIP_HOY)
+    await expect(chip).toBeFocused()
   })
 
   test('el buscador de la portada abre con el botón y con el atajo', async ({ page }) => {
@@ -277,22 +276,27 @@ test.describe('Cabecera de la portada', () => {
 
   test('a 375 el buscador se queda en icono y conserva su nombre', async ({ page }) => {
     // La clase `cp-topbar-search` trae más que la regla de impresión que decía su
-    // comentario: por debajo de 720px `index.css` esconde la pista y el «⌘K» con
-    // `!important`, así que el botón se queda SIN texto visible. Medido: 36×28 px
-    // en la tercera fila, junto al reloj, sin desbordar el documento, que está bien.
+    // comentario: por debajo de 720px `index.css` recorta la pista y quita el
+    // «⌘K», así que el botón se queda SIN texto a la vista. Medido: 36×28 px en la
+    // tercera fila, junto al reloj, sin desbordar el documento, que está bien.
     //
     // Lo que no puede pasar es que se quede además sin nombre, y ese es el fallo
-    // que ningún ancho de escritorio puede ver: aquí el nombre sólo puede venir
-    // de la etiqueta, porque contenido ya no hay.
+    // que ningún ancho de escritorio puede ver: el nombre sale de la pista, así
+    // que recortada sí, pero quitada no.
     await page.setViewportSize({ width: 375, height: 812 })
     await page.goto('/', { waitUntil: 'domcontentloaded' })
-    const buscar = page.getByRole('button', { name: CATALOGUE.es['topbar.search'] })
+    const buscar = page.getByRole('button', { name: CATALOGUE.es['topbar.search'], exact: true })
     await expect(buscar).toBeVisible({ timeout: 8000 })
 
-    // ABLACIÓN del nombre: sin texto visible, la aserción de arriba sólo puede
-    // haberse cumplido por el aria-label. Si algún día vuelve a haber texto, esta
-    // línea se cae y avisa de que la de arriba ya no prueba lo que dice.
-    expect((await buscar.innerText()).trim(), 'a 375 el botón no debería tener texto').toBe('')
+    // ABLACIÓN del nombre: que venga de la pista y no de una etiqueta, y que la
+    // pista no se vea. Si vuelve a mostrarse, o alguien le pone un `aria-label`
+    // al botón, esto se cae y avisa de que la aserción de arriba ya no prueba lo
+    // que dice.
+    await expect(buscar).not.toHaveAttribute('aria-label')
+    const pista = await buscar.locator('.cp-topbar-search-hint').boundingBox()
+    expect(pista, 'la pista desapareció, y con ella el nombre').not.toBeNull()
+    expect(pista!.width, 'a 375 la pista debería ir recortada').toBeLessThanOrEqual(1)
+    expect(pista!.height, 'a 375 la pista debería ir recortada').toBeLessThanOrEqual(1)
 
     const caja = await buscar.boundingBox()
     expect(caja).not.toBeNull()

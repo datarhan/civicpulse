@@ -79,12 +79,13 @@ function Header({ now }) {
         type="button"
         className="cp-topbar-search"
         onClick={abrirBuscador}
-        // El nombre accesible es el MISMO texto que se ve (WCAG 2.5.3): con un
-        // «Buscar» a secas, quien dicta por voz lo que lee en pantalla no
-        // acierta. Y hace falta la etiqueta, no basta el contenido: por debajo
-        // de 720px `index.css` esconde la pista y el «⌘K», así que sin ella el
+        // El nombre accesible sale del texto que se ve (WCAG 2.5.3), sin
+        // `aria-label`: quien dicta por voz dice lo que lee en pantalla, y axe
+        // cuenta el «⌘K» pintado como parte de eso aunque vaya `aria-hidden`.
+        // Una etiqueta escrita aparte tendría que repetirlo, y un lector de
+        // pantalla le leería el atajo a quien no tiene esa tecla. Por eso la
+        // pista no se quita por debajo de 720px: `index.css` la recorta, o el
         // botón se quedaría sin nombre en el móvil.
-        aria-label={t('topbar.search')}
         aria-keyshortcuts="Meta+K Control+K"
         style={{
           display: 'flex',
@@ -106,6 +107,7 @@ function Header({ now }) {
           {t('topbar.search')}
         </span>
         <span
+          aria-hidden="true"
           className="mono cp-topbar-search-kbd"
           style={{
             fontFamily: MONO,
