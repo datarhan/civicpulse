@@ -249,6 +249,15 @@ export type TenderStatus =
 
 export interface Contract {
   id: string
+  /**
+   * La clave de fila de Gobierto (`contract_id`), `null` si la fila no la trae.
+   *
+   * En un expediente multifila ya va dentro del `id` (`idsDeFilas`); en una fila
+   * suelta sólo está aquí. Se guarda en todas para medir si aguanta una edición
+   * de la fuente (`identidad-de-filas.ts`), porque de eso depende ahora que los
+   * ids multifila no se muevan.
+   */
+  sourceRowId: string | null
   title: string
   permalink: string | null
   status: ContractStatus
@@ -414,6 +423,7 @@ export function parseRibalicitaContracts(csv: string): Contract[] {
   for (const [n, row] of rows.entries()) {
     const contract: Contract = {
       id: ids[n],
+      sourceRowId: nullable(row.contract_id),
       title: str(row.title),
       permalink: nullable(row.permalink),
       status: normStatus<ContractStatus>(row.status, CONTRACT_STATUS),
