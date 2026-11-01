@@ -249,6 +249,17 @@ export type TenderStatus =
 
 export interface Contract {
   id: string
+  /**
+   * La clave de fila de Gobierto (`contract_id`), `null` si la fila no la trae.
+   *
+   * `id` no identifica una fila: es el del expediente, y en uno con varias filas
+   * el `#n` es la posición en una consulta sin ORDER BY (ver el bucle de
+   * `parseRibalicitaContracts`). Esta clave sí distingue cada fila, pero nadie la
+   * usa todavía como identidad, ni debe: se guarda para medir si aguanta una
+   * edición de la fuente (`identidad-de-filas.ts`), y re-clavear `id` es una
+   * decisión que esa medida ha de informar, no adelantar.
+   */
+  sourceRowId: string | null
   title: string
   permalink: string | null
   status: ContractStatus
@@ -357,6 +368,7 @@ export function parseRibalicitaContracts(csv: string): Contract[] {
     if (!id) continue
     const contract: Contract = {
       id,
+      sourceRowId: nullable(row.contract_id),
       title: str(row.title),
       permalink: nullable(row.permalink),
       status: normStatus<ContractStatus>(row.status, CONTRACT_STATUS),

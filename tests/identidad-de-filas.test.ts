@@ -26,7 +26,7 @@ const AYER = '2026-10-31T10:35:12.757Z'
 const HOY = '2026-11-01T10:35:12.757Z'
 
 const medida = (m: ReturnType<typeof medirIdentidad>): MedidaDeIdentidad => {
-  if (!m.medida) throw new Error(`no se midió: ${m.motivo}`)
+  if (m.medida === false) throw new Error(`no se midió: ${m.motivo}`)
   return m
 }
 
