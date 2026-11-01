@@ -11,9 +11,11 @@ import { registrarIdentidad, sinFilasRetiradas } from '../src/scraper/identidad-
  * Gobierto repite algunas adjudicaciones en dos filas: mismo enlace, lote, fecha,
  * importe y adjudicataria, y distinta `contract_id`. Casi siempre una lleva el
  * objeto oficial y la otra una etiqueta CPV. Cotejadas el 2026-11-01 en la
- * Plataforma las siete que hay: cada expediente tiene un solo anuncio de
+ * Plataforma las ocho que hay: cada expediente tiene un solo anuncio de
  * adjudicación y ningún lote, así que son una adjudicación, no dos contratos.
- * Sumaban 122.969,58 € sin IVA de más, a dos personas físicas entre ellas.
+ * Sumaban 137.209,58 € sin IVA de más, a tres personas físicas entre ellas. La
+ * octava, 153/2025 BSDA, difiere en el lote: uno de sus dos renglones lo trae en
+ * blanco, y el anuncio no nombra ninguno.
  *
  * La lista de abajo va escrita a mano a propósito: es lo que se cotejó, y una
  * regla que empiece a fundir otra cosa tiene que ponerse roja aquí.
@@ -29,6 +31,7 @@ const COTEJADAS = [
   { expediente: '98/2026 BSDA', queda: '4889055#10201361', retirada: '4889055#10198807' },
   { expediente: '86/2026 BSDA', queda: '1794430#10201842', retirada: '1794430#10198485' },
   { expediente: '102/2026', queda: '4889055#10259025', retirada: '4889055#10254997' },
+  { expediente: '153/2025 BSDA', queda: '1794430#9807364', retirada: '1794430#10560849' },
 ]
 
 const porRetirada = (a: { id: string }, b: { id: string }) => a.id.localeCompare(b.id)
@@ -42,7 +45,7 @@ const fila = (id: string) => CONTRATOS.find((c) => c.id === id)!
 describe('sinAdjudicacionesRepetidas — sobre el registro real', () => {
   const { contratos, repetidas } = sinAdjudicacionesRepetidas(CONTRATOS)
 
-  it('mide algo: las siete parejas están en la fixture', () => {
+  it('mide algo: las ocho parejas están en la fixture', () => {
     expect(CONTRATOS).toHaveLength(814)
     for (const p of COTEJADAS) {
       expect(fila(p.queda), p.queda).toBeDefined()
@@ -50,14 +53,14 @@ describe('sinAdjudicacionesRepetidas — sobre el registro real', () => {
     }
   })
 
-  it('retira exactamente las siete cotejadas en la Plataforma', () => {
+  it('retira exactamente las ocho cotejadas en la Plataforma', () => {
     expect([...repetidas].sort(porRetirada)).toEqual(ESPERADAS)
     expect(contratos).toHaveLength(CONTRATOS.length - COTEJADAS.length)
   })
 
   it('el dinero que sobraba es el que se midió', () => {
     const sobra = repetidas.reduce((s, r) => s + fila(r.id).finalAmountNoTaxes, 0)
-    expect(sobra).toBeCloseTo(122969.58, 2)
+    expect(sobra).toBeCloseTo(137209.58, 2)
   })
 
   it('se queda con el objeto oficial, no con la etiqueta CPV', () => {
@@ -69,6 +72,14 @@ describe('sinAdjudicacionesRepetidas — sobre el registro real', () => {
   it('lo demás queda intacto y en su orden', () => {
     const retiradas = new Set(repetidas.map((r) => r.id))
     expect(contratos).toEqual(CONTRATOS.filter((c) => !retiradas.has(c.id)))
+  })
+
+  it('entre un lote en blanco y uno numerado queda el numerado, aunque su id ordene después', () => {
+    // Los lotes 1, 2 y 4 de 153/2025 BSDA siguen publicados: el expediente se lee entero.
+    const { id, batchNumber } = fila('1794430#9807364')
+    expect(id.localeCompare('1794430#10560849')).toBeGreaterThan(0)
+    expect(batchNumber).toBe(3)
+    expect(contratos.find((c) => c.id === id)?.batchNumber).toBe(3)
   })
 
   it('no depende del orden de las filas', () => {
@@ -85,13 +96,45 @@ describe('sinAdjudicacionesRepetidas — lo que no funde', () => {
   const ids = new Set(sinAdjudicacionesRepetidas(CONTRATOS).contratos.map((c) => c.id))
 
   it('lotes de igual precio: mismo enlace, fecha, importe y adjudicataria', () => {
-    // 12/2018 y 182/2025 son lotes reales. 153/2025 BSDA (lote 3 y lote en blanco)
-    // es dudoso y sin cotejar: distinto lote, así que aquí no se funde.
+    // 12/2018 y 182/2025 son lotes reales, todos numerados.
     const claves = ['125441', '125442', '8843225', '8843227', '8843228', '8843229']
-    claves.push('9807364', '10560849')
     const lotes = CONTRATOS.filter((c) => claves.includes(c.id.split('#').pop() ?? c.id))
     expect(lotes).toHaveLength(claves.length)
     for (const c of lotes) expect(ids.has(c.id), c.id).toBe(true)
+  })
+
+  describe('un lote en blanco junto a lotes numerados', () => {
+    const [lote2, lote3] = [fila('67336#125441'), fila('67336#125442')]
+    const enBlanco = (base: typeof lote2, sufijo: string) => ({
+      ...base,
+      id: `${base.id}-${sufijo}`,
+      sourceRowId: sufijo,
+      batchNumber: 0,
+    })
+
+    it('con dos candidatos no se sabe de cuál es la repetición: no funde ninguno', () => {
+      const filas = [lote2, lote3, enBlanco(lote2, 'x')]
+      expect(sinAdjudicacionesRepetidas(filas).repetidas).toEqual([])
+    })
+
+    it('con un solo candidato se funde, y dos en blanco se funden con él', () => {
+      const filas = [lote2, enBlanco(lote2, 'x'), enBlanco(lote2, 'y')]
+      const { contratos, repetidas } = sinAdjudicacionesRepetidas(filas)
+      expect(contratos).toEqual([lote2])
+      expect(repetidas.map((r) => r.queda)).toEqual([lote2.id, lote2.id])
+    })
+
+    it('el objeto oficial pesa más que el número de lote', () => {
+      const etiquetado = { ...lote2, title: '71241000-Estudio de viabilidad.' }
+      const blanco = enBlanco(lote2, 'x')
+      const { contratos } = sinAdjudicacionesRepetidas([etiquetado, blanco])
+      expect(contratos).toEqual([blanco])
+    })
+
+    it('con otro importe no es la misma adjudicación', () => {
+      const otra = { ...enBlanco(lote2, 'x'), finalAmountNoTaxes: lote2.finalAmountNoTaxes + 1 }
+      expect(sinAdjudicacionesRepetidas([lote2, otra]).repetidas).toEqual([])
+    })
   })
 
   it('tres filas desiertas con un mismo enlace: no hay adjudicación que repetir', () => {

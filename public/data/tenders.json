@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-01T14:21:20.456Z",
+  "generatedAt": "2026-11-01T18:02:23.119Z",
   "source": {
     "contracts": "https://ribalicita.ribarroja.es/api/v1/data/data.csv?sql=select%20*%20from%20contratos",
     "tenders": "https://ribalicita.ribarroja.es/api/v1/data/data.csv?sql=select%20*%20from%20licitaciones",
@@ -7,11 +7,11 @@
     "host": "https://ribalicita.ribarroja.es"
   },
   "stats": {
-    "totalContracts": 807,
+    "totalContracts": 806,
     "totalTenders": 431,
-    "awardedContracts": 710,
+    "awardedContracts": 709,
     "openTenders": 0,
-    "awardedTotalEuros": 125941134.62999995
+    "awardedTotalEuros": 125926894.62999995
   },
   "top": {
     "recentAwarded": [
@@ -412,6 +412,11 @@
     ],
     "adjudicacionesRepetidas": [
       {
+        "id": "1794430#10560849",
+        "sourceRowId": "10560849",
+        "queda": "1794430#9807364"
+      },
+      {
         "id": "4889055#10198807",
         "sourceRowId": "10198807",
         "queda": "4889055#10201361"
@@ -459,19 +464,19 @@
   "identidadDeFilas": {
     "ultima": {
       "medida": true,
-      "comparadoCon": "2026-11-01T12:06:10.246Z",
-      "conClaveAntes": 807,
-      "conClaveAhora": 807,
+      "comparadoCon": "2026-11-01T14:21:20.456Z",
+      "conClaveAntes": 806,
+      "conClaveAhora": 806,
       "sinClaveAntes": 0,
       "sinClaveAhora": 0,
       "repetidasAntes": 0,
       "repetidasAhora": 0,
-      "comparables": 807,
-      "conservan": 807,
+      "comparables": 806,
+      "conservan": 806,
       "cambian": 0,
       "multifila": {
-        "comparables": 269,
-        "conservan": 269,
+        "comparables": 268,
+        "conservan": 268,
         "retocadas": 0
       },
       "retocadas": 0,
@@ -487,7 +492,7 @@
         "idMovidos": [],
         "bajas": []
       },
-      "medidoEn": "2026-11-01T14:21:20.456Z"
+      "medidoEn": "2026-11-01T18:02:23.119Z"
     },
     "movimientos": []
   },
@@ -20605,41 +20610,6 @@
       "finalAmountNoTaxes": 4500,
       "estimatedValue": 0,
       "numberOfProposals": 5
-    },
-    {
-      "id": "1794430#10560849",
-      "sourceRowId": "10560849",
-      "title": "servicio Clases de Inglés en el CFPA de Riba-roja de Túria, derivado del SDA de servicios de diversa índole, de uso recurrente por parte de las diferentes áreas municipales.",
-      "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=r3klh8VqH0GTylGzYmBF9Q%3D%3D",
-      "status": "awarded",
-      "contractType": "services",
-      "processType": "restricted",
-      "minorContract": false,
-      "startDate": null,
-      "endDate": "2027-11-20",
-      "awardDate": "2025-11-20",
-      "formalizedDate": null,
-      "duration": 730,
-      "batchNumber": 0,
-      "assignee": "Paul John Schnyder",
-      "contractor": "Ayuntamiento de Riba-roja de Túria",
-      "contractorId": "58096",
-      "contractorType": "Ayuntamiento",
-      "categoryId": "28",
-      "categoryTitle": "health",
-      "cpvs": [
-        "98300000",
-        "79900000",
-        "80000000",
-        "80500000",
-        "80510000"
-      ],
-      "initialAmount": 33465.45,
-      "initialAmountNoTaxes": 33465.45,
-      "finalAmount": 14240,
-      "finalAmountNoTaxes": 14240,
-      "estimatedValue": 0,
-      "numberOfProposals": 2
     },
     {
       "id": "1404560",

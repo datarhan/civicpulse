@@ -517,16 +517,20 @@ export interface AdjudicacionRepetida {
  *
  * Son dos filas con el mismo enlace, lote, fecha, importe sin IVA, adjudicataria
  * y estado, y distinta `contract_id`. Cotejadas en la Plataforma el 2026-11-01 las
- * siete que había: cada expediente tiene un solo anuncio de adjudicación y ningún
- * lote, de modo que sumaban 122.969,58 € sin IVA que nadie adjudicó, también en el
- * total de dos personas físicas. En cinco, una fila lleva el objeto oficial y la
- * otra una etiqueta CPV, y queda la del objeto; entre iguales, el id menor, para
- * que el resultado no dependa del orden de la fuente.
+ * ocho que había: cada expediente tiene un solo anuncio de adjudicación y ningún
+ * lote, de modo que sumaban 137.209,58 € sin IVA que nadie adjudicó, también en el
+ * total de tres personas físicas. En cinco, una fila lleva el objeto oficial y la
+ * otra una etiqueta CPV, y queda la del objeto; luego, la del lote numerado; entre
+ * iguales, el id menor, para que el resultado no dependa del orden de la fuente.
+ *
+ * Un lote en blanco cuenta como el único lote numerado de esas filas: 153/2025
+ * BSDA publica un anuncio sin lote como lote 3 y como lote en blanco, y sus lotes
+ * 1, 2 y 4 siguen en el registro, así que queda el 3.
  *
  * La regla se queda corta antes que fundir: exige todos esos campos y un estado
  * comprometido, porque un lote de igual precio no es una repetición (12/2018,
- * 182/2025) y una fila desierta no adjudica nada. 153/2025 BSDA repite importe con
- * el lote 3 y con el lote en blanco: es dudoso, y como el lote difiere, no se funde.
+ * 182/2025), un lote en blanco junto a dos numerados no dice de cuál sería copia y
+ * una fila desierta no adjudica nada.
  *
  * El id de la que queda no cambia, porque se calcula antes con todas las filas, y
  * la pasada publica lo retirado en `contractCorrections.adjudicacionesRepetidas`.
@@ -541,7 +545,6 @@ export function sinAdjudicacionesRepetidas(contracts: Contract[]): {
     if (procurementStatusKind(c.status) !== 'committed') continue
     const clave = JSON.stringify([
       c.permalink,
-      c.batchNumber,
       c.awardDate,
       c.finalAmountNoTaxes,
       c.assignee,
@@ -550,10 +553,12 @@ export function sinAdjudicacionesRepetidas(contracts: Contract[]): {
     grupos.set(clave, [...(grupos.get(clave) ?? []), c])
   }
   const repetidas: AdjudicacionRepetida[] = []
-  for (const grupo of grupos.values()) {
+  for (const grupo of [...grupos.values()].flatMap(porLote)) {
     const [queda, ...sobran] = [...grupo].sort(
       (a, b) =>
-        Number(esTituloCpv(a.title)) - Number(esTituloCpv(b.title)) || a.id.localeCompare(b.id),
+        Number(esTituloCpv(a.title)) - Number(esTituloCpv(b.title)) ||
+        Number(a.batchNumber === 0) - Number(b.batchNumber === 0) ||
+        a.id.localeCompare(b.id),
     )
     for (const c of sobran) {
       repetidas.push({ id: c.id, sourceRowId: c.sourceRowId, queda: queda.id })
@@ -561,6 +566,15 @@ export function sinAdjudicacionesRepetidas(contracts: Contract[]): {
   }
   const retiradas = new Set(repetidas.map((r) => r.id))
   return { contratos: contracts.filter((c) => !retiradas.has(c.id)), repetidas }
+}
+
+/** Reparte por lote filas iguales en todo lo demás; con un solo lote numerado, van juntas. */
+function porLote(filas: Contract[]): Contract[][] {
+  const numerados = new Set(filas.map((c) => c.batchNumber).filter((lote) => lote !== 0))
+  if (numerados.size === 1) return [filas]
+  const lotes = new Map<number, Contract[]>()
+  for (const c of filas) lotes.set(c.batchNumber, [...(lotes.get(c.batchNumber) ?? []), c])
+  return [...lotes.values()]
 }
 
 // ---------------------------------------------------------------------------
