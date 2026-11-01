@@ -20,6 +20,7 @@ import {
   parsePlenoAgenda,
   mergeAgendaPlenos,
   reclasificaSecciones,
+  selloDeAgendas,
   tallyDepartments,
   type PlenoAgendaItem,
   type EnrichedPleno,
@@ -114,19 +115,22 @@ const REFRESH_NEWEST = 6
  */
 const ARCHIVE_BUDGET_MS = 150_000
 
-async function readExisting(): Promise<EnrichedPleno[]> {
+async function readExisting(): Promise<{ plenos: EnrichedPleno[]; generatedAt?: string }> {
   try {
-    const prev = JSON.parse(await readFile(OUT, 'utf8')) as { plenos?: EnrichedPleno[] }
-    return Array.isArray(prev.plenos) ? prev.plenos : []
+    const prev = JSON.parse(await readFile(OUT, 'utf8')) as {
+      generatedAt?: string
+      plenos?: EnrichedPleno[]
+    }
+    return { plenos: Array.isArray(prev.plenos) ? prev.plenos : [], generatedAt: prev.generatedAt }
   } catch {
-    return []
+    return { plenos: [] }
   }
 }
 
 async function main() {
   const index = JSON.parse(await readFile(PLENOS, 'utf8'))
   const plenos: any[] = [...(index.items || [])].sort((a, b) => (a.date < b.date ? 1 : -1))
-  const existing = await readExisting()
+  const { plenos: existing, generatedAt: selloPrevio } = await readExisting()
   const storedCount = new Map(existing.map((p) => [p.id, p.agendaCount]))
 
   // Walk EVERY session, not the 30 most-recent. The old cap left 29 of 61
@@ -159,6 +163,9 @@ async function main() {
   // Sesiones a las que esta pasada no fue NI al origen NI al archivo. No son
   // fallos: se informan aparte y no entran en `attempted`.
   let sinIntentar = 0
+  // De las REFRESH_NEWEST primeras, las que el origen vivo no sirvió, aunque las
+  // rescatara el archivo. Decide el sello: ver `selloDeAgendas`.
+  let recientesSinLeer = 0
 
   for (let i = 0; i < targets.length; i++) {
     const p = targets[i]
@@ -178,6 +185,7 @@ async function main() {
         )
       }
     }
+    if (!buf && i < REFRESH_NEWEST) recientesSinLeer += 1
     let archiveSkipped = false
     if (!buf) {
       if (archivo.puedeIntentar()) {
@@ -286,8 +294,17 @@ async function main() {
         `${sinIntentar} sesión(es) sin intentar esta noche`,
     )
   }
+  const desenlace = classifyAgendaRun({
+    attempted: targets.length - sinIntentar,
+    fromLive,
+    fromArchive,
+  })
+  const generatedAt = selloDeAgendas(selloPrevio, {
+    outcome: desenlace.outcome,
+    recientesSinLeer,
+  })
   const payload = {
-    generatedAt: new Date().toISOString(),
+    generatedAt,
     source: {
       baseUrl: 'https://regmeet.com',
       description:
@@ -315,6 +332,7 @@ async function main() {
       // Lo que esta pasada NO intentó, aparte de lo que intentó y falló.
       archiveLookupsSkipped: archivo.noIntentadas,
       sessionsNotAttempted: sinIntentar,
+      recientesSinLeer,
     },
     topDepartments,
     plenos: merged,
@@ -326,6 +344,12 @@ async function main() {
     `[pleno-agendas] wrote ${OUT} — ${merged.length}/${plenos.length} sessions · ${itemCount} items · ` +
       `${Object.keys(deptCount).length} departamentos (refrescadas ${refreshed}, de archivo ${fromArchive})`,
   )
+  if (generatedAt === selloPrevio) {
+    console.warn(
+      `[pleno-agendas] sello retenido en ${selloPrevio}: ${desenlace.outcome}, ` +
+        `${recientesSinLeer} de las ${REFRESH_NEWEST} más recientes sin leer del origen`,
+    )
+  }
 
   // La puerta, en cuatro desenlaces. Se cierra DESPUÉS de escribir, igual que
   // antes: arrastrar lo ya visto deja el fichero íntegro, así que fallar en
@@ -336,11 +360,6 @@ async function main() {
   // desde tres redes distintas — y la pasada salió 0 en verde porque la
   // Wayback Machine devolvió tres sesiones viejas. Los plenos del 6 y del 27
   // de julio se quedaron sin orden del día sin que saltara nada.
-  const desenlace = classifyAgendaRun({
-    attempted: targets.length - sinIntentar,
-    fromLive,
-    fromArchive,
-  })
   if (!desenlace.ok) {
     console.error(`[pleno-agendas] ${desenlace.outcome}: ${desenlace.motivo}`)
     process.exit(1)
