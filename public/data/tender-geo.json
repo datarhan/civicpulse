@@ -1,7 +1,7 @@
 {
-  "generatedAt": "2026-10-31T11:03:12.437Z",
+  "generatedAt": "2026-11-01T08:22:44.564Z",
   "source": {
-    "tenders": "2026-10-31T10:35:12.757Z",
+    "tenders": "2026-11-01T08:22:27.187Z",
     "geo": "2026-10-31T10:37:51.302Z"
   },
   "universe": {
@@ -3623,6 +3623,6 @@
     "geo.json": "74892b4b3432",
     "place-overrides.json": "5878849f1684",
     "streets.json": "6dbdecd40da2",
-    "tenders.json": "dcad0e562760"
+    "tenders.json": "44cb13e76150"
   }
 }
