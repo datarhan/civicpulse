@@ -13,6 +13,7 @@ import {
   exigeClaveDeFuente,
   parseRibalicitaContracts,
   parseRibalicitaTenders,
+  sinAdjudicacionesRepetidas,
   type Contract,
   type Tender,
 } from '../src/scraper/tenders'
@@ -70,7 +71,8 @@ async function main() {
   // corrige nada se anota en vez de tumbar la pasada (contract-corrections.ts).
   const parsed = parseRibalicitaContracts(contractsCsv)
   exigeClaveDeFuente(parsed)
-  const correcciones = applyContractCorrections(parsed, loadContractCorrections())
+  const { contratos: sinRepetidas, repetidas } = sinAdjudicacionesRepetidas(parsed)
+  const correcciones = applyContractCorrections(sinRepetidas, loadContractCorrections())
   const contracts = correcciones.contracts
   const tenders = parseRibalicitaTenders(tendersCsv)
   const imposibles = parsed.filter((c) => c.sourceStatus !== undefined)
@@ -103,11 +105,13 @@ async function main() {
       openTenders: topOpenTenders(tenders, 12),
     },
     // Lo que esta pasada cambió del registro, para que se pueda auditar: las
-    // filas que dejó sin estado por imposible y las correcciones curadas que
-    // aplicó o que ya sobran (check:contract-corrections lee este bloque).
+    // filas que dejó sin estado por imposible, las que retiró por repetir una
+    // adjudicación y las correcciones curadas que aplicó o que ya sobran
+    // (check:contract-corrections lee este bloque).
     contractCorrections: {
       file: '/data/contract-corrections.json',
       sinEstadoPorImposible: imposibles.map((c) => c.id),
+      adjudicacionesRepetidas: repetidas,
       aplicadas: correcciones.aplicadas,
       sobran: correcciones.sobran,
     },
@@ -119,7 +123,8 @@ async function main() {
   await writeFile(OUT, JSON.stringify(payload, null, 2) + '\n')
   console.log(`[tenders] wrote ${OUT}`)
   console.log(
-    `[tenders] estados imposibles → centinela: ${imposibles.length} · correcciones: ` +
+    `[tenders] adjudicaciones repetidas retiradas: ${repetidas.length} · ` +
+      `estados imposibles → centinela: ${imposibles.length} · correcciones: ` +
       `${correcciones.aplicadas.length} aplicada(s), ${correcciones.sobran.length} sobrante(s)`,
   )
   for (const s of correcciones.sobran)
