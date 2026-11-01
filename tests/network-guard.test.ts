@@ -1,4 +1,3 @@
-// @vitest-environment happy-dom
 /**
  * Proof that the suite-wide network guard fires.
  *
