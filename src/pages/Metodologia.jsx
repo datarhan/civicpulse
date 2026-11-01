@@ -581,8 +581,8 @@ function ContratoEditorial() {
               afirmación ya publicada —retractar un veredicto, bajar la gravedad, despublicar— puede
               correr sin curador y sin medición. Es reversible y equivocarse significa decir{' '}
               <em>menos</em> de lo que podríamos, que es el error seguro para un observatorio.
-              Puede, no tiene por qué: lo que corre así hoy son las pasadas que bajan un veredicto y
-              la puerta editorial, que deja de enseñar lo que ya no se sostiene. Una{' '}
+              Puede, no tiene por qué: hoy corren así las pasadas que bajan un veredicto y la puerta
+              editorial, que deja de enseñar lo que ya no se sostiene. Una{' '}
               <a href="#plazos-vencidos" style={{ color: 'var(--civic)' }}>
                 votación de pleno
               </a>
@@ -626,14 +626,17 @@ function ContratoEditorial() {
           {/* 15-10-2026. docs/REVIEW_2026-09.md §25: auto-curate-press.ts y el
               auto-curador de promesas no llaman a decideAutomation, y esta tarjeta
               lo callaba mientras el README decía que nada automático subía nada. */}
-          {/* Decía «Dos procesos». Medido el 01-11-2026: tampoco pasan por ella el registro
-              de declaraciones —5.148 filas servidas sin aprobar una a una, y la medición de su
-              comparador (`verdict.deterministic.*`, .automation-measurements.json) es 0,22 y
-              0,33— ni el Nivel A de quejas y contratos (`buildRelations`, en la nocturna). No
-              lleva el número: una cuenta aquí se queda vieja. */}
+          {/* Decía «Dos procesos». Medido el 01-11-2026: tampoco pasan por ella para publicar
+              el registro de declaraciones —5.148 filas servidas sin aprobar una a una— ni el
+              Nivel A de quejas y contratos (`buildRelations`, en la nocturna). El registro sí la
+              consulta para no escribir un grupo de un escaño (pleno-claim-llm.ts), por eso
+              «para publicar». Su comparador se midió el 24-06-2026 (0,22 y 0,33,
+              `verdict.deterministic.*`): caducada, por eso «última» y «quedó». No lleva el
+              número: una cuenta aquí se queda vieja. */}
           <p>
             <strong>
-              Estos procesos son anteriores a esta política y todavía no pasan por ella.
+              Estos procesos son anteriores a esta política y todavía no pasan por ella para
+              publicar.
             </strong>{' '}
             La{' '}
             <a href="#auto-curacion-promesas" style={{ color: 'var(--civic)' }}>
@@ -653,7 +656,8 @@ function ContratoEditorial() {
             <a href="#citas-contraste" style={{ color: 'var(--civic)' }}>
               puerta editorial
             </a>
-            , y la medición de su comparador queda muy por debajo del listón. El{' '}
+            , y la política sólo se consulta para no escribir un grupo de un solo concejal. La
+            última medición de su comparador, ya caducada, quedó muy por debajo del listón. El{' '}
             <a href="#relacion-quejas-contratos" style={{ color: 'var(--civic)' }}>
               cruce de quejas y contratos
             </a>{' '}
@@ -2985,7 +2989,7 @@ function ContratoEditorial() {
             de coocurrencia verificable y se publica directamente con etiqueta neutra («misma zona y
             materia»), sin revisión y sin una precisión medida: es uno de los procesos que{' '}
             <a href="#politica-automatizacion" style={{ color: 'var(--civic)' }}>
-              todavía no pasan por la política de automatización
+              todavía no pasan por la política de automatización para publicar
             </a>
             . <em>Nivel B</em> (sólo zona, o sólo materia) queda como sugerencia{' '}
             <code>requiresHumanApproval</code> y <strong>no se muestra</strong> hasta que un curador

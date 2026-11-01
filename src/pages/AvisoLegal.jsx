@@ -370,11 +370,11 @@ export default function AvisoLegal() {
             decía «Dos» y este documento no decía ninguno. */}
         <p>
           <strong>Lo que todavía publica sin esa medición.</strong> La auto-curación de promesas no
-          es el único proceso anterior a la política de automatización: tampoco pasan por ella el
-          laboratorio de prensa, el registro de declaraciones de pleno —lo que extrae un modelo, sin
-          aprobarlo fila a fila, filtrado por una puerta editorial— ni las coincidencias de misma
-          zona y misma materia entre quejas y contratos. Ninguno publica un incumplimiento ni un
-          hallazgo crítico (ver{' '}
+          es el único proceso anterior a la política de automatización que publica sin pasar por
+          ella: también lo hacen el laboratorio de prensa, el registro de declaraciones de pleno —lo
+          que extrae un modelo, sin aprobarlo fila a fila, filtrado por una puerta editorial— y las
+          coincidencias de misma zona y misma materia entre quejas y contratos. Ninguno publica un
+          incumplimiento ni un hallazgo crítico (ver{' '}
           <a href="/metodologia#politica-automatizacion" style={{ color: 'var(--civic)' }}>
             /metodologia
           </a>
