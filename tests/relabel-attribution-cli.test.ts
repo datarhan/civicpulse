@@ -25,14 +25,14 @@ import {
 import { tmpdir } from 'node:os'
 import { dirname, join, relative, resolve } from 'node:path'
 import { describe, expect, it } from 'vitest'
+import { TSX_DIRECTO } from './setup/tsx-directo'
 
 const RAIZ = resolve(__dirname, '..')
-const TSX = join(RAIZ, 'node_modules/tsx/dist/cli.mjs')
 /** Una recomposición entera por subproceso: más que los 5 s de vitest en la CI. */
 const PLAZO = 60_000
 
 const lanzar = (script: string, cwd: string, argv: string[]) =>
-  spawnSync(process.execPath, [TSX, join(RAIZ, 'scripts', script), ...argv], {
+  spawnSync(process.execPath, [...TSX_DIRECTO, join(RAIZ, 'scripts', script), ...argv], {
     cwd,
     encoding: 'utf8',
   })
@@ -389,7 +389,7 @@ describe('relabel-attribution', { timeout: PLAZO }, () => {
       const r = spawnSync(
         process.execPath,
         [
-          TSX,
+          ...TSX_DIRECTO,
           conScript(dir, 'retract-claim-attribution.ts'),
           '--claim',
           FIRMADA,

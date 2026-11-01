@@ -56,9 +56,9 @@ import { ALLOWED_CLAIM_TYPES } from '../src/scraper/pleno-claim'
 import { RESPONSE_BLOCS } from '../src/scraper/journalist/types'
 import { SPEAKER_GROUPS } from '../src/scraper/pleno-votes'
 import { TRINQUETE } from '../src/scraper/trinquete'
+import { TSX_DIRECTO } from './setup/tsx-directo'
 
 const RAIZ = resolve(__dirname, '..')
-const TSX = join(RAIZ, 'node_modules/tsx/dist/cli.mjs')
 const SCRIPTS_NPM = (
   JSON.parse(readFileSync(join(RAIZ, 'package.json'), 'utf8')) as {
     scripts: Record<string, string>
@@ -628,7 +628,7 @@ function rutaDelScript(caso: Caso, dir: string): string {
 }
 
 function lanzar(caso: Caso, dir: string, argv: string[]): SpawnSyncReturns<string> {
-  return spawnSync(process.execPath, [TSX, rutaDelScript(caso, dir), ...argv], {
+  return spawnSync(process.execPath, [...TSX_DIRECTO, rutaDelScript(caso, dir), ...argv], {
     cwd: dir,
     encoding: 'utf8',
     env: {

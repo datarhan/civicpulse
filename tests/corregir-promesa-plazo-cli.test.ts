@@ -26,9 +26,9 @@ import { join, resolve } from 'node:path'
 import { describe, expect, it } from 'vitest'
 
 import { rechazoDeFirma, rechazoDeMarcador } from '../src/scraper/firma-de-persona'
+import { TSX_DIRECTO } from './setup/tsx-directo'
 
 const RAIZ = resolve(__dirname, '..')
-const TSX = join(RAIZ, 'node_modules/tsx/dist/cli.mjs')
 const SCRIPT = 'correct-promise.ts'
 
 const ID = 'prueba-plazo-1'
@@ -90,7 +90,7 @@ function limpiar(dir: string): void {
 }
 
 const lanzar = (dir: string, argv: string[]) =>
-  spawnSync(process.execPath, [TSX, join(dir, 'scripts', SCRIPT), ...argv], {
+  spawnSync(process.execPath, [...TSX_DIRECTO, join(dir, 'scripts', SCRIPT), ...argv], {
     cwd: dir,
     encoding: 'utf8',
     timeout: 60_000,

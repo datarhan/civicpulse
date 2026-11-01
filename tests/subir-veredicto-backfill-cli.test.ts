@@ -13,9 +13,9 @@ import { tmpdir } from 'node:os'
 import { dirname, join, resolve } from 'node:path'
 import { afterEach, describe, expect, it } from 'vitest'
 import { mergeVerified, type OverlayEntry, type VerifiedItem } from '../src/scraper/verified-merge'
+import { TSX_DIRECTO } from './setup/tsx-directo'
 
 const RAIZ = resolve(__dirname, '..')
-const TSX = join(RAIZ, 'node_modules/tsx/dist/cli.mjs')
 const PLAZO = 60_000
 
 const FX = JSON.parse(
@@ -119,7 +119,7 @@ function montar(): { dir: string; antes: string } {
 }
 
 const lanzar = (dir: string, argv: string[]) =>
-  spawnSync(process.execPath, [TSX, join(RAIZ, 'scripts/subir-veredicto.ts'), ...argv], {
+  spawnSync(process.execPath, [...TSX_DIRECTO, join(RAIZ, 'scripts/subir-veredicto.ts'), ...argv], {
     cwd: dir,
     encoding: 'utf8',
   })
