@@ -141,6 +141,16 @@ describe('con-tope: el perro guardián', () => {
       return false
     }
   }
+  // Un proceso con SIGKILL sigue respondiendo a kill(0) hasta que alguien lo recoge,
+  // y al nieto lo recoge init, no esta prueba: recién devuelto el 124 puede ser un
+  // zombi, y mirar una sola vez dio rojo en la CI de #531 con el tope bien hecho.
+  // El margen no tapa a un superviviente: el `sleep 60` no cabe en él.
+  const desaparece = (pid, ms = 3_000) => {
+    const limite = Date.now() + ms
+    const parada = new Int32Array(new SharedArrayBuffer(4))
+    while (vive(pid) && Date.now() < limite) Atomics.wait(parada, 0, 0, 20)
+    return !vive(pid)
+  }
 
   it('devuelve el código del mandato si termina a tiempo', () => {
     expect(correr(['5', 'sh', '-c', 'exit 7']).status).toBe(7)
@@ -153,7 +163,7 @@ describe('con-tope: el perro guardián', () => {
     expect(r.status).toBe(124)
     const nieto = Number(readFileSync(pidf, 'utf8'))
     expect(nieto).toBeGreaterThan(0)
-    expect(vive(nieto), 'el nieto sobrevivió al tope').toBe(false)
+    expect(desaparece(nieto), 'el nieto sobrevivió al tope').toBe(true)
   })
 
   it('remata con SIGKILL a quien ignora SIGTERM', () => {
@@ -162,7 +172,7 @@ describe('con-tope: el perro guardián', () => {
       CON_TOPE_GRACIA_MS: '300',
     })
     expect(r.status).toBe(124)
-    expect(vive(Number(readFileSync(pidf, 'utf8')))).toBe(false)
+    expect(desaparece(Number(readFileSync(pidf, 'utf8')))).toBe(true)
   })
 
   // Un guardián que no vigila no puede ejecutar el mandato igual: eso sería
