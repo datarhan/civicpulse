@@ -135,7 +135,7 @@ export default function HallazgoDetalle() {
       >
         <DataAsOf iso={data?.generatedAt} label={t('nav.hallazgos')} />
         <Link
-          to="/metodologia"
+          to="/metodologia#grupo-plenos"
           style={{ color: 'var(--civic)', fontSize: 'var(--fs-meta)', textDecoration: 'underline' }}
         >
           {t('hallazgo.metodologia')}

@@ -54,7 +54,7 @@ const PROMETE_ENLACE = /\benlaza|\benlla[çc]a|\benlace|\benlla[çc]/i
  */
 const leeFuente = (idioma) => (container) => {
   const comoSeProcesa = CATALOGUE[idioma]['plenos.indice.comoSeProcesa']
-  const enlace = [...container.querySelectorAll('a[href="/metodologia"]')].find(
+  const enlace = [...container.querySelectorAll('a[href="/metodologia#grupo-plenos"]')].find(
     (a) => a.textContent === comoSeProcesa,
   )
   const frase = enlace

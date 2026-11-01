@@ -2189,7 +2189,7 @@ function PiePresupuesto() {
         <Link to="/datos" style={{ color: 'var(--civic)' }}>
           {t('presupuesto.pie.datos')}
         </Link>
-        <Link to="/metodologia" style={{ color: 'var(--civic)' }}>
+        <Link to="/metodologia#grupo-datos" style={{ color: 'var(--civic)' }}>
           {t('presupuesto.pie.metodologia')}
         </Link>
       </div>

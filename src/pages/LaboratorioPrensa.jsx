@@ -1294,7 +1294,10 @@ export default function LaboratorioPrensa() {
             verificado/discrepa contrastan datos municipales públicos contra las afirmaciones del
             medio citado. Nunca atribuimos opinión a periodistas individuales; sólo a la línea
             institucional del medio.{' '}
-            <a href="/metodologia" style={{ color: 'var(--civic)', textDecoration: 'underline' }}>
+            <a
+              href="/metodologia#laboratorio-prensa"
+              style={{ color: 'var(--civic)', textDecoration: 'underline' }}
+            >
               Leer metodología →
             </a>
           </div>

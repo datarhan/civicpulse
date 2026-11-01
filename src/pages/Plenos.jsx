@@ -167,7 +167,7 @@ export default function Plenos() {
               }}
             >
               {t('plenos.indice.fuenteRegmeet')}{' '}
-              <Link to="/metodologia" style={{ color: 'var(--civic)' }}>
+              <Link to="/metodologia#grupo-plenos" style={{ color: 'var(--civic)' }}>
                 {t('plenos.indice.comoSeProcesa')}
               </Link>
             </p>
@@ -236,7 +236,7 @@ export default function Plenos() {
           <Link to="/hallazgos" style={{ color: 'var(--civic)' }}>
             {t('plenos.indice.enlace.hallazgos')}
           </Link>
-          <Link to="/metodologia" style={{ color: 'var(--civic)' }}>
+          <Link to="/metodologia#grupo-plenos" style={{ color: 'var(--civic)' }}>
             {t('plenos.indice.enlace.metodologia')}
           </Link>
         </div>

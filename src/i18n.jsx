@@ -2149,6 +2149,104 @@ export const CATALOGUE = {
     'metodologia.enBreve.error.pregunta': '¿Y si os equivocáis?',
     'metodologia.enBreve.error.frase':
       'Cualquier persona, colectivo o partido puede pedir una rectificación, por GitHub o por correo. Tiene plazos fijos, los mismos del aviso legal.',
+    // El índice de /metodologia y la frase con que abre cada apartado. Las frases se
+    // escriben a mano y las revisa una persona, como el resto del contrato: no llevan
+    // plazos ni cifras (tests/metodologia-indice.test.jsx).
+    'metodologia.indice': 'En esta página',
+    'metodologia.indice.apartados': '{n} apartados',
+    'metodologia.indice.volver': 'Índice ↑',
+    'metodologia.indice.aviso':
+      'Cada apartado abre con lo esencial en una frase. Lo que vale es el texto entero, que va debajo.',
+    'metodologia.enUnaFrase': 'En una frase',
+    'metodologia.grupo.reglas': 'Reglas generales',
+    'metodologia.grupo.datos': 'Datos y fuentes',
+    'metodologia.grupo.cargos': 'Personas y cargos',
+    'metodologia.grupo.plenos': 'Plenos y declaraciones',
+    'metodologia.grupo.promesas': 'Promesas',
+    'metodologia.grupo.quejas': 'Quejas',
+    'metodologia.grupo.eficiencia': 'Eficiencia y laboratorio',
+    'metodologia.grupo.correcciones': 'Correcciones y réplica',
+    'metodologia.seccion.principios': 'Qué hacemos y qué no',
+    'metodologia.seccion.politica-automatizacion': 'Qué se publica sin revisión',
+    'metodologia.seccion.fuentes-auditadas': 'Fuentes auditadas',
+    'metodologia.seccion.gasto-por-concejalia': 'Cómo se asigna un contrato',
+    'metodologia.seccion.mapa-del-gasto': 'Mapa del gasto',
+    'metodologia.seccion.corporacion': 'La lista de la corporación',
+    'metodologia.seccion.mudanza-portal': 'La mudanza del portal',
+    'metodologia.seccion.a-quien-se-pregunta': 'A quién se pregunta',
+    'metodologia.seccion.encaje': 'Encaje declarado',
+    'metodologia.seccion.biografias': 'Biografías',
+    'metodologia.seccion.verificacion-declaraciones': 'Del discurso al contraste',
+    'metodologia.seccion.trinquete-veredictos': 'El trinquete',
+    'metodologia.seccion.citas-transcripcion': 'Citas marcadas',
+    'metodologia.seccion.citas-contraste': 'Citas sin respaldo',
+    'metodologia.seccion.plazos-vencidos': 'Votos y plazos vencidos',
+    'metodologia.seccion.estados': 'Qué significa cada estado',
+    'metodologia.seccion.limites-motor': 'Límites del motor',
+    'metodologia.seccion.auto-curacion-promesas': 'Qué se auto-publica',
+    'metodologia.seccion.camino-de-una-queja': 'Cómo llega una queja',
+    'metodologia.seccion.relacion-quejas-contratos': 'Quejas y contratos',
+    'metodologia.seccion.eficiencia': 'Cuánto cuesta cada servicio',
+    'metodologia.seccion.opinion-editor': 'La opinión del editor',
+    'metodologia.seccion.frontera': 'La frontera',
+    'metodologia.seccion.coste-esperado': 'El coste esperado',
+    'metodologia.seccion.laboratorio-prensa': 'Laboratorio de prensa',
+    'metodologia.seccion.rectificacion': 'Cómo pedir una rectificación',
+    'metodologia.seccion.politica-correcciones': 'Política de correcciones',
+    'metodologia.frase.principios':
+      'Somos neutrales entre partidos, cada promesa se atribuye con una cita literal y su fuente, y cualquiera puede pedir una corrección.',
+    'metodologia.frase.politica-automatizacion':
+      'Como regla, una máquina puede retirar o suavizar lo publicado, pero no publicar algo nuevo sin una precisión medida ni nombrar a nadie sin firma humana; las excepciones se dicen abajo.',
+    'metodologia.frase.fuentes-auditadas':
+      'Aquí están las fuentes públicas con las que se cotejan las afirmaciones, con lo que aporta cada una y sus límites.',
+    'metodologia.frase.gasto-por-concejalia':
+      'Cada contrato se asigna a un área por el código CPV principal que declara el expediente, y si los códigos declarados no nombran ninguna, queda sin asignar.',
+    'metodologia.frase.mapa-del-gasto':
+      'Un contrato sólo va al mapa cuando su título, o el objeto de su licitación, nombra un lugar concreto que sabemos localizar; el gasto sin lugar citado no se reparte.',
+    'metodologia.frase.corporacion':
+      'Cuando la web municipal va por detrás de lo que acordó el Pleno, corregimos la lista de cargos con una entrada firmada que cita el acta, nunca de forma automática.',
+    'metodologia.frase.mudanza-portal':
+      'Cuando el ayuntamiento mudó su portal, nuestra lista de cargos se quedó unos días sin actualizar y se estrecharon las formas de contactar, y lo contamos sin acusar a nadie.',
+    'metodologia.frase.a-quien-se-pregunta':
+      'El buscador de cargos dice qué área lleva un asunto según un vocabulario curado, a quién preguntar y no quién responde de cada caso, y nunca adivina.',
+    'metodologia.frase.encaje':
+      'Cruzamos lo que cada concejal con delegación declara en su CV con la materia de sus áreas, sin puntuar, sin ordenar y sin decir nada de cómo gestiona.',
+    'metodologia.frase.biografias':
+      'Lo que un cargo publica sobre sí mismo es el punto de partida, no la fuente: se contrasta con documentos que no controla, y la vida privada sin relación con el cargo no entra.',
+    'metodologia.frase.verificacion-declaraciones':
+      'Cotejamos automáticamente lo dicho en el pleno con contratos, subvenciones y promesas cuando hay con qué; luego una máquina sólo puede rebajar un veredicto, y subirlo lo firma una persona.',
+    'metodologia.frase.trinquete-veredictos':
+      'Cada etapa mueve un veredicto en un solo sentido, ninguna automática lo refuerza, y un veredicto que afirma algo nombra contra qué se comprobó, salvo la retractación de un curador.',
+    'metodologia.frase.citas-transcripcion':
+      'Las citas de los hallazgos salen de una transcripción automática; si no constan en el mejor texto lo marcamos, si no constan en ninguno no se publican, y no las reescribimos por nuestra cuenta.',
+    'metodologia.frase.citas-contraste':
+      'Una puerta editorial decide si una afirmación se enseña con sus datos, como no contrastada o se retiene, y lo que se retiene es la cita, no lo que se dijo.',
+    'metodologia.frase.plazos-vencidos':
+      'Cada voto dice de qué fuente salen su resultado y su desglose, y un compromiso con fecha que vence sin evidencia de ejecución lleva un aviso que no cambia ningún estado.',
+    'metodologia.frase.estados':
+      'Cada estado exige algo distinto para publicarse, y ni documentada ni en verificación afirman un incumplimiento.',
+    'metodologia.frase.limites-motor':
+      'El motor no auto-publica veredictos fuertes, no asigna incumplimientos, no inventa citas, no puntúa partidos y se detiene en periodo electoral.',
+    'metodologia.frase.auto-curacion-promesas':
+      'Sin revisión sólo se publica lo que supera un umbral de confianza y queda anclado a su fuente, rotulado como automático; «parcial», «cumplida» y los incumplimientos nunca se publican solos.',
+    'metodologia.frase.camino-de-una-queja':
+      'Publicar una queja no la lleva al ayuntamiento: llega cuando entra en su registro, y el plazo legal para responder cuenta desde esa fecha.',
+    'metodologia.frase.relacion-quejas-contratos':
+      'Un contrato que coincide con una queja en zona y en materia se muestra; con una sola de las dos espera a un curador, y ninguna coincidencia afirma que el contrato la resuelva.',
+    'metodologia.frase.eficiencia':
+      'Cuando lo que declara el ayuntamiento lo permite, dividimos el coste de cada servicio entre sus unidades, lo comparamos con municipios parecidos del mismo modo de gestión y no publicamos ninguna nota.',
+    'metodologia.frase.opinion-editor':
+      'Los datos no ponen nota; la opinión del editor sí juzga, rotulada como opinión, firmada por una persona, con cada hecho enlazado y sin cifra, escala ni ranking.',
+    'metodologia.frase.frontera':
+      'La puntuación de la frontera sale de un modelo con decisiones nuestras dentro, así que publicamos el método entero y no nombramos a ningún otro municipio.',
+    'metodologia.frase.coste-esperado':
+      'Compara los servicios en gestión directa con lo esperable para la población del municipio; es un modelo, no una fuente citable, y sigue las mismas reglas que la frontera.',
+    'metodologia.frase.laboratorio-prensa':
+      'Cotejamos con datos municipales públicos lo que afirma la prensa cuando hay con qué, la fuente primaria siempre gana y que no haya datos no significa que sea falso.',
+    'metodologia.frase.rectificacion':
+      'Escríbenos con el identificador afectado y la fuente que propones, y te contestamos si aceptamos, si necesitamos más evidencia o si lo rechazamos con motivo público.',
+    'metodologia.frase.politica-correcciones':
+      'Cada corrección de un hallazgo deja una fila pública que no se borra, y lo que no debe seguir publicado no se reproduce en ella.',
     // «En breve»: la primera capa de /presupuesto, en el registro de quien no
     // sabe qué es una obligación reconocida. `[[clave|texto]]` es un término
     // del glosario (src/glosario.js) y se pinta como botón con su definición.
@@ -4954,6 +5052,104 @@ export const CATALOGUE = {
     'metodologia.enBreve.error.pregunta': 'I si vos equivoqueu?',
     'metodologia.enBreve.error.frase':
       "Qualsevol persona, col·lectiu o partit pot demanar una rectificació, per GitHub o per correu. Té terminis fixos, els mateixos de l'avís legal.",
+    // El índice de /metodologia y la frase con que abre cada apartado. Las frases se
+    // escriben a mano y las revisa una persona, como el resto del contrato: no llevan
+    // plazos ni cifras (tests/metodologia-indice.test.jsx).
+    'metodologia.indice': 'En esta pàgina',
+    'metodologia.indice.apartados': '{n} apartats',
+    'metodologia.indice.volver': 'Índex ↑',
+    'metodologia.indice.aviso':
+      "Cada apartat obri amb l'essencial en una frase. El que val és el text sencer, que va davall.",
+    'metodologia.enUnaFrase': 'En una frase',
+    'metodologia.grupo.reglas': 'Regles generals',
+    'metodologia.grupo.datos': 'Dades i fonts',
+    'metodologia.grupo.cargos': 'Persones i càrrecs',
+    'metodologia.grupo.plenos': 'Plens i declaracions',
+    'metodologia.grupo.promesas': 'Promeses',
+    'metodologia.grupo.quejas': 'Queixes',
+    'metodologia.grupo.eficiencia': 'Eficiència i laboratori',
+    'metodologia.grupo.correcciones': 'Correccions i rèplica',
+    'metodologia.seccion.principios': 'Què fem i què no',
+    'metodologia.seccion.politica-automatizacion': 'Què es publica sense revisió',
+    'metodologia.seccion.fuentes-auditadas': 'Fonts auditades',
+    'metodologia.seccion.gasto-por-concejalia': "Com s'assigna un contracte",
+    'metodologia.seccion.mapa-del-gasto': 'Mapa de la despesa',
+    'metodologia.seccion.corporacion': 'La llista de la corporació',
+    'metodologia.seccion.mudanza-portal': 'La mudança del portal',
+    'metodologia.seccion.a-quien-se-pregunta': 'A qui es pregunta',
+    'metodologia.seccion.encaje': 'Encaix declarat',
+    'metodologia.seccion.biografias': 'Biografies',
+    'metodologia.seccion.verificacion-declaraciones': 'Del discurs al contrast',
+    'metodologia.seccion.trinquete-veredictos': 'El trinquet',
+    'metodologia.seccion.citas-transcripcion': 'Cites marcades',
+    'metodologia.seccion.citas-contraste': 'Cites sense suport',
+    'metodologia.seccion.plazos-vencidos': 'Vots i terminis vençuts',
+    'metodologia.seccion.estados': 'Què significa cada estat',
+    'metodologia.seccion.limites-motor': 'Límits del motor',
+    'metodologia.seccion.auto-curacion-promesas': "Què s'autopublica",
+    'metodologia.seccion.camino-de-una-queja': 'Com arriba una queixa',
+    'metodologia.seccion.relacion-quejas-contratos': 'Queixes i contractes',
+    'metodologia.seccion.eficiencia': 'Quant costa cada servei',
+    'metodologia.seccion.opinion-editor': "L'opinió de l'editor",
+    'metodologia.seccion.frontera': 'La frontera',
+    'metodologia.seccion.coste-esperado': 'El cost esperat',
+    'metodologia.seccion.laboratorio-prensa': 'Laboratori de premsa',
+    'metodologia.seccion.rectificacion': 'Com demanar una rectificació',
+    'metodologia.seccion.politica-correcciones': 'Política de correccions',
+    'metodologia.frase.principios':
+      "Som neutrals entre partits, cada promesa s'atribuïx amb una cita literal i la seua font, i qualsevol pot demanar una correcció.",
+    'metodologia.frase.politica-automatizacion':
+      "Com a regla, una màquina pot retirar o suavitzar el que s'ha publicat, però no publicar una cosa nova sense una precisió mesurada ni nomenar ningú sense firma humana; les excepcions es diuen davall.",
+    'metodologia.frase.fuentes-auditadas':
+      "Ací estan les fonts públiques amb què s'acaren les afirmacions, amb el que aporta cadascuna i els seus límits.",
+    'metodologia.frase.gasto-por-concejalia':
+      "Cada contracte s'assigna a una àrea pel codi CPV principal que declara l'expedient, i si els codis declarats no en nomenen cap, queda sense assignar.",
+    'metodologia.frase.mapa-del-gasto':
+      "Un contracte només va al mapa quan el seu títol, o l'objecte de la seua licitació, nomena un lloc concret que sabem localitzar; la despesa sense lloc citat no es repartix.",
+    'metodologia.frase.corporacion':
+      "Quan el web municipal va per darrere del que va acordar el Ple, corregim la llista de càrrecs amb una entrada signada que cita l'acta, mai de manera automàtica.",
+    'metodologia.frase.mudanza-portal':
+      "Quan l'ajuntament va mudar el seu portal, la nostra llista de càrrecs es va quedar uns dies sense actualitzar i es van estrényer les formes de contactar, i ho contem sense acusar ningú.",
+    'metodologia.frase.a-quien-se-pregunta':
+      'El cercador de càrrecs diu quina àrea porta un assumpte segons un vocabulari curat, a qui preguntar i no qui respon de cada cas, i mai no endevina.',
+    'metodologia.frase.encaje':
+      'Creuem el que cada regidor amb delegació declara en el seu CV amb la matèria de les seues àrees, sense puntuar, sense ordenar i sense dir res de com gestiona.',
+    'metodologia.frase.biografias':
+      'El que un càrrec publica sobre si mateix és el punt de partida, no la font: es contrasta amb documents que no controla, i la vida privada sense relació amb el càrrec no hi entra.',
+    'metodologia.frase.verificacion-declaraciones':
+      "Acarem automàticament el que s'ha dit en el ple amb contractes, subvencions i promeses quan hi ha amb què; després una màquina només pot rebaixar un veredicte, i pujar-lo ho signa una persona.",
+    'metodologia.frase.trinquete-veredictos':
+      "Cada etapa mou un veredicte en un sol sentit, cap d'automàtica no el reforça, i un veredicte que afirma alguna cosa nomena amb què es va comprovar, excepte la retractació d'un curador.",
+    'metodologia.frase.citas-transcripcion':
+      "Les cites de les troballes ixen d'una transcripció automàtica; si no consten en el millor text ho marquem, si no consten en cap no es publiquen, i no les reescrivim pel nostre compte.",
+    'metodologia.frase.citas-contraste':
+      'Una porta editorial decidix si una afirmació es mostra amb les seues dades, com a no contrastada o es reté, i el que es reté és la cita, no el que es va dir.',
+    'metodologia.frase.plazos-vencidos':
+      "Cada vot diu de quina font ixen el seu resultat i el seu desglossament, i un compromís amb data que venç sense evidència d'execució porta un avís que no canvia cap estat.",
+    'metodologia.frase.estados':
+      'Cada estat exigix una cosa diferent per a publicar-se, i ni documentada ni en verificació afirmen un incompliment.',
+    'metodologia.frase.limites-motor':
+      'El motor no autopublica veredictes forts, no assigna incompliments, no inventa cites, no puntua partits i es deté en període electoral.',
+    'metodologia.frase.auto-curacion-promesas':
+      'Sense revisió només es publica el que supera un llindar de confiança i queda ancorat a la seua font, retolat com a automàtic; «parcial», «complida» i els incompliments mai no es publiquen sols.',
+    'metodologia.frase.camino-de-una-queja':
+      "Publicar una queixa no la porta a l'ajuntament: hi arriba quan entra en el seu registre, i el termini legal per a respondre compta des d'eixa data.",
+    'metodologia.frase.relacion-quejas-contratos':
+      'Un contracte que coincidix amb una queixa en zona i en matèria es mostra; amb una sola de les dues espera un curador, i cap coincidència no afirma que el contracte la resolga.',
+    'metodologia.frase.eficiencia':
+      "Quan el que declara l'ajuntament ho permet, dividim el cost de cada servei entre les seues unitats, ho comparem amb municipis semblants del mateix mode de gestió i no publiquem cap nota.",
+    'metodologia.frase.opinion-editor':
+      "Les dades no posen nota; l'opinió de l'editor sí que jutja, retolada com a opinió, signada per una persona, amb cada fet enllaçat i sense xifra, escala ni rànquing.",
+    'metodologia.frase.frontera':
+      "La puntuació de la frontera ix d'un model amb decisions nostres a dins, així que publiquem el mètode sencer i no nomenem cap altre municipi.",
+    'metodologia.frase.coste-esperado':
+      'Compara els serveis en gestió directa amb el que és esperable per a la població del municipi; és un model, no una font citable, i seguix les mateixes regles que la frontera.',
+    'metodologia.frase.laboratorio-prensa':
+      'Acarem amb dades municipals públiques el que afirma la premsa quan hi ha amb què, la font primària sempre guanya i que no hi haja dades no significa que siga fals.',
+    'metodologia.frase.rectificacion':
+      "Escriu-nos amb l'identificador afectat i la font que proposes, i et contestem si acceptem, si necessitem més evidència o si ho rebutgem amb motiu públic.",
+    'metodologia.frase.politica-correcciones':
+      "Cada correcció d'una troballa deixa una fila pública que no s'esborra, i el que no ha de continuar publicat no s'hi reprodueix.",
     'presupuesto.enBreve.titulo': 'En resum',
     'presupuesto.enBreve.intro':
       "L'essencial, en poques preguntes. Cada resposta enllaça amb la secció que la demostra.",

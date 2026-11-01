@@ -13,11 +13,12 @@
  * envejecería sola— y es una sola frase de verdad.
  */
 import { afterAll, beforeAll, describe, expect, it, vi } from 'vitest'
-import { cleanup, fireEvent, render, screen, waitFor, within } from '@testing-library/react'
+import { cleanup, fireEvent, render, waitFor } from '@testing-library/react'
 import { readdirSync, readFileSync, statSync } from 'node:fs'
 import { join } from 'node:path'
 
 import Metodologia from '../src/pages/Metodologia'
+import { IndiceLateral, IndicePlegado } from '../src/components/metodologia/IndiceMetodologia'
 import { CATALOGUE } from '../src/i18n'
 import { invalidateSnapshots } from '../src/lib/snapshot-store'
 import {
@@ -35,6 +36,13 @@ const realFetch = globalThis.fetch
 const realScrollTo = window.scrollTo
 let pagina
 
+/** La página con el padrón cargado: sin él, una sección no se monta y la comparación mentiría. */
+async function pinta() {
+  const { container } = render(<Metodologia />)
+  await waitFor(() => expect(container.querySelector('#mudanza-portal')).not.toBeNull())
+  return container
+}
+
 beforeAll(async () => {
   globalThis.fetch = async (url) =>
     String(url).endsWith('/data/officials.json')
@@ -42,10 +50,9 @@ beforeAll(async () => {
       : new Response('not found', { status: 404 })
   window.scrollTo = vi.fn()
   invalidateSnapshots()
-  const { container } = render(<Metodologia />)
-  // Sin el padrón esa sección no se monta, y la comparación de abajo mentiría.
-  await waitFor(() => expect(container.querySelector('#mudanza-portal')).not.toBeNull())
-  pagina = container
+  // Una copia: Testing Library vacía el contenedor al acabar cada prueba, y casi
+  // todas éstas sólo leen. Las que pulsan montan la suya.
+  pagina = (await pinta()).cloneNode(true)
 })
 
 afterAll(() => {
@@ -109,13 +116,11 @@ describe('los grupos', () => {
 })
 
 describe('el índice', () => {
-  const plegado = () => pagina.querySelector(`[id="${ANCLA_INDICE}"]`)
-  const lateral = () => pagina.querySelector('[data-indice-lateral]')
-
   it('el plegado lista cada grupo y cada apartado, y sólo cuando se abre', () => {
-    const detalles = plegado().querySelector('details')
+    const { container } = render(<IndicePlegado />)
+    expect(container.querySelector(`[id="${ANCLA_INDICE}"]`)).not.toBeNull()
+    const detalles = container.querySelector('details')
     expect(detalles.querySelector('a')).toBeNull()
-    fireEvent(detalles, new Event('toggle', { bubbles: false }))
     detalles.open = true
     fireEvent(detalles, new Event('toggle', { bubbles: false }))
     const hrefs = [...detalles.querySelectorAll('a')].map((a) => a.getAttribute('href'))
@@ -128,12 +133,23 @@ describe('el índice', () => {
   })
 
   it('el lateral lista los grupos y despliega sólo el que se está leyendo', () => {
-    const nav = within(lateral())
-    expect(nav.getAllByRole('link').length).toBe(
-      GRUPOS_METODOLOGIA.length + GRUPOS_METODOLOGIA[0].secciones.length,
+    // Sin maquetación todas las cabeceras miden 0: se les da la posición.
+    const alto = window.innerHeight
+    const posiciones = new Map(
+      GRUPOS_METODOLOGIA.map((g, i) => [anclaDeGrupo(g.id), i === 0 ? -100 : alto * 2 * i]),
     )
-    const actual = lateral().querySelector('[aria-current="true"]')
-    expect(actual.getAttribute('href')).toBe(`#${anclaDeGrupo(GRUPOS_METODOLOGIA[0].id)}`)
+    const medida = vi.spyOn(document, 'getElementById').mockImplementation((id) => ({
+      getBoundingClientRect: () => ({ top: posiciones.get(id) }),
+    }))
+    const { container } = render(<IndiceLateral />)
+    medida.mockRestore()
+    const [primero] = GRUPOS_METODOLOGIA
+    const actual = container.querySelectorAll('[aria-current="true"]')
+    expect(actual).toHaveLength(1)
+    expect(actual[0].getAttribute('href')).toBe(`#${anclaDeGrupo(primero.id)}`)
+    expect(container.querySelectorAll('a').length).toBe(
+      GRUPOS_METODOLOGIA.length + primero.secciones.length,
+    )
   })
 
   it('cada destino del índice existe una sola vez en la página', () => {
@@ -251,7 +267,8 @@ describe('el contrato que se movió', () => {
   it('ninguna remisión de posición cruza un apartado', () => {
     // Al ordenar la página, «la política de automatización más abajo» pasaba a
     // estar arriba: las remisiones entre apartados son enlaces, no direcciones.
-    const texto = screen.getByText(/como cuenta la/i, { selector: 'li' }).textContent
+    const texto = pagina.querySelector('#camino-de-una-queja').textContent
+    expect(texto).toMatch(/como cuenta la\s+política de automatización/)
     expect(texto).not.toMatch(/política de automatización más abajo/)
   })
 })
