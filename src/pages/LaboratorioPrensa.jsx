@@ -950,10 +950,12 @@ export default function LaboratorioPrensa() {
               verificación del 3 %. Se intenta con todos, y cuántas llegan a un
               veredicto lo dice una frase que sale del mismo recuento que las
               tasas: escrita a mano, decía «la mayoría» encima de «0 de 64»
-              (revisión lectora, 15-09-2026). */}
+              (revisión lectora, 15-09-2026).
+              Decía también «plenos» en la lista: el verificador de prensa nunca los consultó. */}
           De cada titular sobre Riba-roja se extraen sus afirmaciones y se intenta contrastarlas
-          contra los datos municipales públicos (contratos PLACSP, subvenciones BDNS, padrón INE,
-          paro SEPE, plenos). {fraseVeredictos(summary)} Indicadores de fiabilidad inspirados en el{' '}
+          contra los datos públicos (contratos PLACSP y TED, subvenciones BDNS, padrón INE, paro
+          SEPE, BOE) y el catálogo de promesas. {fraseVeredictos(summary)} Indicadores de fiabilidad
+          inspirados en el{' '}
           <a
             href="https://thetrustproject.org/"
             target="_blank"

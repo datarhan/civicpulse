@@ -24,6 +24,7 @@ import { PROGRESS_STATUSES } from '../scraper/promises'
 import { TRINQUETE } from '../scraper/trinquete'
 import { RADIO_MAXIMO_M } from '../scraper/situar-barrio'
 import { CONTAINMENT_KM } from '../scraper/place-resolver'
+import { RELATION_LABELS } from '../scraper/relation-labels'
 import { AMBITOS_DEL_FESTIVO, FESTIVOS_DE_LA_SEDE } from '../scraper/queja-router'
 
 /*
@@ -2963,15 +2964,21 @@ function ContratoEditorial() {
           title="Relación entre quejas ciudadanas y contratos"
         />
         <EnUnaFrase id="relacion-quejas-contratos" />
+        {/* Decía «coinciden en zona y/o materia» y «combina cuatro señales». La materia sola
+            no enlaza desde que se retiró por enlazar una queja con el 37 % de los contratos, y
+            la cuarta señal, el expediente, se aplazó y nunca se construyó (`scoreRelation`).
+            01-11-2026. */}
         <p style={{ margin: '8px 0 0', color: 'var(--ink70)' }}>
           En la ficha de cada queja (
           <a href="/quejas" style={{ color: 'var(--civic)' }}>
             /quejas
           </a>
-          ) mostramos los contratos municipales que <strong>coinciden en zona y/o materia</strong>{' '}
-          con la queja. Es un motor <strong>determinista</strong> —sin IA, reproducible— que combina
-          cuatro señales, y su marco es deliberadamente <strong>no causal</strong>: una coincidencia
-          nunca afirma que el contrato resuelva la queja.
+          ) mostramos los contratos municipales que{' '}
+          <strong>coinciden con ella en zona y materia</strong>, y los de una coincidencia más débil
+          que haya promovido un curador. Es un motor <strong>determinista</strong> —sin IA,
+          reproducible— que combina tres señales, y su marco es deliberadamente{' '}
+          <strong>no causal</strong>: una coincidencia nunca afirma que el contrato resuelva la
+          queja.
         </p>
         <ul style={{ margin: '10px 0 0', paddingLeft: 20 }}>
           <li>
@@ -2982,11 +2989,15 @@ function ContratoEditorial() {
           </li>
           <li>
             <strong>Materia.</strong> La concejalía de la queja frente al departamento/CPV del
-            contrato, con la misma taxonomía que <code>/departamentos</code>.
+            contrato, con la misma taxonomía que <code>/departamentos</code>. Por sí sola nunca crea
+            un vínculo: un departamento es una categoría, no una relación.
           </li>
           <li>
-            <strong>Ventana temporal.</strong> Sólo matiza una relación existente; por sí sola nunca
-            crea un vínculo.
+            {/* Decía «Sólo matiza una relación existente»: junto a la materia, la fecha es
+                justo lo que crea el vínculo (`scoreRelation`). 01-11-2026. */}
+            <strong>Ventana temporal.</strong> La adjudicación cae entre tres meses antes de la
+            queja y dieciocho después. Por sí sola nunca crea un vínculo: junto a la zona sólo lo
+            anota, y junto a la materia es lo que deja llegar la coincidencia a la cola de revisión.
           </li>
           <li>
             {/* Decía sólo «se publica directamente con etiqueta neutra»: una publicación
@@ -2997,14 +3008,18 @@ function ContratoEditorial() {
             <a href="#politica-automatizacion" style={{ color: 'var(--civic)' }}>
               todavía no pasan por la política de automatización para publicar
             </a>
-            . <em>Nivel B</em> (sólo zona, o sólo materia) queda como sugerencia{' '}
-            <code>requiresHumanApproval</code> y <strong>no se muestra</strong> hasta que un curador
-            la promueve.
+            . <em>Nivel B</em> (misma zona sin materia, o misma materia y fechas próximas sin zona)
+            queda como sugerencia <code>requiresHumanApproval</code> y{' '}
+            <strong>ninguna página la enseña</strong> hasta que un curador la promueve; mientras,
+            viaja marcada en el fichero de datos que sirve el sitio.
           </li>
           <li>
-            <strong>Sin lenguaje causal.</strong> Las etiquetas son un enum fijo («misma zona»,
-            «misma materia», «misma zona y materia»). No usamos palabras como «ignorada» o
-            «abandonada»: el lector saca sus propias conclusiones a partir de las cifras.
+            {/* La lista sale del enum: escrita a mano siguió nombrando «misma materia»
+                meses después de retirarse. */}
+            <strong>Sin lenguaje causal.</strong> Las etiquetas son un enum fijo (
+            {RELATION_LABELS.map((etiqueta) => `«${etiqueta}»`).join(', ')}). No usamos palabras
+            como «ignorada» o «abandonada»: el lector saca sus propias conclusiones a partir de las
+            cifras.
           </li>
           <li>
             <strong>Triaje opcional con IA (interno).</strong> Cuando una queja acumula muchas
@@ -3758,15 +3773,23 @@ function ContratoEditorial() {
           title="Cómo auditamos noticias publicadas sobre Riba-roja"
         />
         <EnUnaFrase id="laboratorio-prensa" />
+        {/* Decía «se cruza, de forma determinista, contra el rastro de datos municipales
+            públicos (PLACSP, TED, BDNS, BOE, plenos, padrón INE, paro SEPE)». Medido el
+            01-11-2026: de 96 afirmaciones, 70 sin ningún comparador. Y los plenos nunca fueron
+            un corpus: `verify-press-claims.ts` no pasa `priorClaims` y `verifyClaim` no lo lee. */}
         <p style={{ marginTop: 8 }}>
           El{' '}
           <a href="/laboratorio/prensa" style={{ color: 'var(--civic)' }}>
             laboratorio
           </a>{' '}
           aplica el contraste editorial habitual de la verificación de hechos al flujo de prensa
-          local. Cada afirmación citada se extrae de forma textual y se cruza, de forma
-          determinista, contra el rastro de datos municipales públicos (PLACSP, TED, BDNS, BOE,
-          plenos, padrón INE, paro SEPE). La fuente primaria siempre gana.
+          local. Cada afirmación citada se extrae de forma textual y pasa por un verificador
+          determinista, pero sólo se coteja con un dato publicado cuando trae con qué: un importe en
+          euros, con los contratos de PLACSP y TED y las ayudas de BDNS; una obra citada por su
+          nombre, con esos contratos; una promesa, con el catálogo de promesas; una cifra de
+          población o de paro, con el padrón del INE y el paro del SEPE; y la mención de un acto
+          administrativo, con el BOE. Si no se le lanza ningún comparador, sale como «No cotejada».
+          La fuente primaria siempre gana.
         </p>
 
         <h4 style={{ marginTop: 16, fontSize: 'var(--fs-head)' }}>Escala de veredictos</h4>
@@ -3780,13 +3803,24 @@ function ContratoEditorial() {
             (importe distinto, fecha distinta, condicionantes no mencionados).
           </li>
           <li>
-            <strong>Contradicho.</strong> El documento municipal contradice la afirmación. Estos
-            veredictos requieren ≥1 enlace público a la pieza que contradice antes de poder
-            promoverse a hallazgo crítico.
+            {/* Decía «Estos veredictos requieren ≥1 enlace público […] antes de poder
+                promoverse a hallazgo crítico», como si el veredicto se publicara y bastara
+                ese enlace. La puerta lo retiene siempre (`claim-public-gate.ts`), y prensa no
+                tiene ninguna vía para añadir esa referencia (`press-finding.ts`). */}
+            <strong>Contradicho.</strong> El documento municipal contradice la afirmación. Lo asigna
+            una máquina y es una pista para quien redacta, no un veredicto publicable: la{' '}
+            <a href="#citas-contraste" style={{ color: 'var(--civic)' }}>
+              puerta editorial
+            </a>{' '}
+            lo retiene siempre, en el registro de los plenos y en este laboratorio. Lo que una
+            persona firma como desmentido va en un hallazgo, y para ser crítico necesita ≥1 enlace
+            público a la pieza que contradice; en la prensa, esa vía todavía no existe.
           </li>
           <li>
-            <strong>Sin datos.</strong> El verificador no ha encontrado señal municipal. La ausencia
-            de evidencia no es evidencia de falsedad: el hallazgo no se publica como crítico.
+            <strong>Sin datos.</strong> El verificador no tiene ninguna señal: o buscó en algún dato
+            y no encontró nada, o no llegó a buscar. En el laboratorio, la pastilla los distingue
+            («Sin registro» y «No cotejada»). La ausencia de evidencia no es evidencia de falsedad:
+            el hallazgo no se publica como crítico.
           </li>
           <li>
             <strong>Promesa repetida.</strong> La afirmación corresponde a un compromiso ya
@@ -3801,14 +3835,15 @@ function ContratoEditorial() {
           {/* Decía «Contrastadas»: en castellano una información contrastada es una
               comprobada, y la revisión lectora del 06-10-2026 leyó «8 contrastadas» en
               /departamentos/medio-ambiente sobre ocho parciales. Antes fue «con evidencia». */}
-          <strong>Cotejadas</strong> es la suma de las verificadas, las parciales y las
-          contradichas: las declaraciones que se pudieron comparar con un documento municipal,
-          saliera a favor o en contra. Cotejar no es comprobar: una parcial coincide sólo en parte
-          con el documento, y que una declaración esté entre las cotejadas no quiere decir que esté
-          respaldada. Junto a la cifra va cuántas son de cada veredicto, y el de cada una, en su
-          tarjeta. En la ficha de cada concejalía se agrupan por tema, no por quien habló: una
-          declaración sobre urbanismo cuenta en esa área la pronunciara quien la pronunciara, y su
-          atribución sigue siendo de bloque.
+          <strong>Cotejadas</strong> es la suma de las verificadas y las parciales: las
+          declaraciones que se pudieron comparar con un documento municipal, saliera a favor o en
+          contra. Las contradichas también contarían, pero la puerta las retiene y no llegan a esta
+          cifra. Cotejar no es comprobar: una parcial coincide sólo en parte con el documento, y que
+          una declaración esté entre las cotejadas no quiere decir que esté respaldada. Junto a la
+          cifra va cuántas son de cada veredicto, y el de cada una, en su tarjeta. En la ficha de
+          cada concejalía se agrupan por tema, no por quien habló: una declaración sobre urbanismo
+          cuenta en esa área la pronunciara quien la pronunciara, y su atribución sigue siendo de
+          bloque.
         </p>
 
         <h4 id="disciplina-antilibellos" style={{ marginTop: 16, fontSize: 'var(--fs-head)' }}>
@@ -3822,18 +3857,33 @@ function ContratoEditorial() {
             heurística.
           </li>
           <li>
-            <strong>Qué se publica en el registro público.</strong> La página <code>/plenos</code>{' '}
-            solo muestra declaraciones <em>contrastables con datos</em>: verificadas, parciales,
-            contradichas o promesas ya documentadas. Las acusaciones de subtipo <em>opinativa</em>,
-            y cualquier acusación que el verificador deja <em>sin datos</em>, no se publican en
-            bruto: solo llegan al público si una persona curadora las convierte en un{' '}
+            {/* Decía que /plenos enseñaba las contradichas, que un curador llevaba una acusación
+                retenida al público por un hallazgo, que había un conmutador «mostrar sin datos»
+                y que lo no publicable no iba en los ficheros descargables. Lo primero nunca fue
+                así con la puerta; lo segundo dejó de serlo el 27-08-2026; el conmutador se quitó
+                el 21-06-2026; y lo último no alcanza al repositorio. Medido el 01-11-2026 sobre
+                `dist/`: ninguna fila retenida en los trozos, de 2.798 retenidas entre 7.946. */}
+            <strong>Qué se publica en el registro público.</strong> El registro de declaraciones, en
+            la página de cada pleno y en <code>/declaraciones</code>, enseña con sus datos las
+            verificadas, las parciales y las promesas ya documentadas. Las <em>contradichas</em> no
+            salen: las retiene siempre la{' '}
+            <a href="#citas-contraste" style={{ color: 'var(--civic)' }}>
+              puerta editorial
+            </a>
+            . Tampoco las acusaciones de subtipo <em>opinativa</em>, ni ninguna acusación que el
+            verificador deja <em>sin datos</em>. Llevar una a un{' '}
             <a href="/hallazgos" style={{ color: 'var(--civic)' }}>
               hallazgo
             </a>{' '}
-            editorial con contexto y derecho de réplica. Las declaraciones numéricas{' '}
-            <em>sin datos</em> (no acusatorias) quedan ocultas tras el conmutador «mostrar sin
-            datos». Este filtro se aplica al generar los datos, no solo en pantalla: el material no
-            publicable no se incluye en los ficheros descargables.
+            no la saca de la puerta, lo promueva quien lo promueva: la ficha sigue a la vista, con
+            su contexto y su derecho de réplica, pero en lugar de la cita enseña el hueco «Literal
+            retenido». Lo demás que queda <em>sin datos</em> se publica sin presentarlo como
+            comprobado, salvo lo que la puerta retiene por su procedencia: en la página de cada
+            pleno va detrás de lo cotejado, y en <code>/declaraciones</code> sale al cambiar el
+            filtro. Este filtro se aplica al generar los datos, no solo en pantalla: las filas
+            retenidas no van en los ficheros de los que leen las páginas. Eso no alcanza al
+            repositorio público del proyecto, que conserva los ficheros de trabajo con todo el
+            registro, ni a la transcripción de cada sesión.
           </li>
           <li>
             <strong>Atribución por medio, no por periodista.</strong> Los hallazgos editoriales
@@ -3864,23 +3914,30 @@ function ContratoEditorial() {
             afirmación del titular, cotejada contra los datos, ha salido «Verificado». El círculo
             vacío (○) quiere decir que se cotejó alguna y ninguna salió «Verificado»; «sin
             comprobar» (–), que no se cotejó ninguna, porque del titular no se extrajo ninguna
-            afirmación o porque para las extraídas no hay datos contra los que cotejarlas. Antes
-            bastaba cualquier documento cotejado, y el 28 de septiembre de 2026 una nota municipal
-            sobre la sensorización de contenedores salía en verde por un contrato de pérgolas de
-            131.336 € que el verificador sólo había marcado «Parcial». Y sólo cuentan los datos
-            municipales: una afirmación cotejada únicamente contra el catálogo de promesas de los
-            partidos, contra lo que ya publicó otro medio o contra los verificadores externos no
-            enciende ni apaga el indicador. Hasta el 19 de octubre de 2026 sí lo hacía, y las dos
-            notas sobre la restauración de las canteras salían con el círculo vacío por una
-            afirmación que sólo se había buscado entre las promesas.
+            afirmación o porque a las extraídas no se les lanzó ningún comparador. Antes bastaba
+            cualquier documento cotejado, y el 28 de septiembre de 2026 una nota municipal sobre la
+            sensorización de contenedores salía en verde por un contrato de pérgolas de 131.336 €
+            que el verificador sólo había marcado «Parcial». Y sólo cuentan los datos municipales:
+            una afirmación cotejada únicamente contra el catálogo de promesas de los partidos,
+            contra lo que ya publicó otro medio o contra los verificadores externos no enciende ni
+            apaga el indicador. Hasta el 19 de octubre de 2026 sí lo hacía, y las dos notas sobre la
+            restauración de las canteras salían con el círculo vacío por una afirmación que sólo se
+            había buscado entre las promesas.
           </li>
           <li>
+            {/* Decía «porque no hay corpus para ese tipo de afirmación». Medido el 01-11-2026:
+                las 70 «No cotejada» son 39 cifras sin importe en euros, 27 datos municipales que
+                no hablan de población ni de paro y 4 convenios sin importe, y para un convenio
+                hay BDNS. Tampoco vale «no traía con qué»: 3 de esos 27 traen un superávit en
+                euros, y ese camino no compara importes. El mismo defecto que `claim-verdicts.ts`
+                cuenta de `sin-corpus`. */}
             <strong>«No cotejada» no es «Sin registro».</strong> La pastilla de una afirmación dice
             «Sin registro» cuando se buscó en algún dato y no se encontró nada, y «No cotejada»
-            cuando no se buscó en ninguno —porque no hay corpus para ese tipo de afirmación—. El
-            aviso de arriba dice cuántas de las extraídas se cotejaron, y contra qué. Hasta el 19 de
-            octubre de 2026 las dos salían como «Sin registro», y el aviso decía que todas «se han
-            buscado en los datos» cuando 49 de 58 no se habían buscado en ninguno.
+            cuando no se buscó en ninguno, porque no se le lanzó ningún comparador; eso no quiere
+            decir que no haya datos sobre el asunto. El aviso de arriba dice cuántas de las
+            extraídas se cotejaron, y contra qué. Hasta el 19 de octubre de 2026 las dos salían como
+            «Sin registro», y el aviso decía que todas «se han buscado en los datos» cuando 49 de 58
+            no se habían buscado en ninguno.
           </li>
           <li>
             <strong>Los anuncios no son prensa.</strong> El agregador de noticias trae, mezclados

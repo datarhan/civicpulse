@@ -16,7 +16,8 @@ concurrency:
 
 jobs:
   scrape:
-    runs-on: ubuntu-latest
+    # Fijo, no `ubuntu-latest`: instala Chromium, y el porqué está en `e2e.yml`.
+    runs-on: ubuntu-24.04
     # Este tope es la SUMA de los topes de los pasos, no una estimación de lo
     # que tarda la nocturna (23,4 min medidos el 8-09-2026). Ningún paso puede
     # pasarse del suyo, así que el trabajo no puede pasarse de la suma: el tope
