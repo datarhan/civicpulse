@@ -467,7 +467,7 @@ const TITULO_CPV = /^\s*\d{8}(?:-\d)?\s*-\s*/
  * El título que la fila da al contrato. El suyo, salvo que sea un código CPV:
  * entonces el de su licitación, que es la que dice de qué es. Un contrato
  * derivado de un SDA no tiene licitación propia en tenders.json, pero Gobierto
- * le da el identificador de la del SDA (`1794430#23` es de 1794430, ESDA2/2022):
+ * le da el identificador de la del SDA (`1794430#10511696` es de 1794430, ESDA2/2022):
  * la fila dice entonces de qué SDA deriva y que su objeto es el que dice el CPV,
  * no un título que el registro no da. Sin ninguna de las dos no se cita: un
  * código no dice de qué es el contrato.

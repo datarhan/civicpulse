@@ -41,9 +41,9 @@
  * manda: hay que retirarla con `--retirar` para que el fichero no afirme una
  * discrepancia que ya no existe.
  *
- * La fila se busca por enlace y número de lote, no por `id`: el parser numera
- * los ids repetidos (`#1`, `#2`) por orden de aparición en el CSV, y ese orden
- * no es estable de una noche a otra.
+ * La fila se busca por enlace y número de lote, no por `id`: el enlace es lo que
+ * cita el anuncio, y el `id` de una fila puede cambiar si la fuente la reasigna
+ * o si su expediente gana otra fila (`idsDeFilas` en tenders.ts).
  */
 import { CAMPOS_PROHIBIDOS } from './competencias'
 import type { Contract, ContractStatus } from './tenders'
