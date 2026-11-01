@@ -111,9 +111,10 @@ jobs:
         # siempre, y dice qué no llegó a intentar. Éste queda de respaldo.
         #
         # La salida va también a una bitácora porque el hacha no avisa: cae sin
-        # que el guion pueda decir nada, y las tres noches de octubre el nombre
-        # del adaptador quedaba 800 líneas por encima del error. La puerta de
-        # salud la lee para decir en qué etapa cayó y qué críticos fallaron.
+        # que el guion pueda decir nada, y las tres noches de octubre el error
+        # final de la ejecución hablaba de «la fuente lenta» sin nombrarla. La
+        # puerta de salud la lee para decir en qué etapa cayó y qué críticos
+        # fallaron.
         timeout-minutes: 30
         # ADAPTERS passed via env (not inline ${{ }}) so a workflow_dispatch
         # input can never break out of the case "..." quoting into the shell.
@@ -351,7 +352,7 @@ jobs:
               if ! git rebase "origin/${GITHUB_REF_NAME}"; then
                 chocan=$(git diff --name-only --diff-filter=U | tr '\n' ' ')
                 git rebase --abort || true
-                echo "::error::Conflicto al rebasar sobre origin/${GITHUB_REF_NAME} en: ${chocan:-sin nombre}— otro commit tocó lo mismo con la nocturna en marcha. No se fuerza nada: los datos de esta noche NO se comitearon, y la siguiente pasada los rehace."
+                echo "::error::Conflicto al rebasar sobre origin/${GITHUB_REF_NAME} en: ${chocan:-sin nombre }— otro commit tocó lo mismo con la nocturna en marcha. No se fuerza nada: los datos de esta noche NO se comitearon, y la siguiente pasada los rehace."
                 echo "changed=false" >> "$GITHUB_OUTPUT"
                 exit 1
               fi
@@ -421,7 +422,7 @@ jobs:
             fail=1
           elif [ "$SCRAPE_RC" -ne 0 ]; then
             criticos=$(sed -n '/critical failure(s):/,$ s/^  - //p' "$bitacora" 2>/dev/null | tr '\n' ' ')
-            echo "::error::Fallaron adaptadores CRÍTICOS (rc=${SCRAPE_RC}): ${criticos:-mira el registro}— lo sano se comiteó; esta ejecución en rojo no despliega."
+            echo "::error::Fallaron adaptadores CRÍTICOS (rc=${SCRAPE_RC}): ${criticos:-mira el registro }— lo sano se comiteó; esta ejecución en rojo no despliega."
             fail=1
           fi
           # `!= success` y no `= failure`: unas pruebas que no corrieron no son

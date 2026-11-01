@@ -24,8 +24,8 @@ import { load } from 'js-yaml'
  * adaptador lento, pero no toca esto: un `apt` lento sigue tumbando las pruebas.
  *
  * Y la puerta de salud no ayudaba: sólo rojeaba con `failure`, de modo que unas
- * pruebas `skipped` pasaban por buenas, y su error decía «la fuente lenta» sin
- * decir cuál. El nombre estaba 800 líneas más arriba en el registro.
+ * pruebas `skipped` pasaban por buenas, y su error, el último de la ejecución,
+ * decía «la fuente lenta» sin decir cuál.
  *
  * Aquí se ejecutan los guiones de verdad, sacados del YAML, con la misma shell
  * que usa el runner (`bash -e`) y un `npm` falso. Mirar el texto del guion ya ha
