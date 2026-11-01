@@ -350,14 +350,19 @@ export default function AvisoLegal() {
         {/* Desde el 15-10-2026. El README y la entrada del blog decían que nada
             automático llegaba al público; scripts/auto-curate-findings.ts publica
             hallazgos con título y resumen de un modelo (`auto-curation-v1`), y esta
-            página, que es el contrato, no lo decía. */}
+            página, que es el contrato, no lo decía.
+            Decía también «sobre citas que el registro público de declaraciones ya muestra», en
+            presente: medido el 01-11-2026, la puerta retiene 27 de las 115 citas de las fichas,
+            en 16 fichas de esta vía. */}
         <p>
           <strong>Hallazgos de pleno redactados por una máquina.</strong> Un proceso automático
           puede publicar hallazgos de gravedad informativa cuyo título y resumen escribe un modelo
-          de lenguaje, sobre citas que el registro público de declaraciones ya muestra. Se publican
-          rotulados como «Redacción automática», y el pie de la ficha dice qué proceso la firmó. Esa
-          vía sólo se abre mientras la precisión medida de esa clase de hallazgo supere el listón
-          publicado en{' '}
+          de lenguaje, sobre citas que el registro público de declaraciones muestra al
+          seleccionarlas. Una ficha no saca ninguna cita de la puerta editorial: si la puerta la
+          retiene, aunque sea después de publicarla o la ficha sea anterior a esta regla, la ficha
+          enseña en su lugar el hueco «Literal retenido». Estos hallazgos se publican rotulados como
+          «Redacción automática», y el pie de la ficha dice qué proceso la firmó. Esa vía sólo se
+          abre mientras la precisión medida de esa clase de hallazgo supere el listón publicado en{' '}
           <a href="/metodologia#politica-automatizacion" style={{ color: 'var(--civic)' }}>
             /metodologia
           </a>

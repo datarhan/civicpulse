@@ -819,7 +819,7 @@ export const CATALOGUE = {
     'declaraciones.eyebrow': 'Verificación de declaraciones',
     'declaraciones.title': 'Declaraciones en pleno',
     'declaraciones.subtitle':
-      'Cada afirmación, promesa o acusación detectada en los plenos municipales, cruzada contra los datos abiertos publicados (PLACSP, BDNS, promesas electorales). Atribución a nivel de grupo. El veredicto de cada fila lo pone un cotejo automático, salvo en las que llevan la marca «corregido por un curador», donde una persona lo ha rectificado a la baja: las declaraciones sin atribuir o sin evidencia se mantienen visibles porque se han hecho, y ninguna de ellas se convierte en un hallazgo editorial sin que una persona lo firme.',
+      'Lo dicho en los plenos municipales que un extractor automático detecta y la puerta editorial deja enseñar. El verificador sólo lo coteja con los datos abiertos publicados (PLACSP, BDNS, promesas electorales) cuando trae un importe en euros, cita una obra por su nombre o es una promesa. La atribución, cuando la hay, es a nivel de grupo. El veredicto de cada fila lo pone un proceso automático; si alguien lo cambió después, la tarjeta dice quién, o que no consta. Las declaraciones sin atribuir o sin datos se mantienen porque se han hecho, salvo lo que la puerta retiene, como toda acusación sin un dato que la respalde. Llevar una a un hallazgo no la saca de esa puerta, y los hallazgos también los redacta un proceso automático, salvo los que firma una persona: cada ficha dice quién.',
     'declaraciones.stat.total': 'Total',
     'declaraciones.stat.conEvidencia': 'Cotejadas',
     'declaraciones.filter.verdict': 'Verdicto',
@@ -2231,7 +2231,7 @@ export const CATALOGUE = {
     'metodologia.frase.camino-de-una-queja':
       'Publicar una queja no la lleva al ayuntamiento: llega cuando entra en su registro, y el plazo legal para responder cuenta desde esa fecha.',
     'metodologia.frase.relacion-quejas-contratos':
-      'Un contrato que coincide con una queja en zona y en materia se muestra sin revisión; con una sola de las dos espera a un curador, y ninguna coincidencia afirma que el contrato la resuelva.',
+      'Si coincide con la queja en zona y materia, el contrato se muestra sin revisión; sólo en zona, o en materia y fechas, espera a un curador, y ninguna coincidencia afirma que la resuelva.',
     'metodologia.frase.eficiencia':
       'Cuando lo que declara el ayuntamiento lo permite, dividimos el coste de cada servicio entre sus unidades, lo comparamos con municipios parecidos del mismo modo de gestión y no publicamos ninguna nota.',
     'metodologia.frase.opinion-editor':
@@ -2241,7 +2241,7 @@ export const CATALOGUE = {
     'metodologia.frase.coste-esperado':
       'Compara los servicios en gestión directa con lo esperable para la población del municipio; es un modelo, no una fuente citable, y sigue las mismas reglas que la frontera.',
     'metodologia.frase.laboratorio-prensa':
-      'Cotejamos con datos municipales públicos lo que afirma la prensa cuando hay con qué, la fuente primaria siempre gana y que no haya datos no significa que sea falso.',
+      'Cotejamos con datos públicos lo que afirma la prensa cuando la afirmación trae con qué, la fuente primaria siempre gana y que no haya datos no significa que sea falso.',
     'metodologia.frase.rectificacion':
       'Escríbenos con el identificador afectado y la fuente que propones, y te contestamos si aceptamos, si necesitamos más evidencia o si lo rechazamos con motivo público.',
     'metodologia.frase.politica-correcciones':
@@ -3880,7 +3880,7 @@ export const CATALOGUE = {
     'declaraciones.eyebrow': 'Verificació de declaracions',
     'declaraciones.title': 'Declaracions en plenari',
     'declaraciones.subtitle':
-      "Cada afirmació, promesa o acusació detectada als plens municipals, creuada contra les dades obertes publicades (PLACSP, BDNS, promeses electorals). Atribució a nivell de grup. El veredicte de cada fila el posa un acarament automàtic: les declaracions sense atribuir o sense evidència es mantenen visibles perquè es van fer, i cap d'elles es converteix en una troballa editorial sense que una persona la signe.",
+      "El que s'ha dit als plens municipals que un extractor automàtic detecta i la porta editorial deixa mostrar. El verificador només ho acara amb les dades obertes publicades (PLACSP, BDNS, promeses electorals) quan porta un import en euros, cita una obra pel seu nom o és una promesa. L'atribució, quan n'hi ha, és a nivell de grup. El veredicte de cada fila el posa un procés automàtic; si algú el va canviar després, la targeta diu qui, o que no consta. Les declaracions sense atribuir o sense dades es mantenen perquè es van fer, excepte el que la porta reté, com tota acusació sense una dada que la recolze. Portar-ne una a una troballa no la trau d'eixa porta, i les troballes també les redacta un procés automàtic, excepte les que signa una persona: cada fitxa diu qui.",
     'declaraciones.stat.total': 'Total',
     'declaraciones.stat.conEvidencia': 'Acarades',
     'declaraciones.filter.verdict': 'Veredicte',
@@ -5133,7 +5133,7 @@ export const CATALOGUE = {
     'metodologia.frase.camino-de-una-queja':
       "Publicar una queixa no la porta a l'ajuntament: hi arriba quan entra en el seu registre, i el termini legal per a respondre compta des d'eixa data.",
     'metodologia.frase.relacion-quejas-contratos':
-      'Un contracte que coincidix amb una queixa en zona i en matèria es mostra sense revisió; amb una sola de les dues espera un curador, i cap coincidència no afirma que el contracte la resolga.',
+      'Si coincidix amb la queixa en zona i matèria, el contracte es mostra sense revisió; només en zona, o en matèria i dates, espera un curador, i cap coincidència no afirma que la resolga.',
     'metodologia.frase.eficiencia':
       "Quan el que declara l'ajuntament ho permet, dividim el cost de cada servei entre les seues unitats, ho comparem amb municipis semblants del mateix mode de gestió i no publiquem cap nota.",
     'metodologia.frase.opinion-editor':
@@ -5143,7 +5143,7 @@ export const CATALOGUE = {
     'metodologia.frase.coste-esperado':
       'Compara els serveis en gestió directa amb el que és esperable per a la població del municipi; és un model, no una font citable, i seguix les mateixes regles que la frontera.',
     'metodologia.frase.laboratorio-prensa':
-      'Acarem amb dades municipals públiques el que afirma la premsa quan hi ha amb què, la font primària sempre guanya i que no hi haja dades no significa que siga fals.',
+      "Acarem amb dades públiques el que afirma la premsa quan l'afirmació porta amb què, la font primària sempre guanya i que no hi haja dades no significa que siga fals.",
     'metodologia.frase.rectificacion':
       "Escriu-nos amb l'identificador afectat i la font que proposes, i et contestem si acceptem, si necessitem més evidència o si ho rebutgem amb motiu públic.",
     'metodologia.frase.politica-correcciones':
