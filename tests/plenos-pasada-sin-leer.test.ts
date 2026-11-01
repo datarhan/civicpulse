@@ -33,6 +33,7 @@ import { DEFAULT_EXPECTATIONS } from '../src/scraper/snapshot-cadence'
  */
 const GUION = resolve('scripts/scrape-plenos.ts')
 const TSX = resolve('node_modules/.bin/tsx')
+const FIXTURE = resolve('tests/fixtures/regmeet_aytoribarroja_2026_2026-05-25.html')
 const SELLO_VIEJO = '2026-10-31T10:43:00.000Z'
 
 let dir: string
@@ -42,13 +43,21 @@ function previas() {
     generatedAt: SELLO_VIEJO,
     source: {},
     stats: { total: 1 },
-    items: [{ id: 'abc123', date: '2026-07-27', title: 'Pleno ordinario', url: 'https://x/' }],
+    items: [
+      {
+        id: 'abc123',
+        title: 'Pleno ordinario 27 de julio de 2026',
+        date: '2026-07-27',
+        kind: 'ordinario',
+        link: 'https://regmeet.com/aytoribarroja/participaciones/abc123',
+      },
+    ],
   }
 }
 
 function pasada(cuerpoDelFetch: string) {
   const stub = join(dir, 'stub.mjs')
-  writeFileSync(stub, `globalThis.fetch = async () => { ${cuerpoDelFetch} }\n`)
+  writeFileSync(stub, `globalThis.fetch = async (url) => { ${cuerpoDelFetch} }\n`)
   const r = spawnSync(TSX, ['--import', stub, join(dir, 'scripts/scrape-plenos.ts')], {
     encoding: 'utf8',
     timeout: 60_000,
@@ -75,16 +84,26 @@ afterEach(() => rmSync(dir, { recursive: true, force: true }))
 describe('selloDePasada', () => {
   const ahora = new Date('2026-11-01T10:30:00.000Z')
 
-  it('una pasada que leyó algo sella con la hora de ahora', () => {
-    expect(selloDePasada(SELLO_VIEJO, 3, ahora)).toBe('2026-11-01T10:30:00.000Z')
+  it('una pasada entera sella con la hora de ahora', () => {
+    expect(selloDePasada(SELLO_VIEJO, { refreshed: 63, aniosFallidos: 0 }, ahora)).toBe(
+      '2026-11-01T10:30:00.000Z',
+    )
   })
 
-  it('una pasada que no leyó nada conserva el sello de la última que leyó', () => {
-    expect(selloDePasada(SELLO_VIEJO, 0, ahora)).toBe(SELLO_VIEJO)
+  it('una pasada que no leyó nada conserva el sello de la última entera', () => {
+    expect(selloDePasada(SELLO_VIEJO, { refreshed: 0, aniosFallidos: 4 }, ahora)).toBe(SELLO_VIEJO)
+  })
+
+  // El caso que un «cero leído» no ve: el año corriente es donde aparecen las
+  // sesiones nuevas, y los otros tres responden aunque él no.
+  it('un año sin leer también conserva el sello, aunque los demás respondan', () => {
+    expect(selloDePasada(SELLO_VIEJO, { refreshed: 50, aniosFallidos: 1 }, ahora)).toBe(SELLO_VIEJO)
   })
 
   it('sin sello previo, sella: no hay nada que conservar', () => {
-    expect(selloDePasada(undefined, 0, ahora)).toBe('2026-11-01T10:30:00.000Z')
+    expect(selloDePasada(undefined, { refreshed: 0, aniosFallidos: 4 }, ahora)).toBe(
+      '2026-11-01T10:30:00.000Z',
+    )
   })
 })
 
@@ -110,6 +129,26 @@ describe('scrape:plenos con regmeet caído', () => {
     const r = pasada(`return new Response('<html><body></body></html>', { status: 200 })`)
     expect(r.rc).toBe(1)
     expect(r.fichero.generatedAt).toBe(SELLO_VIEJO)
+  })
+
+  it('con unos años caídos y otros leídos, funde lo leído y no sella', () => {
+    const html = JSON.stringify(readFileSync(FIXTURE, 'utf8'))
+    const r = pasada(`
+      if (!String(url).includes('/2026?')) throw new TypeError('fetch failed')
+      return new Response(${html}, { status: 200 })`)
+    expect(r.rc).toBe(1)
+    expect(r.fichero.stats.aniosFallidos).toBeGreaterThan(0)
+    expect(r.fichero.stats.sesionesRefrescadas).toBeGreaterThan(0)
+    expect(r.fichero.generatedAt).toBe(SELLO_VIEJO)
+  })
+
+  // La otra cara: una guarda que no dejara sellar nunca también dejaría verlo
+  // todo rancio, y `check:cadence` gritaría por un adaptador sano.
+  it('una pasada entera sí sella', () => {
+    const html = JSON.stringify(readFileSync(FIXTURE, 'utf8'))
+    const r = pasada(`return new Response(${html}, { status: 200 })`)
+    expect(r.rc).toBe(0)
+    expect(r.fichero.generatedAt).not.toBe(SELLO_VIEJO)
   })
 })
 

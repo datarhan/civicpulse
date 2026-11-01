@@ -147,7 +147,7 @@ async function main() {
   }
 
   const payload = {
-    generatedAt: selloDePasada(selloPrevio, refreshed),
+    generatedAt: selloDePasada(selloPrevio, { refreshed, aniosFallidos: fallidos.length }),
     source: {
       baseUrl: REGMEET_BASE,
       platform: `Regmeet — aytoribarroja/sesiones_categorias/${REGMEET_ENTITY}/<year>`,
@@ -180,9 +180,9 @@ async function main() {
   // Se sale 1 DESPUÉS de escribir, y eso es deliberado: arrastrar lo ya visto
   // deja el fichero íntegro, así que fallar en alto no publica un hueco. Antes
   // de fundir, un año caído encogía la lista y salía 0; las dos mitades tienen
-  // que ir juntas o la ruidosa se vuelve destructiva. Sin una sola sesión leída
-  // el sello no se mueve, y eso es lo que deja verlo a `check:cadence`, porque
-  // en la nocturna este adaptador es blando.
+  // que ir juntas o la ruidosa se vuelve destructiva. Con un año sin leer el
+  // sello no se mueve, y eso es lo que deja verlo a `check:cadence`, porque en
+  // la nocturna este adaptador es blando.
   if (fallidos.length > 0) {
     console.error(
       `[plenos] ${fallidos.length}/${years.length} año(s) sin leer: ${fallidos.join(' · ')}`,

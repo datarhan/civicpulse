@@ -217,17 +217,19 @@ export function mergePlenoSessions(
 }
 
 /**
- * El `generatedAt` de una pasada: cuándo se leyó la fuente por última vez, no
- * cuándo corrió el guion.
+ * El `generatedAt` de una pasada: cuándo se leyó ENTERA la fuente por última
+ * vez, no cuándo corrió el guion.
  *
- * `check:cadence` mide este sello y nada más. Una pasada que no leyó ninguna
- * sesión y sellara igual dejaría el fichero al día para siempre con la fuente
- * caída, y como `scrape:plenos` es blando nadie más lo diría.
+ * `check:cadence` mide este sello y nada más, y como `scrape:plenos` es blando
+ * nadie más lo diría. Un cero leído no basta como señal: el año corriente es
+ * donde aparecen las sesiones nuevas, y los otros tres responden aunque él no.
+ * Lo fundido se queda, y sólo el sello espera a una pasada entera.
  */
 export function selloDePasada(
   previo: string | undefined,
-  refreshed: number,
+  { refreshed, aniosFallidos }: { refreshed: number; aniosFallidos: number },
   ahora: Date = new Date(),
 ): string {
-  return refreshed === 0 && previo ? previo : ahora.toISOString()
+  const entera = refreshed > 0 && aniosFallidos === 0
+  return !entera && previo ? previo : ahora.toISOString()
 }
