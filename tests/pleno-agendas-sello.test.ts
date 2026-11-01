@@ -11,7 +11,7 @@ import {
 } from 'node:fs'
 import { tmpdir } from 'node:os'
 import { join, resolve } from 'node:path'
-import { classifyAgendaRun, selloDeAgendas } from '../src/scraper/pleno-agenda'
+import { classifyAgendaRun, selloDeAgendas, type EnrichedPleno } from '../src/scraper/pleno-agenda'
 import { DEFAULT_EXPECTATIONS } from '../src/scraper/snapshot-cadence'
 
 /**
@@ -19,8 +19,8 @@ import { DEFAULT_EXPECTATIONS } from '../src/scraper/snapshot-cadence'
  *
  * El certificado de regmeet.com caducó el 31-10-2026. La nocturna del 01-11 sacó
  * 0 sesiones del origen y 1 del archivo, y aun así escribió `generatedAt` de ese
- * día: `check:cadence` dio 58 de 58 al día y `/datos` publicó esa fecha como la
- * de la última actualización. Con el sello moviéndose en cada pasada, una caída
+ * día: `check:cadence` dio 58 de 58 al día, y `/datos` y `/departamentos` leen esa
+ * fecha. Con el sello moviéndose en cada pasada, una caída
  * no envejece nunca este fichero, y un fallo blando sólo es aceptable si cuesta
  * frescura y la frescura se ve. Es el agujero que `selloDePasada` cerró en
  * `plenos.json`.
@@ -41,23 +41,31 @@ const SIN_ARCHIVO = `if (String(url).includes('archive.org')) ${CAIDO}`
 
 let dir: string
 
-const sesion = (n: number) => ({
-  id: `s${n}`,
-  title: `Sesión ${n}`,
-  date: `2026-0${9 - n}-01`,
-  kind: 'ordinario',
-  link: `https://regmeet.com/aytoribarroja/participaciones/s${n}`,
-})
+// Filas reales, con el id y la fecha cambiados para poder pedir tantas como haga
+// falta y que el orden del guion sea el de `n`.
+const REALES = JSON.parse(
+  readFileSync(resolve('tests/fixtures/plenos-agendas_2026-10-10.json'), 'utf8'),
+).plenos as EnrichedPleno[]
+
+const sesion = (n: number) => {
+  const real = REALES[(n - 1) % REALES.length]
+  return {
+    ...real,
+    id: `s${n}`,
+    date: `2026-0${9 - n}-01`,
+    link: real.link.replace(/[0-9a-f]{32}/, `s${n}`),
+  }
+}
 
 function arbol(sesiones: number, sinOrdenDelDia: number[] = []) {
-  const indice = Array.from({ length: sesiones }, (_, i) => sesion(i + 1))
+  const filas = Array.from({ length: sesiones }, (_, i) => sesion(i + 1))
+  const indice = filas.map(({ id, title, date, kind, link }) => ({ id, title, date, kind, link }))
   writeFileSync(join(dir, 'public/data/plenos.json'), JSON.stringify({ items: indice }))
-  const plenos = indice.map((p, i) => {
-    const agenda = sinOrdenDelDia.includes(i + 1)
-      ? []
-      : [{ number: 1, title: 'Aprobación del acta anterior', section: 'resolutiva' }]
-    return { ...p, agenda, agendaCount: agenda.length, departments: [], hasRuegos: false }
-  })
+  const plenos = filas.map((p, i) =>
+    sinOrdenDelDia.includes(i + 1)
+      ? { ...p, agenda: [], agendaCount: 0, departments: [], hasRuegos: false }
+      : p,
+  )
   writeFileSync(
     join(dir, 'public/data/plenos-agendas.json'),
     JSON.stringify({ generatedAt: SELLO_VIEJO, stats: {}, plenos }),
@@ -175,7 +183,7 @@ describe('scrape:pleno-agendas con regmeet caído', () => {
   it('con la más reciente sin leer no sella, y dice por qué', () => {
     arbol(2)
     const r = pasada(`${SIN_ARCHIVO}
-      if (String(url).endsWith('/s1')) ${CAIDO}
+      if (String(url).includes('/s1?')) ${CAIDO}
       return new Response(${HTML}, { status: 200 })`)
     expect(r.rc).toBe(0)
     expect(r.fichero.stats.recoveredFromLive).toBe(1)
@@ -203,7 +211,7 @@ describe('scrape:pleno-agendas con el origen sano', () => {
   it('una sesión antigua sin orden del día y sin página no retiene el sello', () => {
     arbol(7, [7])
     const r = pasada(`${SIN_ARCHIVO}
-      if (String(url).endsWith('/s7')) ${CAIDO}
+      if (String(url).includes('/s7?')) ${CAIDO}
       return new Response(${HTML}, { status: 200 })`)
     expect(r.rc).toBe(0)
     expect(r.salida).toContain('1/7 session pages unavailable')

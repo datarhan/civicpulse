@@ -487,8 +487,8 @@ export function classifyAgendaRun(tally: AgendaRunTally): {
  *
  * El 01-11-2026, con el certificado de regmeet caducado, la nocturna sacó 0
  * sesiones del origen y 1 del archivo y selló con la hora de ese día. Lo mide
- * `check:cadence` y lo publica `/datos`, y así una caída no envejecía nunca este
- * fichero. Es lo mismo que `selloDePasada` cierra en `plenos.json`.
+ * `check:cadence` y lo publican `/datos` y `/departamentos`, y así una caída no
+ * envejecía nunca este fichero. Es lo que `selloDePasada` cierra en `plenos.json`.
  *
  * `nada-intentado` tampoco sella: sin objetivos no se leyó nada. Y un `ok` con
  * alguna reciente sin leer tampoco, porque lo nuevo aparece ahí y las demás
