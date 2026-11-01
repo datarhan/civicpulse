@@ -48,8 +48,8 @@ SOLO_LOCAL=(scrape:agua-pares)
 # lo mismo que fallido ni que hecho.
 #
 # Medido en 45 noches hasta el 31-10-2026: el peor adaptador que TERMINÓ tardó
-# 436 s (pleno-agendas, 21-09), la noche más larga 19,9 min y la cola 1,7. Así que
-# ninguna de las dos capas ha cortado nunca nada sano: son respaldo, no reparto.
+# 436 s (pleno-agendas, 21-09), la noche más larga de las 40 que acabaron 19,9 min
+# y la cola 1,7. Ninguna de las dos capas habría cortado nada sano: son respaldo.
 # La cuenta contra el `timeout-minutes` del paso la fija tests/nightly-budget.test.js.
 TOPE_ADAPTADOR_S=${SCRAPE_TOPE_ADAPTADOR_S:-480}
 PRESUPUESTO_ADAPTADORES_S=${SCRAPE_PRESUPUESTO_ADAPTADORES_S:-1500}
