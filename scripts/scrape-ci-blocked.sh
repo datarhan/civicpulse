@@ -235,39 +235,12 @@ _sin_publicar() {
 # seven adapters and check:citations have had minutes to be interrupted by a
 # branch switch — and on the wrong branch this pull rebases THAT branch onto
 # origin/main.
-#
-# El rebase trae el trabajo de OTRO cron, y ese trabajo puede haber movido la
-# entrada de un nodo derivado: publicar sin volver a derivar deja `main`
-# incumpliendo su propia `tests/data-graph-frescura.test.ts`. Le pasó a
-# `94359907` el 16-09-2026, que rebaseó sobre la instantánea de quejas y
-# publicó dos nodos rancios. La PR #46 cerró este agujero para el commit
-# normal y lo dejó abierto justo aquí. Van juntos en una función para que el
-# reintento de abajo no pueda hacer lo primero sin lo segundo.
-_pull_y_rederivar() {
-  local ctx="$1" antes rutas
-  antes="$(git rev-parse HEAD)"
-  cron_git_pull_rebase "$ctx" || _sin_publicar "git pull --rebase falló"
-  if ! rutas="$(cron_rutas_rederivadas_o_falla)"; then
-    # Si el pull no trajo nada, esto es el mismo refresh caído de antes del
-    # commit, que no para la publicación. Si trajo algo, nadie ha derivado esa
-    # entrada: publicar sería el 94359907 otra vez, y esperar cuesta poco, porque
-    # la pasada siguiente recoge el commit por sí sola.
-    [ "$(git rev-parse HEAD)" = "$antes" ] && return 0
-    _sin_publicar "el rebase trajo trabajo de otro y refresh falló, así que lo derivado puede estar rancio"
-  fi
-  if [ -z "$rutas" ]; then
-    echo "[ci-blocked] rederivado tras el rebase: nada que reconstruir"
-    return 0
-  fi
-  # shellcheck disable=SC2086  # deliberado: es una lista de rutas
-  if cron_git_stage_and_check $rutas; then
-    cron_git_commit_pathspec "chore(datos): rederivado tras el rebase" ||
-      _sin_publicar "no se pudo comitear lo rederivado tras el rebase"
-  fi
-  echo "[ci-blocked] rederivado tras el rebase:$rutas"
-}
-
-_pull_y_rederivar "pull-rebase previo al push"
+cron_git_pull_y_rederivar "pull-rebase previo al push"
+case $? in
+  0) ;;
+  1) _sin_publicar "git pull --rebase falló" ;;
+  *) _sin_publicar "no se pudo rederivar lo que trajo el rebase" ;;
+esac
 
 # La revisión lectora corre AQUÍ, ANTES del push, y el push va con --no-verify.
 #
@@ -296,25 +269,11 @@ _pull_y_rederivar "pull-rebase previo al push"
 PREPUSH_RANGE="origin/main...HEAD" sh .husky/pre-push || true
 
 # Esos minutos de revisión son la ventana en la que main se mueve: el 2026-10-27
-# y el 2026-11-01 un push único se encontró «fetch first». Se reintenta como en
-# el paso Commit de la nocturna, con dos diferencias a propósito. Cada vuelta
-# rederiva, porque el rebase puede traer la entrada de un derivado. Y la espera
-# va ANTES del rebase, no después: esperar entre el rebase y el push reabre la
-# misma carrera. La revisión NO se repite: lo que trae el rebase lo revisa quien
-# lo publicó, y otros tres minutos serían otra ventana.
-#
-# Nunca --force: un rechazo significa que origin tiene algo que no tenemos.
-INTENTOS_PUSH="${CRON_GIT_PUSH_INTENTOS:-5}"
-ESPERA_PUSH="${CRON_GIT_PUSH_ESPERA:-5}"
-intento=1
-until git push --no-verify origin main; do
-  if [ "$intento" -ge "$INTENTOS_PUSH" ]; then
-    _sin_publicar "git push rechazado en $intento intento(s)"
-  fi
-  echo "[ci-blocked] $(date '+%F %T') push rechazado (intento $intento de $INTENTOS_PUSH) — se rebasa, se rederiva y se reintenta"
-  sleep $((intento * ESPERA_PUSH))
-  _pull_y_rederivar "pull-rebase de reintento tras push rechazado"
-  intento=$((intento + 1))
-done
+# y el 2026-11-01 un push único se encontró «fetch first». Los reintentos no
+# repiten la revisión: lo que trae el rebase lo revisa quien lo publicó, y otros
+# tres minutos serían otra ventana.
+if ! cron_git_push_con_reintento --no-verify; then
+  _sin_publicar "no se pudo publicar"
+fi
 echo "[ci-blocked] pushed"
 exit ${#failed[@]}

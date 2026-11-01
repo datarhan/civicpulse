@@ -831,9 +831,45 @@ cron_git_commit_paths() {
 }
 
 # ---------------------------------------------------------------------------
+# cron_git_pull_y_rederivar <contexto>
+#
+# Un pull --rebase y lo que ese pull obliga a volver a derivar, juntos para que
+# nadie haga lo primero sin lo segundo. El rebase trae trabajo ajeno, y ese
+# trabajo puede haber movido la entrada de un nodo derivado: publicar sin volver
+# a derivar deja `main` incumpliendo `tests/data-graph-frescura.test.ts`
+# (`94359907`, 2026-09-16).
+#
+#   rc 0 — al día.   rc 1 — el pull falló.
+#   rc 2 — el pull trajo trabajo ajeno y no se pudo rederivar: no publiques.
+# ---------------------------------------------------------------------------
+cron_git_pull_y_rederivar() {
+  local ctx="$1" antes rutas
+  antes="$(git rev-parse HEAD)"
+  cron_git_pull_rebase "$ctx" || return 1
+  if ! rutas="$(cron_rutas_rederivadas_o_falla)"; then
+    # Si el pull no trajo nada, esto es el mismo refresh caído de antes del
+    # commit, que no para la publicación. Si trajo algo, nadie ha derivado esa
+    # entrada, y publicar sería el 94359907 otra vez.
+    [ "$(git rev-parse HEAD)" = "$antes" ] && return 0
+    cron_git_log "ERROR: el rebase trajo trabajo de otro y refresh falló, así que lo derivado puede estar rancio — no se publica"
+    return 2
+  fi
+  if [ -z "$rutas" ]; then
+    cron_git_log "rederivado tras el rebase: nada que reconstruir"
+    return 0
+  fi
+  # shellcheck disable=SC2086  # deliberado: es una lista de rutas
+  if cron_git_stage_and_check $rutas; then
+    cron_git_commit_pathspec "chore(datos): rederivado tras el rebase" || return 2
+  fi
+  cron_git_log "rederivado tras el rebase:$rutas"
+}
+
+# ---------------------------------------------------------------------------
 # cron_git_push_con_reintento [opción de git push…]
 #
-# `git push origin <main>` y, si lo rechazan, un pull-rebase y UN reintento.
+# `git push origin <main>` y, si lo rechazan, reintenta hasta
+# CRON_GIT_PUSH_INTENTOS veces (5), cada una con su espera, rebase y rederivación.
 #
 # Un push sin reintento no pierde sólo esa pasada. El 2026-10-27
 # scrape-ci-blocked pulló a las 07:27:26, la PR #444 se fusionó a las 07:28:13 y
@@ -841,30 +877,26 @@ cron_git_commit_paths() {
 # arregla solo mientras nadie toque esos ficheros, pero la nocturna los reescribe
 # cada día, y desde entonces cada pull inicial chocó en nueve rutas hasta que se
 # resolvió a mano cinco días después. Al arreglarlo volvió a pasar: la PR #513
-# entró en la misma ventana. Si la nocturna llega antes que el reintento, ya no
-# hay nada que reintentar.
+# entró en la misma ventana.
 #
-# Rederiva después del pull porque el rebase trae trabajo ajeno, y ese trabajo
-# puede haber movido la entrada de un nodo derivado (`94359907`, 2026-09-16).
+# Como el paso Commit de la nocturna, salvo en dos cosas. Rederiva en cada vuelta.
+# Y espera ANTES del rebase: esperar entre el rebase y el push reabre la misma
+# carrera. Nunca --force: un rechazo significa que origin tiene algo que aquí no
+# está.
 #
 #   rc 0 — publicado.   rc ≠ 0 — no se publicó y el commit sigue en local.
 # ---------------------------------------------------------------------------
 cron_git_push_con_reintento() {
-  local rama="${CRON_GIT_MAIN_BRANCH:-main}" rederivadas
-  if git push "$@" origin "$rama"; then
-    return 0
-  fi
-  cron_git_log "push rechazado — pull-rebase y un reintento"
-  cron_git_pull_rebase "pull-rebase de reintento tras push rechazado" || return $?
-  rederivadas="$(cron_rutas_rederivadas)"
-  if [ -n "$rederivadas" ]; then
-    # shellcheck disable=SC2086  # deliberado: es una lista de rutas
-    if cron_git_stage_and_check $rederivadas; then
-      cron_git_commit_pathspec "chore(datos): rederivado tras el rebase" || true
+  local rama="${CRON_GIT_MAIN_BRANCH:-main}"
+  local max="${CRON_GIT_PUSH_INTENTOS:-5}" espera="${CRON_GIT_PUSH_ESPERA:-5}" intento=1
+  until git push "$@" origin "$rama"; do
+    if [ "$intento" -ge "$max" ]; then
+      cron_git_log "ERROR: git push rechazado en $intento intento(s)"
+      return 1
     fi
-    cron_git_log "rederivado tras el rebase:$rederivadas"
-  else
-    cron_git_log "rederivado tras el rebase: nada que reconstruir"
-  fi
-  git push "$@" origin "$rama"
+    cron_git_log "push rechazado (intento $intento de $max) — se rebasa, se rederiva y se reintenta"
+    sleep $((intento * espera))
+    cron_git_pull_y_rederivar "pull-rebase de reintento tras push rechazado" || return $?
+    intento=$((intento + 1))
+  done
 }

@@ -447,6 +447,7 @@ function runScript(dir: string, script: string, env: Record<string, string> = {}
         LLM_BACKEND: 'stub',
         CLAUDE_CODE_BIN: '/nonexistent-disabled',
         LLM_TIMEOUT: '120',
+        CRON_GIT_PUSH_ESPERA: '0',
         MAX_PLENOS: '1',
         ...env,
       },
@@ -1226,9 +1227,6 @@ echo "${FUSION}"
     )
   }
 
-  const enOrigen = (dir: string, ...args: string[]) =>
-    execFileSync('git', args, { cwd: `${dir}.origin.git`, encoding: 'utf8' })
-
   it('scrape-ci-blocked.sh publica aunque una fusión entre durante su revisión pre-push', () => {
     const dir = makeSandbox()
     fusionDuranteElPrePush(dir)
@@ -1273,11 +1271,29 @@ echo "${FUSION}"
     )
   }, 120_000)
 
-  it('si el reintento choca, aborta limpio, no dice que publicó y deja la marca para check:cron', () => {
+  it('auto-curate-promises-daily.sh insiste mientras queden intentos', () => {
     const dir = makeSandbox()
-    // La fusión toca un fichero que esta pasada también escribe y que no es un
-    // derivado: es el choque que el reintento no puede resolver a ciegas.
-    fusionDuranteElPrePush(dir, 'public/data/paro.json')
+    // Mueve main en cada refresh: rechaza el primer push y también el reintento.
+    const r = runScript(dir, 'scripts/auto-curate-promises-daily.sh', {
+      STUB_ADVANCE_ORIGIN_ON: 'refresh',
+      STUB_ADVANCE_ORIGIN_VECES: '2',
+    })
+
+    expect(r.log.match(/push rechazado \(intento/g), r.log).toHaveLength(2)
+    expect(r.status, r.log).toBe(0)
+    expect(r.log).toContain('pushed auto-published promises')
+    expect(r.originHead, 'main local y origin no coinciden: el push no salió').toBe(r.head)
+  }, 120_000)
+
+  it('si el reintento choca en lo que no se repone solo, aborta limpio, no dice que publicó y deja la marca para check:cron', () => {
+    const dir = makeSandbox()
+    // Un curado sin publicar, y la fusión toca ese mismo fichero: es el choque que
+    // el reintento no puede resolver a ciegas. Con un fichero de los que esta
+    // pasada raspa ya no sirve: ése se repone tomando origin.
+    writeFileSync(join(dir, CURADO), sello('local'))
+    git(dir, 'add', '--', CURADO)
+    git(dir, 'commit', '-qm', SUBJECT_LOCAL)
+    fusionDuranteElPrePush(dir, CURADO)
 
     const r = runScript(dir, 'scripts/scrape-ci-blocked.sh')
 
@@ -1971,8 +1987,8 @@ describe('scrape-ci-blocked.sh · un push rechazado se recupera solo', () => {
     'public/data/transparency-docs.json',
     'public/data/plenos-agendas.json',
   ]
-  // LC_ALL: el rechazo se lee en el texto de git, y git habla el idioma del sistema.
-  const RAPIDO = { CRON_GIT_PUSH_ESPERA: '0', LC_ALL: 'C' }
+  // El rechazo se lee en el texto de git, y git habla el idioma del sistema.
+  const EN_INGLES = { LC_ALL: 'C' }
   const sinComentarios = (s: string) => s.replace(/^\s*#.*$/gm, '')
   const rechazos = (log: string) => (log.match(/\(fetch first\)/g) ?? []).length
   const publicado = (dir: string) => enOrigen(dir, 'log', '--format=%s', 'main')
@@ -1994,7 +2010,7 @@ describe('scrape-ci-blocked.sh · un push rechazado se recupera solo', () => {
   /** Una pasada a la que rechazan el push sin remedio, como la del 27-10. */
   function pasadaRechazada(dir: string): RunResult {
     const r = runScript(dir, comoLaunchd(dir), {
-      ...RAPIDO,
+      ...EN_INGLES,
       CRON_GIT_PUSH_INTENTOS: '1',
       STUB_ADVANCE_ORIGIN_ON: 'pre-push',
     })
@@ -2013,7 +2029,7 @@ describe('scrape-ci-blocked.sh · un push rechazado se recupera solo', () => {
 
   it('main se mueve durante la revisión: rebasa, reintenta y publica', () => {
     const dir = makeSandbox()
-    const r = runScript(dir, comoLaunchd(dir), { ...RAPIDO, STUB_ADVANCE_ORIGIN_ON: 'pre-push' })
+    const r = runScript(dir, comoLaunchd(dir), { ...EN_INGLES, STUB_ADVANCE_ORIGIN_ON: 'pre-push' })
 
     // Las condiciones estaban de verdad: main se movió y git rechazó el push.
     expect(r.log).toContain('[stub] otro cron publicó en origin durante pre-push')
@@ -2031,7 +2047,7 @@ describe('scrape-ci-blocked.sh · un push rechazado se recupera solo', () => {
   it('rederiva antes de reintentar: lo publicado sale de la entrada que trajo el rebase', () => {
     const dir = makeSandbox()
     const r = runScript(dir, comoLaunchd(dir), {
-      ...RAPIDO,
+      ...EN_INGLES,
       STUB_ADVANCE_ORIGIN_ON: 'pre-push',
       STUB_REFRESH_DERIVA: `${ENTRADA}:${DERIVADO}`,
     })
@@ -2051,7 +2067,7 @@ describe('scrape-ci-blocked.sh · un push rechazado se recupera solo', () => {
     // Una mudanza por cada refresh: la primera entra en el pull de antes de la
     // revisión, las otras dos rechazan un push cada una.
     const r = runScript(dir, comoLaunchd(dir), {
-      ...RAPIDO,
+      ...EN_INGLES,
       STUB_ADVANCE_ORIGIN_ON: 'refresh',
       STUB_ADVANCE_ORIGIN_VECES: '3',
     })
@@ -2064,7 +2080,7 @@ describe('scrape-ci-blocked.sh · un push rechazado se recupera solo', () => {
   it('si main no para, agota los intentos, lo dice y deja el commit en local', () => {
     const dir = makeSandbox()
     const r = runScript(dir, comoLaunchd(dir), {
-      ...RAPIDO,
+      ...EN_INGLES,
       CRON_GIT_PUSH_INTENTOS: '3',
       STUB_ADVANCE_ORIGIN_ON: 'refresh',
       STUB_ADVANCE_ORIGIN_VECES: '99',
@@ -2083,7 +2099,7 @@ describe('scrape-ci-blocked.sh · un push rechazado se recupera solo', () => {
     const dir = makeSandbox()
     atascar(dir)
 
-    const r = runScript(dir, SCRIPT, { ...RAPIDO, STUB_STAMP: '2' })
+    const r = runScript(dir, SCRIPT, { ...EN_INGLES, STUB_STAMP: '2' })
 
     expect(r.log, 'se paró en el pull inicial sin raspar').toContain('[stub] ran scrape:agua-pares')
     expect(r.status, r.log).toBe(0)
@@ -2102,7 +2118,7 @@ describe('scrape-ci-blocked.sh · un push rechazado se recupera solo', () => {
     const dir = makeSandbox()
     atascar(dir)
 
-    const r = runScript(dir, SCRIPT, { ...RAPIDO, STUB_STAMP: '2', STUB_FAIL: 'scrape:agua' })
+    const r = runScript(dir, SCRIPT, { ...EN_INGLES, STUB_STAMP: '2', STUB_FAIL: 'scrape:agua' })
 
     expect(r.log, 'el fallo inyectado no se dio').toContain('[ci-blocked] FAILED: scrape:agua')
     expect(r.originHead, 'un adaptador caído no puede retener a los demás').toBe(r.head)
@@ -2112,7 +2128,7 @@ describe('scrape-ci-blocked.sh · un push rechazado se recupera solo', () => {
   it('la nocturna cae durante la revisión y pisa lo mismo: publica en la misma pasada', () => {
     const dir = makeSandbox()
     const r = runScript(dir, comoLaunchd(dir), {
-      ...RAPIDO,
+      ...EN_INGLES,
       STUB_ADVANCE_ORIGIN_ON: 'pre-push',
       STUB_ADVANCE_ORIGIN_RUTA: AGUA,
     })
@@ -2133,7 +2149,7 @@ describe('scrape-ci-blocked.sh · un push rechazado se recupera solo', () => {
     const dir = makeSandbox()
     const sinPublicar = atascar(dir)
 
-    const r = runScript(dir, SCRIPT, { ...RAPIDO, STUB_STAMP: '2' })
+    const r = runScript(dir, SCRIPT, { ...EN_INGLES, STUB_STAMP: '2' })
 
     const ref = `refs/respaldo/cron/${sinPublicar}`
     expect(git(dir, 'show', `${ref}:${AGUA}`), 'el lado local se perdió').toContain(
@@ -2149,7 +2165,7 @@ describe('scrape-ci-blocked.sh · un push rechazado se recupera solo', () => {
     const dir = makeSandbox()
     pasadaRechazada(dir)
 
-    const r = runScript(dir, SCRIPT, { ...RAPIDO, STUB_NOOP: '1' })
+    const r = runScript(dir, SCRIPT, { ...EN_INGLES, STUB_NOOP: '1' })
 
     expect(r.log, 'la pasada no corrió').toContain('[stub] ran scrape:paro')
     expect(r.status, r.log).toBe(0)
@@ -2161,7 +2177,7 @@ describe('scrape-ci-blocked.sh · un push rechazado se recupera solo', () => {
   it('si no puede rederivar lo que trajo el rebase no publica, y la pasada siguiente sí', () => {
     const dir = makeSandbox()
     const r = runScript(dir, comoLaunchd(dir), {
-      ...RAPIDO,
+      ...EN_INGLES,
       STUB_ADVANCE_ORIGIN_ON: 'pre-push',
       STUB_FAIL: 'refresh',
     })
@@ -2173,7 +2189,7 @@ describe('scrape-ci-blocked.sh · un push rechazado se recupera solo', () => {
     expect(r.log).not.toContain('[ci-blocked] pushed')
     expect(publicado(dir), 'publicó sin derivar').not.toContain(LATIDO_DEL_PORTATIL)
 
-    const siguiente = runScript(dir, SCRIPT, RAPIDO)
+    const siguiente = runScript(dir, SCRIPT, EN_INGLES)
     expect(siguiente.status, siguiente.log).toBe(0)
     expect(publicado(dir)).toContain(LATIDO_DEL_PORTATIL)
   }, 180_000)
@@ -2184,7 +2200,7 @@ describe('scrape-ci-blocked.sh · un push rechazado se recupera solo', () => {
     expect(conflictosPrevistos(dir).sort(), 'no choca').toEqual([AGUA, CURADO].sort())
     const localAntes = tip(dir, 'main')
 
-    const r = runScript(dir, SCRIPT, RAPIDO)
+    const r = runScript(dir, SCRIPT, EN_INGLES)
 
     expect(r.status).toBe(1)
     expect(r.log).not.toContain('[stub] ran scrape:')
@@ -2226,8 +2242,13 @@ describe('scrape-ci-blocked.sh · un push rechazado se recupera solo', () => {
 
   it('no fuerza nunca el push, y no promete el reintento que no hay', () => {
     const cuerpo = sinComentarios(readFileSync(join(REPO, SCRIPT), 'utf8'))
-    const pushes = cuerpo.split('\n').filter((l) => /\bgit push\b/.test(l))
-    expect(pushes.length, 'no ha encontrado ningún push').toBeGreaterThan(0)
+    const lib = sinComentarios(readFileSync(join(REPO, 'scripts/lib/cron-git.sh'), 'utf8'))
+    // Las dos mitades: el `git push` vive en la función, y sus opciones las pasa
+    // quien la llama.
+    const pushes = `${cuerpo}\n${lib}`
+      .split('\n')
+      .filter((l) => /\bgit push\b|cron_git_push_con_reintento --/.test(l))
+    expect(pushes.length, 'no ha encontrado ningún push').toBeGreaterThan(1)
     for (const l of pushes) expect(l).not.toMatch(/--force|\s-f\b|\+main/)
     expect(cuerpo).not.toContain('el próximo run reintenta')
   })

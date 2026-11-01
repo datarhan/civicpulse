@@ -116,13 +116,14 @@ graph and from the literal paths each script names, so a new pipeline is covered
 without anyone editing a list.
 
 When a push is rejected, every local agent that publishes runs `pull --rebase`, re-runs
-`refresh` and pushes once more, so it cannot inherit staleness from whichever cron
-landed first, which is what happened to `94359907` on 2026-09-16. `scrape-ci-blocked`
-and `auto-curate-promises` do it through `cron_git_push_con_reintento`
-(`scripts/lib/cron-git.sh`); `hallazgos` and `press-lab` keep their own copy.
-`auto-curate-weekly.sh` does not retry, and its agent is disabled. A rejection left
-unretried is worse than one lost run: once the nightly rewrites the same files, every
-agent's opening pull conflicts until someone resolves it by hand.
+`refresh` and pushes again, so it cannot inherit staleness from whichever cron landed
+first, which is what happened to `94359907` on 2026-09-16. `scrape-ci-blocked` and
+`auto-curate-promises` do it through `cron_git_push_con_reintento`
+(`scripts/lib/cron-git.sh`), up to five attempts; `hallazgos` and `press-lab` keep
+their own copy, with one retry. `auto-curate-weekly.sh` does not retry, and its agent is
+disabled. A rejection left unretried is worse than one lost run: once the nightly
+rewrites the same files, every agent's opening pull conflicts, and only
+`scrape-ci-blocked` can resolve that by itself (see «When the push is rejected»).
 
 ## The other GitHub workflows
 
@@ -372,11 +373,12 @@ with no other path, and `check:cadence` takes 15 days to say so.
 
 `scrape-ci-blocked.sh` now recovers in three places:
 
-- **The same run** retries the push (`CRON_GIT_PUSH_INTENTOS`, default 5), and
-  each retry waits, rebases and re-derives, in that order. The wait comes before
-  the rebase, the reverse of the nightly's Commit step, because waiting after it
-  reopens the race. The review is not repeated: what the rebase brought was
-  reviewed by whoever pushed it, and three more minutes would be another window.
+- **The same run** retries the push through `cron_git_push_con_reintento`
+  (`CRON_GIT_PUSH_INTENTOS`, default 5), and each retry waits, rebases and
+  re-derives, in that order. The wait comes before the rebase, the reverse of the
+  nightly's Commit step, because waiting after it reopens the race. The review is
+  not repeated: what the rebase brought was reviewed by whoever pushed it, and
+  three more minutes would be another window.
 - **The next run's opening pull** resolves the conflict when every conflicted
   path is a derived node or is listed in the script's `SNAPSHOTS`: it takes
   origin's side and scrapes on top. Those snapshots are not all idempotent
@@ -402,8 +404,7 @@ anything. To look: `git for-each-ref refs/respaldo/cron`.
 
 Only this cron declares `CRON_GIT_RASPADOS_PROPIOS`, because only a snapshot's
 owner can promise to scrape it again. The other pipelines keep aborting on such a
-conflict, and their push handling is older: `hallazgos` and `press-lab` retry
-once, `auto-curate-promises-daily.sh` not at all.
+conflict.
 
 ### The speaker-map sweep: a job measured in weeks, not nights
 
