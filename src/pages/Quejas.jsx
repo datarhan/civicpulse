@@ -922,7 +922,7 @@ function EmptyState() {
             </li>
             <li>
               Ver{' '}
-              <a href="/metodologia" style={{ color: 'var(--civic)' }}>
+              <a href="/metodologia#grupo-quejas" style={{ color: 'var(--civic)' }}>
                 Metodología
               </a>{' '}
               y{' '}

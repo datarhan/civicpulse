@@ -132,7 +132,7 @@ test.describe('Departamentos (/departamentos)', () => {
     await page.locator('summary', { hasText: /Metodolog/i }).click()
     await expect(page.getByRole('link', { name: /Leer metodolog.a/i })).toHaveAttribute(
       'href',
-      '/metodologia',
+      '/metodologia#plazos-vencidos',
     )
 
     expect(appErrors(errors)).toEqual([])

@@ -358,7 +358,7 @@ overwrites it. Change the bot's SQLite instead.
 - **Cleaning** — the panel's own rules applied unchanged: direct management
   only (regla 4), duplicated cost rows exclude the municipality (regla 1), and
   declarations beyond ±`ATIPICO_FACTOR` of the service's median €/inhabitant
-  are excluded as implausible (regla 7 — the real book carries councils
+  are excluded as implausible (regla 9 — the real book carries councils
   declaring 1 € of schools cost). The cost+units row pair some programs
   publish per municipality is NOT a duplicate; duplication is judged among
   cost-bearing rows only.
