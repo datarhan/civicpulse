@@ -413,9 +413,12 @@ copies `public/` into `dist/` and the deploy uploads `dist/` prebuilt, so a file
 there is fetchable by URL whether or not a page links to it ("not rendered" is
 not "not published"), and `.vercelignore` holds nothing back. The one way to
 keep a file under `public/` off the site is `publication-denylist.js`, applied
-to `dist/` by `vite.config.js`: it strips the files it names plus any JSON
-carrying `requiresHumanApproval: true` rows that no browser module requests, and
-`tests/publication-denylist.test.ts` checks the built artifact. It works one
+to `dist/` by `vite.config.js`: it strips the files it names plus any file under
+`dist/data`, whatever its extension, carrying `requiresHumanApproval: true` rows
+that no browser module requests; one it cannot judge fails the build. A backup
+under `public/data/` is gitignored because the /hallazgos cron stages the whole
+directory. `tests/publication-denylist.test.ts` checks the built artifact, in
+`e2e.yml` after the build: `npm test` has no `dist/` and skips it. It works one
 level down too: the served copy of `pleno-findings.json` loses the literal of
 every quote the editorial gate withholds (`src/scraper/literales-retenidos.ts`),
 while the repository's copy keeps it. That keeps a file off the site, not out
