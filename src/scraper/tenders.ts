@@ -360,9 +360,10 @@ function fallbackId(row: Record<string, string>): string {
  * cambia el `id` (el 30-07-2026 pasó decenas de derivados al de su SDA) y si su
  * expediente gana una segunda fila (ninguna vez en 145 copias diarias).
  *
- * `contract_id` aguanta las ediciones de la fuente: las 191 filas sin licitación
- * publican esa clave como `id`, y de las 178 que ya estaban el 2026-04-19 ninguna
- * cambió de fila, 56 de ellas con la adjudicataria o el título reescritos.
+ * `contract_id` aguanta las ediciones de la fuente: 191 filas, casi todas sin
+ * licitación, publican esa clave como `id`, y de las 178 que ya estaban el
+ * 2026-04-19 ninguna cambió de fila, 56 de ellas con la adjudicataria o el título
+ * reescritos. En 145 copias diarias, ningún cambio de `id` salió de esa clave.
  */
 function idsDeFilas(rows: Record<string, string>[]): string[] {
   const bases = rows.map((row) => str(row.id) || fallbackId(row))
