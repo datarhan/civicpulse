@@ -339,24 +339,80 @@ function fallbackId(row: Record<string, string>): string {
   return 'auto-' + fnv32(seed)
 }
 
-export function parseRibalicitaContracts(csv: string): Contract[] {
-  const rows = csvRows(csv)
-  const out: Contract[] = []
+/**
+ * El `id` publicado de cada fila: el de Gobierto, o `<id>#<contract_id>` si
+ * Gobierto lo repite.
+ *
+ * Lo repite en las filas de un expediente —una por lote, una por contrato
+ * derivado de un SDA—, y lo único que las distingue es `contract_id`. Ninguna
+ * columna de contenido basta: medido el 2026-11-01, `permalink` y lote colisionan
+ * en 9 grupos, y 43/2025 BSDA sale dos veces, idéntica salvo en esa clave.
+ *
+ * Hasta esa fecha el sufijo era `#1`, `#2`… por orden de aparición, y la consulta
+ * no lleva `ORDER BY`: el 30-10 una fila de 4889055 se movió y 23 ids amanecieron
+ * en otro contrato (`tests/tenders-id-estable.test.ts`).
+ *
+ * TODAS las filas de un id repetido llevan el sufijo, también la primera. Dejar
+ * una a secas —la de `contract_id` más bajo, digamos— la dejaría reapuntarse en
+ * silencio el día que esa fila desapareciera. Lo que este id promete es que nombra
+ * una fila de la fuente o ninguna, nunca otra: una referencia vieja cuelga, y eso
+ * se ve. No promete que una fila lo conserve siempre: lo pierde si la fuente le
+ * cambia el `id` (el 30-07-2026 pasó decenas de derivados al de su SDA) y si su
+ * expediente gana una segunda fila (ninguna vez en 145 copias diarias).
+ *
+ * `contract_id` aguanta las ediciones de la fuente: las 191 filas sin licitación
+ * publican esa clave como `id`, y de las 178 que ya estaban el 2026-04-19 ninguna
+ * cambió de fila, 56 de ellas con la adjudicataria o el título reescritos.
+ */
+function idsDeFilas(rows: Record<string, string>[]): string[] {
+  const bases = rows.map((row) => str(row.id) || fallbackId(row))
+  const veces = new Map<string, number>()
+  for (const base of bases) veces.set(base, (veces.get(base) ?? 0) + 1)
   const seen = new Set<string>()
-  for (const row of rows) {
-    let id = str(row.id)
-    if (!id) id = fallbackId(row)
-    // Ensure uniqueness by disambiguating with a counter when necessary
+  return rows.map((row, n) => {
+    const base = bases[n]
+    const id = veces.get(base) === 1 ? base : `${base}#${str(row.contract_id) || fallbackId(row)}`
+    // Sólo una clave repetida en la fuente llega aquí, y el id sigue siendo único.
     let candidate = id
     let i = 1
     while (seen.has(candidate)) {
       candidate = `${id}#${i++}`
     }
-    id = candidate
-    seen.add(id)
-    if (!id) continue
+    seen.add(candidate)
+    return candidate
+  })
+}
+
+/** Por encima de esta fracción de filas sin clave, lo que falta es la columna. */
+const TECHO_SIN_CLAVE = 0.1
+
+/**
+ * Para la pasada si `contract_id` desaparece de la fuente.
+ *
+ * Una fila suelta sin clave toma una de su contenido y la noche sigue: tumbar el
+ * adaptador se llevaría los demás contratos por ella. Sin la columna, en cambio,
+ * todas las filas multifila cambiarían de id de golpe y sus ids pasarían a moverse
+ * con cada edición del título, así que es mejor conservar la copia de ayer y
+ * ponerse rojo. El techo es la pareja de esa salida de emergencia (regla 1 de
+ * `docs/DATA_INTEGRITY.md`).
+ */
+export function exigeClaveDeFuente(contracts: Contract[]): void {
+  const sinClave = contracts.filter((c) => c.id.includes('#auto-')).length
+  if (sinClave / contracts.length > TECHO_SIN_CLAVE) {
+    throw new Error(
+      `${sinClave} de ${contracts.length} contratos sin contract_id: la fuente parece haber ` +
+        'retirado la columna, y sin ella los ids de los expedientes multifila no son estables',
+    )
+  }
+}
+
+export function parseRibalicitaContracts(csv: string): Contract[] {
+  const rows = csvRows(csv)
+  const out: Contract[] = []
+  const ids = idsDeFilas(rows)
+  for (const [n, row] of rows.entries()) {
     const contract: Contract = {
-      id,
+      id: ids[n],
       title: str(row.title),
       permalink: nullable(row.permalink),
       status: normStatus<ContractStatus>(row.status, CONTRACT_STATUS),
