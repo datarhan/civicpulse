@@ -54,7 +54,7 @@ describe('medirIdentidad', () => {
     cuadra(m)
   })
 
-  it('la fila que la fuente mueve renumera los ids y no las claves (el caso del 4889055)', () => {
+  it('la fila que la fuente mueve no deja rastro: ni id ni clave dependen del orden', () => {
     const lineas = CSV.trimEnd().split('\n')
     const delExpediente = lineas.flatMap((l, i) => (l.startsWith('"4889055"') ? [i] : []))
     expect(delExpediente.length).toBeGreaterThan(2)
@@ -64,10 +64,45 @@ describe('medirIdentidad', () => {
 
     const m = medida(medirIdentidad({ generatedAt: AYER, contracts: ayer }, hoy))
     expect(hoy).toHaveLength(ayer.length)
-    expect(m.idMovidos).toBeGreaterThan(0)
     expect(m.conservan).toBe(ayer.length)
-    expect(m.cambian).toBe(0)
-    expect(m.muestras.idMovidos.length).toBeGreaterThan(0)
+    expect(m.cambian + m.idMovidos).toBe(0)
+    cuadra(m)
+  })
+
+  it('misma clave con otro id: su expediente ganó una fila o la fuente la pasó a otro', () => {
+    const suelta = ayer.find((c) => !c.id.includes('#'))
+    const hoy = ayer.map((c) => (c === suelta ? { ...c, id: `${c.id}#${c.sourceRowId}` } : c))
+    const m = medida(medirIdentidad({ generatedAt: AYER, contracts: ayer }, hoy))
+    expect(m.idMovidos).toBe(1)
+    expect(m.muestras.idMovidos).toEqual([suelta?.sourceRowId])
+    expect(m.conservan).toBe(ayer.length)
+    cuadra(m)
+  })
+
+  it('cuenta aparte las filas multifila: ahí el id depende de la clave', () => {
+    const multifila = ayer.filter((c) => c.id.includes('#'))
+    expect(multifila.length).toBeGreaterThan(0)
+    const m = medida(medirIdentidad({ generatedAt: AYER, contracts: ayer }, ayer))
+    expect(m.multifila).toEqual({
+      comparables: multifila.length,
+      conservan: multifila.length,
+      retocadas: 0,
+    })
+  })
+
+  it('una multifila retocada o con otra clave cae en esa cuenta; una suelta, no', () => {
+    const [retocada, reclaveada] = ayer.filter((c) => c.id.includes('#'))
+    const suelta = ayer.find((c) => !c.id.includes('#'))
+    const hoy = ayer.map((c) => {
+      if (c === retocada || c === suelta) return { ...c, title: `${c.title}.` }
+      if (c === reclaveada) return { ...c, sourceRowId: 'regenerada' }
+      return c
+    })
+    const m = medida(medirIdentidad({ generatedAt: AYER, contracts: ayer }, hoy))
+    const n = ayer.filter((c) => c.id.includes('#')).length
+    expect(m.retocadas).toBe(2)
+    expect(m.cambian).toBe(1)
+    expect(m.multifila).toEqual({ comparables: n, conservan: n - 1, retocadas: 1 })
     cuadra(m)
   })
 
@@ -274,7 +309,9 @@ describe('renglonesDeIdentidad', () => {
   it('dice cuántas filas conservan su clave y de cuántas', () => {
     const r = registrarIdentidad({ generatedAt: AYER, contracts: ayer }, HOY, ayer)
     const texto = renglonesDeIdentidad({ identidadDeFilas: r }).join('\n')
+    const multifila = ayer.filter((c) => c.id.includes('#')).length
     expect(texto).toContain(`${ayer.length} de ${ayer.length}`)
+    expect(texto).toContain(`multifila: ${multifila} de ${multifila}`)
     expect(texto).toContain('sourceRowId')
     expect(clasificarGuarda(0, texto)).toEqual({ desenlace: 'limpia' })
   })

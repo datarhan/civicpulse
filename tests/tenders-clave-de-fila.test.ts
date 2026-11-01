@@ -8,15 +8,12 @@ import { censoDe } from '../src/scraper/vocabulary-census'
 /**
  * `contract_id`, la clave de fila de Gobierto, se guarda para poder medirla.
  *
- * El `id` publicado es posicional: `parseRibalicitaContracts` desempata los
- * repetidos con `#n` en el orden en que llegan, y la consulta no lleva ORDER BY.
- * Entre el 28 y el 30-10-2026 la fuente movió una fila del expediente 4889055
- * y 23 ids pasaron a nombrar otro contrato. Lo que protege lo publicado es que
- * los derivados se rehacen esa misma noche, no el id.
+ * En un expediente multifila el `id` publicado ya la lleva dentro (`idsDeFilas`),
+ * así que esos ids dependen de que aguante; en una fila suelta sólo está en este
+ * campo. Lo que se sabe de ella viene de filas sueltas, y si aguanta en las
+ * multifila es lo que mide `identidad-de-filas.ts`.
  *
- * Esta fixture es la descarga entera del 01-11-2026, sin tocar. No re-clavea
- * nada: `id` no se mueve, y estas pruebas lo fijan. Si la clave aguanta una
- * edición es lo que mide `identidad-de-filas.ts`.
+ * Esta fixture es la descarga entera del 01-11-2026, sin tocar.
  */
 const FIXTURE = join(__dirname, 'fixtures', 'ribalicita_contratos_2026-11-01.csv')
 const SIN_COLUMNA = join(__dirname, 'fixtures', 'ribalicita_contratos_2026-04-19.csv')
@@ -30,7 +27,8 @@ const filasDe = (csv: string) =>
   }) as Record<string, string>[]
 
 /** Vuelve a CSV unas filas ya leídas, para tocar una columna sin cortar por comas. */
-function aCsv(filas: Record<string, string>[], columnas = Object.keys(filas[0])): string {
+function aCsv(filas: Record<string, string>[]): string {
+  const columnas = Object.keys(filas[0])
   const celda = (v: string) => `"${v.replaceAll('"', '""')}"`
   return [columnas.join(','), ...filas.map((f) => columnas.map((k) => celda(f[k])).join(','))].join(
     '\n',
@@ -60,17 +58,16 @@ describe('parseRibalicitaContracts — sourceRowId', () => {
     expect(new Set(gemelas.map((c) => c.sourceRowId)).size).toBe(gemelas.length)
   })
 
-  it('no mueve ni un id: es el mismo con la columna y sin ella', () => {
-    const filas = filasDe(csv)
-    const columnas = Object.keys(filas[0])
-    expect(columnas).toContain('contract_id')
-    const sinColumna = aCsv(
-      filas,
-      columnas.filter((k) => k !== 'contract_id'),
-    )
-    expect(parseRibalicitaContracts(sinColumna).map((c) => c.id)).toEqual(
-      contratos.map((c) => c.id),
-    )
+  it('en una fila multifila es el sufijo de su id: si cambia la clave, cambia el id', () => {
+    const multifila = contratos.filter((c) => c.id.includes('#'))
+    expect(multifila.length).toBeGreaterThan(0)
+    expect(multifila.every((c) => c.id.endsWith(`#${c.sourceRowId}`))).toBe(true)
+  })
+
+  it('en una fila suelta el id no la lleva: sólo se puede leer aquí', () => {
+    const sueltas = contratos.filter((c) => !c.id.includes('#'))
+    expect(sueltas.length).toBeGreaterThan(0)
+    expect(sueltas.some((c) => !c.id.includes(String(c.sourceRowId)))).toBe(true)
   })
 
   it('una fila sin clave da null, no una cadena vacía (la regla 3: no hay centinela)', () => {
