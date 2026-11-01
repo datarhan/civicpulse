@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-31T11:03:13.350Z",
+  "generatedAt": "2026-11-01T11:47:53.248Z",
   "source": "derived: tenders.json assignees + officials.json · overrides: entity-overrides.json",
   "stats": {
     "companies": 380,
@@ -41,7 +41,7 @@
         "16495",
         "78189",
         "4582798",
-        "4653394"
+        "4653394#7729190"
       ],
       "contractCount": 7,
       "awardedTotalEur": 17423201.5,
@@ -77,22 +77,22 @@
       "contractIds": [
         "86685",
         "737827",
-        "29500",
+        "29500#1487219",
         "1550491",
-        "1561143",
-        "1561143#1",
+        "1561143#2858613",
+        "1561143#2858598",
         "3925819",
         "1884889",
-        "1932729",
+        "1932729#4028802",
         "2062213",
-        "4331164",
-        "4446501",
-        "4446501#1",
+        "4331164#5343810",
+        "4446501#6162644",
+        "4446501#6162643",
         "9297858",
         "2868019",
         "1887249",
-        "4331164#1",
-        "1561143#2",
+        "4331164#5343809",
+        "1561143#2858588",
         "68411",
         "4599362"
       ],
@@ -128,12 +128,12 @@
       "contractIds": [
         "1574461",
         "280752",
-        "13417",
+        "13417#806294",
         "599169",
         "1550970",
         "1651675",
         "68394",
-        "13417#1",
+        "13417#1501339",
         "1705893",
         "90339",
         "125338"
@@ -166,8 +166,8 @@
         "ATENDE SERVICIOS INTEGRADOS, S.L."
       ],
       "contractIds": [
-        "5167845",
-        "5167845#1"
+        "5167845#10246826",
+        "5167845#10246827"
       ],
       "contractCount": 2,
       "awardedTotalEur": 1507519.61,
@@ -213,8 +213,8 @@
         "INICIATIVA SOCIAL INTEGRAL PER AL BIENESTAR, S.L.U."
       ],
       "contractIds": [
-        "1847171",
-        "1847171#1"
+        "1847171#4023355",
+        "1847171#4023356"
       ],
       "contractCount": 2,
       "awardedTotalEur": 1040623.2,
@@ -231,14 +231,14 @@
       "contractIds": [
         "4905058",
         "62507",
-        "1561143#3",
-        "4558191",
-        "4558191#1",
+        "1561143#2858649",
+        "4558191#6852922",
+        "4558191#6852924",
         "4598648",
-        "4366489",
+        "4366489#5460542",
         "1931390",
-        "4366489#1",
-        "4366489#2",
+        "4366489#5460543",
+        "4366489#5460547",
         "101026"
       ],
       "contractCount": 11,
@@ -349,14 +349,14 @@
         "AUCA PROJECTES EDUCATIUS SL"
       ],
       "contractIds": [
-        "1794430#5",
-        "1794430#6",
+        "1794430#6392661",
+        "1794430#6392958",
         "5151272",
         "4682823",
-        "99572#1",
+        "99572#159832",
         "1942464",
         "1794806",
-        "4669086"
+        "4669086#7832484"
       ],
       "contractCount": 8,
       "awardedTotalEur": 611293.45,
@@ -390,13 +390,13 @@
         "4571013",
         "1647133",
         "689510",
-        "1892105#6",
-        "43208",
+        "1892105#5500745",
+        "43208#1487753",
         "4581108",
-        "1999#1",
+        "1999#918474",
         "4581685",
-        "1999#2",
-        "43208#1"
+        "1999#544741",
+        "43208#545501"
       ],
       "contractCount": 11,
       "awardedTotalEur": 585363.44,
@@ -412,7 +412,7 @@
       ],
       "contractIds": [
         "506691",
-        "1892105#3",
+        "1892105#4006730",
         "96520",
         "1705904",
         "65245",
@@ -528,9 +528,9 @@
         "AUTOBUSES DURA,S.L."
       ],
       "contractIds": [
-        "78553",
-        "78553#1",
-        "1794430#17",
+        "78553#52083",
+        "78553#136665",
+        "1794430#7734603",
         "4582156",
         "4502006",
         "4580111"
@@ -610,8 +610,8 @@
         "MOVIMIENTOS DE TIERRA SUBIELA SL"
       ],
       "contractIds": [
-        "1892105#4",
-        "1892105#7",
+        "1892105#5343208",
+        "1892105#6858401",
         "1608861",
         "4581151",
         "4571539"
@@ -629,16 +629,16 @@
         "INSDAGAR SOCIEDAD LIMITADA"
       ],
       "contractIds": [
-        "1794430",
+        "1794430#9163290",
         "8777911",
-        "1794430#18",
+        "1794430#6858140",
         "543940",
         "709764",
         "1598936",
         "3725692",
         "3859835",
         "205235",
-        "1794430#36",
+        "1794430#10278501",
         "4577850",
         "4579648"
       ],
@@ -655,10 +655,10 @@
         "GRUPO BERTOLIN, SAU"
       ],
       "contractIds": [
-        "4366489#3",
-        "4366489#4",
-        "4366489#5",
-        "1932729#1"
+        "4366489#5460544",
+        "4366489#5460545",
+        "4366489#5460546",
+        "1932729#4028801"
       ],
       "contractCount": 4,
       "awardedTotalEur": 359562.76,
@@ -673,12 +673,12 @@
         "ANDACAR 2000 SOCIEDAD ANONIMA"
       ],
       "contractIds": [
-        "67336",
-        "67336#1",
-        "1577734",
-        "1577734#1",
-        "1577734#2",
-        "1577734#3"
+        "67336#125442",
+        "67336#125441",
+        "1577734#2799489",
+        "1577734#2799492",
+        "1577734#2799490",
+        "1577734#2799491"
       ],
       "contractCount": 6,
       "awardedTotalEur": 356616,
@@ -709,12 +709,12 @@
         "SATARA SEGURIDAD SL"
       ],
       "contractIds": [
-        "1216657",
-        "1216657#1",
-        "1216657#2",
-        "5096992",
-        "5096992#1",
-        "5096992#2"
+        "1216657#2800781",
+        "1216657#2800782",
+        "1216657#2800780",
+        "5096992#9673648",
+        "5096992#9673655",
+        "5096992#9673640"
       ],
       "contractCount": 6,
       "awardedTotalEur": 347322.5,
@@ -730,7 +730,7 @@
       ],
       "contractIds": [
         "5106922",
-        "62344#1",
+        "62344#124026",
         "1705844"
       ],
       "contractCount": 3,
@@ -752,7 +752,7 @@
         "4571300",
         "4348877",
         "5388060",
-        "1892105#5",
+        "1892105#5439962",
         "4214928",
         "4583737",
         "68373"
@@ -786,7 +786,7 @@
         "CAIXABANK EQUIPMENT FINANCE S.A."
       ],
       "contractIds": [
-        "1719226"
+        "1719226#3661194"
       ],
       "contractCount": 1,
       "awardedTotalEur": 303984,
@@ -816,8 +816,8 @@
         "Mondolimp España Higiene Integral, S.L."
       ],
       "contractIds": [
-        "840300",
-        "840300#1"
+        "840300#1021891",
+        "840300#1012445"
       ],
       "contractCount": 2,
       "awardedTotalEur": 300000,
@@ -850,7 +850,7 @@
       ],
       "contractIds": [
         "263714",
-        "4669086#1"
+        "4669086#7832483"
       ],
       "contractCount": 2,
       "awardedTotalEur": 289776.81,
@@ -977,14 +977,14 @@
         "Ribamon"
       ],
       "contractIds": [
-        "1794430#4",
-        "1794430#9",
-        "1794430#15",
+        "1794430#6386179",
+        "1794430#9820405",
+        "1794430#8603776",
         "67350",
         "77240",
-        "95133",
+        "95133#67675",
         "99432",
-        "1794430#39"
+        "1794430#10390570"
       ],
       "contractCount": 8,
       "awardedTotalEur": 212453.3,
@@ -1016,8 +1016,8 @@
       "contractIds": [
         "4474601",
         "4571416",
-        "4493453",
-        "4493453#1",
+        "4493453#6460737",
+        "4493453#6460740",
         "9492697"
       ],
       "contractCount": 5,
@@ -1065,7 +1065,7 @@
         "VIVERS CENTRE VERD"
       ],
       "contractIds": [
-        "62344",
+        "62344#124025",
         "695744",
         "1478484"
       ],
@@ -1135,7 +1135,7 @@
       ],
       "contractIds": [
         "122583",
-        "1701582#22",
+        "1701582#3707307",
         "5036428"
       ],
       "contractCount": 3,
@@ -1167,7 +1167,7 @@
       ],
       "contractIds": [
         "329628",
-        "62344#2",
+        "62344#39324",
         "649191"
       ],
       "contractCount": 3,
@@ -1183,7 +1183,7 @@
         "AUDITESA SL"
       ],
       "contractIds": [
-        "4653394#1"
+        "4653394#7729198"
       ],
       "contractCount": 1,
       "awardedTotalEur": 161000,
@@ -1217,7 +1217,7 @@
       "contractIds": [
         "2450660",
         "7709810",
-        "4889055#15"
+        "4889055#10390730"
       ],
       "contractCount": 3,
       "awardedTotalEur": 158410.8,
@@ -1234,7 +1234,7 @@
       "contractIds": [
         "60362",
         "1554203",
-        "4333684#2",
+        "4333684#5626791",
         "9975923"
       ],
       "contractCount": 4,
@@ -1251,9 +1251,9 @@
       ],
       "contractIds": [
         "63376",
-        "1942735",
-        "1942735#1",
-        "1942735#2"
+        "1942735#4321850",
+        "1942735#4321851",
+        "1942735#4321849"
       ],
       "contractCount": 4,
       "awardedTotalEur": 149197.31,
@@ -1332,8 +1332,8 @@
       ],
       "contractIds": [
         "2520342",
-        "1892105#1",
-        "1892105#2"
+        "1892105#5343211",
+        "1892105#5343046"
       ],
       "contractCount": 3,
       "awardedTotalEur": 137139.05,
@@ -1352,7 +1352,7 @@
         "883196",
         "1608883",
         "1531145",
-        "2765611"
+        "2765611#4801486"
       ],
       "contractCount": 5,
       "awardedTotalEur": 136847.58,
@@ -1383,10 +1383,10 @@
         "URBEADAPTA, S.L"
       ],
       "contractIds": [
-        "4973577#1",
-        "4973577#2",
-        "1945526#1",
-        "1945526#2",
+        "4973577#9081638",
+        "4973577#9081639",
+        "1945526#4339011",
+        "1945526#4339012",
         "5198588",
         "5791869"
       ],
@@ -1403,13 +1403,13 @@
         "FORMACION, INFORMATICA, DESARROLLO Y COMUNICACIONES SL"
       ],
       "contractIds": [
-        "1701582#21",
+        "1701582#3707300",
         "4032354",
-        "1701582#23",
+        "1701582#3707306",
         "1936232",
         "1936305",
         "2678021",
-        "1719226#1",
+        "1719226#3661195",
         "9492398",
         "10517717"
       ],
@@ -1426,8 +1426,8 @@
         "BALCONET OPERADOR MERCADOS TEMÁTICOS S.L.U."
       ],
       "contractIds": [
-        "1794430#21",
-        "1794430#42"
+        "1794430#8998505",
+        "1794430#9062945"
       ],
       "contractCount": 2,
       "awardedTotalEur": 119800,
@@ -1522,8 +1522,8 @@
         "JUEGOS KOMPAN, S.A."
       ],
       "contractIds": [
-        "4973577",
-        "4973577#3",
+        "4973577#9081636",
+        "4973577#9081640",
         "1619842",
         "649193"
       ],
@@ -1586,10 +1586,10 @@
         "GRUPO A RIURE"
       ],
       "contractIds": [
-        "1794430#11",
-        "1794430#23",
+        "1794430#4001483",
+        "1794430#10511696",
         "2738728",
-        "1794430#32"
+        "1794430#5439451"
       ],
       "contractCount": 4,
       "awardedTotalEur": 105575.5,
@@ -1619,8 +1619,8 @@
         "Ecosiona Facility Services S.L."
       ],
       "contractIds": [
-        "4333684",
-        "4333684#1",
+        "4333684#5626789",
+        "4333684#5626790",
         "9895895",
         "4583030",
         "9454411"
@@ -1639,7 +1639,7 @@
       ],
       "contractIds": [
         "1544478",
-        "1892105",
+        "1892105#5071444",
         "2460010",
         "2548543",
         "1100231"
@@ -1704,7 +1704,7 @@
         "MDOSB COMUNICACIÓN, S.L."
       ],
       "contractIds": [
-        "2062532"
+        "2062532#4830250"
       ],
       "contractCount": 1,
       "awardedTotalEur": 93800,
@@ -1782,8 +1782,8 @@
       ],
       "contractIds": [
         "5247428",
-        "1794430#30",
-        "1794430#31",
+        "1794430#5322619",
+        "1794430#5322429",
         "4563568"
       ],
       "contractCount": 4,
@@ -1923,7 +1923,7 @@
       ],
       "contractIds": [
         "1866580",
-        "1794430#40"
+        "1794430#4899803"
       ],
       "contractCount": 2,
       "awardedTotalEur": 76400,
@@ -1953,7 +1953,7 @@
         "Estación de servicios Más del Veinat, S.L."
       ],
       "contractIds": [
-        "99310#1"
+        "99310#72315"
       ],
       "contractCount": 1,
       "awardedTotalEur": 75718.02,
@@ -1983,8 +1983,8 @@
         "GUEROLA INFRAESTRUCTURAS S.L.U."
       ],
       "contractIds": [
-        "29500#1",
-        "29500#2"
+        "29500#257109",
+        "29500#1487220"
       ],
       "contractCount": 2,
       "awardedTotalEur": 74409.29,
@@ -2000,8 +2000,8 @@
       ],
       "contractIds": [
         "4454052",
-        "99310",
-        "1467871#1",
+        "99310#131284",
+        "1467871#2609526",
         "1741944",
         "4577678"
       ],
@@ -2051,10 +2051,10 @@
         "TECHFRIENDLY SL"
       ],
       "contractIds": [
-        "4889055#6",
-        "4889055#7",
+        "4889055#9504648",
+        "4889055#10717356",
         "10843810",
-        "4510222#1"
+        "4510222#6570724"
       ],
       "contractCount": 4,
       "awardedTotalEur": 67990,
@@ -2069,7 +2069,7 @@
         "EXERCYCLE,S.L."
       ],
       "contractIds": [
-        "4363449#1"
+        "4363449#6038612"
       ],
       "contractCount": 1,
       "awardedTotalEur": 67841.82,
@@ -2099,9 +2099,9 @@
         "ASFALTOS Y CONSTRUCCIONES ELSAN, S.A.U."
       ],
       "contractIds": [
-        "1561143#4",
-        "1561143#5",
-        "1561143#6"
+        "1561143#2858686",
+        "1561143#2858671",
+        "1561143#2858634"
       ],
       "contractCount": 3,
       "awardedTotalEur": 66604.75,
@@ -2116,7 +2116,7 @@
         "T-Systems Itc Iberia, S.A.U."
       ],
       "contractIds": [
-        "1701582#19"
+        "1701582#3707296"
       ],
       "contractCount": 1,
       "awardedTotalEur": 65960.58,
@@ -2146,7 +2146,7 @@
         "GFS Distribuciones, nutrición y complementos, SL"
       ],
       "contractIds": [
-        "4363449"
+        "4363449#6038608"
       ],
       "contractCount": 1,
       "awardedTotalEur": 65200,
@@ -2253,7 +2253,7 @@
         "POPULATE TOOLS SL"
       ],
       "contractIds": [
-        "1701582#10",
+        "1701582#3707303",
         "2520506",
         "4636894"
       ],
@@ -2286,8 +2286,8 @@
         "SOTAVIA RECHNOLOGIES SL"
       ],
       "contractIds": [
-        "4889055#9",
-        "4889055#12"
+        "4889055#10278551",
+        "4889055#10281213"
       ],
       "contractCount": 2,
       "awardedTotalEur": 58000,
@@ -2487,7 +2487,7 @@
         "SEMEVÉ MEDIOS PUBLICITARIOS, S.L.U."
       ],
       "contractIds": [
-        "2062532#1"
+        "2062532#4830251"
       ],
       "contractCount": 1,
       "awardedTotalEur": 46200,
@@ -2533,7 +2533,7 @@
       ],
       "contractIds": [
         "9491875",
-        "4667548#3"
+        "4667548#7819407"
       ],
       "contractCount": 2,
       "awardedTotalEur": 45114.23,
@@ -2548,7 +2548,7 @@
         "AUTO-OCASION CORTES SL"
       ],
       "contractIds": [
-        "4493453#2"
+        "4493453#6460736"
       ],
       "contractCount": 1,
       "awardedTotalEur": 45000,
@@ -2719,7 +2719,7 @@
         "PJ ENGLISH LANGUAGE TRAINING, S.L."
       ],
       "contractIds": [
-        "99572",
+        "99572#72627",
         "132303"
       ],
       "contractCount": 2,
@@ -2751,10 +2751,10 @@
         "BRICOLAGE MORENO SL"
       ],
       "contractIds": [
-        "1689128#3",
+        "1689128#6079609",
         "4579984",
-        "85540",
-        "85540#5",
+        "85540#67498",
+        "85540#158379",
         "1890831",
         "8618768"
       ],
@@ -2771,8 +2771,8 @@
         "NEOPARK CLM 2011, S.L."
       ],
       "contractIds": [
-        "1945526#3",
-        "1945526#4"
+        "1945526#4339014",
+        "1945526#4339010"
       ],
       "contractCount": 2,
       "awardedTotalEur": 38210,
@@ -2832,10 +2832,10 @@
         "LACSEN MONTAJES ELECTRICOS S.L"
       ],
       "contractIds": [
-        "1794430#22",
-        "1794430#26",
+        "1794430#10201842",
+        "1794430#10198485",
         "auto-mse4o8",
-        "1794430#29"
+        "1794430#10156778"
       ],
       "contractCount": 4,
       "awardedTotalEur": 36405.28,
@@ -2866,7 +2866,7 @@
         "VIVERS CENTRE VERD SA"
       ],
       "contractIds": [
-        "1889876#1"
+        "1889876#5444049"
       ],
       "contractCount": 1,
       "awardedTotalEur": 36129.59,
@@ -2881,9 +2881,9 @@
         "Paul John Schnyder"
       ],
       "contractIds": [
-        "1794430#1",
-        "1794430#16",
-        "1794430#38"
+        "1794430#9807364",
+        "1794430#5071342",
+        "1794430#10560849"
       ],
       "contractCount": 3,
       "awardedTotalEur": 35580,
@@ -2899,7 +2899,7 @@
       ],
       "contractIds": [
         "1831964",
-        "2765611#2"
+        "2765611#4801485"
       ],
       "contractCount": 2,
       "awardedTotalEur": 35408.95,
@@ -3144,7 +3144,7 @@
         "TIRSO JOSÉ AVILA AGUILERA"
       ],
       "contractIds": [
-        "4889055#4",
+        "4889055#10921271",
         "4718569"
       ],
       "contractCount": 2,
@@ -3160,7 +3160,7 @@
         "Joan Miquel Gonçales i Nogueroles"
       ],
       "contractIds": [
-        "1794430#33"
+        "1794430#7940960"
       ],
       "contractCount": 1,
       "awardedTotalEur": 29700,
@@ -3175,8 +3175,8 @@
         "XÚQUER-ARQING, S.L."
       ],
       "contractIds": [
-        "5106848",
-        "4889055#11"
+        "5106848#9743660",
+        "4889055#10727335"
       ],
       "contractCount": 2,
       "awardedTotalEur": 29617.99,
@@ -3222,7 +3222,7 @@
         "LUDOMAQUINA S.L"
       ],
       "contractIds": [
-        "4973577#4"
+        "4973577#9081641"
       ],
       "contractCount": 1,
       "awardedTotalEur": 29213.78,
@@ -3269,7 +3269,7 @@
       ],
       "contractIds": [
         "auto-nnc0ia",
-        "1794430#37"
+        "1794430#10389866"
       ],
       "contractCount": 2,
       "awardedTotalEur": 28666.78,
@@ -3619,8 +3619,8 @@
         "Elecnor Servicios y Proyectos SAU"
       ],
       "contractIds": [
-        "1891608",
-        "1891608#1"
+        "1891608#4538711",
+        "1891608#4538741"
       ],
       "contractCount": 2,
       "awardedTotalEur": 20943.9,
@@ -3666,7 +3666,7 @@
         "Antonia Acevedo Sanchez"
       ],
       "contractIds": [
-        "1892773#2"
+        "1892773#4168927"
       ],
       "contractCount": 1,
       "awardedTotalEur": 19728.5,
@@ -3727,8 +3727,8 @@
         "Juan Antonio Mas Rico"
       ],
       "contractIds": [
-        "4889055#8",
-        "4889055#16"
+        "4889055#10184487",
+        "4889055#10188881"
       ],
       "contractCount": 2,
       "awardedTotalEur": 18915.42,
@@ -3758,7 +3758,7 @@
         "NOVUS INSERCIÓN, S.L."
       ],
       "contractIds": [
-        "4667548"
+        "4667548#7819417"
       ],
       "contractCount": 1,
       "awardedTotalEur": 17900,
@@ -3773,11 +3773,11 @@
         "MALCO DIGITAL GROUP SRL"
       ],
       "contractIds": [
-        "4930658",
-        "4930658#1",
-        "4930658#2",
-        "4930658#3",
-        "4930658#4"
+        "4930658#8843228",
+        "4930658#8843225",
+        "4930658#8843227",
+        "4930658#8843229",
+        "4930658#8843230"
       ],
       "contractCount": 5,
       "awardedTotalEur": 17868.7,
@@ -3792,7 +3792,7 @@
         "T2i Ingeniería Integral en Tecnología y Telecomunicaciones SL"
       ],
       "contractIds": [
-        "1701582#6"
+        "1701582#3707295"
       ],
       "contractCount": 1,
       "awardedTotalEur": 17767.45,
@@ -3822,10 +3822,10 @@
         "INSTALACIONES Y MANTENIMIENTOS DEL CESPED ARTIFICIAL SOCIEDAD LIMITADA"
       ],
       "contractIds": [
-        "4801854",
-        "4801854#1",
-        "873123",
-        "873123#1"
+        "4801854#8046635",
+        "4801854#8046637",
+        "873123#1892613",
+        "873123#1892612"
       ],
       "contractCount": 4,
       "awardedTotalEur": 17477,
@@ -3919,7 +3919,7 @@
         "INFORMÁTICA DEL ESTE S.L"
       ],
       "contractIds": [
-        "1701582#18"
+        "1701582#3707308"
       ],
       "contractCount": 1,
       "awardedTotalEur": 16540.56,
@@ -3949,7 +3949,7 @@
         "WLIP LABOR INTEGRACIÓN, S.L."
       ],
       "contractIds": [
-        "4667548#1"
+        "4667548#7819413"
       ],
       "contractCount": 1,
       "awardedTotalEur": 15886.24,
@@ -3964,8 +3964,8 @@
         "CONSULTORA VALENCIANA D´ENGINYERIA, S.L."
       ],
       "contractIds": [
-        "5106848#1",
-        "5106848#2"
+        "5106848#9743658",
+        "5106848#9743661"
       ],
       "contractCount": 2,
       "awardedTotalEur": 15668,
@@ -4160,9 +4160,9 @@
         "SERNUTEC"
       ],
       "contractIds": [
-        "256923",
-        "256923#1",
-        "256923#2",
+        "256923#254044",
+        "256923#920865",
+        "256923#920866",
         "1946071"
       ],
       "contractCount": 4,
@@ -4238,7 +4238,7 @@
         "TELEFÓNICA SOLUCIONES DE INFORMÁTICA Y COMUNICACIONES DE ESPAÑA, S.A.U."
       ],
       "contractIds": [
-        "1701582#11"
+        "1701582#3707294"
       ],
       "contractCount": 1,
       "awardedTotalEur": 14616.75,
@@ -4268,7 +4268,7 @@
         "Concepción Campos"
       ],
       "contractIds": [
-        "1794430#41"
+        "1794430#6297807"
       ],
       "contractCount": 1,
       "awardedTotalEur": 14500,
@@ -4450,7 +4450,7 @@
         "MACAMBI CALIDAD AMBIENTAL, S.L."
       ],
       "contractIds": [
-        "4667548#2"
+        "4667548#7819416"
       ],
       "contractCount": 1,
       "awardedTotalEur": 13036.96,
@@ -4465,8 +4465,8 @@
         "EQUALITY MOMENTUM SL"
       ],
       "contractIds": [
-        "4889055#2",
-        "4889055#3"
+        "4889055#10201361",
+        "4889055#10198807"
       ],
       "contractCount": 2,
       "awardedTotalEur": 13000,
@@ -4526,7 +4526,7 @@
         "María de la Concepción Campos Acuña"
       ],
       "contractIds": [
-        "1794430#13"
+        "1794430#9758952"
       ],
       "contractCount": 1,
       "awardedTotalEur": 12700,
@@ -4541,8 +4541,8 @@
         "BASAL MOBILIARIO SL"
       ],
       "contractIds": [
-        "1689128",
-        "1689128#1"
+        "1689128#3740976",
+        "1689128#3740970"
       ],
       "contractCount": 2,
       "awardedTotalEur": 12617.07,
@@ -4572,7 +4572,7 @@
         "Asesoramiento y servicio de drones S.L."
       ],
       "contractIds": [
-        "4331896#2"
+        "4331896#5300602"
       ],
       "contractCount": 1,
       "awardedTotalEur": 12421.48,
@@ -4617,7 +4617,7 @@
         "SÁNCHEZ SORIANO REQUENARIO S.L."
       ],
       "contractIds": [
-        "1889876"
+        "1889876#4192555"
       ],
       "contractCount": 1,
       "awardedTotalEur": 12201,
@@ -4633,8 +4633,8 @@
       ],
       "contractIds": [
         "7484026",
-        "4889055#13",
-        "4889055#14",
+        "4889055#10390635",
+        "4889055#10175692",
         "7884264"
       ],
       "contractCount": 4,
@@ -4681,7 +4681,7 @@
       ],
       "contractIds": [
         "1951719",
-        "2765611#1"
+        "2765611#4801487"
       ],
       "contractCount": 2,
       "awardedTotalEur": 11537.67,
@@ -4696,7 +4696,7 @@
         "Cristina Zaragoza Moreno"
       ],
       "contractIds": [
-        "1689128#4"
+        "1689128#4628583"
       ],
       "contractCount": 1,
       "awardedTotalEur": 11148,
@@ -4816,10 +4816,10 @@
         "Fernando Dario Cardozo"
       ],
       "contractIds": [
-        "1794430#12",
-        "1794430#24",
-        "1794430#34",
-        "99572#2"
+        "1794430#9758551",
+        "1794430#4398563",
+        "1794430#10554489",
+        "99572#159831"
       ],
       "contractCount": 4,
       "awardedTotalEur": 10000,
@@ -5029,7 +5029,7 @@
         "EVA MARIA RUIZ"
       ],
       "contractIds": [
-        "1794430#3"
+        "1794430#10087781"
       ],
       "contractCount": 1,
       "awardedTotalEur": 8000,
@@ -5059,9 +5059,9 @@
         "José Luis Moreno Delgado"
       ],
       "contractIds": [
-        "4889055#1",
+        "4889055#10149010",
         "4930957",
-        "4889055#5"
+        "4889055#9992797"
       ],
       "contractCount": 3,
       "awardedTotalEur": 7930,
@@ -5166,7 +5166,7 @@
         "CERBA INTERNACIONAL SAE"
       ],
       "contractIds": [
-        "5190772#2"
+        "5190772#10469515"
       ],
       "contractCount": 1,
       "awardedTotalEur": 7000,
@@ -5271,7 +5271,7 @@
         "PLANTA NOVA SL"
       ],
       "contractIds": [
-        "85540#4"
+        "85540#158377"
       ],
       "contractCount": 1,
       "awardedTotalEur": 6500,
@@ -5301,7 +5301,7 @@
         "MANUEL BENITEZ SIMON"
       ],
       "contractIds": [
-        "1892773#1"
+        "1892773#4168924"
       ],
       "contractCount": 1,
       "awardedTotalEur": 6307.53,
@@ -5316,7 +5316,7 @@
         "Carlos Tomás Gramage"
       ],
       "contractIds": [
-        "1794430#20"
+        "1794430#10751423"
       ],
       "contractCount": 1,
       "awardedTotalEur": 6000,
@@ -5331,7 +5331,7 @@
         "Turia-regs, S.L."
       ],
       "contractIds": [
-        "85540#2"
+        "85540#158375"
       ],
       "contractCount": 1,
       "awardedTotalEur": 6000,
@@ -5346,7 +5346,7 @@
         "Master Application Service Provider, S.L."
       ],
       "contractIds": [
-        "1701582#12"
+        "1701582#3707288"
       ],
       "contractCount": 1,
       "awardedTotalEur": 5992.2,
@@ -5361,7 +5361,7 @@
         "ORANGE ESPAGNE, S.A.U."
       ],
       "contractIds": [
-        "1794430#44"
+        "1794430#10148923"
       ],
       "contractCount": 1,
       "awardedTotalEur": 5950,
@@ -5406,7 +5406,7 @@
         "Compostaje y Abonos Desco, S.L."
       ],
       "contractIds": [
-        "85540#3"
+        "85540#158376"
       ],
       "contractCount": 1,
       "awardedTotalEur": 5700,
@@ -5451,8 +5451,8 @@
         "AVISTADRONE, S.L."
       ],
       "contractIds": [
-        "4331896",
-        "4331896#1"
+        "4331896#5300603",
+        "4331896#5300601"
       ],
       "contractCount": 2,
       "awardedTotalEur": 5520,
@@ -5512,7 +5512,7 @@
         "ROSANA GALVEZ SANSALONI"
       ],
       "contractIds": [
-        "1701582#3"
+        "1701582#3707292"
       ],
       "contractCount": 1,
       "awardedTotalEur": 5032,
@@ -5588,7 +5588,7 @@
         "APLICAD – Aplicaciones de CAD, CAM y GIS S.L.U."
       ],
       "contractIds": [
-        "1701582"
+        "1701582#3707287"
       ],
       "contractCount": 1,
       "awardedTotalEur": 4445,
@@ -5603,7 +5603,7 @@
         "Inforatge SL"
       ],
       "contractIds": [
-        "1701582#1"
+        "1701582#3707297"
       ],
       "contractCount": 1,
       "awardedTotalEur": 4200,
@@ -5633,7 +5633,7 @@
         "Cumulus City SL"
       ],
       "contractIds": [
-        "1701582#13"
+        "1701582#3707304"
       ],
       "contractCount": 1,
       "awardedTotalEur": 3950,
@@ -5648,7 +5648,7 @@
         "IVNOSYS SOLUCIONES, SLU"
       ],
       "contractIds": [
-        "1701582#7"
+        "1701582#3707310"
       ],
       "contractCount": 1,
       "awardedTotalEur": 3900,
@@ -5678,8 +5678,8 @@
         "Angel Holguera Herrera"
       ],
       "contractIds": [
-        "4889055#10",
-        "4889055#17"
+        "4889055#10259025",
+        "4889055#10254997"
       ],
       "contractCount": 2,
       "awardedTotalEur": 3493.38,
@@ -5709,7 +5709,7 @@
         "Cooltra motos SL"
       ],
       "contractIds": [
-        "4493453#3"
+        "4493453#6460738"
       ],
       "contractCount": 1,
       "awardedTotalEur": 3016.53,
@@ -5724,7 +5724,7 @@
         "CANON ESPA#A, S.A."
       ],
       "contractIds": [
-        "1701582#20"
+        "1701582#3707291"
       ],
       "contractCount": 1,
       "awardedTotalEur": 2893.84,
@@ -5769,7 +5769,7 @@
         "SEMICONDUCTOR Y SISTEMAS SA"
       ],
       "contractIds": [
-        "1701582#16"
+        "1701582#3707299"
       ],
       "contractCount": 1,
       "awardedTotalEur": 2514,
@@ -5784,7 +5784,7 @@
         "RIBODEL SL"
       ],
       "contractIds": [
-        "26459"
+        "26459#529981"
       ],
       "contractCount": 1,
       "awardedTotalEur": 2320,
@@ -5799,7 +5799,7 @@
         "IDM Sistemas de Comunicación, S.L."
       ],
       "contractIds": [
-        "1701582#8"
+        "1701582#3707301"
       ],
       "contractCount": 1,
       "awardedTotalEur": 2015,
@@ -5874,7 +5874,7 @@
         "SORIANO GIJON MARIA CONSUELO"
       ],
       "contractIds": [
-        "1689128#2"
+        "1689128#7685867"
       ],
       "contractCount": 1,
       "awardedTotalEur": 1492,
@@ -6009,7 +6009,7 @@
         "EUREST COLECTIVIDADES"
       ],
       "contractIds": [
-        "4561450#1"
+        "4561450#6867527"
       ],
       "contractCount": 1,
       "awardedTotalEur": 2.89,
@@ -6177,7 +6177,7 @@
   ],
   "builtFrom": {
     "entity-overrides.json": "a41cc20172e9",
-    "officials.json": "f5909d8ac3eb",
-    "tenders.json": "dcad0e562760"
+    "officials.json": "0fb6e5c5d0c2",
+    "tenders.json": "bfa322523657"
   }
 }

@@ -10,7 +10,7 @@ import { esLote, agrupaPorExpediente } from '../src/lib/tender-lotes'
  * Gobierto publica la tabla `contratos` con UNA FILA POR LOTE. Las filas de un
  * mismo expediente comparten `id` y comparten `permalink`: el enlace es el
  * deeplink de PLACSP del expediente ENTERO, no del lote. El parser desempata
- * los ids repetidos con un sufijo `#n` —ver `tenders-colision-id.test.ts` para
+ * los ids repetidos con `#<contract_id>` —ver `tenders-colision-id.test.ts` para
  * la otra colisión, la de `tenders` contra `contracts`— y hasta 2026-09-16
  * TIRABA la columna `batch_number`, así que aguas abajo un lote era
  * indistinguible de un contrato suelto.

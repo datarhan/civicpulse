@@ -39,7 +39,8 @@ permissions:
 
 jobs:
   entrega:
-    runs-on: ubuntu-latest
+    # Fijo, no `ubuntu-latest`: instala Chromium, y el porqué está en `e2e.yml`.
+    runs-on: ubuntu-24.04
     steps:
       - uses: actions/checkout@v5
 

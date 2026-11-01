@@ -30,6 +30,14 @@ on:
 # `playwright` conserva su nombre. `main` no tiene protección de rama ni reglas
 # que exijan un check por nombre (comprobado el 2026-10-26); si algún día las
 # tiene, los checks de este workflow son estos tres.
+#
+# `unidad` y `playwright` fijan Ubuntu 24.04 porque instalan Chromium:
+# `ubuntu-latest` pasó a 26.04 y Playwright 1.59.1 no tiene navegador para ella.
+# La caché del navegador, con el hash del lockfile en la clave, se saltaba esa
+# instalación y dejaba `main` en verde, así que sólo caían las PR que tocan el
+# lockfile (#514, #520). Playwright 1.64 ya soporta 26.04: al subirlo, en su PR a
+# mano (`.github/dependabot.yml`), se revisa esto con
+# `tests/ci-runner-playwright.test.js`.
 jobs:
   estatico:
     runs-on: ubuntu-latest
@@ -82,7 +90,7 @@ jobs:
         run: npm run typecheck
 
   unidad:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     timeout-minutes: 20
     steps:
       - uses: actions/checkout@v5
@@ -145,7 +153,7 @@ jobs:
         run: npm test
 
   playwright:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     timeout-minutes: 20
     steps:
       - uses: actions/checkout@v5
