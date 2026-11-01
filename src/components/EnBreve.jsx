@@ -105,7 +105,16 @@ export function TarjetaEnBreve({
         </p>
       )}
       {enElPie && definicion}
-      {salvedad && <p className="cp-en-breve-salvedad">{salvedad}</p>}
+      {salvedad && (
+        <p className="cp-en-breve-salvedad">
+          <FraseConTerminos
+            frase={salvedad}
+            abierto={abierto}
+            onAbrir={abreArriba}
+            idPanel={idPanel}
+          />
+        </p>
+      )}
       {/* Un <a> también para otra ruta (/datos): es lo que usan las páginas que
           lo montan, y así el bloque no exige un router a quien lo pinta. */}
       {ancla && (

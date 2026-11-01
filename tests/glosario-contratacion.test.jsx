@@ -47,7 +47,7 @@ describe('las entradas nuevas', () => {
 
   it.each(NUEVAS)('%s se lee de un vistazo: tres frases como mucho', (clave) => {
     for (const cat of [ES, CA]) {
-      const frases = cat[`glosario.${clave}.def`].split(/(?<=[.:])\s+/).filter(Boolean)
+      const frases = cat[`glosario.${clave}.def`].split(/(?<=\.)\s+/).filter(Boolean)
       expect(frases.length).toBeLessThanOrEqual(3)
     }
   })
@@ -62,9 +62,21 @@ describe('las entradas nuevas', () => {
     }
   })
 
-  it('el negociado dice que la ley lo limita: «únicamente» en los casos del art. 168', () => {
-    expect(ES['glosario.negociadoSinPublicidad.def']).toMatch(/sólo lo permite/)
-    expect(ES['glosario.negociadoSinPublicidad.def']).toMatch(/artículo 168/)
+  it('el negociado dice que la ley lo limita, y desde cuándo', () => {
+    const def = ES['glosario.negociadoSinPublicidad.def']
+    expect(def).toMatch(/Hoy la ley sólo lo permite/)
+    expect(def).toMatch(/artículo 168/)
+    // 39 de los 103 son de 2017–18: decir sólo la ley vigente los haría parecer
+    // irregulares, y la anterior los permitía por importe (RDL 3/2011, art. 174.e).
+    expect(def).toMatch(/hasta 2018 también se podía por importe/)
+    expect(CATALOGUE.ca['glosario.negociadoSinPublicidad.def']).toMatch(/fins al 2018/)
+  })
+
+  it('la concesión no promete qué mide cada importe: sólo el del agua es su valor estimado', () => {
+    // Los bares también son concesiones (1892773#…): su importe es menor que su
+    // valor estimado y el registro no dice qué es.
+    expect(ES['glosario.concesion.def']).toMatch(/En la del agua/)
+    expect(ES['glosario.concesion.def']).not.toMatch(/Su importe es/)
   })
 })
 

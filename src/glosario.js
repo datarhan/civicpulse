@@ -49,6 +49,23 @@ export const GLOSARIO = [
   'concurso',
   'bolsaDeTrabajo',
   'estabilizacion',
+  // Cómo contrata el Ayuntamiento (/contratos). Las que un vecino lee distinto de
+  // lo que significan: «adjudicado» no es pagado, y «negociado» no es una elección
+  // libre. Las definiciones siguen la Ley 9/2017, pero el registro llega a 2017 y
+  // parte de sus negociados de 2017–18 viene de la ley anterior, que los permitía
+  // por importe: decir sólo la vigente los haría parecer irregulares.
+  // `ute` y `pliego` salen sobre todo en datos de la fuente, que no llevan marca, y
+  // se buscan con Cmd+K.
+  'adjudicado',
+  'licitacion',
+  'contratoMenor',
+  'negociadoSinPublicidad',
+  'concesion',
+  'lote',
+  'ute',
+  'pliego',
+  // La ley del plazo con que contesta el Ayuntamiento (/quejas).
+  'lpacap',
 ]
 
 const MARCA = /\[\[(\w+)\|([^\]]+)\]\]/g

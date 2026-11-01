@@ -87,6 +87,7 @@ export default function EnBreveContratos() {
           c.ventas > 0
             ? rellena(t('contratos.enBreve.cuanto.ventas'), { n: entero(c.ventas) })
             : '',
+          t('contratos.enBreve.cuanto.lotes'),
         ]
           .filter(Boolean)
           .join(' ')}
