@@ -137,7 +137,7 @@ SCRAPERS=(
 #     no se arregla desde aquí y que no se relaja, habría dejado la nocturna sin
 #     despliegue noche tras noche. El adaptador funde sobre lo publicado, así que
 #     una caída no encoge la lista, y con un año sin leer no mueve su
-#     `generatedAt`: un fallo blando sólo cuesta frescura, y a los 3 días lo dice
+#     `generatedAt`: un fallo blando sólo cuesta frescura, y pasados 3 días lo dice
 #     check:cadence.
 #   - scrape:sindic-expedientes — elsindic.com desde un runner de GitHub está
 #     SIN MEDIR, y el precio de equivocarse es asimétrico: si no llega, la
