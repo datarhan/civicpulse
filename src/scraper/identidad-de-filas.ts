@@ -3,19 +3,20 @@
  *
  * ## Por qué
  *
- * El `id` de un contrato no aguanta: en un expediente con varias filas es la
- * posición en una consulta sin ORDER BY. Entre el 28 y el 30-10-2026 la fuente
- * movió una fila del 4889055 y 23 ids pasaron a nombrar otro contrato; lo que
- * mantuvo bien lo publicado fue rehacer los derivados esa noche, no el id.
+ * Hasta el 01-11-2026 el `id` de una fila multifila era su posición: el 30-10 la
+ * fuente movió una fila del 4889055 y 23 ids pasaron a nombrar otro contrato.
+ * Ahora ese `id` lleva `contract_id` (`idsDeFilas`): ya no depende del orden, pero
+ * sí de que esa clave aguante.
  *
- * `contract_id` distingue todas las filas, pero si sobrevive a una edición sólo
- * se puede saber guardándolo y mirando la edición siguiente. Esto es esa mirada.
+ * Y eso no está medido donde importa. Lo que se sabe sale de filas que publican la
+ * clave como `id`, y ninguna está en un expediente multifila: la historia de esas
+ * filas empieza aquí. Por eso se cuentan aparte (`multifila`).
  *
  * ## Una medida, no una puerta
  *
  * No hay umbral ni código de salida: lo escribe `scrape-tenders.ts` en el
- * snapshot y lo imprime `check:contract-corrections`. Si conviene re-clavear
- * `id` es una decisión de una persona con estas cuentas delante.
+ * snapshot y lo imprime `check:contract-corrections`. Qué hacer si la clave no
+ * aguanta es una decisión de una persona con estas cuentas delante.
  *
  * Lo que una pasada no pudo medir no es «cero cambios» (regla 2): sale
  * `medida: false` con su motivo, y el informe lo dice con la marca que lee el
@@ -32,8 +33,10 @@
  *
  * Una fila editada Y re-claveada en la misma pasada no tiene con qué casar: se lee
  * como una baja y un alta. Por eso una baja cuenta como movimiento y su clave va
- * en la muestra, aunque suelta no desmienta nada. Y `retocadas` sólo mira título y
- * adjudicataria, que es lo que la fuente ha reescrito hasta ahora.
+ * en la muestra, aunque suelta no desmienta nada. `retocadas` sólo mira título y
+ * adjudicataria, que es lo que la fuente ha reescrito hasta ahora. Y una fila que
+ * sólo cambia de sitio no se ve, ni hace falta: ningún id depende ya del orden, y
+ * si al moverla la fuente le diera otra clave saldría en `cambian`.
  */
 import type { Contract } from './tenders'
 
@@ -78,12 +81,14 @@ export interface MedidaDeIdentidad {
   editadas: number
   /** Misma clave en otro enlace: la clave nombra ya otro expediente. */
   reutilizadas: number
-  /** Misma clave con otro `id`: lo que el id posicional no aguantó. */
+  /** Misma clave con otro `id`: la fuente la pasó a otro id, o su expediente cambió de filas. */
   idMovidos: number
   /** Claves nuevas sin contenido anterior con el que casar. */
   altas: number
   /** Claves que se fueron sin que llegara otra con su contenido. */
   bajas: number
+  /** Las `comparables` de `id` con `#`, cuyo id lleva la clave: si cambia, cambia el id. */
+  multifila: { comparables: number; conservan: number; retocadas: number }
   muestras: Record<'cambian' | 'editadas' | 'reutilizadas' | 'idMovidos' | 'bajas', string[]>
 }
 
@@ -150,6 +155,8 @@ function ausentesPorContenido(
   return grupos
 }
 
+const esMultifila = (c: FilaDeContrato | undefined) => !!c?.id.includes('#')
+
 const muestra = (claves: readonly string[]) => [...claves].sort().slice(0, MUESTRA_POR_CLASE)
 
 export function medirIdentidad(
@@ -164,6 +171,7 @@ export function medirIdentidad(
 
   let conservan = 0
   let retocadas = 0
+  const multifila = { comparables: 0, conservan: 0, retocadas: 0 }
   const editadas: string[] = []
   const reutilizadas: string[] = []
   const idMovidos: string[] = []
@@ -173,7 +181,12 @@ export function medirIdentidad(
     if (fila.id !== previa.id) idMovidos.push(clave)
     if (contenidoDeFila(fila) === contenidoDeFila(previa)) {
       conservan += 1
-      if (fila.title !== previa.title || fila.assignee !== previa.assignee) retocadas += 1
+      const retocada = fila.title !== previa.title || fila.assignee !== previa.assignee
+      if (retocada) retocadas += 1
+      if (esMultifila(fila)) {
+        multifila.conservan += 1
+        if (retocada) multifila.retocadas += 1
+      }
     } else if (fila.permalink === previa.permalink) editadas.push(clave)
     else reutilizadas.push(clave)
   }
@@ -193,6 +206,8 @@ export function medirIdentidad(
     llegadas.set(contenido, nuevas.slice(pares))
   }
   for (const nuevas of llegadas.values()) altas.push(...nuevas)
+  multifila.comparables =
+    multifila.conservan + cambian.filter((clave) => esMultifila(ahora.porClave.get(clave))).length
 
   return {
     medida: true,
@@ -206,6 +221,7 @@ export function medirIdentidad(
     comparables: conservan + cambian.length,
     conservan,
     cambian: cambian.length,
+    multifila,
     retocadas,
     editadas: editadas.length,
     reutilizadas: reutilizadas.length,
@@ -249,13 +265,14 @@ const ETIQUETA = '[identidad-de-filas]'
 const POR_QUE: Readonly<Record<MotivoSinMedir, string>> = {
   'sin-snapshot-anterior': 'no había snapshot anterior legible con el que comparar',
   'anterior-sin-clave': 'el snapshot anterior no trae sourceRowId',
-  'actual-sin-clave': 'la fuente ha dejado de traer contract_id',
+  'actual-sin-clave': 'esta pasada no trae ninguna fila con contract_id',
 }
 
 const dia = (iso: string | null) => (iso ?? '¿?').slice(0, 10)
 
 function desglose(m: MedidaDeIdentidad): string {
   return [
+    `multifila: ${m.multifila.conservan} de ${m.multifila.comparables}, retocadas ${m.multifila.retocadas}`,
     `cambian de clave ${m.cambian}`,
     `editadas ${m.editadas}`,
     `reutilizadas ${m.reutilizadas}`,
