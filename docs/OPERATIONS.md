@@ -383,12 +383,18 @@ with no other path, and `check:cadence` takes 15 days to say so.
 - **A morning with nothing new** still publishes a pending commit. It used to
   exit on «no changes» before reaching the push.
 
-Two cases still stop the run, and both leave the commit local. If `refresh` fails
-after a rebase that brought something in, the run does not publish, because a
-derived node nobody rebuilt is what `tests/data-graph-frescura.test.ts` reds on;
-the next run picks the commit up. If anything else is in conflict, a curated file
-above all, the whole rebase aborts and the run scrapes nothing. That one needs a
-person, and `check:cron` says so (`cron-sin-publicar`, `cron-pull-atascado`).
+Three cases still stop the run, and all three leave the commit local. If the
+retries run out, the next run picks the commit up. If `refresh` fails after a
+rebase that brought something in, the run does not publish, because a derived
+node nobody rebuilt is what `tests/data-graph-frescura.test.ts` reds on; the next
+run picks that up too. If anything else is in conflict, a curated file above all,
+the whole rebase aborts and the run scrapes nothing. That one needs a person, and
+`check:cron` says so (`cron-sin-publicar`, `cron-pull-atascado`).
+
+A conflict resolved this way logs `pull-estado ok`, so `check:cron` stays quiet
+about it: the local side's only trace is the ref and the lines in
+`scripts/logs/scrape-ci-blocked.log`. A row only that side held would not raise
+anything. To look: `git for-each-ref refs/respaldo/cron`.
 
 Only this cron declares `CRON_GIT_RASPADOS_PROPIOS`, because only a snapshot's
 owner can promise to scrape it again. The other pipelines keep aborting on such a

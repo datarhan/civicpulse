@@ -2059,6 +2059,7 @@ describe('scrape-ci-blocked.sh · un push rechazado se recupera solo', () => {
 
     expect(rechazos(r.log), 'el push no se rechazó').toBe(1)
     expect(r.status).toBe(1)
+    expect(r.log, 'el aviso de antes del commit no llega nunca').toContain('WARN: refresh falló')
     expect(r.log).toMatch(/ERROR: .*refresh/)
     expect(r.log).not.toContain('[ci-blocked] pushed')
     expect(publicado(dir), 'publicó sin derivar').not.toContain(LATIDO_DEL_PORTATIL)

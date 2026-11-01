@@ -154,7 +154,7 @@ fi
 # `refresh` es dependency-driven: reconstruye lo que sus entradas hayan movido y
 # nada más, así que no hay lista que mantener aquí.
 echo "[ci-blocked] $(date '+%F %T') running refresh (derivaciones dependientes)"
-REDERIVADOS="$(cron_rutas_rederivadas)" || echo "[ci-blocked] WARN: refresh falló — puede comitearse un derivado sin rederivar (lo caza tests/data-graph-frescura.test.ts)"
+REDERIVADOS="$(cron_rutas_rederivadas_o_falla)" || echo "[ci-blocked] WARN: refresh falló — puede comitearse un derivado sin rederivar (lo caza tests/data-graph-frescura.test.ts)"
 
 # Can a reader still FOLLOW the citations under published claims about named
 # councillors? This is the half of check:citations that needs the network, and
@@ -220,7 +220,7 @@ fi
 
 # Lo único que se puede decir de un commit que se queda en local. Eran dos
 # mensajes y los dos acababan en «el próximo run reintenta»: desde el 2026-10-27
-# eso fue falso cinco días, y sigue sin serlo para un choque en una ruta ajena.
+# eso fue falso cinco días, y lo seguiría siendo con un choque en una ruta ajena.
 _sin_publicar() {
   echo "[ci-blocked] ERROR: $1 — el commit sigue en local, SIN publicar. La pasada siguiente lo recoge en su pull inicial si lo que choca es lo que este cron raspa o un derivado; un choque en cualquier otra ruta la deja parada hasta que lo resuelva una persona, y check:cron lo da en rojo."
   exit 1
