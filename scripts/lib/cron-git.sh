@@ -92,6 +92,12 @@ CRON_GIT_APPROVED_LABEL=""     # what to call it in the log
 CRON_GIT_APPROVED_SWITCHES=""  # branch-switch count then ('sin-reflog' if none)
 CRON_GIT_GUARD_ARMED=""        # 1 once an identity has been captured
 
+# Lo que el llamador vuelve a raspar él mismo, una ruta por línea: en un rebase
+# que choca puede tomarse de origin (`_cron_git_resolver_reponibles`). Vacío
+# salvo que lo declare, porque esa promesa sólo la puede hacer el dueño: otro cron
+# que tomara origin en una instantánea ajena no la repone nunca.
+CRON_GIT_RASPADOS_PROPIOS=""
+
 # Log prefix: the calling script's own name (sourcing does not change $0), so
 # renaming a pipeline renames its log lines and no second place has to be kept
 # in step. A caller may set CRON_GIT_LOG_PREFIX before sourcing to override.
@@ -385,7 +391,7 @@ _cron_git_en_lista() {
 }
 
 # ---------------------------------------------------------------------------
-# _cron_git_resolver_derivados <contexto>
+# _cron_git_resolver_reponibles <contexto>
 #
 # El rebase que `_cron_git_desatascar_rebase` abortaba y que no se podía
 # reintentar nunca. El 2026-10-22 hallazgos comiteó 862c98a4 en local y su push
@@ -398,12 +404,29 @@ _cron_git_en_lista() {
 # resolvió a mano el 25 — tomar origin en esos cinco, `npm run refresh`, seguir.
 # Abortar deja el árbol utilizable; no hace que el reintento pueda salir.
 #
-# Esto hace lo mismo que se hizo a mano, y SÓLO cuando cada ruta en conflicto
-# es la salida de un nodo `derived`: su contenido es función de otras
-# instantáneas, así que el lado de origin más una rederivación sobre el árbol
-# fusionado es lo correcto por construcción, no una apuesta. Basta UNA ruta que
-# no lo sea —un curado, un raspado, código— para devolver 1 sin tocar nada más,
-# y el llamador aborta como siempre: un curado no se resuelve a ciegas.
+# Esto hace lo mismo que se hizo a mano, y SÓLO cuando cada ruta en conflicto se
+# repone sola, que es en dos casos:
+#
+#   · la salida de un nodo `derived`: su contenido es función de otras
+#     instantáneas, así que el lado de origin más una rederivación sobre el
+#     árbol fusionado es lo correcto por construcción, no una apuesta.
+#   · lo que el llamador declara en CRON_GIT_RASPADOS_PROPIOS. El 2026-10-27
+#     scrape-ci-blocked dejó 8c4c6f30 en local, y ahí lo que paró al resolvedor
+#     cinco mañanas seguidas fue agua.json, que no es un derivado.
+#
+# Basta UNA ruta que no sea ninguna de las dos —un curado, código— para devolver
+# 1 sin tocar nada más, y el llamador aborta como siempre: un curado no se
+# resuelve a ciegas.
+#
+# Reponerse no es ser idempotente, aunque lo parezca. agua.json y paro.json
+# funden lo que raspan con su propia pasada anterior, así que tomar origin tira
+# las filas que sólo tuviera el lado local. Gana origin porque es lo publicado:
+# medido sobre 8c4c6f30 contra la nocturna con la que chocó, ese lado local no
+# tenía una sola fila propia en agua, paro, pleno-actas, plenos-agendas ni
+# sindic-expedientes, y a paro.json le faltaban dos que origin sí tenía. Pero
+# SINAC sólo enseña los últimos boletines y lo que rota no vuelve, así que antes
+# de tocar nada el commit se guarda en refs/respaldo/cron/<sha>. El reflog no
+# sirve: caduca, y nadie mira estas líneas hasta que falta algo.
 #
 # En un rebase los lados van al revés de lo que se lee: `--ours` es la base
 # sobre la que se reaplica, o sea origin; `--theirs`, el commit local.
@@ -413,8 +436,8 @@ _cron_git_en_lista() {
 #
 #   rc 0 — el rebase terminó.   rc 1 — no se tocó o no se pudo: que aborte.
 # ---------------------------------------------------------------------------
-_cron_git_resolver_derivados() {
-  local ctx="$1" derivados conflictos fichero rederivadas pasos=0
+_cron_git_resolver_reponibles() {
+  local ctx="$1" derivados conflictos fichero rederivadas commit_local respaldo clase pasos=0
   local max="${CRON_GIT_REBASE_PASOS_MAX:-20}"
 
   derivados="$(_cron_git_rutas_derivadas)"
@@ -432,21 +455,31 @@ _cron_git_resolver_derivados() {
 
     conflictos="$(git diff --name-only --diff-filter=U 2>/dev/null)"
     if [ -z "$conflictos" ]; then
-      cron_git_log "$ctx: el rebase está parado sin rutas en conflicto — no es un choque de derivados, no se toca"
+      cron_git_log "$ctx: el rebase está parado sin rutas en conflicto — no es un choque de lo que se repone solo, no se toca"
       return 1
     fi
     while IFS= read -r fichero; do
       [ -n "$fichero" ] || continue
-      if ! _cron_git_en_lista "$fichero" "$derivados"; then
-        cron_git_log "$ctx: $fichero está en conflicto y NO es la salida de un nodo derivado — no se resuelve a ciegas"
+      if ! _cron_git_en_lista "$fichero" "$derivados" &&
+        ! _cron_git_en_lista "$fichero" "$CRON_GIT_RASPADOS_PROPIOS"; then
+        cron_git_log "$ctx: $fichero está en conflicto y NO es ni un derivado ni algo que este cron vuelva a raspar — no se resuelve a ciegas"
         return 1
       fi
     done <<< "$conflictos"
 
-    cron_git_log "$ctx: el choque es SÓLO de derivados (dos escritores del mismo sello). Se toma origin y se vuelve a derivar, como se hizo a mano el 2026-10-25:"
+    commit_local="$(git rev-parse --verify --quiet REBASE_HEAD 2>/dev/null)" || commit_local=""
+    respaldo="refs/respaldo/cron/$commit_local"
+    if [ -z "$commit_local" ] || ! git update-ref "$respaldo" "$commit_local" 2>/dev/null; then
+      cron_git_log "$ctx: no se pudo guardar el commit local antes de tomar origin — no se sigue"
+      return 1
+    fi
+
+    cron_git_log "$ctx: el choque es SÓLO de rutas que se reponen solas. Se toma origin y se vuelve a derivar, como se hizo a mano el 2026-10-25; el lado local queda en $respaldo:"
     while IFS= read -r fichero; do
       [ -n "$fichero" ] || continue
-      cron_git_log "    derivado en conflicto: $fichero — se toma el de origin"
+      clase="raspado"
+      _cron_git_en_lista "$fichero" "$derivados" && clase="derivado"
+      cron_git_log "    $clase en conflicto: $fichero — se toma el de origin"
       if ! git checkout --ours -- "$fichero" 2>/dev/null || ! git add -- "$fichero" 2>/dev/null; then
         cron_git_log "    no se pudo tomar el lado de origin de $fichero (¿borrado en un lado?) — no se sigue"
         return 1
@@ -476,7 +509,7 @@ _cron_git_resolver_derivados() {
     # Si el paso siguiente choca, el rebase sigue abierto y la vuelta lo mira.
   done
 
-  cron_git_log "$ctx: rebase completado tomando origin en los derivados · HEAD en '$(_cron_git_head_label "$(_cron_git_head_ref)")'"
+  cron_git_log "$ctx: rebase completado tomando origin en lo que se repone solo · HEAD en '$(_cron_git_head_label "$(_cron_git_head_ref)")'"
   return 0
 }
 
@@ -487,10 +520,10 @@ cron_git_pull_rebase() {
   local alijos_antes
   alijos_antes="$(git stash list 2>/dev/null | wc -l | tr -d " ")"
   git pull --rebase --autostash origin "${CRON_GIT_MAIN_BRANCH:-main}" || rc=$?
-  # Un choque de sellos entre dos escritores del mismo derivado se repetiría
-  # idéntico en cada reintento (2026-10-22), así que se resuelve aquí; todo lo
-  # demás sigue al abort de abajo.
-  if [ "$rc" -ne 0 ] && _cron_git_rebase_en_curso && _cron_git_resolver_derivados "$ctx"; then
+  # Un choque entre dos escritores de lo mismo se repetiría idéntico en cada
+  # reintento (2026-10-22, 2026-10-27), así que lo que se repone solo se resuelve
+  # aquí; todo lo demás sigue al abort de abajo.
+  if [ "$rc" -ne 0 ] && _cron_git_rebase_en_curso && _cron_git_resolver_reponibles "$ctx"; then
     rc=0
   fi
   # Un fallo del pull puede ser «no hay red» o puede ser «te he dejado un rebase
@@ -702,14 +735,23 @@ _cron_git_con_lock() {
 # mentira escribe «[stub] ran refresh» por stdout: sin este filtro, esas tres
 # palabras entraban en el pathspec y las cinco tuberías comiteaban el fichero de
 # un extraño.
+#
+# Sale 0 también cuando refresh falla, porque las tuberías con `set -e` la llaman
+# dentro de una asignación y un refresh caído no debe tumbarlas.
+# `cron_rutas_rederivadas_o_falla` es la misma con rc 1, para quien no pueda
+# seguir sin saber si lo derivado está al día.
 # ---------------------------------------------------------------------------
 cron_rutas_rederivadas() {
+  cron_rutas_rederivadas_o_falla || true
+}
+
+cron_rutas_rederivadas_o_falla() {
   local salida ruta
   salida="$(npm run --silent refresh -- --rebuilt-paths 2>/dev/null)" || {
     # Un refresh que falla no puede quedar callado: quien llama se quedaría sin
     # rutas y lo leería como «no había nada que rederivar».
     cron_git_log "refresh falló al pedirle qué rederivó — no se añade nada al pathspec" >&2
-    return 0
+    return 1
   }
   local n=0
   while IFS= read -r ruta; do

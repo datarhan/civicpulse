@@ -32,6 +32,26 @@ mkdir -p scripts/logs
 # untouched local main, so the refreshed snapshots would never reach the site.
 cron_require_main "scrape-ci-blocked"
 
+# Lo que este cron publica: el pathspec del commit de abajo y, a la vez, lo que
+# puede tomar de origin cuando un rebase choca, porque lo vuelve a raspar. Una
+# sola lista, y sin curados: lo comprueba tests/scripts/cron-git-safety.test.ts.
+SNAPSHOTS=(
+  public/data/paro.json
+  public/data/plenos-agendas.json
+  public/data/consell-cv.json
+  public/data/procesos-selectivos.json
+  public/data/asociaciones.json
+  public/data/obras.json
+  public/data/sindicatura.json
+  public/data/sindic-expedientes.json
+  public/data/transparency-docs.json
+  public/data/pleno-actas.json
+  public/data/agua.json
+  public/data/agua-pares.json
+  public/data/pleno-videos-regmeet.json
+)
+CRON_GIT_RASPADOS_PROPIOS="$(printf '%s\n' "${SNAPSHOTS[@]}")"
+
 # Y AHORA el pull, ANTES de raspar. Era el único cron de datos que no lo hacía
 # —hallazgos, press-lab y los dos auto-curate abren con «git pull inicial»— y
 # fue el único que se atascó.
@@ -48,8 +68,14 @@ cron_require_main "scrape-ci-blocked"
 # fusionar. El pull de después del commit se queda como reintento para la
 # ventana de carrera de verdad (que alguien empuje mientras raspamos), y con la
 # guarda nueva de `cron_git_pull_rebase` ya no puede dejar el árbol a medias.
+#
+# Este pull es también lo que desatasca un commit que una pasada anterior no pudo
+# publicar: si choca con la nocturna en lo que este cron raspa o en un derivado,
+# toma origin y la pasada lo vuelve a raspar encima. Si choca en otra ruta no hay
+# reintento posible, y el mensaje de abajo no puede prometerlo: decía «el próximo
+# run reintenta» y el 2026-10-27 lo repitió cinco mañanas seguidas.
 if ! cron_git_pull_rebase "git pull inicial"; then
-  echo "[ci-blocked] ERROR: el pull inicial falló — no se raspa nada. Ningún dato generado, nada que perder; el próximo run reintenta."
+  echo "[ci-blocked] ERROR: el pull inicial falló — no se raspa nada. Si fue la red, la pasada siguiente lo reintenta; si arriba pone «en conflicto:», esa ruta no se repone sola y chocará igual cada mañana hasta que lo resuelva una persona (check:cron lo da en rojo)."
   exit 1
 fi
 
@@ -171,26 +197,34 @@ npm run check:votos-acta || echo "[ci-blocked] check:votos-acta: desgloses que e
 # chiste que este repositorio ya ha contado dos veces. Sin esto, el commit
 # publicaría una agenda nueva junto a unos análisis que ya no salen de ella.
 # shellcheck disable=SC2086  # deliberado: REDERIVADOS es una lista de rutas
-if ! cron_git_stage_and_check \
-       public/data/paro.json public/data/plenos-agendas.json public/data/consell-cv.json \
-       public/data/procesos-selectivos.json public/data/asociaciones.json \
-       public/data/obras.json public/data/sindicatura.json \
-       public/data/sindic-expedientes.json public/data/transparency-docs.json \
-       public/data/pleno-actas.json public/data/agua.json public/data/agua-pares.json \
-       public/data/pleno-videos-regmeet.json \
-       $REDERIVADOS; then
-  echo "[ci-blocked] no changes"
-  exit ${#failed[@]}
+if cron_git_stage_and_check "${SNAPSHOTS[@]}" $REDERIVADOS; then
+  # The commit used to end in `|| true`. An adapter failing is upstream's doing
+  # and stays non-fatal; the commit failing is OURS — seven adapters' worth of
+  # fresh data that nothing will retry until tomorrow — and swallowing it let the
+  # script go on to print "pushed".
+  if ! cron_git_commit_pathspec "chore(data): refresh CI-unreachable adapters (ribarroja.es / regmeet)"; then
+    echo "[ci-blocked] ERROR: los datos se refrescaron pero el commit FALLÓ — nada publicado, quedan en el working tree"
+    exit 1
+  fi
+else
+  # «Sin cambios» no es «nada que publicar». Un commit que otra pasada no pudo
+  # empujar sigue en local, y salir aquí lo dejaba esperando a una mañana en la
+  # que algún adaptador moviera algo, aunque nada impidiera publicarlo hoy.
+  PENDIENTES="$(git rev-list --count origin/main..main 2>/dev/null || echo 0)"
+  if [ "${PENDIENTES:-0}" -eq 0 ]; then
+    echo "[ci-blocked] no changes"
+    exit ${#failed[@]}
+  fi
+  echo "[ci-blocked] sin cambios nuevos, pero quedan $PENDIENTES commit(s) de una pasada anterior sin publicar — se publican"
 fi
 
-# The commit used to end in `|| true`. An adapter failing is upstream's doing
-# and stays non-fatal; the commit failing is OURS — seven adapters' worth of
-# fresh data that nothing will retry until tomorrow — and swallowing it let the
-# script go on to print "pushed".
-if ! cron_git_commit_pathspec "chore(data): refresh CI-unreachable adapters (ribarroja.es / regmeet)"; then
-  echo "[ci-blocked] ERROR: los datos se refrescaron pero el commit FALLÓ — nada publicado, quedan en el working tree"
+# Lo único que se puede decir de un commit que se queda en local. Eran dos
+# mensajes y los dos acababan en «el próximo run reintenta»: desde el 2026-10-27
+# eso fue falso cinco días, y sigue sin serlo para un choque en una ruta ajena.
+_sin_publicar() {
+  echo "[ci-blocked] ERROR: $1 — el commit sigue en local, SIN publicar. La pasada siguiente lo recoge en su pull inicial si lo que choca es lo que este cron raspa o un derivado; un choque en cualquier otra ruta la deja parada hasta que lo resuelva una persona, y check:cron lo da en rojo."
   exit 1
-fi
+}
 
 # Was `git pull --rebase … && git push …` on one line: a failed pull skipped the
 # push silently and the script still echoed "pushed" and exited on the ADAPTER
@@ -200,27 +234,40 @@ fi
 # Through cron_git_pull_rebase: this one runs AFTER the commit, so by now the
 # seven adapters and check:citations have had minutes to be interrupted by a
 # branch switch — and on the wrong branch this pull rebases THAT branch onto
-# origin/main. The commit is already local either way; the next run retries it.
-if ! cron_git_pull_rebase "pull-rebase previo al push"; then
-  echo "[ci-blocked] ERROR: git pull --rebase falló — el commit existe en local pero NO se ha hecho push; el próximo run reintenta"
-  exit 1
-fi
+# origin/main.
+#
 # El rebase trae el trabajo de OTRO cron, y ese trabajo puede haber movido la
 # entrada de un nodo derivado: publicar sin volver a derivar deja `main`
 # incumpliendo su propia `tests/data-graph-frescura.test.ts`. Le pasó a
 # `94359907` el 16-09-2026, que rebaseó sobre la instantánea de quejas y
 # publicó dos nodos rancios. La PR #46 cerró este agujero para el commit
-# normal y lo dejó abierto justo aquí.
-REDERIVADOS_REBASE="$(cron_rutas_rederivadas)"
-if [ -n "$REDERIVADOS_REBASE" ]; then
-  # shellcheck disable=SC2086  # deliberado: es una lista de rutas
-  if cron_git_stage_and_check $REDERIVADOS_REBASE; then
-    cron_git_commit_pathspec "chore(datos): rederivado tras el rebase" || true
+# normal y lo dejó abierto justo aquí. Van juntos en una función para que el
+# reintento de abajo no pueda hacer lo primero sin lo segundo.
+_pull_y_rederivar() {
+  local ctx="$1" antes rutas
+  antes="$(git rev-parse HEAD)"
+  cron_git_pull_rebase "$ctx" || _sin_publicar "git pull --rebase falló"
+  if ! rutas="$(cron_rutas_rederivadas_o_falla)"; then
+    # Si el pull no trajo nada, esto es el mismo refresh caído de antes del
+    # commit, que no para la publicación. Si trajo algo, nadie ha derivado esa
+    # entrada: publicar sería el 94359907 otra vez, y esperar cuesta poco, porque
+    # la pasada siguiente recoge el commit por sí sola.
+    [ "$(git rev-parse HEAD)" = "$antes" ] && return 0
+    _sin_publicar "el rebase trajo trabajo de otro y refresh falló, así que lo derivado puede estar rancio"
   fi
-  echo "[ci-blocked] rederivado tras el rebase:$REDERIVADOS_REBASE"
-else
-  echo "[ci-blocked] rederivado tras el rebase: nada que reconstruir"
-fi
+  if [ -z "$rutas" ]; then
+    echo "[ci-blocked] rederivado tras el rebase: nada que reconstruir"
+    return 0
+  fi
+  # shellcheck disable=SC2086  # deliberado: es una lista de rutas
+  if cron_git_stage_and_check $rutas; then
+    cron_git_commit_pathspec "chore(datos): rederivado tras el rebase" ||
+      _sin_publicar "no se pudo comitear lo rederivado tras el rebase"
+  fi
+  echo "[ci-blocked] rederivado tras el rebase:$rutas"
+}
+
+_pull_y_rederivar "pull-rebase previo al push"
 
 # La revisión lectora corre AQUÍ, ANTES del push, y el push va con --no-verify.
 #
@@ -248,9 +295,26 @@ fi
 # push, este --no-verify hay que volver a mirarlo.
 PREPUSH_RANGE="origin/main...HEAD" sh .husky/pre-push || true
 
-if ! git push --no-verify origin main; then
-  echo "[ci-blocked] ERROR: git push falló — el commit existe en local pero NO está publicado; el próximo run reintenta"
-  exit 1
-fi
+# Esos minutos de revisión son la ventana en la que main se mueve: el 2026-10-27
+# y el 2026-11-01 un push único se encontró «fetch first». Se reintenta como en
+# el paso Commit de la nocturna, con dos diferencias a propósito. Cada vuelta
+# rederiva, porque el rebase puede traer la entrada de un derivado. Y la espera
+# va ANTES del rebase, no después: esperar entre el rebase y el push reabre la
+# misma carrera. La revisión NO se repite: lo que trae el rebase lo revisa quien
+# lo publicó, y otros tres minutos serían otra ventana.
+#
+# Nunca --force: un rechazo significa que origin tiene algo que no tenemos.
+INTENTOS_PUSH="${CRON_GIT_PUSH_INTENTOS:-5}"
+ESPERA_PUSH="${CRON_GIT_PUSH_ESPERA:-5}"
+intento=1
+until git push --no-verify origin main; do
+  if [ "$intento" -ge "$INTENTOS_PUSH" ]; then
+    _sin_publicar "git push rechazado en $intento intento(s)"
+  fi
+  echo "[ci-blocked] $(date '+%F %T') push rechazado (intento $intento de $INTENTOS_PUSH) — se rebasa, se rederiva y se reintenta"
+  sleep $((intento * ESPERA_PUSH))
+  _pull_y_rederivar "pull-rebase de reintento tras push rechazado"
+  intento=$((intento + 1))
+done
 echo "[ci-blocked] pushed"
 exit ${#failed[@]}

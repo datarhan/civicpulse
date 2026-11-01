@@ -115,17 +115,18 @@ fi
 # árbol que la tubería está usando: advanceOrigin rebobina con reset --hard y
 # aquí eso se llevaría por delante el trabajo del run. Una vez por pasada;
 # STUB_ADVANCE_ORIGIN_VECES lo repite, para que main se siga moviendo mientras
-# el cron reintenta.
+# el cron reintenta, y STUB_ADVANCE_ORIGIN_RUTA elige qué fichero pisa.
 if [ -n "\${STUB_ADVANCE_ORIGIN_ON:-}" ] && [ "$name" = "\${STUB_ADVANCE_ORIGIN_ON}" ]; then
   _n="$(cat .stub-avances 2>/dev/null || echo 0)"
   _n=$((_n + 1))
   echo "$_n" > .stub-avances
   if [ "$_n" -le "\${STUB_ADVANCE_ORIGIN_VECES:-1}" ]; then
+    _ruta="\${STUB_ADVANCE_ORIGIN_RUTA:-public/data/press.json}"
     _tmp="$(mktemp -d)"
     git clone -q "$(git remote get-url origin)" "$_tmp" 2>/dev/null
     ( cd "$_tmp" \
-      && printf '{"items":[{"id":"otro-cron-%s"}]}\\n' "$_n" > public/data/press.json \
-      && git add -- public/data/press.json \
+      && printf '{"items":[{"id":"otro-cron-%s"}]}\\n' "$_n" > "$_ruta" \
+      && git add -- "$_ruta" \
       && git -c user.email=otro@cron -c user.name=otro commit -qm 'otro cron: publica mientras tanto' \
       && git push -q origin HEAD:main ) >/dev/null 2>&1
     rm -rf "$_tmp"
@@ -1985,6 +1986,37 @@ describe('scrape-ci-blocked.sh · un push rechazado se recupera solo', () => {
       expect(enOrigen(dir, 'show', `main:${ruta}`), `${ruta} no es de esta pasada`).toContain('-2"')
     }
   }, 180_000)
+
+  it('si ese día su adaptador falla, se queda lo que origin publicó y no el lado viejo', () => {
+    // Por esto gana origin. El re-raspado tapa cuál de los dos lados se tomó, así
+    // que sólo un día sin re-raspado deja ver si se eligió el bueno.
+    const dir = makeSandbox()
+    atascar(dir)
+
+    const r = runScript(dir, SCRIPT, { ...RAPIDO, STUB_STAMP: '2', STUB_FAIL: 'scrape:agua' })
+
+    expect(r.log, 'el fallo inyectado no se dio').toContain('[ci-blocked] FAILED: scrape:agua')
+    expect(r.originHead, 'un adaptador caído no puede retener a los demás').toBe(r.head)
+    expect(enOrigen(dir, 'show', `main:${AGUA}`)).toBe(sello('origin'))
+  }, 180_000)
+
+  it('la nocturna cae durante la revisión y pisa lo mismo: publica en la misma pasada', () => {
+    const dir = makeSandbox()
+    const r = runScript(dir, comoLaunchd(dir), {
+      ...RAPIDO,
+      STUB_ADVANCE_ORIGIN_ON: 'pre-push',
+      STUB_ADVANCE_ORIGIN_RUTA: AGUA,
+    })
+
+    expect(rechazos(r.log), 'el push no se rechazó').toBe(1)
+    expect(r.log, 'el reintento no chocó: no mide el resolvedor').toContain(
+      `raspado en conflicto: ${AGUA}`,
+    )
+    expect(r.status, r.log).toBe(0)
+    expect(r.originHead).toBe(r.head)
+    expect(enOrigen(dir, 'show', `main:${AGUA}`)).toContain('otro-cron')
+    expect(enOrigen(dir, 'show', 'main:public/data/paro.json')).toContain('run-scrape:paro')
+  }, 120_000)
 
   it('el lado local de lo que toma de origin queda a mano, con su referencia en el log', () => {
     // Estas instantáneas no son todas idempotentes: agua.json y paro.json acumulan
