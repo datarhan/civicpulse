@@ -10,6 +10,10 @@ export default defineConfig({
   define: buildDefines(),
   test: {
     globals: false,
+    // Por defecto vitest deja un núcleo libre, y en un runner de cuatro eso es uno
+    // ocioso: las pruebas que lanzan procesos los esperan con el trabajador parado.
+    // En el portátil sigue el defecto, porque ahí hay agentes y sesiones al lado.
+    maxWorkers: process.env.CI ? '100%' : undefined,
     // no-network first: its hooks must register before anything else so the
     // guard is the baseline `fetch` every test starts from.
     setupFiles: ['./tests/setup/no-network.ts', './tests/setup/setup.ts'],
