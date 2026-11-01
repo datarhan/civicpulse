@@ -1,11 +1,15 @@
+import { readFileSync } from 'node:fs'
+import { resolve } from 'node:path'
 import { describe, it, expect } from 'vitest'
 import {
   selectBundles,
   composeFinding,
   renderQuarantineMarkdown,
+  retenerPorNombres,
   type VerifiedPressItem,
 } from '../src/scraper/press-auto-curate'
 import { validatePressFindingsSnapshot } from '../src/scraper/press-finding'
+import type { OfficialsDoc } from '../src/scraper/corporation-seats'
 
 function makeItem(overrides: Partial<VerifiedPressItem['claim']> = {}): VerifiedPressItem {
   return {
@@ -176,5 +180,65 @@ describe('press-auto-curate — renderQuarantineMarkdown', () => {
   it('renders an empty-queue message when nothing was quarantined', () => {
     const md = renderQuarantineMarkdown([])
     expect(md).toMatch(/No bundles in quarantine/)
+  })
+})
+
+describe('press-auto-curate — la puerta de nombres', () => {
+  /** Plantilla inventada: la forma de `officials.json`, sin nadie real. */
+  const PLANTILLA: OfficialsDoc = {
+    composition: { PSOE: 2, VOX: 1 },
+    officials: [
+      { slug: 'ana-perez', name: 'Ana Pérez Soler', party: 'PSOE', role: 'alcalde' },
+      { slug: 'lia-mora', name: 'Lia Mora Abad', party: 'PSOE', role: 'concejal' },
+      { slug: 'mar-roig', name: 'Mar Roig Vidal', party: 'VOX', role: 'concejal' },
+    ],
+  }
+  const hallazgo = (verbatim: string) => {
+    const { eligible } = selectBundles([makeItem({ verbatim })])
+    return composeFinding({ bundle: eligible[0], publishedAt: '2026-11-01' })
+  }
+  const LIMPIO = 'Riba-roja invierte 185.000 € en el parque del Túria'
+
+  it('deja pasar lo que no nombra a nadie', () => {
+    const r = retenerPorNombres([hallazgo(LIMPIO)], PLANTILLA)
+    expect(r.publicables).toHaveLength(1)
+    expect(r.retenidos).toEqual([])
+  })
+
+  it('retiene un hallazgo cuya cita nombra a un cargo, con su motivo', () => {
+    const f = hallazgo('El alcalde anunció una inversión de 185.000 € en el parque')
+    const r = retenerPorNombres([f], PLANTILLA)
+    expect(r.publicables).toEqual([])
+    expect(r.retenidos).toEqual([{ id: f.id, title: f.title, motivos: ['oficio:alcalde'] }])
+  })
+
+  it('lee también lo que el hallazgo cita de sus cotejos', () => {
+    const f = hallazgo(LIMPIO)
+    const r = retenerPorNombres(
+      [{ ...f, crossChecked: [{ kind: 'promise', ref: 'p-1', snippet: 'Pérez lo prometió' }] }],
+      PLANTILLA,
+    )
+    expect(r.publicables).toEqual([])
+    expect(r.retenidos[0].motivos).toEqual(['apellido:Pérez'])
+  })
+
+  it('sin plantilla no sale nada solo', () => {
+    const r = retenerPorNombres([hallazgo(LIMPIO)], null)
+    expect(r.publicables).toEqual([])
+    expect(r.retenidos[0].motivos).toEqual(['plantilla-desconocida'])
+  })
+
+  it('la cola dice qué se retuvo y por qué, y que no se publicó', () => {
+    const f = hallazgo('El alcalde anunció una inversión de 185.000 € en el parque')
+    const md = renderQuarantineMarkdown([], retenerPorNombres([f], PLANTILLA).retenidos)
+    expect(md).toContain(f.id)
+    expect(md).toContain('oficio:alcalde')
+    expect(md).not.toContain('No bundles in quarantine')
+  })
+
+  it('el CLI pasa por la puerta y lee la plantilla', () => {
+    const fuente = readFileSync(resolve('scripts/auto-curate-press.ts'), 'utf8')
+    expect(fuente).toMatch(/retenerPorNombres\(composed, officials\)/)
+    expect(fuente).toContain('public/data/officials.json')
   })
 })

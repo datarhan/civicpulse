@@ -285,6 +285,15 @@ async function main() {
     AGENDAS,
   )
 
+  // De aquí salen las dos puertas de la plantilla: de quién son las palabras de
+  // una nota municipal y a quién nombra un borrador. Sin ella, nada sale solo.
+  const officials = loadJson<OfficialsDoc>(OFFICIALS)
+  if (!officials) {
+    process.stderr.write(
+      `[auto-curate-promises] ${OFFICIALS} missing or unreadable — nothing auto-publishes this run\n`,
+    )
+  }
+
   const existingQueue = loadQueue(QUEUE)
   const archive = loadQueue(ARCHIVE)
   const seen = new Set<string>([
@@ -360,10 +369,6 @@ async function main() {
         `[auto-curate-promises] discovery: LLM proposed ${batch.promises.length} candidate(s)\n`,
       )
       const candidates: DraftNewPromise[] = []
-      // Whose words a council note is: the alcaldía's party, read from the
-      // roster. Missing roster → every council-sourced draft queues for a
-      // person (`partyOwnsCouncilText` fails closed on null).
-      const officials = loadJson<OfficialsDoc>(OFFICIALS)
       for (const it of batch.promises) {
         const draft: DraftNewPromise = {
           draftId: makeDraftId(it.party, it.title, it.sourceUrl),
@@ -393,6 +398,9 @@ async function main() {
           ],
           generatedAt: nowIso,
         }
+        // Whose words a council note is: the alcaldía's party, read from the
+        // roster. Missing roster → every council-sourced draft queues for a
+        // person (`partyOwnsCouncilText` fails closed on null).
         draft.grounding = await groundDraft(draft, undefined, now, undefined, officials)
         candidates.push(draft)
       }
@@ -401,6 +409,7 @@ async function main() {
         existingPromises: snap.items,
         seenDraftIds: seen,
         frozen: false,
+        officials,
         minConfidence: opts.minConfidence,
         max: opts.max,
       })
@@ -534,6 +543,8 @@ async function main() {
       seenDraftIds: seen,
       seenTransitions,
       frozen: false,
+      officials,
+      existingPromises: snap.items,
       minConfidence: opts.minConfidence,
       max: opts.max,
     })
@@ -552,6 +563,11 @@ async function main() {
   )
   runLog.record('autoPublished', autoCount)
   runLog.record('queued', toQueue.length)
+  // Lo retenido por nombrar a un cargo se cuenta aparte: sin esta cifra, una
+  // puerta que retiene todo se lee igual que un día sin nada que publicar.
+  const retenidas = toQueue.filter((d) => d.retenidaPor).length
+  runLog.record('retenidas:nombre', retenidas)
+  process.stdout.write(`[auto-curate-promises] held for naming a cargo: ${retenidas}\n`)
   // Desenlace, NO `skip`. Estos descartes ocurren DESPUÉS del veredicto —el
   // modelo ya los juzgó y la selección los deja fuera—, así que meterlos en el
   // cubo de saltados los cuenta dos veces y rompe la invariante
@@ -637,7 +653,7 @@ async function main() {
     `- queued for review: ${toQueue.length}`,
     ...toQueue.map(
       (d) =>
-        `  - [${d.kind}·${d.decision}] ${draftLabel(d)} (conf ${d.confidence.toFixed(2)}, grounded=${d.grounding.grounded})`,
+        `  - [${d.kind}·${d.decision}] ${draftLabel(d)} (conf ${d.confidence.toFixed(2)}, grounded=${d.grounding.grounded}${d.retenidaPor ? `, retenida: ${d.retenidaPor.join(' · ')}` : ''})`,
     ),
     `- skipped: ${skipped.length}`,
     ...skipped.map((sk) => `  - ${sk.draftId}: ${sk.reason}`),

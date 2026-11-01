@@ -9,6 +9,17 @@ import {
   AUTO_PUBLISH_MIN_CONFIDENCE,
 } from '../src/scraper/promise-auto-curate'
 import type { DraftNewPromise, DraftStatusChange, Grounding } from '../src/scraper/promise-draft'
+import type { OfficialsDoc } from '../src/scraper/corporation-seats'
+
+/** Plantilla inventada: la forma de `officials.json`, sin nadie real. */
+const PLANTILLA: OfficialsDoc = {
+  composition: { PSOE: 2, VOX: 1 },
+  officials: [
+    { slug: 'ana-perez', name: 'Ana Pérez Soler', party: 'PSOE', role: 'alcalde' },
+    { slug: 'lia-mora', name: 'Lia Mora Abad', party: 'PSOE', role: 'concejal' },
+    { slug: 'mar-roig', name: 'Mar Roig Vidal', party: 'VOX', role: 'concejal' },
+  ],
+}
 
 const GROUNDED: Grounding = { grounded: true, urlResolved: true, quoteFound: true, checkedAt: 'x' }
 const UNGROUNDED: Grounding = {
@@ -83,6 +94,7 @@ describe('promise-auto-curate — decideDraft', () => {
 describe('promise-auto-curate — selectPromiseDrafts', () => {
   it('frozen → everything skipped, nothing published', () => {
     const out = selectPromiseDrafts({
+      officials: PLANTILLA,
       candidates: [draft('a')],
       existingPromises: [],
       seenDraftIds: new Set(),
@@ -95,6 +107,7 @@ describe('promise-auto-curate — selectPromiseDrafts', () => {
 
   it('splits auto-publish vs queue and dedups', () => {
     const out = selectPromiseDrafts({
+      officials: PLANTILLA,
       candidates: [
         draft('a', { confidence: 0.9, grounding: GROUNDED }), // auto
         draft('b', { confidence: 0.5, grounding: GROUNDED }), // queue (low conf)
@@ -110,6 +123,7 @@ describe('promise-auto-curate — selectPromiseDrafts', () => {
 
   it('skips drafts already seen or already tracked by title/url', () => {
     const out = selectPromiseDrafts({
+      officials: PLANTILLA,
       candidates: [
         draft('seen'),
         draft('dupurl', {
@@ -134,6 +148,7 @@ describe('promise-auto-curate — selectPromiseDrafts', () => {
     const ne = draft('ne', { confidence: 0.95, grounding: GROUNDED })
     ;(ne.proposed as { status: string }).status = 'no-ejecutada'
     const out = selectPromiseDrafts({
+      officials: PLANTILLA,
       candidates: [ne],
       existingPromises: [],
       seenDraftIds: new Set(),
@@ -146,6 +161,7 @@ describe('promise-auto-curate — selectPromiseDrafts', () => {
 
   it('stamps the decision field on auto-published drafts', () => {
     const out = selectPromiseDrafts({
+      officials: PLANTILLA,
       candidates: [draft('ap', { confidence: 0.9, grounding: GROUNDED })],
       existingPromises: [],
       seenDraftIds: new Set(),
@@ -159,6 +175,7 @@ describe('promise-auto-curate — selectPromiseDrafts', () => {
       proposed: { ...draft('dt').proposed, party: 'PSOE', title: 'Título ÚNICO de Prueba' },
     })
     const out = selectPromiseDrafts({
+      officials: PLANTILLA,
       candidates: [dt],
       existingPromises: [
         {
@@ -178,6 +195,7 @@ describe('promise-auto-curate — selectPromiseDrafts', () => {
 
   it('caps accepted output at max and marks the rest max-reached', () => {
     const out = selectPromiseDrafts({
+      officials: PLANTILLA,
       candidates: [draft('m1'), draft('m2'), draft('m3')],
       existingPromises: [],
       seenDraftIds: new Set(),
@@ -217,6 +235,8 @@ function statusDraft(id: string, over: Partial<DraftStatusChange> = {}): DraftSt
 describe('promise-auto-curate — selectStatusDrafts', () => {
   it('auto-publishes a grounded, confident en-progreso and respects seenTransitions', () => {
     const out = selectStatusDrafts({
+      officials: PLANTILLA,
+      existingPromises: [],
       candidates: [statusDraft('ap'), statusDraft('seen', { promiseId: 'p-seen' })],
       seenDraftIds: new Set(),
       seenTransitions: new Set([statusTransitionKey('p-seen', 'en-progreso')]),
@@ -228,6 +248,8 @@ describe('promise-auto-curate — selectStatusDrafts', () => {
 
   it('dedups two same-transition drafts within one batch (I-1)', () => {
     const out = selectStatusDrafts({
+      officials: PLANTILLA,
+      existingPromises: [],
       candidates: [statusDraft('d1'), statusDraft('d2')], // both p-obra::en-progreso
       seenDraftIds: new Set(),
       seenTransitions: new Set(),
@@ -239,6 +261,8 @@ describe('promise-auto-curate — selectStatusDrafts', () => {
 
   it('refuses a backward transition (I-2 forward-only): cumplida → en-progreso', () => {
     const out = selectStatusDrafts({
+      officials: PLANTILLA,
+      existingPromises: [],
       candidates: [
         statusDraft('back', { currentStatus: 'cumplida', proposedStatus: 'en-progreso' }),
       ],
@@ -253,6 +277,8 @@ describe('promise-auto-curate — selectStatusDrafts', () => {
 
   it('routes a grounded parcial to the queue as fast-track (never auto)', () => {
     const out = selectStatusDrafts({
+      officials: PLANTILLA,
+      existingPromises: [],
       candidates: [statusDraft('pt', { proposedStatus: 'parcial' })],
       seenDraftIds: new Set(),
       seenTransitions: new Set(),
@@ -264,6 +290,8 @@ describe('promise-auto-curate — selectStatusDrafts', () => {
 
   it('frozen → everything skipped', () => {
     const out = selectStatusDrafts({
+      officials: PLANTILLA,
+      existingPromises: [],
       candidates: [statusDraft('f')],
       seenDraftIds: new Set(),
       seenTransitions: new Set(),
@@ -291,6 +319,7 @@ describe('retractedDraftIds — a published retraction is also a tombstone', () 
   it('selectPromiseDrafts then skips the withdrawn draft as already seen', () => {
     const seen = new Set(retractedDraftIds([{ promiseId: 'ac-psoe-pl3lsq' }]))
     const out = selectPromiseDrafts({
+      officials: PLANTILLA,
       candidates: [draft('dnp-psoe-pl3lsq')],
       existingPromises: [],
       seenDraftIds: seen,
@@ -298,5 +327,151 @@ describe('retractedDraftIds — a published retraction is also a tombstone', () 
     })
     expect(out.autoPublish).toHaveLength(0)
     expect(out.skipped).toEqual([{ draftId: 'dnp-psoe-pl3lsq', reason: 'duplicate' }])
+  })
+})
+
+describe('promise-auto-curate — la puerta de nombres', () => {
+  const base = { existingPromises: [], seenDraftIds: new Set<string>(), frozen: false }
+  const nueva = (over: Partial<DraftNewPromise['proposed']>) => {
+    const d = draft('dnp-nombre')
+    return { ...d, proposed: { ...d.proposed, ...over } }
+  }
+
+  it('una promesa que nombra a un cargo por su apellido va a la cola, con su motivo', () => {
+    const out = selectPromiseDrafts({
+      ...base,
+      officials: PLANTILLA,
+      candidates: [nueva({ quote: 'Según anunció Pérez, el parque abrirá en primavera de 2027.' })],
+    })
+    expect(out.autoPublish).toEqual([])
+    expect(out.queue[0].decision).toBe('queue')
+    expect(out.queue[0].retenidaPor).toEqual(['apellido:Pérez'])
+  })
+
+  it('el título cuenta igual que la cita', () => {
+    const out = selectPromiseDrafts({
+      ...base,
+      officials: PLANTILLA,
+      candidates: [nueva({ title: 'El alcalde promete un parque' })],
+    })
+    expect(out.autoPublish).toEqual([])
+    expect(out.queue[0].retenidaPor).toEqual(['oficio:alcalde'])
+  })
+
+  it('una promesa de un grupo de un escaño nombra a su concejal aunque el texto no lo diga', () => {
+    const out = selectPromiseDrafts({
+      ...base,
+      officials: PLANTILLA,
+      candidates: [nueva({ party: 'VOX' })],
+    })
+    expect(out.autoPublish).toEqual([])
+    expect(out.queue[0].retenidaPor).toEqual(['grupo:VOX'])
+  })
+
+  it('sin plantilla no se publica nada solo', () => {
+    const out = selectPromiseDrafts({ ...base, officials: null, candidates: [draft('dnp-1')] })
+    expect(out.autoPublish).toEqual([])
+    expect(out.queue[0].retenidaPor).toEqual(['plantilla-desconocida'])
+  })
+
+  it('lo que no nombra a nadie sigue publicándose y no lleva motivo', () => {
+    const out = selectPromiseDrafts({
+      ...base,
+      officials: PLANTILLA,
+      candidates: [draft('dnp-1')],
+    })
+    expect(out.autoPublish.map((d) => d.draftId)).toEqual(['dnp-1'])
+    expect(out.autoPublish[0].retenidaPor).toBeUndefined()
+  })
+
+  it('lo que ya iba a un humano no gana motivo: la puerta sólo mira lo que saldría solo', () => {
+    const out = selectPromiseDrafts({
+      ...base,
+      officials: PLANTILLA,
+      candidates: [{ ...nueva({ title: 'El alcalde promete un parque' }), confidence: 0.1 }],
+    })
+    expect(out.queue[0].retenidaPor).toBeUndefined()
+  })
+
+  const cambio = (quote: string): DraftStatusChange => ({
+    draftId: 'dsc-1',
+    kind: 'status-change',
+    requiresHumanApproval: true,
+    confidence: 0.9,
+    grounding: GROUNDED,
+    decision: 'queue',
+    promiseId: 'p-1',
+    currentStatus: 'documentada',
+    proposedStatus: 'en-progreso',
+    evidence: {
+      date: '2026-06-20',
+      url: 'https://x.test/e',
+      quote,
+      publisher: 'Levante-EMV',
+      kind: 'press',
+      addedBy: 'civicpulse-bot',
+    },
+    reasoning: [],
+    generatedAt: 'x',
+  })
+  const LIMPIA = { id: 'p-1', party: 'PSOE', title: 'Un parque', quote: 'Haremos un parque nuevo.' }
+  const estado = {
+    seenDraftIds: new Set<string>(),
+    seenTransitions: new Set<string>(),
+    frozen: false,
+  }
+
+  it('un cambio de estado cuya evidencia nombra a un cargo va a la cola', () => {
+    const out = selectStatusDrafts({
+      ...estado,
+      officials: PLANTILLA,
+      existingPromises: [LIMPIA],
+      candidates: [cambio('La obra la adjudicó Pérez la semana pasada.')],
+    })
+    expect(out.autoPublish).toEqual([])
+    expect(out.queue[0].retenidaPor).toEqual(['apellido:Pérez'])
+  })
+
+  it('un cambio de estado sobre una promesa que nombra a un cargo también', () => {
+    const out = selectStatusDrafts({
+      ...estado,
+      officials: PLANTILLA,
+      existingPromises: [{ ...LIMPIA, title: 'El alcalde promete un parque' }],
+      candidates: [cambio('La obra se adjudicó la semana pasada.')],
+    })
+    expect(out.autoPublish).toEqual([])
+    expect(out.queue[0].retenidaPor).toEqual(['oficio:alcalde'])
+  })
+
+  it('un cambio de estado sobre la promesa de un grupo de un escaño también', () => {
+    const out = selectStatusDrafts({
+      ...estado,
+      officials: PLANTILLA,
+      existingPromises: [{ ...LIMPIA, party: 'VOX' }],
+      candidates: [cambio('La obra se adjudicó la semana pasada.')],
+    })
+    expect(out.autoPublish).toEqual([])
+    expect(out.queue[0].retenidaPor).toEqual(['grupo:VOX'])
+  })
+
+  it('un cambio de estado limpio sigue publicándose', () => {
+    const out = selectStatusDrafts({
+      ...estado,
+      officials: PLANTILLA,
+      existingPromises: [LIMPIA],
+      candidates: [cambio('La obra se adjudicó la semana pasada.')],
+    })
+    expect(out.autoPublish.map((d) => d.draftId)).toEqual(['dsc-1'])
+  })
+
+  it('sin plantilla, tampoco un cambio de estado', () => {
+    const out = selectStatusDrafts({
+      ...estado,
+      officials: null,
+      existingPromises: [LIMPIA],
+      candidates: [cambio('La obra se adjudicó la semana pasada.')],
+    })
+    expect(out.autoPublish).toEqual([])
+    expect(out.queue[0].retenidaPor).toEqual(['plantilla-desconocida'])
   })
 })

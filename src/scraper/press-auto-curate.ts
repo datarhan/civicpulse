@@ -16,6 +16,7 @@
  *     of press-finding.ts for what a curator can actually do.
  *   - LOREG freeze: when promises.json.frozenUntil > today, the
  *     selector returns empty buckets and the CLI exits without writing.
+ *   - a composed finding that names a cargo stays out (`retenerPorNombres`).
  *
  * Severity is hard-locked to `informational`. `notable` is reachable
  * only as a correction to an already-published row
@@ -33,6 +34,8 @@
 
 import { evidenceStance, toPublishedSnippet, type ClaimVerdict } from './claim-verifier'
 import { corpusReales } from './claim-verdicts'
+import { motivosDeRetencion } from './cargos-nombrados'
+import type { OfficialsDoc } from './corporation-seats'
 import type { PressClaim } from './press-claim'
 import type { PressClaimVerification } from './press-verifier'
 import type { PressFinding, PressFindingRef } from './press-finding'
@@ -351,8 +354,44 @@ export function descartarLotesYaPublicados(
   return nuevos.filter((f) => !vistos.has(clave(f)))
 }
 
-export function renderQuarantineMarkdown(quarantine: BundleCandidate[]): string {
-  if (quarantine.length === 0) {
+export interface HallazgoRetenido {
+  id: string
+  title: string
+  motivos: string[]
+}
+
+/**
+ * Lo compuesto que puede salir solo y lo que nombra a un cargo (cargos-nombrados.ts).
+ *
+ * Lee lo que se publicaría: titular, resumen, citas y lo que se cita de los
+ * cotejos. Prensa no tiene ninguna orden que promueva un lote, así que lo retenido
+ * se queda en la cola de lectura y no llega al sitio.
+ */
+export function retenerPorNombres(
+  hallazgos: readonly PressFinding[],
+  officials: OfficialsDoc | null,
+): { publicables: PressFinding[]; retenidos: HallazgoRetenido[] } {
+  const publicables: PressFinding[] = []
+  const retenidos: HallazgoRetenido[] = []
+  for (const f of hallazgos) {
+    const textos = [
+      f.title,
+      f.summary,
+      ...f.quotes.map((q) => q.text),
+      ...[...f.crossChecked, ...f.contradiction].map((r) => r.snippet),
+    ]
+    const motivos = motivosDeRetencion({ textos }, officials)
+    if (motivos.length === 0) publicables.push(f)
+    else retenidos.push({ id: f.id, title: f.title, motivos })
+  }
+  return { publicables, retenidos }
+}
+
+export function renderQuarantineMarkdown(
+  quarantine: BundleCandidate[],
+  retenidos: readonly HallazgoRetenido[] = [],
+): string {
+  if (quarantine.length === 0 && retenidos.length === 0) {
     return '# Press auto-curation queue\n\nNo bundles in quarantine.\n'
   }
   const lines: string[] = [
@@ -360,8 +399,8 @@ export function renderQuarantineMarkdown(quarantine: BundleCandidate[]): string 
     '',
     `Generated: ${new Date().toISOString()}`,
     '',
-    'These bundles contain at least one `contradicho` claim and were NOT',
-    'auto-published.',
+    'These bundles contain at least one `contradicho` claim, or name a cargo,',
+    'and were NOT auto-published.',
     '',
     'There is no CLI that publishes them. This file is a reading queue, not a',
     'staging area: press has no `promote` command, and landing one of these',
@@ -389,6 +428,13 @@ export function renderQuarantineMarkdown(quarantine: BundleCandidate[]): string 
         `- [${it.verification.verdict}] «${it.claim.verbatim.slice(0, 140)}» — ${it.claim.articleSource}`,
       )
     }
+    lines.push('')
+  }
+  for (const r of retenidos) {
+    lines.push(`## Retenido por nombrar a un cargo \`${r.id}\``)
+    lines.push('')
+    lines.push(`- **Título:** ${r.title}`)
+    lines.push(`- **Motivos:** ${r.motivos.join(' · ')}`)
     lines.push('')
   }
   return lines.join('\n')
