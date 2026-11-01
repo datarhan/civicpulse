@@ -10,7 +10,7 @@
  * del laboratorio de prensa. El 04-07-2026 (`f59de8b1`) la primera publicó sola
  * una cita con el apellido de un cargo, que tardó casi tres meses en corregirse.
  * `decideAutomation` no servía de puerta: niega toda clase sin medición, así que
- * habría parado los dos procesos por un caso que no da ninguna fila publicada.
+ * habría parado los dos procesos por un caso que hoy no da ninguna fila publicada.
  * Esta puerta mira sólo los nombres, fila a fila.
  *
  * ─────────────────────────────────────────────────────────────────────────────

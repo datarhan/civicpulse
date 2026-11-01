@@ -2233,9 +2233,9 @@ export const CATALOGUE = {
     'metodologia.frase.estados':
       'Cada estado exige algo distinto para publicarse, y ni documentada ni en verificación afirman un incumplimiento.',
     'metodologia.frase.limites-motor':
-      'El motor no auto-publica veredictos fuertes, no asigna incumplimientos, no inventa citas, no puntúa partidos y se detiene en periodo electoral.',
+      'El motor no auto-publica veredictos fuertes ni lo que nombra a un cargo, no asigna incumplimientos, no inventa citas, no puntúa partidos y se detiene en periodo electoral.',
     'metodologia.frase.auto-curacion-promesas':
-      'Sin revisión sólo se publica lo que supera un umbral de confianza y queda anclado a su fuente, rotulado como automático; «parcial», «cumplida» y los incumplimientos nunca se publican solos.',
+      'Sin revisión sólo se publica lo que supera un umbral de confianza, queda anclado a su fuente y no nombra a ningún cargo, rotulado como automático; «parcial», «cumplida» y los incumplimientos nunca se publican solos.',
     'metodologia.frase.camino-de-una-queja':
       'Publicar una queja no la lleva al ayuntamiento: llega cuando entra en su registro, y el plazo legal para responder cuenta desde esa fecha.',
     'metodologia.frase.relacion-quejas-contratos':
@@ -5205,9 +5205,9 @@ export const CATALOGUE = {
     'metodologia.frase.estados':
       'Cada estat exigix una cosa diferent per a publicar-se, i ni documentada ni en verificació afirmen un incompliment.',
     'metodologia.frase.limites-motor':
-      'El motor no autopublica veredictes forts, no assigna incompliments, no inventa cites, no puntua partits i es deté en període electoral.',
+      'El motor no autopublica veredictes forts ni el que nomena un càrrec, no assigna incompliments, no inventa cites, no puntua partits i es deté en període electoral.',
     'metodologia.frase.auto-curacion-promesas':
-      'Sense revisió només es publica el que supera un llindar de confiança i queda ancorat a la seua font, retolat com a automàtic; «parcial», «complida» i els incompliments mai no es publiquen sols.',
+      'Sense revisió només es publica el que supera un llindar de confiança, queda ancorat a la seua font i no nomena cap càrrec, retolat com a automàtic; «parcial», «complida» i els incompliments mai no es publiquen sols.',
     'metodologia.frase.camino-de-una-queja':
       "Publicar una queixa no la porta a l'ajuntament: hi arriba quan entra en el seu registre, i el termini legal per a respondre compta des d'eixa data.",
     'metodologia.frase.relacion-quejas-contratos':
