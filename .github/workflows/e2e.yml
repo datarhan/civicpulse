@@ -242,6 +242,13 @@ jobs:
           # workflows so the pair cannot drift apart again.
           VITE_ENABLE_EFICIENCIA: 'true'
 
+      # Aquí y no en `npm test`: estas pruebas juzgan `dist/`, y el trabajo de
+      # unidad no compila, así que allí se saltan solas. Hasta el 01-11-2026 no
+      # las corría ningún trabajo: dos copias del corpus sin puerta se sirvieron
+      # desde octubre con esta CI en verde (publication-denylist.js).
+      - name: Judge the built artifact (publication guard)
+        run: npx vitest run tests/publication-denylist.test.ts tests/publication-guard-outdir.test.ts
+
       - name: Run Playwright tests
         run: npm run test:e2e
         env:
