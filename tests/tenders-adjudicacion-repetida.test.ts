@@ -3,6 +3,7 @@ import { readFileSync } from 'node:fs'
 import { join } from 'node:path'
 import { parseRibalicitaContracts, sinAdjudicacionesRepetidas } from '../src/scraper/tenders'
 import { esTituloCpv } from '../src/scraper/etiqueta-de-contrato'
+import { registrarIdentidad, sinFilasRetiradas } from '../src/scraper/identidad-de-filas'
 
 /**
  * Una adjudicación publicada dos veces se cuenta una.
@@ -31,7 +32,11 @@ const COTEJADAS = [
 ]
 
 const porRetirada = (a: { id: string }, b: { id: string }) => a.id.localeCompare(b.id)
-const ESPERADAS = COTEJADAS.map((p) => ({ id: p.retirada, queda: p.queda })).sort(porRetirada)
+const ESPERADAS = COTEJADAS.map((p) => ({
+  id: p.retirada,
+  sourceRowId: p.retirada.split('#').pop(),
+  queda: p.queda,
+})).sort(porRetirada)
 const fila = (id: string) => CONTRATOS.find((c) => c.id === id)!
 
 describe('sinAdjudicacionesRepetidas — sobre el registro real', () => {
@@ -106,6 +111,88 @@ describe('sinAdjudicacionesRepetidas — lo que no funde', () => {
     const una = fila('4889055#10281213')
     const otra = { ...fila('4889055#10278551'), assignee: 'OTRA EMPRESA SL' }
     expect(sinAdjudicacionesRepetidas([una, otra]).repetidas).toEqual([])
+  })
+})
+
+describe('identidad de filas — lo que esta pasada retira no lo ha quitado la fuente', () => {
+  const { contratos, repetidas } = sinAdjudicacionesRepetidas(CONTRATOS)
+  const AYER = '2026-11-01T00:00:00.000Z'
+  const HOY = '2026-11-02T00:00:00.000Z'
+
+  it('mide algo: comparada tal cual, cada retirada sale como una baja', () => {
+    const r = registrarIdentidad({ generatedAt: AYER, contracts: CONTRATOS }, HOY, contratos)
+    expect(r.ultima).toMatchObject({ medida: true, bajas: COTEJADAS.length })
+    expect(r.movimientos).toHaveLength(1)
+  })
+
+  it('la primera pasada tras retirarlas no anota ningún movimiento', () => {
+    const anterior = sinFilasRetiradas({ generatedAt: AYER, contracts: CONTRATOS }, repetidas)
+    const r = registrarIdentidad(anterior, HOY, contratos)
+    expect(r.ultima).toMatchObject({
+      medida: true,
+      comparables: contratos.length,
+      conservan: contratos.length,
+      cambian: 0,
+      bajas: 0,
+      altas: 0,
+    })
+    expect(r.movimientos).toEqual([])
+  })
+
+  describe('si la gemela que queda pasa a ser la otra', () => {
+    // La fila publicada pierde su objeto oficial y la retirada lo gana: quedan
+    // las mismas dos filas de la fuente, y ninguna ha cambiado de clave.
+    const [publicada, retirada] = ['4889055#10281213', '4889055#10278551']
+    const titulos = new Map([
+      [publicada, '71241000-Estudio de viabilidad.'],
+      [retirada, 'Objeto oficial del contrato'],
+    ])
+    const siguiente = sinAdjudicacionesRepetidas(
+      CONTRATOS.map((c) => ({ ...c, title: titulos.get(c.id) ?? c.title })),
+    )
+    const anterior = { generatedAt: AYER, contracts: contratos }
+
+    it('mide algo: comparada tal cual, se lee como un cambio de clave', () => {
+      expect(siguiente.repetidas.map((r) => r.id)).toContain(publicada)
+      const r = registrarIdentidad(anterior, HOY, siguiente.contratos)
+      expect(r.ultima).toMatchObject({ medida: true, cambian: 1 })
+    })
+
+    it('no desmiente la clave ni anota un movimiento', () => {
+      const r = registrarIdentidad(
+        sinFilasRetiradas(anterior, siguiente.repetidas),
+        HOY,
+        siguiente.contratos,
+      )
+      expect(r.ultima).toMatchObject({ medida: true, cambian: 0, bajas: 0, altas: 1 })
+      expect(r.movimientos).toEqual([])
+    })
+  })
+
+  it('conserva lo demás del snapshot, con su historial', () => {
+    const doc = {
+      generatedAt: AYER,
+      contracts: CONTRATOS,
+      identidadDeFilas: registrarIdentidad(null, AYER, CONTRATOS),
+    }
+    const r = sinFilasRetiradas(doc, repetidas)
+    expect(r?.generatedAt).toBe(AYER)
+    expect(r?.identidadDeFilas).toBe(doc.identidadDeFilas)
+    expect(r?.contracts).toHaveLength(CONTRATOS.length - COTEJADAS.length)
+  })
+
+  it('sin snapshot anterior sigue sin haber con qué comparar', () => {
+    expect(sinFilasRetiradas(null, repetidas)).toBeNull()
+  })
+
+  it('una fila sin clave no se toma por una retirada sin clave', () => {
+    const contracts = [{ ...fila('9012998'), sourceRowId: null }]
+    expect(sinFilasRetiradas({ contracts }, [{ sourceRowId: null }])?.contracts).toEqual(contracts)
+  })
+
+  it('scrape-tenders le pasa a la medida el snapshot sin las retiradas', () => {
+    const script = readFileSync(join(__dirname, '..', 'scripts', 'scrape-tenders.ts'), 'utf8')
+    expect(script).toMatch(/registrarIdentidad\(\s*sinFilasRetiradas\(/)
   })
 })
 
