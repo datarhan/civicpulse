@@ -37,6 +37,20 @@ import { citaRetenida } from './src/lib/cita-retenida.js'
  *
  * ---
  *
+ * La lección no bastó: la prueba miraba sólo lo que la lista nombra, y la guarda
+ * derivada sólo lo que acababa en `.json`. El 01-11-2026 el sitio servía
+ * `pleno-claims-verified-base.json.bak-1004` y `.bak-pre315`, dos copias de ese
+ * mismo corpus sin puerta (7.564 y 7.819 filas), que un `cp` de seguridad dejó en
+ * `public/data/` y el `git add -- public/data` del cron de /hallazgos comiteó el
+ * 12 y el 15-10. Cada fila llevaba la marca; nadie la leyó, porque un nombre que
+ * no acaba en `.json` no llegaba a juzgarse. Por eso ahora se juzgan los bytes de
+ * toda hoja de `dist/data`, y lo que no se puede juzgar tumba la compilación
+ * (`textoDeHoja`). Salió al medir una frase de `/metodologia`, no por ninguna
+ * comprobación: `SIN_DIST` saltaba estas pruebas en la CI, que no compilaba en el
+ * trabajo que corre vitest.
+ *
+ * ---
+ *
  * Y un nivel más abajo, un CAMPO: `pleno-findings.json` no se puede quitar
  * entero —las páginas de hallazgos lo necesitan—, pero hasta el 28-09-2026
  * servía el literal de cada cita que la puerta editorial retiene, mientras la
@@ -69,6 +83,27 @@ export const PUBLICATION_DENYLIST = Object.freeze([
  */
 export function esBorrador(texto) {
   return /"requiresHumanApproval"\s*:\s*true/.test(texto)
+}
+
+/** Los binarios que se sirven a propósito. Otro formato tumba la compilación: se añade aquí. */
+const FIRMAS_DE_IMAGEN = [
+  [0xff, 0xd8, 0xff], // JPEG
+  [0x89, 0x50, 0x4e, 0x47], // PNG
+]
+
+/**
+ * Lo que se puede leer de una hoja: sus bytes como texto, o `null` si no se puede
+ * saber qué lleva, que es la cuarta suerte de `repartir`.
+ *
+ * En latin1 porque la marca es ASCII y latin1 ni falla ni sustituye nada: una
+ * codificación rara se juzga igual. Un byte nulo delata lo que no es texto. Si es
+ * una imagen, se busca la marca en sus bytes y ya está; si no —un comprimido, un
+ * UTF-16—, no encontrarla no diría nada, y darlo por limpio sería publicarlo sin
+ * mirar.
+ */
+export function textoDeHoja(bytes) {
+  const esImagen = FIRMAS_DE_IMAGEN.some((firma) => firma.every((b, i) => bytes[i] === b))
+  return bytes.includes(0) && !esImagen ? null : bytes.toString('latin1')
 }
 
 /**
@@ -116,6 +151,13 @@ export function referenciasDelNavegador(textos) {
 }
 
 /**
+ * Lo que el front pide de un directorio: `/data/pleno-claims/*.json`,
+ * `/data/pleno-transcripts/*.txt`, `/data/souls/*.md`. Un directorio servido no
+ * avala lo que caiga al lado: `1080zow.json.bak-1004` no lo pide nadie.
+ */
+const PEDIDO_DE_UN_DIRECTORIO = /\.(json|txt|md)$/
+
+/**
  * El reparto en CUATRO suertes: denegadas, servidas, limpias e ilegibles.
  *
  * La cuarta es la que importa. Un fichero que no se pudo leer no lleva «nada»:
@@ -131,7 +173,7 @@ export function repartir({ hojas, referencias }) {
     const url = `/${rel}`
     for (const r of referencias) {
       if (r === url) return true
-      if (r.endsWith('/') && url.startsWith(r)) return true
+      if (r.endsWith('/') && url.startsWith(r) && PEDIDO_DE_UN_DIRECTORIO.test(url)) return true
     }
     return false
   }
@@ -342,25 +384,29 @@ export function vitePublicationGuard() {
         }
         const referencias = referenciasDelNavegador(textos)
 
-        // Las hojas del artefacto, que es el único denominador honesto.
+        // Las hojas del artefacto, que es el único denominador honesto: todas,
+        // se llamen como se llamen. Un directorio que no abre es una hoja sin
+        // juzgar, no un directorio vacío.
         const hojas = []
         const andaDatos = async (d) => {
           let entradas
           try {
             entradas = await readdir(d, { withFileTypes: true })
-          } catch {
+          } catch (err) {
+            if (err.code !== 'ENOENT') hojas.push({ rel: relative(salida, d), texto: null })
             return
           }
           for (const e of entradas) {
             const p = join(d, e.name)
-            if (e.isDirectory()) await andaDatos(p)
-            else if (e.name.endsWith('.json')) {
-              const rel = relative(salida, p)
-              try {
-                hojas.push({ rel, texto: await readFile(p, 'utf8') })
-              } catch {
-                hojas.push({ rel, texto: null })
-              }
+            if (e.isDirectory()) {
+              await andaDatos(p)
+              continue
+            }
+            const rel = relative(salida, p)
+            try {
+              hojas.push({ rel, texto: textoDeHoja(await readFile(p)) })
+            } catch {
+              hojas.push({ rel, texto: null })
             }
           }
         }
@@ -400,8 +446,8 @@ export function vitePublicationGuard() {
           // Un fichero que no se pudo leer es justo el que seguiría
           // publicándose. No puede pasar por «no llevaba nada».
           throw new Error(
-            `[publication-guard] no se pudieron leer, así que no se han juzgado: ` +
-              `${reparto.ilegibles.join(', ')}`,
+            `[publication-guard] no se pudieron leer, o no son texto ni una imagen conocida, ` +
+              `así que no se han juzgado: ${reparto.ilegibles.join(', ')}`,
           )
         }
         if (fallidos.length) {
