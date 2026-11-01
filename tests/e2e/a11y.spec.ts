@@ -115,8 +115,10 @@ test.describe('Etiqueta en el nombre (WCAG 2.5.3)', () => {
     expect(fallos).toEqual(['#sonda-etiqueta'])
   })
 
-  // Las que llevan un control etiquetado por diseño: la pastilla de WhatsApp, la
-  // reproducción de la línea de tiempo y los enlaces «§ ↓» de un reportaje.
+  // Las que llevan controles etiquetados con texto a la vista: la pastilla de
+  // WhatsApp, la paginación de los listados y los enlaces «§ ↓» de un reportaje.
+  // La reproducción de la línea de tiempo no cuenta: «▶» es un símbolo, y axe lo
+  // deja en `incomplete`, no en `passes`.
   for (const path of ['/cambios', '/presupuesto', '/reportajes/basuras']) {
     test(`${path}: la regla ve controles de verdad y los pasa`, async ({ page }) => {
       await page.goto(path, { waitUntil: 'domcontentloaded' })
