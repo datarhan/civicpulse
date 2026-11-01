@@ -74,34 +74,16 @@ const publicado = (ruta) =>
 const RUTAS = [
   '/data/budget.json',
   '/data/budget-execution.json',
-  '/data/obras.json',
-  '/data/bdns.json',
   '/data/deuda-viva.json',
-  '/data/tenders.json',
-  '/data/tenders-ted.json',
   '/data/tender-geo.json',
-  '/data/cpv-labels.json',
-  '/data/entities.json',
-  '/data/geo.json',
-  '/data/quejas.json',
-  '/data/queja-contract-relations.json',
-  '/data/queja-contract-relations-approved.json',
 ]
 const sirve = () => Object.fromEntries(RUTAS.map((r) => [r, publicado(r)]))
-
-const AL_PULSAR = [
-  '/data/entities.json',
-  '/data/quejas.json',
-  '/data/queja-contract-relations.json',
-  '/data/queja-contract-relations-approved.json',
-]
 
 const escenario = (mapa) => ({
   nombre: 'presupuesto · capítulo que abre en cero',
   fetch: mapa,
   pinta: () => <Presupuesto />,
   listo: (c) => Boolean(c.querySelector('[data-capitulo]')),
-  alPulsar: AL_PULSAR,
 })
 
 /**

@@ -24,9 +24,9 @@
     "bdns.json": [
       "/",
       "/cambios",
+      "/contratos",
       "/datos",
-      "/lab-health",
-      "/presupuesto"
+      "/lab-health"
     ],
     "bibliotecas.json": [
       "/datos"
@@ -75,7 +75,7 @@
     ],
     "cpv-labels.json": [
       "/",
-      "/presupuesto"
+      "/contratos"
     ],
     "criminalidad.json": [
       "/datos"
@@ -120,7 +120,7 @@
       "/empleo/:id"
     ],
     "entities.json": [
-      "/presupuesto"
+      "/contratos"
     ],
     "events.json": [
       "/"
@@ -142,10 +142,10 @@
     "geo.json": [
       "/",
       "/cambios",
+      "/contratos",
       "/datos",
       "/lab-health",
       "/metodologia",
-      "/presupuesto",
       "/quejas",
       "/quejas/:id",
       "/quejas/dashboard"
@@ -193,8 +193,8 @@
     ],
     "obras.json": [
       "/",
-      "/datos",
-      "/presupuesto"
+      "/contratos",
+      "/datos"
     ],
     "officials-social.json": [
       "/cargos"
@@ -327,6 +327,7 @@
       "/",
       "/cambios",
       "/cargos",
+      "/contratos",
       "/datos",
       "/declaraciones",
       "/departamentos",
@@ -387,11 +388,11 @@
       "/promesas"
     ],
     "queja-contract-relations-approved.json": [
-      "/presupuesto",
+      "/contratos",
       "/quejas/:id"
     ],
     "queja-contract-relations.json": [
-      "/presupuesto",
+      "/contratos",
       "/quejas/:id"
     ],
     "quejas-responses.json": [
@@ -399,12 +400,12 @@
       "/cambios",
       "/cargos",
       "/cargos/:slug",
+      "/contratos",
       "/datos",
       "/departamentos",
       "/departamentos/:slug",
       "/lab-health",
       "/nosotros",
-      "/presupuesto",
       "/quejas",
       "/quejas/:id",
       "/quejas/dashboard"
@@ -414,12 +415,12 @@
       "/cambios",
       "/cargos",
       "/cargos/:slug",
+      "/contratos",
       "/datos",
       "/departamentos",
       "/departamentos/:slug",
       "/lab-health",
       "/nosotros",
-      "/presupuesto",
       "/quejas",
       "/quejas/:id",
       "/quejas/dashboard"
@@ -489,18 +490,20 @@
     ],
     "tender-geo.json": [
       "/",
+      "/contratos",
       "/presupuesto",
       "/quejas"
     ],
     "tenders-ted.json": [
+      "/contratos",
       "/datos",
-      "/lab-health",
-      "/presupuesto"
+      "/lab-health"
     ],
     "tenders.json": [
       "/",
       "/cambios",
       "/cargos/:slug",
+      "/contratos",
       "/curator",
       "/datos",
       "/declaraciones",
@@ -510,8 +513,7 @@
       "/hallazgos/:id",
       "/lab-health",
       "/nosotros",
-      "/plenos/:id",
-      "/presupuesto"
+      "/plenos/:id"
     ],
     "transparency-docs.json": [
       "/cargos/:slug",

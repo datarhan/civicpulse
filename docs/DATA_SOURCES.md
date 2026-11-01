@@ -307,7 +307,7 @@ overwrites it. Change the bot's SQLite instead.
 
 - **Pipeline** — no adapter of its own: `minorContract` already rides in
   `tenders.json` from ribalicita. `contratos-menores.ts` summarises it.
-- **Surfaces** — `/presupuesto`
+- **Surfaces** — `/contratos`
 - **Trap** — the art. 118 ceiling is on the value **excluding tax**. Measured on
   gross amounts, 15 contracts sit above the ceiling; on net amounts, 4. The
   eleven in between are €39.900 net read as €48.279 with 21 % VAT. Publishing
@@ -538,7 +538,7 @@ overwrites it. Change the bot's SQLite instead.
 
 - **Pipeline** — `obras.ts` → `obras.json`
 - **Source** — Portal de Transparencia · obras-de-infraestructuras-en-curso fichas (FEDER 2019–20) + urbanismo/vias_y_obras Plan RENOVE fichas (2023–24, zona afectada → gazetteer geo)
-- **Surfaces** — `/presupuesto` section + landing-map layer
+- **Surfaces** — `/contratos` section + landing-map layer
 
 ### Contracts + tenders
 
@@ -550,7 +550,7 @@ overwrites it. Change the bot's SQLite instead.
 - **Repeated awards** — Gobierto can publish one award in two rows: same `permalink`, lot, award date, net amount, awardee and status, different `contract_id`, usually one with the official object and one with a CPV label. A blank lot counts as the only numbered lot among such rows: 153/2025 BSDA published one lotless notice as lot 3 and as a blank lot. Checked on PLACSP on 2026-11-01: each such expediente has a single award notice and no lots. `sinAdjudicacionesRepetidas` counts it once, keeping the row with the official object, then the numbered lot, and, between equals, the lowest id, and `scripts/scrape-tenders.ts` lists what it withdrew in `contractCorrections.adjudicacionesRepetidas`. The rule under-matches on purpose: equal-priced lots, a blank lot beside two numbered ones, and void rows sharing a link are not repeats.
 - **Corrections** — `tenders.json` is scraped ⊕ corrected for contracts: `contract-corrections.json` — curated, each entry citing verbatim the PLACSP notice that gives the state and the one that explains the discrepancy, signed — restores a committed state and its winner where Gobierto publishes it wrong (first case: 51/2022, LED street lighting, whose formalisation NOTICE was annulled for re-publication with FEDER funding and which Gobierto turned into `revoked`). Matched by `permalink` + lot, not by `id`: the notice cites the link, and a row's `id` can change (see **Ids** below). Applied by `scripts/scrape-tenders.ts`; a corrected row carries `correccion: {url, motivo, curatedAt}`, and the file a `contractCorrections` block (`sinEstadoPorImposible`, `aplicadas`, `sobran`). A correction that no longer corrects is not applied and is listed in `sobran` rather than failing the adapter; `check:contract-corrections` reds on it, and on one a later run did not apply, and says NO COMPROBADO before the first run after signing.
 - **Row key** — `sourceRowId` is Gobierto's `contract_id` on every row, including those whose `id` carries no suffix, where nothing else publishes it. Multi-row ids are built from this key, so a row that changes key changes id. Each `scrape:tenders` compares itself with the snapshot it overwrites (`src/scraper/identidad-de-filas.ts`) and writes the `identidadDeFilas` block: rows that kept their key for the same link, lot, amounts and date, those that did not, the same count for multi-row rows alone, and a capped history of the runs in which something moved, because most nights nothing does and each night overwrites the last. `check:contract-corrections` prints it and never reds on it; a run that could not measure says NO COMPROBADO, which the health digest counts as unchecked. A row edited and re-keyed in the same run reads as one `baja` and one `alta`, and a row that only moved shows nothing, since no id depends on position any more. A row retired as a repeated award is taken out of the snapshot being compared too (`sinFilasRetiradas`): it left the snapshot, not the source, and a `baja` in that history stays there.
-- **Surfaces** — `/presupuesto` (`Últimos contratos adjudicados`); Direction D editorial column (`LiveContracts`); the shared `ContractCard` (winner + baja% + CPV label + procedimiento + nº licitadores) on the landing `PlacePopup` + `/presupuesto` `ZoneDrilldown`
+- **Surfaces** — `/contratos` (`Últimos contratos adjudicados`); Direction D editorial column (`LiveContracts`); the shared `ContractCard` (winner + baja% + CPV label + procedimiento + nº licitadores) on the landing `PlacePopup` + `/contratos` `ZoneDrilldown`
 
 ### Street/camino gazetteer
 
@@ -562,7 +562,7 @@ overwrites it. Change the bot's SQLite instead.
 
 - **Pipeline** — `build-cpv-labels.ts` → `cpv-labels.json`
 - **Source** — Official **EU/TED CPV-2008** vocabulary (`ted.europa.eu/…/cpv_2008_xml`, EU open data). Occasional curator build; `src/lib/cpv.js` degrades to embedded 2-digit division labels for misses
-- **Surfaces** — `ContractCard` CPV chips on the money popups + `/presupuesto` drilldown
+- **Surfaces** — `ContractCard` CPV chips on the money popups + `/contratos` drilldown
 
 ### Subsidies (BDNS convocatorias)
 
@@ -570,7 +570,7 @@ overwrites it. Change the bot's SQLite instead.
 - **Source** — MinHac **BDNS** REST endpoint `/bdnstrans/api/convocatorias/busqueda?vpd=GE&descripcion=riba-roja`, paginated
 - **Filter** — the search also returns Riba-roja d'Ebre (Tarragona). A convocatoria not convoked by the Ayuntamiento is kept only if a BDNS field places it here: a concesión to the council's NIF `P4621600H` (not `P4621400C`, which is Real's) or a NUTS region in ES52/ES523 on its ficha. Anything else goes to `descartadas` with its reason (`ubicarConvocatoria`, `src/scraper/bdns.ts`); the CLI refuses to write if more than a quarter of received rows cannot be placed
 - **Received, by NIF** — the name search only finds convocatorias whose text names the town; a Generalitat or Diputación call open to every municipality names none. So the CLI also reads `/bdnstrans/api/concesiones/busqueda?vpd=GE&nifCif=P4621600H` (all pages) into `concesiones`: one row per **concession**, with its `importe` — what was _awarded_, not what was paid. Euros are summed there and only there (`resumirConcesiones` → `stats.concesiones`), because one convocatoria can carry several concessions. Their convocatorias do **not** join `items`, which is what the verifier reads (`claim-verifier.ts`, `embed-verifier-corpus.ts`): measured on 2026-10-11, adding them moved 14 published pleno claims from `sin-datos` to `parcial` on lexical overlap and none down, and an automated verdict does not go up without a measured precision. So `items`, `stats.received` and `granted` are what the name search gives. The NIF query returns nothing before a rolling start year (on 2026-10-11, 2015–2021 gave zero rows), so older received convocatorias still arrive only through the name search. `rechazoDeLasConcesiones` refuses to write on zero rows, a cut pagination, another NIF in the results, a renamed `importe` or instrument, or a fall of more than half against the previous snapshot
-- **Surfaces** — `/presupuesto` (`Subvenciones · BDNS` card in «Contratación y subvenciones»; «Subvenciones · Base Nacional», which lists the latest municipal convocatorias and the latest concessions received), `/datos`, `/cambios`; the verifier and its corpus read `items` only
+- **Surfaces** — `/contratos` (`Subvenciones · BDNS` card in «Contratación y subvenciones»; «Subvenciones · Base Nacional», which lists the latest municipal convocatorias and the latest concessions received), `/datos`, `/cambios`; the verifier and its corpus read `items` only
 
 ### Population (Total / Hombres / Mujeres)
 
@@ -618,7 +618,7 @@ overwrites it. Change the bot's SQLite instead.
 
 - **Pipeline** — _(ninguno — teselas ráster)_ · la URL y la clave viven en `src/lib/basemap.js`, en un solo sitio
 - **Source** — **CARTO Voyager** (`basemaps.cartocdn.com/rastertiles/voyager`), cartografía derivada de **OpenStreetMap** (ODbL). Capa gratuita de CARTO para uso no comercial: 5M teselas/mes, clave en `VITE_CARTO_API_KEY`
-- **Surfaces** — los seis mapas Leaflet: portada (`StylizedMap`), `/quejas` (`QuejasHeatmap`), `/presupuesto` (`GastoMap`), `/empleo` (`EmpleoMap`), `/reportajes/matriculas-y-moviles` (`MapaPliego`), `/reportajes/reconstruccion-dana` (`MapaDana`)
+- **Surfaces** — los seis mapas Leaflet: portada (`StylizedMap`), `/quejas` (`QuejasHeatmap`), `/contratos` (`GastoMap`), `/empleo` (`EmpleoMap`), `/reportajes/matriculas-y-moviles` (`MapaPliego`), `/reportajes/reconstruccion-dana` (`MapaDana`)
 - **Atribución** — obligatoria por partida doble (la capa gratuita de CARTO la exige por escrito; la ODbL de OSM la exige igual) y se sirve desde `BASEMAP_ATTRIBUTION`. La portada usa su propia línea de crédito; los otros tres, el control de Leaflet sin prefijo
 - **Trampa medida (3-sep-2026)** — sin clave, CARTO NO falla: devuelve `200 image/png` con «API KEY REQUIRED» estampado en diagonal. Y una clave **inválida** devuelve esa misma tesela **byte a byte** —sin 401 ni 403— así que un secreto sin poner en Vercel, una clave revocada o la cuota agotada son indistinguibles de acertar por HTTP. Lo mira `npm run check:basemap`, comparando la tesela con clave contra la de sin clave; entra en el parte nocturno, no en el pre-commit
 

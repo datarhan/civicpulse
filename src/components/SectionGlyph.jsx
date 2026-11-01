@@ -19,6 +19,7 @@ export const SECTION_GLYPHS = {
   '/cambios': { glyph: '✦', tone: 'civic' }, // lo nuevo
   '/cargos': { glyph: '◇', tone: 'civic' }, // la insignia
   '/presupuesto': { glyph: '€', tone: 'civic' }, // literal
+  '/contratos': { glyph: '⚖', tone: 'civic' }, // la balanza: quién se lo lleva y a qué precio
   '/eficiencia': { glyph: '⊟', tone: 'civic' }, // el cociente: coste sobre unidad
   '/gestion': { glyph: '◷', tone: 'civic' }, // el reloj: plazos y trámite
   '/plenos': { glyph: '▤', tone: 'civic' }, // el acta

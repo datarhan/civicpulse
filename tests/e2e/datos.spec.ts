@@ -28,7 +28,7 @@ test.describe('Datos (/datos)', () => {
     await page.goto('/datos', { waitUntil: 'domcontentloaded' })
     const frase = page.locator('[data-datos-frase]')
     await expect(frase).toContainText('conjuntos de datos que usa CivicPulse', { timeout: 8000 })
-    await expect(frase.locator('a')).toHaveCount(5)
+    await expect(frase.locator('a')).toHaveCount(6)
 
     const fichas = page.locator('[data-ficha-catalogo]')
     await expect(fichas.first()).toBeVisible()

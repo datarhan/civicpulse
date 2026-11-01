@@ -119,7 +119,7 @@ test.describe('Etiqueta en el nombre (WCAG 2.5.3)', () => {
   // WhatsApp, la paginación de los listados y los enlaces «§ ↓» de un reportaje.
   // La reproducción de la línea de tiempo no cuenta: «▶» es un símbolo, y axe lo
   // deja en `incomplete`, no en `passes`.
-  for (const path of ['/cambios', '/presupuesto', '/reportajes/basuras']) {
+  for (const path of ['/cambios', '/contratos', '/reportajes/basuras']) {
     test(`${path}: la regla ve controles de verdad y los pasa`, async ({ page }) => {
       await page.goto(path, { waitUntil: 'domcontentloaded' })
       await page.waitForTimeout(800)

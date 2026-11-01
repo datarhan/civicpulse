@@ -115,10 +115,10 @@ test.describe('Landing (/)', () => {
     // heading beside a one-year budget.
     //
     // Scoped to the column: the section bar's «Dinero» panel also links to
-    // /presupuesto, and its sentence names contratos. Closed, that link sits
+    // /contratos, and its sentence names contratos. Closed, that link sits
     // FIRST in the DOM and hidden — and `.first()` would pick it.
     const govLink = page
-      .locator('.d-editorial a[href="/presupuesto"]')
+      .locator('.d-editorial a[href="/contratos"]')
       .filter({ hasText: /contratos/i })
       .first()
     await expect(govLink).toContainText(awarded, { timeout: 8000 })
@@ -270,7 +270,7 @@ test.describe('Landing (/)', () => {
         )
       await selector.selectOption(slug!)
       await tarjeta.getByRole('button', { name: 'Ver sus contratos' }).click()
-      await expect(page).toHaveURL(new RegExp(`/presupuesto\\?barrio=${slug}#mapa-gasto-barrio$`))
+      await expect(page).toHaveURL(new RegExp(`/contratos\\?barrio=${slug}#mapa-gasto-barrio$`))
       await expect
         .poll(() => arribaDe(page, 'mapa-gasto-barrio'), { timeout: 10_000 })
         .toBeLessThan(ATERRIZA_PX)

@@ -27,6 +27,7 @@ export const CATALOGUE = {
     'nav.cambios': 'Novedades',
     'nav.cargos': 'Cargos',
     'nav.presup': 'Presupuesto',
+    'nav.contratos': 'Contratos',
     'nav.plenos': 'Plenos',
     'nav.promesas': 'Promesas',
     'nav.departamentos': 'Departamentos',
@@ -342,7 +343,8 @@ export const CATALOGUE = {
     'vivo.horario.referencia': '{fuente} · horario de REFERENCIA, no vigente; confirma en fgv.es',
     'nav.desc.cambios': 'Lo que ha cambiado en los últimos días',
     'nav.desc.cargos': 'Concejales, áreas y retribuciones',
-    'nav.desc.presup': 'Lo aprobado, lo ejecutado, contratos y deuda',
+    'nav.desc.presup': 'Lo aprobado, lo ejecutado y la deuda',
+    'nav.desc.contratos': 'Qué se contrata, a quién y cuánto sin concurso',
     'nav.desc.eficiencia':
       'Coste unitario de los servicios, frente a municipios de tamaño parecido',
     'nav.desc.gestion': 'Plazos de pago, concurrencia en contratos y ejecución',
@@ -2013,6 +2015,12 @@ export const CATALOGUE = {
       'Los otros {n} constan en el registro público pero no cuentan en las cifras de arriba:',
     'presupuesto.gasto.listado': 'listado de contratos',
     'presupuesto.gasto.razonesSociales': '{n} razones sociales',
+    'presupuesto.gasto.contratistas.resumen':
+      'Las cinco primeras suman {n} de cada 100 €, y la mayor, ella sola, {mayor}. En total son {total} adjudicatarios.',
+    'presupuesto.gasto.contratistas.adjudicado': 'Es lo adjudicado, no lo pagado.',
+    'presupuesto.gasto.contratistas.ventas':
+      'Incluye {n} ventas de parcelas, en las que el Ayuntamiento cobra en vez de pagar.',
+    'presupuesto.gasto.contratistas.compra': 'compró al Ayuntamiento: pagó, no cobró',
     'presupuesto.gasto.dana': 'Recuperación DANA ≈ {pct}% del importe adjudicado.',
     'presupuesto.subvenciones.eyebrow': 'BDNS · {municipales} convocatorias municipales',
     'presupuesto.subvenciones.eyebrow.recibidas': ' · {n} concesiones al Ayuntamiento',
@@ -2338,7 +2346,7 @@ export const CATALOGUE = {
     'presupuesto.enBreve.barrio.otro.frase':
       'Ningún contrato publicado nombra en su título un lugar que podamos situar con seguridad en tu barrio. Preferimos no poner un punto en el mapa a ponerlo mal.',
     'presupuesto.enBreve.barrio.otro.queja': 'Avisar de un problema en tu calle',
-    'presupuesto.enBreve.barrio.otro.todos': 'Ver todos los contratos del municipio ↓',
+    'presupuesto.enBreve.barrio.otro.todos': 'Ver todos los contratos del municipio',
     'presupuesto.gasto.zona.desconocida':
       'El enlace pide el barrio «{barrio}», que no está entre los que nombran los contratos. Elige uno en la lista o en el mapa.',
     'presupuesto.enBreve.barrio.figura': 'De cada 100 € contratados, {n} nombran un barrio.',
@@ -2565,10 +2573,71 @@ export const CATALOGUE = {
     'presupuesto.deuda.noPublicados':
       'Sin entrega publicada todavía: {lista}. La serie se corta ahí porque el Ministerio aún no ha publicado ese ejercicio, no porque no haya deuda.',
     'presupuesto.deuda.fuente': 'Ministerio de Hacienda · deuda viva EE.LL.',
+    'presupuesto.puente.contratos':
+      'Los contratos, las obras y las subvenciones tienen su propia página: se acumulan a lo largo de varios ejercicios y no se comparan con el presupuesto de un año.',
+    'presupuesto.puente.contratos.enlace': 'Ver contratos →',
+    // /contratos. «En breve»: la primera capa, en el registro de quien no sabe qué
+    // es un negociado. Toda cifra va en un {marcador}: la deriva
+    // `scraper/en-breve-contratos`, el catálogo sólo pone las palabras.
+    'contratos.entradilla':
+      'Qué contrata el Ayuntamiento, a quién se lo adjudica y cuánto sin convocatoria abierta. También las obras publicadas, los anuncios europeos y las subvenciones.',
+    'contratos.enBreve.intro':
+      'Lo esencial, en pocas preguntas. Cada respuesta enlaza a la sección que la demuestra. Sólo cuenta lo publicado en el registro de contratos: lo que no llega a él no está aquí.',
+    'contratos.enBreve.cuanto.pregunta': '¿Cuánto se ha contratado?',
+    'contratos.enBreve.cuanto.cifraNota': 'adjudicado sin IVA',
+    'contratos.enBreve.cuanto.frase':
+      '{n} contratos adjudicados entre {desde} y {hasta}: es la suma de {k} ejercicios, no lo de un año.',
+    'contratos.enBreve.cuanto.fraseSinPeriodo': '{n} contratos adjudicados.',
+    'contratos.enBreve.cuanto.sinImporte': 'De ellos, {n} no publican su importe y no suman.',
+    'contratos.enBreve.cuanto.ventas':
+      '{n} son ventas de parcelas: ahí el Ayuntamiento cobra, no paga.',
+    'contratos.enBreve.cuanto.mayorConcesion':
+      'Una sola concesión, de {importe}, es el {pct} % de esa suma: es su valor estimado por todo el plazo, no un gasto anual, y no sale del presupuesto municipal, porque lo paga el vecino en su factura.',
+    'contratos.enBreve.cuanto.mayor': 'Un solo contrato, de {importe}, es el {pct} % de esa suma.',
+    'contratos.enBreve.aQuien.pregunta': '¿A quién se le adjudica?',
+    'contratos.enBreve.aQuien.cifra': '{n} de cada 100 €',
+    'contratos.enBreve.aQuien.cifraNota': 'a cinco empresas',
+    'contratos.enBreve.aQuien.frase':
+      'La mayor, ella sola, suma {mayor} de cada 100 €. En total son {total} adjudicatarios.',
+    'contratos.enBreve.aQuien.salvedad':
+      'Suma lo adjudicado en años distintos y por plazos distintos, también lo ya acabado o resuelto: dice dónde se concentró lo adjudicado, no quién cobra cada año.',
+    'contratos.enBreve.aQuien.figura':
+      'Cinco empresas suman {n} de cada 100 € adjudicados; el resto de adjudicatarios, {resto}.',
+    'contratos.enBreve.aQuien.cinco': 'Cinco empresas: {n}',
+    'contratos.enBreve.aQuien.resto': 'El resto: {n}',
+    'contratos.enBreve.sinConcurso.pregunta': '¿Cuánto se adjudica sin concurso?',
+    'contratos.enBreve.sinConcurso.cifra': '{n} de cada 100',
+    'contratos.enBreve.sinConcurso.cifraNota': 'contratos',
+    'contratos.enBreve.sinConcurso.frase':
+      'De {de} contratos adjudicados, {n} fueron sin convocatoria abierta: {menores} contratos menores y {negociados} negociados sin publicidad.',
+    'contratos.enBreve.sinConcurso.dana': 'De los negociados, {n} son por la DANA.',
+    'contratos.enBreve.sinConcurso.importe': 'Por importe son el {pct} %.',
+    'contratos.enBreve.sinConcurso.importeSinElMayor':
+      'Por importe son el {pct} %; apartando el mayor contrato, el {sin} %.',
+    'contratos.enBreve.sinConcurso.salvedad':
+      'La ley permite estas vías en ciertos casos. Esta cifra no dice si cada contrato se ajusta a ella, ni que en los demás hubiera competencia: mide cuánto se adjudica sin convocatoria abierta.',
+    'contratos.seccion.sinConvocatoria': 'Sin convocatoria abierta',
+    'contratos.sinConvocatoria.titulo': 'Sin convocatoria abierta: {n} de {de}',
+    'contratos.sinConvocatoria.intro':
+      'Los contratos que se adjudican sin un anuncio abierto a cualquier empresa: los contratos menores y los negociados sin publicidad. Los derivados de un acuerdo marco no cuentan, porque su licitación sí se publicó.',
+    'contratos.sinConvocatoria.via': 'Vía',
+    'contratos.sinConvocatoria.contratos': 'Contratos',
+    'contratos.sinConvocatoria.importe': 'Importe sin IVA',
+    'contratos.sinConvocatoria.menores': 'Contratos menores',
+    'contratos.sinConvocatoria.negociados': 'Negociados sin publicidad',
+    'contratos.sinConvocatoria.dana': 'de ellos, por la DANA',
+    'contratos.sinConvocatoria.total': 'Sin convocatoria abierta',
+    'contratos.sinConvocatoria.todos': 'Todos los adjudicados',
+    'contratos.sinConvocatoria.cuota': 'Son {n} de cada 100 contratos adjudicados.',
+    'contratos.sinConvocatoria.competencia':
+      'Que haya convocatoria tampoco asegura competencia: a algunas se presenta una sola empresa.',
+    'contratos.sinConvocatoria.gestion': 'Contratos con una sola oferta →',
+    'contratos.pie.presupuesto': 'Presupuesto →',
+    'contratos.pie.gestion': 'Plazos y concurrencia →',
     'presupuesto.contra.eyebrow': 'Contratación y subvenciones',
     'presupuesto.contra.title': 'Contratos, obras, anuncios y convocatorias',
     'presupuesto.contra.intro':
-      'El presupuesto se aprueba y se ejecuta cada año; la contratación se acumula a lo largo de varios ejercicios. Así que **estos cuatro recuentos no son el reparto del presupuesto de arriba**: cada uno lleva el periodo que abarca, salvo las obras, cuyas fichas no traen todas fecha. Cada tarjeta cuenta desde su propia fuente y abre la suya: sólo la de contratos menores se mide **sobre los contratos adjudicados y sin IVA**, con los mismos predicados que las fichas de abajo.',
+      'El presupuesto se aprueba y se ejecuta cada año; la contratación se acumula a lo largo de varios ejercicios. Así que **estos cuatro recuentos no son el reparto de un presupuesto anual**: cada uno lleva el periodo que abarca, salvo las obras, cuyas fichas no traen todas fecha. Cada tarjeta cuenta desde su propia fuente y abre la suya: sólo la de contratos menores se mide **sobre los contratos adjudicados y sin IVA**, con los mismos predicados que las fichas de abajo.',
     'presupuesto.contra.menores': 'Contratos menores',
     'presupuesto.contra.menores.nota':
       'de {adj} adjudicados{span} · {importe} sin IVA: el {pctN} % de los expedientes y el {pctImporte} % del importe',
@@ -3097,6 +3166,7 @@ export const CATALOGUE = {
     'reportajes.correcciones': 'Con {n} [[correccion|correcciones publicadas]]',
     'landing.alcalde.role': 'Alcalde',
     'landing.empleo.all': 'Ver todas las ofertas →',
+    'landing.contratos.todos': 'Ver todos los contratos →',
     'landing.promesas.blurb':
       'Compromisos públicos documentados, cada uno con su cita y la fuente que la recoge: el documento oficial o la noticia.',
     // «del partido de la alcaldía», no «del que gobierna»: el padrón no
@@ -3199,6 +3269,7 @@ export const CATALOGUE = {
     'nav.cambios': 'Novetats',
     'nav.cargos': 'Càrrecs',
     'nav.presup': 'Pressupost',
+    'nav.contratos': 'Contractes',
     'nav.plenos': 'Plens',
     'nav.promesas': 'Promeses',
     'nav.departamentos': 'Departaments',
@@ -3472,7 +3543,8 @@ export const CATALOGUE = {
     'nav.grupo.proyecto': 'Sobre CivicPulse',
     'nav.desc.cambios': 'El que ha canviat en els últims dies',
     'nav.desc.cargos': 'Regidors, àrees i retribucions',
-    'nav.desc.presup': 'L’aprovat, l’executat, contractes i deute',
+    'nav.desc.presup': 'L’aprovat, l’executat i el deute',
+    'nav.desc.contratos': 'Què es contracta, a qui i quant sense concurs',
     'nav.desc.eficiencia': 'Cost unitari dels serveis, respecte a municipis de mida semblant',
     'nav.desc.gestion': 'Terminis de pagament, concurrència en contractes i execució',
     'nav.desc.plenos': 'Sessions, ordres del dia i votacions',
@@ -4923,6 +4995,12 @@ export const CATALOGUE = {
       'Els altres {n} consten en el registre públic però no compten en les xifres de dalt:',
     'presupuesto.gasto.listado': 'llistat de contractes',
     'presupuesto.gasto.razonesSociales': '{n} raons socials',
+    'presupuesto.gasto.contratistas.resumen':
+      'Les cinc primeres sumen {n} de cada 100 €, i la major, ella sola, {mayor}. En total són {total} adjudicataris.',
+    'presupuesto.gasto.contratistas.adjudicado': 'És allò adjudicat, no allò pagat.',
+    'presupuesto.gasto.contratistas.ventas':
+      'Inclou {n} vendes de parcel·les, en què l’Ajuntament cobra en lloc de pagar.',
+    'presupuesto.gasto.contratistas.compra': 'va comprar a l’Ajuntament: va pagar, no va cobrar',
     'presupuesto.gasto.dana': 'Recuperació DANA ≈ {pct}% de l’import adjudicat.',
     'presupuesto.subvenciones.eyebrow': 'BDNS · {municipales} convocatòries municipals',
     'presupuesto.subvenciones.eyebrow.recibidas': ' · {n} concessions a l’Ajuntament',
@@ -5233,7 +5311,7 @@ export const CATALOGUE = {
     'presupuesto.enBreve.barrio.otro.frase':
       'Cap contracte publicat nomena en el seu títol un lloc que puguem situar amb seguretat al teu barri. Preferim no posar un punt al mapa a posar-lo malament.',
     'presupuesto.enBreve.barrio.otro.queja': "Avisar d'un problema al teu carrer",
-    'presupuesto.enBreve.barrio.otro.todos': 'Vore tots els contractes del municipi ↓',
+    'presupuesto.enBreve.barrio.otro.todos': 'Vore tots els contractes del municipi',
     'presupuesto.gasto.zona.desconocida':
       "L'enllaç demana el barri «{barrio}», que no és entre els que nomenen els contractes. Tria'n un a la llista o al mapa.",
     'presupuesto.enBreve.barrio.figura': 'De cada 100 € contractats, {n} nomenen un barri.',
@@ -5448,10 +5526,68 @@ export const CATALOGUE = {
     'presupuesto.deuda.noPublicados':
       'Sense entrega publicada encara: {lista}. La sèrie es talla ací perquè el Ministeri encara no ha publicat eixe exercici, no perquè no hi haja deute.',
     'presupuesto.deuda.fuente': "Ministeri d'Hisenda · deute viu EE.LL.",
+    'presupuesto.puente.contratos':
+      'Els contractes, les obres i les subvencions tenen la seua pròpia pàgina: s’acumulen al llarg de diversos exercicis i no es comparen amb el pressupost d’un any.',
+    'presupuesto.puente.contratos.enlace': 'Veure contractes →',
+    'contratos.entradilla':
+      'Què contracta l’Ajuntament, a qui li ho adjudica i quant sense convocatòria oberta. També les obres publicades, els anuncis europeus i les subvencions.',
+    'contratos.enBreve.intro':
+      'L’essencial, en poques preguntes. Cada resposta enllaça amb la secció que la demostra. Només compta allò publicat en el registre de contractes: el que no hi arriba no és ací.',
+    'contratos.enBreve.cuanto.pregunta': 'Quant s’ha contractat?',
+    'contratos.enBreve.cuanto.cifraNota': 'adjudicat sense IVA',
+    'contratos.enBreve.cuanto.frase':
+      '{n} contractes adjudicats entre {desde} i {hasta}: és la suma de {k} exercicis, no el d’un any.',
+    'contratos.enBreve.cuanto.fraseSinPeriodo': '{n} contractes adjudicats.',
+    'contratos.enBreve.cuanto.sinImporte': 'D’estos, {n} no publiquen l’import i no sumen.',
+    'contratos.enBreve.cuanto.ventas':
+      '{n} són vendes de parcel·les: ací l’Ajuntament cobra, no paga.',
+    'contratos.enBreve.cuanto.mayorConcesion':
+      'Una sola concessió, de {importe}, és el {pct} % d’eixa suma: és el seu valor estimat per tot el termini, no una despesa anual, i no ix del pressupost municipal, perquè ho paga el veí en la seua factura.',
+    'contratos.enBreve.cuanto.mayor': 'Un sol contracte, de {importe}, és el {pct} % d’eixa suma.',
+    'contratos.enBreve.aQuien.pregunta': 'A qui se li adjudica?',
+    'contratos.enBreve.aQuien.cifra': '{n} de cada 100 €',
+    'contratos.enBreve.aQuien.cifraNota': 'a cinc empreses',
+    'contratos.enBreve.aQuien.frase':
+      'La major, ella sola, suma {mayor} de cada 100 €. En total són {total} adjudicataris.',
+    'contratos.enBreve.aQuien.salvedad':
+      'Suma allò adjudicat en anys diferents i per terminis diferents, també allò ja acabat o resolt: diu on es va concentrar allò adjudicat, no qui cobra cada any.',
+    'contratos.enBreve.aQuien.figura':
+      'Cinc empreses sumen {n} de cada 100 € adjudicats; la resta d’adjudicataris, {resto}.',
+    'contratos.enBreve.aQuien.cinco': 'Cinc empreses: {n}',
+    'contratos.enBreve.aQuien.resto': 'La resta: {n}',
+    'contratos.enBreve.sinConcurso.pregunta': 'Quant s’adjudica sense concurs?',
+    'contratos.enBreve.sinConcurso.cifra': '{n} de cada 100',
+    'contratos.enBreve.sinConcurso.cifraNota': 'contractes',
+    'contratos.enBreve.sinConcurso.frase':
+      'De {de} contractes adjudicats, {n} van ser sense convocatòria oberta: {menores} contractes menors i {negociados} negociats sense publicitat.',
+    'contratos.enBreve.sinConcurso.dana': 'Dels negociats, {n} són per la DANA.',
+    'contratos.enBreve.sinConcurso.importe': 'Per import són el {pct} %.',
+    'contratos.enBreve.sinConcurso.importeSinElMayor':
+      'Per import són el {pct} %; apartant el contracte més gran, el {sin} %.',
+    'contratos.enBreve.sinConcurso.salvedad':
+      'La llei permet estes vies en certs casos. Esta xifra no diu si cada contracte s’hi ajusta, ni que en els altres hi haguera competència: mesura quant s’adjudica sense convocatòria oberta.',
+    'contratos.seccion.sinConvocatoria': 'Sense convocatòria oberta',
+    'contratos.sinConvocatoria.titulo': 'Sense convocatòria oberta: {n} de {de}',
+    'contratos.sinConvocatoria.intro':
+      'Els contractes que s’adjudiquen sense un anunci obert a qualsevol empresa: els contractes menors i els negociats sense publicitat. Els derivats d’un acord marc no compten, perquè la seua licitació sí que es va publicar.',
+    'contratos.sinConvocatoria.via': 'Via',
+    'contratos.sinConvocatoria.contratos': 'Contractes',
+    'contratos.sinConvocatoria.importe': 'Import sense IVA',
+    'contratos.sinConvocatoria.menores': 'Contractes menors',
+    'contratos.sinConvocatoria.negociados': 'Negociats sense publicitat',
+    'contratos.sinConvocatoria.dana': 'd’estos, per la DANA',
+    'contratos.sinConvocatoria.total': 'Sense convocatòria oberta',
+    'contratos.sinConvocatoria.todos': 'Tots els adjudicats',
+    'contratos.sinConvocatoria.cuota': 'Són {n} de cada 100 contractes adjudicats.',
+    'contratos.sinConvocatoria.competencia':
+      'Que hi haja convocatòria tampoc assegura competència: a algunes es presenta una sola empresa.',
+    'contratos.sinConvocatoria.gestion': 'Contractes amb una sola oferta →',
+    'contratos.pie.presupuesto': 'Pressupost →',
+    'contratos.pie.gestion': 'Terminis i concurrència →',
     'presupuesto.contra.eyebrow': 'Contractació i subvencions',
     'presupuesto.contra.title': 'Contractes, obres, anuncis i convocatòries',
     'presupuesto.contra.intro':
-      "El pressupost s'aprova i s'executa cada any; la contractació s'acumula al llarg de diversos exercicis. Així que **estos quatre recomptes no són el repartiment del pressupost de dalt**: cadascun porta el període que abasta, llevat de les obres, les fitxes de les quals no porten totes data. Cada targeta compta des de la seua pròpia font i obri la seua: només la de contractes menors es mesura **sobre els contractes adjudicats i sense IVA**, amb els mateixos predicats que les fitxes de baix.",
+      "El pressupost s'aprova i s'executa cada any; la contractació s'acumula al llarg de diversos exercicis. Així que **estos quatre recomptes no són el repartiment d'un pressupost anual**: cadascun porta el període que abasta, llevat de les obres, les fitxes de les quals no porten totes data. Cada targeta compta des de la seua pròpia font i obri la seua: només la de contractes menors es mesura **sobre els contractes adjudicats i sense IVA**, amb els mateixos predicats que les fitxes de baix.",
     'presupuesto.contra.menores': 'Contractes menors',
     'presupuesto.contra.menores.nota':
       "de {adj} adjudicats{span} · {importe} sense IVA: el {pctN} % dels expedients i el {pctImporte} % de l'import",
@@ -5859,6 +5995,7 @@ export const CATALOGUE = {
     'reportajes.correcciones': 'Amb {n} [[correccion|correccions publicades]]',
     'landing.alcalde.role': 'Alcalde',
     'landing.empleo.all': 'Veure totes les ofertes →',
+    'landing.contratos.todos': 'Veure tots els contractes →',
     'landing.promesas.blurb':
       'Compromisos públics documentats, cadascun amb la seua cita i la font que la recull: el document oficial o la notícia.',
     'landing.promesas.delAlcaldia': "{n} promeses del partit de l'alcaldia ({partido})",

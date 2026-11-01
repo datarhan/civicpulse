@@ -29,9 +29,9 @@
  *   src/lib/tender-geo.js        `contractAmount`     cae a licitación
  *   src/lib/contract-status.js   `contractAmountEur`  otra precedencia, sin usar
  *   src/scraper/entities.ts      `amountOf`           copia de la segunda
- *   src/pages/Presupuesto.jsx    en línea, ×3         `??`, otra precedencia
+ *   src/pages/Contratos.jsx      en línea, ×3         `??`, otra precedencia
  *
- * Las tres de Presupuesto.jsx son el denominador de «el 2,5 % del importe» y de
+ * Las tres de Contratos.jsx son el denominador de «el 2,5 % del importe» y de
  * la banda de cuatro recuentos, en la MISMA página cuya tarjeta enseña el otro
  * total. Hoy dan la cifra buena por casualidad: `??` sólo cae cuando el campo
  * falta, y Gobierto lo manda a cero en vez de omitirlo. El día que lo omita,
@@ -167,7 +167,7 @@ describe('nadie vuelve a escribir la precedencia a mano', () => {
     'src/lib/tender-geo.js',
     'src/scraper/tender-geo.ts',
     'src/scraper/entities.ts',
-    'src/pages/Presupuesto.jsx',
+    'src/pages/Contratos.jsx',
     'src/components/Presupuesto/ContractsExplorer.jsx',
   ]
 

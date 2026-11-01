@@ -1,12 +1,12 @@
 /**
- * La entrada de «Contratación y subvenciones» en /presupuesto, en los dos idiomas.
+ * La entrada de «Contratación y subvenciones» en /contratos, en los dos idiomas.
  *
  * Decía que los cuatro recuentos «van medidos sobre los contratos adjudicados y
  * sin IVA». Sólo uno lo está: el de contratos menores. Los otros tres cuentan
  * fichas de obra municipales, anuncios de TED con su importe anunciado y
  * convocatorias de la BDNS — ninguno es un contrato adjudicado. Lo señaló la
  * revisión lectora del 06-10-2026 y se cotejó contra las cuatro tarjetas de
- * `Presupuesto.jsx`.
+ * `Contratos.jsx`.
  *
  * Se fijan palabras, no cifras: la frase no lleva números vivos.
  */
@@ -35,7 +35,7 @@ const IDIOMAS = {
   },
 }
 
-describe('/presupuesto — la entrada de contratación no atribuye a las cuatro tarjetas la base de una', () => {
+describe('/contratos — la entrada de contratación no atribuye a las cuatro tarjetas la base de una', () => {
   for (const [locale, espera] of Object.entries(IDIOMAS)) {
     it(`${locale}: sólo los contratos menores van sobre lo adjudicado sin IVA`, () => {
       const frase = CATALOGUE[locale][CLAVE]

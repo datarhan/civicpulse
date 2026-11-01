@@ -1,28 +1,25 @@
 import { useMemo, useState } from 'react'
-import { topContractors } from '../../lib/tender-geo'
+import { concentracion, resolverDeEmpresas, topContractors } from '../../lib/tender-geo'
 import { useEntities } from '../../hooks/useEntities'
-import { isCommittedContract, importeAdjudicado } from '../../lib/contract-status.js'
-import { rellena, euros } from '../../lib/formatters'
+import {
+  isCommittedContract,
+  importeAdjudicado,
+  ingresoMunicipal,
+} from '../../lib/contract-status.js'
+import { entero, rellena, euros } from '../../lib/formatters'
 import { useT } from '../../i18n'
 
-export default function ContractorLeaderboard({ contracts }) {
+/** Cuántas filas pinta la lista. La cuenta de arriba las mide a todas. */
+const FILAS = 15
+
+export default function ContractorLeaderboard({ contracts, tenders }) {
   const t = useT()
   const [open, setOpen] = useState(null)
   const entities = useEntities()
-  // Raw razón social → canonical entity, from the nightly registry.
-  // Registry missing (fresh clone) → null resolver → raw-name grouping.
-  const resolver = useMemo(() => {
-    const companies = entities.data?.companies
-    if (!companies?.length) return null
-    const byVariant = new Map()
-    for (const co of companies) {
-      for (const v of co.variants || []) {
-        byVariant.set(v, { key: co.nameKey, canonicalName: co.canonicalName })
-      }
-    }
-    return (raw) => byVariant.get(raw) ?? null
-  }, [entities.data])
-  const top = useMemo(() => topContractors(contracts, 15, resolver), [contracts, resolver])
+  const resolver = useMemo(() => resolverDeEmpresas(entities.data?.companies), [entities.data])
+  const todos = useMemo(() => topContractors(contracts, Infinity, resolver), [contracts, resolver])
+  const top = todos.slice(0, FILAS)
+  const resumen = concentracion(todos)
   const byAssignee = useMemo(() => {
     const m = new Map()
     for (const c of contracts || []) {
@@ -37,9 +34,42 @@ export default function ContractorLeaderboard({ contracts }) {
     }
     return m
   }, [contracts, resolver])
+  // La pestaña se llama «¿Quién recibe el dinero?», y no todos lo reciben: quien
+  // compra una parcela municipal le paga al Ayuntamiento. El importe se queda en
+  // la lista y en las sumas, las mismas que /gestion y la portada; lo que no puede
+  // quedarse es la lectura de que lo cobró. Por el título, igual que la bitácora de
+  // las subidas firmadas (`ingresoMunicipal`).
+  const titulos = useMemo(
+    () => new Map((tenders ?? []).map((l) => [l.permalink, l.title])),
+    [tenders],
+  )
+  const esVenta = (c) => ingresoMunicipal(c, titulos.get(c.permalink) ?? null) === 'enajenacion'
+  const ventas = [...byAssignee.values()].flat().filter(esVenta).length
   const max = top.length ? top[0].amount : 1
   return (
     <div>
+      <p
+        data-resumen-adjudicatarios=""
+        style={{
+          margin: '0 0 10px',
+          fontSize: 'var(--fs-aux)',
+          lineHeight: 1.5,
+          color: 'var(--ink70)',
+          maxWidth: '92ch',
+        }}
+      >
+        {resumen
+          ? `${rellena(t('presupuesto.gasto.contratistas.resumen'), {
+              n: resumen.deCada100,
+              mayor: resumen.mayorDeCada100,
+              total: entero(resumen.adjudicatarios),
+            })} `
+          : ''}
+        {t('presupuesto.gasto.contratistas.adjudicado')}
+        {ventas > 0
+          ? ` ${rellena(t('presupuesto.gasto.contratistas.ventas'), { n: entero(ventas) })}`
+          : ''}
+      </p>
       {top.map((fila) => (
         <div
           key={fila.assignee}
@@ -62,6 +92,14 @@ export default function ContractorLeaderboard({ contracts }) {
               {fila.variantCount > 1 && (
                 <span style={{ fontSize: 'var(--fs-micro)', color: 'var(--ink50)', marginLeft: 6 }}>
                   · {rellena(t('presupuesto.gasto.razonesSociales'), { n: fila.variantCount })}
+                </span>
+              )}
+              {byAssignee.get(fila.assignee)?.every(esVenta) && (
+                <span
+                  data-compra-al-ayuntamiento=""
+                  style={{ fontSize: 'var(--fs-micro)', color: 'var(--ink50)', marginLeft: 6 }}
+                >
+                  · {t('presupuesto.gasto.contratistas.compra')}
                 </span>
               )}
             </span>
