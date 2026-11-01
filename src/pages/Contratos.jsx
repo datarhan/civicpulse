@@ -27,6 +27,7 @@ import GastoDashboard from '../components/Presupuesto/GastoDashboard'
 import EnBreveContratos from '../components/Contratos/EnBreveContratos'
 import DivisorLecturas from '../components/DivisorLecturas'
 import { SeccionExperta } from '../components/Lecturas'
+import { IndiceExperta } from '../components/IndiceSecciones'
 import { TedNotices } from '../components/Presupuesto/TedNotices'
 
 /*
@@ -882,6 +883,7 @@ export default function Contratos() {
       <div id="todos-los-datos" style={{ scrollMarginTop: 24 }}>
         <DivisorLecturas />
       </div>
+      <IndiceExperta />
       <SeccionExperta id="contratos-recuentos" titulo={t('presupuesto.contra.title')}>
         <ContratacionBanda />
       </SeccionExperta>

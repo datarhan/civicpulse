@@ -40,9 +40,13 @@ for (const [nombre, ancho, alto] of [
           .toBe(true)
 
         // Sigue a la vista al final de la página.
-        await page.evaluate(() => window.scrollTo(0, document.documentElement.scrollHeight))
+        // Se baja dentro de la espera: la página crece mientras llegan sus datos, y
+        // un solo salto puede quedarse a medio camino.
         await expect
-          .poll(() => nav.evaluate((el) => Math.round(el.getBoundingClientRect().top)))
+          .poll(async () => {
+            await page.evaluate(() => window.scrollTo(0, document.documentElement.scrollHeight))
+            return nav.evaluate((el) => Math.round(el.getBoundingClientRect().top))
+          })
           .toBeLessThan(80)
 
         // Se elige el último, el más lejano.
@@ -66,9 +70,40 @@ for (const [nombre, ancho, alto] of [
               return destino - indice.getBoundingClientRect().bottom
             }, id),
           )
-          .toBeGreaterThanOrEqual(0)
+          .toBeGreaterThanOrEqual(4)
       })
     }
+
+    test('abrirlo no mueve la página: flota sobre lo que hay debajo', async ({ page }) => {
+      await page.goto('/presupuesto', { waitUntil: 'domcontentloaded' })
+      const nav = indice(page)
+      await expect(nav.locator('summary')).toContainText('apartados', { timeout: 15000 })
+      const yDe = () =>
+        page.evaluate(() => {
+          const siguiente = document.querySelector('#presupuesto-capitulos')!
+          return Math.round(siguiente.getBoundingClientRect().top + window.scrollY)
+        })
+      // La referencia se toma con la página ya quieta: con la suite entera en
+      // paralelo los datos llegan tarde, y lo que se movía era la carga.
+      let anterior = -1
+      await expect
+        .poll(
+          async () => {
+            const y = await yDe()
+            const quieta = y > 0 && y === anterior
+            anterior = y
+            return quieta
+          },
+          { intervals: [400], timeout: 15000 },
+        )
+        .toBe(true)
+      const antes = await yDe()
+      await nav.locator('summary').click()
+      await expect(nav.getByRole('link').first()).toBeVisible()
+      expect(await yDe(), 'la lista abierta ha empujado la página').toBe(antes)
+      // Y lo abierto no cuenta como barra: el aterrizaje mide sólo la pastilla.
+      expect(await nav.evaluate((el) => el.getBoundingClientRect().height)).toBeLessThan(60)
+    })
 
     test('abre el apartado aunque el lector haya plegado la lectura experta', async ({ page }) => {
       await page.addInitScript(() =>

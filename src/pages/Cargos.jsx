@@ -33,6 +33,7 @@ import EnBreveCargos from '../components/Cargos/EnBreveCargos'
 import ListaDeCargos from '../components/Cargos/ListaDeCargos'
 import Retrato from '../components/Cargos/Retrato'
 import DivisorLecturas from '../components/DivisorLecturas'
+import { IndiceExperta } from '../components/IndiceSecciones'
 import { SeccionExperta } from '../components/Lecturas'
 import { conAreasDelegadas, sinAreasDelegadas } from '../scraper/en-breve-cargos'
 
@@ -1450,6 +1451,7 @@ function CorporacionMunicipal() {
         <ListaDeCargos total={data.count} gobierno={gobierno} oposicion={oposicion} />
       </div>
       <DivisorLecturas />
+      <IndiceExperta />
 
       <div
         id="todos-los-datos"

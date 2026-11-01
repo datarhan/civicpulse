@@ -26,6 +26,7 @@ import { useLocale, useT } from '../i18n'
 import EnBrevePresupuesto from '../components/Presupuesto/EnBrevePresupuesto'
 import DivisorLecturas from '../components/DivisorLecturas'
 import { SeccionExperta } from '../components/Lecturas'
+import { IndiceExperta } from '../components/IndiceSecciones'
 import { destinoEnContratos } from '../scraper/ruta-de-contratos'
 
 /*
@@ -1605,6 +1606,7 @@ export default function Presupuesto() {
       <div id="todos-los-datos" style={{ scrollMarginTop: 24 }}>
         <DivisorLecturas />
       </div>
+      <IndiceExperta />
       <SeccionExperta id="presupuesto-cascada" titulo={t('presupuesto.cascada.title.sinCuadre')}>
         <CascadaCard />
       </SeccionExperta>
