@@ -19,7 +19,7 @@
  *
  * Run it BEFORE and AFTER a re-transcription and compare the counts.
  *
- * ── Two jobs, since the provenance snapshot exists ──────────────────────────
+ * ── Three jobs, since the provenance snapshot exists ────────────────────────
  *
  * 1. The original one: report where each published quote traces to, and exit 1
  *    on a quote that traces NOWHERE.
@@ -29,8 +29,16 @@
  *    classification from the same transcripts and exits 1 when the committed
  *    file disagrees — so a corrected quote, a re-transcribed session or a new
  *    finding cannot leave a stale label on the page.
+ * 3. Mantener cierta `/metodologia#citas-transcripcion`, que dice que estas citas
+ *    salen de la transcripción automática y no de un acta: sale 1 con cualquier
+ *    cita de un acta o de origen desconocido, e imprime cuántas evaluó de cada
+ *    clase. Esta salida la lee `corpus-delta.ts` por el JSON, no por el código de
+ *    salida: `check:corpus` descarta el de aquí, porque un `drifted` aceptado en
+ *    la línea base también sale 1. Lo que no lleve `fueraDeAudio` no llega a la
+ *    nocturna. Y `monitor:health` corre esta guarda directamente, porque un
+ *    SOFT-FAILED de `scrape-all` sólo lo ve quien lea el registro.
  *
- * Both halves share ONE classifier, `src/scraper/quote-provenance.ts`, with the
+ * All three share ONE classifier, `src/scraper/quote-provenance.ts`, with the
  * compute pass that writes the snapshot. A second copy of the decision tree
  * would let the gate and the page reach different verdicts about the same
  * quote, which is the failure this check exists to prevent.
@@ -46,10 +54,14 @@ import {
   buildQuoteProvenance,
   classifyQuoteProvenance,
   diffProvenance,
+  ORIGEN_PUBLICABLE,
+  origenDeCita,
+  origenSanityFailure,
   snapshotSanityFailure,
+  type OrigenDeCita,
   type QuoteProvenanceSnapshot,
 } from '../src/scraper/quote-provenance'
-import { loadSessionTexts } from './lib/transcript-corpus'
+import { contarTiposDelCorpus, loadSessionTexts } from './lib/transcript-corpus'
 import { loadVerifiedCorpus } from './lib/verified-corpus'
 
 const FINDINGS = resolve('public/data/pleno-findings.json')
@@ -79,6 +91,8 @@ function main() {
   const drifted: Array<Record<string, string>> = []
   const supersededOnly: Array<Record<string, string>> = []
   const undetermined: Array<Record<string, string>> = []
+  const fueraDeAudio: Array<Record<string, string>> = []
+  const porOrigen: Record<OrigenDeCita, number> = { audio: 0, acta: 0, unknown: 0 }
   let checked = 0
   let ok = 0
   let noTranscript = 0
@@ -98,6 +112,9 @@ function main() {
         coverage: '',
       }
       const outcome = classifyQuoteProvenance(text, session)
+      const origen = origenDeCita(outcome, session)
+      porOrigen[origen] += 1
+      if (origen !== ORIGEN_PUBLICABLE) fueraDeAudio.push({ ...row, origen })
       if (outcome.kind === 'no-localizada') {
         drifted.push({ ...row, coverage: outcome.coverage.toFixed(2) })
       } else if (outcome.status === 'en-vigente') {
@@ -139,7 +156,9 @@ function main() {
   // evaluating nothing. The gate half adds the base-vs-merged trap: reading
   // `pleno-claims-verified-base.json` alone also matches everything and also
   // looks thorough, and gives the opposite answer for 135 of the 177.
-  const sanity = snapshotSanityFailure(derived)
+  const corpusPorTipo = contarTiposDelCorpus()
+  const sanity =
+    snapshotSanityFailure(derived) ?? origenSanityFailure(porOrigen, checked, corpusPorTipo)
 
   if (asJson) {
     console.log(
@@ -151,18 +170,23 @@ function main() {
           undeterminedCount: undetermined.length,
           driftedCount: drifted.length,
           noTranscript,
+          origen: porOrigen,
+          corpusPorTipo,
           contraste: derived.contraste.stats,
           provenanceDrift,
           sanity,
           supersededOnly,
           undetermined,
           drifted,
+          fueraDeAudio,
         },
         null,
         2,
       ),
     )
-    if (drifted.length > 0 || provenanceDrift.length > 0 || sanity) process.exitCode = 1
+    if (drifted.length > 0 || provenanceDrift.length > 0 || fueraDeAudio.length > 0 || sanity) {
+      process.exitCode = 1
+    }
     return
   }
 
@@ -190,6 +214,14 @@ function main() {
         `${c.citasReclasificadasPorElOverlay} would land elsewhere on the base alone\n`,
     )
   }
+  console.log(
+    `[finding-quotes] de qué fichero sale cada cita (/metodologia#citas-transcripcion)\n` +
+      `  transcripción de audio : ${porOrigen.audio}\n` +
+      `  acta                   : ${porOrigen.acta}\n` +
+      `  sin determinar         : ${porOrigen.unknown}\n` +
+      `  el detector, sobre el corpus: ${corpusPorTipo.audio} de audio, ` +
+      `${corpusPorTipo.acta} actas, ${corpusPorTipo.unknown} sin determinar\n`,
+  )
   for (const d of drifted) {
     console.log(`  ✗ ${d.plenoId}  ${d.findingId}   (longest run present: ${d.coverage})`)
     console.log(`      “${d.quote}”`)
@@ -223,6 +255,19 @@ function main() {
     )
     for (const d of provenanceDrift.slice(0, 10)) console.error(`  · ${d}`)
     if (provenanceDrift.length > 10) console.error(`  · … y ${provenanceDrift.length - 10} más`)
+    process.exitCode = 1
+  }
+  if (fueraDeAudio.length > 0) {
+    console.error(
+      `\n[finding-quotes] ${fueraDeAudio.length} cita(s) que no salen de una transcripción de ` +
+        `audio. /metodologia#citas-transcripcion dice que sí: hay que corregir la cita ` +
+        `(\`npm run correct-pleno-finding\`) o, si se decide que una cita así es legítima, ` +
+        `cambiar antes ese texto. Sin línea base: aceptar el estado no la absuelve.`,
+    )
+    for (const d of fueraDeAudio) {
+      console.error(`  ✗ ${d.plenoId}  ${d.findingId}   (origen: ${d.origen})`)
+      console.error(`      “${d.quote}”`)
+    }
     process.exitCode = 1
   }
   if (drifted.length > 0) {

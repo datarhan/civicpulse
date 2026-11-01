@@ -462,7 +462,7 @@ echo "================================================================"
 # state, so a steady 30 untraceable quotes does not cry wolf every night while a
 # NEW one does.
 if ! npm run check:corpus; then
-  echo "[scrape-all] SOFT-FAILED: check:corpus — quarantined transcript(s) or newly untraceable quote(s)"
+  echo "[scrape-all] SOFT-FAILED: check:corpus — quarantined transcript(s), newly untraceable quote(s) or a quote not from audio"
   soft_failures+=("check:corpus")
 fi
 

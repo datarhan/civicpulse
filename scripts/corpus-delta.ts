@@ -4,7 +4,8 @@
  *
  *   npx tsx scripts/corpus-delta.ts <current.json> <baseline.json> [--baseline]
  *
- * Exits 1 when a quote became untraceable in this run. Called by
+ * Exits 1 when a quote became untraceable in this run, and whenever a quote
+ * does not come from audio: that rule has no baseline. Called by
  * `scripts/verify-transcript-corpus.sh`, which owns the temp file and the
  * `check:*` invocations.
  *
@@ -23,6 +24,7 @@ import {
   baselineAcceptedAt,
   baselineIncomparable,
   baselineRows,
+  citasFueraDeAudioFailure,
   compareCorpus,
   corpusDeltaBlocks,
   healedBaseline,
@@ -48,6 +50,7 @@ function main() {
     supersededOnlyCount?: number
     undeterminedCount?: number
     drifted?: DriftedQuote[]
+    fueraDeAudio?: Array<DriftedQuote & { plenoId?: string; origen?: string }>
   }
   const current = cur.drifted ?? []
   const now = new Date().toISOString()
@@ -60,6 +63,17 @@ function main() {
     `  traceable ${cur.ok ?? 0} · superseded-only ${cur.supersededOnlyCount ?? 0} · ` +
       `cannot tell ${cur.undeterminedCount ?? 0} · NOT found ${cur.driftedCount ?? 0}`,
   )
+
+  // Antes de tocar la línea base y sin `return`: esta regla no pasa por el delta,
+  // así que el rojo se queda aunque abajo se acepte el estado o se calcule el resto.
+  const fuera = citasFueraDeAudioFailure(cur)
+  if (fuera) {
+    console.error(`\n  ⚠︎ ${fuera}`)
+    for (const d of cur.fueraDeAudio ?? []) {
+      console.error(`      ${d.plenoId}  ${d.findingId}  (origen: ${d.origen})  «${d.quote}…»`)
+    }
+    process.exitCode = 1
+  }
 
   if (accept || !existsSync(basePath)) {
     writeFileSync(basePath, `${JSON.stringify(acceptedBaseline(current, now), null, 2)}\n`)

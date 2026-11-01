@@ -66,7 +66,29 @@
  * eventually disagree about which quotes exist. This module owns the transcript
  * axis and the row assembly; `quote-contrast.ts` owns the gate axis. Neither
  * restates the other's decision tree.
+ *
+ * ─────────────────────────────────────────────────────────────────────────────
+ * Y UNA PREGUNTA QUE NO VA AL SNAPSHOT: ¿QUÉ CLASE DE FICHERO ES?
+ *
+ * `/metodologia#citas-transcripcion` dice que estas citas se toman de la
+ * transcripción automática, no de un acta. Las actas viven en el mismo
+ * directorio y con la misma forma de línea, así que para todo lo de arriba una
+ * cita de acta es `en-vigente`: el cotejador sólo pregunta si las palabras
+ * están, y `selectBundles` y `promote-claim` no miran de dónde sale la
+ * declaración. La frase era cierta porque sí, y nada lo imponía.
+ *
+ * `origenDeCita` lo responde sobre el fichero donde apareció la cita, no sobre
+ * la vigente de su sesión: `19xkzxw` tiene de sustituida el acta y de vigente el
+ * audio, y mirar sólo la vigente daría por audio lo que sale del acta. Y
+ * `unknown` no pasa: no saber de dónde sale no es saber que sale de audio.
+ *
+ * Es una regla del contrato y no un estado: al lector no le cambia nada mientras
+ * se cumpla, y romperla pide corregir la cita, no marcarla. Por eso no entra en
+ * el snapshot, y por eso no tiene línea base en `corpus-baseline.ts`: la frase
+ * dice «las citas», no «las citas nuevas». Si un día se decide que una cita de
+ * acta es legítima, lo que cambia es `/metodologia`, y luego `ORIGEN_PUBLICABLE`.
  */
+import { transcriptKind } from '../lib/transcript-kind.js'
 import type { ClaimVisibility } from './claim-public-gate'
 import { quoteAppearsIn, quoteCoverage } from './quote-match'
 import {
@@ -215,6 +237,58 @@ export function classifyQuoteProvenance(quote: string, s: SessionTexts): QuotePr
         status: 'sin-determinar',
         reason: 'transcripcion-actual-mas-corta',
       }
+}
+
+// ─── La clase de fichero del que sale cada cita ─────────────────────────────
+
+/** El vocabulario de `transcriptKind`, derivado: un cuarto valor rompe la compilación. */
+export type OrigenDeCita = ReturnType<typeof transcriptKind>
+
+/** Lo único que `/metodologia#citas-transcripcion` deja publicar. Ver la cabecera. */
+export const ORIGEN_PUBLICABLE: OrigenDeCita = 'audio'
+
+/**
+ * De qué clase de fichero sale una cita ya clasificada. Toma el resultado de
+ * `classifyQuoteProvenance` para no ser un segundo árbol de decisión: dónde está
+ * la cita lo dice el clasificador, y aquí sólo se pregunta qué es ese fichero.
+ *
+ * `sin-transcripcion-vigente` es `unknown` aunque quede la sustituida: el
+ * clasificador no llega a mirarla, así que nadie ha visto la cita en ningún sitio.
+ */
+export function origenDeCita(outcome: QuoteProvenanceOutcome, s: SessionTexts): OrigenDeCita {
+  if (outcome.kind === 'no-localizada') return 'unknown'
+  if (outcome.status === 'en-vigente') return transcriptKind(s.current)
+  if (outcome.reason === 'sin-transcripcion-vigente') return 'unknown'
+  return transcriptKind(s.superseded)
+}
+
+/**
+ * Una pasada tiene que probar que miró (`docs/DATA_INTEGRITY.md`, regla 2). Aquí
+ * no basta con contar citas: un `transcriptKind` que dijera «audio» a todo
+ * dejaría esta guarda en verde para siempre, con todas las cuentas cuadradas. Lo
+ * que lo delata es el corpus entero, donde sí hay de las dos clases: `corpus` son
+ * los ficheros que el detector reconoce de cada una.
+ *
+ * Devuelve el fallo como frase, o null cuando la pasada es creíble.
+ */
+export function origenSanityFailure(
+  porOrigen: Record<OrigenDeCita, number>,
+  citas: number,
+  corpus: Record<OrigenDeCita, number>,
+): string | null {
+  if (citas === 0) return 'ninguna cita evaluada: no se sabe de dónde sale ninguna'
+  const suma = porOrigen.audio + porOrigen.acta + porOrigen.unknown
+  if (suma !== citas) {
+    return `los orígenes suman ${suma} y se evaluaron ${citas} citas: alguna se perdió por el camino`
+  }
+  const ficheros = corpus.audio + corpus.acta + corpus.unknown
+  if (corpus.acta === 0) {
+    return `el detector no reconoce ni un acta en ${ficheros} ficheros: «todo sale de audio» no probaría nada`
+  }
+  if (corpus.audio === 0) {
+    return `el detector no reconoce ni un audio en ${ficheros} ficheros`
+  }
+  return null
 }
 
 // ─── The published snapshot ─────────────────────────────────────────────────
