@@ -29,6 +29,18 @@ describe('data-freshness', () => {
     expect(late.note).toMatch(/scrape-ci-blocked/)
   })
 
+  // Desde el 01-11-2026 la nocturna no la intenta, así que su único refresco es
+  // el cron del portátil: si ese cron se atasca, esta fila es lo único que lo dice.
+  it('vigila la banda de SINAC: sólo se refresca en local y una pasada perdida se nota', () => {
+    const banda = (ageDays: number) =>
+      classifyFreshness([{ file: 'agua-pares.json', ageDays }], DEFAULT_EXPECTATIONS).find(
+        (r) => r.file === 'agua-pares.json',
+      )
+    expect(banda(15)?.status).toBe('ok')
+    expect(banda(16)?.status).toBe('stale')
+    expect(banda(16)?.note).toMatch(/scrape-ci-blocked/)
+  })
+
   it('does NOT call a retired upstream stale', () => {
     // participa.ribarroja.es was decommissioned in May. Reporting it as stale
     // every night would train everyone to ignore this check.

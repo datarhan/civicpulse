@@ -112,7 +112,7 @@ function LegalFooter({ snap }) {
     >
       <strong style={{ color: 'var(--ink)' }}>Aviso editorial.</strong> {snap.legalNotice}
       <div style={{ marginTop: 10, display: 'flex', gap: 14, flexWrap: 'wrap' }}>
-        <a href="/metodologia" style={{ color: 'var(--civic)' }}>
+        <a href="/metodologia#grupo-promesas" style={{ color: 'var(--civic)' }}>
           Metodología →
         </a>
         <a href="/aviso-legal" style={{ color: 'var(--civic)' }}>

@@ -98,7 +98,9 @@ ADAPTERS=(
   # fuera; una pasada perdida no se recupera mañana.
   scrape:agua
   # La banda de SINAC (los municipios parecidos). Semanal por su cuenta: dentro
-  # de los 7 días sale 0 sin pedir nada.
+  # de los 7 días sale 0 sin pedir nada. Éste es su ÚNICO refresco: una pasada
+  # son unos 36 min desde cualquier IP y en la nocturna no cabe (SOLO_LOCAL en
+  # scrape-all.sh). Va la última porque cuando le toca es, con mucho, la más larga.
   scrape:agua-pares
 )
 

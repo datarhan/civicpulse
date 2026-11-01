@@ -130,8 +130,9 @@ export default function AvisoLegal() {
             más evidencia.
           </li>
           <li>
-            Las ediciones del contenido publicado se registran en la bitácora interna del proyecto.
-            Nada se borra en silencio.
+            Las ediciones del contenido publicado quedan en el historial público del repositorio y,
+            en hallazgos, promesas y biografías, en la bitácora de su ficha. Nada se borra en
+            silencio.
           </li>
           <li>
             En la bitácora pública de cada hallazgo de pleno no se reproduce la versión que nombraba
@@ -236,13 +237,18 @@ export default function AvisoLegal() {
           eyebrow="Declaraciones de pleno"
           title="Qué afirmamos cuando una persona sube un veredicto"
         />
+        {/* Decía «cada declaración lleva el veredicto que resulta de cotejarla con datos
+            públicos». Medido el 01-11-2026: 2.113 de 5.148 no se cotejaron con nada
+            (/metodologia#citas-contraste dice lo mismo, en el mismo cambio). */}
         <p>
-          En <code>/plenos</code> y <code>/declaraciones</code> cada declaración lleva el veredicto
-          que resulta de cotejarla con datos públicos. Lo pone un comparador automático, y las
-          revisiones automáticas posteriores sólo pueden bajarlo —retirar lo que no se sostiene—,
-          nunca subirlo. <strong>Subir un veredicto lo hace sólo una persona</strong>, con su nombre
-          y apellidos, que la tarjeta de la declaración da («subido por una persona · firmado
-          por…»), y responde de ello.
+          En <code>/plenos</code> y <code>/declaraciones</code> cada declaración lleva un veredicto.
+          Lo pone un verificador automático, que sólo la coteja con datos públicos cuando trae un
+          importe en euros, cita una obra por su nombre o es una promesa; si no, se queda en «sin
+          datos», que no afirma nada. Las revisiones automáticas posteriores sólo pueden bajar un
+          veredicto —retirar lo que no se sostiene—, nunca subirlo.{' '}
+          <strong>Subir un veredicto lo hace sólo una persona</strong>, con su nombre y apellidos,
+          que la tarjeta de la declaración da («subido por una persona · firmado por…»), y responde
+          de ello.
         </p>
         <p>
           <strong>Con qué evidencia.</strong> Quien sube cita el registro público que lo sostiene
@@ -359,6 +365,20 @@ export default function AvisoLegal() {
           nombre, no publica solo uno cuya cita se atribuya a un grupo municipal de un solo concejal
           —que es nombrar a ese concejal— o cuyo texto lo nombre, y se detiene durante el periodo
           electoral.
+        </p>
+        {/* /metodologia#politica-automatizacion lista estos procesos; hasta el 01-11-2026
+            decía «Dos» y este documento no decía ninguno. */}
+        <p>
+          <strong>Lo que todavía publica sin esa medición.</strong> La auto-curación de promesas no
+          es el único proceso anterior a la política de automatización que publica sin pasar por
+          ella: también lo hacen el laboratorio de prensa, el registro de declaraciones de pleno —lo
+          que extrae un modelo, sin aprobarlo fila a fila, filtrado por una puerta editorial— y las
+          coincidencias de misma zona y misma materia entre quejas y contratos. Ninguno publica un
+          incumplimiento ni un hallazgo crítico (ver{' '}
+          <a href="/metodologia#politica-automatizacion" style={{ color: 'var(--civic)' }}>
+            /metodologia
+          </a>
+          ).
         </p>
       </Card>
 

@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-31T11:03:14.218Z",
+  "generatedAt": "2026-11-01T07:03:54.054Z",
   "windowDays": 30,
   "articles": [
     {
@@ -953,47 +953,13 @@
         "opinionFraction": 0
       },
       "score": 1
-    },
-    {
-      "articleId": "95mxd4",
-      "articleFingerprint": "1pc4yak",
-      "outlet": "Valencia Plaza",
-      "outletHost": "valenciaplaza.com",
-      "url": "https://news.google.com/rss/articles/CBMi4AFBVV95cUxOVXdDaUJrdnNuUUpiNVF1NGJfeGx2bFVfVmU4WjVJX05BRVczbndtTGp4UnlNeTl6VUtwQnQ2d1JuVkpnaVpZTDlkcXZ2M0xzN3pmNEVoR2szT3JrblYyTmRLQldWbHI1c1FqVkJpWGZRMkE5MzVWZWRDQmN5QkZMdjRWczEycDRvelJ5WGVaSUFzalE1TS05X0NmaXVIQ3NzNGZCTExvRnJ4bHZ2Zzc5R3RpT3lkMUlHLVZDU2FYZlItdEU4STR0M1ZVZlhnRG5uaV9fWmRxa1BDMWRVYmxQTA?oc=5",
-      "date": "2026-10-02T07:00:00.000Z",
-      "indicators": {
-        "localCoverage": false,
-        "datedArticle": true,
-        "municipalSourceMatch": null,
-        "corroboratedAcrossOutlets": null,
-        "factualClaimsPresent": null,
-        "opinionFraction": 0
-      },
-      "score": 1
-    },
-    {
-      "articleId": "xcbiyc",
-      "articleFingerprint": "7ptpmg",
-      "outlet": "Ayuntamiento de Riba-roja de Túria",
-      "outletHost": "ribarroja.es",
-      "url": "https://www.ribarroja.es/es/noticia/riba-roja-destina-104.605-euros-al-cheque-beb%C3%A9-%2B25-para-apoyar-a-las-familias-y-dinamizar-el-comercio-local",
-      "date": "2026-10-01T12:20:24.000Z",
-      "indicators": {
-        "localCoverage": false,
-        "datedArticle": true,
-        "municipalSourceMatch": null,
-        "corroboratedAcrossOutlets": null,
-        "factualClaimsPresent": null,
-        "opinionFraction": 0
-      },
-      "score": 1
     }
   ],
   "outlets": [
     {
       "outlet": "Ayuntamiento de Riba-roja de Túria",
       "outletHost": "ribarroja.es",
-      "articleCount": 20,
+      "articleCount": 19,
       "verdictCounts": {
         "verificado": 0,
         "parcial": 0,
@@ -1002,7 +968,7 @@
         "promesa-repetida": 1
       },
       "checkedClaims": 14,
-      "meanTrustScore": 1.7,
+      "meanTrustScore": 1.74,
       "verifiedRatio": 0,
       "contradictedRatio": null
     },
@@ -1041,7 +1007,7 @@
     {
       "outlet": "Valencia Plaza",
       "outletHost": "valenciaplaza.com",
-      "articleCount": 6,
+      "articleCount": 5,
       "verdictCounts": {
         "verificado": 0,
         "parcial": 1,
@@ -1050,7 +1016,7 @@
         "promesa-repetida": 0
       },
       "checkedClaims": 2,
-      "meanTrustScore": 2.5,
+      "meanTrustScore": 2.8,
       "verifiedRatio": 0,
       "contradictedRatio": null
     },
@@ -1248,7 +1214,7 @@
     }
   ],
   "builtFrom": {
-    "plenos-agendas.json": "b4f2c3413f60",
+    "plenos-agendas.json": "a86a616edf03",
     "press-claims-verified.json": "2dbfb96512c5",
     "press.json": "d0756ec424b1",
     "promises.json": "a4b8423e960f"

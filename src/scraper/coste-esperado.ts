@@ -295,7 +295,7 @@ export function analizarServicio(programa: string, ctx: ContextoEsperado): Anali
     incluidos.push({ ine, poblacion, coste: f.costeTotal })
   }
 
-  // Cordura (regla 7 del panel, normalizada por habitante): el libro real trae
+  // Cordura (regla 9 del panel, normalizada por habitante): el libro real trae
   // ayuntamientos declarando 1 € de coste de escuelas, y ese artefacto dentro
   // del ajuste arrastra la recta y estira el eje diez décadas. Se excluye lo
   // que queda a más de ATIPICO_FACTOR de la mediana de €/hab del servicio —
@@ -354,7 +354,7 @@ export function analizarServicio(programa: string, ctx: ContextoEsperado): Anali
     if (cortadoPorCordura) {
       motivo =
         'La cifra propia queda a más de veinte veces de la mediana de euros por habitante del ' +
-        'servicio: inverosímil como coste (regla 7), igual que para cualquier otro municipio, ' +
+        'servicio: inverosímil como coste (regla 9), igual que para cualquier otro municipio, ' +
         'así que no se dibuja punto.'
     } else if (filasPropias.length === 0) {
       motivo = 'El municipio no declara este servicio en la entrega analizada.'

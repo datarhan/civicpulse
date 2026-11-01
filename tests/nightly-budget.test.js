@@ -101,3 +101,61 @@ describe('el presupuesto de la nocturna', () => {
     expect(paso('Run scraper(s)')['timeout-minutes']).toBeGreaterThanOrEqual(30)
   })
 })
+
+/**
+ * La cuenta de dentro del paso: lo de arriba suma los topes de los PASOS, y las
+ * noches del 29 al 31-10-2026 cayeron dentro de uno. `scrape:agua-pares` no tenía
+ * tope y el corte lo daba el reloj del paso, que se llevaba por delante la cola
+ * del guion y el `npm test` de después. Por eso el guion reparte su reloj: un tope
+ * por adaptador y un presupuesto para todos, que deja sitio a la cola.
+ */
+describe('el reloj dentro de «Run scraper(s)»', () => {
+  const guion = readFileSync(join(__dirname, '..', 'scripts', 'scrape-all.sh'), 'utf8')
+  const local = readFileSync(join(__dirname, '..', 'scripts', 'scrape-ci-blocked.sh'), 'utf8')
+
+  const segundos = (nombre) => {
+    const m = guion.match(new RegExp(`^${nombre}=\\$\\{[A-Z_]+:-(\\d+)\\}`, 'm'))
+    if (!m) throw new Error(`scrape-all.sh ya no declara ${nombre}`)
+    return Number(m[1])
+  }
+  const lista = (texto, nombre) => {
+    // En una línea o en varias: las listas llevan comentarios con paréntesis.
+    const m = texto.match(new RegExp(`^${nombre}=\\((?:([^\\n]*)\\)|\\n([\\s\\S]*?)\\n\\))$`, 'm'))
+    if (!m) throw new Error(`no encuentro la lista ${nombre}`)
+    return (m[1] ?? m[2])
+      .split('\n')
+      .map((l) => l.replace(/#.*/, '').trim())
+      .flatMap((l) => l.split(/\s+/))
+      .filter(Boolean)
+  }
+
+  /**
+   * Minutos de lo que va detrás de los adaptadores. Peor medido en 45 noches
+   * (hasta el 31-10-2026): 1,7. Cinco es holgura: `refresh` depende de cuánto
+   * haya movido la noche, y quedarse corto aquí es el fallo que se quiere evitar.
+   */
+  const COLA_MIN = 5
+
+  it('los adaptadores dejan sitio a la cola dentro del tope del paso', () => {
+    const paso_ = paso('Run scraper(s)')['timeout-minutes']
+    expect(segundos('PRESUPUESTO_ADAPTADORES_S') / 60 + COLA_MIN).toBeLessThanOrEqual(paso_)
+  })
+
+  // Peor adaptador que TERMINÓ en esas 45 noches: pleno-agendas, 436 s el
+  // 21-09-2026. Un tope por debajo mataría trabajo sano, y un crítico cortado
+  // tiñe la noche.
+  it('el tope por adaptador no corta nada de lo que ha terminado alguna noche', () => {
+    expect(segundos('TOPE_ADAPTADOR_S')).toBeGreaterThan(436)
+    expect(segundos('TOPE_ADAPTADOR_S')).toBeLessThan(segundos('PRESUPUESTO_ADAPTADORES_S'))
+  })
+
+  // DATA_INTEGRITY §3.6: sin ruta de refresco, sacarlo de la nocturna sería
+  // decadencia silenciosa con otro nombre.
+  it('lo que la nocturna no intenta tiene su refresco en el cron local', () => {
+    const soloLocal = lista(guion, 'SOLO_LOCAL')
+    expect(soloLocal).toContain('scrape:agua-pares')
+    const cron = lista(local, 'ADAPTERS')
+    for (const s of soloLocal) expect(cron, `${s} se quedaría sin refresco`).toContain(s)
+    expect(lista(guion, 'SCRAPERS')).not.toEqual(expect.arrayContaining(soloLocal))
+  })
+})

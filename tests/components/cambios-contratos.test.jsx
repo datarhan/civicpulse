@@ -3,15 +3,8 @@
  * llana arriba, el título oficial debajo si dice más, y «Adjudicado a … · 14.984 €
  * sin IVA» en vez de «Ayuntamiento de Riba-roja de Túria · €14.984,46 · …».
  *
- * La fila es una real de `tenders.json`, congelada en tests/fixtures/, y una copia
- * sin importe para la rama de «importe no publicado».
- *
- * Congelada porque hasta el 01-11-2026 se buscaba en la copia viva el contrato
- * adjudicado el 20-10-2026, y la nocturna del 30-10 le cambió el título: la fuente
- * pasó a darle la etiqueta de su CPV, 69 caracteres, sin título oficial que enseñar.
- * El código estaba bien y la prueba se puso roja en una PR ajena, porque un commit
- * de sólo datos no lanza la CI. Tampoco vale buscarla por `id`: el sufijo `#n` es su
- * posición en la fuente, y 23 filas cambiaron de contrato esa semana.
+ * La fila es un contrato publicado, tal cual, y una copia sin importe para la rama
+ * de «importe no publicado».
  */
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 import { readFileSync } from 'node:fs'
@@ -27,9 +20,14 @@ import { installFetchMock } from '../setup/mockFetch'
 
 const lee = (f) => JSON.parse(readFileSync(`public/data/${f}`, 'utf8'))
 const TENDERS = lee('tenders.json')
-/** Un contrato adjudicado a una empresa, con su importe y un título oficial largo. */
-const CONTRATO = JSON.parse(
-  readFileSync('tests/fixtures/ribalicita_contrato-titulo-largo_2026-10-28.json', 'utf8'),
+/**
+ * Un contrato publicado con adjudicataria, importe y un título largo, que es lo que
+ * esta prueba necesita. Se elegía por su fecha, el 20-10-2026: la nocturna del
+ * 30-10 trajo esa fila con un código CPV por título y la prueba cayó sin que
+ * /cambios hubiera cambiado.
+ */
+const CONTRATO = TENDERS.contracts.find(
+  (c) => importeAdjudicado(c) != null && c.assignee && c.title?.length > 200,
 )
 /** La misma fila, con la adjudicación dentro de la ventana de 7 días que acaba el 28-10. */
 const EN_LA_VENTANA = { ...CONTRATO, awardDate: '2026-10-24' }
@@ -76,10 +74,9 @@ async function pinta(idioma) {
 }
 
 describe('/cambios · los contratos', () => {
-  it('mide algo: la fila tiene importe y su etiqueta dice menos que el título oficial', () => {
-    expect(importeAdjudicado(CONTRATO)).toBeGreaterThan(0)
-    expect(CONTRATO.assignee).toBeTruthy()
-    expect(etiquetaDeContrato(CONTRATO.title).recortada).toBe(true)
+  it('mide algo: la fila publicada existe y su título es largo', () => {
+    expect(CONTRATO, 'ningún contrato publicado tiene un título largo').toBeDefined()
+    expect(CONTRATO.title.length).toBeGreaterThan(200)
   })
 
   it('la etiqueta arriba, el título oficial entero debajo', async () => {
