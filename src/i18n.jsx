@@ -2146,7 +2146,7 @@ export const CATALOGUE = {
     'metodologia.enBreve.fuentes.ver': 'Ver todas las fuentes →',
     'metodologia.enBreve.maquina.pregunta': '¿Lo publica una máquina?',
     'metodologia.enBreve.maquina.frase':
-      'A veces, y con reglas. Lo que nombra a una persona lleva siempre la firma de alguien del equipo. Por regla general, una máquina sólo publica sola lo que retira algo ya publicado, o lo nuevo que no nombra a nadie y tiene su acierto medido; los procesos que aún no la cumplen se dicen en la regla.',
+      'A veces, y con reglas. Un hallazgo o una promesa que afirme algo de un cargo concreto lleva siempre la firma de alguien del equipo. Por regla general, una máquina sólo publica sola lo que retira algo ya publicado, o lo nuevo que no nombra a ningún cargo y tiene su acierto medido; los procesos que aún no la cumplen se dicen en la regla.',
     'metodologia.enBreve.comprobar.pregunta': '¿Cómo compruebo lo que decís?',
     'metodologia.enBreve.comprobar.frase':
       'Cada afirmación enlaza el documento del que sale, para que lo compruebes tú. Una promesa se atribuye con las palabras literales del partido, nunca con el titular de una noticia.',
@@ -2203,7 +2203,7 @@ export const CATALOGUE = {
     'metodologia.frase.principios':
       'Somos neutrales entre partidos, cada promesa se atribuye con una cita literal y su fuente, y cualquiera puede pedir una corrección.',
     'metodologia.frase.politica-automatizacion':
-      'Como regla, una máquina puede retirar o suavizar lo publicado, pero no publicar algo nuevo sin una precisión medida ni nombrar a nadie sin firma humana; las excepciones se dicen abajo.',
+      'Como regla, una máquina puede retirar o suavizar lo publicado, pero no publicar algo nuevo sin una precisión medida ni nombrar a un cargo sin firma humana; las excepciones se dicen abajo.',
     'metodologia.frase.fuentes-auditadas':
       'Aquí están las fuentes públicas con las que se cotejan las afirmaciones, con lo que aporta cada una y sus límites.',
     'metodologia.frase.gasto-por-concejalia':
@@ -5118,7 +5118,7 @@ export const CATALOGUE = {
     'metodologia.enBreve.fuentes.ver': 'Vore totes les fonts →',
     'metodologia.enBreve.maquina.pregunta': 'Ho publica una màquina?',
     'metodologia.enBreve.maquina.frase':
-      "A vegades, i amb regles. El que nomena una persona porta sempre la firma d'algú de l'equip. Per regla general, una màquina només publica sola el que retira alguna cosa ja publicada, o el que és nou, no nomena ningú i té l'encert mesurat; els processos que encara no la complixen es diuen en la regla.",
+      "A vegades, i amb regles. Una troballa o una promesa que afirme alguna cosa d'un càrrec concret porta sempre la firma d'algú de l'equip. Per regla general, una màquina només publica sola el que retira alguna cosa ja publicada, o el que és nou, no nomena cap càrrec i té l'encert mesurat; els processos que encara no la complixen es diuen en la regla.",
     'metodologia.enBreve.comprobar.pregunta': 'Com comprove el que dieu?',
     'metodologia.enBreve.comprobar.frase':
       "Cada afirmació enllaça el document d'on ix, perquè ho comproves tu. Una promesa s'atribuïx amb les paraules literals del partit, mai amb el titular d'una notícia.",
@@ -5175,7 +5175,7 @@ export const CATALOGUE = {
     'metodologia.frase.principios':
       "Som neutrals entre partits, cada promesa s'atribuïx amb una cita literal i la seua font, i qualsevol pot demanar una correcció.",
     'metodologia.frase.politica-automatizacion':
-      "Com a regla, una màquina pot retirar o suavitzar el que s'ha publicat, però no publicar una cosa nova sense una precisió mesurada ni nomenar ningú sense firma humana; les excepcions es diuen davall.",
+      "Com a regla, una màquina pot retirar o suavitzar el que s'ha publicat, però no publicar una cosa nova sense una precisió mesurada ni nomenar un càrrec sense firma humana; les excepcions es diuen davall.",
     'metodologia.frase.fuentes-auditadas':
       "Ací estan les fonts públiques amb què s'acaren les afirmacions, amb el que aporta cadascuna i els seus límits.",
     'metodologia.frase.gasto-por-concejalia':
