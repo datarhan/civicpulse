@@ -707,8 +707,8 @@ function ContratoEditorial() {
                 Plataforma (src/scraper/tenders.ts, `sinAdjudicacionesRepetidas`). */}
             Si el registro publica una misma adjudicación en dos filas —igual enlace, lote, fecha,
             importe, adjudicataria y estado—, se cuenta una vez: queda la fila con el objeto oficial
-            y las retiradas se listan en <code>/data/tenders.json</code>. Una fila sin lote cuenta
-            como el único lote numerado que tenga al lado; con dos, no se funde. Dos lotes de igual
+            y las retiradas se listan en <code>/data/tenders.json</code>. Una fila sin lote se funde
+            con el lote numerado que coincida en todo lo demás, si sólo hay uno. Dos lotes de igual
             precio no son una repetición.
           </li>
           <li>
