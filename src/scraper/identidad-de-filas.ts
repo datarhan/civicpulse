@@ -4,7 +4,7 @@
  * ## Por qué
  *
  * El `id` de un contrato no aguanta: en un expediente con varias filas es la
- * posición en una consulta sin ORDER BY. Entre el 28 y el 31-10-2026 la fuente
+ * posición en una consulta sin ORDER BY. Entre el 28 y el 30-10-2026 la fuente
  * movió una fila del 4889055 y 23 ids pasaron a nombrar otro contrato; lo que
  * mantuvo bien lo publicado fue rehacer los derivados esa noche, no el id.
  *
@@ -113,9 +113,9 @@ export interface SnapshotAnterior {
  *
  * El lote va dentro aunque la pregunta sea por enlace, importe y fecha: sin él,
  * sobre la descarga del 01-11-2026, 13 grupos de filas comparten contenido; con
- * él, 7. Entre el 28 y el 31-10 este contenido no se movió en ninguna de las
- * filas, ni con la adjudicataria reescrita en 146 ni con la fila desplazada del
- * 4889055: es lo bastante firme para hacer de referencia.
+ * él, 7. Entre el 28 y el 30-10 ninguna fila cambió este contenido, ni con las
+ * adjudicatarias reescritas ni con la fila desplazada del 4889055: es lo bastante
+ * firme para hacer de referencia.
  *
  * No es único: 4889055 trae 98/2026 dos veces, igual en todo salvo `contract_id`.
  * Por eso aquí se comparan claves por grupo y nunca fila contra fila.
@@ -247,7 +247,7 @@ export function registrarIdentidad(
 const ETIQUETA = '[identidad-de-filas]'
 
 const POR_QUE: Readonly<Record<MotivoSinMedir, string>> = {
-  'sin-snapshot-anterior': 'no había snapshot anterior con el que comparar',
+  'sin-snapshot-anterior': 'no había snapshot anterior legible con el que comparar',
   'anterior-sin-clave': 'el snapshot anterior no trae sourceRowId',
   'actual-sin-clave': 'la fuente ha dejado de traer contract_id',
 }
@@ -301,7 +301,7 @@ export function renglonesDeIdentidad(doc: { identidadDeFilas?: IdentidadDeFilas 
     ...ultima,
     r.movimientos.length > 0
       ? `${ETIQUETA} pasadas con movimiento: ${r.movimientos.length}`
-      : `${ETIQUETA} aún no se ha medido ninguna pasada con movimiento`,
+      : `${ETIQUETA} ningún movimiento guardado en este snapshot`,
     ...r.movimientos.flatMap(renglonesDeMovimiento),
   ]
 }

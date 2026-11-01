@@ -10,7 +10,7 @@ import { censoDe } from '../src/scraper/vocabulary-census'
  *
  * El `id` publicado es posicional: `parseRibalicitaContracts` desempata los
  * repetidos con `#n` en el orden en que llegan, y la consulta no lleva ORDER BY.
- * Entre el 28 y el 31-10-2026 la fuente movió una fila del expediente 4889055
+ * Entre el 28 y el 30-10-2026 la fuente movió una fila del expediente 4889055
  * y 23 ids pasaron a nombrar otro contrato. Lo que protege lo publicado es que
  * los derivados se rehacen esa misma noche, no el id.
  *
