@@ -34,4 +34,20 @@ describe('debeVolverArriba', () => {
   it('NO cuando sólo cambia el hash dentro de la misma página', () => {
     expect(debeVolverArriba({ tipo: 'PUSH', hash: '#citas', pathnameCambio: false })).toBe(false)
   })
+
+  it('NO por un PUSH que se pinta cuando el navegador ya ha vuelto atrás', () => {
+    // El caso medido el 2-11-2026: «Biografía →» en /cargos, atrás mientras
+    // React aún pintaba la biografía. Esa biografía llegaba a pintarse DESPUÉS
+    // del `popstate`, el reseteo la tomaba por una llegada y mandaba arriba al
+    // lector, y el POP que venía detrás ya no lo devolvía a su sitio.
+    expect(
+      debeVolverArriba({ tipo: 'PUSH', hash: '', pathnameCambio: true, entradaVigente: false }),
+    ).toBe(false)
+  })
+
+  it('sí, como siempre, cuando lo pintado es la entrada en la que está el navegador', () => {
+    expect(
+      debeVolverArriba({ tipo: 'PUSH', hash: '', pathnameCambio: true, entradaVigente: true }),
+    ).toBe(true)
+  })
 })
