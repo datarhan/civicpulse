@@ -56,24 +56,43 @@ test.describe('/presupuesto · En breve', () => {
   })
 
   test('elegir un barrio lleva al mapa con esa zona abierta', async ({ page }) => {
-    await page.goto('/presupuesto', { waitUntil: 'domcontentloaded' })
-    const selector = page.getByLabel('Elige tu barrio')
-    await expect(selector).toBeVisible({ timeout: 10000 })
-    const slug = await selector
-      .locator('option')
-      .evaluateAll((os) =>
-        os.map((o) => (o as HTMLOptionElement).value).find((v) => v && !v.startsWith('__')),
-      )
-    await selector.selectOption(slug!)
-    await page.getByRole('button', { name: 'Ver sus contratos' }).click()
-    // A la lista del barrio, no al rótulo de la sección. `toBeInViewport()` sobre
-    // la sección entera pasaba con sólo su rótulo en pantalla, y a 375 px la lista
-    // quedaba fuera (landing.spec.ts lo mide a ese ancho).
-    await expect(page).toHaveURL(new RegExp(`/contratos\\?barrio=${slug}#mapa-gasto-barrio$`))
-    const lista = page.locator('#mapa-gasto-barrio')
-    await expect(lista.getByText('← todas las zonas')).toBeInViewport()
-    await expect
-      .poll(() => lista.evaluate((el) => el.getBoundingClientRect().top))
-      .toBeLessThan(160)
+    await eligeUnBarrio(page)
+  })
+
+  test.describe('a 375 px', () => {
+    test.use({ viewport: { width: 375, height: 812 } })
+
+    test('elegir un barrio deja la lista del barrio a la vista, no el rótulo de la sección', async ({
+      page,
+    }) => {
+      // Lo vio el operador el 26-10-2026 desde la portada: a 375 px el ancla de la
+      // sección (#mapa-gasto) dejaba a la vista su rótulo y su párrafo, con el mapa
+      // debajo y la lista del barrio fuera de la pantalla. En escritorio no se ve:
+      // la lista va al lado del mapa. La portada ya no tiene el selector; éste es
+      // el mismo `BarrioPicker`, con el mismo destino.
+      await eligeUnBarrio(page)
+    })
   })
 })
+
+async function eligeUnBarrio(page: import('@playwright/test').Page) {
+  await page.goto('/presupuesto', { waitUntil: 'domcontentloaded' })
+  const selector = page.getByLabel('Elige tu barrio')
+  await expect(selector).toBeVisible({ timeout: 10000 })
+  const slug = await selector
+    .locator('option')
+    .evaluateAll((os) =>
+      os.map((o) => (o as HTMLOptionElement).value).find((v) => v && !v.startsWith('__')),
+    )
+  await selector.selectOption(slug!)
+  await page.getByRole('button', { name: 'Ver sus contratos' }).click()
+  // A la lista del barrio, no al rótulo de la sección. `toBeInViewport()` sobre
+  // la sección entera pasaba con sólo su rótulo en pantalla, y a 375 px la lista
+  // quedaba fuera.
+  await expect(page).toHaveURL(new RegExp(`/contratos\\?barrio=${slug}#mapa-gasto-barrio$`))
+  const lista = page.locator('#mapa-gasto-barrio')
+  await expect(lista.getByText('← todas las zonas')).toBeInViewport()
+  await expect
+    .poll(() => lista.evaluate((el) => el.getBoundingClientRect().top), { timeout: 10_000 })
+    .toBeLessThan(160)
+}

@@ -2,14 +2,14 @@ import { rellena } from '../../lib/formatters'
 import { useT } from '../../i18n'
 
 /*
- * Las cifras y figuras de «En breve» que comparten /presupuesto y la portada
- * («Tu ayuntamiento en 30 segundos»): el mismo formato y la misma marca para la
- * misma cifra en las dos capas. Sin hooks de datos a propósito: lo que importa
- * este módulo no arrastra ningún snapshot al grafo de rutas de quien lo usa.
+ * Las cifras y figuras de «En breve» que comparten /presupuesto y /contratos: el
+ * mismo formato y la misma marca para la misma cifra en las dos páginas. Sin
+ * hooks de datos a propósito: lo que importa este módulo no arrastra ningún
+ * snapshot al grafo de rutas de quien lo usa.
  */
 
 // Los euros salen de `euros` y `eurosBreves` (lib/formatters), como en el resto
-// del sitio; aquí sólo queda el porcentaje que comparten con la portada.
+// del sitio; aquí sólo queda el porcentaje que comparten las figuras.
 export const pct0 = (n) => Math.round(n).toLocaleString('es-ES')
 
 export function Barra({ children, alto = 12, etiqueta }) {

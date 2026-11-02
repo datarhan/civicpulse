@@ -29,7 +29,7 @@ import { installFetchMock } from '../setup/mockFetch'
  *   de gasto 2025»;
  * - «12 · PSOE · 12» pasa a una frase, «12 promesas del partido de la alcaldía
  *   (PSOE)» —de la alcaldía y no «que gobierna»: el padrón no registra pactos de
- *   gobierno (`quienManda`)—;
+ *   gobierno (`promesasPorPartido`)—;
  * - «28 · 26/28 · 21» pasa a una frase, y el 28 sale del registro de
  *   concejalías, no de un número escrito en el componente;
  * - las frases de método se van a su página. «Sin juicios automáticos de

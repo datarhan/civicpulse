@@ -3113,36 +3113,9 @@ export const CATALOGUE = {
     // La frase canónica de docs/DESCRIPCION.md («One-liner ES»), tal cual.
     'landing.masthead.proposito':
       'CivicPulse enseña quién dirige tu ayuntamiento, qué hace y cuánto cuesta — con una fuente para cada cifra.',
-    // «Tu ayuntamiento en 30 segundos» (src/scraper/en-breve-portada.ts): plantillas
-    // que se rellenan con el dato, nunca una cifra escrita.
-    'landing.enBreve.titulo': 'Tu ayuntamiento en 30 segundos',
-    'landing.enBreve.intro':
-      'Lo esencial, en cuatro preguntas. Cada respuesta enlaza a la página que la demuestra.',
-    'landing.enBreve.saltar': 'Saltar el resumen ↓',
-    'landing.enBreve.ver': 'Ver el detalle →',
-    'landing.enBreve.manda.pregunta': '¿Quién manda en el Ayuntamiento?',
-    'landing.enBreve.manda.cifra': '{escanos} de {total}',
-    'landing.enBreve.manda.cifraNota': 'concejales en el grupo del alcalde',
-    'landing.enBreve.manda.frase': 'El alcalde es {alcalde} ({partido}).',
-    'landing.enBreve.manda.figura': '{escanos} de {total} concejales',
-    'landing.enBreve.dinero.pregunta': '¿Cuánto dinero tuvo en {year}, y cuánto gastó?',
-    'landing.enBreve.dinero.tope':
-      'Es lo que podía gastar: un [[creditoDefinitivo|tope del presupuesto]], no un gasto.',
-    'landing.enBreve.dinero.sinGastado': 'Todavía no tenemos lo que gastó ese año.',
-    'landing.enBreve.dinero.cifraNota': 'gastados en {year}',
-    'landing.enBreve.dinero.topeCifra':
-      'Podía gastar {limite}: un [[creditoDefinitivo|tope del presupuesto]], no un gasto.',
-    'landing.enBreve.dinero.pregunta.enCurso':
-      '¿Cuánto dinero tiene en {year}, y cuánto lleva gastado?',
-    'landing.enBreve.dinero.cifraNota.enCurso': 'gastados en lo que va de {year}',
-    'landing.enBreve.dinero.topeCifra.enCurso':
-      'Puede gastar {limite}: un [[creditoDefinitivo|tope del presupuesto]], no un gasto.',
-    'landing.enBreve.barrio.puente':
-      'El mapa de esta página sitúa {mapa} de cada 100 €, y no {n}, porque cuenta otra cosa: los contratos que nombran un sitio concreto, como una calle o un colegio, estén o no en un barrio.',
-    'landing.enBreve.barrio.menosDeUno': 'menos de 1',
-    'landing.enBreve.pleno.pregunta': '¿Qué se decidió en el último pleno?',
-    'landing.enBreve.pleno.puntos': 'Trató {n} puntos del orden del día.',
-    'landing.enBreve.pleno.puntos.uno': 'Trató un punto del orden del día.',
+    // La sesión de un pleno en «En breve» (/plenos): plantillas que se rellenan
+    // con el dato, nunca una cifra escrita. Las claves llevan `landing.` porque
+    // nacieron en el resumen de la portada, retirado el 02-11-2026.
     'landing.enBreve.pleno.sinPuntos': 'Todavía no hemos recogido su orden del día.',
     'landing.enBreve.pleno.votos': 'Hemos transcrito {n} votaciones de esa sesión.',
     'landing.enBreve.pleno.votos.una': 'Hemos transcrito una votación de esa sesión.',
@@ -3200,7 +3173,7 @@ export const CATALOGUE = {
     'landing.promesas.blurb':
       'Compromisos públicos documentados, cada uno con su cita y la fuente que la recoge: el documento oficial o la noticia.',
     // «del partido de la alcaldía», no «del que gobierna»: el padrón no
-    // registra pactos de gobierno (`quienManda`, src/scraper/en-breve-portada.ts).
+    // registra pactos de gobierno (`promesasPorPartido`, src/scraper/en-breve-portada.ts).
     'landing.promesas.delAlcaldia': '{n} promesas del partido de la alcaldía ({partido})',
     'landing.promesas.delAlcaldia.una': '1 promesa del partido de la alcaldía ({partido})',
     'landing.promesas.porPartido': '{n} promesas, por partido:',
@@ -3256,8 +3229,7 @@ export const CATALOGUE = {
     'landing.alcalde.puntos.title':
       'Puntos de orden del día gestionados por concejalías del Alcalde',
     'landing.alcalde.gobierno': 'Gobierno municipal',
-    // «tope del presupuesto», como «Tu ayuntamiento en 30 segundos», y la cifra
-    // exacta en el title. «tope de gasto» ponía «gasto» pegado al crédito
+    // «tope del presupuesto», y la cifra exacta en el title. «tope de gasto» ponía «gasto» pegado al crédito
     // definitivo sin una palabra de previsión al lado, y la comprobación de
     // magnitudes (src/scraper/magnitudes-fiscales.ts) lo señaló.
     'landing.alcalde.tope': 'tope del presupuesto {anio}',
@@ -5987,34 +5959,6 @@ export const CATALOGUE = {
     'landing.masthead.tagline': 'Diari cívic · Riba-roja de Túria',
     'landing.masthead.proposito':
       'CivicPulse mostra qui dirigeix el teu ajuntament, què fa i quant costa — amb una font per a cada xifra.',
-    'landing.enBreve.titulo': 'El teu ajuntament en 30 segons',
-    'landing.enBreve.intro':
-      "L'essencial, en quatre preguntes. Cada resposta enllaça amb la pàgina que la demostra.",
-    'landing.enBreve.saltar': 'Ometre el resum ↓',
-    'landing.enBreve.ver': 'Vore el detall →',
-    'landing.enBreve.manda.pregunta': "Qui mana a l'Ajuntament?",
-    'landing.enBreve.manda.cifra': '{escanos} dels {total}',
-    'landing.enBreve.manda.cifraNota': "regidors en el grup de l'alcalde",
-    'landing.enBreve.manda.frase': "L'alcalde és {alcalde} ({partido}).",
-    'landing.enBreve.manda.figura': '{escanos} de {total} regidors',
-    'landing.enBreve.dinero.pregunta': 'Quants diners va tindre en {year}, i quants en va gastar?',
-    'landing.enBreve.dinero.tope':
-      'És el que podia gastar: un [[creditoDefinitivo|límit del pressupost]], no una despesa.',
-    'landing.enBreve.dinero.sinGastado': 'Encara no tenim el que va gastar eixe any.',
-    'landing.enBreve.dinero.cifraNota': 'gastats en {year}',
-    'landing.enBreve.dinero.topeCifra':
-      'Podia gastar {limite}: un [[creditoDefinitivo|límit del pressupost]], no una despesa.',
-    'landing.enBreve.dinero.pregunta.enCurso':
-      'Quants diners té en {year}, i quants en porta gastats?',
-    'landing.enBreve.dinero.cifraNota.enCurso': 'gastats en el que va de {year}',
-    'landing.enBreve.dinero.topeCifra.enCurso':
-      'Pot gastar {limite}: un [[creditoDefinitivo|límit del pressupost]], no una despesa.',
-    'landing.enBreve.barrio.puente':
-      "El mapa d'esta pàgina en situa {mapa} de cada 100 €, i no {n}, perquè compta una altra cosa: els contractes que nomenen un lloc concret, com un carrer o un col·legi, estiguen o no en un barri.",
-    'landing.enBreve.barrio.menosDeUno': "menys d'1",
-    'landing.enBreve.pleno.pregunta': "Què es va decidir en l'últim ple?",
-    'landing.enBreve.pleno.puntos': "Va tractar {n} punts de l'ordre del dia.",
-    'landing.enBreve.pleno.puntos.uno': "Va tractar un punt de l'ordre del dia.",
     'landing.enBreve.pleno.sinPuntos': 'Encara no hem recollit el seu ordre del dia.',
     'landing.enBreve.pleno.votos': "Hem transcrit {n} votacions d'eixa sessió.",
     'landing.enBreve.pleno.votos.una': "Hem transcrit una votació d'eixa sessió.",
