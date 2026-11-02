@@ -723,8 +723,9 @@ function ContratoEditorial() {
             importe, adjudicataria y estado—, se cuenta una vez: queda la fila con el objeto oficial
             y las retiradas se listan en <code>/data/tenders.json</code>. Una fila sin lote se funde
             con el lote numerado que coincida en todo lo demás, si sólo hay uno. Una fila sin fecha
-            de adjudicación, sólo con la que coincida con ella en todo lo demás que publica el
-            registro, y queda la que tiene fecha. Dos lotes de igual precio no son una repetición.
+            de adjudicación, sólo con una fechada que coincida con ella en todos los campos que
+            leemos del registro salvo el título y el identificador, y queda la que tiene fecha. Dos
+            lotes de igual precio no son una repetición.
           </li>
           <li>
             <strong>TED (Tenders Electronic Daily)</strong> — contratos europeos sobre el umbral UE,

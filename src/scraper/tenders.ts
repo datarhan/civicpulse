@@ -528,9 +528,9 @@ export interface AdjudicacionRepetida {
  * 1, 2 y 4 siguen en el registro, así que queda el 3.
  *
  * Una fila sin fecha toma la de su gemela (`fechaDeSuGemela`): 13/2026 BSDA y
- * 110/2026 BSDA salen también en una fila sin `id`, sin licitación y sin fecha,
- * igual a la fechada en todo lo demás, y cada una tiene un solo anuncio de
- * adjudicación (cotejadas el 2026-11-02). Queda la fechada.
+ * 110/2026 BSDA salen también en una fila sin `id`, sin licitación, sin fecha y
+ * con una etiqueta CPV por título, igual a la fechada en todo lo demás, y cada una
+ * tiene un solo anuncio de adjudicación (cotejadas el 2026-11-02). Queda la fechada.
  *
  * La regla se queda corta antes que fundir: exige todos esos campos y un estado
  * comprometido, porque un lote de igual precio no es una repetición (12/2018,
