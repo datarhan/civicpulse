@@ -105,7 +105,9 @@ describe('/quejas · «Cómo quejarse y qué pasa después»', () => {
     const texto = leido.join('\n') + '\n' + CATALOGUE.es['quejas.enBreve.plazo.figura']
     const sinPintar = claves.filter((clave) =>
       CATALOGUE.es[clave]
-        .split(/\{\w+\}/)
+        // Un hueco parte la frase, y un término del glosario también: es un botón,
+        // y por tanto su propia pieza de lectura.
+        .split(/\{\w+\}|\[\[\w+\||\]\]/)
         .map((trozo) => trozo.replace(/[↓→↗]/g, '').trim())
         .filter((trozo) => /\p{L}/u.test(trozo))
         .some((trozo) => !texto.includes(trozo)),

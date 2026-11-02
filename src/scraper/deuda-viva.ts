@@ -5,7 +5,7 @@
  * `deuda-viva-ayuntamientos-<AAAA>12.xlsx`. Un fichero por ejercicio, con los
  * ~8.100 ayuntamientos de España y su saldo a 31 de diciembre.
  *
- * No es lo que ya enseña `/presupuesto`. Allí el capítulo «Deuda pública» es el
+ * No es lo que ya enseña `/presupuesto`. Allí el programa «Deuda pública» es el
  * dinero que el presupuesto aparta ESE año para atender deuda; esto es el saldo
  * vivo. Un vecino que pregunta «¿cuánto debe mi ayuntamiento?» pregunta por lo
  * segundo, y hasta ahora el sitio no lo sabía.

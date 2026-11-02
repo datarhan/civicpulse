@@ -31,22 +31,28 @@ const TOLERANCIA_PX = 4
 const BREATHING_ROOM = 12
 
 function headerOffset() {
-  // Todo lo que se queda pegado arriba descuenta altura del aterrizaje. Hoy
-  // sólo hay una barra: la topbar del shell. Hubo una segunda —el submenú de
-  // secciones de /eficiencia, .cp-subnav— y este bucle nació de medir sólo la
-  // primera y dejar el destino tapado por la otra; se queda como bucle, y no
-  // como una sola consulta, porque la lección era esa y la siguiente barra
-  // pegajosa sólo tendrá que añadirse a la lista. `MARGEN_ANCLA` es la
-  // contrapartida estática de esta medida, en components/eficiencia/anclas.js.
-  let total = 0
-  for (const selector of ['.cp-shell-topbar']) {
+  // Todo lo que se queda pegado arriba descuenta altura del aterrizaje: la
+  // topbar del shell y, en las páginas largas, el índice de la lectura experta.
+  // Hubo otra —el submenú de secciones de /eficiencia, .cp-subnav— y este bucle
+  // nació de medir sólo la primera y dejar el destino tapado por la otra.
+  // `MARGEN_ANCLA` es la contrapartida estática de esta medida, en
+  // components/eficiencia/anclas.js.
+  //
+  // Se mide dónde ACABA cada una una vez pegada, no la suma de alturas: el índice
+  // se pega con un hueco bajo la topbar, y sumando sólo alturas ese hueco se
+  // comía el margen y el destino aterrizaba rozándolo. Antes de pegarse su
+  // posición en pantalla no dice nada, así que se lee de su `top`.
+  let abajo = 0
+  for (const selector of ['.cp-shell-topbar', '.cp-indice-pegado']) {
     const barra = document.querySelector(selector)
     if (!barra) continue
-    const { position } = window.getComputedStyle(barra)
+    const { position, top } = window.getComputedStyle(barra)
     if (position !== 'sticky' && position !== 'fixed') continue
-    total += barra.getBoundingClientRect().height
+    const alto = barra.getBoundingClientRect().height
+    if (alto === 0) continue
+    abajo = Math.max(abajo, (Number.parseFloat(top) || 0) + alto)
   }
-  return total === 0 ? 0 : total + BREATHING_ROOM
+  return abajo === 0 ? 0 : abajo + BREATHING_ROOM
 }
 
 export function useHashScroll() {

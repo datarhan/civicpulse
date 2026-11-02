@@ -26,6 +26,7 @@ import { useLocale, useT } from '../i18n'
 import EnBrevePresupuesto from '../components/Presupuesto/EnBrevePresupuesto'
 import DivisorLecturas from '../components/DivisorLecturas'
 import { SeccionExperta } from '../components/Lecturas'
+import { IndiceExperta } from '../components/IndiceSecciones'
 import { destinoEnContratos } from '../scraper/ruta-de-contratos'
 
 /*
@@ -1301,7 +1302,7 @@ function ProgramasCard() {
 /**
  * Lo que el ayuntamiento DEBE.
  *
- * Distinto del capítulo «Deuda pública» del presupuesto: aquél es el dinero
+ * Distinto del programa «Deuda pública» del presupuesto: aquél es el dinero
  * que se aparta ese año para atenderla, esto es el saldo vivo a 31 de
  * diciembre. La distinción se dice en la propia tarjeta porque de otro modo
  * un lector suma dos cifras que no se suman.
@@ -1605,6 +1606,7 @@ export default function Presupuesto() {
       <div id="todos-los-datos" style={{ scrollMarginTop: 24 }}>
         <DivisorLecturas />
       </div>
+      <IndiceExperta />
       <SeccionExperta id="presupuesto-cascada" titulo={t('presupuesto.cascada.title.sinCuadre')}>
         <CascadaCard />
       </SeccionExperta>

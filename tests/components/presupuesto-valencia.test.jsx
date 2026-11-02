@@ -452,7 +452,9 @@ describe('cobertura de la guarda de /presupuesto y /contratos', () => {
     const texto = leido.join('\n')
     const sinPintar = claves.filter((clave) =>
       CATALOGUE.es[clave]
-        .split(/\{\w+\}/)
+        // Un hueco parte la frase, y un término del glosario también: es un botón,
+        // y por tanto su propia pieza de lectura.
+        .split(/\{\w+\}|\[\[\w+\||\]\]/)
         .map((trozo) => trozo.trim())
         .filter((trozo) => /\p{L}/u.test(trozo))
         .some((trozo) => !texto.includes(trozo)),
