@@ -321,6 +321,8 @@ describe('scrape-tenders', () => {
   })
 
   it('la medida de identidad no las cuenta como bajas de la fuente', () => {
-    expect(script).toMatch(/sinFilasRetiradas\([^)]*repetidas[^)]*retiradas/s)
+    expect(script).toMatch(
+      /sinFilasRetiradas\(\s*await snapshotAnterior\(\),\s*\[\s*\.\.\.repetidas,\s*\.\.\.firmadas\.retiradas\s*\]/,
+    )
   })
 })
