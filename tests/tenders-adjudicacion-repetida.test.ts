@@ -17,13 +17,20 @@ import { registrarIdentidad, sinFilasRetiradas } from '../src/scraper/identidad-
  * octava, 153/2025 BSDA, difiere en el lote: uno de sus dos renglones lo trae en
  * blanco, y el anuncio no nombra ninguno.
  *
+ * Otras dos, 13/2026 BSDA y 110/2026 BSDA, difieren en la fecha: una fila sin
+ * `id` de Gobierto, sin licitación y sin fecha de adjudicación, con una etiqueta
+ * CPV por título, y la otra igual a ella en todo lo demás. Cotejadas el
+ * 2026-11-02: un solo anuncio de adjudicación cada una (25-05-2026 y 01-07-2026)
+ * y ningún lote. Sumaban 27.453,39 € sin IVA más.
+ *
  * La lista de abajo va escrita a mano a propósito: es lo que se cotejó, y una
  * regla que empiece a fundir otra cosa tiene que ponerse roja aquí.
  */
 const CSV = readFileSync(join(__dirname, 'fixtures', 'ribalicita_contratos_2026-11-01.csv'), 'utf8')
 const CONTRATOS = parseRibalicitaContracts(CSV)
 
-const COTEJADAS = [
+/** `clave` es la `contract_id` de la retirada cuando su id no la lleva dentro. */
+const COTEJADAS: { expediente: string; queda: string; retirada: string; clave?: string }[] = [
   { expediente: '43/2025 BSDA', queda: '1794430#8998505', retirada: '1794430#9062945' },
   { expediente: '95/2026 BSDA', queda: '4889055#10281213', retirada: '4889055#10278551' },
   { expediente: '88M/2025', queda: '9012998', retirada: '9023884' },
@@ -32,12 +39,25 @@ const COTEJADAS = [
   { expediente: '86/2026 BSDA', queda: '1794430#10201842', retirada: '1794430#10198485' },
   { expediente: '102/2026', queda: '4889055#10259025', retirada: '4889055#10254997' },
   { expediente: '153/2025 BSDA', queda: '1794430#9807364', retirada: '1794430#10560849' },
+  {
+    expediente: '13/2026 BSDA',
+    queda: '1794430#10156778',
+    retirada: 'auto-mse4o8',
+    clave: '10149063',
+  },
+  {
+    expediente: '110/2026 BSDA',
+    queda: '1794430#10389866',
+    retirada: 'auto-nnc0ia',
+    clave: '10388860',
+  },
 ]
+const SIN_FECHA = COTEJADAS.filter((p) => p.clave)
 
 const porRetirada = (a: { id: string }, b: { id: string }) => a.id.localeCompare(b.id)
 const ESPERADAS = COTEJADAS.map((p) => ({
   id: p.retirada,
-  sourceRowId: p.retirada.split('#').pop(),
+  sourceRowId: p.clave ?? p.retirada.split('#').pop(),
   queda: p.queda,
 })).sort(porRetirada)
 const fila = (id: string) => CONTRATOS.find((c) => c.id === id)!
@@ -45,7 +65,7 @@ const fila = (id: string) => CONTRATOS.find((c) => c.id === id)!
 describe('sinAdjudicacionesRepetidas — sobre el registro real', () => {
   const { contratos, repetidas } = sinAdjudicacionesRepetidas(CONTRATOS)
 
-  it('mide algo: las ocho parejas están en la fixture', () => {
+  it('mide algo: las diez parejas están en la fixture', () => {
     expect(CONTRATOS).toHaveLength(814)
     for (const p of COTEJADAS) {
       expect(fila(p.queda), p.queda).toBeDefined()
@@ -53,20 +73,36 @@ describe('sinAdjudicacionesRepetidas — sobre el registro real', () => {
     }
   })
 
-  it('retira exactamente las ocho cotejadas en la Plataforma', () => {
+  it('retira exactamente las diez cotejadas en la Plataforma', () => {
     expect([...repetidas].sort(porRetirada)).toEqual(ESPERADAS)
     expect(contratos).toHaveLength(CONTRATOS.length - COTEJADAS.length)
   })
 
   it('el dinero que sobraba es el que se midió', () => {
     const sobra = repetidas.reduce((s, r) => s + fila(r.id).finalAmountNoTaxes, 0)
-    expect(sobra).toBeCloseTo(137209.58, 2)
+    expect(sobra).toBeCloseTo(137209.58 + 27453.39, 2)
   })
 
   it('se queda con el objeto oficial, no con la etiqueta CPV', () => {
     for (const p of COTEJADAS) expect(esTituloCpv(fila(p.queda).title), p.queda).toBe(false)
     const conEtiqueta = COTEJADAS.filter((p) => esTituloCpv(fila(p.retirada).title))
-    expect(conEtiqueta).toHaveLength(5)
+    expect(conEtiqueta).toHaveLength(7)
+  })
+
+  it('una fila sin fecha se funde con su gemela fechada, igual a ella en todo lo demás', () => {
+    for (const p of SIN_FECHA) {
+      const [queda, retirada] = [fila(p.queda), fila(p.retirada)]
+      expect(retirada.awardDate, p.retirada).toBeNull()
+      expect(queda.awardDate, p.queda).not.toBeNull()
+      const resto = (c: typeof queda) => ({
+        ...c,
+        id: '',
+        sourceRowId: '',
+        title: '',
+        awardDate: '',
+      })
+      expect(resto(retirada), p.expediente).toEqual(resto(queda))
+    }
   })
 
   it('lo demás queda intacto y en su orden', () => {
@@ -89,6 +125,33 @@ describe('sinAdjudicacionesRepetidas — sobre el registro real', () => {
 
   it('pasarla dos veces no retira nada más', () => {
     expect(sinAdjudicacionesRepetidas(contratos).repetidas).toEqual([])
+  })
+})
+
+describe('sinAdjudicacionesRepetidas — sobre lo publicado', () => {
+  // Las cifras de /contratos, el mapa y las adjudicatarias salen de este fichero:
+  // si lo escribió una pasada sin la regla, la cuenta doble ya está publicada.
+  const PUBLICADO = JSON.parse(
+    readFileSync(join(__dirname, '..', 'public', 'data', 'tenders.json'), 'utf8'),
+  ) as {
+    contracts: typeof CONTRATOS
+    contractCorrections: { adjudicacionesRepetidas: { id: string }[] }
+  }
+
+  it('mide algo: hay contratos y filas comprometidas sin fecha entre ellos', () => {
+    expect(PUBLICADO.contracts.length).toBeGreaterThan(0)
+    expect(PUBLICADO.contracts.some((c) => c.status === 'awarded' && !c.awardDate)).toBe(true)
+  })
+
+  it('no guarda nada que la regla retiraría todavía', () => {
+    expect(sinAdjudicacionesRepetidas(PUBLICADO.contracts).repetidas).toEqual([])
+  })
+
+  it('lo que dice haber retirado no sigue en el registro', () => {
+    const ids = new Set(PUBLICADO.contracts.map((c) => c.id))
+    const retiradas = PUBLICADO.contractCorrections.adjudicacionesRepetidas
+    expect(retiradas.length).toBeGreaterThan(0)
+    for (const r of retiradas) expect(ids.has(r.id), r.id).toBe(false)
   })
 })
 
@@ -154,6 +217,48 @@ describe('sinAdjudicacionesRepetidas — lo que no funde', () => {
     const una = fila('4889055#10281213')
     const otra = { ...fila('4889055#10278551'), assignee: 'OTRA EMPRESA SL' }
     expect(sinAdjudicacionesRepetidas([una, otra]).repetidas).toEqual([])
+  })
+
+  describe('una fila sin fecha de adjudicación', () => {
+    const [fechada, sinFecha] = [fila('1794430#10156778'), fila('auto-mse4o8')]
+
+    it('196/2023: mismo enlace, importe y adjudicataria, pero otro lote, otro plazo y otro inicio', () => {
+      // Un anuncio de adjudicación y 1.088,30 € de presupuesto para dos filas de
+      // 1.000 €: huele a repetición, pero las filas no dicen lo mismo, y eso lo
+      // decide una persona con el anuncio delante.
+      const [lote3, enBlanco] = [fila('1794430#4398563'), fila('1794430#10554489')]
+      expect(lote3.awardDate).toBeNull()
+      expect([lote3.permalink, lote3.assignee, lote3.finalAmountNoTaxes]).toEqual([
+        enBlanco.permalink,
+        enBlanco.assignee,
+        enBlanco.finalAmountNoTaxes,
+      ])
+      expect(lote3.duration).not.toBe(enBlanco.duration)
+      expect(ids.has(lote3.id)).toBe(true)
+      expect(ids.has(enBlanco.id)).toBe(true)
+    })
+
+    it('distinta en un solo campo más que la fecha no se funde', () => {
+      const otra = { ...sinFecha, endDate: '2028-05-19' }
+      expect(sinAdjudicacionesRepetidas([fechada, otra]).repetidas).toEqual([])
+    })
+
+    it('con dos gemelas de fechas distintas no se sabe cuál repite: no funde ninguna', () => {
+      const otraFecha = { ...fechada, id: 'otra', sourceRowId: 'otra', awardDate: '2026-06-01' }
+      expect(sinAdjudicacionesRepetidas([fechada, otraFecha, sinFecha]).repetidas).toEqual([])
+    })
+
+    it('dos sin fecha y ninguna fechada: no hay adjudicación con la que compararlas', () => {
+      const gemela = { ...sinFecha, id: 'auto-otra', sourceRowId: 'otra' }
+      expect(sinAdjudicacionesRepetidas([sinFecha, gemela]).repetidas).toEqual([])
+    })
+
+    it('entre dos objetos iguales queda la fechada, aunque su id ordene después', () => {
+      const conObjeto = { ...sinFecha, id: '0-sin-fecha', title: fechada.title }
+      expect(conObjeto.id.localeCompare(fechada.id)).toBeLessThan(0)
+      const { contratos } = sinAdjudicacionesRepetidas([conObjeto, fechada])
+      expect(contratos).toEqual([fechada])
+    })
   })
 })
 

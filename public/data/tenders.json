@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-01T18:02:23.119Z",
+  "generatedAt": "2026-11-02T07:22:59.930Z",
   "source": {
     "contracts": "https://ribalicita.ribarroja.es/api/v1/data/data.csv?sql=select%20*%20from%20contratos",
     "tenders": "https://ribalicita.ribarroja.es/api/v1/data/data.csv?sql=select%20*%20from%20licitaciones",
@@ -7,11 +7,11 @@
     "host": "https://ribalicita.ribarroja.es"
   },
   "stats": {
-    "totalContracts": 806,
+    "totalContracts": 804,
     "totalTenders": 431,
-    "awardedContracts": 709,
+    "awardedContracts": 707,
     "openTenders": 0,
-    "awardedTotalEuros": 125926894.62999995
+    "awardedTotalEuros": 125899441.23999994
   },
   "top": {
     "recentAwarded": [
@@ -447,6 +447,16 @@
         "queda": "4889055#10259025"
       },
       {
+        "id": "auto-mse4o8",
+        "sourceRowId": "10149063",
+        "queda": "1794430#10156778"
+      },
+      {
+        "id": "auto-nnc0ia",
+        "sourceRowId": "10388860",
+        "queda": "1794430#10389866"
+      },
+      {
         "id": "9023884",
         "sourceRowId": "9023884",
         "queda": "9012998"
@@ -464,15 +474,15 @@
   "identidadDeFilas": {
     "ultima": {
       "medida": true,
-      "comparadoCon": "2026-11-01T14:21:20.456Z",
-      "conClaveAntes": 806,
-      "conClaveAhora": 806,
+      "comparadoCon": "2026-11-01T18:02:23.119Z",
+      "conClaveAntes": 804,
+      "conClaveAhora": 804,
       "sinClaveAntes": 0,
       "sinClaveAhora": 0,
       "repetidasAntes": 0,
       "repetidasAhora": 0,
-      "comparables": 806,
-      "conservan": 806,
+      "comparables": 804,
+      "conservan": 804,
       "cambian": 0,
       "multifila": {
         "comparables": 268,
@@ -492,7 +502,7 @@
         "idMovidos": [],
         "bajas": []
       },
-      "medidoEn": "2026-11-01T18:02:23.119Z"
+      "medidoEn": "2026-11-02T07:22:59.930Z"
     },
     "movimientos": []
   },
@@ -11112,38 +11122,6 @@
       "numberOfProposals": 3
     },
     {
-      "id": "auto-mse4o8",
-      "sourceRowId": "10149063",
-      "title": "92000000-Servicios de esparcimiento, culturales y deportivos.",
-      "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=EssD%2B3QurSAUqXM96WStVA%3D%3D",
-      "status": "awarded",
-      "contractType": "services",
-      "processType": "restricted",
-      "minorContract": false,
-      "startDate": null,
-      "endDate": "2028-05-18",
-      "awardDate": null,
-      "formalizedDate": null,
-      "duration": 730,
-      "batchNumber": 0,
-      "assignee": "LACSEN MONTAJES ELECTRICOS S.L",
-      "contractor": "Ayuntamiento de Riba-roja de Túria",
-      "contractorId": "58096",
-      "contractorType": "Ayuntamiento",
-      "categoryId": "28",
-      "categoryTitle": "health",
-      "cpvs": [
-        "98300000",
-        "92000000"
-      ],
-      "initialAmount": 16456,
-      "initialAmountNoTaxes": 13600,
-      "finalAmount": 15875.2,
-      "finalAmountNoTaxes": 13120,
-      "estimatedValue": 0,
-      "numberOfProposals": 1
-    },
-    {
       "id": "1524361",
       "sourceRowId": "2560241",
       "title": "Contrato de suministro del césped del Campo de fútbol \"Francisco Soriano\" mediante arrendamiento financiero con opción de compra, por procedimiento abierto, mejor relación calidad-precio, varios criterios de adjudicación, con mejoras vinculadas al objeto del contrato y condición de ejecución de carácter social y medioambiental, ODS 11 relativo a lograr que las ciudades sean sostenibles.",
@@ -19279,38 +19257,6 @@
       "finalAmountNoTaxes": 432.92,
       "estimatedValue": 0,
       "numberOfProposals": 1
-    },
-    {
-      "id": "auto-nnc0ia",
-      "sourceRowId": "10388860",
-      "title": "92000000-Servicios de esparcimiento, culturales y deportivos.",
-      "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=qz8HsT%2BEW%2BmFlFRHfEzEaw%3D%3D",
-      "status": "awarded",
-      "contractType": "services",
-      "processType": "restricted",
-      "minorContract": false,
-      "startDate": null,
-      "endDate": "2026-07-04",
-      "awardDate": null,
-      "formalizedDate": null,
-      "duration": 3,
-      "batchNumber": 0,
-      "assignee": "GLOBAL SHOWTIME SERVICES, SRL",
-      "contractor": "Ayuntamiento de Riba-roja de Túria",
-      "contractorId": "58096",
-      "contractorType": "Ayuntamiento",
-      "categoryId": "28",
-      "categoryTitle": "health",
-      "cpvs": [
-        "98300000",
-        "92000000"
-      ],
-      "initialAmount": 18000,
-      "initialAmountNoTaxes": 14876.03,
-      "finalAmount": 17343.4,
-      "finalAmountNoTaxes": 14333.39,
-      "estimatedValue": 0,
-      "numberOfProposals": 3
     },
     {
       "id": "65245",
