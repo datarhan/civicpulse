@@ -1,11 +1,11 @@
 {
-  "generatedAt": "2026-11-02T06:58:16.567Z",
+  "generatedAt": "2026-11-02T13:01:31.002Z",
   "source": "https://www.ribarroja.es/es/noticia/publicaciones-procesos-selectivos",
   "titulos": {
     "enteros": 8,
     "cortados": 10,
-    "completados": 10,
-    "reutilizados": 0,
+    "completados": 1,
+    "reutilizados": 9,
     "sinCompletar": []
   },
   "procesos": [

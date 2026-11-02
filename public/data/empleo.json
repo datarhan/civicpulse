@@ -1,19 +1,19 @@
 {
-  "generatedAt": "2026-11-01T11:45:57.283Z",
+  "generatedAt": "2026-11-02T13:01:12.710Z",
   "source": {
     "origin": "https://ribaocupacio.portalemp.com",
     "platform": "portalemp — ribaocupacio · Agència de Col·locació (ADL), Ajuntament de Riba-roja de Túria",
     "listEndpoint": "https://ribaocupacio.portalemp.com/ofertas.html?acc=tableData"
   },
   "stats": {
-    "total": 48,
-    "openTotal": 47,
+    "total": 47,
+    "openTotal": 46,
     "inRibaRoja": 32,
     "closingSoon": 5,
-    "withDetail": 48,
+    "withDetail": 47,
     "byMonth": {
       "2026-10": 29,
-      "2026-09": 16,
+      "2026-09": 15,
       "2026-05": 2,
       "2025-11": 1
     }
@@ -3511,97 +3511,6 @@
             "experiencia": "2 Años"
           }
         ]
-      }
-    },
-    {
-      "id": "2408",
-      "fo": 2408,
-      "codigo": "2026/00114",
-      "titulo": "Operario/a de almacén con discapacidad",
-      "publishedAt": "2026-09-01",
-      "deadline": "2026-11-01",
-      "location": "Cheste (Valencia)",
-      "status": "Abierta",
-      "statusTone": "ok",
-      "url": "https://ribaocupacio.portalemp.com/ofertas.html?fo=2408",
-      "inRibaRoja": false,
-      "detail": {
-        "fields": [
-          {
-            "label": "Código",
-            "value": "2026/00114"
-          },
-          {
-            "label": "Nombre de la oferta",
-            "value": "Operario/a de almacén con discapacidad"
-          },
-          {
-            "label": "Observaciones",
-            "value": "Se requiere certificado de discapacidad igual o superior al 33%"
-          },
-          {
-            "label": "Porcentaje de discapacidad",
-            "value": "Igual o superior a 33%"
-          },
-          {
-            "label": "Sector CNAE",
-            "value": "OTROS SERVICIOS"
-          },
-          {
-            "label": "Tipo de contrato",
-            "value": "CONTRATACION DISCAPACIDAD"
-          },
-          {
-            "label": "Duración del contrato",
-            "value": "Más de 6 meses"
-          },
-          {
-            "label": "Número de puestos",
-            "value": "5"
-          },
-          {
-            "label": "Categoría profesional",
-            "value": "PEONES"
-          },
-          {
-            "label": "Lugar puesto de trabajo",
-            "value": "Municipio: Cheste, Provincia: Valencia, CP: 46830"
-          },
-          {
-            "label": "Tipo de jornada laboral",
-            "value": "Completa Turnos: Turno tarde, Turno noche"
-          },
-          {
-            "label": "Horario",
-            "value": "L a D (2 días descanso) Turnos Tarde (14:00 a 21:36) ó Noche (18:20 - 01:56). Turnos fijos, no rotativos."
-          },
-          {
-            "label": "Salario",
-            "value": "1400 € brutos/mes 12 pagas"
-          },
-          {
-            "label": "Funciones",
-            "value": "Recogida de cartón, plástico y papel. Orden y desplazamiento de palets, clasificado y retirada de mermas, recepción y recogida de camiones, mantemiento de zonas comunes"
-          },
-          {
-            "label": "Requiere vehículo propio",
-            "value": "Sí"
-          }
-        ],
-        "tipoContrato": "CONTRATACION DISCAPACIDAD",
-        "duracion": "Más de 6 meses",
-        "numPuestos": "5",
-        "categoria": "PEONES",
-        "observaciones": "Se requiere certificado de discapacidad igual o superior al 33%",
-        "municipio": "Cheste",
-        "provincia": "Valencia",
-        "cp": "46830",
-        "jornada": "Completa Turnos: Turno tarde, Turno noche",
-        "horario": "L a D (2 días descanso) Turnos Tarde (14:00 a 21:36) ó Noche (18:20 - 01:56). Turnos fijos, no rotativos.",
-        "salario": "1400 € brutos/mes 12 pagas",
-        "funciones": "Recogida de cartón, plástico y papel. Orden y desplazamiento de palets, clasificado y retirada de mermas, recepción y recogida de camiones, mantemiento de zonas comunes",
-        "vehiculo": "Sí",
-        "ocupaciones": []
       }
     },
     {

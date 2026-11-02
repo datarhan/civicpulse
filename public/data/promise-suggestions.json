@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-01T11:47:38.811Z",
+  "generatedAt": "2026-11-02T13:02:44.344Z",
   "frozen": false,
   "frozenUntil": null,
   "notice": "Sugerencias generadas automáticamente. Requieren aprobación humana antes de aplicarse al estado de cada promesa.",
@@ -15,8 +15,20 @@
     {
       "promiseId": "ac-psoe-1cbkzxt",
       "proposedStatus": "documentada",
-      "confidence": 0.175,
+      "confidence": 0.287,
       "reasoning": [
+        {
+          "url": "https://www.ribarroja.es/es/noticia/el-ayuntamiento-de-riba-roja-de-t%C3%BAria-asigna-140.000-euros-en-subvenciones-econ%C3%B3micas-a-los-clubes-y-entidades-deportivas-para-financiar-sus-actividades-y-programas-de-la-temporada-25/26",
+          "date": "2026-11-02",
+          "quote": "El Ayuntamiento de Riba-roja de Túria asigna 140.000 euros en subvenciones económicas a los clubes y entidades deportivas para financiar sus actividades y programas de la temporada 25/26",
+          "kind": "press",
+          "publisher": "Ayuntamiento de Riba-roja de Túria",
+          "matchedKeywords": [
+            "subvencion",
+            "euro",
+            "economica"
+          ]
+        },
         {
           "url": "https://www.ribarroja.es/es/noticia/riba-roja-destina-una-partida-de-7.000-euros-en-subvenciones-para-fomentar-la-pr%C3%A1ctica-del-deporte-y-mejorar-el-rendimiento-en-las-competiciones-oficiales",
           "date": "2026-09-16",
@@ -30,7 +42,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-11-01T11:47:38.713Z"
+      "generatedAt": "2026-11-02T13:02:44.257Z"
     },
     {
       "promiseId": "ac-psoe-jfg7bc",
@@ -49,7 +61,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-11-01T11:47:38.713Z"
+      "generatedAt": "2026-11-02T13:02:44.257Z"
     },
     {
       "promiseId": "ac-psoe-1ah9zqk",
@@ -68,7 +80,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-11-01T11:47:38.713Z"
+      "generatedAt": "2026-11-02T13:02:44.257Z"
     },
     {
       "promiseId": "ac-psoe-ppa53a",
@@ -76,7 +88,7 @@
       "confidence": 0,
       "reasoning": [],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-11-01T11:47:38.713Z"
+      "generatedAt": "2026-11-02T13:02:44.257Z"
     },
     {
       "promiseId": "ac-psoe-1m04lfw",
@@ -84,7 +96,7 @@
       "confidence": 0,
       "reasoning": [],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-11-01T11:47:38.713Z"
+      "generatedAt": "2026-11-02T13:02:44.257Z"
     },
     {
       "promiseId": "ac-psoe-sysee8",
@@ -103,7 +115,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-11-01T11:47:38.713Z"
+      "generatedAt": "2026-11-02T13:02:44.257Z"
     },
     {
       "promiseId": "ac-psoe-1ryndd8",
@@ -140,7 +152,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-11-01T11:47:38.713Z"
+      "generatedAt": "2026-11-02T13:02:44.257Z"
     },
     {
       "promiseId": "ac-psoe-43brfs",
@@ -205,7 +217,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-11-01T11:47:38.713Z"
+      "generatedAt": "2026-11-02T13:02:44.257Z"
     },
     {
       "promiseId": "ac-psoe-17y448o",
@@ -289,26 +301,13 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-11-01T11:47:38.713Z"
+      "generatedAt": "2026-11-02T13:02:44.257Z"
     },
     {
       "promiseId": "ac-psoe-1bkbwjs",
       "proposedStatus": "documentada",
-      "confidence": 0.4,
+      "confidence": 0.287,
       "reasoning": [
-        {
-          "url": "https://news.google.com/rss/articles/CBMi5AFBVV95cUxPX0djQmtPeDg3NnNvVFlPZGpUN21OWmJvYW44amw5djJ6d2lPcXJMSjkyZmRQalVmdXRuenFiWndPZ2tCYnd0d05BVDgwT2Vzbi0yZlUydDc2M3NSUHRqTnhBTVlFZkFzcDR1WnA1NWFRbFBtQWhRQnEwWEt4S2JQaXZsRUtueTFTQVh2YVNfNXFKZl9oRklTeGNQX0YzdDZJN1NIbG8zQkFSQWwydWNaM3R3Zjg1V1JDQkxfSFFPZXBtbHRfcURkZDRqQ0JRRnZ0eVNkZFIwQ1loY3p6YURQcXB3bDXSAeoBQVVfeXFMT0ZWS1ZjMVEyalc0bGtoazFvRklDdmM3VXdsckpsWVNTR21qZXJ1S1YyQzRZQjh2cUs0dW5vNlhGdVVTQTU0T3hxc0lfNTZEWkZfSkJJUFJBTURxQmt4YkVsclhVU2NjVXFacEE1blR4cHBzdlc3eTlLOEhXalB3VjZ2MWZRQUplX0JIenAtdFEzV3BoQ3ZESk5UU19IRVhIUmhzQ0tfUFpnT1p5SVJvSjk0cWVWS0NfS0kzNjdPYTEwUXB1YWxGakd4cUlUblVBcXg1MzRCSUQ2QXFvQkdyOVBPcU9scTZPUEln?oc=5",
-          "date": "2026-09-25",
-          "quote": "Riba-roja instalará sensores en sus contenedores para conocer en tiempo real el nivel de llenado",
-          "kind": "press",
-          "publisher": "Levante-EMV",
-          "matchedKeywords": [
-            "contenedor",
-            "tiempo",
-            "real",
-            "llenado"
-          ]
-        },
         {
           "url": "https://www.ribarroja.es/es/noticia/riba-roja-de-t%C3%BAria-impulsa-la-sensorizaci%C3%B3n-de-sus-contenedores-de-residuos-para-avanzar-hacia-una-gesti%C3%B3n-m%C3%A1s-sostenible-del-municipio",
           "date": "2026-09-25",
@@ -354,10 +353,21 @@
             "proyecto",
             "plan"
           ]
+        },
+        {
+          "url": "https://news.google.com/rss/articles/CBMi6gFBVV95cUxQcnJNWjcwTm1UQWw1aGVHZkpWR0plXzBfYTNjOVhMaXRuSzB4aEZyWnZmQnBfcXFSeWxnd0ZlQThtVDBncjFqcEdjTHF5RWhFSFBqeU03aTgzRUQ1aUNid0hvT3dCUHE2TVoyQTN4U29FZXFxaE9maHJyZFFJUXU4SV94c3BySGZkeTZZRFJPT19reGtZbndJT2dUdmlCSmM2ZE9QMkdmQ0hkcG96Vkh4Ti1mUDBQRWVhcWVQV0VqcFMwcTNPNHAzcjM2Vi13MWQ2aXA3VzI2MnpXcjdQX2pvOUw1cU9GUnJlTkHSAe8BQVVfeXFMUGZwRGt4X3hWd1NqVlp1T0JZb3RvUlZ0d0d6YTNpdC1KUnRFNnRoQ3JoV2ZNQ1ZjWG1FTXc5Z0xvR1YtTWpXY2lXNmJkN1NEblN5cmt2alQxYjB3MkZsQVpIcmlCWnloOXFSWXAxbmZxUkd1dk9wMzFtREpEb0pjNlFRZ2FCNGlRUnVMYXp6Tl9ra1Fqc01mRkxCM3JKQkFuZzMwWGs1dVdVTXZuNUk1STVNQ3E3aFFUTTRjRnduaVFXa3RVSUlRSF9wcmtocVZLMFVPU1ZIZTBvdksyRE1VRTZaSzNnOHlLMmxoclhvYUE?oc=5",
+          "date": "2026-10-03",
+          "quote": "Riba-roja mejora su gestión turística y supera la mitad de los requisitos para convertirse en un destino inteligente",
+          "kind": "press",
+          "publisher": "Levante-EMV",
+          "matchedKeywords": [
+            "turistica",
+            "destino"
+          ]
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-11-01T11:47:38.713Z"
+      "generatedAt": "2026-11-02T13:02:44.257Z"
     },
     {
       "promiseId": "ac-psoe-1xeq50",
@@ -377,6 +387,18 @@
             "competicion",
             "oficial",
             "deporte"
+          ]
+        },
+        {
+          "url": "https://www.ribarroja.es/es/noticia/el-ayuntamiento-de-riba-roja-de-t%C3%BAria-asigna-140.000-euros-en-subvenciones-econ%C3%B3micas-a-los-clubes-y-entidades-deportivas-para-financiar-sus-actividades-y-programas-de-la-temporada-25/26",
+          "date": "2026-11-02",
+          "quote": "El Ayuntamiento de Riba-roja de Túria asigna 140.000 euros en subvenciones económicas a los clubes y entidades deportivas para financiar sus actividades y programas de la temporada 25/26",
+          "kind": "press",
+          "publisher": "Ayuntamiento de Riba-roja de Túria",
+          "matchedKeywords": [
+            "subvencion",
+            "euro",
+            "economica"
           ]
         },
         {
@@ -414,7 +436,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-11-01T11:47:38.713Z"
+      "generatedAt": "2026-11-02T13:02:44.257Z"
     },
     {
       "promiseId": "ac-psoe-1kui43c",
@@ -461,10 +483,21 @@
             "contrato",
             "veolia"
           ]
+        },
+        {
+          "url": "https://news.google.com/rss/articles/CBMi8gFBVV95cUxQSnZUcXNEWHJSNUp6Q1BZd3ZWc21GZEExLWFDaFAtMGc5a2hoa2w4TlJFV01sMVpBM1NmM1RWbkpBYUxWNVdIMi1QOU53VFR6dy1WZ3BpV01uV3hLNlJkU1plLXBUQXJiMmkzQVQzM2x0MmwyVWJwX2M2T0N6UEpmcUJ4MEVpbjJ0SzdONzl2VjBFTzhRSUx3ZFZjZGtxWThJdEhsYUVwRzB0ejR6TkUyaFR2dlhWRVFLQ1hsMFJrOFRrT1FJbUFGQkVrdV9sWk5OeTdZdUM5X3lYUGxfZHNCTTZnUHFJdmZxc081NjQ3VThDZ9IB9wFBVV95cUxQWXdXYW9ZQlpRdW14dzYzbmZTa0pSNlI0LVdONlBENVBZMmppdWk2TlZqS1I0djViMXMtNlhYVm5lQmVsdkRRa1pmSmsxSXRxUUNQRUJIbVlsSlBMQTR5dTJLc2s4c1RNa29uNmd0OVJnc3lpUmp2b2VxNUVDLXVXbEpPMDlCOWpyNEtYYlZsbUlnNFhkeVVwMEdGQWdJZDR1RHpMbWhyM1hsN1FXWEREMXF1OE9GWHVjdnpoVTNWRHFuVDkxRFc3MjRJRFNrdzJoaHdmTzRwRkY5M0IyZnNRdEtYMHlqa1NlNkljdXNXMkY0VEFTYV9F?oc=5",
+          "date": "2026-10-30",
+          "quote": "Loriguilla pide a AEMET cambiar la ubicación del municipio en sus mapas de alertas: “Dos años después de la dana tenemos que seguir mejorando la prevención”",
+          "kind": "press",
+          "publisher": "Levante-EMV",
+          "matchedKeywords": [
+            "anos",
+            "municipio"
+          ]
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-11-01T11:47:38.713Z"
+      "generatedAt": "2026-11-02T13:02:44.257Z"
     }
   ],
   "llmEvidence": [],
