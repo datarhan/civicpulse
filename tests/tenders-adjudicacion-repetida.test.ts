@@ -128,6 +128,33 @@ describe('sinAdjudicacionesRepetidas — sobre el registro real', () => {
   })
 })
 
+describe('sinAdjudicacionesRepetidas — sobre lo publicado', () => {
+  // Las cifras de /contratos, el mapa y las adjudicatarias salen de este fichero:
+  // si lo escribió una pasada sin la regla, la cuenta doble ya está publicada.
+  const PUBLICADO = JSON.parse(
+    readFileSync(join(__dirname, '..', 'public', 'data', 'tenders.json'), 'utf8'),
+  ) as {
+    contracts: typeof CONTRATOS
+    contractCorrections: { adjudicacionesRepetidas: { id: string }[] }
+  }
+
+  it('mide algo: hay contratos y filas comprometidas sin fecha entre ellos', () => {
+    expect(PUBLICADO.contracts.length).toBeGreaterThan(0)
+    expect(PUBLICADO.contracts.some((c) => c.status === 'awarded' && !c.awardDate)).toBe(true)
+  })
+
+  it('no guarda nada que la regla retiraría todavía', () => {
+    expect(sinAdjudicacionesRepetidas(PUBLICADO.contracts).repetidas).toEqual([])
+  })
+
+  it('lo que dice haber retirado no sigue en el registro', () => {
+    const ids = new Set(PUBLICADO.contracts.map((c) => c.id))
+    const retiradas = PUBLICADO.contractCorrections.adjudicacionesRepetidas
+    expect(retiradas.length).toBeGreaterThan(0)
+    for (const r of retiradas) expect(ids.has(r.id), r.id).toBe(false)
+  })
+})
+
 describe('sinAdjudicacionesRepetidas — lo que no funde', () => {
   const ids = new Set(sinAdjudicacionesRepetidas(CONTRATOS).contratos.map((c) => c.id))
 

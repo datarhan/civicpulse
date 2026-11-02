@@ -1,11 +1,11 @@
 {
-  "generatedAt": "2026-11-01T18:02:31.821Z",
+  "generatedAt": "2026-11-02T07:23:24.113Z",
   "source": "derived: tenders.json assignees + officials.json · overrides: entity-overrides.json",
   "stats": {
     "companies": 380,
     "people": 21,
     "variantsMerged": 1,
-    "contractRefs": 709
+    "contractRefs": 707
   },
   "companies": [
     {
@@ -2964,23 +2964,6 @@
       "lastAwardDate": "2022-12-16"
     },
     {
-      "id": "co-19e3pfw",
-      "nameKey": "lacsen montajes electricos sl",
-      "canonicalName": "LACSEN MONTAJES ELECTRICOS S.L",
-      "variants": [
-        "LACSEN MONTAJES ELECTRICOS S.L"
-      ],
-      "contractIds": [
-        "1794430#10201842",
-        "auto-mse4o8",
-        "1794430#10156778"
-      ],
-      "contractCount": 3,
-      "awardedTotalEur": 31322.64,
-      "firstAwardDate": "2026-05-25",
-      "lastAwardDate": "2026-06-02"
-    },
-    {
       "id": "co-1uz1kbw",
       "nameKey": "martinez forklift sl",
       "canonicalName": "martinez forklift, S.L.",
@@ -3239,22 +3222,6 @@
       "awardedTotalEur": 28800,
       "firstAwardDate": "2019-01-16",
       "lastAwardDate": "2019-01-16"
-    },
-    {
-      "id": "co-9dmdo4",
-      "nameKey": "global showtime services srl",
-      "canonicalName": "GLOBAL SHOWTIME SERVICES, SRL",
-      "variants": [
-        "GLOBAL SHOWTIME SERVICES, SRL"
-      ],
-      "contractIds": [
-        "auto-nnc0ia",
-        "1794430#10389866"
-      ],
-      "contractCount": 2,
-      "awardedTotalEur": 28666.78,
-      "firstAwardDate": "2026-07-01",
-      "lastAwardDate": "2026-07-01"
     },
     {
       "id": "co-gy1n18",
@@ -3698,6 +3665,22 @@
       "awardedTotalEur": 19107.54,
       "firstAwardDate": "2025-01-13",
       "lastAwardDate": "2025-01-13"
+    },
+    {
+      "id": "co-19e3pfw",
+      "nameKey": "lacsen montajes electricos sl",
+      "canonicalName": "LACSEN MONTAJES ELECTRICOS S.L",
+      "variants": [
+        "LACSEN MONTAJES ELECTRICOS S.L"
+      ],
+      "contractIds": [
+        "1794430#10201842",
+        "1794430#10156778"
+      ],
+      "contractCount": 2,
+      "awardedTotalEur": 18202.64,
+      "firstAwardDate": "2026-05-25",
+      "lastAwardDate": "2026-06-02"
     },
     {
       "id": "co-pxxkmv",
@@ -4298,6 +4281,21 @@
       "awardedTotalEur": 14444.76,
       "firstAwardDate": "2025-11-12",
       "lastAwardDate": "2025-11-12"
+    },
+    {
+      "id": "co-9dmdo4",
+      "nameKey": "global showtime services srl",
+      "canonicalName": "GLOBAL SHOWTIME SERVICES, SRL",
+      "variants": [
+        "GLOBAL SHOWTIME SERVICES, SRL"
+      ],
+      "contractIds": [
+        "1794430#10389866"
+      ],
+      "contractCount": 1,
+      "awardedTotalEur": 14333.39,
+      "firstAwardDate": "2026-07-01",
+      "lastAwardDate": "2026-07-01"
     },
     {
       "id": "co-10a9jfc",
@@ -6170,6 +6168,6 @@
   "builtFrom": {
     "entity-overrides.json": "a41cc20172e9",
     "officials.json": "0fb6e5c5d0c2",
-    "tenders.json": "e07a696ff31e"
+    "tenders.json": "3ab548bddd83"
   }
 }
