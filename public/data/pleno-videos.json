@@ -1,14 +1,14 @@
 {
-  "generatedAt": "2026-10-27T08:44:57.178Z",
+  "generatedAt": "2026-11-02T08:30:30.293Z",
   "source": {
     "channelUrl": "https://www.youtube.com/@ajuntam_riba_roja_de_turia",
     "description": "Ajuntament de Riba-roja YouTube channel — pleno recordings only. Feed produced via `yt-dlp --flat-playlist --dump-json --extractor-args youtube:lang=ca`. A pleno whose title yields no date (no day, no year, or a form the parser cannot read) is listed in `sinFecha` with its reason, never tied to a session."
   },
   "stats": {
-    "totalVideosScanned": 670,
-    "plenoVideosMatched": 79,
+    "totalVideosScanned": 671,
+    "plenoVideosMatched": 80,
     "byKind": {
-      "ordinario": 56,
+      "ordinario": 57,
       "extraordinario": 10,
       "urgente": 10,
       "otro": 3
@@ -22,8 +22,8 @@
       },
       {
         "pestana": "Ajuntament de Riba-roja de Túria - En directe",
-        "leidas": 169,
-        "total": 169
+        "leidas": 170,
+        "total": 170
       },
       {
         "pestana": "Ajuntament de Riba-roja de Túria - Curts",
@@ -33,6 +33,13 @@
     ]
   },
   "items": [
+    {
+      "ytId": "xjTF1WQcvmI",
+      "title": "Ple Ordinari 2 de novembre de 2026.",
+      "plenoDate": "2026-11-02",
+      "kind": "ordinario",
+      "url": "https://www.youtube.com/watch?v=xjTF1WQcvmI"
+    },
     {
       "ytId": "C7SSTb7q0ys",
       "title": "Ple Ordinari 5 d´octubre  de 2026.",

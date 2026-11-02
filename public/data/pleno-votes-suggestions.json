@@ -1,21 +1,22 @@
 {
-  "generatedAt": "2026-10-12T09:43:01.875Z",
+  "generatedAt": "2026-11-02T10:16:12.550Z",
   "source": {
     "description": "Vote suggestions inferred automatically from YouTube-derived pleno transcripts. Every record carries requiresHumanApproval:true and MUST be reviewed by a curator before promotion to pleno-votes.json via `npm run pleno-vote`.",
     "contract": "Machine-written; never substitutes for the published human-verified record."
   },
   "stats": {
-    "total": 6,
+    "total": 12,
     "byEngine": {
-      "llm": 1,
-      "regex": 5
+      "llm": 5,
+      "regex": 7
     },
     "byPleno": {
       "zrbgic": 1,
       "10yl550": 1,
       "k4olcs": 1,
       "19gax3o": 2,
-      "c8kr44": 1
+      "c8kr44": 1,
+      "1sk3q3c": 6
     }
   },
   "items": [
@@ -190,6 +191,185 @@
       "regmeetCheck": {
         "regmeetOutcome": "aprobada",
         "regmeetTitle": "Expedient: 4211/2025/GEN, Acord de Ple relatiu a autorització de compatibilitat per a l'acompliment de segona activitat laboral per a l'exercici 2025/2026 AJMH",
+        "status": "match"
+      }
+    },
+    {
+      "plenoId": "1sk3q3c",
+      "plenoDate": "2025-07-07",
+      "itemNumber": null,
+      "excerpt": "7 → 4491.8] (SPEAKER_61) Sinó, per què està passant i com podem solucionar-ho? I extremen això, reduir el període mitjana de pagament i intentar anar liquidant les coses i tenir la finançació clara per a poder tindre un rumbo que no tenim i tenir clar que va endavant.\n[4492.1 → 4494.3] (SPEAKER_61) Passem a la votació d'este punt, si vos pareix.\n[4500.6 → 4501.2] (SPEAKER_61) No? Ja t'ho he posat.",
+      "outcome": "aprobado",
+      "votes": [
+        {
+          "bloc": "PSOE",
+          "direction": "en_contra"
+        }
+      ],
+      "confidence": 0.6,
+      "requiresHumanApproval": true,
+      "engine": "regex",
+      "regmeetCheck": {
+        "regmeetOutcome": null,
+        "status": "item-not-found"
+      }
+    },
+    {
+      "plenoId": "1sk3q3c",
+      "plenoDate": "2025-07-07",
+      "itemNumber": null,
+      "excerpt": "tem fent, i que espera que en un mes o mes i mig presentarà una nova web d'ajuntament i ahí anirà. Ahir, i si vol buscar-lo també,\n[7756.8 → 7762.0] (SPEAKER_120) pot treure tot el pla integral que vostè parla en empresa i li passarà. Perquè publicita també,\n[7762.1 → 7765.8] (SPEAKER_120) d'acord? Passem a la votació del pla integral que presentava el PSOE-PP.\n[7777.4 → 7778.4] (SPEAKER_121) Falt",
+      "outcome": "aprobado",
+      "votes": [
+        {
+          "bloc": "PSOE",
+          "direction": "en_contra"
+        },
+        {
+          "bloc": "PP",
+          "direction": "abstencion"
+        },
+        {
+          "bloc": "VOX",
+          "direction": "a_favor"
+        }
+      ],
+      "confidence": 0.6,
+      "requiresHumanApproval": true,
+      "engine": "regex",
+      "regmeetCheck": {
+        "regmeetOutcome": null,
+        "status": "item-not-found"
+      }
+    },
+    {
+      "plenoId": "1sk3q3c",
+      "plenoDate": "2025-07-07",
+      "itemNumber": 4,
+      "excerpt": "ja està. Doncs s'ha aprovat per unanimitat els canvis... S'ha aprovat per unanimitat de tot el grup polític, de tots els regidors. Passem al punt cinquè, aprovació.",
+      "outcome": "aprobado",
+      "votes": [
+        {
+          "bloc": "PSOE",
+          "direction": "a_favor"
+        },
+        {
+          "bloc": "PP",
+          "direction": "a_favor"
+        },
+        {
+          "bloc": "VOX",
+          "direction": "a_favor"
+        },
+        {
+          "bloc": "EU-Podem",
+          "direction": "a_favor"
+        },
+        {
+          "bloc": "Compromís",
+          "direction": "a_favor"
+        }
+      ],
+      "confidence": 0.72,
+      "requiresHumanApproval": true,
+      "engine": "llm",
+      "regmeetCheck": {
+        "regmeetOutcome": "aprobada",
+        "regmeetTitle": "Expedient 3400/2025/GEN, Acord relatiu a la modificació de la composició",
+        "status": "match"
+      }
+    },
+    {
+      "plenoId": "1sk3q3c",
+      "plenoDate": "2025-07-07",
+      "itemNumber": 8,
+      "excerpt": "Passem a la votació d'este punt... Doncs queda aprovat per 11 vots a favor, 7 en contra i 3 extensions.",
+      "outcome": "aprobado",
+      "votes": [
+        {
+          "bloc": "PSOE",
+          "direction": "a_favor",
+          "seats": 11
+        },
+        {
+          "bloc": "PP",
+          "direction": "en_contra",
+          "seats": 7
+        }
+      ],
+      "confidence": 0.65,
+      "requiresHumanApproval": true,
+      "engine": "llm",
+      "regmeetCheck": {
+        "regmeetOutcome": "aprobada",
+        "regmeetTitle": "Expedient: 1439/2025/GEN, Proposta d'acord relativa al Reconeixement Extrajudicial nº4/2025",
+        "status": "match"
+      }
+    },
+    {
+      "plenoId": "1sk3q3c",
+      "plenoDate": "2025-07-07",
+      "itemNumber": 9,
+      "excerpt": "Pues queda aprobada, pero 11 a favor, 7 en contra y 3 abstenciones, Funcionalista, Partido Popular y Vox, Excalonía Podemos, Compromís. Pasemos al siguiente punto del orden del día.",
+      "outcome": "aprobado",
+      "votes": [
+        {
+          "bloc": "PSOE",
+          "direction": "a_favor",
+          "seats": 11
+        },
+        {
+          "bloc": "PP",
+          "direction": "en_contra",
+          "seats": 7
+        },
+        {
+          "bloc": "VOX",
+          "direction": "abstencion",
+          "seats": 1
+        },
+        {
+          "bloc": "EU-Podem",
+          "direction": "abstencion",
+          "seats": 1
+        },
+        {
+          "bloc": "Compromís",
+          "direction": "abstencion",
+          "seats": 1
+        }
+      ],
+      "confidence": 0.72,
+      "requiresHumanApproval": true,
+      "engine": "llm",
+      "regmeetCheck": {
+        "regmeetOutcome": "aprobada",
+        "regmeetTitle": "Expedient: 2754/2025/GEN, Revisió de preus contracte arreplegada de RSU, poda i voluminosos",
+        "status": "match"
+      }
+    },
+    {
+      "plenoId": "1sk3q3c",
+      "plenoDate": "2025-07-07",
+      "itemNumber": 13,
+      "excerpt": "Passem a la votació del pla integral que presentava el PSOE-PP... Val, tres a favor, o sea, vuit a favor, deu en contra i tres abstensions, val? No queda aprovat per... Partit Popular? A favor. I Grup Socialista? En contra.",
+      "outcome": "rechazado",
+      "votes": [
+        {
+          "bloc": "PP",
+          "direction": "a_favor"
+        },
+        {
+          "bloc": "PSOE",
+          "direction": "en_contra"
+        }
+      ],
+      "confidence": 0.65,
+      "requiresHumanApproval": true,
+      "engine": "llm",
+      "regmeetCheck": {
+        "regmeetOutcome": "rechazada",
+        "regmeetTitle": "18/2025/PGRU Moció del Grup Municipal Popular Riba-roja de Túria perquè es pose en marxa un Pla Integral adequat per barris i urbanitzacions per al control de les plagues.",
         "status": "match"
       }
     }
