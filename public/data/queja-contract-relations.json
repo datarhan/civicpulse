@@ -1,10 +1,10 @@
 {
-  "generatedAt": "2026-11-02T07:23:24.578Z",
+  "generatedAt": "2026-11-02T08:35:31.120Z",
   "source": "queja-contract-relations engine v1 (deterministic)",
   "stats": {
     "frozen": false,
     "quejasScanned": 1,
-    "contractsScanned": 707,
+    "contractsScanned": 706,
     "tierA": 3,
     "tierB": 27,
     "reason": null
@@ -650,7 +650,7 @@
   "builtFrom": {
     "promises.json": "a4b8423e960f",
     "quejas.json": "d6fdc33fc4bc",
-    "tender-geo.json": "bf6d0e0c0b42",
-    "tenders.json": "3ab548bddd83"
+    "tender-geo.json": "5e662b0945ac",
+    "tenders.json": "a6bed95320dd"
   }
 }

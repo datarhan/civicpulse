@@ -1,5 +1,5 @@
 {
-  "note": "Correcciones curadas del registro de contratos de Gobierto (ribalicita): filas cuyo estado el registro publica mal y la Plataforma de Contratación tiene bien. Cada entrada cita literalmente el anuncio que dice el estado y el que explica la discrepancia, y va firmada; se aplican en scripts/scrape-tenders.ts y nunca las escribe la automatización. Una corrección que el registro ya absorbió se retira, no se deja.",
+  "note": "Correcciones curadas del registro de contratos de Gobierto (ribalicita): filas cuyo estado el registro publica mal y la Plataforma de Contratación tiene bien, y filas que repiten una adjudicación de otra. Cada entrada cita literalmente el anuncio que lo dice —en un estado, también el que explica la discrepancia— y va firmada; se aplican en scripts/scrape-tenders.ts y nunca las escribe la automatización. Una corrección que el registro ya absorbió se retira, no se deja.",
   "corrections": [
     {
       "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=wdnrdmoJINqmq21uxhbaVQ%3D%3D",
@@ -22,6 +22,30 @@
       },
       "curatedBy": "Sergei Lutchenko",
       "curatedAt": "2026-10-19"
+    }
+  ],
+  "repeticiones": [
+    {
+      "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=NhvbGm6OZ9xvYnTkQN0%2FZA%3D%3D",
+      "lote": 3,
+      "sourceRowId": "4398563",
+      "id": "1794430#4398563",
+      "queda": {
+        "lote": 0,
+        "sourceRowId": "10554489",
+        "id": "1794430#10554489"
+      },
+      "importeSinIva": 1000,
+      "assignee": "Fernando Dario Cardozo",
+      "motivo": "El anuncio de adjudicación, único documento del expediente, trae un solo resultado, de 1.000 € sin IVA y «1 Mes(es)», archivado bajo la categoría que él mismo numera como la 3 del sistema dinámico ESDA2/2022; Gobierto lo publica además como lote 3, sin fecha de adjudicación y con 1.095 días de plazo.",
+      "source": {
+        "title": "PLACSP · Anuncio de adjudicación, expediente 196/2023",
+        "url": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=NhvbGm6OZ9xvYnTkQN0%2FZA%3D%3D",
+        "date": "2023-04-19",
+        "quote": "Importe total ofertado (sin impuestos) 1.000 EUR."
+      },
+      "curatedBy": "Sergei Lutchenko",
+      "curatedAt": "2026-11-02"
     }
   ]
 }
