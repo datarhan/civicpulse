@@ -17,9 +17,10 @@ import { useEffect, useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { useReportaje } from '../../hooks/useReportaje'
 import { REPORTAJE_SLUGS } from '../../reportajes'
-import { fmtDateHuman } from '../../lib/formatters'
+import { fmtDateHuman, rellena } from '../../lib/formatters'
 import { useRevelado } from '../../hooks/useRevelado'
 import { useT, useLocale } from '../../i18n'
+import { IndiceSecciones } from '../IndiceSecciones'
 
 const SERIF = "'Fraunces', Georgia, serif"
 
@@ -71,67 +72,30 @@ export function SecHead({ num, kicker, title }) {
 }
 
 /**
- * «En esta pieza»: los apartados de la pieza, leídos de sus encabezados.
+ * Los apartados de la pieza, leídos de sus encabezados.
  *
- * Plegado por defecto: arriba ya hay titular, entradilla, figura y cifras, y un
- * índice abierto empujaría el cuerpo otra pantalla hacia abajo. Con menos de
- * tres apartados no se pinta: un índice de dos entradas es ruido.
- *
- * La lista sólo existe mientras está abierto. Plegada dentro de un <details>
- * seguía en el DOM, y cada titular de sección salía dos veces: la búsqueda del
- * navegador caía primero en la copia del índice (y lo desplegaba), y un
- * `getByText(titular).first()` de las pruebas resolvía a esa copia oculta en
- * vez de a la sección.
- *
- * No se imprime: en papel no hay adónde saltar.
+ * @param {Element} raiz
+ */
+const leerPieza = (raiz) =>
+  [...raiz.querySelectorAll('[data-seccion]')].map((el) => ({
+    id: el.id,
+    num: /** @type {HTMLElement} */ (el).dataset.seccion ?? '',
+    titulo: el.querySelector('h2')?.textContent?.trim() ?? '',
+  }))
+
+/**
+ * «En esta pieza». Plegado por defecto y en su sitio, no pegado: arriba ya hay
+ * titular, entradilla, figura y cifras, y un índice abierto empujaría el cuerpo
+ * otra pantalla hacia abajo.
  */
 export function IndicePieza() {
   const t = useT()
-  const ref = useRef(/** @type {HTMLElement|null} */ (null))
-  const [secciones, setSecciones] = useState(
-    /** @type {{ id: string, num: string, titulo: string }[]} */ ([]),
-  )
-  const [abierto, setAbierto] = useState(false)
-
-  useEffect(() => {
-    const raiz = ref.current?.closest('.cp-page')
-    if (!raiz) return
-    setSecciones(
-      [...raiz.querySelectorAll('[data-seccion]')].map((el) => ({
-        id: el.id,
-        num: /** @type {HTMLElement} */ (el).dataset.seccion ?? '',
-        titulo: el.querySelector('h2')?.textContent?.trim() ?? '',
-      })),
-    )
-  }, [])
-
   return (
-    <nav ref={ref} aria-label={t('reportajes.indice')} data-print-hide>
-      {secciones.length >= 3 && (
-        <details className="cp-indice" onToggle={(e) => setAbierto(e.currentTarget.open)}>
-          <summary>
-            <span className="cp-indice-titulo">{t('reportajes.indice')}</span>
-            <span className="mono cp-indice-n">
-              {t('reportajes.indice.apartados').replace('{n}', String(secciones.length))}
-            </span>
-          </summary>
-          {abierto && (
-            <ol>
-              {secciones.map((s) => (
-                <li key={s.id}>
-                  <a href={`#${s.id}`}>
-                    <span className="mono" aria-hidden="true">
-                      {s.num}
-                    </span>
-                    <span>{s.titulo}</span>
-                  </a>
-                </li>
-              ))}
-            </ol>
-          )}
-        </details>
-      )}
-    </nav>
+    <IndiceSecciones
+      leer={leerPieza}
+      titulo={t('reportajes.indice')}
+      apartados={(n) => rellena(t('reportajes.indice.apartados'), { n })}
+    />
   )
 }
 

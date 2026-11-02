@@ -20,6 +20,7 @@ import { EnBreveQuejas } from '../components/Quejas/EnBreveQuejas'
 import { QuienMasVigila, QueEsLaInstitucion } from '../components/Quejas/QuienMasVigila'
 import { DatosTecnicos } from '../components/Quejas/DatosTecnicos'
 import DivisorLecturas from '../components/DivisorLecturas'
+import { IndiceExperta } from '../components/IndiceSecciones'
 import { SeccionExperta } from '../components/Lecturas'
 
 const TELEGRAM_BOT_URL = 'https://t.me/munigraph_bot'
@@ -1362,6 +1363,7 @@ export default function Quejas() {
           divisor, todo lo que esta página ya tenía. */}
       <EnBreveQuejas bot={TELEGRAM_BOT_URL} />
       <DivisorLecturas />
+      <IndiceExperta />
 
       {/* Las tres secciones de abajo son las que pliega «Ver: lo esencial»
           (components/Lecturas.jsx). Los datos técnicos ya van plegados en su

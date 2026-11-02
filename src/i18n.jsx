@@ -915,6 +915,8 @@ export const CATALOGUE = {
     // sección van con su página (`*.seccion.*`): son lo único que se ve de una
     // sección plegada, y no llevan cifras, que quedarían a la vista sin su
     // salvedad.
+    'lecturas.indice': 'En esta página',
+    'lecturas.indice.apartados': '{n} apartados',
     'lecturas.ver': 'Ver:',
     'lecturas.esencial': 'lo esencial',
     'lecturas.todo': 'todo',
@@ -4033,6 +4035,8 @@ export const CATALOGUE = {
     'plenos.enBreve.proximo.verAcuerdo': 'L’acord, en l’acta del {fecha} →',
     'lecturas.divisor':
       'Fins ací, l’essencial. A sota, totes les dades, per a qui les vulga comprovar.',
+    'lecturas.indice': 'En esta pàgina',
+    'lecturas.indice.apartados': '{n} apartats',
     'lecturas.ver': 'Veure:',
     'lecturas.esencial': 'l’essencial',
     'lecturas.todo': 'tot',
