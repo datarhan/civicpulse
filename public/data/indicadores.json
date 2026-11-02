@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-01T18:02:33.279Z",
+  "generatedAt": "2026-11-02T07:23:31.735Z",
   "conjunto": "cv-15k-40k",
   "anioBase": 2024,
   "source": {
@@ -8651,21 +8651,21 @@
       "etiqueta": "Contratos con un solo licitador",
       "descripcion": "De los contratos adjudicados que declaran cuántas ofertas recibieron, cuántos recibieron exactamente una.",
       "numerador": {
-        "valor": 339,
+        "valor": 338,
         "estado": "declarado",
         "fuente": "tenders:adjudicados:numberOfProposals=1"
       },
       "denominador": {
-        "valor": 709,
+        "valor": 707,
         "estado": "declarado",
         "fuente": "tenders:adjudicados:conOfertasDeclaradas"
       },
-      "valor": 0.4781382228490832,
+      "valor": 0.4780763790664781,
       "formato": "porcentaje",
       "periodo": "2017–2026",
       "caveats": [
         "Un licitador único no es irregular por sí mismo: hay mercados con un solo proveedor capaz. Es el indicador que la Comisión Europea usa para vigilar la competencia en compra pública, y lo que mide es cuánta de ella hubo.",
-        "Ningún contrato adjudicado se queda fuera: los 709 declaran cuántas ofertas recibieron, así que el denominador coincide con el total de adjudicados."
+        "Ningún contrato adjudicado se queda fuera: los 707 declaran cuántas ofertas recibieron, así que el denominador coincide con el total de adjudicados."
       ],
       "citas": [
         {
@@ -8686,11 +8686,11 @@
         "fuente": "tenders:adjudicados:sinPublicidad"
       },
       "denominador": {
-        "valor": 709,
+        "valor": 707,
         "estado": "declarado",
         "fuente": "tenders:adjudicados"
       },
-      "valor": 0.40479548660084624,
+      "valor": 0.40594059405940597,
       "formato": "porcentaje",
       "periodo": "2017–2026",
       "caveats": [
@@ -8715,11 +8715,11 @@
         "fuente": "tenders:adjudicados:top5Importe"
       },
       "denominador": {
-        "valor": 125926894.62999995,
+        "valor": 125899441.23999994,
         "estado": "declarado",
         "fuente": "tenders:adjudicados:importeTotal"
       },
-      "valor": 0.6721263767258517,
+      "valor": 0.6722729393107831,
       "formato": "porcentaje",
       "periodo": "2017–2026",
       "caveats": [
@@ -9028,7 +9028,7 @@
         "fuente": {
           "nombre": "SINAC · Sistema de Información Nacional de Aguas de Consumo (Ministerio de Sanidad)",
           "url": "https://sinac.sanidad.gob.es/CiudadanoWeb/ciudadano/informacionAbastecimientoActionEntrada.do",
-          "atribucion": "Fuente: Ministerio de Sanidad, SINAC. Consultado el 2026-11-01; cada boletín lleva su fecha de toma."
+          "atribucion": "Fuente: Ministerio de Sanidad, SINAC. Consultado el 2026-11-02; cada boletín lleva su fecha de toma."
         }
       },
       {

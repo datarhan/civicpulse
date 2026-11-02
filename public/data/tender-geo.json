@@ -1,12 +1,12 @@
 {
-  "generatedAt": "2026-11-01T18:02:31.413Z",
+  "generatedAt": "2026-11-02T07:23:23.654Z",
   "source": {
-    "tenders": "2026-11-01T18:02:23.119Z",
+    "tenders": "2026-11-02T07:22:59.930Z",
     "geo": "2026-11-01T11:35:17.857Z"
   },
   "universe": {
-    "totalContracts": 704,
-    "totalAmount": 125926894.62999995,
+    "totalContracts": 702,
+    "totalAmount": 125899441.23999994,
     "locatedContracts": 40,
     "locatedAmount": 3469216.1400000006,
     "situatedContracts": 116,
@@ -3598,6 +3598,6 @@
     "geo.json": "ad861a91ee54",
     "place-overrides.json": "5878849f1684",
     "streets.json": "ef84f93a9be0",
-    "tenders.json": "e07a696ff31e"
+    "tenders.json": "3ab548bddd83"
   }
 }
