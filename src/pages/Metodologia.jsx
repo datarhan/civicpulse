@@ -725,7 +725,15 @@ function ContratoEditorial() {
             con el lote numerado que coincida en todo lo demás, si sólo hay uno. Una fila sin fecha
             de adjudicación, sólo con una fechada que coincida con ella en todos los campos que
             leemos del registro salvo el título y el identificador, y queda la que tiene fecha. Dos
-            lotes de igual precio no son una repetición.
+            lotes de igual precio no son una repetición.{' '}
+            {/* 02-11-2026: 196/2023, un taller de la escuela de adultos, como lote 3 sin fecha y
+                como lote en blanco fechado; el anuncio trae un solo resultado
+                (src/scraper/contract-corrections.ts, `retirarRepeticiones`). */}
+            Cuando las dos filas difieren en algo más y el anuncio de adjudicación dice que son una,
+            ninguna regla las funde: una persona retira la que sobra citando el anuncio, con su
+            firma, en <code>/data/contract-corrections.json</code>, y la retirada se lista en{' '}
+            <code>/data/tenders.json</code>. Si las filas dejan de repetir lo firmado, o falta la
+            que queda, no se retira nada.
           </li>
           <li>
             <strong>TED (Tenders Electronic Daily)</strong> — contratos europeos sobre el umbral UE,
