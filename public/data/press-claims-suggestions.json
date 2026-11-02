@@ -1,58 +1,58 @@
 {
-  "generatedAt": "2026-10-26T09:27:06.953Z",
+  "generatedAt": "2026-11-02T09:21:51.958Z",
   "source": {
     "description": "Press claims extracted by the laboratory pipeline",
     "contract": "src/scraper/press-claim.ts"
   },
   "stats": {
-    "total": 96,
+    "total": 104,
     "byType": {
       "promesa": 16,
-      "afirmacion_numerica": 49,
+      "afirmacion_numerica": 53,
       "cita_obra": 0,
       "cita_convenio": 4,
       "acusacion_publica": 0,
-      "dato_municipal": 27
+      "dato_municipal": 31
     },
     "bySource": {
       "Periòdic del Camp de Túria": 32,
-      "Levante-EMV": 5,
-      "Actualidad Valencia": 1,
+      "Levante-EMV": 8,
+      "Actualidad Valencia": 2,
       "Valencia Plaza": 6,
-      "Ayuntamiento de Riba-roja de Túria": 47,
+      "Ayuntamiento de Riba-roja de Túria": 51,
       "Las Provincias": 2,
       "El Periódico de Aquí": 1,
       "elperiodic.com": 2
     },
     "byTopic": {
-      "fiscal": 13,
+      "fiscal": 15,
       "vivienda": 0,
       "movilidad": 12,
-      "medio-ambiente": 25,
+      "medio-ambiente": 28,
       "social": 4,
       "cultura": 7,
       "seguridad": 2,
-      "empleo": 2,
+      "empleo": 4,
       "urbanismo": 11,
       "salud": 0,
       "transparencia": 3,
       "educacion": 1,
       "demografia": 2,
-      "other": 14
+      "other": 15
     },
     "byAttributedSource": {
-      "outlet": 54,
-      "municipal": 40,
+      "outlet": 58,
+      "municipal": 44,
       "opposition": 0,
       "unspecified": 2
     },
     "articlesProcessed": 25,
-    "articlesAvailable": 153,
+    "articlesAvailable": 154,
     "llmUnavailable": 0,
     "extraccionesSinRespuesta": 0,
-    "windowFrom": "2026-10-08T06:31:01.000Z",
-    "windowTo": "2026-10-23T11:37:52.000Z",
-    "articulosVistos": 57
+    "windowFrom": "2026-10-07T18:26:32.000Z",
+    "windowTo": "2026-10-31T00:13:01.000Z",
+    "articulosVistos": 82
   },
   "articulos": [
     {
@@ -74,10 +74,28 @@
       "procesadoEl": "2026-10-19T08:28:17.385Z"
     },
     {
+      "articleId": "14ekj8o",
+      "fingerprint": "vio548",
+      "desenlace": "descartado-en-triaje",
+      "procesadoEl": "2026-11-02T09:21:51.958Z"
+    },
+    {
       "articleId": "16twcj4",
       "fingerprint": "1p3agfc",
       "desenlace": "extraido",
       "procesadoEl": "2026-10-26T09:27:06.953Z"
+    },
+    {
+      "articleId": "16un5mo",
+      "fingerprint": "1nzzuny",
+      "desenlace": "descartado-en-triaje",
+      "procesadoEl": "2026-11-02T09:21:51.958Z"
+    },
+    {
+      "articleId": "17vyk5k",
+      "fingerprint": "15q20to",
+      "desenlace": "descartado-en-triaje",
+      "procesadoEl": "2026-11-02T09:21:51.958Z"
     },
     {
       "articleId": "18sga9a",
@@ -86,10 +104,22 @@
       "procesadoEl": "2026-10-19T08:28:17.385Z"
     },
     {
+      "articleId": "1a9am3c",
+      "fingerprint": "1iuth5w",
+      "desenlace": "descartado-en-triaje",
+      "procesadoEl": "2026-11-02T09:21:51.958Z"
+    },
+    {
       "articleId": "1bfp5g8",
       "fingerprint": "1cgbsla",
       "desenlace": "descartado-en-triaje",
       "procesadoEl": "2026-10-19T08:28:17.385Z"
+    },
+    {
+      "articleId": "1br15ao",
+      "fingerprint": "ijvwn0",
+      "desenlace": "descartado-en-triaje",
+      "procesadoEl": "2026-11-02T09:21:51.958Z"
     },
     {
       "articleId": "1br7vos",
@@ -134,6 +164,12 @@
       "procesadoEl": "2026-10-26T09:27:06.953Z"
     },
     {
+      "articleId": "1hz8q7k",
+      "fingerprint": "n35rog",
+      "desenlace": "descartado-en-triaje",
+      "procesadoEl": "2026-11-02T09:21:51.958Z"
+    },
+    {
       "articleId": "1i5ln84",
       "fingerprint": "10i4wsk",
       "desenlace": "descartado-en-triaje",
@@ -144,6 +180,12 @@
       "fingerprint": "1hto5xc",
       "desenlace": "extraido",
       "procesadoEl": "2026-10-19T08:28:17.385Z"
+    },
+    {
+      "articleId": "1je9lnf",
+      "fingerprint": "1vtkblg",
+      "desenlace": "descartado-en-triaje",
+      "procesadoEl": "2026-11-02T09:21:51.958Z"
     },
     {
       "articleId": "1jh9cu0",
@@ -162,6 +204,12 @@
       "fingerprint": "et7lsi",
       "desenlace": "sin-afirmaciones",
       "procesadoEl": "2026-10-26T09:27:06.953Z"
+    },
+    {
+      "articleId": "1mo6fdk",
+      "fingerprint": "16e2qve",
+      "desenlace": "descartado-en-triaje",
+      "procesadoEl": "2026-11-02T09:21:51.958Z"
     },
     {
       "articleId": "1n4h2ak",
@@ -192,6 +240,12 @@
       "fingerprint": "753ip8",
       "desenlace": "descartado-en-triaje",
       "procesadoEl": "2026-10-26T09:27:06.953Z"
+    },
+    {
+      "articleId": "1r82cfw",
+      "fingerprint": "u7egr0",
+      "desenlace": "descartado-en-triaje",
+      "procesadoEl": "2026-11-02T09:21:51.958Z"
     },
     {
       "articleId": "1sfn68k",
@@ -236,6 +290,12 @@
       "procesadoEl": "2026-10-19T08:28:17.385Z"
     },
     {
+      "articleId": "2m7xhk",
+      "fingerprint": "m6lwg4",
+      "desenlace": "extraido",
+      "procesadoEl": "2026-11-02T09:21:51.958Z"
+    },
+    {
       "articleId": "3da6js",
       "fingerprint": "1qxdo8g",
       "desenlace": "descartado-en-triaje",
@@ -252,6 +312,12 @@
       "fingerprint": "101nprs",
       "desenlace": "descartado-en-triaje",
       "procesadoEl": "2026-10-26T09:27:06.953Z"
+    },
+    {
+      "articleId": "58bxjw",
+      "fingerprint": "7o1b0g",
+      "desenlace": "extraido",
+      "procesadoEl": "2026-11-02T09:21:51.958Z"
     },
     {
       "articleId": "9k4v28",
@@ -278,6 +344,18 @@
       "procesadoEl": "2026-10-26T09:27:06.953Z"
     },
     {
+      "articleId": "cxmvv4",
+      "fingerprint": "1v1eq7c",
+      "desenlace": "descartado-en-triaje",
+      "procesadoEl": "2026-11-02T09:21:51.958Z"
+    },
+    {
+      "articleId": "dcoykf",
+      "fingerprint": "19x50kk",
+      "desenlace": "descartado-en-triaje",
+      "procesadoEl": "2026-11-02T09:21:51.958Z"
+    },
+    {
       "articleId": "dg07lo",
       "fingerprint": "1pti7lg",
       "desenlace": "extraido",
@@ -294,6 +372,18 @@
       "fingerprint": "xrrow0",
       "desenlace": "descartado-en-triaje",
       "procesadoEl": "2026-10-26T09:27:06.953Z"
+    },
+    {
+      "articleId": "g1o0wg",
+      "fingerprint": "1oq9rbg",
+      "desenlace": "extraido",
+      "procesadoEl": "2026-11-02T09:21:51.958Z"
+    },
+    {
+      "articleId": "gs6fd4",
+      "fingerprint": "19mc4n4",
+      "desenlace": "sin-afirmaciones",
+      "procesadoEl": "2026-11-02T09:21:51.958Z"
     },
     {
       "articleId": "hbl63g",
@@ -314,6 +404,12 @@
       "procesadoEl": "2026-10-19T08:28:17.385Z"
     },
     {
+      "articleId": "kq3fan",
+      "fingerprint": "1aavc1u",
+      "desenlace": "descartado-en-triaje",
+      "procesadoEl": "2026-11-02T09:21:51.958Z"
+    },
+    {
       "articleId": "lhseyk",
       "fingerprint": "x91xj4",
       "desenlace": "extraido",
@@ -332,16 +428,46 @@
       "procesadoEl": "2026-10-26T09:27:06.953Z"
     },
     {
+      "articleId": "mlxjcw",
+      "fingerprint": "j7916q",
+      "desenlace": "extraido",
+      "procesadoEl": "2026-11-02T09:21:51.958Z"
+    },
+    {
+      "articleId": "mw12pc",
+      "fingerprint": "1oulkno",
+      "desenlace": "descartado-en-triaje",
+      "procesadoEl": "2026-11-02T09:21:51.958Z"
+    },
+    {
+      "articleId": "mw9ti3",
+      "fingerprint": "1yochto",
+      "desenlace": "descartado-en-triaje",
+      "procesadoEl": "2026-11-02T09:21:51.958Z"
+    },
+    {
       "articleId": "o3xjg4",
       "fingerprint": "1k3l80",
       "desenlace": "extraido",
       "procesadoEl": "2026-10-12T08:31:15.395Z"
     },
     {
+      "articleId": "of6y6c",
+      "fingerprint": "pb1j8s",
+      "desenlace": "descartado-en-triaje",
+      "procesadoEl": "2026-11-02T09:21:51.958Z"
+    },
+    {
       "articleId": "ol3xa0",
       "fingerprint": "1l708r1",
       "desenlace": "descartado-en-triaje",
       "procesadoEl": "2026-10-26T09:27:06.953Z"
+    },
+    {
+      "articleId": "p6dnms",
+      "fingerprint": "1mni4uk",
+      "desenlace": "descartado-en-triaje",
+      "procesadoEl": "2026-11-02T09:21:51.958Z"
     },
     {
       "articleId": "plfgoc",
@@ -362,6 +488,12 @@
       "procesadoEl": "2026-10-26T09:27:06.953Z"
     },
     {
+      "articleId": "q97fis",
+      "fingerprint": "ajxrzs",
+      "desenlace": "descartado-en-triaje",
+      "procesadoEl": "2026-11-02T09:21:51.958Z"
+    },
+    {
       "articleId": "qvuwag",
       "fingerprint": "1yzxzcj",
       "desenlace": "extraido",
@@ -374,6 +506,12 @@
       "procesadoEl": "2026-10-12T08:31:15.395Z"
     },
     {
+      "articleId": "t63w7o",
+      "fingerprint": "1md5faw",
+      "desenlace": "descartado-en-triaje",
+      "procesadoEl": "2026-11-02T09:21:51.958Z"
+    },
+    {
       "articleId": "urrfhs",
       "fingerprint": "1plve0g",
       "desenlace": "descartado-en-triaje",
@@ -384,6 +522,18 @@
       "fingerprint": "3zj37c",
       "desenlace": "sin-afirmaciones",
       "procesadoEl": "2026-10-19T08:28:17.385Z"
+    },
+    {
+      "articleId": "xh27f9",
+      "fingerprint": "nrw0v7",
+      "desenlace": "descartado-en-triaje",
+      "procesadoEl": "2026-11-02T09:21:51.958Z"
+    },
+    {
+      "articleId": "ypkp7c",
+      "fingerprint": "1cs0g58",
+      "desenlace": "sin-afirmaciones",
+      "procesadoEl": "2026-11-02T09:21:51.958Z"
     },
     {
       "articleId": "z718i4",
@@ -2663,6 +2813,195 @@
       },
       "confidence": 0.45,
       "reasoning": "Es un compromiso de acción futura (ejecución de un plan director) sobre un número concreto de canteras, verificable si llega a materializarse, pero solo se dispone del titular sin cuerpo del artículo.",
+      "requiresHumanApproval": true
+    },
+    {
+      "id": "2m7xhk-0-num",
+      "articleId": "2m7xhk",
+      "articleFingerprint": "m6lwg4",
+      "articleSource": "Ayuntamiento de Riba-roja de Túria",
+      "articleSourceHost": "ribarroja.es",
+      "articleUrl": "https://www.ribarroja.es/es/noticia/riba-roja-incrementa-hasta-un-41%25-la-contrataci%C3%B3n-laboral-en-2026-y-contabiliza-hasta-1.604-contratos-en-los-tres-primeros-trimestres-del-a%C3%B1o",
+      "articleDate": "2026-10-30T10:42:02.000Z",
+      "segmentIndex": 0,
+      "segmentKind": "title",
+      "type": "afirmacion_numerica",
+      "attributedSource": "municipal",
+      "verbatim": "incrementa hasta un 41% la contratación laboral en 2026",
+      "context": "Riba-roja incrementa hasta un 41% la contratación laboral en 2026 y contabiliza hasta 1.604 contratos en los tres primeros trimestres del año",
+      "topic": "empleo",
+      "entities": {
+        "count": 41,
+        "countUnit": "%",
+        "date": "2026",
+        "referencedEntity": "contratación laboral en Riba-roja de Túria"
+      },
+      "confidence": 0.55,
+      "reasoning": "Es una cifra porcentual concreta de incremento de contratación que puede verificarse contra registros oficiales de empleo del municipio.",
+      "requiresHumanApproval": true
+    },
+    {
+      "id": "2m7xhk-1-num",
+      "articleId": "2m7xhk",
+      "articleFingerprint": "m6lwg4",
+      "articleSource": "Ayuntamiento de Riba-roja de Túria",
+      "articleSourceHost": "ribarroja.es",
+      "articleUrl": "https://www.ribarroja.es/es/noticia/riba-roja-incrementa-hasta-un-41%25-la-contrataci%C3%B3n-laboral-en-2026-y-contabiliza-hasta-1.604-contratos-en-los-tres-primeros-trimestres-del-a%C3%B1o",
+      "articleDate": "2026-10-30T10:42:02.000Z",
+      "segmentIndex": 1,
+      "segmentKind": "title",
+      "type": "afirmacion_numerica",
+      "attributedSource": "municipal",
+      "verbatim": "contabiliza hasta 1.604 contratos en los tres primeros trimestres del año",
+      "context": "Riba-roja incrementa hasta un 41% la contratación laboral en 2026 y contabiliza hasta 1.604 contratos en los tres primeros trimestres del año",
+      "topic": "empleo",
+      "entities": {
+        "count": 1604,
+        "countUnit": "contratos",
+        "date": "primeros tres trimestres de 2026",
+        "referencedEntity": "contratos laborales en Riba-roja de Túria"
+      },
+      "confidence": 0.55,
+      "reasoning": "Es un recuento numérico específico de contratos que puede contrastarse con datos de registro laboral o SEPE/estadísticas municipales.",
+      "requiresHumanApproval": true
+    },
+    {
+      "id": "mlxjcw-0-dat",
+      "articleId": "mlxjcw",
+      "articleFingerprint": "j7916q",
+      "articleSource": "Ayuntamiento de Riba-roja de Túria",
+      "articleSourceHost": "ribarroja.es",
+      "articleUrl": "https://www.ribarroja.es/es/noticia/programa-reacciona-2024",
+      "articleDate": "2026-10-29T08:37:14.000Z",
+      "segmentIndex": 0,
+      "segmentKind": "body",
+      "type": "dato_municipal",
+      "attributedSource": "municipal",
+      "verbatim": "la eliminación de vegetación invasora, el desbroce de matorrales, la poda y el refaldat del arbolado, así como la retirada de residuos en zonas forestales",
+      "context": "El Ayuntamiento de Riba-roja de Túria ha llevado a cabo actuaciones de gestión forestal y prevención de incendios, que incluyen la eliminación de vegetación invasora, el desbroce de matorrales, la poda y el refaldat del arbolado, así como la retirada de residuos en zonas forestales.",
+      "topic": "medio-ambiente",
+      "entities": {
+        "date": "2024",
+        "referencedEntity": "Ayuntamiento de Riba-roja de Túria"
+      },
+      "confidence": 0.65,
+      "reasoning": "Describe acciones concretas de gestión forestal ejecutadas por el Ayuntamiento que son verificables sobre el terreno.",
+      "requiresHumanApproval": true
+    },
+    {
+      "id": "mlxjcw-1-dat",
+      "articleId": "mlxjcw",
+      "articleFingerprint": "j7916q",
+      "articleSource": "Ayuntamiento de Riba-roja de Túria",
+      "articleSourceHost": "ribarroja.es",
+      "articleUrl": "https://www.ribarroja.es/es/noticia/programa-reacciona-2024",
+      "articleDate": "2026-10-29T08:37:14.000Z",
+      "segmentIndex": 1,
+      "segmentKind": "body",
+      "type": "dato_municipal",
+      "attributedSource": "municipal",
+      "verbatim": "Las actuaciones cuentan con el apoyo de la Diputación de València, en el marco del programa REACCIONA 2024.",
+      "context": "Estas intervenciones contribuyen a reducir la carga de combustible vegetal y a mejorar la conservación del entorno natural. Las actuaciones cuentan con el apoyo de la Diputación de València, en el marco del programa REACCIONA 2024.",
+      "topic": "medio-ambiente",
+      "entities": {
+        "date": "2024",
+        "referencedEntity": "Diputación de València"
+      },
+      "confidence": 0.6,
+      "reasoning": "Afirma una colaboración institucional específica y nombrada que puede verificarse contra registros de la Diputación.",
+      "requiresHumanApproval": true
+    },
+    {
+      "id": "g1o0wg-0-num",
+      "articleId": "g1o0wg",
+      "articleFingerprint": "1oq9rbg",
+      "articleSource": "Actualidad Valencia",
+      "articleSourceHost": "actualidadvalencia.com",
+      "articleUrl": "https://news.google.com/rss/articles/CBMidkFVX3lxTFBGeWdhX012Y2dwNDhnc0tqY3F0Ri1LMFpoaHlibHJFRGdTdkhpeVZCZ3RCMXE2TnExeWxyblVXZE9sNG04eHd4U25vQWItS0x5RTBTSGFncUEwZkxFRGZlcEZEcnVuOGVxMW90SHV3VGFMY1hFRHc?oc=5",
+      "articleDate": "2026-10-26T09:11:12.000Z",
+      "segmentIndex": 0,
+      "segmentKind": "title",
+      "type": "afirmacion_numerica",
+      "attributedSource": "outlet",
+      "verbatim": "Riba-roja prueba un sistema inteligente que produce cuatro tipos de agua regenerada para la industria",
+      "context": "Riba-roja prueba un sistema inteligente que produce cuatro tipos de agua regenerada para la industria",
+      "topic": "medio-ambiente",
+      "entities": {
+        "count": 4,
+        "countUnit": "tipos de agua regenerada",
+        "referencedEntity": "Riba-roja de Túria"
+      },
+      "confidence": 0.5,
+      "reasoning": "El titular afirma un dato numérico concreto (cuatro tipos de agua regenerada producidos por un sistema) que es en principio verificable, aunque solo se dispone del titular y no del cuerpo del artículo para contrastarlo.",
+      "requiresHumanApproval": true
+    },
+    {
+      "id": "58bxjw-0-dat",
+      "articleId": "58bxjw",
+      "articleFingerprint": "7o1b0g",
+      "articleSource": "Levante-EMV",
+      "articleSourceHost": "levante-emv.com",
+      "articleUrl": "https://news.google.com/rss/articles/CBMiuwFBVV95cUxQaXhMaXQ4RVJKRllpdUNIRDRkdVV3ekNCNzFqRnhqYm1wQ3Nza0RwbDZBclY1cmhwWFY5MlVJNzdRWXJ0Q0g0bW5MTlZVWVNITkFWcjdVWnBVTjRjTUpMelNDOWJxQm9CUFVKUnVabUVhU1hSVy1kWm1tWUNHSktjcDB2NFVPNEQtODFrSmxVZ0FMaE9pV09mRjd2cXJic1VCdzF4bXh3ekpkMkw4el96MXQ1dy1UQVVQUFVn0gHAAUFVX3lxTE1heGVhaGlBUnFpRTBqU1Z2b1pvSGN4NWdYZE9XQVdfcmk1cUUxRXk1a0p5eEhwU3lLeTdTNjZEY3pmc2lNbkliRnlDZ3FSUUNCNXZwV3o2RHVlVEo5U2ROeEZORmswS2tWck5ZOFU1UnZVc2ZPOUVVNlhkdTRmRUZ5bS0yV0dzdF9SbHpUWGVMWHBZb3JXT09tRnczMTlLVG1jWjZtUmhEQ1JvQ1VLbGlsSjk3N0tSdkMtRFJuVUlsZg?oc=5",
+      "articleDate": "2026-10-08T07:00:00.000Z",
+      "segmentIndex": 0,
+      "segmentKind": "title",
+      "type": "dato_municipal",
+      "attributedSource": "outlet",
+      "verbatim": "Riba-roja firma el nuevo contrato del agua por 17 años",
+      "context": "Riba-roja firma el nuevo contrato del agua por 17 años: 2,3 millones de euros y tarifas congeladas",
+      "topic": "other",
+      "entities": {
+        "count": 17,
+        "countUnit": "años",
+        "referencedEntity": "contrato del agua"
+      },
+      "confidence": 0.5,
+      "reasoning": "La duración del contrato de servicio de agua es un dato verificable mediante el documento contractual o acuerdo municipal.",
+      "requiresHumanApproval": true
+    },
+    {
+      "id": "58bxjw-1-num",
+      "articleId": "58bxjw",
+      "articleFingerprint": "7o1b0g",
+      "articleSource": "Levante-EMV",
+      "articleSourceHost": "levante-emv.com",
+      "articleUrl": "https://news.google.com/rss/articles/CBMiuwFBVV95cUxQaXhMaXQ4RVJKRllpdUNIRDRkdVV3ekNCNzFqRnhqYm1wQ3Nza0RwbDZBclY1cmhwWFY5MlVJNzdRWXJ0Q0g0bW5MTlZVWVNITkFWcjdVWnBVTjRjTUpMelNDOWJxQm9CUFVKUnVabUVhU1hSVy1kWm1tWUNHSktjcDB2NFVPNEQtODFrSmxVZ0FMaE9pV09mRjd2cXJic1VCdzF4bXh3ekpkMkw4el96MXQ1dy1UQVVQUFVn0gHAAUFVX3lxTE1heGVhaGlBUnFpRTBqU1Z2b1pvSGN4NWdYZE9XQVdfcmk1cUUxRXk1a0p5eEhwU3lLeTdTNjZEY3pmc2lNbkliRnlDZ3FSUUNCNXZwV3o2RHVlVEo5U2ROeEZORmswS2tWck5ZOFU1UnZVc2ZPOUVVNlhkdTRmRUZ5bS0yV0dzdF9SbHpUWGVMWHBZb3JXT09tRnczMTlLVG1jWjZtUmhEQ1JvQ1VLbGlsSjk3N0tSdkMtRFJuVUlsZg?oc=5",
+      "articleDate": "2026-10-08T07:00:00.000Z",
+      "segmentIndex": 1,
+      "segmentKind": "title",
+      "type": "afirmacion_numerica",
+      "attributedSource": "outlet",
+      "verbatim": "2,3 millones de euros y tarifas congeladas",
+      "context": "Riba-roja firma el nuevo contrato del agua por 17 años: 2,3 millones de euros y tarifas congeladas",
+      "topic": "fiscal",
+      "entities": {
+        "amountEuros": 2300000,
+        "referencedEntity": "contrato del agua"
+      },
+      "confidence": 0.5,
+      "reasoning": "El importe económico atribuido al nuevo contrato es una cifra concreta contrastable con el expediente de contratación municipal.",
+      "requiresHumanApproval": true
+    },
+    {
+      "id": "58bxjw-2-dat",
+      "articleId": "58bxjw",
+      "articleFingerprint": "7o1b0g",
+      "articleSource": "Levante-EMV",
+      "articleSourceHost": "levante-emv.com",
+      "articleUrl": "https://news.google.com/rss/articles/CBMiuwFBVV95cUxQaXhMaXQ4RVJKRllpdUNIRDRkdVV3ekNCNzFqRnhqYm1wQ3Nza0RwbDZBclY1cmhwWFY5MlVJNzdRWXJ0Q0g0bW5MTlZVWVNITkFWcjdVWnBVTjRjTUpMelNDOWJxQm9CUFVKUnVabUVhU1hSVy1kWm1tWUNHSktjcDB2NFVPNEQtODFrSmxVZ0FMaE9pV09mRjd2cXJic1VCdzF4bXh3ekpkMkw4el96MXQ1dy1UQVVQUFVn0gHAAUFVX3lxTE1heGVhaGlBUnFpRTBqU1Z2b1pvSGN4NWdYZE9XQVdfcmk1cUUxRXk1a0p5eEhwU3lLeTdTNjZEY3pmc2lNbkliRnlDZ3FSUUNCNXZwV3o2RHVlVEo5U2ROeEZORmswS2tWck5ZOFU1UnZVc2ZPOUVVNlhkdTRmRUZ5bS0yV0dzdF9SbHpUWGVMWHBZb3JXT09tRnczMTlLVG1jWjZtUmhEQ1JvQ1VLbGlsSjk3N0tSdkMtRFJuVUlsZg?oc=5",
+      "articleDate": "2026-10-08T07:00:00.000Z",
+      "segmentIndex": 2,
+      "segmentKind": "title",
+      "type": "dato_municipal",
+      "attributedSource": "outlet",
+      "verbatim": "2,3 millones de euros y tarifas congeladas",
+      "context": "Riba-roja firma el nuevo contrato del agua por 17 años: 2,3 millones de euros y tarifas congeladas",
+      "topic": "fiscal",
+      "entities": {
+        "referencedEntity": "tarifas del agua"
+      },
+      "confidence": 0.45,
+      "reasoning": "La afirmación de que las tarifas quedan congeladas es contrastable con las ordenanzas o pliegos municipales del servicio de agua.",
       "requiresHumanApproval": true
     }
   ]
