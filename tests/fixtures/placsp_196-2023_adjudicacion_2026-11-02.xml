@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Extracto del anuncio de adjudicación de 196/2023 en la Plataforma (CODICE 2.06,
-     ID 0000010770847, publicado el 19-04-2023), leído el 2026-11-02: las tres
-     categorías del sistema dinámico que nombra el anuncio y su único TenderResult,
-     tal cual salvo el NIF de la adjudicataria, una persona física, que se quita. -->
+     ID 0000010770847, publicado el 19-04-2023), leído el 2026-11-02. Su único
+     TenderResult va tal cual salvo la identificación de la adjudicataria, su NIF,
+     que se quita porque es una persona física. De las tres categorías del sistema
+     dinámico (cac:ProcurementProject dentro de cada DPSCategory) se copian sólo su
+     número y su nombre. Los espacios de nombres, declarados en cada elemento. -->
 <extracto>
     <cac:ProcurementProject xmlns:cac="urn:dgpe:names:draft:codice:schema:xsd:CommonAggregateComponents-2" xmlns:cbc="urn:dgpe:names:draft:codice:schema:xsd:CommonBasicComponents-2">
         <cbc:ID schemeName="NUM_CATEGORIA">3</cbc:ID>
@@ -31,6 +33,14 @@
             <cac:PartyName>
                 <cbc:Name>Fernando Dario Cardozo </cbc:Name>
             </cac:PartyName>
+            <cac:PhysicalLocation>
+                <cac:Address>
+                    <cac:Country>
+                        <cbc:IdentificationCode languageID="es" listURI="http://contrataciondelestado.es/codice/cl/2.08/CountryIdentificationCode-2.08.gc" listVersionID="2.08" name="España">ES</cbc:IdentificationCode>
+                        <cbc:Name>España</cbc:Name>
+                    </cac:Country>
+                </cac:Address>
+            </cac:PhysicalLocation>
         </cac:WinningParty>
         <cac:AwardedTenderedProject>
             <cbc:ProcurementProjectDPSCategoryID>80000000</cbc:ProcurementProjectDPSCategoryID>

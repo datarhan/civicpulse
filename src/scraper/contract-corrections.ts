@@ -423,9 +423,10 @@ export function evaluarRepeticiones(
       (s) => s.permalink === k.permalink && esta(s),
     )
     if (sobra) return { ...ref, desenlace: 'sobra', detalle: sobra.porque }
-    const sigue = (snapshot.contracts ?? []).some((c) => c.permalink === k.permalink && esta(c))
+    // Sin filas que mirar no se sabe si la retirada sigue: nunca «aplicada».
+    const sigue = snapshot.contracts?.some((c) => c.permalink === k.permalink && esta(c)) ?? null
     const retirada = (snapshot.contractCorrections?.repeticionesRetiradas ?? []).find(esta)
-    if (retirada && !sigue)
+    if (retirada && sigue === false)
       return { ...ref, desenlace: 'aplicada', detalle: `retirada; queda ${retirada.queda}` }
     if (!Number.isFinite(generado) || generado < Date.parse(k.curatedAt) + 86_400_000)
       return {
@@ -436,7 +437,12 @@ export function evaluarRepeticiones(
     return {
       ...ref,
       desenlace: 'no-aplicada',
-      detalle: sigue ? 'la fila sigue en tenders.json' : 'la pasada no la anotó como retirada',
+      detalle:
+        sigue === null
+          ? 'tenders.json no trae contratos que mirar'
+          : sigue
+            ? 'la fila sigue en tenders.json'
+            : 'la pasada no la anotó como retirada',
     }
   })
 }

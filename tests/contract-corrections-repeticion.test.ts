@@ -30,8 +30,10 @@ import { procurementStatusKind } from '../src/lib/contract-status.js'
  *
  * Así que una de las dos filas se retira, y como nombra a una persona y lo decide
  * alguien con el anuncio delante, la retira una entrada firmada de
- * `contract-corrections.json`, no la regla. Las fixtures del anuncio son el texto y
- * un extracto del XML tal cual, salvo el NIF de la adjudicataria, que se quita.
+ * `contract-corrections.json`, no la regla. Las fixtures del anuncio son su texto,
+ * tal cual salvo el NIF de la adjudicataria (una persona física), y un extracto del
+ * XML: el único resultado, con la misma salvedad, y las tres categorías del sistema
+ * dinámico reducidas a su número y su nombre.
  */
 const CSV = readFileSync(resolve('tests/fixtures/ribalicita_contratos_2026-11-01.csv'), 'utf8')
 const AVISO = readFileSync(
@@ -293,6 +295,15 @@ describe('la guarda, con repeticiones', () => {
       snap('2026-11-03T03:00:00Z', { contracts: trasLaRegla }),
     )
     expect(e.desenlace).toBe('no-aplicada')
+  })
+
+  it('un snapshot sin contratos no la da por aplicada aunque la liste retirada', () => {
+    const { contracts: _, ...sinFilas } = snap('2026-11-03T03:00:00Z')
+    const [e] = evaluarRepeticiones(fichero(repeticion()), sinFilas)
+    expect(e).toMatchObject({
+      desenlace: 'no-aplicada',
+      detalle: 'tenders.json no trae contratos que mirar',
+    })
   })
 
   it('la que la pasada declaró sobrante: sobra', () => {
