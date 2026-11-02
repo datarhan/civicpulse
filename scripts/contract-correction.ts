@@ -66,6 +66,15 @@ function usage(): never {
   process.exit(2)
 }
 
+/**
+ * El día de calendario de quien firma, en su huso: `toISOString` da el de UTC, y
+ * una firma puesta en Riba-roja pasada la medianoche saldría con la fecha de ayer.
+ */
+function diaDeHoy(ahora = new Date()): string {
+  const dos = (n: number) => String(n).padStart(2, '0')
+  return `${ahora.getFullYear()}-${dos(ahora.getMonth() + 1)}-${dos(ahora.getDate())}`
+}
+
 function valorDe(argv: string[], opcion: string): string | undefined {
   const i = argv.indexOf(opcion)
   return i >= 0 ? argv[i + 1] : undefined
@@ -111,7 +120,7 @@ function main() {
     const nueva: RepeticionContrato = {
       ...borrador,
       curatedBy: curator,
-      curatedAt: new Date().toISOString().slice(0, 10),
+      curatedAt: diaDeHoy(),
     }
     writeSnapshot(
       CORRECTIONS_PATH,
