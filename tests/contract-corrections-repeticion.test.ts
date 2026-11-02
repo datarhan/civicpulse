@@ -311,6 +311,29 @@ describe('la guarda, con repeticiones', () => {
   })
 })
 
+describe('el fichero curado comiteado', () => {
+  // Hasta que una persona la firme no hay entrada: la prueba sale «skipped», no verde.
+  const curado = validateContractCorrections(
+    JSON.parse(readFileSync(resolve('public/data/contract-corrections.json'), 'utf8')),
+  )
+  const firmada = (curado.repeticiones ?? []).find((r) => r.permalink === ENLACE)
+
+  it.skipIf(!firmada)(
+    'la de 196/2023 cita literalmente su anuncio y nombra a su adjudicataria',
+    () => {
+      expect(llano(AVISO)).toContain(llano(firmada!.source.quote))
+      expect(llano(AVISO)).toContain(llano(firmada!.assignee))
+    },
+  )
+
+  it.skipIf(!firmada)('retira el lote 3 y deja la fila fechada, en la fixture de Gobierto', () => {
+    const r = retirarRepeticiones(trasLaRegla, curado)
+    expect(r.retiradas.map((x) => x.sourceRowId)).toEqual(['4398563'])
+    expect(r.retiradas[0].queda).toBe(EN_BLANCO.id)
+    expect(r.sobran).toEqual([])
+  })
+})
+
 describe('scrape-tenders', () => {
   const script = readFileSync(resolve('scripts/scrape-tenders.ts'), 'utf8')
 
