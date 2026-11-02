@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-02T07:22:59.930Z",
+  "generatedAt": "2026-11-02T08:35:20.273Z",
   "source": {
     "contracts": "https://ribalicita.ribarroja.es/api/v1/data/data.csv?sql=select%20*%20from%20contratos",
     "tenders": "https://ribalicita.ribarroja.es/api/v1/data/data.csv?sql=select%20*%20from%20licitaciones",
@@ -7,11 +7,11 @@
     "host": "https://ribalicita.ribarroja.es"
   },
   "stats": {
-    "totalContracts": 804,
+    "totalContracts": 803,
     "totalTenders": 431,
-    "awardedContracts": 707,
+    "awardedContracts": 706,
     "openTenders": 0,
-    "awardedTotalEuros": 125899441.23999994
+    "awardedTotalEuros": 125898441.23999994
   },
   "top": {
     "recentAwarded": [
@@ -462,6 +462,17 @@
         "queda": "9012998"
       }
     ],
+    "repeticionesRetiradas": [
+      {
+        "id": "1794430#4398563",
+        "sourceRowId": "4398563",
+        "queda": "1794430#10554489",
+        "url": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=NhvbGm6OZ9xvYnTkQN0%2FZA%3D%3D",
+        "motivo": "El anuncio de adjudicación, único documento del expediente, trae un solo resultado, de 1.000 € sin IVA y «1 Mes(es)», archivado bajo la categoría que él mismo numera como la 3 del sistema dinámico ESDA2/2022; Gobierto lo publica además como lote 3, sin fecha de adjudicación y con 1.095 días de plazo.",
+        "curatedAt": "2026-11-02"
+      }
+    ],
+    "repeticionesSobrantes": [],
     "aplicadas": [
       {
         "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=wdnrdmoJINqmq21uxhbaVQ%3D%3D",
@@ -474,19 +485,19 @@
   "identidadDeFilas": {
     "ultima": {
       "medida": true,
-      "comparadoCon": "2026-11-01T18:02:23.119Z",
-      "conClaveAntes": 804,
-      "conClaveAhora": 804,
+      "comparadoCon": "2026-11-02T07:22:59.930Z",
+      "conClaveAntes": 803,
+      "conClaveAhora": 803,
       "sinClaveAntes": 0,
       "sinClaveAhora": 0,
       "repetidasAntes": 0,
       "repetidasAhora": 0,
-      "comparables": 804,
-      "conservan": 804,
+      "comparables": 803,
+      "conservan": 803,
       "cambian": 0,
       "multifila": {
-        "comparables": 268,
-        "conservan": 268,
+        "comparables": 267,
+        "conservan": 267,
         "retocadas": 0
       },
       "retocadas": 0,
@@ -502,7 +513,7 @@
         "idMovidos": [],
         "bajas": []
       },
-      "medidoEn": "2026-11-02T07:22:59.930Z"
+      "medidoEn": "2026-11-02T08:35:20.273Z"
     },
     "movimientos": []
   },
@@ -8206,40 +8217,6 @@
       "finalAmountNoTaxes": 1746.69,
       "estimatedValue": 0,
       "numberOfProposals": 2
-    },
-    {
-      "id": "1794430#4398563",
-      "sourceRowId": "4398563",
-      "title": "Contrato derivado del sistema dinámico de adquisición de servicios para la prestación del TALLER de FOTOGRAFÍA en la escuela pública de adultos del Ayuntamiento de Riba-roja de Turia.",
-      "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=NhvbGm6OZ9xvYnTkQN0%2FZA%3D%3D",
-      "status": "awarded",
-      "contractType": "services",
-      "processType": "restricted",
-      "minorContract": false,
-      "startDate": "2023-06-05",
-      "endDate": "2025-04-30",
-      "awardDate": null,
-      "formalizedDate": null,
-      "duration": 1095,
-      "batchNumber": 3,
-      "assignee": "Fernando Dario Cardozo",
-      "contractor": "Ayuntamiento de Riba-roja de Túria",
-      "contractorId": "58096",
-      "contractorType": "Ayuntamiento",
-      "categoryId": "28",
-      "categoryTitle": "health",
-      "cpvs": [
-        "98300000",
-        "80500000",
-        "80000000",
-        "80510000"
-      ],
-      "initialAmount": 1088.3,
-      "initialAmountNoTaxes": 1088.3,
-      "finalAmount": 1000,
-      "finalAmountNoTaxes": 1000,
-      "estimatedValue": 0,
-      "numberOfProposals": 1
     },
     {
       "id": "1794430#10028410",

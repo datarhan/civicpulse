@@ -1,11 +1,11 @@
 {
-  "generatedAt": "2026-11-02T07:23:24.113Z",
+  "generatedAt": "2026-11-02T08:35:30.558Z",
   "source": "derived: tenders.json assignees + officials.json · overrides: entity-overrides.json",
   "stats": {
     "companies": 380,
     "people": 21,
     "variantsMerged": 1,
-    "contractRefs": 707
+    "contractRefs": 706
   },
   "companies": [
     {
@@ -4770,24 +4770,6 @@
       "lastAwardDate": "2021-05-06"
     },
     {
-      "id": "co-rydqct",
-      "nameKey": "fernando dario cardozo",
-      "canonicalName": "Fernando Dario Cardozo",
-      "variants": [
-        "Fernando Dario Cardozo"
-      ],
-      "contractIds": [
-        "1794430#9758551",
-        "1794430#4398563",
-        "1794430#10554489",
-        "99572#159831"
-      ],
-      "contractCount": 4,
-      "awardedTotalEur": 10000,
-      "firstAwardDate": "2018-02-12",
-      "lastAwardDate": "2023-05-04"
-    },
-    {
       "id": "co-1e6xgs4",
       "nameKey": "reva servicios integrales sl",
       "canonicalName": "REVA SERVICIOS INTEGRALES SL",
@@ -4936,6 +4918,23 @@
       "awardedTotalEur": 9000,
       "firstAwardDate": "2026-02-02",
       "lastAwardDate": "2026-02-02"
+    },
+    {
+      "id": "co-rydqct",
+      "nameKey": "fernando dario cardozo",
+      "canonicalName": "Fernando Dario Cardozo",
+      "variants": [
+        "Fernando Dario Cardozo"
+      ],
+      "contractIds": [
+        "1794430#9758551",
+        "1794430#10554489",
+        "99572#159831"
+      ],
+      "contractCount": 3,
+      "awardedTotalEur": 9000,
+      "firstAwardDate": "2018-02-12",
+      "lastAwardDate": "2023-05-04"
     },
     {
       "id": "co-nlxx6g",
@@ -6168,6 +6167,6 @@
   "builtFrom": {
     "entity-overrides.json": "a41cc20172e9",
     "officials.json": "0fb6e5c5d0c2",
-    "tenders.json": "3ab548bddd83"
+    "tenders.json": "a6bed95320dd"
   }
 }
