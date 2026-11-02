@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Extracto del anuncio de adjudicación de 196/2023 en la Plataforma (CODICE 2.06,
+     ID 0000010770847, publicado el 19-04-2023), leído el 2026-11-02: las tres
+     categorías del sistema dinámico que nombra el anuncio y su único TenderResult,
+     tal cual salvo el NIF de la adjudicataria, una persona física, que se quita. -->
+<extracto>
+    <cac:ProcurementProject xmlns:cac="urn:dgpe:names:draft:codice:schema:xsd:CommonAggregateComponents-2" xmlns:cbc="urn:dgpe:names:draft:codice:schema:xsd:CommonBasicComponents-2">
+        <cbc:ID schemeName="NUM_CATEGORIA">3</cbc:ID>
+        <cbc:Name>80000000-Servicios de enseñanza y formación.</cbc:Name>
+    </cac:ProcurementProject>
+    <cac:ProcurementProject xmlns:cac="urn:dgpe:names:draft:codice:schema:xsd:CommonAggregateComponents-2" xmlns:cbc="urn:dgpe:names:draft:codice:schema:xsd:CommonBasicComponents-2">
+        <cbc:ID schemeName="NUM_CATEGORIA">2</cbc:ID>
+        <cbc:Name>80500000-Servicios de formación.</cbc:Name>
+    </cac:ProcurementProject>
+    <cac:ProcurementProject xmlns:cac="urn:dgpe:names:draft:codice:schema:xsd:CommonAggregateComponents-2" xmlns:cbc="urn:dgpe:names:draft:codice:schema:xsd:CommonBasicComponents-2">
+        <cbc:ID schemeName="NUM_CATEGORIA">1</cbc:ID>
+        <cbc:Name>80510000-Servicios de formación especializada.</cbc:Name>
+    </cac:ProcurementProject>
+    <cac:TenderResult xmlns:cac="urn:dgpe:names:draft:codice:schema:xsd:CommonAggregateComponents-2" xmlns:cbc="urn:dgpe:names:draft:codice:schema:xsd:CommonBasicComponents-2">
+        <cbc:ResultCode languageID="es" listURI="http://contrataciondelestado.es/codice/cl/2.09/TenderResultCode-2.09.gc" listVersionID="2.09" name="Adjudicado">8</cbc:ResultCode>
+        <cbc:Description>Mejor oferta.</cbc:Description>
+        <cbc:AwardDate>2023-04-18+02:00</cbc:AwardDate>
+        <cbc:AwardTime>00:00:00+02:00</cbc:AwardTime>
+        <cbc:ReceivedTenderQuantity>1</cbc:ReceivedTenderQuantity>
+        <cbc:LowerTenderAmount currencyID="EUR">1000</cbc:LowerTenderAmount>
+        <cbc:HigherTenderAmount currencyID="EUR">1000</cbc:HigherTenderAmount>
+        <cbc:SMEsReceivedTenderQuantity>1</cbc:SMEsReceivedTenderQuantity>
+        <cbc:SMEAwardedIndicator>true</cbc:SMEAwardedIndicator>
+        <cbc:AbnormallyLowTendersIndicator>false</cbc:AbnormallyLowTendersIndicator>
+        <cac:WinningParty>
+            <cac:PartyName>
+                <cbc:Name>Fernando Dario Cardozo </cbc:Name>
+            </cac:PartyName>
+        </cac:WinningParty>
+        <cac:AwardedTenderedProject>
+            <cbc:ProcurementProjectDPSCategoryID>80000000</cbc:ProcurementProjectDPSCategoryID>
+            <cac:LegalMonetaryTotal>
+                <cbc:TaxExclusiveAmount currencyID="EUR">1000</cbc:TaxExclusiveAmount>
+                <cbc:PayableAmount currencyID="EUR">1000</cbc:PayableAmount>
+            </cac:LegalMonetaryTotal>
+        </cac:AwardedTenderedProject>
+        <cac:ContractFormalizationPeriod>
+            <cbc:Description>No cabe.</cbc:Description>
+        </cac:ContractFormalizationPeriod>
+    </cac:TenderResult>
+</extracto>
