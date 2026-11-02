@@ -1,21 +1,21 @@
 {
-  "generatedAt": "2026-10-27T07:26:16.465Z",
+  "generatedAt": "2026-11-02T07:00:06.518Z",
   "source": {
     "baseUrl": "https://regmeet.com",
     "description": "Vídeo que incrusta la página de cada sesión de pleno del Ayuntamiento de Riba-roja de Túria en regmeet.com (aytoribarroja): el `#videoId` que su reproductor de YouTube lee. Una fila por sesión leída, con el día en que se descargó su página; una sesión sin fila no se ha leído, que no es «sin vídeo». generatedAt es la descarga de la página más reciente, no la hora de la pasada. No alimenta la cola de transcripción."
   },
   "stats": {
     "sesiones": 63,
-    "leidas": 20,
-    "conVideo": 20,
+    "leidas": 14,
+    "conVideo": 14,
     "sinVideo": 0,
     "sinMarcador": 0,
     "ilegibles": 0,
     "desaparecidos": 0,
     "cambiados": 0,
-    "sinPagina": 43,
-    "conservadas": 0,
-    "pendientes": 43,
+    "sinPagina": 49,
+    "conservadas": 14,
+    "pendientes": 35,
     "arrastradas": 0
   },
   "items": [
@@ -25,7 +25,7 @@
       "lectura": "con-video",
       "ytId": "C7SSTb7q0ys",
       "url": "https://www.youtube.com/watch?v=C7SSTb7q0ys",
-      "comprobadoEl": "2026-10-27"
+      "comprobadoEl": "2026-11-02"
     },
     {
       "plenoId": "1xmr0do",
@@ -33,7 +33,7 @@
       "lectura": "con-video",
       "ytId": "uogftiK6-fM",
       "url": "https://www.youtube.com/watch?v=uogftiK6-fM",
-      "comprobadoEl": "2026-10-27"
+      "comprobadoEl": "2026-11-02"
     },
     {
       "plenoId": "15uvjew",
@@ -41,7 +41,7 @@
       "lectura": "con-video",
       "ytId": "nZK1v9ZnKDc",
       "url": "https://www.youtube.com/watch?v=nZK1v9ZnKDc",
-      "comprobadoEl": "2026-10-27"
+      "comprobadoEl": "2026-11-02"
     },
     {
       "plenoId": "brxx5g",
@@ -49,7 +49,7 @@
       "lectura": "con-video",
       "ytId": "dTFyPL7FkVE",
       "url": "https://www.youtube.com/watch?v=dTFyPL7FkVE",
-      "comprobadoEl": "2026-10-27"
+      "comprobadoEl": "2026-11-02"
     },
     {
       "plenoId": "1237hbp",
@@ -57,7 +57,7 @@
       "lectura": "con-video",
       "ytId": "L6Cy1hTrpIc",
       "url": "https://www.youtube.com/watch?v=L6Cy1hTrpIc",
-      "comprobadoEl": "2026-10-27"
+      "comprobadoEl": "2026-11-02"
     },
     {
       "plenoId": "11025xk",
@@ -65,7 +65,7 @@
       "lectura": "con-video",
       "ytId": "0eTSguBbRsc",
       "url": "https://www.youtube.com/watch?v=0eTSguBbRsc",
-      "comprobadoEl": "2026-10-27"
+      "comprobadoEl": "2026-11-02"
     },
     {
       "plenoId": "10yl550",
@@ -178,6 +178,70 @@
       "ytId": "hiZ6YplwNzA",
       "url": "https://www.youtube.com/watch?v=hiZ6YplwNzA",
       "comprobadoEl": "2026-10-27"
+    },
+    {
+      "plenoId": "15jtq5k",
+      "fecha": "2024-06-14",
+      "lectura": "con-video",
+      "ytId": "zv4FtEbzAp0",
+      "url": "https://www.youtube.com/watch?v=zv4FtEbzAp0",
+      "comprobadoEl": "2026-11-02"
+    },
+    {
+      "plenoId": "1wqaaog",
+      "fecha": "2024-06-03",
+      "lectura": "con-video",
+      "ytId": "VHeccyYH1NE",
+      "url": "https://www.youtube.com/watch?v=VHeccyYH1NE",
+      "comprobadoEl": "2026-11-02"
+    },
+    {
+      "plenoId": "yhp4sc",
+      "fecha": "2024-05-13",
+      "lectura": "con-video",
+      "ytId": "OL3Ga_b9_XA",
+      "url": "https://www.youtube.com/watch?v=OL3Ga_b9_XA",
+      "comprobadoEl": "2026-11-02"
+    },
+    {
+      "plenoId": "fkwdd8",
+      "fecha": "2024-05-06",
+      "lectura": "con-video",
+      "ytId": "uxDOEGowNeU",
+      "url": "https://www.youtube.com/watch?v=uxDOEGowNeU",
+      "comprobadoEl": "2026-11-02"
+    },
+    {
+      "plenoId": "1080zow",
+      "fecha": "2024-04-15",
+      "lectura": "con-video",
+      "ytId": "sy1v_ic4i8k",
+      "url": "https://www.youtube.com/watch?v=sy1v_ic4i8k",
+      "comprobadoEl": "2026-11-02"
+    },
+    {
+      "plenoId": "1rb2dsm",
+      "fecha": "2024-03-28",
+      "lectura": "con-video",
+      "ytId": "nDAjyDx6HlU",
+      "url": "https://www.youtube.com/watch?v=nDAjyDx6HlU",
+      "comprobadoEl": "2026-11-02"
+    },
+    {
+      "plenoId": "umsqbk",
+      "fecha": "2024-03-04",
+      "lectura": "con-video",
+      "ytId": "hV-VURSC5y4",
+      "url": "https://www.youtube.com/watch?v=hV-VURSC5y4",
+      "comprobadoEl": "2026-11-02"
+    },
+    {
+      "plenoId": "1ue92u4",
+      "fecha": "2024-02-05",
+      "lectura": "con-video",
+      "ytId": "3fR59mHGGmY",
+      "url": "https://www.youtube.com/watch?v=3fR59mHGGmY",
+      "comprobadoEl": "2026-11-02"
     }
   ]
 }

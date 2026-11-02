@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-01T11:47:54.166Z",
+  "generatedAt": "2026-11-02T07:01:00.238Z",
   "windowDays": 30,
   "articles": [
     {
@@ -851,47 +851,13 @@
         "opinionFraction": 0
       },
       "score": 1
-    },
-    {
-      "articleId": "1axosyw",
-      "articleFingerprint": "w2vwdo",
-      "outlet": "Levante-EMV",
-      "outletHost": "levante-emv.com",
-      "url": "https://news.google.com/rss/articles/CBMi6gFBVV95cUxQcnJNWjcwTm1UQWw1aGVHZkpWR0plXzBfYTNjOVhMaXRuSzB4aEZyWnZmQnBfcXFSeWxnd0ZlQThtVDBncjFqcEdjTHF5RWhFSFBqeU03aTgzRUQ1aUNid0hvT3dCUHE2TVoyQTN4U29FZXFxaE9maHJyZFFJUXU4SV94c3BySGZkeTZZRFJPT19reGtZbndJT2dUdmlCSmM2ZE9QMkdmQ0hkcG96Vkh4Ti1mUDBQRWVhcWVQV0VqcFMwcTNPNHAzcjM2Vi13MWQ2aXA3VzI2MnpXcjdQX2pvOUw1cU9GUnJlTkHSAe8BQVVfeXFMUGZwRGt4X3hWd1NqVlp1T0JZb3RvUlZ0d0d6YTNpdC1KUnRFNnRoQ3JoV2ZNQ1ZjWG1FTXc5Z0xvR1YtTWpXY2lXNmJkN1NEblN5cmt2alQxYjB3MkZsQVpIcmlCWnloOXFSWXAxbmZxUkd1dk9wMzFtREpEb0pjNlFRZ2FCNGlRUnVMYXp6Tl9ra1Fqc01mRkxCM3JKQkFuZzMwWGs1dVdVTXZuNUk1STVNQ3E3aFFUTTRjRnduaVFXa3RVSUlRSF9wcmtocVZLMFVPU1ZIZTBvdksyRE1VRTZaSzNnOHlLMmxoclhvYUE?oc=5",
-      "date": "2026-10-03T07:00:00.000Z",
-      "indicators": {
-        "localCoverage": false,
-        "datedArticle": true,
-        "municipalSourceMatch": null,
-        "corroboratedAcrossOutlets": null,
-        "factualClaimsPresent": null,
-        "opinionFraction": 0
-      },
-      "score": 1
-    },
-    {
-      "articleId": "8hij1g",
-      "articleFingerprint": "1208oo5",
-      "outlet": "Ayuntamiento de Riba-roja de Túria",
-      "outletHost": "ribarroja.es",
-      "url": "https://www.ribarroja.es/es/noticia/riba-roja-de-t%C3%BAria-eleva-hasta-el-51%2C3%25-el-grado-de-cumplimiento-de-los-requisitos-para-avanzar-como-destino-tur%C3%ADstico-inteligente",
-      "date": "2026-10-02T11:50:52.000Z",
-      "indicators": {
-        "localCoverage": false,
-        "datedArticle": true,
-        "municipalSourceMatch": null,
-        "corroboratedAcrossOutlets": null,
-        "factualClaimsPresent": null,
-        "opinionFraction": 0
-      },
-      "score": 1
     }
   ],
   "outlets": [
     {
       "outlet": "Ayuntamiento de Riba-roja de Túria",
       "outletHost": "ribarroja.es",
-      "articleCount": 19,
+      "articleCount": 18,
       "verdictCounts": {
         "verificado": 0,
         "parcial": 0,
@@ -900,7 +866,7 @@
         "promesa-repetida": 1
       },
       "checkedClaims": 14,
-      "meanTrustScore": 1.74,
+      "meanTrustScore": 1.78,
       "verifiedRatio": 0,
       "contradictedRatio": null
     },
@@ -923,7 +889,7 @@
     {
       "outlet": "Levante-EMV",
       "outletHost": "levante-emv.com",
-      "articleCount": 6,
+      "articleCount": 5,
       "verdictCounts": {
         "verificado": 0,
         "parcial": 0,
@@ -932,7 +898,7 @@
         "promesa-repetida": 0
       },
       "checkedClaims": 1,
-      "meanTrustScore": 1.67,
+      "meanTrustScore": 1.8,
       "verifiedRatio": 0,
       "contradictedRatio": null
     },
@@ -1146,7 +1112,7 @@
     }
   ],
   "builtFrom": {
-    "plenos-agendas.json": "6fd31c671e7c",
+    "plenos-agendas.json": "e85ec7f64ea9",
     "press-claims-verified.json": "2dbfb96512c5",
     "press.json": "58f529e55e3b",
     "promises.json": "a4b8423e960f"
