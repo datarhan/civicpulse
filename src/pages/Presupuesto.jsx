@@ -1302,7 +1302,7 @@ function ProgramasCard() {
 /**
  * Lo que el ayuntamiento DEBE.
  *
- * Distinto del capítulo «Deuda pública» del presupuesto: aquél es el dinero
+ * Distinto del programa «Deuda pública» del presupuesto: aquél es el dinero
  * que se aparta ese año para atenderla, esto es el saldo vivo a 31 de
  * diciembre. La distinción se dice en la propia tarjeta porque de otro modo
  * un lector suma dos cifras que no se suman.

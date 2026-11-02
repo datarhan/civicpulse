@@ -1116,7 +1116,7 @@ export const CATALOGUE = {
     'quejas.enBreve.plazo.paso.sindic': 'Si no contesta',
     'quejas.enBreve.plazo.paso.sindic.cuando': 'Puedes acudir al Síndic de Greuges.',
     'quejas.enBreve.plazo.frase':
-      'Sí. Desde que la queja entra en el registro, el Ayuntamiento tiene {dias} días para acusar recibo y {meses} meses para contestar, con carácter general.',
+      'Sí. Desde que la queja entra en el registro, el Ayuntamiento tiene {dias} días para acusar recibo y {meses} meses para contestar, [[lpacap|con carácter general]].',
     'quejas.enBreve.plazo.transparencia':
       'Si es una petición de transparencia, el plazo para contestar es de {n} meses.',
     'quejas.enBreve.plazo.transparencia.uno':
@@ -2372,7 +2372,7 @@ export const CATALOGUE = {
       'El envío anual obligatorio de estos datos al Ministerio, antes del 1 de noviembre (artículo 116 ter de la Ley de Bases de Régimen Local).',
     'glosario.deudaViva.termino': 'Deuda viva',
     'glosario.deudaViva.def':
-      'Lo que el Ayuntamiento debe a bancos y otras entidades al cerrar el año. No es el capítulo «Deuda pública» del presupuesto, que es lo que se aparta cada año para pagarla.',
+      'Lo que el Ayuntamiento debe a bancos y otras entidades al cerrar el año. No es el programa «Deuda pública» del presupuesto, que es lo que se aparta cada año para pagarla.',
     'glosario.correccion.termino': 'Corrección',
     'glosario.correccion.def':
       'Una nota fechada que añadimos al final de una pieza ya publicada cuando la cambiamos, y que explica qué cambió. Unas arreglan un error; otras precisan una frase o añaden un dato que faltaba. Una misma nota puede recoger varios cambios hechos a la vez.',
@@ -2418,6 +2418,33 @@ export const CATALOGUE = {
     'glosario.bolsaDeTrabajo.termino': 'Bolsa de trabajo',
     'glosario.bolsaDeTrabajo.def':
       'Una lista ordenada de personas que han pasado una selección. El Ayuntamiento las llama por turno cuando necesita cubrir un puesto por un tiempo: una baja, una vacante mientras se convoca la plaza, un refuerzo. Estar en la bolsa no es tener plaza.',
+    'glosario.adjudicado.termino': 'Importe de adjudicación',
+    'glosario.adjudicado.def':
+      'El importe por el que se adjudica un contrato, aquí sin IVA. No es dinero pagado por el Ayuntamiento: lo que acabe pagándose puede ser otra cifra, en una concesión paga el vecino y en una venta cobra el Ayuntamiento.',
+    'glosario.licitacion.termino': 'Licitación',
+    'glosario.licitacion.def':
+      'La llamada a presentar ofertas para un contrato. Suele hacerse con un anuncio público; en algunos sistemas se invita a empresas ya admitidas por un anuncio anterior. Que se publique no asegura que compitan varias: a veces se presenta una sola.',
+    'glosario.contratoMenor.termino': 'Contrato menor',
+    'glosario.contratoMenor.def':
+      'Un contrato que la ley deja adjudicar directamente, sin anuncio público, por debajo de 40.000 € sin IVA en obras y de 15.000 € en servicios y suministros (artículo 118 de la Ley 9/2017). Hasta 2018 los límites eran más altos. La etiqueta la pone el registro, y algunos contratos la llevan por encima del límite.',
+    'glosario.negociadoSinPublicidad.termino': 'Procedimiento negociado sin publicidad',
+    'glosario.negociadoSinPublicidad.def':
+      'Se adjudica sin anuncio público previo, tratando directamente con una o varias empresas. Hoy la ley sólo lo permite en casos tasados, como una licitación sin ofertas válidas, una sola empresa capaz o una urgencia imprevisible (artículo 168 de la Ley 9/2017); hasta 2018 también se podía por importe. En el registro municipal también llevan esta etiqueta contratos de emergencia.',
+    'glosario.concesion.termino': 'Concesión de servicios',
+    'glosario.concesion.def':
+      'Una empresa gestiona un servicio durante años y asume el riesgo de explotarlo; lo habitual es que cobre a quien lo usa, no al Ayuntamiento. En la del agua, el importe es lo que se calcula que facturará en todo el plazo, no un gasto anual.',
+    'glosario.lote.termino': 'Lote',
+    'glosario.lote.def':
+      'Cada parte de un contrato que se adjudica por separado. Un mismo expediente puede tener varios lotes, y pueden ir a empresas distintas o a la misma; en esta web cada lote cuenta como un contrato.',
+    'glosario.ute.termino': 'Unión temporal de empresas (UTE)',
+    'glosario.ute.def':
+      'Varias empresas que se presentan juntas a un contrato y responden juntas de él, sin crear una empresa nueva.',
+    'glosario.pliego.termino': 'Pliego',
+    'glosario.pliego.def':
+      'Los documentos con las reglas de un contrato: qué se pide, cómo se puntúan las ofertas y qué obligaciones tendrá quien lo gane. Se aprueban antes de licitar y después, salvo errores materiales, no se pueden cambiar sin volver atrás. Un contrato menor no los necesita.',
+    'glosario.lpacap.termino': 'Ley de Procedimiento Administrativo (LPACAP)',
+    'glosario.lpacap.def':
+      'La Ley 39/2015, que regula cómo tramita una administración lo que le piden. Si ninguna norma dice otro plazo, tiene tres meses para contestar a una solicitud desde que entra en su registro.',
     'glosario.estabilizacion.termino': 'Estabilización',
     'glosario.estabilizacion.def':
       'Procesos extraordinarios de la Ley 20/2021 para convertir en fijas plazas que llevaban años cubiertas por personal temporal. Están abiertos a cualquiera que cumpla los requisitos, pero puntúa mucho la experiencia en ese tipo de plaza. La ley obligaba a convocarlos antes de que acabara 2022 y a terminarlos antes de que acabara 2024.',
@@ -2568,7 +2595,7 @@ export const CATALOGUE = {
     'presupuesto.deuda.saldo': 'deuda viva a 31/12/{year}',
     'presupuesto.deuda.desde': 'Desde {anio}: {delta}',
     'presupuesto.deuda.nota1':
-      'Es el saldo que el Ayuntamiento debía al cerrar el ejercicio. **No es el capítulo «Deuda pública» del presupuesto**{importe}, que es lo que se aparta cada año para atenderla: son dos cifras distintas y no se suman.',
+      'Es el saldo que el Ayuntamiento debía al cerrar el ejercicio. **No es el programa «Deuda pública» del presupuesto**{importe}, que es lo que se aparta cada año para atenderla: son dos cifras distintas y no se suman.',
     'presupuesto.deuda.nota1.importe': ' —{x} en {year}—',
     'presupuesto.deuda.nota2':
       'Riba-roja queda **por encima del {percentil} %** de los {n} ayuntamientos de la entrega —de los que **{aCero} declaran cero deuda**—, así que la mediana del reparto es {mediana} y el percentil dice poco por sí solo. El p90 de la entrega está en {p90}.',
@@ -2588,13 +2615,14 @@ export const CATALOGUE = {
     'contratos.enBreve.cuanto.pregunta': '¿Cuánto se ha contratado?',
     'contratos.enBreve.cuanto.cifraNota': 'adjudicado sin IVA',
     'contratos.enBreve.cuanto.frase':
-      '{n} contratos adjudicados entre {desde} y {hasta}: es la suma de {k} ejercicios, no lo de un año.',
+      '{n} contratos [[adjudicado|adjudicados]] entre {desde} y {hasta}: es la suma de {k} ejercicios, no lo de un año.',
     'contratos.enBreve.cuanto.fraseSinPeriodo': '{n} contratos adjudicados.',
     'contratos.enBreve.cuanto.sinImporte': 'De ellos, {n} no publican su importe y no suman.',
     'contratos.enBreve.cuanto.ventas':
       '{n} son ventas de parcelas: ahí el Ayuntamiento cobra, no paga.',
     'contratos.enBreve.cuanto.mayorConcesion':
-      'Una sola concesión, de {importe}, es el {pct} % de esa suma: es su valor estimado por todo el plazo, no un gasto anual, y no sale del presupuesto municipal, porque lo paga el vecino en su factura.',
+      '[[concesion|Una sola concesión]], de {importe}, es el {pct} % de esa suma: es su valor estimado por todo el plazo, no un gasto anual, y no sale del presupuesto municipal, porque lo paga el vecino en su factura.',
+    'contratos.enBreve.cuanto.lotes': 'Cada [[lote|lote]] cuenta como un contrato.',
     'contratos.enBreve.cuanto.mayor': 'Un solo contrato, de {importe}, es el {pct} % de esa suma.',
     'contratos.enBreve.aQuien.pregunta': '¿A quién se le adjudica?',
     'contratos.enBreve.aQuien.cifra': '{n} de cada 100 €',
@@ -2611,7 +2639,7 @@ export const CATALOGUE = {
     'contratos.enBreve.sinConcurso.cifra': '{n} de cada 100',
     'contratos.enBreve.sinConcurso.cifraNota': 'contratos',
     'contratos.enBreve.sinConcurso.frase':
-      'De {de} contratos adjudicados, {n} fueron sin convocatoria abierta: {menores} contratos menores y {negociados} negociados sin publicidad.',
+      'De {de} contratos adjudicados, {n} fueron sin [[licitacion|convocatoria abierta]]: {menores} [[contratoMenor|contratos menores]] y {negociados} [[negociadoSinPublicidad|negociados sin publicidad]].',
     'contratos.enBreve.sinConcurso.dana': 'De los negociados, {n} son por la DANA.',
     'contratos.enBreve.sinConcurso.importe': 'Por importe son el {pct} %.',
     'contratos.enBreve.sinConcurso.importeSinElMayor':
@@ -4221,7 +4249,7 @@ export const CATALOGUE = {
     'quejas.enBreve.plazo.paso.sindic': 'Si no contesta',
     'quejas.enBreve.plazo.paso.sindic.cuando': 'Pots acudir al Síndic de Greuges.',
     'quejas.enBreve.plazo.frase':
-      'Sí. Des que la queixa entra en el registre, l’Ajuntament té {dias} dies per a enviar el justificant de recepció i {meses} mesos per a contestar, amb caràcter general.',
+      'Sí. Des que la queixa entra en el registre, l’Ajuntament té {dias} dies per a enviar el justificant de recepció i {meses} mesos per a contestar, [[lpacap|amb caràcter general]].',
     'quejas.enBreve.plazo.transparencia':
       'Si és una petició de transparència, el termini per a contestar és de {n} mesos.',
     'quejas.enBreve.plazo.transparencia.uno':
@@ -5339,7 +5367,7 @@ export const CATALOGUE = {
       "L'enviament anual obligatori d'estes dades al Ministeri, abans de l'1 de novembre (article 116 ter de la Llei de Bases de Règim Local).",
     'glosario.deudaViva.termino': 'Deute viu',
     'glosario.deudaViva.def':
-      "El que l'Ajuntament deu a bancs i altres entitats en tancar l'any. No és el capítol «Deute públic» del pressupost, que és el que s'aparta cada any per a pagar-lo.",
+      "El que l'Ajuntament deu a bancs i altres entitats en tancar l'any. No és el programa «Deute públic» del pressupost, que és el que s'aparta cada any per a pagar-lo.",
     'glosario.correccion.termino': 'Correcció',
     'glosario.correccion.def':
       "Una nota datada que afegim al final d'una peça ja publicada quan la canviem, i que explica què va canviar. Unes arreglen un error; altres precisen una frase o afegixen una dada que faltava. Una mateixa nota pot recollir diversos canvis fets alhora.",
@@ -5385,6 +5413,33 @@ export const CATALOGUE = {
     'glosario.bolsaDeTrabajo.termino': 'Borsa de treball',
     'glosario.bolsaDeTrabajo.def':
       'Una llista ordenada de persones que han passat una selecció. L’Ajuntament les crida per torn quan necessita cobrir un lloc per un temps: una baixa, una vacant mentre es convoca la plaça, un reforç. Estar en la borsa no és tindre plaça.',
+    'glosario.adjudicado.termino': 'Import d’adjudicació',
+    'glosario.adjudicado.def':
+      'L’import pel qual s’adjudica un contracte, ací sense IVA. No són diners pagats per l’Ajuntament: el que acabe pagant-se pot ser una altra xifra, en una concessió paga el veí i en una venda cobra l’Ajuntament.',
+    'glosario.licitacion.termino': 'Licitació',
+    'glosario.licitacion.def':
+      'La crida a presentar ofertes per a un contracte. Sol fer-se amb un anunci públic; en alguns sistemes es convida empreses ja admeses per un anunci anterior. Que es publique no assegura que en competisquen diverses: de vegades se’n presenta només una.',
+    'glosario.contratoMenor.termino': 'Contracte menor',
+    'glosario.contratoMenor.def':
+      'Un contracte que la llei deixa adjudicar directament, sense anunci públic, per davall de 40.000 € sense IVA en obres i de 15.000 € en serveis i subministraments (article 118 de la Llei 9/2017). Fins al 2018 els límits eren més alts. L’etiqueta la posa el registre, i alguns contractes la porten per damunt del límit.',
+    'glosario.negociadoSinPublicidad.termino': 'Procediment negociat sense publicitat',
+    'glosario.negociadoSinPublicidad.def':
+      'S’adjudica sense anunci públic previ, tractant directament amb una o diverses empreses. Hui la llei només ho permet en casos taxats, com una licitació sense ofertes vàlides, una sola empresa capaç o una urgència imprevisible (article 168 de la Llei 9/2017); fins al 2018 també es podia per import. En el registre municipal també porten esta etiqueta contractes d’emergència.',
+    'glosario.concesion.termino': 'Concessió de serveis',
+    'glosario.concesion.def':
+      'Una empresa gestiona un servei durant anys i assumeix el risc d’explotar-lo; l’habitual és que cobre a qui l’usa, no a l’Ajuntament. En la de l’aigua, l’import és el que es calcula que facturarà en tot el termini, no una despesa anual.',
+    'glosario.lote.termino': 'Lot',
+    'glosario.lote.def':
+      'Cada part d’un contracte que s’adjudica per separat. Un mateix expedient pot tindre diversos lots, i poden anar a empreses diferents o a la mateixa; en esta web cada lot compta com un contracte.',
+    'glosario.ute.termino': 'Unió temporal d’empreses (UTE)',
+    'glosario.ute.def':
+      'Diverses empreses que es presenten juntes a un contracte i en responen juntes, sense crear una empresa nova.',
+    'glosario.pliego.termino': 'Plec',
+    'glosario.pliego.def':
+      'Els documents amb les regles d’un contracte: què es demana, com es puntuen les ofertes i quines obligacions tindrà qui el guanye. S’aproven abans de licitar i després, llevat d’errors materials, no es poden canviar sense tornar arrere. Un contracte menor no els necessita.',
+    'glosario.lpacap.termino': 'Llei de Procediment Administratiu (LPACAP)',
+    'glosario.lpacap.def':
+      'La Llei 39/2015, que regula com tramita una administració el que li demanen. Si cap norma no diu un altre termini, té tres mesos per a contestar a una sol·licitud des que entra en el seu registre.',
     'glosario.estabilizacion.termino': 'Estabilització',
     'glosario.estabilizacion.def':
       'Processos extraordinaris de la Llei 20/2021 per a convertir en fixes places que feia anys que ocupava personal temporal. Estan oberts a qualsevol que complisca els requisits, però puntua molt l’experiència en eixe tipus de plaça. La llei obligava a convocar-los abans que acabara el 2022 i a acabar-los abans que acabara el 2024.',
@@ -5523,7 +5578,7 @@ export const CATALOGUE = {
     'presupuesto.deuda.saldo': 'deute viu a 31/12/{year}',
     'presupuesto.deuda.desde': 'Des de {anio}: {delta}',
     'presupuesto.deuda.nota1':
-      "És el saldo que l'Ajuntament devia en tancar l'exercici. **No és el capítol «Deute públic» del pressupost**{importe}, que és el que s'aparta cada any per a atendre'l: són dos xifres distintes i no se sumen.",
+      "És el saldo que l'Ajuntament devia en tancar l'exercici. **No és el programa «Deute públic» del pressupost**{importe}, que és el que s'aparta cada any per a atendre'l: són dos xifres distintes i no se sumen.",
     'presupuesto.deuda.nota1.importe': ' —{x} en {year}—',
     'presupuesto.deuda.nota2':
       "Riba-roja se situa **per damunt del {percentil} %** dels {n} ajuntaments de l'entrega —dels quals **{aCero} declaren zero deute**—, així que la mediana del repartiment és {mediana} i el percentil diu poc per si sol. El p90 de l'entrega està en {p90}.",
@@ -5540,13 +5595,14 @@ export const CATALOGUE = {
     'contratos.enBreve.cuanto.pregunta': 'Quant s’ha contractat?',
     'contratos.enBreve.cuanto.cifraNota': 'adjudicat sense IVA',
     'contratos.enBreve.cuanto.frase':
-      '{n} contractes adjudicats entre {desde} i {hasta}: és la suma de {k} exercicis, no el d’un any.',
+      '{n} contractes [[adjudicado|adjudicats]] entre {desde} i {hasta}: és la suma de {k} exercicis, no el d’un any.',
     'contratos.enBreve.cuanto.fraseSinPeriodo': '{n} contractes adjudicats.',
     'contratos.enBreve.cuanto.sinImporte': 'D’estos, {n} no publiquen l’import i no sumen.',
     'contratos.enBreve.cuanto.ventas':
       '{n} són vendes de parcel·les: ací l’Ajuntament cobra, no paga.',
     'contratos.enBreve.cuanto.mayorConcesion':
-      'Una sola concessió, de {importe}, és el {pct} % d’eixa suma: és el seu valor estimat per tot el termini, no una despesa anual, i no ix del pressupost municipal, perquè ho paga el veí en la seua factura.',
+      '[[concesion|Una sola concessió]], de {importe}, és el {pct} % d’eixa suma: és el seu valor estimat per tot el termini, no una despesa anual, i no ix del pressupost municipal, perquè ho paga el veí en la seua factura.',
+    'contratos.enBreve.cuanto.lotes': 'Cada [[lote|lot]] compta com un contracte.',
     'contratos.enBreve.cuanto.mayor': 'Un sol contracte, de {importe}, és el {pct} % d’eixa suma.',
     'contratos.enBreve.aQuien.pregunta': 'A qui se li adjudica?',
     'contratos.enBreve.aQuien.cifra': '{n} de cada 100 €',
@@ -5563,7 +5619,7 @@ export const CATALOGUE = {
     'contratos.enBreve.sinConcurso.cifra': '{n} de cada 100',
     'contratos.enBreve.sinConcurso.cifraNota': 'contractes',
     'contratos.enBreve.sinConcurso.frase':
-      'De {de} contractes adjudicats, {n} van ser sense convocatòria oberta: {menores} contractes menors i {negociados} negociats sense publicitat.',
+      'De {de} contractes adjudicats, {n} van ser sense [[licitacion|convocatòria oberta]]: {menores} [[contratoMenor|contractes menors]] i {negociados} [[negociadoSinPublicidad|negociats sense publicitat]].',
     'contratos.enBreve.sinConcurso.dana': 'Dels negociats, {n} són per la DANA.',
     'contratos.enBreve.sinConcurso.importe': 'Per import són el {pct} %.',
     'contratos.enBreve.sinConcurso.importeSinElMayor':

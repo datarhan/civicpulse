@@ -171,6 +171,67 @@ export function useGlosario() {
         to: '/empleo-publico#como-se-entra',
         mismoNombre: true,
       },
+      // Cómo contrata el Ayuntamiento. Una palabra llana lleva «Nombre oficial»
+      // (adjudicado, licitación, negociado, concesión, UTE, LPACAP): quien pulsa
+      // «convocatoria abierta» no ha leído la palabra «licitación». Las que ya son
+      // el nombre de la ley, no.
+      {
+        clave: 'adjudicado',
+        termino: t('glosario.adjudicado.termino'),
+        def: t('glosario.adjudicado.def'),
+        to: '/contratos#mapa-gasto',
+      },
+      {
+        clave: 'licitacion',
+        termino: t('glosario.licitacion.termino'),
+        def: t('glosario.licitacion.def'),
+        to: '/contratos#sin-convocatoria',
+      },
+      {
+        clave: 'contratoMenor',
+        termino: t('glosario.contratoMenor.termino'),
+        def: t('glosario.contratoMenor.def'),
+        to: '/contratos#menores',
+        mismoNombre: true,
+      },
+      {
+        clave: 'negociadoSinPublicidad',
+        termino: t('glosario.negociadoSinPublicidad.termino'),
+        def: t('glosario.negociadoSinPublicidad.def'),
+        to: '/contratos#sin-convocatoria',
+      },
+      {
+        clave: 'concesion',
+        termino: t('glosario.concesion.termino'),
+        def: t('glosario.concesion.def'),
+        to: '/contratos#mapa-gasto',
+      },
+      {
+        clave: 'lote',
+        termino: t('glosario.lote.termino'),
+        def: t('glosario.lote.def'),
+        to: '/contratos#mapa-gasto',
+        mismoNombre: true,
+      },
+      {
+        clave: 'ute',
+        termino: t('glosario.ute.termino'),
+        def: t('glosario.ute.def'),
+        to: '/contratos#mapa-gasto',
+      },
+      {
+        clave: 'pliego',
+        termino: t('glosario.pliego.termino'),
+        def: t('glosario.pliego.def'),
+        to: '/reportajes/matriculas-y-moviles',
+        mismoNombre: true,
+      },
+      {
+        clave: 'lpacap',
+        termino: t('glosario.lpacap.termino'),
+        def: t('glosario.lpacap.def'),
+        to: '/metodologia#camino-de-una-queja',
+      },
     ],
     [t],
   )
