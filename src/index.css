@@ -4,10 +4,10 @@
 
 /* La portada (`.d-shell`) no sigue el modo oscuro: lleva su paleta de papel fijo
    (direction-d/tokens.jsx), y App.jsx no le pone `html.dark`. Sus bloques propios
-   pintan con esa paleta, pero «Tu ayuntamiento en 30 segundos» reutiliza las
-   tarjetas de «En breve», que pintan con estos tokens. Con `html.dark` puesto en
-   la portada —lo pone a mano la prueba de contraste medido— el fondo se iba a
-   oscuro y el texto, de la paleta fija, se quedaba oscuro: 1,08:1. La portada
+   pintan con esa paleta, pero lo que toma de las páginas interiores (Primitives,
+   las notas de lote o de fuente retirada) pinta con estos tokens. Con `html.dark`
+   puesto en la portada —lo pone a mano la prueba de contraste medido— el fondo se
+   iba a oscuro y el texto, de la paleta fija, se quedaba oscuro: 1,08:1. La portada
    vuelve a declarar los valores claros, y los hereda todo lo que cuelga de ella. */
 :root,
 html.dark .d-shell {

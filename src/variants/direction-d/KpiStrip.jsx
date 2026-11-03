@@ -219,10 +219,9 @@ function KpiStrip() {
       }`
     : t('landing.kpi.sinDato')
 
-  // La última sesión CELEBRADA, con la misma regla que la tarjeta del pleno de
-  // «Tu ayuntamiento en 30 segundos»: anterior a hoy en Riba-roja. Con el primer
-  // elemento del listado, una sesión listada antes de celebrarse haría que la
-  // portada diera dos «últimos plenos» distintos.
+  // La última sesión CELEBRADA, con la misma regla que /plenos: anterior a hoy
+  // en Riba-roja. El primer elemento del listado puede ser una sesión listada
+  // antes de celebrarse.
   const ultimo = ultimoPleno(
     (plenos?.items ?? []).map((p) => ({ id: p.id, date: p.date, puntos: null, votos: null })),
     hoyEnRibarroja(),
