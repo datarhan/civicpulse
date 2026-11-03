@@ -790,6 +790,10 @@ const ANCHOS_REJILLA = [375, 320]
  * gana una rejilla, su entrada tiene que irse para que el suelo la vigile.
  */
 const SIN_REJILLAS = new Set([
+  // La portada entró aquí el 02-11-2026, al retirarse «Tu ayuntamiento en 30
+  // segundos»: sus tarjetas eran la única rejilla con bloques de la columna.
+  // Las que quedan en <main> sólo centran una cifra o un icono, sin hijos.
+  '/',
   '/laboratorio/cobertura',
   '/quejas/q-no-existe',
   '/laboratorio/frontera',
