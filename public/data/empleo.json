@@ -1,19 +1,19 @@
 {
-  "generatedAt": "2026-11-02T13:01:12.710Z",
+  "generatedAt": "2026-11-03T12:26:42.925Z",
   "source": {
     "origin": "https://ribaocupacio.portalemp.com",
     "platform": "portalemp — ribaocupacio · Agència de Col·locació (ADL), Ajuntament de Riba-roja de Túria",
     "listEndpoint": "https://ribaocupacio.portalemp.com/ofertas.html?acc=tableData"
   },
   "stats": {
-    "total": 47,
-    "openTotal": 46,
-    "inRibaRoja": 32,
-    "closingSoon": 5,
-    "withDetail": 47,
+    "total": 46,
+    "openTotal": 45,
+    "inRibaRoja": 31,
+    "closingSoon": 6,
+    "withDetail": 46,
     "byMonth": {
       "2026-10": 29,
-      "2026-09": 15,
+      "2026-09": 14,
       "2026-05": 2,
       "2025-11": 1
     }
@@ -717,7 +717,7 @@
           },
           {
             "label": "Duración del contrato",
-            "value": "SEGÚN NECESIDAD BAJA EMBARAZO"
+            "value": "SEGÚN NECESIDAD BAJA"
           },
           {
             "label": "Número de puestos",
@@ -761,7 +761,7 @@
           }
         ],
         "tipoContrato": "CONTRATO DE OBRA O SERVICIO DETERMINADO",
-        "duracion": "SEGÚN NECESIDAD BAJA EMBARAZO",
+        "duracion": "SEGÚN NECESIDAD BAJA",
         "numPuestos": "1",
         "categoria": "AUXILIARES ADMINISTRATIVOS",
         "observaciones": "Se",
@@ -1326,6 +1326,10 @@
           {
             "label": "Salario",
             "value": "SEGUN CONVENIO"
+          },
+          {
+            "label": "Requiere vehículo propio",
+            "value": "Sí"
           }
         ],
         "tipoContrato": "CONTRATO A TIEMPO PARCIAL",
@@ -1335,6 +1339,7 @@
         "jornada": "Parcial",
         "horario": "Jornada total: 17 horas y 30 minutos semanales.",
         "salario": "SEGUN CONVENIO",
+        "vehiculo": "Sí",
         "ocupaciones": []
       }
     },
@@ -3429,88 +3434,6 @@
         "salario": "Según convenio",
         "funciones": "Instalación de ventanas, puertas, mosquiteras, mamparas",
         "ocupaciones": []
-      }
-    },
-    {
-      "id": "2527",
-      "fo": 2527,
-      "codigo": "2026/00226",
-      "titulo": "Mecánico/a de carretillas elevadoras",
-      "publishedAt": "2026-09-02",
-      "deadline": "2026-11-02",
-      "location": "Polígono Industrial Riba-roja de Túria",
-      "status": "Abierta",
-      "statusTone": "ok",
-      "url": "https://ribaocupacio.portalemp.com/ofertas.html?fo=2527",
-      "inRibaRoja": true,
-      "detail": {
-        "fields": [
-          {
-            "label": "Código",
-            "value": "2026/00226"
-          },
-          {
-            "label": "Nombre de la oferta",
-            "value": "Mecánico/a de carretillas elevadoras"
-          },
-          {
-            "label": "Sector CNAE",
-            "value": "OTROS SERVICIOS"
-          },
-          {
-            "label": "Tipo de contrato",
-            "value": "CONTRATO INDEFINIDO"
-          },
-          {
-            "label": "Duración del contrato",
-            "value": "Más de 6 meses"
-          },
-          {
-            "label": "Número de puestos",
-            "value": "1"
-          },
-          {
-            "label": "Categoría profesional",
-            "value": "OFICIAL DE 1ª"
-          },
-          {
-            "label": "Lugar puesto de trabajo",
-            "value": "Polígono Industrial, Municipio: Riba-roja de Túria, Provincia: Valencia, CP: 46394"
-          },
-          {
-            "label": "Tipo de jornada laboral",
-            "value": "Completa Turnos: Turno partido"
-          },
-          {
-            "label": "Salario",
-            "value": "Según convenio"
-          },
-          {
-            "label": "Funciones",
-            "value": "Realizará los trabajos de reparación mecánica, mantenimiento preventivo y correctivo de maquinaria y carretillas elevadoras."
-          },
-          {
-            "label": "Requiere vehículo propio",
-            "value": "Sí"
-          }
-        ],
-        "tipoContrato": "CONTRATO INDEFINIDO",
-        "duracion": "Más de 6 meses",
-        "numPuestos": "1",
-        "categoria": "OFICIAL DE 1ª",
-        "municipio": "Riba-roja de Túria",
-        "provincia": "Valencia",
-        "cp": "46394",
-        "jornada": "Completa Turnos: Turno partido",
-        "salario": "Según convenio",
-        "funciones": "Realizará los trabajos de reparación mecánica, mantenimiento preventivo y correctivo de maquinaria y carretillas elevadoras.",
-        "vehiculo": "Sí",
-        "ocupaciones": [
-          {
-            "nombre": "ELECTROMECÁNICOS DE MANTENIMIENTO INDUSTRIAL (MANTENIMIENTO Y REPARACIÓN GENERAL)",
-            "experiencia": "2 Años"
-          }
-        ]
       }
     },
     {

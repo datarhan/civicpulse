@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-03T07:47:06.874Z",
+  "generatedAt": "2026-11-03T12:28:36.865Z",
   "consultadoEl": "2026-11-03",
   "fuente": {
     "nombre": "SINAC · Sistema de Información Nacional de Aguas de Consumo (Ministerio de Sanidad)",
@@ -618,9 +618,9 @@
         {
           "codigo": "045",
           "nombre": "Cloro libre residual",
-          "valor": 0.7,
+          "valor": 0.5,
           "unidad": "mg/L",
-          "fecha": "2026-10-21"
+          "fecha": "2026-10-28"
         },
         {
           "codigo": "046",
@@ -662,7 +662,7 @@
           "nombre": "PH",
           "valor": 7.6,
           "unidad": "Unidades pH",
-          "fecha": "2026-10-21"
+          "fecha": "2026-10-28"
         },
         {
           "codigo": "052",
@@ -681,9 +681,9 @@
         {
           "codigo": "054",
           "nombre": "Turbidez",
-          "valor": 0,
+          "valor": 0.3,
           "unidad": "UNF",
-          "fecha": "2026-10-21"
+          "fecha": "2026-10-28"
         },
         {
           "codigo": "055",
@@ -697,21 +697,21 @@
           "nombre": "Color",
           "valor": 0,
           "unidad": "mg Pt-Co/L",
-          "fecha": "2026-10-21"
+          "fecha": "2026-10-28"
         },
         {
           "codigo": "057",
           "nombre": "Olor",
           "valor": 1,
           "unidad": "In. Dil.",
-          "fecha": "2026-10-21"
+          "fecha": "2026-10-28"
         },
         {
           "codigo": "058",
           "nombre": "Sabor",
           "valor": 2,
           "unidad": "In. Dil.",
-          "fecha": "2026-10-21"
+          "fecha": "2026-10-28"
         },
         {
           "codigo": "064",
@@ -5286,14 +5286,14 @@
           "nombre": "Escherichia coli",
           "valor": 0,
           "unidad": "UFC/100 ml",
-          "fecha": "2026-09-02"
+          "fecha": "2026-10-28"
         },
         {
           "codigo": "002",
           "nombre": "Enterococo",
           "valor": 0,
           "unidad": "UFC/100 ml",
-          "fecha": "2026-09-02"
+          "fecha": "2026-10-28"
         },
         {
           "codigo": "003",
@@ -5769,14 +5769,14 @@
           "nombre": "Bacterias coliformes",
           "valor": 0,
           "unidad": "UFC/100 ml",
-          "fecha": "2026-09-02"
+          "fecha": "2026-10-28"
         },
         {
           "codigo": "039",
           "nombre": "Recuento de colonias a 22ºC",
-          "valor": 1,
+          "valor": 0,
           "unidad": "UFC/1 ml",
-          "fecha": "2026-09-02"
+          "fecha": "2026-10-28"
         },
         {
           "codigo": "040",
@@ -5797,7 +5797,7 @@
           "nombre": "Amonio",
           "valor": 0,
           "unidad": "mg/L",
-          "fecha": "2026-09-02"
+          "fecha": "2026-10-28"
         },
         {
           "codigo": "043",
@@ -5816,9 +5816,9 @@
         {
           "codigo": "045",
           "nombre": "Cloro libre residual",
-          "valor": 0.6,
+          "valor": 0.7,
           "unidad": "mg/L",
-          "fecha": "2026-10-14"
+          "fecha": "2026-10-28"
         },
         {
           "codigo": "046",
@@ -5830,9 +5830,9 @@
         {
           "codigo": "047",
           "nombre": "Conductividad",
-          "valor": 1240,
+          "valor": 1241,
           "unidad": "µS/cm a 20ºC",
-          "fecha": "2026-09-02"
+          "fecha": "2026-10-28"
         },
         {
           "codigo": "048",
@@ -5858,9 +5858,9 @@
         {
           "codigo": "051",
           "nombre": "PH",
-          "valor": 7.4,
+          "valor": 7.5,
           "unidad": "Unidades pH",
-          "fecha": "2026-10-14"
+          "fecha": "2026-10-28"
         },
         {
           "codigo": "052",
@@ -5881,7 +5881,7 @@
           "nombre": "Turbidez",
           "valor": 0,
           "unidad": "UNF",
-          "fecha": "2026-10-14"
+          "fecha": "2026-10-28"
         },
         {
           "codigo": "055",
@@ -5895,21 +5895,21 @@
           "nombre": "Color",
           "valor": 0,
           "unidad": "mg Pt-Co/L",
-          "fecha": "2026-10-14"
+          "fecha": "2026-10-28"
         },
         {
           "codigo": "057",
           "nombre": "Olor",
           "valor": 1,
           "unidad": "In. Dil.",
-          "fecha": "2026-10-14"
+          "fecha": "2026-10-28"
         },
         {
           "codigo": "058",
           "nombre": "Sabor",
-          "valor": 1,
+          "valor": 2,
           "unidad": "In. Dil.",
-          "fecha": "2026-10-14"
+          "fecha": "2026-10-28"
         },
         {
           "codigo": "059",
@@ -6624,6 +6624,14 @@
     }
   ],
   "boletines": [
+    {
+      "id": 18966936,
+      "tipo": "control",
+      "fecha": "2026-10-28",
+      "calificacion": "apta",
+      "calificacionTexto": "AGUA APTA PARA EL CONSUMO",
+      "idRed": 595
+    },
     {
       "id": 18917083,
       "tipo": "control",
@@ -26910,10 +26918,10 @@
   ],
   "stats": {
     "redes": 6,
-    "boletines": 75,
-    "boletinesNuevos": 0,
+    "boletines": 76,
+    "boletinesNuevos": 1,
     "porCalificacion": {
-      "apta": 71,
+      "apta": 72,
       "no-apta": 2,
       "gestionada-consejeria": 2
     },
