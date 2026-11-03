@@ -353,7 +353,35 @@ test.describe('Cargos (/cargos)', () => {
     await expect(seccion, 'la rejilla de oposición tiene que estar en la página').toBeVisible({
       timeout: 8000,
     })
-    const oposicion = await seccion.innerText()
+    // La sección sólo prueba que llegó officials.json. La línea de retribución
+    // de cada tarjeta viene de dedicaciones.json, que aterriza un render
+    // después: la misma carrera que la prueba del miembro saliente (arriba).
+    // Leer el texto una vez tras la sección lo cogía a veces con todas las
+    // tarjetas en «retribución · cargando…», y la comprobación de alcance de
+    // abajo fallaba (CI de la PR #542, en verde al reintentar). Así que se
+    // sondea, en una sola evaluación sobre la sección, el texto y el estado
+    // data-retribucion de sus tarjetas hasta que ninguna está cargando y alguna
+    // ya se leyó, y las dos aserciones leen ese MISMO texto.
+    let oposicion = ''
+    await expect
+      .poll(
+        async () => {
+          const leido = await seccion.evaluate((el) => ({
+            texto: (el as HTMLElement).innerText,
+            cargando: el.querySelectorAll('[data-retribucion="cargando"]').length,
+            leidas: el.querySelectorAll('[data-retribucion]:not([data-retribucion="cargando"])')
+              .length,
+          }))
+          oposicion = leido.texto
+          return leido.cargando === 0 && leido.leidas > 0
+        },
+        {
+          message:
+            'las tarjetas de la oposición tienen que dejar de decir «retribución · cargando…»',
+          timeout: 8000,
+        },
+      )
+      .toBe(true)
     // It really contains the cards (an empty slice would pass the next line).
     expect(oposicion).toMatch(/asistencias por sesión/i)
     expect(oposicion).not.toMatch(/\d[\d.]*,\d{2}\s*€/)
