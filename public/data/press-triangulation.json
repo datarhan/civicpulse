@@ -1,36 +1,14 @@
 {
-  "generatedAt": "2026-11-04T11:47:19.486Z",
-  "clusters": [
-    {
-      "clusterId": "1ffhzqr",
-      "articleIds": [
-        "1sfn68k",
-        "i3ly3c"
-      ],
-      "outlets": [
-        "Levante-EMV",
-        "Valenciabonita"
-      ],
-      "fuentesOficiales": [],
-      "earliestDate": "2026-10-21T07:00:00.000Z",
-      "latestDate": "2026-10-21T07:00:00.000Z",
-      "verdictMix": {
-        "verificado": 0,
-        "parcial": 0,
-        "contradicho": 0,
-        "sin-datos": 0,
-        "promesa-repetida": 0
-      }
-    }
-  ],
+  "generatedAt": "2026-11-04T12:45:14.904Z",
+  "clusters": [],
   "stats": {
-    "totalClusters": 1,
+    "totalClusters": 0,
     "triangulated3Plus": 0
   },
   "builtFrom": {
-    "plenos-agendas.json": "3dda546d3fcf",
+    "plenos-agendas.json": "fe6fd8acefd3",
     "press-claims-verified.json": "0026b814bd42",
-    "press.json": "c8a6134c041f",
+    "press.json": "bd0a1e943096",
     "promises.json": "a4b8423e960f"
   }
 }

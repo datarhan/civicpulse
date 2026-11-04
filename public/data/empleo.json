@@ -1,19 +1,19 @@
 {
-  "generatedAt": "2026-11-03T12:26:42.925Z",
+  "generatedAt": "2026-11-04T12:43:01.280Z",
   "source": {
     "origin": "https://ribaocupacio.portalemp.com",
     "platform": "portalemp — ribaocupacio · Agència de Col·locació (ADL), Ajuntament de Riba-roja de Túria",
     "listEndpoint": "https://ribaocupacio.portalemp.com/ofertas.html?acc=tableData"
   },
   "stats": {
-    "total": 46,
-    "openTotal": 45,
-    "inRibaRoja": 31,
-    "closingSoon": 6,
-    "withDetail": 46,
+    "total": 45,
+    "openTotal": 44,
+    "inRibaRoja": 30,
+    "closingSoon": 5,
+    "withDetail": 45,
     "byMonth": {
       "2026-10": 29,
-      "2026-09": 14,
+      "2026-09": 13,
       "2026-05": 2,
       "2025-11": 1
     }
@@ -3363,76 +3363,6 @@
         "salario": "25.000 € brutos",
         "funciones": "- Despaletizar - Ubicación de la mercancía - Utilización de PDA - Mantenimiento de la limpieza del lugar",
         "vehiculo": "Sí",
-        "ocupaciones": []
-      }
-    },
-    {
-      "id": "2495",
-      "fo": 2495,
-      "codigo": "2026/00194",
-      "titulo": "Operario/a de carpintería metálica",
-      "publishedAt": "2026-09-03",
-      "deadline": "2026-11-03",
-      "location": "Riba-roja de Túria Riba-roja de Túria",
-      "status": "Abierta",
-      "statusTone": "ok",
-      "url": "https://ribaocupacio.portalemp.com/ofertas.html?fo=2495",
-      "inRibaRoja": true,
-      "detail": {
-        "fields": [
-          {
-            "label": "Código",
-            "value": "2026/00194"
-          },
-          {
-            "label": "Nombre de la oferta",
-            "value": "Operario/a de carpintería metálica"
-          },
-          {
-            "label": "Observaciones",
-            "value": "Se precisa persona para trabajar el sector de la carpintería metálica, formación a cargo de la empresa. Se requiere carné de conducir, ganas de trabajar y actitud"
-          },
-          {
-            "label": "Tipo de contrato",
-            "value": "CONTRATO INDEFINIDO"
-          },
-          {
-            "label": "Duración del contrato",
-            "value": "Más de 6 meses"
-          },
-          {
-            "label": "Número de puestos",
-            "value": "1"
-          },
-          {
-            "label": "Lugar puesto de trabajo",
-            "value": "Riba-roja de Túria, Municipio: Riba-roja de Túria, Provincia: Valencia"
-          },
-          {
-            "label": "Tipo de jornada laboral",
-            "value": "Completa"
-          },
-          {
-            "label": "Horario",
-            "value": "Lunes a viernes jornada partida"
-          },
-          {
-            "label": "Salario",
-            "value": "Según convenio"
-          },
-          {
-            "label": "Funciones",
-            "value": "Instalación de ventanas, puertas, mosquiteras, mamparas"
-          }
-        ],
-        "tipoContrato": "CONTRATO INDEFINIDO",
-        "duracion": "Más de 6 meses",
-        "numPuestos": "1",
-        "observaciones": "Se precisa persona para trabajar el sector de la carpintería metálica, formación a cargo de la empresa. Se requiere carné de conducir, ganas de trabajar y actitud",
-        "jornada": "Completa",
-        "horario": "Lunes a viernes jornada partida",
-        "salario": "Según convenio",
-        "funciones": "Instalación de ventanas, puertas, mosquiteras, mamparas",
         "ocupaciones": []
       }
     },

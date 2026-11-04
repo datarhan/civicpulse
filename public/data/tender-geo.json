@@ -1,7 +1,7 @@
 {
-  "generatedAt": "2026-11-03T12:28:54.729Z",
+  "generatedAt": "2026-11-04T12:45:13.107Z",
   "source": {
-    "tenders": "2026-11-03T12:16:37.564Z",
+    "tenders": "2026-11-04T12:28:10.170Z",
     "geo": "2026-11-03T12:20:38.261Z"
   },
   "universe": {
@@ -3597,7 +3597,7 @@
     "gazetteer-supplement.json": "b3013a1e0efe",
     "geo.json": "99371f530306",
     "place-overrides.json": "5878849f1684",
-    "streets.json": "e0c2f6bf2b93",
-    "tenders.json": "e5492ab76222"
+    "streets.json": "82ad47b15731",
+    "tenders.json": "0efa33c43bdd"
   }
 }
