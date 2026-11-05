@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-04T12:28:54.434Z",
+  "generatedAt": "2026-11-05T12:42:55.063Z",
   "source": {
     "name": "Boletín Oficial de la Provincia de València",
     "home": "https://bop.dival.es/bop/",
@@ -10,9 +10,19 @@
     "daysCovered": 21,
     "daysRequested": 30,
     "fetchFailures": 0,
-    "latestDate": "2026-10-27"
+    "latestDate": "2026-11-05"
   },
   "anuncios": [
+    {
+      "id": "31031984d7a1",
+      "regNumber": "2026/13391",
+      "title": "Anuncio del Ayuntamiento de Riba-roja de Túria sobre la delegación de competencias para la celebración de matrimonios civiles",
+      "entity": "Ayuntamiento de Riba-roja de Túria",
+      "date": "2026-11-05",
+      "bulletinDate": "05/11/2026",
+      "pdfUrl": "https://bop.dival.es/bop/downloads?anuncioNumReg=2026%2F13391",
+      "bulletinUrl": "https://bop.dival.es/bop/downloads?boletinFecha=05%2F11%2F2026"
+    },
     {
       "id": "aeb0b2f9b76d",
       "regNumber": "2026/12980",
@@ -62,16 +72,6 @@
       "bulletinDate": "07/10/2026",
       "pdfUrl": "https://bop.dival.es/bop/downloads?anuncioNumReg=2026%2F12090",
       "bulletinUrl": "https://bop.dival.es/bop/downloads?boletinFecha=07%2F10%2F2026"
-    },
-    {
-      "id": "5ee40e46cb0d",
-      "regNumber": "2026/12046",
-      "title": "Anuncio del Ayuntamiento de Riba-roja de Túria sobre la convocatoria de subvenciones destinadas a clubes y entidades deportivas 2026 (temporada 25/26). Identificador BDNS: 931666",
-      "entity": "Ayuntamiento de Riba-roja de Túria",
-      "date": "2026-10-06",
-      "bulletinDate": "06/10/2026",
-      "pdfUrl": "https://bop.dival.es/bop/downloads?anuncioNumReg=2026%2F12046",
-      "bulletinUrl": "https://bop.dival.es/bop/downloads?boletinFecha=06%2F10%2F2026"
     }
   ]
 }

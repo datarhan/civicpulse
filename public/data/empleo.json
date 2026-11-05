@@ -1,19 +1,19 @@
 {
-  "generatedAt": "2026-11-04T12:43:01.280Z",
+  "generatedAt": "2026-11-05T12:50:17.974Z",
   "source": {
     "origin": "https://ribaocupacio.portalemp.com",
     "platform": "portalemp — ribaocupacio · Agència de Col·locació (ADL), Ajuntament de Riba-roja de Túria",
     "listEndpoint": "https://ribaocupacio.portalemp.com/ofertas.html?acc=tableData"
   },
   "stats": {
-    "total": 45,
-    "openTotal": 44,
-    "inRibaRoja": 30,
+    "total": 43,
+    "openTotal": 42,
+    "inRibaRoja": 29,
     "closingSoon": 5,
-    "withDetail": 45,
+    "withDetail": 43,
     "byMonth": {
-      "2026-10": 29,
-      "2026-09": 13,
+      "2026-10": 28,
+      "2026-09": 12,
       "2026-05": 2,
       "2025-11": 1
     }
@@ -677,101 +677,6 @@
         "horario": "De 14:00 a 22:30 horas. Dos días libres consecutivos: martes y miércoles",
         "salario": "1.500€/mes",
         "funciones": "Manejo de freidora y plancha, entre otras.",
-        "vehiculo": "Sí",
-        "ocupaciones": []
-      }
-    },
-    {
-      "id": "2550",
-      "fo": 2550,
-      "codigo": "2026/00254",
-      "titulo": "Administrativo/a para sustitución",
-      "publishedAt": "2026-10-28",
-      "deadline": "2026-12-28",
-      "location": "POL. IND. MASÍA DEL CONDE Loriguilla (Valencia)",
-      "status": "Abierta",
-      "statusTone": "ok",
-      "url": "https://ribaocupacio.portalemp.com/ofertas.html?fo=2550",
-      "inRibaRoja": false,
-      "detail": {
-        "fields": [
-          {
-            "label": "Código",
-            "value": "2026/00254"
-          },
-          {
-            "label": "Nombre de la oferta",
-            "value": "Administrativo/a para sustitución"
-          },
-          {
-            "label": "Observaciones",
-            "value": "Se"
-          },
-          {
-            "label": "Sector CNAE",
-            "value": "ACTIVIDADES ADMINISTRATIVAS Y SERVICIOS AUXLIARES"
-          },
-          {
-            "label": "Tipo de contrato",
-            "value": "CONTRATO DE OBRA O SERVICIO DETERMINADO"
-          },
-          {
-            "label": "Duración del contrato",
-            "value": "SEGÚN NECESIDAD BAJA"
-          },
-          {
-            "label": "Número de puestos",
-            "value": "1"
-          },
-          {
-            "label": "Categoría profesional",
-            "value": "AUXILIARES ADMINISTRATIVOS"
-          },
-          {
-            "label": "Lugar puesto de trabajo",
-            "value": "POL. IND. MASÍA DEL CONDE, Municipio: Loriguilla, Provincia: Valencia, CP: 46393"
-          },
-          {
-            "label": "Tipo de jornada laboral",
-            "value": "Completa Turnos: Turno mañana, Turno tarde"
-          },
-          {
-            "label": "Horario",
-            "value": "DE 8 A 16:30H"
-          },
-          {
-            "label": "Salario",
-            "value": "17.108,85Euros brutos/año"
-          },
-          {
-            "label": "Funciones",
-            "value": "- Gestión y tramitación de pedidos de clientes y proveedores. - Introducción y actualización de datos en el programa de gestión empresarial. - Elaboración, revisión y gestión de albaranes, facturas y otros documentos administrativos. - Atención telefónica y por correo electrónico a clientes y proveedores. - Seguimiento de pedidos, entregas e incidencias. - Archivo y organización de documentación administrativa. - Apoyo en la gestión de cobros, pagos y reclamaciones de facturas. - Elaboración y actualización de informes y hojas de cálculo. - Coordinación con los distintos departamentos para garantizar el correcto desarrollo de las tareas administrativas."
-          },
-          {
-            "label": "Requiere vehículo propio",
-            "value": "Sí"
-          },
-          {
-            "label": "Habilidades",
-            "value": "Responsabilidad, organización y compromiso. Ganas de trabajar y aprender. Atención al detalle y capacidad de trabajo en equipo. Actitud proactiva y capacidad de aprendizaje."
-          },
-          {
-            "label": "Informática",
-            "value": "Manejo de Microsoft Excel y paquete Office. Conocimientos administrativos y de gestión documental. Se valorarán conocimientos del programa de gestión empresarial ExitERP."
-          }
-        ],
-        "tipoContrato": "CONTRATO DE OBRA O SERVICIO DETERMINADO",
-        "duracion": "SEGÚN NECESIDAD BAJA",
-        "numPuestos": "1",
-        "categoria": "AUXILIARES ADMINISTRATIVOS",
-        "observaciones": "Se",
-        "municipio": "Loriguilla",
-        "provincia": "Valencia",
-        "cp": "46393",
-        "jornada": "Completa Turnos: Turno mañana, Turno tarde",
-        "horario": "DE 8 A 16:30H",
-        "salario": "17.108,85Euros brutos/año",
-        "funciones": "- Gestión y tramitación de pedidos de clientes y proveedores. - Introducción y actualización de datos en el programa de gestión empresarial. - Elaboración, revisión y gestión de albaranes, facturas y otros documentos administrativos. - Atención telefónica y por correo electrónico a clientes y proveedores. - Seguimiento de pedidos, entregas e incidencias. - Archivo y organización de documentación administrativa. - Apoyo en la gestión de cobros, pagos y reclamaciones de facturas. - Elaboración y actualización de informes y hojas de cálculo. - Coordinación con los distintos departamentos para garantizar el correcto desarrollo de las tareas administrativas.",
         "vehiculo": "Sí",
         "ocupaciones": []
       }
@@ -3281,89 +3186,6 @@
             "nombre": "CONDUCTORES-OPERADORES DE GRÚA EN CAMIÓN"
           }
         ]
-      }
-    },
-    {
-      "id": "2428",
-      "fo": 2428,
-      "codigo": "2026/00130",
-      "titulo": "Mozo/a de almacén con discapacidad",
-      "publishedAt": "2026-09-04",
-      "deadline": "2026-11-04",
-      "location": "Riba-roja de Túria",
-      "status": "Abierta",
-      "statusTone": "ok",
-      "url": "https://ribaocupacio.portalemp.com/ofertas.html?fo=2428",
-      "inRibaRoja": true,
-      "detail": {
-        "fields": [
-          {
-            "label": "Código",
-            "value": "2026/00130"
-          },
-          {
-            "label": "Nombre de la oferta",
-            "value": "Mozo/a de almacén con discapacidad"
-          },
-          {
-            "label": "Observaciones",
-            "value": "Requisitos : Experiencia mínima: al menos 1 año Disponer de vehículo propio Experiencia previa (valorable)"
-          },
-          {
-            "label": "Porcentaje de discapacidad",
-            "value": "Igual o superior a 33%"
-          },
-          {
-            "label": "Tipo de contrato",
-            "value": "CONTRATO DE OBRA O SERVICIO DETERMINADO"
-          },
-          {
-            "label": "Duración del contrato",
-            "value": "Más de 6 meses"
-          },
-          {
-            "label": "Número de puestos",
-            "value": "1"
-          },
-          {
-            "label": "Lugar puesto de trabajo",
-            "value": "Municipio: Riba-roja de Túria, Provincia: Valencia"
-          },
-          {
-            "label": "Tipo de jornada laboral",
-            "value": "Completa Turnos: Turno noche"
-          },
-          {
-            "label": "Observaciones jornada",
-            "value": "Contrato inicial temporal prorrogable hasta indefinido"
-          },
-          {
-            "label": "Horario",
-            "value": "De martes a sábado de noches. De 24:00 a 08:00 horas."
-          },
-          {
-            "label": "Salario",
-            "value": "25.000 € brutos"
-          },
-          {
-            "label": "Funciones",
-            "value": "- Despaletizar - Ubicación de la mercancía - Utilización de PDA - Mantenimiento de la limpieza del lugar"
-          },
-          {
-            "label": "Requiere vehículo propio",
-            "value": "Sí"
-          }
-        ],
-        "tipoContrato": "CONTRATO DE OBRA O SERVICIO DETERMINADO",
-        "duracion": "Más de 6 meses",
-        "numPuestos": "1",
-        "observaciones": "Requisitos : Experiencia mínima: al menos 1 año Disponer de vehículo propio Experiencia previa (valorable)",
-        "jornada": "Completa Turnos: Turno noche",
-        "horario": "De martes a sábado de noches. De 24:00 a 08:00 horas.",
-        "salario": "25.000 € brutos",
-        "funciones": "- Despaletizar - Ubicación de la mercancía - Utilización de PDA - Mantenimiento de la limpieza del lugar",
-        "vehiculo": "Sí",
-        "ocupaciones": []
       }
     },
     {
