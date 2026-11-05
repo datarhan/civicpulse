@@ -1,7 +1,7 @@
 {
-  "generatedAt": "2026-11-02T10:30:13.367Z",
+  "generatedAt": "2026-11-05T08:58:25.135Z",
   "baseHuella": "8a33d689f232",
-  "composedAt": "2026-11-02T10:30:14.173Z",
+  "composedAt": "2026-11-05T08:58:26.266Z",
   "source": {
     "description": "Fact-check verdicts for every pleno-claims-suggestions.json entry. Cross-references against tenders / BDNS / budget / promises. Pure deterministic — no LLM judgement.",
     "contract": "Machine-written verdicts; a curator reviews before surfacing contradicho or promesa-repetida editorially."

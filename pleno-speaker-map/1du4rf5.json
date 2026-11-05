@@ -1,0 +1,877 @@
+{
+  "plenoId": "1du4rf5",
+  "generatedAt": "2026-11-05T08:57:08.108Z",
+  "model": "gemini-3.5-flash",
+  "promptVersion": "speaker-map-v2",
+  "chunkSeconds": 600,
+  "segments": [
+    {
+      "start": 0,
+      "end": 2.8,
+      "speaker": "c00/SPEAKER_00",
+      "text": "Pido la palabra señor alcalde [inaudible]"
+    },
+    {
+      "start": 2.8,
+      "end": 6,
+      "speaker": "c00/SPEAKER_01",
+      "text": "[inaudible] señor Aguilar tiene la palabra."
+    },
+    {
+      "start": 6,
+      "end": 13.2,
+      "speaker": "c00/SPEAKER_00",
+      "text": "Mire señor alcalde es una apreciación subjetiva de usted cuando dice de que de una manera muy clara. No es tan clara cuando en el día de hoy"
+    },
+    {
+      "start": 13.2,
+      "end": 19.3,
+      "speaker": "c00/SPEAKER_00",
+      "text": "el equipo de gobierno socialista presenta una moción que viene a rectificar la ordenanza que ustedes mismos aprobaron en el dos mil doce."
+    },
+    {
+      "start": 19.3,
+      "end": 25.8,
+      "speaker": "c00/SPEAKER_00",
+      "text": "El señor de la Rosa ha dicho que la modificación que se aprueba o que se propone aprobar en el punto del día de hoy"
+    },
+    {
+      "start": 25.8,
+      "end": 32.1,
+      "speaker": "c00/SPEAKER_00",
+      "text": "es para clarificar un texto que era de difícil comprensión o que daba lugar a interpretaciones subjetivas."
+    },
+    {
+      "start": 32.1,
+      "end": 39.5,
+      "speaker": "c00/SPEAKER_00",
+      "text": "Miren en el dos mil doce se aprobó una ordenanza fiscal reguladora de la tasa por la prestación de servicios en el centro ocupacional de Riba-roja"
+    },
+    {
+      "start": 39.5,
+      "end": 46.1,
+      "speaker": "c00/SPEAKER_00",
+      "text": "que en su artículo doce en el punto dos decía textualmente, la cuota tributaria por la prestación del servicio"
+    },
+    {
+      "start": 46.1,
+      "end": 52.8,
+      "speaker": "c00/SPEAKER_00",
+      "text": "de comedor será el resultado de multiplicar el importe de la tasa prevista en el artículo seis por el número de días que se haga uso"
+    },
+    {
+      "start": 52.8,
+      "end": 60.1,
+      "speaker": "c00/SPEAKER_00",
+      "text": "del servicio dentro de cada período mensual. Miren el artículo seis de la referida ordenanza de dos mil doce"
+    },
+    {
+      "start": 60.1,
+      "end": 66.8,
+      "speaker": "c00/SPEAKER_00",
+      "text": "establecía que la cuantía del centro ocupacional servicio de comedor eran cuatro con treinta y ocho euros por día."
+    },
+    {
+      "start": 66.8,
+      "end": 72.8,
+      "speaker": "c00/SPEAKER_00",
+      "text": "Yo no sé si es el Partido Socialista o si fue el técnico que redactó en aquel momento la ordenanza"
+    },
+    {
+      "start": 72.8,
+      "end": 78.8,
+      "speaker": "c00/SPEAKER_00",
+      "text": "pero la redactó tan mal que lo que decía es que se pagará por los días asistidos."
+    },
+    {
+      "start": 78.8,
+      "end": 85.3,
+      "speaker": "c00/SPEAKER_00",
+      "text": "En el día de hoy ustedes rectifican mediante una modificación de esa ordenanza del dos mil doce"
+    },
+    {
+      "start": 85.3,
+      "end": 92.5,
+      "speaker": "c00/SPEAKER_00",
+      "text": "y van a obligar a pagar el servicio de comedor por los días no asistidos salvo causa justificada."
+    },
+    {
+      "start": 92.5,
+      "end": 99.4,
+      "speaker": "c00/SPEAKER_00",
+      "text": "Mire esa causa justificada el señor de la Rosa la ha resumido diciendo por enfermedad. Mire en la moción"
+    },
+    {
+      "start": 99.4,
+      "end": 106.6,
+      "speaker": "c00/SPEAKER_00",
+      "text": "que ustedes traen no dice por causa por enfermedad, dice se considerará causa justificada"
+    },
+    {
+      "start": 106.6,
+      "end": 112.5,
+      "speaker": "c00/SPEAKER_00",
+      "text": "y remite al reglamento del centro ocupacional aprobada en el pleno del ocho de marzo del dos mil doce."
+    },
+    {
+      "start": 112.5,
+      "end": 119.8,
+      "speaker": "c00/SPEAKER_00",
+      "text": "Y si ustedes leen ese reglamento del centro ocupacional que remite la ordenanza que ustedes van a modificar hoy"
+    },
+    {
+      "start": 119.8,
+      "end": 126.7,
+      "speaker": "c00/SPEAKER_00",
+      "text": "dice en su artículo veintiuno punto dos, la baja temporal en el centro ocupacional"
+    },
+    {
+      "start": 126.7,
+      "end": 133.5,
+      "speaker": "c00/SPEAKER_00",
+      "text": "se producirá por las siguientes causas, incapacidad temporal por enfermedad o causa médica"
+    },
+    {
+      "start": 133.5,
+      "end": 140.7,
+      "speaker": "c00/SPEAKER_00",
+      "text": "debidamente acreditada, maternidad o paternidad, adopción o acogimiento de la persona usuaria,"
+    },
+    {
+      "start": 140.7,
+      "end": 148.1,
+      "speaker": "c00/SPEAKER_00",
+      "text": "privación de libertad, cumplimiento de sanciones que lleven consigo la suspensión temporal en la condición de persona usuaria."
+    },
+    {
+      "start": 148.1,
+      "end": 154.5,
+      "speaker": "c00/SPEAKER_00",
+      "text": "Fíjense lo que acabo de leer, incapacidad temporal por enfermedad o causa médica."
+    },
+    {
+      "start": 154.5,
+      "end": 161.4,
+      "speaker": "c00/SPEAKER_00",
+      "text": "Ello significa señor de la Rosa que si un usuario del centro ocupacional falta un día, dos días o tres días"
+    },
+    {
+      "start": 161.4,
+      "end": 168,
+      "speaker": "c00/SPEAKER_00",
+      "text": "al centro ocupacional sin que sea una enfermedad que le cause incapacidad temporal o causa médica"
+    },
+    {
+      "start": 168,
+      "end": 173.8,
+      "speaker": "c00/SPEAKER_00",
+      "text": "debidamente acreditada esa persona estará obligada a pagar el servicio de comedor."
+    },
+    {
+      "start": 173.8,
+      "end": 180.2,
+      "speaker": "c00/SPEAKER_00",
+      "text": "Miren el Partido Popular entiende que esa modificación que ustedes plantean no es justa."
+    },
+    {
+      "start": 180.2,
+      "end": 186.7,
+      "speaker": "c00/SPEAKER_00",
+      "text": "Esta ordenanza afecta a usuarios de un colectivo que es especialmente sensible,"
+    },
+    {
+      "start": 186.7,
+      "end": 193.3,
+      "speaker": "c00/SPEAKER_00",
+      "text": "un colectivo de personas con discapacidad intelectual y que ustedes les van a obligar a pagar el servicio"
+    },
+    {
+      "start": 193.3,
+      "end": 200.4,
+      "speaker": "c00/SPEAKER_00",
+      "text": "de comedor de los días que no asistan al centro ocupacional salvo si están enfermos con una incapacidad temporal"
+    },
+    {
+      "start": 200.4,
+      "end": 206.9,
+      "speaker": "c00/SPEAKER_00",
+      "text": "o que la causa médica esté debidamente acreditada. Por lo tanto nos parece que es una ordenanza"
+    },
+    {
+      "start": 206.9,
+      "end": 213.9,
+      "speaker": "c00/SPEAKER_00",
+      "text": "injusta. Y miren para corregir la mala redacción del Partido Socialista de dos mil doce"
+    },
+    {
+      "start": 213.9,
+      "end": 220.8,
+      "speaker": "c00/SPEAKER_00",
+      "text": "que aprobó la ordenanza de dos mil doce con la mayoría absoluta del Partido Socialista,"
+    },
+    {
+      "start": 220.8,
+      "end": 227.1,
+      "speaker": "c00/SPEAKER_00",
+      "text": "nos parece que es una que es perjudicial para los usuarios del centro ocupacional"
+    },
+    {
+      "start": 227.1,
+      "end": 233.9,
+      "speaker": "c00/SPEAKER_00",
+      "text": "obligarles a pagar el servicio de comedor cuando no asistan salvo que estén con incapacidad temporal"
+    },
+    {
+      "start": 233.9,
+      "end": 240.6,
+      "speaker": "c00/SPEAKER_00",
+      "text": "o enfermedad acreditada. El Partido Popular por ello no va a apoyar esta moción, va a votar en contra"
+    },
+    {
+      "start": 240.6,
+      "end": 247.3,
+      "speaker": "c00/SPEAKER_00",
+      "text": "de la moción y desde luego lo que pedimos al equipo de gobierno socialista es que rectifique la moción que presenta"
+    },
+    {
+      "start": 247.3,
+      "end": 253.9,
+      "speaker": "c00/SPEAKER_00",
+      "text": "y mantenga la redacción del año dos mil doce que obligaba solo a pagar el servicio de comedor"
+    },
+    {
+      "start": 253.9,
+      "end": 258.8,
+      "speaker": "c00/SPEAKER_00",
+      "text": "por los días asistidos. Muchas gracias."
+    },
+    {
+      "start": 755.8,
+      "end": 760.8,
+      "speaker": "c01/SPEAKER_00",
+      "text": "Bona vesprada a totes i a tots. Anem a començar el el ple ordinari de novembre."
+    },
+    {
+      "start": 760.8,
+      "end": 768,
+      "speaker": "c01/SPEAKER_00",
+      "text": "En el primer punt de l'ordre del dia, que és l'aprovació de l'acta anterior, alguna qüestió a l'acta?"
+    },
+    {
+      "start": 768,
+      "end": 771,
+      "speaker": "c01/SPEAKER_00",
+      "text": "S'aprova per unanimitat."
+    },
+    {
+      "start": 771,
+      "end": 783,
+      "speaker": "c01/SPEAKER_00",
+      "text": "El segon punt seria declaració de convocatòria deserta d'elecció de jutgesa o jutge de pau substitut de Riba-roja de Túria per al mandat 2025-2029. José Ángel."
+    },
+    {
+      "start": 783,
+      "end": 785,
+      "speaker": "c01/SPEAKER_01",
+      "text": "Sí, hola. Bona vesprada."
+    },
+    {
+      "start": 785,
+      "end": 798.8,
+      "speaker": "c01/SPEAKER_01",
+      "text": "En este cas, bueno, se declara deserta la convocatòria de la elecció del juez substituto y es también remitir el acuerdo al Tribunal Superior de Justicia de la Comunidad Valenciana para que ellos decidan qué hacer. Gracias."
+    },
+    {
+      "start": 798.8,
+      "end": 803,
+      "speaker": "c01/SPEAKER_00",
+      "text": "Alguna qüestió a este punt?"
+    },
+    {
+      "start": 803,
+      "end": 806.5,
+      "speaker": "c01/SPEAKER_00",
+      "text": "Hi ha que votar-lo, no? Votem l'aprovació d'este punt del punt dos."
+    },
+    {
+      "start": 806.5,
+      "end": 826,
+      "speaker": "c01/SPEAKER_00",
+      "text": "Anem votant. Falta un vot. Vale, pues ja estarien. Eh, a favor set vots, abstencions cinc, grup socialista."
+    },
+    {
+      "start": 826,
+      "end": 827.5,
+      "speaker": "c01/SPEAKER_02",
+      "text": "A favor."
+    },
+    {
+      "start": 827.5,
+      "end": 828.6,
+      "speaker": "c01/SPEAKER_00",
+      "text": "Partit Popular?"
+    },
+    {
+      "start": 828.6,
+      "end": 832,
+      "speaker": "c01/SPEAKER_03",
+      "text": "No, cinc. Cinc, o siga, lo de nosaltres ha estat abstenció i hagut a favor, supuse."
+    },
+    {
+      "start": 832,
+      "end": 834,
+      "speaker": "c01/SPEAKER_02",
+      "text": "Sí, el PSOE hem votat a favor."
+    },
+    {
+      "start": 834,
+      "end": 838.8,
+      "speaker": "c01/SPEAKER_00",
+      "text": "Val, dir sa declaració que vol el Partit Popular i ja està."
+    },
+    {
+      "start": 838.8,
+      "end": 840.2,
+      "speaker": "c01/SPEAKER_03",
+      "text": "A favor."
+    },
+    {
+      "start": 840.2,
+      "end": 841.6,
+      "speaker": "c01/SPEAKER_00",
+      "text": "A favor. Eh, Vox?"
+    },
+    {
+      "start": 841.6,
+      "end": 842.8,
+      "speaker": "c01/SPEAKER_02",
+      "text": "A favor, entonces?"
+    },
+    {
+      "start": 842.8,
+      "end": 845,
+      "speaker": "c01/SPEAKER_00",
+      "text": "Eh, Compromís... eh, Esquerra Unida Podemos?"
+    },
+    {
+      "start": 845,
+      "end": 846,
+      "speaker": "c01/SPEAKER_04",
+      "text": "Abstenció."
+    },
+    {
+      "start": 846,
+      "end": 847.2,
+      "speaker": "c01/SPEAKER_00",
+      "text": "I Compromís?"
+    },
+    {
+      "start": 847.2,
+      "end": 848.5,
+      "speaker": "c01/SPEAKER_05",
+      "text": "A favor."
+    },
+    {
+      "start": 848.5,
+      "end": 853.5,
+      "speaker": "c01/SPEAKER_02",
+      "text": "Entenc que tot el que ha sigut un error per part del Partido Popular o hi ha algú que vulga manifestar..."
+    },
+    {
+      "start": 853.5,
+      "end": 856,
+      "speaker": "c01/SPEAKER_03",
+      "text": "Bueno, no. Es un error."
+    },
+    {
+      "start": 856,
+      "end": 859,
+      "speaker": "c01/SPEAKER_02",
+      "text": "Vale, no, no, no, perfecto."
+    },
+    {
+      "start": 859,
+      "end": 863.8,
+      "speaker": "c01/SPEAKER_00",
+      "text": "Se rectifica en l'acta i ja està, val? Si us pareix bé. Vale, passem al següent punt de l'ordre del dia."
+    },
+    {
+      "start": 863.8,
+      "end": 874.6,
+      "speaker": "c01/SPEAKER_00",
+      "text": "És el punt sis, d'Urbanisme, que és el punt minimització d'impacte territorial a nom de David Raga Rojas en nucli no urbanitzable. Té la paraula Teresa."
+    },
+    {
+      "start": 874.6,
+      "end": 877.8,
+      "speaker": "c01/SPEAKER_03",
+      "text": "Senyor alcalde, podria dir una cosa de de d'organització? Un dubte."
+    },
+    {
+      "start": 877.8,
+      "end": 878.4,
+      "speaker": "c01/SPEAKER_00",
+      "text": "Vale."
+    },
+    {
+      "start": 878.4,
+      "end": 879.3,
+      "speaker": "c01/SPEAKER_03",
+      "text": "Sí."
+    },
+    {
+      "start": 879.3,
+      "end": 883,
+      "speaker": "c01/SPEAKER_03",
+      "text": "Eh, a la secretaria."
+    },
+    {
+      "start": 883,
+      "end": 892,
+      "speaker": "c01/SPEAKER_03",
+      "text": "El señor alcalde en este punto está afectado por la Ley de Régimen de Bases Local y por el ROF porque es parte del expediente."
+    },
+    {
+      "start": 892,
+      "end": 898.5,
+      "speaker": "c01/SPEAKER_02",
+      "text": "Perdonat, entenc artículo siguiente, artículo tercero? Ah, vale, vale. Es que pensaba que estábamos en el punto cuatro."
+    },
+    {
+      "start": 898.5,
+      "end": 907,
+      "speaker": "c01/SPEAKER_03",
+      "text": "Entonces mi pregunta es: ¿debe abstenerse de participar o puede participar? Porque según el ROF si participa la aprobación o no aprobación del expediente de la propuesta puede ser impugnada."
+    },
+    {
+      "start": 907,
+      "end": 921,
+      "speaker": "c01/SPEAKER_02",
+      "text": "Sí, el el bueno. Perdón. Sí, entenc. Vale, sí. El alcalde me ha manifestado antes del inicio del pleno su deseo de abstenerse en este punto por tener un interés directo en el asunto. Se va a abstener de de intervenir y de votar en la votación. Eso es lo que me ha trasladado y que iba a trasladar al pleno."
+    },
+    {
+      "start": 921,
+      "end": 923,
+      "speaker": "c01/SPEAKER_00",
+      "text": "Sí, no, a veure. Aclarat el..."
+    },
+    {
+      "start": 923,
+      "end": 924,
+      "speaker": "c01/SPEAKER_03",
+      "text": "No, apreta. Exacte."
+    },
+    {
+      "start": 924,
+      "end": 932.2,
+      "speaker": "c01/SPEAKER_00",
+      "text": "Aclarat el punt, jo no intervindré. Eh, comença el punt de l'ordre del dia i crec que hi ha un un escrit en, no? Que fa referència a urbanisme en el sentit de que està en l'expedient, no?"
+    },
+    {
+      "start": 932.2,
+      "end": 933.1,
+      "speaker": "c01/SPEAKER_02",
+      "text": "Mhm."
+    },
+    {
+      "start": 933.1,
+      "end": 935.5,
+      "speaker": "c01/SPEAKER_00",
+      "text": "En el propi expedient ho teniu, val?"
+    },
+    {
+      "start": 935.5,
+      "end": 939.8,
+      "speaker": "c01/SPEAKER_00",
+      "text": "El que jo m'abstindré i per tant no participaré en el punt. Sí, està en l'expedient."
+    },
+    {
+      "start": 939.8,
+      "end": 942.5,
+      "speaker": "c01/SPEAKER_03",
+      "text": "Abstienes de participar."
+    },
+    {
+      "start": 942.5,
+      "end": 950.2,
+      "speaker": "c01/SPEAKER_00",
+      "text": "Sí, sí, però està en el propi expedient ho teniu en un document, val? Lo que passa que el punt sí que el cite. A partir d'ahí ja li donaré a la regidora d'Urbanisme Teresa. Teresa, quan vulgues."
+    },
+    {
+      "start": 950.2,
+      "end": 953.8,
+      "speaker": "c01/SPEAKER_06",
+      "text": "Vale, pues buenas tardes a todos."
+    },
+    {
+      "start": 953.8,
+      "end": 962.6,
+      "speaker": "c01/SPEAKER_06",
+      "text": "Eh, traemos otro punto de minimización. Saben que somos verdaderos defensores de esta de este método urbanístico que permite"
+    },
+    {
+      "start": 962.6,
+      "end": 972,
+      "speaker": "c01/SPEAKER_06",
+      "text": "la regularización de viviendas en suelo rústico y hoy lo que traemos es la minimización en en un suelo rústico en el polígono treinta y nueve, parcela setenta y uno A de la de la partida de la Carrasquereta."
+    },
+    {
+      "start": 972,
+      "end": 982.4,
+      "speaker": "c01/SPEAKER_06",
+      "text": "El catorce de julio de dos mil veinticinco se hizo la solicitud de declaración individualizada de minimización de impacto territorial."
+    },
+    {
+      "start": 982.4,
+      "end": 988.9,
+      "speaker": "c01/SPEAKER_06",
+      "text": "Se trata de una vivienda unifamiliar aislada y una piscina construida en el año mil novecientos setenta y ocho."
+    },
+    {
+      "start": 988.9,
+      "end": 996.9,
+      "speaker": "c01/SPEAKER_06",
+      "text": "No constan expedientes de restauración de la ilegalidad, constan en el expediente informe técnico de fecha quince de octubre de dos mil veinticinco"
+    },
+    {
+      "start": 996.9,
+      "end": 1002.8,
+      "speaker": "c01/SPEAKER_06",
+      "text": "e informe jurídico de fecha veinticuatro de octubre del dos mil veinticinco."
+    },
+    {
+      "start": 1002.8,
+      "end": 1012.3,
+      "speaker": "c01/SPEAKER_06",
+      "text": "Como saben, que otras veces también lo he recordado y aprovecho por si nos están escuchando algún vecino que viva precisamente en diseminados,"
+    },
+    {
+      "start": 1012.3,
+      "end": 1019,
+      "speaker": "c01/SPEAKER_06",
+      "text": "para poder realizar la la tramitación individualizada necesitan cumplir tres requisitos:"
+    },
+    {
+      "start": 1019,
+      "end": 1026.5,
+      "speaker": "c01/SPEAKER_06",
+      "text": "densidad inferior a tres viviendas por hectárea, únicamente se podrá legalizar la obra y el uso residencial"
+    },
+    {
+      "start": 1026.5,
+      "end": 1036.3,
+      "speaker": "c01/SPEAKER_06",
+      "text": "y la edificación haber sido finalizada antes del veinte de agosto de dos mil catorce, perdón, que es cuando la LOTUP incorpora esta figura de la de la minimización."
+    },
+    {
+      "start": 1036.3,
+      "end": 1041.8,
+      "speaker": "c01/SPEAKER_06",
+      "text": "En la documentación aportada junto con la solicitud queda acreditado el cumplimiento de los tres condicionantes necesarios."
+    },
+    {
+      "start": 1041.8,
+      "end": 1046.5,
+      "speaker": "c01/SPEAKER_06",
+      "text": "No constan expedientes de disciplina en el Ayuntamiento para las referidas edificaciones,"
+    },
+    {
+      "start": 1046.5,
+      "end": 1048.9,
+      "speaker": "c01/SPEAKER_06",
+      "text": "no se precisa informe previo vinculante"
+    },
+    {
+      "start": 1048.9,
+      "end": 1057.6,
+      "speaker": "c01/SPEAKER_06",
+      "text": "y tras la declaración plenaria, la persona interesada deberá solicitar la licencia de minimización de impacto de ocupación, un análisis de las afectaciones y riesgos ambientales y medidas correctoras,"
+    },
+    {
+      "start": 1057.6,
+      "end": 1068,
+      "speaker": "c01/SPEAKER_06",
+      "text": "y disponiendo de un plazo de cuatro años desde la obtención de dicha licencia para finalizar las obras necesarias de minimización."
+    },
+    {
+      "start": 1068,
+      "end": 1074.3,
+      "speaker": "c01/SPEAKER_06",
+      "text": "Con esto nosotros lo que hacemos es eh el pleno la aprobación de este expediente, de la solicitud de la minimización,"
+    },
+    {
+      "start": 1074.3,
+      "end": 1079.2,
+      "speaker": "c01/SPEAKER_06",
+      "text": "este expediente pasa a la Conselleria y con el visto bueno de la Conselleria cualquier vecino que le viene otorgada esa minimización"
+    },
+    {
+      "start": 1079.2,
+      "end": 1087.6,
+      "speaker": "c01/SPEAKER_06",
+      "text": "tienen cuatro años para eh cumplir los requisitos que le permite tener esta regularización de la vivienda."
+    },
+    {
+      "start": 1087.6,
+      "end": 1091.5,
+      "speaker": "c01/SPEAKER_06",
+      "text": "Por todo ello eh traemos al pleno los siguientes puntos:"
+    },
+    {
+      "start": 1091.5,
+      "end": 1094.6,
+      "speaker": "c01/SPEAKER_06",
+      "text": "En primer lugar, eh declarar la situación individualizada de la minimización."
+    },
+    {
+      "start": 1094.6,
+      "end": 1099.7,
+      "speaker": "c01/SPEAKER_06",
+      "text": "En segundo lugar, requerir al interesado para que realice la solicitud de licencia de minimización"
+    },
+    {
+      "start": 1099.7,
+      "end": 1103.2,
+      "speaker": "c01/SPEAKER_06",
+      "text": "a la que tiene que adjuntar la documentación que se requiere."
+    },
+    {
+      "start": 1103.2,
+      "end": 1107,
+      "speaker": "c01/SPEAKER_06",
+      "text": "En tercero, las condiciones eh edificatorias se deberán ajustar a la licencia de de legalización."
+    },
+    {
+      "start": 1107,
+      "end": 1111,
+      "speaker": "c01/SPEAKER_06",
+      "text": "En cuarto, dar traslado del presente acuerdo a los departamentos de Secretaría y Urbanismo."
+    },
+    {
+      "start": 1111,
+      "end": 1117,
+      "speaker": "c01/SPEAKER_06",
+      "text": "Eh, la presente declaración se otorga dejando a salvo el derecho de propiedad y sin perjuicio de tercero y notificar a los interesados"
+    },
+    {
+      "start": 1117,
+      "end": 1123.5,
+      "speaker": "c01/SPEAKER_06",
+      "text": "y facultar al alcalde para la firma de cuantos actos sean precisos. En este caso eh el instructor de de este expediente sería"
+    },
+    {
+      "start": 1123.5,
+      "end": 1127.2,
+      "speaker": "c01/SPEAKER_06",
+      "text": "sería yo, como se ha comentado anteriormente. Nada más."
+    },
+    {
+      "start": 1127.2,
+      "end": 1128,
+      "speaker": "c01/SPEAKER_06",
+      "text": "Perdonat."
+    },
+    {
+      "start": 1128,
+      "end": 1130,
+      "speaker": "c01/SPEAKER_00",
+      "text": "Eh, paraules?"
+    },
+    {
+      "start": 1130,
+      "end": 1131.8,
+      "speaker": "c01/SPEAKER_03",
+      "text": "Alberto, Partit Popular."
+    },
+    {
+      "start": 1131.8,
+      "end": 1141,
+      "speaker": "c01/SPEAKER_03",
+      "text": "En referencia a esta minimización nosotros comentar que siempre hemos votado a favor de todas las minimizaciones porque nos parece un hecho urbanístico fabuloso, vamos."
+    },
+    {
+      "start": 1141,
+      "end": 1148,
+      "speaker": "c01/SPEAKER_03",
+      "text": "Pero en este expediente hay un eh informe un estudio de la arquitecta municipal en el que en su punto quince"
+    },
+    {
+      "start": 1148,
+      "end": 1154.5,
+      "speaker": "c01/SPEAKER_03",
+      "text": "nos dicen que no constan en este Ayuntamiento expedientes de disciplina urbanística para las..."
+    }
+  ],
+  "rows": [
+    {
+      "label": "c01/SPEAKER_01",
+      "bloc": "PSOE",
+      "slug": "jose-angel-hernandez-carrizosa",
+      "heardAs": "José Ángel",
+      "evidence": [
+        {
+          "spokenBy": "c01/SPEAKER_00",
+          "at": 781,
+          "quote": "José Ángel",
+          "relation": "turn-grant"
+        }
+      ],
+      "namesIndividual": false,
+      "weak": false
+    },
+    {
+      "label": "c01/SPEAKER_06",
+      "bloc": "PSOE",
+      "slug": "teresa-pozuelo-martin",
+      "heardAs": "Teresa",
+      "evidence": [
+        {
+          "spokenBy": "c01/SPEAKER_00",
+          "at": 950,
+          "quote": "Teresa, quan vulgues",
+          "relation": "turn-grant"
+        }
+      ],
+      "namesIndividual": false,
+      "weak": false
+    }
+  ],
+  "rejected": [
+    {
+      "label": "c00/SPEAKER_00",
+      "reason": "unresolvable",
+      "detail": "heard \"Aguilar\" matches nobody"
+    },
+    {
+      "label": "c00/SPEAKER_00",
+      "reason": "unresolvable",
+      "detail": "no name in the cited quote and the party is not single-seat"
+    },
+    {
+      "label": "c00/SPEAKER_01",
+      "reason": "unresolvable",
+      "detail": "heard \"alcalde\" matches nobody"
+    },
+    {
+      "label": "c01/SPEAKER_03",
+      "reason": "evidence-speaker-mismatch",
+      "detail": "531s is SPEAKER_03, cited as SPEAKER_00"
+    }
+  ],
+  "stats": {
+    "chunksExpected": 27,
+    "chunksTranscribed": 2,
+    "failedChunks": [
+      {
+        "chunk": 2,
+        "why": "never attempted (call budget spent; resumes next run)"
+      },
+      {
+        "chunk": 3,
+        "why": "never attempted (call budget spent; resumes next run)"
+      },
+      {
+        "chunk": 4,
+        "why": "never attempted (call budget spent; resumes next run)"
+      },
+      {
+        "chunk": 5,
+        "why": "never attempted (call budget spent; resumes next run)"
+      },
+      {
+        "chunk": 6,
+        "why": "never attempted (call budget spent; resumes next run)"
+      },
+      {
+        "chunk": 7,
+        "why": "never attempted (call budget spent; resumes next run)"
+      },
+      {
+        "chunk": 8,
+        "why": "never attempted (call budget spent; resumes next run)"
+      },
+      {
+        "chunk": 9,
+        "why": "never attempted (call budget spent; resumes next run)"
+      },
+      {
+        "chunk": 10,
+        "why": "never attempted (call budget spent; resumes next run)"
+      },
+      {
+        "chunk": 11,
+        "why": "never attempted (call budget spent; resumes next run)"
+      },
+      {
+        "chunk": 12,
+        "why": "never attempted (call budget spent; resumes next run)"
+      },
+      {
+        "chunk": 13,
+        "why": "never attempted (call budget spent; resumes next run)"
+      },
+      {
+        "chunk": 14,
+        "why": "never attempted (call budget spent; resumes next run)"
+      },
+      {
+        "chunk": 15,
+        "why": "never attempted (call budget spent; resumes next run)"
+      },
+      {
+        "chunk": 16,
+        "why": "never attempted (call budget spent; resumes next run)"
+      },
+      {
+        "chunk": 17,
+        "why": "never attempted (call budget spent; resumes next run)"
+      },
+      {
+        "chunk": 18,
+        "why": "never attempted (call budget spent; resumes next run)"
+      },
+      {
+        "chunk": 19,
+        "why": "never attempted (call budget spent; resumes next run)"
+      },
+      {
+        "chunk": 20,
+        "why": "never attempted (call budget spent; resumes next run)"
+      },
+      {
+        "chunk": 21,
+        "why": "never attempted (call budget spent; resumes next run)"
+      },
+      {
+        "chunk": 22,
+        "why": "never attempted (call budget spent; resumes next run)"
+      },
+      {
+        "chunk": 23,
+        "why": "never attempted (call budget spent; resumes next run)"
+      },
+      {
+        "chunk": 24,
+        "why": "never attempted (call budget spent; resumes next run)"
+      },
+      {
+        "chunk": 25,
+        "why": "never attempted (call budget spent; resumes next run)"
+      },
+      {
+        "chunk": 26,
+        "why": "never attempted (call budget spent; resumes next run)"
+      }
+    ],
+    "labelsSeen": 9,
+    "rowsAccepted": 2,
+    "rowsRejected": 4,
+    "rejectedBy": {
+      "unresolvable": 3,
+      "evidence-speaker-mismatch": 1
+    },
+    "attemptedThisRun": 2,
+    "apiCalls": 2,
+    "coverage": 0.050233020093208125
+  }
+}
