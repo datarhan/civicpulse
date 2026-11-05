@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-05T09:00:17.094Z",
+  "generatedAt": "2026-11-05T11:45:27.445Z",
   "windowDays": 30,
   "articles": [
     {
@@ -647,30 +647,13 @@
         "opinionFraction": 0
       },
       "score": 3
-    },
-    {
-      "articleId": "ccsnc0",
-      "articleFingerprint": "11ifeuo",
-      "outlet": "Ayuntamiento de Riba-roja de Túria",
-      "outletHost": "ribarroja.es",
-      "url": "https://www.ribarroja.es/es/noticia/riba-roja-de-t%C3%BAria%2C-cheste-y-loriguilla-ratifican-en-asamblea-los-estatutos-de-la-mancomunitat-industrial-a3",
-      "date": "2026-10-06T09:45:08.000Z",
-      "indicators": {
-        "localCoverage": false,
-        "datedArticle": true,
-        "municipalSourceMatch": null,
-        "corroboratedAcrossOutlets": null,
-        "factualClaimsPresent": null,
-        "opinionFraction": 0
-      },
-      "score": 1
     }
   ],
   "outlets": [
     {
       "outlet": "Ayuntamiento de Riba-roja de Túria",
       "outletHost": "ribarroja.es",
-      "articleCount": 19,
+      "articleCount": 18,
       "verdictCounts": {
         "verificado": 0,
         "parcial": 0,
@@ -679,7 +662,7 @@
         "promesa-repetida": 1
       },
       "checkedClaims": 13,
-      "meanTrustScore": 1.95,
+      "meanTrustScore": 2,
       "verifiedRatio": 0,
       "contradictedRatio": null
     },
@@ -781,7 +764,7 @@
     }
   ],
   "builtFrom": {
-    "plenos-agendas.json": "2bf24b335f37",
+    "plenos-agendas.json": "0c76bc8c5c2b",
     "press-claims-verified.json": "0026b814bd42",
     "press.json": "bd0a1e943096",
     "promises.json": "a4b8423e960f"
