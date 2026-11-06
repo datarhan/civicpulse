@@ -1,21 +1,21 @@
 {
-  "generatedAt": "2026-11-05T05:49:08.667Z",
+  "generatedAt": "2026-11-06T05:48:30.115Z",
   "source": {
     "baseUrl": "https://regmeet.com",
     "description": "Actas firmadas de pleno del Ayuntamiento de Riba-roja de Túria, publicadas en la pestaña «Documentos» de cada sesión en regmeet.com (aytoribarroja). Un PDF cuenta como acta por su texto («ACTA SESIÓN …» con la fecha del pleno), nunca por su etiqueta. Este índice no lleva texto del acta."
   },
   "stats": {
     "sesiones": 63,
-    "conActa": 10,
-    "sinDocumentos": 4,
+    "conActa": 12,
+    "sinDocumentos": 2,
     "soloOtros": 0,
     "fechaNoCoincide": 0,
     "fallidas": 0,
     "sinIntentar": 0,
     "arrastradas": 0,
     "conservadas": 49,
-    "conservadasConActa": 34,
-    "pdfReutilizados": 10
+    "conservadasConActa": 32,
+    "pdfReutilizados": 12
   },
   "items": [
     {
