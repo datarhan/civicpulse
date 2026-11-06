@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-05T12:43:04.051Z",
+  "generatedAt": "2026-11-06T12:25:48.076Z",
   "feeds": [
     {
       "url": "https://www.ribarroja.es/es/noticias/rss.xml",
@@ -17,13 +17,13 @@
       "url": "https://news.google.com/rss/search?q=%22Riba-roja%20de%20T%C3%BAria%22&hl=es&gl=ES&ceid=ES:es",
       "platform": "Google News RSS",
       "ok": true,
-      "items": 55
+      "items": 53
     }
   ],
   "stats": {
-    "total": 114,
-    "sources": 19,
-    "latestDate": "2026-11-05T00:03:30.000Z",
+    "total": 111,
+    "sources": 18,
+    "latestDate": "2026-11-06T10:31:56.000Z",
     "carriedForward": 0
   },
   "sources": [
@@ -36,7 +36,6 @@
     "Las Provincias",
     "Levante-EMV",
     "Meteored España",
-    "Noticias de la Comunidad Valenciana",
     "Periòdic del Camp de Túria",
     "Turisme Comunitat Valenciana",
     "Universitat de València",
@@ -48,6 +47,28 @@
     "www.burjassot.org"
   ],
   "items": [
+    {
+      "id": "164g66f",
+      "title": "Listado admitidos y excluidos Cheque Bebé + 2025",
+      "link": "https://www.ribarroja.es/es/noticia/listado-admitidos-y-excluidos-cheque-beb%C3%A9-%2B-2025",
+      "source": "Ayuntamiento de Riba-roja de Túria",
+      "sourceHost": "ribarroja.es",
+      "date": "2026-11-06T10:31:56.000Z",
+      "fingerprint": "833w2x",
+      "official": true,
+      "section": "Accio Social"
+    },
+    {
+      "id": "ux557c",
+      "title": "Riba-roja habilita en la web municipal un enlace para conocer en qué mesa votar en las próximas elecciones generales",
+      "link": "https://www.ribarroja.es/es/noticia/riba-roja-habilita-en-la-web-municipal-un-enlace-para-conocer-en-qu%C3%A9-mesa-votar-en-las-pr%C3%B3ximas-elecciones-generales",
+      "source": "Ayuntamiento de Riba-roja de Túria",
+      "sourceHost": "ribarroja.es",
+      "date": "2026-11-05T12:04:48.000Z",
+      "fingerprint": "1wtaebr",
+      "official": true,
+      "section": "Noves tecnologies"
+    },
     {
       "id": "1lvhrbq",
       "title": "Valencia se llena de ferias, fiestas y actividades este fin de semana: planes del 6 al 8 de noviembre de 2026",
@@ -65,15 +86,6 @@
       "sourceHost": "comarcalcv.com",
       "date": "2026-11-04T09:12:43.000Z",
       "fingerprint": "1gp6kvs"
-    },
-    {
-      "id": "1ni4o4j",
-      "title": "🎙️Arrelant desembarca a Riba-roja de Túria per a vindicar el seu passat visigot i la memòria fluvial del riu",
-      "link": "https://news.google.com/rss/articles/CBMi7wFBVV95cUxQVE9LdEZmQnpERHdfeEt6aV8wVmJQYVJ6ZDRxemY3akZ1bzY5YTBlX09jTkRwVkxHN09wVnNaR2lBX0JWWTVsUmZkcXpiaG8tQloxTmxEc1RXdDRTOWNaWFMzU242dXkxYnMxTk5sTWhMS1Y0RnRMOTBSSmROSk1jMERSTUJBVjFRWG45Q2RSX25QMTFYblR1U2kxV1ZtSVdnWmtmVVU2aWdTQWZndFZXVlc5RmUxM0sxTWFNWHVwZHJKS2k5RnRBUERCYkRLdnR3V05rNE9GUmY1dXpCNW5HVEV5Z1E0ZUhGYnhoQWM3QdIB9AFBVV95cUxQWktDTWx5ai1BbzFpTFU2NnVfOFJ2SlpqenRicGFDcmo4UDc3TE5oNEQxdmhJX2tRZ2VTaGlXaUlYdTVXcElGZGlKbl8zWU1YNnk1SW1BTndOamRzZzRHRkNQNUs0ZHlTYXdLcUtHT29CLTZDRFkybnpmbXQ5eWlCNjItNzBKLU54amYzY3NEbUVjUEMxb1RFYXVRbjFOaWlLVUlZdmdxYzRPbGUtMVphbnVtdHlMTEZnRXlYTjc5YTBqMUtDa0JHX3B4c0huSlJNOGw4ZEYyOWRhQUhQVjhEVldMMEpTTWV0SnR5RzZPaXp2UHVr?oc=5",
-      "source": "elDiario.es",
-      "sourceHost": "eldiario.es",
-      "date": "2026-11-03T18:19:13.000Z",
-      "fingerprint": "1kgolmo"
     },
     {
       "id": "l2w55p",
@@ -94,15 +106,6 @@
       "sourceHost": "valenciaplaza.com",
       "date": "2026-11-03T15:24:55.000Z",
       "fingerprint": "reyul8"
-    },
-    {
-      "id": "19t1fz0",
-      "title": "Mercado, recreaciones y gastronomía en Riba-roja: horarios y programa completo de la Festa del Dux",
-      "link": "https://news.google.com/rss/articles/CBMivAFBVV95cUxQWGk4ekFTQk9IcEM4bUN1TkN2d21SN1loYzl6WGdnTWltcU5ablRxSHF6R0xUbm9hZ3dUNE5iX0lSaC1PQnlJVDJySG9haktsYlNzbFYzV2tzamxiZFYwVmFtNS1mY0k3NkFkZTVKRUtnVG9oNjBlVzZIMHBJeUZhZ3hGWmZrQkQ2a09wc09felZOdlJPUjVPQmVyc2VpVmQ5bEZpZjJjako1UkhBbzFqMVJBS2JkRk5SVVRFWA?oc=5",
-      "source": "Noticias de la Comunidad Valenciana",
-      "sourceHost": "noticiascv.com",
-      "date": "2026-11-03T04:17:28.000Z",
-      "fingerprint": "1t69bna"
     },
     {
       "id": "6mxh64",
@@ -802,17 +805,6 @@
       "section": "Accio Social"
     },
     {
-      "id": "15tpe88",
-      "title": "Riba-roja cede una parcela municipal de 1.945 metros cuadrados para construir 36 viviendas de protección pública tras constatar una tensión en el mercado inmobiliario",
-      "link": "https://www.ribarroja.es/es/noticia/riba-roja-cede-una-parcela-municipal-de-1.945-metros-cuadrados-para-construir-36-viviendas-de-protecci%C3%B3n-p%C3%BAblica-tras-constatar-una-tensi%C3%B3n-en-el-mercado-inmobiliario",
-      "source": "Ayuntamiento de Riba-roja de Túria",
-      "sourceHost": "ribarroja.es",
-      "date": "2026-08-17T11:54:37.000Z",
-      "fingerprint": "1v2ow04",
-      "official": true,
-      "section": "Urbanisme"
-    },
-    {
       "id": "bp13b8",
       "title": "Una mujer muere en el incendio de su vivienda en Riba-roja",
       "link": "https://news.google.com/rss/articles/CBMiogFBVV95cUxNYXBUQURFRkc2clZXSDlvWWJiVVVTY2JLczNEb2xiMFFCZmw4NkhkWlJBN2JTN1VaSUhhVWY4TVBoMDhQZm1lMDhYd0JNUXVEYzJ3VzZaamdrc1otREZzMkt3OUt5X0lUNGVuRXF5bENudjkxS1dxSUg5WXRaUzdhNjZZa2ZkUlBGMXlacDVBeU81LXR4em1NRmNHTkR3eGVJclHSAacBQVVfeXFMUDJGRDE5Y1JNd2czUVI2c3kwN1REY3ZCTXhmblpXWW1SeXNXMk03YzVWNXB1LXN1eHlBSk1iUWdzZEVWQTN0M2JwVGlPa1FJRjZYeU5XOVFkSWhHZDRLdnI0TU5HSHdlaGlXMVd3WW5jYjdBS3pvNDRtNlBEeTBsbHlqRFl3NUlxMjhoY0M0Z1NQWm9uSUwyZDVPODZYUXVzZGV2cjNKR1U?oc=5",
@@ -829,17 +821,6 @@
       "sourceHost": "levante-emv.com",
       "date": "2026-08-15T07:00:00.000Z",
       "fingerprint": "1xd1f7z"
-    },
-    {
-      "id": "1p108so",
-      "title": "Nuevo canal de información Urbanizaciones",
-      "link": "https://www.ribarroja.es/es/noticia/nuevo-canal-de-informaci%C3%B3n-urbanizaciones",
-      "source": "Ayuntamiento de Riba-roja de Túria",
-      "sourceHost": "ribarroja.es",
-      "date": "2026-08-14T10:32:15.000Z",
-      "fingerprint": "ihcy3c",
-      "official": true,
-      "section": null
     },
     {
       "id": "1na5h0s",
@@ -878,6 +859,15 @@
       "fingerprint": "yy5ycg"
     },
     {
+      "id": "11bfg2o",
+      "title": "Territori Jove de Riba-roja de Túria celebra tres años de éxito con un crecimiento constante de visitantes",
+      "link": "https://news.google.com/rss/articles/CBMiyAFBVV95cUxPeFJXS0ZtV0M0cTlOX2tlNDhOckdnMXFQUVQwTENuWGh3OEd5SkxqU2ZVOU9tMkVnTDRzalVvZkZTem1OTVZtdl9Dc0J1SXhQZkNhX29wWF8zcFpyQ2ZCMVNLMFZwVXhRTHNCUkpVWFRtNkJxaFp6NmhVcVJmdlNkYXlnNWtrdm55OEo2M3pBWllKRnBpdVl3VFZYNmZqT2M4MjVQV0JjM2VkOUxybjYyY1g1M0cySEQzbXZpb2ppb19QbXBrM0gtNtIBzgFBVV95cUxOdGNDQTE3ZndlaEN6ZmhwS1BDWklZNzhSTnNhQlk0QjZqS05XaDUxMHgzOWRMN2R5eTE3YWNhMDdnbzlQeEhEWTN0VnhiMGZZN0JNMDRNRE5PSk1rbklvMlk3ajNEUmw3OFVqaWJXeUVZdUZOU1RpZExfTmJKQ3JHa1k2R2pxTUc2ZkRkN3F3c0toNm9nRGNta1BwZFFsRUFrX01iYU9qZ2ZrWVM4RnpPU1l2WVhPeG41YmItV3ZyRVdsQnBpQW1LTnhOb1pyZw?oc=5",
+      "source": "Levante-EMV",
+      "sourceHost": "levante-emv.com",
+      "date": "2026-06-22T07:00:00.000Z",
+      "fingerprint": "wy4bq0"
+    },
+    {
       "id": "6xn9e8",
       "title": "Cierra por jubilación uno de los negocios más longevos de Riba-roja de Túria tras más de cuatro décadas",
       "link": "https://news.google.com/rss/articles/CBMi4wFBVV95cUxQLXhZWXYzQWg0b3dkcWJLQ3F6MGtMMmQ2ZWZxR3l2ZjBqWHRZUmgtV3NJdHh1cFN6N0J2NlJrWmUtWXQzWlhIajNsQ05RaEhqaUYzQnJ1WFdtV3I2eVFPRjlBaFJnVXRWRXIzNVYyRmVpZmJ2M3ZXTlJtMUZkbUFITzFPdzhVUWJkSV9vM0pNaGF6cVdONzV3NFpmV1NFZ3RzSWN2OTItOGkyVi1nNFFnWG9WRllsUzVZeERtVkRGMEpnREctUklyYXRDQnVoa3F6Rk1SN24wWjljUGFQN3ZpMlZpUdIB6AFBVV95cUxQb2YxbTIzVTY0V00wclpLYUttY3hlSEVLRnVFTHV0U0xiRGFBYzBnZzF6ckRHMzVlaFQ3SlpaMXZGWDZOV3N6SHNGUVpWVnJFZTZFcGh0RS1UdFIzOWZzb0FOekhqOXNPaVVnZE1fTXhUd1RTQW55UE5HOW5ZZlBjcXdscG9pdmQ2VHJxb3gtajJFV1pRaW9PSTZwdml2ZEFoejdwT3BZTDlxMDZaQ0tFeDRrYkxrek9KM0NCckNCSGRXa3k5MHVaM0RJT05jSld6OXhCbHYwMVJual8zNExHeHB6S19NTVBp?oc=5",
@@ -903,6 +893,15 @@
       "sourceHost": "levante-emv.com",
       "date": "2026-06-15T07:00:00.000Z",
       "fingerprint": "48r8pk"
+    },
+    {
+      "id": "19pltuv",
+      "title": "Finalizada la nueva mota en Riba-roja de Túria para proteger La Reva de inundaciones",
+      "link": "https://news.google.com/rss/articles/CBMi5AFBVV95cUxQd3h3YjQyRFAzWjY2ODN4VGtFUjBaWlhXRTZVRkt1UFdDNUMtd3ZSWEpYTTRVS3hNRERPX000bmR4R2RMMjFyeDFGM0FkM2VlMnN0SUIzZlh0Z1RsVTFCcWgzTG9nNHRNWl9TaDl5eExXYUNocmlTNjVDN1NrNG9MSTlieUlVLVd1bUJmSVY4RVNFOXB6dFJBZ3NtYVdmV1lycmo1THJtQTdSa2Z0dDRaMnBnVHVUTTJfell1X0NNVlRHV19JbDZLc21uSW01dXl2c1ItNmdmVWVuYng4UFkzaXRNVzfSAeoBQVVfeXFMT0ktWnNLeHA1d1dFU0pBR1lYMWtWQW1xcVBoMzR0dElXSllkTThla3hNWnhDNjhZT2pJdkotRkFiNUYzcVNIX1Y1OEg5SWowWTEtODVfY1JZWC05Y3AyUi1lQUllZVR4T0drMnJPNEo2T1VxLTRBWWtiMlVjS0p0UGo0a0tfTVNTZ0dDSDNiVkJHQ2ZMTTRBYWp5VTh0ekJKTDVjRE5NUENsbXRtMlBJMF9WQkNITTRrQ0g4OVRXalpmRG03d01sc1Z3WWtfTFhXNTR3NTFzR0pvR1BBb1RqYngyRGFaU013UEp3?oc=5",
+      "source": "Levante-EMV",
+      "sourceHost": "levante-emv.com",
+      "date": "2026-06-05T07:00:00.000Z",
+      "fingerprint": "poinpc"
     },
     {
       "id": "z0fd7w",
@@ -1031,15 +1030,6 @@
       "fingerprint": "husktc"
     },
     {
-      "id": "1k71wp4",
-      "title": "Riba-roja de Túria impulsa la Red de Ciudades que Caminan en Valencia",
-      "link": "https://news.google.com/rss/articles/CBMirgFBVV95cUxPUkJobVhFME0xTHR1V0RXRnFhMjNZclZiVTlBY09keFU2MUxoR2V0ajBzUTNrb0dCbUFURVhwcl9HeVRTQVhRUFpjdkhpRm1JYlF6UUFQajZSdjVvYy1iVF8zajA5eU94dmFyZzJSc3VmckxWZGc2M29VWW15QXNGOHZlLXdMai1UUVJRWHNDajNUVFl0eTJWSVFkLThpcXEydVB1V0w1aUZDTDBEdmc?oc=5",
-      "source": "Valencia Plaza",
-      "sourceHost": "valenciaplaza.com",
-      "date": "2024-09-30T07:00:00.000Z",
-      "fingerprint": "9gf608"
-    },
-    {
       "id": "18d2qos",
       "title": "️ Riba-roja de Túria 💯🏟️ Parada imprescindible de la 𝐑𝐮𝐭𝐚 𝐝𝐞 𝐀𝐫𝐭𝐞 𝐔𝐫𝐛𝐚𝐧𝐨 del VCF 🧑🏽‍🎨🎨👩🏽‍",
       "link": "https://news.google.com/rss/articles/CBMikgFBVV95cUxQa2s1YmlxMDd1aVNBcHBUZkhJS2NTeVpoU2VUWlljT3l5R2FOZlYzUktBMGJQb0JQNDk2Nlg1dHVHaHpOdGhXWlNDbVhiajNSZGlNeU5hS3RnNjE2Rl9KVmJYOGZ3MzIwWWJ2eXVDVWlQNnp6cXd3cGMtdC01anJoWVhnYlZ0VjlIcFZyZXg1WGh2UQ?oc=5",
@@ -1130,15 +1120,6 @@
       "fingerprint": "1p9nrm8"
     },
     {
-      "id": "2zbd0o",
-      "title": "36 Casas y pisos con piscina en Riba-roja de Túria",
-      "link": "https://news.google.com/rss/articles/CBMikwFBVV95cUxQTktGUzFEYlQ1NE9GV2dKMXdvNjlRVVJlWGNmWkJodzE2SDNjOEZmeFNYdmlKbG1xRjdIYVdDcFRGT2hCRnBDYmVaTl92U2p6QnJOeDlMQWZ6ZU00Nk9Gc1lCY3ZvdEFYVkM4SGEwQlFCR3FHNC16T0VjZ0k1OElreXRlaFpicHk1cFB4Q3lzYVpZNW8?oc=5",
-      "source": "Fotocasa",
-      "sourceHost": "fotocasa.es",
-      "date": "2020-07-24T12:10:32.000Z",
-      "fingerprint": "15lpzoo"
-    },
-    {
       "id": "1hmkydb",
       "title": "Riba-roja de Túria, nueva sede de Unisocietat",
       "link": "https://news.google.com/rss/articles/CBMiggJBVV95cUxQcXNJUjZCUGwxd3JuLUxYR3BiSzlTUXFEWEdYUmpyNGI5NUJuQWhVUEhiZWN2NkZNTmRqYnUyQjlDZE9OZFo1Zjd4ck9OWHg4NlNSekRER2pieEtTVS1iV0NRdkQ3cU5Tdzl5U25UczB6Qkt0dnZLOTdNRFU5XzlneTY5eXd5QTJiY0c0S1o5R1hDVERPME1HWDU2dDUwNmswaElVOGhKX2oyLWV6eEFwd2Vad0E1VGE3dEVsZkxIS09vVmxUOGY0aVJkdmNmRVFuX1NsT2pEY09aV1FjWEhQX042VzVycVA4b2UtdlY4dTBocFUwTlFHOGUxTlJQelpvOHc?oc=5",
@@ -1149,21 +1130,12 @@
     },
     {
       "id": "1xnkzez",
-      "title": "56 Pisos y apartamentos en Riba-roja de Túria",
+      "title": "55 Pisos y apartamentos en Riba-roja de Túria",
       "link": "https://news.google.com/rss/articles/CBMigwFBVV95cUxOUVdFUmlYOVVEWU9fNS0xMmt6QlJ6T1JtcjFxX2VqTnA3SWlUc2llUEJsSnhVZk1GWlprZXhSNEdraGVMRTJJblpNaEh4M0tGeDR0ejJoQkZBZmpSMUJNWnhKbTJ0QVRlWXpRMDFQRVlOeXRic2t0SGR3UUFqbkZFZkphdw?oc=5",
       "source": "Fotocasa",
       "sourceHost": "fotocasa.es",
       "date": "2017-06-04T10:10:25.000Z",
       "fingerprint": "1eihha8"
-    },
-    {
-      "id": "jku6s4",
-      "title": "41 Locales de alquiler en Riba-roja de Túria",
-      "link": "https://news.google.com/rss/articles/CBMihwFBVV95cUxOVHdKOVNVSU9Vc0FuQlhmYW1wTDJxUjA0RXdQZ25yYjh5TzlLYUJseGg1Q2VhckUwRjQ2ZjlSTllzRE04dTdxWjdYWjY5YVJlWWRtNVZrQmNudU4yeW1MVTk0V3U3M25NZ2NVMlNUUVFRQTJYMUhIWktISzVsaEt5M0xlV01lQk0?oc=5",
-      "source": "Fotocasa",
-      "sourceHost": "fotocasa.es",
-      "date": "2017-06-02T07:40:23.000Z",
-      "fingerprint": "1rxb5fk"
     },
     {
       "id": "17qfer4",

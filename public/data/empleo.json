@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-05T12:50:17.974Z",
+  "generatedAt": "2026-11-06T12:32:52.488Z",
   "source": {
     "origin": "https://ribaocupacio.portalemp.com",
     "platform": "portalemp — ribaocupacio · Agència de Col·locació (ADL), Ajuntament de Riba-roja de Túria",
@@ -9,16 +9,94 @@
     "total": 43,
     "openTotal": 42,
     "inRibaRoja": 29,
-    "closingSoon": 5,
+    "closingSoon": 4,
     "withDetail": 43,
     "byMonth": {
+      "2026-11": 1,
       "2026-10": 28,
-      "2026-09": 12,
+      "2026-09": 11,
       "2026-05": 2,
       "2025-11": 1
     }
   },
   "items": [
+    {
+      "id": "2561",
+      "fo": 2561,
+      "codigo": "2026/00260",
+      "titulo": "Auxiliar administrativo/a",
+      "publishedAt": "2026-11-06",
+      "deadline": "2027-01-06",
+      "location": "Pol. Ind. El Oliveral Riba-roja de Túria",
+      "status": "Abierta",
+      "statusTone": "ok",
+      "url": "https://ribaocupacio.portalemp.com/ofertas.html?fo=2561",
+      "inRibaRoja": true,
+      "detail": {
+        "fields": [
+          {
+            "label": "Código",
+            "value": "2026/00260"
+          },
+          {
+            "label": "Nombre de la oferta",
+            "value": "Auxiliar administrativo/a"
+          },
+          {
+            "label": "Observaciones",
+            "value": "¿Qué buscamos? Buscamos una persona comprometida, organizada, meticulosa, y con orientación al cliente. Requisitos: Formación Profesional relacionada con la rama de Administración. Experiencia como auxiliar administrativo/a. Imprescindible carnet de conducir y vehículo propio para acceder al centro de trabajo. Manejo habitual de herramientas informáticas y Microsoft Excel. Manejo HC Lab (valorable). Buenas habilidades de comunicación y trabajo en equipo. Actitud proactiva y motivación por aportar valor desde el primer día. Incorporación inmediata en una empresa sólida y en constante crecimiento."
+          },
+          {
+            "label": "Tipo de contrato",
+            "value": "CONTRATO INDEFINIDO"
+          },
+          {
+            "label": "Número de puestos",
+            "value": "1"
+          },
+          {
+            "label": "Lugar puesto de trabajo",
+            "value": "Pol. Ind. El Oliveral, Municipio: Riba-roja de Túria, Provincia: Valencia, CP: 46190"
+          },
+          {
+            "label": "Tipo de jornada laboral",
+            "value": "Completa"
+          },
+          {
+            "label": "Observaciones jornada",
+            "value": "Jornada completa 100% presencial."
+          },
+          {
+            "label": "Horario",
+            "value": "Horario: De 09:30h. a 18:30h. de lunes a jueves y los viernes 09:00h. a 18:00h."
+          },
+          {
+            "label": "Salario",
+            "value": "Según convenio + variable"
+          },
+          {
+            "label": "Funciones",
+            "value": "- Atención telefónica y gestión de consultas de clientes. - Derivación de llamadas al departamento correspondiente. - Registro de llamadas y servicios en nuestro programa de gestión (HC Lab). - Gestión de cobro (impagados). - Gestión y archivo de documentación. - Apoyo en tareas administrativas del departamento."
+          },
+          {
+            "label": "Requiere vehículo propio",
+            "value": "Sí"
+          }
+        ],
+        "tipoContrato": "CONTRATO INDEFINIDO",
+        "numPuestos": "1",
+        "observaciones": "¿Qué buscamos? Buscamos una persona comprometida, organizada, meticulosa, y con orientación al cliente. Requisitos: Formación Profesional relacionada con la rama de Administración. Experiencia como auxiliar administrativo/a. Imprescindible carnet de conducir y vehículo propio para acceder al centro de trabajo. Manejo habitual de herramientas informáticas y Microsoft Excel. Manejo HC Lab (valorable). Buenas habilidades de comunicación y trabajo en equipo. Actitud proactiva y motivación por aportar valor desde el primer día. Incorporación inmediata en una empresa sólida y en constante crecimiento.",
+        "municipio": "Riba-roja de Túria",
+        "provincia": "Valencia",
+        "cp": "46190",
+        "jornada": "Completa",
+        "horario": "Horario: De 09:30h. a 18:30h. de lunes a jueves y los viernes 09:00h. a 18:00h.",
+        "salario": "Según convenio + variable",
+        "funciones": "- Atención telefónica y gestión de consultas de clientes. - Derivación de llamadas al departamento correspondiente. - Registro de llamadas y servicios en nuestro programa de gestión (HC Lab). - Gestión de cobro (impagados). - Gestión y archivo de documentación. - Apoyo en tareas administrativas del departamento.",
+        "vehiculo": "Sí",
+        "ocupaciones": []
+      }
+    },
     {
       "id": "2560",
       "fo": 2560,
@@ -1990,6 +2068,10 @@
             "value": "Buscamos operarios/as con discapacidad para el puesto de manipulado, envasado y paletizado de productos de limpieza (detergentes, dispensadores lavavajillas, etc.). El puesto requiere poder estar 8h de pie y tener destreza manual (para envasar). Consiste en segregar productos para su posterior reenvasado. Además de repaletizar producto envasado (de palet europea a americano). El trabajador/a debe poder agacharse y coger peso. Turno rotativo: mañana, tarde y noche. Contrato inicial de 12 meses con posibilidad de continuar. Salario 1443€ brutos al mes en 12 pagas. Es recomendable tener coche para acceder hasta el centro de trabajo ya que está situado en el polígono. Indispensable disponer del certificado de discapacidad del 33% o más."
           },
           {
+            "label": "Porcentaje de discapacidad",
+            "value": "Igual o superior a 33%"
+          },
+          {
             "label": "Sector CNAE",
             "value": "INDUSTRIA MANUFACTURERA"
           },
@@ -2967,88 +3049,6 @@
         "jornada": "Indiferente",
         "salario": "SEGUN CONVENIO",
         "funciones": "FUNCIONES PROPIAS DEL PUESTO DE ENFERMERÍA EN CENTRO RESIDENCIAL DE PERSONAS CON ENFERMEDAD MENTAL",
-        "vehiculo": "Sí",
-        "ocupaciones": []
-      }
-    },
-    {
-      "id": "2536",
-      "fo": 2536,
-      "codigo": "2026/00235",
-      "titulo": "Mecánico/a de carretillas elevadoras",
-      "publishedAt": "2026-09-16",
-      "deadline": "2026-11-16",
-      "location": "Polígono Industrial Riba-roja de Túria",
-      "status": "Abierta",
-      "statusTone": "ok",
-      "url": "https://ribaocupacio.portalemp.com/ofertas.html?fo=2536",
-      "inRibaRoja": true,
-      "detail": {
-        "fields": [
-          {
-            "label": "Código",
-            "value": "2026/00235"
-          },
-          {
-            "label": "Nombre de la oferta",
-            "value": "Mecánico/a de carretillas elevadoras"
-          },
-          {
-            "label": "Sector CNAE",
-            "value": "OTROS SERVICIOS"
-          },
-          {
-            "label": "Tipo de contrato",
-            "value": "CONTRATO INDEFINIDO"
-          },
-          {
-            "label": "Duración del contrato",
-            "value": "Más de 6 meses"
-          },
-          {
-            "label": "Número de puestos",
-            "value": "1"
-          },
-          {
-            "label": "Categoría profesional",
-            "value": "OFICIAL DE 3ª y ESPECIALISTAS"
-          },
-          {
-            "label": "Lugar puesto de trabajo",
-            "value": "Polígono Industrial, Municipio: Riba-roja de Túria, Provincia: Valencia, CP: 46394"
-          },
-          {
-            "label": "Tipo de jornada laboral",
-            "value": "Completa Turnos: Turno partido"
-          },
-          {
-            "label": "Horario",
-            "value": "7:30 a 14:00 / 15:30 a 17:00"
-          },
-          {
-            "label": "Salario",
-            "value": "Según convenio"
-          },
-          {
-            "label": "Funciones",
-            "value": "Realizará los trabajos de reparación mecánica, mantenimiento preventivo y correctivo de maquinaria y carretillas elevadoras."
-          },
-          {
-            "label": "Requiere vehículo propio",
-            "value": "Sí"
-          }
-        ],
-        "tipoContrato": "CONTRATO INDEFINIDO",
-        "duracion": "Más de 6 meses",
-        "numPuestos": "1",
-        "categoria": "OFICIAL DE 3ª y ESPECIALISTAS",
-        "municipio": "Riba-roja de Túria",
-        "provincia": "Valencia",
-        "cp": "46394",
-        "jornada": "Completa Turnos: Turno partido",
-        "horario": "7:30 a 14:00 / 15:30 a 17:00",
-        "salario": "Según convenio",
-        "funciones": "Realizará los trabajos de reparación mecánica, mantenimiento preventivo y correctivo de maquinaria y carretillas elevadoras.",
         "vehiculo": "Sí",
         "ocupaciones": []
       }

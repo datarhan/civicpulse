@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-05T12:42:55.063Z",
+  "generatedAt": "2026-11-06T12:25:36.841Z",
   "source": {
     "name": "Boletín Oficial de la Provincia de València",
     "home": "https://bop.dival.es/bop/",
@@ -10,9 +10,19 @@
     "daysCovered": 21,
     "daysRequested": 30,
     "fetchFailures": 0,
-    "latestDate": "2026-11-05"
+    "latestDate": "2026-11-06"
   },
   "anuncios": [
+    {
+      "id": "8a603c7e4ea2",
+      "regNumber": "2026/13421",
+      "title": "Anuncio del Ayuntamiento de Riba-roja de Túria sobre la aprobación del calendario fiscal para el ejercicio 2027",
+      "entity": "Ayuntamiento de Riba-roja de Túria",
+      "date": "2026-11-06",
+      "bulletinDate": "06/11/2026",
+      "pdfUrl": "https://bop.dival.es/bop/downloads?anuncioNumReg=2026%2F13421",
+      "bulletinUrl": "https://bop.dival.es/bop/downloads?boletinFecha=06%2F11%2F2026"
+    },
     {
       "id": "31031984d7a1",
       "regNumber": "2026/13391",
@@ -62,16 +72,6 @@
       "bulletinDate": "15/10/2026",
       "pdfUrl": "https://bop.dival.es/bop/downloads?anuncioNumReg=2026%2F12346",
       "bulletinUrl": "https://bop.dival.es/bop/downloads?boletinFecha=15%2F10%2F2026"
-    },
-    {
-      "id": "0028f15e2f90",
-      "regNumber": "2026/12090",
-      "title": "Anuncio del Ayuntamiento de Riba-roja de Túria sobre la delegación de funciones del alcalde en el segundo teniente de alcalde",
-      "entity": "Ayuntamiento de Riba-roja de Túria",
-      "date": "2026-10-07",
-      "bulletinDate": "07/10/2026",
-      "pdfUrl": "https://bop.dival.es/bop/downloads?anuncioNumReg=2026%2F12090",
-      "bulletinUrl": "https://bop.dival.es/bop/downloads?boletinFecha=07%2F10%2F2026"
     }
   ]
 }

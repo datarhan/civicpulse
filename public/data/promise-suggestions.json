@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-05T12:52:28.968Z",
+  "generatedAt": "2026-11-06T12:34:41.704Z",
   "frozen": false,
   "frozenUntil": null,
   "notice": "Sugerencias generadas automáticamente. Requieren aprobación humana antes de aplicarse al estado de cada promesa.",
@@ -42,7 +42,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-11-05T12:52:28.894Z"
+      "generatedAt": "2026-11-06T12:34:41.620Z"
     },
     {
       "promiseId": "ac-psoe-jfg7bc",
@@ -61,7 +61,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-11-05T12:52:28.894Z"
+      "generatedAt": "2026-11-06T12:34:41.620Z"
     },
     {
       "promiseId": "ac-psoe-1ah9zqk",
@@ -80,7 +80,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-11-05T12:52:28.894Z"
+      "generatedAt": "2026-11-06T12:34:41.620Z"
     },
     {
       "promiseId": "ac-psoe-ppa53a",
@@ -88,7 +88,7 @@
       "confidence": 0,
       "reasoning": [],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-11-05T12:52:28.894Z"
+      "generatedAt": "2026-11-06T12:34:41.620Z"
     },
     {
       "promiseId": "ac-psoe-1m04lfw",
@@ -96,7 +96,7 @@
       "confidence": 0,
       "reasoning": [],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-11-05T12:52:28.894Z"
+      "generatedAt": "2026-11-06T12:34:41.620Z"
     },
     {
       "promiseId": "ac-psoe-sysee8",
@@ -115,7 +115,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-11-05T12:52:28.894Z"
+      "generatedAt": "2026-11-06T12:34:41.620Z"
     },
     {
       "promiseId": "ac-psoe-1ryndd8",
@@ -152,7 +152,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-11-05T12:52:28.894Z"
+      "generatedAt": "2026-11-06T12:34:41.620Z"
     },
     {
       "promiseId": "ac-psoe-43brfs",
@@ -217,7 +217,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-11-05T12:52:28.894Z"
+      "generatedAt": "2026-11-06T12:34:41.620Z"
     },
     {
       "promiseId": "ac-psoe-17y448o",
@@ -239,6 +239,17 @@
             "dinamizar",
             "comercio",
             "local"
+          ]
+        },
+        {
+          "url": "https://www.ribarroja.es/es/noticia/listado-admitidos-y-excluidos-cheque-beb%C3%A9-%2B-2025",
+          "date": "2026-11-06",
+          "quote": "Listado admitidos y excluidos Cheque Bebé + 2025",
+          "kind": "press",
+          "publisher": "Ayuntamiento de Riba-roja de Túria",
+          "matchedKeywords": [
+            "cheque",
+            "bebe"
           ]
         },
         {
@@ -264,7 +275,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-11-05T12:52:28.894Z"
+      "generatedAt": "2026-11-06T12:34:41.620Z"
     },
     {
       "promiseId": "ac-psoe-1bkbwjs",
@@ -308,7 +319,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-11-05T12:52:28.894Z"
+      "generatedAt": "2026-11-06T12:34:41.620Z"
     },
     {
       "promiseId": "ac-psoe-1xeq50",
@@ -377,7 +388,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-11-05T12:52:28.894Z"
+      "generatedAt": "2026-11-06T12:34:41.620Z"
     },
     {
       "promiseId": "ac-psoe-1kui43c",
@@ -399,7 +410,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-11-05T12:52:28.894Z"
+      "generatedAt": "2026-11-06T12:34:41.620Z"
     }
   ],
   "llmEvidence": [],

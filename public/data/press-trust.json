@@ -1,7 +1,41 @@
 {
-  "generatedAt": "2026-11-06T11:43:20.177Z",
+  "generatedAt": "2026-11-06T12:34:59.464Z",
   "windowDays": 30,
   "articles": [
+    {
+      "articleId": "164g66f",
+      "articleFingerprint": "833w2x",
+      "outlet": "Ayuntamiento de Riba-roja de Túria",
+      "outletHost": "ribarroja.es",
+      "url": "https://www.ribarroja.es/es/noticia/listado-admitidos-y-excluidos-cheque-beb%C3%A9-%2B-2025",
+      "date": "2026-11-06T10:31:56.000Z",
+      "indicators": {
+        "localCoverage": false,
+        "datedArticle": true,
+        "municipalSourceMatch": null,
+        "corroboratedAcrossOutlets": null,
+        "factualClaimsPresent": null,
+        "opinionFraction": 0
+      },
+      "score": 1
+    },
+    {
+      "articleId": "ux557c",
+      "articleFingerprint": "1wtaebr",
+      "outlet": "Ayuntamiento de Riba-roja de Túria",
+      "outletHost": "ribarroja.es",
+      "url": "https://www.ribarroja.es/es/noticia/riba-roja-habilita-en-la-web-municipal-un-enlace-para-conocer-en-qu%C3%A9-mesa-votar-en-las-pr%C3%B3ximas-elecciones-generales",
+      "date": "2026-11-05T12:04:48.000Z",
+      "indicators": {
+        "localCoverage": false,
+        "datedArticle": true,
+        "municipalSourceMatch": null,
+        "corroboratedAcrossOutlets": null,
+        "factualClaimsPresent": null,
+        "opinionFraction": 0
+      },
+      "score": 1
+    },
     {
       "articleId": "1lvhrbq",
       "articleFingerprint": "fnlkwc",
@@ -37,23 +71,6 @@
       "score": 1
     },
     {
-      "articleId": "1ni4o4j",
-      "articleFingerprint": "1kgolmo",
-      "outlet": "elDiario.es",
-      "outletHost": "eldiario.es",
-      "url": "https://news.google.com/rss/articles/CBMi7wFBVV95cUxQVE9LdEZmQnpERHdfeEt6aV8wVmJQYVJ6ZDRxemY3akZ1bzY5YTBlX09jTkRwVkxHN09wVnNaR2lBX0JWWTVsUmZkcXpiaG8tQloxTmxEc1RXdDRTOWNaWFMzU242dXkxYnMxTk5sTWhMS1Y0RnRMOTBSSmROSk1jMERSTUJBVjFRWG45Q2RSX25QMTFYblR1U2kxV1ZtSVdnWmtmVVU2aWdTQWZndFZXVlc5RmUxM0sxTWFNWHVwZHJKS2k5RnRBUERCYkRLdnR3V05rNE9GUmY1dXpCNW5HVEV5Z1E0ZUhGYnhoQWM3QdIB9AFBVV95cUxQWktDTWx5ai1BbzFpTFU2NnVfOFJ2SlpqenRicGFDcmo4UDc3TE5oNEQxdmhJX2tRZ2VTaGlXaUlYdTVXcElGZGlKbl8zWU1YNnk1SW1BTndOamRzZzRHRkNQNUs0ZHlTYXdLcUtHT29CLTZDRFkybnpmbXQ5eWlCNjItNzBKLU54amYzY3NEbUVjUEMxb1RFYXVRbjFOaWlLVUlZdmdxYzRPbGUtMVphbnVtdHlMTEZnRXlYTjc5YTBqMUtDa0JHX3B4c0huSlJNOGw4ZEYyOWRhQUhQVjhEVldMMEpTTWV0SnR5RzZPaXp2UHVr?oc=5",
-      "date": "2026-11-03T18:19:13.000Z",
-      "indicators": {
-        "localCoverage": false,
-        "datedArticle": true,
-        "municipalSourceMatch": null,
-        "corroboratedAcrossOutlets": null,
-        "factualClaimsPresent": null,
-        "opinionFraction": 0
-      },
-      "score": 1
-    },
-    {
       "articleId": "l2w55p",
       "articleFingerprint": "qb2nyk",
       "outlet": "Ayuntamiento de Riba-roja de Túria",
@@ -77,23 +94,6 @@
       "outletHost": "valenciaplaza.com",
       "url": "https://news.google.com/rss/articles/CBMi6AFBVV95cUxQbmwzMFpkeE1BZjhaY09SOVZzc1A1Sy1Ya3NOVFMwYTA4cUc0QjJPNklDVVRKbjBkNHR0a2ZnRVdiWldqcVA4WktuUFNnMkQxVnhYdS1rLVBHVEs4Ylo5Z3k4YmVBa1R5T2M1RFNYNXluSEstNFhTYXZvSWRNSnk5Q1VkQlhFX0VBQmxTeTBRXzJGVmpSTkFmdkdaTEViSVVwY25vUHFEMHZFUnUwaHRsaWttWXJfUEt6ZThYeXFyRzdFWUV4Q0x1R3VtaGxMdno5UVQ5dEUyWDYyRUM3VkFMOWMyY2hrLTN3?oc=5",
       "date": "2026-11-03T15:24:55.000Z",
-      "indicators": {
-        "localCoverage": false,
-        "datedArticle": true,
-        "municipalSourceMatch": null,
-        "corroboratedAcrossOutlets": null,
-        "factualClaimsPresent": null,
-        "opinionFraction": 0
-      },
-      "score": 1
-    },
-    {
-      "articleId": "19t1fz0",
-      "articleFingerprint": "1t69bna",
-      "outlet": "Noticias de la Comunidad Valenciana",
-      "outletHost": "noticiascv.com",
-      "url": "https://news.google.com/rss/articles/CBMivAFBVV95cUxQWGk4ekFTQk9IcEM4bUN1TkN2d21SN1loYzl6WGdnTWltcU5ablRxSHF6R0xUbm9hZ3dUNE5iX0lSaC1PQnlJVDJySG9haktsYlNzbFYzV2tzamxiZFYwVmFtNS1mY0k3NkFkZTVKRUtnVG9oNjBlVzZIMHBJeUZhZ3hGWmZrQkQ2a09wc09felZOdlJPUjVPQmVyc2VpVmQ5bEZpZjJjako1UkhBbzFqMVJBS2JkRk5SVVRFWA?oc=5",
-      "date": "2026-11-03T04:17:28.000Z",
       "indicators": {
         "localCoverage": false,
         "datedArticle": true,
@@ -619,7 +619,7 @@
     {
       "outlet": "Ayuntamiento de Riba-roja de Túria",
       "outletHost": "ribarroja.es",
-      "articleCount": 16,
+      "articleCount": 18,
       "verdictCounts": {
         "verificado": 0,
         "parcial": 0,
@@ -628,7 +628,7 @@
         "promesa-repetida": 1
       },
       "checkedClaims": 13,
-      "meanTrustScore": 2,
+      "meanTrustScore": 1.89,
       "verifiedRatio": 0,
       "contradictedRatio": null
     },
@@ -711,44 +711,12 @@
       "meanTrustScore": 1,
       "verifiedRatio": null,
       "contradictedRatio": null
-    },
-    {
-      "outlet": "elDiario.es",
-      "outletHost": "eldiario.es",
-      "articleCount": 1,
-      "verdictCounts": {
-        "verificado": 0,
-        "parcial": 0,
-        "contradicho": 0,
-        "sin-datos": 0,
-        "promesa-repetida": 0
-      },
-      "checkedClaims": 0,
-      "meanTrustScore": 1,
-      "verifiedRatio": null,
-      "contradictedRatio": null
-    },
-    {
-      "outlet": "Noticias de la Comunidad Valenciana",
-      "outletHost": "noticiascv.com",
-      "articleCount": 1,
-      "verdictCounts": {
-        "verificado": 0,
-        "parcial": 0,
-        "contradicho": 0,
-        "sin-datos": 0,
-        "promesa-repetida": 0
-      },
-      "checkedClaims": 0,
-      "meanTrustScore": 1,
-      "verifiedRatio": null,
-      "contradictedRatio": null
     }
   ],
   "builtFrom": {
-    "plenos-agendas.json": "110424d85e9b",
+    "plenos-agendas.json": "038041096ca2",
     "press-claims-verified.json": "0026b814bd42",
-    "press.json": "2d7100b86727",
+    "press.json": "c37b134083e0",
     "promises.json": "a4b8423e960f"
   }
 }
