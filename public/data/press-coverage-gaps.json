@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-06T05:49:25.712Z",
+  "generatedAt": "2026-11-06T11:43:20.190Z",
   "windowDays": 14,
   "items": [],
   "covered": [],
@@ -8,10 +8,10 @@
     "promisesUncovered": 0,
     "candidatesExamined": 0,
     "tramitesExcluidos": 0,
-    "titularesConsiderados": 10
+    "titularesConsiderados": 8
   },
   "builtFrom": {
-    "plenos-agendas.json": "f5cb87647b36",
+    "plenos-agendas.json": "110424d85e9b",
     "press-claims-verified.json": "0026b814bd42",
     "press.json": "2d7100b86727",
     "promises.json": "a4b8423e960f"

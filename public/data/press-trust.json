@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-06T05:49:25.675Z",
+  "generatedAt": "2026-11-06T11:43:20.177Z",
   "windowDays": 30,
   "articles": [
     {
@@ -613,52 +613,18 @@
         "opinionFraction": 0
       },
       "score": 2
-    },
-    {
-      "articleId": "18kyu4h",
-      "articleFingerprint": "lbh17l",
-      "outlet": "Ayuntamiento de Riba-roja de Túria",
-      "outletHost": "ribarroja.es",
-      "url": "https://www.ribarroja.es/es/noticia/riba-roja-rinde-tributo-a-la-m%C3%BAsica-valenciana-en-la-conmemoraci%C3%B3n-del-750-aniversario-de-la-muerte-de-jaume-i",
-      "date": "2026-10-07T10:03:16.000Z",
-      "indicators": {
-        "localCoverage": false,
-        "datedArticle": true,
-        "municipalSourceMatch": null,
-        "corroboratedAcrossOutlets": null,
-        "factualClaimsPresent": null,
-        "opinionFraction": 0
-      },
-      "score": 1
-    },
-    {
-      "articleId": "rn4ct8",
-      "articleFingerprint": "10b978",
-      "outlet": "Ayuntamiento de Riba-roja de Túria",
-      "outletHost": "ribarroja.es",
-      "url": "https://www.ribarroja.es/es/noticia/subvenciones-destinadas-a-clubes-y-entidades-deportivas-de-riba-roja-de-t%C3%BAria-a%C3%B1o-2026-%28temporada-25/26%29",
-      "date": "2026-10-07T07:36:34.000Z",
-      "indicators": {
-        "localCoverage": false,
-        "datedArticle": true,
-        "municipalSourceMatch": null,
-        "corroboratedAcrossOutlets": null,
-        "factualClaimsPresent": true,
-        "opinionFraction": 0
-      },
-      "score": 3
     }
   ],
   "outlets": [
     {
       "outlet": "Ayuntamiento de Riba-roja de Túria",
       "outletHost": "ribarroja.es",
-      "articleCount": 18,
+      "articleCount": 16,
       "verdictCounts": {
         "verificado": 0,
         "parcial": 0,
         "contradicho": 0,
-        "sin-datos": 50,
+        "sin-datos": 49,
         "promesa-repetida": 1
       },
       "checkedClaims": 13,
@@ -780,7 +746,7 @@
     }
   ],
   "builtFrom": {
-    "plenos-agendas.json": "f5cb87647b36",
+    "plenos-agendas.json": "110424d85e9b",
     "press-claims-verified.json": "0026b814bd42",
     "press.json": "2d7100b86727",
     "promises.json": "a4b8423e960f"
