@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-06T12:30:17.908Z",
+  "generatedAt": "2026-11-07T11:22:16.679Z",
   "source": {
     "url": "https://www.pap.hacienda.gob.es/bdnstrans/api/convocatorias/busqueda",
     "query": "riba-roja",
@@ -13,9 +13,9 @@
     "descartadas": 4,
     "latestDate": "2026-09-25T00:00:00.000Z",
     "concesiones": {
-      "total": 150,
-      "convocatorias": 123,
-      "importe": 46580479.34,
+      "total": 151,
+      "convocatorias": 124,
+      "importe": 46732067.2,
       "otrosInstrumentos": 0,
       "sinImporte": 0,
       "desde": "2022-02-08",
@@ -2002,6 +2002,19 @@
       "organ": "AUTONOMICA · COMUNITAT VALENCIANA · SECRETARÍA AUTONÓMICA DE EDUCACIÓN",
       "level1": "AUTONOMICA",
       "sourceUrl": "https://www.pap.hacienda.gob.es/bdnstrans/GE/es/convocatoria/919225"
+    },
+    {
+      "id": 159471581,
+      "codConcesion": "SB159471581",
+      "bdnsCode": "895060",
+      "convocatoria": "Impulso a la compra pública innovadora (CPI)REG MINIMIS 2023/2831",
+      "fecha": "2026-08-04T00:00:00.000Z",
+      "importe": 151587.86,
+      "instrumento": "SUBVENCIÓN y ENTREGA DINERARIA SIN CONTRAPRESTACIÓN",
+      "esSubvencion": true,
+      "organ": "AUTONOMICA · COMUNITAT VALENCIANA · AGENCIA VALENCIANA DE LA INNOVACIÓN",
+      "level1": "AUTONOMICA",
+      "sourceUrl": "https://www.pap.hacienda.gob.es/bdnstrans/GE/es/convocatoria/895060"
     },
     {
       "id": 155934285,

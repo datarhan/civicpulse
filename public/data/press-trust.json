@@ -1,7 +1,41 @@
 {
-  "generatedAt": "2026-11-07T10:50:12.299Z",
+  "generatedAt": "2026-11-07T11:26:23.273Z",
   "windowDays": 30,
   "articles": [
+    {
+      "articleId": "1pj7404",
+      "articleFingerprint": "168tgzt",
+      "outlet": "Levante-EMV",
+      "outletHost": "levante-emv.com",
+      "url": "https://news.google.com/rss/articles/CBMiwwFBVV95cUxQeEE1OGc1Z19OTElENEY2UWtyS3g3VHlrTlRDOE9hSzFFdTJ2OFMxaDRhcTdhckt0RkNqa1ZLQ3pBTU9neThvTV9JZ1dHc3lqeXhWdVEyUjZqREo2NjBsOFI5WXFyWXdsR25KM2JMNFpXMldMYWVPdmI5dXRNdEtheEFDeGFOa1lvYlFsblp3VDBKMXBDWmRDQUxUdVdvYVo0eVJ5NDdkb2UwaEV5Umx5blpSWi1nN1pxMzFYOHNfaDJyUm_SAcgBQVVfeXFMUHVIWjJqZVRRaUpWS1ptZjFCTmN3SWRCQWFPaXhpNzBuTEY3NUV4UFVOSFh6aTh3b2pjUHZGMFY0NUVYM09XQ21Sc052NDhiZDQwai03R1BEUlU2SVhrOEVjR0IwTnNyaEVBaS1WMFFEaGxzZ2pBdjdqeHhXcjZmNDF3ZzZVZFBRRlZsblNKOU1KYi0xMFVta3djMWplNFVXOFRONGtrWDNrUHpXRVNXSXJYXzFOMXgtZlZPUHRhMFVDNlQ0N3VEaGc?oc=5",
+      "date": "2026-11-06T17:30:49.000Z",
+      "indicators": {
+        "localCoverage": false,
+        "datedArticle": true,
+        "municipalSourceMatch": null,
+        "corroboratedAcrossOutlets": null,
+        "factualClaimsPresent": null,
+        "opinionFraction": 0
+      },
+      "score": 1
+    },
+    {
+      "articleId": "cp9sxg",
+      "articleFingerprint": "gq6nc",
+      "outlet": "Levante-EMV",
+      "outletHost": "levante-emv.com",
+      "url": "https://news.google.com/rss/articles/CBMi0gFBVV95cUxNVm9OVkc4dkZtLVpmVWYwX0p6RE9LQXJ0VG45UUxOOEx3ZjBFaGtWbHlFcEZsNmpqOUxrdk13Vl9PbFlGSFFtVnZ4T1hXSFA5SE1SdzNIQkRFTkJKRXVxY3BLRkVoeVBWNUV0WWlya1RaOExnUzZEaEZRb2NTbzJCUlJTUlBGS042OUpXeVVic21NazZaYkZ5Vi1UMGhQX09BZHFXaXNBWjNBeWQ1YXRteVp4SXRmQ0ZrSzdZd1RIUWVtdEVhb3FnUDNRaXh2dThhX2fSAdcBQVVfeXFMUE1aYXpqLURBdm9CeTJCNW43VHVfQS1JQjdMdG1rNnhSTHZxM0gtSzFPSV92WEk4cnh6YUoySmNHcUhYOUlEOGR1bGZHV2tJNWhfVUo0OS1aa3kyTDg1eFdQMHBZNmVZVGo3cGZKRkUtVmotZXJPbFdkRkRfeGh4Q0RBdDdickhscWZCS0owclFOT05LTS1hek9vVHVTZGctczJQSVJ2bmtUXzQ0d0ZndnhlM2RENmZ2WHB2ekIxU1ZJcGdQQW1heDZSeG5YSUVIOHFLdEJtT0E?oc=5",
+      "date": "2026-11-06T13:08:52.000Z",
+      "indicators": {
+        "localCoverage": false,
+        "datedArticle": true,
+        "municipalSourceMatch": null,
+        "corroboratedAcrossOutlets": null,
+        "factualClaimsPresent": null,
+        "opinionFraction": 0
+      },
+      "score": 1
+    },
     {
       "articleId": "164g66f",
       "articleFingerprint": "833w2x",
@@ -9,6 +43,23 @@
       "outletHost": "ribarroja.es",
       "url": "https://www.ribarroja.es/es/noticia/listado-admitidos-y-excluidos-cheque-beb%C3%A9-%2B-2025",
       "date": "2026-11-06T10:31:56.000Z",
+      "indicators": {
+        "localCoverage": false,
+        "datedArticle": true,
+        "municipalSourceMatch": null,
+        "corroboratedAcrossOutlets": null,
+        "factualClaimsPresent": null,
+        "opinionFraction": 0
+      },
+      "score": 1
+    },
+    {
+      "articleId": "1hjzxwj",
+      "articleFingerprint": "1dlvo36",
+      "outlet": "Levante-EMV",
+      "outletHost": "levante-emv.com",
+      "url": "https://news.google.com/rss/articles/CBMi9wFBVV95cUxOY1hJdFdpRndpY3M1SG1qVE9fMjVZRDBmQW5vRVJLLWlNMnFoUXJjOFJ5Y3BDNHcwRWpXNnFMUzVNVk9fbzNrb2NadVlFajU0Y3owLXVrNW5VbHlGeldaczVEZmFyUld0a3BWQnFiQkZTcWxDZW1mb2NsSVRid0R5WWhiWHNCcGp1Zjk5Sy1uMU9IUXFRSGd6bjBhMDZmdVBXd2Frbl9KV25BVGQyRHNVU2NGUG5peUN2VW9pb0xvT1VqMkF4OVhVMDd0YkVBRnBQbXppZ1ZxajFWa0FVZmY1OURkdExNbGlYN25UamNwdXc4WWJQZlZR0gH8AUFVX3lxTFBtejBtRkJ5Tkx5ajdKZWN5Y1NPdXlTVklhdXB6dV82N3VjbkZfQVZmQXBTTjBhQlJxdW5SNXQ3YVJkVERqdkdlck9hOEZkUVRVcW16WjZSXzNtN1hGMENQb2xOeDBZcmxsbFBHOUczTW1pdVFWZGpzOUJlTW1GOFBiM0RwRnlZb1hwTWt1aUFiVnlLMjZfSEtSV0tPTmFRdHlIVzFPUWhGT1JIM3N0bXlmc0hZUHplM0RWRTQweXNMUzRNNk43NHEyZkVRaGZja0VmNURSU19pQ3JNU1pxajlyS05LSWg0VGhDS3V6SXBUUmEyMnNkQWVIcktEbA?oc=5",
+      "date": "2026-11-06T04:30:32.000Z",
       "indicators": {
         "localCoverage": false,
         "datedArticle": true,
@@ -54,12 +105,12 @@
       "score": 1
     },
     {
-      "articleId": "1dfexn4",
-      "articleFingerprint": "1gp6kvs",
-      "outlet": "ComarcalCV",
-      "outletHost": "comarcalcv.com",
-      "url": "https://news.google.com/rss/articles/CBMi1gFBVV95cUxOS2Myd3RIanhBcExuVlV2ZWdBVERBWjhwdGhSQWRtVVNuUVIwNXE0RFAyQldWS1VJelMtcGl2MmNNRUtLQXI4d21PNXpLbzFZLU1GSElvYUtoNnhGV0drbXpvZmdNT2JQY1ltbkkwb1RTeUdoanNmR29RY2xuRUxJc1IzU1FtbEpaTHVzLTRKTzFYSWdfeHJiOGRpdlpyWjlvc0ZVZVM4RmJIU1VWUFU3Xzg2ZWFvcHZJQ0xQVUVxYnpfTElEQmtqV1R3Z2lVRjZYNXBsbGxB?oc=5",
-      "date": "2026-11-04T09:12:43.000Z",
+      "articleId": "12bk3aw",
+      "articleFingerprint": "15rjje8",
+      "outlet": "Levante-EMV",
+      "outletHost": "levante-emv.com",
+      "url": "https://news.google.com/rss/articles/CBMi3wFBVV95cUxPUXNXSHg4emd0VS1GVW5DVFlpc1l0Mml2Q1pvUE5EaFhfekQyTzFTMUtZVFZwalEySnNIcWZCQ3lZbmx3VGJpVGxHVzNRNG41VExzVVZleHR5UUNIVWNGTnpJaXVwd3UtWlp6bVFfQ3hfVHZnblhEVlROeFZNcllvSVVWOXV4SHZlRGNsSVVRMXlkMTdVeGd3aXk2NExDY2pfVE9XMzhqeUhvMG4zYVFoRjRsR0hCSC1KdU5EaENYOVBXNnBXR1FnZWNhYmRmdUdSVHZtQWFqTWFDajhGeUVj0gHkAUFVX3lxTE9YMU93QnVaSG5Yc0NpSXVmclhBNzAydk1YOGZpUTRqWGE1eFJDMlptZVVTV2IzUmdwdnVaeWZYc1U2MDFVbk9sSlptdHBEdkVEU2xuY0NKSzZ0ZWszbkROYWhQRDBXVE1DdzFmY3RqM1NUUE9iUHJaRWxNcVA1Qlk1bFRjTGpMZ1hLYlBGTG1LZVk1XzFEUG1DX1R2UHduMlJkM1VueVFWcko3UHRyMTktWU5pYTlzRml4WU1DbmZmcEVxUHlhcFpzOUhfVnFieVNhQmZuakFpalR4ZzRjWl84N3NsWA?oc=5",
+      "date": "2026-11-04T08:53:48.000Z",
       "indicators": {
         "localCoverage": false,
         "datedArticle": true,
@@ -598,6 +649,22 @@
       "contradictedRatio": null
     },
     {
+      "outlet": "Levante-EMV",
+      "outletHost": "levante-emv.com",
+      "articleCount": 5,
+      "verdictCounts": {
+        "verificado": 0,
+        "parcial": 0,
+        "contradicho": 0,
+        "sin-datos": 2,
+        "promesa-repetida": 0
+      },
+      "checkedClaims": 0,
+      "meanTrustScore": 1.4,
+      "verifiedRatio": null,
+      "contradictedRatio": null
+    },
+    {
       "outlet": "Valenciabonita",
       "outletHost": "valenciabonita.es",
       "articleCount": 2,
@@ -628,44 +695,12 @@
       "meanTrustScore": 2,
       "verifiedRatio": null,
       "contradictedRatio": null
-    },
-    {
-      "outlet": "ComarcalCV",
-      "outletHost": "comarcalcv.com",
-      "articleCount": 1,
-      "verdictCounts": {
-        "verificado": 0,
-        "parcial": 0,
-        "contradicho": 0,
-        "sin-datos": 0,
-        "promesa-repetida": 0
-      },
-      "checkedClaims": 0,
-      "meanTrustScore": 1,
-      "verifiedRatio": null,
-      "contradictedRatio": null
-    },
-    {
-      "outlet": "Levante-EMV",
-      "outletHost": "levante-emv.com",
-      "articleCount": 1,
-      "verdictCounts": {
-        "verificado": 0,
-        "parcial": 0,
-        "contradicho": 0,
-        "sin-datos": 2,
-        "promesa-repetida": 0
-      },
-      "checkedClaims": 0,
-      "meanTrustScore": 3,
-      "verifiedRatio": null,
-      "contradictedRatio": null
     }
   ],
   "builtFrom": {
-    "plenos-agendas.json": "d41ba156ddcc",
+    "plenos-agendas.json": "3d06d438bb43",
     "press-claims-verified.json": "0026b814bd42",
-    "press.json": "c37b134083e0",
+    "press.json": "0a6e5b5c693c",
     "promises.json": "a4b8423e960f"
   }
 }
