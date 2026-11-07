@@ -1,10 +1,10 @@
 {
-  "generatedAt": "2026-11-06T12:34:40.913Z",
-  "consultadoEl": "2026-11-06",
+  "generatedAt": "2026-11-07T07:41:45.464Z",
+  "consultadoEl": "2026-11-07",
   "fuente": {
     "nombre": "SINAC · Sistema de Información Nacional de Aguas de Consumo (Ministerio de Sanidad)",
     "url": "https://sinac.sanidad.gob.es/CiudadanoWeb/ciudadano/informacionAbastecimientoActionEntrada.do",
-    "atribucion": "Fuente: Ministerio de Sanidad, SINAC. Consultado el 2026-11-06; cada boletín lleva su fecha de toma.",
+    "atribucion": "Fuente: Ministerio de Sanidad, SINAC. Consultado el 2026-11-07; cada boletín lleva su fecha de toma.",
     "licencia": "Aviso legal del Ministerio de Sanidad: reutilización permitida citando la fuente y la fecha de la última actualización, sin desnaturalizar la información"
   },
   "municipio": {
@@ -1379,7 +1379,7 @@
           "fecha": "2026-09-03"
         }
       ],
-      "parametrosSinCifra": 473,
+      "parametrosSinCifra": 472,
       "poblacion": 71
     },
     {
@@ -2472,7 +2472,7 @@
           "fecha": "2024-06-19"
         }
       ],
-      "parametrosSinCifra": 506,
+      "parametrosSinCifra": 505,
       "poblacion": 0
     },
     {
@@ -3499,7 +3499,7 @@
           "fecha": "2023-05-10"
         }
       ],
-      "parametrosSinCifra": 516,
+      "parametrosSinCifra": 515,
       "poblacion": 0
     },
     {
@@ -4570,7 +4570,7 @@
           "fecha": "2024-11-05"
         }
       ],
-      "parametrosSinCifra": 509,
+      "parametrosSinCifra": 508,
       "poblacion": 1347
     },
     {
@@ -5200,7 +5200,7 @@
           "fecha": "2022-04-28"
         }
       ],
-      "parametrosSinCifra": 572,
+      "parametrosSinCifra": 571,
       "poblacion": 523
     },
     {
@@ -6619,7 +6619,7 @@
           "fecha": "2023-02-09"
         }
       ],
-      "parametrosSinCifra": 467,
+      "parametrosSinCifra": 466,
       "poblacion": 21242
     }
   ],
