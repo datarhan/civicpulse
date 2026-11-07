@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-07T07:41:55.080Z",
+  "generatedAt": "2026-11-07T10:50:12.299Z",
   "windowDays": 30,
   "articles": [
     {
@@ -562,39 +562,22 @@
         "opinionFraction": 0
       },
       "score": 3
-    },
-    {
-      "articleId": "o3xjg4",
-      "articleFingerprint": "1k3l80",
-      "outlet": "Ayuntamiento de Riba-roja de Túria",
-      "outletHost": "ribarroja.es",
-      "url": "https://www.ribarroja.es/es/noticia/el-ayuntamiento-de-riba-roja-de-t%C3%BAria-ejecutar%C3%A1-un-plan-director-de-restauraci%C3%B3n-de-las-cuatro-canteras-del-municipio",
-      "date": "2026-10-08T09:08:42.000Z",
-      "indicators": {
-        "localCoverage": false,
-        "datedArticle": true,
-        "municipalSourceMatch": null,
-        "corroboratedAcrossOutlets": null,
-        "factualClaimsPresent": true,
-        "opinionFraction": 0
-      },
-      "score": 3
     }
   ],
   "outlets": [
     {
       "outlet": "Ayuntamiento de Riba-roja de Túria",
       "outletHost": "ribarroja.es",
-      "articleCount": 18,
+      "articleCount": 17,
       "verdictCounts": {
         "verificado": 0,
         "parcial": 0,
         "contradicho": 0,
-        "sin-datos": 49,
+        "sin-datos": 34,
         "promesa-repetida": 1
       },
-      "checkedClaims": 13,
-      "meanTrustScore": 1.89,
+      "checkedClaims": 11,
+      "meanTrustScore": 1.82,
       "verifiedRatio": 0,
       "contradictedRatio": null
     },
@@ -680,7 +663,7 @@
     }
   ],
   "builtFrom": {
-    "plenos-agendas.json": "8f3885815988",
+    "plenos-agendas.json": "d41ba156ddcc",
     "press-claims-verified.json": "0026b814bd42",
     "press.json": "c37b134083e0",
     "promises.json": "a4b8423e960f"
