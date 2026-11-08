@@ -374,7 +374,8 @@ const ESCENARIOS = [
     nombre: '/quejas · el fichero de quejas no llega',
     pinta: () => <Quejas />,
     fetch: { ...VIGILANCIA },
-    listo: (c) => pintaClave(c, 'quejas.error'),
+    // La frase lleva la ruta del fichero en su hueco: se espera la ruta.
+    listo: (c) => pinta(c, '/data/quejas.json'),
     faltanAdrede: ['/data/quejas.json', '/data/quejas-responses.json'],
   },
   {
@@ -413,7 +414,8 @@ const ESCENARIOS = [
     nombre: '/quejas/dashboard · el fichero de quejas no llega',
     pinta: () => <QuejasDashboard />,
     fetch: { '/data/officials.json': OFICIALES },
-    listo: (c) => pintaClave(c, 'dashboard.error'),
+    // La frase lleva la ruta del fichero en su hueco: se espera la ruta.
+    listo: (c) => pinta(c, '/data/quejas.json'),
     faltanAdrede: ['/data/quejas.json', '/data/quejas-responses.json'],
   },
   {

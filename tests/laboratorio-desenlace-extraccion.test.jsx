@@ -51,7 +51,9 @@ describe('el libro vacío dice qué pasó', () => {
     expect(desenlaceVigente({ fingerprint: 'f1' }, undefined)).toBeNull()
   })
   it('las cuatro frases son distintas: ninguna se dobla en otra', () => {
-    const frases = [null, ...DESENLACES_EXTRACCION].map(textoLibroVacio)
+    // Con una flecha: `textoLibroVacio` toma como segundo argumento el `t` de la página,
+    // y `.map(textoLibroVacio)` le pasaría el índice.
+    const frases = [null, ...DESENLACES_EXTRACCION].map((d) => textoLibroVacio(d))
     expect(new Set(frases).size).toBe(frases.length)
   })
 })
