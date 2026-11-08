@@ -1,6 +1,8 @@
 import { test, expect } from '@playwright/test'
 import { readFileSync } from 'node:fs'
 import { primeraFrase } from '../../src/components/reportajes/CorrectionNote'
+import { CATALOGUE } from '../../src/i18n'
+import { fmtDateLong, rellena } from '../../src/lib/formatters'
 import { collectErrors, appErrors } from './_console'
 
 const META = JSON.parse(
@@ -77,8 +79,17 @@ test.describe('Reportaje · reconstrucción DANA (/reportajes/reconstruccion-dan
     expect(n, 'la pieza perdió sus correcciones').toBeGreaterThan(0)
     await page.goto('/reportajes/reconstruccion-dana', { waitUntil: 'domcontentloaded' })
 
+    const ultima = META.correcciones
+      .map((c) => c.fecha)
+      .sort()
+      .at(-1)
     const aviso = page.getByText(
-      n === 1 ? 'Esta pieza tiene una corrección' : `Esta pieza tiene ${n} correcciones`,
+      n === 1
+        ? rellena(CATALOGUE.es['reportajes.correcciones.aviso.una'], { fecha: fmtDateLong(ultima) })
+        : rellena(CATALOGUE.es['reportajes.correcciones.aviso.varias'], {
+            n,
+            fecha: fmtDateLong(ultima),
+          }),
     )
     await expect(aviso).toBeVisible({ timeout: 8000 })
     const registro = page.locator('section#correcciones')

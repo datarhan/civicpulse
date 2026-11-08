@@ -41,6 +41,17 @@ const INTERNO: Array<[string, RegExp]> = [
   ['una ruta oculta', /(?<![\w])\.(?:cache|husky|claude|github)\/[\w./-]*/g],
 ]
 
+/**
+ * Las palabras del taller: cómo lo llamamos dentro, no lo que el lector ve. El
+ * 02-11-2026, re-medido: «claims» 32 veces en /laboratorio/prensa («sin claims
+ * auditados» en cada titular), «Quejas asignadas por el router» en cada ficha
+ * de cargo, «Ver tracker completo» y «Ver dashboard…» en la portada,
+ * «Dashboard analítico» en /quejas y «MVP público» al pie de la barra lateral
+ * de todas las páginas. Ésta se busca en la página entera, no sólo en <main>:
+ * la barra lateral queda fuera de <main> y es lo que más se lee.
+ */
+const DEL_TALLER = /\b(?:claims?|router|tracker|dashboard|MVP)\b/gi
+
 /** Los nombres de fichero `.json` que se mencionan y no se sirven. */
 function jsonNoPublicados(texto: string): string[] {
   const nombres = texto.match(/[\w.-]+\.json\b/g) ?? []
@@ -64,7 +75,19 @@ async function textoVisible(page: import('@playwright/test').Page, ruta: string)
       .querySelectorAll<HTMLElement>('[lang^="en"]')
       .forEach((n) => (n.style.display = 'none'))
   })
-  return page.evaluate(() => (document.querySelector('main') ?? document.body).innerText)
+  return page.evaluate(() => {
+    const main = (document.querySelector('main') ?? document.body).innerText
+    // Las palabras del taller se buscan en lo que escribimos, no en lo que se
+    // imprime tal como llegó del dato (`data-literal`): una corrección firmada,
+    // el resumen que guardó el verificador, el aviso del fichero curado de
+    // promesas. Eso no se reescribe en la página; se corrige en su origen.
+    const literales = [...document.querySelectorAll<HTMLElement>('[data-literal]')]
+    const antes = literales.map((n) => n.style.display)
+    literales.forEach((n) => (n.style.display = 'none'))
+    const pagina = document.body.innerText
+    literales.forEach((n, i) => (n.style.display = antes[i]))
+    return { main, pagina }
+  })
 }
 
 test('mide algo: los patrones cazan los casos reales y dejan pasar lo publicado', () => {
@@ -76,14 +99,22 @@ test('mide algo: los patrones cazan los casos reales y dejan pasar lo publicado'
   ])
   expect(PUBLICADOS.has('coste-efectivo.json')).toBe(true)
   expect(RUTAS.length).toBeGreaterThan(30)
+  expect('sin claims auditados · Quejas asignadas por el router'.match(DEL_TALLER)).toEqual([
+    'claims',
+    'router',
+  ])
+  // Palabras enteras, en mayúsculas o no: un plural no es la palabra.
+  expect('Ver Dashboard · MVP'.match(DEL_TALLER)).toEqual(['Dashboard', 'MVP'])
+  expect('dashboards, trackers y routers'.match(DEL_TALLER)).toBeNull()
 })
 
 for (const ruta of RUTAS) {
   test(`${ruta}: nada para quien mantiene el sitio`, async ({ page }) => {
-    const texto = await textoVisible(page, ruta)
+    const { main: texto, pagina } = await textoVisible(page, ruta)
     const hallado = [
       ...INTERNO.flatMap(([que, re]) => (texto.match(re) ?? []).map((m) => `${que}: ${m}`)),
       ...jsonNoPublicados(texto).map((n) => `un fichero que no se sirve: ${n}`),
+      ...(pagina.match(DEL_TALLER) ?? []).map((m) => `una palabra del taller: ${m}`),
     ]
     expect(hallado, `${ruta} enseña algo interno`).toEqual([])
   })
