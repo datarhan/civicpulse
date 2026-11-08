@@ -11,6 +11,7 @@ import {
   puenteTablaMedios,
   CADENCIA_LABORATORIO,
 } from '../src/lib/press-lab'
+import { CATALOGUE } from '../src/i18n'
 
 /**
  * La columna derecha y el aviso de /laboratorio, leídos el 19-10-2026 sobre los
@@ -96,6 +97,33 @@ describe('el carril de verificaciones externas sale de factcheck.json', () => {
     expect(fraseFactcheck(null)).toMatch(/no consta/i)
     expect(fraseFactcheck({ items: [] })).toMatch(/no consta/i)
   })
+
+  // «Se consultó la única fuente, Maldita.es RSS: no devolvieron ninguna revisión»:
+  // con una sola fuente consultada, el verbo va en singular. Vale también cuando se
+  // consultó una de varias: lo que no devolvió nada es esa una.
+  const sinRevisiones = (intentos) => fraseFactcheck({ consulta: { intentos } })
+  const consultada = (fuente) => ({ fuente, estado: 'consultada', examinadas: 0, aceptadas: 0 })
+  const caida = (fuente) => ({ fuente, estado: 'error', examinadas: 0, motivo: 'HTTP 503' })
+  const UNA = CATALOGUE.es['laboratorio.prensa.factcheck.sinRevisiones.una']
+  const VARIAS = CATALOGUE.es['laboratorio.prensa.factcheck.sinRevisiones']
+
+  it('una sola fuente consultada y sin revisiones: el verbo, en singular', () => {
+    expect(UNA, 'falta la variante en singular').toBeTruthy()
+    for (const intentos of [
+      [consultada('Maldita.es RSS')],
+      [consultada('Maldita.es RSS'), caida('Newtral RSS'), caida('Google Fact Check Tools API')],
+    ]) {
+      const f = sinRevisiones(intentos)
+      expect(f).toContain(UNA)
+      expect(f).not.toContain(VARIAS)
+    }
+  })
+
+  it('varias fuentes consultadas y sin revisiones: en plural', () => {
+    const f = sinRevisiones([consultada('Maldita.es RSS'), consultada('Newtral RSS')])
+    expect(f).toContain(VARIAS)
+    expect(f).not.toContain(UNA)
+  })
 })
 
 describe('el aviso dice cuántas se cotejaron, y la pastilla separa «no cotejada»', () => {
@@ -162,6 +190,19 @@ describe('la tabla por medio y el KPI se cuadran', () => {
     expect(f).toContain('55')
     expect(f).toContain('56')
     expect(f).not.toContain('3 que ya no están en el feed')
+  })
+
+  // «La tabla cuenta los 1 titular monitorizado.»: con uno, el artículo no casa con
+  // la cifra. Se dice «el único».
+  it('con un solo titular, ni «los 1» ni el plural', () => {
+    const f = puenteTablaMedios(filas([['A', 1]]), { monitoredCount: 1, fueraDelFeedCount: 0 })
+    expect(f).toBe(CATALOGUE.es['laboratorio.prensa.puente.todos.uno'])
+    expect(f).not.toMatch(/\blos 1\b/)
+  })
+
+  it('con dos, el plural de siempre', () => {
+    const f = puenteTablaMedios(filas([['A', 2]]), { monitoredCount: 2, fueraDelFeedCount: 0 })
+    expect(f).toContain('2 titulares monitorizados')
   })
 })
 

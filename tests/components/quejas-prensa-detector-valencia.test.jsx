@@ -235,6 +235,28 @@ const VIGILANCIA_A_CERO = {
     stats: { ...BOP.stats, total: 0, daysCovered: 21, daysRequested: 30 },
   },
 }
+/**
+ * Una de cada: la ficha firmada, el año del Consell, la auditoría específica y el
+ * anuncio del BOP, para que salga la variante en singular de cada cifra.
+ */
+const VIGILANCIA_UNA = {
+  ...VIGILANCIA,
+  '/data/sindic.json': { ...SINDIC, items: SINDIC.items.slice(0, 1) },
+  '/data/sindicatura.json': {
+    ...SINDICATURA,
+    dedicated: SINDICATURA.dedicated.slice(0, 1),
+    stats: { ...SINDICATURA.stats, dedicated: 1 },
+  },
+  '/data/consell-cv.json': {
+    ...CONSELL,
+    stats: { ...CONSELL.stats, years: CONSELL.stats.years.slice(0, 1) },
+  },
+  '/data/bop.json': {
+    ...BOP,
+    anuncios: BOP.anuncios.slice(0, 1),
+    stats: { ...BOP.stats, total: 1 },
+  },
+}
 const BOP_ENTERO_VACIO = {
   ...BOP,
   anuncios: [],
@@ -346,6 +368,18 @@ const ESCENARIOS = [
       pinta(c, 'R/0123/2025') &&
       pinta(c, SINDICATURA.dedicated[0].title) &&
       pinta(c, BOP.anuncios[0].title),
+    faltanAdrede: ['/data/quejas-responses.json'],
+  },
+  {
+    nombre: '/quejas · una de cada institución: las cifras en singular',
+    pinta: () => <Quejas />,
+    fetch: { ...COMUN_QUEJAS, ...VIGILANCIA_UNA, '/data/quejas.json': CON_QUEJAS },
+    listo: (c) =>
+      pinta(c, 'Q-AAA11111') &&
+      pinta(c, 'R/0123/2025') &&
+      pinta(c, SINDICATURA.dedicated[0].title) &&
+      pinta(c, BOP.anuncios[0].title) &&
+      pintaClave(c, 'quejas.consell.titulo'),
     faltanAdrede: ['/data/quejas-responses.json'],
   },
   {
@@ -558,6 +592,8 @@ const FACTCHECKS = [
   { consulta: { intentos: [intento('Maldita.es RSS', 'error', 0, 0, 'HTTP 503')] } },
   { consulta: { intentos: [intento('Maldita.es RSS', 'error')] } },
   { consulta: { intentos: [intento('Maldita.es RSS', 'consultada', 1, 0)] } },
+  // La única fuente, sin revisiones: «no va tornar», en singular.
+  { consulta: { intentos: [intento('Maldita.es RSS', 'consultada', 0)] } },
   {
     consulta: {
       intentos: [
