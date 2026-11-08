@@ -200,6 +200,35 @@ export default function EnBrevePresupuesto() {
       if (l.enCurso) return rellena(t('presupuesto.enBreve.limite.frase.enCurso'), { inicial, mod })
       return rellena(t('presupuesto.enBreve.limite.frase'), { inicial, mod })
     }
+    // El aviso de las dos fuentes trae la cifra de CONPREL por vecino —la de la
+    // cabecera— salvo que redondee a la misma que la tarjeta ya da de partida:
+    // «otra cifra … 1.689 € por vecino» junto a «(1.689 € por vecino)» diría dos
+    // cosas con un número. Con el año sin cerrar, la del Ayuntamiento es la de
+    // una hoja de mitad de año y el aviso no la llama desacuerdo de fuentes.
+    const avisoDosFuentes = () => {
+      if (l.conprelDiscrepa == null) return undefined
+      const year = l.year
+      const conprel = eurosBreves(l.conprelDiscrepa)
+      const vecino =
+        l.conprelPorVecino != null && (!p || Math.round(l.conprelPorVecino) !== p.inicial)
+          ? euros(l.conprelPorVecino)
+          : null
+      if (vecino && l.enCurso)
+        return rellena(t('presupuesto.enBreve.limite.dosFuentes.enCurso.porVecino'), {
+          year,
+          conprel,
+          conprelVecino: vecino,
+        })
+      if (vecino)
+        return rellena(t('presupuesto.enBreve.limite.dosFuentes.porVecino'), {
+          year,
+          conprel,
+          conprelVecino: vecino,
+        })
+      if (l.enCurso)
+        return rellena(t('presupuesto.enBreve.limite.dosFuentes.enCurso'), { year, conprel })
+      return rellena(t('presupuesto.enBreve.limite.dosFuentes'), { year, conprel })
+    }
     tarjetas.push(
       <TarjetaEnBreve
         key="limite"
@@ -217,20 +246,7 @@ export default function EnBrevePresupuesto() {
         }
         figura={<FiguraLimite limite={l} />}
         frases={[fraseLimite()]}
-        salvedad={
-          l.conprelDiscrepa != null
-            ? l.conprelPorVecino != null
-              ? rellena(t('presupuesto.enBreve.limite.dosFuentes.porVecino'), {
-                  year: l.year,
-                  conprel: eurosBreves(l.conprelDiscrepa),
-                  conprelVecino: euros(l.conprelPorVecino),
-                })
-              : rellena(t('presupuesto.enBreve.limite.dosFuentes'), {
-                  year: l.year,
-                  conprel: eurosBreves(l.conprelDiscrepa),
-                })
-            : undefined
-        }
+        salvedad={avisoDosFuentes()}
         ancla="#cascada"
         anclaTexto={ver}
       />,

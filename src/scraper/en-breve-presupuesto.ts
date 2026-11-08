@@ -243,6 +243,8 @@ export function enBrevePresupuesto(e: EntradaEnBreve): EnBrevePresupuesto {
         : null
     // Lo añadido sale de restar, no de redondear su cociente: 1,4 + 1,4 se
     // pintan 1 y 1 y la tarjeta diría 3. Las tres cifras tienen que sumar.
+    // Sin nada añadido por vecino no hay partes: «(0 € por vecino)» o una cifra
+    // negativa junto a «se le añadieron» dirían otra cosa que el dato.
     const totalVecino = hab ? Math.round(valida.definitivo / hab) : null
     const inicialVecino = hab ? Math.round(valida.inicial / hab) : null
     limite = {
@@ -252,7 +254,7 @@ export function enBrevePresupuesto(e: EntradaEnBreve): EnBrevePresupuesto {
       definitivo: valida.definitivo,
       porVecino: hab ? valida.definitivo / hab : null,
       porVecinoPartes:
-        totalVecino !== null && inicialVecino !== null
+        totalVecino !== null && inicialVecino !== null && totalVecino > inicialVecino
           ? { inicial: inicialVecino, anadido: totalVecino - inicialVecino }
           : null,
       conprelDiscrepa,
