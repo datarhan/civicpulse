@@ -62,7 +62,7 @@ describe('/quejas · «Cómo quejarse y qué pasa después»', () => {
     expect(texto).toContain(`tiene ${c.acuseDias} días para acusar recibo y ${c.meses} meses`)
     expect(texto).toContain(String(s.expedientes))
     expect(texto).toContain(`En ${s.recomendaciones} de esos expedientes`)
-    expect(texto).toContain(`${s.porFaltaDeRespuesta} de ellos los titula`)
+    expect(texto).toContain(`El propio Síndic titula ${s.porFaltaDeRespuesta} de ellos`)
     expect(texto).toContain(`«${s.ultima.titulo}»`)
     expect(texto).toContain(fmtDateLong(s.ultima.fecha, 'es'))
   }, 60000)

@@ -88,7 +88,10 @@ const MESES_TRANSPARENCIA = numero(
 )
 
 const METODOLOGIA = plano('src/pages/Metodologia.jsx')
-const QUEJAS = plano('src/pages/Quejas.jsx')
+// La entrada de /quejas vive en el catálogo desde el barrido de palabras: la
+// página la pinta con `t('quejas.intro')`, así que su frase se lee de allí, y la
+// prueba de la revisión exige además que la página la pinte.
+const QUEJAS = `${plano('src/pages/Quejas.jsx')} ${CATALOGUE.es['quejas.intro']}`
 
 describe('el contrato de las quejas dice lo que hace el código', () => {
   it('lee las cuatro cifras de donde viven (si no, no mide nada)', () => {
@@ -513,6 +516,7 @@ describe('la revisión antes de publicar', () => {
     expect(METODOLOGIA).toContain('no reescribe su texto')
     expect(AVISO).toContain('Revisión antes de publicar')
     // Y /quejas, en la cabecera que se ve con datos y sin ellos.
+    expect(lee('src/pages/Quejas.jsx')).toContain("t('quejas.intro')")
     expect(QUEJAS).toContain(
       'Desde finales de septiembre de 2026, una persona revisa cada queja antes de publicarla aquí.',
     )

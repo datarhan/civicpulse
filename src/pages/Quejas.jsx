@@ -16,6 +16,7 @@ import { fmtDateShort, nombreDeBarrio, porcentajeLegible } from '../lib/formatte
 import { medibilidad, registroUtilizable } from '../lib/reloj-lpacap'
 import { contarConsideraciones } from '../lib/sindic-consideraciones'
 import { useT } from '../i18n'
+import { conHuecos } from '../lib/huecos'
 import { EnBreveQuejas } from '../components/Quejas/EnBreveQuejas'
 import { QuienMasVigila, QueEsLaInstitucion } from '../components/Quejas/QuienMasVigila'
 import { DatosTecnicos } from '../components/Quejas/DatosTecnicos'
@@ -1335,23 +1336,34 @@ export default function Quejas() {
         <div
           style={{ fontSize: 'var(--fs-aux)', color: 'var(--ink50)', marginTop: 4, maxWidth: 620 }}
         >
-          Canal público de quejas para Riba-roja. Presenta vía Telegram ·{' '}
-          <a
-            href={TELEGRAM_BOT_URL}
-            target="_blank"
-            rel="noreferrer"
-            style={{ color: 'var(--civic)' }}
-          >
-            @munigraph_bot
-          </a>
-          . Desde finales de septiembre de 2026, una persona revisa cada queja antes de publicarla
-          aquí. Feed agregado y anónimo — base legal LPACAP + Ley 19/2013.{' '}
-          <Link
-            to="/quejas/dashboard"
-            style={{ color: 'var(--civic)', textDecoration: 'underline', textUnderlineOffset: 2 }}
-          >
-            Dashboard analítico →
-          </Link>
+          {/* Decía «Feed agregado y anónimo — base legal LPACAP + Ley 19/2013.
+              Dashboard analítico →», escrito aquí y en castellano también con la
+              interfaz en valencià. El enlace lleva el nombre de la página a la
+              que va. */}
+          {conHuecos(t('quejas.intro'), {
+            '{bot}': (
+              <a
+                href={TELEGRAM_BOT_URL}
+                target="_blank"
+                rel="noreferrer"
+                style={{ color: 'var(--civic)' }}
+              >
+                @munigraph_bot
+              </a>
+            ),
+            '{panel}': (
+              <Link
+                to="/quejas/dashboard"
+                style={{
+                  color: 'var(--civic)',
+                  textDecoration: 'underline',
+                  textUnderlineOffset: 2,
+                }}
+              >
+                {t('quejas.intro.panel')}
+              </Link>
+            ),
+          })}
         </div>
         <div style={{ marginTop: 10 }}>
           <DataAsOf iso={data?.generatedAt} label="Quejas" />

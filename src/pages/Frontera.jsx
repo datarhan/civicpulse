@@ -128,8 +128,7 @@ export default function Frontera() {
       {!loading && !error && especificaciones.length === 0 && (
         <Card style={{ marginTop: 16 }}>
           <p style={{ margin: 0, color: 'var(--ink70)' }}>
-            El experimento todavía no se ha ejecutado sobre esta instalación. Se genera con{' '}
-            <code className="mono">npm run compute:dea</code>.
+            El experimento todavía no se ha publicado.
           </p>
         </Card>
       )}

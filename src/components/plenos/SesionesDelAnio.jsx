@@ -85,7 +85,7 @@ export function SesionesDelAnio({ filas, agendas }) {
                     <ul>
                       {o.destacados.map((p) => (
                         <li key={p.numero}>
-                          <span className="cp-plenos-puntos-texto" title={p.titulo}>
+                          <span className="cp-plenos-puntos-texto" title={p.titulo} data-literal="">
                             {p.texto}
                           </span>
                         </li>

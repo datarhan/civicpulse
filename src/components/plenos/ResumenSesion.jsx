@@ -93,7 +93,7 @@ export function ResumenSesion({ agenda, votos }) {
                   <li key={f.numero}>
                     <span className="mono cp-plenos-puntos-numero">{f.numero}.</span>
                     <span>
-                      <span className="cp-plenos-puntos-texto" title={f.titulo}>
+                      <span className="cp-plenos-puntos-texto" title={f.titulo} data-literal="">
                         {f.texto}
                       </span>
                       <span className="cp-plenos-votos-desenlace">

@@ -82,7 +82,7 @@ function FreezeBanner({ snap }) {
       role="alert"
     >
       <strong style={{ color: '#DC2626' }}>
-        Periodo electoral en vigor — tracker en modo solo-lectura.
+        Periodo electoral en vigor: esta página queda congelada.
       </strong>
       <div style={{ marginTop: 4, color: 'var(--ink70)' }}>
         Los estados quedan congelados hasta {fmtDateLong(snap.frozenUntil)} (LOREG art. 50). El
@@ -110,7 +110,9 @@ function LegalFooter({ snap }) {
         lineHeight: 1.5,
       }}
     >
-      <strong style={{ color: 'var(--ink)' }}>Aviso editorial.</strong> {snap.legalNotice}
+      {/* `legalNotice` es del fichero curado (promises.json): se imprime tal cual. */}
+      <strong style={{ color: 'var(--ink)' }}>Aviso editorial.</strong>{' '}
+      <span data-literal="">{snap.legalNotice}</span>
       <div style={{ marginTop: 10, display: 'flex', gap: 14, flexWrap: 'wrap' }}>
         <a href="/metodologia#grupo-promesas" style={{ color: 'var(--civic)' }}>
           Metodología →
@@ -646,7 +648,7 @@ export default function Promesas() {
   if (error || !data) {
     return (
       <div className="cp-page" style={{ padding: '24px', color: 'var(--warn-ink)' }}>
-        No se pudo cargar el tracker. Regenera con <code>npm run scrape:promise-suggestions</code>.
+        No se pudo cargar la lista de promesas.
       </div>
     )
   }

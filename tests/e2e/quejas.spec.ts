@@ -1,5 +1,6 @@
 import { test, expect } from '@playwright/test'
 import { quejasIsEmpty } from './_quejas'
+import { CATALOGUE } from '../../src/i18n'
 
 test.describe('Quejas feed + dashboard', () => {
   test('shows empty-state copy when no quejas have been captured', async ({ page }) => {
@@ -21,7 +22,8 @@ test.describe('Quejas feed + dashboard', () => {
 
   test('/quejas ↔ /quejas/dashboard are linked and navigate', async ({ page }) => {
     await page.goto('/quejas')
-    await page.getByRole('link', { name: /Dashboard analítico/i }).click()
+    // El enlace lleva el nombre de la página a la que va (decía «Dashboard analítico →»).
+    await page.getByRole('link', { name: CATALOGUE.es['quejas.intro.panel'] }).click()
     await expect(page).toHaveURL(/\/quejas\/dashboard$/)
     await expect(page.getByText('Salud del canal de quejas').first()).toBeVisible()
 

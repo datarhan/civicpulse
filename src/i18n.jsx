@@ -522,7 +522,7 @@ export const CATALOGUE = {
     'topbar.menu.aria': 'Abrir menú',
 
     // Sidebar
-    'sidebar.footer.tag': 'MVP público · datos abiertos',
+    'sidebar.footer.tag': 'Datos abiertos · código abierto',
     'sidebar.footer.legal': 'Aviso legal',
     'sidebar.footer.method': 'Metodología',
 
@@ -712,7 +712,7 @@ export const CATALOGUE = {
     'map.incendio.causa.negligencia': 'Negligencia o accidente',
     'map.incendio.causa.rayo': 'Rayo',
     'map.incendio.causa.sinClasificar': 'Sin determinar',
-    'map.obra.adjudicado': 'adj.',
+    'map.obra.adjudicado': 'adjudicado',
     'map.obra.previsto': 'previsto',
     'map.obra.inicio': 'inicio {fecha}',
     'map.obra.ejecucion': 'ejecución {fecha}',
@@ -1094,6 +1094,9 @@ export const CATALOGUE = {
     'presup.title': 'Presupuesto municipal',
     'quejas.eyebrow': 'Voz ciudadana',
     'quejas.title': 'Quejas ciudadanas',
+    'quejas.intro':
+      'Canal público de quejas para Riba-roja: se presentan por Telegram, en {bot}. Desde finales de septiembre de 2026, una persona revisa cada queja antes de publicarla aquí. Cada queja se publica con su texto, su categoría y el barrio aproximado, nunca con el nombre de quien la envía ni el punto exacto. Los plazos que medimos son los de la LPACAP y la Ley 19/2013. {panel}',
+    'quejas.intro.panel': 'Salud del canal de quejas →',
     // La lectura vecinal de /quejas (components/Quejas/EnBreveQuejas.jsx): el camino de
     // una queja. Las cifras salen de scraper/en-breve-quejas.ts; ninguna se escribe aquí.
     'quejas.enBreve.titulo': 'Cómo quejarse y qué pasa después',
@@ -1128,7 +1131,7 @@ export const CATALOGUE = {
     'quejas.enBreve.sindic.frase':
       'Puedes acudir al Síndic de Greuges, el defensor del pueblo de la Comunitat Valenciana. Es gratis y no te quita otros recursos.',
     'quejas.enBreve.sindic.recomendaciones':
-      'En {n} de esos expedientes, que hemos leído uno a uno, el Síndic se dirigió al Ayuntamiento para recomendarle algo o recordarle sus deberes legales; {falta} de ellos los titula el propio Síndic «falta de respuesta».',
+      'En {n} de esos expedientes, que hemos leído uno a uno, el Síndic se dirigió al Ayuntamiento para recomendarle algo o recordarle sus deberes legales. El propio Síndic titula {falta} de ellos «falta de respuesta».',
     'quejas.enBreve.sindic.recomendaciones.sinFalta':
       'En {n} de esos expedientes, que hemos leído uno a uno, el Síndic se dirigió al Ayuntamiento para recomendarle algo o recordarle sus deberes legales.',
     'quejas.enBreve.sindic.ultima': 'El más reciente que hemos leído es del {fecha}: «{titulo}»',
@@ -1165,8 +1168,10 @@ export const CATALOGUE = {
     'quejas.datosTecnicos.fuente': 'Fuente: {fuente}',
     'quejas.datosTecnicos.formato': 'Formato: {formato}',
     'quejas.datosTecnicos.fichero': 'Fichero completo:',
-    'dashboard.eyebrow': 'Voz ciudadana · Dashboard',
+    'dashboard.eyebrow': 'Voz ciudadana · Panel',
     'dashboard.title': 'Salud del canal de quejas',
+    'dashboard.apoyos.eyebrow': 'Apoyos vecinales · hasta 10',
+    'dashboard.apoyos.titulo': 'Quejas pendientes con más apoyos',
     'dashboard.intro':
       'Vista detallada del canal de quejas: en qué punto está cada una, por área municipal y por barrio, y las que más apoyos tienen.',
     'dashboard.volver': '← Cómo quejarse y qué plazos tiene el Ayuntamiento, en Quejas ciudadanas',
@@ -2041,7 +2046,7 @@ export const CATALOGUE = {
     'presupuesto.obras.ejecutadas': 'obras ya ejecutadas · no refleja obras posteriores',
     'presupuesto.obras.renove': 'Plan RENOVE',
     'presupuesto.obras.baja': 'baja',
-    'presupuesto.obras.adj': 'adj.',
+    'presupuesto.obras.adj': 'adjudicado',
     'presupuesto.obras.previsto': 'previsto',
     'presupuesto.obras.meses': '{n} meses',
     'presupuesto.obras.inicio': 'inicio {fecha}',
@@ -2148,7 +2153,7 @@ export const CATALOGUE = {
     'metodologia.enBreve.fuentes.ver': 'Ver todas las fuentes →',
     'metodologia.enBreve.maquina.pregunta': '¿Lo publica una máquina?',
     'metodologia.enBreve.maquina.frase':
-      'A veces, y con reglas. Un hallazgo o una promesa que afirme algo de un cargo concreto lleva siempre la firma de alguien del equipo. Por regla general, una máquina sólo publica sola lo que retira algo ya publicado, o lo nuevo que no nombra a ningún cargo y tiene su acierto medido; los procesos que aún no la cumplen se dicen en la regla.',
+      'A veces, y con reglas. Un hallazgo o una promesa que afirme algo de un cargo concreto lleva siempre la firma de alguien del equipo. Por regla general, una máquina sólo publica sola lo que retira algo ya publicado, o lo nuevo que no nombra a ningún cargo y tiene su acierto medido. Los procesos que aún no cumplen esa regla se nombran en ella.',
     'metodologia.enBreve.comprobar.pregunta': '¿Cómo compruebo lo que decís?',
     'metodologia.enBreve.comprobar.frase':
       'Cada afirmación enlaza el documento del que sale, para que lo compruebes tú. Una promesa se atribuye con las palabras literales del partido, nunca con el titular de una noticia.',
@@ -2621,7 +2626,7 @@ export const CATALOGUE = {
     'contratos.enBreve.cuanto.ventas':
       '{n} son ventas de parcelas: ahí el Ayuntamiento cobra, no paga.',
     'contratos.enBreve.cuanto.mayorConcesion':
-      '[[concesion|Una sola concesión]], de {importe}, es el {pct} % de esa suma: es su valor estimado por todo el plazo, no un gasto anual, y no sale del presupuesto municipal, porque lo paga el vecino en su factura.',
+      '[[concesion|Una sola concesión]], de {importe}, es el {pct} % de esa suma. Es su valor estimado por todo el plazo, no un gasto anual, y no sale del presupuesto municipal: lo paga el vecino en su factura.',
     'contratos.enBreve.cuanto.lotes': 'Cada [[lote|lote]] cuenta como un contrato.',
     'contratos.enBreve.cuanto.mayor': 'Un solo contrato, de {importe}, es el {pct} % de esa suma.',
     'contratos.enBreve.aQuien.pregunta': '¿A quién se le adjudica?',
@@ -2933,7 +2938,7 @@ export const CATALOGUE = {
     'cargos.detalle.portfolios.title': 'Concejalías que gestiona',
     'cargos.detalle.promesas.eyebrow': 'Atribución al partido',
     'cargos.detalle.promesas.title': 'Promesas del partido',
-    'cargos.detalle.promesas.viewAll': 'Ver tracker completo →',
+    'cargos.detalle.promesas.viewAll': 'Ver todas las promesas →',
     'cargos.detalle.promesas.empty': 'Sin promesas documentadas de este partido.',
     // Ni «0» ni «sin promesas» cuando el fichero no llegó: eso no se sabe.
     'cargos.detalle.promesas.noDisponible':
@@ -2946,7 +2951,10 @@ export const CATALOGUE = {
       'No se ha podido cargar el orden del día de los plenos; no significa que no haya puntos.',
     'cargos.detalle.agenda.more': '+ {n} puntos anteriores',
     'cargos.detalle.quejas.eyebrow': 'Canal ciudadano',
-    'cargos.detalle.quejas.title': 'Quejas asignadas por el router',
+    'cargos.detalle.quejas.title': 'Quejas que el canal le asigna por categoría',
+    'cargos.detalle.biografia': 'Biografía →',
+    'cargos.detalle.biografia.title': 'Informe biográfico del agente periodista de CivicPulse',
+    'cargos.detalle.atribucion': 'Atribución.',
     'cargos.detalle.quejas.viewAll': 'Ver canal completo →',
     'cargos.detalle.quejas.empty': 'Sin quejas asignadas actualmente.',
     'cargos.detalle.methodology':
@@ -3167,6 +3175,12 @@ export const CATALOGUE = {
     // abarca «publicada»: suelta tras el botón, se leía igual en valencià.
     'reportajes.correcciones.una': 'Con 1 [[correccion|corrección publicada]]',
     'reportajes.correcciones': 'Con {n} [[correccion|correcciones publicadas]]',
+    'reportajes.correcciones.aviso.una': 'Una corrección publicada, del {fecha}',
+    'reportajes.correcciones.aviso.varias': '{n} correcciones publicadas · la última, del {fecha}',
+    'reportajes.correcciones.aviso.verUna': 'verla al final ↓',
+    'reportajes.correcciones.aviso.verVarias': 'todas al final ↓',
+    'reportajes.correcciones.titulo': 'Correcciones',
+    'reportajes.correcciones.entrada': 'Corrección · {fecha}.',
     'landing.alcalde.role': 'Alcalde',
     'landing.empleo.all': 'Ver todas las ofertas →',
     'landing.contratos.todos': 'Ver todos los contratos →',
@@ -3177,10 +3191,10 @@ export const CATALOGUE = {
     'landing.promesas.delAlcaldia': '{n} promesas del partido de la alcaldía ({partido})',
     'landing.promesas.delAlcaldia.una': '1 promesa del partido de la alcaldía ({partido})',
     'landing.promesas.porPartido': '{n} promesas, por partido:',
-    'landing.promesas.cta': 'Ver tracker completo →',
+    'landing.promesas.cta': 'Ver todas las promesas →',
     'landing.rendicion.blurb':
       'Reúne por concejalía los votos de pleno, las promesas electorales y las quejas del canal.',
-    'landing.rendicion.cta': 'Ver dashboard por departamento →',
+    'landing.rendicion.cta': 'Ver por departamento →',
     'landing.rendicion.cobertura': '{total} concejalías; en {n} consta quién la lleva.',
     'landing.rendicion.total': '{total} concejalías.',
     'landing.escanos': 'escaños',
@@ -3704,7 +3718,7 @@ export const CATALOGUE = {
     'topbar.search': 'Cerca queixes, càrrecs, plens…',
     'topbar.menu.aria': 'Obrir menú',
 
-    'sidebar.footer.tag': 'MVP públic · dades obertes',
+    'sidebar.footer.tag': 'Dades obertes · codi obert',
     'sidebar.footer.legal': 'Avís legal',
     'sidebar.footer.method': 'Metodologia',
 
@@ -3856,7 +3870,7 @@ export const CATALOGUE = {
     'map.incendio.causa.negligencia': 'Negligència o accident',
     'map.incendio.causa.rayo': 'Llamp',
     'map.incendio.causa.sinClasificar': 'Sense determinar',
-    'map.obra.adjudicado': 'adj.',
+    'map.obra.adjudicado': 'adjudicat',
     'map.obra.previsto': 'previst',
     'map.obra.inicio': 'inici {fecha}',
     'map.obra.ejecucion': 'execució {fecha}',
@@ -4201,6 +4215,9 @@ export const CATALOGUE = {
     'presup.title': 'Pressupost municipal',
     'quejas.eyebrow': 'Veu ciutadana',
     'quejas.title': 'Queixes ciutadanes',
+    'quejas.intro':
+      'Canal públic de queixes per a Riba-roja: es presenten per Telegram, a {bot}. Des de finals de setembre de 2026, una persona revisa cada queixa abans de publicar-la ací. Cada queixa es publica amb el seu text, la seua categoria i el barri aproximat, mai amb el nom de qui l’envia ni el punt exacte. Els terminis que mesurem són els de la LPACAP i la Llei 19/2013. {panel}',
+    'quejas.intro.panel': 'Salut del canal de queixes →',
     'quejas.enBreve.titulo': 'Com queixar-se i què passa després',
     'quejas.enBreve.intro':
       'El que cal saber abans de queixar-se, en paraules planes. Les queixes publicades i els registres de qui vigila l’Ajuntament són a sota.',
@@ -4233,7 +4250,7 @@ export const CATALOGUE = {
     'quejas.enBreve.sindic.frase':
       'Pots acudir al Síndic de Greuges, el defensor del poble de la Comunitat Valenciana. És gratuït i no et lleva altres recursos.',
     'quejas.enBreve.sindic.recomendaciones':
-      'En {n} d’eixos expedients, que hem llegit un a un, el Síndic es va adreçar a l’Ajuntament per a recomanar-li alguna cosa o recordar-li els seus deures legals; {falta} d’ells, segons el títol que els posa el mateix Síndic, per falta de resposta.',
+      'En {n} d’eixos expedients, que hem llegit un a un, el Síndic es va adreçar a l’Ajuntament per a recomanar-li alguna cosa o recordar-li els seus deures legals. El mateix Síndic en titula {falta} «falta de respuesta».',
     'quejas.enBreve.sindic.recomendaciones.sinFalta':
       'En {n} d’eixos expedients, que hem llegit un a un, el Síndic es va adreçar a l’Ajuntament per a recomanar-li alguna cosa o recordar-li els seus deures legals.',
     'quejas.enBreve.sindic.ultima': 'El més recent que hem llegit és del {fecha}: «{titulo}»',
@@ -4267,6 +4284,8 @@ export const CATALOGUE = {
     'quejas.datosTecnicos.fichero': 'Fitxer complet:',
     'dashboard.eyebrow': 'Veu ciutadana · Tauler',
     'dashboard.title': 'Salut del canal de queixes',
+    'dashboard.apoyos.eyebrow': 'Suports veïnals · fins a 10',
+    'dashboard.apoyos.titulo': 'Queixes pendents amb més suports',
     'dashboard.intro':
       'Vista detallada del canal de queixes: en quin punt està cadascuna, per àrea municipal i per barri, i les que tenen més suports.',
     'dashboard.volver': '← Com queixar-se i quins terminis té l’Ajuntament, en Queixes ciutadanes',
@@ -5023,7 +5042,7 @@ export const CATALOGUE = {
     'presupuesto.obras.ejecutadas': 'obres ja executades · no reflecteix obres posteriors',
     'presupuesto.obras.renove': 'Pla RENOVE',
     'presupuesto.obras.baja': 'baixa',
-    'presupuesto.obras.adj': 'adj.',
+    'presupuesto.obras.adj': 'adjudicat',
     'presupuesto.obras.previsto': 'previst',
     'presupuesto.obras.meses': '{n} mesos',
     'presupuesto.obras.inicio': 'inici {fecha}',
@@ -5122,7 +5141,7 @@ export const CATALOGUE = {
     'metodologia.enBreve.fuentes.ver': 'Vore totes les fonts →',
     'metodologia.enBreve.maquina.pregunta': 'Ho publica una màquina?',
     'metodologia.enBreve.maquina.frase':
-      "A vegades, i amb regles. Una troballa o una promesa que afirme alguna cosa d'un càrrec concret porta sempre la firma d'algú de l'equip. Per regla general, una màquina només publica sola el que retira alguna cosa ja publicada, o el que és nou, no nomena cap càrrec i té l'encert mesurat; els processos que encara no la complixen es diuen en la regla.",
+      "A vegades, i amb regles. Una troballa o una promesa que afirme alguna cosa d'un càrrec concret porta sempre la firma d'algú de l'equip. Per regla general, una màquina només publica sola el que retira alguna cosa ja publicada, o el que és nou, no nomena cap càrrec i té l'encert mesurat. Els processos que encara no complixen eixa regla s'hi nomenen.",
     'metodologia.enBreve.comprobar.pregunta': 'Com comprove el que dieu?',
     'metodologia.enBreve.comprobar.frase':
       "Cada afirmació enllaça el document d'on ix, perquè ho comproves tu. Una promesa s'atribuïx amb les paraules literals del partit, mai amb el titular d'una notícia.",
@@ -5573,7 +5592,7 @@ export const CATALOGUE = {
     'contratos.enBreve.cuanto.ventas':
       '{n} són vendes de parcel·les: ací l’Ajuntament cobra, no paga.',
     'contratos.enBreve.cuanto.mayorConcesion':
-      '[[concesion|Una sola concessió]], de {importe}, és el {pct} % d’eixa suma: és el seu valor estimat per tot el termini, no una despesa anual, i no ix del pressupost municipal, perquè ho paga el veí en la seua factura.',
+      '[[concesion|Una sola concessió]], de {importe}, és el {pct} % d’eixa suma. És el seu valor estimat per tot el termini, no una despesa anual, i no ix del pressupost municipal: ho paga el veí en la seua factura.',
     'contratos.enBreve.cuanto.lotes': 'Cada [[lote|lot]] compta com un contracte.',
     'contratos.enBreve.cuanto.mayor': 'Un sol contracte, de {importe}, és el {pct} % d’eixa suma.',
     'contratos.enBreve.aQuien.pregunta': 'A qui se li adjudica?',
@@ -5828,7 +5847,7 @@ export const CATALOGUE = {
     'cargos.detalle.portfolios.title': 'Regidories que gestiona',
     'cargos.detalle.promesas.eyebrow': 'Atribució al partit',
     'cargos.detalle.promesas.title': 'Promeses del partit',
-    'cargos.detalle.promesas.viewAll': 'Veure tracker complet →',
+    'cargos.detalle.promesas.viewAll': 'Veure totes les promeses →',
     'cargos.detalle.promesas.empty': "Sense promeses documentades d'este partit.",
     'cargos.detalle.promesas.noDisponible':
       'No s’ha pogut carregar el registre de promeses; no significa que el partit no en tinga cap.',
@@ -5840,7 +5859,10 @@ export const CATALOGUE = {
       'No s’ha pogut carregar l’ordre del dia dels plens; no significa que no hi haja punts.',
     'cargos.detalle.agenda.more': '+ {n} punts anteriors',
     'cargos.detalle.quejas.eyebrow': 'Canal ciutadà',
-    'cargos.detalle.quejas.title': 'Queixes assignades pel router',
+    'cargos.detalle.quejas.title': 'Queixes que el canal li assigna per categoria',
+    'cargos.detalle.biografia': 'Biografia →',
+    'cargos.detalle.biografia.title': 'Informe biogràfic de l’agent periodista de CivicPulse',
+    'cargos.detalle.atribucion': 'Atribució.',
     'cargos.detalle.quejas.viewAll': 'Veure canal complet →',
     'cargos.detalle.quejas.empty': 'Sense queixes assignades actualment.',
     'cargos.detalle.methodology':
@@ -5997,6 +6019,12 @@ export const CATALOGUE = {
     'landing.reportajes.pieces': 'peces',
     'reportajes.correcciones.una': 'Amb 1 [[correccion|correcció publicada]]',
     'reportajes.correcciones': 'Amb {n} [[correccion|correccions publicades]]',
+    'reportajes.correcciones.aviso.una': 'Una correcció publicada: {fecha}',
+    'reportajes.correcciones.aviso.varias': '{n} correccions publicades · l’última: {fecha}',
+    'reportajes.correcciones.aviso.verUna': 'veure-la al final ↓',
+    'reportajes.correcciones.aviso.verVarias': 'totes al final ↓',
+    'reportajes.correcciones.titulo': 'Correccions',
+    'reportajes.correcciones.entrada': 'Correcció · {fecha}.',
     'landing.alcalde.role': 'Alcalde',
     'landing.empleo.all': 'Veure totes les ofertes →',
     'landing.contratos.todos': 'Veure tots els contractes →',
@@ -6005,10 +6033,10 @@ export const CATALOGUE = {
     'landing.promesas.delAlcaldia': "{n} promeses del partit de l'alcaldia ({partido})",
     'landing.promesas.delAlcaldia.una': "1 promesa del partit de l'alcaldia ({partido})",
     'landing.promesas.porPartido': '{n} promeses, per partit:',
-    'landing.promesas.cta': 'Veure el tracker complet →',
+    'landing.promesas.cta': 'Veure totes les promeses →',
     'landing.rendicion.blurb':
       'Reunix per regidoria els vots de ple, les promeses electorals i les queixes del canal.',
-    'landing.rendicion.cta': 'Veure el tauler per departament →',
+    'landing.rendicion.cta': 'Veure per departament →',
     'landing.rendicion.cobertura': '{total} regidories; en {n} consta qui la porta.',
     'landing.rendicion.total': '{total} regidories.',
     'landing.escanos': 'escons',
