@@ -145,6 +145,14 @@ export const esToken = (s) => /^[a-z][a-z0-9_-]*$/.test(s)
  * Una cadena corta cuenta sólo si es la pieza ENTERA: la categoría «Obras» de un
  * contrato no puede tapar un rótulo «Obras». Una larga cuenta también dentro de una
  * pieza, o recortada con «…», que es como se pintan los titulares.
+ *
+ * Y una larga puede pintarse de las dos maneras en la misma página: /contratos da
+ * un título entero en el detalle de una zona y recortado a 100 caracteres en el
+ * listado. Por eso sus recortes se buscan aunque ya haya casado entera. Con la
+ * búsqueda en un `else`, la nocturna del 08-11-2026 —que movió una de esas filas a
+ * la página del listado que lee la guarda— dejó el recorte por rótulo y su
+ * «Contrato administrativo…» por castellano dentro del valencià
+ * (`tests/datos-pintados.test.js`).
  */
 export const datosPintados = (piezas, cadenas) => {
   const enteras = new Set(piezas)
@@ -157,7 +165,7 @@ export const datosPintados = (piezas, cadenas) => {
     const s = bruta.trim()
     if (s.length < 2 || !/\p{L}/u.test(s) || esToken(s)) continue
     if (enteras.has(s)) out.add(s)
-    else if (s.length >= 12) {
+    if (s.length >= 12) {
       if (todo.includes(s)) out.add(s)
       for (const r of recortadas) if (s.startsWith(r)) out.add(r)
     }
