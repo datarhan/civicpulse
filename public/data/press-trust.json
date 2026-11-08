@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-07T11:26:23.273Z",
+  "generatedAt": "2026-11-08T09:06:23.733Z",
   "windowDays": 30,
   "articles": [
     {
@@ -562,88 +562,37 @@
         "opinionFraction": 0
       },
       "score": 3
-    },
-    {
-      "articleId": "1w1lf6k",
-      "articleFingerprint": "1j6o5dl",
-      "outlet": "Periòdic del Camp de Túria",
-      "outletHost": "infoturia.com",
-      "url": "https://www.infoturia.com/riba-roja-de-turia/86666-riba-roja-restaurara-les-quatre-pedreres.html",
-      "date": "2026-10-09T08:08:54.000Z",
-      "indicators": {
-        "localCoverage": true,
-        "datedArticle": true,
-        "municipalSourceMatch": null,
-        "corroboratedAcrossOutlets": null,
-        "factualClaimsPresent": true,
-        "opinionFraction": 0
-      },
-      "score": 4
-    },
-    {
-      "articleId": "1u62lnk",
-      "articleFingerprint": "75fdnc",
-      "outlet": "Periòdic del Camp de Túria",
-      "outletHost": "infoturia.com",
-      "url": "https://www.infoturia.com/riba-roja-de-turia/86663-mes-senyalitzacio-en-la-cv-336-entre-santa-rosa-i-entrenaranjos-per-a-reduir-la-velocitat.html",
-      "date": "2026-10-09T07:58:29.000Z",
-      "indicators": {
-        "localCoverage": true,
-        "datedArticle": true,
-        "municipalSourceMatch": null,
-        "corroboratedAcrossOutlets": null,
-        "factualClaimsPresent": false,
-        "opinionFraction": 0
-      },
-      "score": 2
-    },
-    {
-      "articleId": "hbl63g",
-      "articleFingerprint": "7rfyh4",
-      "outlet": "Ayuntamiento de Riba-roja de Túria",
-      "outletHost": "ribarroja.es",
-      "url": "https://www.ribarroja.es/es/noticia/riba-roja-de-t%C3%BAria-formaliza-con-veolia-el-nuevo-contrato-del-ciclo-integral-del-agua-para-reforzar-la-sostenibilidad-y-modernizar-sus-infraestructuras",
-      "date": "2026-10-08T12:37:13.000Z",
-      "indicators": {
-        "localCoverage": false,
-        "datedArticle": true,
-        "municipalSourceMatch": false,
-        "corroboratedAcrossOutlets": null,
-        "factualClaimsPresent": true,
-        "opinionFraction": 0
-      },
-      "score": 3
     }
   ],
   "outlets": [
     {
       "outlet": "Ayuntamiento de Riba-roja de Túria",
       "outletHost": "ribarroja.es",
-      "articleCount": 17,
+      "articleCount": 16,
       "verdictCounts": {
         "verificado": 0,
         "parcial": 0,
         "contradicho": 0,
-        "sin-datos": 34,
-        "promesa-repetida": 1
+        "sin-datos": 20,
+        "promesa-repetida": 0
       },
-      "checkedClaims": 11,
-      "meanTrustScore": 1.82,
+      "checkedClaims": 3,
+      "meanTrustScore": 1.75,
       "verifiedRatio": 0,
       "contradictedRatio": null
     },
     {
       "outlet": "Periòdic del Camp de Túria",
       "outletHost": "infoturia.com",
-      "articleCount": 10,
+      "articleCount": 8,
       "verdictCounts": {
         "verificado": 0,
         "parcial": 0,
         "contradicho": 0,
-        "sin-datos": 32,
+        "sin-datos": 16,
         "promesa-repetida": 0
       },
-      "checkedClaims": 9,
+      "checkedClaims": 8,
       "meanTrustScore": 3,
       "verifiedRatio": 0,
       "contradictedRatio": null
@@ -698,7 +647,7 @@
     }
   ],
   "builtFrom": {
-    "plenos-agendas.json": "3d06d438bb43",
+    "plenos-agendas.json": "27c2d162febe",
     "press-claims-verified.json": "0026b814bd42",
     "press.json": "0a6e5b5c693c",
     "promises.json": "a4b8423e960f"
