@@ -1048,7 +1048,7 @@ export default function LaboratorioPrensa() {
           <KPI
             label="Hallazgos automáticos"
             value={fmtNumber(hallazgos.automaticos)}
-            hint="tandas de un proceso automático · sin revisión humana"
+            hint={`distintos, en ${fmtNumber(hallazgos.publicaciones)} publicaciones de un proceso automático · sin revisión humana`}
           />
         )}
       </div>
@@ -1162,15 +1162,22 @@ export default function LaboratorioPrensa() {
         <div style={{ display: 'grid', gap: 12 }}>
           {visible.length === 0 && (
             <Card>
+              {/* Respondía con cuatro órdenes «si acabas de instalar el laboratorio»,
+                  y le echaba la culpa al filtro también cuando no había ninguno
+                  puesto y la ventana se había quedado sin titulares. */}
               <SectionHead
                 eyebrow="Sin resultados"
-                title="No hay artículos que coincidan con el filtro"
+                title={
+                  outletFilter !== 'all' || verdictFilter !== 'all'
+                    ? 'No hay artículos que coincidan con el filtro'
+                    : `No hay artículos en los últimos ${summary.windowDays} días`
+                }
               />
-              {/* Respondía a un filtro sin resultados con cuatro órdenes «si acabas
-                  de instalar el laboratorio»: lo que se ve al pedir un medio y un
-                  veredicto que no casan. */}
               <p style={{ fontSize: 'var(--fs-aux)', color: 'var(--ink70)', marginTop: 6 }}>
-                Prueba con otro medio o con otro veredicto. {CADENCIA_LABORATORIO}
+                {outletFilter !== 'all' || verdictFilter !== 'all'
+                  ? 'Prueba con otro medio o con otro veredicto. '
+                  : ''}
+                {CADENCIA_LABORATORIO}
               </p>
             </Card>
           )}

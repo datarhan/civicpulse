@@ -291,7 +291,7 @@ export default function AvisoLegal() {
         <p>
           Durante el periodo electoral oficial convocado mediante real decreto y hasta la
           proclamación definitiva de la Junta Electoral de Zona (Ley Orgánica del Régimen Electoral
-          General 5/1985, art. 50), la página de promesas pasa a ser de solo lectura:
+          General 5/1985, art. 50), la página de promesas queda congelada:
         </p>
         <ul>
           <li>
@@ -555,8 +555,8 @@ export default function AvisoLegal() {
         <p>Cuando presentas una queja a través del bot de Telegram, los datos recogidos son:</p>
         <ul>
           <li>
-            <strong>Texto de la queja</strong>, categoría y barrio aproximado — se publican en las
-            páginas de quejas si, tras revisarlos, quien modera las quejas decide publicarlos
+            <strong>Texto de la queja</strong>, categoría y barrio aproximado — se publican en esta
+            web si, tras revisarlos, quien modera las quejas decide publicarlos
           </li>
           <li>
             <strong>Coordenadas exactas</strong> (si las envías) — <strong>nunca</strong> se

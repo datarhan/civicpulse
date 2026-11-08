@@ -82,7 +82,7 @@ function FreezeBanner({ snap }) {
       role="alert"
     >
       <strong style={{ color: '#DC2626' }}>
-        Periodo electoral en vigor: esta página es de solo lectura.
+        Periodo electoral en vigor: esta página queda congelada.
       </strong>
       <div style={{ marginTop: 4, color: 'var(--ink70)' }}>
         Los estados quedan congelados hasta {fmtDateLong(snap.frozenUntil)} (LOREG art. 50). El

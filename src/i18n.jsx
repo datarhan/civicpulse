@@ -1095,7 +1095,7 @@ export const CATALOGUE = {
     'quejas.eyebrow': 'Voz ciudadana',
     'quejas.title': 'Quejas ciudadanas',
     'quejas.intro':
-      'Canal público de quejas de Riba-roja: se presentan por Telegram, en {bot}. Desde finales de septiembre de 2026, una persona revisa cada queja antes de publicarla aquí. Se publican agregadas y de forma anónima; la base legal es la LPACAP y la Ley 19/2013. {panel}',
+      'Canal público de quejas para Riba-roja: se presentan por Telegram, en {bot}. Desde finales de septiembre de 2026, una persona revisa cada queja antes de publicarla aquí. Cada queja se publica con su texto, su categoría y el barrio aproximado, nunca con el nombre de quien la envía ni el punto exacto. Los plazos que medimos son los de la LPACAP y la Ley 19/2013. {panel}',
     'quejas.intro.panel': 'Salud del canal de quejas →',
     // La lectura vecinal de /quejas (components/Quejas/EnBreveQuejas.jsx): el camino de
     // una queja. Las cifras salen de scraper/en-breve-quejas.ts; ninguna se escribe aquí.
@@ -1170,7 +1170,7 @@ export const CATALOGUE = {
     'quejas.datosTecnicos.fichero': 'Fichero completo:',
     'dashboard.eyebrow': 'Voz ciudadana · Panel',
     'dashboard.title': 'Salud del canal de quejas',
-    'dashboard.apoyos.eyebrow': 'Apoyos vecinales · las 10 primeras',
+    'dashboard.apoyos.eyebrow': 'Apoyos vecinales · hasta 10',
     'dashboard.apoyos.titulo': 'Quejas pendientes con más apoyos',
     'dashboard.intro':
       'Vista detallada del canal de quejas: en qué punto está cada una, por área municipal y por barrio, y las que más apoyos tienen.',
@@ -2951,7 +2951,7 @@ export const CATALOGUE = {
       'No se ha podido cargar el orden del día de los plenos; no significa que no haya puntos.',
     'cargos.detalle.agenda.more': '+ {n} puntos anteriores',
     'cargos.detalle.quejas.eyebrow': 'Canal ciudadano',
-    'cargos.detalle.quejas.title': 'Quejas del canal en sus áreas',
+    'cargos.detalle.quejas.title': 'Quejas que el canal le asigna por categoría',
     'cargos.detalle.biografia': 'Biografía →',
     'cargos.detalle.biografia.title': 'Informe biográfico del agente periodista de CivicPulse',
     'cargos.detalle.atribucion': 'Atribución.',
@@ -4216,7 +4216,7 @@ export const CATALOGUE = {
     'quejas.eyebrow': 'Veu ciutadana',
     'quejas.title': 'Queixes ciutadanes',
     'quejas.intro':
-      'Canal públic de queixes de Riba-roja: es presenten per Telegram, en {bot}. Des de finals de setembre de 2026, una persona revisa cada queixa abans de publicar-la ací. Es publiquen agregades i de manera anònima; la base legal és la LPACAP i la Llei 19/2013. {panel}',
+      'Canal públic de queixes per a Riba-roja: es presenten per Telegram, a {bot}. Des de finals de setembre de 2026, una persona revisa cada queixa abans de publicar-la ací. Cada queixa es publica amb el seu text, la seua categoria i el barri aproximat, mai amb el nom de qui l’envia ni el punt exacte. Els terminis que mesurem són els de la LPACAP i la Llei 19/2013. {panel}',
     'quejas.intro.panel': 'Salut del canal de queixes →',
     'quejas.enBreve.titulo': 'Com queixar-se i què passa després',
     'quejas.enBreve.intro':
@@ -4250,7 +4250,7 @@ export const CATALOGUE = {
     'quejas.enBreve.sindic.frase':
       'Pots acudir al Síndic de Greuges, el defensor del poble de la Comunitat Valenciana. És gratuït i no et lleva altres recursos.',
     'quejas.enBreve.sindic.recomendaciones':
-      'En {n} d’eixos expedients, que hem llegit un a un, el Síndic es va adreçar a l’Ajuntament per a recomanar-li alguna cosa o recordar-li els seus deures legals. Segons el títol que els posa el mateix Síndic, {falta} d’ells són per falta de resposta.',
+      'En {n} d’eixos expedients, que hem llegit un a un, el Síndic es va adreçar a l’Ajuntament per a recomanar-li alguna cosa o recordar-li els seus deures legals. El mateix Síndic en titula {falta} «falta de respuesta».',
     'quejas.enBreve.sindic.recomendaciones.sinFalta':
       'En {n} d’eixos expedients, que hem llegit un a un, el Síndic es va adreçar a l’Ajuntament per a recomanar-li alguna cosa o recordar-li els seus deures legals.',
     'quejas.enBreve.sindic.ultima': 'El més recent que hem llegit és del {fecha}: «{titulo}»',
@@ -4284,7 +4284,7 @@ export const CATALOGUE = {
     'quejas.datosTecnicos.fichero': 'Fitxer complet:',
     'dashboard.eyebrow': 'Veu ciutadana · Tauler',
     'dashboard.title': 'Salut del canal de queixes',
-    'dashboard.apoyos.eyebrow': 'Suports veïnals · les 10 primeres',
+    'dashboard.apoyos.eyebrow': 'Suports veïnals · fins a 10',
     'dashboard.apoyos.titulo': 'Queixes pendents amb més suports',
     'dashboard.intro':
       'Vista detallada del canal de queixes: en quin punt està cadascuna, per àrea municipal i per barri, i les que tenen més suports.',
@@ -5859,7 +5859,7 @@ export const CATALOGUE = {
       'No s’ha pogut carregar l’ordre del dia dels plens; no significa que no hi haja punts.',
     'cargos.detalle.agenda.more': '+ {n} punts anteriors',
     'cargos.detalle.quejas.eyebrow': 'Canal ciutadà',
-    'cargos.detalle.quejas.title': 'Queixes del canal en les seues àrees',
+    'cargos.detalle.quejas.title': 'Queixes que el canal li assigna per categoria',
     'cargos.detalle.biografia': 'Biografia →',
     'cargos.detalle.biografia.title': 'Informe biogràfic de l’agent periodista de CivicPulse',
     'cargos.detalle.atribucion': 'Atribució.',
@@ -6019,8 +6019,8 @@ export const CATALOGUE = {
     'landing.reportajes.pieces': 'peces',
     'reportajes.correcciones.una': 'Amb 1 [[correccion|correcció publicada]]',
     'reportajes.correcciones': 'Amb {n} [[correccion|correccions publicades]]',
-    'reportajes.correcciones.aviso.una': 'Una correcció publicada, del {fecha}',
-    'reportajes.correcciones.aviso.varias': '{n} correccions publicades · l’última, del {fecha}',
+    'reportajes.correcciones.aviso.una': 'Una correcció publicada: {fecha}',
+    'reportajes.correcciones.aviso.varias': '{n} correccions publicades · l’última: {fecha}',
     'reportajes.correcciones.aviso.verUna': 'veure-la al final ↓',
     'reportajes.correcciones.aviso.verVarias': 'totes al final ↓',
     'reportajes.correcciones.titulo': 'Correccions',
