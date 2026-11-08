@@ -1,577 +1,75 @@
-[362.6 → 363.8] (SPEAKER_00) Bueno, nos comencemos el ple
-[365.1 → 365.8] (SPEAKER_00) extraordinari.
-[368.1 → 368.2] (SPEAKER_01) Mm-hmm.
-[368.7 → 369.7] (SPEAKER_00) I si està sí.
-[380.5 → 382.0] (SPEAKER_00) Què és l'últim punidor del dia?
-[384.0 → 396.7] (SPEAKER_00) e m una part resultiva que és el primer punt seria recursos humans, expedient dos mil set-cents cinquanta sis, acord relatiu a l'aprovació del reglament d'avaluació del incompliment i rendiment i la carrera professional horitzontal de la plantilla de l'Ajuntament de Real.
-[396.9 → 397.3] (SPEAKER_00) José Luis.
-[398.8 → 405.0] (SPEAKER_02) Gracias, señor alcalde. Bueno, tenemos que, como bien sabéis, la aprobación del reglamento de desarrollo de carrera
-[405.8 → 432.0] (SPEAKER_02) El procedimiento a seguir es el mismo que con la ordenanza, a pesar de ser un reglamento interno. Al igual que las modificaciones de la RPT, este reglamento ha sido aprobado en mesa de negociación, en este caso también por unanimidad, y la aprobación y tiene los siguientes pasos a seguir. Primero la aprobación, luego un periodo de alegaciones y luego una aprobación definitiva entrando en vigor cuando se publique in el Boletín Oficial de la provincia.
-[432.7 → 443.1] (SPEAKER_02) El desarrollo de carrera horizontal es una reivindicación de los trabajadores de la casa que finalmente después de muchos años lo traemos al pleno para su aprobación y puesta en marcha.
-[443.8 → 451.3] (SPEAKER_02) Recordar que en 2010 se utilizó la partida que existía para desarrollo de carrera que se había negociado con los sindicatos para hacer una subida salarial.
-[452.8 → 461.0] (SPEAKER_02) eh de nominas al margen de este y que a la postre fue tumbada por la la delegación del Gobierno, como bien sabéis, por contraenir la ley de presupuestos.
-[462.2 → 472.9] (SPEAKER_02) Esto no tiene nada que ver con lo que he dicho en este caso, because uh uh because what we bring up plenum. In this case, dotamos una partida de ciento setenta mil euros que lo aprobamos en presupuesto
-[473.5 → 483.0] (SPEAKER_02) Este ejercicio, con la compromiso de incrementar cada año la dotación hasta llegar a los 650.000 Euros en los próximos cuatro eh próximos ejercicios.
-[483.8 → 494.0] (SPEAKER_02) La consultoría que ha elaborado este reglamento es de lo más solvente. Son los que llevaron a cabo el del Ayuntamiento de Valencia, y están trabajando también, entre otros, con la Junta de Castilla León.
-[494.5 → 516.6] (SPEAKER_02) La denominación correcta es Reglamento de Evaluación del Desempeño, Rendimiento y Carrera Profesional Horizontal del Ayuntamiento de Rebarroja. Se basa en la integración de los trabajadores en unas escalas y en su promoción en base al efectivo cumplimiento de objetivos evaluables por un comité técnico. Objetivos, siempre valga la redundancia, o que no son eh sub-objetivos en este caso.
-[517.1 → 519.7] (SPEAKER_02) Están bien tasados y y tienen y
-[520.7 → 540.2] (SPEAKER_02) y son comprobables, m perfectly. The regulation include the elaboration of features of functions, the posts of work and the homologation of the system retributive actual al the new or the regulation. In this case, uh component of destination would pass to be component of competition and the component specific would pass to be know as uh component of performance.
-[541.1 → 564.1] (SPEAKER_02) Para mí decir que es un orgullo como concejal de personal y creo que es orgullo d de todo el Gobierno haber traído este reglamento para su aprobación y posterior aplicación. Me gustaría que los grupos políticos del Pleno se sumaran y hacer de esta forma extensivo este orgullo eh eh para todos los demás también. Agradezco también a los técnicos y y a los sindicatos la colaboración que han tenido.
-[564.6 → 581.6] (SPEAKER_02) e para detraer estopleno este reglamento, los técnicos en este caso de de personal y nada pues eh lo traemos n en los puntos a aprobar sería inicialmente aprobar el reglamento de evaluación del desempeño rendimiento de la carrera profesional del Ayuntamiento de Barroja de Turia.
-[582.0 → 587.6] (SPEAKER_02) El segundo sería publicar en el boletín oficial de la provincia y en el tablón de anuncios del Ayuntamiento
-[587.9 → 612.2] (SPEAKER_02) En la sede electrónica, el anuncio de dicha aprobación estableciéndose un plazo de treinta días a efe los efectos de la formulación de reclamaciones o alegaciones y tercero concluido el periodo de información pública, como he dicho, si se han presentado reclamaciones o sugerencias deberían resolverse estas por el Pleno de la Corporación incorporándose en su caso al texto del reglamento. Las modificaciones derivadas de la resolución de las alegaciones a los efectos de su aprobación definitiva.
-[612.9 → 628.7] (SPEAKER_02) Bueno, en todo caso, pues PDI me gustaría pues que saliese, si puede ser, por unanimidad, porque creo que es muy important y and muy val va valuable for the the the uh workers of the company. Thank you.
-[629.2 → 630.9] (SPEAKER_00) Parables. Parables.
-[632.6 → 633.7] (SPEAKER_00) Eh haite.
-[634.9 → 636.4] (SPEAKER_03) Hola, buenos días.
-[637.2 → 655.1] (SPEAKER_03) Creo que es importante este reglamento para los trabajadores del Ayuntamiento. Creo que como profesionales y dentro de su trabajo, todos aspiran a realizar una carrera profesional dentro de sus.
-[656.2 → 657.4] (SPEAKER_03) de sus puestos.
-[658.3 → 673.5] (SPEAKER_03) Nosotros aprobamos en los presupuestos la partida presupuestaria para este desarrollo profesional y por tanto hoy también voy a estar de acuerdo con la aprobación de este reglamento. Gracias.
-[674.8 → 677.4] (SPEAKER_00) Mes para obres, compromís de fanca.
-[679.7 → 688.1] (SPEAKER_04) Bon dia a totes i a tots. Uh, des del Grup Municipal de Compromís uh portem reclamant estem
-[689.2 → 702.1] (SPEAKER_04) pla. Uh este reglament, des de l'anterior legislatura, vàrem treballar amb el regidor de personal per a portar-ho endavant i per fi uh
-[702.5 → 715.4] (SPEAKER_04) Com més de les eleccions portem el reglament que va a fer que els treballadors i treballadores de d'este ajuntament eh, pus tinguin un reconeixement a la seua llavor
-[716.3 → 718.5] (SPEAKER_04) com a empleats públics.
-[719.0 → 719.4] (SPEAKER_04) Eh
-[721.1 → 725.4] (SPEAKER_04) Mm m'ha causat un poquet de d'impressió quant
-[725.4 → 725.5] (SPEAKER_00) Mm.
-[725.5 → 726.5] (SPEAKER_04) a l regidor
-[727.1 → 732.0] (SPEAKER_04) Adidlo del orgullo. Esperaba, no esperaba esa expresión de ahí.
-[733.1 → 738.0] (SPEAKER_04) Menos mal que no ha dicho que es todo un orgullo y satisfacción.
-[738.4 → 758.7] (SPEAKER_04) Pero bueno, está clar que tant s'ha treballant en en un reglament eh al final veu la llum, o o almenys crec que va a veure la llum i des del grup municipal de Compromís anem a a recolzar-lo perquè hem cregut en ell des del primer moment, gràcies.
-[759.0 → 760.3] (SPEAKER_00) Més paraules?
-[762.2 → 763.0] (SPEAKER_00) Alguna qüestió més?
-[764.1 → 764.4] (SPEAKER_00) Is that
-[767.2 → 767.8] (SPEAKER_00) No, no,
-[767.9 → 770.0] (SPEAKER_00) de moment no, si no la vols tu el punt
-[770.0 → 770.1] (SPEAKER_02) Ha
-[770.1 → 770.2] (SPEAKER_00) s'acaba.
-[770.2 → 771.1] (SPEAKER_02) bueno, pues encara
-[771.1 → 771.7] (SPEAKER_00) Estàs a la segon.
-[771.7 → 783.7] (SPEAKER_02) està allà, però bueno, és una cosa molt important que es dugui a la progressió del ple i imagineu que és la progressió, en aquest cas, del desenvolupament de carrera de l'Ajuntament.
-[784.0 → 784.6] (SPEAKER_02) Bé,
-[784.7 → 789.9] (SPEAKER_02) en tot cas no n'hi ha intervencions, però espere que les votacions siguin favorables.
-[790.4 → 793.4] (SPEAKER_02) Rafa, no sé si orgull i satisfacció, jo no sóc monàrquic.
-[793.2 → 793.7] (SPEAKER_02) R que què?
-[793.8 → 796.3] (SPEAKER_02) Satisfacció, no? Orgull ha sigut.
-[797.5 → 818.6] (SPEAKER_02) Eh bé, eh m'agradaria, com vos ha dit, isirà per unanimitat perquè crec que és molt important i és una reivindicació de molts anys dels treballadors d'aquesta casa que al final per fi s'ha pogut dur endavant. No s'ha dut abans pel fet perquè ha sigut molt complicat arribar a tancar-lo. Al final s'ha tancat, és casí com el València, ell ho haurem en in l'últim minut i de penalti, no? Pues casí.
-[819.2 → 823.9] (SPEAKER_02) No, pero bueno, así está la cosa y me agradaría que hiciera una animita. Gracias.
-[824.3 → 825.4] (SPEAKER_00) Alguna palabra más,
-[826.4 → 826.8] (SPEAKER_00) Maite.
-[827.8 → 829.8] (SPEAKER_03) Eh sólo decir que
-[831.8 → 848.7] (SPEAKER_03) Yo sí que creo que debe de ser un orgullo para el concejal de personal que acaba esta legislatura como concejal y para mí también es un orgullo que se pueda aprobar este reglamento ya que termino como también como concejal de mi grupo municipal.
-[849.0 → 849.4] (SPEAKER_03) Gracias.
-[850.7 → 851.7] (SPEAKER_00) Alguna palabra més?
-[852.4 → 853.7] (SPEAKER_00) Algunhi més intervencions més?
-[854.7 → 861.7] (SPEAKER_00) Bueno, pues eh... pero a mí... mmm yo pensé que era un punto molt important a gris les intervencions encara que siguin poquetes.
-[862.6 → 867.2] (SPEAKER_00) Perquè mmm lo que estem par... parlantés de l'administració pública i de modernitzar l'administració
-[869.0 → 875.0] (SPEAKER_00) i que és un tema que ens ha costat moltíssim i que estem junt en poquets ajuntaments,
-[875.4 → 885.6] (SPEAKER_00) almenys aborant o esperi que aprovem, un dels punts més importants en quant a futur dels nostres empleats públics, que en aquest cas parla d'una carrera professional.
-[887.0 → 888.7] (SPEAKER_00) que almenys dura per allà la formació,
-[889.4 → 912.0] (SPEAKER_00) els objectius que tenen que complir, etcètera, i que dinamitzarà i anirà en la línia adequada de de poder completar, bueno, o d'iniciar, val, per a poder modernitzar l'administració en la línia que volem. No és un punt menor, i jo penso que és dels punts més importants que, que encai que ha costat com bé ha explicat el regidor, pues hem hagut de treballar-los. Són poquets ajuntaments els que poden dir això, molt poquets en la Comunitat Valenciana.
-[911.9 → 917.9] (SPEAKER_00) I que jo crec que ha hagut un bon treball i assessorament tècnic, que també ha sigut importantíssim,
-[918.3 → 923.5] (SPEAKER_00) de gent especialitzada no de l'Ajuntament que ha ajudat que, tant en els sindicats com en la part de
-[924.7 → 930.9] (SPEAKER_00) de la secretaria, en este caso, la secretaria y el área de personal, pues pueden ir adelante.
-[931.2 → 942.6] (SPEAKER_00) Por tanto, es un punto muy muy importante y esperé que los trabajadores y trabajadoras, las empleadas públicas del Ayuntamiento, pues en esta aprobación pues se donen al menos para satisfacer.
-[943.3 → 943.9] (SPEAKER_00) A més,
-[944.2 → 947.7] (SPEAKER_00) pensec que sí per unanimitat de l'acord dels sindicats, que és important,
-[948.3 → 958.5] (SPEAKER_00) i pensec que obrim una nova etapa de millores formatives, de millores en quant al rendiment, i també, com no pot ser d'altra manera, també a la part econòmica.
-[959.2 → 960.0] (SPEAKER_00) Passem a votació.
-[960.1 → 960.6] (SPEAKER_00) Vots a favor?
-[963.1 → 963.9] (SPEAKER_00) Abstencions?
-[964.5 → 970.4] (SPEAKER_00) El bosque aprobada per veu a favor del Grup Municipal Socialista, Ciudadanos, Compromís, La Esquerra y Podemos,
-[970.6 → 972.4] (SPEAKER_00) y la abstención de Particulares y Vox.
-[972.8 → 974.4] (SPEAKER_00) Pasemos al segundo punto del día,
-[975.0 → 985.7] (SPEAKER_00) que es expediente 22707, acorde relativo a aprobación de los acuerdos continguts en el reforzo comprensivo de las modificaciones puntuales de la relación de juegos de trabajo número 3 barra 2022.
-[985.8 → 986.3] (SPEAKER_00) José Luis.
-[986.5 → 987.2] (SPEAKER_02) Sí, gracias.
-[987.5 → 991.1] (SPEAKER_02) Bueno, en este caso estas modificaciones que tenemos a pleno son...
-[990.9 → 994.6] (SPEAKER_02) a su productor del acuerdo también con los representantes de los trabajadores.
-[995.6 → 1006.9] (SPEAKER_02) Atendiendo mayoritariamente a las reivindicaciones que han llevado a las mesas de negociación y como no puede ser de otra manera en nuestro gobierno, siendo sensible la r a las reivindicaciones que consideramos justas.
-[1009.6 → 1010.0] (SPEAKER_02) Perdón.
-[1013.0 → 1035.0] (SPEAKER_02) A las reivindicaciones que consideramos justas hemos podido llegar, como he dicho, a acordar con ellos. Decir que son modificaciones que en algún caso están llevadas a la mesa de negociación el año pasado y en otros casos lo fueron a principio de éste, y que no se incluyeron en el Pleno de Presupuestos porque en principio necesitábamos saber de la disponibilidad de crédito y también del encaje de las mismas en los límites de la masa salarial.
-[1037.4 → 1043.8] (SPEAKER_02) That seguimos cumpliendo, como indica el borrador del calculo de la misma, efectuado por el técnico,
-[1044.7 → 1045.5] (SPEAKER_02) por el técnico.
-[1052.5 → 1053.0] (SPEAKER_02) Perdón.
-[1055.7 → 1082.0] (SPEAKER_02) En fin, decir que esos modificadores que nunca esos están llevados a la mesa de negociación, necesitamos saber además de la disponibilidad de este crédito y además del encaje, las mismas, como he dicho, la masa salarial que seguimos cumpliendo. El borrador se ha calculado y estamos en un uno treinta y cinco, más de un punto por debajo de lo que establece la ley de presupuestos que es un dos y medio de aumento. Aclarar que partíamos de un menos cero setenta y seis, con el aumento retributivo de doscientos veinte mil euros
-[1081.7 → 1105.8] (SPEAKER_02) gros que supondría esto nos vamos al uno treinta y cinco mencionado, teniendo todavía margen de maniobra dentro de la masa salarial. Son cuatro modificaciones que benefician a ciento cuatro trabajadores y que suponen un total, como he dicho, de doscientos veinte mil Euros cuantificados. A continuación paso a detallar las modificaciones que son. Uh la tercera al dos mil veintidós, que venía ya arrastrada el año pasado, por lo que os he comentado antes.
-[1106.8 → 1131.6] (SPEAKER_02) En primer lugar serían servicios sociales, integramos en la plantilla tres auxiliares administrativos, cuatro trabajadores sociales, one psychologist, one educational officer and these posts were previously declared structural and subsequently created as posts in two thousand and twenty two. This t this t this job was requested by the City Council to serve as an example to other municipalities.
-[1131.5 → 1133.4] (SPEAKER_02) y se aconseja articular este proceso.
-[1134.4 → 1159.4] (SPEAKER_02) A todos los trabajadores del área de servicios sociales se les añaden factores en el específico que son: penosidad a todos los trabajadores. Al técnico medio en servicios sociales y a la trabajadora social coordinadora se les añade además disponibilidad por coordinación administrativa y por labores de protocolo. En segundo lugar, se pasa del veinte al veintidós el complemento de destino de destino en ocho puestos. Cinco psicólogos, un coordinador de radio.
-[1159.2 → 1159.4] (SPEAKER_02) Radio.
-[1159.4 → 1164.3] (SPEAKER_02) Un coordinador de escuelas deportivas, un coordinador de piscina, con su correspondiente recálculo del específico.
-[1165.1 → 1175.5] (SPEAKER_02) Estos puestos son los a uno que había que homologar con los otros a uno de la plantilla. Que también era una una petición que se hacía largamente, en este caso, en las in las mesas.
-[1176.1 → 1182.4] (SPEAKER_02) Tercer lugar, el técnico medio de actividades y medio ambiente pasa a llamarse técnico de actividades y medio ambiente, barrándose
-[1182.4 → 1182.5] (SPEAKER_05) Mm.
-[1182.5 → 1195.3] (SPEAKER_02) su plaza como A2 A1, con un complemento de destino que pasaría al 22 a 24, to go to this por to c complete this process, the technical would present his own process and and approve in this case
-[1195.8 → 1199.4] (SPEAKER_02) su pase a a a al siguiente al siguiente nivel.
-[1200.9 → 1206.3] (SPEAKER_20) Ahora pasaría de detallar la modificación primera de dos mil veintitrés, que afecta al conservatorio.
-[1206.8 → 1228.6] (SPEAKER_20) Decir que se parte de la corrección de una mala interpretación como lo gaba los profesores de música y danza con los de la consellería, que se fijó entre mil novecientos noventa y siete y dos mil tres, que fue cuando se aprobó el sistema retributivo vigente. Los informes aportados por nuestros técnicos dicen que esto es erróneo por una cuestión básica, que es que los trabajadores de esta administración de son de esta y no de otra.
-[1229.0 → 1231.1] (SPEAKER_20) Por lo tanto, están sujetos a nuestra normativa.
-[1231.6 → 1255.6] (SPEAKER_20) constatamos que solo tienen el factor básico en el específico y es el momento de homologarlos con el resto de educadores, añadiendo los mismos que disfrutan, de los que disfrutan estos, los mismos componentes, el F_ y el dos, el de mayor responsabilidad y el de penosidad, salvo a los directores, a los que se les añade el F_ que es el de mayor responsabilidad y el BZ_ que es el de tener mando o direcc o dirección sobre más de diez personas.
-[1255.9 → 1266.7] (SPEAKER_20) Estas modificaciones o f pondrían un incremento anual, que estaría incluido en los doscientos veinte mil Euros que he mencionado antes, de ciento veinticuatro mil Euros aproximadamente.
-[1267.3 → 1284.8] (SPEAKER_20) La segunda modificación del dos mil veintitrés seri se sube el complemento de destino del catorce al quince a los C_ dos, que no estaban in este nivel. Esto corrige una desigualdad que afectaba a twenty seven empleados, four in auditorium, eleven monitors in swimming pool and twelve monitors in nursery schools.
-[1285.8 → 1287.2] (SPEAKER_20) To the monitors of schools
-[1288.1 → 1306.9] (SPEAKER_20) Y a los de piscina se les añaden los factores F_ y dos, mayor responsabilidad y penosidad. Dir y luego iríamos a la tercera modificación del dos mil veintitrés, que sería la adecuación del complemento específico th uh paramologar el la intervención y el de secretaría con el de la tesorera in this case.
-[1307.5 → 1310.9] (SPEAKER_20) Perdo, el de intervención con secretaría y tesorera.
-[1311.4 → 1313.9] (SPEAKER_20) En el cumplimiento de una sentencia que deja nula for
-[1313.9 → 1314.0] (SPEAKER_21) Machacar
-[1314.0 → 1332.7] (SPEAKER_20) malmente el factor J, al mi, se estica, eh, queda poco. Al mismo tiempo, siendo indisociable el específico, como explica en los informes, en el caso de los tres puestos que prestaban servicio de defensa jurídica y siendo que los puestos de secretaría, tesorera e interventora, tienen la misma valoración en origen, una vez informada la indi indisolubilidad referida y consolidada
-[1333.2 → 1337.3] (SPEAKER_20) It's a c consolidated factor H inside a specific in application
-[1341.3 → 1367.9] (SPEAKER_20) Perdón, en aplicación de del principio retributivo de igual función, igual retribución, se habilita a realizar esta modification. Decir que este punto fue votado en contra por el sindicato, in this case Comisiones Obreras. Se añade un factor de mayor responsabilidad F_ al puesto de coordinador económico igualando este con el resto de coordinadores del area. This is a correction of errors that was not included in in the final plan. For uh for a start I am grateful for this case, the great work that has been done
-[1367.7 → 1382.6] (SPEAKER_20) se ha hecho desde el área de personal tanto eh los trabajadores como el vicesecretario y y técnico, que se han metido un curro importante. Sobre todo técnico, que ha estado metiendo muchas horas con con this this matter. Thank you.
-[1383.3 → 1384.3] (SPEAKER_22) Palabras al respecto.
-[1384.7 → 1384.7] (SPEAKER_20) Mm.
-[1384.7 → 1384.9] (SPEAKER_22) 
-[1386.4 → 1387.6] (SPEAKER_22) Maite. Maite.
-[1387.6 → 1388.0] (SPEAKER_20) Maite.
-[1389.1 → 1393.1] (SPEAKER_23) Sí. Pues buenos días otra vez. Yo
-[1393.1 → 1393.2] (SPEAKER_20) Hmm.
-[1393.2 → 1393.5] (SPEAKER_23) m
-[1393.5 → 1393.9] (SPEAKER_20) Hmm.
-[1393.9 → 1394.1] (SPEAKER_23) 
-[1394.7 → 1401.9] (SPEAKER_23) Quiero entender que esto no es un tema electoralista.
-[1402.4 → 1423.6] (SPEAKER_23) quiero y quiero entender creo que que se trae ahora pleno por la liberación de masa salarial para poder acometer estos estas regularizaciones de nomenclaturas y de y de y de sueldos y que no sé
-[1424.3 → 1429.2] (SPEAKER_23) que no se ha podido llevar antes precisamente por este motivo.
-[1431.3 → 1445.2] (SPEAKER_23) Estoy completamente de acuerdo con el voto en contra de comisiones obreras en lo que es relativo al sueldo de la interventora. Creo que...
-[1446.0 → 1456.8] (SPEAKER_23) aprovechado que el pisuergu pasa por Valladolid para subirse al suelo y pero como va unido a todo todo este punto mi voto será a favor gracias
-[1457.7 → 1459.8] (SPEAKER_22) Mías paraboles, eh, compromiso.
-[1462.8 → 1479.5] (SPEAKER_24) Bueno, e dey del Grup Municipal de Compromís s'han s'han reunit tant en el rotxidor com en el tècnic com en el vicesegretari per a tractar este punt que hui portem en en el ple.
-[1481.0 → 1482.4] (SPEAKER_24) Jo, a diferència de
-[1484.5 → 1490.2] (SPEAKER_24) De Maitem, de Ciudadanos, sí que pensé que es una mesura electoralista.
-[1491.1 → 1498.2] (SPEAKER_24) Yo pensé y yo dic tranquilamente, encara que seguramente después el alcalde en la seua aclaración dirá que no.
-[1498.5 → 1505.8] (SPEAKER_24) Pero bueno, son puntos de vista de cada partido. Él defiende el suyo y yo defenderé el mío.
-[1508.6 → 1510.7] (SPEAKER_24) No obstant això, estem d'acord,
-[1511.3 → 1516.0] (SPEAKER_24) estem d'acord in la forma, but not in the time.
-[1518.2 → 1530.8] (SPEAKER_24) Estem a um mes d'eleccions, eh no m'agradaria, i així l'hi vaig manifestar al regidor, que això se convertirà comenat en dos mil deu feu el
-[1532.3 → 1546.5] (SPEAKER_24) Entonces, equipo de gobierno, un aumento de sueldo a trabajadores y trabajadoras del Ayuntamiento y que después tengan que pagarles consecuencias de una sentencia por haberlo hecho incorrectamente.
-[1547.8 → 1554.1] (SPEAKER_24) Creo que no será el caso pero normalmente tendemos a...
-[1556.1 → 1563.2] (SPEAKER_24) Les persones a equivocar-se i a trepeçar sempre dos vegades a la mateixa pedra. Espere que no siga el cas.
-[1565.6 → 1573.5] (SPEAKER_24) He dit que anem a recolzar perquè creiem que això se deuria d'haver fet i s'hauria d'haver fet abans.
-[1575.2 → 1584.4] (SPEAKER_24) Presentar o ara torna a repetir que per a nosaltres és una mesura electoralista, com n'hi ha altres més, però bueno,
-[1584.5 → 1589.4] (SPEAKER_24) cadascú està en el seu dret de presentar o en el temps i la forma que crega convenient,
-[1591.1 → 1601.2] (SPEAKER_24) però torna a repetir, espere que no se torne en contra de el
-[1602.6 → 1609.7] (SPEAKER_24) Equip de govern de la pròxima legislatura, com així n'heu fet en la legislatura dos mil quinze dos mil d'eneu. Gràcies.
-[1610.3 → 1611.3] (SPEAKER_22) Més paraules.
-[1612.8 → 1613.3] (SPEAKER_22) José Luis.
-[1614.7 → 1639.9] (SPEAKER_20) Bueno, Rafa, electoralista sería todo, no? Cualquier voluntad que hagas desde el principio de legislatura se podría considerar electoralista, no? Filosóficamente sí podríamos tractarlo como una cuestión electoralista, cualquier voluntad que hagas. No se ha hecho antes, como había dicho, porque no había sido posible, necesitaban sa necesitaban saber la la disponibilidad presupuestaria en este caso.
-[1640.5 → 1664.4] (SPEAKER_20) El encaix que tenia dins de la massa salarial que és el que ens va evitar precisament que no occursca com en lo del dos mil deu, perquè està més que informat, i a més en les dades que ha donat e la la exposició del punt queda clar que estem per baix de lo que marca, en este cas, la llei d'estabilitat pressupostària. Estem en un no trente cinc, que estem més d'un punt per baix de lo que se marca. Per lo tant,
-[1664.4 → 1664.8] (SPEAKER_20) tinc que
-[1665.0 → 1691.3] (SPEAKER_20) Tenim inclus marge de maniobra, però tant no va passar, no se va donar aquest cas, perquè l'augment i no no s'u va superar mai el màxim que marca l'Estat. E partíem, ademés, d'una d'un percentatge negatiu, estàvem per baix. Després de fer tots es càlculs que que hem tingut que fer i i ah uien dies quan estem apropant ser més a l'òca la realitat de de retributiva de l'Ajuntament
-[1691.7 → 1699.7] (SPEAKER_20) i crec que queda ben marcat que sí que es possible i se poden fer moltes millores y y abandonar esta política cuartelera.
-[1700.2 → 1710.8] (SPEAKER_20) que han patit en esta xuntamente a vegades en la que és més castigada és precisament els treballadors. Jo crec que al final hem aconseguit donar, no sols en esta,
-[1710.9 → 1721.0] (SPEAKER_20) perquè si tu comptes, duem moltes millores fetes, però almenys a partir de la pandèmia que passi han dut moltes millores d'allò que és la plantilla.
-[1721.9 → 1724.8] (SPEAKER_20) I la que han aprovat en el punt anterior no et dic res,
-[1724.9 → 1725.5] (SPEAKER_20) que és la.
-[1725.3 → 1744.7] (SPEAKER_20) la aprovación y desarrollo carrera. Pues bueno, al final conté diet si pots arribar en el últim minut pues bien está así la dicha es buena. Per la meua part, que saps que no vaig anar de regidor la próxima legislatura, l'actualisme no estic fent. Estic duent un treball que ha acabat que crec que tenia que tancar-lo. Per la meua part i per tot el govern, evidentment. Gràcies.
-[1746.0 → 1746.9] (SPEAKER_22) Alguna paraula més?
-[1749.0 → 1749.3] (SPEAKER_22) Ninguna?
-[1750.5 → 1753.3] (SPEAKER_22) Pues no falta aclarir molt. Pensa que ho ha dit el propi regidor, Rafa.
-[1753.7 → 1757.9] (SPEAKER_22) Clar, més que aclarit. Jo lo que sí que vull dir és que
-[1759.2 → 1776.1] (SPEAKER_22) precisament és el sentit contrari. Possiblement hauria sigut més convenient arribar a aquest acord després d'eleccions que abans d'eleccions, perquè no és una putxada a tots els treballadors i treballadores. És un treball que s'ha fet en en en acord amb els sindicats.
-[1776.5 → 1781.6] (SPEAKER_22) En total a part majoritària. També en comissions obreres, CSIF i UGT.
-[1782.1 → 1789.9] (SPEAKER_22) Comissions vota en un punt concret que no, però l'ha defensat. Però tot el món ha treballat des d'un tema que ve molt concatenat en el primer punt.
-[1790.5 → 1792.9] (SPEAKER_22) Però estem parlant de millors de treball,
-[1793.0 → 1795.1] (SPEAKER_22) estem parlant d'adequar els llocs de treball,
-[1795.2 → 1802.8] (SPEAKER_22) estem parlant d'allò que demanaven i també compromís demanava la primera legislatura. I per tant, còmode hauria sigut després de les eleccions, no abans.
-[1803.3 → 1806.6] (SPEAKER_22) Val, en tantes riuen, cagues parega que no, i ja ho veuran.
-[1807.3 → 1820.0] (SPEAKER_22) Per tant, tenint sentit, ara l'obligació nostra és no pensar que venen eleccions i prendre's acords, encara que siguen polèmics o no s'agrade a vostès o no s'agrade al poble, quan creguem que tenim que fer les coses perquè toquen fer-les, val?
-[1820.4 → 1826.2] (SPEAKER_22) Llavors, nosaltres no seguim l'ordre de les eleccions, seguim una fulla de ruta que tenim i la fem.
-[1826.7 → 1829.9] (SPEAKER_22) Si ho hagueren fet així, potser segons les decisions no les haurien pres.
-[1830.7 → 1834.6] (SPEAKER_22) I veureu com el debat que hem de tindre segur que hi és.
-[1835.2 → 1840.5] (SPEAKER_22) Llavors, el que sí que és important és que sabem com agarrar el mestretjuntament en matèria de personal,
-[1841.2 → 1849.1] (SPEAKER_22) sabem que tinguem tot en contra, i anem a acabar una legislatura en els objectius que vàrem complir l'any 2015,
-[1849.2 → 1849.8] (SPEAKER_22) fets,
-[1850.1 → 1852.2] (SPEAKER_22) que eren objectius de millorar
-[1853.0 → 1871.7] (SPEAKER_22) Asemples públics, de crear una estructura moderna, de avançar en la negociació col·lectiva en els propis sindicats, ahir era el dia 1 de maig, i donar amishample de com a través de la negociació col·lectiva hem aconseguit acords pioners en els ajuntaments com este puntú que hem fet i en altres també,
-[1871.8 → 1871.9] (SPEAKER_22) no?
-[1872.2 → 1875.0] (SPEAKER_22) Hem mirat com han vingut altres ajuntaments a parlar amb personal,
-[1875.3 → 1878.5] (SPEAKER_22) per exemple, per fer serveis socials estructurals.
-[1878.4 → 1888.4] (SPEAKER_22) dels que han sigut els primers ajuntaments de la comunitat valenciana que s'han atrevit a dur endavant això i ha sigut referent per a altres ajuntaments i administracions, això es pot comprovar,
-[1888.8 → 1891.0] (SPEAKER_22) hem acordat la reducció de la jornada laboral,
-[1891.2 → 1891.9] (SPEAKER_22) la formació,
-[1892.4 → 1896.4] (SPEAKER_22) la millora salarial sempre complint la legalitat com és aquest acord també,
-[1896.9 → 1899.7] (SPEAKER_22) sempre complint la legalitat i en acord en els sindicats.
-[1900.0 → 1907.2] (SPEAKER_22) Si n'hi ha algun problema, que Rafa vull destacar ara el gran problema que tinguérem el any 2015 només vindrà així,
-[1907.6 → 1908.7] (SPEAKER_22) que hi havia una sentència,
-[1908.8 → 1915.0] (SPEAKER_22) que estava dient que això hi havia una sentència que afectava a baixar el salari a 200 treballadors, com veu dir Rafa,
-[1915.1 → 1916.3] (SPEAKER_22) des de l'any 2010,
-[1916.4 → 1918.8] (SPEAKER_22) i anul·lar places amb la d'intendent principal,
-[1918.9 → 1924.6] (SPEAKER_22) que estaven d'una manera il·legal, o les de tècnic d'educació infantil, que també tinguen que eliminar.
-[1925.2 → 1927.2] (SPEAKER_22) Dos instes valladors, que cada any,
-[1927.3 → 1937.0] (SPEAKER_22) el cost serà de dos mil euros de l'any 2010 fins al 2015, que tindrem que la sentència diguera que era nul de ple dret i, per tant, no estava l'acord ben fet.
-[1937.6 → 1941.3] (SPEAKER_22) Bé, en aquest cas, per arribar a aquella sentència definitiva que era el Tribunal Suprem,
-[1942.0 → 1948.1] (SPEAKER_22) l'Ajuntament va recórrer diverses sentències, cosa que assegure, en aquest cas, si governem nosaltres,
-[1948.2 → 1948.9] (SPEAKER_22) que espero que sí,
-[1949.5 → 1951.4] (SPEAKER_22) si hi haguera un problema d'àmbit jurídic que...
-[1951.5 → 1963.2] (SPEAKER_22) que estic convençut que no, perquè confia absolutament tant en la part sindical com en l'habitant nacional i tota la gent que ha informat favorablement aquest acord pel tema de la massa salarial, però si tinguéssim un recurs,
-[1963.7 → 1966.9] (SPEAKER_22) no recorreríem fins al Suprem, que és el que feu l'anterior equip de govern.
-[1967.4 → 1969.5] (SPEAKER_22) En els costos que tingué, anant fins al Suprem,
-[1969.6 → 1971.0] (SPEAKER_22) quan tots escolten i diuen que no.
-[1971.6 → 1973.8] (SPEAKER_22) Només que en el recurs de la delegació de govern,
-[1974.0 → 1979.4] (SPEAKER_22) un no pararia i reajustaria el que ha de fer sense anar a cap de xui,
-[1979.4 → 1989.8] (SPEAKER_22) que és el que es tenia que haver fet en el 2011 quan la delegació de govern diu que aquest acord era ilegal i que per tant no tenien que seguir ni aquest acord que vinguin eleccions.
-[1990.7 → 1996.8] (SPEAKER_22) Per anar a què es passarà això, que ja li diu al company Rafa de compromís que no va passar, que no va passar,
-[1996.9 → 1998.4] (SPEAKER_22) nosaltres ho valoraríem i ja està.
-[1999.1 → 2001.1] (SPEAKER_22) L'acord no és tan clave electoral,
-[2001.3 → 2008.8] (SPEAKER_22) és un acord necessari per a tots estos treballadors i una reivindicació històrica que s'ha ajornat, o acostat més,
-[2008.9 → 2010.7] (SPEAKER_22) per les circumstàncies que ha dit el propi regidor.
-[2011.1 → 2013.9] (SPEAKER_22) I no per voler guanyar un vot o no, perquè és al revés.
-[2014.4 → 2017.6] (SPEAKER_22) Possiblement això, estic convençut, vinga pitjor en termes electorals.
-[2017.9 → 2027.9] (SPEAKER_22) El que sí que tenim una obligació, l'estem complit com altres que altres alcaldes o aquí se van referint, nosaltres estem fent-les més enllà que vinguin eleccions o no.
-[2028.4 → 2035.7] (SPEAKER_22) Vull dir, de fer obres i de fer qualsevol qüestió que altres ajuntaments preferixen parar perquè no passen les eleccions i no tinguin cost electoral.
-[2036.0 → 2039.2] (SPEAKER_22) Nosaltres tenim una obligació que és fer el millor que sabem pel nostre poble.
-[2039.3 → 2048.0] (SPEAKER_22) I en aquest cas, per als empleats públics, que tinc que dir que han sigut tot un exemple de la pandèmia, un exemple absolut i que estem molt, molt satisfets en el seu conjunt.
-[2048.4 → 2060.1] (SPEAKER_22) Sempre hi ha alguna cosa que no ens agrada, però en el conjunt de tots estem molt contents de tot el que estem fent i prova d'això és les subvencions que estem entregant i treballs que estem fent per a millorar el nostre poble.
-[2060.4 → 2063.3] (SPEAKER_22) Passem a la votació d'aquest punt.
-[2064.0 → 2064.8] (SPEAKER_22) Votxe a favor?
-[2067.0 → 2067.8] (SPEAKER_22) Abstencions?
-[2069.6 → 2071.4] (SPEAKER_22) Em pare que ho han marejat, eh.
-[2071.7 → 2075.0] (SPEAKER_22) I contra? No, perquè he vist que hi i
-[2075.0 → 2075.2] (SPEAKER_24) Hmm.
-[2075.2 → 2077.1] (SPEAKER_22) Votxe a favor, grup municipal socialista,
-[2078.4 → 2082.6] (SPEAKER_22) eh ciutadano seria Maite si salva no.
-[2083.4 → 2085.3] (SPEAKER_22) Compromís seria sí,
-[2085.4 → 2089.0] (SPEAKER_22) l'esquerra sí, podem sí, i PP,
-[2089.0 → 2089.7] (SPEAKER_25) No, abstenció.
-[2089.7 → 2096.9] (SPEAKER_22) abstenció, abstenció a l'esquerra i podem abstenció, està bé, abstenció, abstenció a PP i Vox abstenció. Quedaria aprovat el punt.
-[2098.3 → 2099.8] (SPEAKER_22) Passem al següent punt de l'ordre del dia,
-[2099.9 → 2103.0] (SPEAKER_22) que és l'expedient 2843.
-[2106.8 → 2111.1] (SPEAKER_22) L'ordre del dia. Bueno, doncs anem a votar primer que inclou l'ordre del dia, perquè va haix in dictaminar.
-[2111.6 → 2114.3] (SPEAKER_22) Votem incloure l'ordre del dia, voteu a favor d incloure-lo.
-[2116.3 → 2117.2] (SPEAKER_22) Abstencions.
-[2118.4 → 2130.5] (SPEAKER_22) Vale, doncs queda... s'inclou, perdó, voteu a favor del grup municipal sol·licitant i les abstencions dels altres grups. I passem a la discussió del propi punt, que és el punt tres, acord relatiu a l'aprovació de l'expedient ehm
-[2131.5 → 2135.3] (SPEAKER_22) Dehui 2023 de modificació de càdrics, modalitat de crèdit extraordinari,
-[2135.7 → 2141.7] (SPEAKER_22) per a financiar despeses d'inversions financiades amb remanent líquid de tresoreria. Té la paraula el regidor Llicenda.
-[2142.9 → 2144.7] (SPEAKER_26) Gràcies, senyor alcalde. Bon dia.
-[2145.8 → 2152.1] (SPEAKER_26) Proponemos al Pleno la aprobación de la incorporación de remanentes para la realización de inversiones en nuestro municipio.
-[2153.2 → 2157.1] (SPEAKER_26) Inversiones destinadas a mejorar los viales e iluminación.
-[2157.6 → 2174.2] (SPEAKER_26) Con ochocientos mil euros en asfaltos, en señalética, iluminación, nuevas zonas verdes y nuevas infraestructuras deportivas, etcétera, aceras perdón, etcétera, etcétera. Estas inversiones son fruto del diálogo y acuerdos con las asociaciones vecinales de Riva Rocha representadas en el Consell Territorial.
-[2174.6 → 2192.6] (SPEAKER_26) Además, incluimos otras inversiones como son para cadar fase dos, que es el acondicionamiento de áreas de aparcamiento y zonas deportivas, con otros cuatrocientos mil euros, que también supone la adecuación urbanística de la zona para cadar para las infraestructuras que se van a construir en dicha zona.
-[2193.0 → 2198.3] (SPEAKER_26) También en inversiones en mejorar las instalaciones deportivas con ciento setenta mil quinientos euros,
-[2198.7 → 2199.0] (SPEAKER_26) pádel,
-[2199.2 → 2206.8] (SPEAKER_26) judo, elevador, pabellón, etcétera. Y en las áreas de Educación y Cultura se incluyen inversiones por valor de ciento ochenta y un mil euros,
-[2207.1 → 2208.0] (SPEAKER_26) danza, música,
-[2208.4 → 2210.0] (SPEAKER_26) jardín, colegio Cervantes,
-[2210.3 → 2219.2] (SPEAKER_26) lo que supone un total de un millón quinientos cincuenta y un mil quinientos euros y que se suman a las inversiones aprobadas en el presupuesto de dos mil veintitrés.
-[2219.9 → 2220.8] (SPEAKER_26) Gracias.
-[2221.7 → 2222.2] (SPEAKER_22) Paraules?
-[2223.2 → 2224.0] (SPEAKER_22) Eh Maite.
-[2226.2 → 2234.5] (SPEAKER_23) Bueno, pues otra vez buenos días. A mí este punto sí que me parece totalmente electoralista.
-[2234.8 → 2242.4] (SPEAKER_23) A mí me parecen muy bien las inversiones que se quieran hacer en nuestro municipio, pero a mí me gustaría,
-[2242.6 → 2246.9] (SPEAKER_23) ya que me voy esta legislatura de la política,
-[2247.0 → 2249.0] (SPEAKER_23) que a ver
-[2249.6 → 2253.1] (SPEAKER_23) visto cosas acabadas, como la casa del abogado,
-[2253.1 → 2255.7] (SPEAKER_23) como el piso tutelado en funcionamiento,
-[2255.8 → 2261.6] (SPEAKER_23) como el edificio polivalente con algo más de terminación,
-[2262.1 → 2273.5] (SPEAKER_23) como la severa con algo más que un techo, como la casa de los Serra con una utilidad para nuestro municipio y así.
-[2274.6 → 2276.4] (SPEAKER_23) seguiría y se y seguiría.
-[2277.4 → 2290.1] (SPEAKER_23) Estoy de acuerdo que que se invierta pero no estoy de acuerdo en ese ese afán de de comprar cosas y comprar cosas y
-[2290.9 → 2311.0] (SPEAKER_23) Ahora la discoteca ha sido hace nada la guardería domiciliar Travail y no se le da utilidad a las compras que hace este ayuntamiento. Creo que tener una hoja de ruta y saber lo que se quiere hacer y tener.
-[2311.6 → 2334.3] (SPEAKER_23) un una planificación de cuándo terminar lo que se compra y lo que se adquiere en este ayuntamiento, y darle una utilidad práctica y útil, and no es este afán de de de inversiones, inversiones, for luego que no sirvan para nada. De todas formas creo
-[2335.0 → 2344.9] (SPEAKER_23) Que siempre es bueno invertir y mejorar instalaciones, pero en este caso sí que me parece totalmente electoralista este punto.
-[2345.0 → 2345.3] (SPEAKER_23) Gracias.
-[2346.3 → 2348.2] (SPEAKER_22) Més paraules en Rafa Compromís.
-[2351.7 → 2356.7] (SPEAKER_24) En primer lloc una pregunta al regidor.
-[2358.3 → 2361.0] (SPEAKER_24) En el informe de la intervenció
-[2361.9 → 2363.2] (SPEAKER_24) si el Tegueste ahí
-[2363.9 → 2364.8] (SPEAKER_24) in el Puncuar
-[2367.0 → 2384.0] (SPEAKER_24) De conformidad con lo dispuesto en el artículo 176 del texto refundido de la Ley Reguladora de IESENDE locales aprobada tal tal, ha dado la existencia de gas de despeses que no pueden demorarse finse el exercici següent,
-[2384.6 → 2393.3] (SPEAKER_24) pels que no existís crèdit en el vigent pressupost de la corporació, amb data del trenta de maix.
-[2394.3 → 2400.0] (SPEAKER_24) Shall I add thirty of April, no? Or thirty of March? The canola of March uh about
-[2400.0 → 2407.5] (SPEAKER_40) Mo, sino han tornat al n'han regressat al futuro, creo que no sera. Ixa la la pregunta.
-[2407.8 → 2411.5] (SPEAKER_40) Sera una errada, antenc. Vale?
-[2413.8 → 2416.8] (SPEAKER_40) Bueno, uh and y después
-[2418.8 → 2419.1] (SPEAKER_40) uh
-[2420.4 → 2433.6] (SPEAKER_40) corroborar la la afirmación que ha hecho Maite. Se trata de una mesura electoralista total y absoluta. Eh, al menos es lo que yo pienso y pelo visto Mm-hmm. Maite.
-[2433.7 → 2439.1] (SPEAKER_40) Uh, están parlando de que uh ustedes
-[2440.5 → 2444.7] (SPEAKER_40) van a agarrar del remanente un medio y medio de Euros, pero
-[2445.2 → 2445.2] (SPEAKER_41) So
-[2445.2 → 2445.6] (SPEAKER_40) 
-[2445.8 → 2456.7] (SPEAKER_40) Al faltar carrers, infraestructura, infraestructures en zones verdes, senyalítica, faroles. Vamos, arreglar lo que se tenía que haber arreglado durante esta legislatura.
-[2458.4 → 2472.8] (SPEAKER_40) Pero eu porten ara. Com anem a començar la sinorres, la campanya electoral, dirán el ple de Ribarrocha aproba pera totes les urbanisacions que vos anem a deixar, tot de categoria.
-[2473.5 → 2479.5] (SPEAKER_40) de categoría, and and that's what it will be.
-[2481.2 → 2493.4] (SPEAKER_40) Then, uh near in one of the, of the of the actions, what is the the
-[2494.9 → 2495.9] (SPEAKER_40) what is what we have to give.
-[2496.4 → 2504.4] (SPEAKER_40) per del dell de l'aparcament de fer fer allí l'aparcament de la zona de picadar.
-[2506.4 → 2511.4] (SPEAKER_40) Uh al menys uh jo recorde que parlant en la regidora
-[2513.4 → 2518.9] (SPEAKER_40) en el exercici passat me va dir que intentarien per a final d'any.
-[2520.3 → 2523.4] (SPEAKER_40) Ni ha sigut a final d'any ni ha sigut a principi d'any, justetament és
-[2523.6 → 2534.4] (SPEAKER_40) Ara, ara, a deu dies vista o dotze dies vista de que comenci la campanya electoral. Mm si això no és
-[2535.6 → 2545.7] (SPEAKER_40) vamos, una mesura electoralista, eh vaig a a recordar lo que diu en els feligresos, que vinga Déu que ho veja.
-[2548.2 → 2553.3] (SPEAKER_40) En Pareixem mesures adequades, vale? Però se deurien de haver fet abans.
-[2554.3 → 2571.6] (SPEAKER_40) O tenen tota la intenció de fer-les? No. Les van a fer ara, o les van a pueblicar ara pera a què? Pera a què la gent veça que eh el equip de govern pues esta fent moltes coses. Evidemment.
-[2572.0 → 2572.8] (SPEAKER_40) Correcte.
-[2574.2 → 2580.6] (SPEAKER_40) En quant a lo que dia Maite, de comprar ese edificis, tu tranquil·la, Maite. Ara, la publicitat és:
-[2580.7 → 2590.6] (SPEAKER_40) hem comprat ese edificis. A final de la legislatura que ve, si com diu el senyor alcalde, tornen a governar, faran lo que tinguen que fer en ese edificis
-[2591.8 → 2595.5] (SPEAKER_40) pera publicitar-se pera la pròxima campanya electoral.
-[2596.8 → 2605.1] (SPEAKER_40) En fi, eh no no me vaig a allargar més, perquè um suposi que
-[2606.7 → 2616.8] (SPEAKER_40) que això és uh lo que deu defer un partit polític per a guanyar unes eleccions. Vendre lo que lo que fa.
-[2618.2 → 2619.5] (SPEAKER_40) I per lo menos féreu.
-[2620.7 → 2637.2] (SPEAKER_40) De tota manera, ja dic que per molt que ara l'alcalde comence a dir que que no, que això estava programat, que això s'aixina, que tal, estem a dotze dies de començar una campanya electoral,
-[2638.1 → 2645.5] (SPEAKER_40) i aquestes mesures són electoralistes. Si haurem en el mes de febrer
-[2645.2 → 2654.7] (SPEAKER_40) Posiblemente a Benji, bueno, estén preparada la campaña, pero vale. Pero ahora, nosé, blanco y en botella, gracias.
-[2655.6 → 2656.3] (SPEAKER_42) Mes para hables.
-[2657.6 → 2658.3] (SPEAKER_42) José Ángel.
-[2661.2 → 2662.2] (SPEAKER_43) Electoralista.
-[2663.8 → 2678.2] (SPEAKER_44) Pues no sé, llevamos three years haciendo elecciones, because three years llevamos la liquidación, las liquidaciones como ustedes saben, y precisely because estamos en elecciones parece que van por ahí, por esa línea, buscando excusas para no aprobar inversiones para su municipio.
-[2678.5 → 2696.2] (SPEAKER_44) Como ustedes saben, bien, eh, le voy a recordar que en el dos mil veintiuno, con la liquidación del dos mil veinte, año de pandemia, que tenemos una m una memoria así muy selectiva, y que tuvimos que hacer una modificación de tres millones de euros para combatir dicha pandemia en nuestro municipio, pues en el dos mil veintiuno ya llevamos a un pleno,
-[2696.3 → 2698.7] (SPEAKER_44) hace tres años, inversiones.
-[2699.8 → 2702.5] (SPEAKER_44) Pero es que el año pasado también llevamos otro
-[2703.2 → 2730.5] (SPEAKER_44) otro hayan otro plan de inversiones. ¿O es que uh los ojos no lo ven? Ustedes pueden subir por la carretera hacia el Molinet y ven la inversión que se ha hecho ahí. Inversión que previamente se aprueba aquí. Porque si no se aprueba, no se puede hacer. Si no hay aplicación presupuestaria, si no hay presupuesto, pues efectivamente no se realizan esas inversiones. Y este año pasa exactamente lo mismo, precisamente porque nuestra línea es la continuidad de co de seguir invirtiendo en nuestro municipio.
-[2731.3 → 2745.2] (SPEAKER_44) Se ha hecho la liquidación presupuestaria del ejercicio dos mil veintidós, ha dado un resultado positivo, buena salud económico financiera del Ayuntamiento y, por tanto, de esos remanentes se destinan a inversiones, que es lo que tiene que realizar un Ayuntamiento.
-[2745.7 → 2752.8] (SPEAKER_44) La gente, el ciudadano, no sabe si mañana hay elecciones y mañana, porque mañana sí que se tiene que levantar a ir a trabajar o no.
-[2753.3 → 2762.0] (SPEAKER_44) El Ayuntamiento tiene que continuar trabajando por su municipio y realizando inversiones, y estas, que se incorporan al presupuesto,
-[2762.2 → 2769.2] (SPEAKER_44) que se incorporan al presupuesto, son el resultado de eso, de una liquidación presupuestaria que se trae a un pleno a principios de marzo.
-[2770.0 → 2779.7] (SPEAKER_44) Se trae al Pleno el principio de marzo y luego se trae a Pleno esa aprobación de esos remanentes, de ese buen resultado, para invertirlos en im en for not just in performance, but also in ensuring that our municipality.
-[2780.5 → 2784.5] (SPEAKER_44) Eso es esa campaña electoralista que queréis que que pensáis que hacemos.
-[2784.6 → 2791.1] (SPEAKER_44) Pues no lo entiendo, porque entonces llevamos así todos los años haciendo esa campaña electoralista. Uh, que por cierto,
-[2792.0 → 2795.9] (SPEAKER_44) hay un consenso y un acuerdo con el in el consell territorial de Riba Rocha.
-[2796.7 → 2798.8] (SPEAKER_44) Y ese acuerdo se aprobó en el uno de febrero.
-[2800.1 → 2827.1] (SPEAKER_44) Que algunos participáis y otros no vais a ese Conseil. Eso es otra cosa. Si vais al Conseil, pues sabréis lo que se habla y se debate allí. Luego, pues si no se va y no se aclara, pues pasa esto. Dudas y buscar excusas para no aprobar inversiones para tu municipio. Pues ese Conseil del uno de febrero se aprobó que en la liquidación del presupuesto se destinarían ochocientos mil euros a inversiones en las urbanizaciones y en las para las asociaciones.
-[2826.8 → 2830.7] (SPEAKER_44) asociaciones vecinales y eso es lo que se lleva.
-[2831.2 → 2836.1] (SPEAKER_44) Mezclar edificios con unas inversiones muy concretas y detalladas, vamos,
-[2836.2 → 2844.8] (SPEAKER_44) que están detalladísimas. Van detalladas por urbanizaciones, van detalladas por eh eh edificios de deportes, van detalladas por el el cultura.
-[2845.2 → 2851.1] (SPEAKER_44) A ver, pues mezclar aquí churras y merinas. Los edificios que se han adquirido se están invirtiendo en ellos.
-[2851.9 → 2856.5] (SPEAKER_44) No nos podemos enfocar en una inven en una inversión sola y dejar el resto sin hacer.
-[2856.8 → 2858.8] (SPEAKER_44) Y poco a poco se van haciendo las obras.
-[2859.3 → 2865.7] (SPEAKER_44) Hombre, el edificio polivalente, si es que claro, hablar de esto me parece un poco, en fin, fuera de contexto.
-[2865.8 → 2874.6] (SPEAKER_44) Pero bueno, el edificio polivalente hace unos meses aprobamos aquí, que es una obra que se realiza en cuatro años con una subvención del 50% por parte de la Generalitat.
-[2874.7 → 2882.8] (SPEAKER_44) Por decir uno de los edificios, o el edificio de la Casa del Abogado, que tiene una subvención de 400.000 Euros. Pues llévate muy bien su proceso.
-[2883.9 → 2900.4] (SPEAKER_44) Pero ustedes también lo saben. Pero claro, es que como estamos en campaña electoral pues pues aquí lo que llevamos son inversiones para nuestro municipio y para nuestros vecinos. Consensuado con ellos, como hacemos todos los años, sin más ni menos. Gracias.
-[2900.9 → 2901.7] (SPEAKER_42) Més paraules.
-[2903.6 → 2904.0] (SPEAKER_42) Salva.
-[2905.2 → 2911.6] (SPEAKER_45) Sí, gracias. Me um aclararle al retxidor de Hacienda que el Conseil Territorial no aprueba.
-[2912.1 → 2923.2] (SPEAKER_45) El consell territorial és un òrgan consultiu. I si este equip no participa d'això consell és perquè, desde l'origen en què es va crear,
-[2923.8 → 2933.3] (SPEAKER_45) s'ha desvirtuat. Al final és un element propagandístic que sols és vist per a vostès dir tot el que fan, van a fer i fer-se la foto.
-[2933.3 → 2955.6] (SPEAKER_45) I sí, quatre anys duen fent campanya electoral, quatre anys, no ara quatre anys, ara s'intensifica. El pressupost el vàrem aprovar en desembre del 2022, quatre mesos després estan fent modificacions de crèdit per poder suportar eixa promesa que fèrem en el Consell perquè això ho vàrem prometre en el Consell.
-[2956.2 → 2962.9] (SPEAKER_45) Tot el que anaven a invertir sense tindre aixà partida pressupostària, a 26 dies d'eleccions, i damunt tenen
-[2964.8 → 2981.5] (SPEAKER_45) la virtut de dir que això no és electoralisme? De de veres? Jo crec que des 21, els 11 són els únics que se creuen que això no és electoralisme. A 26 dies d'eleccions, a 12 dies de començar, o a 10 dies de començar una campanya...
-[2982.4 → 2984.9] (SPEAKER_45) Ara anem a arreglar totes les urbanitzacions? Ara?
-[2986.6 → 2987.4] (SPEAKER_45) No han tingut temps?
-[2987.8 → 2991.6] (SPEAKER_45) Els pressupostos participatius han tardat en ficar-se en marxa anys.
-[2992.0 → 2993.4] (SPEAKER_45) La pandèmia, molt bé.
-[2993.7 → 2995.3] (SPEAKER_45) Si al final tenen excusa per a tot.
-[2995.6 → 2998.4] (SPEAKER_45) Nosaltres és que estem treballant en això i és algo que duiem i n'hi ha que fer-ho.
-[2998.5 → 3000.2] (SPEAKER_45) En quatre mesos no han pogut fer això?
-[3000.3 → 3004.5] (SPEAKER_45) En quatre mesos, que els pressupostos tenen cinc mesos i estan fent modificacions ara,
-[3004.6 → 3007.8] (SPEAKER_45) a deu dies d'eleccions. Jo crec que ningú s'ho creu.
-[3007.9 → 3009.5] (SPEAKER_45) En este pleno ningú es creu.
-[3009.9 → 3022.7] (SPEAKER_45) que coincidisca que n'hi hagen eleccions. En fi, em pareix que l'afany de recaudar va més enllà del de la bona planificació i de la bona gestió, i estan deixant molt que,
-[3022.8 → 3027.4] (SPEAKER_45) molt que desitjar. Vostès veuran el que el que fan. Però bé,
-[3027.5 → 3029.0] (SPEAKER_45) això sí que estava ben planificat, eh?
-[3029.5 → 3032.7] (SPEAKER_45) Això sí que està ben planificat. El que no hem planificat en quatre o cinc anys,
-[3032.7 → 3032.9] (SPEAKER_42) A xecar
-[3032.9 → 3033.1] (SPEAKER_45) ara
-[3033.1 → 3033.3] (SPEAKER_42) l'any,
-[3033.3 → 3033.5] (SPEAKER_45) sí
-[3033.5 → 3033.7] (SPEAKER_42) passar l
-[3033.7 → 3039.0] (SPEAKER_45) que any. ho hem planificat. A poquet d'eleccions i veurem el que tarden estos titulars en eixir de premsa.
-[3039.0 → 3039.2] (SPEAKER_42) A xecar
-[3039.2 → 3039.4] (SPEAKER_45) A veure
-[3039.4 → 3039.4] (SPEAKER_42) l'any.
-[3039.4 → 3041.3] (SPEAKER_45) si és hui o és demà. Gràcies.
-[3042.4 → 3044.0] (SPEAKER_42) Mes paraules, compromís.
-[3045.7 → 3048.9] (SPEAKER_40) Eh... Delia, regidor de Isenda.
-[3049.5 → 3050.3] (SPEAKER_40) Que com a regidor
-[3050.3 → 3050.5] (SPEAKER_46) You
-[3050.5 → 3059.9] (SPEAKER_40) li senta, sap que el respecte i aprecia la llavor que fa, i és més, eh reconec que la fa molt bé.
-[3061.4 → 3069.9] (SPEAKER_40) Com a divino, no sé dedicar a això, per favor. No sé dedicar a això, perquè té molt poc de futur.
-[3070.7 → 3071.3] (SPEAKER_40) Diu
-[3071.8 → 3081.8] (SPEAKER_40) Que estem parlant, estem donant argument para no votar. Jo en cap moment de la meua intervenció he dit que no vaig a recolzar este punt. A més,
-[3081.9 → 3084.1] (SPEAKER_40) li ho he adelantat, vaig a votar a favor.
-[3085.0 → 3094.4] (SPEAKER_40) Vaig a votar a favor perquè tot el que sí que en mesura, per a que el nostre poble estigui en les condicions que totes i tots volem,
-[3095.3 → 3097.9] (SPEAKER_40) tindran el recolzament de compromís.
-[3100.2 → 3108.3] (SPEAKER_40) No va a fer ahi per que com a predicció de de lo que va a passar note futur.
-[3109.3 → 3111.1] (SPEAKER_40) Després eh
-[3112.9 → 3115.0] (SPEAKER_40) portem un punt, vale,
-[3116.0 → 3121.7] (SPEAKER_40) de un expedient de modificació de crèdits sense dictaminar, sense dictaminar
-[3123.3 → 3124.6] (SPEAKER_40) i en un ple extraordinari.
-[3126.4 → 3132.0] (SPEAKER_40) A noche día de comenzar una campaña electoral y a veintit años de las elecciones.
-[3133.2 → 3138.7] (SPEAKER_40) Ahora, eh, yo voy a repetir algunas palabras.
-[3139.2 → 3141.0] (SPEAKER_40) De veintiú que somos así,
-[3141.1 → 3143.6] (SPEAKER_40) solo es once personas se creen en eso,
-[3143.7 → 3145.8] (SPEAKER_40) que no es una mesura electoralista. Gracias.
-[3147.0 → 3147.7] (SPEAKER_42) Més paraules.
-[3149.5 → 3151.2] (SPEAKER_42) Ej José Angel, que últimamente el precio no.
-[3151.2 → 3161.9] (SPEAKER_44) Rafa, ¿quién lo diría, Julio, después de haber comenzado? Bueno, Sence dictaminar, pero el Dilluns passate n'hi hauran tota la documentació, inclús a base de les propies comissions informatives, eh?
-[3162.5 → 3169.1] (SPEAKER_44) Eh, pero bueno, m'alegre que al final, pos en, no sé ja si és per caràcter electoral or not caràcter electoral,
-[3169.1 → 3169.2] (SPEAKER_42) pos
-[3169.2 → 3174.5] (SPEAKER_44) que aprove uh la proposta d'inversions per al poble, que al final és són inversions bones per al nostre
-[3174.6 → 3175.8] (SPEAKER_40) municipal.
-[3176.4 → 3180.7] (SPEAKER_44) En quanta salva, eh no sé si ha parlat del Partit Popular o Ciutadans.
-[3181.2 → 3187.0] (SPEAKER_44) La veritat. Salva, no sé què dir. No sé a qui contestar.
-[3187.8 → 3203.3] (SPEAKER_44) Si és Ciutadans o el Partit Popular. But lo que sí que est sé que estàs en clau electoral del Partit Popular a tope de power. Perquè has canviat totalment la teua estratègia. Els últims anys has votat a favor, has sumat, has fet propostes per a la... per arribar.
-[3203.1 → 3219.4] (SPEAKER_44) la riba rocha i ara tot és de cop has canviat i tot són són crítiques. Doncs torna a repetir, no sé, un altra vegada a mesclar i ho dic bueno, doncs ja és que potser és que no m'he estat els últims quatre anys així, però jo crec que has estat, lo que passa que sí que és cert que, en Ciudadanos, ara estàs en el P.P. Claro,
-[3219.4 → 3219.6] (SPEAKER_42) Vaig
-[3219.6 → 3219.7] (SPEAKER_44) ara
-[3219.7 → 3219.8] (SPEAKER_42) acabant,
-[3219.8 → 3220.2] (SPEAKER_44) ha canviat.
-[3220.2 → 3220.6] (SPEAKER_42) vaig acabant.
-[3220.6 → 3229.6] (SPEAKER_44) Però bueno, les inversions s'han realitzat tots els anys, s'estan realitzant, i són i estes són, euh, doncs això és el resultat d'una liquidació
-[3229.4 → 3239.9] (SPEAKER_44) positiva del pressupost i que mos dona una bona salut econòmica i financera de l'Ajuntament. I això mos permetís continuar fent inversions per al nostre municipi.
-[3240.0 → 3248.3] (SPEAKER_44) Així que és un billó 150.000 euros per a voreres, per a asfalt, per a zones verdes, per a educació, per a cultura,
-[3248.5 → 3254.0] (SPEAKER_44) per a inversions en definitiva del nostre poble, que tots els anys duguem.
-[3254.1 → 3256.1] (SPEAKER_44) A, play. Gracias.
-[3256.9 → 3272.4] (SPEAKER_42) Bueno, ha but y ha but hasta hasta gracioso. Ha but un it a um bueno, yo volia que ir también dos cosas que ahora sí que vull que aclarir, como diu Rafa, que son la la siguiente. Saben que remanenx, la gente ho sap, y vostès també,
-[3272.6 → 3283.9] (SPEAKER_42) espere que ho sàpiguen claro, que mai ha maprogat les remanenx abans de la liquidació, perquè no pot ser dissinat. Liquidarem el pressupost, que espere que el xinguentenga quan fem la liquidació, que és la part per a mi.
-[3283.6 → 3284.6] (SPEAKER_42) Per a mi, més important,
-[3285.1 → 3297.7] (SPEAKER_42) liquidem i diguem com han com s'han gastat el pressupost de l'any anterior, quins ingressos i quines despeses. I fins ara sempre hem hagut de donar positiu. Este hauria de tenir un milió quant era?
-[3298.0 → 3306.5] (SPEAKER_42) Milió i mig. Bueno, primer punt. Liquidació que dona un milió i mig favorable a l'Ajuntament i a partir d'ahir que si s'aproven més
-[3307.2 → 3311.6] (SPEAKER_42) És quan se aprova el remenatge, quan tots els anys ve a dir-te el meu regidor.
-[3312.3 → 3313.2] (SPEAKER_42) Però què ho fem ara?
-[3313.6 → 3315.2] (SPEAKER_42) Falta 12 dies per a eleccions.
-[3315.7 → 3316.9] (SPEAKER_42) És la pregunta molt senzilla,
-[3317.0 → 3317.3] (SPEAKER_42) Rafa,
-[3317.6 → 3318.9] (SPEAKER_42) no és que sigui adiví o no.
-[3319.9 → 3321.9] (SPEAKER_42) Perquè ha entrat el senyor alcalde i el Govern ha dit no,
-[3322.0 → 3323.6] (SPEAKER_42) hem de tirar-ho cap per el següent.
-[3324.0 → 3325.0] (SPEAKER_42) Aquest any i sempre.
-[3325.7 → 3327.5] (SPEAKER_42) Perquè tenen la temporalitat d'un any.
-[3328.1 → 3330.2] (SPEAKER_42) I si no fas un any, decau la inversió.
-[3330.8 → 3341.5] (SPEAKER_42) Cada dia que passa, cada dia que passa és pitjor per als veïns, perquè no el huitxem el millor i pico que aprovarem de modificació perquè eren huitcentmil euros, per cert,
-[3341.8 → 3344.9] (SPEAKER_42) un òrgan consultiu però important,
-[3345.7 → 3346.9] (SPEAKER_42) molt important.
-[3347.5 → 3352.4] (SPEAKER_42) Per a mi el Consell Territorial és dels òrgans més importants, a pesar de la...
-[3352.8 → 3363.5] (SPEAKER_42) Quin? Nefasta intervenció que ha fet el portsim que va en el Partit Popular. Nefasta però nefasta. Perdó, estic parlant jo, m'ha tocat més escoltar com s'ha rigut, com ha ironitzat.
-[3363.7 → 3371.9] (SPEAKER_42) escolte ara, no té la paraula, no té la paraula. Ara escolte el que escolte bé i prenga nota, que ni haurà temps per a parlar.
-[3374.8 → 3375.3] (SPEAKER_42) Sí, sí.
-[3376.4 → 3388.9] (SPEAKER_42) Bé, nefasta intenció per a mi, per a vostès serà espectacular. Primera perquè ha demonitzat, ha desmillorat un consell que representa la ciutadania legítimament i democràticament.
-[3389.9 → 3392.5] (SPEAKER_42) On hi ha partits polítics que s'ho guarden en sèrio i que ho fa el que vol,
-[3392.9 → 3403.1] (SPEAKER_42) allà que ho diu en la seva opinió, on se debatix i s'acorda i es proposa, i evidentment proposen solucions als problemes reals que tenen. Concretament.
-[3403.6 → 3415.9] (SPEAKER_42) En les dues civilitzacions, en disseminat i en el casc urbà, perquè també afecta el casc urbà, perquè hi ha dos mil euros pel casc urbà i aquest consell és part del nostre projecte de participació ciutadana,
-[3416.3 → 3417.5] (SPEAKER_42) que en tenim 14 consellers.
-[3418.0 → 3420.8] (SPEAKER_42) Ojalà tot funcionés en comitès, que altres vam més atrasats.
-[3421.5 → 3427.0] (SPEAKER_42) I, per tant, el que s'acorda ahir, encara que efectivament és una proposta, nosaltres l'assumim plenament.
-[3427.3 → 3428.9] (SPEAKER_42) Per això tenim representants en el consell.
-[3429.3 → 3436.0] (SPEAKER_42) I el que va fer aquesta proposta de que 86.000 euros de la remanent positiva de Ferres Causes V de l'Ajuntament,
-[3436.8 → 3437.8] (SPEAKER_42) pese el equilibri pese,
-[3437.9 → 3446.9] (SPEAKER_42) d'atenció a la salut econòmica magnífica, puguem invertir en inversions que existeixen en urbanitzacions i per primera vegada en la història en disseminats.
-[3448.9 → 3450.4] (SPEAKER_42) I per tant no és ninguna broma.
-[3451.6 → 3462.6] (SPEAKER_42) Qui a vostès és sent tan mal perquè ho anem ara, ja ho he explicat, si no ho entenen no ho entenguen. Cada dia que passa va en contra del que aprovem, perquè hi ha que executar-ho. I per tant hi ha una temporalitat d'un any.
-[3462.9 → 3469.3] (SPEAKER_42) Si nosaltres serem eleccions, convoquem eleccions, torna a constituir-se l'alcaldia, el govern, els plens,
-[3469.9 → 3475.5] (SPEAKER_42) no podem dir-ho fins a més de juny o juliol, no podien ser efectives aquestes remenents, però és que això és de caiçó,
-[3475.6 → 3476.5] (SPEAKER_42) de número uno.
-[3477.9 → 3479.7] (SPEAKER_42) De número uno las conseller Chin.
-[3480.5 → 3482.3] (SPEAKER_42) De número uno las conseller Chin, de la IU.
-[3483.9 → 3487.0] (SPEAKER_42) És a dir, qualsevol regidor que hagi estat al tanto de com funciona,
-[3487.1 → 3490.3] (SPEAKER_42) en les seues competències en l'oposició o en el Govern,
-[3490.7 → 3505.7] (SPEAKER_42) ha de saber que fins que no s'aprova la liquidació no aprovem la remanent i són les inversions que van a afectar des del pressupost i que s'han de fer-se durant aquest any, perquè cada dia que perdríem seria un dia menys per a poder complir aquestes inversions que són importants.
-[3507.9 → 3510.4] (SPEAKER_42) Però això ho ha fet el president Unari, i ho he intentat explicar.
-[3510.5 → 3514.5] (SPEAKER_42) Jo li vaig dir al meu regidor que parlaren vostès. No sé si ho ha fet, espere que sí.
-[3515.0 → 3517.4] (SPEAKER_42) Li va dir que parlaren tots per explicar-los el per què.
-[3517.6 → 3518.6] (SPEAKER_42) Però això ho ha fet per això.
-[3519.2 → 3520.6] (SPEAKER_42) I vostès consultin i ho veuran,
-[3520.7 → 3521.4] (SPEAKER_42) ho vegin.
-[3521.8 → 3523.4] (SPEAKER_42) I per últim, miren,
-[3523.8 → 3528.6] (SPEAKER_42) torne a dir perquè és un debat, però tornat a dir i a maite que li donaré gràcies en la part que toca,
-[3528.7 → 3532.6] (SPEAKER_42) perquè és una persona sempre molt sincera i conta el que pensa i això sempre és d'agrair,
-[3532.7 → 3534.7] (SPEAKER_42) en la part que toca. Podem estar d'acord o no.
-[3534.6 → 3537.5] (SPEAKER_42) Però no, perquè sempre és d'agrair. En aquest sentit diré diverses coses.
-[3537.6 → 3537.8] (SPEAKER_42) Miren,
-[3538.7 → 3556.2] (SPEAKER_42) el Castell Municipal puguem finançar-lo en el 1,5% cultural en el 2007 perquè el comprar-me'l en el 88, si el castell hauria sigut d'una compra privada, no haurien tingut el castell i no haurien buscat subvencions i no haurien restaurat,
-[3556.3 → 3557.9] (SPEAKER_42) per cert, en aquest moment governant del Partit Popular.
-[3559.0 → 3560.7] (SPEAKER_42) Però perquè era del poble,
-[3561.1 → 3563.0] (SPEAKER_42) per cert el PP contra el pare en votar en contra.
-[3564.2 → 3566.8] (SPEAKER_42) En la Casa de l'Advocat també va ser la mateixa operació.
-[3567.6 → 3568.4] (SPEAKER_42) Com estén restaurada?
-[3568.5 → 3579.1] (SPEAKER_42) Ara estan treballant en la Casa de l'Advocat però han hagut que anar subvencions, és l'Ajuntament, els nostres veïns no tenen per què pagar totes les inversions a pulmó i per tant hi ha que patrimonialitzar
-[3580.1 → 3586.0] (SPEAKER_42) per après després reconstruir, restaurar o buscar subvencions, clar que sí.
-[3586.8 → 3589.1] (SPEAKER_42) Per què tenim l'assumpció del Polivalent?
-[3590.1 → 3591.5] (SPEAKER_42) Si en el moment que el seu,
-[3591.6 → 3592.2] (SPEAKER_42) el Partit Popular,
-[3592.3 → 3595.3] (SPEAKER_42) no haguera fet les estructures que se queden allí per fer,
-[3595.6 → 3597.2] (SPEAKER_42) doncs no hauré pogut anar a Polivalent.
-[3597.8 → 3599.9] (SPEAKER_42) Però després ha de buscar el finançament.
-[3600.0 → 3603.3] (SPEAKER_60) i l'hem buscat i ens van donar la presidència, ens van regalar tota la cort,
-[3603.3 → 3606.8] (SPEAKER_60) la presidència del 50%, que són 3 milions d'euros.
-[3607.6 → 3610.1] (SPEAKER_60) Fins que no han trobat això no poden construir aquestes diners.
-[3610.3 → 3612.3] (SPEAKER_60) I així han comprat dues cases,
-[3612.7 → 3613.2] (SPEAKER_60) que una va,
-[3613.7 → 3613.8] (SPEAKER_60) una,
-[3613.9 → 3621.3] (SPEAKER_60) bé la idea si no passa res és que una de les cases de la plaça de la Torre sigui el Museu Etnològic i el Museu Faller, que són dues cases grans.
-[3622.2 → 3622.6] (SPEAKER_60) Vale?
-[3622.9 → 3625.3] (SPEAKER_60) Però si no hi ha cap altre escars, no podrien fer això.
-[3625.6 → 3627.2] (SPEAKER_60) Ho anem a fer de pol mòbil de l'Ajuntament.
-[3627.3 → 3628.4] (SPEAKER_60) Tindrem que buscar subvencions.
-[3628.5 → 3635.8] (SPEAKER_60) Com ara hem passat dos milions d'euros exactament per a poder financiar obres i millores a través de turisme.
-[3635.9 → 3636.8] (SPEAKER_60) Dos milions d'euros.
-[3637.1 → 3637.9] (SPEAKER_60) I per última,
-[3638.0 → 3642.1] (SPEAKER_60) la última subvenció que ens han donat de més de mig milió d'euros,
-[3642.4 → 3647.7] (SPEAKER_60) que és per a fer la xarxa de red de ciclopeatonatge en bicicletes elèctriques en totes les urbanitzacions, en estacions.
-[3648.1 → 3652.5] (SPEAKER_60) i el bus de renting elèctric. Però tenen que anar a subvencions. Per tant,
-[3652.6 → 3655.6] (SPEAKER_60) no està mal comprar lo que s'ha de comprar és al preu que toca.
-[3656.5 → 3658.5] (SPEAKER_60) O per baix del preu que toca, sí, n'hi ha un acord,
-[3658.7 → 3659.4] (SPEAKER_60) com és el cas.
-[3659.9 → 3661.0] (SPEAKER_60) Totes les compres que hem fet.
-[3661.5 → 3665.0] (SPEAKER_60) Tot el que és compra és que hem fet està sempre per baix del preu que toca.
-[3665.3 → 3667.1] (SPEAKER_60) Ahir està la Severa, un milió quant?
-[3668.6 → 3668.8] (SPEAKER_61) 400?
-[3668.8 → 3669.6] (SPEAKER_60) Un milió 100.
-[3669.9 → 3672.1] (SPEAKER_60) Ara valdria 3 o 4 milions d'euros si la venguérem.
-[3672.5 → 3674.7] (SPEAKER_60) Ahir està el Pacadar, 4 milions i mig.
-[3674.7 → 3677.9] (SPEAKER_60) Si ara venguérem Pacadar valdria llames del doble i més del triple.
-[3678.2 → 3680.3] (SPEAKER_60) Per això li han guanyat patrimoni. Per això...
-[3681.4 → 3691.6] (SPEAKER_60) 100 que ha estat en patrimoni, venent i fent empreses que ara estan treballant no milions d'euros i han rebut aquest patrimoni que hem venut però hem comprat pel valor de 14 milions d'euros.
-[3693.2 → 3704.4] (SPEAKER_60) El patrimoni del poble ha pujat en un diferencial de vora 5 milions d'euros a favor del nostre poble. I aquests 5 milions d'euros són els que hem comprat i que tindrem que anar restaurant algunes coses. Altres ja són directes. València la vella,
-[3704.4 → 3705.4] (SPEAKER_60) les parcel·les que comprarem.
-[3705.5 → 3706.6] (SPEAKER_60) Ahí està València la vella.
-[3707.5 → 3709.1] (SPEAKER_60) La casa, pérame posar en valor,
-[3709.2 → 3713.6] (SPEAKER_60) ahí està la casa i faria una relació que estaria mitxel així parlant de lo que està allà en valor,
-[3713.7 → 3715.3] (SPEAKER_60) que comprar-me ja està en marxa.
-[3716.0 → 3722.6] (SPEAKER_60) La plaça de la Torre la comprarem, que en 20 anys ningú la havia pogut comprar. Comprarem la vivenda, anem a una subvenció, ahí està la plaça de la Torre.
-[3723.2 → 3727.8] (SPEAKER_60) I ho hem comprat en els preus per baix sempre del propi mercat, sense enganyar a ningú, eh.
-[3728.0 → 3729.3] (SPEAKER_60) En acord sempre amb els propietaris.
-[3730.3 → 3731.6] (SPEAKER_60) I això és la realitat que tenim.
-[3731.9 → 3737.0] (SPEAKER_60) Per tant, no és res electoraliste. Electoraliste és qui vol fer una intervenció electoralista.
-[3737.8 → 3740.1] (SPEAKER_60) I li pilla el bou i pagarà.
-[3740.5 → 3743.7] (SPEAKER_60) Perquè no se poden comprovar els remenys abans de la liquidació.
-[3744.0 → 3744.6] (SPEAKER_60) I a més,
-[3744.8 → 3745.8] (SPEAKER_60) se tenen que fer aquest any.
-[3746.3 → 3750.4] (SPEAKER_60) Si vostès creuen que tenen que deixar això perquè vinga, o tenen contra,
-[3750.5 → 3752.8] (SPEAKER_60) qui vulgui, que vinga a juliol i agost.
-[3753.3 → 3759.8] (SPEAKER_60) I no poder complir lo que diuen el propi remenenys, perquè no votem, no se tenen que gastar en este any, per això ho fem així.
-[3760.7 → 3761.7] (SPEAKER_60) Així en aquest o l'altre.
-[3762.5 → 3763.1] (SPEAKER_60) En fi,
-[3764.5 → 3765.0] (SPEAKER_60) crec que, bueno,
-[3765.1 → 3766.0] (SPEAKER_60) el debat és interessant,
-[3766.7 → 3768.2] (SPEAKER_60) tot el món està en campanya electoral,
-[3768.3 → 3771.9] (SPEAKER_60) tot el món està en campanya electoral, però nosaltres no hem parat la màquina i n'hi ha coses,
-[3772.0 → 3772.7] (SPEAKER_60) ja s'ha oït abans,
-[3773.0 → 3781.4] (SPEAKER_60) què estem fent que a nivell electoral millor que no les farem. A mi m'ho han aconseguit, a cap de... no es falten, no passen... Nosaltres tenim una marxa i una dinàmica que és el millor per al nostre poble.
-[3781.8 → 3785.0] (SPEAKER_60) I fins al dia d'eleccions, si toca estar treballant, estarem treballant.
-[3785.6 → 3790.9] (SPEAKER_60) En la planificació que tenim, que la tenim, perquè tot això que esteu mirant aquí està planificat.
-[3791.7 → 3795.6] (SPEAKER_60) planificat i a més endevat i consensuat en una part important.
-[3795.9 → 3803.9] (SPEAKER_60) Així hi ha que agrair a tot el teixit associatiu l'esforç que ha fet en aquest Consell per arribar a acords, entendre la situació i saber que aquesta proposta era futur,
-[3804.4 → 3807.5] (SPEAKER_60) era si la liquidació i el remanent podíem aprovar-la. I ho podem fer avui.
-[3807.8 → 3816.8] (SPEAKER_60) Ojalà podem haver-ho fet la setmana passada, que està la secretaria que jo estic ple volia fer-lo la setmana passada si hi ha 20 punts d'expedients correctes. No puc ser.
-[3817.0 → 3825.0] (SPEAKER_60) Però no perquè s'ha costant eleccions, sinó perquè mos hauran donat una setmana més de marge perquè aquestes inversions es comencin així, la contractació,
-[3825.1 → 3828.4] (SPEAKER_60) l'aire de contractació, i poder executar-les, que és el important.
-[3828.9 → 3832.3] (SPEAKER_60) Executar tot el que tenen que fer en cada organització i en el casc urbà,
-[3832.4 → 3833.7] (SPEAKER_60) que és molt, molt important.
-[3834.3 → 3834.7] (SPEAKER_60) Acabaré,
-[3834.8 → 3837.0] (SPEAKER_60) que abans us he parlat d'alguna cosa de vostès,
-[3837.1 → 3838.5] (SPEAKER_60) en el passeig de l'art i l'art,
-[3839.0 → 3843.1] (SPEAKER_60) que van des de tota la zona nord fins al casc urbà, camí dels ànims,
-[3843.2 → 3843.8] (SPEAKER_60) i fins a...
-[3843.7 → 3844.7] (SPEAKER_60) Hasta la futura estación del metro.
-[3845.2 → 3865.5] (SPEAKER_60) Un paseo ideal basado en la recuperación del arte antiguo de nuestro pueblo que estaba trancado, de nuestros artistas locales, en peces espectaculares a un precio razonable y por abajo del mercado que sitúen arriba de lo que está y que siga un lloc entrañable, agradable para visitar, para hacer turismo y para que nuestros vecinos estén a gusto al voltante de todo el parque natural.
-[3865.8 → 3869.5] (SPEAKER_60) Y eso es lo que vamos a hacer y ya no vamos a parar ni tan siquiera el día de elecciones.
-[3869.5 → 3870.2] (SPEAKER_60) Començarem a parar.
-[3870.7 → 3875.9] (SPEAKER_60) Aixina que passem a la votació del punt, no? Anem a votar ja? Anem a votar? Votem el punt.
-[3876.0 → 3876.5] (SPEAKER_60) Vots a favor?
-[3878.5 → 3879.2] (SPEAKER_60) Abstencions?
-[3881.1 → 3882.0] (SPEAKER_60) Vots en contra?
-[3883.2 → 3883.4] (SPEAKER_60) Bueno,
-[3883.4 → 3894.8] (SPEAKER_60) pues queda aprovat per el vot a favor del Partit Socialiste, de Maite Ciudadanos, de Rafa i Compromís, l'abstenció de l'Esquerra i Podem i de Vox i del Partit Popular. Correcte?
-[3895.7 → 3897.3] (SPEAKER_60) Doncs crec que ja s'ha acabat el ple.
-[3897.9 → 3900.4] (SPEAKER_60) Eh, al ser el ple, bon dia a tots i a totes.
-[3907.1 → 3913.3] (SPEAKER_60) Eh, una cosa, com ja s'ha acabat el ple, de la comissió inter de la comissió anterior, crec que té una comissió que ha tingut que passar.
-[3913.7 → 3918.4] (SPEAKER_60) Si considereu que ha de seguir en aquesta comissió, lo que considereu els els portaveus.
-[3918.8 → 3919.1] (SPEAKER_62) Uh no.
-[3919.5 → 3921.2] (SPEAKER_60) No, home, el ple, el ple no se podia parar, salva.
-[3922.1 → 3926.4] (SPEAKER_60) Jo, haurem entès. I el ple no podem parar-lo perquè el ple és, eh, eh,
-[3926.4 → 3933.0] (SPEAKER_60) obligat compliment, com pot avalar la senyora secretària. Mal, tenim que alçar la comissió. Si considero que tenim que demanar si acadeu, i si no,
-[3933.1 → 3934.0] (SPEAKER_60) eh, això ja cadascú.
-[3934.0 → 3937.7] (SPEAKER_63) Si voleu alguna cosa, estem encara atents.
-[3939.3 → 3939.5] (SPEAKER_63) Gràcies.
+[0.0 → 0.0] ACTA SESIÓN EXTRAORDINARIA CELEBRADA POR EL
+[0.0 → 0.0] AYUNTAMIENTO PLENO EL DÍA 2 de mayo de 2023
+[0.0 → 0.0] Lugar: Salón de Actos del Ayuntamiento
+[0.0 → 0.0] Fecha: 2 de mayo de 2023
+[0.0 → 0.0] Hora: 08:30
+[0.0 → 0.0] CARÁCTER DE LA SESION: EXTRAORDINARIA
+[0.0 → 0.0] ASISTENTES:
+[0.0 → 0.0] ALCALDE-PRESIDENTE: ROBERTO RAGA GADEA
+[0.0 → 0.0] CONCEJALES ASISTENTES:
+[0.0 → 0.0] Partido Socialista Obrero Partido Popular (PP) Ciudadanos Partido de la
+[0.0 → 0.0] Español (PSOE) Ciudadanía (CS)
+[0.0 → 0.0] Roberto Pascual Raga Gadea Santiago Navarro Zaragozá Salvador Evaristo Ferrer Cortina
+[0.0 → 0.0] Maria Teresa Pozuelo Martin Pedro Tortajada Raga Mª Teresa Ruiz Vendrell
+[0.0 → 0.0] Jose Luis Ramos March Paula Badía Lanáquera
+[0.0 → 0.0] Zafira Perez Pacheco Rosa Al Sibai Giner
+[0.0 → 0.0] Jose Angel Hernandez Carrizosa
+[0.0 → 0.0] Maria Dolores Verdeguer Royo
+[0.0 → 0.0] Jose Luis Lopez Galdon
+[0.0 → 0.0] Ana Cristina Folgado Morales
+[0.0 → 0.0] Rafael Gomez Sanchez
+[0.0 → 0.0] Maria Esther Gomez Laredo
+[0.0 → 0.0] Francisco Javier Garcia Escudero
+[0.0 → 0.0] Compromís per Riba- L’Esquerra de Riba- Podemos/Podem – VOX
+[0.0 → 0.0] roja: Compromís roja – Ezquerra Unida Riba-roja Puede
+[0.0 → 0.0] Municipal Ezquerra (PODEMOSRIBA-
+[0.0 → 0.0] (COMPROMÍS Republicana: Seguim ROJAPOT)
+[0.0 → 0.0] MUNICIPAL) Endavant (EUPV-
+[0.0 → 0.0] ERPV:SE)
+[0.0 → 0.0] Rafael Folgado Jose Manuel Gallardo Arantxa Torres Macias Nuria Santamaría
+[0.0 → 0.0] Navarro Martínez Garrido
+[0.0 → 0.0] Concejales ausentes:
+[0.0 → 0.0] Actúa como Secretaria: Ylenia Díaz Morán
+[0.0 → 0.0] En la villa de Riba-roja de Túria, provincia de Valencia, en el Salón de Actos del
+[0.0 → 0.0] Ayuntamiento, el día 2 de mayo de 2023, siendo las 08:30 horas, se reunieron en primera
+[0.0 → 0.0] convocatoria los señores concejales indicados, habiendo excusado su asistencia los igualmente
+[0.0 → 0.0] marginados. Todo ello bajo la Presidencia del Sr. Alcalde Robert Raga Gadea, asistido de la
+[0.0 → 0.0] Secretaria General Sra. Ylenia Díaz Morán.
+[0.0 → 0.0] Declarado abierto el acto por la presidencia, se pasa al estudio y acuerdo de los asuntos
+[0.0 → 0.0] consignados en el Orden del Día.
+[0.0 → 0.0] 1.- 6840/2022/GEN, Acuerdo relativo al Sorteo de Miembros de Mesa Elecciones Municipales y
+[0.0 → 0.0] Autonómicas a celebrar el 28 de mayo de 2023.
+[0.0 → 0.0] En relación a las próximas elecciones Locales y Autonómicas a celebrar el día 28 de mayo de
+[0.0 → 0.0] 2023, se da cuenta por Secretaría que, de conformidad con lo previsto en el artículo 26, apartado 2
+[0.0 → 0.0] de la vigente Ley Orgánica de Régimen Electoral 5/1985, la Corporación debe proceder a realizar
+[0.0 → 0.0] sorteo público para el nombramiento de los miembros componentes de las Mesas Electorales con
+[0.0 → 0.0] motivo de las Elecciones citadas.
+[0.0 → 0.0] Se seguirá un proceso automático de designación cuyo proceso es el siguiente:
+[0.0 → 0.0] La aplicación informática con la que se va a realizar el sorteo automático realiza este proceso
+[0.0 → 0.0] de forma masiva seleccionando los presidentes, vocales y suplentes de una forma aleatoria mediante
+[0.0 → 0.0] procedimientos informáticos.
+[0.0 → 0.0] Para dicho sorteo se va a utilizar la aplicación informática que desde la Oficina del Censo
+[0.0 → 0.0] Electoral se ha suministrado a todos los municipios para tal efecto, “Aplicación IDA_Celec de
+[0.0 → 0.0] Sorteo para seleccionar los miembros de las Mesas electorales.”.
+[0.0 → 0.0] El sorteo se realiza por selección aleatoria entre los electores que cumplen las condiciones
+[0.0 → 0.0] requeridas por la ley electoral:
+[0.0 → 0.0] En el artículo 26.2 de la Ley Orgánica del Régimen Electoral General (LOREG) determina que
+[0.0 → 0.0] “El Presidente y los Vocales de cada mesa son designados por sorteo público entre la totalidad de las
+[0.0 → 0.0] personas censadas en la sección correspondientes, que sean menores de 65 años y que sepan leer y
+[0.0 → 0.0] escribir. El Presidente deberá tener el título de Bachiller o el de Formación Profesional de segundo
+[0.0 → 0.0] grado o, subsidiariamente, el de Graduado Escolar o equivalente”.
+[0.0 → 0.0] El Pleno, tras el debate que obra en su integridad en el Diario de Sesiones, por unanimidad acuerda:
+[0.0 → 0.0] PRIMERO. Aprobar la utilización del Proceso automático de designación de los miembros de las
+[0.0 → 0.0] mesas electorales correspondiente a las elecciones Locales y Autonómicas convocadas por el Real
+[0.0 → 0.0] Decreto 207/2023 de 3 de abril y Decreto 3/2023 de 3 de abril respectivamente.
+[0.0 → 0.0] SEGUNDO. Aprobar las designaciones de miembros de mesa que se detallan a continuación
+[0.0 → 0.0] conforme a la utilización del sistema aprobado anteriormente:
+[0.0 → 0.0] MUNICIPIO: RIBA-ROJA DE TÚRIA
+[0.0 → 0.0] [Omitida por CivicPulse: la lista de miembros de las 27 mesas electorales, que nombra a particulares con su número de orden en el censo.]
+[0.0 → 0.0] TERCERO. Notificar la designación a los interesados en el plazo de tres días y remitir a la Junta
+[0.0 → 0.0] Electoral de Zona los nombramientos respectivos a los efectos oportunos.
+[0.0 → 0.0] Audio: 01.mp3
+[0.0 → 0.0] Video: http://videople.es/5402
+[0.0 → 0.0] Y no habiendo otros asuntos que tratar por el Sr. Presidente se levantó la sesión siendo las
+[0.0 → 0.0] 08:38 horas del mismo día de su iniciación.
+[0.0 → 0.0] 60
