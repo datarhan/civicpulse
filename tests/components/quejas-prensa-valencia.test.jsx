@@ -389,7 +389,8 @@ for (const { nombre, Pagina, datos, pares, ahora } of PAGINAS) {
  * página elige con la cifra. Se pinta /quejas con una de cada y con dos de cada, con el
  * registro publicado recortado, y se busca la variante que toca, rellena con su cifra,
  * y que la otra NO salga: «resoluciones · 1 año» cabe dentro de «resoluciones · 1
- * años», así que encontrar la buena no basta.
+ * años», así que encontrar la buena no basta. Por lo mismo cada trozo se busca hasta
+ * donde acaba su palabra: sin eso, con dos, «2 año» se encontraba dentro de «2 años».
  *
  * Lo que la página llena con un elemento o con una fecha (`{enlace}`, `{fecha}`) no se
  * rellena aquí: se busca trozo a trozo lo que queda entre esos huecos.
@@ -442,6 +443,56 @@ const trozos = (plantilla, valores) =>
     .split(/\{\w+\}/)
     .filter((s) => s.trim().length >= 3)
 
+/**
+ * El texto de la página con un salto entre bloques. `textContent` los pega —«1 año» y
+ * «Contra Riba-roja», dos `<div>` vecinos, se leen «1 añoContra Riba-roja»—, y entonces
+ * no se sabe dónde acaba una palabra. Lo que va en línea (una negrita, un enlace) sigue
+ * pegado a su frase, como lo lee quien la lee.
+ */
+const BLOQUES = new Set([
+  'DIV',
+  'P',
+  'LI',
+  'UL',
+  'OL',
+  'SECTION',
+  'ARTICLE',
+  'HEADER',
+  'FOOTER',
+  'H1',
+  'H2',
+  'H3',
+  'H4',
+  'H5',
+  'H6',
+  'TABLE',
+  'TR',
+  'TD',
+  'TH',
+  'DETAILS',
+  'SUMMARY',
+  'BLOCKQUOTE',
+  'NAV',
+  'ASIDE',
+  'MAIN',
+])
+const porBloques = (nodo) => {
+  if (nodo.nodeType === 3) return nodo.textContent
+  if (nodo.nodeType !== 1 || ['STYLE', 'SCRIPT'].includes(nodo.tagName)) return ''
+  const dentro = [...nodo.childNodes].map(porBloques).join('')
+  return BLOQUES.has(nodo.tagName) ? `\n${dentro}\n` : dentro
+}
+
+/**
+ * El trozo entero: que no siga una letra («2 año» no casa dentro de «2 años»). Un trozo
+ * que acaba en espacio lo sigue un hueco —el enlace, la fecha—, y ahí sí va una letra.
+ */
+const entero = (trozo) =>
+  new RegExp(
+    `${trozo.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}${/\s$/.test(trozo) ? '' : '(?!\\p{L})'}`,
+    'u',
+  )
+
 describe('/quejas · una de cada: el singular; con dos, el plural', () => {
   it('control: el registro publicado da para dos de cada', () => {
     expect(SINDIC_PUBLICADO.items.length).toBeGreaterThanOrEqual(2)
@@ -473,11 +524,12 @@ describe('/quejas · una de cada: el singular; con dos, el plural', () => {
           trozos(tabla[n === 1 ? varias : una], { n, ...resto })
         await waitFor(() => {
           for (const fila of SINGULARES)
-            for (const trozo of toca(fila)) expect(leida(container), fila[0]).toContain(trozo)
+            for (const trozo of toca(fila))
+              expect(porBloques(container), fila[0]).toMatch(entero(trozo))
         })
-        const texto = leida(container)
+        const texto = porBloques(container)
         for (const fila of SINGULARES)
-          expect(texto, `${fila[0]}: sale la otra variante`).not.toContain(otra(fila)[0])
+          expect(texto, `${fila[0]}: sale la otra variante`).not.toMatch(entero(otra(fila)[0]))
       })
     }
 })

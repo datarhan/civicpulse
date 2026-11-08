@@ -3,6 +3,15 @@ import { render, screen, waitFor } from '@testing-library/react'
 import { MemoryRouter } from 'react-router-dom'
 import Quejas from '../../src/pages/Quejas'
 import { installFetchMock } from '../setup/mockFetch'
+import { CATALOGUE } from '../../src/i18n'
+
+/**
+ * La negrita de la frase de las fichas con una sola, leída del catálogo: «1 ficha».
+ * Estas pruebas buscaban «1 fichas», que era el plural roto que la página escribía.
+ */
+const UNA_FICHA = CATALOGUE.es['quejas.sindic.fichas.una']
+  .match(/\*\*(.+?)\*\*/)[1]
+  .replace('{n}', '1')
 
 function mountWith(data) {
   installFetchMock(data)
@@ -309,7 +318,8 @@ describe('/quejas — la tarjeta del Síndic', () => {
       '/data/sindic-expedientes.json': EXPEDIENTES,
     })
     await waitFor(() => expect(screen.getByText(/firmado/i)).toBeInTheDocument())
-    expect(screen.getByText(/1 fichas/)).toBeInTheDocument()
+    expect(screen.getByText(UNA_FICHA)).toBeInTheDocument()
+    expect(screen.queryByText(/1 fichas/)).not.toBeInTheDocument()
     expect(screen.getByText(VERBATIM)).toBeInTheDocument()
     expect(screen.getByText('Recomendación')).toBeInTheDocument()
     expect(screen.queryByText(/No hemos firmado todavía/i)).not.toBeInTheDocument()
@@ -385,7 +395,7 @@ describe('/quejas — la tarjeta del Síndic', () => {
       '/data/sindic.json': { ...SINDIC_VACIO, items: [FICHA('202502231', '12337532')] },
       '/data/sindic-expedientes.json': EXPEDIENTES,
     })
-    await waitFor(() => expect(screen.getByText(/1 fichas/)).toBeInTheDocument())
+    await waitFor(() => expect(screen.getByText(UNA_FICHA)).toBeInTheDocument())
     expect(
       screen.getByText(/y 1 con una resolución de «consideraciones a la Administración»/),
     ).toBeInTheDocument()
