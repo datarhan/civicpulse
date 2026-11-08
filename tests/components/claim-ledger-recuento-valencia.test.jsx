@@ -69,6 +69,7 @@ const enElPleno = (declaraciones) => ({
   '/data/pleno-findings.json': { ...HALLAZGOS, items: [] },
   '/data/pleno-videos.json': { ...VIDEOS, items: [] },
   '/data/pleno-videos-regmeet.json': { ...VIDEOS_REGMEET, items: [] },
+  '/data/pleno-video-decisiones.json': { items: [] },
   '/data/plenos-agendas.json': { ...AGENDAS, plenos: [] },
   [`/data/pleno-claims/${ID}.json`]: { ...FRAGMENTO, plenoId: ID, items: declaraciones },
 })

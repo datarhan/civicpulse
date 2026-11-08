@@ -102,6 +102,7 @@ function escenarioDe(id, nombre) {
     '/data/pleno-findings.json': HALLAZGOS,
     '/data/pleno-videos.json': VIDEOS,
     '/data/pleno-videos-regmeet.json': VIDEOS_REGMEET,
+    '/data/pleno-video-decisiones.json': lee('pleno-video-decisiones.json'),
   }
   const trozo = trozoDe(id)
   const url = `/data/pleno-claims/${id}.json`

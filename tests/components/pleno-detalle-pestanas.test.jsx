@@ -73,6 +73,7 @@ function monta({ votos = [], hallazgos = [], chunk = null } = {}) {
     },
     '/data/pleno-videos.json': { ...VIDEOS, items: [] },
     '/data/pleno-videos-regmeet.json': { ...VIDEOS_REGMEET, items: [] },
+    '/data/pleno-video-decisiones.json': { items: [] },
     '/data/plenos-agendas.json': { ...AGENDAS, plenos: [] },
   }
   if (chunk) mapa[CHUNK_URL] = chunk

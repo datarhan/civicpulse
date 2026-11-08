@@ -14,6 +14,11 @@
  * se resuelve aquí: la cola de transcripción lee sólo el canal hasta que el
  * operador decida otra cosa.
  *
+ * Lo que sí desempata es una persona: con una decisión vigente en
+ * `pleno-video-decisiones.json` se baja el vídeo elegido, también si sólo lo da
+ * regmeet. Sin ella, `buag5g` se transcribió el 01-08-2026 del vídeo que el canal
+ * titula con su fecha, que era de otra sesión de ese día.
+ *
  * Y regmeet tampoco desempata. Con dos grabaciones del canal para una fecha (el
  * directo y una subida del 23-12-2025; el «Part I» y el «Part II» del 13-02-2023),
  * que la página de la sesión incruste una no dice cuál se transcribió: el mapa de
@@ -22,6 +27,7 @@
  * bajaría otra, con otros tiempos; por eso sigue lanzando «ambiguo».
  */
 import { videoDeSesion, type FilaRegmeet } from './pleno-video-fuentes'
+import type { DecisionVideo } from './pleno-video-decisiones'
 
 export interface PlenoLite {
   id: string
@@ -50,6 +56,7 @@ export function resolveVideoForPleno(
   plenos: PlenoLite[],
   videos: VideoLite[],
   regmeet?: readonly FilaRegmeet[],
+  decisiones: readonly DecisionVideo[] = [],
 ): VideoMatch {
   const pleno = (plenos ?? []).find((p) => p.id === plenoId)
   if (!pleno) throw new Error(`pleno not found: ${plenoId}`)
@@ -59,8 +66,24 @@ export function resolveVideoForPleno(
         pleno,
         (videos ?? []).flatMap((v) => (v.ytId ? [{ ...v, ytId: v.ytId }] : [])),
         regmeet,
+        decisiones,
       )
     : null
+  if (testigo?.estado === 'decidido' && testigo.video && testigo.decision) {
+    const { video, decision } = testigo
+    return {
+      url: video.url,
+      video: {
+        plenoDate: pleno.date,
+        url: video.url,
+        ytId: video.ytId,
+        ...(video.title ? { title: video.title } : {}),
+      },
+      warnings: [
+        `elegido por la decisión del ${decision.decididoEl} (pleno-video-decisiones.json): ${decision.razon}`,
+      ],
+    }
+  }
   if (testigo?.estado === 'discrepan') {
     throw new Error(
       `discrepan el canal y regmeet para ${plenoId} (${pleno.date}): ` +

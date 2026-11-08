@@ -98,6 +98,7 @@ describe('videoDeSesion', () => {
         fuentes: ['regmeet'],
       },
       discrepancias: [],
+      decision: null,
     })
   })
 
@@ -115,7 +116,7 @@ describe('videoDeSesion', () => {
 
   it('sin vídeo: ninguna de las dos', () => {
     const r = videoDeSesion(H1237, CANAL, [fila('1237hbp', null, 'sin-video')])
-    expect(r).toEqual({ estado: 'sin-video', video: null, discrepancias: [] })
+    expect(r).toEqual({ estado: 'sin-video', video: null, discrepancias: [], decision: null })
   })
 
   it('otro vídeo: el canal tiene uno para la fecha y regmeet incrusta otro → ninguno', () => {
@@ -183,6 +184,24 @@ describe('videoDeSesion', () => {
       videoDeSesion(ZRBGIC, CANAL, []),
       videoDeSesion(H1237, CANAL, []),
       videoDeSesion(ZRBGIC, CANAL, [fila('zrbgic', 'L6Cy1hTrpIc')]),
+      // Discrepan, y una persona eligió uno (tests/pleno-video-decisiones.test.ts).
+      videoDeSesion(
+        ZRBGIC,
+        CANAL,
+        [fila('zrbgic', 'L6Cy1hTrpIc')],
+        [
+          {
+            plenoId: 'zrbgic',
+            fecha: '2026-10-05',
+            elegido: 'L6Cy1hTrpIc',
+            canal: ['C7SSTb7q0ys'],
+            regmeet: 'L6Cy1hTrpIc',
+            razon: 'Caso de prueba: la decisión que zanja una discrepancia de otro vídeo.',
+            evidencia: ['Sintético.'],
+            decididoEl: '2026-11-08',
+          },
+        ],
+      ),
     ]
     for (const c of casos) {
       expect(ESTADOS_VIDEO_SESION).toContain(c.estado)

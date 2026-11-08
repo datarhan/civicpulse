@@ -69,6 +69,7 @@ const RUTAS = {
   // «El último pleno» enlaza el vídeo de la sesión, como su página.
   videos: '/data/pleno-videos.json',
   videosRegmeet: '/data/pleno-videos-regmeet.json',
+  videoDecisiones: '/data/pleno-video-decisiones.json',
 }
 const sirve = () => Object.fromEntries(Object.values(RUTAS).map((r) => [r, publicado(r)]))
 

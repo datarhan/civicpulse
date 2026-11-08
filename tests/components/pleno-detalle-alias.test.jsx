@@ -28,6 +28,7 @@ const servido = () => ({
   '/data/pleno-findings.json': lee('pleno-findings.json'),
   '/data/pleno-videos.json': lee('pleno-videos.json'),
   '/data/pleno-videos-regmeet.json': lee('pleno-videos-regmeet.json'),
+  '/data/pleno-video-decisiones.json': lee('pleno-video-decisiones.json'),
   [`/data/pleno-claims/${ID}.json`]: lee(ENTRADA.chunkPath),
 })
 
@@ -87,6 +88,7 @@ describe('/plenos/:id por el alias legible', () => {
           '/data/pleno-findings.json',
           '/data/pleno-videos.json',
           '/data/pleno-videos-regmeet.json',
+          '/data/pleno-video-decisiones.json',
         ],
       },
       'es',

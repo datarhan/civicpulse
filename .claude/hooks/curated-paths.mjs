@@ -101,6 +101,11 @@ export const CURATED = {
   // con el anuncio del BORME que lo sostiene. `scrape:borme` trae el material a
   // .cache/; publicar lo que se afirma de una empresa lo firma una persona.
   'sociedades.json': 'curated + cited — hand-edit via PR (material: npm run scrape:borme)',
+  // Qué vídeo es el de un pleno cuando el canal y regmeet dan vídeos distintos.
+  // El transcriptor baja el elegido: una fila mal puesta atribuye a una sesión
+  // lo que se dijo en otra, como pasó con buag5g del 01-08 al 08-11-2026. Lo
+  // decide una persona con evidencia, y sólo escribe el CLI, que lo re-valida.
+  'pleno-video-decisiones.json': 'npm run video:decidir -- <plenoId> --elige|--retirar|--lista',
 }
 
 const DRAFTY = /(suggestion|draft|borrador|propuesta)/i

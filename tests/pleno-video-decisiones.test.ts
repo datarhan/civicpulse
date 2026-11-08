@@ -181,4 +181,18 @@ describe('buag5g publica la transcripción de su sesión', () => {
     expect(t).toMatch(/Sorteo de Miembros de Mesa/)
     expect(t).not.toMatch(/carrera professional horitzontal/i)
   })
+
+  it('sin la lista de particulares sorteados para las mesas, y diciendo que falta', () => {
+    // El acta publicada hasta el 01-08-2026 traía las 27 mesas con el nombre y
+    // el número de orden en el censo de cada miembro. Desde el 01-08 ya no se
+    // publicaban, y al devolver el acta (08-11-2026) se decidió no volver a
+    // publicarlas: son particulares, no cargos.
+    const t = readFileSync(resolve('public/data/pleno-transcripts/buag5g.txt'), 'utf8')
+    expect(t).not.toMatch(/ORDEN LISTA|\] Nombre:/)
+    expect(t).toMatch(/Omitida por CivicPulse: la lista de miembros de las 27 mesas electorales/)
+    // Lo demás del acta sigue: la apertura, el acuerdo y el cierre.
+    expect(t).toMatch(/siendo las 08:30 horas/)
+    expect(t).toMatch(/TERCERO\. Notificar la designación/)
+    expect(t).toMatch(/08:38 horas del mismo día/)
+  })
 })
