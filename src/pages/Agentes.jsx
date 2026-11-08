@@ -47,8 +47,7 @@ export default function Agentes() {
           <div style={{ color: 'var(--ink50)', fontSize: 'var(--fs-aux)' }}>Cargando…</div>
         ) : visibleAssignments.length === 0 ? (
           <div style={{ color: 'var(--ink50)', fontSize: 'var(--fs-aux)' }}>
-            Aún no hay asignaciones. Un curador puede crear la primera con{' '}
-            <code>npm run journalist:assign</code>.
+            Aún no hay ninguna asignación publicada.
           </div>
         ) : (
           <ul style={{ margin: 0, padding: 0, listStyle: 'none' }}>
@@ -143,7 +142,7 @@ export default function Agentes() {
           </li>
           <li>Sintetiza un borrador con secciones, citas y un grafo de relaciones.</li>
           <li>Se autoverifica y eleva la sensibilidad legal cuando detecta tokens judiciales.</li>
-          <li>El curador revisa el borrador y lo publica (o lo descarta) desde el dashboard.</li>
+          <li>Una persona del equipo revisa el borrador y lo publica o lo descarta.</li>
           <li>Cada informe publicado acepta derecho de réplica por formulario público.</li>
         </ol>
       </Card>

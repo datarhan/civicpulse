@@ -43,7 +43,10 @@ test.describe('Reportaje · reconstrucción DANA (/reportajes/reconstruccion-dan
 
     const c = META.correcciones[0]
     const resumen = primeraFrase(c.texto)
-    await expect(page.getByText(`Corrección · ${c.fecha}`)).toBeVisible({ timeout: 8000 })
+    const entrada = rellena(CATALOGUE.es['reportajes.correcciones.entrada'], {
+      fecha: fmtDateLong(c.fecha),
+    })
+    await expect(page.getByText(entrada)).toBeVisible({ timeout: 8000 })
     await expect(page.getByText(resumen).first()).toBeVisible()
 
     // Un trozo del cuerpo que NO está en el summary: oculto hasta abrir.
@@ -61,13 +64,11 @@ test.describe('Reportaje · reconstrucción DANA (/reportajes/reconstruccion-dan
     // la misma entrada también: un párrafo añadido el mismo día puede citar la
     // corrección anterior con las mismas palabras (la gráfica por mes, 19-10),
     // así que se mira la PRIMERA, que es el cuerpo que sigue al summary.
-    const pliegue = page.locator('section#correcciones details', {
-      hasText: `Corrección · ${c.fecha}`,
-    })
+    const pliegue = page.locator('section#correcciones details', { hasText: entrada })
     await expect(pliegue).toHaveCount(1)
     await expect(pliegue.getByText(cuerpo, { exact: false }).first()).toBeHidden()
 
-    await page.getByText(`Corrección · ${c.fecha}`).click()
+    await page.getByText(entrada).click()
     await expect(pliegue.getByText(cuerpo, { exact: false }).first()).toBeVisible()
   })
 

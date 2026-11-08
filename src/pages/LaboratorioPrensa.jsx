@@ -111,7 +111,7 @@ function VerdictMix({ counts }) {
   if (entries.length === 0) {
     return (
       <span className="mono" style={{ fontSize: 'var(--fs-micro)', color: 'var(--ink50)' }}>
-        sin claims auditados
+        sin afirmaciones cotejadas
       </span>
     )
   }
@@ -1011,7 +1011,7 @@ export default function LaboratorioPrensa() {
         <KPI
           label="Tasa de verificación"
           value={fmtPct(summary.verificadoRatio)}
-          hint={`${summary.verificadoClaims} de ${summary.totalClaims} claims · últimos 30 días`}
+          hint={`${summary.verificadoClaims} de ${summary.totalClaims} afirmaciones · últimos 30 días`}
         />
         {/* El pie dice ENTRE QUÉ se divide. Decía «de 36 claims» cuando el
             divisor real era 1 —las 36 son el corpus, no lo examinado—, y así
@@ -1048,7 +1048,7 @@ export default function LaboratorioPrensa() {
           <KPI
             label="Hallazgos automáticos"
             value={fmtNumber(hallazgos.automaticos)}
-            hint="lotes del curador automático · sin revisión humana"
+            hint="tandas de un proceso automático · sin revisión humana"
           />
         )}
       </div>
@@ -1082,13 +1082,21 @@ export default function LaboratorioPrensa() {
           fontSize: 'var(--fs-meta)',
         }}
       >
-        <label style={{ display: 'flex', gap: 6, alignItems: 'center' }}>
+        {/* Un <select> mide lo que su opción más larga, y los medios llegan cada
+            noche: desde el 04-11-2026 está «Federación de Ajedrez de la Comunidad
+            Valenciana – FACV», y el filtro empujaba la página a 419 px en un móvil
+            de 375. Se encoge con la fila; la opción entera sigue en la lista. */}
+        <label
+          style={{ display: 'flex', gap: 6, alignItems: 'center', minWidth: 0, maxWidth: '100%' }}
+        >
           Medio:{' '}
           <select
             aria-label="Filtrar por medio"
             value={outletFilter}
             onChange={(e) => setOutletFilter(e.target.value)}
             style={{
+              minWidth: 0,
+              maxWidth: '100%',
               padding: '4px 8px',
               border: '1px solid var(--border2)',
               borderRadius: 'var(--r-input)',
@@ -1158,12 +1166,11 @@ export default function LaboratorioPrensa() {
                 eyebrow="Sin resultados"
                 title="No hay artículos que coincidan con el filtro"
               />
+              {/* Respondía a un filtro sin resultados con cuatro órdenes «si acabas
+                  de instalar el laboratorio»: lo que se ve al pedir un medio y un
+                  veredicto que no casan. */}
               <p style={{ fontSize: 'var(--fs-aux)', color: 'var(--ink70)', marginTop: 6 }}>
-                Si acabas de instalar el laboratorio, ejecuta{' '}
-                <code>npm run extract:press-claims</code> + <code>npm run verify:press-claims</code>{' '}
-                + <code>npm run summarize:press</code> +{' '}
-                <code>npm run compute:press-analytics</code> para poblar los snapshots.{' '}
-                {CADENCIA_LABORATORIO}
+                Prueba con otro medio o con otro veredicto. {CADENCIA_LABORATORIO}
               </p>
             </Card>
           )}

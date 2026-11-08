@@ -18,7 +18,12 @@ export function lista(partes, locale) {
   return new Intl.ListFormat(locale, { style: 'long', type: 'conjunction' }).format(partes)
 }
 
-/** Los puntos de una parte, con su etiqueta llana; el título entero en `title`. */
+/**
+ * Los puntos de una parte, con su etiqueta llana; el título entero en `title`.
+ * La etiqueta es el título de la sede sin el código ni el área, así que lleva
+ * `data-literal`: las guardas de nuestra prosa (`en-breve-frases.spec.ts`,
+ * `interno.spec.ts`) no la miden como frase nuestra.
+ */
 function Puntos({ rotulo, puntos, urgente }) {
   if (puntos.length === 0) return null
   return (
@@ -31,7 +36,7 @@ function Puntos({ rotulo, puntos, urgente }) {
             {/* La marca de urgencia va fuera del texto recortado: dentro, un
                 título largo la escondía detrás de los puntos suspensivos. */}
             <span>
-              <span className="cp-plenos-puntos-texto" title={p.titulo}>
+              <span className="cp-plenos-puntos-texto" title={p.titulo} data-literal="">
                 {p.texto}
               </span>
               {p.urgente && <span className="cp-plenos-puntos-urgente">{urgente}</span>}

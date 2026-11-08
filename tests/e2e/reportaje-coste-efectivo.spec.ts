@@ -189,7 +189,15 @@ test.describe('Reportaje · coste efectivo (/reportajes/coste-efectivo)', () => 
       page.getByText(/el artículo 22\.2 de la Ley 19\/2013 sólo permite el acceso/),
     ).toBeVisible()
     await expect(page.getByText(/a los posibles terceros afectados/)).toBeVisible()
-    expect(await page.getByText(/18 de octubre de 2026/).count()).toBe(0)
+    // Fuera del registro de correcciones, que fecha cada una con su día: hay una
+    // del 18-10-2026, y desde que el registro escribe la fecha entera se lee así.
+    // Sobre el texto entero, plegado o no, como el `getByText` de antes.
+    const sinElRegistro = await page.evaluate(() => {
+      const copia = document.body.cloneNode(true) as HTMLElement
+      copia.querySelector('#correcciones')?.remove()
+      return copia.textContent ?? ''
+    })
+    expect(sinElRegistro).not.toContain('18 de octubre de 2026')
     expect(await filaComision.textContent()).not.toMatch(/vence el|terminó|se reanuda/)
     // Con qué calendario se cuenta cada una lo dice una frase bajo la nota,
     // sacada de las filas: aquí escriben al Ayuntamiento, a la Generalitat y a un

@@ -491,6 +491,7 @@ function ReadyToEscalate({ items }) {
 }
 
 function TopPending({ items }) {
+  const t = useT()
   const etiqueta = useEtiquetasDeQueja()
   const barrios = useGeo().data?.neighborhoods
   const pending = (items || [])
@@ -504,7 +505,7 @@ function TopPending({ items }) {
   if (pending.length === 0) return null
   return (
     <Card style={{ marginTop: 14 }}>
-      <SectionHead eyebrow="Presión vecinal · top 10" title="Quejas pendientes con más apoyos" />
+      <SectionHead eyebrow={t('dashboard.apoyos.eyebrow')} title={t('dashboard.apoyos.titulo')} />
       <div style={{ marginTop: 10 }}>
         {pending.map((q) => (
           <Link

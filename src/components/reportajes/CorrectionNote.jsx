@@ -27,6 +27,8 @@
  * que el test que lo fijó siga leyéndolo de aquí.
  */
 import { trozos, primeraFrase } from '../../lib/texto-negrita.js'
+import { useLocale } from '../../i18n'
+import { fmtDateLong, rellena } from '../../lib/formatters'
 export { trozos, primeraFrase }
 
 /** El ancla del registro al final de la pieza, compartida por el aviso y el registro. */
@@ -39,11 +41,17 @@ const ultima = (correcciones) => correcciones.map((c) => c.fecha).reduce((a, b) 
  * Una línea sobre los KPIs: cuántas correcciones hay y la fecha de la última,
  * con un enlace al registro del final. Mismo tono crit que el registro, para
  * que el lector reconozca las dos piezas como la misma cosa.
+ *
+ * Decía «Esta pieza tiene 9 correcciones», en castellano también con la
+ * interfaz en valencià, y con la fecha en ISO. Ahora habla como la etiqueta del
+ * índice («Con 9 correcciones publicadas»): un registro que se lleva, no un
+ * recuento de errores, y con la fecha escrita para leerla.
  */
 export function CorrectionNotice({ correcciones, style }) {
+  const { t, locale } = useLocale()
   if (!correcciones?.length) return null
   const n = correcciones.length
-  const fecha = ultima(correcciones)
+  const fecha = fmtDateLong(ultima(correcciones), locale)
   return (
     <p
       className="mono cp-ancho"
@@ -60,15 +68,21 @@ export function CorrectionNotice({ correcciones, style }) {
       }}
     >
       <strong style={{ color: 'var(--crit-ink)' }}>
-        {n === 1 ? 'Esta pieza tiene una corrección' : `Esta pieza tiene ${n} correcciones`}
-      </strong>
-      {n === 1 ? `, del ${fecha}` : ` · la última, del ${fecha}`} ·{' '}
+        {n === 1
+          ? rellena(t('reportajes.correcciones.aviso.una'), { fecha })
+          : rellena(t('reportajes.correcciones.aviso.varias'), { n, fecha })}
+      </strong>{' '}
+      ·{' '}
       <a
         href={`#${ANCLA_CORRECCIONES}`}
         // El enlace no se parte: a 375px la flecha se quedaba sola en su línea.
         style={{ color: 'var(--crit-ink)', whiteSpace: 'nowrap' }}
       >
-        {n === 1 ? 'verla al final ↓' : 'verlas al final ↓'}
+        {t(
+          n === 1
+            ? 'reportajes.correcciones.aviso.verUna'
+            : 'reportajes.correcciones.aviso.verVarias',
+        )}
       </a>
     </p>
   )
@@ -82,6 +96,7 @@ export function CorrectionNotice({ correcciones, style }) {
  * porqué entero lo abre.
  */
 export function CorrectionNote({ correcciones }) {
+  const { t, locale } = useLocale()
   if (!correcciones?.length) return null
   return (
     <section
@@ -105,7 +120,7 @@ export function CorrectionNote({ correcciones }) {
           borderTop: '1px solid var(--border)',
         }}
       >
-        Correcciones
+        {t('reportajes.correcciones.titulo')}
       </h2>
       {correcciones.map((c) => (
         <details
@@ -123,7 +138,11 @@ export function CorrectionNote({ correcciones }) {
           }}
         >
           <summary style={{ cursor: 'pointer' }}>
-            <strong style={{ color: 'var(--crit-ink)' }}>Corrección · {c.fecha}.</strong>{' '}
+            <strong style={{ color: 'var(--crit-ink)' }}>
+              {rellena(t('reportajes.correcciones.entrada'), {
+                fecha: fmtDateLong(c.fecha, locale),
+              })}
+            </strong>{' '}
             {primeraFrase(c.texto)}
           </summary>
           <div style={{ marginTop: 8 }}>
