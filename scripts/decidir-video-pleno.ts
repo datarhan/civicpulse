@@ -22,6 +22,7 @@
 import { existsSync, readFileSync } from 'node:fs'
 import { resolve } from 'node:path'
 import { writeSnapshot } from './lib/snapshot-io'
+import { rechazarOpcionesDesconocidas } from '../src/scraper/opciones-cli'
 import {
   prepararDecision,
   validarDecisiones,
@@ -73,6 +74,13 @@ function valores(args: string[], flag: string): string[] {
 }
 
 function main(args: string[]) {
+  // Antes de leer nada: una opción que no conoce (un `--dry-run` supuesto) no
+  // puede colarse y dejar que la orden escriba (tests/opciones-desconocidas-cli.test.ts).
+  rechazarOpcionesDesconocidas(
+    'video:decidir',
+    { banderas: ['--lista'], conValor: ['--elige', '--razon', '--evidencia', '--retirar'] },
+    args,
+  )
   const a = cargar()
   if (args.includes('--lista')) {
     if (a.items.length === 0) console.log('[video:decidir] ninguna decisión')
