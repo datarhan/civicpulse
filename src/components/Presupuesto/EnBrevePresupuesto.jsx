@@ -173,6 +173,33 @@ export default function EnBrevePresupuesto() {
 
   if (r.limite) {
     const l = r.limite
+    // Con la cifra por vecino, la frase la parte en lo de partida y lo añadido:
+    // la cabecera de la página dice «… por habitante» del aprobado de CONPREL,
+    // y sin las dos partes el vecino ve dos precios de lo mismo y ninguna
+    // suma que los junte (auditoría de las dos lecturas, §5.2).
+    // Cada variante es una llamada literal: el guard del catálogo lee la clave y
+    // los huecos de la propia llamada a `rellena`.
+    const p = l.porVecinoPartes
+    const inicial = eurosBreves(l.inicial)
+    const mod = eurosBreves(l.modificaciones)
+    const fraseLimite = () => {
+      if (p && l.enCurso)
+        return rellena(t('presupuesto.enBreve.limite.frase.enCurso.porVecino'), {
+          inicial,
+          mod,
+          inicialVecino: euros(p.inicial),
+          modVecino: euros(p.anadido),
+        })
+      if (p)
+        return rellena(t('presupuesto.enBreve.limite.frase.porVecino'), {
+          inicial,
+          mod,
+          inicialVecino: euros(p.inicial),
+          modVecino: euros(p.anadido),
+        })
+      if (l.enCurso) return rellena(t('presupuesto.enBreve.limite.frase.enCurso'), { inicial, mod })
+      return rellena(t('presupuesto.enBreve.limite.frase'), { inicial, mod })
+    }
     tarjetas.push(
       <TarjetaEnBreve
         key="limite"
@@ -189,23 +216,19 @@ export default function EnBrevePresupuesto() {
             : undefined
         }
         figura={<FiguraLimite limite={l} />}
-        frases={[
-          l.enCurso
-            ? rellena(t('presupuesto.enBreve.limite.frase.enCurso'), {
-                inicial: eurosBreves(l.inicial),
-                mod: eurosBreves(l.modificaciones),
-              })
-            : rellena(t('presupuesto.enBreve.limite.frase'), {
-                inicial: eurosBreves(l.inicial),
-                mod: eurosBreves(l.modificaciones),
-              }),
-        ]}
+        frases={[fraseLimite()]}
         salvedad={
           l.conprelDiscrepa != null
-            ? rellena(t('presupuesto.enBreve.limite.dosFuentes'), {
-                year: l.year,
-                conprel: eurosBreves(l.conprelDiscrepa),
-              })
+            ? l.conprelPorVecino != null
+              ? rellena(t('presupuesto.enBreve.limite.dosFuentes.porVecino'), {
+                  year: l.year,
+                  conprel: eurosBreves(l.conprelDiscrepa),
+                  conprelVecino: euros(l.conprelPorVecino),
+                })
+              : rellena(t('presupuesto.enBreve.limite.dosFuentes'), {
+                  year: l.year,
+                  conprel: eurosBreves(l.conprelDiscrepa),
+                })
             : undefined
         }
         ancla="#cascada"

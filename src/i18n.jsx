@@ -2273,12 +2273,16 @@ export const CATALOGUE = {
     'presupuesto.enBreve.porVecino': '{x} por vecino',
     'presupuesto.enBreve.limite.frase':
       'Empezó el año con {inicial} y durante el año se le añadieron {mod}. Es un [[creditoDefinitivo|tope del presupuesto]], no un gasto.',
+    'presupuesto.enBreve.limite.frase.porVecino':
+      'Empezó el año con {inicial} ({inicialVecino} por vecino) y durante el año se le añadieron {mod} ({modVecino} por vecino). Es un [[creditoDefinitivo|tope del presupuesto]], no un gasto.',
     'presupuesto.enBreve.limite.inicial': 'Al empezar · {x}',
     'presupuesto.enBreve.limite.mod': 'Añadido · {x}',
     'presupuesto.enBreve.limite.figura':
       'Barra: {inicial} al empezar el año más {mod} añadidos, en total {definitivo}.',
     'presupuesto.enBreve.limite.dosFuentes':
       'El Ministerio de Hacienda (CONPREL) da otra cifra de partida para {year}: {conprel}. Las dos fuentes no cuadran y no elegimos una.',
+    'presupuesto.enBreve.limite.dosFuentes.porVecino':
+      'El Ministerio de Hacienda (CONPREL) da otra cifra de partida para {year}: {conprel}, {conprelVecino} por vecino. Las dos fuentes no cuadran y no elegimos una.',
     'presupuesto.enBreve.aprobado.pregunta': '¿Cuánto dinero tiene para gastar en {year}?',
     'presupuesto.enBreve.aprobado.frase':
       'Es el presupuesto aprobado según el Ministerio de Hacienda: un [[creditoDefinitivo|tope]], no un gasto. Cuánto se ha gastado aparecerá cuando el Ayuntamiento publique su estado de ejecución.',
@@ -2542,6 +2546,8 @@ export const CATALOGUE = {
     'presupuesto.enBreve.limite.pregunta.enCurso': '¿Cuánto dinero tiene para gastar en {year}?',
     'presupuesto.enBreve.limite.frase.enCurso':
       'Empezó el año con {inicial} y en lo que va de año se le han añadido {mod}. Es un [[creditoDefinitivo|tope del presupuesto]], no un gasto.',
+    'presupuesto.enBreve.limite.frase.enCurso.porVecino':
+      'Empezó el año con {inicial} ({inicialVecino} por vecino) y en lo que va de año se le han añadido {mod} ({modVecino} por vecino). Es un [[creditoDefinitivo|tope del presupuesto]], no un gasto.',
     'presupuesto.enBreve.gastado.frase.enCurso':
       'De cada 100 € que puede gastar en {year}, lleva [[obligacionesReconocidas|gastados]] {n}.',
     'presupuesto.enBreve.gastado.fecha.enCurso': 'Datos a {fecha}: el año todavía no ha terminado.',
@@ -5258,12 +5264,16 @@ export const CATALOGUE = {
     'presupuesto.enBreve.porVecino': '{x} per veí',
     'presupuesto.enBreve.limite.frase':
       "Va començar l'any amb {inicial} i durant l'any se li van afegir {mod}. És un [[creditoDefinitivo|límit del pressupost]], no una despesa.",
+    'presupuesto.enBreve.limite.frase.porVecino':
+      "Va començar l'any amb {inicial} ({inicialVecino} per veí) i durant l'any se li van afegir {mod} ({modVecino} per veí). És un [[creditoDefinitivo|límit del pressupost]], no una despesa.",
     'presupuesto.enBreve.limite.inicial': 'En començar · {x}',
     'presupuesto.enBreve.limite.mod': 'Afegit · {x}',
     'presupuesto.enBreve.limite.figura':
       "Barra: {inicial} en començar l'any més {mod} afegits, en total {definitivo}.",
     'presupuesto.enBreve.limite.dosFuentes':
       "El Ministeri d'Hisenda (CONPREL) dona una altra xifra de partida per a {year}: {conprel}. Les dues fonts no quadren i no en triem cap.",
+    'presupuesto.enBreve.limite.dosFuentes.porVecino':
+      "El Ministeri d'Hisenda (CONPREL) dona una altra xifra de partida per a {year}: {conprel}, {conprelVecino} per veí. Les dues fonts no quadren i no en triem cap.",
     'presupuesto.enBreve.aprobado.pregunta': 'Quants diners té per a gastar en {year}?',
     'presupuesto.enBreve.aprobado.frase':
       "És el pressupost aprovat segons el Ministeri d'Hisenda: un [[creditoDefinitivo|límit]], no una despesa. Quant s'ha gastat apareixerà quan l'Ajuntament publique el seu estat d'execució.",
@@ -5512,6 +5522,8 @@ export const CATALOGUE = {
     'presupuesto.enBreve.limite.pregunta.enCurso': 'Quants diners té per a gastar en {year}?',
     'presupuesto.enBreve.limite.frase.enCurso':
       "Va començar l'any amb {inicial} i en el que va d'any se li han afegit {mod}. És un [[creditoDefinitivo|límit del pressupost]], no una despesa.",
+    'presupuesto.enBreve.limite.frase.enCurso.porVecino':
+      "Va començar l'any amb {inicial} ({inicialVecino} per veí) i en el que va d'any se li han afegit {mod} ({modVecino} per veí). És un [[creditoDefinitivo|límit del pressupost]], no una despesa.",
     'presupuesto.enBreve.gastado.frase.enCurso':
       'De cada 100 € que pot gastar en {year}, en porta [[obligacionesReconocidas|gastats]] {n}.',
     'presupuesto.enBreve.gastado.fecha.enCurso': "Dades a {fecha}: l'any encara no ha acabat.",
