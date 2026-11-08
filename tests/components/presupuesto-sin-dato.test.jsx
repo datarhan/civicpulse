@@ -53,25 +53,8 @@ const publicado = (ruta) =>
 const RUTAS = [
   '/data/budget.json',
   '/data/budget-execution.json',
-  '/data/obras.json',
-  '/data/bdns.json',
   '/data/deuda-viva.json',
-  '/data/tenders.json',
-  '/data/tenders-ted.json',
   '/data/tender-geo.json',
-  '/data/cpv-labels.json',
-  '/data/entities.json',
-  '/data/geo.json',
-  '/data/quejas.json',
-  '/data/queja-contract-relations.json',
-  '/data/queja-contract-relations-approved.json',
-]
-
-const AL_PULSAR = [
-  '/data/entities.json',
-  '/data/quejas.json',
-  '/data/queja-contract-relations.json',
-  '/data/queja-contract-relations-approved.json',
 ]
 
 /** El snapshot publicado, con los huecos que `vacia` le haga. */
@@ -86,7 +69,6 @@ const escenario = (mapa) => ({
   fetch: mapa,
   pinta: () => <Presupuesto />,
   listo: (c) => Boolean(c.querySelector('[data-capitulo]')),
-  alPulsar: AL_PULSAR,
 })
 
 const leeTodo = (c) => [c.textContent ?? '']

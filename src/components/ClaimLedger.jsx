@@ -211,6 +211,9 @@ function ClaimCard({ item }) {
           lineHeight: 1.5,
           fontStyle: resumen === null || sinLista ? 'italic' : 'normal',
         }}
+        // El resumen guardado se imprime tal como lo dejó el verificador: no es
+        // prosa de la página, y sus palabras se corrigen en su origen.
+        data-literal={resumen === null || sinLista ? undefined : ''}
       >
         {resumen === null
           ? t(CLAVE_RESUMEN_RETIRADO)

@@ -264,7 +264,8 @@ async function main() {
   // Fail CLOSED on the other legal gate too. Which groups hold a single seat
   // decides which drafts name a councillor by elimination; with no roster that
   // is unknowable, and reading «unknown» as «none» would publish all of them.
-  const oneSeat = oneSeatBlocsOf(loadJson<OfficialsDoc>(OFFICIALS))
+  const officials = loadJson<OfficialsDoc>(OFFICIALS)
+  const oneSeat = oneSeatBlocsOf(officials)
   if (oneSeat === null) {
     process.stderr.write(
       `[auto-curate] ${OFFICIALS} missing or empty — cannot tell which groups hold one seat, refusing to publish\n`,
@@ -423,7 +424,7 @@ async function main() {
     })
 
     accepted.push(finding)
-    const own = publicationDecision(finding, oneSeat, measurements)
+    const own = publicationDecision(finding, officials, measurements)
     decisions.set(finding.id, own)
     process.stdout.write(
       `[auto-curate]   ✓ ${bundle.plenoId}/${bundle.topic} · score=${bundle.score.toFixed(2)} · ${finding.id}\n` +

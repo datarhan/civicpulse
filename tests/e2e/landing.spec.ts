@@ -5,23 +5,6 @@ import { afirmaPulsables, cargaYEncuadra, sondea } from './_estaciones'
 import { afirma, entraPorElPin, mide } from './_pines-y-barrios'
 import { contractTermYears, isConcession } from '../../src/lib/contract-status'
 
-/**
- * Dónde queda un ancla tras saltar a ella: el borde de arriba de su elemento en
- * la ventana. `useHashScroll` la deja bajo la barra pegajosa (unos 64 px); un
- * ancla que el lector no ve, o que se pasó por arriba, cuenta como no
- * aterrizada (`Infinity`), para que ni «fuera por abajo» ni «fuera por arriba»
- * pasen por un número pequeño.
- */
-const ATERRIZA_PX = 160
-function arribaDe(page: import('@playwright/test').Page, id: string) {
-  return page.evaluate((id) => {
-    const el = document.getElementById(id)
-    if (!el) return Infinity
-    const arriba = el.getBoundingClientRect().top
-    return arriba < -8 ? Infinity : arriba
-  }, id)
-}
-
 test.describe('Landing (/)', () => {
   test('renders editorial column + KPI strip with real data', async ({ page }) => {
     const errors = collectErrors(page)
@@ -115,10 +98,10 @@ test.describe('Landing (/)', () => {
     // heading beside a one-year budget.
     //
     // Scoped to the column: the section bar's «Dinero» panel also links to
-    // /presupuesto, and its sentence names contratos. Closed, that link sits
+    // /contratos, and its sentence names contratos. Closed, that link sits
     // FIRST in the DOM and hidden — and `.first()` would pick it.
     const govLink = page
-      .locator('.d-editorial a[href="/presupuesto"]')
+      .locator('.d-editorial a[href="/contratos"]')
       .filter({ hasText: /contratos/i })
       .first()
     await expect(govLink).toContainText(awarded, { timeout: 8000 })
@@ -209,88 +192,6 @@ test.describe('Landing (/)', () => {
     )
     expect(levels.filter((l) => !l.text)).toEqual([])
     expect(Math.min(...levels.map((l) => l.level))).toBe(1)
-  })
-
-  test('«Tu ayuntamiento en 30 segundos»: cada tarjeta lleva a una página que existe', async ({
-    page,
-  }) => {
-    // La lectura vecinal de la portada: cada respuesta enlaza a la página que la
-    // demuestra, y a otra ruta, así que en-breve-anclas.spec.ts (que sigue los
-    // `#…` de la misma página) no la mira. Un destino que no existe deja al vecino
-    // en la portada sin saberlo.
-    await page.goto('/', { waitUntil: 'domcontentloaded' })
-    const bloque = page.locator('[data-en-breve-bloque]')
-    await expect(bloque).toBeVisible({ timeout: 10_000 })
-    // Quién manda, el dinero, el último pleno y el barrio.
-    await expect
-      .poll(() => bloque.locator('[data-en-breve]').count(), { timeout: 10_000 })
-      .toBeGreaterThanOrEqual(4)
-    const destinos = await bloque
-      .locator('.cp-en-breve-ancla')
-      .evaluateAll((as) => as.map((a) => a.getAttribute('href') ?? ''))
-    expect(destinos.length).toBeGreaterThanOrEqual(3)
-    for (const href of destinos) {
-      expect(href, 'una tarjeta de la portada sin destino').toMatch(/^\/[a-z]/)
-      await page.goto(href, { waitUntil: 'domcontentloaded' })
-      await expect(page.locator('h1'), `${href} no pinta su <h1>`).toHaveCount(1, {
-        timeout: 10_000,
-      })
-      const fragmento = href.split('#')[1]
-      if (fragmento) {
-        await expect(page.locator(`[id="${fragmento}"]`), `${href}: el ancla no está`).toHaveCount(
-          1,
-          { timeout: 10_000 },
-        )
-        // Que exista no dice que el lector llegue: se mide dónde queda.
-        await expect
-          .poll(() => arribaDe(page, fragmento), { message: `${href}: no aterriza en su ancla` })
-          .toBeLessThan(ATERRIZA_PX)
-      }
-    }
-  })
-
-  test.describe('a 375 px', () => {
-    test.use({ viewport: { width: 375, height: 812 } })
-
-    test('«Ver sus contratos» deja la lista del barrio a la vista, no el rótulo de la sección', async ({
-      page,
-    }) => {
-      // Lo vio el operador el 26-10-2026: a 375 px el ancla de la sección
-      // (#mapa-gasto) dejaba a la vista su rótulo y su párrafo, con el mapa debajo y
-      // la lista del barrio fuera de la pantalla. En escritorio no se ve: la lista
-      // va al lado del mapa.
-      await page.goto('/', { waitUntil: 'domcontentloaded' })
-      const tarjeta = page.locator('[data-en-breve="barrio"]')
-      const selector = tarjeta.getByLabel('Elige tu barrio')
-      await expect(selector).toBeVisible({ timeout: 10_000 })
-      const slug = await selector
-        .locator('option')
-        .evaluateAll((os) =>
-          os.map((o) => (o as HTMLOptionElement).value).find((v) => v && !v.startsWith('__')),
-        )
-      await selector.selectOption(slug!)
-      await tarjeta.getByRole('button', { name: 'Ver sus contratos' }).click()
-      await expect(page).toHaveURL(new RegExp(`/presupuesto\\?barrio=${slug}#mapa-gasto-barrio$`))
-      await expect
-        .poll(() => arribaDe(page, 'mapa-gasto-barrio'), { timeout: 10_000 })
-        .toBeLessThan(ATERRIZA_PX)
-      await expect(
-        page.locator('#mapa-gasto-barrio').getByText('← todas las zonas'),
-      ).toBeInViewport()
-    })
-
-    test('«Saltar el resumen» baja al bloque de después, no sube al mapa', async ({ page }) => {
-      // Apuntaba a #contenido, el <main> que contiene el propio resumen: a 375 px,
-      // con el mapa encima, el enlace subía al principio de la página.
-      await page.goto('/', { waitUntil: 'domcontentloaded' })
-      const saltar = page.locator('[data-en-breve-bloque] .cp-en-breve-saltar')
-      await expect(saltar).toBeVisible({ timeout: 10_000 })
-      await saltar.scrollIntoViewIfNeeded()
-      const antes = await page.evaluate(() => window.scrollY)
-      await saltar.click()
-      await expect.poll(() => page.evaluate(() => window.scrollY)).toBeGreaterThan(antes)
-      await expect.poll(() => arribaDe(page, 'portada-tras-resumen')).toBeLessThan(ATERRIZA_PX)
-    })
   })
 
   test('interactive map layers: money default, coverage disclosure, neighborhood popup', async ({

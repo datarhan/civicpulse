@@ -50,6 +50,11 @@ npm run scrape:all   # the nightly, locally: every autonomous adapter + its gate
 `npm run` lists all of them, including the curator CLIs. Do not re-catalogue
 them here — the hand-kept list drifted from reality every time it was tried.
 
+**The unit suite has two projects, split by extension** (`vitest.config.ts`):
+`.jsx`/`.tsx` get happy-dom, `.js`/`.ts` get Node. A `.js`/`.ts` test that needs
+a DOM declares it on its first line (`// @vitest-environment happy-dom`). Vitest
+finds that string anywhere in a file, so a comment that quotes it declares it.
+
 **Git hooks** (`.husky/`; each gate's reason is in its comments): pre-commit
 runs `lint`, `format:check`, `check:json`, `check:sparse` and the staged-only
 scans `check:secrets`, `check:privado`, `check:editorial`, `check:metadatos`,
@@ -169,7 +174,7 @@ Figures are per-domain SVG components (`src/components/Charts.jsx` holds only
 `Sparkline`). The landing's Leaflet map, `LiveCity/StylizedMap.jsx`, is a
 thin orchestrator over `network/`, `popups/`, `layers/`, `controls/`; each
 toggleable layer is conditionally mounted so a hidden layer's rAF/WMS never
-runs. `/quejas`, `/presupuesto`, `/empleo`, `/reportajes/matriculas-y-moviles` and `/reportajes/reconstruccion-dana` carry their own Leaflet maps.
+runs. `/quejas`, `/contratos`, `/empleo`, `/reportajes/matriculas-y-moviles` and `/reportajes/reconstruccion-dana` carry their own Leaflet maps.
 
 Map honesty rules, which are the point of every map:
 
@@ -391,7 +396,9 @@ C: nothing is unlocked by assertion. New automation goes through it; the press
 and promise auto-curators, the declaraciones ledger and Tier A of the queja
 relations predate it and do not call it to publish yet (`docs/REVIEW_2026-09.md`
 §25; the ledger calls it only to withhold one-seat blocs), and
-`/metodologia#politica-automatizacion` lists them.
+`/metodologia#politica-automatizacion` lists them. The two curators and the
+finding curator do ask `cargos-nombrados.ts`, row by row, whether a draft names
+a cargo; it knows cargos, not people, so public copy must say «cargo».
 
 **A suggestion never substitutes for a published status.** Machine rows awaiting
 a human carry `requiresHumanApproval: true`, and the curated schemas reject that
@@ -413,9 +420,12 @@ copies `public/` into `dist/` and the deploy uploads `dist/` prebuilt, so a file
 there is fetchable by URL whether or not a page links to it ("not rendered" is
 not "not published"), and `.vercelignore` holds nothing back. The one way to
 keep a file under `public/` off the site is `publication-denylist.js`, applied
-to `dist/` by `vite.config.js`: it strips the files it names plus any JSON
-carrying `requiresHumanApproval: true` rows that no browser module requests, and
-`tests/publication-denylist.test.ts` checks the built artifact. It works one
+to `dist/` by `vite.config.js`: it strips the files it names plus any file under
+`dist/data`, whatever its extension, carrying `requiresHumanApproval: true` rows
+that no browser module requests; one it cannot judge fails the build. A backup
+under `public/data/` is gitignored because the /hallazgos cron stages the whole
+directory. `tests/publication-denylist.test.ts` checks the built artifact, in
+`e2e.yml` after the build: `npm test` has no `dist/` and skips it. It works one
 level down too: the served copy of `pleno-findings.json` loses the literal of
 every quote the editorial gate withholds (`src/scraper/literales-retenidos.ts`),
 while the repository's copy keeps it. That keeps a file off the site, not out

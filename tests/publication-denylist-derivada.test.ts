@@ -100,6 +100,21 @@ describe('repartir · cuatro suertes, nunca dos', () => {
     expect(r.servidas).toEqual(['data/pleno-claims/1080zow.json'])
   })
 
+  it('un directorio servido no avala lo que el front no pide de él', () => {
+    // El front pide `.json`, `.txt` y `.md`; una copia de un trozo al lado no.
+    const r = repartir({
+      hojas: [
+        {
+          rel: 'data/pleno-claims/1080zow.json.bak-1004',
+          texto: '[{"requiresHumanApproval":true}]',
+        },
+      ],
+      referencias,
+    })
+    expect(r.servidas).toEqual([])
+    expect(r.denegar).toEqual(['data/pleno-claims/1080zow.json.bak-1004'])
+  })
+
   it('guarda el fichero limpio aunque nadie lo pida', () => {
     const r = repartir({
       hojas: [{ rel: 'data/padron.json', texto: '[{"año":2024}]' }],

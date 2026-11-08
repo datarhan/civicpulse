@@ -1,23 +1,23 @@
 {
-  "generatedAt": "2026-10-28T06:49:20.565Z",
-  "baseHuella": "e0089ba4f299",
-  "composedAt": "2026-10-28T06:49:43.420Z",
+  "generatedAt": "2026-11-05T08:58:25.135Z",
+  "baseHuella": "8a33d689f232",
+  "composedAt": "2026-11-05T08:58:26.266Z",
   "source": {
     "description": "Fact-check verdicts for every pleno-claims-suggestions.json entry. Cross-references against tenders / BDNS / budget / promises. Pure deterministic — no LLM judgement.",
     "contract": "Machine-written verdicts; a curator reviews before surfacing contradicho or promesa-repetida editorially."
   },
   "stats": {
-    "total": 7946,
+    "total": 7959,
     "byVerdict": {
       "verificado": 9,
-      "parcial": 14,
+      "parcial": 15,
       "contradicho": 1,
-      "sin-datos": 7922,
+      "sin-datos": 7934,
       "promesa-repetida": 0
     },
     "sinDatosPorque": {
-      "sinCorpus": 3460,
-      "comprobadoSinHallar": 3291,
+      "sinCorpus": 3468,
+      "comprobadoSinHallar": 3295,
       "noConsta": 1171
     }
   },
@@ -10890,8 +10890,8 @@
         "evidence": [
           {
             "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=pK1YW0Z3femXQV0WE7lYPw%3D%3D",
-            "snippet": "contrato de concesión del servicio público de abastecimiento de agua potable, servicio de gestión de alcantarillado , control de vertidos y depuración del municipio Riba-roja de Túria, por procedimiento abierto, mejor relación calidad-precio, varios criterios de adjudicación y con cláusulas medioambientales y con condición especial de ejecución de carácter medioambiental y social. · Ayuntamiento de Riba-roja de Túria · HIDRAQUA S.A.U · public_services · 55.685.179 €",
+            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=nsi1cQdvUjpxseVhcqrkhw%3D%3D",
+            "snippet": "Formalización del contrato verbal de emergencia, de las actuaciones de emergencia del Servicio Municipal de Agua Potable, por efectos de la DANA en el Polígono Industrial Sector 13 de Riba-roja de Túria, a favor de HIDRAQUA GESTION INTEGRAL DE AGUAS DE LEVANTE con CIF nº A53223764. (Ctto. 50V-2024 -SIGA 6417/2024/GEN). · Ayuntamiento de Riba-roja de Túria · HIDRAQUA, GESTIÓN INTEGRAL DE AGUAS DE LEVANTE, S.A. · environment · 20.666 €",
             "similarity": 1,
             "stance": "checked"
           }
@@ -10929,8 +10929,8 @@
         "evidence": [
           {
             "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=pK1YW0Z3femXQV0WE7lYPw%3D%3D",
-            "snippet": "contrato de concesión del servicio público de abastecimiento de agua potable, servicio de gestión de alcantarillado , control de vertidos y depuración del municipio Riba-roja de Túria, por procedimiento abierto, mejor relación calidad-precio, varios criterios de adjudicación y con cláusulas medioambientales y con condición especial de ejecución de carácter medioambiental y social. · Ayuntamiento de Riba-roja de Túria · HIDRAQUA S.A.U · public_services · 55.685.179 €",
+            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=nsi1cQdvUjpxseVhcqrkhw%3D%3D",
+            "snippet": "Formalización del contrato verbal de emergencia, de las actuaciones de emergencia del Servicio Municipal de Agua Potable, por efectos de la DANA en el Polígono Industrial Sector 13 de Riba-roja de Túria, a favor de HIDRAQUA GESTION INTEGRAL DE AGUAS DE LEVANTE con CIF nº A53223764. (Ctto. 50V-2024 -SIGA 6417/2024/GEN). · Ayuntamiento de Riba-roja de Túria · HIDRAQUA, GESTIÓN INTEGRAL DE AGUAS DE LEVANTE, S.A. · environment · 20.666 €",
             "similarity": 1,
             "stance": "checked"
           }
@@ -115443,7 +115443,7 @@
           {
             "kind": "tender",
             "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=dukyIWQ3V8T%2Fa9DgO%2BoYKQ%3D%3D",
-            "snippet": "Contrato verbal de servicio de oficiales con maquinaria para limpiar y recoger escombro en la vía pública (Els Pous, c/ Ànimes y Pedanía del Oliveral) como consecuencia del temporal de lluvias (DANA) producido el pasado 29 de octubre de 2024 mediante tramitación de emergencia, a favor de Becsa, S.A. con CIF A46041711 · Ayuntamiento de Riba-roja de Túria · BECSA, S.A. · environment · 5706 €",
+            "snippet": "Contrato verbal de servicio de oficiales con maquinaria para limpiar y recoger escombro en la vía pública (Els Pous, c/ Ànimes y Pedanía del Oliveral) como consecuencia del temporal de lluvias (DANA) producido el pasado 29 de octubre de 2024 mediante tramitación de emergencia, a favor de Becsa, S.A. con CIF A46041711 · Ayuntamiento de Riba-roja de Túria · BECSA SAU · environment · 5706 €",
             "similarity": 1,
             "stance": "checked"
           }
@@ -145584,7 +145584,7 @@
           {
             "kind": "tender",
             "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=2qebJ%2FLgws87u6%2B%2FR7DUoA%3D%3D",
-            "snippet": "Formalización del contrato verbal de emergencia tras daños por los efectos de la DANA del pasado 29 de octubre de 2024, para el servicio de depuración de aguas residuales del sistema municipal, adjudicado a favor de HIDRAQUA GESTION INTEGRAL DE AGUAS DE LEVANTE SA con CIF A53223764 (54V/2024– SIGA 6419/2024/GEN). · Ayuntamiento de Riba-roja de Túria · HIDRAQUA S.A.U · environment · estado: awarded",
+            "snippet": "Formalización del contrato verbal de emergencia tras daños por los efectos de la DANA del pasado 29 de octubre de 2024, para el servicio de depuración de aguas residuales del sistema municipal, adjudicado a favor de HIDRAQUA GESTION INTEGRAL DE AGUAS DE LEVANTE SA con CIF A53223764 (54V/2024– SIGA 6419/2024/GEN). · Ayuntamiento de Riba-roja de Túria · HIDRAQUA, GESTIÓN INTEGRAL DE AGUAS DE LEVANTE, S.A. · environment · estado: awarded",
             "similarity": 1,
             "stance": "checked"
           }
@@ -187962,6 +187962,391 @@
       },
       "verification": {
         "claimId": "rmtyr-286-afi-cc04b8",
+        "verdict": "sin-datos",
+        "summary": "Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
+        "evidence": [],
+        "checkedAgainst": []
+      }
+    },
+    {
+      "claim": {
+        "id": "1sk3q3c-008-cit-388d8a",
+        "plenoId": "1sk3q3c",
+        "plenoDate": "2025-07-07",
+        "segmentIndex": 8,
+        "type": "cita_obra",
+        "speakerGroup": null,
+        "verbatim": "el Ayuntamiento de Riba Roja de Túria se pondría pues un poco a la altura de eh algunos ayuntamientos eh importantes que han llevado a cabo estas prácticas como el Ayuntamiento de Madrid, Barcelona o Valencia que ya han puesto en funcionamiento estas prácticas.",
+        "context": "Explicando en qué consiste un 'sandbox' (espacio controlado de pruebas para proyectos piloto de innovación), el interviniente afirma que Riba-roja de Túria se equipararía a otros ayuntamientos que ya han implementado este tipo de prácticas, citando expresamente a Madrid, Barcelona y Valencia como ejemplos de municipios que ya cuentan con este tipo de sandbox en funcionamiento.",
+        "topic": "other",
+        "entities": {
+          "referencedEntity": "sandbox / entornos controlados de prueba para innovación (comparado con madrid, barcelona y valencia)"
+        },
+        "confidence": 0.7,
+        "reasoning": "Es una afirmación fáctica comprobable sobre si los ayuntamientos de Madrid, Barcelona y Valencia tienen efectivamente implementados programas de 'sandbox' de innovación en funcionamiento; se puede contrastar contra normativa/convenios municipales publicados de esas ciudades.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "1sk3q3c-008-cit-388d8a",
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders y tenders-ted que la sostenga. Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
+        "evidence": [],
+        "checkedAgainst": [
+          "tenders",
+          "tenders-ted"
+        ]
+      }
+    },
+    {
+      "claim": {
+        "id": "1sk3q3c-009-cit-489a69",
+        "plenoId": "1sk3q3c",
+        "plenoDate": "2025-07-07",
+        "segmentIndex": 9,
+        "type": "cita_convenio",
+        "speakerGroup": null,
+        "verbatim": "el Ayuntamiento de Riba Roja de Túria se pondría pues un poco a la altura de eh algunos ayuntamientos eh importantes que han llevado a cabo estas prácticas como el Ayuntamiento de Madrid, Barcelona o Valencia que ya han puesto en funcionamiento estas prácticas",
+        "context": "Se habla de un convenio para implementar entornos controlados de prueba (sandbox) en el municipio, comparando la iniciativa con prácticas ya puestas en marcha por otros ayuntamientos.",
+        "topic": "other",
+        "entities": {
+          "referencedEntity": "sandbox regulatorio municipal (ribasandbox)"
+        },
+        "confidence": 0.55,
+        "reasoning": "Afirma que Madrid, Barcelona y Valencia ya han implementado prácticas de sandbox regulatorio municipal; es verificable contrastando con iniciativas públicas documentadas de esos ayuntamientos.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "1sk3q3c-009-cit-489a69",
+        "verdict": "sin-datos",
+        "summary": "Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
+        "evidence": [],
+        "checkedAgainst": []
+      }
+    },
+    {
+      "claim": {
+        "id": "1sk3q3c-009-cit-738560",
+        "plenoId": "1sk3q3c",
+        "plenoDate": "2025-07-07",
+        "segmentIndex": 9,
+        "type": "cita_convenio",
+        "speakerGroup": null,
+        "verbatim": "Este Samsung se anunció eh con carácter uh general se presentó a las empresas, universidades y centros de investigación el pasado twenty eight de mayo",
+        "context": "Explicación del proceso de tramitación del convenio RibaSandbox: anuncio público y presentación a empresas, universidades y centros de investigación antes de abrir un periodo de exposición pública.",
+        "topic": "other",
+        "entities": {
+          "date": "2025-05-28",
+          "referencedEntity": "ribasandbox"
+        },
+        "confidence": 0.5,
+        "reasoning": "Cita una fecha concreta (28 de mayo) de presentación pública del convenio RibaSandbox a empresas, universidades y centros de investigación, verificable contra el expediente administrativo; 'Samsung' es probable error de transcripción de Whisper por 'sandbox'.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "1sk3q3c-009-cit-738560",
+        "verdict": "sin-datos",
+        "summary": "Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
+        "evidence": [],
+        "checkedAgainst": []
+      }
+    },
+    {
+      "claim": {
+        "id": "1sk3q3c-020-cit-20c8ce",
+        "plenoId": "1sk3q3c",
+        "plenoDate": "2025-07-07",
+        "segmentIndex": 20,
+        "type": "cita_convenio",
+        "speakerGroup": null,
+        "verbatim": "el contrato de servicios de prestación de recogida de residuos eh consta de dos lotes. El lote número uno es el servicio de recogida de R.S.U., residuos sólidos urbanos, podas y luminosos y lo voluminosos.",
+        "context": "El regidor explica el punto del orden del día relativo a la adjudicación del servicio de recogida de residuos sólidos urbanos, detallando que el contrato consta de dos lotes.",
+        "topic": "medio-ambiente",
+        "entities": {
+          "count": 2,
+          "countUnit": "lotes",
+          "referencedEntity": "contrato de recogida de residuos sólidos urbanos (rsu) - ctto. 136/2025"
+        },
+        "confidence": 0.75,
+        "reasoning": "Describe la estructura del contrato de recogida de RSU vinculado al expediente 615/2025/GEN del orden del día; verificable contra el pliego/adjudicación (lote 1: recogida, podas, voluminosos).",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "1sk3q3c-020-cit-20c8ce",
+        "verdict": "sin-datos",
+        "summary": "Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
+        "evidence": [],
+        "checkedAgainst": []
+      }
+    },
+    {
+      "claim": {
+        "id": "1sk3q3c-020-cit-9fea4a",
+        "plenoId": "1sk3q3c",
+        "plenoDate": "2025-07-07",
+        "segmentIndex": 20,
+        "type": "cita_convenio",
+        "speakerGroup": null,
+        "verbatim": "Y el lote número dos, como novedad, es el servicio de asistencia técnica y apoyo para el control y super y supervisión sobre la prestación del contrato de R.S.U.",
+        "context": "Tras describir el lote 1, el regidor añade que el lote 2 es una novedad del contrato: un servicio de asistencia técnica para controlar que la recogida de residuos se realice adecuadamente.",
+        "topic": "medio-ambiente",
+        "entities": {
+          "referencedEntity": "lote 2 - servicio de asistencia técnica y apoyo para control y supervisión del contrato de rsu (novedad)"
+        },
+        "confidence": 0.75,
+        "reasoning": "Afirma que el lote 2 (asistencia técnica/supervisión) es una novedad del contrato de residuos; verificable contra el pliego de licitación y la propuesta de adjudicación del expediente 615/2025/GEN.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "1sk3q3c-020-cit-9fea4a",
+        "verdict": "sin-datos",
+        "summary": "Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
+        "evidence": [],
+        "checkedAgainst": []
+      }
+    },
+    {
+      "claim": {
+        "id": "1sk3q3c-021-afi-f13a93",
+        "plenoId": "1sk3q3c",
+        "plenoDate": "2025-07-07",
+        "segmentIndex": 21,
+        "type": "afirmacion_numerica",
+        "speakerGroup": null,
+        "verbatim": "En el lote número uno, el de recogida de residuos sólidos urbanos, la duración es de c es de catorce años",
+        "context": "El concejal explica que el contrato de recogida de residuos consta de dos lotes; para el lote número uno detalla que la duración del contrato es de catorce años.",
+        "topic": "medio-ambiente",
+        "entities": {
+          "count": 14,
+          "countUnit": "años",
+          "referencedEntity": "contrato recogida rsu - lote 1"
+        },
+        "confidence": 0.85,
+        "reasoning": "Cifra concreta de duración del contrato (14 años) verificable contra el expediente de licitación 615/2025/GEN y el pliego del Ctto. 136/2025.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "1sk3q3c-021-afi-f13a93",
+        "verdict": "sin-datos",
+        "summary": "Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
+        "evidence": [],
+        "checkedAgainst": []
+      }
+    },
+    {
+      "claim": {
+        "id": "1sk3q3c-021-afi-0aec74",
+        "plenoId": "1sk3q3c",
+        "plenoDate": "2025-07-07",
+        "segmentIndex": 21,
+        "type": "afirmacion_numerica",
+        "speakerGroup": null,
+        "verbatim": "el importe base de licitación para todo el plazo en vigor es de dieciséis millones cuatrocientos sesenta mil euros más IVA, en total dieciocho millones ciento seis mil euros",
+        "context": "Tras indicar la duración del lote uno, el concejal detalla el importe base de licitación para todo el periodo contractual, con y sin IVA.",
+        "topic": "medio-ambiente",
+        "entities": {
+          "amountEuros": 18106000,
+          "referencedEntity": "contrato recogida rsu - lote 1 (ctto. 136/2025)"
+        },
+        "confidence": 0.8,
+        "reasoning": "Importe de licitación citado como hecho (16.460.000€ base + IVA, 18.106.000€ total), verificable contra el pliego de condiciones y el acuerdo de adjudicación del expediente 615/2025/GEN.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "1sk3q3c-021-afi-0aec74",
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders, tenders-ted y bdns que la sostenga. Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
+        "evidence": [],
+        "checkedAgainst": [
+          "tenders",
+          "tenders-ted",
+          "bdns"
+        ]
+      }
+    },
+    {
+      "claim": {
+        "id": "1sk3q3c-021-afi-cf88e8",
+        "plenoId": "1sk3q3c",
+        "plenoDate": "2025-07-07",
+        "segmentIndex": 21,
+        "type": "afirmacion_numerica",
+        "speakerGroup": null,
+        "verbatim": "Se han presentado cuatro ofertas de cuatro mercantiles.",
+        "context": "Tras citar el importe de licitación del lote uno, el concejal señala el número de ofertas y empresas licitadoras presentadas.",
+        "topic": "medio-ambiente",
+        "entities": {
+          "count": 4,
+          "countUnit": "ofertas",
+          "referencedEntity": "licitación ctto. 136/2025 - lote 1"
+        },
+        "confidence": 0.8,
+        "reasoning": "Número concreto de ofertas presentadas a la licitación, verificable contra el acta de la mesa de contratación del expediente 615/2025/GEN.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "1sk3q3c-021-afi-cf88e8",
+        "verdict": "sin-datos",
+        "summary": "Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
+        "evidence": [],
+        "checkedAgainst": []
+      }
+    },
+    {
+      "claim": {
+        "id": "1sk3q3c-022-afi-048ce0",
+        "plenoId": "1sk3q3c",
+        "plenoDate": "2025-07-07",
+        "segmentIndex": 22,
+        "type": "afirmacion_numerica",
+        "speakerGroup": null,
+        "verbatim": "En el lote número uno, el de recogida de residuos sólidos urbanos, la duración es de c es de catorce años y el importe base de licitación para todo el plazo en vigor es de dieciséis millones cuatrocientos sesenta mil euros más IVA, en total dieciocho millones ciento seis mil euros.",
+        "context": "Se describe el lote 1 del contrato de recogida de residuos sólidos urbanos del municipio: duración de catorce años e importe base de licitación de 16.460.000€ más IVA, totalizando 18.106.000€.",
+        "topic": "medio-ambiente",
+        "entities": {
+          "amountEuros": 18106000,
+          "count": 14,
+          "countUnit": "años",
+          "referencedEntity": "contrato 136/2025, lote 1 - recogida de residuos sólidos urbanos"
+        },
+        "confidence": 0.85,
+        "reasoning": "Cifra concreta de importe de licitación y duración de un contrato público (Ctto. 136/2025, lote 1) verificable contra el expediente de contratación y el BOE/perfil del contratante.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "1sk3q3c-022-afi-048ce0",
+        "verdict": "parcial",
+        "summary": "Coincidencia parcial: hay datos relacionados pero no idénticos al claim.",
+        "evidence": [
+          {
+            "kind": "tender",
+            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=oE58TiRVCfAZDGvgaZEVxQ%3D%3D",
+            "snippet": "Contrato de servicio público de recogida de residuos sólidos urbanos del municipio. · Ayuntamiento de Riba-roja de Túria · GARBIALDI, S.A. · environment · 18.106.437 €",
+            "similarity": 0.78,
+            "stance": "checked"
+          }
+        ],
+        "checkedAgainst": [
+          "tenders",
+          "tenders-ted",
+          "bdns"
+        ]
+      }
+    },
+    {
+      "claim": {
+        "id": "1sk3q3c-022-afi-6a4bc4",
+        "plenoId": "1sk3q3c",
+        "plenoDate": "2025-07-07",
+        "segmentIndex": 22,
+        "type": "afirmacion_numerica",
+        "speakerGroup": null,
+        "verbatim": "el importe base de licitación es de 172.000 Euros, mas IVA, 280.000 Euros, y el periodo también de catorce años. Ha presentado una única oferta la empresa Auditasa.",
+        "context": "Se describe el lote 2 del contrato, de asistencia técnica y apoyo para el control y supervisión del servicio: importe base de 172.000€ más IVA (280.000€ según lo dicho) y catorce años de duración, con una única oferta presentada por Auditasa.",
+        "topic": "medio-ambiente",
+        "entities": {
+          "amountEuros": 280000,
+          "count": 14,
+          "countUnit": "años",
+          "referencedEntity": "contrato 136/2025, lote 2 - asistencia técnica y supervisión, oferta de auditasa"
+        },
+        "confidence": 0.5,
+        "reasoning": "La cifra de 172.000€ más IVA no coincide aritméticamente con los 280.000€ citados (una IVA del 21% daría ~208.000€), lo que sugiere posible error de transcripción de Whisper; se marca con confianza reducida pero es verificable contra el expediente de contratación.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "1sk3q3c-022-afi-6a4bc4",
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders, tenders-ted y bdns que la sostenga. Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
+        "evidence": [],
+        "checkedAgainst": [
+          "tenders",
+          "tenders-ted",
+          "bdns"
+        ]
+      }
+    },
+    {
+      "claim": {
+        "id": "1sk3q3c-022-afi-025f75",
+        "plenoId": "1sk3q3c",
+        "plenoDate": "2025-07-07",
+        "segmentIndex": 22,
+        "type": "afirmacion_numerica",
+        "speakerGroup": null,
+        "verbatim": "En cuanto a lo que se considera la duración del contrato de catorce años, es así de acuerdo con el cálculo de retorno de la inversión, según instrucciones de la Junta Superior de Contratación Administrativa de la comunidad valenciana y, por tanto, con su informe a favor.",
+        "context": "Se justifica la duración de catorce años del contrato de residuos mediante el cálculo de retorno de inversión conforme a instrucciones de la Junta Superior de Contractació Administrativa de la Comunitat Valenciana, que habría emitido informe favorable.",
+        "topic": "other",
+        "entities": {
+          "count": 14,
+          "countUnit": "años",
+          "referencedEntity": "junta superior de contractació administrativa de la comunitat valenciana"
+        },
+        "confidence": 0.7,
+        "reasoning": "Afirma la existencia de instrucciones concretas de un organismo oficial y un informe favorable que justifican la duración del contrato, dato contrastable contra la documentación del expediente 615/2025/GEN.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "1sk3q3c-022-afi-025f75",
+        "verdict": "sin-datos",
+        "summary": "Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
+        "evidence": [],
+        "checkedAgainst": []
+      }
+    },
+    {
+      "claim": {
+        "id": "1sk3q3c-023-afi-d7f29f",
+        "plenoId": "1sk3q3c",
+        "plenoDate": "2025-07-07",
+        "segmentIndex": 23,
+        "type": "afirmacion_numerica",
+        "speakerGroup": null,
+        "verbatim": "el importe base de licitación es de 172.000 Euros, mas IVA, 280.000 Euros, y el periodo también de catorce años.",
+        "context": "Se describe el expediente de contratación (lote relacionado con el servicio de asistencia técnica y control, Ctto. 136/2025): importe base de licitación de 172.000 euros, con IVA 280.000 euros, y periodo de catorce años.",
+        "topic": "medio-ambiente",
+        "entities": {
+          "amountEuros": 172000,
+          "count": 14,
+          "countUnit": "años",
+          "referencedEntity": "importe base de licitación del contrato (con iva 280.000 euros)"
+        },
+        "confidence": 0.55,
+        "reasoning": "Cifra concreta de importe de licitación (172.000€ base / 280.000€ con IVA) y duración de 14 años, verificable contra el expediente de contratación y pliegos publicados; posible distorsión de Whisper en las cifras exactas.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "1sk3q3c-023-afi-d7f29f",
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders, tenders-ted y bdns que la sostenga. Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
+        "evidence": [],
+        "checkedAgainst": [
+          "tenders",
+          "tenders-ted",
+          "bdns"
+        ]
+      }
+    },
+    {
+      "claim": {
+        "id": "1sk3q3c-023-afi-abe516",
+        "plenoId": "1sk3q3c",
+        "plenoDate": "2025-07-07",
+        "segmentIndex": 23,
+        "type": "afirmacion_numerica",
+        "speakerGroup": null,
+        "verbatim": "este expediente se inicia conforme a acuerdo plenario el ocho de mayo del dos mil veintitrés",
+        "context": "Se indica que el expediente de contratación se inició conforme a un acuerdo plenario de fecha concreta, incorporando las indicaciones de la Junta Superior de Contratación Administrativa.",
+        "topic": "transparencia",
+        "entities": {
+          "date": "2023-05-08",
+          "referencedEntity": "acuerdo plenario de inicio del expediente de contratación"
+        },
+        "confidence": 0.7,
+        "reasoning": "Fecha concreta de un acuerdo plenario de inicio de expediente, verificable contra actas de pleno de mayo de 2023.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "1sk3q3c-023-afi-abe516",
         "verdict": "sin-datos",
         "summary": "Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
         "evidence": [],

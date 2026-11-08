@@ -1,10 +1,10 @@
 import { test, expect } from '@playwright/test'
 import { collectErrors, appErrors } from './_console'
 
-test.describe('Presupuesto · obras en curso', () => {
+test.describe('Contratos · obras en curso', () => {
   test('renders the obras section from obras.json', async ({ page }) => {
     const errors = collectErrors(page)
-    await page.goto('/presupuesto', { waitUntil: 'domcontentloaded' })
+    await page.goto('/contratos', { waitUntil: 'domcontentloaded' })
     // Por su papel de encabezado: la pestaña del pliegue (components/Lecturas.jsx)
     // lleva el mismo título, siempre en el DOM y oculta con «todo».
     await expect(page.getByRole('heading', { name: /Obras de infraestructura/i })).toBeVisible({
@@ -19,7 +19,7 @@ test.describe('Presupuesto · obras en curso', () => {
   test('las fichas van de diez en diez, y la segunda página trae el resto', async ({ page }) => {
     // Catorce fichas seguidas medían más de 1.800 px y dejaban la sección
     // siguiente fuera de la pantalla.
-    await page.goto('/presupuesto', { waitUntil: 'domcontentloaded' })
+    await page.goto('/contratos', { waitUntil: 'domcontentloaded' })
     const tarjeta = page.locator('.cp-card').filter({ hasText: 'Obras de infraestructura' })
     await expect(tarjeta).toBeVisible({ timeout: 8000 })
 

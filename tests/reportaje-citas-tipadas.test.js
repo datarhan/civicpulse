@@ -1,3 +1,4 @@
+// @vitest-environment happy-dom
 import { describe, it, expect } from 'vitest'
 import { readFileSync, readdirSync } from 'node:fs'
 import { TIPOS_CITA } from '../src/pages/reportajes/ConteoVisitantes'

@@ -148,6 +148,13 @@ jobs:
       # paralelo con la build y Playwright y no por delante de ellos.
       # `tests/workflows-unidad-en-pr.test.js` fija el paso, su directorio y su
       # orden dentro del trabajo.
+      #
+      # Los diez minutos son una alarma y no un margen que subir. Un runner lento
+      # tarda casi 1,8 veces lo que uno rápido (se ve en el paso `npm ci`, de 24 a
+      # 42 s), así que este paso cae por tiempo, sin una prueba roja, antes en unas
+      # pasadas que en otras. Si pasa, la suite ha crecido: lo que dio margen la
+      # última vez está en `tests/entorno-por-extension.test.ts` y en
+      # `tests/setup/tsx-directo.ts`.
       - name: Unit tests (npm test)
         timeout-minutes: 10
         run: npm test
@@ -241,6 +248,13 @@ jobs:
           # keeps paying for. tests/deploy-triggers.test.js compares the two
           # workflows so the pair cannot drift apart again.
           VITE_ENABLE_EFICIENCIA: 'true'
+
+      # Aquí y no en `npm test`: estas pruebas juzgan `dist/`, y el trabajo de
+      # unidad no compila, así que allí se saltan solas. Hasta el 01-11-2026 no
+      # las corría ningún trabajo: dos copias del corpus sin puerta se sirvieron
+      # desde octubre con esta CI en verde (publication-denylist.js).
+      - name: Judge the built artifact (publication guard)
+        run: npx vitest run tests/publication-denylist.test.ts tests/publication-guard-outdir.test.ts
 
       - name: Run Playwright tests
         run: npm run test:e2e

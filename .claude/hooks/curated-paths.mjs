@@ -82,10 +82,12 @@ export const CURATED = {
   // Este es el único sitio donde una corrección sobrevive a la nocturna, y
   // nombra a personas vivas con el acta literal al lado: sólo escribe el CLI.
   'officials-corrections.json': 'npm run roster-correction -- --alta|--baja|--retirar|--reply',
-  // Pone un estado comprometido y una empresa con nombre junto a una cifra,
-  // por encima de lo que publica el registro municipal: lo firma una persona
-  // con el anuncio de la Plataforma delante, y sólo escribe el CLI.
-  'contract-corrections.json': 'npm run contract-correction -- --add|--retirar',
+  // Pone un estado comprometido y una empresa con nombre junto a una cifra, o
+  // quita una fila de la cuenta de una adjudicataria, por encima de lo que
+  // publica el registro municipal: lo firma una persona con el anuncio de la
+  // Plataforma delante, y sólo escribe el CLI.
+  'contract-corrections.json':
+    'npm run contract-correction -- --add|--add-repeticion --curator "<nombre>"|--retirar',
   // El vocabulario del buscador «¿A quién le pregunto por…?» de /cargos (decisión
   // D3): lleva de una palabra a un área delegada, y de ahí la página saca a la
   // persona. No nombra a nadie, pero un salto «editorial» mal puesto mandaría a

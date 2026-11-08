@@ -80,6 +80,24 @@ export function moneyRadiusMeters(amount) {
  * @returns {{assignee:string,amount:number,count:number}[]}
  */
 /**
+ * Raw razón social → canonical entity, from the nightly registry. Registry
+ * missing (fresh clone) → null resolver → raw-name grouping.
+ *
+ * @param {any[]|null|undefined} companies
+ * @returns {((raw: string) => {key: string, canonicalName: string} | null) | null}
+ */
+export function resolverDeEmpresas(companies) {
+  if (!companies?.length) return null
+  const byVariant = new Map()
+  for (const co of companies) {
+    for (const v of co.variants || []) {
+      byVariant.set(v, { key: co.nameKey, canonicalName: co.canonicalName })
+    }
+  }
+  return (raw) => byVariant.get(raw) ?? null
+}
+
+/**
  * Top contract winners by awarded money. Without `resolver`, groups by
  * the raw assignee string (legacy behavior). With `resolver` —
  * `(rawName) => {key, canonicalName} | null`, built from entities.json —
@@ -111,6 +129,30 @@ export function topContractors(contracts, n = 15, resolver = null) {
     .map(({ variants, ...row }) => ({ ...row, variantCount: variants.size }))
     .sort((a, b) => b.amount - a.amount)
     .slice(0, n)
+}
+
+/** Cuántos adjudicatarios suma la concentración. El mismo cinco que /gestion. */
+export const MAYORES = 5
+
+/**
+ * Cuánto se concentra lo adjudicado en los primeros de una lista completa de
+ * `topContractors`, o `null` si no hay más adjudicatarios que los que se nombran.
+ * La misma cuenta en «En breve» y encima de la lista que la demuestra.
+ *
+ * @param {{amount: number}[]} lista
+ * @param {number} [n]
+ * @returns {{adjudicatarios: number, deCada100: number, mayorDeCada100: number, cuota: number}|null}
+ */
+export function concentracion(lista, n = MAYORES) {
+  const total = lista.reduce((s, f) => s + f.amount, 0)
+  if (lista.length <= n || !(total > 0)) return null
+  const cuota = lista.slice(0, n).reduce((s, f) => s + f.amount, 0) / total
+  return {
+    adjudicatarios: lista.length,
+    deCada100: Math.round(cuota * 100),
+    mayorDeCada100: Math.round((lista[0].amount / total) * 100),
+    cuota,
+  }
 }
 
 /**

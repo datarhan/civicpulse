@@ -62,7 +62,7 @@ describe('/quejas · «Cómo quejarse y qué pasa después»', () => {
     expect(texto).toContain(`tiene ${c.acuseDias} días para acusar recibo y ${c.meses} meses`)
     expect(texto).toContain(String(s.expedientes))
     expect(texto).toContain(`En ${s.recomendaciones} de esos expedientes`)
-    expect(texto).toContain(`${s.porFaltaDeRespuesta} de ellos los titula`)
+    expect(texto).toContain(`El propio Síndic titula ${s.porFaltaDeRespuesta} de ellos`)
     expect(texto).toContain(`«${s.ultima.titulo}»`)
     expect(texto).toContain(fmtDateLong(s.ultima.fecha, 'es'))
   }, 60000)
@@ -105,7 +105,9 @@ describe('/quejas · «Cómo quejarse y qué pasa después»', () => {
     const texto = leido.join('\n') + '\n' + CATALOGUE.es['quejas.enBreve.plazo.figura']
     const sinPintar = claves.filter((clave) =>
       CATALOGUE.es[clave]
-        .split(/\{\w+\}/)
+        // Un hueco parte la frase, y un término del glosario también: es un botón,
+        // y por tanto su propia pieza de lectura.
+        .split(/\{\w+\}|\[\[\w+\||\]\]/)
         .map((trozo) => trozo.replace(/[↓→↗]/g, '').trim())
         .filter((trozo) => /\p{L}/u.test(trozo))
         .some((trozo) => !texto.includes(trozo)),

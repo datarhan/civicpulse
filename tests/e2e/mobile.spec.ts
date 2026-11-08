@@ -142,6 +142,7 @@ const ROUTES: Route[] = [
   // conserva exactamente la fuerza que tenía: sin budget.json no hay señal y
   // se niega a medir, que es lo que comprueba la inyección de fallo de abajo.
   { path: '/presupuesto', ready: /[\d.,]+ M€ de gastos aprobados/ }, // CONPREL
+  { path: '/contratos', ready: /Elige tu barrio/ },
   // El rediseño del índice retiró el rótulo «… de 39 de 61 sesiones» de la
   // tarjeta de departamentos, que era donde vivía la señal anterior. La nueva
   // sale del lede, que es lo primero que la página escribe con datos dentro.
@@ -789,6 +790,10 @@ const ANCHOS_REJILLA = [375, 320]
  * gana una rejilla, su entrada tiene que irse para que el suelo la vigile.
  */
 const SIN_REJILLAS = new Set([
+  // La portada entró aquí el 02-11-2026, al retirarse «Tu ayuntamiento en 30
+  // segundos»: sus tarjetas eran la única rejilla con bloques de la columna.
+  // Las que quedan en <main> sólo centran una cifra o un icono, sin hijos.
+  '/',
   '/laboratorio/cobertura',
   '/quejas/q-no-existe',
   '/laboratorio/frontera',

@@ -1,6 +1,7 @@
 import { parse } from 'csv-parse/sync'
 import { isScoreArtifactAmount } from '../lib/tenders'
 import { CANCELLED_STATUSES, procurementStatusKind } from '../lib/contract-status.js'
+import { esTituloCpv } from './etiqueta-de-contrato'
 import { fnv32 } from './hash'
 
 // ---------------------------------------------------------------------------
@@ -501,6 +502,115 @@ export function sinEstadoImposible(contracts: Contract[]): Contract[] {
     if (c.permalink && firmados.has(c.permalink)) return c
     return { ...c, status: 'unknown', sourceStatus: c.status }
   })
+}
+
+/** Una fila retirada por repetir una adjudicación, y la que queda en su lugar. */
+export interface AdjudicacionRepetida {
+  id: string
+  /** Fuera del snapshot sólo queda aquí: con esto se encuentra la fila en la fuente. */
+  sourceRowId: string | null
+  queda: string
+}
+
+/**
+ * Una adjudicación que Gobierto publica en dos filas se cuenta una.
+ *
+ * Son dos filas con el mismo enlace, lote, fecha, importe sin IVA, adjudicataria
+ * y estado, y distinta `contract_id`. Cotejadas en la Plataforma el 2026-11-01 las
+ * ocho que había: cada expediente tiene un solo anuncio de adjudicación y ningún
+ * lote, de modo que sumaban 137.209,58 € sin IVA que nadie adjudicó, también en el
+ * total de tres personas físicas. En cinco, una fila lleva el objeto oficial y la
+ * otra una etiqueta CPV, y queda la del objeto; luego, la del lote numerado; entre
+ * iguales, el id menor, para que el resultado no dependa del orden de la fuente.
+ *
+ * Un lote en blanco cuenta como el único lote numerado de esas filas: 153/2025
+ * BSDA publica un anuncio sin lote como lote 3 y como lote en blanco, y sus lotes
+ * 1, 2 y 4 siguen en el registro, así que queda el 3.
+ *
+ * Una fila sin fecha toma la de su gemela (`fechaDeSuGemela`): 13/2026 BSDA y
+ * 110/2026 BSDA salen también en una fila sin `id`, sin licitación, sin fecha y
+ * con una etiqueta CPV por título, igual a la fechada en todo lo demás, y cada una
+ * tiene un solo anuncio de adjudicación (cotejadas el 2026-11-02). Queda la fechada.
+ *
+ * La regla se queda corta antes que fundir: exige todos esos campos y un estado
+ * comprometido, porque un lote de igual precio no es una repetición (12/2018,
+ * 182/2025), un lote en blanco junto a dos numerados no dice de cuál sería copia y
+ * una fila desierta no adjudica nada.
+ *
+ * El id de la que queda no cambia, porque se calcula antes con todas las filas, y
+ * la pasada publica lo retirado en `contractCorrections.adjudicacionesRepetidas`.
+ */
+export function sinAdjudicacionesRepetidas(contracts: Contract[]): {
+  contratos: Contract[]
+  repetidas: AdjudicacionRepetida[]
+} {
+  const candidatas = contracts.filter(
+    (c) =>
+      c.permalink &&
+      c.assignee &&
+      c.finalAmountNoTaxes > 0 &&
+      procurementStatusKind(c.status) === 'committed',
+  )
+  const fechas = fechaDeSuGemela(candidatas)
+  const grupos = new Map<string, Contract[]>()
+  for (const c of candidatas) {
+    const fecha = c.awardDate ?? fechas.get(c)
+    if (!fecha) continue
+    const clave = JSON.stringify([c.permalink, fecha, c.finalAmountNoTaxes, c.assignee, c.status])
+    grupos.set(clave, [...(grupos.get(clave) ?? []), c])
+  }
+  const repetidas: AdjudicacionRepetida[] = []
+  for (const grupo of [...grupos.values()].flatMap(porLote)) {
+    const [queda, ...sobran] = [...grupo].sort(
+      (a, b) =>
+        Number(esTituloCpv(a.title)) - Number(esTituloCpv(b.title)) ||
+        Number(a.awardDate === null) - Number(b.awardDate === null) ||
+        Number(a.batchNumber === 0) - Number(b.batchNumber === 0) ||
+        a.id.localeCompare(b.id),
+    )
+    for (const c of sobran) {
+      repetidas.push({ id: c.id, sourceRowId: c.sourceRowId, queda: queda.id })
+    }
+  }
+  const retiradas = new Set(repetidas.map((r) => r.id))
+  return { contratos: contracts.filter((c) => !retiradas.has(c.id)), repetidas }
+}
+
+/**
+ * La fecha de adjudicación de la gemela de cada fila que no la trae.
+ *
+ * Gemela es una fila igual en todo lo que el parser lee de la fuente salvo la
+ * identidad, el título y la fecha: no basta con la clave de arriba, porque a una
+ * fila sin fecha le falta la prueba que la hace ser la misma adjudicación, así que
+ * todo lo demás tiene que decirlo. 196/2023 comparte enlace, importe y
+ * adjudicataria con su fila fechada, y no se funde: trae otro lote, otro plazo y
+ * otro inicio. Si las gemelas fechadas no coinciden en la fecha, no hay una que
+ * darle; sin ninguna fechada, tampoco.
+ */
+function fechaDeSuGemela(contracts: Contract[]): Map<Contract, string> {
+  const gemelas = new Map<string, Contract[]>()
+  for (const c of contracts) {
+    const { id, sourceRowId, title, awardDate, ...resto } = c
+    const huella = JSON.stringify(Object.entries(resto).sort(([a], [b]) => a.localeCompare(b)))
+    gemelas.set(huella, [...(gemelas.get(huella) ?? []), c])
+  }
+  const fechas = new Map<Contract, string>()
+  for (const grupo of gemelas.values()) {
+    const fechadas = new Set(grupo.map((c) => c.awardDate).filter((f) => f !== null))
+    if (fechadas.size !== 1) continue
+    const [fecha] = fechadas
+    for (const c of grupo) if (c.awardDate === null) fechas.set(c, fecha)
+  }
+  return fechas
+}
+
+/** Reparte por lote filas iguales en todo lo demás; con un solo lote numerado, van juntas. */
+function porLote(filas: Contract[]): Contract[][] {
+  const numerados = new Set(filas.map((c) => c.batchNumber).filter((lote) => lote !== 0))
+  if (numerados.size === 1) return [filas]
+  const lotes = new Map<number, Contract[]>()
+  for (const c of filas) lotes.set(c.batchNumber, [...(lotes.get(c.batchNumber) ?? []), c])
+  return [...lotes.values()]
 }
 
 // ---------------------------------------------------------------------------

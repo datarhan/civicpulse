@@ -299,8 +299,8 @@ export function AlcaldeBox() {
                   informativa de todas. La revisión lectora lo señaló tres
                   veces; las dos primeras se intentó arreglar con la etiqueta y
                   volvió, porque lo que estaba mal era la cifra elegida.
-                  En palabras llanas: «tope del presupuesto», como el resumen
-                  de 30 segundos, y «gastados» con la fecha del listado del que
+                  En palabras llanas: «tope del presupuesto», y «gastados» con
+                  la fecha del listado del que
                   sale lo gastado (#358). «tope de gasto» ponía «gasto» pegado
                   al crédito definitivo, y magnitudes-fiscales lo señaló.
                 */}
@@ -328,7 +328,7 @@ export function AlcaldeBox() {
             )}
             {tendersAwarded && (
               <a
-                href="/presupuesto"
+                href="/contratos"
                 style={{ color: PALETTE.ink80, textDecoration: 'none' }}
                 // NOT "durante el mandato": the figure is every award in the
                 // registry. It also sits beside an ANNUAL budget figure, so
@@ -383,7 +383,7 @@ export function AlcaldeBox() {
             )}
             {bdnsGranted && (
               <a
-                href="/presupuesto"
+                href="/contratos"
                 style={{ color: PALETTE.ink80, textDecoration: 'none' }}
                 title={t('landing.alcalde.subvenciones.title')}
               >

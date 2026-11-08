@@ -1,7 +1,26 @@
+// @vitest-environment node
 import { describe, it, expect } from 'vitest'
-import { existsSync, readdirSync, readFileSync, statSync } from 'node:fs'
-import { join, resolve } from 'node:path'
-import { PUBLICATION_DENYLIST, copiaServidaDeHallazgos } from '../publication-denylist.js'
+import { execFileSync } from 'node:child_process'
+import {
+  chmodSync,
+  existsSync,
+  mkdirSync,
+  mkdtempSync,
+  readdirSync,
+  readFileSync,
+  rmSync,
+  statSync,
+  writeFileSync,
+} from 'node:fs'
+import { tmpdir } from 'node:os'
+import { dirname, join, relative, resolve } from 'node:path'
+import {
+  PUBLICATION_DENYLIST,
+  copiaServidaDeHallazgos,
+  referenciasDelNavegador,
+  repartir,
+  vitePublicationGuard,
+} from '../publication-denylist.js'
 import { citaRetenida } from '../src/lib/cita-retenida.js'
 import { findPartiesInText } from '../src/lib/party-alias.js'
 import { oneSeatBlocsOf } from '../src/scraper/corporation-seats'
@@ -32,7 +51,8 @@ import { REDACTION_LABELS, isSpeakerGroupField } from '../src/scraper/pleno-find
  * lado equivocado del mismo fallo.
  */
 
-const DIST = resolve(__dirname, '..', 'dist')
+const REPO = resolve(__dirname, '..')
+const DIST = join(REPO, 'dist')
 const DIST_DATA = join(DIST, 'data')
 
 function walk(dir: string): string[] {
@@ -87,6 +107,148 @@ describe.skipIf(SIN_DIST)('el artefacto publicado', () => {
         `Si dist/ es de otra rama o anterior a este cambio, reconstruye (\`npm run build\`) y ` +
         `vuelve a mirar; si persiste, el complemento de vite.config.js no está aplicando la lista.`,
     ).toEqual([])
+  })
+
+  /**
+   * La prueba de arriba sólo mira lo que ya sabe nombrar, y por eso no vio dos
+   * copias del corpus sin puerta servirse desde octubre: acababan en `.bak-1004`
+   * y `.bak-pre315`. El denominador son TODAS las hojas del artefacto.
+   */
+  it('no sirve ningún borrador que ninguna página pida, se llame como se llame', () => {
+    const hojas = walk(DIST_DATA)
+    // Sin las que no acaban en `.json`, esto volvería a mirar lo de siempre.
+    expect(hojas.filter((p) => !p.endsWith('.json')).length).toBeGreaterThan(50)
+    const textos = ['src/hooks', 'src/pages', 'src/components', 'src/lib']
+      .flatMap((carpeta) => walk(join(REPO, carpeta)))
+      .filter((p) => /\.(jsx?|tsx?)$/.test(p))
+      .map((p) => readFileSync(p, 'utf8'))
+    const { denegar } = repartir({
+      hojas: hojas.map((p) => ({ rel: relative(DIST, p), texto: readFileSync(p, 'latin1') })),
+      referencias: referenciasDelNavegador(textos),
+    })
+    expect(
+      denegar,
+      `el artefacto sirve ${denegar.length} borrador(es) que ninguna página pide.\n` +
+        `Si dist/ es de otra rama o anterior a este cambio, reconstruye (\`npm run build\`).`,
+    ).toEqual([])
+  })
+})
+
+/**
+ * Lo de arriba juzga el `dist/` que haya, y limpio el repositorio no prueba que
+ * la guarda funcione. Aquí se lanza el gancho de verdad sobre un artefacto con
+ * lo que no debe salir plantado dentro; no necesita compilar, así que corre
+ * también en el trabajo `unidad` de la CI.
+ */
+describe('la guarda juzga cada hoja por lo que lleva, no por cómo se llama', () => {
+  const BORRADOR = '[{"id":1,"requiresHumanApproval": true}]\n'
+
+  async function construir(hojas: Record<string, string | Buffer>) {
+    const raiz = mkdtempSync(join(tmpdir(), 'cp-hojas-'))
+    const ruta = (rel: string) => join(raiz, 'salida', 'data', rel)
+    for (const [rel, contenido] of Object.entries(hojas)) {
+      mkdirSync(dirname(ruta(rel)), { recursive: true })
+      writeFileSync(ruta(rel), contenido)
+    }
+    const guarda = vitePublicationGuard()
+    guarda.configResolved({ root: raiz, build: { outDir: 'salida' } })
+    return { raiz, ruta, juzgar: () => guarda.closeBundle.handler() }
+  }
+
+  it('quita el borrador sin extensión `.json`, también dentro de un directorio servido', async () => {
+    const quitar = [
+      'pleno-claims-verified-base.json.bak-1004',
+      'sin-extension',
+      // `/data/pleno-claims/` lo pide el front, pero lo que pide son `.json`.
+      'pleno-claims/1080zow.json.bak-1004',
+    ]
+    const { raiz, ruta, juzgar } = await construir(
+      Object.fromEntries(quitar.map((rel) => [rel, BORRADOR])),
+    )
+    try {
+      await juzgar()
+      expect(quitar.filter((rel) => existsSync(ruta(rel)))).toEqual([])
+    } finally {
+      rmSync(raiz, { recursive: true, force: true })
+    }
+  })
+
+  it('deja lo que se sirve a propósito, aunque lleve la marca o no sea texto', async () => {
+    // Las rutas salen del código real del front: `/data/souls/${slug}.md`,
+    // `/data/pleno-transcripts/${id}.txt`, `/data/empleo-rss.xml`. Una
+    // transcripción o un perfil pueden citar la marca: son prosa servida.
+    const dejar: Record<string, string | Buffer> = {
+      'pleno-claims/1080zow.json': BORRADOR,
+      'pleno-transcripts/1080zow.txt': BORRADOR,
+      'souls/una-concejala.md': BORRADOR,
+      'empleo-rss.xml': BORRADOR,
+      'photos/una-concejala.jpg': Buffer.from([0xff, 0xd8, 0xff, 0xe0, 0x00, 0x10, 0x4a, 0x46]),
+      'quejas-photos/una.png': Buffer.from([0x89, 0x50, 0x4e, 0x47, 0x0d, 0x0a, 0x1a, 0x0a, 0x00]),
+      'notas-sin-pedir.txt': 'nadie lo pide y no lleva nada\n',
+    }
+    const { raiz, ruta, juzgar } = await construir(dejar)
+    try {
+      await juzgar()
+      expect(Object.keys(dejar).filter((rel) => !existsSync(ruta(rel)))).toEqual([])
+    } finally {
+      rmSync(raiz, { recursive: true, force: true })
+    }
+  })
+
+  it.each([
+    ['comprimido', 'corpus.json.gz', Buffer.from([0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00])],
+    ['en UTF-16', 'corpus.utf16', Buffer.from(BORRADOR, 'utf16le')],
+  ])('se cae ante un fichero %s: no se sabe qué lleva', async (_forma, rel, bytes) => {
+    const { raiz, juzgar } = await construir({ [rel]: bytes })
+    try {
+      await expect(juzgar()).rejects.toThrow(rel)
+    } finally {
+      rmSync(raiz, { recursive: true, force: true })
+    }
+  })
+
+  it('se cae si el artefacto no tiene `data/`: cero hojas no es un artefacto limpio', async () => {
+    const { raiz, juzgar } = await construir({})
+    try {
+      await expect(juzgar()).rejects.toThrow('no se han juzgado: data')
+    } finally {
+      rmSync(raiz, { recursive: true, force: true })
+    }
+  })
+
+  // root abre lo que sea, así que ahí la prueba no probaría nada.
+  it.skipIf(process.getuid?.() === 0)('se cae ante un directorio que no abre', async () => {
+    const { raiz, ruta, juzgar } = await construir({ 'cerrado/corpus.txt': BORRADOR })
+    chmodSync(ruta('cerrado'), 0o000)
+    try {
+      await expect(juzgar()).rejects.toThrow('cerrado')
+    } finally {
+      chmodSync(ruta('cerrado'), 0o755)
+      rmSync(raiz, { recursive: true, force: true })
+    }
+  })
+})
+
+/**
+ * El otro lado: que una copia no llegue a comitearse. El cron de /hallazgos hace
+ * `git add -- public/data`, y así entraron las dos de octubre. `.gitignore` no
+ * desrastrea, por eso se comprueban las dos cosas.
+ */
+describe('una copia de seguridad bajo public/data', () => {
+  const git = (...args: string[]) => execFileSync('git', args, { cwd: REPO, encoding: 'utf8' })
+
+  it.each([
+    'public/data/pleno-claims-verified-base.json.bak-1004',
+    'public/data/pleno-findings.json.bak',
+    'public/data/pleno-claims/1080zow.json.bak-1004',
+  ])('%s la ignora git', (ruta) => {
+    expect(git('check-ignore', ruta).trim()).toBe(ruta)
+  })
+
+  it('no hay ninguna rastreada', () => {
+    const rastreados = git('ls-files', 'public/data').split('\n')
+    expect(rastreados.length).toBeGreaterThan(100)
+    expect(rastreados.filter((ruta) => /\.bak/.test(ruta))).toEqual([])
   })
 })
 

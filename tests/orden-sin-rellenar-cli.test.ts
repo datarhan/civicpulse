@@ -54,9 +54,9 @@ import { MARKED_STATUS_IDS } from '../src/scraper/quote-provenance'
 import { quoteAppearsIn, quoteCoverage } from '../src/scraper/quote-match'
 import { buildReanchorQueue } from '../src/scraper/quote-reanchor'
 import { RETENCION_MINIMA, retencionLexica } from '../src/scraper/verified-merge'
+import { TSX_DIRECTO } from './setup/tsx-directo'
 
 const RAIZ = resolve(__dirname, '..')
-const TSX = join(RAIZ, 'node_modules/tsx/dist/cli.mjs')
 const PAQUETE = JSON.parse(readFileSync(join(RAIZ, 'package.json'), 'utf8')) as {
   scripts: Record<string, string>
 }
@@ -169,7 +169,7 @@ function corregir(script: string, argv: string[]) {
   const dir = montar('orden-hallazgo-', { 'pleno-findings.json': HALLAZGOS })
   try {
     const antes = huella(dir)
-    const r = spawnSync(process.execPath, [TSX, conScript(dir, script), ...argv], {
+    const r = spawnSync(process.execPath, [...TSX_DIRECTO, conScript(dir, script), ...argv], {
       cwd: dir,
       encoding: 'utf8',
     })
@@ -353,10 +353,14 @@ describe('cola de reanclaje de declaraciones → reanchor-claim', () => {
     })
     try {
       const antes = huella(dir)
-      const r = spawnSync(process.execPath, [TSX, join(RAIZ, 'scripts', script), ...argv], {
-        cwd: dir,
-        encoding: 'utf8',
-      })
+      const r = spawnSync(
+        process.execPath,
+        [...TSX_DIRECTO, join(RAIZ, 'scripts', script), ...argv],
+        {
+          cwd: dir,
+          encoding: 'utf8',
+        },
+      )
       return {
         r,
         antes,

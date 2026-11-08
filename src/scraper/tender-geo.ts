@@ -109,6 +109,11 @@ export interface TenderGeoSnapshot {
 
 const DANA_RE = /\bdana\b|temporal de lluvias|29 de octubre/
 
+/** ¿Lo nombra el título, o el de su licitación? El criterio del medidor del mapa. */
+export function nombraLaDana(titulo?: string | null, tituloDeLicitacion?: string | null): boolean {
+  return DANA_RE.test(foldText(`${titulo ?? ''} · ${tituloDeLicitacion ?? ''}`))
+}
+
 // Curator-maintained. Aliases are folded (lowercase, accent-free,
 // apostrophes→spaces) substrings UNIQUE to one zone. Conservative by design:
 // we under-match rather than over-match. Bare ambiguous tokens are avoided

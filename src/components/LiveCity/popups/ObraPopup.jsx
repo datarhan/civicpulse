@@ -39,9 +39,10 @@ function FichaDeObra({ obra: o }) {
       )}
       <div style={{ fontSize: 'var(--fs-meta)', marginTop: 2 }}>
         {o.empresa ? `${o.empresa}` : ''}
-        {/* «adj.» se escribe igual en los dos idiomas, así que va solo en su nodo
-            de texto: pegado a la cifra, la guarda del mapa en valencià no podría
-            distinguirlo de un rótulo sin traducir. */}
+        {/* El rótulo va solo en su nodo de texto: pegado a la cifra, la guarda del
+            mapa en valencià no podría distinguirlo de un rótulo sin traducir.
+            Decía «adj.», igual en las dos lenguas; ahora «adjudicado» /
+            «adjudicat». */}
         {importe != null && (
           <>
             {` · ${euros(importe) || '—'} `}

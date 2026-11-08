@@ -415,7 +415,15 @@ function factsFor(clave: string): Record<string, unknown> {
   return common
 }
 
-const DEFAULT_ROUTES = ['/', '/presupuesto', '/plenos', '/hallazgos', '/promesas', '/quejas']
+const DEFAULT_ROUTES = [
+  '/',
+  '/presupuesto',
+  '/contratos',
+  '/plenos',
+  '/hallazgos',
+  '/promesas',
+  '/quejas',
+]
 
 async function main() {
   const {

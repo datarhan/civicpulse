@@ -1,5 +1,6 @@
 // @ts-check
 import { useJsonFetch } from './useJsonFetch'
+import { CATALOGUE } from '../i18n'
 
 export const SINDIC_MATERIA_LABEL = {
   urbanismo: 'Urbanismo',
@@ -21,13 +22,18 @@ export const SINDIC_MATERIA_LABEL = {
   otros: 'Otros',
 }
 
+/**
+ * El rótulo castellano de cada `sentido`, leído del catálogo, como `STATE_LABEL` en
+ * useQuejas: /quejas lo pinta en el idioma de la interfaz con
+ * `quejas.sindic.sentido.<sentido>`, y una copia aquí podría discrepar de él.
+ */
 export const SINDIC_SENTIDO_LABEL = {
-  recomendacion: 'Recomendación',
-  sugerencia: 'Sugerencia',
-  'recordatorio-deberes': 'Recordatorio de deberes legales',
-  'cierre-sin-recomendacion': 'Cierre sin recomendación',
-  inadmitida: 'Inadmitida',
-  archivada: 'Archivada',
+  recomendacion: CATALOGUE.es['quejas.sindic.sentido.recomendacion'],
+  sugerencia: CATALOGUE.es['quejas.sindic.sentido.sugerencia'],
+  'recordatorio-deberes': CATALOGUE.es['quejas.sindic.sentido.recordatorio-deberes'],
+  'cierre-sin-recomendacion': CATALOGUE.es['quejas.sindic.sentido.cierre-sin-recomendacion'],
+  inadmitida: CATALOGUE.es['quejas.sindic.sentido.inadmitida'],
+  archivada: CATALOGUE.es['quejas.sindic.sentido.archivada'],
 }
 
 export const SINDIC_SENTIDO_TONE = {

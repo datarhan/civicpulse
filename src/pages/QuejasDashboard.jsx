@@ -6,6 +6,7 @@ import { nombreDeBarrio, porcentajeLegible, rellena } from '../lib/formatters'
 import { useOfficials, partyColor } from '../hooks/useOfficials'
 import { useDocumentTitle } from '../hooks/useDocumentTitle'
 import { useLocale, useT } from '../i18n'
+import { conHuecos } from '../lib/huecos'
 import { diasTranscurridos, plazoDeResolucion, relojDelPlazo } from '../scraper/queja-router'
 import { medibilidad, registroUtilizable } from '../lib/reloj-lpacap'
 import { quejasPorArea } from '../lib/quejas-por-area'
@@ -311,13 +312,17 @@ function StateBreakdown({ byState, total }) {
 }
 
 function CategoryBreakdown({ byCategory }) {
+  const t = useT()
   const etiqueta = useEtiquetasDeQueja()
   const entries = Object.entries(byCategory || {}).sort((a, b) => b[1] - a[1])
   if (entries.length === 0) return null
   const max = Math.max(...entries.map((e) => e[1]))
   return (
     <Card>
-      <SectionHead eyebrow="Qué se reporta" title="Categorías" />
+      <SectionHead
+        eyebrow={t('dashboard.categorias.eyebrow')}
+        title={t('dashboard.categorias.titulo')}
+      />
       <div style={{ marginTop: 12 }}>
         {entries.map(([cat, n]) => (
           <Bar key={cat} label={etiqueta.categoria(cat)} n={n} max={max} color="var(--civic)" />
@@ -328,6 +333,7 @@ function CategoryBreakdown({ byCategory }) {
 }
 
 function NeighborhoodBreakdown({ byNeighborhood }) {
+  const t = useT()
   // El nombre de OSM, no el slug capitalizado (`nombreDeBarrio`).
   const barrios = useGeo().data?.neighborhoods
   const entries = Object.entries(byNeighborhood || {}).sort((a, b) => b[1] - a[1])
@@ -335,7 +341,7 @@ function NeighborhoodBreakdown({ byNeighborhood }) {
   const max = Math.max(...entries.map((e) => e[1]))
   return (
     <Card>
-      <SectionHead eyebrow="Dónde pasa" title="Barrios" />
+      <SectionHead eyebrow={t('dashboard.barrios.eyebrow')} title={t('dashboard.barrios.titulo')} />
       <div style={{ marginTop: 12 }}>
         {entries.map(([slug, n]) => (
           <Bar key={slug} label={nombreDeBarrio(slug, barrios)} n={n} max={max} color="var(--ok)" />
@@ -383,6 +389,7 @@ function relojDeQueja(q, now) {
 }
 
 function ReadyToEscalate({ items }) {
+  const t = useT()
   const etiqueta = useEtiquetasDeQueja()
   const now = Date.now()
   const urgent = (items || [])
@@ -406,16 +413,12 @@ function ReadyToEscalate({ items }) {
 
   return (
     <Card style={{ marginTop: 14, borderLeft: '3px solid var(--warn)' }}>
-      <SectionHead
-        eyebrow="Acción urgente · moderador"
-        title="Quejas cerca de o en silencio administrativo"
-      />
+      <SectionHead eyebrow={t('dashboard.urgente.eyebrow')} title={t('dashboard.urgente.titulo')} />
       <div
         style={{ fontSize: 'var(--fs-aux)', color: 'var(--ink50)', marginTop: 4, lineHeight: 1.5 }}
       >
-        Quejas registradas en sede cuyo plazo LPACAP lleva ≥80% consumido. Candidatas para{' '}
-        <code>/escalar Q-XXXX</code> si no llega respuesta antes del vencimiento — se generará el
-        template para el Síndic de Greuges CV.
+        {/* La orden del bot es la que el bot entiende: no se traduce. */}
+        {conHuecos(t('dashboard.urgente.intro'), { '{orden}': <code>/escalar Q-XXXX</code> })}
       </div>
       <div style={{ marginTop: 10 }}>
         {urgent.map(({ q, plazo, quedan, pct, sinCalendario }) => {
@@ -460,8 +463,8 @@ function ReadyToEscalate({ items }) {
                   {etiqueta.categoria(q.service_code)}
                   {q.concejalia_area ? ' · ' + q.concejalia_area : ''}
                   {sinCalendario
-                    ? ` · sin calendario de días inhábiles de ${sinCalendario}`
-                    : ' · plazo ' + plazo + ' días'}
+                    ? rellena(t('dashboard.urgente.sinCalendario'), { anio: sinCalendario })
+                    : rellena(t('dashboard.urgente.plazo'), { n: plazo })}
                 </div>
               </div>
               <span
@@ -477,9 +480,9 @@ function ReadyToEscalate({ items }) {
               </span>
               <Pill tone={tone} size="xs">
                 {sinCalendario
-                  ? 'Sin calendario'
+                  ? t('dashboard.urgente.pill.sinCalendario')
                   : overBy > 0
-                    ? 'Silencio'
+                    ? t('dashboard.urgente.pill.silencio')
                     : `${Math.round(pct * 100)}%`}
               </Pill>
             </Link>
@@ -491,6 +494,7 @@ function ReadyToEscalate({ items }) {
 }
 
 function TopPending({ items }) {
+  const t = useT()
   const etiqueta = useEtiquetasDeQueja()
   const barrios = useGeo().data?.neighborhoods
   const pending = (items || [])
@@ -504,7 +508,7 @@ function TopPending({ items }) {
   if (pending.length === 0) return null
   return (
     <Card style={{ marginTop: 14 }}>
-      <SectionHead eyebrow="Presión vecinal · top 10" title="Quejas pendientes con más apoyos" />
+      <SectionHead eyebrow={t('dashboard.apoyos.eyebrow')} title={t('dashboard.apoyos.titulo')} />
       <div style={{ marginTop: 10 }}>
         {pending.map((q) => (
           <Link
@@ -577,7 +581,9 @@ export default function QuejasDashboard() {
         className="cp-page"
         style={{ padding: '24px 24px 48px', maxWidth: 1100, margin: '0 auto' }}
       >
-        <div style={{ color: 'var(--ink50)', fontSize: 'var(--fs-aux)' }}>Cargando feed…</div>
+        <div style={{ color: 'var(--ink50)', fontSize: 'var(--fs-aux)' }}>
+          {t('quejas.cargando')}
+        </div>
       </div>
     )
   }
@@ -589,7 +595,7 @@ export default function QuejasDashboard() {
       >
         <Card>
           <div style={{ color: 'var(--warn-ink)', fontSize: 'var(--fs-aux)' }}>
-            No se pudo cargar /data/quejas.json.
+            {rellena(t('dashboard.error'), { fichero: '/data/quejas.json' })}
           </div>
         </Card>
       </div>
@@ -614,7 +620,10 @@ export default function QuejasDashboard() {
   // no sabe leer.
   const reloj = medibilidad(data, () => true)
   const registradas = items.filter((q) => registroUtilizable(q.registered_at)).length
-  const sobreRegistradas = `sobre ${registradas} registrada${registradas === 1 ? '' : 's'}`
+  const sobreRegistradas = rellena(
+    t(registradas === 1 ? 'quejas.cifras.sobreRegistradas.una' : 'quejas.cifras.sobreRegistradas'),
+    { n: registradas },
+  )
   const motivo = reloj.medible ? null : t(`quejas.reloj.${reloj.motivo}.corto`)
   const pendientes =
     (stats.byState.capturada || 0) +
@@ -680,7 +689,7 @@ export default function QuejasDashboard() {
 
       {stats.total === 0 ? (
         <Card>
-          <SectionHead eyebrow="Sin datos" title="El canal está abierto, aún no hay quejas" />
+          <SectionHead eyebrow={t('dashboard.vacio.eyebrow')} title={t('dashboard.vacio.titulo')} />
           <div
             style={{
               fontSize: 'var(--fs-body)',
@@ -689,16 +698,19 @@ export default function QuejasDashboard() {
               lineHeight: 1.55,
             }}
           >
-            Este dashboard muestra métricas cuando haya quejas registradas. Presenta la primera vía{' '}
-            <a
-              href={TELEGRAM_BOT_URL}
-              target="_blank"
-              rel="noreferrer"
-              style={{ color: 'var(--civic)' }}
-            >
-              @munigraph_bot
-            </a>{' '}
-            con el comando <code>/queja</code>.
+            {conHuecos(t('dashboard.vacio.texto'), {
+              '{bot}': (
+                <a
+                  href={TELEGRAM_BOT_URL}
+                  target="_blank"
+                  rel="noreferrer"
+                  style={{ color: 'var(--civic)' }}
+                >
+                  @munigraph_bot
+                </a>
+              ),
+              '{orden}': <code>/queja</code>,
+            })}
           </div>
         </Card>
       ) : (
@@ -711,9 +723,13 @@ export default function QuejasDashboard() {
               marginBottom: 14,
             }}
           >
-            <StatTile label="Total quejas" value={stats.total} sub="desde el inicio del canal" />
             <StatTile
-              label="Resueltas"
+              label={t('quejas.cifras.total')}
+              value={stats.total}
+              sub={t('quejas.cifras.total.sub')}
+            />
+            <StatTile
+              label={t('quejas.cifras.resueltas')}
               value={reloj.medible ? resueltas : '—'}
               tone={reloj.medible ? 'ok' : 'neutral'}
               sub={
@@ -723,16 +739,20 @@ export default function QuejasDashboard() {
               }
             />
             <StatTile
-              label="Pendientes"
+              label={t('quejas.cifras.pendientes')}
               value={pendientes}
               tone="civic"
-              sub="en trámite o capturadas"
+              sub={t('dashboard.cifras.pendientes.sub')}
             />
             <StatTile
-              label="Silencios + escaladas"
+              label={t('quejas.cifras.silencios')}
               value={reloj.medible ? silencios : '—'}
               tone={reloj.medible ? (silencios > 0 ? 'crit' : 'ok') : 'neutral'}
-              sub={reloj.medible ? `>plazo LPACAP · ${sobreRegistradas}` : motivo}
+              sub={
+                reloj.medible
+                  ? rellena(t('quejas.cifras.silencios.sub'), { sobre: sobreRegistradas })
+                  : motivo
+              }
             />
           </div>
 

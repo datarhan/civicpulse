@@ -10,8 +10,8 @@ import { useT } from '../../i18n'
  * todo el término que no nombran ningún sitio. Por eso el bloque empieza por
  * el límite («de cada 100 €, sólo N…») y sólo después deja elegir.
  *
- * Elegir no responde aquí: lleva al mapa de contratación de más abajo con la
- * zona abierta (`?barrio=<slug>#mapa-gasto-barrio`, que lee `GastoDashboard`),
+ * Elegir no responde aquí: lleva al mapa de contratación con la zona abierta
+ * (`/contratos?barrio=<slug>#mapa-gasto-barrio`, que lee `GastoDashboard`),
  * en la lista de sus contratos con su enlace a la Plataforma. Un selector y un botón,
  * no un `onChange` que navega: con el teclado, recorrer las opciones de un
  * <select> no debe sacar al lector de donde está (WCAG 3.2.2).
@@ -35,9 +35,9 @@ const claveDeOrden = (nombre) => nombre.replace(/^Urbanitzaci[óo]n?\s+/i, '')
  *   puente?: string | null,
  * }} props
  *
- * `ruta` es la página del mapa: vacía en /presupuesto, que es donde está; la
- * portada pasa `/presupuesto`, porque allí un `?barrio=…#mapa-gasto` relativo
- * se quedaba en la propia portada.
+ * `ruta` es la página del mapa: vacía en /contratos, que es donde está; la
+ * portada y /presupuesto pasan `/contratos`, porque allí un
+ * `?barrio=…#mapa-gasto` relativo se quedaría en la propia página.
  *
  * `puente` es la frase que reconcilia esta cifra con otra que el lector tiene
  * al lado: en la portada, el mapa mide los contratos con un sitio y no los que

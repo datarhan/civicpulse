@@ -1,13 +1,13 @@
 {
-  "generatedAt": "2026-11-01T11:30:24.985Z",
+  "generatedAt": "2026-11-08T11:31:31.141Z",
   "source": {
     "url": "https://www.ribarroja.es/es/eventos/rss.xml",
     "platform": "Drupal RSS (oficial)"
   },
   "stats": {
     "total": 50,
-    "upcoming": 14,
-    "nextDate": "2026-11-03T08:30:00.000Z"
+    "upcoming": 9,
+    "nextDate": "2026-11-20T21:00:00.000Z"
   },
   "events": [
     {
@@ -141,16 +141,6 @@
       "image": "https://www.ribarroja.es/sites/www.ribarroja.es/files/styles/interior_contenido_/public/Competiciones%20deportivas%20reducida_3.png?itok=hL64B-lS"
     },
     {
-      "id": "3zyqj6",
-      "title": "Marxa solidària 'RunCàncer'",
-      "link": "https://www.ribarroja.es/es/evento/marxa-solid%C3%A0ria-%27runc%C3%A0ncer%27",
-      "eventDate": "2026-09-19T16:00:00.000Z",
-      "eventDateText": "19 de septiembre de 2026 18:00",
-      "publishedDate": "2026-08-28T10:23:32.000Z",
-      "excerpt": "&nbsp;",
-      "image": "https://www.ribarroja.es/sites/www.ribarroja.es/files/styles/interior_contenido_/public/20260915%20Run%20cancer%20_6258990035176528132_n.jpeg?itok=a8fDIBnl"
-    },
-    {
       "id": "18xsxmi",
       "title": "Competiciones deportivas 20 de septiembre de 2026",
       "link": "https://www.ribarroja.es/es/evento/competiciones-deportivas-20-de-septiembre-de-2026",
@@ -259,16 +249,6 @@
       "publishedDate": "2026-09-30T11:43:22.000Z",
       "excerpt": null,
       "image": "https://www.ribarroja.es/sites/www.ribarroja.es/files/styles/interior_contenido_/public/20260930%2010_Cartel%20Donaci%C3%B3n%205-OCTUBRE%20.jpg?itok=Dfa917L9"
-    },
-    {
-      "id": "wwknro",
-      "title": "Cine 'La isla olvidada'",
-      "link": "https://www.ribarroja.es/es/evento/cine-%27la-isla-olvidada%27",
-      "eventDate": "2026-10-10T15:00:00.000Z",
-      "eventDateText": "10 de octubre de 2026 17:00",
-      "publishedDate": "2026-08-31T06:42:14.000Z",
-      "excerpt": "&nbsp;",
-      "image": "https://www.ribarroja.es/sites/www.ribarroja.es/files/styles/interior_contenido_/public/20260831%20la%20isla%20olvidada.jpg?itok=11MpalG1"
     },
     {
       "id": "1x23hfw",
@@ -419,6 +399,26 @@
       "publishedDate": "2026-10-15T10:45:18.000Z",
       "excerpt": "&nbsp;",
       "image": "https://www.ribarroja.es/sites/www.ribarroja.es/files/styles/interior_contenido_/public/20261029%20bola%20negra%20cabit%20de%20dies%20%281%29.jpg?itok=Ffibepgs"
+    },
+    {
+      "id": "mw9d3u",
+      "title": "Competiciones deportivas sábado 7 de noviembre de 2026",
+      "link": "https://www.ribarroja.es/es/evento/competiciones-deportivas-s%C3%A1bado-7-de-noviembre-de-2026",
+      "eventDate": "2026-11-07T08:00:00.000Z",
+      "eventDateText": "07 de noviembre de 2026 09:00",
+      "publishedDate": "2026-11-04T14:02:32.000Z",
+      "excerpt": "&nbsp;",
+      "image": "https://www.ribarroja.es/sites/www.ribarroja.es/files/styles/interior_contenido_/public/Competiciones%20deportivas%20reducida_14.png?itok=F5KtTGA7"
+    },
+    {
+      "id": "os8z56",
+      "title": "Competiciones deportivas domingo 8 de noviembre de 2026",
+      "link": "https://www.ribarroja.es/es/evento/competiciones-deportivas-domingo-8-de-noviembre-de-2026",
+      "eventDate": "2026-11-08T08:30:00.000Z",
+      "eventDateText": "08 de noviembre de 2026 09:30",
+      "publishedDate": "2026-11-04T14:12:34.000Z",
+      "excerpt": "&nbsp;",
+      "image": "https://www.ribarroja.es/sites/www.ribarroja.es/files/styles/interior_contenido_/public/Competiciones%20deportivas%20reducida_15.png?itok=BF3Xwkpy"
     },
     {
       "id": "nfc8cc",

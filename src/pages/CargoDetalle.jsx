@@ -675,10 +675,10 @@ function FormerDetalle({ official, color, bioRoute, t }) {
             {bioRoute && (
               <Link
                 to={bioRoute}
-                title="Informe biográfico del agente periodista de CivicPulse"
+                title={t('cargos.detalle.biografia.title')}
                 style={{ color: 'var(--civic)', textDecoration: 'underline', fontWeight: 500 }}
               >
-                Biografía →
+                {t('cargos.detalle.biografia')}
               </Link>
             )}
           </div>
@@ -698,7 +698,7 @@ function FormerDetalle({ official, color, bioRoute, t }) {
           lineHeight: 1.55,
         }}
       >
-        <strong style={{ color: 'var(--ink)' }}>Atribución.</strong>{' '}
+        <strong style={{ color: 'var(--ink)' }}>{t('cargos.detalle.atribucion')}</strong>{' '}
         {t('cargos.detalle.methodology')}{' '}
         <a
           href="/metodologia#grupo-cargos"
@@ -966,10 +966,10 @@ export default function CargoDetalle() {
             {bioRoutes.get(official.slug) ? (
               <Link
                 to={bioRoutes.get(official.slug)}
-                title="Informe biográfico del agente periodista de CivicPulse"
+                title={t('cargos.detalle.biografia.title')}
                 style={{ color: 'var(--civic)', textDecoration: 'underline', fontWeight: 500 }}
               >
-                Biografía →
+                {t('cargos.detalle.biografia')}
               </Link>
             ) : (
               official.cvUrl && (
@@ -977,7 +977,7 @@ export default function CargoDetalle() {
                   href={official.cvUrl}
                   style={{ color: 'var(--civic)', textDecoration: 'underline', fontWeight: 500 }}
                 >
-                  Biografía →
+                  {t('cargos.detalle.biografia')}
                 </ExtLink>
               )
             )}
@@ -1303,7 +1303,7 @@ export default function CargoDetalle() {
           lineHeight: 1.55,
         }}
       >
-        <strong style={{ color: 'var(--ink)' }}>Atribución.</strong>{' '}
+        <strong style={{ color: 'var(--ink)' }}>{t('cargos.detalle.atribucion')}</strong>{' '}
         {t('cargos.detalle.methodology')}{' '}
         <a
           href="/metodologia#grupo-cargos"

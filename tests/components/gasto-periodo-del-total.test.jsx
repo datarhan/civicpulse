@@ -116,13 +116,13 @@ describe('GastoDashboard — el barrio de la URL', () => {
   }
 
   it('?barrio=<slug> abre esa zona', () => {
-    const c = pinta('/presupuesto?barrio=el-molinet')
+    const c = pinta('/contratos?barrio=el-molinet')
     expect(c.textContent).toContain('← todas las zonas')
     expect(c.textContent).toContain('el Molinet')
   })
 
   it('un barrio que el mapa no conoce se dice, y el mapa sigue entero', () => {
-    const c = pinta('/presupuesto?barrio=sector-14')
+    const c = pinta('/contratos?barrio=sector-14')
     expect(c.querySelector('[data-barrio-desconocido]')?.textContent).toContain('«sector-14»')
     expect(c.textContent).not.toContain('← todas las zonas')
   })

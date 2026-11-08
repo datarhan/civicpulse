@@ -1,24 +1,102 @@
 {
-  "generatedAt": "2026-11-01T11:45:57.283Z",
+  "generatedAt": "2026-11-08T11:43:03.886Z",
   "source": {
     "origin": "https://ribaocupacio.portalemp.com",
     "platform": "portalemp — ribaocupacio · Agència de Col·locació (ADL), Ajuntament de Riba-roja de Túria",
     "listEndpoint": "https://ribaocupacio.portalemp.com/ofertas.html?acc=tableData"
   },
   "stats": {
-    "total": 48,
-    "openTotal": 47,
-    "inRibaRoja": 32,
-    "closingSoon": 5,
-    "withDetail": 48,
+    "total": 42,
+    "openTotal": 41,
+    "inRibaRoja": 28,
+    "closingSoon": 6,
+    "withDetail": 42,
     "byMonth": {
-      "2026-10": 29,
-      "2026-09": 16,
+      "2026-11": 1,
+      "2026-10": 28,
+      "2026-09": 10,
       "2026-05": 2,
       "2025-11": 1
     }
   },
   "items": [
+    {
+      "id": "2561",
+      "fo": 2561,
+      "codigo": "2026/00260",
+      "titulo": "Auxiliar administrativo/a",
+      "publishedAt": "2026-11-06",
+      "deadline": "2027-01-06",
+      "location": "Pol. Ind. El Oliveral Riba-roja de Túria",
+      "status": "Abierta",
+      "statusTone": "ok",
+      "url": "https://ribaocupacio.portalemp.com/ofertas.html?fo=2561",
+      "inRibaRoja": true,
+      "detail": {
+        "fields": [
+          {
+            "label": "Código",
+            "value": "2026/00260"
+          },
+          {
+            "label": "Nombre de la oferta",
+            "value": "Auxiliar administrativo/a"
+          },
+          {
+            "label": "Observaciones",
+            "value": "¿Qué buscamos? Buscamos una persona comprometida, organizada, meticulosa, y con orientación al cliente. Requisitos: Formación Profesional relacionada con la rama de Administración. Experiencia como auxiliar administrativo/a. Imprescindible carnet de conducir y vehículo propio para acceder al centro de trabajo. Manejo habitual de herramientas informáticas y Microsoft Excel. Manejo HC Lab (valorable). Buenas habilidades de comunicación y trabajo en equipo. Actitud proactiva y motivación por aportar valor desde el primer día. Incorporación inmediata en una empresa sólida y en constante crecimiento."
+          },
+          {
+            "label": "Tipo de contrato",
+            "value": "CONTRATO INDEFINIDO"
+          },
+          {
+            "label": "Número de puestos",
+            "value": "1"
+          },
+          {
+            "label": "Lugar puesto de trabajo",
+            "value": "Pol. Ind. El Oliveral, Municipio: Riba-roja de Túria, Provincia: Valencia, CP: 46190"
+          },
+          {
+            "label": "Tipo de jornada laboral",
+            "value": "Completa"
+          },
+          {
+            "label": "Observaciones jornada",
+            "value": "Jornada completa 100% presencial."
+          },
+          {
+            "label": "Horario",
+            "value": "Horario: De 09:30h. a 18:30h. de lunes a jueves y los viernes 09:00h. a 18:00h."
+          },
+          {
+            "label": "Salario",
+            "value": "Según convenio + variable"
+          },
+          {
+            "label": "Funciones",
+            "value": "- Atención telefónica y gestión de consultas de clientes. - Derivación de llamadas al departamento correspondiente. - Registro de llamadas y servicios en nuestro programa de gestión (HC Lab). - Gestión de cobro (impagados). - Gestión y archivo de documentación. - Apoyo en tareas administrativas del departamento."
+          },
+          {
+            "label": "Requiere vehículo propio",
+            "value": "Sí"
+          }
+        ],
+        "tipoContrato": "CONTRATO INDEFINIDO",
+        "numPuestos": "1",
+        "observaciones": "¿Qué buscamos? Buscamos una persona comprometida, organizada, meticulosa, y con orientación al cliente. Requisitos: Formación Profesional relacionada con la rama de Administración. Experiencia como auxiliar administrativo/a. Imprescindible carnet de conducir y vehículo propio para acceder al centro de trabajo. Manejo habitual de herramientas informáticas y Microsoft Excel. Manejo HC Lab (valorable). Buenas habilidades de comunicación y trabajo en equipo. Actitud proactiva y motivación por aportar valor desde el primer día. Incorporación inmediata en una empresa sólida y en constante crecimiento.",
+        "municipio": "Riba-roja de Túria",
+        "provincia": "Valencia",
+        "cp": "46190",
+        "jornada": "Completa",
+        "horario": "Horario: De 09:30h. a 18:30h. de lunes a jueves y los viernes 09:00h. a 18:00h.",
+        "salario": "Según convenio + variable",
+        "funciones": "- Atención telefónica y gestión de consultas de clientes. - Derivación de llamadas al departamento correspondiente. - Registro de llamadas y servicios en nuestro programa de gestión (HC Lab). - Gestión de cobro (impagados). - Gestión y archivo de documentación. - Apoyo en tareas administrativas del departamento.",
+        "vehiculo": "Sí",
+        "ocupaciones": []
+      }
+    },
     {
       "id": "2560",
       "fo": 2560,
@@ -682,101 +760,6 @@
       }
     },
     {
-      "id": "2550",
-      "fo": 2550,
-      "codigo": "2026/00254",
-      "titulo": "Administrativo/a para sustitución",
-      "publishedAt": "2026-10-28",
-      "deadline": "2026-12-28",
-      "location": "POL. IND. MASÍA DEL CONDE Loriguilla (Valencia)",
-      "status": "Abierta",
-      "statusTone": "ok",
-      "url": "https://ribaocupacio.portalemp.com/ofertas.html?fo=2550",
-      "inRibaRoja": false,
-      "detail": {
-        "fields": [
-          {
-            "label": "Código",
-            "value": "2026/00254"
-          },
-          {
-            "label": "Nombre de la oferta",
-            "value": "Administrativo/a para sustitución"
-          },
-          {
-            "label": "Observaciones",
-            "value": "Se"
-          },
-          {
-            "label": "Sector CNAE",
-            "value": "ACTIVIDADES ADMINISTRATIVAS Y SERVICIOS AUXLIARES"
-          },
-          {
-            "label": "Tipo de contrato",
-            "value": "CONTRATO DE OBRA O SERVICIO DETERMINADO"
-          },
-          {
-            "label": "Duración del contrato",
-            "value": "SEGÚN NECESIDAD BAJA EMBARAZO"
-          },
-          {
-            "label": "Número de puestos",
-            "value": "1"
-          },
-          {
-            "label": "Categoría profesional",
-            "value": "AUXILIARES ADMINISTRATIVOS"
-          },
-          {
-            "label": "Lugar puesto de trabajo",
-            "value": "POL. IND. MASÍA DEL CONDE, Municipio: Loriguilla, Provincia: Valencia, CP: 46393"
-          },
-          {
-            "label": "Tipo de jornada laboral",
-            "value": "Completa Turnos: Turno mañana, Turno tarde"
-          },
-          {
-            "label": "Horario",
-            "value": "DE 8 A 16:30H"
-          },
-          {
-            "label": "Salario",
-            "value": "17.108,85Euros brutos/año"
-          },
-          {
-            "label": "Funciones",
-            "value": "- Gestión y tramitación de pedidos de clientes y proveedores. - Introducción y actualización de datos en el programa de gestión empresarial. - Elaboración, revisión y gestión de albaranes, facturas y otros documentos administrativos. - Atención telefónica y por correo electrónico a clientes y proveedores. - Seguimiento de pedidos, entregas e incidencias. - Archivo y organización de documentación administrativa. - Apoyo en la gestión de cobros, pagos y reclamaciones de facturas. - Elaboración y actualización de informes y hojas de cálculo. - Coordinación con los distintos departamentos para garantizar el correcto desarrollo de las tareas administrativas."
-          },
-          {
-            "label": "Requiere vehículo propio",
-            "value": "Sí"
-          },
-          {
-            "label": "Habilidades",
-            "value": "Responsabilidad, organización y compromiso. Ganas de trabajar y aprender. Atención al detalle y capacidad de trabajo en equipo. Actitud proactiva y capacidad de aprendizaje."
-          },
-          {
-            "label": "Informática",
-            "value": "Manejo de Microsoft Excel y paquete Office. Conocimientos administrativos y de gestión documental. Se valorarán conocimientos del programa de gestión empresarial ExitERP."
-          }
-        ],
-        "tipoContrato": "CONTRATO DE OBRA O SERVICIO DETERMINADO",
-        "duracion": "SEGÚN NECESIDAD BAJA EMBARAZO",
-        "numPuestos": "1",
-        "categoria": "AUXILIARES ADMINISTRATIVOS",
-        "observaciones": "Se",
-        "municipio": "Loriguilla",
-        "provincia": "Valencia",
-        "cp": "46393",
-        "jornada": "Completa Turnos: Turno mañana, Turno tarde",
-        "horario": "DE 8 A 16:30H",
-        "salario": "17.108,85Euros brutos/año",
-        "funciones": "- Gestión y tramitación de pedidos de clientes y proveedores. - Introducción y actualización de datos en el programa de gestión empresarial. - Elaboración, revisión y gestión de albaranes, facturas y otros documentos administrativos. - Atención telefónica y por correo electrónico a clientes y proveedores. - Seguimiento de pedidos, entregas e incidencias. - Archivo y organización de documentación administrativa. - Apoyo en la gestión de cobros, pagos y reclamaciones de facturas. - Elaboración y actualización de informes y hojas de cálculo. - Coordinación con los distintos departamentos para garantizar el correcto desarrollo de las tareas administrativas.",
-        "vehiculo": "Sí",
-        "ocupaciones": []
-      }
-    },
-    {
       "id": "2554",
       "fo": 2554,
       "codigo": "2026/00253",
@@ -1326,6 +1309,10 @@
           {
             "label": "Salario",
             "value": "SEGUN CONVENIO"
+          },
+          {
+            "label": "Requiere vehículo propio",
+            "value": "Sí"
           }
         ],
         "tipoContrato": "CONTRATO A TIEMPO PARCIAL",
@@ -1335,6 +1322,7 @@
         "jornada": "Parcial",
         "horario": "Jornada total: 17 horas y 30 minutos semanales.",
         "salario": "SEGUN CONVENIO",
+        "vehiculo": "Sí",
         "ocupaciones": []
       }
     },
@@ -2078,6 +2066,10 @@
           {
             "label": "Observaciones",
             "value": "Buscamos operarios/as con discapacidad para el puesto de manipulado, envasado y paletizado de productos de limpieza (detergentes, dispensadores lavavajillas, etc.). El puesto requiere poder estar 8h de pie y tener destreza manual (para envasar). Consiste en segregar productos para su posterior reenvasado. Además de repaletizar producto envasado (de palet europea a americano). El trabajador/a debe poder agacharse y coger peso. Turno rotativo: mañana, tarde y noche. Contrato inicial de 12 meses con posibilidad de continuar. Salario 1443€ brutos al mes en 12 pagas. Es recomendable tener coche para acceder hasta el centro de trabajo ya que está situado en el polígono. Indispensable disponer del certificado de discapacidad del 33% o más."
+          },
+          {
+            "label": "Porcentaje de discapacidad",
+            "value": "Igual o superior a 33%"
           },
           {
             "label": "Sector CNAE",
@@ -3062,88 +3054,6 @@
       }
     },
     {
-      "id": "2536",
-      "fo": 2536,
-      "codigo": "2026/00235",
-      "titulo": "Mecánico/a de carretillas elevadoras",
-      "publishedAt": "2026-09-16",
-      "deadline": "2026-11-16",
-      "location": "Polígono Industrial Riba-roja de Túria",
-      "status": "Abierta",
-      "statusTone": "ok",
-      "url": "https://ribaocupacio.portalemp.com/ofertas.html?fo=2536",
-      "inRibaRoja": true,
-      "detail": {
-        "fields": [
-          {
-            "label": "Código",
-            "value": "2026/00235"
-          },
-          {
-            "label": "Nombre de la oferta",
-            "value": "Mecánico/a de carretillas elevadoras"
-          },
-          {
-            "label": "Sector CNAE",
-            "value": "OTROS SERVICIOS"
-          },
-          {
-            "label": "Tipo de contrato",
-            "value": "CONTRATO INDEFINIDO"
-          },
-          {
-            "label": "Duración del contrato",
-            "value": "Más de 6 meses"
-          },
-          {
-            "label": "Número de puestos",
-            "value": "1"
-          },
-          {
-            "label": "Categoría profesional",
-            "value": "OFICIAL DE 3ª y ESPECIALISTAS"
-          },
-          {
-            "label": "Lugar puesto de trabajo",
-            "value": "Polígono Industrial, Municipio: Riba-roja de Túria, Provincia: Valencia, CP: 46394"
-          },
-          {
-            "label": "Tipo de jornada laboral",
-            "value": "Completa Turnos: Turno partido"
-          },
-          {
-            "label": "Horario",
-            "value": "7:30 a 14:00 / 15:30 a 17:00"
-          },
-          {
-            "label": "Salario",
-            "value": "Según convenio"
-          },
-          {
-            "label": "Funciones",
-            "value": "Realizará los trabajos de reparación mecánica, mantenimiento preventivo y correctivo de maquinaria y carretillas elevadoras."
-          },
-          {
-            "label": "Requiere vehículo propio",
-            "value": "Sí"
-          }
-        ],
-        "tipoContrato": "CONTRATO INDEFINIDO",
-        "duracion": "Más de 6 meses",
-        "numPuestos": "1",
-        "categoria": "OFICIAL DE 3ª y ESPECIALISTAS",
-        "municipio": "Riba-roja de Túria",
-        "provincia": "Valencia",
-        "cp": "46394",
-        "jornada": "Completa Turnos: Turno partido",
-        "horario": "7:30 a 14:00 / 15:30 a 17:00",
-        "salario": "Según convenio",
-        "funciones": "Realizará los trabajos de reparación mecánica, mantenimiento preventivo y correctivo de maquinaria y carretillas elevadoras.",
-        "vehiculo": "Sí",
-        "ocupaciones": []
-      }
-    },
-    {
       "id": "2532",
       "fo": 2532,
       "codigo": "2026/00231",
@@ -3207,400 +3117,6 @@
         "jornada": "Completa",
         "salario": "1500 NETOS aprox. + INCENTIVOS DE VENTA",
         "funciones": "Comercial de bebidas, alimentación y diferentes productos para hostelería",
-        "ocupaciones": []
-      }
-    },
-    {
-      "id": "2531",
-      "fo": 2531,
-      "codigo": "2026/00230",
-      "titulo": "Operario/a de grúa para transporte de vehículos",
-      "publishedAt": "2026-09-07",
-      "deadline": "2026-11-07",
-      "location": "Riba-roja de Túria",
-      "status": "Abierta",
-      "statusTone": "ok",
-      "url": "https://ribaocupacio.portalemp.com/ofertas.html?fo=2531",
-      "inRibaRoja": true,
-      "detail": {
-        "fields": [
-          {
-            "label": "Código",
-            "value": "2026/00230"
-          },
-          {
-            "label": "Nombre de la oferta",
-            "value": "Operario/a de grúa para transporte de vehículos"
-          },
-          {
-            "label": "Tipo de contrato",
-            "value": "CONTRATO INDEFINIDO"
-          },
-          {
-            "label": "Duración del contrato",
-            "value": "Más de 6 meses"
-          },
-          {
-            "label": "Número de puestos",
-            "value": "1"
-          },
-          {
-            "label": "Lugar puesto de trabajo",
-            "value": "Municipio: Riba-roja de Túria, Provincia: Valencia"
-          },
-          {
-            "label": "Tipo de jornada laboral",
-            "value": "Completa"
-          },
-          {
-            "label": "Salario",
-            "value": "SEGÚN CONVENIO"
-          },
-          {
-            "label": "Requiere vehículo propio",
-            "value": "Sí"
-          },
-          {
-            "label": "Habilidades",
-            "value": "TRANSPORTE Y DESCARGA DE VEHÍCULOS CON GRÚA CAMIÓN"
-          }
-        ],
-        "tipoContrato": "CONTRATO INDEFINIDO",
-        "duracion": "Más de 6 meses",
-        "numPuestos": "1",
-        "jornada": "Completa",
-        "salario": "SEGÚN CONVENIO",
-        "vehiculo": "Sí",
-        "ocupaciones": [
-          {
-            "nombre": "CONDUCTORES-OPERADORES DE GRÚA EN CAMIÓN"
-          }
-        ]
-      }
-    },
-    {
-      "id": "2428",
-      "fo": 2428,
-      "codigo": "2026/00130",
-      "titulo": "Mozo/a de almacén con discapacidad",
-      "publishedAt": "2026-09-04",
-      "deadline": "2026-11-04",
-      "location": "Riba-roja de Túria",
-      "status": "Abierta",
-      "statusTone": "ok",
-      "url": "https://ribaocupacio.portalemp.com/ofertas.html?fo=2428",
-      "inRibaRoja": true,
-      "detail": {
-        "fields": [
-          {
-            "label": "Código",
-            "value": "2026/00130"
-          },
-          {
-            "label": "Nombre de la oferta",
-            "value": "Mozo/a de almacén con discapacidad"
-          },
-          {
-            "label": "Observaciones",
-            "value": "Requisitos : Experiencia mínima: al menos 1 año Disponer de vehículo propio Experiencia previa (valorable)"
-          },
-          {
-            "label": "Porcentaje de discapacidad",
-            "value": "Igual o superior a 33%"
-          },
-          {
-            "label": "Tipo de contrato",
-            "value": "CONTRATO DE OBRA O SERVICIO DETERMINADO"
-          },
-          {
-            "label": "Duración del contrato",
-            "value": "Más de 6 meses"
-          },
-          {
-            "label": "Número de puestos",
-            "value": "1"
-          },
-          {
-            "label": "Lugar puesto de trabajo",
-            "value": "Municipio: Riba-roja de Túria, Provincia: Valencia"
-          },
-          {
-            "label": "Tipo de jornada laboral",
-            "value": "Completa Turnos: Turno noche"
-          },
-          {
-            "label": "Observaciones jornada",
-            "value": "Contrato inicial temporal prorrogable hasta indefinido"
-          },
-          {
-            "label": "Horario",
-            "value": "De martes a sábado de noches. De 24:00 a 08:00 horas."
-          },
-          {
-            "label": "Salario",
-            "value": "25.000 € brutos"
-          },
-          {
-            "label": "Funciones",
-            "value": "- Despaletizar - Ubicación de la mercancía - Utilización de PDA - Mantenimiento de la limpieza del lugar"
-          },
-          {
-            "label": "Requiere vehículo propio",
-            "value": "Sí"
-          }
-        ],
-        "tipoContrato": "CONTRATO DE OBRA O SERVICIO DETERMINADO",
-        "duracion": "Más de 6 meses",
-        "numPuestos": "1",
-        "observaciones": "Requisitos : Experiencia mínima: al menos 1 año Disponer de vehículo propio Experiencia previa (valorable)",
-        "jornada": "Completa Turnos: Turno noche",
-        "horario": "De martes a sábado de noches. De 24:00 a 08:00 horas.",
-        "salario": "25.000 € brutos",
-        "funciones": "- Despaletizar - Ubicación de la mercancía - Utilización de PDA - Mantenimiento de la limpieza del lugar",
-        "vehiculo": "Sí",
-        "ocupaciones": []
-      }
-    },
-    {
-      "id": "2495",
-      "fo": 2495,
-      "codigo": "2026/00194",
-      "titulo": "Operario/a de carpintería metálica",
-      "publishedAt": "2026-09-03",
-      "deadline": "2026-11-03",
-      "location": "Riba-roja de Túria Riba-roja de Túria",
-      "status": "Abierta",
-      "statusTone": "ok",
-      "url": "https://ribaocupacio.portalemp.com/ofertas.html?fo=2495",
-      "inRibaRoja": true,
-      "detail": {
-        "fields": [
-          {
-            "label": "Código",
-            "value": "2026/00194"
-          },
-          {
-            "label": "Nombre de la oferta",
-            "value": "Operario/a de carpintería metálica"
-          },
-          {
-            "label": "Observaciones",
-            "value": "Se precisa persona para trabajar el sector de la carpintería metálica, formación a cargo de la empresa. Se requiere carné de conducir, ganas de trabajar y actitud"
-          },
-          {
-            "label": "Tipo de contrato",
-            "value": "CONTRATO INDEFINIDO"
-          },
-          {
-            "label": "Duración del contrato",
-            "value": "Más de 6 meses"
-          },
-          {
-            "label": "Número de puestos",
-            "value": "1"
-          },
-          {
-            "label": "Lugar puesto de trabajo",
-            "value": "Riba-roja de Túria, Municipio: Riba-roja de Túria, Provincia: Valencia"
-          },
-          {
-            "label": "Tipo de jornada laboral",
-            "value": "Completa"
-          },
-          {
-            "label": "Horario",
-            "value": "Lunes a viernes jornada partida"
-          },
-          {
-            "label": "Salario",
-            "value": "Según convenio"
-          },
-          {
-            "label": "Funciones",
-            "value": "Instalación de ventanas, puertas, mosquiteras, mamparas"
-          }
-        ],
-        "tipoContrato": "CONTRATO INDEFINIDO",
-        "duracion": "Más de 6 meses",
-        "numPuestos": "1",
-        "observaciones": "Se precisa persona para trabajar el sector de la carpintería metálica, formación a cargo de la empresa. Se requiere carné de conducir, ganas de trabajar y actitud",
-        "jornada": "Completa",
-        "horario": "Lunes a viernes jornada partida",
-        "salario": "Según convenio",
-        "funciones": "Instalación de ventanas, puertas, mosquiteras, mamparas",
-        "ocupaciones": []
-      }
-    },
-    {
-      "id": "2527",
-      "fo": 2527,
-      "codigo": "2026/00226",
-      "titulo": "Mecánico/a de carretillas elevadoras",
-      "publishedAt": "2026-09-02",
-      "deadline": "2026-11-02",
-      "location": "Polígono Industrial Riba-roja de Túria",
-      "status": "Abierta",
-      "statusTone": "ok",
-      "url": "https://ribaocupacio.portalemp.com/ofertas.html?fo=2527",
-      "inRibaRoja": true,
-      "detail": {
-        "fields": [
-          {
-            "label": "Código",
-            "value": "2026/00226"
-          },
-          {
-            "label": "Nombre de la oferta",
-            "value": "Mecánico/a de carretillas elevadoras"
-          },
-          {
-            "label": "Sector CNAE",
-            "value": "OTROS SERVICIOS"
-          },
-          {
-            "label": "Tipo de contrato",
-            "value": "CONTRATO INDEFINIDO"
-          },
-          {
-            "label": "Duración del contrato",
-            "value": "Más de 6 meses"
-          },
-          {
-            "label": "Número de puestos",
-            "value": "1"
-          },
-          {
-            "label": "Categoría profesional",
-            "value": "OFICIAL DE 1ª"
-          },
-          {
-            "label": "Lugar puesto de trabajo",
-            "value": "Polígono Industrial, Municipio: Riba-roja de Túria, Provincia: Valencia, CP: 46394"
-          },
-          {
-            "label": "Tipo de jornada laboral",
-            "value": "Completa Turnos: Turno partido"
-          },
-          {
-            "label": "Salario",
-            "value": "Según convenio"
-          },
-          {
-            "label": "Funciones",
-            "value": "Realizará los trabajos de reparación mecánica, mantenimiento preventivo y correctivo de maquinaria y carretillas elevadoras."
-          },
-          {
-            "label": "Requiere vehículo propio",
-            "value": "Sí"
-          }
-        ],
-        "tipoContrato": "CONTRATO INDEFINIDO",
-        "duracion": "Más de 6 meses",
-        "numPuestos": "1",
-        "categoria": "OFICIAL DE 1ª",
-        "municipio": "Riba-roja de Túria",
-        "provincia": "Valencia",
-        "cp": "46394",
-        "jornada": "Completa Turnos: Turno partido",
-        "salario": "Según convenio",
-        "funciones": "Realizará los trabajos de reparación mecánica, mantenimiento preventivo y correctivo de maquinaria y carretillas elevadoras.",
-        "vehiculo": "Sí",
-        "ocupaciones": [
-          {
-            "nombre": "ELECTROMECÁNICOS DE MANTENIMIENTO INDUSTRIAL (MANTENIMIENTO Y REPARACIÓN GENERAL)",
-            "experiencia": "2 Años"
-          }
-        ]
-      }
-    },
-    {
-      "id": "2408",
-      "fo": 2408,
-      "codigo": "2026/00114",
-      "titulo": "Operario/a de almacén con discapacidad",
-      "publishedAt": "2026-09-01",
-      "deadline": "2026-11-01",
-      "location": "Cheste (Valencia)",
-      "status": "Abierta",
-      "statusTone": "ok",
-      "url": "https://ribaocupacio.portalemp.com/ofertas.html?fo=2408",
-      "inRibaRoja": false,
-      "detail": {
-        "fields": [
-          {
-            "label": "Código",
-            "value": "2026/00114"
-          },
-          {
-            "label": "Nombre de la oferta",
-            "value": "Operario/a de almacén con discapacidad"
-          },
-          {
-            "label": "Observaciones",
-            "value": "Se requiere certificado de discapacidad igual o superior al 33%"
-          },
-          {
-            "label": "Porcentaje de discapacidad",
-            "value": "Igual o superior a 33%"
-          },
-          {
-            "label": "Sector CNAE",
-            "value": "OTROS SERVICIOS"
-          },
-          {
-            "label": "Tipo de contrato",
-            "value": "CONTRATACION DISCAPACIDAD"
-          },
-          {
-            "label": "Duración del contrato",
-            "value": "Más de 6 meses"
-          },
-          {
-            "label": "Número de puestos",
-            "value": "5"
-          },
-          {
-            "label": "Categoría profesional",
-            "value": "PEONES"
-          },
-          {
-            "label": "Lugar puesto de trabajo",
-            "value": "Municipio: Cheste, Provincia: Valencia, CP: 46830"
-          },
-          {
-            "label": "Tipo de jornada laboral",
-            "value": "Completa Turnos: Turno tarde, Turno noche"
-          },
-          {
-            "label": "Horario",
-            "value": "L a D (2 días descanso) Turnos Tarde (14:00 a 21:36) ó Noche (18:20 - 01:56). Turnos fijos, no rotativos."
-          },
-          {
-            "label": "Salario",
-            "value": "1400 € brutos/mes 12 pagas"
-          },
-          {
-            "label": "Funciones",
-            "value": "Recogida de cartón, plástico y papel. Orden y desplazamiento de palets, clasificado y retirada de mermas, recepción y recogida de camiones, mantemiento de zonas comunes"
-          },
-          {
-            "label": "Requiere vehículo propio",
-            "value": "Sí"
-          }
-        ],
-        "tipoContrato": "CONTRATACION DISCAPACIDAD",
-        "duracion": "Más de 6 meses",
-        "numPuestos": "5",
-        "categoria": "PEONES",
-        "observaciones": "Se requiere certificado de discapacidad igual o superior al 33%",
-        "municipio": "Cheste",
-        "provincia": "Valencia",
-        "cp": "46830",
-        "jornada": "Completa Turnos: Turno tarde, Turno noche",
-        "horario": "L a D (2 días descanso) Turnos Tarde (14:00 a 21:36) ó Noche (18:20 - 01:56). Turnos fijos, no rotativos.",
-        "salario": "1400 € brutos/mes 12 pagas",
-        "funciones": "Recogida de cartón, plástico y papel. Orden y desplazamiento de palets, clasificado y retirada de mermas, recepción y recogida de camiones, mantemiento de zonas comunes",
-        "vehiculo": "Sí",
         "ocupaciones": []
       }
     },

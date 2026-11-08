@@ -134,7 +134,7 @@ export const DATA_GRAPH: readonly DataNode[] = [
     writes: ['entities.json'],
     command: 'npm run compute:entities',
     script: 'scripts/compute-entities.ts',
-    note: 'company/person registry behind /presupuesto’s supplier merge',
+    note: 'company/person registry behind /contratos’ supplier merge',
   },
   {
     id: 'finding-quote-provenance.json',

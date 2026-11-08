@@ -1,3 +1,4 @@
+// @vitest-environment happy-dom
 /**
  * /laboratorio, el índice de los experimentos. Sus tarjetas salen del grupo
  * `laboratorio` de la navegación; lo único propio de la página es la pregunta

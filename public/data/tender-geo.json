@@ -1,16 +1,16 @@
 {
-  "generatedAt": "2026-11-01T12:06:11.053Z",
+  "generatedAt": "2026-11-08T11:45:03.593Z",
   "source": {
-    "tenders": "2026-11-01T12:06:10.246Z",
-    "geo": "2026-11-01T11:35:17.857Z"
+    "tenders": "2026-11-08T11:30:26.216Z",
+    "geo": "2026-11-08T11:33:22.561Z"
   },
   "universe": {
-    "totalContracts": 712,
-    "totalAmount": 126064104.20999993,
-    "locatedContracts": 41,
-    "locatedAmount": 3480498.6800000006,
-    "situatedContracts": 117,
-    "situatedAmount": 8820861.98,
+    "totalContracts": 702,
+    "totalAmount": 125901076.23999994,
+    "locatedContracts": 40,
+    "locatedAmount": 3469216.1400000006,
+    "situatedContracts": 116,
+    "situatedAmount": 8809579.44,
     "danaContracts": 9,
     "danaAmount": 259915.39,
     "danaAwardedContracts": 82,
@@ -18,7 +18,7 @@
     "dateMin": "2018-01-18",
     "dateMax": "2026-05-27",
     "totalDateMin": "2017-07-03",
-    "totalDateMax": "2026-10-20"
+    "totalDateMax": "2026-11-03"
   },
   "zones": [
     {
@@ -83,8 +83,8 @@
         39.4840972,
         -0.572073
       ],
-      "contractCount": 9,
-      "amount": 270288.79000000004,
+      "contractCount": 8,
+      "amount": 259006.25000000003,
       "danaAmount": 100681.64
     },
     {
@@ -294,8 +294,8 @@
         39.4840972,
         -0.572073
       ],
-      "contractCount": 9,
-      "amount": 270288.79000000004,
+      "contractCount": 8,
+      "amount": 259006.25000000003,
       "danaAmount": 100681.64
     },
     {
@@ -1413,27 +1413,6 @@
       }
     },
     {
-      "id": "745132",
-      "zones": [],
-      "matchedAlias": {},
-      "dana": false,
-      "amount": 14400,
-      "amountKind": "final",
-      "date": "2019-07-25",
-      "contractType": "services",
-      "categoryTitle": "other",
-      "point": [
-        39.5473561,
-        -0.5639968
-      ],
-      "place": {
-        "kind": "poi",
-        "name": "Col·legi d'Educació Infantil i Primària Eres Altes",
-        "matchedText": "Col·legi d'Educació Infantil i Primària Eres Altes",
-        "sourceId": "way-1178031442"
-      }
-    },
-    {
       "id": "4486293",
       "zones": [],
       "matchedAlias": {},
@@ -1761,27 +1740,6 @@
       }
     },
     {
-      "id": "13417#806294",
-      "zones": [],
-      "matchedAlias": {},
-      "dana": false,
-      "amount": 11894.21,
-      "amountKind": "final",
-      "date": "2019-06-05",
-      "contractType": "construction",
-      "categoryTitle": "construction",
-      "point": [
-        39.52513,
-        -0.5188
-      ],
-      "place": {
-        "kind": "urbanizacion",
-        "name": "Urbanización Lliri Groc",
-        "matchedText": "Urbanización Lliri Groc",
-        "sourceId": "urb-lliri-groc"
-      }
-    },
-    {
       "id": "9895895",
       "zones": [],
       "matchedAlias": {},
@@ -1934,6 +1892,48 @@
         "name": "Carrer de les Bodeguetes",
         "matchedText": "Carrer de les Bodeguetes",
         "sourceId": "carrer-de-les-bodeguetes"
+      }
+    },
+    {
+      "id": "745132",
+      "zones": [],
+      "matchedAlias": {},
+      "dana": false,
+      "amount": 14400,
+      "amountKind": "final",
+      "date": "2019-07-25",
+      "contractType": "services",
+      "categoryTitle": "other",
+      "point": [
+        39.5473561,
+        -0.5639968
+      ],
+      "place": {
+        "kind": "poi",
+        "name": "Col·legi d'Educació Infantil i Primària Eres Altes",
+        "matchedText": "Col·legi d'Educació Infantil i Primària Eres Altes",
+        "sourceId": "way-1178031442"
+      }
+    },
+    {
+      "id": "13417#806294",
+      "zones": [],
+      "matchedAlias": {},
+      "dana": false,
+      "amount": 11894.21,
+      "amountKind": "final",
+      "date": "2019-06-05",
+      "contractType": "construction",
+      "categoryTitle": "construction",
+      "point": [
+        39.52513,
+        -0.5188
+      ],
+      "place": {
+        "kind": "urbanizacion",
+        "name": "Urbanización Lliri Groc",
+        "matchedText": "Urbanización Lliri Groc",
+        "sourceId": "urb-lliri-groc"
       }
     },
     {
@@ -2243,6 +2243,31 @@
       }
     },
     {
+      "id": "94467",
+      "zones": [
+        "santa-rosa"
+      ],
+      "matchedAlias": {
+        "santa-rosa": "santa rosa"
+      },
+      "dana": false,
+      "amount": 37848,
+      "amountKind": "final",
+      "date": "2018-01-26",
+      "contractType": "services",
+      "categoryTitle": "architecture",
+      "point": [
+        39.5508312,
+        -0.5333969
+      ],
+      "place": {
+        "kind": "urbanizacion",
+        "name": "Santa Rosa",
+        "matchedText": "Santa Rosa",
+        "sourceId": "santa-rosa"
+      }
+    },
+    {
       "id": "1892105#6858401",
       "zones": [
         "urbanitzacio-la-reva"
@@ -2311,31 +2336,6 @@
         "name": "Col·legi d'Educació Infantil i Primària Camp de Túria",
         "matchedText": "Col·legi d'Educació Infantil i Primària Camp de Túria",
         "sourceId": "way-1242095512"
-      }
-    },
-    {
-      "id": "94467",
-      "zones": [
-        "santa-rosa"
-      ],
-      "matchedAlias": {
-        "santa-rosa": "santa rosa"
-      },
-      "dana": false,
-      "amount": 37848,
-      "amountKind": "final",
-      "date": "2018-01-26",
-      "contractType": "services",
-      "categoryTitle": "architecture",
-      "point": [
-        39.5508312,
-        -0.5333969
-      ],
-      "place": {
-        "kind": "urbanizacion",
-        "name": "Santa Rosa",
-        "matchedText": "Santa Rosa",
-        "sourceId": "santa-rosa"
       }
     },
     {
@@ -2589,27 +2589,6 @@
       }
     },
     {
-      "id": "2870786",
-      "zones": [],
-      "matchedAlias": {},
-      "dana": false,
-      "amount": 6995,
-      "amountKind": "final",
-      "date": "2022-04-01",
-      "contractType": "supplies",
-      "categoryTitle": "energy",
-      "point": [
-        39.5469545,
-        -0.5666236
-      ],
-      "place": {
-        "kind": "poi",
-        "name": "Ajuntament de Riba-roja de Túria",
-        "matchedText": "Ajuntament de Riba-roja de Túria",
-        "sourceId": "node-5809597354"
-      }
-    },
-    {
       "id": "1881768",
       "zones": [],
       "matchedAlias": {},
@@ -2649,6 +2628,27 @@
         "name": "Mercado Municipal",
         "matchedText": "Mercado Municipal",
         "sourceId": "mercat-municipal"
+      }
+    },
+    {
+      "id": "2870786",
+      "zones": [],
+      "matchedAlias": {},
+      "dana": false,
+      "amount": 6995,
+      "amountKind": "final",
+      "date": "2022-04-01",
+      "contractType": "supplies",
+      "categoryTitle": "energy",
+      "point": [
+        39.5469545,
+        -0.5666236
+      ],
+      "place": {
+        "kind": "poi",
+        "name": "Ajuntament de Riba-roja de Túria",
+        "matchedText": "Ajuntament de Riba-roja de Túria",
+        "sourceId": "node-5809597354"
       }
     },
     {
@@ -2882,31 +2882,6 @@
       }
     },
     {
-      "id": "1999#918474",
-      "zones": [
-        "el-molinet"
-      ],
-      "matchedAlias": {
-        "el-molinet": "molinet"
-      },
-      "dana": false,
-      "amount": 26285.35,
-      "amountKind": "final",
-      "date": "2019-06-05",
-      "contractType": "construction",
-      "categoryTitle": "construction",
-      "point": [
-        39.5557928,
-        -0.5531642
-      ],
-      "place": {
-        "kind": "street",
-        "name": "Passeig del Molinet",
-        "matchedText": "Passeig del Molinet",
-        "sourceId": "passeig-del-molinet"
-      }
-    },
-    {
       "id": "4579648",
       "zones": [
         "urbanitzacio-la-reva"
@@ -2929,6 +2904,31 @@
         "name": "Urbanització La Reva",
         "matchedText": "Urbanització La Reva",
         "sourceId": "urbanitzacio-la-reva"
+      }
+    },
+    {
+      "id": "1999#918474",
+      "zones": [
+        "el-molinet"
+      ],
+      "matchedAlias": {
+        "el-molinet": "molinet"
+      },
+      "dana": false,
+      "amount": 26285.35,
+      "amountKind": "final",
+      "date": "2019-06-05",
+      "contractType": "construction",
+      "categoryTitle": "construction",
+      "point": [
+        39.5557928,
+        -0.5531642
+      ],
+      "place": {
+        "kind": "street",
+        "name": "Passeig del Molinet",
+        "matchedText": "Passeig del Molinet",
+        "sourceId": "passeig-del-molinet"
       }
     },
     {
@@ -3025,31 +3025,6 @@
         "name": "l'Oliveral",
         "matchedText": "l'Oliveral",
         "sourceId": "l-oliveral"
-      }
-    },
-    {
-      "id": "9023884",
-      "zones": [
-        "urbanitzacio-la-reva"
-      ],
-      "matchedAlias": {
-        "urbanitzacio-la-reva": "la reva"
-      },
-      "dana": false,
-      "amount": 11282.54,
-      "amountKind": "final",
-      "date": "2025-10-30",
-      "contractType": "supplies",
-      "categoryTitle": "transportation",
-      "point": [
-        39.4840972,
-        -0.572073
-      ],
-      "place": {
-        "kind": "urbanizacion",
-        "name": "Urbanització La Reva",
-        "matchedText": "Urbanització La Reva",
-        "sourceId": "urbanitzacio-la-reva"
       }
     },
     {
@@ -3618,11 +3593,11 @@
     }
   ],
   "builtFrom": {
-    "civic-poi.json": "88bf0c2f3e42",
+    "civic-poi.json": "954285ad47d6",
     "gazetteer-supplement.json": "b3013a1e0efe",
-    "geo.json": "ad861a91ee54",
+    "geo.json": "ad25cbdcf3e2",
     "place-overrides.json": "5878849f1684",
-    "streets.json": "ef84f93a9be0",
-    "tenders.json": "863186dc9e13"
+    "streets.json": "7eec74a6b477",
+    "tenders.json": "385da9864157"
   }
 }

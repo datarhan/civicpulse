@@ -17,6 +17,15 @@ import {
   CorrectionNotice,
 } from '../../src/components/reportajes/CorrectionNote'
 import { REPORTAJE_SLUGS } from '../../src/reportajes'
+import { CATALOGUE } from '../../src/i18n'
+import { fmtDateLong, rellena } from '../../src/lib/formatters'
+
+const ES = CATALOGUE.es
+/** El aviso, como se lee: el recuento y la fecha de la última, en castellano. */
+const avisoDe = (n, fecha) =>
+  n === 1
+    ? rellena(ES['reportajes.correcciones.aviso.una'], { fecha: fmtDateLong(fecha) })
+    : rellena(ES['reportajes.correcciones.aviso.varias'], { n, fecha: fmtDateLong(fecha) })
 
 const meta = (slug) =>
   JSON.parse(readFileSync(join(__dirname, '../../public/data/reportajes', `${slug}.json`), 'utf8'))
@@ -32,9 +41,8 @@ describe('el aviso de correcciones', () => {
     const html = renderToStaticMarkup(
       <CorrectionNotice correcciones={[{ fecha: '2026-08-02', texto: 'Algo.' }]} />,
     )
-    expect(html).toContain('Esta pieza tiene una corrección')
-    expect(html).toContain('del 2026-08-02')
-    expect(html).toContain('verla al final')
+    expect(html).toContain(avisoDe(1, '2026-08-02'))
+    expect(html).toContain(ES['reportajes.correcciones.aviso.verUna'])
   })
 
   it('«la última» es la fecha más reciente aunque el fichero no esté en orden', () => {
@@ -46,8 +54,7 @@ describe('el aviso de correcciones', () => {
         ]}
       />,
     )
-    expect(html).toContain('Esta pieza tiene 2 correcciones')
-    expect(html).toContain('la última, del 2026-08-13')
+    expect(html).toContain(avisoDe(2, '2026-08-13'))
   })
 
   // Contra lo publicado: el aviso de cada pieza apunta al registro de esa pieza,
@@ -66,8 +73,7 @@ describe('el aviso de correcciones', () => {
         .sort()
         .at(-1)
       expect(aviso).toContain(`href="#${ANCLA_CORRECCIONES}"`)
-      expect(aviso).toContain(masReciente)
-      expect(aviso).toContain(c.length === 1 ? 'una corrección' : `${c.length} correcciones`)
+      expect(aviso).toContain(avisoDe(c.length, masReciente))
       expect(registro).toContain(`id="${ANCLA_CORRECCIONES}"`)
       // El registro lleva TODAS: ninguna se queda fuera al moverlo al final.
       expect((registro.match(/<details/g) || []).length).toBe(c.length)

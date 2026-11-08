@@ -2,6 +2,7 @@ import { describe, it, expect } from 'vitest'
 import { readFileSync } from 'node:fs'
 import { join } from 'node:path'
 import { pressLabSummary } from '../src/lib/press-lab'
+import { CATALOGUE } from '../src/i18n'
 
 const ROOT = join(__dirname, '..')
 const AHORA = Date.parse('2026-08-13T09:00:00Z')
@@ -148,9 +149,15 @@ describe('los escalares de /laboratorio no se contradicen entre sí', () => {
     // el `hint` del KPI decía «con ≥1 afirmación verificada» mientras el número
     // contaba analizadas. Una cifra correcta con un rótulo que afirma de más es
     // la familia de defectos que este sitio lleva todo el día persiguiendo.
+    //
+    // El rótulo vive en el catálogo desde el barrido de palabras: la página lo nombra
+    // por su clave, y la clave dice «analizada» en los dos idiomas.
     const jsx = readFileSync(join(ROOT, 'src/pages/LaboratorioPrensa.jsx'), 'utf8')
-    expect(jsx).not.toContain('con ≥1 afirmación verificada')
-    expect(jsx).toContain('con ≥1 afirmación analizada')
+    expect(jsx).toContain("t('laboratorio.prensa.kpi.auditados.pie')")
+    const pie = CATALOGUE.es['laboratorio.prensa.kpi.auditados.pie']
+    expect(pie).not.toContain('con ≥1 afirmación verificada')
+    expect(pie).toContain('con ≥1 afirmación analizada')
+    expect(CATALOGUE.ca['laboratorio.prensa.kpi.auditados.pie']).toContain('analitzada')
   })
 })
 

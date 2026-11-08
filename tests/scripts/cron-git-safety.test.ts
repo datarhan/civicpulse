@@ -53,12 +53,14 @@ import {
   writeFileSync,
 } from 'node:fs'
 import { tmpdir } from 'node:os'
-import { join, resolve } from 'node:path'
+import { basename, join, resolve } from 'node:path'
 
 import { afterAll, describe, expect, it } from 'vitest'
 
+import { CURATED } from '../../.claude/hooks/curated-paths.mjs'
 import { pullsDelLog } from '../../scripts/check-cron'
 import { rutasDerivadas } from '../../scripts/refresh'
+import { LATIDO_DEL_PORTATIL } from '../../src/scraper/ops-alarm'
 
 const REPO = resolve(__dirname, '../..')
 
@@ -111,17 +113,25 @@ fi
 # Otro cron publica en origin MIENTRAS este corre, que es la carrera real: el
 # de quejas empuja cada minuto. Se hace desde un clon aparte para no tocar el
 # árbol que la tubería está usando: advanceOrigin rebobina con reset --hard y
-# aquí eso se llevaría por delante el trabajo del run.
+# aquí eso se llevaría por delante el trabajo del run. Una vez por pasada;
+# STUB_ADVANCE_ORIGIN_VECES lo repite, para que main se siga moviendo mientras
+# el cron reintenta, y STUB_ADVANCE_ORIGIN_RUTA elige qué fichero pisa.
 if [ -n "\${STUB_ADVANCE_ORIGIN_ON:-}" ] && [ "$name" = "\${STUB_ADVANCE_ORIGIN_ON}" ]; then
-  _tmp="$(mktemp -d)"
-  git clone -q "$(git remote get-url origin)" "$_tmp" 2>/dev/null
-  ( cd "$_tmp" \
-    && printf '{"items":[{"id":"otro-cron"}]}\\n' > public/data/press.json \
-    && git add -- public/data/press.json \
-    && git -c user.email=otro@cron -c user.name=otro commit -qm 'otro cron: publica mientras tanto' \
-    && git push -q origin HEAD:main ) >/dev/null 2>&1
-  rm -rf "$_tmp"
-  echo "[stub] otro cron publicó en origin durante \${name}"
+  _n="$(cat .stub-avances 2>/dev/null || echo 0)"
+  _n=$((_n + 1))
+  echo "$_n" > .stub-avances
+  if [ "$_n" -le "\${STUB_ADVANCE_ORIGIN_VECES:-1}" ]; then
+    _ruta="\${STUB_ADVANCE_ORIGIN_RUTA:-public/data/press.json}"
+    _tmp="$(mktemp -d)"
+    git clone -q "$(git remote get-url origin)" "$_tmp" 2>/dev/null
+    ( cd "$_tmp" \
+      && printf '{"items":[{"id":"otro-cron-%s"}]}\\n' "$_n" > "$_ruta" \
+      && git add -- "$_ruta" \
+      && git -c user.email=otro@cron -c user.name=otro commit -qm 'otro cron: publica mientras tanto' \
+      && git push -q origin HEAD:main ) >/dev/null 2>&1
+    rm -rf "$_tmp"
+    echo "[stub] otro cron publicó en origin durante \${name}"
+  fi
 fi
 if [ -n "\${STUB_HOLD_LOCK_ON:-}" ] && [ "$name" = "\${STUB_HOLD_LOCK_ON}" ]; then
   : > .git/index.lock
@@ -275,6 +285,18 @@ if [ "$name" = "refresh" ] && [ -n "\${STUB_REFRESH_RESTAMP:-}" ] && [ -e "\${ST
   printf '{"generatedAt":"rederivado","items":[]}\\n' > "\${STUB_REFRESH_RESTAMP}"
   echo "\${STUB_REFRESH_RESTAMP}"
 fi
+# Un derivado que de verdad sale de su entrada, «entrada:salida». Lleva el hash
+# de lo que leyó, como el \`builtFrom\` de verdad, así que publicar sin volver a
+# derivar se ve en lo que llega a origin y no en una línea de log.
+if [ "$name" = "refresh" ] && [ -n "\${STUB_REFRESH_DERIVA:-}" ]; then
+  _entrada="\${STUB_REFRESH_DERIVA%%:*}"
+  _salida="\${STUB_REFRESH_DERIVA##*:}"
+  _antes="$(cat "$_salida" 2>/dev/null)"
+  _hash="sin-entrada"
+  [ -e "$_entrada" ] && _hash="$(git hash-object "$_entrada")"
+  printf '{"builtFrom":"%s"}\\n' "$_hash" > "$_salida"
+  [ "$(cat "$_salida")" = "$_antes" ] || echo "$_salida"
+fi
 echo "[stub] ran $name"
 # A concurrent subagent stages its work WHILE the cron runs — after the
 # pipeline's opening pull --rebase --autostash, exactly as on 2026-08-09.
@@ -321,6 +343,11 @@ exit 0
 `
   writeFileSync(join(dir, 'scripts/stub-step.sh'), stub)
   writeFileSync(join(dir, 'scripts/stub-derived-paths.txt'), `${rutasDerivadas().join('\n')}\n`)
+
+  // La revisión lectora que scrape-ci-blocked.sh corre ANTES de empujar. Son
+  // minutos, y ésa es la ventana en la que main se mueve.
+  mkdirSync(join(dir, '.husky'), { recursive: true })
+  writeFileSync(join(dir, '.husky/pre-push'), 'bash scripts/stub-step.sh pre-push\n')
 
   // hallazgos llama a la transcripción con `bash`, no por npm, y la de verdad
   // escribe aquí. Ningún pleno del arenero tiene vídeo salvo que una prueba se
@@ -420,6 +447,7 @@ function runScript(dir: string, script: string, env: Record<string, string> = {}
         LLM_BACKEND: 'stub',
         CLAUDE_CODE_BIN: '/nonexistent-disabled',
         LLM_TIMEOUT: '120',
+        CRON_GIT_PUSH_ESPERA: '0',
         MAX_PLENOS: '1',
         ...env,
       },
@@ -1199,9 +1227,6 @@ echo "${FUSION}"
     )
   }
 
-  const enOrigen = (dir: string, ...args: string[]) =>
-    execFileSync('git', args, { cwd: `${dir}.origin.git`, encoding: 'utf8' })
-
   it('scrape-ci-blocked.sh publica aunque una fusión entre durante su revisión pre-push', () => {
     const dir = makeSandbox()
     fusionDuranteElPrePush(dir)
@@ -1246,11 +1271,29 @@ echo "${FUSION}"
     )
   }, 120_000)
 
-  it('si el reintento choca, aborta limpio, no dice que publicó y deja la marca para check:cron', () => {
+  it('auto-curate-promises-daily.sh insiste mientras queden intentos', () => {
     const dir = makeSandbox()
-    // La fusión toca un fichero que esta pasada también escribe y que no es un
-    // derivado: es el choque que el reintento no puede resolver a ciegas.
-    fusionDuranteElPrePush(dir, 'public/data/paro.json')
+    // Mueve main en cada refresh: rechaza el primer push y también el reintento.
+    const r = runScript(dir, 'scripts/auto-curate-promises-daily.sh', {
+      STUB_ADVANCE_ORIGIN_ON: 'refresh',
+      STUB_ADVANCE_ORIGIN_VECES: '2',
+    })
+
+    expect(r.log.match(/push rechazado \(intento/g), r.log).toHaveLength(2)
+    expect(r.status, r.log).toBe(0)
+    expect(r.log).toContain('pushed auto-published promises')
+    expect(r.originHead, 'main local y origin no coinciden: el push no salió').toBe(r.head)
+  }, 120_000)
+
+  it('si el reintento choca en lo que no se repone solo, aborta limpio, no dice que publicó y deja la marca para check:cron', () => {
+    const dir = makeSandbox()
+    // Un curado sin publicar, y la fusión toca ese mismo fichero: es el choque que
+    // el reintento no puede resolver a ciegas. Con un fichero de los que esta
+    // pasada raspa ya no sirve: ése se repone tomando origin.
+    writeFileSync(join(dir, CURADO), sello('local'))
+    git(dir, 'add', '--', CURADO)
+    git(dir, 'commit', '-qm', SUBJECT_LOCAL)
+    fusionDuranteElPrePush(dir, CURADO)
 
     const r = runScript(dir, 'scripts/scrape-ci-blocked.sh')
 
@@ -1772,61 +1815,65 @@ describe('cron pipelines · un autostash que no vuelve no puede encallar la flot
 // faltaba es que un choque entre dos escritores del MISMO DERIVADO tiene una
 // resolución mecánica, y es la que se hizo a mano: el lado de origin y volver a
 // derivar. Cualquier otra ruta en conflicto sigue abortando como siempre.
+const CURADO = 'public/data/promises.json'
+const SUBJECT_LOCAL = 'cron local: sin publicar (862c98a4)'
+
+const sello = (quien: string) =>
+  `{\n  "generatedAt": "2026-10-22T05:00:00.000Z-${quien}",\n  "builtFrom": { "press.json": "${quien}" },\n  "items": []\n}\n`
+
+/** La nocturna reescribe estas rutas en origin, empujando desde un clon aparte. */
+function publicarEnOrigen(dir: string, rutas: string[]): void {
+  const otro = mkdtempSync(join(tmpdir(), 'cron-git-nocturna-'))
+  sandboxes.push(otro)
+  execFileSync('git', ['clone', '-q', `${dir}.origin.git`, otro])
+  for (const r of rutas) writeFileSync(join(otro, r), sello('origin'))
+  execFileSync('git', ['add', '--', ...rutas], { cwd: otro })
+  execFileSync(
+    'git',
+    ['-c', 'user.email=ci@x', '-c', 'user.name=ci', 'commit', '-qm', 'nocturna: sellos'],
+    { cwd: otro },
+  )
+  execFileSync('git', ['push', '-q', 'origin', 'HEAD:main'], { cwd: otro })
+}
+
+/**
+ * Dos escritores reescriben las mismas rutas: un commit local que nunca llegó
+ * a publicarse y uno de origin (la nocturna). El local lleva además un fichero
+ * propio que no choca con nada, que es el trabajo que se perdía.
+ */
+function chocarConOrigen(dir: string, rutas: string[]): void {
+  publicarEnOrigen(dir, rutas)
+  for (const r of rutas) writeFileSync(join(dir, r), sello('local'))
+  writeFileSync(join(dir, 'public/data/paro.json'), '{"items":[{"id":"trabajo-local"}]}\n')
+  git(dir, 'add', '--', ...rutas, 'public/data/paro.json')
+  git(dir, 'commit', '-qm', SUBJECT_LOCAL)
+}
+
+/**
+ * Las rutas que chocarían al fusionar main con origin/main, medidas por git
+ * ANTES del run y sin tocar el árbol. Es la prueba de que el reproductor
+ * reproduce: sin conflicto, «el run publicó» no demuestra nada.
+ */
+function conflictosPrevistos(dir: string): string[] {
+  git(dir, 'fetch', '-q', 'origin')
+  try {
+    git(dir, 'merge-tree', '--write-tree', '--name-only', 'main', 'origin/main')
+    return []
+  } catch (err) {
+    const out = (err as { stdout?: string }).stdout ?? ''
+    // Primera línea: el árbol; luego las rutas en conflicto hasta la línea vacía.
+    const [, ...resto] = out.split('\n')
+    const fin = resto.indexOf('')
+    return (fin < 0 ? resto : resto.slice(0, fin)).map((s) => s.trim()).filter(Boolean)
+  }
+}
+
+function enOrigen(dir: string, ...args: string[]): string {
+  return execFileSync('git', args, { cwd: `${dir}.origin.git`, encoding: 'utf8' })
+}
+
 describe('cron pipelines · un choque de sellos en un derivado no encalla la flota', () => {
   const DERIVADO = 'public/data/press-trust.json'
-  const CURADO = 'public/data/promises.json'
-  const SUBJECT_LOCAL = 'cron local: sin publicar (862c98a4)'
-
-  const sello = (quien: string) =>
-    `{\n  "generatedAt": "2026-10-22T05:00:00.000Z-${quien}",\n  "builtFrom": { "press.json": "${quien}" },\n  "items": []\n}\n`
-
-  /**
-   * Dos escritores reescriben las mismas rutas: un commit local que nunca llegó
-   * a publicarse y uno de origin (la nocturna), empujado desde un clon aparte.
-   * El local lleva además un fichero propio que no choca con nada, que es el
-   * trabajo que se perdía.
-   */
-  function chocarConOrigen(dir: string, rutas: string[]): void {
-    const otro = mkdtempSync(join(tmpdir(), 'cron-git-nocturna-'))
-    sandboxes.push(otro)
-    execFileSync('git', ['clone', '-q', `${dir}.origin.git`, otro])
-    for (const r of rutas) writeFileSync(join(otro, r), sello('origin'))
-    execFileSync('git', ['add', '--', ...rutas], { cwd: otro })
-    execFileSync(
-      'git',
-      ['-c', 'user.email=ci@x', '-c', 'user.name=ci', 'commit', '-qm', 'nocturna: sellos'],
-      { cwd: otro },
-    )
-    execFileSync('git', ['push', '-q', 'origin', 'HEAD:main'], { cwd: otro })
-
-    for (const r of rutas) writeFileSync(join(dir, r), sello('local'))
-    writeFileSync(join(dir, 'public/data/paro.json'), '{"items":[{"id":"trabajo-local"}]}\n')
-    git(dir, 'add', '--', ...rutas, 'public/data/paro.json')
-    git(dir, 'commit', '-qm', SUBJECT_LOCAL)
-  }
-
-  /**
-   * Las rutas que chocarían al fusionar main con origin/main, medidas por git
-   * ANTES del run y sin tocar el árbol. Es la prueba de que el reproductor
-   * reproduce: sin conflicto, «el run publicó» no demuestra nada.
-   */
-  function conflictosPrevistos(dir: string): string[] {
-    git(dir, 'fetch', '-q', 'origin')
-    try {
-      git(dir, 'merge-tree', '--write-tree', '--name-only', 'main', 'origin/main')
-      return []
-    } catch (err) {
-      const out = (err as { stdout?: string }).stdout ?? ''
-      // Primera línea: el árbol; luego las rutas en conflicto hasta la línea vacía.
-      const [, ...resto] = out.split('\n')
-      const fin = resto.indexOf('')
-      return (fin < 0 ? resto : resto.slice(0, fin)).map((s) => s.trim()).filter(Boolean)
-    }
-  }
-
-  function enOrigen(dir: string, ...args: string[]): string {
-    return execFileSync('git', args, { cwd: `${dir}.origin.git`, encoding: 'utf8' })
-  }
 
   it('el arenero conoce los derivados por el grafo, y el del incidente está entre ellos — control', () => {
     expect(rutasDerivadas()).toContain(DERIVADO)
@@ -1909,4 +1956,300 @@ describe('cron pipelines · un choque de sellos en un derivado no encalla la flo
       'resolvió el derivado y abandonó el resto',
     ).toContain('local')
   }, 120_000)
+})
+
+// ---------------------------------------------------------------------------
+// Un push rechazado no puede atascar el cron.
+//
+// scrape-ci-blocked.sh comitea, rebasa, pasa la revisión lectora —unos tres
+// minutos— y empujaba UNA vez. El 2026-10-27 main se movió dentro de esa
+// ventana: push rechazado («fetch first»), «el próximo run reintenta» y salida.
+// Era falso: esa misma mañana la nocturna reescribió los mismos JSON, y cada
+// pull inicial chocó con 8c4c6f30 en agua.json, paro.json y compañía, abortó y
+// no raspó nada, cinco días, hasta que el 01-11 una persona lo deshizo. Ese mismo
+// día se repitió en vivo: #513 se fusionó durante la revisión.
+//
+// Medido en el log de aquella semana: cada ruta que chocó era un derivado o algo
+// que este cron raspa, y agua.json paró al resolvedor las cinco mañanas. Las
+// pruebas reproducen la secuencia entera con el guion de verdad, un origin de
+// verdad y la revisión en su sitio. El arenero es lo que no puede medir: ni el
+// SSH a GitHub, ni launchd, ni un adaptador real.
+describe('scrape-ci-blocked.sh · un push rechazado se recupera solo', () => {
+  const SCRIPT = 'scripts/scrape-ci-blocked.sh'
+  const AGUA = 'public/data/agua.json'
+  const ENTRADA = 'public/data/press.json'
+  const DERIVADO = 'public/data/press-trust.json'
+  const CHOQUE = [
+    AGUA,
+    'public/data/paro.json',
+    'public/data/consell-cv.json',
+    'public/data/sindic-expedientes.json',
+    'public/data/transparency-docs.json',
+    'public/data/plenos-agendas.json',
+  ]
+  // El rechazo se lee en el texto de git, y git habla el idioma del sistema.
+  const EN_INGLES = { LC_ALL: 'C' }
+  const sinComentarios = (s: string) => s.replace(/^\s*#.*$/gm, '')
+  const rechazos = (log: string) => (log.match(/\(fetch first\)/g) ?? []).length
+  const publicado = (dir: string) => enOrigen(dir, 'log', '--format=%s', 'main')
+
+  /**
+   * launchd escribe stdout y stderr en el mismo log, y el rechazo de git va por
+   * stderr, que `runScript` sólo conserva cuando la pasada sale ≠0. Sin esto, una
+   * pasada que se recupera no dejaría prueba de que la rechazaron.
+   */
+  function comoLaunchd(dir: string): string {
+    const envoltorio = 'scripts/stub-launchd.sh'
+    writeFileSync(
+      join(dir, envoltorio),
+      `#!/bin/bash\nexec 2>&1\nexec /bin/bash "${join(dir, SCRIPT)}"\n`,
+    )
+    return envoltorio
+  }
+
+  /** Una pasada a la que rechazan el push sin remedio, como la del 27-10. */
+  function pasadaRechazada(dir: string): RunResult {
+    const r = runScript(dir, comoLaunchd(dir), {
+      ...EN_INGLES,
+      CRON_GIT_PUSH_INTENTOS: '1',
+      STUB_ADVANCE_ORIGIN_ON: 'pre-push',
+    })
+    expect(rechazos(r.log), 'el push no se rechazó: no mide nada').toBe(1)
+    expect(r.status, r.log).toBe(1)
+    return r
+  }
+
+  /** El atasco entero: rechazado, y la nocturna reescribe los mismos JSON. */
+  function atascar(dir: string): string {
+    pasadaRechazada(dir)
+    publicarEnOrigen(dir, CHOQUE)
+    expect(conflictosPrevistos(dir).sort(), 'el reproductor no choca').toEqual([...CHOQUE].sort())
+    return tip(dir, 'main')
+  }
+
+  it('main se mueve durante la revisión: rebasa, reintenta y publica', () => {
+    const dir = makeSandbox()
+    const r = runScript(dir, comoLaunchd(dir), { ...EN_INGLES, STUB_ADVANCE_ORIGIN_ON: 'pre-push' })
+
+    // Las condiciones estaban de verdad: main se movió y git rechazó el push.
+    expect(r.log).toContain('[stub] otro cron publicó en origin durante pre-push')
+    expect(rechazos(r.log), 'el push no se rechazó: no hay reintento que medir').toBe(1)
+
+    expect(r.status, r.log).toBe(0)
+    expect(r.log).toContain('[ci-blocked] pushed')
+    expect(r.originHead, 'main local y origin no coinciden: el push no salió').toBe(r.head)
+    expect(publicado(dir), 'perdió el trabajo del otro').toContain('otro cron: publica')
+    expect(publicado(dir), 'el commit de la pasada no llegó').toContain(LATIDO_DEL_PORTATIL)
+    // Repetir la revisión reabriría los tres minutos en los que main se movió.
+    expect(r.log.match(/\[stub\] ran pre-push/g)).toHaveLength(1)
+  }, 120_000)
+
+  it('rederiva antes de reintentar: lo publicado sale de la entrada que trajo el rebase', () => {
+    const dir = makeSandbox()
+    const r = runScript(dir, comoLaunchd(dir), {
+      ...EN_INGLES,
+      STUB_ADVANCE_ORIGIN_ON: 'pre-push',
+      STUB_REFRESH_DERIVA: `${ENTRADA}:${DERIVADO}`,
+    })
+
+    expect(rechazos(r.log), 'el push no se rechazó').toBe(1)
+    expect(r.status, r.log).toBe(0)
+    // Lo que tests/data-graph-frescura.test.ts mira en lo publicado: el derivado
+    // que llegó a origin describe la entrada que hay a su lado en origin.
+    const entrada = enOrigen(dir, 'rev-parse', `main:${ENTRADA}`).trim()
+    expect(enOrigen(dir, 'show', `main:${DERIVADO}`), 'publicó un derivado rancio').toContain(
+      entrada,
+    )
+  }, 120_000)
+
+  it('main se mueve otra vez entre intentos: insiste mientras queden', () => {
+    const dir = makeSandbox()
+    // Una mudanza por cada refresh: la primera entra en el pull de antes de la
+    // revisión, las otras dos rechazan un push cada una.
+    const r = runScript(dir, comoLaunchd(dir), {
+      ...EN_INGLES,
+      STUB_ADVANCE_ORIGIN_ON: 'refresh',
+      STUB_ADVANCE_ORIGIN_VECES: '3',
+    })
+
+    expect(rechazos(r.log), r.log).toBe(2)
+    expect(r.status, r.log).toBe(0)
+    expect(r.originHead).toBe(r.head)
+  }, 120_000)
+
+  it('si main no para, agota los intentos, lo dice y deja el commit en local', () => {
+    const dir = makeSandbox()
+    const r = runScript(dir, comoLaunchd(dir), {
+      ...EN_INGLES,
+      CRON_GIT_PUSH_INTENTOS: '3',
+      STUB_ADVANCE_ORIGIN_ON: 'refresh',
+      STUB_ADVANCE_ORIGIN_VECES: '99',
+    })
+
+    expect(rechazos(r.log), r.log).toBe(3)
+    expect(r.status).toBe(1)
+    expect(r.log).toMatch(/ERROR: .*3 intento/)
+    expect(r.log).not.toContain('[ci-blocked] pushed')
+    expect(r.branchAfter, 'quedó un rebase a medias').toBe('main')
+    expect(git(dir, 'log', '--format=%s', 'main')).toContain(LATIDO_DEL_PORTATIL)
+    expect(publicado(dir)).not.toContain(LATIDO_DEL_PORTATIL)
+  }, 120_000)
+
+  it('el incidente entero: rechazado, la nocturna pisa y la pasada siguiente raspa y publica', () => {
+    const dir = makeSandbox()
+    atascar(dir)
+
+    const r = runScript(dir, SCRIPT, { ...EN_INGLES, STUB_STAMP: '2' })
+
+    expect(r.log, 'se paró en el pull inicial sin raspar').toContain('[stub] ran scrape:agua-pares')
+    expect(r.status, r.log).toBe(0)
+    expect(r.branchAfter, 'quedó un rebase a medias').toBe('main')
+    expect(r.originHead, 'main local y origin no coinciden').toBe(r.head)
+    // Lo que corta la racha de check:cron.
+    expect(pullsDelLog(r.log, 'ci')[0]?.ok).toBe(true)
+    for (const ruta of CHOQUE) {
+      expect(enOrigen(dir, 'show', `main:${ruta}`), `${ruta} no es de esta pasada`).toContain('-2"')
+    }
+  }, 180_000)
+
+  it('si ese día su adaptador falla, se queda lo que origin publicó y no el lado viejo', () => {
+    // Por esto gana origin. El re-raspado tapa cuál de los dos lados se tomó, así
+    // que sólo un día sin re-raspado deja ver si se eligió el bueno.
+    const dir = makeSandbox()
+    atascar(dir)
+
+    const r = runScript(dir, SCRIPT, { ...EN_INGLES, STUB_STAMP: '2', STUB_FAIL: 'scrape:agua' })
+
+    expect(r.log, 'el fallo inyectado no se dio').toContain('[ci-blocked] FAILED: scrape:agua')
+    expect(r.originHead, 'un adaptador caído no puede retener a los demás').toBe(r.head)
+    expect(enOrigen(dir, 'show', `main:${AGUA}`)).toBe(sello('origin'))
+  }, 180_000)
+
+  it('la nocturna cae durante la revisión y pisa lo mismo: publica en la misma pasada', () => {
+    const dir = makeSandbox()
+    const r = runScript(dir, comoLaunchd(dir), {
+      ...EN_INGLES,
+      STUB_ADVANCE_ORIGIN_ON: 'pre-push',
+      STUB_ADVANCE_ORIGIN_RUTA: AGUA,
+    })
+
+    expect(rechazos(r.log), 'el push no se rechazó').toBe(1)
+    expect(r.log, 'el reintento no chocó: no mide el resolvedor').toContain(
+      `raspado en conflicto: ${AGUA}`,
+    )
+    expect(r.status, r.log).toBe(0)
+    expect(r.originHead).toBe(r.head)
+    expect(enOrigen(dir, 'show', `main:${AGUA}`)).toContain('otro-cron')
+    expect(enOrigen(dir, 'show', 'main:public/data/paro.json')).toContain('run-scrape:paro')
+  }, 120_000)
+
+  it('el lado local de lo que toma de origin queda a mano, con su referencia en el log', () => {
+    // Estas instantáneas no son todas idempotentes: agua.json y paro.json acumulan
+    // filas de su propia pasada anterior, y SINAC sólo enseña los últimos boletines.
+    const dir = makeSandbox()
+    const sinPublicar = atascar(dir)
+
+    const r = runScript(dir, SCRIPT, { ...EN_INGLES, STUB_STAMP: '2' })
+
+    const ref = `refs/respaldo/cron/${sinPublicar}`
+    expect(git(dir, 'show', `${ref}:${AGUA}`), 'el lado local se perdió').toContain(
+      'run-scrape:agua-1',
+    )
+    expect(r.log, 'nadie sabrá dónde mirar').toContain(ref)
+    expect(r.log, 'no nombra lo que tomó de origin').toContain(AGUA)
+  }, 180_000)
+
+  it('una mañana sin cambios publica lo que quedó pendiente', () => {
+    // Salía por «no changes» antes de llegar al push, así que el reintento que
+    // prometía el mensaje no ocurría aunque nada lo impidiera.
+    const dir = makeSandbox()
+    pasadaRechazada(dir)
+
+    const r = runScript(dir, SCRIPT, { ...EN_INGLES, STUB_NOOP: '1' })
+
+    expect(r.log, 'la pasada no corrió').toContain('[stub] ran scrape:paro')
+    expect(r.status, r.log).toBe(0)
+    expect(r.log).toContain('[ci-blocked] pushed')
+    expect(r.originHead).toBe(r.head)
+    expect(publicado(dir)).toContain(LATIDO_DEL_PORTATIL)
+  }, 120_000)
+
+  it('si no puede rederivar lo que trajo el rebase no publica, y la pasada siguiente sí', () => {
+    const dir = makeSandbox()
+    const r = runScript(dir, comoLaunchd(dir), {
+      ...EN_INGLES,
+      STUB_ADVANCE_ORIGIN_ON: 'pre-push',
+      STUB_FAIL: 'refresh',
+    })
+
+    expect(rechazos(r.log), 'el push no se rechazó').toBe(1)
+    expect(r.status).toBe(1)
+    expect(r.log, 'el aviso de antes del commit no llega nunca').toContain('WARN: refresh falló')
+    expect(r.log).toMatch(/ERROR: .*refresh/)
+    expect(r.log).not.toContain('[ci-blocked] pushed')
+    expect(publicado(dir), 'publicó sin derivar').not.toContain(LATIDO_DEL_PORTATIL)
+
+    const siguiente = runScript(dir, SCRIPT, EN_INGLES)
+    expect(siguiente.status, siguiente.log).toBe(0)
+    expect(publicado(dir)).toContain(LATIDO_DEL_PORTATIL)
+  }, 180_000)
+
+  it('raspado y curado en el mismo choque: aborta entero y no raspa', () => {
+    const dir = makeSandbox()
+    chocarConOrigen(dir, [AGUA, CURADO])
+    expect(conflictosPrevistos(dir).sort(), 'no choca').toEqual([AGUA, CURADO].sort())
+    const localAntes = tip(dir, 'main')
+
+    const r = runScript(dir, SCRIPT, EN_INGLES)
+
+    expect(r.status).toBe(1)
+    expect(r.log).not.toContain('[stub] ran scrape:')
+    expect(r.log, 'no nombra la ruta que lo para').toContain(CURADO)
+    expect(r.branchAfter, 'quedó un rebase a medias').toBe('main')
+    expect(tip(dir, 'main'), 'el commit local se reescribió').toBe(localAntes)
+    expect(git(dir, 'show', `HEAD:${CURADO}`)).toContain('local')
+    expect(git(dir, 'show', `HEAD:${AGUA}`), 'resolvió la mitad').toContain('local')
+    expect(enOrigen(dir, 'show', `main:${CURADO}`)).toContain('origin')
+  }, 120_000)
+
+  it('otro cron no toma origin en lo que no raspa: sólo el dueño promete el re-raspado', () => {
+    const dir = makeSandbox()
+    chocarConOrigen(dir, [AGUA])
+    const localAntes = tip(dir, 'main')
+
+    const r = runScript(dir, 'scripts/auto-curate-promises-daily.sh')
+
+    expect(r.status).not.toBe(0)
+    expect(r.branchAfter, 'quedó un rebase a medias').toBe('main')
+    expect(tip(dir, 'main')).toBe(localAntes)
+    expect(git(dir, 'show', `HEAD:${AGUA}`)).toContain('local')
+  }, 120_000)
+
+  it('lo que toma de origin es lo que comitea, y no lleva ningún curado', () => {
+    const guion = readFileSync(join(REPO, SCRIPT), 'utf8')
+    const rutas = (guion.match(/^SNAPSHOTS=\(\n([\s\S]*?)^\)/m)?.[1] ?? '')
+      .split('\n')
+      .map((s) => s.trim())
+      .filter((s) => s.startsWith('public/'))
+
+    // Mide algo: las rutas que atascaron el cron están en la lista.
+    expect(rutas).toEqual(expect.arrayContaining(CHOQUE))
+    expect(rutas.filter((r) => basename(r) in CURATED)).toEqual([])
+    // Y es UNA lista: la misma que abre el commit y la que se declara reponible.
+    expect(guion).toMatch(/cron_git_stage_and_check\s+"\$\{SNAPSHOTS\[@\]\}"/)
+    expect(guion).toMatch(/CRON_GIT_RASPADOS_PROPIOS="\$\(printf .*"\$\{SNAPSHOTS\[@\]\}"\)"/)
+  })
+
+  it('no fuerza nunca el push, y no promete el reintento que no hay', () => {
+    const cuerpo = sinComentarios(readFileSync(join(REPO, SCRIPT), 'utf8'))
+    const lib = sinComentarios(readFileSync(join(REPO, 'scripts/lib/cron-git.sh'), 'utf8'))
+    // Las dos mitades: el `git push` vive en la función, y sus opciones las pasa
+    // quien la llama.
+    const pushes = `${cuerpo}\n${lib}`
+      .split('\n')
+      .filter((l) => /\bgit push\b|cron_git_push_con_reintento --/.test(l))
+    expect(pushes.length, 'no ha encontrado ningún push').toBeGreaterThan(1)
+    for (const l of pushes) expect(l).not.toMatch(/--force|\s-f\b|\+main/)
+    expect(cuerpo).not.toContain('el próximo run reintenta')
+  })
 })

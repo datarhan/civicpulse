@@ -44,9 +44,30 @@
  * La fila se busca por enlace y número de lote, no por `id`: el enlace es lo que
  * cita el anuncio, y el `id` de una fila puede cambiar si la fuente la reasigna
  * o si su expediente gana otra fila (`idsDeFilas` en tenders.ts).
+ *
+ * ## Una adjudicación en dos filas que no dicen lo mismo
+ *
+ * La regla automática (`sinAdjudicacionesRepetidas`, tenders.ts) sólo funde dos
+ * filas que coinciden en todo, y se queda corta a propósito. Cuando difieren en
+ * algo más y el anuncio dice que son una, la que sobra la retira una entrada de
+ * `repeticiones`, firmada y con la cita del anuncio. El caso que la abrió,
+ * cotejado el 2026-11-02: 196/2023, un taller de la escuela de adultos derivado
+ * del sistema dinámico ESDA2/2022, que Gobierto publica como lote 3 sin fecha y
+ * con 1.095 días, y como lote en blanco fechado y con 30. El anuncio trae UN
+ * resultado, de 1.000 € y «1 Mes(es)», bajo la categoría del sistema que él mismo
+ * numera como la 3. Nombra a una persona física, así que no lo decide una regla.
+ *
+ * Las dos filas se buscan por enlace y `sourceRowId`, la `contract_id` de
+ * Gobierto: entre dos gemelas, el lote no basta, y es lo único que las separa.
+ * Si la clave cambia, la entrada deja de encontrar su fila y sobra: la cuenta
+ * doble vuelve con la guarda en rojo, nunca se retira otra fila. Y no retira
+ * nada si falta la que queda, porque la adjudicación se quedaría sin ninguna, ni
+ * si las dos ya no repiten el lote, el importe, la adjudicataria y un estado
+ * comprometido que se firmaron.
  */
 import { CAMPOS_PROHIBIDOS } from './competencias'
-import type { Contract, ContractStatus } from './tenders'
+import type { AdjudicacionRepetida, Contract, ContractStatus } from './tenders'
+import { procurementStatusKind } from '../lib/contract-status.js'
 
 /** Lo único que una corrección puede restituir: un estado comprometido. */
 export const ESTADOS_CORREGIDOS = [
@@ -84,9 +105,37 @@ export interface CorreccionContrato {
   curatedAt: string
 }
 
+/** Una fila por su clave de la fuente. */
+export interface FilaDeFuente {
+  /** `batchNumber`; 0 en un lote en blanco. */
+  lote: number
+  /** La `contract_id` de Gobierto: es lo que la busca. */
+  sourceRowId: string
+  /** El `id` que la fila tenía al firmar; sólo para leerla. */
+  id: string
+}
+
+/** Una fila que repite una adjudicación de otra y se retira. */
+export interface RepeticionContrato extends FilaDeFuente {
+  permalink: string
+  /** La fila que se queda, con la adjudicación. */
+  queda: FilaDeFuente
+  /** El importe sin IVA que publican las dos. */
+  importeSinIva: number
+  /** La adjudicataria, como la escribe el anuncio. */
+  assignee: string
+  /** Por qué son una adjudicación, en una frase. */
+  motivo: string
+  /** El anuncio de adjudicación. */
+  source: FuenteContrato
+  curatedBy: string
+  curatedAt: string
+}
+
 export interface ContractCorrections {
   note: string
   corrections: CorreccionContrato[]
+  repeticiones?: RepeticionContrato[]
 }
 
 /** La marca que lleva una fila corregida en el fichero publicado. */
@@ -108,6 +157,20 @@ export type PorQueSobra = 'sin-fila' | 'ya-corregida-en-origen' | 'adjudicataria
 
 export interface Sobrante extends FilaRef {
   porque: PorQueSobra
+}
+
+/** Lo que una pasada retiró por una repetición firmada. */
+export interface RepeticionRetirada extends AdjudicacionRepetida {
+  url: string
+  motivo: string
+  curatedAt: string
+}
+
+export type PorQueSobraRepeticion = 'sin-fila' | 'sin-la-que-queda' | 'ya-no-repiten'
+
+export interface SobranteRepeticion extends FilaRef {
+  sourceRowId: string
+  porque: PorQueSobraRepeticion
 }
 
 export class ContractCorrectionsError extends Error {}
@@ -147,6 +210,57 @@ function validarFuente(f: unknown, donde: string, errores: string[]): void {
 
 const clave = (permalink: string, lote: number) => `${permalink}#${lote}`
 
+function validarFila(f: unknown, donde: string, errores: string[]): void {
+  if (!esObjeto(f)) {
+    errores.push(`${donde} debe ser un objeto {lote, sourceRowId, id}`)
+    return
+  }
+  if (!Number.isInteger(f.lote) || (f.lote as number) < 0)
+    errores.push(`${donde}.lote debe ser un entero ≥ 0`)
+  if (!esTexto(f.sourceRowId))
+    errores.push(`${donde}.sourceRowId vacío: la contract_id de Gobierto`)
+  if (!esTexto(f.id)) errores.push(`${donde}.id vacío`)
+}
+
+/** Una lista ausente vale por vacía: el fichero es anterior a las repeticiones. */
+function validarRepeticiones(lista: unknown, errores: string[]): void {
+  if (lista === undefined) return
+  if (!Array.isArray(lista)) {
+    errores.push('repeticiones debe ser una lista')
+    return
+  }
+  const retiradas = new Map<string, string>()
+  const quedan = new Map<string, string>()
+  for (const [i, r] of lista.entries()) {
+    const d = `repeticiones[${i}]`
+    if (!esObjeto(r)) {
+      errores.push(`${d} debe ser un objeto`)
+      continue
+    }
+    if (!esUrl(r.permalink)) errores.push(`${d}.permalink debe ser una URL absoluta`)
+    validarFila(r, d, errores)
+    validarFila(r.queda, `${d}.queda`, errores)
+    if (esObjeto(r.queda) && esTexto(r.sourceRowId) && r.queda.sourceRowId === r.sourceRowId)
+      errores.push(`${d}.queda es la misma fila que se retira`)
+    if (typeof r.importeSinIva !== 'number' || !(r.importeSinIva > 0))
+      errores.push(`${d}.importeSinIva debe ser el importe que repiten, mayor que 0`)
+    if (!esTexto(r.assignee, 3)) errores.push(`${d}.assignee vacío`)
+    if (!esTexto(r.motivo, 30)) errores.push(`${d}.motivo: una frase (≥30 caracteres)`)
+    validarFuente(r.source, `${d}.source`, errores)
+    if (!esTexto(r.curatedBy)) errores.push(`${d}.curatedBy vacío: lo firma una persona`)
+    if (!esFecha(r.curatedAt)) errores.push(`${d}.curatedAt debe ser YYYY-MM-DD`)
+    if (esTexto(r.sourceRowId)) {
+      const k = `${r.permalink}#${r.sourceRowId}`
+      if (retiradas.has(k)) errores.push(`${d}: retirada duplicada para ${k}`)
+      retiradas.set(k, d)
+    }
+    if (esObjeto(r.queda) && esTexto(r.queda.sourceRowId))
+      quedan.set(`${r.permalink}#${r.queda.sourceRowId}`, d)
+  }
+  for (const [k, d] of quedan)
+    if (retiradas.has(k)) errores.push(`${retiradas.get(k)} retira la fila que ${d} queda en pie`)
+}
+
 export function validateContractCorrections(json: unknown): ContractCorrections {
   if (!esObjeto(json))
     throw new ContractCorrectionsError('contract-corrections: debe ser un objeto')
@@ -179,6 +293,7 @@ export function validateContractCorrections(json: unknown): ContractCorrections 
       vistas.add(k)
     }
   }
+  validarRepeticiones(json.repeticiones, errores)
   if (errores.length > 0)
     throw new ContractCorrectionsError(
       `contract-corrections inválido:\n  - ${errores.join('\n  - ')}`,
@@ -232,7 +347,105 @@ export function applyContractCorrections(
   return { contracts: out, aplicadas, sobran }
 }
 
+/**
+ * Retira las filas que una repetición firmada dice que sobran. Nunca muta la
+ * entrada. Una que no puede retirar sin riesgo de quitar otra cosa no la toca y
+ * vuelve en `sobran`.
+ */
+export function retirarRepeticiones(
+  contracts: Contract[],
+  corrections: ContractCorrections | null,
+): { contracts: Contract[]; retiradas: RepeticionRetirada[]; sobran: SobranteRepeticion[] } {
+  const retiradas: RepeticionRetirada[] = []
+  const sobran: SobranteRepeticion[] = []
+  const fuera = new Set<Contract>()
+  for (const k of corrections?.repeticiones ?? []) {
+    const buscar = (f: FilaDeFuente) =>
+      contracts.find((c) => c.permalink === k.permalink && c.sourceRowId === f.sourceRowId)
+    const [fila, queda] = [buscar(k), buscar(k.queda)]
+    const sobra = (porque: PorQueSobraRepeticion) =>
+      sobran.push({
+        permalink: k.permalink,
+        lote: k.lote,
+        id: k.id,
+        sourceRowId: k.sourceRowId,
+        porque,
+      })
+    if (!fila) {
+      sobra('sin-fila')
+      continue
+    }
+    if (!queda) {
+      sobra('sin-la-que-queda')
+      continue
+    }
+    const repite = (c: Contract, lote: number) =>
+      c.batchNumber === lote &&
+      c.finalAmountNoTaxes === k.importeSinIva &&
+      normalizarNombre(c.assignee) === normalizarNombre(k.assignee) &&
+      procurementStatusKind(c.status) === 'committed'
+    if (!repite(fila, k.lote) || !repite(queda, k.queda.lote)) {
+      sobra('ya-no-repiten')
+      continue
+    }
+    fuera.add(fila)
+    retiradas.push({
+      id: fila.id,
+      sourceRowId: fila.sourceRowId,
+      queda: queda.id,
+      url: k.source.url,
+      motivo: k.motivo,
+      curatedAt: k.curatedAt,
+    })
+  }
+  return { contracts: contracts.filter((c) => !fuera.has(c)), retiradas, sobran }
+}
+
 export type DesenlaceCorreccion = 'aplicada' | 'pendiente' | 'no-aplicada' | 'sobra'
+
+/** Lo mismo que `evaluarCorrecciones`, para las repeticiones. */
+export function evaluarRepeticiones(
+  corrections: ContractCorrections,
+  snapshot: {
+    generatedAt?: string
+    contracts?: Contract[]
+    contractCorrections?: {
+      repeticionesRetiradas?: RepeticionRetirada[]
+      repeticionesSobrantes?: SobranteRepeticion[]
+    }
+  },
+): (FilaRef & { desenlace: DesenlaceCorreccion; detalle: string })[] {
+  const generado = Date.parse(snapshot.generatedAt ?? '')
+  return (corrections.repeticiones ?? []).map((k) => {
+    const ref: FilaRef = { permalink: k.permalink, lote: k.lote, id: k.id }
+    const esta = (s: { sourceRowId: string | null }) => s.sourceRowId === k.sourceRowId
+    const sobra = (snapshot.contractCorrections?.repeticionesSobrantes ?? []).find(
+      (s) => s.permalink === k.permalink && esta(s),
+    )
+    if (sobra) return { ...ref, desenlace: 'sobra', detalle: sobra.porque }
+    // Sin filas que mirar no se sabe si la retirada sigue: nunca «aplicada».
+    const sigue = snapshot.contracts?.some((c) => c.permalink === k.permalink && esta(c)) ?? null
+    const retirada = (snapshot.contractCorrections?.repeticionesRetiradas ?? []).find(esta)
+    if (retirada && sigue === false)
+      return { ...ref, desenlace: 'aplicada', detalle: `retirada; queda ${retirada.queda}` }
+    if (!Number.isFinite(generado) || generado < Date.parse(k.curatedAt) + 86_400_000)
+      return {
+        ...ref,
+        desenlace: 'pendiente',
+        detalle: `tenders.json es de ${snapshot.generatedAt ?? '¿?'}, anterior a la firma (${k.curatedAt})`,
+      }
+    return {
+      ...ref,
+      desenlace: 'no-aplicada',
+      detalle:
+        sigue === null
+          ? 'tenders.json no trae contratos que mirar'
+          : sigue
+            ? 'la fila sigue en tenders.json'
+            : 'la pasada no la anotó como retirada',
+    }
+  })
+}
 
 /**
  * Lo que la guarda dice de cada corrección frente al `tenders.json` publicado.

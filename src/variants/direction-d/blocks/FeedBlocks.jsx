@@ -265,6 +265,19 @@ export function LiveContracts() {
           </div>
         )
       })}
+      <Link
+        to="/contratos"
+        style={{
+          display: 'inline-block',
+          marginTop: 6,
+          fontSize: 'var(--fs-micro)',
+          color: PALETTE.civic,
+          textDecoration: 'none',
+          fontWeight: 600,
+        }}
+      >
+        {t('landing.contratos.todos')}
+      </Link>
     </div>
   )
 }

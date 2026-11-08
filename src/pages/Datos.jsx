@@ -1076,6 +1076,7 @@ const EXTRA_DATASETS = [
 /** Dónde se lee mejor una cifra suelta: las páginas que la explican. */
 const ATAJOS = [
   ['/presupuesto', 'nav.presup'],
+  ['/contratos', 'nav.contratos'],
   ['/plenos', 'nav.plenos'],
   ['/cargos', 'nav.cargos'],
   ['/quejas', 'nav.quejas'],

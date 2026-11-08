@@ -34,6 +34,11 @@ scripts/logs/
 # refine-transcript --apply local backups of the pristine Whisper output
 public/data/pleno-transcripts/*.txt.orig
 
+# Hand-made backups (`cp x.json x.json.bak-1004`). The /hallazgos cron stages the
+# whole of public/data, and what is committed is deployed: two copies of the
+# ungated corpus were served that way from October 2026. See publication-denylist.js.
+public/data/**/*.bak*
+
 # P2 deterministic base — reproducible via `npm run verify:pleno-claims`; only
 # the overlay (curator/NLI decisions) + the merged verified.json are committed.
 public/data/pleno-claims-verified-base.json

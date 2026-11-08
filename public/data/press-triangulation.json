@@ -1,14 +1,36 @@
 {
-  "generatedAt": "2026-11-01T11:47:54.184Z",
-  "clusters": [],
+  "generatedAt": "2026-11-08T11:45:05.029Z",
+  "clusters": [
+    {
+      "clusterId": "1ffhzqr",
+      "articleIds": [
+        "1sfn68k",
+        "w8xvcs"
+      ],
+      "outlets": [
+        "Foro3D",
+        "Valenciabonita"
+      ],
+      "fuentesOficiales": [],
+      "earliestDate": "2026-10-21T07:00:00.000Z",
+      "latestDate": "2026-11-08T04:31:11.000Z",
+      "verdictMix": {
+        "verificado": 0,
+        "parcial": 0,
+        "contradicho": 0,
+        "sin-datos": 0,
+        "promesa-repetida": 0
+      }
+    }
+  ],
   "stats": {
-    "totalClusters": 0,
+    "totalClusters": 1,
     "triangulated3Plus": 0
   },
   "builtFrom": {
-    "plenos-agendas.json": "6fd31c671e7c",
-    "press-claims-verified.json": "2dbfb96512c5",
-    "press.json": "58f529e55e3b",
+    "plenos-agendas.json": "4abc82389c6e",
+    "press-claims-verified.json": "0026b814bd42",
+    "press.json": "639757f3a452",
     "promises.json": "a4b8423e960f"
   }
 }

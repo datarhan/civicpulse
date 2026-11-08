@@ -1,9 +1,10 @@
 /**
- * /presupuesto en valencià (#38).
+ * /presupuesto y /contratos en valencià (#38).
  *
- * La tercera de las páginas que la incidencia encontró sin catálogo. La cabecera,
- * la cascada y los capítulos ya pasaban por él; lo que no pasaba era todo lo que
- * cuelga debajo: la tarjeta del mapa de lo adjudicado con su medidor de cobertura,
+ * La tercera de las páginas que la incidencia encontró sin catálogo, y desde el
+ * 1-11-2026 dos páginas. La cabecera, la cascada y los capítulos ya pasaban por
+ * él; lo que no pasaba era lo que colgaba debajo y hoy es /contratos: la tarjeta
+ * del mapa de lo adjudicado con su medidor de cobertura,
  * el detalle de una zona, la línea de tiempo, las tres pestañas —el listado de
  * contratos con sus filtros y su paginación, los adjudicatarios y los tipos— y los
  * anuncios del TED.
@@ -24,6 +25,7 @@ import { resolve } from 'node:path'
 import { CATALOGUE } from '../../src/i18n'
 import { peekSnapshot } from '../../src/lib/snapshot-store'
 import Presupuesto from '../../src/pages/Presupuesto'
+import Contratos from '../../src/pages/Contratos'
 import { euros, eurosBreves } from '../../src/lib/formatters'
 import { lecturaCapitulos } from '../../src/scraper/presupuesto-lectura'
 import { isCommittedContract } from '../../src/lib/contract-status'
@@ -103,11 +105,8 @@ const UNIDADES = masLargasPrimero([
 const publicado = (ruta) => JSON.parse(readFileSync(resolve('public', `.${ruta}`), 'utf8'))
 
 const RUTAS = [
-  '/data/budget.json',
-  '/data/budget-execution.json',
   '/data/obras.json',
   '/data/bdns.json',
-  '/data/deuda-viva.json',
   '/data/tenders.json',
   '/data/tenders-ted.json',
   '/data/tender-geo.json',
@@ -119,6 +118,15 @@ const RUTAS = [
   '/data/queja-contract-relations-approved.json',
 ]
 const sirve = () => Object.fromEntries(RUTAS.map((r) => [r, publicado(r)]))
+
+/** /presupuesto sólo pide de la contratación la cobertura del selector de barrio. */
+const RUTAS_PRESUPUESTO = [
+  '/data/budget.json',
+  '/data/budget-execution.json',
+  '/data/deuda-viva.json',
+  '/data/tender-geo.json',
+]
+const sirvePresupuesto = () => Object.fromEntries(RUTAS_PRESUPUESTO.map((r) => [r, publicado(r)]))
 
 /**
  * Los nombres de capítulo como los escribe la página: son dato del snapshot —CONPREL
@@ -137,9 +145,8 @@ const CAPITULOS = (() => {
   ].flatMap((r) => [r, r.toLowerCase()])
 })()
 
-/** Lo que la página sólo pide al pulsar: la pestaña de adjudicatarios y el detalle de una zona. */
+/** Lo que la página sólo pide al pulsar: el detalle de una zona. */
 const AL_PULSAR = [
-  '/data/entities.json',
   '/data/quejas.json',
   '/data/queja-contract-relations.json',
   '/data/queja-contract-relations-approved.json',
@@ -173,10 +180,12 @@ async function recorre(c) {
   expect(pestanas().length, 'la tarjeta del mapa no tiene pestañas').toBeGreaterThan(1)
 
   // La segunda página del listado de contratos, en la pestaña inicial.
-  const siguiente = [...c.querySelectorAll('nav button')].at(-1)
+  const siguiente = [...c.querySelectorAll('[role="tabpanel"] nav button')].at(-1)
   leido.push(
     ...(await pulsaYLee(c, siguiente, () =>
-      [...c.querySelectorAll('nav [aria-live]')].some((s) => s.textContent.trim().startsWith('2')),
+      [...c.querySelectorAll('[role="tabpanel"] nav [aria-live]')].some((s) =>
+        s.textContent.trim().startsWith('2'),
+      ),
     )),
   )
 
@@ -214,8 +223,7 @@ async function recorre(c) {
       c,
       zona,
       () =>
-        !c.querySelector('.cp-gasto-grid > div:last-child button + button') &&
-        llegaron(AL_PULSAR.slice(1)),
+        !c.querySelector('.cp-gasto-grid > div:last-child button + button') && llegaron(AL_PULSAR),
     )),
   )
 
@@ -248,7 +256,9 @@ const EMPRESAS = '/data/entities.json'
  * - un solo contrato fuera de las cifras comprometidas;
  * - un contrato menor sin importe neto publicado;
  * - los dos mayores adjudicatarios, fundidos en una empresa con dos razones sociales;
- * - un firmado sin importe de adjudicación y con el de licitación, en la primera página.
+ * - un firmado sin importe de adjudicación y con el de licitación, en la primera página;
+ * - ninguna fecha de adjudicación: «En breve» dice el recuento sin periodo;
+ * - el mayor contrato, sin convocatoria: «apartándolo» ya no querría decir nada.
  */
 function ramasRaras() {
   const mapa = structuredClone(sirve())
@@ -269,6 +279,8 @@ function ramasRaras() {
     (importeAdjudicado(b) ?? 0) > (importeAdjudicado(a) ?? 0) ? b : a,
   )
   mayor.contractType = 'services'
+  mayor.processType = 'negotiated_without_publicity'
+  for (const c of contratos) c.awardDate = null
   const noComprometidos = contratos.filter((c) => !isCommittedContract(c))
   for (const c of noComprometidos.slice(1)) c.status = 'awarded'
   const menor = contratos.find((c) => c.minorContract === true && isCommittedContract(c))
@@ -323,15 +335,25 @@ function sinPulsar() {
 
 const pintada = (c) =>
   !!c.querySelector('h1') &&
-  /\d{4}/.test(c.querySelector('h1').textContent) &&
   c.querySelectorAll('[role="tablist"] [role="tab"]').length > 1 &&
   c.querySelectorAll('.cp-contrato-fila').length > 0
 
+const presupuestoPintado = (c) =>
+  /\d{4}/.test(c.querySelector('h1')?.textContent ?? '') &&
+  !!c.querySelector('[data-puente-contratos]') &&
+  !!c.querySelector('#cascada')
+
 const ESCENARIOS = [
   {
-    nombre: 'la página con lo publicado, recorriendo pestañas, zona, DANA, páginas y tiempo',
-    fetch: sirve(),
+    nombre: '/presupuesto, con lo publicado',
+    fetch: sirvePresupuesto(),
     pinta: () => <Presupuesto />,
+    listo: presupuestoPintado,
+  },
+  {
+    nombre: '/contratos con lo publicado, recorriendo pestañas, zona, DANA, páginas y tiempo',
+    fetch: sirve(),
+    pinta: () => <Contratos />,
     listo: pintada,
     interactua: recorre,
     alPulsar: AL_PULSAR,
@@ -340,7 +362,7 @@ const ESCENARIOS = [
     nombre:
       'las ramas raras: sin fechas, nada situado, el mayor sin concesión, uno fuera, un menor sin importe, dos razones sociales',
     fetch: ramasRaras(),
-    pinta: () => <Presupuesto />,
+    pinta: () => <Contratos />,
     listo: pintada,
     interactua: recorre,
     alPulsar: AL_PULSAR,
@@ -350,21 +372,21 @@ const ESCENARIOS = [
     // dice (`presupuesto.gasto.zona.desconocida`) en vez de abrir el mapa sin más.
     nombre: 'un enlace con un barrio que el mapa no conoce',
     fetch: sinPulsar(),
-    ruta: '/presupuesto?barrio=sector-14',
-    pinta: () => <Presupuesto />,
+    ruta: '/contratos?barrio=sector-14',
+    pinta: () => <Contratos />,
     listo: (c) => pintada(c) && !!c.querySelector('[data-barrio-desconocido]'),
   },
   {
     nombre: 'sin importes en los contratos',
     fetch: sinImportes(),
-    pinta: () => <Presupuesto />,
+    pinta: () => <Contratos />,
     listo: pintada,
   },
 ]
 
 afterEach(() => localStorage.clear())
 
-describe('/presupuesto en valencià: nada se lee igual que en castellano', () => {
+describe('/presupuesto y /contratos en valencià: nada se lee igual que en castellano', () => {
   it.each(ESCENARIOS)(
     '$nombre',
     async (esc) => {
@@ -406,6 +428,7 @@ describe('/presupuesto en valencià: nada se lee igual que en castellano', () =>
  * ramas dependen de la serie, y las recorre `deuda-titular-valencia.test.js` entera.
  */
 const PREFIJOS = [
+  'contratos.enBreve.',
   'presupuesto.gasto.',
   'presupuesto.menores.',
   'presupuesto.obras.',
@@ -413,7 +436,7 @@ const PREFIJOS = [
   'paginacion.',
 ]
 
-describe('cobertura de la guarda de /presupuesto', () => {
+describe('cobertura de la guarda de /presupuesto y /contratos', () => {
   it('toda cadena de sus familias se pinta en algún escenario', async () => {
     const claves = Object.keys(CATALOGUE.es).filter((k) => PREFIJOS.some((p) => k.startsWith(p)))
     // Mide algo, y de cada familia: una familia sin claves no está cubierta, falta.
@@ -429,7 +452,9 @@ describe('cobertura de la guarda de /presupuesto', () => {
     const texto = leido.join('\n')
     const sinPintar = claves.filter((clave) =>
       CATALOGUE.es[clave]
-        .split(/\{\w+\}/)
+        // Un hueco parte la frase, y un término del glosario también: es un botón,
+        // y por tanto su propia pieza de lectura.
+        .split(/\{\w+\}|\[\[\w+\||\]\]/)
         .map((trozo) => trozo.trim())
         .filter((trozo) => /\p{L}/u.test(trozo))
         .some((trozo) => !texto.includes(trozo)),

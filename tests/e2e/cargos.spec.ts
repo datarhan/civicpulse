@@ -208,7 +208,37 @@ test.describe('Cargos (/cargos)', () => {
         .locator('#ya-no-forman-parte > .cp-experta-cuerpo')
         .getByText('Ya no forman parte de la corporación'),
     ).toBeVisible({ timeout: 8000 })
-    const body = await page.locator('body').innerText()
+    // El título sólo prueba que llegó officials.json. La línea de retribución
+    // de las tarjetas del pleno viene de otra instantánea, dedicaciones.json,
+    // que aterriza un render después: medido el 2-11-2026 sobre el build de
+    // producción, el título salía siempre con las tarjetas aún en «retribución
+    // · cargando…», y la línea llegaba unos 40 ms más tarde. Leer el texto una
+    // vez tras el título caía en esa ventana una de cada cinco veces. Así que
+    // se espera lo que espera un lector —que ninguna tarjeta siga cargando—, y
+    // el texto que se comprueba abajo es el MISMO que leyó esa condición, en
+    // una sola evaluación: sondear una cosa y leer otra después dejaría el
+    // hueco abierto. Se pide además alguna línea ya leída, porque «ninguna
+    // cargando» también lo cumple una página sin ninguna.
+    let body = ''
+    await expect
+      .poll(
+        async () => {
+          const leido = await page.evaluate(() => ({
+            texto: document.body.innerText,
+            cargando: document.querySelectorAll('[data-retribucion="cargando"]').length,
+            leidas: document.querySelectorAll(
+              '[data-retribucion]:not([data-retribucion="cargando"])',
+            ).length,
+          }))
+          body = leido.texto
+          return leido.cargando === 0 && leido.leidas > 0
+        },
+        {
+          message: 'las tarjetas del pleno tienen que dejar de decir «retribución · cargando…»',
+          timeout: 8000,
+        },
+      )
+      .toBe(true)
     const i = body.indexOf('YA NO FORMAN PARTE DE LA CORPORACIÓN')
     expect(i).toBeGreaterThan(0)
     const former = body.slice(i)
@@ -323,7 +353,35 @@ test.describe('Cargos (/cargos)', () => {
     await expect(seccion, 'la rejilla de oposición tiene que estar en la página').toBeVisible({
       timeout: 8000,
     })
-    const oposicion = await seccion.innerText()
+    // La sección sólo prueba que llegó officials.json. La línea de retribución
+    // de cada tarjeta viene de dedicaciones.json, que aterriza un render
+    // después: la misma carrera que la prueba del miembro saliente (arriba).
+    // Leer el texto una vez tras la sección lo cogía a veces con todas las
+    // tarjetas en «retribución · cargando…», y la comprobación de alcance de
+    // abajo fallaba (CI de la PR #542, en verde al reintentar). Así que se
+    // sondea, en una sola evaluación sobre la sección, el texto y el estado
+    // data-retribucion de sus tarjetas hasta que ninguna está cargando y alguna
+    // ya se leyó, y las dos aserciones leen ese MISMO texto.
+    let oposicion = ''
+    await expect
+      .poll(
+        async () => {
+          const leido = await seccion.evaluate((el) => ({
+            texto: (el as HTMLElement).innerText,
+            cargando: el.querySelectorAll('[data-retribucion="cargando"]').length,
+            leidas: el.querySelectorAll('[data-retribucion]:not([data-retribucion="cargando"])')
+              .length,
+          }))
+          oposicion = leido.texto
+          return leido.cargando === 0 && leido.leidas > 0
+        },
+        {
+          message:
+            'las tarjetas de la oposición tienen que dejar de decir «retribución · cargando…»',
+          timeout: 8000,
+        },
+      )
+      .toBe(true)
     // It really contains the cards (an empty slice would pass the next line).
     expect(oposicion).toMatch(/asistencias por sesión/i)
     expect(oposicion).not.toMatch(/\d[\d.]*,\d{2}\s*€/)

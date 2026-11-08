@@ -88,9 +88,35 @@ const MESES_TRANSPARENCIA = numero(
 )
 
 const METODOLOGIA = plano('src/pages/Metodologia.jsx')
-const QUEJAS = plano('src/pages/Quejas.jsx')
+/**
+ * Lo que /quejas dice, en castellano. Su prosa vive en el catálogo desde el barrido
+ * de palabras —la entrada desde la primera tanda; «Estado», «Cómo funciona» y lo
+ * demás desde la segunda—, así que se lee de allí: cada clave que la página nombra,
+ * en el orden en que la nombra, sin las marcas de negrita (`**`). En orden, porque
+ * la prueba de la tarjeta «Estado» lee el trozo entre dos frases. La prueba de la
+ * revisión exige además que la página pinte su entrada.
+ */
+const CLAVES_DE_QUEJAS = [
+  ...new Set(
+    [...lee('src/pages/Quejas.jsx').matchAll(/t\('(quejas\.[\w.-]+)'\)/g)].map((m) => m[1]),
+  ),
+]
+const QUEJAS = [
+  plano('src/pages/Quejas.jsx'),
+  ...CLAVES_DE_QUEJAS.map((k) => CATALOGUE.es[k]).filter(Boolean),
+]
+  .join(' ')
+  .replace(/\*\*/g, '')
 
 describe('el contrato de las quejas dice lo que hace el código', () => {
+  it('lee la prosa de /quejas del catálogo (si no, no mide nada)', () => {
+    // Las claves de «Estado» y «Cómo funciona» tienen que estar entre las leídas: sin
+    // ellas, las pruebas de abajo leerían la página sin su prosa.
+    for (const k of ['quejas.intro', 'quejas.empty.publica', 'quejas.como.plazo']) {
+      expect(CLAVES_DE_QUEJAS, k).toContain(k)
+    }
+  })
+
   it('lee las cuatro cifras de donde viven (si no, no mide nada)', () => {
     for (const n of [UMBRAL, LOTE, MESES_GENERAL, MESES_TRANSPARENCIA]) {
       expect(Number.isInteger(n) && n > 0).toBe(true)
@@ -513,6 +539,7 @@ describe('la revisión antes de publicar', () => {
     expect(METODOLOGIA).toContain('no reescribe su texto')
     expect(AVISO).toContain('Revisión antes de publicar')
     // Y /quejas, en la cabecera que se ve con datos y sin ellos.
+    expect(lee('src/pages/Quejas.jsx')).toContain("t('quejas.intro')")
     expect(QUEJAS).toContain(
       'Desde finales de septiembre de 2026, una persona revisa cada queja antes de publicarla aquí.',
     )

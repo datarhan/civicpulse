@@ -79,7 +79,7 @@ export default function AvisoLegal() {
           cartografía de incendios forestales del Institut Cartogràfic Valencià / Generalitat
           Valenciana (CC BY 4.0) bajo sus condiciones de reutilización, con la atribución que
           exigen). Cada dato individual enlaza a la fuente de la que sale: un registro o documento
-          oficial o, cuando sale de la prensa —en el tracker de promesas y en el laboratorio de
+          oficial o, cuando sale de la prensa —en la página de promesas y en el laboratorio de
           prensa—, la noticia que lo recoge. El listado completo de feeds está en{' '}
           <a href="/datos" style={{ color: 'var(--civic)' }}>
             /datos
@@ -91,7 +91,7 @@ export default function AvisoLegal() {
       <Card id="rectificacion" style={{ marginTop: 14 }}>
         <SectionHead eyebrow="Derecho de rectificación" title="Cómo pedir una corrección" />
         <p>
-          Si apareces nombrado en el tracker de promesas, en la ficha de Cargos o en cualquier otra
+          Si apareces nombrado en la página de promesas, en la ficha de Cargos o en cualquier otra
           sección con información incorrecta, tienes derecho a solicitar rectificación, y si eres un
           grupo, un cargo o una institución aludidos, a publicar tu réplica. Para abrir el
           procedimiento:
@@ -291,7 +291,7 @@ export default function AvisoLegal() {
         <p>
           Durante el periodo electoral oficial convocado mediante real decreto y hasta la
           proclamación definitiva de la Junta Electoral de Zona (Ley Orgánica del Régimen Electoral
-          General 5/1985, art. 50), el tracker de promesas entra en modo solo-lectura:
+          General 5/1985, art. 50), la página de promesas queda congelada:
         </p>
         <ul>
           <li>
@@ -310,8 +310,8 @@ export default function AvisoLegal() {
           </li>
           <li>
             El pleno principal del sitio, incluidas las páginas <code>/presupuesto</code>,{' '}
-            <code>/cargos</code> y <code>/datos</code>, sigue operativo con datos objetivos de
-            fuente pública.
+            <code>/contratos</code>, <code>/cargos</code> y <code>/datos</code>, sigue operativo con
+            datos objetivos de fuente pública.
           </li>
           <li>
             No se publica ninguna opinión del editor que nombre a una persona, y las ya publicadas
@@ -368,11 +368,13 @@ export default function AvisoLegal() {
           </a>
           . El proceso no redacta hallazgos notables ni críticos, no atribuye nada a una persona con
           nombre, no publica solo uno cuya cita se atribuya a un grupo municipal de un solo concejal
-          —que es nombrar a ese concejal— o cuyo texto lo nombre, y se detiene durante el periodo
-          electoral.
+          —que es nombrar a ese concejal—, ni uno cuyo texto o cuyas citas lo nombren o nombren a
+          otro cargo, y se detiene durante el periodo electoral.
         </p>
         {/* /metodologia#politica-automatizacion lista estos procesos; hasta el 01-11-2026
-            decía «Dos» y este documento no decía ninguno. */}
+            decía «Dos» y este documento no decía ninguno. Las dos últimas frases son de ese
+            mismo día: las dos curadoras publicaban sin comprobar a quién nombraban
+            (src/scraper/cargos-nombrados.ts). */}
         <p>
           <strong>Lo que todavía publica sin esa medición.</strong> La auto-curación de promesas no
           es el único proceso anterior a la política de automatización que publica sin pasar por
@@ -383,7 +385,10 @@ export default function AvisoLegal() {
           <a href="/metodologia#politica-automatizacion" style={{ color: 'var(--civic)' }}>
             /metodologia
           </a>
-          ).
+          ). La auto-curación de promesas y el laboratorio de prensa sí comprueban, antes de
+          publicar, que lo que sale solo no nombre a un cargo por su apellido, por un oficio que
+          sólo tiene una persona o por un grupo de un solo concejal. No comprueban los nombres de
+          otras personas.
         </p>
       </Card>
 
@@ -550,8 +555,8 @@ export default function AvisoLegal() {
         <p>Cuando presentas una queja a través del bot de Telegram, los datos recogidos son:</p>
         <ul>
           <li>
-            <strong>Texto de la queja</strong>, categoría y barrio aproximado — se publican en el
-            dashboard si, tras revisarlos, quien modera las quejas decide publicarlos
+            <strong>Texto de la queja</strong>, categoría y barrio aproximado — se publican en esta
+            web si, tras revisarlos, quien modera las quejas decide publicarlos
           </li>
           <li>
             <strong>Coordenadas exactas</strong> (si las envías) — <strong>nunca</strong> se
@@ -652,13 +657,14 @@ export default function AvisoLegal() {
           la ubicación y la referencia a la foto, borra la copia anonimizada de la foto que guarda
           su servidor, quita su texto de las tarjetas de revisión que recibió quien modera las
           quejas —de todas las que Telegram le deja editar— y pide a GitHub que esta web se vuelva a
-          publicar. Esta web la retira del dashboard, del heatmap, del feed público y del snapshot
-          abierto en cuanto termina esa actualización, que suele tardar unos minutos; si la petición
-          falla, en la siguiente actualización diaria. En esa misma actualización borra el fichero
-          de la foto anonimizada si se había publicado. En el registro interno quedan el texto, las
-          fechas y los estados de la queja, sin tu identidad de Telegram, durante el plazo legal de
-          conservación; después se destruyen. Sólo el autor puede ejercer este derecho sobre su
-          propia queja, y una vez ejercido el bot ya no puede saber quién la escribió.
+          publicar. Esta web la retira de las páginas de quejas, de su mapa, del listado público y
+          del fichero de datos abiertos en cuanto termina esa actualización, que suele tardar unos
+          minutos; si la petición falla, en la siguiente actualización diaria. En esa misma
+          actualización borra el fichero de la foto anonimizada si se había publicado. En el
+          registro interno quedan el texto, las fechas y los estados de la queja, sin tu identidad
+          de Telegram, durante el plazo legal de conservación; después se destruyen. Sólo el autor
+          puede ejercer este derecho sobre su propia queja, y una vez ejercido el bot ya no puede
+          saber quién la escribió.
         </p>
         <p>
           <strong>Borrar todos tus datos</strong>: <code>/borrar_mis_datos</code> hace de una vez lo

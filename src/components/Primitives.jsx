@@ -1,6 +1,7 @@
 import { Fragment } from 'react'
 import { Ic } from './Icons'
 import { safeHref } from '../lib/formatters'
+import { conHuecos } from '../lib/huecos'
 import { useT } from '../i18n'
 
 const TONES = {
@@ -464,6 +465,28 @@ export function Marcado({ texto, estilo }) {
         <Fragment key={i}>{p}</Fragment>
       ),
     )
+}
+
+/**
+ * Una frase del catálogo con negritas Y con elementos dentro: `**…**` como en
+ * `Marcado` y cada `{hueco}` con su elemento, como en `conHuecos`.
+ *
+ * Nació con el barrido de /quejas, donde una misma frase lleva una negrita y un
+ * enlace («… — **nunca identifica al vecino**…», «Ver {metodologia} y {aviso}…»).
+ * Partirla en trozos para pintar cada uno sería, otra vez, dejar que cada idioma
+ * recomponga la frase sin poder revisarla entera.
+ *
+ * Los huecos se sustituyen antes que las negritas: una negrita no puede abrirse a
+ * un lado de un hueco y cerrarse al otro. Lo que se rellena con texto (`rellena`)
+ * va antes de llamar aquí, y ése sí puede ir dentro de una negrita.
+ *
+ * @param {{texto: string, huecos?: Record<string, import('react').ReactNode>,
+ *   estilo?: import('react').CSSProperties}} p
+ */
+export function MarcadoConHuecos({ texto, huecos = {}, estilo }) {
+  return conHuecos(String(texto), huecos).map((p, i) =>
+    typeof p === 'string' ? <Marcado key={i} texto={p} estilo={estilo} /> : p,
+  )
 }
 
 /**

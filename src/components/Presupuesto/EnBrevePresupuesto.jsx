@@ -173,6 +173,62 @@ export default function EnBrevePresupuesto() {
 
   if (r.limite) {
     const l = r.limite
+    // Con la cifra por vecino, la frase la parte en lo de partida y lo añadido:
+    // la cabecera de la página dice «… por habitante» del aprobado de CONPREL,
+    // y sin las dos partes el vecino ve dos precios de lo mismo y ninguna
+    // suma que los junte (auditoría de las dos lecturas, §5.2).
+    // Cada variante es una llamada literal: el guard del catálogo lee la clave y
+    // los huecos de la propia llamada a `rellena`.
+    const p = l.porVecinoPartes
+    const inicial = eurosBreves(l.inicial)
+    const mod = eurosBreves(l.modificaciones)
+    const fraseLimite = () => {
+      if (p && l.enCurso)
+        return rellena(t('presupuesto.enBreve.limite.frase.enCurso.porVecino'), {
+          inicial,
+          mod,
+          inicialVecino: euros(p.inicial),
+          modVecino: euros(p.anadido),
+        })
+      if (p)
+        return rellena(t('presupuesto.enBreve.limite.frase.porVecino'), {
+          inicial,
+          mod,
+          inicialVecino: euros(p.inicial),
+          modVecino: euros(p.anadido),
+        })
+      if (l.enCurso) return rellena(t('presupuesto.enBreve.limite.frase.enCurso'), { inicial, mod })
+      return rellena(t('presupuesto.enBreve.limite.frase'), { inicial, mod })
+    }
+    // El aviso de las dos fuentes trae la cifra de CONPREL por vecino —la de la
+    // cabecera— salvo que redondee a la misma que la tarjeta ya da de partida:
+    // «otra cifra … 1.689 € por vecino» junto a «(1.689 € por vecino)» diría dos
+    // cosas con un número. Con el año sin cerrar, la del Ayuntamiento es la de
+    // una hoja de mitad de año y el aviso no la llama desacuerdo de fuentes.
+    const avisoDosFuentes = () => {
+      if (l.conprelDiscrepa == null) return undefined
+      const year = l.year
+      const conprel = eurosBreves(l.conprelDiscrepa)
+      const vecino =
+        l.conprelPorVecino != null && (!p || Math.round(l.conprelPorVecino) !== p.inicial)
+          ? euros(l.conprelPorVecino)
+          : null
+      if (vecino && l.enCurso)
+        return rellena(t('presupuesto.enBreve.limite.dosFuentes.enCurso.porVecino'), {
+          year,
+          conprel,
+          conprelVecino: vecino,
+        })
+      if (vecino)
+        return rellena(t('presupuesto.enBreve.limite.dosFuentes.porVecino'), {
+          year,
+          conprel,
+          conprelVecino: vecino,
+        })
+      if (l.enCurso)
+        return rellena(t('presupuesto.enBreve.limite.dosFuentes.enCurso'), { year, conprel })
+      return rellena(t('presupuesto.enBreve.limite.dosFuentes'), { year, conprel })
+    }
     tarjetas.push(
       <TarjetaEnBreve
         key="limite"
@@ -189,25 +245,8 @@ export default function EnBrevePresupuesto() {
             : undefined
         }
         figura={<FiguraLimite limite={l} />}
-        frases={[
-          l.enCurso
-            ? rellena(t('presupuesto.enBreve.limite.frase.enCurso'), {
-                inicial: eurosBreves(l.inicial),
-                mod: eurosBreves(l.modificaciones),
-              })
-            : rellena(t('presupuesto.enBreve.limite.frase'), {
-                inicial: eurosBreves(l.inicial),
-                mod: eurosBreves(l.modificaciones),
-              }),
-        ]}
-        salvedad={
-          l.conprelDiscrepa != null
-            ? rellena(t('presupuesto.enBreve.limite.dosFuentes'), {
-                year: l.year,
-                conprel: eurosBreves(l.conprelDiscrepa),
-              })
-            : undefined
-        }
+        frases={[fraseLimite()]}
+        salvedad={avisoDosFuentes()}
         ancla="#cascada"
         anclaTexto={ver}
       />,
@@ -384,6 +423,7 @@ export default function EnBrevePresupuesto() {
     <BarrioPicker
       cobertura={r.barrio}
       zonas={zonas}
+      ruta="/contratos"
       figura={!r.barrio.menosDeUno ? <FiguraBarrio n={r.barrio.deCada100} /> : null}
     />
   )

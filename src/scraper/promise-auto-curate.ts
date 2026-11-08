@@ -9,6 +9,8 @@
  */
 import { advancesStatus, type Status } from './promises'
 import { stripDiacritics } from './normalize'
+import { motivosDeRetencion, type Publicable } from './cargos-nombrados'
+import type { OfficialsDoc } from './corporation-seats'
 import type { DraftNewPromise, DraftStatusChange, DraftDecision, Grounding } from './promise-draft'
 
 export const AUTO_PUBLISH_MIN_CONFIDENCE = 0.7
@@ -49,6 +51,21 @@ export function decideDraft(
   return tier === 'auto' ? 'auto-publish' : 'fast-track'
 }
 
+/**
+ * Lo que iba a salir solo y nombra a un cargo va a la cola, con su motivo: nombrar
+ * a un cargo lleva firma (cargos-nombrados.ts). Sólo mira lo que saldría solo; lo
+ * que ya espera a una persona no necesita esta puerta.
+ */
+function retenerSiNombra<T extends DraftNewPromise | DraftStatusChange>(
+  draft: T,
+  publicable: Publicable,
+  officials: OfficialsDoc | null,
+): T {
+  if (draft.decision !== 'auto-publish') return draft
+  const motivos = motivosDeRetencion(publicable, officials)
+  return motivos.length === 0 ? draft : { ...draft, decision: 'queue', retenidaPor: motivos }
+}
+
 export function normKey(party: string, title: string): string {
   return `${stripDiacritics(party.toLowerCase())}::${stripDiacritics(title.toLowerCase()).replace(/\s+/g, ' ').trim()}`
 }
@@ -58,6 +75,8 @@ export interface SelectInput {
   existingPromises: Array<{ id: string; party: string; title: string; source?: { url?: string } }>
   seenDraftIds: Set<string>
   frozen: boolean
+  /** `officials.json`; `null` si no se pudo leer, y entonces nada sale solo. */
+  officials: OfficialsDoc | null
   minConfidence?: number
   max?: number
 }
@@ -114,9 +133,13 @@ export function selectPromiseDrafts(inp: SelectInput): SelectOutput {
       continue
     }
     const decision = decideDraft(c.proposed.status, c.confidence, c.grounding, min)
-    const draft = { ...c, decision }
+    const draft = retenerSiNombra(
+      { ...c, decision },
+      { etiquetas: [c.proposed.party], textos: [c.proposed.title, c.proposed.quote] },
+      inp.officials,
+    )
     // fast-track items also land in out.queue; callers distinguish by draft.decision
-    if (decision === 'auto-publish') out.autoPublish.push(draft)
+    if (draft.decision === 'auto-publish') out.autoPublish.push(draft)
     else out.queue.push(draft)
     taken++
   }
@@ -129,6 +152,10 @@ export interface SelectStatusInput {
   /** promiseId+proposedStatus keys already published/queued, to avoid churn. */
   seenTransitions: Set<string>
   frozen: boolean
+  /** `officials.json`; `null` si no se pudo leer, y entonces nada sale solo. */
+  officials: OfficialsDoc | null
+  /** La promesa a la que se cambia el estado también nombra a quien nombre. */
+  existingPromises: Array<{ id: string; party: string; title: string; quote?: string }>
   minConfidence?: number
   max?: number
 }
@@ -178,9 +205,14 @@ export function selectStatusDrafts(inp: SelectStatusInput): SelectStatusOutput {
       continue
     }
     const decision = decideDraft(c.proposedStatus, c.confidence, c.grounding, min)
-    const draft = { ...c, decision }
+    const promesa = inp.existingPromises.find((p) => p.id === c.promiseId)
+    const draft = retenerSiNombra(
+      { ...c, decision },
+      { etiquetas: [promesa?.party], textos: [c.evidence.quote, promesa?.title, promesa?.quote] },
+      inp.officials,
+    )
     // fast-track items also land in out.queue; callers distinguish by draft.decision
-    if (decision === 'auto-publish') out.autoPublish.push(draft)
+    if (draft.decision === 'auto-publish') out.autoPublish.push(draft)
     else out.queue.push(draft)
     takenTransitions.add(key)
     taken++

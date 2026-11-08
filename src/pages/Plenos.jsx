@@ -11,6 +11,7 @@ import { TarjetaDeclaraciones } from '../components/plenos/TarjetaDeclaraciones'
 import { RepartoPorArea } from '../components/plenos/RepartoPorArea'
 import { EnBrevePlenos } from '../components/plenos/EnBrevePlenos'
 import DivisorLecturas from '../components/DivisorLecturas'
+import { IndiceExperta } from '../components/IndiceSecciones'
 import { SeccionExperta } from '../components/Lecturas'
 import { usePlenos } from '../hooks/usePlenos'
 import { usePlenoClaimsManifest } from '../hooks/usePlenoClaims'
@@ -116,6 +117,7 @@ export default function Plenos() {
       />
       <SesionesDelAnio filas={r.filas} agendas={agendasData} />
       <DivisorLecturas />
+      <IndiceExperta />
 
       {/* Las cuatro secciones de abajo son las que pliega «Ver: lo esencial»
           (components/Lecturas.jsx); el pie, con la fuente y los enlaces, se

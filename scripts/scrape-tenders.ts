@@ -13,13 +13,15 @@ import {
   exigeClaveDeFuente,
   parseRibalicitaContracts,
   parseRibalicitaTenders,
+  sinAdjudicacionesRepetidas,
   type Contract,
   type Tender,
 } from '../src/scraper/tenders'
-import { applyContractCorrections } from '../src/scraper/contract-corrections'
+import { applyContractCorrections, retirarRepeticiones } from '../src/scraper/contract-corrections'
 import {
   registrarIdentidad,
   renglonesDeIdentidad,
+  sinFilasRetiradas,
   type SnapshotAnterior,
 } from '../src/scraper/identidad-de-filas'
 import { loadContractCorrections } from './contract-correction'
@@ -80,11 +82,15 @@ async function main() {
   const tendersCsv = await fetchCsv(TENDERS_URL)
 
   // El parser ya deja sin estado lo imposible (`sinEstadoImposible`); lo que
-  // una persona restituyó con el anuncio delante se aplica aquí, y lo que ya no
-  // corrige nada se anota en vez de tumbar la pasada (contract-corrections.ts).
+  // una persona restituyó o retiró con el anuncio delante se aplica aquí, y lo
+  // que ya no corrige nada se anota en vez de tumbar la pasada
+  // (contract-corrections.ts).
   const parsed = parseRibalicitaContracts(contractsCsv)
   exigeClaveDeFuente(parsed)
-  const correcciones = applyContractCorrections(parsed, loadContractCorrections())
+  const { contratos: sinRepetidas, repetidas } = sinAdjudicacionesRepetidas(parsed)
+  const curadas = loadContractCorrections()
+  const firmadas = retirarRepeticiones(sinRepetidas, curadas)
+  const correcciones = applyContractCorrections(firmadas.contracts, curadas)
   const contracts = correcciones.contracts
   const tenders = parseRibalicitaTenders(tendersCsv)
   const imposibles = parsed.filter((c) => c.sourceStatus !== undefined)
@@ -118,18 +124,26 @@ async function main() {
       openTenders: topOpenTenders(tenders, 12),
     },
     // Lo que esta pasada cambió del registro, para que se pueda auditar: las
-    // filas que dejó sin estado por imposible y las correcciones curadas que
-    // aplicó o que ya sobran (check:contract-corrections lee este bloque).
+    // filas que dejó sin estado por imposible, las que retiró por repetir una
+    // adjudicación, la regla o una firma, y las correcciones curadas que aplicó
+    // o que ya sobran (check:contract-corrections lee este bloque).
     contractCorrections: {
       file: '/data/contract-corrections.json',
       sinEstadoPorImposible: imposibles.map((c) => c.id),
+      adjudicacionesRepetidas: repetidas,
+      repeticionesRetiradas: firmadas.retiradas,
+      repeticionesSobrantes: firmadas.sobran,
       aplicadas: correcciones.aplicadas,
       sobran: correcciones.sobran,
     },
     // Si cada contrato sigue bajo su clave de fila desde la pasada anterior. Una
     // medida para decidir sobre el `id`, no un gate: lo imprime
     // check:contract-corrections y no cambia ningún dato.
-    identidadDeFilas: registrarIdentidad(await snapshotAnterior(), generatedAt, contracts),
+    identidadDeFilas: registrarIdentidad(
+      sinFilasRetiradas(await snapshotAnterior(), [...repetidas, ...firmadas.retiradas]),
+      generatedAt,
+      contracts,
+    ),
     contracts,
     tenders,
   }
@@ -138,11 +152,17 @@ async function main() {
   await writeFile(OUT, JSON.stringify(payload, null, 2) + '\n')
   console.log(`[tenders] wrote ${OUT}`)
   console.log(
-    `[tenders] estados imposibles → centinela: ${imposibles.length} · correcciones: ` +
+    `[tenders] adjudicaciones repetidas retiradas: ${repetidas.length} por la regla, ` +
+      `${firmadas.retiradas.length} firmada(s) · ` +
+      `estados imposibles → centinela: ${imposibles.length} · correcciones: ` +
       `${correcciones.aplicadas.length} aplicada(s), ${correcciones.sobran.length} sobrante(s)`,
   )
   for (const s of correcciones.sobran)
     console.log(`[tenders]   ✗ la corrección de ${s.id} (lote ${s.lote}) sobra: ${s.porque}`)
+  for (const s of firmadas.sobran)
+    console.log(
+      `[tenders]   ✗ la repetición firmada de ${s.id} (lote ${s.lote}) sobra: ${s.porque}`,
+    )
   for (const renglon of renglonesDeIdentidad(payload)) console.log(renglon)
   console.log(
     `[tenders] ${contracts.length} contracts (${payload.stats.awardedContracts} awarded, € ${awardedTotal

@@ -10,11 +10,11 @@ import { CATALOGUE } from '../src/i18n'
  */
 const ATA_AL_PRESUPUESTO = { es: /con este dinero/i, ca: /amb estos diners/i }
 const NIEGA_EL_REPARTO = {
-  es: /no son el reparto del presupuesto/i,
-  ca: /no són el repartiment del pressupost/i,
+  es: /no son el reparto de un presupuesto/i,
+  ca: /no són el repartiment d'un pressupost/i,
 }
 
-describe('la contratación de /presupuesto no se titula como el reparto que su entradilla niega', () => {
+describe('la contratación de /contratos no se titula como el reparto que su entradilla niega', () => {
   for (const idioma of ['es', 'ca'] as const) {
     it(idioma, () => {
       const tabla = CATALOGUE[idioma] as unknown as Record<string, string>

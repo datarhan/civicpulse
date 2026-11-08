@@ -338,7 +338,8 @@ export function BitacoraCorrecciones({ correcciones, ficha }) {
                     fecha: fecha(c.reasonAmendments.at(-1).amendedAt),
                   })
                 : t('bitacora.motivo')}{' '}
-              {c.reason}
+              {/* El motivo es el que se firmó: se imprime tal cual (`data-literal`). */}
+              <span data-literal="">{c.reason}</span>
             </div>
             {(c.reasonAmendments ?? []).map((a, j) => (
               <div key={j} style={{ marginTop: 2, color: 'var(--ink50)' }}>
@@ -348,7 +349,7 @@ export function BitacoraCorrecciones({ correcciones, ficha }) {
                 <span className="mono" style={{ fontSize: 'var(--fs-micro)' }}>
                   {fecha(a.amendedAt)} · {a.editor}
                 </span>
-                . {a.reason} {t('bitacora.enmienda.anterior')}{' '}
+                . <span data-literal="">{a.reason}</span> {t('bitacora.enmienda.anterior')}{' '}
                 <span className="mono">{huellaSinEtiqueta(a.previous)}</span>.
               </div>
             ))}

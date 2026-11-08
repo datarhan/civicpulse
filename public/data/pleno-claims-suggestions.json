@@ -1,16 +1,16 @@
 {
-  "generatedAt": "2026-10-26T11:20:37.741Z",
+  "generatedAt": "2026-11-05T08:57:34.527Z",
   "source": {
     "description": "Claims extracted automatically from YouTube-derived pleno transcripts. Each record carries requiresHumanApproval:true and is cross-referenced against tenders / BDNS / budget / promises by the verifier pass before any editorial surface.",
     "contract": "Machine-written; never substitutes for the published human-verified record. Speaker attribution at bloc level only — no individual naming."
   },
   "stats": {
-    "total": 7946,
+    "total": 7959,
     "byType": {
       "promesa": 583,
-      "afirmacion_numerica": 2240,
-      "cita_obra": 1685,
-      "cita_convenio": 639,
+      "afirmacion_numerica": 2248,
+      "cita_obra": 1686,
+      "cita_convenio": 643,
       "acusacion_publica": 2799,
       "valoracion_politica": 0
     },
@@ -35,6 +35,7 @@
       "otxq2c": 562,
       "c8kr44": 269,
       "rmtyr": 339,
+      "1sk3q3c": 13,
       "1tgd1h4": 1088,
       "1080zow": 3,
       "15000go": 238,
@@ -44,16 +45,16 @@
       "fiscal": 1302,
       "vivienda": 190,
       "movilidad": 247,
-      "medio-ambiente": 791,
+      "medio-ambiente": 799,
       "social": 536,
       "cultura": 307,
       "seguridad": 294,
       "empleo": 293,
       "urbanismo": 1079,
       "salud": 217,
-      "transparencia": 1317,
+      "transparencia": 1318,
       "educacion": 425,
-      "other": 948
+      "other": 952
     }
   },
   "items": [
@@ -116276,6 +116277,247 @@
       "requiresHumanApproval": true
     },
     {
+      "id": "1sk3q3c-008-cit-388d8a",
+      "plenoId": "1sk3q3c",
+      "plenoDate": "2025-07-07",
+      "segmentIndex": 8,
+      "type": "cita_obra",
+      "speakerGroup": null,
+      "verbatim": "el Ayuntamiento de Riba Roja de Túria se pondría pues un poco a la altura de eh algunos ayuntamientos eh importantes que han llevado a cabo estas prácticas como el Ayuntamiento de Madrid, Barcelona o Valencia que ya han puesto en funcionamiento estas prácticas.",
+      "context": "Explicando en qué consiste un 'sandbox' (espacio controlado de pruebas para proyectos piloto de innovación), el interviniente afirma que Riba-roja de Túria se equipararía a otros ayuntamientos que ya han implementado este tipo de prácticas, citando expresamente a Madrid, Barcelona y Valencia como ejemplos de municipios que ya cuentan con este tipo de sandbox en funcionamiento.",
+      "topic": "other",
+      "entities": {
+        "referencedEntity": "sandbox / entornos controlados de prueba para innovación (comparado con madrid, barcelona y valencia)"
+      },
+      "confidence": 0.7,
+      "reasoning": "Es una afirmación fáctica comprobable sobre si los ayuntamientos de Madrid, Barcelona y Valencia tienen efectivamente implementados programas de 'sandbox' de innovación en funcionamiento; se puede contrastar contra normativa/convenios municipales publicados de esas ciudades.",
+      "requiresHumanApproval": true
+    },
+    {
+      "id": "1sk3q3c-009-cit-489a69",
+      "plenoId": "1sk3q3c",
+      "plenoDate": "2025-07-07",
+      "segmentIndex": 9,
+      "type": "cita_convenio",
+      "speakerGroup": null,
+      "verbatim": "el Ayuntamiento de Riba Roja de Túria se pondría pues un poco a la altura de eh algunos ayuntamientos eh importantes que han llevado a cabo estas prácticas como el Ayuntamiento de Madrid, Barcelona o Valencia que ya han puesto en funcionamiento estas prácticas",
+      "context": "Se habla de un convenio para implementar entornos controlados de prueba (sandbox) en el municipio, comparando la iniciativa con prácticas ya puestas en marcha por otros ayuntamientos.",
+      "topic": "other",
+      "entities": {
+        "referencedEntity": "sandbox regulatorio municipal (ribasandbox)"
+      },
+      "confidence": 0.55,
+      "reasoning": "Afirma que Madrid, Barcelona y Valencia ya han implementado prácticas de sandbox regulatorio municipal; es verificable contrastando con iniciativas públicas documentadas de esos ayuntamientos.",
+      "requiresHumanApproval": true
+    },
+    {
+      "id": "1sk3q3c-009-cit-738560",
+      "plenoId": "1sk3q3c",
+      "plenoDate": "2025-07-07",
+      "segmentIndex": 9,
+      "type": "cita_convenio",
+      "speakerGroup": null,
+      "verbatim": "Este Samsung se anunció eh con carácter uh general se presentó a las empresas, universidades y centros de investigación el pasado twenty eight de mayo",
+      "context": "Explicación del proceso de tramitación del convenio RibaSandbox: anuncio público y presentación a empresas, universidades y centros de investigación antes de abrir un periodo de exposición pública.",
+      "topic": "other",
+      "entities": {
+        "date": "2025-05-28",
+        "referencedEntity": "ribasandbox"
+      },
+      "confidence": 0.5,
+      "reasoning": "Cita una fecha concreta (28 de mayo) de presentación pública del convenio RibaSandbox a empresas, universidades y centros de investigación, verificable contra el expediente administrativo; 'Samsung' es probable error de transcripción de Whisper por 'sandbox'.",
+      "requiresHumanApproval": true
+    },
+    {
+      "id": "1sk3q3c-020-cit-20c8ce",
+      "plenoId": "1sk3q3c",
+      "plenoDate": "2025-07-07",
+      "segmentIndex": 20,
+      "type": "cita_convenio",
+      "speakerGroup": null,
+      "verbatim": "el contrato de servicios de prestación de recogida de residuos eh consta de dos lotes. El lote número uno es el servicio de recogida de R.S.U., residuos sólidos urbanos, podas y luminosos y lo voluminosos.",
+      "context": "El regidor explica el punto del orden del día relativo a la adjudicación del servicio de recogida de residuos sólidos urbanos, detallando que el contrato consta de dos lotes.",
+      "topic": "medio-ambiente",
+      "entities": {
+        "count": 2,
+        "countUnit": "lotes",
+        "referencedEntity": "contrato de recogida de residuos sólidos urbanos (rsu) - ctto. 136/2025"
+      },
+      "confidence": 0.75,
+      "reasoning": "Describe la estructura del contrato de recogida de RSU vinculado al expediente 615/2025/GEN del orden del día; verificable contra el pliego/adjudicación (lote 1: recogida, podas, voluminosos).",
+      "requiresHumanApproval": true
+    },
+    {
+      "id": "1sk3q3c-020-cit-9fea4a",
+      "plenoId": "1sk3q3c",
+      "plenoDate": "2025-07-07",
+      "segmentIndex": 20,
+      "type": "cita_convenio",
+      "speakerGroup": null,
+      "verbatim": "Y el lote número dos, como novedad, es el servicio de asistencia técnica y apoyo para el control y super y supervisión sobre la prestación del contrato de R.S.U.",
+      "context": "Tras describir el lote 1, el regidor añade que el lote 2 es una novedad del contrato: un servicio de asistencia técnica para controlar que la recogida de residuos se realice adecuadamente.",
+      "topic": "medio-ambiente",
+      "entities": {
+        "referencedEntity": "lote 2 - servicio de asistencia técnica y apoyo para control y supervisión del contrato de rsu (novedad)"
+      },
+      "confidence": 0.75,
+      "reasoning": "Afirma que el lote 2 (asistencia técnica/supervisión) es una novedad del contrato de residuos; verificable contra el pliego de licitación y la propuesta de adjudicación del expediente 615/2025/GEN.",
+      "requiresHumanApproval": true
+    },
+    {
+      "id": "1sk3q3c-021-afi-f13a93",
+      "plenoId": "1sk3q3c",
+      "plenoDate": "2025-07-07",
+      "segmentIndex": 21,
+      "type": "afirmacion_numerica",
+      "speakerGroup": null,
+      "verbatim": "En el lote número uno, el de recogida de residuos sólidos urbanos, la duración es de c es de catorce años",
+      "context": "El concejal explica que el contrato de recogida de residuos consta de dos lotes; para el lote número uno detalla que la duración del contrato es de catorce años.",
+      "topic": "medio-ambiente",
+      "entities": {
+        "count": 14,
+        "countUnit": "años",
+        "referencedEntity": "contrato recogida rsu - lote 1"
+      },
+      "confidence": 0.85,
+      "reasoning": "Cifra concreta de duración del contrato (14 años) verificable contra el expediente de licitación 615/2025/GEN y el pliego del Ctto. 136/2025.",
+      "requiresHumanApproval": true
+    },
+    {
+      "id": "1sk3q3c-021-afi-0aec74",
+      "plenoId": "1sk3q3c",
+      "plenoDate": "2025-07-07",
+      "segmentIndex": 21,
+      "type": "afirmacion_numerica",
+      "speakerGroup": null,
+      "verbatim": "el importe base de licitación para todo el plazo en vigor es de dieciséis millones cuatrocientos sesenta mil euros más IVA, en total dieciocho millones ciento seis mil euros",
+      "context": "Tras indicar la duración del lote uno, el concejal detalla el importe base de licitación para todo el periodo contractual, con y sin IVA.",
+      "topic": "medio-ambiente",
+      "entities": {
+        "amountEuros": 18106000,
+        "referencedEntity": "contrato recogida rsu - lote 1 (ctto. 136/2025)"
+      },
+      "confidence": 0.8,
+      "reasoning": "Importe de licitación citado como hecho (16.460.000€ base + IVA, 18.106.000€ total), verificable contra el pliego de condiciones y el acuerdo de adjudicación del expediente 615/2025/GEN.",
+      "requiresHumanApproval": true
+    },
+    {
+      "id": "1sk3q3c-021-afi-cf88e8",
+      "plenoId": "1sk3q3c",
+      "plenoDate": "2025-07-07",
+      "segmentIndex": 21,
+      "type": "afirmacion_numerica",
+      "speakerGroup": null,
+      "verbatim": "Se han presentado cuatro ofertas de cuatro mercantiles.",
+      "context": "Tras citar el importe de licitación del lote uno, el concejal señala el número de ofertas y empresas licitadoras presentadas.",
+      "topic": "medio-ambiente",
+      "entities": {
+        "count": 4,
+        "countUnit": "ofertas",
+        "referencedEntity": "licitación ctto. 136/2025 - lote 1"
+      },
+      "confidence": 0.8,
+      "reasoning": "Número concreto de ofertas presentadas a la licitación, verificable contra el acta de la mesa de contratación del expediente 615/2025/GEN.",
+      "requiresHumanApproval": true
+    },
+    {
+      "id": "1sk3q3c-022-afi-048ce0",
+      "plenoId": "1sk3q3c",
+      "plenoDate": "2025-07-07",
+      "segmentIndex": 22,
+      "type": "afirmacion_numerica",
+      "speakerGroup": null,
+      "verbatim": "En el lote número uno, el de recogida de residuos sólidos urbanos, la duración es de c es de catorce años y el importe base de licitación para todo el plazo en vigor es de dieciséis millones cuatrocientos sesenta mil euros más IVA, en total dieciocho millones ciento seis mil euros.",
+      "context": "Se describe el lote 1 del contrato de recogida de residuos sólidos urbanos del municipio: duración de catorce años e importe base de licitación de 16.460.000€ más IVA, totalizando 18.106.000€.",
+      "topic": "medio-ambiente",
+      "entities": {
+        "amountEuros": 18106000,
+        "count": 14,
+        "countUnit": "años",
+        "referencedEntity": "contrato 136/2025, lote 1 - recogida de residuos sólidos urbanos"
+      },
+      "confidence": 0.85,
+      "reasoning": "Cifra concreta de importe de licitación y duración de un contrato público (Ctto. 136/2025, lote 1) verificable contra el expediente de contratación y el BOE/perfil del contratante.",
+      "requiresHumanApproval": true
+    },
+    {
+      "id": "1sk3q3c-022-afi-6a4bc4",
+      "plenoId": "1sk3q3c",
+      "plenoDate": "2025-07-07",
+      "segmentIndex": 22,
+      "type": "afirmacion_numerica",
+      "speakerGroup": null,
+      "verbatim": "el importe base de licitación es de 172.000 Euros, mas IVA, 280.000 Euros, y el periodo también de catorce años. Ha presentado una única oferta la empresa Auditasa.",
+      "context": "Se describe el lote 2 del contrato, de asistencia técnica y apoyo para el control y supervisión del servicio: importe base de 172.000€ más IVA (280.000€ según lo dicho) y catorce años de duración, con una única oferta presentada por Auditasa.",
+      "topic": "medio-ambiente",
+      "entities": {
+        "amountEuros": 280000,
+        "count": 14,
+        "countUnit": "años",
+        "referencedEntity": "contrato 136/2025, lote 2 - asistencia técnica y supervisión, oferta de auditasa"
+      },
+      "confidence": 0.5,
+      "reasoning": "La cifra de 172.000€ más IVA no coincide aritméticamente con los 280.000€ citados (una IVA del 21% daría ~208.000€), lo que sugiere posible error de transcripción de Whisper; se marca con confianza reducida pero es verificable contra el expediente de contratación.",
+      "requiresHumanApproval": true
+    },
+    {
+      "id": "1sk3q3c-022-afi-025f75",
+      "plenoId": "1sk3q3c",
+      "plenoDate": "2025-07-07",
+      "segmentIndex": 22,
+      "type": "afirmacion_numerica",
+      "speakerGroup": null,
+      "verbatim": "En cuanto a lo que se considera la duración del contrato de catorce años, es así de acuerdo con el cálculo de retorno de la inversión, según instrucciones de la Junta Superior de Contratación Administrativa de la comunidad valenciana y, por tanto, con su informe a favor.",
+      "context": "Se justifica la duración de catorce años del contrato de residuos mediante el cálculo de retorno de inversión conforme a instrucciones de la Junta Superior de Contractació Administrativa de la Comunitat Valenciana, que habría emitido informe favorable.",
+      "topic": "other",
+      "entities": {
+        "count": 14,
+        "countUnit": "años",
+        "referencedEntity": "junta superior de contractació administrativa de la comunitat valenciana"
+      },
+      "confidence": 0.7,
+      "reasoning": "Afirma la existencia de instrucciones concretas de un organismo oficial y un informe favorable que justifican la duración del contrato, dato contrastable contra la documentación del expediente 615/2025/GEN.",
+      "requiresHumanApproval": true
+    },
+    {
+      "id": "1sk3q3c-023-afi-d7f29f",
+      "plenoId": "1sk3q3c",
+      "plenoDate": "2025-07-07",
+      "segmentIndex": 23,
+      "type": "afirmacion_numerica",
+      "speakerGroup": null,
+      "verbatim": "el importe base de licitación es de 172.000 Euros, mas IVA, 280.000 Euros, y el periodo también de catorce años.",
+      "context": "Se describe el expediente de contratación (lote relacionado con el servicio de asistencia técnica y control, Ctto. 136/2025): importe base de licitación de 172.000 euros, con IVA 280.000 euros, y periodo de catorce años.",
+      "topic": "medio-ambiente",
+      "entities": {
+        "amountEuros": 172000,
+        "count": 14,
+        "countUnit": "años",
+        "referencedEntity": "importe base de licitación del contrato (con iva 280.000 euros)"
+      },
+      "confidence": 0.55,
+      "reasoning": "Cifra concreta de importe de licitación (172.000€ base / 280.000€ con IVA) y duración de 14 años, verificable contra el expediente de contratación y pliegos publicados; posible distorsión de Whisper en las cifras exactas.",
+      "requiresHumanApproval": true
+    },
+    {
+      "id": "1sk3q3c-023-afi-abe516",
+      "plenoId": "1sk3q3c",
+      "plenoDate": "2025-07-07",
+      "segmentIndex": 23,
+      "type": "afirmacion_numerica",
+      "speakerGroup": null,
+      "verbatim": "este expediente se inicia conforme a acuerdo plenario el ocho de mayo del dos mil veintitrés",
+      "context": "Se indica que el expediente de contratación se inició conforme a un acuerdo plenario de fecha concreta, incorporando las indicaciones de la Junta Superior de Contratación Administrativa.",
+      "topic": "transparencia",
+      "entities": {
+        "date": "2023-05-08",
+        "referencedEntity": "acuerdo plenario de inicio del expediente de contratación"
+      },
+      "confidence": 0.7,
+      "reasoning": "Fecha concreta de un acuerdo plenario de inicio de expediente, verificable contra actas de pleno de mayo de 2023.",
+      "requiresHumanApproval": true
+    },
+    {
       "id": "1tgd1h4-000-afi-ea6590",
       "plenoId": "1tgd1h4",
       "plenoDate": "2024-07-29",
@@ -140040,11 +140282,11 @@
     }
   ],
   "builtFrom": {
-    "officials.json": "9b6bad430abc",
-    "pleno-findings.json": "07d9faf8d889",
-    "pleno-speaker-map/": "1fdaf7c04dde",
-    "pleno-transcripts/": "db0fcba21c1a",
-    "plenos-agendas.json": "824fd2405074",
-    "plenos.json": "1dd478cd5766"
+    "officials.json": "1cd9480dfd35",
+    "pleno-findings.json": "089837bcf597",
+    "pleno-speaker-map/": "4dc039cb6193",
+    "pleno-transcripts/": "35b65f581069",
+    "plenos-agendas.json": "304bb4871534",
+    "plenos.json": "70c4703fdf9e"
   }
 }

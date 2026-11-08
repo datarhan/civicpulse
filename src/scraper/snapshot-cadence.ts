@@ -100,6 +100,8 @@ export const DEFAULT_EXPECTATIONS: DatasetExpectation[] = [
     hint: 'npm run scrape:agua-informe (añadir el año nuevo a INFORMES)',
   },
   ...[
+    // Su sello es la última pasada en que el origen vivo sirvió las sesiones
+    // recientes (`selloDeAgendas`): con regmeet caído, este plazo es el aviso.
     'plenos-agendas.json',
     'consell-cv.json',
     'procesos-selectivos.json',

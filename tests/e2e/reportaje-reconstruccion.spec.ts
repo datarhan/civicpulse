@@ -1,6 +1,8 @@
 import { test, expect } from '@playwright/test'
 import { readFileSync } from 'node:fs'
 import { primeraFrase } from '../../src/components/reportajes/CorrectionNote'
+import { CATALOGUE } from '../../src/i18n'
+import { fmtDateLong, rellena } from '../../src/lib/formatters'
 import { collectErrors, appErrors } from './_console'
 
 const META = JSON.parse(
@@ -41,7 +43,10 @@ test.describe('Reportaje · reconstrucción DANA (/reportajes/reconstruccion-dan
 
     const c = META.correcciones[0]
     const resumen = primeraFrase(c.texto)
-    await expect(page.getByText(`Corrección · ${c.fecha}`)).toBeVisible({ timeout: 8000 })
+    const entrada = rellena(CATALOGUE.es['reportajes.correcciones.entrada'], {
+      fecha: fmtDateLong(c.fecha),
+    })
+    await expect(page.getByText(entrada)).toBeVisible({ timeout: 8000 })
     await expect(page.getByText(resumen).first()).toBeVisible()
 
     // Un trozo del cuerpo que NO está en el summary: oculto hasta abrir.
@@ -59,13 +64,11 @@ test.describe('Reportaje · reconstrucción DANA (/reportajes/reconstruccion-dan
     // la misma entrada también: un párrafo añadido el mismo día puede citar la
     // corrección anterior con las mismas palabras (la gráfica por mes, 19-10),
     // así que se mira la PRIMERA, que es el cuerpo que sigue al summary.
-    const pliegue = page.locator('section#correcciones details', {
-      hasText: `Corrección · ${c.fecha}`,
-    })
+    const pliegue = page.locator('section#correcciones details', { hasText: entrada })
     await expect(pliegue).toHaveCount(1)
     await expect(pliegue.getByText(cuerpo, { exact: false }).first()).toBeHidden()
 
-    await page.getByText(`Corrección · ${c.fecha}`).click()
+    await page.getByText(entrada).click()
     await expect(pliegue.getByText(cuerpo, { exact: false }).first()).toBeVisible()
   })
 
@@ -77,8 +80,17 @@ test.describe('Reportaje · reconstrucción DANA (/reportajes/reconstruccion-dan
     expect(n, 'la pieza perdió sus correcciones').toBeGreaterThan(0)
     await page.goto('/reportajes/reconstruccion-dana', { waitUntil: 'domcontentloaded' })
 
+    const ultima = META.correcciones
+      .map((c) => c.fecha)
+      .sort()
+      .at(-1)
     const aviso = page.getByText(
-      n === 1 ? 'Esta pieza tiene una corrección' : `Esta pieza tiene ${n} correcciones`,
+      n === 1
+        ? rellena(CATALOGUE.es['reportajes.correcciones.aviso.una'], { fecha: fmtDateLong(ultima) })
+        : rellena(CATALOGUE.es['reportajes.correcciones.aviso.varias'], {
+            n,
+            fecha: fmtDateLong(ultima),
+          }),
     )
     await expect(aviso).toBeVisible({ timeout: 8000 })
     const registro = page.locator('section#correcciones')

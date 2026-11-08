@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-28T06:49:44.773Z",
+  "generatedAt": "2026-11-05T08:58:30.794Z",
   "version": "1",
   "plenoId": "15uvjew",
   "plenoDate": "2026-07-27",
@@ -1054,8 +1054,8 @@
         "evidence": [
           {
             "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=pK1YW0Z3femXQV0WE7lYPw%3D%3D",
-            "snippet": "contrato de concesión del servicio público de abastecimiento de agua potable, servicio de gestión de alcantarillado , control de vertidos y depuración del municipio Riba-roja de Túria, por procedimiento abierto, mejor relación calidad-precio, varios criterios de adjudicación y con cláusulas medioambientales y con condición especial de ejecución de carácter medioambiental y social. · Ayuntamiento de Riba-roja de Túria · HIDRAQUA S.A.U · public_services · 55.685.179 €",
+            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=nsi1cQdvUjpxseVhcqrkhw%3D%3D",
+            "snippet": "Formalización del contrato verbal de emergencia, de las actuaciones de emergencia del Servicio Municipal de Agua Potable, por efectos de la DANA en el Polígono Industrial Sector 13 de Riba-roja de Túria, a favor de HIDRAQUA GESTION INTEGRAL DE AGUAS DE LEVANTE con CIF nº A53223764. (Ctto. 50V-2024 -SIGA 6417/2024/GEN). · Ayuntamiento de Riba-roja de Túria · HIDRAQUA, GESTIÓN INTEGRAL DE AGUAS DE LEVANTE, S.A. · environment · 20.666 €",
             "similarity": 1,
             "stance": "checked"
           }
@@ -1094,8 +1094,8 @@
         "evidence": [
           {
             "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=pK1YW0Z3femXQV0WE7lYPw%3D%3D",
-            "snippet": "contrato de concesión del servicio público de abastecimiento de agua potable, servicio de gestión de alcantarillado , control de vertidos y depuración del municipio Riba-roja de Túria, por procedimiento abierto, mejor relación calidad-precio, varios criterios de adjudicación y con cláusulas medioambientales y con condición especial de ejecución de carácter medioambiental y social. · Ayuntamiento de Riba-roja de Túria · HIDRAQUA S.A.U · public_services · 55.685.179 €",
+            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=nsi1cQdvUjpxseVhcqrkhw%3D%3D",
+            "snippet": "Formalización del contrato verbal de emergencia, de las actuaciones de emergencia del Servicio Municipal de Agua Potable, por efectos de la DANA en el Polígono Industrial Sector 13 de Riba-roja de Túria, a favor de HIDRAQUA GESTION INTEGRAL DE AGUAS DE LEVANTE con CIF nº A53223764. (Ctto. 50V-2024 -SIGA 6417/2024/GEN). · Ayuntamiento de Riba-roja de Túria · HIDRAQUA, GESTIÓN INTEGRAL DE AGUAS DE LEVANTE, S.A. · environment · 20.666 €",
             "similarity": 1,
             "stance": "checked"
           }
