@@ -36,6 +36,7 @@ import {
 } from './claim-public-gate'
 import { QUOTE_PROVENANCE_STATUS_IDS } from './quote-provenance'
 import { discrepanciasDeVideo, type FilaRegmeet, type VideoCanal } from './pleno-video-fuentes'
+import { validarDecisiones } from './pleno-video-decisiones'
 import { LECTURAS_VIDEO_REGMEET } from './regmeet-video'
 
 export type CheckLevel = 'error' | 'warn'
@@ -157,6 +158,8 @@ export interface RelationsCheckInputs {
       url?: string | null
     }>
   } | null
+  /** pleno-video-decisiones.json — lo que decidió una persona cuando las dos fuentes discrepan. */
+  videoDecisiones?: unknown
   relations?: { links?: Array<{ quejaId?: string; tenderId?: string | number }> } | null
   approvedRelations?: {
     approvals?: Array<{ quejaId?: string; tenderId?: string | number }>
@@ -256,6 +259,7 @@ export function runRelationsChecks(inputs: RelationsCheckInputs): RelationCheckR
     tenders,
     videos,
     videosRegmeet,
+    videoDecisiones,
     relations,
     approvedRelations,
     dedicaciones,
@@ -581,10 +585,54 @@ export function runRelationsChecks(inputs: RelationsCheckInputs): RelationCheckR
             typeof v?.plenoDate === 'string',
         )
         const checked = filasRegmeet.filter((f) => f.lectura === 'con-video' && f.ytId).length
-        const broken = discrepanciasDeVideo(sesiones, canal, filasRegmeet).map(
+        const { items: decisiones } = validarDecisiones(videoDecisiones ?? { items: [] })
+        const broken = discrepanciasDeVideo(sesiones, canal, filasRegmeet, decisiones).map(
           (d) => `${d.plenoId} (${d.fecha}) ${d.tipo}: ${d.detalle}`,
         )
         return { checked, broken }
+      },
+    ),
+
+    /**
+     * Las decisiones de `pleno-video-decisiones.json` (`pleno-video-decisiones.ts`).
+     * Una fila que no valida no zanja nada, y su sesión vuelve a salir arriba,
+     * en `video-fuentes`; aquí se dice por qué. Una decisión sobre una sesión que
+     * no existe, o que ya no discrepa, está de más: o se retira o se mira qué
+     * cambió en las fuentes.
+     */
+    check(
+      'video-decisiones',
+      'error',
+      plenos != null && videos != null && videosRegmeet != null && videoDecisiones != null,
+      () => {
+        const { items, errores } = validarDecisiones(videoDecisiones)
+        const sesiones = (plenos?.items ?? []).filter(
+          (p): p is { id: string; date: string } =>
+            typeof p?.id === 'string' && typeof p?.date === 'string',
+        )
+        const canal = (videos?.items ?? []).filter(
+          (v): v is VideoCanal =>
+            typeof v?.ytId === 'string' &&
+            typeof v?.url === 'string' &&
+            typeof v?.plenoDate === 'string',
+        )
+        const discrepan = new Set(
+          discrepanciasDeVideo(sesiones, canal, filasRegmeet).map((d) => d.plenoId),
+        )
+        const ids = new Set(sesiones.map((s) => s.id))
+        const broken = [
+          ...errores,
+          ...items
+            .filter((d) => !ids.has(d.plenoId))
+            .map((d) => `${d.plenoId}: decisión para una sesión que no está en plenos.json`),
+          ...items
+            .filter((d) => ids.has(d.plenoId) && !discrepan.has(d.plenoId))
+            .map(
+              (d) =>
+                `${d.plenoId}: decisión del ${d.decididoEl} sobre una sesión que ya no discrepa`,
+            ),
+        ]
+        return { checked: items.length, broken }
       },
     ),
 

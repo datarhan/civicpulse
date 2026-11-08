@@ -98,6 +98,7 @@ function sirve({ puntos = AGENDA.agenda, votos = [], hallazgos = [], declaracion
     },
     '/data/pleno-videos.json': VIDEOS,
     '/data/pleno-videos-regmeet.json': VIDEOS_REGMEET,
+    '/data/pleno-video-decisiones.json': lee('pleno-video-decisiones.json'),
   }
   if (declaraciones) mapa[CHUNK_URL] = { ...FRAGMENTO, plenoId: ID, items: declaraciones }
   return mapa
@@ -267,6 +268,7 @@ describe('/plenos/:id · la sesión de la revisión, tal cual se publica', () =>
       '/data/pleno-findings.json': HALLAZGOS,
       '/data/pleno-videos.json': VIDEOS,
       '/data/pleno-videos-regmeet.json': VIDEOS_REGMEET,
+      '/data/pleno-video-decisiones.json': lee('pleno-video-decisiones.json'),
     }
     const entrada = MANIFIESTO.plenos.find((p) => p.plenoId === ID_PUBLICADA)
     if (entrada) fetch[`/data/pleno-claims/${ID_PUBLICADA}.json`] = lee(entrada.chunkPath)

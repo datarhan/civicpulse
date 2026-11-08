@@ -362,6 +362,17 @@ const ABIERTOS: Caso[] = [
     datos: ['temas-cargos.json', 'officials.json'],
   },
   {
+    orden: 'video:decidir',
+    script: 'decidir-video-pleno.ts',
+    argv: ['--retirar', 'buag5g'],
+    datos: [
+      'pleno-video-decisiones.json',
+      'plenos.json',
+      'pleno-videos.json',
+      'pleno-videos-regmeet.json',
+    ],
+  },
+  {
     orden: 'solicitud',
     script: 'solicitud-acceso.ts',
     argv: ['responder', 'una-solicitud', '--fecha', '2026-10-05', '--sentido', 'parcial'],

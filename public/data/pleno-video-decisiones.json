@@ -1,0 +1,38 @@
+{
+  "nota": "Qué vídeo es el de un pleno cuando el canal de YouTube y la página de la sesión en regmeet dan vídeos distintos. Lo decide una persona con la evidencia que se cita; deja de valer si cualquiera de las dos fuentes cambia. Sólo lo escribe `npm run video:decidir`.",
+  "items": [
+    {
+      "plenoId": "buag5g",
+      "fecha": "2023-05-02",
+      "elegido": "1W99l8iIT0s",
+      "canal": [
+        "kIBhRIMxuok"
+      ],
+      "regmeet": "1W99l8iIT0s",
+      "razon": "El acta de la sesión, extraordinaria y a las 08:30, tiene un solo punto: el sorteo de los miembros de las mesas electorales (6840/2022/GEN). Es lo que indexa regmeet sobre el vídeo que incrusta, hasta el minuto 28:15. El vídeo que el canal fecha ese día dura 65:56 y es otra sesión extraordinaria, sobre el reglamento de carrera profesional, que no está en plenos.json.",
+      "evidencia": [
+        "Acta de la sesión, publicada en pleno-transcripts/buag5g.txt hasta el 01-08-2026 (commit 3a79f5c9): «SESIÓN EXTRAORDINARIA», 2 de mayo de 2023, 08:30; punto único 6840/2022/GEN, «Sorteo de Miembros de Mesa».",
+        "Página de la sesión en regmeet: incrusta 1W99l8iIT0s, «PLE EXTRAORDINARI MAIG», de 28:15; su índice de intervenciones, sobre el punto 6840/2022/GEN, llega a 0:28:15.",
+        "Canal de YouTube: kIBhRIMxuok, «Ple extraordinari 2 de maig de 2023», de 65:56; su transcripción abre con el punto de recursos humanos, expediente 2756, reglamento de evaluación del desempeño y carrera profesional horizontal."
+      ],
+      "decididoEl": "2026-11-08"
+    },
+    {
+      "plenoId": "15000go",
+      "fecha": "2023-05-24",
+      "elegido": "C5ZVIzmEK4U",
+      "canal": [
+        "Xf8JhyiUChw"
+      ],
+      "regmeet": "C5ZVIzmEK4U",
+      "razon": "La sesión es extraordinaria: así la lista regmeet y así lo dice su acta, de 09.30 a 10.02 h. Regmeet incrusta en su página «Pleno extraordinario 24 de mayo»; el canal titula «Ple ordinari 24 de maig de 2023» un vídeo de casi la misma duración, y ese día no hay ninguna sesión ordinaria.",
+      "evidencia": [
+        "Acta de la sesión (pleno-transcripts/15000go.txt): «SESSIÓ EXTRAORDINÀRIA», 24 de maig de 2023, de 09.30 a 10.02 h.",
+        "Página de la sesión en regmeet: incrusta C5ZVIzmEK4U, «Pleno extraordinario 24 de mayo», subido el 24-05-2023, de 29:29; su índice de intervenciones llega a 0:29:29.",
+        "Canal de YouTube: Xf8JhyiUChw, «Ple ordinari 24 de maig de 2023», subido el 25-05-2023, de 29:35.",
+        "plenos.json no tiene ninguna sesión ordinaria el 24-05-2023."
+      ],
+      "decididoEl": "2026-11-08"
+    }
+  ]
+}

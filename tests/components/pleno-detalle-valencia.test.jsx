@@ -81,6 +81,7 @@ const sirve = () => ({
   '/data/pleno-findings.json': lee('pleno-findings.json'),
   '/data/pleno-videos.json': lee('pleno-videos.json'),
   '/data/pleno-videos-regmeet.json': lee('pleno-videos-regmeet.json'),
+  '/data/pleno-video-decisiones.json': lee('pleno-video-decisiones.json'),
   '/data/finding-quote-provenance.json': lee('finding-quote-provenance.json'),
   '/data/tenders.json': lee('tenders.json'),
   [RUTA_FRAGMENTO]: lee(ENTRADA.chunkPath),

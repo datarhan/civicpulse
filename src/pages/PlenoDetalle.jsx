@@ -16,7 +16,12 @@ import { usePlenos, PLENO_TONE } from '../hooks/usePlenos'
 import { usePlenoChunk, chunkExtraido } from '../hooks/usePlenoClaims'
 import { usePlenoAgendas } from '../hooks/usePlenoAgendas'
 import { usePlenoVotes, OUTCOME_TONE } from '../hooks/usePlenoVotes'
-import { usePlenoVideos, usePlenoVideosRegmeet, indexVideosByPleno } from '../hooks/usePlenoVideos'
+import {
+  usePlenoVideos,
+  usePlenoVideosRegmeet,
+  usePlenoVideoDecisiones,
+  indexVideosByPleno,
+} from '../hooks/usePlenoVideos'
 import { usePlenoFindings } from '../hooks/usePlenoFindings'
 import { fmtDateLong, fmtDateShort, rellena } from '../lib/formatters'
 import { conHuecos } from '../lib/huecos'
@@ -401,6 +406,7 @@ function DetalleDeSesion({ id }) {
   const { data: findingsData } = usePlenoFindings()
   const { data: videosData } = usePlenoVideos()
   const { data: videosRegmeetData, loading: videosRegmeetLoading } = usePlenoVideosRegmeet()
+  const { data: decisionesData, loading: decisionesLoading } = usePlenoVideoDecisiones()
   const [tab, setTab] = useState('resumen')
   // Una pestaña se abre también por su ancla, `#pestana-<clave>`: así enlazan las
   // tarjetas del resumen a la pestaña que lo demuestra, y un enlace de fuera
@@ -450,13 +456,22 @@ function DetalleDeSesion({ id }) {
   )
   // Hasta que la instantánea de regmeet llega —o falta—, no se elige vídeo: «aún
   // no ha llegado» no es «regmeet no dice nada», y una sesión en la que las dos
-  // fuentes discrepan pintaría mientras tanto la del canal.
+  // fuentes discrepan pintaría mientras tanto la del canal. Lo mismo con las
+  // decisiones: sin ellas, una sesión decidida no tendría vídeo un instante.
   const video = useMemo(
     () =>
-      videosRegmeetLoading
+      videosRegmeetLoading || decisionesLoading
         ? undefined
-        : indexVideosByPleno(videosData, plenosData, videosRegmeetData).get(id),
-    [videosData, plenosData, videosRegmeetData, videosRegmeetLoading, id],
+        : indexVideosByPleno(videosData, plenosData, videosRegmeetData, decisionesData).get(id),
+    [
+      videosData,
+      plenosData,
+      videosRegmeetData,
+      videosRegmeetLoading,
+      decisionesData,
+      decisionesLoading,
+      id,
+    ],
   )
 
   const agendaItems = agenda?.agenda ?? []

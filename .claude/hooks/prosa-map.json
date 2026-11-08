@@ -249,6 +249,10 @@
       "/plenos",
       "/plenos/:id"
     ],
+    "pleno-video-decisiones.json": [
+      "/plenos",
+      "/plenos/:id"
+    ],
     "pleno-videos-regmeet.json": [
       "/plenos",
       "/plenos/:id"

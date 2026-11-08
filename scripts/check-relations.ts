@@ -79,6 +79,7 @@ function main() {
     tenders: readJson('tenders.json'),
     videos: readJson('pleno-videos.json'),
     videosRegmeet: readJson('pleno-videos-regmeet.json'),
+    videoDecisiones: readJson('pleno-video-decisiones.json'),
     relations: readJson('queja-contract-relations.json'),
     approvedRelations: readJson('queja-contract-relations-approved.json'),
     dedicaciones: readJson('dedicaciones.json'),

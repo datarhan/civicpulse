@@ -5,6 +5,7 @@ import { ExtLink } from '../Primitives'
 import {
   usePlenoVideos,
   usePlenoVideosRegmeet,
+  usePlenoVideoDecisiones,
   indexVideosByPleno,
 } from '../../hooks/usePlenoVideos'
 import { ultimoPlenoEnBreve, vocabularioDelOrdenDelDia } from '../../scraper/en-breve-plenos'
@@ -95,6 +96,7 @@ export function EnBrevePlenos({ filas, agendas, votos, plenos, cobertura }) {
   const { t, locale } = useLocale()
   const { data: videosData } = usePlenoVideos()
   const { data: videosRegmeet, loading: videosRegmeetLoading } = usePlenoVideosRegmeet()
+  const { data: decisiones, loading: decisionesLoading } = usePlenoVideoDecisiones()
 
   // Sin las votaciones no se pinta: un `votos` que aún no ha llegado diría
   // «todavía no hemos transcrito ninguna», que puede ser falso. Igual que la
@@ -111,14 +113,14 @@ export function EnBrevePlenos({ filas, agendas, votos, plenos, cobertura }) {
         : null,
     [filas, agendas, votos],
   )
-  // Como en la página de la sesión: hasta que llega la instantánea de regmeet,
-  // no se elige vídeo.
+  // Como en la página de la sesión: hasta que llegan la instantánea de regmeet
+  // y las decisiones, no se elige vídeo.
   const video = useMemo(
     () =>
-      r && !videosRegmeetLoading
-        ? indexVideosByPleno(videosData, plenos, videosRegmeet).get(r.id)
+      r && !videosRegmeetLoading && !decisionesLoading
+        ? indexVideosByPleno(videosData, plenos, videosRegmeet, decisiones).get(r.id)
         : undefined,
-    [r, videosData, plenos, videosRegmeet, videosRegmeetLoading],
+    [r, videosData, plenos, videosRegmeet, videosRegmeetLoading, decisiones, decisionesLoading],
   )
   // «¿Cuándo es el próximo?»: la sesión desde hoy si el índice ya la tiene; si
   // no, la regla del acta de 2023 y lo que cuentan las fechas, nunca una fecha

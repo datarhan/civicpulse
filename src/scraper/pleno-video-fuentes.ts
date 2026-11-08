@@ -12,6 +12,11 @@
  * lea (`check:relations`, `video-fuentes`). Un vídeo atado a la sesión equivocada
  * es una transcripción, y unas citas, atribuidas a otro pleno.
  *
+ * Lo que ese alguien decide vive en `pleno-video-decisiones.json`
+ * (`pleno-video-decisiones.ts`): con una decisión vigente la sesión queda
+ * `decidido`, con el vídeo elegido y sin discrepancia. Una decisión deja de valer
+ * en cuanto cualquiera de las dos fuentes cambia, y la discrepancia vuelve.
+ *
  * Lo que este módulo NO decide: qué se transcribe. La cola de transcripción
  * (`hallazgos-pipeline.sh`, `transcribe-pleno-batch-list.mjs`,
  * `resolve-pleno-video.ts`) sigue leyendo sólo el canal; un vídeo que sólo da
@@ -21,6 +26,7 @@
  * Puro — sin red, sin fs.
  */
 import { urlDeVideo, type LecturaVideoRegmeet } from './regmeet-video'
+import { decisionVigente, type DecisionVideo } from './pleno-video-decisiones'
 
 export const FUENTES_VIDEO = ['canal', 'regmeet'] as const
 export type FuenteVideo = (typeof FUENTES_VIDEO)[number]
@@ -30,6 +36,8 @@ export const ESTADOS_VIDEO_SESION = [
   'solo-canal',
   'solo-regmeet',
   'discrepan',
+  // Discrepaban, y una persona eligió uno con su razón (`pleno-video-decisiones.ts`).
+  'decidido',
   'sin-video',
 ] as const
 export type EstadoVideoSesion = (typeof ESTADOS_VIDEO_SESION)[number]
@@ -86,6 +94,8 @@ export interface VideoDeSesion {
   estado: EstadoVideoSesion
   video: VideoResuelto | null
   discrepancias: Discrepancia[]
+  /** La decisión que zanja la discrepancia, sólo con estado `decidido`. */
+  decision: DecisionVideo | null
 }
 
 const idDeRegmeet = (f: FilaRegmeet | undefined): string | null =>
@@ -99,6 +109,7 @@ export function videoDeSesion(
   sesion: SesionLite,
   canal: readonly VideoCanal[],
   regmeet: readonly FilaRegmeet[],
+  decisiones: readonly DecisionVideo[] = [],
 ): VideoDeSesion {
   const propia = idDeRegmeet(regmeet.find((f) => f.plenoId === sesion.id))
   const delCanal = canal.filter((v) => v.plenoDate === sesion.date)
@@ -147,7 +158,38 @@ export function videoDeSesion(
     )
   }
 
-  if (discrepancias.length > 0) return { estado: 'discrepan', video: null, discrepancias }
+  if (discrepancias.length > 0) {
+    const d = decisiones.find((x) => x.plenoId === sesion.id)
+    if (d && decisionVigente(d, idsCanal, propia)) {
+      const delCanalElegido = canal.find((v) => v.ytId === d.elegido)
+      const fuentes: FuenteVideo[] = [
+        ...(idsCanal.includes(d.elegido) ? (['canal'] as const) : []),
+        ...(propia === d.elegido ? (['regmeet'] as const) : []),
+      ]
+      return {
+        estado: 'decidido',
+        video: {
+          ytId: d.elegido,
+          url: delCanalElegido?.url ?? urlDeVideo(d.elegido),
+          title: delCanalElegido?.title ?? null,
+          fuentes,
+        },
+        discrepancias: [],
+        decision: d,
+      }
+    }
+    // Una decisión tomada entre otros vídeos no zanja ésta: se dice, para que
+    // quien lea la alerta sepa que ya se decidió una vez y qué ha cambiado.
+    const caducada = d
+      ? ` (la decisión del ${d.decididoEl} ya no vale: entonces el canal daba ${d.canal.join(', ') || '—'} y regmeet ${d.regmeet ?? '—'})`
+      : ''
+    return {
+      estado: 'discrepan',
+      video: null,
+      discrepancias: discrepancias.map((x) => ({ ...x, detalle: x.detalle + caducada })),
+      decision: null,
+    }
+  }
   if (propia) {
     const delMismo = delCanal.find((v) => v.ytId === propia)
     return delMismo
@@ -160,11 +202,13 @@ export function videoDeSesion(
             fuentes: ['canal', 'regmeet'],
           },
           discrepancias,
+          decision: null,
         }
       : {
           estado: 'solo-regmeet',
           video: { ytId: propia, url: urlDeVideo(propia), title: null, fuentes: ['regmeet'] },
           discrepancias,
+          decision: null,
         }
   }
   if (delCanal.length > 0) {
@@ -176,16 +220,21 @@ export function videoDeSesion(
       estado: 'solo-canal',
       video: { ytId: v.ytId, url: v.url, title: v.title ?? null, fuentes: ['canal'] },
       discrepancias,
+      decision: null,
     }
   }
-  return { estado: 'sin-video', video: null, discrepancias }
+  return { estado: 'sin-video', video: null, discrepancias, decision: null }
 }
 
-/** Todas las discrepancias entre las dos fuentes, sesión a sesión. */
+/**
+ * Todas las discrepancias entre las dos fuentes, sesión a sesión. Las que zanja
+ * una decisión vigente no salen; las de una decisión caducada sí, y lo dicen.
+ */
 export function discrepanciasDeVideo(
   sesiones: readonly SesionLite[],
   canal: readonly VideoCanal[],
   regmeet: readonly FilaRegmeet[],
+  decisiones: readonly DecisionVideo[] = [],
 ): Discrepancia[] {
-  return sesiones.flatMap((s) => videoDeSesion(s, canal, regmeet).discrepancias)
+  return sesiones.flatMap((s) => videoDeSesion(s, canal, regmeet, decisiones).discrepancias)
 }
