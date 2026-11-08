@@ -114,9 +114,19 @@ test.describe('Reportaje · conteo de visitantes (/reportajes/conteo-visitantes)
     expect(await page.getByText(/21 de octubre de 2026/).count()).toBe(0)
     await expect(page.getByText(/se había remitido a Turisme Comunitat Valenciana/)).toBeVisible()
     // Desde el 15-10 hay DOS filas remitidas —ésta y la de la Secretaría de
-    // Estado que remitió el Ayuntamiento—, y cada una dice que no consta cuándo
-    // la recibió su órgano. Se cuentan las dos: una sola sería una que lo calla.
-    expect(await page.getByText(/no consta todavía cuándo la recibió/).count()).toBe(2)
+    // Estado que remitió el Ayuntamiento—. El 6-11 la Secretaría de Estado
+    // aceptó la suya, así que desde entonces sólo ésta dice que no consta cuándo
+    // la recibió, y la otra afirma su recepción y su último día. Se cuentan las
+    // dos cosas: contar sólo la cautela dejaría pasar una fila que la calla.
+    expect(await page.getByText(/no consta todavía cuándo la recibió/).count()).toBe(1)
+    expect(
+      await page
+        .getByText(
+          // «vence» hasta el 9-12 y «terminó» después: la aserción no caduca sola.
+          /y consta que la recibió el 6 de noviembre de 2026\. .*(vence|terminó) el 9 de diciembre de 2026/,
+        )
+        .count(),
+    ).toBe(1)
     await expect(page.getByText(/GVAGIP\/2026\/774/)).toBeVisible()
 
     // LA CONTESTACIÓN QUE NO RESUELVE (21-09-2026). Turisme CV dijo que por
@@ -190,7 +200,7 @@ test.describe('Reportaje · conteo de visitantes (/reportajes/conteo-visitantes)
     expect(
       await page
         .getByText(
-          /13 de octubre de 2026 \(prorrogado: el 9 de octubre, Día de la Comunitat Valenciana, es inhábil; art\. 30\.5 de la Ley 39\/2015\)/,
+          /13 de octubre de 2026 \(prorrogado: el 9 de octubre, Día de la Comunitat Valenciana, y el 12, Fiesta Nacional de España, son inhábiles; art\. 30\.5 de la Ley 39\/2015\)/,
         )
         .count(),
     ).toBe(delNueve)

@@ -194,7 +194,7 @@ describe('el último día inhábil pasa al primer día hábil siguiente (art. 30
   it('el Ayuntamiento, del Día de la Comunitat Valenciana al martes 13', () => {
     expect(estadoDeEnvio(base, '2026-10-10')).toBe('en-plazo')
     expect(fraseDeEnvio(base, '2026-09-30')).toContain(
-      'contado desde el envío, el 13 de octubre de 2026 (prorrogado: el 9 de octubre, Día de la Comunitat Valenciana, es inhábil; art. 30.5 de la Ley 39/2015).',
+      'contado desde el envío, el 13 de octubre de 2026 (prorrogado: el 9 de octubre, Día de la Comunitat Valenciana, y el 12, Fiesta Nacional de España, son inhábiles; art. 30.5 de la Ley 39/2015).',
     )
   })
 
@@ -210,7 +210,7 @@ describe('el último día inhábil pasa al primer día hábil siguiente (art. 30
 
   it('vencida, la frase sigue diciendo el día prorrogado y por qué', () => {
     expect(fraseDeEnvio(base, '2026-10-14')).toContain(
-      'Contado desde el envío, el mes del artículo 20 terminó el 13 de octubre de 2026 (prorrogado: el 9 de octubre, Día de la Comunitat Valenciana, es inhábil; art. 30.5 de la Ley 39/2015) y no han contestado.',
+      'Contado desde el envío, el mes del artículo 20 terminó el 13 de octubre de 2026 (prorrogado: el 9 de octubre, Día de la Comunitat Valenciana, y el 12, Fiesta Nacional de España, son inhábiles; art. 30.5 de la Ley 39/2015) y no han contestado.',
     )
   })
 
@@ -1266,5 +1266,61 @@ describe('rotuloDelDetalle · lo plegado se anuncia', () => {
         ).solicitudes.items,
     )
     expect(filas.filter((e) => e.incidencias?.length).length).toBeGreaterThan(0)
+  })
+})
+
+/**
+ * La prórroga del art. 30.5 tiene que poder reconciliarse aunque salte MÁS de un
+ * día inhábil.
+ *
+ * Lo destapó la solicitud a la Secretaría de Estado de Turismo: aceptada el
+ * 6-11-2026, su mes acaba el domingo 6 de diciembre, y en Madrid el lunes 7
+ * (traslado del Día de la Constitución) y el martes 8 (Inmaculada) también son
+ * inhábiles. La frase decía «vence el 9 de diciembre (prorrogado: el 6 de
+ * diciembre, domingo, es inhábil)», y quien contara un mes se quedaba esperando
+ * el 7. Un sábado o un domingo después del nominal se da por sabido; un festivo,
+ * no: se nombra.
+ */
+describe('prórroga que salta varios inhábiles', () => {
+  const aceptada: EnvioSolicitud = {
+    organismo: 'Secretaría de Estado de Turismo',
+    calendario: 'estado-en-madrid',
+    enviadaEl: '2026-09-30',
+    via: 'el Registro de Entrada del Ayuntamiento de Riba-roja de Túria',
+    registro: '2026015109',
+    respuesta: null,
+    remitida: {
+      fecha: '2026-10-15',
+      a: 'la Secretaría de Estado de Turismo',
+      recibidaEl: '2026-11-06',
+      porRegistro: true,
+    },
+  }
+
+  it('nombra cada festivo que salta, no sólo el día nominal', () => {
+    expect(fraseDeEnvio(aceptada, '2026-11-08')).toContain(
+      'vence el 9 de diciembre de 2026 (prorrogado: el 6 de diciembre, domingo, el 7, ' +
+        'Lunes siguiente al Día de la Constitución Española, y el 8, Inmaculada Concepción, ' +
+        'son inhábiles; art. 30.5 de la Ley 39/2015).',
+    )
+  })
+
+  it('vencida, dice lo mismo', () => {
+    expect(fraseDeEnvio(aceptada, '2026-12-10')).toContain(
+      'terminó el 9 de diciembre de 2026 (prorrogado: el 6 de diciembre, domingo, el 7, ' +
+        'Lunes siguiente al Día de la Constitución Española, y el 8, Inmaculada Concepción, ' +
+        'son inhábiles; art. 30.5 de la Ley 39/2015)',
+    )
+  })
+
+  it('el control: un fin de semana tras el sábado nominal no se enumera', () => {
+    // Acaba el sábado 17 de octubre; el domingo 18 se da por sabido.
+    const sabado: EnvioSolicitud = {
+      ...aceptada,
+      remitida: { ...aceptada.remitida!, recibidaEl: '2026-09-17' },
+    }
+    expect(fraseDeEnvio(sabado, '2026-10-01')).toContain(
+      'vence el 19 de octubre de 2026 (prorrogado: el 17 de octubre, sábado, es inhábil; art. 30.5 de la Ley 39/2015).',
+    )
   })
 })

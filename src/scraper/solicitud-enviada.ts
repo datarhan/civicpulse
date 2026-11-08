@@ -44,7 +44,8 @@ import {
   QUE_HICIERON,
   estadoDelMes,
   faltaElCalendario,
-  motivoDeInhabil,
+  fraseDeInhabiles,
+  inhabilesQueSalta,
   venceEl,
   type SentidoRespuesta,
   type Vencimiento,
@@ -360,10 +361,15 @@ function diaDelPlazo(v: Vencimiento, festivos: FestivosPorAnio): string {
     return `${enCastellano(v.nominal)} o, si ese día es inhábil, el primer día hábil siguiente`
   }
   if (v.ultimoDia === v.nominal) return enCastellano(v.ultimoDia)
-  const motivo = motivoDeInhabil(v.nominal, festivos)
+  // Tras el primero, un día del mismo mes que el anterior va sin mes: «el 7».
+  const dias = inhabilesQueSalta(v, festivos)
+  const fecha = (dia: string, i: number) =>
+    i > 0 && dia.slice(0, 7) === dias[i - 1].dia.slice(0, 7)
+      ? String(Number(dia.slice(8)))
+      : diaDelNominal(dia, v.ultimoDia)
   return (
-    `${enCastellano(v.ultimoDia)} (prorrogado: el ${diaDelNominal(v.nominal, v.ultimoDia)}` +
-    `${motivo ? `, ${motivo},` : ''} es inhábil; art. 30.5 de la Ley 39/2015)`
+    `${enCastellano(v.ultimoDia)} (prorrogado: ${fraseDeInhabiles(dias, fecha)}; ` +
+    'art. 30.5 de la Ley 39/2015)'
   )
 }
 

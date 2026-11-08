@@ -100,7 +100,9 @@ describe('venceEl · el último día inhábil se prorroga (art. 30.5)', () => {
   it('la frase da el último día de verdad, y por qué no es el nominal', () => {
     const f = frasePublica(alDiaNueve, '2026-09-20')
     expect(f).toContain('hasta el 2026-10-13')
-    expect(f).toMatch(/prorrogado: el 2026-10-09, Día de la Comunitat Valenciana, es inhábil/i)
+    expect(f).toMatch(
+      /prorrogado: el 2026-10-09, Día de la Comunitat Valenciana, y el 2026-10-12, Fiesta Nacional de España, son inhábiles/i,
+    )
     expect(f).toMatch(/art\. 30\.5 de la Ley 39\/2015/)
   })
 

@@ -198,6 +198,54 @@ export function motivoDeInhabil(dia: string, festivos: FestivosPorAnio): string 
 }
 
 /**
+ * Los días que salta una prórroga del art. 30.5 y que hay que decir para que el
+ * último día cuadre: el nominal siempre y, después de él, cada festivo. Un
+ * sábado o un domingo tras el nominal se da por sabido; un festivo, no.
+ *
+ * Lo destapó la solicitud a la Secretaría de Estado de Turismo aceptada el
+ * 6-11-2026: su mes acaba el domingo 6 de diciembre, y en Madrid el 7 y el 8
+ * también son inhábiles. Nombrando sólo el 6, la frase daba el 9 sin que nadie
+ * pudiera saber por qué no el 7.
+ *
+ * El paso de un día va aquí y no importado de `queja-router.ts`, que no lo
+ * exporta: tocar aquel fichero redespliega el bot.
+ */
+export function inhabilesQueSalta(
+  v: { nominal: string; ultimoDia: string },
+  festivos: FestivosPorAnio,
+): { dia: string; motivo: string | null }[] {
+  const siguiente = (d: string) => new Date(Date.parse(d) + 86_400_000).toISOString().slice(0, 10)
+  const dias = [{ dia: v.nominal, motivo: motivoDeInhabil(v.nominal, festivos) }]
+  for (let d = siguiente(v.nominal); d < v.ultimoDia; d = siguiente(d)) {
+    const motivo = motivoDeInhabil(d, festivos)
+    if (motivo !== 'sábado' && motivo !== 'domingo') dias.push({ dia: d, motivo })
+  }
+  return dias
+}
+
+/**
+ * «el 17 de octubre, sábado, es inhábil», o con varios, «el 6 de diciembre,
+ * domingo, el 7, …, y el 8, …, son inhábiles». Cada caller escribe la fecha a
+ * su manera (`fecha`); el resto es común.
+ *
+ * El caso de varios no es raro: el mes que acababa el viernes 9 de octubre de
+ * 2026 (Día de la Comunitat Valenciana) saltaba también el lunes 12 (Fiesta
+ * Nacional), y la frase publicada nombraba sólo el 9 hasta el 8-11-2026.
+ */
+export function fraseDeInhabiles(
+  dias: { dia: string; motivo: string | null }[],
+  fecha: (dia: string, i: number) => string,
+): string {
+  const partes = dias.map((x, i) => `el ${fecha(x.dia, i)}${x.motivo ? `, ${x.motivo},` : ''}`)
+  const lista = partes.reduce((acc, p, i) => {
+    if (i === 0) return p
+    if (i === partes.length - 1) return `${acc} y ${p}`
+    return `${acc}${acc.endsWith(',') ? ' ' : ', '}${p}`
+  }, '')
+  return `${lista} ${partes.length > 1 ? 'son inhábiles' : 'es inhábil'}`
+}
+
+/**
  * Lo que se dice cuando falta el calendario del año en que acaba el mes: el
  * mismo fallo cerrado que la ficha de una queja.
  */
@@ -259,11 +307,10 @@ export function frasePublica(s: SolicitudAcceso | null, hoy: string): string {
   }
   // Si el mes acaba en inhábil, el último día no es el que sale de sumarlo, y
   // quien cuente desde el día de la solicitud tiene que poder reconciliarlo.
-  const motivo = motivoDeInhabil(v.nominal, FESTIVOS_DE_LA_SEDE)
   const prorroga =
     v.ultimoDia === v.nominal
       ? ''
-      : ` Prorrogado: el ${v.nominal}${motivo ? `, ${motivo},` : ''} es inhábil (art. 30.5 de la Ley 39/2015).`
+      : ` Prorrogado: ${fraseDeInhabiles(inhabilesQueSalta(v, FESTIVOS_DE_LA_SEDE), (d) => d)} (art. 30.5 de la Ley 39/2015).`
   if (estado === 'vencida-sin-respuesta') {
     return (
       `Solicitado el ${s.presentadaEl}. Venció el plazo el ${v.ultimoDia} y no han ` +
