@@ -23,6 +23,7 @@ import { describe, expect, it, vi } from 'vitest'
 import { readFileSync } from 'node:fs'
 import { resolve } from 'node:path'
 
+import { CATALOGUE } from '../../src/i18n'
 import Presupuesto from '../../src/pages/Presupuesto'
 import { aprobadoPorHabitante, enBrevePresupuesto } from '../../src/scraper/en-breve-presupuesto'
 import { periodoDelAnio } from '../../src/scraper/budget-execution'
@@ -91,6 +92,22 @@ describe('las cifras', () => {
     expect(l.porVecinoPartes).toEqual({ inicial: 1, anadido: 2 })
   })
 
+  it('sin nada añadido no hay partes: ni «0 € por vecino» ni una cifra negativa', () => {
+    const budget = { snapshot: { year: 2025, population: 10, totalExpense: 14 } }
+    for (const modificaciones of [0.2, -2]) {
+      const latest = {
+        year: 2025,
+        fechaListado: '31/12/2025',
+        gastos: {
+          total: { inicial: 14, modificaciones, actual: 14 + modificaciones, ejecutado: 10 },
+        },
+      }
+      const l = enBrevePresupuesto({ budget, ejecucion: { latest } }).limite
+      expect(l.porVecino, String(modificaciones)).not.toBeNull()
+      expect(l.porVecinoPartes, String(modificaciones)).toBeNull()
+    }
+  })
+
   it('sin población del mismo ejercicio no hay partes ni cifra de CONPREL', () => {
     const budget = { snapshot: { ...S, year: 1999 } }
     const l = enBrevePresupuesto({ budget, ejecucion: EJEC_DEL_ANIO }).limite
@@ -110,10 +127,10 @@ const RUTAS = [
   '/data/deuda-viva.json',
   '/data/tender-geo.json',
 ]
-const servido = (budget) => ({
+const servido = (budget, ejecucion = EJEC_DEL_ANIO) => ({
   ...Object.fromEntries(RUTAS.map((r) => [r, leer(r.slice('/data/'.length))])),
   '/data/budget.json': budget,
-  '/data/budget-execution.json': EJEC_DEL_ANIO,
+  '/data/budget-execution.json': ejecucion,
 })
 const escenario = (fetch) => ({
   nombre: 'presupuesto · las dos cifras por vecino',
@@ -131,8 +148,8 @@ const entero = (s) => Number(s.replaceAll('.', ''))
 const POR_HAB = { es: 'por habitante', ca: 'per habitant' }
 const POR_VECINO = { es: 'por vecino', ca: 'per veí' }
 
-async function leeLasDos(budget, idioma) {
-  const { piezas } = await pintaYLee(escenario(servido(budget)), idioma, { lee })
+async function leeLasDos(budget, idioma, ejecucion) {
+  const { piezas } = await pintaYLee(escenario(servido(budget, ejecucion)), idioma, { lee })
   const [sello, tarjeta] = piezas
   const enSello = sello.match(new RegExp(`${CIFRA} ${POR_HAB[idioma]}`))
   expect(enSello, `la cabecera no dice «… ${POR_HAB[idioma]}»: ${sello}`).not.toBeNull()
@@ -166,5 +183,74 @@ describe('lo que lee el vecino', () => {
     const { porHab, enTarjeta, tarjeta } = await leeLasDos(budget, 'es')
     expect(enTarjeta, tarjeta).toContain(porHab)
     expect(cuadran(enTarjeta.filter((c) => c !== porHab)), enTarjeta.join(', ')).toBe(true)
+  })
+})
+
+/*
+ * Lo que vio la lectura independiente del 08-11-2026, con datos congelados: el
+ * par vuelve con CONPREL 2026, y para entonces lo publicado habrá cambiado.
+ */
+const fixture = (f) => readFileSync(resolve('tests/fixtures', f), 'utf8')
+/** La primera columna de «Total Gastos» de una hoja municipal: el crédito inicial. */
+const inicialDe = (f) => {
+  const m = fixture(f).match(/Total Gastos(\d{1,3}(?:\.\d{3})*,\d{2})/)
+  return Number(m[1].replaceAll('.', '').replace(',', '.'))
+}
+// La hoja de junio de 2025, la que el sitio publicó de julio al 22-10-2026, con
+// la fecha con que se imprimió: su parámetro de informe decía 31/12/2025
+// (commit 69eb7947).
+const HOJA_2T = JSON.parse(fixture('budget-execution_publicado-2026-10-21_hoja-2t2025.json'))
+const JUNIO_2025 = { ...HOJA_2T, latest: { ...HOJA_2T.latest, fechaListado: '30/06/2025' } }
+// CONPREL 2025: el total es el crédito inicial del cierre, igual al céntimo
+// (69eb7947), y la población la de su padrón.
+const CONPREL_2025 = {
+  ...BUDGET,
+  snapshot: {
+    ...S,
+    year: 2025,
+    population: 24616,
+    totalExpense: inicialDe('budget-execution-gastos_4t2025.txt'),
+  },
+}
+
+describe('lo que la tarjeta afirma del año', () => {
+  it('no dice que el año empezó con el crédito inicial: en 2025 cambió a mitad de año', () => {
+    // La premisa: marzo y junio de 2025 parten de 37,6 M€, el cierre de 41,6 M€.
+    // «Empezó el año con 41,6 M€» sería falso del 1 de enero.
+    const marzo = inicialDe('budget-execution-gastos_1t2025.txt')
+    const junio = inicialDe('budget-execution-gastos_2t2025.txt')
+    const cierre = inicialDe('budget-execution-gastos_4t2025.txt')
+    expect(marzo).toBe(junio)
+    expect(cierre).toBeGreaterThan(marzo)
+    const claves = Object.keys(CATALOGUE.es).filter((k) =>
+      k.startsWith('presupuesto.enBreve.limite.'),
+    )
+    expect(claves.length).toBeGreaterThan(5)
+    for (const idioma of ['es', 'ca'])
+      for (const k of claves)
+        expect(CATALOGUE[idioma][k], `${idioma} · ${k}`).not.toMatch(/empez|comen[cç]/i)
+  })
+
+  it('con el año sin cerrar, el aviso no llama desacuerdo de fuentes a una hoja de mitad de año', async () => {
+    const { porHab, enTarjeta, tarjeta } = await leeLasDos(CONPREL_2025, 'es', JUNIO_2025)
+    // Medido: el puente sigue (1.527 + 997 = 2.524, y 1.689 en el aviso)…
+    expect(enTarjeta, tarjeta).toContain(porHab)
+    expect(cuadran(enTarjeta.filter((c) => c !== porHab)), enTarjeta.join(', ')).toBe(true)
+    // …pero en junio el Ayuntamiento aún no había cambiado su cifra de partida, y
+    // en el cierre coincidió con CONPREL al céntimo.
+    expect(tarjeta).not.toMatch(/no cuadran/)
+    expect(tarjeta).toMatch(/no ha cerrado/)
+  })
+
+  it('la misma cifra por vecino no sale dos veces como si fueran dos', async () => {
+    // Una diferencia de 5.000 € entre las dos fuentes pasa la tolerancia de 1.000 €
+    // y no mueve un euro por vecino: «otra cifra … 1.689 € por vecino» junto a
+    // «(1.689 € por vecino)» diría dos cosas con un número.
+    const budget = { ...BUDGET, snapshot: { ...S, totalExpense: S.totalExpense + 5_000 } }
+    const { porHab, enTarjeta, tarjeta } = await leeLasDos(budget, 'es')
+    expect(
+      enTarjeta.filter((c) => c === porHab),
+      tarjeta,
+    ).toHaveLength(1)
   })
 })
