@@ -28,6 +28,7 @@ import DivisorLecturas from '../components/DivisorLecturas'
 import { SeccionExperta } from '../components/Lecturas'
 import { IndiceExperta } from '../components/IndiceSecciones'
 import { destinoEnContratos } from '../scraper/ruta-de-contratos'
+import { aprobadoPorHabitante } from '../scraper/en-breve-presupuesto'
 
 /*
  * /presupuesto, del crédito inicial a lo ejecutado — lámina 5b del lienzo
@@ -238,9 +239,11 @@ function Cabecera() {
 
   const s = data.snapshot
   // `totalExpense` es null cuando CONPREL no trae el total: no hay gasto por
-  // habitante que publicar, y un «0 € por habitante» lo inventaría.
+  // habitante que publicar, y un «0 € por habitante» lo inventaría. La división
+  // es la misma que usa el puente de la tarjeta del tope de «En breve», que
+  // repite esta cifra: si una dividiera distinto, el puente no cuadraría.
   const hayTotal = typeof s.totalExpense === 'number'
-  const perCapita = hayTotal && s.population > 0 ? s.totalExpense / s.population : null
+  const perCapita = aprobadoPorHabitante(s)
   const exec = execData?.latest
   // The two sources disagree about the APPROVED budget itself, not merely
   // about approved-vs-spent: CONPREL publishes 41.578.252,26 € for 2025 while
@@ -416,7 +419,7 @@ function Cabecera() {
             color: 'var(--ink50)',
           }}
         >
-          <span>
+          <span data-sello="">
             {rellena(t(perCapita !== null ? 'presupuesto.meta' : 'presupuesto.meta.sinTotal'), {
               year: s.year,
               gastos: hayTotal ? eurosBreves(s.totalExpense) : '',

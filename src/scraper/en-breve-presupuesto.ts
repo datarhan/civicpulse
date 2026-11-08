@@ -69,8 +69,22 @@ export interface LimiteEnBreve {
   definitivo: number
   /** null sin población de CONPREL del mismo ejercicio. */
   porVecino: number | null
+  /**
+   * El puente con la cabecera de la página, que divide el aprobado de CONPREL
+   * entre la MISMA población: lo de partida y lo añadido, por vecino, en euros
+   * enteros que suman exactamente `porVecino` redondeado. Sin él, un vecino ve
+   * «1.689 € por habitante» arriba y «2.725 € por vecino» aquí, dos precios de
+   * lo mismo. null cuando `porVecino` es null.
+   */
+  porVecinoPartes: { inicial: number; anadido: number } | null
   /** El total de CONPREL, sólo cuando discrepa del listado municipal. */
   conprelDiscrepa: number | null
+  /**
+   * La cifra de la cabecera, `aprobadoPorHabitante`, cuando CONPREL discrepa:
+   * entonces lo de partida por vecino no es la de la cabecera, y el aviso de
+   * las dos fuentes la trae para que el vecino la encuentre.
+   */
+  conprelPorVecino: number | null
   /** El año no ha cerrado: se dice en presente («tiene», «se le han añadido»). */
   enCurso: boolean
 }
@@ -158,6 +172,19 @@ export const FILAS_EN_QUE = 3
 const esNum = (v: unknown): v is number => typeof v === 'number' && Number.isFinite(v)
 
 /**
+ * El aprobado de CONPREL entre su población: la cifra «por habitante» de la
+ * cabecera de /presupuesto. Vive aquí y la página la importa para que la
+ * cabecera y el puente de la tarjeta del tope no puedan dividir distinto.
+ * null sin total o sin población: un «0 € por habitante» lo inventaría.
+ */
+export function aprobadoPorHabitante(
+  s: { totalExpense?: number | null; population?: number | null } | null | undefined,
+): number | null {
+  if (!s || !esNum(s.totalExpense) || !esNum(s.population) || s.population <= 0) return null
+  return s.totalExpense / s.population
+}
+
+/**
  * «31/12/2025» → la parte del año ya pasada. Sólo se lee la fecha si es del
  * mismo ejercicio: un listado de enero del año siguiente no dice que el año
  * vaya «por el 3 %».
@@ -210,16 +237,28 @@ export function enBrevePresupuesto(e: EntradaEnBreve): EnBrevePresupuesto {
     const hab = poblacion(exec.year)
     const enCurso = !!exec.fechaListado && !esCierre(exec)
     const contraste = mismoAnioConprel ? contrastarPresupuesto(s, exec) : null
+    const conprelDiscrepa =
+      contraste && Math.abs(contraste.diferenciaGastos) >= TOLERANCIA_EQUILIBRIO
+        ? contraste.gastosConprel
+        : null
+    // Lo añadido sale de restar, no de redondear su cociente: 1,4 + 1,4 se
+    // pintan 1 y 1 y la tarjeta diría 3. Las tres cifras tienen que sumar.
+    // Sin nada añadido por vecino no hay partes: «(0 € por vecino)» o una cifra
+    // negativa junto a «se le añadieron» dirían otra cosa que el dato.
+    const totalVecino = hab ? Math.round(valida.definitivo / hab) : null
+    const inicialVecino = hab ? Math.round(valida.inicial / hab) : null
     limite = {
       year: exec.year,
       inicial: valida.inicial,
       modificaciones: valida.modificaciones,
       definitivo: valida.definitivo,
       porVecino: hab ? valida.definitivo / hab : null,
-      conprelDiscrepa:
-        contraste && Math.abs(contraste.diferenciaGastos) >= TOLERANCIA_EQUILIBRIO
-          ? contraste.gastosConprel
+      porVecinoPartes:
+        totalVecino !== null && inicialVecino !== null && totalVecino > inicialVecino
+          ? { inicial: inicialVecino, anadido: totalVecino - inicialVecino }
           : null,
+      conprelDiscrepa,
+      conprelPorVecino: hab && conprelDiscrepa !== null ? aprobadoPorHabitante(s) : null,
       enCurso,
     }
     gastado = {
