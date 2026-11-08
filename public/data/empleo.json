@@ -1,20 +1,20 @@
 {
-  "generatedAt": "2026-11-07T11:24:26.725Z",
+  "generatedAt": "2026-11-08T11:43:03.886Z",
   "source": {
     "origin": "https://ribaocupacio.portalemp.com",
     "platform": "portalemp — ribaocupacio · Agència de Col·locació (ADL), Ajuntament de Riba-roja de Túria",
     "listEndpoint": "https://ribaocupacio.portalemp.com/ofertas.html?acc=tableData"
   },
   "stats": {
-    "total": 43,
-    "openTotal": 42,
-    "inRibaRoja": 29,
+    "total": 42,
+    "openTotal": 41,
+    "inRibaRoja": 28,
     "closingSoon": 6,
-    "withDetail": 43,
+    "withDetail": 42,
     "byMonth": {
       "2026-11": 1,
       "2026-10": 28,
-      "2026-09": 11,
+      "2026-09": 10,
       "2026-05": 2,
       "2025-11": 1
     }
@@ -3118,74 +3118,6 @@
         "salario": "1500 NETOS aprox. + INCENTIVOS DE VENTA",
         "funciones": "Comercial de bebidas, alimentación y diferentes productos para hostelería",
         "ocupaciones": []
-      }
-    },
-    {
-      "id": "2531",
-      "fo": 2531,
-      "codigo": "2026/00230",
-      "titulo": "Operario/a de grúa para transporte de vehículos",
-      "publishedAt": "2026-09-07",
-      "deadline": "2026-11-07",
-      "location": "Riba-roja de Túria",
-      "status": "Abierta",
-      "statusTone": "ok",
-      "url": "https://ribaocupacio.portalemp.com/ofertas.html?fo=2531",
-      "inRibaRoja": true,
-      "detail": {
-        "fields": [
-          {
-            "label": "Código",
-            "value": "2026/00230"
-          },
-          {
-            "label": "Nombre de la oferta",
-            "value": "Operario/a de grúa para transporte de vehículos"
-          },
-          {
-            "label": "Tipo de contrato",
-            "value": "CONTRATO INDEFINIDO"
-          },
-          {
-            "label": "Duración del contrato",
-            "value": "Más de 6 meses"
-          },
-          {
-            "label": "Número de puestos",
-            "value": "1"
-          },
-          {
-            "label": "Lugar puesto de trabajo",
-            "value": "Municipio: Riba-roja de Túria, Provincia: Valencia"
-          },
-          {
-            "label": "Tipo de jornada laboral",
-            "value": "Completa"
-          },
-          {
-            "label": "Salario",
-            "value": "SEGÚN CONVENIO"
-          },
-          {
-            "label": "Requiere vehículo propio",
-            "value": "Sí"
-          },
-          {
-            "label": "Habilidades",
-            "value": "TRANSPORTE Y DESCARGA DE VEHÍCULOS CON GRÚA CAMIÓN"
-          }
-        ],
-        "tipoContrato": "CONTRATO INDEFINIDO",
-        "duracion": "Más de 6 meses",
-        "numPuestos": "1",
-        "jornada": "Completa",
-        "salario": "SEGÚN CONVENIO",
-        "vehiculo": "Sí",
-        "ocupaciones": [
-          {
-            "nombre": "CONDUCTORES-OPERADORES DE GRÚA EN CAMIÓN"
-          }
-        ]
       }
     },
     {
