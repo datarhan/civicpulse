@@ -350,11 +350,16 @@ export function SolicitudesEnviadas({ bloque }) {
   // a la medida de lectura; la tarjeta ocupa la columna. Las frases no se
   // parten en columnas: las escribe `fraseDeEnvio` con cada salvedad del plazo
   // en su sitio, y una tabla de fechas las perdería.
+  // `overflowWrap`: estas frases citan números de registro y de expediente
+  // enteros, sin espacios. El de la Secretaría de Estado
+  // (ES_E04996103_2026_EXP_AC2000001165404) se salía 15 px de la tarjeta a
+  // 375 px; partirlo sólo cuando no cabe no toca el resto del texto.
   const frase = {
     fontSize: 'var(--fs-body)',
     color: 'var(--ink)',
     lineHeight: 1.55,
     maxWidth: 'var(--medida)',
+    overflowWrap: 'anywhere',
   }
   const aparte = {
     fontSize: 'var(--fs-aux)',
