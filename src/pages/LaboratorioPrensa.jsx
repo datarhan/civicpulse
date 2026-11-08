@@ -23,14 +23,15 @@
 
 import { useMemo, useState } from 'react'
 import { Link } from 'react-router-dom'
-import { Card, Pill, SectionHead, ExtLink } from '../components/Primitives'
+import { Card, MarcadoConHuecos, Pill, SectionHead, ExtLink } from '../components/Primitives'
 import { usePressLab } from '../hooks/usePressLab'
 import ClaimReviewJsonLd from '../components/ClaimReviewJsonLd'
 import { BitacoraCorrecciones } from '../components/BitacoraCorrecciones'
 import DataAsOf from '../components/DataAsOf'
-import { fmtDateShort } from '../lib/formatters'
+import { fmtDateShort, rellena } from '../lib/formatters'
 import { snippetDeEvidencia } from '../lib/crosschecked-status.js'
-import { CATALOGUE } from '../i18n'
+import { rotuloDe, useLocale, useT } from '../i18n'
+import { conHuecos } from '../lib/huecos'
 import { esFuenteOficial } from '../scraper/press-fuente-oficial'
 import { esAnuncioClasificado } from '../scraper/press-clasificado'
 import {
@@ -46,7 +47,6 @@ import {
   resumenHallazgos,
   fraseFactcheck,
   puenteTablaMedios,
-  CADENCIA_LABORATORIO,
 } from '../lib/press-lab'
 
 const VERDICT_TONE = {
@@ -58,9 +58,15 @@ const VERDICT_TONE = {
   'promesa-repetida': 'civic',
 }
 
-function fmtDate(iso) {
-  return fmtDateShort(iso) || '—'
+function fmtDate(iso, idioma) {
+  return fmtDateShort(iso, idioma) || '—'
 }
+
+/**
+ * La pastilla de un veredicto en el idioma de la página. ESTADO_LABEL (press-lab.js)
+ * guarda el castellano del catálogo; un veredicto sin clave se pinta crudo, como antes.
+ */
+const rotuloEstado = (t, v) => rotuloDe(t, `laboratorio.prensa.estado.${v}`, ESTADO_LABEL[v] || v)
 
 function fmtNumber(n) {
   if (n == null || !Number.isFinite(n)) return '—'
@@ -107,11 +113,12 @@ function KPI({ label, value, hint }) {
 }
 
 function VerdictMix({ counts }) {
+  const t = useT()
   const entries = Object.entries(counts).filter(([, n]) => n > 0)
   if (entries.length === 0) {
     return (
       <span className="mono" style={{ fontSize: 'var(--fs-micro)', color: 'var(--ink50)' }}>
-        sin afirmaciones cotejadas
+        {t('laboratorio.prensa.sinCotejadas')}
       </span>
     )
   }
@@ -119,36 +126,36 @@ function VerdictMix({ counts }) {
     <span style={{ display: 'inline-flex', gap: 6, flexWrap: 'wrap' }}>
       {entries.map(([v, n]) => (
         <Pill key={v} tone={VERDICT_TONE[v] || 'neutral'} size="xs">
-          {n} {ESTADO_LABEL[v] || v}
+          {n} {rotuloEstado(t, v)}
         </Pill>
       ))}
     </span>
   )
 }
 
-const TRUST_LABEL = {
-  localCoverage: 'Cobertura local',
-  datedArticle: 'Fecha verificable',
-  municipalSourceMatch: 'Coincide con datos municipales',
-  corroboratedAcrossOutlets: 'Cobertura cruzada',
-  factualClaimsPresent: 'Afirmaciones contrastables',
-}
+// Los indicadores, en su orden; su rótulo es `laboratorio.prensa.trust.<indicador>`.
+const TRUST_INDICATORS = [
+  'localCoverage',
+  'datedArticle',
+  'municipalSourceMatch',
+  'corroboratedAcrossOutlets',
+  'factualClaimsPresent',
+]
 
-// Qué quiere decir «sin comprobar» en cada indicador que puede no comprobarse. Una
-// frase para todos decía, en «Cobertura cruzada», que no se habían cotejado datos
-// municipales: el motivo de otro indicador.
-const SIN_COMPROBAR = {
-  municipalSourceMatch:
-    'ninguna afirmación de este titular se ha cotejado con los datos municipales',
-  corroboratedAcrossOutlets:
-    'no se ha encontrado esta historia en otro medio independiente. El agrupado por título no reconoce la misma noticia contada con otras palabras o en la otra lengua, así que no encontrarla no quiere decir que no la haya; una nota de prensa de una administración no cuenta como otro medio',
-  factualClaimsPresent:
-    'este titular no tiene un resultado del extractor: no ha pasado por él, el modelo no respondió o sus afirmaciones no se publican',
-}
+// Qué quiere decir «sin comprobar» en cada indicador que puede no comprobarse
+// (`laboratorio.prensa.trust.sinComprobar.<indicador>`). Una frase para todos decía,
+// en «Cobertura cruzada», que no se habían cotejado datos municipales: el motivo de
+// otro indicador.
+const SIN_COMPROBAR = new Set([
+  'municipalSourceMatch',
+  'corroboratedAcrossOutlets',
+  'factualClaimsPresent',
+])
 
 export function TrustIndicators({ indicators }) {
+  const t = useT()
   if (!indicators) return null
-  const entries = Object.entries(TRUST_LABEL)
+  const entries = TRUST_INDICATORS.map((k) => [k, t(`laboratorio.prensa.trust.${k}`)])
   return (
     <div
       style={{
@@ -176,8 +183,15 @@ export function TrustIndicators({ indicators }) {
         const on = !!raw
         const glifo = sinComprobar ? '–' : on ? '●' : '○'
         const titulo = sinComprobar
-          ? `Indicador del Trust Project · ${label} · sin comprobar: ${SIN_COMPROBAR[k] ?? 'no hay dato'}`
-          : `Indicador del Trust Project · ${label}`
+          ? rellena(t('laboratorio.prensa.trust.titulo.sinComprobar'), {
+              indicador: label,
+              motivo: t(
+                SIN_COMPROBAR.has(k)
+                  ? `laboratorio.prensa.trust.sinComprobar.${k}`
+                  : 'laboratorio.prensa.trust.sinComprobar.otro',
+              ),
+            })
+          : rellena(t('laboratorio.prensa.trust.titulo'), { indicador: label })
         return (
           <span
             key={k}
@@ -212,7 +226,7 @@ export function TrustIndicators({ indicators }) {
             {label}
             {sinComprobar ? (
               <span style={{ fontSize: 'var(--fs-micro)', color: 'var(--ink50)' }}>
-                {' · sin comprobar'}
+                {t('laboratorio.prensa.trust.sinComprobar')}
               </span>
             ) : null}
           </span>
@@ -222,13 +236,11 @@ export function TrustIndicators({ indicators }) {
   )
 }
 
-// La frase de antes, para un press-claims-verified.json anterior a `extraccion`: sin el
-// desenlace de cada artículo no se puede distinguir lo mirado de lo no mirado, y la
-// página no lo adivina.
-const SIN_REGISTRO_DE_EXTRACCION =
-  'El extractor no sacó ninguna afirmación de este titular. No es lo mismo que no las tenga.'
-
+// La frase de antes (`laboratorio.prensa.sinRegistroExtraccion`), para un
+// press-claims-verified.json anterior a `extraccion`: sin el desenlace de cada artículo
+// no se puede distinguir lo mirado de lo no mirado, y la página no lo adivina.
 function ClaimLedger({ claims, textoVacio }) {
+  const t = useT()
   if (!claims || claims.length === 0) {
     return (
       // Quién no las encontró, y que eso no prueba que no las haya.
@@ -244,7 +256,7 @@ function ClaimLedger({ claims, textoVacio }) {
       // afirmaciones, y la pasada de octubre de 2026 sólo había visto los titulares
       // del 7 al 9. Cada tarjeta dice ahora su desenlace (`textoLibroVacio`).
       <div style={{ fontSize: 'var(--fs-meta)', color: 'var(--ink50)' }}>
-        {textoVacio ?? SIN_REGISTRO_DE_EXTRACCION}
+        {textoVacio ?? t('laboratorio.prensa.sinRegistroExtraccion')}
       </div>
     )
   }
@@ -261,8 +273,9 @@ function ClaimLedger({ claims, textoVacio }) {
           <li key={c.id}>
             <div style={{ display: 'flex', alignItems: 'baseline', gap: 6 }}>
               <Pill tone={VERDICT_TONE[estado] || 'neutral'} size="xs">
-                {ESTADO_LABEL[estado] || estado}
+                {rotuloEstado(t, estado)}
               </Pill>
+              {/* La cita es la del medio: literal, en su idioma. */}
               <span style={{ fontSize: 'var(--fs-aux)', lineHeight: 1.4 }}>«{c.verbatim}»</span>
             </div>
             {evidence && (
@@ -276,12 +289,12 @@ function ClaimLedger({ claims, textoVacio }) {
               >
                 {/* El mismo snippet que las tarjetas de declaración: sin la cola
                     «estado:» y con la categoría del contrato por su rótulo, no
-                    «· construction ·». La página no está traducida: castellano. */}
+                    «· construction ·». Los dos rótulos, en el idioma de la página. */}
                 ↳{' '}
                 <span className="mono">
-                  [{CATALOGUE.es[`ledger.evidencia.${evidence.kind}`] ?? evidence.kind}]
+                  [{rotuloDe(t, `ledger.evidencia.${evidence.kind}`, evidence.kind)}]
                 </span>{' '}
-                {snippetDeEvidencia(evidence)}
+                {snippetDeEvidencia(evidence, t)}
               </div>
             )}
           </li>
@@ -292,7 +305,7 @@ function ClaimLedger({ claims, textoVacio }) {
           className="mono"
           style={{ fontSize: 'var(--fs-micro)', color: 'var(--ink50)', paddingLeft: 4 }}
         >
-          +{claims.length - 4} afirmaciones más en este artículo
+          {rellena(t('laboratorio.prensa.masAfirmaciones'), { n: claims.length - 4 })}
         </li>
       )}
     </ul>
@@ -300,6 +313,7 @@ function ClaimLedger({ claims, textoVacio }) {
 }
 
 function LabPressCard({ article, summary, claims, textoVacio, trust, triangulation, linkRot }) {
+  const { t, locale } = useLocale()
   const claimRows = claims || []
   const counts = claimRows.reduce((acc, r) => {
     const estado = estadoDeAfirmacion(r)
@@ -344,9 +358,9 @@ function LabPressCard({ article, summary, claims, textoVacio, trust, triangulati
               color: 'var(--ink50)',
               letterSpacing: '.06em',
             }}
-            title="Este artículo ya no aparece en el feed del medio; la ficha se reconstruye a partir de las declaraciones que le auditamos"
+            title={t('laboratorio.prensa.fueraDelFeed.title')}
           >
-            FUERA DEL FEED
+            {t('laboratorio.prensa.fueraDelFeed')}
           </span>
         )}
         {/* La misma regla que la tabla por medio y que el recuento de cobertura
@@ -364,13 +378,13 @@ function LabPressCard({ article, summary, claims, textoVacio, trust, triangulati
               color: 'var(--warn-ink)',
               letterSpacing: '.06em',
             }}
-            title="Nota de prensa de una administración, no cobertura periodística independiente"
+            title={t('laboratorio.prensa.oficial.title')}
           >
-            OFICIAL
+            {t('laboratorio.prensa.oficial')}
           </span>
         )}
         <span className="mono" style={{ fontSize: 'var(--fs-micro)', color: 'var(--ink70)' }}>
-          {fmtDate(article.date)}
+          {fmtDate(article.date, locale)}
         </span>
         <span style={{ flex: 1 }} />
         <VerdictMix counts={counts} />
@@ -402,8 +416,9 @@ function LabPressCard({ article, summary, claims, textoVacio, trust, triangulati
           >
             {/* No curator reads these before publication — the pipeline writes
                 and commits them unattended, so claiming review was false. */}
-            Síntesis automática · sin revisión humana
+            {t('laboratorio.prensa.sintesis')}
           </div>
+          {/* La síntesis la escribió el resumidor automático: se pinta como llegó. */}
           <p
             style={{
               margin: '4px 0 0',
@@ -437,11 +452,14 @@ function LabPressCard({ article, summary, claims, textoVacio, trust, triangulati
           {/* Sólo medios independientes: la nota de una administración que el
               periódico reproduce no es un segundo testigo, es la fuente. Se nombra
               aparte para que se vea de dónde salió la historia. */}
-          Cobertura comparada · {triangulation.outlets.length} medios:{' '}
-          <strong>{triangulation.outlets.join(' · ')}</strong>
-          {triangulation.fuentesOficiales?.length > 0 && (
-            <> · además, nota de prensa oficial: {triangulation.fuentesOficiales.join(' · ')}</>
+          {conHuecos(
+            rellena(t('laboratorio.prensa.comparada'), { n: triangulation.outlets.length }),
+            { '{medios}': <strong>{triangulation.outlets.join(' · ')}</strong> },
           )}
+          {triangulation.fuentesOficiales?.length > 0 &&
+            rellena(t('laboratorio.prensa.comparada.oficial'), {
+              fuentes: triangulation.fuentesOficiales.join(' · '),
+            })}
         </div>
       )}
       <div
@@ -464,12 +482,12 @@ function LabPressCard({ article, summary, claims, textoVacio, trust, triangulati
             textDecoration: 'underline',
           }}
           title={
-            linkRot?.status === 'dead'
-              ? 'Esta URL devolvió 4xx/5xx en la última auditoría — usa el snapshot de Wayback al lado'
-              : undefined
+            linkRot?.status === 'dead' ? t('laboratorio.prensa.original.muerto.title') : undefined
           }
         >
-          {linkRot?.status === 'dead' ? 'Ver original ⚠︎' : 'Ver original ↗'}
+          {linkRot?.status === 'dead'
+            ? t('laboratorio.prensa.original.muerto')
+            : t('laboratorio.prensa.original')}
         </ExtLink>
         {linkRot?.archivedUrl && (
           <ExtLink
@@ -477,8 +495,10 @@ function LabPressCard({ article, summary, claims, textoVacio, trust, triangulati
             style={{ color: 'var(--ink70)', textDecoration: 'underline' }}
             title={
               linkRot.archivedAt
-                ? `Snapshot del Internet Archive · ${linkRot.archivedAt.slice(0, 10)}`
-                : 'Snapshot del Internet Archive'
+                ? rellena(t('laboratorio.prensa.archivo.title'), {
+                    fecha: linkRot.archivedAt.slice(0, 10),
+                  })
+                : t('laboratorio.prensa.archivo.title.sinFecha')
             }
           >
             🔗 Wayback ↗
@@ -491,7 +511,7 @@ function LabPressCard({ article, summary, claims, textoVacio, trust, triangulati
           href="/aviso-legal#rectificacion"
           style={{ color: 'var(--civic)', textDecoration: 'underline' }}
         >
-          Solicitar derecho de réplica →
+          {t('laboratorio.prensa.replica')}
         </a>
       </div>
     </Card>
@@ -516,6 +536,7 @@ function LabPressCard({ article, summary, claims, textoVacio, trust, triangulati
 const FILAS_DE_MEDIOS = 10
 
 export function OutletScoreboard({ outlets, puente }) {
+  const t = useT()
   const [todos, setTodos] = useState(false)
   const afirmaciones = (o) =>
     Object.values(o.verdictCounts ?? {}).reduce((acc, n) => acc + (Number(n) || 0), 0)
@@ -523,13 +544,13 @@ export function OutletScoreboard({ outlets, puente }) {
   if (!outlets || outlets.length === 0) {
     return (
       <div style={{ fontSize: 'var(--fs-meta)', color: 'var(--ink50)' }}>
-        Sin medios con suficiente cobertura para una tabla de fiabilidad.
+        {t('laboratorio.prensa.medios.vacio')}
       </div>
     )
   }
   const visibles = todos ? outlets : outlets.slice(0, FILAS_DE_MEDIOS)
   const resto = outlets.slice(FILAS_DE_MEDIOS)
-  const articulosDelResto = resto.reduce((t, o) => t + (Number(o.articleCount) || 0), 0)
+  const articulosDelResto = resto.reduce((s, o) => s + (Number(o.articleCount) || 0), 0)
   return (
     <>
       <table
@@ -540,14 +561,22 @@ export function OutletScoreboard({ outlets, puente }) {
         // lateral hacia 855 px (#396), aunque aquí cupiera por un par de píxeles.
         className="cp-tabla-medios"
         style={{ width: '100%', borderCollapse: 'collapse', fontSize: 'var(--fs-meta)' }}
-        aria-label="Cobertura de comprobación por medio"
+        aria-label={t('laboratorio.prensa.medios.aria')}
       >
         <thead>
           <tr style={{ textAlign: 'left', color: 'var(--ink70)' }}>
-            <th style={{ padding: '4px 0', fontWeight: 600 }}>Medio</th>
-            <th style={{ padding: '4px 0', fontWeight: 600, textAlign: 'right' }}>Artículos</th>
-            <th style={{ padding: '4px 0', fontWeight: 600, textAlign: 'right' }}>Verificado</th>
-            <th style={{ padding: '4px 0', fontWeight: 600, textAlign: 'right' }}>Discrepa</th>
+            <th style={{ padding: '4px 0', fontWeight: 600 }}>
+              {t('laboratorio.prensa.medios.col.medio')}
+            </th>
+            <th style={{ padding: '4px 0', fontWeight: 600, textAlign: 'right' }}>
+              {t('laboratorio.prensa.medios.col.articulos')}
+            </th>
+            <th style={{ padding: '4px 0', fontWeight: 600, textAlign: 'right' }}>
+              {t('laboratorio.prensa.medios.col.verificado')}
+            </th>
+            <th style={{ padding: '4px 0', fontWeight: 600, textAlign: 'right' }}>
+              {t('laboratorio.prensa.medios.col.discrepa')}
+            </th>
           </tr>
         </thead>
         <tbody>
@@ -562,9 +591,9 @@ export function OutletScoreboard({ outlets, puente }) {
                   <span
                     className="mono"
                     style={{ marginLeft: 6, fontSize: 'var(--fs-micro)', color: 'var(--warn-ink)' }}
-                    title="Fuente institucional: notas de prensa de una administración"
+                    title={t('laboratorio.prensa.medios.oficial.title')}
                   >
-                    OFICIAL
+                    {t('laboratorio.prensa.oficial')}
                   </span>
                 )}
               </td>
@@ -579,14 +608,22 @@ export function OutletScoreboard({ outlets, puente }) {
                 {/* El divisor, en la celda: entre qué se divide el porcentaje. */}
                 {cotejadas(o) > 0 && (
                   <div style={{ fontSize: 'var(--fs-micro)', color: 'var(--ink50)' }}>
-                    {o.verdictCounts?.verificado ?? 0} de {cotejadas(o)}{' '}
-                    {cotejadas(o) === 1 ? 'cotejada' : 'cotejadas'}
+                    {rellena(
+                      t(
+                        cotejadas(o) === 1
+                          ? 'laboratorio.prensa.medios.cotejadas.una'
+                          : 'laboratorio.prensa.medios.cotejadas',
+                      ),
+                      { v: o.verdictCounts?.verificado ?? 0, n: cotejadas(o) },
+                    )}
                   </div>
                 )}
                 {/* Y lo que no divide: afirmaciones que nadie buscó en ningún dato. */}
                 {afirmaciones(o) > cotejadas(o) && (
                   <div style={{ fontSize: 'var(--fs-micro)', color: 'var(--ink50)' }}>
-                    {afirmaciones(o) - cotejadas(o)} sin cotejar
+                    {rellena(t('laboratorio.prensa.medios.sinCotejar'), {
+                      n: afirmaciones(o) - cotejadas(o),
+                    })}
                   </div>
                 )}
               </td>
@@ -617,8 +654,24 @@ export function OutletScoreboard({ outlets, puente }) {
         >
           {!todos && (
             <span>
-              y {resto.length} {resto.length === 1 ? 'medio más' : 'medios más'} ·{' '}
-              {articulosDelResto} {articulosDelResto === 1 ? 'artículo' : 'artículos'}
+              {rellena(t('laboratorio.prensa.medios.resto'), {
+                medios: rellena(
+                  t(
+                    resto.length === 1
+                      ? 'laboratorio.prensa.medios.resto.medio.uno'
+                      : 'laboratorio.prensa.medios.resto.medio',
+                  ),
+                  { n: resto.length },
+                ),
+                articulos: rellena(
+                  t(
+                    articulosDelResto === 1
+                      ? 'laboratorio.prensa.n.articulo.uno'
+                      : 'laboratorio.prensa.n.articulo',
+                  ),
+                  { n: articulosDelResto },
+                ),
+              })}
             </span>
           )}
           <button
@@ -635,8 +688,8 @@ export function OutletScoreboard({ outlets, puente }) {
             }}
           >
             {todos
-              ? `Ver sólo los ${FILAS_DE_MEDIOS} primeros`
-              : `Ver los ${outlets.length} medios`}
+              ? rellena(t('laboratorio.prensa.medios.verPrimeros'), { n: FILAS_DE_MEDIOS })
+              : rellena(t('laboratorio.prensa.medios.verTodos'), { n: outlets.length })}
           </button>
         </div>
       )}
@@ -657,6 +710,7 @@ export function OutletScoreboard({ outlets, puente }) {
 }
 
 function FactCheckRail({ factcheck }) {
+  const { t, locale } = useLocale()
   const items = factcheck?.items ?? []
   // Qué se consultó y qué salió, leído de factcheck.json (`fraseFactcheck`). Decía
   // siempre «Configurar GOOGLE_FACT_CHECK_API_KEY en .env para activar» con las tres
@@ -670,8 +724,12 @@ function FactCheckRail({ factcheck }) {
         lineHeight: 1.55,
       }}
     >
-      {fraseFactcheck(factcheck)}
-      {factcheck?.generatedAt ? ` Última consulta: ${fmtDate(factcheck.generatedAt)}.` : null}
+      {fraseFactcheck(factcheck, t)}
+      {factcheck?.generatedAt
+        ? rellena(t('laboratorio.prensa.factcheck.ultima'), {
+            fecha: fmtDate(factcheck.generatedAt, locale),
+          })
+        : null}
     </div>
   )
   if (items.length === 0) return frase
@@ -684,8 +742,15 @@ function FactCheckRail({ factcheck }) {
           return (
             <li key={row.id} style={{ fontSize: 'var(--fs-aux)', lineHeight: 1.45 }}>
               <div style={{ display: 'flex', gap: 6, alignItems: 'baseline', flexWrap: 'wrap' }}>
+                {/* El veredicto que escribió el verificador externo es suyo: dato. Sólo
+                    cuando no trae ninguno se pinta el rótulo del nuestro. */}
                 <Pill tone={tone} size="xs">
-                  {row.verdict || VERDICT_LABEL[row.normalizedVerdict] || row.normalizedVerdict}
+                  {row.verdict ||
+                    rotuloDe(
+                      t,
+                      `laboratorio.prensa.estado.${row.normalizedVerdict}`,
+                      VERDICT_LABEL[row.normalizedVerdict] || row.normalizedVerdict,
+                    )}
                 </Pill>
                 <span
                   className="mono"
@@ -714,7 +779,7 @@ function FactCheckRail({ factcheck }) {
         })}
         {items.length > 6 && (
           <li className="mono" style={{ fontSize: 'var(--fs-micro)', color: 'var(--ink50)' }}>
-            +{items.length - 6} verificaciones más
+            {rellena(t('laboratorio.prensa.factcheck.mas'), { n: items.length - 6 })}
           </li>
         )}
       </ul>
@@ -730,27 +795,41 @@ function FactCheckRail({ factcheck }) {
  * salen del informe.
  */
 function MetodoLagunas({ stats, dias }) {
+  const t = useT()
   if (!stats) return null
   const tramites = stats.tramitesExcluidos ?? 0
   const titulares = stats.titularesConsiderados
   const asuntos = stats.candidatesExamined
-  const partes = [
-    'Un punto del pleno o una promesa cuenta como seguido si un titular de un medio independiente comparte con su título al menos dos palabras significativas; el nombre del municipio, las fórmulas de trámite, las notas de prensa de una administración y los anuncios no cuentan.',
-  ]
+  const partes = [t('laboratorio.prensa.lagunas.regla')]
   if (typeof titulares === 'number' && typeof asuntos === 'number')
     partes.push(
       // Dice de qué universo salen: no son los «Titulares monitorizados» de arriba
       // (30 días, todos los medios), sino los de medios independientes de la ventana
       // de las lagunas, sin anuncios ni notas de una administración.
-      `Se han cruzado ${titulares} ${titulares === 1 ? 'titular' : 'titulares'} de medios independientes de los últimos ${dias ?? 14} días —sin anuncios ni notas de prensa oficiales— con ${asuntos} ${asuntos === 1 ? 'asunto' : 'asuntos'}.`,
+      rellena(t('laboratorio.prensa.lagunas.cruzados'), {
+        titulares: rellena(
+          t(titulares === 1 ? 'laboratorio.prensa.n.titular.uno' : 'laboratorio.prensa.n.titular'),
+          { n: titulares },
+        ),
+        dias: dias ?? 14,
+        asuntos: rellena(
+          t(asuntos === 1 ? 'laboratorio.prensa.n.asunto.uno' : 'laboratorio.prensa.n.asunto'),
+          { n: asuntos },
+        ),
+      }),
     )
   if (tramites > 0)
     partes.push(
-      `${tramites} ${tramites === 1 ? 'punto del orden del día es un trámite' : 'puntos del orden del día son trámites'} (acta anterior, relación de resoluciones, ruegos y preguntas) y no se examinan.`,
+      rellena(
+        t(
+          tramites === 1
+            ? 'laboratorio.prensa.lagunas.tramites.uno'
+            : 'laboratorio.prensa.lagunas.tramites',
+        ),
+        { n: tramites },
+      ),
     )
-  partes.push(
-    'Una noticia contada con otras palabras, o en valenciano, puede salir aquí como laguna.',
-  )
+  partes.push(t('laboratorio.prensa.lagunas.otrasPalabras'))
   return (
     <p
       style={{
@@ -766,6 +845,7 @@ function MetodoLagunas({ stats, dias }) {
 }
 
 function CoverageGaps({ items, stats, dias }) {
+  const t = useT()
   if (!items || items.length === 0) {
     // "No gaps" and "nothing to compare" look identical from the item list
     // alone, and the second was being published as the first: with the newest
@@ -776,8 +856,8 @@ function CoverageGaps({ items, stats, dias }) {
       <>
         <div style={{ fontSize: 'var(--fs-meta)', color: 'var(--ink50)' }}>
           {examined === 0
-            ? 'No hubo plenos ni promesas nuevas en los últimos 14 días, así que no hay nada que comparar con la cobertura.'
-            : 'Sin lagunas detectadas en los últimos 14 días.'}
+            ? t('laboratorio.prensa.lagunas.sinCandidatos')
+            : t('laboratorio.prensa.lagunas.sinLagunas')}
         </div>
         {examined > 0 && <MetodoLagunas stats={stats} dias={dias} />}
       </>
@@ -797,14 +877,17 @@ function CoverageGaps({ items, stats, dias }) {
                 marginRight: 6,
               }}
             >
-              {it.kind === 'pleno-item' ? 'Pleno' : 'Promesa'}
+              {it.kind === 'pleno-item'
+                ? t('laboratorio.prensa.lagunas.pleno')
+                : t('laboratorio.prensa.lagunas.promesa')}
             </span>
+            {/* El punto del pleno o la promesa, con su texto: dato. */}
             <span style={{ color: 'var(--ink70)' }}>{it.label}</span>
           </li>
         ))}
         {items.length > 8 && (
           <li className="mono" style={{ fontSize: 'var(--fs-micro)', color: 'var(--ink50)' }}>
-            +{items.length - 8} más
+            {rellena(t('laboratorio.prensa.lagunas.mas'), { n: items.length - 8 })}
           </li>
         )}
       </ul>
@@ -814,6 +897,7 @@ function CoverageGaps({ items, stats, dias }) {
 }
 
 export default function LaboratorioPrensa() {
+  const t = useT()
   const lab = usePressLab()
   const [outletFilter, setOutletFilter] = useState('all')
   const [verdictFilter, setVerdictFilter] = useState('all')
@@ -869,7 +953,7 @@ export default function LaboratorioPrensa() {
     () => pressLabSummary({ press: lab.press, verified: lab.verified }),
     [lab.press, lab.verified],
   )
-  const aviso = avisoSinVeredicto(summary)
+  const aviso = avisoSinVeredicto(summary, t)
   const hallazgos = useMemo(() => resumenHallazgos(lab.findings), [lab.findings])
 
   // Se filtra la MISMA lista que cuenta `summary.monitoredCount` —la del feed más
@@ -898,7 +982,7 @@ export default function LaboratorioPrensa() {
   if (lab.loading) {
     return (
       <div className="cp-page" style={{ padding: 24, color: 'var(--ink50)' }}>
-        Cargando laboratorio…
+        {t('laboratorio.prensa.cargando')}
       </div>
     )
   }
@@ -924,7 +1008,7 @@ export default function LaboratorioPrensa() {
             letterSpacing: '.08em',
           }}
         >
-          Observatorio de medios · Riba-roja de Túria
+          {t('laboratorio.prensa.eyebrow')}
         </div>
         <h1
           style={{
@@ -934,7 +1018,7 @@ export default function LaboratorioPrensa() {
             margin: '2px 0 6px',
           }}
         >
-          Laboratorio de verificación de prensa
+          {t('laboratorio.prensa.titulo')}
         </h1>
         <p
           style={{
@@ -952,40 +1036,50 @@ export default function LaboratorioPrensa() {
               tasas: escrita a mano, decía «la mayoría» encima de «0 de 64»
               (revisión lectora, 15-09-2026).
               Decía también «plenos» en la lista: el verificador de prensa nunca los consultó. */}
-          De cada titular sobre Riba-roja se extraen sus afirmaciones y se intenta contrastarlas
-          contra los datos públicos (contratos PLACSP y TED, subvenciones BDNS, padrón INE, paro
-          SEPE, BOE) y el catálogo de promesas. {fraseVeredictos(summary)} Indicadores de fiabilidad
-          inspirados en el{' '}
-          <a
-            href="https://thetrustproject.org/"
-            target="_blank"
-            rel="noreferrer"
-            style={{ color: 'var(--civic)', textDecoration: 'underline' }}
-          >
-            Trust Project
-          </a>{' '}
-          y triangulación al estilo{' '}
-          <a
-            href="https://www.bellingcat.com/category/resources/how-tos/"
-            target="_blank"
-            rel="noreferrer"
-            style={{ color: 'var(--civic)', textDecoration: 'underline' }}
-          >
-            Bellingcat
-          </a>
-          .
+          {conHuecos(t('laboratorio.prensa.intro'), {
+            '{veredictos}': fraseVeredictos(summary, t),
+            '{trust}': (
+              <a
+                href="https://thetrustproject.org/"
+                target="_blank"
+                rel="noreferrer"
+                style={{ color: 'var(--civic)', textDecoration: 'underline' }}
+              >
+                Trust Project
+              </a>
+            ),
+            '{bellingcat}': (
+              <a
+                href="https://www.bellingcat.com/category/resources/how-tos/"
+                target="_blank"
+                rel="noreferrer"
+                style={{ color: 'var(--civic)', textDecoration: 'underline' }}
+              >
+                Bellingcat
+              </a>
+            ),
+          })}
         </p>
         <div style={{ marginTop: 10 }}>
-          <DataAsOf iso={lab.generatedAt} label="Laboratorio" file="press-claims-verified.json" />
+          <DataAsOf
+            iso={lab.generatedAt}
+            label={t('laboratorio.prensa.datos')}
+            file="press-claims-verified.json"
+          />
         </div>
         {/* Los demás experimentos los presenta el índice del laboratorio; aquí
             basta con decir que éste es uno de ellos y cómo volver. */}
         <p style={{ margin: '10px 0 0', fontSize: 'var(--fs-aux)', color: 'var(--ink50)' }}>
-          Es uno de los experimentos del{' '}
-          <Link to="/laboratorio" style={{ color: 'var(--civic)', textDecoration: 'underline' }}>
-            laboratorio
-          </Link>
-          .
+          {conHuecos(t('laboratorio.prensa.experimento'), {
+            '{laboratorio}': (
+              <Link
+                to="/laboratorio"
+                style={{ color: 'var(--civic)', textDecoration: 'underline' }}
+              >
+                {t('laboratorio.prensa.experimento.enlace')}
+              </Link>
+            ),
+          })}
         </p>
       </div>
 
@@ -995,31 +1089,39 @@ export default function LaboratorioPrensa() {
             espacios que no parten, porque en una caja de 158 px se leía «1 fuera
             del / feed». */}
         <KPI
-          label="Titulares monitorizados"
+          label={t('laboratorio.prensa.kpi.monitorizados')}
           value={fmtNumber(summary.monitoredCount)}
           hint={
             summary.fueraDelFeedCount > 0
-              ? `últimos 30 días · ${fmtNumber(summary.fueraDelFeedCount)}\u00a0fuera\u00a0del\u00a0feed`
-              : 'últimos 30 días'
+              ? rellena(t('laboratorio.prensa.kpi.ventana.fuera'), {
+                  n: fmtNumber(summary.fueraDelFeedCount),
+                })
+              : t('laboratorio.prensa.kpi.ventana')
           }
         />
         <KPI
-          label="Artículos auditados"
+          label={t('laboratorio.prensa.kpi.auditados')}
           value={fmtNumber(summary.auditedCount)}
-          hint="con ≥1 afirmación analizada · últimos 30 días"
+          hint={t('laboratorio.prensa.kpi.auditados.pie')}
         />
         <KPI
-          label="Tasa de verificación"
+          label={t('laboratorio.prensa.kpi.verificacion')}
           value={fmtPct(summary.verificadoRatio)}
-          hint={`${summary.verificadoClaims} de ${summary.totalClaims} afirmaciones · últimos 30 días`}
+          hint={rellena(t('laboratorio.prensa.kpi.verificacion.pie'), {
+            v: summary.verificadoClaims,
+            n: summary.totalClaims,
+          })}
         />
         {/* El pie dice ENTRE QUÉ se divide. Decía «de 36 claims» cuando el
             divisor real era 1 —las 36 son el corpus, no lo examinado—, y así
             «0 %» se leía «hemos mirado 36 y ninguna falla». */}
         <KPI
-          label="Tasa de discrepancia"
+          label={t('laboratorio.prensa.kpi.discrepancia')}
           value={fmtPct(summary.contradichoRatio)}
-          hint={`${summary.contradichoClaims} de ${summary.resueltasClaims} resueltas · últimos 30 días`}
+          hint={rellena(t('laboratorio.prensa.kpi.discrepancia.pie'), {
+            c: summary.contradichoClaims,
+            n: summary.resueltasClaims,
+          })}
         />
         {/* Decía sólo «historias en ≥3 medios», y su 0 se leía «ninguna noticia ha
             salido en tres medios». El 21-10-2026 la Ofrena al Túria salió en Periòdic
@@ -1027,28 +1129,32 @@ export default function LaboratorioPrensa() {
             (`clusterArticlesByStory`) no la vio: la cifra cuenta lo que ese agrupado
             reconoce. Cada fila ya lo decía en «Cobertura cruzada»; la cifra, no. */}
         <KPI
-          label="Triangulación"
+          label={t('laboratorio.prensa.kpi.triangulacion')}
           value={fmtNumber(triangulated3Plus)}
-          hint="historias en ≥3 medios, agrupadas por título: no reconoce la misma noticia contada con otras palabras ni en la otra lengua"
+          hint={t('laboratorio.prensa.kpi.triangulacion.pie')}
         />
         {/* Decía «Hallazgos editoriales 17 · curados»: las 17 filas eran del curador
             automático, de 5 lotes repetidos (`resumenHallazgos`). Cuenta lotes, y
             dice quién los firmó. */}
         {hallazgos.humanos > 0 ? (
           <KPI
-            label="Hallazgos editoriales"
+            label={t('laboratorio.prensa.kpi.editoriales')}
             value={fmtNumber(hallazgos.humanos)}
             hint={
               hallazgos.automaticos > 0
-                ? `firmados por una persona · y ${fmtNumber(hallazgos.automaticos)} automáticos`
-                : 'firmados por una persona'
+                ? rellena(t('laboratorio.prensa.kpi.editoriales.pie.auto'), {
+                    n: fmtNumber(hallazgos.automaticos),
+                  })
+                : t('laboratorio.prensa.kpi.editoriales.pie')
             }
           />
         ) : (
           <KPI
-            label="Hallazgos automáticos"
+            label={t('laboratorio.prensa.kpi.automaticos')}
             value={fmtNumber(hallazgos.automaticos)}
-            hint={`distintos, en ${fmtNumber(hallazgos.publicaciones)} publicaciones de un proceso automático · sin revisión humana`}
+            hint={rellena(t('laboratorio.prensa.kpi.automaticos.pie'), {
+              n: fmtNumber(hallazgos.publicaciones),
+            })}
           />
         )}
       </div>
@@ -1068,7 +1174,7 @@ export default function LaboratorioPrensa() {
           }}
         >
           <strong style={{ color: 'var(--warn-ink)' }}>{aviso.titulo}</strong> {aviso.texto}{' '}
-          {CADENCIA_LABORATORIO}
+          {t('laboratorio.prensa.cadencia')}
         </div>
       )}
 
@@ -1089,9 +1195,9 @@ export default function LaboratorioPrensa() {
         <label
           style={{ display: 'flex', gap: 6, alignItems: 'center', minWidth: 0, maxWidth: '100%' }}
         >
-          Medio:{' '}
+          {t('laboratorio.prensa.filtro.medio')}{' '}
           <select
-            aria-label="Filtrar por medio"
+            aria-label={t('laboratorio.prensa.filtro.medio.aria')}
             value={outletFilter}
             onChange={(e) => setOutletFilter(e.target.value)}
             style={{
@@ -1104,7 +1210,8 @@ export default function LaboratorioPrensa() {
               color: 'var(--ink)',
             }}
           >
-            <option value="all">Todos</option>
+            <option value="all">{t('laboratorio.prensa.filtro.todos')}</option>
+            {/* Los nombres de los medios, como los escribe cada medio: dato. */}
             {outletsForFilter.map((o) => (
               <option key={o} value={o}>
                 {o}
@@ -1113,9 +1220,9 @@ export default function LaboratorioPrensa() {
           </select>
         </label>
         <label style={{ display: 'flex', gap: 6, alignItems: 'center' }}>
-          Veredicto:{' '}
+          {t('laboratorio.prensa.filtro.veredicto')}{' '}
           <select
-            aria-label="Filtrar por veredicto"
+            aria-label={t('laboratorio.prensa.filtro.veredicto.aria')}
             value={verdictFilter}
             onChange={(e) => setVerdictFilter(e.target.value)}
             style={{
@@ -1126,17 +1233,20 @@ export default function LaboratorioPrensa() {
               color: 'var(--ink)',
             }}
           >
-            <option value="all">Todos</option>
-            <option value="verificado">Verificado</option>
-            <option value="parcial">Parcial</option>
-            <option value="contradicho">Discrepa</option>
-            <option value="sin-datos">{ESTADO_LABEL['sin-datos']}</option>
-            <option value="no-cotejada">{ESTADO_LABEL['no-cotejada']}</option>
+            <option value="all">{t('laboratorio.prensa.filtro.todos')}</option>
+            {['verificado', 'parcial', 'contradicho', 'sin-datos', 'no-cotejada'].map((v) => (
+              <option key={v} value={v}>
+                {rotuloEstado(t, v)}
+              </option>
+            ))}
           </select>
         </label>
         <div style={{ marginLeft: 'auto', textAlign: 'right' }}>
           <span className="mono" style={{ fontSize: 'var(--fs-micro)', color: 'var(--ink50)' }}>
-            {visible.length} de {summary.monitoredCount} · ventana 30 días
+            {rellena(t('laboratorio.prensa.contador'), {
+              v: visible.length,
+              n: summary.monitoredCount,
+            })}
           </span>
           {/* Qué hizo el extractor con las tarjetas que se ven: las tres casillas suman
               el numerador de arriba (`recuentoDeExtraccion`). Sin el desenlace de cada
@@ -1146,8 +1256,11 @@ export default function LaboratorioPrensa() {
               className="mono"
               style={{ fontSize: 'var(--fs-micro)', color: 'var(--ink50)', marginTop: 2 }}
             >
-              {recuento.con} con afirmaciones · {recuento.descartados} descartados por el extractor
-              · {recuento.pendientes} sin procesar todavía
+              {rellena(t('laboratorio.prensa.recuento'), {
+                con: recuento.con,
+                descartados: recuento.descartados,
+                pendientes: recuento.pendientes,
+              })}
             </div>
           )}
         </div>
@@ -1166,18 +1279,18 @@ export default function LaboratorioPrensa() {
                   y le echaba la culpa al filtro también cuando no había ninguno
                   puesto y la ventana se había quedado sin titulares. */}
               <SectionHead
-                eyebrow="Sin resultados"
+                eyebrow={t('laboratorio.prensa.vacio.eyebrow')}
                 title={
                   outletFilter !== 'all' || verdictFilter !== 'all'
-                    ? 'No hay artículos que coincidan con el filtro'
-                    : `No hay artículos en los últimos ${summary.windowDays} días`
+                    ? t('laboratorio.prensa.vacio.filtro')
+                    : rellena(t('laboratorio.prensa.vacio.ventana'), { n: summary.windowDays })
                 }
               />
               <p style={{ fontSize: 'var(--fs-aux)', color: 'var(--ink70)', marginTop: 6 }}>
                 {outletFilter !== 'all' || verdictFilter !== 'all'
-                  ? 'Prueba con otro medio o con otro veredicto. '
+                  ? t('laboratorio.prensa.vacio.prueba')
                   : ''}
-                {CADENCIA_LABORATORIO}
+                {t('laboratorio.prensa.cadencia')}
               </p>
             </Card>
           )}
@@ -1189,7 +1302,7 @@ export default function LaboratorioPrensa() {
               claims={byArticleClaims.get(article.id)}
               textoVacio={
                 filaPorArticulo
-                  ? textoLibroVacio(desenlaceVigente(article, filaPorArticulo.get(article.id)))
+                  ? textoLibroVacio(desenlaceVigente(article, filaPorArticulo.get(article.id)), t)
                   : null
               }
               trust={byArticleTrust.get(article.id)}
@@ -1202,14 +1315,16 @@ export default function LaboratorioPrensa() {
         <aside style={{ display: 'grid', gap: 14, position: 'sticky', top: 24 }}>
           <Card>
             <SectionHead
-              eyebrow="Cobertura de comprobación"
-              title="Medios monitorizados (últimos 30 días)"
+              eyebrow={t('laboratorio.prensa.medios.eyebrow')}
+              title={t('laboratorio.prensa.medios.titulo')}
             />
             <div style={{ marginTop: 8 }}>
               <OutletScoreboard
                 outlets={lab.trust?.outlets ?? []}
                 puente={
-                  lab.trust?.outlets?.length ? puenteTablaMedios(lab.trust.outlets, summary) : null
+                  lab.trust?.outlets?.length
+                    ? puenteTablaMedios(lab.trust.outlets, summary, t)
+                    : null
                 }
               />
             </div>
@@ -1217,8 +1332,8 @@ export default function LaboratorioPrensa() {
 
           <Card>
             <SectionHead
-              eyebrow="Lagunas de cobertura"
-              title="Lo que la prensa local no está siguiendo"
+              eyebrow={t('laboratorio.prensa.lagunas.eyebrow')}
+              title={t('laboratorio.prensa.lagunas.titulo')}
             />
             <div style={{ marginTop: 8 }}>
               <CoverageGaps
@@ -1230,7 +1345,10 @@ export default function LaboratorioPrensa() {
           </Card>
 
           <Card>
-            <SectionHead eyebrow="Verificaciones externas" title="Fact-checkers terceros" />
+            <SectionHead
+              eyebrow={t('laboratorio.prensa.factcheck.eyebrow')}
+              title={t('laboratorio.prensa.factcheck.titulo')}
+            />
             <FactCheckRail factcheck={lab.factcheck} />
           </Card>
 
@@ -1240,11 +1358,36 @@ export default function LaboratorioPrensa() {
                   publicar el mismo lote cada vez que corría, y la columna enseñaba el
                   de Nerco cuatro veces en cinco filas (`resumenHallazgos`). */}
               <SectionHead
-                eyebrow={hallazgos.humanos > 0 ? 'Hallazgos editoriales' : 'Hallazgos automáticos'}
+                eyebrow={
+                  hallazgos.humanos > 0
+                    ? t('laboratorio.prensa.kpi.editoriales')
+                    : t('laboratorio.prensa.kpi.automaticos')
+                }
                 title={
                   hallazgos.humanos > 0
-                    ? `${hallazgos.humanos} ${hallazgos.humanos === 1 ? 'firmado' : 'firmados'} · ${hallazgos.automaticos} ${hallazgos.automaticos === 1 ? 'automático' : 'automáticos'}`
-                    : `${hallazgos.lotes.length} ${hallazgos.lotes.length === 1 ? 'lote' : 'lotes'} sin revisión humana`
+                    ? `${rellena(
+                        t(
+                          hallazgos.humanos === 1
+                            ? 'laboratorio.prensa.hallazgos.firmados.uno'
+                            : 'laboratorio.prensa.hallazgos.firmados',
+                        ),
+                        { n: hallazgos.humanos },
+                      )} · ${rellena(
+                        t(
+                          hallazgos.automaticos === 1
+                            ? 'laboratorio.prensa.hallazgos.automaticos.uno'
+                            : 'laboratorio.prensa.hallazgos.automaticos',
+                        ),
+                        { n: hallazgos.automaticos },
+                      )}`
+                    : rellena(
+                        t(
+                          hallazgos.lotes.length === 1
+                            ? 'laboratorio.prensa.hallazgos.lotes.uno'
+                            : 'laboratorio.prensa.hallazgos.lotes',
+                        ),
+                        { n: hallazgos.lotes.length },
+                      )
                 }
               />
               <ul
@@ -1277,9 +1420,14 @@ export default function LaboratorioPrensa() {
                         style={{ fontSize: 'var(--fs-micro)', color: 'var(--ink50)', marginTop: 2 }}
                       >
                         {automatico
-                          ? 'Automático, sin revisión humana'
-                          : 'Firmado por una persona curadora'}
-                        {veces > 1 ? ` · publicado ${veces} veces desde el ${primera}` : ''}
+                          ? t('laboratorio.prensa.hallazgos.automatico')
+                          : t('laboratorio.prensa.hallazgos.firmado')}
+                        {veces > 1
+                          ? rellena(t('laboratorio.prensa.hallazgos.veces'), {
+                              n: veces,
+                              fecha: primera,
+                            })
+                          : ''}
                       </div>
                       <BitacoraCorrecciones correcciones={correcciones} />
                     </li>
@@ -1289,7 +1437,9 @@ export default function LaboratorioPrensa() {
                     className="mono"
                     style={{ fontSize: 'var(--fs-micro)', color: 'var(--ink50)' }}
                   >
-                    +{hallazgos.lotes.length - 5} lotes más
+                    {rellena(t('laboratorio.prensa.hallazgos.mas'), {
+                      n: hallazgos.lotes.length - 5,
+                    })}
                   </li>
                 )}
               </ul>
@@ -1306,16 +1456,20 @@ export default function LaboratorioPrensa() {
               lineHeight: 1.55,
             }}
           >
-            <strong style={{ color: 'var(--ink)' }}>Política editorial.</strong> Los veredictos
-            verificado/discrepa contrastan datos municipales públicos contra las afirmaciones del
-            medio citado. Nunca atribuimos opinión a periodistas individuales; sólo a la línea
-            institucional del medio.{' '}
-            <a
-              href="/metodologia#laboratorio-prensa"
-              style={{ color: 'var(--civic)', textDecoration: 'underline' }}
-            >
-              Leer metodología →
-            </a>
+            <MarcadoConHuecos
+              texto={t('laboratorio.prensa.politica')}
+              estilo={{ color: 'var(--ink)' }}
+              huecos={{
+                '{enlace}': (
+                  <a
+                    href="/metodologia#laboratorio-prensa"
+                    style={{ color: 'var(--civic)', textDecoration: 'underline' }}
+                  >
+                    {t('laboratorio.prensa.politica.enlace')}
+                  </a>
+                ),
+              }}
+            />
           </div>
         </aside>
       </div>

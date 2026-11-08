@@ -1,5 +1,13 @@
 import { Link } from 'react-router-dom'
-import { Card, ExtLink, Pill, SectionHead, ShareWA } from '../components/Primitives'
+import {
+  Card,
+  ExtLink,
+  Marcado,
+  MarcadoConHuecos,
+  Pill,
+  SectionHead,
+  ShareWA,
+} from '../components/Primitives'
 import DataAsOf from '../components/DataAsOf'
 import { useQuejas, useEtiquetasDeQueja, STATE_TONE } from '../hooks/useQuejas'
 import { useGeo } from '../hooks/useGeo'
@@ -12,10 +20,10 @@ import { useSindicExpedientes } from '../hooks/useSindicExpedientes'
 import QuejasHeatmap from '../components/QuejasHeatmap'
 import QuejasSpendOverlap from '../components/Quejas/QuejasSpendOverlap'
 import { useDocumentTitle } from '../hooks/useDocumentTitle'
-import { fmtDateShort, nombreDeBarrio, porcentajeLegible } from '../lib/formatters'
+import { fmtDateShort, nombreDeBarrio, porcentajeLegible, rellena } from '../lib/formatters'
 import { medibilidad, registroUtilizable } from '../lib/reloj-lpacap'
 import { contarConsideraciones } from '../lib/sindic-consideraciones'
-import { useT } from '../i18n'
+import { rotuloDe, useLocale, useT } from '../i18n'
 import { conHuecos } from '../lib/huecos'
 import { EnBreveQuejas } from '../components/Quejas/EnBreveQuejas'
 import { QuienMasVigila, QueEsLaInstitucion } from '../components/Quejas/QuienMasVigila'
@@ -25,6 +33,9 @@ import { IndiceExperta } from '../components/IndiceSecciones'
 import { SeccionExperta } from '../components/Lecturas'
 
 const TELEGRAM_BOT_URL = 'https://t.me/munigraph_bot'
+
+/** La negrita de una cifra en un párrafo atenuado: en tinta plena. */
+const TINTA = { color: 'var(--ink)' }
 
 /**
  * Escalado externo al Síndic de Greuges CV.
@@ -44,6 +55,7 @@ const TELEGRAM_BOT_URL = 'https://t.me/munigraph_bot'
 const MAX_EXPEDIENTES = 8
 
 function ExpedienteRow({ e, ficha }) {
+  const { t, locale } = useLocale()
   return (
     <div style={{ padding: '9px 0', borderTop: '1px dotted var(--border2)' }}>
       <div
@@ -53,19 +65,24 @@ function ExpedienteRow({ e, ficha }) {
           className="mono"
           style={{ fontSize: 'var(--fs-micro)', color: 'var(--civic)', fontWeight: 700 }}
         >
-          Expte {e.expediente}
+          {rellena(t('quejas.sindic.expediente'), { n: e.expediente })}
         </span>
+        {/* La materia es la del registro del Síndic: dato, en su idioma. */}
         <Pill tone="ghost" size="xs">
           {e.materia}
         </Pill>
         {ficha && (
           <Pill tone={SINDIC_SENTIDO_TONE[ficha.sentido] || 'warn'} size="xs">
-            {SINDIC_SENTIDO_LABEL[ficha.sentido] || ficha.sentido}
+            {rotuloDe(
+              t,
+              `quejas.sindic.sentido.${ficha.sentido}`,
+              SINDIC_SENTIDO_LABEL[ficha.sentido] || ficha.sentido,
+            )}
           </Pill>
         )}
         {e.resoluciones.length === 0 && (
           <Pill tone="intel" size="xs">
-            sin resolución publicada
+            {t('quejas.sindic.sinResolucion')}
           </Pill>
         )}
       </div>
@@ -78,7 +95,7 @@ function ExpedienteRow({ e, ficha }) {
                 {r.tipo}
               </ExtLink>
               <span className="mono" style={{ color: 'var(--ink50)', marginLeft: 8 }}>
-                {fmtDateShort(r.fecha)}
+                {fmtDateShort(r.fecha, locale)}
               </span>
             </div>
           ))}
@@ -93,7 +110,7 @@ function ExpedienteRow({ e, ficha }) {
             className="mono"
             style={{ fontSize: 'var(--fs-micro)', color: 'var(--civic)', cursor: 'pointer' }}
           >
-            Lo que el Síndic le dijo, literal
+            {t('quejas.sindic.literal')}
           </summary>
           <blockquote
             style={{
@@ -114,6 +131,7 @@ function ExpedienteRow({ e, ficha }) {
 }
 
 function SindicCard() {
+  const { t, locale } = useLocale()
   const { data } = useSindicExpedientes()
   const fichas = useSindic().data?.items ?? []
   if (!data) return null
@@ -134,8 +152,8 @@ function SindicCard() {
   return (
     <Card style={{ marginTop: 14, scrollMarginTop: 24 }} id="sindic">
       <SectionHead
-        eyebrow="Escalado externo · Síndic de Greuges CV"
-        title="Expedientes del Síndic sobre Riba-roja de Túria"
+        eyebrow={t('quejas.sindic.eyebrow')}
+        title={t('quejas.sindic.titulo')}
         as="h3"
         size="head"
       />
@@ -144,19 +162,28 @@ function SindicCard() {
       <div
         style={{ fontSize: 'var(--fs-aux)', color: 'var(--ink70)', lineHeight: 1.55, marginTop: 8 }}
       >
-        El Síndic registra{' '}
-        <strong style={{ color: 'var(--ink)' }}>
-          {contra.length} expediente{contra.length === 1 ? '' : 's'}
-        </strong>{' '}
-        con el Ayuntamiento de Riba-roja de Túria como administración investigada
-        {cob.contraAyuntamientoDesde && cob.contraAyuntamientoHasta
-          ? ` entre ${cob.contraAyuntamientoDesde} y ${cob.contraAyuntamientoHasta}`
-          : ''}
-        , {s.conResolucionPublicada} con resolución publicada
-        {consideraciones
-          ? ` y ${consideraciones} con una resolución de «consideraciones a la Administración»`
-          : ''}
-        .
+        <Marcado
+          estilo={TINTA}
+          texto={rellena(t('quejas.sindic.registra'), {
+            expedientes: rellena(
+              t(
+                contra.length === 1 ? 'quejas.sindic.expedientes.uno' : 'quejas.sindic.expedientes',
+              ),
+              { n: contra.length },
+            ),
+            periodo:
+              cob.contraAyuntamientoDesde && cob.contraAyuntamientoHasta
+                ? rellena(t('quejas.sindic.periodo'), {
+                    desde: cob.contraAyuntamientoDesde,
+                    hasta: cob.contraAyuntamientoHasta,
+                  })
+                : '',
+            conResolucion: s.conResolucionPublicada,
+            consideraciones: consideraciones
+              ? rellena(t('quejas.sindic.consideraciones'), { n: consideraciones })
+              : '',
+          })}
+        />
       </div>
 
       {/* Investigada NO es lo mismo que señalada, y la distinción está medida:
@@ -175,30 +202,29 @@ function SindicCard() {
           borderLeft: '2px solid var(--border2)',
         }}
       >
-        «Administración investigada» es lo que dice el registro del Síndic, y no equivale a que la
-        resolución se dirija al Ayuntamiento: en un expediente de dependencia las consideraciones
-        fueron para la Conselleria y el Ayuntamiento sólo informó como parte.{' '}
+        {t('quejas.sindic.investigada')}{' '}
         {fichas.length > 0 ? (
           <>
-            Hemos leído las resoluciones de consideraciones una a una y firmado{' '}
-            <strong style={{ color: 'var(--ink)' }}>{fichas.length} fichas</strong>, una por cada
-            resolución cuyas consideraciones van dirigidas al Ayuntamiento. El texto que
-            reproducimos es literal.
+            <Marcado
+              estilo={TINTA}
+              texto={rellena(t('quejas.sindic.fichas'), { n: fichas.length })}
+            />
             {noListadas.length > 0 && (
               <>
                 {' '}
-                El buscador del Síndic ya no lista{' '}
-                {noListadas.length === 1 ? 'una de ellas' : `${noListadas.length} de ellas`} (
-                {noListadas.length === 1 ? 'expediente' : 'expedientes'}{' '}
-                {noListadas.map((f) => f.expediente).join(', ')}):{' '}
                 {noListadas.length === 1
-                  ? 'sigue publicada en el PDF que su ficha enlaza, y por eso la contamos.'
-                  : 'siguen publicadas en el PDF que su ficha enlaza, y por eso las contamos.'}
+                  ? rellena(t('quejas.sindic.noListadas.una'), {
+                      lista: noListadas[0].expediente,
+                    })
+                  : rellena(t('quejas.sindic.noListadas.varias'), {
+                      n: noListadas.length,
+                      lista: noListadas.map((f) => f.expediente).join(', '),
+                    })}
               </>
             )}
           </>
         ) : (
-          <>No hemos firmado todavía ninguna ficha propia sobre estos expedientes.</>
+          t('quejas.sindic.sinFichas')
         )}
       </div>
 
@@ -216,17 +242,21 @@ function SindicCard() {
               borderTop: '1px dotted var(--border2)',
             }}
           >
-            +{contra.length - MAX_EXPEDIENTES} expedientes más en{' '}
-            <ExtLink href={data.source?.buscador} style={{ color: 'var(--civic)' }}>
-              el buscador del Síndic
-            </ExtLink>{' '}
-            · el listado completo está en{' '}
-            <a
-              href="/data/sindic-expedientes.json"
-              style={{ color: 'var(--civic)', textDecoration: 'underline' }}
-            >
-              sindic-expedientes.json
-            </a>
+            {conHuecos(rellena(t('quejas.sindic.mas'), { n: contra.length - MAX_EXPEDIENTES }), {
+              '{buscador}': (
+                <ExtLink href={data.source?.buscador} style={{ color: 'var(--civic)' }}>
+                  {t('quejas.sindic.mas.buscador')}
+                </ExtLink>
+              ),
+              '{fichero}': (
+                <a
+                  href="/data/sindic-expedientes.json"
+                  style={{ color: 'var(--civic)', textDecoration: 'underline' }}
+                >
+                  sindic-expedientes.json
+                </a>
+              ),
+            })}
           </div>
         )}
       </div>
@@ -243,16 +273,18 @@ function SindicCard() {
               marginBottom: 6,
             }}
           >
-            Otra pregunta · vecinos de Riba-roja ante otras administraciones
+            {t('quejas.sindic.vecinos.eyebrow')}
           </div>
           <div style={{ fontSize: 'var(--fs-aux)', color: 'var(--ink70)', lineHeight: 1.5 }}>
-            {vecinos.length} expedientes que el Síndic registra a nombre de vecinos de aquí pero
-            contra la Generalitat u otros ayuntamientos.{' '}
-            <strong style={{ color: 'var(--ink)' }}>No se suman con los de arriba</strong>: no
-            hablan del Ayuntamiento de Riba-roja. Y no son una serie histórica — el buscador sólo
-            asocia población al expediente
-            {cob.vecinosDesde ? ` desde ${cob.vecinosDesde}` : ' en los últimos años'}, así que su
-            ausencia antes de esa fecha no significa que no hubiera.
+            <Marcado
+              estilo={TINTA}
+              texto={rellena(t('quejas.sindic.vecinos.texto'), {
+                n: vecinos.length,
+                desde: cob.vecinosDesde
+                  ? rellena(t('quejas.sindic.vecinos.desde'), { anio: cob.vecinosDesde })
+                  : t('quejas.sindic.vecinos.ultimos'),
+              })}
+            />
           </div>
         </div>
       )}
@@ -261,18 +293,23 @@ function SindicCard() {
         className="mono"
         style={{ fontSize: 'var(--fs-micro)', color: 'var(--ink50)', marginTop: 12 }}
       >
-        Índice transcrito del buscador del Síndic · actualizado {fmtDateShort(data.generatedAt)}.
-        Fuente:{' '}
-        <ExtLink href={data.source?.buscador} style={{ color: 'var(--civic)' }}>
-          elsindic.com/actuaciones
-        </ExtLink>
-        .
+        {conHuecos(
+          rellena(t('quejas.sindic.pie'), { fecha: fmtDateShort(data.generatedAt, locale) }),
+          {
+            '{enlace}': (
+              <ExtLink href={data.source?.buscador} style={{ color: 'var(--civic)' }}>
+                elsindic.com/actuaciones
+              </ExtLink>
+            ),
+          },
+        )}
       </div>
     </Card>
   )
 }
 
 function Findings({ f, year }) {
+  const t = useT()
   const groups = []
   const idx = new Map()
   for (const d of f.deficiencies || []) {
@@ -304,10 +341,14 @@ function Findings({ f, year }) {
           fontWeight: 600,
         }}
       >
-        {f.deficienciesCount} deficiencias · {f.recommendationsCount} recomendaciones (ejercicios{' '}
-        {year === 2020 ? '2017-2019' : year})
+        {rellena(t('quejas.sindicatura.hallazgos'), {
+          d: f.deficienciesCount,
+          r: f.recommendationsCount,
+          anios: year === 2020 ? '2017-2019' : year,
+        })}
       </summary>
       <div style={{ marginTop: 6, borderLeft: '2px solid var(--border2)', paddingLeft: 10 }}>
+        {/* La categoría y el texto de cada deficiencia son del informe firmado: dato. */}
         {groups.map(([cat, items]) => (
           <div key={cat} style={{ marginBottom: 8 }}>
             <div style={{ ...headStyle, color: 'var(--ink50)' }}>{cat}</div>
@@ -323,7 +364,7 @@ function Findings({ f, year }) {
         {(f.recommendations || []).length > 0 && (
           <div style={{ marginTop: 6 }}>
             <div style={{ ...headStyle, color: 'var(--civic)' }}>
-              Recomendaciones de la Sindicatura
+              {t('quejas.sindicatura.recomendaciones')}
             </div>
             <ol style={{ margin: '3px 0 0', paddingLeft: 18 }}>
               {f.recommendations.map((rec) => (
@@ -338,8 +379,7 @@ function Findings({ f, year }) {
           className="mono"
           style={{ fontSize: 'var(--fs-micro)', color: 'var(--ink50)', marginTop: 6 }}
         >
-          Extraído del informe firmado de la Sindicatura · última auditoría específica del
-          municipio.
+          {t('quejas.sindicatura.extraido')}
         </div>
       </div>
     </details>
@@ -347,6 +387,7 @@ function Findings({ f, year }) {
 }
 
 function Art218({ a }) {
+  const t = useT()
   const Flag = ({ ok, notable, children }) => (
     <span
       style={{
@@ -389,30 +430,30 @@ function Art218({ a }) {
           marginBottom: 6,
         }}
       >
-        Rendición del control interno · ejercicio {a.ejercicio}{' '}
-        <span style={{ fontWeight: 400, textTransform: 'none' }}>(art. 218 · lo más reciente)</span>
+        {rellena(t('quejas.sindicatura.art218.titulo'), { ejercicio: a.ejercicio })}{' '}
+        <span style={{ fontWeight: 400, textTransform: 'none' }}>
+          {t('quejas.sindicatura.art218.nota')}
+        </span>
       </div>
       <div style={{ display: 'flex', flexDirection: 'column', gap: 5 }}>
         <Flag ok={a.enPlazo} notable={!a.enPlazo}>
-          {a.enPlazo ? 'Rindió la información en plazo' : 'No rindió la información en plazo'}
+          {a.enPlazo
+            ? t('quejas.sindicatura.art218.enPlazo')
+            : t('quejas.sindicatura.art218.fueraDePlazo')}
         </Flag>
         <Flag ok={!a.acr} notable={a.acr}>
-          {a.acr
-            ? 'Comunicó acuerdos contrarios a reparos (la Intervención objetó y fue superada)'
-            : 'Sin acuerdos contrarios a reparos'}
+          {a.acr ? t('quejas.sindicatura.art218.acr') : t('quejas.sindicatura.art218.sinAcr')}
         </Flag>
         <Flag ok={!a.ofp} notable={a.ofp}>
-          {a.ofp
-            ? 'Comunicó omisiones de fiscalización previa'
-            : 'Sin omisiones de fiscalización previa'}
+          {a.ofp ? t('quejas.sindicatura.art218.ofp') : t('quejas.sindicatura.art218.sinOfp')}
         </Flag>
         <Flag ok={!a.ai} notable={a.ai}>
-          {a.ai ? 'Comunicó anomalías de ingresos' : 'Sin anomalías de ingresos'}
+          {a.ai ? t('quejas.sindicatura.art218.ai') : t('quejas.sindicatura.art218.sinAi')}
         </Flag>
       </div>
       <div style={{ marginTop: 6, fontSize: 'var(--fs-micro)' }}>
         <ExtLink href={a.sourceUrl} style={{ color: 'var(--civic)' }}>
-          Informe de control interno EELL {a.ejercicio} →
+          {rellena(t('quejas.sindicatura.art218.informe'), { ejercicio: a.ejercicio })}
         </ExtLink>
       </div>
     </div>
@@ -420,6 +461,7 @@ function Art218({ a }) {
 }
 
 function SindicaturaCard() {
+  const { t, locale } = useLocale()
   const { data } = useSindicatura()
   if (!data) return null
   const dedicated = data.dedicated || []
@@ -436,9 +478,10 @@ function SindicaturaCard() {
           {r.year}
         </span>
         <Pill tone={dedicatedRow ? 'intel' : 'ghost'} size="xs">
-          {dedicatedRow ? 'Auditoría específica' : 'Entidades locales'}
+          {dedicatedRow ? t('quejas.sindicatura.especifica') : t('quejas.sindicatura.sectorial')}
         </Pill>
       </div>
+      {/* El título del informe es el que publica la Sindicatura: dato. */}
       <div
         style={{ fontSize: 'var(--fs-aux)', fontWeight: dedicatedRow ? 600 : 500, lineHeight: 1.4 }}
       >
@@ -446,7 +489,7 @@ function SindicaturaCard() {
       </div>
       <div style={{ marginTop: 5, fontSize: 'var(--fs-micro)' }}>
         <ExtLink href={r.url} style={{ color: 'var(--civic)' }}>
-          PDF de la Sindicatura →
+          {t('quejas.sindicatura.pdf')}
         </ExtLink>
       </div>
       {r.findings && <Findings f={r.findings} year={r.year} />}
@@ -455,8 +498,8 @@ function SindicaturaCard() {
   return (
     <Card style={{ marginTop: 14, scrollMarginTop: 24 }} id="sindicatura">
       <SectionHead
-        eyebrow="Fiscalización externa · Sindicatura de Comptes CV"
-        title="Auditorías del órgano de control externo sobre Riba-roja"
+        eyebrow={t('quejas.sindicatura.eyebrow')}
+        title={t('quejas.sindicatura.titulo')}
         as="h3"
         size="head"
       />
@@ -470,16 +513,18 @@ function SindicaturaCard() {
             marginTop: 8,
           }}
         >
-          Aún no consta ninguna fiscalización de la{' '}
-          <a
-            href="https://www.sindicom.gva.es/informes"
-            target="_blank"
-            rel="noreferrer"
-            style={{ color: 'var(--civic)' }}
-          >
-            Sindicatura de Comptes
-          </a>{' '}
-          que nombre a Riba-roja de Túria.
+          {conHuecos(t('quejas.sindicatura.vacio'), {
+            '{enlace}': (
+              <a
+                href="https://www.sindicom.gva.es/informes"
+                target="_blank"
+                rel="noreferrer"
+                style={{ color: 'var(--civic)' }}
+              >
+                {t('quejas.sindicatura.vacio.enlace')}
+              </a>
+            ),
+          })}
         </div>
       ) : (
         <div style={{ marginTop: 8 }}>
@@ -499,8 +544,9 @@ function SindicaturaCard() {
                   fontWeight: 600,
                 }}
               >
-                Riba-roja como entidad auditada en {st.sectoralRelevant ?? sectoral.length} barridos
-                sectoriales de entidades locales
+                {rellena(t('quejas.sindicatura.barridos'), {
+                  n: st.sectoralRelevant ?? sectoral.length,
+                })}
               </summary>
               <div style={{ marginTop: 4 }}>
                 {sectoral.map((r) => (
@@ -514,7 +560,10 @@ function SindicaturaCard() {
                     className="mono"
                     style={{ fontSize: 'var(--fs-micro)', color: 'var(--ink50)', marginTop: 6 }}
                   >
-                    Mostrando los {sectoral.length} más recientes de {st.sectoralRelevant}.
+                    {rellena(t('quejas.sindicatura.mostrando'), {
+                      n: sectoral.length,
+                      total: st.sectoralRelevant,
+                    })}
                   </div>
                 )}
               </div>
@@ -524,17 +573,25 @@ function SindicaturaCard() {
             className="mono"
             style={{ fontSize: 'var(--fs-micro)', color: 'var(--ink50)', marginTop: 8 }}
           >
-            {st.dedicated ?? dedicated.length} auditoría(s) específica(s) · {st.sectoralTotal ?? 0}{' '}
-            menciones en total · actualizado {fmtDateShort(data.generatedAt)}. Fuente:{' '}
-            <a
-              href="https://www.sindicom.gva.es"
-              target="_blank"
-              rel="noreferrer"
-              style={{ color: 'var(--civic)' }}
-            >
-              sindicom.gva.es
-            </a>
-            .
+            {conHuecos(
+              rellena(t('quejas.sindicatura.pie'), {
+                n: st.dedicated ?? dedicated.length,
+                menciones: st.sectoralTotal ?? 0,
+                fecha: fmtDateShort(data.generatedAt, locale),
+              }),
+              {
+                '{enlace}': (
+                  <a
+                    href="https://www.sindicom.gva.es"
+                    target="_blank"
+                    rel="noreferrer"
+                    style={{ color: 'var(--civic)' }}
+                  >
+                    sindicom.gva.es
+                  </a>
+                ),
+              },
+            )}
           </div>
         </div>
       )}
@@ -543,10 +600,11 @@ function SindicaturaCard() {
 }
 
 function ConsellCvCard() {
+  const { t, locale } = useLocale()
   const { data } = useConsellCv()
   if (!data) return null
   const { stats, matched } = data
-  const when = fmtDateShort(data.generatedAt)
+  const when = fmtDateShort(data.generatedAt, locale)
   // «Desestimatoria» CONTAINS «estimatoria», so testing the shorter pattern
   // first matched both and made the branch below it unreachable: a REJECTED
   // appeal would render in the colour that means the council was found wrong.
@@ -560,8 +618,8 @@ function ConsellCvCard() {
   return (
     <Card style={{ marginTop: 14, scrollMarginTop: 24 }} id="consell-transparencia">
       <SectionHead
-        eyebrow="Escalado externo · Consell de Transparència CV"
-        title="Resoluciones autonómicas de transparencia"
+        eyebrow={t('quejas.consell.eyebrow')}
+        title={t('quejas.consell.titulo')}
         as="h3"
         size="head"
       />
@@ -577,7 +635,7 @@ function ConsellCvCard() {
               letterSpacing: '.06em',
             }}
           >
-            Registro analizado
+            {t('quejas.institucion.registro')}
           </div>
           <div
             className="mono"
@@ -586,7 +644,7 @@ function ConsellCvCard() {
             {stats.totalEntries.toLocaleString('es-ES')}
           </div>
           <div style={{ fontSize: 'var(--fs-micro)', color: 'var(--ink50)' }}>
-            resoluciones · {stats.years.length} año(s)
+            {rellena(t('quejas.consell.resoluciones'), { n: stats.years.length })}
           </div>
         </div>
         <div>
@@ -599,7 +657,7 @@ function ConsellCvCard() {
               letterSpacing: '.06em',
             }}
           >
-            Contra Riba-roja
+            {t('quejas.consell.contra')}
           </div>
           <div
             className="mono"
@@ -618,20 +676,26 @@ function ConsellCvCard() {
           </div>
           <div style={{ fontSize: 'var(--fs-micro)', color: 'var(--ink50)' }}>
             {stats.matchedEntries === 0
-              ? 'sin reclamaciones transparencia resueltas'
-              : `${Object.keys(stats.bySentido).length} sentidos distintos`}
+              ? t('quejas.consell.sinReclamaciones')
+              : rellena(t('quejas.institucion.sentidos'), {
+                  n: Object.keys(stats.bySentido).length,
+                })}
           </div>
         </div>
         <div style={{ marginLeft: 'auto', fontSize: 'var(--fs-micro)', color: 'var(--ink50)' }}>
-          Comprobado {when} ·{' '}
-          <ExtLink
-            href={data.source?.portal || 'https://conselltransparencia.gva.es'}
-            style={{ color: 'var(--civic)' }}
-          >
-            conselltransparencia.gva.es
-          </ExtLink>
+          {conHuecos(rellena(t('quejas.institucion.comprobado'), { fecha: when }), {
+            '{enlace}': (
+              <ExtLink
+                href={data.source?.portal || 'https://conselltransparencia.gva.es'}
+                style={{ color: 'var(--civic)' }}
+              >
+                conselltransparencia.gva.es
+              </ExtLink>
+            ),
+          })}
         </div>
       </div>
+      {/* Motivo, sentido y materia son del registro del Consell: dato. */}
       {matched && matched.length > 0 && (
         <div style={{ marginTop: 14, display: 'flex', flexDirection: 'column', gap: 10 }}>
           {matched.slice(0, 10).map((m, i) => (
@@ -640,7 +704,11 @@ function ConsellCvCard() {
                 className="mono"
                 style={{ fontSize: 'var(--fs-micro)', color: 'var(--civic)', fontWeight: 700 }}
               >
-                Nº {m.numero} · Expte {m.expediente} · {m.fecha}
+                {rellena(t('quejas.consell.fila'), {
+                  numero: m.numero,
+                  expediente: m.expediente,
+                  fecha: m.fecha,
+                })}
               </div>
               <div style={{ fontSize: 'var(--fs-aux)', fontWeight: 500, marginTop: 2 }}>
                 {m.motivo || '—'}
@@ -665,10 +733,7 @@ function ConsellCvCard() {
             lineHeight: 1.55,
           }}
         >
-          El Consell de Transparència CV es el órgano autonómico que resuelve reclamaciones
-          municipales de transparencia (art. 24 Ley 19/2013 + Ley 1/2022). Un "0" aquí es un dato en
-          sí mismo: no se ha escalado formalmente ningún silencio del Ayuntamiento de Riba-roja en
-          el periodo verificado.
+          {t('quejas.consell.cero')}
         </div>
       )}
     </Card>
@@ -676,15 +741,16 @@ function ConsellCvCard() {
 }
 
 function CtbgCard() {
+  const { t, locale } = useLocale()
   const { data } = useCtbg()
   if (!data) return null
   const { stats, matched } = data
-  const when = fmtDateShort(data.generatedAt)
+  const when = fmtDateShort(data.generatedAt, locale)
   return (
     <Card style={{ marginTop: 14, scrollMarginTop: 24 }} id="ctbg">
       <SectionHead
-        eyebrow="Escalado externo · CTBG"
-        title="Resoluciones estatales sobre Riba-roja"
+        eyebrow={t('quejas.ctbg.eyebrow')}
+        title={t('quejas.ctbg.titulo')}
         as="h3"
         size="head"
       />
@@ -700,7 +766,7 @@ function CtbgCard() {
               letterSpacing: '.06em',
             }}
           >
-            Registro analizado
+            {t('quejas.institucion.registro')}
           </div>
           <div
             className="mono"
@@ -709,7 +775,7 @@ function CtbgCard() {
             {stats.totalEntries.toLocaleString('es-ES')}
           </div>
           <div style={{ fontSize: 'var(--fs-micro)', color: 'var(--ink50)' }}>
-            resoluciones · {stats.years.length} años
+            {rellena(t('quejas.ctbg.resoluciones'), { n: stats.years.length })}
           </div>
         </div>
         <div>
@@ -722,7 +788,7 @@ function CtbgCard() {
               letterSpacing: '.06em',
             }}
           >
-            Mencionan Riba-roja
+            {t('quejas.ctbg.mencionan')}
           </div>
           <div
             className="mono"
@@ -741,17 +807,23 @@ function CtbgCard() {
           </div>
           <div style={{ fontSize: 'var(--fs-micro)', color: 'var(--ink50)' }}>
             {stats.matchedEntries === 0
-              ? 'sin resoluciones (ámbito estatal)'
-              : `${Object.keys(stats.bySentido).length} sentidos distintos`}
+              ? t('quejas.ctbg.sinResoluciones')
+              : rellena(t('quejas.institucion.sentidos'), {
+                  n: Object.keys(stats.bySentido).length,
+                })}
           </div>
         </div>
         <div style={{ marginLeft: 'auto', fontSize: 'var(--fs-micro)', color: 'var(--ink50)' }}>
-          Comprobado {when} ·{' '}
-          <ExtLink href={data.source?.url} style={{ color: 'var(--civic)' }}>
-            XLSX oficial
-          </ExtLink>
+          {conHuecos(rellena(t('quejas.institucion.comprobado'), { fecha: when }), {
+            '{enlace}': (
+              <ExtLink href={data.source?.url} style={{ color: 'var(--civic)' }}>
+                {t('quejas.ctbg.xlsx')}
+              </ExtLink>
+            ),
+          })}
         </div>
       </div>
+      {/* Resolución, mes, asunto, sentido y organismo son del registro del CTBG: dato. */}
       {matched && matched.length > 0 && (
         <div style={{ marginTop: 14, display: 'flex', flexDirection: 'column', gap: 8 }}>
           {matched.slice(0, 5).map((m, i) => (
@@ -784,33 +856,49 @@ function CtbgCard() {
             lineHeight: 1.55,
           }}
         >
-          El CTBG gestiona reclamaciones de ámbito estatal. Las reclamaciones municipales se
-          tramitan ante el
-          <strong> Consell de Transparència de la Comunitat Valenciana</strong>. El Síndic de
-          Greuges CV es la vía de escalado general cuando el Ayuntamiento no responde (3 meses
-          LPACAP).
+          <Marcado texto={t('quejas.ctbg.cero')} />
         </div>
       )}
     </Card>
   )
 }
 
+/**
+ * «El plazo legal corre desde el registro…», con su enlace a la metodología. La
+ * pintan el estado vacío y el panel con quejas: en una sola clave, para que las
+ * dos digan lo mismo.
+ */
+function PlazoDesdeRegistro({ style }) {
+  const t = useT()
+  return (
+    <p style={style}>
+      {conHuecos(t('quejas.plazo.desdeRegistro'), {
+        '{enlace}': (
+          <a href="/metodologia#camino-de-una-queja" style={{ color: 'var(--civic)' }}>
+            {t('quejas.plazo.metodologia')}
+          </a>
+        ),
+      })}
+    </p>
+  )
+}
+
 function EmptyState() {
+  const t = useT()
+  // Las órdenes del bot (`/queja`, `/apoyar`) son las que el bot entiende: no se traducen.
+  const orden = (texto) => <code>{texto}</code>
   return (
     <>
       <Card>
         <div style={{ display: 'flex', gap: 8, marginBottom: 10, flexWrap: 'wrap' }}>
           <Pill tone="civic" size="xs">
-            Canal abierto · sin datos aún
+            {t('quejas.empty.pill')}
           </Pill>
           <Pill tone="ghost" size="xs">
             Telegram · SQLite · Open311
           </Pill>
         </div>
-        <SectionHead
-          eyebrow="Estado"
-          title="El canal de quejas ciudadanas ya está abierto — no hay datos todavía"
-        />
+        <SectionHead eyebrow={t('quejas.empty.eyebrow')} title={t('quejas.empty.title')} />
         <div
           style={{
             fontSize: 'var(--fs-body)',
@@ -820,30 +908,27 @@ function EmptyState() {
           }}
         >
           <p>
-            CivicPulse opera su propio canal de quejas ciudadanas vía el bot de Telegram{' '}
-            <a
-              href={TELEGRAM_BOT_URL}
-              target="_blank"
-              rel="noreferrer"
-              style={{ color: 'var(--civic)' }}
-            >
-              @munigraph_bot
-            </a>
-            . Cada vecino puede presentar una queja en 2 minutos y seguir su estado en tiempo real.
+            {conHuecos(t('quejas.empty.canal'), {
+              '{bot}': (
+                <a
+                  href={TELEGRAM_BOT_URL}
+                  target="_blank"
+                  rel="noreferrer"
+                  style={{ color: 'var(--civic)' }}
+                >
+                  @munigraph_bot
+                </a>
+              ),
+            })}
           </p>
           <p>
-            Esta página publica el feed agregado — categoría, barrio, plazo legal y estado —{' '}
-            <strong>nunca identifica al vecino</strong>. Las quejas con 10 apoyos vecinales entran
-            en un lote que una persona que modera las quejas presenta en el registro electrónico del
-            ayuntamiento. Desde ese registro corre el plazo para responder: tres meses con carácter
-            general, un mes si es una petición de transparencia. Si vence sin respuesta, puede
-            prepararse la plantilla para acudir al Síndic de Greuges de la Comunitat Valenciana.
+            <Marcado texto={t('quejas.empty.publica')} />
           </p>
         </div>
       </Card>
 
       <Card style={{ marginTop: 14 }}>
-        <SectionHead eyebrow="Cómo funciona" title="De la queja al escalado" />
+        <SectionHead eyebrow={t('quejas.como.eyebrow')} title={t('quejas.como.titulo')} />
         <ol
           style={{
             fontSize: 'var(--fs-aux)',
@@ -854,51 +939,45 @@ function EmptyState() {
           }}
         >
           <li>
-            <strong>Presenta</strong> tu queja al bot: <code>/queja</code> — categoría, foto,
-            ubicación.
+            <MarcadoConHuecos
+              texto={t('quejas.como.presenta')}
+              huecos={{ '{orden}': orden('/queja') }}
+            />
           </li>
           <li>
-            <strong>Una persona la revisa</strong> antes de publicarla aquí: hasta entonces no es
-            pública, y el bot te avisa cuando lo sea.
+            <Marcado texto={t('quejas.como.revisa')} />
           </li>
           <li>
-            <strong>Tus vecinos la apoyan</strong> con <code>/apoyar Q-XXXX</code>. A 10 apoyos
-            entra al lote oficial.
+            <MarcadoConHuecos
+              texto={t('quejas.como.apoyan')}
+              huecos={{ '{orden}': orden('/apoyar Q-XXXX') }}
+            />
           </li>
           <li>
-            <strong>Lote semanal a la sede</strong>: una persona voluntaria presenta las quejas
-            verificadas, firmadas con su Cl@ve.
+            <Marcado texto={t('quejas.como.lote')} />
           </li>
           <li>
-            <strong>3 meses legales</strong> (1 mes si es transparencia). Base legal: art. 21.3 y 24
-            LPACAP.
+            <Marcado texto={t('quejas.como.plazo')} />
           </li>
           <li>
-            <strong>Silencio → Síndic de Greuges CV</strong>: plantilla autogenerada y pública.
+            <Marcado texto={t('quejas.como.silencio')} />
           </li>
         </ol>
         {/* La línea que faltaba: el panel publica plazos y silencios y ninguna
             página decía desde cuándo cuentan. El camino entero, y sus límites,
             vive en el contrato publicado; aquí sólo se enlaza. */}
-        <p
+        <PlazoDesdeRegistro
           style={{
             fontSize: 'var(--fs-aux)',
             color: 'var(--ink70)',
             marginTop: 8,
             lineHeight: 1.6,
           }}
-        >
-          El plazo legal corre desde el registro, no desde que la queja se publica aquí. El camino
-          completo, con sus límites, está en{' '}
-          <a href="/metodologia#camino-de-una-queja" style={{ color: 'var(--civic)' }}>
-            la metodología
-          </a>
-          .
-        </p>
+        />
       </Card>
 
       <Card style={{ marginTop: 14 }}>
-        <SectionHead eyebrow="Contratos editoriales" title="Qué publicamos y qué no" />
+        <SectionHead eyebrow={t('quejas.contrato.eyebrow')} title={t('quejas.contrato.titulo')} />
         <div
           style={{
             fontSize: 'var(--fs-aux)',
@@ -909,29 +988,23 @@ function EmptyState() {
         >
           <ul style={{ paddingLeft: 20 }}>
             <li>
-              Publicamos: categoría, barrio (agregado), estado, apoyos, área municipal responsable,
-              concejal político y, si la adjuntas, la foto{' '}
-              <strong>anonimizada automáticamente</strong> (caras y matrículas difuminadas,
-              metadatos EXIF eliminados).
+              <Marcado texto={t('quejas.contrato.publicamos')} />
             </li>
+            <li>{t('quejas.contrato.noPublicamos')}</li>
+            <li>{t('quejas.contrato.plazos')}</li>
             <li>
-              No publicamos: identidad del denunciante, la foto original sin anonimizar, lat/lng
-              exactas, personal técnico municipal.
-            </li>
-            <li>
-              Los plazos y bases legales provienen del BOE. El escalado externo es al Síndic CV /
-              CTBG, instituciones con autoridad estatutaria.
-            </li>
-            <li>
-              Ver{' '}
-              <a href="/metodologia#grupo-quejas" style={{ color: 'var(--civic)' }}>
-                Metodología
-              </a>{' '}
-              y{' '}
-              <a href="/aviso-legal" style={{ color: 'var(--civic)' }}>
-                Aviso legal
-              </a>{' '}
-              para el contrato completo.
+              {conHuecos(t('quejas.contrato.ver'), {
+                '{metodologia}': (
+                  <a href="/metodologia#grupo-quejas" style={{ color: 'var(--civic)' }}>
+                    {t('quejas.contrato.metodologia')}
+                  </a>
+                ),
+                '{aviso}': (
+                  <a href="/aviso-legal" style={{ color: 'var(--civic)' }}>
+                    {t('quejas.contrato.aviso')}
+                  </a>
+                ),
+              })}
             </li>
           </ul>
         </div>
@@ -1011,7 +1084,10 @@ function DashboardView({ data }) {
   // que el ayuntamiento hubiera recibido ninguna.
   const reloj = medibilidad(data, () => true)
   const registradas = items.filter((q) => registroUtilizable(q.registered_at)).length
-  const sobreRegistradas = `sobre ${registradas} registrada${registradas === 1 ? '' : 's'}`
+  const sobreRegistradas = rellena(
+    t(registradas === 1 ? 'quejas.cifras.sobreRegistradas.una' : 'quejas.cifras.sobreRegistradas'),
+    { n: registradas },
+  )
   const motivo = reloj.medible ? null : t(`quejas.reloj.${reloj.motivo}.corto`)
 
   const sortedCats = Object.entries(stats.byCategory || {})
@@ -1033,9 +1109,13 @@ function DashboardView({ data }) {
           marginBottom: 18,
         }}
       >
-        <StatCard label="Total quejas" value={stats.total} sub="desde el inicio del canal" />
         <StatCard
-          label="Resueltas"
+          label={t('quejas.cifras.total')}
+          value={stats.total}
+          sub={t('quejas.cifras.total.sub')}
+        />
+        <StatCard
+          label={t('quejas.cifras.resueltas')}
           value={reloj.medible ? resueltas : '—'}
           tone={reloj.medible ? 'ok' : 'ghost'}
           sub={
@@ -1045,16 +1125,20 @@ function DashboardView({ data }) {
           }
         />
         <StatCard
-          label="Pendientes"
+          label={t('quejas.cifras.pendientes')}
           value={pendientes}
           tone="civic"
-          sub="capturadas + en trámite"
+          sub={t('quejas.cifras.pendientes.sub')}
         />
         <StatCard
-          label="Silencios + escaladas"
+          label={t('quejas.cifras.silencios')}
           value={reloj.medible ? silencios : '—'}
           tone={reloj.medible ? 'warn' : 'ghost'}
-          sub={reloj.medible ? `>plazo LPACAP · ${sobreRegistradas}` : motivo}
+          sub={
+            reloj.medible
+              ? rellena(t('quejas.cifras.silencios.sub'), { sobre: sobreRegistradas })
+              : motivo
+          }
         />
       </div>
       {/* Lo que explica el «—» de ahí arriba, dicho donde se lee: el plazo no
@@ -1063,21 +1147,14 @@ function DashboardView({ data }) {
           sólo en el estado vacío, que con una queja publicada no se pinta: el
           navegador lo enseñó y la suite no. El camino entero vive en el
           contrato publicado; aquí sólo se enlaza. */}
-      <p
+      <PlazoDesdeRegistro
         style={{
           fontSize: 'var(--fs-aux)',
           color: 'var(--ink70)',
           lineHeight: 1.6,
           margin: '-6px 0 18px',
         }}
-      >
-        El plazo legal corre desde el registro, no desde que la queja se publica aquí. El camino
-        completo, con sus límites, está en{' '}
-        <a href="/metodologia#camino-de-una-queja" style={{ color: 'var(--civic)' }}>
-          la metodología
-        </a>
-        .
-      </p>
+      />
 
       <QuejasSpendOverlap />
 
@@ -1092,7 +1169,10 @@ function DashboardView({ data }) {
         }}
       >
         <Card>
-          <SectionHead eyebrow="Por categoría" title="Qué se reporta más" />
+          <SectionHead
+            eyebrow={t('quejas.categorias.eyebrow')}
+            title={t('quejas.categorias.titulo')}
+          />
           <div style={{ marginTop: 10, display: 'flex', flexDirection: 'column', gap: 6 }}>
             {sortedCats.length === 0 && (
               <div style={{ fontSize: 'var(--fs-meta)', color: 'var(--ink50)' }}>—</div>
@@ -1135,7 +1215,7 @@ function DashboardView({ data }) {
           </div>
         </Card>
         <Card>
-          <SectionHead eyebrow="Por barrio" title="Dónde pasa" />
+          <SectionHead eyebrow={t('quejas.barrios.eyebrow')} title={t('quejas.barrios.titulo')} />
           <div style={{ marginTop: 10, display: 'flex', flexDirection: 'column', gap: 6 }}>
             {sortedNeigh.length === 0 && (
               <div style={{ fontSize: 'var(--fs-meta)', color: 'var(--ink50)' }}>—</div>
@@ -1180,11 +1260,11 @@ function DashboardView({ data }) {
       </div>
 
       <Card>
-        <SectionHead eyebrow="Quejas recientes · feed público" title="Últimas 30 quejas" />
+        <SectionHead eyebrow={t('quejas.recientes.eyebrow')} title={t('quejas.recientes.titulo')} />
         <div style={{ marginTop: 10, display: 'flex', flexDirection: 'column', gap: 8 }}>
           {items.length === 0 && (
             <div style={{ fontSize: 'var(--fs-aux)', color: 'var(--ink50)' }}>
-              Aún no hay quejas registradas.
+              {t('quejas.recientes.vacio')}
             </div>
           )}
           {items.slice(0, 30).map((it) => (
@@ -1233,7 +1313,10 @@ function DashboardView({ data }) {
                 👍 {it.apoyos}
               </span>
               <ShareWA
-                text={`Queja ${it.service_request_id} · ${etiqueta.categoria(it.service_code)}\n${it.description.slice(0, 140)}`}
+                text={`${rellena(t('quejas.compartir'), {
+                  id: it.service_request_id,
+                  categoria: etiqueta.categoria(it.service_code),
+                })}\n${it.description.slice(0, 140)}`}
                 url={`https://civicpulse.es/quejas/${it.service_request_id.toLowerCase()}`}
               />
               <Pill tone={STATE_TONE[it.status] || 'ghost'} size="xs">
@@ -1248,26 +1331,24 @@ function DashboardView({ data }) {
 }
 
 function BopCard() {
+  const { t, locale } = useLocale()
   const { data } = useBop()
   if (!data) return null
   const anuncios = (data.anuncios || []).slice(0, 6)
   const covered = data.stats?.daysCovered ?? null
   const requested = data.stats?.daysRequested ?? null
-  const when = fmtDateShort(data.generatedAt)
+  const when = fmtDateShort(data.generatedAt, locale)
   return (
     <Card style={{ marginTop: 14 }}>
-      <SectionHead
-        eyebrow="Edictos oficiales · BOP València"
-        title="Anuncios del Ayuntamiento en el Boletín Oficial de la Provincia"
-      />
+      <SectionHead eyebrow={t('quejas.bop.eyebrow')} title={t('quejas.seccion.bop')} />
       {anuncios.length === 0 ? (
         <div style={{ marginTop: 10, fontSize: 'var(--fs-aux)', color: 'var(--ink50)' }}>
           {/* The window we ASKED for and the window we actually read are not the
               same number — 21 of 30 bulletins loaded on the current snapshot —
               and saying "in the last 30 days" implies we looked at all 30. */}
           {covered != null && requested != null && covered < requested
-            ? `Sin anuncios del Ayuntamiento en los ${covered} boletines del BOP que hemos podido leer (ventana de ${requested} días).`
-            : 'Sin anuncios del Ayuntamiento en el BOP en los últimos 30 días.'}
+            ? rellena(t('quejas.bop.vacio.parcial'), { leidos: covered, pedidos: requested })
+            : t('quejas.bop.vacio')}
         </div>
       ) : (
         <div style={{ marginTop: 10 }}>
@@ -1280,8 +1361,9 @@ function BopCard() {
                 className="mono"
                 style={{ fontSize: 'var(--fs-micro)', color: 'var(--ink50)', marginBottom: 2 }}
               >
-                {formatBopDate(a.date)} · Reg. {a.regNumber}
+                {formatBopDate(a.date, locale)} · Reg. {a.regNumber}
               </div>
+              {/* El título del anuncio es el del boletín: dato. */}
               <div style={{ fontSize: 'var(--fs-aux)', fontWeight: 600, lineHeight: 1.35 }}>
                 <ExtLink href={a.pdfUrl} style={{ color: 'inherit', textDecoration: 'none' }}>
                   {a.title}
@@ -1292,10 +1374,13 @@ function BopCard() {
         </div>
       )}
       <div style={{ marginTop: 10, fontSize: 'var(--fs-micro)', color: 'var(--ink50)' }}>
-        {data.stats?.total ?? 0} anuncio(s) · comprobado {when} ·{' '}
-        <ExtLink href={data.source?.home} style={{ color: 'var(--civic)' }}>
-          BOP oficial
-        </ExtLink>
+        {conHuecos(rellena(t('quejas.bop.pie'), { n: data.stats?.total ?? 0, fecha: when }), {
+          '{enlace}': (
+            <ExtLink href={data.source?.home} style={{ color: 'var(--civic)' }}>
+              {t('quejas.bop.oficial')}
+            </ExtLink>
+          ),
+        })}
       </div>
     </Card>
   )
@@ -1366,7 +1451,7 @@ export default function Quejas() {
           })}
         </div>
         <div style={{ marginTop: 10 }}>
-          <DataAsOf iso={data?.generatedAt} label="Quejas" />
+          <DataAsOf iso={data?.generatedAt} label={t('nav.quejas')} />
         </div>
       </div>
 
@@ -1386,13 +1471,16 @@ export default function Quejas() {
         style={{ scrollMarginTop: 24 }}
       >
         {loading && (
-          <div style={{ color: 'var(--ink50)', fontSize: 'var(--fs-aux)' }}>Cargando feed…</div>
+          <div style={{ color: 'var(--ink50)', fontSize: 'var(--fs-aux)' }}>
+            {t('quejas.cargando')}
+          </div>
         )}
         {error && (
           <Card>
             <div style={{ color: 'var(--warn-ink)', fontSize: 'var(--fs-aux)' }}>
-              No se pudo cargar /data/quejas.json. Puede que el bot aún no haya publicado su primer
-              snapshot.
+              {/* La ruta del fichero va en su hueco: escrita en la cadena valenciana,
+                  «quejas» dejaría de contar como palabra castellana en todo el sitio. */}
+              {rellena(t('quejas.error'), { fichero: '/data/quejas.json' })}
             </div>
           </Card>
         )}

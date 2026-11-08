@@ -14,6 +14,18 @@
 import { desenlaceVigente } from '../scraper/press-extraccion'
 import { esAnuncioClasificado } from '../scraper/press-clasificado'
 import { corpusMunicipales, corpusReales } from '../scraper/claim-verdicts'
+import { CATALOGUE } from '../i18n'
+import { rellena } from './formatters'
+
+/**
+ * El catálogo castellano como `t`, para quien llama sin idioma: las pruebas, la e2e
+ * que busca la frase en la página, los exports de abajo. La página pasa el `t` de la
+ * interfaz y lee lo mismo en valencià; la prosa vive en el catálogo
+ * (`laboratorio.prensa.*`), no aquí.
+ *
+ * @param {string} clave
+ */
+const castellano = (clave) => /** @type {Record<string, string>} */ (CATALOGUE.es)[clave] ?? clave
 
 const WINDOW_DAYS = 30
 
@@ -189,11 +201,11 @@ export function pressLabSummary({ press = [], verified = [] } = {}, now = Date.n
  * renombrar una deja la frase hablando de una etiqueta que ya no se ve.
  */
 export const VERDICT_LABEL = {
-  verificado: 'Verificado',
-  parcial: 'Parcial',
-  contradicho: 'Discrepa',
-  'sin-datos': 'Sin registro',
-  'promesa-repetida': 'Promesa repetida',
+  verificado: castellano('laboratorio.prensa.estado.verificado'),
+  parcial: castellano('laboratorio.prensa.estado.parcial'),
+  contradicho: castellano('laboratorio.prensa.estado.contradicho'),
+  'sin-datos': castellano('laboratorio.prensa.estado.sin-datos'),
+  'promesa-repetida': castellano('laboratorio.prensa.estado.promesa-repetida'),
 }
 
 /**
@@ -214,7 +226,10 @@ export function estadoDeAfirmacion(row) {
 }
 
 /** Las etiquetas de `estadoDeAfirmacion`: las de los veredictos y «No cotejada». */
-export const ESTADO_LABEL = { ...VERDICT_LABEL, 'no-cotejada': 'No cotejada' }
+export const ESTADO_LABEL = {
+  ...VERDICT_LABEL,
+  'no-cotejada': castellano('laboratorio.prensa.estado.no-cotejada'),
+}
 
 /**
  * Qué pasó con un titular que no enseña afirmaciones, y en qué casilla del recuento de
@@ -236,34 +251,22 @@ export const ESTADO_LABEL = { ...VERDICT_LABEL, 'no-cotejada': 'No cotejada' }
  * de enlaces son redirecciones de news.google.com. «Revisó este titular» es lo único
  * que vale en todos los casos.
  *
+ * La frase de cada desenlace vive en el catálogo (`laboratorio.prensa.libro.*`): aquí
+ * va su clave.
+ *
  * @typedef {import('../scraper/press-extraccion').DesenlaceExtraccion} DesenlaceExtraccion
- * @type {Record<DesenlaceExtraccion, {estado: 'con' | 'descartado' | 'pendiente', texto: string}>}
+ * @type {Record<DesenlaceExtraccion, {estado: 'con' | 'descartado' | 'pendiente', clave: string}>}
  */
 const LIBRO_VACIO = {
-  extraido: {
-    estado: 'con',
-    texto:
-      'El extractor sacó afirmaciones de este titular, pero el filtro editorial de esta página no publica ninguna.',
-  },
+  extraido: { estado: 'con', clave: 'laboratorio.prensa.libro.extraido' },
   'descartado-en-triaje': {
     estado: 'descartado',
-    texto:
-      'El extractor leyó el titular y no vio nada que contrastar; el cuerpo no se llegó a leer. No es lo mismo que no lo tenga.',
+    clave: 'laboratorio.prensa.libro.descartado-en-triaje',
   },
-  'sin-afirmaciones': {
-    estado: 'descartado',
-    texto:
-      'El extractor revisó este titular y no sacó ninguna afirmación. No es lo mismo que no las tenga.',
-  },
-  'llm-no-disponible': {
-    estado: 'pendiente',
-    texto: 'El extractor no pudo procesarlo: el modelo no respondió. Se reintentará.',
-  },
+  'sin-afirmaciones': { estado: 'descartado', clave: 'laboratorio.prensa.libro.sin-afirmaciones' },
+  'llm-no-disponible': { estado: 'pendiente', clave: 'laboratorio.prensa.libro.llm-no-disponible' },
 }
-const NUNCA_VISTO = {
-  estado: 'pendiente',
-  texto: 'Este titular aún no ha pasado por el extractor.',
-}
+const NUNCA_VISTO = { estado: 'pendiente', clave: 'laboratorio.prensa.libro.nuncaVisto' }
 /** @param {string | null | undefined} desenlace */
 const filaDelLibro = (desenlace) =>
   desenlace && Object.hasOwn(LIBRO_VACIO, desenlace)
@@ -276,10 +279,11 @@ const filaDelLibro = (desenlace) =>
  * nuevo que la página) se lee igual, porque de él no se sabe nada que se pueda decir.
  *
  * @param {DesenlaceExtraccion | null} desenlace
+ * @param {(clave: string) => string} [t]  el del idioma de la página; sin él, castellano.
  * @returns {string}
  */
-export function textoLibroVacio(desenlace) {
-  return filaDelLibro(desenlace).texto
+export function textoLibroVacio(desenlace, t = castellano) {
+  return t(filaDelLibro(desenlace).clave)
 }
 
 // `desenlaceVigente` vive en src/scraper/press-extraccion.ts: press-analytics.ts
@@ -324,7 +328,21 @@ export function recuentoDeExtraccion(articulos, afirmacionesPorArticulo, filaPor
  * contradicha—; `sin-datos` y `parcial` no resuelven nada.
  */
 const numero = (n) => new Intl.NumberFormat('es-ES').format(n)
-const plural = (n, uno, varios) => `${numero(n)} ${n === 1 ? uno : varios}`
+
+/**
+ * Una cuenta con su plural, del catálogo: la clave `uno` para 1 y `varios` para lo
+ * demás, con el número en su `{n}`. Las dos claves van escritas enteras en cada
+ * llamada para que `tests/i18n-catalogue.test.ts` las encuentre.
+ *
+ * @param {(clave: string) => string} t
+ * @param {number} n
+ * @param {string} uno
+ * @param {string} varios
+ */
+const contar = (t, n, uno, varios) =>
+  t(n === 1 ? uno : varios)
+    .split('{n}')
+    .join(numero(n))
 
 /**
  * Las parciales, nombradas y contadas.
@@ -339,8 +357,11 @@ const plural = (n, uno, varios) => `${numero(n)} ${n === 1 ? uno : varios}`
  * coincidencia automática —la de ese día emparejaba los 135.000 € de los contenedores
  * con un contrato de 131.336 € para unas pérgolas—, no algo que esta página afirme.
  */
-const parcialesMarcadas = (n) =>
-  `el verificador ha marcado ${numero(n)} como «${VERDICT_LABEL.parcial}» (datos relacionados, pero no idénticos)`
+const parcialesMarcadas = (n, t) =>
+  rellena(t('laboratorio.prensa.parcialesMarcadas'), {
+    n: numero(n),
+    etiqueta: t('laboratorio.prensa.estado.parcial'),
+  })
 
 /**
  * El aviso de /laboratorio cuando no hay nada resuelto, o null si sí lo hay.
@@ -356,36 +377,58 @@ const parcialesMarcadas = (n) =>
  * `parcialesMarcadas`).
  *
  * @param {ReturnType<typeof pressLabSummary>} summary
+ * @param {(clave: string) => string} [t]  el del idioma de la página; sin él, castellano.
  * @returns {{titulo: string, texto: string} | null}
  */
-export function avisoSinVeredicto(summary) {
+export function avisoSinVeredicto(summary, t = castellano) {
   const total = summary?.totalClaims ?? 0
   const parciales = summary?.parcialClaims ?? 0
   if ((summary?.resueltasClaims ?? 0) > 0) return null
   if (total === 0) {
     return {
-      titulo: 'Extracción pendiente.',
-      texto:
-        `Se están monitorizando ${plural(summary?.monitoredCount ?? 0, 'titular', 'titulares')}, ` +
-        'pero todavía no se ha extraído ninguna afirmación de ellos, así que las tasas no tienen nada que medir.',
+      titulo: t('laboratorio.prensa.aviso.pendiente.titulo'),
+      texto: rellena(t('laboratorio.prensa.aviso.pendiente.texto'), {
+        titulares: contar(
+          t,
+          summary?.monitoredCount ?? 0,
+          'laboratorio.prensa.n.titular.uno',
+          'laboratorio.prensa.n.titular',
+        ),
+      }),
     }
   }
-  const extraidas = `${plural(total, 'afirmación', 'afirmaciones')} de ${plural(summary?.auditedCount ?? 0, 'artículo', 'artículos')}`
-  const tasas =
-    'Por eso la tasa de discrepancia aparece como «—» —no hay nada resuelto entre lo que ' +
-    'dividir— y la de verificación marca el 0 % que le corresponde.'
-  const cotejo = `Se han extraído ${extraidas}, ${fraseCotejo(summary)}.`
+  const extraidas = rellena(t('laboratorio.prensa.aviso.extraidas'), {
+    afirmaciones: contar(
+      t,
+      total,
+      'laboratorio.prensa.n.afirmacion.uno',
+      'laboratorio.prensa.n.afirmacion',
+    ),
+    articulos: contar(
+      t,
+      summary?.auditedCount ?? 0,
+      'laboratorio.prensa.n.articulo.uno',
+      'laboratorio.prensa.n.articulo',
+    ),
+  })
+  const tasas = t('laboratorio.prensa.aviso.tasas')
+  const cotejo = rellena(t('laboratorio.prensa.aviso.cotejo'), {
+    extraidas,
+    cotejo: fraseCotejo(summary, t),
+  })
   if (parciales > 0) {
     return {
-      titulo: 'Nada resuelto todavía.',
-      texto:
-        `${cotejo} Ninguna ha quedado confirmada ni desmentida: ` +
-        `${parcialesMarcadas(parciales)}, y una coincidencia parcial no cuenta como resuelta. ${tasas}`,
+      titulo: t('laboratorio.prensa.aviso.parcial.titulo'),
+      texto: rellena(t('laboratorio.prensa.aviso.parcial.texto'), {
+        cotejo,
+        parciales: parcialesMarcadas(parciales, t),
+        tasas,
+      }),
     }
   }
   return {
-    titulo: 'Sin veredictos todavía.',
-    texto: `${cotejo} Ninguna ha llegado a un veredicto que la confirme o la desmienta. ${tasas}`,
+    titulo: t('laboratorio.prensa.aviso.sinVeredictos.titulo'),
+    texto: rellena(t('laboratorio.prensa.aviso.sinVeredictos.texto'), { cotejo, tasas }),
   }
 }
 
@@ -394,63 +437,72 @@ export function avisoSinVeredicto(summary) {
  * buscado en los datos» de todas, y el 19-10-2026 sólo 9 de 58 se habían buscado en
  * alguno: 6 en datos municipales y 3 sólo en el catálogo de promesas, que no lo es.
  */
-function fraseCotejo(summary) {
+function fraseCotejo(summary, t) {
   const total = summary?.totalClaims ?? 0
   const cotejadas = summary?.cotejadasClaims ?? 0
   const municipales = summary?.cotejadasMunicipalesClaims ?? 0
   const soloPromesas = summary?.cotejadasSoloPromesasClaims ?? 0
   const otras = cotejadas - municipales - soloPromesas
-  if (cotejadas === 0) return 'pero ninguna se ha cotejado todavía con ningún dato'
-  const partes = [`${numero(municipales)} con datos municipales`]
-  if (soloPromesas > 0) partes.push(`${numero(soloPromesas)} sólo con el catálogo de promesas`)
-  if (otras > 0) partes.push(`${numero(otras)} sólo con fuentes que no son municipales`)
-  const desglose =
-    partes.length === 1 ? partes[0] : `${partes.slice(0, -1).join(', ')} y ${partes.at(-1)}`
+  if (cotejadas === 0) return t('laboratorio.prensa.cotejo.ninguna')
+  const partes = [rellena(t('laboratorio.prensa.cotejo.municipales'), { n: numero(municipales) })]
+  if (soloPromesas > 0)
+    partes.push(rellena(t('laboratorio.prensa.cotejo.soloPromesas'), { n: numero(soloPromesas) }))
+  if (otras > 0) partes.push(rellena(t('laboratorio.prensa.cotejo.otras'), { n: numero(otras) }))
   const resto = total - cotejadas
-  const cuantas = cotejadas === total ? 'todas' : numero(cotejadas)
+  const cuantas = cotejadas === total ? t('laboratorio.prensa.cotejo.todas') : numero(cotejadas)
   return (
-    `y de ellas se han cotejado ${cuantas} —${desglose}—` +
+    rellena(t('laboratorio.prensa.cotejo.frase'), { cuantas, desglose: enumerar(partes, t) }) +
     (resto > 0
-      ? `; ${resto === 1 ? 'la otra no se ha buscado' : `las otras ${numero(resto)} no se han buscado`} en ningún dato`
+      ? resto === 1
+        ? t('laboratorio.prensa.cotejo.resto.una')
+        : rellena(t('laboratorio.prensa.cotejo.resto'), { n: numero(resto) })
       : '')
   )
 }
 
-export function fraseVeredictos(summary) {
+/**
+ * @param {ReturnType<typeof pressLabSummary>} summary
+ * @param {(clave: string) => string} [t]  el del idioma de la página; sin él, castellano.
+ */
+export function fraseVeredictos(summary, t = castellano) {
   const total = summary?.totalClaims ?? 0
   const resueltas = summary?.resueltasClaims ?? 0
   const parciales = summary?.parcialClaims ?? 0
-  if (total === 0) {
-    return 'Todavía no hay afirmaciones analizadas; cuando las haya, las tasas de aquí abajo dirán cuántas llegan a un veredicto.'
-  }
+  if (total === 0) return t('laboratorio.prensa.veredictos.sinAfirmaciones')
   // Con parciales, «ninguna ha llegado a un veredicto» niega la pastilla que la tarjeta
   // pinta, y «la otra mitad / la mayoría vuelve sin nada» mete entre las que no trajeron
   // nada a unas que volvieron con datos relacionados: con 1 verificada, 5 parciales y 4
   // sin-datos, «la mayoría» eran 4 de 10. Así que se cuentan las dos.
   if (parciales > 0) {
-    const cola = 'no cuentan una coincidencia parcial como resuelta.'
+    const cola = t('laboratorio.prensa.veredictos.cola')
     if (resueltas === 0) {
-      return `Por ahora ninguna ha quedado confirmada ni desmentida: ${parcialesMarcadas(parciales)}, y las tasas de aquí abajo ${cola}`
+      return rellena(t('laboratorio.prensa.veredictos.parcialSinResueltas'), {
+        parciales: parcialesMarcadas(parciales, t),
+        cola,
+      })
     }
-    return (
-      `De ${plural(total, 'afirmación', 'afirmaciones')}, ` +
-      `${plural(resueltas, 'ha quedado confirmada o desmentida', 'han quedado confirmadas o desmentidas')} ` +
-      `y ${parcialesMarcadas(parciales)}; las tasas de aquí abajo dicen en qué sentido, y ${cola}`
-    )
+    return rellena(t('laboratorio.prensa.veredictos.parcialConResueltas'), {
+      afirmaciones: contar(
+        t,
+        total,
+        'laboratorio.prensa.n.afirmacion.uno',
+        'laboratorio.prensa.n.afirmacion',
+      ),
+      resueltas: contar(
+        t,
+        resueltas,
+        'laboratorio.prensa.veredictos.resueltas.una',
+        'laboratorio.prensa.veredictos.resueltas',
+      ),
+      parciales: parcialesMarcadas(parciales, t),
+      cola,
+    })
   }
-  if (resueltas === 0) {
-    return 'Por ahora ninguna ha llegado a un veredicto que la confirme o la desmienta, y así lo dicen las tasas de aquí abajo.'
-  }
-  if (resueltas === total) {
-    return 'Todas han llegado a un veredicto; las tasas de aquí abajo dicen en qué sentido.'
-  }
-  if (resueltas * 2 === total) {
-    return 'La mitad llega a un veredicto y la otra mitad vuelve sin nada que la confirme ni la desmienta: las tasas de aquí abajo lo detallan.'
-  }
-  if (resueltas * 2 < total) {
-    return 'La mayoría vuelve sin nada que las confirme ni las desmienta: las tasas de aquí abajo dicen cuántas llegaron a un veredicto.'
-  }
-  return 'La mayoría llega a un veredicto: las tasas de aquí abajo dicen cuántas, y en qué sentido.'
+  if (resueltas === 0) return t('laboratorio.prensa.veredictos.ninguna')
+  if (resueltas === total) return t('laboratorio.prensa.veredictos.todas')
+  if (resueltas * 2 === total) return t('laboratorio.prensa.veredictos.mitad')
+  if (resueltas * 2 < total) return t('laboratorio.prensa.veredictos.mayoriaSin')
+  return t('laboratorio.prensa.veredictos.mayoriaCon')
 }
 
 /**
@@ -514,8 +566,19 @@ export function resumenHallazgos(findings = []) {
   }
 }
 
-const enumerar = (xs) =>
-  xs.length <= 1 ? (xs[0] ?? '') : `${xs.slice(0, -1).join(', ')} y ${xs.at(-1)}`
+/**
+ * «a, b y c» en el idioma de la página.
+ *
+ * @param {string[]} xs
+ * @param {(clave: string) => string} t
+ */
+const enumerar = (xs, t) =>
+  xs.length <= 1
+    ? (xs[0] ?? '')
+    : rellena(t('laboratorio.prensa.enumera'), {
+        lista: xs.slice(0, -1).join(', '),
+        ultimo: xs.at(-1),
+      })
 
 /**
  * La frase del carril «Verificaciones externas», sacada de factcheck.json.
@@ -530,43 +593,50 @@ const enumerar = (xs) =>
  *
  * @param {{ consulta?: { intentos?: Array<{ fuente: string, estado: string,
  *   examinadas?: number, aceptadas?: number, motivo?: string }> } } | null | undefined} fc
+ * @param {(clave: string) => string} [t]  el del idioma de la página; sin él, castellano.
  * @returns {string}
  */
-export function fraseFactcheck(fc) {
+export function fraseFactcheck(fc, t = castellano) {
   const intentos = fc?.consulta?.intentos
   if (!Array.isArray(intentos) || intentos.length === 0) {
-    return 'No consta qué fuentes de verificación se consultaron: la última pasada no lo registró, así que una lista vacía aquí no dice nada.'
+    return t('laboratorio.prensa.factcheck.noConsta')
   }
   const n = intentos.length
   const ok = intentos.filter((i) => i.estado === 'consultada')
   const caidas = intentos.filter((i) => i.estado !== 'consultada')
-  const motivo = (i) => i.motivo ?? 'sin motivo registrado'
+  // El motivo que registró la consulta es suyo: se pinta como llegó.
+  const motivo = (i) => i.motivo ?? t('laboratorio.prensa.factcheck.sinMotivo')
   if (ok.length === 0) {
-    return (
-      `No se pudo consultar ninguna de las ${numero(n)} fuentes de verificación ` +
-      `(${caidas.map((i) => `${i.fuente}: ${motivo(i)}`).join('; ')}): ` +
-      'que aquí no aparezca ninguna no quiere decir que no las haya.'
-    )
+    return rellena(t('laboratorio.prensa.factcheck.ninguna'), {
+      n: numero(n),
+      caidas: caidas.map((i) => `${i.fuente}: ${motivo(i)}`).join('; '),
+    })
   }
-  const examinadas = ok.reduce((t, i) => t + (Number(i.examinadas) || 0), 0)
-  const aceptadas = ok.reduce((t, i) => t + (Number(i.aceptadas) || 0), 0)
-  const nombres = enumerar(ok.map((i) => i.fuente))
+  const examinadas = ok.reduce((s, i) => s + (Number(i.examinadas) || 0), 0)
+  const aceptadas = ok.reduce((s, i) => s + (Number(i.aceptadas) || 0), 0)
+  const nombres = enumerar(
+    ok.map((i) => i.fuente),
+    t,
+  )
   const quienes =
     ok.length === n
       ? n === 1
-        ? `Se consultó la única fuente, ${nombres}`
-        : `Se consultaron las ${numero(n)} fuentes —${nombres}—`
-      : `Se consultaron ${numero(ok.length)} de ${numero(n)} fuentes —${nombres}—`
+        ? rellena(t('laboratorio.prensa.factcheck.unica'), { nombres })
+        : rellena(t('laboratorio.prensa.factcheck.todas'), { n: numero(n), nombres })
+      : rellena(t('laboratorio.prensa.factcheck.algunas'), {
+          ok: numero(ok.length),
+          n: numero(n),
+          nombres,
+        })
   const resultado =
     examinadas === 0
-      ? 'no devolvieron ninguna revisión'
-      : `${plural(examinadas, 'revisión examinada', 'revisiones examinadas')}, ` +
+      ? t('laboratorio.prensa.factcheck.sinRevisiones')
+      : `${contar(t, examinadas, 'laboratorio.prensa.factcheck.examinadas.una', 'laboratorio.prensa.factcheck.examinadas')}, ` +
         (aceptadas === 0
-          ? 'ninguna sobre Riba-roja de Túria'
-          : `${numero(aceptadas)} sobre Riba-roja de Túria`)
-  const fallos = caidas.map(
-    (i) =>
-      ` ${i.fuente} no se pudo consultar (${motivo(i)}): lo que haya publicado no se ha mirado.`,
+          ? t('laboratorio.prensa.factcheck.ningunaSobre')
+          : rellena(t('laboratorio.prensa.factcheck.sobre'), { n: numero(aceptadas) }))
+  const fallos = caidas.map((i) =>
+    rellena(t('laboratorio.prensa.factcheck.fallo'), { fuente: i.fuente, motivo: motivo(i) }),
   )
   return `${quienes}: ${resultado}.${fallos.join('')}`
 }
@@ -582,25 +652,45 @@ export function fraseFactcheck(fc) {
  *
  * @param {Array<{ articleCount?: number }>} outlets  filas de press-trust.json
  * @param {{ monitoredCount?: number, fueraDelFeedCount?: number }} summary  `pressLabSummary`
+ * @param {(clave: string) => string} [t]  el del idioma de la página; sin él, castellano.
  */
-export function puenteTablaMedios(outlets, summary) {
-  const suma = (outlets ?? []).reduce((t, o) => t + (Number(o?.articleCount) || 0), 0)
+export function puenteTablaMedios(outlets, summary, t = castellano) {
+  const suma = (outlets ?? []).reduce((s, o) => s + (Number(o?.articleCount) || 0), 0)
   const monitorizados = summary?.monitoredCount ?? 0
   const fuera = summary?.fueraDelFeedCount ?? 0
+  const titulares = contar(
+    t,
+    suma,
+    'laboratorio.prensa.n.titular.uno',
+    'laboratorio.prensa.n.titular',
+  )
   if (suma + fuera === monitorizados) {
     if (fuera === 0)
-      return `La tabla cuenta los ${plural(suma, 'titular monitorizado', 'titulares monitorizados')}.`
-    return (
-      `La tabla cuenta ${plural(suma, 'titular', 'titulares')} del feed: los ${numero(monitorizados)} ` +
-      `monitorizados menos ${fuera === 1 ? '1 que ya no está' : `${numero(fuera)} que ya no están`} ` +
-      'en el feed, que no entran en ella.'
-    )
+      return rellena(t('laboratorio.prensa.puente.todos'), {
+        titulares: contar(
+          t,
+          suma,
+          'laboratorio.prensa.n.titularMonitorizado.uno',
+          'laboratorio.prensa.n.titularMonitorizado',
+        ),
+      })
+    return rellena(t('laboratorio.prensa.puente.fuera'), {
+      titulares,
+      monitorizados: numero(monitorizados),
+      fuera:
+        fuera === 1
+          ? t('laboratorio.prensa.puente.fuera.uno')
+          : rellena(t('laboratorio.prensa.puente.fuera.varios'), { n: numero(fuera) }),
+    })
   }
-  return (
-    `La tabla suma ${plural(suma, 'titular', 'titulares')} del feed, contados en la última pasada; ` +
-    `el recuento de arriba, ${numero(monitorizados)}, se hace al abrir la página con su propia ventana de 30 días` +
-    (fuera > 0 ? ` e incluye ${numero(fuera)} fuera del feed.` : '.')
-  )
+  return rellena(t('laboratorio.prensa.puente.distinto'), {
+    titulares,
+    monitorizados: numero(monitorizados),
+    fuera:
+      fuera > 0
+        ? rellena(t('laboratorio.prensa.puente.distinto.fuera'), { n: numero(fuera) })
+        : '.',
+  })
 }
 
 /**
@@ -611,5 +701,4 @@ export function puenteTablaMedios(outlets, summary) {
  * press-trust.json). La cadena con modelo —factcheck → extract → verify → summarize →
  * analytics → auto-curate— es la de los lunes (scripts/press-lab-pipeline.sh, launchd).
  */
-export const CADENCIA_LABORATORIO =
-  'La extracción y el cotejo de afirmaciones, las síntesis y los hallazgos automáticos se hacen una vez por semana, los lunes, o a mano; los indicadores de cada titular, la triangulación y las lagunas de cobertura se recalculan cada noche con los titulares nuevos.'
+export const CADENCIA_LABORATORIO = castellano('laboratorio.prensa.cadencia')
