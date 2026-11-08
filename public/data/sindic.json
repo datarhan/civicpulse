@@ -1,11 +1,33 @@
 {
-  "generatedAt": "2026-08-24T13:17:22.741Z",
+  "generatedAt": "2026-11-08T19:05:06.506Z",
   "note": "Curated list of Síndic de Greuges CV resoluciones concerning the Ayuntamiento de Riba-roja de Túria. Edited only via `npm run sindic:add` — never by hand.",
   "source": {
     "platform": "Síndic de Greuges de la Comunitat Valenciana",
     "portal": "https://www.elsindic.com"
   },
   "items": [
+    {
+      "id": "sindic-202604504-12979235",
+      "expediente": "202604504",
+      "fecha": "2026-11-06",
+      "materia": "servicios-publicos",
+      "sentido": "recomendacion",
+      "titulo": "Servicios locales: falta de respuesta a escritos presentados por los ciudadanos",
+      "resumen": "1. RECORDAMOS EL DEBER LEGAL de colaborar con el Síndic de Greuges, facilitando la información solicitada y contestando a las recomendaciones, sugerencias o recordatorios de deberes legales efectuados. 2. RECORDAMOS EL DEBER LEGAL de dar respuesta a las solicitudes, reclamaciones y/o recursos que presenten los ciudadanos ante las Administraciones Públicas mediante el dictado de una resolución por el órgano competente, completa, congruente, motivada, con indicación de los recursos que en su caso puedan interponerse y dentro del plazo que señalen las normas del procedimiento de que se trate o, en su defecto, en el plazo de 3 meses. Todo ello con notificación a la persona interesada en el modo y forma previstos en el ordenamiento jurídico. 3. ADVERTIMOS que, dado el tiempo transcurrido, a la mayor brevedad y en todo caso en el plazo de un mes, dé respuesta al escrito presentado por el interesado el 03/06/2026, en los términos señalados en la consideración anterior. 4. RECOMENDAMOS que desarrolle todas las actuaciones que resulten precisas para comprobar los hechos denunciados por el interesado y, en su caso, recuperar el dominio público ocupado.",
+      "urlPdf": "https://www.elsindic.com/resoluciones/expedientes/2026/202604504/12979235.pdf",
+      "quejaIdRelacionada": null
+    },
+    {
+      "id": "sindic-202603910-12632456",
+      "expediente": "202603910",
+      "fecha": "2026-10-08",
+      "materia": "hacienda-tributaria",
+      "sentido": "recomendacion",
+      "titulo": "Solicitud devolución IBI-2024 por daños de la DANA.",
+      "resumen": "Primero: RECOMENDAMOS al AYUNTAMIENTO DE RIBA-ROJA DE TÚRIA que, teniendo en cuenta el dilatado periodo de tiempo transcurrido desde que se presentó el escrito de fecha 22/09/2026, solicitando la devolución correspondiente al IBI del ejercicio 2024, que había sido estimada en el expediente 1817/2025/RESOL7034/2024/GEN, proceda de manera urgente a resolverlo de forma expresa y notificarlo a la autora de la queja. Segundo: RECORDAMOS al AYUNTAMIENTO DE RIBA-ROJA DE TÚRIA EL DEBER LEGAL de colaborar con el Síndic de Greuges, facilitando la información solicitada y contestando a las recomendaciones, sugerencias o recordatorios de deberes legales efectuados.",
+      "urlPdf": "https://www.elsindic.com/resoluciones/expedientes/2026/202603910/12632456.pdf",
+      "quejaIdRelacionada": null
+    },
     {
       "id": "sindic-202600493-12518774",
       "expediente": "202600493",
