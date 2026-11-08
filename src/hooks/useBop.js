@@ -17,10 +17,19 @@ export function useBop() {
   return useJsonFetch('/data/bop.json', EMPTY_BOP)
 }
 
-/** "16 jun 2026" from an ISO date. */
-export function formatBopDate(iso) {
+/**
+ * "16 jun 2026" from an ISO date; con la interfaz en valencià, en valencià.
+ *
+ * @param {string|null|undefined} iso
+ * @param {string} [idioma] el de la interfaz
+ */
+export function formatBopDate(iso, idioma = 'es') {
   if (!iso) return ''
   const d = new Date(iso)
   if (!Number.isFinite(d.getTime())) return iso
-  return d.toLocaleDateString('es-ES', { day: 'numeric', month: 'short', year: 'numeric' })
+  return d.toLocaleDateString(idioma === 'ca' ? 'ca-ES' : 'es-ES', {
+    day: 'numeric',
+    month: 'short',
+    year: 'numeric',
+  })
 }
