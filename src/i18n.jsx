@@ -1481,9 +1481,9 @@ export const CATALOGUE = {
     'quejas.contrato.metodologia': 'Metodología',
     'quejas.contrato.aviso': 'Aviso legal',
     // Quién más vigila: el Síndic, el Consell, el CTBG y la Sindicatura.
-    'quejas.vigilan.registro': 'Registro analizado',
-    'quejas.vigilan.sentidos': '{n} sentidos distintos',
-    'quejas.vigilan.comprobado': 'Comprobado {fecha} · {enlace}',
+    'quejas.institucion.registro': 'Registro analizado',
+    'quejas.institucion.sentidos': '{n} sentidos distintos',
+    'quejas.institucion.comprobado': 'Comprobado {fecha} · {enlace}',
     'quejas.sindic.eyebrow': 'Escalado externo · Síndic de Greuges CV',
     'quejas.sindic.titulo': 'Expedientes del Síndic sobre Riba-roja de Túria',
     'quejas.sindic.registra':
@@ -5003,9 +5003,9 @@ export const CATALOGUE = {
     'quejas.contrato.metodologia': 'Metodologia',
     'quejas.contrato.aviso': 'Avís legal',
     // Quién más vigila: el Síndic, el Consell, el CTBG y la Sindicatura.
-    'quejas.vigilan.registro': 'Registre analitzat',
-    'quejas.vigilan.sentidos': '{n} sentits distints',
-    'quejas.vigilan.comprobado': 'Comprovat {fecha} · {enlace}',
+    'quejas.institucion.registro': 'Registre analitzat',
+    'quejas.institucion.sentidos': '{n} sentits distints',
+    'quejas.institucion.comprobado': 'Comprovat {fecha} · {enlace}',
     'quejas.sindic.eyebrow': 'Elevació externa · Síndic de Greuges CV',
     'quejas.sindic.titulo': 'Expedients del Síndic sobre Riba-roja de Túria',
     'quejas.sindic.registra':

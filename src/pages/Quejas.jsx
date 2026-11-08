@@ -635,7 +635,7 @@ function ConsellCvCard() {
               letterSpacing: '.06em',
             }}
           >
-            {t('quejas.vigilan.registro')}
+            {t('quejas.institucion.registro')}
           </div>
           <div
             className="mono"
@@ -677,13 +677,13 @@ function ConsellCvCard() {
           <div style={{ fontSize: 'var(--fs-micro)', color: 'var(--ink50)' }}>
             {stats.matchedEntries === 0
               ? t('quejas.consell.sinReclamaciones')
-              : rellena(t('quejas.vigilan.sentidos'), {
+              : rellena(t('quejas.institucion.sentidos'), {
                   n: Object.keys(stats.bySentido).length,
                 })}
           </div>
         </div>
         <div style={{ marginLeft: 'auto', fontSize: 'var(--fs-micro)', color: 'var(--ink50)' }}>
-          {conHuecos(rellena(t('quejas.vigilan.comprobado'), { fecha: when }), {
+          {conHuecos(rellena(t('quejas.institucion.comprobado'), { fecha: when }), {
             '{enlace}': (
               <ExtLink
                 href={data.source?.portal || 'https://conselltransparencia.gva.es'}
@@ -766,7 +766,7 @@ function CtbgCard() {
               letterSpacing: '.06em',
             }}
           >
-            {t('quejas.vigilan.registro')}
+            {t('quejas.institucion.registro')}
           </div>
           <div
             className="mono"
@@ -808,13 +808,13 @@ function CtbgCard() {
           <div style={{ fontSize: 'var(--fs-micro)', color: 'var(--ink50)' }}>
             {stats.matchedEntries === 0
               ? t('quejas.ctbg.sinResoluciones')
-              : rellena(t('quejas.vigilan.sentidos'), {
+              : rellena(t('quejas.institucion.sentidos'), {
                   n: Object.keys(stats.bySentido).length,
                 })}
           </div>
         </div>
         <div style={{ marginLeft: 'auto', fontSize: 'var(--fs-micro)', color: 'var(--ink50)' }}>
-          {conHuecos(rellena(t('quejas.vigilan.comprobado'), { fecha: when }), {
+          {conHuecos(rellena(t('quejas.institucion.comprobado'), { fecha: when }), {
             '{enlace}': (
               <ExtLink href={data.source?.url} style={{ color: 'var(--civic)' }}>
                 {t('quejas.ctbg.xlsx')}
