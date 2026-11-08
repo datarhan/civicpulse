@@ -23,10 +23,13 @@
  */
 import { afterEach, describe, expect, it, vi } from 'vitest'
 import { cleanup, render, waitFor } from '@testing-library/react'
+import { readFileSync } from 'node:fs'
+import { resolve } from 'node:path'
 import { MemoryRouter } from 'react-router-dom'
 
 import { CATALOGUE, LocaleProvider } from '../../src/i18n'
 import { invalidateSnapshots } from '../../src/lib/snapshot-store'
+import { rellena } from '../../src/lib/formatters'
 import Quejas from '../../src/pages/Quejas'
 import QuejasDashboard from '../../src/pages/QuejasDashboard'
 import LaboratorioPrensa from '../../src/pages/LaboratorioPrensa'
@@ -220,6 +223,14 @@ const PRENSA = {
     items: [],
     stats: { candidatesExamined: 3, titularesConsiderados: 4, tramitesExcluidos: 1 },
   },
+  // Una sola fuente consultada, sin revisiones: el carril dice «no devolvió», en singular.
+  '/data/factcheck.json': {
+    ...VACIO,
+    items: [],
+    consulta: {
+      intentos: [{ fuente: 'Maldita.es RSS', estado: 'consultada', examinadas: 0, aceptadas: 0 }],
+    },
+  },
 }
 
 function pagina(Pagina, idioma, datos) {
@@ -316,6 +327,9 @@ const PAGINAS = [
       'laboratorio.prensa.lagunas.otrasPalabras',
       'laboratorio.prensa.factcheck.eyebrow',
       'laboratorio.prensa.replica',
+      // Un titular y una fuente: las dos frases que se leían en plural con uno.
+      'laboratorio.prensa.puente.todos.uno',
+      'laboratorio.prensa.factcheck.sinRevisiones.una',
     ],
   },
 ]
@@ -365,3 +379,157 @@ for (const { nombre, Pagina, datos, pares, ahora } of PAGINAS) {
     }
   })
 }
+
+// ─── Una de cada: el singular; con dos, el plural ─────────────────────────────
+
+/**
+ * «firmado **1 fichas**», «resoluciones · 1 año(s)», «1 auditoría(s) específica(s)»,
+ * «1 anuncio(s)»: las cifras de las instituciones con una sola se leían en plural o
+ * con el plural entre paréntesis. Cada una tiene ahora su variante en singular, que la
+ * página elige con la cifra. Se pinta /quejas con una de cada y con dos de cada, con el
+ * registro publicado recortado, y se busca la variante que toca, rellena con su cifra,
+ * y que la otra NO salga: «resoluciones · 1 año» cabe dentro de «resoluciones · 1
+ * años», así que encontrar la buena no basta. Por lo mismo cada trozo se busca hasta
+ * donde acaba su palabra: sin eso, con dos, «2 año» se encontraba dentro de «2 años».
+ *
+ * Lo que la página llena con un elemento o con una fecha (`{enlace}`, `{fecha}`) no se
+ * rellena aquí: se busca trozo a trozo lo que queda entre esos huecos.
+ */
+const publicado = (ruta) => JSON.parse(readFileSync(resolve('public', `.${ruta}`), 'utf8'))
+const SINDIC_PUBLICADO = publicado('/data/sindic.json')
+const SINDICATURA_PUBLICADA = publicado('/data/sindicatura.json')
+const CONSELL_PUBLICADO = publicado('/data/consell-cv.json')
+const BOP_PUBLICADO = publicado('/data/bop.json')
+
+/** Las cifras de cada institución, recortadas a `n`. El CTBG va entero: doce años. */
+const unaDeCada = (n) => ({
+  ...INSTITUCIONES,
+  '/data/sindic.json': { ...SINDIC_PUBLICADO, items: SINDIC_PUBLICADO.items.slice(0, n) },
+  '/data/sindicatura.json': {
+    ...SINDICATURA_PUBLICADA,
+    dedicated: SINDICATURA_PUBLICADA.dedicated.slice(0, n),
+    stats: { ...SINDICATURA_PUBLICADA.stats, dedicated: n },
+  },
+  '/data/consell-cv.json': {
+    ...CONSELL_PUBLICADO,
+    stats: { ...CONSELL_PUBLICADO.stats, years: CONSELL_PUBLICADO.stats.years.slice(0, n) },
+  },
+  // Con un año, el CTBG del stub de arriba diría «resoluciones · 1 años», que es la
+  // forma que esta prueba busca que NO salga en la tarjeta del Consell.
+  '/data/ctbg.json': publicado('/data/ctbg.json'),
+  '/data/bop.json': {
+    ...BOP_PUBLICADO,
+    anuncios: BOP_PUBLICADO.anuncios.slice(0, n),
+    stats: { ...BOP_PUBLICADO.stats, total: n },
+  },
+})
+
+/** [la de una, la de varias, lo demás que rellena la página] */
+const SINGULARES = [
+  ['quejas.sindic.fichas.una', 'quejas.sindic.fichas', {}],
+  ['quejas.consell.resoluciones.uno', 'quejas.consell.resoluciones', {}],
+  [
+    'quejas.sindicatura.pie.una',
+    'quejas.sindicatura.pie',
+    { menciones: SINDICATURA_PUBLICADA.stats.sectoralTotal },
+  ],
+  ['quejas.bop.pie.uno', 'quejas.bop.pie', {}],
+]
+
+/** Lo que se lee de una plantilla rellena: los trozos entre los huecos que quedan. */
+const trozos = (plantilla, valores) =>
+  rellena(plantilla, valores)
+    .replace(/\*\*/g, '')
+    .split(/\{\w+\}/)
+    .filter((s) => s.trim().length >= 3)
+
+/**
+ * El texto de la página con un salto entre bloques. `textContent` los pega —«1 año» y
+ * «Contra Riba-roja», dos `<div>` vecinos, se leen «1 añoContra Riba-roja»—, y entonces
+ * no se sabe dónde acaba una palabra. Lo que va en línea (una negrita, un enlace) sigue
+ * pegado a su frase, como lo lee quien la lee.
+ */
+const BLOQUES = new Set([
+  'DIV',
+  'P',
+  'LI',
+  'UL',
+  'OL',
+  'SECTION',
+  'ARTICLE',
+  'HEADER',
+  'FOOTER',
+  'H1',
+  'H2',
+  'H3',
+  'H4',
+  'H5',
+  'H6',
+  'TABLE',
+  'TR',
+  'TD',
+  'TH',
+  'DETAILS',
+  'SUMMARY',
+  'BLOCKQUOTE',
+  'NAV',
+  'ASIDE',
+  'MAIN',
+])
+const porBloques = (nodo) => {
+  if (nodo.nodeType === 3) return nodo.textContent
+  if (nodo.nodeType !== 1 || ['STYLE', 'SCRIPT'].includes(nodo.tagName)) return ''
+  const dentro = [...nodo.childNodes].map(porBloques).join('')
+  return BLOQUES.has(nodo.tagName) ? `\n${dentro}\n` : dentro
+}
+
+/**
+ * El trozo entero: que no siga una letra («2 año» no casa dentro de «2 años»). Un trozo
+ * que acaba en espacio lo sigue un hueco —el enlace, la fecha—, y ahí sí va una letra.
+ */
+const entero = (trozo) =>
+  new RegExp(
+    `${trozo.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}${/\s$/.test(trozo) ? '' : '(?!\\p{L})'}`,
+    'u',
+  )
+
+describe('/quejas · una de cada: el singular; con dos, el plural', () => {
+  it('control: el registro publicado da para dos de cada', () => {
+    expect(SINDIC_PUBLICADO.items.length).toBeGreaterThanOrEqual(2)
+    expect(SINDICATURA_PUBLICADA.dedicated.length).toBeGreaterThanOrEqual(2)
+    expect(CONSELL_PUBLICADO.stats.years.length).toBeGreaterThanOrEqual(2)
+    expect(BOP_PUBLICADO.anuncios.length).toBeGreaterThanOrEqual(2)
+  })
+
+  it('control: cada variante existe en los dos idiomas y no es la otra', () => {
+    for (const [una, varias] of SINGULARES)
+      for (const tabla of [ES, CA]) {
+        expect(tabla[una], una).toBeTruthy()
+        expect(tabla[una], una).not.toBe(tabla[varias])
+      }
+  })
+
+  for (const n of [1, 2])
+    for (const idioma of ['es', 'ca']) {
+      it(`con ${n}, en ${idioma}`, async () => {
+        const { container } = pagina(Quejas, idioma, {
+          ...QUEJAS_DATOS(QUEJAS),
+          ...unaDeCada(n),
+          ...MAPA,
+        })
+        const tabla = CATALOGUE[idioma]
+        const toca = ([una, varias, resto]) =>
+          trozos(tabla[n === 1 ? una : varias], { n, ...resto })
+        const otra = ([una, varias, resto]) =>
+          trozos(tabla[n === 1 ? varias : una], { n, ...resto })
+        await waitFor(() => {
+          for (const fila of SINGULARES)
+            for (const trozo of toca(fila))
+              expect(porBloques(container), fila[0]).toMatch(entero(trozo))
+        })
+        const texto = porBloques(container)
+        for (const fila of SINGULARES)
+          expect(texto, `${fila[0]}: sale la otra variante`).not.toMatch(entero(otra(fila)[0]))
+      })
+    }
+})

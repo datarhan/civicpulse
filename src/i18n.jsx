@@ -487,7 +487,7 @@ export const CATALOGUE = {
     'laboratorio.prensa.lagunas.cruzados':
       'Se han cruzado {titulares} de medios independientes de los últimos {dias} días —sin anuncios ni notas de prensa oficiales— con {asuntos}.',
     'laboratorio.prensa.lagunas.tramites.uno':
-      '{n} punto del orden del día es un trámite (acta anterior, relación de resoluciones, ruegos y preguntas) y no se examinan.',
+      '{n} punto del orden del día es un trámite (acta anterior, relación de resoluciones, ruegos y preguntas) y no se examina.',
     'laboratorio.prensa.lagunas.tramites':
       '{n} puntos del orden del día son trámites (acta anterior, relación de resoluciones, ruegos y preguntas) y no se examinan.',
     'laboratorio.prensa.lagunas.otrasPalabras':
@@ -590,6 +590,7 @@ export const CATALOGUE = {
     'laboratorio.prensa.factcheck.unica': 'Se consultó la única fuente, {nombres}',
     'laboratorio.prensa.factcheck.todas': 'Se consultaron las {n} fuentes —{nombres}—',
     'laboratorio.prensa.factcheck.algunas': 'Se consultaron {ok} de {n} fuentes —{nombres}—',
+    'laboratorio.prensa.factcheck.sinRevisiones.una': 'no devolvió ninguna revisión',
     'laboratorio.prensa.factcheck.sinRevisiones': 'no devolvieron ninguna revisión',
     'laboratorio.prensa.factcheck.examinadas.una': '{n} revisión examinada',
     'laboratorio.prensa.factcheck.examinadas': '{n} revisiones examinadas',
@@ -598,6 +599,7 @@ export const CATALOGUE = {
     'laboratorio.prensa.factcheck.fallo':
       ' {fuente} no se pudo consultar ({motivo}): lo que haya publicado no se ha mirado.',
     // El puente entre la tabla por medio y «Titulares monitorizados» (`puenteTablaMedios`).
+    'laboratorio.prensa.puente.todos.uno': 'La tabla cuenta el único titular monitorizado.',
     'laboratorio.prensa.puente.todos': 'La tabla cuenta los {titulares}.',
     'laboratorio.prensa.puente.fuera':
       'La tabla cuenta {titulares} del feed: los {monitorizados} monitorizados menos {fuera} en el feed, que no entran en ella.',
@@ -1423,12 +1425,14 @@ export const CATALOGUE = {
     'dashboard.areas.sinArea': '{n} quejas no corresponden a ningún área de la lista.',
     // El chrome de /quejas y de /quejas/dashboard que se escribía a mano en la página
     // (barrido de palabras, segunda tanda). El castellano es el que pintaba la página,
-    // letra a letra; los datos —el asunto de un expediente, el título de un informe,
-    // el texto de una queja— siguen en su idioma. Un par de asteriscos marca negrita
-    // (`Marcado`).
-    'quejas.cargando': 'Cargando feed…',
+    // letra a letra, salvo lo que esa tanda listó como mal escrito y se corrigió
+    // después: el CTBG de «Qué publicamos y qué no», los plurales con una sola y entre
+    // paréntesis, «Cargando feed…» y «snapshot». Los datos —el asunto de un expediente,
+    // el título de un informe, el texto de una queja— siguen en su idioma. Un par de
+    // asteriscos marca negrita (`Marcado`).
+    'quejas.cargando': 'Cargando las quejas…',
     'quejas.error':
-      'No se pudo cargar {fichero}. Puede que el bot aún no haya publicado su primer snapshot.',
+      'No se pudo cargar {fichero}. Puede que el bot aún no haya publicado su primera exportación.',
     'quejas.cifras.total': 'Total quejas',
     'quejas.cifras.total.sub': 'desde el inicio del canal',
     'quejas.cifras.resueltas': 'Resueltas',
@@ -1476,7 +1480,7 @@ export const CATALOGUE = {
     'quejas.contrato.noPublicamos':
       'No publicamos: identidad del denunciante, la foto original sin anonimizar, lat/lng exactas, personal técnico municipal.',
     'quejas.contrato.plazos':
-      'Los plazos y bases legales provienen del BOE. El escalado externo es al Síndic CV / CTBG, instituciones con autoridad estatutaria.',
+      'Los plazos y bases legales provienen del BOE. El escalado externo es al Síndic CV y, si es una petición de transparencia, al Consell de Transparència CV: una reclamación contra un ayuntamiento valenciano no va al CTBG (art. 24.6 y disposición adicional cuarta de la Ley 19/2013; art. 38 de la Ley 1/2022).',
     'quejas.contrato.ver': 'Ver {metodologia} y {aviso} para el contrato completo.',
     'quejas.contrato.metodologia': 'Metodología',
     'quejas.contrato.aviso': 'Aviso legal',
@@ -1497,6 +1501,8 @@ export const CATALOGUE = {
       '«Administración investigada» es lo que dice el registro del Síndic, y no equivale a que la resolución se dirija al Ayuntamiento: en un expediente de dependencia las consideraciones fueron para la Conselleria y el Ayuntamiento sólo informó como parte.',
     'quejas.sindic.fichas':
       'Hemos leído las resoluciones de consideraciones una a una y firmado **{n} fichas**, una por cada resolución cuyas consideraciones van dirigidas al Ayuntamiento. El texto que reproducimos es literal.',
+    'quejas.sindic.fichas.una':
+      'Hemos leído las resoluciones de consideraciones una a una y firmado **{n} ficha**, la de la única resolución cuyas consideraciones van dirigidas al Ayuntamiento. El texto que reproducimos es literal.',
     'quejas.sindic.noListadas.una':
       'El buscador del Síndic ya no lista una de ellas (expediente {lista}): sigue publicada en el PDF que su ficha enlaza, y por eso la contamos.',
     'quejas.sindic.noListadas.varias':
@@ -1527,9 +1533,10 @@ export const CATALOGUE = {
       'Índice transcrito del buscador del Síndic · actualizado {fecha}. Fuente: {enlace}.',
     'quejas.consell.eyebrow': 'Escalado externo · Consell de Transparència CV',
     'quejas.consell.titulo': 'Resoluciones autonómicas de transparencia',
-    'quejas.consell.resoluciones': 'resoluciones · {n} año(s)',
+    'quejas.consell.resoluciones.uno': 'resoluciones · {n} año',
+    'quejas.consell.resoluciones': 'resoluciones · {n} años',
     'quejas.consell.contra': 'Contra Riba-roja',
-    'quejas.consell.sinReclamaciones': 'sin reclamaciones transparencia resueltas',
+    'quejas.consell.sinReclamaciones': 'sin reclamaciones de transparencia resueltas',
     'quejas.consell.fila': 'Nº {numero} · Expte {expediente} · {fecha}',
     'quejas.consell.cero':
       'El Consell de Transparència CV es el órgano autonómico que resuelve reclamaciones municipales de transparencia (art. 24 Ley 19/2013 + Ley 1/2022). Un "0" aquí es un dato en sí mismo: no se ha escalado formalmente ningún silencio del Ayuntamiento de Riba-roja en el periodo verificado.',
@@ -1568,14 +1575,17 @@ export const CATALOGUE = {
     'quejas.sindicatura.barridos':
       'Riba-roja como entidad auditada en {n} barridos sectoriales de entidades locales',
     'quejas.sindicatura.mostrando': 'Mostrando los {n} más recientes de {total}.',
+    'quejas.sindicatura.pie.una':
+      '{n} auditoría específica · {menciones} menciones en total · actualizado {fecha}. Fuente: {enlace}.',
     'quejas.sindicatura.pie':
-      '{n} auditoría(s) específica(s) · {menciones} menciones en total · actualizado {fecha}. Fuente: {enlace}.',
+      '{n} auditorías específicas · {menciones} menciones en total · actualizado {fecha}. Fuente: {enlace}.',
     // Los edictos del BOP.
     'quejas.bop.eyebrow': 'Edictos oficiales · BOP València',
     'quejas.bop.vacio.parcial':
       'Sin anuncios del Ayuntamiento en los {leidos} boletines del BOP que hemos podido leer (ventana de {pedidos} días).',
     'quejas.bop.vacio': 'Sin anuncios del Ayuntamiento en el BOP en los últimos 30 días.',
-    'quejas.bop.pie': '{n} anuncio(s) · comprobado {fecha} · {enlace}',
+    'quejas.bop.pie.uno': '{n} anuncio · comprobado {fecha} · {enlace}',
+    'quejas.bop.pie': '{n} anuncios · comprobado {fecha} · {enlace}',
     'quejas.bop.oficial': 'BOP oficial',
     // /quejas/dashboard
     'dashboard.cifras.pendientes.sub': 'en trámite o capturadas',
@@ -4225,6 +4235,7 @@ export const CATALOGUE = {
     'laboratorio.prensa.factcheck.unica': 'Es va consultar l’única font, {nombres}',
     'laboratorio.prensa.factcheck.todas': 'Es van consultar les {n} fonts —{nombres}—',
     'laboratorio.prensa.factcheck.algunas': 'Es van consultar {ok} de {n} fonts —{nombres}—',
+    'laboratorio.prensa.factcheck.sinRevisiones.una': 'no va tornar cap revisió',
     'laboratorio.prensa.factcheck.sinRevisiones': 'no van tornar cap revisió',
     'laboratorio.prensa.factcheck.examinadas.una': '{n} revisió examinada',
     'laboratorio.prensa.factcheck.examinadas': '{n} revisions examinades',
@@ -4233,6 +4244,7 @@ export const CATALOGUE = {
     'laboratorio.prensa.factcheck.fallo':
       ' {fuente} no es va poder consultar ({motivo}): el que haja publicat no s’ha mirat.',
     // El puente entre la tabla por medio y «Titulares monitorizados» (`puenteTablaMedios`).
+    'laboratorio.prensa.puente.todos.uno': 'La taula compta l’únic titular monitoritzat.',
     'laboratorio.prensa.puente.todos': 'La taula compta els {titulares}.',
     'laboratorio.prensa.puente.fuera':
       'La taula compta {titulares} del feed: els {monitorizados} monitoritzats menys {fuera} en el feed, que no hi entren.',
@@ -4957,12 +4969,14 @@ export const CATALOGUE = {
     'dashboard.areas.sinArea': '{n} queixes no corresponen a cap àrea de la llista.',
     // El chrome de /quejas y de /quejas/dashboard que se escribía a mano en la página
     // (barrido de palabras, segunda tanda). El castellano es el que pintaba la página,
-    // letra a letra; los datos —el asunto de un expediente, el título de un informe,
-    // el texto de una queja— siguen en su idioma. Un par de asteriscos marca negrita
-    // (`Marcado`).
-    'quejas.cargando': 'Carregant el feed…',
+    // letra a letra, salvo lo que esa tanda listó como mal escrito y se corrigió
+    // después: el CTBG de «Qué publicamos y qué no», los plurales con una sola y entre
+    // paréntesis, «Cargando feed…» y «snapshot». Los datos —el asunto de un expediente,
+    // el título de un informe, el texto de una queja— siguen en su idioma. Un par de
+    // asteriscos marca negrita (`Marcado`).
+    'quejas.cargando': 'Carregant les queixes…',
     'quejas.error':
-      'No s’ha pogut carregar {fichero}. Pot ser que el bot encara no haja publicat la seua primera instantània.',
+      'No s’ha pogut carregar {fichero}. Pot ser que el bot encara no haja publicat la seua primera exportació.',
     'quejas.cifras.total': 'Total de queixes',
     'quejas.cifras.total.sub': 'des de l’inici del canal',
     'quejas.cifras.resueltas': 'Resoltes',
@@ -5011,7 +5025,7 @@ export const CATALOGUE = {
     'quejas.contrato.noPublicamos':
       'No publiquem: identitat del denunciant, la foto original sense anonimitzar, lat/lng exactes, personal tècnic municipal.',
     'quejas.contrato.plazos':
-      'Els terminis i les bases legals provenen del BOE. L’elevació externa és al Síndic CV / CTBG, institucions amb autoritat estatutària.',
+      'Els terminis i les bases legals provenen del BOE. L’elevació externa és al Síndic CV i, si és una petició de transparència, al Consell de Transparència CV: una reclamació contra un ajuntament valencià no va al CTBG (art. 24.6 i disposició addicional quarta de la Llei 19/2013; art. 38 de la Llei 1/2022).',
     'quejas.contrato.ver': 'Veure {metodologia} i {aviso} per al contracte complet.',
     'quejas.contrato.metodologia': 'Metodologia',
     'quejas.contrato.aviso': 'Avís legal',
@@ -5032,6 +5046,8 @@ export const CATALOGUE = {
       '«Administració investigada» és el que diu el registre del Síndic, i no equival al fet que la resolució es dirigisca a l’Ajuntament: en un expedient de dependència les consideracions van ser per a la Conselleria i l’Ajuntament només va informar com a part.',
     'quejas.sindic.fichas':
       'Hem llegit les resolucions de consideracions una a una i hem signat **{n} fitxes**, una per cada resolució les consideracions de la qual van dirigides a l’Ajuntament. El text que reproduïm és literal.',
+    'quejas.sindic.fichas.una':
+      'Hem llegit les resolucions de consideracions una a una i hem signat **{n} fitxa**, la de l’única resolució les consideracions de la qual van dirigides a l’Ajuntament. El text que reproduïm és literal.',
     'quejas.sindic.noListadas.una':
       'El cercador del Síndic ja no llista una d’elles (expedient {lista}): continua publicada en el PDF que enllaça la seua fitxa, i per això la comptem.',
     'quejas.sindic.noListadas.varias':
@@ -5060,7 +5076,8 @@ export const CATALOGUE = {
       'Índex transcrit del cercador del Síndic · actualitzat {fecha}. Font: {enlace}.',
     'quejas.consell.eyebrow': 'Elevació externa · Consell de Transparència CV',
     'quejas.consell.titulo': 'Resolucions autonòmiques de transparència',
-    'quejas.consell.resoluciones': 'resolucions · {n} any(s)',
+    'quejas.consell.resoluciones.uno': 'resolucions · {n} any',
+    'quejas.consell.resoluciones': 'resolucions · {n} anys',
     'quejas.consell.contra': 'Contra Riba-roja',
     'quejas.consell.sinReclamaciones': 'sense reclamacions de transparència resoltes',
     'quejas.consell.fila': 'Núm. {numero} · Exp. {expediente} · {fecha}',
@@ -5101,14 +5118,17 @@ export const CATALOGUE = {
     'quejas.sindicatura.barridos':
       'Riba-roja com a entitat auditada en {n} revisions sectorials d’entitats locals',
     'quejas.sindicatura.mostrando': 'Es mostren els {n} més recents de {total}.',
+    'quejas.sindicatura.pie.una':
+      '{n} auditoria específica · {menciones} mencions en total · actualitzat {fecha}. Font: {enlace}.',
     'quejas.sindicatura.pie':
-      '{n} auditoria(es) específica(ques) · {menciones} mencions en total · actualitzat {fecha}. Font: {enlace}.',
+      '{n} auditories específiques · {menciones} mencions en total · actualitzat {fecha}. Font: {enlace}.',
     // Los edictos del BOP.
     'quejas.bop.eyebrow': 'Edictes oficials · BOP València',
     'quejas.bop.vacio.parcial':
       'Sense anuncis de l’Ajuntament en els {leidos} butlletins del BOP que hem pogut llegir (finestra de {pedidos} dies).',
     'quejas.bop.vacio': 'Sense anuncis de l’Ajuntament en el BOP en els últims 30 dies.',
-    'quejas.bop.pie': '{n} anunci(s) · comprovat {fecha} · {enlace}',
+    'quejas.bop.pie.uno': '{n} anunci · comprovat {fecha} · {enlace}',
+    'quejas.bop.pie': '{n} anuncis · comprovat {fecha} · {enlace}',
     'quejas.bop.oficial': 'BOP oficial',
     // /quejas/dashboard
     'dashboard.cifras.pendientes.sub': 'en tràmit o capturades',

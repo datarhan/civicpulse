@@ -207,7 +207,10 @@ function SindicCard() {
           <>
             <Marcado
               estilo={TINTA}
-              texto={rellena(t('quejas.sindic.fichas'), { n: fichas.length })}
+              texto={rellena(
+                t(fichas.length === 1 ? 'quejas.sindic.fichas.una' : 'quejas.sindic.fichas'),
+                { n: fichas.length },
+              )}
             />
             {noListadas.length > 0 && (
               <>
@@ -468,6 +471,7 @@ function SindicaturaCard() {
   const sectoral = data.sectoral || []
   const a218 = data.art218
   const st = data.stats || {}
+  const auditorias = st.dedicated ?? dedicated.length
   const Report = ({ r, dedicatedRow }) => (
     <div key={r.id} style={{ padding: '9px 0', borderTop: '1px dotted var(--border2)' }}>
       <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 3 }}>
@@ -574,11 +578,14 @@ function SindicaturaCard() {
             style={{ fontSize: 'var(--fs-micro)', color: 'var(--ink50)', marginTop: 8 }}
           >
             {conHuecos(
-              rellena(t('quejas.sindicatura.pie'), {
-                n: st.dedicated ?? dedicated.length,
-                menciones: st.sectoralTotal ?? 0,
-                fecha: fmtDateShort(data.generatedAt, locale),
-              }),
+              rellena(
+                t(auditorias === 1 ? 'quejas.sindicatura.pie.una' : 'quejas.sindicatura.pie'),
+                {
+                  n: auditorias,
+                  menciones: st.sectoralTotal ?? 0,
+                  fecha: fmtDateShort(data.generatedAt, locale),
+                },
+              ),
               {
                 '{enlace}': (
                   <a
@@ -644,7 +651,14 @@ function ConsellCvCard() {
             {stats.totalEntries.toLocaleString('es-ES')}
           </div>
           <div style={{ fontSize: 'var(--fs-micro)', color: 'var(--ink50)' }}>
-            {rellena(t('quejas.consell.resoluciones'), { n: stats.years.length })}
+            {rellena(
+              t(
+                stats.years.length === 1
+                  ? 'quejas.consell.resoluciones.uno'
+                  : 'quejas.consell.resoluciones',
+              ),
+              { n: stats.years.length },
+            )}
           </div>
         </div>
         <div>
@@ -1335,6 +1349,7 @@ function BopCard() {
   const { data } = useBop()
   if (!data) return null
   const anuncios = (data.anuncios || []).slice(0, 6)
+  const total = data.stats?.total ?? 0
   const covered = data.stats?.daysCovered ?? null
   const requested = data.stats?.daysRequested ?? null
   const when = fmtDateShort(data.generatedAt, locale)
@@ -1374,13 +1389,19 @@ function BopCard() {
         </div>
       )}
       <div style={{ marginTop: 10, fontSize: 'var(--fs-micro)', color: 'var(--ink50)' }}>
-        {conHuecos(rellena(t('quejas.bop.pie'), { n: data.stats?.total ?? 0, fecha: when }), {
-          '{enlace}': (
-            <ExtLink href={data.source?.home} style={{ color: 'var(--civic)' }}>
-              {t('quejas.bop.oficial')}
-            </ExtLink>
-          ),
-        })}
+        {conHuecos(
+          rellena(t(total === 1 ? 'quejas.bop.pie.uno' : 'quejas.bop.pie'), {
+            n: total,
+            fecha: when,
+          }),
+          {
+            '{enlace}': (
+              <ExtLink href={data.source?.home} style={{ color: 'var(--civic)' }}>
+                {t('quejas.bop.oficial')}
+              </ExtLink>
+            ),
+          },
+        )}
       </div>
     </Card>
   )

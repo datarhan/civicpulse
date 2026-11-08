@@ -628,9 +628,15 @@ export function fraseFactcheck(fc, t = castellano) {
           n: numero(n),
           nombres,
         })
+  // «Se consultó la única fuente, X: no devolvieron»: con una sola consultada, el
+  // verbo va en singular, también cuando es una de varias.
   const resultado =
     examinadas === 0
-      ? t('laboratorio.prensa.factcheck.sinRevisiones')
+      ? t(
+          ok.length === 1
+            ? 'laboratorio.prensa.factcheck.sinRevisiones.una'
+            : 'laboratorio.prensa.factcheck.sinRevisiones',
+        )
       : `${contar(t, examinadas, 'laboratorio.prensa.factcheck.examinadas.una', 'laboratorio.prensa.factcheck.examinadas')}, ` +
         (aceptadas === 0
           ? t('laboratorio.prensa.factcheck.ningunaSobre')
@@ -665,6 +671,8 @@ export function puenteTablaMedios(outlets, summary, t = castellano) {
     'laboratorio.prensa.n.titular',
   )
   if (suma + fuera === monitorizados) {
+    // «La tabla cuenta los 1 titular monitorizado»: con uno, «el único».
+    if (fuera === 0 && suma === 1) return t('laboratorio.prensa.puente.todos.uno')
     if (fuera === 0)
       return rellena(t('laboratorio.prensa.puente.todos'), {
         titulares: contar(
