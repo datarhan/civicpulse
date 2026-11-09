@@ -361,6 +361,14 @@
       "reason": "La frase fecha su recuento, y el recuento es exacto: public/data/tenders.json tenía 804 contratos en el snapshot del 30-07-2026 (3d1bc415, 07:22 UTC) y en el del 01-08 (626c3bea), y la fuente src-073 del informe se tomó el 2026-07-30 (22:35 UTC), entre los dos. Los 814 de hoy son esos 804 —siguen todos— más 10 expedientes que entraron después de julio (804 + 10 = 814; 711 + 6 = 717 adjudicados o formalizados). El cruce no examinó esos 10 y la frase no dice que lo hiciera; ninguno menciona «Pozuelo» ni sus antiguos empleadores declarados (buscado en la fila entera). Es la lectura del descarte del 19-09-2026 en /laboratorio/agentes/a-robert-raga-bio-v4 y del de hoy en a-jose-angel-hernandez-bio: la revisión lectora de la auditoría de esta PR la repitió en cada biografía cuya bitácora cambió. Comprobado el 30-10-2026. Propuesto en la PR de la revisión del 30-10-2026, que el operador aprueba antes de fusionar.",
       "editor": "claude-opus-5.5",
       "at": "2026-10-30"
+    },
+    {
+      "route": "/metodologia",
+      "quote": "y no publicamos ninguna nota",
+      "anchor": "lo dice una vez sobre la tabla",
+      "reason": "«Nota» es aquí calificación, no salvedad. La frase de la tarjeta «Cuánto cuesta y qué se obtiene» resume la regla que la misma tarjeta da más abajo: «No se publica ninguna nota global, ni por dimensión ni de conjunto, ni un puesto del municipio en una tabla». Dentro de la tarjeta «nota» sólo tiene ese sentido —«no es una nota de cómo se gobierna», «un coste unitario alto no es un suspenso»—, y lo que el revisor echa en falta la tarjeta lo llama «salvedad» y «aviso» y lo describe en la propia tarjeta. La frase del apartado de al lado dice «Los datos no ponen nota». /metodologia no tiene lectura plegada: la frase se pinta siempre encima de ese cuerpo. Las pasadas del 01-11 y del 09-11-2026 leyeron «nota» como salvedad («no añade ninguna salvedad», «sin salvedades») y las dos dan como contradicción la frase de la salvedad, «El libro de servicios lo dice una vez sobre la tabla». El ancla es esa frase: calla sólo esa lectura, y si una pasada objeta otra cosa a la misma frase —por ejemplo, la puntuación de /laboratorio/frontera, que la página declara aparte como excepción del laboratorio— el señalamiento vuelve. Comprobado en el build servido (127.0.0.1, con las banderas de lanzamiento) el 09-11-2026. Propuesto en PR, que el operador aprueba antes de fusionar.",
+      "editor": "claude-opus-5.5",
+      "at": "2026-11-09"
     }
   ]
 }
