@@ -46,7 +46,11 @@ npm run chunk-pleno-claims                        # regenerate SPA chunks (idemp
 ```
 
 Extraction writes a per-pleno checkpoint to the suggestions file so a rate-limit
-crash mid-batch preserves completed plenos (SIGINT flushes too). Verification
+crash mid-batch preserves completed plenos (SIGINT flushes too). Each claim
+carries `extraidaPor` — the backend and model that **answered** its window (not
+the configured one: a fallback can answer for the primary) and the prompt
+version — and the CLI prints who answered per pleno. Claims extracted before
+2026-11-09 lack it: unknown, never backfilled by guessing from the quote. Verification
 refreshes `public/data/pleno-claims/<id>.json` plus the manifest at
 `pleno-claims/index.json` — the SPA reads chunks, the CLIs read the monolith.
 

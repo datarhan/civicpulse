@@ -251,6 +251,15 @@ async function runOne(
     `[extract·claims]   ${plenoId} · recuentos descartados: ${u['fragmento-json']} con trozos ` +
       `de JSON en la unidad · ${u.moneda} con una moneda por unidad (el dinero va en amountEuros)\n`,
   )
+  // Quién contestó, con su nombre: si el respaldo de la cadena tomó ventanas,
+  // aquí se ve, y cada declaración lo lleva en `extraidaPor`.
+  const porModelo = Object.entries(res.stats.contestadasPor)
+  const sinProcedencia = res.stats.windowsAnswered - porModelo.reduce((s, [, n]) => s + n, 0)
+  process.stdout.write(
+    `[extract·claims]   ${plenoId} · contestaron: ` +
+      `${porModelo.length ? porModelo.map(([m, n]) => `${m} ${n}`).join(', ') : 'nadie con nombre'}` +
+      `${sinProcedencia ? ` · ${sinProcedencia} sin procedencia` : ''}\n`,
+  )
   windowTally.answered += res.stats.windowsAnswered
   windowTally.unanswered += res.stats.windowsUnanswered
   return res.items

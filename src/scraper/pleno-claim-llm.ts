@@ -11,8 +11,8 @@
  * claims to a curated file.
  */
 
-import { callLLM } from '../llm/client'
-import type { CallLlmOptions } from '../llm/client'
+import { callLLMConProcedencia } from '../llm/client'
+import type { CallLlmOptions, RespuestaConProcedencia } from '../llm/client'
 import { decideAutomation } from './automation-policy'
 import { singleSeatBlocs } from './corporation-seats'
 import { PlenoClaimResponseSchema, type PlenoClaimExtraction } from '../llm/schemas'
@@ -112,12 +112,24 @@ export interface ClaimExtractionResult {
      * del colapso: miden cuánto se equivoca el modelo, no cuánto sobrevive.
      */
     unidadesDescartadas: Record<MotivoDeDescarte, number>
+    /**
+     * Ventanas contestadas, por el modelo que CONTESTÓ (como lo nombra la
+     * caché). Suma `windowsAnswered` cuando todas las respuestas traen
+     * procedencia; un `caller` inyectado no la trae, y la diferencia es
+     * exactamente lo que no consta.
+     */
+    contestadasPor: Record<string, number>
   }
 }
 
 export type LlmCaller = <TSchema extends ZodTypeAny>(
   opts: CallLlmOptions<TSchema>,
 ) => Promise<z.infer<TSchema> | null>
+
+/** Como `LlmCaller`, pero dice también quién contestó (`callLLMConProcedencia`). */
+export type LlmCallerConProcedencia = <TSchema extends ZodTypeAny>(
+  opts: CallLlmOptions<TSchema>,
+) => Promise<RespuestaConProcedencia<z.infer<TSchema>>>
 
 /**
  * Round a number to N significant figures so LLM-variant amounts
@@ -225,10 +237,27 @@ export function splitClaimWindows(transcript: string, windowChars: number, step:
   return out
 }
 
+/**
+ * Extrae con el cliente real, que dice quién contestó cada ventana, salvo que
+ * se inyecte un `caller` (pruebas, eval:extractor): ése devuelve sólo la
+ * respuesta, y sus declaraciones salen sin `extraidaPor` —no consta—, nunca con
+ * un rótulo supuesto.
+ */
 export async function extractClaimsWithLlm(
   transcript: string,
   opts: ClaimExtractionOptions,
-  caller: LlmCaller = callLLM,
+  caller?: LlmCaller,
+): Promise<ClaimExtractionResult> {
+  const preguntar: LlmCallerConProcedencia = caller
+    ? async (o) => ({ result: await caller(o), procedencia: null })
+    : callLLMConProcedencia
+  return extractClaimsConProcedencia(transcript, opts, preguntar)
+}
+
+export async function extractClaimsConProcedencia(
+  transcript: string,
+  opts: ClaimExtractionOptions,
+  preguntar: LlmCallerConProcedencia = callLLMConProcedencia,
 ): Promise<ClaimExtractionResult> {
   const minConfidence = opts.minConfidence ?? 0.5
   const windowChars = opts.windowChars ?? 1200
@@ -286,6 +315,7 @@ export async function extractClaimsWithLlm(
   const items: PlenoClaim[] = []
   let droppedLowConfidence = 0
   const unidadesDescartadas: Record<MotivoDeDescarte, number> = { 'fragmento-json': 0, moneda: 0 }
+  const contestadasPor: Record<string, number> = {}
 
   // Process windows in fixed-size parallel batches. Each batch awaits all of
   // its calls before starting the next so cache writes + dedup keep ordered
@@ -293,7 +323,7 @@ export async function extractClaimsWithLlm(
   async function runWindow(i: number): Promise<number> {
     const window = windows[i]
     const userPrompt = buildPlenoClaimUserPrompt(window)
-    const response = await caller({
+    const { result: response, procedencia } = await preguntar({
       systemPrompt,
       userPrompt,
       promptVersion: PLENO_CLAIM_PROMPT_VERSION,
@@ -310,6 +340,17 @@ export async function extractClaimsWithLlm(
       return 0
     }
     windowsAnswered += 1
+    // Quien CONTESTÓ esta ventana, no lo configurado: con el respaldo de la
+    // cadena pueden no coincidir (procedencia-del-motor.ts).
+    const extraidaPor = procedencia
+      ? {
+          backend: procedencia.backend,
+          model: procedencia.model,
+          promptVersion: PLENO_CLAIM_PROMPT_VERSION,
+        }
+      : null
+    if (procedencia)
+      contestadasPor[procedencia.model] = (contestadasPor[procedencia.model] ?? 0) + 1
     let kept = 0
     for (const raw of response.claims) {
       if (raw.confidence < minConfidence) {
@@ -357,6 +398,7 @@ export async function extractClaimsWithLlm(
         ...(raw.accusationSubtype ? { accusationSubtype: raw.accusationSubtype } : {}),
         confidence: raw.confidence,
         reasoning: raw.reasoning,
+        ...(extraidaPor ? { extraidaPor } : {}),
         requiresHumanApproval: true,
       })
       kept += 1
@@ -399,6 +441,7 @@ export async function extractClaimsWithLlm(
       windowsUnanswered,
       blocsRetenidos,
       unidadesDescartadas,
+      contestadasPor,
     },
   }
 }
