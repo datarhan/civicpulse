@@ -1,16 +1,16 @@
 {
-  "generatedAt": "2026-11-02T09:21:53.590Z",
+  "generatedAt": "2026-11-09T09:31:48.749Z",
   "source": {
     "description": "Press claims verified against municipal data",
     "contract": "src/scraper/press-verifier.ts"
   },
   "stats": {
-    "total": 104,
+    "total": 137,
     "byVerdict": {
       "verificado": 0,
-      "parcial": 1,
+      "parcial": 3,
       "contradicho": 0,
-      "sin-datos": 102,
+      "sin-datos": 133,
       "promesa-repetida": 1
     }
   },
@@ -3909,9 +3909,1254 @@
         "articleSourceHost": "levante-emv.com",
         "articleFingerprint": "7o1b0g"
       }
+    },
+    {
+      "claim": {
+        "id": "cp9sxg-0-num",
+        "articleId": "cp9sxg",
+        "articleFingerprint": "gq6nc",
+        "articleSource": "Levante-EMV",
+        "articleSourceHost": "levante-emv.com",
+        "articleUrl": "https://news.google.com/rss/articles/CBMi0gFBVV95cUxNVm9OVkc4dkZtLVpmVWYwX0p6RE9LQXJ0VG45UUxOOEx3ZjBFaGtWbHlFcEZsNmpqOUxrdk13Vl9PbFlGSFFtVnZ4T1hXSFA5SE1SdzNIQkRFTkJKRXVxY3BLRkVoeVBWNUV0WWlya1RaOExnUzZEaEZRb2NTbzJCUlJTUlBGS042OUpXeVVic21NazZaYkZ5Vi1UMGhQX09BZHFXaXNBWjNBeWQ1YXRteVp4SXRmQ0ZrSzdZd1RIUWVtdEVhb3FnUDNRaXh2dThhX2fSAdcBQVVfeXFMUE1aYXpqLURBdm9CeTJCNW43VHVfQS1JQjdMdG1rNnhSTHZxM0gtSzFPSV92WEk4cnh6YUoySmNHcUhYOUlEOGR1bGZHV2tJNWhfVUo0OS1aa3kyTDg1eFdQMHBZNmVZVGo3cGZKRkUtVmotZXJPbFdkRkRfeGh4Q0RBdDdickhscWZCS0owclFOT05LTS1hek9vVHVTZGctczJQSVJ2bmtUXzQ0d0ZndnhlM2RENmZ2WHB2ekIxU1ZJcGdQQW1heDZSeG5YSUVIOHFLdEJtT0E?oc=5",
+        "articleDate": "2026-11-06T13:08:52.000Z",
+        "segmentIndex": 0,
+        "segmentKind": "title",
+        "type": "afirmacion_numerica",
+        "attributedSource": "outlet",
+        "verbatim": "ofrecerá alquileres desde 388 euros en l’Horta y Camp de Túria",
+        "context": "Titular: \"Casa 47 ofrecerá alquileres desde 388 euros en l’Horta y Camp de Túria: estos serán los municipios y requisitos para acceder a ellos\"",
+        "topic": "vivienda",
+        "entities": {
+          "amountEuros": 388,
+          "referencedEntity": "Casa 47"
+        },
+        "confidence": 0.55,
+        "reasoning": "Cifra concreta de precio de alquiler atribuida a una iniciativa (Casa 47), verificable, aunque solo se dispone del titular sin cuerpo del artículo.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "cp9sxg-0-num",
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders, tenders-ted y bdns que la sostenga. Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
+        "evidence": [],
+        "checkedAgainst": [
+          "tenders",
+          "tenders-ted",
+          "bdns"
+        ],
+        "articleUrl": "https://news.google.com/rss/articles/CBMi0gFBVV95cUxNVm9OVkc4dkZtLVpmVWYwX0p6RE9LQXJ0VG45UUxOOEx3ZjBFaGtWbHlFcEZsNmpqOUxrdk13Vl9PbFlGSFFtVnZ4T1hXSFA5SE1SdzNIQkRFTkJKRXVxY3BLRkVoeVBWNUV0WWlya1RaOExnUzZEaEZRb2NTbzJCUlJTUlBGS042OUpXeVVic21NazZaYkZ5Vi1UMGhQX09BZHFXaXNBWjNBeWQ1YXRteVp4SXRmQ0ZrSzdZd1RIUWVtdEVhb3FnUDNRaXh2dThhX2fSAdcBQVVfeXFMUE1aYXpqLURBdm9CeTJCNW43VHVfQS1JQjdMdG1rNnhSTHZxM0gtSzFPSV92WEk4cnh6YUoySmNHcUhYOUlEOGR1bGZHV2tJNWhfVUo0OS1aa3kyTDg1eFdQMHBZNmVZVGo3cGZKRkUtVmotZXJPbFdkRkRfeGh4Q0RBdDdickhscWZCS0owclFOT05LTS1hek9vVHVTZGctczJQSVJ2bmtUXzQ0d0ZndnhlM2RENmZ2WHB2ekIxU1ZJcGdQQW1heDZSeG5YSUVIOHFLdEJtT0E?oc=5",
+        "articleSource": "Levante-EMV",
+        "articleSourceHost": "levante-emv.com",
+        "articleFingerprint": "gq6nc"
+      }
+    },
+    {
+      "claim": {
+        "id": "ux557c-0-dat",
+        "articleId": "ux557c",
+        "articleFingerprint": "1wtaebr",
+        "articleSource": "Ayuntamiento de Riba-roja de Túria",
+        "articleSourceHost": "ribarroja.es",
+        "articleUrl": "https://www.ribarroja.es/es/noticia/riba-roja-habilita-en-la-web-municipal-un-enlace-para-conocer-en-qu%C3%A9-mesa-votar-en-las-pr%C3%B3ximas-elecciones-generales",
+        "articleDate": "2026-11-05T12:04:48.000Z",
+        "segmentIndex": 0,
+        "segmentKind": "title",
+        "type": "dato_municipal",
+        "attributedSource": "municipal",
+        "verbatim": "Riba-roja habilita en la web municipal un enlace para conocer en qué mesa votar en las próximas elecciones generales",
+        "context": "Riba-roja habilita en la web municipal un enlace para conocer en qué mesa votar en las próximas elecciones generales",
+        "topic": "other",
+        "entities": {
+          "count": 1,
+          "countUnit": "enlace",
+          "referencedEntity": "elecciones generales"
+        },
+        "confidence": 0.6,
+        "reasoning": "Es un hecho verificable comprobando si el enlace existe realmente en la web municipal.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "ux557c-0-dat",
+        "verdict": "sin-datos",
+        "summary": "No se ha encontrado el dato municipal en las series locales.",
+        "evidence": [],
+        "checkedAgainst": [],
+        "articleUrl": "https://www.ribarroja.es/es/noticia/riba-roja-habilita-en-la-web-municipal-un-enlace-para-conocer-en-qu%C3%A9-mesa-votar-en-las-pr%C3%B3ximas-elecciones-generales",
+        "articleSource": "Ayuntamiento de Riba-roja de Túria",
+        "articleSourceHost": "ribarroja.es",
+        "articleFingerprint": "1wtaebr"
+      }
+    },
+    {
+      "claim": {
+        "id": "6mxh64-0-num",
+        "articleId": "6mxh64",
+        "articleFingerprint": "v1pf50",
+        "articleSource": "Periòdic del Camp de Túria",
+        "articleSourceHost": "infoturia.com",
+        "articleUrl": "https://www.infoturia.com/riba-roja-de-turia/87032-riba-roja-assigna-140-000-euros-als-clubs-i-per-a-financar-les-seues-activitats.html",
+        "articleDate": "2026-11-02T17:20:02.000Z",
+        "segmentIndex": 0,
+        "segmentKind": "title",
+        "type": "afirmacion_numerica",
+        "attributedSource": "unspecified",
+        "verbatim": "Riba-roja assigna 140.000 euros als clubs i per a finançar les seues activitats",
+        "context": "Titular: Riba-roja assigna 140.000 euros als clubs i per a finançar les seues activitats (Periòdic del Camp de Túria, 2026-11-02). No se dispone del cuerpo del artículo, solo del titular.",
+        "topic": "other",
+        "entities": {
+          "amountEuros": 140000,
+          "countUnit": "euros",
+          "referencedEntity": "clubs"
+        },
+        "confidence": 0.55,
+        "reasoning": "El titular afirma una cifra concreta (140.000 euros) asignada a clubes, un dato presupuestario verificable, aunque sin el cuerpo del artículo no se puede confirmar fuente ni detalles adicionales.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "6mxh64-0-num",
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders, tenders-ted y bdns que la sostenga. Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
+        "evidence": [],
+        "checkedAgainst": [
+          "tenders",
+          "tenders-ted",
+          "bdns"
+        ],
+        "articleUrl": "https://www.infoturia.com/riba-roja-de-turia/87032-riba-roja-assigna-140-000-euros-als-clubs-i-per-a-financar-les-seues-activitats.html",
+        "articleSource": "Periòdic del Camp de Túria",
+        "articleSourceHost": "infoturia.com",
+        "articleFingerprint": "v1pf50"
+      }
+    },
+    {
+      "claim": {
+        "id": "1t3g13k-0-num",
+        "articleId": "1t3g13k",
+        "articleFingerprint": "butwtc",
+        "articleSource": "Ayuntamiento de Riba-roja de Túria",
+        "articleSourceHost": "ribarroja.es",
+        "articleUrl": "https://www.ribarroja.es/es/noticia/el-ayuntamiento-de-riba-roja-de-t%C3%BAria-asigna-140.000-euros-en-subvenciones-econ%C3%B3micas-a-los-clubes-y-entidades-deportivas-para-financiar-sus-actividades-y-programas-de-la-temporada-25/26",
+        "articleDate": "2026-11-02T10:31:40.000Z",
+        "segmentIndex": 0,
+        "segmentKind": "body",
+        "type": "afirmacion_numerica",
+        "attributedSource": "outlet",
+        "verbatim": "ha asignado un total de 140.000 euros de los fondos municipales para financiar y sufragar las actividades y programas que han llevado a cabo las entidades y clubes deportivos",
+        "context": "El Ayuntamiento de Riba-roja de Túria ha asignado un total de 140.000 euros de los fondos municipales para financiar y sufragar las actividades y programas que han llevado a cabo las entidades y clubes deportivos radicados en el término municipal a lo largo de la pasada temporada 2025/2026.",
+        "topic": "social",
+        "entities": {
+          "amountEuros": 140000,
+          "date": "2025/2026",
+          "referencedEntity": "clubes y entidades deportivas de Riba-roja de Túria"
+        },
+        "confidence": 0.9,
+        "reasoning": "Cifra concreta de subvención municipal verificable en presupuestos y bases reguladoras publicadas.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "1t3g13k-0-num",
+        "verdict": "parcial",
+        "summary": "Coincidencia parcial: hay datos relacionados pero no idénticos al claim.",
+        "evidence": [
+          {
+            "kind": "bdns",
+            "ref": "https://www.pap.hacienda.gob.es/bdnstrans/GE/es/convocatoria/931666",
+            "snippet": "Resolución de alcaldía/ Acuerdo Nº 3045/2026 de 24 de septiembre de 2026 del Ayuntamiento de Riba-roja de Turia por la que se convocan subvenciones destinadas a · importe no publicado",
+            "similarity": 1,
+            "stance": "checked"
+          }
+        ],
+        "checkedAgainst": [
+          "tenders",
+          "tenders-ted",
+          "bdns"
+        ],
+        "articleUrl": "https://www.ribarroja.es/es/noticia/el-ayuntamiento-de-riba-roja-de-t%C3%BAria-asigna-140.000-euros-en-subvenciones-econ%C3%B3micas-a-los-clubes-y-entidades-deportivas-para-financiar-sus-actividades-y-programas-de-la-temporada-25/26",
+        "articleSource": "Ayuntamiento de Riba-roja de Túria",
+        "articleSourceHost": "ribarroja.es",
+        "articleFingerprint": "butwtc"
+      }
+    },
+    {
+      "claim": {
+        "id": "1t3g13k-1-dat",
+        "articleId": "1t3g13k",
+        "articleFingerprint": "butwtc",
+        "articleSource": "Ayuntamiento de Riba-roja de Túria",
+        "articleSourceHost": "ribarroja.es",
+        "articleUrl": "https://www.ribarroja.es/es/noticia/el-ayuntamiento-de-riba-roja-de-t%C3%BAria-asigna-140.000-euros-en-subvenciones-econ%C3%B3micas-a-los-clubes-y-entidades-deportivas-para-financiar-sus-actividades-y-programas-de-la-temporada-25/26",
+        "articleDate": "2026-11-02T10:31:40.000Z",
+        "segmentIndex": 1,
+        "segmentKind": "body",
+        "type": "dato_municipal",
+        "attributedSource": "outlet",
+        "verbatim": "constar de al menos 30 sesiones anuales y debe tener un mínimo de 5 practicantes empadronados",
+        "context": "Las actividades regulares se considerarán aquellas organizadas por una entidad y bajo la supervisión de un monitor, constar de al menos 30 sesiones anuales y debe tener un mínimo de 5 practicantes empadronados.",
+        "topic": "social",
+        "entities": {
+          "count": 30,
+          "countUnit": "sesiones anuales",
+          "referencedEntity": "actividades regulares de clubes deportivos"
+        },
+        "confidence": 0.85,
+        "reasoning": "Requisito numérico verificable en el texto de las bases reguladoras publicadas.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "1t3g13k-1-dat",
+        "verdict": "sin-datos",
+        "summary": "No se ha encontrado el dato municipal en las series INE / SEPE recientes.",
+        "evidence": [],
+        "checkedAgainst": [
+          "padron"
+        ],
+        "articleUrl": "https://www.ribarroja.es/es/noticia/el-ayuntamiento-de-riba-roja-de-t%C3%BAria-asigna-140.000-euros-en-subvenciones-econ%C3%B3micas-a-los-clubes-y-entidades-deportivas-para-financiar-sus-actividades-y-programas-de-la-temporada-25/26",
+        "articleSource": "Ayuntamiento de Riba-roja de Túria",
+        "articleSourceHost": "ribarroja.es",
+        "articleFingerprint": "butwtc"
+      }
+    },
+    {
+      "claim": {
+        "id": "1t3g13k-2-dat",
+        "articleId": "1t3g13k",
+        "articleFingerprint": "butwtc",
+        "articleSource": "Ayuntamiento de Riba-roja de Túria",
+        "articleSourceHost": "ribarroja.es",
+        "articleUrl": "https://www.ribarroja.es/es/noticia/el-ayuntamiento-de-riba-roja-de-t%C3%BAria-asigna-140.000-euros-en-subvenciones-econ%C3%B3micas-a-los-clubes-y-entidades-deportivas-para-financiar-sus-actividades-y-programas-de-la-temporada-25/26",
+        "articleDate": "2026-11-02T10:31:40.000Z",
+        "segmentIndex": 2,
+        "segmentKind": "body",
+        "type": "dato_municipal",
+        "attributedSource": "outlet",
+        "verbatim": "Se otorgarán dos puntos por cada rango de edad deportivo.",
+        "context": "Se tendrá en cuenta, también, que la entidad esté integrada por deportistas empadronados en Riba-roja de Túria desde los cuatro años hasta los dieciocho. Se otorgarán dos puntos por cada rango de edad deportivo.",
+        "topic": "demografia",
+        "entities": {
+          "count": 2,
+          "countUnit": "puntos",
+          "referencedEntity": "baremo de edad deportiva (4 a 18 años)"
+        },
+        "confidence": 0.8,
+        "reasoning": "Criterio de baremación cuantificable y verificable en las bases reguladoras.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "1t3g13k-2-dat",
+        "verdict": "sin-datos",
+        "summary": "No se ha encontrado el dato municipal en las series locales.",
+        "evidence": [],
+        "checkedAgainst": [],
+        "articleUrl": "https://www.ribarroja.es/es/noticia/el-ayuntamiento-de-riba-roja-de-t%C3%BAria-asigna-140.000-euros-en-subvenciones-econ%C3%B3micas-a-los-clubes-y-entidades-deportivas-para-financiar-sus-actividades-y-programas-de-la-temporada-25/26",
+        "articleSource": "Ayuntamiento de Riba-roja de Túria",
+        "articleSourceHost": "ribarroja.es",
+        "articleFingerprint": "butwtc"
+      }
+    },
+    {
+      "claim": {
+        "id": "1t3g13k-3-dat",
+        "articleId": "1t3g13k",
+        "articleFingerprint": "butwtc",
+        "articleSource": "Ayuntamiento de Riba-roja de Túria",
+        "articleSourceHost": "ribarroja.es",
+        "articleUrl": "https://www.ribarroja.es/es/noticia/el-ayuntamiento-de-riba-roja-de-t%C3%BAria-asigna-140.000-euros-en-subvenciones-econ%C3%B3micas-a-los-clubes-y-entidades-deportivas-para-financiar-sus-actividades-y-programas-de-la-temporada-25/26",
+        "articleDate": "2026-11-02T10:31:40.000Z",
+        "segmentIndex": 3,
+        "segmentKind": "body",
+        "type": "dato_municipal",
+        "attributedSource": "outlet",
+        "verbatim": "con una horquilla de entre 2 puntos para aquellas entidades con una paridad del 5 al 10% y de hasta 8 puntos para los que tengan una paridad de entre el 40’01% y el 50% en total",
+        "context": "El fomento de la paridad entre sexos existente en la entidad o el club deportivo será otro de los criterios objetivos incluidos en estas bases reguladoras, con una horquilla de entre 2 puntos para aquellas entidades con una paridad del 5 al 10% y de hasta 8 puntos para los que tengan una paridad de entre el 40’01% y el 50% en total.",
+        "topic": "social",
+        "entities": {
+          "countUnit": "puntos",
+          "referencedEntity": "baremo de paridad de género en clubes deportivos"
+        },
+        "confidence": 0.8,
+        "reasoning": "Escala de puntuación objetiva y cuantificable incluida en las bases reguladoras municipales.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "1t3g13k-3-dat",
+        "verdict": "sin-datos",
+        "summary": "No se ha encontrado el dato municipal en las series locales.",
+        "evidence": [],
+        "checkedAgainst": [],
+        "articleUrl": "https://www.ribarroja.es/es/noticia/el-ayuntamiento-de-riba-roja-de-t%C3%BAria-asigna-140.000-euros-en-subvenciones-econ%C3%B3micas-a-los-clubes-y-entidades-deportivas-para-financiar-sus-actividades-y-programas-de-la-temporada-25/26",
+        "articleSource": "Ayuntamiento de Riba-roja de Túria",
+        "articleSourceHost": "ribarroja.es",
+        "articleFingerprint": "butwtc"
+      }
+    },
+    {
+      "claim": {
+        "id": "1t3g13k-4-dat",
+        "articleId": "1t3g13k",
+        "articleFingerprint": "butwtc",
+        "articleSource": "Ayuntamiento de Riba-roja de Túria",
+        "articleSourceHost": "ribarroja.es",
+        "articleUrl": "https://www.ribarroja.es/es/noticia/el-ayuntamiento-de-riba-roja-de-t%C3%BAria-asigna-140.000-euros-en-subvenciones-econ%C3%B3micas-a-los-clubes-y-entidades-deportivas-para-financiar-sus-actividades-y-programas-de-la-temporada-25/26",
+        "articleDate": "2026-11-02T10:31:40.000Z",
+        "segmentIndex": 4,
+        "segmentKind": "body",
+        "type": "dato_municipal",
+        "attributedSource": "outlet",
+        "verbatim": "Se podrán añadir otros dos puntos adicionales si la entidad o el club realiza algún tipo de actividad, demostrable, para acciones que fomenten la paridad entre sexos en una práctica deportiva.",
+        "context": "Se podrán añadir otros dos puntos adicionales si la entidad o el club realiza algún tipo de actividad, demostrable, para acciones que fomenten la paridad entre sexos en una práctica deportiva.",
+        "topic": "social",
+        "entities": {
+          "count": 2,
+          "countUnit": "puntos",
+          "referencedEntity": "acciones de fomento de la paridad de género"
+        },
+        "confidence": 0.75,
+        "reasoning": "Criterio de puntuación adicional verificable en el texto literal de las bases reguladoras.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "1t3g13k-4-dat",
+        "verdict": "sin-datos",
+        "summary": "No se ha encontrado el dato municipal en las series locales.",
+        "evidence": [],
+        "checkedAgainst": [],
+        "articleUrl": "https://www.ribarroja.es/es/noticia/el-ayuntamiento-de-riba-roja-de-t%C3%BAria-asigna-140.000-euros-en-subvenciones-econ%C3%B3micas-a-los-clubes-y-entidades-deportivas-para-financiar-sus-actividades-y-programas-de-la-temporada-25/26",
+        "articleSource": "Ayuntamiento de Riba-roja de Túria",
+        "articleSourceHost": "ribarroja.es",
+        "articleFingerprint": "butwtc"
+      }
+    },
+    {
+      "claim": {
+        "id": "1t3g13k-5-dat",
+        "articleId": "1t3g13k",
+        "articleFingerprint": "butwtc",
+        "articleSource": "Ayuntamiento de Riba-roja de Túria",
+        "articleSourceHost": "ribarroja.es",
+        "articleUrl": "https://www.ribarroja.es/es/noticia/el-ayuntamiento-de-riba-roja-de-t%C3%BAria-asigna-140.000-euros-en-subvenciones-econ%C3%B3micas-a-los-clubes-y-entidades-deportivas-para-financiar-sus-actividades-y-programas-de-la-temporada-25/26",
+        "articleDate": "2026-11-02T10:31:40.000Z",
+        "segmentIndex": 5,
+        "segmentKind": "body",
+        "type": "dato_municipal",
+        "attributedSource": "outlet",
+        "verbatim": "Los deportistas con una capacidad certificada del 33% o superior recibirán dos puntos de valoración.",
+        "context": "Se valorarán, también, los gastos federativos que soporta la entidad... Los deportistas con una capacidad certificada del 33% o superior recibirán dos puntos de valoración.",
+        "topic": "salud",
+        "entities": {
+          "count": 2,
+          "countUnit": "puntos",
+          "referencedEntity": "deportistas con discapacidad certificada"
+        },
+        "confidence": 0.8,
+        "reasoning": "Criterio objetivo y cuantificable de baremación relacionado con discapacidad certificada, verificable en las bases.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "1t3g13k-5-dat",
+        "verdict": "sin-datos",
+        "summary": "No se ha encontrado el dato municipal en las series locales.",
+        "evidence": [],
+        "checkedAgainst": [],
+        "articleUrl": "https://www.ribarroja.es/es/noticia/el-ayuntamiento-de-riba-roja-de-t%C3%BAria-asigna-140.000-euros-en-subvenciones-econ%C3%B3micas-a-los-clubes-y-entidades-deportivas-para-financiar-sus-actividades-y-programas-de-la-temporada-25/26",
+        "articleSource": "Ayuntamiento de Riba-roja de Túria",
+        "articleSourceHost": "ribarroja.es",
+        "articleFingerprint": "butwtc"
+      }
+    },
+    {
+      "claim": {
+        "id": "1t3g13k-6-dat",
+        "articleId": "1t3g13k",
+        "articleFingerprint": "butwtc",
+        "articleSource": "Ayuntamiento de Riba-roja de Túria",
+        "articleSourceHost": "ribarroja.es",
+        "articleUrl": "https://www.ribarroja.es/es/noticia/el-ayuntamiento-de-riba-roja-de-t%C3%BAria-asigna-140.000-euros-en-subvenciones-econ%C3%B3micas-a-los-clubes-y-entidades-deportivas-para-financiar-sus-actividades-y-programas-de-la-temporada-25/26",
+        "articleDate": "2026-11-02T10:31:40.000Z",
+        "segmentIndex": 6,
+        "segmentKind": "body",
+        "type": "dato_municipal",
+        "attributedSource": "outlet",
+        "verbatim": "las instalaciones públicas de las que disponen para llevar a cabo las actividades de forma, completamente, gratuita y con todos los costes de mantenimiento",
+        "context": "cabe recordar que a las ayudas económicas que reciben los clubes y las entidades por concurrencia competitiva se suman, además, las instalaciones públicas de las que disponen para llevar a cabo las actividades de forma, completamente, gratuita y con todos los costes de mantenimiento que se derivan de los mismos como los suministros de luz y agua, entre otros, a cargo de las cuentas municipales.",
+        "topic": "fiscal",
+        "entities": {
+          "referencedEntity": "instalaciones deportivas municipales"
+        },
+        "confidence": 0.8,
+        "reasoning": "Afirmación verificable sobre gasto público municipal en mantenimiento y suministros de instalaciones deportivas.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "1t3g13k-6-dat",
+        "verdict": "sin-datos",
+        "summary": "No se ha encontrado el dato municipal en las series locales.",
+        "evidence": [],
+        "checkedAgainst": [],
+        "articleUrl": "https://www.ribarroja.es/es/noticia/el-ayuntamiento-de-riba-roja-de-t%C3%BAria-asigna-140.000-euros-en-subvenciones-econ%C3%B3micas-a-los-clubes-y-entidades-deportivas-para-financiar-sus-actividades-y-programas-de-la-temporada-25/26",
+        "articleSource": "Ayuntamiento de Riba-roja de Túria",
+        "articleSourceHost": "ribarroja.es",
+        "articleFingerprint": "butwtc"
+      }
+    },
+    {
+      "claim": {
+        "id": "1t3g13k-7-dat",
+        "articleId": "1t3g13k",
+        "articleFingerprint": "butwtc",
+        "articleSource": "Ayuntamiento de Riba-roja de Túria",
+        "articleSourceHost": "ribarroja.es",
+        "articleUrl": "https://www.ribarroja.es/es/noticia/el-ayuntamiento-de-riba-roja-de-t%C3%BAria-asigna-140.000-euros-en-subvenciones-econ%C3%B3micas-a-los-clubes-y-entidades-deportivas-para-financiar-sus-actividades-y-programas-de-la-temporada-25/26",
+        "articleDate": "2026-11-02T10:31:40.000Z",
+        "segmentIndex": 7,
+        "segmentKind": "body",
+        "type": "dato_municipal",
+        "attributedSource": "outlet",
+        "verbatim": "deben estar al corriente del cumplimiento de las obligaciones tributarias y de la Seguridad Social y de las obligaciones fiscales con el Ayuntamiento de Riba-roja de Túria",
+        "context": "Otros requisitos incluyen la necesidad de no incurrir en ninguna de las circunstancias detalladas en la ley general de subvenciones... y, además, deben estar al corriente del cumplimiento de las obligaciones tributarias y de la Seguridad Social y de las obligaciones fiscales con el Ayuntamiento de Riba-roja de Túria.",
+        "topic": "fiscal",
+        "entities": {
+          "referencedEntity": "clubes y entidades deportivas solicitantes"
+        },
+        "confidence": 0.8,
+        "reasoning": "Requisito administrativo verificable documentalmente para acceder a las subvenciones municipales.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "1t3g13k-7-dat",
+        "verdict": "sin-datos",
+        "summary": "No se ha encontrado el dato municipal en las series locales.",
+        "evidence": [],
+        "checkedAgainst": [],
+        "articleUrl": "https://www.ribarroja.es/es/noticia/el-ayuntamiento-de-riba-roja-de-t%C3%BAria-asigna-140.000-euros-en-subvenciones-econ%C3%B3micas-a-los-clubes-y-entidades-deportivas-para-financiar-sus-actividades-y-programas-de-la-temporada-25/26",
+        "articleSource": "Ayuntamiento de Riba-roja de Túria",
+        "articleSourceHost": "ribarroja.es",
+        "articleFingerprint": "butwtc"
+      }
+    },
+    {
+      "claim": {
+        "id": "ccsnc0-0-dat",
+        "articleId": "ccsnc0",
+        "articleFingerprint": "11ifeuo",
+        "articleSource": "Ayuntamiento de Riba-roja de Túria",
+        "articleSourceHost": "ribarroja.es",
+        "articleUrl": "https://www.ribarroja.es/es/noticia/riba-roja-de-t%C3%BAria%2C-cheste-y-loriguilla-ratifican-en-asamblea-los-estatutos-de-la-mancomunitat-industrial-a3",
+        "articleDate": "2026-10-06T09:45:08.000Z",
+        "segmentIndex": 0,
+        "segmentKind": "title",
+        "type": "dato_municipal",
+        "attributedSource": "outlet",
+        "verbatim": "Riba-roja de Túria, Cheste y Loriguilla ratifican en Asamblea los estatutos de la Mancomunitat Industrial A3",
+        "context": "Titular de la nota de prensa del Ayuntamiento de Riba-roja de Túria (06/10/2026) sobre la ratificación en Asamblea de los estatutos de la Mancomunitat Industrial A3 por parte de los tres municipios.",
+        "topic": "urbanismo",
+        "entities": {
+          "count": 3,
+          "countUnit": "municipios",
+          "date": "2026-10-06",
+          "referencedEntity": "Mancomunitat Industrial A3"
+        },
+        "confidence": 0.55,
+        "reasoning": "Afirma un hecho institucional verificable (ratificación en asamblea de unos estatutos por tres ayuntamientos concretos) contrastable con actas oficiales.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "ccsnc0-0-dat",
+        "verdict": "sin-datos",
+        "summary": "No se ha encontrado el dato municipal en las series locales.",
+        "evidence": [],
+        "checkedAgainst": [],
+        "articleUrl": "https://www.ribarroja.es/es/noticia/riba-roja-de-t%C3%BAria%2C-cheste-y-loriguilla-ratifican-en-asamblea-los-estatutos-de-la-mancomunitat-industrial-a3",
+        "articleSource": "Ayuntamiento de Riba-roja de Túria",
+        "articleSourceHost": "ribarroja.es",
+        "articleFingerprint": "11ifeuo"
+      }
+    },
+    {
+      "claim": {
+        "id": "8hij1g-0-num",
+        "articleId": "8hij1g",
+        "articleFingerprint": "1208oo5",
+        "articleSource": "Ayuntamiento de Riba-roja de Túria",
+        "articleSourceHost": "ribarroja.es",
+        "articleUrl": "https://www.ribarroja.es/es/noticia/riba-roja-de-t%C3%BAria-eleva-hasta-el-51%2C3%25-el-grado-de-cumplimiento-de-los-requisitos-para-avanzar-como-destino-tur%C3%ADstico-inteligente",
+        "articleDate": "2026-10-02T11:50:52.000Z",
+        "segmentIndex": 0,
+        "segmentKind": "body",
+        "type": "afirmacion_numerica",
+        "attributedSource": "municipal",
+        "verbatim": "pasando del 26,4% registrado en la primera evaluación al 51,3% tras la revisión y subsanación de la documentación aportada",
+        "context": "Riba-roja de Túria ha mejorado de forma significativa su grado de cumplimiento dentro del modelo de Destino Turístico Inteligente (DTI) de SEGITTUR, pasando del 26,4% registrado en la primera evaluación al 51,3% tras la revisión y subsanación de la documentación aportada.",
+        "topic": "other",
+        "entities": {
+          "count": 51.3,
+          "countUnit": "%",
+          "referencedEntity": "SEGITTUR"
+        },
+        "confidence": 0.9,
+        "reasoning": "Cifra de evolución del diagnóstico contrastable con el informe oficial de SEGITTUR.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "8hij1g-0-num",
+        "verdict": "sin-datos",
+        "summary": "Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
+        "evidence": [],
+        "checkedAgainst": [],
+        "articleUrl": "https://www.ribarroja.es/es/noticia/riba-roja-de-t%C3%BAria-eleva-hasta-el-51%2C3%25-el-grado-de-cumplimiento-de-los-requisitos-para-avanzar-como-destino-tur%C3%ADstico-inteligente",
+        "articleSource": "Ayuntamiento de Riba-roja de Túria",
+        "articleSourceHost": "ribarroja.es",
+        "articleFingerprint": "1208oo5"
+      }
+    },
+    {
+      "claim": {
+        "id": "8hij1g-1-num",
+        "articleId": "8hij1g",
+        "articleFingerprint": "1208oo5",
+        "articleSource": "Ayuntamiento de Riba-roja de Túria",
+        "articleSourceHost": "ribarroja.es",
+        "articleUrl": "https://www.ribarroja.es/es/noticia/riba-roja-de-t%C3%BAria-eleva-hasta-el-51%2C3%25-el-grado-de-cumplimiento-de-los-requisitos-para-avanzar-como-destino-tur%C3%ADstico-inteligente",
+        "articleDate": "2026-10-02T11:50:52.000Z",
+        "segmentIndex": 1,
+        "segmentKind": "body",
+        "type": "afirmacion_numerica",
+        "attributedSource": "municipal",
+        "verbatim": "El resultado supone un incremento de 24,9 puntos porcentuales",
+        "context": "El resultado supone un incremento de 24,9 puntos porcentuales y consolida el avance del municipio en su proceso de transformación hacia un modelo turístico basado en la gobernanza, la innovación, la tecnología, la sostenibilidad y la accesibilidad.",
+        "topic": "other",
+        "entities": {
+          "count": 24.9,
+          "countUnit": "puntos porcentuales",
+          "referencedEntity": "SEGITTUR"
+        },
+        "confidence": 0.9,
+        "reasoning": "Magnitud numérica del incremento, verificable contra el informe de SEGITTUR.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "8hij1g-1-num",
+        "verdict": "sin-datos",
+        "summary": "Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
+        "evidence": [],
+        "checkedAgainst": [],
+        "articleUrl": "https://www.ribarroja.es/es/noticia/riba-roja-de-t%C3%BAria-eleva-hasta-el-51%2C3%25-el-grado-de-cumplimiento-de-los-requisitos-para-avanzar-como-destino-tur%C3%ADstico-inteligente",
+        "articleSource": "Ayuntamiento de Riba-roja de Túria",
+        "articleSourceHost": "ribarroja.es",
+        "articleFingerprint": "1208oo5"
+      }
+    },
+    {
+      "claim": {
+        "id": "8hij1g-2-dat",
+        "articleId": "8hij1g",
+        "articleFingerprint": "1208oo5",
+        "articleSource": "Ayuntamiento de Riba-roja de Túria",
+        "articleSourceHost": "ribarroja.es",
+        "articleUrl": "https://www.ribarroja.es/es/noticia/riba-roja-de-t%C3%BAria-eleva-hasta-el-51%2C3%25-el-grado-de-cumplimiento-de-los-requisitos-para-avanzar-como-destino-tur%C3%ADstico-inteligente",
+        "articleDate": "2026-10-02T11:50:52.000Z",
+        "segmentIndex": 2,
+        "segmentKind": "body",
+        "type": "dato_municipal",
+        "attributedSource": "municipal",
+        "verbatim": "Riba-roja de Túria ha logrado el distintivo de Destino Turístico Inteligente Adherido 2026-2029",
+        "context": "Con este resultado, Riba-roja de Túria ha logrado el distintivo de Destino Turístico Inteligente Adherido 2026-2029, que acredita que el municipio ha iniciado la implantación del modelo DTI.",
+        "topic": "other",
+        "entities": {
+          "date": "2026-2029",
+          "referencedEntity": "SEGITTUR"
+        },
+        "confidence": 0.85,
+        "reasoning": "Obtención de un distintivo oficial con vigencia temporal verificable ante SEGITTUR.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "8hij1g-2-dat",
+        "verdict": "sin-datos",
+        "summary": "No se ha encontrado el dato municipal en las series locales.",
+        "evidence": [],
+        "checkedAgainst": [],
+        "articleUrl": "https://www.ribarroja.es/es/noticia/riba-roja-de-t%C3%BAria-eleva-hasta-el-51%2C3%25-el-grado-de-cumplimiento-de-los-requisitos-para-avanzar-como-destino-tur%C3%ADstico-inteligente",
+        "articleSource": "Ayuntamiento de Riba-roja de Túria",
+        "articleSourceHost": "ribarroja.es",
+        "articleFingerprint": "1208oo5"
+      }
+    },
+    {
+      "claim": {
+        "id": "8hij1g-3-num",
+        "articleId": "8hij1g",
+        "articleFingerprint": "1208oo5",
+        "articleSource": "Ayuntamiento de Riba-roja de Túria",
+        "articleSourceHost": "ribarroja.es",
+        "articleUrl": "https://www.ribarroja.es/es/noticia/riba-roja-de-t%C3%BAria-eleva-hasta-el-51%2C3%25-el-grado-de-cumplimiento-de-los-requisitos-para-avanzar-como-destino-tur%C3%ADstico-inteligente",
+        "articleDate": "2026-10-02T11:50:52.000Z",
+        "segmentIndex": 3,
+        "segmentKind": "body",
+        "type": "afirmacion_numerica",
+        "attributedSource": "municipal",
+        "verbatim": "El municipio alcanza un 51,3% de cumplimiento global frente al 41,9% de media de los destinos diagnosticados.",
+        "context": "El informe de SEGITTUR refleja, además, que Riba-roja de Túria se encuentra por encima de la media de los destinos analizados. El municipio alcanza un 51,3% de cumplimiento global frente al 41,9% de media de los destinos diagnosticados.",
+        "topic": "other",
+        "entities": {
+          "count": 41.9,
+          "countUnit": "%",
+          "referencedEntity": "media de destinos diagnosticados SEGITTUR"
+        },
+        "confidence": 0.85,
+        "reasoning": "Comparación numérica contrastable con la media del conjunto de destinos del informe SEGITTUR.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "8hij1g-3-num",
+        "verdict": "sin-datos",
+        "summary": "Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
+        "evidence": [],
+        "checkedAgainst": [],
+        "articleUrl": "https://www.ribarroja.es/es/noticia/riba-roja-de-t%C3%BAria-eleva-hasta-el-51%2C3%25-el-grado-de-cumplimiento-de-los-requisitos-para-avanzar-como-destino-tur%C3%ADstico-inteligente",
+        "articleSource": "Ayuntamiento de Riba-roja de Túria",
+        "articleSourceHost": "ribarroja.es",
+        "articleFingerprint": "1208oo5"
+      }
+    },
+    {
+      "claim": {
+        "id": "8hij1g-4-num",
+        "articleId": "8hij1g",
+        "articleFingerprint": "1208oo5",
+        "articleSource": "Ayuntamiento de Riba-roja de Túria",
+        "articleSourceHost": "ribarroja.es",
+        "articleUrl": "https://www.ribarroja.es/es/noticia/riba-roja-de-t%C3%BAria-eleva-hasta-el-51%2C3%25-el-grado-de-cumplimiento-de-los-requisitos-para-avanzar-como-destino-tur%C3%ADstico-inteligente",
+        "articleDate": "2026-10-02T11:50:52.000Z",
+        "segmentIndex": 4,
+        "segmentKind": "body",
+        "type": "afirmacion_numerica",
+        "attributedSource": "municipal",
+        "verbatim": "Tecnología como el ámbito con mayor grado de cumplimiento, con un 61,6%",
+        "context": "Por ejes, los resultados sitúan a Tecnología como el ámbito con mayor grado de cumplimiento, con un 61,6%, seguido de Gobernanza, con un 53,4%, Sostenibilidad, con un 52,5%, Accesibilidad, con un 44,5%, e Innovación, con un 32,2%.",
+        "topic": "other",
+        "entities": {
+          "count": 61.6,
+          "countUnit": "%",
+          "referencedEntity": "eje Tecnología - SEGITTUR"
+        },
+        "confidence": 0.85,
+        "reasoning": "Cifra específica por eje, verificable en el desglose del informe SEGITTUR.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "8hij1g-4-num",
+        "verdict": "sin-datos",
+        "summary": "Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
+        "evidence": [],
+        "checkedAgainst": [],
+        "articleUrl": "https://www.ribarroja.es/es/noticia/riba-roja-de-t%C3%BAria-eleva-hasta-el-51%2C3%25-el-grado-de-cumplimiento-de-los-requisitos-para-avanzar-como-destino-tur%C3%ADstico-inteligente",
+        "articleSource": "Ayuntamiento de Riba-roja de Túria",
+        "articleSourceHost": "ribarroja.es",
+        "articleFingerprint": "1208oo5"
+      }
+    },
+    {
+      "claim": {
+        "id": "8hij1g-5-num",
+        "articleId": "8hij1g",
+        "articleFingerprint": "1208oo5",
+        "articleSource": "Ayuntamiento de Riba-roja de Túria",
+        "articleSourceHost": "ribarroja.es",
+        "articleUrl": "https://www.ribarroja.es/es/noticia/riba-roja-de-t%C3%BAria-eleva-hasta-el-51%2C3%25-el-grado-de-cumplimiento-de-los-requisitos-para-avanzar-como-destino-tur%C3%ADstico-inteligente",
+        "articleDate": "2026-10-02T11:50:52.000Z",
+        "segmentIndex": 5,
+        "segmentKind": "body",
+        "type": "afirmacion_numerica",
+        "attributedSource": "municipal",
+        "verbatim": "seguido de Gobernanza, con un 53,4%",
+        "context": "Tecnología como el ámbito con mayor grado de cumplimiento, con un 61,6%, seguido de Gobernanza, con un 53,4%, Sostenibilidad, con un 52,5%, Accesibilidad, con un 44,5%.",
+        "topic": "other",
+        "entities": {
+          "count": 53.4,
+          "countUnit": "%",
+          "referencedEntity": "eje Gobernanza - SEGITTUR"
+        },
+        "confidence": 0.8,
+        "reasoning": "Cifra específica del eje Gobernanza, contrastable con el informe SEGITTUR.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "8hij1g-5-num",
+        "verdict": "sin-datos",
+        "summary": "Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
+        "evidence": [],
+        "checkedAgainst": [],
+        "articleUrl": "https://www.ribarroja.es/es/noticia/riba-roja-de-t%C3%BAria-eleva-hasta-el-51%2C3%25-el-grado-de-cumplimiento-de-los-requisitos-para-avanzar-como-destino-tur%C3%ADstico-inteligente",
+        "articleSource": "Ayuntamiento de Riba-roja de Túria",
+        "articleSourceHost": "ribarroja.es",
+        "articleFingerprint": "1208oo5"
+      }
+    },
+    {
+      "claim": {
+        "id": "8hij1g-6-num",
+        "articleId": "8hij1g",
+        "articleFingerprint": "1208oo5",
+        "articleSource": "Ayuntamiento de Riba-roja de Túria",
+        "articleSourceHost": "ribarroja.es",
+        "articleUrl": "https://www.ribarroja.es/es/noticia/riba-roja-de-t%C3%BAria-eleva-hasta-el-51%2C3%25-el-grado-de-cumplimiento-de-los-requisitos-para-avanzar-como-destino-tur%C3%ADstico-inteligente",
+        "articleDate": "2026-10-02T11:50:52.000Z",
+        "segmentIndex": 6,
+        "segmentKind": "body",
+        "type": "afirmacion_numerica",
+        "attributedSource": "municipal",
+        "verbatim": "Sostenibilidad, con un 52,5%",
+        "context": "seguido de Gobernanza, con un 53,4%, Sostenibilidad, con un 52,5%, Accesibilidad, con un 44,5%, e Innovación, con un 32,2%.",
+        "topic": "medio-ambiente",
+        "entities": {
+          "count": 52.5,
+          "countUnit": "%",
+          "referencedEntity": "eje Sostenibilidad - SEGITTUR"
+        },
+        "confidence": 0.8,
+        "reasoning": "Cifra específica del eje Sostenibilidad, contrastable con el informe SEGITTUR.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "8hij1g-6-num",
+        "verdict": "sin-datos",
+        "summary": "Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
+        "evidence": [],
+        "checkedAgainst": [],
+        "articleUrl": "https://www.ribarroja.es/es/noticia/riba-roja-de-t%C3%BAria-eleva-hasta-el-51%2C3%25-el-grado-de-cumplimiento-de-los-requisitos-para-avanzar-como-destino-tur%C3%ADstico-inteligente",
+        "articleSource": "Ayuntamiento de Riba-roja de Túria",
+        "articleSourceHost": "ribarroja.es",
+        "articleFingerprint": "1208oo5"
+      }
+    },
+    {
+      "claim": {
+        "id": "8hij1g-7-num",
+        "articleId": "8hij1g",
+        "articleFingerprint": "1208oo5",
+        "articleSource": "Ayuntamiento de Riba-roja de Túria",
+        "articleSourceHost": "ribarroja.es",
+        "articleUrl": "https://www.ribarroja.es/es/noticia/riba-roja-de-t%C3%BAria-eleva-hasta-el-51%2C3%25-el-grado-de-cumplimiento-de-los-requisitos-para-avanzar-como-destino-tur%C3%ADstico-inteligente",
+        "articleDate": "2026-10-02T11:50:52.000Z",
+        "segmentIndex": 7,
+        "segmentKind": "body",
+        "type": "afirmacion_numerica",
+        "attributedSource": "municipal",
+        "verbatim": "Accesibilidad**, con un 44,5%",
+        "context": "Sostenibilidad, con un 52,5%, Accesibilidad**, con un 44,5%, e Innovación, con un 32,2%.",
+        "topic": "social",
+        "entities": {
+          "count": 44.5,
+          "countUnit": "%",
+          "referencedEntity": "eje Accesibilidad - SEGITTUR"
+        },
+        "confidence": 0.75,
+        "reasoning": "Cifra específica del eje Accesibilidad, contrastable con el informe SEGITTUR.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "8hij1g-7-num",
+        "verdict": "sin-datos",
+        "summary": "Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
+        "evidence": [],
+        "checkedAgainst": [],
+        "articleUrl": "https://www.ribarroja.es/es/noticia/riba-roja-de-t%C3%BAria-eleva-hasta-el-51%2C3%25-el-grado-de-cumplimiento-de-los-requisitos-para-avanzar-como-destino-tur%C3%ADstico-inteligente",
+        "articleSource": "Ayuntamiento de Riba-roja de Túria",
+        "articleSourceHost": "ribarroja.es",
+        "articleFingerprint": "1208oo5"
+      }
+    },
+    {
+      "claim": {
+        "id": "8hij1g-8-num",
+        "articleId": "8hij1g",
+        "articleFingerprint": "1208oo5",
+        "articleSource": "Ayuntamiento de Riba-roja de Túria",
+        "articleSourceHost": "ribarroja.es",
+        "articleUrl": "https://www.ribarroja.es/es/noticia/riba-roja-de-t%C3%BAria-eleva-hasta-el-51%2C3%25-el-grado-de-cumplimiento-de-los-requisitos-para-avanzar-como-destino-tur%C3%ADstico-inteligente",
+        "articleDate": "2026-10-02T11:50:52.000Z",
+        "segmentIndex": 8,
+        "segmentKind": "body",
+        "type": "afirmacion_numerica",
+        "attributedSource": "municipal",
+        "verbatim": "Innovación, con un 32,2%",
+        "context": "Accesibilidad, con un 44,5%, e Innovación, con un 32,2%. Especialmente destacada es la posición del municipio en Tecnología y Gobernanza.",
+        "topic": "other",
+        "entities": {
+          "count": 32.2,
+          "countUnit": "%",
+          "referencedEntity": "eje Innovación - SEGITTUR"
+        },
+        "confidence": 0.8,
+        "reasoning": "Cifra específica del eje Innovación, contrastable con el informe SEGITTUR.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "8hij1g-8-num",
+        "verdict": "sin-datos",
+        "summary": "Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
+        "evidence": [],
+        "checkedAgainst": [],
+        "articleUrl": "https://www.ribarroja.es/es/noticia/riba-roja-de-t%C3%BAria-eleva-hasta-el-51%2C3%25-el-grado-de-cumplimiento-de-los-requisitos-para-avanzar-como-destino-tur%C3%ADstico-inteligente",
+        "articleSource": "Ayuntamiento de Riba-roja de Túria",
+        "articleSourceHost": "ribarroja.es",
+        "articleFingerprint": "1208oo5"
+      }
+    },
+    {
+      "claim": {
+        "id": "8hij1g-9-num",
+        "articleId": "8hij1g",
+        "articleFingerprint": "1208oo5",
+        "articleSource": "Ayuntamiento de Riba-roja de Túria",
+        "articleSourceHost": "ribarroja.es",
+        "articleUrl": "https://www.ribarroja.es/es/noticia/riba-roja-de-t%C3%BAria-eleva-hasta-el-51%2C3%25-el-grado-de-cumplimiento-de-los-requisitos-para-avanzar-como-destino-tur%C3%ADstico-inteligente",
+        "articleDate": "2026-10-02T11:50:52.000Z",
+        "segmentIndex": 9,
+        "segmentKind": "body",
+        "type": "afirmacion_numerica",
+        "attributedSource": "municipal",
+        "verbatim": "En Tecnología, Riba-roja alcanza el 61,6%, frente al 40,2% de media, mientras que en Gobernanza obtiene un 53,4%, frente al 40%.",
+        "context": "Especialmente destacada es la posición del municipio en Tecnología y Gobernanza, dos de los ámbitos en los que la comparativa de SEGITTUR muestra una mayor diferencia respecto a la media de los destinos diagnosticados. En Tecnología, Riba-roja alcanza el 61,6%, frente al 40,2% de media, mientras que en Gobernanza obtiene un 53,4%, frente al 40%.",
+        "topic": "other",
+        "entities": {
+          "count": 40.2,
+          "countUnit": "%",
+          "referencedEntity": "media destinos SEGITTUR - eje Tecnología"
+        },
+        "confidence": 0.8,
+        "reasoning": "Comparación explícita frente a la media del conjunto de destinos, contrastable con el informe.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "8hij1g-9-num",
+        "verdict": "sin-datos",
+        "summary": "Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
+        "evidence": [],
+        "checkedAgainst": [],
+        "articleUrl": "https://www.ribarroja.es/es/noticia/riba-roja-de-t%C3%BAria-eleva-hasta-el-51%2C3%25-el-grado-de-cumplimiento-de-los-requisitos-para-avanzar-como-destino-tur%C3%ADstico-inteligente",
+        "articleSource": "Ayuntamiento de Riba-roja de Túria",
+        "articleSourceHost": "ribarroja.es",
+        "articleFingerprint": "1208oo5"
+      }
+    },
+    {
+      "claim": {
+        "id": "8hij1g-10-num",
+        "articleId": "8hij1g",
+        "articleFingerprint": "1208oo5",
+        "articleSource": "Ayuntamiento de Riba-roja de Túria",
+        "articleSourceHost": "ribarroja.es",
+        "articleUrl": "https://www.ribarroja.es/es/noticia/riba-roja-de-t%C3%BAria-eleva-hasta-el-51%2C3%25-el-grado-de-cumplimiento-de-los-requisitos-para-avanzar-como-destino-tur%C3%ADstico-inteligente",
+        "articleDate": "2026-10-02T11:50:52.000Z",
+        "segmentIndex": 10,
+        "segmentKind": "body",
+        "type": "afirmacion_numerica",
+        "attributedSource": "municipal",
+        "verbatim": "la transparencia y participación, con un 81%",
+        "context": "Entre los ámbitos con mejores resultados destacan la transparencia y participación, con un 81%; la eficiencia en la gestión, con un 80%.",
+        "topic": "transparencia",
+        "entities": {
+          "count": 81,
+          "countUnit": "%",
+          "referencedEntity": "ámbito transparencia y participación - SEGITTUR"
+        },
+        "confidence": 0.85,
+        "reasoning": "Cifra específica de un subámbito del diagnóstico, contrastable con el informe SEGITTUR.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "8hij1g-10-num",
+        "verdict": "sin-datos",
+        "summary": "Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
+        "evidence": [],
+        "checkedAgainst": [],
+        "articleUrl": "https://www.ribarroja.es/es/noticia/riba-roja-de-t%C3%BAria-eleva-hasta-el-51%2C3%25-el-grado-de-cumplimiento-de-los-requisitos-para-avanzar-como-destino-tur%C3%ADstico-inteligente",
+        "articleSource": "Ayuntamiento de Riba-roja de Túria",
+        "articleSourceHost": "ribarroja.es",
+        "articleFingerprint": "1208oo5"
+      }
+    },
+    {
+      "claim": {
+        "id": "8hij1g-11-num",
+        "articleId": "8hij1g",
+        "articleFingerprint": "1208oo5",
+        "articleSource": "Ayuntamiento de Riba-roja de Túria",
+        "articleSourceHost": "ribarroja.es",
+        "articleUrl": "https://www.ribarroja.es/es/noticia/riba-roja-de-t%C3%BAria-eleva-hasta-el-51%2C3%25-el-grado-de-cumplimiento-de-los-requisitos-para-avanzar-como-destino-tur%C3%ADstico-inteligente",
+        "articleDate": "2026-10-02T11:50:52.000Z",
+        "segmentIndex": 11,
+        "segmentKind": "body",
+        "type": "afirmacion_numerica",
+        "attributedSource": "municipal",
+        "verbatim": "la eficiencia en la gestión, con un 80%",
+        "context": "destacan la transparencia y participación, con un 81%; la eficiencia en la gestión, con un 80%; las infraestructuras tecnológicas y conectividad, también con un 80%.",
+        "topic": "other",
+        "entities": {
+          "count": 80,
+          "countUnit": "%",
+          "referencedEntity": "ámbito eficiencia en la gestión - SEGITTUR"
+        },
+        "confidence": 0.85,
+        "reasoning": "Cifra específica de un subámbito del diagnóstico, contrastable con el informe SEGITTUR.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "8hij1g-11-num",
+        "verdict": "sin-datos",
+        "summary": "Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
+        "evidence": [],
+        "checkedAgainst": [],
+        "articleUrl": "https://www.ribarroja.es/es/noticia/riba-roja-de-t%C3%BAria-eleva-hasta-el-51%2C3%25-el-grado-de-cumplimiento-de-los-requisitos-para-avanzar-como-destino-tur%C3%ADstico-inteligente",
+        "articleSource": "Ayuntamiento de Riba-roja de Túria",
+        "articleSourceHost": "ribarroja.es",
+        "articleFingerprint": "1208oo5"
+      }
+    },
+    {
+      "claim": {
+        "id": "8hij1g-12-num",
+        "articleId": "8hij1g",
+        "articleFingerprint": "1208oo5",
+        "articleSource": "Ayuntamiento de Riba-roja de Túria",
+        "articleSourceHost": "ribarroja.es",
+        "articleUrl": "https://www.ribarroja.es/es/noticia/riba-roja-de-t%C3%BAria-eleva-hasta-el-51%2C3%25-el-grado-de-cumplimiento-de-los-requisitos-para-avanzar-como-destino-tur%C3%ADstico-inteligente",
+        "articleDate": "2026-10-02T11:50:52.000Z",
+        "segmentIndex": 12,
+        "segmentKind": "body",
+        "type": "afirmacion_numerica",
+        "attributedSource": "municipal",
+        "verbatim": "las infraestructuras tecnológicas y conectividad, también con un 80%",
+        "context": "la eficiencia en la gestión, con un 80%; las infraestructuras tecnológicas y conectividad, también con un 80%; y la conservación, mejora y recuperación del patrimonio cultural, con un 72,5%.",
+        "topic": "other",
+        "entities": {
+          "count": 80,
+          "countUnit": "%",
+          "referencedEntity": "ámbito infraestructuras tecnológicas y conectividad - SEGITTUR"
+        },
+        "confidence": 0.85,
+        "reasoning": "Cifra específica de un subámbito del diagnóstico, contrastable con el informe SEGITTUR.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "8hij1g-12-num",
+        "verdict": "sin-datos",
+        "summary": "Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
+        "evidence": [],
+        "checkedAgainst": [],
+        "articleUrl": "https://www.ribarroja.es/es/noticia/riba-roja-de-t%C3%BAria-eleva-hasta-el-51%2C3%25-el-grado-de-cumplimiento-de-los-requisitos-para-avanzar-como-destino-tur%C3%ADstico-inteligente",
+        "articleSource": "Ayuntamiento de Riba-roja de Túria",
+        "articleSourceHost": "ribarroja.es",
+        "articleFingerprint": "1208oo5"
+      }
+    },
+    {
+      "claim": {
+        "id": "8hij1g-13-num",
+        "articleId": "8hij1g",
+        "articleFingerprint": "1208oo5",
+        "articleSource": "Ayuntamiento de Riba-roja de Túria",
+        "articleSourceHost": "ribarroja.es",
+        "articleUrl": "https://www.ribarroja.es/es/noticia/riba-roja-de-t%C3%BAria-eleva-hasta-el-51%2C3%25-el-grado-de-cumplimiento-de-los-requisitos-para-avanzar-como-destino-tur%C3%ADstico-inteligente",
+        "articleDate": "2026-10-02T11:50:52.000Z",
+        "segmentIndex": 13,
+        "segmentKind": "body",
+        "type": "afirmacion_numerica",
+        "attributedSource": "municipal",
+        "verbatim": "la conservación, mejora y recuperación del patrimonio cultural, con un 72,5%",
+        "context": "las infraestructuras tecnológicas y conectividad, también con un 80%; y la conservación, mejora y recuperación del patrimonio cultural, con un 72,5%.",
+        "topic": "cultura",
+        "entities": {
+          "count": 72.5,
+          "countUnit": "%",
+          "referencedEntity": "ámbito conservación patrimonio cultural - SEGITTUR"
+        },
+        "confidence": 0.85,
+        "reasoning": "Cifra específica de un subámbito del diagnóstico, contrastable con el informe SEGITTUR.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "8hij1g-13-num",
+        "verdict": "sin-datos",
+        "summary": "Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
+        "evidence": [],
+        "checkedAgainst": [],
+        "articleUrl": "https://www.ribarroja.es/es/noticia/riba-roja-de-t%C3%BAria-eleva-hasta-el-51%2C3%25-el-grado-de-cumplimiento-de-los-requisitos-para-avanzar-como-destino-tur%C3%ADstico-inteligente",
+        "articleSource": "Ayuntamiento de Riba-roja de Túria",
+        "articleSourceHost": "ribarroja.es",
+        "articleFingerprint": "1208oo5"
+      }
+    },
+    {
+      "claim": {
+        "id": "xcbiyc-0-num",
+        "articleId": "xcbiyc",
+        "articleFingerprint": "7ptpmg",
+        "articleSource": "Ayuntamiento de Riba-roja de Túria",
+        "articleSourceHost": "ribarroja.es",
+        "articleUrl": "https://www.ribarroja.es/es/noticia/riba-roja-destina-104.605-euros-al-cheque-beb%C3%A9-%2B25-para-apoyar-a-las-familias-y-dinamizar-el-comercio-local",
+        "articleDate": "2026-10-01T12:20:24.000Z",
+        "segmentIndex": 0,
+        "segmentKind": "title",
+        "type": "afirmacion_numerica",
+        "attributedSource": "municipal",
+        "verbatim": "Riba-roja destina 104.605 euros al Cheque Bebé +25 para apoyar a las familias y dinamizar el comercio local",
+        "context": "Riba-roja destina 104.605 euros al Cheque Bebé +25 para apoyar a las familias y dinamizar el comercio local",
+        "topic": "social",
+        "entities": {
+          "amountEuros": 104605,
+          "referencedEntity": "Cheque Bebé +25"
+        },
+        "confidence": 0.55,
+        "reasoning": "Cifra presupuestaria concreta y verificable asignada a un programa municipal específico, aunque solo se dispone del titular sin cuerpo del artículo.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "xcbiyc-0-num",
+        "verdict": "parcial",
+        "summary": "Coincidencia parcial: hay datos relacionados pero no idénticos al claim.",
+        "evidence": [
+          {
+            "kind": "bdns",
+            "ref": "https://www.pap.hacienda.gob.es/bdnstrans/GE/es/convocatoria/552494",
+            "snippet": "Acuerdo de fecha 8 de marzo de 2021 de la Junta de Gobierno Local del Ayuntamiento de Riba-roja de Túria por el que se convocan las ayudas Cheque Bebé + 2021 de · importe no publicado",
+            "similarity": 1,
+            "stance": "checked"
+          }
+        ],
+        "checkedAgainst": [
+          "tenders",
+          "tenders-ted",
+          "bdns"
+        ],
+        "articleUrl": "https://www.ribarroja.es/es/noticia/riba-roja-destina-104.605-euros-al-cheque-beb%C3%A9-%2B25-para-apoyar-a-las-familias-y-dinamizar-el-comercio-local",
+        "articleSource": "Ayuntamiento de Riba-roja de Túria",
+        "articleSourceHost": "ribarroja.es",
+        "articleFingerprint": "7ptpmg"
+      }
+    },
+    {
+      "claim": {
+        "id": "1lk4zls-0-num",
+        "articleId": "1lk4zls",
+        "articleFingerprint": "vsmbot",
+        "articleSource": "Ayuntamiento de Riba-roja de Túria",
+        "articleSourceHost": "ribarroja.es",
+        "articleUrl": "https://www.ribarroja.es/es/noticia/riba-roja-de-t%C3%BAria-impulsa-la-sensorizaci%C3%B3n-de-sus-contenedores-de-residuos-para-avanzar-hacia-una-gesti%C3%B3n-m%C3%A1s-sostenible-del-municipio",
+        "articleDate": "2026-09-25T09:54:12.000Z",
+        "segmentIndex": 0,
+        "segmentKind": "body",
+        "type": "afirmacion_numerica",
+        "attributedSource": "municipal",
+        "verbatim": "cuenta con una inversión de 180.000 euros, de los que 135.000 euros proceden de fondos europeos Next Generation EU y 35.000 euros son aportados por el Ayuntamiento",
+        "context": "La actuación, enmarcada en el Eje 1 (Transición Verde y Sostenible) del Plan de Sostenibilidad Turística en Destino (PSTD) 2022, cuenta con una inversión de 180.000 euros, de los que 135.000 euros proceden de fondos europeos Next Generation EU y 35.000 euros son aportados por el Ayuntamiento.",
+        "topic": "medio-ambiente",
+        "entities": {
+          "amountEuros": 180000,
+          "referencedEntity": "Plan de Sostenibilidad Turística en Destino (PSTD) 2022"
+        },
+        "confidence": 0.9,
+        "reasoning": "Cifra de inversión y desglose de financiación contrastable con el expediente de adjudicación municipal.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "1lk4zls-0-num",
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders, tenders-ted y bdns que la sostenga. Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
+        "evidence": [],
+        "checkedAgainst": [
+          "tenders",
+          "tenders-ted",
+          "bdns"
+        ],
+        "articleUrl": "https://www.ribarroja.es/es/noticia/riba-roja-de-t%C3%BAria-impulsa-la-sensorizaci%C3%B3n-de-sus-contenedores-de-residuos-para-avanzar-hacia-una-gesti%C3%B3n-m%C3%A1s-sostenible-del-municipio",
+        "articleSource": "Ayuntamiento de Riba-roja de Túria",
+        "articleSourceHost": "ribarroja.es",
+        "articleFingerprint": "vsmbot"
+      }
+    },
+    {
+      "claim": {
+        "id": "1lk4zls-1-dat",
+        "articleId": "1lk4zls",
+        "articleFingerprint": "vsmbot",
+        "articleSource": "Ayuntamiento de Riba-roja de Túria",
+        "articleSourceHost": "ribarroja.es",
+        "articleUrl": "https://www.ribarroja.es/es/noticia/riba-roja-de-t%C3%BAria-impulsa-la-sensorizaci%C3%B3n-de-sus-contenedores-de-residuos-para-avanzar-hacia-una-gesti%C3%B3n-m%C3%A1s-sostenible-del-municipio",
+        "articleDate": "2026-09-25T09:54:12.000Z",
+        "segmentIndex": 1,
+        "segmentKind": "body",
+        "type": "dato_municipal",
+        "attributedSource": "municipal",
+        "verbatim": "El importe total de la adjudicación asciende a 180.000 euros, de los cuales 135.000 euros se financian con cargo al PSTD y los 35.000 euros restantes son aportados directamente por el Consistorio.",
+        "context": "El importe total de la adjudicación asciende a 180.000 euros, de los cuales 135.000 euros se financian con cargo al PSTD y los 35.000 euros restantes son aportados directamente por el Consistorio.",
+        "topic": "fiscal",
+        "entities": {
+          "amountEuros": 180000,
+          "referencedEntity": "Consistorio de Riba-roja de Túria"
+        },
+        "confidence": 0.85,
+        "reasoning": "Detalle del importe de adjudicación verificable en el expediente de contratación municipal.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "1lk4zls-1-dat",
+        "verdict": "sin-datos",
+        "summary": "No se ha encontrado el dato municipal en las series locales.",
+        "evidence": [],
+        "checkedAgainst": [],
+        "articleUrl": "https://www.ribarroja.es/es/noticia/riba-roja-de-t%C3%BAria-impulsa-la-sensorizaci%C3%B3n-de-sus-contenedores-de-residuos-para-avanzar-hacia-una-gesti%C3%B3n-m%C3%A1s-sostenible-del-municipio",
+        "articleSource": "Ayuntamiento de Riba-roja de Túria",
+        "articleSourceHost": "ribarroja.es",
+        "articleFingerprint": "vsmbot"
+      }
+    },
+    {
+      "claim": {
+        "id": "1lk4zls-2-dat",
+        "articleId": "1lk4zls",
+        "articleFingerprint": "vsmbot",
+        "articleSource": "Ayuntamiento de Riba-roja de Túria",
+        "articleSourceHost": "ribarroja.es",
+        "articleUrl": "https://www.ribarroja.es/es/noticia/riba-roja-de-t%C3%BAria-impulsa-la-sensorizaci%C3%B3n-de-sus-contenedores-de-residuos-para-avanzar-hacia-una-gesti%C3%B3n-m%C3%A1s-sostenible-del-municipio",
+        "articleDate": "2026-09-25T09:54:12.000Z",
+        "segmentIndex": 2,
+        "segmentKind": "body",
+        "type": "dato_municipal",
+        "attributedSource": "municipal",
+        "verbatim": "El Ayuntamiento de Riba-roja de Túria ha adjudicado a la empresa Distromel, S.A. el proyecto de sensorización de contenedores de residuos",
+        "context": "El Ayuntamiento de Riba-roja de Túria ha adjudicado a la empresa Distromel, S.A. el proyecto de sensorización de contenedores de residuos, una actuación incluida en su Plan de Sostenibilidad Turística en Destino (PSTD) 2022.",
+        "topic": "medio-ambiente",
+        "entities": {
+          "referencedEntity": "Distromel, S.A."
+        },
+        "confidence": 0.9,
+        "reasoning": "Identifica la empresa adjudicataria del contrato, dato verificable en el perfil del contratante del Ayuntamiento.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "1lk4zls-2-dat",
+        "verdict": "sin-datos",
+        "summary": "No se ha encontrado el dato municipal en las series locales.",
+        "evidence": [],
+        "checkedAgainst": [],
+        "articleUrl": "https://www.ribarroja.es/es/noticia/riba-roja-de-t%C3%BAria-impulsa-la-sensorizaci%C3%B3n-de-sus-contenedores-de-residuos-para-avanzar-hacia-una-gesti%C3%B3n-m%C3%A1s-sostenible-del-municipio",
+        "articleSource": "Ayuntamiento de Riba-roja de Túria",
+        "articleSourceHost": "ribarroja.es",
+        "articleFingerprint": "vsmbot"
+      }
+    },
+    {
+      "claim": {
+        "id": "1lk4zls-3-dat",
+        "articleId": "1lk4zls",
+        "articleFingerprint": "vsmbot",
+        "articleSource": "Ayuntamiento de Riba-roja de Túria",
+        "articleSourceHost": "ribarroja.es",
+        "articleUrl": "https://www.ribarroja.es/es/noticia/riba-roja-de-t%C3%BAria-impulsa-la-sensorizaci%C3%B3n-de-sus-contenedores-de-residuos-para-avanzar-hacia-una-gesti%C3%B3n-m%C3%A1s-sostenible-del-municipio",
+        "articleDate": "2026-09-25T09:54:12.000Z",
+        "segmentIndex": 3,
+        "segmentKind": "body",
+        "type": "dato_municipal",
+        "attributedSource": "municipal",
+        "verbatim": "El proyecto se enmarca en el Componente 14 del Plan de Recuperación, Transformación y Resiliencia, financiado por la Unión Europea a través de los fondos Next Generation EU",
+        "context": "El proyecto se enmarca en el Componente 14 del Plan de Recuperación, Transformación y Resiliencia, financiado por la Unión Europea a través de los fondos Next Generation EU.",
+        "topic": "medio-ambiente",
+        "entities": {
+          "count": 14,
+          "countUnit": "componente",
+          "referencedEntity": "Componente 14 del PRTR"
+        },
+        "confidence": 0.8,
+        "reasoning": "Referencia a un componente concreto del PRTR contrastable con la documentación oficial del Plan de Recuperación.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "1lk4zls-3-dat",
+        "verdict": "sin-datos",
+        "summary": "No se ha encontrado el dato municipal en las series locales.",
+        "evidence": [],
+        "checkedAgainst": [],
+        "articleUrl": "https://www.ribarroja.es/es/noticia/riba-roja-de-t%C3%BAria-impulsa-la-sensorizaci%C3%B3n-de-sus-contenedores-de-residuos-para-avanzar-hacia-una-gesti%C3%B3n-m%C3%A1s-sostenible-del-municipio",
+        "articleSource": "Ayuntamiento de Riba-roja de Túria",
+        "articleSourceHost": "ribarroja.es",
+        "articleFingerprint": "vsmbot"
+      }
+    },
+    {
+      "claim": {
+        "id": "1lk4zls-4-dat",
+        "articleId": "1lk4zls",
+        "articleFingerprint": "vsmbot",
+        "articleSource": "Ayuntamiento de Riba-roja de Túria",
+        "articleSourceHost": "ribarroja.es",
+        "articleUrl": "https://www.ribarroja.es/es/noticia/riba-roja-de-t%C3%BAria-impulsa-la-sensorizaci%C3%B3n-de-sus-contenedores-de-residuos-para-avanzar-hacia-una-gesti%C3%B3n-m%C3%A1s-sostenible-del-municipio",
+        "articleDate": "2026-09-25T09:54:12.000Z",
+        "segmentIndex": 4,
+        "segmentKind": "body",
+        "type": "dato_municipal",
+        "attributedSource": "municipal",
+        "verbatim": "La actuación se enmarca dentro del Eje Programático 1, Transición Verde y Sostenible, del PSTD de Riba-roja de Túria, integrado en el Plan Territorial de Sostenibilidad Turística en Destino Comunitat Valenciana-Programa 2022",
+        "context": "La actuación se enmarca dentro del Eje Programático 1, Transición Verde y Sostenible, del PSTD de Riba-roja de Túria, integrado en el Plan Territorial de Sostenibilidad Turística en Destino Comunitat Valenciana-Programa 2022.",
+        "topic": "medio-ambiente",
+        "entities": {
+          "referencedEntity": "Plan Territorial de Sostenibilidad Turística en Destino Comunitat Valenciana-Programa 2022"
+        },
+        "confidence": 0.75,
+        "reasoning": "Encaje programático del proyecto, verificable en la documentación oficial del PSTD autonómico.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "1lk4zls-4-dat",
+        "verdict": "sin-datos",
+        "summary": "No se ha encontrado el dato municipal en las series locales.",
+        "evidence": [],
+        "checkedAgainst": [],
+        "articleUrl": "https://www.ribarroja.es/es/noticia/riba-roja-de-t%C3%BAria-impulsa-la-sensorizaci%C3%B3n-de-sus-contenedores-de-residuos-para-avanzar-hacia-una-gesti%C3%B3n-m%C3%A1s-sostenible-del-municipio",
+        "articleSource": "Ayuntamiento de Riba-roja de Túria",
+        "articleSourceHost": "ribarroja.es",
+        "articleFingerprint": "vsmbot"
+      }
+    },
+    {
+      "claim": {
+        "id": "1cibswi-0-dat",
+        "articleId": "1cibswi",
+        "articleFingerprint": "1s17cvw",
+        "articleSource": "Valencia Plaza",
+        "articleSourceHost": "valenciaplaza.com",
+        "articleUrl": "https://news.google.com/rss/articles/CBMihAJBVV95cUxPcTJpRVA2aXA2X2trTU5KelB4TmhJa2h4ZThad0NsMHNuSDdseGozQTg5WTNYdTRKSWNHVzlfZGJzYV9meXhyejJZSXg2LXJkQW1CUzlTMXB4S1ROOXIzV0xPMG9vRmRmZG1GR2Q1MmRRay1QN0hfNXZySnBpTkFxdmtwekpWdGxZMU5hYTZxWXpRZlpXcXpKMUlZVUtKYk55TzJYZVRFSVVpWUc3cTZSMzZhckNKTXVZX1p6WUlwUm5adEVUVmI5TDZzdzcwMG5qaHRYVEFMUE5vNEcwN0tRemk1NC1fajBQY0wtSGdvN0xtbm8tRzBYYmNjV21yWXg2NjdoRQ?oc=5",
+        "articleDate": "2026-09-24T07:00:00.000Z",
+        "segmentIndex": 0,
+        "segmentKind": "title",
+        "type": "dato_municipal",
+        "attributedSource": "municipal",
+        "verbatim": "a las 15 horas del 29-O \"ya\" aconsejaron a empresas el cierre y advirtieron a vecinos",
+        "context": "Titular: el alcalde de Riba-roja dice que a las 15 horas del 29-O \"ya\" aconsejaron a empresas el cierre y advirtieron a vecinos. El medio atribuye la afirmación a la máxima autoridad municipal, sin aportar más texto del cuerpo.",
+        "topic": "seguridad",
+        "entities": {
+          "date": "29-O, 15:00 h",
+          "referencedEntity": "Ayuntamiento de Riba-roja de Túria"
+        },
+        "confidence": 0.55,
+        "reasoning": "Afirmación municipal sobre un hecho con hora concreta (avisos a empresas y vecinos a las 15 h del 29-O), contrastable con registros de comunicaciones, avisos y cronología oficial.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "1cibswi-0-dat",
+        "verdict": "sin-datos",
+        "summary": "No se ha encontrado el dato municipal en las series locales.",
+        "evidence": [],
+        "checkedAgainst": [],
+        "articleUrl": "https://news.google.com/rss/articles/CBMihAJBVV95cUxPcTJpRVA2aXA2X2trTU5KelB4TmhJa2h4ZThad0NsMHNuSDdseGozQTg5WTNYdTRKSWNHVzlfZGJzYV9meXhyejJZSXg2LXJkQW1CUzlTMXB4S1ROOXIzV0xPMG9vRmRmZG1GR2Q1MmRRay1QN0hfNXZySnBpTkFxdmtwekpWdGxZMU5hYTZxWXpRZlpXcXpKMUlZVUtKYk55TzJYZVRFSVVpWUc3cTZSMzZhckNKTXVZX1p6WUlwUm5adEVUVmI5TDZzdzcwMG5qaHRYVEFMUE5vNEcwN0tRemk1NC1fajBQY0wtSGdvN0xtbm8tRzBYYmNjV21yWXg2NjdoRQ?oc=5",
+        "articleSource": "Valencia Plaza",
+        "articleSourceHost": "valenciaplaza.com",
+        "articleFingerprint": "1s17cvw"
+      }
     }
   ],
-  "sourceGeneratedAt": "2026-11-02T09:21:51.958Z",
+  "sourceGeneratedAt": "2026-11-09T09:31:44.266Z",
   "extraccion": {
     "articulos": [
       {
@@ -3919,6 +5164,12 @@
         "fingerprint": "1skh6cw",
         "desenlace": "descartado-en-triaje",
         "procesadoEl": "2026-10-19T08:28:17.385Z"
+      },
+      {
+        "articleId": "11s7c3b",
+        "fingerprint": "hxak26",
+        "desenlace": "sin-afirmaciones",
+        "procesadoEl": "2026-11-09T09:31:44.266Z"
       },
       {
         "articleId": "13zosn4",
@@ -3939,6 +5190,12 @@
         "procesadoEl": "2026-11-02T09:21:51.958Z"
       },
       {
+        "articleId": "164g66f",
+        "fingerprint": "833w2x",
+        "desenlace": "sin-afirmaciones",
+        "procesadoEl": "2026-11-09T09:31:44.266Z"
+      },
+      {
         "articleId": "16twcj4",
         "fingerprint": "1p3agfc",
         "desenlace": "extraido",
@@ -3951,10 +5208,22 @@
         "procesadoEl": "2026-11-02T09:21:51.958Z"
       },
       {
+        "articleId": "17g6u7u",
+        "fingerprint": "1pcur0w",
+        "desenlace": "descartado-en-triaje",
+        "procesadoEl": "2026-11-09T09:31:44.266Z"
+      },
+      {
         "articleId": "17vyk5k",
         "fingerprint": "15q20to",
         "desenlace": "descartado-en-triaje",
         "procesadoEl": "2026-11-02T09:21:51.958Z"
+      },
+      {
+        "articleId": "18kyu4h",
+        "fingerprint": "lbh17l",
+        "desenlace": "descartado-en-triaje",
+        "procesadoEl": "2026-11-09T09:31:44.266Z"
       },
       {
         "articleId": "18sga9a",
@@ -3999,6 +5268,12 @@
         "procesadoEl": "2026-10-19T08:28:17.385Z"
       },
       {
+        "articleId": "1cibswi",
+        "fingerprint": "1s17cvw",
+        "desenlace": "extraido",
+        "procesadoEl": "2026-11-09T09:31:44.266Z"
+      },
+      {
         "articleId": "1dfdixf",
         "fingerprint": "1yzpxiw",
         "desenlace": "descartado-en-triaje",
@@ -4021,6 +5296,12 @@
         "fingerprint": "1pt8540",
         "desenlace": "extraido",
         "procesadoEl": "2026-10-26T09:27:06.953Z"
+      },
+      {
+        "articleId": "1hjzxwj",
+        "fingerprint": "1dlvo36",
+        "desenlace": "descartado-en-triaje",
+        "procesadoEl": "2026-11-09T09:31:44.266Z"
       },
       {
         "articleId": "1hz8q7k",
@@ -4065,6 +5346,24 @@
         "procesadoEl": "2026-10-26T09:27:06.953Z"
       },
       {
+        "articleId": "1ljaipo",
+        "fingerprint": "gcvgrg",
+        "desenlace": "descartado-en-triaje",
+        "procesadoEl": "2026-11-09T09:31:44.266Z"
+      },
+      {
+        "articleId": "1lk4zls",
+        "fingerprint": "vsmbot",
+        "desenlace": "extraido",
+        "procesadoEl": "2026-11-09T09:31:44.266Z"
+      },
+      {
+        "articleId": "1lvhrbq",
+        "fingerprint": "fnlkwc",
+        "desenlace": "descartado-en-triaje",
+        "procesadoEl": "2026-11-09T09:31:44.266Z"
+      },
+      {
         "articleId": "1mo6fdk",
         "fingerprint": "16e2qve",
         "desenlace": "descartado-en-triaje",
@@ -4075,6 +5374,12 @@
         "fingerprint": "1mm0diu",
         "desenlace": "sin-afirmaciones",
         "procesadoEl": "2026-10-19T08:28:17.385Z"
+      },
+      {
+        "articleId": "1ni4o4j",
+        "fingerprint": "1kgolmo",
+        "desenlace": "descartado-en-triaje",
+        "procesadoEl": "2026-11-09T09:31:44.266Z"
       },
       {
         "articleId": "1ota6hb",
@@ -4095,6 +5400,12 @@
         "procesadoEl": "2026-10-26T09:27:06.953Z"
       },
       {
+        "articleId": "1pj7404",
+        "fingerprint": "168tgzt",
+        "desenlace": "descartado-en-triaje",
+        "procesadoEl": "2026-11-09T09:31:44.266Z"
+      },
+      {
         "articleId": "1qtypb7",
         "fingerprint": "753ip8",
         "desenlace": "descartado-en-triaje",
@@ -4111,6 +5422,18 @@
         "fingerprint": "1ffhzqr",
         "desenlace": "descartado-en-triaje",
         "procesadoEl": "2026-10-26T09:27:06.953Z"
+      },
+      {
+        "articleId": "1t3g13k",
+        "fingerprint": "butwtc",
+        "desenlace": "extraido",
+        "procesadoEl": "2026-11-09T09:31:44.266Z"
+      },
+      {
+        "articleId": "1tf25w0",
+        "fingerprint": "y0ksbk",
+        "desenlace": "descartado-en-triaje",
+        "procesadoEl": "2026-11-09T09:31:44.266Z"
       },
       {
         "articleId": "1tg7jey",
@@ -4179,6 +5502,18 @@
         "procesadoEl": "2026-11-02T09:21:51.958Z"
       },
       {
+        "articleId": "6mxh64",
+        "fingerprint": "v1pf50",
+        "desenlace": "extraido",
+        "procesadoEl": "2026-11-09T09:31:44.266Z"
+      },
+      {
+        "articleId": "8hij1g",
+        "fingerprint": "1208oo5",
+        "desenlace": "extraido",
+        "procesadoEl": "2026-11-09T09:31:44.266Z"
+      },
+      {
         "articleId": "9k4v28",
         "fingerprint": "1ffsisx",
         "desenlace": "extraido",
@@ -4197,10 +5532,34 @@
         "procesadoEl": "2026-10-26T09:27:06.953Z"
       },
       {
+        "articleId": "a9po3c",
+        "fingerprint": "1pym6j4",
+        "desenlace": "descartado-en-triaje",
+        "procesadoEl": "2026-11-09T09:31:44.266Z"
+      },
+      {
+        "articleId": "b8rw3f",
+        "fingerprint": "1jpl94s",
+        "desenlace": "descartado-en-triaje",
+        "procesadoEl": "2026-11-09T09:31:44.266Z"
+      },
+      {
         "articleId": "bk83aw",
         "fingerprint": "uylhex",
         "desenlace": "extraido",
         "procesadoEl": "2026-10-26T09:27:06.953Z"
+      },
+      {
+        "articleId": "ccsnc0",
+        "fingerprint": "11ifeuo",
+        "desenlace": "extraido",
+        "procesadoEl": "2026-11-09T09:31:44.266Z"
+      },
+      {
+        "articleId": "cp9sxg",
+        "fingerprint": "gq6nc",
+        "desenlace": "extraido",
+        "procesadoEl": "2026-11-09T09:31:44.266Z"
       },
       {
         "articleId": "cxmvv4",
@@ -4251,6 +5610,12 @@
         "procesadoEl": "2026-10-26T09:27:06.953Z"
       },
       {
+        "articleId": "hf9573",
+        "fingerprint": "fq201w",
+        "desenlace": "sin-afirmaciones",
+        "procesadoEl": "2026-11-09T09:31:44.266Z"
+      },
+      {
         "articleId": "hkahd4",
         "fingerprint": "r61td3",
         "desenlace": "extraido",
@@ -4267,6 +5632,12 @@
         "fingerprint": "1aavc1u",
         "desenlace": "descartado-en-triaje",
         "procesadoEl": "2026-11-02T09:21:51.958Z"
+      },
+      {
+        "articleId": "l2w55p",
+        "fingerprint": "qb2nyk",
+        "desenlace": "descartado-en-triaje",
+        "procesadoEl": "2026-11-09T09:31:44.266Z"
       },
       {
         "articleId": "lhseyk",
@@ -4371,16 +5742,40 @@
         "procesadoEl": "2026-11-02T09:21:51.958Z"
       },
       {
+        "articleId": "uemsec",
+        "fingerprint": "1pwdoy8",
+        "desenlace": "descartado-en-triaje",
+        "procesadoEl": "2026-11-09T09:31:44.266Z"
+      },
+      {
         "articleId": "urrfhs",
         "fingerprint": "1plve0g",
         "desenlace": "descartado-en-triaje",
         "procesadoEl": "2026-10-19T08:28:17.385Z"
       },
       {
+        "articleId": "ux557c",
+        "fingerprint": "1wtaebr",
+        "desenlace": "extraido",
+        "procesadoEl": "2026-11-09T09:31:44.266Z"
+      },
+      {
         "articleId": "vibox0",
         "fingerprint": "3zj37c",
         "desenlace": "sin-afirmaciones",
         "procesadoEl": "2026-10-19T08:28:17.385Z"
+      },
+      {
+        "articleId": "w8xvcs",
+        "fingerprint": "da7jwk",
+        "desenlace": "descartado-en-triaje",
+        "procesadoEl": "2026-11-09T09:31:44.266Z"
+      },
+      {
+        "articleId": "xcbiyc",
+        "fingerprint": "7ptpmg",
+        "desenlace": "extraido",
+        "procesadoEl": "2026-11-09T09:31:44.266Z"
       },
       {
         "articleId": "xh27f9",
