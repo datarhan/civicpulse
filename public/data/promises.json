@@ -1,6 +1,6 @@
 {
   "version": "1.0.0",
-  "generatedAt": "2026-10-19T06:30:07.507Z",
+  "generatedAt": "2026-11-09T08:21:49.171Z",
   "frozenUntil": null,
   "legalNotice": "CivicPulse es un proyecto de civic-tech independiente, sin vinculación con el Ayuntamiento de Riba-roja de Túria ni con ningún partido político. Las promesas listadas son compromisos públicos atribuidos a partidos y cargos, cada uno con su fuente enlazada: el documento oficial o la noticia de prensa que recoge la cita. Para correcciones, derecho de rectificación o propuesta de nuevas fuentes: abrir una issue en github.com/datarhan/civicpulse con la etiqueta correccion-promesa. Plazo de revisión: 24 h. Plazo de resolución: 72 h. Durante el periodo electoral oficial (LOREG art. 50), el tracker entra en modo solo-lectura y los estados quedan congelados a la fecha publicada en cada ficha.",
   "contactUrl": "https://github.com/datarhan/civicpulse/issues/new?labels=correccion-promesa",
@@ -467,6 +467,28 @@
         "reviewState": "pending-review",
         "priorStatus": "documentada",
         "appendedEvidenceUrl": "https://www.ribarroja.es/es/noticia/riba-roja-de-t%C3%BAria-formaliza-con-veolia-el-nuevo-contrato-del-ciclo-integral-del-agua-para-reforzar-la-sostenibilidad-y-modernizar-sus-infraestructuras"
+      }
+    },
+    {
+      "id": "ac-psoe-1t88ans",
+      "party": "PSOE",
+      "title": "140.000 euros en subvenciones para clubes y entidades deportivas temporada 2025/2026",
+      "quote": "El Ayuntamiento de Riba-roja de Túria ha asignado un total de 140.000 euros de los fondos municipales para financiar y sufragar las actividades y programas que han llevado a cabo las entidades y clubes deportivos radicados en el término municipal a lo largo de la pasada temporada 2025/2026. Además, se subvencionará el desarrollo de actividades recreativas, de ocio y de esparcimiento.",
+      "source": {
+        "url": "https://www.ribarroja.es/es/noticia/el-ayuntamiento-de-riba-roja-de-t%C3%BAria-asigna-140.000-euros-en-subvenciones-econ%C3%B3micas-a-los-clubes-y-entidades-deportivas-para-financiar-sus-actividades-y-programas-de-la-temporada-25/26",
+        "publisher": "Ayuntamiento Riba-roja"
+      },
+      "madeAt": "2026-11-02",
+      "topic": "deporte",
+      "kind": "anuncio-gobierno",
+      "status": "documentada",
+      "evidence": [],
+      "createdAt": "2026-11-09",
+      "autoPublished": {
+        "at": "2026-11-09T08:21:49.171Z",
+        "by": "auto-curation-v1",
+        "confidence": 0.7,
+        "reviewState": "pending-review"
       }
     }
   ],
