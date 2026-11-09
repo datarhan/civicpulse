@@ -184,8 +184,30 @@ export interface PlenoClaim {
   confidence: number
   /** One-sentence reasoning (kept for audit). */
   reasoning: string
+  /**
+   * Quién extrajo la declaración: el backend y el modelo que CONTESTARON a su
+   * ventana —no los configurados: el respaldo de la cadena puede contestar por
+   * el primario (procedencia-del-motor.ts)— y la versión del prompt.
+   *
+   * Ausente en lo extraído antes del 09-11-2026: entonces no consta, y no se
+   * rellena hacia atrás adivinando por el literal. Ese día lo publicado salió
+   * repartido entre al menos tres modelos y tres versiones del prompt, y la
+   * mayor parte sin respuesta en caché que lo explicara; repetir una ventana
+   * cambiaba el tema en torno al 13 % de las veces. Ausente también cuando se
+   * inyecta un `caller` (pruebas, eval): no sabe quién contestó.
+   */
+  extraidaPor?: ExtraidaPor
   /** Always true — this lives in suggestions, not a curated snapshot. */
   requiresHumanApproval: true
+}
+
+export interface ExtraidaPor {
+  /** El backend que contestó: `claude-code`, `agy`, `openai`… */
+  backend: string
+  /** El modelo como lo nombra la caché: `claude-code:claude-sonnet-5`, `gpt-4o-mini`… */
+  model: string
+  /** `PLENO_CLAIM_PROMPT_VERSION` de la pasada. */
+  promptVersion: string
 }
 
 export interface ClaimEntities {
