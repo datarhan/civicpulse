@@ -767,6 +767,18 @@ function ContratoEditorial() {
             presentada como cifra del ministerio.
           </li>
           <li>
+            <strong>Plataforma de Rendición de Cuentas</strong> — por ejercicio, si el Ayuntamiento
+            rindió la Cuenta General y la fecha de cada trámite, tal como él mismo la registra. En
+            /presupuesto sólo se contrastan con su plazo legal tres fechas: la aprobación definitiva
+            del presupuesto (art. 169.2 TRLRHL), la aprobación de la cuenta por el Pleno (art.
+            212.4) y su envío (art. 223.2), porque son las únicas en que la fecha publicada es el
+            acto que la ley data. La liquidación y el informe de la Comisión Especial tienen plazo
+            para otro acto, y su fecha no prueba ni el cumplimiento ni el retraso. Una fecha que la
+            plataforma no publica se dice «sin fecha» y no cuenta en ningún sentido; el veredicto se
+            calcula al leer la página, no al raspar, para que un plazo abierto no siga abierto en un
+            fichero viejo.
+          </li>
+          <li>
             <strong>Plenos de Riba-roja</strong> — actas + votos transcritos.
           </li>
           <li>

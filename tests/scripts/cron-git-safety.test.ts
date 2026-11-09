@@ -152,6 +152,7 @@ const STEP_OUTPUTS: Record<string, string> = {
   'scrape:obras': 'public/data/obras.json',
   'scrape:sindicatura': 'public/data/sindicatura.json',
   'scrape:sindic-expedientes': 'public/data/sindic-expedientes.json',
+  'scrape:rendicion-cuentas': 'public/data/rendicion-cuentas.json',
   'scrape:transparency': 'public/data/transparency-docs.json',
   'scrape:pleno-actas': 'public/data/pleno-actas.json',
   'scrape:agua': 'public/data/agua.json',

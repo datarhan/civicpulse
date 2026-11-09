@@ -44,6 +44,7 @@ SNAPSHOTS=(
   public/data/obras.json
   public/data/sindicatura.json
   public/data/sindic-expedientes.json
+  public/data/rendicion-cuentas.json
   public/data/transparency-docs.json
   public/data/pleno-actas.json
   public/data/agua.json
@@ -88,6 +89,11 @@ ADAPTERS=(
   scrape:obras
   scrape:sindicatura
   scrape:sindic-expedientes
+  # La Plataforma de Rendición de Cuentas: sin medir desde un runner, como el
+  # Síndic. Pide la búsqueda y el histórico y sólo baja la página de un
+  # ejercicio nuevo o que cambió de estado, así que una mañana normal son dos
+  # peticiones.
+  scrape:rendicion-cuentas
   # ribarroja.es responde 502 a TODO desde los runners de GitHub — medido el
   # 6-09-2026 en la nocturna: 502 en las tres URL del portal, la del padrón de
   # cargos incluida. Desde el portátil la misma RPT responde 200. Es el caso

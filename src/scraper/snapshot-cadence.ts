@@ -126,6 +126,12 @@ export const DEFAULT_EXPECTATIONS: DatasetExpectation[] = [
     // principal cubren más de un año, así que una semana perdida no pierde
     // ningún boletín — un mes sí podría.
     'agua.json',
+    // La Plataforma de Rendición de Cuentas: sin medir desde CI, como
+    // `sindic-expedientes`. Entra en blando en la nocturna y su refresco
+    // garantizado es el cron local. El dato se mueve una vez al año, pero el
+    // envío de la cuenta cae entre septiembre y octubre y es lo que la página
+    // contrasta con su plazo: una semana sin pasada ya merece mirarse.
+    'rendicion-cuentas.json',
   ].map((file) => ({ file, cls: 'ci-blocked' as const, maxAgeDays: 8 })),
   // Clase `local-llm`: lo que escribe `press-lab-pipeline.sh`, un agente de
   // launchd que corre los LUNES (a diario hasta el 2026-09-23; el cambio fue

@@ -1065,6 +1065,11 @@ const EXTRA_DATASETS = [
   ['Contratos EU · TED', '/data/tenders-ted.json', 'ted.europa.eu'],
   ['Resultados electorales', '/data/elections.json', 'GVA/ICV · ARGOS'],
   ['Sindicatura de Comptes CV', '/data/sindicatura.json', 'sindicom.gva.es'],
+  [
+    'Rendición de cuentas · Cuenta General',
+    '/data/rendicion-cuentas.json',
+    'rendiciondecuentas.es',
+  ],
   ['Síndic de Greuges CV · expedientes', '/data/sindic-expedientes.json', 'elsindic.com'],
   ['CTBG · reclamaciones', '/data/ctbg.json', 'MinHac · CTBG'],
   ['Consell de Transparència CV', '/data/consell-cv.json', 'GVA · CTCV'],

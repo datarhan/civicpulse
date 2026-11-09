@@ -28,6 +28,11 @@ export const LAB_SOURCES = [
   { path: '/data/bop.json', label: 'BOP València', group: 'core' },
   { path: '/data/sindicatura.json', label: 'Sindicatura de Comptes', group: 'core' },
   {
+    path: '/data/rendicion-cuentas.json',
+    label: 'Rendición de cuentas · Cuenta General',
+    group: 'core',
+  },
+  {
     path: '/data/sindic-expedientes.json',
     label: 'Síndic CV · índice de expedientes',
     group: 'core',
