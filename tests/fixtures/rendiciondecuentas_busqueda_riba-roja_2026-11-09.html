@@ -1,0 +1,604 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="es" lang="es">
+
+
+
+
+	
+	
+	
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+		<title>Consulta de Cuentas</title>
+		<link rel="shortcut icon" type="image/x-icon" href="/export/sites/portaldelciudadano/comun/imagenes/iconos/favicon.jpg" />
+		
+		<meta name="keywords" content="Consulta de Cuentas, Buscar Cuentas, Cuentas, Cuenta" />
+		<meta name="description" content="Consulta de Entidades y Cuentas de las Entidades locales. A través de esta página, podrá consultar las cuentas y el censo relativo a las Entidades Locales." />
+		
+		<link type="text/css" rel="stylesheet" href="/export/sites/portaldelciudadano/comun/estilos/screen_es.css" media="screen" />
+		<link type="text/css" rel="stylesheet" href="/export/sites/portaldelciudadano/comun/estilos/jsCarousel.css" media="screen" />
+		<link type="text/css" rel="stylesheet" href="/export/sites/portaldelciudadano/comun/estilos/acordeon.css" media="screen" />
+		<!--[if IE 8]>
+				<link rel="stylesheet" type="text/css" href="/export/sites/portaldelciudadano/comun/estilos/screen_ie8.css" media="screen"/>
+		<![endif]-->
+		<!--[if IE 7]>
+				<link rel="stylesheet" type="text/css" href="/export/sites/portaldelciudadano/comun/estilos/screen_ie7.css" media="screen"/>
+		<![endif]-->
+		<!--[if lte IE 6]>
+				<link rel="stylesheet" type="text/css" href="/export/sites/portaldelciudadano/comun/estilos/screen_ie6.css" media="screen"/>
+		<![endif]-->
+		
+		<script type="text/javascript" src="/export/sites/portaldelciudadano/comun/js/jquery-1.4.2.min.js"></script>
+		<script type="text/javascript" src="/export/sites/portaldelciudadano/comun/js/jquery.corners.min.js"></script>
+		<script type="text/javascript" src="/export/sites/portaldelciudadano/comun/js/jquery.ui.core.min.js"></script>
+		<script type="text/javascript" src="/export/sites/portaldelciudadano/comun/js/jquery.ui.widget.min.js"></script>
+		<script type="text/javascript" src="/export/sites/portaldelciudadano/comun/js/jquery.ui.accordion.min.js"></script>
+		<script type="text/javascript" src="/export/sites/portaldelciudadano/comun/js/jquery.corners.min.js"></script>
+		<script type="text/javascript" src="/export/sites/portaldelciudadano/comun/js/jquery.validate.min.js"></script>
+		<script type="text/javascript" src="/export/sites/portaldelciudadano/comun/js/jquery.colorbox-min.js"></script>
+		<script type="text/javascript" src="/export/sites/portaldelciudadano/comun/js/messages_es.js"></script>
+		<script type="text/javascript" src="/export/sites/portaldelciudadano/comun/js/jsCarousel.js"></script>
+		<script type="text/javascript" src="/export/sites/portaldelciudadano/comun/js/funciones2_es.js"></script>
+		<script type="text/javascript" src="/export/sites/portaldelciudadano/comun/js/funciones.js"></script>
+		<script src="/export/sites/portaldelciudadano/comun/js/jquery.bxSlider.min.js" type="text/javascript"></script>
+	</head>
+
+
+<body>
+	
+	<div id="contenedor">
+    
+    	<div id="cab">
+    	
+			
+
+
+
+
+
+	<div id="lang">
+		<form id="formLang" action="/es/consultadeentidadesycuentas/buscarCuentas/index.html" method="post" a="https://www.rendiciondecuentas.es/es/consultadeentidadesycuentas/buscarCuentas/index.html">
+			<label for="selLang">Idioma:</label>
+			<select id="selLang" name="locale" class="selnoborder">
+				
+					
+					<option xml:lang="es" value="es" selected="selected">Castellano</option>
+				
+					
+					<option xml:lang="ca" value="ca" >Català</option>
+				
+					
+					<option xml:lang="gl" value="gl" >Galego</option>
+				
+					
+					<option xml:lang="en" value="en" >English</option>
+				
+				</select>
+	
+				<input type="hidden" name="idProvincia" value="46" />
+	
+				<input type="hidden" name="idComunidadAutonoma" value="17" />
+	
+				<input type="hidden" name="idTipoEntidad" value="A" />
+	
+				<input type="hidden" name="denominacion" value="Riba-roja" />
+	
+				<input type="hidden" name="submitFormBusquedaGeneral" value="Buscar" />
+	
+				<input class="botRound" type="submit" value="Cambiar" />
+		</form>
+	</div>
+
+
+			
+
+
+
+
+	
+	<img id="logo" alt="Rendición de Cuentas" src="/export/sites/portaldelciudadano/comun/imagenes/logos/logo.gif"  />
+	<ul id="menuPpal">
+
+		<li class="med "><a href="/es/index.html" >Inicio</a></li>
+
+		<li class="med "><a href="/es/informaciongeneral/" >Información general</a></li>
+
+		<li class="med active"><a href="/es/consultadeentidadesycuentas/" >Consulta de Entidades y cumplimiento</a></li>
+
+		<li class="med " ><a href="/es/areaprivada.html" target="_blank" title="Abre en ventana nueva." >Área Privada</a></li>
+
+		<li class="med "><a href="/es/enlaces/" >Enlaces</a></li>
+
+	</ul>
+
+			
+		</div>
+		
+		<div id="centroTop"></div>
+		
+    	<div id="centro">
+    		
+
+
+
+
+
+	<p class="fondoLft"><span>Estás en</span></p>
+	<ul id="breadcrumb">
+		<li><a href="/es/" >Inicio</a></li>
+
+		<li><a href="/es/consultadeentidadesycuentas/" >Consulta de Entidades y cumplimi...</a></li>
+
+		<li><a href="/es/consultadeentidadesycuentas/buscarCuentas/" >Consulta de Cuentas</a></li>
+
+	</ul>
+
+    		
+    		<div id="centroLft">
+				
+
+
+
+
+
+
+<h1 class="noMargen">Consulta de Cuentas</h1>
+<div class="frm01">
+	<form class="validarForm" action="/es/consultadeentidadesycuentas/buscarCuentas/index.html" method="post" >
+		<p>Seleccione al menos, Comunidad Autónoma, Provincia, Tipo de Entidad y pulse el botón Buscar</p>
+		<fieldset>
+			<div class="fila first">
+				<div class="campo">
+					<label for="selectComunidadAutonoma">Comunidad Autónoma <strong title="Este campo es obligatorio." class="obligatorio">(*)</strong></label>
+					<select class="required" id="selectComunidadAutonoma" name="idComunidadAutonoma">
+						
+
+	
+	
+		
+	
+
+
+
+
+	<option value="">&nbsp;</option>
+
+	<option  value="1">Andalucía</option>
+
+	<option  value="2">Aragón</option>
+
+	<option  value="5">Canarias</option>
+
+	<option  value="6">Cantabria</option>
+
+	<option  value="8">Castilla y León</option>
+
+	<option  value="7">Castilla-La Mancha</option>
+
+	<option  value="9">Cataluña</option>
+
+	<option selected="selected" value="17">Comunitat Valenciana</option>
+
+	<option  value="10">Extremadura</option>
+
+	<option  value="11">Galicia</option>
+
+	<option  value="4">Illes Balears</option>
+
+	<option  value="16">La Rioja</option>
+
+	<option  value="12">Madrid</option>
+
+	<option  value="3">Principado de Asturias</option>
+
+	<option  value="13">Región de Murcia</option>
+
+
+
+					</select>
+					
+				</div>
+			</div>
+			<div class="fila">
+				<div class="campo">
+					<label for="selectProvincia">Provincia <strong title="Este campo es obligatorio." class="obligatorio">(*)</strong></label>
+					<select class="required" id="selectProvincia" name="idProvincia">
+						
+
+	<option value="">&nbsp;</option>
+
+	<option  class="idCa_11"  value="15">A Coruña</option>
+
+	<option  class="idCa_7"  value="2">Albacete</option>
+
+	<option  class="idCa_17"  value="3">Alicante/Alacant</option>
+
+	<option  class="idCa_1"  value="4">Almería</option>
+
+	<option  class="idCa_3"  value="33">Asturias</option>
+
+	<option  class="idCa_10"  value="6">Badajoz</option>
+
+	<option  class="idCa_9"  value="8">Barcelona</option>
+
+	<option  class="idCa_8"  value="9">Burgos</option>
+
+	<option  class="idCa_6"  value="39">Cantabria</option>
+
+	<option  class="idCa_17"  value="12">Castellón/Castelló</option>
+
+	<option  class="idCa_7"  value="13">Ciudad Real</option>
+
+	<option  class="idCa_7"  value="16">Cuenca</option>
+
+	<option  class="idCa_10"  value="10">Cáceres</option>
+
+	<option  class="idCa_1"  value="11">Cádiz</option>
+
+	<option  class="idCa_1"  value="14">Córdoba</option>
+
+	<option  class="idCa_9"  value="17">Gerona</option>
+
+	<option  class="idCa_1"  value="18">Granada</option>
+
+	<option  class="idCa_7"  value="19">Guadalajara</option>
+
+	<option  class="idCa_15"  value="20">Guipúzcoa/Gipuzkoa</option>
+
+	<option  class="idCa_1"  value="21">Huelva</option>
+
+	<option  class="idCa_2"  value="22">Huesca</option>
+
+	<option  class="idCa_4"  value="7">Illes Balears</option>
+
+	<option  class="idCa_1"  value="23">Jaén</option>
+
+	<option  class="idCa_9"  value="25">LLeida</option>
+
+	<option  class="idCa_16"  value="26">La Rioja</option>
+
+	<option  class="idCa_5"  value="35">Las Palmas</option>
+
+	<option  class="idCa_8"  value="24">León</option>
+
+	<option  class="idCa_11"  value="27">Lugo</option>
+
+	<option  class="idCa_12"  value="28">Madrid</option>
+
+	<option  class="idCa_13"  value="30">Murcia</option>
+
+	<option  class="idCa_1"  value="29">Málaga</option>
+
+	<option  class="idCa_14"  value="31">Navarra</option>
+
+	<option  class="idCa_11"  value="32">Ourense</option>
+
+	<option  class="idCa_8"  value="34">Palencia</option>
+
+	<option  class="idCa_11"  value="36">Pontevedra</option>
+
+	<option  class="idCa_8"  value="37">Salamanca</option>
+
+	<option  class="idCa_5"  value="38">Santa Cruz de Tenerife</option>
+
+	<option  class="idCa_8"  value="40">Segovia</option>
+
+	<option  class="idCa_1"  value="41">Sevilla</option>
+
+	<option  class="idCa_8"  value="42">Soria</option>
+
+	<option  class="idCa_9"  value="43">Tarragona</option>
+
+	<option  class="idCa_2"  value="44">Teruel</option>
+
+	<option  class="idCa_7"  value="45">Toledo</option>
+
+	<option selected="selected" class="idCa_17"  value="46">Valencia</option>
+
+	<option  class="idCa_8"  value="47">Valladolid</option>
+
+	<option  class="idCa_15"  value="48">Vizcaya/Bizkaia</option>
+
+	<option  class="idCa_8"  value="49">Zamora</option>
+
+	<option  class="idCa_2"  value="50">Zaragoza</option>
+
+	<option  class="idCa_15"  value="1">Álava/Araba</option>
+
+	<option  class="idCa_8"  value="5">Ávila</option>
+
+
+
+					</select>
+					
+				</div>
+			</div>
+			<div class="fila">
+				<div class="campo">
+					<label for="selectTipoEntidad">Tipo de Entidad <strong title="Este campo es obligatorio." class="obligatorio">(*)</strong></label>
+					<select class="required" id="selectTipoEntidad" name="idTipoEntidad">
+						
+
+
+
+
+	<option value="">&nbsp;</option>
+
+	
+	<option selected="selected" value="A">Ayuntamiento</option>
+
+	
+	<option  value="B">Cabildo</option>
+
+	
+	<option  value="J">Consejo Insular</option>
+
+	
+	<option  value="D">Diputación Provincial</option>
+
+	
+	<option  value="E">Entidad local menor</option>
+
+	
+	<option  value="G">Agrupación de municipios</option>
+
+	
+	<option  value="T">Área metropolitana</option>
+
+	
+	<option  value="R">Comarca</option>
+
+	
+	<option  value="C">Consorcio</option>
+
+	
+	<option  value="M">Mancomunidad</option>
+
+
+
+					</select>
+					
+				</div>
+			</div>
+			<div class="fila">
+				<div class="campo">
+					<label for="inputDenominacion">Denominación</label>
+					<input class="txt" id="inputDenominacion" type="text" name="denominacion" value="Riba-roja" />
+				</div>
+				<p class="campoObligatorioAviso alignCenter">(*) Este campo es obligatorio.</p>
+				<p class="nota2 js"><a class="pop pop_info" href="#" title="Información"><img src="/export/sites/portaldelciudadano/comun/imagenes/bgs/bg_nota_acc.gif" alt="Información" /></a>Si no encuentra la Entidad, pulse sobre el icono 'Información' y siga las recomendaciones.</p>
+				
+				
+				
+				<div class="popup">
+					<div id="pop_info">
+						<h1>Búsqueda por "Denominación" Recomendaciones</h1>
+						
+							<p>El portal realiza búsquedas exactas y es sensible a espacios, guiones, tildes y orden de las palabras. No es sensible, sin embargo, al uso de mayúsculas o minúsculas y no requiere de palabras completas para obtener resultados.</p>
+						
+							<p>Si no está seguro del nombre completo de la Entidad, basta con escribir una de las palabras que lo integran o incluso una sola letra. Por ejemplo, si intenta localizar la Entidad "<strong>Ayuntamiento de Arganda del Rey</strong>", es suficiente con escribir "<strong>Arganda</strong>" o "<strong>rey</strong>", o incluso "<strong>rganda</strong>".</p>
+						
+							<p>Si el nombre de la Entidad incluye letras acentuadas y no está seguro del nombre de la misma, evite incluir en la denominación dichas letras. Por ejemplo, si intenta localizar la Entidad "<strong>Ayuntamiento de Ávila</strong>", es suficiente con escribir "<strong>Ávila</strong>" o si el nombre es "<strong>Empresa Municipial Alaró</strong>" puede introducir como denominación "<strong>Alar</strong>".</p>
+						
+							<p>Además, ha de tener en cuenta que el tipo de Entidad no forma parte del campo "Denominación", por lo que no debe incluirlo nunca como parte del texto a buscar. Con el ejemplo anterior, si incluye en el campo Denominación como valor a buscar "Ayuntamiento", no obtendrá resultados.</p>
+						
+					</div>
+				</div>
+				
+				<p class="nota2 infoNavarra"><img src="/export/sites/portaldelciudadano/comun/imagenes/bgs/bg_nota_acc.gif" alt="Información" />Para conocer la información sobre el Sector Público Local del País Vasco o de Navarra, consulte los informes sobre el sector público local publicados en la página web del Tribunal Vasco de Cuentas Públicas o de la Cámara Comptos de Navarra. </p>
+				
+			</div>
+		</fieldset>
+		<div class="botonera01">
+			<span class="btn01">
+				<input type="submit" name="submitFormBusquedaGeneral" value="Buscar" />
+			</span>
+		</div>
+	</form>
+
+	
+<table class="tabla01 pijama tabla01 pijama" id="resultados">
+<thead>
+<tr>
+<th>Tipo de Entidad</th>
+<th>Denominación</th>
+<th>Ejercicios <span>Anteriores</span></th>
+<th>Ejercicio <span>2023</span></th>
+<th>Ejercicio <span>2024</span></th>
+<th>Ejercicio <span>2025</span></th></tr></thead>
+<tbody>
+<tr class="odd">
+<td>Ayuntamiento</td>
+<td>
+			Riba-roja de Túria
+		</td>
+<td>
+			<a href="consultarCuentasEjercicios.html?idEntidad=7174" >
+				<img class="decor_" alt="Observatorio de Rendición" src="/export/sites/portaldelciudadano/comun/imagenes/iconos/cuenta_ejercicios.gif" style="padding: 6px 0px 5px 30px;" />
+			</a>
+		</td>
+<td>
+			
+				
+					
+						
+							<a href="consultarCuenta.html?idEntidad=7174&amp;ejercicio=2023" ><img alt="Cuenta rendida" src="/export/sites/portaldelciudadano/comun/imagenes/iconos/cuenta_rendida_aplicacion.gif" /></a>
+						
+						
+					
+				
+				
+				
+				
+			
+		</td>
+<td>
+			
+				
+					
+						
+							<a href="consultarCuenta.html?idEntidad=7174&amp;ejercicio=2024" ><img alt="Cuenta rendida" src="/export/sites/portaldelciudadano/comun/imagenes/iconos/cuenta_rendida_aplicacion.gif" /></a>
+						
+						
+					
+				
+				
+				
+				
+			
+		</td>
+<td>
+			
+				
+					
+						
+							<a href="consultarCuenta.html?idEntidad=7174&amp;ejercicio=2025" ><img alt="Cuenta rendida" src="/export/sites/portaldelciudadano/comun/imagenes/iconos/cuenta_rendida_aplicacion.gif" /></a>
+						
+						
+					
+				
+				
+				
+				
+			
+		</td></tr></tbody></table><div class="paginacion"><p>Se ha encontrado un elemento.</p></div>
+	<div class="conTabla">
+		<div id="wrap1" class="int">
+		<div id="wrap2" class="int2">
+		<table class="tabla01 pijama tabla01 pijama">
+			<thead>
+				<tr>
+					<th colspan="10">Leyenda</th>
+				</tr>
+			</thead>		
+			<tbody>
+				<tr class="odd">
+					<td><img alt="Cuenta rendida no disponible" src="/export/sites/portaldelciudadano/comun/imagenes/iconos/cuenta_rendida.gif" /></td>
+					<td>Cuenta rendida no disponible</td>
+					<td><img alt="Cuenta rendida" src="/export/sites/portaldelciudadano/comun/imagenes/iconos/cuenta_rendida_aplicacion.gif" /></td>
+					<td>Cuenta rendida</td>
+					<td><img style="width: 28px;" alt="Observatorio de Rendición" src="/export/sites/portaldelciudadano/comun/imagenes/iconos/cuenta_ejercicios.gif" /></td>
+					<td>Ejercicios Anteriores</td>
+					<td><img alt="Cuenta no rendida" src="/export/sites/portaldelciudadano/comun/imagenes/iconos/cuenta_no_rendida.gif" /></td>
+					<td>Cuenta no rendida</td>
+					<td><img alt="No aplica" src="/export/sites/portaldelciudadano/comun/imagenes/iconos/fecha_no_aplica.gif" /></td>
+					<td>No aplica</td>
+				</tr>
+			</tbody>
+		</table>
+		</div>
+		</div>
+	</div>
+	
+	
+	
+	
+	
+	
+
+</div>
+
+
+			</div>
+			
+			<div id="centroRgt">
+				
+
+
+	
+	
+
+
+	<div class="cont">
+		<h2>Consulta de Entidades</h2>
+		<img class="decor" alt="Consulta de Entidades y cumplimiento de sus obligaciones anuales" src="/export/sites/portaldelciudadano/comun/imagenes/iconos/consulta_entidades.gif" />
+		<p><a href="/es/consultadeentidadesycuentas/buscarEntidades/">Consulte las entidades locales registradas y conozca si han rendido los últimos ejercicios.</a></p>
+	</div>
+
+				
+
+	
+	
+
+
+	<div class="cont">
+		<h2>Consulta de Contratos</h2>
+		<img class="decor" alt="Consulta de Entidades y cumplimiento de sus obligaciones anuales" src="/export/sites/portaldelciudadano/comun/imagenes/iconos/consulta_entidades.gif" />
+		<p><a href="/es/consultadeentidadesycuentas/contratos/">Consulte las entidades locales registradas y conozca si han remitido los contratos de los últimos ejercicios.</a></p>
+	</div>
+
+				
+
+	
+	
+
+
+	<div class="cont">
+		<h2>Consulta cumplimiento obligación envío de control interno</h2>
+		<img class="decor" alt="Consulta de Entidades y cumplimiento de sus obligaciones anuales" src="/export/sites/portaldelciudadano/comun/imagenes/iconos/consulta_entidades.gif" />
+		<p><a href="/es/consultadeentidadesycuentas/control/">Consulte las entidades locales registradas y conozca si han remitido control interno de los últimos ejercicios.</a></p>
+	</div>
+
+				
+
+	
+	
+
+
+	<div class="cont">
+		<h2>Consulta de Convenios</h2>
+		<img class="decor" alt="Consulta de Entidades y cumplimiento de sus obligaciones anuales" src="/export/sites/portaldelciudadano/comun/imagenes/iconos/consulta_entidades.gif" />
+		<p><a href="/es/consultadeentidadesycuentas/convenios/">Consulte las entidades locales registradas y conozca si han rendido los convenios de los últimos ejercicios.</a></p>
+	</div>
+
+				
+
+
+
+
+	<div class="cont">
+		<h2>Observatorio de rendición</h2>
+		<img class="decor" alt="Observatorio de Rendición" src="/export/sites/portaldelciudadano/comun/imagenes/iconos/observatorio.gif" />
+		<p><a href="/es/observatorioderendicion/">Acceda al Observatorio y conozca la evolución de los indicadores de rendición.</a></p>
+	</div>
+
+
+			</div>
+		</div>
+	
+		
+		<div id="pie">
+			<p>Copyright 2023 rendiciondecuentas.es - <span xml:lang="en">All Rights Reserved</span>.</p>
+			<ul>
+				<li><a href="https://www.w3.org/WAI/WCAG1AA-Conformance" title="Explicaci?n del Nivel Doble-A de Conformidad">
+					<img height="32" width="88" 
+						src="https://www.w3.org/WAI/wcag1AA"
+						alt="Icono de conformidad con el Nivel Doble-A, 
+						de las Directrices de Accesibilidad para el 
+						Contenido Web 1.0 del W3C-WAI" /></a>
+				</li>
+				<li><a href="https://validator.w3.org/check?uri=referer"><img
+      				src="https://www.w3.org/Icons/valid-xhtml10" alt="Valid XHTML 1.0 Transitional" height="31" width="88" /></a>
+				</li>
+				<li><a href="https://jigsaw.w3.org/css-validator/check/referer">
+				        <img style="border:0;width:88px;height:31px"
+				            src="https://jigsaw.w3.org/css-validator/images/vcss"
+				            alt="Valid CSS!" />
+				    </a>
+				</li>
+			</ul>
+			<ul>
+				
+				<li><a href="/es/">Inicio</a></li>
+				<li><a href="/es/mapaweb/">Mapa Web</a></li>
+				<li><a href="/es/contacto/">Contacto</a></li>
+				<li><a href="/es/avisolegal/">Aviso Legal</a></li>
+			</ul>
+		
+		</div>
+		
+	</div>
+</body>
+</html>
