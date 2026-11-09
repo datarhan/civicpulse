@@ -12,8 +12,15 @@
  * puede contestar por el primario (procedencia-del-motor.ts, las 457 de agosto).
  */
 import { describe, it, expect, vi } from 'vitest'
+import { readFileSync } from 'node:fs'
+import { resolve } from 'node:path'
+import type { PlenoClaimExtraction } from '../src/llm/schemas'
+import type { Procedencia } from '../src/llm/client'
 
-const { CLAIM, SONNET } = vi.hoisted(() => ({
+// `satisfies` y no una forma suelta: si el esquema de la respuesta o la
+// procedencia cambian, `typecheck` lo dice aquí en vez de dejar la prueba
+// verde sobre una forma que producción ya no tiene.
+const { CLAIM, SONNET, RESPALDO } = vi.hoisted(() => ({
   CLAIM: {
     type: 'afirmacion_numerica',
     speakerSlug: null,
@@ -24,8 +31,14 @@ const { CLAIM, SONNET } = vi.hoisted(() => ({
     accusationSubtype: null,
     confidence: 0.9,
     reasoning: 'Cifra concreta atribuible al cierre presupuestario',
-  },
-  SONNET: { backend: 'claude-code', model: 'claude-code:claude-sonnet-5', deCache: false },
+  } satisfies PlenoClaimExtraction,
+  // Los nombres de modelo son los que la caché de producción tiene escritos.
+  SONNET: {
+    backend: 'claude-code',
+    model: 'claude-code:claude-sonnet-5',
+    deCache: false,
+  } satisfies Procedencia,
+  RESPALDO: { backend: 'openai', model: 'gpt-4o-mini', deCache: false } satisfies Procedencia,
 }))
 
 // La ruta de producción no inyecta `caller`: tiene que preguntar a
@@ -48,6 +61,8 @@ vi.mock('../src/llm/client', async (importOriginal) => {
 import { extractClaimsWithLlm, extractClaimsConProcedencia } from '../src/scraper/pleno-claim-llm'
 import { callLLMConProcedencia } from '../src/llm/client'
 import { PLENO_CLAIM_PROMPT_VERSION } from '../src/llm/prompts'
+import { gateItemsForPublic } from '../src/scraper/claim-public-gate'
+import { buildChunkAndDescriptor } from '../src/scraper/pleno-claims-chunks'
 
 const TRANSCRIPT = `
 [10.0 → 35.0] (SPEAKER_00) Buenas tardes, este año hemos asignado 46 millones al presupuesto.
@@ -89,9 +104,7 @@ describe('extraidaPor', () => {
               { ...CLAIM, verbatim: `Declaración número ${n} de la sesión, sin cifra alguna.` },
             ],
           },
-          procedencia: respaldo
-            ? { backend: 'openai', model: 'gpt-4o-mini', deCache: false }
-            : SONNET,
+          procedencia: respaldo ? RESPALDO : SONNET,
         }
       },
     )
@@ -134,5 +147,29 @@ describe('extraidaPor', () => {
     )
     expect(res.items).toHaveLength(1)
     expect('extraidaPor' in res.items[0]).toBe(false)
+  })
+
+  it('llega al trozo servido: la puerta pública y el constructor de trozos lo conservan', () => {
+    // Una fila REAL publicada, no una forma escrita a mano: lo que se prueba es
+    // que ningún paso entre el extractor y el trozo reconstruye la declaración
+    // campo a campo y se deja el nuevo por el camino.
+    const dir = resolve('public/data/pleno-claims')
+    const index = JSON.parse(readFileSync(resolve(dir, 'index.json'), 'utf8')) as {
+      plenos: { plenoId?: string; id?: string }[]
+    }
+    const plenoId = index.plenos.map((p) => p.plenoId ?? p.id).find(Boolean) as string
+    const real = JSON.parse(readFileSync(resolve(dir, `${plenoId}.json`), 'utf8')).items[0]
+    expect(real?.claim?.verbatim).toBeTruthy()
+    const extraidaPor = {
+      backend: 'claude-code',
+      model: 'claude-code:claude-sonnet-5',
+      promptVersion: PLENO_CLAIM_PROMPT_VERSION,
+    }
+    const gated = gateItemsForPublic([
+      { claim: { ...real.claim, extraidaPor }, verification: real.verification },
+    ])
+    expect(gated).toHaveLength(1)
+    const { chunk } = buildChunkAndDescriptor(plenoId, gated, '2026-11-09T00:00:00.000Z')
+    expect(chunk.items[0].claim.extraidaPor).toEqual(extraidaPor)
   })
 })
