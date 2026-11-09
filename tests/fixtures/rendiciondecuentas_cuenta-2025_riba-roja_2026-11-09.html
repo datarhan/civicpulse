@@ -1,0 +1,267 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+
+<html xmlns="http://www.w3.org/1999/xhtml"  xml:lang="es" lang="es">
+
+
+
+
+	
+	
+	
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+		<title>Consulta de Cuentas</title>
+		<link rel="shortcut icon" type="image/x-icon" href="/export/sites/portaldelciudadano/comun/imagenes/iconos/favicon.jpg" />
+		
+		<meta name="keywords" content="Consulta de Entidades y Cuentas, Entidades locales, Rendición, Consulta de cuentas, Consulta de Entidades, Cuentas" />
+		<meta name="description" content="Consulta de Entidades y Cuentas de las Entidades locales. A través de esta página, podrá consultar las cuentas y el censo relativo a las Entidades Locales." />
+		
+		<link type="text/css" rel="stylesheet" href="/export/sites/portaldelciudadano/comun/estilos/screen_es.css" media="screen" />
+		<link type="text/css" rel="stylesheet" href="/export/sites/portaldelciudadano/comun/estilos/jsCarousel.css" media="screen" />
+		<link type="text/css" rel="stylesheet" href="/export/sites/portaldelciudadano/comun/estilos/acordeon.css" media="screen" />
+		<!--[if IE 8]>
+				<link rel="stylesheet" type="text/css" href="/export/sites/portaldelciudadano/comun/estilos/screen_ie8.css" media="screen"/>
+		<![endif]-->
+		<!--[if IE 7]>
+				<link rel="stylesheet" type="text/css" href="/export/sites/portaldelciudadano/comun/estilos/screen_ie7.css" media="screen"/>
+		<![endif]-->
+		<!--[if lte IE 6]>
+				<link rel="stylesheet" type="text/css" href="/export/sites/portaldelciudadano/comun/estilos/screen_ie6.css" media="screen"/>
+		<![endif]-->
+		
+		<script type="text/javascript" src="/export/sites/portaldelciudadano/comun/js/jquery-1.4.2.min.js"></script>
+		<script type="text/javascript" src="/export/sites/portaldelciudadano/comun/js/jquery.corners.min.js"></script>
+		<script type="text/javascript" src="/export/sites/portaldelciudadano/comun/js/jquery.ui.core.min.js"></script>
+		<script type="text/javascript" src="/export/sites/portaldelciudadano/comun/js/jquery.ui.widget.min.js"></script>
+		<script type="text/javascript" src="/export/sites/portaldelciudadano/comun/js/jquery.ui.accordion.min.js"></script>
+		<script type="text/javascript" src="/export/sites/portaldelciudadano/comun/js/jquery.corners.min.js"></script>
+		<script type="text/javascript" src="/export/sites/portaldelciudadano/comun/js/jquery.validate.min.js"></script>
+		<script type="text/javascript" src="/export/sites/portaldelciudadano/comun/js/jquery.colorbox-min.js"></script>
+		<script type="text/javascript" src="/export/sites/portaldelciudadano/comun/js/messages_es.js"></script>
+		<script type="text/javascript" src="/export/sites/portaldelciudadano/comun/js/jsCarousel.js"></script>
+		<script type="text/javascript" src="/export/sites/portaldelciudadano/comun/js/funciones2_es.js"></script>
+		<script type="text/javascript" src="/export/sites/portaldelciudadano/comun/js/funciones.js"></script>
+		<script src="/export/sites/portaldelciudadano/comun/js/jquery.bxSlider.min.js" type="text/javascript"></script>
+	</head>
+
+
+<body>
+	
+	<div id="contenedor">
+    
+    	<div id="cab">
+    	
+			
+
+
+
+
+
+	<div id="lang">
+		<form id="formLang" action="/es/consultadeentidadesycuentas/buscarCuentas/consultarCuenta.html" method="post" a="https://www.rendiciondecuentas.es/es/consultadeentidadesycuentas/buscarCuentas/consultarCuenta.html">
+			<label for="selLang">Idioma:</label>
+			<select id="selLang" name="locale" class="selnoborder">
+				
+					
+					<option xml:lang="es" value="es" selected="selected">Castellano</option>
+				
+					
+					<option xml:lang="ca" value="ca" >Català</option>
+				
+					
+					<option xml:lang="gl" value="gl" >Galego</option>
+				
+					
+					<option xml:lang="en" value="en" >English</option>
+				
+				</select>
+	
+				<input type="hidden" name="idEntidad" value="7174" />
+	
+				<input type="hidden" name="ejercicio" value="2025" />
+	
+				<input class="botRound" type="submit" value="Cambiar" />
+		</form>
+	</div>
+
+
+			
+
+
+
+
+	
+	<img id="logo" alt="Rendición de Cuentas" src="/export/sites/portaldelciudadano/comun/imagenes/logos/logo.gif"  />
+	<ul id="menuPpal">
+
+		<li class="med "><a href="/es/index.html" >Inicio</a></li>
+
+		<li class="med "><a href="/es/informaciongeneral/" >Información general</a></li>
+
+		<li class="med active"><a href="/es/consultadeentidadesycuentas/" >Consulta de Entidades y cumplimiento</a></li>
+
+		<li class="med " ><a href="/es/areaprivada.html" target="_blank" title="Abre en ventana nueva." >Área Privada</a></li>
+
+		<li class="med "><a href="/es/enlaces/" >Enlaces</a></li>
+
+	</ul>
+
+			
+		</div>
+		
+		<div id="centroTop"></div>
+		
+    	<div id="centro">
+    	
+			
+			
+			
+
+
+
+
+
+	<p class="fondoLft"><span>Estás en</span></p>
+	<ul id="breadcrumb">
+		<li><a href="/es/" >Inicio</a></li>
+
+		<li><a href="/es/consultadeentidadesycuentas/" >Consulta de Entidades y cumplimi...</a></li>
+
+		<li><a href="/es/consultadeentidadesycuentas/buscarCuentas/" >Consulta de Cuentas</a></li>
+
+	
+	
+	
+	
+	</ul>
+
+			
+			<div id="centroLft">
+				
+					
+
+
+
+<h1>Consulta de Cuentas</h1>
+<h2>Ayuntamiento Riba-roja de Túria, Ejercicio 2025 </h2>
+<p class="noMargen">Si la Cuenta de la Entidad se encuentra rendida, puede acceder al resumen o a la Cuenta completa pulsando sobre el icono <img alt="Cuenta rendida" src="/export/sites/portaldelciudadano/comun/imagenes/iconos/cuenta_rendida_aplicacion.gif" /></p>
+<div class="padTop30">
+	<table class="tabla01">
+		<thead>
+			<tr>
+				<th colspan="4">Presupuesto, Liquidación del Presupuesto y tramitación de la Cuenta General</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<th>Fecha aprobación definitiva del Presupuesto</th>
+				<td class="fnd">13/07/2025</td>
+				<th>Fecha aprobación de liquidación del Presupuesto</th>
+				<td class="fnd">25/02/2026</td>
+			</tr>
+			<tr>
+				<th>Fecha de formación de la Cuenta General</th>
+				<td class="fnd">01/07/2026</td>
+				<th>Fecha de Informe de la Comisión Especial de Cuentas</th>
+				<td class="fnd">31/07/2026</td>
+			</tr>
+			<tr>
+				<th>Fecha de inicio de la exposición pública</th>
+				<td class="fnd">19/08/2026</td>
+				<th>Fecha de presentación de la Cuenta General al Pleno</th>
+				<td class="fnd">05/10/2026</td>
+			</tr>
+			<tr>
+				<th>Fecha de aprobación de la Cuenta General</th>
+				<td class="fnd">05/10/2026</td>
+				<th>Fecha de envío</th>
+				<td class="fnd">14/10/2026</td>
+			</tr>
+		</tbody>
+	</table>
+</div>
+<div class="padTop30">
+	<table class="tabla01">
+		<thead>
+			<tr>
+				<th colspan="2">Entidad Principal</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<th class="txtCenter">Ayuntamiento Riba-roja de Túria</th>
+				<td class="txtCenter" width="100">
+				
+					<a href="/es/consultadeentidadesycuentas/buscarCuentas/consultarCuenta.html?dd=true&amp;idEntidadPpal=7174&amp;idEntidad=7174&amp;idTipoEntidad=A&amp;idModelo=3&amp;ejercicio=2025&amp;nifEntidad=P4621600H" ><img alt="Cuenta rendida" src="/export/sites/portaldelciudadano/comun/imagenes/iconos/cuenta_rendida_aplicacion.gif" /></a>
+				
+				</td>
+			</tr>
+		</tbody>
+	</table>
+</div>
+
+
+
+<div class="padTop30">
+	<table class="tabla01">
+			<thead>
+				<tr>
+					<th colspan="8">Leyenda</th>
+				</tr>
+			</thead>		
+			<tbody>
+				<tr class="odd">
+					<td><img alt="Cuenta rendida no disponible" src="/export/sites/portaldelciudadano/comun/imagenes/iconos/cuenta_rendida.gif" /></td>
+					<td>Cuenta rendida no disponible</td>
+					<td><img alt="Cuenta rendida" src="/export/sites/portaldelciudadano/comun/imagenes/iconos/cuenta_rendida_aplicacion.gif" /></td>
+					<td>Cuenta rendida</td>
+					<td><img alt="Cuenta no rendida" src="/export/sites/portaldelciudadano/comun/imagenes/iconos/cuenta_no_rendida.gif" /></td>
+					<td>Cuenta no rendida</td>
+				</tr>
+			</tbody>
+	</table>
+</div>
+
+				
+			</div>
+			
+			
+	
+		</div>
+		
+		
+		<div id="pie">
+			<p>Copyright 2023 rendiciondecuentas.es - <span xml:lang="en">All Rights Reserved</span>.</p>
+			<ul>
+				<li><a href="https://www.w3.org/WAI/WCAG1AA-Conformance" title="Explicaci?n del Nivel Doble-A de Conformidad">
+					<img height="32" width="88" 
+						src="https://www.w3.org/WAI/wcag1AA"
+						alt="Icono de conformidad con el Nivel Doble-A, 
+						de las Directrices de Accesibilidad para el 
+						Contenido Web 1.0 del W3C-WAI" /></a>
+				</li>
+				<li><a href="https://validator.w3.org/check?uri=referer"><img
+      				src="https://www.w3.org/Icons/valid-xhtml10" alt="Valid XHTML 1.0 Transitional" height="31" width="88" /></a>
+				</li>
+				<li><a href="https://jigsaw.w3.org/css-validator/check/referer">
+				        <img style="border:0;width:88px;height:31px"
+				            src="https://jigsaw.w3.org/css-validator/images/vcss"
+				            alt="Valid CSS!" />
+				    </a>
+				</li>
+			</ul>
+			<ul>
+				
+				<li><a href="/es/">Inicio</a></li>
+				<li><a href="/es/mapaweb/">Mapa Web</a></li>
+				<li><a href="/es/contacto/">Contacto</a></li>
+				<li><a href="/es/avisolegal/">Aviso Legal</a></li>
+			</ul>
+		
+		</div>
+		
+	</div>
+</body>
+</html>

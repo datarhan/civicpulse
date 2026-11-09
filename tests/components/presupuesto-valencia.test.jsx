@@ -39,6 +39,7 @@ import {
   masLargasPrimero,
 } from '../setup/castellano'
 import { pintaYLee } from '../setup/pinta-y-lee'
+import { PLAZOS } from '../../src/scraper/rendicion-cuentas'
 
 vi.mock('react-leaflet', () => {
   const Pinta = ({ children }) => <div>{children}</div>
@@ -124,9 +125,22 @@ const RUTAS_PRESUPUESTO = [
   '/data/budget.json',
   '/data/budget-execution.json',
   '/data/deuda-viva.json',
+  '/data/rendicion-cuentas.json',
   '/data/tender-geo.json',
 ]
 const sirvePresupuesto = () => Object.fromEntries(RUTAS_PRESUPUESTO.map((r) => [r, publicado(r)]))
+
+/**
+ * Las citas legales de la rendición de cuentas van en el idioma del BOE en las
+ * dos lecturas (CLAUDE.md: las citas legales no se traducen); se leen de
+ * `PLAZOS`, no se copian. Y «14 de 14» se escribe igual en valencià: se deriva
+ * del snapshot con la misma plantilla «{a} de {n}».
+ */
+const CITAS_LEGALES = Object.values(PLAZOS).flatMap((p) => [p.literal, p.articulo])
+const RENDIDAS = (() => {
+  const s = publicado('/data/rendicion-cuentas.json').stats
+  return [`${s.rendidas} de ${s.conEstado}`]
+})()
 
 /**
  * Los nombres de capítulo como los escribe la página: son dato del snapshot —CONPREL
@@ -396,7 +410,12 @@ describe('/presupuesto y /contratos en valencià: nada se lee igual que en caste
       expect.soft(es.pedidasSinServir, 'la página pide datos que la prueba no sirve').toEqual([])
       expect.soft(es.servidasSinPedir, 'se sirve algo que ninguna pulsación pide').toEqual([])
 
-      const datos = [...datosPintados(es.piezas, cadenasDe(esc.fetch)), ...CAPITULOS]
+      const datos = [
+        ...datosPintados(es.piezas, cadenasDe(esc.fetch)),
+        ...CAPITULOS,
+        ...CITAS_LEGALES,
+        ...RENDIDAS,
+      ]
       const noSeTraduce = masLargasPrimero([...datos, ...SIGLAS])
       // Las unidades y lo que se escribe igual sólo para comparar piezas enteras: quitar
       // «Cap.» o «adj.» como subcadena al buscar palabras sueltas no aportaría nada.

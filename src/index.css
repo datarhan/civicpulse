@@ -2222,6 +2222,90 @@ body.cp-kiosk .cp-live-container {
   }
 }
 
+/* Rendición de cuentas: una fila por ejercicio, el año y tres fechas con su
+   veredicto debajo. Con la tarjeta estrecha la fila se apila —el año arriba,
+   cada fecha en su línea con su etiqueta— en vez de encoger tres columnas de
+   fechas hasta partirlas. La etiqueta de cada celda sólo se ve apilada: ancha,
+   ya está en la cabecera, que entonces se esconde. Lo decide el ancho de la
+   tarjeta y no el de la ventana, como en las otras filas de la página. */
+.cp-rendicion-marco {
+  container: presu-rendicion / inline-size;
+}
+.cp-rendicion {
+  display: flex;
+  flex-direction: column;
+  margin-top: 10px;
+}
+.cp-rendicion-fila {
+  display: grid;
+  grid-template-columns: 64px repeat(3, minmax(0, 1fr));
+  gap: 4px 16px;
+  align-items: start;
+  padding: 8px 0;
+  border-top: 1px solid var(--border);
+  font-size: var(--fs-meta);
+}
+.cp-rendicion-fila > * {
+  min-width: 0;
+}
+.cp-rendicion-cabecera {
+  border-top: 0;
+  padding-top: 0;
+  font-size: var(--fs-micro);
+  color: var(--ink50);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  font-weight: 700;
+}
+.cp-rendicion-celda {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 3px;
+}
+.cp-rendicion-etq {
+  display: none;
+}
+.cp-rendicion-notas {
+  margin-top: 14px;
+  font-size: var(--fs-aux);
+  line-height: 1.6;
+  color: var(--ink70);
+  max-width: 92ch;
+}
+.cp-rendicion-notas p {
+  margin: 0 0 8px;
+}
+.cp-rendicion-notas ul {
+  margin: 0 0 8px;
+  padding-left: 18px;
+}
+.cp-rendicion-notas li {
+  margin-bottom: 4px;
+}
+@container presu-rendicion (max-width: 539px) {
+  .cp-rendicion-cabecera {
+    display: none;
+  }
+  .cp-rendicion-fila {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 6px;
+  }
+  .cp-rendicion-fila:nth-child(2) {
+    border-top: 0;
+  }
+  .cp-rendicion-celda {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto auto;
+    align-items: center;
+    gap: 8px;
+  }
+  .cp-rendicion-etq {
+    display: block;
+    color: var(--ink50);
+  }
+}
+
 @media (max-width: 560px) {
   .cp-presu-contra {
     grid-template-columns: minmax(0, 1fr);

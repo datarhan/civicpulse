@@ -36,4 +36,23 @@ test.describe('Presupuesto (/presupuesto)', () => {
     await expect(aviso).toBeVisible({ timeout: 10_000 })
     await expect(aviso).toContainText(euros(dif))
   })
+
+  // La rendición de la Cuenta General: una fila por ejercicio con página en la
+  // plataforma, y en cada una las tres fechas que se contrastan. Se cuenta
+  // contra el propio snapshot para que un bloque que no pinta nada —el hook
+  // devolviendo su vacío— no pase por «no había filas».
+  test('la rendición de cuentas pinta una fila por ejercicio, con sus tres fechas', async ({
+    page,
+  }) => {
+    const r = JSON.parse(readFileSync('public/data/rendicion-cuentas.json', 'utf8'))
+    const conPagina = r.ejercicios.filter((e: { fechas: unknown }) => e.fechas)
+    expect(conPagina.length).toBeGreaterThan(0)
+    await page.goto('/presupuesto', { waitUntil: 'domcontentloaded' })
+    const bloque = page.locator('#rendicion')
+    await expect(bloque).toBeVisible({ timeout: 10_000 })
+    await expect(bloque.locator('[data-rendicion]')).toHaveCount(conPagina.length)
+    const ultimo = Math.max(...conPagina.map((e: { ejercicio: number }) => e.ejercicio))
+    await expect(bloque.locator('[data-section-head]')).toContainText(String(ultimo))
+    await expect(bloque.locator(`[data-rendicion="${ultimo}"] [role="cell"]`)).toHaveCount(3)
+  })
 })

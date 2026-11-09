@@ -24,6 +24,8 @@ import { titularDeuda } from '../lib/deuda-titular'
 import { EFICIENCIA_ENABLED } from '../flags'
 import { useLocale, useT } from '../i18n'
 import EnBrevePresupuesto from '../components/Presupuesto/EnBrevePresupuesto'
+import RendicionCuentas from '../components/Presupuesto/RendicionCuentas'
+import { useRendicionCuentas } from '../hooks/useRendicionCuentas'
 import DivisorLecturas from '../components/DivisorLecturas'
 import { SeccionExperta } from '../components/Lecturas'
 import { IndiceExperta } from '../components/IndiceSecciones'
@@ -1492,6 +1494,7 @@ function PiePresupuesto() {
   const { locale, t } = useLocale()
   const { data: budget } = useBudget()
   const { data: deuda } = useDeudaViva()
+  const { data: rendicion } = useRendicionCuentas()
   if (!budget) return null
   return (
     <div
@@ -1521,6 +1524,14 @@ function PiePresupuesto() {
         <ExtLink href={deuda?.source?.portal} style={{ color: 'var(--civic)' }}>
           {t('presupuesto.pie.fuentes.deuda')}
         </ExtLink>
+        {rendicion?.source?.consulta && (
+          <>
+            {' · '}
+            <ExtLink href={rendicion.source.consulta} style={{ color: 'var(--civic)' }}>
+              {t('presupuesto.pie.fuentes.rendicion')}
+            </ExtLink>
+          </>
+        )}
         {rellena(t('presupuesto.pie.fuentes.c'), {
           fecha: fmtDateLong(budget.generatedAt, locale),
         })}
@@ -1624,6 +1635,9 @@ export default function Presupuesto() {
       </SeccionExperta>
       <SeccionExperta id="presupuesto-deuda" titulo={t('presupuesto.seccion.deuda')}>
         <DeudaVivaSection />
+      </SeccionExperta>
+      <SeccionExperta id="presupuesto-rendicion" titulo={t('presupuesto.seccion.rendicion')}>
+        <RendicionCuentas />
       </SeccionExperta>
       <PuenteContratos />
       <PiePresupuesto />

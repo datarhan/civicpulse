@@ -431,6 +431,11 @@
     "reciclaje.json": [
       "/datos"
     ],
+    "rendicion-cuentas.json": [
+      "/datos",
+      "/lab-health",
+      "/presupuesto"
+    ],
     "reportajes/basuras.json": [
       "/",
       "/reportajes",

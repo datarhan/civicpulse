@@ -51,6 +51,7 @@
  */
 import { ESTADOS_DE_LICITACION_TRADUCIDOS } from './tenders'
 import { CALIFICACIONES, TIPOS_ANALISIS } from './sinac'
+import { ESTADOS_CUENTA } from './rendicion-cuentas'
 
 export interface FieldCensus {
   /** `snapshot.collection.field`, e.g. `tenders.contracts.status`. */
@@ -109,6 +110,9 @@ export const CAMPOS_TRADUCIDOS: Readonly<Record<string, ReadonlySet<string>>> = 
   'tenders.tenders.status': ESTADOS_DE_LICITACION_TRADUCIDOS,
   'agua.boletines.calificacion': new Set(CALIFICACIONES),
   'agua.boletines.tipo': new Set(TIPOS_ANALISIS),
+  // Lo que escribe el parser de la Plataforma de Rendición de Cuentas; la
+  // palabra de la plataforma, el `alt` de su icono, se vigila en `estadoFuente`.
+  'rendicion-cuentas.ejercicios.estado': new Set(Object.values(ESTADOS_CUENTA)),
 }
 
 /** snapshot file → collections inside it worth censusing. */
@@ -125,6 +129,12 @@ export const WATCHED: ReadonlyArray<readonly [string, readonly string[]]> = [
   // La calificación de SINAC: `calificacionTexto` es la frase del ministerio y
   // es la que se vigila; `calificacion` y `tipo` los escribimos nosotros.
   ['agua.json', ['boletines']],
+  // El estado de cada Cuenta General: `estadoFuente` es el `alt` del icono de
+  // la plataforma; `estado`, nuestra traducción. Con todos los ejercicios
+  // rendidos hay un solo valor y el campo aún no cuenta como vocabulario: el
+  // día que aparezca otro, el parser ya se habrá negado a escribir si no lo
+  // conoce (ESTADOS_CUENTA), y si lo conoce, éste lo verá.
+  ['rendicion-cuentas.json', ['ejercicios']],
 ]
 
 /** Nombres de campo que nunca son vocabulario: identifican, enlazan o fechan. */

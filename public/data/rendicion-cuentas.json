@@ -1,0 +1,259 @@
+{
+  "generatedAt": "2026-11-09T09:30:57.239Z",
+  "note": "Cuenta General del Ayuntamiento de Riba-roja de Túria en la Plataforma de Rendición de Cuentas: estado de cada ejercicio y fecha de cada trámite, tal como los publica la plataforma. Los plazos legales y su contraste se calculan en src/scraper/rendicion-cuentas.ts (PLAZOS, evaluarPlazo).",
+  "source": {
+    "platform": "Plataforma de Rendición de Cuentas (Tribunal de Cuentas y órganos autonómicos de control externo)",
+    "portal": "https://www.rendiciondecuentas.es",
+    "consulta": "https://www.rendiciondecuentas.es/es/consultadeentidadesycuentas/buscarCuentas/consultarCuentasEjercicios.html?idEntidad=7174",
+    "idEntidad": 7174
+  },
+  "entidad": "Ayuntamiento Riba-roja de Túria",
+  "ejercicios": [
+    {
+      "ejercicio": 2025,
+      "estado": "rendida",
+      "estadoFuente": "Cuenta rendida",
+      "url": "https://www.rendiciondecuentas.es/es/consultadeentidadesycuentas/buscarCuentas/consultarCuenta.html?idEntidad=7174&ejercicio=2025",
+      "fechas": {
+        "presupuestoAprobado": "2025-07-13",
+        "liquidacionAprobada": "2026-02-25",
+        "cuentaFormada": "2026-07-01",
+        "informeComision": "2026-07-31",
+        "exposicionPublica": "2026-08-19",
+        "presentadaAlPleno": "2026-10-05",
+        "cuentaAprobada": "2026-10-05",
+        "enviada": "2026-10-14"
+      },
+      "comprobadoEl": "2026-11-09"
+    },
+    {
+      "ejercicio": 2024,
+      "estado": "rendida",
+      "estadoFuente": "Cuenta rendida",
+      "url": "https://www.rendiciondecuentas.es/es/consultadeentidadesycuentas/buscarCuentas/consultarCuenta.html?idEntidad=7174&ejercicio=2024",
+      "fechas": {
+        "presupuestoAprobado": "2024-07-22",
+        "liquidacionAprobada": "2025-02-28",
+        "cuentaFormada": "2025-05-14",
+        "informeComision": "2025-06-10",
+        "exposicionPublica": "2025-06-20",
+        "presentadaAlPleno": "2025-09-08",
+        "cuentaAprobada": "2025-09-08",
+        "enviada": "2025-10-02"
+      },
+      "comprobadoEl": "2026-11-09"
+    },
+    {
+      "ejercicio": 2023,
+      "estado": "rendida",
+      "estadoFuente": "Cuenta rendida",
+      "url": "https://www.rendiciondecuentas.es/es/consultadeentidadesycuentas/buscarCuentas/consultarCuenta.html?idEntidad=7174&ejercicio=2023",
+      "fechas": {
+        "presupuestoAprobado": "2022-12-30",
+        "liquidacionAprobada": "2024-02-28",
+        "cuentaFormada": "2024-05-28",
+        "informeComision": "2024-06-20",
+        "exposicionPublica": "2024-07-04",
+        "presentadaAlPleno": "2024-09-09",
+        "cuentaAprobada": "2024-09-09",
+        "enviada": "2024-09-24"
+      },
+      "comprobadoEl": "2026-11-09"
+    },
+    {
+      "ejercicio": 2022,
+      "estado": "rendida",
+      "estadoFuente": "Cuenta rendida",
+      "url": "https://www.rendiciondecuentas.es/es/consultadeentidadesycuentas/buscarCuentas/consultarCuenta.html?idEntidad=7174&ejercicio=2022",
+      "fechas": {
+        "presupuestoAprobado": "2022-07-25",
+        "liquidacionAprobada": "2023-02-28",
+        "cuentaFormada": "2023-05-15",
+        "informeComision": "2023-08-08",
+        "exposicionPublica": "2023-08-08",
+        "presentadaAlPleno": "2023-09-04",
+        "cuentaAprobada": "2023-09-11",
+        "enviada": "2023-10-03"
+      },
+      "comprobadoEl": "2026-11-09"
+    },
+    {
+      "ejercicio": 2021,
+      "estado": "rendida",
+      "estadoFuente": "Cuenta rendida",
+      "url": "https://www.rendiciondecuentas.es/es/consultadeentidadesycuentas/buscarCuentas/consultarCuenta.html?idEntidad=7174&ejercicio=2021",
+      "fechas": {
+        "presupuestoAprobado": "2021-01-12",
+        "liquidacionAprobada": "2022-02-22",
+        "cuentaFormada": "2022-05-13",
+        "informeComision": "2022-06-28",
+        "exposicionPublica": "2022-07-12",
+        "presentadaAlPleno": "2022-08-13",
+        "cuentaAprobada": "2022-09-05",
+        "enviada": "2022-10-04"
+      },
+      "comprobadoEl": "2026-11-09"
+    },
+    {
+      "ejercicio": 2020,
+      "estado": "rendida",
+      "estadoFuente": "Cuenta rendida",
+      "url": "https://www.rendiciondecuentas.es/es/consultadeentidadesycuentas/buscarCuentas/consultarCuenta.html?idEntidad=7174&ejercicio=2020",
+      "fechas": {
+        "presupuestoAprobado": "2020-02-14",
+        "liquidacionAprobada": "2021-02-12",
+        "cuentaFormada": "2021-04-28",
+        "informeComision": "2021-06-01",
+        "exposicionPublica": "2021-06-15",
+        "presentadaAlPleno": "2021-07-26",
+        "cuentaAprobada": "2021-07-26",
+        "enviada": "2021-08-20"
+      },
+      "comprobadoEl": "2026-11-09"
+    },
+    {
+      "ejercicio": 2019,
+      "estado": "rendida",
+      "estadoFuente": "Cuenta rendida",
+      "url": "https://www.rendiciondecuentas.es/es/consultadeentidadesycuentas/buscarCuentas/consultarCuenta.html?idEntidad=7174&ejercicio=2019",
+      "fechas": {
+        "presupuestoAprobado": "2019-09-19",
+        "liquidacionAprobada": "2020-02-28",
+        "cuentaFormada": "2020-05-29",
+        "informeComision": "2020-06-30",
+        "exposicionPublica": "2020-07-14",
+        "presentadaAlPleno": "2020-10-05",
+        "cuentaAprobada": "2020-10-05",
+        "enviada": "2020-10-16"
+      },
+      "comprobadoEl": "2026-11-09"
+    },
+    {
+      "ejercicio": 2018,
+      "estado": "rendida",
+      "estadoFuente": "Cuenta rendida",
+      "url": "https://www.rendiciondecuentas.es/es/consultadeentidadesycuentas/buscarCuentas/consultarCuenta.html?idEntidad=7174&ejercicio=2018",
+      "fechas": {
+        "presupuestoAprobado": "2018-06-26",
+        "liquidacionAprobada": "2019-02-26",
+        "cuentaFormada": "2019-07-17",
+        "informeComision": "2019-09-16",
+        "exposicionPublica": "2019-09-26",
+        "presentadaAlPleno": "2019-11-04",
+        "cuentaAprobada": "2019-11-04",
+        "enviada": "2019-11-05"
+      },
+      "comprobadoEl": "2026-11-09"
+    },
+    {
+      "ejercicio": 2017,
+      "estado": "rendida",
+      "estadoFuente": "Cuenta rendida",
+      "url": "https://www.rendiciondecuentas.es/es/consultadeentidadesycuentas/buscarCuentas/consultarCuenta.html?idEntidad=7174&ejercicio=2017",
+      "fechas": {
+        "presupuestoAprobado": "2017-06-01",
+        "liquidacionAprobada": "2018-02-26",
+        "cuentaFormada": "2018-05-24",
+        "informeComision": "2018-07-24",
+        "exposicionPublica": "2018-08-02",
+        "presentadaAlPleno": "2018-10-01",
+        "cuentaAprobada": "2018-10-01",
+        "enviada": "2018-10-08"
+      },
+      "comprobadoEl": "2026-11-09"
+    },
+    {
+      "ejercicio": 2016,
+      "estado": "rendida",
+      "estadoFuente": "Cuenta rendida",
+      "url": "https://www.rendiciondecuentas.es/es/consultadeentidadesycuentas/buscarCuentas/consultarCuenta.html?idEntidad=7174&ejercicio=2016",
+      "fechas": {
+        "presupuestoAprobado": "2016-08-08",
+        "liquidacionAprobada": "2017-02-24",
+        "cuentaFormada": "2017-05-15",
+        "informeComision": "2017-05-30",
+        "exposicionPublica": "2017-06-08",
+        "presentadaAlPleno": "2017-07-31",
+        "cuentaAprobada": "2017-07-31",
+        "enviada": "2017-09-29"
+      },
+      "comprobadoEl": "2026-11-09"
+    },
+    {
+      "ejercicio": 2015,
+      "estado": "rendida",
+      "estadoFuente": "Cuenta rendida",
+      "url": "https://www.rendiciondecuentas.es/es/consultadeentidadesycuentas/buscarCuentas/consultarCuenta.html?idEntidad=7174&ejercicio=2015",
+      "fechas": {
+        "presupuestoAprobado": "2015-03-13",
+        "liquidacionAprobada": "2016-03-07",
+        "cuentaFormada": "2016-06-07",
+        "informeComision": "2016-07-26",
+        "exposicionPublica": "2016-08-08",
+        "presentadaAlPleno": "2016-09-26",
+        "cuentaAprobada": "2016-09-26",
+        "enviada": "2016-10-30"
+      },
+      "comprobadoEl": "2026-11-09"
+    },
+    {
+      "ejercicio": 2014,
+      "estado": "rendida",
+      "estadoFuente": "Cuenta rendida",
+      "url": "https://www.rendiciondecuentas.es/es/consultadeentidadesycuentas/buscarCuentas/consultarCuenta.html?idEntidad=7174&ejercicio=2014",
+      "fechas": {
+        "presupuestoAprobado": "2014-06-20",
+        "liquidacionAprobada": "2015-03-25",
+        "cuentaFormada": "2015-08-26",
+        "informeComision": null,
+        "exposicionPublica": null,
+        "presentadaAlPleno": null,
+        "cuentaAprobada": null,
+        "enviada": "2015-10-30"
+      },
+      "comprobadoEl": "2026-11-09"
+    },
+    {
+      "ejercicio": 2013,
+      "estado": "rendida",
+      "estadoFuente": "Cuenta rendida",
+      "url": "https://www.rendiciondecuentas.es/es/consultadeentidadesycuentas/buscarCuentas/consultarCuenta.html?idEntidad=7174&ejercicio=2013",
+      "fechas": {
+        "presupuestoAprobado": "2013-09-13",
+        "liquidacionAprobada": "2014-03-28",
+        "cuentaFormada": "2014-08-25",
+        "informeComision": null,
+        "exposicionPublica": null,
+        "presentadaAlPleno": null,
+        "cuentaAprobada": null,
+        "enviada": "2014-10-28"
+      },
+      "comprobadoEl": "2026-11-09"
+    },
+    {
+      "ejercicio": 2012,
+      "estado": "rendida",
+      "estadoFuente": "Cuenta rendida",
+      "url": "https://www.rendiciondecuentas.es/es/consultadeentidadesycuentas/buscarCuentas/consultarCuenta.html?idEntidad=7174&ejercicio=2012",
+      "fechas": {
+        "presupuestoAprobado": "2012-08-18",
+        "liquidacionAprobada": "2013-05-28",
+        "cuentaFormada": "2013-06-26",
+        "informeComision": null,
+        "exposicionPublica": null,
+        "presentadaAlPleno": null,
+        "cuentaAprobada": null,
+        "enviada": "2013-10-28"
+      },
+      "comprobadoEl": "2026-11-09"
+    }
+  ],
+  "stats": {
+    "ejercicios": 14,
+    "rendidas": 14,
+    "conEstado": 14,
+    "conFechas": 14,
+    "desde": 2012,
+    "hasta": 2025
+  }
+}

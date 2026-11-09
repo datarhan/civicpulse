@@ -2754,6 +2754,7 @@ export const CATALOGUE = {
     // (components/Lecturas.jsx). Sin cifras: son lo único que se ve plegado.
     'presupuesto.seccion.aprobado': 'Lo aprobado: en qué se gasta y de dónde vienen los ingresos',
     'presupuesto.seccion.deuda': 'Lo que debe el Ayuntamiento',
+    'presupuesto.seccion.rendicion': 'Cuándo se aprueban y se rinden las cuentas',
     'presupuesto.seccion.menores': 'Contratos menores',
     'presupuesto.seccion.obras': 'Obras de infraestructura',
     'presupuesto.seccion.ted': 'Contratos sobre el umbral europeo',
@@ -2903,7 +2904,7 @@ export const CATALOGUE = {
     'presupuesto.cascada.noCuadra':
       'El listado municipal declara un definitivo que no es la suma de inicial y modificaciones ({suma}); se publican las cuatro cifras tal cual y se retira el porcentaje de crecimiento.',
     'presupuesto.callout.denominador':
-      '**El «{pctDef} % ejecutado» es un cociente sobre el presupuesto definitivo.** Sobre el crédito que se aprobó en enero, lo ejecutado es el {pctIni} %. Cada cifra responde a una pregunta distinta: cuánto se ejecutó de lo que se aprobó en enero, y cuánto de lo que se acabó autorizando.',
+      '**El «{pctDef} % ejecutado» es un cociente sobre el presupuesto definitivo.** Sobre el crédito inicial, lo ejecutado es el {pctIni} %. Cada cifra responde a una pregunta distinta: cuánto se ejecutó del crédito inicial, y cuánto de lo que se acabó autorizando.',
     'presupuesto.callout.asimetria.entro':
       '**Entró {mucho}más de lo que salió.** De ingresos se ejecutó el {pctIng} % —{ingEj}— frente al {pctGas} % de gastos: {gasEj}. La asimetría entre esos dos porcentajes es el dato, no cada uno por su lado.',
     'presupuesto.callout.asimetria.salio':
@@ -2956,7 +2957,7 @@ export const CATALOGUE = {
       ' Casi toda la ampliación, el {cuota} %, ha ido a {capitulo}, que el estado de ejecución del propio Ayuntamiento abre en cero.',
     'presupuesto.cascada.title.enCurso': 'El presupuesto ha crecido un {pct} % en lo que va de año',
     'presupuesto.callout.denominador.enCurso':
-      '**El «{pctDef} % ejecutado» es un cociente sobre el presupuesto definitivo.** Sobre el crédito que se aprobó en enero, lo ejecutado es el {pctIni} %. Cada cifra responde a una pregunta distinta: cuánto se ha ejecutado de lo que se aprobó en enero, y cuánto de lo que se ha autorizado hasta ahora.',
+      '**El «{pctDef} % ejecutado» es un cociente sobre el presupuesto definitivo.** Sobre el crédito inicial, lo ejecutado es el {pctIni} %. Cada cifra responde a una pregunta distinta: cuánto se ha ejecutado del crédito inicial, y cuánto de lo que se ha autorizado hasta ahora.',
     'presupuesto.cap.pie.cero.enCurso':
       '**{capitulo} abrió el ejercicio con 0 € y lleva {definitivo}** —el {cuota} % de toda la ampliación—, de los que se ha ejecutado el {pct} %. Un capítulo que empieza en cero y recibe su crédito durante el ejercicio no es una desviación de ejecución: ese crédito no estaba en ninguno de los dos presupuestos aprobados que publica esta página.',
     'presupuesto.cap.pie.ceroDiscrepan.enCurso':
@@ -3037,6 +3038,46 @@ export const CATALOGUE = {
     'presupuesto.deuda.noPublicados':
       'Sin entrega publicada todavía: {lista}. La serie se corta ahí porque el Ministerio aún no ha publicado ese ejercicio, no porque no haya deuda.',
     'presupuesto.deuda.fuente': 'Ministerio de Hacienda · deuda viva EE.LL.',
+    'presupuesto.rendicion.eyebrow': 'Rendición de cuentas · Plataforma del Tribunal de Cuentas',
+    'presupuesto.rendicion.titulo.enPlazo':
+      'La Cuenta General de {ej} se envió el {fecha}, antes del {limite}',
+    'presupuesto.rendicion.titulo.fuera':
+      'La Cuenta General de {ej} se envió el {fecha}, {n} días después del {limite}',
+    'presupuesto.rendicion.titulo.unDia':
+      'La Cuenta General de {ej} se envió el {fecha}, un día después del {limite}',
+    'presupuesto.rendicion.titulo.diaLimite':
+      'La Cuenta General de {ej} se envió el {fecha}, el mismo día que la ley pone como límite',
+    'presupuesto.rendicion.titulo.pendiente':
+      'La plataforma aún no registra el envío de la Cuenta General de {ej}; el plazo acaba antes del {limite}',
+    'presupuesto.rendicion.titulo.sinFecha':
+      'La plataforma no publica cuándo se envió la Cuenta General de {ej}',
+    'presupuesto.rendicion.rendidas': '{a} de {n}',
+    'presupuesto.rendicion.rendidas.pie': 'ejercicios con la cuenta rendida, {desde}–{hasta}',
+    'presupuesto.rendicion.tabla':
+      'Fechas de aprobación y envío de la Cuenta General por ejercicio',
+    'presupuesto.rendicion.col.ejercicio': 'Ejercicio',
+    'presupuesto.rendicion.col.presupuesto': 'Presupuesto aprobado',
+    'presupuesto.rendicion.col.pleno': 'Cuenta aprobada por el Pleno',
+    'presupuesto.rendicion.col.envio': 'Cuenta enviada',
+    'presupuesto.rendicion.enPlazo': 'en plazo',
+    'presupuesto.rendicion.dias': '+{n} días',
+    'presupuesto.rendicion.dia': '+1 día',
+    'presupuesto.rendicion.diaLimite': 'el día límite',
+    'presupuesto.rendicion.pendiente': 'plazo abierto',
+    'presupuesto.rendicion.sinFecha': 'sin fecha',
+    'presupuesto.rendicion.recuento':
+      'Con fecha publicada, en plazo: presupuesto {pres} de {presDe} · aprobación de la cuenta {pleno} de {plenoDe} · envío {envio} de {envioDe}.',
+    'presupuesto.rendicion.recuento.sinFecha':
+      ' {n} fechas que la plataforma no publica quedan fuera del recuento.',
+    'presupuesto.rendicion.nota.porque':
+      '**Por qué importa.** Presentar la Cuenta General ante la Sindicatura de Comptes es requisito para recibir el Fondo de Cooperación Municipal de la Generalitat ({ley}).',
+    'presupuesto.rendicion.nota.porque.ley': 'Ley 5/2021, art. 4.2',
+    'presupuesto.rendicion.nota.fechas':
+      '**Las fechas son las que el Ayuntamiento registra en la plataforma.** Sólo se contrastan tres, las de los actos a los que la ley pone plazo. La liquidación y el informe de la Comisión Especial de Cuentas también tienen plazo, pero para otro acto —confeccionarla, someter la cuenta a informe—, así que su fecha no prueba ni el cumplimiento ni el retraso: están en la página de cada ejercicio, enlazada desde el año.',
+    'presupuesto.rendicion.nota.antesDe':
+      'La ley dice «antes del día»: una fecha que cae en el mismo día límite ya cuenta fuera de plazo, y los días se cuentan desde esa fecha.',
+    'presupuesto.rendicion.fuente':
+      'Plataforma de Rendición de Cuentas · consulta del Ayuntamiento',
     'presupuesto.puente.contratos':
       'Los contratos, las obras y las subvenciones tienen su propia página: se acumulan a lo largo de varios ejercicios y no se comparan con el presupuesto de un año.',
     'presupuesto.puente.contratos.enlace': 'Ver contratos →',
@@ -3124,6 +3165,7 @@ export const CATALOGUE = {
     'presupuesto.pie.fuentes.conprel': 'CONPREL, Ministerio de Hacienda ↗',
     'presupuesto.pie.fuentes.b': ' · estado de ejecución del Ayuntamiento de Riba-roja · ',
     'presupuesto.pie.fuentes.deuda': 'deuda viva de EE.LL. ↗',
+    'presupuesto.pie.fuentes.rendicion': 'Plataforma de Rendición de Cuentas ↗',
     'presupuesto.pie.fuentes.c': '. Snapshot del {fecha}.',
     'presupuesto.pie.eficiencia': 'Coste de los servicios →',
     'presupuesto.pie.datos': 'Datos abiertos →',
@@ -6161,6 +6203,7 @@ export const CATALOGUE = {
       "Un pressupost s'aprova sense dèficit inicial, i la regla val en els dos sentits: tampoc hauria de sobrar.",
     'presupuesto.seccion.aprobado': "L'aprovat: en què es gasta i d'on vénen els ingressos",
     'presupuesto.seccion.deuda': "El que deu l'Ajuntament",
+    'presupuesto.seccion.rendicion': "Quan s'aproven i es reten els comptes",
     'presupuesto.seccion.menores': 'Contractes menors',
     'presupuesto.seccion.obras': "Obres d'infraestructura",
     'presupuesto.seccion.ted': 'Contractes sobre el llindar europeu',
@@ -6310,7 +6353,7 @@ export const CATALOGUE = {
     'presupuesto.cascada.noCuadra':
       "El llistat municipal declara un definitiu que no és la suma d'inicial i modificacions ({suma}); es publiquen les quatre xifres tal qual i es retira el percentatge de creixement.",
     'presupuesto.callout.denominador':
-      "**El «{pctDef} % executat» és un quocient sobre el pressupost definitiu.** Sobre el crèdit que es va aprovar al gener, l'executat és el {pctIni} %. Cada xifra respon a una pregunta distinta: quant es va executar del que es va aprovar al gener, i quant del que es va acabar autoritzant.",
+      "**El «{pctDef} % executat» és un quocient sobre el pressupost definitiu.** Sobre el crèdit inicial, l'executat és el {pctIni} %. Cada xifra respon a una pregunta distinta: quant es va executar del crèdit inicial, i quant del que es va acabar autoritzant.",
     'presupuesto.callout.asimetria.entro':
       "**Va entrar {mucho}més del que va eixir.** D'ingressos es va executar el {pctIng} % —{ingEj}— enfront del {pctGas} % de despeses: {gasEj}. L'asimetria entre eixos dos percentatges és la dada, no cadascun pel seu compte.",
     'presupuesto.callout.asimetria.salio':
@@ -6352,7 +6395,7 @@ export const CATALOGUE = {
       " Quasi tota l'ampliació, el {cuota} %, ha anat a {capitulo}, que l'estat d'execució del propi Ajuntament obri en zero.",
     'presupuesto.cascada.title.enCurso': "El pressupost ha crescut un {pct} % en el que va d'any",
     'presupuesto.callout.denominador.enCurso':
-      "**El «{pctDef} % executat» és un quocient sobre el pressupost definitiu.** Sobre el crèdit que es va aprovar al gener, l'executat és el {pctIni} %. Cada xifra respon a una pregunta distinta: quant s'ha executat del que es va aprovar al gener, i quant del que s'ha autoritzat fins ara.",
+      "**El «{pctDef} % executat» és un quocient sobre el pressupost definitiu.** Sobre el crèdit inicial, l'executat és el {pctIni} %. Cada xifra respon a una pregunta distinta: quant s'ha executat del crèdit inicial, i quant del que s'ha autoritzat fins ara.",
     'presupuesto.cap.pie.cero.enCurso':
       "**{capitulo} va obrir l'exercici amb 0 € i en porta {definitivo}** —el {cuota} % de tota l'ampliació—, dels quals s'ha executat el {pct} %. Un capítol que comença en zero i rep el seu crèdit durant l'exercici no és una desviació d'execució: eixe crèdit no estava en cap dels dos pressupostos aprovats que publica esta pàgina.",
     'presupuesto.cap.pie.ceroDiscrepan.enCurso':
@@ -6432,6 +6475,44 @@ export const CATALOGUE = {
     'presupuesto.deuda.noPublicados':
       'Sense entrega publicada encara: {lista}. La sèrie es talla ací perquè el Ministeri encara no ha publicat eixe exercici, no perquè no hi haja deute.',
     'presupuesto.deuda.fuente': "Ministeri d'Hisenda · deute viu EE.LL.",
+    'presupuesto.rendicion.eyebrow': 'Retiment de comptes · Plataforma del Tribunal de Comptes',
+    'presupuesto.rendicion.titulo.enPlazo':
+      'El Compte General de {ej} es va enviar el {fecha}, abans del {limite}',
+    'presupuesto.rendicion.titulo.fuera':
+      'El Compte General de {ej} es va enviar el {fecha}, {n} dies després del {limite}',
+    'presupuesto.rendicion.titulo.unDia':
+      'El Compte General de {ej} es va enviar el {fecha}, un dia després del {limite}',
+    'presupuesto.rendicion.titulo.diaLimite':
+      'El Compte General de {ej} es va enviar el {fecha}, el mateix dia que la llei posa com a límit',
+    'presupuesto.rendicion.titulo.pendiente':
+      "La plataforma encara no registra l'enviament del Compte General de {ej}; el termini acaba abans del {limite}",
+    'presupuesto.rendicion.titulo.sinFecha':
+      'La plataforma no publica quan es va enviar el Compte General de {ej}',
+    'presupuesto.rendicion.rendidas': '{a} de {n}',
+    'presupuesto.rendicion.rendidas.pie': 'exercicis amb el compte retut, {desde}–{hasta}',
+    'presupuesto.rendicion.tabla': "Dates d'aprovació i enviament del Compte General per exercici",
+    'presupuesto.rendicion.col.ejercicio': 'Exercici',
+    'presupuesto.rendicion.col.presupuesto': 'Pressupost aprovat',
+    'presupuesto.rendicion.col.pleno': 'Compte aprovat pel Ple',
+    'presupuesto.rendicion.col.envio': 'Compte enviat',
+    'presupuesto.rendicion.enPlazo': 'en termini',
+    'presupuesto.rendicion.dias': '+{n} dies',
+    'presupuesto.rendicion.dia': '+1 dia',
+    'presupuesto.rendicion.diaLimite': 'el dia límit',
+    'presupuesto.rendicion.pendiente': 'termini obert',
+    'presupuesto.rendicion.sinFecha': 'sense data',
+    'presupuesto.rendicion.recuento':
+      'Amb data publicada, en termini: pressupost {pres} de {presDe} · aprovació del compte {pleno} de {plenoDe} · enviament {envio} de {envioDe}.',
+    'presupuesto.rendicion.recuento.sinFecha':
+      ' {n} dates que la plataforma no publica queden fora del recompte.',
+    'presupuesto.rendicion.nota.porque':
+      '**Per què importa.** Presentar el Compte General davant la Sindicatura de Comptes és requisit per a rebre el Fons de Cooperació Municipal de la Generalitat ({ley}).',
+    'presupuesto.rendicion.nota.porque.ley': 'Llei 5/2021, art. 4.2',
+    'presupuesto.rendicion.nota.fechas':
+      "**Les dates són les que l'Ajuntament registra en la plataforma.** Només se'n contrasten tres, les dels actes als quals la llei posa termini. La liquidació i l'informe de la Comissió Especial de Comptes també tenen termini, però per a un altre acte —confeccionar-la, sotmetre el compte a informe—, així que la seua data no prova ni el compliment ni el retard: són a la pàgina de cada exercici, enllaçada des de l'any.",
+    'presupuesto.rendicion.nota.antesDe':
+      "La llei diu «antes del día»: una data que cau en el mateix dia límit ja compta fora de termini, i els dies es compten des d'eixa data.",
+    'presupuesto.rendicion.fuente': "Plataforma de Rendició de Comptes · consulta de l'Ajuntament",
     'presupuesto.puente.contratos':
       'Els contractes, les obres i les subvencions tenen la seua pròpia pàgina: s’acumulen al llarg de diversos exercicis i no es comparen amb el pressupost d’un any.',
     'presupuesto.puente.contratos.enlace': 'Veure contractes →',
@@ -6516,6 +6597,7 @@ export const CATALOGUE = {
     'presupuesto.pie.fuentes.conprel': "CONPREL, Ministeri d'Hisenda ↗",
     'presupuesto.pie.fuentes.b': " · estat d'execució de l'Ajuntament de Riba-roja · ",
     'presupuesto.pie.fuentes.deuda': "deute viu d'EE.LL. ↗",
+    'presupuesto.pie.fuentes.rendicion': 'Plataforma de Rendició de Comptes ↗',
     'presupuesto.pie.fuentes.c': '. Instantània del {fecha}.',
     'presupuesto.pie.eficiencia': 'Cost dels servicis →',
     'presupuesto.pie.datos': 'Dades obertes →',

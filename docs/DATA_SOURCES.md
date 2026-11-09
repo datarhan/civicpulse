@@ -304,6 +304,36 @@ overwrites it. Change the bot's SQLite instead.
   Naming eight thousand councils would sign a claim about each of them, and they
   have no right of reply here. Same line `/laboratorio/frontera` draws.
 
+### Rendición de la Cuenta General
+
+- **Pipeline** — `scrape-rendicion-cuentas.ts` → `rendicion-cuentas.ts` →
+  `rendicion-cuentas.json`
+- **Source** — Plataforma de Rendición de Cuentas (rendiciondecuentas.es), shared
+  by the Tribunal de Cuentas and the regional audit bodies, the Sindicatura de
+  Comptes among them. A POST search (no session) gives the last three
+  ejercicios, a history page the earlier ones, and one page per ejercicio its
+  eight dates. Pages are ISO-8859-1. The entity id is `7174`, checked against
+  the search's name on every run.
+- **Surfaces** — `/presupuesto` («Cuándo se aprueban y se rinden las cuentas»),
+  `/datos`, `/lab-health`
+- **Cadence** — class `ci-blocked` (8 days): soft in the nightly, guaranteed in
+  `scrape-ci-blocked.sh`, because whether a runner reaches the platform is
+  unmeasured. A run fetches the search and the history and only re-reads the
+  page of an ejercicio that is new, changed status or was last read over 30
+  days ago (`--completo` re-reads all), so a normal morning is two requests. It
+  refuses to write when a page lacks its dates table or when a year the last
+  snapshot had is no longer listed.
+- **Traps, both measured** — an ejercicio the platform does not offer answers
+  HTTP 500 (2026, on 2026-11-09), so the years come from what the pages link,
+  never from a loop: a 500 is not «no rendida». And only three of the eight
+  dates are judged against a deadline (`PLAZOS`: arts. 169.2, 212.4 and 223.2
+  TRLRHL), the ones where the published date IS the act the law dates; the
+  liquidation and the Comisión's report have deadlines for a different act.
+  Verdicts are computed when the page renders, not stored, so an open deadline
+  does not stay open in a stale snapshot.
+- **Why it is on the site** — presenting the Cuenta General to the Sindicatura
+  is a condition for the Fondo de Cooperación Municipal (Ley 5/2021, art. 4.2).
+
 ### Contratación menor
 
 - **Pipeline** — no adapter of its own: `minorContract` already rides in

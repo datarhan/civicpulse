@@ -87,6 +87,7 @@ SCRAPERS=(
   scrape:ctbg
   scrape:sindicatura
   scrape:sindic-expedientes
+  scrape:rendicion-cuentas
   scrape:consell-cv
   scrape:agua
   scrape:promise-suggestions
@@ -148,6 +149,11 @@ SCRAPERS=(
 #     scrape-ci-blocked.sh; el día que se vea que CI sí llega, se saca de aquí.
 #     El adaptador ya se niega a publicar un recorte o un cero, así que un
 #     fallo blando sólo cuesta frescura — y esa la vigila check:cadence.
+#   - scrape:rendicion-cuentas — la Plataforma de Rendición de Cuentas, un
+#     formulario POST sin sesión. Que un runner llegue a rendiciondecuentas.es
+#     está SIN MEDIR: mismo caso que sindic-expedientes, en blando y con su
+#     refresco garantizado en scrape-ci-blocked.sh. Se niega a escribir ante
+#     cualquier fallo, así que uno blando sólo cuesta frescura.
 #   - scrape:agua — SINAC (Ministerio de Sanidad), a session-based form. Whether
 #     a GitHub runner reaches sinac.sanidad.gob.es is UNMEASURED; it goes in
 #     soft for the same asymmetric reason as sindic-expedientes, with its
@@ -190,6 +196,7 @@ BEST_EFFORT=(
   scrape:ispa
   scrape:sindicatura
   scrape:sindic-expedientes
+  scrape:rendicion-cuentas
   scrape:agua
 )
 
