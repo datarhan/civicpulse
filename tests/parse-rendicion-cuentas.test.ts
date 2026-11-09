@@ -8,6 +8,7 @@ import {
   parseLeyenda,
   evaluarPlazo,
   ESTADOS_CUENTA,
+  ICONO_EJERCICIOS_ANTERIORES,
   CAMPOS_FECHA,
   PLAZOS,
   VEREDICTOS,
@@ -46,17 +47,21 @@ const CUENTA_2025 = fx('rendiciondecuentas_cuenta-2025_riba-roja_2026-11-09.html
 const CUENTA_2015 = fx('rendiciondecuentas_cuenta-2015_riba-roja_2026-11-09.html')
 
 describe('parseLeyenda — el vocabulario de estados lo dicta la fuente', () => {
-  it('cada estado que la leyenda de la búsqueda nombra está en ESTADOS_CUENTA', () => {
+  // La leyenda de la búsqueda trae también el icono del histórico («Ejercicios
+  // anteriores»), que es un enlace y no un estado: es la única excepción.
+  const conocidos = [...Object.keys(ESTADOS_CUENTA), ICONO_EJERCICIOS_ANTERIORES]
+
+  it('cada icono que la leyenda de la búsqueda nombra es un estado conocido', () => {
     const alts = parseLeyenda(BUSQUEDA)
-    // Mide algo: la búsqueda trae las cuatro entradas de su leyenda.
-    expect(alts.length).toBeGreaterThanOrEqual(4)
-    for (const a of alts) expect(Object.keys(ESTADOS_CUENTA)).toContain(a)
+    // Mide algo: la búsqueda trae los cinco iconos de su leyenda.
+    expect(alts).toHaveLength(5)
+    for (const a of alts) expect(conocidos).toContain(a)
   })
 
   it('la leyenda del histórico tampoco trae un estado que no conozcamos', () => {
     const alts = parseLeyenda(EJERCICIOS)
     expect(alts.length).toBeGreaterThanOrEqual(3)
-    for (const a of alts) expect(Object.keys(ESTADOS_CUENTA)).toContain(a)
+    for (const a of alts) expect(conocidos).toContain(a)
   })
 })
 
