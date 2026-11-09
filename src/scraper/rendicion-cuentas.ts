@@ -139,6 +139,12 @@ export interface Cuenta {
   ejercicio: number | null
   estadoPrincipal: EstadoCuenta | null
   fechas: Fechas
+  /**
+   * How many label/value rows the dates table yielded. Zero means the table
+   * was not found — a changed page, not eight blank dates — and the CLI
+   * refuses to write it as «sin fecha».
+   */
+  camposLeidos: number
   /** Labels the table carried that `CAMPOS_FECHA` does not know. */
   camposDesconocidos: string[]
   /** Non-empty values that are not a dd/mm/yyyy date. */
@@ -250,6 +256,7 @@ export function parseCuenta(html: string): Cuenta {
   const fechas = Object.fromEntries(Object.values(CAMPOS_FECHA).map((k) => [k, null])) as Fechas
   const camposDesconocidos: string[] = []
   const fechasIlegibles: string[] = []
+  let camposLeidos = 0
 
   const titulo = texto(html.match(/<h2\b[^>]*>([\s\S]*?)<\/h2>/i)?.[1] ?? '')
   const mt = titulo.match(/^(.*),\s*Ejercicio\s+(\d{4})$/)
@@ -262,6 +269,7 @@ export function parseCuenta(html: string): Cuenta {
     for (const m of tabla.matchAll(par)) {
       const etiqueta = texto(m[1])
       const valor = texto(m[2])
+      camposLeidos++
       if (!Object.hasOwn(CAMPOS_FECHA, etiqueta)) {
         camposDesconocidos.push(etiqueta)
         continue
@@ -286,9 +294,38 @@ export function parseCuenta(html: string): Cuenta {
     ejercicio: mt ? Number(mt[2]) : null,
     estadoPrincipal,
     fechas,
+    camposLeidos,
     camposDesconocidos,
     fechasIlegibles,
   }
+}
+
+/**
+ * Today as a Spanish calendar day (YYYY-MM-DD). The deadlines are Spanish
+ * legal days, and `toISOString()` gives the UTC day — the day before, for an
+ * hour or two after every Madrid midnight.
+ */
+export function diaEnEspana(ahora: Date): string {
+  return new Intl.DateTimeFormat('en-CA', {
+    timeZone: 'Europe/Madrid',
+    year: 'numeric',
+    month: '2-digit',
+    day: '2-digit',
+  }).format(ahora)
+}
+
+/**
+ * The ejercicios whose account consta rendida — available or not on the
+ * platform: «Cuenta rendida no disponible» is a rendered account whose content
+ * the platform does not show — out of those with a status at all. `no-aplica`
+ * and `no-disponible` (N.D.) say nothing either way, so they are in neither.
+ */
+export function recuentoRendidas(estados: readonly EstadoCuenta[]): {
+  rendidas: number
+  conEstado: number
+} {
+  const rendidas = estados.filter((e) => e === 'rendida' || e === 'rendida-no-disponible').length
+  return { rendidas, conEstado: rendidas + estados.filter((e) => e === 'no-rendida').length }
 }
 
 // ── Deadlines ────────────────────────────────────────────────────────────────

@@ -91,8 +91,8 @@ ADAPTERS=(
   scrape:sindic-expedientes
   # La Plataforma de Rendición de Cuentas: sin medir desde un runner, como el
   # Síndic. Pide la búsqueda y el histórico y sólo baja la página de un
-  # ejercicio nuevo o que cambió de estado, así que una mañana normal son dos
-  # peticiones.
+  # ejercicio nuevo, que cambió de estado o leído hace más de 30 días, así que
+  # una mañana normal son dos peticiones.
   scrape:rendicion-cuentas
   # ribarroja.es responde 502 a TODO desde los runners de GitHub — medido el
   # 6-09-2026 en la nocturna: 502 en las tres URL del portal, la del padrón de

@@ -1,7 +1,7 @@
 import { Card, ExtLink, Marcado, MarcadoConHuecos, Pill, SectionHead } from '../Primitives'
 import DataAsOf from '../DataAsOf'
 import { useRendicionCuentas } from '../../hooks/useRendicionCuentas'
-import { evaluarPlazo, PLAZOS } from '../../scraper/rendicion-cuentas'
+import { diaEnEspana, evaluarPlazo, PLAZOS } from '../../scraper/rendicion-cuentas'
 import { entero, fmtDateCompacta, fmtDateLong, rellena } from '../../lib/formatters'
 import { useLocale, useT } from '../../i18n'
 
@@ -25,10 +25,6 @@ import { useLocale, useT } from '../../i18n'
  */
 
 const COLUMNAS = /** @type {(keyof typeof PLAZOS)[]} */ (Object.keys(PLAZOS))
-
-function hoyISO() {
-  return new Date().toISOString().slice(0, 10)
-}
 
 // Cada clave va literal en su llamada, con su objeto: el guard del catálogo
 // (tests/i18n-catalogue.test.ts) lee la llamada para saber qué huecos rellena.
@@ -97,7 +93,7 @@ export default function RendicionCuentas() {
     .filter((e) => e.fechas)
     .sort((a, b) => b.ejercicio - a.ejercicio)
   if (ejercicios.length === 0) return null
-  const hoy = hoyISO()
+  const hoy = diaEnEspana(new Date())
 
   const titulos = {
     presupuestoAprobado: t('presupuesto.rendicion.col.presupuesto'),
@@ -137,7 +133,7 @@ export default function RendicionCuentas() {
         eyebrow={t('presupuesto.rendicion.eyebrow')}
         title={titulo}
         right={
-          stats && (
+          stats?.conEstado > 0 && (
             <div style={{ textAlign: 'right', flexShrink: 0 }}>
               <div
                 className="mono"
@@ -145,7 +141,7 @@ export default function RendicionCuentas() {
               >
                 {rellena(t('presupuesto.rendicion.rendidas'), {
                   a: stats.rendidas,
-                  n: stats.ejercicios,
+                  n: stats.conEstado,
                 })}
               </div>
               <div style={{ fontSize: 'var(--fs-micro)', color: 'var(--ink50)', marginTop: 2 }}>

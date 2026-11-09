@@ -319,8 +319,10 @@ overwrites it. Change the bot's SQLite instead.
 - **Cadence** — class `ci-blocked` (8 days): soft in the nightly, guaranteed in
   `scrape-ci-blocked.sh`, because whether a runner reaches the platform is
   unmeasured. A run fetches the search and the history and only re-reads the
-  page of an ejercicio that is new or changed status (`--completo` re-reads
-  all), so a normal morning is two requests.
+  page of an ejercicio that is new, changed status or was last read over 30
+  days ago (`--completo` re-reads all), so a normal morning is two requests. It
+  refuses to write when a page lacks its dates table or when a year the last
+  snapshot had is no longer listed.
 - **Traps, both measured** — an ejercicio the platform does not offer answers
   HTTP 500 (2026, on 2026-11-09), so the years come from what the pages link,
   never from a loop: a 500 is not «no rendida». And only three of the eight

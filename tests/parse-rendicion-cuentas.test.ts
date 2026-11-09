@@ -7,6 +7,8 @@ import {
   parseCuenta,
   parseLeyenda,
   evaluarPlazo,
+  diaEnEspana,
+  recuentoRendidas,
   ESTADOS_CUENTA,
   ICONO_EJERCICIOS_ANTERIORES,
   CAMPOS_FECHA,
@@ -131,6 +133,16 @@ describe('parseCuenta — las fechas de un ejercicio', () => {
     expect(Object.keys(c.fechas).sort()).toEqual(Object.values(CAMPOS_FECHA).sort())
   })
 
+  it('cuenta las filas que leyó: ocho en una página real, cero si la tabla no está', () => {
+    // La página del histórico no trae la tabla de fechas: es la forma real de
+    // «la página cambió». Sin este recuento, ocho nulos se publicarían como
+    // ocho «sin fecha».
+    expect(parseCuenta(CUENTA_2025).camposLeidos).toBe(8)
+    const otra = parseCuenta(EJERCICIOS)
+    expect(otra.camposLeidos).toBe(0)
+    expect(Object.values(otra.fechas).every((v) => v === null)).toBe(true)
+  })
+
   it('2015: liquidación del 07-03-2016 y envío del 30-10-2016', () => {
     const c = parseCuenta(CUENTA_2015)
     expect(c.ejercicio).toBe(2015)
@@ -199,6 +211,13 @@ describe('evaluarPlazo — sólo los tres actos que la ley data', () => {
     expect(evaluarPlazo('presupuestoAprobado', 2015, null, HOY).veredicto).toBe('sin-fecha')
   })
 
+  it('«hoy» es el día de Madrid, no el de UTC', () => {
+    // 23:30 UTC del 14-10 son las 01:30 del 15-10 en Madrid (horario de verano).
+    expect(diaEnEspana(new Date('2026-10-14T23:30:00Z'))).toBe('2026-10-15')
+    // Y en invierno, 23:30 UTC del 31-12 ya es 1 de enero.
+    expect(diaEnEspana(new Date('2026-12-31T23:30:00Z'))).toBe('2027-01-01')
+  })
+
   it('todo veredicto pertenece a VEREDICTOS', () => {
     const casos = [
       evaluarPlazo('enviada', 2015, '2016-10-30', HOY),
@@ -207,5 +226,22 @@ describe('evaluarPlazo — sólo los tres actos que la ley data', () => {
       evaluarPlazo('cuentaAprobada', 2024, '2025-09-08', HOY),
     ]
     for (const c of casos) expect(VEREDICTOS).toContain(c.veredicto)
+  })
+})
+
+describe('recuentoRendidas — qué cuenta como rendida y sobre qué', () => {
+  it('«Cuenta rendida no disponible» está rendida; no-aplica y N.D. no cuentan', () => {
+    // Cada estado sale de ESTADOS_CUENTA, la tabla de la fuente: ninguno se
+    // escribe a mano.
+    const e = ESTADOS_CUENTA
+    expect(
+      recuentoRendidas([
+        e['Cuenta rendida'],
+        e['Cuenta rendida no disponible'],
+        e['Cuenta no rendida'],
+        e['No aplica'],
+        e['N.D.'],
+      ]),
+    ).toEqual({ rendidas: 2, conEstado: 3 })
   })
 })

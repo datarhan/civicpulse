@@ -9,13 +9,17 @@
  *   2. the history page → the earlier ones;
  *   3. one page per ejercicio → its dates.
  *
- * The data moves once a year, so step 3 only runs for an ejercicio that is new
- * or whose status changed since the snapshot on disk; `--completo` re-reads
- * them all. The run prints what it downloaded, what it reused and why.
+ * The data moves once a year, so step 3 only runs for an ejercicio that is new,
+ * whose status changed, or that was last read more than `RELEER_DIAS` ago — so
+ * a correction upstream reaches the site within a month and `comprobadoEl`
+ * never lags `generatedAt` by more than that. `--completo` re-reads them all.
+ * The run prints what it downloaded, what it reused and why.
  *
  * It refuses to write on any failure — a network error, a status or label the
- * parser does not know, an entity it does not recognise — so a bad night
- * keeps yesterday's file rather than publishing a partial one.
+ * parser does not know, a page whose dates table is gone, an ejercicio that the
+ * last snapshot had and the platform no longer lists, an entity it does not
+ * recognise — so a bad night keeps yesterday's file rather than publishing a
+ * partial one.
  *
  * Usage: npm run scrape:rendicion-cuentas [-- --completo]
  */
@@ -27,6 +31,8 @@ import {
   parseBusqueda,
   parseCuenta,
   parseEjercicios,
+  diaEnEspana,
+  recuentoRendidas,
   urlCuenta,
   urlEjercicios,
   ID_ENTIDAD_RIBA_ROJA,
@@ -42,6 +48,7 @@ const OUT = join(__dirname, '..', 'public/data/rendicion-cuentas.json')
 
 const UA = 'CivicPulse/1.0 (monitor cívico Riba-roja; +https://github.com/datarhan/civicpulse)'
 const PAUSA_MS = 1_000
+const RELEER_DIAS = 30
 
 // Comunitat Valenciana · Valencia · Ayuntamiento, by the form's own option values.
 const BUSQUEDA = {
@@ -99,7 +106,8 @@ function fallar(msg: string): never {
 
 async function main() {
   const completo = process.argv.includes('--completo')
-  const hoy = new Date().toISOString().slice(0, 10)
+  const hoy = diaEnEspana(new Date())
+  const umbral = diaEnEspana(new Date(Date.now() - RELEER_DIAS * 86_400_000))
 
   // 1. The search: exactly one entity, ours.
   const busqueda = parseBusqueda(await leer(`${ORIGEN}${RUTA_CONSULTA}index.html`, BUSQUEDA))
@@ -130,8 +138,16 @@ async function main() {
     )
   }
 
-  // 3. One page per ejercicio — only the new or changed ones unless --completo.
+  // A year the last snapshot had and the platform no longer lists is a changed
+  // page (the history link gone, a column moved), not a year that stopped
+  // existing: writing would drop it from the site without a word.
   const prev = anterior()
+  const desaparecidos = [...prev.keys()].filter((a) => !celdas.has(a))
+  if (desaparecidos.length > 0) {
+    fallar(`la plataforma ya no lista ${desaparecidos.sort().join(', ')}, que sí estaban`)
+  }
+
+  // 3. One page per ejercicio — new, changed or older than RELEER_DIAS, unless --completo.
   const salida: EjercicioPublicado[] = []
   let descargadas = 0
   const reutilizadas: number[] = []
@@ -156,7 +172,8 @@ async function main() {
       })
       continue
     }
-    if (!completo && antes && antes.estado === estado && antes.fechas) {
+    const reciente = antes?.comprobadoEl != null && antes.comprobadoEl >= umbral
+    if (!completo && antes && antes.estado === estado && antes.fechas && reciente) {
       reutilizadas.push(c.ejercicio)
       salida.push({ ...antes, estado, estadoFuente, url })
       continue
@@ -167,6 +184,9 @@ async function main() {
     descargadas++
     if (cuenta.ejercicio !== c.ejercicio) {
       fallar(`la página de ${c.ejercicio} dice ser del ejercicio ${cuenta.ejercicio}`)
+    }
+    if (cuenta.camposLeidos === 0) {
+      fallar(`la página de ${c.ejercicio} no trae la tabla de fechas: ¿cambió la página?`)
     }
     if (cuenta.camposDesconocidos.length > 0) {
       fallar(`etiquetas nuevas en ${c.ejercicio}: ${cuenta.camposDesconocidos.join(' | ')}`)
@@ -185,6 +205,7 @@ async function main() {
   }
 
   const anios = salida.map((e) => e.ejercicio)
+  const { rendidas, conEstado } = recuentoRendidas(salida.map((e) => e.estado))
   const payload = {
     generatedAt: new Date().toISOString(),
     note: 'Cuenta General del Ayuntamiento de Riba-roja de Túria en la Plataforma de Rendición de Cuentas: estado de cada ejercicio y fecha de cada trámite, tal como los publica la plataforma. Los plazos legales y su contraste se calculan en src/scraper/rendicion-cuentas.ts (PLAZOS, evaluarPlazo).',
@@ -199,7 +220,10 @@ async function main() {
     ejercicios: salida,
     stats: {
       ejercicios: salida.length,
-      rendidas: salida.filter((e) => e.estado === 'rendida').length,
+      // `rendidas` de `conEstado`: no-aplica y N.D. no dicen nada en ningún
+      // sentido y no entran en ninguno de los dos (recuentoRendidas).
+      rendidas,
+      conEstado,
       conFechas: salida.filter((e) => e.fechas !== null).length,
       desde: Math.min(...anios),
       hasta: Math.max(...anios),
@@ -211,7 +235,7 @@ async function main() {
   console.log(
     `[rendicion-cuentas] ${salida.length} ejercicios (${payload.stats.desde}–${payload.stats.hasta}), ` +
       `${payload.stats.rendidas} rendidos · páginas descargadas ${descargadas}, ` +
-      `reutilizadas ${reutilizadas.length} (sin cambio de estado desde la pasada anterior), ` +
+      `reutilizadas ${reutilizadas.length} (mismo estado, leídas hace menos de ${RELEER_DIAS} días), ` +
       `sin página ${sinPagina.length}${sinPagina.length ? ` (${sinPagina.join(', ')})` : ''} → ${OUT}`,
   )
 }
