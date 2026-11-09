@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-08T11:31:29.499Z",
+  "generatedAt": "2026-11-09T13:19:28.394Z",
   "feeds": [
     {
       "url": "https://www.ribarroja.es/es/noticias/rss.xml",
@@ -17,17 +17,16 @@
       "url": "https://news.google.com/rss/search?q=%22Riba-roja%20de%20T%C3%BAria%22&hl=es&gl=ES&ceid=ES:es",
       "platform": "Google News RSS",
       "ok": true,
-      "items": 59
+      "items": 57
     }
   ],
   "stats": {
-    "total": 118,
-    "sources": 19,
-    "latestDate": "2026-11-08T07:34:20.000Z",
+    "total": 116,
+    "sources": 18,
+    "latestDate": "2026-11-09T13:09:33.000Z",
     "carriedForward": 0
   },
   "sources": [
-    "Actualidad Valencia",
     "Aemet",
     "Ayuntamiento de Riba-roja de Túria",
     "Comunica GVA",
@@ -49,13 +48,33 @@
   ],
   "items": [
     {
-      "id": "17g6u7u",
-      "title": "Un hombre de 23 años resulta herido en un accidente entre tres coches en la A-7 en Riba-roja",
-      "link": "https://news.google.com/rss/articles/CBMiwgFBVV95cUxNOWRpekEzUzVGSDJYN3UxaGppbGFjYUREaWVxdm5QNkNyZV8wV194UnBKTzNrUWJyckk4TXFzMXZjQ29zRmc2TWNzX0ZyZWx6Y0RRSU82NWJmc2xsd3lnMWhuRkpqV25FMEQwc3p0Y2xMTFg0YWV6czhid0g4eFBUdnF0T29Eck45QXdtREIzNU5RdHJZa3h0aTBUSXFkSEExUGVNUlc1UWZkMkZVMGJrWEp1SFNvVFJEX0ZiSFlTT1ViUQ?oc=5",
-      "source": "Actualidad Valencia",
-      "sourceHost": "actualidadvalencia.com",
-      "date": "2026-11-08T07:34:20.000Z",
-      "fingerprint": "1pcur0w"
+      "id": "k2zxy0",
+      "title": "Riba-roja construirá 40 VPP y dará prioridad a los vecinos que perdieron sus casas por la Dana",
+      "link": "https://news.google.com/rss/articles/CBMi5wFBVV95cUxPX1kzTngwTlZ4Q2FZVmV0NE9uWVNwR0kzVFNWYU1aaERVNEZVbnRyemFvX0ZSTk45N2k2LVRmWm5yV2lTTTNnaGZXWmFpdml3NjN4NUl4amZtWTA3RFA1OEJpNXlOQVRUR3pMVFdfOUxQRkk2V2lGbkxwY2NGSnpWZnJZRHFIU2JfQV80ak9MWVJzQmlmdUNrTjFxOXBBelZyTVp2SGhCTEVsVURHVFpGQUd1MEM1dHBaLUVoT19aQVdzd1RRMDdRYmVNQVlZZU1IdVlLUU1WQzJ4bUlmcnJfOXIyTGRiR2s?oc=5",
+      "source": "Valencia Plaza",
+      "sourceHost": "valenciaplaza.com",
+      "date": "2026-11-09T13:09:33.000Z",
+      "fingerprint": "14mhd64"
+    },
+    {
+      "id": "msqwac",
+      "title": "Riba-roja de Túria construirá un máximo de 40 viviendas de protección pública y dará prioridad a los vecinos y las vecinas que perdieron sus casas por la Dana de 2024",
+      "link": "https://www.ribarroja.es/es/noticia/riba-roja-de-t%C3%BAria-construir%C3%A1-un-m%C3%A1ximo-de-40-viviendas-de-protecci%C3%B3n-p%C3%BAblica-y-dar%C3%A1-prioridad-a-los-vecinos-y-las-vecinas-que-perdieron-sus-casas-por-la-dana-de-2024",
+      "source": "Ayuntamiento de Riba-roja de Túria",
+      "sourceHost": "ribarroja.es",
+      "date": "2026-11-09T12:40:55.000Z",
+      "fingerprint": "1fo0nmw",
+      "official": true,
+      "section": "Urbanisme"
+    },
+    {
+      "id": "1pjp308",
+      "title": "Olocau rinde homenaje a las víctimas de la violencia machista con un emotivo acto por el 25N",
+      "link": "https://news.google.com/rss/articles/CBMi4AFBVV95cUxQemNLaDM3TXRhNGdsTl9iRG40eS1XWXZXUXBsVDRrVVcwQjlyWlpUMlZRTVdEbld2aHpKekZ4cGlEdjZuQzRrcFF3T1J5OTl1SHF3c1kwUnE4eTllNThral9VQlZtaTlCUVNrZE5QakZSd1BDdVNwZ2ZCaFlBSE5zQVZheUxqTk9RNDdqcjN1ZEJHcDE2SWJIcEh5ZFZBeGhzMnlNbVJFWUpIZnNyV2hPUTh6Q0h4Zi1pZU1OamdWVFB4VGYyMzBGZGJ2ZC1fUDkzVXlqZ1hHTHRuSmxQSDVId9IB5gFBVV95cUxPTTRkQkF0QkpSRkdWbW1yMHZ5NHZrRVV3WURYMlZ5RE5KM2Q3cHJfTjllUGNXYjI3T1BCeTVsM1FoTWNweXVER09DVVF1YnpDTk9SYXU0QlNWbUNLUVRob29JbTFEN1FrUllsRDdGTFpoSy1KUXdiNlJxM04yV3phWUpseDBFRzNncW1LT1pIZ25nQy1fZTMxNU5zNkdXVGxETFB4RXpLRUZINW9SS1JsejFseDctN0h5SXZyV2ROZ08zNk5xclE1TklfWUQ0LTRMUWxxNkhSS3Z2WVNmaWk4NUhNeFBDZw?oc=5",
+      "source": "Levante-EMV",
+      "sourceHost": "levante-emv.com",
+      "date": "2026-11-09T08:39:02.000Z",
+      "fingerprint": "13efxak"
     },
     {
       "id": "w8xvcs",
@@ -65,15 +84,6 @@
       "sourceHost": "foro3d.com",
       "date": "2026-11-08T04:31:11.000Z",
       "fingerprint": "da7jwk"
-    },
-    {
-      "id": "a9po3c",
-      "title": "El podcast 'Arrelant' fa parada a Riba-roja de Túria per a reivindicar la seua història i les seues arrels",
-      "link": "https://news.google.com/rss/articles/CBMi8gFBVV95cUxPWUl4VnBZTkVfaS1Nb19sQzlmaWNybEZLY2g1anJySS1SS1ZYUHlkejVsS2Y4RnZTczVhM1JEYnQ1UUlPbjRkV1NyUy1DaXg1MHVEcXRCMlI2UXNoUjAwWDVIQzN3akVpaU5GcXFNZWJFaEN3MDdSYXdreldvdVFsSEMxVWRqSTZteUdtWW5LZ2IwN0I5NWNMb3dtZHJUcXQwU3FiMV9UUWVXVm1qeW1wYjJtSWJtV1NPRkE5T01LcWtuaDhzYUpudWJjdkhpbl94WWlLblVtWjlEX2xhSlVoYU4wQXpISHBlOUU1Q0pJdnEzZ9IB9wFBVV95cUxOUnBIQm5oM2YtSlBxZDUwcndHNlhUb25wWHNtdHdWVnRFWmZQRjZocFc0clllTXI2YmVxbzdrcXREd3JzVGNvOTRYb2ZOaDVIVVBlaFhRZC1CMUUyVUtwUm1IUTRBaXVnVmtHWWoxMUhSSDZoUk9BYVluU0VnNFliYnVaVjlvb1Fjd0ZBZGotRFdPdC1qcFQtSmR5TUFLLWZtbm5tREZuNmV0LTllMlpzaEhwbmJfMWFkbUFIOWZjbG9ENElwWmZOVWMwdWVUTFFKMktORk5SdEN6SDF3YWVUN3FGYkRuRmdkYjd4WFVPUllIRTFGeHBr?oc=5",
-      "source": "elDiario.es",
-      "sourceHost": "eldiario.es",
-      "date": "2026-11-07T15:37:51.000Z",
-      "fingerprint": "1pym6j4"
     },
     {
       "id": "1pj7404",
@@ -145,15 +155,6 @@
       "section": "Industrials"
     },
     {
-      "id": "hf9573",
-      "title": "La CHJ apuesta por zonas de laminación antes de la Saleta para reducir el caudal que llega a l'Horta",
-      "link": "https://news.google.com/rss/articles/CBMiswFBVV95cUxPYUhBZkt1cFY0LTJzZGc1aUJFV0MwdXRhRWFQVDdEd1ZTRmxnMUZpOUJWTHdRZ2RsSjdrNWN1azZHcnpnWXlUajIxeWtDMnU3N3cySWhZYjh5cGlaODY4bnRodjRyLW5kQkx6SUJDY1kxNjVCY1ZJREhETHRSdWp6Yjkyby1SeEFjMkNsU0tqVk5wbE1WTGhyelhfcGZpaC03YnlBTzVNMktSdlpyT1Z4aVFJONIBuAFBVV95cUxOMFNqOWFuTGhXUHh4aUVVVzFyNURZQVd6NzNEZzBuNHVTelZnaWp2TFF3MXk3MG91UUVTRFFXQnBlS194bmI3VWE5Q2pjcE03WUVaNENZLWNTU2xXbkJZRkE1VGVRTy1pRlBEMDRiT21wZ2FDVklqS29GZXJtTC03clZ4Sk9CY3N6WTNBRVJEUF9aS3hYQmhKS01pQ28xSXhvWGllOTRLM25fVlFUNlFHc1NpN3BVejNj?oc=5",
-      "source": "Las Provincias",
-      "sourceHost": "lasprovincias.es",
-      "date": "2026-11-03T14:17:12.000Z",
-      "fingerprint": "fq201w"
-    },
-    {
       "id": "6mxh64",
       "title": "Riba-roja assigna 140.000 euros als clubs i per a finançar les seues activitats",
       "link": "https://www.infoturia.com/riba-roja-de-turia/87032-riba-roja-assigna-140-000-euros-als-clubs-i-per-a-financar-les-seues-activitats.html",
@@ -174,15 +175,6 @@
       "section": "Esports"
     },
     {
-      "id": "kq3fan",
-      "title": "Los mejores planes para noviembre de 2026 en Valencia: agenda de ferias, fiestas, actividades y eventos destacados del mes",
-      "link": "https://news.google.com/rss/articles/CBMigAFBVV95cUxPVFRFT21yM1pLV0s1MVhFSWpqSXhQQnR3RnpJTk40ajgwanh4SklQeUxNaGFoeFdwQXBVSHdJVlQ1b290TG53LTVyOXhfU0w2YUNId2FHQXR3UWpuVnJEMi1fMVdEWXJ2aEhRQ19aa0VzTlZVRXQzbE5HS2Vab1M4SA?oc=5",
-      "source": "Valenciabonita",
-      "sourceHost": "valenciabonita.es",
-      "date": "2026-10-31T00:13:01.000Z",
-      "fingerprint": "1aavc1u"
-    },
-    {
       "id": "2m7xhk",
       "title": "Riba-roja incrementa hasta un 41% la contratación laboral en 2026 y contabiliza hasta 1.604 contratos en los tres primeros trimestres del año",
       "link": "https://www.ribarroja.es/es/noticia/riba-roja-incrementa-hasta-un-41%25-la-contrataci%C3%B3n-laboral-en-2026-y-contabiliza-hasta-1.604-contratos-en-los-tres-primeros-trimestres-del-a%C3%B1o",
@@ -192,15 +184,6 @@
       "fingerprint": "m6lwg4",
       "official": true,
       "section": "Foment economic i Comerc"
-    },
-    {
-      "id": "1ni4o4j",
-      "title": "🎙️Arrelant desembarca a Riba-roja de Túria per a vindicar el seu passat visigot i la memòria fluvial del riu",
-      "link": "https://news.google.com/rss/articles/CBMi7wFBVV95cUxQVE9LdEZmQnpERHdfeEt6aV8wVmJQYVJ6ZDRxemY3akZ1bzY5YTBlX09jTkRwVkxHN09wVnNaR2lBX0JWWTVsUmZkcXpiaG8tQloxTmxEc1RXdDRTOWNaWFMzU242dXkxYnMxTk5sTWhMS1Y0RnRMOTBSSmROSk1jMERSTUJBVjFRWG45Q2RSX25QMTFYblR1U2kxV1ZtSVdnWmtmVVU2aWdTQWZndFZXVlc5RmUxM0sxTWFNWHVwZHJKS2k5RnRBUERCYkRLdnR3V05rNE9GUmY1dXpCNW5HVEV5Z1E0ZUhGYnhoQWM3QdIB9AFBVV95cUxQWktDTWx5ai1BbzFpTFU2NnVfOFJ2SlpqenRicGFDcmo4UDc3TE5oNEQxdmhJX2tRZ2VTaGlXaUlYdTVXcElGZGlKbl8zWU1YNnk1SW1BTndOamRzZzRHRkNQNUs0ZHlTYXdLcUtHT29CLTZDRFkybnpmbXQ5eWlCNjItNzBKLU54amYzY3NEbUVjUEMxb1RFYXVRbjFOaWlLVUlZdmdxYzRPbGUtMVphbnVtdHlMTEZnRXlYTjc5YTBqMUtDa0JHX3B4c0huSlJNOGw4ZEYyOWRhQUhQVjhEVldMMEpTTWV0SnR5RzZPaXp2UHVr?oc=5",
-      "source": "elDiario.es",
-      "sourceHost": "eldiario.es",
-      "date": "2026-10-30T09:32:35.000Z",
-      "fingerprint": "1kgolmo"
     },
     {
       "id": "cxmvv4",
@@ -858,17 +841,6 @@
       "section": "Seguridad ciudadana"
     },
     {
-      "id": "33vp63",
-      "title": "Riba-roja pone en marcha el Aula TEA, un nuevo servicio municipal gratuito de atención terapéutica especializada para menores con trastorno del espectro autista",
-      "link": "https://www.ribarroja.es/es/noticia/riba-roja-pone-en-marcha-el-aula-tea%2C-un-nuevo-servicio-municipal-gratuito-de-atenci%C3%B3n-terap%C3%A9utica-especializada-para-menores-con-trastorno-del-espectro-autista",
-      "source": "Ayuntamiento de Riba-roja de Túria",
-      "sourceHost": "ribarroja.es",
-      "date": "2026-08-18T09:26:42.000Z",
-      "fingerprint": "1ij1q5o",
-      "official": true,
-      "section": "Accio Social"
-    },
-    {
       "id": "bp13b8",
       "title": "Una mujer muere en el incendio de su vivienda en Riba-roja",
       "link": "https://news.google.com/rss/articles/CBMiogFBVV95cUxNYXBUQURFRkc2clZXSDlvWWJiVVVTY2JLczNEb2xiMFFCZmw4NkhkWlJBN2JTN1VaSUhhVWY4TVBoMDhQZm1lMDhYd0JNUXVEYzJ3VzZaamdrc1otREZzMkt3OUt5X0lUNGVuRXF5bENudjkxS1dxSUg5WXRaUzdhNjZZa2ZkUlBGMXlacDVBeU81LXR4em1NRmNHTkR3eGVJclHSAacBQVVfeXFMUDJGRDE5Y1JNd2czUVI2c3kwN1REY3ZCTXhmblpXWW1SeXNXMk03YzVWNXB1LXN1eHlBSk1iUWdzZEVWQTN0M2JwVGlPa1FJRjZYeU5XOVFkSWhHZDRLdnI0TU5HSHdlaGlXMVd3WW5jYjdBS3pvNDRtNlBEeTBsbHlqRFl3NUlxMjhoY0M0Z1NQWm9uSUwyZDVPODZYUXVzZGV2cjNKR1U?oc=5",
@@ -1013,6 +985,15 @@
       "fingerprint": "4c34wo"
     },
     {
+      "id": "13w0ydy",
+      "title": "Riba-roja de Túria recupera la normalidad en la recogida de residuos tras rescindir el contrato con la anterior empresa",
+      "link": "https://news.google.com/rss/articles/CBMizwFBVV95cUxPdFVCU1BLS2ZrQnZRbFhvYXEtVDRnS0o2XzJpT1ZKcnNWWGx6a21Cd2dIdzBkanB6R1RzcXBwcTlMVTI3ek9CZnlUREdUUXBSMU82WGl3Sko0LWY5SnVVVnB2QnhjcXgtZ0tkR0hJdXdEUjc3STJoUUZtOHBna1JkdXNLVHBmcWNETkpnNHlxcXhNX2ZUTjRnajBNUWIzV01FYTY1SmdBUmdiLWx3UmI0MVhER29xTjV6eXNMX2ZTQ0RtMkZ5X2s4UWd6Rm9VQUHSAdQBQVVfeXFMUHNsWjVTeldZUDFrLXhYcjZ1alNjdUxmRGFsZ00zRWRvcVAzSjhieHBYTElRUzVXdFFJYk9mRWdTU0I2N3NmcDlDZ20wbFk5ZDZ2cmpITlZ2V2ZXQ3dad05tRmZVZGU4eE00aFNIbS1Nd1BIX3BYRGhtbjdXaUxYUXpYX3ZBZnIwVThyeUFGU0xsOG9KRmh4VzZsUndZc1JvYjRmYUZfYVhMRTZwei1WWGVFTzVzSjVOTlhGQTRLTjZWdnM1X0pBSThHcFpfX2laUXozZ1k?oc=5",
+      "source": "Levante-EMV",
+      "sourceHost": "levante-emv.com",
+      "date": "2026-03-12T07:00:00.000Z",
+      "fingerprint": "13imqsw"
+    },
+    {
       "id": "1syvupc",
       "title": "Riba-roja suspende el contrato de recogida de residuos por incumplimiento de la empresa",
       "link": "https://news.google.com/rss/articles/CBMizAFBVV95cUxOaHVVOTdOeG1PNXFVd0ZuakNuTkRhc0NBV3NGUGJ5d3hDZkcxRmgtTW82ZGdDZXNhdlk2TlAxNkxpdGlVdjM0VnRQTUNDdHdBSzJWTjl3VHBtNjZtVUV4Nm0yZm5yRlBxdnR0ZkNINjdxOUZrWXpjbGVzdFpMZ3FWTmRVVHNKSnlOQ3BjR3hOWWVmaFNpSk9iM0RoOG1hOHBhckgtQXdTcXplM2xfR1RzTkgxenlGNTZMSVJJTUxsX0ZwZEdtanB1VzBLQ2bSAdIBQVVfeXFMTkNIZng4bDJuNG9OYWp0Q2YxY25Sd0hQbHNIVUQxMG9xb2RpQTZRSDZ2MUZ1SkRXYjhCUmdZdkg2VVJVVEl4RnAzOGVVMS1ZTkJBcVh5cUtwYktYZnhVVHNxWk9fcjhJUzNhaVl1MGpoUm1SZ2REQ1NfdVQ0YmhOc3hKem9mNkhRQzZKSmdLYlYxR2RiN1ZuUDB2NmJVYmFITGhYWUpQMVhnVzdrSGlLOWJCZC1qUmN0cFhabmpYMk1LOVdDakpIbmQ2ZmRuMy1IU3hB?oc=5",
@@ -1104,7 +1085,7 @@
     },
     {
       "id": "stwipc",
-      "title": "31 Casas y pisos con jardín en Riba-roja de Túria",
+      "title": "38 Casas y pisos con jardín en Riba-roja de Túria",
       "link": "https://news.google.com/rss/articles/CBMikgFBVV95cUxNQ3NrdVQ1U2otbTB3empWb2tPMFREcTlWLWtyTWVFczJrN2dXZWFtTWNrQVMtb3NEaExJR05NaFRCWFpMV3U5QUZudHctQmxMdzFaV1VVS0pqOFNHVWRXZnpKazNodWdDVE9BOUtsaVBaTENSaHRleGVfbVJqWmlONHpXLTBNM0JvbldNeFNwaTlaUQ?oc=5",
       "source": "Fotocasa",
       "sourceHost": "fotocasa.es",
@@ -1128,15 +1109,6 @@
       "sourceHost": "burjassot.org",
       "date": "2021-05-20T07:00:00.000Z",
       "fingerprint": "10s8clv"
-    },
-    {
-      "id": "5z64tr",
-      "title": "El Polvorín de Riba-roja de Túria, un patrimonio histórico y militar en ruinas",
-      "link": "https://news.google.com/rss/articles/CBMifEFVX3lxTE1RM1hMbUx3cEtBVm1Db1AzY0lGTDhEZWVjYUw4VW1zMU9BcGRMLU5IMnVxanRMcjdmelRRZUh2WkREX25PaEdBTHdMa2huWDgtNk1IVG1PM1NUTjRhUkNLdy1xZzJqRkhmUUhPeHdrOTBRRExjWmUtQUZFZWk?oc=5",
-      "source": "Valenciabonita",
-      "sourceHost": "valenciabonita.es",
-      "date": "2021-05-15T07:00:00.000Z",
-      "fingerprint": "tajnuq"
     },
     {
       "id": "134cjta",
@@ -1184,6 +1156,15 @@
       "fingerprint": "15lpzoo"
     },
     {
+      "id": "kw469q",
+      "title": "37 Casas y pisos con ascensor en Riba-roja de Túria",
+      "link": "https://news.google.com/rss/articles/CBMilAFBVV95cUxPWGo3OWpIbXctd2VVRlJHQllkdTROaHJ2M0R3RW5Mbm9FZ19OUW5wd1YxdUJ4a1JJM2lyMzRkMkZZZkpmam56bFFrYnlOQVJOc0wtdUtaNFFMLWJwc3BHb3FzZnowYmtEZHNMcXNSUU1vR05nOFhQMm03Y24xaXgwdHJ6aHQ5WEFBVUNIWW8wYTNnVlRS?oc=5",
+      "source": "Fotocasa",
+      "sourceHost": "fotocasa.es",
+      "date": "2019-01-12T14:47:24.000Z",
+      "fingerprint": "1ksuexw"
+    },
+    {
       "id": "1hmkydb",
       "title": "Riba-roja de Túria, nueva sede de Unisocietat",
       "link": "https://news.google.com/rss/articles/CBMiggJBVV95cUxQcXNJUjZCUGwxd3JuLUxYR3BiSzlTUXFEWEdYUmpyNGI5NUJuQWhVUEhiZWN2NkZNTmRqYnUyQjlDZE9OZFo1Zjd4ck9OWHg4NlNSekRER2pieEtTVS1iV0NRdkQ3cU5Tdzl5U25UczB6Qkt0dnZLOTdNRFU5XzlneTY5eXd5QTJiY0c0S1o5R1hDVERPME1HWDU2dDUwNmswaElVOGhKX2oyLWV6eEFwd2Vad0E1VGE3dEVsZkxIS09vVmxUOGY0aVJkdmNmRVFuX1NsT2pEY09aV1FjWEhQX042VzVycVA4b2UtdlY4dTBocFUwTlFHOGUxTlJQelpvOHc?oc=5",
@@ -1194,7 +1175,7 @@
     },
     {
       "id": "1xnkzez",
-      "title": "55 Pisos y apartamentos en Riba-roja de Túria",
+      "title": "54 Pisos y apartamentos en Riba-roja de Túria",
       "link": "https://news.google.com/rss/articles/CBMigwFBVV95cUxOUVdFUmlYOVVEWU9fNS0xMmt6QlJ6T1JtcjFxX2VqTnA3SWlUc2llUEJsSnhVZk1GWlprZXhSNEdraGVMRTJJblpNaEh4M0tGeDR0ejJoQkZBZmpSMUJNWnhKbTJ0QVRlWXpRMDFQRVlOeXRic2t0SGR3UUFqbkZFZkphdw?oc=5",
       "source": "Fotocasa",
       "sourceHost": "fotocasa.es",

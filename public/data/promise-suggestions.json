@@ -1,12 +1,12 @@
 {
-  "generatedAt": "2026-11-08T11:44:48.093Z",
+  "generatedAt": "2026-11-09T13:33:14.034Z",
   "frozen": false,
   "frozenUntil": null,
   "notice": "Sugerencias generadas automáticamente. Requieren aprobación humana antes de aplicarse al estado de cada promesa.",
   "counts": {
-    "total": 12,
+    "total": 13,
     "byProposedStatus": {
-      "documentada": 10,
+      "documentada": 11,
       "en-progreso": 2
     },
     "llmEvidence": 0
@@ -42,7 +42,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-11-08T11:44:48.013Z"
+      "generatedAt": "2026-11-09T13:33:13.927Z"
     },
     {
       "promiseId": "ac-psoe-jfg7bc",
@@ -61,7 +61,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-11-08T11:44:48.013Z"
+      "generatedAt": "2026-11-09T13:33:13.927Z"
     },
     {
       "promiseId": "ac-psoe-1ah9zqk",
@@ -80,7 +80,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-11-08T11:44:48.013Z"
+      "generatedAt": "2026-11-09T13:33:13.927Z"
     },
     {
       "promiseId": "ac-psoe-ppa53a",
@@ -88,7 +88,7 @@
       "confidence": 0,
       "reasoning": [],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-11-08T11:44:48.013Z"
+      "generatedAt": "2026-11-09T13:33:13.927Z"
     },
     {
       "promiseId": "ac-psoe-1m04lfw",
@@ -96,7 +96,7 @@
       "confidence": 0,
       "reasoning": [],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-11-08T11:44:48.013Z"
+      "generatedAt": "2026-11-09T13:33:13.927Z"
     },
     {
       "promiseId": "ac-psoe-sysee8",
@@ -115,7 +115,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-11-08T11:44:48.013Z"
+      "generatedAt": "2026-11-09T13:33:13.927Z"
     },
     {
       "promiseId": "ac-psoe-1ryndd8",
@@ -152,7 +152,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-11-08T11:44:48.013Z"
+      "generatedAt": "2026-11-09T13:33:13.927Z"
     },
     {
       "promiseId": "ac-psoe-43brfs",
@@ -217,7 +217,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-11-08T11:44:48.013Z"
+      "generatedAt": "2026-11-09T13:33:13.927Z"
     },
     {
       "promiseId": "ac-psoe-17y448o",
@@ -275,7 +275,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-11-08T11:44:48.013Z"
+      "generatedAt": "2026-11-09T13:33:13.927Z"
     },
     {
       "promiseId": "ac-psoe-1bkbwjs",
@@ -319,7 +319,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-11-08T11:44:48.013Z"
+      "generatedAt": "2026-11-09T13:33:13.927Z"
     },
     {
       "promiseId": "ac-psoe-1xeq50",
@@ -388,7 +388,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-11-08T11:44:48.013Z"
+      "generatedAt": "2026-11-09T13:33:13.927Z"
     },
     {
       "promiseId": "ac-psoe-1kui43c",
@@ -410,7 +410,56 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-11-08T11:44:48.013Z"
+      "generatedAt": "2026-11-09T13:33:13.927Z"
+    },
+    {
+      "promiseId": "ac-psoe-1t88ans",
+      "proposedStatus": "documentada",
+      "confidence": 0.4,
+      "reasoning": [
+        {
+          "url": "https://www.ribarroja.es/es/noticia/el-ayuntamiento-de-riba-roja-de-t%C3%BAria-asigna-140.000-euros-en-subvenciones-econ%C3%B3micas-a-los-clubes-y-entidades-deportivas-para-financiar-sus-actividades-y-programas-de-la-temporada-25/26",
+          "date": "2026-11-02",
+          "quote": "El Ayuntamiento de Riba-roja de Túria asigna 140.000 euros en subvenciones económicas a los clubes y entidades deportivas para financiar sus actividades y programas de la temporada 25/26",
+          "kind": "press",
+          "publisher": "Ayuntamiento de Riba-roja de Túria",
+          "matchedKeywords": [
+            "euro",
+            "subvencion",
+            "club",
+            "entidad",
+            "deportiva",
+            "temporada",
+            "financiar",
+            "actividad",
+            "programa"
+          ]
+        },
+        {
+          "url": "https://news.google.com/rss/articles/CBMiiwFBVV95cUxNYUdoREd6Sm56ekhTdGV6Zk9vbmE3dGt3NEpwQ1ZMa2x6QU9YVEQ0STN2T3JSQTN3V0JBZDE2cVV5SzJCUk9fdUl0WmJhNDFaV1BkTTNaY0pyT0QtbGxNVUthWmNtY0RYRHRQallmTmhVRjhUVmNSc1dfYUFBOVJ2a1hnbmVfN21tZ2Rv?oc=5",
+          "date": "2026-11-05",
+          "quote": "Valencia se llena de ferias, fiestas y actividades este fin de semana: planes del 6 al 8 de noviembre de 2026",
+          "kind": "press",
+          "publisher": "Valenciabonita",
+          "matchedKeywords": [
+            "2026",
+            "actividad"
+          ]
+        },
+        {
+          "url": "https://www.infoturia.com/riba-roja-de-turia/87032-riba-roja-assigna-140-000-euros-als-clubs-i-per-a-financar-les-seues-activitats.html",
+          "date": "2026-11-02",
+          "quote": "Riba-roja assigna 140.000 euros als clubs i per a finançar les seues activitats",
+          "kind": "press",
+          "publisher": "Periòdic del Camp de Túria",
+          "matchedKeywords": [
+            "euro",
+            "club"
+          ]
+        }
+      ],
+      "requiresHumanApproval": true,
+      "generatedAt": "2026-11-09T13:33:13.927Z"
     }
   ],
   "llmEvidence": [],

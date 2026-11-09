@@ -1,20 +1,20 @@
 {
-  "generatedAt": "2026-11-08T11:43:03.886Z",
+  "generatedAt": "2026-11-09T13:31:01.796Z",
   "source": {
     "origin": "https://ribaocupacio.portalemp.com",
     "platform": "portalemp — ribaocupacio · Agència de Col·locació (ADL), Ajuntament de Riba-roja de Túria",
     "listEndpoint": "https://ribaocupacio.portalemp.com/ofertas.html?acc=tableData"
   },
   "stats": {
-    "total": 42,
-    "openTotal": 41,
-    "inRibaRoja": 28,
-    "closingSoon": 6,
-    "withDetail": 42,
+    "total": 41,
+    "openTotal": 40,
+    "inRibaRoja": 27,
+    "closingSoon": 4,
+    "withDetail": 41,
     "byMonth": {
       "2026-11": 1,
       "2026-10": 28,
-      "2026-09": 10,
+      "2026-09": 9,
       "2026-05": 2,
       "2025-11": 1
     }
@@ -2745,81 +2745,6 @@
         "horario": "Lunes a viernes de 7h a 15h",
         "salario": "Convenio + Complementos (a convenir según valía)",
         "funciones": "- Revisión preventiva de cuadros eléctricos, líneas, conexiones, protecciones y otros elementos de baja tensión. - Detección de anomalías, puntos calientes, sobrecargas o posibles riesgos eléctricos. - Ejecución de pequeñas correcciones, ajustes y reparaciones derivadas de las revisiones realizadas. - Mantenimiento preventivo y correctivo de instalaciones eléctricas industriales. - Realización de pruebas, verificaciones y diagnósticos eléctricos. - Elaboración o apoyo en la recogida de información técnica tras las revisiones realizadas. - Desplazamiento a diferentes instalaciones de clientes con vehículo de empresa. - Cumplimiento de la normativa vigente en materia de seguridad, calidad y prevención de riesgos laborales. - Coordinación con el equipo técnico y responsables de proyecto para reportar incidencias o necesidades detectadas.",
-        "ocupaciones": []
-      }
-    },
-    {
-      "id": "2411",
-      "fo": 2411,
-      "codigo": "2026/00112",
-      "titulo": "Electromecánico",
-      "publishedAt": "2026-09-21",
-      "deadline": "2026-11-21",
-      "location": "Riba-roja de Túria",
-      "status": "Abierta",
-      "statusTone": "ok",
-      "url": "https://ribaocupacio.portalemp.com/ofertas.html?fo=2411",
-      "inRibaRoja": true,
-      "detail": {
-        "fields": [
-          {
-            "label": "Código",
-            "value": "2026/00112"
-          },
-          {
-            "label": "Nombre de la oferta",
-            "value": "Electromecánico"
-          },
-          {
-            "label": "Observaciones",
-            "value": "Requisitos : Ciclo formativo de mecánica o similar Experiencia mínima no necesaria Vehículo propio"
-          },
-          {
-            "label": "Tipo de contrato",
-            "value": "CONTRATO INDEFINIDO"
-          },
-          {
-            "label": "Duración del contrato",
-            "value": "Más de 6 meses"
-          },
-          {
-            "label": "Número de puestos",
-            "value": "2"
-          },
-          {
-            "label": "Lugar puesto de trabajo",
-            "value": "Municipio: Riba-roja de Túria, Provincia: Valencia"
-          },
-          {
-            "label": "Tipo de jornada laboral",
-            "value": "Completa"
-          },
-          {
-            "label": "Horario",
-            "value": "De 7:00 a 15:00 horas"
-          },
-          {
-            "label": "Salario",
-            "value": "Según convenio"
-          },
-          {
-            "label": "Funciones",
-            "value": "Mantenimiento y reparación de carretillas elevadoras"
-          },
-          {
-            "label": "Requiere vehículo propio",
-            "value": "Sí"
-          }
-        ],
-        "tipoContrato": "CONTRATO INDEFINIDO",
-        "duracion": "Más de 6 meses",
-        "numPuestos": "2",
-        "observaciones": "Requisitos : Ciclo formativo de mecánica o similar Experiencia mínima no necesaria Vehículo propio",
-        "jornada": "Completa",
-        "horario": "De 7:00 a 15:00 horas",
-        "salario": "Según convenio",
-        "funciones": "Mantenimiento y reparación de carretillas elevadoras",
-        "vehiculo": "Sí",
         "ocupaciones": []
       }
     },
