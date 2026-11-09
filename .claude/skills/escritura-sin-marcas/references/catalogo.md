@@ -5,7 +5,7 @@ el ensayo de la Wikipedia en ruso «Признаки сгенерированн�
 (ВП:ПРГЕН), la guía de la Wikipedia en inglés «Signs of AI writing»
 (WP:AISIGNS), la investigación publicada hasta esa fecha, y las marcas propias
 del castellano y del valenciano. Cada entrada lleva el id que imprime
-`scripts/escanear.mjs`; las que no tienen regla en el escáner se leen a mano y
+`.claude/skills/escritura-sin-marcas/scripts/escanear.mjs`; las que no tienen regla en el escáner se leen a mano y
 lo dicen («sólo a mano»).
 
 **Cómo leer una entrada.** _Busca_: qué mirar. _Ej._: ejemplos inventados para
