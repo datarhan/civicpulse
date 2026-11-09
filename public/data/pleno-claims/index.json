@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-05T08:58:30.794Z",
+  "generatedAt": "2026-11-09T10:29:59.034Z",
   "version": "1",
   "plenos": [
     {
@@ -202,11 +202,11 @@
       "plenoDate": "2026-04-20",
       "chunkPath": "pleno-claims/k4olcs.json",
       "itemCount": 285,
-      "toggleCount": 280,
+      "toggleCount": 279,
       "byVerdict": {
-        "sin-datos": 280,
+        "sin-datos": 279,
         "verificado": 3,
-        "parcial": 2
+        "parcial": 3
       },
       "byType": {
         "afirmacion_numerica": 173,
@@ -229,7 +229,7 @@
         "empleo": 3,
         "movilidad": 1
       },
-      "bytes": 389748
+      "bytes": 390063
     },
     {
       "plenoId": "ma87e0",
@@ -294,11 +294,11 @@
       "plenoDate": "2026-02-09",
       "chunkPath": "pleno-claims/rx4hb4.json",
       "itemCount": 276,
-      "toggleCount": 274,
+      "toggleCount": 273,
       "byVerdict": {
-        "sin-datos": 274,
+        "sin-datos": 273,
         "verificado": 1,
-        "parcial": 1
+        "parcial": 2
       },
       "byType": {
         "cita_obra": 71,
@@ -321,7 +321,7 @@
         "cultura": 2,
         "vivienda": 2
       },
-      "bytes": 388651
+      "bytes": 389346
     },
     {
       "plenoId": "19gax3o",
@@ -424,7 +424,7 @@
         "salud": 1,
         "cultura": 2
       },
-      "bytes": 203808
+      "bytes": 203810
     },
     {
       "plenoId": "qz6weg",
@@ -716,8 +716,8 @@
     "literalesDistintos": 4867,
     "plenos": 25,
     "byVerdict": {
-      "sin-datos": 5137,
-      "parcial": 15,
+      "sin-datos": 5135,
+      "parcial": 17,
       "verificado": 9
     },
     "byTopicVerdict": {
@@ -755,7 +755,8 @@
         "sin-datos": 223
       },
       "educacion": {
-        "sin-datos": 237
+        "sin-datos": 235,
+        "parcial": 2
       },
       "social": {
         "sin-datos": 321,
@@ -949,7 +950,7 @@
     },
     "sinDatosPorque": {
       "sinCorpus": 2121,
-      "comprobadoSinHallar": 2150,
+      "comprobadoSinHallar": 2148,
       "noConsta": 866
     }
   }

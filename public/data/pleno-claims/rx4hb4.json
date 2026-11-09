@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-05T08:58:30.794Z",
+  "generatedAt": "2026-11-09T10:29:59.034Z",
   "version": "1",
   "plenoId": "rx4hb4",
   "plenoDate": "2026-02-09",
@@ -2014,15 +2014,23 @@
       },
       "verification": {
         "claimId": "rx4hb4-136-cit-13fd3c",
-        "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders y tenders-ted que la sostenga. Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
-        "evidence": [],
+        "verdict": "parcial",
+        "summary": "Coincidencia parcial: hay datos relacionados pero no idénticos al claim.",
+        "evidence": [
+          {
+            "kind": "tender",
+            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=pHSbxsDZTWGKeVWTb9Scog%3D%3D",
+            "snippet": "Limpieza Colegio Cervantes · Ayuntamiento de Riba-roja de Túria · environment · estado: unknown",
+            "similarity": 1,
+            "stance": "checked"
+          }
+        ],
         "checkedAgainst": [
           "tenders",
           "tenders-ted"
         ]
       },
-      "visibility": "toggle"
+      "visibility": "shown"
     },
     {
       "claim": {
@@ -2714,7 +2722,15 @@
         "claimId": "rx4hb4-205-cit-5f4373",
         "verdict": "sin-datos",
         "summary": "No se encontró registro en tenders y tenders-ted que la sostenga. Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
-        "evidence": [],
+        "evidence": [
+          {
+            "kind": "tender",
+            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=pHSbxsDZTWGKeVWTb9Scog%3D%3D",
+            "snippet": "Limpieza Colegio Cervantes · Ayuntamiento de Riba-roja de Túria · environment · estado: unknown",
+            "similarity": 0.4,
+            "stance": "checked"
+          }
+        ],
         "checkedAgainst": [
           "tenders",
           "tenders-ted"

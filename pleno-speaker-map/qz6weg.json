@@ -1,6 +1,6 @@
 {
   "plenoId": "qz6weg",
-  "generatedAt": "2026-11-05T08:48:06.910Z",
+  "generatedAt": "2026-11-09T08:50:18.812Z",
   "model": "gemini-3.5-flash",
   "promptVersion": "speaker-map-v2",
   "chunkSeconds": 600,
@@ -15994,6 +15994,390 @@
       "end": 14157.3,
       "speaker": "c23/SPEAKER_00",
       "text": "Alcem el ple, gràcies."
+    },
+    {
+      "start": 12000,
+      "end": 12006.2,
+      "speaker": "c20/SPEAKER_00",
+      "text": "partits, Partit Popular, VOX, Esquerra Unida Podem, Compromís. Molt bé, gràcies. Passem al punt divuit: precs i preguntes per blocs. Primer, Partit Popular. Precs i preguntes, Alberto."
+    },
+    {
+      "start": 12017.7,
+      "end": 12019,
+      "speaker": "c20/SPEAKER_01",
+      "text": "Sí, sí, perdona."
+    },
+    {
+      "start": 12019,
+      "end": 12028.3,
+      "speaker": "c20/SPEAKER_01",
+      "text": "Una, la consecució de l'obra de que s'està fent en el centre de salut, si se sap el termini de l'obra, que supose que el sabrà, però per a que el sapiem tots. Gràcies."
+    },
+    {
+      "start": 12030.1,
+      "end": 12032.7,
+      "speaker": "c20/SPEAKER_00",
+      "text": "Una pregunta més per Partit Popular, Juan."
+    },
+    {
+      "start": 12034.1,
+      "end": 12038.6,
+      "speaker": "c20/SPEAKER_02",
+      "text": "Yo no soy."
+    },
+    {
+      "start": 12039.5,
+      "end": 12044.4,
+      "speaker": "c20/SPEAKER_02",
+      "text": "Sí, a ver, yo quisiera formular una pregunta."
+    },
+    {
+      "start": 12044.4,
+      "end": 12049.3,
+      "speaker": "c20/SPEAKER_02",
+      "text": "A mí me ha llegado a oídos que hay personal de este ayuntamiento que todavía se le debe pues horas extras por cobrar."
+    },
+    {
+      "start": 12053.2,
+      "end": 12061.7,
+      "speaker": "c20/SPEAKER_02",
+      "text": "La pregunta realmente sería, porque es cierto y acuciante y es así, ¿por qué usted, siendo la máxima potestad representativa del ayuntamiento, no habla con la persona jefa responsable, jefe responsable del departamento que sea para que estos empleados cobren en tiempo y forma?"
+    },
+    {
+      "start": 12061.7,
+      "end": 12068.3,
+      "speaker": "c20/SPEAKER_02",
+      "text": "Porque bueno, no es muy entendible que en el mismo estamento unos cobren y otros no."
+    },
+    {
+      "start": 12069.6,
+      "end": 12076.9,
+      "speaker": "c20/SPEAKER_02",
+      "text": "Yo creo que el núcleo y el músculo de cualquier ayuntamiento como de cualquier empresa son todos los empleados y no unos más y otros menos. Era esta la pregunta."
+    },
+    {
+      "start": 12130.6,
+      "end": 12131.2,
+      "speaker": "c20/SPEAKER_00",
+      "text": "Perdón."
+    },
+    {
+      "start": 12132.3,
+      "end": 12135.2,
+      "speaker": "c20/SPEAKER_00",
+      "text": "¿Alguna pregunta més del Partit Popular?"
+    },
+    {
+      "start": 12135.2,
+      "end": 12145.4,
+      "speaker": "c20/SPEAKER_00",
+      "text": "Contestem el bloc del Partit Popular sobre el centre de salut. Un poc més de... Teresa. Estàvem parlant d'obres. Després pots complementar tu lo que siga, Esther."
+    },
+    {
+      "start": 12150,
+      "end": 12156.4,
+      "speaker": "c20/SPEAKER_03",
+      "text": "Bueno, pues... Espera, espera. Sí, ahora sí. Ahora."
+    },
+    {
+      "start": 12156.4,
+      "end": 12160.8,
+      "speaker": "c20/SPEAKER_03",
+      "text": "Cuando hablas de las obras del centro de salud, entiendo que te refieres a las obras de fuera, ¿no?"
+    },
+    {
+      "start": 12160.8,
+      "end": 12162.7,
+      "speaker": "c20/SPEAKER_01",
+      "text": "Les que s'estan fent fora."
+    },
+    {
+      "start": 12162.7,
+      "end": 12164.7,
+      "speaker": "c20/SPEAKER_03",
+      "text": "Vale, pues bueno, esas sabéis... Esas son..."
+    },
+    {
+      "start": 12164.7,
+      "end": 12173.8,
+      "speaker": "c20/SPEAKER_03",
+      "text": "unas obras que estamos realizando con una subvención europea de turismo, que nos han... hemos asignado a esa obra un millón de euros."
+    },
+    {
+      "start": 12173.8,
+      "end": 12183.1,
+      "speaker": "c20/SPEAKER_03",
+      "text": "Y si no pasa nada, antes del verano del... antes de junio aproximadamente del dos mil veintiséis, las obras estarán finalizadas."
+    },
+    {
+      "start": 12183.1,
+      "end": 12193.3,
+      "speaker": "c20/SPEAKER_03",
+      "text": "Pertenecen a una fase del conjunto global, si os acordáis hace unos años hicimos un concurso para toda esa zona, para englobar toda esa zona verde que se había adquirido por parte del ayuntamiento y la llegada del metro."
+    },
+    {
+      "start": 12193.3,
+      "end": 12200.7,
+      "speaker": "c20/SPEAKER_03",
+      "text": "La llegada del metro ha sido lo que se ha quedado un poco en standby..."
+    },
+    {
+      "start": 12200.7,
+      "end": 12202.8,
+      "speaker": "c20/SPEAKER_00",
+      "text": "En standby la parada del metro."
+    },
+    {
+      "start": 12202.8,
+      "end": 12204.6,
+      "speaker": "c20/SPEAKER_03",
+      "text": "No, no, la anterior."
+    },
+    {
+      "start": 12204.6,
+      "end": 12216.7,
+      "speaker": "c20/SPEAKER_03",
+      "text": "No, es... bueno, aprovecho para que la gente, como dices que quieres saber cuándo acaben las obras, también para explicaros un poco por qué y cómo y qué fase es, porque verán que no no es una obra que se quedará acabada, es una fase de toda esa actuación."
+    },
+    {
+      "start": 12216.7,
+      "end": 12228.3,
+      "speaker": "c20/SPEAKER_03",
+      "text": "Se hizo un concurso para ver qué querían nuestros vecinos que fuesen esas actuaciones. Se presentaron seis proyectos, porque era todo una toda... es todo una zona ajardinada de conexión con el barranco de Moros, que llega hasta el río, hasta el parque natural, con la llegada del metro."
+    },
+    {
+      "start": 12228.3,
+      "end": 12236.4,
+      "speaker": "c20/SPEAKER_03",
+      "text": "Y esa actuación es a toda esa actuación englobaba todas las actuaciones en zona verde, la conexión y la parada del metro en el centro de salud."
+    },
+    {
+      "start": 12236.4,
+      "end": 12248.8,
+      "speaker": "c20/SPEAKER_03",
+      "text": "La parada del metro de del centro de salud al centro de salud se ha quedado de momento paralizada, que vamos a ser... vamos a reivindicarla, aprovecho para decirlo. Ha pasado la DANA allá, las circunstancias y ahora seguiremos con esos temas que se quedaron pendientes."
+    },
+    {
+      "start": 12248.8,
+      "end": 12256,
+      "speaker": "c20/SPEAKER_03",
+      "text": "Hay informe de viabilidad económico y técnico para esa llegada. Pero sí que es verdad que quisimos aprovechar dentro de la subvención que nos dieron a nivel de Europa en la parte de turismo para hacer aquella fase que no se veía afectada por la llegada del metro"
+    },
+    {
+      "start": 12256,
+      "end": 12267.4,
+      "speaker": "c20/SPEAKER_03",
+      "text": "porque somos fieles defensores de esa conexión desde el desde el casco a la conexión al río. Cuando esté toda terminada seremos, además el alcalde lo dice muchas veces y es que además nos llena de orgullo, seremos"
+    },
+    {
+      "start": 12267.4,
+      "end": 12278.4,
+      "speaker": "c20/SPEAKER_03",
+      "text": "creo que casi el único municipio en el que cualquier persona de metropolitana pueda venir al municipio con su bici y bajar al parque natural directamente porque esa conexión existirá. Pues bueno, eso lo ofrece Riba-roja y creo que poquitos municipios más."
+    },
+    {
+      "start": 12278.4,
+      "end": 12288,
+      "speaker": "c20/SPEAKER_03",
+      "text": "Pues en eso estamos, en darle el valor que toca a los barrancos, que están dejaron de ser estercoleros y poco a poco se están convirtiendo en zonas verdes,"
+    },
+    {
+      "start": 12288,
+      "end": 12297.8,
+      "speaker": "c20/SPEAKER_03",
+      "text": "zonas verdes que queremos que sean zonas verdes de conexión, que sean accesibles, que sean exposiciones de arte al aire libre. Y todo eso va un poco encaminado para eso."
+    },
+    {
+      "start": 12297.8,
+      "end": 12308.8,
+      "speaker": "c20/SPEAKER_03",
+      "text": "El sentido será que todo sea una franja verde con todos unas una exposición de esculturas que engarce con el con el ECA, que nos una con el parque natural."
+    },
+    {
+      "start": 12308.8,
+      "end": 12318,
+      "speaker": "c20/SPEAKER_03",
+      "text": "Y en esa línea lo que estamos haciendo ahora es una fase eh que si no pasa nada para junio estará terminada. Está eso y también"
+    },
+    {
+      "start": 12318,
+      "end": 12328.6,
+      "speaker": "c20/SPEAKER_03",
+      "text": "dentro de esa... hay varias actuaciones, pero por hablar del tema de de obra pública tenemos esa y lo de las zonas de eh refugios climáticos, pérgolas, que irán tod- eh aparte de que estamos trabajando en una actuación del carril bici con esos refugios climáticos,"
+    },
+    {
+      "start": 12328.6,
+      "end": 12337.8,
+      "speaker": "c20/SPEAKER_03",
+      "text": "hay unos específicos, irán precisamente desde esa trabajo que estamos haciendo, desde ese punto hasta el camino de Ánimas, no sé si este si hay alguna cosa que quieras añadir, pero bueno, serían de esas fechas."
+    },
+    {
+      "start": 12337.8,
+      "end": 12347,
+      "speaker": "c20/SPEAKER_03",
+      "text": "No obstante es un proyecto que publicamos, que está allí, que cualquier vecino que quiera venir a informarse o cualquiera de vosotros que quiera conocerlo os invito porque va a ser muy chulo."
+    },
+    {
+      "start": 12348.6,
+      "end": 12356.5,
+      "speaker": "c20/SPEAKER_04",
+      "text": "Nada, simplemente añadir que aparte de resultar una vertebración para que cualquiera de los de los ciudadanos y ciudadanas de Riba-roja puedan aprovechar y moverse a través del barranco, bajar al río y demás,"
+    },
+    {
+      "start": 12356.5,
+      "end": 12367.6,
+      "speaker": "c20/SPEAKER_04",
+      "text": "también lo que nos sirve o una de sus justificaciones es con los flujos de turistas, que como teníamos antes de la DANA, ahora esperemos que volvamos, ¿no?, un gran flujo de turistas o de visitantes, digamos, que llegaban a través del río,"
+    },
+    {
+      "start": 12367.6,
+      "end": 12377,
+      "speaker": "c20/SPEAKER_04",
+      "text": "también vertebrarlos para que se movieran a través del pueblo y también dejaran pues una riqueza económica en todos los comercios o distintos restaurantes y distintos bares que hay a lo largo del puerto. Tiene una motivación económica también."
+    },
+    {
+      "start": 12380,
+      "end": 12387.8,
+      "speaker": "c20/SPEAKER_03",
+      "text": "Bueno, pues... ya que lo has preguntado pues aprovecho porque además es un trabajo que nos que nos enorgullece y queremos que también lo sepan los vecinos. Ese es el urbanismo que quiere este gobierno."
+    },
+    {
+      "start": 12387.8,
+      "end": 12396.9,
+      "speaker": "c20/SPEAKER_03",
+      "text": "Que empezamos con con el tripartito porque lo entendíamos así, de tener un talud de porquería, de escombros a a a a rabiar,"
+    },
+    {
+      "start": 12396.9,
+      "end": 12407.4,
+      "speaker": "c20/SPEAKER_03",
+      "text": "de hierbas que teníamos que limpiarlo cada vez que venía la época seca por por riesgo a que se incendiara, hubiera un incendio cerca del centro de salud, donde sacamos escombros, motocicletas y de todo."
+    },
+    {
+      "start": 12407.4,
+      "end": 12416.7,
+      "speaker": "c20/SPEAKER_03",
+      "text": "Abrimos una gran ventana, una gran ventana que pondrá en valor ese barranco de Moros y seguimos reivindicando el nuevo centro de salud que será en la zona de la Mallà."
+    },
+    {
+      "start": 12416.7,
+      "end": 12427.5,
+      "speaker": "c20/SPEAKER_03",
+      "text": "Quiero decir que hm ese es el urbanismo que quiero que entiendan que nos costará un poquito más porque las circunstancias que nos han dado en este tiempo que estamos gobernando, pues nos hemos pasado por un COVID, hemos pasado por una DANA y eso nos hace dar prioridad a ese proyecto que tenemos,"
+    },
+    {
+      "start": 12427.5,
+      "end": 12438.3,
+      "speaker": "c20/SPEAKER_03",
+      "text": "pero es importante saber y que la gente recuerde qué era esa zona concretamente que me ha preguntado Alberto: un vertedero, una zona oscura, un hoyo que no tenía comunicación, a una zona abierta que se va a transformar en una conexión directa con el parque natural."
+    },
+    {
+      "start": 12438.3,
+      "end": 12448.9,
+      "speaker": "c20/SPEAKER_03",
+      "text": "Y seguiremos con el tema del centro de salud, que cuando pase este mes en enero volveremos a la Conselleria para ver cómo va el tema del proyecto, que sabemos por lo que nos dijo el coordinador del centro que estaban en la adjudicación del proyecto"
+    },
+    {
+      "start": 12448.9,
+      "end": 12455.5,
+      "speaker": "c20/SPEAKER_03",
+      "text": "porque lo que queremos son fechas para tener un nuevo centro de salud con unos nuevos servicios para dar unas buenas prestaciones a nuestros vecinos."
+    },
+    {
+      "start": 12457.7,
+      "end": 12460.6,
+      "speaker": "c20/SPEAKER_05",
+      "text": "José Ángel a Juan."
+    },
+    {
+      "start": 12460.6,
+      "end": 12468.7,
+      "speaker": "c20/SPEAKER_05",
+      "text": "Sí, Juan. A ver, nosotros tenemos, valga por delante, el apoyo total del gobierno con los trabajadores, con los empleados de este ayuntamiento."
+    },
+    {
+      "start": 12468.7,
+      "end": 12476.5,
+      "speaker": "c20/SPEAKER_05",
+      "text": "Totalmente apoyamos a nuestros trabajadores y les agradecemos ese sobreesfuerzo que muchas veces realizan."
+    },
+    {
+      "start": 12476.5,
+      "end": 12480,
+      "speaker": "c20/SPEAKER_05",
+      "text": "Está pendiente de la fiscalización."
+    },
+    {
+      "start": 12480,
+      "end": 12488.7,
+      "speaker": "c20/SPEAKER_05",
+      "text": "Nosotros el problema que tenemos es que mientras no sea no esté fiscalizado, no podemos realizar el pago de dichas de dichas horas. En algunos casos, en otros casos se ha fiscalizado adecuadamente por la intervención y a partir de ahí se ha se ha liquidado las horas."
+    },
+    {
+      "start": 12488.7,
+      "end": 12493.6,
+      "speaker": "c20/SPEAKER_05",
+      "text": "Pero nos debemos a la fiscalización, esas la son las reglas y ahí estamos trabajando en eso."
+    },
+    {
+      "start": 12493.6,
+      "end": 12501.2,
+      "speaker": "c20/SPEAKER_05",
+      "text": "Una de las últimas cuestiones que tuvimos que traer a pleno fue el incremento de de las cantidades globales máximas para el pago de horas."
+    },
+    {
+      "start": 12501.2,
+      "end": 12511,
+      "speaker": "c20/SPEAKER_05",
+      "text": "También me sorprende que el Partit Popular votó en contra, cuando era una una una propuesta en la que ayudaba a que se pudieran liquidar esas horas en función de la de lo que nos indica de las instrucciones de la intervención de este ayuntamiento."
+    },
+    {
+      "start": 12511,
+      "end": 12522,
+      "speaker": "c20/SPEAKER_05",
+      "text": "No obstante, pese a todo, eh repito, el apoyo total de este ayuntamiento, de este equipo de gobierno con los trabajadores. Sí, pese a las risas tuyas, pero es así."
+    },
+    {
+      "start": 12522,
+      "end": 12528.2,
+      "speaker": "c20/SPEAKER_05",
+      "text": "Bueno, ya está, vale. Pero, Juan, en cuanto esté la fiscalización, no dudes que eso se liquida."
+    },
+    {
+      "start": 12528.2,
+      "end": 12529.5,
+      "speaker": "c20/SPEAKER_02",
+      "text": "Yo te lo agradezco, pero..."
+    },
+    {
+      "start": 12529.5,
+      "end": 12530.1,
+      "speaker": "c20/SPEAKER_05",
+      "text": "Gracias."
+    },
+    {
+      "start": 12530.1,
+      "end": 12536.8,
+      "speaker": "c20/SPEAKER_02",
+      "text": "...obviamente sigo yo no lo entiendo, pero un empleado lo entiende mucho menos. Han sido muchos años en una empresa, ¿no? La fiscalización en unos, en otros no, ¿de qué depende?"
+    },
+    {
+      "start": 12536.8,
+      "end": 12542.4,
+      "speaker": "c20/SPEAKER_02",
+      "text": "¿Es por qué hay determinados empleados que tienen una visibilidad y sí están cobrando en tiempo y forma y otros no?"
+    },
+    {
+      "start": 12542.4,
+      "end": 12544.7,
+      "speaker": "c20/SPEAKER_00",
+      "text": "Estamos repreguntando, no pasa nada."
+    },
+    {
+      "start": 12544.7,
+      "end": 12547,
+      "speaker": "c20/SPEAKER_05",
+      "text": "Sí, claro, claro."
     }
   ],
   "rows": [
@@ -16299,6 +16683,70 @@
         }
       ],
       "namesIndividual": true,
+      "weak": false
+    },
+    {
+      "label": "c20/SPEAKER_01",
+      "bloc": "PP",
+      "slug": "alberto-gimeno-calvo",
+      "heardAs": "Alberto",
+      "evidence": [
+        {
+          "spokenBy": "c20/SPEAKER_00",
+          "at": 12005.8,
+          "quote": "Precs i preguntes, Alberto.",
+          "relation": "turn-grant"
+        }
+      ],
+      "namesIndividual": false,
+      "weak": false
+    },
+    {
+      "label": "c20/SPEAKER_02",
+      "bloc": "PP",
+      "slug": "juan-boix-martinez",
+      "heardAs": "Juan",
+      "evidence": [
+        {
+          "spokenBy": "c20/SPEAKER_00",
+          "at": 12032.5,
+          "quote": "Una pregunta més per Partit Popular, Juan.",
+          "relation": "turn-grant"
+        }
+      ],
+      "namesIndividual": false,
+      "weak": false
+    },
+    {
+      "label": "c20/SPEAKER_03",
+      "bloc": "PSOE",
+      "slug": "teresa-pozuelo-martin",
+      "heardAs": "Teresa",
+      "evidence": [
+        {
+          "spokenBy": "c20/SPEAKER_00",
+          "at": 12142.1,
+          "quote": "Teresa",
+          "relation": "turn-grant"
+        }
+      ],
+      "namesIndividual": false,
+      "weak": false
+    },
+    {
+      "label": "c20/SPEAKER_05",
+      "bloc": "PSOE",
+      "slug": "jose-angel-hernandez-carrizosa",
+      "heardAs": "José Ángel",
+      "evidence": [
+        {
+          "spokenBy": "c20/SPEAKER_05",
+          "at": 12458,
+          "quote": "José Ángel a Juan",
+          "relation": "turn-grant"
+        }
+      ],
+      "namesIndividual": false,
       "weak": false
     }
   ],
@@ -16697,29 +17145,34 @@
       "label": "c23/SPEAKER_02",
       "reason": "unresolvable",
       "detail": "heard \"Ángel Lasunción\" matches nobody"
+    },
+    {
+      "label": "c20/SPEAKER_00",
+      "reason": "relation-contradicted",
+      "detail": "turn-grant, but 5.8s is followed by SPEAKER_01"
+    },
+    {
+      "label": "c20/SPEAKER_04",
+      "reason": "evidence-outside-transcript",
+      "detail": "no segment contains 147.5s"
     }
   ],
   "stats": {
     "chunksExpected": 24,
-    "chunksTranscribed": 23,
-    "failedChunks": [
-      {
-        "chunk": 20,
-        "why": "HTTP 503: This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later."
-      }
-    ],
-    "labelsSeen": 31,
-    "rowsAccepted": 19,
-    "rowsRejected": 79,
+    "chunksTranscribed": 24,
+    "failedChunks": [],
+    "labelsSeen": 6,
+    "rowsAccepted": 23,
+    "rowsRejected": 81,
     "rejectedBy": {
       "evidence-speaker-mismatch": 34,
       "unresolvable": 24,
-      "relation-contradicted": 15,
-      "evidence-outside-transcript": 4,
+      "relation-contradicted": 16,
+      "evidence-outside-transcript": 5,
       "ambiguous": 2
     },
-    "attemptedThisRun": 8,
-    "apiCalls": 14,
+    "attemptedThisRun": 1,
+    "apiCalls": 1,
     "coverage": 1
   }
 }

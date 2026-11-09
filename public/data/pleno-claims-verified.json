@@ -1,7 +1,7 @@
 {
-  "generatedAt": "2026-11-05T08:58:25.135Z",
-  "baseHuella": "8a33d689f232",
-  "composedAt": "2026-11-05T08:58:26.266Z",
+  "generatedAt": "2026-11-09T10:29:52.324Z",
+  "baseHuella": "9fc2d731e99d",
+  "composedAt": "2026-11-09T10:29:53.558Z",
   "source": {
     "description": "Fact-check verdicts for every pleno-claims-suggestions.json entry. Cross-references against tenders / BDNS / budget / promises. Pure deterministic — no LLM judgement.",
     "contract": "Machine-written verdicts; a curator reviews before surfacing contradicho or promesa-repetida editorially."
@@ -10,14 +10,14 @@
     "total": 7959,
     "byVerdict": {
       "verificado": 9,
-      "parcial": 15,
+      "parcial": 17,
       "contradicho": 1,
-      "sin-datos": 7934,
+      "sin-datos": 7932,
       "promesa-repetida": 0
     },
     "sinDatosPorque": {
       "sinCorpus": 3468,
-      "comprobadoSinHallar": 3295,
+      "comprobadoSinHallar": 3293,
       "noConsta": 1171
     }
   },
@@ -55707,8 +55707,16 @@
       "verification": {
         "claimId": "k4olcs-093-acu-d09eba",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders y tenders-ted que la sostenga. Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
-        "evidence": [],
+        "summary": "El único parecido con la base municipal es el título de un contrato: no acredita lo que la acusación afirma. Se deja el documento a la vista como lo que se miró.",
+        "evidence": [
+          {
+            "kind": "tender",
+            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=pHSbxsDZTWGKeVWTb9Scog%3D%3D",
+            "snippet": "Limpieza Colegio Cervantes · Ayuntamiento de Riba-roja de Túria · environment · estado: unknown",
+            "similarity": 0.4,
+            "stance": "checked"
+          }
+        ],
         "checkedAgainst": [
           "tenders",
           "tenders-ted"
@@ -55793,9 +55801,17 @@
       },
       "verification": {
         "claimId": "k4olcs-092-cit-706832",
-        "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders y tenders-ted que la sostenga. Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
-        "evidence": [],
+        "verdict": "parcial",
+        "summary": "Coincidencia parcial: hay datos relacionados pero no idénticos al claim.",
+        "evidence": [
+          {
+            "kind": "tender",
+            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=pHSbxsDZTWGKeVWTb9Scog%3D%3D",
+            "snippet": "Limpieza Colegio Cervantes · Ayuntamiento de Riba-roja de Túria · environment · estado: unknown",
+            "similarity": 1,
+            "stance": "checked"
+          }
+        ],
         "checkedAgainst": [
           "tenders",
           "tenders-ted"
@@ -57439,7 +57455,7 @@
           {
             "kind": "tender",
             "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=zObCw4gxc5XgL1BHd3qjQA%3D%3D",
-            "snippet": "Contrato para la prestación del servicio de consultoría para solicitud ayudas FEDER para actuaciones de las entidades locales especialmente afectadas por la DANA través de contrato derivado del Sistema Dinámico de Adquisición de servicios de arquitectura e ingeniería, consultoría y asistencia técnica a las diferentes áreas municipales. (Ctto. 146/2025 – ESDA1/2025). · Ayuntamiento de Riba-roja de Túria · TECHFRIENDLY SL · architecture · 8500 €",
+            "snippet": "Contrato para la prestación del servicio de consultoría para solicitud ayudas FEDER para actuaciones de las entidades locales especialmente afectadas por la DANA través de contrato derivado del Sistema Dinámico de Adquisición de servicios de arquitectura e ingeniería, consultoría y asistencia técnica a las diferentes áreas municipales. (Ctto. 146/2025 – ESDA1/2025). · Ayuntamiento de Riba-roja de Túria · TECHFRIENDLY, SL · architecture · 8500 €",
             "similarity": 1,
             "stance": "checked"
           }
@@ -57777,7 +57793,7 @@
           {
             "kind": "tender",
             "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=zObCw4gxc5XgL1BHd3qjQA%3D%3D",
-            "snippet": "Contrato para la prestación del servicio de consultoría para solicitud ayudas FEDER para actuaciones de las entidades locales especialmente afectadas por la DANA través de contrato derivado del Sistema Dinámico de Adquisición de servicios de arquitectura e ingeniería, consultoría y asistencia técnica a las diferentes áreas municipales. (Ctto. 146/2025 – ESDA1/2025). · Ayuntamiento de Riba-roja de Túria · TECHFRIENDLY SL · architecture · 8500 €",
+            "snippet": "Contrato para la prestación del servicio de consultoría para solicitud ayudas FEDER para actuaciones de las entidades locales especialmente afectadas por la DANA través de contrato derivado del Sistema Dinámico de Adquisición de servicios de arquitectura e ingeniería, consultoría y asistencia técnica a las diferentes áreas municipales. (Ctto. 146/2025 – ESDA1/2025). · Ayuntamiento de Riba-roja de Túria · TECHFRIENDLY, SL · architecture · 8500 €",
             "similarity": 1,
             "stance": "checked"
           }
@@ -76244,8 +76260,16 @@
       "verification": {
         "claimId": "rx4hb4-135-acu-496815",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders y tenders-ted que la sostenga. Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
-        "evidence": [],
+        "summary": "El único parecido con la base municipal es el título de un contrato: no acredita lo que la acusación afirma. Se deja el documento a la vista como lo que se miró.",
+        "evidence": [
+          {
+            "kind": "tender",
+            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=pHSbxsDZTWGKeVWTb9Scog%3D%3D",
+            "snippet": "Limpieza Colegio Cervantes · Ayuntamiento de Riba-roja de Túria · environment · estado: unknown",
+            "similarity": 1,
+            "stance": "checked"
+          }
+        ],
         "checkedAgainst": [
           "tenders",
           "tenders-ted"
@@ -76303,9 +76327,17 @@
       },
       "verification": {
         "claimId": "rx4hb4-136-cit-13fd3c",
-        "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders y tenders-ted que la sostenga. Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
-        "evidence": [],
+        "verdict": "parcial",
+        "summary": "Coincidencia parcial: hay datos relacionados pero no idénticos al claim.",
+        "evidence": [
+          {
+            "kind": "tender",
+            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=pHSbxsDZTWGKeVWTb9Scog%3D%3D",
+            "snippet": "Limpieza Colegio Cervantes · Ayuntamiento de Riba-roja de Túria · environment · estado: unknown",
+            "similarity": 1,
+            "stance": "checked"
+          }
+        ],
         "checkedAgainst": [
           "tenders",
           "tenders-ted"
@@ -78784,8 +78816,16 @@
       "verification": {
         "claimId": "rx4hb4-204-acu-24561a",
         "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders y tenders-ted que la sostenga. Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
-        "evidence": [],
+        "summary": "El único parecido con la base municipal es el título de un contrato: no acredita lo que la acusación afirma. Se deja el documento a la vista como lo que se miró.",
+        "evidence": [
+          {
+            "kind": "tender",
+            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=pHSbxsDZTWGKeVWTb9Scog%3D%3D",
+            "snippet": "Limpieza Colegio Cervantes · Ayuntamiento de Riba-roja de Túria · environment · estado: unknown",
+            "similarity": 1,
+            "stance": "checked"
+          }
+        ],
         "checkedAgainst": [
           "tenders",
           "tenders-ted"
@@ -78873,7 +78913,15 @@
         "claimId": "rx4hb4-205-cit-5f4373",
         "verdict": "sin-datos",
         "summary": "No se encontró registro en tenders y tenders-ted que la sostenga. Un «sin datos» no es un desmentido: la afirmación puede ser cierta.",
-        "evidence": [],
+        "evidence": [
+          {
+            "kind": "tender",
+            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=pHSbxsDZTWGKeVWTb9Scog%3D%3D",
+            "snippet": "Limpieza Colegio Cervantes · Ayuntamiento de Riba-roja de Túria · environment · estado: unknown",
+            "similarity": 0.4,
+            "stance": "checked"
+          }
+        ],
         "checkedAgainst": [
           "tenders",
           "tenders-ted"
@@ -115443,7 +115491,7 @@
           {
             "kind": "tender",
             "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=dukyIWQ3V8T%2Fa9DgO%2BoYKQ%3D%3D",
-            "snippet": "Contrato verbal de servicio de oficiales con maquinaria para limpiar y recoger escombro en la vía pública (Els Pous, c/ Ànimes y Pedanía del Oliveral) como consecuencia del temporal de lluvias (DANA) producido el pasado 29 de octubre de 2024 mediante tramitación de emergencia, a favor de Becsa, S.A. con CIF A46041711 · Ayuntamiento de Riba-roja de Túria · BECSA SAU · environment · 5706 €",
+            "snippet": "Contrato verbal de servicio de oficiales con maquinaria para limpiar y recoger escombro en la vía pública (Els Pous, c/ Ànimes y Pedanía del Oliveral) como consecuencia del temporal de lluvias (DANA) producido el pasado 29 de octubre de 2024 mediante tramitación de emergencia, a favor de Becsa, S.A. con CIF A46041711 · Ayuntamiento de Riba-roja de Túria · BECSA, S.A. · environment · 5706 €",
             "similarity": 1,
             "stance": "checked"
           }
