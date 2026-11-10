@@ -1,13 +1,13 @@
 {
-  "generatedAt": "2026-11-09T13:19:32.328Z",
+  "generatedAt": "2026-11-10T12:57:14.875Z",
   "source": {
     "url": "https://www.ribarroja.es/es/eventos/rss.xml",
     "platform": "Drupal RSS (oficial)"
   },
   "stats": {
     "total": 50,
-    "upcoming": 9,
-    "nextDate": "2026-11-20T21:00:00.000Z"
+    "upcoming": 11,
+    "nextDate": "2026-12-04T18:00:00.000Z"
   },
   "events": [
     {
@@ -251,26 +251,6 @@
       "image": "https://www.ribarroja.es/sites/www.ribarroja.es/files/styles/interior_contenido_/public/20260930%2010_Cartel%20Donaci%C3%B3n%205-OCTUBRE%20.jpg?itok=Dfa917L9"
     },
     {
-      "id": "1x23hfw",
-      "title": "Cine 'Tadeo Jones y la lámpara maravillosa'",
-      "link": "https://www.ribarroja.es/es/evento/cine-%27tadeo-jones-y-la-l%C3%A1mpara-maravillosa%27",
-      "eventDate": "2026-10-10T17:00:00.000Z",
-      "eventDateText": "10 de octubre de 2026 19:00",
-      "publishedDate": "2026-08-31T06:45:34.000Z",
-      "excerpt": "&nbsp;",
-      "image": "https://www.ribarroja.es/sites/www.ribarroja.es/files/styles/interior_contenido_/public/20260831%20tadeojones%20y%20la%20lampara.jpg?itok=66UHoeDn"
-    },
-    {
-      "id": "ltq6m1",
-      "title": "Cine 'Tadeo Jones y la lámpara maravillosa'",
-      "link": "https://www.ribarroja.es/es/evento/cine-%27tadeo-jones-y-la-l%C3%A1mpara-maravillosa%27-0",
-      "eventDate": "2026-10-11T15:00:00.000Z",
-      "eventDateText": "11 de octubre de 2026 17:00",
-      "publishedDate": "2026-08-31T06:49:22.000Z",
-      "excerpt": "&nbsp;",
-      "image": "https://www.ribarroja.es/sites/www.ribarroja.es/files/styles/interior_contenido_/public/20260831%20tadeojones%20y%20la%20lampara_0.jpg?itok=ilCuvuGz"
-    },
-    {
       "id": "w2y5z8",
       "title": "Cine 'Enjambre'",
       "link": "https://www.ribarroja.es/es/evento/cine-%27enjambre%27",
@@ -421,36 +401,6 @@
       "image": "https://www.ribarroja.es/sites/www.ribarroja.es/files/styles/interior_contenido_/public/Competiciones%20deportivas%20reducida_15.png?itok=BF3Xwkpy"
     },
     {
-      "id": "nfc8cc",
-      "title": "Cine 'Ruega por nosotras'",
-      "link": "https://www.ribarroja.es/es/evento/cine-%27ruega-por-nosotras%27",
-      "eventDate": "2026-11-20T21:00:00.000Z",
-      "eventDateText": "20 de noviembre de 2026 22:00",
-      "publishedDate": "2026-08-31T06:54:17.000Z",
-      "excerpt": "&nbsp;",
-      "image": "https://www.ribarroja.es/sites/www.ribarroja.es/files/styles/interior_contenido_/public/20260831%20ruega%20por%20nosotras.jpg?itok=wVUNT9GN"
-    },
-    {
-      "id": "jcce5",
-      "title": "Cine 'El gato con sombrero'",
-      "link": "https://www.ribarroja.es/es/evento/cine-%27el-gato-con-sombrero%27",
-      "eventDate": "2026-11-22T16:00:00.000Z",
-      "eventDateText": "22 de noviembre de 2026 17:00",
-      "publishedDate": "2026-08-31T06:57:50.000Z",
-      "excerpt": "&nbsp;",
-      "image": "https://www.ribarroja.es/sites/www.ribarroja.es/files/styles/interior_contenido_/public/20260831%20el%20gato%20con%20sombrero.jpg?itok=OSFnRHeT"
-    },
-    {
-      "id": "wghwd8",
-      "title": "Cine 'Ruega por nosotras'",
-      "link": "https://www.ribarroja.es/es/evento/cine-%27ruega-por-nosotras%27-0",
-      "eventDate": "2026-11-22T18:00:00.000Z",
-      "eventDateText": "22 de noviembre de 2026 19:00",
-      "publishedDate": "2026-08-31T06:56:22.000Z",
-      "excerpt": "&nbsp;",
-      "image": "https://www.ribarroja.es/sites/www.ribarroja.es/files/styles/interior_contenido_/public/20260831%20ruega%20por%20nosotras_0.jpg?itok=33gMGdJu"
-    },
-    {
       "id": "1b50gro",
       "title": "Cine 'La patrulla canina, la dino película'",
       "link": "https://www.ribarroja.es/es/evento/cine-%27la-patrulla-canina%2C-la-dino-pel%C3%ADcula%27",
@@ -491,16 +441,6 @@
       "image": "https://www.ribarroja.es/sites/www.ribarroja.es/files/styles/interior_contenido_/public/20260831%20los%20juegos%20del%20hambre_0.jpg?itok=hsVEx_5i"
     },
     {
-      "id": "d9hcm0",
-      "title": "Cine 'Burundanga'",
-      "link": "https://www.ribarroja.es/es/evento/cine-%27burundanga%27",
-      "eventDate": "2027-02-05T21:00:00.000Z",
-      "eventDateText": "05 de febrero de 2027 22:00",
-      "publishedDate": "2026-08-31T06:52:12.000Z",
-      "excerpt": "&nbsp;",
-      "image": "https://www.ribarroja.es/sites/www.ribarroja.es/files/styles/interior_contenido_/public/20260831%20burundanga.jpg?itok=PdSGzVwS"
-    },
-    {
       "id": "6x69fs",
       "title": "MECANO FOREVER, Una rosa es una rosa",
       "link": "https://www.ribarroja.es/es/evento/mecano-forever%2C-una-rosa-es-una-rosa",
@@ -509,6 +449,66 @@
       "publishedDate": "2026-09-30T12:09:44.000Z",
       "excerpt": "&nbsp;",
       "image": "https://www.ribarroja.es/sites/www.ribarroja.es/files/styles/interior_contenido_/public/20260924%20Cartel%20A-4%20Mecano%20Riba-roja%20%28val%29.jpg?itok=9EXuPaAZ"
+    },
+    {
+      "id": "1tfjh2c",
+      "title": "Danza 'Carmencita y el lobo'",
+      "link": "https://www.ribarroja.es/es/evento/danza-%27carmencita-y-el-lobo%27",
+      "eventDate": "2027-02-26T18:00:00.000Z",
+      "eventDateText": "26 de febrero de 2027 19:00",
+      "publishedDate": "2026-11-10T08:40:32.000Z",
+      "excerpt": "&nbsp;",
+      "image": "https://www.ribarroja.es/sites/www.ribarroja.es/files/styles/interior_contenido_/public/3%20carmencita%20y%20el%20lobo.jpg?itok=pE1idv3L"
+    },
+    {
+      "id": "bd6w2c",
+      "title": "Teatro lírico 'Doña Francisquita'",
+      "link": "https://www.ribarroja.es/es/evento/teatro-l%C3%ADrico-%27do%C3%B1a-francisquita%27",
+      "eventDate": "2027-03-13T18:00:00.000Z",
+      "eventDateText": "13 de marzo de 2027 19:00",
+      "publishedDate": "2026-11-10T08:46:16.000Z",
+      "excerpt": "&nbsp;",
+      "image": "https://www.ribarroja.es/sites/www.ribarroja.es/files/styles/interior_contenido_/public/4%20do%C3%B1a%20francisquita.jpg?itok=8mg3daGr"
+    },
+    {
+      "id": "iwk8wd",
+      "title": "Musical 'Ogro'",
+      "link": "https://www.ribarroja.es/es/evento/musical-%27ogro%27",
+      "eventDate": "2027-04-03T17:00:00.000Z",
+      "eventDateText": "03 de abril de 2027 19:00",
+      "publishedDate": "2026-11-10T08:48:42.000Z",
+      "excerpt": "&nbsp;",
+      "image": "https://www.ribarroja.es/sites/www.ribarroja.es/files/styles/interior_contenido_/public/5%20Ogro%20el%20musical.jpg?itok=MAHhF7B5"
+    },
+    {
+      "id": "19r7mnx",
+      "title": "Circo 'Rube'",
+      "link": "https://www.ribarroja.es/es/evento/circo-%27rube%27",
+      "eventDate": "2027-04-16T17:00:00.000Z",
+      "eventDateText": "16 de abril de 2027 19:00",
+      "publishedDate": "2026-11-10T08:50:43.000Z",
+      "excerpt": "&nbsp;",
+      "image": "https://www.ribarroja.es/sites/www.ribarroja.es/files/styles/interior_contenido_/public/6%20circo%20rube.jpg?itok=UPEKcgCt"
+    },
+    {
+      "id": "en9778",
+      "title": "Concierto 'Nino Bravo íntimo'",
+      "link": "https://www.ribarroja.es/es/evento/concierto-%27nino-bravo-%C3%ADntimo%27",
+      "eventDate": "2027-04-17T17:30:00.000Z",
+      "eventDateText": "17 de abril de 2027 19:30",
+      "publishedDate": "2026-11-10T08:52:07.000Z",
+      "excerpt": "&nbsp;",
+      "image": "https://www.ribarroja.es/sites/www.ribarroja.es/files/styles/interior_contenido_/public/7%20Serafin%20zubiri.jpg?itok=4uWsEFYj"
+    },
+    {
+      "id": "us517o",
+      "title": "Circo 'Piensa en Wilbur'",
+      "link": "https://www.ribarroja.es/es/evento/circo-%27piensa-en-wilbur%27",
+      "eventDate": "2027-05-02T16:30:00.000Z",
+      "eventDateText": "02 de mayo de 2027 18:30",
+      "publishedDate": "2026-11-10T08:53:55.000Z",
+      "excerpt": "&nbsp;",
+      "image": "https://www.ribarroja.es/sites/www.ribarroja.es/files/styles/interior_contenido_/public/8%20piensa%20en%20wilbor.jpg?itok=r90IkaSL"
     }
   ]
 }

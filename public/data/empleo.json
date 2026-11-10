@@ -1,20 +1,20 @@
 {
-  "generatedAt": "2026-11-09T13:31:01.796Z",
+  "generatedAt": "2026-11-10T13:04:55.454Z",
   "source": {
     "origin": "https://ribaocupacio.portalemp.com",
     "platform": "portalemp — ribaocupacio · Agència de Col·locació (ADL), Ajuntament de Riba-roja de Túria",
     "listEndpoint": "https://ribaocupacio.portalemp.com/ofertas.html?acc=tableData"
   },
   "stats": {
-    "total": 41,
-    "openTotal": 40,
+    "total": 40,
+    "openTotal": 39,
     "inRibaRoja": 27,
     "closingSoon": 4,
-    "withDetail": 41,
+    "withDetail": 40,
     "byMonth": {
       "2026-11": 1,
       "2026-10": 28,
-      "2026-09": 9,
+      "2026-09": 8,
       "2026-05": 2,
       "2025-11": 1
     }
@@ -2975,73 +2975,6 @@
         "salario": "SEGUN CONVENIO",
         "funciones": "FUNCIONES PROPIAS DEL PUESTO DE ENFERMERÍA EN CENTRO RESIDENCIAL DE PERSONAS CON ENFERMEDAD MENTAL",
         "vehiculo": "Sí",
-        "ocupaciones": []
-      }
-    },
-    {
-      "id": "2532",
-      "fo": 2532,
-      "codigo": "2026/00231",
-      "titulo": "Comercial",
-      "publishedAt": "2026-09-09",
-      "deadline": "2026-11-09",
-      "location": "Vilamarxant (Valencia)",
-      "status": "Abierta",
-      "statusTone": "ok",
-      "url": "https://ribaocupacio.portalemp.com/ofertas.html?fo=2532",
-      "inRibaRoja": false,
-      "detail": {
-        "fields": [
-          {
-            "label": "Código",
-            "value": "2026/00231"
-          },
-          {
-            "label": "Nombre de la oferta",
-            "value": "Comercial"
-          },
-          {
-            "label": "Sector CNAE",
-            "value": "OTROS SERVICIOS"
-          },
-          {
-            "label": "Tipo de contrato",
-            "value": "CONTRATO INDEFINIDO"
-          },
-          {
-            "label": "Duración del contrato",
-            "value": "Más de 6 meses"
-          },
-          {
-            "label": "Número de puestos",
-            "value": "10"
-          },
-          {
-            "label": "Lugar puesto de trabajo",
-            "value": "Municipio: Vilamarxant, Provincia: Valencia, CP: 46191"
-          },
-          {
-            "label": "Tipo de jornada laboral",
-            "value": "Completa"
-          },
-          {
-            "label": "Salario",
-            "value": "1500 NETOS aprox. + INCENTIVOS DE VENTA"
-          },
-          {
-            "label": "Funciones",
-            "value": "Comercial de bebidas, alimentación y diferentes productos para hostelería"
-          }
-        ],
-        "tipoContrato": "CONTRATO INDEFINIDO",
-        "duracion": "Más de 6 meses",
-        "numPuestos": "10",
-        "municipio": "Vilamarxant",
-        "provincia": "Valencia",
-        "cp": "46191",
-        "jornada": "Completa",
-        "salario": "1500 NETOS aprox. + INCENTIVOS DE VENTA",
-        "funciones": "Comercial de bebidas, alimentación y diferentes productos para hostelería",
         "ocupaciones": []
       }
     },

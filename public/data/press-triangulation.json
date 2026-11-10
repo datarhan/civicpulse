@@ -1,19 +1,19 @@
 {
-  "generatedAt": "2026-11-10T11:59:57.174Z",
+  "generatedAt": "2026-11-10T13:07:19.433Z",
   "clusters": [
     {
-      "clusterId": "1ffhzqr",
+      "clusterId": "190i5dk",
       "articleIds": [
-        "1sfn68k",
-        "w8xvcs"
+        "1tgnyzg",
+        "zzlq1k"
       ],
       "outlets": [
-        "Foro3D",
-        "Valenciabonita"
+        "Las Provincias",
+        "Levante-EMV"
       ],
       "fuentesOficiales": [],
-      "earliestDate": "2026-10-21T07:00:00.000Z",
-      "latestDate": "2026-11-08T04:31:11.000Z",
+      "earliestDate": "2026-11-09T13:20:49.000Z",
+      "latestDate": "2026-11-09T13:21:17.000Z",
       "verdictMix": {
         "verificado": 0,
         "parcial": 0,
@@ -28,9 +28,9 @@
     "triangulated3Plus": 0
   },
   "builtFrom": {
-    "plenos-agendas.json": "1cd132234bab",
+    "plenos-agendas.json": "2e0c6647a282",
     "press-claims-verified.json": "d4654fd232f4",
-    "press.json": "c4bd89448253",
+    "press.json": "ec048cf7d9f7",
     "promises.json": "d0fd2949af24"
   }
 }

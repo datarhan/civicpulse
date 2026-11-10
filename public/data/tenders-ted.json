@@ -1,15 +1,15 @@
 {
-  "generatedAt": "2026-11-09T13:18:12.402Z",
+  "generatedAt": "2026-11-10T12:56:06.304Z",
   "source": {
     "url": "https://api.ted.europa.eu/v3/notices/search",
     "query": "buyer-name~\"Riba-roja\"",
     "description": "EU Tenders Electronic Daily (TED) — contracts above the EU threshold, free API, no auth."
   },
   "stats": {
-    "total": 57,
+    "total": 58,
     "byContractNature": {
       "supplies": 20,
-      "services": 78,
+      "services": 82,
       "works": 2
     }
   },
@@ -148,6 +148,24 @@
       "currency": "EUR",
       "pdfUrl": "https://ted.europa.eu/es/notice/779078-2026/pdf",
       "htmlUrl": "https://ted.europa.eu/es/notice/779078-2026/notice"
+    },
+    {
+      "id": "6415e61e2d9f",
+      "publicationNumber": "781245-2026",
+      "title": "Anuncio TED 781245-2026",
+      "buyerName": "Alcaldía del Ayuntamiento de Riba-roja de Túria",
+      "contractNature": [
+        "services",
+        "services",
+        "services",
+        "services"
+      ],
+      "publicationDate": "2026-01-01T00:00:00.000Z",
+      "dateApproximate": true,
+      "totalValueEur": 1831746.94,
+      "currency": "EUR",
+      "pdfUrl": "https://ted.europa.eu/es/notice/781245-2026/pdf",
+      "htmlUrl": "https://ted.europa.eu/es/notice/781245-2026/notice"
     },
     {
       "id": "47f84b18850a",
