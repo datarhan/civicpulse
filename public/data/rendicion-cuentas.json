@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-09T13:32:11.101Z",
+  "generatedAt": "2026-11-10T05:48:12.992Z",
   "note": "Cuenta General del Ayuntamiento de Riba-roja de Túria en la Plataforma de Rendición de Cuentas: estado de cada ejercicio y fecha de cada trámite, tal como los publica la plataforma. Los plazos legales y su contraste se calculan en src/scraper/rendicion-cuentas.ts (PLAZOS, evaluarPlazo).",
   "source": {
     "platform": "Plataforma de Rendición de Cuentas (Tribunal de Cuentas y órganos autonómicos de control externo)",

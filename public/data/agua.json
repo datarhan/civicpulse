@@ -1,10 +1,10 @@
 {
-  "generatedAt": "2026-11-09T13:33:13.033Z",
-  "consultadoEl": "2026-11-09",
+  "generatedAt": "2026-11-10T05:50:05.751Z",
+  "consultadoEl": "2026-11-10",
   "fuente": {
     "nombre": "SINAC · Sistema de Información Nacional de Aguas de Consumo (Ministerio de Sanidad)",
     "url": "https://sinac.sanidad.gob.es/CiudadanoWeb/ciudadano/informacionAbastecimientoActionEntrada.do",
-    "atribucion": "Fuente: Ministerio de Sanidad, SINAC. Consultado el 2026-11-09; cada boletín lleva su fecha de toma.",
+    "atribucion": "Fuente: Ministerio de Sanidad, SINAC. Consultado el 2026-11-10; cada boletín lleva su fecha de toma.",
     "licencia": "Aviso legal del Ministerio de Sanidad: reutilización permitida citando la fuente y la fecha de la última actualización, sin desnaturalizar la información"
   },
   "municipio": {
