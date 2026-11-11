@@ -10,9 +10,18 @@ import {
 import type { AvisosHitos } from '../services/avisos-hitos.ts'
 import type { MyContext } from '../types.ts'
 import { idDeQueja } from '../services/queja-id.ts'
+import { estaBloqueado } from '../db/bloqueos.ts'
+import { avisoPrivado } from '../services/solo-en-privado.ts'
+import { BLOQUEADA } from './bloquear.ts'
 
 export function registerApoyar(bot: Bot<MyContext>, db: Db, hitos: AvisosHitos) {
   const handler = async (ctx: MyContext, raw: string | undefined) => {
+    // Una cuenta bloqueada no apoya (commands/bloquear.ts). En un grupo no se dice
+    // delante de todos: se la manda al privado, donde oirá por qué.
+    if (estaBloqueado(db, autorTelegram(ctx.from!.id))) {
+      await ctx.reply(ctx.chat?.type === 'private' ? BLOQUEADA : avisoPrivado(ctx.me.username))
+      return
+    }
     const id = idDeQueja(raw)
     if (!id) {
       await ctx.reply('Uso: `/apoyar Q-XXXX`', { parse_mode: 'Markdown' })

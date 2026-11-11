@@ -101,6 +101,13 @@ export type MotivoVaciado = (typeof MOTIVOS_VACIADO)[number]
 export const RESULTADOS_REVISION = ['limpia', 'marcada', 'invalida', 'error'] as const
 export type ResultadoRevision = (typeof RESULTADOS_REVISION)[number]
 
+/**
+ * Lo que se apunta en `bloqueos`: bloquear una cuenta o devolverle el permiso. El
+ * CHECK de la migración 4 los escribe literales.
+ */
+export const ACCIONES_BLOQUEO = ['bloquear', 'desbloquear'] as const
+export type AccionBloqueo = (typeof ACCIONES_BLOQUEO)[number]
+
 export interface Migracion {
   version: number
   nombre: string
@@ -329,6 +336,53 @@ function revisionAutomatica(db: Db): void {
   `)
 }
 
+/**
+ * Migración 4 — el registro de bloqueos.
+ *
+ * Quien modera puede impedir que una cuenta envíe quejas, las apoye o adjunte
+ * fotos (`/bloquear`, commands/bloquear.ts), y devolverle el permiso
+ * (`/desbloquear`). Cada decisión es una fila: a qué ciudadano, cuál, quién la
+ * tomó (`admin:<id>`), cuándo y, si lo dijo, por qué. Lo vigente es la ÚLTIMA
+ * fila de cada ciudadano; no hay una columna de estado que pueda contradecir al
+ * registro.
+ *
+ * Es append-only, y lo hacen cumplir dos disparadores: ninguna fila se borra, y
+ * la única escritura que admite una fila es perder a quién se refiere. Eso pasa
+ * cuando esa persona ejerce su derecho de supresión (`/borrar_mis_datos` borra
+ * su fila de `ciudadanos`, y la clave la deja en NULL): la decisión queda, sin
+ * su identidad, y el bloqueo deja de aplicarse. Bloquear no quita derechos sobre
+ * los datos propios.
+ *
+ * Sólo añade una tabla, que el código anterior no lee.
+ */
+function registroDeBloqueos(db: Db): void {
+  db.exec(`
+    CREATE TABLE bloqueos (
+      id            INTEGER PRIMARY KEY,
+      ciudadano_id  INTEGER REFERENCES ciudadanos(id) ON DELETE SET NULL,
+      accion        TEXT NOT NULL CHECK (accion IN ('bloquear', 'desbloquear')),
+      por           TEXT NOT NULL CHECK (length(por) > 0),
+      motivo        TEXT CHECK (motivo IS NULL OR length(motivo) > 0),
+      creado_at     TEXT NOT NULL DEFAULT (datetime('now'))
+    );
+    CREATE INDEX idx_bloqueos_ciudadano ON bloqueos(ciudadano_id);
+    CREATE TRIGGER bloqueos_no_se_borran BEFORE DELETE ON bloqueos
+    BEGIN
+      SELECT RAISE(ABORT, 'bloqueos es append-only: una decisión no se borra');
+    END;
+    CREATE TRIGGER bloqueos_no_se_cambian BEFORE UPDATE ON bloqueos
+      WHEN NEW.ciudadano_id IS NOT NULL
+        OR NEW.id IS NOT OLD.id
+        OR NEW.accion IS NOT OLD.accion
+        OR NEW.por IS NOT OLD.por
+        OR NEW.motivo IS NOT OLD.motivo
+        OR NEW.creado_at IS NOT OLD.creado_at
+    BEGIN
+      SELECT RAISE(ABORT, 'bloqueos es append-only: una fila sólo puede perder a quién se refiere');
+    END;
+  `)
+}
+
 export const MIGRACIONES: readonly Migracion[] = [
   { version: 1, nombre: 'identidad-por-ciudadano', aplicar: identidadPorCiudadano },
   { version: 2, nombre: 'revision-antes-de-publicar', aplicar: revisionAntesDePublicar },
@@ -343,9 +397,13 @@ export const MIGRACIONES: readonly Migracion[] = [
  * cuando el ensayo ha dicho «correcto» y hay instantánea del volumen. Así llegó
  * la 1 (#132 la desplegó inerte, #135 la activó), así la 2 (#138 la desplegó en
  * ensayo, #137 la activó), y así la 3 (#153 en ensayo; la activó la revisión
- * automática). Hoy no hay ninguna.
+ * automática). Hoy está la 4 (`registro-de-bloqueos`): mientras siga aquí,
+ * `/bloquear` contesta que aún no está activo y nadie está bloqueado
+ * (`bloqueosActivos`, db/bloqueos.ts).
  */
-export const MIGRACIONES_EN_ENSAYO: readonly Migracion[] = []
+export const MIGRACIONES_EN_ENSAYO: readonly Migracion[] = [
+  { version: 4, nombre: 'registro-de-bloqueos', aplicar: registroDeBloqueos },
+]
 
 /** Lo que ensaya `migrate.ts --dry-run`: las activas y, detrás, las que están en ensayo. */
 export const MIGRACIONES_DEL_ENSAYO: readonly Migracion[] = [

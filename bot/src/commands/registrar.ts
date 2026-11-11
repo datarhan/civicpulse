@@ -31,6 +31,7 @@ import { registerBatchCommand } from './batch.ts'
 import { registerEscalar } from './escalar.ts'
 import { registerCurarCommand } from './curar.ts'
 import { registerModerar } from './moderar.ts'
+import { registerBloquear } from './bloquear.ts'
 
 export function registrarComandos(
   bot: Bot<MyContext>,
@@ -66,6 +67,7 @@ export function registrarComandos(
   registerEscalar(bot, db, hitos)
   registerCurarCommand(bot, db)
   registerModerar(bot, db, { envio })
+  registerBloquear(bot, db)
 
   // Un botón de categoría que ya no sirve —de una queja caducada, perdida en un
   // despliegue o ya en otro paso— se quedaba con el reloj girando: nadie

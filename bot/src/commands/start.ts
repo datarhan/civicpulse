@@ -1,13 +1,14 @@
 import type { Bot } from 'grammy'
 import type { MyContext } from '../types.ts'
 import { CONSERVACION_QUEJAS_ANIOS } from '../../../src/scraper/plazos-retencion.ts'
+import { LIMITE_QUEJAS_DIA, VENTANA_LIMITE_HORAS } from '../db/queries.ts'
 
 const WELCOME =
   `👋 *Bienvenido a CivicPulse · Riba-roja*
 
 Soy el canal directo entre vecinos y Ayuntamiento. Con este bot puedes:
 
-• /queja — Presentar una nueva queja (categoría, foto, ubicación)
+• /queja — Presentar una nueva queja (categoría, foto, ubicación; hasta ${LIMITE_QUEJAS_DIA} cada ${VENTANA_LIMITE_HORAS} horas)
 • /apoyar Q-XXXX — Apoyar una queja existente (+1 apoyo vecinal)
 • /estado Q-XXXX — Ver el estado de una queja
 • /mis — Tus quejas
