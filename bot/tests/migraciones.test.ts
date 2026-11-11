@@ -15,6 +15,7 @@ import {
   MODERACIONES,
   MOTIVOS_VACIADO,
   RESULTADOS_REVISION,
+  ACCIONES_BLOQUEO,
   ensayarMigracion,
   migrar,
   type Migracion,
@@ -636,6 +637,64 @@ describe('la migración 3: el registro de la revisión automática', () => {
 })
 
 /**
+ * La migración 4: el registro de bloqueos. Llega en ensayo; la activa el cambio
+ * que la pasa a `MIGRACIONES` tras ensayarla contra producción (bot/DEPLOY.md).
+ * Cada bloqueo y cada desbloqueo de una cuenta es una fila, con quién lo decidió,
+ * cuándo y por qué; lo vigente es la última fila de cada cuenta. Es append-only:
+ * una fila sólo puede perder a quién se refiere, cuando esa cuenta borra sus
+ * datos (`ON DELETE SET NULL` desde `ciudadanos`). Producción está en la v3.
+ */
+describe('la migración 4: el registro de bloqueos', () => {
+  const hasta = (n: number) => MIGRACIONES_DEL_ENSAYO.slice(0, n)
+
+  it('desde la v3, que es donde está producción: sólo añade, y no toca ninguna queja', () => {
+    const ruta = baseV0()
+    const db = abrir(ruta)
+    migrar(db, { ruta, migraciones: hasta(3), log: () => {} })
+    const antes = db.prepare('SELECT * FROM quejas ORDER BY id').all()
+    const ciudadanos = cuenta(db, 'ciudadanos')
+    migrar(db, { ruta, migraciones: hasta(4), log: () => {} })
+    expect(db.pragma('user_version', { simple: true })).toBe(4)
+    expect(db.prepare('SELECT * FROM quejas ORDER BY id').all()).toEqual(antes)
+    expect(antes).toHaveLength(5) // el control: hay quejas que comparar
+    expect(cuenta(db, 'ciudadanos')).toBe(ciudadanos)
+    expect(cuenta(db, 'bloqueos')).toBe(0)
+    expect(db.pragma('foreign_key_check')).toEqual([])
+    db.close()
+  })
+
+  it('las acciones del CHECK son las que exporta migraciones.ts', () => {
+    const db = new Database(':memory:')
+    migrar(db, { ruta: ':memory:', migraciones: hasta(4), log: () => {} })
+    const sql = (
+      db.prepare("SELECT sql FROM sqlite_schema WHERE name = 'bloqueos'").get() as { sql: string }
+    ).sql
+    const clausula = /CHECK \(accion IN \(([^)]*)\)\)/.exec(sql)?.[1] ?? ''
+    const enCheck = [...clausula.matchAll(/'([a-z]+)'/g)].map((x) => x[1]).sort()
+    expect(enCheck.length).toBeGreaterThan(0) // el control: el patrón mira algo
+    expect(enCheck).toEqual([...ACCIONES_BLOQUEO].sort())
+    db.close()
+  })
+
+  it('quien borra sus datos deja la decisión sin a quién; nada más la cambia ni la borra', () => {
+    const db = new Database(':memory:')
+    db.pragma('foreign_keys = ON')
+    migrar(db, { ruta: ':memory:', migraciones: hasta(4), log: () => {} })
+    db.prepare("INSERT INTO ciudadanos (canal, ref) VALUES ('telegram', '77')").run()
+    db.prepare(
+      "INSERT INTO bloqueos (ciudadano_id, accion, por, motivo) VALUES (1, 'bloquear', 'admin:1', 'spam')",
+    ).run()
+    expect(() => db.prepare('DELETE FROM bloqueos').run()).toThrow(/append-only/)
+    expect(() => db.prepare("UPDATE bloqueos SET por = 'admin:2'").run()).toThrow(/append-only/)
+    db.prepare('DELETE FROM ciudadanos WHERE id = 1').run()
+    expect(db.prepare('SELECT ciudadano_id, accion, por, motivo FROM bloqueos').all()).toEqual([
+      { ciudadano_id: null, accion: 'bloquear', por: 'admin:1', motivo: 'spam' },
+    ])
+    db.close()
+  })
+})
+
+/**
  * Una migración ensayada contra producción no se cambia: se escribe otra. Cada
  * una deja aquí la huella del SQL que ejecuta, tomada al desplegarla en ensayo.
  * Si su texto cambia después, esta prueba se pone en rojo: lo que arrancaría el
@@ -648,6 +707,7 @@ const HUELLAS: Record<string, string> = {
   '1': '1abc5ac7b770a7d9', // identidad-por-ciudadano, ensayada y activa desde #135
   '2': '3d318e573180cd9f', // revision-antes-de-publicar, en ensayo en #138, activa desde #137
   '3': '4eae6ccdb9b8acb6', // revision-automatica, en ensayo en #153; la activa la revisión automática
+  '4': '7811dfd2f59d0fb2', // registro-de-bloqueos, en ensayo con /bloquear y el límite diario
 }
 
 /** El SQL que ejecuta una migración, sobre una base en la versión anterior, resumido. */
