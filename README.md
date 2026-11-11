@@ -196,6 +196,8 @@ docs/           methodology, roadmap, funding, design specs
 
 CivicPulse is an independent, public-interest watchdog. It takes **no advertising**, no VC, and **no money from any government body it holds to account** (the Ayuntamiento de Riba-roja above all). Every funding source is disclosed publicly at [`/nosotros`](https://civicpulse.es/nosotros). Operator: Sergei Lutchenko — fully named, with a byline and published methodology behind every claim.
 
+Contributors and anyone writing in the repository follow the [code of conduct](CODE_OF_CONDUCT.md). The complaints bot's content, harassment and minors policy is published at [`/aviso-legal#politica-quejas`](https://civicpulse.es/aviso-legal#politica-quejas).
+
 ## License
 
-[**AGPL-3.0-only**](LICENSE). The network-copyleft clause is deliberate: a hosted fork of this accountability stack must publish its source. Underlying open data retains its own upstream licences (see each source above).
+Copyright © 2026 Sergei Lutchenko. Licensed [**AGPL-3.0-only**](LICENSE). The network-copyleft clause is deliberate: a hosted fork of this accountability stack must publish its source. Underlying open data retains its own upstream licences (see each source above).

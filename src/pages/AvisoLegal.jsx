@@ -731,13 +731,119 @@ export default function AvisoLegal() {
         </p>
       </Card>
 
+      {/* Política de contenidos, acoso y menores del canal de quejas. El límite
+          diario está escrito en la prosa porque el sitio no puede importar el
+          código del bot; `tests/contrato-quejas.test.js` lo coteja con
+          `LIMITE_QUEJAS_DIA` en `bot/src`, como hace con los diez apoyos. */}
+      <Card id="politica-quejas" style={{ marginTop: 14, scrollMarginTop: 24 }}>
+        <SectionHead
+          eyebrow="Quejas ciudadanas · normas"
+          title="Qué se publica, cómo se avisa de un abuso y qué pasa con los menores"
+        />
+        <p>
+          Una queja es lo que cuenta un vecino.{' '}
+          <strong>No comprobamos los hechos que relata</strong>: se publica como queja, no como
+          hecho comprobado. Criticar cómo funciona un servicio municipal, aunque sea con dureza, se
+          publica mientras no señale a una persona.
+        </p>
+        <p>
+          <strong>No se admite</strong>, y se denuncia cuando la ley lo pide o la gravedad lo
+          aconseja: material de abuso sexual infantil o cualquier contenido sexual que afecte a
+          menores; amenazas o llamadas a la violencia; incitación al odio o a la discriminación por
+          origen, religión, sexo, orientación, discapacidad u otra condición; datos personales de
+          terceros, y la imputación de un delito a una persona concreta. En el texto de una queja
+          esta regla se aplica antes de publicarla. Una foto, en cambio, no la ve nadie antes de
+          publicarse, así que en una foto la regla se aplica cuando alguien avisa: se retira en el
+          plazo de abajo.
+        </p>
+        <p>
+          <strong>Tampoco se publica</strong>, aunque no sea ilegal: insultos, burlas o
+          humillaciones; acusar a una persona o a una institución de corrupción o de mala fe;
+          señalar a un particular o a un empleado público que no es cargo electo; hablar de la
+          salud, la vida sexual, las creencias o el origen de una persona identificable; lo que no
+          es una queja sobre un asunto municipal, y el texto que intenta dar órdenes a quien lo
+          revisa o a un sistema automático. Una queja que nombra a un cargo electo, o lo señala por
+          su cargo, no se publica sin que la vea una persona. El apartado anterior explica cómo se
+          revisa cada queja y cómo se anonimizan las fotos, que nadie ve antes de publicarse.
+        </p>
+        <p>
+          <strong>Cómo avisar de un contenido publicado</strong>: escribe a{' '}
+          <a href="mailto:civicpulse_es@proton.me" style={{ color: 'var(--civic)' }}>
+            civicpulse_es@proton.me
+          </a>{' '}
+          con el identificador de la queja (<code>Q-…</code>) o su dirección en la web; no hace
+          falta ninguna cuenta. Si eres la persona aludida, puedes además responder por el
+          formulario público de GitHub, pero lo que se envía ahí es público desde el primer momento:
+          no lo uses para denunciar contenido ilegal ni para enviar datos personales.{' '}
+          <strong>
+            Si ves material de abuso sexual infantil, no lo reenvíes, no lo descargues y no hagas
+            capturas
+          </strong>
+          , tampoco para denunciarlo: manda sólo el identificador o la dirección.
+        </p>
+        <p>
+          <strong>Plazos</strong>: el contenido ilegal se retira en 24 horas desde que nos llega el
+          aviso, cualquier día de la semana. El resto se revisa en 24 horas hábiles y se decide en
+          72 horas, los mismos plazos que rigen las rectificaciones. Una queja retirada desaparece
+          de la web en cuanto termina la actualización que pide el bot, y como tarde en la
+          actualización diaria, que borra también su foto.
+        </p>
+        <p>
+          <strong>Denuncia a las autoridades</strong>: el material de abuso sexual infantil se
+          retira de inmediato y se denuncia a la Policía Nacional, en{' '}
+          <a
+            href="mailto:denuncias.pornografia.infantil@policia.es"
+            style={{ color: 'var(--civic)' }}
+          >
+            denuncias.pornografia.infantil@policia.es
+          </a>
+          , indicando dónde estaba y sin reenviar el material, y a Telegram por su vía de denuncia.
+          Una amenaza contra la vida o la integridad de alguien se comunica al 112. Lo demás se
+          retira y sólo se denuncia si lo pide la persona afectada o una autoridad.
+        </p>
+        <p>
+          <strong>Acoso</strong>: en el bot nadie puede escribir a otro usuario. Lo único que se
+          hace sobre la queja de otra persona es apoyarla, y el apoyo no revela quién lo da. Cada
+          cuenta puede enviar como mucho cinco quejas en 24 horas. Quien denuncia un acoso no queda
+          expuesto: su aviso no se publica. En el repositorio rige su{' '}
+          <a
+            href="https://github.com/datarhan/civicpulse/blob/main/CODE_OF_CONDUCT.md"
+            target="_blank"
+            rel="noreferrer"
+            style={{ color: 'var(--civic)' }}
+          >
+            código de conducta
+          </a>
+          , con el mismo correo de contacto.
+        </p>
+        <p style={{ marginBottom: 0 }}>
+          <strong>Menores</strong>: el bot funciona dentro de Telegram, cuyas condiciones exigen 18
+          años para registrarse en la Unión Europea; el bot no pide la edad y no puede comprobarla.
+          No nos dirigimos a menores ni les pedimos datos. Si sabemos que una queja la envió un
+          menor, la borramos junto con los datos de su cuenta, igual que{' '}
+          <code>/borrar_mis_datos</code>; un padre, una madre o un tutor puede pedirlo por correo.
+          En el texto de una queja no se publica nada que identifique a un menor. En las fotos, el
+          mosaico automático tapa las caras que detecta, también las de menores, y ninguna persona
+          ve la foto antes de publicarse.
+        </p>
+      </Card>
+
       <Card style={{ marginTop: 14 }}>
         <SectionHead eyebrow="Licencia del código" title="Open source y reutilización" />
         <p>
-          El código fuente del proyecto es abierto y reutilizable. La URL del repositorio se indica
-          más arriba. Las licencias de las fuentes externas (CC-BY, ODbL, CC0, Transparencia
-          19/2013) se respetan en cada vista; donde procede, la cita a la fuente aparece al lado del
-          dato.
+          El código fuente del proyecto es abierto y reutilizable, bajo la licencia AGPL-3.0, y está
+          en{' '}
+          <a
+            href="https://github.com/datarhan/civicpulse"
+            target="_blank"
+            rel="noreferrer"
+            style={{ color: 'var(--civic)' }}
+          >
+            github.com/datarhan/civicpulse
+          </a>
+          . © 2026 Sergei Lutchenko. Las licencias de las fuentes externas (CC-BY, ODbL, CC0,
+          Transparencia 19/2013) se respetan en cada vista; donde procede, la cita a la fuente
+          aparece al lado del dato.
         </p>
       </Card>
 

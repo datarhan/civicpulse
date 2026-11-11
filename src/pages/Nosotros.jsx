@@ -183,19 +183,42 @@ export default function Nosotros() {
       <Card style={{ marginTop: 14 }}>
         <SectionHead eyebrow="Financiación" title="Quién financia esto" />
         <p>
-          A fecha de julio de 2026, CivicPulse no ha recibido ningún ingreso externo: está{' '}
+          A 11 de noviembre de 2026, CivicPulse no ha recibido ningún ingreso externo: está{' '}
           <strong>autofinanciado por su responsable</strong>. Este apartado se actualizará con cada
           fuente de financiación que se incorpore — subvención, beca, donación o premio — indicando
-          origen, importe y fecha.
+          origen, importe y fecha. Estas reglas limitan de quién se acepta dinero; no cambian qué se
+          publica ni sobre quién.
         </p>
         <ul style={{ paddingLeft: 18, marginBottom: 0 }}>
+          <li>
+            No se acepta dinero, bienes ni servicios gratuitos de partidos políticos, coaliciones o
+            agrupaciones de electores, ni de sus fundaciones o entidades vinculadas.
+          </li>
+          <li>
+            Tampoco del Ayuntamiento de Riba-roja de Túria, de sus organismos y sociedades, ni de
+            ninguna otra entidad local que este proyecto siga.
+          </li>
+          <li>
+            Tampoco de quien sea adjudicatario o licitador de sus contratos, o beneficiario de sus
+            subvenciones, mientras lo sea y durante los dos años siguientes. Antes de aceptar una
+            aportación con nombre se busca a quien la hace en los contratos y subvenciones que
+            publica esta web.
+          </li>
           <li>Sin publicidad.</li>
           <li>
-            Sin fondos de ninguna administración bajo investigación editorial activa de este
-            proyecto — empezando por el Ayuntamiento de Riba-roja de Túria.
+            Ningún financiador interviene en lo que se publica. Si un acuerdo lo pretende, esa
+            cláusula no vale, y si el financiador la exige, se renuncia a la financiación.
           </li>
           <li>Ninguna fuente de financiación superará el 40 % de los ingresos anuales.</li>
-          <li>Toda financiación se publica en esta página.</li>
+          <li>
+            Se aceptan donaciones anónimas sólo de particulares y hasta 250 € al año por persona;
+            una empresa siempre tiene que identificarse. De una donación anónima no podemos
+            comprobar si viene de alguien de las listas anteriores: por eso tiene ese tope.
+          </li>
+          <li>
+            Toda financiación se publica en esta página, con origen, importe y fecha. Las
+            aportaciones de particulares por debajo de 250 € al año se publican sumadas, sin nombre.
+          </li>
         </ul>
       </Card>
 
