@@ -804,11 +804,8 @@ export default function AvisoLegal() {
         <p>
           <strong>Acoso</strong>: en el bot nadie puede escribir a otro usuario. Lo único que se
           hace sobre la queja de otra persona es apoyarla, y el apoyo no revela quién lo da. Cada
-          cuenta puede enviar como mucho cinco quejas en 24 horas. Quien modera puede bloquear una
-          cuenta que acose o abuse del canal, y anota el motivo: la cuenta bloqueada no puede enviar
-          quejas ni apoyos, pero conserva siempre <code>/olvidar</code> y{' '}
-          <code>/borrar_mis_datos</code>. Quien denuncia un acoso no queda expuesto: su aviso no se
-          publica. En el repositorio rige su{' '}
+          cuenta puede enviar como mucho cinco quejas en 24 horas. Quien denuncia un acoso no queda
+          expuesto: su aviso no se publica. En el repositorio rige su{' '}
           <a
             href="https://github.com/datarhan/civicpulse/blob/main/CODE_OF_CONDUCT.md"
             target="_blank"

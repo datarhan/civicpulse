@@ -2983,6 +2983,11 @@ function ContratoEditorial() {
             hay detrás de cada una, así que el umbral mide cuentas distintas, no personas distintas.
           </li>
           <li>
+            <strong>Cada cuenta envía como mucho cinco quejas en 24 horas.</strong> Cuentan las
+            pendientes, las publicadas y las descartadas. Una queja retirada con{' '}
+            <code>/olvidar</code> ya no cuenta, porque el bot deja de saber quién la escribió.
+          </li>
+          <li>
             <strong>Entre los diez apoyos y el registro pasan días.</strong> Lo presenta una
             persona, no el bot, y mientras tanto el plazo legal no ha empezado.
           </li>
