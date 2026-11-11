@@ -712,3 +712,39 @@ describe('los datos personales del texto', () => {
     expect(AVISO).toContain('antes de guardar una queja, el bot retira')
   })
 })
+
+describe('las normas del canal (/aviso-legal#politica-quejas) dicen lo que hace el bot', () => {
+  /**
+   * El límite diario lo decide `LIMITE_QUEJAS_DIA` en el bot. El sitio no puede
+   * importarlo, así que la prosa lo escribe en letra y aquí se coteja: si el bot
+   * cambia el número, la norma publicada miente sin que nadie la toque.
+   */
+  const fuentesBot = (dir) =>
+    readdirSync(join(RAIZ, dir), { withFileTypes: true }).flatMap((e) =>
+      e.isDirectory()
+        ? fuentesBot(join(dir, e.name))
+        : /\.ts$/.test(e.name)
+          ? [join(dir, e.name)]
+          : [],
+    )
+  const definiciones = fuentesBot('bot/src')
+    .map((f) => lee(f).match(/export const LIMITE_QUEJAS_DIA = (\d+)/))
+    .filter(Boolean)
+  const NORMAS = plano('src/pages/AvisoLegal.jsx')
+  const LETRA = { 3: 'tres', 4: 'cuatro', 5: 'cinco', 6: 'seis', 10: 'diez' }
+
+  it('encuentra el límite una sola vez en el bot (si no, no mide nada)', () => {
+    expect(definiciones).toHaveLength(1)
+  })
+
+  it('la norma da el mismo límite diario que el bot', () => {
+    const n = Number(definiciones[0][1])
+    expect(LETRA[n], `no sé escribir ${n} en letra`).toBeTruthy()
+    expect(NORMAS).toContain(`como mucho ${LETRA[n]} quejas en 24 horas`)
+  })
+
+  it('la norma no promete que una foto ilegal no llegue a publicarse: nadie la ve antes', () => {
+    expect(NORMAS).toContain('Una foto, en cambio, no la ve nadie antes de publicarse')
+    expect(NORMAS).not.toMatch(/Nunca se publica[^.]*abuso sexual/)
+  })
+})
