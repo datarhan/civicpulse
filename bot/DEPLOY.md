@@ -247,7 +247,9 @@ bot la aplique al arrancar, y la orden de abajo ya la ensaya —lo dice: «en
 ensayo, aún sin aplicar en el bot»—. Con el ensayo correcto y la instantánea
 hecha, el cambio que la usa la pasa a `MIGRACIONES` y se fusiona. Así llegó la 1
 (#132 inerte, #135 activa), así la 2 (#138 en ensayo, #137 la activó), y así
-llega la 3 (`revision-automatica`: en ensayo; la activa la revisión automática).
+llegó la 3 (`revision-automatica`, #153 en ensayo). Ahora llega así la 4
+(`registro-de-bloqueos`, la tabla de `/bloquear`): hasta que se active, `/bloquear`
+contesta que aún no está activo y nadie está bloqueado.
 Y una migración ensayada no se cambia: `tests/migraciones.test.ts` guarda la huella
 del SQL de cada una, y si su texto cambia después del ensayo, vuelve a entrar en
 ensayo y se ensaya otra vez. La orden:

@@ -131,6 +131,58 @@ export const VERIFIED_THRESHOLD = 10
 export const LIMITE_TITULO = 140
 export const LIMITE_DETALLE = 2000
 
+/**
+ * Cuántas quejas nuevas puede enviar una cuenta en una ventana móvil: 5 en las
+ * últimas 24 horas (`cupoDeQuejas`). Quien modera no tiene límite
+ * (commands/bloquear.ts). Cuentan las de cualquier estado de revisión
+ * —pendientes, publicadas, descartadas—: el límite es de envíos, no de lo que
+ * se publica.
+ */
+export const LIMITE_QUEJAS_DIA = 5
+export const VENTANA_LIMITE_HORAS = 24
+
+/** Una marca de SQLite (`datetime('now')`: UTC, sin la Z) como fecha. */
+const fechaDeMarca = (marca: string) => new Date(marca.replace(' ', 'T') + 'Z')
+const marcaDe = (d: Date) => d.toISOString().replace('T', ' ').slice(0, 19)
+
+export interface CupoDeQuejas {
+  /** Cuántas quejas suyas caen en la ventana. */
+  enVentana: number
+  /** Desde cuándo puede enviar otra, si ha llegado al límite; si no, null. */
+  libreDesde: Date | null
+}
+
+/**
+ * Lo que lleva enviado una cuenta en la ventana y, si ha llegado al límite,
+ * cuándo sale de ella la queja que le deja enviar otra.
+ *
+ * Una queja retirada con /olvidar NO cuenta, y no es un descuido: al retirarla,
+ * `softDeleteQueja` borra quién la escribió (`ciudadano_id` en NULL), así que el
+ * bot ya no sabe de quién era. Contarla obligaría a guardar justo lo que
+ * /olvidar promete borrar. El precio es que quien retira sus quejas recupera su
+ * cupo; quien abuse así sigue pasando por la revisión y por /bloquear.
+ */
+export function cupoDeQuejas(db: Db, autor: Autor, ahora = new Date()): CupoDeQuejas {
+  const cid = idCiudadano(db, autor)
+  if (cid === null) return { enVentana: 0, libreDesde: null }
+  const desde = marcaDe(new Date(ahora.getTime() - VENTANA_LIMITE_HORAS * 3600 * 1000))
+  const marcas = (
+    db
+      .prepare(
+        'SELECT created_at FROM quejas WHERE ciudadano_id = ? AND created_at > ? ORDER BY created_at, rowid',
+      )
+      .all(cid, desde) as Array<{ created_at: string }>
+  ).map((f) => f.created_at)
+  if (marcas.length < LIMITE_QUEJAS_DIA) return { enVentana: marcas.length, libreDesde: null }
+  // Con n en la ventana, puede enviar otra cuando salgan n - LIMITE + 1: cuando
+  // salga la que ocupa ese puesto, contando desde la más antigua.
+  const llave = fechaDeMarca(marcas[marcas.length - LIMITE_QUEJAS_DIA])
+  return {
+    enVentana: marcas.length,
+    libreDesde: new Date(llave.getTime() + VENTANA_LIMITE_HORAS * 3600 * 1000),
+  }
+}
+
 /** El evento que deja una queja a la que se le retiraron datos personales: cuántos de cada clase, no cuáles. */
 export const EVENTO_DATOS_RETIRADOS = 'datos_retirados'
 
@@ -187,6 +239,24 @@ export function createQueja(db: Db, q: NewQuejaInput): QuejaRow {
 export function getQueja(db: Db, id: string): QuejaRow | null {
   const row = db.prepare('SELECT * FROM quejas WHERE id = ?').get(id) as QuejaRow | undefined
   return row ?? null
+}
+
+/**
+ * Quién escribió una queja, viva o retirada: su ciudadano; `null` si ya no consta
+ * (la retiró con /olvidar o borró sus datos); `undefined` si la queja no existe.
+ * Para `/bloquear`, que necesita a la persona y no la queja.
+ */
+export function autorDeQueja(db: Db, id: string): ({ id: number } & Autor) | null | undefined {
+  const fila = db
+    .prepare(
+      `SELECT c.id AS id, c.canal AS canal, c.ref AS ref
+         FROM quejas q LEFT JOIN ciudadanos c ON c.id = q.ciudadano_id
+        WHERE q.id = ?`,
+    )
+    .get(id) as { id: number | null; canal: Canal | null; ref: string | null } | undefined
+  if (!fila) return undefined
+  if (fila.id === null || fila.canal === null || fila.ref === null) return null
+  return { id: fila.id, canal: fila.canal, ref: fila.ref }
 }
 
 /**

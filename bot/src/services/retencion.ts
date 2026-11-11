@@ -14,6 +14,7 @@ import { existsSync, readdirSync, rmSync, statSync } from 'node:fs'
 import { dirname, join, resolve } from 'node:path'
 import type { Db } from '../db/client.ts'
 import { aVaciar } from '../db/queries.ts'
+import { bloqueosActivos, SQL_CIUDADANOS_BLOQUEADOS } from '../db/bloqueos.ts'
 import { logger } from '../util/log.ts'
 import { vaciarTarjetasEnCola, type EnvioAdmin } from './avisos-admin.ts'
 import {
@@ -93,13 +94,18 @@ export function purgarCaducadas(db: Db, o: OpcionesPurga): ResultadoPurga {
       if (borra.run(id).changes > 0) borradas.push(id)
     }
     r.quejas.borradas = borradas.length
-    // Hoy un ciudadano sólo existe por lo que escribió o apoyó: sin nada de eso, sobra.
+    // Un ciudadano existe por lo que escribió o apoyó, o porque está bloqueado: sin
+    // nada de eso, sobra. Borrar a uno bloqueado levantaría su bloqueo sin que nadie
+    // lo decidiera (db/bloqueos.ts); mientras la migración 4 está en ensayo no hay
+    // tabla que mirar.
+    const sinBloqueo = bloqueosActivos(db) ? `AND id NOT IN (${SQL_CIUDADANOS_BLOQUEADOS})` : ''
     r.ciudadanos = db
       .prepare(
         `DELETE FROM ciudadanos
           WHERE creado_at < ?
             AND id NOT IN (SELECT ciudadano_id FROM quejas WHERE ciudadano_id IS NOT NULL)
-            AND id NOT IN (SELECT ciudadano_id FROM apoyos)`,
+            AND id NOT IN (SELECT ciudadano_id FROM apoyos)
+            ${sinBloqueo}`,
       )
       .run(sqlite(new Date(ahora.getTime() - CIUDADANO_HUERFANO_MS))).changes
   })()

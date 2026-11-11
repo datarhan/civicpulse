@@ -18,6 +18,7 @@ import { avisarAdmins, type EnvioAdmin } from '../services/avisos-admin.ts'
 import { comoSeRevisa } from '../services/moderacion.ts'
 import { COMO_SE_REVISA } from '../services/textos-revision.ts'
 import { parseAdminIds } from '../util/admins.ts'
+import { porQueNoPuedeEnviar } from './bloquear.ts'
 import type { QuejaCategory, QuejaRouting } from '../../../src/scraper/queja-router.ts'
 import { plazoHumano } from '../../../src/scraper/queja-router.ts'
 
@@ -238,6 +239,15 @@ export function quejaConversationBuilder(db: Db, envio: EnvioAdmin) {
       await c.reply('Adjunta la foto como imagen, o escribe `saltar`.', { parse_mode: 'Markdown' })
     }
 
+    // Otra vez antes de guardarla: un bloqueo puede llegar a mitad de la queja.
+    // Dentro de `conv.external`, porque la conversación se repite desde el
+    // principio con cada update y lo que lee de fuera tiene que repetirse igual.
+    const impedimento = await conv.external(() => porQueNoPuedeEnviar(db, ctx.from!.id))
+    if (impedimento) {
+      await ctx.reply(impedimento)
+      return
+    }
+
     // Route (classify + assign concejalía) using local queja-router.
     const routing = routeUsingLocalOfficials({ title, detail, category })
 
@@ -293,6 +303,13 @@ export function registerQueja(bot: Bot<MyContext>, db: Db, envio: EnvioAdmin) {
     }),
   )
   bot.command('queja', async (ctx) => {
+    // Una cuenta bloqueada, o que ya envió el máximo del día, no empieza: mejor
+    // saberlo antes de escribirla que al final (commands/bloquear.ts).
+    const impedimento = porQueNoPuedeEnviar(db, ctx.from!.id)
+    if (impedimento) {
+      await ctx.reply(impedimento)
+      return
+    }
     await ctx.conversation.enter('queja')
   })
 }
