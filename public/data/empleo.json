@@ -1,18 +1,18 @@
 {
-  "generatedAt": "2026-11-10T13:04:55.454Z",
+  "generatedAt": "2026-11-11T12:14:08.125Z",
   "source": {
     "origin": "https://ribaocupacio.portalemp.com",
     "platform": "portalemp — ribaocupacio · Agència de Col·locació (ADL), Ajuntament de Riba-roja de Túria",
     "listEndpoint": "https://ribaocupacio.portalemp.com/ofertas.html?acc=tableData"
   },
   "stats": {
-    "total": 40,
-    "openTotal": 39,
-    "inRibaRoja": 27,
-    "closingSoon": 4,
-    "withDetail": 40,
+    "total": 43,
+    "openTotal": 42,
+    "inRibaRoja": 30,
+    "closingSoon": 5,
+    "withDetail": 43,
     "byMonth": {
-      "2026-11": 1,
+      "2026-11": 4,
       "2026-10": 28,
       "2026-09": 8,
       "2026-05": 2,
@@ -20,6 +20,211 @@
     }
   },
   "items": [
+    {
+      "id": "2564",
+      "fo": 2564,
+      "codigo": "2026/00263",
+      "titulo": "COMERCIAL VENTAS FERRETERIA",
+      "publishedAt": "2026-11-11",
+      "deadline": "2027-01-11",
+      "location": "POL. INDUSTRIAL SECTOR 12 Riba-roja de Túria",
+      "status": "Abierta",
+      "statusTone": "ok",
+      "url": "https://ribaocupacio.portalemp.com/ofertas.html?fo=2564",
+      "inRibaRoja": true,
+      "detail": {
+        "fields": [
+          {
+            "label": "Código",
+            "value": "2026/00263"
+          },
+          {
+            "label": "Nombre de la oferta",
+            "value": "COMERCIAL VENTAS FERRETERIA"
+          },
+          {
+            "label": "Sector CNAE",
+            "value": "OTROS SERVICIOS"
+          },
+          {
+            "label": "Tipo de contrato",
+            "value": "CONTRATO INDEFINIDO"
+          },
+          {
+            "label": "Número de puestos",
+            "value": "1"
+          },
+          {
+            "label": "Lugar puesto de trabajo",
+            "value": "POL. INDUSTRIAL SECTOR 12, Municipio: Riba-roja de Túria, Provincia: Valencia, CP: 46190"
+          },
+          {
+            "label": "Tipo de jornada laboral",
+            "value": "Completa"
+          },
+          {
+            "label": "Salario",
+            "value": "SEGÚN CONVENIO"
+          },
+          {
+            "label": "Funciones",
+            "value": "GESTION DE VENTA Y COMPRA, ATENCIÓN AL CLIENTE, Y RESPONSABLE DEL CENTRO"
+          },
+          {
+            "label": "Requiere vehículo propio",
+            "value": "Sí"
+          }
+        ],
+        "tipoContrato": "CONTRATO INDEFINIDO",
+        "numPuestos": "1",
+        "municipio": "Riba-roja de Túria",
+        "provincia": "Valencia",
+        "cp": "46190",
+        "jornada": "Completa",
+        "salario": "SEGÚN CONVENIO",
+        "funciones": "GESTION DE VENTA Y COMPRA, ATENCIÓN AL CLIENTE, Y RESPONSABLE DEL CENTRO",
+        "vehiculo": "Sí",
+        "ocupaciones": []
+      }
+    },
+    {
+      "id": "2565",
+      "fo": 2565,
+      "codigo": "2026/00262",
+      "titulo": "Limpiador/a oficinas con certificado de discapacidad del 33% o incapacidad",
+      "publishedAt": "2026-11-11",
+      "deadline": "2027-01-11",
+      "location": "Riba-roja de Túria",
+      "status": "Abierta",
+      "statusTone": "ok",
+      "url": "https://ribaocupacio.portalemp.com/ofertas.html?fo=2565",
+      "inRibaRoja": true,
+      "detail": {
+        "fields": [
+          {
+            "label": "Código",
+            "value": "2026/00262"
+          },
+          {
+            "label": "Nombre de la oferta",
+            "value": "Limpiador/a oficinas con certificado de discapacidad del 33% o incapacidad"
+          },
+          {
+            "label": "Tipo de contrato",
+            "value": "CONTRATO DE OBRA O SERVICIO DETERMINADO"
+          },
+          {
+            "label": "Duración del contrato",
+            "value": "Más de 6 meses"
+          },
+          {
+            "label": "Número de puestos",
+            "value": "2"
+          },
+          {
+            "label": "Categoría profesional",
+            "value": "OFICIAL DE 1ª"
+          },
+          {
+            "label": "Lugar puesto de trabajo",
+            "value": "Municipio: Riba-roja de Túria, Provincia: Valencia"
+          },
+          {
+            "label": "Tipo de jornada laboral",
+            "value": "Completa Turnos: Turno mañana"
+          },
+          {
+            "label": "Horario",
+            "value": "De 6 de la mañana a 13:30 de la tarde"
+          },
+          {
+            "label": "Salario",
+            "value": "17.000 brutos anuales"
+          },
+          {
+            "label": "Funciones",
+            "value": "Nos encontramos en búsqueda de un limpiador/a de oficinas con experiencia en nuestras oficinas ubicadas en la zona de Ribarroja y Torrent: Las funciones entre otras serán: - Limpieza de oficinas. - Limpieza baños en las naves, en caso necesario. Ofrecemos: - Buen ambiente laboral. - Jornada completa. - Turno de mañana Imprescindible: - Experiencia en limpieza de oficinas. - Carnet de conducir y vehículo propio. Tipo de puesto: Jornada completa Salario: 17.000,00-17.300,00 al año Horario: De lunes a viernes Preguntas para la solicitud: ¿Cuál es tu disponibilidad de incorporación? ¿Estas en posesión del certificado de discapacidad superior al 33%? ¿Tienes experiencia en limpieza de oficinas?"
+          },
+          {
+            "label": "Requiere vehículo propio",
+            "value": "Sí"
+          }
+        ],
+        "tipoContrato": "CONTRATO DE OBRA O SERVICIO DETERMINADO",
+        "duracion": "Más de 6 meses",
+        "numPuestos": "2",
+        "categoria": "OFICIAL DE 1ª",
+        "jornada": "Completa Turnos: Turno mañana",
+        "horario": "De 6 de la mañana a 13:30 de la tarde",
+        "salario": "17.000 brutos anuales",
+        "funciones": "Nos encontramos en búsqueda de un limpiador/a de oficinas con experiencia en nuestras oficinas ubicadas en la zona de Ribarroja y Torrent: Las funciones entre otras serán: - Limpieza de oficinas. - Limpieza baños en las naves, en caso necesario. Ofrecemos: - Buen ambiente laboral. - Jornada completa. - Turno de mañana Imprescindible: - Experiencia en limpieza de oficinas. - Carnet de conducir y vehículo propio. Tipo de puesto: Jornada completa Salario: 17.000,00-17.300,00 al año Horario: De lunes a viernes Preguntas para la solicitud: ¿Cuál es tu disponibilidad de incorporación? ¿Estas en posesión del certificado de discapacidad superior al 33%? ¿Tienes experiencia en limpieza de oficinas?",
+        "vehiculo": "Sí",
+        "ocupaciones": []
+      }
+    },
+    {
+      "id": "2566",
+      "fo": 2566,
+      "codigo": "2026/00261",
+      "titulo": "AUXILIAR DE ENFERMERÍA AYUDA A DOMICILIO",
+      "publishedAt": "2026-11-11",
+      "deadline": "2027-01-11",
+      "location": "Riba-roja de Túria Riba-roja de Túria",
+      "status": "Abierta",
+      "statusTone": "ok",
+      "url": "https://ribaocupacio.portalemp.com/ofertas.html?fo=2566",
+      "inRibaRoja": true,
+      "detail": {
+        "fields": [
+          {
+            "label": "Código",
+            "value": "2026/00261"
+          },
+          {
+            "label": "Nombre de la oferta",
+            "value": "AUXILIAR DE ENFERMERÍA AYUDA A DOMICILIO"
+          },
+          {
+            "label": "Observaciones",
+            "value": "Se precisa Auxiliar de Enfermería para trabajo de Ayuda a Domicilio"
+          },
+          {
+            "label": "Tipo de contrato",
+            "value": "INDIFERENTE"
+          },
+          {
+            "label": "Duración del contrato",
+            "value": "De 1 a 6 meses"
+          },
+          {
+            "label": "Número de puestos",
+            "value": "1"
+          },
+          {
+            "label": "Lugar puesto de trabajo",
+            "value": "Riba-roja de Túria, Municipio: Riba-roja de Túria, Provincia: Valencia, CP: 46190"
+          },
+          {
+            "label": "Horario",
+            "value": "El horario es de lunes a viernes y puntualmente algún sábado en horario diurno. No hay nocturnos"
+          },
+          {
+            "label": "Salario",
+            "value": "Según convenio"
+          }
+        ],
+        "tipoContrato": "INDIFERENTE",
+        "duracion": "De 1 a 6 meses",
+        "numPuestos": "1",
+        "observaciones": "Se precisa Auxiliar de Enfermería para trabajo de Ayuda a Domicilio",
+        "municipio": "Riba-roja de Túria",
+        "provincia": "Valencia",
+        "cp": "46190",
+        "horario": "El horario es de lunes a viernes y puntualmente algún sábado en horario diurno. No hay nocturnos",
+        "salario": "Según convenio",
+        "ocupaciones": []
+      }
+    },
     {
       "id": "2561",
       "fo": 2561,

@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-10T13:00:40.181Z",
+  "generatedAt": "2026-11-11T12:10:18.302Z",
   "source": {
     "platform": "OSM Overpass API",
     "endpoint": "https://overpass-api.de/api/interpreter",
@@ -2892,8 +2892,8 @@
       "slug": "carrer-del-barranc-de-les-monges",
       "kind": "calle",
       "point": [
-        39.5459011,
-        -0.5710381
+        39.5464749,
+        -0.5707547
       ]
     },
     {
@@ -3494,6 +3494,16 @@
       "point": [
         39.5357183,
         -0.5296668
+      ]
+    },
+    {
+      "id": "way-1577709740",
+      "name": "Carrer del Tribunal de les Aigües",
+      "slug": "carrer-del-tribunal-de-les-aigues",
+      "kind": "calle",
+      "point": [
+        39.5456581,
+        -0.5710726
       ]
     },
     {
@@ -5418,10 +5428,10 @@
     }
   ],
   "stats": {
-    "total": 541,
+    "total": 542,
     "byKind": {
       "avenida": 37,
-      "calle": 465,
+      "calle": 466,
       "camino": 21,
       "carretera": 13,
       "plaza": 5
