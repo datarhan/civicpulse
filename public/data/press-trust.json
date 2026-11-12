@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-12T10:40:12.116Z",
+  "generatedAt": "2026-11-12T12:03:51.115Z",
   "windowDays": 30,
   "articles": [
     {
@@ -647,39 +647,22 @@
         "opinionFraction": 0
       },
       "score": 4
-    },
-    {
-      "articleId": "140oi31",
-      "articleFingerprint": "1oeuiiq",
-      "outlet": "Ayuntamiento de Riba-roja de Túria",
-      "outletHost": "ribarroja.es",
-      "url": "https://www.ribarroja.es/es/noticia/riba-roja-de-t%C3%BAria-aprueba-la-cuenta-general-del-a%C3%B1o-2025-que-certifica-un-super%C3%A1vit-de-4%E2%80%995-millones-de-euros-y-un-remanente-de-3%273-millones-en-el-presupuesto-econ%C3%B3mico",
-      "date": "2026-10-13T11:39:38.000Z",
-      "indicators": {
-        "localCoverage": false,
-        "datedArticle": true,
-        "municipalSourceMatch": false,
-        "corroboratedAcrossOutlets": null,
-        "factualClaimsPresent": true,
-        "opinionFraction": 0
-      },
-      "score": 3
     }
   ],
   "outlets": [
     {
       "outlet": "Ayuntamiento de Riba-roja de Túria",
       "outletHost": "ribarroja.es",
-      "articleCount": 19,
+      "articleCount": 18,
       "verdictCounts": {
         "verificado": 0,
         "parcial": 1,
         "contradicho": 0,
-        "sin-datos": 28,
+        "sin-datos": 25,
         "promesa-repetida": 0
       },
-      "checkedClaims": 5,
-      "meanTrustScore": 1.84,
+      "checkedClaims": 3,
+      "meanTrustScore": 1.78,
       "verifiedRatio": 0,
       "contradictedRatio": null
     },
@@ -813,7 +796,7 @@
     }
   ],
   "builtFrom": {
-    "plenos-agendas.json": "8efc6cd7ed9e",
+    "plenos-agendas.json": "60d1392aa41e",
     "press-claims-verified.json": "d4654fd232f4",
     "press.json": "25eb1a009efe",
     "promises.json": "d0fd2949af24"
