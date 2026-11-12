@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-11T12:07:07.452Z",
+  "generatedAt": "2026-11-12T13:09:54.865Z",
   "source": {
     "url": "https://www.ribarroja.es/es/eventos/rss.xml",
     "platform": "Drupal RSS (oficial)"
@@ -7,7 +7,7 @@
   "stats": {
     "total": 50,
     "upcoming": 11,
-    "nextDate": "2026-12-04T18:00:00.000Z"
+    "nextDate": "2026-11-12T17:30:00.000Z"
   },
   "events": [
     {
@@ -401,44 +401,44 @@
       "image": "https://www.ribarroja.es/sites/www.ribarroja.es/files/styles/interior_contenido_/public/Competiciones%20deportivas%20reducida_15.png?itok=BF3Xwkpy"
     },
     {
-      "id": "1b50gro",
-      "title": "Cine 'La patrulla canina, la dino película'",
-      "link": "https://www.ribarroja.es/es/evento/cine-%27la-patrulla-canina%2C-la-dino-pel%C3%ADcula%27",
-      "eventDate": "2026-12-04T18:00:00.000Z",
-      "eventDateText": "04 de diciembre de 2026 19:00",
-      "publishedDate": "2026-08-31T07:02:51.000Z",
+      "id": "1img4xu",
+      "title": "Competiciones deportivas jueves 12 de noviembre de 2026",
+      "link": "https://www.ribarroja.es/es/evento/competiciones-deportivas-jueves-12-de-noviembre-de-2026",
+      "eventDate": "2026-11-12T17:30:00.000Z",
+      "eventDateText": "12 de noviembre de 2026 18:30",
+      "publishedDate": "2026-11-11T13:25:51.000Z",
       "excerpt": "&nbsp;",
-      "image": "https://www.ribarroja.es/sites/www.ribarroja.es/files/styles/interior_contenido_/public/20260831%20la%20patrulla%20canina.jpg?itok=52Oj01r_"
+      "image": "https://www.ribarroja.es/sites/www.ribarroja.es/files/styles/interior_contenido_/public/Competiciones%20deportivas%20reducida_18.png?itok=vmbPYSbH"
     },
     {
-      "id": "b0floj",
-      "title": "Cine 'Street fighter'",
-      "link": "https://www.ribarroja.es/es/evento/cine-%27street-fighter%27",
-      "eventDate": "2026-12-04T21:00:00.000Z",
-      "eventDateText": "04 de diciembre de 2026 22:00",
-      "publishedDate": "2026-08-31T06:59:21.000Z",
+      "id": "l08xfc",
+      "title": "Competiciones deportivas viernes 13 de noviembre de 2026",
+      "link": "https://www.ribarroja.es/es/evento/competiciones-deportivas-viernes-13-de-noviembre-de-2026",
+      "eventDate": "2026-11-13T19:00:00.000Z",
+      "eventDateText": "13 de noviembre de 2026 20:00",
+      "publishedDate": "2026-11-11T13:27:21.000Z",
       "excerpt": "&nbsp;",
-      "image": "https://www.ribarroja.es/sites/www.ribarroja.es/files/styles/interior_contenido_/public/20260831%20street%20figher.jpg?itok=2dOUdI_R"
+      "image": "https://www.ribarroja.es/sites/www.ribarroja.es/files/styles/interior_contenido_/public/Competiciones%20deportivas%20reducida_19.png?itok=Wk1bXKFQ"
     },
     {
-      "id": "wwhu0k",
-      "title": "Cine 'Wildwood'",
-      "link": "https://www.ribarroja.es/es/evento/cine-%27wildwood%27",
-      "eventDate": "2026-12-06T15:30:00.000Z",
-      "eventDateText": "06 de diciembre de 2026 16:30",
-      "publishedDate": "2026-08-31T07:09:00.000Z",
+      "id": "1lu42aq",
+      "title": "Competiciones deportivas sábado 14 de noviembre de 2026",
+      "link": "https://www.ribarroja.es/es/evento/competiciones-deportivas-s%C3%A1bado-14-de-noviembre-de-2026",
+      "eventDate": "2026-11-14T08:00:00.000Z",
+      "eventDateText": "14 de noviembre de 2026 09:00",
+      "publishedDate": "2026-11-11T13:21:21.000Z",
       "excerpt": "&nbsp;",
-      "image": "https://www.ribarroja.es/sites/www.ribarroja.es/files/styles/interior_contenido_/public/20260831%20wildwood-2.jpg?itok=v70OOG94"
+      "image": "https://www.ribarroja.es/sites/www.ribarroja.es/files/styles/interior_contenido_/public/Competiciones%20deportivas%20reducida_16.png?itok=Wq5pwmPk"
     },
     {
-      "id": "lj10u0",
-      "title": "Cine 'Los juegos del hambre, Amanecer en la cosecha'",
-      "link": "https://www.ribarroja.es/es/evento/cine-%27los-juegos-del-hambre%2C-amanecer-en-la-cosecha%27",
-      "eventDate": "2026-12-06T18:00:00.000Z",
-      "eventDateText": "06 de diciembre de 2026 19:00",
-      "publishedDate": "2026-08-31T07:12:24.000Z",
+      "id": "tmimiy",
+      "title": "Competiciones deportivas domingo 15 de noviembre de 2026",
+      "link": "https://www.ribarroja.es/es/evento/competiciones-deportivas-domingo-15-de-noviembre-de-2026",
+      "eventDate": "2026-11-15T09:00:00.000Z",
+      "eventDateText": "15 de noviembre de 2026 10:00",
+      "publishedDate": "2026-11-11T13:24:17.000Z",
       "excerpt": "&nbsp;",
-      "image": "https://www.ribarroja.es/sites/www.ribarroja.es/files/styles/interior_contenido_/public/20260831%20los%20juegos%20del%20hambre_0.jpg?itok=hsVEx_5i"
+      "image": "https://www.ribarroja.es/sites/www.ribarroja.es/files/styles/interior_contenido_/public/Competiciones%20deportivas%20reducida_17.png?itok=MBht1r_f"
     },
     {
       "id": "6x69fs",

@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-11T12:14:08.125Z",
+  "generatedAt": "2026-11-12T13:17:04.525Z",
   "source": {
     "origin": "https://ribaocupacio.portalemp.com",
     "platform": "portalemp — ribaocupacio · Agència de Col·locació (ADL), Ajuntament de Riba-roja de Túria",
@@ -21,10 +21,81 @@
   },
   "items": [
     {
+      "id": "2567",
+      "fo": 2567,
+      "codigo": "2026/00264",
+      "titulo": "Producción laboratorio fibra óptica",
+      "publishedAt": "2026-11-12",
+      "deadline": "2027-01-12",
+      "location": "POL. INDUSTRIAL SECTOR 12 Riba-roja de Túria",
+      "status": "Abierta",
+      "statusTone": "ok",
+      "url": "https://ribaocupacio.portalemp.com/ofertas.html?fo=2567",
+      "inRibaRoja": true,
+      "detail": {
+        "fields": [
+          {
+            "label": "Código",
+            "value": "2026/00264"
+          },
+          {
+            "label": "Nombre de la oferta",
+            "value": "Producción laboratorio fibra óptica"
+          },
+          {
+            "label": "Sector CNAE",
+            "value": "ACTIVIDADES PROFESIONALES, CIENTÍFICAS Y TÉCNICAS"
+          },
+          {
+            "label": "Tipo de contrato",
+            "value": "CONTRATO INDEFINIDO"
+          },
+          {
+            "label": "Número de puestos",
+            "value": "1"
+          },
+          {
+            "label": "Categoría profesional",
+            "value": "OFICIAL DE 2ª"
+          },
+          {
+            "label": "Lugar puesto de trabajo",
+            "value": "POL. INDUSTRIAL SECTOR 12, Municipio: Riba-roja de Túria, Provincia: Valencia, CP: 46190"
+          },
+          {
+            "label": "Tipo de jornada laboral",
+            "value": "Completa Turnos: Turno mañana"
+          },
+          {
+            "label": "Observaciones jornada",
+            "value": "ININTERRUMPIDA DE LUNES A VIERNES"
+          },
+          {
+            "label": "Horario",
+            "value": "DE 7 A.M A 3 P.M."
+          },
+          {
+            "label": "Salario",
+            "value": "SEGÚN CONVENIO"
+          }
+        ],
+        "tipoContrato": "CONTRATO INDEFINIDO",
+        "numPuestos": "1",
+        "categoria": "OFICIAL DE 2ª",
+        "municipio": "Riba-roja de Túria",
+        "provincia": "Valencia",
+        "cp": "46190",
+        "jornada": "Completa Turnos: Turno mañana",
+        "horario": "DE 7 A.M A 3 P.M.",
+        "salario": "SEGÚN CONVENIO",
+        "ocupaciones": []
+      }
+    },
+    {
       "id": "2564",
       "fo": 2564,
       "codigo": "2026/00263",
-      "titulo": "COMERCIAL VENTAS FERRETERIA",
+      "titulo": "Comercial ventas ferretería",
       "publishedAt": "2026-11-11",
       "deadline": "2027-01-11",
       "location": "POL. INDUSTRIAL SECTOR 12 Riba-roja de Túria",
@@ -40,7 +111,7 @@
           },
           {
             "label": "Nombre de la oferta",
-            "value": "COMERCIAL VENTAS FERRETERIA"
+            "value": "Comercial ventas ferretería"
           },
           {
             "label": "Sector CNAE",
@@ -68,7 +139,7 @@
           },
           {
             "label": "Funciones",
-            "value": "GESTION DE VENTA Y COMPRA, ATENCIÓN AL CLIENTE, Y RESPONSABLE DEL CENTRO"
+            "value": "Gestión de venta y compra, atención al cliente, y responsable del centro"
           },
           {
             "label": "Requiere vehículo propio",
@@ -82,7 +153,7 @@
         "cp": "46190",
         "jornada": "Completa",
         "salario": "SEGÚN CONVENIO",
-        "funciones": "GESTION DE VENTA Y COMPRA, ATENCIÓN AL CLIENTE, Y RESPONSABLE DEL CENTRO",
+        "funciones": "Gestión de venta y compra, atención al cliente, y responsable del centro",
         "vehiculo": "Sí",
         "ocupaciones": []
       }
@@ -166,7 +237,7 @@
       "id": "2566",
       "fo": 2566,
       "codigo": "2026/00261",
-      "titulo": "AUXILIAR DE ENFERMERÍA AYUDA A DOMICILIO",
+      "titulo": "Auxiliar de enfermería ayuda a domicilio",
       "publishedAt": "2026-11-11",
       "deadline": "2027-01-11",
       "location": "Riba-roja de Túria Riba-roja de Túria",
@@ -182,7 +253,7 @@
           },
           {
             "label": "Nombre de la oferta",
-            "value": "AUXILIAR DE ENFERMERÍA AYUDA A DOMICILIO"
+            "value": "Auxiliar de enfermería ayuda a domicilio"
           },
           {
             "label": "Observaciones",
@@ -222,83 +293,6 @@
         "cp": "46190",
         "horario": "El horario es de lunes a viernes y puntualmente algún sábado en horario diurno. No hay nocturnos",
         "salario": "Según convenio",
-        "ocupaciones": []
-      }
-    },
-    {
-      "id": "2561",
-      "fo": 2561,
-      "codigo": "2026/00260",
-      "titulo": "Auxiliar administrativo/a",
-      "publishedAt": "2026-11-06",
-      "deadline": "2027-01-06",
-      "location": "Pol. Ind. El Oliveral Riba-roja de Túria",
-      "status": "Abierta",
-      "statusTone": "ok",
-      "url": "https://ribaocupacio.portalemp.com/ofertas.html?fo=2561",
-      "inRibaRoja": true,
-      "detail": {
-        "fields": [
-          {
-            "label": "Código",
-            "value": "2026/00260"
-          },
-          {
-            "label": "Nombre de la oferta",
-            "value": "Auxiliar administrativo/a"
-          },
-          {
-            "label": "Observaciones",
-            "value": "¿Qué buscamos? Buscamos una persona comprometida, organizada, meticulosa, y con orientación al cliente. Requisitos: Formación Profesional relacionada con la rama de Administración. Experiencia como auxiliar administrativo/a. Imprescindible carnet de conducir y vehículo propio para acceder al centro de trabajo. Manejo habitual de herramientas informáticas y Microsoft Excel. Manejo HC Lab (valorable). Buenas habilidades de comunicación y trabajo en equipo. Actitud proactiva y motivación por aportar valor desde el primer día. Incorporación inmediata en una empresa sólida y en constante crecimiento."
-          },
-          {
-            "label": "Tipo de contrato",
-            "value": "CONTRATO INDEFINIDO"
-          },
-          {
-            "label": "Número de puestos",
-            "value": "1"
-          },
-          {
-            "label": "Lugar puesto de trabajo",
-            "value": "Pol. Ind. El Oliveral, Municipio: Riba-roja de Túria, Provincia: Valencia, CP: 46190"
-          },
-          {
-            "label": "Tipo de jornada laboral",
-            "value": "Completa"
-          },
-          {
-            "label": "Observaciones jornada",
-            "value": "Jornada completa 100% presencial."
-          },
-          {
-            "label": "Horario",
-            "value": "Horario: De 09:30h. a 18:30h. de lunes a jueves y los viernes 09:00h. a 18:00h."
-          },
-          {
-            "label": "Salario",
-            "value": "Según convenio + variable"
-          },
-          {
-            "label": "Funciones",
-            "value": "- Atención telefónica y gestión de consultas de clientes. - Derivación de llamadas al departamento correspondiente. - Registro de llamadas y servicios en nuestro programa de gestión (HC Lab). - Gestión de cobro (impagados). - Gestión y archivo de documentación. - Apoyo en tareas administrativas del departamento."
-          },
-          {
-            "label": "Requiere vehículo propio",
-            "value": "Sí"
-          }
-        ],
-        "tipoContrato": "CONTRATO INDEFINIDO",
-        "numPuestos": "1",
-        "observaciones": "¿Qué buscamos? Buscamos una persona comprometida, organizada, meticulosa, y con orientación al cliente. Requisitos: Formación Profesional relacionada con la rama de Administración. Experiencia como auxiliar administrativo/a. Imprescindible carnet de conducir y vehículo propio para acceder al centro de trabajo. Manejo habitual de herramientas informáticas y Microsoft Excel. Manejo HC Lab (valorable). Buenas habilidades de comunicación y trabajo en equipo. Actitud proactiva y motivación por aportar valor desde el primer día. Incorporación inmediata en una empresa sólida y en constante crecimiento.",
-        "municipio": "Riba-roja de Túria",
-        "provincia": "Valencia",
-        "cp": "46190",
-        "jornada": "Completa",
-        "horario": "Horario: De 09:30h. a 18:30h. de lunes a jueves y los viernes 09:00h. a 18:00h.",
-        "salario": "Según convenio + variable",
-        "funciones": "- Atención telefónica y gestión de consultas de clientes. - Derivación de llamadas al departamento correspondiente. - Registro de llamadas y servicios en nuestro programa de gestión (HC Lab). - Gestión de cobro (impagados). - Gestión y archivo de documentación. - Apoyo en tareas administrativas del departamento.",
-        "vehiculo": "Sí",
         "ocupaciones": []
       }
     },
