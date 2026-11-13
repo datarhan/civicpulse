@@ -1,28 +1,35 @@
 {
-  "generatedAt": "2026-11-12T13:16:19.237Z",
+  "generatedAt": "2026-11-13T12:40:00.656Z",
   "source": {
     "baseUrl": "https://regmeet.com",
     "platform": "Regmeet — aytoribarroja/sesiones_categorias/3b56be67439045acfbc7c1552d87a166/<year>"
   },
   "stats": {
-    "total": 63,
+    "total": 64,
     "byYear": {
       "2023": 17,
       "2024": 18,
       "2025": 15,
-      "2026": 13
+      "2026": 14
     },
-    "latestDate": "2026-10-05",
+    "latestDate": "2026-11-02",
     "ventana": {
       "desde": 2023,
       "hasta": 2026
     },
     "aniosIntentados": 4,
     "aniosFallidos": 0,
-    "sesionesRefrescadas": 63,
+    "sesionesRefrescadas": 64,
     "sesionesArrastradas": 0
   },
   "items": [
+    {
+      "id": "51k7yx",
+      "title": "Sesión de fecha 02 de noviembre de 2026",
+      "date": "2026-11-02",
+      "kind": "ordinario",
+      "link": "https://regmeet.com/aytoribarroja/participaciones/201e5bacd665709851b77148e225b332?idioma=castellano"
+    },
     {
       "id": "zrbgic",
       "title": "Sesión de fecha 05 de octubre de 2026",

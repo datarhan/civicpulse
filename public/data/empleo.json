@@ -1,18 +1,18 @@
 {
-  "generatedAt": "2026-11-12T13:17:04.525Z",
+  "generatedAt": "2026-11-13T12:40:47.206Z",
   "source": {
     "origin": "https://ribaocupacio.portalemp.com",
     "platform": "portalemp — ribaocupacio · Agència de Col·locació (ADL), Ajuntament de Riba-roja de Túria",
     "listEndpoint": "https://ribaocupacio.portalemp.com/ofertas.html?acc=tableData"
   },
   "stats": {
-    "total": 43,
-    "openTotal": 42,
-    "inRibaRoja": 30,
-    "closingSoon": 5,
-    "withDetail": 43,
+    "total": 44,
+    "openTotal": 43,
+    "inRibaRoja": 31,
+    "closingSoon": 6,
+    "withDetail": 44,
     "byMonth": {
-      "2026-11": 4,
+      "2026-11": 5,
       "2026-10": 28,
       "2026-09": 8,
       "2026-05": 2,
@@ -20,6 +20,97 @@
     }
   },
   "items": [
+    {
+      "id": "2568",
+      "fo": 2568,
+      "codigo": "2026/00265",
+      "titulo": "Mozo/a almacén con carretilla",
+      "publishedAt": "2026-11-13",
+      "deadline": "2027-01-13",
+      "location": "Polígono Industrial Reva Riba-roja de Túria",
+      "status": "Abierta",
+      "statusTone": "ok",
+      "url": "https://ribaocupacio.portalemp.com/ofertas.html?fo=2568",
+      "inRibaRoja": true,
+      "detail": {
+        "fields": [
+          {
+            "label": "Código",
+            "value": "2026/00265"
+          },
+          {
+            "label": "Nombre de la oferta",
+            "value": "Mozo/a almacén con carretilla"
+          },
+          {
+            "label": "Observaciones",
+            "value": "Imprescindible carnet de carretillero. Conocimiento y manejo RF / PDA. Vehículo propio"
+          },
+          {
+            "label": "Sector CNAE",
+            "value": "INDUSTRIA MANUFACTURERA"
+          },
+          {
+            "label": "Tipo de contrato",
+            "value": "CONTRATO EVENTUAL POR CIRCUNSTANCIAS DE LA PRODUCCION"
+          },
+          {
+            "label": "Duración del contrato",
+            "value": "De 1 a 6 meses"
+          },
+          {
+            "label": "Número de puestos",
+            "value": "4"
+          },
+          {
+            "label": "Categoría profesional",
+            "value": "PEONES"
+          },
+          {
+            "label": "Lugar puesto de trabajo",
+            "value": "Polígono Industrial Reva, Municipio: Riba-roja de Túria, Provincia: Valencia, CP: 46394"
+          },
+          {
+            "label": "Tipo de jornada laboral",
+            "value": "Completa"
+          },
+          {
+            "label": "Horario",
+            "value": "Horario de 07:30h a 16:45h 1 semana de 09:15h a 18:00h"
+          },
+          {
+            "label": "Salario",
+            "value": "Por convenio"
+          },
+          {
+            "label": "Funciones",
+            "value": "Preparación el material, recepción y distribución de mercancía, uso de radiofrecuencia PDA, control de funcionamiento del almacén robotizado, preparación de pedidos. Conocimiento / nociones informáticas. Imprescindible carnet de carretillero. Conocimiento y manejo RF / PDA."
+          },
+          {
+            "label": "Requiere vehículo propio",
+            "value": "Sí"
+          },
+          {
+            "label": "Habilidades",
+            "value": "Capacidad de trabajo en equipo"
+          }
+        ],
+        "tipoContrato": "CONTRATO EVENTUAL POR CIRCUNSTANCIAS DE LA PRODUCCION",
+        "duracion": "De 1 a 6 meses",
+        "numPuestos": "4",
+        "categoria": "PEONES",
+        "observaciones": "Imprescindible carnet de carretillero. Conocimiento y manejo RF / PDA. Vehículo propio",
+        "municipio": "Riba-roja de Túria",
+        "provincia": "Valencia",
+        "cp": "46394",
+        "jornada": "Completa",
+        "horario": "Horario de 07:30h a 16:45h 1 semana de 09:15h a 18:00h",
+        "salario": "Por convenio",
+        "funciones": "Preparación el material, recepción y distribución de mercancía, uso de radiofrecuencia PDA, control de funcionamiento del almacén robotizado, preparación de pedidos. Conocimiento / nociones informáticas. Imprescindible carnet de carretillero. Conocimiento y manejo RF / PDA.",
+        "vehiculo": "Sí",
+        "ocupaciones": []
+      }
+    },
     {
       "id": "2567",
       "fo": 2567,

@@ -1,36 +1,14 @@
 {
-  "generatedAt": "2026-11-13T11:47:22.775Z",
-  "clusters": [
-    {
-      "clusterId": "190i5dk",
-      "articleIds": [
-        "1tgnyzg",
-        "zzlq1k"
-      ],
-      "outlets": [
-        "Las Provincias",
-        "Levante-EMV"
-      ],
-      "fuentesOficiales": [],
-      "earliestDate": "2026-11-09T13:20:49.000Z",
-      "latestDate": "2026-11-09T13:21:17.000Z",
-      "verdictMix": {
-        "verificado": 0,
-        "parcial": 0,
-        "contradicho": 0,
-        "sin-datos": 0,
-        "promesa-repetida": 0
-      }
-    }
-  ],
+  "generatedAt": "2026-11-13T12:43:02.033Z",
+  "clusters": [],
   "stats": {
-    "totalClusters": 1,
+    "totalClusters": 0,
     "triangulated3Plus": 0
   },
   "builtFrom": {
-    "plenos-agendas.json": "6ad6f61b43ef",
+    "plenos-agendas.json": "1737fa498108",
     "press-claims-verified.json": "d4654fd232f4",
-    "press.json": "023bc171d275",
+    "press.json": "c7e33f9408ad",
     "promises.json": "d0fd2949af24"
   }
 }

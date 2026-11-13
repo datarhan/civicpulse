@@ -1,7 +1,56 @@
 {
-  "generatedAt": "2026-11-13T11:47:22.778Z",
+  "generatedAt": "2026-11-13T12:43:02.033Z",
   "windowDays": 14,
   "items": [
+    {
+      "kind": "pleno-item",
+      "refId": "51k7yx:2",
+      "label": "Servicios generales · SECRETARÍA, Acuerdo relativo al Sorteo de Miembros de Mesa para las Elecciones Generales a celebrar el 29 de noviembre de 2026",
+      "date": "2026-11-02",
+      "keyword": ""
+    },
+    {
+      "kind": "pleno-item",
+      "refId": "51k7yx:3",
+      "label": "Recursos humanos · SECRETARÍA (RECURSOS HUMANOS), Aprobación inicial modificación puntual de la Relación de Puestos de Trabajo y de la Plantilla de Personal para el ejercicio 2026",
+      "date": "2026-11-02",
+      "keyword": ""
+    },
+    {
+      "kind": "pleno-item",
+      "refId": "51k7yx:4",
+      "label": "Hacienda · INTERVENCIÓN, Aprobación Reconocimiento Extrajudicial de Créditos 28/2026 Relación 12026000001 (Sin Dictaminar)",
+      "date": "2026-11-02",
+      "keyword": ""
+    },
+    {
+      "kind": "pleno-item",
+      "refId": "51k7yx:6",
+      "label": "Hacienda · SECRETARÍA (GESTIÓN PATRIMONIAL), Aprobación de la cesión gratuita de parcela a la Generalitat Valenciana/Entidad Valenciana de Vivienda y Suelo (EVHA) para la construcción de viviendas de protección pública (Necesaria mayoría absoluta para su aprobación)",
+      "date": "2026-11-02",
+      "keyword": ""
+    },
+    {
+      "kind": "pleno-item",
+      "refId": "51k7yx:7",
+      "label": "Servicios generales · SECRETARÍA, Aprobación definitiva por el Ayuntamiento de Riba-roja de Túria de los Estatutos de la Mancomunidad Industrial A3 conforme el artículo 9 de la Ley 21/2018, tras su aprobación definitiva por la Asamblea de la Mancomunidad Industrial A3 (Necesaria mayoría absoluta para su aprobación)",
+      "date": "2026-11-02",
+      "keyword": ""
+    },
+    {
+      "kind": "pleno-item",
+      "refId": "51k7yx:8",
+      "label": "Vivienda · Moción conjunta de los Grupos Municipales Compromís por Riba-roja y EUPodemos de apoyo a la huelga general del 11 de noviembre por salarios dignos, el derecho a la vivienda y el control de los precios",
+      "date": "2026-11-02",
+      "keyword": ""
+    },
+    {
+      "kind": "pleno-item",
+      "refId": "51k7yx:9",
+      "label": "Moción de urgencia",
+      "date": "2026-11-02",
+      "keyword": ""
+    },
     {
       "kind": "promise",
       "refId": "ac-psoe-1t88ans",
@@ -10,18 +59,34 @@
       "keyword": ""
     }
   ],
-  "covered": [],
+  "covered": [
+    {
+      "kind": "pleno-item",
+      "refId": "51k7yx:5",
+      "label": "Educación · EDUCACIÓN, Felicitación de la corporación municipal al alumnado con expedientes académicos de excelencia del curso 25/26",
+      "date": "2026-11-02",
+      "articleId": "1a3qtdm",
+      "outlet": "elperiodic.com",
+      "shared": [
+        "alumnado",
+        "expedientes",
+        "academicos",
+        "excelencia",
+        "curso"
+      ]
+    }
+  ],
   "stats": {
-    "plenoItemsUncovered": 0,
+    "plenoItemsUncovered": 7,
     "promisesUncovered": 1,
-    "candidatesExamined": 1,
-    "tramitesExcluidos": 0,
-    "titularesConsiderados": 12
+    "candidatesExamined": 9,
+    "tramitesExcluidos": 3,
+    "titularesConsiderados": 6
   },
   "builtFrom": {
-    "plenos-agendas.json": "6ad6f61b43ef",
+    "plenos-agendas.json": "1737fa498108",
     "press-claims-verified.json": "d4654fd232f4",
-    "press.json": "023bc171d275",
+    "press.json": "c7e33f9408ad",
     "promises.json": "d0fd2949af24"
   }
 }

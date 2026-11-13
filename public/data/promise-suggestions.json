@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-12T13:18:50.644Z",
+  "generatedAt": "2026-11-13T12:42:47.258Z",
   "frozen": false,
   "frozenUntil": null,
   "notice": "Sugerencias generadas automáticamente. Requieren aprobación humana antes de aplicarse al estado de cada promesa.",
@@ -42,7 +42,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-11-12T13:18:50.571Z"
+      "generatedAt": "2026-11-13T12:42:47.189Z"
     },
     {
       "promiseId": "ac-psoe-jfg7bc",
@@ -61,7 +61,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-11-12T13:18:50.571Z"
+      "generatedAt": "2026-11-13T12:42:47.189Z"
     },
     {
       "promiseId": "ac-psoe-1ah9zqk",
@@ -80,7 +80,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-11-12T13:18:50.571Z"
+      "generatedAt": "2026-11-13T12:42:47.189Z"
     },
     {
       "promiseId": "ac-psoe-ppa53a",
@@ -88,7 +88,7 @@
       "confidence": 0,
       "reasoning": [],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-11-12T13:18:50.571Z"
+      "generatedAt": "2026-11-13T12:42:47.189Z"
     },
     {
       "promiseId": "ac-psoe-1m04lfw",
@@ -96,7 +96,7 @@
       "confidence": 0,
       "reasoning": [],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-11-12T13:18:50.571Z"
+      "generatedAt": "2026-11-13T12:42:47.189Z"
     },
     {
       "promiseId": "ac-psoe-sysee8",
@@ -115,7 +115,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-11-12T13:18:50.571Z"
+      "generatedAt": "2026-11-13T12:42:47.189Z"
     },
     {
       "promiseId": "ac-psoe-1ryndd8",
@@ -152,7 +152,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-11-12T13:18:50.571Z"
+      "generatedAt": "2026-11-13T12:42:47.189Z"
     },
     {
       "promiseId": "ac-psoe-43brfs",
@@ -217,7 +217,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-11-12T13:18:50.571Z"
+      "generatedAt": "2026-11-13T12:42:47.189Z"
     },
     {
       "promiseId": "ac-psoe-17y448o",
@@ -275,7 +275,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-11-12T13:18:50.571Z"
+      "generatedAt": "2026-11-13T12:42:47.189Z"
     },
     {
       "promiseId": "ac-psoe-1bkbwjs",
@@ -319,7 +319,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-11-12T13:18:50.571Z"
+      "generatedAt": "2026-11-13T12:42:47.189Z"
     },
     {
       "promiseId": "ac-psoe-1xeq50",
@@ -354,6 +354,17 @@
           ]
         },
         {
+          "url": "https://news.google.com/rss/articles/CBMi5gFBVV95cUxPcjJEMFZZWS1hZzd0Ymxqdi1semVpSTJUY0NFOUdGcnQ0R1hpV2NYamJKTTY4WGVDMFkwSGlzLUpoOHhzZnBfWWtKZ1VwRjlKT0Q2NzJwS1ZRbEtsSUpaaTRlLUEtZFJiSVNJU3hWa2MteHRYakdXTWxtNVdLVGpNX0RsdHZvUDU4Ykx0RTM1cmhFSW5wNU0teC1oOEJkVTVwNzVWdmUwZzRaV3JDU0R1TENxSDVQcHhoeFNMODlIdktyVFF2U0NYN3U1WV9EbTQzOXpfRVBGUlZjb20wSXhmZldmcHJFdw?oc=5",
+          "date": "2026-11-13",
+          "quote": "Riba-roja de Túria felicita al alumnado de la localidad con expedientes académicos de excelencia durante el curso 2025-2026",
+          "kind": "press",
+          "publisher": "elperiodic.com",
+          "matchedKeywords": [
+            "2025",
+            "localidad"
+          ]
+        },
+        {
           "url": "https://www.infoturia.com/riba-roja-de-turia/86707-riba-roja-aprova-el-compte-de-2025-amb-un-superavit-de-45-milions-deuros.html",
           "date": "2026-10-13",
           "quote": "Riba-roja aprova el compte de 2025 amb un superàvit de 4’5 milions d’euros",
@@ -374,21 +385,10 @@
             "euro",
             "2025"
           ]
-        },
-        {
-          "url": "https://www.ribarroja.es/es/noticia/riba-roja-destina-104.605-euros-al-cheque-beb%C3%A9-%2B25-para-apoyar-a-las-familias-y-dinamizar-el-comercio-local",
-          "date": "2026-10-01",
-          "quote": "Riba-roja destina 104.605 euros al Cheque Bebé +25 para apoyar a las familias y dinamizar el comercio local",
-          "kind": "press",
-          "publisher": "Ayuntamiento de Riba-roja de Túria",
-          "matchedKeywords": [
-            "euro",
-            "local"
-          ]
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-11-12T13:18:50.571Z"
+      "generatedAt": "2026-11-13T12:42:47.189Z"
     },
     {
       "promiseId": "ac-psoe-1kui43c",
@@ -410,7 +410,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-11-12T13:18:50.571Z"
+      "generatedAt": "2026-11-13T12:42:47.189Z"
     },
     {
       "promiseId": "ac-psoe-1t88ans",
@@ -436,6 +436,17 @@
           ]
         },
         {
+          "url": "https://news.google.com/rss/articles/CBMi5gFBVV95cUxPcjJEMFZZWS1hZzd0Ymxqdi1semVpSTJUY0NFOUdGcnQ0R1hpV2NYamJKTTY4WGVDMFkwSGlzLUpoOHhzZnBfWWtKZ1VwRjlKT0Q2NzJwS1ZRbEtsSUpaaTRlLUEtZFJiSVNJU3hWa2MteHRYakdXTWxtNVdLVGpNX0RsdHZvUDU4Ykx0RTM1cmhFSW5wNU0teC1oOEJkVTVwNzVWdmUwZzRaV3JDU0R1TENxSDVQcHhoeFNMODlIdktyVFF2U0NYN3U1WV9EbTQzOXpfRVBGUlZjb20wSXhmZldmcHJFdw?oc=5",
+          "date": "2026-11-13",
+          "quote": "Riba-roja de Túria felicita al alumnado de la localidad con expedientes académicos de excelencia durante el curso 2025-2026",
+          "kind": "press",
+          "publisher": "elperiodic.com",
+          "matchedKeywords": [
+            "2025",
+            "2026"
+          ]
+        },
+        {
           "url": "https://www.infoturia.com/riba-roja-de-turia/87032-riba-roja-assigna-140-000-euros-als-clubs-i-per-a-financar-les-seues-activitats.html",
           "date": "2026-11-02",
           "quote": "Riba-roja assigna 140.000 euros als clubs i per a finançar les seues activitats",
@@ -448,7 +459,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-11-12T13:18:50.571Z"
+      "generatedAt": "2026-11-13T12:42:47.189Z"
     }
   ],
   "llmEvidence": [],

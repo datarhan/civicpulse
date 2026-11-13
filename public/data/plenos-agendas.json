@@ -1,20 +1,20 @@
 {
-  "generatedAt": "2026-11-13T05:47:18.897Z",
+  "generatedAt": "2026-11-13T12:40:16.403Z",
   "source": {
     "baseUrl": "https://regmeet.com",
     "description": "Ayuntamiento de Riba-roja de Túria — sesiones plenarias en regmeet.com (aytoribarroja); cada página individual publica el orden del día en la tabla #tableOrdenDia. El departamento se infiere del título del punto."
   },
   "stats": {
-    "plenosFetched": 63,
-    "agendaItemsTotal": 627,
-    "agendaItemsWithDepartment": 222,
-    "plenosWithRuegos": 41,
+    "plenosFetched": 64,
+    "agendaItemsTotal": 638,
+    "agendaItemsWithDepartment": 229,
+    "plenosWithRuegos": 42,
     "uniqueDepartments": 24,
-    "sessionsTotal": 63,
-    "sessionsWithAgenda": 63,
+    "sessionsTotal": 64,
+    "sessionsWithAgenda": 64,
     "refreshedThisRun": 6,
     "recoveredFromLive": 6,
-    "carriedForward": 57,
+    "carriedForward": 58,
     "recoveredFromArchive": 0,
     "archiveLookupsSkipped": 0,
     "sessionsNotAttempted": 0,
@@ -25,7 +25,7 @@
   "topDepartments": [
     {
       "department": "hacienda",
-      "count": 38,
+      "count": 40,
       "departmentSlug": "hacienda"
     },
     {
@@ -40,7 +40,7 @@
     },
     {
       "department": "servicios-generales",
-      "count": 19,
+      "count": 21,
       "departmentSlug": "servicios-generales"
     },
     {
@@ -50,7 +50,7 @@
     },
     {
       "department": "recursos-humanos",
-      "count": 10,
+      "count": 11,
       "departmentSlug": "recursos-humanos"
     },
     {
@@ -69,6 +69,11 @@
       "departmentSlug": "medio-ambiente"
     },
     {
+      "department": "educacion",
+      "count": 7,
+      "departmentSlug": "educacion"
+    },
+    {
       "department": "igualdad",
       "count": 7,
       "departmentSlug": "igualdad"
@@ -77,14 +82,115 @@
       "department": "alcaldia",
       "count": 7,
       "departmentSlug": "alcaldia"
-    },
-    {
-      "department": "educacion",
-      "count": 6,
-      "departmentSlug": "educacion"
     }
   ],
   "plenos": [
+    {
+      "id": "51k7yx",
+      "date": "2026-11-02",
+      "title": "Sesión de fecha 02 de noviembre de 2026",
+      "kind": "ordinario",
+      "link": "https://regmeet.com/aytoribarroja/participaciones/201e5bacd665709851b77148e225b332?idioma=castellano",
+      "agenda": [
+        {
+          "number": 1,
+          "title": "Aprobación Acta Ordinaria anterior de fecha 5 de octubre de 2026",
+          "section": "resolutiva",
+          "department": null,
+          "departmentSlug": null,
+          "expediente": null
+        },
+        {
+          "number": 2,
+          "title": "SECRETARÍA, Acuerdo relativo al Sorteo de Miembros de Mesa para las Elecciones Generales a celebrar el 29 de noviembre de 2026",
+          "section": "resolutiva",
+          "department": "Servicios generales",
+          "departmentSlug": "servicios-generales",
+          "expediente": "5006/2026/GEN"
+        },
+        {
+          "number": 3,
+          "title": "SECRETARÍA (RECURSOS HUMANOS), Aprobación inicial modificación puntual de la Relación de Puestos de Trabajo y de la Plantilla de Personal para el ejercicio 2026",
+          "section": "resolutiva",
+          "department": "Recursos humanos",
+          "departmentSlug": "recursos-humanos",
+          "expediente": "3909/2026/GEN"
+        },
+        {
+          "number": 4,
+          "title": "INTERVENCIÓN, Aprobación Reconocimiento Extrajudicial de Créditos 28/2026 Relación 12026000001 (Sin Dictaminar)",
+          "section": "resolutiva",
+          "department": "Hacienda",
+          "departmentSlug": "hacienda",
+          "expediente": "5053/2026/GEN"
+        },
+        {
+          "number": 5,
+          "title": "EDUCACIÓN, Felicitación de la corporación municipal al alumnado con expedientes académicos de excelencia del curso 25/26",
+          "section": "resolutiva",
+          "department": "Educación",
+          "departmentSlug": "educacion",
+          "expediente": "5166/2026/GEN"
+        },
+        {
+          "number": 6,
+          "title": "SECRETARÍA (GESTIÓN PATRIMONIAL), Aprobación de la cesión gratuita de parcela a la Generalitat Valenciana/Entidad Valenciana de Vivienda y Suelo (EVHA) para la construcción de viviendas de protección pública (Necesaria mayoría absoluta para su aprobación)",
+          "section": "resolutiva",
+          "department": "Hacienda",
+          "departmentSlug": "hacienda",
+          "expediente": "3810/2026/GEN"
+        },
+        {
+          "number": 7,
+          "title": "SECRETARÍA, Aprobación definitiva por el Ayuntamiento de Riba-roja de Túria de los Estatutos de la Mancomunidad Industrial A3 conforme el artículo 9 de la Ley 21/2018, tras su aprobación definitiva por la Asamblea de la Mancomunidad Industrial A3 (Necesaria mayoría absoluta para su aprobación)",
+          "section": "resolutiva",
+          "department": "Servicios generales",
+          "departmentSlug": "servicios-generales",
+          "expediente": "6014/2023/GEN"
+        },
+        {
+          "number": 8,
+          "title": "Moción conjunta de los Grupos Municipales Compromís por Riba-roja y EUPodemos de apoyo a la huelga general del 11 de noviembre por salarios dignos, el derecho a la vivienda y el control de los precios",
+          "section": "resolutiva",
+          "department": "Vivienda",
+          "departmentSlug": "vivienda",
+          "expediente": "22/2026/PGRU"
+        },
+        {
+          "number": 9,
+          "title": "Moción de urgencia",
+          "section": "resolutiva",
+          "department": null,
+          "departmentSlug": null,
+          "expediente": null
+        },
+        {
+          "number": 10,
+          "title": "Dar cuenta de las Resoluciones de la número 3085/2026 a la 3437/2026",
+          "section": "informativa",
+          "department": null,
+          "departmentSlug": null,
+          "expediente": null
+        },
+        {
+          "number": 11,
+          "title": "Ruegos y preguntas",
+          "section": "ruegos",
+          "department": null,
+          "departmentSlug": null,
+          "expediente": null
+        }
+      ],
+      "agendaCount": 11,
+      "departments": [
+        "servicios-generales",
+        "recursos-humanos",
+        "hacienda",
+        "educacion",
+        "vivienda"
+      ],
+      "hasRuegos": true
+    },
     {
       "id": "zrbgic",
       "date": "2026-10-05",
@@ -6075,7 +6181,7 @@
     }
   ],
   "builtFrom": {
-    "officials.json": "2d0d6c945dbc",
+    "officials.json": "d98871aa425e",
     "pleno-votes.json": "c45bcc239e5a",
     "promises.json": "d0fd2949af24",
     "quejas.json": "4b992398819d"
