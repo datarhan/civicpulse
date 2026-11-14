@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-13T12:42:47.258Z",
+  "generatedAt": "2026-11-14T11:54:46.308Z",
   "frozen": false,
   "frozenUntil": null,
   "notice": "Sugerencias generadas automáticamente. Requieren aprobación humana antes de aplicarse al estado de cada promesa.",
@@ -42,7 +42,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-11-13T12:42:47.189Z"
+      "generatedAt": "2026-11-14T11:54:46.224Z"
     },
     {
       "promiseId": "ac-psoe-jfg7bc",
@@ -61,7 +61,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-11-13T12:42:47.189Z"
+      "generatedAt": "2026-11-14T11:54:46.224Z"
     },
     {
       "promiseId": "ac-psoe-1ah9zqk",
@@ -80,7 +80,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-11-13T12:42:47.189Z"
+      "generatedAt": "2026-11-14T11:54:46.224Z"
     },
     {
       "promiseId": "ac-psoe-ppa53a",
@@ -88,7 +88,7 @@
       "confidence": 0,
       "reasoning": [],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-11-13T12:42:47.189Z"
+      "generatedAt": "2026-11-14T11:54:46.224Z"
     },
     {
       "promiseId": "ac-psoe-1m04lfw",
@@ -96,7 +96,7 @@
       "confidence": 0,
       "reasoning": [],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-11-13T12:42:47.189Z"
+      "generatedAt": "2026-11-14T11:54:46.224Z"
     },
     {
       "promiseId": "ac-psoe-sysee8",
@@ -115,7 +115,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-11-13T12:42:47.189Z"
+      "generatedAt": "2026-11-14T11:54:46.224Z"
     },
     {
       "promiseId": "ac-psoe-1ryndd8",
@@ -152,7 +152,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-11-13T12:42:47.189Z"
+      "generatedAt": "2026-11-14T11:54:46.224Z"
     },
     {
       "promiseId": "ac-psoe-43brfs",
@@ -169,17 +169,6 @@
             "bono",
             "vuelve",
             "cole"
-          ]
-        },
-        {
-          "url": "https://news.google.com/rss/articles/CBMi3AFBVV95cUxQMVNCcl9scmFTR09WeVQ5dllUMmFPOVZUbXpSZGRNZVRScmlBeHl4YTNudWxJOHo0cDhkTnQ4Ml90cDF1TFZndWVXNGRxNElHQ29Cd3NpdEdIYjlOcVIyX3FMaXdGRnIyV241UmF2R3diR0Z3bnVqelVjbk9OZTc3RFR1d2k2T2FQU3RZTDZ3OVpKZXR5SmpfVkJIN285UnA5MkViNjUtOExQZHMta2tQRlAyM1FwdVNSTUdFSHhENnVDZVRmNkhMaG1PaV9sWEx1V0FOSi11UzF1T1Fl0gHiAUFVX3lxTE14SkVwbjBYeWpBVmU2SFFwdEJlVnI1NmFWb0xkVEVjN0ZsZERhdVY5SWp6QWxHU2tnMnB1UEgwR0ZKNXQ0WWtqcTB3cWdwRmlGcXFyeEpILVdWbGwtdmhpXzA3ejlHTm9HT2kxTTBnb2w5STN5QXAyWDBESVpkTWF1NVpkTWh2bVA1WDM1OTJ1RXpRcHVmbkRrdUlDNE5tQ1BYdEpuVU41blZpNDE4MG9Pd2Z3dTk3N2VaRmFZR2ZLWVh5cmhIX282alF3Nml3SkZ2djM3bzJuTTlHMHFMZURlckE?oc=5",
-          "date": "2026-10-21",
-          "quote": "Riba-roja recupera la Ofrena al riu Túria once años después de su última edición: el covid y la dana aplazaron una tradición que vuelve el 8 de noviembre",
-          "kind": "press",
-          "publisher": "Levante-EMV",
-          "matchedKeywords": [
-            "vuelve",
-            "edicion"
           ]
         },
         {
@@ -214,10 +203,21 @@
             "2026",
             "2027"
           ]
+        },
+        {
+          "url": "https://www.ribarroja.es/es/noticia/riba-roja-destina-una-partida-de-7.000-euros-en-subvenciones-para-fomentar-la-pr%C3%A1ctica-del-deporte-y-mejorar-el-rendimiento-en-las-competiciones-oficiales",
+          "date": "2026-09-16",
+          "quote": "Riba-roja destina una partida de 7.000 euros en subvenciones para fomentar la práctica del deporte y mejorar el rendimiento en las competiciones oficiales",
+          "kind": "press",
+          "publisher": "Ayuntamiento de Riba-roja de Túria",
+          "matchedKeywords": [
+            "euro",
+            "destina"
+          ]
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-11-13T12:42:47.189Z"
+      "generatedAt": "2026-11-14T11:54:46.224Z"
     },
     {
       "promiseId": "ac-psoe-17y448o",
@@ -275,7 +275,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-11-13T12:42:47.189Z"
+      "generatedAt": "2026-11-14T11:54:46.224Z"
     },
     {
       "promiseId": "ac-psoe-1bkbwjs",
@@ -319,7 +319,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-11-13T12:42:47.189Z"
+      "generatedAt": "2026-11-14T11:54:46.224Z"
     },
     {
       "promiseId": "ac-psoe-1xeq50",
@@ -388,7 +388,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-11-13T12:42:47.189Z"
+      "generatedAt": "2026-11-14T11:54:46.224Z"
     },
     {
       "promiseId": "ac-psoe-1kui43c",
@@ -410,7 +410,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-11-13T12:42:47.189Z"
+      "generatedAt": "2026-11-14T11:54:46.224Z"
     },
     {
       "promiseId": "ac-psoe-1t88ans",
@@ -459,7 +459,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-11-13T12:42:47.189Z"
+      "generatedAt": "2026-11-14T11:54:46.224Z"
     }
   ],
   "llmEvidence": [],

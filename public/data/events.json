@@ -1,13 +1,13 @@
 {
-  "generatedAt": "2026-11-13T12:34:13.203Z",
+  "generatedAt": "2026-11-14T11:45:06.131Z",
   "source": {
     "url": "https://www.ribarroja.es/es/eventos/rss.xml",
     "platform": "Drupal RSS (oficial)"
   },
   "stats": {
     "total": 50,
-    "upcoming": 10,
-    "nextDate": "2026-11-13T19:00:00.000Z"
+    "upcoming": 8,
+    "nextDate": "2026-11-15T09:00:00.000Z"
   },
   "events": [
     {
