@@ -1,11 +1,11 @@
 {
-  "generatedAt": "2026-11-08T09:06:18.613Z",
-  "consultadoEl": "2026-11-08",
+  "generatedAt": "2026-11-15T06:17:53.923Z",
+  "consultadoEl": "2026-11-15",
   "conjunto": "cv-15k-40k",
   "fuente": {
     "nombre": "SINAC · Sistema de Información Nacional de Aguas de Consumo (Ministerio de Sanidad)",
     "url": "https://sinac.sanidad.gob.es/CiudadanoWeb/ciudadano/informacionAbastecimientoActionEntrada.do",
-    "atribucion": "Fuente: Ministerio de Sanidad, SINAC. Consultado el 2026-11-08; cada boletín lleva su fecha de toma."
+    "atribucion": "Fuente: Ministerio de Sanidad, SINAC. Consultado el 2026-11-15; cada boletín lleva su fecha de toma."
   },
   "municipios": [
     {
@@ -32,6 +32,29 @@
         }
       ],
       "boletines": [
+        {
+          "id": 19028118,
+          "tipo": "control",
+          "fecha": "2026-11-05",
+          "calificacion": "apta",
+          "calificacionTexto": "AGUA APTA PARA EL CONSUMO",
+          "idRed": 797
+        },
+        {
+          "id": 19028170,
+          "tipo": "completo",
+          "fecha": "2026-10-15",
+          "calificacion": "apta",
+          "calificacionTexto": "AGUA APTA PARA EL CONSUMO",
+          "idRed": 798,
+          "parametros": [
+            {
+              "nombre": "Nitrato",
+              "valor": 3,
+              "unidad": "mg/L"
+            }
+          ]
+        },
         {
           "id": 18460549,
           "tipo": "control",
@@ -515,6 +538,14 @@
       ],
       "boletines": [
         {
+          "id": 19028428,
+          "tipo": "control",
+          "fecha": "2026-11-07",
+          "calificacion": "apta",
+          "calificacionTexto": "AGUA APTA PARA EL CONSUMO",
+          "idRed": 1730
+        },
+        {
           "id": 18923118,
           "tipo": "control",
           "fecha": "2026-10-15",
@@ -894,6 +925,22 @@
         }
       ],
       "boletines": [
+        {
+          "id": 19014024,
+          "tipo": "control",
+          "fecha": "2026-11-04",
+          "calificacion": "apta",
+          "calificacionTexto": "AGUA APTA PARA EL CONSUMO",
+          "idRed": 9589
+        },
+        {
+          "id": 19013965,
+          "tipo": "control",
+          "fecha": "2026-11-04",
+          "calificacion": "apta",
+          "calificacionTexto": "AGUA APTA PARA EL CONSUMO",
+          "idRed": 22278
+        },
         {
           "id": 18888208,
           "tipo": "control",
@@ -2635,6 +2682,30 @@
       ],
       "boletines": [
         {
+          "id": 19014021,
+          "tipo": "control",
+          "fecha": "2026-11-03",
+          "calificacion": "apta",
+          "calificacionTexto": "AGUA APTA PARA EL CONSUMO",
+          "idRed": 560
+        },
+        {
+          "id": 19014013,
+          "tipo": "control",
+          "fecha": "2026-11-03",
+          "calificacion": "apta",
+          "calificacionTexto": "AGUA APTA PARA EL CONSUMO",
+          "idRed": 560
+        },
+        {
+          "id": 19014004,
+          "tipo": "control",
+          "fecha": "2026-11-03",
+          "calificacion": "apta",
+          "calificacionTexto": "AGUA APTA PARA EL CONSUMO",
+          "idRed": 560
+        },
+        {
           "id": 18888223,
           "tipo": "control",
           "fecha": "2026-10-06",
@@ -3360,6 +3431,38 @@
         }
       ],
       "boletines": [
+        {
+          "id": 19017725,
+          "tipo": "control",
+          "fecha": "2026-11-04",
+          "calificacion": "apta",
+          "calificacionTexto": "AGUA APTA PARA EL CONSUMO",
+          "idRed": 7317
+        },
+        {
+          "id": 19017742,
+          "tipo": "control",
+          "fecha": "2026-11-03",
+          "calificacion": "apta",
+          "calificacionTexto": "AGUA APTA PARA EL CONSUMO",
+          "idRed": 7317
+        },
+        {
+          "id": 19017724,
+          "tipo": "control",
+          "fecha": "2026-11-02",
+          "calificacion": "apta",
+          "calificacionTexto": "AGUA APTA PARA EL CONSUMO",
+          "idRed": 7317
+        },
+        {
+          "id": 19017720,
+          "tipo": "control",
+          "fecha": "2026-11-02",
+          "calificacion": "apta",
+          "calificacionTexto": "AGUA APTA PARA EL CONSUMO",
+          "idRed": 7317
+        },
         {
           "id": 18969885,
           "tipo": "control",
@@ -4849,6 +4952,14 @@
       ],
       "boletines": [
         {
+          "id": 19028384,
+          "tipo": "control",
+          "fecha": "2026-11-10",
+          "calificacion": "apta",
+          "calificacionTexto": "AGUA APTA PARA EL CONSUMO",
+          "idRed": 986
+        },
+        {
           "id": 18959718,
           "tipo": "control",
           "fecha": "2026-10-21",
@@ -5775,6 +5886,21 @@
           "idRed": 24567
         },
         {
+          "id": 19013088,
+          "tipo": "completo",
+          "fecha": "2026-10-05",
+          "calificacion": "apta",
+          "calificacionTexto": "AGUA APTA PARA EL CONSUMO",
+          "idRed": 24567,
+          "parametros": [
+            {
+              "nombre": "Nitrato",
+              "valor": 3,
+              "unidad": "mg/L"
+            }
+          ]
+        },
+        {
           "id": 18587592,
           "tipo": "control",
           "fecha": "2026-08-11",
@@ -6024,6 +6150,22 @@
         }
       ],
       "boletines": [
+        {
+          "id": 19017646,
+          "tipo": "control",
+          "fecha": "2026-11-04",
+          "calificacion": "apta",
+          "calificacionTexto": "AGUA APTA PARA EL CONSUMO",
+          "idRed": 25668
+        },
+        {
+          "id": 19017640,
+          "tipo": "control",
+          "fecha": "2026-11-04",
+          "calificacion": "apta",
+          "calificacionTexto": "AGUA APTA PARA EL CONSUMO",
+          "idRed": 25668
+        },
         {
           "id": 18969775,
           "tipo": "control",
@@ -6785,6 +6927,14 @@
       ],
       "boletines": [
         {
+          "id": 19017733,
+          "tipo": "control",
+          "fecha": "2026-11-04",
+          "calificacion": "apta",
+          "calificacionTexto": "AGUA APTA PARA EL CONSUMO",
+          "idRed": 684
+        },
+        {
           "id": 18943673,
           "tipo": "control",
           "fecha": "2026-10-21",
@@ -7085,6 +7235,37 @@
       ],
       "boletines": [
         {
+          "id": 19026780,
+          "tipo": "control",
+          "fecha": "2026-11-09",
+          "calificacion": "apta",
+          "calificacionTexto": "AGUA APTA PARA EL CONSUMO",
+          "idRed": 698
+        },
+        {
+          "id": 19026783,
+          "tipo": "completo",
+          "fecha": "2026-10-19",
+          "calificacion": "apta",
+          "calificacionTexto": "AGUA APTA PARA EL CONSUMO",
+          "idRed": 698,
+          "parametros": [
+            {
+              "nombre": "Nitrato",
+              "valor": 2,
+              "unidad": "mg/L"
+            }
+          ]
+        },
+        {
+          "id": 19026764,
+          "tipo": "radiactividad",
+          "fecha": "2026-10-15",
+          "calificacion": "apta",
+          "calificacionTexto": "AGUA APTA PARA EL CONSUMO",
+          "idRed": 698
+        },
+        {
           "id": 18902595,
           "tipo": "control",
           "fecha": "2026-10-08",
@@ -7374,6 +7555,14 @@
         }
       ],
       "boletines": [
+        {
+          "id": 19028159,
+          "tipo": "control",
+          "fecha": "2026-11-03",
+          "calificacion": "apta",
+          "calificacionTexto": "AGUA APTA PARA EL CONSUMO",
+          "idRed": 1805
+        },
         {
           "id": 18809533,
           "tipo": "completo",
@@ -9189,6 +9378,22 @@
       ],
       "boletines": [
         {
+          "id": 19014233,
+          "tipo": "control",
+          "fecha": "2026-11-02",
+          "calificacion": "apta",
+          "calificacionTexto": "AGUA APTA PARA EL CONSUMO",
+          "idRed": 5719
+        },
+        {
+          "id": 19014222,
+          "tipo": "control",
+          "fecha": "2026-11-02",
+          "calificacion": "apta",
+          "calificacionTexto": "AGUA APTA PARA EL CONSUMO",
+          "idRed": 4741
+        },
+        {
           "id": 18977986,
           "tipo": "control",
           "fecha": "2026-10-27",
@@ -10746,6 +10951,30 @@
       ],
       "boletines": [
         {
+          "id": 19018027,
+          "tipo": "control",
+          "fecha": "2026-11-06",
+          "calificacion": "apta",
+          "calificacionTexto": "AGUA APTA PARA EL CONSUMO",
+          "idRed": 7366
+        },
+        {
+          "id": 19002171,
+          "tipo": "control",
+          "fecha": "2026-11-04",
+          "calificacion": "apta",
+          "calificacionTexto": "AGUA APTA PARA EL CONSUMO",
+          "idRed": 7368
+        },
+        {
+          "id": 19018018,
+          "tipo": "radiactividad",
+          "fecha": "2026-10-28",
+          "calificacion": "apta",
+          "calificacionTexto": "AGUA APTA PARA EL CONSUMO",
+          "idRed": 7367
+        },
+        {
           "id": 18955399,
           "tipo": "radiactividad",
           "fecha": "2026-10-14",
@@ -11434,6 +11663,14 @@
       ],
       "boletines": [
         {
+          "id": 19005513,
+          "tipo": "control",
+          "fecha": "2026-11-03",
+          "calificacion": "apta",
+          "calificacionTexto": "AGUA APTA PARA EL CONSUMO",
+          "idRed": 4561
+        },
+        {
           "id": 18961484,
           "tipo": "control",
           "fecha": "2026-10-28",
@@ -12071,6 +12308,14 @@
         }
       ],
       "boletines": [
+        {
+          "id": 19014242,
+          "tipo": "control",
+          "fecha": "2026-11-04",
+          "calificacion": "apta",
+          "calificacionTexto": "AGUA APTA PARA EL CONSUMO",
+          "idRed": 4727
+        },
         {
           "id": 18978349,
           "tipo": "control",
@@ -12874,6 +13119,14 @@
       ],
       "boletines": [
         {
+          "id": 19005502,
+          "tipo": "control",
+          "fecha": "2026-11-03",
+          "calificacion": "apta",
+          "calificacionTexto": "AGUA APTA PARA EL CONSUMO",
+          "idRed": 4624
+        },
+        {
           "id": 18743173,
           "tipo": "radiactividad",
           "fecha": "2026-09-17",
@@ -13373,6 +13626,14 @@
         }
       ],
       "boletines": [
+        {
+          "id": 19014247,
+          "tipo": "radiactividad",
+          "fecha": "2026-10-27",
+          "calificacion": "apta",
+          "calificacionTexto": "AGUA APTA PARA EL CONSUMO",
+          "idRed": 4064
+        },
         {
           "id": 18977981,
           "tipo": "control",
@@ -14828,6 +15089,21 @@
           "idRed": 2864
         },
         {
+          "id": 19013107,
+          "tipo": "completo",
+          "fecha": "2026-10-05",
+          "calificacion": "apta",
+          "calificacionTexto": "AGUA APTA PARA EL CONSUMO",
+          "idRed": 2864,
+          "parametros": [
+            {
+              "nombre": "Nitrato",
+              "valor": 3,
+              "unidad": "mg/L"
+            }
+          ]
+        },
+        {
           "id": 18733401,
           "tipo": "control",
           "fecha": "2026-09-15",
@@ -15086,6 +15362,21 @@
           "calificacion": "apta",
           "calificacionTexto": "AGUA APTA PARA EL CONSUMO",
           "idRed": 2865
+        },
+        {
+          "id": 19013102,
+          "tipo": "completo",
+          "fecha": "2026-10-05",
+          "calificacion": "apta",
+          "calificacionTexto": "AGUA APTA PARA EL CONSUMO",
+          "idRed": 2865,
+          "parametros": [
+            {
+              "nombre": "Nitrato",
+              "valor": 3,
+              "unidad": "mg/L"
+            }
+          ]
         },
         {
           "id": 18889482,
@@ -15617,6 +15908,14 @@
         }
       ],
       "boletines": [
+        {
+          "id": 19012772,
+          "tipo": "control",
+          "fecha": "2026-11-03",
+          "calificacion": "apta",
+          "calificacionTexto": "AGUA APTA PARA EL CONSUMO",
+          "idRed": 21451
+        },
         {
           "id": 18888497,
           "tipo": "control",
@@ -16626,6 +16925,14 @@
           "calificacion": "apta",
           "calificacionTexto": "AGUA APTA PARA EL CONSUMO",
           "idRed": 213
+        },
+        {
+          "id": 19007211,
+          "tipo": "control",
+          "fecha": "2026-10-26",
+          "calificacion": "apta",
+          "calificacionTexto": "AGUA APTA PARA EL CONSUMO",
+          "idRed": 8543
         },
         {
           "id": 18832299,
@@ -24383,6 +24690,14 @@
       ],
       "boletines": [
         {
+          "id": 19022069,
+          "tipo": "control",
+          "fecha": "2026-10-23",
+          "calificacion": "apta",
+          "calificacionTexto": "AGUA APTA PARA EL CONSUMO",
+          "idRed": 192
+        },
+        {
           "id": 18694497,
           "tipo": "control",
           "fecha": "2026-09-10",
@@ -28893,6 +29208,14 @@
       ],
       "boletines": [
         {
+          "id": 19007237,
+          "tipo": "control",
+          "fecha": "2026-10-26",
+          "calificacion": "apta",
+          "calificacionTexto": "AGUA APTA PARA EL CONSUMO",
+          "idRed": 25533
+        },
+        {
           "id": 18950469,
           "tipo": "control",
           "fecha": "2026-10-22",
@@ -32391,16 +32714,6 @@
   ],
   "fallidos": [
     {
-      "ine": "03011",
-      "nombre": "Alfàs del Pi (l')",
-      "motivo": "The operation was aborted due to timeout"
-    },
-    {
-      "ine": "03018",
-      "nombre": "Altea",
-      "motivo": "The operation was aborted due to timeout"
-    },
-    {
       "ine": "03082",
       "nombre": "Jávea/Xàbia",
       "motivo": "The operation was aborted due to timeout"
@@ -32413,12 +32726,12 @@
   ],
   "stats": {
     "banda": 59,
-    "leidos": 55,
-    "fallidos": 4,
+    "leidos": 57,
+    "fallidos": 2,
     "redes": 187,
-    "boletines": 3341,
+    "boletines": 3377,
     "sinCalificacionLeida": 0,
-    "detallesDescargados": 9,
-    "peticiones": 256
+    "detallesDescargados": 5,
+    "peticiones": 254
   }
 }

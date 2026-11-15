@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-14T11:55:03.804Z",
+  "generatedAt": "2026-11-15T06:17:59.332Z",
   "windowDays": 30,
   "articles": [
     {
@@ -511,72 +511,38 @@
         "opinionFraction": 0
       },
       "score": 3
-    },
-    {
-      "articleId": "iasru4",
-      "articleFingerprint": "1ay8nz0",
-      "outlet": "Periòdic del Camp de Túria",
-      "outletHost": "infoturia.com",
-      "url": "https://www.infoturia.com/riba-roja-de-turia/86744-una-fira-de-10-amb-50-negocis-i-lincentiu-del-bo-1010.html",
-      "date": "2026-10-15T14:58:20.000Z",
-      "indicators": {
-        "localCoverage": true,
-        "datedArticle": true,
-        "municipalSourceMatch": null,
-        "corroboratedAcrossOutlets": null,
-        "factualClaimsPresent": true,
-        "opinionFraction": 0
-      },
-      "score": 4
-    },
-    {
-      "articleId": "qvuwag",
-      "articleFingerprint": "1yzxzcj",
-      "outlet": "Ayuntamiento de Riba-roja de Túria",
-      "outletHost": "ribarroja.es",
-      "url": "https://www.ribarroja.es/es/noticia/riba-roja-presenta-la-fira-de-10-con-una-edici%C3%B3n-renovada%2C-m%C3%A1s-de-50-negocios-y-el-incentivo-del-bono-10%2B10",
-      "date": "2026-10-15T12:07:23.000Z",
-      "indicators": {
-        "localCoverage": false,
-        "datedArticle": true,
-        "municipalSourceMatch": false,
-        "corroboratedAcrossOutlets": null,
-        "factualClaimsPresent": true,
-        "opinionFraction": 0
-      },
-      "score": 3
     }
   ],
   "outlets": [
     {
       "outlet": "Ayuntamiento de Riba-roja de Túria",
       "outletHost": "ribarroja.es",
-      "articleCount": 18,
+      "articleCount": 17,
       "verdictCounts": {
         "verificado": 0,
         "parcial": 1,
         "contradicho": 0,
-        "sin-datos": 25,
+        "sin-datos": 19,
         "promesa-repetida": 0
       },
-      "checkedClaims": 3,
-      "meanTrustScore": 1.78,
+      "checkedClaims": 2,
+      "meanTrustScore": 1.71,
       "verifiedRatio": 0,
       "contradictedRatio": null
     },
     {
       "outlet": "Periòdic del Camp de Túria",
       "outletHost": "infoturia.com",
-      "articleCount": 8,
+      "articleCount": 7,
       "verdictCounts": {
         "verificado": 0,
         "parcial": 0,
         "contradicho": 0,
-        "sin-datos": 16,
+        "sin-datos": 15,
         "promesa-repetida": 0
       },
       "checkedClaims": 8,
-      "meanTrustScore": 3,
+      "meanTrustScore": 2.86,
       "verifiedRatio": 0,
       "contradictedRatio": null
     },
@@ -630,7 +596,7 @@
     }
   ],
   "builtFrom": {
-    "plenos-agendas.json": "1d129fd78919",
+    "plenos-agendas.json": "9de8de41eb9d",
     "press-claims-verified.json": "d4654fd232f4",
     "press.json": "02590cbb713e",
     "promises.json": "d0fd2949af24"
