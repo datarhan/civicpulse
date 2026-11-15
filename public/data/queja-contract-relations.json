@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-14T11:55:04.369Z",
+  "generatedAt": "2026-11-15T11:42:19.381Z",
   "source": "queja-contract-relations engine v1 (deterministic)",
   "stats": {
     "frozen": false,
@@ -649,7 +649,7 @@
   ],
   "builtFrom": {
     "promises.json": "d0fd2949af24",
-    "quejas.json": "782f3a61a4d2",
+    "quejas.json": "7ad06a8b7c1d",
     "tender-geo.json": "64f28327f108",
     "tenders.json": "a480275f3cd1"
   }

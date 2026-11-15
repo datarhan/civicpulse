@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-15T06:17:59.332Z",
+  "generatedAt": "2026-11-15T11:42:18.667Z",
   "windowDays": 30,
   "articles": [
     {
@@ -494,39 +494,22 @@
         "opinionFraction": 0
       },
       "score": 4
-    },
-    {
-      "articleId": "1tg7jey",
-      "articleFingerprint": "y87p2g",
-      "outlet": "Ayuntamiento de Riba-roja de Túria",
-      "outletHost": "ribarroja.es",
-      "url": "https://www.ribarroja.es/es/noticia/riba-roja-inicia-un-nuevo-curso-del-programa-municipal-para-personas-mayores-con-623-plazas-en-diferentes-actividades-deportivas%2C-talleres-creativos-y-propuestas-de-bienestar",
-      "date": "2026-10-16T11:22:48.000Z",
-      "indicators": {
-        "localCoverage": false,
-        "datedArticle": true,
-        "municipalSourceMatch": null,
-        "corroboratedAcrossOutlets": null,
-        "factualClaimsPresent": true,
-        "opinionFraction": 0
-      },
-      "score": 3
     }
   ],
   "outlets": [
     {
       "outlet": "Ayuntamiento de Riba-roja de Túria",
       "outletHost": "ribarroja.es",
-      "articleCount": 17,
+      "articleCount": 16,
       "verdictCounts": {
         "verificado": 0,
         "parcial": 1,
         "contradicho": 0,
-        "sin-datos": 19,
+        "sin-datos": 18,
         "promesa-repetida": 0
       },
       "checkedClaims": 2,
-      "meanTrustScore": 1.71,
+      "meanTrustScore": 1.63,
       "verifiedRatio": 0,
       "contradictedRatio": null
     },
@@ -596,7 +579,7 @@
     }
   ],
   "builtFrom": {
-    "plenos-agendas.json": "9de8de41eb9d",
+    "plenos-agendas.json": "3a8afb2b182a",
     "press-claims-verified.json": "d4654fd232f4",
     "press.json": "02590cbb713e",
     "promises.json": "d0fd2949af24"
