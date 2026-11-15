@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-14T11:48:01.700Z",
+  "generatedAt": "2026-11-15T12:16:35.906Z",
   "source": {
     "platform": "OSM Overpass API",
     "endpoint": "https://overpass-api.de/api/interpreter",
@@ -5212,8 +5212,8 @@
       "slug": "carretera-de-cheste-a-loriguilla",
       "kind": "carretera",
       "point": [
-        39.4892611,
-        -0.6156402
+        39.4856506,
+        -0.6020348
       ]
     },
     {
