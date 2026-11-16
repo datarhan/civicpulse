@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-15T12:20:25.381Z",
+  "generatedAt": "2026-11-16T13:20:35.189Z",
   "source": {
     "origin": "https://ribaocupacio.portalemp.com",
     "platform": "portalemp — ribaocupacio · Agència de Col·locació (ADL), Ajuntament de Riba-roja de Túria",
@@ -9,7 +9,7 @@
     "total": 44,
     "openTotal": 43,
     "inRibaRoja": 31,
-    "closingSoon": 8,
+    "closingSoon": 9,
     "withDetail": 44,
     "byMonth": {
       "2026-11": 5,
@@ -168,6 +168,10 @@
           {
             "label": "Salario",
             "value": "SEGÚN CONVENIO"
+          },
+          {
+            "label": "Requiere vehículo propio",
+            "value": "Sí"
           }
         ],
         "tipoContrato": "CONTRATO INDEFINIDO",
@@ -179,6 +183,7 @@
         "jornada": "Completa Turnos: Turno mañana",
         "horario": "DE 7 A.M A 3 P.M.",
         "salario": "SEGÚN CONVENIO",
+        "vehiculo": "Sí",
         "ocupaciones": []
       }
     },
@@ -1106,6 +1111,10 @@
           {
             "label": "Funciones",
             "value": "La persona seleccionada tendrá como misión realizar el control de calidad en obra acudiendo con la furgoneta de empresa, siguiendo la ruta marcada por el responsable, realizando las siguientes funciones: - Realización de ensayos de materiales en obra según normativa. - Toma de muestras. - Registro de datos de las muestras recogidas. - Recogida de muestras de materiales de obra (hormigón, morteros, aceros, ladrillos, suelos, zahorras, etc.). - Categorización de las muestras obtenidas. - Transporte de muestras recogidas al laboratorio para su posterior análisis. - Mantenimiento básico de equipos y vehículos. - Apoyo en el laboratorio descargando, cargando y desmoldando probetas. Orden y limpieza."
+          },
+          {
+            "label": "Requiere vehículo propio",
+            "value": "Sí"
           }
         ],
         "tipoContrato": "CONTRATO INDEFINIDO",
@@ -1118,6 +1127,7 @@
         "horario": "Jornada de lunes a viernes de 08:00h. a 18:00h.",
         "salario": "Según convenio + variable",
         "funciones": "La persona seleccionada tendrá como misión realizar el control de calidad en obra acudiendo con la furgoneta de empresa, siguiendo la ruta marcada por el responsable, realizando las siguientes funciones: - Realización de ensayos de materiales en obra según normativa. - Toma de muestras. - Registro de datos de las muestras recogidas. - Recogida de muestras de materiales de obra (hormigón, morteros, aceros, ladrillos, suelos, zahorras, etc.). - Categorización de las muestras obtenidas. - Transporte de muestras recogidas al laboratorio para su posterior análisis. - Mantenimiento básico de equipos y vehículos. - Apoyo en el laboratorio descargando, cargando y desmoldando probetas. Orden y limpieza.",
+        "vehiculo": "Sí",
         "ocupaciones": []
       }
     },

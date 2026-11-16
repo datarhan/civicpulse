@@ -1,14 +1,14 @@
 {
-  "generatedAt": "2026-11-15T12:22:04.398Z",
+  "generatedAt": "2026-11-16T13:23:09.300Z",
   "source": {
-    "tenders": "2026-11-15T12:12:41.179Z",
-    "geo": "2026-11-15T12:15:32.607Z"
+    "tenders": "2026-11-16T13:06:12.364Z",
+    "geo": "2026-11-16T13:09:46.047Z"
   },
   "universe": {
-    "totalContracts": 702,
-    "totalAmount": 125901076.23999994,
+    "totalContracts": 706,
+    "totalAmount": 126229708.35999995,
     "locatedContracts": 40,
-    "locatedAmount": 3469216.1400000006,
+    "locatedAmount": 3469216.14,
     "situatedContracts": 116,
     "situatedAmount": 8809579.44,
     "danaContracts": 9,
@@ -18,7 +18,7 @@
     "dateMin": "2018-01-18",
     "dateMax": "2026-05-27",
     "totalDateMin": "2017-07-03",
-    "totalDateMax": "2026-11-03"
+    "totalDateMax": "2026-11-11"
   },
   "zones": [
     {
@@ -1740,6 +1740,27 @@
       }
     },
     {
+      "id": "462533",
+      "zones": [],
+      "matchedAlias": {},
+      "dana": false,
+      "amount": 8530.85,
+      "amountKind": "final",
+      "date": "2019-06-05",
+      "contractType": "construction",
+      "categoryTitle": "other",
+      "point": [
+        39.5460249,
+        -0.5806981
+      ],
+      "place": {
+        "kind": "poi",
+        "name": "Polideportivo Municipal",
+        "matchedText": "Polideportivo Municipal",
+        "sourceId": "way-39586076"
+      }
+    },
+    {
       "id": "9895895",
       "zones": [],
       "matchedAlias": {},
@@ -1761,24 +1782,28 @@
       }
     },
     {
-      "id": "462533",
-      "zones": [],
-      "matchedAlias": {},
+      "id": "1891608#4538711",
+      "zones": [
+        "el-pou-d-escoto"
+      ],
+      "matchedAlias": {
+        "el-pou-d-escoto": "pou d escoto"
+      },
       "dana": false,
-      "amount": 8530.85,
+      "amount": 10471.95,
       "amountKind": "final",
-      "date": "2019-06-05",
-      "contractType": "construction",
-      "categoryTitle": "other",
+      "date": "2023-04-26",
+      "contractType": "supplies",
+      "categoryTitle": "electrical",
       "point": [
-        39.5460249,
-        -0.5806981
+        39.5484628,
+        -0.5909944
       ],
       "place": {
-        "kind": "poi",
-        "name": "Polideportivo Municipal",
-        "matchedText": "Polideportivo Municipal",
-        "sourceId": "way-39586076"
+        "kind": "urbanizacion",
+        "name": "el Pou d'Escoto",
+        "matchedText": "el Pou d'Escoto",
+        "sourceId": "el-pou-d-escoto"
       }
     },
     {
@@ -2004,31 +2029,6 @@
       }
     },
     {
-      "id": "1891608#4538711",
-      "zones": [
-        "el-pou-d-escoto"
-      ],
-      "matchedAlias": {
-        "el-pou-d-escoto": "pou d escoto"
-      },
-      "dana": false,
-      "amount": 10471.95,
-      "amountKind": "final",
-      "date": "2023-04-26",
-      "contractType": "supplies",
-      "categoryTitle": "electrical",
-      "point": [
-        39.5484628,
-        -0.5909944
-      ],
-      "place": {
-        "kind": "urbanizacion",
-        "name": "el Pou d'Escoto",
-        "matchedText": "el Pou d'Escoto",
-        "sourceId": "el-pou-d-escoto"
-      }
-    },
-    {
       "id": "2460010",
       "zones": [],
       "matchedAlias": {},
@@ -2243,31 +2243,6 @@
       }
     },
     {
-      "id": "94467",
-      "zones": [
-        "santa-rosa"
-      ],
-      "matchedAlias": {
-        "santa-rosa": "santa rosa"
-      },
-      "dana": false,
-      "amount": 37848,
-      "amountKind": "final",
-      "date": "2018-01-26",
-      "contractType": "services",
-      "categoryTitle": "architecture",
-      "point": [
-        39.5508312,
-        -0.5333969
-      ],
-      "place": {
-        "kind": "urbanizacion",
-        "name": "Santa Rosa",
-        "matchedText": "Santa Rosa",
-        "sourceId": "santa-rosa"
-      }
-    },
-    {
       "id": "1892105#6858401",
       "zones": [
         "urbanitzacio-la-reva"
@@ -2336,6 +2311,52 @@
         "name": "Col·legi d'Educació Infantil i Primària Camp de Túria",
         "matchedText": "Col·legi d'Educació Infantil i Primària Camp de Túria",
         "sourceId": "way-1242095512"
+      }
+    },
+    {
+      "id": "94467",
+      "zones": [
+        "santa-rosa"
+      ],
+      "matchedAlias": {
+        "santa-rosa": "santa rosa"
+      },
+      "dana": false,
+      "amount": 37848,
+      "amountKind": "final",
+      "date": "2018-01-26",
+      "contractType": "services",
+      "categoryTitle": "architecture",
+      "point": [
+        39.5508312,
+        -0.5333969
+      ],
+      "place": {
+        "kind": "urbanizacion",
+        "name": "Santa Rosa",
+        "matchedText": "Santa Rosa",
+        "sourceId": "santa-rosa"
+      }
+    },
+    {
+      "id": "329628",
+      "zones": [],
+      "matchedAlias": {},
+      "dana": false,
+      "amount": 24916.32,
+      "amountKind": "final",
+      "date": "2018-01-24",
+      "contractType": "construction",
+      "categoryTitle": "other",
+      "point": [
+        39.5504954,
+        -0.5811206
+      ],
+      "place": {
+        "kind": "poi",
+        "name": "Col·legi d'Educació Infantil i Primària Mas d’Escoto",
+        "matchedText": "Col·legi d'Educació Infantil i Primària Mas d’Escoto",
+        "sourceId": "way-903588096"
       }
     },
     {
@@ -2907,31 +2928,6 @@
       }
     },
     {
-      "id": "1999#918474",
-      "zones": [
-        "el-molinet"
-      ],
-      "matchedAlias": {
-        "el-molinet": "molinet"
-      },
-      "dana": false,
-      "amount": 26285.35,
-      "amountKind": "final",
-      "date": "2019-06-05",
-      "contractType": "construction",
-      "categoryTitle": "construction",
-      "point": [
-        39.5557928,
-        -0.5531642
-      ],
-      "place": {
-        "kind": "street",
-        "name": "Passeig del Molinet",
-        "matchedText": "Passeig del Molinet",
-        "sourceId": "passeig-del-molinet"
-      }
-    },
-    {
       "id": "77637",
       "zones": [
         "urbanitzacio-entretarongers"
@@ -3403,6 +3399,31 @@
       "place": null
     },
     {
+      "id": "1999#918474",
+      "zones": [
+        "el-molinet"
+      ],
+      "matchedAlias": {
+        "el-molinet": "molinet"
+      },
+      "dana": false,
+      "amount": 26285.35,
+      "amountKind": "final",
+      "date": "2019-06-05",
+      "contractType": "construction",
+      "categoryTitle": "construction",
+      "point": [
+        39.5557928,
+        -0.5531642
+      ],
+      "place": {
+        "kind": "street",
+        "name": "Passeig del Molinet",
+        "matchedText": "Passeig del Molinet",
+        "sourceId": "passeig-del-molinet"
+      }
+    },
+    {
       "id": "29500#1487220",
       "zones": [],
       "matchedAlias": {},
@@ -3463,27 +3484,6 @@
         "name": "Col·legi d'Educació Infantil i Primària Cervantes",
         "matchedText": "Col·legi d'Educació Infantil i Primària Cervantes",
         "sourceId": "way-1097452806"
-      }
-    },
-    {
-      "id": "329628",
-      "zones": [],
-      "matchedAlias": {},
-      "dana": false,
-      "amount": 24916.32,
-      "amountKind": "final",
-      "date": "2018-01-24",
-      "contractType": "construction",
-      "categoryTitle": "other",
-      "point": [
-        39.5504954,
-        -0.5811206
-      ],
-      "place": {
-        "kind": "poi",
-        "name": "Col·legi d'Educació Infantil i Primària Mas d’Escoto",
-        "matchedText": "Col·legi d'Educació Infantil i Primària Mas d’Escoto",
-        "sourceId": "way-903588096"
       }
     },
     {
@@ -3593,11 +3593,11 @@
     }
   ],
   "builtFrom": {
-    "civic-poi.json": "70170b1e5b92",
+    "civic-poi.json": "92e3bc3ef782",
     "gazetteer-supplement.json": "b3013a1e0efe",
-    "geo.json": "022c164ee127",
+    "geo.json": "63b630cc6957",
     "place-overrides.json": "5878849f1684",
-    "streets.json": "321c615e7b25",
-    "tenders.json": "d7dc6e277ab9"
+    "streets.json": "fe086828cb1b",
+    "tenders.json": "af08bd6d1b69"
   }
 }

@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-16T12:20:52.148Z",
+  "generatedAt": "2026-11-16T13:23:10.659Z",
   "windowDays": 14,
   "items": [
     {
@@ -27,6 +27,13 @@
       "kind": "pleno-item",
       "refId": "51k7yx:4",
       "label": "Hacienda · INTERVENCIÓN, Aprobación Reconocimiento Extrajudicial de Créditos 28/2026 Relación 12026000001 (Sin Dictaminar)",
+      "date": "2026-11-02",
+      "keyword": ""
+    },
+    {
+      "kind": "pleno-item",
+      "refId": "51k7yx:5",
+      "label": "Educación · EDUCACIÓN, Felicitación de la corporación municipal al alumnado con expedientes académicos de excelencia del curso 25/26",
       "date": "2026-11-02",
       "keyword": ""
     },
@@ -66,34 +73,18 @@
       "keyword": ""
     }
   ],
-  "covered": [
-    {
-      "kind": "pleno-item",
-      "refId": "51k7yx:5",
-      "label": "Educación · EDUCACIÓN, Felicitación de la corporación municipal al alumnado con expedientes académicos de excelencia del curso 25/26",
-      "date": "2026-11-02",
-      "articleId": "1a3qtdm",
-      "outlet": "elperiodic.com",
-      "shared": [
-        "alumnado",
-        "expedientes",
-        "academicos",
-        "excelencia",
-        "curso"
-      ]
-    }
-  ],
+  "covered": [],
   "stats": {
-    "plenoItemsUncovered": 7,
+    "plenoItemsUncovered": 8,
     "promisesUncovered": 2,
     "candidatesExamined": 10,
     "tramitesExcluidos": 3,
-    "titularesConsiderados": 7
+    "titularesConsiderados": 8
   },
   "builtFrom": {
-    "plenos-agendas.json": "312f5d677499",
+    "plenos-agendas.json": "c8897bf969da",
     "press-claims-verified.json": "08ffc2a2899d",
-    "press.json": "db036990d305",
+    "press.json": "fa4cb946d4fe",
     "promises.json": "78479b1377ce"
   }
 }

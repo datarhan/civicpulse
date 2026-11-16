@@ -1,12 +1,12 @@
 {
-  "generatedAt": "2026-11-15T12:21:53.290Z",
+  "generatedAt": "2026-11-16T13:22:51.966Z",
   "frozen": false,
   "frozenUntil": null,
   "notice": "Sugerencias generadas automáticamente. Requieren aprobación humana antes de aplicarse al estado de cada promesa.",
   "counts": {
-    "total": 13,
+    "total": 14,
     "byProposedStatus": {
-      "documentada": 11,
+      "documentada": 12,
       "en-progreso": 2
     },
     "llmEvidence": 0
@@ -42,7 +42,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-11-15T12:21:53.213Z"
+      "generatedAt": "2026-11-16T13:22:51.884Z"
     },
     {
       "promiseId": "ac-psoe-jfg7bc",
@@ -61,7 +61,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-11-15T12:21:53.213Z"
+      "generatedAt": "2026-11-16T13:22:51.884Z"
     },
     {
       "promiseId": "ac-psoe-1ah9zqk",
@@ -80,7 +80,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-11-15T12:21:53.213Z"
+      "generatedAt": "2026-11-16T13:22:51.884Z"
     },
     {
       "promiseId": "ac-psoe-ppa53a",
@@ -88,7 +88,7 @@
       "confidence": 0,
       "reasoning": [],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-11-15T12:21:53.213Z"
+      "generatedAt": "2026-11-16T13:22:51.884Z"
     },
     {
       "promiseId": "ac-psoe-1m04lfw",
@@ -96,7 +96,7 @@
       "confidence": 0,
       "reasoning": [],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-11-15T12:21:53.213Z"
+      "generatedAt": "2026-11-16T13:22:51.884Z"
     },
     {
       "promiseId": "ac-psoe-sysee8",
@@ -115,7 +115,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-11-15T12:21:53.213Z"
+      "generatedAt": "2026-11-16T13:22:51.884Z"
     },
     {
       "promiseId": "ac-psoe-1ryndd8",
@@ -149,10 +149,21 @@
             "rehabilitacion",
             "fachada"
           ]
+        },
+        {
+          "url": "https://news.google.com/rss/articles/CBMihwJBVV95cUxQTWZlUzNRSkVxak9ndTZ3X05yZkphYVpUdUxtcklDb0o5amU2bDBEUFVVR21IQmpxNjROSEVON1pab1p0MkdXa1hQS0p2bkZFQWR0TmxubVo3ZDN2elF5TGM4WDJZdl9sQWxsbWVTLUdxM05mVWV1bG9KeHpfdEQ3eXZ6d1gyVnl3ZFhpY3FQYmVtdXY1WlB1LW9kcDIxRm9fNS1XNGkwaWNOT2pWakhUekRXalpMLU5BbTJRclh3UU0xN2ZJdkJlME5VUndKc3ZvcGY4bW1zOGctOGMxUnZCMUtmWDVuUWVQQUd6YmFpdmJVMHcxclpJRXpyNkRuTDFQQmhIeVBrVQ?oc=5",
+          "date": "2026-11-16",
+          "quote": "Compromís-Front Valencià reivindica ayudas de 200 euros mensuales por hijo y permisos de cuidados entre amistades",
+          "kind": "press",
+          "publisher": "Ultima Hora",
+          "matchedKeywords": [
+            "ayuda",
+            "euro"
+          ]
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-11-15T12:21:53.213Z"
+      "generatedAt": "2026-11-16T13:22:51.884Z"
     },
     {
       "promiseId": "ac-psoe-43brfs",
@@ -217,7 +228,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-11-15T12:21:53.213Z"
+      "generatedAt": "2026-11-16T13:22:51.884Z"
     },
     {
       "promiseId": "ac-psoe-17y448o",
@@ -239,6 +250,17 @@
             "dinamizar",
             "comercio",
             "local"
+          ]
+        },
+        {
+          "url": "https://news.google.com/rss/articles/CBMihwJBVV95cUxQTWZlUzNRSkVxak9ndTZ3X05yZkphYVpUdUxtcklDb0o5amU2bDBEUFVVR21IQmpxNjROSEVON1pab1p0MkdXa1hQS0p2bkZFQWR0TmxubVo3ZDN2elF5TGM4WDJZdl9sQWxsbWVTLUdxM05mVWV1bG9KeHpfdEQ3eXZ6d1gyVnl3ZFhpY3FQYmVtdXY1WlB1LW9kcDIxRm9fNS1XNGkwaWNOT2pWakhUekRXalpMLU5BbTJRclh3UU0xN2ZJdkJlME5VUndKc3ZvcGY4bW1zOGctOGMxUnZCMUtmWDVuUWVQQUd6YmFpdmJVMHcxclpJRXpyNkRuTDFQQmhIeVBrVQ?oc=5",
+          "date": "2026-11-16",
+          "quote": "Compromís-Front Valencià reivindica ayudas de 200 euros mensuales por hijo y permisos de cuidados entre amistades",
+          "kind": "press",
+          "publisher": "Ultima Hora",
+          "matchedKeywords": [
+            "ayuda",
+            "euro"
           ]
         },
         {
@@ -275,7 +297,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-11-15T12:21:53.213Z"
+      "generatedAt": "2026-11-16T13:22:51.884Z"
     },
     {
       "promiseId": "ac-psoe-1bkbwjs",
@@ -319,7 +341,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-11-15T12:21:53.213Z"
+      "generatedAt": "2026-11-16T13:22:51.884Z"
     },
     {
       "promiseId": "ac-psoe-1xeq50",
@@ -354,25 +376,14 @@
           ]
         },
         {
-          "url": "https://news.google.com/rss/articles/CBMi5gFBVV95cUxPcjJEMFZZWS1hZzd0Ymxqdi1semVpSTJUY0NFOUdGcnQ0R1hpV2NYamJKTTY4WGVDMFkwSGlzLUpoOHhzZnBfWWtKZ1VwRjlKT0Q2NzJwS1ZRbEtsSUpaaTRlLUEtZFJiSVNJU3hWa2MteHRYakdXTWxtNVdLVGpNX0RsdHZvUDU4Ykx0RTM1cmhFSW5wNU0teC1oOEJkVTVwNzVWdmUwZzRaV3JDU0R1TENxSDVQcHhoeFNMODlIdktyVFF2U0NYN3U1WV9EbTQzOXpfRVBGUlZjb20wSXhmZldmcHJFdw?oc=5",
-          "date": "2026-11-13",
-          "quote": "Riba-roja de Túria felicita al alumnado de la localidad con expedientes académicos de excelencia durante el curso 2025-2026",
+          "url": "https://news.google.com/rss/articles/CBMihwJBVV95cUxQTWZlUzNRSkVxak9ndTZ3X05yZkphYVpUdUxtcklDb0o5amU2bDBEUFVVR21IQmpxNjROSEVON1pab1p0MkdXa1hQS0p2bkZFQWR0TmxubVo3ZDN2elF5TGM4WDJZdl9sQWxsbWVTLUdxM05mVWV1bG9KeHpfdEQ3eXZ6d1gyVnl3ZFhpY3FQYmVtdXY1WlB1LW9kcDIxRm9fNS1XNGkwaWNOT2pWakhUekRXalpMLU5BbTJRclh3UU0xN2ZJdkJlME5VUndKc3ZvcGY4bW1zOGctOGMxUnZCMUtmWDVuUWVQQUd6YmFpdmJVMHcxclpJRXpyNkRuTDFQQmhIeVBrVQ?oc=5",
+          "date": "2026-11-16",
+          "quote": "Compromís-Front Valencià reivindica ayudas de 200 euros mensuales por hijo y permisos de cuidados entre amistades",
           "kind": "press",
-          "publisher": "elperiodic.com",
-          "matchedKeywords": [
-            "2025",
-            "localidad"
-          ]
-        },
-        {
-          "url": "https://www.infoturia.com/riba-roja-de-turia/86707-riba-roja-aprova-el-compte-de-2025-amb-un-superavit-de-45-milions-deuros.html",
-          "date": "2026-10-13",
-          "quote": "Riba-roja aprova el compte de 2025 amb un superàvit de 4’5 milions d’euros",
-          "kind": "press",
-          "publisher": "Periòdic del Camp de Túria",
+          "publisher": "Ultima Hora",
           "matchedKeywords": [
             "euro",
-            "2025"
+            "entre"
           ]
         },
         {
@@ -385,10 +396,21 @@
             "euro",
             "2025"
           ]
+        },
+        {
+          "url": "https://www.ribarroja.es/es/noticia/riba-roja-destina-104.605-euros-al-cheque-beb%C3%A9-%2B25-para-apoyar-a-las-familias-y-dinamizar-el-comercio-local",
+          "date": "2026-10-01",
+          "quote": "Riba-roja destina 104.605 euros al Cheque Bebé +25 para apoyar a las familias y dinamizar el comercio local",
+          "kind": "press",
+          "publisher": "Ayuntamiento de Riba-roja de Túria",
+          "matchedKeywords": [
+            "euro",
+            "local"
+          ]
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-11-15T12:21:53.213Z"
+      "generatedAt": "2026-11-16T13:22:51.884Z"
     },
     {
       "promiseId": "ac-psoe-1kui43c",
@@ -410,7 +432,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-11-15T12:21:53.213Z"
+      "generatedAt": "2026-11-16T13:22:51.884Z"
     },
     {
       "promiseId": "ac-psoe-1t88ans",
@@ -436,17 +458,6 @@
           ]
         },
         {
-          "url": "https://news.google.com/rss/articles/CBMi5gFBVV95cUxPcjJEMFZZWS1hZzd0Ymxqdi1semVpSTJUY0NFOUdGcnQ0R1hpV2NYamJKTTY4WGVDMFkwSGlzLUpoOHhzZnBfWWtKZ1VwRjlKT0Q2NzJwS1ZRbEtsSUpaaTRlLUEtZFJiSVNJU3hWa2MteHRYakdXTWxtNVdLVGpNX0RsdHZvUDU4Ykx0RTM1cmhFSW5wNU0teC1oOEJkVTVwNzVWdmUwZzRaV3JDU0R1TENxSDVQcHhoeFNMODlIdktyVFF2U0NYN3U1WV9EbTQzOXpfRVBGUlZjb20wSXhmZldmcHJFdw?oc=5",
-          "date": "2026-11-13",
-          "quote": "Riba-roja de Túria felicita al alumnado de la localidad con expedientes académicos de excelencia durante el curso 2025-2026",
-          "kind": "press",
-          "publisher": "elperiodic.com",
-          "matchedKeywords": [
-            "2025",
-            "2026"
-          ]
-        },
-        {
           "url": "https://www.infoturia.com/riba-roja-de-turia/87032-riba-roja-assigna-140-000-euros-als-clubs-i-per-a-financar-les-seues-activitats.html",
           "date": "2026-11-02",
           "quote": "Riba-roja assigna 140.000 euros als clubs i per a finançar les seues activitats",
@@ -459,7 +470,50 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-11-15T12:21:53.213Z"
+      "generatedAt": "2026-11-16T13:22:51.884Z"
+    },
+    {
+      "promiseId": "ac-psoe-168xzn8",
+      "proposedStatus": "documentada",
+      "confidence": 0.4,
+      "reasoning": [
+        {
+          "url": "https://www.ribarroja.es/es/noticia/riba-roja-de-t%C3%BAria-construir%C3%A1-un-m%C3%A1ximo-de-40-viviendas-de-protecci%C3%B3n-p%C3%BAblica-y-dar%C3%A1-prioridad-a-los-vecinos-y-las-vecinas-que-perdieron-sus-casas-por-la-dana-de-2024",
+          "date": "2026-11-09",
+          "quote": "Riba-roja de Túria construirá un máximo de 40 viviendas de protección pública y dará prioridad a los vecinos y las vecinas que perdieron sus casas por la Dana de 2024",
+          "kind": "press",
+          "publisher": "Ayuntamiento de Riba-roja de Túria",
+          "matchedKeywords": [
+            "vivienda",
+            "proteccion",
+            "publica",
+            "prioridad",
+            "dana",
+            "construira",
+            "maximo",
+            "dara",
+            "vecino",
+            "vecina",
+            "perdieron",
+            "casa",
+            "2024"
+          ]
+        },
+        {
+          "url": "https://www.infoturia.com/riba-roja-de-turia/87154-riba-roja-construira-40-vpp-amb-prioritat-als-veins-que-van-perdre-la-casa-en-la-dana.html",
+          "date": "2026-11-09",
+          "quote": "Riba-roja construirà 40 VPP amb prioritat als veïns que van perdre la casa en la dana",
+          "kind": "press",
+          "publisher": "Periòdic del Camp de Túria",
+          "matchedKeywords": [
+            "dana",
+            "construira",
+            "casa"
+          ]
+        }
+      ],
+      "requiresHumanApproval": true,
+      "generatedAt": "2026-11-16T13:22:51.884Z"
     }
   ],
   "llmEvidence": [],

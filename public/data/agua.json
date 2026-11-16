@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-16T05:49:57.932Z",
+  "generatedAt": "2026-11-16T13:22:51.307Z",
   "consultadoEl": "2026-11-16",
   "fuente": {
     "nombre": "SINAC · Sistema de Información Nacional de Aguas de Consumo (Ministerio de Sanidad)",
@@ -618,9 +618,9 @@
         {
           "codigo": "045",
           "nombre": "Cloro libre residual",
-          "valor": 0.7,
+          "valor": 0.6,
           "unidad": "mg/L",
-          "fecha": "2026-11-04"
+          "fecha": "2026-11-11"
         },
         {
           "codigo": "046",
@@ -662,7 +662,7 @@
           "nombre": "PH",
           "valor": 7.5,
           "unidad": "Unidades pH",
-          "fecha": "2026-11-04"
+          "fecha": "2026-11-11"
         },
         {
           "codigo": "052",
@@ -683,7 +683,7 @@
           "nombre": "Turbidez",
           "valor": 0,
           "unidad": "UNF",
-          "fecha": "2026-11-04"
+          "fecha": "2026-11-11"
         },
         {
           "codigo": "055",
@@ -697,21 +697,21 @@
           "nombre": "Color",
           "valor": 0,
           "unidad": "mg Pt-Co/L",
-          "fecha": "2026-11-04"
+          "fecha": "2026-11-11"
         },
         {
           "codigo": "057",
           "nombre": "Olor",
           "valor": 1,
           "unidad": "In. Dil.",
-          "fecha": "2026-11-04"
+          "fecha": "2026-11-11"
         },
         {
           "codigo": "058",
           "nombre": "Sabor",
           "valor": 2,
           "unidad": "In. Dil.",
-          "fecha": "2026-11-04"
+          "fecha": "2026-11-11"
         },
         {
           "codigo": "064",
@@ -5816,9 +5816,9 @@
         {
           "codigo": "045",
           "nombre": "Cloro libre residual",
-          "valor": 0.7,
+          "valor": 0.5,
           "unidad": "mg/L",
-          "fecha": "2026-11-04"
+          "fecha": "2026-11-11"
         },
         {
           "codigo": "046",
@@ -5860,7 +5860,7 @@
           "nombre": "PH",
           "valor": 7.4,
           "unidad": "Unidades pH",
-          "fecha": "2026-11-04"
+          "fecha": "2026-11-11"
         },
         {
           "codigo": "052",
@@ -5881,7 +5881,7 @@
           "nombre": "Turbidez",
           "valor": 0,
           "unidad": "UNF",
-          "fecha": "2026-11-04"
+          "fecha": "2026-11-11"
         },
         {
           "codigo": "055",
@@ -5895,21 +5895,21 @@
           "nombre": "Color",
           "valor": 0,
           "unidad": "mg Pt-Co/L",
-          "fecha": "2026-11-04"
+          "fecha": "2026-11-11"
         },
         {
           "codigo": "057",
           "nombre": "Olor",
           "valor": 1,
           "unidad": "In. Dil.",
-          "fecha": "2026-11-04"
+          "fecha": "2026-11-11"
         },
         {
           "codigo": "058",
           "nombre": "Sabor",
-          "valor": 1,
+          "valor": 2,
           "unidad": "In. Dil.",
-          "fecha": "2026-11-04"
+          "fecha": "2026-11-11"
         },
         {
           "codigo": "059",

@@ -1,36 +1,15 @@
 {
-  "generatedAt": "2026-11-16T12:20:52.834Z",
+  "generatedAt": "2026-11-16T13:23:11.247Z",
   "source": "queja-contract-relations engine v1 (deterministic)",
   "stats": {
     "frozen": false,
     "quejasScanned": 1,
-    "contractsScanned": 707,
+    "contractsScanned": 711,
     "tierA": 3,
-    "tierB": 27,
+    "tierB": 29,
     "reason": null
   },
   "links": [
-    {
-      "quejaId": "Q-KJY6XSVG",
-      "tenderPermalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=SWowCY8dnwmcCF8sV%2BqtYA%3D%3D",
-      "tenderId": "5106848#9743660",
-      "tenderTitle": "UE vella 6",
-      "tenderAwardDate": "2026-09-08",
-      "tenderAmount": 20250.89,
-      "via": "deterministic",
-      "signals": {
-        "department": {
-          "slug": "urbanismo"
-        },
-        "temporal": {
-          "monthsAfter": 2.2516604938271607
-        }
-      },
-      "tier": "B",
-      "score": 0.55,
-      "relationLabel": "misma materia y fechas próximas",
-      "requiresHumanApproval": true
-    },
     {
       "quejaId": "Q-KJY6XSVG",
       "tenderPermalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=8p%2Fwsq%2B3XH9eKgd8LfVV9g%3D%3D",
@@ -150,6 +129,69 @@
         },
         "temporal": {
           "monthsAfter": 2.118327160493827
+        }
+      },
+      "tier": "B",
+      "score": 0.55,
+      "relationLabel": "misma materia y fechas próximas",
+      "requiresHumanApproval": true
+    },
+    {
+      "quejaId": "Q-KJY6XSVG",
+      "tenderPermalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=SWowCY8dnwmcCF8sV%2BqtYA%3D%3D",
+      "tenderId": "5106848#9743661",
+      "tenderTitle": "UE pous 6",
+      "tenderAwardDate": "2026-09-08",
+      "tenderAmount": 8768,
+      "via": "deterministic",
+      "signals": {
+        "department": {
+          "slug": "urbanismo"
+        },
+        "temporal": {
+          "monthsAfter": 2.2516604938271607
+        }
+      },
+      "tier": "B",
+      "score": 0.55,
+      "relationLabel": "misma materia y fechas próximas",
+      "requiresHumanApproval": true
+    },
+    {
+      "quejaId": "Q-KJY6XSVG",
+      "tenderPermalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=SWowCY8dnwmcCF8sV%2BqtYA%3D%3D",
+      "tenderId": "5106848#9743658",
+      "tenderTitle": "UE casco 5",
+      "tenderAwardDate": "2026-09-08",
+      "tenderAmount": 6900,
+      "via": "deterministic",
+      "signals": {
+        "department": {
+          "slug": "urbanismo"
+        },
+        "temporal": {
+          "monthsAfter": 2.2516604938271607
+        }
+      },
+      "tier": "B",
+      "score": 0.55,
+      "relationLabel": "misma materia y fechas próximas",
+      "requiresHumanApproval": true
+    },
+    {
+      "quejaId": "Q-KJY6XSVG",
+      "tenderPermalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=SWowCY8dnwmcCF8sV%2BqtYA%3D%3D",
+      "tenderId": "5106848#9743660",
+      "tenderTitle": "UE vella 6",
+      "tenderAwardDate": "2026-09-08",
+      "tenderAmount": 20250.89,
+      "via": "deterministic",
+      "signals": {
+        "department": {
+          "slug": "urbanismo"
+        },
+        "temporal": {
+          "monthsAfter": 2.2516604938271607
         }
       },
       "tier": "B",
@@ -310,6 +352,27 @@
     },
     {
       "quejaId": "Q-KJY6XSVG",
+      "tenderPermalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=XcKaUBlej%2F6OUi78BmzhOQ%3D%3D",
+      "tenderId": "1794430#11037044",
+      "tenderTitle": "79800000-Servicios de impresión y servicios conexos.",
+      "tenderAwardDate": "2026-11-10",
+      "tenderAmount": 20768.12,
+      "via": "deterministic",
+      "signals": {
+        "department": {
+          "slug": "urbanismo"
+        },
+        "temporal": {
+          "monthsAfter": 4.35166049382716
+        }
+      },
+      "tier": "B",
+      "score": 0.55,
+      "relationLabel": "misma materia y fechas próximas",
+      "requiresHumanApproval": true
+    },
+    {
+      "quejaId": "Q-KJY6XSVG",
       "tenderPermalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=pLeJ%2BaXp8DzN3k3tjedSGw%3D%3D",
       "tenderId": "10677005",
       "tenderTitle": "Contrato de servicios, de carácter menor, para la ejecución de un proyecto piloto de asistencia en la implantación del Reglamento de carrera profesional del Ayuntamiento de Riba-roja de Túria",
@@ -343,27 +406,6 @@
         },
         "temporal": {
           "monthsAfter": 2.284993827160494
-        }
-      },
-      "tier": "B",
-      "score": 0.55,
-      "relationLabel": "misma materia y fechas próximas",
-      "requiresHumanApproval": true
-    },
-    {
-      "quejaId": "Q-KJY6XSVG",
-      "tenderPermalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=SWowCY8dnwmcCF8sV%2BqtYA%3D%3D",
-      "tenderId": "5106848#9743658",
-      "tenderTitle": "UE casco 5",
-      "tenderAwardDate": "2026-09-08",
-      "tenderAmount": 6900,
-      "via": "deterministic",
-      "signals": {
-        "department": {
-          "slug": "urbanismo"
-        },
-        "temporal": {
-          "monthsAfter": 2.2516604938271607
         }
       },
       "tier": "B",
@@ -413,6 +455,27 @@
       "score": 0.85,
       "relationLabel": "misma zona y materia",
       "requiresHumanApproval": false
+    },
+    {
+      "quejaId": "Q-KJY6XSVG",
+      "tenderPermalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=wnCfM9ufBvL9pbnDwlaUlg%3D%3D",
+      "tenderId": "4889055#11042705",
+      "tenderTitle": "71000000-Servicios de arquitectura, construcción, ingeniería e inspección.",
+      "tenderAwardDate": "2026-11-11",
+      "tenderAmount": 28000,
+      "via": "deterministic",
+      "signals": {
+        "department": {
+          "slug": "urbanismo"
+        },
+        "temporal": {
+          "monthsAfter": 4.384993827160494
+        }
+      },
+      "tier": "B",
+      "score": 0.55,
+      "relationLabel": "misma materia y fechas próximas",
+      "requiresHumanApproval": true
     },
     {
       "quejaId": "Q-KJY6XSVG",
@@ -584,27 +647,6 @@
     },
     {
       "quejaId": "Q-KJY6XSVG",
-      "tenderPermalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=SWowCY8dnwmcCF8sV%2BqtYA%3D%3D",
-      "tenderId": "5106848#9743661",
-      "tenderTitle": "UE pous 6",
-      "tenderAwardDate": "2026-09-08",
-      "tenderAmount": 8768,
-      "via": "deterministic",
-      "signals": {
-        "department": {
-          "slug": "urbanismo"
-        },
-        "temporal": {
-          "monthsAfter": 2.2516604938271607
-        }
-      },
-      "tier": "B",
-      "score": 0.55,
-      "relationLabel": "misma materia y fechas próximas",
-      "requiresHumanApproval": true
-    },
-    {
-      "quejaId": "Q-KJY6XSVG",
       "tenderPermalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=4SHbaq5ifysBPRBxZ4nJ%2Fg%3D%3D",
       "tenderId": "1554203",
       "tenderTitle": "Contrato de obras INSTALACION ALUMBRADO PUBLICO CARRIL BICI ESCOTO, ROTONDA ENTREVIAS Y ACCESO VALENCIA LA VELLA por procedimiento abierto súper simplificado, varios criterios de adjudicación, con condición de ejecución de carácter social y medioambiental contribuyendo al cumplimiento del ODS 8 relativo al trabajo decente para todos.",
@@ -650,7 +692,7 @@
   "builtFrom": {
     "promises.json": "78479b1377ce",
     "quejas.json": "0d8d5c4eb7d1",
-    "tender-geo.json": "ad2e42fda540",
-    "tenders.json": "d7dc6e277ab9"
+    "tender-geo.json": "5766990758ab",
+    "tenders.json": "af08bd6d1b69"
   }
 }
