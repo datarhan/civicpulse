@@ -27,7 +27,7 @@
       },
       {
         "fecha": "2026-11-16",
-        "texto": "**Se ha cambiado el titular.** Decía «Dos millones para el “destino inteligente”: qué compró Riba-roja con los fondos europeos de turismo». Leído solo, daba a entender que los dos millones se fueron en tecnología de «destino inteligente». Los 2,11 M€ son el total del Plan de Sostenibilidad Turística, y la mayor parte de lo que la pieza localiza de él en el registro de contratación son obras: el itinerario del Barranc dels Moros, sus pérgolas y el carril bici. Los dos contratos de «inteligencia turística» suman 51.787 € sin IVA, como dice la pieza desde el 15 de julio. El titular dice ahora «Dos millones de fondos europeos para turismo: qué compró Riba-roja y cuánto fue al “destino inteligente”». Ninguna cifra cambia."
+        "texto": "**Se ha cambiado el titular.** Decía «Dos millones para el “destino inteligente”: qué compró Riba-roja con los fondos europeos de turismo». Leído solo, daba a entender que los dos millones se fueron en tecnología de «destino inteligente». Los 2,11 M€ son el total del Plan de Sostenibilidad Turística, y la mayor parte de lo que la pieza localiza de él en el registro de contratación son obras: el itinerario del Barranc dels Moros, sus pérgolas y el carril bici. Los dos contratos de «inteligencia turística» suman 51.787 € sin IVA, como dice la pieza desde el 15 de julio. El titular dice ahora «Dos millones de fondos europeos para turismo: qué compró Riba-roja y cuánto fue al “destino inteligente”». Ninguna cifra cambia.\n\n**Y se han corregido dos frases del perfil de Deepsense.** La última decía: «Las bajas del 30-43 % son consistentes en toda la serie — economía de producto reutilizable, no desarrollo a medida; la de Riba-roja (−43 %) es la mayor documentada». De las 21 adjudicaciones que le atribuye Gobierto, la pieza documenta la baja de cuatro, y de las otras diecisiete no hemos documentado la baja. «Toda la serie» decía más de lo que sabemos. La explicación, «economía de producto reutilizable», era una inferencia nuestra: en esos concursos se presentaron entre cuatro y seis ofertas, así que las bajas pueden deberse también a la competencia, y la pieza no tiene con qué distinguir una explicación de la otra. Dice ahora: «Hemos documentado la baja de cuatro: Riba-roja, l'Alfàs del Pi, Santa Pola y Gijón. En las cuatro el precio de adjudicación quedó entre un 30 % y un 43 % por debajo del presupuesto base de licitación, y en cada concurso se presentaron entre cuatro y seis ofertas; la de Riba-roja (−43 %) es la mayor de las cuatro».\n\nLa frase anterior contaba el contrato de Gijón entre «los paneles análogos». No es un panel: paga la puesta en marcha de módulos del ecosistema de inteligencia turística de Gijón, como una calculadora de huella de carbono, el análisis del impacto de eventos y del impacto económico del turismo, y la integración con el nodo central de SEGITTUR. Ahora lo dice así. Hemos añadido a las fuentes los expedientes de l'Alfàs del Pi, Santa Pola y Gijón, cotejados el 16 de noviembre de 2026: las bajas y las ofertas de la pieza son las que constan en ellos. Ninguna cifra cambia."
       }
     ]
   },
@@ -386,8 +386,8 @@
       "bullets": [
         "Microempresa valenciana constituida el 14 de abril de 2021 con 3.000 € de capital (BORME); administradores solidarios Enrique García Vidal y Francisco Vaquer Estalrich, sus dos cofundadores. Entre 2 y 4 personas según registros mercantiles, LinkedIn y el Parc Científic de la Universitat de València, donde tiene su oficina",
         "Objeto social según ROLECE: «el desarrollo de productos y servicios de consultoría de software e inteligencia artificial». Estatuto de empresa emergente (Ley 28/2022) desde octubre de 2024",
-        "Su producto es una plataforma repetible: LinkSense (marca registrada), catalogada por Invattur y ya entregada en Caravaca de la Cruz (abril de 2025, antes de la adjudicación de Riba-roja). Tras Riba-roja ganó los paneles análogos de l'Alfàs del Pi (40.496 €, −30 %, 6 ofertas), Santa Pola (21.500 €, −35 %, 6 ofertas) y Gijón (107.600 €, −33 %, 4 ofertas)",
-        "Acumula 21 adjudicaciones públicas por 404.942,77 € según el agregador Gobierto. Las bajas del 30-43 % son consistentes en toda la serie — economía de producto reutilizable, no desarrollo a medida; la de Riba-roja (−43 %) es la mayor documentada"
+        "Su producto es una plataforma repetible: LinkSense (marca registrada), catalogada por Invattur y ya entregada en Caravaca de la Cruz (abril de 2025, antes de la adjudicación de Riba-roja). Tras Riba-roja ganó los paneles análogos de l'Alfàs del Pi (40.496 €, −30 %, 6 ofertas) y Santa Pola (21.500 €, −35 %, 6 ofertas), y en Gijón la puesta en marcha de módulos de su ecosistema de inteligencia turística (107.600 €, −33 %, 4 ofertas)",
+        "Acumula 21 adjudicaciones públicas por 404.942,77 € según el agregador Gobierto. Hemos documentado la baja de cuatro: Riba-roja, l'Alfàs del Pi, Santa Pola y Gijón. En las cuatro el precio de adjudicación quedó entre un 30 % y un 43 % por debajo del presupuesto base de licitación, y en cada concurso se presentaron entre cuatro y seis ofertas; la de Riba-roja (−43 %) es la mayor de las cuatro"
       ]
     },
     "movea": {
@@ -468,6 +468,18 @@
     {
       "label": "LinkSense (Deepsense) · página de producto con la lista de destinos usuarios",
       "url": "https://www.destinosinteligentes.es/soluciones/linksense/"
+    },
+    {
+      "label": "Gobierto · panel de inteligencia de datos de l'Alfàs del Pi (Deepsense): presupuesto base 57.851,24 €, adjudicado por 40.496 €, 6 ofertas",
+      "url": "https://contratos.gobierto.es/licitaciones/4979090"
+    },
+    {
+      "label": "PLACSP · expediente 22617/2025 de Santa Pola (panel de inteligencia de datos · Deepsense): presupuesto base 33.057,85 €, adjudicado por 21.500 €, 6 licitadores",
+      "url": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=L%2FTpgxv9mEjjHF5qKI4aaw%3D%3D"
+    },
+    {
+      "label": "Gobierto · módulos del ecosistema de inteligencia turística de Gijón (Deepsense): presupuesto base 160.566,40 €, adjudicado por 107.600 €, 4 ofertas",
+      "url": "https://contratos.gobierto.es/licitaciones/5070735"
     },
     {
       "label": "BORME 12-may-2021 · constitución de Deepsense SL (capital 3.000 €)",
