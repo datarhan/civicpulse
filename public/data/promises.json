@@ -1,6 +1,6 @@
 {
   "version": "1.0.0",
-  "generatedAt": "2026-11-09T08:21:49.171Z",
+  "generatedAt": "2026-11-16T07:30:12.070Z",
   "frozenUntil": null,
   "legalNotice": "CivicPulse es un proyecto de civic-tech independiente, sin vinculación con el Ayuntamiento de Riba-roja de Túria ni con ningún partido político. Las promesas listadas son compromisos públicos atribuidos a partidos y cargos, cada uno con su fuente enlazada: el documento oficial o la noticia de prensa que recoge la cita. Para correcciones, derecho de rectificación o propuesta de nuevas fuentes: abrir una issue en github.com/datarhan/civicpulse con la etiqueta correccion-promesa. Plazo de revisión: 24 h. Plazo de resolución: 72 h. Durante el periodo electoral oficial (LOREG art. 50), el tracker entra en modo solo-lectura y los estados quedan congelados a la fecha publicada en cada ficha.",
   "contactUrl": "https://github.com/datarhan/civicpulse/issues/new?labels=correccion-promesa",
@@ -484,10 +484,33 @@
       "status": "documentada",
       "evidence": [],
       "createdAt": "2026-11-09",
+      "response": null,
       "autoPublished": {
         "at": "2026-11-09T08:21:49.171Z",
         "by": "auto-curation-v1",
         "confidence": 0.7,
+        "reviewState": "pending-review"
+      }
+    },
+    {
+      "id": "ac-psoe-168xzn8",
+      "party": "PSOE",
+      "title": "Construcción de hasta 40 viviendas de protección pública con prioridad para afectados por la Dana",
+      "quote": "Riba-roja de Túria construirá un máximo de 40 viviendas de protección pública y dará prioridad a los vecinos y las vecinas que perdieron sus casas por la Dana de 2024",
+      "source": {
+        "url": "https://www.ribarroja.es/es/noticia/riba-roja-de-t%C3%BAria-construir%C3%A1-un-m%C3%A1ximo-de-40-viviendas-de-protecci%C3%B3n-p%C3%BAblica-y-dar%C3%A1-prioridad-a-los-vecinos-y-las-vecinas-que-perdieron-sus-casas-por-la-dana-de-2024",
+        "publisher": "Ayuntamiento Riba-roja"
+      },
+      "madeAt": "2026-11-09",
+      "topic": "vivienda",
+      "kind": "anuncio-gobierno",
+      "status": "documentada",
+      "evidence": [],
+      "createdAt": "2026-11-16",
+      "autoPublished": {
+        "at": "2026-11-16T07:30:12.070Z",
+        "by": "auto-curation-v1",
+        "confidence": 0.85,
         "reviewState": "pending-review"
       }
     }
