@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-15T12:22:05.775Z",
+  "generatedAt": "2026-11-16T05:50:06.637Z",
   "windowDays": 30,
   "articles": [
     {
@@ -477,23 +477,6 @@
         "opinionFraction": 0
       },
       "score": 1
-    },
-    {
-      "articleId": "1c2qm9k",
-      "articleFingerprint": "194qqhc",
-      "outlet": "Periòdic del Camp de Túria",
-      "outletHost": "infoturia.com",
-      "url": "https://www.infoturia.com/riba-roja-de-turia/86781-el-programa-municipal-per-a-persones-majors-de-riba-roja-inicia-un-nou-curs-amb-623-places.html",
-      "date": "2026-10-16T16:09:43.000Z",
-      "indicators": {
-        "localCoverage": true,
-        "datedArticle": true,
-        "municipalSourceMatch": null,
-        "corroboratedAcrossOutlets": null,
-        "factualClaimsPresent": true,
-        "opinionFraction": 0
-      },
-      "score": 4
     }
   ],
   "outlets": [
@@ -516,16 +499,16 @@
     {
       "outlet": "Periòdic del Camp de Túria",
       "outletHost": "infoturia.com",
-      "articleCount": 7,
+      "articleCount": 6,
       "verdictCounts": {
         "verificado": 0,
         "parcial": 0,
         "contradicho": 0,
-        "sin-datos": 15,
+        "sin-datos": 14,
         "promesa-repetida": 0
       },
       "checkedClaims": 8,
-      "meanTrustScore": 2.86,
+      "meanTrustScore": 2.67,
       "verifiedRatio": 0,
       "contradictedRatio": null
     },
@@ -579,7 +562,7 @@
     }
   ],
   "builtFrom": {
-    "plenos-agendas.json": "d76ff1a78be9",
+    "plenos-agendas.json": "61b9e27555f7",
     "press-claims-verified.json": "d4654fd232f4",
     "press.json": "db036990d305",
     "promises.json": "d0fd2949af24"

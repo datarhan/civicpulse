@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-15T05:48:44.487Z",
+  "generatedAt": "2026-11-16T05:49:18.967Z",
   "source": {
     "baseUrl": "https://regmeet.com",
     "description": "Vídeo que incrusta la página de cada sesión de pleno del Ayuntamiento de Riba-roja de Túria en regmeet.com (aytoribarroja): el `#videoId` que su reproductor de YouTube lee. Una fila por sesión leída, con el día en que se descargó su página; una sesión sin fila no se ha leído, que no es «sin vídeo». generatedAt es la descarga de la página más reciente, no la hora de la pasada. No alimenta la cola de transcripción."
@@ -25,7 +25,7 @@
       "lectura": "con-video",
       "ytId": "xjTF1WQcvmI",
       "url": "https://www.youtube.com/watch?v=xjTF1WQcvmI",
-      "comprobadoEl": "2026-11-15"
+      "comprobadoEl": "2026-11-16"
     },
     {
       "plenoId": "zrbgic",
@@ -33,7 +33,7 @@
       "lectura": "con-video",
       "ytId": "C7SSTb7q0ys",
       "url": "https://www.youtube.com/watch?v=C7SSTb7q0ys",
-      "comprobadoEl": "2026-11-15"
+      "comprobadoEl": "2026-11-16"
     },
     {
       "plenoId": "1xmr0do",
@@ -41,7 +41,7 @@
       "lectura": "con-video",
       "ytId": "uogftiK6-fM",
       "url": "https://www.youtube.com/watch?v=uogftiK6-fM",
-      "comprobadoEl": "2026-11-15"
+      "comprobadoEl": "2026-11-16"
     },
     {
       "plenoId": "15uvjew",
@@ -49,7 +49,7 @@
       "lectura": "con-video",
       "ytId": "nZK1v9ZnKDc",
       "url": "https://www.youtube.com/watch?v=nZK1v9ZnKDc",
-      "comprobadoEl": "2026-11-15"
+      "comprobadoEl": "2026-11-16"
     },
     {
       "plenoId": "brxx5g",
@@ -57,7 +57,7 @@
       "lectura": "con-video",
       "ytId": "dTFyPL7FkVE",
       "url": "https://www.youtube.com/watch?v=dTFyPL7FkVE",
-      "comprobadoEl": "2026-11-15"
+      "comprobadoEl": "2026-11-16"
     },
     {
       "plenoId": "1237hbp",
@@ -65,7 +65,7 @@
       "lectura": "con-video",
       "ytId": "L6Cy1hTrpIc",
       "url": "https://www.youtube.com/watch?v=L6Cy1hTrpIc",
-      "comprobadoEl": "2026-11-15"
+      "comprobadoEl": "2026-11-16"
     },
     {
       "plenoId": "11025xk",
@@ -185,7 +185,7 @@
       "lectura": "con-video",
       "ytId": "hiZ6YplwNzA",
       "url": "https://www.youtube.com/watch?v=hiZ6YplwNzA",
-      "comprobadoEl": "2026-11-06"
+      "comprobadoEl": "2026-11-16"
     },
     {
       "plenoId": "anrfd5",
@@ -193,7 +193,7 @@
       "lectura": "con-video",
       "ytId": "eTAGc-4hlws",
       "url": "https://www.youtube.com/watch?v=eTAGc-4hlws",
-      "comprobadoEl": "2026-11-07"
+      "comprobadoEl": "2026-11-16"
     },
     {
       "plenoId": "1sk3q3c",
@@ -201,7 +201,7 @@
       "lectura": "con-video",
       "ytId": "6UfU4IsO9pU",
       "url": "https://www.youtube.com/watch?v=6UfU4IsO9pU",
-      "comprobadoEl": "2026-11-07"
+      "comprobadoEl": "2026-11-16"
     },
     {
       "plenoId": "1ci5p5s",
@@ -209,7 +209,7 @@
       "lectura": "con-video",
       "ytId": "jtO-zyp6sj4",
       "url": "https://www.youtube.com/watch?v=jtO-zyp6sj4",
-      "comprobadoEl": "2026-11-07"
+      "comprobadoEl": "2026-11-16"
     },
     {
       "plenoId": "1uqimx0",
@@ -217,7 +217,7 @@
       "lectura": "con-video",
       "ytId": "bfkd-ZAjiNk",
       "url": "https://www.youtube.com/watch?v=bfkd-ZAjiNk",
-      "comprobadoEl": "2026-11-07"
+      "comprobadoEl": "2026-11-16"
     },
     {
       "plenoId": "hp3y4s",
@@ -225,7 +225,7 @@
       "lectura": "con-video",
       "ytId": "vR_XPJJPoBg",
       "url": "https://www.youtube.com/watch?v=vR_XPJJPoBg",
-      "comprobadoEl": "2026-11-07"
+      "comprobadoEl": "2026-11-16"
     },
     {
       "plenoId": "4kokik",
@@ -233,7 +233,7 @@
       "lectura": "con-video",
       "ytId": "udh3dGNIZc4",
       "url": "https://www.youtube.com/watch?v=udh3dGNIZc4",
-      "comprobadoEl": "2026-11-07"
+      "comprobadoEl": "2026-11-16"
     },
     {
       "plenoId": "11k71c8",
@@ -241,7 +241,7 @@
       "lectura": "con-video",
       "ytId": "gKUtAb8aMqw",
       "url": "https://www.youtube.com/watch?v=gKUtAb8aMqw",
-      "comprobadoEl": "2026-11-07"
+      "comprobadoEl": "2026-11-16"
     },
     {
       "plenoId": "of2npg",
