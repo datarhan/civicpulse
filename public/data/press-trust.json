@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-16T07:34:41.449Z",
+  "generatedAt": "2026-11-16T09:34:16.852Z",
   "windowDays": 30,
   "articles": [
     {
@@ -14,7 +14,7 @@
         "datedArticle": true,
         "municipalSourceMatch": null,
         "corroboratedAcrossOutlets": null,
-        "factualClaimsPresent": null,
+        "factualClaimsPresent": false,
         "opinionFraction": 0
       },
       "score": 1
@@ -31,10 +31,10 @@
         "datedArticle": true,
         "municipalSourceMatch": null,
         "corroboratedAcrossOutlets": null,
-        "factualClaimsPresent": null,
+        "factualClaimsPresent": true,
         "opinionFraction": 0
       },
-      "score": 1
+      "score": 3
     },
     {
       "articleId": "5kqroo",
@@ -48,10 +48,10 @@
         "datedArticle": true,
         "municipalSourceMatch": null,
         "corroboratedAcrossOutlets": null,
-        "factualClaimsPresent": null,
+        "factualClaimsPresent": true,
         "opinionFraction": 0
       },
-      "score": 1
+      "score": 3
     },
     {
       "articleId": "15f7ek4",
@@ -65,7 +65,7 @@
         "datedArticle": true,
         "municipalSourceMatch": null,
         "corroboratedAcrossOutlets": null,
-        "factualClaimsPresent": null,
+        "factualClaimsPresent": false,
         "opinionFraction": 0
       },
       "score": 1
@@ -82,7 +82,7 @@
         "datedArticle": true,
         "municipalSourceMatch": null,
         "corroboratedAcrossOutlets": null,
-        "factualClaimsPresent": null,
+        "factualClaimsPresent": false,
         "opinionFraction": 0
       },
       "score": 1
@@ -99,10 +99,10 @@
         "datedArticle": true,
         "municipalSourceMatch": null,
         "corroboratedAcrossOutlets": null,
-        "factualClaimsPresent": null,
+        "factualClaimsPresent": true,
         "opinionFraction": 0
       },
-      "score": 2
+      "score": 4
     },
     {
       "articleId": "msqwac",
@@ -116,10 +116,10 @@
         "datedArticle": true,
         "municipalSourceMatch": null,
         "corroboratedAcrossOutlets": null,
-        "factualClaimsPresent": null,
+        "factualClaimsPresent": true,
         "opinionFraction": 0
       },
-      "score": 1
+      "score": 3
     },
     {
       "articleId": "1pj7404",
@@ -488,11 +488,11 @@
         "verificado": 0,
         "parcial": 1,
         "contradicho": 0,
-        "sin-datos": 18,
+        "sin-datos": 30,
         "promesa-repetida": 0
       },
-      "checkedClaims": 2,
-      "meanTrustScore": 1.63,
+      "checkedClaims": 3,
+      "meanTrustScore": 1.88,
       "verifiedRatio": 0,
       "contradictedRatio": null
     },
@@ -504,11 +504,11 @@
         "verificado": 0,
         "parcial": 0,
         "contradicho": 0,
-        "sin-datos": 14,
+        "sin-datos": 15,
         "promesa-repetida": 0
       },
-      "checkedClaims": 8,
-      "meanTrustScore": 2.67,
+      "checkedClaims": 9,
+      "meanTrustScore": 3,
       "verifiedRatio": 0,
       "contradictedRatio": null
     },
@@ -520,11 +520,11 @@
         "verificado": 0,
         "parcial": 0,
         "contradicho": 0,
-        "sin-datos": 1,
+        "sin-datos": 2,
         "promesa-repetida": 0
       },
       "checkedClaims": 1,
-      "meanTrustScore": 1.5,
+      "meanTrustScore": 2,
       "verifiedRatio": 0,
       "contradictedRatio": null
     },
@@ -562,8 +562,8 @@
     }
   ],
   "builtFrom": {
-    "plenos-agendas.json": "d24601dc026b",
-    "press-claims-verified.json": "d4654fd232f4",
+    "plenos-agendas.json": "9d5ecaf6c390",
+    "press-claims-verified.json": "08ffc2a2899d",
     "press.json": "db036990d305",
     "promises.json": "78479b1377ce"
   }
