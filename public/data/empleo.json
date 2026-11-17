@@ -1,25 +1,567 @@
 {
-  "generatedAt": "2026-11-16T13:20:35.189Z",
+  "generatedAt": "2026-11-17T13:58:10.932Z",
   "source": {
     "origin": "https://ribaocupacio.portalemp.com",
     "platform": "portalemp — ribaocupacio · Agència de Col·locació (ADL), Ajuntament de Riba-roja de Túria",
     "listEndpoint": "https://ribaocupacio.portalemp.com/ofertas.html?acc=tableData"
   },
   "stats": {
-    "total": 44,
-    "openTotal": 43,
-    "inRibaRoja": 31,
-    "closingSoon": 9,
-    "withDetail": 44,
+    "total": 49,
+    "openTotal": 49,
+    "inRibaRoja": 35,
+    "closingSoon": 7,
+    "withDetail": 49,
     "byMonth": {
-      "2026-11": 5,
+      "2026-11": 12,
       "2026-10": 28,
-      "2026-09": 8,
-      "2026-05": 2,
-      "2025-11": 1
+      "2026-09": 7,
+      "2026-05": 2
     }
   },
   "items": [
+    {
+      "id": "2576",
+      "fo": 2576,
+      "codigo": "2026/00273",
+      "titulo": "Consultor/a Financiero/a",
+      "publishedAt": "2026-11-17",
+      "deadline": "2027-01-17",
+      "location": "Riba-roja y alrededores Riba-roja de Túria",
+      "status": "Abierta",
+      "statusTone": "ok",
+      "url": "https://ribaocupacio.portalemp.com/ofertas.html?fo=2576",
+      "inRibaRoja": true,
+      "detail": {
+        "fields": [
+          {
+            "label": "Código",
+            "value": "2026/00273"
+          },
+          {
+            "label": "Nombre de la oferta",
+            "value": "Consultor/a Financiero/a"
+          },
+          {
+            "label": "Sector CNAE",
+            "value": "ACTIVIDADES FINANCIERAS Y DE SEGUROS"
+          },
+          {
+            "label": "Tipo de contrato",
+            "value": "MERCANTIL"
+          },
+          {
+            "label": "Duración del contrato",
+            "value": "indefinido"
+          },
+          {
+            "label": "Número de puestos",
+            "value": "3"
+          },
+          {
+            "label": "Categoría profesional",
+            "value": "AUTONOMO"
+          },
+          {
+            "label": "Lugar puesto de trabajo",
+            "value": "Riba-roja y alrededores, Municipio: Riba-roja de Túria, Provincia: Valencia"
+          },
+          {
+            "label": "Tipo de jornada laboral",
+            "value": "Indiferente Turnos: Turno mañana, Turno tarde, Turno partido, Turno rotativo"
+          },
+          {
+            "label": "Salario",
+            "value": "Segun ventas realizadas"
+          },
+          {
+            "label": "Requiere vehículo propio",
+            "value": "Sí"
+          }
+        ],
+        "tipoContrato": "MERCANTIL",
+        "duracion": "indefinido",
+        "numPuestos": "3",
+        "categoria": "AUTONOMO",
+        "jornada": "Indiferente Turnos: Turno mañana, Turno tarde, Turno partido, Turno rotativo",
+        "salario": "Segun ventas realizadas",
+        "vehiculo": "Sí",
+        "ocupaciones": []
+      }
+    },
+    {
+      "id": "2575",
+      "fo": 2575,
+      "codigo": "2026/00272",
+      "titulo": "Operario/a en conservación de carreteras",
+      "publishedAt": "2026-11-17",
+      "deadline": "2027-01-17",
+      "location": "Autovía A-7/E-15, km 328, sentido Barcelona Paterna (Valencia)",
+      "status": "Abierta",
+      "statusTone": "ok",
+      "url": "https://ribaocupacio.portalemp.com/ofertas.html?fo=2575",
+      "inRibaRoja": false,
+      "detail": {
+        "fields": [
+          {
+            "label": "Código",
+            "value": "2026/00272"
+          },
+          {
+            "label": "Nombre de la oferta",
+            "value": "Operario/a en conservación de carreteras"
+          },
+          {
+            "label": "Sector CNAE",
+            "value": "CONSTRUCCIÓN"
+          },
+          {
+            "label": "Tipo de contrato",
+            "value": "CONTRATO INDEFINIDO"
+          },
+          {
+            "label": "Duración del contrato",
+            "value": "Más de 6 meses"
+          },
+          {
+            "label": "Número de puestos",
+            "value": "5"
+          },
+          {
+            "label": "Categoría profesional",
+            "value": "OFICIAL DE 2ª"
+          },
+          {
+            "label": "Lugar puesto de trabajo",
+            "value": "Autovía A-7/E-15, km 328, sentido Barcelona, Municipio: Paterna, Provincia: Valencia, CP: 46988"
+          },
+          {
+            "label": "Tipo de jornada laboral",
+            "value": "Completa Turnos: Turno mañana, Turno tarde, Turno noche, Turno rotativo, Festivos"
+          },
+          {
+            "label": "Observaciones jornada",
+            "value": "Turno rotativo"
+          },
+          {
+            "label": "Horario",
+            "value": "Mañana , tarde y noche"
+          },
+          {
+            "label": "Salario",
+            "value": "Según convenio + Complementos"
+          },
+          {
+            "label": "Funciones",
+            "value": "Detección y subsanación de incidencias y daños en la carretera, atención a accidentes, señalización en carretera , borrado de pintadas, retirada de obstáculos, limpieza y reposición de balizamiento, reparación de baches , limpieza de drenajes , retirada desprendimientos, etc..."
+          },
+          {
+            "label": "Requiere vehículo propio",
+            "value": "Sí"
+          },
+          {
+            "label": "Habilidades",
+            "value": "Valorable carnet C (+E), Mov. Tierras, PRL, albañilería, soldadura, etc..."
+          }
+        ],
+        "tipoContrato": "CONTRATO INDEFINIDO",
+        "duracion": "Más de 6 meses",
+        "numPuestos": "5",
+        "categoria": "OFICIAL DE 2ª",
+        "municipio": "Paterna",
+        "provincia": "Valencia",
+        "cp": "46988",
+        "jornada": "Completa Turnos: Turno mañana, Turno tarde, Turno noche, Turno rotativo, Festivos",
+        "horario": "Mañana , tarde y noche",
+        "salario": "Según convenio + Complementos",
+        "funciones": "Detección y subsanación de incidencias y daños en la carretera, atención a accidentes, señalización en carretera , borrado de pintadas, retirada de obstáculos, limpieza y reposición de balizamiento, reparación de baches , limpieza de drenajes , retirada desprendimientos, etc...",
+        "vehiculo": "Sí",
+        "ocupaciones": []
+      }
+    },
+    {
+      "id": "2571",
+      "fo": 2571,
+      "codigo": "2026/00270",
+      "titulo": "Operario/a de almacén",
+      "publishedAt": "2026-11-17",
+      "deadline": "2027-01-17",
+      "location": "Área Industrial Riba-roja Riba-roja de Túria",
+      "status": "Abierta",
+      "statusTone": "ok",
+      "url": "https://ribaocupacio.portalemp.com/ofertas.html?fo=2571",
+      "inRibaRoja": true,
+      "detail": {
+        "fields": [
+          {
+            "label": "Código",
+            "value": "2026/00270"
+          },
+          {
+            "label": "Nombre de la oferta",
+            "value": "Operario/a de almacén"
+          },
+          {
+            "label": "Observaciones",
+            "value": "REQUISITOS IMPRESCINDIBLES : Vehículo para acceder al puesto de trabajo Carné de Carretillero Experiencia mínima de 6 meses en el puesto No se tendrán en cuenta candidaturas que no cumplan estos requisitos"
+          },
+          {
+            "label": "Tipo de contrato",
+            "value": "CONTRATO INDEFINIDO"
+          },
+          {
+            "label": "Duración del contrato",
+            "value": "PRUEBA + INDEFINIDO"
+          },
+          {
+            "label": "Número de puestos",
+            "value": "1"
+          },
+          {
+            "label": "Lugar puesto de trabajo",
+            "value": "Área Industrial Riba-roja, Municipio: Riba-roja de Túria, Provincia: Valencia"
+          },
+          {
+            "label": "Tipo de jornada laboral",
+            "value": "Completa"
+          },
+          {
+            "label": "Horario",
+            "value": "Lunes a Jueves de 8.00-13.30 y de 15.00 - 17.15 Viernes de 7.00-14.15"
+          },
+          {
+            "label": "Salario",
+            "value": "Según convenio"
+          },
+          {
+            "label": "Funciones",
+            "value": "- Manejo de carretilla - Empaquetado - Atención a Agencias"
+          },
+          {
+            "label": "Requiere vehículo propio",
+            "value": "Sí"
+          }
+        ],
+        "tipoContrato": "CONTRATO INDEFINIDO",
+        "duracion": "PRUEBA + INDEFINIDO",
+        "numPuestos": "1",
+        "observaciones": "REQUISITOS IMPRESCINDIBLES : Vehículo para acceder al puesto de trabajo Carné de Carretillero Experiencia mínima de 6 meses en el puesto No se tendrán en cuenta candidaturas que no cumplan estos requisitos",
+        "jornada": "Completa",
+        "horario": "Lunes a Jueves de 8.00-13.30 y de 15.00 - 17.15 Viernes de 7.00-14.15",
+        "salario": "Según convenio",
+        "funciones": "- Manejo de carretilla - Empaquetado - Atención a Agencias",
+        "vehiculo": "Sí",
+        "ocupaciones": []
+      }
+    },
+    {
+      "id": "2574",
+      "fo": 2574,
+      "codigo": "2026/00269",
+      "titulo": "Montador/a de Calorifugado",
+      "publishedAt": "2026-11-17",
+      "deadline": "2027-01-17",
+      "location": "Polígono Industrial Los Vientos Náquera (Valencia)",
+      "status": "Abierta",
+      "statusTone": "ok",
+      "url": "https://ribaocupacio.portalemp.com/ofertas.html?fo=2574",
+      "inRibaRoja": false,
+      "detail": {
+        "fields": [
+          {
+            "label": "Código",
+            "value": "2026/00269"
+          },
+          {
+            "label": "Nombre de la oferta",
+            "value": "Montador/a de Calorifugado"
+          },
+          {
+            "label": "Observaciones",
+            "value": "Requisitos : No es necesaria experiencia. Graduado Escolar. Requiere vehículo propio ."
+          },
+          {
+            "label": "Tipo de contrato",
+            "value": "CONTRATO INDEFINIDO"
+          },
+          {
+            "label": "Duración del contrato",
+            "value": "Más de 6 meses"
+          },
+          {
+            "label": "Número de puestos",
+            "value": "3"
+          },
+          {
+            "label": "Lugar puesto de trabajo",
+            "value": "Polígono Industrial Los Vientos, Municipio: Náquera, Provincia: Valencia, CP: 46119"
+          },
+          {
+            "label": "Tipo de jornada laboral",
+            "value": "Completa Turnos: Turno partido"
+          },
+          {
+            "label": "Horario",
+            "value": "De 8:00 a 18:00 horas"
+          },
+          {
+            "label": "Salario",
+            "value": "Según convenio"
+          },
+          {
+            "label": "Funciones",
+            "value": "- Aislamiento de tuberías"
+          },
+          {
+            "label": "Requiere vehículo propio",
+            "value": "Sí"
+          }
+        ],
+        "tipoContrato": "CONTRATO INDEFINIDO",
+        "duracion": "Más de 6 meses",
+        "numPuestos": "3",
+        "observaciones": "Requisitos : No es necesaria experiencia. Graduado Escolar. Requiere vehículo propio .",
+        "municipio": "Náquera",
+        "provincia": "Valencia",
+        "cp": "46119",
+        "jornada": "Completa Turnos: Turno partido",
+        "horario": "De 8:00 a 18:00 horas",
+        "salario": "Según convenio",
+        "funciones": "- Aislamiento de tuberías",
+        "vehiculo": "Sí",
+        "ocupaciones": []
+      }
+    },
+    {
+      "id": "2569",
+      "fo": 2569,
+      "codigo": "2026/00268",
+      "titulo": "Personal de limpieza",
+      "publishedAt": "2026-11-17",
+      "deadline": "2027-01-17",
+      "location": "Riba-roja de Túria",
+      "status": "Abierta",
+      "statusTone": "ok",
+      "url": "https://ribaocupacio.portalemp.com/ofertas.html?fo=2569",
+      "inRibaRoja": true,
+      "detail": {
+        "fields": [
+          {
+            "label": "Código",
+            "value": "2026/00268"
+          },
+          {
+            "label": "Nombre de la oferta",
+            "value": "Personal de limpieza"
+          },
+          {
+            "label": "Observaciones",
+            "value": "Con carnet de conducir y vehículo propio"
+          },
+          {
+            "label": "Sector CNAE",
+            "value": "OTROS SERVICIOS"
+          },
+          {
+            "label": "Tipo de contrato",
+            "value": "CONTRATO A TIEMPO PARCIAL"
+          },
+          {
+            "label": "Duración del contrato",
+            "value": "De 1 a 6 meses"
+          },
+          {
+            "label": "Número de puestos",
+            "value": "1"
+          },
+          {
+            "label": "Lugar puesto de trabajo",
+            "value": "Municipio: Riba-roja de Túria, Provincia: Valencia"
+          },
+          {
+            "label": "Tipo de jornada laboral",
+            "value": "Parcial Turnos: Turno mañana"
+          },
+          {
+            "label": "Salario",
+            "value": "Según convenio"
+          },
+          {
+            "label": "Requiere vehículo propio",
+            "value": "Sí"
+          }
+        ],
+        "tipoContrato": "CONTRATO A TIEMPO PARCIAL",
+        "duracion": "De 1 a 6 meses",
+        "numPuestos": "1",
+        "observaciones": "Con carnet de conducir y vehículo propio",
+        "jornada": "Parcial Turnos: Turno mañana",
+        "salario": "Según convenio",
+        "vehiculo": "Sí",
+        "ocupaciones": []
+      }
+    },
+    {
+      "id": "2572",
+      "fo": 2572,
+      "codigo": "2026/00267",
+      "titulo": "Albañiles - oficiales de construcción",
+      "publishedAt": "2026-11-17",
+      "deadline": "2027-01-17",
+      "location": "Provincia de Valencia Riba-roja de Túria",
+      "status": "Abierta",
+      "statusTone": "ok",
+      "url": "https://ribaocupacio.portalemp.com/ofertas.html?fo=2572",
+      "inRibaRoja": true,
+      "detail": {
+        "fields": [
+          {
+            "label": "Código",
+            "value": "2026/00267"
+          },
+          {
+            "label": "Nombre de la oferta",
+            "value": "Albañiles - oficiales de construcción"
+          },
+          {
+            "label": "Observaciones",
+            "value": "Vehículo propio para ir hasta la base en Chiva"
+          },
+          {
+            "label": "Sector CNAE",
+            "value": "CONSTRUCCIÓN"
+          },
+          {
+            "label": "Tipo de contrato",
+            "value": "CONTRATO DE OBRA O SERVICIO DETERMINADO"
+          },
+          {
+            "label": "Duración del contrato",
+            "value": "Más de 6 meses"
+          },
+          {
+            "label": "Número de puestos",
+            "value": "10"
+          },
+          {
+            "label": "Categoría profesional",
+            "value": "OFICIAL DE 1ª"
+          },
+          {
+            "label": "Lugar puesto de trabajo",
+            "value": "Provincia de Valencia, Municipio: Riba-roja de Túria, Provincia: Valencia, CP: 46370"
+          },
+          {
+            "label": "Tipo de jornada laboral",
+            "value": "Completa Turnos: Turno partido"
+          },
+          {
+            "label": "Horario",
+            "value": "De Lunes a Jueves de 8 h a 18 h con 1 hora de almuerzo y 1 hora para comida. Horario de Viernes de 8 h a 15:30 h con 1 hora de almuerzo."
+          },
+          {
+            "label": "Salario",
+            "value": "23000 BRUTOS ANUALES EN 14 PAGAS"
+          },
+          {
+            "label": "Funciones",
+            "value": "Oficial de primera para obras de gasolineras, naves industriales, obra civil y obra residencial"
+          },
+          {
+            "label": "Requiere vehículo propio",
+            "value": "Sí"
+          }
+        ],
+        "tipoContrato": "CONTRATO DE OBRA O SERVICIO DETERMINADO",
+        "duracion": "Más de 6 meses",
+        "numPuestos": "10",
+        "categoria": "OFICIAL DE 1ª",
+        "observaciones": "Vehículo propio para ir hasta la base en Chiva",
+        "municipio": "Riba-roja de Túria",
+        "provincia": "Valencia",
+        "cp": "46370",
+        "jornada": "Completa Turnos: Turno partido",
+        "horario": "De Lunes a Jueves de 8 h a 18 h con 1 hora de almuerzo y 1 hora para comida. Horario de Viernes de 8 h a 15:30 h con 1 hora de almuerzo.",
+        "salario": "23000 BRUTOS ANUALES EN 14 PAGAS",
+        "funciones": "Oficial de primera para obras de gasolineras, naves industriales, obra civil y obra residencial",
+        "vehiculo": "Sí",
+        "ocupaciones": []
+      }
+    },
+    {
+      "id": "2573",
+      "fo": 2573,
+      "codigo": "2026/00266",
+      "titulo": "Operario/a de limpieza industrial",
+      "publishedAt": "2026-11-17",
+      "deadline": "2027-01-17",
+      "location": "Chiva (Valencia)",
+      "status": "Abierta",
+      "statusTone": "ok",
+      "url": "https://ribaocupacio.portalemp.com/ofertas.html?fo=2573",
+      "inRibaRoja": false,
+      "detail": {
+        "fields": [
+          {
+            "label": "Código",
+            "value": "2026/00266"
+          },
+          {
+            "label": "Nombre de la oferta",
+            "value": "Operario/a de limpieza industrial"
+          },
+          {
+            "label": "Observaciones",
+            "value": "Requisitos: Experiencia mínima 1 año Se valora curso en altura y espacios confinados, pero no imprescindible Carnet de conducir y vehículo propio Desplazamiento por nuestros clientes con vehículo de empresa (base en Chiva)"
+          },
+          {
+            "label": "Tipo de contrato",
+            "value": "CONTRATO INDEFINIDO"
+          },
+          {
+            "label": "Duración del contrato",
+            "value": "Más de 6 meses"
+          },
+          {
+            "label": "Número de puestos",
+            "value": "1"
+          },
+          {
+            "label": "Lugar puesto de trabajo",
+            "value": "Municipio: Chiva, Provincia: Valencia"
+          },
+          {
+            "label": "Tipo de jornada laboral",
+            "value": "Completa Turnos: Turno rotativo"
+          },
+          {
+            "label": "Horario",
+            "value": "Turnos rotativos"
+          },
+          {
+            "label": "Salario",
+            "value": "Según convenio"
+          },
+          {
+            "label": "Funciones",
+            "value": "Limpieza industrial con manguera, agua a presión, máquina fregadora industrial."
+          },
+          {
+            "label": "Requiere vehículo propio",
+            "value": "Sí"
+          }
+        ],
+        "tipoContrato": "CONTRATO INDEFINIDO",
+        "duracion": "Más de 6 meses",
+        "numPuestos": "1",
+        "observaciones": "Requisitos: Experiencia mínima 1 año Se valora curso en altura y espacios confinados, pero no imprescindible Carnet de conducir y vehículo propio Desplazamiento por nuestros clientes con vehículo de empresa (base en Chiva)",
+        "jornada": "Completa Turnos: Turno rotativo",
+        "horario": "Turnos rotativos",
+        "salario": "Según convenio",
+        "funciones": "Limpieza industrial con manguera, agua a presión, máquina fregadora industrial.",
+        "vehiculo": "Sí",
+        "ocupaciones": []
+      }
+    },
     {
       "id": "2568",
       "fo": 2568,
@@ -416,7 +958,7 @@
           },
           {
             "label": "Observaciones",
-            "value": "Requisitos : Técnico Medio o Técnico Superior Admin. Vehículo propio Manejo del paquete Micrsoft Office"
+            "value": "Requisitos : Técnico Medio o Técnico Superior Admin. Vehículo propio Manejo del paquete Microsoft Office"
           },
           {
             "label": "Tipo de contrato",
@@ -462,7 +1004,7 @@
         "tipoContrato": "CONTRATO INDEFINIDO",
         "duracion": "Más de 6 meses",
         "numPuestos": "1",
-        "observaciones": "Requisitos : Técnico Medio o Técnico Superior Admin. Vehículo propio Manejo del paquete Micrsoft Office",
+        "observaciones": "Requisitos : Técnico Medio o Técnico Superior Admin. Vehículo propio Manejo del paquete Microsoft Office",
         "jornada": "Completa Turnos: Turno partido",
         "horario": "De lunes a jueves de 08:00 a 13:30 horas y de 15:00 a 18:00 horas. Viernes de 08:00 a 14:30 horas.",
         "salario": "Según convenio",
@@ -3049,96 +3591,6 @@
       }
     },
     {
-      "id": "2109",
-      "fo": 2109,
-      "codigo": "2025/00139",
-      "titulo": "Operario/a en conservación de carreteras",
-      "publishedAt": "2026-09-21",
-      "deadline": "2026-11-21",
-      "location": "Autovía A-7/E-15, km 328, sentido Barcelona Paterna (Valencia)",
-      "status": "Abierta",
-      "statusTone": "ok",
-      "url": "https://ribaocupacio.portalemp.com/ofertas.html?fo=2109",
-      "inRibaRoja": false,
-      "detail": {
-        "fields": [
-          {
-            "label": "Código",
-            "value": "2025/00139"
-          },
-          {
-            "label": "Nombre de la oferta",
-            "value": "Operario/a en conservación de carreteras"
-          },
-          {
-            "label": "Sector CNAE",
-            "value": "CONSTRUCCIÓN"
-          },
-          {
-            "label": "Tipo de contrato",
-            "value": "CONTRATO INDEFINIDO"
-          },
-          {
-            "label": "Duración del contrato",
-            "value": "Más de 6 meses"
-          },
-          {
-            "label": "Número de puestos",
-            "value": "5"
-          },
-          {
-            "label": "Categoría profesional",
-            "value": "OFICIAL DE 2ª"
-          },
-          {
-            "label": "Lugar puesto de trabajo",
-            "value": "Autovía A-7/E-15, km 328, sentido Barcelona, Municipio: Paterna, Provincia: Valencia, CP: 46988"
-          },
-          {
-            "label": "Tipo de jornada laboral",
-            "value": "Completa Turnos: Turno mañana, Turno tarde, Turno noche, Turno rotativo, Festivos"
-          },
-          {
-            "label": "Observaciones jornada",
-            "value": "Turno rotativo"
-          },
-          {
-            "label": "Horario",
-            "value": "Mañana , Tarde y noche"
-          },
-          {
-            "label": "Salario",
-            "value": "Según convenio + Complementos"
-          },
-          {
-            "label": "Funciones",
-            "value": "Detección y subsanación de incidencias y daños en la carretera, atención a accidentes, señalización en carretera , borrado de pintadas, retirada de obstáculos, limpieza y reposición de balizamiento, reparación de baches , limpieza de drenajes , retirada desprendimientos, etc..."
-          },
-          {
-            "label": "Requiere vehículo propio",
-            "value": "Sí"
-          },
-          {
-            "label": "Habilidades",
-            "value": "Valorable carnet C (+E), Mov. Tierras, PRL, albañilería, soldadura, etc..."
-          }
-        ],
-        "tipoContrato": "CONTRATO INDEFINIDO",
-        "duracion": "Más de 6 meses",
-        "numPuestos": "5",
-        "categoria": "OFICIAL DE 2ª",
-        "municipio": "Paterna",
-        "provincia": "Valencia",
-        "cp": "46988",
-        "jornada": "Completa Turnos: Turno mañana, Turno tarde, Turno noche, Turno rotativo, Festivos",
-        "horario": "Mañana , Tarde y noche",
-        "salario": "Según convenio + Complementos",
-        "funciones": "Detección y subsanación de incidencias y daños en la carretera, atención a accidentes, señalización en carretera , borrado de pintadas, retirada de obstáculos, limpieza y reposición de balizamiento, reparación de baches , limpieza de drenajes , retirada desprendimientos, etc...",
-        "vehiculo": "Sí",
-        "ocupaciones": []
-      }
-    },
-    {
       "id": "2538",
       "fo": 2538,
       "codigo": "2026/00237",
@@ -3443,86 +3895,6 @@
         "horario": "Lunes a jueves de 08:00 a 18:00 Viernes de: 08:00 a 15:30 1 hora de almuerzo + 1 hora de comida (Excepto viernes)",
         "salario": "Competitivo",
         "funciones": "Oficial para Obra Civil",
-        "vehiculo": "Sí",
-        "ocupaciones": []
-      }
-    },
-    {
-      "id": "2264",
-      "fo": 2264,
-      "codigo": "2025/00293",
-      "titulo": "Auxiliar Administrativo",
-      "publishedAt": "2025-11-13",
-      "deadline": "2026-01-15",
-      "location": "Pobla de Vallbona (la) (Valencia)",
-      "status": "Abierta",
-      "statusTone": "ok",
-      "url": "https://ribaocupacio.portalemp.com/ofertas.html?fo=2264",
-      "inRibaRoja": false,
-      "detail": {
-        "fields": [
-          {
-            "label": "Código",
-            "value": "2025/00293"
-          },
-          {
-            "label": "Nombre de la oferta",
-            "value": "Auxiliar Administrativo"
-          },
-          {
-            "label": "Observaciones",
-            "value": "Imprescindible vehículo para acceder al puesto de trabajo. Se valorará experiencia previa en administración de personal."
-          },
-          {
-            "label": "Tipo de contrato",
-            "value": "CONTRATO INDEFINIDO"
-          },
-          {
-            "label": "Duración del contrato",
-            "value": "Más de 6 meses"
-          },
-          {
-            "label": "Número de puestos",
-            "value": "1"
-          },
-          {
-            "label": "Categoría profesional",
-            "value": "AUXILIARES ADMINISTRATIVOS"
-          },
-          {
-            "label": "Lugar puesto de trabajo",
-            "value": "Municipio: Pobla de Vallbona (la), Provincia: Valencia"
-          },
-          {
-            "label": "Tipo de jornada laboral",
-            "value": "Completa"
-          },
-          {
-            "label": "Horario",
-            "value": "de 8:00-13:30 y de 15:00-18:00hs"
-          },
-          {
-            "label": "Salario",
-            "value": "Según convenio"
-          },
-          {
-            "label": "Funciones",
-            "value": "Administrativo de personal"
-          },
-          {
-            "label": "Requiere vehículo propio",
-            "value": "Sí"
-          }
-        ],
-        "tipoContrato": "CONTRATO INDEFINIDO",
-        "duracion": "Más de 6 meses",
-        "numPuestos": "1",
-        "categoria": "AUXILIARES ADMINISTRATIVOS",
-        "observaciones": "Imprescindible vehículo para acceder al puesto de trabajo. Se valorará experiencia previa en administración de personal.",
-        "jornada": "Completa",
-        "horario": "de 8:00-13:30 y de 15:00-18:00hs",
-        "salario": "Según convenio",
-        "funciones": "Administrativo de personal",
         "vehiculo": "Sí",
         "ocupaciones": []
       }

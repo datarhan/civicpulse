@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-17T05:48:08.200Z",
+  "generatedAt": "2026-11-17T13:59:10.748Z",
   "note": "Índice de expedientes del Síndic de Greuges CV, transcrito del buscador del propio organismo. Materia, asunto, administración y el título de cada resolución van verbatim: este fichero NO emite ningún juicio. Las fichas firmadas —con resumen verbatim leído del PDF— viven en sindic.json y las escribe una persona con `npm run sindic:add`. «contraAyuntamiento» y «vecinosOtrasAdministraciones» responden a preguntas distintas y NO se suman.",
   "source": {
     "platform": "Síndic de Greuges de la Comunitat Valenciana",
@@ -71,6 +71,11 @@
           "tipo": "Resolución de consideraciones a la Administración",
           "fecha": "2026-10-08",
           "urlPdf": "https://www.elsindic.com/resoluciones/expedientes/2026/202603910/12632456.pdf"
+        },
+        {
+          "tipo": "Resolución de cierre",
+          "fecha": "2026-11-17",
+          "urlPdf": "https://www.elsindic.com/resoluciones/expedientes/2026/202603910/12992703.pdf"
         }
       ]
     },
@@ -811,7 +816,7 @@
     "vecinosOtrasAdministraciones": 12,
     "porTipoResolucion": {
       "Resolución de consideraciones a la Administración": 15,
-      "Resolución de cierre": 19,
+      "Resolución de cierre": 20,
       "Petición de informe. Resolución.": 13
     },
     "porMateria": {

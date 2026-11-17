@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-16T13:22:51.966Z",
+  "generatedAt": "2026-11-17T13:59:56.674Z",
   "frozen": false,
   "frozenUntil": null,
   "notice": "Sugerencias generadas automáticamente. Requieren aprobación humana antes de aplicarse al estado de cada promesa.",
@@ -42,7 +42,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-11-16T13:22:51.884Z"
+      "generatedAt": "2026-11-17T13:59:56.583Z"
     },
     {
       "promiseId": "ac-psoe-jfg7bc",
@@ -61,7 +61,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-11-16T13:22:51.884Z"
+      "generatedAt": "2026-11-17T13:59:56.583Z"
     },
     {
       "promiseId": "ac-psoe-1ah9zqk",
@@ -80,7 +80,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-11-16T13:22:51.884Z"
+      "generatedAt": "2026-11-17T13:59:56.583Z"
     },
     {
       "promiseId": "ac-psoe-ppa53a",
@@ -88,7 +88,7 @@
       "confidence": 0,
       "reasoning": [],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-11-16T13:22:51.884Z"
+      "generatedAt": "2026-11-17T13:59:56.583Z"
     },
     {
       "promiseId": "ac-psoe-1m04lfw",
@@ -96,7 +96,7 @@
       "confidence": 0,
       "reasoning": [],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-11-16T13:22:51.884Z"
+      "generatedAt": "2026-11-17T13:59:56.583Z"
     },
     {
       "promiseId": "ac-psoe-sysee8",
@@ -115,29 +115,13 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-11-16T13:22:51.884Z"
+      "generatedAt": "2026-11-17T13:59:56.583Z"
     },
     {
       "promiseId": "ac-psoe-1ryndd8",
       "proposedStatus": "documentada",
-      "confidence": 0.4,
+      "confidence": 0.287,
       "reasoning": [
-        {
-          "url": "https://www.ribarroja.es/es/noticia/el-ayuntamiento-de-riba-roja-de-t%C3%BAria-destina-una-partida-de-140.000-euros-para-la-rehabilitaci%C3%B3n-de-las-fachadas%2C-la-evaluaci%C3%B3n-de-los-edificios-y-la-accesibilidad-en-el-interior-de-las-viviendas-del-periodo-2026-2027",
-          "date": "2026-08-25",
-          "quote": "El Ayuntamiento de Riba-roja de Túria destina una partida de 140.000 euros para la rehabilitación de las fachadas, la evaluación de los edificios y la accesibilidad en el interior de las viviendas del periodo 2026-2027",
-          "kind": "press",
-          "publisher": "Ayuntamiento de Riba-roja de Túria",
-          "matchedKeywords": [
-            "euro",
-            "rehabilitacion",
-            "fachada",
-            "evaluacion",
-            "edificio",
-            "accesibilidad",
-            "vivienda"
-          ]
-        },
         {
           "url": "https://news.google.com/rss/articles/CBMi3AFBVV95cUxQSjIzVFJONlJSTzg4ekpmU3dKM3AtenBUeWdqaDIyZ084VXpIRGhyQUg0cFBhWHdkbWRoYVBmcTd2MmstQkdzaGpSSlQ5ZldwTkFBOUFDX3V1bGRjcFdPWHpudEJObDlZLWNnYzR4MlhwcF81SllEMmpMRlkyWHhnaUVpNFY3eFR5T1o5dXJXY1p5RjFKVVlBUU55Nmo1Z3Jwa1gxVG1JOXVrdW0wLWRmaDY3WTlwdHNOd0ZaNkhmV1ZmQ0hGU05IYzBGV1JkMDFrS1NoYS0zbW12dTBn0gHiAUFVX3lxTE4yeHBabkwxVU9QN2NnUXlUVTZNel8tY0Q5UTBYdk9VbS1Wd0NhUUlDZkhqeFgyTVR3R1lhMDBHZ2hzc0ZnUklwZ25CY0JyQ1hlNVlqQmNiRE9WNlRBZFU5c2RpYk00dlBSNS1ueE55NDhGczJaa0J1UDFWMlJDd3I2TS14NGJJb0dScDhEM2I2Nzd1bWdpdTVSRkQySHhFQVp1NXZZMnlvYmpUUERld2NYMkxwNzNZMEhIeVY1QWZld0NWVXhlYW5sVVZES2dvMm9Qbk9FTlkwcy1ZVlJwOWlmR2c?oc=5",
           "date": "2026-08-25",
@@ -151,11 +135,11 @@
           ]
         },
         {
-          "url": "https://news.google.com/rss/articles/CBMihwJBVV95cUxQTWZlUzNRSkVxak9ndTZ3X05yZkphYVpUdUxtcklDb0o5amU2bDBEUFVVR21IQmpxNjROSEVON1pab1p0MkdXa1hQS0p2bkZFQWR0TmxubVo3ZDN2elF5TGM4WDJZdl9sQWxsbWVTLUdxM05mVWV1bG9KeHpfdEQ3eXZ6d1gyVnl3ZFhpY3FQYmVtdXY1WlB1LW9kcDIxRm9fNS1XNGkwaWNOT2pWakhUekRXalpMLU5BbTJRclh3UU0xN2ZJdkJlME5VUndKc3ZvcGY4bW1zOGctOGMxUnZCMUtmWDVuUWVQQUd6YmFpdmJVMHcxclpJRXpyNkRuTDFQQmhIeVBrVQ?oc=5",
+          "url": "https://news.google.com/rss/articles/CBMihgJBVV95cUxOdkFOSjdIQWp5SkMtMmhKWGtaTFZBbE5jQ0FmdlJvZkpaUXZCd0M3R0wxNTFWMTdBOVB1bk9yZEdxS0FfaGUxbzlPOHhhRlNNbVlETGRIY2QtXy1NNWVJR0VmVjc0alMybUJKRDZCcE9scm9vWVphLVFNejRqRjZZTXRmRU45RlFmOXVWYjRpbVNKV0QxNEItZkhQTERqQUNodjgyVVpHNWlxeEpqUHdjWnF4VHNPZDBEdWliZURkR0thU3FielpJNDlWQkl2UjVsbzR4TUhrRXFUSXFBYWh1YkxQWkxTcldSZjFOUlNVcFdlQ1NWT3l0UWhBNnMtYm82MUVvZndB?oc=5",
           "date": "2026-11-16",
           "quote": "Compromís-Front Valencià reivindica ayudas de 200 euros mensuales por hijo y permisos de cuidados entre amistades",
           "kind": "press",
-          "publisher": "Ultima Hora",
+          "publisher": "Valencia Plaza",
           "matchedKeywords": [
             "ayuda",
             "euro"
@@ -163,7 +147,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-11-16T13:22:51.884Z"
+      "generatedAt": "2026-11-17T13:59:56.583Z"
     },
     {
       "promiseId": "ac-psoe-43brfs",
@@ -228,7 +212,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-11-16T13:22:51.884Z"
+      "generatedAt": "2026-11-17T13:59:56.583Z"
     },
     {
       "promiseId": "ac-psoe-17y448o",
@@ -253,11 +237,11 @@
           ]
         },
         {
-          "url": "https://news.google.com/rss/articles/CBMihwJBVV95cUxQTWZlUzNRSkVxak9ndTZ3X05yZkphYVpUdUxtcklDb0o5amU2bDBEUFVVR21IQmpxNjROSEVON1pab1p0MkdXa1hQS0p2bkZFQWR0TmxubVo3ZDN2elF5TGM4WDJZdl9sQWxsbWVTLUdxM05mVWV1bG9KeHpfdEQ3eXZ6d1gyVnl3ZFhpY3FQYmVtdXY1WlB1LW9kcDIxRm9fNS1XNGkwaWNOT2pWakhUekRXalpMLU5BbTJRclh3UU0xN2ZJdkJlME5VUndKc3ZvcGY4bW1zOGctOGMxUnZCMUtmWDVuUWVQQUd6YmFpdmJVMHcxclpJRXpyNkRuTDFQQmhIeVBrVQ?oc=5",
+          "url": "https://news.google.com/rss/articles/CBMihgJBVV95cUxOdkFOSjdIQWp5SkMtMmhKWGtaTFZBbE5jQ0FmdlJvZkpaUXZCd0M3R0wxNTFWMTdBOVB1bk9yZEdxS0FfaGUxbzlPOHhhRlNNbVlETGRIY2QtXy1NNWVJR0VmVjc0alMybUJKRDZCcE9scm9vWVphLVFNejRqRjZZTXRmRU45RlFmOXVWYjRpbVNKV0QxNEItZkhQTERqQUNodjgyVVpHNWlxeEpqUHdjWnF4VHNPZDBEdWliZURkR0thU3FielpJNDlWQkl2UjVsbzR4TUhrRXFUSXFBYWh1YkxQWkxTcldSZjFOUlNVcFdlQ1NWT3l0UWhBNnMtYm82MUVvZndB?oc=5",
           "date": "2026-11-16",
           "quote": "Compromís-Front Valencià reivindica ayudas de 200 euros mensuales por hijo y permisos de cuidados entre amistades",
           "kind": "press",
-          "publisher": "Ultima Hora",
+          "publisher": "Valencia Plaza",
           "matchedKeywords": [
             "ayuda",
             "euro"
@@ -297,7 +281,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-11-16T13:22:51.884Z"
+      "generatedAt": "2026-11-17T13:59:56.583Z"
     },
     {
       "promiseId": "ac-psoe-1bkbwjs",
@@ -341,7 +325,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-11-16T13:22:51.884Z"
+      "generatedAt": "2026-11-17T13:59:56.583Z"
     },
     {
       "promiseId": "ac-psoe-1xeq50",
@@ -376,11 +360,11 @@
           ]
         },
         {
-          "url": "https://news.google.com/rss/articles/CBMihwJBVV95cUxQTWZlUzNRSkVxak9ndTZ3X05yZkphYVpUdUxtcklDb0o5amU2bDBEUFVVR21IQmpxNjROSEVON1pab1p0MkdXa1hQS0p2bkZFQWR0TmxubVo3ZDN2elF5TGM4WDJZdl9sQWxsbWVTLUdxM05mVWV1bG9KeHpfdEQ3eXZ6d1gyVnl3ZFhpY3FQYmVtdXY1WlB1LW9kcDIxRm9fNS1XNGkwaWNOT2pWakhUekRXalpMLU5BbTJRclh3UU0xN2ZJdkJlME5VUndKc3ZvcGY4bW1zOGctOGMxUnZCMUtmWDVuUWVQQUd6YmFpdmJVMHcxclpJRXpyNkRuTDFQQmhIeVBrVQ?oc=5",
+          "url": "https://news.google.com/rss/articles/CBMihgJBVV95cUxOdkFOSjdIQWp5SkMtMmhKWGtaTFZBbE5jQ0FmdlJvZkpaUXZCd0M3R0wxNTFWMTdBOVB1bk9yZEdxS0FfaGUxbzlPOHhhRlNNbVlETGRIY2QtXy1NNWVJR0VmVjc0alMybUJKRDZCcE9scm9vWVphLVFNejRqRjZZTXRmRU45RlFmOXVWYjRpbVNKV0QxNEItZkhQTERqQUNodjgyVVpHNWlxeEpqUHdjWnF4VHNPZDBEdWliZURkR0thU3FielpJNDlWQkl2UjVsbzR4TUhrRXFUSXFBYWh1YkxQWkxTcldSZjFOUlNVcFdlQ1NWT3l0UWhBNnMtYm82MUVvZndB?oc=5",
           "date": "2026-11-16",
           "quote": "Compromís-Front Valencià reivindica ayudas de 200 euros mensuales por hijo y permisos de cuidados entre amistades",
           "kind": "press",
-          "publisher": "Ultima Hora",
+          "publisher": "Valencia Plaza",
           "matchedKeywords": [
             "euro",
             "entre"
@@ -410,7 +394,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-11-16T13:22:51.884Z"
+      "generatedAt": "2026-11-17T13:59:56.583Z"
     },
     {
       "promiseId": "ac-psoe-1kui43c",
@@ -432,7 +416,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-11-16T13:22:51.884Z"
+      "generatedAt": "2026-11-17T13:59:56.583Z"
     },
     {
       "promiseId": "ac-psoe-1t88ans",
@@ -470,7 +454,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-11-16T13:22:51.884Z"
+      "generatedAt": "2026-11-17T13:59:56.583Z"
     },
     {
       "promiseId": "ac-psoe-168xzn8",
@@ -513,7 +497,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-11-16T13:22:51.884Z"
+      "generatedAt": "2026-11-17T13:59:56.583Z"
     }
   ],
   "llmEvidence": [],

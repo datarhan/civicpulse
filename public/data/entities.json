@@ -1,8 +1,8 @@
 {
-  "generatedAt": "2026-11-16T13:23:09.998Z",
+  "generatedAt": "2026-11-17T14:00:09.538Z",
   "source": "derived: tenders.json assignees + officials.json · overrides: entity-overrides.json",
   "stats": {
-    "companies": 380,
+    "companies": 381,
     "people": 21,
     "variantsMerged": 1,
     "contractRefs": 711
@@ -49,11 +49,11 @@
       "lastAwardDate": "2025-09-10"
     },
     {
-      "id": "co-x2tlvc",
-      "nameKey": "s a agricultores de la vega",
-      "canonicalName": "S. A. AGRICULTORES DE LA VEGA",
+      "id": "co-uvw12g",
+      "nameKey": "s a agricultores de la vega de valencia sav",
+      "canonicalName": "S.A. AGRICULTORES DE LA VEGA DE VALENCIA (SAV)",
       "variants": [
-        "S. A. AGRICULTORES DE LA VEGA"
+        "S.A. AGRICULTORES DE LA VEGA DE VALENCIA (SAV)"
       ],
       "contractIds": [
         "285368",
@@ -262,24 +262,6 @@
       "lastAwardDate": "2017-07-13"
     },
     {
-      "id": "co-11b4n54",
-      "nameKey": "eiffage energia sl",
-      "canonicalName": "EIFFAGE ENERGÍA, S.L.U.",
-      "variants": [
-        "EIFFAGE ENERGÍA, S.L.U."
-      ],
-      "contractIds": [
-        "1562430",
-        "36008",
-        "1943883",
-        "1556443"
-      ],
-      "contractCount": 4,
-      "awardedTotalEur": 1027621.71,
-      "firstAwardDate": "2019-03-30",
-      "lastAwardDate": "2023-02-20"
-    },
-    {
       "id": "co-xv2ayo",
       "nameKey": "gil folgado catering sl",
       "canonicalName": "Gil Folgado Catering, S.L.",
@@ -440,6 +422,38 @@
       "awardedTotalEur": 571533.35,
       "firstAwardDate": "2018-05-08",
       "lastAwardDate": "2022-12-21"
+    },
+    {
+      "id": "co-knwepv",
+      "nameKey": "eiffage energia",
+      "canonicalName": "EIFFAGE ENERGIA",
+      "variants": [
+        "EIFFAGE ENERGIA"
+      ],
+      "contractIds": [
+        "1562430",
+        "36008",
+        "1556443"
+      ],
+      "contractCount": 3,
+      "awardedTotalEur": 545844.11,
+      "firstAwardDate": "2019-03-30",
+      "lastAwardDate": "2021-12-13"
+    },
+    {
+      "id": "co-11b4n54",
+      "nameKey": "eiffage energia sl",
+      "canonicalName": "EIFFAGE ENERGÍA, S.L.U.",
+      "variants": [
+        "EIFFAGE ENERGÍA, S.L.U."
+      ],
+      "contractIds": [
+        "1943883"
+      ],
+      "contractCount": 1,
+      "awardedTotalEur": 481777.6,
+      "firstAwardDate": "2023-02-20",
+      "lastAwardDate": "2023-02-20"
     },
     {
       "id": "co-1ssdab8",
@@ -673,11 +687,11 @@
       "lastAwardDate": "2024-01-02"
     },
     {
-      "id": "co-196u850",
-      "nameKey": "andacar 2000 sa",
-      "canonicalName": "ANDACAR 2000, S.A.",
+      "id": "co-1c8puro",
+      "nameKey": "andacar 2000 sl",
+      "canonicalName": "ANDACAR 2000 SL",
       "variants": [
-        "ANDACAR 2000, S.A."
+        "ANDACAR 2000 SL"
       ],
       "contractIds": [
         "67336#125442",
@@ -1213,11 +1227,11 @@
       "lastAwardDate": "2026-07-02"
     },
     {
-      "id": "co-1pd3evs",
-      "nameKey": "elecnor servicios y proyectos sa",
-      "canonicalName": "Elecnor Servicios y Proyectos, S.A.U.",
+      "id": "co-cxnxgo",
+      "nameKey": "elecnor sa",
+      "canonicalName": "ELECNOR, S.A.",
       "variants": [
-        "Elecnor Servicios y Proyectos, S.A.U."
+        "ELECNOR, S.A."
       ],
       "contractIds": [
         "60362",
@@ -1407,11 +1421,11 @@
       "lastAwardDate": "2026-07-20"
     },
     {
-      "id": "co-815zb8",
-      "nameKey": "sociedad iberica de construcciones electricas s a sice",
-      "canonicalName": "Sociedad Ibérica de Construcciones Eléctricas, S.A. (SICE)",
+      "id": "co-aqojcg",
+      "nameKey": "sociedad iberica de construcciones electricas sa",
+      "canonicalName": "SOCIEDAD IBERICA DE CONSTRUCCIONES ELECTRICAS S.A.",
       "variants": [
-        "Sociedad Ibérica de Construcciones Eléctricas, S.A. (SICE)"
+        "SOCIEDAD IBERICA DE CONSTRUCCIONES ELECTRICAS S.A."
       ],
       "contractIds": [
         "132946",
@@ -1780,11 +1794,11 @@
       "lastAwardDate": "2022-03-04"
     },
     {
-      "id": "co-srytb7",
-      "nameKey": "zurich insurance ag sucursal en espana",
-      "canonicalName": "ZURICH INSURANCE AG SUCURSAL EN ESPAÑA",
+      "id": "co-2rq9br",
+      "nameKey": "zurich insurance europe ag sucursal en espana",
+      "canonicalName": "ZURICH INSURANCE EUROPE AG, SUCURSAL EN ESPAÑA",
       "variants": [
-        "ZURICH INSURANCE AG SUCURSAL EN ESPAÑA"
+        "ZURICH INSURANCE EUROPE AG, SUCURSAL EN ESPAÑA"
       ],
       "contractIds": [
         "54281"
@@ -2083,9 +2097,9 @@
     {
       "id": "co-vmkwj4",
       "nameKey": "t systems itc iberia sa",
-      "canonicalName": "T-SYSTEMS ITC IBERIA SAU",
+      "canonicalName": "T-SYSTEMS ITC IBERIA, S.A.U",
       "variants": [
-        "T-SYSTEMS ITC IBERIA SAU"
+        "T-SYSTEMS ITC IBERIA, S.A.U"
       ],
       "contractIds": [
         "1701582#3707296"
@@ -3551,9 +3565,9 @@
     {
       "id": "co-193x1lk",
       "nameKey": "imesapi sa",
-      "canonicalName": "IMESAPI SA",
+      "canonicalName": "IMESAPI, S.A.",
       "variants": [
-        "IMESAPI SA"
+        "IMESAPI, S.A."
       ],
       "contractIds": [
         "2739773",
@@ -3642,11 +3656,11 @@
       "lastAwardDate": "2023-01-25"
     },
     {
-      "id": "co-g4zfgg",
-      "nameKey": "bilbao compania anomina de seguros y reaseguros sa",
-      "canonicalName": "BILBAO COMPAÑIA ANOMINA DE SEGUROS Y REASEGUROS SA",
+      "id": "co-n3ug3k",
+      "nameKey": "seguros bilbao sa",
+      "canonicalName": "SEGUROS BILBAO, S.A",
       "variants": [
-        "BILBAO COMPAÑIA ANOMINA DE SEGUROS Y REASEGUROS SA"
+        "SEGUROS BILBAO, S.A"
       ],
       "contractIds": [
         "4163363"
@@ -3673,11 +3687,11 @@
       "lastAwardDate": "2024-12-10"
     },
     {
-      "id": "co-xfwv70",
-      "nameKey": "occident gco sa",
-      "canonicalName": "OCCIDENT GCO S.A",
+      "id": "co-vmwp8c",
+      "nameKey": "occident gco s a de seguros y reaseguros sociedad unipersonal",
+      "canonicalName": "OCCIDENT GCO, S.A. De Seguros y Reaseguros, Sociedad Unipersonal",
       "variants": [
-        "OCCIDENT GCO S.A"
+        "OCCIDENT GCO, S.A. De Seguros y Reaseguros, Sociedad Unipersonal"
       ],
       "contractIds": [
         "auto-tkb2py"
@@ -4746,11 +4760,11 @@
       "lastAwardDate": "2021-07-07"
     },
     {
-      "id": "co-ohksrg",
-      "nameKey": "viva aquaservice spain sa",
-      "canonicalName": "VIVA AQUASERVICE SPAIN SA",
+      "id": "co-1gdtq1c",
+      "nameKey": "empresa a41810920",
+      "canonicalName": "Empresa A41810920",
       "variants": [
-        "VIVA AQUASERVICE SPAIN SA"
+        "Empresa A41810920"
       ],
       "contractIds": [
         "3370373"
@@ -5351,9 +5365,9 @@
     {
       "id": "co-ktowjc",
       "nameKey": "orange espagne sa",
-      "canonicalName": "ORANGE ESPAGNE S.A.",
+      "canonicalName": "ORANGE ESPAGNE S.A.U.",
       "variants": [
-        "ORANGE ESPAGNE S.A."
+        "ORANGE ESPAGNE S.A.U."
       ],
       "contractIds": [
         "1794430#10148923"
@@ -6171,7 +6185,7 @@
   ],
   "builtFrom": {
     "entity-overrides.json": "a41cc20172e9",
-    "officials.json": "e2313cbace95",
-    "tenders.json": "af08bd6d1b69"
+    "officials.json": "6f0e8f207294",
+    "tenders.json": "20a337e60c42"
   }
 }

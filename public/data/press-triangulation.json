@@ -1,18 +1,18 @@
 {
-  "generatedAt": "2026-11-17T12:41:11.798Z",
+  "generatedAt": "2026-11-17T14:00:10.226Z",
   "clusters": [
     {
       "clusterId": "eqsunl",
       "articleIds": [
-        "1jhsn2b",
-        "5iht08"
+        "5iht08",
+        "m7i95g"
       ],
       "outlets": [
         "Periòdic del Camp de Túria",
-        "Ultima Hora"
+        "Valencia Plaza"
       ],
       "fuentesOficiales": [],
-      "earliestDate": "2026-11-16T10:57:53.000Z",
+      "earliestDate": "2026-11-16T11:03:13.000Z",
       "latestDate": "2026-11-16T13:01:38.000Z",
       "verdictMix": {
         "verificado": 0,
@@ -28,9 +28,9 @@
     "triangulated3Plus": 0
   },
   "builtFrom": {
-    "plenos-agendas.json": "879f4418b073",
+    "plenos-agendas.json": "04ab12fcd569",
     "press-claims-verified.json": "08ffc2a2899d",
-    "press.json": "fa4cb946d4fe",
+    "press.json": "08a2437bfa97",
     "promises.json": "78479b1377ce"
   }
 }
