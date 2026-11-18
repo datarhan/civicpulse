@@ -107,10 +107,31 @@ function quitar(texto: string, fragmento: string): { texto: string; veces: numbe
   return { texto: partes.join(MARCA_RETIRADO), veces }
 }
 
-const aparece = (texto: TextoQueja, fragmento: string) =>
+/** ¿Está el fragmento, suelto, en el texto? Exportada para la medida contrafactual. */
+export const aparece = (texto: TextoQueja, fragmento: string) =>
   [texto.titulo, texto.detalle].some((t) =>
     t.split(MARCA_RETIRADO).some((p) => suelto(fragmento).test(p)),
   )
+
+/**
+ * Los fragmentos que pide quitar una respuesta: recortados, en NFC y sin
+ * repetir; `null` si la respuesta no trae una lista de textos. Es la lista que
+ * usa `interpretarRevision`, y la que compara services/medida-contrafactual.ts:
+ * una sola definición. No dice si la respuesta es válida —eso lo decide
+ * `interpretarRevision`—, y la lista nunca se guarda en el bot.
+ */
+export function fragmentosPedidos(crudo: string): string[] | null {
+  let r: unknown
+  try {
+    r = JSON.parse(crudo)
+  } catch {
+    return null
+  }
+  if (typeof r !== 'object' || r === null || Array.isArray(r)) return null
+  const { retirar } = r as { retirar?: unknown }
+  if (!Array.isArray(retirar) || !retirar.every((f) => typeof f === 'string')) return null
+  return [...new Set(retirar.map((f) => f.normalize('NFC').trim()))]
+}
 
 /**
  * Lo que dijo el modelo —el texto JSON de su respuesta—, contra el texto que se
@@ -124,15 +145,13 @@ export function interpretarRevision(crudo: string, texto: TextoQueja): Revision 
     return invalida('json')
   }
   if (typeof r !== 'object' || r === null || Array.isArray(r)) return invalida('forma')
-  const { retirar, motivos } = r as { retirar?: unknown; motivos?: unknown }
+  const { motivos } = r as { motivos?: unknown }
   // Un campo que falta no es una lista vacía (regla 3 de docs/DATA_INTEGRITY.md).
-  if (!Array.isArray(retirar) || !retirar.every((f) => typeof f === 'string')) {
-    return invalida('sin-retirar')
-  }
+  const fragmentos = fragmentosPedidos(crudo)
+  if (fragmentos === null) return invalida('sin-retirar')
   if (!Array.isArray(motivos)) return invalida('sin-motivos')
   if (!motivos.every(esMotivoDelModelo)) return invalida('motivo-desconocido')
 
-  const fragmentos = [...new Set(retirar.map((f) => f.normalize('NFC').trim()))]
   if (fragmentos.some((f) => f.length < 2)) return invalida('fragmento-vacio')
   // Todos tienen que estar en el texto que se mandó; se quitan de más largo a más
   // corto, y el que otro más largo ya se llevó («Paco» en «Paco García») cuenta.
