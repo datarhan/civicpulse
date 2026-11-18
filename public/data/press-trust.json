@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-18T07:03:16.468Z",
+  "generatedAt": "2026-11-18T12:33:04.368Z",
   "windowDays": 30,
   "articles": [
     {
@@ -528,30 +528,13 @@
         "opinionFraction": 0
       },
       "score": 1
-    },
-    {
-      "articleId": "13zosn4",
-      "articleFingerprint": "1r7w0wk",
-      "outlet": "Ayuntamiento de Riba-roja de Túria",
-      "outletHost": "ribarroja.es",
-      "url": "https://www.ribarroja.es/es/noticia/el-programa-educativo-%27meteoaula%27-acerca-las-respuestas-el-cambio-clim%C3%A1tico-al-alumnado-de-riba-roja-de-turia",
-      "date": "2026-10-19T11:27:23.000Z",
-      "indicators": {
-        "localCoverage": false,
-        "datedArticle": true,
-        "municipalSourceMatch": null,
-        "corroboratedAcrossOutlets": null,
-        "factualClaimsPresent": false,
-        "opinionFraction": 0
-      },
-      "score": 1
     }
   ],
   "outlets": [
     {
       "outlet": "Ayuntamiento de Riba-roja de Túria",
       "outletHost": "ribarroja.es",
-      "articleCount": 18,
+      "articleCount": 17,
       "verdictCounts": {
         "verificado": 0,
         "parcial": 1,
@@ -560,7 +543,7 @@
         "promesa-repetida": 0
       },
       "checkedClaims": 3,
-      "meanTrustScore": 1.78,
+      "meanTrustScore": 1.82,
       "verifiedRatio": 0,
       "contradictedRatio": null
     },
@@ -630,7 +613,7 @@
     }
   ],
   "builtFrom": {
-    "plenos-agendas.json": "c0f69478a9e3",
+    "plenos-agendas.json": "92e3b53fa863",
     "press-claims-verified.json": "08ffc2a2899d",
     "press.json": "08a2437bfa97",
     "promises.json": "78479b1377ce"
